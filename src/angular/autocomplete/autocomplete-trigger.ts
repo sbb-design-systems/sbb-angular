@@ -9,7 +9,7 @@ import {
   PositionStrategy,
   ScrollStrategy,
 } from '@angular/cdk/overlay';
-import { _getShadowRoot } from '@angular/cdk/platform';
+import { _getEventTarget } from '@angular/cdk/platform';
 import { TemplatePortal } from '@angular/cdk/portal';
 import { ViewportRuler } from '@angular/cdk/scrolling';
 import { DOCUMENT } from '@angular/common';
@@ -112,7 +112,7 @@ export function getSbbAutocompleteMissingPanelError(): Error {
   },
 })
 export class SbbAutocompleteTrigger
-  implements ControlValueAccessor, AfterViewInit, OnDestroy, OnChanges
+  implements ControlValueAccessor, AfterViewInit, OnChanges, OnDestroy
 {
   private _overlayRef: OverlayRef | null;
   private _portal: TemplatePortal;
@@ -150,9 +150,6 @@ export class SbbAutocompleteTrigger
    * comes back.
    */
   private _canOpenOnNextFocus = true;
-
-  /** Whether the element is inside of a ShadowRoot component. */
-  private _isInsideShadowRoot: boolean;
 
   /** Stream of keyboard events that can close the panel. */
   private readonly _closeKeyEventStream = new Subject<void>();
@@ -251,7 +248,7 @@ export class SbbAutocompleteTrigger
   get autocompleteDisabled(): boolean {
     return this._autocompleteDisabled;
   }
-  set autocompleteDisabled(value: boolean) {
+  set autocompleteDisabled(value: BooleanInput) {
     this._autocompleteDisabled = coerceBooleanProperty(value);
   }
 
@@ -414,9 +411,7 @@ export class SbbAutocompleteTrigger
       filter((event) => {
         // If we're in the Shadow DOM, the event target will be the shadow root, so we have to
         // fall back to check the first element in the path of the click event.
-        const clickTarget = (
-          this._isInsideShadowRoot && event.composedPath ? event.composedPath()[0] : event.target
-        ) as HTMLElement;
+        const clickTarget = _getEventTarget<HTMLElement>(event)!;
         const formField = this._formField ? this._formField._elementRef.nativeElement : null;
         const customOrigin = this.connectedTo ? this.connectedTo.elementRef.nativeElement : null;
 
@@ -527,7 +522,7 @@ export class SbbAutocompleteTrigger
   }
 
   /**
-   * This method updates the width of the autocomplete panel.
+   * Update width of the autocomplete panel.
    */
   _updateSize() {
     this._overlayRef?.updateSize({ width: this._getPanelWidth() });
@@ -598,7 +593,7 @@ export class SbbAutocompleteTrigger
     // The display value can also be the number zero and shouldn't fall back to an empty string.
     const inputValue = toDisplay != null ? toDisplay : '';
 
-    // If it's used within a `SbbField`, we should set it through the property so it can go
+    // If it's used within a `SbbFormField`, we should set it through the property so it can go
     // through change detection.
     if (this._formField && this._formField._control) {
       this._formField._control.value = inputValue;
@@ -641,17 +636,11 @@ export class SbbAutocompleteTrigger
       throw getSbbAutocompleteMissingPanelError();
     }
 
-    // We want to resolve this once, as late as possible so that we can be
-    // sure that the element has been moved into its final place in the DOM.
-    if (this._isInsideShadowRoot == null) {
-      this._isInsideShadowRoot = !!_getShadowRoot(this._elementRef.nativeElement);
-    }
-
     let overlayRef = this._overlayRef;
 
     if (!overlayRef) {
       this._portal = new TemplatePortal(this.autocomplete.template, this._viewContainerRef, {
-        id: this._formField?._labelId,
+        id: this._formField?.getLabelId(),
       });
       overlayRef = this._overlay.create(this._getOverlayConfig());
       this._overlayRef = overlayRef;
@@ -689,8 +678,8 @@ export class SbbAutocompleteTrigger
           (event.keyCode === ESCAPE && !hasModifierKey(event)) ||
           (event.keyCode === UP_ARROW && hasModifierKey(event, 'altKey'))
         ) {
-          this._resetActiveItem();
           this._closeKeyEventStream.next();
+          this._resetActiveItem();
 
           // We need to stop propagation, otherwise the event will eventually
           // reach the input itself and cause the overlay to be reopened.
@@ -845,7 +834,7 @@ export class SbbAutocompleteTrigger
       // scroll the list to the top. This is better UX than scrolling the list to the
       // top of the option, because it allows the user to read the top group's label.
       autocomplete._setScrollTop(0);
-    } else {
+    } else if (autocomplete.panel) {
       const option = autocomplete.options.toArray()[index];
 
       if (option) {
@@ -861,6 +850,4 @@ export class SbbAutocompleteTrigger
       }
     }
   }
-
-  static ngAcceptInputType_autocompleteDisabled: BooleanInput;
 }
