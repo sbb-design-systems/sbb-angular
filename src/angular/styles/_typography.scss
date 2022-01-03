@@ -1083,7 +1083,7 @@ textarea {
   position: absolute;
   text-align: center;
   display: inline-block;
-  transition: transform 200ms ease-in-out;
+  transition: transform var(--sbb-transition-duration-fast) var(--sbb-transition-timing-default);
   transform: scale(0.6);
   overflow: hidden;
   white-space: nowrap;
@@ -2046,7 +2046,8 @@ textarea {
 
 :is(.sbb-table-sticky-border-elem-left, .sbb-table-sticky-border-elem-right)::after {
   content: '';
-  transition: visibility, opacity 0.2s ease-in;
+  transition: visibility,
+    opacity var(--sbb-transition-duration-fast) var(--sbb-transition-timing-fast-start);
   visibility: hidden;
   opacity: 0;
   position: absolute;

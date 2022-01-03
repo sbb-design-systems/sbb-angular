@@ -152,7 +152,8 @@
         z-index: 2;
         width: pxToRem(12);
         height: calc(100% - 0.5rem);
-        transition: transform 0.25s ease;
+        transition: transform var(--sbb-transition-duration-fast)
+          var(--sbb-transition-timing-default);
         pointer-events: none;
 
         @include mq($from: tablet) {

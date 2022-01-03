@@ -130,7 +130,11 @@
   max-height: pxToEm(600);
   visibility: visible;
   opacity: 1;
-  transition: opacity 0.25s ease, visibility 0.25s ease, padding 0.2s ease, max-height 0.2s ease;
+  transition: {
+    duration: var(--sbb-transition-duration-fast);
+    timing-function: var(--sbb-transition-timing-default);
+    property: opacity, visibility, padding, max-height;
+  }
   margin-top: pxToEm(-2);
   position: relative;
   border: var(--sbb-border-width-thin) solid var(--sbb-color-black);
