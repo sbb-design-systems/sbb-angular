@@ -191,7 +191,7 @@ export class SbbDateInput<D> implements ControlValueAccessor, Validator, OnInit,
   _onTouched: () => void = () => {};
 
   /** `View -> model callback called when value changes` */
-  private _cvaOnChange: (value: any) => void = () => {};
+  _cvaOnChange: (value: any) => void = () => {};
 
   private _validatorOnChange = () => {};
 

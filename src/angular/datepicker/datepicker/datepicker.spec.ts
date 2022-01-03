@@ -1,7 +1,7 @@
 import { DOWN_ARROW, ENTER, ESCAPE, UP_ARROW } from '@angular/cdk/keycodes';
 import { OverlayContainer } from '@angular/cdk/overlay';
 import { Component, FactoryProvider, Type, ValueProvider, ViewChild } from '@angular/core';
-import { ComponentFixture, fakeAsync, flush, inject, TestBed } from '@angular/core/testing';
+import { ComponentFixture, fakeAsync, flush, inject, TestBed, tick } from '@angular/core/testing';
 import { FormControl, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { By } from '@angular/platform-browser';
 import { BrowserDynamicTestingModule } from '@angular/platform-browser-dynamic/testing';
@@ -141,6 +141,19 @@ class DatepickerWithEventsComponent {
 })
 class DatepickerOpeningOnFocusComponent {
   @ViewChild(SbbDatepicker, { static: true }) datepicker: SbbDatepicker<Date>;
+}
+
+@Component({
+  template: `<sbb-datepicker [connected]="second">
+      <input sbbDateInput sbbInput [formControl]="firstDatepicker" />
+    </sbb-datepicker>
+    <sbb-datepicker #second>
+      <input sbbDateInput sbbInput [formControl]="secondDatepicker" />
+    </sbb-datepicker>`,
+})
+class DatepickerConnectedComponent {
+  firstDatepicker = new FormControl();
+  secondDatepicker = new FormControl();
 }
 
 describe('SbbDatepicker', () => {
@@ -763,6 +776,81 @@ describe('SbbDatepicker', () => {
         flush();
 
         expect(testComponent.datepicker.opened).toBe(false, 'Expected datepicker to be closed.');
+      }));
+    });
+
+    describe('datepicker connected with second datepicker', () => {
+      let fixture: ComponentFixture<DatepickerConnectedComponent>;
+      let testComponent: DatepickerConnectedComponent;
+
+      beforeEach(fakeAsync(() => {
+        fixture = createComponent(DatepickerConnectedComponent);
+        fixture.detectChanges();
+        testComponent = fixture.componentInstance;
+      }));
+
+      it('should step from first to second datepicker', fakeAsync(() => {
+        expect(document.querySelector('.cdk-overlay-pane.sbb-datepicker-panel')).toBeNull();
+        expect(testComponent.firstDatepicker.value).toBeNull();
+        expect(testComponent.secondDatepicker.value).toBeNull();
+
+        // When clicking toggle
+        fixture.debugElement.query(By.css('.sbb-datepicker-toggle-button')).nativeElement.click();
+        fixture.detectChanges();
+
+        // Then panel should be open
+        expect(document.querySelector('.cdk-overlay-pane.sbb-datepicker-panel')).not.toBeNull();
+
+        // When clicking first date
+        fixture.debugElement.query(By.css('.sbb-calendar-body-cell-content')).nativeElement.click();
+        fixture.detectChanges();
+        tick();
+        fixture.detectChanges();
+
+        // Then second panel should be opened
+        expect(document.querySelector('.cdk-overlay-pane.sbb-datepicker-panel')).not.toBeNull();
+
+        // When clicking other date
+        fixture.debugElement
+          .queryAll(By.css('.sbb-calendar-body-cell-content'))[3]
+          .nativeElement.click();
+        fixture.detectChanges();
+
+        // Then panel should be closed and dates should be set
+        expect(document.querySelector('.cdk-overlay-pane.sbb-datepicker-panel')).toBeNull();
+        expect(testComponent.firstDatepicker.value).not.toBeNull();
+        expect(testComponent.secondDatepicker.value).not.toBeNull();
+
+        flush();
+      }));
+
+      it('should clear model if selecting a date in first datepicker which is after date of second datepicker', fakeAsync(() => {
+        testComponent.firstDatepicker.setValue(new Date(2022, JAN, 1));
+        testComponent.secondDatepicker.setValue(new Date(2022, JAN, 3));
+        fixture.detectChanges();
+
+        // When clicking toggle
+        fixture.debugElement.query(By.css('.sbb-datepicker-toggle-button')).nativeElement.click();
+        fixture.detectChanges();
+
+        // When choosing date
+        fixture.debugElement
+          .queryAll(By.css('.sbb-calendar-body-cell-content'))[4]
+          .nativeElement.click();
+        fixture.detectChanges();
+        tick();
+        fixture.detectChanges();
+
+        // Then model of second datepicker should be reset
+        expect(testComponent.firstDatepicker.value).toEqual(new Date(2022, JAN, 5));
+        expect(testComponent.secondDatepicker.value).toBeNull();
+
+        // Then datepicker input values should be set correctly
+        const dateInputs = fixture.debugElement.queryAll(By.css('.sbb-date-input'));
+        expect(dateInputs[0].nativeElement.value).toBe('We, 05.01.2022');
+        expect(dateInputs[1].nativeElement.value).toBe('');
+
+        flush();
       }));
     });
   });
