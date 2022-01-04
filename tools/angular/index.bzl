@@ -50,6 +50,7 @@ def _create_bundle_targets(pkg, entry_point, module_name):
         name = "%s_linked_bundle" % target_name_base,
         output = "%s/index.mjs" % target_name_base,
         platform = pkg.platform,
+        sources_content = True,
         entry_point = "@npm//:node_modules/@angular/%s/%s" % (pkg.name, fesm_bundle_path),
         config = "//tools/angular:esbuild_config",
         # List of dependencies which should never be bundled into these linker-processed bundles.
