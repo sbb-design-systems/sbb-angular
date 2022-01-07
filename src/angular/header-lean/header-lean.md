@@ -52,7 +52,7 @@ Note: For the production environment, the `sbb-header-environment` is expected t
 </sbb-header-lean>
 ```
 
-We provide default colors for `edu`, `dev`, `test` and `int`. In order to configure your own color,
+We provide default colors for `local`, `edu`, `dev`, `test` and `int`. In order to configure your own color,
 set the background color of `sbb-header-environment`. Note that the normalized text content of the
 element will be added as a class in the format of `.sbb-header-environment-{text}`.
 

@@ -49,6 +49,9 @@
 }
 
 // Default colors for the environments
+.sbb-header-environment-local {
+  background-color: var(--sbb-color-autumn);
+}
 .sbb-header-environment-dev {
   background-color: var(--sbb-color-peach);
 }
