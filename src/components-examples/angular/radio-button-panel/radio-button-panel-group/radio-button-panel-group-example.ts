@@ -1,6 +1,7 @@
-import { Component } from '@angular/core';
+import { Component, OnDestroy } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
-import { startWith } from 'rxjs/operators';
+import { Subject } from 'rxjs';
+import { startWith, takeUntil } from 'rxjs/operators';
 
 /**
  * @title Radio Button Panel Group
@@ -11,7 +12,7 @@ import { startWith } from 'rxjs/operators';
   templateUrl: 'radio-button-panel-group-example.html',
   styleUrls: ['radio-button-panel-group-example.css'],
 })
-export class RadioButtonPanelGroupExample {
+export class RadioButtonPanelGroupExample implements OnDestroy {
   readonly breakpoints = [
     'tablet',
     'desktop',
@@ -23,6 +24,7 @@ export class RadioButtonPanelGroupExample {
   radios: Array<{ label: string; value: number }> = [];
   form: FormGroup;
   groupClasses: string[] = [];
+  private _destroyed = new Subject<void>();
 
   constructor(private _formBuilder: FormBuilder) {
     this.form = this._formBuilder.group({
@@ -35,18 +37,25 @@ export class RadioButtonPanelGroupExample {
       desktop4k: 1,
       desktop5k: 1,
     });
-    this.form.valueChanges.pipe(startWith(this.form.value)).subscribe((v) => {
-      const { value, amount, ...classes } = v as { [key: string]: number };
-      if (isNaN(parseInt(amount as any, 10)) || amount < 1) {
-        this.form.get('amount')!.setValue(1);
-        return;
-      } else if (amount > 100) {
-        this.form.get('amount')!.setValue(100);
-        return;
-      }
-      this._changeRadioButtonAmount(amount);
-      this._assignGroupClasses(classes);
-    });
+    this.form.valueChanges
+      .pipe(startWith(this.form.value), takeUntil(this._destroyed))
+      .subscribe((v) => {
+        const { value, amount, ...classes } = v as { [key: string]: number };
+        if (isNaN(parseInt(amount as any, 10)) || amount < 1) {
+          this.form.get('amount')!.setValue(1);
+          return;
+        } else if (amount > 100) {
+          this.form.get('amount')!.setValue(100);
+          return;
+        }
+        this._changeRadioButtonAmount(amount);
+        this._assignGroupClasses(classes);
+      });
+  }
+
+  ngOnDestroy() {
+    this._destroyed.next();
+    this._destroyed.complete();
   }
 
   breakpointRange(breakpoint: string) {

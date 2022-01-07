@@ -2,7 +2,8 @@ import { Component, OnDestroy, OnInit } from '@angular/core';
 import { FormControl } from '@angular/forms';
 import { SbbCheckboxChange } from '@sbb-esta/angular/checkbox';
 import { SbbFileSelectorTypesService } from '@sbb-esta/angular/file-selector';
-import { Subscription } from 'rxjs';
+import { Subject } from 'rxjs';
+import { takeUntil } from 'rxjs/operators';
 
 /**
  * @title Multiple Mode Default File Selector
@@ -14,26 +15,24 @@ import { Subscription } from 'rxjs';
 })
 export class MultipleModeDefaultFileSelectorExample implements OnInit, OnDestroy {
   filesList: File[] = [];
-
-  disabled: boolean;
-
   fileControl = new FormControl();
-  fileControlSubscription = Subscription.EMPTY;
-
+  disabled: boolean;
   accept: string;
+  private _destroyed = new Subject<void>();
 
   constructor(private _fileTypeService: SbbFileSelectorTypesService) {
     this.accept = this._fileTypeService.getAcceptString('image', 'zip');
   }
 
   ngOnInit() {
-    this.fileControlSubscription = this.fileControl.valueChanges.subscribe((files: File[]) => {
+    this.fileControl.valueChanges.pipe(takeUntil(this._destroyed)).subscribe((files: File[]) => {
       this.filesList = files;
     });
   }
 
   ngOnDestroy() {
-    this.fileControlSubscription.unsubscribe();
+    this._destroyed.next();
+    this._destroyed.complete();
   }
 
   beautifyFileList(filesList: File[]) {

@@ -1,5 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { FormControl } from '@angular/forms';
+import { Subject } from 'rxjs';
+import { takeUntil } from 'rxjs/operators';
 
 /**
  * @title Autocomplete Reactive Forms
@@ -9,17 +11,22 @@ import { FormControl } from '@angular/forms';
   selector: 'sbb-autocomplete-reactive-forms-example',
   templateUrl: 'autocomplete-reactive-forms-example.html',
 })
-export class AutocompleteReactiveFormsExample implements OnInit {
+export class AutocompleteReactiveFormsExample implements OnInit, OnDestroy {
   myControl = new FormControl('');
-
   filteredOptions = options.slice(0);
+  private _destroyed = new Subject<void>();
 
   ngOnInit() {
-    this.myControl.valueChanges.subscribe((newValue) => {
+    this.myControl.valueChanges.pipe(takeUntil(this._destroyed)).subscribe((newValue) => {
       this.filteredOptions = options.filter(
         (option) => option.toLocaleUpperCase().indexOf(newValue.toLocaleUpperCase()) > -1
       );
     });
+  }
+
+  ngOnDestroy(): void {
+    this._destroyed.next();
+    this._destroyed.complete();
   }
 }
 

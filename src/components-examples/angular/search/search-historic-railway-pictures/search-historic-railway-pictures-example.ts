@@ -79,13 +79,14 @@ export class SearchHistoricRailwayPicturesExample implements OnInit, OnDestroy {
         ),
         takeUntil(this._destroyed)
       )
-      .subscribe(
-        (searchResults) => {
+      .subscribe({
+        next: (searchResults) => {
           this.showSpinner = false;
           this.searchResults = searchResults;
         },
-        () => (this.showSpinner = false)
-      );
+        complete: () => (this.showSpinner = false),
+        error: () => (this.showSpinner = false),
+      });
   }
 
   ngOnDestroy(): void {
