@@ -14,7 +14,7 @@
     [attr.aria-labelledby]="ariaLabelledby"
     [attr.aria-describedby]="ariaDescribedby"
     [attr.aria-controls]="checked && _details ? toggle._contentId : null"
-    [attr.aria-expanded]="checked && _details ? true : null"
+    [attr.aria-checked]="checked && _details ? true : false"
     (change)="_onInputChange($event)"
     (click)="_onInputClick($event)"
   />
