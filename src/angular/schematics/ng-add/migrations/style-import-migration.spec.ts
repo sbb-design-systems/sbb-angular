@@ -202,4 +202,26 @@ describe('style import migration', () => {
       `@include sbb-core();`,
     ]);
   });
+
+  it('should remove remove .scss file extension', async () => {
+    writeLines(testPath, [
+      `@use '~@sbb-esta/angular.scss' as sbb;`,
+      `@import '~@sbb-esta/angular/theming.scss';`,
+      `@import '~@sbb-esta/cdk/overlay-prebuilt.css';`,
+
+      `@include sbb.button-theme();`,
+      `@include sbb-core();`,
+    ]);
+
+    await runMigration();
+
+    expect(splitFile(testPath)).toEqual([
+      `@use '@sbb-esta/angular' as sbb;`,
+      `@import '@sbb-esta/angular/theming';`,
+      `@import '@sbb-esta/cdk/overlay-prebuilt.css';`,
+
+      `@include sbb.button-theme();`,
+      `@include sbb-core();`,
+    ]);
+  });
 });
