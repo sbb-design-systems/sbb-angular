@@ -2,18 +2,21 @@
   Re-export of Bazel rules with repository-wide defaults
 """
 
+load("@rules_pkg//:pkg.bzl", "pkg_tar")
 load("@build_bazel_rules_nodejs//:index.bzl", _pkg_npm = "pkg_npm")
 load("@io_bazel_rules_sass//:defs.bzl", _sass_binary = "sass_binary", _sass_library = "sass_library")
 load("@npm//@angular/bazel:index.bzl", _ng_module = "ng_module", _ng_package = "ng_package")
+load("@npm//@angular/dev-infra-private/bazel/esbuild:index.bzl", _esbuild = "esbuild", _esbuild_config = "esbuild_config")
+load("@npm//@angular/dev-infra-private/bazel/spec-bundling:index.bzl", _spec_bundle = "spec_bundle")
+load("@npm//@angular/dev-infra-private/bazel:extract_js_module_output.bzl", "extract_js_module_output")
 load("@npm//@bazel/concatjs:index.bzl", _karma_web_test = "karma_web_test", _karma_web_test_suite = "karma_web_test_suite")
-load("@npm//@bazel/esbuild:index.bzl", _esbuild = "esbuild")
 load("@npm//@bazel/jasmine:index.bzl", _jasmine_node_test = "jasmine_node_test")
 load("@npm//@bazel/protractor:index.bzl", _protractor_web_test_suite = "protractor_web_test_suite")
 load("@npm//@bazel/typescript:index.bzl", _ts_library = "ts_library")
 load("//:packages.bzl", "NO_STAMP_NPM_PACKAGE_SUBSTITUTIONS", "NPM_PACKAGE_SUBSTITUTIONS")
 load("//:pkg-externals.bzl", "PKG_EXTERNALS")
 load("//tools/markdown-to-html:index.bzl", _markdown_to_html = "markdown_to_html")
-load("//tools/spec-bundling:index.bzl", "spec_bundle")
+load("//tools/angular:index.bzl", "LINKER_PROCESSED_FW_PACKAGES")
 
 _DEFAULT_TSCONFIG_BUILD = "//src:bazel-tsconfig-build.json"
 _DEFAULT_TSCONFIG_TEST = "//src:tsconfig-test"
@@ -26,6 +29,8 @@ npmPackageSubstitutions = select({
 
 # Re-exports to simplify build file load statements
 markdown_to_html = _markdown_to_html
+esbuild = _esbuild
+esbuild_config = _esbuild_config
 
 def _compute_module_name(testonly):
     current_pkg = native.package_name()
@@ -108,7 +113,6 @@ def ng_module(
         deps = [],
         srcs = [],
         tsconfig = None,
-        flat_module_out_file = None,
         testonly = False,
         **kwargs):
     if not tsconfig:
@@ -143,6 +147,7 @@ def ng_module(
         **kwargs
     )
 
+# buildifier: disable=function-docstring
 def ng_package(name, data = [], deps = [], externals = PKG_EXTERNALS, readme_md = None, visibility = None, **kwargs):
     # If no readme file has been specified explicitly, use the default readme for
     # release packages from "src/README.md".
@@ -184,6 +189,16 @@ def ng_package(name, data = [], deps = [], externals = PKG_EXTERNALS, readme_md 
         **kwargs
     )
 
+    pkg_tar(
+        name = name + "_archive",
+        srcs = [":%s" % name],
+        extension = "tar.gz",
+        strip_prefix = "./%s" % name,
+        # Target should not build on CI unless it is explicitly requested.
+        tags = ["manual"],
+        visibility = visibility,
+    )
+
 def pkg_npm(name, visibility = None, **kwargs):
     _pkg_npm(
         name = name,
@@ -205,6 +220,16 @@ def pkg_npm(name, visibility = None, **kwargs):
         substitutions = npmPackageSubstitutions,
         visibility = visibility,
         **kwargs
+    )
+
+    pkg_tar(
+        name = name + "_archive",
+        srcs = [":%s" % name],
+        extension = "tar.gz",
+        strip_prefix = "./%s" % name,
+        # Target should not build on CI unless it is explicitly requested.
+        tags = ["manual"],
+        visibility = visibility,
     )
 
 def jasmine_node_test(**kwargs):
@@ -366,5 +391,57 @@ def ng_web_test_suite(deps = [], static_css = [], exclude_init_script = False, *
         **kwargs
     )
 
-def esbuild(**kwargs):
-    _esbuild(**kwargs)
+def spec_bundle(name, deps, **kwargs):
+    # TODO: Rename once devmode and prodmode have been combined.
+    # For spec bundling we also only consume devmode output as it is ESM in this repository.
+    # This helps speeding up development experience as ESBuild (used internally by the rule)
+    # would request both devmode and prodmode output flavor (resulting in 2x TS compilations).
+    extract_js_module_output(
+        name = "%s_devmode_deps" % name,
+        deps = deps,
+        provider = "JSModuleInfo",
+        forward_linker_mappings = True,
+        include_external_npm_packages = True,
+        include_default_files = False,
+        include_declarations = False,
+        testonly = True,
+    )
+
+    _spec_bundle(
+        name = name,
+        # For specs, we always add the pre-processed linker FW packages so that these
+        # are resolved instead of the unprocessed FW entry-points through the `node_modules`.
+        deps = ["%s_devmode_deps" % name] + LINKER_PROCESSED_FW_PACKAGES,
+        workspace_name = "angular_material",
+        run_angular_linker = select({
+            # Pass through whether partial compilation is enabled or not. This is helpful
+            # for our integration tests which run all tests in partial compilation mode.
+            "//tools:partial_compilation_enabled": True,
+            "//conditions:default": False,
+        }),
+        **kwargs
+    )
+
+# TODO: Rename once devmode and prodmode have been combined.
+# buildifier: disable=function-docstring-header)
+def devmode_esbuild(name, deps, testonly = False, **kwargs):
+    """Extension of the default `@bazel/esbuild` rule so that only devmode ESM output
+    is requested. This is done to speed up local development because the ESBuild rule
+    by default requests all possible output flavors/modes."""
+    extract_js_module_output(
+        name = "%s_devmode_deps" % name,
+        deps = deps,
+        testonly = testonly,
+        forward_linker_mappings = True,
+        include_external_npm_packages = True,
+        include_default_files = False,
+        include_declarations = False,
+        provider = "JSModuleInfo",
+    )
+
+    _esbuild(
+        name = name,
+        deps = ["%s_devmode_deps" % name],
+        testonly = testonly,
+        **kwargs
+    )

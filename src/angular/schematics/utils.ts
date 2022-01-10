@@ -344,7 +344,7 @@ export class MigrationElement {
   }
 
   private _createMigrationElementProperty(attribute: Attribute) {
-    const location = this.location.attrs[attribute.name];
+    const location = this.location.attrs![attribute.name];
     let value: string | undefined;
     if (!attribute.name.startsWith('[')) {
       value = attribute.value;
