@@ -1,6 +1,7 @@
-import { Component } from '@angular/core';
+import { Component, OnDestroy } from '@angular/core';
 import { FormArray, FormBuilder, FormGroup } from '@angular/forms';
-import { startWith } from 'rxjs/operators';
+import { Subject } from 'rxjs';
+import { startWith, takeUntil } from 'rxjs/operators';
 
 /**
  * @title Checkbox Panel Group
@@ -11,7 +12,7 @@ import { startWith } from 'rxjs/operators';
   templateUrl: 'checkbox-panel-group-example.html',
   styleUrls: ['checkbox-panel-group-example.css'],
 })
-export class CheckboxPanelGroupExample {
+export class CheckboxPanelGroupExample implements OnDestroy {
   readonly breakpoints = [
     'tablet',
     'desktop',
@@ -23,6 +24,7 @@ export class CheckboxPanelGroupExample {
   checkboxes = new FormArray([]);
   form: FormGroup;
   groupClasses: string[] = [];
+  private _destroyed = new Subject<void>();
 
   constructor(private _formBuilder: FormBuilder) {
     this.form = this._formBuilder.group({
@@ -34,18 +36,25 @@ export class CheckboxPanelGroupExample {
       desktop4k: 1,
       desktop5k: 1,
     });
-    this.form.valueChanges.pipe(startWith(this.form.value)).subscribe((v) => {
-      const { amount, ...classes } = v as { [key: string]: number };
-      if (isNaN(parseInt(amount as any, 10)) || amount < 1) {
-        this.form.get('amount')!.setValue(1);
-        return;
-      } else if (amount > 100) {
-        this.form.get('amount')!.setValue(100);
-        return;
-      }
-      this._changeCheckboxAmount(amount);
-      this._assignGroupClasses(classes);
-    });
+    this.form.valueChanges
+      .pipe(startWith(this.form.value), takeUntil(this._destroyed))
+      .subscribe((v) => {
+        const { amount, ...classes } = v as { [key: string]: number };
+        if (isNaN(parseInt(amount as any, 10)) || amount < 1) {
+          this.form.get('amount')!.setValue(1);
+          return;
+        } else if (amount > 100) {
+          this.form.get('amount')!.setValue(100);
+          return;
+        }
+        this._changeCheckboxAmount(amount);
+        this._assignGroupClasses(classes);
+      });
+  }
+
+  ngOnDestroy(): void {
+    this._destroyed.next();
+    this._destroyed.complete();
   }
 
   breakpointRange(breakpoint: string) {

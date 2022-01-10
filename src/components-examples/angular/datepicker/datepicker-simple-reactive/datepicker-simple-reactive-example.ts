@@ -23,20 +23,20 @@ export class DatepickerSimpleReactiveExample implements OnDestroy {
   arrows = new FormControl(false);
   disabled = new FormControl(false);
 
-  destroyed = new Subject<void>();
+  private _destroyed = new Subject<void>();
 
   constructor(dateAdapter: SbbDateAdapter<Date>) {
     this.minDate.setValue(dateAdapter.addCalendarMonths(dateAdapter.today(), -6));
     this.maxDate.setValue(dateAdapter.addCalendarMonths(dateAdapter.today(), 6));
 
     this.disabled.valueChanges
-      .pipe(takeUntil(this.destroyed))
+      .pipe(takeUntil(this._destroyed))
       .subscribe((value) => (value ? this.date.disable() : this.date.enable()));
   }
 
   ngOnDestroy() {
-    this.destroyed.next();
-    this.destroyed.complete();
+    this._destroyed.next();
+    this._destroyed.complete();
   }
 
   closedEvent() {

@@ -1,6 +1,8 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { SbbPageEvent, SbbPaginator } from '@sbb-esta/angular/pagination';
 import { SbbTableDataSource } from '@sbb-esta/angular/table';
+import { Subject } from 'rxjs';
+import { takeUntil } from 'rxjs/operators';
 
 interface VehicleExampleItem {
   position: number;
@@ -18,18 +20,24 @@ interface VehicleExampleItem {
   selector: 'sbb-paginator-table-example',
   templateUrl: 'paginator-table-example.html',
 })
-export class PaginatorTableExample implements OnInit {
-  displayedColumns: string[] = ['position', 'name', 'power', 'description'];
-
-  dataSource: SbbTableDataSource<VehicleExampleItem> = new SbbTableDataSource(VEHICLE_EXAMPLE_DATA);
+export class PaginatorTableExample implements OnInit, OnDestroy {
   @ViewChild('paginator', { static: true }) paginator: SbbPaginator;
-
+  dataSource: SbbTableDataSource<VehicleExampleItem> = new SbbTableDataSource(VEHICLE_EXAMPLE_DATA);
+  displayedColumns: string[] = ['position', 'name', 'power', 'description'];
   pageSize: number = 5;
+  private _destroyed = new Subject<void>();
 
   ngOnInit() {
     this.dataSource.paginator = this.paginator;
 
-    this.paginator.page.subscribe((pageEvent: SbbPageEvent) => console.log(pageEvent));
+    this.paginator.page
+      .pipe(takeUntil(this._destroyed))
+      .subscribe((pageEvent: SbbPageEvent) => console.log(pageEvent));
+  }
+
+  ngOnDestroy(): void {
+    this._destroyed.next();
+    this._destroyed.complete();
   }
 
   rowCount(rowCount: number) {

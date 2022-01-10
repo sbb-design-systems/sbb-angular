@@ -1,5 +1,7 @@
-import { Component, ViewEncapsulation } from '@angular/core';
+import { Component, OnDestroy, ViewEncapsulation } from '@angular/core';
 import { FormControl } from '@angular/forms';
+import { Subject } from 'rxjs';
+import { takeUntil } from 'rxjs/operators';
 
 interface RowEntry {
   col1: string;
@@ -19,12 +21,13 @@ interface RowEntry {
   templateUrl: 'native-table-example.html',
   encapsulation: ViewEncapsulation.None,
 })
-export class NativeTableExample {
+export class NativeTableExample implements OnDestroy {
   filterControl: FormControl = new FormControl('');
   rows = ROW_DATA.slice();
+  private _destroyed = new Subject<void>();
 
   constructor() {
-    this.filterControl.valueChanges.subscribe((value) => {
+    this.filterControl.valueChanges.pipe(takeUntil(this._destroyed)).subscribe((value) => {
       const searchInProps: (keyof RowEntry)[] = ['col1', 'col2', 'col3', 'col4', 'col5'];
 
       if (value === '') {
@@ -35,6 +38,11 @@ export class NativeTableExample {
         searchInProps.some((prop) => row[prop].toUpperCase().includes(value.toUpperCase()))
       );
     });
+  }
+
+  ngOnDestroy(): void {
+    this._destroyed.next();
+    this._destroyed.complete();
   }
 }
 
