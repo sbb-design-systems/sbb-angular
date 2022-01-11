@@ -156,6 +156,24 @@ class DatepickerConnectedComponent {
   secondDatepicker = new FormControl();
 }
 
+@Component({
+  template: `
+    <sbb-datepicker
+      arrows
+      nextDayAriaLabel="Select next day"
+      prevDayAriaLabel="Select previous day"
+      #d
+    >
+      <input sbbDateInput [value]="date" />
+    </sbb-datepicker>
+  `,
+})
+class DatepickerWithArrows {
+  date: Date | null = new Date();
+  @ViewChild('d', { static: true }) datepicker: SbbDatepicker<Date>;
+  @ViewChild(SbbDateInput, { static: true }) datepickerInput: SbbDateInput<Date>;
+}
+
 describe('SbbDatepicker', () => {
   // Creates a test component fixture.
   function createComponent(
@@ -852,6 +870,31 @@ describe('SbbDatepicker', () => {
 
         flush();
       }));
+    });
+
+    describe('datepicker with arrows', () => {
+      let fixture: ComponentFixture<DatepickerWithArrows>;
+      let testComponent: DatepickerWithArrows;
+
+      beforeEach(fakeAsync(() => {
+        fixture = createComponent(DatepickerWithArrows);
+        fixture.detectChanges();
+
+        testComponent = fixture.componentInstance;
+      }));
+
+      afterEach(fakeAsync(() => {
+        testComponent.datepicker.close();
+        fixture.detectChanges();
+        flush();
+      }));
+
+      it('should display aria-labels for arrows', () => {
+        const nextButton = document.querySelector('button.sbb-datepicker-arrow-button-right');
+        const prevButton = document.querySelector('button.sbb-datepicker-arrow-button-left');
+        expect(nextButton!.getAttribute('aria-label')).toEqual('Select next day');
+        expect(prevButton!.getAttribute('aria-label')).toEqual('Select previous day');
+      });
     });
   });
 });
