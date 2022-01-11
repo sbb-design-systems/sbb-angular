@@ -2,9 +2,8 @@ load("@build_bazel_rules_nodejs//:index.bzl", "pkg_web")
 load("@io_bazel_rules_sass//:defs.bzl", "sass_binary")
 load("@npm//history-server:index.bzl", "history_server")
 load("@npm//html-insert-assets:index.bzl", "html_insert_assets")
-load("//tools:defaults.bzl", "esbuild", "ng_module")
+load("//tools:defaults.bzl", "devmode_esbuild", "esbuild", "ng_module")
 load("//tools/dev-server:index.bzl", "dev_server")
-load("//tools/esbuild:index.bzl", dev_esbuild = "esbuild")
 load("//tools/angular:index.bzl", "LINKER_PROCESSED_FW_PACKAGES")
 
 package(default_visibility = ["//visibility:public"])
@@ -35,7 +34,7 @@ ng_module(
     ],
 )
 
-dev_esbuild(
+devmode_esbuild(
     name = "dev-bundles",
     args = {
         "resolveExtensions": [".js"],

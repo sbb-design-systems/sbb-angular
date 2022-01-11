@@ -256,8 +256,8 @@ function applyRenames(elements: ts.ImportSpecifier[]) {
 
         const nameIdentifier = ts.createIdentifier(CLASS_NAME_RENAMES.get(elementName.text)!);
         return element.propertyName
-          ? ts.createImportSpecifier(nameIdentifier, element.name)
-          : ts.createImportSpecifier(undefined, nameIdentifier);
+          ? ts.createImportSpecifier(false, nameIdentifier, element.name)
+          : ts.createImportSpecifier(false, undefined, nameIdentifier);
       })
       // If the import name occurs multiple times, filter out the duplicates.
       // (e.g. both SbbLinksModule and SbbButtonModule will be SbbButtonModule,
