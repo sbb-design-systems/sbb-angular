@@ -21,9 +21,10 @@ export class StyleImportMigration extends Migration<null, DevkitContext> {
     if (extension === '.scss' || extension === '.css') {
       const content = stylesheet.content;
       const migratedContent = content
-        .replace(/@(?:import|use) +['"]~@sbb-esta\/.*['"].*;?/g, (match) => {
-          const index = match.indexOf('~@sbb-esta');
-          return match.slice(0, index) + match.slice(index + 1);
+        .replace(/@(?:import|use) +['"](~@sbb-esta\/.*)['"].*;?/g, (match, importPath) => {
+          const index = match.indexOf(importPath);
+          const newImportPath = importPath.replace(/^~|\.scss$/g, '');
+          return match.slice(0, index) + newImportPath + match.slice(index + importPath.length);
         })
         .replace(
           /@sbb-esta\/angular-(core|business|public)\/_?styles(.scss)?[^'"]*/g,
