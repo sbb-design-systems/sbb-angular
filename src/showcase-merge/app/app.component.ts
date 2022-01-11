@@ -3,16 +3,16 @@ import { DOCUMENT } from '@angular/common';
 import { AfterContentInit, Component, Inject, OnDestroy } from '@angular/core';
 import { FormControl } from '@angular/forms';
 import { DomSanitizer } from '@angular/platform-browser';
-import { Breakpoints, ɵvariant } from '@sbb-esta/angular/core';
+import { Breakpoints } from '@sbb-esta/angular/core';
 import { SbbIconRegistry } from '@sbb-esta/angular/icon';
-import { fromEvent, Subject } from 'rxjs';
-import { distinctUntilChanged, filter, map, startWith, takeUntil } from 'rxjs/operators';
+import { Subject } from 'rxjs';
+import { distinctUntilChanged, map, takeUntil } from 'rxjs/operators';
 
 import { ROUTER_ANIMATION } from './shared/animations';
 import { PACKAGES } from './shared/meta';
+import { VariantSwitch } from './variant-switch';
 // @ts-ignore versions.ts is generated automatically by bazel
 import { angularVersion, libraryVersion } from './versions';
-const variantLocalstorageKey = 'sbbAngularVariant';
 
 @Component({
   selector: 'sbb-root',
@@ -24,9 +24,7 @@ export class AppComponent implements AfterContentInit, OnDestroy {
   angularVersion = angularVersion;
   showcaseVersion = libraryVersion;
   expanded: boolean = true;
-  sbbVariant: FormControl = new FormControl(
-    localStorage.getItem(variantLocalstorageKey) || 'standard'
-  );
+  sbbVariant: FormControl = this._variantSwitch.sbbVariant;
   packages = PACKAGES;
   previousMajorVersions: number[];
   shouldShowPreviousVersions: boolean;
@@ -34,9 +32,10 @@ export class AppComponent implements AfterContentInit, OnDestroy {
 
   constructor(
     private _breakpointObserver: BreakpointObserver,
+    private _variantSwitch: VariantSwitch,
     iconRegistry: SbbIconRegistry,
     sanitizer: DomSanitizer,
-    @Inject(DOCUMENT) document
+    @Inject(DOCUMENT) document: Document
   ) {
     const currentLibraryMajorVersion = parseInt(libraryVersion.split('.')[0], 10);
     this.previousMajorVersions = [currentLibraryMajorVersion - 1, currentLibraryMajorVersion - 2];
@@ -49,28 +48,6 @@ export class AppComponent implements AfterContentInit, OnDestroy {
       }
       return null;
     });
-
-    // listen to ctrl + shift + V to toggle variant
-    fromEvent<KeyboardEvent>(document, 'keyup')
-      .pipe(
-        filter((value) => value.ctrlKey && value.shiftKey && value.key === 'V'),
-        takeUntil(this._destroyed)
-      )
-      .subscribe(() =>
-        this.sbbVariant.setValue(this.sbbVariant.value === 'standard' ? 'lean' : 'standard')
-      );
-
-    this.sbbVariant.valueChanges
-      .pipe(startWith(this.sbbVariant.value), takeUntil(this._destroyed))
-      .subscribe((value) => {
-        if (value === 'standard') {
-          document.documentElement.classList.remove('sbb-lean');
-        } else {
-          document.documentElement.classList.add(`sbb-lean`);
-        }
-        ɵvariant.next(value);
-        localStorage.setItem(variantLocalstorageKey, value);
-      });
   }
   ngAfterContentInit(): void {
     this._breakpointObserver
