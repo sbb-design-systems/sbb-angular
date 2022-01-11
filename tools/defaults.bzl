@@ -16,7 +16,7 @@ load("@npm//@bazel/typescript:index.bzl", _ts_library = "ts_library")
 load("//:packages.bzl", "NO_STAMP_NPM_PACKAGE_SUBSTITUTIONS", "NPM_PACKAGE_SUBSTITUTIONS")
 load("//:pkg-externals.bzl", "PKG_EXTERNALS")
 load("//tools/markdown-to-html:index.bzl", _markdown_to_html = "markdown_to_html")
-load("//tools/angular:index.bzl", "LINKER_PROCESSED_FW_PACKAGES")
+load("//tools/angular:index.bzl", "LINKER_PROCESSED_FW_PACKAGES_TEST")
 
 _DEFAULT_TSCONFIG_BUILD = "//src:bazel-tsconfig-build.json"
 _DEFAULT_TSCONFIG_TEST = "//src:tsconfig-test"
@@ -411,8 +411,8 @@ def spec_bundle(name, deps, **kwargs):
         name = name,
         # For specs, we always add the pre-processed linker FW packages so that these
         # are resolved instead of the unprocessed FW entry-points through the `node_modules`.
-        deps = ["%s_devmode_deps" % name] + LINKER_PROCESSED_FW_PACKAGES,
-        workspace_name = "angular_material",
+        deps = ["%s_devmode_deps" % name] + LINKER_PROCESSED_FW_PACKAGES_TEST,
+        workspace_name = "sbb_angular",
         run_angular_linker = select({
             # Pass through whether partial compilation is enabled or not. This is helpful
             # for our integration tests which run all tests in partial compilation mode.
