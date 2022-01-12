@@ -156,6 +156,29 @@ class DatepickerConnectedComponent {
   secondDatepicker = new FormControl();
 }
 
+@Component({
+  template: `
+    <sbb-datepicker arrows #d class="default-arrow-labels">
+      <input sbbDateInput [value]="date" />
+    </sbb-datepicker>
+
+    <sbb-datepicker
+      arrows
+      #d
+      prevDayAriaLabel="Select previous day"
+      nextDayAriaLabel="Select next day"
+      class="custom-arrow-labels"
+    >
+      <input sbbDateInput [value]="date" />
+    </sbb-datepicker>
+  `,
+})
+class DatepickerWithArrows {
+  date: Date | null = new Date();
+  @ViewChild('d', { static: true }) datepicker: SbbDatepicker<Date>;
+  @ViewChild(SbbDateInput, { static: true }) datepickerInput: SbbDateInput<Date>;
+}
+
 describe('SbbDatepicker', () => {
   // Creates a test component fixture.
   function createComponent(
@@ -852,6 +875,46 @@ describe('SbbDatepicker', () => {
 
         flush();
       }));
+    });
+  });
+
+  describe('datepicker with arrows', () => {
+    let fixture: ComponentFixture<DatepickerWithArrows>;
+    let testComponent: DatepickerWithArrows;
+
+    beforeEach(fakeAsync(() => {
+      fixture = createComponent(DatepickerWithArrows);
+      fixture.detectChanges();
+
+      testComponent = fixture.componentInstance;
+    }));
+
+    afterEach(fakeAsync(() => {
+      testComponent.datepicker.close();
+      fixture.detectChanges();
+      flush();
+    }));
+
+    it('should display default aria-labels for arrows', () => {
+      const nextButton = document.querySelector(
+        '.default-arrow-labels button.sbb-datepicker-arrow-button-right'
+      );
+      const prevButton = document.querySelector(
+        '.default-arrow-labels button.sbb-datepicker-arrow-button-left'
+      );
+      expect(nextButton!.getAttribute('aria-label')).toEqual('Next day');
+      expect(prevButton!.getAttribute('aria-label')).toEqual('Previous day');
+    });
+
+    it('should display custom aria-labels for arrows', () => {
+      const nextButton = document.querySelector(
+        '.custom-arrow-labels button.sbb-datepicker-arrow-button-right'
+      );
+      const prevButton = document.querySelector(
+        '.custom-arrow-labels button.sbb-datepicker-arrow-button-left'
+      );
+      expect(nextButton!.getAttribute('aria-label')).toEqual('Select next day');
+      expect(prevButton!.getAttribute('aria-label')).toEqual('Select previous day');
     });
   });
 });

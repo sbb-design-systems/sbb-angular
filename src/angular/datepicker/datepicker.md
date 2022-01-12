@@ -138,3 +138,7 @@ It is possible to implement your own `DateAdapter` and register it globally:
 })
 export class AppModule {}
 ```
+
+### Accessibility
+
+Add a custom `aria-label` to the next- and previous day buttons by setting `nextDayAriaLabel` and `prevDayAriaLabel`.

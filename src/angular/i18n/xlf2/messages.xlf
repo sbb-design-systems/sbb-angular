@@ -64,6 +64,24 @@
         <source>Show calendar</source>
       </segment>
     </unit>
+    <unit id="sbbDatePickerNextDayAriaLabel">
+      <notes>
+        <note category="location">../../../../../../src/angular/datepicker/datepicker/datepicker.ts:218</note>
+        <note category="description">Next day button&apos;s aria-label</note>
+      </notes>
+      <segment>
+        <source>Next day</source>
+      </segment>
+    </unit>
+    <unit id="sbbDatePickerPrevDayAriaLabel">
+      <notes>
+        <note category="location">../../../../../../src/angular/datepicker/datepicker/datepicker.ts:224</note>
+        <note category="description">Previous day button&apos;s aria-label</note>
+      </notes>
+      <segment>
+        <source>Previous day</source>
+      </segment>
+    </unit>
     <unit id="sbbDialogCloseDialog">
       <notes>
         <note category="location">../../../../../../src/angular/dialog/dialog-content-directives.ts:39</note>
