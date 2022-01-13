@@ -138,7 +138,7 @@ export class SbbDatepicker<D> implements OnDestroy {
   }
   private _arrows = false;
 
-  /** Whether arrows should be shown */
+  /** Whether arrows should be shown. */
   get arrowsVisible() {
     return this.arrows && !this.datepickerInput?.readonly;
   }
