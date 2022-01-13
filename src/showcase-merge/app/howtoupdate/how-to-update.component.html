@@ -29,7 +29,9 @@
   <li>(Optional) run <code>ng update @sbb-esta/maps</code> if you are using maps package.</li>
 </ol>
 
-<!-- TODO: revert for version 14
+<h4>Update from version 13.x.x</h4>
+<!-- Re-add for version 14
+<p>
   Before updating make sure your Angular packages (@angular/...) are up to date. For example if you
   would like to update from version
   {{ libraryPredecessorMajorVersion }}.x.x to version {{ libraryMajorVersion }}.x.x of our SBB
@@ -37,6 +39,7 @@
   {{ libraryMajorVersion }}.x.x. See <a href="https://update.angular.io">update.angular.io</a> for a
   step-by-step guide for updating Angular. Don't forget to update @angular/cdk as well.
 </p>
+-->
 <p>
   To update the SBB Angular packages, use the <code>ng update</code> command.
   <code>ng update</code> will update all related packages and will automatically run update
@@ -46,4 +49,3 @@
   style="user-select: all"
 >ng update<ng-container *ngIf="fullCommand.value"> @angular/core @angular/cli</ng-container> @angular/cdk @sbb-esta/angular</pre>
 <sbb-checkbox [formControl]="fullCommand">Include @angular packages in update command</sbb-checkbox>
--->
