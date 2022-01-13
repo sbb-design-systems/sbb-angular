@@ -649,6 +649,7 @@ describe('SbbTable', () => {
 
     // When changing size of table
     tableElement.style.width = '200px';
+    fixture.detectChanges();
     viewPortRulerMockChangeTrigger.next(); // Manually trigger viewportRulerChange
     flushMicrotasks();
 
