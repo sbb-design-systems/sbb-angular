@@ -119,6 +119,9 @@ describe('SbbTextarea behaviour', () => {
     fixture.detectChanges();
     expect(innerComponent.attributes['ng-reflect-readonly']).toBeTruthy();
     expect(fixture.debugElement.nativeElement.querySelector('[readonly]')).toBeTruthy();
+    expect(
+      fixture.debugElement.nativeElement.querySelector('textarea').getAttribute('placeholder')
+    ).toBe('-');
   });
 
   it('should be disabled', () => {

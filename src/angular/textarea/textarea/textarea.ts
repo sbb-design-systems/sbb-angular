@@ -129,7 +129,7 @@ export class SbbTextarea
   get readonly(): boolean {
     return this._readonly;
   }
-  set readonly(value: boolean) {
+  set readonly(value: BooleanInput) {
     this._readonly = coerceBooleanProperty(value);
     this.stateChanges.next();
   }
@@ -334,5 +334,4 @@ export class SbbTextarea
   static ngAcceptInputType_maxlength: NumberInput;
   static ngAcceptInputType_minlength: NumberInput;
   static ngAcceptInputType_disabled: BooleanInput;
-  static ngAcceptInputType_readonly: BooleanInput;
 }

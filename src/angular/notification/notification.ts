@@ -87,7 +87,7 @@ export class SbbNotification extends _SbbNotificationMixinBase implements OnChan
   get readonly() {
     return this._readonly;
   }
-  set readonly(value: boolean) {
+  set readonly(value: BooleanInput) {
     this._readonly = coerceBooleanProperty(value);
     this._changeDetectorRef.markForCheck();
   }
@@ -168,6 +168,4 @@ export class SbbNotification extends _SbbNotificationMixinBase implements OnChan
       this.dismissed.next({ notification: this });
     }
   }
-
-  static ngAcceptInputType_readonly: BooleanInput;
 }

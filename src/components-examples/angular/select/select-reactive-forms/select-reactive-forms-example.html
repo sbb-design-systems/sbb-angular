@@ -1,7 +1,11 @@
 <form [formGroup]="form">
   <sbb-form-field>
     <sbb-label>Favorite meal</sbb-label>
-    <sbb-select formControlName="value" placeholder="Favorite meal">
+    <sbb-select
+      formControlName="value"
+      placeholder="Favorite meal"
+      [readonly]="form.get('readonly')!.value"
+    >
       <sbb-option
         *ngFor="let food of ['Beefsteak', 'Pizza', 'Pasta']; first as isFirst"
         [disabled]="isFirst && form.get('optionDisabled')?.value"
@@ -20,5 +24,6 @@
       Disabled
     </sbb-checkbox>
     <sbb-checkbox formControlName="optionDisabled">First option disabled</sbb-checkbox>
+    <sbb-checkbox formControlName="readonly">Readonly</sbb-checkbox>
   </div>
 </form>

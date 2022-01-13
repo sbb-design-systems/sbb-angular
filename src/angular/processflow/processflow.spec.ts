@@ -1471,7 +1471,6 @@ class SimpleSbbHorizontalStepperApp {
 class SimpleSbbVerticalStepperApp {
   inputLabel = 'Step 3';
   showStepTwo = true;
-  disableRipple = false;
 }
 
 @Component({

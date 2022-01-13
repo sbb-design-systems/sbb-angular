@@ -65,8 +65,8 @@ export const SBB_DATEPICKER_SCROLL_STRATEGY_FACTORY_PROVIDER = {
   encapsulation: ViewEncapsulation.None,
   host: {
     class: 'sbb-datepicker',
-    '[class.sbb-datepicker-arrows-enabled]': 'arrows',
-    '[class.sbb-datepicker-toggle-enabled]': 'toggle',
+    '[class.sbb-datepicker-arrows-enabled]': 'arrowsVisible',
+    '[class.sbb-datepicker-toggle-enabled]': 'toggleVisible',
     '[class.sbb-datepicker-disabled]': 'disabled',
   },
 })
@@ -138,6 +138,11 @@ export class SbbDatepicker<D> implements OnDestroy {
   }
   private _arrows = false;
 
+  /** Whether arrows should be shown. */
+  get arrowsVisible() {
+    return this.arrows && !this.datepickerInput?.readonly;
+  }
+
   /** Whether the datepicker toggle is enabled. Defaults to true. */
   @Input()
   set toggle(value: boolean) {
@@ -147,6 +152,11 @@ export class SbbDatepicker<D> implements OnDestroy {
     return this._toggle;
   }
   private _toggle = true;
+
+  /** Whether the toggle should be shown. */
+  get toggleVisible() {
+    return this.toggle && !this.datepickerInput?.readonly;
+  }
 
   /** Emits when the datepicker has been opened. */
   @Output('opened') openedStream: EventEmitter<void> = new EventEmitter<void>();
@@ -195,7 +205,7 @@ export class SbbDatepicker<D> implements OnDestroy {
   /** Whether the previous day is reachable and therefore next buttons should be shown or not. */
   get prevDayActive(): boolean {
     return (
-      this.arrows &&
+      this.arrowsVisible &&
       this.datepickerInput &&
       !!this.datepickerInput.value &&
       (!this.minDate || this._dateAdapter.compareDate(this.datepickerInput.value, this.minDate) > 0)
@@ -205,7 +215,7 @@ export class SbbDatepicker<D> implements OnDestroy {
   /** Whether the next day is reachable and therefore next buttons should be shown or not. */
   get nextDayActive(): boolean {
     return (
-      this.arrows &&
+      this.arrowsVisible &&
       this.datepickerInput &&
       !!this.datepickerInput.value &&
       (!this.maxDate || this._dateAdapter.compareDate(this.datepickerInput.value, this.maxDate) < 0)
@@ -239,7 +249,7 @@ export class SbbDatepicker<D> implements OnDestroy {
   /** Subscription to value changes in the associated input element. */
   private _inputSubscription = Subscription.EMPTY;
 
-  private _inputDisabledSubscription = Subscription.EMPTY;
+  private _inputChangeSubscription = Subscription.EMPTY;
 
   private _connectedDatepickerSubscription = Subscription.EMPTY;
 
@@ -273,7 +283,7 @@ export class SbbDatepicker<D> implements OnDestroy {
   ngOnDestroy() {
     this.close();
     this._inputSubscription.unsubscribe();
-    this._inputDisabledSubscription.unsubscribe();
+    this._inputChangeSubscription.unsubscribe();
     this._connectedDatepickerSubscription.unsubscribe();
     this.disabledChange.complete();
 
@@ -321,9 +331,11 @@ export class SbbDatepicker<D> implements OnDestroy {
     this._inputSubscription = this.datepickerInput.valueChange.subscribe(
       (value: D | null) => (this.selected = value)
     );
-    this._inputDisabledSubscription = this.datepickerInput.disabledChange.subscribe(() =>
-      this._changeDetectorRef.markForCheck()
-    );
+    this._inputChangeSubscription = merge(
+      this.datepickerInput.disabledChange,
+      this.datepickerInput.readonlyChange
+    ).subscribe(() => this._changeDetectorRef.markForCheck());
+
     // The connected datepicker is only opened on the following conditions:
     // This datepicker has a connected datepicker and has been opened, a value selected, closed
     // and the connected datepicker has no value or a value before the selected date.

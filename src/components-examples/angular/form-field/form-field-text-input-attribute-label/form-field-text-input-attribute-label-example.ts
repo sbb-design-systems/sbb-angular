@@ -12,6 +12,7 @@ import { SbbCheckboxChange } from '@sbb-esta/angular/checkbox';
 })
 export class FormFieldTextInputAttributeLabelExample {
   name: FormControl = new FormControl('', [Validators.required]);
+  readonly: FormControl = new FormControl(false);
 
   inputSize: '' | 'short' | 'medium' | 'long' = '';
 

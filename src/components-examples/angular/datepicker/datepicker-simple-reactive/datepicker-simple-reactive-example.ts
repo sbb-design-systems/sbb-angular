@@ -22,6 +22,7 @@ export class DatepickerSimpleReactiveExample implements OnDestroy {
   toggle = new FormControl(true);
   arrows = new FormControl(false);
   disabled = new FormControl(false);
+  readonly = new FormControl(false);
 
   private _destroyed = new Subject<void>();
 

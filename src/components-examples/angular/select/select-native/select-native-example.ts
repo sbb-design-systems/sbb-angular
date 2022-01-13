@@ -16,6 +16,7 @@ export class SelectNativeExample {
     this.form = formBuilder.group({
       value: '',
       optionDisabled: false,
+      readonly: false,
     });
   }
 }

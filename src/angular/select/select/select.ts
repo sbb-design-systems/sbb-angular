@@ -179,7 +179,7 @@ const _SbbSelectMixinBase = mixinTabIndex(
     'aria-haspopup': 'true',
     class: 'sbb-select sbb-input-element',
     '[attr.id]': 'id',
-    '[attr.tabindex]': 'tabIndex',
+    '[attr.tabindex]': 'readonly ? -1 : tabIndex',
     '[attr.aria-controls]': 'panelOpen ? id + "-panel" : null',
     '[attr.aria-owns]': "panelOpen ? id + '-panel' : null",
     '[attr.aria-expanded]': 'panelOpen',
@@ -194,6 +194,7 @@ const _SbbSelectMixinBase = mixinTabIndex(
     '[class.sbb-select-required]': 'required',
     '[class.sbb-select-empty]': 'empty',
     '[class.sbb-select-multiple]': 'multiple',
+    '[class.sbb-readonly]': 'readonly',
     '[class.sbb-focused]': 'focused',
     '[class.sbb-input-with-open-panel]': 'panelOpen',
   },
@@ -363,6 +364,17 @@ export class SbbSelect
     this._multiple = coerceBooleanProperty(value);
   }
   private _multiple: boolean = false;
+
+  /** Whether the element is readonly. */
+  @Input()
+  get readonly(): boolean {
+    return this._readonly;
+  }
+  set readonly(value: BooleanInput) {
+    this._readonly = coerceBooleanProperty(value);
+    this.stateChanges.next();
+  }
+  private _readonly: boolean = false;
 
   /**
    * Function to compare the option values with the selected values. The first argument
@@ -1056,7 +1068,7 @@ export class SbbSelect
 
   /** Whether the panel is allowed to open. */
   private _canOpen(): boolean {
-    return !this._panelOpen && !this.disabled && this.options?.length > 0;
+    return !this._panelOpen && !this.disabled && this.options?.length > 0 && !this.readonly;
   }
 
   /** Focuses the select element. */

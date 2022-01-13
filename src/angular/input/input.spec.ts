@@ -20,7 +20,11 @@ import {
 import { By } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { SbbErrorStateMatcher, SbbShowOnDirtyErrorStateMatcher } from '@sbb-esta/angular/core';
-import { dispatchFakeEvent, wrappedErrorMessage } from '@sbb-esta/angular/core/testing';
+import {
+  dispatchFakeEvent,
+  switchToLean,
+  wrappedErrorMessage,
+} from '@sbb-esta/angular/core/testing';
 import {
   getSbbFormFieldMissingControlError,
   SbbFormFieldModule,
@@ -630,8 +634,6 @@ describe('SbbInput with forms', () => {
     }));
 
     it('sets the aria-describedby to reference errors when in error state', fakeAsync(() => {
-      let describedBy = inputEl.getAttribute('aria-describedby');
-
       fixture.componentInstance.formControl.markAsTouched();
       fixture.detectChanges();
 
@@ -639,7 +641,7 @@ describe('SbbInput with forms', () => {
         .queryAll(By.css('.sbb-error'))
         .map((el) => el.nativeElement.getAttribute('id'))
         .join(' ');
-      describedBy = inputEl.getAttribute('aria-describedby');
+      const describedBy = inputEl.getAttribute('aria-describedby');
 
       expect(errorIds).toBeTruthy('errors should be shown');
       expect(describedBy).toBe(errorIds);
@@ -816,6 +818,64 @@ describe('SbbInput with forms', () => {
 
     expect(el.classList).not.toContain('sbb-form-field-empty');
   }));
+
+  describe('readonly mode', () => {
+    let fixture: ComponentFixture<SbbInputReadonly>;
+
+    beforeEach(fakeAsync(() => {
+      fixture = createComponent(SbbInputReadonly);
+      fixture.detectChanges();
+    }));
+
+    it(`should show '-' if no date is set`, fakeAsync(() => {
+      expect(
+        fixture.debugElement.nativeElement.querySelector('input').getAttribute('placeholder')
+      ).toBe('-');
+    }));
+
+    it(`should remove focusability if empty`, fakeAsync(() => {
+      expect(
+        fixture.debugElement.nativeElement.querySelector('input').getAttribute('tabindex')
+      ).toBe('-1');
+    }));
+
+    it(`should not remove focusability if not empty`, fakeAsync(() => {
+      fixture.componentInstance.formControl.setValue('value');
+      fixture.detectChanges();
+
+      expect(
+        fixture.debugElement.nativeElement.querySelector('input').getAttribute('tabindex')
+      ).toBeFalsy();
+    }));
+
+    describe(`styles`, () => {
+      let inputElementStyles: CSSStyleDeclaration;
+      beforeEach(() => {
+        inputElementStyles = getComputedStyle(
+          fixture.debugElement.nativeElement.querySelector('input')
+        );
+      });
+
+      describe(`standard design`, () => {
+        it(`should apply correct styles`, fakeAsync(() => {
+          expect(inputElementStyles.color).toBe('rgb(102, 102, 102)');
+          expect(inputElementStyles.webkitTextFillColor).toBe(inputElementStyles.color);
+          expect(inputElementStyles.backgroundColor).toBe('rgb(246, 246, 246)');
+          expect(inputElementStyles.borderTopColor).toBe('rgb(210, 210, 210)');
+        }));
+      });
+      describe(`lean design`, () => {
+        switchToLean(fixture);
+
+        it(`should apply correct styles`, fakeAsync(() => {
+          expect(inputElementStyles.color).toBe('rgb(68, 68, 68)');
+          expect(inputElementStyles.webkitTextFillColor).toBe(inputElementStyles.color);
+          expect(inputElementStyles.backgroundColor).toBe('rgba(0, 0, 0, 0)'); // transparent
+          expect(inputElementStyles.borderTopColor).toBe('rgba(0, 0, 0, 0)'); // transparent
+        }));
+      });
+    });
+  });
 });
 
 function createComponent<T>(
@@ -1098,7 +1158,7 @@ class CustomSbbInputAccessor {
 // testing a specific g3 issue. See the discussion on #10466.
 @Component({
   template: `
-    <sbb-form-field appearance="outline">
+    <sbb-form-field>
       <sbb-label *ngIf="true">My Label</sbb-label>
       <ng-container *ngIf="true">
         <input sbbInput />
@@ -1134,4 +1194,14 @@ class SbbInputWithPlaceholder {}
 })
 class SbbInputWithVariablePlaceholder {
   placeholder: string;
+}
+
+@Component({
+  template: `<sbb-form-field>
+    <input sbbInput [readonly]="readonly" [formControl]="formControl" />
+  </sbb-form-field>`,
+})
+class SbbInputReadonly {
+  readonly = true;
+  formControl = new FormControl();
 }

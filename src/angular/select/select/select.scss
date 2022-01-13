@@ -11,6 +11,10 @@
   :where(html.sbb-lean) & {
     padding-right: pxToRem(38);
   }
+
+  &:is([readonly], .sbb-readonly) {
+    cursor: default;
+  }
 }
 
 .sbb-select-value {
@@ -30,6 +34,10 @@
 
   :where(html.sbb-lean) & {
     right: pxToRem(6);
+  }
+
+  .sbb-select:is([readonly], .sbb-readonly) & {
+    display: none;
   }
 }
 

@@ -16,6 +16,7 @@ export class SelectReactiveFormsExample {
     this.form = formBuilder.group({
       value: '',
       optionDisabled: false,
+      readonly: false,
     });
   }
 }
