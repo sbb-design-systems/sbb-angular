@@ -153,7 +153,7 @@ export class SbbDatepicker<D> implements OnDestroy {
   }
   private _toggle = true;
 
-  /** Whether the toggle should be shown */
+  /** Whether the toggle should be shown. */
   get toggleVisible() {
     return this.toggle && !this.datepickerInput?.readonly;
   }
