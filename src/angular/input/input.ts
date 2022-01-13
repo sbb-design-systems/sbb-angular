@@ -66,7 +66,7 @@ const _SbbInputBase = mixinErrorState(
     // state usually overlaps with `aria-required` when the input is empty and can be redundant.
     '[attr.aria-invalid]': '(empty && required) ? null : errorState',
     '[attr.aria-required]': 'required',
-    '[attr.placeholder]': `!readonly ? placeholder || null : '-'`,
+    '[attr.placeholder]': `!readonly ? (placeholder || null) : '-'`,
     '[attr.tabindex]': `empty && readonly ? -1  : null`,
   },
   providers: [{ provide: SbbFormFieldControl, useExisting: SbbInput }],
@@ -203,7 +203,7 @@ export class SbbInput
   get readonly(): boolean {
     return this._readonly;
   }
-  set readonly(value: boolean) {
+  set readonly(value: BooleanInput) {
     this._readonly = coerceBooleanProperty(value);
   }
   private _readonly = false;
@@ -399,7 +399,6 @@ export class SbbInput
   }
 
   static ngAcceptInputType_disabled: BooleanInput;
-  static ngAcceptInputType_readonly: BooleanInput;
   static ngAcceptInputType_required: BooleanInput;
 
   // Accept `any` to avoid conflicts with other directives on `<input>` that may

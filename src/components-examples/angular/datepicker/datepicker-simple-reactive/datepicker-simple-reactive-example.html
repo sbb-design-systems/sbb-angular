@@ -12,9 +12,9 @@
       [formControl]="date"
       [min]="minDate.value"
       [max]="maxDate.value"
+      [readonly]="readonly.value"
       (dateChange)="dateChangeEvent($event)"
       (dateInput)="dateInputEvent($event)"
-      [readonly]="readonly.value"
     />
   </sbb-datepicker>
 </sbb-form-field>

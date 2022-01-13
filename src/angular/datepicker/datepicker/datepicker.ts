@@ -138,6 +138,7 @@ export class SbbDatepicker<D> implements OnDestroy {
   }
   private _arrows = false;
 
+  /** Whether arrows should be shown */
   get arrowsVisible() {
     return this.arrows && !this.datepickerInput?.readonly;
   }
@@ -152,6 +153,7 @@ export class SbbDatepicker<D> implements OnDestroy {
   }
   private _toggle = true;
 
+  /** Whether the toggle should be shown */
   get toggleVisible() {
     return this.toggle && !this.datepickerInput?.readonly;
   }

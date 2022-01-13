@@ -168,7 +168,7 @@ export class SbbDateInput<D> implements ControlValueAccessor, Validator, OnInit,
   get readonly(): boolean {
     return this._readonly;
   }
-  set readonly(value: boolean) {
+  set readonly(value: BooleanInput) {
     this._readonly = coerceBooleanProperty(value);
     this.readonlyChange.next(this._readonly);
   }

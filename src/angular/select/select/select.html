@@ -5,7 +5,7 @@
   [class.sbb-select-value-empty]="empty"
 >
   <span *ngSwitchCase="true" class="sbb-select-placeholder"
-    >{{ !readonly ? placeholder || '\u00A0': '-' }}</span
+    >{{ !readonly ? (placeholder || '\u00A0') : '-' }}</span
   >
   <span *ngSwitchCase="false" class="sbb-select-value-text">
     <span>{{ triggerValue || '\u00A0' }}</span>
