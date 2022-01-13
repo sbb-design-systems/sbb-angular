@@ -212,6 +212,18 @@ export class SbbDatepicker<D> implements OnDestroy {
     );
   }
 
+  /** The next day button's aria-label */
+  @Input() nextDayAriaLabel: string =
+    typeof $localize === 'function'
+      ? $localize`:Next day button's aria-label@@sbbDatePickerNextDayAriaLabel:Next day`
+      : 'Next day';
+
+  /** The previous day button's aria-label */
+  @Input() prevDayAriaLabel: string =
+    typeof $localize === 'function'
+      ? $localize`:Previous day button's aria-label@@sbbDatePickerPrevDayAriaLabel:Previous day`
+      : 'Previous day';
+
   /** A reference to the overlay when the calendar is opened as a popup. */
   popupRef: OverlayRef;
 

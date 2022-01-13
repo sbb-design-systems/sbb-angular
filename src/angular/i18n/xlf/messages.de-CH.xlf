@@ -30,6 +30,14 @@
         <source>Show calendar</source>
         <target state="signed-off">Kalender anzeigen</target>
       </trans-unit>
+      <trans-unit id="sbbDatePickerNextDayAriaLabel" datatype="html">
+        <source>Next day</source>
+        <target state="translated">Nächster Tag</target>
+      </trans-unit>
+      <trans-unit id="sbbDatePickerPrevDayAriaLabel" datatype="html">
+        <source>Previous day</source>
+        <target state="translated">Vorheriger Tag</target>
+      </trans-unit>
       <trans-unit id="sbbDialogCloseDialog" datatype="html">
         <source>Close dialog</source>
         <target state="signed-off">Dialog schliessen</target>
