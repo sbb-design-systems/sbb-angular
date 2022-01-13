@@ -1121,7 +1121,7 @@ class NestedSidebarContainersTestComponent {
       </sbb-expansion-panel>
       <fieldset>
         <legend>Fieldset Example</legend>
-        <button sbbButton mode="primary">Random Content</button>
+        <button sbb-button>Random Content</button>
       </fieldset>
       <a>SHOULD BE IGNORED</a>
     </sbb-sidebar>
