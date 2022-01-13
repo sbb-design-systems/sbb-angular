@@ -14,6 +14,7 @@ import {
 } from '@sbb-esta/angular/core/testing';
 import { SbbIconModule } from '@sbb-esta/angular/icon';
 import { SbbIconTestingModule } from '@sbb-esta/angular/icon/testing';
+import { SbbInputModule } from '@sbb-esta/angular/input';
 
 import { SbbDateInput } from '../date-input/date-input.directive';
 import { SbbDatepickerModule } from '../datepicker.module';
@@ -179,6 +180,25 @@ class DatepickerWithArrows {
   @ViewChild(SbbDateInput, { static: true }) datepickerInput: SbbDateInput<Date>;
 }
 
+@Component({
+  template: `
+    <sbb-datepicker arrows>
+      <input
+        sbbDateInput
+        sbbInput
+        [formControl]="date"
+        [readonly]="readonly"
+        [placeholder]="placeholder"
+      />
+    </sbb-datepicker>
+  `,
+})
+class DatepickerReadonlyComponent {
+  date = new FormControl();
+  readonly: boolean = false;
+  placeholder?: string = undefined;
+}
+
 describe('SbbDatepicker', () => {
   // Creates a test component fixture.
   function createComponent(
@@ -195,6 +215,7 @@ describe('SbbDatepicker', () => {
         ReactiveFormsModule,
         SbbIconModule,
         SbbIconTestingModule,
+        SbbInputModule,
         ...imports,
       ],
       providers,
@@ -874,6 +895,53 @@ describe('SbbDatepicker', () => {
         expect(dateInputs[1].nativeElement.value).toBe('');
 
         flush();
+      }));
+    });
+
+    describe('datepicker in readonly mode', () => {
+      let fixture: ComponentFixture<DatepickerReadonlyComponent>;
+      let testComponent: DatepickerReadonlyComponent;
+
+      beforeEach(fakeAsync(() => {
+        fixture = createComponent(DatepickerReadonlyComponent);
+        fixture.detectChanges();
+        testComponent = fixture.componentInstance;
+      }));
+
+      it('should hide toggle and arrows', fakeAsync(() => {
+        const fixtureNativeElement = fixture.debugElement.nativeElement;
+        const datepicker = fixtureNativeElement.querySelector('.sbb-datepicker');
+
+        // When setting a date
+        testComponent.date.setValue(new Date());
+        fixture.detectChanges();
+
+        // Then arrows and toggle should be shown
+        expect(datepicker.classList).toContain('sbb-datepicker-arrows-enabled');
+        expect(datepicker.classList).toContain('sbb-datepicker-toggle-enabled');
+        expect(fixtureNativeElement.querySelector('.sbb-datepicker-arrow-button')).toBeTruthy();
+        expect(fixtureNativeElement.querySelector('.sbb-datepicker-toggle-button')).toBeTruthy();
+
+        // When activating readonly mode
+        testComponent.readonly = true;
+        fixture.detectChanges();
+
+        // Then arrows and toggle should be hidden
+        expect(datepicker.classList).not.toContain('sbb-datepicker-arrows-enabled');
+        expect(datepicker.classList).not.toContain('sbb-datepicker-toggle-enabled');
+        expect(fixtureNativeElement.querySelector('.sbb-datepicker-arrow-button')).toBeFalsy();
+        expect(fixtureNativeElement.querySelector('.sbb-datepicker-toggle-button')).toBeFalsy();
+      }));
+
+      it(`should show '-' if no date is set`, fakeAsync(() => {
+        // When activating readonly mode
+        testComponent.readonly = true;
+        fixture.detectChanges();
+
+        // Then '-' should be shown as placeholder
+        expect(
+          fixture.debugElement.nativeElement.querySelector('input').getAttribute('placeholder')
+        ).toBe('-');
       }));
     });
   });

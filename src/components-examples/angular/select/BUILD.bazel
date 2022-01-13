@@ -16,6 +16,7 @@ ng_module(
         "//src/angular/checkbox",
         "//src/angular/input",
         "//src/angular/select",
+        "//src/angular/tooltip",
         "@npm//@angular/common",
         "@npm//@angular/core",
         "@npm//@angular/forms",

@@ -1,5 +1,5 @@
 <sbb-form-field label="Name" [ngClass]="inputSize ? 'sbb-form-field-' + inputSize : ''">
-  <input type="text" sbbInput [formControl]="name" placeholder="Name" />
+  <input type="text" sbbInput [formControl]="name" placeholder="Name" [readonly]="readonly.value" />
   <sbb-error *ngIf="name.errors?.required">Name is required!</sbb-error>
 </sbb-form-field>
 
@@ -12,6 +12,7 @@
     <option value="long">Long</option>
   </select>
 </sbb-form-field>
-<div>
+<div class="sbb-checkbox-group-vertical">
   <sbb-checkbox (change)="toggleDisabled($event)">Disabled</sbb-checkbox>
+  <sbb-checkbox [formControl]="readonly">Readonly</sbb-checkbox>
 </div>

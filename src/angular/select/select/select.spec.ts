@@ -767,7 +767,7 @@ class SelectWithFormFieldLabel {
 
 @Component({
   template: `
-    <sbb-form-field appearance="fill">
+    <sbb-form-field>
       <sbb-label>Select something</sbb-label>
       <sbb-select *ngIf="showSelect">
         <sbb-option value="1">One</sbb-option>
@@ -835,6 +835,17 @@ class SelectWithResetOptionAndFormControl {
   `,
 })
 class SelectInNgContainer {}
+
+@Component({
+  template: `
+    <sbb-form-field>
+      <sbb-select placeholder="Product Area" readonly>
+        <sbb-option value="a">A</sbb-option>
+      </sbb-select>
+    </sbb-form-field>
+  `,
+})
+class SelectReadonly {}
 
 /** Default debounce interval when typing letters to select an option. */
 const DEFAULT_TYPEAHEAD_DEBOUNCE_INTERVAL = 200;
@@ -3760,7 +3771,7 @@ describe('SbbSelect', () => {
     }));
   });
 
-  describe('when reseting the value by setting null or undefined', () => {
+  describe('when resetting the value by setting null or undefined', () => {
     beforeEach(waitForAsync(() => configureSbbSelectTestingModule([ResetValuesSelect])));
 
     let fixture: ComponentFixture<ResetValuesSelect>;
@@ -4713,5 +4724,59 @@ describe('SbbSelect', () => {
       expect(selectComponent.panelOpen).toBeTrue();
       expect(selectComponent.focus).toHaveBeenCalled();
     });
+  });
+
+  describe('readonly', () => {
+    beforeEach(waitForAsync(() => configureSbbSelectTestingModule([SelectReadonly])));
+
+    let fixture: ComponentFixture<SelectReadonly>;
+    let select: HTMLElement;
+    let selectComponent: SbbSelect;
+
+    beforeEach(() => {
+      fixture = TestBed.createComponent(SelectReadonly);
+      fixture.detectChanges();
+      select = fixture.debugElement.query(By.css('sbb-select'))!.nativeElement;
+      selectComponent = fixture.debugElement.query(By.directive(SbbSelect)).componentInstance;
+    });
+
+    it(`should have sbb-readonly class`, fakeAsync(() => {
+      expect(select.classList).toContain('sbb-readonly');
+    }));
+
+    it(`should display '-' as placeholder`, fakeAsync(() => {
+      expect(select.querySelector('.sbb-select-placeholder')!.textContent!.trim()).toBe('-');
+    }));
+
+    it(`should hide arrow`, fakeAsync(() => {
+      expect(getComputedStyle(select.querySelector('.sbb-select-arrow-icon')!).display).toBe(
+        'none'
+      );
+    }));
+
+    it(`should remove focusability`, fakeAsync(() => {
+      expect(select.getAttribute('tabindex')).toBe('-1');
+    }));
+
+    it(`should prevent opening panel by keyboard`, fakeAsync(() => {
+      dispatchKeyboardEvent(select, 'keydown', SPACE);
+      fixture.detectChanges();
+
+      expect(selectComponent.panelOpen).toBe(false);
+    }));
+
+    it(`should prevent opening panel programmatically`, fakeAsync(() => {
+      selectComponent.open();
+      fixture.detectChanges();
+
+      expect(selectComponent.panelOpen).toBe(false);
+    }));
+
+    it(`should prevent opening panel by click`, fakeAsync(() => {
+      select.click();
+      fixture.detectChanges();
+
+      expect(selectComponent.panelOpen).toBe(false);
+    }));
   });
 });

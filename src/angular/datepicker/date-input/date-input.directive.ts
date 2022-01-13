@@ -163,6 +163,17 @@ export class SbbDateInput<D> implements ControlValueAccessor, Validator, OnInit,
   }
   private _disabled = false;
 
+  /** Whether the element is readonly. */
+  @Input()
+  get readonly(): boolean {
+    return this._readonly;
+  }
+  set readonly(value: boolean) {
+    this._readonly = coerceBooleanProperty(value);
+    this.readonlyChange.next(this._readonly);
+  }
+  private _readonly = false;
+
   /** Emits when a `change` event is fired on this `<input>`. */
   @Output() readonly dateChange: EventEmitter<SbbDateInputEvent<D>> = new EventEmitter<
     SbbDateInputEvent<D>
@@ -181,6 +192,9 @@ export class SbbDateInput<D> implements ControlValueAccessor, Validator, OnInit,
 
   /** Emits when the disabled state has changed */
   disabledChange: EventEmitter<boolean> = new EventEmitter<boolean>();
+
+  /** Emits when the readonly state has changed */
+  readonlyChange: EventEmitter<boolean> = new EventEmitter<boolean>();
 
   private _datepickerSubscription = Subscription.EMPTY;
 

@@ -11,4 +11,5 @@ import { FormControl } from '@angular/forms';
 })
 export class TimeInputReactiveFormsExample {
   formControl = new FormControl('');
+  readonly = new FormControl(false);
 }

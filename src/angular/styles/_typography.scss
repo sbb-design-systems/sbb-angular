@@ -188,7 +188,7 @@
   --sbb-datepicker-calendar-body-cell-size: calc(#{pxToRem(40)} * var(--sbb-scaling-factor));
 
   // Forms
-  --sbb-form-background-color-readonly: var(--sbb-color-mild);
+  --sbb-form-background-color-readonly: var(--sbb-color-milk);
   --sbb-form-border-color-readonly: var(--sbb-color-aluminum);
   --sbb-form-input-color: var(--sbb-color-weak-accent);
   --sbb-form-input-color-disabled: var(--sbb-color-grey);
@@ -819,14 +819,9 @@ textarea {
     padding: pxToRem(6) pxToRem(7) pxToRem(8);
   }
 
-  &::-webkit-input-placeholder {
+  &::placeholder {
     color: var(--sbb-color-storm);
-  }
-
-  &::-moz-placeholder {
-    // Firefox 19+
-    color: var(--sbb-color-storm);
-    opacity: 1;
+    opacity: 1; // Needed for Firefox
   }
 
   // Undo the red box-shadow glow added by Firefox on invalid inputs.
@@ -892,6 +887,8 @@ textarea {
   &:is([readonly], .sbb-readonly) {
     &,
     &:focus {
+      color: var(--sbb-form-input-color);
+      -webkit-text-fill-color: var(--sbb-form-input-color);
       background-color: var(--sbb-form-background-color-readonly);
       border-color: var(--sbb-form-border-color-readonly);
     }
@@ -978,6 +975,12 @@ select {
 
   &:not(:disabled) {
     cursor: pointer;
+  }
+
+  &:is([readonly], .sbb-readonly) {
+    background-image: none; // Hide arrow
+    pointer-events: none;
+    touch-action: none;
   }
 }
 
@@ -2111,6 +2114,10 @@ input.sbb-input-element.sbb-time-input {
   :where(html.sbb-lean) & {
     width: pxToRem(70);
     height: pxToRem(36);
+  }
+
+  &:is([readonly], .sbb-readonly) {
+    text-align: left;
   }
 }
 
