@@ -46,7 +46,7 @@ export class SharedDataDialogExample {
     </div>
     <div sbbDialogActions>
       <button sbb-button [sbbDialogClose]="data.animal" cdkFocusInitial>Ok</button>
-      <button sbb-secondary-button utton mode="secondary" (click)="noThanks()">No Thanks</button>
+      <button sbb-secondary-button (click)="noThanks()">No Thanks</button>
     </div>
   `,
 })
