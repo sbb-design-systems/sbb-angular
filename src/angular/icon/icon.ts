@@ -123,7 +123,7 @@ export class SbbIcon implements OnChanges, OnInit, AfterViewChecked, OnDestroy {
   get inline(): boolean {
     return this._inline;
   }
-  set inline(inline: boolean) {
+  set inline(inline: BooleanInput) {
     this._inline = coerceBooleanProperty(inline);
   }
   private _inline: boolean = false;
@@ -401,6 +401,4 @@ export class SbbIcon implements OnChanges, OnInit, AfterViewChecked, OnDestroy {
       });
     }
   }
-
-  static ngAcceptInputType_inline: BooleanInput;
 }

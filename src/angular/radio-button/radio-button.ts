@@ -1,10 +1,5 @@
 import { FocusMonitor, FocusOrigin } from '@angular/cdk/a11y';
-import {
-  BooleanInput,
-  coerceBooleanProperty,
-  coerceNumberProperty,
-  NumberInput,
-} from '@angular/cdk/coercion';
+import { BooleanInput, coerceBooleanProperty, coerceNumberProperty } from '@angular/cdk/coercion';
 import { UniqueSelectionDispatcher } from '@angular/cdk/collections';
 import {
   AfterContentInit,
@@ -136,7 +131,7 @@ export abstract class _SbbRadioGroupBase<TRadio extends _SbbRadioButtonBase>
   get required(): boolean {
     return this._required;
   }
-  set required(value: boolean) {
+  set required(value: BooleanInput) {
     this._required = coerceBooleanProperty(value);
     this._markRadiosForCheck();
   }
@@ -276,9 +271,6 @@ export abstract class _SbbRadioGroupBase<TRadio extends _SbbRadioButtonBase>
       });
     }
   }
-
-  static ngAcceptInputType_disabled: BooleanInput;
-  static ngAcceptInputType_required: BooleanInput;
 }
 
 @Directive({
@@ -341,7 +333,7 @@ export class _SbbRadioButtonBase
   get checked(): boolean {
     return this._checked;
   }
-  set checked(value: boolean) {
+  set checked(value: BooleanInput) {
     const newCheckedState = coerceBooleanProperty(value);
     if (this._checked !== newCheckedState) {
       this._checked = newCheckedState;
@@ -386,7 +378,7 @@ export class _SbbRadioButtonBase
   get disabled(): boolean {
     return this._disabled || (this.radioGroup !== null && this.radioGroup.disabled);
   }
-  set disabled(value: boolean) {
+  set disabled(value: BooleanInput) {
     this._setDisabled(coerceBooleanProperty(value));
   }
 
@@ -552,11 +544,6 @@ export class _SbbRadioButtonBase
       this._changeDetector.markForCheck();
     }
   }
-
-  static ngAcceptInputType_checked: BooleanInput;
-  static ngAcceptInputType_disabled: BooleanInput;
-  static ngAcceptInputType_required: BooleanInput;
-  static ngAcceptInputType_tabIndex: NumberInput;
 }
 
 @Component({

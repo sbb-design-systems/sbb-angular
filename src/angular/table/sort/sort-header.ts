@@ -151,7 +151,7 @@ export class SbbSortHeader
   get disableClear(): boolean {
     return this._disableClear;
   }
-  set disableClear(v) {
+  set disableClear(v: BooleanInput) {
     this._disableClear = coerceBooleanProperty(v);
   }
   private _disableClear: boolean;
@@ -375,7 +375,4 @@ export class SbbSortHeader
       }
     );
   }
-
-  static ngAcceptInputType_disableClear: BooleanInput;
-  static ngAcceptInputType_disabled: BooleanInput;
 }

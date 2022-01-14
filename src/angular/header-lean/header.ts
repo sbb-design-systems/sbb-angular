@@ -142,7 +142,7 @@ export class SbbHeaderLean implements OnChanges, AfterViewInit, OnDestroy {
   get opened(): boolean {
     return this._opened;
   }
-  set opened(value: boolean) {
+  set opened(value: BooleanInput) {
     this.toggleMenu(coerceBooleanProperty(value));
   }
   private _opened = false;
@@ -457,6 +457,4 @@ export class SbbHeaderLean implements OnChanges, AfterViewInit, OnDestroy {
       this._focusTrap.enabled = this.opened;
     }
   }
-
-  static ngAcceptInputType_opened: BooleanInput;
 }

@@ -1,5 +1,4 @@
 import { FocusableOption, FocusMonitor, FocusOrigin } from '@angular/cdk/a11y';
-import { BooleanInput } from '@angular/cdk/coercion';
 import {
   AfterViewInit,
   ChangeDetectionStrategy,
@@ -143,6 +142,4 @@ export class SbbMenuItem
 
     return clone.textContent?.trim() || '';
   }
-
-  static ngAcceptInputType_disabled: BooleanInput;
 }

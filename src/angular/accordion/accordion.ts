@@ -42,7 +42,7 @@ export class SbbAccordion extends CdkAccordion implements AfterContentInit, OnDe
   get hideToggle(): boolean {
     return this._hideToggle;
   }
-  set hideToggle(show: boolean) {
+  set hideToggle(show: BooleanInput) {
     this._hideToggle = coerceBooleanProperty(show);
   }
   private _hideToggle: boolean = false;
@@ -71,6 +71,4 @@ export class SbbAccordion extends CdkAccordion implements AfterContentInit, OnDe
     super.ngOnDestroy();
     this._ownHeaders.destroy();
   }
-
-  static ngAcceptInputType_hideToggle: BooleanInput;
 }

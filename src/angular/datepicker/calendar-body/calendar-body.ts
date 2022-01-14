@@ -1,4 +1,3 @@
-import { BooleanInput } from '@angular/cdk/coercion';
 import {
   ChangeDetectionStrategy,
   Component,
@@ -110,6 +109,4 @@ export class SbbCalendarBody {
         });
     });
   }
-
-  static ngAcceptInputType_allowDisabledSelection: BooleanInput;
 }

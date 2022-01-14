@@ -21,7 +21,7 @@ export class SbbTagLink {
   get amount(): number {
     return this._amount;
   }
-  set amount(value: number) {
+  set amount(value: NumberInput) {
     this._amount = coerceNumberProperty(value);
     this._badgeDescriptionFallback =
       typeof $localize === 'function'
@@ -34,6 +34,4 @@ export class SbbTagLink {
   @Input('sbbBadgeDescription')
   badgeDescription: string;
   _badgeDescriptionFallback: string;
-
-  static ngAcceptInputType_amount: NumberInput;
 }

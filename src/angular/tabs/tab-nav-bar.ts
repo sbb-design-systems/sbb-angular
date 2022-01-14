@@ -1,5 +1,5 @@
 import { FocusableOption, FocusMonitor } from '@angular/cdk/a11y';
-import { BooleanInput, coerceBooleanProperty, NumberInput } from '@angular/cdk/coercion';
+import { BooleanInput, coerceBooleanProperty } from '@angular/cdk/coercion';
 import { ViewportRuler } from '@angular/cdk/scrolling';
 import {
   AfterContentChecked,
@@ -137,11 +137,11 @@ export class _SbbTabLinkBase
   get active(): boolean {
     return this._isActive;
   }
-  set active(value: boolean) {
+  set active(value: BooleanInput) {
     const newValue = coerceBooleanProperty(value);
 
     if (newValue !== this._isActive) {
-      this._isActive = value;
+      this._isActive = newValue;
       this._tabNavBar.updateActiveLink();
     }
   }
@@ -169,10 +169,6 @@ export class _SbbTabLinkBase
   ngOnDestroy() {
     this._focusMonitor.stopMonitoring(this.elementRef);
   }
-
-  static ngAcceptInputType_active: BooleanInput;
-  static ngAcceptInputType_disabled: BooleanInput;
-  static ngAcceptInputType_tabIndex: NumberInput;
 }
 
 /**

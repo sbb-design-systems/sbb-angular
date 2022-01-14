@@ -1,4 +1,4 @@
-import { coerceNumberProperty } from '@angular/cdk/coercion';
+import { coerceNumberProperty, NumberInput } from '@angular/cdk/coercion';
 
 import { AbstractConstructor, Constructor } from './constructor';
 import { CanDisable } from './disabled';
@@ -28,7 +28,7 @@ export function mixinTabIndex<T extends Constructor<CanDisable>>(
     get tabIndex(): number {
       return this.disabled ? -1 : this._tabIndex;
     }
-    set tabIndex(value: number) {
+    set tabIndex(value: NumberInput) {
       // If the specified tabIndex value is null or undefined, fall back to the default value.
       this._tabIndex = value != null ? coerceNumberProperty(value) : this.defaultTabIndex;
     }

@@ -83,7 +83,7 @@ export abstract class SbbPaginatedTabHeader
   get selectedIndex(): number {
     return this._selectedIndex;
   }
-  set selectedIndex(value: number) {
+  set selectedIndex(value: NumberInput) {
     value = coerceNumberProperty(value);
 
     if (this._selectedIndex !== value) {
@@ -343,6 +343,4 @@ export abstract class SbbPaginatedTabHeader
       element.classList.add('sbb-tab-header-right-shadow');
     }
   }
-
-  static ngAcceptInputType_selectedIndex: NumberInput;
 }

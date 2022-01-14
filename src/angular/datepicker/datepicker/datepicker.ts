@@ -93,7 +93,7 @@ export class SbbDatepicker<D> implements OnDestroy {
       ? this.datepickerInput.disabled
       : !!this._disabled;
   }
-  set disabled(value: boolean) {
+  set disabled(value: BooleanInput) {
     const newValue = coerceBooleanProperty(value);
 
     if (newValue !== this._disabled) {
@@ -130,11 +130,11 @@ export class SbbDatepicker<D> implements OnDestroy {
    * Defaults to false.
    */
   @Input()
-  set arrows(value: boolean) {
-    this._arrows = coerceBooleanProperty(value);
-  }
-  get arrows() {
+  get arrows(): boolean {
     return this._arrows;
+  }
+  set arrows(value: BooleanInput) {
+    this._arrows = coerceBooleanProperty(value);
   }
   private _arrows = false;
 
@@ -145,11 +145,11 @@ export class SbbDatepicker<D> implements OnDestroy {
 
   /** Whether the datepicker toggle is enabled. Defaults to true. */
   @Input()
-  set toggle(value: boolean) {
-    this._toggle = coerceBooleanProperty(value);
-  }
-  get toggle() {
+  get toggle(): boolean {
     return this._toggle;
+  }
+  set toggle(value: BooleanInput) {
+    this._toggle = coerceBooleanProperty(value);
   }
   private _toggle = true;
 
@@ -542,8 +542,4 @@ export class SbbDatepicker<D> implements OnDestroy {
   private _getValidDateOrNull(obj: any): D | null {
     return this._dateAdapter.isDateInstance(obj) && this._dateAdapter.isValid(obj) ? obj : null;
   }
-
-  static ngAcceptInputType_disabled: BooleanInput;
-  static ngAcceptInputType_arrows: BooleanInput;
-  static ngAcceptInputType_toggle: BooleanInput;
 }

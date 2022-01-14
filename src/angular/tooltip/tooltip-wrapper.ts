@@ -47,7 +47,7 @@ export class SbbTooltipWrapper extends _SbbTooltipWrapperMixinBase implements On
   get hoverShowDelay(): number {
     return this._hoverShowDelay;
   }
-  set hoverShowDelay(value: number) {
+  set hoverShowDelay(value: NumberInput) {
     this._hoverShowDelay = coerceNumberProperty(value, 0);
   }
   private _hoverShowDelay: number;
@@ -57,7 +57,7 @@ export class SbbTooltipWrapper extends _SbbTooltipWrapperMixinBase implements On
   get hoverHideDelay(): number {
     return this._hoverHideDelay;
   }
-  set hoverHideDelay(value: number) {
+  set hoverHideDelay(value: NumberInput) {
     this._hoverHideDelay = coerceNumberProperty(value, 0);
   }
   private _hoverHideDelay: number;
@@ -96,7 +96,4 @@ export class SbbTooltipWrapper extends _SbbTooltipWrapperMixinBase implements On
   hide() {
     this._tooltip.hide(0);
   }
-
-  static ngAcceptInputType_hoverShowDelay: NumberInput;
-  static ngAcceptInputType_hoverHideDelay: NumberInput;
 }
