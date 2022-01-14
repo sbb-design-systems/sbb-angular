@@ -2,6 +2,32 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [13.1.0](https://github.com/sbb-design-systems/sbb-angular/compare/13.0.0...13.1.0) (2022-01-14)
+
+
+### Features
+
+* **angular/header:** add environment `local` with color `autumn` ([#1006](https://github.com/sbb-design-systems/sbb-angular/issues/1006)) ([55ac974](https://github.com/sbb-design-systems/sbb-angular/commit/55ac97478dfe0d5367cdab2775f502057a134204))
+
+
+### Bug Fixes
+
+* **angular:** fix styles and behavior of form inputs in readonly mode ([#1018](https://github.com/sbb-design-systems/sbb-angular/issues/1018)) ([c07b626](https://github.com/sbb-design-systems/sbb-angular/commit/c07b626a73bc7e7014e0ca0d0cecafda77fd9b4a)), closes [#916](https://github.com/sbb-design-systems/sbb-angular/issues/916) [#917](https://github.com/sbb-design-systems/sbb-angular/issues/917) [#918](https://github.com/sbb-design-systems/sbb-angular/issues/918)
+* add aria-labels to nextDay and prevDay button ([#1015](https://github.com/sbb-design-systems/sbb-angular/issues/1015)) ([e540c8f](https://github.com/sbb-design-systems/sbb-angular/commit/e540c8fa85f2d83fdd920939d838c473cafe5fd5))
+* **angular:** use css vars for transitions ([#1000](https://github.com/sbb-design-systems/sbb-angular/issues/1000)) ([0d24f42](https://github.com/sbb-design-systems/sbb-angular/commit/0d24f42537871dd89f05e0cabc105d9c3d54e6d3))
+* **angular/autocomplete:** sync with components ([#1002](https://github.com/sbb-design-systems/sbb-angular/issues/1002)) ([af8b4eb](https://github.com/sbb-design-systems/sbb-angular/commit/af8b4eb72dcb1eed7a0c9f681d4c2d4774c0bb40))
+* **angular/datepicker:** reset model of connected datepicker when datepicker value changes ([#1001](https://github.com/sbb-design-systems/sbb-angular/issues/1001)) ([df6db8f](https://github.com/sbb-design-systems/sbb-angular/commit/df6db8f55f84ad5ee684c88c60b5038e87c8d686)), closes [#993](https://github.com/sbb-design-systems/sbb-angular/issues/993)
+* **angular/schematics:** remove file extensions in tilde migration ([#1008](https://github.com/sbb-design-systems/sbb-angular/issues/1008)) ([ba01867](https://github.com/sbb-design-systems/sbb-angular/commit/ba0186747b9e5e607fed8fb9706b51ed6722dbf1))
+* **components-examples:** use takeUntil pattern for subscriptions ([#1005](https://github.com/sbb-design-systems/sbb-angular/issues/1005)) ([063145d](https://github.com/sbb-design-systems/sbb-angular/commit/063145d7df2bdfdb883f15b96649a0c9ebce3803))
+
+
+### Documentation
+
+* link old showcase and add how to update v13 ([#1017](https://github.com/sbb-design-systems/sbb-angular/issues/1017)) ([c2202a8](https://github.com/sbb-design-systems/sbb-angular/commit/c2202a8596722348ace1845eb7b1a5cbc1ca5a7a))
+* **angular:** migrate leftover sbbButton usages to sbb-button ([#1016](https://github.com/sbb-design-systems/sbb-angular/issues/1016)) ([3f1c7b0](https://github.com/sbb-design-systems/sbb-angular/commit/3f1c7b0ac997daa43c745e3fe4956f8e9c7c7f65))
+* add aria-label for chips drag and drop example ([#1014](https://github.com/sbb-design-systems/sbb-angular/issues/1014)) ([5f78494](https://github.com/sbb-design-systems/sbb-angular/commit/5f784944315ac1117c5cecc9881891125edac7e2))
+* update license ([#1004](https://github.com/sbb-design-systems/sbb-angular/issues/1004)) ([9c5f47f](https://github.com/sbb-design-systems/sbb-angular/commit/9c5f47fb28a5b0ed8b9e6045b43fe47630db091d))
+
 ## [13.0.0](https://github.com/sbb-design-systems/sbb-angular/compare/13.0.0-rc.6...13.0.0) (2021-12-16)
 
 
