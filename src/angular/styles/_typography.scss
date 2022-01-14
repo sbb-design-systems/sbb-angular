@@ -144,6 +144,9 @@
   --sbb-breadcrumb-trigger-padding-horizontal: calc(#{pxToRem(30)} * var(--sbb-scaling-factor));
   --sbb-breadcrumb-trigger-padding-vertical: calc(#{pxToRem(14)} * var(--sbb-scaling-factor));
 
+  // Button
+  --sbb-button-icon-top-margin: calc(#{pxToRem(-12.5)} * var(--sbb-scaling-factor));
+
   // Chips
   --sbb-chips-list-height: var(--sbb-form-input-min-height);
   --sbb-chips-chip-margin-vertical: calc(2 * var(--sbb-border-width));
@@ -1410,7 +1413,7 @@ textarea {
   pointer-events: none;
   position: absolute;
   top: 50%;
-  margin-top: calc(#{pxToRem(-12.5)} * var(--sbb-scaling-factor));
+  margin-top: var(--sbb-button-icon-top-margin);
 
   &.sbb-icon-fit {
     width: var(--sbb-icon-size-default);
@@ -1480,6 +1483,19 @@ textarea {
   .sbb-link-group :is(&, &:hover) {
     opacity: 1;
     right: 0;
+  }
+}
+
+// We need to position and scale icons inside the buttons in a special way.
+.sbb-button-base .sbb-icon:not(.sbb-button-indicator-icon) {
+  width: var(--sbb-icon-size-default);
+  height: var(--sbb-icon-size-default);
+  margin-top: var(--sbb-button-icon-top-margin);
+  transform: translateY(calc(#{pxToRem(6.25)} * var(--sbb-scaling-factor)));
+
+  > svg {
+    width: 100%;
+    height: 100%;
   }
 }
 
