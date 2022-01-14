@@ -177,22 +177,48 @@ export class SbbPaginator extends _SbbPaginatorBase implements OnInit, CanDisabl
 
   /** Advances to the next page if it exists. */
   nextPage(): void {
-    this.pageIndex++;
+    if (!this.hasNextPage()) {
+      return;
+    }
+
+    const previousPageIndex = this.pageIndex;
+    this.pageIndex = this.pageIndex + 1;
+    this._emitPageEvent(previousPageIndex);
   }
 
   /** Move back to the previous page if it exists. */
   previousPage(): void {
-    this.pageIndex--;
+    if (!this.hasPreviousPage()) {
+      return;
+    }
+
+    const previousPageIndex = this.pageIndex;
+    this.pageIndex = this.pageIndex - 1;
+    this._emitPageEvent(previousPageIndex);
   }
 
   /** Move to the first page if not already there. */
   firstPage(): void {
+    // hasPreviousPage being false implies at the start
+    if (!this.hasPreviousPage()) {
+      return;
+    }
+
+    const previousPageIndex = this.pageIndex;
     this.pageIndex = 0;
+    this._emitPageEvent(previousPageIndex);
   }
 
   /** Move to the last page if not already there. */
   lastPage(): void {
+    // hasNextPage being false implies at the end
+    if (!this.hasNextPage()) {
+      return;
+    }
+
+    const previousPageIndex = this.pageIndex;
     this.pageIndex = this.numberOfPages() - 1;
+    this._emitPageEvent(previousPageIndex);
   }
 
   /** Move to a specific page index. */
