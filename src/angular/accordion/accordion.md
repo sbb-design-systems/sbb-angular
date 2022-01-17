@@ -79,9 +79,9 @@ by applying the css class `sbb-expansion-panel-full-width`.
 
 ### Accessibility
 
-The expansion panel aims to mimic the experience of the native `<details>` and `<summary>` elements.
-The expansion panel header has `role="button"` and also the attribute `aria-controls` with the
-expansion panel's id as value.
+`SbbExpansionPanel` imitates the experience of the native `<details>` and `<summary>` elements.
+The expansion panel header applies `role="button"` and the `aria-controls` attribute with the
+content element's ID.
 
 The expansion panel headers are buttons. Users can use the keyboard to activate the expansion panel
 header to switch between expanded state and collapsed state. Because the header acts as a button,

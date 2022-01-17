@@ -110,6 +110,22 @@ The below example will show one column on `mobile`, two on `tablet` and `desktop
 
 ### Accessibility
 
-The `<sbb-radio-button-panel>` uses an internal `<input type="radio">` to provide an accessible experience.
+`SbbRadioButtonPanel` uses an internal `<input type="radio">` to provide an accessible experience.
 This internal radio button receives focus and is automatically labelled by the text content of the
-`<sbb-radio-button-panel>` element.
+`<sbb-radio-button-panel>` element. Avoid adding other interactive controls into the content of
+`<sbb-radio-button-panel>`, as this degrades the experience for users of assistive technology.
+
+Always provide an accessible label via `aria-label` or `aria-labelledby` for radio buttons without
+descriptive text content. For dynamic labels and descriptions, `SbbRadioButtonPanel` provides input
+properties for binding `aria-label`, `aria-labelledby`, and `aria-describedby`. This means that you
+should not use the `attr.` prefix when binding these properties, as demonstrated below.
+
+```html
+<sbb-radio-button-panel [aria-label]="getMultipleChoiceAnswer()"> </sbb-radio-button-panel>
+```
+
+Prefer placing all radio panels inside of a `<sbb-radio-group>` rather than creating standalone
+radio buttons because groups are easier to use exclusively with a keyboard.
+
+You should provide an accessible label for all `<sbb-radio-group>` elements via `aria-label` or
+`aria-labelledby`.
