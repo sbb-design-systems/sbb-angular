@@ -306,10 +306,6 @@ export abstract class _SbbTooltipBase<T extends _TooltipComponentBase>
     if (_defaultOptions?.touchGestures) {
       this.touchGestures = _defaultOptions.touchGestures;
     }
-
-    _ngZone.runOutsideAngular(() => {
-      _elementRef.nativeElement.addEventListener('keydown', this._handleKeydown);
-    });
   }
 
   ngAfterViewInit() {
@@ -347,7 +343,6 @@ export abstract class _SbbTooltipBase<T extends _TooltipComponentBase>
     }
 
     // Clean up the event listeners set in the constructor
-    nativeElement.removeEventListener('keydown', this._handleKeydown);
     this._passiveListeners.forEach(([event, listener]) => {
       nativeElement.removeEventListener(event, listener, passiveListenerOptions);
     });
@@ -422,18 +417,6 @@ export abstract class _SbbTooltipBase<T extends _TooltipComponentBase>
   _isTooltipVisible(): boolean {
     return !!this._tooltipInstance && this._tooltipInstance.isVisible();
   }
-
-  /**
-   * Handles the keydown events on the host element.
-   * Needs to be an arrow function so that we can use it in addEventListener.
-   */
-  private _handleKeydown = (event: KeyboardEvent) => {
-    if (this._isTooltipVisible() && event.keyCode === ESCAPE && !hasModifierKey(event)) {
-      event.preventDefault();
-      event.stopPropagation();
-      this._ngZone.run(() => this.hide(0));
-    }
-  };
 
   /** Create the overlay config and position strategy */
   private _createOverlay(): OverlayRef {
@@ -533,11 +516,14 @@ export abstract class _SbbTooltipBase<T extends _TooltipComponentBase>
 
     this._overlayRef
       .keydownEvents()
-      .pipe(
-        filter((e) => e.keyCode === ESCAPE),
-        takeUntil(this._destroyed)
-      )
-      .subscribe(() => this._tooltipInstance?._handleBodyInteraction());
+      .pipe(takeUntil(this._destroyed))
+      .subscribe((event) => {
+        if (this._isTooltipVisible() && event.keyCode === ESCAPE && !hasModifierKey(event)) {
+          event.preventDefault();
+          event.stopPropagation();
+          this._ngZone.run(() => this.hide(0));
+        }
+      });
 
     this._overlayRef
       .outsidePointerEvents()
