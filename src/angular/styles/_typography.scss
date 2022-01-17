@@ -145,6 +145,7 @@
   --sbb-breadcrumb-trigger-padding-vertical: calc(#{pxToRem(14)} * var(--sbb-scaling-factor));
 
   // Button
+  --sbb-button-height: calc(#{pxToRem(36)} * var(--sbb-scaling-factor));
   --sbb-button-icon-top-margin: calc(#{pxToRem(-12.5)} * var(--sbb-scaling-factor));
 
   // Chips
@@ -1321,19 +1322,9 @@ textarea {
   // Subtract 1 from the padding values, since we always use the border
   // in order to avoid tearing on state changes.
   padding: calc(#{pxToRem(5)} * var(--sbb-scaling-factor)) !important;
+  height: var(--sbb-button-height);
   min-width: auto;
   line-height: 0 !important;
-
-  // .sbb-icon-scaled styles
-  .sbb-icon {
-    width: var(--sbb-icon-size-default);
-    height: var(--sbb-icon-size-default);
-
-    svg {
-      width: 100%;
-      height: 100%;
-    }
-  }
 }
 
 :is(
@@ -1403,6 +1394,23 @@ textarea {
   }
 }
 
+// We need to position and scale icons inside the buttons in a special way.
+:is(.sbb-button, .sbb-alt-button, .sbb-secondary-button, .sbb-ghost-button, .sbb-icon-button, .sbb-frameless-button, .sbb-link)
+  .sbb-icon {
+  width: var(--sbb-icon-size-default);
+  height: var(--sbb-icon-size-default);
+  margin-top: var(--sbb-button-icon-top-margin);
+
+  &:not(.sbb-button-indicator-icon) {
+    transform: translateY(calc(var(--sbb-button-icon-top-margin) / -2));
+  }
+
+  > svg {
+    width: 100%;
+    height: 100%;
+  }
+}
+
 .sbb-button-indicator-icon {
   transition: {
     duration: var(--sbb-transition-duration-default);
@@ -1413,12 +1421,6 @@ textarea {
   pointer-events: none;
   position: absolute;
   top: 50%;
-  margin-top: var(--sbb-button-icon-top-margin);
-
-  &.sbb-icon-fit {
-    width: var(--sbb-icon-size-default);
-    height: var(--sbb-icon-size-default);
-  }
 
   :is(.sbb-button-base.sbb-disabled, .sbb-button-base.sbb-disabled:hover) & {
     opacity: 0;
@@ -1483,19 +1485,6 @@ textarea {
   .sbb-link-group :is(&, &:hover) {
     opacity: 1;
     right: 0;
-  }
-}
-
-// We need to position and scale icons inside the buttons in a special way.
-.sbb-button-base .sbb-icon:not(.sbb-button-indicator-icon) {
-  width: var(--sbb-icon-size-default);
-  height: var(--sbb-icon-size-default);
-  margin-top: var(--sbb-button-icon-top-margin);
-  transform: translateY(calc(#{pxToRem(6.25)} * var(--sbb-scaling-factor)));
-
-  > svg {
-    width: 100%;
-    height: 100%;
   }
 }
 

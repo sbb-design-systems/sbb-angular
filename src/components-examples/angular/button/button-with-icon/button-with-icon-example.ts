@@ -7,5 +7,6 @@ import { Component } from '@angular/core';
 @Component({
   selector: 'sbb-button-with-icon-example',
   templateUrl: 'button-with-icon-example.html',
+  styleUrls: ['button-with-icon-example.css'],
 })
 export class ButtonWithIconExample {}
