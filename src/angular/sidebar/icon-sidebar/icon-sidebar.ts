@@ -79,11 +79,11 @@ export class SbbIconSidebar extends SbbSidebarBase {
 
   /** Whether the sidebar is expanded. */
   @Input()
-  set expanded(value: boolean) {
-    this.toggleExpanded(coerceBooleanProperty(value));
-  }
   get expanded(): boolean {
     return this._expanded;
+  }
+  set expanded(value: BooleanInput) {
+    this.toggleExpanded(coerceBooleanProperty(value));
   }
   private _expanded = false;
 
@@ -112,8 +112,6 @@ export class SbbIconSidebar extends SbbSidebarBase {
 
     this._changeDetectorRef.markForCheck();
   }
-
-  static ngAcceptInputType_expanded: BooleanInput;
 }
 
 @Component({

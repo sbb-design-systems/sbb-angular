@@ -88,10 +88,10 @@ export class SbbOption implements AfterViewChecked, OnDestroy, FocusableOption, 
 
   /** Whether the option is disabled. */
   @Input()
-  get disabled() {
+  get disabled(): boolean {
     return (this.group && this.group.disabled) || this._disabled;
   }
-  set disabled(value: any) {
+  set disabled(value: BooleanInput) {
     this._disabled = coerceBooleanProperty(value);
     this._changeDetectorRef.markForCheck();
   }
@@ -343,8 +343,6 @@ export class SbbOption implements AfterViewChecked, OnDestroy, FocusableOption, 
   private _emitSelectionChangeEvent(isUserInput = false): void {
     this.onSelectionChange.emit(new SbbOptionSelectionChange(this, isUserInput));
   }
-
-  static ngAcceptInputType_disabled: BooleanInput;
 }
 
 /**

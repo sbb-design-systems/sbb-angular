@@ -119,7 +119,7 @@ export class SbbInput
     }
     return this._disabled;
   }
-  set disabled(value: boolean) {
+  set disabled(value: BooleanInput) {
     this._disabled = coerceBooleanProperty(value);
 
     // Browsers may not fire the blur event if the input is disabled too quickly.
@@ -151,7 +151,7 @@ export class SbbInput
   get required(): boolean {
     return this._required;
   }
-  set required(value: boolean) {
+  set required(value: BooleanInput) {
     this._required = coerceBooleanProperty(value);
   }
   private _required = false;
@@ -191,7 +191,9 @@ export class SbbInput
   get value(): string {
     return this._inputValueAccessor.value;
   }
-  set value(value: string) {
+  // Accept `any` to avoid conflicts with other directives on `<input>` that may
+  // accept different types.
+  set value(value: any) {
     if (value !== this.value) {
       this._inputValueAccessor.value = value;
       this.stateChanges.next();
@@ -397,11 +399,4 @@ export class SbbInput
       this.focus();
     }
   }
-
-  static ngAcceptInputType_disabled: BooleanInput;
-  static ngAcceptInputType_required: BooleanInput;
-
-  // Accept `any` to avoid conflicts with other directives on `<input>` that may
-  // accept different types.
-  static ngAcceptInputType_value: any;
 }

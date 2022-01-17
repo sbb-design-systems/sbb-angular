@@ -88,7 +88,7 @@ export class SbbChipInput implements SbbChipTextControl, OnChanges, OnDestroy, A
   get addOnBlur(): boolean {
     return this._addOnBlur;
   }
-  set addOnBlur(value: boolean) {
+  set addOnBlur(value: BooleanInput) {
     this._addOnBlur = coerceBooleanProperty(value);
   }
   _addOnBlur: boolean = false;
@@ -122,7 +122,7 @@ export class SbbChipInput implements SbbChipTextControl, OnChanges, OnDestroy, A
   get disabled(): boolean {
     return this._disabled || (this._chipList && this._chipList.disabled);
   }
-  set disabled(value: boolean) {
+  set disabled(value: BooleanInput) {
     this._disabled = coerceBooleanProperty(value);
   }
   private _disabled: boolean = false;
@@ -300,7 +300,4 @@ export class SbbChipInput implements SbbChipTextControl, OnChanges, OnDestroy, A
   private _isSeparatorKey(event: KeyboardEvent) {
     return !hasModifierKey(event) && new Set(this.separatorKeyCodes).has(event.keyCode);
   }
-
-  static ngAcceptInputType_addOnBlur: BooleanInput;
-  static ngAcceptInputType_disabled: BooleanInput;
 }

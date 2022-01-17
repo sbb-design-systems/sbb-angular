@@ -182,7 +182,7 @@ export class SbbChipList
   get required(): boolean {
     return this._required;
   }
-  set required(value: boolean) {
+  set required(value: BooleanInput) {
     this._required = coerceBooleanProperty(value);
     this.stateChanges.next();
   }
@@ -223,7 +223,7 @@ export class SbbChipList
   get disabled(): boolean {
     return this.ngControl ? !!this.ngControl.disabled : this._disabled;
   }
-  set disabled(value: boolean) {
+  set disabled(value: BooleanInput) {
     this._disabled = coerceBooleanProperty(value);
     this._syncChipsState();
   }
@@ -600,7 +600,4 @@ export class SbbChipList
       });
     }
   }
-
-  static ngAcceptInputType_required: BooleanInput;
-  static ngAcceptInputType_disabled: BooleanInput;
 }

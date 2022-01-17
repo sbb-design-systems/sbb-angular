@@ -345,7 +345,7 @@ export class SbbSelect
   get required(): boolean {
     return this._required ?? this.ngControl?.control?.hasValidator(Validators.required) ?? false;
   }
-  set required(value: boolean) {
+  set required(value: BooleanInput) {
     this._required = coerceBooleanProperty(value);
     this.stateChanges.next();
   }
@@ -356,7 +356,7 @@ export class SbbSelect
   get multiple(): boolean {
     return this._multiple;
   }
-  set multiple(value: boolean) {
+  set multiple(value: BooleanInput) {
     if (this._selectionModel && (typeof ngDevMode === 'undefined' || ngDevMode)) {
       throw getSbbSelectDynamicMultipleError();
     }
@@ -427,7 +427,7 @@ export class SbbSelect
   get typeaheadDebounceInterval(): number {
     return this._typeaheadDebounceInterval;
   }
-  set typeaheadDebounceInterval(value: number) {
+  set typeaheadDebounceInterval(value: NumberInput) {
     this._typeaheadDebounceInterval = coerceNumberProperty(value);
   }
   private _typeaheadDebounceInterval: number;
@@ -1216,10 +1216,4 @@ export class SbbSelect
     const scrollBuffer = panelHeight / 2;
     this._scrollTop = this._calculateOverlayScroll(firstSelectedOption, scrollBuffer, maxScroll);
   }
-
-  static ngAcceptInputType_required: BooleanInput;
-  static ngAcceptInputType_multiple: BooleanInput;
-  static ngAcceptInputType_typeaheadDebounceInterval: NumberInput;
-  static ngAcceptInputType_disabled: BooleanInput;
-  static ngAcceptInputType_tabIndex: NumberInput;
 }

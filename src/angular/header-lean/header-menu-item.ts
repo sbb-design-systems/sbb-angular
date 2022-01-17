@@ -1,5 +1,4 @@
 import { FocusableOption, FocusMonitor, FocusOrigin } from '@angular/cdk/a11y';
-import { BooleanInput } from '@angular/cdk/coercion';
 import { DOCUMENT } from '@angular/common';
 import {
   Directive,
@@ -111,6 +110,4 @@ export class SbbHeaderMenuItem extends _HeaderMenuItemBase implements FocusableO
 
     return output.trim();
   }
-
-  static ngAcceptInputType_disabled: BooleanInput;
 }

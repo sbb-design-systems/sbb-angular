@@ -6,7 +6,7 @@ import {
   FocusOrigin,
   FocusTrap,
 } from '@angular/cdk/a11y';
-import { BooleanInput, coerceBooleanProperty, NumberInput } from '@angular/cdk/coercion';
+import { coerceBooleanProperty, coerceNumberProperty, NumberInput } from '@angular/cdk/coercion';
 import { ESCAPE, hasModifierKey } from '@angular/cdk/keycodes';
 import { BreakpointObserver, BreakpointState } from '@angular/cdk/layout';
 import { ConnectionPositionPair, Overlay, OverlayRef, ScrollStrategy } from '@angular/cdk/overlay';
@@ -179,10 +179,24 @@ export abstract class _SbbTooltipBase<T extends _TooltipComponentBase>
   }
 
   /** The default delay in ms before showing the tooltip after show is called */
-  @Input('sbbTooltipShowDelay') showDelay: number = this._defaultOptions.showDelay;
+  @Input('sbbTooltipShowDelay')
+  get showDelay(): number {
+    return this._showDelay;
+  }
+  set showDelay(value: NumberInput) {
+    this._showDelay = coerceNumberProperty(value);
+  }
+  private _showDelay = this._defaultOptions.showDelay;
 
   /** The default delay in ms before hiding the tooltip after hide is called */
-  @Input('sbbTooltipHideDelay') hideDelay: number = this._defaultOptions.hideDelay;
+  @Input('sbbTooltipHideDelay')
+  get hideDelay(): number {
+    return this._hideDelay;
+  }
+  set hideDelay(value: NumberInput) {
+    this._hideDelay = coerceNumberProperty(value);
+  }
+  private _hideDelay = this._defaultOptions.hideDelay;
 
   /**
    * How touch gestures should be handled by the tooltip. On touch devices the tooltip directive
@@ -724,10 +738,6 @@ export abstract class _SbbTooltipBase<T extends _TooltipComponentBase>
       (style as any).webkitTapHighlightColor = 'transparent';
     }
   }
-
-  static ngAcceptInputType_disabled: BooleanInput;
-  static ngAcceptInputType_hideDelay: NumberInput;
-  static ngAcceptInputType_showDelay: NumberInput;
 }
 
 /**

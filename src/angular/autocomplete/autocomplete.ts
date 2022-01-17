@@ -158,7 +158,7 @@ export class SbbAutocomplete implements AfterContentInit, OnDestroy {
   get autoActiveFirstOption(): boolean {
     return this._autoActiveFirstOption;
   }
-  set autoActiveFirstOption(value: boolean) {
+  set autoActiveFirstOption(value: BooleanInput) {
     this._autoActiveFirstOption = coerceBooleanProperty(value);
   }
   private _autoActiveFirstOption: boolean;
@@ -208,7 +208,7 @@ export class SbbAutocomplete implements AfterContentInit, OnDestroy {
   get showHintIfNoOptions(): boolean {
     return this._showHintIfNoOptions;
   }
-  set showHintIfNoOptions(value: boolean) {
+  set showHintIfNoOptions(value: BooleanInput) {
     this._showHintIfNoOptions = coerceBooleanProperty(value);
   }
   private _showHintIfNoOptions: boolean = false;
@@ -299,7 +299,4 @@ export class SbbAutocomplete implements AfterContentInit, OnDestroy {
     classList[this._visibleClass] = this.showPanel;
     classList[this._hiddenClass] = !this.showPanel;
   }
-
-  static ngAcceptInputType_autoActiveFirstOption: BooleanInput;
-  static ngAcceptInputType_showHintIfNoOptions: BooleanInput;
 }

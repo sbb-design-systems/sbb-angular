@@ -72,7 +72,7 @@ export class SbbBadge extends _SbbBadgeBase implements OnDestroy, OnChanges, Can
   get hidden(): boolean {
     return this._hidden;
   }
-  set hidden(val: boolean) {
+  set hidden(val: BooleanInput) {
     this._hidden = coerceBooleanProperty(val);
   }
   private _hidden: boolean;
@@ -215,7 +215,4 @@ export class SbbBadge extends _SbbBadgeBase implements OnDestroy, OnChanges, Can
     const content = this.content;
     return content == null ? '' : `${content}`;
   }
-
-  static ngAcceptInputType_disabled: BooleanInput;
-  static ngAcceptInputType_hidden: BooleanInput;
 }

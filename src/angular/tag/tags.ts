@@ -44,12 +44,12 @@ export class SbbTags implements AfterContentInit, OnDestroy {
    * If not provided, the total amount is calculated by the sum of all amounts of all tags.
    */
   @Input()
-  set totalAmount(totalAmount: number) {
-    this._totalAmountSetAsInput = true;
-    this._totalAmount.next(coerceNumberProperty(totalAmount));
-  }
   get totalAmount(): number {
     return this._totalAmount.value;
+  }
+  set totalAmount(totalAmount: NumberInput) {
+    this._totalAmountSetAsInput = true;
+    this._totalAmount.next(coerceNumberProperty(totalAmount));
   }
   _totalAmount: BehaviorSubject<number> = new BehaviorSubject<number>(0);
 
@@ -117,6 +117,4 @@ export class SbbTags implements AfterContentInit, OnDestroy {
     this._destroyed.complete();
     this._totalAmount.complete();
   }
-
-  static ngAcceptInputType_totalAmount: NumberInput;
 }

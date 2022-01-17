@@ -47,7 +47,7 @@ export class SbbTag extends _SbbCheckboxBase implements OnDestroy {
   get amount(): number {
     return this._amount;
   }
-  set amount(value: number) {
+  set amount(value: NumberInput) {
     this._amount = coerceNumberProperty(value);
     this._badgeDescriptionFallback =
       typeof $localize === 'function'
@@ -112,6 +112,4 @@ export class SbbTag extends _SbbCheckboxBase implements OnDestroy {
     this._amountChange.complete();
     this._valueChange.complete();
   }
-
-  static ngAcceptInputType_amount: NumberInput;
 }

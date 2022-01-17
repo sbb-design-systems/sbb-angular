@@ -1,4 +1,4 @@
-import { coerceBooleanProperty } from '@angular/cdk/coercion';
+import { BooleanInput, coerceBooleanProperty } from '@angular/cdk/coercion';
 
 import { AbstractConstructor, Constructor } from './constructor';
 
@@ -16,10 +16,10 @@ export function mixinDisabled<T extends Constructor<{}>>(base: T): Constructor<C
   return class extends base {
     private _disabled: boolean = false;
 
-    get disabled() {
+    get disabled(): boolean {
       return this._disabled;
     }
-    set disabled(value: any) {
+    set disabled(value: BooleanInput) {
       this._disabled = coerceBooleanProperty(value);
     }
 

@@ -144,7 +144,7 @@ export class SbbDateInput<D> implements ControlValueAccessor, Validator, OnInit,
   get disabled(): boolean {
     return this._disabled;
   }
-  set disabled(value: boolean) {
+  set disabled(value: BooleanInput) {
     const newValue = coerceBooleanProperty(value);
     const element = this._elementRef.nativeElement;
 
@@ -379,6 +379,4 @@ export class SbbDateInput<D> implements ControlValueAccessor, Validator, OnInit,
   private _getValidDateOrNull(obj: any): D | null {
     return this._dateAdapter.isDateInstance(obj) && this._dateAdapter.isValid(obj) ? obj : null;
   }
-
-  static ngAcceptInputType_disabled: BooleanInput;
 }

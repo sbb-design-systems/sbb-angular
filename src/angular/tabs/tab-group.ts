@@ -80,7 +80,7 @@ export abstract class SbbTabGroupBase implements AfterContentInit, AfterContentC
   get dynamicHeight(): boolean {
     return this._dynamicHeight;
   }
-  set dynamicHeight(value: boolean) {
+  set dynamicHeight(value: BooleanInput) {
     this._dynamicHeight = coerceBooleanProperty(value);
   }
   private _dynamicHeight: boolean;
@@ -90,7 +90,7 @@ export abstract class SbbTabGroupBase implements AfterContentInit, AfterContentC
   get selectedIndex(): number | null {
     return this._selectedIndex;
   }
-  set selectedIndex(value: number | null) {
+  set selectedIndex(value: NumberInput) {
     this._indexToSelect = coerceNumberProperty(value, null);
   }
   private _selectedIndex: number | null = null;
@@ -325,9 +325,6 @@ export abstract class SbbTabGroupBase implements AfterContentInit, AfterContentC
       this._tabHeader.focusIndex = index;
     }
   }
-
-  static ngAcceptInputType_dynamicHeight: BooleanInput;
-  static ngAcceptInputType_selectedIndex: NumberInput;
 }
 
 /**

@@ -1,7 +1,7 @@
 // Workaround for: https://github.com/bazelbuild/rules_nodejs/issues/1265
 /// <reference types="@angular/localize/init" />
 
-import { BooleanInput, coerceNumberProperty, NumberInput } from '@angular/cdk/coercion';
+import { coerceNumberProperty, NumberInput } from '@angular/cdk/coercion';
 import {
   ChangeDetectionStrategy,
   ChangeDetectorRef,
@@ -101,7 +101,7 @@ export class SbbPaginator extends _SbbPaginatorBase implements OnInit, CanDisabl
   get pageIndex(): number {
     return this._pageIndex;
   }
-  set pageIndex(value: number) {
+  set pageIndex(value: NumberInput) {
     const previousPageIndex = this._pageIndex;
     this._pageIndex = this._correctDownPageIndexIfNecessary(coerceNumberProperty(value));
     this._emitPageEvent(previousPageIndex);
@@ -114,7 +114,7 @@ export class SbbPaginator extends _SbbPaginatorBase implements OnInit, CanDisabl
   get length(): number {
     return this._length;
   }
-  set length(value: number) {
+  set length(value: NumberInput) {
     this._length = Math.max(coerceNumberProperty(value), 0);
     this.pageIndex = this.pageIndex; // ensure index recalculating
   }
@@ -125,7 +125,7 @@ export class SbbPaginator extends _SbbPaginatorBase implements OnInit, CanDisabl
   get pageSize(): number {
     return this._pageSize;
   }
-  set pageSize(value: number) {
+  set pageSize(value: NumberInput) {
     this._changePageSize(coerceNumberProperty(value));
   }
   private _pageSize: number = DEFAULT_PAGE_SIZE;
@@ -177,12 +177,12 @@ export class SbbPaginator extends _SbbPaginatorBase implements OnInit, CanDisabl
 
   /** Advances to the next page if it exists. */
   nextPage(): void {
-    this.pageIndex++;
+    this.pageIndex = this.pageIndex + 1;
   }
 
   /** Move back to the previous page if it exists. */
   previousPage(): void {
-    this.pageIndex--;
+    this.pageIndex = this.pageIndex - 1;
   }
 
   /** Move to the first page if not already there. */
@@ -269,9 +269,4 @@ export class SbbPaginator extends _SbbPaginatorBase implements OnInit, CanDisabl
   private _correctDownPageIndexIfNecessary(value: number): number {
     return Math.max(Math.min(Math.max(value, 0), this.numberOfPages() - 1), 0);
   }
-
-  static ngAcceptInputType_pageIndex: NumberInput;
-  static ngAcceptInputType_length: NumberInput;
-  static ngAcceptInputType_pageSize: NumberInput;
-  static ngAcceptInputType_disabled: BooleanInput;
 }

@@ -81,7 +81,7 @@ export class SbbExpansionPanel
   get hideToggle(): boolean {
     return this._hideToggle || (this.accordion && this.accordion.hideToggle);
   }
-  set hideToggle(value: boolean) {
+  set hideToggle(value: BooleanInput) {
     this._hideToggle = coerceBooleanProperty(value);
   }
   private _hideToggle = false;
@@ -198,6 +198,4 @@ export class SbbExpansionPanel
 
     return false;
   }
-
-  static ngAcceptInputType_hideToggle: BooleanInput;
 }

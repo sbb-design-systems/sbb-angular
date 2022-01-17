@@ -1,5 +1,4 @@
 import { FocusableOption, FocusMonitor, FocusOrigin } from '@angular/cdk/a11y';
-import { BooleanInput } from '@angular/cdk/coercion';
 import {
   AfterViewInit,
   ChangeDetectionStrategy,
@@ -154,8 +153,6 @@ export class SbbButton
   private _hasHostAttributes(...attributes: string[]) {
     return attributes.some((attribute) => this._getHostElement().hasAttribute(attribute));
   }
-
-  static ngAcceptInputType_disabled: BooleanInput;
 }
 
 /**

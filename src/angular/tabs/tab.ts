@@ -1,4 +1,3 @@
-import { BooleanInput } from '@angular/cdk/coercion';
 import { TemplatePortal } from '@angular/cdk/portal';
 import {
   ChangeDetectionStrategy,
@@ -140,6 +139,4 @@ export class SbbTab extends _SbbTabMixinBase implements OnInit, CanDisable, OnCh
       this._templateLabel = value;
     }
   }
-
-  static ngAcceptInputType_disabled: BooleanInput;
 }

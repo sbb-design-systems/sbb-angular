@@ -115,7 +115,7 @@ export class SbbSort
   get disableClear(): boolean {
     return this._disableClear;
   }
-  set disableClear(v: boolean) {
+  set disableClear(v: BooleanInput) {
     this._disableClear = coerceBooleanProperty(v);
   }
   private _disableClear: boolean;
@@ -200,9 +200,6 @@ export class SbbSort
   ngOnDestroy() {
     this._stateChanges.complete();
   }
-
-  static ngAcceptInputType_disableClear: BooleanInput;
-  static ngAcceptInputType_disabled: BooleanInput;
 }
 
 /** Returns the sort direction cycle to use given the provided parameters of order and clear. */

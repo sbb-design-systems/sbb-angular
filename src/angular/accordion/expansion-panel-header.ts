@@ -1,5 +1,4 @@
 import { FocusableOption, FocusMonitor, FocusOrigin } from '@angular/cdk/a11y';
-import { NumberInput } from '@angular/cdk/coercion';
 import { ENTER, hasModifierKey, SPACE } from '@angular/cdk/keycodes';
 import { DOCUMENT } from '@angular/common';
 import {
@@ -174,6 +173,4 @@ export class SbbExpansionPanelHeader
   private _isFocused() {
     return this._document?.activeElement === this._element.nativeElement;
   }
-
-  static ngAcceptInputType_tabIndex: NumberInput;
 }

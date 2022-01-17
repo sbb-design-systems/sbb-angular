@@ -1,4 +1,3 @@
-import { BooleanInput } from '@angular/cdk/coercion';
 import {
   ChangeDetectionStrategy,
   Component,
@@ -77,6 +76,4 @@ export class SbbOptgroup extends _SbbOptgroupMixinBase implements CanDisable {
     super();
     this._inert = parent?.inertGroups ?? false;
   }
-
-  static ngAcceptInputType_disabled: BooleanInput;
 }
