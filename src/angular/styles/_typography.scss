@@ -145,7 +145,6 @@
   --sbb-breadcrumb-trigger-padding-vertical: calc(#{pxToRem(14)} * var(--sbb-scaling-factor));
 
   // Button
-  --sbb-button-height: calc(#{pxToRem(36)} * var(--sbb-scaling-factor));
   --sbb-button-icon-top-margin: calc(#{pxToRem(-12.5)} * var(--sbb-scaling-factor));
 
   // Chips
@@ -1322,7 +1321,7 @@ textarea {
   // Subtract 1 from the padding values, since we always use the border
   // in order to avoid tearing on state changes.
   padding: calc(#{pxToRem(5)} * var(--sbb-scaling-factor)) !important;
-  height: var(--sbb-button-height);
+  height: calc(#{pxToRem(36)} * var(--sbb-scaling-factor));
   min-width: auto;
   line-height: 0 !important;
 }
