@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 
 /**
  * @title Link Example
- * @order 20
+ * @order 30
  */
 @Component({
   selector: 'sbb-link-example',
