@@ -61,6 +61,7 @@ const _SbbInputBase = mixinErrorState(
     '[attr.id]': 'id',
     '[disabled]': 'disabled',
     '[required]': 'required',
+    '[attr.name]': 'name || null',
     '[attr.readonly]': 'readonly && !_isNativeSelect || null',
     // Only mark the input as invalid for assistive technology if it has a value since the
     // state usually overlaps with `aria-required` when the input is empty and can be redundant.
@@ -142,6 +143,12 @@ export class SbbInput
    * @docs-private
    */
   @Input() placeholder: string;
+
+  /**
+   * Name of the input.
+   * @docs-private
+   */
+  @Input() name: string;
 
   /**
    * Implemented as part of SbbFormFieldControl.
