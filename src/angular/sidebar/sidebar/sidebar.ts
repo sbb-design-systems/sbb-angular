@@ -173,10 +173,10 @@ export class SbbSidebar
   private _openedVia: FocusOrigin | null;
 
   /** Emits whenever the sidebar has started animating. */
-  _animationStarted: Subject<AnimationEvent> = new Subject<AnimationEvent>();
+  readonly _animationStarted: Subject<AnimationEvent> = new Subject<AnimationEvent>();
 
   /** Emits whenever the sidebar is done animating. */
-  _animationEnd: Subject<AnimationEvent> = new Subject<AnimationEvent>();
+  readonly _animationEnd: Subject<AnimationEvent> = new Subject<AnimationEvent>();
 
   /** Current state of the sidebar animation. */
   // @HostBinding is used in the class as it is expected to be extended.  Since @Component decorator
@@ -193,17 +193,17 @@ export class SbbSidebar
   /** Event emitted when the sidebar has been opened. */
   // tslint:disable-next-line:no-output-rename
   @Output('opened')
-  _openedStream: Observable<void> = this.openedChange.pipe(
+  readonly _openedStream: Observable<void> = this.openedChange.pipe(
     filter((o) => o),
-    map(() => {})
+    mapTo(undefined)
   );
 
   /** Event emitted when the sidebar has been closed. */
   // tslint:disable-next-line:no-output-rename
   @Output('closed')
-  _closedStream: Observable<void> = this.openedChange.pipe(
+  readonly _closedStream: Observable<void> = this.openedChange.pipe(
     filter((o) => !o),
-    map(() => {})
+    mapTo(undefined)
   );
 
   /** Emits when the component is destroyed. */
@@ -235,7 +235,7 @@ export class SbbSidebar
 
         this._takeFocus();
       } else if (this._isFocusWithinSidebar()) {
-        this._restoreFocus();
+        this._restoreFocus(this._openedVia || 'program');
       }
     });
 
@@ -316,20 +316,18 @@ export class SbbSidebar
    * Restores focus to the element that was originally focused when the sidebar opened.
    * If no element was focused at that time, the focus will be restored to the sidebar.
    */
-  private _restoreFocus() {
+  private _restoreFocus(focusOrigin: Exclude<FocusOrigin, null>) {
     if (this.mode === 'side') {
       return;
     }
 
-    // Note that we don't check via `instanceof HTMLElement` so that we can cover SVGs as well.
     if (this._elementFocusedBeforeSidebarWasOpened) {
-      this._focusMonitor.focusVia(this._elementFocusedBeforeSidebarWasOpened, this._openedVia);
+      this._focusMonitor.focusVia(this._elementFocusedBeforeSidebarWasOpened, focusOrigin);
     } else {
       this._elementRef.nativeElement.blur();
     }
 
     this._elementFocusedBeforeSidebarWasOpened = null;
-    this._openedVia = null;
   }
 
   /** Whether focus is currently within the sidebar. */
@@ -383,8 +381,8 @@ export class SbbSidebar
   _closeViaBackdropClick(): Promise<SbbSidebarToggleResult> {
     // If the sidebar is closed upon a backdrop click, we always want to restore focus. We
     // don't need to check whether focus is currently in the sidebar, as clicking on the
-    // backdrop causes blurring of the active element.
-    return this._setOpen(/* isOpen */ false, /* restoreFocus */ true);
+    // backdrop causes blurs the active element.
+    return this._setOpen(/* isOpen */ false, /* restoreFocus */ true, 'mouse');
   }
 
   /**
@@ -396,34 +394,42 @@ export class SbbSidebar
   toggle(isOpen: boolean = !this.opened, openedVia?: FocusOrigin): Promise<SbbSidebarToggleResult> {
     // If the focus is currently inside the sidebar content and we are closing the sidebar,
     // restore the focus to the initially focused element (when the sidebar opened).
-    return this._setOpen(
+    if (isOpen && openedVia) {
+      this._openedVia = openedVia;
+    }
+
+    const result = this._setOpen(
       isOpen,
       /* restoreFocus */ !isOpen && this._isFocusWithinSidebar(),
-      openedVia
+      this._openedVia || 'program'
     );
+
+    if (!isOpen) {
+      this._openedVia = null;
+    }
+
+    return result;
   }
 
   /**
    * Toggles the opened state of the sidebar.
    * @param isOpen Whether the sidebar should open or close.
    * @param restoreFocus Whether focus should be restored on close.
-   * @param openedVia Focus origin that can be optionally set when opening a sidebar. The
-   *   origin will be used later when focus is restored on sidebar close.
+   * @param focusOrigin Origin to use when restoring focus.
    */
   private _setOpen(
     isOpen: boolean,
     restoreFocus: boolean,
-    openedVia: FocusOrigin = 'program'
+    focusOrigin: Exclude<FocusOrigin, null>
   ): Promise<SbbSidebarToggleResult> {
     this._opened = isOpen;
 
     if (isOpen) {
       this._animationState = this._enableAnimations ? 'open' : 'open-instant';
-      this._openedVia = openedVia;
     } else {
       this._animationState = 'void';
       if (restoreFocus) {
-        this._restoreFocus();
+        this._restoreFocus(focusOrigin);
       }
     }
 
