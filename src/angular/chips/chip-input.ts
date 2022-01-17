@@ -133,7 +133,7 @@ export class SbbChipInput implements SbbChipTextControl, OnChanges, OnDestroy, A
   }
 
   /** The native input element to which this directive is attached. */
-  readonly inputElement: HTMLInputElement;
+  readonly inputElement!: HTMLInputElement;
 
   constructor(
     protected _elementRef: ElementRef<HTMLInputElement>,
