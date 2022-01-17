@@ -239,7 +239,9 @@ export class SbbAutocomplete implements AfterContentInit, OnDestroy {
   ngAfterContentInit() {
     this._keyManager = new ActiveDescendantKeyManager<SbbOption>(this.options).withWrap();
     this._activeOptionChanges = this._keyManager.change.subscribe((index) => {
-      this.optionActivated.emit({ source: this, option: this.options.toArray()[index] || null });
+      if (this.isOpen) {
+        this.optionActivated.emit({ source: this, option: this.options.toArray()[index] || null });
+      }
     });
 
     // Set the initial visibility state.
