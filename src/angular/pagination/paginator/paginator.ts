@@ -103,7 +103,7 @@ export class SbbPaginator extends _SbbPaginatorBase implements OnInit, CanDisabl
   }
   set pageIndex(value: NumberInput) {
     const previousPageIndex = this._pageIndex;
-    this._pageIndex = this._correctDownPageIndexIfNecessary(coerceNumberProperty(value));
+    this._pageIndex = this._coercePageIndexInRange(coerceNumberProperty(value));
     this._emitPageEvent(previousPageIndex);
     this._changeDetectorRef.markForCheck();
   }
@@ -265,8 +265,8 @@ export class SbbPaginator extends _SbbPaginatorBase implements OnInit, CanDisabl
     return this.disabled || !this.hasPreviousPage();
   }
 
-  /** ensures that pageIndex is in range of pages */
-  private _correctDownPageIndexIfNecessary(value: number): number {
+  /** Ensures that pageIndex is in range of pages. */
+  private _coercePageIndexInRange(value: number): number {
     return Math.max(Math.min(Math.max(value, 0), this.numberOfPages() - 1), 0);
   }
 }
