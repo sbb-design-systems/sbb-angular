@@ -3,7 +3,7 @@
 
 import { BooleanInput, coerceBooleanProperty } from '@angular/cdk/coercion';
 import { BreakpointObserver } from '@angular/cdk/layout';
-import { ScrollDispatcher } from '@angular/cdk/scrolling';
+import { CdkScrollable, ScrollDispatcher } from '@angular/cdk/scrolling';
 import {
   AfterContentInit,
   ChangeDetectionStrategy,
@@ -39,6 +39,12 @@ import {
   },
   changeDetection: ChangeDetectionStrategy.OnPush,
   encapsulation: ViewEncapsulation.None,
+  providers: [
+    {
+      provide: CdkScrollable,
+      useExisting: SbbIconSidebarContent,
+    },
+  ],
 })
 export class SbbIconSidebarContent extends SbbSidebarContentBase {
   constructor(
