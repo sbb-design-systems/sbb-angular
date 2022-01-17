@@ -485,7 +485,7 @@
   color: var(--sbb-color-text);
   // !important is required, as arcgis defines its own font-family and we need to overwrite it.
   font-family: var(--sbb-font-roman) !important;
-  font-size: private-div($sizeFontBase, 16px) * 100%;
+  font-size: math.div($sizeFontBase, 16px) * 100%;
   line-height: var(--sbb-line-height);
 
   @include fontSmoothing;
