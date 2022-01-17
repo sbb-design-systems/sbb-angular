@@ -11,7 +11,7 @@ import {
 import { ESCAPE, hasModifierKey } from '@angular/cdk/keycodes';
 import { BreakpointObserver } from '@angular/cdk/layout';
 import { Platform } from '@angular/cdk/platform';
-import { ScrollDispatcher, ViewportRuler } from '@angular/cdk/scrolling';
+import { CdkScrollable, ScrollDispatcher, ViewportRuler } from '@angular/cdk/scrolling';
 import { DOCUMENT } from '@angular/common';
 import {
   AfterContentChecked,
@@ -73,6 +73,12 @@ export type SbbSidebarMode = 'over' | 'side';
   },
   changeDetection: ChangeDetectionStrategy.OnPush,
   encapsulation: ViewEncapsulation.None,
+  providers: [
+    {
+      provide: CdkScrollable,
+      useExisting: SbbSidebarContent,
+    },
+  ],
 })
 export class SbbSidebarContent extends SbbSidebarContentBase implements AfterContentInit {
   constructor(
