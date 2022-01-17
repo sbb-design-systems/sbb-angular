@@ -1395,7 +1395,7 @@ textarea {
 }
 
 // We need to position and scale icons inside the buttons in a special way.
-:is(.sbb-button, .sbb-alt-button, .sbb-secondary-button, .sbb-ghost-button, .sbb-icon-button, .sbb-frameless-button, .sbb-link)
+:is(.sbb-button, .sbb-alt-button, .sbb-secondary-button, .sbb-ghost-button, .sbb-icon-button, .sbb-frameless-button, .sbb-link:where(.sbb-button-base))
   .sbb-icon {
   width: var(--sbb-icon-size-default);
   height: var(--sbb-icon-size-default);
