@@ -135,37 +135,53 @@ You can control which elements are tab stops with the `tabindex` attribute
 
 ### Accessibility
 
-By default, each lightbox has `role="dialog"` on the root element. The role can be changed to
-`alertdialog` via the `SbbLightboxConfig` when opening.
+`SbbLightbox` creates modal dialogs that implements the ARIA `role="dialog"` pattern by default.
+You can change the lightbox's role to `alertdialog` via `SbbLightboxConfig`.
 
-The `aria-label`, `aria-labelledby`, and `aria-describedby` attributes can all be set to the
-dialog element via the `SbbLightboxConfig` as well. Each lightbox should typically have a label
-set via `aria-label` or `aria-labelledby`.
-
-When a lightbox is opened, it will move focus to the first focusable element that it can find. In
-order to prevent users from tabbing into elements in the background, the lightbox uses
-a [focus trap](https://sbberial.angular.io/cdk/a11y/overview#focustrap) to contain focus
-within itself. Once a lightbox is closed, it will return focus to the element that was focused
-before the lightbox was opened.
-
-#### Focus management
-
-By default, the first tabbable element within the lightbox will receive focus upon open. This can
-be configured by setting the `cdkFocusInitial` attribute on another focusable element.
-
-Tabbing through the elements of the lightbox will keep focus inside of the dialog element,
-wrapping back to the first tabbable element when reaching the end of the tab sequence.
-
-#### Focus Restoration
-
-Upon closing, the lightbox returns focus to the element that had focus when the lightbox opened.
-In some cases, however, this previously focused element no longer exists in the DOM, such as
-menu items. To manually restore focus to an appropriate element in such cases, you can disable
-`restoreFocus` in `SbbLightboxConfig` and pass it into the `open` method.
-Then you can return focus manually by subscribing to the `afterClosed` observable on `SbbLightboxRef`.
+You should provide an accessible label to this root lightbox element by setting the `ariaLabel` or
+`ariaLabelledBy` properties of `SbbLightboxConfig`. You can additionally specify a description element
+ID via the `ariaDescribedBy` property of `SbbLightboxConfig`.
 
 #### Keyboard interaction
 
-By default pressing the escape key will close the lightbox. While this behavior can
-be turned off via the `disableClose` option, users should generally avoid doing so
-as it breaks the expected interaction pattern for screen-reader users.
+By default, the escape key closes `SbbLightbox`. While you can disable this behavior via
+the `disableClose` property of `SbbLightboxConfig`, doing this breaks the expected interaction
+pattern for the ARIA `role="dialog"` pattern.
+
+#### Focus management
+
+When opened, `SbbLightbox` traps browser focus such that it cannot escape the root
+`role="dialog"` element. By default, the first tabbable element in the lightbox receives focus.
+You can customize which element receives focus with the `autoFocus` property of
+`SbbLightboxConfig`, which supports the following values.
+
+| Value            | Behavior                                                             |
+| ---------------- | -------------------------------------------------------------------- |
+| `first-tabbable` | Focus the first tabbable element. This is the default setting.       |
+| `first-header`   | Focus the first header element (`role="heading"`, `h1` through `h6`) |
+| `dialog`         | Focus the root `role="dialog"` element.                              |
+| Any CSS selector | Focus the first element matching the given selector.                 |
+
+While the default setting applies the best behavior for most applications, special cases may benefit
+from these alternatives. Always test your application to verify the behavior that works best for
+your users.
+
+#### Focus restoration
+
+When closed, `SbbLightbox` restores focus to the element that previously held focus when the
+lightbox opened. However, if that previously focused element no longer exists, you must
+add additional handling to return focus to an element that makes sense for the user's workflow.
+Opening a lightbox from a menu is one common pattern that causes this situation. The menu
+closes upon clicking an item, thus the focused menu item is no longer in the DOM when the bottom
+sheet attempts to restore focus.
+
+You can add handling for this situation with the `afterClosed()` observable from `SbbLightboxRef`.
+
+```ts
+// #docregion focus-restoration
+const lightboxRef = this.dialog.open(ExampleLightbox, { restoreFocus: false });
+
+// Manually restore focus to the menu trigger since the element that
+// opens the lightbox won't be in the DOM any more when the lightbox closes.
+lightboxRef.afterClosed().subscribe(() => this.menuTrigger.focus());
+```

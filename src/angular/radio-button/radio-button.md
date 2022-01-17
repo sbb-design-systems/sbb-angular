@@ -60,6 +60,22 @@ and `ReactiveFormsModule`.
 
 ### Accessibility
 
-The `<sbb-radio-button>` uses an internal `<input type="radio">` to provide an accessible experience.
+`SbbRadioButton` uses an internal `<input type="radio">` to provide an accessible experience.
 This internal radio button receives focus and is automatically labelled by the text content of the
-`<sbb-radio-button>` element.
+`<sbb-radio-button>` element. Avoid adding other interactive controls into the content of
+`<sbb-radio-button>`, as this degrades the experience for users of assistive technology.
+
+Always provide an accessible label via `aria-label` or `aria-labelledby` for radio buttons without
+descriptive text content. For dynamic labels and descriptions, `SbbRadioButton` provides input
+properties for binding `aria-label`, `aria-labelledby`, and `aria-describedby`. This means that you
+should not use the `attr.` prefix when binding these properties, as demonstrated below.
+
+```html
+<sbb-radio-button [aria-label]="getMultipleChoiceAnswer()"> </sbb-radio-button>
+```
+
+Prefer placing all radio buttons inside of a `<sbb-radio-group>` rather than creating standalone
+radio buttons because groups are easier to use exclusively with a keyboard.
+
+You should provide an accessible label for all `<sbb-radio-group>` elements via `aria-label` or
+`aria-labelledby`.

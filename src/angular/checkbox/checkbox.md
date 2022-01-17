@@ -54,9 +54,16 @@ By creating a wrapper around `<sbb-checkbox>`-elements and adding the correspond
 
 ### Accessibility
 
-The `<sbb-checkbox>` uses an internal `<input type="checkbox">` to provide an accessible experience.
+`SbbCheckbox` uses an internal `<input type="checkbox">` to provide an accessible experience.
 This internal checkbox receives focus and is automatically labelled by the text content of the
-`<sbb-checkbox>` element.
+`<sbb-checkbox>` element. Avoid adding other interactive controls into the content of
+`<sbb-checkbox>`, as this degrades the experience for users of assistive technology.
 
-Checkboxes without text or labels should be given a meaningful label via `aria-label` or
-`aria-labelledby`.
+Always provide an accessible label via `aria-label` or `aria-labelledby` for checkboxes without
+descriptive text content. For dynamic labels, `SbbCheckbox` provides input properties for binding
+`aria-label` and `aria-labelledby`. This means that you should not use the `attr.` prefix when
+binding these properties, as demonstrated below.
+
+```html
+<sbb-checkbox [aria-label]="isSubscribedToEmailsMessage"> </sbb-checkbox>
+```

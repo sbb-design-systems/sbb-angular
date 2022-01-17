@@ -114,18 +114,34 @@ with the `sbbTabContent` attribute.
 
 ### Accessibility
 
-`<sbb-tab-group>` and `<sbb-nav-tab-bar>` use different interaction patterns. The
-`<sbb-tab-group>` component combines `tablist`, `tab`, and `tabpanel` into a single component with
-the appropriate keyboard shortcuts. The `<sbb-nav-tab-bar>`, however, use a _navigation_ interaction
-pattern by using a `<nav>` element with anchor elements as the "tabs". The difference
-between these two patterns comes from the fact one updates the page URL while the other does not.
+`SbbTabGroup` and `SbbTabNavBar` implement different interaction patterns for different use-cases.
+You should choose the component that works best for your application.
+
+`SbbTabGroup` combines `tablist`, `tab`, and `tabpanel` into a single component with
+handling for keyboard inputs and focus management. You should use this component for switching
+between content within a single page.
+
+`SbbTabNavBar`, implements a navigation interaction pattern by using a `<nav>` element with anchor
+elements as the "tabs". You should use this component when you want your cross-page navigation to
+look like a tabbed interface. As a rule of thumb, you should consider `SbbTabNavBar` if changing
+tabs would change the browser URL. For all navigation, including with `SbbTabNavBar`, always move
+browser focus to an element at the beginning of the content to which the user is navigating.
+Furthermore, consider placing your `<router-outlet>` inside of a
+[landmark region](https://www.w3.org/TR/wai-aria-1.1/#dfn-landmark) appropriate to the page.
+
+Avoid mixing both `SbbTabGroup` and `SbbTabNavBar` in your application. The inconsistent interaction
+patterns applied between the components may confuse users.
 
 #### Labels
 
-Tabs without text or labels should be given a meaningful label via `aria-label` or
-`aria-labelledby`. For `SbbTabNav`, the `<nav>` element should have a label as well.
+Always provide an accessible label via `aria-label` or `aria-describedby` for tabs without
+descriptive text content.
+
+When using `SbbTabNavGroup`, always specify a label for the `<nav>` element.
 
 #### Keyboard interaction
+
+`SbbTabGroup` implements the following keyboard interactions.
 
 | Shortcut           | Action                     |
 | ------------------ | -------------------------- |
@@ -134,3 +150,6 @@ Tabs without text or labels should be given a meaningful label via `aria-label` 
 | `HOME`             | Move focus to first tab    |
 | `END`              | Move focus to last tab     |
 | `SPACE` or `ENTER` | Switch to focused tab      |
+
+`SbbTabNavBar` does not add additional keyboard handling, deferring to the native behavior of
+anchor elements.
