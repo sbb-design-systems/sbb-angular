@@ -7,8 +7,8 @@ import { SbbBadge, SbbBadgeModule, SbbBadgePosition } from './index';
 describe('SbbBadge', () => {
   let fixture: ComponentFixture<any>;
   let testComponent: BadgeTestApp;
-  let badgeNativeElement: HTMLElement;
-  let badgeDebugElement: DebugElement;
+  let badgeHostNativeElement: HTMLElement;
+  let badgeHostDebugElement: DebugElement;
 
   beforeEach(fakeAsync(() => {
     TestBed.configureTestingModule({
@@ -20,12 +20,12 @@ describe('SbbBadge', () => {
     testComponent = fixture.debugElement.componentInstance;
     fixture.detectChanges();
 
-    badgeDebugElement = fixture.debugElement.query(By.directive(SbbBadge))!;
-    badgeNativeElement = badgeDebugElement.nativeElement;
+    badgeHostDebugElement = fixture.debugElement.query(By.directive(SbbBadge))!;
+    badgeHostNativeElement = badgeHostDebugElement.nativeElement;
   }));
 
   it('should update the badge based on attribute', () => {
-    const badgeElement = badgeNativeElement.querySelector('.sbb-badge-content')!;
+    const badgeElement = badgeHostNativeElement.querySelector('.sbb-badge-content')!;
     expect(badgeElement.textContent).toContain('1');
 
     testComponent.badgeContent = '22';
@@ -34,7 +34,7 @@ describe('SbbBadge', () => {
   });
 
   it('should be able to pass in falsy values to the badge content', () => {
-    const badgeElement = badgeNativeElement.querySelector('.sbb-badge-content')!;
+    const badgeElement = badgeHostNativeElement.querySelector('.sbb-badge-content')!;
     expect(badgeElement.textContent).toContain('1');
 
     testComponent.badgeContent = 0;
@@ -43,7 +43,7 @@ describe('SbbBadge', () => {
   });
 
   it('should treat null and undefined as empty strings in the badge content', () => {
-    const badgeElement = badgeNativeElement.querySelector('.sbb-badge-content')!;
+    const badgeElement = badgeHostNativeElement.querySelector('.sbb-badge-content')!;
     expect(badgeElement.textContent).toContain('1');
 
     testComponent.badgeContent = null;
@@ -56,41 +56,41 @@ describe('SbbBadge', () => {
   });
 
   it('should update the badge position on direction change', () => {
-    expect(badgeNativeElement.classList.contains('sbb-badge-above')).toBe(true);
+    expect(badgeHostNativeElement.classList.contains('sbb-badge-above')).toBe(true);
 
     testComponent.badgeDirection = 'after';
     fixture.detectChanges();
 
-    expect(badgeNativeElement.classList.contains('sbb-badge-after')).toBe(true);
+    expect(badgeHostNativeElement.classList.contains('sbb-badge-after')).toBe(true);
   });
 
   it('should change visibility to hidden', () => {
-    expect(badgeNativeElement.classList.contains('sbb-badge-hidden')).toBe(false);
+    expect(badgeHostNativeElement.classList.contains('sbb-badge-hidden')).toBe(false);
 
     testComponent.badgeHidden = true;
     fixture.detectChanges();
 
-    expect(badgeNativeElement.classList.contains('sbb-badge-hidden')).toBe(true);
+    expect(badgeHostNativeElement.classList.contains('sbb-badge-hidden')).toBe(true);
   });
 
   it('should toggle `aria-describedby` depending on whether the badge has a description', () => {
-    const badgeContent = badgeNativeElement.querySelector('.sbb-badge-content')!;
-
-    expect(badgeContent.getAttribute('aria-describedby')).toBeFalsy();
+    expect(badgeHostNativeElement.hasAttribute('aria-describedby')).toBeFalse();
 
     testComponent.badgeDescription = 'Describing a badge';
     fixture.detectChanges();
 
-    expect(badgeContent.getAttribute('aria-describedby')).toBeTruthy();
+    const describedById = badgeHostNativeElement.getAttribute('aria-describedby') || '';
+    const description = document.getElementById(describedById)?.textContent;
+    expect(description).toBe('Describing a badge');
 
     testComponent.badgeDescription = '';
     fixture.detectChanges();
 
-    expect(badgeContent.getAttribute('aria-describedby')).toBeFalsy();
+    expect(badgeHostNativeElement.hasAttribute('aria-describedby')).toBeFalse();
   });
 
   it('should toggle visibility based on whether the badge has content', () => {
-    const classList = badgeNativeElement.classList;
+    const classList = badgeHostNativeElement.classList;
 
     expect(classList.contains('sbb-badge-hidden')).toBe(false);
 
@@ -116,7 +116,7 @@ describe('SbbBadge', () => {
   });
 
   it('should apply view encapsulation on create badge content', () => {
-    const badge = badgeNativeElement.querySelector('.sbb-badge-content')!;
+    const badge = badgeHostNativeElement.querySelector('.sbb-badge-content')!;
     let encapsulationAttr: Attr | undefined;
 
     for (let i = 0; i < badge.attributes.length; i++) {
@@ -130,7 +130,7 @@ describe('SbbBadge', () => {
   });
 
   it('should toggle a class depending on the badge disabled state', () => {
-    const element: HTMLElement = badgeDebugElement.nativeElement;
+    const element: HTMLElement = badgeHostDebugElement.nativeElement;
 
     expect(element.classList).not.toContain('sbb-badge-disabled');
 
@@ -138,25 +138,6 @@ describe('SbbBadge', () => {
     fixture.detectChanges();
 
     expect(element.classList).toContain('sbb-badge-disabled');
-  });
-
-  it('should update the aria-label if the description changes', () => {
-    const badgeContent = badgeNativeElement.querySelector('.sbb-badge-content')!;
-
-    fixture.componentInstance.badgeDescription = 'initial content';
-    fixture.detectChanges();
-
-    expect(badgeContent.getAttribute('aria-label')).toBe('initial content');
-
-    fixture.componentInstance.badgeDescription = 'changed content';
-    fixture.detectChanges();
-
-    expect(badgeContent.getAttribute('aria-label')).toBe('changed content');
-
-    fixture.componentInstance.badgeDescription = '';
-    fixture.detectChanges();
-
-    expect(badgeContent.hasAttribute('aria-label')).toBe(false);
   });
 
   it('should clear any pre-existing badges', () => {
@@ -174,7 +155,7 @@ describe('SbbBadge', () => {
   });
 
   it('should expose the badge element', () => {
-    const badgeElement = badgeNativeElement.querySelector('.sbb-badge-content')!;
+    const badgeElement = badgeHostNativeElement.querySelector('.sbb-badge-content')!;
     expect(fixture.componentInstance.badgeInstance.getBadgeElement()).toBe(badgeElement);
   });
 
