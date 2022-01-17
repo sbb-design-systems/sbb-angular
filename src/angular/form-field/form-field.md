@@ -154,7 +154,7 @@ When you provide a label via `<sbb-label>`, `SbbFormField` automatically associa
 the field's control via a native `<label>` element, using the `for` attribute to reference the
 control's ID.
 
-When you provide informational text via `<mat-error>`, `MatFormField` automatically
+When you provide informational text via `<sbb-error>`, `SbbFormField` automatically
 adds these elements' IDs to the control's `aria-describedby` attribute. Additionally,
 `SbbError` applies `aria-live="polite"` by default such that assistive technology will announce errors when
 they appear.
