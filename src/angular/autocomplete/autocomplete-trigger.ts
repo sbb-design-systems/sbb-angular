@@ -378,12 +378,16 @@ export class SbbAutocompleteTrigger
     );
   }
 
-  /** Stream of autocomplete option selections. */
+  /** Stream of changes to the selection state of the autocomplete options. */
   readonly optionSelections: Observable<SbbOptionSelectionChange> = defer(() => {
-    if (this.autocomplete && this.autocomplete.options) {
-      return merge(...this.autocomplete.options.map((option) => option.onSelectionChange));
-    }
+    const options = this.autocomplete ? this.autocomplete.options : null;
 
+    if (options) {
+      return options.changes.pipe(
+        startWith(options),
+        switchMap(() => merge(...options.map((option) => option.onSelectionChange)))
+      );
+    }
     // If there are any subscribers before `ngAfterViewInit`, the `autocomplete` will be undefined.
     // Return a stream that we'll replace with the real one once everything is in place.
     return this._zone.onStable.pipe(
@@ -429,7 +433,7 @@ export class SbbAutocompleteTrigger
 
   // Implemented as part of ControlValueAccessor.
   writeValue(value: any): void {
-    Promise.resolve(null).then(() => this._setTriggerValue(value));
+    Promise.resolve().then(() => this._setTriggerValue(value));
   }
 
   // Implemented as part of ControlValueAccessor.
