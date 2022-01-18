@@ -27,7 +27,7 @@ By default the `sbbTooltip` will be shown on hover.
 It is also possible to use a `TemplateRef` as a tooltip content.
 
 ```html
-<span sbbTooltip="tooltipContent">Short description.</span>
+<span [sbbTooltip]="tooltipContent">Short description.</span>
 
 <ng-template #tooltipContent>
   Display additional information about a topic, input or something else.
