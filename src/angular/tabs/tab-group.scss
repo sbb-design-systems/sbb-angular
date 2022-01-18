@@ -34,7 +34,7 @@
   flex-basis: 100%;
 
   :where(html.sbb-lean) & {
-    margin: pxToRem(15);
+    padding: pxToRem(15);
   }
 
   &.sbb-tab-body-active {
