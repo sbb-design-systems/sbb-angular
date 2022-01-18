@@ -2053,8 +2053,11 @@ textarea {
 
 :is(.sbb-table-sticky-border-elem-left, .sbb-table-sticky-border-elem-right)::after {
   content: '';
-  transition: visibility,
-    opacity var(--sbb-transition-duration-fast) var(--sbb-transition-timing-fast-start);
+  transition: {
+    timing-function: var(--sbb-transition-timing-fast-start);
+    duration: var(--sbb-transition-duration-fast);
+    property: visibility, opacity;
+  }
   visibility: hidden;
   opacity: 0;
   position: absolute;
