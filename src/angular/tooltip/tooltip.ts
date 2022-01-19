@@ -401,10 +401,10 @@ export abstract class _SbbTooltipBase<T extends _TooltipComponentBase>
         restoreFocus: this._defaultOptions.restoreFocus ?? true,
       };
       this._tooltipInstance._initializeWithAttachedContent();
-      this._tooltipInstance.triggeredByClick = true;
+      this._tooltipInstance._triggeredByClick = true;
     } else {
       this._tooltipInstance._config = undefined;
-      this._tooltipInstance.triggeredByClick = false;
+      this._tooltipInstance._triggeredByClick = false;
     }
     this.opened.emit(new SbbTooltipChangeEvent(this));
     this._tooltipInstance!.show(delay);
@@ -821,7 +821,7 @@ export abstract class _TooltipComponentBase implements OnDestroy {
   private readonly _onHide: Subject<void> = new Subject<void>();
 
   /** Whether the tooltip component was triggered by click */
-  triggeredByClick: boolean = false;
+  _triggeredByClick: boolean = false;
 
   constructor(
     public _elementRef: ElementRef<HTMLElement>,

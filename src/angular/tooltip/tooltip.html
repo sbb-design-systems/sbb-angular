@@ -8,7 +8,7 @@
   <div
     class="sbb-tooltip"
     [ngClass]="tooltipClass"
-    [class.sbb-tooltip-has-close-button]="triggeredByClick"
+    [class.sbb-tooltip-has-close-button]="_triggeredByClick"
   >
     <div class="sbb-tooltip-content">
       <ng-container *ngIf="_templateRef as templateRef; else stringMessage">
@@ -17,7 +17,7 @@
       <ng-template #stringMessage>{{ message }}</ng-template>
     </div>
     <button
-      *ngIf="triggeredByClick"
+      *ngIf="_triggeredByClick"
       type="button"
       class="sbb-tooltip-icon sbb-tooltip-close-button sbb-icon-fit sbb-button-reset-frameless"
       (click)="hide(0)"
