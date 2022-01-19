@@ -389,7 +389,6 @@ export abstract class _SbbTooltipBase<T extends _TooltipComponentBase>
       .pipe(takeUntil(this._destroyed))
       .subscribe(() => {
         this.dismissed.emit(new SbbTooltipChangeEvent(this));
-        console.log('after hidden');
         this._detach();
       });
     this._setTooltipClass(this._tooltipClass);
