@@ -314,7 +314,7 @@ var FlexibleSassDependencyResolver = class {
     if (!matches) {
       return [];
     }
-    return matches.map((s) => s.substring(9, s.length - 2)).map((importPath) => {
+    return matches.filter((s) => !s.match(/@use ['"]sass:/)).map((s) => s.substring(9, s.length - 2)).map((importPath) => {
       const occurence = Array.from(this._dependencyByOccurence.keys()).find((o) => importPath.includes(o));
       if (occurence) {
         return this._dependencyByOccurence.get(occurence);
@@ -410,8 +410,8 @@ var TypeScriptDependencyResolverBase = class {
       ...(0, import_ast_utils.findNodes)(sourceFile, schematicsTs.SyntaxKind.ImportDeclaration, void 0, true),
       ...(0, import_ast_utils.findNodes)(sourceFile, schematicsTs.SyntaxKind.ExportDeclaration, void 0, true)
     ].map((n) => {
-      var _a, _b;
-      return (_b = (_a = n.moduleSpecifier) == null ? void 0 : _a.getText().replace(/['"]/g, "")) != null ? _b : "";
+      var _a;
+      return ((_a = n.moduleSpecifier) == null ? void 0 : _a.getText().replace(/['"]/g, "")) ?? "";
     });
   }
   _findDynamicImports(sourceFile) {

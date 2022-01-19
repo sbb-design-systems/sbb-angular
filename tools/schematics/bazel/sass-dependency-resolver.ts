@@ -42,6 +42,7 @@ export class FlexibleSassDependencyResolver implements SassDependencyResolver {
       return [];
     }
     return matches
+      .filter((s) => !s.match(/@use ['"]sass:/))
       .map((s) => s.substring(9, s.length - 2))
       .map((importPath) => {
         const occurence = Array.from(this._dependencyByOccurence.keys()).find((o) =>
