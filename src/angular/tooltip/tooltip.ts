@@ -287,6 +287,10 @@ export abstract class _SbbTooltipBase<T extends _TooltipComponentBase>
   @Output() readonly opened: EventEmitter<SbbTooltipChangeEvent> =
     new EventEmitter<SbbTooltipChangeEvent>();
 
+  /** Event emitted when the tooltip is opened. */
+  @Output() readonly dismissed: EventEmitter<SbbTooltipChangeEvent> =
+    new EventEmitter<SbbTooltipChangeEvent>();
+
   constructor(
     private _overlay: Overlay,
     private _elementRef: ElementRef<HTMLElement>,
@@ -383,7 +387,11 @@ export abstract class _SbbTooltipBase<T extends _TooltipComponentBase>
     this._tooltipInstance
       .afterHidden()
       .pipe(takeUntil(this._destroyed))
-      .subscribe(() => this._detach());
+      .subscribe(() => {
+        this.dismissed.emit(new SbbTooltipChangeEvent(this));
+        console.log('after hidden');
+        this._detach();
+      });
     this._setTooltipClass(this._tooltipClass);
     this._updateTooltipMessage();
     if (this.trigger === 'click') {

@@ -694,6 +694,26 @@ describe('SbbTooltip', () => {
       // throw if we have any timers by the end of the test.
       fixture.destroy();
     }));
+
+    it('should emit event on dismissing tooltip', fakeAsync(() => {
+      assertTooltipInstance(tooltipDirective, false);
+
+      let event: SbbTooltipChangeEvent | null = null;
+      tooltipDirective.dismissed.subscribe((e) => (event = e));
+
+      tooltipDirective.show();
+      tick(0); // Tick for the show delay (default is 0)
+      fixture.detectChanges();
+      tick(500);
+
+      // After hide called, a timeout delay is created that will to hide the tooltip.
+      tooltipDirective.hide();
+      tick(0);
+      fixture.detectChanges();
+      flushMicrotasks();
+
+      expect(event!.instance).toBe(tooltipDirective);
+    }));
   });
 
   describe('scrollable usage', () => {
