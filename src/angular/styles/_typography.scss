@@ -2426,3 +2426,20 @@ $menuItemPaddingTopBottom: 4;
     }
   }
 }
+
+// ----------------------------------------------------------------------------------------------------
+// Sbb Tooltip
+// ----------------------------------------------------------------------------------------------------
+
+.sbb-tooltip-trigger,
+.sbb-tooltip-icon {
+  line-height: 0;
+  cursor: pointer;
+}
+
+:is(.sbb-tooltip-icon, .sbb-tooltip-trigger):is(:active, :hover, :focus),
+.sbb-tooltip-trigger-active {
+  outline: none;
+  color: var(--sbb-color-call-to-action-hover);
+  border-color: var(--sbb-color-call-to-action-hover);
+}

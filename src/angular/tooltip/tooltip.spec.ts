@@ -33,6 +33,7 @@ import {
   dispatchMouseEvent,
   patchElementFocus,
 } from '@sbb-esta/angular/core/testing';
+import { SbbIconTestingModule } from '@sbb-esta/angular/icon/testing';
 import { Subject } from 'rxjs';
 
 import {
@@ -56,7 +57,7 @@ describe('SbbTooltip', () => {
   beforeEach(
     waitForAsync(() => {
       TestBed.configureTestingModule({
-        imports: [SbbTooltipModule, OverlayModule, NoopAnimationsModule],
+        imports: [SbbTooltipModule, OverlayModule, NoopAnimationsModule, SbbIconTestingModule],
         declarations: [
           BasicTooltipDemo,
           ScrollableTooltipDemo,
@@ -65,6 +66,7 @@ describe('SbbTooltip', () => {
           TooltipOnTextFields,
           TooltipOnDraggableElement,
           DataBoundAriaLabelTooltip,
+          TriggerConfigurableTooltip,
         ],
         providers: [
           {
@@ -1108,6 +1110,43 @@ describe('SbbTooltip', () => {
       assertTooltipInstance(fixture.componentInstance.tooltip, true);
     }));
   });
+
+  describe('close button', () => {
+    it('should show close button on click trigger', fakeAsync(() => {
+      const fixture = TestBed.createComponent(TriggerConfigurableTooltip);
+      fixture.detectChanges();
+      const button: HTMLButtonElement = fixture.nativeElement.querySelector('button');
+
+      dispatchFakeEvent(button, 'click');
+      fixture.detectChanges();
+      tick(500); // Finish the open delay.
+      fixture.detectChanges();
+      tick(500); // Finish the animation.
+
+      expect(document.querySelector('.sbb-tooltip')!.classList).toContain(
+        'sbb-tooltip-has-close-button'
+      );
+      expect(document.querySelector('.sbb-tooltip-close-button')).toBeTruthy();
+    }));
+
+    it('should hide close button on hover trigger', fakeAsync(() => {
+      const fixture = TestBed.createComponent(TriggerConfigurableTooltip);
+      fixture.componentInstance.trigger = 'hover';
+      fixture.detectChanges();
+
+      fixture.componentInstance.tooltip.show(); // fake hover
+
+      fixture.detectChanges();
+      tick(500); // Finish the open delay.
+      fixture.detectChanges();
+      tick(500); // Finish the animation.
+
+      expect(document.querySelector('.sbb-tooltip')!.classList).not.toContain(
+        'sbb-tooltip-has-close-button'
+      );
+      expect(document.querySelector('.sbb-tooltip-close-button')).toBeFalsy();
+    }));
+  });
 });
 
 @Component({
@@ -1215,6 +1254,16 @@ class TooltipOnTextFields {
 class TooltipOnDraggableElement {
   @ViewChild('button') button: ElementRef;
   touchGestures: TooltipTouchGestures = 'auto';
+}
+
+@Component({
+  template: `
+    <button [sbbTooltip]="'content'" [sbbTooltipTrigger]="trigger">Show tooltip</button>
+  `,
+})
+class TriggerConfigurableTooltip {
+  @ViewChild(SbbTooltip) tooltip: SbbTooltip;
+  trigger: 'click' | 'hover' = 'click';
 }
 
 /** Asserts whether a tooltip directive has a tooltip instance. */

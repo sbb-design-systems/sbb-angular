@@ -15,10 +15,7 @@ ng_module(
         ["**/*.ts"],
         exclude = ["**/*.spec.ts"],
     ),
-    assets = [
-        ":tooltip-wrapper.css",
-        ":tooltip.css",
-    ] + glob(["**/*.html"]),
+    assets = [":tooltip.css"] + glob(["**/*.html"]),
     deps = [
         "//src/angular/core",
         "//src/angular/icon",
@@ -27,14 +24,6 @@ ng_module(
         "@npm//@angular/common",
         "@npm//@angular/core",
         "@npm//rxjs",
-    ],
-)
-
-sass_binary(
-    name = "tooltip_wrapper_scss",
-    src = "tooltip-wrapper.scss",
-    deps = [
-        "//src/angular/styles:common_scss_lib",
     ],
 )
 

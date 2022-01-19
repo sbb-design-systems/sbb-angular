@@ -5,11 +5,25 @@
   (@state.start)="_animationStart()"
   (@state.done)="_animationDone($event)"
 >
-  <div class="sbb-tooltip" [ngClass]="tooltipClass">
-    <ng-container *ngIf="_templateRef as templateRef; else stringMessage">
-      <ng-container *ngTemplateOutlet="templateRef"></ng-container>
-    </ng-container>
-    <ng-template #stringMessage>{{ message }}</ng-template>
+  <div
+    class="sbb-tooltip"
+    [ngClass]="tooltipClass"
+    [class.sbb-tooltip-has-close-button]="triggeredByClick"
+  >
+    <div class="sbb-tooltip-content">
+      <ng-container *ngIf="_templateRef as templateRef; else stringMessage">
+        <ng-container *ngTemplateOutlet="templateRef"></ng-container>
+      </ng-container>
+      <ng-template #stringMessage>{{ message }}</ng-template>
+    </div>
+    <button
+      *ngIf="triggeredByClick"
+      type="button"
+      class="sbb-tooltip-icon sbb-tooltip-close-button sbb-icon-fit sbb-button-reset-frameless"
+      (click)="hide(0)"
+    >
+      <sbb-icon svgIcon="kom:cross-small"></sbb-icon>
+    </button>
   </div>
   <div class="sbb-tooltip-shadow"></div>
 </div>

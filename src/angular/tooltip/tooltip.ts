@@ -394,15 +394,17 @@ export abstract class _SbbTooltipBase<T extends _TooltipComponentBase>
     this._setTooltipClass(this._tooltipClass);
     this._updateTooltipMessage();
     if (this.trigger === 'click') {
-      // If the tooltip has a click trigger, it behaves similar to a a dialog and should capture
+      // If the tooltip has a click trigger, it behaves similar to a dialog and should capture
       // the focus and trap it inside the tooltip
       this._tooltipInstance._config = {
         autoFocus: this._defaultOptions.autoFocus ?? true,
         restoreFocus: this._defaultOptions.restoreFocus ?? true,
       };
       this._tooltipInstance._initializeWithAttachedContent();
+      this._tooltipInstance.triggeredByClick = true;
     } else {
       this._tooltipInstance._config = undefined;
+      this._tooltipInstance.triggeredByClick = false;
     }
     this.opened.emit(new SbbTooltipChangeEvent(this));
     this._tooltipInstance!.show(delay);
@@ -817,6 +819,9 @@ export abstract class _TooltipComponentBase implements OnDestroy {
 
   /** Subject for notifying that the tooltip has been hidden from the view */
   private readonly _onHide: Subject<void> = new Subject<void>();
+
+  /** Whether the tooltip component was triggered by click */
+  triggeredByClick: boolean = false;
 
   constructor(
     public _elementRef: ElementRef<HTMLElement>,
