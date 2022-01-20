@@ -32,3 +32,5 @@ jobs:
 
     - name: "Execute Angular Components Sync"
       run: yarn ts-node scripts/angular-components-sync.ts
+      env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
