@@ -157,43 +157,44 @@
   .sbb-tab-header {
     position: relative;
 
-    :where(html:not(.sbb-lean)) & {
-      &::before,
-      &::after {
-        position: absolute;
-        top: 0;
-        content: '';
-        z-index: 2;
-        width: pxToRem(12);
-        height: calc(100% - 0.5rem);
-        transition: transform var(--sbb-transition-duration-fast)
-          var(--sbb-transition-timing-default);
-        pointer-events: none;
+    &::before,
+    &::after {
+      position: absolute;
+      top: 0;
+      content: '';
+      z-index: 2;
+      width: pxToRem(20);
+      height: calc(100% - 0.5rem);
+      transition: transform var(--sbb-transition-duration-fast) var(--sbb-transition-timing-default);
+      pointer-events: none;
 
-        @include mq($from: tablet) {
-          width: calc(#{pxToRem(24)} * var(--sbb-scaling-factor));
-        }
+      @include mq($from: tablet) {
+        width: calc(#{pxToRem(24)} * var(--sbb-scaling-factor));
       }
 
-      &::before {
-        left: 0;
-        transform: translateX(-100%);
-        background: linear-gradient(270deg, hsla(0, 0%, 100%, 0.37) 0, var(--sbb-color-background));
+      :where(html.sbb-lean) & {
+        height: calc(100% - var(--sbb-border-width));
       }
+    }
 
-      &.sbb-tab-header-left-shadow::before {
-        transform: translateX(0);
-      }
+    &::before {
+      left: 0;
+      transform: translateX(-100%);
+      background: linear-gradient(270deg, hsla(0, 0%, 100%, 0.37) 0, var(--sbb-color-background));
+    }
 
-      &::after {
-        right: 0;
-        transform: translateX(100%);
-        background: linear-gradient(90deg, hsla(0, 0%, 100%, 0.37) 0, var(--sbb-color-background));
-      }
+    &.sbb-tab-header-left-shadow::before {
+      transform: translateX(0);
+    }
 
-      &.sbb-tab-header-right-shadow::after {
-        transform: translateX(0);
-      }
+    &::after {
+      right: 0;
+      transform: translateX(100%);
+      background: linear-gradient(90deg, hsla(0, 0%, 100%, 0.37) 0, var(--sbb-color-background));
+    }
+
+    &.sbb-tab-header-right-shadow::after {
+      transform: translateX(0);
     }
   }
 }
@@ -225,10 +226,13 @@
   :where(html.sbb-lean) & {
     padding-bottom: 0;
 
-    // We want to display the scrollbar above the header in order not to separate the borders
-    // of the header and body. We do this by rotating the container and the content.
-    :is(&, & > .sbb-tab-list) {
-      transform: rotateX(180deg);
+    // Hide scrollbar
+    &.sbb-scrollbar {
+      scrollbar-width: none;
+      &::-webkit-scrollbar {
+        width: 0;
+        height: 0;
+      }
     }
   }
 }
