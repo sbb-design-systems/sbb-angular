@@ -70,10 +70,6 @@
       border-color: var(--sbb-color-graphite);
       &::after {
         display: none;
-
-        // TODO: wait for input of Franco
-        //border-bottom-color: var(--sbb-color-background);
-        //width: calc(100% + 0.3px); // Weird bug in Chrome
       }
     }
   }
@@ -95,6 +91,13 @@
   &.sbb-tab-label-active:is(:hover, :focus) {
     color: currentColor;
     cursor: default;
+  }
+
+  &.sbb-tab-label-active:focus-visible {
+    :where(html.sbb-lean) & {
+      outline: var(--sbb-border-width) solid var(--sbb-color-black);
+      outline-offset: calc(-1 * var(--sbb-border-width));
+    }
   }
 
   &.sbb-tab-disabled {
