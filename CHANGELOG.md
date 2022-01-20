@@ -2,6 +2,41 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [13.2.0](https://github.com/sbb-design-systems/sbb-angular/compare/13.1.0...13.2.0) (2022-01-20)
+
+
+### Features
+
+* **angular/tooltip:** add dismissed output ([#1055](https://github.com/sbb-design-systems/sbb-angular/issues/1055)) ([96e958e](https://github.com/sbb-design-systems/sbb-angular/commit/96e958e185756e8ba9cbbafda2fe9ffa7a54cce4)), closes [#1048](https://github.com/sbb-design-systems/sbb-angular/issues/1048)
+
+
+### Bug Fixes
+
+* **angular/autocomplete:** don't emit optionActivated event when option is reset ([#1043](https://github.com/sbb-design-systems/sbb-angular/issues/1043)) ([960c9b7](https://github.com/sbb-design-systems/sbb-angular/commit/960c9b7616667a04fbc85073b705c247641be53a))
+* **angular/autocomplete:** don't handle enter events with modifier keys ([#1029](https://github.com/sbb-design-systems/sbb-angular/issues/1029)) ([657cdb3](https://github.com/sbb-design-systems/sbb-angular/commit/657cdb3ad3427562889e1a1d0378cd4546c8e79e))
+* **angular/autocomplete:** optionSelections not emitting when the list of options changes ([#1033](https://github.com/sbb-design-systems/sbb-angular/issues/1033)) ([0421133](https://github.com/sbb-design-systems/sbb-angular/commit/042113351d88024449ae5896673555bf90a984f4))
+* **angular/badge:** correctly apply badge description ([#1037](https://github.com/sbb-design-systems/sbb-angular/issues/1037)) ([3808f5b](https://github.com/sbb-design-systems/sbb-angular/commit/3808f5b29860c4aeefc6f5e55768cb650f6332a7))
+* **angular/button:** align sbb-icon inside buttons ([#1024](https://github.com/sbb-design-systems/sbb-angular/issues/1024)) ([ee942d0](https://github.com/sbb-design-systems/sbb-angular/commit/ee942d097016187562dac6052ba8f78acc2ecbfe))
+* **angular/chips:** declare that SbbChipInput.inputElement is always defined ([#1035](https://github.com/sbb-design-systems/sbb-angular/issues/1035)) ([1349319](https://github.com/sbb-design-systems/sbb-angular/commit/1349319cba3f16e5830c4020adfed3bdaa242b6a))
+* **angular/core:** make SbbOption generic ([#1027](https://github.com/sbb-design-systems/sbb-angular/issues/1027)) ([f027f38](https://github.com/sbb-design-systems/sbb-angular/commit/f027f38981724ab2654845442d7a06ddb8ea28dc))
+* **angular/datepicker:** allow activeElement to be found in Shadow DOM ([#1040](https://github.com/sbb-design-systems/sbb-angular/issues/1040)) ([e840c39](https://github.com/sbb-design-systems/sbb-angular/commit/e840c391dabba3794f7699db80701670374d88cd))
+* **angular/icon:** make icon-registry compatible with Trusted Types ([#1044](https://github.com/sbb-design-systems/sbb-angular/issues/1044)) ([cd4487d](https://github.com/sbb-design-systems/sbb-angular/commit/cd4487da99a229532a1147bc7367bb6124e86736))
+* **angular/menu:** not interrupting keyboard events to other overlays ([#1026](https://github.com/sbb-design-systems/sbb-angular/issues/1026)) ([f08d32b](https://github.com/sbb-design-systems/sbb-angular/commit/f08d32be50d9a3640b2d177361a57cc951384222))
+* **angular/select:** component value not in sync with control value on init ([#1046](https://github.com/sbb-design-systems/sbb-angular/issues/1046)) ([cd5d233](https://github.com/sbb-design-systems/sbb-angular/commit/cd5d2333bcee07a79fd388dd575e8ef1f2f1ddba))
+* **angular/sidebar:** implicit content element being registered twice with scroll dispatcher ([2620abc](https://github.com/sbb-design-systems/sbb-angular/commit/2620abcc063e3fc6310bbe0ffa96fe56bd5bf29a))
+* **angular/sidebar:** restore focus with correct origin when closing via the backdrop ([#1042](https://github.com/sbb-design-systems/sbb-angular/issues/1042)) ([e591c57](https://github.com/sbb-design-systems/sbb-angular/commit/e591c5723f2a58cadaaa939ba93db04b5289b25d))
+* **angular/table:** better handling of invalid data ([#1030](https://github.com/sbb-design-systems/sbb-angular/issues/1030)) ([5e978c6](https://github.com/sbb-design-systems/sbb-angular/commit/5e978c657ff8decc0f12ff69db39fc9c2db0ce84))
+* **angular/tabs:** fix dynamicHeight animation in lean design ([#1051](https://github.com/sbb-design-systems/sbb-angular/issues/1051)) ([6d40699](https://github.com/sbb-design-systems/sbb-angular/commit/6d40699b95d2167fd5f1aecad2eed43ad5f7c8dd))
+* **angular/tooltip:** fix displaying close icon if click trigger was used ([#1057](https://github.com/sbb-design-systems/sbb-angular/issues/1057)) ([60b05b2](https://github.com/sbb-design-systems/sbb-angular/commit/60b05b2daa3766daa4d78105245b8473fd315182))
+* **angular/tooltip:** not closing if escape is pressed while trigger isn't focused ([#1034](https://github.com/sbb-design-systems/sbb-angular/issues/1034)) ([fae3eff](https://github.com/sbb-design-systems/sbb-angular/commit/fae3effdbea8ce6e2fc019f45624b3d958949988))
+
+
+### Documentation
+
+* **angular/tooltip:** fix tooltip example in tooltip.md ([#1049](https://github.com/sbb-design-systems/sbb-angular/issues/1049)) ([b600c22](https://github.com/sbb-design-systems/sbb-angular/commit/b600c22143be5b0a52601a0fc6e732d0c1845257))
+* revise and expand a11y docs ([#1041](https://github.com/sbb-design-systems/sbb-angular/issues/1041)) ([fa7fd80](https://github.com/sbb-design-systems/sbb-angular/commit/fa7fd8096005f575605b0f0c71662bdf7c29ae33))
+* **angular/button:** expand a11y section ([#1039](https://github.com/sbb-design-systems/sbb-angular/issues/1039)) ([31afe66](https://github.com/sbb-design-systems/sbb-angular/commit/31afe66bccb6a305453125142be1416b8b4ca00c))
+
 ## [13.1.0](https://github.com/sbb-design-systems/sbb-angular/compare/13.0.0...13.1.0) (2022-01-14)
 
 
