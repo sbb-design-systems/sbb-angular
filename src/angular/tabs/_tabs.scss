@@ -17,6 +17,16 @@
   padding-bottom: pxToRem(20);
   outline: none;
 
+  &::after {
+    content: '';
+    display: block;
+    position: absolute;
+    bottom: 0;
+    height: 0;
+    margin: 0 auto;
+    border-bottom: var(--sbb-border-width-thin) solid var(--sbb-color-text);
+  }
+
   :where(html:not(.sbb-lean)) & {
     @include mq($from: tablet) {
       margin-right: pxToEm(42, 26);
@@ -24,18 +34,10 @@
     }
 
     &::after {
-      content: '';
-      display: block;
-      position: absolute;
-      height: 0;
-      border-bottom: var(--sbb-border-width-thin) solid var(--sbb-color-text);
       transition: width var(--sbb-transition-duration-default),
         left var(--sbb-transition-duration-default);
-
-      margin: 0 auto;
       left: 0;
       right: 0;
-      bottom: 0;
       width: 0;
     }
   }
@@ -45,10 +47,13 @@
     padding: pxToRem(6) pxToRem(15) pxToRem(9);
     background-color: var(--sbb-color-background);
     margin-right: 0;
-    margin-bottom: var(--sbb-border-width);
     border: var(--sbb-border-width) solid transparent;
     border-bottom: none;
     border-radius: var(--sbb-border-radius) var(--sbb-border-radius) 0 0;
+    &::after {
+      width: calc(100% + 2 * var(--sbb-border-width));
+      border-color: var(--sbb-color-graphite);
+    }
   }
 
   &:last-child {
@@ -63,23 +68,27 @@
     }
     :where(html.sbb-lean) & {
       border-color: var(--sbb-color-graphite);
-      box-shadow: 0 calc(var(--sbb-border-width) * 2) 0 var(--sbb-border-width-negative)
-        var(--sbb-color-background);
+      &::after {
+        display: none;
+
+        // TODO: wait for input of Franco
+        //border-bottom-color: var(--sbb-color-background);
+        //width: calc(100% + 0.3px); // Weird bug in Chrome
+      }
     }
   }
 
   &:not(.sbb-tab-label-active):is(:focus, :hover) {
     color: var(--sbb-color-call-to-action-hover);
 
+    &::after {
+      border-bottom-color: var(--sbb-color-call-to-action-hover);
+    }
+
     :where(html:not(.sbb-lean)) & {
       &::after {
         width: 100%;
-        border-bottom-color: var(--sbb-color-call-to-action-hover);
       }
-    }
-    :where(html.sbb-lean) & {
-      box-shadow: 0 calc(var(--sbb-border-width) * 2) 0 var(--sbb-border-width-negative)
-        var(--sbb-color-call-to-action-hover);
     }
   }
 
@@ -96,8 +105,10 @@
       cursor: default;
     }
 
-    &::after {
-      width: 0 !important;
+    :where(html:not(.sbb-lean)) & {
+      &::after {
+        width: 0 !important;
+      }
     }
   }
 
@@ -188,6 +199,16 @@
 @mixin paginated-tab-header-item-wrapper($parent) {
   display: flex;
   padding-top: calc(#{pxToRem(2)} * var(--sbb-scaling-factor));
+
+  :where(html.sbb-lean) & {
+    &::after {
+      content: '';
+      width: 100%;
+      flex-grow: 1;
+      flex-shrink: 1;
+      border-bottom: var(--sbb-border-width) solid var(--sbb-color-graphite);
+    }
+  }
 }
 
 @mixin paginated-tab-header-container {
@@ -215,8 +236,8 @@
   transition: height var(--sbb-transition-duration-slow);
 
   :where(html.sbb-lean) & {
-    border: pxToRem(1) solid var(--sbb-color-graphite);
-    margin-top: pxToRem(-1);
-    background-color: var(--sbb-color-white);
+    border: var(--sbb-border-width) solid var(--sbb-color-graphite);
+    border-top: none;
+    background-color: var(--sbb-color-background);
   }
 }
