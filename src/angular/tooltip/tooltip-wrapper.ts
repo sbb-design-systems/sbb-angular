@@ -25,7 +25,6 @@ let nextId = 1;
 @Component({
   selector: 'sbb-tooltip',
   templateUrl: './tooltip-wrapper.html',
-  styleUrls: ['./tooltip-wrapper.css'],
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush,
   inputs: ['disabled'],

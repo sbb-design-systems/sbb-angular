@@ -117,9 +117,7 @@ describe('SbbTooltipWrapper', () => {
       fixture.detectChanges();
       flush();
 
-      const tooltipBody = overlayContainer
-        .getContainerElement()
-        .querySelector('.sbb-tooltip-content-body')!;
+      const tooltipBody = overlayContainer.getContainerElement().querySelector('.sbb-tooltip')!;
       dispatchMouseEvent(tooltipBody, 'click');
       dispatchMouseEvent(tooltipBody, 'mousedown');
 
@@ -137,7 +135,7 @@ describe('SbbTooltipWrapper', () => {
       flush();
 
       dispatchMouseEvent(
-        overlayContainer.getContainerElement().querySelector('.sbb-tooltip-content-body')!,
+        overlayContainer.getContainerElement().querySelector('.sbb-tooltip')!,
         'mousedown'
       );
       dispatchEvent(document.body, createMouseEvent('mouseup'));
