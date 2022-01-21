@@ -287,7 +287,7 @@ export abstract class _SbbTooltipBase<T extends _TooltipComponentBase>
   @Output() readonly opened: EventEmitter<SbbTooltipChangeEvent> =
     new EventEmitter<SbbTooltipChangeEvent>();
 
-  /** Event emitted when the tooltip is opened. */
+  /** Event emitted when the tooltip is closed. */
   @Output() readonly dismissed: EventEmitter<SbbTooltipChangeEvent> =
     new EventEmitter<SbbTooltipChangeEvent>();
 
