@@ -7,6 +7,7 @@ runs:
     - name: "Yarn: Get cache directory path"
       id: yarn-cache-dir-path
       run: echo "::set-output name=dir::$(yarn cache dir)"
+      shell: bash
     - name: "Yarn: Restore dependencies from cache"
       uses: actions/cache@v2
       with:
