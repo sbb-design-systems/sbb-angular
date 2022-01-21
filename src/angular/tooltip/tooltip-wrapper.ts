@@ -77,8 +77,15 @@ export class SbbTooltipWrapper extends _SbbTooltipWrapperMixinBase implements On
   @Output() readonly opened: EventEmitter<SbbTooltipChangeEvent> =
     new EventEmitter<SbbTooltipChangeEvent>();
 
+  /** Event emitted when the tooltip is closed. */
+  @Output() readonly dismissed: EventEmitter<SbbTooltipChangeEvent> =
+    new EventEmitter<SbbTooltipChangeEvent>();
+
   ngOnInit(): void {
     this._tooltip.opened.pipe(takeUntil(this._destroyed)).subscribe((e) => this.opened.emit(e));
+    this._tooltip.dismissed
+      .pipe(takeUntil(this._destroyed))
+      .subscribe((e) => this.dismissed.emit(e));
   }
 
   ngOnDestroy(): void {
