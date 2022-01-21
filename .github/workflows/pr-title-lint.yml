@@ -11,7 +11,8 @@ jobs:
     - uses: actions/setup-node@v2
       with:
         node-version: 16
-    - uses: ./.github/actions/yarn-install
+    - name: "Yarn: Install"
+      uses: ./.github/actions/yarn-install
 
     - name: "Lint: Pull request title"
       env:
