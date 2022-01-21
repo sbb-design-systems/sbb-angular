@@ -184,6 +184,7 @@ describe('SbbTooltipWrapper', () => {
       component.tooltip.hide();
       tick();
       fixture.detectChanges();
+      tick();
 
       expect(event!.instance).toBe(component.tooltip._tooltip);
 
