@@ -18,3 +18,4 @@ runs:
         restore-keys: ${{ runner.os }}-yarn-v1-${{hashFiles('tools/postinstall/apply-patches.js')}}-
     - name: "Yarn: Install dependencies"
       run: yarn install --frozen-lockfile --non-interactive
+      shell: bash

@@ -18,3 +18,4 @@ runs:
         cd ~/.bazel-cache/
         tar -I zstd -xf ${{ inputs.key }}.tar.zst
         rm -f ${{ inputs.key }}.tar.zst
+      shell: bash
