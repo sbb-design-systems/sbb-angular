@@ -9,26 +9,11 @@ jobs:
   update-issue:
     runs-on: ubuntu-latest
     steps:
-    - name: Shallow checkout
-      uses: actions/checkout@v2
-      with:
-        fetch-depth: 1
-    - uses: actions/setup-node@v1
+    - uses: actions/checkout@v2
+    - uses: actions/setup-node@v2
       with:
         node-version: 16
-
-    - name: "Yarn: Get cache directory path"
-      id: yarn-cache-dir-path
-      run: echo "::set-output name=dir::$(yarn cache dir)"
-    - name: "Yarn: Restore dependencies from cache"
-      uses: actions/cache@v2
-      with:
-        path: ${{ steps.yarn-cache-dir-path.outputs.dir }}
-        key: ${{ runner.os }}-yarn-${{ hashFiles('**/yarn.lock', '**/tools/postinstall/apply-patches.js') }}
-        restore-keys: |
-          ${{ runner.os }}-yarn-
-    - name: "Yarn: Install dependencies"
-      run: yarn install --frozen-lockfile --non-interactive
+    - uses: ./.github/actions/yarn-install
 
     - name: "Execute Angular Components Sync"
       run: yarn ts-node scripts/angular-components-sync.ts
