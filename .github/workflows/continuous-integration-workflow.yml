@@ -1,15 +1,5 @@
 name: Continuous Integration
-on:
-  push:
-    branches:
-      - '**'
-    tags-ignore:
-      - '**'
-  pull_request:
-    branches:
-      - '**'
-    tags-ignore:
-      - '**'
+on: [push, pull_request]
 env:
   BAZEL_COMMAND: bazelisk
 
@@ -17,26 +7,12 @@ jobs:
   lint:
     runs-on: ubuntu-latest
     steps:
-    - name: Shallow checkout
-      uses: actions/checkout@v2
+    - uses: actions/checkout@v2
+    - uses: actions/setup-node@v2
       with:
-        fetch-depth: 1
-    - uses: actions/setup-node@v1
-      with:
-        node-version: 14
-
-    - name: "Yarn: Get cache directory path"
-      id: yarn-cache-dir-path
-      run: echo "::set-output name=dir::$(yarn cache dir)"
-    - name: "Yarn: Restore dependencies from cache"
-      uses: actions/cache@v2
-      with:
-        path: ${{ steps.yarn-cache-dir-path.outputs.dir }}
-        key: ${{ runner.os }}-yarn-${{ hashFiles('**/yarn.lock', '**/tools/postinstall/apply-patches.js') }}
-        restore-keys: |
-          ${{ runner.os }}-yarn-
-    - name: "Yarn: Install dependencies"
-      run: yarn install --frozen-lockfile --non-interactive
+        node-version: 16
+    - name: "Yarn: Install"
+      uses: ./.github/actions/yarn-install
 
     - name: "Lint: Run tslint and bazel linter"
       run: yarn lint
@@ -44,60 +20,35 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-    - name: "VM: Free disk space"
-      run: |
-        sudo rm -rf "/usr/local/share/boost"
-        sudo rm -rf "$AGENT_TOOLSDIRECTORY"
-    - name: Shallow checkout
-      uses: actions/checkout@v2
-      with:
-        fetch-depth: 1
+    - uses: actions/checkout@v2
     - name: "Bazel: Copy bazel.rc to user home"
       run: cp ./.github/.bazelrc ~/
-    - uses: actions/setup-node@v1
+    - uses: actions/setup-node@v2
       with:
-        node-version: 14
+        node-version: 16
+    - name: "Yarn: Install"
+      uses: ./.github/actions/yarn-install
 
-    - name: "Yarn: Get cache directory path"
-      id: yarn-cache-dir-path
-      run: echo "::set-output name=dir::$(yarn cache dir)"
-    - name: "Yarn: Restore dependencies from cache"
-      uses: actions/cache@v2
-      with:
-        path: ${{ steps.yarn-cache-dir-path.outputs.dir }}
-        key: ${{ runner.os }}-yarn-${{ hashFiles('**/yarn.lock', '**/tools/postinstall/apply-patches.js') }}
-        restore-keys: |
-          ${{ runner.os }}-yarn-
-    - name: "Yarn: Install dependencies"
-      run: yarn install --frozen-lockfile --non-interactive
     - name: "Bazel: Restore remote cache"
       if: ${{ success() || failure() }}
       uses: actions/cache@v2
       with:
         path: ~/.bazel-cache/sbb-angular
-        key: bazel-noop-${{ github.sha }}
-        restore-keys: |
-          bazel-merged-
+        key: bazel-noop-${{ github.sha }}-${{ github.run_attempt }}
+        restore-keys: bazel-merged-
     - name: "Bazel: Clear cache"
       if: ${{ contains(github.event.head_commit.message, '--no-cache') }}
       run: rm -rf ~/.bazel-cache
+
     - name: "Bazel: Build"
       run: yarn -s build all
       timeout-minutes: 45
     - name: "Bazel: Clean bazel disk cache"
       if: ${{ success() || failure() }}
       run: yarn -s bazel:cache clean --individualMaxSize=50MB
-    - name: "Bazel: Compress artifacts"
+    - name: "Bazel: Upload cache"
+      uses: ./.github/actions/upload-bazel-cache
       if: ${{ success() || failure() }}
-      run: |
-        cd ~/.bazel-cache
-        tar -I zstd -cf bazel-cache.tar.zst sbb-angular
-    - name: "Bazel: Upload cache artifacts"
-      if: ${{ success() || failure() }}
-      uses: actions/upload-artifact@v2
-      with:
-        name: bazel-cache-artifact
-        path: ~/.bazel-cache/bazel-cache.tar.zst
     - name: "Bazel: Clear cache directory"
       if: ${{ success() || failure() }}
       run: rm -rf ~/.bazel-cache
@@ -105,28 +56,14 @@ jobs:
   packages:
     runs-on: ubuntu-latest
     steps:
-    - name: Shallow checkout
-      uses: actions/checkout@v2
-      with:
-        fetch-depth: 1
+    - uses: actions/checkout@v2
     - name: "Bazel: Copy bazel.rc to user home"
       run: cp ./.github/.bazelrc ~/
-    - uses: actions/setup-node@v1
+    - uses: actions/setup-node@v2
       with:
-        node-version: 14
-
-    - name: "Yarn: Get cache directory path"
-      id: yarn-cache-dir-path
-      run: echo "::set-output name=dir::$(yarn cache dir)"
-    - name: "Yarn: Restore dependencies from cache"
-      uses: actions/cache@v2
-      with:
-        path: ${{ steps.yarn-cache-dir-path.outputs.dir }}
-        key: ${{ runner.os }}-yarn-${{ hashFiles('**/yarn.lock', '**/tools/postinstall/apply-patches.js') }}
-        restore-keys: |
-          ${{ runner.os }}-yarn-
-    - name: "Yarn: Install dependencies"
-      run: yarn install --frozen-lockfile --non-interactive
+        node-version: 16
+    - name: "Yarn: Install"
+      uses: ./.github/actions/yarn-install
 
     - name: "Bazel: Restore remote cache"
       if: ${{ success() || failure() }}
@@ -134,8 +71,7 @@ jobs:
       with:
         path: ~/.bazel-cache/sbb-angular
         key: bazel-packages-${{ github.sha }}
-        restore-keys: |
-          bazel-packages-
+        restore-keys: bazel-packages-
     - name: "Bazel: Clear cache"
       if: ${{ contains(github.event.head_commit.message, '--no-cache') }}
       run: rm -rf ~/.bazel-cache
@@ -150,61 +86,28 @@ jobs:
     needs: build
     runs-on: ubuntu-latest
     steps:
-    - name: "VM: Free disk space"
-      run: |
-        sudo rm -rf "/usr/local/share/boost"
-        sudo rm -rf "$AGENT_TOOLSDIRECTORY"
-    - name: Shallow checkout
-      uses: actions/checkout@v2
-      with:
-        fetch-depth: 1
+    - uses: actions/checkout@v2
     - name: "Bazel: Copy bazel.rc to user home"
       run: cp ./.github/.bazelrc ~/
-    - uses: actions/setup-node@v1
+    - uses: actions/setup-node@v2
       with:
-        node-version: 14
-
-    - name: "Yarn: Get cache directory path"
-      id: yarn-cache-dir-path
-      run: echo "::set-output name=dir::$(yarn cache dir)"
-    - name: "Yarn: Restore dependencies from cache"
-      uses: actions/cache@v2
-      with:
-        path: ${{ steps.yarn-cache-dir-path.outputs.dir }}
-        key: ${{ runner.os }}-yarn-${{ hashFiles('**/yarn.lock', '**/tools/postinstall/apply-patches.js') }}
-        restore-keys: |
-          ${{ runner.os }}-yarn-
-    - name: "Yarn: Install dependencies"
-      run: yarn install --frozen-lockfile --non-interactive
-
-    - name: "Bazel: Download cache artifacts"
+        node-version: 16
+    - name: "Yarn: Install"
+      uses: ./.github/actions/yarn-install
+    - name: "Bazel: Download cache"
+      uses: ./.github/actions/download-bazel-cache
       if: ${{ success() || failure() }}
-      uses: actions/download-artifact@v2
-      with:
-        name: bazel-cache-artifact
-        path: ~/.bazel-cache/
-    - name: "Bazel: Unpack artifacts"
-      if: ${{ success() || failure() }}
-      run: |
-        cd ~/.bazel-cache/
-        tar -I zstd -xf bazel-cache.tar.zst
-        rm -f bazel-cache.tar.zst
+
     - name: "Bazel: Run local tests"
       run: bazelisk test src/... --build_tag_filters=-e2e --test_tag_filters=-e2e --build_tests_only
     - name: "Bazel: Clean bazel disk cache"
       if: ${{ success() || failure() }}
       run: yarn -s bazel:cache clean --individualMaxSize=50MB
-    - name: "Bazel: Compress artifacts"
+    - name: "Bazel: Upload cache"
+      uses: ./.github/actions/upload-bazel-cache
       if: ${{ success() || failure() }}
-      run: |
-        cd ~/.bazel-cache
-        tar -I zstd -cf bazel-cache-test.tar.zst sbb-angular
-    - name: "Bazel: Upload cache artifacts"
-      if: ${{ success() || failure() }}
-      uses: actions/upload-artifact@v2
       with:
-        name: bazel-cache-test-artifact
-        path: ~/.bazel-cache/bazel-cache-test.tar.zst
+        key: bazel-cache-test
     - name: "Bazel: Clear cache directory"
       if: ${{ success() || failure() }}
       run: rm -rf ~/.bazel-cache
@@ -214,58 +117,29 @@ jobs:
     needs: build
     runs-on: ubuntu-latest
     steps:
-    - name: Shallow checkout
-      uses: actions/checkout@v2
-      with:
-        fetch-depth: 1
+    - uses: actions/checkout@v2
     - name: "Bazel: Copy bazel.rc to user home"
       run: cp ./.github/.bazelrc ~/
-    - uses: actions/setup-node@v1
+    - uses: actions/setup-node@v2
       with:
-        node-version: 14
-
-    - name: "Yarn: Get cache directory path"
-      id: yarn-cache-dir-path
-      run: echo "::set-output name=dir::$(yarn cache dir)"
-    - name: "Yarn: Restore dependencies from cache"
-      uses: actions/cache@v2
-      with:
-        path: ${{ steps.yarn-cache-dir-path.outputs.dir }}
-        key: ${{ runner.os }}-yarn-${{ hashFiles('**/yarn.lock', '**/tools/postinstall/apply-patches.js') }}
-        restore-keys: |
-          ${{ runner.os }}-yarn-
-    - name: "Yarn: Install dependencies"
-      run: yarn install --frozen-lockfile --non-interactive
-
-    - name: "Bazel: Download cache artifacts"
+        node-version: 16
+    - name: "Yarn: Install"
+      uses: ./.github/actions/yarn-install
+    - name: "Bazel: Download cache"
+      uses: ./.github/actions/download-bazel-cache
       if: ${{ success() || failure() }}
-      uses: actions/download-artifact@v2
-      with:
-        name: bazel-cache-artifact
-        path: ~/.bazel-cache/
-    - name: "Bazel: Unpack artifacts"
-      if: ${{ success() || failure() }}
-      run: |
-        cd ~/.bazel-cache/
-        tar -I zstd -xf bazel-cache.tar.zst
-        rm -f bazel-cache.tar.zst
+
     - name: "Bazel: Build showcase"
       if: ${{ success() || failure() }}
       run: yarn -s build showcase-merge
     - name: "Bazel: Clean bazel disk cache"
       if: ${{ success() || failure() }}
       run: yarn -s bazel:cache clean --individualMaxSize=50MB
-    - name: "Bazel: Compress artifacts"
+    - name: "Bazel: Upload cache"
+      uses: ./.github/actions/upload-bazel-cache
       if: ${{ success() || failure() }}
-      run: |
-        cd ~/.bazel-cache
-        tar -I zstd -cf bazel-cache-showcase-merge.tar.zst sbb-angular
-    - name: "Bazel: Upload cache artifacts"
-      if: ${{ success() || failure() }}
-      uses: actions/upload-artifact@v2
       with:
-        name: bazel-cache-showcase-merge-artifact
-        path: ~/.bazel-cache/bazel-cache-showcase-merge.tar.zst
+        key: bazel-cache-showcase
     - name: "Bazel: Clear cache directory"
       if: ${{ success() || failure() }}
       run: rm -rf ~/.bazel-cache
@@ -290,13 +164,10 @@ jobs:
     needs: [test, showcase-merge]
     runs-on: ubuntu-latest
     steps:
-    - name: Shallow checkout
-      uses: actions/checkout@v2
+    - uses: actions/checkout@v2
+    - uses: actions/setup-node@v2
       with:
-        fetch-depth: 1
-    - uses: actions/setup-node@v1
-      with:
-        node-version: 14
+        node-version: 16
 
     - name: "Yarn: Install global dependencies"
       run: yarn global add typescript ts-node
@@ -311,27 +182,16 @@ jobs:
         key: bazel-merged-${{ github.sha }}
         restore-keys: |
           bazel-merged-
-    - name: "Bazel: Download test cache artifacts"
+    - name: "Bazel: Download test cache"
+      uses: ./.github/actions/download-bazel-cache
       if: ${{ success() || failure() }}
-      uses: actions/download-artifact@v2
       with:
-        name: bazel-cache-test-artifact
-        path: ~/.bazel-cache/
-    - name: "Bazel: Download showcase-merge cache artifacts"
+        key: bazel-cache-test
+    - name: "Bazel: Download showcase cache"
+      uses: ./.github/actions/download-bazel-cache
       if: ${{ success() || failure() }}
-      uses: actions/download-artifact@v2
       with:
-        name: bazel-cache-showcase-merge-artifact
-        path: ~/.bazel-cache/
-    - name: "Bazel: Unpack artifacts"
-      if: ${{ success() || failure() }}
-      run: |
-        cd ~/.bazel-cache/
-        ls -la
-        tar -I zstd -xf bazel-cache-test.tar.zst
-        rm -f bazel-cache-test.tar.zst
-        tar -I zstd -xf bazel-cache-showcase-merge.tar.zst
-        rm -f bazel-cache-showcase-merge.tar.zst
+        key: bazel-cache-showcase
     - name: "Bazel: Clean bazel disk cache"
       if: ${{ success() || failure() }}
       run: yarn -s bazel:cache clean --maxSize 750MB --individualMaxSize=20MB
