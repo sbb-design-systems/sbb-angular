@@ -163,7 +163,7 @@ export class SbbAutocompleteTrigger
     // refocused when they come back. In this case we want to skip the first focus event, if the
     // pane was closed, in order to avoid reopening it unintentionally.
     this._canOpenOnNextFocus =
-      this._document.activeElement !== this._elementRef.nativeElement || this.panelOpen;
+      this._document.activeElement !== this._element.nativeElement || this.panelOpen;
   };
 
   /** `View -> model callback called when value changes` */
@@ -253,7 +253,7 @@ export class SbbAutocompleteTrigger
   }
 
   constructor(
-    private _elementRef: ElementRef<HTMLInputElement>,
+    private _element: ElementRef<HTMLInputElement>,
     private _overlay: Overlay,
     private _viewContainerRef: ViewContainerRef,
     private _zone: NgZone,
@@ -421,7 +421,7 @@ export class SbbAutocompleteTrigger
 
         return (
           this._overlayAttached &&
-          clickTarget !== this._elementRef.nativeElement &&
+          clickTarget !== this._element.nativeElement &&
           (!formField || !formField.contains(clickTarget)) &&
           (!customOrigin || !customOrigin.contains(clickTarget)) &&
           !!this._overlayRef &&
@@ -448,7 +448,7 @@ export class SbbAutocompleteTrigger
 
   // Implemented as part of ControlValueAccessor.
   setDisabledState(isDisabled: boolean) {
-    this._elementRef.nativeElement.disabled = isDisabled;
+    this._element.nativeElement.disabled = isDisabled;
   }
 
   /** @docs-private */
@@ -520,7 +520,7 @@ export class SbbAutocompleteTrigger
     if (!this._canOpenOnNextFocus) {
       this._canOpenOnNextFocus = true;
     } else if (this._canOpen()) {
-      this._previousValue = this._elementRef.nativeElement.value;
+      this._previousValue = this._element.nativeElement.value;
       this._attachOverlay();
     }
   }
@@ -602,7 +602,7 @@ export class SbbAutocompleteTrigger
     if (this._formField && this._formField._control) {
       this._formField._control.value = inputValue;
     } else {
-      this._elementRef.nativeElement.value = inputValue;
+      this._element.nativeElement.value = inputValue;
     }
 
     this._previousValue = inputValue;
@@ -615,12 +615,14 @@ export class SbbAutocompleteTrigger
    * stemmed from the user.
    */
   private _setValueAndClose(event: SbbOptionSelectionChange | null): void {
-    if (event && event.source) {
-      this._clearPreviousSelectedOption(event.source);
-      this._setTriggerValue(event.source.value);
-      this._onChange(event.source.value);
-      this._elementRef.nativeElement.focus();
-      this.autocomplete._emitSelectEvent(event.source);
+    const source = event && event.source;
+
+    if (source) {
+      this._clearPreviousSelectedOption(source);
+      this._setTriggerValue(source.value);
+      this._onChange(source.value);
+      this.autocomplete._emitSelectEvent(source);
+      this._element.nativeElement.focus();
     }
 
     this.closePanel();
@@ -778,7 +780,7 @@ export class SbbAutocompleteTrigger
       return this.connectedTo.elementRef;
     }
 
-    return this._formField ? this._formField.getConnectedOverlayOrigin() : this._elementRef;
+    return this._formField ? this._formField.getConnectedOverlayOrigin() : this._element;
   }
 
   private _getPanelWidth(): number | string {
@@ -808,7 +810,7 @@ export class SbbAutocompleteTrigger
 
   /** Determines whether the panel can be opened. */
   private _canOpen(): boolean {
-    const element = this._elementRef.nativeElement;
+    const element = this._element.nativeElement;
     return !element.readOnly && !element.disabled && !this.autocompleteDisabled;
   }
 
