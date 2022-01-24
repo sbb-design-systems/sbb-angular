@@ -13,7 +13,7 @@ __export(exports, {
 function selectorGroups(options) {
   return (tree, _context) => {
     const srcDir = tree.getDir("src");
-    const dirs = srcDir.subdirs.filter((d) => d.startsWith("angular-") && !d.endsWith("-icons")).map((d) => srcDir.dir(d));
+    const dirs = srcDir.subdirs.filter((d) => d.startsWith("angular")).map((d) => srcDir.dir(d));
     const modules = JSON.parse(JSON.stringify(wellKnownModules));
     for (const dir of dirs) {
       dir.visit((path, entry) => {
@@ -24,7 +24,7 @@ function selectorGroups(options) {
             const selectors = match[1].split(/[\s,]+/);
             for (const selector of selectors) {
               const normalizedSelector = selector.includes("[") && !selector.startsWith("[") ? selector.substring(selector.indexOf("[")) : selector;
-              if (blocklist.includes(selector)) {
+              if (blocklist.includes(selector) || blocklist.includes(normalizedSelector)) {
               } else if (!(moduleName in modules)) {
                 modules[moduleName] = [normalizedSelector];
               } else if (!modules[moduleName].includes(normalizedSelector)) {
@@ -225,7 +225,23 @@ var blocklist = [
   "button[sbb-usermenu-item]",
   "[sbbIcon]",
   "sbb-ghettobox-container",
-  "sbb-toggle-option"
+  "sbb-toggle-option",
+  "sbb-toggle-icon",
+  "sbb-toggle-label",
+  "sbb-toggle-subtitle",
+  "sbb-toggle-details",
+  "sbb-notification-icon",
+  "sbb-header-cell",
+  "[sbb-header-cell]",
+  "sbb-footer-cell",
+  "[sbb-footer-cell]",
+  "sbb-cell",
+  "[sbb-cell]",
+  "[sbb-header-row]",
+  "[sbb-footer-row]",
+  "[sbb-row]",
+  "[recycleRows]",
+  "[sbb-table][recycleRows]"
 ];
 // Annotate the CommonJS export names for ESM import in node:
 0 && (module.exports = {
