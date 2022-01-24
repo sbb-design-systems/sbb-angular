@@ -71,15 +71,16 @@ describe('SbbExpansionPanel', () => {
     )!.nativeElement;
     fixture.detectChanges();
 
-    expect(content.textContent.trim()).toBe('', 'Expected content element to be empty.');
+    expect(content.textContent.trim())
+      .withContext('Expected content element to be empty.')
+      .toBe('');
 
     fixture.componentInstance.expanded = true;
     fixture.detectChanges();
 
-    expect(content.textContent.trim()).toContain(
-      'Some content',
-      'Expected content to be rendered.'
-    );
+    expect(content.textContent.trim())
+      .withContext('Expected content to be rendered.')
+      .toContain('Some content');
   }));
 
   it('should render the content for a lazy-loaded panel that is opened on init', fakeAsync(() => {
@@ -89,10 +90,9 @@ describe('SbbExpansionPanel', () => {
     )!.nativeElement;
     fixture.detectChanges();
 
-    expect(content.textContent.trim()).toContain(
-      'Some content',
-      'Expected content to be rendered.'
-    );
+    expect(content.textContent.trim())
+      .withContext('Expected content to be rendered.')
+      .toContain('Some content');
   }));
 
   it('emit correct events for change in panel expanded state', () => {
@@ -216,7 +216,9 @@ describe('SbbExpansionPanel', () => {
     const button = fixture.debugElement.query(By.css('button'))!.nativeElement;
 
     button.focus();
-    expect(document.activeElement).toBe(button, 'Expected button to start off focusable.');
+    expect(document.activeElement)
+      .withContext('Expected button to start off focusable.')
+      .toBe(button);
 
     button.blur();
     fixture.componentInstance.expanded = false;
@@ -237,13 +239,15 @@ describe('SbbExpansionPanel', () => {
     const header = fixture.debugElement.query(By.css('sbb-expansion-panel-header'))!.nativeElement;
 
     button.focus();
-    expect(document.activeElement).toBe(button, 'Expected button to start off focusable.');
+    expect(document.activeElement)
+      .withContext('Expected button to start off focusable.')
+      .toBe(button);
 
     fixture.componentInstance.expanded = false;
     fixture.detectChanges();
     tick(250);
 
-    expect(document.activeElement).toBe(header, 'Expected header to be focused.');
+    expect(document.activeElement).withContext('Expected header to be focused.').toBe(header);
   }));
 
   it('should not change focus origin if origin not specified', fakeAsync(() => {
@@ -295,13 +299,17 @@ describe('SbbExpansionPanel', () => {
         By.css('.sbb-expansion-panel-header-indicator > sbb-icon')
       )!.nativeElement;
 
-      expect(arrow.style.transform).toBe('rotate(90deg)', 'Expected 90 degree rotation.');
+      expect(arrow.style.transform)
+        .withContext('Expected 90 degree rotation.')
+        .toBe('rotate(90deg)');
 
       fixture.componentInstance.expanded = true;
       fixture.detectChanges();
       tick(250);
 
-      expect(arrow.style.transform).toBe('rotate(-90deg)', 'Expected -90 degree rotation.');
+      expect(arrow.style.transform)
+        .withContext('Expected -90 degree rotation.')
+        .toBe('rotate(-90deg)');
     }));
   });
 

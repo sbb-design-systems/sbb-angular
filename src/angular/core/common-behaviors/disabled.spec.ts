@@ -7,15 +7,13 @@ describe('MixinDisabled', () => {
     const classWithDisabled = mixinDisabled(EmptyClass);
     const instance = new classWithDisabled();
 
-    expect(instance.disabled).toBe(
-      false,
-      'Expected the mixed-into class to have a disabled property'
-    );
+    expect(instance.disabled)
+      .withContext('Expected the mixed-into class to have a disabled property')
+      .toBe(false);
 
     instance.disabled = true;
-    expect(instance.disabled).toBe(
-      true,
-      'Expected the mixed-into class to have an updated disabled property'
-    );
+    expect(instance.disabled)
+      .withContext('Expected the mixed-into class to have an updated disabled property')
+      .toBe(true);
   });
 });

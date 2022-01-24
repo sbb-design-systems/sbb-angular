@@ -121,10 +121,14 @@ describe('SbbBreadcrumbs', () => {
       const breadrcrumbRoot = fixture.debugElement.query(By.css('.sbb-breadcrumb-root'));
       expect(breadrcrumbRoot).toBeTruthy();
       expect(breadrcrumbRoot.query(By.css('.sbb-icon[svgicon="kom:house-small"]'))).toBeTruthy();
-      expect(breadrcrumbRoot).toBe(breadcrumbs[0], 'Expected breadcrumbRoot to be at position 1');
+      expect(breadrcrumbRoot)
+        .withContext('Expected breadcrumbRoot to be at position 1')
+        .toBe(breadcrumbs[0]);
 
       const breadcrumbDots = fixture.debugElement.query(By.css('.sbb-breadcrumb-dots'));
-      expect(breadcrumbDots).toBe(breadcrumbs[1], 'Expected breadcrumb dots to be at position 2');
+      expect(breadcrumbDots)
+        .withContext('Expected breadcrumb dots to be at position 2')
+        .toBe(breadcrumbs[1]);
     });
 
     it('should provide accessibility', () => {
@@ -218,14 +222,12 @@ describe('SbbBreadcrumbs', () => {
       const menuPanel = fixture.debugElement.query(By.css('.sbb-menu-panel')).nativeElement;
 
       const xOffset = 30;
-      expect(menuTrigger.getBoundingClientRect().left).toBe(
-        menuTriggerPanel.getBoundingClientRect().left + xOffset,
-        'Expected menu trigger to be left aligned with trigger including x offset'
-      );
-      expect(parseInt(getComputedStyle(menuTrigger).width, 10) + 2 * xOffset).toBeLessThan(
-        parseInt(getComputedStyle(menuTriggerPanel).width, 10),
-        'Expected panel trigger width to be wider than trigger'
-      );
+      expect(menuTrigger.getBoundingClientRect().left)
+        .withContext('Expected menu trigger to be left aligned with trigger including x offset')
+        .toBe(menuTriggerPanel.getBoundingClientRect().left + xOffset);
+      expect(parseInt(getComputedStyle(menuTrigger).width, 10) + 2 * xOffset)
+        .withContext('Expected panel trigger width to be wider than trigger')
+        .toBeLessThan(parseInt(getComputedStyle(menuTriggerPanel).width, 10));
 
       // Panel trigger should be as wide as panel and aligned with panel
       expect(menuTriggerPanel.getBoundingClientRect().right).toBe(

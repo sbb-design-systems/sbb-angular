@@ -72,9 +72,10 @@ describe('MergeRefactorMigration', () => {
 
     await runner.runSchematicAsync('ng-add-migrate', {}, tree).toPromise();
 
-    expect((tree.readContent(appModulePath).match(/SbbBadgeModule/g) || []).length).toBe(
-      2,
-      'Expected to have two occurrences of SbbBadgeModule (one in import declaration and one in module imports).'
-    );
+    expect((tree.readContent(appModulePath).match(/SbbBadgeModule/g) || []).length)
+      .withContext(
+        'Expected to have two occurrences of SbbBadgeModule (one in import declaration and one in module imports).'
+      )
+      .toBe(2);
   });
 });

@@ -125,18 +125,16 @@ describe('SbbTabNavBar', () => {
         .queryAll(By.css('a'))
         .map((tabLinkDebugEl) => tabLinkDebugEl.nativeElement);
 
-      expect(tabLinkElements.every((tabLink) => tabLink.tabIndex === 0)).toBe(
-        true,
-        'Expected element to be keyboard focusable by default'
-      );
+      expect(tabLinkElements.every((tabLink) => tabLink.tabIndex === 0))
+        .withContext('Expected element to be keyboard focusable by default')
+        .toBe(true);
 
       fixture.componentInstance.disabled = true;
       fixture.detectChanges();
 
-      expect(tabLinkElements.every((tabLink) => tabLink.tabIndex === -1)).toBe(
-        true,
-        'Expected element to no longer be keyboard focusable if disabled.'
-      );
+      expect(tabLinkElements.every((tabLink) => tabLink.tabIndex === -1))
+        .withContext('Expected element to no longer be keyboard focusable if disabled.')
+        .toBe(true);
     });
 
     it('should mark disabled links', () => {
@@ -159,10 +157,9 @@ describe('SbbTabNavBar', () => {
       .query(By.directive(SbbTabLink))!
       .injector.get<SbbTabLink>(SbbTabLink);
 
-    expect(tabLink.tabIndex).toBe(
-      5,
-      'Expected the tabIndex to be set from the native tabindex attribute.'
-    );
+    expect(tabLink.tabIndex)
+      .withContext('Expected the tabIndex to be set from the native tabindex attribute.')
+      .toBe(5);
   });
 
   it('should support binding to the tabIndex', () => {
@@ -173,12 +170,14 @@ describe('SbbTabNavBar', () => {
       .query(By.directive(SbbTabLink))!
       .injector.get<SbbTabLink>(SbbTabLink);
 
-    expect(tabLink.tabIndex).toBe(0, 'Expected the tabIndex to be set to 0 by default.');
+    expect(tabLink.tabIndex)
+      .withContext('Expected the tabIndex to be set to 0 by default.')
+      .toBe(0);
 
     fixture.componentInstance.tabIndex = 3;
     fixture.detectChanges();
 
-    expect(tabLink.tabIndex).toBe(3, 'Expected the tabIndex to be have been set to 3.');
+    expect(tabLink.tabIndex).withContext('Expected the tabIndex to be have been set to 3.').toBe(3);
   });
 
   it('should select the proper tab, if the tabs come in after init', () => {
@@ -265,4 +264,5 @@ class TabLinkWithNativeTabindexAttr {}
 })
 class TabBarWithInactiveTabsOnInit {
   tabs = [0, 1, 2];
+  label: string;
 }

@@ -528,10 +528,9 @@ describe('SbbMenu', () => {
 
     expect(panel.classList).not.toContain('custom-one');
     expect(panel.classList).toContain('custom-two');
-    expect(panel.classList).toContain(
-      'sbb-elevation-z4',
-      'Expected sbb-elevation-z4 not to be removed'
-    );
+    expect(panel.classList)
+      .withContext('Expected sbb-elevation-z4 not to be removed')
+      .toContain('sbb-elevation-z4');
   });
 
   it('should set the "menu" role on the overlay panel', () => {
@@ -545,7 +544,7 @@ describe('SbbMenu', () => {
     expect(menuPanel).toBeTruthy('Expected to find a menu panel.');
 
     const role = menuPanel ? menuPanel.getAttribute('role') : '';
-    expect(role).toBe('menu', 'Expected panel to have the "menu" role.');
+    expect(role).withContext('Expected panel to have the "menu" role.').toBe('menu');
   });
 
   it('should forward ARIA attributes to the menu panel', () => {
@@ -993,7 +992,7 @@ describe('SbbMenu', () => {
     tick(500);
 
     const items = document.querySelectorAll('.sbb-menu-panel-wrapper [sbb-menu-item]');
-    expect(document.activeElement).toBe(items[3], 'Expected fourth item to be focused');
+    expect(document.activeElement).withContext('Expected fourth item to be focused').toBe(items[3]);
   }));
 
   describe('lazy rendering', () => {
@@ -1008,8 +1007,12 @@ describe('SbbMenu', () => {
       const panel = overlayContainerElement.querySelector('.sbb-menu-panel-wrapper')!;
 
       expect(panel).toBeTruthy('Expected panel to be defined');
-      expect(panel.textContent).toContain('Another item', 'Expected panel to have correct content');
-      expect(fixture.componentInstance.trigger.menuOpen).toBe(true, 'Expected menu to be open');
+      expect(panel.textContent)
+        .withContext('Expected panel to have correct content')
+        .toContain('Another item');
+      expect(fixture.componentInstance.trigger.menuOpen)
+        .withContext('Expected menu to be open')
+        .toBe(true);
     }));
 
     it('should detach the lazy content when the menu is closed', fakeAsync(() => {
@@ -1035,25 +1038,24 @@ describe('SbbMenu', () => {
       fixture.detectChanges();
       const trigger = fixture.componentInstance.trigger;
 
-      expect(trigger.menuOpen).toBe(false, 'Expected menu to start off closed');
+      expect(trigger.menuOpen).withContext('Expected menu to start off closed').toBe(false);
 
       trigger.openMenu();
       fixture.detectChanges();
       tick(500);
 
-      expect(trigger.menuOpen).toBe(true, 'Expected menu to be open');
+      expect(trigger.menuOpen).withContext('Expected menu to be open').toBe(true);
 
       trigger.closeMenu();
       fixture.detectChanges();
 
-      expect(trigger.menuOpen).toBe(
-        true,
-        'Expected menu to be considered open while the close animation is running'
-      );
+      expect(trigger.menuOpen)
+        .withContext('Expected menu to be considered open while the close animation is running')
+        .toBe(true);
       tick(500);
       fixture.detectChanges();
 
-      expect(trigger.menuOpen).toBe(false, 'Expected menu to be closed');
+      expect(trigger.menuOpen).withContext('Expected menu to be closed').toBe(false);
     }));
 
     it('should focus the first menu item when opening a lazy menu via keyboard', fakeAsync(() => {
@@ -1078,7 +1080,7 @@ describe('SbbMenu', () => {
 
       const item = document.querySelector('.sbb-menu-panel-wrapper [sbb-menu-item]')!;
 
-      expect(document.activeElement).toBe(item, 'Expected first item to be focused');
+      expect(document.activeElement).withContext('Expected first item to be focused').toBe(item);
     }));
 
     it('should be able to open the same menu with a different context', fakeAsync(() => {
@@ -1119,7 +1121,9 @@ describe('SbbMenu', () => {
         const menuPanel = document.querySelector('.sbb-menu-panel-wrapper')!;
         let items = menuPanel.querySelectorAll('.sbb-menu-panel-wrapper [sbb-menu-item]');
 
-        expect(document.activeElement).toBe(items[0], 'Expected first item to be focused on open');
+        expect(document.activeElement)
+          .withContext('Expected first item to be focused on open')
+          .toBe(items[0]);
 
         // Add a new item after the first one.
         fixture.componentInstance.items.splice(1, 0, { label: 'Calzone', disabled: false });
@@ -1130,7 +1134,9 @@ describe('SbbMenu', () => {
         fixture.detectChanges();
         tick();
 
-        expect(document.activeElement).toBe(items[1], 'Expected second item to be focused');
+        expect(document.activeElement)
+          .withContext('Expected second item to be focused')
+          .toBe(items[1]);
         flush();
       })
     );
@@ -1151,18 +1157,24 @@ describe('SbbMenu', () => {
       const menuPanel = document.querySelector('.sbb-menu-panel-wrapper')!;
       const items = menuPanel.querySelectorAll('.sbb-menu-panel-wrapper [sbb-menu-item]');
 
-      expect(document.activeElement).toBe(items[0], 'Expected first item to be focused on open');
+      expect(document.activeElement)
+        .withContext('Expected first item to be focused on open')
+        .toBe(items[0]);
 
       fixture.componentInstance.itemInstances.toArray()[3].focus();
       fixture.detectChanges();
 
-      expect(document.activeElement).toBe(items[3], 'Expected fourth item to be focused');
+      expect(document.activeElement)
+        .withContext('Expected fourth item to be focused')
+        .toBe(items[3]);
 
       dispatchKeyboardEvent(menuPanel, 'keydown', DOWN_ARROW);
       fixture.detectChanges();
       tick();
 
-      expect(document.activeElement).toBe(items[4], 'Expected fifth item to be focused');
+      expect(document.activeElement)
+        .withContext('Expected fifth item to be focused')
+        .toBe(items[4]);
       flush();
     }));
 
@@ -1181,10 +1193,9 @@ describe('SbbMenu', () => {
       fixture.detectChanges();
       flush();
 
-      expect(overlayContainerElement.querySelectorAll('.sbb-menu-item').length).toBe(
-        2,
-        'Expected two open menus'
-      );
+      expect(overlayContainerElement.querySelectorAll('.sbb-menu-item').length)
+        .withContext('Expected two open menus')
+        .toBe(2);
     }));
   });
 
@@ -1316,10 +1327,9 @@ describe('SbbMenu', () => {
       fixture.detectChanges();
       panel = overlayContainerElement.querySelector('.sbb-menu-panel-wrapper') as HTMLElement;
 
-      expect(Math.floor(panel.getBoundingClientRect().top)).toBe(
-        Math.floor(trigger.getBoundingClientRect().top),
-        'Expected menu to open below'
-      );
+      expect(Math.floor(panel.getBoundingClientRect().top))
+        .withContext('Expected menu to open below')
+        .toBe(Math.floor(trigger.getBoundingClientRect().top));
     });
 
     it('should not throw if a menu reposition is requested while the menu is closed', () => {
@@ -1348,16 +1358,14 @@ describe('SbbMenu', () => {
       // In "before" position, the right sides of the overlay and the origin are aligned.
       // To find the overlay left, subtract the menu width from the origin's right side.
       const expectedLeft = triggerRect.right - overlayRect.width;
-      expect(Math.abs(Math.floor(overlayRect.left) - Math.floor(expectedLeft))).toBeLessThanOrEqual(
-        1,
-        `Expected menu to open in "before" position if "after" position wouldn't fit.`
-      );
+      expect(Math.abs(Math.floor(overlayRect.left) - Math.floor(expectedLeft)))
+        .withContext(`Expected menu to open in "before" position if "after" position wouldn't fit.`)
+        .toBeLessThanOrEqual(1);
 
       // The y-position of the overlay should be unaffected, as it can already fit vertically
-      expect(Math.floor(overlayRect.top)).toBe(
-        Math.floor(triggerRect.top),
-        `Expected menu top position to be unchanged if it can fit in the viewport.`
-      );
+      expect(Math.floor(overlayRect.top))
+        .withContext(`Expected menu top position to be unchanged if it can fit in the viewport.`)
+        .toBe(Math.floor(triggerRect.top));
     });
 
     it('should fall back to "above" mode if "below" mode would not fit on screen', () => {
@@ -1376,16 +1384,14 @@ describe('SbbMenu', () => {
       const triggerRect = trigger.getBoundingClientRect();
       const overlayRect = overlayPane.getBoundingClientRect();
 
-      expect(Math.floor(overlayRect.bottom)).toBe(
-        Math.floor(triggerRect.bottom),
-        `Expected menu to open in "above" position if "below" position wouldn't fit.`
-      );
+      expect(Math.floor(overlayRect.bottom))
+        .withContext(`Expected menu to open in "above" position if "below" position wouldn't fit.`)
+        .toBe(Math.floor(triggerRect.bottom));
 
       // The x-position of the overlay should be unaffected, as it can already fit horizontally
-      expect(Math.floor(overlayRect.left)).toBe(
-        Math.floor(triggerRect.left),
-        `Expected menu x position to be unchanged if it can fit in the viewport.`
-      );
+      expect(Math.floor(overlayRect.left))
+        .withContext(`Expected menu x position to be unchanged if it can fit in the viewport.`)
+        .toBe(Math.floor(triggerRect.left));
     });
 
     it('should re-position menu on both axes if both defaults would not fit', () => {
@@ -1407,15 +1413,13 @@ describe('SbbMenu', () => {
 
       const expectedLeft = triggerRect.right - overlayRect.width;
 
-      expect(Math.abs(Math.floor(overlayRect.left) - Math.floor(expectedLeft))).toBeLessThanOrEqual(
-        1,
-        `Expected menu to open in "before" position if "after" position wouldn't fit.`
-      );
+      expect(Math.abs(Math.floor(overlayRect.left) - Math.floor(expectedLeft)))
+        .withContext(`Expected menu to open in "before" position if "after" position wouldn't fit.`)
+        .toBeLessThanOrEqual(1);
 
-      expect(Math.floor(overlayRect.bottom)).toBe(
-        Math.floor(triggerRect.bottom),
-        `Expected menu to open in "above" position if "below" position wouldn't fit.`
-      );
+      expect(Math.floor(overlayRect.bottom))
+        .withContext(`Expected menu to open in "above" position if "below" position wouldn't fit.`)
+        .toBe(Math.floor(triggerRect.bottom));
     });
 
     it('should re-position a menu with custom position set', () => {
@@ -1432,17 +1436,15 @@ describe('SbbMenu', () => {
 
       // As designated "before" position won't fit on screen, the menu should fall back
       // to "after" mode, where the left sides of the overlay and trigger are aligned.
-      expect(Math.floor(overlayRect.left)).toBe(
-        Math.floor(triggerRect.left),
-        `Expected menu to open in "after" position if "before" position wouldn't fit.`
-      );
+      expect(Math.floor(overlayRect.left))
+        .withContext(`Expected menu to open in "after" position if "before" position wouldn't fit.`)
+        .toBe(Math.floor(triggerRect.left));
 
       // As designated "above" position won't fit on screen, the menu should fall back
       // to "below" mode, where the top edges of the overlay and trigger are aligned.
-      expect(Math.floor(overlayRect.top)).toBe(
-        Math.floor(triggerRect.top),
-        `Expected menu to open in "below" position if "above" position wouldn't fit.`
-      );
+      expect(Math.floor(overlayRect.top))
+        .withContext(`Expected menu to open in "below" position if "above" position wouldn't fit.`)
+        .toBe(Math.floor(triggerRect.top));
     });
 
     function getOverlayPane(): HTMLElement {
@@ -1506,10 +1508,9 @@ describe('SbbMenu', () => {
         subject.openMenu();
 
         // Since the menu is overlaying the trigger, the overlay top should be the trigger top.
-        expect(Math.floor(subject.overlayRect.top)).toBe(
-          Math.floor(subject.triggerRect.top),
-          `Expected menu to open in default "below" position.`
-        );
+        expect(Math.floor(subject.overlayRect.top))
+          .withContext(`Expected menu to open in default "below" position.`)
+          .toBe(Math.floor(subject.triggerRect.top));
       });
     });
 
@@ -1522,10 +1523,9 @@ describe('SbbMenu', () => {
         subject.openMenu();
 
         // Since the menu is below the trigger, the overlay top should be the trigger bottom.
-        expect(Math.floor(subject.overlayRect.top)).toBe(
-          Math.floor(subject.triggerRect.bottom),
-          `Expected menu to open directly below the trigger.`
-        );
+        expect(Math.floor(subject.overlayRect.top))
+          .withContext(`Expected menu to open directly below the trigger.`)
+          .toBe(Math.floor(subject.triggerRect.bottom));
       });
 
       it('supports above position fall back', () => {
@@ -1536,10 +1536,11 @@ describe('SbbMenu', () => {
         subject.openMenu();
 
         // Since the menu is above the trigger, the overlay bottom should be the trigger top.
-        expect(Math.floor(subject.overlayRect.bottom)).toBe(
-          Math.floor(subject.triggerRect.top),
-          `Expected menu to open in "above" position if "below" position wouldn't fit.`
-        );
+        expect(Math.floor(subject.overlayRect.bottom))
+          .withContext(
+            `Expected menu to open in "above" position if "below" position wouldn't fit.`
+          )
+          .toBe(Math.floor(subject.triggerRect.top));
       });
 
       it('repositions the origin to be below, so the menu opens from the trigger', () => {
@@ -1668,10 +1669,9 @@ describe('SbbMenu', () => {
       compileTestComponent();
       instance.rootTriggerEl.nativeElement.click();
       fixture.detectChanges();
-      expect(overlay.querySelectorAll('.sbb-menu-panel-wrapper').length).toBe(
-        1,
-        'Expected one open menu'
-      );
+      expect(overlay.querySelectorAll('.sbb-menu-panel-wrapper').length)
+        .withContext('Expected one open menu')
+        .toBe(1);
 
       const items = Array.from(overlay.querySelectorAll('.sbb-menu-panel-wrapper [sbb-menu-item]'));
       const levelOneTrigger = overlay.querySelector('#level-one-trigger')!;
@@ -1681,23 +1681,20 @@ describe('SbbMenu', () => {
       tick();
       fixture.detectChanges();
 
-      expect(levelOneTrigger.classList).toContain(
-        'sbb-active',
-        'Expected the trigger to be highlighted'
-      );
-      expect(overlay.querySelectorAll('.sbb-menu-panel-wrapper').length).toBe(
-        2,
-        'Expected two open menus'
-      );
+      expect(levelOneTrigger.classList)
+        .withContext('Expected the trigger to be highlighted')
+        .toContain('sbb-active');
+      expect(overlay.querySelectorAll('.sbb-menu-panel-wrapper').length)
+        .withContext('Expected two open menus')
+        .toBe(2);
 
       dispatchMouseEvent(items[items.indexOf(levelOneTrigger) + 1], 'mouseenter');
       fixture.detectChanges();
       tick(500);
 
-      expect(overlay.querySelectorAll('.sbb-menu-panel-wrapper').length).toBe(
-        1,
-        'Expected one open menu'
-      );
+      expect(overlay.querySelectorAll('.sbb-menu-panel-wrapper').length)
+        .withContext('Expected one open menu')
+        .toBe(1);
       expect(levelOneTrigger.classList).not.toContain(
         'sbb-active',
         'Expected the trigger to not be highlighted'
@@ -1721,19 +1718,17 @@ describe('SbbMenu', () => {
       fixture.detectChanges();
       tick();
 
-      expect(overlay.querySelectorAll('.sbb-menu-panel-wrapper').length).toBe(
-        3,
-        'Expected three open menus'
-      );
+      expect(overlay.querySelectorAll('.sbb-menu-panel-wrapper').length)
+        .withContext('Expected three open menus')
+        .toBe(3);
 
       dispatchMouseEvent(items[items.indexOf(levelOneTrigger) + 1], 'mouseenter');
       fixture.detectChanges();
       tick(500);
 
-      expect(overlay.querySelectorAll('.sbb-menu-panel-wrapper').length).toBe(
-        1,
-        'Expected one open menu'
-      );
+      expect(overlay.querySelectorAll('.sbb-menu-panel-wrapper').length)
+        .withContext('Expected one open menu')
+        .toBe(1);
     }));
 
     it('should close submenu when hovering over disabled sibling item', fakeAsync(() => {
@@ -1748,10 +1743,9 @@ describe('SbbMenu', () => {
       fixture.detectChanges();
       tick(500);
 
-      expect(overlay.querySelectorAll('.sbb-menu-panel-wrapper').length).toBe(
-        2,
-        'Expected two open menus'
-      );
+      expect(overlay.querySelectorAll('.sbb-menu-panel-wrapper').length)
+        .withContext('Expected two open menus')
+        .toBe(2);
 
       items[1].componentInstance.disabled = true;
       fixture.detectChanges();
@@ -1761,10 +1755,9 @@ describe('SbbMenu', () => {
       fixture.detectChanges();
       tick(500);
 
-      expect(overlay.querySelectorAll('.sbb-menu-panel-wrapper').length).toBe(
-        1,
-        'Expected one open menu'
-      );
+      expect(overlay.querySelectorAll('.sbb-menu-panel-wrapper').length)
+        .withContext('Expected one open menu')
+        .toBe(1);
     }));
 
     it('should not open submenu when hovering over disabled trigger', fakeAsync(() => {
@@ -1773,10 +1766,9 @@ describe('SbbMenu', () => {
       fixture.detectChanges();
       tick(500);
 
-      expect(overlay.querySelectorAll('.sbb-menu-panel-wrapper').length).toBe(
-        1,
-        'Expected one open menu'
-      );
+      expect(overlay.querySelectorAll('.sbb-menu-panel-wrapper').length)
+        .withContext('Expected one open menu')
+        .toBe(1);
 
       const item = fixture.debugElement.query(By.directive(SbbMenuItem))!;
 
@@ -1788,46 +1780,41 @@ describe('SbbMenu', () => {
       fixture.detectChanges();
       tick(500);
 
-      expect(overlay.querySelectorAll('.sbb-menu-panel-wrapper').length).toBe(
-        1,
-        'Expected to remain at one open menu'
-      );
+      expect(overlay.querySelectorAll('.sbb-menu-panel-wrapper').length)
+        .withContext('Expected to remain at one open menu')
+        .toBe(1);
     }));
 
     it('should open a nested menu when its trigger is clicked', () => {
       compileTestComponent();
       instance.rootTriggerEl.nativeElement.click();
       fixture.detectChanges();
-      expect(overlay.querySelectorAll('.sbb-menu-panel-wrapper').length).toBe(
-        1,
-        'Expected one open menu'
-      );
+      expect(overlay.querySelectorAll('.sbb-menu-panel-wrapper').length)
+        .withContext('Expected one open menu')
+        .toBe(1);
 
       const levelOneTrigger = overlay.querySelector('#level-one-trigger')! as HTMLElement;
 
       levelOneTrigger.click();
       fixture.detectChanges();
-      expect(overlay.querySelectorAll('.sbb-menu-panel-wrapper').length).toBe(
-        2,
-        'Expected two open menus'
-      );
+      expect(overlay.querySelectorAll('.sbb-menu-panel-wrapper').length)
+        .withContext('Expected two open menus')
+        .toBe(2);
 
       levelOneTrigger.click();
       fixture.detectChanges();
-      expect(overlay.querySelectorAll('.sbb-menu-panel-wrapper').length).toBe(
-        2,
-        'Expected repeat clicks not to close the menu.'
-      );
+      expect(overlay.querySelectorAll('.sbb-menu-panel-wrapper').length)
+        .withContext('Expected repeat clicks not to close the menu.')
+        .toBe(2);
     });
 
     it('should open and close a nested menu with arrow keys in ltr', fakeAsync(() => {
       compileTestComponent();
       instance.rootTriggerEl.nativeElement.click();
       fixture.detectChanges();
-      expect(overlay.querySelectorAll('.sbb-menu-panel-wrapper').length).toBe(
-        1,
-        'Expected one open menu'
-      );
+      expect(overlay.querySelectorAll('.sbb-menu-panel-wrapper').length)
+        .withContext('Expected one open menu')
+        .toBe(1);
 
       const levelOneTrigger = overlay.querySelector('#level-one-trigger')! as HTMLElement;
 
@@ -1836,7 +1823,7 @@ describe('SbbMenu', () => {
 
       const panels = overlay.querySelectorAll('.sbb-menu-panel-wrapper');
 
-      expect(panels.length).toBe(2, 'Expected two open menus');
+      expect(panels.length).withContext('Expected two open menus').toBe(2);
       dispatchKeyboardEvent(panels[1], 'keydown', LEFT_ARROW);
       fixture.detectChanges();
       tick(500);
@@ -1853,17 +1840,15 @@ describe('SbbMenu', () => {
 
       dispatchKeyboardEvent(menu, 'keydown', RIGHT_ARROW);
       fixture.detectChanges();
-      expect(overlay.querySelectorAll('.sbb-menu-panel-wrapper').length).toBe(
-        1,
-        'Expected one menu to remain open'
-      );
+      expect(overlay.querySelectorAll('.sbb-menu-panel-wrapper').length)
+        .withContext('Expected one menu to remain open')
+        .toBe(1);
 
       dispatchKeyboardEvent(menu, 'keydown', LEFT_ARROW);
       fixture.detectChanges();
-      expect(overlay.querySelectorAll('.sbb-menu-panel-wrapper').length).toBe(
-        1,
-        'Expected one menu to remain open'
-      );
+      expect(overlay.querySelectorAll('.sbb-menu-panel-wrapper').length)
+        .withContext('Expected one menu to remain open')
+        .toBe(1);
     });
 
     it('should close all of the menus when the backdrop is clicked', fakeAsync(() => {
@@ -1877,14 +1862,12 @@ describe('SbbMenu', () => {
       instance.levelTwoTrigger.openMenu();
       fixture.detectChanges();
 
-      expect(overlay.querySelectorAll('.sbb-menu-panel-wrapper').length).toBe(
-        3,
-        'Expected three open menus'
-      );
-      expect(overlay.querySelectorAll('.cdk-overlay-backdrop').length).toBe(
-        1,
-        'Expected one backdrop element'
-      );
+      expect(overlay.querySelectorAll('.sbb-menu-panel-wrapper').length)
+        .withContext('Expected three open menus')
+        .toBe(3);
+      expect(overlay.querySelectorAll('.cdk-overlay-backdrop').length)
+        .withContext('Expected one backdrop element')
+        .toBe(1);
       expect(
         overlay.querySelectorAll('.sbb-menu-panel-wrapper, .cdk-overlay-backdrop')[0].classList
       ).toContain('cdk-overlay-backdrop', 'Expected backdrop to be beneath all of the menus');
@@ -1893,10 +1876,9 @@ describe('SbbMenu', () => {
       fixture.detectChanges();
       tick(500);
 
-      expect(overlay.querySelectorAll('.sbb-menu-panel-wrapper').length).toBe(
-        0,
-        'Expected no open menus'
-      );
+      expect(overlay.querySelectorAll('.sbb-menu-panel-wrapper').length)
+        .withContext('Expected no open menus')
+        .toBe(0);
     }));
 
     it('should shift focus between the sub-menus', () => {
@@ -2009,16 +1991,15 @@ describe('SbbMenu', () => {
 
       const menus = overlay.querySelectorAll('.sbb-menu-panel-wrapper');
 
-      expect(menus.length).toBe(3, 'Expected three open menus');
+      expect(menus.length).withContext('Expected three open menus').toBe(3);
 
       (menus[2].querySelector('.sbb-menu-item')! as HTMLElement).click();
       fixture.detectChanges();
       tick(500);
 
-      expect(overlay.querySelectorAll('.sbb-menu-panel-wrapper').length).toBe(
-        0,
-        'Expected no open menus'
-      );
+      expect(overlay.querySelectorAll('.sbb-menu-panel-wrapper').length)
+        .withContext('Expected no open menus')
+        .toBe(0);
     }));
 
     it('should close all of the menus when the user tabs away', fakeAsync(() => {
@@ -2034,16 +2015,15 @@ describe('SbbMenu', () => {
 
       const menus = overlay.querySelectorAll('.sbb-menu-panel-wrapper');
 
-      expect(menus.length).toBe(3, 'Expected three open menus');
+      expect(menus.length).withContext('Expected three open menus').toBe(3);
 
       dispatchKeyboardEvent(menus[menus.length - 1], 'keydown', TAB);
       fixture.detectChanges();
       tick(500);
 
-      expect(overlay.querySelectorAll('.sbb-menu-panel-wrapper').length).toBe(
-        0,
-        'Expected no open menus'
-      );
+      expect(overlay.querySelectorAll('.sbb-menu-panel-wrapper').length)
+        .withContext('Expected no open menus')
+        .toBe(0);
     }));
 
     it('should set a class on the menu items that trigger a sub-menu', () => {
@@ -2070,18 +2050,15 @@ describe('SbbMenu', () => {
 
       const menus = overlay.querySelectorAll('.sbb-menu-panel-wrapper');
 
-      expect(menus[0].classList).toContain(
-        'sbb-elevation-z4',
-        'Expected root menu to have base elevation.'
-      );
-      expect(menus[1].classList).toContain(
-        'sbb-elevation-z5',
-        'Expected first sub-menu to have base elevation + 1.'
-      );
-      expect(menus[2].classList).toContain(
-        'sbb-elevation-z6',
-        'Expected second sub-menu to have base elevation + 2.'
-      );
+      expect(menus[0].classList)
+        .withContext('Expected root menu to have base elevation.')
+        .toContain('sbb-elevation-z4');
+      expect(menus[1].classList)
+        .withContext('Expected first sub-menu to have base elevation + 1.')
+        .toContain('sbb-elevation-z5');
+      expect(menus[2].classList)
+        .withContext('Expected second sub-menu to have base elevation + 2.')
+        .toContain('sbb-elevation-z6');
     });
 
     it('should update the elevation when the same menu is opened at a different depth', fakeAsync(() => {
@@ -2097,19 +2074,17 @@ describe('SbbMenu', () => {
 
       let lastMenu = overlay.querySelectorAll('.sbb-menu-panel-wrapper')[2];
 
-      expect(lastMenu.classList).toContain(
-        'sbb-elevation-z6',
-        'Expected menu to have the base elevation plus two.'
-      );
+      expect(lastMenu.classList)
+        .withContext('Expected menu to have the base elevation plus two.')
+        .toContain('sbb-elevation-z6');
 
       (overlay.querySelector('.cdk-overlay-backdrop')! as HTMLElement).click();
       fixture.detectChanges();
       tick(500);
 
-      expect(overlay.querySelectorAll('.sbb-menu-panel-wrapper').length).toBe(
-        0,
-        'Expected no open menus'
-      );
+      expect(overlay.querySelectorAll('.sbb-menu-panel-wrapper').length)
+        .withContext('Expected no open menus')
+        .toBe(0);
 
       instance.alternateTrigger.openMenu();
       fixture.detectChanges();
@@ -2121,10 +2096,9 @@ describe('SbbMenu', () => {
         'sbb-elevation-z6',
         'Expected menu not to maintain old elevation.'
       );
-      expect(lastMenu.classList).toContain(
-        'sbb-elevation-z4',
-        'Expected menu to have the proper updated elevation.'
-      );
+      expect(lastMenu.classList)
+        .withContext('Expected menu to have the proper updated elevation.')
+        .toContain('sbb-elevation-z4');
     }));
 
     it('should not change focus origin if origin not specified for trigger', fakeAsync(() => {
@@ -2157,10 +2131,9 @@ describe('SbbMenu', () => {
       const menuClasses =
         overlayContainerElement.querySelectorAll('.sbb-menu-panel-wrapper')[1].classList;
 
-      expect(menuClasses).toContain(
-        'sbb-elevation-z24',
-        'Expected user elevation to be maintained'
-      );
+      expect(menuClasses)
+        .withContext('Expected user elevation to be maintained')
+        .toContain('sbb-elevation-z24');
       expect(menuClasses).not.toContain('sbb-elevation-z3', 'Expected no stacked elevation.');
     });
 
@@ -2177,16 +2150,15 @@ describe('SbbMenu', () => {
 
       const menus = overlay.querySelectorAll('.sbb-menu-panel-wrapper');
 
-      expect(menus.length).toBe(3, 'Expected three open menus');
+      expect(menus.length).withContext('Expected three open menus').toBe(3);
 
       instance.rootTrigger.closeMenu();
       fixture.detectChanges();
       tick(500);
 
-      expect(overlay.querySelectorAll('.sbb-menu-panel-wrapper').length).toBe(
-        0,
-        'Expected no open menus'
-      );
+      expect(overlay.querySelectorAll('.sbb-menu-panel-wrapper').length)
+        .withContext('Expected no open menus')
+        .toBe(0);
     }));
 
     it('should toggle a nested menu when its trigger is added after init', fakeAsync(() => {
@@ -2194,10 +2166,9 @@ describe('SbbMenu', () => {
       instance.rootTriggerEl.nativeElement.click();
       fixture.detectChanges();
       tick(500);
-      expect(overlay.querySelectorAll('.sbb-menu-panel-wrapper').length).toBe(
-        1,
-        'Expected one open menu'
-      );
+      expect(overlay.querySelectorAll('.sbb-menu-panel-wrapper').length)
+        .withContext('Expected one open menu')
+        .toBe(1);
 
       instance.showLazy = true;
       fixture.detectChanges();
@@ -2209,14 +2180,12 @@ describe('SbbMenu', () => {
       tick(500);
       fixture.detectChanges();
 
-      expect(lazyTrigger.classList).toContain(
-        'sbb-active',
-        'Expected the trigger to be highlighted'
-      );
-      expect(overlay.querySelectorAll('.sbb-menu-panel-wrapper').length).toBe(
-        2,
-        'Expected two open menus'
-      );
+      expect(lazyTrigger.classList)
+        .withContext('Expected the trigger to be highlighted')
+        .toContain('sbb-active');
+      expect(overlay.querySelectorAll('.sbb-menu-panel-wrapper').length)
+        .withContext('Expected two open menus')
+        .toBe(2);
     }));
 
     it('should prevent the default mousedown action if the menu item opens a sub-menu', () => {
@@ -2242,18 +2211,16 @@ describe('SbbMenu', () => {
       repeaterFixture.componentInstance.rootTriggerEl.nativeElement.click();
       repeaterFixture.detectChanges();
       tick(500);
-      expect(overlay.querySelectorAll('.sbb-menu-panel-wrapper').length).toBe(
-        1,
-        'Expected one open menu'
-      );
+      expect(overlay.querySelectorAll('.sbb-menu-panel-wrapper').length)
+        .withContext('Expected one open menu')
+        .toBe(1);
 
       dispatchMouseEvent(overlay.querySelector('.level-one-trigger')!, 'mouseenter');
       repeaterFixture.detectChanges();
       tick(500);
-      expect(overlay.querySelectorAll('.sbb-menu-panel-wrapper').length).toBe(
-        2,
-        'Expected two open menus'
-      );
+      expect(overlay.querySelectorAll('.sbb-menu-panel-wrapper').length)
+        .withContext('Expected two open menus')
+        .toBe(2);
     }));
 
     it('should be able to trigger the same nested menu from different triggers', fakeAsync(() => {
@@ -2264,29 +2231,26 @@ describe('SbbMenu', () => {
       repeaterFixture.componentInstance.rootTriggerEl.nativeElement.click();
       repeaterFixture.detectChanges();
       tick(500);
-      expect(overlay.querySelectorAll('.sbb-menu-panel-wrapper').length).toBe(
-        1,
-        'Expected one open menu'
-      );
+      expect(overlay.querySelectorAll('.sbb-menu-panel-wrapper').length)
+        .withContext('Expected one open menu')
+        .toBe(1);
 
       const triggers = overlay.querySelectorAll('.level-one-trigger');
 
       dispatchMouseEvent(triggers[0], 'mouseenter');
       repeaterFixture.detectChanges();
       tick(500);
-      expect(overlay.querySelectorAll('.sbb-menu-panel-wrapper').length).toBe(
-        2,
-        'Expected two open menus'
-      );
+      expect(overlay.querySelectorAll('.sbb-menu-panel-wrapper').length)
+        .withContext('Expected two open menus')
+        .toBe(2);
 
       dispatchMouseEvent(triggers[1], 'mouseenter');
       repeaterFixture.detectChanges();
       tick(500);
 
-      expect(overlay.querySelectorAll('.sbb-menu-panel-wrapper').length).toBe(
-        2,
-        'Expected two open menus'
-      );
+      expect(overlay.querySelectorAll('.sbb-menu-panel-wrapper').length)
+        .withContext('Expected two open menus')
+        .toBe(2);
     }));
 
     it('should close the initial menu if the user moves away while animating', fakeAsync(() => {
@@ -2297,10 +2261,9 @@ describe('SbbMenu', () => {
       repeaterFixture.componentInstance.rootTriggerEl.nativeElement.click();
       repeaterFixture.detectChanges();
       tick(500);
-      expect(overlay.querySelectorAll('.sbb-menu-panel-wrapper').length).toBe(
-        1,
-        'Expected one open menu'
-      );
+      expect(overlay.querySelectorAll('.sbb-menu-panel-wrapper').length)
+        .withContext('Expected one open menu')
+        .toBe(1);
 
       const triggers = overlay.querySelectorAll('.level-one-trigger');
 
@@ -2311,10 +2274,9 @@ describe('SbbMenu', () => {
       repeaterFixture.detectChanges();
       tick(500);
 
-      expect(overlay.querySelectorAll('.sbb-menu-panel-wrapper').length).toBe(
-        2,
-        'Expected two open menus'
-      );
+      expect(overlay.querySelectorAll('.sbb-menu-panel-wrapper').length)
+        .withContext('Expected two open menus')
+        .toBe(2);
     }));
 
     it(
@@ -2328,19 +2290,17 @@ describe('SbbMenu', () => {
         nestedFixture.componentInstance.rootTriggerEl.nativeElement.click();
         nestedFixture.detectChanges();
         tick(500);
-        expect(overlay.querySelectorAll('.sbb-menu-panel-wrapper').length).toBe(
-          1,
-          'Expected one open menu'
-        );
+        expect(overlay.querySelectorAll('.sbb-menu-panel-wrapper').length)
+          .withContext('Expected one open menu')
+          .toBe(1);
 
         dispatchMouseEvent(overlay.querySelector('.level-one-trigger')!, 'mouseenter');
         nestedFixture.detectChanges();
         tick(500);
 
-        expect(overlay.querySelectorAll('.sbb-menu-panel-wrapper').length).toBe(
-          2,
-          'Expected two open menus'
-        );
+        expect(overlay.querySelectorAll('.sbb-menu-panel-wrapper').length)
+          .withContext('Expected two open menus')
+          .toBe(2);
       })
     );
 
@@ -2355,28 +2315,25 @@ describe('SbbMenu', () => {
         nestedFixture.componentInstance.rootTriggerEl.nativeElement.click();
         nestedFixture.detectChanges();
         tick(500);
-        expect(overlay.querySelectorAll('.sbb-menu-panel-wrapper').length).toBe(
-          1,
-          'Expected one open menu'
-        );
+        expect(overlay.querySelectorAll('.sbb-menu-panel-wrapper').length)
+          .withContext('Expected one open menu')
+          .toBe(1);
 
         dispatchMouseEvent(overlay.querySelector('.level-one-trigger')!, 'mouseenter');
         nestedFixture.detectChanges();
         tick(500);
 
-        expect(overlay.querySelectorAll('.sbb-menu-panel-wrapper').length).toBe(
-          2,
-          'Expected two open menus'
-        );
+        expect(overlay.querySelectorAll('.sbb-menu-panel-wrapper').length)
+          .withContext('Expected two open menus')
+          .toBe(2);
 
         dispatchMouseEvent(overlay.querySelector('.level-two-item')!, 'mouseenter');
         nestedFixture.detectChanges();
         tick(500);
 
-        expect(overlay.querySelectorAll('.sbb-menu-panel-wrapper').length).toBe(
-          2,
-          'Expected two open menus to remain'
-        );
+        expect(overlay.querySelectorAll('.sbb-menu-panel-wrapper').length)
+          .withContext('Expected two open menus to remain')
+          .toBe(2);
       })
     );
 
@@ -2393,10 +2350,9 @@ describe('SbbMenu', () => {
       dispatchMouseEvent(levelOneTrigger, 'mouseenter');
       fixture.detectChanges();
       tick();
-      expect(overlay.querySelectorAll('.sbb-menu-panel-wrapper').length).toBe(
-        2,
-        'Expected two open menus'
-      );
+      expect(overlay.querySelectorAll('.sbb-menu-panel-wrapper').length)
+        .withContext('Expected two open menus')
+        .toBe(2);
 
       dispatchMouseEvent(items[items.indexOf(levelOneTrigger) + 1], 'mouseenter');
       fixture.detectChanges();
@@ -2418,7 +2374,7 @@ describe('SbbMenu', () => {
       fixture.detectChanges();
 
       const panels = fixture.debugElement.queryAll(By.css('.sbb-menu-panel'));
-      expect(panels.length).toBe(2, 'Expected to have 2 panels open');
+      expect(panels.length).withContext('Expected to have 2 panels open').toBe(2);
 
       expect(
         fixture.debugElement.queryAll(By.css('.sbb-menu-panel.sbb-menu-panel-root')).length
@@ -2437,7 +2393,7 @@ describe('SbbMenu', () => {
       fixture.detectChanges();
 
       const triggers = fixture.debugElement.queryAll(By.css('.sbb-menu-trigger'));
-      expect(triggers.length).toBe(4, 'Expected to have 4 triggers found');
+      expect(triggers.length).withContext('Expected to have 4 triggers found').toBe(4);
       expect(
         fixture.debugElement.queryAll(By.css('.sbb-menu-trigger.sbb-menu-trigger-root')).length
       ).toBe(

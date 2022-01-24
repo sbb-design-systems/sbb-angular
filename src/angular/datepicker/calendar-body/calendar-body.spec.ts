@@ -139,11 +139,12 @@ describe('SbbCalendarBody', () => {
       const selectedCells = cellEls.filter((c) => c.getAttribute('aria-selected') === 'true');
       const deselectedCells = cellEls.filter((c) => c.getAttribute('aria-selected') === 'false');
 
-      expect(selectedCells.length).toBe(1, 'Expected one cell to be marked as selected.');
-      expect(deselectedCells.length).toBe(
-        cellEls.length - 1,
-        'Expected remaining cells to be marked as deselected.'
-      );
+      expect(selectedCells.length)
+        .withContext('Expected one cell to be marked as selected.')
+        .toBe(1);
+      expect(deselectedCells.length)
+        .withContext('Expected remaining cells to be marked as deselected.')
+        .toBe(cellEls.length - 1);
     });
 
     it('places label in first row if space is available', () => {
@@ -156,10 +157,9 @@ describe('SbbCalendarBody', () => {
       expect(labelEls.length).toBe(1);
       expect(cellEls.length).toBe(11);
       // tslint:disable-next-line:no-non-null-assertion
-      expect(rowEls[0].firstElementChild!.classList).toContain(
-        'sbb-calendar-body-label',
-        'first cell should be the label'
-      );
+      expect(rowEls[0].firstElementChild!.classList)
+        .withContext('first cell should be the label')
+        .toContain('sbb-calendar-body-label');
       expect(labelEls[0].getAttribute('colspan')).toBe('3');
     });
 
@@ -170,10 +170,9 @@ describe('SbbCalendarBody', () => {
       todayElement.click();
       fixture.detectChanges();
 
-      expect(todayElement.classList).toContain(
-        'sbb-calendar-body-selected',
-        'today should be selected'
-      );
+      expect(todayElement.classList)
+        .withContext('today should be selected')
+        .toContain('sbb-calendar-body-selected');
     });
 
     it('should mark active date', () => {

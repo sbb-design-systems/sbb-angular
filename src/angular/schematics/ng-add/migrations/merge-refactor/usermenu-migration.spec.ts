@@ -69,9 +69,10 @@ describe('UsermenuMigration', () => {
 
     await runner.runSchematicAsync('ng-add-migrate', {}, tree).toPromise();
 
-    expect((tree.readContent(appModulePath).match(/SbbMenuModule/g) || []).length).toBe(
-      2,
-      'Expected to have two occurrences of SbbMenuModule (one in import declaration and one in module imports).'
-    );
+    expect((tree.readContent(appModulePath).match(/SbbMenuModule/g) || []).length)
+      .withContext(
+        'Expected to have two occurrences of SbbMenuModule (one in import declaration and one in module imports).'
+      )
+      .toBe(2);
   });
 });

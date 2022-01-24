@@ -106,18 +106,16 @@ describe('SbbChipInput', () => {
       dispatchKeyboardEvent(inputNativeElement, 'keydown', TAB);
       fixture.detectChanges();
 
-      expect(listElement.getAttribute('tabindex')).toBe(
-        '-1',
-        'Expected tabIndex to be set to -1 temporarily.'
-      );
+      expect(listElement.getAttribute('tabindex'))
+        .withContext('Expected tabIndex to be set to -1 temporarily.')
+        .toBe('-1');
 
       tick();
       fixture.detectChanges();
 
-      expect(listElement.getAttribute('tabindex')).toBe(
-        '0',
-        'Expected tabIndex to be reset back to 0'
-      );
+      expect(listElement.getAttribute('tabindex'))
+        .withContext('Expected tabIndex to be reset back to 0')
+        .toBe('0');
     }));
 
     it('should not allow focus to escape when tabbing backwards', fakeAsync(() => {
@@ -128,12 +126,16 @@ describe('SbbChipInput', () => {
       dispatchKeyboardEvent(inputNativeElement, 'keydown', TAB, undefined, { shift: true });
       fixture.detectChanges();
 
-      expect(listElement.getAttribute('tabindex')).toBe('0', 'Expected tabindex to remain 0');
+      expect(listElement.getAttribute('tabindex'))
+        .withContext('Expected tabindex to remain 0')
+        .toBe('0');
 
       tick();
       fixture.detectChanges();
 
-      expect(listElement.getAttribute('tabindex')).toBe('0', 'Expected tabindex to remain 0');
+      expect(listElement.getAttribute('tabindex'))
+        .withContext('Expected tabindex to remain 0')
+        .toBe('0');
     }));
 
     it('should be aria-required if the list is required', () => {
