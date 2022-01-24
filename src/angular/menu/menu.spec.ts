@@ -1358,16 +1358,14 @@ describe('SbbMenu', () => {
       // In "before" position, the right sides of the overlay and the origin are aligned.
       // To find the overlay left, subtract the menu width from the origin's right side.
       const expectedLeft = triggerRect.right - overlayRect.width;
-      expect(Math.abs(Math.floor(overlayRect.left) - Math.floor(expectedLeft))).toBeLessThanOrEqual(
-        1,
-        `Expected menu to open in "before" position if "after" position wouldn't fit.`
-      );
+      expect(Math.abs(Math.floor(overlayRect.left) - Math.floor(expectedLeft)))
+        .withContext(`Expected menu to open in "before" position if "after" position wouldn't fit.`)
+        .toBeLessThanOrEqual(1);
 
       // The y-position of the overlay should be unaffected, as it can already fit vertically
-      expect(Math.floor(overlayRect.top)).toBe(
-        Math.floor(triggerRect.top),
-        `Expected menu top position to be unchanged if it can fit in the viewport.`
-      );
+      expect(Math.floor(overlayRect.top))
+        .withContext(`Expected menu top position to be unchanged if it can fit in the viewport.`)
+        .toBe(Math.floor(triggerRect.top));
     });
 
     it('should fall back to "above" mode if "below" mode would not fit on screen', () => {
@@ -1386,16 +1384,14 @@ describe('SbbMenu', () => {
       const triggerRect = trigger.getBoundingClientRect();
       const overlayRect = overlayPane.getBoundingClientRect();
 
-      expect(Math.floor(overlayRect.bottom)).toBe(
-        Math.floor(triggerRect.bottom),
-        `Expected menu to open in "above" position if "below" position wouldn't fit.`
-      );
+      expect(Math.floor(overlayRect.bottom))
+        .withContext(`Expected menu to open in "above" position if "below" position wouldn't fit.`)
+        .toBe(Math.floor(triggerRect.bottom));
 
       // The x-position of the overlay should be unaffected, as it can already fit horizontally
-      expect(Math.floor(overlayRect.left)).toBe(
-        Math.floor(triggerRect.left),
-        `Expected menu x position to be unchanged if it can fit in the viewport.`
-      );
+      expect(Math.floor(overlayRect.left))
+        .withContext(`Expected menu x position to be unchanged if it can fit in the viewport.`)
+        .toBe(Math.floor(triggerRect.left));
     });
 
     it('should re-position menu on both axes if both defaults would not fit', () => {
@@ -1417,15 +1413,13 @@ describe('SbbMenu', () => {
 
       const expectedLeft = triggerRect.right - overlayRect.width;
 
-      expect(Math.abs(Math.floor(overlayRect.left) - Math.floor(expectedLeft))).toBeLessThanOrEqual(
-        1,
-        `Expected menu to open in "before" position if "after" position wouldn't fit.`
-      );
+      expect(Math.abs(Math.floor(overlayRect.left) - Math.floor(expectedLeft)))
+        .withContext(`Expected menu to open in "before" position if "after" position wouldn't fit.`)
+        .toBeLessThanOrEqual(1);
 
-      expect(Math.floor(overlayRect.bottom)).toBe(
-        Math.floor(triggerRect.bottom),
-        `Expected menu to open in "above" position if "below" position wouldn't fit.`
-      );
+      expect(Math.floor(overlayRect.bottom))
+        .withContext(`Expected menu to open in "above" position if "below" position wouldn't fit.`)
+        .toBe(Math.floor(triggerRect.bottom));
     });
 
     it('should re-position a menu with custom position set', () => {
@@ -1442,17 +1436,15 @@ describe('SbbMenu', () => {
 
       // As designated "before" position won't fit on screen, the menu should fall back
       // to "after" mode, where the left sides of the overlay and trigger are aligned.
-      expect(Math.floor(overlayRect.left)).toBe(
-        Math.floor(triggerRect.left),
-        `Expected menu to open in "after" position if "before" position wouldn't fit.`
-      );
+      expect(Math.floor(overlayRect.left))
+        .withContext(`Expected menu to open in "after" position if "before" position wouldn't fit.`)
+        .toBe(Math.floor(triggerRect.left));
 
       // As designated "above" position won't fit on screen, the menu should fall back
       // to "below" mode, where the top edges of the overlay and trigger are aligned.
-      expect(Math.floor(overlayRect.top)).toBe(
-        Math.floor(triggerRect.top),
-        `Expected menu to open in "below" position if "above" position wouldn't fit.`
-      );
+      expect(Math.floor(overlayRect.top))
+        .withContext(`Expected menu to open in "below" position if "above" position wouldn't fit.`)
+        .toBe(Math.floor(triggerRect.top));
     });
 
     function getOverlayPane(): HTMLElement {
@@ -1516,10 +1508,9 @@ describe('SbbMenu', () => {
         subject.openMenu();
 
         // Since the menu is overlaying the trigger, the overlay top should be the trigger top.
-        expect(Math.floor(subject.overlayRect.top)).toBe(
-          Math.floor(subject.triggerRect.top),
-          `Expected menu to open in default "below" position.`
-        );
+        expect(Math.floor(subject.overlayRect.top))
+          .withContext(`Expected menu to open in default "below" position.`)
+          .toBe(Math.floor(subject.triggerRect.top));
       });
     });
 
@@ -1532,10 +1523,9 @@ describe('SbbMenu', () => {
         subject.openMenu();
 
         // Since the menu is below the trigger, the overlay top should be the trigger bottom.
-        expect(Math.floor(subject.overlayRect.top)).toBe(
-          Math.floor(subject.triggerRect.bottom),
-          `Expected menu to open directly below the trigger.`
-        );
+        expect(Math.floor(subject.overlayRect.top))
+          .withContext(`Expected menu to open directly below the trigger.`)
+          .toBe(Math.floor(subject.triggerRect.bottom));
       });
 
       it('supports above position fall back', () => {
@@ -1546,10 +1536,11 @@ describe('SbbMenu', () => {
         subject.openMenu();
 
         // Since the menu is above the trigger, the overlay bottom should be the trigger top.
-        expect(Math.floor(subject.overlayRect.bottom)).toBe(
-          Math.floor(subject.triggerRect.top),
-          `Expected menu to open in "above" position if "below" position wouldn't fit.`
-        );
+        expect(Math.floor(subject.overlayRect.bottom))
+          .withContext(
+            `Expected menu to open in "above" position if "below" position wouldn't fit.`
+          )
+          .toBe(Math.floor(subject.triggerRect.top));
       });
 
       it('repositions the origin to be below, so the menu opens from the trigger', () => {

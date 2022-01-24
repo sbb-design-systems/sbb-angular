@@ -543,17 +543,15 @@ describe('SbbChipList', () => {
     });
 
     it('should not set the control to dirty when the value changes programmatically', () => {
-      expect(fixture.componentInstance.control.dirty).toEqual(
-        false,
-        `Expected control to start out pristine.`
-      );
+      expect(fixture.componentInstance.control.dirty)
+        .withContext(`Expected control to start out pristine.`)
+        .toEqual(false);
 
       fixture.componentInstance.control.setValue(['pizza-1']);
 
-      expect(fixture.componentInstance.control.dirty).toEqual(
-        false,
-        `Expected control to stay pristine after programmatic change.`
-      );
+      expect(fixture.componentInstance.control.dirty)
+        .withContext(`Expected control to stay pristine after programmatic change.`)
+        .toEqual(false);
     });
 
     it('should keep focus on the input after adding the first chip', fakeAsync(() => {

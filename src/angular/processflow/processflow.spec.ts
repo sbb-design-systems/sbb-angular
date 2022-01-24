@@ -191,7 +191,9 @@ describe('SbbProcessflow', () => {
 
     it('should set the next processflow button type to "submit"', () => {
       const button = fixture.debugElement.query(By.directive(SbbProcessflowNext))!.nativeElement;
-      expect(button.type).toBe('submit', `Expected the button to have "submit" set as type.`);
+      expect(button.type)
+        .withContext(`Expected the button to have "submit" set as type.`)
+        .toBe('submit');
     });
 
     it('should go to previous available step when the previous button is clicked', () => {
@@ -231,7 +233,9 @@ describe('SbbProcessflow', () => {
       const button = fixture.debugElement.query(
         By.directive(SbbProcessflowPrevious)
       )!.nativeElement;
-      expect(button.type).toBe('button', `Expected the button to have "button" set as type.`);
+      expect(button.type)
+        .withContext(`Expected the button to have "button" set as type.`)
+        .toBe('button');
     });
 
     it('should set the correct step position for animation', () => {

@@ -265,10 +265,9 @@ describe('SbbNotificationToast', () => {
     const messageElement = overlayContainerElement.querySelector(
       'sbb-notification-toast-container'
     )!;
-    expect(messageElement.textContent).toContain(
-      simpleMessage,
-      `Expected the notification toast message to be '${simpleMessage}'`
-    );
+    expect(messageElement.textContent)
+      .withContext(`Expected the notification toast message to be '${simpleMessage}'`)
+      .toContain(simpleMessage);
   });
 
   it('should dismiss the notification toast and remove itself from the view', fakeAsync(() => {
@@ -365,17 +364,15 @@ describe('SbbNotificationToast', () => {
 
     viewContainerFixture.detectChanges();
     const container = notificationToastRef.containerInstance as SbbNotificationToastContainer;
-    expect(container._animationState).toBe(
-      'visible',
-      `Expected the animation state would be 'visible'.`
-    );
+    expect(container._animationState)
+      .withContext(`Expected the animation state would be 'visible'.`)
+      .toBe('visible');
     notificationToastRef.dismiss();
 
     viewContainerFixture.detectChanges();
-    expect(container._animationState).toBe(
-      'hidden',
-      `Expected the animation state would be 'hidden'.`
-    );
+    expect(container._animationState)
+      .withContext(`Expected the animation state would be 'hidden'.`)
+      .toBe('hidden');
   });
 
   it('should set the animation state to complete on exit', () => {
@@ -385,10 +382,9 @@ describe('SbbNotificationToast', () => {
 
     viewContainerFixture.detectChanges();
     const container = notificationToastRef.containerInstance as SbbNotificationToastContainer;
-    expect(container._animationState).toBe(
-      'hidden',
-      `Expected the animation state would be 'hidden'.`
-    );
+    expect(container._animationState)
+      .withContext(`Expected the animation state would be 'hidden'.`)
+      .toBe('hidden');
   });
 
   it(`should set the old notification toast animation state to complete and the new notification toast animation
@@ -399,10 +395,9 @@ describe('SbbNotificationToast', () => {
 
     viewContainerFixture.detectChanges();
     const container1 = notificationToastRef.containerInstance as SbbNotificationToastContainer;
-    expect(container1._animationState).toBe(
-      'visible',
-      `Expected the animation state would be 'visible'.`
-    );
+    expect(container1._animationState)
+      .withContext(`Expected the animation state would be 'visible'.`)
+      .toBe('visible');
 
     const config2 = { viewContainerRef: testViewContainerRef };
     const notificationToastRef2 = notificationToast.open(simpleMessage, config2);
@@ -413,14 +408,12 @@ describe('SbbNotificationToast', () => {
 
     expect(dismissCompleteSpy).toHaveBeenCalled();
     const container2 = notificationToastRef2.containerInstance as SbbNotificationToastContainer;
-    expect(container1._animationState).toBe(
-      'hidden',
-      `Expected the animation state would be 'hidden'.`
-    );
-    expect(container2._animationState).toBe(
-      'visible',
-      `Expected the animation state would be 'visible'.`
-    );
+    expect(container1._animationState)
+      .withContext(`Expected the animation state would be 'hidden'.`)
+      .toBe('hidden');
+    expect(container2._animationState)
+      .withContext(`Expected the animation state would be 'visible'.`)
+      .toBe('visible');
   }));
 
   it('should open a new notification toast after dismissing a previous notification toast', fakeAsync(() => {
@@ -440,10 +433,9 @@ describe('SbbNotificationToast', () => {
     // Wait for the notification toast open animation to finish.
     flush();
     const container = notificationToastRef.containerInstance as SbbNotificationToastContainer;
-    expect(container._animationState).toBe(
-      'visible',
-      `Expected the animation state would be 'visible'.`
-    );
+    expect(container._animationState)
+      .withContext(`Expected the animation state would be 'visible'.`)
+      .toBe('visible');
   }));
 
   it('should remove past notification toasts when opening new notification toasts', fakeAsync(() => {

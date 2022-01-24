@@ -226,19 +226,17 @@ describe('SbbInput without forms', () => {
     const formFieldEl = fixture.debugElement.query(By.css('.sbb-form-field'))!.nativeElement;
     const inputEl = fixture.debugElement.query(By.css('input'))!.nativeElement;
 
-    expect(formFieldEl.classList.contains('sbb-form-field-disabled')).toBe(
-      false,
-      `Expected form field not to start out disabled.`
-    );
+    expect(formFieldEl.classList.contains('sbb-form-field-disabled'))
+      .withContext(`Expected form field not to start out disabled.`)
+      .toBe(false);
     expect(inputEl.disabled).toBe(false);
 
     fixture.componentInstance.disabled = true;
     fixture.detectChanges();
 
-    expect(formFieldEl.classList.contains('sbb-form-field-disabled')).toBe(
-      true,
-      `Expected form field to look disabled after property is set.`
-    );
+    expect(formFieldEl.classList.contains('sbb-form-field-disabled'))
+      .withContext(`Expected form field to look disabled after property is set.`)
+      .toBe(true);
     expect(inputEl.disabled).toBe(true);
   }));
 
@@ -249,19 +247,17 @@ describe('SbbInput without forms', () => {
     const formFieldEl = fixture.debugElement.query(By.css('.sbb-form-field'))!.nativeElement;
     const selectEl = fixture.debugElement.query(By.css('select'))!.nativeElement;
 
-    expect(formFieldEl.classList.contains('sbb-form-field-disabled')).toBe(
-      false,
-      `Expected form field not to start out disabled.`
-    );
+    expect(formFieldEl.classList.contains('sbb-form-field-disabled'))
+      .withContext(`Expected form field not to start out disabled.`)
+      .toBe(false);
     expect(selectEl.disabled).toBe(false);
 
     fixture.componentInstance.disabled = true;
     fixture.detectChanges();
 
-    expect(formFieldEl.classList.contains('sbb-form-field-disabled')).toBe(
-      true,
-      `Expected form field to look disabled after property is set.`
-    );
+    expect(formFieldEl.classList.contains('sbb-form-field-disabled'))
+      .withContext(`Expected form field to look disabled after property is set.`)
+      .toBe(true);
     expect(selectEl.disabled).toBe(true);
   }));
 
@@ -798,10 +794,9 @@ describe('SbbInput with forms', () => {
     fixture.componentInstance.formControl.disable();
     fixture.detectChanges();
 
-    expect(formFieldEl.classList).toContain(
-      'sbb-form-field-disabled',
-      `Expected form field to look disabled after disable() is called.`
-    );
+    expect(formFieldEl.classList)
+      .withContext(`Expected form field to look disabled after disable() is called.`)
+      .toContain('sbb-form-field-disabled');
     expect(inputEl.disabled).toBe(true);
   }));
 
