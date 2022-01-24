@@ -73,10 +73,9 @@ describe('SbbCheckbox', () => {
       expect(checkboxNativeElement.classList).not.toContain('sbb-selection-checked');
       expect(inputElement.checked).toBe(false);
       expect(inputElement.indeterminate).toBe(false);
-      expect(inputElement.getAttribute('aria-checked')).toBe(
-        'false',
-        'Expect aria-checked to be false'
-      );
+      expect(inputElement.getAttribute('aria-checked'))
+        .withContext('Expect aria-checked to be false')
+        .toBe('false');
 
       testComponent.isIndeterminate = true;
       fixture.detectChanges();
@@ -84,10 +83,9 @@ describe('SbbCheckbox', () => {
       expect(checkboxNativeElement.classList).toContain('sbb-selection-indeterminate');
       expect(inputElement.checked).toBe(false);
       expect(inputElement.indeterminate).toBe(true);
-      expect(inputElement.getAttribute('aria-checked')).toBe(
-        'mixed',
-        'Expect aria checked to be mixed for indeterminate checkbox'
-      );
+      expect(inputElement.getAttribute('aria-checked'))
+        .withContext('Expect aria checked to be mixed for indeterminate checkbox')
+        .toBe('mixed');
 
       testComponent.isIndeterminate = false;
       fixture.detectChanges();
@@ -127,10 +125,9 @@ describe('SbbCheckbox', () => {
       expect(inputElement.indeterminate).toBe(true);
       expect(inputElement.checked).toBe(true);
       expect(testComponent.isIndeterminate).toBe(true);
-      expect(inputElement.getAttribute('aria-checked')).toBe(
-        'true',
-        'Expect aria checked to be true'
-      );
+      expect(inputElement.getAttribute('aria-checked'))
+        .withContext('Expect aria checked to be true')
+        .toBe('true');
 
       inputElement.click();
       fixture.detectChanges();
@@ -473,7 +470,9 @@ describe('SbbCheckbox', () => {
 
         expect(inputElement.checked).toBe(false);
         expect(checkboxNativeElement.classList).not.toContain('sbb-selection-checked');
-        expect(inputElement.indeterminate).toBe(true, 'indeterminate should not change');
+        expect(inputElement.indeterminate)
+          .withContext('indeterminate should not change')
+          .toBe(true);
         expect(checkboxNativeElement.classList).toContain('sbb-selection-indeterminate');
       }));
     });
@@ -649,10 +648,9 @@ describe('SbbCheckbox', () => {
       const checkbox = fixture.debugElement.query(By.directive(SbbCheckbox))!
         .componentInstance as SbbCheckbox;
 
-      expect(checkbox.tabIndex).toBe(
-        5,
-        'Expected tabIndex property to have been set based on the native attribute'
-      );
+      expect(checkbox.tabIndex)
+        .withContext('Expected tabIndex property to have been set based on the native attribute')
+        .toBe(5);
     }));
 
     it('should clear the tabindex attribute from the host element', () => {

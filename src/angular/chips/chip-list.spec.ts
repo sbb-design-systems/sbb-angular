@@ -174,7 +174,9 @@ describe('SbbChipList', () => {
       });
 
       it('should be able to become focused when disabled', () => {
-        expect(chipListInstance.focused).toBe(false, 'Expected list to not be focused.');
+        expect(chipListInstance.focused)
+          .withContext('Expected list to not be focused.')
+          .toBe(false);
 
         chipListInstance.disabled = true;
         fixture.detectChanges();
@@ -182,7 +184,9 @@ describe('SbbChipList', () => {
         chipListInstance.focus();
         fixture.detectChanges();
 
-        expect(chipListInstance.focused).toBe(false, 'Expected list to continue not to be focused');
+        expect(chipListInstance.focused)
+          .withContext('Expected list to continue not to be focused')
+          .toBe(false);
       });
 
       it('should remove the tabindex from the list if it is disabled', () => {
@@ -339,10 +343,9 @@ describe('SbbChipList', () => {
           dispatchKeyboardEvent(chipListNativeElement, 'keydown', RIGHT_ARROW);
           fixture.detectChanges();
 
-          expect(manager.activeItemIndex).toBe(
-            initialActiveIndex,
-            'Expected focused item not to have changed.'
-          );
+          expect(manager.activeItemIndex)
+            .withContext('Expected focused item not to have changed.')
+            .toBe(initialActiveIndex);
         });
 
         it('should focus the first item when pressing HOME', () => {
@@ -511,36 +514,32 @@ describe('SbbChipList', () => {
     });
 
     it('should set the control to touched when the chip list is touched', fakeAsync(() => {
-      expect(fixture.componentInstance.control.touched).toBe(
-        false,
-        'Expected the control to start off as untouched.'
-      );
+      expect(fixture.componentInstance.control.touched)
+        .withContext('Expected the control to start off as untouched.')
+        .toBe(false);
 
       const nativeChipList = fixture.debugElement.query(By.css('.sbb-chip-list'))!.nativeElement;
 
       dispatchFakeEvent(nativeChipList, 'blur');
       tick();
 
-      expect(fixture.componentInstance.control.touched).toBe(
-        true,
-        'Expected the control to be touched.'
-      );
+      expect(fixture.componentInstance.control.touched)
+        .withContext('Expected the control to be touched.')
+        .toBe(true);
     }));
 
     it('should not set touched when a disabled chip list is touched', () => {
-      expect(fixture.componentInstance.control.touched).toBe(
-        false,
-        'Expected the control to start off as untouched.'
-      );
+      expect(fixture.componentInstance.control.touched)
+        .withContext('Expected the control to start off as untouched.')
+        .toBe(false);
 
       fixture.componentInstance.control.disable();
       const nativeChipList = fixture.debugElement.query(By.css('.sbb-chip-list'))!.nativeElement;
       dispatchFakeEvent(nativeChipList, 'blur');
 
-      expect(fixture.componentInstance.control.touched).toBe(
-        false,
-        'Expected the control to stay untouched.'
-      );
+      expect(fixture.componentInstance.control.touched)
+        .withContext('Expected the control to stay untouched.')
+        .toBe(false);
     });
 
     it('should not set the control to dirty when the value changes programmatically', () => {
@@ -572,8 +571,10 @@ describe('SbbChipList', () => {
       });
 
       nativeInput.focus();
-      expect(fixture.componentInstance.foods).toEqual([], 'Expected all chips to be removed.');
-      expect(document.activeElement).toBe(nativeInput, 'Expected input to be focused.');
+      expect(fixture.componentInstance.foods)
+        .withContext('Expected all chips to be removed.')
+        .toEqual([]);
+      expect(document.activeElement).withContext('Expected input to be focused.').toBe(nativeInput);
 
       typeInElement(nativeInput, '123');
       fixture.detectChanges();
@@ -581,7 +582,9 @@ describe('SbbChipList', () => {
       fixture.detectChanges();
       tick();
 
-      expect(document.activeElement).toBe(nativeInput, 'Expected input to remain focused.');
+      expect(document.activeElement)
+        .withContext('Expected input to remain focused.')
+        .toBe(nativeInput);
     }));
 
     describe('keyboard behavior', () => {
@@ -662,73 +665,67 @@ describe('SbbChipList', () => {
     });
 
     it('should not show any errors if the user has not interacted', () => {
-      expect(errorTestComponent.formControl.untouched).toBe(
-        true,
-        'Expected untouched form control'
-      );
-      expect(containerEl.querySelectorAll('sbb-error').length).toBe(0, 'Expected no error message');
-      expect(chipListEl.getAttribute('aria-invalid')).toBe(
-        'false',
-        'Expected aria-invalid to be set to "false".'
-      );
+      expect(errorTestComponent.formControl.untouched)
+        .withContext('Expected untouched form control')
+        .toBe(true);
+      expect(containerEl.querySelectorAll('sbb-error').length)
+        .withContext('Expected no error message')
+        .toBe(0);
+      expect(chipListEl.getAttribute('aria-invalid'))
+        .withContext('Expected aria-invalid to be set to "false".')
+        .toBe('false');
     });
 
     it('should display an error message when the list is touched and invalid', fakeAsync(() => {
-      expect(errorTestComponent.formControl.invalid).toBe(
-        true,
-        'Expected form control to be invalid'
-      );
-      expect(containerEl.querySelectorAll('sbb-error').length).toBe(0, 'Expected no error message');
+      expect(errorTestComponent.formControl.invalid)
+        .withContext('Expected form control to be invalid')
+        .toBe(true);
+      expect(containerEl.querySelectorAll('sbb-error').length)
+        .withContext('Expected no error message')
+        .toBe(0);
 
       errorTestComponent.formControl.markAsTouched();
       fixture.detectChanges();
       tick();
 
-      expect(containerEl.classList).toContain(
-        'sbb-form-field-invalid',
-        'Expected container to have the invalid CSS class.'
-      );
-      expect(containerEl.querySelectorAll('sbb-error').length).toBe(
-        1,
-        'Expected one error message to have been rendered.'
-      );
-      expect(chipListEl.getAttribute('aria-invalid')).toBe(
-        'true',
-        'Expected aria-invalid to be set to "true".'
-      );
+      expect(containerEl.classList)
+        .withContext('Expected container to have the invalid CSS class.')
+        .toContain('sbb-form-field-invalid');
+      expect(containerEl.querySelectorAll('sbb-error').length)
+        .withContext('Expected one error message to have been rendered.')
+        .toBe(1);
+      expect(chipListEl.getAttribute('aria-invalid'))
+        .withContext('Expected aria-invalid to be set to "true".')
+        .toBe('true');
     }));
 
     it('should display an error message when the parent form is submitted', fakeAsync(() => {
-      expect(errorTestComponent.form.submitted).toBe(
-        false,
-        'Expected form not to have been submitted'
-      );
-      expect(errorTestComponent.formControl.invalid).toBe(
-        true,
-        'Expected form control to be invalid'
-      );
-      expect(containerEl.querySelectorAll('sbb-error').length).toBe(0, 'Expected no error message');
+      expect(errorTestComponent.form.submitted)
+        .withContext('Expected form not to have been submitted')
+        .toBe(false);
+      expect(errorTestComponent.formControl.invalid)
+        .withContext('Expected form control to be invalid')
+        .toBe(true);
+      expect(containerEl.querySelectorAll('sbb-error').length)
+        .withContext('Expected no error message')
+        .toBe(0);
 
       dispatchFakeEvent(fixture.debugElement.query(By.css('form'))!.nativeElement, 'submit');
       fixture.detectChanges();
 
       fixture.whenStable().then(() => {
-        expect(errorTestComponent.form.submitted).toBe(
-          true,
-          'Expected form to have been submitted'
-        );
-        expect(containerEl.classList).toContain(
-          'sbb-form-field-invalid',
-          'Expected container to have the invalid CSS class.'
-        );
-        expect(containerEl.querySelectorAll('sbb-error').length).toBe(
-          1,
-          'Expected one error message to have been rendered.'
-        );
-        expect(chipListEl.getAttribute('aria-invalid')).toBe(
-          'true',
-          'Expected aria-invalid to be set to "true".'
-        );
+        expect(errorTestComponent.form.submitted)
+          .withContext('Expected form to have been submitted')
+          .toBe(true);
+        expect(containerEl.classList)
+          .withContext('Expected container to have the invalid CSS class.')
+          .toContain('sbb-form-field-invalid');
+        expect(containerEl.querySelectorAll('sbb-error').length)
+          .withContext('Expected one error message to have been rendered.')
+          .toBe(1);
+        expect(chipListEl.getAttribute('aria-invalid'))
+          .withContext('Expected aria-invalid to be set to "true".')
+          .toBe('true');
       });
     }));
 
@@ -737,14 +734,12 @@ describe('SbbChipList', () => {
       fixture.detectChanges();
 
       fixture.whenStable().then(() => {
-        expect(containerEl.classList).toContain(
-          'sbb-form-field-invalid',
-          'Expected container to have the invalid CSS class.'
-        );
-        expect(containerEl.querySelectorAll('sbb-error').length).toBe(
-          1,
-          'Expected one error message to have been rendered.'
-        );
+        expect(containerEl.classList)
+          .withContext('Expected container to have the invalid CSS class.')
+          .toContain('sbb-form-field-invalid');
+        expect(containerEl.querySelectorAll('sbb-error').length)
+          .withContext('Expected one error message to have been rendered.')
+          .toBe(1);
 
         errorTestComponent.formControl.setValue('something');
         fixture.detectChanges();
@@ -754,10 +749,9 @@ describe('SbbChipList', () => {
             'sbb-form-field-invalid',
             'Expected container not to have the invalid class when valid.'
           );
-          expect(containerEl.querySelectorAll('sbb-error').length).toBe(
-            0,
-            'Expected no error messages when the input is valid.'
-          );
+          expect(containerEl.querySelectorAll('sbb-error').length)
+            .withContext('Expected no error messages when the input is valid.')
+            .toBe(0);
         });
       });
     }));

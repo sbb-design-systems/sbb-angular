@@ -94,7 +94,7 @@ describe('SbbInput without forms', () => {
     const inputEl = fixture.debugElement.query(By.css('input'))!;
     let el = fixture.debugElement.query(By.css('label'))!.nativeElement;
     expect(el).not.toBeNull();
-    expect(el.classList.contains('sbb-form-field-empty')).toBe(true, 'should be empty');
+    expect(el.classList.contains('sbb-form-field-empty')).withContext('should be empty').toBe(true);
 
     inputEl.nativeElement.value = 'hello';
     // Simulate input event.
@@ -102,7 +102,9 @@ describe('SbbInput without forms', () => {
     fixture.detectChanges();
 
     el = fixture.debugElement.query(By.css('label'))!.nativeElement;
-    expect(el.classList.contains('sbb-form-field-empty')).toBe(false, 'should not be empty');
+    expect(el.classList.contains('sbb-form-field-empty'))
+      .withContext('should not be empty')
+      .toBe(false);
   }));
 
   it('should not be empty when the value set before view init', fakeAsync(() => {
@@ -155,18 +157,16 @@ describe('SbbInput without forms', () => {
       By.css('input')
     )!.nativeElement;
 
-    expect(inputElement.getAttribute('aria-required')).toBe(
-      'false',
-      'Expected aria-required to reflect required state of false'
-    );
+    expect(inputElement.getAttribute('aria-required'))
+      .withContext('Expected aria-required to reflect required state of false')
+      .toBe('false');
 
     fixture.componentInstance.required = true;
     fixture.detectChanges();
 
-    expect(inputElement.getAttribute('aria-required')).toBe(
-      'true',
-      'Expected aria-required to reflect required state of true'
-    );
+    expect(inputElement.getAttribute('aria-required'))
+      .withContext('Expected aria-required to reflect required state of true')
+      .toBe('true');
   }));
 
   it('should not overwrite existing id', fakeAsync(() => {
@@ -384,7 +384,7 @@ describe('SbbInput without forms', () => {
     const component = fixture.componentInstance;
     const label = fixture.debugElement.query(By.css('.sbb-form-field-label'))!.nativeElement;
 
-    expect(label.classList).toContain('sbb-form-field-empty', 'Input initially empty');
+    expect(label.classList).withContext('Input initially empty').toContain('sbb-form-field-empty');
 
     component.formControl.setValue('something');
     fixture.detectChanges();
@@ -524,60 +524,69 @@ describe('SbbInput with forms', () => {
     }));
 
     it('should not show any errors if the user has not interacted', fakeAsync(() => {
-      expect(testComponent.formControl.untouched).toBe(true, 'Expected untouched form control');
-      expect(containerEl.querySelectorAll('sbb-error').length).toBe(0, 'Expected no error message');
-      expect(inputEl.getAttribute('aria-invalid')).toBe(
-        'false',
-        'Expected aria-invalid to be set to "false".'
-      );
+      expect(testComponent.formControl.untouched)
+        .withContext('Expected untouched form control')
+        .toBe(true);
+      expect(containerEl.querySelectorAll('sbb-error').length)
+        .withContext('Expected no error message')
+        .toBe(0);
+      expect(inputEl.getAttribute('aria-invalid'))
+        .withContext('Expected aria-invalid to be set to "false".')
+        .toBe('false');
     }));
 
     it('should display an error message when the input is touched and invalid', fakeAsync(() => {
-      expect(testComponent.formControl.invalid).toBe(true, 'Expected form control to be invalid');
-      expect(containerEl.querySelectorAll('sbb-error').length).toBe(0, 'Expected no error message');
+      expect(testComponent.formControl.invalid)
+        .withContext('Expected form control to be invalid')
+        .toBe(true);
+      expect(containerEl.querySelectorAll('sbb-error').length)
+        .withContext('Expected no error message')
+        .toBe(0);
 
       inputEl.value = 'not valid';
       testComponent.formControl.markAsTouched();
       fixture.detectChanges();
       flush();
 
-      expect(containerEl.classList).toContain(
-        'sbb-form-field-invalid',
-        'Expected container to have the invalid CSS class.'
-      );
-      expect(containerEl.querySelectorAll('sbb-error').length).toBe(
-        1,
-        'Expected one error message to have been rendered.'
-      );
-      expect(inputEl.getAttribute('aria-invalid')).toBe(
-        'true',
-        'Expected aria-invalid to be set to "true".'
-      );
+      expect(containerEl.classList)
+        .withContext('Expected container to have the invalid CSS class.')
+        .toContain('sbb-form-field-invalid');
+      expect(containerEl.querySelectorAll('sbb-error').length)
+        .withContext('Expected one error message to have been rendered.')
+        .toBe(1);
+      expect(inputEl.getAttribute('aria-invalid'))
+        .withContext('Expected aria-invalid to be set to "true".')
+        .toBe('true');
     }));
 
     it('should display an error message when the parent form is submitted', fakeAsync(() => {
-      expect(testComponent.form.submitted).toBe(false, 'Expected form not to have been submitted');
-      expect(testComponent.formControl.invalid).toBe(true, 'Expected form control to be invalid');
-      expect(containerEl.querySelectorAll('sbb-error').length).toBe(0, 'Expected no error message');
+      expect(testComponent.form.submitted)
+        .withContext('Expected form not to have been submitted')
+        .toBe(false);
+      expect(testComponent.formControl.invalid)
+        .withContext('Expected form control to be invalid')
+        .toBe(true);
+      expect(containerEl.querySelectorAll('sbb-error').length)
+        .withContext('Expected no error message')
+        .toBe(0);
 
       inputEl.value = 'not valid';
       dispatchFakeEvent(fixture.debugElement.query(By.css('form'))!.nativeElement, 'submit');
       fixture.detectChanges();
       flush();
 
-      expect(testComponent.form.submitted).toBe(true, 'Expected form to have been submitted');
-      expect(containerEl.classList).toContain(
-        'sbb-form-field-invalid',
-        'Expected container to have the invalid CSS class.'
-      );
-      expect(containerEl.querySelectorAll('sbb-error').length).toBe(
-        1,
-        'Expected one error message to have been rendered.'
-      );
-      expect(inputEl.getAttribute('aria-invalid')).toBe(
-        'true',
-        'Expected aria-invalid to be set to "true".'
-      );
+      expect(testComponent.form.submitted)
+        .withContext('Expected form to have been submitted')
+        .toBe(true);
+      expect(containerEl.classList)
+        .withContext('Expected container to have the invalid CSS class.')
+        .toContain('sbb-form-field-invalid');
+      expect(containerEl.querySelectorAll('sbb-error').length)
+        .withContext('Expected one error message to have been rendered.')
+        .toBe(1);
+      expect(inputEl.getAttribute('aria-invalid'))
+        .withContext('Expected aria-invalid to be set to "true".')
+        .toBe('true');
     }));
 
     it('should display an error message when the parent form group is submitted', fakeAsync(() => {
@@ -592,38 +601,36 @@ describe('SbbInput with forms', () => {
       containerEl = groupFixture.debugElement.query(By.css('sbb-form-field'))!.nativeElement;
       inputEl = groupFixture.debugElement.query(By.css('input'))!.nativeElement;
 
-      expect(component.formGroup.invalid).toBe(true, 'Expected form control to be invalid');
-      expect(containerEl.querySelectorAll('sbb-error').length).toBe(0, 'Expected no error message');
-      expect(inputEl.getAttribute('aria-invalid')).toBe(
-        'false',
-        'Expected aria-invalid to be set to "false".'
-      );
-      expect(component.formGroupDirective.submitted).toBe(
-        false,
-        'Expected form not to have been submitted'
-      );
+      expect(component.formGroup.invalid)
+        .withContext('Expected form control to be invalid')
+        .toBe(true);
+      expect(containerEl.querySelectorAll('sbb-error').length)
+        .withContext('Expected no error message')
+        .toBe(0);
+      expect(inputEl.getAttribute('aria-invalid'))
+        .withContext('Expected aria-invalid to be set to "false".')
+        .toBe('false');
+      expect(component.formGroupDirective.submitted)
+        .withContext('Expected form not to have been submitted')
+        .toBe(false);
 
       inputEl.value = 'not valid';
       dispatchFakeEvent(groupFixture.debugElement.query(By.css('form'))!.nativeElement, 'submit');
       groupFixture.detectChanges();
       flush();
 
-      expect(component.formGroupDirective.submitted).toBe(
-        true,
-        'Expected form to have been submitted'
-      );
-      expect(containerEl.classList).toContain(
-        'sbb-form-field-invalid',
-        'Expected container to have the invalid CSS class.'
-      );
-      expect(containerEl.querySelectorAll('sbb-error').length).toBe(
-        1,
-        'Expected one error message to have been rendered.'
-      );
-      expect(inputEl.getAttribute('aria-invalid')).toBe(
-        'true',
-        'Expected aria-invalid to be set to "true".'
-      );
+      expect(component.formGroupDirective.submitted)
+        .withContext('Expected form to have been submitted')
+        .toBe(true);
+      expect(containerEl.classList)
+        .withContext('Expected container to have the invalid CSS class.')
+        .toContain('sbb-form-field-invalid');
+      expect(containerEl.querySelectorAll('sbb-error').length)
+        .withContext('Expected one error message to have been rendered.')
+        .toBe(1);
+      expect(inputEl.getAttribute('aria-invalid'))
+        .withContext('Expected aria-invalid to be set to "true".')
+        .toBe('true');
     }));
 
     it('should set the proper aria-live attribute on the error messages', fakeAsync(() => {
@@ -653,21 +660,23 @@ describe('SbbInput with forms', () => {
       fixture.detectChanges();
       flush();
 
-      expect(testComponent.formControl.invalid).toBe(true, 'Expected form control to be invalid');
+      expect(testComponent.formControl.invalid)
+        .withContext('Expected form control to be invalid')
+        .toBe(true);
       expect(inputEl.value).toBeFalsy();
-      expect(inputEl.getAttribute('aria-invalid')).toBe(
-        'true',
-        'Expected aria-invalid to be set to "true".'
-      );
+      expect(inputEl.getAttribute('aria-invalid'))
+        .withContext('Expected aria-invalid to be set to "true".')
+        .toBe('true');
 
       inputEl.value = 'not valid';
       fixture.detectChanges();
 
-      expect(testComponent.formControl.invalid).toBe(true, 'Expected form control to be invalid');
-      expect(inputEl.getAttribute('aria-invalid')).toBe(
-        'true',
-        'Expected aria-invalid to be set to "true".'
-      );
+      expect(testComponent.formControl.invalid)
+        .withContext('Expected form control to be invalid')
+        .toBe(true);
+      expect(inputEl.getAttribute('aria-invalid'))
+        .withContext('Expected aria-invalid to be set to "true".')
+        .toBe('true');
     }));
   });
 
@@ -681,27 +690,24 @@ describe('SbbInput with forms', () => {
 
       const control = component.formGroup.get('name')!;
 
-      expect(control.invalid).toBe(true, 'Expected form control to be invalid');
-      expect(containerEl.querySelectorAll('sbb-error').length).toBe(
-        0,
-        'Expected no error messages'
-      );
+      expect(control.invalid).withContext('Expected form control to be invalid').toBe(true);
+      expect(containerEl.querySelectorAll('sbb-error').length)
+        .withContext('Expected no error messages')
+        .toBe(0);
 
       control.markAsTouched();
       fixture.detectChanges();
 
-      expect(containerEl.querySelectorAll('sbb-error').length).toBe(
-        0,
-        'Expected no error messages after being touched.'
-      );
+      expect(containerEl.querySelectorAll('sbb-error').length)
+        .withContext('Expected no error messages after being touched.')
+        .toBe(0);
 
       component.errorState = true;
       fixture.detectChanges();
 
-      expect(containerEl.querySelectorAll('sbb-error').length).toBe(
-        1,
-        'Expected one error messages to have been rendered.'
-      );
+      expect(containerEl.querySelectorAll('sbb-error').length)
+        .withContext('Expected one error messages to have been rendered.')
+        .toBe(1);
     }));
 
     it('should display an error message when global error matcher returns true', fakeAsync(() => {
@@ -718,8 +724,12 @@ describe('SbbInput with forms', () => {
       const testComponent = fixture.componentInstance;
 
       // Expect the control to still be untouched but the error to show due to the global setting
-      expect(testComponent.formControl.untouched).toBe(true, 'Expected untouched form control');
-      expect(containerEl.querySelectorAll('sbb-error').length).toBe(1, 'Expected an error message');
+      expect(testComponent.formControl.untouched)
+        .withContext('Expected untouched form control')
+        .toBe(true);
+      expect(containerEl.querySelectorAll('sbb-error').length)
+        .withContext('Expected an error message')
+        .toBe(1);
     }));
 
     it('should display an error message when using SbbShowOnDirtyErrorStateMatcher', fakeAsync(() => {
@@ -734,24 +744,26 @@ describe('SbbInput with forms', () => {
       const containerEl = fixture.debugElement.query(By.css('sbb-form-field'))!.nativeElement;
       const testComponent = fixture.componentInstance;
 
-      expect(testComponent.formControl.invalid).toBe(true, 'Expected form control to be invalid');
-      expect(containerEl.querySelectorAll('sbb-error').length).toBe(0, 'Expected no error message');
+      expect(testComponent.formControl.invalid)
+        .withContext('Expected form control to be invalid')
+        .toBe(true);
+      expect(containerEl.querySelectorAll('sbb-error').length)
+        .withContext('Expected no error message')
+        .toBe(0);
 
       testComponent.formControl.markAsTouched();
       fixture.detectChanges();
 
-      expect(containerEl.querySelectorAll('sbb-error').length).toBe(
-        0,
-        'Expected no error messages when touched'
-      );
+      expect(containerEl.querySelectorAll('sbb-error').length)
+        .withContext('Expected no error messages when touched')
+        .toBe(0);
 
       testComponent.formControl.markAsDirty();
       fixture.detectChanges();
 
-      expect(containerEl.querySelectorAll('sbb-error').length).toBe(
-        1,
-        'Expected one error message when dirty'
-      );
+      expect(containerEl.querySelectorAll('sbb-error').length)
+        .withContext('Expected one error message when dirty')
+        .toBe(1);
     }));
   });
 

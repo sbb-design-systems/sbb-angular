@@ -103,19 +103,17 @@ describe('SbbIcon', () => {
   it('should mark sbb-icon as aria-hidden by default', () => {
     const fixture = TestBed.createComponent(IconWithLigature);
     const iconElement = fixture.debugElement.nativeElement.querySelector('sbb-icon');
-    expect(iconElement.getAttribute('aria-hidden')).toBe(
-      'true',
-      'Expected the sbb-icon element has aria-hidden="true" by default'
-    );
+    expect(iconElement.getAttribute('aria-hidden'))
+      .withContext('Expected the sbb-icon element has aria-hidden="true" by default')
+      .toBe('true');
   });
 
   it('should not override a user-provided aria-hidden attribute', () => {
     const fixture = TestBed.createComponent(IconWithAriaHiddenFalse);
     const iconElement = fixture.debugElement.nativeElement.querySelector('sbb-icon');
-    expect(iconElement.getAttribute('aria-hidden')).toBe(
-      'false',
-      'Expected the sbb-icon element has the user-provided aria-hidden value'
-    );
+    expect(iconElement.getAttribute('aria-hidden'))
+      .withContext('Expected the sbb-icon element has the user-provided aria-hidden value')
+      .toBe('false');
   });
 
   it('should apply inline styling', () => {

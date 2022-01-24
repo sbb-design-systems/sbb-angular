@@ -150,10 +150,9 @@ describe('SbbIconSidebar', () => {
       fixture.detectChanges();
 
       const sidebarEl = fixture.debugElement.query(By.css('sbb-icon-sidebar'))!.nativeElement;
-      expect(sidebarEl.hasAttribute('align')).toBe(
-        false,
-        'Expected sidebar not to have a native align attribute.'
-      );
+      expect(sidebarEl.hasAttribute('align'))
+        .withContext('Expected sidebar not to have a native align attribute.')
+        .toBe(false);
     });
 
     it('should throw when multiple sidebars are included', fakeAsync(() => {

@@ -2330,7 +2330,7 @@ describe('SbbSelect', () => {
           fixture.detectChanges();
           flush();
 
-          expect(selectInstance.focused).toBe(true, 'Expected select to be focused.');
+          expect(selectInstance.focused).withContext('Expected select to be focused.').toBe(true);
 
           selectInstance.open();
           fixture.detectChanges();
@@ -3051,7 +3051,9 @@ describe('SbbSelect', () => {
         // Note that we press down 5 times, but it will skip
         // 3 options because the second group is disabled.
         // <option index * height> + <group count * group height> - <panel height> = 9 * 31 + 3 * 42 - 256 = 149
-        expect(panel.scrollTop).toBeCloseTo(150, -1, 'Expected scroll to be at the 9th option.');
+        expect(panel.scrollTop)
+          .withContext('Expected scroll to be at the 9th option.')
+          .toBeCloseTo(150, -1);
       }));
 
       it('should scroll to the top when pressing HOME', fakeAsync(() => {
@@ -4065,7 +4067,7 @@ describe('SbbSelect', () => {
       fixture.detectChanges();
       flush();
 
-      expect(document.activeElement).toBe(select, 'Expected trigger to be focused.');
+      expect(document.activeElement).withContext('Expected trigger to be focused.').toBe(select);
     }));
 
     it('should not restore focus to the host element when clicking outside', fakeAsync(() => {
@@ -4077,7 +4079,7 @@ describe('SbbSelect', () => {
       fixture.detectChanges();
       flush();
 
-      expect(document.activeElement).toBe(select, 'Expected trigger to be focused.');
+      expect(document.activeElement).withContext('Expected trigger to be focused.').toBe(select);
 
       select.blur(); // Blur manually since the programmatic click might not do it.
       (overlayContainerElement.querySelector('.cdk-overlay-backdrop') as HTMLElement).click();

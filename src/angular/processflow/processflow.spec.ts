@@ -590,10 +590,9 @@ describe('SbbProcessflow', () => {
       nextButtonNativeEl.click();
       fixture.detectChanges();
 
-      expect(processflowComponent.selectedIndex).toBe(
-        3,
-        'Expected selectedIndex to change when optional step input is empty.'
-      );
+      expect(processflowComponent.selectedIndex)
+        .withContext('Expected selectedIndex to change when optional step input is empty.')
+        .toBe(3);
 
       processflowComponent.selectedIndex = 2;
       testComponent.threeGroup.get('threeCtrl')!.setValue('input');
@@ -601,10 +600,9 @@ describe('SbbProcessflow', () => {
       fixture.detectChanges();
 
       expect(testComponent.threeGroup.get('threeCtrl')!.valid).toBe(false);
-      expect(processflowComponent.selectedIndex).toBe(
-        3,
-        'Expected selectedIndex to change when optional step input is invalid.'
-      );
+      expect(processflowComponent.selectedIndex)
+        .withContext('Expected selectedIndex to change when optional step input is invalid.')
+        .toBe(3);
     });
 
     it('should be able to reset the processflow to its initial state', () => {
@@ -679,19 +677,19 @@ describe('SbbProcessflow', () => {
 
       fillOutStepper();
 
-      expect(steps[2].completed).toBe(
-        true,
-        'Expected third step to be considered complete after the first run through.'
-      );
+      expect(steps[2].completed)
+        .withContext('Expected third step to be considered complete after the first run through.')
+        .toBe(true);
 
       processflowComponent.reset();
       fixture.detectChanges();
       fillOutStepper();
 
-      expect(steps[2].completed).toBe(
-        true,
-        'Expected third step to be considered complete when doing a run after a reset.'
-      );
+      expect(steps[2].completed)
+        .withContext(
+          'Expected third step to be considered complete when doing a run after a reset.'
+        )
+        .toBe(true);
     });
 
     it('should be able to skip past the current step if a custom `completed` value is set', () => {
@@ -1189,40 +1187,38 @@ function assertCorrectKeyboardInteraction(
   dispatchKeyboardEvent(stepHeaderEl, 'keydown', nextKey);
   fixture.detectChanges();
 
-  expect(processflowComponent._getFocusIndex()).toBe(
-    1,
-    'Expected index of focused step to increase by 1 after pressing the next key.'
-  );
-  expect(processflowComponent.selectedIndex).toBe(
-    0,
-    'Expected index of selected step to remain unchanged after pressing the next key.'
-  );
+  expect(processflowComponent._getFocusIndex())
+    .withContext('Expected index of focused step to increase by 1 after pressing the next key.')
+    .toBe(1);
+  expect(processflowComponent.selectedIndex)
+    .withContext('Expected index of selected step to remain unchanged after pressing the next key.')
+    .toBe(0);
 
   stepHeaderEl = stepHeaders[1].nativeElement;
   dispatchKeyboardEvent(stepHeaderEl, 'keydown', ENTER);
   fixture.detectChanges();
 
-  expect(processflowComponent._getFocusIndex()).toBe(
-    1,
-    'Expected index of focused step to remain unchanged after ENTER event.'
-  );
-  expect(processflowComponent.selectedIndex).toBe(
-    1,
-    'Expected index of selected step to change to index of focused step after ENTER event.'
-  );
+  expect(processflowComponent._getFocusIndex())
+    .withContext('Expected index of focused step to remain unchanged after ENTER event.')
+    .toBe(1);
+  expect(processflowComponent.selectedIndex)
+    .withContext(
+      'Expected index of selected step to change to index of focused step after ENTER event.'
+    )
+    .toBe(1);
 
   stepHeaderEl = stepHeaders[1].nativeElement;
   dispatchKeyboardEvent(stepHeaderEl, 'keydown', prevKey);
   fixture.detectChanges();
 
-  expect(processflowComponent._getFocusIndex()).toBe(
-    0,
-    'Expected index of focused step to decrease by 1 after pressing the previous key.'
-  );
-  expect(processflowComponent.selectedIndex).toBe(
-    1,
-    'Expected index of selected step to remain unchanged after pressing the previous key.'
-  );
+  expect(processflowComponent._getFocusIndex())
+    .withContext('Expected index of focused step to decrease by 1 after pressing the previous key.')
+    .toBe(0);
+  expect(processflowComponent.selectedIndex)
+    .withContext(
+      'Expected index of selected step to remain unchanged after pressing the previous key.'
+    )
+    .toBe(1);
 
   // When the focus is on the last step and right arrow key is pressed, the focus should cycle
   // through to the first step.
@@ -1231,41 +1227,43 @@ function assertCorrectKeyboardInteraction(
   dispatchKeyboardEvent(stepHeaderEl, 'keydown', nextKey);
   fixture.detectChanges();
 
-  expect(processflowComponent._getFocusIndex()).toBe(
-    0,
-    'Expected index of focused step to cycle through to index 0 after pressing the next key.'
-  );
-  expect(processflowComponent.selectedIndex).toBe(
-    1,
-    'Expected index of selected step to remain unchanged after pressing the next key.'
-  );
+  expect(processflowComponent._getFocusIndex())
+    .withContext(
+      'Expected index of focused step to cycle through to index 0 after pressing the next key.'
+    )
+    .toBe(0);
+  expect(processflowComponent.selectedIndex)
+    .withContext('Expected index of selected step to remain unchanged after pressing the next key.')
+    .toBe(1);
 
   stepHeaderEl = stepHeaders[0].nativeElement;
   dispatchKeyboardEvent(stepHeaderEl, 'keydown', SPACE);
   fixture.detectChanges();
 
-  expect(processflowComponent._getFocusIndex()).toBe(
-    0,
-    'Expected index of focused to remain unchanged after SPACE event.'
-  );
-  expect(processflowComponent.selectedIndex).toBe(
-    0,
-    'Expected index of selected step to change to index of focused step after SPACE event.'
-  );
+  expect(processflowComponent._getFocusIndex())
+    .withContext('Expected index of focused to remain unchanged after SPACE event.')
+    .toBe(0);
+  expect(processflowComponent.selectedIndex)
+    .withContext(
+      'Expected index of selected step to change to index of focused step after SPACE event.'
+    )
+    .toBe(0);
 
   const endEvent = dispatchKeyboardEvent(stepHeaderEl, 'keydown', END);
-  expect(processflowComponent._getFocusIndex()).toBe(
-    stepHeaders.length - 1,
-    'Expected last step to be focused when pressing END.'
-  );
-  expect(endEvent.defaultPrevented).toBe(true, 'Expected default END action to be prevented.');
+  expect(processflowComponent._getFocusIndex())
+    .withContext('Expected last step to be focused when pressing END.')
+    .toBe(stepHeaders.length - 1);
+  expect(endEvent.defaultPrevented)
+    .withContext('Expected default END action to be prevented.')
+    .toBe(true);
 
   const homeEvent = dispatchKeyboardEvent(stepHeaderEl, 'keydown', HOME);
-  expect(processflowComponent._getFocusIndex()).toBe(
-    0,
-    'Expected first step to be focused when pressing HOME.'
-  );
-  expect(homeEvent.defaultPrevented).toBe(true, 'Expected default HOME action to be prevented.');
+  expect(processflowComponent._getFocusIndex())
+    .withContext('Expected first step to be focused when pressing HOME.')
+    .toBe(0);
+  expect(homeEvent.defaultPrevented)
+    .withContext('Expected default HOME action to be prevented.')
+    .toBe(true);
 }
 
 /** Asserts that arrow key direction works correctly in RTL mode. */
@@ -1309,14 +1307,12 @@ function assertSelectKeyWithModifierInteraction(
   dispatchKeyboardEvent(stepHeaders[0].nativeElement, 'keydown', RIGHT_ARROW);
   fixture.detectChanges();
 
-  expect(processflowComponent._getFocusIndex()).toBe(
-    1,
-    'Expected index of focused step to increase by 1 after pressing the next key.'
-  );
-  expect(processflowComponent.selectedIndex).toBe(
-    0,
-    'Expected index of selected step to remain unchanged after pressing the next key.'
-  );
+  expect(processflowComponent._getFocusIndex())
+    .withContext('Expected index of focused step to increase by 1 after pressing the next key.')
+    .toBe(1);
+  expect(processflowComponent.selectedIndex)
+    .withContext('Expected index of selected step to remain unchanged after pressing the next key.')
+    .toBe(0);
 
   modifiers.forEach((modifier) => {
     const event = createKeyboardEvent('keydown', selectionKey);

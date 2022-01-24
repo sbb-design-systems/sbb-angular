@@ -73,10 +73,9 @@ describe('SbbNotificationToast icons', () => {
     testComponent.showNotification({ type: 'error' });
     testFixture.detectChanges();
     const notifications = overlayContainerElement.querySelectorAll('.sbb-notification-toast-error');
-    expect(notifications.length).toBe(
-      1,
-      'Expected class .sbb-notification-toast-error to be assigned'
-    );
+    expect(notifications.length)
+      .withContext('Expected class .sbb-notification-toast-error to be assigned')
+      .toBe(1);
     const icons = overlayContainerElement.querySelectorAll('sbb-icon');
     expect(icons.length).toBe(2);
     expect(icons[0].getAttribute('ng-reflect-svg-icon')).toMatch(/^kom:sign-exclamation-point-sma/);
@@ -88,10 +87,9 @@ describe('SbbNotificationToast icons', () => {
     const notifications = overlayContainerElement.querySelectorAll(
       '.sbb-notification-toast-success'
     );
-    expect(notifications.length).toBe(
-      1,
-      'Expected class .sbb-notification-toast-success to be assigned'
-    );
+    expect(notifications.length)
+      .withContext('Expected class .sbb-notification-toast-success to be assigned')
+      .toBe(1);
     const icons = overlayContainerElement.querySelectorAll('sbb-icon');
     expect(icons.length).toBe(2);
     expect(icons[0].getAttribute('ng-reflect-svg-icon')).toEqual('kom:tick-small');
@@ -101,10 +99,9 @@ describe('SbbNotificationToast icons', () => {
     testComponent.showNotification({ type: 'info' });
     testFixture.detectChanges();
     const notifications = overlayContainerElement.querySelectorAll('.sbb-notification-toast-info');
-    expect(notifications.length).toBe(
-      1,
-      'Expected class .sbb-notification-toast-info to be assigned'
-    );
+    expect(notifications.length)
+      .withContext('Expected class .sbb-notification-toast-info to be assigned')
+      .toBe(1);
     const icons = overlayContainerElement.querySelectorAll('sbb-icon');
     expect(icons.length).toBe(2);
     expect(icons[0].getAttribute('ng-reflect-svg-icon')).toEqual('kom:circle-information-small');
@@ -114,10 +111,9 @@ describe('SbbNotificationToast icons', () => {
     testComponent.showNotification({ type: 'warn' });
     testFixture.detectChanges();
     const notifications = overlayContainerElement.querySelectorAll('.sbb-notification-toast-warn');
-    expect(notifications.length).toBe(
-      1,
-      'Expected class .sbb-notification-toast-warn to be assigned'
-    );
+    expect(notifications.length)
+      .withContext('Expected class .sbb-notification-toast-warn to be assigned')
+      .toBe(1);
     const icons = overlayContainerElement.querySelectorAll('sbb-icon');
     expect(icons.length).toBe(2);
     expect(icons[0].getAttribute('ng-reflect-svg-icon')).toMatch(/^kom:sign-exclamation-point-sma/);
@@ -182,10 +178,9 @@ describe('SbbNotificationToast', () => {
       const containerElement = overlayContainerElement.querySelector(
         'sbb-notification-toast-container'
       )!;
-      expect(containerElement.getAttribute('role')).toBe(
-        'alert',
-        'Expected notification toast container to have role="alert"'
-      );
+      expect(containerElement.getAttribute('role'))
+        .withContext('Expected notification toast container to have role="alert"')
+        .toBe('alert');
     }
   );
 
@@ -202,10 +197,9 @@ describe('SbbNotificationToast', () => {
       const containerElement = overlayContainerElement.querySelector(
         'sbb-notification-toast-container'
       )!;
-      expect(containerElement.getAttribute('role')).toBe(
-        'status',
-        'Expected notification toast container to have role="status"'
-      );
+      expect(containerElement.getAttribute('role'))
+        .withContext('Expected notification toast container to have role="status"')
+        .toBe('status');
     }
   );
 
@@ -216,10 +210,9 @@ describe('SbbNotificationToast', () => {
     const containerElement = overlayContainerElement.querySelector(
       'sbb-notification-toast-container'
     )!;
-    expect(containerElement.getAttribute('role')).toBe(
-      'status',
-      'Expected notification toast container to have role="status"'
-    );
+    expect(containerElement.getAttribute('role'))
+      .withContext('Expected notification toast container to have role="status"')
+      .toBe('status');
   });
 
   it('should remove the role if the politeness is turned off', () => {
@@ -239,19 +232,17 @@ describe('SbbNotificationToast', () => {
     const messageElement = overlayContainerElement.querySelector(
       'sbb-notification-toast-container'
     )!;
-    expect(messageElement.textContent).toContain(
-      'Toast time!',
-      'Expected notification toast to show a message without a ViewContainerRef'
-    );
+    expect(messageElement.textContent)
+      .withContext('Expected notification toast to show a message without a ViewContainerRef')
+      .toContain('Toast time!');
 
     notificationToastRef.dismiss();
     viewContainerFixture.detectChanges();
     flush();
 
-    expect(overlayContainerElement.childNodes.length).toBe(
-      0,
-      'Expected notification toast to be dismissed without a ViewContainerRef'
-    );
+    expect(overlayContainerElement.childNodes.length)
+      .withContext('Expected notification toast to be dismissed without a ViewContainerRef')
+      .toBe(0);
   }));
 
   it('should open a simple message', () => {
@@ -260,14 +251,16 @@ describe('SbbNotificationToast', () => {
 
     viewContainerFixture.detectChanges();
 
-    expect(notificationToastRef.instance instanceof SbbSimpleNotification).toBe(
-      true,
-      'Expected the notification toast content component to be SimpleNotificationComponent'
-    );
-    expect(notificationToastRef.instance.notificationToastRef).toBe(
-      notificationToastRef,
-      'Expected the notification toast reference to be placed in the component instance'
-    );
+    expect(notificationToastRef.instance instanceof SbbSimpleNotification)
+      .withContext(
+        'Expected the notification toast content component to be SimpleNotificationComponent'
+      )
+      .toBe(true);
+    expect(notificationToastRef.instance.notificationToastRef)
+      .withContext(
+        'Expected the notification toast reference to be placed in the component instance'
+      )
+      .toBe(notificationToastRef);
 
     const messageElement = overlayContainerElement.querySelector(
       'sbb-notification-toast-container'
@@ -284,10 +277,9 @@ describe('SbbNotificationToast', () => {
 
     const notificationToastRef = notificationToast.open(simpleMessage, config);
     viewContainerFixture.detectChanges();
-    expect(overlayContainerElement.childElementCount).toBeGreaterThan(
-      0,
-      'Expected overlay container element to have at least one child'
-    );
+    expect(overlayContainerElement.childElementCount)
+      .withContext('Expected overlay container element to have at least one child')
+      .toBeGreaterThan(0);
 
     notificationToastRef.afterDismissed().subscribe({ complete: dismissCompleteSpy });
 
@@ -295,19 +287,19 @@ describe('SbbNotificationToast', () => {
     const messageElement = overlayContainerElement.querySelector(
       'sbb-notification-toast-container'
     )!;
-    expect(messageElement.hasAttribute('sbb-exit')).toBe(
-      true,
-      'Expected the notification toast container to have the "exit" attribute upon dismiss'
-    );
+    expect(messageElement.hasAttribute('sbb-exit'))
+      .withContext(
+        'Expected the notification toast container to have the "exit" attribute upon dismiss'
+      )
+      .toBe(true);
 
     viewContainerFixture.detectChanges(); // Run through animations for dismissal
     flush();
 
     expect(dismissCompleteSpy).toHaveBeenCalled();
-    expect(overlayContainerElement.childElementCount).toBe(
-      0,
-      'Expected the overlay container element to have no child elements'
-    );
+    expect(overlayContainerElement.childElementCount)
+      .withContext('Expected the overlay container element to have no child elements')
+      .toBe(0);
   }));
 
   it('should clear the announcement message if it is the same as main message', fakeAsync(() => {
@@ -316,10 +308,9 @@ describe('SbbNotificationToast', () => {
     notificationToast.open(simpleMessage, { announcementMessage: simpleMessage });
     viewContainerFixture.detectChanges();
 
-    expect(overlayContainerElement.childElementCount).toBe(
-      1,
-      'Expected the overlay with the default announcement message to be added'
-    );
+    expect(overlayContainerElement.childElementCount)
+      .withContext('Expected the overlay with the default announcement message to be added')
+      .toBe(1);
 
     expect(liveAnnouncer.announce).not.toHaveBeenCalled();
   }));
@@ -333,10 +324,9 @@ describe('SbbNotificationToast', () => {
     });
     viewContainerFixture.detectChanges();
 
-    expect(overlayContainerElement.childElementCount).toBe(
-      1,
-      'Expected the overlay with a custom `announcementMessage` to be added'
-    );
+    expect(overlayContainerElement.childElementCount)
+      .withContext('Expected the overlay with a custom `announcementMessage` to be added')
+      .toBe(1);
 
     expect(liveAnnouncer.announce).toHaveBeenCalledWith('Custom announcement', 'assertive');
   }));
@@ -362,10 +352,11 @@ describe('SbbNotificationToast', () => {
     viewContainerFixture.detectChanges();
     flush();
 
-    expect(overlayContainerElement.childElementCount).toBe(
-      0,
-      'Expected notification toast to be removed after the view container was destroyed'
-    );
+    expect(overlayContainerElement.childElementCount)
+      .withContext(
+        'Expected notification toast to be removed after the view container was destroyed'
+      )
+      .toBe(0);
   }));
 
   it('should set the animation state to visible on entry', () => {
@@ -587,23 +578,20 @@ describe('SbbNotificationToast', () => {
     it('should open a custom component', () => {
       const notificationToastRef = notificationToast.openFromComponent(BurritosNotification);
 
-      expect(notificationToastRef.instance instanceof BurritosNotification).toBe(
-        true,
-        'Expected the notification toast content component to be BurritosNotification'
-      );
-      expect(overlayContainerElement.textContent!.trim()).toBe(
-        'Burritos are on the way.',
-        'Expected component to have the proper text.'
-      );
+      expect(notificationToastRef.instance instanceof BurritosNotification)
+        .withContext('Expected the notification toast content component to be BurritosNotification')
+        .toBe(true);
+      expect(overlayContainerElement.textContent!.trim())
+        .withContext('Expected component to have the proper text.')
+        .toBe('Burritos are on the way.');
     });
 
     it('should inject the notification toast reference into the component', () => {
       const notificationToastRef = notificationToast.openFromComponent(BurritosNotification);
 
-      expect(notificationToastRef.instance.notificationToastRef).toBe(
-        notificationToastRef,
-        'Expected component to have an injected notification toast reference.'
-      );
+      expect(notificationToastRef.instance.notificationToastRef)
+        .withContext('Expected component to have an injected notification toast reference.')
+        .toBe(notificationToastRef);
     });
 
     it('should be able to inject arbitrary user data', () => {
@@ -616,10 +604,9 @@ describe('SbbNotificationToast', () => {
       expect(notificationToastRef.instance.data).toBeTruthy(
         'Expected component to have a data object.'
       );
-      expect(notificationToastRef.instance.data.burritoType).toBe(
-        'Chimichanga',
-        'Expected the injected data object to be the one the user provided.'
-      );
+      expect(notificationToastRef.instance.data.burritoType)
+        .withContext('Expected the injected data object to be the one the user provided.')
+        .toBe('Chimichanga');
     });
   });
 
@@ -707,19 +694,17 @@ describe('SbbNotificationToast with parent SbbNotificationToast', () => {
     fixture.detectChanges();
     tick(1000);
 
-    expect(overlayContainerElement.textContent).toContain(
-      'Pizza',
-      'Expected a notificationToast to be opened'
-    );
+    expect(overlayContainerElement.textContent)
+      .withContext('Expected a notificationToast to be opened')
+      .toContain('Pizza');
 
     childNotificationToast.open('Taco');
     fixture.detectChanges();
     tick(1000);
 
-    expect(overlayContainerElement.textContent).toContain(
-      'Taco',
-      'Expected parent notification toast msg to be dismissed by opening from child'
-    );
+    expect(overlayContainerElement.textContent)
+      .withContext('Expected parent notification toast msg to be dismissed by opening from child')
+      .toContain('Taco');
   }));
 
   it('should close notificationToasts opened by child when opening from parent', fakeAsync(() => {
@@ -727,19 +712,17 @@ describe('SbbNotificationToast with parent SbbNotificationToast', () => {
     fixture.detectChanges();
     tick(1000);
 
-    expect(overlayContainerElement.textContent).toContain(
-      'Pizza',
-      'Expected a notificationToast to be opened'
-    );
+    expect(overlayContainerElement.textContent)
+      .withContext('Expected a notificationToast to be opened')
+      .toContain('Pizza');
 
     parentNotificationToast.open('Taco');
     fixture.detectChanges();
     tick(1000);
 
-    expect(overlayContainerElement.textContent).toContain(
-      'Taco',
-      'Expected child notification toast msg to be dismissed by opening from parent'
-    );
+    expect(overlayContainerElement.textContent)
+      .withContext('Expected child notification toast msg to be dismissed by opening from parent')
+      .toContain('Taco');
   }));
 
   it('should not dismiss parent notification toast if child is destroyed', fakeAsync(() => {
@@ -810,10 +793,12 @@ describe('SbbNotificationToast Positioning', () => {
     expect(containerEl.classList.contains('sbb-notification-toast-center')).toBeTruthy();
     expect(containerEl.classList.contains('sbb-notification-toast-top')).toBeFalsy();
 
-    expect(overlayPaneEl.style.marginBottom).toBe('0px', 'Expected margin-bottom to be "0px"');
-    expect(overlayPaneEl.style.marginTop).toBe('', 'Expected margin-top to be ""');
-    expect(overlayPaneEl.style.marginRight).toBe('', 'Expected margin-right to be ""');
-    expect(overlayPaneEl.style.marginLeft).toBe('', 'Expected margin-left  to be ""');
+    expect(overlayPaneEl.style.marginBottom)
+      .withContext('Expected margin-bottom to be "0px"')
+      .toBe('0px');
+    expect(overlayPaneEl.style.marginTop).withContext('Expected margin-top to be ""').toBe('');
+    expect(overlayPaneEl.style.marginRight).withContext('Expected margin-right to be ""').toBe('');
+    expect(overlayPaneEl.style.marginLeft).withContext('Expected margin-left  to be ""').toBe('');
   }));
 
   it('should be in the bottom center', fakeAsync(() => {
@@ -831,10 +816,12 @@ describe('SbbNotificationToast Positioning', () => {
 
     expect(containerEl.classList.contains('sbb-notification-toast-center')).toBeTruthy();
     expect(containerEl.classList.contains('sbb-notification-toast-top')).toBeFalsy();
-    expect(overlayPaneEl.style.marginBottom).toBe('0px', 'Expected margin-bottom to be "0px"');
-    expect(overlayPaneEl.style.marginTop).toBe('', 'Expected margin-top to be ""');
-    expect(overlayPaneEl.style.marginRight).toBe('', 'Expected margin-right to be ""');
-    expect(overlayPaneEl.style.marginLeft).toBe('', 'Expected margin-left  to be ""');
+    expect(overlayPaneEl.style.marginBottom)
+      .withContext('Expected margin-bottom to be "0px"')
+      .toBe('0px');
+    expect(overlayPaneEl.style.marginTop).withContext('Expected margin-top to be ""').toBe('');
+    expect(overlayPaneEl.style.marginRight).withContext('Expected margin-right to be ""').toBe('');
+    expect(overlayPaneEl.style.marginLeft).withContext('Expected margin-left  to be ""').toBe('');
   }));
 
   it('should be in the top center', fakeAsync(() => {
@@ -852,10 +839,14 @@ describe('SbbNotificationToast Positioning', () => {
 
     expect(containerEl.classList.contains('sbb-notification-toast-center')).toBeTruthy();
     expect(containerEl.classList.contains('sbb-notification-toast-top')).toBeTruthy();
-    expect(overlayPaneEl.style.marginBottom).toBe('', 'Expected margin-bottom to be ""');
-    expect(overlayPaneEl.style.marginTop).toBe('0px', 'Expected margin-top to be "0px"');
-    expect(overlayPaneEl.style.marginRight).toBe('', 'Expected margin-right to be ""');
-    expect(overlayPaneEl.style.marginLeft).toBe('', 'Expected margin-left  to be ""');
+    expect(overlayPaneEl.style.marginBottom)
+      .withContext('Expected margin-bottom to be ""')
+      .toBe('');
+    expect(overlayPaneEl.style.marginTop)
+      .withContext('Expected margin-top to be "0px"')
+      .toBe('0px');
+    expect(overlayPaneEl.style.marginRight).withContext('Expected margin-right to be ""').toBe('');
+    expect(overlayPaneEl.style.marginLeft).withContext('Expected margin-left  to be ""').toBe('');
   }));
 });
 

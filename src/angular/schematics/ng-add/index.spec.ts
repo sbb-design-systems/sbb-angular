@@ -322,19 +322,17 @@ describe('ngAdd', () => {
 
     await runner.runSchematicAsync('ng-add', {}, tree).toPromise();
 
-    expect(runner.tasks.some((task) => (task.options as any)!.name === 'ng-add-migrate')).toBe(
-      true,
-      'Expected the ng-add-migrate schematic to be scheduled.'
-    );
+    expect(runner.tasks.some((task) => (task.options as any)!.name === 'ng-add-migrate'))
+      .withContext('Expected the ng-add-migrate schematic to be scheduled.')
+      .toBe(true);
   });
 
   it('should not execute migration from public, business and core', async () => {
     await runner.runSchematicAsync('ng-add', {}, tree).toPromise();
 
-    expect(runner.tasks.some((task) => (task.options as any)!.name === 'ng-add-migrate')).toBe(
-      false,
-      'Expected the ng-add-migrate schematic not to be scheduled.'
-    );
+    expect(runner.tasks.some((task) => (task.options as any)!.name === 'ng-add-migrate'))
+      .withContext('Expected the ng-add-migrate schematic not to be scheduled.')
+      .toBe(false);
   });
 
   it('should not execute migration from public, business and core if major versions are not 12', async () => {
@@ -342,9 +340,8 @@ describe('ngAdd', () => {
 
     await runner.runSchematicAsync('ng-add', {}, tree).toPromise();
 
-    expect(runner.tasks.some((task) => (task.options as any)!.name === 'ng-add-migrate')).toBe(
-      false,
-      'Expected the ng-add-migrate schematic not to be scheduled.'
-    );
+    expect(runner.tasks.some((task) => (task.options as any)!.name === 'ng-add-migrate'))
+      .withContext('Expected the ng-add-migrate schematic not to be scheduled.')
+      .toBe(false);
   });
 });

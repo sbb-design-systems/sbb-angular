@@ -226,10 +226,9 @@ describe('SbbTooltip', () => {
       const overlayRef = tooltipDirective._overlayRef;
 
       expect(!!overlayRef).toBeTruthy();
-      expect(overlayRef!.overlayElement.classList).toContain(
-        'sbb-tooltip-panel',
-        'Expected the overlay panel element to have the tooltip panel class set.'
-      );
+      expect(overlayRef!.overlayElement.classList)
+        .withContext('Expected the overlay panel element to have the tooltip panel class set.')
+        .toContain('sbb-tooltip-panel');
     }));
 
     it('should not show if disabled', fakeAsync(() => {
@@ -376,14 +375,12 @@ describe('SbbTooltip', () => {
 
       // Make sure classes are correctly added
       tooltipElement = overlayContainerElement.querySelector('.sbb-tooltip') as HTMLElement;
-      expect(tooltipElement.classList).toContain(
-        'custom-one',
-        'Expected to have the class after enabling sbbTooltipClass'
-      );
-      expect(tooltipElement.classList).toContain(
-        'custom-two',
-        'Expected to have the class after enabling sbbTooltipClass'
-      );
+      expect(tooltipElement.classList)
+        .withContext('Expected to have the class after enabling sbbTooltipClass')
+        .toContain('custom-one');
+      expect(tooltipElement.classList)
+        .withContext('Expected to have the class after enabling sbbTooltipClass')
+        .toContain('custom-two');
     }));
 
     it('should be removed after parent destroyed', fakeAsync(() => {
@@ -482,7 +479,9 @@ describe('SbbTooltip', () => {
       )!;
 
       expect(tooltipWrapper).toBeTruthy('Expected tooltip to be shown.');
-      expect(tooltipWrapper.getAttribute('dir')).toBe('rtl', 'Expected tooltip to be in RTL mode.');
+      expect(tooltipWrapper.getAttribute('dir'))
+        .withContext('Expected tooltip to be in RTL mode.')
+        .toBe('rtl');
     }));
 
     it('should be able to set the tooltip message as a number', fakeAsync(() => {
@@ -739,27 +738,24 @@ describe('SbbTooltip', () => {
       tick(0);
 
       // Expect that the tooltip is displayed
-      expect(tooltipDirective._isTooltipVisible()).toBe(
-        true,
-        'Expected tooltip to be initially visible'
-      );
+      expect(tooltipDirective._isTooltipVisible())
+        .withContext('Expected tooltip to be initially visible')
+        .toBe(true);
 
       // Scroll the page but tick just before the default throttle should update.
       fixture.componentInstance.scrollDown();
       tick(SCROLL_THROTTLE_MS - 1);
-      expect(tooltipDirective._isTooltipVisible()).toBe(
-        true,
-        'Expected tooltip to be visible when scrolling, before throttle limit'
-      );
+      expect(tooltipDirective._isTooltipVisible())
+        .withContext('Expected tooltip to be visible when scrolling, before throttle limit')
+        .toBe(true);
 
       // Finish ticking to the throttle's limit and check that the scroll event notified the
       // tooltip and it was hidden.
       tick(100);
       fixture.detectChanges();
-      expect(tooltipDirective._isTooltipVisible()).toBe(
-        false,
-        'Expected tooltip hidden when scrolled out of view, after throttle limit'
-      );
+      expect(tooltipDirective._isTooltipVisible())
+        .withContext('Expected tooltip hidden when scrolled out of view, after throttle limit')
+        .toBe(false);
     }));
 
     it('should execute the `hide` call, after scrolling away, inside the NgZone', fakeAsync(() => {

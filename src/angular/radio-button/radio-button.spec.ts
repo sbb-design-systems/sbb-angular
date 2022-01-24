@@ -414,10 +414,9 @@ describe('RadioButton', () => {
 
       fixture.detectChanges();
 
-      expect(groupInstance.selected).toBe(
-        radioInstances[0],
-        'expect group selected to be first button'
-      );
+      expect(groupInstance.selected)
+        .withContext('expect group selected to be first button')
+        .toBe(radioInstances[0]);
       expect(radioInstances[0].checked).toBeTruthy('expect group select the first button');
       expect(radioInstances[1].checked).toBeFalsy('should not select the second button');
       expect(radioInstances[2].checked).toBeFalsy('should not select the third button');
@@ -470,19 +469,17 @@ describe('RadioButton', () => {
     it('should update the name of radio DOM elements if the name of the group changes', () => {
       const nodes: HTMLInputElement[] = innerRadios.map((radio) => radio.nativeElement);
 
-      expect(nodes.every((radio) => radio.getAttribute('name') === groupInstance.name)).toBe(
-        true,
-        'Expected all radios to have the initial name.'
-      );
+      expect(nodes.every((radio) => radio.getAttribute('name') === groupInstance.name))
+        .withContext('Expected all radios to have the initial name.')
+        .toBe(true);
 
       fixture.componentInstance.groupName = 'changed-name';
       fixture.detectChanges();
 
       expect(groupInstance.name).toBe('changed-name');
-      expect(nodes.every((radio) => radio.getAttribute('name') === groupInstance.name)).toBe(
-        true,
-        'Expected all radios to have the new name.'
-      );
+      expect(nodes.every((radio) => radio.getAttribute('name') === groupInstance.name))
+        .withContext('Expected all radios to have the new name.')
+        .toBe(true);
     });
 
     it('should check the corresponding radio button on group value change', () => {
@@ -791,15 +788,16 @@ describe('RadioButton', () => {
       const radioButtonInput = fixture.debugElement.query(By.css('.sbb-radio-button input'))!
         .nativeElement as HTMLInputElement;
 
-      expect(radioButtonInput.tabIndex).toBe(
-        0,
-        'Expected the tabindex to be set to "0" by default.'
-      );
+      expect(radioButtonInput.tabIndex)
+        .withContext('Expected the tabindex to be set to "0" by default.')
+        .toBe(0);
 
       fixture.componentInstance.tabIndex = 4;
       fixture.detectChanges();
 
-      expect(radioButtonInput.tabIndex).toBe(4, 'Expected the tabindex to be set to "4".');
+      expect(radioButtonInput.tabIndex)
+        .withContext('Expected the tabindex to be set to "4".')
+        .toBe(4);
     });
 
     it('should remove the tabindex from the host element', () => {

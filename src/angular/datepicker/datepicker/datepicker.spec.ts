@@ -312,13 +312,17 @@ describe('SbbDatepicker', () => {
         testComponent.datepicker.open();
         fixture.detectChanges();
 
-        expect(testComponent.datepicker.opened).toBe(true, 'Expected datepicker to be open.');
+        expect(testComponent.datepicker.opened)
+          .withContext('Expected datepicker to be open.')
+          .toBe(true);
 
         dispatchKeyboardEvent(document.body, 'keydown', ESCAPE);
         fixture.detectChanges();
         flush();
 
-        expect(testComponent.datepicker.opened).toBe(false, 'Expected datepicker to be closed.');
+        expect(testComponent.datepicker.opened)
+          .withContext('Expected datepicker to be closed.')
+          .toBe(false);
       }));
 
       it('should set the proper role on the popup', fakeAsync(() => {
@@ -395,10 +399,9 @@ describe('SbbDatepicker', () => {
 
       it('should attach popup to native input', () => {
         const attachToRef = testComponent.datepickerInput.getConnectedOverlayOrigin();
-        expect(attachToRef.nativeElement.tagName.toLowerCase()).toBe(
-          'input',
-          'popup should be attached to native input'
-        );
+        expect(attachToRef.nativeElement.tagName.toLowerCase())
+          .withContext('popup should be attached to native input')
+          .toBe('input');
       });
 
       it('input should aria-owns calendar after opened in non-touch mode', fakeAsync(() => {
@@ -686,7 +689,7 @@ describe('SbbDatepicker', () => {
         fixture.detectChanges();
 
         toggle.focus();
-        expect(document.activeElement).toBe(toggle, 'Expected toggle to be focused.');
+        expect(document.activeElement).withContext('Expected toggle to be focused.').toBe(toggle);
 
         fixture.componentInstance.datepicker.open();
         fixture.detectChanges();
@@ -695,15 +698,16 @@ describe('SbbDatepicker', () => {
         const pane = document.querySelector('.cdk-overlay-pane')!;
 
         expect(pane).toBeTruthy('Expected calendar to be open.');
-        expect(pane.contains(document.activeElement)).toBe(
-          true,
-          'Expected focus to be inside the calendar.'
-        );
+        expect(pane.contains(document.activeElement))
+          .withContext('Expected focus to be inside the calendar.')
+          .toBe(true);
 
         fixture.componentInstance.datepicker.close();
         fixture.detectChanges();
 
-        expect(document.activeElement).toBe(toggle, 'Expected focus to be restored to toggle.');
+        expect(document.activeElement)
+          .withContext('Expected focus to be restored to toggle.')
+          .toBe(toggle);
       });
 
       it('should toggle the active state of the datepicker toggle', fakeAsync(() => {
@@ -806,7 +810,9 @@ describe('SbbDatepicker', () => {
         (fixture.componentInstance.datepicker as any)._focusedElementBeforeOpen = input;
 
         // Ensure that the datepicker is actually open.
-        expect(testComponent.datepicker.opened).toBe(true, 'Expected datepicker to be open.');
+        expect(testComponent.datepicker.opened)
+          .withContext('Expected datepicker to be open.')
+          .toBe(true);
 
         // Close the datepicker.
         testComponent.datepicker.close();
@@ -819,7 +825,9 @@ describe('SbbDatepicker', () => {
         // Flush out the scheduled tasks.
         flush();
 
-        expect(testComponent.datepicker.opened).toBe(false, 'Expected datepicker to be closed.');
+        expect(testComponent.datepicker.opened)
+          .withContext('Expected datepicker to be closed.')
+          .toBe(false);
       }));
     });
 
