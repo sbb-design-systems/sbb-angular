@@ -292,10 +292,20 @@ export abstract class SbbPaginatedTabHeader
     const labelAfterPos = labelBeforePos + offsetWidth;
 
     if (labelBeforePos < containerElement.scrollLeft) {
-      containerElement.scrollTo({ left: labelBeforePos - 20, behavior: 'smooth' });
+      containerElement.scrollTo({ left: labelBeforePos, behavior: 'smooth' });
     } else if (viewLength + containerElement.scrollLeft < labelAfterPos) {
-      containerElement.scrollTo({ left: labelAfterPos - viewLength + 20, behavior: 'smooth' });
+      containerElement.scrollTo({ left: labelAfterPos - viewLength, behavior: 'smooth' });
     }
+  }
+
+  /**
+   * Determines what is the maximum length in pixels that can be set for the scroll distance. This
+   * is equal to the difference in width between the tab list container and tab header container.
+   */
+  _getMaxScrollDistance(): number {
+    const lengthOfTabList = this._tabList.nativeElement.scrollWidth;
+    const viewLength = this._tabListContainer.nativeElement.offsetWidth;
+    return lengthOfTabList - viewLength || 0;
   }
 
   /**
