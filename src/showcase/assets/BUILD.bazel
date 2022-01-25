@@ -26,6 +26,7 @@ package_docs_content_legacy(
     srcs = {
         # Package the overviews into the docs content
         "//src/angular-maps:overviews": "overviews/angular-maps",
+        "//src/angular-experimental:overviews": "overviews/angular-experimental",
         "//src/angular:overviews": "overviews/angular",
 
         # In order to be able to run examples in StackBlitz, we also want to package the

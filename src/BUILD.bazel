@@ -1,5 +1,6 @@
 load("@npm//@bazel/typescript:index.bzl", "ts_config")
 load("//src/angular:config.bzl", "ANGULAR_ENTRYPOINTS", "ANGULAR_TESTING_ENTRYPOINTS")
+load("//src/angular-experimental:config.bzl", "EXPERIMENTAL_ENTRYPOINTS", "EXPERIMENTAL_TESTING_ENTRYPOINTS")
 load("//src/angular-maps:config.bzl", "MAPS_ENTRYPOINTS", "MAPS_TESTING_ENTRYPOINTS")
 load("//tools:defaults.bzl", "ts_library")
 load("//tools/dgeni:index.bzl", "dgeni_api_docs")
@@ -20,10 +21,13 @@ ts_config(
 
 angular_api_entry_points = ANGULAR_ENTRYPOINTS + ANGULAR_TESTING_ENTRYPOINTS
 
+angular_experimental_api_entry_points = EXPERIMENTAL_ENTRYPOINTS + EXPERIMENTAL_TESTING_ENTRYPOINTS
+
 maps_api_entry_points = MAPS_ENTRYPOINTS + MAPS_TESTING_ENTRYPOINTS
 
 # List that contains all source files that need to be processed by Dgeni.
 api_source_files = ["//src/angular/%s:source-files" % name for name in angular_api_entry_points] + \
+                   ["//src/angular-experimental/%s:source-files" % name for name in angular_experimental_api_entry_points] + \
                    ["//src/angular-maps/%s:source-files" % name for name in maps_api_entry_points]
 
 dgeni_api_docs(
@@ -41,6 +45,7 @@ dgeni_api_docs(
     ],
     entry_points = {
         "angular": angular_api_entry_points,
+        "angular-experimental": angular_experimental_api_entry_points,
         "angular-maps": maps_api_entry_points,
     },
     tags = ["docs-package"],

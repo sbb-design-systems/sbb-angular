@@ -26,6 +26,7 @@ ng_module(
         "//src/angular/radio-button",
         "//src/angular/sidebar",
         "//src/showcase/app/angular",
+        "//src/showcase/app/angular-experimental",
         "//src/showcase/app/maps",
         "//src/showcase/app/shared",
         "@npm//@angular/cdk",

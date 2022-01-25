@@ -44,6 +44,7 @@ ALL_EXAMPLES = [
     "//src/components-examples/angular/toggle",
     "//src/components-examples/angular/tooltip",
     "//src/components-examples/angular/usermenu",
+    "//src/components-examples/angular-experimental/example",
     "//src/components-examples/angular-maps/esri-basemap-gallery",
     "//src/components-examples/angular-maps/esri-layer-list",
     "//src/components-examples/angular-maps/esri-legend",

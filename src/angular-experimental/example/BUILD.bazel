@@ -1,0 +1,28 @@
+load(
+    "//tools:defaults.bzl",
+    "markdown_to_html",
+    "ng_module",
+)
+
+package(default_visibility = ["//visibility:public"])
+
+ng_module(
+    name = "example",
+    srcs = glob(
+        ["**/*.ts"],
+        exclude = ["**/*.spec.ts"],
+    ),
+    deps = [
+        "@npm//@angular/core",
+    ],
+)
+
+markdown_to_html(
+    name = "overview",
+    srcs = [":example.md"],
+)
+
+filegroup(
+    name = "source-files",
+    srcs = glob(["**/*.ts"]),
+)

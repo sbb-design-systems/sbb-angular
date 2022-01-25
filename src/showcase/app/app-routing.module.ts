@@ -23,6 +23,13 @@ const routes: Routes = [
         loadChildren: () => import('./angular/angular.module').then((m) => m.AngularModule),
       },
       {
+        path: 'angular-experimental',
+        loadChildren: () =>
+          import('./angular-experimental/angular-experimental.module').then(
+            (m) => m.AngularExperimentalModule
+          ),
+      },
+      {
         path: 'angular-maps',
         loadChildren: () => import('./maps/maps.module').then((m) => m.MapsModule),
       },

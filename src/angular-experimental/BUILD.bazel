@@ -1,0 +1,48 @@
+load(
+    "//src/angular-experimental:config.bzl",
+    "EXPERIMENTAL_ENTRYPOINTS",
+    "EXPERIMENTAL_MARKDOWN_TARGETS",
+    "EXPERIMENTAL_TARGETS",
+    "EXPERIMENTAL_TESTING_TARGETS",
+)
+load(
+    "//tools:defaults.bzl",
+    "markdown_to_html",
+    "ng_module",
+    "ng_package",
+)
+
+package(default_visibility = ["//visibility:public"])
+
+# Root "@sbb-esta/angular-experimental" entry-point.
+ng_module(
+    name = "angular-experimental",
+    srcs = glob(
+        ["*.ts"],
+        exclude = ["**/*.spec.ts"],
+    ),
+    deps = ["//src/angular-experimental/%s" % p for p in EXPERIMENTAL_ENTRYPOINTS],
+)
+
+markdown_to_html(
+    name = "overview",
+    srcs = glob(["*.md"]),
+)
+
+filegroup(
+    name = "overviews",
+    srcs = [":overview"] + ["//src/angular-experimental/%s:overview" % name for name in EXPERIMENTAL_MARKDOWN_TARGETS],
+)
+
+# Creates the @sbb-esta/angular-experimental package published to npm.
+ng_package(
+    name = "npm_package",
+    srcs = [
+        "package.json",
+    ],
+    data = [
+    ],
+    nested_packages = ["//src/angular-experimental/schematics:npm_package"],
+    tags = ["release-package"],
+    deps = EXPERIMENTAL_TARGETS + EXPERIMENTAL_TESTING_TARGETS,
+)

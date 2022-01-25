@@ -105,6 +105,22 @@ export const PACKAGES: { [key: string]: ShowcaseMetaPackage } = {
       },
     ],
   },
+  'angular-experimental': {
+    name: '@sbb-esta/angular-experimental',
+    svgIcon: 'kom:cloud-lightning-small',
+    image: 'assets/websites.jpg',
+    description: 'Experimental components which can be used for websites and webapps.',
+    sections: [
+      {
+        name: 'Introduction',
+        entries: [{ label: 'Getting started', link: './introduction/getting-started' }],
+      },
+      {
+        name: 'Modules',
+        entries: [{ label: 'Example', link: './components/example' }],
+      },
+    ],
+  },
   'angular-maps': {
     name: '@sbb-esta/angular-maps',
     svgIcon: 'kom:location-pin-map-small',
