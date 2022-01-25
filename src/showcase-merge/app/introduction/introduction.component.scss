@@ -59,7 +59,7 @@
 
         .hero img {
           max-width: 100%;
-          transition: all transform var(--sbb-transition-duration-default) ease;
+          transition: transform var(--sbb-transition-duration-default) ease;
         }
 
         .hero:hover img {

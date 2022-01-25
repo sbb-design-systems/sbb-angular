@@ -118,6 +118,7 @@
   --sbb-font-size: var(--sbb-font-size-constant);
   --sbb-line-height-constant: #{pxToRem($sizeLineHeightDefault)};
   --sbb-line-height: var(--sbb-line-height-constant);
+  --sbb-line-height-root: #{$sizeLineHeightBase};
   --sbb-font-size-small: #{pxToRem(13)};
   --sbb-line-height-small: #{pxToRem(20)};
   --sbb-line-height-medium: #{pxToRem(23)};
@@ -406,6 +407,7 @@
     // Sizings
     --sbb-border-width: #{pxToRem(1)};
     --sbb-line-height: #{pxToRem($sizeLineHeightDefaultLean)};
+    --sbb-line-height-root: #{math.div($sizeLineHeightDefaultLean, 15)}; // 15 = $sizeFontBase without unit
     --sbb-line-height-medium: #{pxToRem(20)};
     --sbb-font-size-large: #{pxToRem(21)};
 
@@ -486,7 +488,7 @@
   // !important is required, as arcgis defines its own font-family and we need to overwrite it.
   font-family: var(--sbb-font-roman) !important;
   font-size: math.div($sizeFontBase, 16px) * 100%;
-  line-height: var(--sbb-line-height);
+  line-height: var(--sbb-line-height-root);
 
   @include fontSmoothing;
 
@@ -1005,6 +1007,7 @@ textarea {
   margin: 0;
   min-width: 0;
   font-size: var(--sbb-font-size);
+  line-height: var(--sbb-line-height);
   border: var(--sbb-border-width-thin) solid var(--sbb-color-silver);
   padding: var(--sbb-divider-medium) calc(var(--sbb-divider-small) - var(--sbb-border-width-thin));
 
@@ -1020,8 +1023,8 @@ textarea {
     padding: 0;
     font-family: var(--sbb-font-light);
     font-weight: 400;
-    line-height: 1.2;
     font-size: pxToRem(24);
+    line-height: 1.2;
     margin: 0 0 var(--sbb-divider-small);
     float: left;
 

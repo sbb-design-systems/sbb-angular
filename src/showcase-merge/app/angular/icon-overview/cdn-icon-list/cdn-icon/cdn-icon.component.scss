@@ -12,6 +12,7 @@
 .sbb-svg-icon-path {
   display: block;
   text-align: center;
-  font-size: 12px;
+  font-size: 0.8em;
+  line-height: var(--sbb-line-height-small);
   @include ellipsis();
 }
