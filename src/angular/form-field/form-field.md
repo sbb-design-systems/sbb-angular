@@ -33,6 +33,19 @@ With label attribute:
 </sbb-form-field>
 ```
 
+### Form field groups
+
+We provide utility CSS classes to group from fields together (optionally with a submit button).
+
+| Class                      | Description                                                                                                          |
+| -------------------------- | -------------------------------------------------------------------------------------------------------------------- |
+| `.sbb-form-group`          | Groups `sbb-form-group` elements and buttons (optionally) horizontally.                                              |
+| `.sbb-form-group-center`   | Same as `.sbb-form-group`; additionally centers the elements.                                                        |
+| `.sbb-form-group-wrap`     | Same as `.sbb-form-group`; additionally wraps elements when they exceed the parent width.                            |
+| `.sbb-form-group-vertical` | Groups `sbb-form-group` elements and buttons (optionally) vertically. Can be combined with `.sbb-form-group-center`. |
+
+It is possible to combine these classes as required.
+
 ### Error messages
 
 Error messages can be shown under the form field by adding `sbb-error` elements inside the

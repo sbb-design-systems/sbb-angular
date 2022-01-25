@@ -3,16 +3,7 @@
 .sbb-form-field {
   display: inline-block;
   position: relative;
-  width: pxToRem(320);
-
-  :where(html:not(.sbb-lean)) & {
-    @include mq($from: desktop4k) {
-      width: pxToRem(400);
-    }
-  }
-  :where(html.sbb-lean) & {
-    width: pxToRem(230);
-  }
+  width: var(--sbb-form-field-width);
 }
 
 // Variant for .sbb-form-field
@@ -55,13 +46,8 @@
 }
 
 .sbb-form-field-label-wrapper {
-  margin-bottom: calc(#{pxToRem(5)} * var(--sbb-scaling-factor));
-  padding-left: calc(#{pxToRem(10)} * var(--sbb-scaling-factor));
-
-  :where(html.sbb-lean) & {
-    margin-bottom: pxToRem(3);
-    padding-left: 0;
-  }
+  margin-bottom: var(--sbb-form-label-wrapper-margin-bottom);
+  padding-left: var(--sbb-form-label-wrapper-padding-left);
 }
 
 // The element of the input
@@ -131,8 +117,54 @@
   }
 }
 
+// All form groups should use display flex and the same gap
+.sbb-form-group,
+.sbb-form-group-center,
+.sbb-form-group-wrap,
 .sbb-form-group-vertical {
   display: flex;
+  gap: var(--sbb-divider-thin);
+}
+
+// Align items inside a form group to the top
+:is(.sbb-form-group, .sbb-form-group-center, .sbb-form-group-wrap) {
+  align-items: flex-start;
+}
+
+// Utility class for form group, which wraps the elements (default does not wrap)
+.sbb-form-group-wrap {
+  flex-wrap: wrap;
+}
+
+// Utility class for form group to center the elements (default aligns left)
+.sbb-form-group-center {
+  justify-content: center;
+}
+
+// Buttons need to be vertically indented to align with the inputs
+:is(.sbb-form-group, .sbb-form-group-center, .sbb-form-group-wrap):where(:not(.sbb-form-group-vertical))
+  :is(.sbb-button, .sbb-alt-button, .sbb-secondary-button, .sbb-ghost-button, .sbb-icon-button) {
+  margin-top: calc(var(--sbb-form-label-line-height) + var(--sbb-form-label-wrapper-margin-bottom));
+}
+
+// Utility class for vertical form groups
+.sbb-form-group-vertical {
   flex-direction: column;
-  row-gap: calc(#{pxToRem(8)} * var(--sbb-scaling-factor));
+
+  &.sbb-form-group-center {
+    justify-content: inherit;
+    align-items: center;
+  }
+}
+
+// Align button width with the input width
+.sbb-form-group-vertical
+  :is(.sbb-button, .sbb-alt-button, .sbb-secondary-button, .sbb-ghost-button, .sbb-icon-button) {
+  width: var(--sbb-form-field-width);
+
+  :where(html:not(.sbb-lean)) & .sbb-button-right-icon {
+    // Reset right assignment of the right icon, since we manipulate the width of the button and
+    // the icon should be aligned right to the text.
+    right: unset !important;
+  }
 }
