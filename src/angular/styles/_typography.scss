@@ -146,6 +146,7 @@
   --sbb-breadcrumb-trigger-padding-vertical: calc(#{pxToRem(14)} * var(--sbb-scaling-factor));
 
   // Button
+  --sbb-button-height: calc(#{pxToRem(48)} * var(--sbb-scaling-factor));
   --sbb-button-icon-top-margin: calc(#{pxToRem(-12.5)} * var(--sbb-scaling-factor));
 
   // Chips
@@ -194,9 +195,13 @@
   // Forms
   --sbb-form-background-color-readonly: var(--sbb-color-milk);
   --sbb-form-border-color-readonly: var(--sbb-color-aluminum);
+  --sbb-form-field-width: #{pxToRem(320)};
   --sbb-form-input-color: var(--sbb-color-weak-accent);
   --sbb-form-input-color-disabled: var(--sbb-color-grey);
   --sbb-form-input-min-height: calc(#{pxToRem(48)} * var(--sbb-scaling-factor));
+  --sbb-form-label-line-height: calc(#{pxToRem(16)} * var(--sbb-scaling-factor));
+  --sbb-form-label-wrapper-margin-bottom: calc(#{pxToRem(5)} * var(--sbb-scaling-factor));
+  --sbb-form-label-wrapper-padding-left: calc(#{pxToRem(10)} * var(--sbb-scaling-factor));
 
   // Expansion Panel
   --sbb-expansion-panel-padding-horizontal: #{pxToRem(24)};
@@ -370,6 +375,9 @@
       // Expansion Panel
       --sbb-expansion-panel-header-padding-top: #{pxToRem(51)};
       --sbb-expansion-panel-header-padding-bottom: #{pxToRem(54)};
+
+      // Forms
+      --sbb-form-field-width: #{pxToRem(400)};
     }
     @include mq($from: desktop5k) {
       // Scaling
@@ -411,6 +419,9 @@
     --sbb-line-height-medium: #{pxToRem(20)};
     --sbb-font-size-large: #{pxToRem(21)};
 
+    // Button
+    --sbb-button-height: #{pxToRem(36)};
+
     // Datepicker
     --sbb-datepicker-toggle-or-arrows-padding: calc(#{pxToRem(38)} - var(--sbb-border-width));
     --sbb-datepicker-toggle-and-arrows-padding: calc(#{pxToRem(62)} - var(--sbb-border-width));
@@ -431,7 +442,10 @@
     // Forms
     --sbb-form-background-color-readonly: transparent;
     --sbb-form-border-color-readonly: transparent;
+    --sbb-form-field-width: #{pxToRem(230)};
     --sbb-form-input-min-height: #{pxToRem(36)};
+    --sbb-form-label-wrapper-margin-bottom: #{pxToRem(3)};
+    --sbb-form-label-wrapper-padding-left: 0rem;
 
     // Notification
     --sbb-notification-message-padding: #{pxToRem(11)};
@@ -1163,6 +1177,8 @@ textarea {
 :is(.sbb-button, .sbb-alt-button, .sbb-secondary-button, .sbb-ghost-button, .sbb-icon-button) {
   @include ellipsis;
   width: 100%;
+  // We need to explicitely define the button height, due to rounding issues in Firefox
+  height: var(--sbb-button-height);
   background: none;
   max-width: none;
   min-width: 0;
@@ -1828,7 +1844,7 @@ textarea {
   background-color: transparent;
   font-family: var(--sbb-font-roman);
   font-size: var(--sbb-font-size-small);
-  line-height: calc(#{pxToRem(16)} * var(--sbb-scaling-factor));
+  line-height: var(--sbb-form-label-line-height);
   color: var(--sbb-color-grey);
   display: block;
 }
