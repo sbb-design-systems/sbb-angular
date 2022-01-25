@@ -385,6 +385,10 @@ export abstract class _SbbTooltipBase<T extends _TooltipComponentBase>
       );
     }
     this._tooltipInstance
+      .afterShown()
+      .pipe(takeUntil(this._destroyed))
+      .subscribe(() => this.opened.emit(new SbbTooltipChangeEvent(this)));
+    this._tooltipInstance
       .afterHidden()
       .pipe(takeUntil(this._destroyed))
       .subscribe(() => {
@@ -406,7 +410,6 @@ export abstract class _SbbTooltipBase<T extends _TooltipComponentBase>
       this._tooltipInstance._config = undefined;
       this._tooltipInstance._triggeredByClick = false;
     }
-    this.opened.emit(new SbbTooltipChangeEvent(this));
     this._tooltipInstance!.show(delay);
   }
 
@@ -817,6 +820,9 @@ export abstract class _TooltipComponentBase implements OnDestroy {
   /** Element that was focused before the tooltip was opened. Save this to restore upon close. */
   private _elementFocusedBeforeDialogWasOpened: HTMLElement | null = null;
 
+  /** Subject for notifying that the tooltip has been shown in the view */
+  private readonly _onShow: Subject<void> = new Subject<void>();
+
   /** Subject for notifying that the tooltip has been hidden from the view */
   private readonly _onHide: Subject<void> = new Subject<void>();
 
@@ -871,6 +877,11 @@ export abstract class _TooltipComponentBase implements OnDestroy {
     }, delay);
   }
 
+  /** Returns an observable that notifies when the tooltip has been shown in the view. */
+  afterShown(): Observable<void> {
+    return this._onShow;
+  }
+
   /** Returns an observable that notifies when the tooltip has been hidden from view. */
   afterHidden(): Observable<void> {
     return this._onHide;
@@ -884,6 +895,7 @@ export abstract class _TooltipComponentBase implements OnDestroy {
   ngOnDestroy() {
     clearTimeout(this._showTimeoutId);
     clearTimeout(this._hideTimeoutId);
+    this._onShow.complete();
     this._onHide.complete();
   }
 
@@ -896,6 +908,10 @@ export abstract class _TooltipComponentBase implements OnDestroy {
 
     if (toState === 'visible' && this.isVisible() && this._config) {
       this._trapFocus();
+    }
+
+    if (toState === 'visible' && this.isVisible()) {
+      this._onShow.next();
     }
 
     if (toState === 'hidden' && !this.isVisible()) {
