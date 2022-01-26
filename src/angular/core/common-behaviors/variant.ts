@@ -28,7 +28,6 @@ export function mixinVariant<T extends Constructor<any>>(base: T): Constructor<H
     }
 
     get isStandardVariant(): boolean {
-      console.log('variant', ɵvariant.value);
       return ɵvariant.value === 'standard';
     }
 
