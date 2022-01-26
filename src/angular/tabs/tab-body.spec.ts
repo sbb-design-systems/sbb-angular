@@ -12,6 +12,8 @@ import {
 import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
+import { SbbIconModule } from '@sbb-esta/angular/icon';
+import { SbbIconTestingModule } from '@sbb-esta/angular/icon/testing';
 import { Subject } from 'rxjs';
 
 import { SbbTabBody, SbbTabBodyPortal } from './tab-body';
@@ -24,7 +26,13 @@ describe('SbbTabBody', () => {
     waitForAsync(() => {
       dir = 'ltr';
       TestBed.configureTestingModule({
-        imports: [CommonModule, PortalModule, NoopAnimationsModule],
+        imports: [
+          CommonModule,
+          PortalModule,
+          NoopAnimationsModule,
+          SbbIconTestingModule,
+          SbbIconModule,
+        ],
         declarations: [SbbTabBody, SbbTabBodyPortal, SimpleTabBodyApp],
         providers: [
           { provide: Directionality, useFactory: () => ({ value: dir, change: dirChange }) },
@@ -139,7 +147,14 @@ describe('SbbTabBody', () => {
   it('should mark the tab body content as a scrollable container', () => {
     TestBed.resetTestingModule()
       .configureTestingModule({
-        imports: [CommonModule, PortalModule, NoopAnimationsModule, ScrollingModule],
+        imports: [
+          CommonModule,
+          PortalModule,
+          NoopAnimationsModule,
+          ScrollingModule,
+          SbbIconModule,
+          SbbIconTestingModule,
+        ],
         declarations: [SbbTabBody, SbbTabBodyPortal, SimpleTabBodyApp],
       })
       .compileComponents();

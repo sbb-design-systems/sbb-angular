@@ -1,4 +1,4 @@
-<nav sbb-tab-nav-bar aria-label="Documentation Sections">
+<nav sbb-tab-nav-bar aria-label="Documentation Sections" [tabPanel]="tabPanel">
   <a
     *ngFor="let section of sections"
     sbb-tab-link
@@ -10,7 +10,7 @@
   >
 </nav>
 
-<div class="sbb-tab-nav-bar-body">
+<sbb-tab-nav-panel #tabPanel>
   <sbb-variant-limitation [showcaseMetaEntry]="showcaseMetaEntry | async"></sbb-variant-limitation>
   <router-outlet></router-outlet>
-</div>
+</sbb-tab-nav-panel>

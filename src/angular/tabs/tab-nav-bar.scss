@@ -41,7 +41,7 @@
 }
 
 // The bottom section of the view; contains the tab bodies
-.sbb-tab-nav-bar-body {
+:is(.sbb-tab-nav-panel, .sbb-tab-nav-bar-body) {
   @include tab-body-wrapper;
 
   :where(html.sbb-lean) & {

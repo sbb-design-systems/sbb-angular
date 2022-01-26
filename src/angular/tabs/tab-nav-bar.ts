@@ -1,5 +1,7 @@
 import { FocusableOption, FocusMonitor } from '@angular/cdk/a11y';
 import { BooleanInput, coerceBooleanProperty } from '@angular/cdk/coercion';
+import { SPACE } from '@angular/cdk/keycodes';
+import { Platform } from '@angular/cdk/platform';
 import { ViewportRuler } from '@angular/cdk/scrolling';
 import {
   AfterContentChecked,
@@ -28,6 +30,9 @@ import { startWith, takeUntil } from 'rxjs/operators';
 
 import { SbbPaginatedTabHeader, SbbPaginatedTabHeaderItem } from './paginated-tab-header';
 
+// Increasing integer for generating unique ids for tab nav components.
+let nextUniqueId = 0;
+
 /**
  * Base class with all of the `SbbTabNav` functionality.
  * @docs-private
@@ -39,16 +44,24 @@ export abstract class _SbbTabNavBase
   implements AfterContentChecked, AfterContentInit, OnDestroy
 {
   /** Query list of all tab links of the tab navigation. */
-  abstract override _items: QueryList<SbbPaginatedTabHeaderItem & { active: boolean }>;
+  abstract override _items: QueryList<SbbPaginatedTabHeaderItem & { active: boolean; id: string }>;
+
+  /**
+   * Associated tab panel controlled by the nav bar. If not provided, then the nav bar
+   * follows the ARIA link / navigation landmark pattern. If provided, it follows the
+   * ARIA tabs design pattern.
+   */
+  @Input() tabPanel?: SbbTabNavPanel;
 
   constructor(
     elementRef: ElementRef,
     ngZone: NgZone,
     changeDetectorRef: ChangeDetectorRef,
     viewportRuler: ViewportRuler,
+    platform: Platform,
     @Optional() @Inject(ANIMATION_MODULE_TYPE) animationMode?: string
   ) {
-    super(elementRef, changeDetectorRef, viewportRuler, ngZone, animationMode);
+    super(elementRef, changeDetectorRef, viewportRuler, ngZone, platform, animationMode);
   }
 
   protected _itemSelected() {
@@ -77,11 +90,20 @@ export abstract class _SbbTabNavBase
       if (items[i].active) {
         this.selectedIndex = i;
         this._changeDetectorRef.markForCheck();
+
+        if (this.tabPanel) {
+          this.tabPanel._activeTabId = items[i].id;
+        }
+
         return;
       }
     }
 
     this.selectedIndex = -1;
+  }
+
+  _getRole(): string | null {
+    return this.tabPanel ? 'tablist' : this._elementRef.nativeElement.getAttribute('role');
   }
 }
 
@@ -95,7 +117,10 @@ export abstract class _SbbTabNavBase
   templateUrl: 'tab-nav-bar.html',
   styleUrls: ['tab-nav-bar.css'],
   host: {
+    '[attr.role]': '_getRole()',
     class: 'sbb-tab-nav-bar sbb-tab-header',
+    '[class.sbb-tab-header-pagination-controls-enabled]':
+      '_showPaginationControls && isLeanVariant',
   },
   encapsulation: ViewEncapsulation.None,
   // tslint:disable-next-line:validate-decorators
@@ -106,15 +131,19 @@ export class SbbTabNav extends _SbbTabNavBase {
   _items: QueryList<SbbTabLink>;
   @ViewChild('tabListContainer', { static: true }) _tabListContainer: ElementRef;
   @ViewChild('tabList', { static: true }) _tabList: ElementRef;
+  @ViewChild('tabListInner', { static: true }) _tabListInner: ElementRef;
+  @ViewChild('nextPaginator') _nextPaginator: ElementRef<HTMLElement>;
+  @ViewChild('previousPaginator') _previousPaginator: ElementRef<HTMLElement>;
 
   constructor(
     elementRef: ElementRef,
     ngZone: NgZone,
     changeDetectorRef: ChangeDetectorRef,
     viewportRuler: ViewportRuler,
+    platform: Platform,
     @Optional() @Inject(ANIMATION_MODULE_TYPE) animationMode?: string
   ) {
-    super(elementRef, ngZone, changeDetectorRef, viewportRuler, animationMode);
+    super(elementRef, ngZone, changeDetectorRef, viewportRuler, platform, animationMode);
   }
 }
 
@@ -146,6 +175,9 @@ export class _SbbTabLinkBase
     }
   }
 
+  /** Unique id for the tab. */
+  @Input() id: string = `sbb-tab-link-${nextUniqueId++}`;
+
   constructor(
     private _tabNavBar: _SbbTabNavBase,
     /** @docs-private */ public elementRef: ElementRef,
@@ -169,6 +201,48 @@ export class _SbbTabLinkBase
   ngOnDestroy() {
     this._focusMonitor.stopMonitoring(this.elementRef);
   }
+
+  _handleFocus() {
+    // Since we allow navigation through tabbing in the nav bar, we
+    // have to update the focused index whenever the link receives focus.
+    this._tabNavBar.focusIndex = this._tabNavBar._items.toArray().indexOf(this);
+  }
+
+  _handleKeydown(event: KeyboardEvent) {
+    if (this._tabNavBar.tabPanel && event.keyCode === SPACE) {
+      this.elementRef.nativeElement.click();
+    }
+  }
+
+  _getAriaControls(): string | null {
+    return this._tabNavBar.tabPanel
+      ? this._tabNavBar.tabPanel?.id
+      : this.elementRef.nativeElement.getAttribute('aria-controls');
+  }
+
+  _getAriaSelected(): string | null {
+    if (this._tabNavBar.tabPanel) {
+      return this.active ? 'true' : 'false';
+    } else {
+      return this.elementRef.nativeElement.getAttribute('aria-selected');
+    }
+  }
+
+  _getAriaCurrent(): string | null {
+    return this.active && !this._tabNavBar.tabPanel ? 'page' : null;
+  }
+
+  _getRole(): string | null {
+    return this._tabNavBar.tabPanel ? 'tab' : this.elementRef.nativeElement.getAttribute('role');
+  }
+
+  _getTabIndex(): number {
+    if (this._tabNavBar.tabPanel) {
+      return this._isActive ? 0 : -1;
+    } else {
+      return this.tabIndex;
+    }
+  }
 }
 
 /**
@@ -179,12 +253,18 @@ export class _SbbTabLinkBase
   exportAs: 'sbbTabLink',
   inputs: ['disabled', 'tabIndex'],
   host: {
-    class: 'sbb-tab-link sbb-link-reset sbb-focus-indicator',
-    '[attr.aria-current]': 'active ? "page" : null',
+    class: 'sbb-tab-link sbb-link-reset',
+    '[attr.aria-controls]': '_getAriaControls()',
+    '[attr.aria-current]': '_getAriaCurrent()',
     '[attr.aria-disabled]': 'disabled',
-    '[attr.tabIndex]': 'tabIndex',
+    '[attr.aria-selected]': '_getAriaSelected()',
+    '[attr.id]': 'id',
+    '[attr.tabIndex]': '_getTabIndex()',
+    '[attr.role]': '_getRole()',
     '[class.sbb-tab-disabled]': 'disabled',
     '[class.sbb-tab-label-active]': 'active',
+    '(focus)': '_handleFocus()',
+    '(keydown)': '_handleKeydown($event)',
   },
 })
 export class SbbTabLink extends _SbbTabLinkBase {
@@ -196,4 +276,28 @@ export class SbbTabLink extends _SbbTabLinkBase {
   ) {
     super(tabNavBar, elementRef, tabIndex, focusMonitor);
   }
+}
+
+/**
+ * Tab panel component associated with SbbTabNav.
+ */
+@Component({
+  selector: 'sbb-tab-nav-panel',
+  exportAs: 'sbbTabNavPanel',
+  template: '<ng-content></ng-content>',
+  host: {
+    '[attr.aria-labelledby]': '_activeTabId',
+    '[attr.id]': 'id',
+    class: 'sbb-tab-nav-panel',
+    role: 'tabpanel',
+  },
+  encapsulation: ViewEncapsulation.None,
+  changeDetection: ChangeDetectionStrategy.OnPush,
+})
+export class SbbTabNavPanel {
+  /** Unique id for the tab panel. */
+  @Input() id: string = `sbb-tab-nav-panel-${nextUniqueId++}`;
+
+  /** Id of the active tab in the nav bar. */
+  _activeTabId?: string;
 }

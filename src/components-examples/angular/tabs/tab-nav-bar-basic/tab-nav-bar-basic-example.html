@@ -1,4 +1,4 @@
-<nav sbb-tab-nav-bar>
+<nav sbb-tab-nav-bar [tabPanel]="tabPanel">
   <!--
     [routerLink] would be used in a real application, e.g.:
 
@@ -20,7 +20,7 @@
 </nav>
 
 <!-- The wrapping div with the css class 'sbb-tab-nav-bar-body' is only required for the lean design -->
-<div class="sbb-tab-nav-bar-body">
+<sbb-tab-nav-panel #tabPanel>
   <!--
     Use <router-outlet> in a real application:
 
@@ -28,4 +28,4 @@
   -->
 
   <button sbb-button class="example-action-button" (click)="addLink()">Add link</button>
-</div>
+</sbb-tab-nav-panel>

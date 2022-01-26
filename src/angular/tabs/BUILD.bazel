@@ -24,6 +24,7 @@ ng_module(
     ] + glob(["**/*.html"]),
     deps = [
         "//src/angular/core",
+        "//src/angular/icon",
         "@npm//@angular/animations",
         "@npm//@angular/cdk",
         "@npm//@angular/common",
@@ -77,6 +78,8 @@ ng_test_library(
     deps = [
         ":tabs",
         "//src/angular/core/testing",
+        "//src/angular/icon",
+        "//src/angular/icon/testing",
         "@npm//@angular/cdk",
         "@npm//@angular/common",
         "@npm//@angular/platform-browser",

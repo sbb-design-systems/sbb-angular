@@ -1,6 +1,6 @@
 import { LEFT_ARROW } from '@angular/cdk/keycodes';
 import { CommonModule } from '@angular/common';
-import { Component, OnInit, QueryList, ViewChild, ViewChildren } from '@angular/core';
+import { Component, DebugElement, OnInit, QueryList, ViewChild, ViewChildren } from '@angular/core';
 import {
   ComponentFixture,
   fakeAsync,
@@ -15,6 +15,7 @@ import {
   NoopAnimationsModule,
 } from '@angular/platform-browser/animations';
 import { dispatchFakeEvent, dispatchKeyboardEvent } from '@sbb-esta/angular/core/testing';
+import { SbbIconTestingModule } from '@sbb-esta/angular/icon/testing';
 import { Observable } from 'rxjs';
 
 import { SbbTab, SbbTabGroup, SbbTabHeader, SbbTabsModule, SBB_TABS_CONFIG } from './index';
@@ -22,7 +23,7 @@ import { SbbTab, SbbTabGroup, SbbTabHeader, SbbTabsModule, SBB_TABS_CONFIG } fro
 describe('SbbTabGroup', () => {
   beforeEach(fakeAsync(() => {
     TestBed.configureTestingModule({
-      imports: [SbbTabsModule, CommonModule, NoopAnimationsModule],
+      imports: [SbbTabsModule, CommonModule, NoopAnimationsModule, SbbIconTestingModule],
       declarations: [
         SimpleTabsTestApp,
         SimpleDynamicTabsTestApp,
@@ -35,6 +36,9 @@ describe('SbbTabGroup', () => {
         TabGroupWithIsActiveBinding,
         NestedTabs,
         TabGroupWithIndirectDescendantTabs,
+        TabGroupWithSpaceAbove,
+        NestedTabGroupWithLabel,
+        TabsWithClassesTestApp,
       ],
     });
 
@@ -276,16 +280,6 @@ describe('SbbTabGroup', () => {
       subscription.unsubscribe();
     });
 
-    it('should have a focus indicator', () => {
-      const tabLabelNativeElements = [
-        ...fixture.debugElement.nativeElement.querySelectorAll('.sbb-tab-label'),
-      ];
-
-      expect(
-        tabLabelNativeElements.every((el) => el.classList.contains('sbb-focus-indicator'))
-      ).toBe(true);
-    });
-
     it('should emit focusChange when a tab receives focus', fakeAsync(() => {
       spyOn(fixture.componentInstance, 'handleFocus');
       fixture.detectChanges();
@@ -362,11 +356,16 @@ describe('SbbTabGroup', () => {
 
       expect(tab.getAttribute('aria-label')).toBe('Fruit');
       expect(tab.hasAttribute('aria-labelledby')).toBe(false);
+
+      fixture.componentInstance.ariaLabel = 'Veggie';
+      fixture.detectChanges();
+      expect(tab.getAttribute('aria-label')).toBe('Veggie');
     });
   });
 
   describe('disable tabs', () => {
     let fixture: ComponentFixture<DisabledTabsTestApp>;
+
     beforeEach(() => {
       fixture = TestBed.createComponent(DisabledTabsTestApp);
     });
@@ -622,6 +621,25 @@ describe('SbbTabGroup', () => {
 
       expect(fixture.nativeElement.textContent).toContain('pizza is active');
     }));
+
+    it('should not pick up sbb-tab-label from a child tab', fakeAsync(() => {
+      const fixture = TestBed.createComponent(NestedTabGroupWithLabel);
+      fixture.detectChanges();
+      tick();
+      fixture.detectChanges();
+
+      const labels = fixture.nativeElement.querySelectorAll('.sbb-tab-label-content');
+      const contents = Array.from<HTMLElement>(labels).map((label) => label.textContent?.trim());
+
+      expect(contents).toEqual([
+        'Parent 1',
+        'Parent 2',
+        'Parent 3',
+        'Child 1',
+        'Child 2',
+        'Child 3',
+      ]);
+    }));
   });
 
   describe('nested tabs', () => {
@@ -650,6 +668,102 @@ describe('SbbTabGroup', () => {
       const tabs = fixture.componentInstance.tabGroup._tabs;
       expect(tabs.map((tab: SbbTab) => tab.textLabel)).toEqual(['One', 'Two']);
     }));
+  });
+
+  describe('tall tabs', () => {
+    beforeEach(() => {
+      window.scrollTo({ top: 0 });
+    });
+
+    it('should not scroll when changing tabs by clicking', fakeAsync(() => {
+      const fixture = TestBed.createComponent(TabGroupWithSpaceAbove);
+      fixture.detectChanges();
+      tick();
+      fixture.detectChanges();
+
+      window.scrollBy(0, 250);
+      expect(window.scrollY).toBe(250);
+
+      // select the second tab
+      const tabLabel = fixture.debugElement.queryAll(By.css('.sbb-tab-label'))[1];
+      tabLabel.nativeElement.click();
+      checkSelectedIndex(1, fixture);
+
+      expect(window.scrollY).toBe(250);
+      tick();
+    }));
+
+    it('should not scroll when changing tabs programatically', fakeAsync(() => {
+      const fixture = TestBed.createComponent(TabGroupWithSpaceAbove);
+      fixture.detectChanges();
+      tick();
+      fixture.detectChanges();
+
+      window.scrollBy(0, 250);
+      expect(window.scrollY).toBe(250);
+
+      fixture.componentInstance.tabGroup.selectedIndex = 1;
+      fixture.detectChanges();
+
+      expect(window.scrollY).toBe(250);
+      tick();
+    }));
+  });
+
+  describe('tabs with custom css classes', () => {
+    let fixture: ComponentFixture<TabsWithClassesTestApp>;
+    let labelElements: DebugElement[];
+    let bodyElements: DebugElement[];
+
+    beforeEach(() => {
+      fixture = TestBed.createComponent(TabsWithClassesTestApp);
+      fixture.detectChanges();
+      labelElements = fixture.debugElement.queryAll(By.css('.sbb-tab-label'));
+      bodyElements = fixture.debugElement.queryAll(By.css('sbb-tab-body'));
+    });
+
+    it('should apply label/body classes', () => {
+      expect(labelElements[1].nativeElement.classList).toContain('hardcoded-label-class');
+      expect(bodyElements[1].nativeElement.classList).toContain('hardcoded-body-class');
+    });
+
+    it('should set classes as strings dynamically', () => {
+      expect(labelElements[0].nativeElement.classList).not.toContain('custom-label-class');
+      expect(bodyElements[0].nativeElement.classList).not.toContain('custom-body-class');
+
+      fixture.componentInstance.labelClassList = 'custom-label-class';
+      fixture.componentInstance.bodyClassList = 'custom-body-class';
+      fixture.detectChanges();
+
+      expect(labelElements[0].nativeElement.classList).toContain('custom-label-class');
+      expect(bodyElements[0].nativeElement.classList).toContain('custom-body-class');
+
+      delete fixture.componentInstance.labelClassList;
+      delete fixture.componentInstance.bodyClassList;
+      fixture.detectChanges();
+
+      expect(labelElements[0].nativeElement.classList).not.toContain('custom-label-class');
+      expect(bodyElements[0].nativeElement.classList).not.toContain('custom-body-class');
+    });
+
+    it('should set classes as strings array dynamically', () => {
+      expect(labelElements[0].nativeElement.classList).not.toContain('custom-label-class');
+      expect(bodyElements[0].nativeElement.classList).not.toContain('custom-body-class');
+
+      fixture.componentInstance.labelClassList = ['custom-label-class'];
+      fixture.componentInstance.bodyClassList = ['custom-body-class'];
+      fixture.detectChanges();
+
+      expect(labelElements[0].nativeElement.classList).toContain('custom-label-class');
+      expect(bodyElements[0].nativeElement.classList).toContain('custom-body-class');
+
+      delete fixture.componentInstance.labelClassList;
+      delete fixture.componentInstance.bodyClassList;
+      fixture.detectChanges();
+
+      expect(labelElements[0].nativeElement.classList).not.toContain('custom-label-class');
+      expect(bodyElements[0].nativeElement.classList).not.toContain('custom-body-class');
+    });
   });
 
   /**
@@ -689,7 +803,7 @@ describe('SbbTabNavBar with a default config', () => {
 
   beforeEach(fakeAsync(() => {
     TestBed.configureTestingModule({
-      imports: [SbbTabsModule, BrowserAnimationsModule],
+      imports: [SbbTabsModule, BrowserAnimationsModule, SbbIconTestingModule],
       declarations: [SimpleTabsTestApp],
       providers: [{ provide: SBB_TABS_CONFIG, useValue: { dynamicHeight: true } }],
     });
@@ -710,7 +824,7 @@ describe('SbbTabNavBar with a default config', () => {
 describe('nested SbbTabGroup with enabled animations', () => {
   beforeEach(fakeAsync(() => {
     TestBed.configureTestingModule({
-      imports: [SbbTabsModule, BrowserAnimationsModule],
+      imports: [SbbTabsModule, BrowserAnimationsModule, SbbIconTestingModule],
       declarations: [NestedTabs, TabsWithCustomAnimationDuration],
     });
 
@@ -831,7 +945,6 @@ class BindedTabsTestApp {
 }
 
 @Component({
-  selector: 'test-app',
   template: `
     <sbb-tab-group class="tab-group">
       <sbb-tab>
@@ -897,7 +1010,6 @@ class TabGroupWithSimpleApi {
 }
 
 @Component({
-  selector: 'nested-tabs',
   template: `
     <sbb-tab-group>
       <sbb-tab label="One">Tab one content</sbb-tab>
@@ -916,7 +1028,6 @@ class NestedTabs {
 }
 
 @Component({
-  selector: 'template-tabs',
   template: `
     <sbb-tab-group>
       <sbb-tab label="One"> Eager </sbb-tab>
@@ -976,4 +1087,60 @@ class TabsWithCustomAnimationDuration {}
 })
 class TabGroupWithIndirectDescendantTabs {
   @ViewChild(SbbTabGroup) tabGroup: SbbTabGroup;
+}
+
+@Component({
+  template: `
+    <div style="height: 300px; background-color: aqua">Top Content here</div>
+    <sbb-tab-group>
+      <ng-container>
+        <sbb-tab label="One">
+          <div style="height: 3000px; background-color: red"></div>
+        </sbb-tab>
+        <sbb-tab label="Two">
+          <div style="height: 3000px; background-color: green"></div>
+        </sbb-tab>
+      </ng-container>
+    </sbb-tab-group>
+  `,
+})
+class TabGroupWithSpaceAbove {
+  @ViewChild(SbbTabGroup) tabGroup: SbbTabGroup;
+}
+
+@Component({
+  template: `
+    <sbb-tab-group>
+      <sbb-tab label="Parent 1">
+        <sbb-tab-group>
+          <sbb-tab label="Child 1">Content 1</sbb-tab>
+          <sbb-tab>
+            <ng-template sbb-tab-label>Child 2</ng-template>
+            Content 2
+          </sbb-tab>
+          <sbb-tab label="Child 3">Child 3</sbb-tab>
+        </sbb-tab-group>
+      </sbb-tab>
+      <sbb-tab label="Parent 2">Parent 2</sbb-tab>
+      <sbb-tab label="Parent 3">Parent 3</sbb-tab>
+    </sbb-tab-group>
+  `,
+})
+class NestedTabGroupWithLabel {}
+
+@Component({
+  template: `
+    <sbb-tab-group class="tab-group">
+      <sbb-tab label="Tab One" [labelClass]="labelClassList" [bodyClass]="bodyClassList">
+        Tab one content
+      </sbb-tab>
+      <sbb-tab label="Tab Two" labelClass="hardcoded-label-class" bodyClass="hardcoded-body-class">
+        Tab two content
+      </sbb-tab>
+    </sbb-tab-group>
+  `,
+})
+class TabsWithClassesTestApp {
+  labelClassList?: string | string[];
+  bodyClassList?: string | string[];
 }

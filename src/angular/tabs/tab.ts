@@ -19,7 +19,7 @@ import { CanDisable, mixinDisabled } from '@sbb-esta/angular/core';
 import { Subject } from 'rxjs';
 
 import { SBB_TAB_CONTENT } from './tab-content';
-import { SbbTabLabel, SBB_TAB_LABEL } from './tab-label';
+import { SbbTabLabel, SBB_TAB, SBB_TAB_LABEL } from './tab-label';
 
 // Boilerplate for applying mixins to SbbTab.
 // tslint:disable-next-line:naming-convention
@@ -39,6 +39,7 @@ export const SBB_TAB_GROUP = new InjectionToken<any>('SBB_TAB_GROUP');
   changeDetection: ChangeDetectionStrategy.Default,
   encapsulation: ViewEncapsulation.None,
   exportAs: 'sbbTab',
+  providers: [{ provide: SBB_TAB, useExisting: SbbTab }],
 })
 export class SbbTab extends _SbbTabMixinBase implements OnInit, CanDisable, OnChanges, OnDestroy {
   /** Content for the tab label given by `<ng-template sbb-tab-label>`. */
@@ -71,6 +72,18 @@ export class SbbTab extends _SbbTabMixinBase implements OnInit, CanDisable, OnCh
    * Will be cleared if `aria-label` is set at the same time.
    */
   @Input('aria-labelledby') ariaLabelledby: string;
+
+  /**
+   * Classes to be passed to the tab label inside the sbb-tab-header container.
+   * Supports string and string array values, same as `ngClass`.
+   */
+  @Input() labelClass: string | string[];
+
+  /**
+   * Classes to be passed to the tab sbb-tab-body container.
+   * Supports string and string array values, same as `ngClass`.
+   */
+  @Input() bodyClass: string | string[];
 
   /** Portal that will be the hosted content of the tab */
   private _contentPortal: TemplatePortal | null = null;
@@ -130,12 +143,12 @@ export class SbbTab extends _SbbTabMixinBase implements OnInit, CanDisable, OnCh
    * TS 4.0 doesn't allow properties to override accessors or vice-versa.
    * @docs-private
    */
-  protected _setTemplateLabelInput(value: SbbTabLabel) {
-    // Only update the templateLabel via query if there is actually
-    // a SbbTabLabel found. This works around an issue where a user may have
-    // manually set `templateLabel` during creation mode, which would then get clobbered
-    // by `undefined` when this query resolves.
-    if (value) {
+  protected _setTemplateLabelInput(value: SbbTabLabel | undefined) {
+    // Only update the label if the query managed to find one. This works around an issue where a
+    // user may have manually set `templateLabel` during creation mode, which would then get
+    // clobbered by `undefined` when the query resolves. Also note that we check that the closest
+    // tab matches the current one so that we don't pick up labels from nested tabs.
+    if (value && value._closestTab === this) {
       this._templateLabel = value;
     }
   }

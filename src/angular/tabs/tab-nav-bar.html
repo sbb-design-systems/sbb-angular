@@ -1,4 +1,16 @@
 <div
+  class="sbb-tab-header-pagination sbb-tab-header-pagination-before"
+  #previousPaginator
+  aria-hidden="true"
+  [class.sbb-tab-header-pagination-disabled]="_disableScrollBefore"
+  (click)="_handlePaginatorClick('before')"
+  (mousedown)="_handlePaginatorPress('before', $event)"
+  (touchend)="_stopInterval()"
+>
+  <sbb-icon svgIcon="kom:chevron-left-small" class="sbb-tab-header-pagination-chevron"></sbb-icon>
+</div>
+
+<div
   class="sbb-tab-link-container sbb-scrollbar"
   #tabListContainer
   (keydown)="_handleKeydown($event)"
@@ -9,8 +21,20 @@
     #tabList
     (cdkObserveContent)="_onContentChanges()"
   >
-    <div class="sbb-tab-links">
+    <div class="sbb-tab-links" #tabListInner>
       <ng-content></ng-content>
     </div>
   </div>
+</div>
+
+<div
+  class="sbb-tab-header-pagination sbb-tab-header-pagination-after"
+  #nextPaginator
+  aria-hidden="true"
+  [class.sbb-tab-header-pagination-disabled]="_disableScrollAfter"
+  (mousedown)="_handlePaginatorPress('after', $event)"
+  (click)="_handlePaginatorClick('after')"
+  (touchend)="_stopInterval()"
+>
+  <sbb-icon svgIcon="kom:chevron-right-small" class="sbb-tab-header-pagination-chevron"></sbb-icon>
 </div>

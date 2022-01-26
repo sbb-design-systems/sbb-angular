@@ -1,5 +1,35 @@
 @import '../styles/common';
 
+@mixin tab-line-bottom() {
+  &::after {
+    content: '';
+    display: block;
+    position: absolute;
+    bottom: 0;
+    height: 0;
+    margin: 0 auto;
+    border-bottom: var(--sbb-border-width-thin) solid var(--sbb-color-text);
+  }
+
+  :where(html:not(.sbb-lean)) & {
+    &::after {
+      transition: width var(--sbb-transition-duration-default),
+        left var(--sbb-transition-duration-default);
+      left: 0;
+      right: 0;
+      width: 0;
+    }
+  }
+
+  :where(html.sbb-lean) & {
+    &::after {
+      left: calc(-1 * var(--sbb-border-width));
+      right: calc(-1 * var(--sbb-border-width));
+      border-color: var(--sbb-color-graphite);
+    }
+  }
+}
+
 // Mixin styles for labels that are contained within the tab header.
 @mixin tab-label {
   margin-right: pxToRem(32);
@@ -17,30 +47,15 @@
   padding-bottom: pxToRem(20);
   outline: none;
 
-  &::after {
-    content: '';
-    display: block;
-    position: absolute;
-    bottom: 0;
-    height: 0;
-    margin: 0 auto;
-    border-bottom: var(--sbb-border-width-thin) solid var(--sbb-color-text);
-  }
+  @include tab-line-bottom;
 
   :where(html:not(.sbb-lean)) & {
     @include mq($from: tablet) {
       margin-right: pxToEm(42, 26);
       font-size: calc(#{pxToRem(26)} * var(--sbb-scaling-factor));
     }
-
-    &::after {
-      transition: width var(--sbb-transition-duration-default),
-        left var(--sbb-transition-duration-default);
-      left: 0;
-      right: 0;
-      width: 0;
-    }
   }
+
   :where(html.sbb-lean) & {
     font-size: var(--sbb-font-size);
     line-height: pxToRem(20);
@@ -50,10 +65,6 @@
     border: var(--sbb-border-width) solid transparent;
     border-bottom: none;
     border-radius: var(--sbb-border-radius) var(--sbb-border-radius) 0 0;
-    &::after {
-      width: calc(100% + 2 * var(--sbb-border-width));
-      border-color: var(--sbb-color-graphite);
-    }
   }
 
   &:last-child {
@@ -74,7 +85,7 @@
     }
   }
 
-  &:not(.sbb-tab-label-active):is(:focus, :hover) {
+  &:not(.sbb-tab-label-active):not(.sbb-tab-disabled):is(:focus, :hover) {
     color: var(--sbb-color-call-to-action-hover);
 
     &::after {
@@ -104,7 +115,6 @@
     color: var(--sbb-color-storm);
 
     &:is(:hover, :focus) {
-      color: var(--sbb-color-storm);
       cursor: default;
     }
 
@@ -146,9 +156,59 @@
     flex-shrink: 0;
   }
 
+  .sbb-tab-header-pagination {
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    user-select: none;
+    position: relative;
+    display: none;
+    justify-content: center;
+    align-items: center;
+    min-width: pxToRem(32);
+    cursor: pointer;
+    z-index: 2;
+    -webkit-tap-highlight-color: transparent;
+    touch-action: none;
+    box-shadow: 0 pxToRem(2) pxToRem(4) pxToRem(-1) #0003, 0 pxToRem(4) pxToRem(5) #00000024,
+      0 pxToRem(1) pxToRem(10) #0000001f;
+
+    @include tab-line-bottom;
+
+    .sbb-tab-header-pagination-controls-enabled & {
+      display: flex;
+    }
+
+    &:hover:not(.sbb-tab-header-pagination-disabled) {
+      color: var(--sbb-color-call-to-action-hover);
+    }
+
+    &::after {
+      right: 0;
+      left: 0;
+    }
+
+    &.sbb-tab-header-pagination-after.sbb-tab-header-pagination-disabled::after {
+      left: pxToRem(-1); // Workaround to overlap 1px gap between right chevron and last tab label
+    }
+  }
+
+  .sbb-tab-header-pagination-chevron {
+    .sbb-tab-header-pagination-disabled & {
+      opacity: 0.4;
+    }
+  }
+
+  .sbb-tab-header-pagination-disabled {
+    box-shadow: none;
+    cursor: default;
+  }
+
   .sbb-tab-list {
     flex-grow: 1;
     position: relative;
+    transition: transform var(--sbb-transition-duration-slow)
+      var(--sbb-transition-timing-fast-start);
+    will-change: transform; // Avoids flickering in Safari
   }
 }
 
@@ -223,20 +283,13 @@
   padding-bottom: pxToRem(20);
 
   :where(html.sbb-lean) & {
+    overflow: hidden;
     padding-bottom: 0;
-
-    // Hide scrollbar
-    &.sbb-scrollbar {
-      scrollbar-width: none;
-      &::-webkit-scrollbar {
-        width: 0;
-        height: 0;
-      }
-    }
   }
 }
 
 @mixin tab-body-wrapper {
+  display: block;
   position: relative;
   overflow: hidden;
   transition: height var(--sbb-transition-duration-slow);

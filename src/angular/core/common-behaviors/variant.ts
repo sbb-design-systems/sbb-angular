@@ -8,6 +8,8 @@ export const ɵvariant = new BehaviorSubject<SbbVariant>('standard');
 export interface HasVariant {
   /** Observable holding current variant (`lean` or `standard`) which emits by change */
   readonly variant: Observable<SbbVariant>;
+  readonly isStandardVariant: boolean;
+  readonly isLeanVariant: boolean;
 }
 
 /** Possible variant values. */
@@ -23,6 +25,15 @@ export function mixinVariant<T extends Constructor<any>>(base: T): Constructor<H
 
     constructor(...args: any[]) {
       super(...args);
+    }
+
+    get isStandardVariant(): boolean {
+      console.log('variant', ɵvariant.value);
+      return ɵvariant.value === 'standard';
+    }
+
+    get isLeanVariant(): boolean {
+      return ɵvariant.value === 'lean';
     }
   };
 }

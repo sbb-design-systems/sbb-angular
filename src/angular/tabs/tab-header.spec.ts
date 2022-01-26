@@ -1,16 +1,28 @@
 import { Direction, Directionality } from '@angular/cdk/bidi';
 import { END, ENTER, HOME, LEFT_ARROW, RIGHT_ARROW, SPACE } from '@angular/cdk/keycodes';
-import { ObserversModule } from '@angular/cdk/observers';
+import { MutationObserverFactory, ObserversModule } from '@angular/cdk/observers';
 import { PortalModule } from '@angular/cdk/portal';
 import { ScrollingModule, ViewportRuler } from '@angular/cdk/scrolling';
 import { CommonModule } from '@angular/common';
 import { Component, ViewChild } from '@angular/core';
-import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
+import {
+  ComponentFixture,
+  discardPeriodicTasks,
+  fakeAsync,
+  TestBed,
+  tick,
+  waitForAsync,
+} from '@angular/core/testing';
 import {
   createKeyboardEvent,
+  createMouseEvent,
   dispatchEvent,
+  dispatchFakeEvent,
   dispatchKeyboardEvent,
+  switchToLean,
 } from '@sbb-esta/angular/core/testing';
+import { SbbIconModule } from '@sbb-esta/angular/icon';
+import { SbbIconTestingModule } from '@sbb-esta/angular/icon/testing';
 import { Subject } from 'rxjs';
 
 import { SbbTabHeader } from './tab-header';
@@ -26,7 +38,14 @@ describe('SbbTabHeader', () => {
     waitForAsync(() => {
       dir = 'ltr';
       TestBed.configureTestingModule({
-        imports: [CommonModule, PortalModule, ScrollingModule, ObserversModule],
+        imports: [
+          CommonModule,
+          PortalModule,
+          ScrollingModule,
+          ObserversModule,
+          SbbIconTestingModule,
+          SbbIconModule,
+        ],
         declarations: [SbbTabHeader, SbbTabLabelWrapper, SimpleTabHeaderApp],
         providers: [
           ViewportRuler,
@@ -226,6 +245,365 @@ describe('SbbTabHeader', () => {
       expect(enterEvent.defaultPrevented).toBe(false);
     });
   });
+
+  describe('pagination', () => {
+    switchToLean(); // Pagination is only activated in lean design
+
+    describe('ltr', () => {
+      beforeEach(() => {
+        dir = 'ltr';
+        fixture = TestBed.createComponent(SimpleTabHeaderApp);
+        fixture.detectChanges();
+
+        appComponent = fixture.componentInstance;
+      });
+
+      it('should show width when tab list width exceeds container', () => {
+        fixture.detectChanges();
+        expect(appComponent.tabHeader._showPaginationControls).toBe(false);
+
+        // Add enough tabs that it will obviously exceed the width
+        appComponent.addTabsForScrolling();
+        fixture.detectChanges();
+
+        expect(appComponent.tabHeader._showPaginationControls).toBe(true);
+      });
+
+      it('should scroll to show the focused tab label', () => {
+        appComponent.addTabsForScrolling();
+        fixture.detectChanges();
+        expect(appComponent.tabHeader.scrollDistance).toBe(0);
+
+        // Focus on the last tab, expect this to be the maximum scroll distance.
+        appComponent.tabHeader.focusIndex = appComponent.tabs.length - 1;
+        fixture.detectChanges();
+        expect(appComponent.tabHeader.scrollDistance).toBe(
+          appComponent.tabHeader._getMaxScrollDistance()
+        );
+
+        // Focus on the first tab, expect this to be the maximum scroll distance.
+        appComponent.tabHeader.focusIndex = 0;
+        fixture.detectChanges();
+        expect(appComponent.tabHeader.scrollDistance).toBe(0);
+      });
+
+      it('should scroll to show the focused tab label', () => {
+        appComponent.addTabsForScrolling();
+        fixture.detectChanges();
+        expect(appComponent.tabHeader.scrollDistance).toBe(0);
+
+        // Focus on the last tab, expect this to be the maximum scroll distance.
+        appComponent.tabHeader.focusIndex = appComponent.tabs.length - 1;
+        fixture.detectChanges();
+        expect(appComponent.tabHeader.scrollDistance).toBe(
+          appComponent.tabHeader._getMaxScrollDistance()
+        );
+
+        // Focus on the first tab, expect this to be the maximum scroll distance.
+        appComponent.tabHeader.focusIndex = 0;
+        fixture.detectChanges();
+        expect(appComponent.tabHeader.scrollDistance).toBe(0);
+      });
+    });
+
+    describe('scrolling when holding paginator', () => {
+      let nextButton: HTMLElement;
+      let prevButton: HTMLElement;
+      let header: SbbTabHeader;
+      let headerElement: HTMLElement;
+
+      beforeEach(() => {
+        fixture = TestBed.createComponent(SimpleTabHeaderApp);
+        fixture.detectChanges();
+
+        fixture.componentInstance.addTabsForScrolling(50);
+        fixture.detectChanges();
+
+        nextButton = fixture.nativeElement.querySelector('.sbb-tab-header-pagination-after');
+        prevButton = fixture.nativeElement.querySelector('.sbb-tab-header-pagination-before');
+        header = fixture.componentInstance.tabHeader;
+        headerElement = fixture.nativeElement.querySelector('.sbb-tab-header');
+      });
+
+      it('should scroll towards the end while holding down the next button using a mouse', fakeAsync(() => {
+        assertNextButtonScrolling('mousedown', 'click');
+      }));
+
+      it('should scroll towards the start while holding down the prev button using a mouse', fakeAsync(() => {
+        assertPrevButtonScrolling('mousedown', 'click');
+      }));
+
+      it('should scroll towards the end while holding down the next button using touch', fakeAsync(() => {
+        assertNextButtonScrolling('touchstart', 'touchend');
+      }));
+
+      it('should scroll towards the start while holding down the prev button using touch', fakeAsync(() => {
+        assertPrevButtonScrolling('touchstart', 'touchend');
+      }));
+
+      it('should not scroll if the sequence is interrupted quickly', fakeAsync(() => {
+        expect(header.scrollDistance).withContext('Expected to start off not scrolled.').toBe(0);
+
+        dispatchFakeEvent(nextButton, 'mousedown');
+        fixture.detectChanges();
+
+        tick(100);
+
+        dispatchFakeEvent(headerElement, 'mouseleave');
+        fixture.detectChanges();
+
+        tick(3000);
+
+        expect(header.scrollDistance)
+          .withContext('Expected not to have scrolled after a while.')
+          .toBe(0);
+      }));
+
+      it('should clear the timeouts on destroy', fakeAsync(() => {
+        dispatchFakeEvent(nextButton, 'mousedown');
+        fixture.detectChanges();
+        fixture.destroy();
+
+        // No need to assert. If fakeAsync doesn't throw, it means that the timers were cleared.
+      }));
+
+      it('should clear the timeouts on click', fakeAsync(() => {
+        dispatchFakeEvent(nextButton, 'mousedown');
+        fixture.detectChanges();
+
+        dispatchFakeEvent(nextButton, 'click');
+        fixture.detectChanges();
+
+        // No need to assert. If fakeAsync doesn't throw, it means that the timers were cleared.
+      }));
+
+      it('should clear the timeouts on touchend', fakeAsync(() => {
+        dispatchFakeEvent(nextButton, 'touchstart');
+        fixture.detectChanges();
+
+        dispatchFakeEvent(nextButton, 'touchend');
+        fixture.detectChanges();
+
+        // No need to assert. If fakeAsync doesn't throw, it means that the timers were cleared.
+      }));
+
+      it('should clear the timeouts when reaching the end', fakeAsync(() => {
+        dispatchFakeEvent(nextButton, 'mousedown');
+        fixture.detectChanges();
+
+        // Simulate a very long timeout.
+        tick(60000);
+
+        // No need to assert. If fakeAsync doesn't throw, it means that the timers were cleared.
+      }));
+
+      it('should clear the timeouts when reaching the start', fakeAsync(() => {
+        header.scrollDistance = Infinity;
+        fixture.detectChanges();
+
+        dispatchFakeEvent(prevButton, 'mousedown');
+        fixture.detectChanges();
+
+        // Simulate a very long timeout.
+        tick(60000);
+
+        // No need to assert. If fakeAsync doesn't throw, it means that the timers were cleared.
+      }));
+
+      it('should stop scrolling if the pointer leaves the header', fakeAsync(() => {
+        expect(header.scrollDistance).withContext('Expected to start off not scrolled.').toBe(0);
+
+        dispatchFakeEvent(nextButton, 'mousedown');
+        fixture.detectChanges();
+        tick(300);
+
+        expect(header.scrollDistance)
+          .withContext('Expected not to scroll after short amount of time.')
+          .toBe(0);
+
+        tick(1000);
+
+        expect(header.scrollDistance)
+          .withContext('Expected to scroll after some time.')
+          .toBeGreaterThan(0);
+
+        const previousDistance = header.scrollDistance;
+
+        dispatchFakeEvent(headerElement, 'mouseleave');
+        fixture.detectChanges();
+        tick(100);
+
+        expect(header.scrollDistance).toBe(previousDistance);
+      }));
+
+      it('should not scroll when pressing the right mouse button', fakeAsync(() => {
+        expect(header.scrollDistance).withContext('Expected to start off not scrolled.').toBe(0);
+
+        dispatchEvent(nextButton, createMouseEvent('mousedown', undefined, undefined, 2));
+        fixture.detectChanges();
+        tick(3000);
+
+        expect(header.scrollDistance)
+          .withContext('Expected not to have scrolled after a while.')
+          .toBe(0);
+      }));
+
+      /**
+       * Asserts that auto scrolling using the next button works.
+       * @param startEventName Name of the event that is supposed to start the scrolling.
+       * @param endEventName Name of the event that is supposed to end the scrolling.
+       */
+      function assertNextButtonScrolling(startEventName: string, endEventName: string) {
+        expect(header.scrollDistance).withContext('Expected to start off not scrolled.').toBe(0);
+
+        dispatchFakeEvent(nextButton, startEventName);
+        fixture.detectChanges();
+        tick(300);
+
+        expect(header.scrollDistance)
+          .withContext('Expected not to scroll after short amount of time.')
+          .toBe(0);
+
+        tick(1000);
+
+        expect(header.scrollDistance)
+          .withContext('Expected to scroll after some time.')
+          .toBeGreaterThan(0);
+
+        const previousDistance = header.scrollDistance;
+
+        tick(100);
+
+        expect(header.scrollDistance)
+          .withContext('Expected to scroll again after some more time.')
+          .toBeGreaterThan(previousDistance);
+
+        dispatchFakeEvent(nextButton, endEventName);
+      }
+
+      /**
+       * Asserts that auto scrolling using the previous button works.
+       * @param startEventName Name of the event that is supposed to start the scrolling.
+       * @param endEventName Name of the event that is supposed to end the scrolling.
+       */
+      function assertPrevButtonScrolling(startEventName: string, endEventName: string) {
+        header.scrollDistance = Infinity;
+        fixture.detectChanges();
+
+        let currentScroll = header.scrollDistance;
+
+        expect(currentScroll).withContext('Expected to start off scrolled.').toBeGreaterThan(0);
+
+        dispatchFakeEvent(prevButton, startEventName);
+        fixture.detectChanges();
+        tick(300);
+
+        expect(header.scrollDistance)
+          .withContext('Expected not to scroll after short amount of time.')
+          .toBe(currentScroll);
+
+        tick(1000);
+
+        expect(header.scrollDistance)
+          .withContext('Expected to scroll after some time.')
+          .toBeLessThan(currentScroll);
+
+        currentScroll = header.scrollDistance;
+
+        tick(100);
+
+        expect(header.scrollDistance)
+          .withContext('Expected to scroll again after some more time.')
+          .toBeLessThan(currentScroll);
+
+        dispatchFakeEvent(nextButton, endEventName);
+      }
+    });
+
+    describe('disabling pagination', () => {
+      it('should not show the pagination controls if pagination is disabled', () => {
+        fixture = TestBed.createComponent(SimpleTabHeaderApp);
+        appComponent = fixture.componentInstance;
+        appComponent.disablePagination = true;
+        fixture.detectChanges();
+        expect(appComponent.tabHeader._showPaginationControls).toBe(false);
+
+        // Add enough tabs that it will obviously exceed the width
+        appComponent.addTabsForScrolling();
+        fixture.detectChanges();
+
+        expect(appComponent.tabHeader._showPaginationControls).toBe(false);
+      });
+
+      it('should not change the scroll position if pagination is disabled', () => {
+        fixture = TestBed.createComponent(SimpleTabHeaderApp);
+        appComponent = fixture.componentInstance;
+        appComponent.disablePagination = true;
+        fixture.detectChanges();
+        appComponent.addTabsForScrolling();
+        fixture.detectChanges();
+        expect(appComponent.tabHeader.scrollDistance).toBe(0);
+
+        appComponent.tabHeader.focusIndex = appComponent.tabs.length - 1;
+        fixture.detectChanges();
+        expect(appComponent.tabHeader.scrollDistance).toBe(0);
+
+        appComponent.tabHeader.focusIndex = 0;
+        fixture.detectChanges();
+        expect(appComponent.tabHeader.scrollDistance).toBe(0);
+      });
+    });
+
+    it('should update arrows when the window is resized', fakeAsync(() => {
+      fixture = TestBed.createComponent(SimpleTabHeaderApp);
+
+      const header = fixture.componentInstance.tabHeader;
+
+      spyOn(header, '_checkPaginationEnabled');
+
+      dispatchFakeEvent(window, 'resize');
+      tick(10);
+      fixture.detectChanges();
+
+      expect(header._checkPaginationEnabled).toHaveBeenCalled();
+      discardPeriodicTasks();
+    }));
+
+    it('should update the pagination state if the content of the labels changes', () => {
+      const mutationCallbacks: Function[] = [];
+      TestBed.overrideProvider(MutationObserverFactory, {
+        useValue: {
+          // Stub out the MutationObserver since the native one is async.
+          create: function (callback: Function) {
+            mutationCallbacks.push(callback);
+            return { observe: () => {}, disconnect: () => {} };
+          },
+        },
+      });
+
+      fixture = TestBed.createComponent(SimpleTabHeaderApp);
+      fixture.detectChanges();
+
+      const tabHeaderElement: HTMLElement = fixture.nativeElement.querySelector('.sbb-tab-header');
+      const labels = Array.from<HTMLElement>(
+        fixture.nativeElement.querySelectorAll('.label-content')
+      );
+      const extraText = new Array(100).fill('w').join();
+      const enabledClass = 'sbb-tab-header-pagination-controls-enabled';
+
+      expect(tabHeaderElement.classList).not.toContain(enabledClass);
+
+      labels.forEach((label) => {
+        label.style.width = '';
+        label.textContent += extraText;
+      });
+
+      mutationCallbacks.forEach((callback) => callback());
+      fixture.detectChanges();
+
+      expect(tabHeaderElement.classList).toContain(enabledClass);
+    });
+  });
 });
 
 interface Tab {
@@ -240,6 +618,7 @@ interface Tab {
         [selectedIndex]="selectedIndex"
         (indexFocused)="focusedIndex = $event"
         (selectFocusedIndex)="selectedIndex = $event"
+        [disablePagination]="disablePagination"
       >
         <div
           sbbTabLabelWrapper
@@ -265,6 +644,7 @@ interface Tab {
 class SimpleTabHeaderApp {
   selectedIndex: number = 0;
   focusedIndex: number;
+  disablePagination: boolean;
   disabledTabIndex = 1;
   tabs: Tab[] = [
     { label: 'tab one' },
