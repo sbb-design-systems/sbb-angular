@@ -1723,7 +1723,7 @@ textarea {
   // or on a wrapper (e.g. sbb-radio-group) with both manual
   // classes and Angular Form Validation classes.
   &:is(.sbb-selection-error, .ng-touched.ng-invalid),
-  :is(.sbb-selection-error, .ng-touched.ng-invalid) & {
+  .sbb-radio-group-base:is(.sbb-selection-error, .ng-touched.ng-invalid) & {
     border-color: var(--sbb-color-error);
     color: var(--sbb-color-error);
   }

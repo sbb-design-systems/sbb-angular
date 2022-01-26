@@ -67,7 +67,11 @@ export const SBB_RADIO_GROUP = new InjectionToken<_SbbRadioGroupBase<_SbbRadioBu
  */
 export const SBB_RADIO_BUTTON = new InjectionToken<_SbbRadioButtonBase>('SbbRadioButton');
 
-@Directive()
+@Directive({
+  host: {
+    class: 'sbb-radio-group-base',
+  },
+})
 // tslint:disable-next-line: naming-convention class-name
 export abstract class _SbbRadioGroupBase<TRadio extends _SbbRadioButtonBase>
   implements AfterContentInit, ControlValueAccessor
