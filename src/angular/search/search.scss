@@ -31,9 +31,16 @@
     border-bottom-right-radius: 0;
   }
 
-  &.sbb-autocomplete-panel-open.sbb-input-with-open-panel-above::after {
-    border-top-left-radius: 0;
-    border-top-right-radius: 0;
+  &.sbb-autocomplete-panel-open.sbb-input-with-open-panel-above {
+    // Apply the shadow to the .sbb-search element, since it should be shown below the entire
+    // width of the sbb-search. To do this correctly, we need to disable the shadow on the
+    // input (see below).
+    box-shadow: var(--sbb-box-shadow-below);
+
+    &::after {
+      border-top-left-radius: 0;
+      border-top-right-radius: 0;
+    }
   }
 }
 
@@ -42,6 +49,11 @@
   border-right: none;
   border-top-right-radius: 0;
   border-bottom-right-radius: 0;
+}
+
+// Disable shadow for inner input, since we apply it on the .sbb-search element
+.sbb-search.sbb-input-with-open-panel-above > .sbb-input-element {
+  box-shadow: unset;
 }
 
 .sbb-search .sbb-search-button {
