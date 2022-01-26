@@ -2,6 +2,24 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [13.3.0](https://github.com/sbb-design-systems/sbb-angular/compare/13.2.0...13.3.0) (2022-01-26)
+
+
+### Features
+
+* **angular/form-field:** provide from group CSS classes ([#1075](https://github.com/sbb-design-systems/sbb-angular/issues/1075)) ([9a5008b](https://github.com/sbb-design-systems/sbb-angular/commit/9a5008b02806e605138336a438623196d10702c2))
+
+
+### Bug Fixes
+
+* **angular/autocomplete:** restore focus after emitting option selected event ([#1068](https://github.com/sbb-design-systems/sbb-angular/issues/1068)) ([5d4c388](https://github.com/sbb-design-systems/sbb-angular/commit/5d4c3884a1f002fb2c7043ec2a38b0f8d9f4b5ed))
+* **angular/radio-button-panel:** only show error styles when parent group is invalid ([#1080](https://github.com/sbb-design-systems/sbb-angular/issues/1080)) ([f7435fa](https://github.com/sbb-design-systems/sbb-angular/commit/f7435fa73b5f4a2c93a54f4b5e39bf62c9fc63cf)), closes [#1078](https://github.com/sbb-design-systems/sbb-angular/issues/1078)
+* **angular/search:** ensure icon position is correctly aligned ([#1081](https://github.com/sbb-design-systems/sbb-angular/issues/1081)) ([0089760](https://github.com/sbb-design-systems/sbb-angular/commit/00897605819ae65391757de14989e83181bcf750)), closes [#1079](https://github.com/sbb-design-systems/sbb-angular/issues/1079)
+* **angular/search:** show the autocomplete shadow along the entire width ([#1082](https://github.com/sbb-design-systems/sbb-angular/issues/1082)) ([f3eeb6c](https://github.com/sbb-design-systems/sbb-angular/commit/f3eeb6c5b5949ccbdbfb81fa85f633e4efa3cfd1))
+* **angular/styles:** remove `rem` unit from root line height ([#1072](https://github.com/sbb-design-systems/sbb-angular/issues/1072)) ([43d1de5](https://github.com/sbb-design-systems/sbb-angular/commit/43d1de5364d1185c0d7fd6af051ff243fa8e1a19))
+* **angular/tooltip:** add dismissed output to tooltip wrapper ([#1062](https://github.com/sbb-design-systems/sbb-angular/issues/1062)) ([7b47fd2](https://github.com/sbb-design-systems/sbb-angular/commit/7b47fd2c8960d2edac030746a83ac6c01ed8a913)), closes [#1048](https://github.com/sbb-design-systems/sbb-angular/issues/1048) [#1055](https://github.com/sbb-design-systems/sbb-angular/issues/1055)
+* **angular/tooltip:** emit opened event after open animation ([#1073](https://github.com/sbb-design-systems/sbb-angular/issues/1073)) ([0b54569](https://github.com/sbb-design-systems/sbb-angular/commit/0b5456964b65ef48df25b2dc1557ad599e111346))
+
 ## [13.2.0](https://github.com/sbb-design-systems/sbb-angular/compare/13.1.0...13.2.0) (2022-01-20)
 
 

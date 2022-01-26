@@ -1,6 +1,6 @@
 {
   "name": "sbb-angular",
-  "version": "13.2.0",
+  "version": "13.3.0",
   "private": true,
   "engines": {
     "node": ">=14.0.0 <17.0.0",
@@ -233,7 +233,11 @@
       "@commitlint/config-conventional"
     ],
     "rules": {
-      "body-max-line-length": [0, "always", 0]
+      "body-max-line-length": [
+        0,
+        "always",
+        0
+      ]
     }
   },
   "lint-staged": {
