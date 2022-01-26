@@ -7,7 +7,7 @@ All notable changes to this project will be documented in this file. See [standa
 
 ### Features
 
-* **angular/form-field:** provide from group CSS classes ([#1075](https://github.com/sbb-design-systems/sbb-angular/issues/1075)) ([9a5008b](https://github.com/sbb-design-systems/sbb-angular/commit/9a5008b02806e605138336a438623196d10702c2))
+* **angular/form-field:** provide form group CSS classes ([#1075](https://github.com/sbb-design-systems/sbb-angular/issues/1075)) ([9a5008b](https://github.com/sbb-design-systems/sbb-angular/commit/9a5008b02806e605138336a438623196d10702c2))
 
 
 ### Bug Fixes
