@@ -43,6 +43,7 @@ export class SbbTabChangeEvent {
 }
 
 interface SbbTabGroupBaseHeader {
+  updatePagination(): void;
   focusIndex: number;
 }
 
@@ -95,6 +96,14 @@ export abstract class SbbTabGroupBase implements AfterContentInit, AfterContentC
   }
   private _selectedIndex: number | null = null;
 
+  /**
+   * Whether pagination should be disabled. This can be used to avoid unnecessary
+   * layout recalculations if it's known that pagination won't be required.
+   * This applies only for lean design.
+   */
+  @Input()
+  disablePagination: boolean;
+
   /** Output to enable support for two-way binding on `[(selectedIndex)]` */
   @Output() readonly selectedIndexChange: EventEmitter<number> = new EventEmitter<number>();
 
@@ -119,6 +128,10 @@ export abstract class SbbTabGroupBase implements AfterContentInit, AfterContentC
     @Optional() @Inject(ANIMATION_MODULE_TYPE) public _animationMode?: string
   ) {
     this._groupId = nextId++;
+    this.disablePagination =
+      defaultConfig && defaultConfig.disablePagination != null
+        ? defaultConfig.disablePagination
+        : false;
     this.dynamicHeight =
       defaultConfig && defaultConfig.dynamicHeight != null ? defaultConfig.dynamicHeight : false;
   }
@@ -141,6 +154,9 @@ export abstract class SbbTabGroupBase implements AfterContentInit, AfterContentC
 
       if (!isFirstRun) {
         this.selectedTabChange.emit(this._createChangeEvent(indexToSelect));
+        // Preserve the height so page doesn't scroll up during tab change.
+        const wrapper = this._tabBodyWrapper.nativeElement;
+        wrapper.style.minHeight = wrapper.clientHeight + 'px';
       }
 
       // Changing these values after change detection has run
@@ -150,6 +166,9 @@ export abstract class SbbTabGroupBase implements AfterContentInit, AfterContentC
 
         if (!isFirstRun) {
           this.selectedIndexChange.emit(indexToSelect);
+          // Clear the min-height, this was needed during tab change to avoid
+          // unnecessary scrolling.
+          this._tabBodyWrapper.nativeElement.style.minHeight = '';
         }
       });
     }
@@ -206,7 +225,9 @@ export abstract class SbbTabGroupBase implements AfterContentInit, AfterContentC
     // some that are inside of nested tab groups. We filter them out manually by checking that
     // the closest group to the tab is the current one.
     this._allTabs.changes.pipe(startWith(this._allTabs)).subscribe((tabs: QueryList<SbbTab>) => {
-      this._tabs.reset(tabs.filter((tab) => tab._closestTabGroup === this));
+      this._tabs.reset(
+        tabs.filter((tab) => tab._closestTabGroup === this || !tab._closestTabGroup)
+      );
       this._tabs.notifyOnChanges();
     });
   }
@@ -215,6 +236,19 @@ export abstract class SbbTabGroupBase implements AfterContentInit, AfterContentC
     this._tabs.destroy();
     this._tabsSubscription.unsubscribe();
     this._tabLabelSubscription.unsubscribe();
+  }
+
+  /**
+   * Recalculates the tab group's pagination dimensions.
+   *
+   * WARNING: Calling this method can be very costly in terms of performance. It should be called
+   * as infrequently as possible from outside of the Tabs component as it causes a reflow of the
+   * page.
+   */
+  updatePagination() {
+    if (this._tabHeader) {
+      this._tabHeader.updatePagination();
+    }
   }
 
   /**
@@ -321,7 +355,11 @@ export abstract class SbbTabGroupBase implements AfterContentInit, AfterContentC
 
   /** Callback for when the focused state of a tab has changed. */
   _tabFocusChanged(focusOrigin: FocusOrigin, index: number) {
-    if (focusOrigin) {
+    // Mouse/touch focus happens during the `mousedown`/`touchstart` phase which
+    // can cause the tab to be moved out from under the pointer, interrupting the
+    // click sequence (see #21898). We don't need to scroll the tab into view for
+    // such cases anyway, because it will be done when the tab becomes selected.
+    if (focusOrigin && focusOrigin !== 'mouse' && focusOrigin !== 'touch') {
       this._tabHeader.focusIndex = index;
     }
   }

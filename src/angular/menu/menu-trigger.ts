@@ -40,18 +40,10 @@ import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
 import {
   Breakpoints,
   mixinVariant,
-  SbbVariant,
   SCALING_FACTOR_4K,
   SCALING_FACTOR_5K,
 } from '@sbb-esta/angular/core';
-import {
-  asapScheduler,
-  BehaviorSubject,
-  merge,
-  Observable,
-  of as observableOf,
-  Subscription,
-} from 'rxjs';
+import { asapScheduler, merge, Observable, of as observableOf, Subscription } from 'rxjs';
 import { delay, filter, take, takeUntil } from 'rxjs/operators';
 
 import { SbbMenu, SbbMenuAnimationState, SbbMenuCloseReason } from './menu';
@@ -582,7 +574,7 @@ export class SbbMenuTrigger
     offsetY = offsetY * (overlayY === 'bottom' ? -1 : 1);
 
     // Apply scaling factor if variant is standard
-    if ((this.variant as BehaviorSubject<SbbVariant>).value === 'standard') {
+    if (this.variantSnapshot === 'standard') {
       offsetX = offsetX * this._scalingFactor;
       offsetY = offsetY * this._scalingFactor;
     }

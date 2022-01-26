@@ -26,7 +26,7 @@
   }
 
   :where(html.sbb-lean) & {
-    // We need to unset overflow: hidden on business due to our requirement of hiding
+    // We need to unset overflow: hidden on lean due to our requirement of hiding
     // the border between the tab link header and body.
     overflow: unset;
   }
@@ -41,7 +41,7 @@
 }
 
 // The bottom section of the view; contains the tab bodies
-.sbb-tab-nav-bar-body {
+:is(.sbb-tab-nav-panel, .sbb-tab-nav-bar-body) {
   @include tab-body-wrapper;
 
   :where(html.sbb-lean) & {

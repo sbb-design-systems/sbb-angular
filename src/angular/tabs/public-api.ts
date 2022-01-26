@@ -4,8 +4,14 @@ export { SbbTabBody, _SbbTabBodyBase, SbbTabBodyPositionState, SbbTabBodyPortal 
 export { SbbTabHeader, _SbbTabHeaderBase } from './tab-header';
 export { SbbTabLabelWrapper } from './tab-label-wrapper';
 export { SbbTab, SBB_TAB_GROUP } from './tab';
-export { SbbTabLabel } from './tab-label';
-export { SbbTabNav, SbbTabLink, _SbbTabNavBase, _SbbTabLinkBase } from './tab-nav-bar';
+export { SbbTabLabel, SBB_TAB } from './tab-label';
+export {
+  SbbTabNav,
+  SbbTabLink,
+  _SbbTabNavBase,
+  _SbbTabLinkBase,
+  SbbTabNavPanel,
+} from './tab-nav-bar';
 export { SbbTabContent } from './tab-content';
 export { ScrollDirection } from './paginated-tab-header';
 export * from './tabs-animations';

@@ -1644,7 +1644,7 @@ textarea {
 }
 
 .sbb-selection-content {
-  user-select: auto;
+  @include user-select('auto');
   color: var(--sbb-color-grey);
   transition: color var(--sbb-transition-default);
 
@@ -1710,7 +1710,7 @@ textarea {
   color: var(--sbb-color-grey);
   width: 100%;
   transition: border-color 0.15s ease-in-out;
-  user-select: none;
+  @include user-select('none');
   position: relative;
 
   &.sbb-selection-checked {
@@ -2334,7 +2334,7 @@ $menuItemPaddingTopBottom: 4;
   &:is(:disabled, [disabled], .sbb-disabled) {
     cursor: default;
     opacity: 0.5;
-    user-select: none;
+    @include user-select('none');
   }
 
   &:is(:not(:disabled):not([disabled]):not(.sbb-disabled):is(:hover, :focus, :hover strong, :focus

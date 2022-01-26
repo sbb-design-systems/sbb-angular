@@ -1,5 +1,35 @@
 @import '../styles/common';
 
+@mixin tab-line-bottom() {
+  &::after {
+    content: '';
+    display: block;
+    position: absolute;
+    bottom: 0;
+    height: 0;
+    margin: 0 auto;
+    border-bottom: var(--sbb-border-width-thin) solid var(--sbb-color-text);
+  }
+
+  :where(html:not(.sbb-lean)) & {
+    &::after {
+      transition: width var(--sbb-transition-duration-default),
+        left var(--sbb-transition-duration-default);
+      left: 0;
+      right: 0;
+      width: 0;
+    }
+  }
+
+  :where(html.sbb-lean) & {
+    &::after {
+      left: var(--sbb-border-width-negative);
+      right: var(--sbb-border-width-negative);
+      border-color: var(--sbb-color-graphite);
+    }
+  }
+}
+
 // Mixin styles for labels that are contained within the tab header.
 @mixin tab-label {
   margin-right: pxToRem(32);
@@ -17,35 +47,21 @@
   padding-bottom: pxToRem(20);
   outline: none;
 
+  @include tab-line-bottom;
+
   :where(html:not(.sbb-lean)) & {
     @include mq($from: tablet) {
       margin-right: pxToEm(42, 26);
       font-size: calc(#{pxToRem(26)} * var(--sbb-scaling-factor));
     }
-
-    &::after {
-      content: '';
-      display: block;
-      position: absolute;
-      height: 0;
-      border-bottom: var(--sbb-border-width-thin) solid var(--sbb-color-text);
-      transition: width var(--sbb-transition-duration-default),
-        left var(--sbb-transition-duration-default);
-
-      margin: 0 auto;
-      left: 0;
-      right: 0;
-      bottom: 0;
-      width: 0;
-    }
   }
+
   :where(html.sbb-lean) & {
     font-size: var(--sbb-font-size);
     line-height: pxToRem(20);
     padding: pxToRem(6) pxToRem(15) pxToRem(9);
     background-color: var(--sbb-color-background);
     margin-right: 0;
-    margin-bottom: var(--sbb-border-width);
     border: var(--sbb-border-width) solid transparent;
     border-bottom: none;
     border-radius: var(--sbb-border-radius) var(--sbb-border-radius) 0 0;
@@ -63,23 +79,23 @@
     }
     :where(html.sbb-lean) & {
       border-color: var(--sbb-color-graphite);
-      box-shadow: 0 calc(var(--sbb-border-width) * 2) 0 var(--sbb-border-width-negative)
-        var(--sbb-color-background);
+      &::after {
+        display: none;
+      }
     }
   }
 
-  &:not(.sbb-tab-label-active):is(:focus, :hover) {
+  &:not(.sbb-tab-label-active):not(.sbb-tab-disabled):is(:focus, :hover) {
     color: var(--sbb-color-call-to-action-hover);
+
+    &::after {
+      border-bottom-color: var(--sbb-color-call-to-action-hover);
+    }
 
     :where(html:not(.sbb-lean)) & {
       &::after {
         width: 100%;
-        border-bottom-color: var(--sbb-color-call-to-action-hover);
       }
-    }
-    :where(html.sbb-lean) & {
-      box-shadow: 0 calc(var(--sbb-border-width) * 2) 0 var(--sbb-border-width-negative)
-        var(--sbb-color-call-to-action-hover);
     }
   }
 
@@ -88,16 +104,24 @@
     cursor: default;
   }
 
+  &.sbb-tab-label-active:focus-visible {
+    :where(html.sbb-lean) & {
+      outline: var(--sbb-border-width) solid var(--sbb-color-black);
+      outline-offset: calc(-1 * var(--sbb-border-width));
+    }
+  }
+
   &.sbb-tab-disabled {
     color: var(--sbb-color-storm);
 
     &:is(:hover, :focus) {
-      color: var(--sbb-color-storm);
       cursor: default;
     }
 
-    &::after {
-      width: 0 !important;
+    :where(html:not(.sbb-lean)) & {
+      &::after {
+        width: 0 !important;
+      }
     }
   }
 
@@ -132,9 +156,60 @@
     flex-shrink: 0;
   }
 
+  // The following styles only apply in lean design
+  .sbb-tab-header-pagination {
+    @include user-select('none');
+    position: relative;
+    display: none;
+    justify-content: center;
+    align-items: center;
+    min-width: pxToRem(32);
+    cursor: pointer;
+    z-index: 2;
+    -webkit-tap-highlight-color: transparent;
+    touch-action: none;
+
+    // Copied shadow from components
+    box-shadow: 0 pxToRem(2) pxToRem(4) pxToRem(-1) #0003, 0 pxToRem(4) pxToRem(5) #00000024,
+      0 pxToRem(1) pxToRem(10) #0000001f;
+
+    @include tab-line-bottom;
+
+    .sbb-tab-header-pagination-controls-enabled & {
+      display: flex;
+    }
+
+    &:hover:not(.sbb-tab-header-pagination-disabled) {
+      color: var(--sbb-color-call-to-action-hover);
+    }
+
+    &::after {
+      right: 0;
+      left: 0;
+    }
+
+    &.sbb-tab-header-pagination-after.sbb-tab-header-pagination-disabled::after {
+      left: pxToRem(-1); // Workaround to overlap 1px gap between right chevron and last tab label
+    }
+  }
+
+  .sbb-tab-header-pagination-chevron {
+    .sbb-tab-header-pagination-disabled & {
+      opacity: 0.4;
+    }
+  }
+
+  .sbb-tab-header-pagination-disabled {
+    box-shadow: none;
+    cursor: default;
+  }
+
   .sbb-tab-list {
     flex-grow: 1;
     position: relative;
+    transition: transform var(--sbb-transition-duration-slow)
+      var(--sbb-transition-timing-fast-start);
+    will-change: transform; // Avoids flickering in Safari
   }
 }
 
@@ -188,6 +263,16 @@
 @mixin paginated-tab-header-item-wrapper($parent) {
   display: flex;
   padding-top: calc(#{pxToRem(2)} * var(--sbb-scaling-factor));
+
+  :where(html.sbb-lean) & {
+    &::after {
+      content: '';
+      width: 100%;
+      flex-grow: 1;
+      flex-shrink: 1;
+      border-bottom: var(--sbb-border-width) solid var(--sbb-color-graphite);
+    }
+  }
 }
 
 @mixin paginated-tab-header-container {
@@ -199,24 +284,20 @@
   padding-bottom: pxToRem(20);
 
   :where(html.sbb-lean) & {
+    overflow: hidden;
     padding-bottom: 0;
-
-    // We want to display the scrollbar above the header in order not to separate the borders
-    // of the header and body. We do this by rotating the container and the content.
-    :is(&, & > .sbb-tab-list) {
-      transform: rotateX(180deg);
-    }
   }
 }
 
 @mixin tab-body-wrapper {
+  display: block;
   position: relative;
   overflow: hidden;
   transition: height var(--sbb-transition-duration-slow);
 
   :where(html.sbb-lean) & {
-    border: pxToRem(1) solid var(--sbb-color-graphite);
-    margin-top: pxToRem(-1);
-    background-color: var(--sbb-color-white);
+    border: var(--sbb-border-width) solid var(--sbb-color-graphite);
+    border-top: none;
+    background-color: var(--sbb-color-background);
   }
 }
