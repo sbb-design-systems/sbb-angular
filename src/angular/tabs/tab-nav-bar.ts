@@ -119,8 +119,7 @@ export abstract class _SbbTabNavBase
   host: {
     '[attr.role]': '_getRole()',
     class: 'sbb-tab-nav-bar sbb-tab-header',
-    '[class.sbb-tab-header-pagination-controls-enabled]':
-      '_showPaginationControls && isLeanVariant',
+    '[class.sbb-tab-header-pagination-controls-enabled]': `_showPaginationControls && this.variantSnapshot === 'lean'`,
   },
   encapsulation: ViewEncapsulation.None,
   // tslint:disable-next-line:validate-decorators

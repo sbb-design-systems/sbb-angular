@@ -23,8 +23,8 @@
 
   :where(html.sbb-lean) & {
     &::after {
-      left: calc(-1 * var(--sbb-border-width));
-      right: calc(-1 * var(--sbb-border-width));
+      left: var(--sbb-border-width-negative);
+      right: var(--sbb-border-width-negative);
       border-color: var(--sbb-color-graphite);
     }
   }
@@ -156,10 +156,9 @@
     flex-shrink: 0;
   }
 
+  // The following styles only apply in lean design
   .sbb-tab-header-pagination {
-    -webkit-user-select: none;
-    -moz-user-select: none;
-    user-select: none;
+    @include user-select('none');
     position: relative;
     display: none;
     justify-content: center;
@@ -169,6 +168,8 @@
     z-index: 2;
     -webkit-tap-highlight-color: transparent;
     touch-action: none;
+
+    // Copied shadow from components
     box-shadow: 0 pxToRem(2) pxToRem(4) pxToRem(-1) #0003, 0 pxToRem(4) pxToRem(5) #00000024,
       0 pxToRem(1) pxToRem(10) #0000001f;
 

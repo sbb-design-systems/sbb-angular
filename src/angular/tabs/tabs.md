@@ -67,7 +67,7 @@ While `<sbb-tab-group>` is used to switch between views within a single route, `
 provides a tab-like UI for navigating between routes.
 
 ```html
-<nav sbb-tab-nav-bar>
+<nav sbb-tab-nav-bar [tabPanel]="tabPanel">
   <a
     sbb-tab-link
     *ngFor="let link of links"
@@ -81,10 +81,9 @@ provides a tab-like UI for navigating between routes.
   <a sbb-tab-link disabled>Disabled Link</a>
 </nav>
 
-<!-- The wrapping div with the css class 'sbb-tab-nav-bar-body' is only required for the lean design -->
-<div class="sbb-tab-nav-bar-body">
+<sbb-tab-nav-panel #tabPanel>
   <router-outlet></router-outlet>
-</div>
+</sbb-tab-nav-panel>
 ```
 
 The `tab-nav-bar` is not tied to any particular router; it works with normal `<a>` elements and uses

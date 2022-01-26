@@ -68,7 +68,7 @@ export abstract class _SbbTabHeaderBase
   changeDetection: ChangeDetectionStrategy.Default,
   host: {
     class: 'sbb-tab-header',
-    '[class.sbb-tab-header-pagination-controls-enabled]': `_showPaginationControls && isLeanVariant`,
+    '[class.sbb-tab-header-pagination-controls-enabled]': `_showPaginationControls && this.variantSnapshot === 'lean'`,
   },
 })
 export class SbbTabHeader extends _SbbTabHeaderBase {

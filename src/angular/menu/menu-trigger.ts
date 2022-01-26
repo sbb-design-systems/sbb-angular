@@ -574,7 +574,7 @@ export class SbbMenuTrigger
     offsetY = offsetY * (overlayY === 'bottom' ? -1 : 1);
 
     // Apply scaling factor if variant is standard
-    if (this.isStandardVariant) {
+    if (this.variantSnapshot === 'standard') {
       offsetX = offsetX * this._scalingFactor;
       offsetY = offsetY * this._scalingFactor;
     }

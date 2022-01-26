@@ -246,6 +246,17 @@ export abstract class SbbPaginatedTabHeader
         )
         .subscribe((state) => this._applyScrollShadows(state));
     });
+
+    // Reset transform and scrolling when switching design variant in showcase
+    this._ngZone.runOutsideAngular(() => {
+      this.variant.pipe(takeUntil(this._destroyed)).subscribe((variant) => {
+        if (variant === 'lean') {
+          this._tabListContainer.nativeElement.scrollLeft = 0;
+        } else {
+          this._tabList.nativeElement.style.removeProperty('transform');
+        }
+      });
+    });
   }
 
   ngAfterContentChecked(): void {
@@ -381,7 +392,7 @@ export abstract class SbbPaginatedTabHeader
 
   /** Performs the CSS transformation on the tab list that will cause the list to scroll. */
   _updateTabScrollPosition() {
-    if (this.disablePagination || this.isStandardVariant) {
+    if (this.disablePagination || this.variantSnapshot === 'standard') {
       return;
     }
 
@@ -440,7 +451,7 @@ export abstract class SbbPaginatedTabHeader
    * should be called sparingly.
    */
   _scrollToLabel(labelIndex: number) {
-    if (this.disablePagination || this.isStandardVariant) {
+    if (this.disablePagination || this.variantSnapshot === 'standard') {
       return;
     }
 
@@ -478,7 +489,7 @@ export abstract class SbbPaginatedTabHeader
    * should be called sparingly.
    */
   _checkPaginationEnabled() {
-    if (this.disablePagination || this.isStandardVariant) {
+    if (this.disablePagination || this.variantSnapshot === 'standard') {
       this._showPaginationControls = false;
     } else {
       const isEnabled =
@@ -506,7 +517,7 @@ export abstract class SbbPaginatedTabHeader
    * should be called sparingly.
    */
   _checkScrollingControls() {
-    if (this.disablePagination || this.isStandardVariant) {
+    if (this.disablePagination || this.variantSnapshot === 'standard') {
       this._disableScrollAfter = this._disableScrollBefore = true;
     } else {
       // Check if the pagination arrows should be activated.
@@ -569,7 +580,7 @@ export abstract class SbbPaginatedTabHeader
    * @returns Information on the current scroll distance and the maximum.
    */
   private _scrollTo(position: number) {
-    if (this.disablePagination || this.isStandardVariant) {
+    if (this.disablePagination || this.variantSnapshot === 'standard') {
       return { maxScrollDistance: 0, distance: 0 };
     }
 
