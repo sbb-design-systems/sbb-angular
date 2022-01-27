@@ -30,7 +30,7 @@ if (module === require.main) {
      */
     packages: () => buildReleasePackages(join(projectDir, 'dist/releases')),
     i18n: () => buildI18n(join(projectDir, 'dist/releases'), join(projectDir, 'src/angular/i18n')),
-    'showcase-merge': () => buildShowcaseMerge(join(projectDir, 'dist/releases')),
+    showcase: () => buildShowcase(join(projectDir, 'dist/releases')),
   };
   if (!target || !(target in tasks)) {
     throw new Error(`Please provide a valid build target (e.g. ${Object.keys(tasks).join(', ')})`);
@@ -123,12 +123,12 @@ function buildI18n(distPath: string, i18nDistPath: string) {
 /**
  * Builds the showcase with ivy and copies the package output into the given directory.
  */
-function buildShowcaseMerge(distPath: string) {
+function buildShowcase(distPath: string) {
   console.log('######################################');
-  console.log('  Building showcase merge...');
+  console.log('  Building showcase...');
   console.log('######################################');
 
-  const pkgName = 'showcase-merge';
+  const pkgName = 'showcase';
 
   exec(`${bazelCmd} build src/${pkgName}:prodapp`);
 
@@ -144,7 +144,7 @@ function buildShowcaseMerge(distPath: string) {
   writeFileSync(
     join(targetFolder, 'package.json'),
     JSON.stringify({
-      name: '@sbb-esta/angular-showcase-merge',
+      name: '@sbb-esta/angular-showcase',
       version,
       publishConfig: { access: 'public' },
     }),

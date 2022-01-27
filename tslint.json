@@ -9,7 +9,7 @@
     "exclude": [
       "tools/dgeni/**/*.ts",
       "src/angular/schematics/ng-add/test-cases/**/*",
-      "src/showcase-merge/assets/stack-blitz/**/*.ts"
+      "src/showcase/assets/stack-blitz/**/*.ts"
     ]
   },
   "rules": {

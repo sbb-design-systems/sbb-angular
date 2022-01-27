@@ -13,7 +13,7 @@ ng_module(
         exclude = ["**/*.spec.ts"],
     ),
     assets = [":markdown-viewer/markdown-viewer.component.css"] + glob(["**/*.html"]),
-    tsconfig = "//src/showcase-merge:tsconfig.json",
+    tsconfig = "//src/showcase:tsconfig.json",
     deps = [
         "//src/angular/accordion",
         "//src/angular/sidebar",

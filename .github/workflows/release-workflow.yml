@@ -31,7 +31,7 @@ jobs:
           bazel-packages-
     - name: "Bazel: Build packages"
       run: yarn -s build packages
-      
+
     - uses: actions/upload-artifact@v1
       with:
         name: packages
@@ -46,7 +46,7 @@ jobs:
         else
             echo "::set-output name=npm_tag::latest"
         fi
-      env: 
+      env:
         REF: ${{ github.ref }}
     - name: "Publish: @sbb-esta/angular"
       run: yarn publish dist/releases/angular --tag ${{ steps.npm_tag.outputs.npm_tag }}  || true
@@ -74,7 +74,7 @@ jobs:
         node-version: 16
     - name: "Yarn: Install"
       uses: ./.github/actions/yarn-install
-      
+
     - name: "Bazel: Restore remote cache"
       uses: actions/cache@v2
       with:
@@ -83,7 +83,7 @@ jobs:
         restore-keys: |
           bazel-build-
     - name: "Bazel: Build showcase"
-      run: yarn -s build showcase-merge
+      run: yarn -s build showcase
 
     - name: "Docker: Parse release version"
       id: docker_release_version
