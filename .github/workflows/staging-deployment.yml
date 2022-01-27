@@ -29,10 +29,10 @@ jobs:
 
             const { stagingAuth, stagingUrl } = process.env;
             const artifactsUrl = context.payload.workflow_run.artifacts_url;
-            
+
             const artifactsResult = await github.request(artifactsUrl);
             const artifacts = artifactsResult.data.artifacts.filter(
-              a => a.name.startsWith('showcase-merge-artifact-')
+              a => a.name.startsWith('showcase-artifact-')
             );
 
             for (const artifactEntry of artifacts) {

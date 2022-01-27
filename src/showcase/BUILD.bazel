@@ -18,7 +18,7 @@ sass_binary(
 )
 
 ng_module(
-    name = "showcase-merge",
+    name = "showcase",
     srcs = glob(
         include = ["*.ts"],
         exclude = [
@@ -28,7 +28,7 @@ ng_module(
     ),
     tsconfig = ":tsconfig.json",
     deps = [
-        "//src/showcase-merge/app",
+        "//src/showcase/app",
         "@npm//@angular/core",
         "@npm//@angular/platform-browser",
     ],
@@ -50,7 +50,7 @@ devmode_esbuild(
     # Note: We add all linker-processed FW packages as dependencies here so that ESBuild will
     # map all framework packages to their linker-processed bundles from `tools/angular`.
     deps = LINKER_PROCESSED_FW_PACKAGES + [
-        ":showcase-merge",
+        ":showcase",
     ],
 )
 
@@ -113,7 +113,7 @@ filegroup(
     name = "dev_app_static_files",
     srcs = [
         ":index.html",
-        "//src/showcase-merge/assets",
+        "//src/showcase/assets",
     ] + _ASSETS,
 )
 
@@ -129,7 +129,7 @@ dev_server(
     tags = ["manual"],
     deps = [
         ":dev-bundles",
-        "//src/showcase-merge/assets",
+        "//src/showcase/assets",
     ],
 )
 
@@ -151,7 +151,7 @@ esbuild(
     # Note: We add all linker-processed FW packages as dependencies here so that ESBuild will
     # map all framework packages to their linker-processed bundles from `tools/angular`.
     deps = LINKER_PROCESSED_FW_PACKAGES + [
-        ":showcase-merge",
+        ":showcase",
     ],
 )
 
@@ -159,7 +159,7 @@ esbuild(
 # Supports differential loading by providing a.js and a.mjs
 html_insert_assets(
     name = "index_html_prod",
-    # we can't output "src/showcase-merge/index.html" since that collides with the devmode file.
+    # we can't output "src/showcase/index.html" since that collides with the devmode file.
     # pkg_web rule will re-root paths that start with _{name} by default
     # so we output "_prodapp/src/index.html" so that it is mapped to
     # `index.html` in the web package.
@@ -183,12 +183,12 @@ pkg_web(
     srcs = _ASSETS + [
         ":prod-bundles",
         ":index_html_prod",
-        "//src/showcase-merge/assets",
+        "//src/showcase/assets",
     ],
     # In production mode we serve some polyfills with script tags that have hard-coded paths in the index.html
     # so we must serve them at that path, by stripping a prefix
     additional_root_paths = [
-        "src/showcase-merge/_prodapp/src",
+        "src/showcase/_prodapp/src",
         "tools/umd-modules",
     ],
     tags = ["prod-showcase"],

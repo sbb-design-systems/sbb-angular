@@ -19,7 +19,7 @@ ng_module(
         ":html-viewer/html-viewer.component.css",
         ":variant-limitation-component/variant-limitation.component.css",
     ] + glob(["**/*.html"]),
-    tsconfig = "//src/showcase-merge:tsconfig.json",
+    tsconfig = "//src/showcase:tsconfig.json",
     deps = [
         "//src/angular/button",
         "//src/angular/core",
@@ -29,7 +29,7 @@ ng_module(
         "//src/angular/tabs",
         "//src/angular/tooltip",
         "//src/components-examples",
-        "//src/showcase-merge/app/shared",
+        "//src/showcase/app/shared",
         "@npm//@angular/cdk",
         "@npm//@angular/common",
         "@npm//@angular/core",
@@ -41,7 +41,7 @@ ng_module(
 
 genrule(
     name = "library-versions",
-    srcs = ["//src/showcase-merge/app:versions.ts"],
+    srcs = ["//src/showcase/app:versions.ts"],
     outs = ["stack-blitz/versions.ts"],
     cmd = "cp $< $@",
 )

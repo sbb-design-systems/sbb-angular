@@ -26,11 +26,11 @@ export function bazel(options: { filter?: string }): Rule {
           .filter((d) => !options.filter || d === options.filter)
           .map((d) => srcDir.dir(d))
           .map((packageDir) => {
-            const isMergeShowcase = packageDir.path.endsWith('showcase-merge');
+            const isShowcase = packageDir.path.endsWith('showcase');
             const isComponentsExamples = packageDir.path.endsWith('components-examples');
             const organization = '@sbb-esta';
             const srcRoot = 'src';
-            const moduleDetector = isMergeShowcase
+            const moduleDetector = isShowcase
               ? new AppBazelModuleDetector(tree)
               : new LibraryBazelModuleDetector(tree);
             const npmDependencyResolver = new NpmDependencyResolver(
@@ -48,7 +48,7 @@ export function bazel(options: { filter?: string }): Rule {
               npmDependencyResolver,
               dependencyByOccurence,
             };
-            const typeScriptDependencyResolver = isMergeShowcase
+            const typeScriptDependencyResolver = isShowcase
               ? new RelativeModuleTypeScriptDependencyResolver(tsConfig)
               : new StrictModuleTypeScriptDependencyResolver(tsConfig);
             const styleReplaceMap = new Map<string, string>()
@@ -65,7 +65,7 @@ export function bazel(options: { filter?: string }): Rule {
               styleReplaceMap
             );
             const bazelGenruleResolver = new BazelGenruleResolver();
-            if (isMergeShowcase) {
+            if (isShowcase) {
               return new ShowcasePackage(packageDir, tree, {
                 ...context,
                 organization,
