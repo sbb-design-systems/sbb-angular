@@ -57,10 +57,14 @@
   // This will be overwritten when the arrow animations kick in. See #11819.
   opacity: 0;
 
-  margin: pxToEm(-1) pxToEm(-8) pxToEm(-1) var(--sbb-table-sort-header-arrow-margin);
+  margin: calc(#{pxToRem(-1)} * var(--sbb-scaling-factor))
+    calc(#{pxToRem(-8)} * var(--sbb-scaling-factor))
+    calc(#{pxToRem(-1)} * var(--sbb-scaling-factor)) var(--sbb-table-sort-header-arrow-margin);
 
   .sbb-sort-header-position-before & {
-    margin: pxToEm(-1) var(--sbb-table-sort-header-arrow-margin) pxToEm(-1) pxToEm(-8);
+    margin: calc(#{pxToRem(-1)} * var(--sbb-scaling-factor))
+      var(--sbb-table-sort-header-arrow-margin) calc(#{pxToRem(-1)} * var(--sbb-scaling-factor))
+      calc(#{pxToRem(-1)} * var(--sbb-scaling-factor));
   }
 
   svg {

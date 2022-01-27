@@ -51,7 +51,7 @@
 
   :where(html:not(.sbb-lean)) & {
     @include mq($from: tablet) {
-      margin-right: pxToEm(42, 26);
+      margin-right: calc(#{pxToRem(42)} * var(--sbb-scaling-factor));
       font-size: calc(#{pxToRem(26)} * var(--sbb-scaling-factor));
     }
   }

@@ -150,8 +150,8 @@
   }
 
   color: var(--sbb-color-metal);
-  font-size: calc(#{pxToRem(13)} * var(--sbb-scaling-factor));
-  line-height: pxToEm(14, 13);
+  font-size: var(--sbb-font-size-small);
+  line-height: calc(#{pxToRem(14)} * var(--sbb-scaling-factor));
 
   :where(html.sbb-lean) & {
     color: var(--sbb-color-iron);

@@ -4,10 +4,10 @@
   font-size: var(--sbb-font-size);
   display: flex;
   position: relative;
-  max-width: pxToEm(329);
+  max-width: calc(#{pxToRem(329)} * var(--sbb-scaling-factor));
 
   @include mq($from: tabletPortrait) {
-    max-width: pxToEm(376);
+    max-width: calc(#{pxToRem(376)} * var(--sbb-scaling-factor));
   }
 
   &::after {
@@ -54,7 +54,7 @@
 }
 
 .sbb-search .sbb-search-button {
-  flex: 0 0 pxToEm(56);
+  flex: 0 0 calc(#{pxToRem(56)} * var(--sbb-scaling-factor));
   border-top-left-radius: 0;
   border-bottom-left-radius: 0;
   margin-left: var(--sbb-border-width-negative);

@@ -55,7 +55,7 @@
 }
 
 .sbb-icon-sidebar-expanded {
-  width: pxToEm(250);
+  width: calc(#{pxToRem(250)} * var(--sbb-scaling-factor));
 }
 
 .sbb-icon-sidebar-collapsed {
@@ -71,6 +71,7 @@
     overflow-y: hidden;
     overflow-x: auto;
 
+    // Hide scrollbar
     &.sbb-scrollbar {
       scrollbar-width: none;
       &::-webkit-scrollbar {
@@ -162,7 +163,8 @@
 
 .sbb-icon-sidebar-item-label {
   @include ellipsis();
-  padding: 0 pxToEm(12) 0 pxToEm(4);
+  padding: 0 calc(#{pxToRem(12)} * var(--sbb-scaling-factor)) 0
+    calc(#{pxToRem(4)} * var(--sbb-scaling-factor));
 
   // Clip text instead of ellipsis because of weird animation
   .sbb-icon-sidebar-collapsed & {

@@ -34,7 +34,7 @@
 }
 
 .sbb-form-field-wrapper {
-  padding-bottom: pxToEm(23);
+  padding-bottom: calc(#{pxToRem(23)} * var(--sbb-scaling-factor));
 
   :where(html.sbb-lean) & {
     padding-bottom: pxToRem(16);

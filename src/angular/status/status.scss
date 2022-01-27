@@ -34,7 +34,7 @@
   color: var(--sbb-color-grey);
   line-height: calc(#{pxToRem(20)} * var(--sbb-scaling-factor));
   font-family: var(--sbb-font-roman);
-  margin-left: pxToEm(8);
+  margin-left: calc(#{pxToRem(8)} * var(--sbb-scaling-factor));
   padding: calc(#{pxToRem(1)} * var(--sbb-scaling-factor))
     calc(#{pxToRem(8)} * var(--sbb-scaling-factor)) calc(#{pxToRem(3)} * var(--sbb-scaling-factor));
 }

@@ -233,8 +233,8 @@
   --sbb-pagination-navigation-item-margin: calc(#{pxToRem(4)} * var(--sbb-scaling-factor));
 
   // Sidebar
-  --sbb-sidebar-mobile-menu-bar-height: #{pxToRem(48)};
-  --sbb-icon-sidebar-item-dimension: #{pxToEm(48)};
+  --sbb-sidebar-mobile-menu-bar-height: calc(2 * var(--sbb-icon-size-default));
+  --sbb-icon-sidebar-item-dimension: calc(2 * var(--sbb-icon-size-default));
 
   // Menu
   // (36 (Desired width) - 24 (icon width)) / 2
@@ -1113,16 +1113,17 @@ textarea {
   text-overflow: ellipsis;
   pointer-events: none;
 
-  min-width: pxToEm(18, 11);
+  min-width: calc(#{pxToRem(18)} * var(--sbb-scaling-factor));
   border-radius: 1em; // 1em ensures the borders are always fully rounded, but not oval.
-  padding: pxToEm(4, 11) pxToEm(5, 11);
-  margin-left: pxToEm(2, 11);
+  padding: calc(#{pxToRem(4)} * var(--sbb-scaling-factor))
+    calc(#{pxToRem(5)} * var(--sbb-scaling-factor));
+  margin-left: calc(#{pxToRem(2)} * var(--sbb-scaling-factor));
   background-color: var(--sbb-color-red);
   color: var(--sbb-color-white);
   font-family: var(--sbb-font-bold);
   line-height: 1;
+  height: calc(#{pxToRem(18)} * var(--sbb-scaling-factor));
   font-size: pxToRem(11);
-  height: pxToEm(18, 11);
 
   :where(html:not(.sbb-lean)) & {
     @include mq($from: desktop4k) {
@@ -1137,7 +1138,7 @@ textarea {
   }
 
   .sbb-badge-above & {
-    top: pxToEm(-2, 11);
+    top: calc(#{pxToRem(-2)} * var(--sbb-scaling-factor));
   }
 
   .sbb-badge-after & {
