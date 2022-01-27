@@ -2,8 +2,8 @@
 
 import { execSync } from 'child_process';
 import { writeFileSync } from 'fs';
-import minimist from 'minimist';
 import { join, relative } from 'path';
+import yargs from 'yargs';
 
 const { chmod, cp, mkdir, rm, set, test } = require('shelljs');
 
@@ -16,18 +16,46 @@ const releaseTargetTag = 'release-package';
 /** Path to the project directory. */
 const projectDir = join(__dirname, '../');
 
+/** path to the release directory. */
+const releaseDir = join(projectDir, 'dist/releases');
+
 /** Command that runs Bazel. */
 const bazelCmd = process.env.BAZEL_COMMAND || `yarn -s bazel`;
 
 if (module === require.main) {
-  const options = minimist(process.argv.slice(2));
+  const options = yargs(process.argv.slice(2))
+    .command({
+      command: 'all',
+      describe: 'Build all bazel targets',
+      handler: () => buildAllTargets(),
+    })
+    .command({
+      command: 'packages',
+      describe: 'Build packages in release mode',
+      handler: () => buildReleasePackages(releaseDir),
+    })
+    .command({
+      command: 'i18n',
+      describe: 'Generate i18n files',
+      handler: () => buildI18n(releaseDir, join(projectDir, 'src/angular/i18n')),
+    })
+    .command({
+      command: 'showcase',
+      describe: 'Build the showcase',
+      handler: () => buildShowcase(releaseDir),
+    })
+    .strict()
+    .parseSync();
+  console.log(options);
+
+  /*
   const target = options._[0];
   const tasks: { [target: string]: Function } = {
     all: () => buildAllTargets(),
     /**
      * Builds the release packages with the default compile mode and
      * output directory.
-     */
+     * /
     packages: () => buildReleasePackages(join(projectDir, 'dist/releases')),
     i18n: () => buildI18n(join(projectDir, 'dist/releases'), join(projectDir, 'src/angular/i18n')),
     showcase: () => buildShowcase(join(projectDir, 'dist/releases')),
@@ -37,6 +65,7 @@ if (module === require.main) {
   }
 
   tasks[target]();
+  */
 }
 
 /**

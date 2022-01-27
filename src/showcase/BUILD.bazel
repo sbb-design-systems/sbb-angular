@@ -1,9 +1,7 @@
 load("@build_bazel_rules_nodejs//:index.bzl", "pkg_web")
-load("@io_bazel_rules_sass//:defs.bzl", "sass_binary")
 load("@npm//history-server:index.bzl", "history_server")
 load("@npm//html-insert-assets:index.bzl", "html_insert_assets")
-load("//tools:defaults.bzl", "devmode_esbuild", "esbuild", "ng_module")
-load("//tools/dev-server:index.bzl", "dev_server")
+load("//tools:defaults.bzl", "devmode_esbuild", "esbuild", "http_server", "ng_module", "sass_binary")
 load("//tools/angular:index.bzl", "LINKER_PROCESSED_FW_PACKAGES")
 
 package(default_visibility = ["//visibility:public"])
@@ -117,7 +115,7 @@ filegroup(
     ] + _ASSETS,
 )
 
-dev_server(
+http_server(
     name = "devserver",
     srcs = [":dev_app_static_files"],
     additional_root_paths = [
@@ -125,6 +123,12 @@ dev_server(
         # Needed for compatibility with "pkg_web" which always uses the tree
         # artifact output as workspace root.
         "sbb_angular",
+    ],
+    enable_dev_ui = True,
+    # List of environment variables that will be made available as `window.<NAME>` in the
+    # served `index.html` throuhg an injected script. Useful for allowing developers to
+    # configure API keys without requiring secrets to be committed.
+    environment_variables = [
     ],
     tags = ["manual"],
     deps = [
