@@ -23,7 +23,7 @@ const releaseDir = join(projectDir, 'dist/releases');
 const bazelCmd = process.env.BAZEL_COMMAND || `yarn -s bazel`;
 
 if (module === require.main) {
-  const options = yargs(process.argv.slice(2))
+  yargs(process.argv.slice(2))
     .command({
       command: 'all',
       describe: 'Build all bazel targets',
@@ -46,26 +46,6 @@ if (module === require.main) {
     })
     .strict()
     .parseSync();
-  console.log(options);
-
-  /*
-  const target = options._[0];
-  const tasks: { [target: string]: Function } = {
-    all: () => buildAllTargets(),
-    /**
-     * Builds the release packages with the default compile mode and
-     * output directory.
-     * /
-    packages: () => buildReleasePackages(join(projectDir, 'dist/releases')),
-    i18n: () => buildI18n(join(projectDir, 'dist/releases'), join(projectDir, 'src/angular/i18n')),
-    showcase: () => buildShowcase(join(projectDir, 'dist/releases')),
-  };
-  if (!target || !(target in tasks)) {
-    throw new Error(`Please provide a valid build target (e.g. ${Object.keys(tasks).join(', ')})`);
-  }
-
-  tasks[target]();
-  */
 }
 
 /**
