@@ -233,8 +233,8 @@
   --sbb-pagination-navigation-item-margin: calc(#{pxToRem(4)} * var(--sbb-scaling-factor));
 
   // Sidebar
-  --sbb-sidebar-mobile-menu-bar-height: #{pxToRem(48)};
-  --sbb-icon-sidebar-item-dimension: #{pxToEm(48)};
+  --sbb-sidebar-mobile-menu-bar-height: calc(2 * var(--sbb-icon-size-default));
+  --sbb-icon-sidebar-item-dimension: calc(2 * var(--sbb-icon-size-default));
 
   // Menu
   // (36 (Desired width) - 24 (icon width)) / 2
