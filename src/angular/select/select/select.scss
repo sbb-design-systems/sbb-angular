@@ -29,7 +29,7 @@
 
 .sbb-select-arrow-icon {
   @include absoluteCenterY();
-  right: pxToEm(9);
+  right: calc(#{pxToRem(9)} * var(--sbb-scaling-factor));
   color: var(--sbb-color-grey);
 
   :where(html.sbb-lean) & {
