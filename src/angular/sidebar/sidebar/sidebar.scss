@@ -71,7 +71,7 @@
   position: absolute;
   top: 0;
   bottom: 0;
-  width: pxToEm(300);
+  width: calc(#{pxToRem(300)} * var(--sbb-scaling-factor));
   transform: translate3d(-100%, 0, 0);
   border-right: var(--sbb-border-width-thin) solid var(--sbb-color-cloud);
   background-color: var(--sbb-color-background);
@@ -147,12 +147,12 @@
 
     + :is(.sbb-expansion-panel, fieldset) {
       margin-top: calc(
-        var(--sbb-divider-medium) - var(--sbb-expansion-panel-header-padding-top) - #{pxToEm(3)}
+        var(--sbb-divider-medium) - var(--sbb-expansion-panel-header-padding-top) - #{pxToRem(3)} * var(--sbb-scaling-factor)
       );
 
       :where(html.sbb-lean) & {
         margin-top: calc(
-          var(--sbb-divider-big) - var(--sbb-expansion-panel-header-padding-top) - #{pxToEm(3)}
+          var(--sbb-divider-big) - var(--sbb-expansion-panel-header-padding-top) - #{pxToRem(3)} * var(--sbb-scaling-factor)
         );
       }
     }
@@ -172,7 +172,9 @@
   align-items: center;
   // Overlap spacing of expansion panel padding
   width: calc(100% + var(--sbb-expansion-panel-padding-horizontal) - var(--sbb-border-width-thin));
-  padding: pxToEm(5) var(--sbb-expansion-panel-padding-horizontal) pxToEm(7) pxToEm(16);
+  padding: calc(#{pxToRem(5)} * var(--sbb-scaling-factor))
+    var(--sbb-expansion-panel-padding-horizontal) calc(#{pxToRem(7)} * var(--sbb-scaling-factor))
+    calc(#{pxToRem(16)} * var(--sbb-scaling-factor));
 
   &:is(:hover, :focus) {
     @include sbbMenuItemRedLean();
