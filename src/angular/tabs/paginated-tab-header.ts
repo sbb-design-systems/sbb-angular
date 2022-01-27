@@ -493,7 +493,8 @@ export abstract class SbbPaginatedTabHeader
       this._showPaginationControls = false;
     } else {
       const isEnabled =
-        this._tabListInner.nativeElement.scrollWidth > this._elementRef.nativeElement.offsetWidth;
+        this._tabListInner.nativeElement.scrollWidth - this._elementRef.nativeElement.offsetWidth >
+        1;
 
       if (!isEnabled) {
         this.scrollDistance = 0;

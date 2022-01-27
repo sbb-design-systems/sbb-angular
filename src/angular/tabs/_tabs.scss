@@ -168,6 +168,7 @@
     z-index: 2;
     -webkit-tap-highlight-color: transparent;
     touch-action: none;
+    color: var(--sbb-color-granite);
 
     // Copied shadow from components
     box-shadow: 0 pxToRem(2) pxToRem(4) pxToRem(-1) #0003, 0 pxToRem(4) pxToRem(5) #00000024,
