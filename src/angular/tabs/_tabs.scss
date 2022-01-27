@@ -265,6 +265,8 @@
   padding-top: calc(#{pxToRem(2)} * var(--sbb-scaling-factor));
 
   :where(html.sbb-lean) & {
+    padding-top: 0;
+
     &::after {
       content: '';
       width: 100%;
