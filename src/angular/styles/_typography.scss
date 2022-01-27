@@ -1535,7 +1535,7 @@ textarea {
 .sbb-selection-container {
   display: inline-block;
   background-color: var(--sbb-color-background);
-  margin-top: calc(#{pxToRem(2)} * var(--sbb-scaling-factor) + #{pxToRem(1)});
+  margin-top: calc(#{pxToRem(3)} * var(--sbb-scaling-factor));
 
   width: calc(#{pxToRem(20)} * var(--sbb-scaling-factor));
   min-width: calc(#{pxToRem(20)} * var(--sbb-scaling-factor));
@@ -1545,7 +1545,7 @@ textarea {
   margin-right: calc(#{pxToRem(8)} * var(--sbb-scaling-factor));
 
   :where(html.sbb-lean) & {
-    margin-top: pxToRem(1);
+    margin-top: 0;
   }
 
   .sbb-selection-input:focus + &,
@@ -1580,9 +1580,15 @@ textarea {
     top: calc(50% - #{pxToRem(0.5)});
     border: pxToRem(1) solid var(--sbb-color-red);
     display: block;
+    background-color: var(
+      --sbb-color-red
+    ); // Used to fill line when user has activated browser zoom
 
     :where(html.sbb-lean) & {
       border-color: var(--sbb-color-granite);
+      background-color: var(
+        --sbb-color-granite
+      ); // Used to fill line when user has activated browser zoom
     }
   }
 }
@@ -1649,7 +1655,7 @@ textarea {
   transition: color var(--sbb-transition-default);
 
   :where(html.sbb-lean) & {
-    line-height: pxToRem(21);
+    line-height: pxToRem(20);
   }
 
   :is(.sbb-selection-checked, .sbb-selection-indeterminate) & {
@@ -1747,14 +1753,14 @@ textarea {
 }
 
 .sbb-selection-panel-item .sbb-selection-item-label {
-  padding: pxToRem(19) pxToRem(24);
+  padding: pxToRem(18) pxToRem(24);
 
   :where(html:not(.sbb-lean)) & {
     @include mq($from: desktop4k) {
-      padding: pxToRem(29) pxToRem(36) pxToRem(28);
+      padding: pxToRem(27) pxToRem(36) pxToRem(26);
     }
     @include mq($from: desktop5k) {
-      padding: pxToRem(39) pxToRem(48) pxToRem(37);
+      padding: pxToRem(37) pxToRem(48) pxToRem(35);
     }
   }
 }
