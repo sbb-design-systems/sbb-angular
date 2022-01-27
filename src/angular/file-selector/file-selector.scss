@@ -10,7 +10,7 @@
 
 .sbb-file-selector-upload-icon {
   display: inline-block;
-  margin-left: pxToEm(6);
+  margin-left: calc(#{pxToRem(6)} * var(--sbb-scaling-factor));
 
   // Achieve that icon is not greater than line-height
   margin-bottom: -0.5em;
@@ -20,7 +20,7 @@
   }
 
   :where(html:not(.sbb-lean)) & {
-    margin-top: pxToEm(1);
+    margin-top: var(--sbb-scaling-factor);
   }
 }
 
@@ -31,6 +31,8 @@
 
   li {
     margin-top: var(--sbb-divider-thin);
+    display: flex;
+    align-items: center;
   }
 
   :where(html.sbb-lean) & {
@@ -39,12 +41,11 @@
 }
 
 :is(.sbb-file-selector-list-type-icon, .sbb-file-selector-list-remove-icon) {
-  display: inline-block;
-  vertical-align: middle;
+  display: inline-flex;
 }
 
 .sbb-file-selector-list-type-icon {
-  margin-right: pxToEm(8);
+  margin-right: calc(#{pxToRem(8)} * var(--sbb-scaling-factor));
 
   :where(html.sbb-lean) & {
     vertical-align: top;
@@ -57,15 +58,15 @@
 
 .sbb-file-selector-list-remove-icon {
   position: relative;
-  width: pxToEm(32);
-  height: pxToEm(32);
-  margin-left: pxToEm(8);
+  width: calc(#{pxToRem(32)} * var(--sbb-scaling-factor));
+  height: calc(#{pxToRem(32)} * var(--sbb-scaling-factor));
+  margin-left: calc(#{pxToRem(8)} * var(--sbb-scaling-factor));
   cursor: pointer;
   outline: 0;
   color: var(--sbb-color-granite);
   border: var(--sbb-border-width-thin) solid var(--sbb-color-storm);
   border-radius: 50%;
-  padding: pxToEm(3);
+  padding: calc(#{pxToRem(3)} * var(--sbb-scaling-factor));
 
   &:is(:hover, :focus, :active) {
     color: var(--sbb-color-call-to-action-hover);
