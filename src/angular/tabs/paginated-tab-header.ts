@@ -494,7 +494,7 @@ export abstract class SbbPaginatedTabHeader
     } else {
       const isEnabled =
         this._tabListInner.nativeElement.scrollWidth - this._elementRef.nativeElement.offsetWidth >
-        1;
+        1; // Allow difference delta of 1 to avoid falsy enabled pagination if browser has zoom levels other than 100%
 
       if (!isEnabled) {
         this.scrollDistance = 0;
