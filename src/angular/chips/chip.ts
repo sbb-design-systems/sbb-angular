@@ -248,8 +248,6 @@ export class SbbChip
   _handleClick(event: Event) {
     if (this.disabled) {
       event.preventDefault();
-    } else {
-      event.stopPropagation();
     }
   }
 
