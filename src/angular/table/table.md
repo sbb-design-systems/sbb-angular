@@ -407,7 +407,7 @@ add a `sticky` input to the `sbbHeaderRowDef`.
     <tr sbb-header-row *sbbHeaderRowDef="displayedColumns; sticky: true"></tr>
     <tr sbb-row *sbbRowDef="let row; columns: displayedColumns;"></tr>
   </table>
-</div>
+</sbb-table-wrapper>
 ```
 
 Similarly, this can also be applied to the table's footer row. Note that if you are using the native
@@ -422,7 +422,7 @@ rendered footer rows.
     <tr sbb-row *sbbRowDef="let row; columns: displayedColumns;"></tr>
     <tr sbb-footer-row *sbbFooterRowDef="displayedColumns; sticky: true"></tr>
   </table>
-</div>
+</sbb-table-wrapper>
 ```
 
 It is also possible to fix cell columns to the start or end of the horizontally scrolling viewport.
@@ -444,7 +444,7 @@ To do this, add the `sticky` or `stickyEnd` directive to the `ng-container` colu
       <td sbb-cell *sbbCellDef="let element">{{element.star}}</td>
     </ng-container>
   </table>
-</div>
+</sbb-table-wrapper>
 ```
 
 This feature is supported by Chrome, Firefox, Safari, and Edge. It is not supported in IE, but
