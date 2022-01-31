@@ -492,9 +492,10 @@ export abstract class SbbPaginatedTabHeader
     if (this.disablePagination || this.variantSnapshot === 'standard') {
       this._showPaginationControls = false;
     } else {
+      // Allow difference delta of 1px to avoid falsy enabled pagination if browser has zoom levels other than 100%
       const isEnabled =
         this._tabListInner.nativeElement.scrollWidth - this._elementRef.nativeElement.offsetWidth >
-        1; // Allow difference delta of 1 to avoid falsy enabled pagination if browser has zoom levels other than 100%
+        1;
 
       if (!isEnabled) {
         this.scrollDistance = 0;
