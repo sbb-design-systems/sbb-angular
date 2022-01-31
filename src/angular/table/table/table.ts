@@ -124,11 +124,11 @@ export class SbbTable<T> extends CdkTable<T> implements OnInit, OnDestroy {
     super.ngOnInit();
     // If more than one column is sticky, the left offset is calculated at a wrong
     // time by cdk and sticky columns can get overlapped.
-    // This workaround calculates sticky styles whenever content data was changed or the viewport has changed
+    // This workaround calculates sticky styles whenever the viewport has changed
     // using a Promise.resolve() to postpone data calculation to the time the content is already placed in DOM.
     // See also https://github.com/angular/components/issues/15885.
     this._ngZone!.runOutsideAngular(() => {
-      merge(this.contentChanged, this._viewportRulerSbb.change(150))
+      merge(this._viewportRulerSbb.change(150))
         .pipe(takeUntil(this._destroyed))
         .subscribe(() => {
           Promise.resolve().then(() => {
