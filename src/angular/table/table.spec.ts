@@ -661,7 +661,7 @@ describe('SbbTable', () => {
   it('should update sticky left offset on data change (initially here)', fakeAsync(() => {
     const fixture = TestBed.createComponent(TableWithTwoStickyColumnsTestComponent);
     fixture.detectChanges();
-    fixture.detectChanges(); // Second Change Detection needed
+    fixture.detectChanges(); // Second change detection needed
 
     const columnAComputedStyles = getComputedStyle(
       fixture.nativeElement.querySelector('.sbb-column-column_a')
@@ -675,7 +675,7 @@ describe('SbbTable', () => {
   it('should update sticky left offset on viewport change', fakeAsync(() => {
     const fixture = TestBed.createComponent(TableWithTwoStickyColumnsTestComponent);
     fixture.detectChanges();
-    fixture.detectChanges(); // Second Change Detection needed
+    fixture.detectChanges(); // Second change detection needed
 
     const tableElement = fixture.nativeElement.querySelector('.sbb-table');
 
