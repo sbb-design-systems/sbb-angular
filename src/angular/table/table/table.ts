@@ -35,7 +35,7 @@ import {
   SkipSelf,
   ViewEncapsulation,
 } from '@angular/core';
-import { merge, Subject } from 'rxjs';
+import { Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
 
 /**
@@ -128,7 +128,8 @@ export class SbbTable<T> extends CdkTable<T> implements OnInit, OnDestroy {
     // using a Promise.resolve() to postpone data calculation to the time the content is already placed in DOM.
     // See also https://github.com/angular/components/issues/15885.
     this._ngZone!.runOutsideAngular(() => {
-      merge(this._viewportRulerSbb.change(150))
+      this._viewportRulerSbb
+        .change(150)
         .pipe(takeUntil(this._destroyed))
         .subscribe(() => {
           Promise.resolve().then(() => {
