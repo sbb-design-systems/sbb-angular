@@ -66,6 +66,7 @@ def _package_docs_content(ctx):
 
     return DefaultInfo(files = depset(expected_outputs))
 
+# buildifier: disable=no-effect
 """
   Rule definition for the "package_docs_content" rule that can accept arbritary source files
   that will be grouped into specified sections. This is being used to package the docs

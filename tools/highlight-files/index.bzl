@@ -41,6 +41,7 @@ def _highlight_files(ctx):
 
     return DefaultInfo(files = depset([output_dir]))
 
+# buildifier: disable=no-effect
 """
   Rule definition for the "highlight_files" rule that can accept arbritary source files
   that will be transformed into HTML files which reflect the highlighted source code of

@@ -57,6 +57,7 @@ def _dgeni_api_docs(ctx):
 
     return DefaultInfo(files = depset(expected_outputs))
 
+# buildifier: disable=no-effect
 """
   Rule definition for the "dgeni_api_docs" rule that can generate API documentation
   for specified packages and their entry points.
