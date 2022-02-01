@@ -1,5 +1,4 @@
 import { PropertyMemberDoc } from 'dgeni-packages/typescript/api-doc-types/PropertyMemberDoc';
-
 import { hasMemberDecorator } from './decorators';
 
 /** Interface that describes an Angular property binding. Can be either an input or output. */

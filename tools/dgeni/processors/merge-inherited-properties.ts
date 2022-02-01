@@ -3,7 +3,6 @@ import { ClassExportDoc } from 'dgeni-packages/typescript/api-doc-types/ClassExp
 import { ClassLikeExportDoc } from 'dgeni-packages/typescript/api-doc-types/ClassLikeExportDoc';
 import { MemberDoc } from 'dgeni-packages/typescript/api-doc-types/MemberDoc';
 import * as ts from 'typescript';
-
 import { getInheritedDocsOfClass } from '../common/class-inheritance';
 
 /**
@@ -56,6 +55,7 @@ export class MergeInheritedProperties implements Processor {
       // by using an instance comparison.
       // tslint:disable-next-line:ban Need to use Object.assign to preserve the prototype.
       const newMemberDoc = Object.assign(Object.create(memberDoc), memberDoc);
+
       newMemberDoc.containerDoc = destination;
       destination.members.push(newMemberDoc);
     }

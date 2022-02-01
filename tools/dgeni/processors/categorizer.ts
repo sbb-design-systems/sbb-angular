@@ -2,7 +2,6 @@ import { DocCollection, Processor } from 'dgeni';
 import { ClassLikeExportDoc } from 'dgeni-packages/typescript/api-doc-types/ClassLikeExportDoc';
 import { MemberDoc } from 'dgeni-packages/typescript/api-doc-types/MemberDoc';
 import * as ts from 'typescript';
-
 import { getInheritedDocsOfClass } from '../common/class-inheritance';
 import {
   decorateDeprecatedDoc,
@@ -118,6 +117,18 @@ export class Categorizer implements Processor {
     classDoc.extendedDoc = classDoc.extendsClauses[0] ? classDoc.extendsClauses[0].doc! : undefined;
     classDoc.directiveMetadata = getDirectiveMetadata(classDoc);
     classDoc.inheritedDocs = getInheritedDocsOfClass(classDoc, this._exportSymbolsToDocsMap);
+
+    classDoc.methods.push(
+      ...(classDoc.statics
+        .filter(isMethod)
+        .filter(filterDuplicateMembers) as CategorizedMethodMemberDoc[])
+    );
+
+    classDoc.properties.push(
+      ...(classDoc.statics
+        .filter(isProperty)
+        .filter(filterDuplicateMembers) as CategorizedPropertyMemberDoc[])
+    );
 
     // In case the extended document is not public, we don't want to print it in the
     // rendered class API doc. This causes confusion and also is not helpful as the
