@@ -7,7 +7,9 @@
     dependencies). <br />
     See <a href="https://update.angular.io">update.angular.io</a> for a step-by-step guide for
     updating Angular.
-    <pre style="user-select: all">ng update @angular/core @angular/cli @angular/cdk --force</pre>
+    <pre style="user-select: all">
+npx @angular/cli@13 update @angular/core@13 @angular/cli@13 @angular/cdk@13 --force</pre
+    >
   </li>
   <li>
     Use <code>ng add</code> to add <code>@sbb-esta/angular</code> package. Our automatic migration
@@ -47,5 +49,5 @@
 </p>
 <pre
   style="user-select: all"
->ng update<ng-container *ngIf="fullCommand.value"> @angular/core @angular/cli</ng-container> @angular/cdk @sbb-esta/angular</pre>
+>npx @angular/cli@{{libraryMajorVersion}} update <ng-container *ngIf="fullCommand.value"> @angular/core@{{libraryMajorVersion}} @angular/cli@{{libraryMajorVersion}}</ng-container> @angular/cdk@{{libraryMajorVersion}} @sbb-esta/angular@{{libraryMajorVersion}}</pre>
 <sbb-checkbox [formControl]="fullCommand">Include @angular packages in update command</sbb-checkbox>
