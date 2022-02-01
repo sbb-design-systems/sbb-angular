@@ -64,7 +64,9 @@ export class SbbTabBodyPortal extends CdkPortalOutlet implements OnInit, OnDestr
       });
 
     this._leavingSub = this._host._afterLeavingCenter.subscribe(() => {
-      this.detach();
+      if (!this._host.preserveContent) {
+        this.detach();
+      }
     });
   }
 
@@ -115,6 +117,9 @@ export abstract class _SbbTabBodyBase implements OnDestroy {
 
   /** Position that will be used when the tab is immediately becoming visible after creation. */
   @Input() origin: number | null;
+
+  /** Whether the tab's content should be kept in the DOM while it's off-screen. */
+  @Input() preserveContent: boolean = false;
 
   /** The shifted index position of the tab body, where zero represents the active center tab. */
   @Input()

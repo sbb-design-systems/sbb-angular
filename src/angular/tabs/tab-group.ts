@@ -104,6 +104,14 @@ export abstract class SbbTabGroupBase implements AfterContentInit, AfterContentC
   @Input()
   disablePagination: boolean;
 
+  /**
+   * By default tabs remove their content from the DOM while it's off-screen.
+   * Setting this to `true` will keep it in the DOM which will prevent elements
+   * like iframes and videos from reloading next time it comes back into the view.
+   */
+  @Input()
+  preserveContent: boolean;
+
   /** Output to enable support for two-way binding on `[(selectedIndex)]` */
   @Output() readonly selectedIndexChange: EventEmitter<number> = new EventEmitter<number>();
 
@@ -134,6 +142,7 @@ export abstract class SbbTabGroupBase implements AfterContentInit, AfterContentC
         : false;
     this.dynamicHeight =
       defaultConfig && defaultConfig.dynamicHeight != null ? defaultConfig.dynamicHeight : false;
+    this.preserveContent = !!defaultConfig?.preserveContent;
   }
 
   /**
