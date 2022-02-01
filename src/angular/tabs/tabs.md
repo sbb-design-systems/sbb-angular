@@ -111,6 +111,30 @@ with the `sbbTabContent` attribute.
 </sbb-tab>
 ```
 
+### Keeping the tab content inside the DOM while it's off-screen
+
+By default the `<sbb-tab-group>` will remove the content of off-screen tabs from the DOM until they
+come into the view. This is optimal for most cases since it keeps the DOM size smaller, but it
+isn't great for others like when a tab has an `<audio>` or `<video>` element, because the content
+will be re-initialized whenever the user navigates to the tab. If you want to keep the content of
+off-screen tabs in the DOM, you can set the `preserveContent` input to `true`.
+
+```html
+<sbb-tab-group [preserveContent]="true">
+  <sbb-tab label="First">
+    <iframe
+      width="560"
+      height="315"
+      src="https://www.youtube.com/embed/B-lipaiZII8"
+      frameborder="0"
+      allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
+      allowfullscreen
+    ></iframe>
+  </sbb-tab>
+  <sbb-tab label="Second">Note how the video from the previous tab is still playing.</sbb-tab>
+</sbb-tab-group>
+```
+
 ### Accessibility
 
 `SbbTabGroup` and `SbbTabNavBar` implement different interaction patterns for different use-cases.
