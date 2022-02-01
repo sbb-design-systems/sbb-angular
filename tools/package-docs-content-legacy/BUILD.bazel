@@ -7,6 +7,7 @@ nodejs_binary(
     name = "package-docs-content-legacy",
     data = [
         ":sources",
+        "@npm//fs-extra",
     ],
     entry_point = ":package-docs-content.ts",
     # TODO(josephperrott): update dependency usages to no longer need bazel patch module resolver
@@ -20,5 +21,8 @@ ts_library(
     # TODO(ESM): remove this once the Bazel NodeJS rules can handle ESM with `nodejs_binary`.
     devmode_module = "commonjs",
     tsconfig = ":tsconfig.json",
-    deps = ["@npm//@types/node"],
+    deps = [
+        "@npm//@types/fs-extra",
+        "@npm//@types/node",
+    ],
 )

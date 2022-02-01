@@ -36,10 +36,10 @@ package_docs_content_legacy(
         # into the docs content. These will be used to show the source code for examples.
         # Note: `examples-highlighted` is a tree artifact that we want to store as is
         # in the docs-content. Hence there is no target section name.
-        "//src/components-examples:examples-highlighted": "examples-highlighted",
+        "//src/components-examples:examples-highlighted": "",
 
         # Package the API docs into the docs-content
-        "//src:api-docs": "",
+        "//src:api-docs": "api-docs",
     },
     tags = ["docs-package"],
 )

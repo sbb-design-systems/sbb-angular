@@ -11,6 +11,8 @@
     "strictFunctionTypes": true,
     "noImplicitThis": true,
     "noImplicitAny": true,
+    "noFallthroughCasesInSwitch": true,
+    "noImplicitOverride": true,
     "target": "es2020",
     "types": ["node"]
   }

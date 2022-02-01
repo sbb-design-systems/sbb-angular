@@ -1,15 +1,13 @@
 """
   Implementation of the "_dgeni_api_docs" rule. The implementation runs Dgeni with the
-  specified entry points and outputs the API docs into a package relative directory.
+  specified entry points and outputs the API docs as `DefaultInfo` declared output files.
 """
 
 def _dgeni_api_docs(ctx):
     input_files = ctx.files.srcs
     args = ctx.actions.args()
     expected_outputs = []
-
-    output_dir_name = ctx.attr.name
-    output_dir_path = "%s/%s/%s" % (ctx.bin_dir.path, ctx.label.package, output_dir_name)
+    output_dir_path = "%s/%s" % (ctx.bin_dir.path, ctx.label.package)
 
     # Do nothing if there are no input files. Bazel will throw if we schedule an action
     # that returns no outputs.
@@ -41,8 +39,8 @@ def _dgeni_api_docs(ctx):
                 # Declare the output for the current entry-point. The output file will always follow the
                 # same format: "{output_folder}/{package_name}-{entry_point_name}.html"
                 # (e.g. "api-docs/material-slider-testing.html")
-                ctx.actions.declare_file("%s/%s-%s.html" %
-                                         (output_dir_name, package_name, entry_point.replace("/", "-"))),
+                ctx.actions.declare_file("%s-%s.html" %
+                                         (package_name, entry_point.replace("/", "-"))),
             )
 
     # Run the Dgeni bazel executable which builds the documentation output based on the
@@ -59,8 +57,10 @@ def _dgeni_api_docs(ctx):
 
     return DefaultInfo(files = depset(expected_outputs))
 
-# Rule definition for the "dgeni_api_docs" rule that can generate API documentation
-# for specified packages and their entry points.
+"""
+  Rule definition for the "dgeni_api_docs" rule that can generate API documentation
+  for specified packages and their entry points.
+"""
 dgeni_api_docs = rule(
     implementation = _dgeni_api_docs,
     attrs = {

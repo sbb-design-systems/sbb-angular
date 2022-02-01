@@ -8,7 +8,7 @@
  *
  *   import type { ClassDependency1 } from '...';
  *
- *   @Component({ ... })
+ *   \@Component({ ... })
  *   class ExampleComponent {
  *     // Meta data contains ClassDependency1, which breaks consumers
  *     constructor(@Inject(DEPENDENCY) private dep1: ClassDependency1) {}
@@ -17,7 +17,7 @@
  *     onEvent(event: Event) { ... }
  *   }
  *
- *   @Component({ ... })
+ *   \@Component({ ... })
  *   class ExampleComponent {
  *     // Meta data contains undefined instead of ClassDependency1
  *     constructor(@Inject(DEPENDENCY) private dep1: TypeRef<ClassDependency1>) {}

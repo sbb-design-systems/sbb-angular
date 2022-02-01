@@ -3,7 +3,6 @@ import { ReadTypeScriptModules } from 'dgeni-packages/typescript/processors/read
 import { TsParser } from 'dgeni-packages/typescript/services/TsParser';
 import { readFileSync } from 'fs';
 import { join, relative } from 'path';
-
 import { apiDocsPackage } from './docs-package';
 import { EntryPointGrouper } from './processors/entry-point-grouper';
 

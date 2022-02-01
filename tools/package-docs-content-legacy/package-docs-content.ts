@@ -5,7 +5,8 @@
  * multiple times.
  */
 
-import { readFileSync, writeFileSync } from 'fs';
+import { copySync, ensureDirSync, readFileSync, statSync, writeFileSync } from 'fs-extra';
+import { dirname } from 'path';
 
 /**
  * Determines the command line arguments for the current Bazel action. Since this action can
@@ -31,8 +32,16 @@ if (require.main === module) {
   getBazelActionArguments().forEach((argument) => {
     // Each argument that has been passed consists of an input file path and the expected
     // output path. e.g. {path_to_input_file},{expected_output_path}
-    const [inputFilePath, outputPath] = argument.split(',', 2);
+    const [execFilePath, expectedOutput] = argument.split(',', 2);
 
-    writeFileSync(outputPath, readFileSync(inputFilePath, 'utf8'));
+    // Ensure the directory exists. Bazel does not create the tree
+    // artifact by default.
+    ensureDirSync(dirname(expectedOutput));
+
+    if (statSync(execFilePath).isDirectory()) {
+      copySync(execFilePath, expectedOutput);
+    } else {
+      writeFileSync(expectedOutput, readFileSync(execFilePath, 'utf8'));
+    }
   });
 }
