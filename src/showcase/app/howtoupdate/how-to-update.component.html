@@ -8,8 +8,12 @@
     See <a href="https://update.angular.io">update.angular.io</a> for a step-by-step guide for
     updating Angular.
     <pre style="user-select: all">
-npx @angular/cli@13 update @angular/core@13 @angular/cli@13 @angular/cdk@13 --force</pre
+npx @angular/cli@13 update @angular/core@13 @angular/cli@13 --force</pre
     >
+  </li>
+  <li>
+    Update Angular CDK
+    <pre style="user-select: all">npx @angular/cli@13 update @angular/cdk@13 --force</pre>
   </li>
   <li>
     Use <code>ng add</code> to add <code>@sbb-esta/angular</code> package. Our automatic migration
@@ -28,7 +32,10 @@ npx @angular/cli@13 update @angular/core@13 @angular/cli@13 @angular/cdk@13 --fo
     <code>@sbb-esta/angular-icons</code> and <code>@sbb-esta/angular-keycloak</code> from your
     project.
   </li>
-  <li>(Optional) run <code>ng update @sbb-esta/maps</code> if you are using maps package.</li>
+  <li>
+    (Optional) run <code>npx @angular/cli@13 update @sbb-esta/maps</code> if you are using maps
+    package.
+  </li>
 </ol>
 
 <h4>Update from version 13.x.x</h4>
@@ -47,7 +54,19 @@ npx @angular/cli@13 update @angular/core@13 @angular/cli@13 @angular/cdk@13 --fo
   <code>ng update</code> will update all related packages and will automatically run update
   schematics which helps keeping up with breaking changes.
 </p>
-<pre
-  style="user-select: all"
->npx @angular/cli@{{libraryMajorVersion}} update <ng-container *ngIf="fullCommand.value"> @angular/core@{{libraryMajorVersion}} @angular/cli@{{libraryMajorVersion}}</ng-container> @angular/cdk@{{libraryMajorVersion}} @sbb-esta/angular@{{libraryMajorVersion}}</pre>
-<sbb-checkbox [formControl]="fullCommand">Include @angular packages in update command</sbb-checkbox>
+<sbb-checkbox [formControl]="fullCommand">Show command for @angular packages update</sbb-checkbox>
+
+<ng-container *ngIf="fullCommand.value">
+  <h5>@angular/cli & @angular/core</h5>
+  <pre style="user-select: all">
+npx @angular/cli@{{ libraryMajorVersion }} update @angular/core@{{
+      libraryMajorVersion
+    }} @angular/cli@{{ libraryMajorVersion }}</pre
+  >
+  <h5>@angular/cdk & @sbb-esta/angular</h5>
+</ng-container>
+<pre style="user-select: all">
+npx @angular/cli@{{ libraryMajorVersion }} update @angular/cdk@{{
+    libraryMajorVersion
+  }} @sbb-esta/angular@{{ libraryMajorVersion }}</pre
+>
