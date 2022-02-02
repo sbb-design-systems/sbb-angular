@@ -67,7 +67,7 @@ or editing your `angular.json`:
   ...
 ```
 
-If you need more details about what the typography offers to you, you can go to [typography](angular/introduction/typography).
+If you need more details about what the typography offers to you, you can go to [typography](/angular/introduction/typography).
 
 #### Step 1.3: Configure animations
 
