@@ -141,7 +141,7 @@ export class SbbMenuItem
 
   _setHighlighted(isHighlighted: boolean) {
     // We need to mark this for check for the case where the content is coming from a
-    // `matMenuContent` whose change detection tree is at the declaration position,
+    // `sbbMenuContent` whose change detection tree is at the declaration position,
     // not the insertion position. See #23175.
     // @breaking-change 14.0.0 Remove null check for `_changeDetectorRef`.
     this._highlighted = isHighlighted;
