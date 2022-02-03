@@ -202,12 +202,25 @@
   height: calc(#{pxToRem(15)} * var(--sbb-scaling-factor));
 }
 
-.sbb-calendar-body-cell {
+.sbb-calendar-body-cell-container {
   position: relative;
   height: 0;
+  padding: 0;
   line-height: 0;
   text-align: center;
-  outline: 0;
+}
+
+.sbb-calendar-body-cell {
+  position: relative;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: none;
+  text-align: center;
+  outline: none;
+  font-family: inherit;
+  margin: 0;
   cursor: pointer;
 
   &:is(.sbb-calendar-body-range-background, .sbb-calendar-body-selected-begin, .sbb-calendar-body-selected-end)::before {
