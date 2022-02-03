@@ -116,7 +116,7 @@ export class SbbMenu implements AfterContentInit, SbbMenuPanel<SbbMenuItem>, OnI
   @ContentChildren(SbbMenuItem, { descendants: true }) _allItems: QueryList<SbbMenuItem>;
 
   /** Only the direct descendant menu items. */
-  private _directDescendantItems = new QueryList<SbbMenuItem>();
+  _directDescendantItems: QueryList<SbbMenuItem> = new QueryList<SbbMenuItem>();
 
   /** Subscription to tab events on the menu panel */
   private _tabSubscription = Subscription.EMPTY;
@@ -128,7 +128,7 @@ export class SbbMenu implements AfterContentInit, SbbMenuPanel<SbbMenuItem>, OnI
   _panelAnimationState: SbbMenuAnimationState = 'void';
 
   /** Emits whenever an animation on the menu completes. */
-  _animationDone: Subject<AnimationEvent> = new Subject<AnimationEvent>();
+  readonly _animationDone: Subject<AnimationEvent> = new Subject<AnimationEvent>();
 
   /** Whether the menu is animating. */
   _isAnimating: boolean;

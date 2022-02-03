@@ -33,7 +33,7 @@ export class SbbMenuContent implements OnDestroy {
   private _outlet: DomPortalOutlet;
 
   /** Emits when the menu content has been attached. */
-  _attached: Subject<void> = new Subject<void>();
+  readonly _attached: Subject<void> = new Subject<void>();
 
   constructor(
     private _template: TemplateRef<any>,

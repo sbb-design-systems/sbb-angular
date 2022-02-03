@@ -24,7 +24,6 @@ import {
   Directive,
   ElementRef,
   EventEmitter,
-  HostListener,
   Inject,
   InjectionToken,
   Input,
@@ -114,6 +113,9 @@ const _SbbMenuTriggerMixinBase = mixinVariant(class {});
     '[attr.aria-controls]': 'menuOpen ? menu.panelId : null',
     '[class.sbb-menu-trigger-root]': '!_parentSbbMenu',
     '[class.sbb-menu-trigger-menu-open]': 'menuOpen',
+    '(click)': '_handleClick($event)',
+    '(mousedown)': '_handleMousedown($event)',
+    '(keydown)': '_handleKeydown($event)',
   },
   exportAs: 'sbbMenuTrigger',
 })
@@ -318,8 +320,9 @@ export class SbbMenuTrigger
 
     const overlayRef = this._createOverlay();
     const overlayConfig = overlayRef.getConfig();
+    const positionStrategy = overlayConfig.positionStrategy as FlexibleConnectedPositionStrategy;
 
-    this._setPosition(overlayConfig.positionStrategy as FlexibleConnectedPositionStrategy);
+    this._setPosition(positionStrategy);
     overlayConfig.hasBackdrop =
       this.menu.hasBackdrop == null ? !this.triggersSubmenu() : this.menu.hasBackdrop;
     overlayRef.attach(this._getPortal());
@@ -333,6 +336,12 @@ export class SbbMenuTrigger
 
     if (this.menu instanceof SbbMenu) {
       this.menu._startAnimation();
+      this.menu._directDescendantItems.changes.pipe(takeUntil(this.menu.closed)).subscribe(() => {
+        // Re-adjust the position without locking when the amount of items
+        // changes so that the overlay is allowed to pick a new optimal position.
+        positionStrategy.withLockedPosition(false).reapplyLastPosition();
+        positionStrategy.withLockedPosition(true);
+      });
     }
   }
 
@@ -457,7 +466,7 @@ export class SbbMenuTrigger
     this._menuOpen = isOpen;
     this._menuOpen ? this.menuOpened.emit() : this.menuClosed.emit();
     if (this.triggersSubmenu()) {
-      this._menuItemInstance._highlighted = isOpen;
+      this._menuItemInstance._setHighlighted(isOpen);
     }
     this._changeDetectorRef.markForCheck();
   }
@@ -631,7 +640,6 @@ export class SbbMenuTrigger
   }
 
   /** Handles mouse presses on the trigger. */
-  @HostListener('mousedown', ['$event'])
   _handleMousedown(event: MouseEvent): void {
     if (!isFakeMousedownFromScreenReader(event)) {
       // Since right or middle button clicks won't trigger the `click` event,
@@ -648,7 +656,6 @@ export class SbbMenuTrigger
   }
 
   /** Handles key presses on the trigger. */
-  @HostListener('keydown', ['$event'])
   _handleKeydown(event: KeyboardEvent): void {
     const keyCode = event.keyCode;
 
@@ -664,7 +671,6 @@ export class SbbMenuTrigger
   }
 
   /** Handles click events on the trigger. */
-  @HostListener('click', ['$event'])
   _handleClick(event: MouseEvent): void {
     if (this.triggersSubmenu()) {
       // Stop event propagation to avoid closing the parent menu.

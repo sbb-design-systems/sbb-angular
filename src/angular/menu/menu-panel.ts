@@ -21,7 +21,7 @@ export interface SbbMenuPanel<T = any> {
   yPosition: SbbMenuPositionY;
   overlapTrigger: boolean;
   templateRef: TemplateRef<any>;
-  closed: EventEmitter<void | 'click' | 'keydown' | 'tab'>;
+  readonly closed: EventEmitter<void | 'click' | 'keydown' | 'tab'>;
   parentMenu?: SbbMenuPanel | undefined;
   focusFirstItem: (origin?: FocusOrigin) => void;
   resetActiveItem: () => void;
