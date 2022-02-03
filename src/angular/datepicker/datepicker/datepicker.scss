@@ -12,6 +12,8 @@
 }
 
 .sbb-date-input {
+  width: 100%;
+
   :is(.sbb-datepicker-toggle-enabled, .sbb-datepicker-arrows-enabled) > & {
     padding-left: var(--sbb-datepicker-toggle-or-arrows-padding);
   }

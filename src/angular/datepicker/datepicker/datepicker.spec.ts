@@ -159,7 +159,7 @@ class DatepickerConnectedComponent {
 
 @Component({
   template: `
-    <sbb-datepicker arrows #d class="default-arrow-labels">
+    <sbb-datepicker arrows #d class="default-arrow-labels" style="width: 300px">
       <input sbbDateInput [value]="date" />
     </sbb-datepicker>
 
@@ -991,6 +991,12 @@ describe('SbbDatepicker', () => {
       );
       expect(nextButton!.getAttribute('aria-label')).toEqual('Select next day');
       expect(prevButton!.getAttribute('aria-label')).toEqual('Select previous day');
+    });
+
+    it('should have an input with full width', () => {
+      const wrapper = document.querySelector('.default-arrow-labels');
+      const input = document.querySelector('.default-arrow-labels input');
+      expect(wrapper!.clientWidth).toEqual(input!.getBoundingClientRect().width);
     });
   });
 });
