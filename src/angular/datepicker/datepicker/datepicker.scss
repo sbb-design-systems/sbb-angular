@@ -3,8 +3,11 @@
 .sbb-datepicker {
   display: inline-block;
   position: relative;
-  width: 100%;
   color: var(--sbb-color-weak-accent);
+
+  .sbb-form-field & {
+    width: 100%;
+  }
 }
 
 .sbb-datepicker-disabled {
@@ -12,6 +15,10 @@
 }
 
 .sbb-date-input {
+  .sbb-datepicker > & {
+    width: 100%;
+  }
+
   :is(.sbb-datepicker-toggle-enabled, .sbb-datepicker-arrows-enabled) > & {
     padding-left: var(--sbb-datepicker-toggle-or-arrows-padding);
   }
