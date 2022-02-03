@@ -2,6 +2,35 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [13.4.0](https://github.com/sbb-design-systems/sbb-angular/compare/13.3.0...13.4.0) (2022-02-03)
+
+
+### Features
+
+* **angular/tabs:** add the ability to keep content inside the DOM while off-screen ([#1094](https://github.com/sbb-design-systems/sbb-angular/issues/1094)) ([aeaa607](https://github.com/sbb-design-systems/sbb-angular/commit/aeaa60721c2675657baf7b63a7e2e526ed430006))
+
+
+### Bug Fixes
+
+* **angular/chips:** don't stop propagation on all click events ([#1083](https://github.com/sbb-design-systems/sbb-angular/issues/1083)) ([aed6a50](https://github.com/sbb-design-systems/sbb-angular/commit/aed6a503f0c814441d183f0cda9f7838d0ffe5cd))
+* **angular/datepicker:** make input full width ([#1104](https://github.com/sbb-design-systems/sbb-angular/issues/1104)) ([ee6ec4e](https://github.com/sbb-design-systems/sbb-angular/commit/ee6ec4ee30051e6da75a42d7fd3b8ad81ce66b21))
+* **angular/menu:** adjust overlay size when amount of items changes ([#1103](https://github.com/sbb-design-systems/sbb-angular/issues/1103)) ([786c650](https://github.com/sbb-design-systems/sbb-angular/commit/786c650518c12bb6b4381ba12eab65a5413708cb))
+* **angular/styles:** fix invalid user-select values ([#1086](https://github.com/sbb-design-systems/sbb-angular/issues/1086)) ([44901fe](https://github.com/sbb-design-systems/sbb-angular/commit/44901feb65b8716a41cf3ed228e3fcf9c9b7a522))
+* **angular/styles:** fix selection-item styles ([#1088](https://github.com/sbb-design-systems/sbb-angular/issues/1088)) ([a52fffc](https://github.com/sbb-design-systems/sbb-angular/commit/a52fffc761b76bc68b4dbe18cbfc981a1c853e5e)), closes [#878](https://github.com/sbb-design-systems/sbb-angular/issues/878)
+* **angular/tabs:** fix padding in lean design ([#1087](https://github.com/sbb-design-systems/sbb-angular/issues/1087)) ([9457789](https://github.com/sbb-design-systems/sbb-angular/commit/94577893aaa4116a5b49c8cd73560e9900bab12a))
+* **angular/tabs:** fix showing pagination arrows on zoom levels other than 100% ([#1090](https://github.com/sbb-design-systems/sbb-angular/issues/1090)) ([63798ff](https://github.com/sbb-design-systems/sbb-angular/commit/63798ffebbbc3c0443c877f42992f34d1f34602a))
+* **angular/tabs:** use buttons for paginator ([#1102](https://github.com/sbb-design-systems/sbb-angular/issues/1102)) ([d76454d](https://github.com/sbb-design-systems/sbb-angular/commit/d76454d053f1ab25c585d9814bea1f767ce407e1))
+* **showcase:** resolve doc links correctly ([#1099](https://github.com/sbb-design-systems/sbb-angular/issues/1099)) ([39c31ba](https://github.com/sbb-design-systems/sbb-angular/commit/39c31baf669823378c3fe3d872c51b45dea3ca58))
+
+
+### Documentation
+
+* how to update with split update commands ([#1101](https://github.com/sbb-design-systems/sbb-angular/issues/1101)) ([4187482](https://github.com/sbb-design-systems/sbb-angular/commit/41874826a7b4a6535618980a8216743f57659cae))
+* **angular/table:** correct closing tag ([#1091](https://github.com/sbb-design-systems/sbb-angular/issues/1091)) ([181a177](https://github.com/sbb-design-systems/sbb-angular/commit/181a1770195b0360eff4af5ba82b203f6387f7ec))
+* **angular/tabs:** update accessibility section ([#1100](https://github.com/sbb-design-systems/sbb-angular/issues/1100)) ([6bfa9dc](https://github.com/sbb-design-systems/sbb-angular/commit/6bfa9dc1dc97300328d135be448620102c228aec))
+* **showcase:** set version of @angular/cli in how to update guide ([#1097](https://github.com/sbb-design-systems/sbb-angular/issues/1097)) ([acdc190](https://github.com/sbb-design-systems/sbb-angular/commit/acdc190217b6f528fc15717eddf37b1916e10989))
+* fix typo ([f0ad81b](https://github.com/sbb-design-systems/sbb-angular/commit/f0ad81bfd1eef2384d9a3d8d28553f2f89b07884))
+
 ## [13.3.0](https://github.com/sbb-design-systems/sbb-angular/compare/13.2.0...13.3.0) (2022-01-26)
 
 
