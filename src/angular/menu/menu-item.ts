@@ -2,9 +2,9 @@ import { FocusableOption, FocusMonitor, FocusOrigin } from '@angular/cdk/a11y';
 import {
   AfterViewInit,
   ChangeDetectionStrategy,
+  ChangeDetectorRef,
   Component,
   ElementRef,
-  HostListener,
   Inject,
   Input,
   OnDestroy,
@@ -35,6 +35,8 @@ const _SbbMenuItemMixinBase = mixinDisabled(class {});
     '[attr.aria-disabled]': 'disabled.toString()',
     '[attr.disabled]': 'disabled || null',
     class: 'sbb-menu-item sbb-link-reset sbb-icon-fit',
+    '(click)': '_checkDisabled($event)',
+    '(mouseenter)': '_handleMouseEnter()',
   },
   changeDetection: ChangeDetectionStrategy.OnPush,
   encapsulation: ViewEncapsulation.None,
@@ -62,7 +64,12 @@ export class SbbMenuItem
   constructor(
     private _elementRef: ElementRef<HTMLElement>,
     private _focusMonitor?: FocusMonitor,
-    @Inject(SBB_MENU_PANEL) @Optional() public _parentMenu?: SbbMenuPanel<SbbMenuItem>
+    @Inject(SBB_MENU_PANEL) @Optional() public _parentMenu?: SbbMenuPanel<SbbMenuItem>,
+    /**
+     * @deprecated `_changeDetectorRef` to become a required parameter.
+     * @breaking-change 14.0.0
+     */
+    private _changeDetectorRef?: ChangeDetectorRef
   ) {
     super();
   }
@@ -107,11 +114,6 @@ export class SbbMenuItem
   }
 
   /** Prevents the default element actions if it is disabled. */
-  // We have to use a `HostListener` here in order to support both Ivy and ViewEngine.
-  // In Ivy the `host` bindings will be merged when this class is extended, whereas in
-  // ViewEngine they're overwritten.
-  // TODO(crisbeto): we move this back into `host` once Ivy is turned on by default.
-  @HostListener('click', ['$event'])
   _checkDisabled(event: Event): void {
     if (this.disabled) {
       event.preventDefault();
@@ -120,11 +122,6 @@ export class SbbMenuItem
   }
 
   /** Emits to the hover stream. */
-  // We have to use a `HostListener` here in order to support both Ivy and ViewEngine.
-  // In Ivy the `host` bindings will be merged when this class is extended, whereas in
-  // ViewEngine they're overwritten.
-  // TODO(crisbeto): we move this back into `host` once Ivy is turned on by default.
-  @HostListener('mouseenter')
   _handleMouseEnter() {
     this._hovered.next(this);
   }
@@ -136,10 +133,18 @@ export class SbbMenuItem
 
     // Strip away icons so they don't show up in the text.
     for (let i = 0; i < icons.length; i++) {
-      const icon = icons[i];
-      icon.parentNode?.removeChild(icon);
+      icons[i].remove();
     }
 
     return clone.textContent?.trim() || '';
+  }
+
+  _setHighlighted(isHighlighted: boolean) {
+    // We need to mark this for check for the case where the content is coming from a
+    // `sbbMenuContent` whose change detection tree is at the declaration position,
+    // not the insertion position. See #23175.
+    // @breaking-change 14.0.0 Remove null check for `_changeDetectorRef`.
+    this._highlighted = isHighlighted;
+    this._changeDetectorRef?.markForCheck();
   }
 }
