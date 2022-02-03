@@ -5,7 +5,7 @@
   position: relative;
   color: var(--sbb-color-weak-accent);
 
-  .sbb-form-field-input-wrapper > & {
+  sbb-form-field & {
     width: 100%;
   }
 }
