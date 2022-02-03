@@ -3,8 +3,11 @@
 .sbb-datepicker {
   display: inline-block;
   position: relative;
-  width: 100%;
   color: var(--sbb-color-weak-accent);
+
+  .sbb-form-field-input-wrapper > & {
+    width: 100%;
+  }
 }
 
 .sbb-datepicker-disabled {
