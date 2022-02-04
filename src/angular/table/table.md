@@ -431,7 +431,6 @@ To do this, add the `sticky` or `stickyEnd` directive to the `ng-container` colu
 ```html
 <sbb-table-wrapper>
   <table sbb-table [dataSource]="dataSource">
-
     <!-- Name Column -->
     <ng-container sbbColumnDef="name" sticky>
       <th sbb-header-cell *sbbHeaderCellDef>Name</th>
