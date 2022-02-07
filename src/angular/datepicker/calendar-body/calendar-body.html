@@ -1,36 +1,46 @@
 <!-- Create the first row separately so we can include a special spacer cell. -->
 <tr *ngFor="let row of rows; let rowIndex = index" role="row">
   <!--
-    We mark this cell as aria-hidden so it doesn't get read out as one of the days in the week.
-    The aspect ratio of the table cells is maintained by setting the top and bottom padding as a
-    percentage of the width (a variant of the trick described here:
-    https://www.w3schools.com/howto/howto_css_aspect_ratio.asp).
+    This cell is purely decorative, but we can't put `aria-hidden` or `role="presentation"` on it,
+    because it throws off the week days for the rest of the row on NVDA. The aspect ratio of the
+    table cells is maintained by setting the top and bottom padding as a percentage of the width
+    (a variant of the trick described here: https://www.w3schools.com/howto/howto_css_aspect_ratio.asp).
   -->
   <td
     *ngIf="rowIndex === 0 && firstRowOffset"
-    aria-hidden="true"
     class="sbb-calendar-body-label"
     [attr.colspan]="firstRowOffset"
   ></td>
+  <!--
+    Each gridcell in the calendar contains a button, which signals to assistive technology that the
+    cell is interactable, as well as the selection state via `aria-pressed`. See angular/components#23476 for
+    background.
+  -->
   <td
     *ngFor="let item of row; let colIndex = index"
     role="gridcell"
-    class="sbb-calendar-body-cell"
-    [tabindex]="isActiveCell(rowIndex, colIndex) ? 0 : -1"
-    [class.sbb-calendar-body-disabled]="!item.enabled"
-    [class.sbb-calendar-body-active]="isActiveCell(rowIndex, colIndex)"
-    [class.sbb-calendar-body-range-background]="item.rangeBackground === 'range'"
-    [class.sbb-calendar-body-range-background-offset-start]="item.rangeBackground === 'range' && rowIndex === 0 && firstRowOffset && colIndex === 0"
-    [class.sbb-calendar-body-selected-begin]="item.rangeBackground === 'begin'"
-    [class.sbb-calendar-body-selected-end]="item.rangeBackground === 'end'"
-    [class.sbb-calendar-body-selected]="selectedValue === item.value"
-    [class.sbb-calendar-body-today]="todayValue === item.value"
-    [attr.aria-label]="item.ariaLabel"
-    [attr.aria-disabled]="!item.enabled || null"
-    [attr.aria-selected]="selectedValue === item.value"
-    (click)="cellClicked(item)"
+    class="sbb-calendar-body-cell-container"
     [style.width.%]="100 / numCols"
   >
-    <div class="sbb-calendar-body-cell-content">{{ item.displayValue }}</div>
+    <button
+      type="button"
+      class="sbb-calendar-body-cell sbb-button-reset-frameless"
+      [tabindex]="isActiveCell(rowIndex, colIndex) ? 0 : -1"
+      [class.sbb-calendar-body-disabled]="!item.enabled"
+      [class.sbb-calendar-body-active]="isActiveCell(rowIndex, colIndex)"
+      [class.sbb-calendar-body-range-background]="item.rangeBackground === 'range'"
+      [class.sbb-calendar-body-range-background-offset-start]="item.rangeBackground !== null && rowIndex === 0 && firstRowOffset && colIndex === 0"
+      [class.sbb-calendar-body-selected-begin]="item.rangeBackground === 'begin'"
+      [class.sbb-calendar-body-selected-end]="item.rangeBackground === 'end'"
+      [class.sbb-calendar-body-selected]="selectedValue === item.value"
+      [class.sbb-calendar-body-today]="todayValue === item.value"
+      [attr.aria-label]="item.ariaLabel"
+      [attr.aria-disabled]="!item.enabled || null"
+      [attr.aria-pressed]="selectedValue === item.value"
+      [attr.aria-current]="todayValue === item.value ? 'date' : null"
+      (click)="cellClicked(item)"
+    >
+      <div class="sbb-calendar-body-cell-content">{{ item.displayValue }}</div>
+    </button>
   </td>
 </tr>
