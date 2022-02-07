@@ -231,31 +231,38 @@
     left: 0;
   }
 
-  &:is(.sbb-calendar-body-selected-begin, .sbb-calendar-body-selected-end, .sbb-calendar-body-range-background:is(:last-child, :first-child), .sbb-calendar-body-range-background-offset-start)::before {
+  :is(.sbb-calendar-body-cell-container:is(:last-child, :first-child)
+      > &.sbb-calendar-body-range-background, &:is(.sbb-calendar-body-selected-begin, .sbb-calendar-body-selected-end, .sbb-calendar-body-range-background-offset-start))::before {
     width: 50%;
   }
 
-  &:is(.sbb-calendar-body-selected-begin, .sbb-calendar-body-range-background:first-child, .sbb-calendar-body-range-background-offset-start)::before {
+  :is(.sbb-calendar-body-cell-container:first-child
+      > &.sbb-calendar-body-range-background, &:is(.sbb-calendar-body-selected-begin, .sbb-calendar-body-range-background-offset-start))::before {
     left: auto;
     right: 0;
   }
 
-  &:is(.sbb-calendar-body-range-background:is(:last-child, :first-child), .sbb-calendar-body-range-background-offset-start)::after {
+  :is(.sbb-calendar-body-cell-container:is(:last-child, :first-child)
+      > &.sbb-calendar-body-range-background, &.sbb-calendar-body-range-background-offset-start)::after {
     @include datePickerCellContentBase();
     content: '';
     background-color: var(--sbb-datepicker-calendar-table-range-bg-color);
   }
 
-  &:is(.sbb-calendar-body-range-background:first-child, .sbb-calendar-body-range-background-offset-start)::after {
+  :is(.sbb-calendar-body-cell-container:first-child
+      > &.sbb-calendar-body-range-background, &.sbb-calendar-body-range-background-offset-start)::after {
     border-radius: 50% 0 0 50%;
   }
 
-  &.sbb-calendar-body-range-background:last-child::after {
+  .sbb-calendar-body-cell-container:last-child > &.sbb-calendar-body-range-background::after {
     border-radius: 0 50% 50% 0;
   }
 
   // If there is only one label in a row, or start is first or last entry
-  &:is(.sbb-calendar-body-range-background:first-child:last-child, .sbb-calendar-body-range-background-offset-start:last-child, .sbb-calendar-body-selected-end:first-child, .sbb-calendar-body-selected-begin:last-child) {
+  :is(.sbb-calendar-body-cell-container:first-child:last-child
+      > &.sbb-calendar-body-range-background, .sbb-calendar-body-cell-container:last-child
+      > &:is(.sbb-calendar-body-range-background-offset-start, .sbb-calendar-body-selected-begin), .sbb-calendar-body-cell-container:first-child
+      > &.sbb-calendar-body-selected-end, &.sbb-calendar-body-range-background-offset-start.sbb-calendar-body-selected-end) {
     &::before {
       display: none;
     }
