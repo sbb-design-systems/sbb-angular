@@ -15,6 +15,11 @@
   &:is([readonly], .sbb-readonly) {
     cursor: default;
   }
+
+  .sbb-form-field &,
+  .sbb-table th.sbb-header-cell.sbb-table-filter & {
+    display: block; // Case sbb-form-field nesting: prevent extra space because sbb-select (display inline-block) is nested in sbb-form-field which is an inline-block element too.
+  }
 }
 
 .sbb-select-value {
