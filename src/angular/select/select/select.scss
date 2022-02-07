@@ -15,6 +15,13 @@
   &:is([readonly], .sbb-readonly) {
     cursor: default;
   }
+
+  // Prevent weird spacing behavior when nested in sbb-form-field or table, by declaring it as a
+  // block element. In the case of sbb-form-field, it takes up the available space defined by the wrapper.
+  .sbb-form-field &,
+  .sbb-table th.sbb-header-cell.sbb-table-filter & {
+    display: block;
+  }
 }
 
 .sbb-select-value {
