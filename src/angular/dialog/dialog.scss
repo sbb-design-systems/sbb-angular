@@ -14,6 +14,7 @@
   overflow: hidden;
   outline: 0;
   background-color: var(--sbb-color-background);
+  box-shadow: var(--sbb-box-shadow-below);
 
   // The dialog container should completely fill its parent overlay element.
   width: 100%;
@@ -62,6 +63,7 @@
   position: relative;
   box-shadow: var(--sbb-box-shadow-horizontal-border-top);
   @include ellipsis;
+  min-height: calc(#{pxToRem(53)} * var(--sbb-scaling-factor)); // Supports empty title
 }
 
 .sbb-dialog-title-close-button {
