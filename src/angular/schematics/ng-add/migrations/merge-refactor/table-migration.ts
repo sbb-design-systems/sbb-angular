@@ -82,7 +82,7 @@ export class TableMigration extends RefactorMigration {
         `  Example: <tr (click)="selection.toggle()" [class.sbb-table-row-selected]="selection.isSelected(row)">.`
       );
       this._migration.logger.warn(
-        '  See https://angular.app.sbb.ch/angular/components/table or (https://angular.app.sbb.ch/angular/introduction/migration-guide) for reference.'
+        '  See https://angular.app.sbb.ch/angular/components/table or (https://angular.app.sbb.ch/angular/guides/migration-guide) for reference.'
       );
       this._migration.logger.info('');
     }

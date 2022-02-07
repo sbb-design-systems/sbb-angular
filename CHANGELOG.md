@@ -201,7 +201,7 @@ All notable changes to this project will be documented in this file. See [standa
 * Update to Angular 13 and switch to Ivy distribution format. The ViewEngine format is no longer supported.
 * The packages `@sbb-esta/angular-business`, `@sbb-esta/angular-core` and `@sbb-esta/angular-public` have been replaced
   with the new package `@sbb-esta/angular`. See our new [showcase](https://angular-next.app.sbb.ch), our
-  [update guide](https://angular-next.app.sbb.ch/howtoupdate) and our [migration guide](https://angular-next.app.sbb.ch/angular/introduction/migration-guide)
+  [update guide](https://angular-next.app.sbb.ch/howtoupdate) and our [migration guide](https://angular-next.app.sbb.ch/angular/guides/migration-guide)
   on how to use or upgrade to our new library.
 * The deprecated packages `@sbb-esta/angular-icons` and `@sbb-esta/angular-keycloak` have been removed.
 
