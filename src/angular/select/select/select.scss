@@ -16,9 +16,11 @@
     cursor: default;
   }
 
+  // Prevent weird spacing behavior when nested in sbb-form-field or table, by declaring it as a
+  // block element. In the case of sbb-form-field, it takes up the available space defined by the wrapper.
   .sbb-form-field &,
   .sbb-table th.sbb-header-cell.sbb-table-filter & {
-    display: block; // Case sbb-form-field nesting: prevent extra space because sbb-select (display inline-block) is nested in sbb-form-field which is an inline-block element too.
+    display: block;
   }
 }
 
