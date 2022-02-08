@@ -2,7 +2,6 @@ import { A11yModule } from '@angular/cdk/a11y';
 import { Direction } from '@angular/cdk/bidi';
 import { ESCAPE } from '@angular/cdk/keycodes';
 import { MediaMatcher } from '@angular/cdk/layout';
-import { PlatformModule } from '@angular/cdk/platform';
 import { CdkScrollable } from '@angular/cdk/scrolling';
 import { CommonModule } from '@angular/common';
 import { Component, DebugElement, ElementRef, ViewChild } from '@angular/core';
@@ -60,7 +59,6 @@ describe('SbbSidebar', () => {
         imports: [
           SbbSidebarModule,
           A11yModule,
-          PlatformModule,
           NoopAnimationsModule,
           CommonModule,
           SbbIconTestingModule,
@@ -660,7 +658,6 @@ describe('SbbSidebarContainer', () => {
         imports: [
           SbbSidebarModule,
           A11yModule,
-          PlatformModule,
           NoopAnimationsModule,
           CommonModule,
           SbbIconTestingModule,
@@ -861,7 +858,6 @@ describe('SbbSidebar Usage', () => {
         imports: [
           SbbSidebarModule,
           A11yModule,
-          PlatformModule,
           NoopAnimationsModule,
           SbbAccordionModule,
           RouterTestingModule.withRoutes([

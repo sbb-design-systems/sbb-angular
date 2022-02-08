@@ -1,4 +1,4 @@
-import { Platform, PlatformModule } from '@angular/cdk/platform';
+import { getSupportedInputTypes } from '@angular/cdk/platform';
 import {
   ChangeDetectionStrategy,
   Component,
@@ -37,23 +37,20 @@ import { SbbInputModule } from './input.module';
 describe('SbbInput without forms', () => {
   it('should not be treated as empty if type is date', fakeAsync(() => {
     const fixture = createComponent(SbbInputDateTestController);
-    const platform = TestBed.inject(Platform);
     fixture.detectChanges();
 
-    if (!(platform.TRIDENT || (platform.SAFARI && !platform.IOS))) {
+    if (getSupportedInputTypes().has('date')) {
       const el = fixture.debugElement.query(By.css('label'))!.nativeElement;
       expect(el).not.toBeNull();
       expect(el.classList.contains('sbb-form-field-empty')).toBe(false);
     }
   }));
 
-  // Safari Desktop and IE don't support type="date" and fallback to type="text".
-  it('should be treated as empty if type is date in Safari Desktop or IE', fakeAsync(() => {
+  it('should be treated as empty if type is date on unsupported browser', fakeAsync(() => {
     const fixture = createComponent(SbbInputDateTestController);
-    const platform = TestBed.inject(Platform);
     fixture.detectChanges();
 
-    if (platform.TRIDENT || (platform.SAFARI && !platform.IOS)) {
+    if (!getSupportedInputTypes().has('date')) {
       const el = fixture.debugElement.query(By.css('label'))!.nativeElement;
       expect(el).not.toBeNull();
       expect(el.classList.contains('sbb-form-field-empty')).toBe(true);
@@ -897,7 +894,6 @@ function createComponent<T>(
       SbbFormFieldModule,
       SbbInputModule,
       BrowserAnimationsModule,
-      PlatformModule,
       ReactiveFormsModule,
       ...imports,
     ],
