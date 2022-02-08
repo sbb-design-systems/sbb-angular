@@ -170,8 +170,8 @@ export class SbbDatepicker<D> implements OnDestroy {
   get opened(): boolean {
     return this._opened;
   }
-  set opened(value: boolean) {
-    value ? this.open() : this.close();
+  set opened(value: BooleanInput) {
+    coerceBooleanProperty(value) ? this.open() : this.close();
   }
   private _opened = false;
 

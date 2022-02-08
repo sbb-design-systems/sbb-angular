@@ -84,7 +84,7 @@ export abstract class SbbTabGroupBase implements AfterContentInit, AfterContentC
   set dynamicHeight(value: BooleanInput) {
     this._dynamicHeight = coerceBooleanProperty(value);
   }
-  private _dynamicHeight: boolean;
+  private _dynamicHeight: boolean = false;
 
   /** The index of the active tab. */
   @Input()
@@ -102,7 +102,13 @@ export abstract class SbbTabGroupBase implements AfterContentInit, AfterContentC
    * This applies only for lean design.
    */
   @Input()
-  disablePagination: boolean;
+  get disablePagination(): boolean {
+    return this._disablePagination;
+  }
+  set disablePagination(value: BooleanInput) {
+    this._disablePagination = coerceBooleanProperty(value);
+  }
+  private _disablePagination: boolean = false;
 
   /**
    * By default tabs remove their content from the DOM while it's off-screen.
@@ -110,7 +116,13 @@ export abstract class SbbTabGroupBase implements AfterContentInit, AfterContentC
    * like iframes and videos from reloading next time it comes back into the view.
    */
   @Input()
-  preserveContent: boolean;
+  get preserveContent(): boolean {
+    return this._preserveContent;
+  }
+  set preserveContent(value: BooleanInput) {
+    this._preserveContent = coerceBooleanProperty(value);
+  }
+  private _preserveContent: boolean = false;
 
   /** Output to enable support for two-way binding on `[(selectedIndex)]` */
   @Output() readonly selectedIndexChange: EventEmitter<number> = new EventEmitter<number>();

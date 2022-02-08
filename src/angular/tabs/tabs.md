@@ -121,7 +121,7 @@ will be re-initialized whenever the user navigates to the tab. If you want to ke
 off-screen tabs in the DOM, you can set the `preserveContent` input to `true`.
 
 ```html
-<sbb-tab-group [preserveContent]="true">
+<sbb-tab-group preserveContent>
   <sbb-tab label="First">
     <iframe
       width="560"
