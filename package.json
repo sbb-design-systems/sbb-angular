@@ -95,6 +95,7 @@
     "@rollup/plugin-typescript": "^8.3.0",
     "@schematics/angular": "13.2.2",
     "@types/browser-sync": "^2.26.3",
+    "@types/events": "^3.0.0",
     "@types/fs-extra": "^9.0.13",
     "@types/glob": "^7.2.0",
     "@types/grecaptcha": "^2.0.36",
