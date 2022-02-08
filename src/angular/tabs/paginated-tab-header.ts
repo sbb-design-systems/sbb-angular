@@ -1,5 +1,10 @@
 import { FocusableOption, FocusKeyManager } from '@angular/cdk/a11y';
-import { coerceNumberProperty, NumberInput } from '@angular/cdk/coercion';
+import {
+  BooleanInput,
+  coerceBooleanProperty,
+  coerceNumberProperty,
+  NumberInput,
+} from '@angular/cdk/coercion';
 import { ENTER, hasModifierKey, SPACE } from '@angular/cdk/keycodes';
 import { normalizePassiveListenerOptions, Platform } from '@angular/cdk/platform';
 import { ViewportRuler } from '@angular/cdk/scrolling';
@@ -128,7 +133,13 @@ export abstract class SbbPaginatedTabHeader
    * This applies only for lean design.
    */
   @Input()
-  disablePagination: boolean = false;
+  get disablePagination(): boolean {
+    return this._disablePagination;
+  }
+  set disablePagination(value: BooleanInput) {
+    this._disablePagination = coerceBooleanProperty(value);
+  }
+  private _disablePagination: boolean = false;
 
   /** The index of the active tab. */
   get selectedIndex(): number {

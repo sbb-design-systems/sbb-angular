@@ -163,7 +163,7 @@ export class SbbTextarea
   get required(): boolean {
     return this._required;
   }
-  set required(value: boolean) {
+  set required(value: BooleanInput) {
     this._required = coerceBooleanProperty(value);
     this.stateChanges.next();
   }
@@ -174,7 +174,7 @@ export class SbbTextarea
   get autosizeDisabled(): boolean {
     return this._autosizeDisabled;
   }
-  set autosizeDisabled(value: boolean) {
+  set autosizeDisabled(value: BooleanInput) {
     this._autosizeDisabled = coerceBooleanProperty(value);
   }
   private _autosizeDisabled = false;

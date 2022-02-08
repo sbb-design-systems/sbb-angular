@@ -6,7 +6,12 @@ import {
   FocusOrigin,
   FocusTrap,
 } from '@angular/cdk/a11y';
-import { coerceBooleanProperty, coerceNumberProperty, NumberInput } from '@angular/cdk/coercion';
+import {
+  BooleanInput,
+  coerceBooleanProperty,
+  coerceNumberProperty,
+  NumberInput,
+} from '@angular/cdk/coercion';
 import { ESCAPE, hasModifierKey } from '@angular/cdk/keycodes';
 import { BreakpointObserver, BreakpointState } from '@angular/cdk/layout';
 import { ConnectionPositionPair, Overlay, OverlayRef, ScrollStrategy } from '@angular/cdk/overlay';
@@ -167,7 +172,7 @@ export abstract class _SbbTooltipBase<T extends _TooltipComponentBase>
   get disabled(): boolean {
     return this._disabled;
   }
-  set disabled(value) {
+  set disabled(value: BooleanInput) {
     this._disabled = coerceBooleanProperty(value);
 
     // If tooltip is disabled, hide immediately.
