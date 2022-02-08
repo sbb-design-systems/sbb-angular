@@ -896,6 +896,27 @@ describe('nested SbbTabGroup with enabled animations', () => {
       tick();
     }).not.toThrow();
   }));
+
+  it('should calculate hide animation durations', fakeAsync(() => {
+    const fixture = TestBed.createComponent(TabsWithCustomAnimationDuration);
+    fixture.detectChanges();
+    tick();
+
+    const tabGroup = fixture.componentInstance.sbbTabGroup;
+    [
+      { input: '500ms', output: '166.67ms' },
+      { input: '500', output: '166.67ms' },
+      { input: '600', output: '200ms' },
+      { input: '600s', output: '200s' },
+      { input: '0', output: '0ms' },
+      { input: 'invalid', output: '0ms' },
+      { input: '.6s', output: '0.2s' },
+      { input: '1.2s', output: '0.4s' },
+    ].forEach((entry) => {
+      tabGroup.animationDuration = entry.input;
+      expect(tabGroup._animationDurationHide).toBe(entry.output);
+    });
+  }));
 });
 
 @Component({
@@ -1124,7 +1145,9 @@ class TabGroupWithIsActiveBinding {}
     </sbb-tab-group>
   `,
 })
-class TabsWithCustomAnimationDuration {}
+class TabsWithCustomAnimationDuration {
+  @ViewChild(SbbTabGroup) sbbTabGroup: SbbTabGroup;
+}
 
 @Component({
   template: `

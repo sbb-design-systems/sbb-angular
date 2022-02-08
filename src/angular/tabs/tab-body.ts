@@ -123,6 +123,9 @@ export abstract class _SbbTabBodyBase implements OnDestroy {
   /** Duration for the tab's animation. */
   @Input() animationDuration: string = '500ms';
 
+  /** Duration of hide animation. */
+  @Input() animationDurationHide: string = '150ms';
+
   /** Whether the tab's content should be kept in the DOM while it's off-screen. */
   @Input() preserveContent: boolean = false;
 

@@ -103,8 +103,20 @@ export abstract class SbbTabGroupBase implements AfterContentInit, AfterContentC
   }
   set animationDuration(value: NumberInput) {
     this._animationDuration = /^\d+$/.test(value + '') ? value + 'ms' : (value as string);
+
+    const match = this.animationDuration.match(/^(\d+|\.\d+|\d+\.\d+)(\w*)$/);
+    if (match) {
+      const durationParsed = parseFloat(match[1]) / 3;
+      const durationRounded = Math.round(durationParsed * 100) / 100;
+      this._animationDurationHide = `${durationRounded}${match[2]}`;
+    } else {
+      this._animationDurationHide = '0ms';
+    }
   }
   private _animationDuration: string;
+
+  /** Calculated hide duration which is one third of animationDuration. */
+  _animationDurationHide: string;
 
   /**
    * Whether pagination should be disabled. This can be used to avoid unnecessary

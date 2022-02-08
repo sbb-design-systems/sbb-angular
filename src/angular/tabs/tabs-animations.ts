@@ -25,7 +25,7 @@ export const sbbTabsAnimations: {
     ),
     transition('* => void, * => hidden', [
       style({ opacity: 1 }),
-      animate('{{animationDuration}} ease', style({ opacity: 0 })),
+      animate('{{animationDurationHide}} ease', style({ opacity: 0 })),
     ]),
     transition('hidden => show', [
       style({ opacity: 0, visibility: 'visible' }),
