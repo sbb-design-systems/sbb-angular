@@ -2,6 +2,9 @@ import { InjectionToken } from '@angular/core';
 
 /** Object that can be used to configure the default options for the tabs module. */
 export interface SbbTabsConfig {
+  /** Duration for the tab animation. Must be a valid CSS value (e.g. 600ms). */
+  animationDuration?: string;
+
   /**
    * Whether pagination should be disabled. This can be used to avoid unnecessary
    * layout recalculations if it's known that pagination won't be required.

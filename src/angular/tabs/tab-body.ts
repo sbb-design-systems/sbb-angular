@@ -118,6 +118,11 @@ export abstract class _SbbTabBodyBase implements OnDestroy {
   /** Position that will be used when the tab is immediately becoming visible after creation. */
   @Input() origin: number | null;
 
+  // Note that the default value will always be overwritten by `SbbTabBody`, but we need one
+  // anyway to prevent the animations module from throwing an error if the body is used on its own.
+  /** Duration for the tab's animation. */
+  @Input() animationDuration: string = '500ms';
+
   /** Whether the tab's content should be kept in the DOM while it's off-screen. */
   @Input() preserveContent: boolean = false;
 
