@@ -1,3 +1,4 @@
+// To avoid colliding name exports in bundles, don't use star export here
 export { SbbTabsModule } from './tabs-module';
 export * from './tab-group';
 export { SbbTabBody, _SbbTabBodyBase, SbbTabBodyPositionState, SbbTabBodyPortal } from './tab-body';
