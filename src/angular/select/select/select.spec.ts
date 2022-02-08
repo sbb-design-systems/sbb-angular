@@ -13,7 +13,6 @@ import {
   UP_ARROW,
 } from '@angular/cdk/keycodes';
 import { OverlayContainer } from '@angular/cdk/overlay';
-import { Platform } from '@angular/cdk/platform';
 import { ScrollDispatcher } from '@angular/cdk/scrolling';
 import {
   ChangeDetectionStrategy,
@@ -885,7 +884,7 @@ describe('SbbSelect', () => {
       ],
     }).compileComponents();
 
-    inject([OverlayContainer, Platform], (oc: OverlayContainer) => {
+    inject([OverlayContainer], (oc: OverlayContainer) => {
       overlayContainer = oc;
       overlayContainerElement = oc.getContainerElement();
     })();

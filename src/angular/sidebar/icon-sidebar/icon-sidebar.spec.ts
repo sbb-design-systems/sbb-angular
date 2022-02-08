@@ -1,6 +1,5 @@
 import { A11yModule } from '@angular/cdk/a11y';
 import { MediaMatcher } from '@angular/cdk/layout';
-import { PlatformModule } from '@angular/cdk/platform';
 import { CdkScrollable } from '@angular/cdk/scrolling';
 import { CommonModule } from '@angular/common';
 import { Component, DebugElement, ElementRef, ViewChild } from '@angular/core';
@@ -45,7 +44,6 @@ describe('SbbIconSidebar', () => {
         imports: [
           SbbSidebarModule,
           A11yModule,
-          PlatformModule,
           NoopAnimationsModule,
           CommonModule,
           SbbIconModule,
@@ -381,7 +379,6 @@ describe('SbbIconSidebarContainer', () => {
         imports: [
           SbbSidebarModule,
           A11yModule,
-          PlatformModule,
           NoopAnimationsModule,
           SbbIconModule,
           SbbIconTestingModule,
