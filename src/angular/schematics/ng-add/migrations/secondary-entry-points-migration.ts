@@ -258,7 +258,7 @@ function applyRenames(elements: ts.ImportSpecifier[]) {
         }
 
         const nameIdentifier = ts.createIdentifier(CLASS_NAME_RENAMES.get(elementName.text)!);
-        return elementName
+        return element.propertyName
           ? createImportSpecifier(nameIdentifier, element.name)
           : createImportSpecifier(undefined, nameIdentifier);
       })
