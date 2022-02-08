@@ -34,6 +34,13 @@ function patchConsoleToDetectWarningsOrErrors(): void {
   };
   console.error = function (message?: any, ...optionalParams: any[]): void {
     const params = optionalParams ? `\nParams: ${optionalParams}` : '';
+
+    // jasmine outputs deprecation warnings/errors for certain scenarios
+    // that do not yet affect our tests.
+    if (typeof message === 'string' && message.startsWith('DEPRECATION')) {
+      return;
+    }
+
     throw new Error(`Test contained console error:\n${message}${params}`);
   };
 }
