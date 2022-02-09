@@ -721,8 +721,11 @@ textarea {
 :is(a:where(:not(.sbb-link-reset)), .sbb-link) {
   color: var(--sbb-color-text);
   text-decoration: underline;
-  text-decoration-skip-ink: auto; // -> read more about here https://medium.com/@iamhiwelo/improving-text-readability-for-dyslexic-users-with-skip-ink-underlines-bf52a2f3426b
+  // Read more about here https://medium.com/@iamhiwelo/improving-text-readability-for-dyslexic-users-with-skip-ink-underlines-bf52a2f3426b
+  text-decoration-skip-ink: auto;
   line-height: var(--sbb-line-height);
+  // Fixes an issue where links are not placed correctly in fluid texts or lists.
+  vertical-align: bottom;
 
   &:is(:hover, :focus) {
     color: var(--sbb-color-call-to-action-hover);
