@@ -1103,7 +1103,7 @@ class DatepickerReadonlyComponent {
 
 @Component({
   template: `
-    <sbb-datepicker #d [noToggle]="noToggle">
+    <sbb-datepicker #d [notoggle]="noToggle">
       <input sbbDateInput />
     </sbb-datepicker>
   `,

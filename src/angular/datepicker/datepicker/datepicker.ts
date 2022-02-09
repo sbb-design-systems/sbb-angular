@@ -156,10 +156,7 @@ export class SbbDatepicker<D> implements OnDestroy {
 
   /** Whether the datepicker toggle should be hidden. Defaults to false. */
   @Input()
-  get noToggle(): boolean {
-    return !this._toggle;
-  }
-  set noToggle(value: BooleanInput) {
+  set notoggle(value: BooleanInput) {
     this._toggle = !coerceBooleanProperty(value);
   }
 
