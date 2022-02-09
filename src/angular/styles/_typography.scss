@@ -245,8 +245,12 @@
   --sbb-table-thead-background-color: var(--sbb-color-cloud);
   --sbb-table-tbody-stripe-background-color: var(--sbb-color-milk);
   --sbb-table-thead-padding: calc(#{pxToRem(16)} * var(--sbb-scaling-factor));
+  --sbb-table-thead-padding-vertical-top: calc(#{pxToRem(29)} * var(--sbb-scaling-factor));
+  --sbb-table-thead-padding-vertical-bottom: calc(#{pxToRem(30)} * var(--sbb-scaling-factor));
   --sbb-table-tbody-padding: calc(#{pxToRem(16)} * var(--sbb-scaling-factor));
-  --sbb-table-cell-padding-vertical: calc(#{pxToRem(18)} * var(--sbb-scaling-factor));
+  --sbb-table-cell-padding-horizontal: calc(#{pxToRem(12)});
+  --sbb-table-cell-padding-vertical-top: calc(#{pxToRem(18)} * var(--sbb-scaling-factor));
+  --sbb-table-cell-padding-vertical-bottom: calc(#{pxToRem(19)} * var(--sbb-scaling-factor));
   --sbb-table-sticky-shadow-width: #{pxToRem(8)};
   --sbb-table-sticky-shadow-offset: #{pxToRem(-9)};
   --sbb-table-sort-header-arrow-margin: calc(#{pxToRem(8)} * var(--sbb-scaling-factor));
@@ -345,6 +349,9 @@
       --sbb-expansion-panel-header-padding-top: #{pxToRem(34)};
       --sbb-expansion-panel-header-padding-bottom: #{pxToRem(36)};
       --sbb-expansion-panel-line-height: calc(#{pxToRem(30)} * var(--sbb-scaling-factor));
+
+      // Table
+      --sbb-table-cell-padding-horizontal: calc(#{pxToRem(16)} * var(--sbb-scaling-factor));
     }
     @include mq($from: desktop) {
       // Dividers
@@ -1934,14 +1941,10 @@ textarea {
 
     :is(thead, tfoot) > tr :is(th, td) {
       background-color: var(--sbb-table-thead-background-color);
-      padding: pxToRem(29) pxToRem(12) pxToRem(30) pxToRem(12);
+      padding: var(--sbb-table-thead-padding-vertical-top) var(--sbb-table-cell-padding-horizontal)
+        var(--sbb-table-thead-padding-vertical-bottom) var(--sbb-table-cell-padding-horizontal);
 
       @include mq($from: tabletPortrait) {
-        padding: calc(#{pxToRem(29)} * var(--sbb-scaling-factor))
-          calc(#{pxToRem(16)} * var(--sbb-scaling-factor))
-          calc(#{pxToRem(30)} * var(--sbb-scaling-factor))
-          calc(#{pxToRem(16)} * var(--sbb-scaling-factor));
-
         &:first-child {
           border-left: var(--sbb-table-thead-padding) solid var(--sbb-table-thead-background-color);
         }
@@ -1958,14 +1961,10 @@ textarea {
       }
 
       :is(th, td) {
-        padding: var(--sbb-table-cell-padding-vertical) pxToRem(12)
-          calc(var(--sbb-table-cell-padding-vertical) + #{pxToRem(1)} * var(--sbb-scaling-factor))
-          pxToRem(12);
+        padding: var(--sbb-table-cell-padding-vertical-top) var(--sbb-table-cell-padding-horizontal)
+          var(--sbb-table-cell-padding-vertical-bottom) var(--sbb-table-cell-padding-horizontal);
 
         @include mq($from: tabletPortrait) {
-          padding-left: calc(#{pxToRem(16)} * var(--sbb-scaling-factor));
-          padding-right: calc(#{pxToRem(16)} * var(--sbb-scaling-factor));
-
           &:first-child {
             border-left: var(--sbb-table-thead-padding) solid var(--sbb-table-background-color);
           }

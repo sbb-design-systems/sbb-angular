@@ -98,10 +98,10 @@ below (not complete):
 When creating or reading a date, the month is zero indexed. This does not apply when using
 ISO dates.
 
-|                                      |                 |
+| Usage                                | Result          |
 | ------------------------------------ | --------------- |
 | new Date(2020, 0, 1)                 | 1. January 2020 |
-| new Date(2020, 0, 1)                 | 0               |
+| new Date(2020, 0, 1).getMonth()      | 0               |
 | new Date('2020-01-01T12:00:00.000Z') | 1. January 2020 |
 
 **Dates are local by default, but UTC when converting to JSON**

@@ -59,6 +59,14 @@ export class DocsMarkdownRenderer extends Renderer {
     return super.link(href, title, text);
   }
 
+  table(header: string, body: string): string {
+    if (body) {
+      body = `<tbody>${body}</tbody>`;
+    }
+
+    return `<table class="sbb-table">\n<thead>\n${header}</thead>\n${body}</table>\n`;
+  }
+
   /**
    * Method that will be called whenever inline HTML is processed by marked. In that case,
    * we can easily transform the example comments into real HTML elements.

@@ -109,3 +109,27 @@ pre code {
     }
   }
 }
+
+.docs-markdown {
+  > h1:first-child {
+    margin-top: 0;
+  }
+
+  :is(&, .docs-api) .sbb-table {
+    width: unset;
+
+    html:not(.sbb-lean) & {
+      --sbb-table-thead-padding: calc(#{pxToRem(8)} * var(--sbb-scaling-factor));
+      --sbb-table-thead-padding-vertical-top: calc(#{pxToRem(15)} * var(--sbb-scaling-factor));
+      --sbb-table-thead-padding-vertical-bottom: calc(#{pxToRem(15)} * var(--sbb-scaling-factor));
+      --sbb-table-tbody-padding: calc(#{pxToRem(8)} * var(--sbb-scaling-factor));
+      --sbb-table-cell-padding-horizontal: calc(#{pxToRem(8)});
+      --sbb-table-cell-padding-vertical-top: calc(#{pxToRem(9)} * var(--sbb-scaling-factor));
+      --sbb-table-cell-padding-vertical-bottom: calc(#{pxToRem(10)} * var(--sbb-scaling-factor));
+    }
+
+    html.sbb-lean & {
+      margin-bottom: 1rem;
+    }
+  }
+}
