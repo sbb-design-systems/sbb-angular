@@ -899,7 +899,7 @@ describe('SbbDatepicker', () => {
     });
 
     it('should display toggle', () => {
-      testComponent.noToggle = false;
+      testComponent.notoggle = false;
       fixture.detectChanges();
       const toggle = fixture.debugElement.query(By.css('.sbb-datepicker-toggle-button'));
       expect(toggle).toBeTruthy();
@@ -1103,7 +1103,7 @@ class DatepickerReadonlyComponent {
 
 @Component({
   template: `
-    <sbb-datepicker #d [notoggle]="noToggle">
+    <sbb-datepicker #d [notoggle]="notoggle">
       <input sbbDateInput />
     </sbb-datepicker>
   `,
@@ -1111,5 +1111,5 @@ class DatepickerReadonlyComponent {
 class DatepickerWithNoToggleComponent {
   @ViewChild('d') datepicker: SbbDatepicker<Date>;
   @ViewChild(SbbDateInput) input: SbbDateInput<Date>;
-  noToggle: boolean = true;
+  notoggle: boolean = true;
 }
