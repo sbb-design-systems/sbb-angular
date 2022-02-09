@@ -875,6 +875,36 @@ describe('SbbDatepicker', () => {
       expect(wrapper!.clientWidth).toEqual(input!.getBoundingClientRect().width);
     });
   });
+
+  describe('datepicker with hidden toggle', () => {
+    let fixture: ComponentFixture<DatepickerWithNoToggleComponent>;
+    let testComponent: DatepickerWithNoToggleComponent;
+
+    beforeEach(fakeAsync(() => {
+      fixture = createComponent(DatepickerWithNoToggleComponent);
+      fixture.detectChanges();
+
+      testComponent = fixture.componentInstance;
+    }));
+
+    afterEach(fakeAsync(() => {
+      testComponent.datepicker.close();
+      fixture.detectChanges();
+      flush();
+    }));
+
+    it('should not display toggle', () => {
+      const toggle = fixture.debugElement.query(By.css('.sbb-datepicker-toggle-button'));
+      expect(toggle).toBeFalsy();
+    });
+
+    it('should display toggle', () => {
+      testComponent.notoggle = false;
+      fixture.detectChanges();
+      const toggle = fixture.debugElement.query(By.css('.sbb-datepicker-toggle-button'));
+      expect(toggle).toBeTruthy();
+    });
+  });
 });
 
 @Component({
@@ -1069,4 +1099,17 @@ class DatepickerReadonlyComponent {
   date = new FormControl();
   readonly: boolean = false;
   placeholder?: string = undefined;
+}
+
+@Component({
+  template: `
+    <sbb-datepicker #d [notoggle]="notoggle">
+      <input sbbDateInput />
+    </sbb-datepicker>
+  `,
+})
+class DatepickerWithNoToggleComponent {
+  @ViewChild('d') datepicker: SbbDatepicker<Date>;
+  @ViewChild(SbbDateInput) input: SbbDateInput<Date>;
+  notoggle: boolean = true;
 }
