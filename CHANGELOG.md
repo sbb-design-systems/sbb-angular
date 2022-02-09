@@ -2,6 +2,31 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [13.5.0](https://github.com/sbb-design-systems/sbb-angular/compare/13.4.0...13.5.0) (2022-02-09)
+
+
+### Features
+
+* **angular/datepicker:** allow hiding toggle with notoggle attribute ([#1121](https://github.com/sbb-design-systems/sbb-angular/issues/1121)) ([8ca3b13](https://github.com/sbb-design-systems/sbb-angular/commit/8ca3b1376dd80e27e7016029c2e6151efa67cfc9))
+* **angular/tabs:** introduce options to set animationDuration ([#1115](https://github.com/sbb-design-systems/sbb-angular/issues/1115)) ([5f48329](https://github.com/sbb-design-systems/sbb-angular/commit/5f483292c180f05835982110bbf4e5413e2f7d8f))
+
+
+### Bug Fixes
+
+* **angular/datepicker:** change calendar cells to buttons ([#1105](https://github.com/sbb-design-systems/sbb-angular/issues/1105)) ([fedd564](https://github.com/sbb-design-systems/sbb-angular/commit/fedd56441f1604ef1e1bb78ca10c4f960b451b7d)), closes [angular/components#23476](https://github.com/angular/components/issues/23476)
+* **angular/datepicker:** fix improper focus trapping with VoiceOver and ChromeVox ([#1120](https://github.com/sbb-design-systems/sbb-angular/issues/1120)) ([914a7a1](https://github.com/sbb-design-systems/sbb-angular/commit/914a7a1cccffb2cb8357e245238d61fe99a1c510))
+* **angular/lightbox:** fix height of empty lightbox and dialog titles ([#1107](https://github.com/sbb-design-systems/sbb-angular/issues/1107)) ([6e879dd](https://github.com/sbb-design-systems/sbb-angular/commit/6e879dd8cb7fe46522d6a1c60c420cf83a470538))
+* **angular/loading:** add sanity check for mode and deprecate fullscreen mode ([#1116](https://github.com/sbb-design-systems/sbb-angular/issues/1116)) ([6aa5f5a](https://github.com/sbb-design-systems/sbb-angular/commit/6aa5f5a834f2d650531608313a4012ff12f4284e))
+* **angular/select:** fix positioning inside sbb-form-field ([#1109](https://github.com/sbb-design-systems/sbb-angular/issues/1109)) ([dd36350](https://github.com/sbb-design-systems/sbb-angular/commit/dd363504d1510f7a3b557be6c7c749f3594b855c))
+* **angular/styles:** vertically align links in fluid texts and lists correctly ([#1117](https://github.com/sbb-design-systems/sbb-angular/issues/1117)) ([6f04be4](https://github.com/sbb-design-systems/sbb-angular/commit/6f04be4bd4dd1e4fd7e10feb1fc5b9d6d3eb9a2b))
+* **angular:** allow coercing of booleans for all inputs ([#1114](https://github.com/sbb-design-systems/sbb-angular/issues/1114)) ([817853f](https://github.com/sbb-design-systems/sbb-angular/commit/817853fe8a1969eb7df71ff31872508214c59c69))
+* **angular:** fix migration for typescript versions smaller or equals 4.4 ([#1110](https://github.com/sbb-design-systems/sbb-angular/issues/1110)) ([b15c207](https://github.com/sbb-design-systems/sbb-angular/commit/b15c207d36ae6492cacef9318e08af76415b9321))
+
+
+### Documentation
+
+* **angular/datepicker:** add documentation for timezone/JSON date handling ([#1119](https://github.com/sbb-design-systems/sbb-angular/issues/1119)) ([3e9f484](https://github.com/sbb-design-systems/sbb-angular/commit/3e9f48413c04e7a7814bbe02b2471abc560a3bd2))
+
 ## [13.4.0](https://github.com/sbb-design-systems/sbb-angular/compare/13.3.0...13.4.0) (2022-02-03)
 
 
