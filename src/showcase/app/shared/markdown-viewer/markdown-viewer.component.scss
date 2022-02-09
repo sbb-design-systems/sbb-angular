@@ -2,10 +2,4 @@
   display: block;
   overflow-y: hidden;
   padding: 3rem 1.5rem;
-
-  &::ng-deep {
-    > .docs-markdown > h1:first-child {
-      margin-top: 0;
-    }
-  }
 }
