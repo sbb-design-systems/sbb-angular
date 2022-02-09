@@ -449,6 +449,7 @@ export class SbbDatepicker<D> implements OnDestroy {
     if (!this.popupRef.hasAttached()) {
       this._popupComponentRef = this.popupRef.attach(this._calendarPortal);
       this._popupComponentRef.instance.datepicker = this;
+      this._popupComponentRef.instance._dialogLabelId = this.datepickerInput.getOverlayLabelId();
 
       // Update the position once the calendar has rendered.
       this._ngZone.onStable
@@ -471,7 +472,6 @@ export class SbbDatepicker<D> implements OnDestroy {
     });
 
     this.popupRef = this._overlay.create(overlayConfig);
-    this.popupRef.overlayElement.setAttribute('role', 'dialog');
 
     merge(
       this.popupRef.backdropClick(),

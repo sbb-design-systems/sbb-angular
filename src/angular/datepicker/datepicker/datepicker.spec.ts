@@ -12,6 +12,7 @@ import {
   dispatchMouseEvent,
   JAN,
 } from '@sbb-esta/angular/core/testing';
+import { SbbFormField } from '@sbb-esta/angular/form-field';
 import { SbbIconModule } from '@sbb-esta/angular/icon';
 import { SbbIconTestingModule } from '@sbb-esta/angular/icon/testing';
 import { SbbInputModule } from '@sbb-esta/angular/input';
@@ -20,184 +21,6 @@ import { SbbDateInput } from '../date-input/date-input.directive';
 import { SbbDatepickerModule } from '../datepicker.module';
 
 import { SbbDatepicker } from './datepicker';
-
-@Component({
-  template: `
-    <sbb-datepicker #d [disabled]="disabled" [opened]="opened">
-      <input sbbDateInput [value]="date" />
-    </sbb-datepicker>
-  `,
-})
-class StandardDatepickerComponent {
-  opened = false;
-  touch = false;
-  disabled = false;
-  date: Date | null = new Date(2020, JAN, 1);
-  @ViewChild('d', { static: true }) datepicker: SbbDatepicker<Date>;
-  @ViewChild(SbbDateInput, { static: true }) datepickerInput: SbbDateInput<Date>;
-}
-
-@Component({
-  template: `
-    <sbb-datepicker>
-      <input sbbDateInput />
-      <input sbbDateInput />
-    </sbb-datepicker>
-  `,
-})
-class MultiInputDatepickerComponent {}
-
-@Component({
-  template: ` <sbb-datepicker #d></sbb-datepicker> `,
-})
-class NoInputDatepickerComponent {
-  @ViewChild('d', { static: true }) datepicker: SbbDatepicker<Date>;
-}
-
-@Component({
-  template: `
-    <sbb-datepicker #d [startAt]="startDate">
-      <input sbbDateInput [value]="date" />
-    </sbb-datepicker>
-  `,
-})
-class DatepickerWithStartAtComponent {
-  date = new Date(2020, JAN, 1);
-  startDate = new Date(2010, JAN, 1);
-  @ViewChild('d', { static: true }) datepicker: SbbDatepicker<Date>;
-}
-
-@Component({
-  template: `
-    <sbb-datepicker #d>
-      <input [(ngModel)]="selected" sbbDateInput />
-    </sbb-datepicker>
-  `,
-})
-class DatepickerWithNgModelComponent {
-  selected: Date | null = null;
-  @ViewChild('d', { static: true }) datepicker: SbbDatepicker<Date>;
-  @ViewChild(SbbDateInput, { static: true }) datepickerInput: SbbDateInput<Date>;
-}
-
-@Component({
-  template: `
-    <sbb-datepicker #d>
-      <input [formControl]="formControl" sbbDateInput />
-    </sbb-datepicker>
-  `,
-})
-class DatepickerWithFormControlComponent {
-  formControl = new FormControl();
-  @ViewChild('d', { static: true }) datepicker: SbbDatepicker<Date>;
-  @ViewChild(SbbDateInput, { static: true }) datepickerInput: SbbDateInput<Date>;
-}
-
-@Component({
-  template: `
-    <sbb-datepicker #d>
-      <input sbbDateInput />
-    </sbb-datepicker>
-  `,
-})
-class DatepickerWithToggleComponent {
-  @ViewChild('d', { static: true }) datepicker: SbbDatepicker<Date>;
-  @ViewChild(SbbDateInput, { static: true }) input: SbbDateInput<Date>;
-}
-
-@Component({
-  template: `
-    <sbb-datepicker #d>
-      <input sbbDateInput [(ngModel)]="date" [min]="minDate" [max]="maxDate" />
-    </sbb-datepicker>
-  `,
-})
-class DatepickerWithMinAndMaxValidationComponent {
-  @ViewChild('d', { static: true }) datepicker: SbbDatepicker<Date>;
-  date: Date | null;
-  minDate = new Date(2010, JAN, 1);
-  maxDate = new Date(2020, JAN, 1);
-}
-
-@Component({
-  template: `
-    <sbb-datepicker (opened)="openedSpy()" (closed)="closedSpy()" #d>
-      <input [(ngModel)]="selected" sbbDateInput />
-    </sbb-datepicker>
-  `,
-})
-class DatepickerWithEventsComponent {
-  selected: Date | null = null;
-  openedSpy = jasmine.createSpy('opened spy');
-  closedSpy = jasmine.createSpy('closed spy');
-  @ViewChild('d', { static: true }) datepicker: SbbDatepicker<Date>;
-}
-
-@Component({
-  template: `
-    <sbb-datepicker #d>
-      <input (focus)="d.open()" sbbDateInput />
-    </sbb-datepicker>
-  `,
-})
-class DatepickerOpeningOnFocusComponent {
-  @ViewChild(SbbDatepicker, { static: true }) datepicker: SbbDatepicker<Date>;
-}
-
-@Component({
-  template: `<sbb-datepicker [connected]="second">
-      <input sbbDateInput sbbInput [formControl]="firstDatepicker" />
-    </sbb-datepicker>
-    <sbb-datepicker #second>
-      <input sbbDateInput sbbInput [formControl]="secondDatepicker" />
-    </sbb-datepicker>`,
-})
-class DatepickerConnectedComponent {
-  firstDatepicker = new FormControl();
-  secondDatepicker = new FormControl();
-}
-
-@Component({
-  template: `
-    <sbb-datepicker arrows #d class="default-arrow-labels" style="width: 300px">
-      <input sbbDateInput [value]="date" />
-    </sbb-datepicker>
-
-    <sbb-datepicker
-      arrows
-      #d
-      prevDayAriaLabel="Select previous day"
-      nextDayAriaLabel="Select next day"
-      class="custom-arrow-labels"
-    >
-      <input sbbDateInput [value]="date" />
-    </sbb-datepicker>
-  `,
-})
-class DatepickerWithArrows {
-  date: Date | null = new Date();
-  @ViewChild('d', { static: true }) datepicker: SbbDatepicker<Date>;
-  @ViewChild(SbbDateInput, { static: true }) datepickerInput: SbbDateInput<Date>;
-}
-
-@Component({
-  template: `
-    <sbb-datepicker arrows>
-      <input
-        sbbDateInput
-        sbbInput
-        [formControl]="date"
-        [readonly]="readonly"
-        [placeholder]="placeholder"
-      />
-    </sbb-datepicker>
-  `,
-})
-class DatepickerReadonlyComponent {
-  date = new FormControl();
-  readonly: boolean = false;
-  placeholder?: string = undefined;
-}
 
 describe('SbbDatepicker', () => {
   // Creates a test component fixture.
@@ -331,9 +154,26 @@ describe('SbbDatepicker', () => {
         flush();
 
         // tslint:disable-next-line:no-non-null-assertion
-        const popup = document.querySelector('.cdk-overlay-pane')!;
+        const popup = document.querySelector('.sbb-datepicker-content-container')!;
         expect(popup).toBeTruthy();
         expect(popup.getAttribute('role')).toBe('dialog');
+      }));
+
+      it('should set aria-labelledby to the one from the input, if not placed inside a sbb-form-field', fakeAsync(() => {
+        expect(fixture.nativeElement.querySelector('.sbb-form-field')).toBeFalsy();
+
+        const input: HTMLInputElement = fixture.nativeElement.querySelector('input');
+        input.setAttribute('aria-labelledby', 'test-label');
+
+        testComponent.datepicker.open();
+        fixture.detectChanges();
+        flush();
+
+        const popup = document.querySelector(
+          '.cdk-overlay-pane .sbb-datepicker-content-container'
+        )!;
+        expect(popup).toBeTruthy();
+        expect(popup.getAttribute('aria-labelledby')).toBe('test-label');
       }));
 
       it(
@@ -730,6 +570,42 @@ describe('SbbDatepicker', () => {
       }));
     });
 
+    describe('datepicker inside sbb-form-field', () => {
+      let fixture: ComponentFixture<FormFieldDatepicker>;
+      let testComponent: FormFieldDatepicker;
+
+      beforeEach(fakeAsync(() => {
+        fixture = createComponent(FormFieldDatepicker, []);
+        fixture.detectChanges();
+        testComponent = fixture.componentInstance;
+      }));
+
+      afterEach(fakeAsync(() => {
+        testComponent.datepicker.close();
+        fixture.detectChanges();
+        flush();
+      }));
+
+      it('should set aria-labelledby of the overlay to the form field label', fakeAsync(() => {
+        const label: HTMLElement = fixture.nativeElement.querySelector('.sbb-form-field-label');
+
+        expect(label).toBeTruthy();
+        expect(label.getAttribute('id')).toBeTruthy();
+
+        // When clicking toggle
+        fixture.debugElement.query(By.css('.sbb-datepicker-toggle-button')).nativeElement.click();
+        fixture.detectChanges();
+
+        flush();
+
+        const popup = document.querySelector(
+          '.cdk-overlay-pane .sbb-datepicker-content-container'
+        )!;
+        expect(popup).toBeTruthy();
+        expect(popup.getAttribute('aria-labelledby')).toBe(label.getAttribute('id'));
+      }));
+    });
+
     describe('datepicker with min and max dates and validation', () => {
       let fixture: ComponentFixture<DatepickerWithMinAndMaxValidationComponent>;
       let testComponent: DatepickerWithMinAndMaxValidationComponent;
@@ -1000,3 +876,197 @@ describe('SbbDatepicker', () => {
     });
   });
 });
+
+@Component({
+  template: `
+    <sbb-datepicker #d [disabled]="disabled" [opened]="opened">
+      <input sbbDateInput [value]="date" />
+    </sbb-datepicker>
+  `,
+})
+class StandardDatepickerComponent {
+  opened = false;
+  touch = false;
+  disabled = false;
+  date: Date | null = new Date(2020, JAN, 1);
+  @ViewChild('d') datepicker: SbbDatepicker<Date>;
+  @ViewChild(SbbDateInput) datepickerInput: SbbDateInput<Date>;
+}
+
+@Component({
+  template: `
+    <sbb-datepicker>
+      <input sbbDateInput />
+      <input sbbDateInput />
+    </sbb-datepicker>
+  `,
+})
+class MultiInputDatepickerComponent {}
+
+@Component({
+  template: ` <sbb-datepicker #d></sbb-datepicker> `,
+})
+class NoInputDatepickerComponent {
+  @ViewChild('d') datepicker: SbbDatepicker<Date>;
+}
+
+@Component({
+  template: `
+    <sbb-datepicker #d [startAt]="startDate">
+      <input sbbDateInput [value]="date" />
+    </sbb-datepicker>
+  `,
+})
+class DatepickerWithStartAtComponent {
+  date = new Date(2020, JAN, 1);
+  startDate = new Date(2010, JAN, 1);
+  @ViewChild('d') datepicker: SbbDatepicker<Date>;
+}
+
+@Component({
+  template: `
+    <sbb-datepicker #d>
+      <input [(ngModel)]="selected" sbbDateInput />
+    </sbb-datepicker>
+  `,
+})
+class DatepickerWithNgModelComponent {
+  selected: Date | null = null;
+  @ViewChild('d') datepicker: SbbDatepicker<Date>;
+  @ViewChild(SbbDateInput) datepickerInput: SbbDateInput<Date>;
+}
+
+@Component({
+  template: `
+    <sbb-datepicker #d>
+      <input [formControl]="formControl" sbbDateInput />
+    </sbb-datepicker>
+  `,
+})
+class DatepickerWithFormControlComponent {
+  formControl = new FormControl();
+  @ViewChild('d') datepicker: SbbDatepicker<Date>;
+  @ViewChild(SbbDateInput) datepickerInput: SbbDateInput<Date>;
+}
+
+@Component({
+  template: `
+    <sbb-datepicker #d>
+      <input sbbDateInput />
+    </sbb-datepicker>
+  `,
+})
+class DatepickerWithToggleComponent {
+  @ViewChild('d') datepicker: SbbDatepicker<Date>;
+  @ViewChild(SbbDateInput) input: SbbDateInput<Date>;
+}
+
+@Component({
+  template: `
+    <sbb-form-field>
+      <sbb-label>Pick a date</sbb-label>
+      <sbb-datepicker #d>
+        <input sbbInput sbbDateInput />
+      </sbb-datepicker>
+    </sbb-form-field>
+  `,
+})
+class FormFieldDatepicker {
+  @ViewChild('d') datepicker: SbbDatepicker<Date>;
+  @ViewChild(SbbDateInput) datepickerInput: SbbDateInput<Date>;
+  @ViewChild(SbbFormField) formField: SbbFormField;
+}
+
+@Component({
+  template: `
+    <sbb-datepicker #d>
+      <input sbbDateInput [(ngModel)]="date" [min]="minDate" [max]="maxDate" />
+    </sbb-datepicker>
+  `,
+})
+class DatepickerWithMinAndMaxValidationComponent {
+  @ViewChild('d') datepicker: SbbDatepicker<Date>;
+  date: Date | null;
+  minDate = new Date(2010, JAN, 1);
+  maxDate = new Date(2020, JAN, 1);
+}
+
+@Component({
+  template: `
+    <sbb-datepicker (opened)="openedSpy()" (closed)="closedSpy()" #d>
+      <input [(ngModel)]="selected" sbbDateInput />
+    </sbb-datepicker>
+  `,
+})
+class DatepickerWithEventsComponent {
+  selected: Date | null = null;
+  openedSpy = jasmine.createSpy('opened spy');
+  closedSpy = jasmine.createSpy('closed spy');
+  @ViewChild('d') datepicker: SbbDatepicker<Date>;
+}
+
+@Component({
+  template: `
+    <sbb-datepicker #d>
+      <input (focus)="d.open()" sbbDateInput />
+    </sbb-datepicker>
+  `,
+})
+class DatepickerOpeningOnFocusComponent {
+  @ViewChild(SbbDatepicker) datepicker: SbbDatepicker<Date>;
+}
+
+@Component({
+  template: `<sbb-datepicker [connected]="second">
+      <input sbbDateInput sbbInput [formControl]="firstDatepicker" />
+    </sbb-datepicker>
+    <sbb-datepicker #second>
+      <input sbbDateInput sbbInput [formControl]="secondDatepicker" />
+    </sbb-datepicker>`,
+})
+class DatepickerConnectedComponent {
+  firstDatepicker = new FormControl();
+  secondDatepicker = new FormControl();
+}
+
+@Component({
+  template: `
+    <sbb-datepicker arrows #d class="default-arrow-labels" style="width: 300px">
+      <input sbbDateInput [value]="date" />
+    </sbb-datepicker>
+
+    <sbb-datepicker
+      arrows
+      #d
+      prevDayAriaLabel="Select previous day"
+      nextDayAriaLabel="Select next day"
+      class="custom-arrow-labels"
+    >
+      <input sbbDateInput [value]="date" />
+    </sbb-datepicker>
+  `,
+})
+class DatepickerWithArrows {
+  date: Date | null = new Date();
+  @ViewChild('d') datepicker: SbbDatepicker<Date>;
+  @ViewChild(SbbDateInput) datepickerInput: SbbDateInput<Date>;
+}
+
+@Component({
+  template: `
+    <sbb-datepicker arrows>
+      <input
+        sbbDateInput
+        sbbInput
+        [formControl]="date"
+        [readonly]="readonly"
+        [placeholder]="placeholder"
+      />
+    </sbb-datepicker>
+  `,
+})
+class DatepickerReadonlyComponent {
+  date = new FormControl();
+  readonly: boolean = false;
+  placeholder?: string = undefined;
+}

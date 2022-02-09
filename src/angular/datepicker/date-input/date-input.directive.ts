@@ -24,6 +24,7 @@ import {
   Validators,
 } from '@angular/forms';
 import { SbbDateAdapter, SbbDateFormats, SBB_DATE_FORMATS, TypeRef } from '@sbb-esta/angular/core';
+import { SbbFormField, SBB_FORM_FIELD } from '@sbb-esta/angular/form-field';
 import { SBB_INPUT_VALUE_ACCESSOR } from '@sbb-esta/angular/input';
 import { Subscription } from 'rxjs';
 
@@ -253,7 +254,8 @@ export class SbbDateInput<D> implements ControlValueAccessor, Validator, OnInit,
     private _elementRef: ElementRef<HTMLInputElement>,
     @Optional() public _dateAdapter: SbbDateAdapter<D>,
     @Optional() @Inject(SBB_DATE_FORMATS) private _dateFormats: SbbDateFormats,
-    @Optional() public _datepicker: SbbDatepicker<D>
+    @Optional() public _datepicker: SbbDatepicker<D>,
+    @Optional() @Inject(SBB_FORM_FIELD) private _formField?: SbbFormField
   ) {
     if (!this._dateAdapter) {
       throw createMissingDateImplError('DateAdapter');
@@ -378,5 +380,14 @@ export class SbbDateInput<D> implements ControlValueAccessor, Validator, OnInit,
    */
   private _getValidDateOrNull(obj: any): D | null {
     return this._dateAdapter.isDateInstance(obj) && this._dateAdapter.isValid(obj) ? obj : null;
+  }
+
+  /** Gets the ID of an element that should be used a description for the calendar overlay. */
+  getOverlayLabelId(): string | null {
+    if (this._formField) {
+      return this._formField.getLabelId();
+    }
+
+    return this._elementRef.nativeElement.getAttribute('aria-labelledby');
   }
 }

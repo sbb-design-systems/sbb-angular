@@ -1,5 +1,9 @@
 <sbb-calendar
   cdkTrapFocus
+  role="dialog"
+  [attr.aria-modal]="true"
+  [attr.aria-labelledby]="_dialogLabelId ?? undefined"
+  class="sbb-datepicker-content-container"
   [id]="datepicker.id"
   [ngClass]="datepicker.panelClass"
   [startAt]="datepicker.startAt"
