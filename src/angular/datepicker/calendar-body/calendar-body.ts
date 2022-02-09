@@ -1,4 +1,5 @@
 import {
+  AfterViewChecked,
   ChangeDetectionStrategy,
   Component,
   ElementRef,
@@ -37,7 +38,12 @@ export class SbbCalendarCell {
     role: 'grid',
   },
 })
-export class SbbCalendarBody {
+export class SbbCalendarBody implements AfterViewChecked {
+  /**
+   * Used to focus the active cell after change detection has run.
+   */
+  private _focusActiveCellAfterViewChecked = false;
+
   /** The label for the table. (e.g. "Jan 2017"). */
   @Input() label: string;
 
@@ -65,13 +71,28 @@ export class SbbCalendarBody {
   /** Emits when a new value is selected. */
   @Output() readonly selectedValueChange: EventEmitter<number> = new EventEmitter<number>();
 
+  @Output() readonly activeDateChange = new EventEmitter<number>();
+
   constructor(private _elementRef: ElementRef<HTMLElement>, private _ngZone: NgZone) {}
+
+  ngAfterViewChecked() {
+    if (this._focusActiveCellAfterViewChecked) {
+      this.focusActiveCell();
+      this._focusActiveCellAfterViewChecked = false;
+    }
+  }
 
   cellClicked(cell: SbbCalendarCell): void {
     if (!this.allowDisabledSelection && !cell.enabled) {
       return;
     }
     this.selectedValueChange.emit(cell.value);
+  }
+
+  _emitActiveDateChange(cell: SbbCalendarCell, event: FocusEvent): void {
+    if (cell.enabled) {
+      this.activeDateChange.emit(cell.value);
+    }
   }
 
   /** The number of blank cells to put at the beginning for the first row. */
@@ -108,5 +129,10 @@ export class SbbCalendarBody {
           }
         });
     });
+  }
+
+  /** Focuses the active cell after change detection has run and the microtask queue is empty. */
+  _scheduleFocusActiveCellAfterViewChecked() {
+    this._focusActiveCellAfterViewChecked = true;
   }
 }
