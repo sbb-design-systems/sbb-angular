@@ -52,6 +52,8 @@
     [content]="tab.content!"
     [position]="tab.position!"
     [origin]="tab.origin"
+    [animationDuration]="animationDuration"
+    [animationDurationHide]="_animationDurationHide"
     [preserveContent]="preserveContent"
     (_onCentered)="_removeTabBodyWrapperHeight()"
     (_onCentering)="_setTabBodyWrapperHeight($event)"

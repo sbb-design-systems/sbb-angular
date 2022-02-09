@@ -96,6 +96,28 @@ export abstract class SbbTabGroupBase implements AfterContentInit, AfterContentC
   }
   private _selectedIndex: number | null = null;
 
+  /** Duration for the tab animation. Will be normalized to milliseconds if no units are set. */
+  @Input()
+  get animationDuration(): string {
+    return this._animationDuration;
+  }
+  set animationDuration(value: NumberInput) {
+    this._animationDuration = /^\d+$/.test(value + '') ? value + 'ms' : (value as string);
+
+    const match = this.animationDuration.match(/^(\d+|\.\d+|\d+\.\d+)(\w*)$/);
+    if (match) {
+      const durationParsed = parseFloat(match[1]) / 3;
+      const durationRounded = Math.round(durationParsed * 100) / 100;
+      this._animationDurationHide = `${durationRounded}${match[2]}`;
+    } else {
+      this._animationDurationHide = '0ms';
+    }
+  }
+  private _animationDuration: string;
+
+  /** Calculated hide duration which is one third of animationDuration. */
+  _animationDurationHide: string;
+
   /**
    * Whether pagination should be disabled. This can be used to avoid unnecessary
    * layout recalculations if it's known that pagination won't be required.
@@ -148,6 +170,8 @@ export abstract class SbbTabGroupBase implements AfterContentInit, AfterContentC
     @Optional() @Inject(ANIMATION_MODULE_TYPE) public _animationMode?: string
   ) {
     this._groupId = nextId++;
+    this.animationDuration =
+      defaultConfig && defaultConfig.animationDuration ? defaultConfig.animationDuration : '500ms';
     this.disablePagination =
       defaultConfig && defaultConfig.disablePagination != null
         ? defaultConfig.disablePagination

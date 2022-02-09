@@ -112,6 +112,16 @@ with the `sbbTabContent` attribute.
 </sbb-tab>
 ```
 
+### Controlling the tab animation
+
+You can control the duration of the tabs' animation using the `animationDuration` input. If you
+want to disable the animation completely, you can do so by setting the properties to `0ms`. The
+duration can be configured globally using the `SBB_TABS_CONFIG` injection token.
+
+```html
+<sbb-tab-group animationDuration="2000ms"></sbb-tab-group>
+```
+
 ### Keeping the tab content inside the DOM while it's off-screen
 
 By default the `<sbb-tab-group>` will remove the content of off-screen tabs from the DOM until they
