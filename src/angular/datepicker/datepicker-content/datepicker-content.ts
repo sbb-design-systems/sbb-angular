@@ -37,6 +37,9 @@ export class SbbDatepickerContent<D> implements AfterViewInit {
   /** Whether the datepicker is above or below the input. */
   isAbove: boolean;
 
+  /** Id of the label for the `role="dialog"` element. */
+  _dialogLabelId: string | null;
+
   ngAfterViewInit() {
     this.calendar.focusActiveCell();
   }

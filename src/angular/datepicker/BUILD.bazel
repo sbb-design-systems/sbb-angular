@@ -21,6 +21,7 @@ ng_module(
     ] + glob(["**/*.html"]),
     deps = [
         "//src/angular/core",
+        "//src/angular/form-field",
         "//src/angular/icon",
         "//src/angular/input",
         "@npm//@angular/cdk",
@@ -58,6 +59,7 @@ ng_test_library(
         ":datepicker",
         "//src/angular/core",
         "//src/angular/core/testing",
+        "//src/angular/form-field",
         "//src/angular/icon",
         "//src/angular/icon/testing",
         "//src/angular/input",
