@@ -1,5 +1,16 @@
 import { ChangeDetectionStrategy, Component, Input, ViewEncapsulation } from '@angular/core';
 
+const sbbAvailableModes = ['tiny', 'small', 'medium', 'big', 'fullscreen', 'fullbox', 'inline'];
+
+export type SbbLoadingMode =
+  | 'tiny'
+  | 'small'
+  | 'medium'
+  | 'big'
+  | 'fullscreen'
+  | 'fullbox'
+  | 'inline';
+
 @Component({
   selector: 'sbb-loading',
   templateUrl: './loading.html',
@@ -14,6 +25,7 @@ import { ChangeDetectionStrategy, Component, Input, ViewEncapsulation } from '@a
     '[class.sbb-loading-small]': `this.mode === 'small'`,
     '[class.sbb-loading-medium]': `this.mode === 'medium'`,
     '[class.sbb-loading-big]': `this.mode === 'big'`,
+    // TODO: @deprecated mode fullscreen will be removed with next major version
     '[class.sbb-loading-fullscreen]': `this.mode === 'fullscreen'`,
     '[class.sbb-loading-fullbox]': `this.mode === 'fullbox'`,
     '[class.sbb-loading-inline]': `this.mode === 'inline'`,
@@ -21,18 +33,20 @@ import { ChangeDetectionStrategy, Component, Input, ViewEncapsulation } from '@a
 })
 export class SbbLoading {
   /** Types of mode for loading indicator. */
-  @Input() mode: 'tiny' | 'small' | 'medium' | 'big' | 'fullscreen' | 'fullbox' | 'inline' =
-    'medium';
-
-  static ngAcceptInputType_mode:
-    | 'tiny'
-    | 'small'
-    | 'medium'
-    | 'big'
-    | 'fullscreen'
-    | 'fullbox'
-    | 'inline'
-    | string
-    | null
-    | undefined;
+  @Input()
+  get mode(): SbbLoadingMode {
+    return this._mode;
+  }
+  set mode(value: SbbLoadingMode | string) {
+    if (!sbbAvailableModes.includes(value)) {
+      this._mode = 'medium';
+      return;
+    } else if (value === 'fullscreen' && (typeof ngDevMode === 'undefined' || ngDevMode)) {
+      console.warn(
+        'The mode fullscreen for the loading indicator is deprecated and will be removed with the next major version. Please consider another mode.'
+      );
+    }
+    this._mode = value as SbbLoadingMode;
+  }
+  private _mode: SbbLoadingMode = 'medium';
 }

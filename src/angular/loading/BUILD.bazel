@@ -15,8 +15,9 @@ ng_module(
         ["**/*.ts"],
         exclude = ["**/*.spec.ts"],
     ),
-    assets = [":loading/loading.css"] + glob(["**/*.html"]),
+    assets = [":loading.css"] + glob(["**/*.html"]),
     deps = [
+        "//src:dev_mode_types",
         "//src/angular/core",
         "@npm//@angular/common",
         "@npm//@angular/core",
@@ -24,8 +25,8 @@ ng_module(
 )
 
 sass_binary(
-    name = "loading_loading_scss",
-    src = "loading/loading.scss",
+    name = "loading_scss",
+    src = "loading.scss",
     deps = [
         "//src/angular/styles:common_scss_lib",
     ],
