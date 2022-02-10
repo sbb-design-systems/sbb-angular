@@ -181,6 +181,6 @@
   padding: calc(#{pxToRem(24)} * var(--sbb-scaling-factor));
 
   :where(html.sbb-lean) & {
-    padding: calc(#{pxToRem(15)} * var(--sbb-scaling-factor));
+    padding: pxToRem(15);
   }
 }
