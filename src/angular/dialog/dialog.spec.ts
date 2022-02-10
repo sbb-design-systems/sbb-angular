@@ -1934,6 +1934,24 @@ describe('SbbDialog with animations enabled', () => {
   }));
 });
 
+describe('SbbDialog with template only', () => {
+  let fixture: ComponentFixture<ContentElementDialog>;
+
+  beforeEach(fakeAsync(() => {
+    TestBed.configureTestingModule({
+      imports: [SbbDialogModule, DialogTestModule, BrowserAnimationsModule],
+    });
+    TestBed.compileComponents();
+  }));
+
+  it('should display close button', fakeAsync(() => {
+    fixture = TestBed.createComponent(ContentElementDialog);
+    fixture.detectChanges();
+
+    expect(fixture.nativeElement.querySelector('.sbb-dialog-title-close-button')).toBeTruthy();
+  }));
+});
+
 @Directive({ selector: 'dir-with-view-container' })
 class DirectiveWithViewContainer {
   constructor(public viewContainerRef: ViewContainerRef) {}

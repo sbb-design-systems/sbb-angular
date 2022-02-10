@@ -97,8 +97,8 @@ export class _SbbDialogTitleBase implements OnInit {
   /** Unique id for the dialog title. If none is supplied, it will be auto-generated. */
   @Input() id: string = `sbb-dialog-title-${dialogElementUid++}`;
 
-  /** Whether the close button is disabled for the dialog. */
-  _closeEnabled: boolean = false;
+  /** Whether the close button is enabled for the dialog. */
+  _closeEnabled: boolean = true;
 
   constructor(
     // The dialog title directive is always used in combination with a `SbbDialogRef`.
@@ -126,8 +126,8 @@ export class _SbbDialogTitleBase implements OnInit {
         if (!container) {
           return;
         }
-        if (!container._config.disableClose) {
-          this._closeEnabled = true;
+        if (container._config.disableClose) {
+          this._closeEnabled = false;
           this._changeDetectorRef.markForCheck();
         }
         if (!container._ariaLabelledBy) {
