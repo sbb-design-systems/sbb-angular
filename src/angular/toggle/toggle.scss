@@ -120,8 +120,11 @@
   max-height: 3em;
   opacity: 1;
   overflow: hidden;
-  transition: max-height var(--sbb-transition-default), opacity var(--sbb-transition-default);
-
+  transition: {
+    duration: var(--sbb-transition-duration-fast);
+    timing-function: var(--sbb-transition-timing-default);
+    property: opacity, max-height;
+  }
   .sbb-toggle-option-selected & {
     opacity: 0;
     max-height: 0;
@@ -131,29 +134,13 @@
 .sbb-toggle-option-content {
   display: flex;
   background-color: var(--sbb-color-white);
-  padding: calc(#{pxToRem(24)} * var(--sbb-scaling-factor));
-  max-height: calc(#{pxToRem(600)} * var(--sbb-scaling-factor));
-  visibility: visible;
-  opacity: 1;
-  transition: {
-    duration: var(--sbb-transition-duration-fast);
-    timing-function: var(--sbb-transition-timing-default);
-    property: opacity, visibility, padding, max-height;
-  }
   margin-top: calc(#{pxToRem(-2)} * var(--sbb-scaling-factor));
   position: relative;
   border: var(--sbb-border-width-thin) solid var(--sbb-color-black);
   border-radius: var(--sbb-border-radius);
 
-  :where(html.sbb-lean) & {
-    padding: calc(#{pxToRem(15)} * var(--sbb-scaling-factor));
-  }
-
   &:empty {
-    max-height: 0;
     visibility: hidden;
-    opacity: 0;
-    padding: 0;
   }
 
   &::before {
@@ -185,5 +172,15 @@
     &::before {
       right: 0;
     }
+  }
+}
+
+.sbb-toggle-option-content-wrapper {
+  overflow: auto;
+  max-height: calc(#{pxToRem(600)} * var(--sbb-scaling-factor));
+  padding: calc(#{pxToRem(24)} * var(--sbb-scaling-factor));
+
+  :where(html.sbb-lean) & {
+    padding: calc(#{pxToRem(15)} * var(--sbb-scaling-factor));
   }
 }
