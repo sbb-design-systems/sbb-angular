@@ -3,6 +3,7 @@ import { Component, ContentChildren, QueryList } from '@angular/core';
 import { ComponentFixture, fakeAsync, flush, TestBed, waitForAsync } from '@angular/core/testing';
 import { FormControl, FormGroup, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { By } from '@angular/platform-browser';
+import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { SbbDatepickerModule } from '@sbb-esta/angular/datepicker';
 import { SbbIconModule } from '@sbb-esta/angular/icon';
 import { SbbIconTestingModule } from '@sbb-esta/angular/icon/testing';
@@ -207,6 +208,7 @@ describe('SbbToggle', () => {
           imports: [
             SbbToggleModule,
             CommonModule,
+            NoopAnimationsModule,
             SbbIconModule,
             SbbDatepickerModule,
             SbbInputModule,
@@ -306,6 +308,7 @@ describe('SbbToggle', () => {
           imports: [
             SbbToggleModule,
             CommonModule,
+            NoopAnimationsModule,
             SbbIconModule,
             SbbDatepickerModule,
             SbbInputModule,
@@ -343,6 +346,7 @@ describe('SbbToggle', () => {
           imports: [
             SbbToggleModule,
             CommonModule,
+            NoopAnimationsModule,
             SbbIconModule,
             SbbDatepickerModule,
             SbbInputModule,
@@ -399,7 +403,7 @@ describe('SbbToggle', () => {
     beforeEach(
       waitForAsync(() => {
         TestBed.configureTestingModule({
-          imports: [SbbToggleModule, CommonModule, SbbIconTestingModule],
+          imports: [SbbToggleModule, CommonModule, NoopAnimationsModule, SbbIconTestingModule],
           declarations: [ToggleSimpleCaseTestComponent],
         }).compileComponents();
       })
@@ -451,6 +455,7 @@ describe('SbbToggle', () => {
           imports: [
             SbbToggleModule,
             CommonModule,
+            NoopAnimationsModule,
             ReactiveFormsModule,
             SbbIconModule,
             SbbIconTestingModule,
