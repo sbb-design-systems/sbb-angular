@@ -99,24 +99,6 @@
   }
 }
 
-.sbb-error {
-  display: block;
-  letter-spacing: 0;
-  outline: none;
-  resize: none;
-  opacity: 1;
-  font-family: var(--sbb-font-roman);
-  color: var(--sbb-color-error);
-
-  font-size: calc(#{pxToRem(14)} * var(--sbb-scaling-factor));
-  line-height: calc(#{pxToRem(21)} * var(--sbb-scaling-factor));
-
-  :where(html.sbb-lean) & {
-    font-size: pxToRem(13);
-    line-height: pxToRem(16);
-  }
-}
-
 // All form groups should use display flex and the same gap
 .sbb-form-group,
 .sbb-form-group-center,
