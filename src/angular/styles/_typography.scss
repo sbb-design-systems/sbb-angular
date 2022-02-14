@@ -1879,7 +1879,7 @@ textarea {
   border-spacing: 0;
   width: 100%;
   font-size: var(--sbb-font-size);
-  line-height: var(--sbb-line-height);
+  line-height: var(--sbb-line-height-medium);
 
   thead {
     text-align: left;
@@ -1981,6 +1981,8 @@ textarea {
   }
 
   :where(html.sbb-lean) & {
+    line-height: var(--sbb-line-height);
+
     th {
       color: var(--sbb-color-granite);
     }
