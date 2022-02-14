@@ -6,7 +6,7 @@ You can use the notification component to display a simple message.
 
 ### Notification types
 
-We support different notification types: `success` (default), `info`, `warning` (Lean only) and `error`.
+We support different notification types: `success` (default), `info`, `warn` (Lean only) and `error`.
 
 ```html
 <sbb-notification type="success">The action was successful.</sbb-notification>
