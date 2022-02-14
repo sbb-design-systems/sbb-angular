@@ -1913,9 +1913,12 @@ textarea {
 
   // Position buttons and contextmenu over padding of cell
   // Only in lean design: Additionally reduce size of buttons to fit into cell
-  .sbb-button-base {
+  .sbb-button-base,
+  .sbb-menu-trigger-contextmenu {
     margin: -100% 0;
+  }
 
+  .sbb-button-base {
     :where(html.sbb-lean) & {
       padding-top: 0 !important;
       padding-bottom: 0 !important;
@@ -1931,11 +1934,6 @@ textarea {
     :where(html.sbb-lean) & {
       padding: 0 !important;
     }
-  }
-
-  .sbb-icon-button,
-  .sbb-menu-trigger-contextmenu {
-    margin: -100% 0;
   }
 
   .sbb-menu-trigger-contextmenu {
