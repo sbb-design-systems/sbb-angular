@@ -27,6 +27,7 @@ import {
   Inject,
   InjectionToken,
   Input,
+  NgZone,
   OnDestroy,
   OnInit,
   Optional,
@@ -235,7 +236,12 @@ export class SbbMenuTrigger
     private _focusMonitor: FocusMonitor,
     private _sanitizer: DomSanitizer,
     private _breakpointObserver: BreakpointObserver,
-    private _changeDetectorRef: ChangeDetectorRef
+    private _changeDetectorRef: ChangeDetectorRef,
+    /**
+     * @deprecated `ngZone` will become a required parameter.
+     * @breaking-change 15.0.0
+     */
+    private _ngZone?: NgZone
   ) {
     super();
 
@@ -465,6 +471,7 @@ export class SbbMenuTrigger
   private _setIsMenuOpen(isOpen: boolean): void {
     this._menuOpen = isOpen;
     this._menuOpen ? this.menuOpened.emit() : this.menuClosed.emit();
+
     if (this.triggersSubmenu()) {
       this._menuItemInstance._setHighlighted(isOpen);
     }
@@ -538,7 +545,14 @@ export class SbbMenuTrigger
         this._element.nativeElement.classList.add(`sbb-menu-trigger-${posX}`);
         this._element.nativeElement.classList.add(`sbb-menu-trigger-${posY}`);
 
-        this.menu.setPositionClasses!(posX, posY);
+        // @breaking-change 15.0.0 Remove null check for `ngZone`.
+        // `positionChanges` fires outside of the `ngZone` and `setPositionClasses` might be
+        // updating something in the view, so we need to bring it back in.
+        if (this._ngZone) {
+          this._ngZone.run(() => this.menu.setPositionClasses!(posX, posY));
+        } else {
+          this.menu.setPositionClasses!(posX, posY);
+        }
       });
     }
   }

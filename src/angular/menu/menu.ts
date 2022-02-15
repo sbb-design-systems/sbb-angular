@@ -5,6 +5,7 @@ import { DOWN_ARROW, ESCAPE, hasModifierKey, LEFT_ARROW, UP_ARROW } from '@angul
 import {
   AfterContentInit,
   ChangeDetectionStrategy,
+  ChangeDetectorRef,
   Component,
   ContentChild,
   ContentChildren,
@@ -80,12 +81,6 @@ export interface SbbMenuAnimationStateWithParams {
 
 export type SbbMenuAnimationState = SbbMenuPlainAnimationState | SbbMenuAnimationStateWithParams;
 
-/**
- * Start elevation for the menu panel.
- * @docs-private
- */
-const SBB_MENU_BASE_ELEVATION = 4;
-
 let menuPanelUid = 0;
 
 /** Reason why the menu was closed. */
@@ -111,6 +106,8 @@ export class SbbMenu implements AfterContentInit, SbbMenuPanel<SbbMenuItem>, OnI
   private _xPosition: SbbMenuPositionX = this._defaultOptions.xPosition;
   private _yPosition: SbbMenuPositionY = this._defaultOptions.yPosition;
   private _previousElevation: string;
+  private _elevationPrefix: string = 'sbb-elevation-z';
+  private _baseElevation: number = 4;
 
   /** All items inside the menu. Includes items nested inside another menu. */
   @ContentChildren(SbbMenuItem, { descendants: true }) _allItems: QueryList<SbbMenuItem>;
@@ -259,7 +256,9 @@ export class SbbMenu implements AfterContentInit, SbbMenuPanel<SbbMenuItem>, OnI
   constructor(
     private _elementRef: ElementRef<HTMLElement>,
     private _ngZone: NgZone,
-    @Inject(SBB_MENU_DEFAULT_OPTIONS) private _defaultOptions: SbbMenuDefaultOptions
+    @Inject(SBB_MENU_DEFAULT_OPTIONS) private _defaultOptions: SbbMenuDefaultOptions,
+    // @breaking-change 15.0.0 `_changeDetectorRef` to become a required parameter.
+    private _changeDetectorRef?: ChangeDetectorRef
   ) {}
 
   ngOnInit() {
@@ -363,7 +362,7 @@ export class SbbMenu implements AfterContentInit, SbbMenuPanel<SbbMenuItem>, OnI
     // Move focus to the menu panel so keyboard events like Escape still work. Also this will
     // give _some_ feedback to screen readers.
     if (!manager.activeItem && this._directDescendantItems.length) {
-      let element = this._directDescendantItems.first._getHostElement().parentElement;
+      let element = this._directDescendantItems.first!._getHostElement().parentElement;
 
       // Because the `sbb-menu` is at the DOM insertion point, not inside the overlay, we don't
       // have a nice way of getting a hold of the menu panel. We can't use a `ViewChild` either
@@ -394,10 +393,10 @@ export class SbbMenu implements AfterContentInit, SbbMenuPanel<SbbMenuItem>, OnI
    */
   setElevation(depth: number): void {
     // The elevation starts at the base and increases by one for each level.
-    const elevation = SBB_MENU_BASE_ELEVATION + depth;
-    const newElevation = `sbb-elevation-z${elevation}`;
-    const customElevation = Object.keys(this._classList).find((c) =>
-      c.startsWith('sbb-elevation-z')
+    const elevation = this._baseElevation + depth;
+    const newElevation = `${this._elevationPrefix}${elevation}`;
+    const customElevation = Object.keys(this._classList).find((className) =>
+      className.startsWith(this._elevationPrefix)
     );
 
     if (!customElevation || customElevation === this._previousElevation) {
@@ -426,6 +425,9 @@ export class SbbMenu implements AfterContentInit, SbbMenuPanel<SbbMenuItem>, OnI
     classes['sbb-menu-panel-after'] = posX === 'after';
     classes['sbb-menu-panel-above'] = posY === 'above';
     classes['sbb-menu-panel-below'] = posY === 'below';
+
+    // @breaking-change 15.0.0 Remove null check for `_changeDetectorRef`.
+    this._changeDetectorRef?.markForCheck();
   }
 
   /** Starts the enter animation. */
