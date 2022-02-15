@@ -30,6 +30,10 @@ export const BROWSER_ANIMATIONS_MODULE_NAME = 'BrowserAnimationsModule';
 /** Name of the module that switches Angular animations to a noop implementation. */
 export const NOOP_ANIMATIONS_MODULE_NAME = 'NoopAnimationsModule';
 
+const TEST_TS_LEAN_CONFIG_COMMAND = `document.documentElement.classList.add('sbb-lean');`;
+const TEST_TS_LEAN_CONFIG_COMMENT = `// Configures your test environment to use lean design variant by setting sbb-lean class on html tag.`;
+export const TEST_TS_LEAN_CONFIG = `${TEST_TS_LEAN_CONFIG_COMMENT}\n${TEST_TS_LEAN_CONFIG_COMMAND}`;
+
 // noinspection JSUnusedGlobalSymbols
 export default function (options: Schema): Rule {
   return async (host: Tree, context: SchematicContext) => {
@@ -210,73 +214,138 @@ function setTypographyVariant(options: Schema) {
   return async (tree: Tree, context: SchematicContext) => {
     const workspace = await getWorkspace(tree);
     const project = getProjectFromWorkspace(workspace, options.project);
-    const targetOptions = getProjectTargetOptions(project, 'build');
     const shouldBeLeanVariant = options.variant === 'lean (previously known as business)';
 
-    if (!targetOptions?.index) {
-      if (shouldBeLeanVariant) {
-        context.logger.error(
-          `Could not find index.html to configure design variant. If you like to use the lean design variant, please add 'sbb-lean' class to the <html> tag.`
-        );
-      } else {
-        context.logger.error(
-          `Could not find index.html to configure design variant. Please check your <html> tag if the design variant is correctly configured.`
-        );
-      }
-      return;
-    }
-
-    const indexHtml = tree.read(targetOptions.index as string)?.toString('utf-8');
-
-    if (!indexHtml) {
-      if (shouldBeLeanVariant) {
-        context.logger.error(
-          `Could not read index.html to configure design variant. If you like to use the lean design variant, please add 'sbb-lean' class to the <html> tag.`
-        );
-      } else {
-        context.logger.error(
-          `Could not read index.html to configure design variant. Please check your <html> tag if the design variant is correctly configured.`
-        );
-      }
-      return;
-    }
-
-    const htmlTag = indexHtml.match(
-      /<html(?=\s)(?!(?:[^>"\']|"[^"]*"|\'[^\']*\')*?(?<=\s)(?:term|range)\s*=)(?!\s*\/?>)\s+(?:".*?"|\'.*?\'|[^>]*?)+>/g
-    )?.[0];
-
-    if (!htmlTag) {
-      context.logger.error(
-        `Could not find <html> tag. Please check your <html> tag if the design variant is correctly configured.`
-      );
-      return;
-    }
-
-    const classTag = htmlTag.match(/class=(["'])?((?:.(?!\1|>))*.?)\1?/g)?.[0];
-    const classList = classTag?.replace(/["']/g, '').replace('class=', '').split(' ');
-    const hasSbbLeanClass = classList?.includes('sbb-lean');
-
-    if (hasSbbLeanClass && !shouldBeLeanVariant) {
-      // Remove sbb-lean class
-      const onlyLeanClassInClassList = classList!.length === 1;
-      const htmlTagWithoutLeanClass = onlyLeanClassInClassList
-        ? htmlTag.replace(` ${classTag!}`, '')
-        : htmlTag.replace(' sbb-lean', '').replace('sbb-lean ', '');
-
-      tree.overwrite(
-        targetOptions.index as string,
-        indexHtml.replace(htmlTag, htmlTagWithoutLeanClass)
-      );
-    } else if (!hasSbbLeanClass && shouldBeLeanVariant) {
-      // Add sbb-lean class
-      const newIndexHtml = classTag
-        ? indexHtml.replace(classTag, classTag.replace(/(?<=^.{7})/, 'sbb-lean '))
-        : indexHtml.replace('<html', '<html class="sbb-lean"');
-      tree.overwrite(targetOptions.index as string, newIndexHtml);
-    }
-
-    context.logger.info(
-      `✔️ Configured typography with ${hasSbbLeanClass ? 'lean' : 'standard'} design variant.`
-    );
+    handleIndexHtml(tree, project, shouldBeLeanVariant, context);
+    handleTestTs(tree, project, shouldBeLeanVariant, context);
   };
+}
+
+function handleIndexHtml(
+  tree: Tree,
+  project: ProjectDefinition,
+  shouldBeLeanVariant: boolean,
+  context: SchematicContext
+) {
+  const targetOptions = getProjectTargetOptions(project, 'build');
+
+  if (!targetOptions?.index) {
+    if (shouldBeLeanVariant) {
+      context.logger.error(
+        `Could not find index.html to configure design variant. If you like to use the lean design variant, please add 'sbb-lean' class to the <html> tag.`
+      );
+    } else {
+      context.logger.error(
+        `Could not find index.html to configure design variant. Please check your <html> tag if the design variant is correctly configured.`
+      );
+    }
+    return;
+  }
+
+  const indexHtml = tree.read(targetOptions.index as string)?.toString('utf-8');
+
+  if (!indexHtml) {
+    if (shouldBeLeanVariant) {
+      context.logger.error(
+        `Could not read index.html to configure design variant. If you like to use the lean design variant, please add 'sbb-lean' class to the <html> tag.`
+      );
+    } else {
+      context.logger.error(
+        `Could not read index.html to configure design variant. Please check your <html> tag if the design variant is correctly configured.`
+      );
+    }
+    return;
+  }
+
+  const htmlTag = indexHtml.match(
+    /<html(?=\s)(?!(?:[^>"\']|"[^"]*"|\'[^\']*\')*?(?<=\s)(?:term|range)\s*=)(?!\s*\/?>)\s+(?:".*?"|\'.*?\'|[^>]*?)+>/g
+  )?.[0];
+
+  if (!htmlTag) {
+    context.logger.error(
+      `Could not find <html> tag. Please check your <html> tag if the design variant is correctly configured.`
+    );
+    return;
+  }
+
+  const classTag = htmlTag.match(/class=(["'])?((?:.(?!\1|>))*.?)\1?/g)?.[0];
+  const classList = classTag?.replace(/["']/g, '').replace('class=', '').split(' ');
+  const hasSbbLeanClass = classList?.includes('sbb-lean');
+
+  if (hasSbbLeanClass && !shouldBeLeanVariant) {
+    // Remove sbb-lean class
+    const onlyLeanClassInClassList = classList!.length === 1;
+    const htmlTagWithoutLeanClass = onlyLeanClassInClassList
+      ? htmlTag.replace(` ${classTag!}`, '')
+      : htmlTag.replace(' sbb-lean', '').replace('sbb-lean ', '');
+
+    tree.overwrite(
+      targetOptions.index as string,
+      indexHtml.replace(htmlTag, htmlTagWithoutLeanClass)
+    );
+  } else if (!hasSbbLeanClass && shouldBeLeanVariant) {
+    // Add sbb-lean class
+    const newIndexHtml = classTag
+      ? indexHtml.replace(classTag, classTag.replace(/(?<=^.{7})/, 'sbb-lean '))
+      : indexHtml.replace('<html', '<html class="sbb-lean"');
+    tree.overwrite(targetOptions.index as string, newIndexHtml);
+  }
+
+  context.logger.info(
+    `✔️ Configured typography with ${hasSbbLeanClass ? 'lean' : 'standard'} design variant.`
+  );
+}
+
+function handleTestTs(
+  tree: Tree,
+  project: ProjectDefinition,
+  shouldBeLeanVariant: boolean,
+  context: SchematicContext
+) {
+  const testOptions = getProjectTargetOptions(project, 'test');
+
+  if (!testOptions?.main) {
+    context.logger.error(
+      `Could not configure testing environment. No main entry (test.ts) in angular.json found.`
+    );
+    return;
+  }
+
+  const testTs = tree.read(testOptions.main as string)?.toString('utf-8');
+
+  if (!testTs) {
+    context.logger.error(
+      `Could not read ${testOptions.main} file to configure design variant for tests. If you like to use the lean design variant, please ensure class sbb-lean is set on html tag of test environment.`
+    );
+    return;
+  }
+
+  const hasLean = testTs.includes('sbb-lean');
+  let newTestTs = testTs;
+
+  if (!hasLean && shouldBeLeanVariant) {
+    newTestTs += TEST_TS_LEAN_CONFIG + '\n';
+  } else if (hasLean && !shouldBeLeanVariant) {
+    const commentRegex = new RegExp(`${escapeRegex(TEST_TS_LEAN_CONFIG_COMMENT)}[\\n\\r\\s]*`, 'g');
+    const commandRegex = new RegExp(`${escapeRegex(TEST_TS_LEAN_CONFIG_COMMAND)}[\\n\\r\\s]*`, 'g');
+    newTestTs = newTestTs.replace(commentRegex, '').replace(commandRegex, '');
+
+    if (newTestTs.includes('sbb-lean')) {
+      context.logger.error(
+        `Could not fully remove lean testing configuration in ${testOptions.main} file. Please remove lean testing configuration manually.`
+      );
+    }
+  }
+
+  tree.overwrite(testOptions.main as string, newTestTs);
+
+  context.logger.info(
+    `✔️ Configured testing environment (${testOptions.main}) with ${
+      shouldBeLeanVariant ? 'lean' : 'standard'
+    } design variant.`
+  );
+}
+
+function escapeRegex(string: string) {
+  return string.replace(/[-\/\\^$*+?.()|[\]{}]/g, '\\$&');
 }

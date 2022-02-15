@@ -10,6 +10,7 @@ import { Schema } from './schema';
 import {
   BROWSER_ANIMATIONS_MODULE_NAME,
   NOOP_ANIMATIONS_MODULE_NAME,
+  TEST_TS_LEAN_CONFIG,
   TYPOGRAPHY_CSS_PATH,
 } from './setup-project';
 
@@ -28,6 +29,20 @@ const appOptions: ApplicationOptions = {
   skipTests: false,
   style: Style.Css,
 };
+
+function runNgAddSetupProject(
+  runner: SchematicTestRunner,
+  tree: UnitTestTree,
+  variant: 'standard' | 'lean'
+) {
+  const variantFull =
+    variant === 'standard'
+      ? 'standard (previously known as public)'
+      : 'lean (previously known as business)';
+  return runner
+    .runSchematicAsync('ng-add-setup-project', { variant: variantFull } as Schema, tree)
+    .toPromise();
+}
 
 describe('ngAdd', () => {
   let runner: SchematicTestRunner;
@@ -187,13 +202,7 @@ describe('ngAdd', () => {
     (angularJson.projects.dummy.architect.test.options.styles as string[]).push(legacyImport);
     tree.overwrite('/angular.json', JSON.stringify(angularJson, null, 2));
 
-    await runner
-      .runSchematicAsync(
-        'ng-add-setup-project',
-        { variant: 'lean (previously known as business)' } as Schema,
-        tree
-      )
-      .toPromise();
+    await runNgAddSetupProject(runner, tree, 'lean');
 
     expect(
       readJsonFile(tree, '/angular.json').projects.dummy.architect.build.options.styles
@@ -219,99 +228,97 @@ describe('ngAdd', () => {
     );
   });
 
-  it('should add sbb-lean class to index.html', async () => {
-    await runner
-      .runSchematicAsync(
-        'ng-add-setup-project',
-        { variant: 'lean (previously known as business)' } as Schema,
-        tree
-      )
-      .toPromise();
+  describe('index.html manipulation', () => {
+    it('should add sbb-lean class to index.html', async () => {
+      await runNgAddSetupProject(runner, tree, 'lean');
 
-    expect(readStringFile(tree, '/projects/dummy/src/index.html')).toContain(
-      '<html class="sbb-lean" lang="en">'
-    );
+      expect(readStringFile(tree, '/projects/dummy/src/index.html')).toContain(
+        '<html class="sbb-lean" lang="en">'
+      );
 
-    // run migration a second time
-    await runner
-      .runSchematicAsync(
-        'ng-add-setup-project',
-        { variant: 'lean (previously known as business)' } as Schema,
-        tree
-      )
-      .toPromise();
+      // run migration a second time
+      await runNgAddSetupProject(runner, tree, 'lean');
 
-    // Lean-tag should still be there only once
-    expect(readStringFile(tree, '/projects/dummy/src/index.html')).toContain(
-      '<html class="sbb-lean" lang="en">'
-    );
+      // Lean-tag should still be there only once
+      expect(readStringFile(tree, '/projects/dummy/src/index.html')).toContain(
+        '<html class="sbb-lean" lang="en">'
+      );
+    });
+
+    it('should add sbb-lean class to index.html with other existing classes', async () => {
+      tree.overwrite(
+        'projects/dummy/src/index.html',
+        `<html class='app-class' lang="en"><head></head><body></body></html>`
+      );
+
+      await runNgAddSetupProject(runner, tree, 'lean');
+
+      expect(readStringFile(tree, '/projects/dummy/src/index.html')).toContain(
+        `<html class='sbb-lean app-class' lang="en">`
+      );
+    });
+
+    it('should not add sbb-lean class if standard variant was chosen', async () => {
+      await runNgAddSetupProject(runner, tree, 'standard');
+
+      expect(readStringFile(tree, '/projects/dummy/src/index.html')).toContain('<html lang="en">');
+    });
+
+    it('should remove sbb-lean class if standard variant was chosen but lean was set before', async () => {
+      tree.overwrite(
+        'projects/dummy/src/index.html',
+        `<html class="sbb-lean app-class" lang="en"><head></head><body></body></html>`
+      );
+
+      await runNgAddSetupProject(runner, tree, 'standard');
+
+      expect(readStringFile(tree, '/projects/dummy/src/index.html')).toContain(
+        '<html class="app-class" lang="en">'
+      );
+    });
+
+    it('should completely remove class attribute if no css classes are present anymore', async () => {
+      tree.overwrite(
+        'projects/dummy/src/index.html',
+        `<html class="sbb-lean" lang="en"><head></head><body></body></html>`
+      );
+
+      await runNgAddSetupProject(runner, tree, 'standard');
+
+      expect(readStringFile(tree, '/projects/dummy/src/index.html')).toContain('<html lang="en">');
+    });
   });
 
-  it('should add sbb-lean class to index.html with other existing classes', async () => {
-    tree.overwrite(
-      'projects/dummy/src/index.html',
-      `<html class='app-class' lang="en"><head></head><body></body></html>`
-    );
+  describe('test.ts manipulation', () => {
+    it('should set lean', async () => {
+      await runNgAddSetupProject(runner, tree, 'lean');
 
-    await runner
-      .runSchematicAsync(
-        'ng-add-setup-project',
-        { variant: 'lean (previously known as business)' } as Schema,
-        tree
-      )
-      .toPromise();
+      expect(readStringFile(tree, '/projects/dummy/src/test.ts')).toContain(TEST_TS_LEAN_CONFIG);
 
-    expect(readStringFile(tree, '/projects/dummy/src/index.html')).toContain(
-      `<html class='sbb-lean app-class' lang="en">`
-    );
-  });
+      // run migration a second time
+      await runNgAddSetupProject(runner, tree, 'lean');
 
-  it('should not add sbb-lean class if standard variant was chosen', async () => {
-    await runner
-      .runSchematicAsync(
-        'ng-add-setup-project',
-        { variant: 'standard (previously known as public)' } as Schema,
-        tree
-      )
-      .toPromise();
+      // Lean should still be set, but only once (two times because of comment and code)
+      const sbbLeanOccurrences = readStringFile(tree, '/projects/dummy/src/test.ts').match(
+        /sbb-lean/g
+      );
+      expect((sbbLeanOccurrences || []).length).toBe(2);
+    });
 
-    expect(readStringFile(tree, '/projects/dummy/src/index.html')).toContain('<html lang="en">');
-  });
+    it('should not set sbb-lean if standard variant was chosen', async () => {
+      await runNgAddSetupProject(runner, tree, 'standard');
 
-  it('should remove sbb-lean class if standard variant was chosen but lean was set before', async () => {
-    tree.overwrite(
-      'projects/dummy/src/index.html',
-      `<html class="sbb-lean app-class" lang="en"><head></head><body></body></html>`
-    );
+      expect(readStringFile(tree, '/projects/dummy/src/test.ts')).not.toContain('sbb-lean');
+    });
 
-    await runner
-      .runSchematicAsync(
-        'ng-add-setup-project',
-        { variant: 'standard (previously known as public)' } as Schema,
-        tree
-      )
-      .toPromise();
+    it('should remove sbb-lean if standard variant was chosen but lean was set before', async () => {
+      tree.overwrite('projects/dummy/src/test.ts', `\n${TEST_TS_LEAN_CONFIG}\n`);
 
-    expect(readStringFile(tree, '/projects/dummy/src/index.html')).toContain(
-      '<html class="app-class" lang="en">'
-    );
-  });
+      await runNgAddSetupProject(runner, tree, 'standard');
 
-  it('should completely remove class attribute if no css classes are present anymore', async () => {
-    tree.overwrite(
-      'projects/dummy/src/index.html',
-      `<html class="sbb-lean" lang="en"><head></head><body></body></html>`
-    );
-
-    await runner
-      .runSchematicAsync(
-        'ng-add-setup-project',
-        { variant: 'standard (previously known as public)' } as Schema,
-        tree
-      )
-      .toPromise();
-
-    expect(readStringFile(tree, '/projects/dummy/src/index.html')).toContain('<html lang="en">');
+      expect(readStringFile(tree, '/projects/dummy/src/test.ts')).not.toContain('sbb-lean');
+      expect(readStringFile(tree, '/projects/dummy/src/test.ts')).toBe('\n');
+    });
   });
 
   it('should execute migration from public, business and core', async () => {
