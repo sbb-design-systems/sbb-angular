@@ -1598,6 +1598,18 @@ describe('SbbDialog', () => {
           .withContext('Expected the aria-labelledby to match the title id.')
           .toBe(title.id);
       }));
+
+      it('should add correct css class according to given [align] input in [sbb-dialog-actions]', () => {
+        const actions = overlayContainerElement.querySelector('sbb-dialog-actions')!;
+
+        expect(actions)
+          .withContext('Expected action buttons to not have class sbb-dialog-actions-align-center')
+          .not.toHaveClass('sbb-dialog-actions-align-center');
+
+        expect(actions)
+          .withContext('Expected action buttons to have class sbb-dialog-actions-align-end')
+          .toHaveClass('sbb-dialog-actions-align-end');
+      });
     }
   });
 

@@ -103,12 +103,12 @@ will be available implicitly in the template:
 
 Several directives are available to make it easier to structure your dialog content:
 
-| Name                   | Description                                                                                                                                                    |
-| ---------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `sbb-dialog-title`     | \[Attr] Dialog title, applied to a heading element (e.g., `<h1>`, `<h2>`)                                                                                      |
-| `<sbb-dialog-content>` | Primary scrollable content of the dialog.                                                                                                                      |
-| `<sbb-dialog-actions>` | Container for action buttons at the bottom of the dialog. Button alignment can be controlled via the `align` attribute which can be set to `end` and `center`. |
-| `sbb-dialog-close`     | \[Attr] Added to a `<button>`, makes the button close the dialog with an optional result from the bound value.                                                 |
+| Name                   | Description                                                                                                                                                            |
+| ---------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `sbb-dialog-title`     | \[Attr] Dialog title, applied to a heading element (e.g., `<h1>`, `<h2>`)                                                                                              |
+| `<sbb-dialog-content>` | Primary scrollable content of the dialog.                                                                                                                              |
+| `<sbb-dialog-actions>` | Container for action buttons at the bottom of the dialog. Button alignment can be controlled via the `align` attribute which can be set to `start`, `center` or `end`. |
+| `sbb-dialog-close`     | \[Attr] Added to a `<button>`, makes the button close the dialog with an optional result from the bound value.                                                         |
 
 For example:
 

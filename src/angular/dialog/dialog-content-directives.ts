@@ -177,9 +177,19 @@ export class SbbDialogContent {}
  */
 @Directive({
   selector: `[sbb-dialog-actions], sbb-dialog-actions, [sbbDialogActions]`,
-  host: { class: 'sbb-dialog-actions' },
+  host: {
+    class: 'sbb-dialog-actions',
+    '[class.sbb-dialog-actions-align-start]': 'align === "start"',
+    '[class.sbb-dialog-actions-align-center]': 'align === "center"',
+    '[class.sbb-dialog-actions-align-end]': 'align === "end"',
+  },
 })
-export class SbbDialogActions {}
+export class SbbDialogActions {
+  /**
+   * Horizontal alignment of action buttons.
+   */
+  @Input() align?: 'start' | 'center' | 'end' = 'end';
+}
 
 /**
  * Finds the closest SbbDialogRef to an element by looking at the DOM.
