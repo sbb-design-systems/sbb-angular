@@ -1,4 +1,3 @@
-import { PlatformModule } from '@angular/cdk/platform';
 import { CdkScrollableModule } from '@angular/cdk/scrolling';
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
@@ -15,7 +14,7 @@ import { SbbSidebar, SbbSidebarContainer, SbbSidebarContent } from './sidebar/si
 import { SbbSidebarLink } from './sidebar/sidebar-link';
 
 @NgModule({
-  imports: [CommonModule, PlatformModule, CdkScrollableModule, SbbCommonModule, SbbIconModule],
+  imports: [CommonModule, CdkScrollableModule, SbbCommonModule, SbbIconModule],
   declarations: [
     SbbSidebar,
     SbbSidebarContainer,
