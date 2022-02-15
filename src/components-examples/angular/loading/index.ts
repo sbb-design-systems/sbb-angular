@@ -4,23 +4,12 @@ import { SbbButtonModule } from '@sbb-esta/angular/button';
 import { SbbLoadingModule } from '@sbb-esta/angular/loading';
 
 import { LoadingFullboxExample } from './loading-fullbox/loading-fullbox-example';
-import { LoadingFullscreenExample } from './loading-fullscreen/loading-fullscreen-example';
 import { LoadingInlineExample } from './loading-inline/loading-inline-example';
 import { LoadingSimpleExample } from './loading-simple/loading-simple-example';
 
-export {
-  LoadingFullboxExample,
-  LoadingFullscreenExample,
-  LoadingInlineExample,
-  LoadingSimpleExample,
-};
+export { LoadingFullboxExample, LoadingInlineExample, LoadingSimpleExample };
 
-const EXAMPLES = [
-  LoadingFullboxExample,
-  LoadingFullscreenExample,
-  LoadingInlineExample,
-  LoadingSimpleExample,
-];
+const EXAMPLES = [LoadingFullboxExample, LoadingInlineExample, LoadingSimpleExample];
 
 @NgModule({
   imports: [CommonModule, SbbButtonModule, SbbLoadingModule],
