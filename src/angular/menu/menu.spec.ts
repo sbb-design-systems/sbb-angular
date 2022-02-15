@@ -1272,7 +1272,7 @@ describe('SbbMenu', () => {
       expect(panel.classList).not.toContain('sbb-menu-panel-before');
     }));
 
-    it('should append sbb-menu-above if the y position is changed', fakeAsync(() => {
+    it('should append sbb-menu-panel-above if the y position is changed', fakeAsync(() => {
       fixture.componentInstance.trigger.openMenu();
       fixture.detectChanges();
       tick(500);
@@ -1322,6 +1322,29 @@ describe('SbbMenu', () => {
       expect(panelBelow.classList).toContain('sbb-menu-panel-below');
       expect(panelBelow.classList).toContain('sbb-menu-panel-after');
     });
+
+    it('should update the position classes if the window is resized', fakeAsync(() => {
+      trigger.style.position = 'fixed';
+      trigger.style.top = '300px';
+      fixture.componentInstance.yPosition = 'above';
+      fixture.componentInstance.trigger.openMenu();
+      fixture.detectChanges();
+      tick(500);
+
+      const panel = overlayContainerElement.querySelector('.sbb-menu-panel-wrapper') as HTMLElement;
+
+      expect(panel.classList).toContain('sbb-menu-panel-above');
+      expect(panel.classList).not.toContain('sbb-menu-panel-below');
+
+      trigger.style.top = '0';
+      dispatchFakeEvent(window, 'resize');
+      fixture.detectChanges();
+      tick(500);
+      fixture.detectChanges();
+
+      expect(panel.classList).not.toContain('sbb-menu-panel-above');
+      expect(panel.classList).toContain('sbb-menu-panel-below');
+    }));
 
     it('should be able to update the position after the first open', fakeAsync(() => {
       trigger.style.position = 'fixed';
