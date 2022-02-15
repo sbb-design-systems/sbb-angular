@@ -183,14 +183,31 @@ export class SbbMonthView<D> implements AfterContentInit {
   /** Handles when a new date is selected. */
   dateSelected(date: number) {
     if (this.selectedDate !== date) {
-      const selectedYear = this._dateAdapter.getYear(this.activeDate);
-      const selectedMonth = this._dateAdapter.getMonth(this.activeDate);
-      const selectedDate = this._dateAdapter.createDate(selectedYear, selectedMonth, date);
+      const selectedDate = this._getDateFromDayOfMonth(date);
 
       this.selectedChange.emit(selectedDate);
     }
 
     this.userSelection.emit();
+  }
+
+  /**
+   * Takes the index of a calendar body cell wrapped in an event as argument. For the date that
+   * corresponds to the given cell, set `activeDate` to that date and fire `activeDateChange` with
+   * that date.
+   *
+   * This function is used to match each component's model of the active date with the calendar
+   * body cell that was focused. It updates its value of `activeDate` synchronously and updates the
+   * parent's value asynchronously via the `activeDateChange` event. The child component receives an
+   * updated value asynchronously via the `activeCell` Input.
+   */
+  _updateActiveDate(month: number) {
+    const oldActiveDate = this._activeDate;
+    this.activeDate = this._getDateFromDayOfMonth(month);
+
+    if (this._dateAdapter.compareDate(oldActiveDate, this.activeDate)) {
+      this.activeDateChange.emit(this._activeDate);
+    }
   }
 
   /** Handles keydown events on the calendar body when calendar is in month view. */
@@ -248,9 +265,9 @@ export class SbbMonthView<D> implements AfterContentInit {
 
     if (this._dateAdapter.compareDate(oldActiveDate, this.activeDate)) {
       this.activeDateChange.emit(this.activeDate);
+      this._focusActiveCellAfterViewChecked();
     }
 
-    this.focusActiveCell();
     // Prevent unexpected default actions such as form submission.
     event.preventDefault();
   }
@@ -281,6 +298,23 @@ export class SbbMonthView<D> implements AfterContentInit {
   /** Focuses the active cell after the microtask queue is empty. */
   focusActiveCell() {
     this.sbbCalendarBody.focusActiveCell();
+  }
+
+  /** Focuses the active cell after change detection has run and the microtask queue is empty. */
+  _focusActiveCellAfterViewChecked() {
+    this.sbbCalendarBody._scheduleFocusActiveCellAfterViewChecked();
+  }
+
+  /**
+   * Takes a day of the month and returns a new date in the same month and year as the currently
+   *  active date. The returned date will have the same day of the month as the argument date.
+   */
+  private _getDateFromDayOfMonth(dayOfMonth: number): D {
+    return this._dateAdapter.createDate(
+      this._dateAdapter.getYear(this.activeDate),
+      this._dateAdapter.getMonth(this.activeDate),
+      dayOfMonth
+    );
   }
 
   /** Creates MatCalendarCells for the dates in this month. */

@@ -21,6 +21,8 @@
     role="gridcell"
     class="sbb-calendar-body-cell-container"
     [style.width.%]="100 / numCols"
+    [attr.data-sbb-row]="rowIndex"
+    [attr.data-sbb-col]="colIndex"
   >
     <button
       type="button"
@@ -39,6 +41,7 @@
       [attr.aria-pressed]="selectedValue === item.value"
       [attr.aria-current]="todayValue === item.value ? 'date' : null"
       (click)="cellClicked(item)"
+      (focus)="_emitActiveDateChange(item, $event)"
     >
       <div class="sbb-calendar-body-cell-content">{{ item.displayValue }}</div>
     </button>
