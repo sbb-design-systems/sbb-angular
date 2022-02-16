@@ -166,7 +166,7 @@ When using `SbbTabNavGroup`, always specify a label for the `<nav>` element.
 
 #### Keyboard interaction
 
-`SbbTabGroup` implements the following keyboard interactions.
+`SbbTabGroup` and `SbbTabNavBar` both implement the following keyboard interactions:
 
 | Shortcut           | Action                     |
 | ------------------ | -------------------------- |
@@ -175,6 +175,3 @@ When using `SbbTabNavGroup`, always specify a label for the `<nav>` element.
 | `HOME`             | Move focus to first tab    |
 | `END`              | Move focus to last tab     |
 | `SPACE` or `ENTER` | Switch to focused tab      |
-
-`SbbTabNavBar` does not add additional keyboard handling, deferring to the native behavior of
-anchor elements.
