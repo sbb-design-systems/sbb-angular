@@ -23,6 +23,8 @@ export interface LiveExample {
   module: NgModuleInfo;
   /** Valid only for a specific variant. */
   variant: string;
+  /** Whether the example is only for dev purposes */
+  devOnly: boolean;
 }
 
 export interface NgModuleInfo {
