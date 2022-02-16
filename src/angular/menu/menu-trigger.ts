@@ -24,10 +24,10 @@ import {
   Directive,
   ElementRef,
   EventEmitter,
-  HostListener,
   Inject,
   InjectionToken,
   Input,
+  NgZone,
   OnDestroy,
   OnInit,
   Optional,
@@ -40,18 +40,10 @@ import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
 import {
   Breakpoints,
   mixinVariant,
-  SbbVariant,
   SCALING_FACTOR_4K,
   SCALING_FACTOR_5K,
 } from '@sbb-esta/angular/core';
-import {
-  asapScheduler,
-  BehaviorSubject,
-  merge,
-  Observable,
-  of as observableOf,
-  Subscription,
-} from 'rxjs';
+import { asapScheduler, merge, Observable, of as observableOf, Subscription } from 'rxjs';
 import { delay, filter, take, takeUntil } from 'rxjs/operators';
 
 import { SbbMenu, SbbMenuAnimationState, SbbMenuCloseReason } from './menu';
@@ -122,6 +114,9 @@ const _SbbMenuTriggerMixinBase = mixinVariant(class {});
     '[attr.aria-controls]': 'menuOpen ? menu.panelId : null',
     '[class.sbb-menu-trigger-root]': '!_parentSbbMenu',
     '[class.sbb-menu-trigger-menu-open]': 'menuOpen',
+    '(click)': '_handleClick($event)',
+    '(mousedown)': '_handleMousedown($event)',
+    '(keydown)': '_handleKeydown($event)',
   },
   exportAs: 'sbbMenuTrigger',
 })
@@ -241,7 +236,12 @@ export class SbbMenuTrigger
     private _focusMonitor: FocusMonitor,
     private _sanitizer: DomSanitizer,
     private _breakpointObserver: BreakpointObserver,
-    private _changeDetectorRef: ChangeDetectorRef
+    private _changeDetectorRef: ChangeDetectorRef,
+    /**
+     * @deprecated `ngZone` will become a required parameter.
+     * @breaking-change 15.0.0
+     */
+    private _ngZone?: NgZone
   ) {
     super();
 
@@ -326,8 +326,9 @@ export class SbbMenuTrigger
 
     const overlayRef = this._createOverlay();
     const overlayConfig = overlayRef.getConfig();
+    const positionStrategy = overlayConfig.positionStrategy as FlexibleConnectedPositionStrategy;
 
-    this._setPosition(overlayConfig.positionStrategy as FlexibleConnectedPositionStrategy);
+    this._setPosition(positionStrategy);
     overlayConfig.hasBackdrop =
       this.menu.hasBackdrop == null ? !this.triggersSubmenu() : this.menu.hasBackdrop;
     overlayRef.attach(this._getPortal());
@@ -341,6 +342,12 @@ export class SbbMenuTrigger
 
     if (this.menu instanceof SbbMenu) {
       this.menu._startAnimation();
+      this.menu._directDescendantItems.changes.pipe(takeUntil(this.menu.closed)).subscribe(() => {
+        // Re-adjust the position without locking when the amount of items
+        // changes so that the overlay is allowed to pick a new optimal position.
+        positionStrategy.withLockedPosition(false).reapplyLastPosition();
+        positionStrategy.withLockedPosition(true);
+      });
     }
   }
 
@@ -464,8 +471,9 @@ export class SbbMenuTrigger
   private _setIsMenuOpen(isOpen: boolean): void {
     this._menuOpen = isOpen;
     this._menuOpen ? this.menuOpened.emit() : this.menuClosed.emit();
+
     if (this.triggersSubmenu()) {
-      this._menuItemInstance._highlighted = isOpen;
+      this._menuItemInstance._setHighlighted(isOpen);
     }
     this._changeDetectorRef.markForCheck();
   }
@@ -537,7 +545,14 @@ export class SbbMenuTrigger
         this._element.nativeElement.classList.add(`sbb-menu-trigger-${posX}`);
         this._element.nativeElement.classList.add(`sbb-menu-trigger-${posY}`);
 
-        this.menu.setPositionClasses!(posX, posY);
+        // @breaking-change 15.0.0 Remove null check for `ngZone`.
+        // `positionChanges` fires outside of the `ngZone` and `setPositionClasses` might be
+        // updating something in the view, so we need to bring it back in.
+        if (this._ngZone) {
+          this._ngZone.run(() => this.menu.setPositionClasses!(posX, posY));
+        } else {
+          this.menu.setPositionClasses!(posX, posY);
+        }
       });
     }
   }
@@ -582,7 +597,7 @@ export class SbbMenuTrigger
     offsetY = offsetY * (overlayY === 'bottom' ? -1 : 1);
 
     // Apply scaling factor if variant is standard
-    if ((this.variant as BehaviorSubject<SbbVariant>).value === 'standard') {
+    if (this.variantSnapshot === 'standard') {
       offsetX = offsetX * this._scalingFactor;
       offsetY = offsetY * this._scalingFactor;
     }
@@ -639,7 +654,6 @@ export class SbbMenuTrigger
   }
 
   /** Handles mouse presses on the trigger. */
-  @HostListener('mousedown', ['$event'])
   _handleMousedown(event: MouseEvent): void {
     if (!isFakeMousedownFromScreenReader(event)) {
       // Since right or middle button clicks won't trigger the `click` event,
@@ -656,7 +670,6 @@ export class SbbMenuTrigger
   }
 
   /** Handles key presses on the trigger. */
-  @HostListener('keydown', ['$event'])
   _handleKeydown(event: KeyboardEvent): void {
     const keyCode = event.keyCode;
 
@@ -672,7 +685,6 @@ export class SbbMenuTrigger
   }
 
   /** Handles click events on the trigger. */
-  @HostListener('click', ['$event'])
   _handleClick(event: MouseEvent): void {
     if (this.triggersSubmenu()) {
       // Stop event propagation to avoid closing the parent menu.

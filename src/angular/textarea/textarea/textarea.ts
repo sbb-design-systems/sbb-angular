@@ -117,7 +117,7 @@ export class SbbTextarea
   get disabled(): boolean {
     return this._disabled;
   }
-  set disabled(value: boolean) {
+  set disabled(value: BooleanInput) {
     this._disabled = coerceBooleanProperty(value);
     this._changeDetectorRef.markForCheck();
     this.stateChanges.next();
@@ -129,7 +129,7 @@ export class SbbTextarea
   get readonly(): boolean {
     return this._readonly;
   }
-  set readonly(value: boolean) {
+  set readonly(value: BooleanInput) {
     this._readonly = coerceBooleanProperty(value);
     this.stateChanges.next();
   }
@@ -140,7 +140,7 @@ export class SbbTextarea
   get maxlength(): number {
     return this._maxlength;
   }
-  set maxlength(value: number) {
+  set maxlength(value: NumberInput) {
     this._maxlength = coerceNumberProperty(value);
     this._updateDigitsCounter(this.value);
     this.stateChanges.next();
@@ -152,7 +152,7 @@ export class SbbTextarea
   get minlength(): number {
     return this._minlength;
   }
-  set minlength(value: number) {
+  set minlength(value: NumberInput) {
     this._minlength = coerceNumberProperty(value);
     this.stateChanges.next();
   }
@@ -163,7 +163,7 @@ export class SbbTextarea
   get required(): boolean {
     return this._required;
   }
-  set required(value: boolean) {
+  set required(value: BooleanInput) {
     this._required = coerceBooleanProperty(value);
     this.stateChanges.next();
   }
@@ -174,7 +174,7 @@ export class SbbTextarea
   get autosizeDisabled(): boolean {
     return this._autosizeDisabled;
   }
-  set autosizeDisabled(value: boolean) {
+  set autosizeDisabled(value: BooleanInput) {
     this._autosizeDisabled = coerceBooleanProperty(value);
   }
   private _autosizeDisabled = false;
@@ -330,9 +330,4 @@ export class SbbTextarea
       this._counter.next(this.maxlength - newValue.length);
     }
   }
-
-  static ngAcceptInputType_maxlength: NumberInput;
-  static ngAcceptInputType_minlength: NumberInput;
-  static ngAcceptInputType_disabled: BooleanInput;
-  static ngAcceptInputType_readonly: BooleanInput;
 }

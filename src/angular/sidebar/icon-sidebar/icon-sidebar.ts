@@ -3,7 +3,7 @@
 
 import { BooleanInput, coerceBooleanProperty } from '@angular/cdk/coercion';
 import { BreakpointObserver } from '@angular/cdk/layout';
-import { ScrollDispatcher } from '@angular/cdk/scrolling';
+import { CdkScrollable, ScrollDispatcher } from '@angular/cdk/scrolling';
 import {
   AfterContentInit,
   ChangeDetectionStrategy,
@@ -39,6 +39,12 @@ import {
   },
   changeDetection: ChangeDetectionStrategy.OnPush,
   encapsulation: ViewEncapsulation.None,
+  providers: [
+    {
+      provide: CdkScrollable,
+      useExisting: SbbIconSidebarContent,
+    },
+  ],
 })
 export class SbbIconSidebarContent extends SbbSidebarContentBase {
   constructor(
@@ -79,11 +85,11 @@ export class SbbIconSidebar extends SbbSidebarBase {
 
   /** Whether the sidebar is expanded. */
   @Input()
-  set expanded(value: boolean) {
-    this.toggleExpanded(coerceBooleanProperty(value));
-  }
   get expanded(): boolean {
     return this._expanded;
+  }
+  set expanded(value: BooleanInput) {
+    this.toggleExpanded(coerceBooleanProperty(value));
   }
   private _expanded = false;
 
@@ -112,8 +118,6 @@ export class SbbIconSidebar extends SbbSidebarBase {
 
     this._changeDetectorRef.markForCheck();
   }
-
-  static ngAcceptInputType_expanded: BooleanInput;
 }
 
 @Component({

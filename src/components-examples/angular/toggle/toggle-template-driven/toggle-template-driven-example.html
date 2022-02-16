@@ -14,11 +14,20 @@
     <sbb-toggle-icon><sbb-icon svgIcon="kom:arrows-right-left-small"></sbb-icon></sbb-toggle-icon>
     <sbb-toggle-label>Single and return journey</sbb-toggle-label>
     <sbb-toggle-details>
-      <p>
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
-        labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco
-        laboris nisi ut aliquip ex ea commodo consequat.
-      </p>
+      <div class="sbb-form-group-vertical">
+        <sbb-form-field>
+          <sbb-label>Select date</sbb-label>
+          <sbb-datepicker>
+            <input sbbDateInput sbbInput type="text" />
+          </sbb-datepicker>
+        </sbb-form-field>
+        <sbb-form-field>
+          <sbb-label>Select return date</sbb-label>
+          <sbb-datepicker>
+            <input sbbDateInput sbbInput type="text" />
+          </sbb-datepicker>
+        </sbb-form-field>
+      </div>
     </sbb-toggle-details>
   </sbb-toggle-option>
 </sbb-toggle>

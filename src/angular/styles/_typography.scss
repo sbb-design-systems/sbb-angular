@@ -118,6 +118,7 @@
   --sbb-font-size: var(--sbb-font-size-constant);
   --sbb-line-height-constant: #{pxToRem($sizeLineHeightDefault)};
   --sbb-line-height: var(--sbb-line-height-constant);
+  --sbb-line-height-root: #{$sizeLineHeightBase};
   --sbb-font-size-small: #{pxToRem(13)};
   --sbb-line-height-small: #{pxToRem(20)};
   --sbb-line-height-medium: #{pxToRem(23)};
@@ -143,6 +144,10 @@
   // Breadcrumb
   --sbb-breadcrumb-trigger-padding-horizontal: calc(#{pxToRem(30)} * var(--sbb-scaling-factor));
   --sbb-breadcrumb-trigger-padding-vertical: calc(#{pxToRem(14)} * var(--sbb-scaling-factor));
+
+  // Button
+  --sbb-button-height: calc(#{pxToRem(48)} * var(--sbb-scaling-factor));
+  --sbb-button-icon-top-margin: calc(#{pxToRem(-12.5)} * var(--sbb-scaling-factor));
 
   // Chips
   --sbb-chips-list-height: var(--sbb-form-input-min-height);
@@ -188,11 +193,15 @@
   --sbb-datepicker-calendar-body-cell-size: calc(#{pxToRem(40)} * var(--sbb-scaling-factor));
 
   // Forms
-  --sbb-form-background-color-readonly: var(--sbb-color-mild);
+  --sbb-form-background-color-readonly: var(--sbb-color-milk);
   --sbb-form-border-color-readonly: var(--sbb-color-aluminum);
+  --sbb-form-field-width: #{pxToRem(320)};
   --sbb-form-input-color: var(--sbb-color-weak-accent);
   --sbb-form-input-color-disabled: var(--sbb-color-grey);
   --sbb-form-input-min-height: calc(#{pxToRem(48)} * var(--sbb-scaling-factor));
+  --sbb-form-label-line-height: calc(#{pxToRem(16)} * var(--sbb-scaling-factor));
+  --sbb-form-label-wrapper-margin-bottom: calc(#{pxToRem(5)} * var(--sbb-scaling-factor));
+  --sbb-form-label-wrapper-padding-left: calc(#{pxToRem(10)} * var(--sbb-scaling-factor));
 
   // Expansion Panel
   --sbb-expansion-panel-padding-horizontal: #{pxToRem(24)};
@@ -224,8 +233,8 @@
   --sbb-pagination-navigation-item-margin: calc(#{pxToRem(4)} * var(--sbb-scaling-factor));
 
   // Sidebar
-  --sbb-sidebar-mobile-menu-bar-height: #{pxToRem(48)};
-  --sbb-icon-sidebar-item-dimension: #{pxToEm(48)};
+  --sbb-sidebar-mobile-menu-bar-height: calc(2 * var(--sbb-icon-size-default));
+  --sbb-icon-sidebar-item-dimension: calc(2 * var(--sbb-icon-size-default));
 
   // Menu
   // (36 (Desired width) - 24 (icon width)) / 2
@@ -236,8 +245,12 @@
   --sbb-table-thead-background-color: var(--sbb-color-cloud);
   --sbb-table-tbody-stripe-background-color: var(--sbb-color-milk);
   --sbb-table-thead-padding: calc(#{pxToRem(16)} * var(--sbb-scaling-factor));
+  --sbb-table-thead-padding-vertical-top: calc(#{pxToRem(29)} * var(--sbb-scaling-factor));
+  --sbb-table-thead-padding-vertical-bottom: calc(#{pxToRem(30)} * var(--sbb-scaling-factor));
   --sbb-table-tbody-padding: calc(#{pxToRem(16)} * var(--sbb-scaling-factor));
-  --sbb-table-cell-padding-vertical: calc(#{pxToRem(18)} * var(--sbb-scaling-factor));
+  --sbb-table-cell-padding-horizontal: calc(#{pxToRem(12)});
+  --sbb-table-cell-padding-vertical-top: calc(#{pxToRem(18)} * var(--sbb-scaling-factor));
+  --sbb-table-cell-padding-vertical-bottom: calc(#{pxToRem(19)} * var(--sbb-scaling-factor));
   --sbb-table-sticky-shadow-width: #{pxToRem(8)};
   --sbb-table-sticky-shadow-offset: #{pxToRem(-9)};
   --sbb-table-sort-header-arrow-margin: calc(#{pxToRem(8)} * var(--sbb-scaling-factor));
@@ -336,6 +349,9 @@
       --sbb-expansion-panel-header-padding-top: #{pxToRem(34)};
       --sbb-expansion-panel-header-padding-bottom: #{pxToRem(36)};
       --sbb-expansion-panel-line-height: calc(#{pxToRem(30)} * var(--sbb-scaling-factor));
+
+      // Table
+      --sbb-table-cell-padding-horizontal: calc(#{pxToRem(16)} * var(--sbb-scaling-factor));
     }
     @include mq($from: desktop) {
       // Dividers
@@ -366,6 +382,9 @@
       // Expansion Panel
       --sbb-expansion-panel-header-padding-top: #{pxToRem(51)};
       --sbb-expansion-panel-header-padding-bottom: #{pxToRem(54)};
+
+      // Forms
+      --sbb-form-field-width: #{pxToRem(400)};
     }
     @include mq($from: desktop5k) {
       // Scaling
@@ -403,8 +422,12 @@
     // Sizings
     --sbb-border-width: #{pxToRem(1)};
     --sbb-line-height: #{pxToRem($sizeLineHeightDefaultLean)};
+    --sbb-line-height-root: #{math.div($sizeLineHeightDefaultLean, 15)}; // 15 = $sizeFontBase without unit
     --sbb-line-height-medium: #{pxToRem(20)};
     --sbb-font-size-large: #{pxToRem(21)};
+
+    // Button
+    --sbb-button-height: #{pxToRem(36)};
 
     // Datepicker
     --sbb-datepicker-toggle-or-arrows-padding: calc(#{pxToRem(38)} - var(--sbb-border-width));
@@ -426,7 +449,10 @@
     // Forms
     --sbb-form-background-color-readonly: transparent;
     --sbb-form-border-color-readonly: transparent;
+    --sbb-form-field-width: #{pxToRem(230)};
     --sbb-form-input-min-height: #{pxToRem(36)};
+    --sbb-form-label-wrapper-margin-bottom: #{pxToRem(3)};
+    --sbb-form-label-wrapper-padding-left: 0rem;
 
     // Notification
     --sbb-notification-message-padding: #{pxToRem(11)};
@@ -482,8 +508,8 @@
   color: var(--sbb-color-text);
   // !important is required, as arcgis defines its own font-family and we need to overwrite it.
   font-family: var(--sbb-font-roman) !important;
-  font-size: private-div($sizeFontBase, 16px) * 100%;
-  line-height: var(--sbb-line-height);
+  font-size: math.div($sizeFontBase, 16px) * 100%;
+  line-height: var(--sbb-line-height-root);
 
   @include fontSmoothing;
 
@@ -702,8 +728,11 @@ textarea {
 :is(a:where(:not(.sbb-link-reset)), .sbb-link) {
   color: var(--sbb-color-text);
   text-decoration: underline;
-  text-decoration-skip-ink: auto; // -> read more about here https://medium.com/@iamhiwelo/improving-text-readability-for-dyslexic-users-with-skip-ink-underlines-bf52a2f3426b
+  // Read more about here https://medium.com/@iamhiwelo/improving-text-readability-for-dyslexic-users-with-skip-ink-underlines-bf52a2f3426b
+  text-decoration-skip-ink: auto;
   line-height: var(--sbb-line-height);
+  // Fixes an issue where links are not placed correctly in fluid texts or lists.
+  vertical-align: bottom;
 
   &:is(:hover, :focus) {
     color: var(--sbb-color-call-to-action-hover);
@@ -819,14 +848,9 @@ textarea {
     padding: pxToRem(6) pxToRem(7) pxToRem(8);
   }
 
-  &::-webkit-input-placeholder {
+  &::placeholder {
     color: var(--sbb-color-storm);
-  }
-
-  &::-moz-placeholder {
-    // Firefox 19+
-    color: var(--sbb-color-storm);
-    opacity: 1;
+    opacity: 1; // Needed for Firefox
   }
 
   // Undo the red box-shadow glow added by Firefox on invalid inputs.
@@ -892,6 +916,8 @@ textarea {
   &:is([readonly], .sbb-readonly) {
     &,
     &:focus {
+      color: var(--sbb-form-input-color);
+      -webkit-text-fill-color: var(--sbb-form-input-color);
       background-color: var(--sbb-form-background-color-readonly);
       border-color: var(--sbb-form-border-color-readonly);
     }
@@ -979,6 +1005,12 @@ select {
   &:not(:disabled) {
     cursor: pointer;
   }
+
+  &:is([readonly], .sbb-readonly) {
+    background-image: none; // Hide arrow
+    pointer-events: none;
+    touch-action: none;
+  }
 }
 
 textarea {
@@ -987,6 +1019,24 @@ textarea {
 
   &:disabled {
     opacity: 1;
+  }
+}
+
+.sbb-error {
+  display: block;
+  letter-spacing: 0;
+  outline: none;
+  resize: none;
+  opacity: 1;
+  font-family: var(--sbb-font-roman);
+  color: var(--sbb-color-error);
+
+  font-size: calc(#{pxToRem(14)} * var(--sbb-scaling-factor));
+  line-height: calc(#{pxToRem(21)} * var(--sbb-scaling-factor));
+
+  :where(html.sbb-lean) & {
+    font-size: pxToRem(13);
+    line-height: pxToRem(16);
   }
 }
 
@@ -999,6 +1049,7 @@ textarea {
   margin: 0;
   min-width: 0;
   font-size: var(--sbb-font-size);
+  line-height: var(--sbb-line-height);
   border: var(--sbb-border-width-thin) solid var(--sbb-color-silver);
   padding: var(--sbb-divider-medium) calc(var(--sbb-divider-small) - var(--sbb-border-width-thin));
 
@@ -1014,8 +1065,8 @@ textarea {
     padding: 0;
     font-family: var(--sbb-font-light);
     font-weight: 400;
-    line-height: 1.2;
     font-size: pxToRem(24);
+    line-height: 1.2;
     margin: 0 0 var(--sbb-divider-small);
     float: left;
 
@@ -1090,16 +1141,17 @@ textarea {
   text-overflow: ellipsis;
   pointer-events: none;
 
-  min-width: pxToEm(18, 11);
+  min-width: calc(#{pxToRem(18)} * var(--sbb-scaling-factor));
   border-radius: 1em; // 1em ensures the borders are always fully rounded, but not oval.
-  padding: pxToEm(4, 11) pxToEm(5, 11);
-  margin-left: pxToEm(2, 11);
+  padding: calc(#{pxToRem(4)} * var(--sbb-scaling-factor))
+    calc(#{pxToRem(5)} * var(--sbb-scaling-factor));
+  margin-left: calc(#{pxToRem(2)} * var(--sbb-scaling-factor));
   background-color: var(--sbb-color-red);
   color: var(--sbb-color-white);
   font-family: var(--sbb-font-bold);
   line-height: 1;
+  height: calc(#{pxToRem(18)} * var(--sbb-scaling-factor));
   font-size: pxToRem(11);
-  height: pxToEm(18, 11);
 
   :where(html:not(.sbb-lean)) & {
     @include mq($from: desktop4k) {
@@ -1114,7 +1166,7 @@ textarea {
   }
 
   .sbb-badge-above & {
-    top: pxToEm(-2, 11);
+    top: calc(#{pxToRem(-2)} * var(--sbb-scaling-factor));
   }
 
   .sbb-badge-after & {
@@ -1154,6 +1206,8 @@ textarea {
 :is(.sbb-button, .sbb-alt-button, .sbb-secondary-button, .sbb-ghost-button, .sbb-icon-button) {
   @include ellipsis;
   width: 100%;
+  // We need to explicitely define the button height, due to rounding issues in Firefox
+  height: var(--sbb-button-height);
   background: none;
   max-width: none;
   min-width: 0;
@@ -1315,19 +1369,9 @@ textarea {
   // Subtract 1 from the padding values, since we always use the border
   // in order to avoid tearing on state changes.
   padding: calc(#{pxToRem(5)} * var(--sbb-scaling-factor)) !important;
+  height: calc(#{pxToRem(36)} * var(--sbb-scaling-factor));
   min-width: auto;
   line-height: 0 !important;
-
-  // .sbb-icon-scaled styles
-  .sbb-icon {
-    width: var(--sbb-icon-size-default);
-    height: var(--sbb-icon-size-default);
-
-    svg {
-      width: 100%;
-      height: 100%;
-    }
-  }
 }
 
 :is(
@@ -1397,6 +1441,23 @@ textarea {
   }
 }
 
+// We need to position and scale icons inside the buttons in a special way.
+:is(.sbb-button, .sbb-alt-button, .sbb-secondary-button, .sbb-ghost-button, .sbb-icon-button, .sbb-frameless-button, .sbb-link:where(.sbb-button-base))
+  .sbb-icon {
+  width: var(--sbb-icon-size-default);
+  height: var(--sbb-icon-size-default);
+  margin-top: var(--sbb-button-icon-top-margin);
+
+  &:not(.sbb-button-indicator-icon) {
+    transform: translateY(calc(var(--sbb-button-icon-top-margin) / -2));
+  }
+
+  > svg {
+    width: 100%;
+    height: 100%;
+  }
+}
+
 .sbb-button-indicator-icon {
   transition: {
     duration: var(--sbb-transition-duration-default);
@@ -1407,12 +1468,6 @@ textarea {
   pointer-events: none;
   position: absolute;
   top: 50%;
-  margin-top: calc(#{pxToRem(-12.5)} * var(--sbb-scaling-factor));
-
-  &.sbb-icon-fit {
-    width: var(--sbb-icon-size-default);
-    height: var(--sbb-icon-size-default);
-  }
 
   :is(.sbb-button-base.sbb-disabled, .sbb-button-base.sbb-disabled:hover) & {
     opacity: 0;
@@ -1509,7 +1564,7 @@ textarea {
 .sbb-selection-container {
   display: inline-block;
   background-color: var(--sbb-color-background);
-  margin-top: calc(#{pxToRem(2)} * var(--sbb-scaling-factor) + #{pxToRem(1)});
+  margin-top: calc(#{pxToRem(3)} * var(--sbb-scaling-factor));
 
   width: calc(#{pxToRem(20)} * var(--sbb-scaling-factor));
   min-width: calc(#{pxToRem(20)} * var(--sbb-scaling-factor));
@@ -1519,7 +1574,7 @@ textarea {
   margin-right: calc(#{pxToRem(8)} * var(--sbb-scaling-factor));
 
   :where(html.sbb-lean) & {
-    margin-top: pxToRem(1);
+    margin-top: 0;
   }
 
   .sbb-selection-input:focus + &,
@@ -1554,9 +1609,15 @@ textarea {
     top: calc(50% - #{pxToRem(0.5)});
     border: pxToRem(1) solid var(--sbb-color-red);
     display: block;
+    background-color: var(
+      --sbb-color-red
+    ); // Used to fill line when user has activated browser zoom
 
     :where(html.sbb-lean) & {
       border-color: var(--sbb-color-granite);
+      background-color: var(
+        --sbb-color-granite
+      ); // Used to fill line when user has activated browser zoom
     }
   }
 }
@@ -1618,12 +1679,12 @@ textarea {
 }
 
 .sbb-selection-content {
-  user-select: auto;
+  @include user-select(auto);
   color: var(--sbb-color-grey);
   transition: color var(--sbb-transition-default);
 
   :where(html.sbb-lean) & {
-    line-height: pxToRem(21);
+    line-height: pxToRem(20);
   }
 
   :is(.sbb-selection-checked, .sbb-selection-indeterminate) & {
@@ -1684,7 +1745,7 @@ textarea {
   color: var(--sbb-color-grey);
   width: 100%;
   transition: border-color 0.15s ease-in-out;
-  user-select: none;
+  @include user-select(none);
   position: relative;
 
   &.sbb-selection-checked {
@@ -1697,7 +1758,7 @@ textarea {
   // or on a wrapper (e.g. sbb-radio-group) with both manual
   // classes and Angular Form Validation classes.
   &:is(.sbb-selection-error, .ng-touched.ng-invalid),
-  :is(.sbb-selection-error, .ng-touched.ng-invalid) & {
+  .sbb-radio-group-base:is(.sbb-selection-error, .ng-touched.ng-invalid) & {
     border-color: var(--sbb-color-error);
     color: var(--sbb-color-error);
   }
@@ -1721,14 +1782,14 @@ textarea {
 }
 
 .sbb-selection-panel-item .sbb-selection-item-label {
-  padding: pxToRem(19) pxToRem(24);
+  padding: pxToRem(18) pxToRem(24);
 
   :where(html:not(.sbb-lean)) & {
     @include mq($from: desktop4k) {
-      padding: pxToRem(29) pxToRem(36) pxToRem(28);
+      padding: pxToRem(27) pxToRem(36) pxToRem(26);
     }
     @include mq($from: desktop5k) {
-      padding: pxToRem(39) pxToRem(48) pxToRem(37);
+      padding: pxToRem(37) pxToRem(48) pxToRem(35);
     }
   }
 }
@@ -1818,7 +1879,7 @@ textarea {
   background-color: transparent;
   font-family: var(--sbb-font-roman);
   font-size: var(--sbb-font-size-small);
-  line-height: calc(#{pxToRem(16)} * var(--sbb-scaling-factor));
+  line-height: var(--sbb-form-label-line-height);
   color: var(--sbb-color-grey);
   display: block;
 }
@@ -1836,7 +1897,7 @@ textarea {
   border-spacing: 0;
   width: 100%;
   font-size: var(--sbb-font-size);
-  line-height: var(--sbb-line-height);
+  line-height: var(--sbb-line-height-medium);
 
   thead {
     text-align: left;
@@ -1865,22 +1926,21 @@ textarea {
       input {
         width: 100%;
       }
-
-      .sbb-select {
-        display: block;
-      }
     }
   }
 
   // Position buttons and contextmenu over padding of cell
   // Only in lean design: Additionally reduce size of buttons to fit into cell
+  .sbb-button-base,
+  .sbb-menu-trigger-contextmenu {
+    margin: -100% 0;
+  }
+
   .sbb-button-base {
-    :where(html:not(.sbb-lean)) & {
-      margin: -100% 0;
-    }
     :where(html.sbb-lean) & {
       padding-top: 0 !important;
       padding-bottom: 0 !important;
+      height: var(--sbb-icon-size-default);
 
       &:not(.sbb-ghost-button) {
         border: none;
@@ -1894,10 +1954,8 @@ textarea {
     }
   }
 
-  .sbb-icon-button,
   .sbb-menu-trigger-contextmenu {
-    margin: -100% 0;
-    transform: translateY(calc(#{pxToRem(6)} * var(--sbb-scaling-factor)));
+    transform: translateY(calc(#{pxToRem(7)} * var(--sbb-scaling-factor)));
   }
 
   :where(html:not(.sbb-lean)) & {
@@ -1905,14 +1963,10 @@ textarea {
 
     :is(thead, tfoot) > tr :is(th, td) {
       background-color: var(--sbb-table-thead-background-color);
-      padding: pxToRem(29) pxToRem(12) pxToRem(30) pxToRem(12);
+      padding: var(--sbb-table-thead-padding-vertical-top) var(--sbb-table-cell-padding-horizontal)
+        var(--sbb-table-thead-padding-vertical-bottom) var(--sbb-table-cell-padding-horizontal);
 
       @include mq($from: tabletPortrait) {
-        padding: calc(#{pxToRem(29)} * var(--sbb-scaling-factor))
-          calc(#{pxToRem(16)} * var(--sbb-scaling-factor))
-          calc(#{pxToRem(30)} * var(--sbb-scaling-factor))
-          calc(#{pxToRem(16)} * var(--sbb-scaling-factor));
-
         &:first-child {
           border-left: var(--sbb-table-thead-padding) solid var(--sbb-table-thead-background-color);
         }
@@ -1929,14 +1983,10 @@ textarea {
       }
 
       :is(th, td) {
-        padding: var(--sbb-table-cell-padding-vertical) pxToRem(12)
-          calc(var(--sbb-table-cell-padding-vertical) + #{pxToRem(1)} * var(--sbb-scaling-factor))
-          pxToRem(12);
+        padding: var(--sbb-table-cell-padding-vertical-top) var(--sbb-table-cell-padding-horizontal)
+          var(--sbb-table-cell-padding-vertical-bottom) var(--sbb-table-cell-padding-horizontal);
 
         @include mq($from: tabletPortrait) {
-          padding-left: calc(#{pxToRem(16)} * var(--sbb-scaling-factor));
-          padding-right: calc(#{pxToRem(16)} * var(--sbb-scaling-factor));
-
           &:first-child {
             border-left: var(--sbb-table-thead-padding) solid var(--sbb-table-background-color);
           }
@@ -1950,6 +2000,8 @@ textarea {
   }
 
   :where(html.sbb-lean) & {
+    line-height: var(--sbb-line-height);
+
     th {
       color: var(--sbb-color-granite);
     }
@@ -2046,8 +2098,11 @@ textarea {
 
 :is(.sbb-table-sticky-border-elem-left, .sbb-table-sticky-border-elem-right)::after {
   content: '';
-  transition: visibility,
-    opacity var(--sbb-transition-duration-fast) var(--sbb-transition-timing-fast-start);
+  transition: {
+    timing-function: var(--sbb-transition-timing-fast-start);
+    duration: var(--sbb-transition-duration-fast);
+    property: visibility, opacity;
+  }
   visibility: hidden;
   opacity: 0;
   position: absolute;
@@ -2111,6 +2166,10 @@ input.sbb-input-element.sbb-time-input {
   :where(html.sbb-lean) & {
     width: pxToRem(70);
     height: pxToRem(36);
+  }
+
+  &:is([readonly], .sbb-readonly) {
+    text-align: left;
   }
 }
 
@@ -2301,7 +2360,7 @@ $menuItemPaddingTopBottom: 4;
   &:is(:disabled, [disabled], .sbb-disabled) {
     cursor: default;
     opacity: 0.5;
-    user-select: none;
+    @include user-select(none);
   }
 
   &:is(:not(:disabled):not([disabled]):not(.sbb-disabled):is(:hover, :focus, :hover strong, :focus
@@ -2411,4 +2470,21 @@ $menuItemPaddingTopBottom: 4;
       margin-#{$position}: var(--sbb-divider-#{$size});
     }
   }
+}
+
+// ----------------------------------------------------------------------------------------------------
+// Sbb Tooltip
+// ----------------------------------------------------------------------------------------------------
+
+.sbb-tooltip-trigger,
+.sbb-tooltip-icon {
+  line-height: 0;
+  cursor: pointer;
+}
+
+:is(.sbb-tooltip-icon, .sbb-tooltip-trigger):is(:active, :hover, :focus),
+.sbb-tooltip-trigger-active {
+  outline: none;
+  color: var(--sbb-color-call-to-action-hover);
+  border-color: var(--sbb-color-call-to-action-hover);
 }

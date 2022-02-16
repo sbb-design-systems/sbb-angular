@@ -1,10 +1,10 @@
 import { Component, NgModule } from '@angular/core';
-import { SbbTooltipModule } from '@sbb-esta/angular-business';
+import { SbbTooltipModule, SbbTooltipChangeEvent } from '@sbb-esta/angular-business';
 
 @Component({
   selector: 'sbb-tooltip-test',
   template: `
-    <sbb-tooltip>
+    <sbb-tooltip (closed)="closed($event)" (opened)="opened($event)">
       <sbb-icon svgIcon="kom:download-small" *sbbIcon></sbb-icon>
       Test
     </sbb-tooltip>
@@ -19,7 +19,10 @@ import { SbbTooltipModule } from '@sbb-esta/angular-business';
     <ng-template #icon><sbb-icon [svgIcon]="icon"></sbb-icon></ng-template>
   `,
 })
-export class TooltipTestComponent {}
+export class TooltipTestComponent {
+  closed($event: SbbTooltipChangeEvent) {}
+  opened($event: SbbTooltipChangeEvent) {}
+}
 
 @NgModule({
   declarations: [TooltipTestComponent],

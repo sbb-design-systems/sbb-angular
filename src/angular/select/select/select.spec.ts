@@ -13,7 +13,6 @@ import {
   UP_ARROW,
 } from '@angular/cdk/keycodes';
 import { OverlayContainer } from '@angular/cdk/overlay';
-import { Platform } from '@angular/cdk/platform';
 import { ScrollDispatcher } from '@angular/cdk/scrolling';
 import {
   ChangeDetectionStrategy,
@@ -334,6 +333,7 @@ class BasicSelectOnPush {
   `,
 })
 class BasicSelectOnPushPreselected {
+  @ViewChild(SbbSelect) select: SbbSelect;
   foods: any[] = [
     { value: 'steak-0', viewValue: 'Steak' },
     { value: 'pizza-1', viewValue: 'Pizza' },
@@ -767,7 +767,7 @@ class SelectWithFormFieldLabel {
 
 @Component({
   template: `
-    <sbb-form-field appearance="fill">
+    <sbb-form-field>
       <sbb-label>Select something</sbb-label>
       <sbb-select *ngIf="showSelect">
         <sbb-option value="1">One</sbb-option>
@@ -836,6 +836,17 @@ class SelectWithResetOptionAndFormControl {
 })
 class SelectInNgContainer {}
 
+@Component({
+  template: `
+    <sbb-form-field>
+      <sbb-select placeholder="Product Area" readonly>
+        <sbb-option value="a">A</sbb-option>
+      </sbb-select>
+    </sbb-form-field>
+  `,
+})
+class SelectReadonly {}
+
 /** Default debounce interval when typing letters to select an option. */
 const DEFAULT_TYPEAHEAD_DEBOUNCE_INTERVAL = 200;
 
@@ -873,7 +884,7 @@ describe('SbbSelect', () => {
       ],
     }).compileComponents();
 
-    inject([OverlayContainer, Platform], (oc: OverlayContainer) => {
+    inject([OverlayContainer], (oc: OverlayContainer) => {
       overlayContainer = oc;
       overlayContainerElement = oc.getContainerElement();
     })();
@@ -2318,7 +2329,7 @@ describe('SbbSelect', () => {
           fixture.detectChanges();
           flush();
 
-          expect(selectInstance.focused).toBe(true, 'Expected select to be focused.');
+          expect(selectInstance.focused).withContext('Expected select to be focused.').toBe(true);
 
           selectInstance.open();
           fixture.detectChanges();
@@ -3039,7 +3050,9 @@ describe('SbbSelect', () => {
         // Note that we press down 5 times, but it will skip
         // 3 options because the second group is disabled.
         // <option index * height> + <group count * group height> - <panel height> = 9 * 31 + 3 * 42 - 256 = 149
-        expect(panel.scrollTop).toBeCloseTo(150, -1, 'Expected scroll to be at the 9th option.');
+        expect(panel.scrollTop)
+          .withContext('Expected scroll to be at the 9th option.')
+          .toBeCloseTo(150, -1);
       }));
 
       it('should scroll to the top when pressing HOME', fakeAsync(() => {
@@ -3758,9 +3771,18 @@ describe('SbbSelect', () => {
 
       expect(select.textContent).not.toContain('Pizza');
     }));
+
+    it('should sync up the form control value with the component value', fakeAsync(() => {
+      const fixture = TestBed.createComponent(BasicSelectOnPushPreselected);
+      fixture.detectChanges();
+      flush();
+
+      expect(fixture.componentInstance.control.value).toBe('pizza-1');
+      expect(fixture.componentInstance.select.value).toBe('pizza-1');
+    }));
   });
 
-  describe('when reseting the value by setting null or undefined', () => {
+  describe('when resetting the value by setting null or undefined', () => {
     beforeEach(waitForAsync(() => configureSbbSelectTestingModule([ResetValuesSelect])));
 
     let fixture: ComponentFixture<ResetValuesSelect>;
@@ -4044,7 +4066,7 @@ describe('SbbSelect', () => {
       fixture.detectChanges();
       flush();
 
-      expect(document.activeElement).toBe(select, 'Expected trigger to be focused.');
+      expect(document.activeElement).withContext('Expected trigger to be focused.').toBe(select);
     }));
 
     it('should not restore focus to the host element when clicking outside', fakeAsync(() => {
@@ -4056,7 +4078,7 @@ describe('SbbSelect', () => {
       fixture.detectChanges();
       flush();
 
-      expect(document.activeElement).toBe(select, 'Expected trigger to be focused.');
+      expect(document.activeElement).withContext('Expected trigger to be focused.').toBe(select);
 
       select.blur(); // Blur manually since the programmatic click might not do it.
       (overlayContainerElement.querySelector('.cdk-overlay-backdrop') as HTMLElement).click();
@@ -4713,5 +4735,59 @@ describe('SbbSelect', () => {
       expect(selectComponent.panelOpen).toBeTrue();
       expect(selectComponent.focus).toHaveBeenCalled();
     });
+  });
+
+  describe('readonly', () => {
+    beforeEach(waitForAsync(() => configureSbbSelectTestingModule([SelectReadonly])));
+
+    let fixture: ComponentFixture<SelectReadonly>;
+    let select: HTMLElement;
+    let selectComponent: SbbSelect;
+
+    beforeEach(() => {
+      fixture = TestBed.createComponent(SelectReadonly);
+      fixture.detectChanges();
+      select = fixture.debugElement.query(By.css('sbb-select'))!.nativeElement;
+      selectComponent = fixture.debugElement.query(By.directive(SbbSelect)).componentInstance;
+    });
+
+    it(`should have sbb-readonly class`, fakeAsync(() => {
+      expect(select.classList).toContain('sbb-readonly');
+    }));
+
+    it(`should display '-' as placeholder`, fakeAsync(() => {
+      expect(select.querySelector('.sbb-select-placeholder')!.textContent!.trim()).toBe('-');
+    }));
+
+    it(`should hide arrow`, fakeAsync(() => {
+      expect(getComputedStyle(select.querySelector('.sbb-select-arrow-icon')!).display).toBe(
+        'none'
+      );
+    }));
+
+    it(`should remove focusability`, fakeAsync(() => {
+      expect(select.getAttribute('tabindex')).toBe('-1');
+    }));
+
+    it(`should prevent opening panel by keyboard`, fakeAsync(() => {
+      dispatchKeyboardEvent(select, 'keydown', SPACE);
+      fixture.detectChanges();
+
+      expect(selectComponent.panelOpen).toBe(false);
+    }));
+
+    it(`should prevent opening panel programmatically`, fakeAsync(() => {
+      selectComponent.open();
+      fixture.detectChanges();
+
+      expect(selectComponent.panelOpen).toBe(false);
+    }));
+
+    it(`should prevent opening panel by click`, fakeAsync(() => {
+      select.click();
+      fixture.detectChanges();
+
+      expect(selectComponent.panelOpen).toBe(false);
+    }));
   });
 });

@@ -25,7 +25,6 @@ let nextId = 1;
 @Component({
   selector: 'sbb-tooltip',
   templateUrl: './tooltip-wrapper.html',
-  styleUrls: ['./tooltip-wrapper.css'],
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush,
   inputs: ['disabled'],
@@ -47,7 +46,7 @@ export class SbbTooltipWrapper extends _SbbTooltipWrapperMixinBase implements On
   get hoverShowDelay(): number {
     return this._hoverShowDelay;
   }
-  set hoverShowDelay(value: number) {
+  set hoverShowDelay(value: NumberInput) {
     this._hoverShowDelay = coerceNumberProperty(value, 0);
   }
   private _hoverShowDelay: number;
@@ -57,7 +56,7 @@ export class SbbTooltipWrapper extends _SbbTooltipWrapperMixinBase implements On
   get hoverHideDelay(): number {
     return this._hoverHideDelay;
   }
-  set hoverHideDelay(value: number) {
+  set hoverHideDelay(value: NumberInput) {
     this._hoverHideDelay = coerceNumberProperty(value, 0);
   }
   private _hoverHideDelay: number;
@@ -78,8 +77,15 @@ export class SbbTooltipWrapper extends _SbbTooltipWrapperMixinBase implements On
   @Output() readonly opened: EventEmitter<SbbTooltipChangeEvent> =
     new EventEmitter<SbbTooltipChangeEvent>();
 
+  /** Event emitted when the tooltip is closed. */
+  @Output() readonly dismissed: EventEmitter<SbbTooltipChangeEvent> =
+    new EventEmitter<SbbTooltipChangeEvent>();
+
   ngOnInit(): void {
     this._tooltip.opened.pipe(takeUntil(this._destroyed)).subscribe((e) => this.opened.emit(e));
+    this._tooltip.dismissed
+      .pipe(takeUntil(this._destroyed))
+      .subscribe((e) => this.dismissed.emit(e));
   }
 
   ngOnDestroy(): void {
@@ -96,7 +102,4 @@ export class SbbTooltipWrapper extends _SbbTooltipWrapperMixinBase implements On
   hide() {
     this._tooltip.hide(0);
   }
-
-  static ngAcceptInputType_hoverShowDelay: NumberInput;
-  static ngAcceptInputType_hoverHideDelay: NumberInput;
 }

@@ -7,6 +7,7 @@ import {
   PositionStrategy,
   ScrollStrategy,
 } from '@angular/cdk/overlay';
+import { _getFocusedElementPierceShadowDom } from '@angular/cdk/platform';
 import { ComponentPortal, ComponentType } from '@angular/cdk/portal';
 import { DOCUMENT } from '@angular/common';
 import {
@@ -65,8 +66,8 @@ export const SBB_DATEPICKER_SCROLL_STRATEGY_FACTORY_PROVIDER = {
   encapsulation: ViewEncapsulation.None,
   host: {
     class: 'sbb-datepicker',
-    '[class.sbb-datepicker-arrows-enabled]': 'arrows',
-    '[class.sbb-datepicker-toggle-enabled]': 'toggle',
+    '[class.sbb-datepicker-arrows-enabled]': 'arrowsVisible',
+    '[class.sbb-datepicker-toggle-enabled]': 'toggleVisible',
     '[class.sbb-datepicker-disabled]': 'disabled',
   },
 })
@@ -93,7 +94,7 @@ export class SbbDatepicker<D> implements OnDestroy {
       ? this.datepickerInput.disabled
       : !!this._disabled;
   }
-  set disabled(value: boolean) {
+  set disabled(value: BooleanInput) {
     const newValue = coerceBooleanProperty(value);
 
     if (newValue !== this._disabled) {
@@ -130,23 +131,39 @@ export class SbbDatepicker<D> implements OnDestroy {
    * Defaults to false.
    */
   @Input()
-  set arrows(value: boolean) {
-    this._arrows = coerceBooleanProperty(value);
-  }
-  get arrows() {
+  get arrows(): boolean {
     return this._arrows;
+  }
+  set arrows(value: BooleanInput) {
+    this._arrows = coerceBooleanProperty(value);
   }
   private _arrows = false;
 
+  /** Whether arrows should be shown. */
+  get arrowsVisible() {
+    return this.arrows && !this.datepickerInput?.readonly;
+  }
+
   /** Whether the datepicker toggle is enabled. Defaults to true. */
   @Input()
-  set toggle(value: boolean) {
-    this._toggle = coerceBooleanProperty(value);
-  }
-  get toggle() {
+  get toggle(): boolean {
     return this._toggle;
   }
+  set toggle(value: BooleanInput) {
+    this._toggle = coerceBooleanProperty(value);
+  }
   private _toggle = true;
+
+  /** Whether the datepicker toggle should be hidden. Defaults to false. */
+  @Input()
+  set notoggle(value: BooleanInput) {
+    this._toggle = !coerceBooleanProperty(value);
+  }
+
+  /** Whether the toggle should be shown. */
+  get toggleVisible() {
+    return this.toggle && !this.datepickerInput?.readonly;
+  }
 
   /** Emits when the datepicker has been opened. */
   @Output('opened') openedStream: EventEmitter<void> = new EventEmitter<void>();
@@ -159,8 +176,8 @@ export class SbbDatepicker<D> implements OnDestroy {
   get opened(): boolean {
     return this._opened;
   }
-  set opened(value: boolean) {
-    value ? this.open() : this.close();
+  set opened(value: BooleanInput) {
+    coerceBooleanProperty(value) ? this.open() : this.close();
   }
   private _opened = false;
 
@@ -195,7 +212,7 @@ export class SbbDatepicker<D> implements OnDestroy {
   /** Whether the previous day is reachable and therefore next buttons should be shown or not. */
   get prevDayActive(): boolean {
     return (
-      this.arrows &&
+      this.arrowsVisible &&
       this.datepickerInput &&
       !!this.datepickerInput.value &&
       (!this.minDate || this._dateAdapter.compareDate(this.datepickerInput.value, this.minDate) > 0)
@@ -205,12 +222,24 @@ export class SbbDatepicker<D> implements OnDestroy {
   /** Whether the next day is reachable and therefore next buttons should be shown or not. */
   get nextDayActive(): boolean {
     return (
-      this.arrows &&
+      this.arrowsVisible &&
       this.datepickerInput &&
       !!this.datepickerInput.value &&
       (!this.maxDate || this._dateAdapter.compareDate(this.datepickerInput.value, this.maxDate) < 0)
     );
   }
+
+  /** The next day button's aria-label */
+  @Input() nextDayAriaLabel: string =
+    typeof $localize === 'function'
+      ? $localize`:Next day button's aria-label@@sbbDatePickerNextDayAriaLabel:Next day`
+      : 'Next day';
+
+  /** The previous day button's aria-label */
+  @Input() prevDayAriaLabel: string =
+    typeof $localize === 'function'
+      ? $localize`:Previous day button's aria-label@@sbbDatePickerPrevDayAriaLabel:Previous day`
+      : 'Previous day';
 
   /** A reference to the overlay when the calendar is opened as a popup. */
   popupRef: OverlayRef;
@@ -227,7 +256,7 @@ export class SbbDatepicker<D> implements OnDestroy {
   /** Subscription to value changes in the associated input element. */
   private _inputSubscription = Subscription.EMPTY;
 
-  private _inputDisabledSubscription = Subscription.EMPTY;
+  private _inputChangeSubscription = Subscription.EMPTY;
 
   private _connectedDatepickerSubscription = Subscription.EMPTY;
 
@@ -249,7 +278,8 @@ export class SbbDatepicker<D> implements OnDestroy {
     private _changeDetectorRef: ChangeDetectorRef,
     @Inject(SBB_DATEPICKER_SCROLL_STRATEGY) private _scrollStrategy: any,
     @Optional() private _dateAdapter: SbbDateAdapter<D>,
-    @Optional() @Inject(DOCUMENT) private _document: any,
+    /** @breaking-change 14.0.0 remove document as parameter **/
+    @Optional() @Inject(DOCUMENT) _document: any,
     @Inject(LOCALE_ID) public readonly locale: string
   ) {
     if (!this._dateAdapter) {
@@ -261,7 +291,7 @@ export class SbbDatepicker<D> implements OnDestroy {
   ngOnDestroy() {
     this.close();
     this._inputSubscription.unsubscribe();
-    this._inputDisabledSubscription.unsubscribe();
+    this._inputChangeSubscription.unsubscribe();
     this._connectedDatepickerSubscription.unsubscribe();
     this.disabledChange.complete();
 
@@ -309,9 +339,11 @@ export class SbbDatepicker<D> implements OnDestroy {
     this._inputSubscription = this.datepickerInput.valueChange.subscribe(
       (value: D | null) => (this.selected = value)
     );
-    this._inputDisabledSubscription = this.datepickerInput.disabledChange.subscribe(() =>
-      this._changeDetectorRef.markForCheck()
-    );
+    this._inputChangeSubscription = merge(
+      this.datepickerInput.disabledChange,
+      this.datepickerInput.readonlyChange
+    ).subscribe(() => this._changeDetectorRef.markForCheck());
+
     // The connected datepicker is only opened on the following conditions:
     // This datepicker has a connected datepicker and has been opened, a value selected, closed
     // and the connected datepicker has no value or a value before the selected date.
@@ -353,9 +385,7 @@ export class SbbDatepicker<D> implements OnDestroy {
     if (!this.datepickerInput) {
       throw Error('Attempted to open an SbbDatepicker with no associated input.');
     }
-    if (this._document) {
-      this._focusedElementBeforeOpen = this._document.activeElement;
-    }
+    this._focusedElementBeforeOpen = _getFocusedElementPierceShadowDom();
 
     this._openAsPopup();
     this._opened = true;
@@ -425,6 +455,7 @@ export class SbbDatepicker<D> implements OnDestroy {
     if (!this.popupRef.hasAttached()) {
       this._popupComponentRef = this.popupRef.attach(this._calendarPortal);
       this._popupComponentRef.instance.datepicker = this;
+      this._popupComponentRef.instance._dialogLabelId = this.datepickerInput.getOverlayLabelId();
 
       // Update the position once the calendar has rendered.
       this._ngZone.onStable
@@ -447,7 +478,6 @@ export class SbbDatepicker<D> implements OnDestroy {
     });
 
     this.popupRef = this._overlay.create(overlayConfig);
-    this.popupRef.overlayElement.setAttribute('role', 'dialog');
 
     merge(
       this.popupRef.backdropClick(),
@@ -518,8 +548,4 @@ export class SbbDatepicker<D> implements OnDestroy {
   private _getValidDateOrNull(obj: any): D | null {
     return this._dateAdapter.isDateInstance(obj) && this._dateAdapter.isValid(obj) ? obj : null;
   }
-
-  static ngAcceptInputType_disabled: BooleanInput;
-  static ngAcceptInputType_arrows: BooleanInput;
-  static ngAcceptInputType_toggle: BooleanInput;
 }

@@ -24,8 +24,8 @@
 }
 
 .sbb-header-search-label {
-  padding-left: pxToEm(8);
-  padding-top: pxToEm(4);
+  padding-left: calc(#{pxToRem(8)} * var(--sbb-scaling-factor));
+  padding-top: calc(#{pxToRem(4)} * var(--sbb-scaling-factor));
 
   @include mq($to: tablet) {
     @include sbbVisuallyHidden();

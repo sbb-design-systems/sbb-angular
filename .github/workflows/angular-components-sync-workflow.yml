@@ -1,0 +1,21 @@
+name: Angular Components Sync
+on:
+  schedule:
+    # * is a special character in YAML so you have to quote this string
+    - cron:  '0 5 * * *'
+  workflow_dispatch:
+
+jobs:
+  update-issue:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+    - uses: actions/setup-node@v2
+      with:
+        node-version: 16
+    - uses: ./.github/actions/yarn-install
+
+    - name: "Execute Angular Components Sync"
+      run: yarn ts-node scripts/angular-components-sync.ts
+      env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

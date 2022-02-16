@@ -47,7 +47,7 @@ export class SbbDatepickerToggle<D> implements OnDestroy, OnChanges, AfterConten
   get disabled(): boolean {
     return this._disabled === undefined ? this._datepicker.disabled : this._disabled;
   }
-  set disabled(value: boolean) {
+  set disabled(value: BooleanInput) {
     this._disabled = coerceBooleanProperty(value);
   }
   private _disabled?: boolean;
@@ -100,6 +100,4 @@ export class SbbDatepickerToggle<D> implements OnDestroy, OnChanges, AfterConten
       datepickerToggled
     ).subscribe(() => this._changeDetectorRef.markForCheck());
   }
-
-  static ngAcceptInputType_disabled: BooleanInput;
 }

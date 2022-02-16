@@ -12,6 +12,7 @@
       [formControl]="date"
       [min]="minDate.value"
       [max]="maxDate.value"
+      [readonly]="readonly.value"
       (dateChange)="dateChangeEvent($event)"
       (dateInput)="dateInputEvent($event)"
     />
@@ -23,6 +24,7 @@
   <sbb-checkbox [formControl]="arrows">Arrows</sbb-checkbox>
   <sbb-checkbox [formControl]="toggle">Toggle</sbb-checkbox>
   <sbb-checkbox [formControl]="disabled">Disabled</sbb-checkbox>
+  <sbb-checkbox [formControl]="readonly">Readonly</sbb-checkbox>
 </p>
 
 <sbb-form-field label="Min Date" style="display: block">

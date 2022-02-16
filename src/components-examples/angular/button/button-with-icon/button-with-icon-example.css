@@ -1,0 +1,4 @@
+:host {
+  display: flex;
+  gap: var(--sbb-divider-thin);
+}

@@ -1,6 +1,5 @@
 import { A11yModule } from '@angular/cdk/a11y';
 import { MediaMatcher } from '@angular/cdk/layout';
-import { PlatformModule } from '@angular/cdk/platform';
 import { CdkScrollable } from '@angular/cdk/scrolling';
 import { CommonModule } from '@angular/common';
 import { Component, DebugElement, ElementRef, ViewChild } from '@angular/core';
@@ -45,7 +44,6 @@ describe('SbbIconSidebar', () => {
         imports: [
           SbbSidebarModule,
           A11yModule,
-          PlatformModule,
           NoopAnimationsModule,
           CommonModule,
           SbbIconModule,
@@ -150,10 +148,9 @@ describe('SbbIconSidebar', () => {
       fixture.detectChanges();
 
       const sidebarEl = fixture.debugElement.query(By.css('sbb-icon-sidebar'))!.nativeElement;
-      expect(sidebarEl.hasAttribute('align')).toBe(
-        false,
-        'Expected sidebar not to have a native align attribute.'
-      );
+      expect(sidebarEl.hasAttribute('align'))
+        .withContext('Expected sidebar not to have a native align attribute.')
+        .toBe(false);
     });
 
     it('should throw when multiple sidebars are included', fakeAsync(() => {
@@ -330,6 +327,47 @@ describe('SbbIconSidebar', () => {
       expect(scrollContainer.scrollLeft).toBe(0);
     }));
   });
+
+  it('should mark the icon sidebar content as scrollable', () => {
+    const fixture = TestBed.createComponent(BasicTestComponent);
+    fixture.detectChanges();
+
+    const content = fixture.debugElement.query(By.css('.sbb-icon-sidebar-inner-container'));
+    const scrollable = content.injector.get(CdkScrollable);
+    expect(scrollable).toBeTruthy();
+    expect(scrollable.getElementRef().nativeElement).toBe(content.nativeElement);
+  });
+
+  describe('DOM position', () => {
+    it('should project start icon sidebar before the content', () => {
+      const fixture = TestBed.createComponent(BasicTestComponent);
+      fixture.detectChanges();
+
+      const allNodes = getSidebarNodesArray(fixture);
+      const sidebarIndex = allNodes.indexOf(
+        fixture.nativeElement.querySelector('.sbb-icon-sidebar')
+      );
+      const contentIndex = allNodes.indexOf(
+        fixture.nativeElement.querySelector('.sbb-icon-sidebar-content')
+      );
+
+      expect(sidebarIndex)
+        .withContext('Expected icon sidebar to be inside the container')
+        .toBeGreaterThan(-1);
+      expect(contentIndex)
+        .withContext('Expected content to be inside the container')
+        .toBeGreaterThan(-1);
+      expect(sidebarIndex)
+        .withContext('Expected icon sidebar to be before the content')
+        .toBeLessThan(contentIndex);
+    });
+
+    function getSidebarNodesArray(fixture: ComponentFixture<any>): HTMLElement[] {
+      return Array.from(
+        fixture.nativeElement.querySelector('.sbb-icon-sidebar-container').childNodes
+      );
+    }
+  });
 });
 
 describe('SbbIconSidebarContainer', () => {
@@ -341,7 +379,6 @@ describe('SbbIconSidebarContainer', () => {
         imports: [
           SbbSidebarModule,
           A11yModule,
-          PlatformModule,
           NoopAnimationsModule,
           SbbIconModule,
           SbbIconTestingModule,
@@ -385,16 +422,6 @@ describe('SbbIconSidebarContainer', () => {
       true
     );
   }));
-
-  it('should mark the icon sidebar content as scrollable', () => {
-    const fixture = TestBed.createComponent(BasicTestComponent);
-    fixture.detectChanges();
-
-    const content = fixture.debugElement.query(By.css('.sbb-icon-sidebar-inner-container'));
-    const scrollable = content.injector.get(CdkScrollable);
-    expect(scrollable).toBeTruthy();
-    expect(scrollable.getElementRef().nativeElement).toBe(content.nativeElement);
-  });
 
   it('should clean up the sidebars stream on destroy', fakeAsync(() => {
     const fixture = TestBed.createComponent(SidebarContainerEmptyTestComponent);

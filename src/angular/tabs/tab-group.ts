@@ -43,6 +43,7 @@ export class SbbTabChangeEvent {
 }
 
 interface SbbTabGroupBaseHeader {
+  updatePagination(): void;
   focusIndex: number;
 }
 
@@ -80,20 +81,70 @@ export abstract class SbbTabGroupBase implements AfterContentInit, AfterContentC
   get dynamicHeight(): boolean {
     return this._dynamicHeight;
   }
-  set dynamicHeight(value: boolean) {
+  set dynamicHeight(value: BooleanInput) {
     this._dynamicHeight = coerceBooleanProperty(value);
   }
-  private _dynamicHeight: boolean;
+  private _dynamicHeight: boolean = false;
 
   /** The index of the active tab. */
   @Input()
   get selectedIndex(): number | null {
     return this._selectedIndex;
   }
-  set selectedIndex(value: number | null) {
+  set selectedIndex(value: NumberInput) {
     this._indexToSelect = coerceNumberProperty(value, null);
   }
   private _selectedIndex: number | null = null;
+
+  /** Duration for the tab animation. Will be normalized to milliseconds if no units are set. */
+  @Input()
+  get animationDuration(): string {
+    return this._animationDuration;
+  }
+  set animationDuration(value: NumberInput) {
+    this._animationDuration = /^\d+$/.test(value + '') ? value + 'ms' : (value as string);
+
+    const match = this.animationDuration.match(/^(\d+|\.\d+|\d+\.\d+)(\w*)$/);
+    if (match) {
+      const durationParsed = parseFloat(match[1]) / 3;
+      const durationRounded = Math.round(durationParsed * 100) / 100;
+      this._animationDurationHide = `${durationRounded}${match[2]}`;
+    } else {
+      this._animationDurationHide = '0ms';
+    }
+  }
+  private _animationDuration: string;
+
+  /** Calculated hide duration which is one third of animationDuration. */
+  _animationDurationHide: string;
+
+  /**
+   * Whether pagination should be disabled. This can be used to avoid unnecessary
+   * layout recalculations if it's known that pagination won't be required.
+   * This applies only for lean design.
+   */
+  @Input()
+  get disablePagination(): boolean {
+    return this._disablePagination;
+  }
+  set disablePagination(value: BooleanInput) {
+    this._disablePagination = coerceBooleanProperty(value);
+  }
+  private _disablePagination: boolean = false;
+
+  /**
+   * By default tabs remove their content from the DOM while it's off-screen.
+   * Setting this to `true` will keep it in the DOM which will prevent elements
+   * like iframes and videos from reloading next time it comes back into the view.
+   */
+  @Input()
+  get preserveContent(): boolean {
+    return this._preserveContent;
+  }
+  set preserveContent(value: BooleanInput) {
+    this._preserveContent = coerceBooleanProperty(value);
+  }
+  private _preserveContent: boolean = false;
 
   /** Output to enable support for two-way binding on `[(selectedIndex)]` */
   @Output() readonly selectedIndexChange: EventEmitter<number> = new EventEmitter<number>();
@@ -119,8 +170,15 @@ export abstract class SbbTabGroupBase implements AfterContentInit, AfterContentC
     @Optional() @Inject(ANIMATION_MODULE_TYPE) public _animationMode?: string
   ) {
     this._groupId = nextId++;
+    this.animationDuration =
+      defaultConfig && defaultConfig.animationDuration ? defaultConfig.animationDuration : '500ms';
+    this.disablePagination =
+      defaultConfig && defaultConfig.disablePagination != null
+        ? defaultConfig.disablePagination
+        : false;
     this.dynamicHeight =
       defaultConfig && defaultConfig.dynamicHeight != null ? defaultConfig.dynamicHeight : false;
+    this.preserveContent = !!defaultConfig?.preserveContent;
   }
 
   /**
@@ -141,6 +199,9 @@ export abstract class SbbTabGroupBase implements AfterContentInit, AfterContentC
 
       if (!isFirstRun) {
         this.selectedTabChange.emit(this._createChangeEvent(indexToSelect));
+        // Preserve the height so page doesn't scroll up during tab change.
+        const wrapper = this._tabBodyWrapper.nativeElement;
+        wrapper.style.minHeight = wrapper.clientHeight + 'px';
       }
 
       // Changing these values after change detection has run
@@ -150,6 +211,9 @@ export abstract class SbbTabGroupBase implements AfterContentInit, AfterContentC
 
         if (!isFirstRun) {
           this.selectedIndexChange.emit(indexToSelect);
+          // Clear the min-height, this was needed during tab change to avoid
+          // unnecessary scrolling.
+          this._tabBodyWrapper.nativeElement.style.minHeight = '';
         }
       });
     }
@@ -206,7 +270,9 @@ export abstract class SbbTabGroupBase implements AfterContentInit, AfterContentC
     // some that are inside of nested tab groups. We filter them out manually by checking that
     // the closest group to the tab is the current one.
     this._allTabs.changes.pipe(startWith(this._allTabs)).subscribe((tabs: QueryList<SbbTab>) => {
-      this._tabs.reset(tabs.filter((tab) => tab._closestTabGroup === this));
+      this._tabs.reset(
+        tabs.filter((tab) => tab._closestTabGroup === this || !tab._closestTabGroup)
+      );
       this._tabs.notifyOnChanges();
     });
   }
@@ -215,6 +281,19 @@ export abstract class SbbTabGroupBase implements AfterContentInit, AfterContentC
     this._tabs.destroy();
     this._tabsSubscription.unsubscribe();
     this._tabLabelSubscription.unsubscribe();
+  }
+
+  /**
+   * Recalculates the tab group's pagination dimensions.
+   *
+   * WARNING: Calling this method can be very costly in terms of performance. It should be called
+   * as infrequently as possible from outside of the Tabs component as it causes a reflow of the
+   * page.
+   */
+  updatePagination() {
+    if (this._tabHeader) {
+      this._tabHeader.updatePagination();
+    }
   }
 
   /**
@@ -321,13 +400,14 @@ export abstract class SbbTabGroupBase implements AfterContentInit, AfterContentC
 
   /** Callback for when the focused state of a tab has changed. */
   _tabFocusChanged(focusOrigin: FocusOrigin, index: number) {
-    if (focusOrigin) {
+    // Mouse/touch focus happens during the `mousedown`/`touchstart` phase which
+    // can cause the tab to be moved out from under the pointer, interrupting the
+    // click sequence (see #21898). We don't need to scroll the tab into view for
+    // such cases anyway, because it will be done when the tab becomes selected.
+    if (focusOrigin && focusOrigin !== 'mouse' && focusOrigin !== 'touch') {
       this._tabHeader.focusIndex = index;
     }
   }
-
-  static ngAcceptInputType_dynamicHeight: BooleanInput;
-  static ngAcceptInputType_selectedIndex: NumberInput;
 }
 
 /**

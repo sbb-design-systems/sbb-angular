@@ -11,6 +11,17 @@
   :where(html.sbb-lean) & {
     padding-right: pxToRem(38);
   }
+
+  &:is([readonly], .sbb-readonly) {
+    cursor: default;
+  }
+
+  // Prevent weird spacing behavior when nested in sbb-form-field or table, by declaring it as a
+  // block element. In the case of sbb-form-field, it takes up the available space defined by the wrapper.
+  .sbb-form-field &,
+  .sbb-table th.sbb-header-cell.sbb-table-filter & {
+    display: block;
+  }
 }
 
 .sbb-select-value {
@@ -25,11 +36,15 @@
 
 .sbb-select-arrow-icon {
   @include absoluteCenterY();
-  right: pxToEm(9);
+  right: calc(#{pxToRem(9)} * var(--sbb-scaling-factor));
   color: var(--sbb-color-grey);
 
   :where(html.sbb-lean) & {
     right: pxToRem(6);
+  }
+
+  .sbb-select:is([readonly], .sbb-readonly) & {
+    display: none;
   }
 }
 

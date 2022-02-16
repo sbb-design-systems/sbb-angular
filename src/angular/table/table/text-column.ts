@@ -1,4 +1,4 @@
-import { BooleanInput } from '@angular/cdk/coercion';
+import { BooleanInput, coerceBooleanProperty } from '@angular/cdk/coercion';
 import { CdkTextColumn } from '@angular/cdk/table';
 import {
   ChangeDetectionStrategy,
@@ -49,8 +49,8 @@ export class SbbTextColumn<T> extends CdkTextColumn<T> implements OnInit {
   get groupWithNext(): boolean {
     return this._groupWithNext;
   }
-  set groupWithNext(value: boolean) {
-    this._groupWithNext = value;
+  set groupWithNext(value: BooleanInput) {
+    this._groupWithNext = coerceBooleanProperty(value);
 
     // With Ivy, inputs can be initialized before static query results are
     // available. In that case, we defer the synchronization until "ngOnInit" fires.
@@ -69,6 +69,4 @@ export class SbbTextColumn<T> extends CdkTextColumn<T> implements OnInit {
       (this.columnDef as SbbColumnDef).groupWithNext = this._groupWithNext;
     }
   }
-
-  static ngAcceptInputType_groupWithNext: BooleanInput;
 }

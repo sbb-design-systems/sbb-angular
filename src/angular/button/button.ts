@@ -1,13 +1,12 @@
 import { FocusableOption, FocusMonitor, FocusOrigin } from '@angular/cdk/a11y';
-import { BooleanInput } from '@angular/cdk/coercion';
 import {
   AfterViewInit,
   ChangeDetectionStrategy,
   Component,
   ElementRef,
-  HostListener,
   Inject,
   Input,
+  NgZone,
   OnDestroy,
   Optional,
   ViewEncapsulation,
@@ -154,8 +153,6 @@ export class SbbButton
   private _hasHostAttributes(...attributes: string[]) {
     return attributes.some((attribute) => this._getHostElement().hasAttribute(attribute));
   }
-
-  static ngAcceptInputType_disabled: BooleanInput;
 }
 
 /**
@@ -180,24 +177,43 @@ export class SbbButton
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class SbbAnchor extends SbbButton {
+export class SbbAnchor extends SbbButton implements AfterViewInit, OnDestroy {
   /** Tabindex of the button. */
   @Input() tabIndex: number;
 
   constructor(
     focusMonitor: FocusMonitor,
     elementRef: ElementRef,
-    @Optional() @Inject(ANIMATION_MODULE_TYPE) animationMode: string
+    @Optional() @Inject(ANIMATION_MODULE_TYPE) animationMode: string,
+    /** @breaking-change 14.0.0 _ngZone will be required. */
+    @Optional() private _ngZone?: NgZone
   ) {
     super(elementRef, focusMonitor, animationMode);
   }
 
-  @HostListener('click', ['$event'])
-  _haltDisabledEvents(event: Event) {
+  override ngAfterViewInit(): void {
+    super.ngAfterViewInit();
+
+    /** @breaking-change 14.0.0 _ngZone will be required. */
+    if (this._ngZone) {
+      this._ngZone.runOutsideAngular(() => {
+        this._elementRef.nativeElement.addEventListener('click', this._haltDisabledEvents);
+      });
+    } else {
+      this._elementRef.nativeElement.addEventListener('click', this._haltDisabledEvents);
+    }
+  }
+
+  override ngOnDestroy(): void {
+    super.ngOnDestroy();
+    this._elementRef.nativeElement.removeEventListener('click', this._haltDisabledEvents);
+  }
+
+  _haltDisabledEvents = (event: Event): void => {
     // A disabled button shouldn't apply any actions
     if (this.disabled) {
       event.preventDefault();
       event.stopImmediatePropagation();
     }
-  }
+  };
 }

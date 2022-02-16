@@ -10,6 +10,11 @@ export const outputNames: VersionChanges<OutputNameUpgradeData> = {
           replaceWith: 'dismissed',
           limitedTo: { elements: ['sbb-ghettobox', 'sbb-alert'] },
         },
+        {
+          replace: 'closed',
+          replaceWith: 'dismissed',
+          limitedTo: { elements: ['sbb-tooltip'] },
+        },
       ],
     },
   ],

@@ -1,6 +1,7 @@
 @import './tabs';
 
 @include paginated-tab-header-shadows;
+@include paginated-tab-header;
 
 .sbb-tab-labels {
   @include paginated-tab-header-item-wrapper('.sbb-tab-header');

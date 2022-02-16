@@ -598,7 +598,7 @@ function expectTotalAmount(expectedTotalAmount: number, fixture: any) {
 
 function extractBadgeDescription(sbbTag: DebugElement) {
   const ariaDescribedById = sbbTag
-    .query(By.css('.sbb-badge-content'))
+    .query(By.css('.sbb-badge'))
     .nativeElement.getAttribute('aria-describedby');
   return document.getElementById(ariaDescribedById)!.textContent;
 }

@@ -156,12 +156,13 @@ describe('SbbUsermenu with userName and displayName without image', () => {
 
     // Assert text-overflow is active with ellipsis style
     expect(getComputedStyle(displayName).getPropertyValue('text-overflow')).toBe('ellipsis');
-    expect(displayName.offsetWidth).toBeLessThan(
-      displayName.scrollWidth,
-      'text-overflow is not active'
-    );
+    expect(displayName.offsetWidth)
+      .withContext('text-overflow is not active')
+      .toBeLessThan(displayName.scrollWidth);
     expect(getComputedStyle(userName).getPropertyValue('text-overflow')).toBe('ellipsis');
-    expect(userName.offsetWidth).toBeLessThan(userName.scrollWidth, 'text-overflow is not active');
+    expect(userName.offsetWidth)
+      .withContext('text-overflow is not active')
+      .toBeLessThan(userName.scrollWidth);
   });
 
   it('should open menu on arrow click', () => {

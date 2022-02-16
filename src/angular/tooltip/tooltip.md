@@ -27,7 +27,7 @@ By default the `sbbTooltip` will be shown on hover.
 It is also possible to use a `TemplateRef` as a tooltip content.
 
 ```html
-<span sbbTooltip="tooltipContent">Short description.</span>
+<span [sbbTooltip]="tooltipContent">Short description.</span>
 
 <ng-template #tooltipContent>
   Display additional information about a topic, input or something else.
@@ -47,11 +47,12 @@ To completely disable a tooltip, set `disabled` on `sbb-tooltip` or `sbbTooltipD
 
 ### Accessibility
 
-Elements with the `sbbTooltip` will add an `aria-describedby` label that provides a reference
-to an element containing the tooltip's message. Depending on the used variant this is either a
-hidden element with a copy of the message or a reference to the tooltip element itself.
+`SbbTooltip` adds an `aria-describedby` description that provides a reference
+to an element containing the tooltip's message. Depending on the used variant this is either
+a hidden element with a copy of the message or a reference to the tooltip element itself.
+This provides screenreaders the information needed to read out the tooltip's contents
+when the end-user focuses on tooltip's trigger.
 
-If a tooltip will only be shown manually via click, keypress, etc., then extra care should be taken
-such that the action behaves similarly for screen-reader users. One possible approach would be
-to use the `LiveAnnouncer` from the `cdk/a11y` package to announce the tooltip content on such
-an interaction.
+Avoid interactions that exclusively show a tooltip with pointer events like click and mouseenter.
+Always ensure that keyboard users can perform the same set of actions available to mouse and
+touch users.

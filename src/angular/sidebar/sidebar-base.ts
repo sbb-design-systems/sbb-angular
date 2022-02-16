@@ -136,7 +136,7 @@ export abstract class SbbSidebarContainerBase<T extends SbbSidebarBase>
     this._sidebar = null;
 
     // Ensure that we have at most one sidebar.
-    if (this._sidebars.length > 1) {
+    if (this._sidebars.length > 1 && (typeof ngDevMode === 'undefined' || ngDevMode)) {
       throwSbbDuplicatedSidebarError();
     }
     this._sidebar = this._sidebars.first;

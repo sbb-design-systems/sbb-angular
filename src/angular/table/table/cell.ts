@@ -67,10 +67,10 @@ export class SbbColumnDef extends CdkColumnDef {
    * If set to true, the border to the next cell is hidden.
    */
   @Input()
-  get groupWithNext() {
+  get groupWithNext(): boolean {
     return this._groupWithNext;
   }
-  set groupWithNext(value) {
+  set groupWithNext(value: BooleanInput) {
     this._groupWithNext = coerceBooleanProperty(value);
   }
   private _groupWithNext: boolean = false;
@@ -85,8 +85,6 @@ export class SbbColumnDef extends CdkColumnDef {
     super._updateColumnCssClassName();
     this._columnCssClassName!.push(`sbb-column-${this.cssClassFriendlyName}`);
   }
-
-  static ngAcceptInputType_groupWithNext: BooleanInput;
 }
 
 /** Header cell template container that adds the right classes and role. */

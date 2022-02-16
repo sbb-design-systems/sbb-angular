@@ -1,6 +1,11 @@
 <form [formGroup]="form">
   <sbb-form-field label="Favorite meal">
-    <select formControlName="value" placeholder="Favorite meal" sbbInput>
+    <select
+      formControlName="value"
+      placeholder="Favorite meal"
+      sbbInput
+      [attr.readonly]="form.get('readonly')!.value ? true : null"
+    >
       <option
         *ngFor="let food of ['Beefsteak', 'Pizza', 'Pasta']; first as isFirst"
         [disabled]="isFirst && form.get('optionDisabled')?.value"
@@ -20,5 +25,12 @@
       Disabled
     </sbb-checkbox>
     <sbb-checkbox formControlName="optionDisabled">First option disabled</sbb-checkbox>
+    <sbb-checkbox formControlName="readonly">
+      Readonly
+      <sbb-tooltip style="position: absolute">
+        Native selects don't support readonly state. It is still possible to open the options by
+        keyboard navigation.
+      </sbb-tooltip>
+    </sbb-checkbox>
   </div>
 </form>

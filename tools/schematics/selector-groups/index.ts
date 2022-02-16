@@ -5,7 +5,7 @@ export function selectorGroups(options: { json: boolean }): Rule {
     const srcDir = tree.getDir('src');
     const dirs = srcDir.subdirs
       // Exclude @sbb-esta/angular for now
-      .filter((d) => d.startsWith('angular-') && !d.endsWith('-icons'))
+      .filter((d) => d.startsWith('angular'))
       .map((d) => srcDir.dir(d));
     const modules: { [name: string]: string[] } = JSON.parse(JSON.stringify(wellKnownModules));
     for (const dir of dirs) {
@@ -25,7 +25,7 @@ export function selectorGroups(options: { json: boolean }): Rule {
                 selector.includes('[') && !selector.startsWith('[')
                   ? selector.substring(selector.indexOf('['))
                   : selector;
-              if (blocklist.includes(selector)) {
+              if (blocklist.includes(selector) || blocklist.includes(normalizedSelector)) {
                 // Skip
               } else if (!(moduleName in modules)) {
                 modules[moduleName] = [normalizedSelector];
@@ -58,17 +58,28 @@ export function selectorGroups(options: { json: boolean }): Rule {
 
 const wellKnownModules = {
   accordion: ['sbb-accordion', 'sbb-expansion-panel'],
+  alert: ['sbb-alert-outlet', 'sbb-alert', '[sbbAlert]'],
   autocomplete: ['sbb-autocomplete'],
-  badge: ['sbb-badge'],
+  badge: ['sbb-badge', '[sbbBadge]'],
   breadcrumb: ['sbb-breadcrumbs'],
-  button: ['[sbbButton]'],
+  button: [
+    '[sbbButton]',
+    '[sbb-button]',
+    '[sbb-alt-button]',
+    '[sbb-secondary-button]',
+    '[sbb-ghost-button]',
+    '[sbb-icon-button]',
+    '[sbb-frameless-button]',
+    '[sbb-link]',
+  ],
   captcha: ['sbb-captcha'],
   checkbox: ['sbb-checkbox'],
   'checkbox-panel': ['sbb-checkbox-panel'],
   chip: ['sbb-chip', 'sbb-chip-input'],
+  chips: ['sbb-chip-list', 'sbb-chip', '[sbb-chip]'],
   contextmenu: ['sbb-contextmenu'],
   datepicker: ['[sbbDateInput]', 'sbb-datepicker'],
-  dialog: ['sbb-dialog-content', '[sbbDialogContent]'],
+  dialog: ['sbb-dialog-content', '[sbbDialogContent]', '[sbb-dialog-content]'],
   dropdown: ['sbb-dropdown'],
   'esri-basemap-gallery': ['sbb-esri-basemap-gallery'],
   'esri-layer-list': ['sbb-esri-layer-list'],
@@ -79,24 +90,31 @@ const wellKnownModules = {
   'form-field': ['sbb-field', 'sbb-form-field'],
   ghettobox: ['sbb-ghettobox'],
   header: ['sbb-header'],
+  'header-lean': ['sbb-header-lean'],
   icon: ['sbb-icon'],
   input: ['[sbbInput]'],
-  lightbox: ['sbb-lightbox-content', '[sbbLightboxContent]'],
+  lightbox: ['sbb-lightbox-content', '[sbbLightboxContent]', '[sbb-lightbox-content]'],
   links: ['[sbbLink]'],
   loading: ['sbb-loading'],
+  menu: [
+    '[sbbContextmenuTriggerFor]',
+    '[sbbMenuTriggerFor]',
+    '[sbbMenuHeadlessTriggerFor]',
+    'sbb-menu',
+  ],
   notification: ['sbb-notification'],
   option: ['sbb-option-group'],
   pagination: ['sbb-navigation', 'sbb-pagination', 'sbb-paginator'],
-  processflow: ['sbb-processflow'],
+  processflow: ['sbb-processflow', '[sbbProcessflow]'],
   'radio-button': ['sbb-radio-button', 'sbb-radio-group'],
   'radio-button-panel': ['sbb-radio-button-panel'],
-  search: ['sbb-search'],
+  search: ['sbb-search', '[sbbHeaderSearch]'],
   select: ['sbb-select'],
   sidebar: ['sbb-icon-sidebar', 'sbb-sidebar'],
   status: ['sbb-status'],
-  table: ['sbb-table', '[sbbTable]'],
-  tabs: ['sbb-tabs'],
-  tag: ['sbb-tag', 'sbb-tags'],
+  table: ['sbb-table', '[sbbTable]', '[sbb-sort-header]', 'sbb-table-wrapper', '[sbb-table]'],
+  tabs: ['sbb-tabs', 'sbb-tab-group', '[sbb-tab-nav-bar]'],
+  tag: ['sbb-tag', 'sbb-tags', '[sbb-tag-link]'],
   textarea: ['sbb-textarea'],
   textexpand: ['sbb-textexpand'],
   'time-input': ['[sbbTimeInput]'],
@@ -238,4 +256,21 @@ const blocklist = [
   '[sbbIcon]',
   'sbb-ghettobox-container',
   'sbb-toggle-option',
+  'sbb-toggle-icon',
+  'sbb-toggle-label',
+  'sbb-toggle-subtitle',
+  'sbb-toggle-details',
+  'sbb-notification-icon',
+  'sbb-header-cell',
+  '[sbb-header-cell]',
+  'sbb-footer-cell',
+  '[sbb-footer-cell]',
+  'sbb-cell',
+  '[sbb-cell]',
+  '[sbb-header-row]',
+  '[sbb-footer-row]',
+  '[sbb-row]',
+  '[recycleRows]',
+  '[sbb-table][recycleRows]',
+  'sbb-tooltip-component',
 ];

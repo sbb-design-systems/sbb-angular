@@ -11,11 +11,13 @@
 <div class="docs-api">
   <h2>API reference for Angular {$ doc.packageDisplayName $} {$ doc.displayName $}</h2>
 
+  {%- if doc.primaryExportName -%}
   <p class="docs-api-module-import">
-    <code> import { {$ doc.primaryExportName $} } from '{$ doc.moduleImportPath $}'; </code>
+    <code> import {{$ doc.primaryExportName $}} from '{$ doc.moduleImportPath $}'; </code>
   </p>
-
-  {%- if doc.services.length -%}
+  {% else %}
+  <p>Import symbols from <code>{$ doc.moduleImportPath $}</code></p>
+  {%- endif -%} {%- if doc.services.length -%}
   <h3 id="{$ doc.name $}-services" class="docs-header-link docs-api-h3">
     <span header-link="services"></span>
     Services

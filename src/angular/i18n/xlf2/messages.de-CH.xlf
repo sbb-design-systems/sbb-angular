@@ -43,6 +43,18 @@
         <target>Kalender anzeigen</target>
       </segment>
     </unit>
+    <unit id="sbbDatePickerNextDayAriaLabel">
+      <segment state="translated">
+        <source>Next day</source>
+        <target>Nächster Tag</target>
+      </segment>
+    </unit>
+    <unit id="sbbDatePickerPrevDayAriaLabel">
+      <segment state="translated">
+        <source>Previous day</source>
+        <target>Vorheriger Tag</target>
+      </segment>
+    </unit>
     <unit id="sbbDialogCloseDialog">
       <segment state="reviewed">
         <source>Close dialog</source>

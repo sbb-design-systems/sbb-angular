@@ -1,0 +1,83 @@
+@import '../../../angular/styles/common';
+
+.sbb-notification {
+  margin-bottom: 2em;
+  max-width: pxToEm(700);
+}
+
+:host nav {
+  padding: 0;
+  margin: pxToEm(50) 0 pxToEm(50) 0;
+  font-size: var(--sbb-font-size);
+
+  ul {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+    align-content: flex-start;
+    align-items: stretch;
+    font-size: inherit !important;
+
+    > li {
+      width: pxToEm(300);
+      margin: 0 pxToEm(20) pxToEm(20) 0;
+      border-radius: pxToEm(6);
+      background: #fff;
+      border: solid pxToEm(1) #cccccc;
+      color: #1b1b1b;
+      cursor: pointer;
+      position: relative;
+      display: flex;
+
+      &::before {
+        content: '';
+        display: inherit;
+        color: #000000;
+        padding-right: 0;
+      }
+
+      a {
+        text-decoration: none;
+        border-bottom: none;
+        display: inline-block;
+        width: 100%;
+
+        &:hover {
+          color: #000000;
+        }
+
+        .hero {
+          position: relative;
+          overflow: hidden;
+          display: block;
+          width: 100%;
+          height: pxToEm(180);
+          border-radius: pxToEm(4) pxToEm(4) 0 0;
+        }
+
+        .hero img {
+          max-width: 100%;
+          transition: transform var(--sbb-transition-duration-default) ease;
+        }
+
+        .hero:hover img {
+          transform: scale(1.1);
+        }
+
+        .title {
+          margin: pxToEm(15) pxToEm(20) 0 pxToEm(20);
+          display: block;
+          font-weight: 400;
+        }
+
+        .text {
+          margin: pxToEm(5) pxToEm(20) pxToEm(15) pxToEm(20);
+          display: block;
+          font-weight: 200;
+        }
+      }
+    }
+  }
+}

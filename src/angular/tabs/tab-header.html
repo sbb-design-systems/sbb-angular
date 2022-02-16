@@ -1,3 +1,18 @@
+<button
+  class="sbb-tab-header-pagination sbb-tab-header-pagination-before sbb-button-reset-frameless"
+  #previousPaginator
+  aria-hidden="true"
+  type="button"
+  tabindex="-1"
+  [class.sbb-tab-header-pagination-disabled]="_disableScrollBefore"
+  [disabled]="_disableScrollBefore || null"
+  (click)="_handlePaginatorClick('before')"
+  (mousedown)="_handlePaginatorPress('before', $event)"
+  (touchend)="_stopInterval()"
+>
+  <sbb-icon svgIcon="kom:chevron-left-small" class="sbb-tab-header-pagination-chevron"></sbb-icon>
+</button>
+
 <div
   class="sbb-tab-label-container sbb-scrollbar"
   #tabListContainer
@@ -10,8 +25,23 @@
     role="tablist"
     (cdkObserveContent)="_onContentChanges()"
   >
-    <div class="sbb-tab-labels">
+    <div class="sbb-tab-labels" #tabListInner>
       <ng-content></ng-content>
     </div>
   </div>
 </div>
+
+<button
+  class="sbb-tab-header-pagination sbb-tab-header-pagination-after sbb-button-reset-frameless"
+  #nextPaginator
+  aria-hidden="true"
+  type="button"
+  [class.sbb-tab-header-pagination-disabled]="_disableScrollAfter"
+  [disabled]="_disableScrollAfter || null"
+  tabindex="-1"
+  (mousedown)="_handlePaginatorPress('after', $event)"
+  (click)="_handlePaginatorClick('after')"
+  (touchend)="_stopInterval()"
+>
+  <sbb-icon svgIcon="kom:chevron-right-small" class="sbb-tab-header-pagination-chevron"></sbb-icon>
+</button>

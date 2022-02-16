@@ -56,7 +56,7 @@ To provide a menu with actions and links, please use the `<sbb-menu #menu="sbbMe
 and link it with the `<sbb-username [menu]=""menu">` tag by reference.
 Note that you must import `SbbMenuModule` from `@sbb-esta/angular/menu` yourself.
 
-Please see the [Menu documentation](angular/components/menu) for more details of the menu usage.
+Please see the [Menu documentation](/angular/components/menu) for more details of the menu usage.
 
 ```html
 <sbb-usermenu

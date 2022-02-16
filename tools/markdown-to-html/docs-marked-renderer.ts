@@ -1,25 +1,31 @@
-import { Renderer } from 'marked';
-
-/** Regular expression that matches whitespace. */
-const whitespaceRegex = /\W+/g;
+import { Renderer, Slugger } from 'marked';
+import { basename, extname } from 'path';
 
 /** Regular expression that matches example comments. */
-const exampleCommentRegex = /<!--\W*example\(([^)]+)\)\W*-->/g;
+const exampleCommentRegex = /<!--\s*example\(([^)]+)\)\s*-->/g;
 
 /**
  * Custom renderer for marked that will be used to transform markdown files to HTML
  * files that can be used in the Angular Material docs.
  */
 export class DocsMarkdownRenderer extends Renderer {
+  /** Set of fragment links discovered in the currently rendered file. */
+  private _referencedFragments = new Set<string>();
+
+  /**
+   * Slugger provided by the `marked` package. Can be used to create unique
+   * ids  for headings.
+   */
+  private _slugger = new Slugger();
+
   /**
    * Transforms a markdown heading into the corresponding HTML output. In our case, we
-   * want to create a header-link for each H2, H3 and H4 heading. This allows users to jump to
+   * want to create a header-link for each H2, H3, and H4 heading. This allows users to jump to
    * specific parts of the docs.
    */
-  heading(label: string, level: number, _raw: string) {
+  heading(label: string, level: number, raw: string) {
     if (level === 2 || level === 3 || level === 4 || level === 5 || level === 6) {
-      const headingId = label.toLowerCase().replace(whitespaceRegex, '-');
-
+      const headingId = this._slugger.slug(raw);
       return `
         <h${level} id="${headingId}" class="docs-header-link">
           <span header-link="${headingId}"></span>
@@ -31,17 +37,74 @@ export class DocsMarkdownRenderer extends Renderer {
     return `<h${level}>${label}</h${level}>`;
   }
 
+  /** Transforms markdown links into the corresponding HTML output. */
+  link(href: string, title: string, text: string) {
+    // We only want to fix up markdown links that are relative and do not refer to guides already.
+    // Otherwise we always map the link to the "guide/" path.
+    // TODO(devversion): remove this logic and just disallow relative paths.
+    if (
+      !href.startsWith('http') &&
+      !href.startsWith('#') &&
+      !href.includes('/angular/guides/') &&
+      !href.startsWith('/')
+    ) {
+      return super.link(`angular/guides/${basename(href, extname(href))}`, title, text);
+    }
+
+    // Keep track of all fragments discovered in a file.
+    if (href.startsWith('#')) {
+      this._referencedFragments.add(href.substr(1));
+    }
+
+    return super.link(href, title, text);
+  }
+
+  table(header: string, body: string): string {
+    if (body) {
+      body = `<tbody>${body}</tbody>`;
+    }
+
+    return `<table class="sbb-table">\n<thead>\n${header}</thead>\n${body}</table>\n`;
+  }
+
   /**
    * Method that will be called whenever inline HTML is processed by marked. In that case,
-   * we can easily transform the example comments into real HTML elements. For example:
+   * we can easily transform the example comments into real HTML elements.
+   * For example:
+   * (New API)
+   * `<!-- example(
+   *   {
+   *    "example": "exampleName",
+   *    "file": "example-html.html",
+   *    "region": "some-region"
+   *   }
+   *  ) -->`
+   *  turns into
+   *  `<div material-docs-example="exampleName"
+   *        file="example-html.html"
+   *        region="some-region"></div>`
    *
-   *  `<!-- example(name) -->` turns into `<div sbb-angular-docs-example="name"></div>`
+   *  (old API)
+   *  `<!-- example(name) -->`
+   *  turns into
+   *  `<div material-docs-example="name"></div>`
    */
   html(html: string) {
-    html = html.replace(
-      exampleCommentRegex,
-      (_match: string, name: string) => `<div sbb-angular-docs-example="${name}"></div>`
-    );
+    html = html.replace(exampleCommentRegex, (_match: string, content: string) => {
+      // using [\s\S]* because .* does not match line breaks
+      if (content.match(/\{[\s\S]*\}/g)) {
+        const { example, file, region } = JSON.parse(content) as {
+          example: string;
+          file: string;
+          region: string;
+        };
+        return `<div material-docs-example="${example}"
+                             ${file ? `file="${file}"` : ''}
+                             ${region ? `region="${region}"` : ''}></div>`;
+      } else {
+        return `<div material-docs-example="${content}"></div>`;
+      }
+    });
 
     return super.html(html);
   }
@@ -50,7 +113,26 @@ export class DocsMarkdownRenderer extends Renderer {
    * Method that will be called after a markdown file has been transformed to HTML. This method
    * can be used to finalize the content (e.g. by adding an additional wrapper HTML element)
    */
-  finalizeOutput(output: string): string {
+  finalizeOutput(output: string, fileName: string): string {
+    const failures: string[] = [];
+
+    // Collect any fragment links that do not resolve to existing fragments in the
+    // rendered file. We want to error for broken fragment links.
+    this._referencedFragments.forEach((id) => {
+      if (this._slugger.seen[id] === undefined) {
+        failures.push(`Found link to "${id}". This heading does not exist.`);
+      }
+    });
+
+    if (failures.length) {
+      console.error(`Could not process file: ${fileName}. Please fix the following errors:`);
+      failures.forEach((message) => console.error(`  -  ${message}`));
+      process.exit(1);
+    }
+
+    this._slugger.seen = {};
+    this._referencedFragments.clear();
+
     return `<div class="docs-markdown">${output}</div>`;
   }
 }

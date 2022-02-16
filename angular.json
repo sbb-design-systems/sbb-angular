@@ -5,7 +5,7 @@
   "projects": {
     "angular-showcase": {
       "root": "src",
-      "sourceRoot": "src/showcase-merge",
+      "sourceRoot": "src/showcase",
       "projectType": "application",
       "prefix": "sbb",
       "schematics": {
@@ -18,13 +18,13 @@
           "builder": "no-builder",
           "options": {
             "outputPath": "dist/defunct",
-            "index": "src/showcase-merge/index.html",
-            "main": "src/showcase-merge/main.ts",
-            "polyfills": "src/showcase-merge/polyfills.ts",
+            "index": "src/showcase/index.html",
+            "main": "src/showcase/main.ts",
+            "polyfills": "src/showcase/polyfills.ts",
             "tsConfig": "tsconfig.json",
             "aot": true,
             "styles": [
-              "src/showcase-merge/styles.css"
+              "src/showcase/styles.css"
             ]
           }
         },

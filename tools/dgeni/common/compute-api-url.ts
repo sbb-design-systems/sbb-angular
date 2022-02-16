@@ -8,7 +8,5 @@ import { ModuleInfo } from '../processors/entry-point-grouper';
  */
 export function computeApiDocumentUrl(apiDoc: Document, moduleInfo: ModuleInfo): string {
   const baseUrl = moduleInfo.packageName.split('-')[1];
-  return baseUrl === 'core'
-    ? `${baseUrl}/api/${moduleInfo.entryPointName}#${apiDoc.name}`
-    : `${baseUrl}/components/${moduleInfo.entryPointName}/api#${apiDoc.name}`;
+  return `${baseUrl}/components/${moduleInfo.entryPointName}/api#${apiDoc.name}`;
 }

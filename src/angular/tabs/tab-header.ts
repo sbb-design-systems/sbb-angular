@@ -1,3 +1,4 @@
+import { Platform } from '@angular/cdk/platform';
 import { ViewportRuler } from '@angular/cdk/scrolling';
 import {
   AfterContentChecked,
@@ -39,9 +40,10 @@ export abstract class _SbbTabHeaderBase
     changeDetectorRef: ChangeDetectorRef,
     viewportRuler: ViewportRuler,
     ngZone: NgZone,
+    platform: Platform,
     @Optional() @Inject(ANIMATION_MODULE_TYPE) animationMode?: string
   ) {
-    super(elementRef, changeDetectorRef, viewportRuler, ngZone, animationMode);
+    super(elementRef, changeDetectorRef, viewportRuler, ngZone, platform, animationMode);
   }
 
   protected _itemSelected(event: KeyboardEvent) {
@@ -66,6 +68,7 @@ export abstract class _SbbTabHeaderBase
   changeDetection: ChangeDetectionStrategy.Default,
   host: {
     class: 'sbb-tab-header',
+    '[class.sbb-tab-header-pagination-controls-enabled]': `_showPaginationControls && this.variantSnapshot === 'lean'`,
   },
 })
 export class SbbTabHeader extends _SbbTabHeaderBase {
@@ -73,6 +76,9 @@ export class SbbTabHeader extends _SbbTabHeaderBase {
   _items: QueryList<SbbTabLabelWrapper>;
   @ViewChild('tabListContainer', { static: true }) _tabListContainer: ElementRef;
   @ViewChild('tabList', { static: true }) _tabList: ElementRef;
+  @ViewChild('tabListInner', { static: true }) _tabListInner: ElementRef;
+  @ViewChild('nextPaginator') _nextPaginator: ElementRef<HTMLElement>;
+  @ViewChild('previousPaginator') _previousPaginator: ElementRef<HTMLElement>;
 
   @Output() override selectFocusedIndex: EventEmitter<number> = new EventEmitter<number>();
   @Output() override indexFocused: EventEmitter<number> = new EventEmitter<number>();
@@ -82,8 +88,9 @@ export class SbbTabHeader extends _SbbTabHeaderBase {
     changeDetectorRef: ChangeDetectorRef,
     viewportRuler: ViewportRuler,
     ngZone: NgZone,
+    platform: Platform,
     @Optional() @Inject(ANIMATION_MODULE_TYPE) animationMode?: string
   ) {
-    super(elementRef, changeDetectorRef, viewportRuler, ngZone, animationMode);
+    super(elementRef, changeDetectorRef, viewportRuler, ngZone, platform, animationMode);
   }
 }

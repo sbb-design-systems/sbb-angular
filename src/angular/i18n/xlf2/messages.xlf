@@ -64,6 +64,24 @@
         <source>Show calendar</source>
       </segment>
     </unit>
+    <unit id="sbbDatePickerNextDayAriaLabel">
+      <notes>
+        <note category="location">../../../../../../src/angular/datepicker/datepicker/datepicker.ts:229</note>
+        <note category="description">Next day button&apos;s aria-label</note>
+      </notes>
+      <segment>
+        <source>Next day</source>
+      </segment>
+    </unit>
+    <unit id="sbbDatePickerPrevDayAriaLabel">
+      <notes>
+        <note category="location">../../../../../../src/angular/datepicker/datepicker/datepicker.ts:235</note>
+        <note category="description">Previous day button&apos;s aria-label</note>
+      </notes>
+      <segment>
+        <source>Previous day</source>
+      </segment>
+    </unit>
     <unit id="sbbDialogCloseDialog">
       <notes>
         <note category="location">../../../../../../src/angular/dialog/dialog-content-directives.ts:39</note>
@@ -156,7 +174,7 @@
     </unit>
     <unit id="sbbSidebarCollapse">
       <notes>
-        <note category="location">../../../../../../src/angular/sidebar/icon-sidebar/icon-sidebar.ts:72</note>
+        <note category="location">../../../../../../src/angular/sidebar/icon-sidebar/icon-sidebar.ts:78</note>
         <note category="description">Label to &apos;collapse&apos; icon sidebar</note>
       </notes>
       <segment>
@@ -165,7 +183,7 @@
     </unit>
     <unit id="sbbSidebarExpand">
       <notes>
-        <note category="location">../../../../../../src/angular/sidebar/icon-sidebar/icon-sidebar.ts:77</note>
+        <note category="location">../../../../../../src/angular/sidebar/icon-sidebar/icon-sidebar.ts:83</note>
         <note category="description">Label to &apos;expand&apos; icon sidebar</note>
       </notes>
       <segment>
@@ -174,7 +192,7 @@
     </unit>
     <unit id="sbbSidebarCloseSidebar">
       <notes>
-        <note category="location">../../../../../../src/angular/sidebar/sidebar/sidebar.ts:118</note>
+        <note category="location">../../../../../../src/angular/sidebar/sidebar/sidebar.ts:124</note>
         <note category="description">Button label to close the sidebar</note>
       </notes>
       <segment>
@@ -183,7 +201,7 @@
     </unit>
     <unit id="sbbSidebarOpenSidebar">
       <notes>
-        <note category="location">../../../../../../src/angular/sidebar/sidebar/sidebar.ts:505</note>
+        <note category="location">../../../../../../src/angular/sidebar/sidebar/sidebar.ts:517</note>
         <note category="description">Button label to open the sidebar</note>
       </notes>
       <segment>

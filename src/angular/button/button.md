@@ -50,16 +50,21 @@ Use the `.sbb-link-group` to display a list of `sbb-link` elements in a group.
 
 ### Accessibility
 
-sbb-angular uses native `<button>` and `<a>` elements to ensure an accessible experience by
-default. The `<button>` element should be used for any interaction that _performs an action on the
-current page_. The `<a>` element should be used for any interaction that _navigates to another
-view_.
+SBB Angular uses native `<button>` and `<a>` elements to ensure an accessible experience by
+default. A `<button>` element should be used for any interaction that _performs an action on the
+current page_. An `<a>` element should be used for any interaction that _navigates to another
+URL_. All standard accessibility best practices for buttons and anchors apply to `SbbButton`.
 
-Buttons or links containing only icons (such as `sbb-icon-button`)
-should be given a meaningful label via `aria-label` or `aria-labelledby`.
+#### Disabling anchors
 
-```html
-<button type="button" sbb-icon-button aria-label="See details">
-  <sbb-icon svgIcon="kom:eye-small">
-</button>
-```
+`SbbAnchor` supports disabling an anchor in addition to the features provided by the native
+`<a>` element. When you disable an anchor, the component sets `aria-disabled="true"` and
+`tabindex="-1"`. Always test disabled anchors in your application to ensure compatibility
+with any assistive technology your application supports.
+
+#### Buttons with icons
+
+Buttons or links containing only icons (`sbb-icon-button`)
+should be given a meaningful label via `aria-label` or `aria-labelledby`. [See the documentation
+for `SbbIcon`](https://angular.app.sbb.ch/angular/components/icon) for more
+information on using icons in buttons.

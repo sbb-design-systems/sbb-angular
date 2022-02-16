@@ -33,6 +33,7 @@ import {
   dispatchMouseEvent,
   patchElementFocus,
 } from '@sbb-esta/angular/core/testing';
+import { SbbIconTestingModule } from '@sbb-esta/angular/icon/testing';
 import { Subject } from 'rxjs';
 
 import {
@@ -56,7 +57,7 @@ describe('SbbTooltip', () => {
   beforeEach(
     waitForAsync(() => {
       TestBed.configureTestingModule({
-        imports: [SbbTooltipModule, OverlayModule, NoopAnimationsModule],
+        imports: [SbbTooltipModule, OverlayModule, NoopAnimationsModule, SbbIconTestingModule],
         declarations: [
           BasicTooltipDemo,
           ScrollableTooltipDemo,
@@ -65,6 +66,7 @@ describe('SbbTooltip', () => {
           TooltipOnTextFields,
           TooltipOnDraggableElement,
           DataBoundAriaLabelTooltip,
+          TriggerConfigurableTooltip,
         ],
         providers: [
           {
@@ -224,10 +226,9 @@ describe('SbbTooltip', () => {
       const overlayRef = tooltipDirective._overlayRef;
 
       expect(!!overlayRef).toBeTruthy();
-      expect(overlayRef!.overlayElement.classList).toContain(
-        'sbb-tooltip-panel',
-        'Expected the overlay panel element to have the tooltip panel class set.'
-      );
+      expect(overlayRef!.overlayElement.classList)
+        .withContext('Expected the overlay panel element to have the tooltip panel class set.')
+        .toContain('sbb-tooltip-panel');
     }));
 
     it('should not show if disabled', fakeAsync(() => {
@@ -374,14 +375,12 @@ describe('SbbTooltip', () => {
 
       // Make sure classes are correctly added
       tooltipElement = overlayContainerElement.querySelector('.sbb-tooltip') as HTMLElement;
-      expect(tooltipElement.classList).toContain(
-        'custom-one',
-        'Expected to have the class after enabling sbbTooltipClass'
-      );
-      expect(tooltipElement.classList).toContain(
-        'custom-two',
-        'Expected to have the class after enabling sbbTooltipClass'
-      );
+      expect(tooltipElement.classList)
+        .withContext('Expected to have the class after enabling sbbTooltipClass')
+        .toContain('custom-one');
+      expect(tooltipElement.classList)
+        .withContext('Expected to have the class after enabling sbbTooltipClass')
+        .toContain('custom-two');
     }));
 
     it('should be removed after parent destroyed', fakeAsync(() => {
@@ -480,7 +479,9 @@ describe('SbbTooltip', () => {
       )!;
 
       expect(tooltipWrapper).toBeTruthy('Expected tooltip to be shown.');
-      expect(tooltipWrapper.getAttribute('dir')).toBe('rtl', 'Expected tooltip to be in RTL mode.');
+      expect(tooltipWrapper.getAttribute('dir'))
+        .withContext('Expected tooltip to be in RTL mode.')
+        .toBe('rtl');
     }));
 
     it('should be able to set the tooltip message as a number', fakeAsync(() => {
@@ -540,9 +541,28 @@ describe('SbbTooltip', () => {
       expect(overlayContainerElement.textContent).toContain(initialTooltipMessage);
     }));
 
+    it('should hide when pressing escape', fakeAsync(() => {
+      tooltipDirective.show();
+      tick(0);
+      fixture.detectChanges();
+      tick(500);
+
+      expect(tooltipDirective._isTooltipVisible()).toBe(true);
+      expect(overlayContainerElement.textContent).toContain(initialTooltipMessage);
+
+      dispatchKeyboardEvent(document.body, 'keydown', ESCAPE);
+      tick(0);
+      fixture.detectChanges();
+      tick(500);
+      fixture.detectChanges();
+
+      expect(tooltipDirective._isTooltipVisible()).toBe(false);
+      expect(overlayContainerElement.textContent).toBe('');
+    }));
+
     it('should not throw when pressing ESCAPE', fakeAsync(() => {
       expect(() => {
-        dispatchKeyboardEvent(buttonElement, 'keydown', ESCAPE);
+        dispatchKeyboardEvent(document.body, 'keydown', ESCAPE);
         fixture.detectChanges();
       }).not.toThrow();
 
@@ -555,7 +575,7 @@ describe('SbbTooltip', () => {
       tick(0);
       fixture.detectChanges();
 
-      const event = dispatchKeyboardEvent(buttonElement, 'keydown', ESCAPE);
+      const event = dispatchKeyboardEvent(document.body, 'keydown', ESCAPE);
       fixture.detectChanges();
       flush();
 
@@ -568,7 +588,7 @@ describe('SbbTooltip', () => {
       fixture.detectChanges();
 
       const event = createKeyboardEvent('keydown', ESCAPE, undefined, { alt: true });
-      dispatchEvent(buttonElement, event);
+      dispatchEvent(document.body, event);
       fixture.detectChanges();
       flush();
 
@@ -675,6 +695,26 @@ describe('SbbTooltip', () => {
       // throw if we have any timers by the end of the test.
       fixture.destroy();
     }));
+
+    it('should emit event on dismissing tooltip', fakeAsync(() => {
+      assertTooltipInstance(tooltipDirective, false);
+
+      let event: SbbTooltipChangeEvent | null = null;
+      tooltipDirective.dismissed.subscribe((e) => (event = e));
+
+      tooltipDirective.show();
+      tick(0); // Tick for the show delay (default is 0)
+      fixture.detectChanges();
+      tick(500);
+
+      // After hide called, a timeout delay is created that will to hide the tooltip.
+      tooltipDirective.hide();
+      tick(0);
+      fixture.detectChanges();
+      flushMicrotasks();
+
+      expect(event!.instance).toBe(tooltipDirective);
+    }));
   });
 
   describe('scrollable usage', () => {
@@ -698,27 +738,24 @@ describe('SbbTooltip', () => {
       tick(0);
 
       // Expect that the tooltip is displayed
-      expect(tooltipDirective._isTooltipVisible()).toBe(
-        true,
-        'Expected tooltip to be initially visible'
-      );
+      expect(tooltipDirective._isTooltipVisible())
+        .withContext('Expected tooltip to be initially visible')
+        .toBe(true);
 
       // Scroll the page but tick just before the default throttle should update.
       fixture.componentInstance.scrollDown();
       tick(SCROLL_THROTTLE_MS - 1);
-      expect(tooltipDirective._isTooltipVisible()).toBe(
-        true,
-        'Expected tooltip to be visible when scrolling, before throttle limit'
-      );
+      expect(tooltipDirective._isTooltipVisible())
+        .withContext('Expected tooltip to be visible when scrolling, before throttle limit')
+        .toBe(true);
 
       // Finish ticking to the throttle's limit and check that the scroll event notified the
       // tooltip and it was hidden.
       tick(100);
       fixture.detectChanges();
-      expect(tooltipDirective._isTooltipVisible()).toBe(
-        false,
-        'Expected tooltip hidden when scrolled out of view, after throttle limit'
-      );
+      expect(tooltipDirective._isTooltipVisible())
+        .withContext('Expected tooltip hidden when scrolled out of view, after throttle limit')
+        .toBe(false);
     }));
 
     it('should execute the `hide` call, after scrolling away, inside the NgZone', fakeAsync(() => {
@@ -1069,6 +1106,43 @@ describe('SbbTooltip', () => {
       assertTooltipInstance(fixture.componentInstance.tooltip, true);
     }));
   });
+
+  describe('close button', () => {
+    it('should show close button on click trigger', fakeAsync(() => {
+      const fixture = TestBed.createComponent(TriggerConfigurableTooltip);
+      fixture.detectChanges();
+      const button: HTMLButtonElement = fixture.nativeElement.querySelector('button');
+
+      dispatchFakeEvent(button, 'click');
+      fixture.detectChanges();
+      tick(500); // Finish the open delay.
+      fixture.detectChanges();
+      tick(500); // Finish the animation.
+
+      expect(document.querySelector('.sbb-tooltip')!.classList).toContain(
+        'sbb-tooltip-has-close-button'
+      );
+      expect(document.querySelector('.sbb-tooltip-close-button')).toBeTruthy();
+    }));
+
+    it('should hide close button on hover trigger', fakeAsync(() => {
+      const fixture = TestBed.createComponent(TriggerConfigurableTooltip);
+      fixture.componentInstance.trigger = 'hover';
+      fixture.detectChanges();
+
+      fixture.componentInstance.tooltip.show(); // fake hover
+
+      fixture.detectChanges();
+      tick(500); // Finish the open delay.
+      fixture.detectChanges();
+      tick(500); // Finish the animation.
+
+      expect(document.querySelector('.sbb-tooltip')!.classList).not.toContain(
+        'sbb-tooltip-has-close-button'
+      );
+      expect(document.querySelector('.sbb-tooltip-close-button')).toBeFalsy();
+    }));
+  });
 });
 
 @Component({
@@ -1176,6 +1250,16 @@ class TooltipOnTextFields {
 class TooltipOnDraggableElement {
   @ViewChild('button') button: ElementRef;
   touchGestures: TooltipTouchGestures = 'auto';
+}
+
+@Component({
+  template: `
+    <button [sbbTooltip]="'content'" [sbbTooltipTrigger]="trigger">Show tooltip</button>
+  `,
+})
+class TriggerConfigurableTooltip {
+  @ViewChild(SbbTooltip) tooltip: SbbTooltip;
+  trigger: 'click' | 'hover' = 'click';
 }
 
 /** Asserts whether a tooltip directive has a tooltip instance. */

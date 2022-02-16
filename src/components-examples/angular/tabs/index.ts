@@ -15,6 +15,7 @@ import { TabGroupCustomLabelExample } from './tab-group-custom-label/tab-group-c
 import { TabGroupDynamicHeightExample } from './tab-group-dynamic-height/tab-group-dynamic-height-example';
 import { TabGroupDynamicExample } from './tab-group-dynamic/tab-group-dynamic-example';
 import { TabGroupLazyLoadedExample } from './tab-group-lazy-loaded/tab-group-lazy-loaded-example';
+import { TabGroupPreserveContentExample } from './tab-group-preserve-content/tab-group-preserve-content-example';
 import { TabNavBarBasicExample } from './tab-nav-bar-basic/tab-nav-bar-basic-example';
 
 export {
@@ -26,6 +27,7 @@ export {
   TabGroupDynamicHeightExample,
   TabGroupLazyLoadedExample,
   TabNavBarBasicExample,
+  TabGroupPreserveContentExample,
 };
 
 const EXAMPLES = [
@@ -37,6 +39,7 @@ const EXAMPLES = [
   TabGroupDynamicHeightExample,
   TabGroupLazyLoadedExample,
   TabNavBarBasicExample,
+  TabGroupPreserveContentExample,
 ];
 
 @NgModule({

@@ -4,6 +4,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { SbbCheckboxModule } from '@sbb-esta/angular/checkbox';
 import { SbbInputModule } from '@sbb-esta/angular/input';
 import { SbbSelectModule } from '@sbb-esta/angular/select';
+import { SbbTooltipModule } from '@sbb-esta/angular/tooltip';
 
 import { SelectFormsExample } from './select-forms/select-forms-example';
 import { SelectMultiSelectionExample } from './select-multi-selection/select-multi-selection-example';
@@ -38,6 +39,7 @@ const EXAMPLES = [
     SbbCheckboxModule,
     SbbInputModule,
     SbbSelectModule,
+    SbbTooltipModule,
   ],
   declarations: EXAMPLES,
   exports: EXAMPLES,

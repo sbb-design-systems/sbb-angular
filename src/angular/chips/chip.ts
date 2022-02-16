@@ -1,5 +1,5 @@
 import { FocusableOption } from '@angular/cdk/a11y';
-import { BooleanInput, coerceBooleanProperty, NumberInput } from '@angular/cdk/coercion';
+import { BooleanInput, coerceBooleanProperty } from '@angular/cdk/coercion';
 import { BACKSPACE, DELETE } from '@angular/cdk/keycodes';
 import {
   Attribute,
@@ -132,7 +132,7 @@ export class SbbChip
   get disabled(): boolean {
     return this._chipListDisabled || this._disabled;
   }
-  set disabled(value: boolean) {
+  set disabled(value: BooleanInput) {
     this._disabled = coerceBooleanProperty(value);
   }
   protected _disabled: boolean = false;
@@ -144,7 +144,7 @@ export class SbbChip
   get removable(): boolean {
     return this._removable;
   }
-  set removable(value: boolean) {
+  set removable(value: BooleanInput) {
     this._removable = coerceBooleanProperty(value);
   }
   protected _removable: boolean = true;
@@ -248,8 +248,6 @@ export class SbbChip
   _handleClick(event: Event) {
     if (this.disabled) {
       event.preventDefault();
-    } else {
-      event.stopPropagation();
     }
   }
 
@@ -282,10 +280,6 @@ export class SbbChip
       });
     });
   }
-
-  static ngAcceptInputType_removable: BooleanInput;
-  static ngAcceptInputType_disabled: BooleanInput;
-  static ngAcceptInputType_tabIndex: NumberInput;
 }
 
 /**

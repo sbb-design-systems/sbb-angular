@@ -12,7 +12,7 @@ The datepicker form field can have a toggle to show a calendar to pick dates fro
 and arrows which by clicking increase or decrease dates.
 
 ```html
-<sbb-datepicker toggle="false" arrows>
+<sbb-datepicker notoggle arrows>
   <input sbbDateInput />
 </sbb-datepicker>
 ```
@@ -86,6 +86,41 @@ The `sbbDateInput` can be used without a `sbb-datepicker`.
 </sbb-form-field>
 ```
 
+### Date Handling
+
+`SbbDatepicker` by default uses the native [Date](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date)
+object (see below for the `SbbDateAdapter`). This ensures consistency in the way dates are
+handled in your application. However, `Date` has a few unexpected behaviors, as described
+below (not complete):
+
+**Month is zero indexed**
+
+When creating or reading a date, the month is zero indexed. This does not apply when using
+ISO dates.
+
+| Usage                                | Result          |
+| ------------------------------------ | --------------- |
+| new Date(2020, 0, 1)                 | 1. January 2020 |
+| new Date(2020, 0, 1).getMonth()      | 0               |
+| new Date('2020-01-01T12:00:00.000Z') | 1. January 2020 |
+
+**Dates are local by default, but UTC when converting to JSON**
+
+This can be especially surprising when using the datepicker for selecting a date and sending
+the date to a backend, since it will be converted to UTC, which might change the effective date
+due to the timezone conversion.
+
+| CET: UTC+01:00                | UTC                      |
+| ----------------------------- | ------------------------ |
+| new Date(2020, 0, 1, 0, 0, 0) | 2019-12-31T23:00:00.000Z |
+
+We recommend to convert the `Date` object to a string represation of only the date part.
+
+| Usage examples | Format `yyyy-mm-dd`                                                                                                              |
+| -------------- | -------------------------------------------------------------------------------------------------------------------------------- |
+| `native`       | `` `${date.getFullYear()}-${(date.getMonth() + 1).toString().padStart(2, '0')}-${date.getDate().toString().padStart(2, '0')}` `` |
+| `date-fns`     | `formatISO(date, { representation: 'date' })`                                                                                    |
+
 ### Converting User Inputs
 
 #### Year Pivot
@@ -112,7 +147,7 @@ have 2000 added to it, years from pivot year + 1 to 100 (exclusive) will have 19
 #### Date Adapter
 
 A Date Adapter defines how to deal with dates and converts user inputs in to date objets.
-The `Datepicker` uses the `DateAdapter` internally, respectively the `NativeDateAdapter`,
+The `SbbDatepicker` uses the `SbbDateAdapter` internally, respectively the `SbbNativeDateAdapter`,
 which uses the JavaScript `Date` object.
 
 ##### LeanDateAdapter
@@ -138,3 +173,7 @@ It is possible to implement your own `DateAdapter` and register it globally:
 })
 export class AppModule {}
 ```
+
+### Accessibility
+
+Add a custom `aria-label` to the next- and previous day buttons by setting `nextDayAriaLabel` and `prevDayAriaLabel`.

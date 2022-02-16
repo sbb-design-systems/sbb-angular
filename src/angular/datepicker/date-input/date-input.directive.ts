@@ -24,6 +24,7 @@ import {
   Validators,
 } from '@angular/forms';
 import { SbbDateAdapter, SbbDateFormats, SBB_DATE_FORMATS, TypeRef } from '@sbb-esta/angular/core';
+import { SbbFormField, SBB_FORM_FIELD } from '@sbb-esta/angular/form-field';
 import { SBB_INPUT_VALUE_ACCESSOR } from '@sbb-esta/angular/input';
 import { Subscription } from 'rxjs';
 
@@ -144,7 +145,7 @@ export class SbbDateInput<D> implements ControlValueAccessor, Validator, OnInit,
   get disabled(): boolean {
     return this._disabled;
   }
-  set disabled(value: boolean) {
+  set disabled(value: BooleanInput) {
     const newValue = coerceBooleanProperty(value);
     const element = this._elementRef.nativeElement;
 
@@ -162,6 +163,17 @@ export class SbbDateInput<D> implements ControlValueAccessor, Validator, OnInit,
     }
   }
   private _disabled = false;
+
+  /** Whether the element is readonly. */
+  @Input()
+  get readonly(): boolean {
+    return this._readonly;
+  }
+  set readonly(value: BooleanInput) {
+    this._readonly = coerceBooleanProperty(value);
+    this.readonlyChange.next(this._readonly);
+  }
+  private _readonly = false;
 
   /** Emits when a `change` event is fired on this `<input>`. */
   @Output() readonly dateChange: EventEmitter<SbbDateInputEvent<D>> = new EventEmitter<
@@ -181,6 +193,9 @@ export class SbbDateInput<D> implements ControlValueAccessor, Validator, OnInit,
 
   /** Emits when the disabled state has changed */
   disabledChange: EventEmitter<boolean> = new EventEmitter<boolean>();
+
+  /** Emits when the readonly state has changed */
+  readonlyChange: EventEmitter<boolean> = new EventEmitter<boolean>();
 
   private _datepickerSubscription = Subscription.EMPTY;
 
@@ -239,7 +254,8 @@ export class SbbDateInput<D> implements ControlValueAccessor, Validator, OnInit,
     private _elementRef: ElementRef<HTMLInputElement>,
     @Optional() public _dateAdapter: SbbDateAdapter<D>,
     @Optional() @Inject(SBB_DATE_FORMATS) private _dateFormats: SbbDateFormats,
-    @Optional() public _datepicker: SbbDatepicker<D>
+    @Optional() public _datepicker: SbbDatepicker<D>,
+    @Optional() @Inject(SBB_FORM_FIELD) private _formField?: SbbFormField
   ) {
     if (!this._dateAdapter) {
       throw createMissingDateImplError('DateAdapter');
@@ -366,5 +382,12 @@ export class SbbDateInput<D> implements ControlValueAccessor, Validator, OnInit,
     return this._dateAdapter.isDateInstance(obj) && this._dateAdapter.isValid(obj) ? obj : null;
   }
 
-  static ngAcceptInputType_disabled: BooleanInput;
+  /** Gets the ID of an element that should be used a description for the calendar overlay. */
+  getOverlayLabelId(): string | null {
+    if (this._formField) {
+      return this._formField.getLabelId();
+    }
+
+    return this._elementRef.nativeElement.getAttribute('aria-labelledby');
+  }
 }

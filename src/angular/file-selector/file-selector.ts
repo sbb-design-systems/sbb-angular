@@ -91,7 +91,7 @@ export class SbbFileSelector
   get multiple(): boolean {
     return this._multiple;
   }
-  set multiple(value: boolean) {
+  set multiple(value: BooleanInput) {
     this._multiple = coerceBooleanProperty(value);
   }
   private _multiple = false;
@@ -232,9 +232,4 @@ export class SbbFileSelector
       file1.lastModified === file2.lastModified
     );
   }
-
-  static ngAcceptInputType_capture: 'user' | 'environment' | string | null | undefined;
-  static ngAcceptInputType_multipleMode: 'default' | 'persistent' | string | null | undefined;
-  static ngAcceptInputType_disabled: BooleanInput;
-  static ngAcceptInputType_multiple: BooleanInput;
 }

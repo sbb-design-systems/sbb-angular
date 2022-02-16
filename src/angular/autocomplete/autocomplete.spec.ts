@@ -586,26 +586,22 @@ describe('SbbAutocomplete', () => {
     });
 
     it('should open the panel when the input is focused', () => {
-      expect(fixture.componentInstance.trigger.panelOpen).toBe(
-        false,
-        `Expected panel state to start out closed.`
-      );
+      expect(fixture.componentInstance.trigger.panelOpen)
+        .withContext(`Expected panel state to start out closed.`)
+        .toBe(false);
 
       dispatchFakeEvent(input, 'focusin');
       fixture.detectChanges();
 
-      expect(fixture.componentInstance.trigger.panelOpen).toBe(
-        true,
-        `Expected panel state to read open when input is focused.`
-      );
-      expect(overlayContainerElement.textContent).toContain(
-        'Eins',
-        `Expected panel to display when input is focused.`
-      );
-      expect(overlayContainerElement.textContent).toContain(
-        'Zwei',
-        `Expected panel to display when input is focused.`
-      );
+      expect(fixture.componentInstance.trigger.panelOpen)
+        .withContext(`Expected panel state to read open when input is focused.`)
+        .toBe(true);
+      expect(overlayContainerElement.textContent)
+        .withContext(`Expected panel to display when input is focused.`)
+        .toContain('Eins');
+      expect(overlayContainerElement.textContent)
+        .withContext(`Expected panel to display when input is focused.`)
+        .toContain('Zwei');
     });
 
     it('should not open the panel on focus if the input is readonly', fakeAsync(() => {
@@ -613,12 +609,14 @@ describe('SbbAutocomplete', () => {
       input.readOnly = true;
       fixture.detectChanges();
 
-      expect(trigger.panelOpen).toBe(false, 'Expected panel state to start out closed.');
+      expect(trigger.panelOpen)
+        .withContext('Expected panel state to start out closed.')
+        .toBe(false);
       dispatchFakeEvent(input, 'focusin');
       flush();
 
       fixture.detectChanges();
-      expect(trigger.panelOpen).toBe(false, 'Expected panel to stay closed.');
+      expect(trigger.panelOpen).withContext('Expected panel to stay closed.').toBe(false);
     }));
 
     it('should not open using the arrow keys when the input is readonly', fakeAsync(() => {
@@ -626,35 +624,33 @@ describe('SbbAutocomplete', () => {
       input.readOnly = true;
       fixture.detectChanges();
 
-      expect(trigger.panelOpen).toBe(false, 'Expected panel state to start out closed.');
+      expect(trigger.panelOpen)
+        .withContext('Expected panel state to start out closed.')
+        .toBe(false);
       dispatchKeyboardEvent(input, 'keydown', DOWN_ARROW);
       flush();
 
       fixture.detectChanges();
-      expect(trigger.panelOpen).toBe(false, 'Expected panel to stay closed.');
+      expect(trigger.panelOpen).withContext('Expected panel to stay closed.').toBe(false);
     }));
 
     it('should open the panel programmatically', () => {
-      expect(fixture.componentInstance.trigger.panelOpen).toBe(
-        false,
-        `Expected panel state to start out closed.`
-      );
+      expect(fixture.componentInstance.trigger.panelOpen)
+        .withContext(`Expected panel state to start out closed.`)
+        .toBe(false);
 
       fixture.componentInstance.trigger.openPanel();
       fixture.detectChanges();
 
-      expect(fixture.componentInstance.trigger.panelOpen).toBe(
-        true,
-        `Expected panel state to read open when opened programmatically.`
-      );
-      expect(overlayContainerElement.textContent).toContain(
-        'Eins',
-        `Expected panel to display when opened programmatically.`
-      );
-      expect(overlayContainerElement.textContent).toContain(
-        'Zwei',
-        `Expected panel to display when opened programmatically.`
-      );
+      expect(fixture.componentInstance.trigger.panelOpen)
+        .withContext(`Expected panel state to read open when opened programmatically.`)
+        .toBe(true);
+      expect(overlayContainerElement.textContent)
+        .withContext(`Expected panel to display when opened programmatically.`)
+        .toContain('Eins');
+      expect(overlayContainerElement.textContent)
+        .withContext(`Expected panel to display when opened programmatically.`)
+        .toContain('Zwei');
     });
 
     it(
@@ -668,10 +664,9 @@ describe('SbbAutocomplete', () => {
           fixture.componentInstance.trigger.openPanel();
 
           Promise.resolve().then(() => {
-            expect(fixture.componentInstance.panel.showPanel).toBe(
-              true,
-              `Expected panel to be visible.`
-            );
+            expect(fixture.componentInstance.panel.showPanel)
+              .withContext(`Expected panel to be visible.`)
+              .toBe(true);
           });
         });
       })
@@ -683,14 +678,12 @@ describe('SbbAutocomplete', () => {
       zone.simulateZoneExit();
       dispatchFakeEvent(document, 'click');
 
-      expect(fixture.componentInstance.trigger.panelOpen).toBe(
-        false,
-        `Expected clicking outside the panel to set its state to closed.`
-      );
-      expect(overlayContainerElement.textContent).toEqual(
-        '',
-        `Expected clicking outside the panel to close the panel.`
-      );
+      expect(fixture.componentInstance.trigger.panelOpen)
+        .withContext(`Expected clicking outside the panel to set its state to closed.`)
+        .toBe(false);
+      expect(overlayContainerElement.textContent)
+        .withContext(`Expected clicking outside the panel to close the panel.`)
+        .toEqual('');
     }));
 
     it('should close the panel when the user clicks away via auxilliary button', fakeAsync(() => {
@@ -699,14 +692,12 @@ describe('SbbAutocomplete', () => {
       zone.simulateZoneExit();
       dispatchFakeEvent(document, 'auxclick');
 
-      expect(fixture.componentInstance.trigger.panelOpen).toBe(
-        false,
-        `Expected clicking outside the panel to set its state to closed.`
-      );
-      expect(overlayContainerElement.textContent).toEqual(
-        '',
-        `Expected clicking outside the panel to close the panel.`
-      );
+      expect(fixture.componentInstance.trigger.panelOpen)
+        .withContext(`Expected clicking outside the panel to set its state to closed.`)
+        .toBe(false);
+      expect(overlayContainerElement.textContent)
+        .withContext(`Expected clicking outside the panel to close the panel.`)
+        .toEqual('');
     }));
 
     it('should close the panel when the user taps away on a touch device', fakeAsync(() => {
@@ -715,14 +706,12 @@ describe('SbbAutocomplete', () => {
       flush();
       dispatchFakeEvent(document, 'touchend');
 
-      expect(fixture.componentInstance.trigger.panelOpen).toBe(
-        false,
-        `Expected tapping outside the panel to set its state to closed.`
-      );
-      expect(overlayContainerElement.textContent).toEqual(
-        '',
-        `Expected tapping outside the panel to close the panel.`
-      );
+      expect(fixture.componentInstance.trigger.panelOpen)
+        .withContext(`Expected tapping outside the panel to set its state to closed.`)
+        .toBe(false);
+      expect(overlayContainerElement.textContent)
+        .withContext(`Expected tapping outside the panel to close the panel.`)
+        .toEqual('');
     }));
 
     it('should close the panel when an option is clicked', fakeAsync(() => {
@@ -734,14 +723,12 @@ describe('SbbAutocomplete', () => {
       option.click();
       fixture.detectChanges();
 
-      expect(fixture.componentInstance.trigger.panelOpen).toBe(
-        false,
-        `Expected clicking an option to set the panel state to closed.`
-      );
-      expect(overlayContainerElement.textContent).toEqual(
-        '',
-        `Expected clicking an option to close the panel.`
-      );
+      expect(fixture.componentInstance.trigger.panelOpen)
+        .withContext(`Expected clicking an option to set the panel state to closed.`)
+        .toBe(false);
+      expect(overlayContainerElement.textContent)
+        .withContext(`Expected clicking an option to close the panel.`)
+        .toEqual('');
     }));
 
     it('should close the panel when a newly created option is clicked', fakeAsync(() => {
@@ -771,14 +758,12 @@ describe('SbbAutocomplete', () => {
       options[1].click();
       fixture.detectChanges();
 
-      expect(fixture.componentInstance.trigger.panelOpen).toBe(
-        false,
-        `Expected clicking a new option to set the panel state to closed.`
-      );
-      expect(overlayContainerElement.textContent).toEqual(
-        '',
-        `Expected clicking a new option to close the panel.`
-      );
+      expect(fixture.componentInstance.trigger.panelOpen)
+        .withContext(`Expected clicking a new option to set the panel state to closed.`)
+        .toBe(false);
+      expect(overlayContainerElement.textContent)
+        .withContext(`Expected clicking a new option to close the panel.`)
+        .toEqual('');
     }));
 
     it('should close the panel programmatically', () => {
@@ -788,14 +773,12 @@ describe('SbbAutocomplete', () => {
       fixture.componentInstance.trigger.closePanel();
       fixture.detectChanges();
 
-      expect(fixture.componentInstance.trigger.panelOpen).toBe(
-        false,
-        `Expected closing programmatically to set the panel state to closed.`
-      );
-      expect(overlayContainerElement.textContent).toEqual(
-        '',
-        `Expected closing programmatically to close the panel.`
-      );
+      expect(fixture.componentInstance.trigger.panelOpen)
+        .withContext(`Expected closing programmatically to set the panel state to closed.`)
+        .toBe(false);
+      expect(overlayContainerElement.textContent)
+        .withContext(`Expected closing programmatically to close the panel.`)
+        .toEqual('');
     });
 
     it('should not throw when attempting to close the panel of a destroyed autocomplete', () => {
@@ -814,10 +797,9 @@ describe('SbbAutocomplete', () => {
 
       const panel = overlayContainerElement.querySelector('.sbb-autocomplete-panel') as HTMLElement;
 
-      expect(panel.classList).toContain(
-        'sbb-autocomplete-visible',
-        `Expected panel to start out visible.`
-      );
+      expect(panel.classList)
+        .withContext(`Expected panel to start out visible.`)
+        .toContain('sbb-autocomplete-visible');
 
       // Filter down the option list such that no options match the value
       typeInElement(input, 'af');
@@ -825,26 +807,23 @@ describe('SbbAutocomplete', () => {
       tick();
       fixture.detectChanges();
 
-      expect(panel.classList).toContain(
-        'sbb-autocomplete-hidden',
-        `Expected panel to hide itself when empty.`
-      );
+      expect(panel.classList)
+        .withContext(`Expected panel to hide itself when empty.`)
+        .toContain('sbb-autocomplete-hidden');
     }));
 
     it('should not open the panel when the `input` event is invoked on a non-focused input', () => {
-      expect(fixture.componentInstance.trigger.panelOpen).toBe(
-        false,
-        `Expected panel state to start out closed.`
-      );
+      expect(fixture.componentInstance.trigger.panelOpen)
+        .withContext(`Expected panel state to start out closed.`)
+        .toBe(false);
 
       input.value = 'Alabama';
       dispatchFakeEvent(input, 'input');
       fixture.detectChanges();
 
-      expect(fixture.componentInstance.trigger.panelOpen).toBe(
-        false,
-        `Expected panel state to stay closed.`
-      );
+      expect(fixture.componentInstance.trigger.panelOpen)
+        .withContext(`Expected panel state to stay closed.`)
+        .toBe(false);
     });
 
     it('should toggle the visibility when typing and closing the panel', fakeAsync(() => {
@@ -853,10 +832,9 @@ describe('SbbAutocomplete', () => {
       fixture.detectChanges();
 
       expect(overlayContainerElement.querySelector('.sbb-autocomplete-panel')).toBeTruthy();
-      expect(overlayContainerElement.querySelector('.sbb-autocomplete-panel')!.classList).toContain(
-        'sbb-autocomplete-visible',
-        'Expected panel to be visible.'
-      );
+      expect(overlayContainerElement.querySelector('.sbb-autocomplete-panel')!.classList)
+        .withContext('Expected panel to be visible.')
+        .toContain('sbb-autocomplete-visible');
 
       typeInElement(input, 'x');
       fixture.detectChanges();
@@ -865,10 +843,9 @@ describe('SbbAutocomplete', () => {
 
       expect(overlayContainerElement.querySelector('.sbb-autocomplete-panel')).toBeTruthy();
 
-      expect(overlayContainerElement.querySelector('.sbb-autocomplete-panel')!.classList).toContain(
-        'sbb-autocomplete-hidden',
-        'Expected panel to be hidden.'
-      );
+      expect(overlayContainerElement.querySelector('.sbb-autocomplete-panel')!.classList)
+        .withContext('Expected panel to be hidden.')
+        .toContain('sbb-autocomplete-hidden');
 
       fixture.componentInstance.trigger.closePanel();
       fixture.detectChanges();
@@ -883,10 +860,9 @@ describe('SbbAutocomplete', () => {
       fixture.detectChanges();
 
       expect(overlayContainerElement.querySelector('.sbb-autocomplete-panel')).toBeTruthy();
-      expect(overlayContainerElement.querySelector('.sbb-autocomplete-panel')!.classList).toContain(
-        'sbb-autocomplete-visible',
-        'Expected panel to be visible.'
-      );
+      expect(overlayContainerElement.querySelector('.sbb-autocomplete-panel')!.classList)
+        .withContext('Expected panel to be visible.')
+        .toContain('sbb-autocomplete-visible');
     }));
 
     it('should provide the open state of the panel', fakeAsync(() => {
@@ -977,10 +953,9 @@ describe('SbbAutocomplete', () => {
     });
 
     it('should not be able to open the panel if the autocomplete is disabled', () => {
-      expect(fixture.componentInstance.trigger.panelOpen).toBe(
-        false,
-        `Expected panel state to start out closed.`
-      );
+      expect(fixture.componentInstance.trigger.panelOpen)
+        .withContext(`Expected panel state to start out closed.`)
+        .toBe(false);
 
       fixture.componentInstance.autocompleteDisabled = true;
       fixture.detectChanges();
@@ -988,10 +963,9 @@ describe('SbbAutocomplete', () => {
       dispatchFakeEvent(input, 'focusin');
       fixture.detectChanges();
 
-      expect(fixture.componentInstance.trigger.panelOpen).toBe(
-        false,
-        `Expected panel to remain closed.`
-      );
+      expect(fixture.componentInstance.trigger.panelOpen)
+        .withContext(`Expected panel to remain closed.`)
+        .toBe(false);
     });
 
     it('should continue to update the model if the autocomplete is disabled', () => {
@@ -1023,18 +997,16 @@ describe('SbbAutocomplete', () => {
     fixture.detectChanges();
     zone.simulateZoneExit();
 
-    expect(fixture.componentInstance.trigger.panelOpen).toBe(
-      true,
-      'Expected panel to be opened on focus.'
-    );
+    expect(fixture.componentInstance.trigger.panelOpen)
+      .withContext('Expected panel to be opened on focus.')
+      .toBe(true);
 
     input.click();
     fixture.detectChanges();
 
-    expect(fixture.componentInstance.trigger.panelOpen).toBe(
-      true,
-      'Expected panel to remain opened after clicking on the input.'
-    );
+    expect(fixture.componentInstance.trigger.panelOpen)
+      .withContext('Expected panel to remain opened after clicking on the input.')
+      .toBe(true);
   }));
 
   it('should not close the panel when clicking on the input inside shadow DOM', fakeAsync(() => {
@@ -1051,18 +1023,16 @@ describe('SbbAutocomplete', () => {
     fixture.detectChanges();
     zone.simulateZoneExit();
 
-    expect(fixture.componentInstance.trigger.panelOpen).toBe(
-      true,
-      'Expected panel to be opened on focus.'
-    );
+    expect(fixture.componentInstance.trigger.panelOpen)
+      .withContext('Expected panel to be opened on focus.')
+      .toBe(true);
 
     input.click();
     fixture.detectChanges();
 
-    expect(fixture.componentInstance.trigger.panelOpen).toBe(
-      true,
-      'Expected panel to remain opened after clicking on the input.'
-    );
+    expect(fixture.componentInstance.trigger.panelOpen)
+      .withContext('Expected panel to remain opened after clicking on the input.')
+      .toBe(true);
   }));
 
   it('should be able to set a custom value for the `autocomplete` attribute', () => {
@@ -1103,19 +1073,17 @@ describe('SbbAutocomplete', () => {
       typeInElement(input, 'a');
       fixture.detectChanges();
 
-      expect(fixture.componentInstance.numberCtrl.value).toEqual(
-        'a',
-        'Expected control value to be updated as user types.'
-      );
+      expect(fixture.componentInstance.numberCtrl.value)
+        .withContext('Expected control value to be updated as user types.')
+        .toEqual('a');
 
       clearElement(input);
       typeInElement(input, 'al');
       fixture.detectChanges();
 
-      expect(fixture.componentInstance.numberCtrl.value).toEqual(
-        'al',
-        'Expected control value to be updated as user types.'
-      );
+      expect(fixture.componentInstance.numberCtrl.value)
+        .withContext('Expected control value to be updated as user types.')
+        .toEqual('al');
     });
 
     it('should update control value when autofilling', () => {
@@ -1126,10 +1094,9 @@ describe('SbbAutocomplete', () => {
       dispatchFakeEvent(input, 'input');
       fixture.detectChanges();
 
-      expect(fixture.componentInstance.numberCtrl.value).toBe(
-        'Alabama',
-        'Expected value to be propagated to the form control.'
-      );
+      expect(fixture.componentInstance.numberCtrl.value)
+        .withContext('Expected value to be propagated to the form control.')
+        .toBe('Alabama');
     });
 
     it('should update control value when option is selected with option value', fakeAsync(() => {
@@ -1143,10 +1110,9 @@ describe('SbbAutocomplete', () => {
       options[1].click();
       fixture.detectChanges();
 
-      expect(fixture.componentInstance.numberCtrl.value).toEqual(
-        { code: '2', name: 'Zwei', height: 48 },
-        'Expected control value to equal the selected option value.'
-      );
+      expect(fixture.componentInstance.numberCtrl.value)
+        .withContext('Expected control value to equal the selected option value.')
+        .toEqual({ code: '2', name: 'Zwei', height: 48 });
     }));
 
     it('should update the control back to a string if user types after an option is selected', fakeAsync(() => {
@@ -1165,10 +1131,9 @@ describe('SbbAutocomplete', () => {
       fixture.detectChanges();
       tick();
 
-      expect(fixture.componentInstance.numberCtrl.value).toEqual(
-        'Californi',
-        'Expected control value to revert back to string.'
-      );
+      expect(fixture.componentInstance.numberCtrl.value)
+        .withContext('Expected control value to revert back to string.')
+        .toEqual('Californi');
     }));
 
     it('should fill the text field with display value when an option is selected', fakeAsync(() => {
@@ -1182,7 +1147,9 @@ describe('SbbAutocomplete', () => {
       options[1].click();
       fixture.detectChanges();
 
-      expect(input.value).toContain('Zwei', `Expected text field to fill with selected value.`);
+      expect(input.value)
+        .withContext(`Expected text field to fill with selected value.`)
+        .toContain('Zwei');
     }));
 
     it('should fill the text field with value if displayWith is not set', fakeAsync(() => {
@@ -1200,10 +1167,9 @@ describe('SbbAutocomplete', () => {
       options[1].click();
 
       fixture.detectChanges();
-      expect(input.value).toContain(
-        'test value',
-        `Expected input to fall back to selected option's value.`
-      );
+      expect(input.value)
+        .withContext(`Expected input to fall back to selected option's value.`)
+        .toContain('test value');
     }));
 
     it('should fill the text field correctly if value is set to obj programmatically', fakeAsync(() => {
@@ -1215,10 +1181,9 @@ describe('SbbAutocomplete', () => {
       tick();
       fixture.detectChanges();
 
-      expect(input.value).toContain(
-        'Eins',
-        `Expected input to fill with matching option's viewValue.`
-      );
+      expect(input.value)
+        .withContext(`Expected input to fill with matching option's viewValue.`)
+        .toContain('Eins');
     }));
 
     it('should clear the text field if value is reset programmatically', fakeAsync(() => {
@@ -1232,51 +1197,47 @@ describe('SbbAutocomplete', () => {
       fixture.detectChanges();
       tick();
 
-      expect(input.value).toEqual('', `Expected input value to be empty after reset.`);
+      expect(input.value).withContext(`Expected input value to be empty after reset.`).toEqual('');
     }));
 
     it('should disable input in view when disabled programmatically', () => {
       const formFieldElement = fixture.debugElement.query(By.css('.sbb-form-field'))!.nativeElement;
 
-      expect(input.disabled).toBe(false, `Expected input to start out enabled in view.`);
-      expect(formFieldElement.classList.contains('sbb-form-field-disabled')).toBe(
-        false,
-        `Expected input underline to start out with normal styles.`
-      );
+      expect(input.disabled)
+        .withContext(`Expected input to start out enabled in view.`)
+        .toBe(false);
+      expect(formFieldElement.classList.contains('sbb-form-field-disabled'))
+        .withContext(`Expected input underline to start out with normal styles.`)
+        .toBe(false);
 
       fixture.componentInstance.numberCtrl.disable();
       fixture.detectChanges();
 
-      expect(input.disabled).toBe(
-        true,
-        `Expected input to be disabled in view when disabled programmatically.`
-      );
-      expect(formFieldElement.classList.contains('sbb-form-field-disabled')).toBe(
-        true,
-        `Expected input underline to display disabled styles.`
-      );
+      expect(input.disabled)
+        .withContext(`Expected input to be disabled in view when disabled programmatically.`)
+        .toBe(true);
+      expect(formFieldElement.classList.contains('sbb-form-field-disabled'))
+        .withContext(`Expected input underline to display disabled styles.`)
+        .toBe(true);
     });
 
     it('should mark the autocomplete control as dirty as user types', () => {
-      expect(fixture.componentInstance.numberCtrl.dirty).toBe(
-        false,
-        `Expected control to start out pristine.`
-      );
+      expect(fixture.componentInstance.numberCtrl.dirty)
+        .withContext(`Expected control to start out pristine.`)
+        .toBe(false);
 
       typeInElement(input, 'a');
       fixture.detectChanges();
 
-      expect(fixture.componentInstance.numberCtrl.dirty).toBe(
-        true,
-        `Expected control to become dirty when the user types into the input.`
-      );
+      expect(fixture.componentInstance.numberCtrl.dirty)
+        .withContext(`Expected control to become dirty when the user types into the input.`)
+        .toBe(true);
     });
 
     it('should mark the autocomplete control as dirty when an option is selected', fakeAsync(() => {
-      expect(fixture.componentInstance.numberCtrl.dirty).toBe(
-        false,
-        `Expected control to start out pristine.`
-      );
+      expect(fixture.componentInstance.numberCtrl.dirty)
+        .withContext(`Expected control to start out pristine.`)
+        .toBe(false);
 
       fixture.componentInstance.trigger.openPanel();
       fixture.detectChanges();
@@ -1288,42 +1249,37 @@ describe('SbbAutocomplete', () => {
       options[1].click();
       fixture.detectChanges();
 
-      expect(fixture.componentInstance.numberCtrl.dirty).toBe(
-        true,
-        `Expected control to become dirty when an option was selected.`
-      );
+      expect(fixture.componentInstance.numberCtrl.dirty)
+        .withContext(`Expected control to become dirty when an option was selected.`)
+        .toBe(true);
     }));
 
     it('should not mark the control dirty when the value is set programmatically', () => {
-      expect(fixture.componentInstance.numberCtrl.dirty).toBe(
-        false,
-        `Expected control to start out pristine.`
-      );
+      expect(fixture.componentInstance.numberCtrl.dirty)
+        .withContext(`Expected control to start out pristine.`)
+        .toBe(false);
 
       fixture.componentInstance.numberCtrl.setValue('AL');
       fixture.detectChanges();
 
-      expect(fixture.componentInstance.numberCtrl.dirty).toBe(
-        false,
-        `Expected control to stay pristine if value is set programmatically.`
-      );
+      expect(fixture.componentInstance.numberCtrl.dirty)
+        .withContext(`Expected control to stay pristine if value is set programmatically.`)
+        .toBe(false);
     });
 
     it('should mark the autocomplete control as touched on blur', () => {
       fixture.componentInstance.trigger.openPanel();
       fixture.detectChanges();
-      expect(fixture.componentInstance.numberCtrl.touched).toBe(
-        false,
-        `Expected control to start out untouched.`
-      );
+      expect(fixture.componentInstance.numberCtrl.touched)
+        .withContext(`Expected control to start out untouched.`)
+        .toBe(false);
 
       dispatchFakeEvent(input, 'blur');
       fixture.detectChanges();
 
-      expect(fixture.componentInstance.numberCtrl.touched).toBe(
-        true,
-        `Expected control to become touched on blur.`
-      );
+      expect(fixture.componentInstance.numberCtrl.touched)
+        .withContext(`Expected control to become touched on blur.`)
+        .toBe(true);
     });
 
     it('should disable the input when used with a value accessor and without `sbbInput`', () => {
@@ -1375,18 +1331,15 @@ describe('SbbAutocomplete', () => {
     it('should not close the panel when DOWN key is pressed', () => {
       fixture.componentInstance.trigger._handleKeydown(downArrowEvent);
 
-      expect(fixture.componentInstance.trigger.panelOpen).toBe(
-        true,
-        `Expected panel state to stay open when DOWN key is pressed.`
-      );
-      expect(overlayContainerElement.textContent).toContain(
-        'Eins',
-        `Expected panel to keep displaying when DOWN key is pressed.`
-      );
-      expect(overlayContainerElement.textContent).toContain(
-        'Zwei',
-        `Expected panel to keep displaying when DOWN key is pressed.`
-      );
+      expect(fixture.componentInstance.trigger.panelOpen)
+        .withContext(`Expected panel state to stay open when DOWN key is pressed.`)
+        .toBe(true);
+      expect(overlayContainerElement.textContent)
+        .withContext(`Expected panel to keep displaying when DOWN key is pressed.`)
+        .toContain('Eins');
+      expect(overlayContainerElement.textContent)
+        .withContext(`Expected panel to keep displaying when DOWN key is pressed.`)
+        .toContain('Zwei');
     });
 
     it('should set the active item to the first option when DOWN key is pressed', () => {
@@ -1395,18 +1348,16 @@ describe('SbbAutocomplete', () => {
         'sbb-option'
       ) as NodeListOf<HTMLElement>;
 
-      expect(componentInstance.trigger.panelOpen).toBe(
-        true,
-        'Expected first down press to open the pane.'
-      );
+      expect(componentInstance.trigger.panelOpen)
+        .withContext('Expected first down press to open the pane.')
+        .toBe(true);
 
       componentInstance.trigger._handleKeydown(downArrowEvent);
       fixture.detectChanges();
 
-      expect(componentInstance.trigger.activeOption === componentInstance.options.first).toBe(
-        true,
-        'Expected first option to be active.'
-      );
+      expect(componentInstance.trigger.activeOption === componentInstance.options.first)
+        .withContext('Expected first option to be active.')
+        .toBe(true);
       expect(optionEls[0].classList).toContain('sbb-focused');
       expect(optionEls[1].classList).not.toContain('sbb-focused');
 
@@ -1426,28 +1377,25 @@ describe('SbbAutocomplete', () => {
         'sbb-option'
       ) as NodeListOf<HTMLElement>;
 
-      expect(componentInstance.trigger.panelOpen).toBe(
-        true,
-        'Expected first up press to open the pane.'
-      );
+      expect(componentInstance.trigger.panelOpen)
+        .withContext('Expected first up press to open the pane.')
+        .toBe(true);
 
       componentInstance.trigger._handleKeydown(upArrowEvent);
       fixture.detectChanges();
 
-      expect(componentInstance.trigger.activeOption === componentInstance.options.last).toBe(
-        true,
-        'Expected last option to be active.'
-      );
+      expect(componentInstance.trigger.activeOption === componentInstance.options.last)
+        .withContext('Expected last option to be active.')
+        .toBe(true);
       expect(optionEls[10].classList).toContain('sbb-focused');
       expect(optionEls[0].classList).not.toContain('sbb-focused');
 
       componentInstance.trigger._handleKeydown(downArrowEvent);
       fixture.detectChanges();
 
-      expect(componentInstance.trigger.activeOption === componentInstance.options.first).toBe(
-        true,
-        'Expected first option to be active.'
-      );
+      expect(componentInstance.trigger.activeOption === componentInstance.options.first)
+        .withContext('Expected first option to be active.')
+        .toBe(true);
       expect(optionEls[0].classList).toContain('sbb-focused');
     });
 
@@ -1472,10 +1420,9 @@ describe('SbbAutocomplete', () => {
         'sbb-option'
       ) as NodeListOf<HTMLElement>;
 
-      expect(componentInstance.trigger.activeOption === componentInstance.options.first).toBe(
-        true,
-        'Expected first option to be active.'
-      );
+      expect(componentInstance.trigger.activeOption === componentInstance.options.first)
+        .withContext('Expected first option to be active.')
+        .toBe(true);
       expect(optionEls[0].classList).toContain('sbb-focused');
       expect(optionEls[1].classList).not.toContain('sbb-focused');
     });
@@ -1487,10 +1434,9 @@ describe('SbbAutocomplete', () => {
 
       fixture.componentInstance.trigger._handleKeydown(enterEvent);
       fixture.detectChanges();
-      expect(input.value).toContain(
-        'Eins',
-        `Expected text field to fill with selected value on ENTER.`
-      );
+      expect(input.value)
+        .withContext(`Expected text field to fill with selected value on ENTER.`)
+        .toContain('Eins');
     }));
 
     it('should prevent the default enter key action', fakeAsync(() => {
@@ -1499,10 +1445,9 @@ describe('SbbAutocomplete', () => {
 
       fixture.componentInstance.trigger._handleKeydown(enterEvent);
 
-      expect(enterEvent.defaultPrevented).toBe(
-        true,
-        'Expected the default action to have been prevented.'
-      );
+      expect(enterEvent.defaultPrevented)
+        .withContext('Expected the default action to have been prevented.')
+        .toBe(true);
     }));
 
     it('should not prevent the default enter action for a closed panel after a user action', () => {
@@ -1513,8 +1458,31 @@ describe('SbbAutocomplete', () => {
       fixture.detectChanges();
       fixture.componentInstance.trigger._handleKeydown(enterEvent);
 
-      expect(enterEvent.defaultPrevented).toBe(false, 'Default action should not be prevented.');
+      expect(enterEvent.defaultPrevented)
+        .withContext('Default action should not be prevented.')
+        .toBe(false);
     });
+
+    it('should not interfere with the ENTER key when pressing a modifier', fakeAsync(() => {
+      const trigger = fixture.componentInstance.trigger;
+
+      expect(input.value).toBeFalsy('Expected input to start off blank.');
+      expect(trigger.panelOpen).withContext('Expected panel to start off open.').toBe(true);
+
+      fixture.componentInstance.trigger._handleKeydown(downArrowEvent);
+      flush();
+      fixture.detectChanges();
+
+      Object.defineProperty(enterEvent, 'altKey', { get: () => true });
+      fixture.componentInstance.trigger._handleKeydown(enterEvent);
+      fixture.detectChanges();
+
+      expect(trigger.panelOpen).withContext('Expected panel to remain open.').toBe(true);
+      expect(input.value).toBeFalsy('Expected input to remain blank.');
+      expect(enterEvent.defaultPrevented)
+        .withContext('Expected the default ENTER action not to have been prevented.')
+        .toBe(false);
+    }));
 
     it('should fill the text field, not select an option, when SPACE is entered', () => {
       typeInElement(input, 'New');
@@ -1531,20 +1499,18 @@ describe('SbbAutocomplete', () => {
     });
 
     it('should mark the control dirty when selecting an option from the keyboard', fakeAsync(() => {
-      expect(fixture.componentInstance.numberCtrl.dirty).toBe(
-        false,
-        `Expected control to start out pristine.`
-      );
+      expect(fixture.componentInstance.numberCtrl.dirty)
+        .withContext(`Expected control to start out pristine.`)
+        .toBe(false);
 
       fixture.componentInstance.trigger._handleKeydown(downArrowEvent);
       flush();
       fixture.componentInstance.trigger._handleKeydown(enterEvent);
       fixture.detectChanges();
 
-      expect(fixture.componentInstance.numberCtrl.dirty).toBe(
-        true,
-        `Expected control to become dirty when option was selected by ENTER.`
-      );
+      expect(fixture.componentInstance.numberCtrl.dirty)
+        .withContext(`Expected control to become dirty when option was selected by ENTER.`)
+        .toBe(true);
     }));
 
     it('should open the panel again when typing after making a selection', fakeAsync(() => {
@@ -1553,14 +1519,12 @@ describe('SbbAutocomplete', () => {
       fixture.componentInstance.trigger._handleKeydown(enterEvent);
       fixture.detectChanges();
 
-      expect(fixture.componentInstance.trigger.panelOpen).toBe(
-        false,
-        `Expected panel state to read closed after ENTER key.`
-      );
-      expect(overlayContainerElement.textContent).toEqual(
-        '',
-        `Expected panel to close after ENTER key.`
-      );
+      expect(fixture.componentInstance.trigger.panelOpen)
+        .withContext(`Expected panel state to read closed after ENTER key.`)
+        .toBe(false);
+      expect(overlayContainerElement.textContent)
+        .withContext(`Expected panel to close after ENTER key.`)
+        .toEqual('');
 
       dispatchFakeEvent(input, 'focusin');
       clearElement(input);
@@ -1568,14 +1532,12 @@ describe('SbbAutocomplete', () => {
       fixture.detectChanges();
       tick();
 
-      expect(fixture.componentInstance.trigger.panelOpen).toBe(
-        true,
-        `Expected panel state to read open when typing in input.`
-      );
-      expect(overlayContainerElement.textContent).toContain(
-        'Eins',
-        `Expected panel to display when typing in input.`
-      );
+      expect(fixture.componentInstance.trigger.panelOpen)
+        .withContext(`Expected panel state to read open when typing in input.`)
+        .toBe(true);
+      expect(overlayContainerElement.textContent)
+        .withContext(`Expected panel to display when typing in input.`)
+        .toContain('Eins');
     }));
 
     it('should not open the panel if the `input` event was dispatched with changing the value', fakeAsync(() => {
@@ -1586,12 +1548,12 @@ describe('SbbAutocomplete', () => {
       fixture.detectChanges();
       tick();
 
-      expect(trigger.panelOpen).toBe(true, 'Expected panel to be open.');
+      expect(trigger.panelOpen).withContext('Expected panel to be open.').toBe(true);
 
       trigger.closePanel();
       fixture.detectChanges();
 
-      expect(trigger.panelOpen).toBe(false, 'Expected panel to be closed.');
+      expect(trigger.panelOpen).withContext('Expected panel to be closed.').toBe(false);
 
       // Dispatch the event without actually changing the value
       // to simulate what happen in some cases on IE.
@@ -1599,7 +1561,7 @@ describe('SbbAutocomplete', () => {
       fixture.detectChanges();
       tick();
 
-      expect(trigger.panelOpen).toBe(false, 'Expected panel to stay closed.');
+      expect(trigger.panelOpen).withContext('Expected panel to stay closed.').toBe(false);
     }));
 
     it('should scroll to active options below the fold', () => {
@@ -1611,13 +1573,15 @@ describe('SbbAutocomplete', () => {
 
       trigger._handleKeydown(downArrowEvent);
       fixture.detectChanges();
-      expect(scrollContainer.scrollTop).toEqual(0, `Expected panel not to scroll.`);
+      expect(scrollContainer.scrollTop).withContext(`Expected panel not to scroll.`).toEqual(0);
 
       // These down arrows will set the 6th option active, below the fold.
       [1, 2, 3, 4, 5].forEach(() => trigger._handleKeydown(downArrowEvent));
 
       // Expect option bottom minus the panel height plus padding (288 - 256 + 10 = 42)
-      expect(scrollContainer.scrollTop).toEqual(42, `Expected panel to reveal the sixth option.`);
+      expect(scrollContainer.scrollTop)
+        .withContext(`Expected panel to reveal the sixth option.`)
+        .toEqual(42);
     });
 
     it('should scroll to active options below if the option height is variable', () => {
@@ -1637,13 +1601,15 @@ describe('SbbAutocomplete', () => {
 
       trigger._handleKeydown(downArrowEvent);
       fixture.detectChanges();
-      expect(scrollContainer.scrollTop).toEqual(0, `Expected panel not to scroll.`);
+      expect(scrollContainer.scrollTop).withContext(`Expected panel not to scroll.`).toEqual(0);
 
       // These down arrows will set the 6th option active, below the fold.
       [1, 2, 3, 4, 5].forEach(() => trigger._handleKeydown(downArrowEvent));
 
       // Expect option bottom minus the panel height plus padding (336 - 256 + 10 = 90)
-      expect(scrollContainer.scrollTop).toEqual(90, `Expected panel to reveal the sixth option.`);
+      expect(scrollContainer.scrollTop)
+        .withContext(`Expected panel to reveal the sixth option.`)
+        .toEqual(90);
     });
 
     it('should scroll to active options on UP arrow', () => {
@@ -1656,7 +1622,9 @@ describe('SbbAutocomplete', () => {
       fixture.detectChanges();
 
       // Expect option bottom minus the panel height plus padding (528 - 256 + 10 = 282)
-      expect(scrollContainer.scrollTop).toEqual(282, `Expected panel to reveal last option.`);
+      expect(scrollContainer.scrollTop)
+        .withContext(`Expected panel to reveal last option.`)
+        .toEqual(282);
     });
 
     it('should not scroll to active options that are fully in the panel', () => {
@@ -1670,22 +1638,23 @@ describe('SbbAutocomplete', () => {
       trigger._handleKeydown(downArrowEvent);
       fixture.detectChanges();
 
-      expect(scrollContainer.scrollTop).toEqual(0, `Expected panel not to scroll.`);
+      expect(scrollContainer.scrollTop).withContext(`Expected panel not to scroll.`).toEqual(0);
 
       // These down arrows will set the 6th option active, below the fold.
       [1, 2, 3, 4, 5].forEach(() => trigger._handleKeydown(downArrowEvent));
 
       // Expect option bottom minus the panel height plus padding (288 - 256 + 10 = 42)
-      expect(scrollContainer.scrollTop).toEqual(42, `Expected panel to reveal the sixth option.`);
+      expect(scrollContainer.scrollTop)
+        .withContext(`Expected panel to reveal the sixth option.`)
+        .toEqual(42);
 
       // These up arrows will set the 2nd option active
       [4, 3, 2, 1].forEach(() => trigger._handleKeydown(upArrowEvent));
 
       // Expect no scrolling to have occurred. Still showing bottom of 6th option.
-      expect(scrollContainer.scrollTop).toEqual(
-        42,
-        `Expected panel not to scroll up since sixth option still fully visible.`
-      );
+      expect(scrollContainer.scrollTop)
+        .withContext(`Expected panel not to scroll up since sixth option still fully visible.`)
+        .toEqual(42);
     });
 
     it('should scroll to active options that are above the panel', () => {
@@ -1698,7 +1667,7 @@ describe('SbbAutocomplete', () => {
       trigger._handleKeydown(downArrowEvent);
       fixture.detectChanges();
 
-      expect(scrollContainer.scrollTop).toEqual(0, `Expected panel not to scroll.`);
+      expect(scrollContainer.scrollTop).withContext(`Expected panel not to scroll.`).toEqual(0);
 
       // These down arrows will set the 7th option active, below the fold.
       [1, 2, 3, 4, 5, 6].forEach(() => trigger._handleKeydown(downArrowEvent));
@@ -1707,10 +1676,9 @@ describe('SbbAutocomplete', () => {
       [5, 4, 3, 2, 1].forEach(() => trigger._handleKeydown(upArrowEvent));
 
       // Expect to show the top of the 2nd option at the top of the panel (including panel padding 10px)
-      expect(scrollContainer.scrollTop).toEqual(
-        58,
-        `Expected panel to scroll up when option is above panel.`
-      );
+      expect(scrollContainer.scrollTop)
+        .withContext(`Expected panel to scroll up when option is above panel.`)
+        .toEqual(58);
     });
 
     it('should close the panel when pressing escape', fakeAsync(() => {
@@ -1720,14 +1688,16 @@ describe('SbbAutocomplete', () => {
       flush();
       fixture.detectChanges();
 
-      expect(document.activeElement).toBe(input, 'Expected input to be focused.');
-      expect(trigger.panelOpen).toBe(true, 'Expected panel to be open.');
+      expect(document.activeElement).withContext('Expected input to be focused.').toBe(input);
+      expect(trigger.panelOpen).withContext('Expected panel to be open.').toBe(true);
 
       dispatchKeyboardEvent(document.body, 'keydown', ESCAPE);
       fixture.detectChanges();
 
-      expect(document.activeElement).toBe(input, 'Expected input to continue to be focused.');
-      expect(trigger.panelOpen).toBe(false, 'Expected panel to be closed.');
+      expect(document.activeElement)
+        .withContext('Expected input to continue to be focused.')
+        .toBe(input);
+      expect(trigger.panelOpen).withContext('Expected panel to be closed.').toBe(false);
     }));
 
     it('should prevent the default action when pressing escape', fakeAsync(() => {
@@ -1744,17 +1714,21 @@ describe('SbbAutocomplete', () => {
       flush();
       fixture.detectChanges();
 
-      expect(document.activeElement).toBe(input, 'Expected input to be focused.');
-      expect(trigger.panelOpen).toBe(true, 'Expected panel to be open.');
+      expect(document.activeElement).withContext('Expected input to be focused.').toBe(input);
+      expect(trigger.panelOpen).withContext('Expected panel to be open.').toBe(true);
 
       const event = dispatchKeyboardEvent(document.body, 'keydown', ESCAPE, undefined, {
         alt: true,
       });
       fixture.detectChanges();
 
-      expect(document.activeElement).toBe(input, 'Expected input to continue to be focused.');
-      expect(trigger.panelOpen).toBe(true, 'Expected panel to stay open.');
-      expect(event.defaultPrevented).toBe(false, 'Expected default action not to be prevented.');
+      expect(document.activeElement)
+        .withContext('Expected input to continue to be focused.')
+        .toBe(input);
+      expect(trigger.panelOpen).withContext('Expected panel to stay open.').toBe(true);
+      expect(event.defaultPrevented)
+        .withContext('Expected default action not to be prevented.')
+        .toBe(false);
     }));
 
     it('should close the panel when pressing ALT + UP_ARROW', fakeAsync(() => {
@@ -1768,14 +1742,16 @@ describe('SbbAutocomplete', () => {
       flush();
       fixture.detectChanges();
 
-      expect(document.activeElement).toBe(input, 'Expected input to be focused.');
-      expect(trigger.panelOpen).toBe(true, 'Expected panel to be open.');
+      expect(document.activeElement).withContext('Expected input to be focused.').toBe(input);
+      expect(trigger.panelOpen).withContext('Expected panel to be open.').toBe(true);
 
       dispatchEvent(document.body, upArrowEventWithAltModifier);
       fixture.detectChanges();
 
-      expect(document.activeElement).toBe(input, 'Expected input to continue to be focused.');
-      expect(trigger.panelOpen).toBe(false, 'Expected panel to be closed.');
+      expect(document.activeElement)
+        .withContext('Expected input to continue to be focused.')
+        .toBe(input);
+      expect(trigger.panelOpen).withContext('Expected panel to be closed.').toBe(false);
       expect(upArrowEventWithAltModifier.stopPropagation).toHaveBeenCalled();
     }));
 
@@ -1805,8 +1781,8 @@ describe('SbbAutocomplete', () => {
       fixture.detectChanges();
       tick();
 
-      expect(trigger.panelOpen).toBe(true, 'Expected panel to be open.');
-      expect(!!trigger.activeOption).toBe(false, 'Expected no active option.');
+      expect(trigger.panelOpen).withContext('Expected panel to be open.').toBe(true);
+      expect(!!trigger.activeOption).withContext('Expected no active option.').toBe(false);
 
       // Press the down arrow a few times.
       [1, 2, 3].forEach(() => {
@@ -1817,12 +1793,12 @@ describe('SbbAutocomplete', () => {
 
       // Note that this casts to a boolean, in order to prevent Jasmine
       // from crashing when trying to stringify the option if the test fails.
-      expect(!!trigger.activeOption).toBe(true, 'Expected to find an active option.');
+      expect(!!trigger.activeOption).withContext('Expected to find an active option.').toBe(true);
 
       dispatchKeyboardEvent(document.body, 'keydown', ESCAPE);
       tick();
 
-      expect(!!trigger.activeOption).toBe(false, 'Expected no active options.');
+      expect(!!trigger.activeOption).withContext('Expected no active options.').toBe(false);
     }));
 
     it('should reset the active option when closing by selecting with enter', fakeAsync(() => {
@@ -1832,8 +1808,8 @@ describe('SbbAutocomplete', () => {
       fixture.detectChanges();
       tick();
 
-      expect(trigger.panelOpen).toBe(true, 'Expected panel to be open.');
-      expect(!!trigger.activeOption).toBe(false, 'Expected no active option.');
+      expect(trigger.panelOpen).withContext('Expected panel to be open.').toBe(true);
+      expect(!!trigger.activeOption).withContext('Expected no active option.').toBe(false);
 
       // Press the down arrow a few times.
       [1, 2, 3].forEach(() => {
@@ -1844,12 +1820,12 @@ describe('SbbAutocomplete', () => {
 
       // Note that this casts to a boolean, in order to prevent Jasmine
       // from crashing when trying to stringify the option if the test fails.
-      expect(!!trigger.activeOption).toBe(true, 'Expected to find an active option.');
+      expect(!!trigger.activeOption).withContext('Expected to find an active option.').toBe(true);
 
       trigger._handleKeydown(enterEvent);
       tick();
 
-      expect(!!trigger.activeOption).toBe(false, 'Expected no active options.');
+      expect(!!trigger.activeOption).withContext('Expected no active options.').toBe(false);
     }));
   });
 
@@ -1876,7 +1852,7 @@ describe('SbbAutocomplete', () => {
       fixture.componentInstance.trigger._handleKeydown(downArrowEvent);
       tick();
       fixture.detectChanges();
-      expect(container.scrollTop).toBe(0, 'Expected the panel not to scroll.');
+      expect(container.scrollTop).withContext('Expected the panel not to scroll.').toBe(0);
 
       // Press the down arrow five times.
       [1, 2, 3, 4, 5].forEach(() => {
@@ -1886,7 +1862,9 @@ describe('SbbAutocomplete', () => {
 
       // <option bottom> - <panel height> + <2x group labels> + <panel padding> = 83
       // 288 - 256 + 41 + 10 = 83
-      expect(container.scrollTop).toBe(83, 'Expected panel to reveal the sixth option.');
+      expect(container.scrollTop)
+        .withContext('Expected panel to reveal the sixth option.')
+        .toBe(83);
     }));
 
     it('should scroll to active options on UP arrow', fakeAsync(() => {
@@ -1906,7 +1884,7 @@ describe('SbbAutocomplete', () => {
 
       // <option bottom> - <panel height> + <3x group label> + <panel padding> = 401
       // 576 - 256 + 71 + 10 = 401
-      expect(container.scrollTop).toBe(401, 'Expected panel to reveal last option.');
+      expect(container.scrollTop).withContext('Expected panel to reveal last option.').toBe(401);
     }));
 
     it('should scroll to active options that are above the panel', fakeAsync(() => {
@@ -1923,7 +1901,7 @@ describe('SbbAutocomplete', () => {
       fixture.componentInstance.trigger._handleKeydown(downArrowEvent);
       tick();
       fixture.detectChanges();
-      expect(container.scrollTop).toBe(0, 'Expected panel not to scroll.');
+      expect(container.scrollTop).withContext('Expected panel not to scroll.').toBe(0);
 
       // These down arrows will set the 7th option active, below the fold.
       [1, 2, 3, 4, 5, 6].forEach(() => {
@@ -1939,10 +1917,9 @@ describe('SbbAutocomplete', () => {
 
       // Expect to show the top of the 2nd option at the top of the panel.
       // It is offset by 21px, because there's a group label above it.
-      expect(container.scrollTop).toBe(
-        69,
-        'Expected panel to scroll up when option is above panel.'
-      );
+      expect(container.scrollTop)
+        .withContext('Expected panel to scroll up when option is above panel.')
+        .toBe(69);
     }));
 
     it('should scroll back to the top when reaching the first option with preceding group label', fakeAsync(() => {
@@ -1958,7 +1935,7 @@ describe('SbbAutocomplete', () => {
       fixture.componentInstance.trigger._handleKeydown(downArrowEvent);
       tick();
       fixture.detectChanges();
-      expect(container.scrollTop).toBe(0, 'Expected the panel not to scroll.');
+      expect(container.scrollTop).withContext('Expected the panel not to scroll.').toBe(0);
 
       // Press the down arrow five times.
       [1, 2, 3, 4, 5].forEach(() => {
@@ -1972,7 +1949,7 @@ describe('SbbAutocomplete', () => {
         tick();
       });
 
-      expect(container.scrollTop).toBe(0, 'Expected panel to be scrolled to the top.');
+      expect(container.scrollTop).withContext('Expected panel to be scrolled to the top.').toBe(0);
     }));
 
     it('should scroll to active option when group is indirect descendant', fakeAsync(() => {
@@ -1989,7 +1966,7 @@ describe('SbbAutocomplete', () => {
       fixture.componentInstance.trigger._handleKeydown(downArrowEvent);
       tick();
       fixture.detectChanges();
-      expect(container.scrollTop).toBe(0, 'Expected the panel not to scroll.');
+      expect(container.scrollTop).withContext('Expected the panel not to scroll.').toBe(0);
 
       // Press the down arrow five times.
       [1, 2, 3, 4, 5].forEach(() => {
@@ -1999,7 +1976,9 @@ describe('SbbAutocomplete', () => {
 
       // <option bottom> - <panel height> + <2x group labels> = 81
       // 288 - 156 + 41 = 128
-      expect(container.scrollTop).toBe(81, 'Expected panel to reveal the sixth option.');
+      expect(container.scrollTop)
+        .withContext('Expected panel to reveal the sixth option.')
+        .toBe(81);
     }));
   });
 
@@ -2015,10 +1994,9 @@ describe('SbbAutocomplete', () => {
     });
 
     it('should set role of input to combobox', () => {
-      expect(input.getAttribute('role')).toEqual(
-        'combobox',
-        'Expected role of input to be combobox.'
-      );
+      expect(input.getAttribute('role'))
+        .withContext('Expected role of input to be combobox.')
+        .toEqual('combobox');
     });
 
     it('should set role of autocomplete panel to listbox', () => {
@@ -2027,10 +2005,9 @@ describe('SbbAutocomplete', () => {
 
       const panel = fixture.debugElement.query(By.css('.sbb-autocomplete-panel')).nativeElement;
 
-      expect(panel.getAttribute('role')).toEqual(
-        'listbox',
-        'Expected role of the panel to be listbox.'
-      );
+      expect(panel.getAttribute('role'))
+        .withContext('Expected role of the panel to be listbox.')
+        .toEqual('listbox');
     });
 
     it('should point the aria-labelledby of the panel to the field label', () => {
@@ -2097,20 +2074,18 @@ describe('SbbAutocomplete', () => {
     });
 
     it('should set aria-autocomplete to list', () => {
-      expect(input.getAttribute('aria-autocomplete')).toEqual(
-        'list',
-        'Expected aria-autocomplete attribute to equal list.'
-      );
+      expect(input.getAttribute('aria-autocomplete'))
+        .withContext('Expected aria-autocomplete attribute to equal list.')
+        .toEqual('list');
     });
 
     it('should set aria-activedescendant based on the active option', fakeAsync(() => {
       fixture.componentInstance.trigger.openPanel();
       fixture.detectChanges();
 
-      expect(input.hasAttribute('aria-activedescendant')).toBe(
-        false,
-        'Expected aria-activedescendant to be absent if no active item.'
-      );
+      expect(input.hasAttribute('aria-activedescendant'))
+        .withContext('Expected aria-activedescendant to be absent if no active item.')
+        .toBe(false);
 
       const downArrowEvent = createKeyboardEvent('keydown', DOWN_ARROW);
 
@@ -2118,61 +2093,54 @@ describe('SbbAutocomplete', () => {
       tick();
       fixture.detectChanges();
 
-      expect(input.getAttribute('aria-activedescendant')).toEqual(
-        fixture.componentInstance.options.first.id,
-        'Expected aria-activedescendant to match the active item after 1 down arrow.'
-      );
+      expect(input.getAttribute('aria-activedescendant'))
+        .withContext('Expected aria-activedescendant to match the active item after 1 down arrow.')
+        .toEqual(fixture.componentInstance.options.first.id);
 
       fixture.componentInstance.trigger._handleKeydown(downArrowEvent);
       tick();
       fixture.detectChanges();
 
-      expect(input.getAttribute('aria-activedescendant')).toEqual(
-        fixture.componentInstance.options.toArray()[1].id,
-        'Expected aria-activedescendant to match the active item after 2 down arrows.'
-      );
+      expect(input.getAttribute('aria-activedescendant'))
+        .withContext('Expected aria-activedescendant to match the active item after 2 down arrows.')
+        .toEqual(fixture.componentInstance.options.toArray()[1].id);
     }));
 
     it('should set aria-expanded based on whether the panel is open', () => {
-      expect(input.getAttribute('aria-expanded')).toBe(
-        'false',
-        'Expected aria-expanded to be false while panel is closed.'
-      );
+      expect(input.getAttribute('aria-expanded'))
+        .withContext('Expected aria-expanded to be false while panel is closed.')
+        .toBe('false');
 
       fixture.componentInstance.trigger.openPanel();
       fixture.detectChanges();
 
-      expect(input.getAttribute('aria-expanded')).toBe(
-        'true',
-        'Expected aria-expanded to be true while panel is open.'
-      );
+      expect(input.getAttribute('aria-expanded'))
+        .withContext('Expected aria-expanded to be true while panel is open.')
+        .toBe('true');
 
       fixture.componentInstance.trigger.closePanel();
       fixture.detectChanges();
 
-      expect(input.getAttribute('aria-expanded')).toBe(
-        'false',
-        'Expected aria-expanded to be false when panel closes again.'
-      );
+      expect(input.getAttribute('aria-expanded'))
+        .withContext('Expected aria-expanded to be false when panel closes again.')
+        .toBe('false');
     });
 
     it('should set aria-expanded properly when the panel is hidden', fakeAsync(() => {
       fixture.componentInstance.trigger.openPanel();
       fixture.detectChanges();
-      expect(input.getAttribute('aria-expanded')).toBe(
-        'true',
-        'Expected aria-expanded to be true while panel is open.'
-      );
+      expect(input.getAttribute('aria-expanded'))
+        .withContext('Expected aria-expanded to be true while panel is open.')
+        .toBe('true');
 
       typeInElement(input, 'zz');
       fixture.detectChanges();
       tick();
       fixture.detectChanges();
 
-      expect(input.getAttribute('aria-expanded')).toBe(
-        'false',
-        'Expected aria-expanded to be false when panel hides itself.'
-      );
+      expect(input.getAttribute('aria-expanded'))
+        .withContext('Expected aria-expanded to be false when panel hides itself.')
+        .toBe('false');
     }));
 
     it('should set aria-owns based on the attached autocomplete', () => {
@@ -2181,10 +2149,9 @@ describe('SbbAutocomplete', () => {
 
       const panel = fixture.debugElement.query(By.css('.sbb-autocomplete-panel')).nativeElement;
 
-      expect(input.getAttribute('aria-owns')).toBe(
-        panel.getAttribute('id'),
-        'Expected aria-owns to match attached autocomplete.'
-      );
+      expect(input.getAttribute('aria-owns'))
+        .withContext('Expected aria-owns to match attached autocomplete.')
+        .toBe(panel.getAttribute('id'));
     });
 
     it('should not set aria-owns while the autocomplete is closed', () => {
@@ -2208,7 +2175,9 @@ describe('SbbAutocomplete', () => {
       option.click();
       fixture.detectChanges();
 
-      expect(document.activeElement).toBe(input, 'Expected focus to be restored to the input.');
+      expect(document.activeElement)
+        .withContext('Expected focus to be restored to the input.')
+        .toBe(input);
     }));
 
     it('should remove autocomplete-specific aria attributes when autocomplete is disabled', () => {
@@ -2239,10 +2208,9 @@ describe('SbbAutocomplete', () => {
       const panel = overlayContainerElement.querySelector('.sbb-autocomplete-panel')!;
       const panelTop = panel.getBoundingClientRect().top;
 
-      expect(Math.round(inputBottom - panelTop)).toEqual(
-        1,
-        `Expected panel top to match input bottom by default.`
-      );
+      expect(Math.round(inputBottom - panelTop))
+        .withContext(`Expected panel top to match input bottom by default.`)
+        .toEqual(1);
       expect(panel.classList).not.toContain('sbb-panel-above');
     }));
 
@@ -2275,10 +2243,9 @@ describe('SbbAutocomplete', () => {
       const panel = overlayContainerElement.querySelector('.cdk-overlay-pane')!;
       const panelTop = panel.getBoundingClientRect().top;
 
-      expect(Math.floor(inputBottom)).toEqual(
-        Math.floor(panelTop),
-        'Expected panel top to match input bottom after scrolling.'
-      );
+      expect(Math.floor(inputBottom))
+        .withContext('Expected panel top to match input bottom after scrolling.')
+        .toEqual(Math.floor(panelTop));
 
       document.body.removeChild(spacer);
       window.scroll(0, 0);
@@ -2304,10 +2271,9 @@ describe('SbbAutocomplete', () => {
       const panel = overlayContainerElement.querySelector('.cdk-overlay-pane')!;
       const panelBottom = panel.getBoundingClientRect().bottom;
 
-      expect(Math.floor(inputTop)).toEqual(
-        Math.floor(panelBottom),
-        `Expected panel to fall back to above position.`
-      );
+      expect(Math.floor(inputTop))
+        .withContext(`Expected panel to fall back to above position.`)
+        .toEqual(Math.floor(panelBottom));
 
       expect(panel.classList).toContain('sbb-autocomplete-panel-above');
     }));
@@ -2379,10 +2345,9 @@ describe('SbbAutocomplete', () => {
       const panelBottom = panel.getBoundingClientRect().bottom;
 
       // add horizontal line
-      expect(Math.floor(inputTop + 1)).toEqual(
-        Math.floor(panelBottom),
-        `Expected panel to stay aligned after filtering.`
-      );
+      expect(Math.floor(inputTop + 1))
+        .withContext(`Expected panel to stay aligned after filtering.`)
+        .toEqual(Math.floor(panelBottom));
     }));
 
     it('should fall back to above position when requested if options are added while the panel is open', fakeAsync(() => {
@@ -2407,10 +2372,9 @@ describe('SbbAutocomplete', () => {
       let inputRect = inputEl.getBoundingClientRect();
       let panelRect = panel.getBoundingClientRect();
 
-      expect(Math.floor(panelRect.top + 1)).toBe(
-        Math.floor(inputRect.bottom),
-        `Expected panel top to be below input before repositioning.`
-      );
+      expect(Math.floor(panelRect.top + 1))
+        .withContext(`Expected panel top to be below input before repositioning.`)
+        .toBe(Math.floor(inputRect.bottom));
 
       for (let i = 0; i < 20; i++) {
         fixture.componentInstance.filteredNumbers.push({ code: 'FK', name: 'Fake State' });
@@ -2424,10 +2388,9 @@ describe('SbbAutocomplete', () => {
       panelRect = panel.getBoundingClientRect();
 
       // subtract 1px horizontal line
-      expect(Math.floor(panelRect.bottom - 1)).toBe(
-        Math.floor(inputRect.top),
-        `Expected panel to fall back to above position after repositioning.`
-      );
+      expect(Math.floor(panelRect.bottom - 1))
+        .withContext(`Expected panel to fall back to above position after repositioning.`)
+        .toBe(Math.floor(inputRect.top));
       tick();
     }));
 
@@ -2458,10 +2421,9 @@ describe('SbbAutocomplete', () => {
       const panel = overlayContainerElement.querySelector('.cdk-overlay-pane')!;
       const panelTop = panel.getBoundingClientRect().top;
 
-      expect(Math.floor(inputBottom)).toEqual(
-        Math.floor(panelTop),
-        'Expected panel to be below the input.'
-      );
+      expect(Math.floor(inputBottom))
+        .withContext('Expected panel to be below the input.')
+        .toEqual(Math.floor(panelTop));
 
       expect(panel.classList).not.toContain('sbb-autocomplete-panel-above');
     }));
@@ -2486,10 +2448,9 @@ describe('SbbAutocomplete', () => {
       const panel = overlayContainerElement.querySelector('.cdk-overlay-pane')!;
       const panelBottom = panel.getBoundingClientRect().bottom;
 
-      expect(Math.floor(inputTop)).toEqual(
-        Math.floor(panelBottom),
-        'Expected panel to be above the input.'
-      );
+      expect(Math.floor(inputTop))
+        .withContext('Expected panel to be above the input.')
+        .toEqual(Math.floor(panelBottom));
 
       expect(panel.classList).toContain('sbb-autocomplete-panel-above');
     }));
@@ -2516,10 +2477,9 @@ describe('SbbAutocomplete', () => {
       let panel = overlayContainerElement.querySelector('.cdk-overlay-pane')!;
       let panelRect = panel.getBoundingClientRect();
 
-      expect(Math.floor(inputRect.top)).toEqual(
-        Math.floor(panelRect.bottom),
-        'Expected panel to be above the input.'
-      );
+      expect(Math.floor(inputRect.top))
+        .withContext('Expected panel to be above the input.')
+        .toEqual(Math.floor(panelRect.bottom));
       expect(panel.classList).toContain('sbb-autocomplete-panel-above');
 
       fixture.componentInstance.trigger.closePanel();
@@ -2533,10 +2493,9 @@ describe('SbbAutocomplete', () => {
       panel = overlayContainerElement.querySelector('.cdk-overlay-pane')!;
       panelRect = panel.getBoundingClientRect();
 
-      expect(Math.floor(inputRect.bottom)).toEqual(
-        Math.floor(panelRect.top),
-        'Expected panel to be below the input.'
-      );
+      expect(Math.floor(inputRect.bottom))
+        .withContext('Expected panel to be below the input.')
+        .toEqual(Math.floor(panelRect.top));
       expect(panel.classList).not.toContain('sbb-autocomplete-panel-above');
     }));
 
@@ -2626,14 +2585,20 @@ describe('SbbAutocomplete', () => {
       fixture.detectChanges();
 
       const componentOptions = fixture.componentInstance.options.toArray();
-      expect(componentOptions[0].selected).toBe(true, `Clicked option should be selected.`);
+      expect(componentOptions[0].selected)
+        .withContext(`Clicked option should be selected.`)
+        .toBe(true);
 
       options = overlayContainerElement.querySelectorAll('sbb-option') as NodeListOf<HTMLElement>;
       options[1].click();
       fixture.detectChanges();
 
-      expect(componentOptions[0].selected).toBe(false, `Previous option should not be selected.`);
-      expect(componentOptions[1].selected).toBe(true, `New Clicked option should be selected.`);
+      expect(componentOptions[0].selected)
+        .withContext(`Previous option should not be selected.`)
+        .toBe(false);
+      expect(componentOptions[1].selected)
+        .withContext(`New Clicked option should be selected.`)
+        .toBe(true);
     }));
 
     it('should call deselect only on the previous selected option', fakeAsync(() => {
@@ -2651,7 +2616,9 @@ describe('SbbAutocomplete', () => {
       const componentOptions = fixture.componentInstance.options.toArray();
       componentOptions.forEach((option) => spyOn(option, 'deselect'));
 
-      expect(componentOptions[0].selected).toBe(true, `Clicked option should be selected.`);
+      expect(componentOptions[0].selected)
+        .withContext(`Clicked option should be selected.`)
+        .toBe(true);
 
       options = overlayContainerElement.querySelectorAll('sbb-option') as NodeListOf<HTMLElement>;
       options[1].click();
@@ -2668,10 +2635,9 @@ describe('SbbAutocomplete', () => {
       zone.simulateZoneExit();
       fixture.detectChanges();
 
-      expect(overlayContainerElement.querySelectorAll('sbb-option')[0].classList).toContain(
-        'sbb-focused',
-        'Expected first option to be highlighted.'
-      );
+      expect(overlayContainerElement.querySelectorAll('sbb-option')[0].classList)
+        .withContext('Expected first option to be highlighted.')
+        .toContain('sbb-focused');
     }));
 
     it(
@@ -2687,20 +2653,18 @@ describe('SbbAutocomplete', () => {
         zone.simulateZoneExit();
         fixture.detectChanges();
 
-        expect(overlayContainerElement.querySelectorAll('sbb-option')[2].classList).toContain(
-          'sbb-focused',
-          'Expected third option to be highlighted.'
-        );
+        expect(overlayContainerElement.querySelectorAll('sbb-option')[2].classList)
+          .withContext('Expected third option to be highlighted.')
+          .toContain('sbb-focused');
       })
     );
 
     it('should remove aria-activedescendant when panel is closed with autoActiveFirstOption', fakeAsync(() => {
       const input: HTMLElement = fixture.nativeElement.querySelector('input');
 
-      expect(input.hasAttribute('aria-activedescendant')).toBe(
-        false,
-        'Expected no active descendant on init.'
-      );
+      expect(input.hasAttribute('aria-activedescendant'))
+        .withContext('Expected no active descendant on init.')
+        .toBe(false);
 
       fixture.componentInstance.trigger.autocomplete.autoActiveFirstOption = true;
       fixture.componentInstance.trigger.openPanel();
@@ -2715,10 +2679,9 @@ describe('SbbAutocomplete', () => {
       fixture.componentInstance.trigger.closePanel();
       fixture.detectChanges();
 
-      expect(input.hasAttribute('aria-activedescendant')).toBe(
-        false,
-        'Expected no active descendant when closed.'
-      );
+      expect(input.hasAttribute('aria-activedescendant'))
+        .withContext('Expected no active descendant when closed.')
+        .toBe(false);
     }));
 
     it('should be able to configure preselecting the first option globally', fakeAsync(() => {
@@ -2735,10 +2698,9 @@ describe('SbbAutocomplete', () => {
       zone.simulateZoneExit();
       fixture.detectChanges();
 
-      expect(overlayContainerElement.querySelectorAll('sbb-option')[0].classList).toContain(
-        'sbb-focused',
-        'Expected first option to be highlighted.'
-      );
+      expect(overlayContainerElement.querySelectorAll('sbb-option')[0].classList)
+        .withContext('Expected first option to be highlighted.')
+        .toContain('sbb-focused');
     }));
 
     it('should handle `optionSelections` being accessed too early', fakeAsync(() => {
@@ -2770,6 +2732,34 @@ describe('SbbAutocomplete', () => {
       subscription!.unsubscribe();
     }));
 
+    it('should emit to `optionSelections` if the list of options changes', fakeAsync(() => {
+      const spy = jasmine.createSpy('option selection spy');
+      const subscription = fixture.componentInstance.trigger.optionSelections.subscribe(spy);
+      const openAndSelectFirstOption = () => {
+        fixture.detectChanges();
+        fixture.componentInstance.trigger.openPanel();
+        fixture.detectChanges();
+        zone.simulateZoneExit();
+        (overlayContainerElement.querySelector('sbb-option') as HTMLElement).click();
+        fixture.detectChanges();
+        zone.simulateZoneExit();
+      };
+
+      fixture.componentInstance.numbers = [{ code: 'OR', name: 'Oregon' }];
+      fixture.detectChanges();
+
+      openAndSelectFirstOption();
+      expect(spy).toHaveBeenCalledTimes(1);
+
+      fixture.componentInstance.numbers = [{ code: 'WV', name: 'West Virginia' }];
+      fixture.detectChanges();
+
+      openAndSelectFirstOption();
+      expect(spy).toHaveBeenCalledTimes(2);
+
+      subscription!.unsubscribe();
+    }));
+
     it('should reposition the panel when the amount of options changes', fakeAsync(() => {
       const formField = fixture.debugElement.query(By.css('.sbb-form-field'))!.nativeElement;
       const input = formField.querySelector('input');
@@ -2787,10 +2777,9 @@ describe('SbbAutocomplete', () => {
       const panel = overlayContainerElement.querySelector('.sbb-autocomplete-panel')!;
       const panelTop = panel.getBoundingClientRect().top;
 
-      expect(Math.floor(inputBottom)).toBe(
-        Math.floor(panelTop + 1),
-        `Expected panel top to match input bottom when there is only one option.`
-      );
+      expect(Math.floor(inputBottom))
+        .withContext(`Expected panel top to match input bottom when there is only one option.`)
+        .toBe(Math.floor(panelTop + 1));
 
       clearElement(input);
       fixture.detectChanges();
@@ -2801,10 +2790,9 @@ describe('SbbAutocomplete', () => {
       const panelBottom = panel.getBoundingClientRect().bottom;
 
       // subtract 1px horizontal line from panel bottom
-      expect(Math.floor(inputTop)).toBe(
-        Math.floor(panelBottom - 1),
-        `Expected panel switch to the above position if the options no longer fit.`
-      );
+      expect(Math.floor(inputTop))
+        .withContext(`Expected panel switch to the above position if the options no longer fit.`)
+        .toBe(Math.floor(panelBottom - 1));
     }));
   });
 
@@ -2971,18 +2959,15 @@ describe('SbbAutocomplete', () => {
       dispatchFakeEvent(fixture.debugElement.query(By.css('input'))!.nativeElement, 'focusin');
       fixture.detectChanges();
 
-      expect(fixture.componentInstance.trigger.panelOpen).toBe(
-        true,
-        `Expected panel state to read open when input is focused.`
-      );
-      expect(overlayContainerElement.textContent).toContain(
-        'One',
-        `Expected panel to display when input is focused.`
-      );
-      expect(overlayContainerElement.textContent).toContain(
-        'Two',
-        `Expected panel to display when input is focused.`
-      );
+      expect(fixture.componentInstance.trigger.panelOpen)
+        .withContext(`Expected panel state to read open when input is focused.`)
+        .toBe(true);
+      expect(overlayContainerElement.textContent)
+        .withContext(`Expected panel to display when input is focused.`)
+        .toContain('One');
+      expect(overlayContainerElement.textContent)
+        .withContext(`Expected panel to display when input is focused.`)
+        .toContain('Two');
     });
 
     it('should filter properly with ngIf after setting the active item', () => {
@@ -3085,12 +3070,12 @@ describe('SbbAutocomplete', () => {
       fixture.detectChanges();
       zone.simulateZoneExit();
 
-      expect(trigger.panelOpen).toBe(true, 'Expected panel to be open.');
+      expect(trigger.panelOpen).withContext('Expected panel to be open.').toBe(true);
 
       scrolledSubject.next();
       fixture.detectChanges();
 
-      expect(trigger.panelOpen).toBe(false, 'Expected panel to be closed.');
+      expect(trigger.panelOpen).withContext('Expected panel to be closed.').toBe(false);
     }));
 
     it('should handle autocomplete being attached to number inputs', fakeAsync(() => {
@@ -3179,12 +3164,12 @@ describe('SbbAutocomplete', () => {
     input.focus();
     fixture.detectChanges();
 
-    expect(trigger.panelOpen).toBe(true, 'Expected panel to be open.');
+    expect(trigger.panelOpen).withContext('Expected panel to be open.').toBe(true);
 
     trigger.closePanel();
     fixture.detectChanges();
 
-    expect(trigger.panelOpen).toBe(false, 'Expected panel to be closed.');
+    expect(trigger.panelOpen).withContext('Expected panel to be closed.').toBe(false);
 
     // Simulate the user going to a different tab.
     dispatchFakeEvent(window, 'blur');
@@ -3196,7 +3181,7 @@ describe('SbbAutocomplete', () => {
     input.focus();
     fixture.detectChanges();
 
-    expect(trigger.panelOpen).toBe(false, 'Expected panel to remain closed.');
+    expect(trigger.panelOpen).withContext('Expected panel to remain closed.').toBe(false);
   });
 
   it('should update the panel width if the window is resized', fakeAsync(() => {
@@ -3285,7 +3270,9 @@ describe('SbbAutocomplete', () => {
         const visibleClass = 'sbb-autocomplete-visible';
 
         fixture.detectChanges();
-        expect(panel.classList).toContain(visibleClass, `Expected panel to be visible.`);
+        expect(panel.classList)
+          .withContext(`Expected panel to be visible.`)
+          .toContain(visibleClass);
       });
     })
   );
@@ -3313,6 +3300,29 @@ describe('SbbAutocomplete', () => {
 
     expect(event.source).toBe(fixture.componentInstance.autocomplete);
     expect(event.option.value).toBe('Zwei');
+  }));
+
+  it('should refocus the input after the selection event is emitted', fakeAsync(() => {
+    const events: string[] = [];
+    const fixture = createComponent(AutocompleteWithSelectEvent);
+    fixture.detectChanges();
+    const input = fixture.nativeElement.querySelector('input');
+
+    fixture.componentInstance.trigger.openPanel();
+    zone.simulateZoneExit();
+    fixture.detectChanges();
+
+    const options = overlayContainerElement.querySelectorAll(
+      'sbb-option'
+    ) as NodeListOf<HTMLElement>;
+    spyOn(input, 'focus').and.callFake(() => events.push('focus'));
+    fixture.componentInstance.optionSelected.and.callFake(() => events.push('select'));
+
+    options[1].click();
+    tick();
+    fixture.detectChanges();
+
+    expect(events).toEqual(['select', 'focus']);
   }));
 
   it('should emit an event when a newly-added option is selected', fakeAsync(() => {
@@ -3373,6 +3383,28 @@ describe('SbbAutocomplete', () => {
     expect(spy.calls.mostRecent().args[0]).toEqual({ source: autocomplete, option: options[2] });
   }));
 
+  it('should not emit the optionActivated event when the active option is reset', fakeAsync(() => {
+    const fixture = createComponent(AutocompleteWithActivatedEvent);
+
+    fixture.detectChanges();
+    fixture.componentInstance.trigger.openPanel();
+    zone.simulateZoneExit();
+    fixture.detectChanges();
+
+    const input = fixture.nativeElement.querySelector('input');
+    const spy = fixture.componentInstance.optionActivated;
+
+    expect(spy).not.toHaveBeenCalled();
+
+    dispatchKeyboardEvent(input, 'keydown', DOWN_ARROW);
+    fixture.detectChanges();
+    expect(spy).toHaveBeenCalledTimes(1);
+
+    dispatchKeyboardEvent(input, 'keydown', ESCAPE);
+    fixture.detectChanges();
+    expect(spy).toHaveBeenCalledTimes(1);
+  }));
+
   it('should be able to set a custom panel connection element', () => {
     const fixture = createComponent(AutocompleteWithDifferentOrigin);
 
@@ -3388,10 +3420,9 @@ describe('SbbAutocomplete', () => {
       .getBoundingClientRect();
     const originRect = fixture.nativeElement.querySelector('.origin').getBoundingClientRect();
 
-    expect(Math.floor(overlayRect.top)).toBe(
-      Math.floor(originRect.bottom),
-      'Expected autocomplete panel to align with the bottom of the new origin.'
-    );
+    expect(Math.floor(overlayRect.top))
+      .withContext('Expected autocomplete panel to align with the bottom of the new origin.')
+      .toBe(Math.floor(originRect.bottom));
   });
 
   it('should be able to change the origin after the panel has been opened', () => {
@@ -3417,10 +3448,9 @@ describe('SbbAutocomplete', () => {
       .getBoundingClientRect();
     const originRect = fixture.nativeElement.querySelector('.origin').getBoundingClientRect();
 
-    expect(Math.floor(overlayRect.top)).toBe(
-      Math.floor(originRect.bottom),
-      'Expected autocomplete panel to align with the bottom of the new origin.'
-    );
+    expect(Math.floor(overlayRect.top))
+      .withContext('Expected autocomplete panel to align with the bottom of the new origin.')
+      .toBe(Math.floor(originRect.bottom));
   });
 
   it('should be able to re-type the same value when it is reset while open', fakeAsync(() => {
@@ -3434,19 +3464,23 @@ describe('SbbAutocomplete', () => {
     tick();
     fixture.detectChanges();
 
-    expect(formControl.value).toBe('Cal', 'Expected initial value to be propagated to model');
+    expect(formControl.value)
+      .withContext('Expected initial value to be propagated to model')
+      .toBe('Cal');
 
     formControl.setValue('');
     fixture.detectChanges();
 
-    expect(input.value).toBe('', 'Expected input value to reset when model is reset');
+    expect(input.value).withContext('Expected input value to reset when model is reset').toBe('');
 
     typeInElement(input, 'Cal');
     fixture.detectChanges();
     tick();
     fixture.detectChanges();
 
-    expect(formControl.value).toBe('Cal', 'Expected new value to be propagated to model');
+    expect(formControl.value)
+      .withContext('Expected new value to be propagated to model')
+      .toBe('Cal');
   }));
 
   it('should not close when clicking inside alternate origin', () => {

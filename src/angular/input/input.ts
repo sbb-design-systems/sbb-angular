@@ -61,12 +61,14 @@ const _SbbInputBase = mixinErrorState(
     '[attr.id]': 'id',
     '[disabled]': 'disabled',
     '[required]': 'required',
+    '[attr.name]': 'name || null',
     '[attr.readonly]': 'readonly && !_isNativeSelect || null',
     // Only mark the input as invalid for assistive technology if it has a value since the
     // state usually overlaps with `aria-required` when the input is empty and can be redundant.
     '[attr.aria-invalid]': '(empty && required) ? null : errorState',
     '[attr.aria-required]': 'required',
-    '[attr.placeholder]': 'placeholder || null',
+    '[attr.placeholder]': `!readonly ? (placeholder || null) : '-'`,
+    '[attr.tabindex]': `empty && readonly ? -1  : null`,
   },
   providers: [{ provide: SbbFormFieldControl, useExisting: SbbInput }],
 })
@@ -88,9 +90,6 @@ export class SbbInput
 
   /** Whether the component is a textarea. */
   readonly _isTextarea: boolean;
-
-  /** Whether the component is in an error state. */
-  override errorState: boolean = false;
 
   /**
    * Implemented as part of SbbFormFieldControl.
@@ -121,7 +120,7 @@ export class SbbInput
     }
     return this._disabled;
   }
-  set disabled(value: boolean) {
+  set disabled(value: BooleanInput) {
     this._disabled = coerceBooleanProperty(value);
 
     // Browsers may not fire the blur event if the input is disabled too quickly.
@@ -146,6 +145,12 @@ export class SbbInput
   @Input() placeholder: string;
 
   /**
+   * Name of the input.
+   * @docs-private
+   */
+  @Input() name: string;
+
+  /**
    * Implemented as part of SbbFormFieldControl.
    * @docs-private
    */
@@ -153,7 +158,7 @@ export class SbbInput
   get required(): boolean {
     return this._required;
   }
-  set required(value: boolean) {
+  set required(value: BooleanInput) {
     this._required = coerceBooleanProperty(value);
   }
   private _required = false;
@@ -193,7 +198,9 @@ export class SbbInput
   get value(): string {
     return this._inputValueAccessor.value;
   }
-  set value(value: string) {
+  // Accept `any` to avoid conflicts with other directives on `<input>` that may
+  // accept different types.
+  set value(value: any) {
     if (value !== this.value) {
       this._inputValueAccessor.value = value;
       this.stateChanges.next();
@@ -205,7 +212,7 @@ export class SbbInput
   get readonly(): boolean {
     return this._readonly;
   }
-  set readonly(value: boolean) {
+  set readonly(value: BooleanInput) {
     this._readonly = coerceBooleanProperty(value);
   }
   private _readonly = false;
@@ -399,12 +406,4 @@ export class SbbInput
       this.focus();
     }
   }
-
-  static ngAcceptInputType_disabled: BooleanInput;
-  static ngAcceptInputType_readonly: BooleanInput;
-  static ngAcceptInputType_required: BooleanInput;
-
-  // Accept `any` to avoid conflicts with other directives on `<input>` that may
-  // accept different types.
-  static ngAcceptInputType_value: any;
 }

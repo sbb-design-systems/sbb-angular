@@ -1,11 +1,11 @@
 <sbb-icon
   *ngIf="(_leftIconVisible | async) && svgIcon"
-  class="sbb-button-indicator-icon sbb-button-left-icon sbb-icon-fit"
+  class="sbb-button-indicator-icon sbb-button-left-icon"
   [svgIcon]="svgIcon"
 ></sbb-icon>
 <ng-content></ng-content>
 <sbb-icon
   *ngIf="(_rightIconVisible | async) && svgIcon"
-  class="sbb-button-indicator-icon sbb-button-right-icon sbb-icon-fit"
+  class="sbb-button-indicator-icon sbb-button-right-icon"
   [svgIcon]="svgIcon"
 ></sbb-icon>

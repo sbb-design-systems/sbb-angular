@@ -6,6 +6,7 @@
     "outDir": "../../../dist/packages/angular/schematics",
     "noEmitOnError": false,
     "strictNullChecks": true,
+    "useUnknownInCatchVariables": true,
     "noImplicitReturns": true,
     "skipDefaultLibCheck": true,
     "noUnusedLocals": false,

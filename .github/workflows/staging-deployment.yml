@@ -11,10 +11,9 @@ jobs:
     runs-on: ubuntu-latest
     if: ${{ github.event.workflow_run.conclusion == 'success' }}
     steps:
-      - name: Setup NodeJS
-        uses: actions/setup-node@v2
+      - uses: actions/setup-node@v2
         with:
-          node-version: 14
+          node-version: 16
       - run: npm i decompress@4.2.1 node-fetch@2.6.2 form-data@4.0.0
       - name: Download Artifacts
         uses: actions/github-script@v4
@@ -30,10 +29,10 @@ jobs:
 
             const { stagingAuth, stagingUrl } = process.env;
             const artifactsUrl = context.payload.workflow_run.artifacts_url;
-            
+
             const artifactsResult = await github.request(artifactsUrl);
             const artifacts = artifactsResult.data.artifacts.filter(
-              a => a.name.startsWith('showcase-merge-artifact-')
+              a => a.name.startsWith('showcase-artifact-')
             );
 
             for (const artifactEntry of artifacts) {

@@ -1,11 +1,12 @@
 <sbb-tab-header
   #tabHeader
   [selectedIndex]="selectedIndex || 0"
+  [disablePagination]="disablePagination"
   (indexFocused)="_focusChanged($event)"
   (selectFocusedIndex)="selectedIndex = $event"
 >
   <div
-    class="sbb-tab-label sbb-focus-indicator"
+    class="sbb-tab-label"
     role="tab"
     sbbTabLabelWrapper
     cdkMonitorElementFocus
@@ -19,18 +20,19 @@
     [attr.aria-label]="tab.ariaLabel || null"
     [attr.aria-labelledby]="(!tab.ariaLabel && tab.ariaLabelledby) ? tab.ariaLabelledby : null"
     [class.sbb-tab-label-active]="selectedIndex == i"
+    [ngClass]="tab.labelClass"
     [disabled]="tab.disabled"
     (click)="_handleClick(tab, tabHeader, i)"
     (cdkFocusChange)="_tabFocusChanged($event, i)"
   >
     <div class="sbb-tab-label-content">
       <!-- If there is a label template, use it. -->
-      <ng-template [ngIf]="tab.templateLabel">
+      <ng-template [ngIf]="tab.templateLabel" [ngIfElse]="tabTextLabel">
         <ng-template [cdkPortalOutlet]="tab.templateLabel"></ng-template>
       </ng-template>
 
       <!-- If there is not a label template, fall back to the text label. -->
-      <ng-template [ngIf]="!tab.templateLabel">{{tab.textLabel}}</ng-template>
+      <ng-template #tabTextLabel>{{tab.textLabel}}</ng-template>
     </div>
   </div>
 </sbb-tab-header>
@@ -46,9 +48,13 @@
     [id]="_getTabContentId(i)"
     [attr.aria-labelledby]="_getTabLabelId(i)"
     [class.sbb-tab-body-active]="selectedIndex == i"
+    [ngClass]="tab.bodyClass"
     [content]="tab.content!"
     [position]="tab.position!"
     [origin]="tab.origin"
+    [animationDuration]="animationDuration"
+    [animationDurationHide]="_animationDurationHide"
+    [preserveContent]="preserveContent"
     (_onCentered)="_removeTabBodyWrapperHeight()"
     (_onCentering)="_setTabBodyWrapperHeight($event)"
   >

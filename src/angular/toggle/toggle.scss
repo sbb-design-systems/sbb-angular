@@ -23,19 +23,24 @@
   background-color: var(--sbb-color-milk);
   color: var(--sbb-color-grey);
   border-radius: var(--sbb-border-radius);
-  padding: pxToEm(8) pxToEm(15) pxToEm(9);
+  padding: calc(#{pxToRem(8)} * var(--sbb-scaling-factor))
+    calc(#{pxToRem(15)} * var(--sbb-scaling-factor)) calc(#{pxToRem(9)} * var(--sbb-scaling-factor));
   line-height: 1.5;
   border: var(--sbb-border-width-thin) solid transparent;
 
   :where(html:not(.sbb-lean)) & {
-    min-height: pxToEm(65);
+    min-height: calc(#{pxToRem(65)} * var(--sbb-scaling-factor));
 
     @include mq($from: desktop) {
-      padding: pxToEm(8) pxToEm(23) pxToEm(9);
+      padding: calc(#{pxToRem(8)} * var(--sbb-scaling-factor))
+        calc(#{pxToRem(23)} * var(--sbb-scaling-factor))
+        calc(#{pxToRem(9)} * var(--sbb-scaling-factor));
     }
   }
   :where(html.sbb-lean) & {
-    padding: pxToEm(5) pxToEm(15) pxToEm(6);
+    padding: calc(#{pxToRem(5)} * var(--sbb-scaling-factor))
+      calc(#{pxToRem(15)} * var(--sbb-scaling-factor))
+      calc(#{pxToRem(6)} * var(--sbb-scaling-factor));
     border-color: var(--sbb-color-aluminum);
   }
 
@@ -115,8 +120,11 @@
   max-height: 3em;
   opacity: 1;
   overflow: hidden;
-  transition: max-height var(--sbb-transition-default), opacity var(--sbb-transition-default);
-
+  transition: {
+    duration: var(--sbb-transition-duration-fast);
+    timing-function: var(--sbb-transition-timing-default);
+    property: opacity, max-height;
+  }
   .sbb-toggle-option-selected & {
     opacity: 0;
     max-height: 0;
@@ -126,29 +134,13 @@
 .sbb-toggle-option-content {
   display: flex;
   background-color: var(--sbb-color-white);
-  padding: pxToEm(24);
-  max-height: pxToEm(600);
-  visibility: visible;
-  opacity: 1;
-  transition: {
-    duration: var(--sbb-transition-duration-fast);
-    timing-function: var(--sbb-transition-timing-default);
-    property: opacity, visibility, padding, max-height;
-  }
-  margin-top: pxToEm(-2);
+  margin-top: calc(#{pxToRem(-2)} * var(--sbb-scaling-factor));
   position: relative;
   border: var(--sbb-border-width-thin) solid var(--sbb-color-black);
   border-radius: var(--sbb-border-radius);
 
-  :where(html.sbb-lean) & {
-    padding: pxToEm(15);
-  }
-
   &:empty {
-    max-height: 0;
     visibility: hidden;
-    opacity: 0;
-    padding: 0;
   }
 
   &::before {
@@ -180,5 +172,15 @@
     &::before {
       right: 0;
     }
+  }
+}
+
+.sbb-toggle-option-content-wrapper {
+  overflow: auto;
+  max-height: calc(#{pxToRem(600)} * var(--sbb-scaling-factor));
+  padding: calc(#{pxToRem(24)} * var(--sbb-scaling-factor));
+
+  :where(html.sbb-lean) & {
+    padding: pxToRem(15);
   }
 }

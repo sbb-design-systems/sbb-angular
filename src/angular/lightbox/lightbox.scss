@@ -61,6 +61,7 @@
   position: relative;
   box-shadow: var(--sbb-box-shadow-horizontal-border-top);
   @include ellipsis;
+  min-height: calc(#{pxToRem(64)} * var(--sbb-scaling-factor)); // Supports empty title
 
   @include mq($from: tablet) {
     padding-left: pxToRem(24);

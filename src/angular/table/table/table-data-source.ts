@@ -80,6 +80,7 @@ export class _SbbTableDataSource<
     return this._data.value;
   }
   set data(data: T[]) {
+    data = Array.isArray(data) ? data : [];
     this._data.next(data);
     // Normally the `filteredData` is updated by the re-render
     // subscription, but that won't happen if it's inactive.

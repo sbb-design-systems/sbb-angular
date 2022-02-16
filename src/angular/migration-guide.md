@@ -10,7 +10,7 @@ The default variant is `standard`. To use the `lean` variant, add the `sbb-lean`
 `html` element (e.g. `<html class="sbb-lean" ...>`).
 
 Most of the breaking changes should automatically be migrated via `ng add @sbb-esta/angular`
-(see our [How to update](howtoupdate) guide).
+(see our [How to update](/howtoupdate) guide).
 
 Please [reach out to us](https://github.com/sbb-design-systems/sbb-angular/issues/new/choose), if
 one of these changes breaks your project in a non-recoverable way.
@@ -46,13 +46,13 @@ Please note, that also the i18n key 'sbbGhettoboxCloseGhettobox' have been renam
 
 No changes.
 
-[Documentation](angular/components/accordion)
+[Documentation](/angular/components/accordion)
 
 ### Autocomplete
 
 No changes.
 
-[Documentation](angular/components/autocomplete)
+[Documentation](/angular/components/autocomplete)
 
 ### Badge
 
@@ -62,7 +62,7 @@ _Automatic migration available_
 This is a slight restriction, as we no longer allow HTML inside the badge. However, it was
 never intended to be used in that way.
 
-[Documentation](angular/components/badge)
+[Documentation](/angular/components/badge)
 
 ### Breadcrumb
 
@@ -79,7 +79,7 @@ to accessibility were made. All changes are handled by automatic migration.
 
 - All `<a sbbDropdownItem>` become `<a sbb-menu-item>` elements wrapped by a `<sbb-menu>`.
   The Trigger has to be defined by the developer and linked with
-  the `<sbb-menu>` (see [Documentation](angular/components/breadcrumb) for examples).
+  the `<sbb-menu>` (see [Documentation](/angular/components/breadcrumb) for examples).
 
 - In order to standardize sbb-active classes, all active classes should be `sbb-active`.
   In Breadcrumb context it means, the property `routerLinkActive`
@@ -88,7 +88,7 @@ to accessibility were made. All changes are handled by automatic migration.
 The automatic migration wraps your menu trigger with `<ng-template sbbMenuDynamicTrigger>`.
 If you only use text you can remove the `<ng-template>` tag.
 
-[Documentation](angular/components/breadcrumb)
+[Documentation](/angular/components/breadcrumb)
 
 ### Button
 
@@ -109,21 +109,21 @@ input has been split into separate selectors.
 
 Support for custom icon has been changed. Previously the `*sbbIcon` directive could be used,
 which is no longer supported. The button component now provides an `svgIcon` input, for which
-[any supported](angular/icon-overview) (or self registered) icon can be used.
+[any supported](/angular/icon-overview) (or self registered) icon can be used.
 
-[Documentation](angular/components/button)
+[Documentation](/angular/components/button)
 
 ### Captcha
 
 No changes.
 
-[Documentation](angular/components/captcha)
+[Documentation](/angular/components/captcha)
 
 ### Checkbox
 
 No changes.
 
-[Documentation](angular/components/checkbox)
+[Documentation](/angular/components/checkbox)
 
 ### Checkbox Panel
 
@@ -153,7 +153,7 @@ the generic `<sbb-checkbox-panel-note>` wrapper.
 </sbb-checkbox-panel>
 ```
 
-[Documentation](angular/components/checkbox-panel)
+[Documentation](/angular/components/checkbox-panel)
 
 ### Chip Input
 
@@ -179,7 +179,7 @@ by developers but needs a little more of template code.
 
 Please carefully check the changes from the automatic migration and manually add aria-label and placeholder as required.
 
-[Documentation](angular/components/chips)
+[Documentation](/angular/components/chips)
 
 ### Core
 
@@ -205,7 +205,7 @@ and the contextmenu no longer depends on `SbbDropdown`. The APIs of `SbbDropdown
 so please check your code carefully after migration.
 The width of a `sbb-menu-item` is not fixed anymore and adapts itself to the content. The width also can be overridden.
 
-[Documentation](angular/components/menu)
+[Documentation](/angular/components/menu)
 
 ### Datepicker
 
@@ -213,7 +213,7 @@ _Automatic migration available_
 
 The Datepicker has no significant changes. `SBB_BUSINESS_DATE_ADAPTER` was renamed to `SBB_LEAN_DATE_ADAPTER`.
 
-[Documentation](angular/components/datepicker)
+[Documentation](/angular/components/datepicker)
 
 ### Dialog
 
@@ -223,7 +223,7 @@ We have renamed `SbbDialogHeader`/`[sbbDialogHeader]` to `SbbDialogTitle`/`[sbbD
 `SbbDialogFooter`/`[sbbDialogFooter]` to `SbbDialogActions`/`[sbbDialogActions]` in order to more
 accurately describe the purpose of these sections.
 
-[Documentation](angular/components/dialog)
+[Documentation](/angular/components/dialog)
 
 ### File Selector
 
@@ -231,7 +231,7 @@ _Automatic migration available_
 
 The `FileTypeCategory` enum has been changed to a string literal type.
 
-[Documentation](angular/components/file-selector)
+[Documentation](/angular/components/file-selector)
 
 ### Form Field & Input
 
@@ -246,9 +246,9 @@ we switched it up, so that `SbbFormFieldModule` no longer re-exports `SbbInputMo
 In order to minimize impact, we implemented a migration that replaces usage of `SbbFormFieldModule`
 with `SbbInputModule`.
 
-[Form Field Documentation](angular/components/form-field)
+[Form Field Documentation](/angular/components/form-field)
 
-[Input Documentation](angular/components/input)
+[Input Documentation](/angular/components/input)
 
 ### Ghettobox (Alert)
 
@@ -267,11 +267,11 @@ The API of `SbbAlertService` has also been changed and simplified.
 
 Support for custom icon has been changed. Previously the `*sbbIcon` directive could be used,
 which is no longer supported. The alert component now provides an `svgIcon` input, for which
-[any supported](angular/icon-overview) (or self registered) icon can be used.
+[any supported](/angular/icon-overview) (or self registered) icon can be used.
 
 See the documentation for details.
 
-[Documentation](angular/components/alert)
+[Documentation](/angular/components/alert)
 
 ### Header
 
@@ -279,7 +279,7 @@ _Automatic migration available_
 
 TODO
 
-[Documentation](angular/components/header-lean)
+[Documentation](/angular/components/header-lean)
 
 ### Icon
 
@@ -287,7 +287,7 @@ _Automatic migration available_
 
 The icon module has been moved from `@sbb-esta/angular-core` to `@sbb-esta/angular/icon`.
 
-[Documentation](angular/components/icon)
+[Documentation](/angular/components/icon)
 
 ### Lightbox
 
@@ -298,7 +298,7 @@ We have renamed `SbbLightboxHeader`/`[sbbLightboxHeader]` to `SbbLightboxTitle`/
 accurately describe the purpose of these sections.
 Also the property `manualCloseAction` on `SbbLightboxRef` has been renamed to `closeRequest` for the same reason.
 
-[Documentation](angular/components/lightbox)
+[Documentation](/angular/components/lightbox)
 
 ### Links
 
@@ -307,13 +307,13 @@ _Automatic migration available_
 The link module has been integrated into the button module. All button types can be used on both
 `<a>` and `<button>`. The `sbbLink` selector has been renamed to `sbb-link`.
 
-[Documentation](angular/components/button)
+[Documentation](/angular/components/button)
 
 ### Loading
 
 No changes.
 
-[Documentation](angular/components/loading)
+[Documentation](/angular/components/loading)
 
 ### Notification
 
@@ -336,10 +336,10 @@ The input `toastPosition` has been removed. For this use case use the `notificat
 
 Support for custom icon has been changed. Previously the `*sbbIcon` directive could be used,
 which is no longer supported. The notification component now provides an `svgIcon` input, for which
-[any supported](angular/icon-overview) (or self registered) icon can be used.
+[any supported](/angular/icon-overview) (or self registered) icon can be used.
 Alternatively the new element `<sbb-notification-icon>` can be used to wrap an icon.
 
-[Documentation](angular/components/notification)
+[Documentation](/angular/components/notification)
 
 ### Notification Toast
 
@@ -347,13 +347,13 @@ _Automatic migration available_
 
 `SbbNotificationVerticalPosition` has been renamed to `SbbNotificationToastVerticalPosition`.
 
-[Documentation](angular/components/notification-toast)
+[Documentation](/angular/components/notification-toast)
 
 ### Oauth
 
 No changes.
 
-[Documentation](angular/components/oauth)
+[Documentation](/angular/components/oauth)
 
 ### Pagination
 
@@ -426,20 +426,20 @@ Also the methods `prevStep()` and `nextStep()` on `SbbProcessflow` have been ren
 `previous()` and `next()`, the `<sbb-processflow-step>` selector and `SbbProcessflowStep` have been
 renamed/changed to `<sbb-step>` and `SbbStep`.
 
-[Documentation](angular/components/processflow)
+[Documentation](/angular/components/processflow)
 
 #### Styles
 
 `sbb-paginator` and `sbb-navigation` don't reserve space around them anymore.
 Please manually check the layout.
 
-[Documentation](angular/components/pagination)
+[Documentation](/angular/components/pagination)
 
 ### Radio Button
 
 No changes.
 
-[Documentation](angular/components/radio-button)
+[Documentation](/angular/components/radio-button)
 
 ### Radio Button Panel
 
@@ -469,7 +469,7 @@ the generic `<sbb-radio-button-panel-note>` wrapper.
 </sbb-radio-button-panel>
 ```
 
-[Documentation](angular/components/radio-button-panel)
+[Documentation](/angular/components/radio-button-panel)
 
 ### Search
 
@@ -493,27 +493,27 @@ The search component has been refactored as a wrapper for an input field.
 
 Support for custom icon has been changed. Previously the `*sbbIcon` directive could be used,
 which is no longer supported. The search component now provides an `svgIcon` input, for which
-[any supported](angular/icon-overview) (or self registered) icon can be used.
+[any supported](/angular/icon-overview) (or self registered) icon can be used.
 
-[Documentation](angular/components/search)
+[Documentation](/angular/components/search)
 
 ### Select
 
 No changes.
 
-[Documentation](angular/components/select)
+[Documentation](/angular/components/select)
 
 ### Sidebar
 
 No changes.
 
-[Documentation](angular/components/sidebar)
+[Documentation](/angular/components/sidebar)
 
 ### Status
 
 No changes.
 
-[Documentation](angular/components/status)
+[Documentation](/angular/components/status)
 
 ### Table
 
@@ -594,7 +594,7 @@ Please also consult the working example in the examples section of the table.
 </table>
 ```
 
-[Documentation](angular/components/table)
+[Documentation](/angular/components/table)
 
 ### Tabs
 
@@ -628,7 +628,7 @@ which represents the index in its parent `sbb-tab-group`.
 </sbb-tab-group>
 ```
 
-[Documentation](angular/components/tabs)
+[Documentation](/angular/components/tabs)
 
 ### Tag
 
@@ -676,25 +676,25 @@ Additionally, it's now possible to set the aria description of the badge by usin
 on `<sbb-tag>` or on `sbb-tag-link`. As a fallback, the predefined aria labels will still be applied
 so that in most cases no action is required.
 
-[Documentation](angular/components/tag)
+[Documentation](/angular/components/tag)
 
 ### Textarea
 
 No changes.
 
-[Documentation](angular/components/textarea)
+[Documentation](/angular/components/textarea)
 
 ### Textexpand
 
 No changes.
 
-[Documentation](angular/components/textexpand)
+[Documentation](/angular/components/textexpand)
 
 ### Time Input
 
 No changes.
 
-[Documentation](angular/components/time-input)
+[Documentation](/angular/components/time-input)
 
 ### Toggle
 
@@ -702,7 +702,7 @@ _Automatic migration available_
 
 Support for custom icon has been changed. Previously the `*sbbIcon` directive could be used,
 which is no longer supported. The toggle option component now provides an `svgIcon` input, for which
-[any supported](angular/icon-overview) (or self registered) icon can be used.
+[any supported](/angular/icon-overview) (or self registered) icon can be used.
 Alternatively the new element `<sbb-toggle-icon>` can be used to wrap an icon.
 
 **Previous**
@@ -745,7 +745,7 @@ as content when the option was selected. This content now needs to be wrapped in
 </sbb-toggle-option>
 ```
 
-[Documentation](angular/components/toggle)
+[Documentation](/angular/components/toggle)
 
 ### Tooltip
 
@@ -753,13 +753,13 @@ _Partial migration available_
 
 `sbb-tooltip` has been refactored to internally use `sbbTooltip`. `SbbTooltipComponent` has been
 renamed to `SbbTooltipWrapper` and its methods `open` and `close` have been renamed to `show` and
-`hide` to align with the directive usage.
+`hide` to align with the directive usage. The `closed` output was renamed to `dismissed`.
 
 Support for custom icon has been changed. Previously the `*sbbIcon` directive could be used,
 which is no longer supported. The tooltip component now provides an `svgIcon` input, for which
-[any supported](angular/icon-overview) (or self registered) icon can be used.
+[any supported](/angular/icon-overview) (or self registered) icon can be used.
 
-[Documentation](angular/components/tooltip)
+[Documentation](/angular/components/tooltip)
 
 ### Usermenu
 
@@ -804,4 +804,4 @@ Additionally, the css class of routerLinkActive of usermenu items was renamed fr
 </sbb-menu>
 ```
 
-[Documentation](angular/components/usermenu)
+[Documentation](/angular/components/usermenu)

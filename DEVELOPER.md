@@ -17,7 +17,7 @@
      This avoids errors with Chromium as it currently contains spaces in the filename.
 3. From the root of the project, run `yarn` to install the dependencies.
 
-To build sbb-angular in release mode, run `yarn build`. The output can be found under `dist/releases`.
+To build sbb-angular in release mode, run `yarn build packages`. The output can be found under `dist/releases`.
 
 To bring up a local server, run `yarn start`. This will automatically watch for changes
 and rebuild. The browser should refresh automatically when changes are made.

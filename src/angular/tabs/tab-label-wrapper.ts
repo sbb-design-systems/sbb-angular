@@ -1,4 +1,3 @@
-import { BooleanInput } from '@angular/cdk/coercion';
 import { Directive, ElementRef } from '@angular/core';
 import { CanDisable, mixinDisabled } from '@sbb-esta/angular/core';
 
@@ -35,6 +34,4 @@ export class SbbTabLabelWrapper extends _SbbTabLabelWrapperMixinBase implements 
   getOffsetWidth(): number {
     return this.elementRef.nativeElement.offsetWidth;
   }
-
-  static ngAcceptInputType_disabled: BooleanInput;
 }

@@ -333,20 +333,18 @@ describe('SbbDialog', () => {
     onPushFixture.detectChanges();
     flushMicrotasks();
 
-    expect(overlayContainerElement.querySelectorAll('sbb-dialog-container').length).toBe(
-      1,
-      'Expected one open dialog.'
-    );
+    expect(overlayContainerElement.querySelectorAll('sbb-dialog-container').length)
+      .withContext('Expected one open dialog.')
+      .toBe(1);
 
     dialogRef.close();
     flushMicrotasks();
     onPushFixture.detectChanges();
     tick(500);
 
-    expect(overlayContainerElement.querySelectorAll('sbb-dialog-container').length).toBe(
-      0,
-      'Expected no open dialogs.'
-    );
+    expect(overlayContainerElement.querySelectorAll('sbb-dialog-container').length)
+      .withContext('Expected no open dialogs.')
+      .toBe(0);
   }));
 
   it('should close when clicking on the overlay backdrop', fakeAsync(() => {
@@ -485,10 +483,9 @@ describe('SbbDialog', () => {
 
     let overlayPane = overlayContainerElement.querySelector('.cdk-overlay-pane') as HTMLElement;
 
-    expect(overlayPane.style.maxWidth).toBe(
-      '80vw',
-      'Expected dialog to set a default max-width on overlay pane'
-    );
+    expect(overlayPane.style.maxWidth)
+      .withContext('Expected dialog to set a default max-width on overlay pane')
+      .toBe('80vw');
 
     dialogRef.close();
 
@@ -876,20 +873,20 @@ describe('SbbDialog', () => {
     viewContainerFixture.detectChanges();
     flush();
 
-    expect(sibling.getAttribute('aria-hidden')).toBe('true', 'Expected sibling to be hidden');
-    expect(overlayContainerElement.hasAttribute('aria-hidden')).toBe(
-      false,
-      'Expected overlay container not to be hidden.'
-    );
+    expect(sibling.getAttribute('aria-hidden'))
+      .withContext('Expected sibling to be hidden')
+      .toBe('true');
+    expect(overlayContainerElement.hasAttribute('aria-hidden'))
+      .withContext('Expected overlay container not to be hidden.')
+      .toBe(false);
 
     dialogRef.close();
     viewContainerFixture.detectChanges();
     flush();
 
-    expect(sibling.hasAttribute('aria-hidden')).toBe(
-      false,
-      'Expected sibling to no longer be hidden.'
-    );
+    expect(sibling.hasAttribute('aria-hidden'))
+      .withContext('Expected sibling to no longer be hidden.')
+      .toBe(false);
     sibling.parentNode!.removeChild(sibling);
   }));
 
@@ -903,13 +900,17 @@ describe('SbbDialog', () => {
     viewContainerFixture.detectChanges();
     flush();
 
-    expect(sibling.getAttribute('aria-hidden')).toBe('true', 'Expected sibling to be hidden.');
+    expect(sibling.getAttribute('aria-hidden'))
+      .withContext('Expected sibling to be hidden.')
+      .toBe('true');
 
     dialogRef.close();
     viewContainerFixture.detectChanges();
     flush();
 
-    expect(sibling.getAttribute('aria-hidden')).toBe('true', 'Expected sibling to remain hidden.');
+    expect(sibling.getAttribute('aria-hidden'))
+      .withContext('Expected sibling to remain hidden.')
+      .toBe('true');
     sibling.parentNode!.removeChild(sibling);
   }));
 
@@ -923,10 +924,9 @@ describe('SbbDialog', () => {
     viewContainerFixture.detectChanges();
     flush();
 
-    expect(sibling.hasAttribute('aria-hidden')).toBe(
-      false,
-      'Expected live element not to be hidden.'
-    );
+    expect(sibling.hasAttribute('aria-hidden'))
+      .withContext('Expected live element not to be hidden.')
+      .toBe(false);
     sibling.parentNode!.removeChild(sibling);
   }));
 
@@ -943,7 +943,7 @@ describe('SbbDialog', () => {
     );
 
     dialogRef.addPanelClass('custom-class-one');
-    expect(pane.classList).toContain('custom-class-one', 'Expected class to be added');
+    expect(pane.classList).withContext('Expected class to be added').toContain('custom-class-one');
 
     dialogRef.removePanelClass('custom-class-one');
     expect(pane.classList).not.toContain('custom-class-one', 'Expected class to be removed');
@@ -1019,14 +1019,18 @@ describe('SbbDialog', () => {
       ) as HTMLElement;
       const input = overlayContainerElement.querySelector('input') as HTMLInputElement;
 
-      expect(document.activeElement).toBe(input, 'Expected input to be focused on open');
+      expect(document.activeElement)
+        .withContext('Expected input to be focused on open')
+        .toBe(input);
 
       input.blur(); // Programmatic clicks might not move focus so we simulate it.
       backdrop.click();
       viewContainerFixture.detectChanges();
       flush();
 
-      expect(document.activeElement).toBe(input, 'Expected input to stay focused after click');
+      expect(document.activeElement)
+        .withContext('Expected input to stay focused after click')
+        .toBe(input);
     }));
 
     it(
@@ -1049,17 +1053,18 @@ describe('SbbDialog', () => {
           '.sbb-dialog-container'
         ) as HTMLInputElement;
 
-        expect(document.activeElement).toBe(container, 'Expected container to be focused on open');
+        expect(document.activeElement)
+          .withContext('Expected container to be focused on open')
+          .toBe(container);
 
         container.blur(); // Programmatic clicks might not move focus so we simulate it.
         backdrop.click();
         viewContainerFixture.detectChanges();
         flush();
 
-        expect(document.activeElement).toBe(
-          container,
-          'Expected container to stay focused after click'
-        );
+        expect(document.activeElement)
+          .withContext('Expected container to stay focused after click')
+          .toBe(container);
       })
     );
   });
@@ -1138,10 +1143,9 @@ describe('SbbDialog', () => {
       viewContainerFixture.detectChanges();
       flushMicrotasks();
 
-      expect(document.activeElement!.tagName).toBe(
-        'INPUT',
-        'Expected first tabbable element (input) in the dialog to be focused.'
-      );
+      expect(document.activeElement!.tagName)
+        .withContext('Expected first tabbable element (input) in the dialog to be focused.')
+        .toBe('INPUT');
     }));
 
     it('should allow disabling focus of the first tabbable element', fakeAsync(() => {
@@ -1198,10 +1202,9 @@ describe('SbbDialog', () => {
       viewContainerFixture.detectChanges();
       tick(500);
 
-      expect(document.activeElement!.id).toBe(
-        'dialog-trigger',
-        'Expected that the trigger was refocused after the dialog is closed.'
-      );
+      expect(document.activeElement!.id)
+        .withContext('Expected that the trigger was refocused after the dialog is closed.')
+        .toBe('dialog-trigger');
 
       document.body.removeChild(button);
     }));
@@ -1259,10 +1262,9 @@ describe('SbbDialog', () => {
       viewContainerFixture.detectChanges();
       tick(500);
 
-      expect(lastFocusOrigin!).toBe(
-        'keyboard',
-        'Expected the trigger button to be focused via keyboard'
-      );
+      expect(lastFocusOrigin!)
+        .withContext('Expected the trigger button to be focused via keyboard')
+        .toBe('keyboard');
 
       focusMonitor.stopMonitoring(button);
       document.body.removeChild(button);
@@ -1297,7 +1299,9 @@ describe('SbbDialog', () => {
       viewContainerFixture.detectChanges();
       tick(500);
 
-      expect(lastFocusOrigin!).toBe('mouse', 'Expected the trigger button to be focused via mouse');
+      expect(lastFocusOrigin!)
+        .withContext('Expected the trigger button to be focused via mouse')
+        .toBe('mouse');
 
       focusMonitor.stopMonitoring(button);
       document.body.removeChild(button);
@@ -1335,10 +1339,9 @@ describe('SbbDialog', () => {
       viewContainerFixture.detectChanges();
       tick(500);
 
-      expect(lastFocusOrigin!).toBe(
-        'keyboard',
-        'Expected the trigger button to be focused via keyboard'
-      );
+      expect(lastFocusOrigin!)
+        .withContext('Expected the trigger button to be focused via keyboard')
+        .toBe('keyboard');
 
       focusMonitor.stopMonitoring(button);
       document.body.removeChild(button);
@@ -1377,7 +1380,9 @@ describe('SbbDialog', () => {
       viewContainerFixture.detectChanges();
       tick(500);
 
-      expect(lastFocusOrigin!).toBe('mouse', 'Expected the trigger button to be focused via mouse');
+      expect(lastFocusOrigin!)
+        .withContext('Expected the trigger button to be focused via mouse')
+        .toBe('mouse');
 
       focusMonitor.stopMonitoring(button);
       document.body.removeChild(button);
@@ -1407,10 +1412,9 @@ describe('SbbDialog', () => {
       viewContainerFixture.detectChanges();
       flush();
 
-      expect(document.activeElement!.id).toBe(
-        'input-to-be-focused',
-        'Expected that the trigger was refocused after the dialog is closed.'
-      );
+      expect(document.activeElement!.id)
+        .withContext('Expected that the trigger was refocused after the dialog is closed.')
+        .toBe('input-to-be-focused');
 
       document.body.removeChild(button);
       document.body.removeChild(input);
@@ -1423,10 +1427,9 @@ describe('SbbDialog', () => {
       viewContainerFixture.detectChanges();
       flushMicrotasks();
 
-      expect(document.activeElement!.tagName).toBe(
-        'SBB-DIALOG-CONTAINER',
-        'Expected dialog container to be focused.'
-      );
+      expect(document.activeElement!.tagName)
+        .withContext('Expected dialog container to be focused.')
+        .toBe('SBB-DIALOG-CONTAINER');
     }));
 
     it('should be able to disable focus restoration', fakeAsync(() => {
@@ -1489,19 +1492,17 @@ describe('SbbDialog', () => {
       dialogRef.close();
       otherButton.focus();
 
-      expect(document.activeElement!.id).toBe(
-        'other-button',
-        'Expected focus to be on the alternate button.'
-      );
+      expect(document.activeElement!.id)
+        .withContext('Expected focus to be on the alternate button.')
+        .toBe('other-button');
 
       flushMicrotasks();
       viewContainerFixture.detectChanges();
       flush();
 
-      expect(document.activeElement!.id).toBe(
-        'other-button',
-        'Expected focus to stay on the alternate button.'
-      );
+      expect(document.activeElement!.id)
+        .withContext('Expected focus to stay on the alternate button.')
+        .toBe('other-button');
 
       body.removeChild(button);
       body.removeChild(otherButton);
@@ -1593,10 +1594,9 @@ describe('SbbDialog', () => {
         viewContainerFixture.detectChanges();
 
         expect(title.id).toBeTruthy('Expected title element to have an id.');
-        expect(container.getAttribute('aria-labelledby')).toBe(
-          title.id,
-          'Expected the aria-labelledby to match the title id.'
-        );
+        expect(container.getAttribute('aria-labelledby'))
+          .withContext('Expected the aria-labelledby to match the title id.')
+          .toBe(title.id);
       }));
     }
   });
@@ -1736,38 +1736,34 @@ describe('SbbDialog with a parent SbbDialog', () => {
     fixture.detectChanges();
     flush();
 
-    expect(overlayContainerElement.textContent).toContain(
-      'Pizza',
-      'Expected a dialog to be opened'
-    );
+    expect(overlayContainerElement.textContent)
+      .withContext('Expected a dialog to be opened')
+      .toContain('Pizza');
 
     childDialog.closeAll();
     fixture.detectChanges();
     flush();
 
-    expect(overlayContainerElement.textContent!.trim()).toBe(
-      '',
-      'Expected closeAll on child SbbDialog to close dialog opened by parent'
-    );
+    expect(overlayContainerElement.textContent!.trim())
+      .withContext('Expected closeAll on child SbbDialog to close dialog opened by parent')
+      .toBe('');
   }));
 
   it('should close dialogs opened by a child when calling closeAll on a parent SbbDialog', fakeAsync(() => {
     childDialog.open(PizzaMsg);
     fixture.detectChanges();
 
-    expect(overlayContainerElement.textContent).toContain(
-      'Pizza',
-      'Expected a dialog to be opened'
-    );
+    expect(overlayContainerElement.textContent)
+      .withContext('Expected a dialog to be opened')
+      .toContain('Pizza');
 
     parentDialog.closeAll();
     fixture.detectChanges();
     flush();
 
-    expect(overlayContainerElement.textContent!.trim()).toBe(
-      '',
-      'Expected closeAll on parent SbbDialog to close dialog opened by child'
-    );
+    expect(overlayContainerElement.textContent!.trim())
+      .withContext('Expected closeAll on parent SbbDialog to close dialog opened by child')
+      .toBe('');
   }));
 
   it('should close the top dialog via the escape key', fakeAsync(() => {
@@ -1785,19 +1781,17 @@ describe('SbbDialog with a parent SbbDialog', () => {
     fixture.detectChanges();
     flush();
 
-    expect(overlayContainerElement.textContent).toContain(
-      'Pizza',
-      'Expected a dialog to be opened'
-    );
+    expect(overlayContainerElement.textContent)
+      .withContext('Expected a dialog to be opened')
+      .toContain('Pizza');
 
     childDialog.ngOnDestroy();
     fixture.detectChanges();
     flush();
 
-    expect(overlayContainerElement.textContent).toContain(
-      'Pizza',
-      'Expected a dialog to be opened'
-    );
+    expect(overlayContainerElement.textContent)
+      .withContext('Expected a dialog to be opened')
+      .toContain('Pizza');
   }));
 });
 
@@ -1937,6 +1931,24 @@ describe('SbbDialog with animations enabled', () => {
     // tasks (e.g. the fallback close timeout) to avoid fakeAsync pending timer failures.
     flush();
     expect(dialogRef.getState()).toBe(SbbDialogState.CLOSED);
+  }));
+});
+
+describe('SbbDialog with template only', () => {
+  let fixture: ComponentFixture<ContentElementDialog>;
+
+  beforeEach(fakeAsync(() => {
+    TestBed.configureTestingModule({
+      imports: [SbbDialogModule, DialogTestModule, BrowserAnimationsModule],
+    });
+    TestBed.compileComponents();
+  }));
+
+  it('should display close button', fakeAsync(() => {
+    fixture = TestBed.createComponent(ContentElementDialog);
+    fixture.detectChanges();
+
+    expect(fixture.nativeElement.querySelector('.sbb-dialog-title-close-button')).toBeTruthy();
   }));
 });
 

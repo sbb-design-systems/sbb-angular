@@ -5,7 +5,6 @@ import { FunctionExportDoc } from 'dgeni-packages/typescript/api-doc-types/Funct
 import { InterfaceExportDoc } from 'dgeni-packages/typescript/api-doc-types/InterfaceExportDoc';
 import { TypeAliasExportDoc } from 'dgeni-packages/typescript/api-doc-types/TypeAliasExportDoc';
 import * as path from 'path';
-
 import { computeApiDocumentUrl } from '../common/compute-api-url';
 import { isDeprecatedDoc, isPrimaryExportDoc } from '../common/decorators';
 import { CategorizedClassDoc } from '../common/dgeni-definitions';
@@ -91,6 +90,7 @@ export class EntryPointDoc {
 export class EntryPointGrouper implements Processor {
   name = 'entryPointGrouper';
   $runBefore = ['docs-processed'];
+  $runAfter = ['docs-private-filter'];
   entryPoints: string[] = [];
 
   $process(docs: DocCollection) {

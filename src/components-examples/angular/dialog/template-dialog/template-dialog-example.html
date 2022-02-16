@@ -1,7 +1,5 @@
 <p>Dialog with content loaded from a TemplateRef.</p>
-<button type="button" sbb-button mode="secondary" (click)="openDialog()">
-  Open Dialog From Template
-</button>
+<button type="button" sbb-secondary-button (click)="openDialog()">Open Dialog From Template</button>
 
 <ng-template #sampleDialogTemplate>
   <div>
@@ -20,7 +18,7 @@
     </div>
     <div sbbDialogActions>
       <button type="button" sbb-button [sbbDialogClose]="true">Accept</button>
-      <button type="button" sbb-secondary-button mode="secondary" sbbDialogClose>Cancel</button>
+      <button type="button" sbb-secondary-button sbbDialogClose>Cancel</button>
     </div>
   </div>
 </ng-template>

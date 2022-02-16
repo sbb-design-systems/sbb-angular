@@ -6,7 +6,12 @@ import {
   FocusOrigin,
   FocusTrap,
 } from '@angular/cdk/a11y';
-import { BooleanInput, coerceBooleanProperty, NumberInput } from '@angular/cdk/coercion';
+import {
+  BooleanInput,
+  coerceBooleanProperty,
+  coerceNumberProperty,
+  NumberInput,
+} from '@angular/cdk/coercion';
 import { ESCAPE, hasModifierKey } from '@angular/cdk/keycodes';
 import { BreakpointObserver, BreakpointState } from '@angular/cdk/layout';
 import { ConnectionPositionPair, Overlay, OverlayRef, ScrollStrategy } from '@angular/cdk/overlay';
@@ -167,7 +172,7 @@ export abstract class _SbbTooltipBase<T extends _TooltipComponentBase>
   get disabled(): boolean {
     return this._disabled;
   }
-  set disabled(value) {
+  set disabled(value: BooleanInput) {
     this._disabled = coerceBooleanProperty(value);
 
     // If tooltip is disabled, hide immediately.
@@ -179,10 +184,24 @@ export abstract class _SbbTooltipBase<T extends _TooltipComponentBase>
   }
 
   /** The default delay in ms before showing the tooltip after show is called */
-  @Input('sbbTooltipShowDelay') showDelay: number = this._defaultOptions.showDelay;
+  @Input('sbbTooltipShowDelay')
+  get showDelay(): number {
+    return this._showDelay;
+  }
+  set showDelay(value: NumberInput) {
+    this._showDelay = coerceNumberProperty(value);
+  }
+  private _showDelay = this._defaultOptions.showDelay;
 
   /** The default delay in ms before hiding the tooltip after hide is called */
-  @Input('sbbTooltipHideDelay') hideDelay: number = this._defaultOptions.hideDelay;
+  @Input('sbbTooltipHideDelay')
+  get hideDelay(): number {
+    return this._hideDelay;
+  }
+  set hideDelay(value: NumberInput) {
+    this._hideDelay = coerceNumberProperty(value);
+  }
+  private _hideDelay = this._defaultOptions.hideDelay;
 
   /**
    * How touch gestures should be handled by the tooltip. On touch devices the tooltip directive
@@ -273,6 +292,10 @@ export abstract class _SbbTooltipBase<T extends _TooltipComponentBase>
   @Output() readonly opened: EventEmitter<SbbTooltipChangeEvent> =
     new EventEmitter<SbbTooltipChangeEvent>();
 
+  /** Event emitted when the tooltip is closed. */
+  @Output() readonly dismissed: EventEmitter<SbbTooltipChangeEvent> =
+    new EventEmitter<SbbTooltipChangeEvent>();
+
   constructor(
     private _overlay: Overlay,
     private _elementRef: ElementRef<HTMLElement>,
@@ -292,10 +315,6 @@ export abstract class _SbbTooltipBase<T extends _TooltipComponentBase>
     if (_defaultOptions?.touchGestures) {
       this.touchGestures = _defaultOptions.touchGestures;
     }
-
-    _ngZone.runOutsideAngular(() => {
-      _elementRef.nativeElement.addEventListener('keydown', this._handleKeydown);
-    });
   }
 
   ngAfterViewInit() {
@@ -333,7 +352,6 @@ export abstract class _SbbTooltipBase<T extends _TooltipComponentBase>
     }
 
     // Clean up the event listeners set in the constructor
-    nativeElement.removeEventListener('keydown', this._handleKeydown);
     this._passiveListeners.forEach(([event, listener]) => {
       nativeElement.removeEventListener(event, listener, passiveListenerOptions);
     });
@@ -372,23 +390,31 @@ export abstract class _SbbTooltipBase<T extends _TooltipComponentBase>
       );
     }
     this._tooltipInstance
+      .afterShown()
+      .pipe(takeUntil(this._destroyed))
+      .subscribe(() => this.opened.emit(new SbbTooltipChangeEvent(this)));
+    this._tooltipInstance
       .afterHidden()
       .pipe(takeUntil(this._destroyed))
-      .subscribe(() => this._detach());
+      .subscribe(() => {
+        this.dismissed.emit(new SbbTooltipChangeEvent(this));
+        this._detach();
+      });
     this._setTooltipClass(this._tooltipClass);
     this._updateTooltipMessage();
     if (this.trigger === 'click') {
-      // If the tooltip has a click trigger, it behaves similar to a a dialog and should capture
+      // If the tooltip has a click trigger, it behaves similar to a dialog and should capture
       // the focus and trap it inside the tooltip
       this._tooltipInstance._config = {
         autoFocus: this._defaultOptions.autoFocus ?? true,
         restoreFocus: this._defaultOptions.restoreFocus ?? true,
       };
       this._tooltipInstance._initializeWithAttachedContent();
+      this._tooltipInstance._triggeredByClick = true;
     } else {
       this._tooltipInstance._config = undefined;
+      this._tooltipInstance._triggeredByClick = false;
     }
-    this.opened.emit(new SbbTooltipChangeEvent(this));
     this._tooltipInstance!.show(delay);
   }
 
@@ -408,18 +434,6 @@ export abstract class _SbbTooltipBase<T extends _TooltipComponentBase>
   _isTooltipVisible(): boolean {
     return !!this._tooltipInstance && this._tooltipInstance.isVisible();
   }
-
-  /**
-   * Handles the keydown events on the host element.
-   * Needs to be an arrow function so that we can use it in addEventListener.
-   */
-  private _handleKeydown = (event: KeyboardEvent) => {
-    if (this._isTooltipVisible() && event.keyCode === ESCAPE && !hasModifierKey(event)) {
-      event.preventDefault();
-      event.stopPropagation();
-      this._ngZone.run(() => this.hide(0));
-    }
-  };
 
   /** Create the overlay config and position strategy */
   private _createOverlay(): OverlayRef {
@@ -519,11 +533,14 @@ export abstract class _SbbTooltipBase<T extends _TooltipComponentBase>
 
     this._overlayRef
       .keydownEvents()
-      .pipe(
-        filter((e) => e.keyCode === ESCAPE),
-        takeUntil(this._destroyed)
-      )
-      .subscribe(() => this._tooltipInstance?._handleBodyInteraction());
+      .pipe(takeUntil(this._destroyed))
+      .subscribe((event) => {
+        if (this._isTooltipVisible() && event.keyCode === ESCAPE && !hasModifierKey(event)) {
+          event.preventDefault();
+          event.stopPropagation();
+          this._ngZone.run(() => this.hide(0));
+        }
+      });
 
     this._overlayRef
       .outsidePointerEvents()
@@ -724,10 +741,6 @@ export abstract class _SbbTooltipBase<T extends _TooltipComponentBase>
       (style as any).webkitTapHighlightColor = 'transparent';
     }
   }
-
-  static ngAcceptInputType_disabled: BooleanInput;
-  static ngAcceptInputType_hideDelay: NumberInput;
-  static ngAcceptInputType_showDelay: NumberInput;
 }
 
 /**
@@ -812,8 +825,14 @@ export abstract class _TooltipComponentBase implements OnDestroy {
   /** Element that was focused before the tooltip was opened. Save this to restore upon close. */
   private _elementFocusedBeforeDialogWasOpened: HTMLElement | null = null;
 
+  /** Subject for notifying that the tooltip has been shown in the view */
+  private readonly _onShow: Subject<void> = new Subject<void>();
+
   /** Subject for notifying that the tooltip has been hidden from the view */
   private readonly _onHide: Subject<void> = new Subject<void>();
+
+  /** Whether the tooltip component was triggered by click */
+  _triggeredByClick: boolean = false;
 
   constructor(
     public _elementRef: ElementRef<HTMLElement>,
@@ -863,6 +882,11 @@ export abstract class _TooltipComponentBase implements OnDestroy {
     }, delay);
   }
 
+  /** Returns an observable that notifies when the tooltip has been shown in the view. */
+  afterShown(): Observable<void> {
+    return this._onShow;
+  }
+
   /** Returns an observable that notifies when the tooltip has been hidden from view. */
   afterHidden(): Observable<void> {
     return this._onHide;
@@ -876,6 +900,7 @@ export abstract class _TooltipComponentBase implements OnDestroy {
   ngOnDestroy() {
     clearTimeout(this._showTimeoutId);
     clearTimeout(this._hideTimeoutId);
+    this._onShow.complete();
     this._onHide.complete();
   }
 
@@ -888,6 +913,10 @@ export abstract class _TooltipComponentBase implements OnDestroy {
 
     if (toState === 'visible' && this.isVisible() && this._config) {
       this._trapFocus();
+    }
+
+    if (toState === 'visible' && this.isVisible()) {
+      this._onShow.next();
     }
 
     if (toState === 'hidden' && !this.isVisible()) {

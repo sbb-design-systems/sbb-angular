@@ -1,7 +1,7 @@
-import { Component, Directive } from '@angular/core';
+import { ApplicationRef, Component, Directive } from '@angular/core';
 import { TestBed, waitForAsync } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
-import { switchToLean } from '@sbb-esta/angular/core/testing';
+import { createMouseEvent, dispatchEvent, switchToLean } from '@sbb-esta/angular/core/testing';
 import { SbbIcon, SbbIconModule } from '@sbb-esta/angular/icon';
 import { SbbIconTestingModule } from '@sbb-esta/angular/icon/testing';
 
@@ -270,20 +270,18 @@ describe('SbbButton', () => {
       const testComponent = fixture.debugElement.componentInstance;
       const buttonDebugElement = fixture.debugElement.query(By.css('a'))!;
       fixture.detectChanges();
-      expect(buttonDebugElement.nativeElement.getAttribute('aria-disabled')).toBe(
-        'false',
-        'Expect aria-disabled="false"'
-      );
+      expect(buttonDebugElement.nativeElement.getAttribute('aria-disabled'))
+        .withContext('Expect aria-disabled="false"')
+        .toBe('false');
       expect(buttonDebugElement.nativeElement.getAttribute('disabled')).toBeNull(
         'Expect disabled="false"'
       );
 
       testComponent.isDisabled = false;
       fixture.detectChanges();
-      expect(buttonDebugElement.nativeElement.getAttribute('aria-disabled')).toBe(
-        'false',
-        'Expect no aria-disabled'
-      );
+      expect(buttonDebugElement.nativeElement.getAttribute('aria-disabled'))
+        .withContext('Expect no aria-disabled')
+        .toBe('false');
       expect(buttonDebugElement.nativeElement.getAttribute('disabled')).toBeNull(
         'Expect no disabled'
       );
@@ -297,18 +295,38 @@ describe('SbbButton', () => {
       fixture.componentInstance.tabIndex = 3;
       fixture.detectChanges();
 
-      expect(buttonElement.getAttribute('tabIndex')).toBe(
-        '3',
-        'Expected custom tabindex to be set'
-      );
+      expect(buttonElement.getAttribute('tabIndex'))
+        .withContext('Expected custom tabindex to be set')
+        .toBe('3');
 
       testComponent.isDisabled = true;
       fixture.detectChanges();
 
-      expect(buttonElement.getAttribute('tabIndex')).toBe(
-        '-1',
-        'Expected custom tabindex to be overwritten when disabled.'
-      );
+      expect(buttonElement.getAttribute('tabIndex'))
+        .withContext('Expected custom tabindex to be overwritten when disabled.')
+        .toBe('-1');
+    });
+
+    describe('change detection behavior', () => {
+      it('should not run change detection for disabled anchor but should prevent the default behavior and stop event propagation', () => {
+        const appRef = TestBed.inject(ApplicationRef);
+        const fixture = TestBed.createComponent(ButtonTest);
+        fixture.componentInstance.isDisabled = true;
+        fixture.detectChanges();
+        const anchorElement = fixture.debugElement.query(By.css('a'))!.nativeElement;
+
+        spyOn(appRef, 'tick');
+
+        const event = createMouseEvent('click');
+        spyOn(event, 'preventDefault').and.callThrough();
+        spyOn(event, 'stopImmediatePropagation').and.callThrough();
+
+        dispatchEvent(anchorElement, event);
+
+        expect(appRef.tick).not.toHaveBeenCalled();
+        expect(event.preventDefault).toHaveBeenCalled();
+        expect(event.stopImmediatePropagation).toHaveBeenCalled();
+      });
     });
   });
 

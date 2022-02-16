@@ -117,9 +117,7 @@ describe('SbbTooltipWrapper', () => {
       fixture.detectChanges();
       flush();
 
-      const tooltipBody = overlayContainer
-        .getContainerElement()
-        .querySelector('.sbb-tooltip-content-body')!;
+      const tooltipBody = overlayContainer.getContainerElement().querySelector('.sbb-tooltip')!;
       dispatchMouseEvent(tooltipBody, 'click');
       dispatchMouseEvent(tooltipBody, 'mousedown');
 
@@ -137,7 +135,7 @@ describe('SbbTooltipWrapper', () => {
       flush();
 
       dispatchMouseEvent(
-        overlayContainer.getContainerElement().querySelector('.sbb-tooltip-content-body')!,
+        overlayContainer.getContainerElement().querySelector('.sbb-tooltip')!,
         'mousedown'
       );
       dispatchEvent(document.body, createMouseEvent('mouseup'));
@@ -168,6 +166,26 @@ describe('SbbTooltipWrapper', () => {
       component.tooltip.show();
       tick();
       fixture.detectChanges();
+      tick();
+
+      expect(event!.instance).toBe(component.tooltip._tooltip);
+
+      // Note that we aren't asserting anything, but `fakeAsync` will
+      // throw if we have any timers by the end of the test.
+      fixture.destroy();
+    }));
+
+    it('should emit event on dismissing tooltip', fakeAsync(() => {
+      let event: SbbTooltipChangeEvent | null = null;
+      component.tooltip.dismissed.subscribe((e) => (event = e));
+
+      component.tooltip.show();
+      tick();
+      fixture.detectChanges();
+      component.tooltip.hide();
+      tick();
+      fixture.detectChanges();
+      tick();
 
       expect(event!.instance).toBe(component.tooltip._tooltip);
 

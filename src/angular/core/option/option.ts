@@ -32,10 +32,10 @@ import { SbbOptionParentComponent, SBB_OPTION_PARENT_COMPONENT } from './option-
 let uniqueIdCounter = 0;
 
 /** Event object emitted by SbbOption when selected or deselected. */
-export class SbbOptionSelectionChange {
+export class SbbOptionSelectionChange<T = any> {
   constructor(
     /** Reference to the option that emitted the event. */
-    public source: SbbOption,
+    public source: SbbOption<T>,
     /** Whether the change in the option's value was a result of a user action. */
     public isUserInput = false
   ) {}
@@ -61,7 +61,9 @@ export class SbbOptionSelectionChange {
     '[class.sbb-disabled]': 'disabled',
   },
 })
-export class SbbOption implements AfterViewChecked, OnDestroy, FocusableOption, Highlightable {
+export class SbbOption<T = any>
+  implements AfterViewChecked, OnDestroy, FocusableOption, Highlightable
+{
   private _selected = false;
   private _active = false;
   private _disabled = false;
@@ -81,24 +83,24 @@ export class SbbOption implements AfterViewChecked, OnDestroy, FocusableOption, 
   }
 
   /** The form value of the option. */
-  @Input() value: any;
+  @Input() value: T;
 
   /** The unique ID of the option. */
   @Input() id: string = `sbb-option-${uniqueIdCounter++}`;
 
   /** Whether the option is disabled. */
   @Input()
-  get disabled() {
+  get disabled(): boolean {
     return (this.group && this.group.disabled) || this._disabled;
   }
-  set disabled(value: any) {
+  set disabled(value: BooleanInput) {
     this._disabled = coerceBooleanProperty(value);
     this._changeDetectorRef.markForCheck();
   }
 
   /** Event emitted when the option is selected or deselected. */
   // tslint:disable-next-line:no-output-on-prefix
-  @Output() readonly onSelectionChange = new EventEmitter<SbbOptionSelectionChange>();
+  @Output() readonly onSelectionChange = new EventEmitter<SbbOptionSelectionChange<T>>();
 
   /** Emits when the state of the option changes and any parents have to be notified. */
   readonly _stateChanges = new Subject<void>();
@@ -341,10 +343,8 @@ export class SbbOption implements AfterViewChecked, OnDestroy, FocusableOption, 
 
   /** Emits the selection change event. */
   private _emitSelectionChangeEvent(isUserInput = false): void {
-    this.onSelectionChange.emit(new SbbOptionSelectionChange(this, isUserInput));
+    this.onSelectionChange.emit(new SbbOptionSelectionChange<T>(this, isUserInput));
   }
-
-  static ngAcceptInputType_disabled: BooleanInput;
 }
 
 /**

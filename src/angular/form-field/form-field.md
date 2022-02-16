@@ -33,6 +33,19 @@ With label attribute:
 </sbb-form-field>
 ```
 
+### Form field groups
+
+We provide utility CSS classes to group from fields together (optionally with a submit button).
+
+| Class                      | Description                                                                                                          |
+| -------------------------- | -------------------------------------------------------------------------------------------------------------------- |
+| `.sbb-form-group`          | Groups `sbb-form-group` elements and buttons (optionally) horizontally.                                              |
+| `.sbb-form-group-center`   | Same as `.sbb-form-group`; additionally centers the elements.                                                        |
+| `.sbb-form-group-wrap`     | Same as `.sbb-form-group`; additionally wraps elements when they exceed the parent width.                            |
+| `.sbb-form-group-vertical` | Groups `sbb-form-group` elements and buttons (optionally) vertically. Can be combined with `.sbb-form-group-center`. |
+
+It is possible to combine these classes as required.
+
 ### Error messages
 
 Error messages can be shown under the form field by adding `sbb-error` elements inside the
@@ -146,8 +159,18 @@ providers: [...SbbShowOnDirtyErrorStateMatcher];
 
 ### Accessibility
 
-Any errors added to the form field are automatically added to the form field control's
-`aria-describedby` set.
+By itself, `SbbFormField` does not apply any additional accessibility treatment to a control.
+However, several of the form field's optional features interact with the control contained within
+the form field.
+
+When you provide a label via `<sbb-label>`, `SbbFormField` automatically associates this label with
+the field's control via a native `<label>` element, using the `for` attribute to reference the
+control's ID.
+
+When you provide informational text via `<sbb-error>`, `SbbFormField` automatically
+adds these elements' IDs to the control's `aria-describedby` attribute. Additionally,
+`SbbError` applies `aria-live="polite"` by default such that assistive technology will announce errors when
+they appear.
 
 ### Custom SbbFormFieldControl
 

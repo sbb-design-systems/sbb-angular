@@ -35,7 +35,7 @@ Notification toast supports four notification types:
 - success (default)
 - info
 - error
-- warning
+- warn
 
 ```typescript
 notificationToast.open('This is an info', {

@@ -24,10 +24,10 @@ http_archive(
 # Add sass rules
 http_archive(
     name = "io_bazel_rules_sass",
-    sha256 = "435efe759f1c8baffadc320ecc1830454da181fa790aa83bb4326f07e903a0f4",
-    strip_prefix = "rules_sass-1.41.0",
+    sha256 = "bfb89ca97a4ad452ca5f623dfde23d2a5f3a848a97478d715881b69b4767d3bb",
+    strip_prefix = "rules_sass-1.49.4",
     urls = [
-        "https://github.com/bazelbuild/rules_sass/archive/1.41.0.zip",
+        "https://github.com/bazelbuild/rules_sass/archive/1.49.4.zip",
     ],
 )
 
@@ -60,9 +60,7 @@ load("@bazel_skylib//:workspace.bzl", "bazel_skylib_workspace")
 
 bazel_skylib_workspace()
 
-load("@build_bazel_rules_nodejs//:index.bzl", "check_bazel_version", "node_repositories", "yarn_install")
-
-check_bazel_version("4.0.0")
+load("@build_bazel_rules_nodejs//:index.bzl", "node_repositories", "yarn_install")
 
 node_repositories(
     node_version = "16.10.0",

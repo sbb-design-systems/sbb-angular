@@ -67,7 +67,7 @@ While `<sbb-tab-group>` is used to switch between views within a single route, `
 provides a tab-like UI for navigating between routes.
 
 ```html
-<nav sbb-tab-nav-bar>
+<nav sbb-tab-nav-bar [tabPanel]="tabPanel">
   <a
     sbb-tab-link
     *ngFor="let link of links"
@@ -81,15 +81,15 @@ provides a tab-like UI for navigating between routes.
   <a sbb-tab-link disabled>Disabled Link</a>
 </nav>
 
-<!-- The wrapping div with the css class 'sbb-tab-nav-bar-body' is only required for the lean design -->
-<div class="sbb-tab-nav-bar-body">
+<sbb-tab-nav-panel #tabPanel>
   <router-outlet></router-outlet>
-</div>
+</sbb-tab-nav-panel>
 ```
 
-The `tab-nav-bar` is not tied to any particular router; it works with normal `<a>` elements and uses
-the `active` property to determine which tab is currently active. The corresponding
-`<router-outlet>` can be placed anywhere in the view.
+The `sbb-tab-nav-bar` is not tied to any particular router; it works with normal `<a>` elements and
+uses the `active` property to determine which tab is currently active. The corresponding
+`<router-outlet>` must be wrapped in an `<sbb-tab-nav-panel>` component and should typically be
+placed relatively close to the `sbb-tab-nav-bar` (see [Accessibility](#accessibility)).
 
 ### Lazy Loading
 
@@ -112,20 +112,61 @@ with the `sbbTabContent` attribute.
 </sbb-tab>
 ```
 
+### Controlling the tab animation
+
+You can control the duration of the tabs' animation using the `animationDuration` input. If you
+want to disable the animation completely, you can do so by setting the properties to `0ms`. The
+duration can be configured globally using the `SBB_TABS_CONFIG` injection token.
+
+```html
+<sbb-tab-group animationDuration="2000ms"></sbb-tab-group>
+```
+
+### Keeping the tab content inside the DOM while it's off-screen
+
+By default the `<sbb-tab-group>` will remove the content of off-screen tabs from the DOM until they
+come into the view. This is optimal for most cases since it keeps the DOM size smaller, but it
+isn't great for others like when a tab has an `<audio>` or `<video>` element, because the content
+will be re-initialized whenever the user navigates to the tab. If you want to keep the content of
+off-screen tabs in the DOM, you can set the `preserveContent` input to `true`.
+
+```html
+<sbb-tab-group preserveContent>
+  <sbb-tab label="First">
+    <iframe
+      width="560"
+      height="315"
+      src="https://www.youtube.com/embed/B-lipaiZII8"
+      frameborder="0"
+      allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
+      allowfullscreen
+    ></iframe>
+  </sbb-tab>
+  <sbb-tab label="Second">Note how the video from the previous tab is still playing.</sbb-tab>
+</sbb-tab-group>
+```
+
 ### Accessibility
 
-`<sbb-tab-group>` and `<sbb-nav-tab-bar>` use different interaction patterns. The
-`<sbb-tab-group>` component combines `tablist`, `tab`, and `tabpanel` into a single component with
-the appropriate keyboard shortcuts. The `<sbb-nav-tab-bar>`, however, use a _navigation_ interaction
-pattern by using a `<nav>` element with anchor elements as the "tabs". The difference
-between these two patterns comes from the fact one updates the page URL while the other does not.
+`SbbTabGroup` and `SbbTabNavBar` both implement the
+[ARIA Tabs design pattern](https://www.w3.org/TR/wai-aria-practices-1.1/#tabpanel). Both components
+compose `tablist`, `tab`, and `tabpanel` elements with handling for keyboard inputs and focus
+management.
+
+When using `SbbTabNavBar`, you should place the `<sbb-tab-nav-panel>` component relatively close to
+if not immediately adjacent to the `<nav sbb-tab-nav-bar>` component so that it's easy for screen
+reader users to identify the association.
 
 #### Labels
 
-Tabs without text or labels should be given a meaningful label via `aria-label` or
-`aria-labelledby`. For `SbbTabNav`, the `<nav>` element should have a label as well.
+Always provide an accessible label via `aria-label` or `aria-describedby` for tabs without
+descriptive text content.
+
+When using `SbbTabNavGroup`, always specify a label for the `<nav>` element.
 
 #### Keyboard interaction
+
+`SbbTabGroup` and `SbbTabNavBar` both implement the following keyboard interactions:
 
 | Shortcut           | Action                     |
 | ------------------ | -------------------------- |
