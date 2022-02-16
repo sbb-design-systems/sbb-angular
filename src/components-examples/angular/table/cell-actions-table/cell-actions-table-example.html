@@ -1,0 +1,59 @@
+<sbb-table-wrapper>
+  <table sbb-table [dataSource]="dataSource">
+    <ng-container sbbColumnDef="vehicle">
+      <th sbb-header-cell *sbbHeaderCellDef>vehicle</th>
+      <td sbb-cell *sbbCellDef="let element">{{ element.vehicle }}</td>
+    </ng-container>
+
+    <ng-container sbbColumnDef="manufacturer">
+      <th sbb-header-cell *sbbHeaderCellDef>manufacturer</th>
+      <td sbb-cell *sbbCellDef="let element">{{ element.manufacturer }}</td>
+    </ng-container>
+
+    <ng-container sbbColumnDef="price">
+      <th sbb-header-cell *sbbHeaderCellDef>price (CHF)</th>
+      <td sbb-cell *sbbCellDef="let element">
+        {{ element.price }}
+
+        <div class="sbb-table-cell-actions" aria-label="Press tab key to access actions.">
+          <a sbb-icon-button href="#" attr.aria-label="Edit {{element.vehicle}}.">
+            <sbb-icon svgIcon="kom:pen-small"></sbb-icon>
+          </a>
+          <button
+            sbb-icon-button
+            attr.aria-label="Save {{element.vehicle}} as favorite."
+            (click)="logActionButtonClicked($event)"
+          >
+            <sbb-icon svgIcon="kom:star-small"></sbb-icon>
+          </button>
+          <button
+            sbb-icon-button
+            attr.aria-label="Delete {{element.vehicle}}."
+            (click)="logActionButtonClicked($event)"
+          >
+            <sbb-icon svgIcon="kom:trash-small"></sbb-icon>
+          </button>
+        </div>
+      </td>
+    </ng-container>
+
+    <tr sbb-header-row *sbbHeaderRowDef="displayedColumns"></tr>
+    <tr
+      sbb-row
+      *sbbRowDef="let row; columns: displayedColumns"
+      (click)="logRowClicked()"
+      (keydown)="handleKeydown($event)"
+    ></tr>
+  </table>
+</sbb-table-wrapper>
+
+<p class="sbb-table-caption">
+  <small>
+    *By hovering on a row or focusing it by keyboard, it displays action buttons. <br />
+    Clicking on a row should ideally forward the user to a detail page where he can execute the same
+    actions.
+    <br />
+    In this example, the buttons are also accessible by keyboard: use the tab key to focus the table
+    and then the arrow keys to move up and down.
+  </small>
+</p>

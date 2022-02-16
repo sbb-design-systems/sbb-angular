@@ -725,7 +725,7 @@ textarea {
 // Link
 // ----------------------------------------------------------------------------------------------------
 
-:is(a:where(:not(.sbb-link-reset)), .sbb-link) {
+:is(a:where(:not(.sbb-link-reset):not(.sbb-button-base)), .sbb-link) {
   color: var(--sbb-color-text);
   text-decoration: underline;
   // Read more about here https://medium.com/@iamhiwelo/improving-text-readability-for-dyslexic-users-with-skip-ink-underlines-bf52a2f3426b
@@ -1206,7 +1206,7 @@ textarea {
 :is(.sbb-button, .sbb-alt-button, .sbb-secondary-button, .sbb-ghost-button, .sbb-icon-button) {
   @include ellipsis;
   width: 100%;
-  // We need to explicitely define the button height, due to rounding issues in Firefox
+  // We need to explicitly define the button height, due to rounding issues in Firefox
   height: var(--sbb-button-height);
   background: none;
   max-width: none;
@@ -1441,20 +1441,24 @@ textarea {
   }
 }
 
-// We need to position and scale icons inside the buttons in a special way.
 :is(.sbb-button, .sbb-alt-button, .sbb-secondary-button, .sbb-ghost-button, .sbb-icon-button, .sbb-frameless-button, .sbb-link:where(.sbb-button-base))
   .sbb-icon {
   width: var(--sbb-icon-size-default);
   height: var(--sbb-icon-size-default);
-  margin-top: var(--sbb-button-icon-top-margin);
-
-  &:not(.sbb-button-indicator-icon) {
-    transform: translateY(calc(var(--sbb-button-icon-top-margin) / -2));
-  }
 
   > svg {
     width: 100%;
     height: 100%;
+  }
+}
+
+// We need to position icons inside the buttons in a special way.
+:is(.sbb-button, .sbb-alt-button, .sbb-secondary-button, .sbb-ghost-button, .sbb-frameless-button, .sbb-link:where(.sbb-button-base))
+  .sbb-icon {
+  margin-top: var(--sbb-button-icon-top-margin);
+
+  &:not(.sbb-button-indicator-icon) {
+    transform: translateY(calc(var(--sbb-button-icon-top-margin) / -2));
   }
 }
 
@@ -1898,15 +1902,18 @@ textarea {
   width: 100%;
   font-size: var(--sbb-font-size);
   line-height: var(--sbb-line-height-medium);
+  padding-bottom: var(--sbb-table-tbody-padding);
 
-  thead {
-    text-align: left;
+  :where(html.sbb-lean) & {
+    line-height: var(--sbb-line-height);
+    padding-bottom: 0;
   }
 
   :is(th, td) {
     color: var(--sbb-color-text);
-    background-color: var(--sbb-color-background);
+    background-color: var(--sbb-table-background-color);
     vertical-align: top;
+    position: relative;
   }
 
   th {
@@ -1927,6 +1934,124 @@ textarea {
         width: 100%;
       }
     }
+
+    :where(html.sbb-lean) & {
+      color: var(--sbb-color-granite);
+    }
+  }
+
+  thead {
+    text-align: left;
+
+    :where(html.sbb-lean) & {
+      > tr:last-child :is(th, td) {
+        border-bottom: var(--sbb-border-width-thin) solid var(--sbb-color-graphite);
+      }
+
+      > tr :is(th, td) {
+        border-right: var(--sbb-border-width-thin) solid var(--sbb-color-graphite);
+
+        :is(.sbb-table-wrapper-offset-right, .sbb-table-wrapper-offset-both)
+          &.sbb-table-sticky-border-elem-right {
+          border-left: var(--sbb-border-width-thin) solid var(--sbb-color-graphite);
+        }
+      }
+    }
+  }
+
+  :is(thead, tfoot) > tr :is(th, td) {
+    :where(html:not(.sbb-lean)) & {
+      background-color: var(--sbb-table-thead-background-color);
+      padding: var(--sbb-table-thead-padding-vertical-top) var(--sbb-table-cell-padding-horizontal)
+        var(--sbb-table-thead-padding-vertical-bottom) var(--sbb-table-cell-padding-horizontal);
+
+      @include mq($from: tabletPortrait) {
+        &:first-child {
+          border-left: var(--sbb-table-thead-padding) solid var(--sbb-table-thead-background-color);
+        }
+
+        &:last-child {
+          border-right: var(--sbb-table-thead-padding) solid var(--sbb-table-thead-background-color);
+        }
+      }
+    }
+  }
+
+  :is(tbody, tfoot, &) > tr :is(th, td) {
+    :where(html.sbb-lean) & {
+      border-right: var(--sbb-border-width-thin) solid var(--sbb-color-aluminum);
+    }
+  }
+
+  :is(thead, tbody, tfoot, &) > tr :is(th, td) {
+    :where(html.sbb-lean) & {
+      padding: var(--sbb-table-cell-padding-vertical) var(--sbb-table-tbody-padding);
+
+      &.sbb-table-group-with-next {
+        border-right: none;
+      }
+
+      &:first-child {
+        padding-left: var(--sbb-table-tbody-padding);
+        border-left: none;
+      }
+
+      &:last-child {
+        padding-right: var(--sbb-table-tbody-padding);
+        border-right: none;
+      }
+    }
+  }
+
+  :is(tbody, &) > tr {
+    :is(th, td) {
+      :where(html:not(.sbb-lean)) & {
+        padding: var(--sbb-table-cell-padding-vertical-top) var(--sbb-table-cell-padding-horizontal)
+          var(--sbb-table-cell-padding-vertical-bottom) var(--sbb-table-cell-padding-horizontal);
+
+        @include mq($from: tabletPortrait) {
+          &:first-child {
+            border-left: var(--sbb-table-thead-padding) solid var(--sbb-table-background-color);
+          }
+
+          &:last-child {
+            border-right: var(--sbb-table-thead-padding) solid var(--sbb-table-background-color);
+          }
+        }
+      }
+
+      :where(html.sbb-lean) & {
+        border-bottom: var(--sbb-border-width-thin) solid var(--sbb-color-aluminum);
+      }
+    }
+
+    :where(html:not(.sbb-lean)) & {
+      &:nth-child(even) :is(th, td) {
+        background-color: var(--sbb-table-tbody-stripe-background-color);
+      }
+    }
+
+    :where(html.sbb-lean) & {
+      &.sbb-table-row-selected :is(td, th) {
+        background-color: var(--sbb-color-cloud);
+        border-bottom: var(--sbb-border-width-thin) solid var(--sbb-color-black);
+      }
+
+      &:is(:hover, :focus, :focus-within) :is(td, th) {
+        background-color: var(--sbb-color-milk);
+        border-bottom: var(--sbb-border-width-thin) solid var(--sbb-color-call-to-action-hover);
+      }
+    }
+  }
+
+  caption {
+    font-size: var(--sbb-font-size-small);
+    line-height: var(--sbb-line-height-small);
+    color: var(--sbb-color-weak-accent);
+  }
+
+  .sbb-selection-item {
+    vertical-align: top;
   }
 
   // Position buttons and contextmenu over padding of cell
@@ -1954,120 +2079,9 @@ textarea {
     }
   }
 
+  .sbb-icon-button,
   .sbb-menu-trigger-contextmenu {
     transform: translateY(calc(#{pxToRem(7)} * var(--sbb-scaling-factor)));
-  }
-
-  :where(html:not(.sbb-lean)) & {
-    padding-bottom: var(--sbb-table-tbody-padding);
-
-    :is(thead, tfoot) > tr :is(th, td) {
-      background-color: var(--sbb-table-thead-background-color);
-      padding: var(--sbb-table-thead-padding-vertical-top) var(--sbb-table-cell-padding-horizontal)
-        var(--sbb-table-thead-padding-vertical-bottom) var(--sbb-table-cell-padding-horizontal);
-
-      @include mq($from: tabletPortrait) {
-        &:first-child {
-          border-left: var(--sbb-table-thead-padding) solid var(--sbb-table-thead-background-color);
-        }
-
-        &:last-child {
-          border-right: var(--sbb-table-thead-padding) solid var(--sbb-table-thead-background-color);
-        }
-      }
-    }
-
-    tbody > tr {
-      &:nth-child(even) :is(td, th) {
-        background-color: var(--sbb-table-tbody-stripe-background-color);
-      }
-
-      :is(th, td) {
-        padding: var(--sbb-table-cell-padding-vertical-top) var(--sbb-table-cell-padding-horizontal)
-          var(--sbb-table-cell-padding-vertical-bottom) var(--sbb-table-cell-padding-horizontal);
-
-        @include mq($from: tabletPortrait) {
-          &:first-child {
-            border-left: var(--sbb-table-thead-padding) solid var(--sbb-table-background-color);
-          }
-
-          &:last-child {
-            border-right: var(--sbb-table-thead-padding) solid var(--sbb-table-background-color);
-          }
-        }
-      }
-    }
-  }
-
-  :where(html.sbb-lean) & {
-    line-height: var(--sbb-line-height);
-
-    th {
-      color: var(--sbb-color-granite);
-    }
-
-    :is(tbody, tfoot) > tr :is(th, td) {
-      border-right: var(--sbb-border-width-thin) solid var(--sbb-color-aluminum);
-    }
-
-    :is(thead, tbody, tfoot) > tr :is(th, td) {
-      padding: var(--sbb-table-cell-padding-vertical) var(--sbb-table-tbody-padding);
-
-      &.sbb-table-group-with-next {
-        border-right: none;
-      }
-
-      &:first-child {
-        padding-left: var(--sbb-table-tbody-padding);
-        border-left: none;
-      }
-
-      &:last-child {
-        padding-right: var(--sbb-table-tbody-padding);
-        border-right: none;
-      }
-    }
-
-    thead {
-      > tr:last-child :is(th, td) {
-        border-bottom: var(--sbb-border-width-thin) solid var(--sbb-color-graphite);
-      }
-
-      > tr :is(th, td) {
-        border-right: var(--sbb-border-width-thin) solid var(--sbb-color-graphite);
-
-        :is(.sbb-table-wrapper-offset-right, .sbb-table-wrapper-offset-both)
-          &.sbb-table-sticky-border-elem-right {
-          border-left: var(--sbb-border-width-thin) solid var(--sbb-color-graphite);
-        }
-      }
-    }
-
-    tbody > tr {
-      :is(td, th) {
-        border-bottom: var(--sbb-border-width-thin) solid var(--sbb-color-aluminum);
-      }
-
-      &.sbb-table-row-selected :is(td, th) {
-        background-color: var(--sbb-color-cloud);
-        border-bottom: var(--sbb-border-width-thin) solid var(--sbb-color-black);
-      }
-
-      &:hover :is(td, th) {
-        background-color: var(--sbb-color-milk);
-        border-bottom: var(--sbb-border-width-thin) solid var(--sbb-color-call-to-action-hover);
-      }
-    }
-  }
-
-  caption {
-    font-size: var(--sbb-font-size-small);
-    line-height: var(--sbb-line-height-small);
-    color: var(--sbb-color-weak-accent);
-  }
-
-  .sbb-selection-item {
-    vertical-align: top;
   }
 }
 
@@ -2152,6 +2166,45 @@ textarea {
 
 .sbb-table-divider-title {
   font-family: var(--sbb-font-bold);
+}
+
+.sbb-table-cell-actions {
+  --sbb-table-cell-actions-background-color: var(--sbb-table-background-color);
+
+  display: none;
+  align-items: center;
+  position: absolute;
+  right: 0;
+  top: 0;
+  gap: calc(#{pxToRem(2)} * var(--sbb-scaling-factor));
+  padding: calc(#{pxToRem(12)} * var(--sbb-scaling-factor))
+    calc(#{pxToRem(12)} * var(--sbb-scaling-factor)) 0
+    calc(#{pxToRem(2)} * var(--sbb-scaling-factor));
+  box-shadow: 0 0 calc(#{pxToRem(8)} * var(--sbb-scaling-factor))
+    calc(#{pxToRem(8)} * var(--sbb-scaling-factor)) var(--sbb-table-cell-actions-background-color);
+  background-color: var(--sbb-table-cell-actions-background-color);
+
+  // Cut right and top shadow.
+  clip-path: inset(0 0 -100% -100%);
+
+  :where(html:not(.sbb-lean)) :is(tbody, .sbb-table) > tr:nth-child(even) & {
+    --sbb-table-cell-actions-background-color: var(--sbb-table-tbody-stripe-background-color);
+  }
+
+  :where(html.sbb-lean) & {
+    --sbb-table-cell-actions-background-color: var(--sbb-color-milk);
+    padding: pxToRem(5) pxToRem(5) pxToRem(0) pxToRem(2);
+    box-shadow: 0 0 pxToRem(4) pxToRem(4) var(--sbb-table-cell-actions-background-color);
+  }
+
+  .sbb-button-base {
+    margin: 0;
+    transform: none;
+  }
+
+  tr:is(:hover, :focus, :focus-within) & {
+    display: flex;
+  }
 }
 
 // ----------------------------------------------------------------------------------------------------

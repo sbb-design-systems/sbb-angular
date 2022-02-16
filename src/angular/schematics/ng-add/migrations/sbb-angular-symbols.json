@@ -513,6 +513,7 @@
   "TableMigration": "schematics",
   "TabsMigration": "schematics",
   "TagMigration": "schematics",
+  "TEST_TS_LEAN_CONFIG": "schematics",
   "ToggleMigration": "schematics",
   "TooltipMigration": "schematics",
   "TYPOGRAPHY_CSS_PATH": "schematics",

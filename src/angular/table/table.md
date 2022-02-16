@@ -477,6 +477,36 @@ The flag affects the sequence at runtime, not at definition time.
 </ng-container>
 ```
 
+### Table Cell Actions
+
+It is possible to define up to three action buttons (or links) for one row.
+The buttons are displayed either when hovering or when navigating with the keyboard.
+See the example "Cell Actions incl. Keyboard Navigation Support" to see how keyboard
+navigation can be implemented.
+Please be careful when using these action buttons because the user will
+not immediately see that there are actions.
+We recommend for accessibility reasons to always create a click action on the whole row,
+which links to a possible detail page, where all actions can be called again.
+Also, the action buttons should always be provided with aria labels,
+so that screen readers can output a meaningful text.
+
+```html
+<td>
+  <div class="sbb-table-cell-actions" aria-label="Press tab key to access actions.">
+    <a sbb-icon-button href="#" attr.aria-label="Edit {{element.vehicle}}.">
+      <sbb-icon svgIcon="kom:pen-small"></sbb-icon>
+    </a>
+    <button
+      sbb-icon-button
+      attr.aria-label="Save {{element.vehicle}} as favorite."
+      (click)="action()"
+    >
+      <sbb-icon svgIcon="kom:star-small"></sbb-icon>
+    </button>
+  </div>
+</td>
+```
+
 ### Table Wrapper
 
 The `<sbb-table-wrapper>` tag can be used to make a table horizontally scrollable
