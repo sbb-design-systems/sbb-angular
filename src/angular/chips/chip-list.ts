@@ -56,7 +56,6 @@ let nextUniqueId = 0;
   host: {
     class: 'sbb-chip-list',
     '[attr.tabindex]': 'disabled ? null : _tabIndex',
-    '[attr.aria-describedby]': '_ariaDescribedby || null',
     '[attr.aria-required]': 'role ? required : null',
     '[attr.aria-disabled]': 'disabled.toString()',
     '[attr.aria-invalid]': 'errorState',
@@ -123,9 +122,6 @@ export class SbbChipList
   /** Uid of the chip list */
   _uid: string = `sbb-chip-list-${nextUniqueId++}`;
 
-  /** The aria-describedby attribute on the chip list for improved a11y. */
-  _ariaDescribedby: string;
-
   /** Tab index for the chip list. */
   _tabIndex: number = 0;
 
@@ -148,6 +144,12 @@ export class SbbChipList
   get role(): string | null {
     return this.empty ? null : 'listbox';
   }
+
+  /**
+   * Implemented as part of SbbFormFieldControl.
+   * @docs-private
+   */
+  @Input('aria-describedby') userAriaDescribedBy: string;
 
   /** An object used to control when error messages are shown. */
   @Input() override errorStateMatcher: SbbErrorStateMatcher;
@@ -363,7 +365,11 @@ export class SbbChipList
    * @docs-private
    */
   setDescribedByIds(ids: string[]) {
-    this._ariaDescribedby = ids.join(' ');
+    if (ids.length) {
+      this._elementRef.nativeElement.setAttribute('aria-describedby', ids.join(' '));
+    } else {
+      this._elementRef.nativeElement.removeAttribute('aria-describedby');
+    }
   }
 
   // Implemented as part of ControlValueAccessor.
