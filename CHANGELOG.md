@@ -2,6 +2,38 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [13.6.0](https://github.com/sbb-design-systems/sbb-angular/compare/13.5.0...13.6.0) (2022-02-17)
+
+
+### Features
+
+* **angular/table:** allow hover action buttons ([#1140](https://github.com/sbb-design-systems/sbb-angular/issues/1140)) ([4e6c97e](https://github.com/sbb-design-systems/sbb-angular/commit/4e6c97e9c01c7eaae945f9f21423572b46ad77f7))
+
+
+### Bug Fixes
+
+* **angular/chips:** update chip-list describedby to match input ([#1137](https://github.com/sbb-design-systems/sbb-angular/issues/1137)) ([76a158c](https://github.com/sbb-design-systems/sbb-angular/commit/76a158caf92599b0b224f1faa29c8cc1b21e28ee))
+* **angular/datepicker:** update active date on focusing a calendar cell ([#1118](https://github.com/sbb-design-systems/sbb-angular/issues/1118)) ([0b76d1d](https://github.com/sbb-design-systems/sbb-angular/commit/0b76d1d6d98a43c9ea8241a48680c6ee1aab6328))
+* **angular/dialog:** ensure close button is always displayed ([#1123](https://github.com/sbb-design-systems/sbb-angular/issues/1123)) ([ed35c0b](https://github.com/sbb-design-systems/sbb-angular/commit/ed35c0bccbaaffc2029fa13e75dfc3157f4a6ce2))
+* **angular/dialog:** use `align` as `@Input()` in `SbbDialogActions` ([#1138](https://github.com/sbb-design-systems/sbb-angular/issues/1138)) ([933f194](https://github.com/sbb-design-systems/sbb-angular/commit/933f1946599b6c0b889758fe079729ddc1cc405b))
+* **angular/form-field:** allow sbb-error styling to be used outside form-field ([#1131](https://github.com/sbb-design-systems/sbb-angular/issues/1131)) ([1faa6d2](https://github.com/sbb-design-systems/sbb-angular/commit/1faa6d265f06a9a884f6eed6f195904dfe5dfb89))
+* **angular/lightbox:** fix aria-label on close button ([#1153](https://github.com/sbb-design-systems/sbb-angular/issues/1153)) ([5d2c518](https://github.com/sbb-design-systems/sbb-angular/commit/5d2c51841477a1b5c3d841bbafa68e690a53a91d)), closes [#1152](https://github.com/sbb-design-systems/sbb-angular/issues/1152)
+* **angular/lightbox:** hide scrollbar from scroll lock container ([#1142](https://github.com/sbb-design-systems/sbb-angular/issues/1142)) ([72e2661](https://github.com/sbb-design-systems/sbb-angular/commit/72e2661f0b272b637a7ef4f09a875147861e2568)), closes [#1139](https://github.com/sbb-design-systems/sbb-angular/issues/1139)
+* **angular/menu:** fix panel corner radius of contextmenu ([#1127](https://github.com/sbb-design-systems/sbb-angular/issues/1127)) ([2e6ab6b](https://github.com/sbb-design-systems/sbb-angular/commit/2e6ab6ba49ec97a1ba35ccf41d616f1ecce1ff20))
+* **angular/menu:** position classes not updated when window is resized ([#1136](https://github.com/sbb-design-systems/sbb-angular/issues/1136)) ([3430961](https://github.com/sbb-design-systems/sbb-angular/commit/343096184d0577eb97a0341492d81662c90b5fd2))
+* **angular/schematics:** include lean test environment configuration in ngAdd command ([#1133](https://github.com/sbb-design-systems/sbb-angular/issues/1133)) ([c294e6b](https://github.com/sbb-design-systems/sbb-angular/commit/c294e6b56867a8b2c8cf1cd8b101328a3017befa))
+* **angular/table:** fix button styles inside table ([#1128](https://github.com/sbb-design-systems/sbb-angular/issues/1128)) ([10e8d3b](https://github.com/sbb-design-systems/sbb-angular/commit/10e8d3b0d6a4c038aa61ff5790c5022f80b4b6f8))
+* **angular/table:** fix line-height of standard design variant ([#1129](https://github.com/sbb-design-systems/sbb-angular/issues/1129)) ([f0c68b9](https://github.com/sbb-design-systems/sbb-angular/commit/f0c68b9e8f649e263731c5ab90797638e36ae5df))
+* **angular/toggle:** fix toggle animation ([#1122](https://github.com/sbb-design-systems/sbb-angular/issues/1122)) ([100f143](https://github.com/sbb-design-systems/sbb-angular/commit/100f143e21b8d4fdd5b4d1e97258d9b823d3f52d)), closes [#652](https://github.com/sbb-design-systems/sbb-angular/issues/652)
+* **angular/toggle:** remove aria-expanded for role "radio" ([#1013](https://github.com/sbb-design-systems/sbb-angular/issues/1013)) ([c4fce88](https://github.com/sbb-design-systems/sbb-angular/commit/c4fce88946626bfe8495e974a7b94bd42c005005))
+
+
+### Documentation
+
+* **angular/loading:** remove deprecated fullscreen mode docs ([#1132](https://github.com/sbb-design-systems/sbb-angular/issues/1132)) ([d6fe546](https://github.com/sbb-design-systems/sbb-angular/commit/d6fe546f74db10930552187fad3846e32f5eaaae))
+* **angular/notification:** fix use `warn` instead of `warning` ([#1126](https://github.com/sbb-design-systems/sbb-angular/issues/1126)) ([85bddd9](https://github.com/sbb-design-systems/sbb-angular/commit/85bddd94a608e8690a49dccb9f16d105a5fb9d13))
+* **angular/tabs:** update tabs keyboard interaction docs ([#1134](https://github.com/sbb-design-systems/sbb-angular/issues/1134)) ([0023231](https://github.com/sbb-design-systems/sbb-angular/commit/0023231be56f3c26164b5525456a4593b064e9e7))
+
 ## [13.5.0](https://github.com/sbb-design-systems/sbb-angular/compare/13.4.0...13.5.0) (2022-02-09)
 
 
