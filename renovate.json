@@ -7,12 +7,12 @@
       "matchPackagePatterns": ["*"],
       "enabled": false
     },
-    { "matchPaths": ["+(package.json)"], "enabled": true },
+    { "paths": ["+(package.json)"], "enabled": true },
     {
       "packageNames": ["@angular/core", "@angular/cli", "@angular/cdk", "angular-t9n"],
       "postUpgradeTasks": {
         "commands": [
-          "npm ci --ignore-scripts",
+          "yarn ci --ignore-scripts",
           "npx ng update {{{depName}}} --from={{{fromVersion}}} --to={{{toVersion}}} --migrateOnly --allowDirty --force"
         ],
         "fileFilters": ["**/**"]
@@ -33,6 +33,7 @@
         "@bazel/typescript",
         "@types/marked",
         "browser-sync",
+        "browser-sync-client",
         "dgeni",
         "dgeni-packages",
         "highlight.js",
