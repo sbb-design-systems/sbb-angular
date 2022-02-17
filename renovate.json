@@ -8,6 +8,28 @@
     "schedule": ["every weekend"],
     "enabled": true
   },
+  "ignoreDeps": [
+    "@angular/dev-infra-private",
+    "@arcgis/core",
+    "@bazel/buildifier",
+    "@bazel/buildozer",
+    "@bazel/concatjs",
+    "@bazel/esbuild",
+    "@bazel/jasmine",
+    "@bazel/protractor",
+    "@bazel/rollup",
+    "@bazel/runfiles",
+    "@bazel/typescript",
+    "@types/marked",
+    "browser-sync",
+    "browser-sync-client",
+    "dgeni",
+    "dgeni-packages",
+    "highlight.js",
+    "marked",
+    "typescript",
+    "yarn"
+  ],
   "packageRules": [
     {
       "packageNames": ["@angular/core", "@angular/cli", "@angular/cdk", "angular-t9n"],
@@ -18,30 +40,6 @@
         ],
         "fileFilters": ["**/**"]
       }
-    },
-    {
-      "packageNames": [
-        "@angular/dev-infra-private",
-        "@arcgis/core",
-        "@bazel/buildifier",
-        "@bazel/buildozer",
-        "@bazel/concatjs",
-        "@bazel/esbuild",
-        "@bazel/jasmine",
-        "@bazel/protractor",
-        "@bazel/rollup",
-        "@bazel/runfiles",
-        "@bazel/typescript",
-        "@types/marked",
-        "browser-sync",
-        "browser-sync-client",
-        "dgeni",
-        "dgeni-packages",
-        "highlight.js",
-        "marked",
-        "typescript"
-      ],
-      "enabled": false
     },
     {
       "packageNames": ["@types/grecaptcha", "@types/node", "jasmine", "jasmine-core"],
