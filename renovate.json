@@ -67,6 +67,10 @@
     {
       "groupName": "karma",
       "matchPackagePrefixes": ["karma"]
+    },
+    {
+      "groupName": "jasmine",
+      "matchPackagePrefixes": ["jasmine", "@types/jasmine"]
     }
   ]
 }
