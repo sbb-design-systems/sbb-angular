@@ -2,12 +2,8 @@
   "$schema": "https://docs.renovatebot.com/renovate-schema.json",
   "extends": ["config:base"],
   "enabledManagers": ["npm"],
+  "includePaths": ["package.json"],
   "packageRules": [
-    {
-      "matchPackagePatterns": ["*"],
-      "enabled": false
-    },
-    { "paths": ["+(package.json)"], "enabled": true },
     {
       "packageNames": ["@angular/core", "@angular/cli", "@angular/cdk", "angular-t9n"],
       "postUpgradeTasks": {
