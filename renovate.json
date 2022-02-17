@@ -3,12 +3,10 @@
   "extends": ["config:base"],
   "enabledManagers": ["npm"],
   "includePaths": ["package.json"],
-  "rangeStrategy": "replace",
   "lockFileMaintenance": {
     "schedule": ["every weekend"],
     "enabled": true
   },
-  "schedule": ["after 10pm every weekday", "before 5am every weekday", "every weekend"],
   "packageRules": [
     {
       "packageNames": ["@angular/core", "@angular/cli", "@angular/cdk", "angular-t9n"],
