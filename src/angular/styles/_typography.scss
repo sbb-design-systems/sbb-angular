@@ -592,6 +592,12 @@ textarea {
   max-height: none;
 }
 
+// Overwrites the 'scroll' value from the CDK, since this causes a scrollbar to be shown
+// on top of the lightbox.
+.cdk-global-scrollblock {
+  overflow-y: auto;
+}
+
 // ----------------------------------------------------------------------------------------------------
 // Headings
 // ----------------------------------------------------------------------------------------------------
