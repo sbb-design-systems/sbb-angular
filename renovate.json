@@ -1,6 +1,66 @@
 {
-  "extends": [
-    "config:base"
-  ],
-  "enabledManagers": ["npm"]
+  "$schema": "https://docs.renovatebot.com/renovate-schema.json",
+  "extends": ["config:base"],
+  "enabledManagers": ["npm"],
+  "packageRules": [
+    { "matchPaths": ["+(package.json)"] },
+    {
+      "packageNames": ["@angular/core", "@angular/cli", "@angular/cdk", "angular-t9n"],
+      "postUpgradeTasks": {
+        "commands": [
+          "npm ci --ignore-scripts",
+          "npx ng update {{{depName}}} --from={{{fromVersion}}} --to={{{toVersion}}} --migrateOnly --allowDirty --force"
+        ],
+        "fileFilters": ["**/**"]
+      }
+    },
+    {
+      "packageNames": [
+        "@angular/dev-infra-private",
+        "@arcgis/core",
+        "@bazel/buildifier",
+        "@bazel/buildozer",
+        "@bazel/concatjs",
+        "@bazel/esbuild",
+        "@bazel/jasmine",
+        "@bazel/protractor",
+        "@bazel/rollup",
+        "@bazel/runfiles",
+        "@bazel/typescript",
+        "@types/marked",
+        "browser-sync",
+        "dgeni",
+        "dgeni-packages",
+        "highlight.js",
+        "marked",
+        "tsickle"
+      ],
+      "enabled": false
+    },
+    {
+      "packageNames": ["@types/grecaptcha", "@types/node", "jasmine", "jasmine-core"],
+      "matchUpdateTypes": ["major"],
+      "enabled": false
+    },
+    {
+      "groupName": "angular",
+      "matchPackagePrefixes": ["@angular/", "@angular-devkit/", "@schematics/angular"]
+    },
+    {
+      "groupName": "bazel",
+      "matchPackagePrefixes": ["@bazel/"]
+    },
+    {
+      "groupName": "commitlint",
+      "matchPackagePrefixes": ["@commitlint/"]
+    },
+    {
+      "groupName": "rollup",
+      "matchPackagePrefixes": ["@rollup/", "rollup"]
+    },
+    {
+      "groupName": "karma",
+      "matchPackagePrefixes": ["karma"]
+    }
+  ]
 }
