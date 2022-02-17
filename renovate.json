@@ -3,6 +3,7 @@
   "extends": ["config:base"],
   "enabledManagers": ["npm"],
   "includePaths": ["package.json"],
+  "rangeStrategy": "bump",
   "lockFileMaintenance": {
     "schedule": ["every weekend"],
     "enabled": true
