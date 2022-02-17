@@ -2,7 +2,6 @@
 /// <reference types="@angular/localize/init" />
 
 import {
-  AfterViewInit,
   ChangeDetectionStrategy,
   ChangeDetectorRef,
   Component,
@@ -89,11 +88,11 @@ export class SbbLightboxClose extends SbbDialogClose implements OnInit, OnChange
     '[id]': 'id',
   },
 })
-export class SbbLightboxTitle extends _SbbDialogTitleBase implements AfterViewInit {
+export class SbbLightboxTitle extends _SbbDialogTitleBase implements OnInit {
   /** Unique id for the lightbox title. If none is supplied, it will be auto-generated. */
   @Input() override id: string = `sbb-lightbox-title-${dialogElementUid++}`;
 
-  @ViewChild(SbbLightboxClose) _lightBoxClose: SbbLightboxClose;
+  @ViewChild(SbbLightboxClose, { static: true }) _lightBoxClose: SbbLightboxClose;
 
   constructor(
     // The lightbox title directive is always used in combination with a `SbbDialogRef`.
@@ -106,7 +105,8 @@ export class SbbLightboxTitle extends _SbbDialogTitleBase implements AfterViewIn
     super(lightboxRef, elementRef, lightbox as unknown as SbbDialog, changeDetectorRef);
   }
 
-  ngAfterViewInit(): void {
+  override ngOnInit(): void {
+    super.ngOnInit();
     this._lightBoxClose._canCloseInterceptor = () => {
       if (!this._closeEnabled) {
         (this._dialogRef as SbbLightboxRef<any>)?.closeRequest.next();
