@@ -85,19 +85,25 @@
   flex-wrap: wrap;
   gap: var(--sbb-button-gap);
   align-items: center;
-  justify-content: flex-end;
 
   // Explicitly set a box-sizing since people commonly set `border-box`
   // on all elements which will break the height of the dialog actions.
   box-sizing: content-box;
   box-shadow: var(--sbb-box-shadow-horizontal-border-bottom);
 
+  // .sbb-dialog-actions-align-{start|center|end} are set by directive input "align"
+  // [align='start'], [align='center'], [align='right'] are kept for backwards compatibility
+  &.sbb-dialog-actions-align-start,
   &[align='start'],
   &[align='left'] {
     justify-content: flex-start;
   }
-
+  &.sbb-dialog-actions-align-center,
   &[align='center'] {
     justify-content: center;
+  }
+  &.sbb-dialog-actions-align-end,
+  &[align='end'] {
+    justify-content: flex-end;
   }
 }
