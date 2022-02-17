@@ -154,7 +154,6 @@
     "terser": "^5.10.0",
     "ts-node": "^10.5.0",
     "tsconfig-paths": "^3.12.0",
-    "tsickle": "0.39.1",
     "tslint": "^6.1.3",
     "tslint-config-prettier": "^1.18.0",
     "tslint-consistent-codestyle": "^1.16.0",

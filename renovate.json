@@ -1,0 +1,76 @@
+{
+  "$schema": "https://docs.renovatebot.com/renovate-schema.json",
+  "extends": ["config:base"],
+  "enabledManagers": ["npm"],
+  "includePaths": ["package.json"],
+  "rangeStrategy": "bump",
+  "lockFileMaintenance": {
+    "schedule": ["every weekend"],
+    "enabled": true
+  },
+  "packageRules": [
+    {
+      "packageNames": ["@angular/core", "@angular/cli", "@angular/cdk", "angular-t9n"],
+      "postUpgradeTasks": {
+        "commands": [
+          "yarn ci --ignore-scripts",
+          "npx ng update {{{depName}}} --from={{{fromVersion}}} --to={{{toVersion}}} --migrateOnly --allowDirty --force"
+        ],
+        "fileFilters": ["**/**"]
+      }
+    },
+    {
+      "packageNames": [
+        "@angular/dev-infra-private",
+        "@arcgis/core",
+        "@bazel/buildifier",
+        "@bazel/buildozer",
+        "@bazel/concatjs",
+        "@bazel/esbuild",
+        "@bazel/jasmine",
+        "@bazel/protractor",
+        "@bazel/rollup",
+        "@bazel/runfiles",
+        "@bazel/typescript",
+        "@types/marked",
+        "browser-sync",
+        "browser-sync-client",
+        "dgeni",
+        "dgeni-packages",
+        "highlight.js",
+        "marked",
+        "typescript"
+      ],
+      "enabled": false
+    },
+    {
+      "packageNames": ["@types/grecaptcha", "@types/node", "jasmine", "jasmine-core"],
+      "matchUpdateTypes": ["major"],
+      "enabled": false
+    },
+    {
+      "groupName": "angular",
+      "matchPackagePrefixes": ["@angular/", "@angular-devkit/", "@schematics/angular", "typescript"]
+    },
+    {
+      "groupName": "bazel",
+      "matchPackagePrefixes": ["@bazel/"]
+    },
+    {
+      "groupName": "commitlint",
+      "matchPackagePrefixes": ["@commitlint/", "standard-version"]
+    },
+    {
+      "groupName": "rollup",
+      "matchPackagePrefixes": ["@rollup/", "rollup"]
+    },
+    {
+      "groupName": "karma",
+      "matchPackagePrefixes": ["karma"]
+    },
+    {
+      "groupName": "jasmine",
+      "matchPackagePrefixes": ["jasmine", "@types/jasmine"]
+    }
+  ]
+}
