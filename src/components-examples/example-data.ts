@@ -29,6 +29,9 @@ export class ExampleData {
   /** Variants of library for which this example is belonging to. Empty means valid for all variants */
   variant: string;
 
+  /** Whether the example is only for dev purposes */
+  devOnly: boolean;
+
   static find(library: string, id: string): ExampleData[] {
     return Object.keys(EXAMPLE_COMPONENTS as { [id: string]: {} })
       .filter(
@@ -49,8 +52,16 @@ export class ExampleData {
       return;
     }
 
-    const { componentName, files, selector, primaryFile, additionalComponents, title, variant } =
-      EXAMPLE_COMPONENTS[example];
+    const {
+      componentName,
+      files,
+      selector,
+      primaryFile,
+      additionalComponents,
+      title,
+      variant,
+      devOnly,
+    } = EXAMPLE_COMPONENTS[example];
     const exampleName = example.replace(/(?:^\w|\b\w)/g, (letter) => letter.toUpperCase());
 
     this.id = example;
@@ -60,5 +71,6 @@ export class ExampleData {
     this.description = title || exampleName.replace(/[\-]+/g, ' ') + ' Example';
     this.componentNames = [componentName, ...additionalComponents];
     this.variant = variant;
+    this.devOnly = devOnly;
   }
 }

@@ -14,7 +14,7 @@ interface RowEntry {
 
 /**
  * @title Simple Native Table
- * @order 90
+ * @order 100
  */
 @Component({
   selector: 'sbb-native-table-example',

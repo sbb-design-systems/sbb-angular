@@ -5,6 +5,7 @@ interface ParsedMetadata {
   componentName: string;
   title: string;
   order: number;
+  devOnly: boolean;
   variant: string;
   selector: string;
   templateUrl: string;
@@ -43,6 +44,9 @@ export function parseExampleFile(fileName: string, content: string): ParsedMetad
               }
               if (tagName === 'variant') {
                 meta.variant = tagValue;
+              }
+              if (tagName === 'devOnly') {
+                meta.devOnly = true;
               }
             }
           }

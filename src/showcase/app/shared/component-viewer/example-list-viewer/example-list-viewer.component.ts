@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, isDevMode, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { ExampleData } from '@sbb-esta/components-examples';
 import { Observable } from 'rxjs';
@@ -19,7 +19,9 @@ export class ExampleListViewerComponent implements OnInit {
   ngOnInit(): void {
     this.examples = moduleParams(this._route).pipe(
       map((params) => {
-        const examples = ExampleData.find(params.packageName, params.id);
+        const examples = ExampleData.find(params.packageName, params.id).filter(
+          (example) => isDevMode() || !example.devOnly
+        );
         return examples.length === 0 ? null : examples;
       })
     );
