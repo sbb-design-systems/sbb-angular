@@ -479,7 +479,7 @@ The flag affects the sequence at runtime, not at definition time.
 
 ### Table Cell Actions
 
-It is possible to define up to three action buttons (or links) for one row.
+It is possible to define up to three (recommended, more are possible) action buttons (or links) for one row.
 The buttons are displayed either when hovering or when navigating with the keyboard.
 See the example "Cell Actions incl. Keyboard Navigation Support" to see how keyboard
 navigation can be implemented.
@@ -493,7 +493,7 @@ so that screen readers can output a meaningful text.
 ```html
 <td>
   <div class="sbb-table-cell-actions" aria-label="Press tab key to access actions.">
-    <a sbb-icon-button href="#" attr.aria-label="Edit {{element.vehicle}}.">
+    <a sbb-icon-button [routerLink]="['./edit', element.id]" attr.aria-label="Edit {{element.vehicle}}.">
       <sbb-icon svgIcon="kom:pen-small"></sbb-icon>
     </a>
     <button
