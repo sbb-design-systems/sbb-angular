@@ -62,7 +62,7 @@
         <source>Next day</source>
         <context-group purpose="location">
           <context context-type="sourcefile">../../../../../../src/angular/datepicker/datepicker/datepicker.ts</context>
-          <context context-type="linenumber">229</context>
+          <context context-type="linenumber">235</context>
         </context-group>
         <note priority="1" from="description">Next day button&apos;s aria-label</note>
       </trans-unit>
@@ -70,7 +70,7 @@
         <source>Previous day</source>
         <context-group purpose="location">
           <context context-type="sourcefile">../../../../../../src/angular/datepicker/datepicker/datepicker.ts</context>
-          <context context-type="linenumber">235</context>
+          <context context-type="linenumber">241</context>
         </context-group>
         <note priority="1" from="description">Previous day button&apos;s aria-label</note>
       </trans-unit>
@@ -126,7 +126,7 @@
         <source>Close lightbox</source>
         <context-group purpose="location">
           <context context-type="sourcefile">../../../../../../src/angular/lightbox/lightbox-content-directives.ts</context>
-          <context context-type="linenumber">44</context>
+          <context context-type="linenumber">46</context>
         </context-group>
         <note priority="1" from="description">Aria label to close a dialog</note>
       </trans-unit>
