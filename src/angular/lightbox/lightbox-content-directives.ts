@@ -12,13 +12,9 @@ import {
   OnInit,
   Optional,
   SimpleChanges,
+  ViewChild,
 } from '@angular/core';
-import {
-  SbbDialog,
-  SbbDialogClose,
-  _closeDialogVia,
-  _SbbDialogTitleBase,
-} from '@sbb-esta/angular/dialog';
+import { SbbDialog, SbbDialogClose, _SbbDialogTitleBase } from '@sbb-esta/angular/dialog';
 
 import { SbbLightbox } from './lightbox';
 import { SbbLightboxRef } from './lightbox-ref';
@@ -82,10 +78,7 @@ export class SbbLightboxClose extends SbbDialogClose implements OnInit, OnChange
   exportAs: 'sbbLightboxTitle',
   template: `
     <ng-content></ng-content>
-    <button
-      (click)="_handleCloseClick($event)"
-      class="sbb-lightbox-title-close-button sbb-button-reset-frameless"
-    >
+    <button sbb-lightbox-close class="sbb-lightbox-title-close-button sbb-button-reset-frameless">
       <sbb-icon svgIcon="kom:circle-cross-small" class="sbb-icon-scaled"></sbb-icon>
     </button>
   `,
@@ -95,9 +88,11 @@ export class SbbLightboxClose extends SbbDialogClose implements OnInit, OnChange
     '[id]': 'id',
   },
 })
-export class SbbLightboxTitle extends _SbbDialogTitleBase {
+export class SbbLightboxTitle extends _SbbDialogTitleBase implements OnInit {
   /** Unique id for the lightbox title. If none is supplied, it will be auto-generated. */
   @Input() override id: string = `sbb-lightbox-title-${dialogElementUid++}`;
+
+  @ViewChild(SbbLightboxClose, { static: true }) _lightBoxClose: SbbLightboxClose;
 
   constructor(
     // The lightbox title directive is always used in combination with a `SbbDialogRef`.
@@ -110,21 +105,15 @@ export class SbbLightboxTitle extends _SbbDialogTitleBase {
     super(lightboxRef, elementRef, lightbox as unknown as SbbDialog, changeDetectorRef);
   }
 
-  /** Called when the close button is clicked. */
-  _handleCloseClick(event: MouseEvent) {
-    if (!this._closeEnabled) {
-      (this._dialogRef as SbbLightboxRef<any>)?.closeRequest.next();
-      return;
-    }
-
-    // Determinate the focus origin using the click event, because using the FocusMonitor will
-    // result in incorrect origins. Most of the time, close buttons will be auto focused in the
-    // dialog, and therefore clicking the button won't result in a focus change. This means that
-    // the FocusMonitor won't detect any origin change, and will always output `program`.
-    _closeDialogVia(
-      this._dialogRef,
-      event.screenX === 0 && event.screenY === 0 ? 'keyboard' : 'mouse'
-    );
+  override ngOnInit(): void {
+    super.ngOnInit();
+    this._lightBoxClose._canCloseInterceptor = () => {
+      if (!this._closeEnabled) {
+        (this._dialogRef as SbbLightboxRef<any>)?.closeRequest.next();
+        return false;
+      }
+      return true;
+    };
   }
 }
 

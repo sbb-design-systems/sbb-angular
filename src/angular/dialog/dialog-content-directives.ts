@@ -47,6 +47,13 @@ export class SbbDialogClose implements OnInit, OnChanges {
 
   @Input('sbbDialogClose') _sbbDialogClose: any;
 
+  /**
+   * Callback which is called before closing.
+   * If returning true, dialog can close.
+   * If returning false, dialog cannot close.
+   */
+  _canCloseInterceptor: () => boolean = () => true;
+
   constructor(
     // The dialog title directive is always used in combination with a `SbbDialogRef`.
     // tslint:disable-next-line: lightweight-tokens
@@ -76,6 +83,9 @@ export class SbbDialogClose implements OnInit, OnChanges {
 
   @HostListener('click', ['$event'])
   _onButtonClick(event: MouseEvent) {
+    if (!this._canCloseInterceptor()) {
+      return;
+    }
     // Determinate the focus origin using the click event, because using the FocusMonitor will
     // result in incorrect origins. Most of the time, close buttons will be auto focused in the
     // dialog, and therefore clicking the button won't result in a focus change. This means that
