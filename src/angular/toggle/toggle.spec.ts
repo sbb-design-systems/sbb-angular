@@ -265,8 +265,7 @@ describe('SbbToggle', () => {
       toggleOption2.click();
       fixtureTest.detectChanges();
 
-      expect(toggleOption2.attributes['aria-expanded'].value).toBe('true');
-
+      expect(toggleOption2.checked).toBeTruthy();
       const toggleOption2Component = toggleOptionsReference[1].nativeElement;
 
       expect(toggleOption2.value).toBe('Option_2');
@@ -381,7 +380,6 @@ describe('SbbToggle', () => {
 
       fixtureTest.detectChanges();
 
-      expect(toggleOption2.attributes['aria-expanded']).toBeTruthy();
       expect(toggleOption2.properties['checked']).toBeTruthy();
       expect(toggleOption2.nativeElement.value).toBe('Option_2');
 
