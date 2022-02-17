@@ -3,7 +3,11 @@
   "extends": ["config:base"],
   "enabledManagers": ["npm"],
   "packageRules": [
-    { "matchPaths": ["+(package.json)"] },
+    {
+      "matchPackagePatterns": ["*"],
+      "enabled": false
+    },
+    { "matchPaths": ["+(package.json)"], "enabled": true },
     {
       "packageNames": ["@angular/core", "@angular/cli", "@angular/cdk", "angular-t9n"],
       "postUpgradeTasks": {
