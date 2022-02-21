@@ -80,11 +80,11 @@
       </trans-unit>
       <trans-unit id="sbbSidebarCollapse" datatype="html">
         <source>Collapse</source>
-        <target state="translated">Développer</target>
+        <target state="translated">Réduire</target>
       </trans-unit>
       <trans-unit id="sbbSidebarExpand" datatype="html">
         <source>Expand</source>
-        <target state="translated">Réduire</target>
+        <target state="translated">Développer</target>
       </trans-unit>
       <trans-unit id="sbbSidebarCloseSidebar" datatype="html">
         <source>Close Sidebar</source>
