@@ -41,6 +41,7 @@ describe('SbbSort', () => {
             SbbSortDuplicateSbbSortableIdsApp,
             SbbSortableMissingIdApp,
             SbbSortableInvalidDirection,
+            SbbSortWithArrowPosition,
           ],
         }).compileComponents();
       })
@@ -438,6 +439,64 @@ describe('SbbSort', () => {
       descriptionElement = document.getElementById(descriptionId);
       expect(descriptionElement?.textContent).toBe('Sort 2nd column');
     });
+
+    it('should render arrows after sort header by default', () => {
+      const sbbSortWithArrowPositionFixture = TestBed.createComponent(SbbSortWithArrowPosition);
+
+      sbbSortWithArrowPositionFixture.detectChanges();
+
+      const containerA = sbbSortWithArrowPositionFixture.nativeElement.querySelector(
+        '#defaultA .sbb-sort-header-container'
+      );
+      const containerB = sbbSortWithArrowPositionFixture.nativeElement.querySelector(
+        '#defaultB .sbb-sort-header-container'
+      );
+
+      expect(containerA.classList.contains('sbb-sort-header-position-before')).toBe(false);
+      expect(containerB.classList.contains('sbb-sort-header-position-before')).toBe(false);
+    });
+
+    it('should render arrows before if appropriate parameter passed', () => {
+      const sbbSortWithArrowPositionFixture = TestBed.createComponent(SbbSortWithArrowPosition);
+      const sbbSortWithArrowPositionComponent = sbbSortWithArrowPositionFixture.componentInstance;
+      sbbSortWithArrowPositionComponent.arrowPosition = 'before';
+
+      sbbSortWithArrowPositionFixture.detectChanges();
+
+      const containerA = sbbSortWithArrowPositionFixture.nativeElement.querySelector(
+        '#defaultA .sbb-sort-header-container'
+      );
+      const containerB = sbbSortWithArrowPositionFixture.nativeElement.querySelector(
+        '#defaultB .sbb-sort-header-container'
+      );
+
+      expect(containerA.classList.contains('sbb-sort-header-position-before')).toBe(true);
+      expect(containerB.classList.contains('sbb-sort-header-position-before')).toBe(true);
+    });
+
+    it('should render arrows in proper position based on arrowPosition parameter', () => {
+      const sbbSortWithArrowPositionFixture = TestBed.createComponent(SbbSortWithArrowPosition);
+      const sbbSortWithArrowPositionComponent = sbbSortWithArrowPositionFixture.componentInstance;
+
+      sbbSortWithArrowPositionFixture.detectChanges();
+
+      const containerA = sbbSortWithArrowPositionFixture.nativeElement.querySelector(
+        '#defaultA .sbb-sort-header-container'
+      );
+      const containerB = sbbSortWithArrowPositionFixture.nativeElement.querySelector(
+        '#defaultB .sbb-sort-header-container'
+      );
+
+      expect(containerA.classList.contains('sbb-sort-header-position-before')).toBe(false);
+      expect(containerB.classList.contains('sbb-sort-header-position-before')).toBe(false);
+
+      sbbSortWithArrowPositionComponent.arrowPosition = 'before';
+
+      sbbSortWithArrowPositionFixture.detectChanges();
+
+      expect(containerA.classList.contains('sbb-sort-header-position-before')).toBe(true);
+      expect(containerB.classList.contains('sbb-sort-header-position-before')).toBe(true);
+    });
   });
 
   describe('with default options', () => {
@@ -474,6 +533,45 @@ describe('SbbSort', () => {
       // Reverse directions
       component.start = 'desc';
       testSingleColumnSortDirectionSequence(fixture, ['desc', 'asc']);
+    });
+  });
+
+  describe('with default arrowPosition', () => {
+    let fixture: ComponentFixture<SbbSortWithoutInputs>;
+
+    beforeEach(
+      waitForAsync(() => {
+        TestBed.configureTestingModule({
+          imports: [SbbTableModule, CdkTableModule, NoopAnimationsModule],
+          declarations: [SbbSortWithoutInputs],
+          providers: [
+            {
+              provide: SBB_SORT_DEFAULT_OPTIONS,
+              useValue: {
+                disableClear: true,
+                arrowPosition: 'before',
+              },
+            },
+          ],
+        }).compileComponents();
+      })
+    );
+
+    beforeEach(() => {
+      fixture = TestBed.createComponent(SbbSortWithoutInputs);
+      fixture.detectChanges();
+    });
+
+    it('should render arrows in proper position', () => {
+      const containerA = fixture.nativeElement.querySelector(
+        '#defaultA .sbb-sort-header-container'
+      );
+      const containerB = fixture.nativeElement.querySelector(
+        '#defaultB .sbb-sort-header-container'
+      );
+
+      expect(containerA.classList.contains('sbb-sort-header-position-before')).toBe(true);
+      expect(containerB.classList.contains('sbb-sort-header-position-before')).toBe(true);
     });
   });
 });
@@ -733,4 +831,37 @@ class SbbSortWithoutExplicitInputs {
     const sortElement = this.elementRef.nativeElement.querySelector(`#${id}`)!;
     dispatchMouseEvent(sortElement, event);
   }
+}
+
+@Component({
+  template: `
+    <div sbbSort>
+      <div id="defaultA" #defaultA sbb-sort-header="defaultA" [arrowPosition]="arrowPosition">
+        A
+      </div>
+      <div id="defaultB" #defaultB sbb-sort-header="defaultB" [arrowPosition]="arrowPosition">
+        B
+      </div>
+    </div>
+  `,
+})
+class SbbSortWithArrowPosition {
+  arrowPosition?: 'before' | 'after';
+  @ViewChild(SbbSort) sbbSort: SbbSort;
+  @ViewChild('defaultA') defaultA: SbbSortHeader;
+  @ViewChild('defaultB') defaultB: SbbSortHeader;
+}
+
+@Component({
+  template: `
+    <div sbbSort>
+      <div id="defaultA" #defaultA sbb-sort-header="defaultA">A</div>
+      <div id="defaultB" #defaultB sbb-sort-header="defaultB">B</div>
+    </div>
+  `,
+})
+class SbbSortWithoutInputs {
+  @ViewChild(SbbSort) sbbSort: SbbSort;
+  @ViewChild('defaultA') defaultA: SbbSortHeader;
+  @ViewChild('defaultB') defaultB: SbbSortHeader;
 }

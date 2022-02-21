@@ -11,7 +11,7 @@
 <div
   class="sbb-sort-header-container"
   [class.sbb-sort-header-sorted]="_isSorted()"
-  [class.sbb-sort-header-position-before]="arrowPosition == 'before'"
+  [class.sbb-sort-header-position-before]="arrowPosition === 'before'"
   [attr.tabindex]="_isDisabled() ? null : 0"
   role="button"
 >

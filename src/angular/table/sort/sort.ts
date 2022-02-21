@@ -26,6 +26,9 @@ import {
   getSortInvalidDirectionError,
 } from './sort-errors';
 
+/** Position of the arrow that displays when sorted. */
+export type SbbSortHeaderArrowPosition = 'before' | 'after';
+
 /** Interface for a directive that holds sorting state consumed by `SbbSortHeader`. */
 export interface SbbSortable {
   /** The id of the column being sorted. */
@@ -51,6 +54,8 @@ export interface SbbSortState {
 export interface SbbSortDefaultOptions {
   /** Whether to disable clearing the sorting state. */
   disableClear?: boolean;
+  /** Position of the arrow that displays when sorted. */
+  arrowPosition?: SbbSortHeaderArrowPosition;
 }
 
 /** Injection token to be used to override the default options for `sbb-sort`. */
