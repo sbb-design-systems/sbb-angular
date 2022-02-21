@@ -9029,7 +9029,7 @@ jws@^3.2.2:
     jwa "^1.4.1"
     safe-buffer "^5.0.1"
 
-karma-browserstack-launcher@^1.6.0:
+karma-browserstack-launcher@1.6.0:
   version "1.6.0"
   resolved "https://registry.yarnpkg.com/karma-browserstack-launcher/-/karma-browserstack-launcher-1.6.0.tgz#2f6000647073e77ae296653b8830b279669766ef"
   integrity sha512-Y/UWPdHZkHIVH2To4GWHCTzmrsB6H7PBWy6pw+TWz5sr4HW2mcE+Uj6qWgoVNxvQU1Pfn5LQQzI6EQ65p8QbiQ==
@@ -9038,14 +9038,14 @@ karma-browserstack-launcher@^1.6.0:
     browserstack-local "^1.3.7"
     q "~1.5.0"
 
-karma-chrome-launcher@~3.1.0:
+karma-chrome-launcher@3.1.0:
   version "3.1.0"
   resolved "https://registry.yarnpkg.com/karma-chrome-launcher/-/karma-chrome-launcher-3.1.0.tgz#805a586799a4d05f4e54f72a204979f3f3066738"
   integrity sha512-3dPs/n7vgz1rxxtynpzZTvb9y/GIaW8xjAwcIGttLbycqoFtI7yo1NGnQi6oFTherRE+GIhCAHZC4vEqWGhNvg==
   dependencies:
     which "^1.2.1"
 
-karma-coverage@^2.2.0:
+karma-coverage@2.2.0:
   version "2.2.0"
   resolved "https://registry.yarnpkg.com/karma-coverage/-/karma-coverage-2.2.0.tgz#64f838b66b71327802e7f6f6c39d569b7024e40c"
   integrity sha512-gPVdoZBNDZ08UCzdMHHhEImKrw1+PAOQOIiffv1YsvxFhBjqvo/SVXNk4tqn1SYqX0BJZT6S/59zgxiBe+9OuA==
@@ -9057,7 +9057,7 @@ karma-coverage@^2.2.0:
     istanbul-reports "^3.0.5"
     minimatch "^3.0.4"
 
-karma-firefox-launcher@^2.1.2:
+karma-firefox-launcher@2.1.2:
   version "2.1.2"
   resolved "https://registry.yarnpkg.com/karma-firefox-launcher/-/karma-firefox-launcher-2.1.2.tgz#9a38cc783c579a50f3ed2a82b7386186385cfc2d"
   integrity sha512-VV9xDQU1QIboTrjtGVD4NCfzIH7n01ZXqy/qpBhnOeGVOkG5JYPEm8kuSd7psHE6WouZaQ9Ool92g8LFweSNMA==
@@ -9065,14 +9065,14 @@ karma-firefox-launcher@^2.1.2:
     is-wsl "^2.2.0"
     which "^2.0.1"
 
-karma-jasmine@^4.0.1:
+karma-jasmine@4.0.1:
   version "4.0.1"
   resolved "https://registry.yarnpkg.com/karma-jasmine/-/karma-jasmine-4.0.1.tgz#b99e073b6d99a5196fc4bffc121b89313b0abd82"
   integrity sha512-h8XDAhTiZjJKzfkoO1laMH+zfNlra+dEQHUAjpn5JV1zCPtOIVWGQjLBrqhnzQa/hrU2XrZwSyBa6XjEBzfXzw==
   dependencies:
     jasmine-core "^3.6.0"
 
-karma-junit-reporter@^2.0.1:
+karma-junit-reporter@2.0.1:
   version "2.0.1"
   resolved "https://registry.yarnpkg.com/karma-junit-reporter/-/karma-junit-reporter-2.0.1.tgz#d34eef7f0b2fd064e0896954e8851a90cf14c8f3"
   integrity sha512-VtcGfE0JE4OE1wn0LK8xxDKaTP7slN8DO3I+4xg6gAi1IoAHAXOJ1V9G/y45Xg6sxdxPOR3THCFtDlAfBo9Afw==
@@ -9080,7 +9080,7 @@ karma-junit-reporter@^2.0.1:
     path-is-absolute "^1.0.0"
     xmlbuilder "12.0.0"
 
-karma-parallel@^0.3.1:
+karma-parallel@0.3.1:
   version "0.3.1"
   resolved "https://registry.yarnpkg.com/karma-parallel/-/karma-parallel-0.3.1.tgz#781876e5992b2781619e762f3e04dcbf85f47fa1"
   integrity sha512-64jxNYamYi/9Y67h4+FfViSYhwDgod3rLuq+ZdZ0c3XeZFp/3q3v3HVkd8b5Czp3hCB+LLF8DIv4zlR4xFqbRw==
@@ -9088,7 +9088,7 @@ karma-parallel@^0.3.1:
     istanbul "^0.4.5"
     lodash "^4.17.11"
 
-karma-requirejs@^1.1.0:
+karma-requirejs@1.1.0:
   version "1.1.0"
   resolved "https://registry.yarnpkg.com/karma-requirejs/-/karma-requirejs-1.1.0.tgz#fddae2cb87d7ebc16fb0222893564d7fee578798"
   integrity sha1-/driy4fX68FvsCIok1ZNf+5Xh5g=
@@ -9100,14 +9100,14 @@ karma-source-map-support@1.4.0:
   dependencies:
     source-map-support "^0.5.5"
 
-karma-sourcemap-loader@^0.3.8:
+karma-sourcemap-loader@0.3.8:
   version "0.3.8"
   resolved "https://registry.yarnpkg.com/karma-sourcemap-loader/-/karma-sourcemap-loader-0.3.8.tgz#d4bae72fb7a8397328a62b75013d2df937bdcf9c"
   integrity sha512-zorxyAakYZuBcHRJE+vbrK2o2JXLFWK8VVjiT/6P+ltLBUGUvqTEkUiQ119MGdOrK7mrmxXHZF1/pfT6GgIZ6g==
   dependencies:
     graceful-fs "^4.1.2"
 
-karma@^6.3.16:
+karma@6.3.16:
   version "6.3.16"
   resolved "https://registry.yarnpkg.com/karma/-/karma-6.3.16.tgz#76d1a705fd1cf864ee5ed85270b572641e0958ef"
   integrity sha512-nEU50jLvDe5yvXqkEJRf8IuvddUkOY2x5Xc4WXHz6dxINgGDrgD2uqQWeVrJs4hbfNaotn+HQ1LZJ4yOXrL7xQ==
