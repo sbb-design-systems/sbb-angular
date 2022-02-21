@@ -15,7 +15,7 @@
     "generate:bazel": "ng g .:bazel",
     "generate:merge-symbols": "ng g .:mergeSymbols",
     "bazel": "bazelisk",
-    "bazel:buildifier": "find . -type f \\( -name \"*.bzl\" -or -name WORKSPACE -or -name BUILD -or -name BUILD.bazel \\) ! -path \"*/node_modules/*\" ! -path \"*/tools/schematics/bazel/*\" | xargs buildifier -v",
+    "bazel:buildifier": "find . -type f \\( -name \"*.bzl\" -or -name WORKSPACE -or -name BUILD -or -name BUILD.bazel \\) ! -path \"*/node_modules/*\" ! -path \"*/.git/*\" | xargs buildifier -v",
     "bazel:format-lint": "yarn -s bazel:buildifier --lint=warn --mode=check",
     "bazel:cache": "ts-node-script -T ./scripts/cache.ts",
     "start": "ibazel run //src/showcase:devserver",
