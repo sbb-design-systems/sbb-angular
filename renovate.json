@@ -3,7 +3,6 @@
   "extends": ["config:base"],
   "enabledManagers": ["npm"],
   "includePaths": ["package.json"],
-  "rangeStrategy": "bump",
   "lockFileMaintenance": {
     "schedule": ["every weekend"],
     "enabled": true
@@ -31,16 +30,6 @@
     "yarn"
   ],
   "packageRules": [
-    {
-      "packageNames": ["@angular/core", "@angular/cli", "@angular/cdk", "angular-t9n"],
-      "postUpgradeTasks": {
-        "commands": [
-          "yarn ci --ignore-scripts",
-          "npx ng update {{{depName}}} --from={{{fromVersion}}} --to={{{toVersion}}} --migrateOnly --allowDirty --force"
-        ],
-        "fileFilters": ["**/**"]
-      }
-    },
     {
       "packageNames": ["@types/grecaptcha", "@types/node", "jasmine", "jasmine-core"],
       "matchUpdateTypes": ["major"],
