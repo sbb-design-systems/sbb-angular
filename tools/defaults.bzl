@@ -6,11 +6,11 @@ load("@rules_pkg//:pkg.bzl", "pkg_tar")
 load("@build_bazel_rules_nodejs//:index.bzl", _pkg_npm = "pkg_npm")
 load("@io_bazel_rules_sass//:defs.bzl", _sass_binary = "sass_binary", _sass_library = "sass_library")
 load("@npm//@angular/bazel:index.bzl", _ng_module = "ng_module", _ng_package = "ng_package")
+load("@npm//@angular/dev-infra-private/bazel/karma:index.bzl", _karma_web_test_suite = "karma_web_test_suite")
 load("@npm//@angular/dev-infra-private/bazel/esbuild:index.bzl", _esbuild = "esbuild", _esbuild_config = "esbuild_config")
 load("@npm//@angular/dev-infra-private/bazel/spec-bundling:index.bzl", _spec_bundle = "spec_bundle")
 load("@npm//@angular/dev-infra-private/bazel/http-server:index.bzl", _http_server = "http_server")
 load("@npm//@angular/dev-infra-private/bazel:extract_js_module_output.bzl", "extract_js_module_output")
-load("@npm//@bazel/concatjs:index.bzl", _karma_web_test = "karma_web_test", _karma_web_test_suite = "karma_web_test_suite")
 load("@npm//@bazel/jasmine:index.bzl", _jasmine_node_test = "jasmine_node_test")
 load("@npm//@bazel/protractor:index.bzl", _protractor_web_test_suite = "protractor_web_test_suite")
 load("@npm//@bazel/typescript:index.bzl", _ts_library = "ts_library")
@@ -289,30 +289,8 @@ def karma_web_test_suite(name, **kwargs):
             "@npm//@angular/dev-infra-private/bazel/browsers/firefox:firefox",
         ]
 
-    for opt_name in kwargs.keys():
-        # Filter out options which are specific to "karma_web_test" targets. We cannot
-        # pass options like "browsers" to the local web test target.
-        if not opt_name in ["wrapped_test_tags", "browsers", "wrapped_test_tags", "tags"]:
-            web_test_args[opt_name] = kwargs[opt_name]
-
-    # Custom standalone web test that can be run to test against any browser
-    # that is manually connected to.
-    _karma_web_test(
-        name = "%s_local_bin" % name,
-        config_file = "//test:bazel-karma-local-config.js",
-        tags = ["manual"],
-        **web_test_args
-    )
-
-    # Workaround for: https://github.com/bazelbuild/rules_nodejs/issues/1429
-    native.sh_test(
-        name = "%s_local" % name,
-        srcs = ["%s_local_bin" % name],
-        tags = ["manual", "local", "ibazel_notify_changes"],
-        testonly = True,
-    )
-
-    # Default test suite with all configured browsers.
+    # Default test suite with all configured browsers, and the debug target being
+    # setup from `@angular/dev-infra-private`.
     _karma_web_test_suite(
         name = name,
         **kwargs
