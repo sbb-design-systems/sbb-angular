@@ -18,11 +18,16 @@ import {
 import { CanDisable, mixinDisabled } from '@sbb-esta/angular/core';
 import { merge, Subscription } from 'rxjs';
 
-import { SbbSort, SbbSortable } from '../sort/sort';
-import { SbbSortDirection } from '../sort/sort-direction';
-import { getSortHeaderNotContainedWithinSortError } from '../sort/sort-errors';
-
+import {
+  SbbSort,
+  SbbSortable,
+  SbbSortDefaultOptions,
+  SbbSortHeaderArrowPosition,
+  SBB_SORT_DEFAULT_OPTIONS,
+} from './sort';
 import { sbbSortAnimations } from './sort-animations';
+import { SbbSortDirection } from './sort-direction';
+import { getSortHeaderNotContainedWithinSortError } from './sort-errors';
 
 // Boilerplate for applying mixins to the sort header.
 /** @docs-private */
@@ -125,7 +130,7 @@ export class SbbSortHeader
   @Input('sbb-sort-header') id: string;
 
   /** Sets the position of the arrow that displays when sorted. */
-  @Input() arrowPosition: 'before' | 'after' = 'after';
+  @Input() arrowPosition: SbbSortHeaderArrowPosition = 'after';
 
   /** Overrides the sort start value of the containing SbbSort for this SbbSortable. */
   @Input() start: 'asc' | 'desc';
@@ -165,7 +170,10 @@ export class SbbSortHeader
     @Inject('MAT_SORT_HEADER_COLUMN_DEF') @Optional() private _columnDefCdk: CdkColumnDef,
     private _focusMonitor: FocusMonitor,
     private _elementRef: ElementRef<HTMLElement>,
-    private _ariaDescriber: AriaDescriber
+    private _ariaDescriber: AriaDescriber,
+    @Optional()
+    @Inject(SBB_SORT_DEFAULT_OPTIONS)
+    defaultOptions?: SbbSortDefaultOptions
   ) {
     // Note that we use a string token for the `_columnDef`, because the value is provided both by
     // `angular/table` and `cdk/table` and we can't have the CDK depending on SBB Angular,
@@ -175,6 +183,10 @@ export class SbbSortHeader
 
     if (!_sort && (typeof ngDevMode === 'undefined' || ngDevMode)) {
       throw getSortHeaderNotContainedWithinSortError();
+    }
+
+    if (defaultOptions?.arrowPosition) {
+      this.arrowPosition = defaultOptions?.arrowPosition;
     }
 
     this._handleStateChanges();
