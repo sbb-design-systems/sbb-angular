@@ -118,13 +118,13 @@
     <unit id="sbbSidebarCollapse">
       <segment state="translated">
         <source>Collapse</source>
-        <target>Développer</target>
+        <target>Réduire</target>
       </segment>
     </unit>
     <unit id="sbbSidebarExpand">
       <segment state="translated">
         <source>Expand</source>
-        <target>Réduire</target>
+        <target>Développer</target>
       </segment>
     </unit>
     <unit id="sbbSidebarCloseSidebar">
