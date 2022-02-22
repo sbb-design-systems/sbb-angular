@@ -25,6 +25,7 @@ jobs:
         with:
           configurationFile: renovate.json
           token: 'x-access-token:${{ steps.get_token.outputs.app_token }}'
-          author: 'Renovate Bot <bot@renovateapp.com>'
         env:
           LOG_LEVEL: 'debug'
+          RENOVATE_GIT_AUTHOR: 'Renovate Bot <bot@renovateapp.com>'
+          RENOVATE_USERNAME: 'self-renovate[bot]'
