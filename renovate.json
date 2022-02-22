@@ -9,6 +9,7 @@
   },
   "allowPostUpgradeCommandTemplating": true,
   "allowedPostUpgradeCommands": ["^yarn"],
+  "gitAuthor": "Renovate Bot <bot@renovateapp.com>",
   "ignoreDeps": [
     "@angular/dev-infra-private",
     "@arcgis/core",
