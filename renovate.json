@@ -1,12 +1,14 @@
 {
   "$schema": "https://docs.renovatebot.com/renovate-schema.json",
   "extends": ["config:base"],
-  "enabledManagers": ["npm"],
+  "enabledManagers": ["npm", "github-actions"],
   "includePaths": ["package.json"],
   "lockFileMaintenance": {
     "schedule": ["every weekend"],
     "enabled": true
   },
+  "allowPostUpgradeCommandTemplating": true,
+  "allowedPostUpgradeCommands": ["^yarn"],
   "ignoreDeps": [
     "@angular/dev-infra-private",
     "@arcgis/core",
@@ -58,6 +60,16 @@
     {
       "groupName": "jasmine",
       "matchPackagePrefixes": ["jasmine", "@types/jasmine"]
+    },
+    {
+      "packageNames": ["@angular/core", "@angular/cli", "@angular/cdk", "angular-t9n"],
+      "postUpgradeTasks": {
+        "commands": [
+          "yarn install --frozen-lockfile",
+          "yarn ng update {{{depName}}} --from={{{fromVersion}}} --to={{{toVersion}}} --migrateOnly --allowDirty --force"
+        ],
+        "fileFilters": ["**/**"]
+      }
     }
   ]
 }
