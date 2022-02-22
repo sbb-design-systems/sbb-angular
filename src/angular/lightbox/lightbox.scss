@@ -120,4 +120,15 @@
   @include mq($from: tablet) {
     flex-direction: row;
   }
+
+  // .sbb-lightbox-actions-align-{start|center|end} are set by directive input "align"
+  &.sbb-lightbox-actions-align-start {
+    justify-content: flex-start;
+  }
+  &.sbb-lightbox-actions-align-center {
+    justify-content: center;
+  }
+  &.sbb-lightbox-actions-align-end {
+    justify-content: flex-end;
+  }
 }

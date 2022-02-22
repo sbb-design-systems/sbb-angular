@@ -132,6 +132,16 @@ export class SbbLightboxContent {}
  */
 @Directive({
   selector: `[sbb-lightbox-actions], sbb-lightbox-actions, [sbbLightboxActions]`,
-  host: { class: 'sbb-lightbox-actions' },
+  host: {
+    class: 'sbb-lightbox-actions',
+    '[class.sbb-lightbox-actions-align-start]': 'align === "start"',
+    '[class.sbb-lightbox-actions-align-center]': 'align === "center"',
+    '[class.sbb-lightbox-actions-align-end]': 'align === "end"',
+  },
 })
-export class SbbLightboxActions {}
+export class SbbLightboxActions {
+  /**
+   * Horizontal alignment of action buttons.
+   */
+  @Input() align?: 'start' | 'center' | 'end' | 'space between' = 'space between';
+}

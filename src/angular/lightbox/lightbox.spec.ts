@@ -1366,6 +1366,24 @@ describe('SbbLightbox', () => {
           .withContext('Expected the aria-labelledby to match the title id.')
           .toBe(title.id);
       }));
+
+      it('should add correct css class according to given [align] input in [sbb-lightbox-actions]', () => {
+        const actions = overlayContainerElement.querySelector('sbb-lightbox-actions')!;
+
+        expect(actions)
+          .withContext('Expected action buttons to not have class sbb-lightbox-actions-align-start')
+          .not.toHaveClass('sbb-lightbox-actions-align-start');
+
+        expect(actions)
+          .withContext(
+            'Expected action buttons to not have class sbb-lightbox-actions-align-center'
+          )
+          .not.toHaveClass('sbb-lightbox-actions-align-center');
+
+        expect(actions)
+          .withContext('Expected action buttons to not have class sbb-lightbox-actions-align-end')
+          .not.toHaveClass('sbb-lightbox-actions-align-end');
+      });
     }
   });
 
