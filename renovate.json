@@ -1,7 +1,7 @@
 {
   "$schema": "https://docs.renovatebot.com/renovate-schema.json",
   "extends": ["config:base"],
-  "enabledManagers": ["npm"],
+  "enabledManagers": ["npm", "github-actions"],
   "includePaths": ["package.json"],
   "lockFileMaintenance": {
     "schedule": ["every weekend"],
@@ -58,6 +58,16 @@
     {
       "groupName": "jasmine",
       "matchPackagePrefixes": ["jasmine", "@types/jasmine"]
+    },
+    {
+      "packageNames": ["@angular/core", "@angular/cli", "@angular/cdk", "angular-t9n"],
+      "postUpgradeTasks": {
+        "commands": [
+          "yarn install --frozen-lockfile",
+          "npx ng update {{{depName}}} --from={{{fromVersion}}} --to={{{toVersion}}} --migrateOnly --allowDirty --force"
+        ],
+        "fileFilters": ["**/**"]
+      }
     }
   ]
 }
