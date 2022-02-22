@@ -1964,6 +1964,47 @@ describe('SbbDialog with template only', () => {
   }));
 });
 
+describe('SbbDialog with close button', () => {
+  let fixture: ComponentFixture<ContentCloseAriaLabelDialog>;
+
+  beforeEach(fakeAsync(() => {
+    TestBed.configureTestingModule({
+      imports: [SbbDialogModule, DialogTestModule, BrowserAnimationsModule],
+    });
+    TestBed.compileComponents();
+  }));
+
+  it('should have pre configured aria label', fakeAsync(() => {
+    const fixtureContentElementDialog = TestBed.createComponent(ContentElementDialog);
+    fixtureContentElementDialog.detectChanges();
+
+    const closeButton = fixtureContentElementDialog.nativeElement.querySelector(
+      '.sbb-dialog-title-close-button'
+    );
+    expect(closeButton).toBeTruthy();
+    expect(closeButton.getAttribute('aria-label')).toBe('Close dialog');
+  }));
+
+  it('should have custom aria label', fakeAsync(() => {
+    fixture = TestBed.createComponent(ContentCloseAriaLabelDialog);
+    fixture.detectChanges();
+
+    const closeButton = fixture.nativeElement.querySelector('.sbb-dialog-title-close-button');
+    expect(closeButton).toBeTruthy();
+    expect(closeButton.getAttribute('aria-label')).toBe('Close this overlay');
+  }));
+
+  it('should let change custom aria label', fakeAsync(() => {
+    fixture = TestBed.createComponent(ContentCloseAriaLabelDialog);
+    fixture.componentInstance.closeAriaLabel = 'Close timetable';
+    fixture.detectChanges();
+
+    const closeButton = fixture.nativeElement.querySelector('.sbb-dialog-title-close-button');
+    expect(closeButton).toBeTruthy();
+    expect(closeButton.getAttribute('aria-label')).toBe('Close timetable');
+  }));
+});
+
 @Directive({ selector: 'dir-with-view-container' })
 class DirectiveWithViewContainer {
   constructor(public viewContainerRef: ViewContainerRef) {}
@@ -2084,6 +2125,17 @@ class DialogWithoutFocusableElements {}
 })
 class ShadowDomComponent {}
 
+@Component({
+  template: `
+    <h1 sbb-dialog-title [closeArialabel]="closeAriaLabel">This is the title</h1>
+    <sbb-dialog-content>Lorem ipsum dolor sit amet.</sbb-dialog-content>
+    <sbb-dialog-actions> Actions </sbb-dialog-actions>
+  `,
+})
+class ContentCloseAriaLabelDialog {
+  closeAriaLabel: string = 'Close this overlay';
+}
+
 // Create a real (non-test) NgModule as a workaround for
 // https://github.com/angular/angular/issues/10760
 const TEST_DIRECTIVES = [
@@ -2097,6 +2149,7 @@ const TEST_DIRECTIVES = [
   DialogWithoutFocusableElements,
   ComponentWithContentElementTemplateRef,
   ShadowDomComponent,
+  ContentCloseAriaLabelDialog,
 ];
 
 @NgModule({

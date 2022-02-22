@@ -1699,6 +1699,65 @@ describe('SbbLightbox with animations enabled', () => {
   }));
 });
 
+describe('SbbLightbox with template only', () => {
+  let fixture: ComponentFixture<ContentElementDialog>;
+
+  beforeEach(fakeAsync(() => {
+    TestBed.configureTestingModule({
+      imports: [SbbLightboxModule, DialogTestModule, BrowserAnimationsModule],
+    });
+    TestBed.compileComponents();
+  }));
+
+  it('should display close button', fakeAsync(() => {
+    fixture = TestBed.createComponent(ContentElementDialog);
+    fixture.detectChanges();
+
+    expect(fixture.nativeElement.querySelector('.sbb-lightbox-title-close-button')).toBeTruthy();
+  }));
+});
+
+describe('SbbLightbox with close button', () => {
+  let fixture: ComponentFixture<ContentCloseAriaLabelDialog>;
+
+  beforeEach(fakeAsync(() => {
+    TestBed.configureTestingModule({
+      imports: [SbbLightboxModule, DialogTestModule, BrowserAnimationsModule],
+    });
+    TestBed.compileComponents();
+  }));
+
+  it('should have pre configured aria label', fakeAsync(() => {
+    const fixtureContentElementDialog = TestBed.createComponent(ContentElementDialog);
+    fixtureContentElementDialog.detectChanges();
+
+    const closeButton = fixtureContentElementDialog.nativeElement.querySelector(
+      '.sbb-lightbox-title-close-button'
+    );
+    expect(closeButton).toBeTruthy();
+    expect(closeButton.getAttribute('aria-label')).toBe('Close lightbox');
+  }));
+
+  it('should have custom aria label', fakeAsync(() => {
+    fixture = TestBed.createComponent(ContentCloseAriaLabelDialog);
+    fixture.detectChanges();
+
+    const closeButton = fixture.nativeElement.querySelector('.sbb-lightbox-title-close-button');
+    expect(closeButton).toBeTruthy();
+    expect(closeButton.getAttribute('aria-label')).toBe('Close this overlay');
+  }));
+
+  it('should let change custom aria label', fakeAsync(() => {
+    fixture = TestBed.createComponent(ContentCloseAriaLabelDialog);
+    fixture.componentInstance.closeAriaLabel = 'Close timetable';
+    fixture.detectChanges();
+
+    const closeButton = fixture.nativeElement.querySelector('.sbb-lightbox-title-close-button');
+    expect(closeButton).toBeTruthy();
+    expect(closeButton.getAttribute('aria-label')).toBe('Close timetable');
+  }));
+});
+
 @Directive({ selector: 'dir-with-view-container' })
 class DirectiveWithViewContainer {
   constructor(public viewContainerRef: ViewContainerRef) {}
@@ -1819,6 +1878,17 @@ class DialogWithoutFocusableElements {}
 })
 class ShadowDomComponent {}
 
+@Component({
+  template: `
+    <h1 sbb-lightbox-title [closeArialabel]="closeAriaLabel">This is the title</h1>
+    <sbb-lightbox-content>Lorem ipsum dolor sit amet.</sbb-lightbox-content>
+    <sbb-lightbox-actions> Actions </sbb-lightbox-actions>
+  `,
+})
+class ContentCloseAriaLabelDialog {
+  closeAriaLabel: string = 'Close this overlay';
+}
+
 // Create a real (non-test) NgModule as a workaround for
 // https://github.com/angular/angular/issues/10760
 const TEST_DIRECTIVES = [
@@ -1832,6 +1902,7 @@ const TEST_DIRECTIVES = [
   DialogWithoutFocusableElements,
   ComponentWithContentElementTemplateRef,
   ShadowDomComponent,
+  ContentCloseAriaLabelDialog,
 ];
 
 @NgModule({
