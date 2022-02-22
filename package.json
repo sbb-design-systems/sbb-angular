@@ -120,7 +120,7 @@
     "html-insert-assets": "0.14.2",
     "husky": "7.0.4",
     "jasmine": "3.99.0",
-    "jasmine-core": "3.99.0",
+    "jasmine-core": "3.99.1",
     "jsonc-parser": "3.0.0",
     "karma": "6.3.16",
     "karma-browserstack-launcher": "1.6.0",
