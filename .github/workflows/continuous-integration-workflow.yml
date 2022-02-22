@@ -163,8 +163,21 @@ jobs:
       with:
         node-version: 16
 
+    - uses: actions/github-script@v6
+      with:
+        # Since we don't want to install the full package dependencies, we remove all dependencies that we don't need.
+        # We do this in order to reduce the time needed for this job.
+        script: |
+          const fs = require('fs');
+          const pkg = require('./package.json');
+          pkg.dependencies = {};
+          const validKeys = ['@actions/cache', 'ts-node', 'typescript'];
+          const filteredEntries = Object.entries(pkg.devDependencies).filter(([key]) => validKeys.includes(key));
+          pkg.devDependencies = Object.fromEntries(filteredEntries);
+          fs.writeFileSync('./package.json', JSON.stringify(pkg), 'utf8');
+
     - name: "Yarn: Install global dependencies"
-      run: yarn global add typescript ts-node
+      run: yarn install --non-interactive
 
     - name: "Bazel: Create cache directory"
       run: mkdir -p ~/.bazel-cache/

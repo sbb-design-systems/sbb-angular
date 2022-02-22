@@ -7,19 +7,12 @@ inputs:
 runs:
   using: "composite"
   steps:
-    - run: npm install --no-save @actions/cache@^1
-      working-directory: ${{ github.action_path }}
-      shell: bash
     - uses: actions/github-script@v6
-      working-directory: ${{ github.action_path }}
       with:
         # Uploads the bazel cache to GitHub Actions cache.
         # Due to the nature of bazel, we cannot create a atomic cache entry, but have to update/create
         # the cache entry each time this workflow/action is run.
         # In order to ensure we create a new cache entry, we use a key combination that cannot previously exist.
-        #
-        # ATTENTION: If the cache content/structure needs to change for any reason, increment the v{number}
-        #            for the key and also update the upload-workflow-bazel-cache action.
         #
         # See: https://docs.github.com/en/actions/guides/caching-dependencies-to-speed-up-workflows#example-using-the-cache-action.
         script: |
