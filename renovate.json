@@ -9,6 +9,7 @@
   },
   "username": "self-renovate[bot]",
   "gitAuthor": "Renovate Bot <bot@renovateapp.com>",
+  "repositories": ["sbb-design-systems/sbb-angular"],
   "allowPostUpgradeCommandTemplating": true,
   "allowedPostUpgradeCommands": ["^yarn"],
   "ignoreDeps": [
