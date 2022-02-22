@@ -7,8 +7,8 @@
     "schedule": ["every weekend"],
     "enabled": true
   },
-  "username": "self-renovate[bot]",
-  "gitAuthor": "Renovate Bot <bot@renovateapp.com>",
+  "username": "sbb-angular-renovate[bot]",
+  "gitAuthor": "sbb-angular-renovate<123456+sbb-angular-renovate[bot]@users.noreply.github.com>",
   "repositories": ["sbb-design-systems/sbb-angular"],
   "allowPostUpgradeCommandTemplating": true,
   "allowedPostUpgradeCommands": ["^yarn"],
