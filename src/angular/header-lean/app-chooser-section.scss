@@ -47,4 +47,20 @@
   &:last-child {
     border-bottom: var(--sbb-border-width-thin) solid var(--sbb-color-cloud);
   }
+
+  > :is(.sbb-icon, img) {
+    vertical-align: middle;
+    width: var(--sbb-icon-size-default);
+    height: var(--sbb-icon-size-default);
+
+    svg {
+      width: 100%;
+      height: 100%;
+    }
+
+    &:first-child {
+      float: left; // used to ignore users whitespace and to ensure margin is correct
+      margin-right: calc(#{pxToRem(8)} * var(--sbb-scaling-factor));
+    }
+  }
 }
