@@ -1,4 +1,4 @@
-name: "Upload bazel cache"
+name: "Upload intermediate bazel cache"
 description: "Compresses and uploads the bazel cache as an artefact"
 inputs:
   key:

@@ -1,4 +1,4 @@
-name: "Download bazel cache"
+name: "Download intermediate bazel cache"
 description: "Downloads and decompresses the bazel cache as an artefact"
 inputs:
   key:

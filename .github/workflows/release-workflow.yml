@@ -23,12 +23,10 @@ jobs:
       uses: ./.github/actions/yarn-install
 
     - name: "Bazel: Restore remote cache"
-      uses: actions/cache@v2
+      if: ${{ success() || failure() }}
+      uses: ./.github/actions/download-workflow-bazel-cache
       with:
-        path: ~/.bazel-cache/sbb-angular
-        key: bazel-packages-${{ github.sha }}
-        restore-keys: |
-          bazel-packages-
+        key: packages
     - name: "Bazel: Build packages"
       run: yarn -s build packages
 
@@ -76,12 +74,10 @@ jobs:
       uses: ./.github/actions/yarn-install
 
     - name: "Bazel: Restore remote cache"
-      uses: actions/cache@v2
+      if: ${{ success() || failure() }}
+      uses: ./.github/actions/download-workflow-bazel-cache
       with:
-        path: ~/.bazel-cache/sbb-angular
-        key: bazel-build-${{ github.sha }}
-        restore-keys: |
-          bazel-build-
+        key: combined
     - name: "Bazel: Build showcase"
       run: yarn -s build showcase
 
