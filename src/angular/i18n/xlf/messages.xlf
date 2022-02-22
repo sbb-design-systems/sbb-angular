@@ -78,7 +78,7 @@
         <source>Close dialog</source>
         <context-group purpose="location">
           <context context-type="sourcefile">../../../../../../src/angular/dialog/dialog-content-directives.ts</context>
-          <context context-type="linenumber">39</context>
+          <context context-type="linenumber">26</context>
         </context-group>
         <note priority="1" from="description">Aria label to close a dialog</note>
       </trans-unit>
@@ -126,7 +126,7 @@
         <source>Close lightbox</source>
         <context-group purpose="location">
           <context context-type="sourcefile">../../../../../../src/angular/lightbox/lightbox-content-directives.ts</context>
-          <context context-type="linenumber">46</context>
+          <context context-type="linenumber">27</context>
         </context-group>
         <note priority="1" from="description">Aria label to close a dialog</note>
       </trans-unit>

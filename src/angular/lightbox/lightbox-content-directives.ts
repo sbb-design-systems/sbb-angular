@@ -22,6 +22,11 @@ import { SbbLightboxRef } from './lightbox-ref';
 /** Counter used to generate unique IDs for dialog elements. */
 let dialogElementUid = 0;
 
+const closeAriaLabel =
+  typeof $localize === 'function'
+    ? $localize`:Aria label to close a dialog@@sbbLightboxCloseLightbox:Close lightbox`
+    : 'Close lightbox';
+
 /**
  * Button that will close the current lightbox.
  */
@@ -34,11 +39,8 @@ let dialogElementUid = 0;
   },
 })
 export class SbbLightboxClose extends SbbDialogClose implements OnInit, OnChanges {
-  /** Screenreader label for the button. */
-  @Input('aria-label') override ariaLabel: string =
-    typeof $localize === 'function'
-      ? $localize`:Aria label to close a dialog@@sbbLightboxCloseLightbox:Close lightbox`
-      : 'Close lightbox';
+  /** Aria label for the close button. */
+  @Input('aria-label') override ariaLabel: string = closeAriaLabel;
 
   /** Lightbox close input. */
   @Input('sbb-lightbox-close')
@@ -78,7 +80,11 @@ export class SbbLightboxClose extends SbbDialogClose implements OnInit, OnChange
   exportAs: 'sbbLightboxTitle',
   template: `
     <ng-content></ng-content>
-    <button sbb-lightbox-close class="sbb-lightbox-title-close-button sbb-button-reset-frameless">
+    <button
+      sbb-lightbox-close
+      class="sbb-lightbox-title-close-button sbb-button-reset-frameless"
+      [aria-label]="closeAriaLabel"
+    >
       <sbb-icon svgIcon="kom:circle-cross-small" class="sbb-icon-scaled"></sbb-icon>
     </button>
   `,
@@ -93,6 +99,9 @@ export class SbbLightboxTitle extends _SbbDialogTitleBase implements OnInit {
   @Input() override id: string = `sbb-lightbox-title-${dialogElementUid++}`;
 
   @ViewChild(SbbLightboxClose, { static: true }) _lightBoxClose: SbbLightboxClose;
+
+  /** Arial label for the close button. */
+  @Input() override closeAriaLabel: string = closeAriaLabel;
 
   constructor(
     // The lightbox title directive is always used in combination with a `SbbDialogRef`.
