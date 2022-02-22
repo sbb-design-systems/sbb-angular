@@ -33,7 +33,7 @@
   ],
   "packageRules": [
     {
-      "packageNames": ["@types/grecaptcha", "@types/node", "jasmine", "jasmine-core"],
+      "matchPackageNames": ["@types/grecaptcha", "@types/node", "jasmine", "jasmine-core"],
       "matchUpdateTypes": ["major"],
       "enabled": false
     },
@@ -62,7 +62,7 @@
       "matchPackagePrefixes": ["jasmine", "@types/jasmine"]
     },
     {
-      "packageNames": ["@angular/core", "@angular/cli", "@angular/cdk", "angular-t9n"],
+      "matchPackageNames": ["@angular/core", "@angular/cli", "@angular/cdk", "angular-t9n"],
       "postUpgradeTasks": {
         "commands": [
           "yarn install --frozen-lockfile",

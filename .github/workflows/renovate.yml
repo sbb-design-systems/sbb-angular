@@ -4,6 +4,8 @@ on:
     # The "*" (#42, asterisk) character has special semantics in YAML, so this
     # string has to be quoted.
     - cron: '0/15 * * * *'
+  workflow_dispatch:
+
 jobs:
   renovate:
     runs-on: ubuntu-latest
@@ -23,3 +25,5 @@ jobs:
         with:
           configurationFile: renovate.json
           token: 'x-access-token:${{ steps.get_token.outputs.app_token }}'
+        env:
+          LOG_LEVEL: 'debug'
