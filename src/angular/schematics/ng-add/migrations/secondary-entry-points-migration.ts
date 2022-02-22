@@ -119,7 +119,7 @@ export class SecondaryEntryPointsMigration extends Migration<null, DevkitContext
     for (const element of declaration.importClause.namedBindings.elements) {
       let elementName = element.propertyName ? element.propertyName : element.name;
       if (CLASS_NAME_RENAMES.has(elementName.text)) {
-        elementName = ts.createIdentifier(CLASS_NAME_RENAMES.get(elementName.text)!);
+        elementName = ts.factory.createIdentifier(CLASS_NAME_RENAMES.get(elementName.text)!);
       }
 
       // Try to resolve the module name via our list of symbol to entry point mappings, and, if it fails, fall back to
@@ -161,11 +161,15 @@ export class SecondaryEntryPointsMigration extends Migration<null, DevkitContext
       const newImportStatements = Array.from(importMap.entries())
         .sort()
         .map(([name, elements]) => {
-          const newImport = ts.createImportDeclaration(
+          const newImport = ts.factory.createImportDeclaration(
             undefined,
             undefined,
-            ts.createImportClause(undefined, ts.createNamedImports(applyRenames(elements))),
-            createStringLiteral(name, singleQuoteImport)
+            ts.factory.createImportClause(
+              false,
+              undefined,
+              ts.factory.createNamedImports(applyRenames(elements))
+            ),
+            ts.factory.createStringLiteral(name, singleQuoteImport)
           );
           return this.printer.printNode(ts.EmitHint.Unspecified, newImport, file);
         })
@@ -186,18 +190,6 @@ export class SecondaryEntryPointsMigration extends Migration<null, DevkitContext
       recorder.insertRight(declarations[0].getStart(), newImportStatements + EOL);
     });
   }
-}
-
-/**
- * Creates a string literal from the specified text.
- * @param text Text of the string literal.
- * @param singleQuotes Whether single quotes should be used when printing the literal node.
- */
-function createStringLiteral(text: string, singleQuotes: boolean): ts.StringLiteral {
-  const literal = ts.createStringLiteral(text);
-  // See: https://github.com/microsoft/TypeScript/blob/master/src/compiler/utilities.ts#L584-L590
-  literal['singleQuote'] = singleQuotes;
-  return literal;
 }
 
 /** Gets the symbol that contains the value declaration of the given node. */
@@ -257,7 +249,9 @@ function applyRenames(elements: ts.ImportSpecifier[]) {
           return element;
         }
 
-        const nameIdentifier = ts.createIdentifier(CLASS_NAME_RENAMES.get(elementName.text)!);
+        const nameIdentifier = ts.factory.createIdentifier(
+          CLASS_NAME_RENAMES.get(elementName.text)!
+        );
         return element.propertyName
           ? createImportSpecifier(nameIdentifier, element.name)
           : createImportSpecifier(undefined, nameIdentifier);
@@ -279,6 +273,6 @@ function createImportSpecifier(
   name: ts.Identifier
 ): ts.ImportSpecifier {
   return PARSED_TS_VERSION > 4.4
-    ? ts.createImportSpecifier(false, propertyName, name)
+    ? ts.factory.createImportSpecifier(false, propertyName, name)
     : (ts.createImportSpecifier as any)(propertyName, name);
 }
