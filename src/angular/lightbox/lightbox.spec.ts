@@ -1880,7 +1880,7 @@ class ShadowDomComponent {}
 
 @Component({
   template: `
-    <h1 sbb-lightbox-title [closeArialabel]="closeAriaLabel">This is the title</h1>
+    <h1 sbb-lightbox-title [closeAriaLabel]="closeAriaLabel">This is the title</h1>
     <sbb-lightbox-content>Lorem ipsum dolor sit amet.</sbb-lightbox-content>
     <sbb-lightbox-actions> Actions </sbb-lightbox-actions>
   `,

@@ -21,7 +21,7 @@ import { SbbDialogRef, _closeDialogVia } from './dialog-ref';
 /** Counter used to generate unique IDs for dialog elements. */
 let dialogElementUid = 0;
 
-const closeAriaLabel = () =>
+const closeAriaLabel =
   typeof $localize === 'function'
     ? $localize`:Aria label to close a dialog@@sbbDialogCloseDialog:Close dialog`
     : 'Close dialog';
@@ -39,7 +39,7 @@ const closeAriaLabel = () =>
 })
 export class SbbDialogClose implements OnInit, OnChanges {
   /** Screenreader label for the button. */
-  @Input('aria-label') ariaLabel: string = closeAriaLabel();
+  @Input('aria-label') ariaLabel: string = closeAriaLabel;
 
   /** Default to "button" to prevents accidental form submits. */
   @Input() type: 'submit' | 'button' | 'reset' = 'button';
@@ -110,7 +110,7 @@ export class _SbbDialogTitleBase implements OnInit {
   @Input() id: string = `sbb-dialog-title-${dialogElementUid++}`;
 
   /** Arial label for the close button. */
-  @Input() closeArialabel: string = closeAriaLabel();
+  @Input() closeAriaLabel: string = closeAriaLabel;
 
   /** Whether the close button is enabled for the dialog. */
   _closeEnabled: boolean = true;
@@ -165,7 +165,7 @@ export class _SbbDialogTitleBase implements OnInit {
       *ngIf="_closeEnabled"
       sbb-dialog-close
       class="sbb-dialog-title-close-button sbb-button-reset-frameless"
-      [aria-label]="closeArialabel"
+      [aria-label]="closeAriaLabel"
     >
       <sbb-icon svgIcon="kom:cross-small"></sbb-icon>
     </button>

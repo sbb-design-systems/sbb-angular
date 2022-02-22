@@ -2127,7 +2127,7 @@ class ShadowDomComponent {}
 
 @Component({
   template: `
-    <h1 sbb-dialog-title [closeArialabel]="closeAriaLabel">This is the title</h1>
+    <h1 sbb-dialog-title [closeAriaLabel]="closeAriaLabel">This is the title</h1>
     <sbb-dialog-content>Lorem ipsum dolor sit amet.</sbb-dialog-content>
     <sbb-dialog-actions> Actions </sbb-dialog-actions>
   `,
