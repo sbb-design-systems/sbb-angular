@@ -35,9 +35,10 @@ npx @angular/cli@13 update @angular/core@13 @angular/cli@13 --force</pre
     (Optional) run <code>npx @angular/cli@13 update @sbb-esta/maps</code> if you are using maps
     package.
   </li>
+  <li>Clear angular cache (`.angular` folder) to avoid caching problems.</li>
 </ol>
 
-<h4>Update from version 13.x.x</h4>
+<h4>Update from version 13.x.x upwards</h4>
 <!-- Re-add for version 14
 <p>
   Before updating make sure your Angular packages (@angular/...) are up to date. For example if you
@@ -51,7 +52,8 @@ npx @angular/cli@13 update @angular/core@13 @angular/cli@13 --force</pre
 <p>
   To update the SBB Angular packages, use the <code>ng update</code> command.
   <code>ng update</code> will update all related packages and will automatically run update
-  schematics which helps keeping up with breaking changes.
+  schematics which helps keeping up with breaking changes. After updating, clear the angular cache
+  (`.angular` folder) to avoid caching problems.
 </p>
 <sbb-checkbox [formControl]="fullCommand">Show command for @angular packages update</sbb-checkbox>
 
