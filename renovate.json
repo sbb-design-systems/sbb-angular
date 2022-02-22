@@ -8,7 +8,7 @@
     "enabled": true
   },
   "allowPostUpgradeCommandTemplating": true,
-  "allowedPostUpgradeCommands": ["^yarn", "^npx"],
+  "allowedPostUpgradeCommands": ["^yarn"],
   "ignoreDeps": [
     "@angular/dev-infra-private",
     "@arcgis/core",
@@ -66,7 +66,7 @@
       "postUpgradeTasks": {
         "commands": [
           "yarn install --frozen-lockfile",
-          "npx ng update {{{depName}}} --from={{{fromVersion}}} --to={{{toVersion}}} --migrateOnly --allowDirty --force"
+          "yarn ng update {{{depName}}} --from={{{fromVersion}}} --to={{{toVersion}}} --migrateOnly --allowDirty --force"
         ],
         "fileFilters": ["**/**"]
       }
