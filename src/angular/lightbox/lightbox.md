@@ -103,12 +103,12 @@ will be available implicitly in the template:
 
 Several directives are available to make it easier to structure your lightbox content:
 
-| Name                     | Description                                                                                                                                                                               |
-| ------------------------ | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `<sbb-lightbox-title>`   | Lightbox title section.                                                                                                                                                                   |
-| `<sbb-lightbox-content>` | Primary scrollable content of the lightbox.                                                                                                                                               |
-| `<sbb-lightbox-actions>` | Container for action buttons at the bottom of the lightbox. Button alignment can be controlled via the `align` attribute which can be set to `start`, `center`, `end` or `space between`. |
-| `sbb-lightbox-close`     | \[Attr] Added to a `<button>`, makes the button close the lightbox with an optional result from the bound value.                                                                          |
+| Name                     | Description                                                                                                                                                      |
+| ------------------------ | ---------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `<sbb-lightbox-title>`   | Lightbox title section.                                                                                                                                          |
+| `<sbb-lightbox-content>` | Primary scrollable content of the lightbox.                                                                                                                      |
+| `<sbb-lightbox-actions>` | Container for action buttons at the bottom of the lightbox. Button alignment can be controlled via the `align` attribute which can be set to `end` and `center`. |
+| `sbb-lightbox-close`     | \[Attr] Added to a `<button>`, makes the button close the lightbox with an optional result from the bound value.                                                 |
 
 For example:
 
