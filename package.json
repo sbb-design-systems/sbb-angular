@@ -149,7 +149,7 @@
     "send": "0.17.2",
     "shelljs": "0.8.5",
     "standard-version": "9.3.2",
-    "stylelint": "14.5.1",
+    "stylelint": "14.5.3",
     "stylelint-config-recommended-scss": "5.0.2",
     "stylelint-scss": "4.1.0",
     "terser": "5.11.0",
