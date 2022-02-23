@@ -48,8 +48,7 @@
     border-bottom: var(--sbb-border-width-thin) solid var(--sbb-color-cloud);
   }
 
-  .sbb-icon,
-  img {
+  :is(.sbb-icon, img) {
     vertical-align: middle;
     width: var(--sbb-icon-size-default);
     height: var(--sbb-icon-size-default);
