@@ -68,6 +68,7 @@
       "matchPackageNames": ["@angular/core", "@angular/cli", "@angular/cdk", "angular-t9n"],
       "postUpgradeTasks": {
         "commands": [
+          "yarn install --frozen-lockfile --non-interactive",
           "yarn ng update {{{depName}}} --from={{{currentVersion}}} --to={{{newVersion}}} --migrate-only --allow-dirty --force"
         ],
         "fileFilters": ["**/**"]
