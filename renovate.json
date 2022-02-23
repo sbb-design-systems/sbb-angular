@@ -1,12 +1,17 @@
 {
   "$schema": "https://docs.renovatebot.com/renovate-schema.json",
   "extends": ["config:base"],
-  "enabledManagers": ["npm"],
+  "enabledManagers": ["npm", "github-actions"],
   "includePaths": ["package.json"],
   "lockFileMaintenance": {
     "schedule": ["every weekend"],
     "enabled": true
   },
+  "username": "sbb-angular-renovate[bot]",
+  "gitAuthor": "sbb-angular-renovate<52953647+sbb-angular-renovate[bot]@users.noreply.github.com>",
+  "repositories": ["sbb-design-systems/sbb-angular"],
+  "allowPostUpgradeCommandTemplating": true,
+  "allowedPostUpgradeCommands": ["^yarn"],
   "ignoreDeps": [
     "@angular/dev-infra-private",
     "@arcgis/core",
@@ -31,7 +36,7 @@
   ],
   "packageRules": [
     {
-      "packageNames": ["@types/grecaptcha", "@types/node", "jasmine", "jasmine-core"],
+      "matchPackageNames": ["@types/grecaptcha", "@types/node", "jasmine", "jasmine-core"],
       "matchUpdateTypes": ["major"],
       "enabled": false
     },
@@ -58,6 +63,16 @@
     {
       "groupName": "jasmine",
       "matchPackagePrefixes": ["jasmine", "@types/jasmine"]
+    },
+    {
+      "matchPackageNames": ["@angular/core", "@angular/cli", "@angular/cdk", "angular-t9n"],
+      "postUpgradeTasks": {
+        "commands": [
+          "yarn install --frozen-lockfile --non-interactive --ignore-scripts",
+          "yarn ng update {{{depName}}} --from={{{currentVersion}}} --to={{{newVersion}}} --migrate-only --allow-dirty --force"
+        ],
+        "fileFilters": ["**/**"]
+      }
     }
   ]
 }
