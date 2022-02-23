@@ -169,12 +169,10 @@ jobs:
         # We do this in order to reduce the time needed for this job.
         script: |
           const fs = require('fs');
-          const pkg = require('./package.json');
-          pkg.dependencies = {};
-          const validKeys = ['@actions/cache', 'ts-node', 'typescript'];
-          const filteredEntries = Object.entries(pkg.devDependencies).filter(([key]) => validKeys.includes(key));
-          pkg.devDependencies = Object.fromEntries(filteredEntries);
-          fs.writeFileSync('./package.json', JSON.stringify(pkg), 'utf8');
+          let { name, version, devDependencies } = require('./package.json');
+          const packages = ['@actions/cache', '@types/node', 'ts-node', 'typescript'];
+          devDependencies = packages.reduce((deps, dep) => Object.assign(deps, { [dep]: devDependencies[dep] }), {});
+          fs.writeFileSync('./package.json', JSON.stringify({ name, version, devDependencies }), 'utf8');
 
     - name: "Yarn: Install global dependencies"
       run: yarn install --non-interactive
