@@ -48,10 +48,15 @@
     border-bottom: var(--sbb-border-width-thin) solid var(--sbb-color-cloud);
   }
 
-  > :is(.sbb-icon, img) {
+  .sbb-icon,
+  img {
     vertical-align: middle;
     width: var(--sbb-icon-size-default);
     height: var(--sbb-icon-size-default);
+
+    // adjust margin to keep line height
+    margin-top: calc((var(--sbb-line-height-medium) - var(--sbb-icon-size-default)) / 2);
+    margin-bottom: calc((var(--sbb-line-height-medium) - var(--sbb-icon-size-default)) / 2);
 
     svg {
       width: 100%;
