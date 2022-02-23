@@ -29,3 +29,4 @@ jobs:
         env:
           LOG_LEVEL: 'debug'
           RENOVATE_TOKEN: 'x-access-token:${{ steps.get_token.outputs.app_token }}'
+          RENOVATE_CONFIG_FILE: renovate.json
