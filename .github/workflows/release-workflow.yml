@@ -32,7 +32,7 @@ jobs:
     - name: "Bazel: Build packages"
       run: yarn -s build packages
 
-    - uses: actions/upload-artifact@v1
+    - uses: actions/upload-artifact@v2
       with:
         name: packages
         path: dist/releases
