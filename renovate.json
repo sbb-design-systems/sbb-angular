@@ -69,7 +69,7 @@
       "postUpgradeTasks": {
         "commands": [
           "yarn install --frozen-lockfile --non-interactive --ignore-scripts",
-          "yarn ng update {{{depName}}} --from={{{currentVersion}}} --to={{{newVersion}}} --migrate-only --allow-dirty --force"
+          "npx ng update {{{depName}}} --from={{{currentVersion}}} --to={{{newVersion}}} --migrate-only --allow-dirty --force"
         ],
         "fileFilters": ["**/**"]
       }
