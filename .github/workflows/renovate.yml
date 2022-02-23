@@ -14,8 +14,8 @@ jobs:
         id: get_token
         uses: machine-learning-apps/actions-app-token@master
         with:
-          APP_PEM: ${{ secrets.APP_PEM }}
-          APP_ID: ${{ secrets.APP_ID }}
+          APP_PEM: ${{ secrets.RENOVATE_APP_PEM }}
+          APP_ID: ${{ secrets.RENOVATE_APP_ID }}
 
       - name: Checkout
         uses: actions/checkout@v2.0.0
