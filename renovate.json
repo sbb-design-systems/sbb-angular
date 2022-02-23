@@ -11,7 +11,7 @@
   "gitAuthor": "sbb-angular-renovate<52953647+sbb-angular-renovate[bot]@users.noreply.github.com>",
   "repositories": ["sbb-design-systems/sbb-angular"],
   "allowPostUpgradeCommandTemplating": true,
-  "allowedPostUpgradeCommands": ["^yarn"],
+  "allowedPostUpgradeCommands": ["^yarn", "^npx"],
   "ignoreDeps": [
     "@angular/dev-infra-private",
     "@arcgis/core",
