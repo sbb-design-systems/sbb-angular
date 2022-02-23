@@ -1,15 +1,15 @@
 {
   "$schema": "https://docs.renovatebot.com/renovate-schema.json",
   "extends": ["config:base"],
-  "enabledManagers": ["npm", "github-actions"],
-  "includePaths": ["package.json"],
+  "username": "sbb-angular-renovate[bot]",
+  "gitAuthor": "sbb-angular-renovate<52953647+sbb-angular-renovate[bot]@users.noreply.github.com>",
+  "repositories": ["sbb-design-systems/sbb-angular"],
+  "includePaths": ["package.json", ".github/**"],
+  "schedule": ["after 10pm every weekday", "before 5am every weekday", "every weekend"],
   "lockFileMaintenance": {
     "schedule": ["every weekend"],
     "enabled": true
   },
-  "username": "sbb-angular-renovate[bot]",
-  "gitAuthor": "sbb-angular-renovate<52953647+sbb-angular-renovate[bot]@users.noreply.github.com>",
-  "repositories": ["sbb-design-systems/sbb-angular"],
   "allowPostUpgradeCommandTemplating": true,
   "allowedPostUpgradeCommands": ["^yarn"],
   "ignoreDeps": [
@@ -72,6 +72,10 @@
         ],
         "fileFilters": ["**/**"]
       }
+    },
+    {
+      "matchPackageNames": ["renovate"],
+      "extends": ["schedule:monthly"]
     }
   ]
 }
