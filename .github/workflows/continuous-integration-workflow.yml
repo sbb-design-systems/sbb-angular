@@ -169,12 +169,13 @@ jobs:
         # We do this in order to reduce the time needed for this job.
         script: |
           const fs = require('fs');
-          let { name, version, devDependencies } = require('./package.json');
+          let { name, version, devDependencies, scripts } = require('./package.json');
           const packages = ['@actions/cache', '@types/node', 'ts-node', 'typescript'];
           devDependencies = packages.reduce((deps, dep) => Object.assign(deps, { [dep]: devDependencies[dep] }), {});
-          fs.writeFileSync('./package.json', JSON.stringify({ name, version, devDependencies }), 'utf8');
+          scripts = { 'bazel:cache': scripts['bazel:cache'] };
+          fs.writeFileSync('./package.json', JSON.stringify({ name, version, devDependencies, scripts }), 'utf8');
 
-    - name: "Yarn: Install global dependencies"
+    - name: "Yarn: Install reduced dependencies"
       run: yarn install --non-interactive
 
     - name: "Bazel: Create cache directory"
