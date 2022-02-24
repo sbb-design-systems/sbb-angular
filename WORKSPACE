@@ -63,7 +63,7 @@ bazel_skylib_workspace()
 load("@build_bazel_rules_nodejs//:index.bzl", "node_repositories", "yarn_install")
 
 node_repositories(
-    node_version = "16.10.0",
+    node_version = "16.13.0",
     package_json = ["//:package.json"],
 )
 
