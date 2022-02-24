@@ -26,7 +26,7 @@ export class ExampleViewerComponent implements OnInit {
 
   // Returns the path to the html file for a given example file.
   private static _convertToHtmlFilePath(filePath: string): string {
-    return filePath.replace(/(.*)[.](html|ts|css)/, '$1-$2');
+    return filePath.replace(/(.*)[.](html|ts|css)/, '$1-$2.html');
   }
 
   // Get the example name from the selector name
