@@ -1,5 +1,4 @@
 const path = require('path');
-const { customLaunchers, platformMap } = require('./browser-providers');
 
 module.exports = (config) => {
   config.set({
