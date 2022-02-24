@@ -2,6 +2,34 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [13.7.0](https://github.com/sbb-design-systems/sbb-angular/compare/13.6.0...13.7.0) (2022-02-24)
+
+
+### Features
+
+* **angular/header-lean:** align icons in app-chooser-section ([#1189](https://github.com/sbb-design-systems/sbb-angular/issues/1189)) ([116b932](https://github.com/sbb-design-systems/sbb-angular/commit/116b9329187ce7978b1b565fef23152df9c8a7df))
+* **angular/lightbox:** allow aria-label of close button to customize ([#1176](https://github.com/sbb-design-systems/sbb-angular/issues/1176)) ([1dff68d](https://github.com/sbb-design-systems/sbb-angular/commit/1dff68d60dd482d979f9ed8f9d82c17f22692d80))
+* **angular/table:** default arrow position in SbbSortDefaultOptions ([#1171](https://github.com/sbb-design-systems/sbb-angular/issues/1171)) ([2472c81](https://github.com/sbb-design-systems/sbb-angular/commit/2472c811852093fdd9e2d7fa71a2d6efe3b92f99))
+
+
+### Bug Fixes
+
+* **angular/autocomplete:** closing immediately when input is focused programmatically ([#1208](https://github.com/sbb-design-systems/sbb-angular/issues/1208)) ([ef69ea7](https://github.com/sbb-design-systems/sbb-angular/commit/ef69ea77e885b363b26ac08d8892804fdf6cee8a))
+* **angular/autocomplete:** don't block default arrow keys when using modifiers ([#1211](https://github.com/sbb-design-systems/sbb-angular/issues/1211)) ([8437161](https://github.com/sbb-design-systems/sbb-angular/commit/843716165b6947b892d0e5d267ceb46d96f254fd))
+* **angular/autocomplete:** use narrow value for aria-haspopup ([#1205](https://github.com/sbb-design-systems/sbb-angular/issues/1205)) ([d38ce18](https://github.com/sbb-design-systems/sbb-angular/commit/d38ce1884c101708ececb028ab45eaed1b5b2ee9))
+* **angular/checkbox:** clear static aria attributes from host nodes ([#1210](https://github.com/sbb-design-systems/sbb-angular/issues/1210)) ([a2a4a8c](https://github.com/sbb-design-systems/sbb-angular/commit/a2a4a8c06c450d678c92d5c6b5cb620c4b2934d3))
+* **angular/radio-button:** clicks not propagating to wrapper elements ([#1178](https://github.com/sbb-design-systems/sbb-angular/issues/1178)) ([03296ad](https://github.com/sbb-design-systems/sbb-angular/commit/03296adf1ac08d5bbc4d67f671433da0f2937f82)), closes [#1172](https://github.com/sbb-design-systems/sbb-angular/issues/1172)
+* **angular/radio-button:** not checked on first click if partially visible ([#1172](https://github.com/sbb-design-systems/sbb-angular/issues/1172)) ([ff2827a](https://github.com/sbb-design-systems/sbb-angular/commit/ff2827ac2006ca2f77f418a7c645d8c6bf103eab))
+* **angular/sidebar:** fix translations of collapse and expand ([#1164](https://github.com/sbb-design-systems/sbb-angular/issues/1164)) ([7a99505](https://github.com/sbb-design-systems/sbb-angular/commit/7a99505af19e856fcb8f4801c3c98406ac37acb5)), closes [#1160](https://github.com/sbb-design-systems/sbb-angular/issues/1160)
+* **angular/sidebar:** prevent focus from entering hidden sidenav if child element has a visibility ([#1209](https://github.com/sbb-design-systems/sbb-angular/issues/1209)) ([56fc92b](https://github.com/sbb-design-systems/sbb-angular/commit/56fc92b00cf76ef1083e92f9742ee0b96ac88cda)), closes [angular/angular#44990](https://github.com/angular/angular/issues/44990)
+* **angular/table:** don't override definitions of non .sbb-table tables ([eda3d96](https://github.com/sbb-design-systems/sbb-angular/commit/eda3d9612479ad58d6f24c0e88c9ca8d3372d328))
+
+
+### Documentation
+
+* add note to clear angular cache on how to update guide ([#1180](https://github.com/sbb-design-systems/sbb-angular/issues/1180)) ([c470be3](https://github.com/sbb-design-systems/sbb-angular/commit/c470be3d79bc7faea8a0739df0082d4362306a67))
+* **angular/lightbox:** remove obsolete button alignment infos ([#1177](https://github.com/sbb-design-systems/sbb-angular/issues/1177)) ([a979cbe](https://github.com/sbb-design-systems/sbb-angular/commit/a979cbe4c519570dda0d4ec8a349aa6498d48af5))
+
 ## [13.6.0](https://github.com/sbb-design-systems/sbb-angular/compare/13.5.0...13.6.0) (2022-02-17)
 
 
