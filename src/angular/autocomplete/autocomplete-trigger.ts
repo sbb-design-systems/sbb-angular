@@ -107,7 +107,7 @@ export function getSbbAutocompleteMissingPanelError(): Error {
     '[attr.aria-activedescendant]': '(panelOpen && activeOption) ? activeOption.id : null',
     '[attr.aria-expanded]': 'autocompleteDisabled ? null : panelOpen.toString()',
     '[attr.aria-owns]': '(autocompleteDisabled || !panelOpen) ? null : autocomplete?.id',
-    '[attr.aria-haspopup]': '!autocompleteDisabled',
+    '[attr.aria-haspopup]': 'autocompleteDisabled ? null : "listbox"',
     '[class.sbb-focused]': 'panelOpen',
   },
 })
