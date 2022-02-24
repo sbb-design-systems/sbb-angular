@@ -11,6 +11,10 @@
     margin: 1em 0;
     white-space: pre-wrap;
   }
+
+  ::ng-deep .sbb-tab-label-content {
+    text-transform: uppercase;
+  }
 }
 
 .example-viewer-header {
