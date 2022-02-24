@@ -363,6 +363,8 @@ export class _SbbCheckboxBase
     class: 'sbb-checkbox sbb-selection-item',
     '[id]': 'id',
     '[attr.tabindex]': 'null',
+    '[attr.aria-label]': 'null',
+    '[attr.aria-labelledby]': 'null',
     '[class.sbb-selection-indeterminate]': 'indeterminate',
     '[class.sbb-selection-checked]': 'checked',
     '[class.sbb-selection-disabled]': 'disabled',
