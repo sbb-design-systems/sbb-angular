@@ -277,18 +277,18 @@ describe('SbbButton', () => {
       expect(buttonDebugElement.nativeElement.getAttribute('aria-disabled'))
         .withContext('Expect aria-disabled="false"')
         .toBe('false');
-      expect(buttonDebugElement.nativeElement.getAttribute('disabled')).toBeNull(
-        'Expect disabled="false"'
-      );
+      expect(buttonDebugElement.nativeElement.getAttribute('disabled'))
+        .withContext('Expect disabled="false"')
+        .toBeNull();
 
       testComponent.isDisabled = false;
       fixture.detectChanges();
       expect(buttonDebugElement.nativeElement.getAttribute('aria-disabled'))
         .withContext('Expect no aria-disabled')
         .toBe('false');
-      expect(buttonDebugElement.nativeElement.getAttribute('disabled')).toBeNull(
-        'Expect no disabled'
-      );
+      expect(buttonDebugElement.nativeElement.getAttribute('disabled'))
+        .withContext('Expect no disabled')
+        .toBeNull();
     });
 
     it('should be able to set a custom tabindex', () => {

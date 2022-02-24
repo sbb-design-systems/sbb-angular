@@ -1260,7 +1260,7 @@ describe('SbbDialog', () => {
 
       tick(500);
       viewContainerFixture.detectChanges();
-      expect(lastFocusOrigin!).toBeNull('Expected the trigger button to be blurred');
+      expect(lastFocusOrigin!).withContext('Expected the trigger button to be blurred').toBeNull();
 
       dispatchKeyboardEvent(document.body, 'keydown', ESCAPE);
 
@@ -1295,7 +1295,7 @@ describe('SbbDialog', () => {
 
       tick(500);
       viewContainerFixture.detectChanges();
-      expect(lastFocusOrigin!).toBeNull('Expected the trigger button to be blurred');
+      expect(lastFocusOrigin!).withContext('Expected the trigger button to be blurred').toBeNull();
 
       const backdrop = overlayContainerElement.querySelector(
         '.cdk-overlay-backdrop'
@@ -1332,7 +1332,7 @@ describe('SbbDialog', () => {
 
       tick(500);
       viewContainerFixture.detectChanges();
-      expect(lastFocusOrigin!).toBeNull('Expected the trigger button to be blurred');
+      expect(lastFocusOrigin!).withContext('Expected the trigger button to be blurred').toBeNull();
 
       const closeButton = overlayContainerElement.querySelector(
         'button[sbb-dialog-close]'
@@ -1372,7 +1372,7 @@ describe('SbbDialog', () => {
 
       tick(500);
       viewContainerFixture.detectChanges();
-      expect(lastFocusOrigin!).toBeNull('Expected the trigger button to be blurred');
+      expect(lastFocusOrigin!).withContext('Expected the trigger button to be blurred').toBeNull();
 
       const closeButton = overlayContainerElement.querySelector(
         'button[sbb-dialog-close]'

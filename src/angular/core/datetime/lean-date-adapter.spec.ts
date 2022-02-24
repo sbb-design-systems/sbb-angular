@@ -41,6 +41,6 @@ describe('LeanDateAdapter', () => {
       { input: '000000000' },
     ];
 
-    params.forEach((param) => expect(leanDateAdapter.parse(param.input)).toBeNull());
+    params.forEach((param) => expect(leanDateAdapter.parse(param.input)).withContext()).toBeNull();
   });
 });

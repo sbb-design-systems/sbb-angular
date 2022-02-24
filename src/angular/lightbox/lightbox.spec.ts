@@ -1022,7 +1022,7 @@ describe('SbbLightbox', () => {
 
       tick(500);
       viewContainerFixture.detectChanges();
-      expect(lastFocusOrigin!).toBeNull('Expected the trigger button to be blurred');
+      expect(lastFocusOrigin!).withContext('Expected the trigger button to be blurred').toBeNull();
 
       dispatchKeyboardEvent(document.body, 'keydown', ESCAPE);
 
@@ -1057,7 +1057,7 @@ describe('SbbLightbox', () => {
 
       tick(500);
       viewContainerFixture.detectChanges();
-      expect(lastFocusOrigin!).toBeNull('Expected the trigger button to be blurred');
+      expect(lastFocusOrigin!).withContext('Expected the trigger button to be blurred').toBeNull();
 
       const backdrop = overlayContainerElement.querySelector(
         '.cdk-overlay-backdrop'
@@ -1094,7 +1094,7 @@ describe('SbbLightbox', () => {
 
       tick(500);
       viewContainerFixture.detectChanges();
-      expect(lastFocusOrigin!).toBeNull('Expected the trigger button to be blurred');
+      expect(lastFocusOrigin!).withContext('Expected the trigger button to be blurred').toBeNull();
 
       const closeButton = overlayContainerElement.querySelector(
         'button[sbb-lightbox-close]'
@@ -1134,7 +1134,7 @@ describe('SbbLightbox', () => {
 
       tick(500);
       viewContainerFixture.detectChanges();
-      expect(lastFocusOrigin!).toBeNull('Expected the trigger button to be blurred');
+      expect(lastFocusOrigin!).withContext('Expected the trigger button to be blurred').toBeNull();
 
       const closeButton = overlayContainerElement.querySelector(
         'button[sbb-lightbox-close]'
