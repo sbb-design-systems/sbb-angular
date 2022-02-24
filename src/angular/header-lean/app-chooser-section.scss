@@ -47,4 +47,23 @@
   &:last-child {
     border-bottom: var(--sbb-border-width-thin) solid var(--sbb-color-cloud);
   }
+
+  :is(.sbb-icon, img) {
+    vertical-align: middle;
+    width: var(--sbb-icon-size-default);
+    height: var(--sbb-icon-size-default);
+
+    // Adjust margin to keep line height
+    margin-top: calc(var(--sbb-icon-size-default) * -1);
+    margin-bottom: calc(var(--sbb-icon-size-default) * -1);
+
+    svg {
+      width: 100%;
+      height: 100%;
+    }
+
+    &:first-child {
+      margin-right: calc(#{pxToRem(8)} * var(--sbb-scaling-factor));
+    }
+  }
 }
