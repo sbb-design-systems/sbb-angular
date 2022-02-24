@@ -57,6 +57,12 @@ jobs:
 
             if (artifacts.length && context.payload.workflow_run.pull_requests.length) {
               const pullRequest = context.payload.workflow_run.pull_requests[0];
+
+              // Exclude sbb-angular-renovate changes from commenting
+              if (pullRequest.user.login === 'sbb-angular-renovate[bot]') {
+                return;
+              }
+
               const createdAtDate = new Date(context.payload.workflow_run.created_at).toLocaleString('de');
               github.issues.createComment({
                 issue_number: pullRequest.number,
