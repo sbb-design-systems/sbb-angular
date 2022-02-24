@@ -652,7 +652,9 @@ describe('SbbLightbox', () => {
     viewContainerFixture.detectChanges();
     flush();
 
-    expect(lightboxRef.componentInstance).toBeFalsy('Expected reference to have been cleared.');
+    expect(lightboxRef.componentInstance)
+      .withContext('Expected reference to have been cleared.')
+      .toBeFalsy();
   }));
 
   it('should assign a unique id to each lightbox', () => {

@@ -119,9 +119,9 @@ describe('SbbIcon', () => {
   it('should apply inline styling', () => {
     const fixture = TestBed.createComponent(InlineIcon);
     const iconElement = fixture.debugElement.nativeElement.querySelector('sbb-icon');
-    expect(iconElement.classList.contains('sbb-icon-inline')).toBeFalsy(
-      'Expected the sbb-icon element to not include the inline styling class'
-    );
+    expect(iconElement.classList.contains('sbb-icon-inline'))
+      .withContext('Expected the sbb-icon element to not include the inline styling class')
+      .toBeFalsy();
 
     fixture.debugElement.componentInstance.inline = true;
     fixture.detectChanges();

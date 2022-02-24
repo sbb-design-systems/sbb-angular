@@ -405,10 +405,16 @@ describe('RadioButton', () => {
 
       expect(changeSpy).not.toHaveBeenCalled();
       expect(groupInstance.value).toBe('apple');
-      expect(groupInstance.selected).toBeFalsy('expect group selected to be null');
-      expect(radioInstances[0].checked).toBeFalsy('should not select the first button');
-      expect(radioInstances[1].checked).toBeFalsy('should not select the second button');
-      expect(radioInstances[2].checked).toBeFalsy('should not select the third button');
+      expect(groupInstance.selected).withContext('expect group selected to be null').toBeFalsy();
+      expect(radioInstances[0].checked)
+        .withContext('should not select the first button')
+        .toBeFalsy();
+      expect(radioInstances[1].checked)
+        .withContext('should not select the second button')
+        .toBeFalsy();
+      expect(radioInstances[2].checked)
+        .withContext('should not select the third button')
+        .toBeFalsy();
 
       radioInstances[0].value = 'apple';
 
@@ -420,8 +426,12 @@ describe('RadioButton', () => {
       expect(radioInstances[0].checked)
         .withContext('expect group select the first button')
         .toBeTruthy();
-      expect(radioInstances[1].checked).toBeFalsy('should not select the second button');
-      expect(radioInstances[2].checked).toBeFalsy('should not select the third button');
+      expect(radioInstances[1].checked)
+        .withContext('should not select the second button')
+        .toBeFalsy();
+      expect(radioInstances[2].checked)
+        .withContext('should not select the third button')
+        .toBeFalsy();
     });
   });
 

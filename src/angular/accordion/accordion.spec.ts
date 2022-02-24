@@ -134,9 +134,9 @@ describe('AccordionDirective', () => {
     fixture.componentInstance.hideToggle = true;
     fixture.detectChanges();
 
-    expect(panel.nativeElement.querySelector('.sbb-expansion-panel-header-indicator')).toBeFalsy(
-      'Expected the expansion indicator to be removed.'
-    );
+    expect(panel.nativeElement.querySelector('.sbb-expansion-panel-header-indicator'))
+      .withContext('Expected the expansion indicator to be removed.')
+      .toBeFalsy();
   });
 
   it('should move focus to the next header when pressing the down arrow', () => {

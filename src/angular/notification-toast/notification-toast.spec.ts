@@ -222,7 +222,9 @@ describe('SbbNotificationToast', () => {
     const containerElement = overlayContainerElement.querySelector(
       'sbb-notification-toast-container'
     )!;
-    expect(containerElement.getAttribute('role')).toBeFalsy('Expected role to be removed');
+    expect(containerElement.getAttribute('role'))
+      .withContext('Expected role to be removed')
+      .toBeFalsy();
   });
 
   it('should open and close a notification toast without a ViewContainerRef', fakeAsync(() => {

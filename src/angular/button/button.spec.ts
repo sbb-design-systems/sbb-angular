@@ -101,7 +101,9 @@ describe('SbbButton', () => {
     it('should disable the native button element', () => {
       const fixture = TestBed.createComponent(ButtonTest);
       const buttonNativeElement = fixture.nativeElement.querySelector('button');
-      expect(buttonNativeElement.disabled).toBeFalsy('Expected button not to be disabled');
+      expect(buttonNativeElement.disabled)
+        .withContext('Expected button not to be disabled')
+        .toBeFalsy();
 
       fixture.componentInstance.isDisabled = true;
       fixture.detectChanges();

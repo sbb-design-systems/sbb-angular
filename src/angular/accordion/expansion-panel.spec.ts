@@ -281,9 +281,9 @@ describe('SbbExpansionPanel', () => {
     fixture.componentInstance.hideToggle = true;
     fixture.detectChanges();
 
-    expect(header.querySelector('.sbb-expansion-panel-header-indicator')).toBeFalsy(
-      'Expected indicator to be hidden.'
-    );
+    expect(header.querySelector('.sbb-expansion-panel-header-indicator'))
+      .withContext('Expected indicator to be hidden.')
+      .toBeFalsy();
   });
 
   describe('lean', () => {
