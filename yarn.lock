@@ -7,7 +7,7 @@
   resolved "https://registry.yarnpkg.com/@a11y/focus-trap/-/focus-trap-1.0.5.tgz#0748189c37ca21255c702aa5de3ee00ed4821d22"
   integrity sha512-3JOd6g+BALysWS8LNf0qdB8ltR651H/RCLAvUmfS0LIHwHO579XfjZUIZbURYiAZrcbp1CBAq4QZ2YwKNQZ1hw==
 
-"@actions/cache@^1.0.9":
+"@actions/cache@1.0.9":
   version "1.0.9"
   resolved "https://registry.yarnpkg.com/@actions/cache/-/cache-1.0.9.tgz#fd63b9300639d0b43803ab3c4d1158b86a8ca49e"
   integrity sha512-VzqeDyW3kIDdARNQphd1FrzZCiJRuv98aXwM3R+BLe2UvdZXdRqjC/rrytSm4Nv4OJuI8NA1pbhkXIf+a4LFtw==
