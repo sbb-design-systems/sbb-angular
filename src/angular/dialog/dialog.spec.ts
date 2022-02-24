@@ -167,9 +167,11 @@ describe('SbbDialog', () => {
     const dialogInjector = dialogRef.componentInstance.dialogInjector;
 
     expect(dialogRef.componentInstance.dialogRef).toBe(dialogRef);
-    expect(dialogInjector.get<DirectiveWithViewContainer>(DirectiveWithViewContainer)).toBeTruthy(
-      'Expected the dialog component to be created with the injector from the viewContainerRef.'
-    );
+    expect(dialogInjector.get<DirectiveWithViewContainer>(DirectiveWithViewContainer))
+      .withContext(
+        'Expected the dialog component to be created with the injector from the viewContainerRef.'
+      )
+      .toBeTruthy();
   });
 
   it('should open a dialog with a component and no ViewContainerRef', () => {
@@ -767,7 +769,9 @@ describe('SbbDialog', () => {
 
     dialogRef.afterClosed().subscribe(() => {
       spy();
-      expect(dialogRef.componentInstance).toBeTruthy('Expected component instance to be defined.');
+      expect(dialogRef.componentInstance)
+        .withContext('Expected component instance to be defined.')
+        .toBeTruthy();
     });
 
     dialogRef.close();
@@ -1593,7 +1597,7 @@ describe('SbbDialog', () => {
         flush();
         viewContainerFixture.detectChanges();
 
-        expect(title.id).toBeTruthy('Expected title element to have an id.');
+        expect(title.id).withContext('Expected title element to have an id.').toBeTruthy();
         expect(container.getAttribute('aria-labelledby'))
           .withContext('Expected the aria-labelledby to match the title id.')
           .toBe(title.id);
@@ -1658,7 +1662,7 @@ describe('SbbDialog', () => {
         flush();
         viewContainerFixture.detectChanges();
 
-        expect(title.id).toBeTruthy('Expected title element to have an id.');
+        expect(title.id).withContext('Expected title element to have an id.').toBeTruthy();
         expect(container.getAttribute('aria-labelledby')).toBe('Labelled By');
       })
     );

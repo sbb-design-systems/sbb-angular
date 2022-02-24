@@ -417,7 +417,9 @@ describe('RadioButton', () => {
       expect(groupInstance.selected)
         .withContext('expect group selected to be first button')
         .toBe(radioInstances[0]);
-      expect(radioInstances[0].checked).toBeTruthy('expect group select the first button');
+      expect(radioInstances[0].checked)
+        .withContext('expect group select the first button')
+        .toBeTruthy();
       expect(radioInstances[1].checked).toBeFalsy('should not select the second button');
       expect(radioInstances[2].checked).toBeFalsy('should not select the third button');
     });

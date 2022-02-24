@@ -875,9 +875,9 @@ describe('SbbAutocomplete', () => {
       fixture.detectChanges();
       flush();
 
-      expect(fixture.componentInstance.panel.isOpen).toBeTruthy(
-        `Expected the panel to be opened on focus.`
-      );
+      expect(fixture.componentInstance.panel.isOpen)
+        .withContext(`Expected the panel to be opened on focus.`)
+        .toBeTruthy();
     }));
 
     it('should emit an event when the panel is opened', () => {
@@ -1763,9 +1763,9 @@ describe('SbbAutocomplete', () => {
       input.focus();
       flush();
 
-      expect(overlayContainerElement.querySelector('.sbb-autocomplete-panel')).toBeTruthy(
-        'Expected panel to be rendered.'
-      );
+      expect(overlayContainerElement.querySelector('.sbb-autocomplete-panel'))
+        .withContext('Expected panel to be rendered.')
+        .toBeTruthy();
 
       dispatchKeyboardEvent(input, 'keydown', TAB);
       fixture.detectChanges();
@@ -2704,9 +2704,9 @@ describe('SbbAutocomplete', () => {
       zone.simulateZoneExit();
       fixture.detectChanges();
 
-      expect(input.getAttribute('aria-activedescendant')).toBeTruthy(
-        'Expected active descendant while open.'
-      );
+      expect(input.getAttribute('aria-activedescendant'))
+        .withContext('Expected active descendant while open.')
+        .toBeTruthy();
 
       fixture.componentInstance.trigger.closePanel();
       fixture.detectChanges();

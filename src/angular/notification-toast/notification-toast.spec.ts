@@ -593,9 +593,9 @@ describe('SbbNotificationToast', () => {
         },
       });
 
-      expect(notificationToastRef.instance.data).toBeTruthy(
-        'Expected component to have a data object.'
-      );
+      expect(notificationToastRef.instance.data)
+        .withContext('Expected component to have a data object.')
+        .toBeTruthy();
       expect(notificationToastRef.instance.data.burritoType)
         .withContext('Expected the injected data object to be the one the user provided.')
         .toBe('Chimichanga');

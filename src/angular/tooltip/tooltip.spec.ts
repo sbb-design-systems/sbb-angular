@@ -478,7 +478,7 @@ describe('SbbTooltip', () => {
         '.cdk-overlay-connected-position-bounding-box'
       )!;
 
-      expect(tooltipWrapper).toBeTruthy('Expected tooltip to be shown.');
+      expect(tooltipWrapper).withContext('Expected tooltip to be shown.').toBeTruthy();
       expect(tooltipWrapper.getAttribute('dir'))
         .withContext('Expected tooltip to be in RTL mode.')
         .toBe('rtl');

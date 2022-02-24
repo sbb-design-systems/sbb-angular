@@ -105,7 +105,9 @@ describe('SbbButton', () => {
 
       fixture.componentInstance.isDisabled = true;
       fixture.detectChanges();
-      expect(buttonNativeElement.disabled).toBeTruthy('Expected button to be disabled');
+      expect(buttonNativeElement.disabled)
+        .withContext('Expected button to be disabled')
+        .toBeTruthy();
     });
 
     describe('standard', () => {

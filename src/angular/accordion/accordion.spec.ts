@@ -127,9 +127,9 @@ describe('AccordionDirective', () => {
 
     fixture.detectChanges();
 
-    expect(panel.nativeElement.querySelector('.sbb-expansion-panel-header-indicator')).toBeTruthy(
-      'Expected the expansion indicator to be present.'
-    );
+    expect(panel.nativeElement.querySelector('.sbb-expansion-panel-header-indicator'))
+      .withContext('Expected the expansion indicator to be present.')
+      .toBeTruthy();
 
     fixture.componentInstance.hideToggle = true;
     fixture.detectChanges();

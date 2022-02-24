@@ -537,7 +537,7 @@ describe('SbbDatepicker', () => {
         // tslint:disable-next-line:no-non-null-assertion
         const pane = document.querySelector('.cdk-overlay-pane')!;
 
-        expect(pane).toBeTruthy('Expected calendar to be open.');
+        expect(pane).withContext('Expected calendar to be open.').toBeTruthy();
         expect(pane.contains(document.activeElement))
           .withContext('Expected focus to be inside the calendar.')
           .toBe(true);

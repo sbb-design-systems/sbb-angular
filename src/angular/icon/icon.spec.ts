@@ -95,9 +95,9 @@ describe('SbbIcon', () => {
     const fixture = TestBed.createComponent(IconFromSvgName);
 
     const sbbIconElement = fixture.debugElement.nativeElement.querySelector('sbb-icon');
-    expect(sbbIconElement.classList.contains('notranslate')).toBeTruthy(
-      'Expected the sbb-icon element to include the notranslate class'
-    );
+    expect(sbbIconElement.classList.contains('notranslate'))
+      .withContext('Expected the sbb-icon element to include the notranslate class')
+      .toBeTruthy();
   });
 
   it('should mark sbb-icon as aria-hidden by default', () => {
@@ -125,9 +125,9 @@ describe('SbbIcon', () => {
 
     fixture.debugElement.componentInstance.inline = true;
     fixture.detectChanges();
-    expect(iconElement.classList.contains('sbb-icon-inline')).toBeTruthy(
-      'Expected the sbb-icon element to include the inline styling class'
-    );
+    expect(iconElement.classList.contains('sbb-icon-inline'))
+      .withContext('Expected the sbb-icon element to include the inline styling class')
+      .toBeTruthy();
   });
 
   describe('Ligature icons', () => {
