@@ -1998,13 +1998,13 @@ textarea {
     }
   }
 
-  :is(tbody, tfoot, &) > tr :is(th, td) {
+  :is(& tbody, & tfoot, &) > tr :is(th, td) {
     :where(html.sbb-lean) & {
       border-right: var(--sbb-border-width-thin) solid var(--sbb-color-aluminum);
     }
   }
 
-  :is(thead, tbody, tfoot, &) > tr :is(th, td) {
+  :is(& thead, & tbody, & tfoot, &) > tr :is(th, td) {
     :where(html.sbb-lean) & {
       padding: var(--sbb-table-cell-padding-vertical) var(--sbb-table-tbody-padding);
 
@@ -2024,7 +2024,7 @@ textarea {
     }
   }
 
-  :is(tbody, &) > tr {
+  :is(& tbody, &) > tr {
     :is(th, td) {
       :where(html:not(.sbb-lean)) & {
         padding: var(--sbb-table-cell-padding-vertical-top) var(--sbb-table-cell-padding-horizontal)
