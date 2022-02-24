@@ -16,7 +16,7 @@ jobs:
           node-version: 16
       - run: npm i decompress@4.2.1 node-fetch@2.6.2 form-data@4.0.0
       - name: Download Artifacts
-        uses: actions/github-script@v4
+        uses: actions/github-script@v6
         env:
           stagingAuth: ${{ secrets.STAGING_SBB_ANGULAR }}
           stagingUrl: https://staging-sbb-angular.app.sbb.ch
