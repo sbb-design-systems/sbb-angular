@@ -33,6 +33,7 @@ import {
   dispatchEvent,
   dispatchFakeEvent,
   dispatchKeyboardEvent,
+  dispatchMouseEvent,
   MockNgZone,
   typeInElement,
 } from '@sbb-esta/angular/core/testing';
@@ -1772,6 +1773,23 @@ describe('SbbAutocomplete', () => {
       expect(overlayContainerElement.querySelector('.sbb-autocomplete-panel')).toBeFalsy(
         'Expected panel to be removed.'
       );
+    }));
+
+    it('should not close when a click event occurs on the outside while the panel has focus', fakeAsync(() => {
+      const trigger = fixture.componentInstance.trigger;
+
+      input.focus();
+      flush();
+      fixture.detectChanges();
+
+      expect(document.activeElement).toBe(input, 'Expected input to be focused.');
+      expect(trigger.panelOpen).toBe(true, 'Expected panel to be open.');
+
+      dispatchMouseEvent(document.body, 'click');
+      fixture.detectChanges();
+
+      expect(document.activeElement).toBe(input, 'Expected input to continue to be focused.');
+      expect(trigger.panelOpen).toBe(true, 'Expected panel to stay open.');
     }));
 
     it('should reset the active option when closing with the escape key', fakeAsync(() => {
