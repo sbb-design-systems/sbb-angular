@@ -1,5 +1,5 @@
 {
-  "name": "@sbb-esta/angular",
+  "name": "@sbb-esta/angular-experimental",
   "version": "0.0.0-PLACEHOLDER",
   "repository": {
     "type": "git",
@@ -13,14 +13,6 @@
     "url": "https://github.com/sbb-design-systems/sbb-angular/issues"
   },
   "homepage": "https://angular.app.sbb.ch",
-  "exports": {
-    ".": {
-      "sass": "./_styles.scss"
-    },
-    "./typography.css": {
-      "style": "./typography.css"
-    }
-  },
   "peerDependencies": {
     "@angular/cdk": "0.0.0-CDK",
     "@angular/common": "0.0.0-NG",

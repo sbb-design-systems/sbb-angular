@@ -1,6 +1,6 @@
 import { BreakpointObserver } from '@angular/cdk/layout';
 import { DOCUMENT } from '@angular/common';
-import { AfterContentInit, Component, Inject, OnDestroy } from '@angular/core';
+import { AfterContentInit, Component, Inject, isDevMode, OnDestroy } from '@angular/core';
 import { FormControl } from '@angular/forms';
 import { DomSanitizer } from '@angular/platform-browser';
 import { Breakpoints } from '@sbb-esta/angular/core';
@@ -14,6 +14,11 @@ import { VariantSwitch } from './variant-switch';
 // @ts-ignore versions.ts is generated automatically by bazel
 import { angularVersion, libraryVersion } from './versions';
 
+// TODO: To be removed, when experimental is "stable"
+const DEV_PACKAGES = Object.entries(PACKAGES)
+  .filter(([key, _value]) => key !== 'angular-experimental')
+  .reduce((current, [key, value]) => Object.assign(current, { [key]: value }), {});
+
 @Component({
   selector: 'sbb-root',
   templateUrl: './app.component.html',
@@ -25,7 +30,7 @@ export class AppComponent implements AfterContentInit, OnDestroy {
   showcaseVersion = libraryVersion;
   expanded: boolean = true;
   sbbVariant: FormControl = this._variantSwitch.sbbVariant;
-  packages = PACKAGES;
+  packages = isDevMode() ? PACKAGES : DEV_PACKAGES;
   previousMajorVersions: number[];
   shouldShowPreviousVersions: boolean;
   private _destroyed = new Subject<void>();
