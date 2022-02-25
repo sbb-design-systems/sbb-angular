@@ -41,6 +41,10 @@ describe('LeanDateAdapter', () => {
       { input: '000000000' },
     ];
 
-    params.forEach((param) => expect(leanDateAdapter.parse(param.input)).withContext()).toBeNull();
+    params.forEach((param) =>
+      expect(leanDateAdapter.parse(param.input))
+        .withContext('Expected date parsing to fail')
+        .toBeNull()
+    );
   });
 });
