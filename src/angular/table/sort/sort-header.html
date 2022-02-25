@@ -13,7 +13,7 @@
   [class.sbb-sort-header-sorted]="_isSorted()"
   [class.sbb-sort-header-position-before]="arrowPosition === 'before'"
   [attr.tabindex]="_isDisabled() ? null : 0"
-  role="button"
+  [attr.role]="_isDisabled() ? null : 'button'"
 >
   <div class="sbb-sort-header-content">
     <ng-content></ng-content>
