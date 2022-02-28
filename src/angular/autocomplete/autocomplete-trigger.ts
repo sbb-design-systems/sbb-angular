@@ -151,6 +151,15 @@ export class SbbAutocompleteTrigger
    */
   private _canOpenOnNextFocus = true;
 
+  /** Value inside the input before we auto-selected an option. */
+  private _valueBeforeAutoSelection: string | undefined;
+
+  /**
+   * Current option that we have auto-selected as the user is navigating,
+   * but which hasn't been propagated to the model value yet.
+   */
+  private _pendingAutoselectedOption: SbbOption | null;
+
   /** Stream of keyboard events that can close the panel. */
   private readonly _closeKeyEventStream = new Subject<void>();
 
@@ -329,6 +338,7 @@ export class SbbAutocompleteTrigger
     }
 
     this.autocomplete._isOpen = this._overlayAttached = false;
+    this._pendingAutoselectedOption = null;
 
     if (this._overlayRef && this._overlayRef.hasAttached()) {
       this._overlayRef.detach();
@@ -438,7 +448,7 @@ export class SbbAutocompleteTrigger
 
   // Implemented as part of ControlValueAccessor.
   writeValue(value: any): void {
-    Promise.resolve().then(() => this._setTriggerValue(value));
+    Promise.resolve(null).then(() => this._assignOptionValue(value));
   }
 
   // Implemented as part of ControlValueAccessor.
@@ -486,6 +496,15 @@ export class SbbAutocompleteTrigger
 
       if (isArrowKey || this.autocomplete._keyManager.activeItem !== prevActiveItem) {
         this._scrollToOption(this.autocomplete._keyManager.activeItemIndex || 0);
+
+        if (this.autocomplete.autoSelectActiveOption && this.activeOption) {
+          if (!this._pendingAutoselectedOption) {
+            this._valueBeforeAutoSelection = this._element.nativeElement.value;
+          }
+
+          this._pendingAutoselectedOption = this.activeOption;
+          this._assignOptionValue(this.activeOption.value);
+        }
       }
     }
   }
@@ -508,6 +527,7 @@ export class SbbAutocompleteTrigger
     // See: https://connect.microsoft.com/IE/feedback/details/885747/
     if (this._previousValue !== value) {
       this._previousValue = value;
+      this._pendingAutoselectedOption = null;
       this._onChange(value);
       this._inputValue.next(target.value);
 
@@ -593,7 +613,7 @@ export class SbbAutocompleteTrigger
     }
   }
 
-  private _setTriggerValue(value: any): void {
+  private _assignOptionValue(value: any): void {
     const toDisplay =
       this.autocomplete && this.autocomplete.displayWith
         ? this.autocomplete.displayWith(value)
@@ -601,18 +621,20 @@ export class SbbAutocompleteTrigger
 
     // Simply falling back to an empty string if the display value is falsy does not work properly.
     // The display value can also be the number zero and shouldn't fall back to an empty string.
-    const inputValue = toDisplay != null ? toDisplay : '';
+    this._updateNativeInputValue(toDisplay != null ? toDisplay : '');
+  }
 
+  private _updateNativeInputValue(value: string): void {
     // If it's used within a `SbbFormField`, we should set it through the property so it can go
     // through change detection.
     if (this._formField && this._formField._control) {
-      this._formField._control.value = inputValue;
+      this._formField._control.value = value;
     } else {
-      this._element.nativeElement.value = inputValue;
+      this._element.nativeElement.value = value;
     }
 
-    this._previousValue = inputValue;
-    this._inputValue.next(inputValue);
+    this._previousValue = value;
+    this._inputValue.next(value);
   }
 
   /**
@@ -621,13 +643,13 @@ export class SbbAutocompleteTrigger
    * stemmed from the user.
    */
   private _setValueAndClose(event: SbbOptionSelectionChange | null): void {
-    const source = event && event.source;
+    const toSelect = event ? event.source : this._pendingAutoselectedOption;
 
-    if (source) {
-      this._clearPreviousSelectedOption(source);
-      this._setTriggerValue(source.value);
-      this._onChange(source.value);
-      this.autocomplete._emitSelectEvent(source);
+    if (toSelect) {
+      this._clearPreviousSelectedOption(toSelect);
+      this._assignOptionValue(toSelect.value);
+      this._onChange(toSelect.value);
+      this.autocomplete._emitSelectEvent(toSelect);
       this._element.nativeElement.focus();
     }
 
@@ -681,24 +703,7 @@ export class SbbAutocompleteTrigger
         });
       }
 
-      // Use the `keydownEvents` in order to take advantage of
-      // the overlay event targeting provided by the CDK overlay.
-      overlayRef.keydownEvents().subscribe((event) => {
-        // Close when pressing ESCAPE or ALT + UP_ARROW, based on the a11y guidelines.
-        // See: https://www.w3.org/TR/wai-aria-practices-1.1/#textbox-keyboard-interaction
-        if (
-          (event.keyCode === ESCAPE && !hasModifierKey(event)) ||
-          (event.keyCode === UP_ARROW && hasModifierKey(event, 'altKey'))
-        ) {
-          this._closeKeyEventStream.next();
-          this._resetActiveItem();
-
-          // We need to stop propagation, otherwise the event will eventually
-          // reach the input itself and cause the overlay to be reopened.
-          event.stopPropagation();
-          event.preventDefault();
-        }
-      });
+      this._handleOverlayEvents(overlayRef);
 
       this._viewportSubscription = this._viewportRuler.change().subscribe(() => {
         if (this.panelOpen && overlayRef) {
@@ -861,5 +866,34 @@ export class SbbAutocompleteTrigger
         autocomplete._setScrollTop(newScrollPosition);
       }
     }
+  }
+
+  /** Handles keyboard events coming from the overlay panel. */
+  private _handleOverlayEvents(overlayRef: OverlayRef) {
+    // Use the `keydownEvents` in order to take advantage of
+    // the overlay event targeting provided by the CDK overlay.
+    overlayRef.keydownEvents().subscribe((event) => {
+      // Close when pressing ESCAPE or ALT + UP_ARROW, based on the a11y guidelines.
+      // See: https://www.w3.org/TR/wai-aria-practices-1.1/#textbox-keyboard-interaction
+      if (
+        (event.keyCode === ESCAPE && !hasModifierKey(event)) ||
+        (event.keyCode === UP_ARROW && hasModifierKey(event, 'altKey'))
+      ) {
+        // If the user had typed something in before we autoselected an option, and they decided
+        // to cancel the selection, restore the input value to the one they had typed in.
+        if (this._pendingAutoselectedOption) {
+          this._updateNativeInputValue(this._valueBeforeAutoSelection ?? '');
+          this._pendingAutoselectedOption = null;
+        }
+
+        this._closeKeyEventStream.next();
+        this._resetActiveItem();
+
+        // We need to stop propagation, otherwise the event will eventually
+        // reach the input itself and cause the overlay to be reopened.
+        event.stopPropagation();
+        event.preventDefault();
+      }
+    });
   }
 }
