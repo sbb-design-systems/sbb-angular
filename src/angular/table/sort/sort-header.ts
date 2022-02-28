@@ -207,7 +207,7 @@ export class SbbSortHeader
 
     this._sort.register(this);
 
-    this._sortButton = this._elementRef.nativeElement.querySelector('[role="button"]')!;
+    this._sortButton = this._elementRef.nativeElement.querySelector('.sbb-sort-header-container')!;
     this._updateSortActionDescription(this._sortActionDescription);
   }
 
