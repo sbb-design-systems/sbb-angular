@@ -169,9 +169,11 @@ describe('SbbLightbox', () => {
     const lightboxInjector = lightboxRef.componentInstance.lightboxInjector;
 
     expect(lightboxRef.componentInstance.lightboxRef).toBe(lightboxRef);
-    expect(lightboxInjector.get<DirectiveWithViewContainer>(DirectiveWithViewContainer)).toBeTruthy(
-      'Expected the lightbox component to be created with the injector from the viewContainerRef.'
-    );
+    expect(lightboxInjector.get<DirectiveWithViewContainer>(DirectiveWithViewContainer))
+      .withContext(
+        'Expected the lightbox component to be created with the injector from the viewContainerRef.'
+      )
+      .toBeTruthy();
   });
 
   it('should open a lightbox with a component and no ViewContainerRef', () => {
@@ -577,9 +579,9 @@ describe('SbbLightbox', () => {
 
     lightboxRef.afterClosed().subscribe(() => {
       spy();
-      expect(lightboxRef.componentInstance).toBeTruthy(
-        'Expected component instance to be defined.'
-      );
+      expect(lightboxRef.componentInstance)
+        .withContext('Expected component instance to be defined.')
+        .toBeTruthy();
     });
 
     lightboxRef.close();
@@ -650,7 +652,9 @@ describe('SbbLightbox', () => {
     viewContainerFixture.detectChanges();
     flush();
 
-    expect(lightboxRef.componentInstance).toBeFalsy('Expected reference to have been cleared.');
+    expect(lightboxRef.componentInstance)
+      .withContext('Expected reference to have been cleared.')
+      .toBeFalsy();
   }));
 
   it('should assign a unique id to each lightbox', () => {
@@ -1018,7 +1022,7 @@ describe('SbbLightbox', () => {
 
       tick(500);
       viewContainerFixture.detectChanges();
-      expect(lastFocusOrigin!).toBeNull('Expected the trigger button to be blurred');
+      expect(lastFocusOrigin!).withContext('Expected the trigger button to be blurred').toBeNull();
 
       dispatchKeyboardEvent(document.body, 'keydown', ESCAPE);
 
@@ -1053,7 +1057,7 @@ describe('SbbLightbox', () => {
 
       tick(500);
       viewContainerFixture.detectChanges();
-      expect(lastFocusOrigin!).toBeNull('Expected the trigger button to be blurred');
+      expect(lastFocusOrigin!).withContext('Expected the trigger button to be blurred').toBeNull();
 
       const backdrop = overlayContainerElement.querySelector(
         '.cdk-overlay-backdrop'
@@ -1090,7 +1094,7 @@ describe('SbbLightbox', () => {
 
       tick(500);
       viewContainerFixture.detectChanges();
-      expect(lastFocusOrigin!).toBeNull('Expected the trigger button to be blurred');
+      expect(lastFocusOrigin!).withContext('Expected the trigger button to be blurred').toBeNull();
 
       const closeButton = overlayContainerElement.querySelector(
         'button[sbb-lightbox-close]'
@@ -1130,7 +1134,7 @@ describe('SbbLightbox', () => {
 
       tick(500);
       viewContainerFixture.detectChanges();
-      expect(lastFocusOrigin!).toBeNull('Expected the trigger button to be blurred');
+      expect(lastFocusOrigin!).withContext('Expected the trigger button to be blurred').toBeNull();
 
       const closeButton = overlayContainerElement.querySelector(
         'button[sbb-lightbox-close]'
@@ -1361,7 +1365,7 @@ describe('SbbLightbox', () => {
         flush();
         viewContainerFixture.detectChanges();
 
-        expect(title.id).toBeTruthy('Expected title element to have an id.');
+        expect(title.id).withContext('Expected title element to have an id.').toBeTruthy();
         expect(container.getAttribute('aria-labelledby'))
           .withContext('Expected the aria-labelledby to match the title id.')
           .toBe(title.id);
@@ -1414,7 +1418,7 @@ describe('SbbLightbox', () => {
         flush();
         viewContainerFixture.detectChanges();
 
-        expect(title.id).toBeTruthy('Expected title element to have an id.');
+        expect(title.id).withContext('Expected title element to have an id.').toBeTruthy();
         expect(container.getAttribute('aria-labelledby')).toBe('Labelled By');
       })
     );

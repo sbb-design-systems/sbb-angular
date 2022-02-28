@@ -222,7 +222,9 @@ describe('SbbNotificationToast', () => {
     const containerElement = overlayContainerElement.querySelector(
       'sbb-notification-toast-container'
     )!;
-    expect(containerElement.getAttribute('role')).toBeFalsy('Expected role to be removed');
+    expect(containerElement.getAttribute('role'))
+      .withContext('Expected role to be removed')
+      .toBeFalsy();
   });
 
   it('should open and close a notification toast without a ViewContainerRef', fakeAsync(() => {
@@ -593,9 +595,9 @@ describe('SbbNotificationToast', () => {
         },
       });
 
-      expect(notificationToastRef.instance.data).toBeTruthy(
-        'Expected component to have a data object.'
-      );
+      expect(notificationToastRef.instance.data)
+        .withContext('Expected component to have a data object.')
+        .toBeTruthy();
       expect(notificationToastRef.instance.data.burritoType)
         .withContext('Expected the injected data object to be the one the user provided.')
         .toBe('Chimichanga');

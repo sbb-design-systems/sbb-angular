@@ -643,7 +643,7 @@ describe('SbbInput with forms', () => {
         .join(' ');
       const describedBy = inputEl.getAttribute('aria-describedby');
 
-      expect(errorIds).toBeTruthy('errors should be shown');
+      expect(errorIds).withContext('errors should be shown').toBeTruthy();
       expect(describedBy).toBe(errorIds);
     }));
 

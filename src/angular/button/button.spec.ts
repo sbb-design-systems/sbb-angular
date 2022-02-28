@@ -101,11 +101,15 @@ describe('SbbButton', () => {
     it('should disable the native button element', () => {
       const fixture = TestBed.createComponent(ButtonTest);
       const buttonNativeElement = fixture.nativeElement.querySelector('button');
-      expect(buttonNativeElement.disabled).toBeFalsy('Expected button not to be disabled');
+      expect(buttonNativeElement.disabled)
+        .withContext('Expected button not to be disabled')
+        .toBeFalsy();
 
       fixture.componentInstance.isDisabled = true;
       fixture.detectChanges();
-      expect(buttonNativeElement.disabled).toBeTruthy('Expected button to be disabled');
+      expect(buttonNativeElement.disabled)
+        .withContext('Expected button to be disabled')
+        .toBeTruthy();
     });
 
     describe('standard', () => {
@@ -273,18 +277,18 @@ describe('SbbButton', () => {
       expect(buttonDebugElement.nativeElement.getAttribute('aria-disabled'))
         .withContext('Expect aria-disabled="false"')
         .toBe('false');
-      expect(buttonDebugElement.nativeElement.getAttribute('disabled')).toBeNull(
-        'Expect disabled="false"'
-      );
+      expect(buttonDebugElement.nativeElement.getAttribute('disabled'))
+        .withContext('Expect disabled="false"')
+        .toBeNull();
 
       testComponent.isDisabled = false;
       fixture.detectChanges();
       expect(buttonDebugElement.nativeElement.getAttribute('aria-disabled'))
         .withContext('Expect no aria-disabled')
         .toBe('false');
-      expect(buttonDebugElement.nativeElement.getAttribute('disabled')).toBeNull(
-        'Expect no disabled'
-      );
+      expect(buttonDebugElement.nativeElement.getAttribute('disabled'))
+        .withContext('Expect no disabled')
+        .toBeNull();
     });
 
     it('should be able to set a custom tabindex', () => {

@@ -770,7 +770,7 @@ describe('SbbChipList', () => {
         .join(' ');
       const describedBy = chipListEl.getAttribute('aria-describedby');
 
-      expect(errorIds).toBeTruthy('errors should be shown');
+      expect(errorIds).withContext('errors should be shown').toBeTruthy();
       expect(describedBy).toBe(errorIds);
     });
   });

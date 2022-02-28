@@ -493,7 +493,11 @@ so that screen readers can output a meaningful text.
 ```html
 <td>
   <div class="sbb-table-cell-actions" aria-label="Press tab key to access actions.">
-    <a sbb-icon-button [routerLink]="['./edit', element.id]" attr.aria-label="Edit {{element.vehicle}}.">
+    <a
+      sbb-icon-button
+      [routerLink]="['./edit', element.id]"
+      attr.aria-label="Edit {{element.vehicle}}."
+    >
       <sbb-icon svgIcon="kom:pen-small"></sbb-icon>
     </a>
     <button
