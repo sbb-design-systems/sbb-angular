@@ -21,49 +21,47 @@ export class ExampleViewerComponent implements OnInit {
   @Input() exampleData: ExampleData;
   exampleCodes: Observable<ExampleCode[]>;
   showSource = false;
-  private _exampleFileOrder = ['html', 'ts', 'css'];
+  private _defaultExtensionsOrder = ['html', 'ts', 'css'];
+
   constructor(private _htmlLoader: HtmlLoader, private _route: ActivatedRoute) {}
-
-  // Returns the path to the html file for a given example file.
-  private static _convertToHtmlFilePath(filePath: string): string {
-    return filePath.replace(/(.*)[.](html|ts|css)/, '$1-$2.html');
-  }
-
-  // Get the example name from the selector name
-  private static _convertToExampleName(selectorName: string): string {
-    return selectorName.replace('sbb-', '').replace('-example', '');
-  }
-
-  // Get the extension for a given file path
-  private static _getFileExtension(filePath: string): string {
-    return filePath.split('.').pop();
-  }
 
   ngOnInit(): void {
     this.exampleCodes = combineLatest(
-      this.exampleData.exampleFiles.map((exampleFile) =>
-        this._createLoader(
-          ExampleViewerComponent._convertToExampleName(this.exampleData.selectorName),
-          exampleFile
-        ).pipe(
-          map((code) => ({
-            label: ExampleViewerComponent._getFileExtension(exampleFile),
-            code,
-          }))
+      this.exampleData.exampleFiles
+        .filter(
+          (exampleFile) =>
+            // We only want to display default example files
+            this._removeFileExtension(this.exampleData.indexFilename) ===
+            this._removeFileExtension(exampleFile)
         )
-      )
+        .map((exampleFile) =>
+          this._createLoader(
+            this._convertToExampleName(this.exampleData.selectorName),
+            exampleFile
+          ).pipe(
+            map((code) => ({
+              label: this._getFileExtension(exampleFile),
+              code,
+            }))
+          )
+        )
     ).pipe(
       map((exampleCodes: ExampleCode[]) =>
         exampleCodes.sort(
           (a, b) =>
-            this._exampleFileOrder.indexOf(a.label) - this._exampleFileOrder.indexOf(b.label)
+            this._defaultExtensionsOrder.indexOf(a.label) -
+            this._defaultExtensionsOrder.indexOf(b.label)
         )
       )
     );
   }
 
+  stackBlitzEnabled() {
+    return moduleParams(this._route).pipe(map((params) => params.packageName === 'angular'));
+  }
+
   private _createLoader(exampleName: string, exampleFile: string) {
-    const exampleHtmlFile = ExampleViewerComponent._convertToHtmlFilePath(exampleFile);
+    const exampleHtmlFile = this._convertToHtmlFilePath(exampleFile);
     return moduleParams(this._route).pipe(
       switchMap((params) =>
         this._htmlLoader.withParams(params).fromExamples(exampleName, exampleHtmlFile).load()
@@ -71,8 +69,24 @@ export class ExampleViewerComponent implements OnInit {
     );
   }
 
-  stackBlitzEnabled() {
-    return moduleParams(this._route).pipe(map((params) => params.packageName === 'angular'));
+  // Returns the path to the html file for a given example file.
+  private _convertToHtmlFilePath(filePath: string): string {
+    return filePath.replace(/(.*)[.](html|ts|css)/, '$1-$2.html');
+  }
+
+  // Get the example name from the selector name
+  private _convertToExampleName(selectorName: string): string {
+    return selectorName.replace('sbb-', '').replace('-example', '');
+  }
+
+  // Get the extension for a given file path
+  private _getFileExtension(filePath: string): string {
+    return filePath.split('.').pop();
+  }
+
+  // Remove the extension from a given file
+  private _removeFileExtension(filePath: string): string {
+    return filePath.replace(/\.[^/.]+$/, '');
   }
 }
 
