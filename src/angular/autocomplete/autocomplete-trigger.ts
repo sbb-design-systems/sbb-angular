@@ -461,8 +461,7 @@ export class SbbAutocompleteTrigger
     this._element.nativeElement.disabled = isDisabled;
   }
 
-  /** @docs-private */
-  _handleKeydown(event: TypeRef<KeyboardEvent>): void {
+  _handleKeydown(event: KeyboardEvent): void {
     const keyCode = event.keyCode;
     const hasModifier = hasModifierKey(event);
 
@@ -494,8 +493,7 @@ export class SbbAutocompleteTrigger
     }
   }
 
-  /** @docs-private */
-  _handleInput(event: TypeRef<KeyboardEvent>): void {
+  _handleInput(event: KeyboardEvent): void {
     const target = event.target as HTMLInputElement;
     let value: number | string | null = target.value;
 
