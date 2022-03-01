@@ -6,6 +6,8 @@ import { Inject, InjectionToken, NgModule, Optional } from '@angular/core';
 
 import { VERSION } from '../version';
 
+import { _global } from './localize/global';
+import { _$localize } from './localize/localize';
 import { ɵvariant } from './variant';
 
 /** @docs-private */
@@ -30,6 +32,18 @@ export interface GranularSanityChecks {
   doctype: boolean;
   typography: boolean;
   version: boolean;
+}
+
+/**
+ * If an app doesn't use localize, on production environment there is no $localize function.
+ * In order to provide our translations we patch the $localize object with the original function.
+ */
+function patch$localize() {
+  // In production mode and if localize is off, $localize is not a function
+  if (typeof _global.$localize !== 'function') {
+    // Merge $localize function with provided $localize object
+    _global.$localize = Object.assign(_$localize, _global.$localize);
+  }
 }
 
 /**
@@ -75,6 +89,8 @@ export class SbbCommonModule {
         }
       }
     }
+
+    patch$localize();
   }
 
   /** Gets whether a specific sanity check is enabled. */

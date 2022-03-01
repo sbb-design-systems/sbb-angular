@@ -61,15 +61,9 @@ export class SbbFileSelector
   extends _SbbFileSelectorMixinBase
   implements ControlValueAccessor, SbbFileSelectorOptions
 {
-  _labelUploadFile: string =
-    typeof $localize === 'function'
-      ? $localize`:Button label to select files for upload@@sbbFileSelectorUploadFile:Upload file`
-      : 'Upload file';
+  _labelUploadFile: string = $localize`:Button label to select files for upload@@sbbFileSelectorUploadFile:Upload file`;
 
-  _labelRemoveFile: string =
-    typeof $localize === 'function'
-      ? $localize`:Hidden button label to remove a file from the selection list@@sbbFileSelectorRemoveFile:Remove file`
-      : 'Remove file';
+  _labelRemoveFile: string = $localize`:Hidden button label to remove a file from the selection list@@sbbFileSelectorRemoveFile:Remove file`;
 
   private _uniqueId = `sbb-file-selector-${++nextId}`;
 

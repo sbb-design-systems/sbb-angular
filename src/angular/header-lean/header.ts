@@ -114,15 +114,9 @@ const breakpointMapping = {
   },
 })
 export class SbbHeaderLean implements OnChanges, AfterViewInit, OnDestroy {
-  _labelOpenMenu: string =
-    typeof $localize === 'function'
-      ? $localize`:Button label to open the sidebar of the header@@sbbHeaderOpenMenu:Open Menu`
-      : 'Open Menu';
+  _labelOpenMenu: string = $localize`:Button label to open the sidebar of the header@@sbbHeaderOpenMenu:Open Menu`;
 
-  _labelCloseMenu: string =
-    typeof $localize === 'function'
-      ? $localize`:Button label to close the sidebar of the header@@sbbHeaderCloseMenu:Close Menu`
-      : 'Close Menu';
+  _labelCloseMenu: string = $localize`:Button label to close the sidebar of the header@@sbbHeaderCloseMenu:Close Menu`;
 
   /** Main title shown in the header. */
   @Input() label?: string;

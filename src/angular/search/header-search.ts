@@ -78,10 +78,7 @@ let nextId = 1;
   animations: [sbbSearchAnimations.growShrink],
 })
 export class SbbHeaderSearch {
-  _labelSearch: string =
-    typeof $localize === 'function'
-      ? $localize`:Button label for the header search@@sbbSearchHeaderButtonLabel:Search`
-      : 'Search';
+  _labelSearch: string = $localize`:Button label for the header search@@sbbSearchHeaderButtonLabel:Search`;
 
   /** Identifier of search. */
   @Input() id: string = `sbb-header-search-id-${nextId++}`;

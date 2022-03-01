@@ -83,15 +83,9 @@ const _SbbPaginatorBase = mixinDisabled(mixinInitialized(class {}));
   },
 })
 export class SbbPaginator extends _SbbPaginatorBase implements OnInit, CanDisable, HasInitialized {
-  _labelPreviousPage: string =
-    typeof $localize === 'function'
-      ? $localize`:Button label to navigate to the previous page@@sbbPaginationPreviousPage:Previous Page`
-      : 'Previous Page';
+  _labelPreviousPage: string = $localize`:Button label to navigate to the previous page@@sbbPaginationPreviousPage:Previous Page`;
 
-  _labelNextPage: string =
-    typeof $localize === 'function'
-      ? $localize`:Button label to navigate to the next page@@sbbPaginationNextPage:Next Page`
-      : 'Next Page';
+  _labelNextPage: string = $localize`:Button label to navigate to the next page@@sbbPaginationNextPage:Next Page`;
 
   private _initialized: boolean;
   private _previousPageSize: number;

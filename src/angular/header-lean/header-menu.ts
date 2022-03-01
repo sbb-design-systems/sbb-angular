@@ -54,10 +54,7 @@ let nextId = 0;
   },
 })
 export class SbbHeaderMenu implements AfterContentInit, OnDestroy {
-  _backButton: string =
-    typeof $localize === 'function'
-      ? $localize`:Go back to the app chooser navigation@@sbbHeaderMenuBack:Back`
-      : 'Back';
+  _backButton: string = $localize`:Go back to the app chooser navigation@@sbbHeaderMenuBack:Back`;
 
   /** Unique ID to be used by menu trigger's "aria-owns" property. */
   id: string = `sbb-header-menu-${nextId++}`;

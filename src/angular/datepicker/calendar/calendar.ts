@@ -37,25 +37,13 @@ import { SbbMonthView } from '../month-view/month-view';
   },
 })
 export class SbbCalendarHeader<D> {
-  _labelSwitchToPreviousMonth: string =
-    typeof $localize === 'function'
-      ? $localize`:Button label to switch to the previous month@@sbbDatepickerSwitchToPreviousMonth:Change to the previous month`
-      : 'Change to the previous month';
+  _labelSwitchToPreviousMonth: string = $localize`:Button label to switch to the previous month@@sbbDatepickerSwitchToPreviousMonth:Change to the previous month`;
 
-  _labelSwitchToNextMonth: string =
-    typeof $localize === 'function'
-      ? $localize`:Button label to switch to the next month@@sbbDatepickerSwitchToNextMonth:Change to the next month`
-      : 'Change to the next month';
+  _labelSwitchToNextMonth: string = $localize`:Button label to switch to the next month@@sbbDatepickerSwitchToNextMonth:Change to the next month`;
 
-  _labelSwitchToPreviousYear: string =
-    typeof $localize === 'function'
-      ? $localize`:Button label to switch to the previous year@@sbbDatepickerSwitchToPreviousYear:Change to the previous year`
-      : 'Change to the previous year';
+  _labelSwitchToPreviousYear: string = $localize`:Button label to switch to the previous year@@sbbDatepickerSwitchToPreviousYear:Change to the previous year`;
 
-  _labelSwitchToNextYear: string =
-    typeof $localize === 'function'
-      ? $localize`:Button label to switch to the next year@@sbbDatepickerSwitchToNextYear:Change to the next year`
-      : 'Change to the next year';
+  _labelSwitchToNextYear: string = $localize`:Button label to switch to the next year@@sbbDatepickerSwitchToNextYear:Change to the next year`;
 
   public calendar: SbbCalendar<D>;
 
