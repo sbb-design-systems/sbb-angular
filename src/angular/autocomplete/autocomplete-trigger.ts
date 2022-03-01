@@ -581,6 +581,7 @@ export class SbbAutocompleteTrigger
             const wasOpen = this.panelOpen;
             this._resetActiveItem();
             this.autocomplete._setVisibility();
+            this._changeDetectorRef.detectChanges();
 
             if (this.panelOpen) {
               this._overlayRef!.updatePosition();
