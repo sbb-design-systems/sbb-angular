@@ -1,6 +1,8 @@
 import { SchematicsException, Tree } from '@angular-devkit/schematics';
 import { SchematicTestRunner, UnitTestTree } from '@angular-devkit/schematics/testing';
+import { addModuleImportToRootModule, getProjectFromWorkspace } from '@angular/cdk/schematics';
 import { Schema as ApplicationOptions, Style } from '@schematics/angular/application/schema';
+import { getWorkspace } from '@schematics/angular/utility/workspace';
 import { Schema as WorkspaceOptions } from '@schematics/angular/workspace/schema';
 
 import { COLLECTION_PATH } from '../paths';
@@ -218,14 +220,48 @@ describe('ngAdd', () => {
     );
   });
 
-  it('should add NoopAnimationsModule', async () => {
-    await runner
-      .runSchematicAsync('ng-add-setup-project', { animations: false } as Schema, tree)
-      .toPromise();
+  describe('animations disabled', () => {
+    it('should add NoopAnimationsModule', async () => {
+      await runner
+        .runSchematicAsync('ng-add-setup-project', { animations: 'disabled' } as Schema, tree)
+        .toPromise();
 
-    expect(readStringFile(tree, '/projects/dummy/src/app/app.module.ts')).toContain(
-      NOOP_ANIMATIONS_MODULE_NAME
-    );
+      expect(readStringFile(tree, '/projects/dummy/src/app/app.module.ts'))
+        .withContext('Expected the project app module to import the "NoopAnimationsModule".')
+        .toContain(NOOP_ANIMATIONS_MODULE_NAME);
+    });
+
+    it('should not add NoopAnimationsModule if BrowserAnimationsModule is set up', async () => {
+      const workspace = await getWorkspace(tree);
+      const project = getProjectFromWorkspace(workspace);
+      // Simulate the case where a developer uses `ng-add` on an Angular CLI project which already
+      // explicitly uses the `BrowserAnimationsModule`. It would be wrong to forcibly change
+      // to noop animations.
+      const fileContent = addModuleImportToRootModule(
+        tree,
+        'BrowserAnimationsModule',
+        '@angular/platform-browser/animations',
+        project
+      );
+      expect(fileContent).not.toContain(
+        'NoopAnimationsModule',
+        'Expected the project app module to not import the "NoopAnimationsModule".'
+      );
+    });
+  });
+
+  describe('animations excluded', () => {
+    it('should not add any animations code if animations are excluded', async () => {
+      const localTree = await runner
+        .runSchematicAsync('ng-add-setup-project', { animations: 'excluded' }, tree)
+        .toPromise();
+      const fileContent = readStringFile(localTree!, '/projects/dummy/src/app/app.module.ts');
+
+      expect(fileContent).not.toContain('NoopAnimationsModule');
+      expect(fileContent).not.toContain('BrowserAnimationsModule');
+      expect(fileContent).not.toContain('@angular/platform-browser/animations');
+      expect(fileContent).not.toContain('@angular/animations');
+    });
   });
 
   describe('index.html manipulation', () => {

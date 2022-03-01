@@ -12,10 +12,18 @@
       }
     },
     "animations": {
-      "type": "boolean",
-      "default": true,
-      "description": "Whether Angular browser animations should be set up.",
-      "x-prompt": "Set up browser animations for sbb angular?"
+      "type": "string",
+      "default": "enabled",
+      "description": "Whether Angular browser animations should be included.",
+      "x-prompt": {
+        "message": "Include the Angular animations module?",
+        "type": "list",
+        "items": [
+          { "value": "enabled", "label": "Include and enable animations" },
+          { "value": "disabled", "label": "Include, but disable animations" },
+          { "value": "excluded", "label": "Do not include" }
+        ]
+      }
     },
     "variant": {
       "type": "string",
