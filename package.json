@@ -139,7 +139,7 @@
     "octokit": "1.7.1",
     "prettier": "2.5.1",
     "protractor": "7.0.0",
-    "renovate": "31.89.10",
+    "renovate": "31.96.1",
     "requirejs": "2.3.6",
     "rollup": "2.68.0",
     "rollup-plugin-sourcemaps": "0.6.3",
