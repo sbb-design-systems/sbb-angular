@@ -3,14 +3,14 @@ import {
   HttpTestingController,
   TestRequest,
 } from '@angular/common/http/testing';
-import { Component, ErrorHandler } from '@angular/core';
+import { Component, ErrorHandler, ViewChild } from '@angular/core';
 import { fakeAsync, inject, TestBed, tick, waitForAsync } from '@angular/core/testing';
 import { DomSanitizer, SafeHtml, SafeResourceUrl } from '@angular/platform-browser';
 import { wrappedErrorMessage } from '@sbb-esta/angular/core/testing';
 
 import { SBB_FAKE_SVGS } from './fake-svgs';
 import { getSbbIconNoHttpProviderError, SbbIconRegistry } from './icon-registry';
-import { SbbIconModule, SBB_ICON_LOCATION } from './index';
+import { SbbIcon, SbbIconModule, SBB_ICON_LOCATION } from './index';
 
 /** Returns the CSS classes assigned to an element as a sorted array. */
 function sortedClassNames(element: Element): string[] {
@@ -61,6 +61,7 @@ describe('SbbIcon', () => {
           InlineIcon,
           SvgIconWithUserContent,
           IconWithLigatureAndSvgBinding,
+          BlankIcon,
         ],
         providers: [
           {
@@ -162,6 +163,23 @@ describe('SbbIcon', () => {
       fixture.detectChanges();
 
       expect(sbbIconElement.textContent.trim()).toBe('house');
+    });
+
+    it('should be able to provide multiple alternate icon set classes', () => {
+      iconRegistry.setDefaultFontSetClass('myfont', 'myfont-48x48');
+
+      const fixture = TestBed.createComponent(IconWithLigature);
+
+      const testComponent = fixture.componentInstance;
+      const matIconElement = fixture.debugElement.nativeElement.querySelector('sbb-icon');
+      testComponent.iconName = 'home';
+      fixture.detectChanges();
+      expect(sortedClassNames(matIconElement)).toEqual([
+        'myfont',
+        'myfont-48x48',
+        'notranslate',
+        'sbb-icon',
+      ]);
     });
   });
 
@@ -1108,6 +1126,22 @@ describe('SbbIcon', () => {
     });
   });
 
+  it('should handle assigning an icon through the setter', fakeAsync(() => {
+    iconRegistry.addSvgIconLiteral('fido', trustHtml(SBB_FAKE_SVGS.dog));
+
+    const fixture = TestBed.createComponent(BlankIcon);
+    fixture.detectChanges();
+    let svgElement: SVGElement;
+    const testComponent = fixture.componentInstance;
+    const iconElement = fixture.debugElement.nativeElement.querySelector('sbb-icon');
+
+    testComponent.icon.svgIcon = 'fido';
+    fixture.detectChanges();
+    svgElement = verifyAndGetSingleSvgChild(iconElement);
+    verifyPathChildElement(svgElement, 'woof');
+    tick();
+  }));
+
   /** Marks an SVG icon url as explicitly trusted. */
   function trustUrl(iconUrl: string): SafeResourceUrl {
     return sanitizer.bypassSecurityTrustResourceUrl(iconUrl);
@@ -1173,21 +1207,21 @@ class IconFromSvgName {
 class IconWithAriaHiddenFalse {}
 
 @Component({
-  template: ` <sbb-icon [svgIcon]="iconName" *ngIf="showIcon">{{ iconName }}</sbb-icon>`,
+  template: `<sbb-icon [svgIcon]="iconName" *ngIf="showIcon">{{ iconName }}</sbb-icon>`,
 })
 class IconWithBindingAndNgIf {
   iconName = 'fluffy';
   showIcon = true;
 }
 
-@Component({ template: ` <sbb-icon [inline]="inline">{{ iconName }}</sbb-icon>` })
+@Component({ template: `<sbb-icon [inline]="inline">{{ iconName }}</sbb-icon>` })
 class InlineIcon {
   inline = false;
   iconName: string;
 }
 
 @Component({
-  template: ` <sbb-icon [svgIcon]="iconName">
+  template: `<sbb-icon [svgIcon]="iconName">
     <div>Hello</div>
   </sbb-icon>`,
 })
@@ -1198,4 +1232,9 @@ class SvgIconWithUserContent {
 @Component({ template: '<sbb-icon [svgIcon]="iconName">house</sbb-icon>' })
 class IconWithLigatureAndSvgBinding {
   iconName: string | undefined;
+}
+
+@Component({ template: `<sbb-icon></sbb-icon>` })
+class BlankIcon {
+  @ViewChild(SbbIcon) icon: SbbIcon;
 }

@@ -55,7 +55,7 @@ export class FakeSbbIconRegistry implements PublicApi<SbbIconRegistry>, OnDestro
   }
 
   getDefaultFontSetClass() {
-    return 'sbb-icons';
+    return ['sbb-icons'];
   }
 
   getSvgIconFromUrl(): Observable<SVGElement> {

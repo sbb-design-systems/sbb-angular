@@ -134,10 +134,10 @@ export class SbbIconRegistry implements OnDestroy {
   private _resolvers: IconResolver[] = [];
 
   /**
-   * The CSS class to apply when an `<sbb-icon>` component has no icon name, url, or font specified.
-   * The default is 'sbb-icons'.
+   * The CSS classes to apply when an `<sbb-icon>` component has no icon name, url, or font
+   * specified.
    */
-  private _defaultFontSetClass = 'sbb-icons';
+  private _defaultFontSetClass = ['sbb-icons'];
 
   /**
    * A list of internally supported namespaces, which can be served from the icon CDN.
@@ -296,19 +296,19 @@ export class SbbIconRegistry implements OnDestroy {
   }
 
   /**
-   * Sets the CSS class name to be used for icon fonts when an `<sbb-icon>` component does not
+   * Sets the CSS classes to be used for icon fonts when an `<sbb-icon>` component does not
    * have a fontSet input value, and is not loading an icon by name or URL.
    */
-  setDefaultFontSetClass(className: string): this {
-    this._defaultFontSetClass = className;
+  setDefaultFontSetClass(...classNames: string[]): this {
+    this._defaultFontSetClass = classNames;
     return this;
   }
 
   /**
-   * Returns the CSS class name to be used for icon fonts when an `<sbb-icon>` component does not
+   * Returns the CSS classes to be used for icon fonts when an `<sbb-icon>` component does not
    * have a fontSet input value, and is not loading an icon by name or URL.
    */
-  getDefaultFontSetClass(): string {
+  getDefaultFontSetClass(): string[] {
     return this._defaultFontSetClass;
   }
 
