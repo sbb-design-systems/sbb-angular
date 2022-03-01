@@ -101,17 +101,29 @@ export const SBB_TOOLTIP_SCROLL_STRATEGY_FACTORY_PROVIDER = {
 
 /** Default `sbbTooltip` options that can be overridden. */
 export interface SbbTooltipDefaultOptions {
+  /** Default delay when the tooltip is shown. */
   showDelay: number;
+
+  /** Default delay when the tooltip is hidden. */
   hideDelay: number;
+
+  /** Default delay when hiding the tooltip on a touch device. */
   touchendHideDelay: number;
+
+  /** Default touch gesture handling for tooltips. */
   touchGestures?: TooltipTouchGestures;
+
   /** Whether the tooltip should focus the first focusable element on open. */
   autoFocus?: boolean;
+
   /**
    * Whether the tooltip should restore focus to the
    * previously-focused element, after it's closed.
    */
   restoreFocus?: boolean;
+
+  /** Disables the ability for the user to interact with the tooltip element. */
+  disableTooltipInteractivity?: boolean;
 }
 
 /** Injection token to be used to override the default options for `sbbTooltip`. */
@@ -200,6 +212,10 @@ export abstract class _SbbTooltipBase<T extends _TooltipComponentBase>
   }
   set hideDelay(value: NumberInput) {
     this._hideDelay = coerceNumberProperty(value);
+
+    if (this._tooltipInstance) {
+      this._tooltipInstance._mouseLeaveHideDelay = this._hideDelay;
+    }
   }
   private _hideDelay = this._defaultOptions.hideDelay;
 
@@ -383,6 +399,9 @@ export abstract class _SbbTooltipBase<T extends _TooltipComponentBase>
     this._portal =
       this._portal || new ComponentPortal(this._tooltipComponent, this._viewContainerRef);
     this._tooltipInstance = overlayRef.attach(this._portal).instance;
+    this._tooltipInstance._triggerElement = this._elementRef.nativeElement;
+    this._tooltipInstance._mouseLeaveHideDelay = this._hideDelay;
+
     if (this.message instanceof TemplateRef) {
       this._ariaDescriber.describe(
         this._elementRef.nativeElement,
@@ -547,6 +566,10 @@ export abstract class _SbbTooltipBase<T extends _TooltipComponentBase>
       .pipe(takeUntil(this._destroyed))
       .subscribe(() => this._tooltipInstance?._handleBodyInteraction());
 
+    if (this._defaultOptions?.disableTooltipInteractivity) {
+      this._overlayRef.addPanelClass(`${this._cssClassPrefix}-tooltip-panel-non-interactive`);
+    }
+
     return this._overlayRef;
   }
 
@@ -670,7 +693,15 @@ export abstract class _SbbTooltipBase<T extends _TooltipComponentBase>
     const exitListeners: (readonly [string, EventListenerOrEventListenerObject])[] = [];
     if (this._platformSupportsMouseEvents()) {
       exitListeners.push(
-        ['mouseleave', () => this.hide()],
+        [
+          'mouseleave',
+          (event) => {
+            const newTarget = (event as MouseEvent).relatedTarget as Node | null;
+            if (!newTarget || !this._overlayRef?.overlayElement.contains(newTarget)) {
+              this.hide();
+            }
+          },
+        ],
         ['wheel', (event) => this._wheelListener(event as WheelEvent)]
       );
     } else if (this.touchGestures !== 'off') {
@@ -805,6 +836,12 @@ export abstract class _TooltipComponentBase implements OnDestroy {
   /** Property watched by the animation framework to show or hide the tooltip */
   _visibility: TooltipVisibility = 'initial';
 
+  /** Element that caused the tooltip to open. */
+  _triggerElement: HTMLElement;
+
+  /** Amount of milliseconds to delay the closing sequence. */
+  _mouseLeaveHideDelay: number;
+
   /**
    * Type of interaction that led to the tooltip being closed. This is used to determine
    * whether the focus style will be applied when returning focus to its original location
@@ -902,6 +939,7 @@ export abstract class _TooltipComponentBase implements OnDestroy {
     clearTimeout(this._hideTimeoutId);
     this._onShow.complete();
     this._onHide.complete();
+    this._triggerElement = null!;
   }
 
   _animationStart() {
@@ -956,6 +994,15 @@ export abstract class _TooltipComponentBase implements OnDestroy {
    */
   _markForCheck(): void {
     this._changeDetectorRef.markForCheck();
+  }
+
+  _handleMouseLeave({ relatedTarget }: MouseEvent) {
+    if (
+      !this._triggeredByClick &&
+      (!relatedTarget || !this._triggerElement.contains(relatedTarget as Node))
+    ) {
+      this.hide(this._mouseLeaveHideDelay);
+    }
   }
 
   /** Moves the focus inside the focus trap. */
@@ -1052,6 +1099,7 @@ export abstract class _TooltipComponentBase implements OnDestroy {
     // Forces the element to have a layout in IE and Edge. This fixes issues where the element
     // won't be rendered if the animations are disabled or there is no web animations polyfill.
     '[style.zoom]': '_visibility === "visible" ? 1 : null',
+    '(mouseleave)': '_handleMouseLeave($event)',
     'aria-hidden': 'true',
   },
 })

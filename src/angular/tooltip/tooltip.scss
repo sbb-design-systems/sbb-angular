@@ -132,3 +132,7 @@
     border-radius: 50%;
   }
 }
+
+.sbb-tooltip-panel-non-interactive {
+  pointer-events: none;
+}
