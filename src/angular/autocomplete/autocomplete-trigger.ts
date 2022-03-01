@@ -20,7 +20,6 @@ import {
   ElementRef,
   forwardRef,
   Host,
-  HostListener,
   Inject,
   InjectionToken,
   Input,
@@ -109,6 +108,13 @@ export function getSbbAutocompleteMissingPanelError(): Error {
     '[attr.aria-owns]': '(autocompleteDisabled || !panelOpen) ? null : autocomplete?.id',
     '[attr.aria-haspopup]': 'autocompleteDisabled ? null : "listbox"',
     '[class.sbb-focused]': 'panelOpen',
+    // Note: we use `focusin`, as opposed to `focus`, in order to open the panel
+    // a little earlier. This avoids issues where IE delays the focusing of the input.
+    '(focusin)': '_handleFocus()',
+    '(blur)': '_onTouched()',
+    '(input)': '_handleInput($event)',
+    '(keydown)': '_handleKeydown($event)',
+    '(click)': '_handleClick()',
   },
 })
 export class SbbAutocompleteTrigger
@@ -179,7 +185,6 @@ export class SbbAutocompleteTrigger
   _onChange: (value: any) => void = () => {};
 
   /** `View -> model callback called when autocomplete has been touched` */
-  @HostListener('blur')
   _onTouched: () => void = () => {};
 
   /** The autocomplete panel to be attached to this trigger. */
@@ -466,9 +471,7 @@ export class SbbAutocompleteTrigger
     this._element.nativeElement.disabled = isDisabled;
   }
 
-  /** @docs-private */
-  @HostListener('keydown', ['$event'])
-  _handleKeydown(event: TypeRef<KeyboardEvent>): void {
+  _handleKeydown(event: KeyboardEvent): void {
     const keyCode = event.keyCode;
     const hasModifier = hasModifierKey(event);
 
@@ -509,9 +512,7 @@ export class SbbAutocompleteTrigger
     }
   }
 
-  /** @docs-private */
-  @HostListener('input', ['$event'])
-  _handleInput(event: TypeRef<KeyboardEvent>): void {
+  _handleInput(event: KeyboardEvent): void {
     const target = event.target as HTMLInputElement;
     let value: number | string | null = target.value;
 
@@ -541,13 +542,18 @@ export class SbbAutocompleteTrigger
    * Note: we use `focusin`, as opposed to `focus`, in order to open the panel
    * a little earlier. This avoids issues where IE delays the focusing of the input.
    */
-  @HostListener('focusin')
   _handleFocus(): void {
     if (!this._canOpenOnNextFocus) {
       this._canOpenOnNextFocus = true;
     } else if (this._canOpen()) {
       this._previousValue = this._element.nativeElement.value;
       this._attachOverlay();
+    }
+  }
+
+  _handleClick(): void {
+    if (this._canOpen() && !this.panelOpen) {
+      this.openPanel();
     }
   }
 
