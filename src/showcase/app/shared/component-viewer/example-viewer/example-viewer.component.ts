@@ -27,24 +27,17 @@ export class ExampleViewerComponent implements OnInit {
 
   ngOnInit(): void {
     this.exampleCodes = combineLatest(
-      this.exampleData.exampleFiles
-        .filter(
-          (exampleFile) =>
-            // We only want to display default example files
-            this._removeFileExtension(this.exampleData.indexFilename) ===
-            this._removeFileExtension(exampleFile)
+      this.exampleData.exampleFiles.map((exampleFile) =>
+        this._createLoader(
+          this._convertToExampleName(this.exampleData.selectorName),
+          exampleFile
+        ).pipe(
+          map((code) => ({
+            label: this._convertToFileLabel(exampleFile),
+            code,
+          }))
         )
-        .map((exampleFile) =>
-          this._createLoader(
-            this._convertToExampleName(this.exampleData.selectorName),
-            exampleFile
-          ).pipe(
-            map((code) => ({
-              label: this._getFileExtension(exampleFile),
-              code,
-            }))
-          )
-        )
+      )
     ).pipe(
       map((exampleCodes: ExampleCode[]) =>
         exampleCodes.sort(
@@ -79,9 +72,12 @@ export class ExampleViewerComponent implements OnInit {
     return selectorName.replace('sbb-', '').replace('-example', '');
   }
 
-  // Get the extension for a given file path
-  private _getFileExtension(filePath: string): string {
-    return filePath.split('.').pop();
+  // Get the label for a given html example file
+  private _convertToFileLabel(filePath: string): string {
+    const showExtensionOnly =
+      this._removeFileExtension(this.exampleData.indexFilename) ===
+      this._removeFileExtension(filePath);
+    return showExtensionOnly ? filePath.split('.').pop().toUpperCase() : filePath;
   }
 
   // Remove the extension from a given file
