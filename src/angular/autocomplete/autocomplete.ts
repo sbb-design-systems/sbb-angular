@@ -53,6 +53,9 @@ export interface SbbAutocompleteDefaultOptions {
   /** Whether the first option should be highlighted when an autocomplete panel is opened. */
   autoActiveFirstOption?: boolean;
 
+  /** Whether the active option should be selected as the user is navigating. */
+  autoSelectActiveOption?: boolean;
+
   /** Class or list of classes to be applied to the autocomplete's overlay panel. */
   overlayPanelClass?: string | string[];
 }
@@ -68,7 +71,7 @@ export const SBB_AUTOCOMPLETE_DEFAULT_OPTIONS = new InjectionToken<SbbAutocomple
 
 /** @docs-private */
 export function SBB_AUTOCOMPLETE_DEFAULT_OPTIONS_FACTORY(): SbbAutocompleteDefaultOptions {
-  return { autoActiveFirstOption: false };
+  return { autoActiveFirstOption: false, autoSelectActiveOption: false };
 }
 
 @Component({
@@ -163,6 +166,16 @@ export class SbbAutocomplete implements AfterContentInit, OnDestroy {
   }
   private _autoActiveFirstOption: boolean;
 
+  /** Whether the active option should be selected as the user is navigating. */
+  @Input()
+  get autoSelectActiveOption(): boolean {
+    return this._autoSelectActiveOption;
+  }
+  set autoSelectActiveOption(value: BooleanInput) {
+    this._autoSelectActiveOption = coerceBooleanProperty(value);
+  }
+  private _autoSelectActiveOption: boolean;
+
   /**
    * Specify the width of the autocomplete panel.  Can be any CSS sizing value, otherwise it will
    * match the width of its host.
@@ -234,6 +247,7 @@ export class SbbAutocomplete implements AfterContentInit, OnDestroy {
     // option altogether.
     this.inertGroups = platform?.SAFARI || false;
     this._autoActiveFirstOption = !!defaults.autoActiveFirstOption;
+    this._autoSelectActiveOption = !!defaults.autoSelectActiveOption;
   }
 
   ngAfterContentInit() {
