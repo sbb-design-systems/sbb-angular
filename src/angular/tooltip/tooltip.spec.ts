@@ -27,6 +27,7 @@ import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import {
   createFakeEvent,
   createKeyboardEvent,
+  createMouseEvent,
   dispatchEvent,
   dispatchFakeEvent,
   dispatchKeyboardEvent,
@@ -216,6 +217,35 @@ describe('SbbTooltip', () => {
       expect(tooltipDirective._isTooltipVisible()).toBe(true);
       tick(7331);
       expect(tooltipDirective._isTooltipVisible()).toBe(false);
+    }));
+
+    it('should be able to disable tooltip interactivity', fakeAsync(() => {
+      TestBed.resetTestingModule()
+        .configureTestingModule({
+          imports: [SbbTooltipModule, OverlayModule, NoopAnimationsModule],
+          declarations: [TooltipDemoWithoutPositionBinding],
+          providers: [
+            {
+              provide: SBB_TOOLTIP_DEFAULT_OPTIONS,
+              useValue: { disableTooltipInteractivity: true },
+            },
+          ],
+        })
+        .compileComponents();
+
+      const newFixture = TestBed.createComponent(TooltipDemoWithoutPositionBinding);
+      newFixture.detectChanges();
+      tooltipDirective = newFixture.debugElement
+        .query(By.css('button'))!
+        .injector.get<SbbTooltip>(SbbTooltip);
+
+      tooltipDirective.show();
+      newFixture.detectChanges();
+      tick();
+
+      expect(tooltipDirective._overlayRef?.overlayElement.classList).toContain(
+        'sbb-tooltip-panel-non-interactive'
+      );
     }));
 
     it('should set a css class on the overlay panel element', fakeAsync(() => {
@@ -676,6 +706,85 @@ describe('SbbTooltip', () => {
       // Note that we aren't asserting anything, but `fakeAsync` will
       // throw if we have any timers by the end of the test.
       fixture.destroy();
+    }));
+
+    it('should hide on mouseleave on the trigger', fakeAsync(() => {
+      // We don't bind mouse events on mobile devices.
+      if (platform.IOS || platform.ANDROID) {
+        return;
+      }
+
+      dispatchMouseEvent(fixture.componentInstance.button.nativeElement, 'mouseenter');
+      fixture.detectChanges();
+      tick(0);
+      expect(tooltipDirective._isTooltipVisible()).toBe(true);
+
+      dispatchMouseEvent(fixture.componentInstance.button.nativeElement, 'mouseleave');
+      fixture.detectChanges();
+      tick(0);
+      expect(tooltipDirective._isTooltipVisible()).toBe(false);
+    }));
+
+    it('should not hide on mouseleave if the pointer goes from the trigger to the tooltip', fakeAsync(() => {
+      // We don't bind mouse events on mobile devices.
+      if (platform.IOS || platform.ANDROID) {
+        return;
+      }
+
+      dispatchMouseEvent(fixture.componentInstance.button.nativeElement, 'mouseenter');
+      fixture.detectChanges();
+      tick(0);
+      expect(tooltipDirective._isTooltipVisible()).toBe(true);
+
+      const tooltipElement = overlayContainerElement.querySelector('.sbb-tooltip') as HTMLElement;
+      const event = createMouseEvent('mouseleave');
+      Object.defineProperty(event, 'relatedTarget', { value: tooltipElement });
+
+      dispatchEvent(fixture.componentInstance.button.nativeElement, event);
+      fixture.detectChanges();
+      tick(0);
+      expect(tooltipDirective._isTooltipVisible()).toBe(true);
+    }));
+
+    it('should hide on mouseleave on the tooltip', fakeAsync(() => {
+      // We don't bind mouse events on mobile devices.
+      if (platform.IOS || platform.ANDROID) {
+        return;
+      }
+
+      dispatchMouseEvent(fixture.componentInstance.button.nativeElement, 'mouseenter');
+      fixture.detectChanges();
+      tick(0);
+      expect(tooltipDirective._isTooltipVisible()).toBe(true);
+
+      const tooltipElement = overlayContainerElement.querySelector('.sbb-tooltip') as HTMLElement;
+      dispatchMouseEvent(tooltipElement, 'mouseleave');
+      fixture.detectChanges();
+      tick(0);
+      expect(tooltipDirective._isTooltipVisible()).toBe(false);
+    }));
+
+    it('should not hide on mouseleave if the pointer goes from the tooltip to the trigger', fakeAsync(() => {
+      // We don't bind mouse events on mobile devices.
+      if (platform.IOS || platform.ANDROID) {
+        return;
+      }
+
+      dispatchMouseEvent(fixture.componentInstance.button.nativeElement, 'mouseenter');
+      fixture.detectChanges();
+      tick(0);
+      expect(tooltipDirective._isTooltipVisible()).toBe(true);
+
+      const tooltipElement = overlayContainerElement.querySelector('.sbb-tooltip') as HTMLElement;
+      const event = createMouseEvent('mouseleave');
+      Object.defineProperty(event, 'relatedTarget', {
+        value: fixture.componentInstance.button.nativeElement,
+      });
+
+      dispatchEvent(tooltipElement, event);
+      fixture.detectChanges();
+      tick(0);
+      expect(tooltipDirective._isTooltipVisible()).toBe(true);
     }));
 
     it('should emit event on showing tooltip', fakeAsync(() => {
@@ -1260,6 +1369,16 @@ class TooltipOnDraggableElement {
 class TriggerConfigurableTooltip {
   @ViewChild(SbbTooltip) tooltip: SbbTooltip;
   trigger: 'click' | 'hover' = 'click';
+}
+
+@Component({
+  selector: 'app',
+  template: `<button #button [sbbTooltip]="message">Button</button>`,
+})
+class TooltipDemoWithoutPositionBinding {
+  message: any = initialTooltipMessage;
+  @ViewChild(SbbTooltip) tooltip: SbbTooltip;
+  @ViewChild('button') button: ElementRef<HTMLButtonElement>;
 }
 
 /** Asserts whether a tooltip directive has a tooltip instance. */
