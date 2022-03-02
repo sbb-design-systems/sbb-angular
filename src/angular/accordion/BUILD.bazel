@@ -17,7 +17,6 @@ ng_module(
     ),
     assets = [":expansion-panel.css"] + glob(["**/*.html"]),
     deps = [
-        "//src/angular/accordion/expansion-panel-base",
         "//src/angular/core",
         "//src/angular/icon",
         "@npm//@angular/animations",
