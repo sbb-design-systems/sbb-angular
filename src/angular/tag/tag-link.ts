@@ -23,10 +23,7 @@ export class SbbTagLink {
   }
   set amount(value: NumberInput) {
     this._amount = coerceNumberProperty(value);
-    this._badgeDescriptionFallback =
-      typeof $localize === 'function'
-        ? $localize`:Aria label for amount of results displayed in badge pill@@sbbTagBadgePillAmountOfResults:${this.amount} results available`
-        : `${this.amount} results available`;
+    this._badgeDescriptionFallback = $localize`:Aria label for amount of results displayed in badge pill@@sbbTagBadgePillAmountOfResults:${this.amount} results available`;
   }
   private _amount: number;
 

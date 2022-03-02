@@ -73,15 +73,9 @@ export class SbbIconSidebarContent extends SbbSidebarContentBase {
   encapsulation: ViewEncapsulation.None,
 })
 export class SbbIconSidebar extends SbbSidebarBase {
-  _labelCollapse: string =
-    typeof $localize === 'function'
-      ? $localize`:Label to 'collapse' icon sidebar@@sbbSidebarCollapse:Collapse`
-      : 'Collapse';
+  _labelCollapse: string = $localize`:Label to 'collapse' icon sidebar@@sbbSidebarCollapse:Collapse`;
 
-  _labelExpand: string =
-    typeof $localize === 'function'
-      ? $localize`:Label to 'expand' icon sidebar@@sbbSidebarExpand:Expand`
-      : 'Expand';
+  _labelExpand: string = $localize`:Label to 'expand' icon sidebar@@sbbSidebarExpand:Expand`;
 
   /** Whether the sidebar is expanded. */
   @Input()

@@ -1,3 +1,6 @@
+// Workaround for: https://github.com/bazelbuild/rules_nodejs/issues/1265
+/// <reference types="@angular/localize/init" />
+
 import { BooleanInput, coerceBooleanProperty } from '@angular/cdk/coercion';
 import { ESCAPE, UP_ARROW } from '@angular/cdk/keycodes';
 import {
@@ -230,16 +233,12 @@ export class SbbDatepicker<D> implements OnDestroy {
   }
 
   /** The next day button's aria-label */
-  @Input() nextDayAriaLabel: string =
-    typeof $localize === 'function'
-      ? $localize`:Next day button's aria-label@@sbbDatePickerNextDayAriaLabel:Next day`
-      : 'Next day';
+  @Input()
+  nextDayAriaLabel: string = $localize`:Next day button's aria-label@@sbbDatePickerNextDayAriaLabel:Next day`;
 
   /** The previous day button's aria-label */
-  @Input() prevDayAriaLabel: string =
-    typeof $localize === 'function'
-      ? $localize`:Previous day button's aria-label@@sbbDatePickerPrevDayAriaLabel:Previous day`
-      : 'Previous day';
+  @Input()
+  prevDayAriaLabel: string = $localize`:Previous day button's aria-label@@sbbDatePickerPrevDayAriaLabel:Previous day`;
 
   /** A reference to the overlay when the calendar is opened as a popup. */
   popupRef: OverlayRef;

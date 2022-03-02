@@ -36,10 +36,9 @@ export function bazel(options: { filter?: string }): Rule {
             const npmDependencyResolver = new NpmDependencyResolver(
               tree.read('package.json')!.toString()
             );
-            const dependencyByOccurence = new Map<string, string>().set(
-              'ngDevMode',
-              '//src:dev_mode_types'
-            );
+            const dependencyByOccurence = new Map<string, string>()
+              .set('ngDevMode', '//src:dev_mode_types')
+              .set('typeof global', '@npm//@types/node');
             const tsConfig = {
               organization,
               srcRoot,

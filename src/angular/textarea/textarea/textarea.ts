@@ -70,9 +70,7 @@ export class SbbTextarea
     OnDestroy
 {
   get _labelCharactersRemaining(): string {
-    return typeof $localize === 'function'
-      ? $localize`:Counter text for textarea@@sbbTextareaCounterText:${this._counter.value} characters remaining`
-      : `${this._counter.value} characters remaining`;
+    return $localize`:Counter text for textarea@@sbbTextareaCounterText:${this._counter.value} characters remaining`;
   }
 
   /** Unique id of the element. */

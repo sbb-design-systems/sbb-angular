@@ -21,10 +21,7 @@ import { SbbDialogRef, _closeDialogVia } from './dialog-ref';
 /** Counter used to generate unique IDs for dialog elements. */
 let dialogElementUid = 0;
 
-const closeAriaLabel =
-  typeof $localize === 'function'
-    ? $localize`:Aria label to close a dialog@@sbbDialogCloseDialog:Close dialog`
-    : 'Close dialog';
+const closeAriaLabel = $localize`:Aria label to close a dialog@@sbbDialogCloseDialog:Close dialog`;
 
 /**
  * Button that will close the current dialog.

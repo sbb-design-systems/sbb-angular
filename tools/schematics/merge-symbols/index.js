@@ -23,28 +23,33 @@ var __spreadValues = (a, b) => {
 var __spreadProps = (a, b) => __defProps(a, __getOwnPropDescs(b));
 var __markAsModule = (target) => __defProp(target, "__esModule", { value: true });
 var __export = (target, all) => {
-  __markAsModule(target);
   for (var name in all)
     __defProp(target, name, { get: all[name], enumerable: true });
 };
-var __reExport = (target, module2, desc) => {
+var __reExport = (target, module2, copyDefault, desc) => {
   if (module2 && typeof module2 === "object" || typeof module2 === "function") {
     for (let key of __getOwnPropNames(module2))
-      if (!__hasOwnProp.call(target, key) && key !== "default")
+      if (!__hasOwnProp.call(target, key) && (copyDefault || key !== "default"))
         __defProp(target, key, { get: () => module2[key], enumerable: !(desc = __getOwnPropDesc(module2, key)) || desc.enumerable });
   }
   return target;
 };
-var __toModule = (module2) => {
-  return __reExport(__markAsModule(__defProp(module2 != null ? __create(__getProtoOf(module2)) : {}, "default", module2 && module2.__esModule && "default" in module2 ? { get: () => module2.default, enumerable: true } : { value: module2, enumerable: true })), module2);
+var __toESM = (module2, isNodeMode) => {
+  return __reExport(__markAsModule(__defProp(module2 != null ? __create(__getProtoOf(module2)) : {}, "default", !isNodeMode && module2 && module2.__esModule ? { get: () => module2.default, enumerable: true } : { value: module2, enumerable: true })), module2);
 };
+var __toCommonJS = /* @__PURE__ */ ((cache) => {
+  return (module2, temp) => {
+    return cache && cache.get(module2) || (temp = __reExport(__markAsModule({}), module2, 1), cache && cache.set(module2, temp), temp);
+  };
+})(typeof WeakMap !== "undefined" ? /* @__PURE__ */ new WeakMap() : 0);
 
 // tools/schematics/merge-symbols/index.ts
-__export(exports, {
+var merge_symbols_exports = {};
+__export(merge_symbols_exports, {
   mergeSymbols: () => mergeSymbols
 });
-var import_core = __toModule(require("@angular-devkit/core"));
-var import_typescript = __toModule(require("@schematics/angular/third_party/github.com/Microsoft/TypeScript/lib/typescript"));
+var import_core = require("@angular-devkit/core");
+var import_typescript = __toESM(require("@schematics/angular/third_party/github.com/Microsoft/TypeScript/lib/typescript"));
 var IGNORED_FOLDERS = ["/src/angular/schematics/ng-add/test-cases/"];
 function mergeSymbols() {
   return (tree) => {
@@ -177,6 +182,7 @@ function mergeSymbols() {
     }
   };
 }
+module.exports = __toCommonJS(merge_symbols_exports);
 // Annotate the CommonJS export names for ESM import in node:
 0 && (module.exports = {
   mergeSymbols

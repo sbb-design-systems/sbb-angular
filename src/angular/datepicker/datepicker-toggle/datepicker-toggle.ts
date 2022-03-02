@@ -32,10 +32,7 @@ import type { SbbDatepicker } from '../datepicker/datepicker';
   },
 })
 export class SbbDatepickerToggle<D> implements OnDestroy, OnChanges, AfterContentInit {
-  _labelShowCalendar: string =
-    typeof $localize === 'function'
-      ? $localize`:Open calendar@@sbbDatepickerOpenCalendar:Show calendar`
-      : 'Show calendar';
+  _labelShowCalendar: string = $localize`:Open calendar@@sbbDatepickerOpenCalendar:Show calendar`;
 
   private _stateChanges = Subscription.EMPTY;
 

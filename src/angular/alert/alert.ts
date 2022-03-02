@@ -44,10 +44,7 @@ let nextId = 0;
   },
 })
 export class SbbAlert {
-  _labelClose: string =
-    typeof $localize === 'function'
-      ? $localize`:Hidden button label to close the alert@@sbbAlertCloseAlert:Close message`
-      : 'Close message';
+  _labelClose: string = $localize`:Hidden button label to close the alert@@sbbAlertCloseAlert:Close message`;
 
   /** The id of this element. */
   @Input() id: string = `sbb-alert-${nextId++}`;
