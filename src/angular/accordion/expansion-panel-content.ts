@@ -14,6 +14,6 @@ import {
 export class SbbExpansionPanelContent {
   constructor(
     public _template: TemplateRef<any>,
-    @Inject(SBB_EXPANSION_PANEL) @Optional() public _expansionPanel?: SBBExpansionPanelBase
+    @Inject(SBB_EXPANSION_PANEL) @Optional() public _expansionPanel?: SbbExpansionPanelBase
   ) {}
 }
