@@ -17,7 +17,7 @@ jobs:
   lint:
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v2
+    - uses: actions/checkout@v3
     - uses: actions/setup-node@v3
       with:
         node-version: 16
@@ -30,7 +30,7 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v2
+    - uses: actions/checkout@v3
     - name: "Bazel: Copy bazel.rc to user home"
       run: cp ./.github/.bazelrc ~/
     - uses: actions/setup-node@v3
@@ -57,7 +57,7 @@ jobs:
   packages:
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v2
+    - uses: actions/checkout@v3
     - name: "Bazel: Copy bazel.rc to user home"
       run: cp ./.github/.bazelrc ~/
     - uses: actions/setup-node@v3
@@ -86,7 +86,7 @@ jobs:
     needs: build
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v2
+    - uses: actions/checkout@v3
     - name: "Bazel: Copy bazel.rc to user home"
       run: cp ./.github/.bazelrc ~/
     - uses: actions/setup-node@v3
@@ -114,7 +114,7 @@ jobs:
     needs: build
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v2
+    - uses: actions/checkout@v3
     - name: "Bazel: Copy bazel.rc to user home"
       run: cp ./.github/.bazelrc ~/
     - uses: actions/setup-node@v3
@@ -158,7 +158,7 @@ jobs:
     needs: [test, showcase]
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v2
+    - uses: actions/checkout@v3
     - uses: actions/setup-node@v3
       with:
         node-version: 16
