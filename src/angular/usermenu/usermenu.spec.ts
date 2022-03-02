@@ -256,7 +256,7 @@ describe('SbbUsermenu with userName and displayName without image', () => {
     expect(triggerOpenButton.attributes['aria-label']).toBe(
       'Logged in as Max Muster. Click or press enter to open user menu.'
     );
-    expect(triggerOpenButton.attributes['aria-haspopup']).toBe('true');
+    expect(triggerOpenButton.attributes['aria-haspopup']).toBe('menu');
     expect(triggerOpenButton.attributes['aria-controls']).toBeUndefined();
 
     // When panel open
