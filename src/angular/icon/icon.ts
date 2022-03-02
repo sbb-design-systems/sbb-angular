@@ -11,10 +11,8 @@ import {
   Inject,
   InjectionToken,
   Input,
-  OnChanges,
   OnDestroy,
   OnInit,
-  SimpleChanges,
   ViewEncapsulation,
 } from '@angular/core';
 import { Subscription } from 'rxjs';
@@ -109,12 +107,15 @@ const funcIriPattern = /^url\(['"]?#(.*?)['"]?\)$/;
   host: {
     role: 'img',
     class: 'sbb-icon notranslate',
+    '[attr.data-sbb-icon-type]': '_usingFontIcon() ? "font" : "svg"',
+    '[attr.data-sbb-icon-name]': '_svgName || fontIcon',
+    '[attr.data-sbb-icon-namespace]': '_svgNamespace || fontSet',
     '[class.sbb-icon-inline]': 'inline',
   },
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class SbbIcon implements OnChanges, OnInit, AfterViewChecked, OnDestroy {
+export class SbbIcon implements OnInit, AfterViewChecked, OnDestroy {
   /**
    * Whether the icon should be inlined, automatically sizing the icon to match the font size of
    * the element the icon is contained in.
@@ -129,7 +130,21 @@ export class SbbIcon implements OnChanges, OnInit, AfterViewChecked, OnDestroy {
   private _inline: boolean = false;
 
   /** Name of the icon in the SVG icon set. */
-  @Input() svgIcon: string;
+  @Input()
+  get svgIcon(): string {
+    return this._svgIcon;
+  }
+  set svgIcon(value: string) {
+    if (value !== this._svgIcon) {
+      if (value) {
+        this._updateSvgIcon(value);
+      } else if (this._svgIcon) {
+        this._clearSvgElement();
+      }
+      this._svgIcon = value;
+    }
+  }
+  private _svgIcon: string;
 
   /** Font set that the icon is a part of. */
   @Input()
@@ -137,7 +152,12 @@ export class SbbIcon implements OnChanges, OnInit, AfterViewChecked, OnDestroy {
     return this._fontSet;
   }
   set fontSet(value: string) {
-    this._fontSet = this._cleanupFontValue(value);
+    const newValue = this._cleanupFontValue(value);
+
+    if (newValue !== this._fontSet) {
+      this._fontSet = newValue;
+      this._updateFontIconClasses();
+    }
   }
   private _fontSet: string;
 
@@ -147,12 +167,20 @@ export class SbbIcon implements OnChanges, OnInit, AfterViewChecked, OnDestroy {
     return this._fontIcon;
   }
   set fontIcon(value: string) {
-    this._fontIcon = this._cleanupFontValue(value);
+    const newValue = this._cleanupFontValue(value);
+
+    if (newValue !== this._fontIcon) {
+      this._fontIcon = newValue;
+      this._updateFontIconClasses();
+    }
   }
   private _fontIcon: string;
 
-  private _previousFontSetClass: string;
+  private _previousFontSetClass: string[] = [];
   private _previousFontIconClass: string;
+
+  _svgName: string | null;
+  _svgNamespace: string | null;
 
   /** Keeps track of the current page path. */
   private _previousPath?: string;
@@ -201,46 +229,14 @@ export class SbbIcon implements OnChanges, OnInit, AfterViewChecked, OnDestroy {
       case 2:
         return <[string, string]>parts;
       default:
-        throw Error(`Invalid icon name: "${iconName}"`);
-    }
-  }
-
-  ngOnChanges(changes: SimpleChanges) {
-    // Only update the inline SVG icon if the inputs changed, to avoid unnecessary DOM operations.
-    const svgIconChanges = changes['svgIcon'];
-
-    if (svgIconChanges) {
-      this._currentIconFetch.unsubscribe();
-
-      if (this.svgIcon) {
-        const [namespace, iconName] = this._splitIconName(this.svgIcon);
-
-        this._currentIconFetch = this._iconRegistry
-          .getNamedSvgIcon(iconName, namespace)
-          .pipe(take(1))
-          .subscribe(
-            (svg) => this._setSvgElement(svg, namespace),
-            (err: Error) => {
-              const errorMessage = `Error retrieving icon ${namespace}:${iconName}! ${err.message}`;
-              this._errorHandler.handleError(new Error(errorMessage));
-            }
-          );
-      } else if (svgIconChanges.previousValue) {
-        this._clearSvgElement();
-      }
-    }
-
-    if (this._usingFontIcon()) {
-      this._updateFontIconClasses();
+        throw Error(`Invalid icon name: "${iconName}"`); // TODO: add an ngDevMode check
     }
   }
 
   ngOnInit() {
     // Update font classes because ngOnChanges won't be called if none of the inputs are present,
     // e.g. <sbb-icon>arrow</sbb-icon> In this case we need to add a CSS class for the default font.
-    if (this._usingFontIcon()) {
-      this._updateFontIconClasses();
-    }
+    this._updateFontIconClasses();
   }
 
   ngAfterViewChecked() {
@@ -270,11 +266,11 @@ export class SbbIcon implements OnChanges, OnInit, AfterViewChecked, OnDestroy {
     }
   }
 
-  private _usingFontIcon(): boolean {
+  _usingFontIcon(): boolean {
     return !this.svgIcon;
   }
 
-  private _setSvgElement(svg: SVGElement, namespace: string) {
+  private _setSvgElement(svg: SVGElement) {
     this._clearSvgElement();
 
     // Workaround for IE11 and Edge ignoring `style` tags inside dynamically-created SVGs.
@@ -311,7 +307,7 @@ export class SbbIcon implements OnChanges, OnInit, AfterViewChecked, OnDestroy {
       // 1 corresponds to Node.ELEMENT_NODE. We remove all non-element nodes in order to get rid
       // of any loose text nodes, as well as any SVG elements in order to remove any old icons.
       if (child.nodeType !== 1 || child.nodeName.toLowerCase() === 'svg') {
-        layoutElement.removeChild(child);
+        child.remove();
       }
     }
   }
@@ -322,19 +318,15 @@ export class SbbIcon implements OnChanges, OnInit, AfterViewChecked, OnDestroy {
     }
 
     const elem: HTMLElement = this._elementRef.nativeElement;
-    const fontSetClass = this.fontSet
-      ? this._iconRegistry.classNameForFontAlias(this.fontSet)
-      : this._iconRegistry.getDefaultFontSetClass();
+    const fontSetClasses = (
+      this.fontSet
+        ? [this._iconRegistry.classNameForFontAlias(this.fontSet)]
+        : this._iconRegistry.getDefaultFontSetClass()
+    ).filter((className) => className.length > 0);
 
-    if (fontSetClass !== this._previousFontSetClass) {
-      if (this._previousFontSetClass) {
-        elem.classList.remove(this._previousFontSetClass);
-      }
-      if (fontSetClass) {
-        elem.classList.add(fontSetClass);
-      }
-      this._previousFontSetClass = fontSetClass;
-    }
+    this._previousFontSetClass.forEach((className) => elem.classList.remove(className));
+    fontSetClasses.forEach((className) => elem.classList.add(className));
+    this._previousFontSetClass = fontSetClasses;
 
     if (this.fontIcon !== this._previousFontIconClass) {
       if (this._previousFontIconClass) {
@@ -399,6 +391,36 @@ export class SbbIcon implements OnChanges, OnInit, AfterViewChecked, OnDestroy {
           attributes!.push({ name: attr, value: match[1] });
         }
       });
+    }
+  }
+
+  /** Sets a new SVG icon with a particular name. */
+  private _updateSvgIcon(rawName: string | undefined) {
+    this._svgNamespace = null;
+    this._svgName = null;
+    this._currentIconFetch.unsubscribe();
+
+    if (rawName) {
+      const [namespace, iconName] = this._splitIconName(rawName);
+
+      if (namespace) {
+        this._svgNamespace = namespace;
+      }
+
+      if (iconName) {
+        this._svgName = iconName;
+      }
+
+      this._currentIconFetch = this._iconRegistry
+        .getNamedSvgIcon(iconName, namespace)
+        .pipe(take(1))
+        .subscribe(
+          (svg) => this._setSvgElement(svg),
+          (err: Error) => {
+            const errorMessage = `Error retrieving icon ${namespace}:${iconName}! ${err.message}`;
+            this._errorHandler.handleError(new Error(errorMessage));
+          }
+        );
     }
   }
 }
