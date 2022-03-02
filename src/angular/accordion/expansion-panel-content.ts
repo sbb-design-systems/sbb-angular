@@ -1,4 +1,8 @@
-import { Directive, TemplateRef } from '@angular/core';
+import { Directive, Inject, Optional, TemplateRef } from '@angular/core';
+import {
+  SBBExpansionPanelBase,
+  SBB_EXPANSION_PANEL,
+} from '@sbb-esta/angular/accordion/expansion-panel-base';
 
 /**
  * Expansion panel content that will be rendered lazily
@@ -8,5 +12,8 @@ import { Directive, TemplateRef } from '@angular/core';
   selector: 'ng-template[sbbExpansionPanelContent]',
 })
 export class SbbExpansionPanelContent {
-  constructor(public _template: TemplateRef<any>) {}
+  constructor(
+    public _template: TemplateRef<any>,
+    @Inject(SBB_EXPANSION_PANEL) @Optional() public _expansionPanel?: SBBExpansionPanelBase
+  ) {}
 }

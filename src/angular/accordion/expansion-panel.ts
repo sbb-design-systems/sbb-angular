@@ -31,6 +31,7 @@ import { distinctUntilChanged, filter, startWith, take } from 'rxjs/operators';
 import type { SbbAccordion } from './accordion';
 import { sbbExpansionAnimations } from './accordion-animations';
 import { SBB_ACCORDION } from './accordion-token';
+import { SBB_EXPANSION_PANEL } from './expansion-panel-base';
 import { SbbExpansionPanelContent } from './expansion-panel-content';
 
 /** SbbExpansionPanel's states. */
@@ -64,6 +65,7 @@ let uniqueId = 0;
       provide: SBB_ACCORDION,
       useValue: undefined,
     },
+    { provide: SBB_EXPANSION_PANEL, useExisting: SbbExpansionPanel },
   ],
   host: {
     class: 'sbb-expansion-panel',
@@ -164,7 +166,7 @@ export class SbbExpansionPanel
   }
 
   ngAfterContentInit() {
-    if (this._lazyContent) {
+    if (this._lazyContent && this._lazyContent._expansionPanel === this) {
       // Render the content as soon as the panel becomes open.
       this.opened
         .pipe(
