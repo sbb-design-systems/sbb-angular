@@ -109,7 +109,7 @@ const _SbbMenuTriggerMixinBase = mixinVariant(class {});
   selector: `[sbbMenuTriggerFor], [sbbMenuHeadlessTriggerFor]`,
   host: {
     class: 'sbb-menu-trigger sbb-icon-fit',
-    '[attr.aria-haspopup]': 'menu ? true : null',
+    '[attr.aria-haspopup]': 'menu ? "menu" : null',
     '[attr.aria-expanded]': 'menuOpen || null',
     '[attr.aria-controls]': 'menuOpen ? menu.panelId : null',
     '[class.sbb-menu-trigger-root]': '!_parentSbbMenu',
