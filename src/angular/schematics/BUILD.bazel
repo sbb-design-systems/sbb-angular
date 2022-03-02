@@ -19,6 +19,7 @@ ts_library(
             "**/*.spec.ts",
             "ng-generate/*/files/**/*.ts",
             "ng-add/test-cases/**/*.ts",
+            "ng-update/test-cases/**/*.ts",
             "testing/**/*.ts",
         ],
     ),
@@ -96,5 +97,7 @@ filegroup(
     srcs = glob([
         "ng-add/test-cases/**/*_input.ts",
         "ng-add/test-cases/**/*_expected_output.ts",
+        "ng-update/test-cases/**/*_input.ts",
+        "ng-update/test-cases/**/*_expected_output.ts",
     ]),
 )

@@ -7,6 +7,7 @@ import {
 
 import { DuplicateMigration } from './migrations/duplicate-migration';
 
+// noinspection JSUnusedGlobalSymbols
 /** Entry point for the migration clean-up schematics */
 export function cleanUp(): Rule {
   // Remove all CDK migrations, since they are executed with the merge migration.

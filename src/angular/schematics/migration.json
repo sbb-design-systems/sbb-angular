@@ -1,4 +1,10 @@
 {
   "$schema": "../../../node_modules/@angular-devkit/schematics/collection-schema.json",
-  "schematics": {}
+  "schematics": {
+    "migration-v13": {
+      "version": "13.8.0",
+      "description": "Updates SBB Angular to v13",
+      "factory": "./ng-update/index#updateToV13"
+    }
+  }
 }
