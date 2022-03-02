@@ -6,4 +6,4 @@ export { SbbExpansionPanelState, SbbExpansionPanel } from './expansion-panel';
 export * from './expansion-panel-header';
 export * from './expansion-panel-content';
 export * from './accordion-animations';
-export { SBB_EXPANSION_PANEL } from './expansion-panel-base';
+export * from './expansion-panel-base';
