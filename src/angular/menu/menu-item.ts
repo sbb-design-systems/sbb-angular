@@ -1,4 +1,5 @@
 import { FocusableOption, FocusMonitor, FocusOrigin } from '@angular/cdk/a11y';
+import { DOCUMENT } from '@angular/common';
 import {
   AfterViewInit,
   ChangeDetectionStrategy,
@@ -69,7 +70,8 @@ export class SbbMenuItem
      * @deprecated `_changeDetectorRef` to become a required parameter.
      * @breaking-change 14.0.0
      */
-    private _changeDetectorRef?: ChangeDetectorRef
+    private _changeDetectorRef?: ChangeDetectorRef,
+    @Inject(DOCUMENT) private _document?: any
   ) {
     super();
   }
@@ -146,5 +148,9 @@ export class SbbMenuItem
     // @breaking-change 14.0.0 Remove null check for `_changeDetectorRef`.
     this._highlighted = isHighlighted;
     this._changeDetectorRef?.markForCheck();
+  }
+
+  _hasFocus(): boolean {
+    return this._document && this._document.activeElement === this._getHostElement();
   }
 }
