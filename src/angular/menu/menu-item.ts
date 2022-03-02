@@ -71,6 +71,10 @@ export class SbbMenuItem
      * @breaking-change 14.0.0
      */
     private _changeDetectorRef?: ChangeDetectorRef,
+    /**
+     * @deprecated `_document` to become a required parameter.
+     * @breaking-change 14.0.0
+     */
     @Inject(DOCUMENT) private _document?: any
   ) {
     super();
