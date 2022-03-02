@@ -33,15 +33,9 @@ let nextId = 0;
   },
 })
 export class SbbTextexpand implements AfterContentInit {
-  _labelShowLess: string =
-    typeof $localize === 'function'
-      ? $localize`:Button label for showing less@@sbbTextexpandShowLess:Show less`
-      : 'Show less';
+  _labelShowLess: string = $localize`:Button label for showing less@@sbbTextexpandShowLess:Show less`;
 
-  _labelShowMore: string =
-    typeof $localize === 'function'
-      ? $localize`:Button label for showing more@@sbbTextexpandShowMore:Show more`
-      : 'Show more';
+  _labelShowMore: string = $localize`:Button label for showing more@@sbbTextexpandShowMore:Show more`;
 
   /** Describes if text content is expanded or not. Initially is collapsed. */
   isExpanded: boolean = false;

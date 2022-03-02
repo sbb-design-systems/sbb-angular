@@ -22,10 +22,7 @@ import { SbbLightboxRef } from './lightbox-ref';
 /** Counter used to generate unique IDs for dialog elements. */
 let dialogElementUid = 0;
 
-const closeAriaLabel =
-  typeof $localize === 'function'
-    ? $localize`:Aria label to close a dialog@@sbbLightboxCloseLightbox:Close lightbox`
-    : 'Close lightbox';
+const closeAriaLabel = $localize`:Aria label to close a dialog@@sbbLightboxCloseLightbox:Close lightbox`;
 
 /**
  * Button that will close the current lightbox.

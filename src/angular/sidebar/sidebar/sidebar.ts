@@ -119,10 +119,7 @@ export class SbbSidebar
   extends SbbSidebarBase
   implements AfterContentInit, AfterContentChecked, OnDestroy
 {
-  _labelCloseSidebar: string =
-    typeof $localize === 'function'
-      ? $localize`:Button label to close the sidebar@@sbbSidebarCloseSidebar:Close Sidebar`
-      : 'Close Sidebar';
+  _labelCloseSidebar: string = $localize`:Button label to close the sidebar@@sbbSidebarCloseSidebar:Close Sidebar`;
 
   /** Whether the sidebar is initialized. Used for disabling the initial animation. */
   private _enableAnimations = false;
@@ -512,10 +509,7 @@ export class SbbSidebarContainer
   extends SbbSidebarContainerBase<SbbSidebar>
   implements AfterContentInit, SbbSidebarMobileCapableContainer, OnDestroy
 {
-  _labelOpenSidebar: string =
-    typeof $localize === 'function'
-      ? $localize`:Button label to open the sidebar@@sbbSidebarOpenSidebar:Open Sidebar`
-      : 'Open Sidebar';
+  _labelOpenSidebar: string = $localize`:Button label to open the sidebar@@sbbSidebarOpenSidebar:Open Sidebar`;
 
   /** The sidebar child */
   override get sidebar(): SbbSidebar | null {

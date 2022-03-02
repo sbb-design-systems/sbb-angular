@@ -9,10 +9,6 @@ export {};
  *  - https://github.com/angular/angular/blob/master/packages/common/locales/global/it-CH.js
  */
 
-declare let globalThis: any;
-declare let global: any;
-declare let window: any;
-
 // tslint:disable:no-var-keyword prefer-const
 (function (context: any) {
   const locales = context?.ng?.common?.locales;

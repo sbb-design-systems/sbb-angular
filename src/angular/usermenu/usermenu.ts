@@ -60,19 +60,12 @@ export const _sbbUsermenuMenuInheritedTriggerContext: SbbMenuInheritedTriggerCon
   ],
 })
 export class SbbUsermenu extends _SbbUsermenuMixinBase {
-  _labelLogin: string =
-    typeof $localize === 'function'
-      ? $localize`:Button label for login@@sbbUsermenuLogin:Login`
-      : 'Login';
+  _labelLogin: string = $localize`:Button label for login@@sbbUsermenuLogin:Login`;
 
   get _labelOpenPanel() {
-    return typeof $localize === 'function'
-      ? $localize`:Aria label to open user menu@@sbbUsermenuOpenPanel:Logged in as ${
-          this.displayName || this.userName
-        }. Click or press enter to open user menu.`
-      : `Logged in as ${
-          this.displayName || this.userName
-        }. Click or press enter to open user menu.`;
+    return $localize`:Aria label to open user menu@@sbbUsermenuOpenPanel:Logged in as ${
+      this.displayName || this.userName
+    }. Click or press enter to open user menu.`;
   }
 
   /** Identifier of the usermenu. */

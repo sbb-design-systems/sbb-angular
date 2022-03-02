@@ -30,14 +30,8 @@
 </sbb-notification>
 
 <sbb-tab-group [hidden]="!showSource" class="sbb-example-viewer-tabs">
-  <sbb-tab label="HTML">
-    <pre><code [innerHtml]="html | async"></code></pre>
-  </sbb-tab>
-  <sbb-tab label="TS">
-    <pre><code [innerHtml]="ts | async"></code></pre>
-  </sbb-tab>
-  <sbb-tab label="CSS" *ngIf="css | async as cssHtml">
-    <pre><code [innerHtml]="cssHtml"></code></pre>
+  <sbb-tab *ngFor="let content of exampleCodes | async" [label]="content.label">
+    <pre><code [innerHtml]="content.code"></code></pre>
   </sbb-tab>
 </sbb-tab-group>
 

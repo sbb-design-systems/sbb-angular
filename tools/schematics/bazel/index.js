@@ -23,31 +23,36 @@ var __spreadValues = (a, b) => {
 var __spreadProps = (a, b) => __defProps(a, __getOwnPropDescs(b));
 var __markAsModule = (target) => __defProp(target, "__esModule", { value: true });
 var __export = (target, all) => {
-  __markAsModule(target);
   for (var name in all)
     __defProp(target, name, { get: all[name], enumerable: true });
 };
-var __reExport = (target, module2, desc) => {
+var __reExport = (target, module2, copyDefault, desc) => {
   if (module2 && typeof module2 === "object" || typeof module2 === "function") {
     for (let key of __getOwnPropNames(module2))
-      if (!__hasOwnProp.call(target, key) && key !== "default")
+      if (!__hasOwnProp.call(target, key) && (copyDefault || key !== "default"))
         __defProp(target, key, { get: () => module2[key], enumerable: !(desc = __getOwnPropDesc(module2, key)) || desc.enumerable });
   }
   return target;
 };
-var __toModule = (module2) => {
-  return __reExport(__markAsModule(__defProp(module2 != null ? __create(__getProtoOf(module2)) : {}, "default", module2 && module2.__esModule && "default" in module2 ? { get: () => module2.default, enumerable: true } : { value: module2, enumerable: true })), module2);
+var __toESM = (module2, isNodeMode) => {
+  return __reExport(__markAsModule(__defProp(module2 != null ? __create(__getProtoOf(module2)) : {}, "default", !isNodeMode && module2 && module2.__esModule ? { get: () => module2.default, enumerable: true } : { value: module2, enumerable: true })), module2);
 };
+var __toCommonJS = /* @__PURE__ */ ((cache) => {
+  return (module2, temp) => {
+    return cache && cache.get(module2) || (temp = __reExport(__markAsModule({}), module2, 1), cache && cache.set(module2, temp), temp);
+  };
+})(typeof WeakMap !== "undefined" ? /* @__PURE__ */ new WeakMap() : 0);
 
 // tools/schematics/bazel/index.ts
-__export(exports, {
+var bazel_exports = {};
+__export(bazel_exports, {
   bazel: () => bazel
 });
-var import_schematics4 = __toModule(require("@angular-devkit/schematics"));
-var import_tasks = __toModule(require("@angular-devkit/schematics/tasks"));
+var import_schematics4 = require("@angular-devkit/schematics");
+var import_tasks = require("@angular-devkit/schematics/tasks");
 
 // tools/schematics/bazel/bazel-genrule-resolver.ts
-var import_core = __toModule(require("@angular-devkit/core"));
+var import_core = require("@angular-devkit/core");
 var BazelGenruleResolver = class {
   constructor() {
     this._buildFile = (0, import_core.fragment)("BUILD.bazel");
@@ -61,7 +66,7 @@ var BazelGenruleResolver = class {
 };
 
 // tools/schematics/bazel/bazel-module-detector.ts
-var import_core2 = __toModule(require("@angular-devkit/core"));
+var import_core2 = require("@angular-devkit/core");
 var BazelModuleDetectorBase = class {
   constructor(_tree) {
     this._tree = _tree;
@@ -86,11 +91,11 @@ var AppBazelModuleDetector = class extends BazelModuleDetectorBase {
 };
 
 // tools/schematics/bazel/ng-package.ts
-var import_core4 = __toModule(require("@angular-devkit/core"));
+var import_core4 = require("@angular-devkit/core");
 
 // tools/schematics/bazel/ng-module.ts
-var import_core3 = __toModule(require("@angular-devkit/core"));
-var import_schematics = __toModule(require("@angular-devkit/schematics"));
+var import_core3 = require("@angular-devkit/core");
+var import_schematics = require("@angular-devkit/schematics");
 
 // tools/schematics/bazel/bazel-module-file-registry.ts
 var BazelModuleFileRegistry = class {
@@ -123,11 +128,11 @@ var BazelModuleFileRegistry = class {
 };
 
 // tools/schematics/bazel/format-bazel-file.ts
-var import_child_process = __toModule(require("child_process"));
-var import_crypto = __toModule(require("crypto"));
-var import_fs = __toModule(require("fs"));
-var import_os = __toModule(require("os"));
-var import_path = __toModule(require("path"));
+var import_child_process = require("child_process");
+var import_crypto = require("crypto");
+var import_fs = require("fs");
+var import_os = require("os");
+var import_path = require("path");
 var { getNativeBinary } = require("@bazel/buildifier/buildifier");
 function formatBazelFile(relativePath, content) {
   const tmpPath = (0, import_path.join)((0, import_os.tmpdir)(), `bazel_file_to_format_${(0, import_crypto.randomBytes)(32).toString("hex")}.bazel`);
@@ -256,14 +261,14 @@ var NgPackageExamples = class extends NgPackage {
 };
 
 // tools/schematics/bazel/npm-dependency-resolver.ts
-var import_schematics2 = __toModule(require("@angular-devkit/schematics"));
+var import_schematics2 = require("@angular-devkit/schematics");
 var NpmDependencyResolver = class {
   constructor(packageJson) {
     const pkg = JSON.parse(packageJson);
     const dependencies = "dependencies" in pkg ? Object.keys(pkg.dependencies) : [];
     const devDependencies = "devDependencies" in pkg ? Object.keys(pkg.devDependencies) : [];
     this._dependencies = dependencies.concat(devDependencies);
-    this._typesDependencies = this._dependencies.filter((d) => d.startsWith("@types/")).reduce((map, dep) => map.set(this._typesToPackageName(dep), dep), new Map());
+    this._typesDependencies = this._dependencies.filter((d) => d.startsWith("@types/")).reduce((map, dep) => map.set(this._typesToPackageName(dep), dep), /* @__PURE__ */ new Map());
   }
   resolvePackageNames(importPath) {
     const name = this._toPackageName(importPath);
@@ -290,9 +295,9 @@ var NpmDependencyResolver = class {
 };
 
 // tools/schematics/bazel/sass-dependency-resolver.ts
-var import_core5 = __toModule(require("@angular-devkit/core"));
+var import_core5 = require("@angular-devkit/core");
 var FlexibleSassDependencyResolver = class {
-  constructor(_moduleDetector, _npmDependencyResolver, _logger, _dependencyByOccurence = new Map()) {
+  constructor(_moduleDetector, _npmDependencyResolver, _logger, _dependencyByOccurence = /* @__PURE__ */ new Map()) {
     this._moduleDetector = _moduleDetector;
     this._npmDependencyResolver = _npmDependencyResolver;
     this._logger = _logger;
@@ -337,7 +342,7 @@ var FlexibleSassDependencyResolver = class {
 };
 
 // tools/schematics/bazel/showcase-package.ts
-var import_core6 = __toModule(require("@angular-devkit/core"));
+var import_core6 = require("@angular-devkit/core");
 
 // tools/schematics/bazel/showcase-module.ts
 var ShowcaseModule = class extends NgModule {
@@ -378,10 +383,10 @@ ${exampleModules}
 };
 
 // tools/schematics/bazel/typescript-dependency-resolver.ts
-var import_core7 = __toModule(require("@angular-devkit/core"));
-var import_schematics3 = __toModule(require("@angular-devkit/schematics"));
-var schematicsTs = __toModule(require("@schematics/angular/third_party/github.com/Microsoft/TypeScript/lib/typescript"));
-var import_ast_utils = __toModule(require("@schematics/angular/utility/ast-utils"));
+var import_core7 = require("@angular-devkit/core");
+var import_schematics3 = require("@angular-devkit/schematics");
+var schematicsTs = __toESM(require("@schematics/angular/third_party/github.com/Microsoft/TypeScript/lib/typescript"));
+var import_ast_utils = require("@schematics/angular/utility/ast-utils");
 var TypeScriptDependencyResolverBase = class {
   constructor(_config) {
     this._config = _config;
@@ -508,7 +513,7 @@ function bazel(options) {
         const srcRoot = "src";
         const moduleDetector = isShowcase ? new AppBazelModuleDetector(tree) : new LibraryBazelModuleDetector(tree);
         const npmDependencyResolver = new NpmDependencyResolver(tree.read("package.json").toString());
-        const dependencyByOccurence = new Map().set("ngDevMode", "//src:dev_mode_types");
+        const dependencyByOccurence = (/* @__PURE__ */ new Map()).set("ngDevMode", "//src:dev_mode_types").set("typeof global", "@npm//@types/node");
         const tsConfig = {
           organization,
           srcRoot,
@@ -518,7 +523,7 @@ function bazel(options) {
           dependencyByOccurence
         };
         const typeScriptDependencyResolver = isShowcase ? new RelativeModuleTypeScriptDependencyResolver(tsConfig) : new StrictModuleTypeScriptDependencyResolver(tsConfig);
-        const styleReplaceMap = new Map().set("../styles/common", "//src/angular/styles:common_scss_lib").set("/angular/styles/common", "//src/angular/styles:common_scss_lib").set("external/npm/node_modules/@angular/cdk", "//src/angular/styles:common_scss_lib");
+        const styleReplaceMap = (/* @__PURE__ */ new Map()).set("../styles/common", "//src/angular/styles:common_scss_lib").set("/angular/styles/common", "//src/angular/styles:common_scss_lib").set("external/npm/node_modules/@angular/cdk", "//src/angular/styles:common_scss_lib");
         const sassDependencyResolver = new FlexibleSassDependencyResolver(moduleDetector, npmDependencyResolver, context.logger, styleReplaceMap);
         const bazelGenruleResolver = new BazelGenruleResolver();
         if (isShowcase) {
@@ -553,6 +558,7 @@ function bazel(options) {
     }
   };
 }
+module.exports = __toCommonJS(bazel_exports);
 // Annotate the CommonJS export names for ESM import in node:
 0 && (module.exports = {
   bazel

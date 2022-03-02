@@ -30,13 +30,10 @@ import { SbbTag } from './tag';
   },
 })
 export class SbbTags implements AfterContentInit, OnDestroy {
-  _labelAllTag: string =
-    typeof $localize === 'function' ? $localize`:Label for the 'All' tag@@sbbTagsAll:All` : 'All';
+  _labelAllTag: string = $localize`:Label for the 'All' tag@@sbbTagsAll:All`;
 
   get _labelBadgeDescription(): string {
-    return typeof $localize === 'function'
-      ? $localize`:Badge description (total amount) for the 'All' tag@@sbbTagsAllBadgeDescription:A total of ${this.totalAmount} results available`
-      : `A total of ${this.totalAmount} results available`;
+    return $localize`:Badge description (total amount) for the 'All' tag@@sbbTagsAllBadgeDescription:A total of ${this.totalAmount} results available`;
   }
 
   /**

@@ -29,13 +29,8 @@ export class LoaderBuilder {
     return this;
   }
 
-  fromExamples(example: string, type: 'html' | 'ts' | 'css') {
-    this._url = `assets/docs-content/examples-highlighted/${this._packageName}/${this._id}/${example}/${example}-example-${type}.html`;
-    return this;
-  }
-
-  fromSourceExamples(example: string, type: 'html' | 'ts' | 'css') {
-    this._url = `assets/docs-content/examples-source/${this._packageName}/${this._id}/${example}/${example}-example.${type}`;
+  fromExamples(exampleName: string, exampleHtmlFile: string) {
+    this._url = `assets/docs-content/examples-highlighted/${this._packageName}/${this._id}/${exampleName}/${exampleHtmlFile}`;
     return this;
   }
 
