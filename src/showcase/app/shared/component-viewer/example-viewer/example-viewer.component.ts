@@ -1,11 +1,16 @@
 import { Component, Injector, Input, OnInit, ViewContainerRef } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { ExampleData, loadExample } from '@sbb-esta/components-examples';
-import { Observable } from 'rxjs';
+import { combineLatest, Observable } from 'rxjs';
 import { map, switchMap } from 'rxjs/operators';
 
 import { HtmlLoader } from '../../html-loader.service';
 import { moduleParams } from '../../module-params';
+
+interface ExampleCode {
+  label: string;
+  code: string;
+}
 
 @Component({
   selector: 'sbb-example-viewer',
@@ -14,31 +19,70 @@ import { moduleParams } from '../../module-params';
 })
 export class ExampleViewerComponent implements OnInit {
   @Input() exampleData: ExampleData;
-  html: Observable<string>;
-  ts: Observable<string>;
-  css: Observable<string>;
+  exampleCodes: Observable<ExampleCode[]>;
   showSource = false;
+  private _defaultExtensionsOrder = ['html', 'ts', 'css'];
 
   constructor(private _htmlLoader: HtmlLoader, private _route: ActivatedRoute) {}
 
   ngOnInit(): void {
-    const exampleName = this.exampleData.selectorName.replace('sbb-', '').replace('-example', '');
-
-    this.html = this._createLoader(exampleName, 'html');
-    this.ts = this._createLoader(exampleName, 'ts');
-    this.css = this._createLoader(exampleName, 'css');
-  }
-
-  private _createLoader(exampleName: string, type: 'html' | 'ts' | 'css') {
-    return moduleParams(this._route).pipe(
-      switchMap((params) =>
-        this._htmlLoader.withParams(params).fromExamples(exampleName, type).load()
+    this.exampleCodes = combineLatest(
+      this.exampleData.exampleFiles.map((exampleFile) =>
+        this._createLoader(
+          this._convertToExampleName(this.exampleData.selectorName),
+          exampleFile
+        ).pipe(
+          map((code) => ({
+            label: this._convertToFileLabel(exampleFile),
+            code,
+          }))
+        )
+      )
+    ).pipe(
+      map((exampleCodes: ExampleCode[]) =>
+        exampleCodes.sort(
+          (a, b) =>
+            this._defaultExtensionsOrder.indexOf(a.label) -
+            this._defaultExtensionsOrder.indexOf(b.label)
+        )
       )
     );
   }
 
   stackBlitzEnabled() {
     return moduleParams(this._route).pipe(map((params) => params.packageName === 'angular'));
+  }
+
+  private _createLoader(exampleName: string, exampleFile: string) {
+    const exampleHtmlFile = this._convertToHtmlFilePath(exampleFile);
+    return moduleParams(this._route).pipe(
+      switchMap((params) =>
+        this._htmlLoader.withParams(params).fromExamples(exampleName, exampleHtmlFile).load()
+      )
+    );
+  }
+
+  // Returns the path to the html file for a given example file.
+  private _convertToHtmlFilePath(filePath: string): string {
+    return filePath.replace(/(.*)[.](html|ts|css)/, '$1-$2.html');
+  }
+
+  // Get the example name from the selector name
+  private _convertToExampleName(selectorName: string): string {
+    return selectorName.replace('sbb-', '').replace('-example', '');
+  }
+
+  // Get the label for a given html example file
+  private _convertToFileLabel(filePath: string): string {
+    const showExtensionOnly =
+      this._removeFileExtension(this.exampleData.indexFilename) ===
+      this._removeFileExtension(filePath);
+    return showExtensionOnly ? filePath.split('.').pop().toUpperCase() : filePath;
+  }
+
+  // Remove the extension from a given file
+  private _removeFileExtension(filePath: string): string {
+    return filePath.replace(/\.[^/.]+$/, '');
   }
 }
 
