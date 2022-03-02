@@ -2,7 +2,7 @@ import { CdkAccordionItem } from '@angular/cdk/accordion';
 import { InjectionToken } from '@angular/core';
 
 /**
- * Base interface for a `MatExpansionPanel`.
+ * Base interface for a `SbbExpansionPanel`.
  * @docs-private
  */
 export interface SBBExpansionPanelBase extends CdkAccordionItem {
