@@ -48,7 +48,7 @@ import { delay, filter, take, takeUntil } from 'rxjs/operators';
 
 import { SbbMenu, SbbMenuAnimationState, SbbMenuCloseReason } from './menu';
 import { SbbMenuDynamicTrigger } from './menu-dynamic-trigger';
-import { throwSbbMenuMissingError, throwSbbMenuRecursiveError } from './menu-errors';
+import { throwSbbMenuRecursiveError } from './menu-errors';
 import { SbbMenuItem } from './menu-item';
 import { SbbMenuPanel, SBB_MENU_PANEL } from './menu-panel';
 import { SbbMenuPositionX, SbbMenuPositionY } from './menu-positions';
@@ -109,7 +109,7 @@ const _SbbMenuTriggerMixinBase = mixinVariant(class {});
   selector: `[sbbMenuTriggerFor], [sbbMenuHeadlessTriggerFor]`,
   host: {
     class: 'sbb-menu-trigger sbb-icon-fit',
-    'aria-haspopup': 'true',
+    '[attr.aria-haspopup]': 'menu ? true : null',
     '[attr.aria-expanded]': 'menuOpen || null',
     '[attr.aria-controls]': 'menuOpen ? menu.panelId : null',
     '[class.sbb-menu-trigger-root]': '!_parentSbbMenu',
@@ -158,26 +158,26 @@ export class SbbMenuTrigger
 
   /** References the menu instance that the headless trigger is associated with. */
   @Input('sbbMenuHeadlessTriggerFor')
-  set sbbMenuHeadlessTriggerFor(menu: SbbMenuPanel) {
+  set sbbMenuHeadlessTriggerFor(menu: SbbMenuPanel | null) {
     this._type = 'headless';
     this._setMenu(menu);
   }
 
   /** References the menu instance that the trigger is associated with. */
   @Input('sbbMenuTriggerFor')
-  get menu() {
+  get menu(): SbbMenuPanel | null {
     return this._menu;
   }
-  set menu(menu: SbbMenuPanel) {
+  set menu(menu: SbbMenuPanel | null) {
     this._setMenu(menu);
     if (menu) {
-      this.menu.overlapTrigger = true;
+      menu.overlapTrigger = true;
     }
   }
-  private _menu: SbbMenuPanel;
+  private _menu: SbbMenuPanel | null;
 
   /** Inits the menu for the different trigger types. Method is intentionally placed after corresponding inputs. */
-  private _setMenu(menu: SbbMenuPanel) {
+  private _setMenu(menu: SbbMenuPanel | null) {
     if (menu === this._menu) {
       return;
     }
@@ -279,7 +279,6 @@ export class SbbMenuTrigger
   }
 
   ngAfterContentInit() {
-    this._checkMenu();
     this._handleHover();
   }
 
@@ -318,31 +317,31 @@ export class SbbMenuTrigger
 
   /** Opens the menu. */
   openMenu(): void {
-    if (this._menuOpen) {
+    const menu = this.menu;
+
+    if (this._menuOpen || !menu) {
       return;
     }
 
-    this._checkMenu();
-
-    const overlayRef = this._createOverlay();
+    const overlayRef = this._createOverlay(menu);
     const overlayConfig = overlayRef.getConfig();
     const positionStrategy = overlayConfig.positionStrategy as FlexibleConnectedPositionStrategy;
 
-    this._setPosition(positionStrategy);
+    this._setPosition(menu, positionStrategy);
     overlayConfig.hasBackdrop =
-      this.menu.hasBackdrop == null ? !this.triggersSubmenu() : this.menu.hasBackdrop;
-    overlayRef.attach(this._getPortal());
+      menu.hasBackdrop == null ? !this.triggersSubmenu() : menu.hasBackdrop;
+    overlayRef.attach(this._getPortal(menu));
 
-    if (this.menu.lazyContent) {
-      this.menu.lazyContent.attach(this.menuData);
+    if (menu.lazyContent) {
+      menu.lazyContent.attach(this.menuData);
     }
 
     this._closingActionsSubscription = this._menuClosingActions().subscribe(() => this.closeMenu());
-    this._initMenu();
+    this._initMenu(menu);
 
-    if (this.menu instanceof SbbMenu) {
-      this.menu._startAnimation();
-      this.menu._directDescendantItems.changes.pipe(takeUntil(this.menu.closed)).subscribe(() => {
+    if (menu instanceof SbbMenu) {
+      menu._startAnimation();
+      menu._directDescendantItems.changes.pipe(takeUntil(menu.closed)).subscribe(() => {
         // Re-adjust the position without locking when the amount of items
         // changes so that the overlay is allowed to pick a new optimal position.
         positionStrategy.withLockedPosition(false).reapplyLastPosition();
@@ -353,7 +352,7 @@ export class SbbMenuTrigger
 
   /** Closes the menu. */
   closeMenu(): void {
-    this.menu.closed.emit();
+    this.menu?.closed.emit();
   }
 
   /**
@@ -417,10 +416,7 @@ export class SbbMenuTrigger
       }
     } else {
       this._setIsMenuOpen(false);
-
-      if (menu.lazyContent) {
-        menu.lazyContent.detach();
-      }
+      menu?.lazyContent?.detach();
     }
   }
 
@@ -428,8 +424,8 @@ export class SbbMenuTrigger
    * This method sets the menu state to open and focuses the first item if
    * the menu was opened via the keyboard.
    */
-  private _initMenu(): void {
-    this.menu.parentMenu = this.triggersSubmenu() ? this._parentSbbMenu : undefined;
+  private _initMenu(menu: SbbMenuPanel): void {
+    menu.parentMenu = this.triggersSubmenu() ? this._parentSbbMenu : undefined;
     const triggerContext: SbbMenuTriggerContext =
       this._type === 'headless' || this.triggersSubmenu()
         ? { type: this._type }
@@ -446,24 +442,24 @@ export class SbbMenuTrigger
             scalingFactor: this._scalingFactor,
           };
 
-    this.menu.triggerContext = { ...triggerContext, ...this._inheritedTriggerContext };
-    this._setMenuElevation();
-    this.menu.focusFirstItem(this._openedBy || 'program');
+    menu.triggerContext = { ...triggerContext, ...this._inheritedTriggerContext };
+    this._setMenuElevation(menu);
+    menu.focusFirstItem(this._openedBy || 'program');
     this._setIsMenuOpen(true);
   }
 
   /** Updates the menu elevation based on the amount of parent menus that it has. */
-  private _setMenuElevation(): void {
-    if (this.menu.setElevation) {
+  private _setMenuElevation(menu: SbbMenuPanel): void {
+    if (menu.setElevation) {
       let depth = 0;
-      let parentMenu = this.menu.parentMenu;
+      let parentMenu = menu.parentMenu;
 
       while (parentMenu) {
         depth++;
         parentMenu = parentMenu.parentMenu;
       }
 
-      this.menu.setElevation(depth);
+      menu.setElevation(depth);
     }
   }
 
@@ -479,23 +475,16 @@ export class SbbMenuTrigger
   }
 
   /**
-   * This method checks that a valid instance of SbbMenu has been passed into
-   * sbbMenuTriggerFor. If not, an exception is thrown.
-   */
-  private _checkMenu() {
-    if (!this.menu && (typeof ngDevMode === 'undefined' || ngDevMode)) {
-      throwSbbMenuMissingError();
-    }
-  }
-
-  /**
    * This method creates the overlay from the provided menu's template and saves its
    * OverlayRef so that it can be attached to the DOM when openMenu is called.
    */
-  private _createOverlay(): OverlayRef {
+  private _createOverlay(menu: SbbMenuPanel): OverlayRef {
     if (!this._overlayRef) {
-      const config = this._getOverlayConfig();
-      this._subscribeToPositions(config.positionStrategy as FlexibleConnectedPositionStrategy);
+      const config = this._getOverlayConfig(menu);
+      this._subscribeToPositions(
+        menu,
+        config.positionStrategy as FlexibleConnectedPositionStrategy
+      );
       this._overlayRef = this._overlay.create(config);
 
       // Consume the `keydownEvents` in order to prevent them from going to another overlay.
@@ -511,7 +500,7 @@ export class SbbMenuTrigger
    * This method builds the configuration object needed to create the overlay, the OverlayState.
    * @returns OverlayConfig
    */
-  private _getOverlayConfig(): OverlayConfig {
+  private _getOverlayConfig(menu: SbbMenuPanel): OverlayConfig {
     return new OverlayConfig({
       positionStrategy: this._overlay
         .position()
@@ -520,8 +509,8 @@ export class SbbMenuTrigger
         .withGrowAfterOpen()
         .withTransformOriginOn('.sbb-menu-panel-wrapper')
         .withPush(false),
-      backdropClass: this.menu.backdropClass || 'cdk-overlay-transparent-backdrop',
-      panelClass: this.menu.overlayPanelClass,
+      backdropClass: menu.backdropClass || 'cdk-overlay-transparent-backdrop',
+      panelClass: menu.overlayPanelClass,
       scrollStrategy: this._scrollStrategy(),
     });
   }
@@ -531,8 +520,8 @@ export class SbbMenuTrigger
    * on the menu based on the new position. This ensures the animation origin is always
    * correct, even if a fallback position is used for the overlay.
    */
-  private _subscribeToPositions(position: FlexibleConnectedPositionStrategy): void {
-    if (this.menu.setPositionClasses) {
+  private _subscribeToPositions(menu: SbbMenuPanel, position: FlexibleConnectedPositionStrategy) {
+    if (menu.setPositionClasses) {
       position.positionChanges.subscribe((change) => {
         const posX: SbbMenuPositionX =
           change.connectionPair.overlayX === 'start' ? 'after' : 'before';
@@ -549,9 +538,9 @@ export class SbbMenuTrigger
         // `positionChanges` fires outside of the `ngZone` and `setPositionClasses` might be
         // updating something in the view, so we need to bring it back in.
         if (this._ngZone) {
-          this._ngZone.run(() => this.menu.setPositionClasses!(posX, posY));
+          this._ngZone.run(() => menu.setPositionClasses!(posX, posY));
         } else {
-          this.menu.setPositionClasses!(posX, posY);
+          menu.setPositionClasses!(posX, posY);
         }
       });
     }
@@ -562,15 +551,15 @@ export class SbbMenuTrigger
    * so the overlay connects with the trigger correctly.
    * @param positionStrategy Strategy whose position to update.
    */
-  private _setPosition(positionStrategy: FlexibleConnectedPositionStrategy) {
+  private _setPosition(menu: SbbMenuPanel, positionStrategy: FlexibleConnectedPositionStrategy) {
     let [originX, originFallbackX]: HorizontalConnectionPos[] =
-      this.menu.xPosition === 'before' || this._inheritedTriggerContext?.xPosition === 'before'
+      menu.xPosition === 'before' || this._inheritedTriggerContext?.xPosition === 'before'
         ? ['end', 'start']
         : ['start', 'end'];
 
     const [overlayY, overlayFallbackY]: VerticalConnectionPos[] =
-      (!this.menu.yPosition && !this._inheritedTriggerContext?.yPosition) ||
-      this.menu.yPosition === 'below' ||
+      (!menu.yPosition && !this._inheritedTriggerContext?.yPosition) ||
+      menu.yPosition === 'below' ||
       this._inheritedTriggerContext?.yPosition === 'below'
         ? ['top', 'bottom']
         : ['bottom', 'top'];
@@ -584,10 +573,10 @@ export class SbbMenuTrigger
     if (this.triggersSubmenu()) {
       // When the menu is a sub-menu, it should always align itself
       // to the edges of the trigger, instead of overlapping it.
-      overlayFallbackX = originX = this.menu.xPosition === 'before' ? 'start' : 'end';
+      overlayFallbackX = originX = menu.xPosition === 'before' ? 'start' : 'end';
       originFallbackX = overlayX = originX === 'end' ? 'start' : 'end';
       offsetX = -SUBMENU_PANEL_LEFT_OVERLAP;
-    } else if (!this.menu.overlapTrigger) {
+    } else if (!menu.overlapTrigger) {
       originY = overlayY === 'top' ? 'bottom' : 'top';
       originFallbackY = overlayFallbackY === 'top' ? 'bottom' : 'top';
     }
@@ -730,12 +719,12 @@ export class SbbMenuTrigger
   }
 
   /** Gets the portal that should be attached to the overlay. */
-  private _getPortal(): TemplatePortal {
+  private _getPortal(menu: SbbMenuPanel): TemplatePortal {
     // Note that we can avoid this check by keeping the portal on the menu panel.
     // While it would be cleaner, we'd have to introduce another required method on
     // `SbbMenuPanel`, making it harder to consume.
-    if (!this._portal || this._portal.templateRef !== this.menu.templateRef) {
-      this._portal = new TemplatePortal(this.menu.templateRef, this._viewContainerRef);
+    if (!this._portal || this._portal.templateRef !== menu.templateRef) {
+      this._portal = new TemplatePortal(menu.templateRef, this._viewContainerRef);
     }
 
     return this._portal;

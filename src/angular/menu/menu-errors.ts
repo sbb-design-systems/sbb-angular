@@ -1,16 +1,4 @@
 /**
- * Throws an exception for the case when menu trigger doesn't have a valid sbb-menu instance
- * @docs-private
- */
-export function throwSbbMenuMissingError() {
-  throw Error(`sbbMenuTriggerFor: must pass in an sbb-menu instance.
-
-    Example:
-      <sbb-menu #menu="sbbMenu"></sbb-menu>
-      <button [sbbMenuTriggerFor]="menu" type="button"></button>`);
-}
-
-/**
  * Throws an exception for the case when menu's x-position value isn't valid.
  * In other words, it doesn't match 'before' or 'after'.
  * @docs-private
