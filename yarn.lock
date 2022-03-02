@@ -3563,10 +3563,10 @@
   resolved "https://registry.yarnpkg.com/@socket.io/base64-arraybuffer/-/base64-arraybuffer-1.0.2.tgz#568d9beae00b0d835f4f8c53fd55714986492e61"
   integrity sha512-dOlCBKnDw4iShaIsH/bxujKTM18+2TOAsYz+KSc11Am38H4q5Xw8Bbz97ZYdrVNM+um3p7w86Bvvmcn9q+5+eQ==
 
-"@stackblitz/sdk@1.5.6":
-  version "1.5.6"
-  resolved "https://registry.yarnpkg.com/@stackblitz/sdk/-/sdk-1.5.6.tgz#fcbaf3ac382f6fc9ff7aa3e535f3821c78879542"
-  integrity sha512-OJRkMPfPkgnqXm8H7JytiWdr0QYmdEFi4gfE0K+pbbPBO1dc97SP4S+kxrwrVfiV+tNaxJnSNHFj+H2XnUvcjw==
+"@stackblitz/sdk@1.6.0":
+  version "1.6.0"
+  resolved "https://registry.yarnpkg.com/@stackblitz/sdk/-/sdk-1.6.0.tgz#b53ff39058943b7db5a1aeb640498fac8b1cbe57"
+  integrity sha512-PPB9m1zywojv6sOGSiHv+tvnb4Zc00Jce9yjUG0BzTymUdFf9AP+gKJRlc0iq9vbEEEXfYv1bgKa5KTn4gAzbQ==
 
 "@stencil/core@2.6.0":
   version "2.6.0"
