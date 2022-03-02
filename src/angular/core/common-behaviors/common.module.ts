@@ -35,18 +35,6 @@ export interface GranularSanityChecks {
 }
 
 /**
- * If an app doesn't use localize, on production environment there is no $localize function.
- * In order to provide our translations we patch the $localize object with the original function.
- */
-function patch$localize() {
-  // In production mode and if localize is off, $localize is not a function
-  if (typeof _global.$localize !== 'function') {
-    // Merge $localize function with provided $localize object
-    _global.$localize = Object.assign(_$localize, _global.$localize);
-  }
-}
-
-/**
  * Module that captures anything that should be loaded and/or run for *all* sbb-angular
  * components. This includes variant, etc.
  *
@@ -72,6 +60,8 @@ export class SbbCommonModule {
     // in SbbCommonModule.
     highContrastModeDetector._applyBodyHighContrastModeCssClasses();
 
+    patch$localize();
+
     if (!this._hasDoneGlobalChecks) {
       this._hasDoneGlobalChecks = true;
 
@@ -89,8 +79,6 @@ export class SbbCommonModule {
         }
       }
     }
-
-    patch$localize();
   }
 
   /** Gets whether a specific sanity check is enabled. */
@@ -149,5 +137,17 @@ function _checkCdkVersionMatch(): void {
       `The @sbb-esta/angular version (${VERSION.full}) does not match the Angular CDK major version` +
         ` (${CDK_VERSION.full}).\nPlease ensure the major versions of these two packages match.`
     );
+  }
+}
+
+/**
+ * If an app doesn't use localize, on production environment there is no $localize function.
+ * In order to provide our translations we patch the $localize object with the original function.
+ */
+function patch$localize() {
+  // In production mode and if localize is off, $localize is not a function
+  if (typeof _global.$localize !== 'function') {
+    // Merge $localize function with provided $localize object
+    _global.$localize = Object.assign(_$localize, _global.$localize);
   }
 }
