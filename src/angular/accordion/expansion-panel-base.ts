@@ -5,7 +5,7 @@ import { InjectionToken } from '@angular/core';
  * Base interface for a `SbbExpansionPanel`.
  * @docs-private
  */
-export interface SBBExpansionPanelBase extends CdkAccordionItem {
+export interface SbbExpansionPanelBase extends CdkAccordionItem {
   /** Whether the toggle indicator should be hidden. */
   hideToggle: boolean;
 }
