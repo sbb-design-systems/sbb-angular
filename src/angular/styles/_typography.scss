@@ -2499,7 +2499,7 @@ $menuItemPaddingTopBottom: 4;
     }
   }
 
-  .sbb-label {
+  .sbb-label:not(.sbb-autocomplete-hint) {
     padding-top: calc(#{pxToRem(22)} * var(--sbb-scaling-factor));
 
     :where(html.sbb-lean) & {
@@ -2515,7 +2515,7 @@ $menuItemPaddingTopBottom: 4;
       margin-top: pxToRem(4);
     }
 
-    .sbb-label {
+    .sbb-label:not(.sbb-autocomplete-hint) {
       padding-top: calc(#{pxToRem(16)} * var(--sbb-scaling-factor));
 
       :where(html.sbb-lean) & {
