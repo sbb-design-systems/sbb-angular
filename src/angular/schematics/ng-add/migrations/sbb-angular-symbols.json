@@ -387,7 +387,6 @@
   "SbbUsermenuItem": "menu",
   "throwSbbMenuInvalidPositionX": "menu",
   "throwSbbMenuInvalidPositionY": "menu",
-  "throwSbbMenuMissingError": "menu",
   "throwSbbMenuRecursiveError": "menu",
   "NotificationType": "notification",
   "SbbJumpMark": "notification",

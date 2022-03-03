@@ -1,8 +1,6 @@
 import { Directive, Inject, Optional, TemplateRef } from '@angular/core';
-import {
-  SbbExpansionPanelBase,
-  SBB_EXPANSION_PANEL,
-} from '@sbb-esta/angular/accordion/expansion-panel-base';
+
+import { SbbExpansionPanelBase, SBB_EXPANSION_PANEL } from './expansion-panel-base';
 
 /**
  * Expansion panel content that will be rendered lazily
