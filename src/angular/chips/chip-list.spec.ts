@@ -147,6 +147,13 @@ describe('SbbChipList', () => {
           false,
         ]);
       });
+
+      it('should be able to set a custom role', () => {
+        fixture.componentInstance.chipList.role = 'grid';
+        fixture.detectChanges();
+
+        expect(chipListNativeElement.getAttribute('role')).toBe('grid');
+      });
     });
 
     describe('focus behaviors', () => {
@@ -1021,6 +1028,7 @@ class StandardChipList {
   name: string = 'Test';
   tabIndex: number = 0;
   chips = [0, 1, 2, 3, 4];
+  @ViewChild(SbbChipList) chipList: SbbChipList;
 }
 
 @Component({

@@ -86,7 +86,7 @@ export class SbbChipTrailingIcon {}
   host: {
     class: 'sbb-chip sbb-icon-scaled sbb-button-reset-frameless',
     '[attr.tabindex]': 'disabled ? null : tabIndex',
-    role: 'option',
+    '[attr.role]': 'role',
     '[class.sbb-chip-with-trailing-icon]': 'trailingIcon || removable',
     '[class.sbb-chip-disabled]': 'disabled',
     '[attr.disabled]': 'disabled || null',
@@ -116,6 +116,9 @@ export class SbbChip
 
   /** The chip's remove toggler. */
   @ContentChild(SBB_CHIP_REMOVE) removeIcon: SbbChipRemove;
+
+  /** ARIA role that should be applied to the chip. */
+  @Input() role: string = 'option';
 
   /** The value of the chip. Defaults to the content inside `<sbb-chip>` tags. */
   @Input()
