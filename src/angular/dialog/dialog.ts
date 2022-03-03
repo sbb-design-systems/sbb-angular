@@ -273,7 +273,12 @@ export abstract class _SbbDialogBase<
     } else {
       const injector = this._createInjector<T>(config, dialogRef, dialogContainer);
       const contentRef = dialogContainer.attachComponentPortal<T>(
-        new ComponentPortal(componentOrTemplateRef, config.viewContainerRef, injector)
+        new ComponentPortal(
+          componentOrTemplateRef,
+          config.viewContainerRef,
+          injector,
+          config.componentFactoryResolver
+        )
       );
       dialogRef.componentInstance = contentRef.instance;
     }
