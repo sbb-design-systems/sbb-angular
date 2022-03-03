@@ -2,6 +2,34 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [13.8.0](https://github.com/sbb-design-systems/sbb-angular/compare/13.7.0...13.8.0) (2022-03-03)
+
+
+### Features
+
+* **angular/autocomplete:** add the ability to auto-select the active option while navigating ([#1222](https://github.com/sbb-design-systems/sbb-angular/issues/1222)) ([67985d0](https://github.com/sbb-design-systems/sbb-angular/commit/67985d001c7ce1a29694d6c15ab6596896989781))
+* **angular/icon:** allow multiple classes in setDefaultFontSetClass ([#1227](https://github.com/sbb-design-systems/sbb-angular/issues/1227)) ([c295170](https://github.com/sbb-design-systems/sbb-angular/commit/c295170a9af7c9fd5ced8a51e9689de2717293cd))
+* **angular/menu:** allow for menu to be conditionally removed from trigger ([#1232](https://github.com/sbb-design-systems/sbb-angular/issues/1232)) ([020dd81](https://github.com/sbb-design-systems/sbb-angular/commit/020dd81b2fd7f9dd23280cbcc77e91246ca6b75f))
+* **angular/schematics:** add option not to include animations module in ng-add ([#1226](https://github.com/sbb-design-systems/sbb-angular/issues/1226)) ([1796aab](https://github.com/sbb-design-systems/sbb-angular/commit/1796aab89ad7ed96a582602ef2a14b17ec7b4a09))
+* **angular/schematics:** set lean test configuration on ng-update migrations ([#1243](https://github.com/sbb-design-systems/sbb-angular/issues/1243)) ([23f535b](https://github.com/sbb-design-systems/sbb-angular/commit/23f535bfa1f1e6306091f6b36156db3b18a64696))
+* **showcase:** avoid 404s by only loading available example files ([#1213](https://github.com/sbb-design-systems/sbb-angular/issues/1213)) ([06e81ce](https://github.com/sbb-design-systems/sbb-angular/commit/06e81cecc24eec81fd1f3b4f8228030d4f22b38e))
+
+
+### Bug Fixes
+
+* **angular/accordion:** fix import path of expansion panel base ([#1244](https://github.com/sbb-design-systems/sbb-angular/issues/1244)) ([c1048e3](https://github.com/sbb-design-systems/sbb-angular/commit/c1048e310434857e3ad0c12739476617c2fc5edc))
+* **angular/accordion:** picking up lazy content from child component ([#1235](https://github.com/sbb-design-systems/sbb-angular/issues/1235)) ([45ae537](https://github.com/sbb-design-systems/sbb-angular/commit/45ae5370e846eae38be991fa4c6060e599c68472))
+* **angular/autocomplete:** reopen panel on input click ([#1221](https://github.com/sbb-design-systems/sbb-angular/issues/1221)) ([acdc9fa](https://github.com/sbb-design-systems/sbb-angular/commit/acdc9faf53aca499ad000a3bc70fc86d6b4e5bdc))
+* **angular/chips:** allow for role to be overwritten on chip list and chip ([#1247](https://github.com/sbb-design-systems/sbb-angular/issues/1247)) ([265536f](https://github.com/sbb-design-systems/sbb-angular/commit/265536fde72985e6f1c4a8e1a263748729e6b19c))
+* **angular/datepicker:** use aria-live over cdkAriaLive on period button ([#1236](https://github.com/sbb-design-systems/sbb-angular/issues/1236)) ([e1dd601](https://github.com/sbb-design-systems/sbb-angular/commit/e1dd601b684df21009f91ab6799057aaf6dd5808))
+* **angular/dialog:** use passed in ComponentFactoryResolver to resolve dialog content ([#1237](https://github.com/sbb-design-systems/sbb-angular/issues/1237)) ([0c58ea8](https://github.com/sbb-design-systems/sbb-angular/commit/0c58ea848d05cf9edff8ccef0190921cc579ed78))
+* **angular/i18n:** fix translations not used on production ([#1228](https://github.com/sbb-design-systems/sbb-angular/issues/1228)) ([da3e380](https://github.com/sbb-design-systems/sbb-angular/commit/da3e38065c8871f1d9c374507b4fce95e5f6f44d))
+* **angular/menu:** focus lost if active item is removed ([#1234](https://github.com/sbb-design-systems/sbb-angular/issues/1234)) ([c83f5ea](https://github.com/sbb-design-systems/sbb-angular/commit/c83f5ea6af082eba2715c77add31c24b100ed1d1))
+* **angular/menu:** use narrower value for aria-haspopup on trigger element ([#1233](https://github.com/sbb-design-systems/sbb-angular/issues/1233)) ([f668c7f](https://github.com/sbb-design-systems/sbb-angular/commit/f668c7f42eeff70b291471b7bc3f66cf60eea443))
+* **angular/table:** remove role from sort header when disabled ([#1218](https://github.com/sbb-design-systems/sbb-angular/issues/1218)) ([6ab669e](https://github.com/sbb-design-systems/sbb-angular/commit/6ab669e29ace5dffae2f245f87698484b958e745))
+* **angular/tooltip:** don't hide when pointer moves to tooltip ([#1225](https://github.com/sbb-design-systems/sbb-angular/issues/1225)) ([6c9c5c9](https://github.com/sbb-design-systems/sbb-angular/commit/6c9c5c98778b50d19512aa18931969ff932ec10d))
+* **deps:** update dependency @stackblitz/sdk to v1.6.0 ([#1241](https://github.com/sbb-design-systems/sbb-angular/issues/1241)) ([015fb5c](https://github.com/sbb-design-systems/sbb-angular/commit/015fb5c293845963f577db5489cca8e39987be72))
+
 ## [13.7.0](https://github.com/sbb-design-systems/sbb-angular/compare/13.6.0...13.7.0) (2022-02-24)
 
 
