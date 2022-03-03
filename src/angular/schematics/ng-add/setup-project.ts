@@ -30,8 +30,8 @@ export const BROWSER_ANIMATIONS_MODULE_NAME = 'BrowserAnimationsModule';
 /** Name of the module that switches Angular animations to a noop implementation. */
 export const NOOP_ANIMATIONS_MODULE_NAME = 'NoopAnimationsModule';
 
-const TEST_TS_LEAN_CONFIG_COMMAND = `document.documentElement.classList.add('sbb-lean');`;
-const TEST_TS_LEAN_CONFIG_COMMENT = `// Configures your test environment to use lean design variant by setting sbb-lean class on html tag.`;
+export const TEST_TS_LEAN_CONFIG_COMMAND = `document.documentElement.classList.add('sbb-lean');`;
+export const TEST_TS_LEAN_CONFIG_COMMENT = `// Configures your test environment to use lean design variant by setting sbb-lean class on html tag.`;
 export const TEST_TS_LEAN_CONFIG = `${TEST_TS_LEAN_CONFIG_COMMENT}\n${TEST_TS_LEAN_CONFIG_COMMAND}`;
 
 // noinspection JSUnusedGlobalSymbols

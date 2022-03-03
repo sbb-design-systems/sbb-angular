@@ -15,7 +15,7 @@ import {
 } from '../typescript/module-specifiers';
 
 /**
- * Migration that walks through every identifier that is part of Angular Material or thr CDK
+ * Migration that walks through every identifier that is part of SBB Angular or thr CDK
  * and replaces the outdated name with the new one if specified in the upgrade data.
  */
 // TODO: rework this rule to identify symbols using the import identifier resolver. This
@@ -50,7 +50,7 @@ export class ClassNamesMigration extends Migration<UpgradeData> {
       return;
     }
 
-    // For namespace imports that are referring to Angular Material or the CDK, we store the
+    // For namespace imports that are referring to SBB Angular or the CDK, we store the
     // namespace name in order to be able to safely find identifiers that don't belong to the
     // developer's application.
     if (isNamespaceImportNode(identifier) && isSbbAngularImportDeclaration(identifier)) {
@@ -59,13 +59,13 @@ export class ClassNamesMigration extends Migration<UpgradeData> {
       return this._createFailureWithReplacement(identifier);
     }
 
-    // For export declarations that are referring to Angular Material or the CDK, the identifier
+    // For export declarations that are referring to SBB Angular or the CDK, the identifier
     // can be immediately updated to the new name.
     if (isExportSpecifierNode(identifier) && isSbbAngularExportDeclaration(identifier)) {
       return this._createFailureWithReplacement(identifier);
     }
 
-    // For import declarations that are referring to Angular Material or the CDK, the name of
+    // For import declarations that are referring to SBB Angular or the CDK, the name of
     // the import identifiers. This allows us to identify identifiers that belong to Material and
     // the CDK, and we won't accidentally touch a developer's identifier.
     if (isImportSpecifierNode(identifier) && isSbbAngularImportDeclaration(identifier)) {

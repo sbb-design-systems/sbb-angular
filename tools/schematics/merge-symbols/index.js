@@ -50,7 +50,10 @@ __export(merge_symbols_exports, {
 });
 var import_core = require("@angular-devkit/core");
 var import_typescript = __toESM(require("@schematics/angular/third_party/github.com/Microsoft/TypeScript/lib/typescript"));
-var IGNORED_FOLDERS = ["/src/angular/schematics/ng-add/test-cases/"];
+var IGNORED_FOLDERS = [
+  "/src/angular/schematics/ng-add/test-cases/",
+  "/src/angular/schematics/ng-update/test-cases/"
+];
 function mergeSymbols() {
   return (tree) => {
     let symbols = {

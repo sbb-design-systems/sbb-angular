@@ -97,6 +97,25 @@ import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 export class TrainChooChooAppModule {}
 ```
 
+#### Step 1.4: Configure design variant
+
+For standard variant, nothing has to be configured.
+
+To set up the lean design variant, please add the css class `sbb-lean` to your html tag in `index.html`.
+
+```html
+<html class="sbb-lean">
+  ...
+</html>
+```
+
+In order to also use the correct setup in unit tests, add the following lines to your `test.ts` file:
+
+```ts
+// Configures your test environment to use lean design variant by setting sbb-lean class on html tag.
+document.documentElement.classList.add('sbb-lean');
+```
+
 ## Step 2: Import the component modules
 
 Import the NgModule for each component you want to use:
