@@ -141,9 +141,18 @@ export class SbbChipList
   _onChange: (value: any) => void = () => {};
 
   /** The ARIA role applied to the chip list. */
+  @Input()
   get role(): string | null {
+    if (this._explicitRole) {
+      return this._explicitRole;
+    }
+
     return this.empty ? null : 'listbox';
   }
+  set role(role: string | null) {
+    this._explicitRole = role;
+  }
+  private _explicitRole?: string | null;
 
   /**
    * Implemented as part of SbbFormFieldControl.

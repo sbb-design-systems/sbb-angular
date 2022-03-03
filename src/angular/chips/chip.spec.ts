@@ -62,6 +62,28 @@ describe('SbbChip', () => {
 
       expect(chip.getAttribute('tabindex')).toBe('15');
     });
+
+    it('should have the correct role', () => {
+      fixture = TestBed.createComponent(BasicChip);
+      fixture.detectChanges();
+      chipDebugElement = fixture.debugElement.query(By.directive(SbbChip))!;
+      chipNativeElement = chipDebugElement.nativeElement;
+
+      expect(chipNativeElement.getAttribute('role')).toBe('option');
+    });
+
+    it('should be able to set a custom role', () => {
+      fixture = TestBed.createComponent(BasicChip);
+      fixture.detectChanges();
+      chipDebugElement = fixture.debugElement.query(By.directive(SbbChip))!;
+      chipInstance = chipDebugElement.injector.get<SbbChip>(SbbChip);
+      chipNativeElement = chipDebugElement.nativeElement;
+
+      chipInstance.role = 'gridcell';
+      fixture.detectChanges();
+
+      expect(chipNativeElement.getAttribute('role')).toBe('gridcell');
+    });
   });
 
   describe('SbbChip', () => {
