@@ -142,13 +142,13 @@ jobs:
       run: mv $(npm pack ./dist/releases/showcase | tail -n 1) sbb-esta-angular-showcase.tgz
     - name: "Artifact: Upload showcase merge artifact for pull request"
       if: github.event_name == 'pull_request'
-      uses: actions/upload-artifact@v2
+      uses: actions/upload-artifact@v3
       with:
         name: showcase-artifact-${{ github.event.number }}
         path: sbb-esta-angular-showcase.tgz
     - name: "Artifact: Upload showcase merge artifact for master branch"
       if: github.ref == 'refs/heads/master'
-      uses: actions/upload-artifact@v2
+      uses: actions/upload-artifact@v3
       with:
         name: showcase-artifact-master
         path: sbb-esta-angular-showcase.tgz
