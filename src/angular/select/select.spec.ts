@@ -35,6 +35,7 @@ import {
 } from '@angular/core/testing';
 import {
   ControlValueAccessor,
+  FormBuilder,
   FormControl,
   FormGroup,
   FormGroupDirective,
@@ -59,14 +60,13 @@ import { SbbIconTestingModule } from '@sbb-esta/angular/icon/testing';
 import { Subject, Subscription } from 'rxjs';
 import { map } from 'rxjs/operators';
 
-import { SbbSelectModule } from '../select.module';
-
 import { SbbSelect, SbbSelectConfig, SBB_SELECT_CONFIG } from './select';
 import {
   getSbbSelectDynamicMultipleError,
   getSbbSelectNonArrayValueError,
   getSbbSelectNonFunctionValueError,
 } from './select-errors';
+import { SbbSelectModule } from './select.module';
 
 @Component({
   selector: 'sbb-basic-select',
@@ -838,6 +838,32 @@ class SelectInNgContainer {}
 
 @Component({
   template: `
+    <form [formGroup]="form">
+      <sbb-form-field>
+        <sbb-select formControlName="control">
+          <sbb-option value="1">One</sbb-option>
+        </sbb-select>
+      </sbb-form-field>
+    </form>
+  `,
+})
+class SelectInsideDynamicFormGroup {
+  @ViewChild(SbbSelect) select: SbbSelect;
+  form: FormGroup;
+
+  constructor(private _formBuilder: FormBuilder) {
+    this.assignGroup(false);
+  }
+
+  assignGroup(isDisabled: boolean) {
+    this.form = this._formBuilder.group({
+      control: { value: '', disabled: isDisabled },
+    });
+  }
+}
+
+@Component({
+  template: `
     <sbb-form-field>
       <sbb-select placeholder="Product Area" readonly>
         <sbb-option value="a">A</sbb-option>
@@ -904,6 +930,7 @@ describe('SbbSelect', () => {
           SelectWithGroupsAndNgContainer,
           SelectWithFormFieldLabel,
           SelectWithChangeEvent,
+          SelectInsideDynamicFormGroup,
         ]);
       })
     );
@@ -2963,6 +2990,23 @@ describe('SbbSelect', () => {
           .withContext(`Expected select panelOpen property to become true.`)
           .toBe(true);
       }));
+
+      it(
+        'should keep the disabled state in sync if the form group is swapped and ' +
+          'disabled at the same time',
+        fakeAsync(() => {
+          const fixture = TestBed.createComponent(SelectInsideDynamicFormGroup);
+          fixture.detectChanges();
+          const instance = fixture.componentInstance;
+
+          expect(instance.select.disabled).toBe(false);
+
+          instance.assignGroup(true);
+          fixture.detectChanges();
+
+          expect(instance.select.disabled).toBe(true);
+        })
+      );
     });
 
     describe('keyboard scrolling', () => {
