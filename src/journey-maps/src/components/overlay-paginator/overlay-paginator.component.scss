@@ -1,0 +1,36 @@
+@use "./../../style/colors" as c;
+
+$iconSize: 24px;
+
+.rokas-paginator {
+  display: flex;
+  justify-content: center;
+  height: $iconSize;
+
+  &-item {
+    cursor: pointer;
+    background-color: c.$black;
+    width: $iconSize;
+
+    &.var-next {
+      mask: url('./../../assets/chevron-right-small.svg');
+    }
+
+    &.var-previous {
+      mask: url('./../../assets/chevron-left-small.svg');
+    }
+
+    &.var-index {
+      mask: url('inactive.svg');
+
+      &.active {
+        mask: url('active.svg');
+      }
+    }
+
+    &.disabled {
+      cursor: not-allowed;
+      background-color: c.$lightgray;
+    }
+  }
+}

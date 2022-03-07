@@ -1,0 +1,25 @@
+<rokas-popup
+  [rendered]="overlayVisible"
+  [map]="map"
+  [template]="overlayTemplate"
+  [templateContext]="overlayFeatures"
+  [withPaginator]="true"
+  [position]="overlayPosition"
+  (closeClicked)="overlayVisible=false"
+  (mouseEvent)="onOverlayMouseEvent($event)"
+  *ngIf="overlayIsPopup"
+>
+
+</rokas-popup>
+
+<rokas-teaser
+  [rendered]="overlayVisible"
+  [template]="overlayTemplate"
+  [templateContext]="overlayFeatures"
+  [withPaginator]="true"
+  (closeClicked)="overlayVisible=false"
+  (mouseEvent)="onOverlayMouseEvent($event)"
+  *ngIf="!overlayIsPopup"
+>
+
+</rokas-teaser>

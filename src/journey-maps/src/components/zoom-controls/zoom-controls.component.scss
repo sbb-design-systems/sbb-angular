@@ -1,0 +1,50 @@
+@use "./../../style/functions" as f;
+@use "./../../style/colors" as c;
+@use 'node_modules/@sbb-esta/angular/styles' as esta;
+
+@include f.map-controls-shared;
+@include f.map-control-icon;
+
+.var-plus {
+  position: relative;
+  border-radius: 24px 24px 12px 12px;
+
+  @include esta.mq($from: tabletPortrait) {
+    @at-root .map-control-container.small-buttons #{&} {
+      border-radius: 16px 16px 8px 8px;
+    }
+  }
+
+  @include f.map-control-icon-button;
+
+  // Using .map-control-button instead of button does not work when having it twice in this same file... Why??
+  button {
+    mask: url("./../../assets/plus-small.svg") center no-repeat;
+  }
+
+  &::after {
+    content: " ";
+    display: block;
+    position: absolute;
+    height: 1px;
+    background: c.$lightgray;
+    width: 100%;
+    left: 0;
+    bottom: -1px;
+  }
+}
+
+.var-minus {
+  border-radius: 12px 12px 24px 24px;
+  @include f.map-control-icon-button;
+
+  button {
+    mask: url("./../../assets/minus-small.svg") center no-repeat;
+  }
+
+  @include esta.mq($from: tabletPortrait) {
+    @at-root .map-control-container.small-buttons #{&} {
+      border-radius: 8px 8px 16px 16px;
+    }
+  }
+}

@@ -1,0 +1,10 @@
+<div class="rokas-paginator ">
+  <div (click)="onPreviousClicked()" class="rokas-paginator-item var-previous" [class.disabled]="!hasPrevious()"></div>
+
+  <!--  CHECKME ses: Limit number of items?-->
+  <ng-container *ngFor="let _ of [].constructor(size); let i = index">
+    <div (click)="onIndexClicked(i)" class="rokas-paginator-item var-index" [class.active]="i === index"></div>
+  </ng-container>
+
+  <div (click)="onNextClicked()" class="rokas-paginator-item var-next" [class.disabled]="!hasNext()"></div>
+</div>
