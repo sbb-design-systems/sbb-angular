@@ -166,7 +166,7 @@ export class SbbButton
     // Note that we ignore the user-specified tabindex when it's disabled for
     // consistency with the `sbb-button` applied on native buttons where even
     // though they have an index, they're not tabbable.
-    '[attr.tabindex]': 'disabled ? -1 : (tabIndex || 0)',
+    '[attr.tabindex]': 'disabled ? -1 : tabIndex',
     '[attr.disabled]': 'disabled || null',
     '[attr.aria-disabled]': 'disabled.toString()',
     '[class._sbb-animation-noopable]': '_animationMode === "NoopAnimations"',
