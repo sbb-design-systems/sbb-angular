@@ -52,6 +52,7 @@ import {
   ViewEncapsulation,
 } from '@angular/core';
 import {
+  AbstractControl,
   ControlValueAccessor,
   FormGroupDirective,
   NgControl,
@@ -86,8 +87,7 @@ import {
   takeUntil,
 } from 'rxjs/operators';
 
-import { sbbSelectAnimations } from '../select-animations';
-
+import { sbbSelectAnimations } from './select-animations';
 import {
   getSbbSelectDynamicMultipleError,
   getSbbSelectNonArrayValueError,
@@ -280,6 +280,12 @@ export class SbbSelect
 
   /** Current `aria-labelledby` value for the select trigger. */
   private _triggerAriaLabelledBy: string | null = null;
+
+  /**
+   * Keeps track of the previous form control assigned to the select.
+   * Used to detect if it has changed.
+   */
+  private _previousControl: AbstractControl | null | undefined;
 
   /** Emits whenever the component is destroyed. */
   private readonly _destroy = new Subject<void>();
@@ -569,6 +575,7 @@ export class SbbSelect
 
   ngDoCheck() {
     const newAriaLabelledby = this._getTriggerAriaLabelledby();
+    const ngControl = this.ngControl;
 
     // We have to manage setting the `aria-labelledby` ourselves, because part of its value
     // is computed as a result of a content query which can cause this binding to trigger a
@@ -584,6 +591,19 @@ export class SbbSelect
     }
 
     if (this.ngControl) {
+      // The disabled state might go out of sync if the form group is swapped out. See #17860.
+      if (this._previousControl !== ngControl.control) {
+        if (
+          this._previousControl !== undefined &&
+          ngControl.disabled !== null &&
+          ngControl.disabled !== this.disabled
+        ) {
+          this.disabled = ngControl.disabled;
+        }
+
+        this._previousControl = ngControl.control;
+      }
+
       this.updateErrorState();
     }
   }
