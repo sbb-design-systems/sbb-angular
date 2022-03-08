@@ -1,13 +1,13 @@
-import {Position} from 'geojson';
-import {MarkerCategory} from './marker-category.enum';
-import {MarkerPriority} from './marker-priority.enum';
-import {MarkerColor} from './marker-color.enum';
+import { Position } from 'geojson';
+
+import { MarkerCategory } from './marker-category.enum';
+import { MarkerColor } from './marker-color.enum';
+import { MarkerPriority } from './marker-priority.enum';
 
 /**
  * Defines a marker (point) that will be displayed on the map.
  */
 export interface Marker {
-
   /** ID identifying the marker */
   id: string;
 

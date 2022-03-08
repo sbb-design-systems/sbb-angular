@@ -1,26 +1,31 @@
-import {Injectable} from '@angular/core';
-import {Geometry, Point} from 'geojson';
-import {FlyToOptions, LngLat, LngLatLike, Map as MaplibreMap} from 'maplibre-gl';
+import { Injectable } from '@angular/core';
+import { Geometry, Point } from 'geojson';
+import {
+  FlyToOptions,
+  LngLat,
+  LngLatBoundsLike,
+  LngLatLike,
+  Map as MaplibreMap,
+} from 'maplibre-gl';
 
 export const EMPTY_FEATURE_COLLECTION: GeoJSON.FeatureCollection = {
   type: 'FeatureCollection',
-  features: []
+  features: [],
 };
 
-@Injectable({providedIn: 'root'})
+@Injectable({ providedIn: 'root' })
 export class MapService {
-
   moveMap(
-    map: maplibregl.Map,
-    boundingBox?: maplibregl.LngLatBoundsLike,
+    map: MaplibreMap,
+    boundingBox?: LngLatBoundsLike,
     boundingBoxPadding?: number,
     zoomLevel?: number,
-    center?: maplibregl.LngLatLike
+    center?: LngLatLike
   ): void {
     if (zoomLevel || center) {
-      this.centerMap(map, center, zoomLevel);
+      this._centerMap(map, center, zoomLevel);
     } else if (boundingBox) {
-      map.fitBounds(boundingBox, {padding: boundingBoxPadding});
+      map.fitBounds(boundingBox, { padding: boundingBoxPadding });
     }
   }
 
@@ -28,7 +33,8 @@ export class MapService {
    * Emulate moving the map with the keyboard's arrow keys
    */
   pan(map: MaplibreMap, dir: Direction): void {
-    const {NORTH, EAST, SOUTH, WEST} = Direction;
+    // tslint:disable-next-line:naming-convention
+    const { NORTH, EAST, SOUTH, WEST } = Direction;
     const xDir = dir === WEST ? 1 : dir === EAST ? -1 : 0;
     const yDir = dir === NORTH ? 1 : dir === SOUTH ? -1 : 0;
 
@@ -36,10 +42,7 @@ export class MapService {
     const panStep = 100; // pixels
     const duration = 300; // pixels
 
-    map.panBy(
-      [-xDir * panStep, -yDir * panStep],
-      {duration}
-    );
+    map.panBy([-xDir * panStep, -yDir * panStep], { duration });
   }
 
   convertToLngLatLike(geometry: Geometry): LngLatLike {
@@ -47,7 +50,9 @@ export class MapService {
   }
 
   addMissingImage(map: MaplibreMap, name: string, icon: string): void {
-    map.loadImage(icon, (error, image) => this.imageLoadedCallback(map, name, error, image));
+    map.loadImage(icon, (error: any, image: any) =>
+      this._imageLoadedCallback(map, name, error, image)
+    );
   }
 
   verifySources(map: MaplibreMap, sourceIds: string[]): void {
@@ -59,15 +64,19 @@ export class MapService {
     }
   }
 
-  private imageLoadedCallback(map: MaplibreMap, name: string, error: any, image: any): void {
+  private _imageLoadedCallback(map: MaplibreMap, name: string, error: any, image: any): void {
     if (error) {
       console.error(error);
     } else {
-      map.addImage(name, image, {pixelRatio: 2});
+      map.addImage(name, image, { pixelRatio: 2 });
     }
   }
 
-  private centerMap(map: MaplibreMap, center: LngLatLike, zoomLevel: number): void {
+  private _centerMap(
+    map: MaplibreMap,
+    center: LngLatLike | undefined,
+    zoomLevel: number | undefined
+  ): void {
     const options: FlyToOptions = {};
     if (zoomLevel && map.getZoom() !== zoomLevel) {
       options.zoom = zoomLevel;
@@ -90,5 +99,5 @@ export enum Direction {
   NORTH,
   EAST,
   SOUTH,
-  WEST
+  WEST,
 }

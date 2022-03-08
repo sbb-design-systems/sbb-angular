@@ -1,16 +1,15 @@
-import {ChangeDetectionStrategy, Component, EventEmitter, Input, Output} from '@angular/core';
+import { ChangeDetectionStrategy, Component, EventEmitter, Input, Output } from '@angular/core';
 
 @Component({
   selector: 'rokas-overlay-paginator',
   templateUrl: './overlay-paginator.component.html',
-  styleUrls: ['./overlay-paginator.component.scss'],
-  changeDetection: ChangeDetectionStrategy.OnPush
+  styleUrls: ['./overlay-paginator.component.css'],
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class OverlayPaginatorComponent {
-
   @Input() index: number; // Starts with 0
   @Input() size: number;
-  @Output() indexClicked = new EventEmitter<number>();
+  @Output() indexClicked: EventEmitter<number> = new EventEmitter<number>();
 
   hasPrevious(): boolean {
     return this.index > 0;

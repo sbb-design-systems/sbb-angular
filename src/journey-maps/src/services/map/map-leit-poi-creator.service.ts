@@ -5,31 +5,32 @@ import {
   ComponentRef,
   EmbeddedViewRef,
   Injectable,
-  Injector
+  Injector,
 } from '@angular/core';
-import {Map as MaplibreMap, Popup} from 'maplibre-gl';
-import {LeitPoiComponent} from '../../components/leit-poi/leit-poi.component';
-import {LeitPoiFeature} from '../../components/leit-poi/model/leit-poi-feature';
-import {LeitPoiPlacement} from '../../components/leit-poi/model/leit-poi-placement';
-import {MapLeitPoi} from '../../model/map-leit-poi';
+import { Map as MaplibreMap, Popup } from 'maplibre-gl';
+
+import { LeitPoiComponent } from '../../components/leit-poi/leit-poi.component';
+import { LeitPoiFeature } from '../../components/leit-poi/model/leit-poi-feature';
+import { LeitPoiPlacement } from '../../components/leit-poi/model/leit-poi-placement';
+import { MapLeitPoi } from '../../model/map-leit-poi';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class MapLeitPoiCreatorService {
-  private static readonly POPUP_OPTIONS = {closeOnClick: false, closeButton: false};
+  private static readonly POPUP_OPTIONS = { closeOnClick: false, closeButton: false };
   private static readonly POPUP_CLASS_NAME = 'leit-poi-popup';
   private static readonly X_OFFSET = 57; // 1/2 Leit-POI width
   private static readonly Y_OFFSET = 37; // Leit-POI height
 
   private componentFactory: ComponentFactory<LeitPoiComponent>;
 
-  constructor(private componentFactoryResolver: ComponentFactoryResolver,
-              private appRef: ApplicationRef,
-              private injector: Injector) {
-    this.componentFactory = this.componentFactoryResolver.resolveComponentFactory(
-      LeitPoiComponent
-    );
+  constructor(
+    private componentFactoryResolver: ComponentFactoryResolver,
+    private appRef: ApplicationRef,
+    private injector: Injector
+  ) {
+    this.componentFactory = this.componentFactoryResolver.resolveComponentFactory(LeitPoiComponent);
   }
 
   createMapLeitPoi(map: MaplibreMap, feature: LeitPoiFeature): MapLeitPoi {
@@ -46,7 +47,7 @@ export class MapLeitPoiCreatorService {
     popup.addClassName(MapLeitPoiCreatorService.POPUP_CLASS_NAME);
     popup.setOffset([
       (this.isEast(feature.placement) ? 1 : -1) * MapLeitPoiCreatorService.X_OFFSET,
-      this.isNorth(feature.placement) ? 0 : MapLeitPoiCreatorService.Y_OFFSET
+      this.isNorth(feature.placement) ? 0 : MapLeitPoiCreatorService.Y_OFFSET,
     ]);
 
     return new MapLeitPoi(componentRef, popup);
@@ -65,4 +66,3 @@ export class MapLeitPoiCreatorService {
     return placement === LeitPoiPlacement.southeast || placement === LeitPoiPlacement.northeast;
   }
 }
-

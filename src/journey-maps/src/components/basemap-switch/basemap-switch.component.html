@@ -1,7 +1,9 @@
 <div class="map-control-container" [class.small-buttons]="showSmallButtons" *ngIf="map">
   <div class="map-control-button-wrapper">
-    <button (click)="doToggleBasemap()" class="map-control-button"
-            [attr.aria-label]="basemapSwitchLabel">
-    </button>
+    <button
+      (click)="doToggleBasemap()"
+      class="map-control-button"
+      [attr.aria-label]="basemapSwitchLabel"
+    ></button>
   </div>
 </div>

@@ -5,11 +5,10 @@
   [templateContext]="overlayFeatures"
   [withPaginator]="true"
   [position]="overlayPosition"
-  (closeClicked)="overlayVisible=false"
+  (closeClicked)="overlayVisible = false"
   (mouseEvent)="onOverlayMouseEvent($event)"
   *ngIf="overlayIsPopup"
 >
-
 </rokas-popup>
 
 <rokas-teaser
@@ -17,9 +16,8 @@
   [template]="overlayTemplate"
   [templateContext]="overlayFeatures"
   [withPaginator]="true"
-  (closeClicked)="overlayVisible=false"
+  (closeClicked)="overlayVisible = false"
   (mouseEvent)="onOverlayMouseEvent($event)"
   *ngIf="!overlayIsPopup"
 >
-
 </rokas-teaser>

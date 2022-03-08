@@ -1,20 +1,18 @@
-import {Subject} from 'rxjs';
-import {ComponentRef} from '@angular/core';
-import {LeitPoiComponent} from '../components/leit-poi/leit-poi.component';
-import {Popup} from 'maplibre-gl';
+import { ComponentRef } from '@angular/core';
+import { Popup } from 'maplibre-gl';
+import { Subject } from 'rxjs';
 
+import { LeitPoiComponent } from '../components/leit-poi/leit-poi.component';
 
 /**
  * MapLeitPoi groups the LeitPoiComponent and the Popup container and helps to clenaup both instances on destroy.
  */
 export class MapLeitPoi {
-
   private static readonly HIDDEN_CLASS_NAME = 'leit-poi-popup-hidden';
 
   private destroySub = new Subject<void>();
 
-  constructor(private componentRef: ComponentRef<LeitPoiComponent>, private popup: Popup) {
-  }
+  constructor(private componentRef: ComponentRef<LeitPoiComponent>, private popup: Popup) {}
 
   get destroyed(): Subject<void> {
     return this.destroySub;

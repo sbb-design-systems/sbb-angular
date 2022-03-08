@@ -1,5 +1,6 @@
-
-:host, .map, .jmc-container {
+:host,
+.map,
+.jmc-container {
   height: 100%;
 }
 
@@ -38,14 +39,14 @@
   width: 100%;
   height: 100%;
   pointer-events: none;
-  transition: opacity .3s ease-in-out;
+  transition: opacity 0.3s ease-in-out;
   opacity: 0 !important;
-  background-color: rgba(0, 0, 0, .6);
+  background-color: rgba(0, 0, 0, 0.6);
   z-index: 4;
 }
 
 .mod_map_container_mobile_overlay.is_visible {
-  opacity: .9999 !important;
+  opacity: 0.9999 !important;
 }
 
 .mod_map_container_mobile_overlay_text {
@@ -55,8 +56,8 @@
   line-height: 1.4;
   text-align: center;
   padding: 0 1.6em;
-  margin-top: .66667em;
-  text-shadow: 0 0.06667em 0.53333em rgba(0, 0, 0, .4);
+  margin-top: 0.66667em;
+  text-shadow: 0 0.06667em 0.53333em rgba(0, 0, 0, 0.4);
 }
 
 .mod_map_container_mobile_overlay_icon_wrapper {
@@ -67,13 +68,13 @@
   height: 4.26667em;
   background: #fff;
   border-radius: 50%;
-  box-shadow: 0 0.06667em 0.53333em rgba(0, 0, 0, .4);
+  box-shadow: 0 0.06667em 0.53333em rgba(0, 0, 0, 0.4);
 }
 
 div.mod_map_container_mobile_overlay_icon {
   width: 3.3em;
   height: 3.4em;
-  background: center / 100% no-repeat url("assets/hand_touch.svg");
+  background: center / 100% no-repeat url('assets/hand_touch.svg');
 }
 
 .map-widgets {

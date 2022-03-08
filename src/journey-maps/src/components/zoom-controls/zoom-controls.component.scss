@@ -1,5 +1,5 @@
-@use "./../../style/functions" as f;
-@use "./../../style/colors" as c;
+@use './../../style/functions' as f;
+@use './../../style/colors' as c;
 @use 'node_modules/@sbb-esta/angular/styles' as esta;
 
 @include f.map-controls-shared;
@@ -19,11 +19,11 @@
 
   // Using .map-control-button instead of button does not work when having it twice in this same file... Why??
   button {
-    mask: url("./../../assets/plus-small.svg") center no-repeat;
+    mask: url('./../../assets/plus-small.svg') center no-repeat;
   }
 
   &::after {
-    content: " ";
+    content: ' ';
     display: block;
     position: absolute;
     height: 1px;
@@ -39,7 +39,7 @@
   @include f.map-control-icon-button;
 
   button {
-    mask: url("./../../assets/minus-small.svg") center no-repeat;
+    mask: url('./../../assets/minus-small.svg') center no-repeat;
   }
 
   @include esta.mq($from: tabletPortrait) {

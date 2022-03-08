@@ -1,5 +1,5 @@
 @use 'node_modules/@sbb-esta/angular/styles' as esta;
-@use "./../../style/functions" as f;
+@use './../../style/functions' as f;
 
 @include f.map-controls-shared;
 

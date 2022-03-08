@@ -1,21 +1,18 @@
-import {Injectable} from '@angular/core';
-import {Map as MaplibreMap} from 'maplibre-gl';
-
+import { Injectable } from '@angular/core';
+import { Map as MaplibreMap } from 'maplibre-gl';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class MapLayerFilterService {
+  private _map: MaplibreMap;
+  private _knownLayerTypes = ['fill', 'fill-extrusion', 'line', 'symbol'];
+  private _knownLvlLayerIds: string[] = [];
 
-  private map: MaplibreMap;
-  private knownLayerTypes = ['fill', 'fill-extrusion', 'line', 'symbol'];
-  private knownLvlLayerIds: string[] = [];
-
-  constructor() {
-  }
+  constructor() {}
 
   setMap(map: MaplibreMap): void {
-    this.map = map;
+    this._map = map;
     this.collectLvlLayers();
   }
 
@@ -25,20 +22,20 @@ export class MapLayerFilterService {
   ["!=", "floor", 0] (It's a compound predicate because of NOT)
    */
   setLevelFilter(level: number): void {
-    this.knownLvlLayerIds.forEach(layerId => {
+    this._knownLvlLayerIds.forEach((layerId) => {
       try {
-        const oldFilter = this.map.getFilter(layerId);
-        const newFilter = this.calculateLayerFilter(oldFilter, level);
-        this.map.setFilter(layerId, newFilter);
+        const oldFilter = this._map.getFilter(layerId);
+        const newFilter = this._calculateLayerFilter(oldFilter, level);
+        this._map.setFilter(layerId, newFilter);
       } catch (e) {
         console.error('Failed to set new layer filter', layerId, e);
       }
     });
 
-    this.setLayerVisibility('rokas_background_mask', level < 0);
+    this._setLayerVisibility('rokas_background_mask', level < 0);
   }
 
-  private calculateLayerFilter(oldFilter: any[], level: number): any[] {
+  private _calculateLayerFilter(oldFilter: any[], level: number): any[] {
     if (oldFilter == null || oldFilter.length < 1) {
       return oldFilter;
     }
@@ -46,20 +43,20 @@ export class MapLayerFilterService {
     const newFilter = [];
     newFilter.push(oldFilter[0]);
     let floorFound = false;
-    oldFilter.slice(1).forEach(part => {
-      if (this.isString(part) && this.isFloorFilter(part)) {
+    oldFilter.slice(1).forEach((part) => {
+      if (this._isString(part) && this._isFloorFilter(part)) {
         // "floor" in "rokas_indoor" and "geojson_walk" layers
         floorFound = true;
         newFilter.push(part);
-      } else if (this.isArray(part)) {
+      } else if (this._isArray(part)) {
         let levelFound = false;
         const newInnerPart = [part[0]];
-        part.slice(1).forEach(innerPart => {
+        part.slice(1).forEach((innerPart: any) => {
           const innerPartString = JSON.stringify(innerPart);
-          if (this.isCaseLvlFilter(innerPartString)) {
+          if (this._isCaseLvlFilter(innerPartString)) {
             levelFound = true;
             newInnerPart.push(innerPart);
-          } else if (this.isFloorFilter(innerPartString)) {
+          } else if (this._isFloorFilter(innerPartString)) {
             levelFound = true;
             // when filter: ['==', ['get','floor'], 0]
             floorFound = true;
@@ -82,41 +79,42 @@ export class MapLayerFilterService {
     return newFilter;
   }
 
-  private isCaseLvlFilter(innerPartString: string): boolean {
+  private _isCaseLvlFilter(innerPartString: string): boolean {
     return innerPartString.startsWith('["case",["has","level"],["get","level"]');
   }
 
-  private isFloorFilter(innerPartString: string): boolean {
+  private _isFloorFilter(innerPartString: string): boolean {
     return innerPartString.indexOf('floor') !== -1;
   }
 
   collectLvlLayers(): void {
-    this.knownLvlLayerIds = [];
+    this._knownLvlLayerIds = [];
 
-    this.map.getStyle().layers.forEach(layer => {
-      if (this.knownLayerTypes.includes(layer.type) &&
-        (layer.id.endsWith('-lvl')
-          || layer.id.startsWith('rokas_indoor')
-          || layer.id.startsWith('geojson_walk'))
+    this._map.getStyle().layers?.forEach((layer) => {
+      if (
+        this._knownLayerTypes.includes(layer.type) &&
+        (layer.id.endsWith('-lvl') ||
+          layer.id.startsWith('rokas_indoor') ||
+          layer.id.startsWith('geojson_walk'))
       ) {
-        this.knownLvlLayerIds.push(layer.id);
+        this._knownLvlLayerIds.push(layer.id);
       }
     });
   }
 
-  private isString(value: any): boolean {
+  private _isString(value: any): boolean {
     return Object.prototype.toString.call(value) === '[object String]';
   }
 
-  private isArray(value: any): boolean {
+  private _isArray(value: any): boolean {
     return Object.prototype.toString.call(value) === '[object Array]';
   }
 
-  private setLayerVisibility(layerIdPrefix: string, show: boolean): void {
-    this.map.getStyle().layers.forEach(layer => {
+  private _setLayerVisibility(layerIdPrefix: string, show: boolean): void {
+    this._map.getStyle().layers?.forEach((layer) => {
       if (layer.id.startsWith(layerIdPrefix)) {
         try {
-          (this.map.getLayer(layer.id) as any).visibility = show ? 'visible' : 'none';
+          (this._map.getLayer(layer.id) as any).visibility = show ? 'visible' : 'none';
         } catch (e) {
           console.error('Failed to set layer visibility', layer.id, e);
         }

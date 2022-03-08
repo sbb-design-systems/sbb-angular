@@ -1,4 +1,4 @@
-import {MaplibreMapMock} from './maplibre-map-mock';
+import { MaplibreMapMock } from './maplibre-map-mock';
 
 describe('MaplibreMapMock', () => {
   let mapMock: MaplibreMapMock;
@@ -12,7 +12,7 @@ describe('MaplibreMapMock', () => {
   });
 
   it('should call event on map click', (doneFn) => {
-    mapMock.on('click', (eventArgs) => {
+    mapMock.on('click', (eventArgs: { point: any; lngLat: any }) => {
       expect(eventArgs).toBeTruthy();
       expect(eventArgs.point).toBeTruthy();
       expect(eventArgs.lngLat).toBeTruthy();
@@ -23,7 +23,7 @@ describe('MaplibreMapMock', () => {
   });
 
   it('should call event on map layer click', (doneFn) => {
-    mapMock.on('click', 'test-layer', (eventArgs) => {
+    mapMock.on('click', 'test-layer', (eventArgs: { point: any; lngLat: any }) => {
       expect(eventArgs).toBeTruthy();
       expect(eventArgs.point).toBeTruthy();
       expect(eventArgs.lngLat).toBeTruthy();

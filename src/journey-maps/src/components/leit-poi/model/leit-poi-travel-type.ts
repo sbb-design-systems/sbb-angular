@@ -3,5 +3,5 @@ export enum LeitPoiTravelType {
   'stairs',
   'lift',
   'ramp',
-  'escalator'
+  'escalator',
 }

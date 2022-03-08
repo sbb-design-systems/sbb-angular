@@ -1,109 +1,111 @@
-import {Map as MaplibreMap} from 'maplibre-gl';
+import { Map as MaplibreMap } from 'maplibre-gl';
 
 // https://www.npmjs.com/package/mapbox-gl-multitouch
 // https://github.com/mapbox/mapbox-gl-js/issues/2618
 // https://github.com/Pitbi/mapbox-gl-multitouch
 export class MultiTouchSupport {
-
-  private state: any;
-  private map: MaplibreMap;
-  private container: any;
-  private TOUCH_ZOOM_FACTOR = 0.2; // zoom sensibility
-  private TOUCH_ZOOM_THRESHOLD = 0.01; // zoom activation
+  private _state = { panStart: { x: 0, y: 0 }, distanceStart: 0 };
+  private _map: MaplibreMap | undefined;
+  private _container: HTMLDivElement | undefined;
+  private _touchZoomFactor = 0.2; // zoom sensibility
+  private _touchZoomThreshold = 0.01; // zoom activation
 
   constructor() {
-    this.state = {
-      panStart: { x: 0, y: 0 },
-      distanceStart: 0,
-    };
     this.touchStart = this.touchStart.bind(this);
     this.touchMove = this.touchMove.bind(this);
   }
 
-  touchStart(event): void {
-    if (event.touches.length !== 2) { return; }
+  touchStart(event: TouchEvent): void {
+    if (event.touches.length !== 2) {
+      return;
+    }
 
     let x = 0;
     let y = 0;
 
-    [].forEach.call(event.touches, (touch) => {
+    [].forEach.call(event.touches, (touch: Touch) => {
       x += touch.screenX;
       y += touch.screenY;
     });
 
-    this.state.distanceStart = this.distance(event.touches[0], event.touches[1]);
+    this._state.distanceStart = this.distance(event.touches[0], event.touches[1]);
 
-    this.state.panStart.x = x / event.touches.length;
-    this.state.panStart.y = y / event.touches.length;
+    this._state.panStart.x = x / event.touches.length;
+    this._state.panStart.y = y / event.touches.length;
   }
 
-  touchMove(event): void {
-    if (event.touches.length !== 2) { return; }
+  touchMove(event: TouchEvent): void {
+    if (event.touches.length !== 2) {
+      return;
+    }
 
-    this.handleTouchPan(event);
-    this.handleTouchZoom(event);
+    this._handleTouchPan(event);
+    this._handleTouchZoom(event);
   }
 
-  private handleTouchZoom(event): void {
-    const lastDistance = this.state.distanceStart;
+  private _handleTouchZoom(event: TouchEvent): void {
+    const lastDistance = this._state.distanceStart;
     const actualDistance = this.distance(event.touches[0], event.touches[1]);
-    this.state.distanceStart = actualDistance;
+    this._state.distanceStart = actualDistance;
 
     let distanceRatio = actualDistance / lastDistance;
     distanceRatio = Math.min(Math.max(distanceRatio, 0.000001), 1.999999); // keep ratio in ]0;2[
 
-    if (distanceRatio > 1 + this.TOUCH_ZOOM_THRESHOLD) { // zoom in
-      distanceRatio = ((distanceRatio - 1) * this.TOUCH_ZOOM_FACTOR) + 1;
-    } else if (distanceRatio < 1 - this.TOUCH_ZOOM_THRESHOLD) { // zoom out
-      distanceRatio = 1 - ((1 - distanceRatio) * this.TOUCH_ZOOM_FACTOR);
-    } else { // no zoom
+    if (distanceRatio > 1 + this._touchZoomThreshold) {
+      // zoom in
+      distanceRatio = (distanceRatio - 1) * this._touchZoomFactor + 1;
+    } else if (distanceRatio < 1 - this._touchZoomThreshold) {
+      // zoom out
+      distanceRatio = 1 - (1 - distanceRatio) * this._touchZoomFactor;
+    } else {
+      // no zoom
       distanceRatio = 1;
     }
 
-    this.map.setZoom(this.map.getZoom() * distanceRatio);
+    this._map?.setZoom(this._map.getZoom() * distanceRatio);
   }
 
-  private handleTouchPan(event): void {
+  private _handleTouchPan(event: TouchEvent): void {
     let x = 0;
     let y = 0;
 
-    [].forEach.call(event.touches, (touch) => {
+    [].forEach.call(event.touches, (touch: Touch) => {
       x += touch.screenX;
       y += touch.screenY;
     });
 
-    const movex = (x / event.touches.length) - this.state.panStart.x;
-    const movey = (y / event.touches.length) - this.state.panStart.y;
+    const movex = x / event.touches.length - this._state.panStart.x;
+    const movey = y / event.touches.length - this._state.panStart.y;
 
-    this.state.panStart.x = x / event.touches.length;
-    this.state.panStart.y = y / event.touches.length;
+    this._state.panStart.x = x / event.touches.length;
+    this._state.panStart.y = y / event.touches.length;
 
-    this.map.panBy([movex / -1, movey / -1], {animate: false});
+    this._map?.panBy([movex / -1, movey / -1], { animate: false });
   }
 
-  onAdd(map): HTMLDivElement {
-    this.map = map;
-    this.container = document.createElement('div');
-    this.map.getContainer().addEventListener('touchstart', this.touchStart, false);
-    this.map.getContainer().addEventListener('touchmove', this.touchMove, false);
-    return this.container;
+  onAdd(map: MaplibreMap): HTMLDivElement {
+    this._map = map;
+    this._container = document.createElement('div');
+    this._map.getContainer().addEventListener('touchstart', this.touchStart, false);
+    this._map.getContainer().addEventListener('touchmove', this.touchMove, false);
+    return this._container;
   }
 
   onRemove(): void {
-    this.map.getContainer().removeEventListener('touchstart', this.touchStart);
-    this.map.getContainer().removeEventListener('touchmove', this.touchMove);
-    this.map = undefined;
+    this._map?.getContainer().removeEventListener('touchstart', this.touchStart);
+    this._map?.getContainer().removeEventListener('touchmove', this.touchMove);
+    this._map = undefined;
   }
 
-  distance(pointOne, pointTwo): number {
+  distance(pointOne: Touch, pointTwo: Touch): number {
     const x1 = pointOne.screenX;
     const y1 = pointOne.screenY;
     const x2 = pointTwo.screenX;
     const y2 = pointTwo.screenY;
-    return Math.sqrt(Math.pow((x2 - x1), 2) + Math.pow((y2 - y1), 2) );
+    return Math.sqrt(Math.pow(x2 - x1, 2) + Math.pow(y2 - y1, 2));
   }
 
-  midpoint(pointOne, pointTwo): number[] {
+  midpoint(pointOne: Touch, pointTwo: Touch): number[] {
     const x1 = pointOne.screenX;
     const y1 = pointOne.screenY;
     const x2 = pointTwo.screenX;

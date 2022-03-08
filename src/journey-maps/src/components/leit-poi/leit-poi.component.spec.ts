@@ -1,6 +1,6 @@
-import {ComponentFixture, TestBed} from '@angular/core/testing';
+import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import {LeitPoiComponent} from './leit-poi.component';
+import { LeitPoiComponent } from './leit-poi.component';
 
 describe('LeitPoiComponent', () => {
   let component: LeitPoiComponent;
@@ -8,9 +8,8 @@ describe('LeitPoiComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [LeitPoiComponent]
-    })
-      .compileComponents();
+      declarations: [LeitPoiComponent],
+    }).compileComponents();
   });
 
   beforeEach(() => {
@@ -23,7 +22,7 @@ describe('LeitPoiComponent', () => {
   });
 
   it('should emit switchLevel with nextLevel on click"', (doneFn) => {
-    const compiled = bindFeatureInput({destinationLevel: 1});
+    const compiled = bindFeatureInput({ destinationLevel: 1 });
     component.switchLevel.subscribe((nextLevel) => {
       expect(nextLevel).toEqual(1);
       doneFn();
@@ -38,7 +37,7 @@ describe('LeitPoiComponent', () => {
       placement: 'northeast',
       sourceLevel: -4,
       location: [0, 0],
-      destinationLevel: -2
+      destinationLevel: -2,
     });
 
     expect(compiled.querySelector('.travel_type_lift')).toBeTruthy();
@@ -53,7 +52,7 @@ describe('LeitPoiComponent', () => {
       placement: 'southwest',
       sourceLevel: -1,
       location: [0, 0],
-      destinationLevel: 0
+      destinationLevel: 0,
     });
 
     expect(compiled.querySelector('.travel_type_escalator')).toBeTruthy();

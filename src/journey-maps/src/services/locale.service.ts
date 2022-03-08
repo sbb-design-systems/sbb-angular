@@ -1,17 +1,16 @@
-import {Injectable} from '@angular/core';
+import { Injectable } from '@angular/core';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class LocaleService {
+  language: string = 'de';
 
-  language = 'de';
-
-  private i18n = {
+  private _i18n = {
     de: {
       close: 'Schliessen',
       touchOverlay: {
-        tip: 'Benutzen Sie 2 Finger um die Karte zu bedienen.'
+        tip: 'Benutzen Sie 2 Finger um die Karte zu bedienen.',
       },
       a4a: {
         visualFunction: 'Visuelle Funktion, nicht für Screenreader gedacht.',
@@ -20,26 +19,26 @@ export class LocaleService {
         selectFloor: 'Stockwerk [0] anzeigen.',
         basemapSwitch: 'Kartentyp ändern.',
         homeButton: 'Ganze Schweiz',
-      }
+      },
     },
     fr: {
       close: 'Fermer',
       touchOverlay: {
-        tip: 'Utilisez deux doigts pour consulter la carte.'
+        tip: 'Utilisez deux doigts pour consulter la carte.',
       },
       a4a: {
-        visualFunction: 'Fonction visuelle, non destinée aux lecteurs d\'écran.',
+        visualFunction: "Fonction visuelle, non destinée aux lecteurs d'écran.",
         zoomIn: 'Zoomer.',
         zoomOut: 'Dézoomer.',
-        selectFloor: 'Afficher l\'étage [0].',
+        selectFloor: "Afficher l'étage [0].",
         basemapSwitch: 'Changer le type de la carte.',
         homeButton: 'La suisse entière',
-      }
+      },
     },
     it: {
       close: 'Chiudere',
       touchOverlay: {
-        tip: 'Utilizzate due dita per muovervi nella mappa.'
+        tip: 'Utilizzate due dita per muovervi nella mappa.',
       },
       a4a: {
         visualFunction: 'Funzione visiva, non destinata ai lettori di schermo.',
@@ -48,12 +47,12 @@ export class LocaleService {
         selectFloor: 'Mostra il piano [0].',
         basemapSwitch: 'Cambiare il tipo di mappa',
         homeButton: 'Tutta la Svizzera',
-      }
+      },
     },
     en: {
       close: 'Close',
       touchOverlay: {
-        tip: 'Use two fingers to operate the map.'
+        tip: 'Use two fingers to operate the map.',
       },
       a4a: {
         visualFunction: 'Visual function, not intended for screen readers.',
@@ -62,21 +61,20 @@ export class LocaleService {
         selectFloor: 'Select floor [0].',
         basemapSwitch: 'Change the map type',
         homeButton: 'All of Switzerland',
-      }
-    }
+      },
+    },
   };
 
-  constructor() {
-  }
+  constructor() {}
 
   getText(key: string): string {
-    const path = (`${this.language}.${key}`).split('.');
-    return path.reduce((prev, curr) => prev && prev[curr], this.i18n);
+    const path = `${this.language}.${key}`.split('.');
+    return path.reduce((prev: any, curr) => prev && prev[curr], this._i18n);
   }
 
   getTextWithParams(key: string, ...params: any[]): string {
     let text = this.getText(key);
-    params.forEach((value, index) => text = text.replace(`[${index}]`, value));
+    params.forEach((value, index) => (text = text.replace(`[${index}]`, value)));
     return text;
   }
 }

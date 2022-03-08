@@ -1,19 +1,18 @@
-import {Injectable} from '@angular/core';
-import {Marker} from '../model/marker';
+import { Injectable } from '@angular/core';
+
+import { Marker } from '../model/marker';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class TestDataService {
-
-  constructor() {
-  }
+  constructor() {}
 
   createMarker(): Marker {
     return {
       id: 'work',
       title: 'Office',
-      position: [7.446450, 46.961409],
+      position: [7.44645, 46.961409],
       category: 'WARNING',
     };
   }

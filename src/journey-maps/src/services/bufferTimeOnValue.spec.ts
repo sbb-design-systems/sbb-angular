@@ -1,18 +1,20 @@
-import {bufferTimeOnValue} from './bufferTimeOnValue';
-import {TestScheduler} from 'rxjs/testing';
-import {buffer, bufferTime, debounceTime, delay, throttleTime} from 'rxjs/operators';
-import {of} from 'rxjs';
+import { of } from 'rxjs';
+import { buffer, bufferTime, debounceTime, delay, throttleTime } from 'rxjs/operators';
+import { TestScheduler } from 'rxjs/testing';
 
-const getTestScheduler = () => new TestScheduler((actual, expected) => {
-  expect(actual).toEqual(expected);
-});
+import { bufferTimeOnValue } from './bufferTimeOnValue';
+
+const getTestScheduler = () =>
+  new TestScheduler((actual, expected) => {
+    expect(actual).toEqual(expected);
+  });
 
 describe('marbles testing', () => {
   it('should delay', () => {
     getTestScheduler().run(({ cold, expectObservable }) => {
       const time = 2;
       const operation = delay(time);
-      const actual   = 'abcdef--|';
+      const actual = 'abcdef--|';
       const expected = '--abcdef--|';
 
       expectObservable(cold(actual).pipe(operation)).toBe(expected);
@@ -23,7 +25,7 @@ describe('marbles testing', () => {
     getTestScheduler().run(({ cold, expectObservable }) => {
       const time = 2;
       const operation = throttleTime(time);
-      const actual   = 'abcdef---|';
+      const actual = 'abcdef---|';
       const expected = 'a--d-----|';
 
       expectObservable(cold(actual).pipe(operation)).toBe(expected);
@@ -34,7 +36,7 @@ describe('marbles testing', () => {
     getTestScheduler().run(({ cold, expectObservable }) => {
       const time = 2;
       const operation = debounceTime(time);
-      const actual   = 'abcdef--|';
+      const actual = 'abcdef--|';
       const expected = '-------f|';
 
       expectObservable(cold(actual).pipe(operation)).toBe(expected);
@@ -46,7 +48,7 @@ describe('marbles testing', () => {
       const time = 2;
       const operation1 = throttleTime(time);
       const operation2 = debounceTime(time);
-      const actual   = 'abcdef---|';
+      const actual = 'abcdef---|';
       const expected = '--a--d---|';
 
       expectObservable(cold(actual).pipe(operation1, operation2)).toBe(expected);
@@ -57,7 +59,7 @@ describe('marbles testing', () => {
     getTestScheduler().run(({ cold, expectObservable }) => {
       const time = 2;
       const operation = bufferTime(time);
-      const actual   = 'abcdef---|';
+      const actual = 'abcdef---|';
       const expected = '--x-y-z-w(w|)';
       const values = {
         x: ['a', 'b'],
@@ -74,7 +76,7 @@ describe('marbles testing', () => {
     getTestScheduler().run(({ cold, expectObservable }) => {
       const time = 2;
       const operation = buffer(of(1).pipe(delay(time)));
-      const actual   = 'abcdef---|';
+      const actual = 'abcdef---|';
       const expected = '--(x|)';
       const values = {
         x: ['a', 'b'],
@@ -87,7 +89,7 @@ describe('marbles testing', () => {
   it('should buffer with throttleTime and debounceTime', () => {
     getTestScheduler().run(({ cold, expectObservable }) => {
       const time = 2;
-      const actual   = 'abcdef---|';
+      const actual = 'abcdef---|';
       const expected = '--x--y---|';
       const values = {
         x: ['a', 'b', 'c'],
@@ -95,18 +97,23 @@ describe('marbles testing', () => {
       };
 
       const o$ = cold(actual);
-      expectObservable(o$.pipe(buffer(o$.pipe(throttleTime(time), debounceTime(time))))).toBe(expected, values);
+      expectObservable(o$.pipe(buffer(o$.pipe(throttleTime(time), debounceTime(time))))).toBe(
+        expected,
+        values
+      );
     });
   });
 
   it('should NOT emit with buffer with throttleTime and debounceTime if source has no events', () => {
     getTestScheduler().run(({ cold, expectObservable }) => {
       const time = 2;
-      const actual   = '-------|';
+      const actual = '-------|';
       const expected = '-------|';
 
       const o$ = cold(actual);
-      expectObservable(o$.pipe(buffer(o$.pipe(throttleTime(time), debounceTime(time))))).toBe(expected);
+      expectObservable(o$.pipe(buffer(o$.pipe(throttleTime(time), debounceTime(time))))).toBe(
+        expected
+      );
     });
   });
 });
@@ -115,7 +122,7 @@ describe('bufferTimeOnValue', () => {
   it('should emit in groups of {x}ms', () => {
     getTestScheduler().run(({ cold, expectObservable }) => {
       const time = 2;
-      const actual   = 'abcdef-----|';
+      const actual = 'abcdef-----|';
       const expected = '--x--y-----|';
       const values = {
         x: ['a', 'b', 'c'],
@@ -129,7 +136,7 @@ describe('bufferTimeOnValue', () => {
   it('should NOT emit if no source events', () => {
     getTestScheduler().run(({ cold, expectObservable }) => {
       const time = 2;
-      const actual   = '-------|';
+      const actual = '-------|';
       const expected = '-------|';
 
       expectObservable(cold(actual).pipe(bufferTimeOnValue(time))).toBe(expected);

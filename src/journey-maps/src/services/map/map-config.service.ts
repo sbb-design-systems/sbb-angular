@@ -1,15 +1,15 @@
-import {Injectable} from '@angular/core';
+import { Injectable } from '@angular/core';
 
-  // TODO cdi move this code to map-marker.service.ts ?
-  @Injectable({providedIn: 'root'})
+// TODO cdi move this code to map-marker.service.ts ?
+@Injectable({ providedIn: 'root' })
 export class MapConfigService {
-  private _popup: boolean;
+  private _popup: boolean | undefined;
 
-  updateConfigs(popup: boolean): void {
+  updateConfigs(popup: boolean | undefined): void {
     this._popup = popup;
   }
 
-  get popup(): boolean {
+  get popup(): boolean | undefined {
     return this._popup;
   }
 }

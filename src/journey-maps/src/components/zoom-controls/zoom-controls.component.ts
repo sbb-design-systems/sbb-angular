@@ -1,77 +1,87 @@
-import {ChangeDetectionStrategy, ChangeDetectorRef, Component, Input, OnChanges, OnDestroy, OnInit, SimpleChanges} from '@angular/core';
-import {Map as MaplibreMap} from 'maplibre-gl';
-import {Subject} from 'rxjs';
-import {takeUntil} from 'rxjs/operators';
-import {LocaleService} from '../../services/locale.service';
+import {
+  ChangeDetectionStrategy,
+  ChangeDetectorRef,
+  Component,
+  Input,
+  OnChanges,
+  OnDestroy,
+  OnInit,
+  SimpleChanges,
+} from '@angular/core';
+import { Map as MaplibreMap } from 'maplibre-gl';
+import { Subject } from 'rxjs';
+import { takeUntil } from 'rxjs/operators';
+
+import { LocaleService } from '../../services/locale.service';
 
 @Component({
   selector: 'rokas-zoom-controls',
   templateUrl: './zoom-controls.component.html',
-  styleUrls: ['./zoom-controls.component.scss'],
+  styleUrls: ['./zoom-controls.component.css'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ZoomControlsComponent implements OnInit, OnChanges, OnDestroy {
-  @Input() map: MaplibreMap;
-  @Input() showSmallButtons: boolean;
+  @Input() map: MaplibreMap | null;
+  @Input() showSmallButtons: boolean | undefined;
 
-  private zoomChanged = new Subject<void>();
-  private destroyed = new Subject<void>();
+  private _zoomChanged = new Subject<void>();
+  private _destroyed = new Subject<void>();
   isMinZoom: boolean;
   isMaxZoom: boolean;
 
   zoomInLabel: string;
   zoomOutLabel: string;
 
-  constructor(private ref: ChangeDetectorRef,
-              private i18n: LocaleService) {
-  }
+  constructor(private _ref: ChangeDetectorRef, private _i18n: LocaleService) {}
 
   ngOnInit(): void {
-    this.zoomChanged
-      .pipe(takeUntil(this.destroyed))
-      .subscribe(() => {
-        this.onZoomChanged();
-      });
+    this._zoomChanged.pipe(takeUntil(this._destroyed)).subscribe(() => {
+      this._onZoomChanged();
+    });
 
-    this.zoomInLabel = `${this.i18n.getText('a4a.visualFunction')} ${this.i18n.getText('a4a.zoomIn')}`;
-    this.zoomOutLabel = `${this.i18n.getText('a4a.visualFunction')} ${this.i18n.getText('a4a.zoomOut')}`;
+    this.zoomInLabel = `${this._i18n.getText('a4a.visualFunction')} ${this._i18n.getText(
+      'a4a.zoomIn'
+    )}`;
+    this.zoomOutLabel = `${this._i18n.getText('a4a.visualFunction')} ${this._i18n.getText(
+      'a4a.zoomOut'
+    )}`;
   }
 
   ngOnChanges(changes: SimpleChanges): void {
     if (changes.map?.currentValue) {
-      this.map.on('zoomend', () => {
-        this.zoomChanged.next();
+      this.map?.on('zoomend', () => {
+        this._zoomChanged.next();
         // call outside component-zone, trigger detect changes manually
         // when using the mouse wheel to zoom, automatic change detection doesn't work
-        this.ref.detectChanges();
+        this._ref.detectChanges();
       });
 
       if (!changes.map.previousValue) {
         // only do this the first time map is set
-        this.setIsMinMaxZoom();
+        this._setIsMinMaxZoom();
       }
     }
   }
 
   ngOnDestroy(): void {
-    this.destroyed.next();
-    this.destroyed.complete();
+    this._destroyed.next();
+    this._destroyed.complete();
   }
 
-  private onZoomChanged(): void {
-    this.setIsMinMaxZoom();
+  private _onZoomChanged(): void {
+    this._setIsMinMaxZoom();
   }
 
-  private setIsMinMaxZoom(): void {
-    this.isMinZoom = this.map.getZoom() === this.map.getMinZoom();
-    this.isMaxZoom = this.map.getZoom() === this.map.getMaxZoom();
+  private _setIsMinMaxZoom(): void {
+    this.isMinZoom = this.map?.getZoom() === this.map?.getMinZoom();
+    this.isMaxZoom = this.map?.getZoom() === this.map?.getMaxZoom();
   }
 
   zoomIn(): void {
-    this.map.zoomIn();
+    this.map?.zoomIn();
   }
 
   zoomOut(): void {
-    this.map.zoomOut();
+    this.map?.zoomOut();
   }
 }

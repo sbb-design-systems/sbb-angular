@@ -6,5 +6,5 @@ export enum MarkerColor {
   BLACK = 'BLACK',
   RED = 'RED',
   DARKBLUE = 'DARKBLUE',
-  BRIGHTBLUE = 'BRIGHTBLUE'
+  BRIGHTBLUE = 'BRIGHTBLUE',
 }

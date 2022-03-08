@@ -7,8 +7,12 @@ import {
   OnChanges,
   OnDestroy,
   Output,
-  SimpleChanges
+  SimpleChanges,
 } from '@angular/core';
+import { LngLatLike, Map as MapLibreMap } from 'maplibre-gl';
+import { Subject } from 'rxjs';
+import { takeUntil } from 'rxjs/operators';
+
 import {
   FeatureData,
   FeatureDataType,
@@ -19,110 +23,125 @@ import {
   ListenerTypeOptions,
   SelectionMode,
 } from '../../journey-maps-client.interfaces';
-import {MapCursorStyleEvent} from '../../services/map/events/map-cursor-style-event';
-import {MapStationService} from '../../services/map/map-station.service';
-import {FeaturesClickEvent} from '../../services/map/events/features-click-event';
-import {takeUntil} from 'rxjs/operators';
-import {LngLatLike, Map as MapLibreMap} from 'maplibre-gl';
-import {Subject} from 'rxjs';
-import {MapRoutesService} from '../../services/map/map-routes.service';
-import {MapMarkerService} from '../../services/map/map-marker.service';
-import {FeaturesHoverEvent} from '../../services/map/events/features-hover-event';
-import {MapSelectionEventService} from '../../services/map/events/map-selection-event.service';
-import {MapZoneService} from '../../services/map/map-zone.service';
-import {ROUTE_ID_PROPERTY_NAME, RouteUtilsService} from '../../services/map/events/route-utils.service';
-import {MapEventUtilsService} from '../../services/map/events/map-event-utils.service';
+import { FeaturesClickEvent } from '../../services/map/events/features-click-event';
+import { FeaturesHoverEvent } from '../../services/map/events/features-hover-event';
+import { MapCursorStyleEvent } from '../../services/map/events/map-cursor-style-event';
+import { MapEventUtilsService } from '../../services/map/events/map-event-utils.service';
+import { MapSelectionEventService } from '../../services/map/events/map-selection-event.service';
+import {
+  RouteUtilsService,
+  ROUTE_ID_PROPERTY_NAME,
+} from '../../services/map/events/route-utils.service';
+import { MapMarkerService } from '../../services/map/map-marker.service';
+import { MapRoutesService } from '../../services/map/map-routes.service';
+import { MapStationService } from '../../services/map/map-station.service';
+import { MapZoneService } from '../../services/map/map-zone.service';
 
 @Component({
   selector: 'rokas-feature-event-listener',
   templateUrl: './feature-event-listener.component.html',
   providers: [MapSelectionEventService],
-  changeDetection: ChangeDetectionStrategy.OnPush
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class FeatureEventListenerComponent implements OnChanges, OnDestroy {
-
   @Input() listenerOptions: ListenerOptions;
-  @Input() map: MapLibreMap;
+  @Input() map: MapLibreMap | null;
 
-  @Output() featureSelectionsChange = new EventEmitter<FeaturesSelectEventData>();
+  @Output() featureSelectionsChange: EventEmitter<FeaturesSelectEventData> =
+    new EventEmitter<FeaturesSelectEventData>();
 
-  @Output() featuresClick = new EventEmitter<FeaturesClickEventData>();
-  @Output() featuresHoverChange = new EventEmitter<FeaturesHoverChangeEventData>();
+  @Output() featuresClick: EventEmitter<FeaturesClickEventData> =
+    new EventEmitter<FeaturesClickEventData>();
+  @Output() featuresHoverChange: EventEmitter<FeaturesHoverChangeEventData> =
+    new EventEmitter<FeaturesHoverChangeEventData>();
 
-  overlayVisible = false;
+  overlayVisible: boolean = false;
   overlayEventType: 'click' | 'hover';
   overlayFeatures: FeatureData[];
   overlayPosition: LngLatLike;
   overlayTemplate: any;
   overlayIsPopup: boolean;
-  overlayHasMouseFocus = false;
+  overlayHasMouseFocus: boolean = false;
   overlayTimeoutId: number;
 
-  private destroyed = new Subject<void>();
-  private watchOnLayers = new Map<string, FeatureDataType>();
-  private mapCursorStyleEvent: MapCursorStyleEvent;
-  private featuresHoverEvent: FeaturesHoverEvent;
-  private featuresClickEvent: FeaturesClickEvent;
+  private _destroyed = new Subject<void>();
+  private _watchOnLayers = new Map<string, FeatureDataType>();
+  private _mapCursorStyleEvent: MapCursorStyleEvent;
+  private _featuresHoverEvent: FeaturesHoverEvent;
+  private _featuresClickEvent: FeaturesClickEvent;
 
   constructor(
-    private mapStationService: MapStationService,
-    private mapRoutesService: MapRoutesService,
-    private mapMarkerService: MapMarkerService,
-    private routeUtilsService: RouteUtilsService,
-    private mapEventUtils: MapEventUtilsService,
-    private cd: ChangeDetectorRef,
-    public readonly mapSelectionEventService: MapSelectionEventService,
-  ) {
-  }
+    private _mapStationService: MapStationService,
+    private _mapRoutesService: MapRoutesService,
+    private _mapMarkerService: MapMarkerService,
+    private _routeUtilsService: RouteUtilsService,
+    private _mapEventUtils: MapEventUtilsService,
+    private _cd: ChangeDetectorRef,
+    public readonly mapSelectionEventService: MapSelectionEventService
+  ) {}
 
   ngOnDestroy(): void {
-    this.destroyed.next();
-    this.destroyed.complete();
-    this.mapCursorStyleEvent?.complete();
-    this.featuresHoverEvent?.complete();
-    this.featuresClickEvent?.complete();
+    this._destroyed.next();
+    this._destroyed.complete();
+    this._mapCursorStyleEvent?.complete();
+    this._featuresHoverEvent?.complete();
+    this._featuresClickEvent?.complete();
     this.mapSelectionEventService?.complete();
   }
 
   ngOnChanges(changes: SimpleChanges): void {
     if (this.listenerOptions && this.map) {
-      this.watchOnLayers.clear();
+      this._watchOnLayers.clear();
 
       if (this.listenerOptions.MARKER?.watch) {
-        this.updateWatchOnLayers(this.mapMarkerService.allMarkerAndClusterLayers, FeatureDataType.MARKER);
+        this._updateWatchOnLayers(
+          this._mapMarkerService.allMarkerAndClusterLayers,
+          FeatureDataType.MARKER
+        );
       }
       if (this.listenerOptions.ROUTE?.watch) {
-        this.updateWatchOnLayers(MapRoutesService.allRouteLayers, FeatureDataType.ROUTE);
+        this._updateWatchOnLayers(MapRoutesService.allRouteLayers, FeatureDataType.ROUTE);
       }
       if (this.listenerOptions.STATION?.watch) {
-        this.updateWatchOnLayers([MapStationService.STATION_LAYER], FeatureDataType.STATION);
-        this.mapStationService.registerStationUpdater(this.map);
+        this._updateWatchOnLayers([MapStationService.STATION_LAYER], FeatureDataType.STATION);
+        this._mapStationService.registerStationUpdater(this.map);
       } else {
-        this.mapStationService.deregisterStationUpdater(this.map);
+        this._mapStationService.deregisterStationUpdater(this.map);
       }
       if (this.listenerOptions.ZONE?.watch) {
-        this.updateWatchOnLayers(MapZoneService.allZoneLayers, FeatureDataType.ZONE);
+        this._updateWatchOnLayers(MapZoneService.allZoneLayers, FeatureDataType.ZONE);
       }
 
-      this.mapCursorStyleEvent?.complete();
-      this.mapCursorStyleEvent = new MapCursorStyleEvent(this.map, [...this.watchOnLayers.keys()]);
+      this._mapCursorStyleEvent?.complete();
+      this._mapCursorStyleEvent = new MapCursorStyleEvent(this.map, [
+        ...this._watchOnLayers.keys(),
+      ]);
 
-      const selectionModes = this.listenerOptionsToSelectionModes();
+      const selectionModes = this._listenerOptionsToSelectionModes();
       this.mapSelectionEventService?.complete();
-      this.mapSelectionEventService.initialize(this.map, this.watchOnLayers, selectionModes);
+      this.mapSelectionEventService.initialize(this.map, this._watchOnLayers, selectionModes);
 
-      if (!this.featuresClickEvent) {
-        this.featuresClickEvent = new FeaturesClickEvent(this.map, this.mapEventUtils, this.watchOnLayers);
-        this.featuresClickEvent
-          .pipe(takeUntil(this.destroyed))
-          .subscribe(data => this.featureClicked(data));
+      if (!this._featuresClickEvent) {
+        this._featuresClickEvent = new FeaturesClickEvent(
+          this.map,
+          this._mapEventUtils,
+          this._watchOnLayers
+        );
+        this._featuresClickEvent
+          .pipe(takeUntil(this._destroyed))
+          .subscribe((data) => this._featureClicked(data));
       }
 
-      if (!this.featuresHoverEvent) {
-        this.featuresHoverEvent = new FeaturesHoverEvent(this.map, this.mapEventUtils, this.watchOnLayers, this.routeUtilsService);
-        this.featuresHoverEvent
-          .pipe(takeUntil(this.destroyed))
-          .subscribe(data => this.featureHovered(data));
+      if (!this._featuresHoverEvent) {
+        this._featuresHoverEvent = new FeaturesHoverEvent(
+          this.map,
+          this._mapEventUtils,
+          this._watchOnLayers,
+          this._routeUtilsService
+        );
+        this._featuresHoverEvent
+          .pipe(takeUntil(this._destroyed))
+          .subscribe((data) => this._featureHovered(data));
       }
     }
   }
@@ -131,70 +150,93 @@ export class FeatureEventListenerComponent implements OnChanges, OnDestroy {
     const isLeave = event === 'leave';
     if (isLeave && this.overlayEventType === 'hover') {
       this.overlayVisible = false;
-      this.cd.detectChanges();
+      this._cd.detectChanges();
     }
     this.overlayHasMouseFocus = !isLeave;
   }
 
-  private updateWatchOnLayers(layers: string[], featureDataType: FeatureDataType): void {
-    layers.forEach(id => this.watchOnLayers.set(id, featureDataType));
+  private _updateWatchOnLayers(layers: string[], featureDataType: FeatureDataType): void {
+    layers.forEach((id) => this._watchOnLayers.set(id, featureDataType));
   }
 
-  private listenerOptionsToSelectionModes() {
+  private _listenerOptionsToSelectionModes() {
     const selectionModes = new Map<FeatureDataType, SelectionMode>();
-    selectionModes.set(FeatureDataType.ROUTE, this.listenerOptions.ROUTE?.selectionMode ?? SelectionMode.single);
-    selectionModes.set(FeatureDataType.MARKER, this.listenerOptions.MARKER?.selectionMode ?? SelectionMode.single);
-    selectionModes.set(FeatureDataType.STATION, this.listenerOptions.STATION?.selectionMode ?? SelectionMode.single);
-    selectionModes.set(FeatureDataType.ZONE, this.listenerOptions.ZONE?.selectionMode ?? SelectionMode.multi);
+    selectionModes.set(
+      FeatureDataType.ROUTE,
+      this.listenerOptions.ROUTE?.selectionMode ?? SelectionMode.single
+    );
+    selectionModes.set(
+      FeatureDataType.MARKER,
+      this.listenerOptions.MARKER?.selectionMode ?? SelectionMode.single
+    );
+    selectionModes.set(
+      FeatureDataType.STATION,
+      this.listenerOptions.STATION?.selectionMode ?? SelectionMode.single
+    );
+    selectionModes.set(
+      FeatureDataType.ZONE,
+      this.listenerOptions.ZONE?.selectionMode ?? SelectionMode.multi
+    );
     return selectionModes;
   }
 
-  private featureClicked(data: FeaturesClickEventData) {
+  private _featureClicked(data: FeaturesClickEventData) {
     this.mapSelectionEventService.toggleSelection(data);
     this.featureSelectionsChange.next(this.mapSelectionEventService.findSelectedFeatures());
     this.featuresClick.next(data);
 
-    this.updateOverlay(data.features, 'click', data.clickLngLat);
+    this._updateOverlay(data.features, 'click', data.clickLngLat);
   }
 
-  private filterOverlayFeatures(features: FeatureData[], type: FeatureDataType): FeatureData[] {
-    const filteredByType = features.filter(f => f.featureDataType === type);
+  private _filterOverlayFeatures(features: FeatureData[], type: FeatureDataType): FeatureData[] {
+    const filteredByType = features.filter((f) => f.featureDataType === type);
     if (type !== FeatureDataType.ROUTE) {
       return filteredByType;
     }
 
     // Only one feature per route id
-    return [...new Map(filteredByType.map(route => [route.properties[ROUTE_ID_PROPERTY_NAME], route])).values()];
+    return [
+      ...new Map(
+        filteredByType.map((route) => [route.properties![ROUTE_ID_PROPERTY_NAME], route])
+      ).values(),
+    ];
   }
 
-  private featureHovered(data: FeaturesHoverChangeEventData) {
+  private _featureHovered(data: FeaturesHoverChangeEventData) {
     this.featuresHoverChange.next(data);
 
     if (data.hover) {
-      this.updateOverlay(data.features, 'hover', data.eventLngLat);
+      this._updateOverlay(data.features, 'hover', data.eventLngLat);
     } else if (this.overlayVisible && this.overlayEventType === 'hover') {
       this.overlayTimeoutId = setTimeout(() => {
         if (!this.overlayHasMouseFocus) {
           this.overlayVisible = false;
-          this.cd.detectChanges();
+          this._cd.detectChanges();
         }
       }, 1000);
     }
   }
 
-  private updateOverlay(features: FeatureData[], event: 'click' | 'hover', pos: { lng: number, lat: number }) {
+  private _updateOverlay(
+    features: FeatureData[],
+    event: 'click' | 'hover',
+    pos: { lng: number; lat: number }
+  ) {
     const topMostFeature = features[0];
-    const listenerTypeOptions: ListenerTypeOptions = this.listenerOptions[topMostFeature.featureDataType];
+    const listenerTypeOptions: ListenerTypeOptions =
+      this.listenerOptions[topMostFeature.featureDataType]!;
     const isClick = event === 'click';
-    const template = isClick ? listenerTypeOptions?.clickTemplate : listenerTypeOptions?.hoverTemplate;
+    const template = isClick
+      ? listenerTypeOptions?.clickTemplate
+      : listenerTypeOptions?.hoverTemplate;
 
     if (template) {
       clearTimeout(this.overlayTimeoutId);
       this.overlayVisible = true;
       this.overlayEventType = event;
       this.overlayTemplate = template;
-      this.overlayFeatures = this.filterOverlayFeatures(features, topMostFeature.featureDataType);
-      this.overlayIsPopup = listenerTypeOptions.popup;
+      this.overlayFeatures = this._filterOverlayFeatures(features, topMostFeature.featureDataType);
+      this.overlayIsPopup = listenerTypeOptions.popup!;
 
       if (topMostFeature.geometry.type === 'Point') {
         this.overlayPosition = topMostFeature.geometry.coordinates as LngLatLike;

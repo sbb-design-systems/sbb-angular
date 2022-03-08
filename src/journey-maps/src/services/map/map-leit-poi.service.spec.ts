@@ -1,4 +1,4 @@
-import {MapLeitPoiService} from './map-leit-poi.service';
+import { MapLeitPoiService } from './map-leit-poi.service';
 
 describe('MapLeitPoiService', () => {
   let service: MapLeitPoiService;

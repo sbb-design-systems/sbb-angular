@@ -3,5 +3,5 @@
  */
 export enum StyleMode {
   BRIGHT = 'BRIGHT',
-  DARK = 'DARK'
+  DARK = 'DARK',
 }

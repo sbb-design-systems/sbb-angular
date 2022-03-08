@@ -1,4 +1,4 @@
-import {QueryMapFeaturesService} from './query-map-features.service';
+import { QueryMapFeaturesService } from './query-map-features.service';
 
 describe('QueryMapFeaturesService', () => {
   let service: QueryMapFeaturesService;
@@ -14,8 +14,8 @@ describe('QueryMapFeaturesService', () => {
   it('getVisibleLevels should return empty list if map source was not found', () => {
     const map: any = {
       getStyle: () => {
-        return {sources: {}};
-      }
+        return { sources: {} };
+      },
     };
     const levels = service.getVisibleLevels(map);
     expect(levels.length).toBeFalsy();
@@ -24,11 +24,11 @@ describe('QueryMapFeaturesService', () => {
   it('getVisibleLevels should return empty list if feature floor_liststring is missing', () => {
     const map: any = {
       getStyle: () => {
-        return {sources: {service_points: {}}};
+        return { sources: { service_points: {} } };
       },
       querySourceFeatures: () => {
-        return [{id: 1, properties: {}}];
-      }
+        return [{ id: 1, properties: {} }];
+      },
     };
     const levels = service.getVisibleLevels(map);
     expect(levels.length).toBeFalsy();
@@ -37,11 +37,11 @@ describe('QueryMapFeaturesService', () => {
   it('getVisibleLevels should return 3 levels ordered desc for feature with a floor_liststring=-4,-1,0', () => {
     const map: any = {
       getStyle: () => {
-        return {sources: {service_points: {}}};
+        return { sources: { service_points: {} } };
       },
       querySourceFeatures: () => {
-        return [{id: 1, properties: {floor_liststring: '-4,-1,0'}}];
-      }
+        return [{ id: 1, properties: { floor_liststring: '-4,-1,0' } }];
+      },
     };
     const levels = service.getVisibleLevels(map);
     expect(levels.length).toEqual(3);
@@ -51,14 +51,14 @@ describe('QueryMapFeaturesService', () => {
   it('getVisibleLevels should merge level lists if multiple features were found', () => {
     const map: any = {
       getStyle: () => {
-        return {sources: {service_points: {}}};
+        return { sources: { service_points: {} } };
       },
       querySourceFeatures: () => {
         return [
-          {id: 1, properties: {floor_liststring: '-1,0,1'}},
-          {id: 2, properties: {floor_liststring: '-4,-2,-1,0'}},
+          { id: 1, properties: { floor_liststring: '-1,0,1' } },
+          { id: 2, properties: { floor_liststring: '-4,-2,-1,0' } },
         ];
-      }
+      },
     };
     const levels = service.getVisibleLevels(map);
     expect(levels.length).toEqual(5);

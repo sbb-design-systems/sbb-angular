@@ -1,4 +1,4 @@
-@use "colors" as c;
+@use 'colors' as c;
 @use 'node_modules/@sbb-esta/angular/styles' as esta;
 
 @mixin map-controls-shared {
@@ -53,7 +53,7 @@
     }
 
     &:not([data-disabled='true']):active {
-      @include _map-control-button-wrapper-active
+      @include _map-control-button-wrapper-active;
     }
 
     @media (hover: hover) {
@@ -73,7 +73,7 @@
   }
 }
 
-@mixin map-control-icon-button($icon: "") {
+@mixin map-control-icon-button($icon: '') {
   .map-control-button {
     background-color: c.$darkgray;
     cursor: pointer;
@@ -100,7 +100,7 @@
     }
 
     @include esta.mq($from: tabletPortrait) {
-      @at-root .map-control-container.small-buttons #{&}{
+      @at-root .map-control-container.small-buttons #{&} {
         height: 26px;
       }
     }

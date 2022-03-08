@@ -1,5 +1,6 @@
-import {MaplibreMapMock} from '../../../model/maplibre-map-mock';
-import {MapCursorStyleEvent} from './map-cursor-style-event';
+import { MaplibreMapMock } from '../../../model/maplibre-map-mock';
+
+import { MapCursorStyleEvent } from './map-cursor-style-event';
 
 describe('MapCursorStyleEvent', () => {
   let mapCursorStyleEvent: MapCursorStyleEvent;

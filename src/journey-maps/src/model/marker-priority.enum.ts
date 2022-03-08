@@ -5,5 +5,5 @@
 export enum MarkerPriority {
   LOW = 1,
   REGULAR = 2,
-  HIGH = 3
+  HIGH = 3,
 }

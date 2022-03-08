@@ -1,14 +1,14 @@
-import {ComponentFixture, fakeAsync, TestBed, tick} from '@angular/core/testing';
+import { HttpClientModule } from '@angular/common/http';
+import { ComponentFixture, fakeAsync, TestBed, tick } from '@angular/core/testing';
+import { NoopAnimationsModule } from '@angular/platform-browser/animations';
+import { Map as MaplibreMap } from 'maplibre-gl';
+import { asyncScheduler, Observable, of, scheduled } from 'rxjs';
 
-import {JourneyMapsClientComponent} from './journey-maps-client.component';
-import {Marker} from './model/marker';
-import {MapMarkerService} from './services/map/map-marker.service';
-import {MapInitService} from './services/map/map-init.service';
-import {asyncScheduler, Observable, of, scheduled} from 'rxjs';
-import {JourneyMapsClientModule} from './journey-maps-client.module';
-import {NoopAnimationsModule} from '@angular/platform-browser/animations';
-import {HttpClientModule} from '@angular/common/http';
-import {Map as MaplibreMap} from 'maplibre-gl';
+import { JourneyMapsClientComponent } from './journey-maps-client.component';
+import { JourneyMapsClientModule } from './journey-maps-client.module';
+import { Marker } from './model/marker';
+import { MapInitService } from './services/map/map-init.service';
+import { MapMarkerService } from './services/map/map-marker.service';
 
 let component: JourneyMapsClientComponent;
 let fixture: ComponentFixture<JourneyMapsClientComponent>;
@@ -29,7 +29,7 @@ describe('JourneyMapsClientComponent#selectedMarkerId', () => {
 
   it('should emit when (un-)selecting a marker', async () => {
     let selectedMarkerId: string = null;
-    component.selectedMarkerIdChange.subscribe((id: string) => selectedMarkerId = id);
+    component.selectedMarkerIdChange.subscribe((id: string) => (selectedMarkerId = id));
 
     expect(selectedMarkerId).toBe(null);
 
@@ -58,7 +58,8 @@ describe('JourneyMapsClientComponent#touchEventCollector', () => {
   const createTouchEventsObservable = (touchEvents: TouchEvent[]): Observable<TouchEvent> =>
     scheduled(touchEvents, asyncScheduler);
 
-  const createTouchEvent = (touches: Touch[], type = 'touchstart'): TouchEvent => new TouchEvent(type, {touches});
+  const createTouchEvent = (touches: Touch[], type = 'touchstart'): TouchEvent =>
+    new TouchEvent(type, { touches });
 
   it('should set the touch overlay style class when only one finger used', fakeAsync(() => {
     // @ts-ignore
@@ -87,7 +88,7 @@ describe('JourneyMapsClientComponent#touchEventCollector', () => {
     expect(component.touchOverlayStyleClass).toBeFalsy();
   }));
 
-  it('should NOT set the touch overlay style class when touch events contain \'touchend\' event', fakeAsync(() => {
+  it("should NOT set the touch overlay style class when touch events contain 'touchend' event", fakeAsync(() => {
     // @ts-ignore
     component.touchEventCollector = createTouchEventsObservable([
       createTouchEvent([oneFinger]),
@@ -102,39 +103,35 @@ describe('JourneyMapsClientComponent#touchEventCollector', () => {
   }));
 });
 
-const configureTestingModule = () => TestBed.configureTestingModule({
-  imports: [JourneyMapsClientModule, NoopAnimationsModule, HttpClientModule],
-  declarations: [JourneyMapsClientComponent],
-  providers: [
-    Window,
-    {
-      provide: MapMarkerService,
-      useValue: {
-        selectMarker: () => {
+const configureTestingModule = () =>
+  TestBed.configureTestingModule({
+    imports: [JourneyMapsClientModule, NoopAnimationsModule, HttpClientModule],
+    declarations: [JourneyMapsClientComponent],
+    providers: [
+      Window,
+      {
+        provide: MapMarkerService,
+        useValue: {
+          selectMarker: () => {},
+          unselectFeature: () => {},
+          markerCategoryMappings: { get: () => null },
         },
-        unselectFeature: () => {
+      },
+      {
+        provide: MapInitService,
+        useValue: {
+          initializeMap: () =>
+            of({
+              isStyleLoaded: () => false,
+              on: () => {},
+              addControl: () => {},
+              resize: () => {},
+              remove: () => {},
+            } as unknown as MaplibreMap),
         },
-        markerCategoryMappings: {get: () => null}
-      }
-    },
-    {
-      provide: MapInitService,
-      useValue: {
-        initializeMap: () => of({
-          isStyleLoaded: () => false,
-          on: () => {
-          },
-          addControl: () => {
-          },
-          resize: () => {
-          },
-          remove: () => {
-          }
-        } as unknown as MaplibreMap),
-      }
-    },
-  ]
-});
+      },
+    ],
+  });
 
 const setupFixtureAndComponent = (oneFingerPan: boolean = true) => {
   fixture = TestBed.createComponent(JourneyMapsClientComponent);
@@ -157,7 +154,7 @@ const markers: Marker[] = [
     id: 'work',
     title: 'Office',
     subtitle: 'SBB Wylerpark',
-    position: [7.446450, 46.961409],
-    category: 'WARNING'
+    position: [7.44645, 46.961409],
+    category: 'WARNING',
   },
 ];

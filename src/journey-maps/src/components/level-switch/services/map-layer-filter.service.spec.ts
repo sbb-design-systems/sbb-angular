@@ -1,4 +1,4 @@
-import {MapLayerFilterService} from './map-layer-filter.service';
+import { MapLayerFilterService } from './map-layer-filter.service';
 
 describe('MapLayerFilterService', () => {
   let service: MapLayerFilterService;
@@ -16,7 +16,11 @@ describe('MapLayerFilterService', () => {
   });
 
   it('should not change filter if nothing to do', () => {
-    const oldFilter = ['all', ['==', ['geometry-type'], 'Point'], ['==', 'lorem-ipsum', '1234567890']];
+    const oldFilter = [
+      'all',
+      ['==', ['geometry-type'], 'Point'],
+      ['==', 'lorem-ipsum', '1234567890'],
+    ];
     configureMapMock(oldFilter);
     const level = 1;
     service.setLevelFilter(level);
@@ -44,17 +48,27 @@ describe('MapLayerFilterService', () => {
     configureMapMock(oldFilter);
     const level = 2.0;
     service.setLevelFilter(level);
-    expect(calculatedFilter).toEqual(['all', ['==', ['geometry-type'], 'Polygon'], ['==', 'floor', 2]]);
+    expect(calculatedFilter).toEqual([
+      'all',
+      ['==', ['geometry-type'], 'Polygon'],
+      ['==', 'floor', 2],
+    ]);
   });
 
   it('should set new level - case-filter', () => {
-    const oldFilter = ['all', ['==', ['case', ['has', 'level'], ['get', 'level'], 0], 0], ['==', ['geometry-type'], 'Polygon']];
+    const oldFilter = [
+      'all',
+      ['==', ['case', ['has', 'level'], ['get', 'level'], 0], 0],
+      ['==', ['geometry-type'], 'Polygon'],
+    ];
     configureMapMock(oldFilter);
     const level = 2;
     service.setLevelFilter(level);
-    expect(calculatedFilter).toEqual(
-      ['all', ['==', ['case', ['has', 'level'], ['get', 'level'], 0], 2], ['==', ['geometry-type'], 'Polygon']]
-    );
+    expect(calculatedFilter).toEqual([
+      'all',
+      ['==', ['case', ['has', 'level'], ['get', 'level'], 0], 2],
+      ['==', ['geometry-type'], 'Polygon'],
+    ]);
   });
 
   it('should set rokas_background_mask layer to visible when level < 0', () => {
@@ -77,7 +91,7 @@ describe('MapLayerFilterService', () => {
     mapMock = {
       getStyle: () => {
         return {
-          layers: createMapLayersMock()
+          layers: createMapLayersMock(),
         };
       },
       setFilter: (layerId, newFilter) => {
@@ -99,13 +113,13 @@ describe('MapLayerFilterService', () => {
     const mapLayerMock = {
       id: testLayerId,
       visibility: 'visible',
-      type: 'fill'
+      type: 'fill',
     };
 
     rokasBackgroundLayerMock = {
       id: 'rokas_background_mask',
       visibility: 'none',
-      type: 'background'
+      type: 'background',
     };
 
     mapMock.getLayer = (layerId) => {

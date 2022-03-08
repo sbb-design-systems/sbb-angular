@@ -11,7 +11,7 @@
     [rendered]="shouldRender"
     [map]="map"
     [templateContext]="selectedMarker"
-    [position]="selectedMarker?.position"
+    [position]="getLngLatLike(selectedMarker?.position)"
     [offset]="popupOffset"
     (closeClicked)="closeClicked.next()"
     [template]="template"

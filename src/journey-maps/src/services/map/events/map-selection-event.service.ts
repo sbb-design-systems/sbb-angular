@@ -1,3 +1,9 @@
+import { Injectable } from '@angular/core';
+import { Feature } from 'geojson';
+import { Map as MaplibreMap } from 'maplibre-gl';
+import { Subject, Subscription } from 'rxjs';
+import { sampleTime } from 'rxjs/operators';
+
 import {
   FeatureData,
   FeatureDataType,
@@ -5,13 +11,9 @@ import {
   FeaturesSelectEventData,
   SelectionMode,
 } from '../../../journey-maps-client.interfaces';
-import {RouteUtilsService} from './route-utils.service';
-import {MapEventUtilsService} from './map-event-utils.service';
-import {Subject, Subscription} from 'rxjs';
-import {sampleTime} from 'rxjs/operators';
-import {Map as MaplibreMap} from 'maplibre-gl';
-import {Feature} from 'geojson';
-import {Injectable} from '@angular/core';
+
+import { MapEventUtilsService } from './map-event-utils.service';
+import { RouteUtilsService } from './route-utils.service';
 
 const MAP_MOVE_SAMPLE_TIME_MS = 100;
 export const SELECTED_PROPERTY_NAME = 'isSelected';
@@ -22,99 +24,120 @@ export const SELECTED_PROPERTY_NAME = 'isSelected';
  */
 @Injectable()
 export class MapSelectionEventService {
-  private lastRouteEventData: Map<Feature, boolean>;
-  private subscription: Subscription;
+  private _lastRouteEventData: Map<Feature, boolean>;
+  private _subscription: Subscription;
 
-  private mapInstance: MaplibreMap;
-  private layersTypes: Map<string, FeatureDataType>;
-  private selectionModes: Map<FeatureDataType, SelectionMode>;
-  private touchedZoneIds: Set<number> = new Set();
+  private _mapInstance: MaplibreMap;
+  private _layersTypes: Map<string, FeatureDataType>;
+  private _selectionModes: Map<FeatureDataType, SelectionMode>;
+  private _touchedZoneIds: Set<number> = new Set();
 
   constructor(
-    private routeUtilsService: RouteUtilsService,
-    private mapEventUtils: MapEventUtilsService) {
-  }
+    private _routeUtilsService: RouteUtilsService,
+    private _mapEventUtils: MapEventUtilsService
+  ) {}
 
   initialize(
     mapInstance: MaplibreMap,
     layersTypes: Map<string, FeatureDataType>,
-    selectionModes: Map<FeatureDataType, SelectionMode>) {
-    this.mapInstance = mapInstance;
-    this.layersTypes = layersTypes;
-    this.selectionModes = selectionModes;
-    this.attachMapMoveEvent();
+    selectionModes: Map<FeatureDataType, SelectionMode>
+  ) {
+    this._mapInstance = mapInstance;
+    this._layersTypes = layersTypes;
+    this._selectionModes = selectionModes;
+    this._attachMapMoveEvent();
   }
 
   complete() {
-    this.subscription?.unsubscribe();
+    this._subscription?.unsubscribe();
   }
 
   toggleSelection(eventData: FeaturesClickEventData): void {
     const lastRouteEventDataCandidate = new Map<FeatureData, boolean>();
-    for (let feature of eventData.features) {
+    for (const feature of eventData.features) {
       const selected = !feature.state.selected;
-      this.setFeatureSelection(feature, selected);
+      this._setFeatureSelection(feature, selected);
 
       if (feature.featureDataType === FeatureDataType.ZONE) {
-        this.touchedZoneIds.add(Number(feature.id));
+        this._touchedZoneIds.add(Number(feature.id));
       } else if (feature.featureDataType === FeatureDataType.ROUTE) {
         lastRouteEventDataCandidate.set(feature, feature.state.selected);
       }
     }
 
     if (lastRouteEventDataCandidate.size) {
-      this.lastRouteEventData = lastRouteEventDataCandidate;
+      this._lastRouteEventData = lastRouteEventDataCandidate;
     }
   }
 
-  initSelectedState(mapInstance: MaplibreMap, features: Feature[], featureDataType: FeatureDataType): void {
-    const selectedFeatures = features.filter(f => f.properties[SELECTED_PROPERTY_NAME]);
+  initSelectedState(
+    mapInstance: MaplibreMap,
+    features: Feature[],
+    featureDataType: FeatureDataType
+  ): void {
+    const selectedFeatures = features.filter((f) => f.properties![SELECTED_PROPERTY_NAME]);
     if (featureDataType === FeatureDataType.ROUTE) {
-      selectedFeatures.forEach(feature => {
-        this.routeUtilsService.setRelatedRouteFeaturesSelection(mapInstance, feature, true);
+      selectedFeatures.forEach((feature) => {
+        this._routeUtilsService.setRelatedRouteFeaturesSelection(mapInstance, feature, true);
       });
-      this.lastRouteEventData = new Map(selectedFeatures.map(f => [f, true]));
+      this._lastRouteEventData = new Map(selectedFeatures.map((f) => [f, true]));
     }
     if (featureDataType === FeatureDataType.ZONE) {
-      this.touchedZoneIds = new Set<number>();
-      const featureDatas = this.mapEventUtils.queryFeatureSourceByFilter(mapInstance, FeatureDataType.ZONE, ['==', SELECTED_PROPERTY_NAME, true]);
-      featureDatas.forEach(featureData => this.mapEventUtils.setFeatureState(featureData, mapInstance, {selected: true}));
+      this._touchedZoneIds = new Set<number>();
+      const featureDatas = this._mapEventUtils.queryFeatureSourceByFilter(
+        mapInstance,
+        FeatureDataType.ZONE,
+        ['==', SELECTED_PROPERTY_NAME, true]
+      );
+      featureDatas.forEach((featureData) =>
+        this._mapEventUtils.setFeatureState(featureData, mapInstance, { selected: true })
+      );
     }
   }
 
   findSelectedFeatures(): FeaturesSelectEventData {
-    return {features: this.mapEventUtils.queryFeaturesByProperty(this.mapInstance, this.layersTypes, feature => feature.state.selected)};
+    return {
+      features: this._mapEventUtils.queryFeaturesByProperty(
+        this._mapInstance,
+        this._layersTypes,
+        (feature) => feature.state.selected
+      ),
+    };
   }
 
-  private setFeatureSelection(data: FeatureData, selected: boolean) {
-    if (this.selectionModes.get(data.featureDataType) === SelectionMode.single) {
+  private _setFeatureSelection(data: FeatureData, selected: boolean) {
+    if (this._selectionModes.get(data.featureDataType) === SelectionMode.single) {
       // if multiple features of same type, only the last in the list will be selected:
       this.findSelectedFeatures()
-        .features.filter(f => f.featureDataType === data.featureDataType)
-        .forEach(f => this.mapEventUtils.setFeatureState(f, this.mapInstance, {selected: false}));
+        .features.filter((f) => f.featureDataType === data.featureDataType)
+        .forEach((f) =>
+          this._mapEventUtils.setFeatureState(f, this._mapInstance, { selected: false })
+        );
     }
 
-    this.mapEventUtils.setFeatureState(data, this.mapInstance, {selected});
+    this._mapEventUtils.setFeatureState(data, this._mapInstance, { selected });
 
-    this.routeUtilsService.setRelatedRouteFeaturesSelection(this.mapInstance, data, selected);
+    this._routeUtilsService.setRelatedRouteFeaturesSelection(this._mapInstance, data, selected);
   }
 
-  private attachMapMoveEvent() {
+  private _attachMapMoveEvent() {
     this.complete();
     const mapMove = new Subject();
-    this.subscription = mapMove.pipe(sampleTime(MAP_MOVE_SAMPLE_TIME_MS))
-      .subscribe(() => {
-        let map = this.mapInstance;
-        this.lastRouteEventData?.forEach((isSelected, feature) => {
-          this.routeUtilsService.setRelatedRouteFeaturesSelection(map, feature, isSelected);
-        });
-        const featureDatas = this.mapEventUtils.queryFeatureSourceByFilter(map, FeatureDataType.ZONE, ['all',
-          ['==', SELECTED_PROPERTY_NAME, true],
-          ['!in', '$id', ...this.touchedZoneIds]
-        ]);
-        featureDatas.forEach(featureData => this.mapEventUtils.setFeatureState(featureData, map, {selected: true}));
+    this._subscription = mapMove.pipe(sampleTime(MAP_MOVE_SAMPLE_TIME_MS)).subscribe(() => {
+      const map = this._mapInstance;
+      this._lastRouteEventData?.forEach((isSelected, feature) => {
+        this._routeUtilsService.setRelatedRouteFeaturesSelection(map, feature, isSelected);
       });
+      const featureDatas = this._mapEventUtils.queryFeatureSourceByFilter(
+        map,
+        FeatureDataType.ZONE,
+        ['all', ['==', SELECTED_PROPERTY_NAME, true], ['!in', '$id', ...this._touchedZoneIds]]
+      );
+      featureDatas.forEach((featureData) =>
+        this._mapEventUtils.setFeatureState(featureData, map, { selected: true })
+      );
+    });
 
-    this.mapInstance.on('move', () => mapMove.next());
+    this._mapInstance.on('move', () => mapMove.next(undefined));
   }
 }

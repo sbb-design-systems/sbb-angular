@@ -7,30 +7,31 @@ import {
   OnChanges,
   Output,
   SimpleChanges,
-  TemplateRef
+  TemplateRef,
 } from '@angular/core';
-import {Marker} from '../../model/marker';
-import {Map as MaplibreMap, Offset} from 'maplibre-gl';
-import {MapMarkerService} from '../../services/map/map-marker.service';
+import { Position } from 'geojson';
+import { LngLatLike, Map as MaplibreMap, Offset } from 'maplibre-gl';
+
+import { Marker } from '../../model/marker';
+import { MapMarkerService } from '../../services/map/map-marker.service';
 
 @Component({
   selector: 'rokas-marker-details',
   templateUrl: './marker-details.component.html',
-  styleUrls: ['./marker-details.component.scss'],
-  changeDetection: ChangeDetectionStrategy.OnPush
+  styleUrls: ['./marker-details.component.css'],
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class MarkerDetailsComponent implements OnChanges {
-
-  @Input() selectedMarker: Marker;
+  @Input() selectedMarker: Marker | undefined;
   @Input() template?: TemplateRef<any>;
-  @Input() popup: boolean;
-  @Input() map: MaplibreMap;
-  @Output() closeClicked = new EventEmitter<void>();
+  @Input() popup: boolean | undefined;
+  @Input() map: MaplibreMap | null;
+  @Output() closeClicked: EventEmitter<void> = new EventEmitter<void>();
 
-  shouldRender = false;
+  shouldRender: boolean = false;
   popupOffset: Offset;
 
-  private readonly defaultPopupOffset = {
+  private readonly _defaultPopupOffset = {
     right: [-15, -15],
     left: [15, -15],
     bottom: [0, -70],
@@ -41,15 +42,15 @@ export class MarkerDetailsComponent implements OnChanges {
     'top-right': [0, -10],
   };
 
-  constructor(private mapMarkerService: MapMarkerService) {
-  }
+  constructor(private _mapMarkerService: MapMarkerService) {}
 
   ngOnChanges(changes: SimpleChanges): void {
     this.shouldRender = !!this.selectedMarker && !!this.template;
 
     if (this.selectedMarker) {
-      this.popupOffset = this.mapMarkerService.markerCategoryMappings.get(this.selectedMarker.category)
-        ?.popupOffset ?? this.defaultPopupOffset;
+      this.popupOffset =
+        this._mapMarkerService.markerCategoryMappings.get(this.selectedMarker.category)
+          ?.popupOffset ?? this._defaultPopupOffset;
     } else {
       this.popupOffset = {};
     }
@@ -60,5 +61,9 @@ export class MarkerDetailsComponent implements OnChanges {
     if (this.selectedMarker) {
       this.closeClicked.next();
     }
+  }
+
+  getLngLatLike(pos: Position | undefined): LngLatLike {
+    return pos as LngLatLike;
   }
 }

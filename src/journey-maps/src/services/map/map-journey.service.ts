@@ -1,28 +1,34 @@
-import {Injectable} from '@angular/core';
-import {EMPTY_FEATURE_COLLECTION} from './map.service';
-import {MapRouteService} from './map-route.service';
-import {MapTransferService} from './map-transfer.service';
-import {Map as MaplibreMap} from 'maplibre-gl';
-import {ROUTE_ID_PROPERTY_NAME} from './events/route-utils.service';
-import {MapSelectionEventService, SELECTED_PROPERTY_NAME} from './events/map-selection-event.service';
+import { Injectable } from '@angular/core';
+import { Map as MaplibreMap } from 'maplibre-gl';
+
+import {
+  MapSelectionEventService,
+  SELECTED_PROPERTY_NAME,
+} from './events/map-selection-event.service';
+import { ROUTE_ID_PROPERTY_NAME } from './events/route-utils.service';
+import { MapRouteService } from './map-route.service';
+import { MapTransferService } from './map-transfer.service';
+import { EMPTY_FEATURE_COLLECTION } from './map.service';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class MapJourneyService {
   constructor(
-    private mapRouteService: MapRouteService,
-    private mapTransferService: MapTransferService) {
-  }
+    private _mapRouteService: MapRouteService,
+    private _mapTransferService: MapTransferService
+  ) {}
 
-  updateJourney(map: MaplibreMap, mapSelectionEventService: MapSelectionEventService,
-                journey: GeoJSON.FeatureCollection = EMPTY_FEATURE_COLLECTION
+  updateJourney(
+    map: MaplibreMap,
+    mapSelectionEventService: MapSelectionEventService,
+    journey: GeoJSON.FeatureCollection = EMPTY_FEATURE_COLLECTION
   ): void {
     const routeFeatures: GeoJSON.Feature[] = [];
     const transferFeatures: GeoJSON.Feature[] = [];
 
     for (const feature of journey.features) {
-      const properties = feature.properties;
+      const properties = feature.properties!;
       const type = properties.type;
       const pathType = properties.pathType;
 
@@ -38,11 +44,14 @@ export class MapJourneyService {
       }
     }
 
-    this.mapRouteService.updateRoute(map, mapSelectionEventService, {
-        type: 'FeatureCollection', features: routeFeatures
-      }
-    );
+    this._mapRouteService.updateRoute(map, mapSelectionEventService, {
+      type: 'FeatureCollection',
+      features: routeFeatures,
+    });
 
-    this.mapTransferService.updateTransfer(map, {type: 'FeatureCollection', features: transferFeatures});
+    this._mapTransferService.updateTransfer(map, {
+      type: 'FeatureCollection',
+      features: transferFeatures,
+    });
   }
 }

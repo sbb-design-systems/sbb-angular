@@ -1,14 +1,14 @@
-import {MarkerDetailsComponent} from './marker-details.component';
-import {TestDataService} from '../../services/test-data.service';
-import {ComponentFixture, TestBed} from '@angular/core/testing';
-import {JourneyMapsClientModule} from '../../journey-maps-client.module';
-import {NoopAnimationsModule} from '@angular/platform-browser/animations';
-import {HttpClientModule} from '@angular/common/http';
-import {TemplateRef} from '@angular/core';
+import { HttpClientModule } from '@angular/common/http';
+import { TemplateRef } from '@angular/core';
+import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 
+import { JourneyMapsClientModule } from '../../journey-maps-client.module';
+import { TestDataService } from '../../services/test-data.service';
+
+import { MarkerDetailsComponent } from './marker-details.component';
 
 describe('MarkerDetailsComponent', () => {
-
   const testData = new TestDataService();
 
   let closeClicked = false;
@@ -24,7 +24,7 @@ describe('MarkerDetailsComponent', () => {
   });
 
   it('shouldRender should return false if !selectedMarker', () => {
-    [null, undefined, null].forEach(selectedMarker => {
+    [null, undefined, null].forEach((selectedMarker) => {
       component.selectedMarker = selectedMarker;
       component.template = 1 as unknown as TemplateRef<any>;
       component.ngOnChanges(undefined);
@@ -46,7 +46,7 @@ describe('MarkerDetailsComponent', () => {
   });
 
   it('should emit closeClicked event if escape key is clicked', () => {
-    component.closeClicked.subscribe(() => closeClicked = true);
+    component.closeClicked.subscribe(() => (closeClicked = true));
     component.selectedMarker = testData.createMarker();
     fixture.detectChanges();
     expect(closeClicked).toBeFalse();

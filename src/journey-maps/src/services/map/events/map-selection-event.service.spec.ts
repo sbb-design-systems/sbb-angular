@@ -1,8 +1,14 @@
-import {MaplibreMapMock} from '../../../model/maplibre-map-mock';
-import {FeatureData, FeatureDataType, FeaturesClickEventData, SelectionMode} from '../../../journey-maps-client.interfaces';
-import {MapEventUtilsService} from './map-event-utils.service';
-import {RouteUtilsService} from './route-utils.service';
-import {MapSelectionEventService} from './map-selection-event.service';
+import {
+  FeatureData,
+  FeatureDataType,
+  FeaturesClickEventData,
+  SelectionMode,
+} from '../../../journey-maps-client.interfaces';
+import { MaplibreMapMock } from '../../../model/maplibre-map-mock';
+
+import { MapEventUtilsService } from './map-event-utils.service';
+import { MapSelectionEventService } from './map-selection-event.service';
+import { RouteUtilsService } from './route-utils.service';
 
 describe('MapSelectionEventService', () => {
   let watchOnLayers: Map<string, FeatureDataType>;
@@ -26,18 +32,18 @@ describe('MapSelectionEventService', () => {
 
   const routeUtilsMock = {
     filterRouteFeatures: () => [],
-    setRelatedRouteFeaturesSelection: () => []
+    setRelatedRouteFeaturesSelection: () => [],
   } as undefined as RouteUtilsService;
 
   beforeEach(() => {
     featureData = [
-      {featureDataType: FeatureDataType.ROUTE, state: {selected: false}},
-      {featureDataType: FeatureDataType.ROUTE, state: {selected: false}}
+      { featureDataType: FeatureDataType.ROUTE, state: { selected: false } },
+      { featureDataType: FeatureDataType.ROUTE, state: { selected: false } },
     ] as undefined as FeatureData[];
 
     mapMock = new MaplibreMapMock();
     watchOnLayers = new Map<string, FeatureDataType>();
-    layers.forEach(id => watchOnLayers.set(id, FeatureDataType.ROUTE));
+    layers.forEach((id) => watchOnLayers.set(id, FeatureDataType.ROUTE));
     mapSelectionEventService = new MapSelectionEventService(routeUtilsMock, mapEventUtilsMock);
   });
 
@@ -49,16 +55,16 @@ describe('MapSelectionEventService', () => {
     selectionModes.set(FeatureDataType.ROUTE, SelectionMode.single);
     mapSelectionEventService.initialize(mapMock.get(), watchOnLayers, selectionModes);
 
-    mapSelectionEventService.toggleSelection({features: featureData} as FeaturesClickEventData);
-    expect(featureData.some(f => !f.state.selected)).toBeTruthy();
-    expect(featureData.some(f => f.state.selected)).toBeTruthy();
+    mapSelectionEventService.toggleSelection({ features: featureData } as FeaturesClickEventData);
+    expect(featureData.some((f) => !f.state.selected)).toBeTruthy();
+    expect(featureData.some((f) => f.state.selected)).toBeTruthy();
   });
 
   it('should select all features in multi selection mode', () => {
     selectionModes.set(FeatureDataType.ROUTE, SelectionMode.multi);
     mapSelectionEventService.initialize(mapMock.get(), watchOnLayers, selectionModes);
 
-    mapSelectionEventService.toggleSelection({features: featureData} as FeaturesClickEventData);
-    expect(featureData.some(f => !f.state.selected)).toBeFalse();
+    mapSelectionEventService.toggleSelection({ features: featureData } as FeaturesClickEventData);
+    expect(featureData.some((f) => !f.state.selected)).toBeFalse();
   });
 });

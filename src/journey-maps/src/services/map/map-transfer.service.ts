@@ -1,16 +1,21 @@
-import {Injectable} from '@angular/core';
-import {Constants} from '../constants';
-import {GeoJSONSource, Map as MaplibreMap} from 'maplibre-gl';
-import {EMPTY_FEATURE_COLLECTION} from './map.service';
+import { Injectable } from '@angular/core';
+import { Feature } from 'geojson';
+import { GeoJSONSource, Map as MaplibreMap } from 'maplibre-gl';
 
-@Injectable({providedIn: 'root'})
+import { Constants } from '../constants';
+
+import { EMPTY_FEATURE_COLLECTION } from './map.service';
+
+@Injectable({ providedIn: 'root' })
 export class MapTransferService {
+  private _data: GeoJSON.FeatureCollection;
 
-  private data: GeoJSON.FeatureCollection;
-
-  updateTransfer(map: MaplibreMap, featureCollection: GeoJSON.FeatureCollection = EMPTY_FEATURE_COLLECTION): void {
-    this.getSource(map).setData(featureCollection);
-    this.data = featureCollection;
+  updateTransfer(
+    map: MaplibreMap,
+    featureCollection: GeoJSON.FeatureCollection = EMPTY_FEATURE_COLLECTION
+  ): void {
+    this._getSource(map).setData(featureCollection);
+    this._data = featureCollection;
   }
 
   // If we enter the station on another floor than '0' then the outdoor route should be displayed
@@ -18,9 +23,9 @@ export class MapTransferService {
   updateOutdoorWalkFloor(map: MaplibreMap, level: number): void {
     let floorChanged = false;
 
-    (this.data?.features ?? [])
-      .filter(f => +f.properties.additionalFloor === level)
-      .forEach(f => {
+    (this._data?.features ?? [])
+      .filter((f: { [name: string]: any }) => +f.properties.additionalFloor === level)
+      .forEach((f: { [name: string]: any }) => {
         const floor = f.properties.floor;
         f.properties.floor = f.properties.additionalFloor;
         f.properties.additionalFloor = floor;
@@ -28,11 +33,11 @@ export class MapTransferService {
       });
 
     if (floorChanged) {
-      this.getSource(map).setData(this.data);
+      this._getSource(map).setData(this._data);
     }
   }
 
-  private getSource(map: MaplibreMap): GeoJSONSource {
+  private _getSource(map: MaplibreMap): GeoJSONSource {
     return map.getSource(Constants.WALK_SOURCE) as GeoJSONSource;
   }
 }

@@ -1,7 +1,12 @@
-import {FeaturesClickEvent} from './features-click-event';
-import {MaplibreMapMock} from '../../../model/maplibre-map-mock';
-import {FeatureData, FeatureDataType, FeaturesClickEventData} from '../../../journey-maps-client.interfaces';
-import {MapEventUtilsService} from './map-event-utils.service';
+import {
+  FeatureData,
+  FeatureDataType,
+  FeaturesClickEventData,
+} from '../../../journey-maps-client.interfaces';
+import { MaplibreMapMock } from '../../../model/maplibre-map-mock';
+
+import { FeaturesClickEvent } from './features-click-event';
+import { MapEventUtilsService } from './map-event-utils.service';
 
 describe('FeaturesClickEvent', () => {
   let featuresClickEvent: FeaturesClickEvent;
@@ -11,8 +16,8 @@ describe('FeaturesClickEvent', () => {
 
   beforeEach(() => {
     featureData = [
-      {featureDataType: FeatureDataType.ROUTE, geometry: {type: 'Line'}},
-      {featureDataType: FeatureDataType.ROUTE, geometry: {type: 'Line'}},
+      { featureDataType: FeatureDataType.ROUTE, geometry: { type: 'Line' } },
+      { featureDataType: FeatureDataType.ROUTE, geometry: { type: 'Line' } },
     ] as unknown as FeatureData[];
 
     mapMock = new MaplibreMapMock();
@@ -37,8 +42,10 @@ describe('FeaturesClickEvent', () => {
   });
 
   it('should submit event on map click with geometry priority check', (doneFn) => {
-
-    featureData.push({featureDataType: FeatureDataType.STATION, geometry: {type: 'Point'}} as unknown as FeatureData);
+    featureData.push({
+      featureDataType: FeatureDataType.STATION,
+      geometry: { type: 'Point' },
+    } as unknown as FeatureData);
 
     featuresClickEvent.subscribe((args: FeaturesClickEventData) => {
       expect(args.features.length).toBe(1);

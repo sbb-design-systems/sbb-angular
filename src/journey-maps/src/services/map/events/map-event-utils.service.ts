@@ -1,42 +1,57 @@
-import {Map as MaplibreMap, MapboxGeoJSONFeature} from 'maplibre-gl';
-import {FeatureData, FeatureDataType} from '../../../journey-maps-client.interfaces';
-import {Constants} from '../../constants';
-import {Injectable} from '@angular/core';
+import { Injectable } from '@angular/core';
+import { Map as MaplibreMap, MapboxGeoJSONFeature } from 'maplibre-gl';
 
-@Injectable({providedIn: 'root'})
+import { FeatureData, FeatureDataType } from '../../../journey-maps-client.interfaces';
+import { Constants } from '../../constants';
+
+@Injectable({ providedIn: 'root' })
 export class MapEventUtilsService {
-
-  queryFeaturesByLayerIds(mapInstance: MaplibreMap, screenPoint: [number, number], layers: Map<string, FeatureDataType>): FeatureData[] {
-    return mapInstance.queryRenderedFeatures(screenPoint, {
-      layers: [...layers.keys()]
-    }).map(f => MapEventUtilsService.toFeatureEventData(f, layers.get(f.layer.id)));
+  queryFeaturesByLayerIds(
+    mapInstance: MaplibreMap,
+    screenPoint: [number, number],
+    layers: Map<string, FeatureDataType>
+  ): FeatureData[] {
+    return mapInstance
+      .queryRenderedFeatures(screenPoint, {
+        layers: [...layers.keys()],
+      })
+      .map((f) => MapEventUtilsService._toFeatureEventData(f, layers.get(f.layer.id)!));
   }
 
   /**
    * Query feature in all visible layers in the layers list. Only features that are currently rendered are included.
    */
-  queryVisibleFeaturesByFilter(mapInstance: MaplibreMap, featureDataType: FeatureDataType, layers: string[], filter?: any[]): FeatureData[] {
-    return mapInstance.queryRenderedFeatures(null, {layers, filter})
-      .map(f => MapEventUtilsService.toFeatureEventData(f, featureDataType));
+  queryVisibleFeaturesByFilter(
+    mapInstance: MaplibreMap,
+    featureDataType: FeatureDataType,
+    layers: string[],
+    filter?: any[]
+  ): FeatureData[] {
+    return mapInstance
+      .queryRenderedFeatures(undefined, { layers, filter })
+      .map((f) => MapEventUtilsService._toFeatureEventData(f, featureDataType));
   }
 
   /**
    *  WARNING: This function does not check features outside the currently visible viewport.
    *  In opposite to queryVisibleFeaturesByFilter, it includes all features: currently rendered or hidden by layer zoom-level or visibility.
    */
-  queryFeatureSourceByFilter(mapInstance: MaplibreMap, featureDataType: FeatureDataType, filter?: any[]): FeatureData[] {
-    const sourceId = MapEventUtilsService.getSourceMapping(featureDataType);
+  queryFeatureSourceByFilter(
+    mapInstance: MaplibreMap,
+    featureDataType: FeatureDataType,
+    filter?: any[]
+  ): FeatureData[] {
+    const sourceId = MapEventUtilsService._getSourceMapping(featureDataType);
     if (!sourceId) {
       throw new Error('Missing source mapping for feature type: ' + featureDataType);
     }
-    return mapInstance.querySourceFeatures(sourceId, {filter})
-      .map(f => {
-        const data = MapEventUtilsService.toFeatureEventData(f, featureDataType);
-        if (!data.source) {
-          data.source = sourceId;
-        }
-        return data;
-      });
+    return mapInstance.querySourceFeatures(sourceId, { filter }).map((f) => {
+      const data = MapEventUtilsService._toFeatureEventData(f, featureDataType);
+      if (!data.source) {
+        data.source = sourceId;
+      }
+      return data;
+    });
   }
 
   setFeatureState(mapFeature: MapboxGeoJSONFeature, mapInstance: MaplibreMap, state: any) {
@@ -58,9 +73,12 @@ export class MapEventUtilsService {
     layers: Map<string, FeatureDataType>,
     propertyFilter: (value: MapboxGeoJSONFeature) => boolean
   ): FeatureData[] {
-    return mapInstance.queryRenderedFeatures(null, {
-      layers: [...layers.keys()]
-    }).filter(propertyFilter).map(f => MapEventUtilsService.toFeatureEventData(f, layers.get(f.layer.id)));
+    return mapInstance
+      .queryRenderedFeatures(undefined, {
+        layers: [...layers.keys()],
+      })
+      .filter(propertyFilter)
+      .map((f) => MapEventUtilsService._toFeatureEventData(f, layers.get(f.layer.id)!));
   }
 
   filterFeaturesByPriority(features: FeatureData[]): FeatureData[] {
@@ -69,8 +87,8 @@ export class MapEventUtilsService {
       return features;
     }
 
-    const points = features.filter(f => f.geometry.type.includes('Point'));
-    const lines = features.filter(f => f.geometry.type.includes('Line'));
+    const points = features.filter((f) => f.geometry.type.includes('Point'));
+    const lines = features.filter((f) => f.geometry.type.includes('Line'));
     if (points.length) {
       features = points;
     } else if (lines.length) {
@@ -81,16 +99,19 @@ export class MapEventUtilsService {
   }
 
   /* private functions */
-  private static toFeatureEventData(feature: MapboxGeoJSONFeature, featureDataType: FeatureDataType): FeatureData {
+  private static _toFeatureEventData(
+    feature: MapboxGeoJSONFeature,
+    featureDataType: FeatureDataType
+  ): FeatureData {
     return {
       featureDataType,
-      // feature geometry is a getter function, so do map manually:
+      // @ts-ignore - feature geometry is a getter function, so we must do map manually:
       geometry: feature.geometry,
-      ...feature
+      ...feature,
     };
   }
 
-  private static getSourceMapping(featureDataType: FeatureDataType): string {
+  private static _getSourceMapping(featureDataType: FeatureDataType): string | undefined {
     switch (featureDataType) {
       case FeatureDataType.MARKER:
         return Constants.MARKER_SOURCE;

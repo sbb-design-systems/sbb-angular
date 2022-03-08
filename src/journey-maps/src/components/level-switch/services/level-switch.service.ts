@@ -1,17 +1,18 @@
-import {EventEmitter, Injectable} from '@angular/core';
-import {Map as MaplibreMap} from 'maplibre-gl';
-import {BehaviorSubject, Subject} from 'rxjs';
-import {LocaleService} from '../../../services/locale.service';
-import {QueryMapFeaturesService} from './query-map-features.service';
-import {MapLeitPoiService} from '../../../services/map/map-leit-poi.service';
-import {MapTransferService} from '../../../services/map/map-transfer.service';
-import {MapLayerFilterService} from './map-layer-filter.service';
+import { EventEmitter, Injectable } from '@angular/core';
+import { Map as MaplibreMap } from 'maplibre-gl';
+import { BehaviorSubject, Subject } from 'rxjs';
+
+import { LocaleService } from '../../../services/locale.service';
+import { MapLeitPoiService } from '../../../services/map/map-leit-poi.service';
+import { MapTransferService } from '../../../services/map/map-transfer.service';
+
+import { MapLayerFilterService } from './map-layer-filter.service';
+import { QueryMapFeaturesService } from './query-map-features.service';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class LevelSwitchService {
-
   private map: MaplibreMap;
   private lastZoom: number; // needed to detect when we cross zoom threshold to show or hide the level switcher component
 
@@ -55,12 +56,13 @@ export class LevelSwitchService {
     return this._visibleLevels.getValue();
   }
 
-  constructor(private mapLayerFilterService: MapLayerFilterService,
-              private i18n: LocaleService,
-              private queryMapFeaturesService: QueryMapFeaturesService,
-              private mapLeitPoiService: MapLeitPoiService,
-              private mapTransferService: MapTransferService) {
-  }
+  constructor(
+    private mapLayerFilterService: MapLayerFilterService,
+    private i18n: LocaleService,
+    private queryMapFeaturesService: QueryMapFeaturesService,
+    private mapLeitPoiService: MapLeitPoiService,
+    private mapTransferService: MapTransferService
+  ) {}
 
   private isVisibleInCurrentMapZoomLevel(): boolean {
     return this.map?.getZoom() >= this.levelButtonMinMapZoom;
@@ -85,29 +87,25 @@ export class LevelSwitchService {
     // call outside component-zone, trigger detect changes manually
     this.changeDetectionEmitter.emit();
 
-    this.zoomChanged
-      .subscribe(() => {
-        this.onZoomChanged();
-      });
+    this.zoomChanged.subscribe(() => {
+      this.onZoomChanged();
+    });
 
-    this.mapMoved
-      .subscribe(() => {
-        this.updateLevels();
-      });
+    this.mapMoved.subscribe(() => {
+      this.updateLevels();
+    });
 
     // called whenever the level is switched via the leit-pois (or when the map is set to a specific floor for a new transfer)
-    this.mapLeitPoiService.levelSwitched
-      .subscribe((nextLevel) => {
-        this.setSelectedLevel(nextLevel);
-      });
+    this.mapLeitPoiService.levelSwitched.subscribe((nextLevel) => {
+      this.setSelectedLevel(nextLevel);
+    });
 
-    this._selectedLevel
-      .subscribe(selectedLevel => {
-        this.mapLayerFilterService.setLevelFilter(selectedLevel);
-        this.mapTransferService.updateOutdoorWalkFloor(this.map, selectedLevel);
-        // call outside component-zone, trigger detect changes manually
-        this.changeDetectionEmitter.emit();
-      });
+    this._selectedLevel.subscribe((selectedLevel) => {
+      this.mapLayerFilterService.setLevelFilter(selectedLevel);
+      this.mapTransferService.updateOutdoorWalkFloor(this.map, selectedLevel);
+      // call outside component-zone, trigger detect changes manually
+      this.changeDetectionEmitter.emit();
+    });
 
     // call setSelectedLevel() here, as calling it from the constructor doesn't seem to notify the elements testapp
     this.setSelectedLevel(this.defaultLevel);
@@ -131,7 +129,9 @@ export class LevelSwitchService {
     this.updateIsLevelSwitchVisible();
     // diff < 0 means that we crossed (in either direction) the threshold to display the level switch component.
     // diff = 0 means that we touched (before or after zoomChanged) the threshold to display the level switch component.
-    const diff = (this.levelButtonMinMapZoom - this.lastZoom) * (this.levelButtonMinMapZoom - this.map.getZoom());
+    const diff =
+      (this.levelButtonMinMapZoom - this.lastZoom) *
+      (this.levelButtonMinMapZoom - this.map.getZoom());
     if (diff <= 0) {
       // call outside component-zone, trigger detect changes manually
       this.changeDetectionEmitter.emit();

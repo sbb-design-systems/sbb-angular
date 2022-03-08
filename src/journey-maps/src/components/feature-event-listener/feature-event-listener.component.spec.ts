@@ -1,6 +1,6 @@
-import {ComponentFixture, TestBed} from '@angular/core/testing';
+import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import {FeatureEventListenerComponent} from './feature-event-listener.component';
+import { FeatureEventListenerComponent } from './feature-event-listener.component';
 
 describe('FeatureEventListenerComponent', () => {
   let component: FeatureEventListenerComponent;
@@ -8,9 +8,8 @@ describe('FeatureEventListenerComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [FeatureEventListenerComponent]
-    })
-      .compileComponents();
+      declarations: [FeatureEventListenerComponent],
+    }).compileComponents();
   });
 
   beforeEach(() => {

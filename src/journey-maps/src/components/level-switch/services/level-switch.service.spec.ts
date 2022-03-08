@@ -1,10 +1,11 @@
-import {TestBed} from '@angular/core/testing';
+import { TestBed } from '@angular/core/testing';
+import { Subject } from 'rxjs';
 
-import {MapLayerFilterService} from './map-layer-filter.service';
-import {LevelSwitchService} from './level-switch.service';
-import {MapLeitPoiService} from '../../../services/map/map-leit-poi.service';
-import {Subject} from 'rxjs';
-import {MapTransferService} from '../../../services/map/map-transfer.service';
+import { MapLeitPoiService } from '../../../services/map/map-leit-poi.service';
+import { MapTransferService } from '../../../services/map/map-transfer.service';
+
+import { LevelSwitchService } from './level-switch.service';
+import { MapLayerFilterService } from './map-layer-filter.service';
 
 describe('LevelSwitchService', () => {
   let levelSwitchService: LevelSwitchService;
@@ -18,23 +19,34 @@ describe('LevelSwitchService', () => {
     TestBed.configureTestingModule({
       providers: [
         LevelSwitchService,
-        {provide: MapLayerFilterService, useValue: jasmine.createSpyObj('MapLayerFilterService', ['setLevelFilter', 'setMap'])},
-        {provide: MapLeitPoiService, useValue: jasmine.createSpyObj('MapLeitPoiService', ['setCurrentLevel'],
-            {levelSwitched: new Subject<number>()})
+        {
+          provide: MapLayerFilterService,
+          useValue: jasmine.createSpyObj('MapLayerFilterService', ['setLevelFilter', 'setMap']),
         },
-        {provide: MapTransferService, useValue: jasmine.createSpyObj('MapTransferService', ['updateOutdoorWalkFloor'])},
-      ]
+        {
+          provide: MapLeitPoiService,
+          useValue: jasmine.createSpyObj('MapLeitPoiService', ['setCurrentLevel'], {
+            levelSwitched: new Subject<number>(),
+          }),
+        },
+        {
+          provide: MapTransferService,
+          useValue: jasmine.createSpyObj('MapTransferService', ['updateOutdoorWalkFloor']),
+        },
+      ],
     });
 
     levelSwitchService = TestBed.inject(LevelSwitchService);
-    mapLayerFilterServiceSpy = TestBed.inject(MapLayerFilterService) as jasmine.SpyObj<MapLayerFilterService>;
+    mapLayerFilterServiceSpy = TestBed.inject(
+      MapLayerFilterService
+    ) as jasmine.SpyObj<MapLayerFilterService>;
     mapLeitPoiServiceSpy = TestBed.inject(MapLeitPoiService) as jasmine.SpyObj<MapLeitPoiService>;
     mapTransferService = TestBed.inject(MapTransferService) as jasmine.SpyObj<MapTransferService>;
   });
 
   it('should create with default level == 0', () => {
     let selectedLevel: number = null;
-    levelSwitchService.selectedLevel$.subscribe(levelUpdate => selectedLevel = levelUpdate);
+    levelSwitchService.selectedLevel$.subscribe((levelUpdate) => (selectedLevel = levelUpdate));
 
     expect(levelSwitchService.selectedLevel).toEqual(0);
     expect(selectedLevel).toEqual(0);
@@ -42,7 +54,7 @@ describe('LevelSwitchService', () => {
 
   it('should set new level on switchLevel', () => {
     let selectedLevel: number = null;
-    levelSwitchService.selectedLevel$.subscribe(levelUpdate => selectedLevel = levelUpdate);
+    levelSwitchService.selectedLevel$.subscribe((levelUpdate) => (selectedLevel = levelUpdate));
 
     levelSwitchService.setAvailableLevels([0, -4]);
 
@@ -55,7 +67,7 @@ describe('LevelSwitchService', () => {
 
   it('should not allow setting new level to unavailable level', () => {
     let selectedLevel: number = null;
-    levelSwitchService.selectedLevel$.subscribe(levelUpdate => selectedLevel = levelUpdate);
+    levelSwitchService.selectedLevel$.subscribe((levelUpdate) => (selectedLevel = levelUpdate));
 
     levelSwitchService.setAvailableLevels([0, -4]);
 
@@ -134,7 +146,7 @@ describe('LevelSwitchService', () => {
 
   it('should show visibleLevels', () => {
     let visibleLevels: number[] = null;
-    levelSwitchService.visibleLevels$.subscribe(newLevels => visibleLevels = newLevels);
+    levelSwitchService.visibleLevels$.subscribe((newLevels) => (visibleLevels = newLevels));
 
     // start with some visibleLevels
     triggerOnInitWithMapMock(16);
@@ -146,7 +158,7 @@ describe('LevelSwitchService', () => {
 
   it('should not show visibleLevels as empty if zoomLevel goes below 15', () => {
     let visibleLevels: number[] = null;
-    levelSwitchService.visibleLevels$.subscribe(newLevels => visibleLevels = newLevels);
+    levelSwitchService.visibleLevels$.subscribe((newLevels) => (visibleLevels = newLevels));
 
     // start with some visibleLevels
     triggerOnInitWithMapMock(16);
@@ -163,7 +175,7 @@ describe('LevelSwitchService', () => {
 
   it('should not show visibleLevels as empty if nb levels goes to 0', () => {
     let visibleLevels: number[] = null;
-    levelSwitchService.visibleLevels$.subscribe(newLevels => visibleLevels = newLevels);
+    levelSwitchService.visibleLevels$.subscribe((newLevels) => (visibleLevels = newLevels));
 
     // start with some visibleLevels
     triggerOnInitWithMapMock(16);
@@ -180,7 +192,7 @@ describe('LevelSwitchService', () => {
 
   it('should not show visibleLevels', () => {
     let visibleLevels: number[] = null;
-    levelSwitchService.visibleLevels$.subscribe(newLevels => visibleLevels = newLevels);
+    levelSwitchService.visibleLevels$.subscribe((newLevels) => (visibleLevels = newLevels));
 
     // start with some visibleLevels
     triggerOnInitWithMapMock(14);
@@ -192,7 +204,7 @@ describe('LevelSwitchService', () => {
 
   it('should show visibleLevels if zoom level goes above 15', () => {
     let visibleLevels: number[] = null;
-    levelSwitchService.visibleLevels$.subscribe(newLevels => visibleLevels = newLevels);
+    levelSwitchService.visibleLevels$.subscribe((newLevels) => (visibleLevels = newLevels));
 
     // start with some visibleLevels
     triggerOnInitWithMapMock(14);
@@ -209,7 +221,7 @@ describe('LevelSwitchService', () => {
 
   it('should show visibleLevels if number of level goes above 0', () => {
     let visibleLevels: number[] = null;
-    levelSwitchService.visibleLevels$.subscribe(newLevels => visibleLevels = newLevels);
+    levelSwitchService.visibleLevels$.subscribe((newLevels) => (visibleLevels = newLevels));
 
     // start with some visibleLevels
     triggerOnInitWithMapMock(16);
@@ -228,7 +240,7 @@ describe('LevelSwitchService', () => {
     mapMock = {
       getStyle: () => {
         return {
-          layers: []
+          layers: [],
         };
       },
       on: (eventName: string, callbackFn: any) => {
@@ -237,7 +249,7 @@ describe('LevelSwitchService', () => {
         }
       },
       isSourceLoaded: () => false,
-      once: () => undefined
+      once: () => undefined,
     };
     setMapZoom(initialMapZoom ?? 15);
 

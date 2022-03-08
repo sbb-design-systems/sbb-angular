@@ -1,17 +1,21 @@
 <rokas-global-styles></rokas-global-styles>
-<div class="jmc-container" lang="{{language}}">
+<div class="jmc-container" lang="{{ language }}">
   <div class="map-container" (touchstart)="onTouchStart($event)" (touchend)="onTouchEnd($event)">
-    <div class="mod_map_container_mobile_overlay" [ngClass]="touchOverlayStyleClass" style="opacity: 0">
+    <div
+      class="mod_map_container_mobile_overlay"
+      [ngClass]="touchOverlayStyleClass"
+      style="opacity: 0"
+    >
       <span class="mod_map_container_mobile_overlay_icon_wrapper">
-          <div class="mod_svgsprite_icon mod_map_container_mobile_overlay_icon"> </div>
+        <div class="mod_svgsprite_icon mod_map_container_mobile_overlay_icon"></div>
       </span>
-      <p class="mod_map_container_mobile_overlay_text">{{touchOverlayText}}</p>
+      <p class="mod_map_container_mobile_overlay_text">{{ touchOverlayText }}</p>
     </div>
     <rokas-feature-event-listener
       [listenerOptions]="listenerOptions"
       [map]="mapReady | async"
       (featuresHoverChange)="featuresHoverChange.next($event)"
-      (featuresClick)="featuresClick.next($event); handleMarkerOrClusterClick($event.features);"
+      (featuresClick)="featuresClick.next($event); handleMarkerOrClusterClick($event.features)"
       (featureSelectionsChange)="selectedFeaturesChange.next($event)"
     ></rokas-feature-event-listener>
     <rokas-marker-details

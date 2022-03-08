@@ -1,8 +1,9 @@
-import {MaplibreMapMock} from '../../../model/maplibre-map-mock';
-import {FeaturesHoverEvent} from './features-hover-event';
-import {FeatureData, FeatureDataType} from '../../../journey-maps-client.interfaces';
-import {MapEventUtilsService} from './map-event-utils.service';
-import {RouteUtilsService} from './route-utils.service';
+import { FeatureData, FeatureDataType } from '../../../journey-maps-client.interfaces';
+import { MaplibreMapMock } from '../../../model/maplibre-map-mock';
+
+import { FeaturesHoverEvent } from './features-hover-event';
+import { MapEventUtilsService } from './map-event-utils.service';
+import { RouteUtilsService } from './route-utils.service';
 
 describe('FeaturesHoverEvent', () => {
   let watchOnLayers: Map<string, FeatureDataType>;
@@ -14,22 +15,35 @@ describe('FeaturesHoverEvent', () => {
     mapMock = new MaplibreMapMock();
 
     featureData = [
-      {featureDataType: FeatureDataType.ROUTE, geometry: {type: 'Line'}, source: 'routes-source'},
-      {featureDataType: FeatureDataType.ROUTE, geometry: {type: 'Line'}, source: 'routes-source'},
+      {
+        featureDataType: FeatureDataType.ROUTE,
+        geometry: { type: 'Line' },
+        source: 'routes-source',
+      },
+      {
+        featureDataType: FeatureDataType.ROUTE,
+        geometry: { type: 'Line' },
+        source: 'routes-source',
+      },
     ] as unknown as FeatureData[];
 
     const mapEventUtilsMock = new MapEventUtilsService();
     spyOn(mapEventUtilsMock, 'queryFeaturesByLayerIds').and.returnValue(featureData);
 
     const routeUtilsMock = {
-      filterRouteFeatures: () => []
+      filterRouteFeatures: () => [],
     } as undefined as RouteUtilsService;
 
     const layers = ['route-layer-1', 'route-layer-2'];
     watchOnLayers = new Map<string, FeatureDataType>();
-    layers.forEach(id => watchOnLayers.set(id, FeatureDataType.ROUTE));
+    layers.forEach((id) => watchOnLayers.set(id, FeatureDataType.ROUTE));
 
-    featuresHoverEvent = new FeaturesHoverEvent(mapMock.get(), mapEventUtilsMock, watchOnLayers, routeUtilsMock);
+    featuresHoverEvent = new FeaturesHoverEvent(
+      mapMock.get(),
+      mapEventUtilsMock,
+      watchOnLayers,
+      routeUtilsMock
+    );
   });
 
   it('should be created', () => {

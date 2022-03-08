@@ -1,8 +1,9 @@
-import {StyleMode} from './model/style-mode.enum';
-import {Marker} from './model/marker';
-import {LngLatBoundsLike, LngLatLike, MapboxGeoJSONFeature} from 'maplibre-gl';
-import {TemplateRef} from '@angular/core';
-import {FeatureCollection} from 'geojson';
+import { TemplateRef } from '@angular/core';
+import { FeatureCollection } from 'geojson';
+import { LngLatBoundsLike, LngLatLike, MapboxGeoJSONFeature } from 'maplibre-gl';
+
+import { Marker } from './model/marker';
+import { StyleMode } from './model/style-mode.enum';
 
 export interface StyleOptions {
   /** Overwrite this value if you want to use a style from a different source. */
@@ -123,14 +124,14 @@ export type ListenerTypeOptions = {
 /** Selection mode options */
 export enum SelectionMode {
   single,
-  multi
+  multi,
 }
 
 export interface FeaturesHoverChangeEventData {
   /** Event screen position. */
-  eventPoint: { x: number, y: number };
+  eventPoint: { x: number; y: number };
   /** Event map coordinates. */
-  eventLngLat: { lng: number, lat: number };
+  eventLngLat: { lng: number; lat: number };
   /** Whether is hovered or not. */
   hover: boolean;
   /** Whether is leaving or not. */
@@ -146,9 +147,9 @@ export interface FeaturesSelectEventData {
 
 export interface FeaturesClickEventData {
   /** Click screen position. */
-  clickPoint: { x: number, y: number };
+  clickPoint: { x: number; y: number };
   /** Click map coordinates. */
-  clickLngLat: { lng: number, lat: number };
+  clickLngLat: { lng: number; lat: number };
   /** List of features affected by this event. */
   features: FeatureData[];
 }
