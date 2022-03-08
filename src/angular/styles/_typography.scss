@@ -2437,12 +2437,13 @@ $menuItemPaddingTopBottom: 4;
     @include user-select(none);
   }
 
-  &:is(:not(:disabled):not([disabled]):not(.sbb-disabled):is(:hover, :focus, :hover strong, :focus
-        strong), .sbb-focused) {
-    color: var(--sbb-color-red);
+  &:is(:not(:disabled):not([disabled]):not(.sbb-disabled):is(:hover, :focus), .sbb-focused) {
+    :is(&, & strong) {
+      color: var(--sbb-color-red);
 
-    :where(html.sbb-lean) & {
-      @include sbbMenuItemRedLean();
+      :where(html.sbb-lean) & {
+        @include sbbMenuItemRedLean();
+      }
     }
   }
 
