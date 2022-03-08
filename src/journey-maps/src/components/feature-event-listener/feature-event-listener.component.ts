@@ -100,7 +100,7 @@ export class FeatureEventListenerComponent implements OnChanges, OnDestroy {
         );
       }
       if (this.listenerOptions.ROUTE?.watch) {
-        this._updateWatchOnLayers(MapRoutesService.allRouteLayers, FeatureDataType.ROUTE);
+        this._updateWatchOnLayers(MapRoutesService.ALL_ROUTE_LAYERS, FeatureDataType.ROUTE);
       }
       if (this.listenerOptions.STATION?.watch) {
         this._updateWatchOnLayers([MapStationService.STATION_LAYER], FeatureDataType.STATION);
@@ -109,7 +109,7 @@ export class FeatureEventListenerComponent implements OnChanges, OnDestroy {
         this._mapStationService.deregisterStationUpdater(this.map);
       }
       if (this.listenerOptions.ZONE?.watch) {
-        this._updateWatchOnLayers(MapZoneService.allZoneLayers, FeatureDataType.ZONE);
+        this._updateWatchOnLayers([MapZoneService.ZONE_LAYER], FeatureDataType.ZONE);
       }
 
       this._mapCursorStyleEvent?.complete();
@@ -163,19 +163,19 @@ export class FeatureEventListenerComponent implements OnChanges, OnDestroy {
     const selectionModes = new Map<FeatureDataType, SelectionMode>();
     selectionModes.set(
       FeatureDataType.ROUTE,
-      this.listenerOptions.ROUTE?.selectionMode ?? SelectionMode.single
+      this.listenerOptions.ROUTE?.selectionMode ?? SelectionMode.Single
     );
     selectionModes.set(
       FeatureDataType.MARKER,
-      this.listenerOptions.MARKER?.selectionMode ?? SelectionMode.single
+      this.listenerOptions.MARKER?.selectionMode ?? SelectionMode.Single
     );
     selectionModes.set(
       FeatureDataType.STATION,
-      this.listenerOptions.STATION?.selectionMode ?? SelectionMode.single
+      this.listenerOptions.STATION?.selectionMode ?? SelectionMode.Single
     );
     selectionModes.set(
       FeatureDataType.ZONE,
-      this.listenerOptions.ZONE?.selectionMode ?? SelectionMode.multi
+      this.listenerOptions.ZONE?.selectionMode ?? SelectionMode.Multi
     );
     return selectionModes;
   }

@@ -1,6 +1,6 @@
 export enum LeitPoiPlacement {
-  northeast = 'NORTHEAST',
-  southeast = 'SOUTHEAST',
-  southwest = 'SOUTHWEST',
-  northwest = 'NORTHWEST',
+  Northeast = 'NORTHEAST',
+  Southeast = 'SOUTHEAST',
+  Southwest = 'SOUTHWEST',
+  Northwest = 'NORTHWEST',
 }

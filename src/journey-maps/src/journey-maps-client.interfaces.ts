@@ -108,7 +108,7 @@ export type ListenerOptions = {
   [type in FeatureDataType]?: ListenerTypeOptions;
 };
 
-export type ListenerTypeOptions = {
+export interface ListenerTypeOptions {
   /** True if you want to receive events. Otherwise false. */
   watch: boolean;
   /** If a template is defined for an event: Should it be displayed in a popup or teaser? */
@@ -119,12 +119,12 @@ export type ListenerTypeOptions = {
   hoverTemplate?: TemplateRef<any>;
   /** Selection mode */
   selectionMode?: SelectionMode;
-};
+}
 
 /** Selection mode options */
 export enum SelectionMode {
-  single,
-  multi,
+  Single,
+  Multi,
 }
 
 export interface FeaturesHoverChangeEventData {

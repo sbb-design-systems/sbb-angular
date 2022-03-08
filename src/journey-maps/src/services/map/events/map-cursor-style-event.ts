@@ -1,44 +1,46 @@
-import { Map as MaplibreMap } from 'maplibre-gl';
+import { Map as MaplibreMap, MapMouseEvent, Point } from 'maplibre-gl';
 import { Subject, Subscription } from 'rxjs';
 import { sampleTime } from 'rxjs/operators';
 
 const CURSOR_STYLE_DELAY = 25;
 
 export class MapCursorStyleEvent {
-  private subject = new Subject<boolean>();
-  private subscription: Subscription;
-  private enterListener: () => void;
-  private leaveListener: () => void;
+  private _subject = new Subject<Point>();
+  private _subscription: Subscription;
+  private _mouseEventListener: (event: MapMouseEvent) => void;
 
-  constructor(private mapInstance: MaplibreMap, private layerIds: string[]) {
-    if (!this.layerIds.length) {
+  constructor(private _mapInstance: MaplibreMap, private _layerIds: string[]) {
+    if (!this._layerIds.length) {
       return;
     }
 
-    this.subscription = this.subject
+    this._subscription = this._subject
       .pipe(sampleTime(CURSOR_STYLE_DELAY))
-      .subscribe((hover) => this.setCursorStyle(hover));
+      .subscribe((point) => this._updateCursorStyle(point));
 
-    this.enterListener = () => this.subject.next(true);
-    this.leaveListener = () => this.subject.next(false);
+    this._mouseEventListener = (e: MapMouseEvent) =>
+      this._subject.next(new Point(e.point.x, e.point.y));
 
-    this.layerIds.forEach((layerId) => {
-      this.mapInstance.on('mouseenter', layerId, this.enterListener);
-      this.mapInstance.on('mouseleave', layerId, this.leaveListener);
+    this._layerIds.forEach((layerId) => {
+      this._mapInstance.on('mouseenter', layerId, this._mouseEventListener);
+      this._mapInstance.on('mouseleave', layerId, this._mouseEventListener);
     });
   }
 
   complete(): void {
-    this.subject.complete();
-    this.subscription?.unsubscribe();
+    this._subject.complete();
+    this._subscription?.unsubscribe();
 
-    this.layerIds.forEach((layerId) => {
-      this.mapInstance.off('mouseenter', layerId, this.enterListener);
-      this.mapInstance.off('mouseleave', layerId, this.leaveListener);
+    this._layerIds.forEach((layerId) => {
+      this._mapInstance.off('mouseenter', layerId, this._mouseEventListener);
+      this._mapInstance.off('mouseleave', layerId, this._mouseEventListener);
     });
   }
 
-  private setCursorStyle(hover: boolean): void {
-    this.mapInstance.getCanvas().style.cursor = hover ? 'pointer' : '';
+  private _updateCursorStyle(point: Point): void {
+    const features = this._mapInstance.queryRenderedFeatures(point, { layers: this._layerIds });
+    const hover = features?.length;
+
+    this._mapInstance.getCanvas().style.cursor = hover ? 'pointer' : '';
   }
 }

@@ -1,5 +1,4 @@
 import { Injectable } from '@angular/core';
-import { Feature } from 'geojson';
 import { GeoJSONSource, Map as MaplibreMap } from 'maplibre-gl';
 
 import { Constants } from '../constants';

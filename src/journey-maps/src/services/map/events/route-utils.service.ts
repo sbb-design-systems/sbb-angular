@@ -28,7 +28,7 @@ export class RouteUtilsService {
   ): FeatureData[] {
     const filter = this._createRelatedRoutesFilter(routeFeature);
     if (find === 'visibleOnly') {
-      const layers = MapRoutesService.allRouteLayers;
+      const layers = MapRoutesService.ALL_ROUTE_LAYERS;
       return this._mapEventUtils.queryVisibleFeaturesByFilter(
         mapInstance,
         FeatureDataType.ROUTE,

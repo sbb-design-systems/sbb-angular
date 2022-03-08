@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Feature, GeoJsonProperties, Geometry } from 'geojson';
+import { Feature } from 'geojson';
 import { Map as MaplibreMap } from 'maplibre-gl';
 import { Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';

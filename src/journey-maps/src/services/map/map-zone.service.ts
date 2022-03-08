@@ -9,7 +9,7 @@ import { EMPTY_FEATURE_COLLECTION } from './map.service';
 
 @Injectable({ providedIn: 'root' })
 export class MapZoneService {
-  static allZoneLayers: string[] = ['rokas-zone', 'rokas-zone-outline', 'rokas-zone-label'];
+  static readonly ZONE_LAYER: string = 'rokas-zone';
 
   updateZones(
     map: MaplibreMap,

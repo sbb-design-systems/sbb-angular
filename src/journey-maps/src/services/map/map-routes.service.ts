@@ -13,7 +13,7 @@ import { EMPTY_FEATURE_COLLECTION } from './map.service';
 
 @Injectable({ providedIn: 'root' })
 export class MapRoutesService {
-  static allRouteLayers: string[] = [
+  static readonly ALL_ROUTE_LAYERS: string[] = [
     'rokas-route',
     'rokas-route-gen0',
     'rokas-route-gen1',

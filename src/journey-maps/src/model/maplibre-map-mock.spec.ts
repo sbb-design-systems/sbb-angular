@@ -1,3 +1,5 @@
+import { MapboxGeoJSONFeature } from 'maplibre-gl';
+
 import { MaplibreMapMock } from './maplibre-map-mock';
 
 describe('MaplibreMapMock', () => {
@@ -40,4 +42,59 @@ describe('MaplibreMapMock', () => {
 
     mapMock.raise('test-event');
   });
+
+  describe('Query rendered features', () => {
+    it('should return a feature', () => {
+      const point: [number, number] = [1, 2];
+      const layer = 'le-layer';
+      mapMock.addFeatureData(point, [layer], dummyFeature);
+
+      const renderedFeatures = mapMock.queryRenderedFeatures(point, { layers: [layer] });
+      expect(renderedFeatures).toBeTruthy();
+      expect(renderedFeatures).toHaveSize(1);
+      expect(renderedFeatures![0].id).toEqual('test-feature');
+    });
+
+    it('should return a feature when no layer is given', () => {
+      const point: [number, number] = [1, 2];
+      const layer = 'le-layer';
+      mapMock.addFeatureData(point, [layer], dummyFeature);
+
+      const renderedFeatures = mapMock.queryRenderedFeatures(point);
+      expect(renderedFeatures).toBeTruthy();
+      expect(renderedFeatures).toHaveSize(1);
+      expect(renderedFeatures![0].id).toEqual('test-feature');
+    });
+
+    it('should return no feature if point does not match', () => {
+      const point: [number, number] = [1, 2];
+      const layer = 'le-layer';
+      mapMock.addFeatureData(point, [layer], dummyFeature);
+
+      const renderedFeatures = mapMock.queryRenderedFeatures([2, 1], { layers: [layer] });
+      expect(renderedFeatures).toBeFalsy();
+    });
+
+    it('should return no feature if layer does not match', () => {
+      const point: [number, number] = [1, 2];
+      const layer = 'le-layer';
+      mapMock.addFeatureData(point, [layer], dummyFeature);
+
+      const renderedFeatures = mapMock.queryRenderedFeatures(point, { layers: ['le-wrong-layer'] });
+      expect(renderedFeatures).toBeFalsy();
+    });
+  });
 });
+
+const dummyFeature: MapboxGeoJSONFeature[] = [
+  {
+    type: 'Feature',
+    id: 'test-feature',
+    geometry: null,
+    properties: [],
+    layer: null,
+    source: null,
+    sourceLayer: null,
+    state: null,
+  } as unknown as MapboxGeoJSONFeature,
+];

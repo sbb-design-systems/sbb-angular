@@ -106,7 +106,7 @@ export class MapSelectionEventService {
   }
 
   private _setFeatureSelection(data: FeatureData, selected: boolean) {
-    if (this._selectionModes.get(data.featureDataType) === SelectionMode.single) {
+    if (this._selectionModes.get(data.featureDataType) === SelectionMode.Single) {
       // if multiple features of same type, only the last in the list will be selected:
       this.findSelectedFeatures()
         .features.filter((f) => f.featureDataType === data.featureDataType)
