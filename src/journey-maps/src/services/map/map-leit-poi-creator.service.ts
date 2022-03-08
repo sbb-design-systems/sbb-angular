@@ -18,51 +18,51 @@ import { MapLeitPoi } from '../../model/map-leit-poi';
   providedIn: 'root',
 })
 export class MapLeitPoiCreatorService {
-  private static readonly POPUP_OPTIONS = { closeOnClick: false, closeButton: false };
-  private static readonly POPUP_CLASS_NAME = 'leit-poi-popup';
-  private static readonly X_OFFSET = 57; // 1/2 Leit-POI width
-  private static readonly Y_OFFSET = 37; // Leit-POI height
+  private static readonly _popupOptions = { closeOnClick: false, closeButton: false };
+  private static readonly _popupClassName = 'leit-poi-popup';
+  private static readonly _xOffset = 57; // 1/2 Leit-POI width
+  private static readonly _yOffset = 37; // Leit-POI height
 
-  private componentFactory: ComponentFactory<LeitPoiComponent>;
+  private _componentFactory: ComponentFactory<LeitPoiComponent>;
 
   constructor(
-    private componentFactoryResolver: ComponentFactoryResolver,
-    private appRef: ApplicationRef,
-    private injector: Injector
+    private _componentFactoryResolver: ComponentFactoryResolver,
+    private _appRef: ApplicationRef,
+    private _injector: Injector
   ) {
-    this.componentFactory = this.componentFactoryResolver.resolveComponentFactory(LeitPoiComponent);
+    this._componentFactory =
+      this._componentFactoryResolver.resolveComponentFactory(LeitPoiComponent);
   }
 
   createMapLeitPoi(map: MaplibreMap, feature: LeitPoiFeature): MapLeitPoi {
-    const componentRef = this.componentFactory.create(this.injector);
-    this.appRef.attachView(componentRef.hostView);
+    const componentRef = this._componentFactory.create(this._injector);
+    this._appRef.attachView(componentRef.hostView);
     const component = componentRef.instance;
     component.feature = feature;
 
-    const popup = new Popup(MapLeitPoiCreatorService.POPUP_OPTIONS)
-      .setDOMContent(this.getNativeElement(componentRef))
+    const popup = new Popup(MapLeitPoiCreatorService._popupOptions)
+      .setDOMContent(this._getNativeElement(componentRef))
       .addTo(map);
 
     popup.setLngLat(feature.location);
-    popup.addClassName(MapLeitPoiCreatorService.POPUP_CLASS_NAME);
+    popup.addClassName(MapLeitPoiCreatorService._popupClassName);
     popup.setOffset([
-      (this.isEast(feature.placement) ? 1 : -1) * MapLeitPoiCreatorService.X_OFFSET,
-      this.isNorth(feature.placement) ? 0 : MapLeitPoiCreatorService.Y_OFFSET,
+      (this._isEast(feature.placement) ? 1 : -1) * MapLeitPoiCreatorService._xOffset,
+      this._isNorth(feature.placement) ? 0 : MapLeitPoiCreatorService._yOffset,
     ]);
 
     return new MapLeitPoi(componentRef, popup);
   }
 
-  private getNativeElement(componentRef: ComponentRef<LeitPoiComponent>): HTMLElement {
-    const domElem = (componentRef.hostView as EmbeddedViewRef<any>).rootNodes[0] as HTMLElement;
-    return domElem;
+  private _getNativeElement(componentRef: ComponentRef<LeitPoiComponent>): HTMLElement {
+    return (componentRef.hostView as EmbeddedViewRef<any>).rootNodes[0] as HTMLElement;
   }
 
-  private isNorth(placement: LeitPoiPlacement): boolean {
+  private _isNorth(placement: LeitPoiPlacement): boolean {
     return placement === LeitPoiPlacement.northwest || placement === LeitPoiPlacement.northeast;
   }
 
-  private isEast(placement: LeitPoiPlacement): boolean {
+  private _isEast(placement: LeitPoiPlacement): boolean {
     return placement === LeitPoiPlacement.southeast || placement === LeitPoiPlacement.northeast;
   }
 }

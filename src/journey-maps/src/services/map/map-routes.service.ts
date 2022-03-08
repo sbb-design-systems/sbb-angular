@@ -22,7 +22,7 @@ export class MapRoutesService {
     'rokas-route-gen4',
   ];
 
-  constructor(private mapRouteService: MapRouteService) {}
+  constructor(private _mapRouteService: MapRouteService) {}
 
   updateRoutes(
     map: MaplibreMap,
@@ -36,7 +36,7 @@ export class MapRoutesService {
         feature.properties![SELECTED_PROPERTY_NAME] = featureCollection.isSelected;
       }
     });
-    this.mapRouteService.updateRoute(map, mapSelectionEventService, {
+    this._mapRouteService.updateRoute(map, mapSelectionEventService, {
       type: 'FeatureCollection',
       // With ES2019 we can replace this with routes.flatMap(({features}) => features)
       features: routes.reduce(
