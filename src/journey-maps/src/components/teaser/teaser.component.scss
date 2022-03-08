@@ -1,5 +1,5 @@
 @use './../../style/colors' as c;
-@use 'node_modules/@sbb-esta/angular/styles' as esta;
+@use '../../../../angular/styles/common' as esta;
 
 .teaser-container {
   z-index: 99;

@@ -1,4 +1,4 @@
-@use 'node_modules/@sbb-esta/angular/styles' as esta;
+@use '../../../../angular/styles/common' as esta;
 @use './../../style/functions' as f;
 
 @include f.map-controls-shared;
