@@ -94,14 +94,14 @@ describe('MapLayerFilterService', () => {
           layers: createMapLayersMock(),
         };
       },
-      setFilter: (layerId, newFilter) => {
+      setFilter: (layerId: string, newFilter: any[]) => {
         if (layerId === testLayerId) {
           calculatedFilter = newFilter;
         } else {
           throw new Error('setFilter: LayerId not found in map mock:' + layerId);
         }
       },
-      getFilter: (layerId) => {
+      getFilter: () => {
         return filter;
       },
     };
@@ -122,7 +122,7 @@ describe('MapLayerFilterService', () => {
       type: 'background',
     };
 
-    mapMock.getLayer = (layerId) => {
+    mapMock.getLayer = (layerId: string) => {
       if (layerId === 'rokas_background_mask') {
         return rokasBackgroundLayerMock;
       } else if (layerId === testLayerId) {

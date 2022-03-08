@@ -13,18 +13,18 @@ import { QueryMapFeaturesService } from './query-map-features.service';
   providedIn: 'root',
 })
 export class LevelSwitchService {
-  private map: MaplibreMap;
-  private lastZoom: number; // needed to detect when we cross zoom threshold to show or hide the level switcher component
+  private _map: MaplibreMap;
+  private _lastZoom: number; // needed to detect when we cross zoom threshold to show or hide the level switcher component
 
-  private readonly defaultLevel = 0;
+  private readonly _defaultLevel = 0;
   // same minZoom as in Android and iOS map
-  private readonly levelButtonMinMapZoom = 15;
+  private readonly _levelButtonMinMapZoom = 15;
   private readonly _selectedLevel = new BehaviorSubject<number>(0);
   private readonly _availableLevels = new BehaviorSubject<number[]>([]);
   private readonly _visibleLevels = new BehaviorSubject<number[]>([]);
 
-  private readonly zoomChanged = new Subject<void>(); // gets triggered by the map's 'zoomend' event and calls onZoomChanged()
-  private readonly mapMoved = new Subject<void>(); // gets triggered by the map's 'moveend' event and calls updateLevels()
+  private readonly _zoomChanged = new Subject<void>(); // gets triggered by the map's 'zoomend' event and calls onZoomChanged()
+  private readonly _mapMoved = new Subject<void>(); // gets triggered by the map's 'moveend' event and calls updateLevels()
 
   // service design inspired by https://www.maestralsolutions.com/angular-application-state-management-you-do-not-need-external-data-stores/
   readonly selectedLevel$ = this._selectedLevel.asObservable();
@@ -37,8 +37,8 @@ export class LevelSwitchService {
   }
 
   // in most instances you should call switchLevel() instead
-  private setSelectedLevel(selectedLevel: number): void {
-    if (this.availableLevels.includes(selectedLevel) || selectedLevel === this.defaultLevel) {
+  private _setSelectedLevel(selectedLevel: number): void {
+    if (this.availableLevels.includes(selectedLevel) || selectedLevel === this._defaultLevel) {
       this._selectedLevel.next(selectedLevel);
     }
   }
@@ -49,7 +49,7 @@ export class LevelSwitchService {
 
   setAvailableLevels(availableLevels: number[]): void {
     this._availableLevels.next(availableLevels);
-    this.updateIsLevelSwitchVisible();
+    this._updateIsLevelSwitchVisible();
   }
 
   get visibleLevels(): number[] {
@@ -57,102 +57,102 @@ export class LevelSwitchService {
   }
 
   constructor(
-    private mapLayerFilterService: MapLayerFilterService,
-    private i18n: LocaleService,
-    private queryMapFeaturesService: QueryMapFeaturesService,
-    private mapLeitPoiService: MapLeitPoiService,
-    private mapTransferService: MapTransferService
+    private _mapLayerFilterService: MapLayerFilterService,
+    private _i18n: LocaleService,
+    private _queryMapFeaturesService: QueryMapFeaturesService,
+    private _mapLeitPoiService: MapLeitPoiService,
+    private _mapTransferService: MapTransferService
   ) {}
 
-  private isVisibleInCurrentMapZoomLevel(): boolean {
-    return this.map?.getZoom() >= this.levelButtonMinMapZoom;
+  private _isVisibleInCurrentMapZoomLevel(): boolean {
+    return this._map?.getZoom() >= this._levelButtonMinMapZoom;
   }
 
   isVisible(): boolean {
-    return this.isVisibleInCurrentMapZoomLevel() && this.availableLevels.length > 0;
+    return this._isVisibleInCurrentMapZoomLevel() && this.availableLevels.length > 0;
   }
 
   onInit(map: MaplibreMap): void {
-    this.map = map;
-    this.lastZoom = this.map.getZoom();
-    this.map.on('zoomend', () => this.zoomChanged.next());
-    this.map.on('moveend', () => this.mapMoved.next());
+    this._map = map;
+    this._lastZoom = this._map.getZoom();
+    this._map.on('zoomend', () => this._zoomChanged.next());
+    this._map.on('moveend', () => this._mapMoved.next());
 
-    this.mapLayerFilterService.setMap(this.map);
-    if (this.map.isSourceLoaded(QueryMapFeaturesService.SERVICE_POINT_SOURCE_ID)) {
-      this.updateLevels();
+    this._mapLayerFilterService.setMap(this._map);
+    if (this._map.isSourceLoaded(QueryMapFeaturesService.SERVICE_POINT_SOURCE_ID)) {
+      this._updateLevels();
     } else {
-      this.map.once('idle', () => this.updateLevels());
+      this._map.once('idle', () => this._updateLevels());
     }
     // call outside component-zone, trigger detect changes manually
     this.changeDetectionEmitter.emit();
 
-    this.zoomChanged.subscribe(() => {
-      this.onZoomChanged();
+    this._zoomChanged.subscribe(() => {
+      this._onZoomChanged();
     });
 
-    this.mapMoved.subscribe(() => {
-      this.updateLevels();
+    this._mapMoved.subscribe(() => {
+      this._updateLevels();
     });
 
     // called whenever the level is switched via the leit-pois (or when the map is set to a specific floor for a new transfer)
-    this.mapLeitPoiService.levelSwitched.subscribe((nextLevel) => {
-      this.setSelectedLevel(nextLevel);
+    this._mapLeitPoiService.levelSwitched.subscribe((nextLevel) => {
+      this._setSelectedLevel(nextLevel);
     });
 
     this._selectedLevel.subscribe((selectedLevel) => {
-      this.mapLayerFilterService.setLevelFilter(selectedLevel);
-      this.mapTransferService.updateOutdoorWalkFloor(this.map, selectedLevel);
+      this._mapLayerFilterService.setLevelFilter(selectedLevel);
+      this._mapTransferService.updateOutdoorWalkFloor(this._map, selectedLevel);
       // call outside component-zone, trigger detect changes manually
       this.changeDetectionEmitter.emit();
     });
 
     // call setSelectedLevel() here, as calling it from the constructor doesn't seem to notify the elements testapp
-    this.setSelectedLevel(this.defaultLevel);
+    this._setSelectedLevel(this._defaultLevel);
   }
 
   switchLevel(level: number): void {
-    this.setSelectedLevel(level);
-    this.mapLeitPoiService.setCurrentLevel(this.map, level);
+    this._setSelectedLevel(level);
+    this._mapLeitPoiService.setCurrentLevel(this._map, level);
   }
 
   getLevelLabel(level: number): string {
-    const txt1 = this.i18n.getText('a4a.visualFunction');
-    const txt2 = this.i18n.getTextWithParams('a4a.selectFloor', level);
+    const txt1 = this._i18n.getText('a4a.visualFunction');
+    const txt2 = this._i18n.getTextWithParams('a4a.selectFloor', level);
     return `${txt1} ${txt2}`;
   }
 
   /**
    * gets called every time the map's 'zoomend' event triggers the 'zoomChanged' observable
    */
-  private onZoomChanged(): void {
-    this.updateIsLevelSwitchVisible();
+  private _onZoomChanged(): void {
+    this._updateIsLevelSwitchVisible();
     // diff < 0 means that we crossed (in either direction) the threshold to display the level switch component.
     // diff = 0 means that we touched (before or after zoomChanged) the threshold to display the level switch component.
     const diff =
-      (this.levelButtonMinMapZoom - this.lastZoom) *
-      (this.levelButtonMinMapZoom - this.map.getZoom());
+      (this._levelButtonMinMapZoom - this._lastZoom) *
+      (this._levelButtonMinMapZoom - this._map.getZoom());
     if (diff <= 0) {
       // call outside component-zone, trigger detect changes manually
       this.changeDetectionEmitter.emit();
     }
-    this.setDefaultLevelIfNotVisible();
-    this.lastZoom = this.map.getZoom();
+    this._setDefaultLevelIfNotVisible();
+    this._lastZoom = this._map.getZoom();
   }
 
-  private updateIsLevelSwitchVisible(): void {
-    if (this.isVisibleInCurrentMapZoomLevel()) {
+  private _updateIsLevelSwitchVisible(): void {
+    if (this._isVisibleInCurrentMapZoomLevel()) {
       this._visibleLevels.next(this.availableLevels);
     } else {
       this._visibleLevels.next([]);
     }
   }
 
-  private setDefaultLevelIfNotVisible(): void {
+  private _setDefaultLevelIfNotVisible(): void {
     // Set default level when level switch is not visible
-    const shouldSetDefaultLevel = !this.isVisible() && this.selectedLevel !== this.defaultLevel;
+    const shouldSetDefaultLevel = !this.isVisible() && this.selectedLevel !== this._defaultLevel;
     if (shouldSetDefaultLevel) {
-      this.switchLevel(this.defaultLevel);
+      this.switchLevel(this._defaultLevel);
       // call outside component-zone, trigger detect changes manually
       this.changeDetectionEmitter.emit();
     }
@@ -161,21 +161,21 @@ export class LevelSwitchService {
   /**
    * gets called when the map is initialized and then again every time the map's 'moveend' event triggers the 'mapMoved' observable
    */
-  private updateLevels(): void {
-    if (this.isVisibleInCurrentMapZoomLevel()) {
-      const currentLevels = this.queryMapFeaturesService.getVisibleLevels(this.map);
-      this.updateLevelsIfChanged(currentLevels);
+  private _updateLevels(): void {
+    if (this._isVisibleInCurrentMapZoomLevel()) {
+      const currentLevels = this._queryMapFeaturesService.getVisibleLevels(this._map);
+      this._updateLevelsIfChanged(currentLevels);
     }
 
-    this.setDefaultLevelIfNotVisible();
+    this._setDefaultLevelIfNotVisible();
   }
 
-  private updateLevelsIfChanged(levels: number[]): void {
+  private _updateLevelsIfChanged(levels: number[]): void {
     if (JSON.stringify(this.availableLevels) !== JSON.stringify(levels)) {
       this.setAvailableLevels(levels);
       // if selected level not in new levels list:
       if (this.availableLevels.indexOf(this.selectedLevel) === -1) {
-        this.switchLevel(this.defaultLevel);
+        this.switchLevel(this._defaultLevel);
       }
       // call outside component-zone, trigger detect changes manually
       this.changeDetectionEmitter.emit();

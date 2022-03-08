@@ -8,32 +8,32 @@ import { LeitPoiComponent } from '../components/leit-poi/leit-poi.component';
  * MapLeitPoi groups the LeitPoiComponent and the Popup container and helps to clenaup both instances on destroy.
  */
 export class MapLeitPoi {
-  private static readonly HIDDEN_CLASS_NAME = 'leit-poi-popup-hidden';
+  private static readonly _hiddenClassName = 'leit-poi-popup-hidden';
 
-  private destroySub = new Subject<void>();
+  private _destroySub = new Subject<void>();
 
-  constructor(private componentRef: ComponentRef<LeitPoiComponent>, private popup: Popup) {}
+  constructor(private _componentRef: ComponentRef<LeitPoiComponent>, private _popup: Popup) {}
 
   get destroyed(): Subject<void> {
-    return this.destroySub;
+    return this._destroySub;
   }
 
   get switchLevel(): Subject<number> {
-    return this.componentRef.instance.switchLevel;
+    return this._componentRef.instance.switchLevel;
   }
 
   get visible(): boolean {
-    return !this.popup.getElement().className.includes(MapLeitPoi.HIDDEN_CLASS_NAME);
+    return !this._popup.getElement().className.includes(MapLeitPoi._hiddenClassName);
   }
 
   toggleHidden(): void {
-    this.popup.toggleClassName(MapLeitPoi.HIDDEN_CLASS_NAME);
+    this._popup.toggleClassName(MapLeitPoi._hiddenClassName);
   }
 
   destroy(): void {
-    this.destroySub.next();
-    this.destroySub.complete();
-    this.popup.remove();
-    this.componentRef.destroy();
+    this._destroySub.next();
+    this._destroySub.complete();
+    this._popup.remove();
+    this._componentRef.destroy();
   }
 }
