@@ -576,7 +576,6 @@ describe('SbbTooltip', () => {
       finishCurrentTooltipAnimation(overlayContainerElement, false);
 
       expect(tooltipDirective._isTooltipVisible()).toBe(false);
-      console.log(overlayContainerElement, overlayContainerElement.textContent);
       expect(overlayContainerElement.textContent).toBe('');
     }));
 
