@@ -25,7 +25,17 @@ export class NgPackage extends NgModule {
     this.hasSchematics = dir.subdirs.includes(fragment('schematics'));
     this.hasSrcFiles = dir.subdirs.includes(fragment('src'));
     this.hasStyleBundle = dir.subfiles.includes(fragment('_style_bundle.scss'));
+    if (
+      this.hasStyleBundle &&
+      !this._fileRegistry.scssLibaryFiles.find((s) => !s.path.includes('_style_bundle.scss'))
+    ) {
+      this.hasSassLibrary = false;
+    }
     this.hasTypography = dir.subfiles.includes(fragment('typography.scss'));
+    if (this.hasTypography) {
+      this.sassBinaries = this.sassBinaries.filter((s) => !s.path.includes('typography.scss'));
+      this.stylesheets = this.stylesheets.filter((s) => !s.includes('typography.css'));
+    }
     this.markdownModules = ngModules.filter((m) => m.hasMarkdown).map((m) => this._resolvePath(m));
   }
 
@@ -36,7 +46,8 @@ export class NgPackage extends NgModule {
   protected _templateOptions() {
     return {
       ...strings,
-      uc: (s: string) => s.toUpperCase(),
+      constant: (s: string) => s.replace(/-/g, '_').toUpperCase(),
+      bazelName: (s: string) => s.replace(/-/g, '_'),
       ...this,
       dependencies: this.dependencies.filter((d) => !d.startsWith(`//src/${this.name}`)),
     };

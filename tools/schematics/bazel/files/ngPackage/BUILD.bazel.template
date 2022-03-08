@@ -2,10 +2,10 @@
 <% } %><% if (hasStyleBundle) { %>load("@npm//scss-bundle:index.bzl", "scss_bundle")
 <% } %>load(
     "//src/<%= name %>:config.bzl",
-    "<%= uc(shortName) %>_ENTRYPOINTS",
-    "<%= uc(shortName) %>_MARKDOWN_TARGETS",
-    "<%= uc(shortName) %>_TARGETS",
-    "<%= uc(shortName) %>_TESTING_TARGETS",
+    "<%= constant(shortName) %>_ENTRYPOINTS",
+    "<%= constant(shortName) %>_MARKDOWN_TARGETS",
+    "<%= constant(shortName) %>_TARGETS",
+    "<%= constant(shortName) %>_TESTING_TARGETS",
 )
 load(
     "//tools:defaults.bzl",
@@ -13,8 +13,9 @@ load(
     "ng_module",
     "ng_package",<% if (hasTests) { %>
     "ng_test_library",
-    "ng_web_test_suite",<% } %><% if (hasTypography) { %>
-    "sass_binary",<% } %>
+    "ng_web_test_suite",<% } %><% if (hasTypography || stylesheets.length) { %>
+    "sass_binary",<% } %><% if (hasSassLibrary) { %>
+    "sass_library",<% } %>
 )
 
 package(default_visibility = ["//visibility:public"])
@@ -29,9 +30,18 @@ ng_module(
         ],<% } else { %>
         ["*.ts"],<% } %>
         exclude = ["**/*.spec.ts"],
-    ),<% if (customTsConfig) { %>
+    ),<% if (stylesheets.length === 0 && hasHtml && hasCss) { %>
+    assets = glob([
+        "**/*.html",
+        "**/*.css",
+    ]),<% } else if (stylesheets.length === 0 && hasHtml) { %>
+    assets = glob(["**/*.html"]),<% } else if (stylesheets.length === 1) { %>
+    assets = [":<%= stylesheets[0] %>"] + glob(["**/*.html"]),<% } else if (stylesheets.length > 1) { %>
+    assets = [<% for (let stylesheet of stylesheets) { %>
+        ":<%= stylesheet %>",<% } %>
+    ] + glob(["**/*.html"]),<% } %><% if (customTsConfig) { %>
     tsconfig = "<%= customTsConfig %>",<% } %>
-    deps = ["//src/<%= name %>/%s" % p for p in <%= uc(shortName) %>_ENTRYPOINTS]<% if (dependencies.length) { %> + [<% for (let dependency of dependencies) { %>
+    deps = ["//src/<%= name %>/%s" % p for p in <%= constant(shortName) %>_ENTRYPOINTS]<% if (dependencies.length) { %> + [<% for (let dependency of dependencies) { %>
         "<%= dependency %>",<% } %>
     ]<% } %>,
 )<% if (customTsConfig) { %>
@@ -46,6 +56,20 @@ sass_binary(
     name = "typography",
     src = "typography.scss",
     deps = ["//src/angular/styles:typography_lib"],
+)<% } %><% if (hasSassLibrary) { %>
+
+sass_library(
+    name = "<%= bazelName(name) %>_scss_lib",
+    srcs = glob(["**/_*.scss"]),
+    deps = ["//src/angular/styles:common_scss_lib"],
+)<% } %><% for (let stylesheet of sassBinaries) { %>
+
+sass_binary(
+    name = "<%= stylesheet.name %>",
+    src = "<%= stylesheet.path %>",<% if (stylesheet.dependencies.length) { %>
+    deps = [<% for (let dependency of stylesheet.dependencies) { %>
+        "<%= dependency %>",<% } %>
+    ],<% } %>
 )<% } %><% if (hasStyleBundle) { %>
 
 scss_bundle(
@@ -88,7 +112,7 @@ markdown_to_html(
 
 filegroup(
     name = "overviews",
-    srcs = [":overview"] + ["//src/<%= name %>/%s:overview" % name for name in <%= uc(shortName) %>_MARKDOWN_TARGETS],
+    srcs = [":overview"] + ["//src/<%= name %>/%s:overview" % name for name in <%= constant(shortName) %>_MARKDOWN_TARGETS],
 )
 
 # Creates the @sbb-esta/<%= name %> package published to npm.
@@ -105,5 +129,5 @@ ng_package(
     nested_packages = ["//src/<%= name %>/schematics:npm_package"],<% } %><% if (hasReadme) { %>
     readme_md = "README.md",<% } %>
     tags = ["release-package"],
-    deps = <%= uc(shortName) %>_TARGETS + <%= uc(shortName) %>_TESTING_TARGETS,
+    deps = <%= constant(shortName) %>_TARGETS + <%= constant(shortName) %>_TESTING_TARGETS,
 )
