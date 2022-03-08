@@ -124,9 +124,11 @@ describe('SbbTooltip', () => {
       finishCurrentTooltipAnimation(overlayContainerElement, true);
 
       // Make sure tooltip is shown to the user and animation has finished.
-      const tooltipElement = overlayContainerElement.querySelector('.sbb-tooltip') as HTMLElement;
+      const tooltipElement = overlayContainerElement.querySelector(
+        '.sbb-tooltip-container'
+      ) as HTMLElement;
       expect(tooltipElement instanceof HTMLElement).toBe(true);
-      expect(tooltipElement.classList).toContain('sbb-tooltip-show');
+      expect(tooltipElement.classList).toContain('sbb-tooltip-container-show');
 
       expect(overlayContainerElement.textContent).toContain(initialTooltipMessage);
 
@@ -510,7 +512,7 @@ describe('SbbTooltip', () => {
       tooltipDirective.show();
       tick(0);
       fixture.detectChanges();
-      finishCurrentTooltipAnimation(overlayContainerElement, false);
+      finishCurrentTooltipAnimation(overlayContainerElement, true);
 
       expect(tooltipDirective._isTooltipVisible()).toBe(true);
       expect(overlayContainerElement.textContent).toContain(initialTooltipMessage);
@@ -518,7 +520,7 @@ describe('SbbTooltip', () => {
       document.body.click();
       tick(0);
       fixture.detectChanges();
-      finishCurrentTooltipAnimation(overlayContainerElement, true);
+      finishCurrentTooltipAnimation(overlayContainerElement, false);
       fixture.detectChanges();
 
       expect(tooltipDirective._isTooltipVisible()).toBe(false);
@@ -548,6 +550,7 @@ describe('SbbTooltip', () => {
       tooltipDirective.show();
       tick(0);
       fixture.detectChanges();
+
       document.body.click();
       fixture.detectChanges();
       tick(500);
@@ -573,6 +576,7 @@ describe('SbbTooltip', () => {
       finishCurrentTooltipAnimation(overlayContainerElement, false);
 
       expect(tooltipDirective._isTooltipVisible()).toBe(false);
+      console.log(overlayContainerElement, overlayContainerElement.textContent);
       expect(overlayContainerElement.textContent).toBe('');
     }));
 
@@ -800,11 +804,10 @@ describe('SbbTooltip', () => {
       tooltipDirective.show();
       tick(0); // Tick for the show delay (default is 0)
       fixture.detectChanges();
-      tick(500);
-
       // After hide called, a timeout delay is created that will to hide the tooltip.
       tooltipDirective.hide();
       tick(0);
+      finishCurrentTooltipAnimation(overlayContainerElement, false);
       fixture.detectChanges();
 
       expect(event!.instance).toBe(tooltipDirective);
@@ -890,7 +893,7 @@ describe('SbbTooltip', () => {
       assertTooltipInstance(tooltipDirective, false);
 
       tooltipDirective.show();
-      tick(0); // Tick for the show delay (default is 0)
+      tick(500); // Tick for the show delay (default is 0)
       expect(tooltipDirective._isTooltipVisible()).toBe(true);
 
       fixture.detectChanges();
@@ -899,9 +902,11 @@ describe('SbbTooltip', () => {
       finishCurrentTooltipAnimation(overlayContainerElement, true);
 
       // Make sure tooltip is shown to the user and animation has finished
-      const tooltipElement = overlayContainerElement.querySelector('.sbb-tooltip') as HTMLElement;
-      expect(tooltipElement instanceof HTMLElement).toBe(true);
-      expect(tooltipElement.classList).toContain('sbb-tooltip-show');
+      const tooltipContainer = overlayContainerElement.querySelector(
+        '.sbb-tooltip-container'
+      ) as HTMLElement;
+      expect(tooltipContainer instanceof HTMLElement).toBe(true);
+      expect(tooltipContainer.classList).toContain('sbb-tooltip-container-show');
 
       // After hide called, a timeout delay is created that will to hide the tooltip.
       const tooltipDelay = 1000;
@@ -1375,10 +1380,10 @@ function assertTooltipInstance(tooltip: SbbTooltip, shouldExist: boolean): void 
 }
 
 function finishCurrentTooltipAnimation(overlayContainer: HTMLElement, isVisible: boolean) {
-  const tooltip = overlayContainer.querySelector('.mat-tooltip')!;
+  const tooltip = overlayContainer.querySelector('.sbb-tooltip-container')!;
   const event = createFakeEvent('animationend');
   Object.defineProperty(event, 'animationName', {
-    get: () => `mat-tooltip-${isVisible ? 'show' : 'hide'}`,
+    get: () => `sbb-tooltip-container-${isVisible ? 'show' : 'hide'}`,
   });
   dispatchEvent(tooltip, event);
 }

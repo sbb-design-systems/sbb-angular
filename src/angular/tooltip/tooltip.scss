@@ -9,6 +9,12 @@
   height: 100%;
   font-size: var(--sbb-font-size);
   line-height: var(--sbb-line-height);
+  opacity: 0;
+
+  &._sbb-animation-noopable {
+    animation: none;
+    opacity: 1;
+  }
 
   &::after,
   &::before {
@@ -50,6 +56,34 @@
     background-clip: padding-box;
     z-index: 2;
   }
+}
+
+@keyframes sbb-tooltip-container-show {
+  0% {
+    opacity: 0;
+  }
+
+  100% {
+    opacity: 1;
+  }
+}
+
+@keyframes sbb-tooltip-container-hide {
+  0% {
+    opacity: 1;
+  }
+
+  100% {
+    opacity: 0;
+  }
+}
+
+.sbb-tooltip-container-show {
+  animation: sbb-tooltip-container-show 200ms cubic-bezier(0, 0, 0.2, 1) forwards;
+}
+
+.sbb-tooltip-container-hide {
+  animation: sbb-tooltip-container-hide 75ms cubic-bezier(0, 0, 0.2, 1) forwards;
 }
 
 .sbb-tooltip {

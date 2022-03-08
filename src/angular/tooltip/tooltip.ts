@@ -1,4 +1,3 @@
-import { AnimationEvent } from '@angular/animations';
 import {
   AriaDescriber,
   ConfigurableFocusTrapFactory,
@@ -39,14 +38,14 @@ import {
   Optional,
   Output,
   TemplateRef,
+  ViewChild,
   ViewContainerRef,
   ViewEncapsulation,
 } from '@angular/core';
+import { ANIMATION_MODULE_TYPE } from '@angular/platform-browser/animations';
 import { Breakpoints } from '@sbb-esta/angular/core';
 import { Observable, Subject } from 'rxjs';
 import { filter, take, takeUntil } from 'rxjs/operators';
-
-import { sbbTooltipAnimations } from './tooltip-animations';
 
 /** Possible positions for a tooltip. */
 export type TooltipPosition = 'left' | 'right' | 'above' | 'below';
@@ -842,6 +841,12 @@ export abstract class _TooltipComponentBase implements OnDestroy {
   /** Amount of milliseconds to delay the closing sequence. */
   _mouseLeaveHideDelay: number;
 
+  /** Whether animations are currently disabled. */
+  private _animationsDisabled: boolean;
+
+  /** Reference to the internal tooltip element. */
+  abstract _tooltip: ElementRef<HTMLElement>;
+
   /**
    * Type of interaction that led to the tooltip being closed. This is used to determine
    * whether the focus style will be applied when returning focus to its original location
@@ -854,13 +859,16 @@ export abstract class _TooltipComponentBase implements OnDestroy {
   protected _document: Document;
 
   /** Whether interactions on the page should close the tooltip */
-  private _closeOnInteraction: boolean = false;
+  private _closeOnInteraction = false;
 
   /** The class that traps and manages focus within the tooltip. */
   private _focusTrap: FocusTrap;
 
   /** Element that was focused before the tooltip was opened. Save this to restore upon close. */
   private _elementFocusedBeforeDialogWasOpened: HTMLElement | null = null;
+
+  /** Whether the tooltip is currently visible. */
+  private _isVisible = false;
 
   /** Subject for notifying that the tooltip has been shown in the view */
   private readonly _onShow: Subject<void> = new Subject<void>();
@@ -871,13 +879,21 @@ export abstract class _TooltipComponentBase implements OnDestroy {
   /** Whether the tooltip component was triggered by click */
   _triggeredByClick: boolean = false;
 
+  /** Name of the show animation and the class that toggles it. */
+  protected abstract readonly _showAnimation: string;
+
+  /** Name of the hide animation and the class that toggles it. */
+  protected abstract readonly _hideAnimation: string;
+
   constructor(
     public _elementRef: ElementRef<HTMLElement>,
     protected _focusTrapFactory: ConfigurableFocusTrapFactory,
     private _changeDetectorRef: ChangeDetectorRef,
     private _focusMonitor: FocusMonitor,
-    @Optional() @Inject(DOCUMENT) document: any
+    @Optional() @Inject(DOCUMENT) document: any,
+    @Optional() @Inject(ANIMATION_MODULE_TYPE) animationMode?: string
   ) {
+    this._animationsDisabled = animationMode === 'NoopAnimations';
     this._document = document;
   }
 
@@ -892,12 +908,8 @@ export abstract class _TooltipComponentBase implements OnDestroy {
     // Body interactions should cancel the tooltip if there is a delay in showing.
     this._closeOnInteraction = true;
     this._showTimeoutId = setTimeout(() => {
-      this._visibility = 'visible';
       this._showTimeoutId = undefined;
-
-      // Mark for check so if any parent component has set the
-      // ChangeDetectionStrategy to OnPush it will be checked anyways
-      this._markForCheck();
+      this._toggleVisibility(true);
     }, delay);
   }
 
@@ -910,7 +922,7 @@ export abstract class _TooltipComponentBase implements OnDestroy {
     clearTimeout(this._showTimeoutId);
 
     this._hideTimeoutId = setTimeout(() => {
-      this._visibility = 'hidden';
+      this._toggleVisibility(false);
       this._hideTimeoutId = undefined;
 
       // Mark for check so if any parent component has set the
@@ -931,7 +943,7 @@ export abstract class _TooltipComponentBase implements OnDestroy {
 
   /** Whether the tooltip is being displayed. */
   isVisible(): boolean {
-    return this._visibility === 'visible';
+    return this._isVisible;
   }
 
   ngOnDestroy() {
@@ -940,31 +952,6 @@ export abstract class _TooltipComponentBase implements OnDestroy {
     this._onShow.complete();
     this._onHide.complete();
     this._triggerElement = null!;
-  }
-
-  _animationStart() {
-    this._closeOnInteraction = false;
-  }
-
-  _animationDone(event: AnimationEvent): void {
-    const toState = event.toState as TooltipVisibility;
-
-    if (toState === 'visible' && this.isVisible() && this._config) {
-      this._trapFocus();
-    }
-
-    if (toState === 'visible' && this.isVisible()) {
-      this._onShow.next();
-    }
-
-    if (toState === 'hidden' && !this.isVisible()) {
-      this._restoreFocus();
-      this._onHide.next();
-    }
-
-    if (toState === 'visible' || toState === 'hidden') {
-      this._closeOnInteraction = true;
-    }
   }
 
   /**
@@ -1002,6 +989,66 @@ export abstract class _TooltipComponentBase implements OnDestroy {
       (!relatedTarget || !this._triggerElement.contains(relatedTarget as Node))
     ) {
       this.hide(this._mouseLeaveHideDelay);
+    }
+  }
+
+  /** Event listener dispatched when an animation on the tooltip finishes. */
+  _handleAnimationEnd({ animationName }: AnimationEvent) {
+    if (animationName === this._showAnimation || animationName === this._hideAnimation) {
+      this._finalizeAnimation(animationName === this._showAnimation);
+    }
+  }
+
+  /** Handles the cleanup after an animation has finished. */
+  private _finalizeAnimation(toVisible: boolean) {
+    if (toVisible) {
+      this._closeOnInteraction = true;
+    } else if (!this.isVisible()) {
+      this._onHide.next();
+    }
+
+    if (toVisible && this.isVisible() && this._config) {
+      this._trapFocus();
+    }
+
+    if (!toVisible && !this.isVisible()) {
+      this._restoreFocus();
+    }
+  }
+
+  /** Toggles the visibility of the tooltip element. */
+  private _toggleVisibility(isVisible: boolean) {
+    // We set the classes directly here ourselves so that toggling the tooltip state
+    // isn't bound by change detection. This allows us to hide it even if the
+    // view ref has been detached from the CD tree.
+    const tooltip = this._tooltip.nativeElement;
+    const showClass = this._showAnimation;
+    const hideClass = this._hideAnimation;
+    tooltip.classList.remove(isVisible ? hideClass : showClass);
+    tooltip.classList.add(isVisible ? showClass : hideClass);
+    this._isVisible = isVisible;
+
+    // It's common for internal apps to disable animations using `* { animation: none !important }`
+    // which can break the opening sequence. Try to detect such cases and work around them.
+    if (isVisible && !this._animationsDisabled && typeof getComputedStyle === 'function') {
+      const styles = getComputedStyle(tooltip);
+
+      // Use `getPropertyValue` to avoid issues with property renaming.
+      if (
+        styles.getPropertyValue('animation-duration') === '0s' ||
+        styles.getPropertyValue('animation-name') === 'none'
+      ) {
+        this._animationsDisabled = true;
+      }
+    }
+
+    if (isVisible) {
+      this._onShow.next();
+    }
+
+    if (this._animationsDisabled) {
+      tooltip.classList.add('_sbb-animation-noopable');
+      this._finalizeAnimation(isVisible);
     }
   }
 
@@ -1093,12 +1140,11 @@ export abstract class _TooltipComponentBase implements OnDestroy {
   styleUrls: ['tooltip.css'],
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush,
-  animations: [sbbTooltipAnimations.tooltipState],
   host: {
     class: 'sbb-tooltip-component',
     // Forces the element to have a layout in IE and Edge. This fixes issues where the element
     // won't be rendered if the animations are disabled or there is no web animations polyfill.
-    '[style.zoom]': '_visibility === "visible" ? 1 : null',
+    '[style.zoom]': 'isVisible() ? 1 : null',
     '(mouseleave)': '_handleMouseLeave($event)',
     'aria-hidden': 'true',
   },
@@ -1108,6 +1154,15 @@ export class TooltipComponent extends _TooltipComponentBase {
   _isHandset: Observable<BreakpointState> = this._breakpointObserver.observe(
     Breakpoints.MobileDevice
   );
+  _showAnimation: string = 'sbb-tooltip-container-show';
+  _hideAnimation: string = 'sbb-tooltip-container-hide';
+
+  @ViewChild('tooltip', {
+    // Use a static query here since we interact directly with
+    // the DOM which can happen before `ngAfterViewInit`.
+    static: true,
+  })
+  _tooltip: ElementRef<HTMLElement>;
 
   get _templateRef(): TemplateRef<any> | null {
     return this.message instanceof TemplateRef ? this.message : null;
@@ -1119,8 +1174,9 @@ export class TooltipComponent extends _TooltipComponentBase {
     changeDetectorRef: ChangeDetectorRef,
     focusMonitor: FocusMonitor,
     @Optional() @Inject(DOCUMENT) document: any,
-    private _breakpointObserver: BreakpointObserver
+    private _breakpointObserver: BreakpointObserver,
+    @Optional() @Inject(ANIMATION_MODULE_TYPE) animationMode?: string
   ) {
-    super(elementRef, focusTrapFactory, changeDetectorRef, focusMonitor, document);
+    super(elementRef, focusTrapFactory, changeDetectorRef, focusMonitor, document, animationMode);
   }
 }
