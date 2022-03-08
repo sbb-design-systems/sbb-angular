@@ -1,0 +1,41 @@
+load(
+    "//tools:defaults.bzl",
+    "markdown_to_html",
+    "ng_module",
+    "sass_binary",
+)
+
+package(default_visibility = ["//visibility:public"])
+
+ng_module(
+    name = "data-table",
+    srcs = glob(
+        ["**/*.ts"],
+        exclude = ["**/*.spec.ts"],
+    ),
+    assets = [":data-table.component.css"] + glob(["**/*.html"]),
+    deps = [
+        "//src/angular/loading",
+        "//src/angular/pagination",
+        "//src/angular/table",
+        "@npm//@angular/cdk",
+        "@npm//@angular/common",
+        "@npm//@angular/core",
+        "@npm//rxjs",
+    ],
+)
+
+sass_binary(
+    name = "data_table_component_scss",
+    src = "data-table.component.scss",
+)
+
+markdown_to_html(
+    name = "overview",
+    srcs = [":data-table.md"],
+)
+
+filegroup(
+    name = "source-files",
+    srcs = glob(["**/*.ts"]),
+)

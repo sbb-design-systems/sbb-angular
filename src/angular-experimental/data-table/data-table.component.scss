@@ -1,0 +1,15 @@
+:host {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  min-height: 0;
+}
+
+sbb-table-wrapper {
+  flex: 1;
+  min-height: 0;
+}
+
+sbb-paginator.hidden {
+  display: none;
+}

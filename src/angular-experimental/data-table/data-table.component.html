@@ -1,0 +1,138 @@
+<sbb-table-wrapper>
+  <table
+    sbb-table
+    sbbSort
+    [sbbSortActive]="sortColumn"
+    [sbbSortDirection]="sortDirection"
+    [dataSource]="dataSource"
+  >
+    <ng-container
+      *ngFor="let col of columns"
+      [sbbColumnDef]="col.id"
+      [groupWithNext]="col.groupWithNext"
+      [sticky]="col.sticky"
+      [stickyEnd]="col.stickyEnd"
+    >
+      <ng-template #header>
+        <ng-template [ngIf]="col.columnHeaderDirective">
+          <ng-container [ngTemplateOutlet]="col.columnHeaderDirective.template"></ng-container>
+        </ng-template>
+        <ng-template [ngIf]="!col.columnHeaderDirective">
+          {{ col.title }}
+          <div *ngIf="col.subtitle" class="sbb-table-header-subtitle">{{ col.subtitle }}</div>
+        </ng-template>
+      </ng-template>
+
+      <ng-template [ngIf]="col.sortable">
+        <th
+          sbb-header-cell
+          [sbb-sort-header]="col.id"
+          *sbbHeaderCellDef
+          [attr.width]="col.width"
+          [style.text-align]="col.justify"
+          [class]="col.headerClass"
+        >
+          <ng-container *ngTemplateOutlet="header"></ng-container>
+        </th>
+      </ng-template>
+      <ng-template [ngIf]="!col.sortable">
+        <th
+          sbb-header-cell
+          *sbbHeaderCellDef
+          [attr.width]="col.width"
+          [style.text-align]="col.justify"
+          [class]="col.headerClass"
+        >
+          <ng-container *ngTemplateOutlet="header"></ng-container>
+        </th>
+      </ng-template>
+
+      <td
+        sbb-cell
+        *sbbCellDef="let element"
+        [style.text-align]="col.justify"
+        [class]="getCellClass(col.cellClass, element)"
+      >
+        <ng-template [ngIf]="col.columnCellDirective">
+          <ng-container
+            *ngTemplateOutlet="col.columnCellDirective.template; context: { $implicit: element }"
+          ></ng-container>
+        </ng-template>
+        <ng-template [ngIf]="!col.columnCellDirective">
+          {{ element[col.id] }}
+        </ng-template>
+      </td>
+    </ng-container>
+
+    <ng-container
+      *ngFor="let col of columns"
+      [sbbColumnDef]="col.id + '-filter'"
+      [groupWithNext]="col.groupWithNext"
+      [sticky]="col.sticky"
+      [stickyEnd]="col.stickyEnd"
+    >
+      <th
+        sbb-header-cell
+        *sbbHeaderCellDef
+        [class]="'sbb-table-filter' + (col.filterClass ? ' ' + col.filterClass : '')"
+      >
+        <ng-template [ngIf]="col.columnFilterDirective">
+          <ng-container [ngTemplateOutlet]="col.columnFilterDirective.template"></ng-container>
+        </ng-template>
+      </th>
+    </ng-container>
+
+    <tr sbb-header-row *sbbHeaderRowDef="columnNames; sticky: stickyHeader"></tr>
+
+    <ng-template [ngIf]="hasFilterColumns">
+      <tr sbb-header-row *sbbHeaderRowDef="filterColumnNames"></tr>
+    </ng-template>
+    <tr sbb-row *sbbRowDef="let row; columns: columnNames" (click)="handleRowClick(row)"></tr>
+
+    <ng-template [ngIf]="rowGroup">
+      <ng-container [sbbColumnDef]="rowGroup.id">
+        <td
+          sbb-cell
+          [attr.colspan]="columnNames.length"
+          *sbbCellDef="let element"
+          [style.text-align]="rowGroup.justify"
+          [class]="getCellClass(rowGroup.cellClass, element)"
+        >
+          <ng-template [ngIf]="rowGroup.columnCellDirective">
+            <ng-container
+              *ngTemplateOutlet="
+                rowGroup.columnCellDirective.template;
+                context: { $implicit: element }
+              "
+            ></ng-container>
+          </ng-template>
+          <ng-template [ngIf]="!rowGroup.columnCellDirective">
+            <span class="sbb-table-divider-title">
+              {{ element[rowGroup.id] }}
+            </span>
+          </ng-template>
+        </td>
+      </ng-container>
+      <tr
+        sbb-row
+        *sbbRowDef="let row; columns: [rowGroup.id]; when: rowGroup.groupWhen"
+        (click)="handleRowClick(row)"
+      ></tr>
+    </ng-template>
+  </table>
+  <sbb-loading
+    mode="fullbox"
+    *ngIf="loading || (dataSource.loading | async) === true"
+  ></sbb-loading>
+</sbb-table-wrapper>
+
+<p *ngIf="dataSource.filteredData.length === 0 && !loading">
+  <ng-template [ngIf]="noDataText">{{ noDataText }}</ng-template>
+  <ng-template [ngIf]="!noDataText">No keywords match your filters.</ng-template>
+</p>
+
+<sbb-paginator
+  [class.sbb-divider-small-top]="true"
+  [class.hidden]="!pageSize"
+  [pageSize]="pageSize"
+></sbb-paginator>

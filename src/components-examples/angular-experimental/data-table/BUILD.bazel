@@ -6,19 +6,21 @@ load(
 package(default_visibility = ["//visibility:public"])
 
 ng_module(
-    name = "example",
+    name = "data-table",
     srcs = glob(
         ["**/*.ts"],
         exclude = ["**/*.spec.ts"],
     ),
-    assets = glob([
-        "**/*.html",
-        "**/*.css",
-    ]),
+    assets = glob(["**/*.html"]),
     deps = [
+        "//src/angular-experimental/data-table",
+        "//src/angular/form-field",
+        "//src/angular/input",
+        "//src/angular/table",
         "@npm//@angular/common",
         "@npm//@angular/core",
         "@npm//@angular/forms",
+        "@npm//rxjs",
     ],
 )
 

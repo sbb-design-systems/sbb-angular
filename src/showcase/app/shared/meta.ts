@@ -106,7 +106,7 @@ export const PACKAGES: { [key: string]: ShowcaseMetaPackage } = {
       },
       {
         name: 'Modules',
-        entries: [{ label: 'Example', link: './components/example' }],
+        entries: [{ label: 'Data-Table', link: './components/data-table' }],
       },
     ],
   },

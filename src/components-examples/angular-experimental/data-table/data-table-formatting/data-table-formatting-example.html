@@ -1,0 +1,21 @@
+<sbb-data-table [dataSource]="dataSource">
+  <sbb-data-table-column id="id">
+    <ng-template sbbDataTableHeader><i>ID</i></ng-template>
+  </sbb-data-table-column>
+  <sbb-data-table-column id="firstName" title="First Name" width="250px"></sbb-data-table-column>
+  <sbb-data-table-column id="lastName" title="Last Name" width="250px"></sbb-data-table-column>
+  <sbb-data-table-column id="email" title="E-Mail">
+    <ng-template sbbDataTableCell let-row>
+      <a [href]="'mailto:' + row.email">{{row.email}}</a>
+    </ng-template>
+  </sbb-data-table-column>
+  <sbb-data-table-column id="birthday" title="birthday">
+    <ng-template sbbDataTableCell let-row>{{row.birthday | date}}</ng-template>
+  </sbb-data-table-column>
+  <sbb-data-table-column
+    id="balance"
+    title="Balance"
+    subtitle="Coffee Machine Account"
+    justify="right"
+  ></sbb-data-table-column>
+</sbb-data-table>

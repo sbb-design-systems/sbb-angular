@@ -4,7 +4,7 @@
 
 entry_points = [
     # do not sort
-    "example",
+    "data-table",
 ]
 
 # List of all non-testing entry-points of the Experimental package.
@@ -29,5 +29,5 @@ EXPERIMENTAL_TARGETS = ["//src/angular-experimental"] + \
 EXPERIMENTAL_TESTING_TARGETS = ["//src/angular-experimental/%s" % ep for ep in EXPERIMENTAL_TESTING_ENTRYPOINTS]
 
 EXPERIMENTAL_MARKDOWN_TARGETS = [
-    "example",
+    "data-table",
 ]

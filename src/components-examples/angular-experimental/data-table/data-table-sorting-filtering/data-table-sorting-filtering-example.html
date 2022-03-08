@@ -1,0 +1,27 @@
+<ng-container [formGroup]="filter">
+  <sbb-form-field label="Global Search">
+    <input sbbInput formControlName="_" />
+  </sbb-form-field>
+  <sbb-data-table [dataSource]="dataSource" [pageSize]="5" sortColumn="id" sortDirection="desc">
+    <sbb-data-table-column id="id" title="ID" width="60px" sortable>
+      <ng-template sbbDataTableFilter>
+        <input sbbInput formControlName="id" />
+      </ng-template>
+    </sbb-data-table-column>
+    <sbb-data-table-column id="firstName" title="First Name" width="250px" sortable>
+      <ng-template sbbDataTableFilter>
+        <input sbbInput formControlName="firstName" />
+      </ng-template>
+    </sbb-data-table-column>
+    <sbb-data-table-column id="lastName" title="Last Name" width="250px" sortable>
+      <ng-template sbbDataTableFilter>
+        <input sbbInput formControlName="lastName" />
+      </ng-template>
+    </sbb-data-table-column>
+    <sbb-data-table-column id="email" title="E-Mail" sortable>
+      <ng-template sbbDataTableFilter>
+        <input sbbInput formControlName="email" />
+      </ng-template>
+    </sbb-data-table-column>
+  </sbb-data-table>
+</ng-container>
