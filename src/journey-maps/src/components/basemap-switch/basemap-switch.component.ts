@@ -6,7 +6,7 @@ import { LocaleService } from '../../services/locale.service';
 @Component({
   selector: 'rokas-basemap-switch',
   templateUrl: './basemap-switch.component.html',
-  styleUrls: ['./basemap-switch.component.css'],
+  styleUrls: ['./basemap-switch.component.scss'],
 })
 export class BasemapSwitchComponent implements OnInit {
   @Input() map: MaplibreMap | null;

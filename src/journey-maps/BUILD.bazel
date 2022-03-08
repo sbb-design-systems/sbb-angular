@@ -12,9 +12,33 @@ load(
     "ng_package",
     "ng_test_library",
     "ng_web_test_suite",
+    "sass_binary",
+    "sass_library"
 )
 
 package(default_visibility = ["//visibility:public"])
+
+sass_library(
+    name = "src_style_functions_scss",
+    srcs = [
+        "src/style/_colors.scss",
+        "src/style/_functions.scss",
+    ],
+    deps = [
+        "//src/angular/styles:common_scss_lib",
+    ],
+)
+
+sass_binary(
+    name = "src_journey_maps_client_component_scss",
+    src = "src/journey-maps-client.component.scss",
+)
+
+sass_binary(
+    name = "src_components_zoom_controls_zoom-controls_component_scss",
+    src = "src/components/zoom-controls/zoom-controls.component.scss",
+    deps = ["src_style_functions_scss"],
+)
 
 # Root "@sbb-esta/journey-maps" entry-point.
 ng_module(
@@ -26,6 +50,7 @@ ng_module(
         ],
         exclude = ["**/*.spec.ts"],
     ),
+    assets = [":src/journey-maps-client.component.css"] + [":src/components/zoom-controls/zoom-controls.component.css"] + glob(["**/*.html"]),
     deps = ["//src/journey-maps/%s" % p for p in JOURNEY_MAPS_ENTRYPOINTS] + [
         "@npm//@angular/animations",
         "@npm//@angular/common",

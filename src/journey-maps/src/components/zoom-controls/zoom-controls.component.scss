@@ -1,6 +1,6 @@
 @use './../../style/functions' as f;
 @use './../../style/colors' as c;
-@use 'node_modules/@sbb-esta/angular/styles' as esta;
+@use '../../../../angular/styles/common' as esta;
 
 @include f.map-controls-shared;
 @include f.map-control-icon;

@@ -1,5 +1,5 @@
 @use 'colors' as c;
-@use 'node_modules/@sbb-esta/angular/styles' as esta;
+@use '../../../angular/styles/common' as esta;
 
 @mixin map-controls-shared {
   button {
