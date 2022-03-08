@@ -1,4 +1,3 @@
-import { Geometry } from 'geojson';
 import { MapboxGeoJSONFeature } from 'maplibre-gl';
 
 import { MaplibreMapMock } from '../../../model/maplibre-map-mock';
