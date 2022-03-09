@@ -147,6 +147,7 @@ This project publishes the following packages:
 
 * @sbb-esta/angular
 * @sbb-esta/angular-maps
+* @sbb-esta/journey-maps
 
 ### Styling
 This project uses [SASS](https://sass-lang.com/) for styling the components.
