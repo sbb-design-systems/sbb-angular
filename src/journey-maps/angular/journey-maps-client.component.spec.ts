@@ -45,67 +45,70 @@ describe('JourneyMapsClientComponent#selectedMarkerId', () => {
   });
 });
 
-describe('JourneyMapsClientComponent#touchEventCollector', () => {
-  beforeEach(async () => {
-    await configureTestingModule();
+if (window.TouchEvent) {
+  describe('JourneyMapsClientComponent#touchEventCollector', () => {
+    beforeEach(async () => {
+      await configureTestingModule();
+    });
+
+    beforeEach(() => {
+      setupFixtureAndComponent(false);
+    });
+
+    const createTouchEventsObservable = (touchEvents: TouchEvent[]): Observable<TouchEvent> =>
+      scheduled(touchEvents, asyncScheduler);
+
+    const createTouchEvent = (touches: Touch[], type = 'touchstart'): TouchEvent =>
+      new TouchEvent(type, { touches });
+
+    const createFingerTouch = () =>
+      new Touch({
+        identifier: 123,
+        target: new EventTarget(),
+      });
+
+    it('should set the touch overlay style class when only one finger used', fakeAsync(() => {
+      // @ts-ignore
+      component.touchEventCollector = createTouchEventsObservable([
+        createTouchEvent([createFingerTouch()]),
+        createTouchEvent([createFingerTouch()]),
+      ]);
+
+      component.ngAfterViewInit();
+      tick();
+
+      expect(component.touchOverlayStyleClass).toBeTruthy();
+    }));
+
+    it('should NOT set the touch overlay style class when two fingers used', fakeAsync(() => {
+      // @ts-ignore
+      component.touchEventCollector = createTouchEventsObservable([
+        createTouchEvent([createFingerTouch()]),
+        createTouchEvent([createFingerTouch(), createFingerTouch()]),
+        createTouchEvent([createFingerTouch()]),
+      ]);
+
+      component.ngAfterViewInit();
+      tick();
+
+      expect(component.touchOverlayStyleClass).toBeFalsy();
+    }));
+
+    it("should NOT set the touch overlay style class when touch events contain 'touchend' event", fakeAsync(() => {
+      // @ts-ignore
+      component.touchEventCollector = createTouchEventsObservable([
+        createTouchEvent([createFingerTouch()]),
+        createTouchEvent([createFingerTouch()], 'touchend'),
+        createTouchEvent([createFingerTouch()]),
+      ]);
+
+      component.ngAfterViewInit();
+      tick();
+
+      expect(component.touchOverlayStyleClass).toBeFalsy();
+    }));
   });
-
-  beforeEach(() => {
-    setupFixtureAndComponent(false);
-  });
-
-  const oneFinger = {
-    identifier: 123,
-    target: new EventTarget(),
-  } as Touch;
-
-  const createTouchEventsObservable = (touchEvents: TouchEvent[]): Observable<TouchEvent> =>
-    scheduled(touchEvents, asyncScheduler);
-
-  const createTouchEvent = (touches: Touch[], type = 'touchstart'): TouchEvent =>
-    new TouchEvent(type, { touches });
-
-  it('should set the touch overlay style class when only one finger used', fakeAsync(() => {
-    // @ts-ignore
-    component.touchEventCollector = createTouchEventsObservable([
-      createTouchEvent([oneFinger]),
-      createTouchEvent([oneFinger]),
-    ]);
-
-    component.ngAfterViewInit();
-    tick();
-
-    expect(component.touchOverlayStyleClass).toBeTruthy();
-  }));
-
-  it('should NOT set the touch overlay style class when two fingers used', fakeAsync(() => {
-    // @ts-ignore
-    component.touchEventCollector = createTouchEventsObservable([
-      createTouchEvent([oneFinger]),
-      createTouchEvent([oneFinger, oneFinger]),
-      createTouchEvent([oneFinger]),
-    ]);
-
-    component.ngAfterViewInit();
-    tick();
-
-    expect(component.touchOverlayStyleClass).toBeFalsy();
-  }));
-
-  it("should NOT set the touch overlay style class when touch events contain 'touchend' event", fakeAsync(() => {
-    // @ts-ignore
-    component.touchEventCollector = createTouchEventsObservable([
-      createTouchEvent([oneFinger]),
-      createTouchEvent([oneFinger], 'touchend'),
-      createTouchEvent([oneFinger]),
-    ]);
-
-    component.ngAfterViewInit();
-    tick();
-
-    expect(component.touchOverlayStyleClass).toBeFalsy();
-  }));
-});
+}
 
 const configureTestingModule = () =>
   TestBed.configureTestingModule({
