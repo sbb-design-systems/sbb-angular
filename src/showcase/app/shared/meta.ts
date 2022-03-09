@@ -156,14 +156,17 @@ export const PACKAGES: { [key: string]: ShowcaseMetaPackage } = {
     description: '',
     sections: [
       {
-        name: 'Introduction',
+        name: 'Overview',
         entries: [{ label: 'Getting started', link: './introduction/getting-started' }],
       },
       {
         name: 'Components',
         entries: [
-          { label: 'JourneyMap', link: './components/journey-map' },
-          { label: 'JourneyMapElements', link: './components/journey-map-elements' },
+          { label: 'JourneyMaps', link: './components/angular' },
+          {
+            label: 'JourneyMapsElements',
+            link: './components/elements',
+          },
         ],
       },
     ],

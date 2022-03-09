@@ -347,7 +347,6 @@ export class JourneyMapsClientComponent implements OnInit, AfterViewInit, OnDest
   private _satelliteLayerId = 'esriWorldImageryLayer';
   private _satelliteImageSourceName = 'esriWorldImagerySource';
 
-  /** @internal */
   constructor(
     private _mapInitService: MapInitService,
     private _mapConfigService: MapConfigService,
@@ -728,7 +727,7 @@ export class JourneyMapsClientComponent implements OnInit, AfterViewInit, OnDest
     });
   }
 
-  /** @internal */
+  /** @docs-private */
   // When a marker has been unselected from outside the _map.
   onMarkerUnselected(): void {
     this.selectedMarker = undefined;
@@ -750,7 +749,7 @@ export class JourneyMapsClientComponent implements OnInit, AfterViewInit, OnDest
     }
   }
 
-  /** @internal */
+  /** @docs-private */
   // When a marker has been selected from outside the _map.
   onMarkerSelected(marker: Marker): void {
     if (marker?.id !== this.selectedMarkerId) {
@@ -760,7 +759,7 @@ export class JourneyMapsClientComponent implements OnInit, AfterViewInit, OnDest
     }
   }
 
-  /** @internal */
+  /** @docs-private */
   computeMarkersBounds(markers: Marker[] | undefined): LngLatBounds {
     const bounds = new LngLatBounds();
     markers?.forEach((marker: Marker) => {

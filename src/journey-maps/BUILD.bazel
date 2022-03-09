@@ -10,10 +10,6 @@ load(
     "markdown_to_html",
     "ng_module",
     "ng_package",
-    "ng_test_library",
-    "ng_web_test_suite",
-    "sass_binary",
-    "sass_library",
 )
 
 package(default_visibility = ["//visibility:public"])
@@ -22,139 +18,10 @@ package(default_visibility = ["//visibility:public"])
 ng_module(
     name = "journey-maps",
     srcs = glob(
-        [
-            "*.ts",
-            "src/**/*.ts",
-        ],
+        ["*.ts"],
         exclude = ["**/*.spec.ts"],
     ),
-    assets = [
-        ":src/journey-maps-client.component.css",
-        ":src/components/basemap-switch/basemap-switch.component.css",
-        ":src/components/global-styles/global-styles.component.css",
-        ":src/components/home-button/home-button.component.css",
-        ":src/components/leit-poi/leit-poi.component.css",
-        ":src/components/level-switch/level-switch.component.css",
-        ":src/components/marker-details/marker-details.component.css",
-        ":src/components/overlay-paginator/overlay-paginator.component.css",
-        ":src/components/popup/popup.component.css",
-        ":src/components/teaser/teaser.component.css",
-        ":src/components/zoom-controls/zoom-controls.component.css",
-    ] + glob(["**/*.html"]),
-    deps = ["//src/journey-maps/%s" % p for p in JOURNEY_MAPS_ENTRYPOINTS] + [
-        "@npm//@angular/animations",
-        "@npm//@angular/common",
-        "@npm//@angular/core",
-        "@npm//@types/geojson",
-        "@npm//angular-resize-event",
-        "@npm//maplibre-gl",
-        "@npm//rxjs",
-    ],
-)
-
-sass_library(
-    name = "journey_maps_scss_lib",
-    srcs = glob(["**/_*.scss"]),
-    deps = ["//src/angular/styles:common_scss_lib"],
-)
-
-sass_binary(
-    name = "src_journey_maps_client_component_scss",
-    src = "src/journey-maps-client.component.scss",
-)
-
-sass_binary(
-    name = "src_components_basemap_switch_basemap_switch_component_scss",
-    src = "src/components/basemap-switch/basemap-switch.component.scss",
-    deps = [
-        ":journey_maps_scss_lib",
-    ],
-)
-
-sass_binary(
-    name = "src_components_global_styles_global_styles_component_scss",
-    src = "src/components/global-styles/global-styles.component.scss",
-    deps = [
-        "//src/angular/styles:common_scss_lib",
-    ],
-)
-
-sass_binary(
-    name = "src_components_home_button_home_button_component_scss",
-    src = "src/components/home-button/home-button.component.scss",
-    deps = [
-        ":journey_maps_scss_lib",
-    ],
-)
-
-sass_binary(
-    name = "src_components_leit_poi_leit_poi_component_scss",
-    src = "src/components/leit-poi/leit-poi.component.scss",
-)
-
-sass_binary(
-    name = "src_components_level_switch_level_switch_component_scss",
-    src = "src/components/level-switch/level-switch.component.scss",
-    deps = [
-        ":journey_maps_scss_lib",
-        "//src/angular/styles:common_scss_lib",
-    ],
-)
-
-sass_binary(
-    name = "src_components_marker_details_marker_details_component_scss",
-    src = "src/components/marker-details/marker-details.component.scss",
-)
-
-sass_binary(
-    name = "src_components_overlay_paginator_overlay_paginator_component_scss",
-    src = "src/components/overlay-paginator/overlay-paginator.component.scss",
-    deps = [
-        ":journey_maps_scss_lib",
-    ],
-)
-
-sass_binary(
-    name = "src_components_popup_popup_component_scss",
-    src = "src/components/popup/popup.component.scss",
-)
-
-sass_binary(
-    name = "src_components_teaser_teaser_component_scss",
-    src = "src/components/teaser/teaser.component.scss",
-    deps = [
-        ":journey_maps_scss_lib",
-        "//src/angular/styles:common_scss_lib",
-    ],
-)
-
-sass_binary(
-    name = "src_components_zoom_controls_zoom_controls_component_scss",
-    src = "src/components/zoom-controls/zoom-controls.component.scss",
-    deps = [
-        ":journey_maps_scss_lib",
-        "//src/angular/styles:common_scss_lib",
-    ],
-)
-
-ng_test_library(
-    name = "unit_test_sources",
-    srcs = glob(
-        ["src/**/*.spec.ts"],
-        exclude = ["src/**/*.e2e.spec.ts"],
-    ),
-    deps = [
-        ":journey-maps",
-        "@npm//@angular/common",
-        "@npm//@angular/platform-browser",
-        "@npm//maplibre-gl",
-        "@npm//rxjs",
-    ],
-)
-
-ng_web_test_suite(
-    name = "unit_tests",
-    deps = [":unit_test_sources"],
+    deps = ["//src/journey-maps/%s" % p for p in JOURNEY_MAPS_ENTRYPOINTS],
 )
 
 markdown_to_html(
