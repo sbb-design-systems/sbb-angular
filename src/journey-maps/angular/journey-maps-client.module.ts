@@ -1,6 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
-import { AngularResizeEventModule } from 'angular-resize-event';
+// import { AngularResizeEventModule } from 'angular-resize-event'; TODO: switch no native browser support
 
 import { BasemapSwitchComponent } from './components/basemap-switch/basemap-switch.component';
 import { FeatureEventListenerComponent } from './components/feature-event-listener/feature-event-listener.component';
@@ -30,7 +30,7 @@ import { JourneyMapsClientComponent } from './journey-maps-client.component';
     HomeButtonComponent,
     OverlayPaginatorComponent,
   ],
-  imports: [CommonModule, AngularResizeEventModule],
+  imports: [CommonModule /*AngularResizeEventModule*/],
   exports: [JourneyMapsClientComponent, PopupComponent, TeaserComponent],
 })
 export class JourneyMapsClientModule {}
