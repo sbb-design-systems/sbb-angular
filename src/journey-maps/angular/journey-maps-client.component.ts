@@ -57,7 +57,7 @@ const SATELLITE_MAP_URL_TEMPLATE =
   'https://services.arcgisonline.com/arcgis/rest/services/World_Imagery/MapServer/WMTS/tile/1.0.0/World_Imagery/default/GoogleMapsCompatible/{z}/{y}/{x}.jpg';
 
 /**
- * This component uses the Maplibre GL JS api to render a _map and display the given data on the _map.
+ * This component uses the Maplibre GL JS api to render a map and display the given data on the map.
  * <example-url>/</example-url>
  */
 @Component({
@@ -110,7 +110,7 @@ export class JourneyMapsClientComponent implements OnInit, AfterViewInit, OnDest
   };
 
   /**
-   * Settings to control the _map (bright and dark) styles
+   * Settings to control the map (bright and dark) styles
    */
   @Input()
   get styleOptions(): StyleOptions {
@@ -135,7 +135,7 @@ export class JourneyMapsClientComponent implements OnInit, AfterViewInit, OnDest
   };
 
   /**
-   * Settings to control the movement of the _map by means other than via the buttons on the _map
+   * Settings to control the movement of the map by means other than via the buttons on the _map
    */
   @Input()
   get interactionOptions(): InteractionOptions {
@@ -187,7 +187,7 @@ export class JourneyMapsClientComponent implements OnInit, AfterViewInit, OnDest
   };
 
   /**
-   * Settings that control what portion of the _map is shown initially
+   * Settings that control what portion of the map is shown initially
    */
   @Input()
   get viewportOptions(): ViewportOptions {
@@ -206,16 +206,16 @@ export class JourneyMapsClientComponent implements OnInit, AfterViewInit, OnDest
   /* **************************************** JOURNEY-MAPS ROUTING OPTIONS *****************************************/
 
   /**
-   * Input to display JourneyMaps GeoJson routing data on the _map.
+   * Input to display JourneyMaps GeoJson routing data on the map.
    *
-   * **WARNING:** The _map currently doesn't support more than one of these fields to be set at a time
+   * **WARNING:** The map currently doesn't support more than one of these fields to be set at a time
    */
   @Input() journeyMapsRoutingOption: JourneyMapsRoutingOptions;
 
   /* **************************************** JOURNEY-MAPS ZONES *****************************************/
 
   /**
-   * Input to display JourneyMaps GeoJson zone data on the _map.
+   * Input to display JourneyMaps GeoJson zone data on the map.
    */
   @Input() journeyMapsZones: GeoJSON.FeatureCollection;
 
@@ -296,13 +296,13 @@ export class JourneyMapsClientComponent implements OnInit, AfterViewInit, OnDest
   // **************************************** OTHER OUTPUTS *****************************************
 
   /**
-   * This event is emitted whenever _map features were clicked.
+   * This event is emitted whenever map features were clicked.
    */
   @Output() featuresClick: EventEmitter<FeaturesClickEventData> =
     new EventEmitter<FeaturesClickEventData>();
 
   /**
-   * This event is emitted whenever mouse hovered or leaved _map features.
+   * This event is emitted whenever mouse hovered or leaved map features.
    */
   @Output() featuresHoverChange: EventEmitter<FeaturesHoverChangeEventData> =
     new EventEmitter<FeaturesHoverChangeEventData>();
@@ -312,15 +312,15 @@ export class JourneyMapsClientComponent implements OnInit, AfterViewInit, OnDest
    */
   @Output() visibleLevelsChange: EventEmitter<number[]> = new EventEmitter<number[]>();
   /**
-   * This event is emitted whenever one of the {@link ZoomLevels} of the _map has changed.
+   * This event is emitted whenever one of the {@link ZoomLevels} of the map has changed.
    */
   @Output() zoomLevelsChange: EventEmitter<ZoomLevels> = new EventEmitter<ZoomLevels>();
   /**
-   * This event is emitted whenever the center of the _map has changed. (Whenever the _map has been moved)
+   * This event is emitted whenever the center of the map has changed. (Whenever the map has been moved)
    */
   @Output() mapCenterChange: EventEmitter<LngLatLike> = new EventEmitter<LngLatLike>();
   /**
-   * This event is emitted whenever the _map is ready.
+   * This event is emitted whenever the map is ready.
    */
   @Output() mapReady: ReplaySubject<MaplibreMap> = new ReplaySubject<MaplibreMap>(1);
 
@@ -404,28 +404,28 @@ export class JourneyMapsClientComponent implements OnInit, AfterViewInit, OnDest
   }
 
   /**
-   * Move the _map North as if pressing the up arrow key on the keyboard
+   * Move the map North as if pressing the up arrow key on the keyboard
    */
   public moveNorth(): void {
     this._mapService.pan(this._map, Direction.NORTH);
   }
 
   /**
-   * Move the _map East as if pressing the right arrow key on the keyboard
+   * Move the map East as if pressing the right arrow key on the keyboard
    */
   public moveEast(): void {
     this._mapService.pan(this._map, Direction.EAST);
   }
 
   /**
-   * Move the _map South as if pressing the down arrow key on the keyboard
+   * Move the map South as if pressing the down arrow key on the keyboard
    */
   public moveSouth(): void {
     this._mapService.pan(this._map, Direction.SOUTH);
   }
 
   /**
-   * Move the _map West as if pressing the left arrow key on the keyboard
+   * Move the map West as if pressing the left arrow key on the keyboard
    */
   public moveWest(): void {
     this._mapService.pan(this._map, Direction.WEST);
@@ -495,7 +495,7 @@ export class JourneyMapsClientComponent implements OnInit, AfterViewInit, OnDest
         const mapSelectionEventService =
           this._featureEventListenerComponent.mapSelectionEventService;
 
-        // remove previous data from _map
+        // remove previous data from map
         this._mapJourneyService.updateJourney(this._map, mapSelectionEventService, undefined);
         this._mapTransferService.updateTransfer(this._map, undefined);
         this._mapRoutesService.updateRoutes(this._map, mapSelectionEventService, undefined);
@@ -728,7 +728,7 @@ export class JourneyMapsClientComponent implements OnInit, AfterViewInit, OnDest
   }
 
   /** @docs-private */
-  // When a marker has been unselected from outside the _map.
+  // When a marker has been unselected from outside the map.
   onMarkerUnselected(): void {
     this.selectedMarker = undefined;
     this._mapMarkerService.unselectFeature(this._map);
@@ -750,7 +750,7 @@ export class JourneyMapsClientComponent implements OnInit, AfterViewInit, OnDest
   }
 
   /** @docs-private */
-  // When a marker has been selected from outside the _map.
+  // When a marker has been selected from outside the map.
   onMarkerSelected(marker: Marker): void {
     if (marker?.id !== this.selectedMarkerId) {
       this.selectedMarker = marker;
