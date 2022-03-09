@@ -54,10 +54,10 @@ describe('JourneyMapsClientComponent#touchEventCollector', () => {
     setupFixtureAndComponent(false);
   });
 
-  const oneFinger = new Touch({
+  const oneFinger = {
     identifier: 123,
     target: new EventTarget(),
-  });
+  } as Touch;
 
   const createTouchEventsObservable = (touchEvents: TouchEvent[]): Observable<TouchEvent> =>
     scheduled(touchEvents, asyncScheduler);
