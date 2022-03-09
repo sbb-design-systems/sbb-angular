@@ -5,7 +5,7 @@ import { MarkerCategory } from '../../model/marker-category.enum';
 import { MapMarkerService } from './map-marker.service';
 import { MapService } from './map.service';
 
-const createMarker = ({ category = MarkerCategory.CUSTOM, icon, iconSelected }) => ({
+const createMarker = ({ category = MarkerCategory.CUSTOM, icon, iconSelected }: any) => ({
   id: 'some id',
   title: 'some title',
   position: [7.44645, 46.961409],
@@ -25,7 +25,7 @@ describe('MapMarkerService#addMissingImages', () => {
   beforeEach(() => {
     mapSpyObj = jasmine.createSpyObj('mapSpyObj', ['hasImage', 'loadImage']);
     mapServiceSpyObj = jasmine.createSpyObj(['addMissingImage']);
-    sut = new MapMarkerService(null, mapServiceSpyObj, null);
+    sut = new MapMarkerService({} as any, mapServiceSpyObj, {} as any);
   });
 
   it('should add missing images with identical paths only once', () => {

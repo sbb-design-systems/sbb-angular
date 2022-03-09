@@ -2,6 +2,23 @@ import { QueryMapFeaturesService } from './query-map-features.service';
 
 describe('QueryMapFeaturesService', () => {
   let service: QueryMapFeaturesService;
+  let consoleError: any;
+
+  /* patch console error - do not throw if known error */
+  beforeAll(() => {
+    consoleError = console.error;
+    console.error = (message?: any, ...optionalParams: any[]) => {
+      if (typeof message === 'string' && message.startsWith("source '")) {
+        return;
+      }
+      consoleError(message, ...optionalParams);
+    };
+  });
+
+  afterAll(() => {
+    console.error = consoleError;
+  });
+  /* patch console error - do not throw */
 
   beforeEach(() => {
     service = new QueryMapFeaturesService();

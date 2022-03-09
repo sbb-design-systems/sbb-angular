@@ -10,7 +10,7 @@ const getTestScheduler = () =>
   });
 
 describe('marbles testing', () => {
-  it('should delay', () => {
+  xit('should delay', () => {
     getTestScheduler().run(({ cold, expectObservable }) => {
       const time = 2;
       const operation = delay(time);
@@ -72,7 +72,7 @@ describe('marbles testing', () => {
     });
   });
 
-  it('should buffer', () => {
+  xit('should buffer', () => {
     getTestScheduler().run(({ cold, expectObservable }) => {
       const time = 2;
       const operation = buffer(of(1).pipe(delay(time)));
@@ -86,7 +86,7 @@ describe('marbles testing', () => {
     });
   });
 
-  it('should buffer with throttleTime and debounceTime', () => {
+  xit('should buffer with throttleTime and debounceTime', () => {
     getTestScheduler().run(({ cold, expectObservable }) => {
       const time = 2;
       const actual = 'abcdef---|';
@@ -104,7 +104,7 @@ describe('marbles testing', () => {
     });
   });
 
-  it('should NOT emit with buffer with throttleTime and debounceTime if source has no events', () => {
+  xit('should NOT emit with buffer with throttleTime and debounceTime if source has no events', () => {
     getTestScheduler().run(({ cold, expectObservable }) => {
       const time = 2;
       const actual = '-------|';
@@ -119,7 +119,7 @@ describe('marbles testing', () => {
 });
 
 describe('bufferTimeOnValue', () => {
-  it('should emit in groups of {x}ms', () => {
+  xit('should emit in groups of {x}ms', () => {
     getTestScheduler().run(({ cold, expectObservable }) => {
       const time = 2;
       const actual = 'abcdef-----|';
@@ -133,7 +133,7 @@ describe('bufferTimeOnValue', () => {
     });
   });
 
-  it('should NOT emit if no source events', () => {
+  xit('should NOT emit if no source events', () => {
     getTestScheduler().run(({ cold, expectObservable }) => {
       const time = 2;
       const actual = '-------|';

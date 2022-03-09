@@ -9,7 +9,8 @@ export class QueryMapFeaturesService {
   private readonly _levelsFeaturePropertyName = 'floor_liststring';
 
   getVisibleLevels(map: MaplibreMap): number[] {
-    if (!map.getStyle().sources![QueryMapFeaturesService.SERVICE_POINT_SOURCE_ID]) {
+    const mapSources = map.getStyle().sources;
+    if (!mapSources || !mapSources[QueryMapFeaturesService.SERVICE_POINT_SOURCE_ID]) {
       console.error(
         `source '${QueryMapFeaturesService.SERVICE_POINT_SOURCE_ID}' not found in map style.`
       );

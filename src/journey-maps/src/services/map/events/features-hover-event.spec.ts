@@ -32,7 +32,7 @@ describe('FeaturesHoverEvent', () => {
 
     const routeUtilsMock = {
       filterRouteFeatures: () => [],
-    } as undefined as RouteUtilsService;
+    } as unknown as RouteUtilsService;
 
     const layers = ['route-layer-1', 'route-layer-2'];
     watchOnLayers = new Map<string, FeatureDataType>();

@@ -63,7 +63,7 @@ const SATELLITE_MAP_URL_TEMPLATE =
 @Component({
   selector: 'sbb-journey-maps',
   templateUrl: './journey-maps-client.component.html',
-  styleUrls: ['./journey-maps-client.component.scss'],
+  styleUrls: ['./journey-maps-client.component.css'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class JourneyMapsClientComponent implements OnInit, AfterViewInit, OnDestroy, OnChanges {

@@ -24,7 +24,7 @@ describe('MarkerDetailsComponent', () => {
   });
 
   it('shouldRender should return false if !selectedMarker', () => {
-    [null, undefined, null].forEach((selectedMarker) => {
+    [undefined, undefined, undefined].forEach((selectedMarker) => {
       component.selectedMarker = selectedMarker;
       component.template = 1 as unknown as TemplateRef<any>;
       component.ngOnChanges(undefined);

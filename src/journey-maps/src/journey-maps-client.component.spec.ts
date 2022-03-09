@@ -22,22 +22,26 @@ describe('JourneyMapsClientComponent#selectedMarkerId', () => {
     setupFixtureAndComponent();
   });
 
-  function setSelectedMarkerId(markerId: string): void {
+  function setSelectedMarkerId(markerId: string | undefined): void {
     component.selectedMarkerId = markerId;
     fixture.detectChanges();
   }
 
-  it('should emit when (un-)selecting a marker', async () => {
-    let selectedMarkerId: string = null;
-    component.selectedMarkerIdChange.subscribe((id: string) => (selectedMarkerId = id));
-
-    expect(selectedMarkerId).toBe(null);
-
+  it('should emit when (un-)selecting a marker', (doneFn) => {
     setSelectedMarkerId('work');
-    expect(selectedMarkerId).toBe('work');
-
+    component.selectedMarkerIdChange.subscribe((id: string | undefined) => {
+      expect(id).toBeFalsy();
+      doneFn();
+    });
     setSelectedMarkerId(undefined);
-    expect(selectedMarkerId).toBe(undefined);
+  });
+
+  it('should emit when selecting a marker', (doneFn) => {
+    component.selectedMarkerIdChange.subscribe((id: string) => {
+      expect(id).toBe('work');
+      doneFn();
+    });
+    setSelectedMarkerId('work');
   });
 });
 

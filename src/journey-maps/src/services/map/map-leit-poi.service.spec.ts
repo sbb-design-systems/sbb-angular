@@ -4,7 +4,7 @@ describe('MapLeitPoiService', () => {
   let service: MapLeitPoiService;
 
   beforeEach(() => {
-    service = new MapLeitPoiService(null);
+    service = new MapLeitPoiService({} as any);
   });
 
   it('should be created', () => {

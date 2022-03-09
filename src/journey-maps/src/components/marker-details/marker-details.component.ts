@@ -44,7 +44,7 @@ export class MarkerDetailsComponent implements OnChanges {
 
   constructor(private _mapMarkerService: MapMarkerService) {}
 
-  ngOnChanges(changes: SimpleChanges): void {
+  ngOnChanges(changes: SimpleChanges | undefined): void {
     this.shouldRender = !!this.selectedMarker && !!this.template;
 
     if (this.selectedMarker) {
