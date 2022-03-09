@@ -59,7 +59,7 @@
     "@angular/router": "13.2.5",
     "@arcgis/core": "~4.20.2",
     "@stackblitz/sdk": "1.6.0",
-    "rxjs": "7.5.4",
+    "rxjs": "7.5.5",
     "tslib": "2.3.1",
     "zone.js": "0.11.5"
   },
