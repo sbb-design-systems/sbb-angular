@@ -79,7 +79,7 @@
 }
 
 .sbb-tooltip-container-show {
-  animation: sbb-tooltip-container-show 200ms cubic-bezier(0, 0, 0.2, 1) forwards;
+  animation: sbb-tooltip-container-show var(--sbb-transition-duration-fast) cubic-bezier(0, 0, 0.2, 1) forwards;
 }
 
 .sbb-tooltip-container-hide {
