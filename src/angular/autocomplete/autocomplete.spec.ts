@@ -3236,6 +3236,25 @@ describe('SbbAutocomplete', () => {
       expect(closedSpy).toHaveBeenCalledTimes(1);
     }));
 
+    it('should emit a closed event on blur if it was not emitted before', fakeAsync(() => {
+      const { trigger, openedSpy, closedSpy } = fixture.componentInstance;
+      const input: HTMLInputElement = fixture.nativeElement.querySelector('input');
+
+      trigger.openPanel();
+      fixture.detectChanges();
+      typeInElement(input, 'Zweiundvierzig'); // not a valid option
+      fixture.detectChanges();
+      tick();
+
+      expect(closedSpy).not.toHaveBeenCalled();
+
+      input.blur();
+      fixture.detectChanges();
+
+      expect(openedSpy).toHaveBeenCalledTimes(1);
+      expect(closedSpy).toHaveBeenCalledTimes(1);
+    }));
+
     it(
       'should clear the input if the user presses escape while there was a pending ' +
         'auto selection and there is no previous value',

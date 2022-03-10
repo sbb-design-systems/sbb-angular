@@ -111,7 +111,7 @@ export function getSbbAutocompleteMissingPanelError(): Error {
     // Note: we use `focusin`, as opposed to `focus`, in order to open the panel
     // a little earlier. This avoids issues where IE delays the focusing of the input.
     '(focusin)': '_handleFocus()',
-    '(blur)': '_onTouched()',
+    '(blur)': '_handleBlur()',
     '(input)': '_handleInput($event)',
     '(keydown)': '_handleKeydown($event)',
     '(click)': '_handleClick()',
@@ -549,6 +549,17 @@ export class SbbAutocompleteTrigger
       this._previousValue = this._element.nativeElement.value;
       this._attachOverlay();
     }
+  }
+
+  /**
+   * Ensure the close event is always emitted if the panel was open before,
+   * even if the user entered a string that does not match any option.
+   */
+  _handleBlur(): void {
+    if (this.autocomplete._isOpen) {
+      this.autocomplete.closed.emit();
+    }
+    this._onTouched();
   }
 
   _handleClick(): void {
