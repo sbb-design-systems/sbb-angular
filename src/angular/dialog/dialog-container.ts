@@ -97,10 +97,12 @@ export abstract class _SbbDialogContainerBase extends BasePortalOutlet {
 
   /** Initializes the dialog container with the attached content. */
   _initializeWithAttachedContent() {
-    this._setupFocusTrap();
+    this._focusTrap = this._focusTrapFactory.create(this._elementRef.nativeElement);
     // Save the previously focused element. This element will be re-focused
     // when the dialog closes.
-    this._capturePreviouslyFocusedElement();
+    if (this._document) {
+      this._elementFocusedBeforeDialogWasOpened = _getFocusedElementPierceShadowDom();
+    }
     // Move focus onto the dialog immediately in order to prevent the user
     // from accidentally opening multiple dialogs at the same time.
     this._focusDialogContainer();
@@ -207,18 +209,6 @@ export abstract class _SbbDialogContainerBase extends BasePortalOutlet {
     }
   }
 
-  /** Sets up the focus trap. */
-  private _setupFocusTrap() {
-    this._focusTrap = this._focusTrapFactory.create(this._elementRef.nativeElement);
-  }
-
-  /** Captures the element that was focused before the dialog was opened. */
-  private _capturePreviouslyFocusedElement() {
-    if (this._document) {
-      this._elementFocusedBeforeDialogWasOpened = _getFocusedElementPierceShadowDom();
-    }
-  }
-
   /** Focuses the dialog container. */
   private _focusDialogContainer() {
     // Note that there is no focus method when rendering on the server.
@@ -268,7 +258,9 @@ export class SbbDialogContainer extends _SbbDialogContainerBase {
   @HostListener('@dialogContainer.done', ['$event'])
   _onAnimationDone({ toState, totalTime }: AnimationEvent) {
     if (toState === 'enter') {
-      this._trapFocus();
+      if (this._config.delayFocusTrap) {
+        this._trapFocus();
+      }
       this._animationStateChanged.next({ state: 'opened', totalTime });
     } else if (toState === 'exit') {
       this._restoreFocus();
@@ -293,5 +285,13 @@ export class SbbDialogContainer extends _SbbDialogContainerBase {
     // Mark the container for check so it can react if the
     // view container is using OnPush change detection.
     this._changeDetectorRef.markForCheck();
+  }
+
+  override _initializeWithAttachedContent() {
+    super._initializeWithAttachedContent();
+
+    if (!this._config.delayFocusTrap) {
+      this._trapFocus();
+    }
   }
 }
