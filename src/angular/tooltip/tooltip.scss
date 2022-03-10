@@ -3,13 +3,13 @@
 
 .sbb-tooltip-component {
   display: block;
+  filter: drop-shadow(0 var(--sbb-box-shadow-width) 0 var(--sbb-box-shadow-color));
 }
 
 .sbb-tooltip-container {
   height: 100%;
   font-size: var(--sbb-font-size);
   line-height: var(--sbb-line-height);
-  filter: drop-shadow(0 var(--sbb-box-shadow-width) 0 var(--sbb-box-shadow-color));
 
   &::after,
   &::before {
