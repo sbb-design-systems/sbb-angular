@@ -1,0 +1,14 @@
+<button [sbbContextmenuTriggerFor]="menu" aria-label="Show stations" type="button"></button>
+<sbb-menu #menu="sbbMenu">
+  <span class="sbb-label" id="stations-bern">Railway stations in Bern</span>
+  <div role="list" aria-describedby="stations-bern">
+    <button sbb-menu-item type="button">Bern HB</button>
+    <button sbb-menu-item type="button">Bern Wankdorf</button>
+  </div>
+  <span class="sbb-label" id="stations-zurich">Railway stations in Zurich</span>
+  <div role="list" aria-describedby="stations-zurich">
+    <button sbb-menu-item type="button">Zurich HB</button>
+    <button sbb-menu-item type="button">Zurich Stadelhofen</button>
+    <button sbb-menu-item type="button">Zurich Oerlikon</button>
+  </div>
+</sbb-menu>

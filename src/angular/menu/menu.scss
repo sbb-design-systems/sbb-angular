@@ -48,6 +48,18 @@ sbb-menu {
   button.sbb-menu-item {
     width: 100%;
   }
+
+  .sbb-label {
+    padding-top: calc(#{pxToRem(22)} * var(--sbb-scaling-factor));
+
+    :where(html.sbb-lean) & {
+      padding-top: pxToRem(12);
+    }
+
+    &:first-child {
+      padding-top: calc(#{pxToRem(6)} * var(--sbb-scaling-factor));
+    }
+  }
 }
 
 .sbb-menu-panel-root {
