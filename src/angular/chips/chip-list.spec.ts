@@ -857,6 +857,25 @@ describe('SbbChipList', () => {
         expect(testChipsAutocomplete.selectedFruits.value).toEqual([]);
       });
 
+      it('should return a new array on update', async () => {
+        expect(testChipsAutocomplete.selectedFruits.value).toEqual(['Lemon']);
+        const before = testChipsAutocomplete.selectedFruits.value;
+
+        input.focus();
+        typeInElement(input, 'Apple');
+        dispatchKeyboardEvent(input, 'keydown', ENTER);
+        await fixture.whenStable();
+
+        const afterAdd = testChipsAutocomplete.selectedFruits.value;
+        expect(afterAdd === before).toBeFalse();
+
+        chips.last.remove();
+        await fixture.whenStable();
+
+        const afterRemove = testChipsAutocomplete.selectedFruits.value;
+        expect(afterRemove === afterAdd).toBeFalse();
+      });
+
       it('should add value to form control Set', async () => {
         testChipsAutocomplete.selectedFruits = new FormControl(new Set(['Lemon']));
         fixture.detectChanges();
