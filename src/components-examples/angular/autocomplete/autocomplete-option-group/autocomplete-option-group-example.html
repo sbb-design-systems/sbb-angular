@@ -5,6 +5,7 @@
   <sbb-option *ngFor="let option of options | async" [value]="option">{{ option }}</sbb-option>
   <sbb-optgroup label="Oft gesucht:">
     <sbb-option *ngFor="let option of staticOptions" [value]="option">{{ option }}</sbb-option>
+    <sbb-autocomplete-hint>Hint for "Oft gesucht"</sbb-autocomplete-hint>
   </sbb-optgroup>
 </sbb-autocomplete>
 <pre>{{ myControlStatic.value | json }}</pre>
