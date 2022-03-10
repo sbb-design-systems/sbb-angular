@@ -34,7 +34,6 @@ ng_module(
         "@npm//@angular/common",
         "@npm//@angular/core",
         "@npm//@types/geojson",
-        "@npm//angular-resize-event",
         "@npm//maplibre-gl",
         "@npm//rxjs",
     ],

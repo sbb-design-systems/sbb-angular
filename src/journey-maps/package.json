@@ -18,7 +18,6 @@
     "@angular/core": "0.0.0-NG",
     "@types/geojson": ">=7946",
     "maplibre-gl": "^1.12.0",
-    "angular-resize-event": ">=3"
   },
   "ng-update": {
     "packageGroup": [

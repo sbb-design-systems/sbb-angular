@@ -4701,13 +4701,6 @@ amdefine@>=0.0.4:
   resolved "https://registry.yarnpkg.com/amdefine/-/amdefine-1.0.1.tgz#4a5282ac164729e93619bcfd3ad151f817ce91f5"
   integrity sha1-SlKCrBZHKek2Gbz9OtFR+BfOkfU=
 
-angular-resize-event@3.1.1:
-  version "3.1.1"
-  resolved "https://registry.yarnpkg.com/angular-resize-event/-/angular-resize-event-3.1.1.tgz#4b3535dc2c4882fa1c7f159a1a2e319ed4ca35cd"
-  integrity sha512-7kJr3GGZ+7z0a8qhmKKAmCW4U8WZZNtOVSes5uWbA6AnKK9CeAAeblYk/JN0fALwadg/VF48zmKWovuZKvqQBg==
-  dependencies:
-    tslib "^2.3.0"
-
 angular-t9n@13.0.0:
   version "13.0.0"
   resolved "https://registry.yarnpkg.com/angular-t9n/-/angular-t9n-13.0.0.tgz#56dc25631a1564a4bbb56c8ca1b50cb5c01d70bf"
