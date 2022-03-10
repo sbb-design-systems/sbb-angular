@@ -17,11 +17,12 @@ export interface StyleOptions {
 }
 
 export interface InteractionOptions {
-  /** Whether the map should allow panning with one finger or not
+  /**
+   * Whether the map should allow panning with one finger or not.
    * If set to false, the users get a message-overlay if they try to pan with one finger.
    */
   oneFingerPan?: boolean;
-  /** Whether the map can be zoomed by scrolling */
+  /** Whether the map can be zoomed by scrolling. */
   scrollZoom?: boolean;
 }
 
@@ -40,43 +41,43 @@ export interface UIOptions {
 
 export interface ViewportOptions {
   /**
-   * The initial center of the map. You should pass an array with two numbers.
-   * The first one is the longitude and the second one the latitude.
+   * The initial center of the map. You should pass an array with two numbers,
+   * the first one being the longitude and the second one the latitude.
    */
   mapCenter?: LngLatLike;
   /** The initial zoom level of the map. */
   zoomLevel?: number;
   /** The initial bounding box of the map. */
   boundingBox?: LngLatBoundsLike;
-  /** The amount of padding in pixels to add to the given boundingBox. */
+  /** The amount of padding in pixels to add to the given bounding box. */
   boundingBoxPadding?: number;
 }
 
 /**
- * **WARNING:** The map currently doesn't support more than one of these fields to be set at a time
+ * **WARNING:** The map currently doesn't support more than one of these fields to be set at a time.
  */
 export interface JourneyMapsRoutingOptions {
   /**
-   * GeoJSON as returned by the <code>/journey</code> operation of Journey Maps.
+   * GeoJSON as returned by the <code>/journey</code> operation of Journey-Maps.
    * All routes and transfers will be displayed on the map.
    * Indoor routing is not (yet) supported.
-   * Note: journey, transfer and routes cannot be displayed at the same time
+   * Note: journey, transfer and routes cannot be displayed at the same time.
    */
   journey?: GeoJSON.FeatureCollection;
 
   /**
-   * GeoJSON as returned by the <code>/transfer</code> operation of Journey Maps.
+   * GeoJSON as returned by the <code>/transfer</code> operation of Journey-Maps.
    * The transfer will be displayed on the map.
    * Indoor routing is not (yet) supported.
-   * Note: journey, transfer and routes cannot be displayed at the same time
+   * Note: journey, transfer and routes cannot be displayed at the same time.
    */
   transfer?: GeoJSON.FeatureCollection;
 
   /**
-   * An array of GeoJSON objects as returned by the <code>/route</code> and <code>/routes</code> operation of Journey Maps.
+   * An array of GeoJSON objects as returned by the <code>/route</code> and <code>/routes</code> operation of Journey-Maps.
    * All routes will be displayed on the map.
    * Indoor routing is not (yet) supported.
-   * Note: journey, transfer and routes cannot be displayed at the same time
+   * Note: journey, transfer and routes cannot be displayed at the same time.
    */
   routes?: SelectableFeatureCollection[];
 }
@@ -84,7 +85,7 @@ export interface JourneyMapsRoutingOptions {
 export interface MarkerOptions {
   /** The list of markers (points) that will be displayed on the map. */
   markers?: Marker[];
-  /** Open a popup - instead of the teaser - when selecting a marker. */
+  /** Open a popup – instead of the teaser – when selecting a marker. */
   popup?: boolean;
   /** Wrap all markers in view if true. */
   zoomToMarkers?: boolean;
@@ -104,18 +105,18 @@ export interface ZoomLevels {
  * and define templates to display in case of such an event.
  */
 export type ListenerOptions = {
-  /** The feature type for which you want to receive events */
+  /** The feature type for which you want to receive events. */
   [type in FeatureDataType]?: ListenerTypeOptions;
 };
 
 export interface ListenerTypeOptions {
   /** True if you want to receive events. Otherwise false. */
   watch: boolean;
-  /** If a template is defined for an event: Should it be displayed in a popup or teaser? */
+  /** If a template is defined for an event: Should it be displayed in a popup or teaser ? */
   popup?: boolean;
-  /** Template to diplay when a feature is clicked */
+  /** Template to display when a feature is clicked. */
   clickTemplate?: TemplateRef<any>;
-  /** Template to display when a feature is hovered */
+  /** Template to display when a feature is hovered. */
   hoverTemplate?: TemplateRef<any>;
   /** Selection mode */
   selectionMode?: SelectionMode;
