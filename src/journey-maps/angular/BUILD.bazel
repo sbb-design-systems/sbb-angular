@@ -7,6 +7,8 @@ load(
     "sass_binary",
     "sass_library",
 )
+load("@build_bazel_rules_nodejs//:index.bzl", "copy_to_bin")
+load("@build_bazel_rules_postcss//:index.bzl", "postcss_binary", "postcss_plugin")
 
 package(default_visibility = ["//visibility:public"])
 
@@ -69,6 +71,7 @@ sass_binary(
 sass_binary(
     name = "components_home_button_home_button_component_scss",
     src = "components/home-button/home-button.component.scss",
+    output_name = "components/home-button/home-button.component.pre.css",
     deps = [
         ":angular_scss_lib",
     ],
@@ -113,6 +116,42 @@ sass_binary(
         ":angular_scss_lib",
         "//src/angular/styles:common_scss_lib",
     ],
+)
+
+copy_to_bin(
+    name = "copy_icons",
+    srcs = glob([
+        "assets/*.svg",
+    ]),
+)
+
+postcss_plugin(
+    name = "postcss-url",
+    node_require = "postcss-url",
+    deps = [
+        "@npm//postcss-url",
+    ],
+)
+
+postcss_plugin(
+    name = "autoprefixer",
+    node_require = "autoprefixer",
+    deps = [
+        "@npm//autoprefixer",
+    ],
+)
+
+postcss_binary(
+    name = "postcss_home_button_component",
+    src = ":components_home_button_home_button_component_scss",
+    data = [
+        ":copy_icons",
+    ],
+    output_name = "components/home-button/home-button.component.css",
+    plugins = {
+        ":postcss-url": "[{url: 'inline'}]",
+        ":autoprefixer": "",
+    },
 )
 
 sass_binary(
