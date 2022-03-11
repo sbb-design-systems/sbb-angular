@@ -110,12 +110,3 @@ _dev_infra_browser_repositories()
 load("@build_bazel_rules_nodejs//toolchains/esbuild:esbuild_repositories.bzl", "esbuild_repositories")
 
 esbuild_repositories()
-
-http_archive(
-    name = "build_bazel_rules_postcss",
-    url = "https://github.com/bazelbuild/rules_postcss/archive/0.5.0.tar.gz",
-    strip_prefix = "rules_postcss-0.5.0",
-    sha256 = "3f0c754f97e3940ea90f4d6408bfb2aefb3850e7941572b22b1b88579c428ff9",
-)
-load("@build_bazel_rules_postcss//:package.bzl", "rules_postcss_dependencies")
-rules_postcss_dependencies()
