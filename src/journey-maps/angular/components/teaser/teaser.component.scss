@@ -1,4 +1,5 @@
 @use './../../style/colors' as c;
+@use './../../style/icons' as i;
 @use '../../../../angular/styles/common' as esta;
 
 .teaser-container {
@@ -24,7 +25,7 @@
     padding: 0;
     border: none;
     background-color: c.$darkgray;
-    mask: url('./../../assets/circle-cross-small.svg') center no-repeat;
+    @include i.icon-mask('circle-cross');
   }
 
   width: 100%;

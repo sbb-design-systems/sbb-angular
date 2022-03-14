@@ -15,12 +15,7 @@
     }
   }
 
-  @include f.map-control-icon-button;
-
-  // Using .map-control-button instead of button does not work when having it twice in this same file... Why??
-  button {
-    mask: url('./../../assets/plus-small.svg') center no-repeat;
-  }
+  @include f.map-control-icon-button('plus');
 
   &::after {
     content: ' ';
@@ -36,11 +31,7 @@
 
 .var-minus {
   border-radius: 12px 12px 24px 24px;
-  @include f.map-control-icon-button;
-
-  button {
-    mask: url('./../../assets/minus-small.svg') center no-repeat;
-  }
+  @include f.map-control-icon-button('minus');
 
   @include esta.mq($from: tabletPortrait) {
     @at-root .map-control-container.small-buttons #{&} {

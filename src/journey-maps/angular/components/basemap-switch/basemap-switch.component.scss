@@ -2,8 +2,4 @@
 
 @include f.map-controls-shared;
 @include f.map-control-icon;
-@include f.map-control-icon-button();
-
-.map-control-button {
-  mask: url('./../../assets/layers-small.svg') center no-repeat;
-}
+@include f.map-control-icon-button('layers');

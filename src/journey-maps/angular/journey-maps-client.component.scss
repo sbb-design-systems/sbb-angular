@@ -1,3 +1,5 @@
+@use './style/icons' as i;
+
 :host,
 .map,
 .jmc-container {
@@ -74,7 +76,7 @@
 div.mod_map_container_mobile_overlay_icon {
   width: 3.3em;
   height: 3.4em;
-  background: center / 100% no-repeat url('assets/hand_touch.svg');
+  background: center / 100% no-repeat i.icon('hand-touch');
 }
 
 .map-widgets {
