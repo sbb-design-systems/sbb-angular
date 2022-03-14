@@ -1,5 +1,4 @@
-<ul>
-</ul>
+<ul></ul>
 <div class="web-map">
   <ng-container *ngIf="mapVisible">
     <sbb-journey-maps
@@ -8,7 +7,7 @@
       [interactionOptions]="interactionOptions"
       [uiOptions]="uiOptions"
       [viewportOptions]="viewportOptions"
-      apiKey="<API-KEY>"
+      [apiKey]="apiKey"
       [markerOptions]="markerOptions"
       [markerDetailsTemplate]="markerDetailsTemplate"
       [journeyMapsRoutingOption]="journeyMapsRoutingOption"
@@ -53,11 +52,13 @@
       <button sbb-ghost-button (click)="client.moveWest()">West</button>
     </li>
     <li>
-      <sbb-checkbox [checked]="interactionOptions.oneFingerPan??false" disabled>Map moving with one finger
+      <sbb-checkbox [checked]="interactionOptions.oneFingerPan??false" disabled
+        >Map moving with one finger
       </sbb-checkbox>
     </li>
     <li>
-      <sbb-checkbox [checked]="interactionOptions.scrollZoom??false" disabled>Map zoom with scroll wheel
+      <sbb-checkbox [checked]="interactionOptions.scrollZoom??false" disabled
+        >Map zoom with scroll wheel
       </sbb-checkbox>
     </li>
     <li>
@@ -67,9 +68,12 @@
     </li>
     <li>
       <label for="small-buttons-checkbox">
-        <sbb-checkbox id="small-buttons-checkbox" (change)="setShowSmallButtons($event)"
-                      [checked]="uiOptions.showSmallButtons??false"
-                      value="smallButtons">Show small buttons
+        <sbb-checkbox
+          id="small-buttons-checkbox"
+          (change)="setShowSmallButtons($event)"
+          [checked]="uiOptions.showSmallButtons??false"
+          value="smallButtons"
+          >Show small buttons
         </sbb-checkbox>
       </label>
     </li>
