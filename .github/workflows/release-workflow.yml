@@ -81,6 +81,8 @@ jobs:
         key: combined
     - name: "Bazel: Build showcase"
       run: yarn -s build showcase
+      env:
+        JM_API_KEY: ${{ secrets.JM_API_KEY }}
 
     - name: "Docker: Parse release version"
       id: docker_release_version
