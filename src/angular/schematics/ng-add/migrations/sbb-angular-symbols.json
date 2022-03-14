@@ -682,7 +682,6 @@
   "SBB_TOOLTIP_SCROLL_STRATEGY_FACTORY": "tooltip",
   "SBB_TOOLTIP_SCROLL_STRATEGY_FACTORY_PROVIDER": "tooltip",
   "SbbTooltip": "tooltip",
-  "sbbTooltipAnimations": "tooltip",
   "SbbTooltipChangeEvent": "tooltip",
   "SbbTooltipComponent": "tooltip",
   "SbbTooltipDefaultOptions": "tooltip",
