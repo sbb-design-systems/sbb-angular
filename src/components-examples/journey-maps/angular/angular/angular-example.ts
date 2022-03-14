@@ -4,6 +4,8 @@ import {
   InteractionOptions,
   JourneyMapsClientComponent,
   JourneyMapsRoutingOptions,
+  StyleMode,
+  StyleOptions,
   UIOptions,
   ViewportOptions,
 } from '@sbb-esta/journey-maps';
@@ -46,6 +48,7 @@ export class Angular implements OnInit, OnDestroy {
     basemapSwitch: true,
     homeButton: true,
   };
+  styleOptions: StyleOptions = { brightId: 'base_bright_v2_ki' };
   markerOptions = markers;
   journeyMapsRoutingOption: JourneyMapsRoutingOptions;
   journeyMapsRoutingOptions = [
@@ -109,6 +112,14 @@ export class Angular implements OnInit, OnDestroy {
         updateDataFunction();
       });
     }
+  }
+
+  setStyleModeInput(event: Event): void {
+    this.selectedMarkerId = undefined;
+    this.styleOptions = {
+      ...this.styleOptions,
+      mode: StyleMode[(event.target as HTMLOptionElement).value as StyleMode],
+    };
   }
 
   private _setBbox(bbox: number[]): void {
