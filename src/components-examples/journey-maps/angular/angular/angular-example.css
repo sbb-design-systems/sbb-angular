@@ -1,14 +1,23 @@
-.map-container {
-  display: inline-block;
-}
-.web-map {
-  width: 700px;
-  height: 500px;
+ul {
+    margin: 1em;
 }
 
-.legend {
-  display: inline-block;
-  width: 300px;
-  height: 500px;
-  overflow-y: scroll;
+li {
+    margin: 0;
+    padding: 5px 0 0;
+}
+
+li button {
+    margin: 3px 9px 3px 0;
+}
+
+.map-container {
+    display: inline-block;
+}
+
+.web-map {
+    width: 700px;
+    height: 500px;
+    min-height: 500px;
+    box-shadow: 0 5px 5px -5px rgba(0, 0, 0, .15);
 }

@@ -1,3 +1,69 @@
-<div style="height: 450px">
-  <sbb-journey-maps apiKey=""></sbb-journey-maps>
+<ul>
+</ul>
+<div class="web-map">
+  <ng-container *ngIf="mapVisible">
+    <sbb-journey-maps
+      language="en"
+      [interactionOptions]="interactionOptions"
+      [uiOptions]="uiOptions"
+      [viewportOptions]="viewportOptions"
+      apiKey="<APK-KEY>"
+      [markerOptions]="markerOptions"
+      [markerDetailsTemplate]="markerDetailsTemplate"
+      [journeyMapsRoutingOption]="journeyMapsRoutingOption"
+      [(selectedMarkerId)]="selectedMarkerId"
+      [(selectedLevel)]="selectedLevel"
+      (mapCenterChange)="mapCenterChange.next($event)"
+    ></sbb-journey-maps>
+  </ng-container>
+  <ng-template #markerDetailsTemplate let-marker>
+    <div class="markerdetails-title">{{marker.title}}</div>
+    <div class="markerdetails-subtitle">{{marker.subtitle}}</div>
+  </ng-template>
+</div>
+<div>
+  <ul>
+    <li>
+      <button sbb-ghost-button (click)="mapVisible=!mapVisible">Toggle Visibility</button>
+    </li>
+    <li>
+      Markers:
+      <button sbb-ghost-button (click)="selectedMarkerId='home'">Select 'Home Office'</button>
+      <button sbb-ghost-button (click)="selectedMarkerId=undefined">Unselect all</button>
+    </li>
+    <li>
+      Map center: {{mapCenter}}
+    </li>
+    <li>
+      Zoom:
+      <button sbb-ghost-button (click)="client.zoomIn()">In</button>
+      <button sbb-ghost-button (click)="client.zoomOut()">Out</button>
+    </li>
+    <li>
+      Move map:
+      <button sbb-ghost-button (click)="client.moveNorth()">North</button>
+      <button sbb-ghost-button (click)="client.moveEast()">East</button>
+      <button sbb-ghost-button (click)="client.moveSouth()">South</button>
+      <button sbb-ghost-button (click)="client.moveWest()">West</button>
+    </li>
+    <li>Allow moving the map with one finger: {{interactionOptions.oneFingerPan}}</li>
+    <li>Allow zooming with the scroll button: {{interactionOptions.scrollZoom}}</li>
+    <li>
+      <label for="small-buttons-checkbox">
+        <sbb-checkbox id="small-buttons-checkbox" (change)="setShowSmallButtons($event)"
+                      [checked]="uiOptions.showSmallButtons??false"
+                      value="smallButtons">Show small buttons
+        </sbb-checkbox>
+      </label>
+    </li>
+    <li>
+      <label for="routing-geo-json-select">
+        Display Journey-Maps GeoJSON data for:
+        <select sbbInput id="routing-geo-json-select" (change)="setJourneyMapsRoutingInput($event)">
+          <option value="" (change)="setJourneyMapsRoutingInput($event)">(none)</option>
+          <option *ngFor="let input of journeyMapsRoutingOptions" [value]="input">{{input}}</option>
+        </select>
+      </label>
+    </li>
+  </ul>
 </div>

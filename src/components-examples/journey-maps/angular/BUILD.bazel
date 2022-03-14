@@ -16,9 +16,16 @@ ng_module(
         "**/*.css",
     ]),
     deps = [
+        "//src/angular/button",
+        "//src/angular/checkbox",
+        "//src/angular/input",
+        "//src/journey-maps",
         "//src/journey-maps/angular",
         "@npm//@angular/common",
         "@npm//@angular/core",
+        "@npm//@types/geojson",
+        "@npm//maplibre-gl",
+        "@npm//rxjs",
     ],
 )
 
