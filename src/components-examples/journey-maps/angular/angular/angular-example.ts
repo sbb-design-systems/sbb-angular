@@ -34,6 +34,8 @@ export class Angular implements OnInit, OnDestroy {
   @ViewChild(JourneyMapsClientComponent)
   client: JourneyMapsClientComponent;
 
+  // @ts-ignore
+  apiKey = window.JM_API_KEY;
   mapVisible = true;
   selectedMarkerId?: string;
   selectedLevel = 0;

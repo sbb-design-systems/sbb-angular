@@ -1,4 +1,5 @@
 @use './../../style/colors' as c;
+@use './../../style/icons' as i;
 
 $iconSize: 24px;
 
@@ -13,18 +14,18 @@ $iconSize: 24px;
     width: $iconSize;
 
     &.var-next {
-      mask: url('./../../assets/chevron-right-small.svg');
+      @include i.icon-mask('chevron-right');
     }
 
     &.var-previous {
-      mask: url('./../../assets/chevron-left-small.svg');
+      @include i.icon-mask('chevron-left');
     }
 
     &.var-index {
-      mask: url('inactive.svg');
+      @include i.icon-mask('paginator-inactive');
 
       &.active {
-        mask: url('active.svg');
+        @include i.icon-mask('paginator-active');
       }
     }
 

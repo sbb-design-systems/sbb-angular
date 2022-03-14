@@ -1,14 +1,17 @@
-<ul>
-</ul>
 <div class="web-map">
+  <sbb-notification *ngIf="!apiKey?.length" type="error">Map API key was not provided</sbb-notification>
   <ng-container *ngIf="mapVisible">
+    <!--
+    Simple usage example:
+    <sbb-journey-maps language="en" [apiKey]="apiKey"></sbb-journey-maps>
+    -->
     <sbb-journey-maps
       language="en"
       [styleOptions]="styleOptions"
       [interactionOptions]="interactionOptions"
       [uiOptions]="uiOptions"
       [viewportOptions]="viewportOptions"
-      apiKey="my-api-key"
+      [apiKey]="apiKey"
       [markerOptions]="markerOptions"
       [markerDetailsTemplate]="markerDetailsTemplate"
       [journeyMapsRoutingOption]="journeyMapsRoutingOption"
@@ -24,7 +27,7 @@
     <div class="markerdetails-subtitle">{{marker.subtitle}}</div>
   </ng-template>
 </div>
-<div>
+<div *ngIf="apiKey?.length">
   <ul>
     <li>
       <sbb-label>Map center: {{mapCenter}}</sbb-label>
@@ -79,7 +82,8 @@
     <li>
       <label for="routing-geo-json-select">
         <sbb-label>Select a journey</sbb-label>
-        <select class="select-journey" sbbInput id="routing-geo-json-select" (change)="setJourneyMapsRoutingInput($event)">
+        <select class="select-journey" sbbInput id="routing-geo-json-select"
+                (change)="setJourneyMapsRoutingInput($event)">
           <option value="" (change)="setJourneyMapsRoutingInput($event)">(none)</option>
           <option *ngFor="let input of journeyMapsRoutingOptions" [value]="input">{{input}}</option>
         </select>
