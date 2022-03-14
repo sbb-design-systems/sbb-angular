@@ -129,6 +129,8 @@ jobs:
     - name: "Bazel: Build showcase"
       if: ${{ success() || failure() }}
       run: yarn -s build showcase
+      env:
+        JM_API_KEY: ${{ secrets.JM_API_KEY }}
     - name: "Bazel: Clean bazel disk cache"
       if: ${{ success() || failure() }}
       run: yarn -s bazel:cache clean --individualMaxSize=${{ env.BAZEL_CACHE_INTERMEDIATE_FILE_MAX_SIZE }}
