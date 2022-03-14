@@ -19,6 +19,8 @@ ng_module(
         "//src/angular/button",
         "//src/angular/checkbox",
         "//src/angular/input",
+        "//src/angular/notification",
+        "//src/angular/radio-button",
         "//src/journey-maps",
         "//src/journey-maps/angular",
         "@npm//@angular/common",

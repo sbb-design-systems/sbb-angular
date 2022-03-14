@@ -1,12 +1,12 @@
 ul {
-    margin: 1em 1em 1em 0;
+    margin: 9px 0;
+    padding: 0;
 }
 
 li {
     margin: 0;
-    padding: 5px 0 0;
+    padding: 5px 0;
     list-style-type: none;
-    min-height: 30px;
 }
 
 li button {
@@ -15,6 +15,10 @@ li button {
 
 .map-container {
     display: inline-block;
+}
+
+.select-journey {
+    min-width: 130px;
 }
 
 .web-map {

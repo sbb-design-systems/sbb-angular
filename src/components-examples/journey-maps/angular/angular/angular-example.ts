@@ -1,5 +1,6 @@
-import { Component, OnDestroy, OnInit, ViewChild } from '@angular/core';
+import { ChangeDetectorRef, Component, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { SbbCheckboxChange } from '@sbb-esta/angular/checkbox';
+import { SbbRadioChange } from '@sbb-esta/angular/radio-button';
 import {
   InteractionOptions,
   JourneyMapsClientComponent,
@@ -8,9 +9,10 @@ import {
   StyleOptions,
   UIOptions,
   ViewportOptions,
+  ZoomLevels,
 } from '@sbb-esta/journey-maps';
 import { LngLatLike } from 'maplibre-gl';
-import { Subject, take } from 'rxjs';
+import { BehaviorSubject, Subject, take } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
 
 import { zhShWaldfriedhof } from './test-data/journey/zh-sh_waldfriedhof';
@@ -59,8 +61,12 @@ export class Angular implements OnInit, OnDestroy {
     'transfer geneve indoor',
   ];
   viewportOptions: ViewportOptions = {};
+  zoomLevels: ZoomLevels;
+  visibleLevels$ = new BehaviorSubject<number[]>([]);
 
   private _destroyed = new Subject<void>();
+
+  constructor(private _cd: ChangeDetectorRef) {}
 
   ngOnInit() {
     this.mapCenterChange
@@ -110,16 +116,25 @@ export class Angular implements OnInit, OnDestroy {
       this._setBbox(bbox);
       this.mapCenterChange.pipe(take(1)).subscribe(() => {
         updateDataFunction();
+        this._cd.detectChanges();
       });
     }
   }
 
-  setStyleModeInput(event: Event): void {
+  setMarkerId(event: SbbRadioChange): void {
+    this.selectedMarkerId = event.value;
+  }
+
+  setStyleModeInput(event: SbbRadioChange): void {
     this.selectedMarkerId = undefined;
     this.styleOptions = {
       ...this.styleOptions,
-      mode: StyleMode[(event.target as HTMLOptionElement).value as StyleMode],
+      mode: StyleMode[event.value as StyleMode],
     };
+  }
+
+  setSelectedLevel(selectedLevel: number): void {
+    this.selectedLevel = selectedLevel;
   }
 
   private _setBbox(bbox: number[]): void {
