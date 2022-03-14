@@ -1,4 +1,3 @@
-import { AnimationEvent } from '@angular/animations';
 import { FocusMonitor } from '@angular/cdk/a11y';
 import { Direction, Directionality } from '@angular/cdk/bidi';
 import { ESCAPE } from '@angular/cdk/keycodes';
@@ -16,14 +15,12 @@ import {
   ComponentFixture,
   fakeAsync,
   flush,
-  flushMicrotasks,
   inject,
   TestBed,
   tick,
   waitForAsync,
 } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
-import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import {
   createFakeEvent,
   createKeyboardEvent,
@@ -58,7 +55,7 @@ describe('SbbTooltip', () => {
   beforeEach(
     waitForAsync(() => {
       TestBed.configureTestingModule({
-        imports: [SbbTooltipModule, OverlayModule, NoopAnimationsModule, SbbIconTestingModule],
+        imports: [SbbTooltipModule, OverlayModule, SbbIconTestingModule],
         declarations: [
           BasicTooltipDemo,
           ScrollableTooltipDemo,
@@ -123,13 +120,15 @@ describe('SbbTooltip', () => {
 
       fixture.detectChanges();
 
-      // Wait until the animation has finished.
-      tick(500);
+      // Wait until animation has finished.
+      finishCurrentTooltipAnimation(overlayContainerElement, true);
 
       // Make sure tooltip is shown to the user and animation has finished.
-      const tooltipElement = overlayContainerElement.querySelector('.sbb-tooltip') as HTMLElement;
+      const tooltipElement = overlayContainerElement.querySelector(
+        '.sbb-tooltip-container'
+      ) as HTMLElement;
       expect(tooltipElement instanceof HTMLElement).toBe(true);
-      expect(tooltipElement.style.transform).toBe('');
+      expect(tooltipElement.classList).toContain('sbb-tooltip-container-show');
 
       expect(overlayContainerElement.textContent).toContain(initialTooltipMessage);
 
@@ -144,7 +143,7 @@ describe('SbbTooltip', () => {
       expect(tooltipDirective._isTooltipVisible()).toBe(false);
 
       // On animation complete, should expect that the tooltip has been detached.
-      flushMicrotasks();
+      finishCurrentTooltipAnimation(overlayContainerElement, false);
       assertTooltipInstance(tooltipDirective, false);
     }));
 
@@ -153,17 +152,17 @@ describe('SbbTooltip', () => {
       tick(0);
       expect(tooltipDirective._isTooltipVisible()).toBe(true);
       fixture.detectChanges();
-      tick(500);
+      finishCurrentTooltipAnimation(overlayContainerElement, true);
 
       tooltipDirective._overlayRef!.detach();
       tick(0);
       fixture.detectChanges();
       expect(tooltipDirective._isTooltipVisible()).toBe(false);
-      flushMicrotasks();
       assertTooltipInstance(tooltipDirective, false);
 
       tooltipDirective.show();
       tick(0);
+      finishCurrentTooltipAnimation(overlayContainerElement, true);
       expect(tooltipDirective._isTooltipVisible()).toBe(true);
     }));
 
@@ -185,7 +184,7 @@ describe('SbbTooltip', () => {
     it('should be able to override the default show and hide delays', fakeAsync(() => {
       TestBed.resetTestingModule()
         .configureTestingModule({
-          imports: [SbbTooltipModule, OverlayModule, NoopAnimationsModule],
+          imports: [SbbTooltipModule, OverlayModule],
           declarations: [BasicTooltipDemo],
           providers: [
             {
@@ -222,7 +221,7 @@ describe('SbbTooltip', () => {
     it('should be able to disable tooltip interactivity', fakeAsync(() => {
       TestBed.resetTestingModule()
         .configureTestingModule({
-          imports: [SbbTooltipModule, OverlayModule, NoopAnimationsModule],
+          imports: [SbbTooltipModule, OverlayModule],
           declarations: [TooltipDemoWithoutPositionBinding],
           providers: [
             {
@@ -369,7 +368,7 @@ describe('SbbTooltip', () => {
 
       tooltipDirective.show();
       tick(0); // Tick for the show delay (default is 0)
-      expect(tooltipDirective._tooltipInstance!._visibility).toBe('visible');
+      expect(tooltipDirective._tooltipInstance!.isVisible()).toBe(true);
 
       fixture.detectChanges();
       expect(overlayContainerElement.textContent).toContain(initialTooltipMessage);
@@ -455,33 +454,21 @@ describe('SbbTooltip', () => {
     it('should not try to dispose the tooltip when destroyed and done hiding', fakeAsync(() => {
       tooltipDirective.show();
       fixture.detectChanges();
-      tick(150);
+      finishCurrentTooltipAnimation(overlayContainerElement, true);
 
       const tooltipDelay = 1000;
       tooltipDirective.hide();
       tick(tooltipDelay); // Change the tooltip state to hidden and trigger animation start
+      finishCurrentTooltipAnimation(overlayContainerElement, false);
 
-      // Store the tooltip instance, which will be set to null after the button is hidden.
-      const tooltipInstance = tooltipDirective._tooltipInstance!;
       fixture.componentInstance.showButton = false;
       fixture.detectChanges();
-
-      // At this point the animation should be able to complete itself and trigger the
-      // _animationDone function, but for unknown reasons in the test infrastructure,
-      // this does not occur. Manually call this and verify that doing so does not
-      // throw an error.
-      tooltipInstance._animationDone({
-        fromState: 'visible',
-        toState: 'hidden',
-        totalTime: 150,
-        phaseName: 'done',
-      } as AnimationEvent);
     }));
 
     it('should complete the afterHidden stream when tooltip is destroyed', fakeAsync(() => {
       tooltipDirective.show();
       fixture.detectChanges();
-      tick(150);
+      finishCurrentTooltipAnimation(overlayContainerElement, true);
 
       const spy = jasmine.createSpy('complete spy');
       const subscription = tooltipDirective
@@ -491,7 +478,7 @@ describe('SbbTooltip', () => {
       tooltipDirective.hide(0);
       tick(0);
       fixture.detectChanges();
-      tick(500);
+      finishCurrentTooltipAnimation(overlayContainerElement, false);
 
       expect(spy).toHaveBeenCalled();
       subscription.unsubscribe();
@@ -525,7 +512,7 @@ describe('SbbTooltip', () => {
       tooltipDirective.show();
       tick(0);
       fixture.detectChanges();
-      tick(500);
+      finishCurrentTooltipAnimation(overlayContainerElement, true);
 
       expect(tooltipDirective._isTooltipVisible()).toBe(true);
       expect(overlayContainerElement.textContent).toContain(initialTooltipMessage);
@@ -533,7 +520,7 @@ describe('SbbTooltip', () => {
       document.body.click();
       tick(0);
       fixture.detectChanges();
-      tick(500);
+      finishCurrentTooltipAnimation(overlayContainerElement, false);
       fixture.detectChanges();
 
       expect(tooltipDirective._isTooltipVisible()).toBe(false);
@@ -544,7 +531,7 @@ describe('SbbTooltip', () => {
       tooltipDirective.show();
       tick(0);
       fixture.detectChanges();
-      tick(500);
+      finishCurrentTooltipAnimation(overlayContainerElement, true);
 
       expect(tooltipDirective._isTooltipVisible()).toBe(true);
       expect(overlayContainerElement.textContent).toContain(initialTooltipMessage);
@@ -552,7 +539,7 @@ describe('SbbTooltip', () => {
       dispatchFakeEvent(document.body, 'auxclick');
       tick(0);
       fixture.detectChanges();
-      tick(500);
+      finishCurrentTooltipAnimation(overlayContainerElement, false);
       fixture.detectChanges();
 
       expect(tooltipDirective._isTooltipVisible()).toBe(false);
@@ -567,6 +554,7 @@ describe('SbbTooltip', () => {
       document.body.click();
       fixture.detectChanges();
       tick(500);
+      finishCurrentTooltipAnimation(overlayContainerElement, true);
 
       expect(overlayContainerElement.textContent).toContain(initialTooltipMessage);
     }));
@@ -585,6 +573,7 @@ describe('SbbTooltip', () => {
       fixture.detectChanges();
       tick(500);
       fixture.detectChanges();
+      finishCurrentTooltipAnimation(overlayContainerElement, false);
 
       expect(tooltipDirective._isTooltipVisible()).toBe(false);
       expect(overlayContainerElement.textContent).toBe('');
@@ -666,7 +655,7 @@ describe('SbbTooltip', () => {
       tick(0);
       expect(tooltipDirective._isTooltipVisible()).toBe(true);
       fixture.detectChanges();
-      tick(500);
+      finishCurrentTooltipAnimation(overlayContainerElement, true);
 
       const overlayRef = tooltipDirective._overlayRef!;
 
@@ -676,7 +665,7 @@ describe('SbbTooltip', () => {
       tick(0);
       expect(tooltipDirective._isTooltipVisible()).toBe(true);
       fixture.detectChanges();
-      tick(500);
+      finishCurrentTooltipAnimation(overlayContainerElement, true);
 
       expect(overlayRef.detach).not.toHaveBeenCalled();
     }));
@@ -814,13 +803,11 @@ describe('SbbTooltip', () => {
       tooltipDirective.show();
       tick(0); // Tick for the show delay (default is 0)
       fixture.detectChanges();
-      tick(500);
-
       // After hide called, a timeout delay is created that will to hide the tooltip.
       tooltipDirective.hide();
       tick(0);
+      finishCurrentTooltipAnimation(overlayContainerElement, false);
       fixture.detectChanges();
-      flushMicrotasks();
 
       expect(event!.instance).toBe(tooltipDirective);
     }));
@@ -905,18 +892,20 @@ describe('SbbTooltip', () => {
       assertTooltipInstance(tooltipDirective, false);
 
       tooltipDirective.show();
-      tick(0); // Tick for the show delay (default is 0)
+      tick(500); // Tick for the show delay (default is 0)
       expect(tooltipDirective._isTooltipVisible()).toBe(true);
 
       fixture.detectChanges();
 
-      // wait until animation has finished
-      tick(500);
+      // Wait until animation has finished
+      finishCurrentTooltipAnimation(overlayContainerElement, true);
 
       // Make sure tooltip is shown to the user and animation has finished
-      const tooltipElement = overlayContainerElement.querySelector('.sbb-tooltip') as HTMLElement;
-      expect(tooltipElement instanceof HTMLElement).toBe(true);
-      expect(tooltipElement.style.transform).toBe('');
+      const tooltipContainer = overlayContainerElement.querySelector(
+        '.sbb-tooltip-container'
+      ) as HTMLElement;
+      expect(tooltipContainer instanceof HTMLElement).toBe(true);
+      expect(tooltipContainer.classList).toContain('sbb-tooltip-container-show');
 
       // After hide called, a timeout delay is created that will to hide the tooltip.
       const tooltipDelay = 1000;
@@ -929,7 +918,7 @@ describe('SbbTooltip', () => {
       expect(tooltipDirective._isTooltipVisible()).toBe(false);
 
       // On animation complete, should expect that the tooltip has been detached.
-      flushMicrotasks();
+      finishCurrentTooltipAnimation(overlayContainerElement, false);
       assertTooltipInstance(tooltipDirective, false);
     }));
 
@@ -964,9 +953,9 @@ describe('SbbTooltip', () => {
 
       assertTooltipInstance(fixture.componentInstance.tooltip, false);
 
-      tick(250); // Finish the delay.
+      tick(500); // Finish the delay.
       fixture.detectChanges();
-      tick(500); // Finish the animation.
+      finishCurrentTooltipAnimation(overlayContainerElement, true); // Finish the animation.
 
       assertTooltipInstance(fixture.componentInstance.tooltip, true);
     }));
@@ -1005,7 +994,7 @@ describe('SbbTooltip', () => {
       fixture.detectChanges();
       tick(500); // Finish the open delay.
       fixture.detectChanges();
-      tick(500); // Finish the animation.
+      finishCurrentTooltipAnimation(overlayContainerElement, true); // Finish the animation.
       assertTooltipInstance(fixture.componentInstance.tooltip, true);
 
       dispatchFakeEvent(button, 'touchend');
@@ -1015,7 +1004,7 @@ describe('SbbTooltip', () => {
 
       tick(500); // Finish the delay.
       fixture.detectChanges();
-      tick(500); // Finish the exit animation.
+      finishCurrentTooltipAnimation(overlayContainerElement, false); // Finish the exit animation.
 
       assertTooltipInstance(fixture.componentInstance.tooltip, false);
     }));
@@ -1029,7 +1018,7 @@ describe('SbbTooltip', () => {
       fixture.detectChanges();
       tick(500); // Finish the open delay.
       fixture.detectChanges();
-      tick(500); // Finish the animation.
+      finishCurrentTooltipAnimation(overlayContainerElement, true); // Finish the animation.
       assertTooltipInstance(fixture.componentInstance.tooltip, true);
 
       dispatchFakeEvent(button, 'touchcancel');
@@ -1039,7 +1028,7 @@ describe('SbbTooltip', () => {
 
       tick(500); // Finish the delay.
       fixture.detectChanges();
-      tick(500); // Finish the exit animation.
+      finishCurrentTooltipAnimation(overlayContainerElement, false); // Finish the exit animation.
 
       assertTooltipInstance(fixture.componentInstance.tooltip, false);
     }));
@@ -1162,7 +1151,7 @@ describe('SbbTooltip', () => {
       fixture.detectChanges();
       tick(500); // Finish the open delay.
       fixture.detectChanges();
-      tick(500); // Finish the animation.
+      finishCurrentTooltipAnimation(overlayContainerElement, true);
       assertTooltipInstance(fixture.componentInstance.tooltip, true);
 
       // Simulate the pointer at the bottom/right of the page.
@@ -1176,7 +1165,7 @@ describe('SbbTooltip', () => {
       fixture.detectChanges();
       tick(1500); // Finish the delay.
       fixture.detectChanges();
-      tick(500); // Finish the exit animation.
+      finishCurrentTooltipAnimation(overlayContainerElement, false);
 
       assertTooltipInstance(fixture.componentInstance.tooltip, false);
     }));
@@ -1195,7 +1184,7 @@ describe('SbbTooltip', () => {
       fixture.detectChanges();
       tick(500); // Finish the open delay.
       fixture.detectChanges();
-      tick(500); // Finish the animation.
+      finishCurrentTooltipAnimation(overlayContainerElement, true); // Finish the animation.
       assertTooltipInstance(fixture.componentInstance.tooltip, true);
 
       // Simulate the pointer over the trigger.
@@ -1210,7 +1199,7 @@ describe('SbbTooltip', () => {
       fixture.detectChanges();
       tick(1500); // Finish the delay.
       fixture.detectChanges();
-      tick(500); // Finish the exit animation.
+      finishCurrentTooltipAnimation(overlayContainerElement, false); // Finish the exit animation.
 
       assertTooltipInstance(fixture.componentInstance.tooltip, true);
     }));
@@ -1226,7 +1215,7 @@ describe('SbbTooltip', () => {
       fixture.detectChanges();
       tick(500); // Finish the open delay.
       fixture.detectChanges();
-      tick(500); // Finish the animation.
+      finishCurrentTooltipAnimation(overlayContainerElement, false); // Finish the animation.
 
       expect(document.querySelector('.sbb-tooltip')!.classList).toContain(
         'sbb-tooltip-has-close-button'
@@ -1244,7 +1233,7 @@ describe('SbbTooltip', () => {
       fixture.detectChanges();
       tick(500); // Finish the open delay.
       fixture.detectChanges();
-      tick(500); // Finish the animation.
+      finishCurrentTooltipAnimation(overlayContainerElement, false); // Finish the animation.
 
       expect(document.querySelector('.sbb-tooltip')!.classList).not.toContain(
         'sbb-tooltip-has-close-button'
@@ -1387,4 +1376,13 @@ function assertTooltipInstance(tooltip: SbbTooltip, shouldExist: boolean): void 
   // if it tries to stringify the `_tooltipInstance` when an assertion fails. The infinite loop
   // happens due to the `_tooltipInstance` having a circular structure.
   expect(!!tooltip._tooltipInstance).toBe(shouldExist);
+}
+
+function finishCurrentTooltipAnimation(overlayContainer: HTMLElement, isVisible: boolean) {
+  const tooltip = overlayContainer.querySelector('.sbb-tooltip-container')!;
+  const event = createFakeEvent('animationend');
+  Object.defineProperty(event, 'animationName', {
+    get: () => `sbb-tooltip-container-${isVisible ? 'show' : 'hide'}`,
+  });
+  dispatchEvent(tooltip, event);
 }

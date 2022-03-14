@@ -235,15 +235,14 @@ export class SbbChip
     }
     const currentCollection = control.value;
     if (Array.isArray(currentCollection)) {
-      const index = currentCollection.indexOf(this.value);
-      if (index === -1) {
+      if (!currentCollection.includes(this.value)) {
         return;
       }
-      currentCollection.splice(index, 1);
-      control.updateValueAndValidity();
+      control.patchValue(currentCollection.filter((val) => val !== this.value));
     } else if (currentCollection instanceof Set) {
-      currentCollection.delete(this.value);
-      control.updateValueAndValidity();
+      const newCurrentCollection = new Set(currentCollection);
+      newCurrentCollection.delete(this.value);
+      control.patchValue(newCurrentCollection);
     }
   }
 

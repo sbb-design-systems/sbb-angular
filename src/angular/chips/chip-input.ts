@@ -270,12 +270,11 @@ export class SbbChipInput implements SbbChipTextControl, OnChanges, OnDestroy, A
     const isArray = Array.isArray(currentCollection);
     const isSet = currentCollection instanceof Set;
     if (isArray) {
-      currentCollection.push(inputValue);
+      control.patchValue([...currentCollection, inputValue]);
     } else if (isSet) {
-      currentCollection.add(inputValue);
+      control.patchValue(new Set([...currentCollection, inputValue]));
     }
     if (isArray || isSet) {
-      control.updateValueAndValidity();
       this.clear();
     }
   }

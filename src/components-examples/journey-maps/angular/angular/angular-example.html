@@ -1,3 +1,86 @@
-<div style="height: 450px">
-  <sbb-journey-maps apiKey=""></sbb-journey-maps>
+<ul>
+</ul>
+<div class="web-map">
+  <ng-container *ngIf="mapVisible">
+    <sbb-journey-maps
+      language="en"
+      [styleOptions]="styleOptions"
+      [interactionOptions]="interactionOptions"
+      [uiOptions]="uiOptions"
+      [viewportOptions]="viewportOptions"
+      apiKey="<API-KEY>"
+      [markerOptions]="markerOptions"
+      [markerDetailsTemplate]="markerDetailsTemplate"
+      [journeyMapsRoutingOption]="journeyMapsRoutingOption"
+      [(selectedMarkerId)]="selectedMarkerId"
+      [(selectedLevel)]="selectedLevel"
+      (mapCenterChange)="mapCenterChange.next($event)"
+    ></sbb-journey-maps>
+  </ng-container>
+  <ng-template #markerDetailsTemplate let-marker>
+    <div class="markerdetails-title">{{marker.title}}</div>
+    <div class="markerdetails-subtitle">{{marker.subtitle}}</div>
+  </ng-template>
+</div>
+<div>
+  <ul>
+    <li>
+      <sbb-label>Map center <b>{{mapCenter}}</b></sbb-label>
+    </li>
+    <li>
+      <sbb-label>Map visibility</sbb-label>
+      <button sbb-ghost-button (click)="mapVisible=!mapVisible">Toggle</button>
+    </li>
+    <li>
+      <label for="styleMode-select">
+        <sbb-label>Switch map to dark mode / bright mode</sbb-label>
+        <select sbbInput id="styleMode-select" (change)="setStyleModeInput($event)">
+          <option value="BRIGHT">Bright Mode</option>
+          <option value="DARK">Dark Mode</option>
+        </select>
+      </label>
+    </li>
+    <li>
+      <sbb-label>Zoom map</sbb-label>
+      <button sbb-ghost-button (click)="client.zoomIn()">Zoom In</button>
+      <button sbb-ghost-button (click)="client.zoomOut()">Zoom Out</button>
+    </li>
+    <li>
+      <sbb-label>Move/pan map</sbb-label>
+      <button sbb-ghost-button (click)="client.moveNorth()">North</button>
+      <button sbb-ghost-button (click)="client.moveEast()">East</button>
+      <button sbb-ghost-button (click)="client.moveSouth()">South</button>
+      <button sbb-ghost-button (click)="client.moveWest()">West</button>
+    </li>
+    <li>
+      <sbb-checkbox [checked]="interactionOptions.oneFingerPan??false" disabled>Map moving with one finger
+      </sbb-checkbox>
+    </li>
+    <li>
+      <sbb-checkbox [checked]="interactionOptions.scrollZoom??false" disabled>Map zoom with scroll wheel
+      </sbb-checkbox>
+    </li>
+    <li>
+      <sbb-label>Map markers</sbb-label>
+      <button sbb-ghost-button (click)="selectedMarkerId='home'">'Home Office'</button>
+      <button sbb-ghost-button (click)="selectedMarkerId=undefined">Unselect all</button>
+    </li>
+    <li>
+      <label for="small-buttons-checkbox">
+        <sbb-checkbox id="small-buttons-checkbox" (change)="setShowSmallButtons($event)"
+                      [checked]="uiOptions.showSmallButtons??false"
+                      value="smallButtons">Show small buttons
+        </sbb-checkbox>
+      </label>
+    </li>
+    <li>
+      <label for="routing-geo-json-select">
+        <sbb-label>Select a journey</sbb-label>
+        <select sbbInput id="routing-geo-json-select" (change)="setJourneyMapsRoutingInput($event)">
+          <option value="" (change)="setJourneyMapsRoutingInput($event)">(none)</option>
+          <option *ngFor="let input of journeyMapsRoutingOptions" [value]="input">{{input}}</option>
+        </select>
+      </label>
+    </li>
+  </ul>
 </div>

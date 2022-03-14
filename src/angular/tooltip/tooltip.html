@@ -1,9 +1,8 @@
 <div
+  #tooltip
   class="sbb-tooltip-container"
+  (animationend)="_handleAnimationEnd($event)"
   [class.sbb-tooltip-handset]="(_isHandset | async)?.matches"
-  [@state]="_visibility"
-  (@state.start)="_animationStart()"
-  (@state.done)="_animationDone($event)"
 >
   <div
     class="sbb-tooltip"
@@ -25,5 +24,4 @@
       <sbb-icon svgIcon="kom:cross-small"></sbb-icon>
     </button>
   </div>
-  <div class="sbb-tooltip-shadow"></div>
 </div>

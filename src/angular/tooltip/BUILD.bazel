@@ -19,10 +19,10 @@ ng_module(
     deps = [
         "//src/angular/core",
         "//src/angular/icon",
-        "@npm//@angular/animations",
         "@npm//@angular/cdk",
         "@npm//@angular/common",
         "@npm//@angular/core",
+        "@npm//@angular/platform-browser",
         "@npm//rxjs",
     ],
 )
@@ -46,7 +46,6 @@ ng_test_library(
         "//src/angular/button",
         "//src/angular/core/testing",
         "//src/angular/icon/testing",
-        "@npm//@angular/animations",
         "@npm//@angular/cdk",
         "@npm//@angular/platform-browser",
         "@npm//rxjs",

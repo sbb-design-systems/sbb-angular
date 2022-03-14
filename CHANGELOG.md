@@ -2,6 +2,28 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [13.9.0](https://github.com/sbb-design-systems/sbb-angular/compare/13.8.0...13.9.0) (2022-03-10)
+
+
+### Features
+
+* **angular/autocomplete:** enable hints for option groups inside menu ([#1251](https://github.com/sbb-design-systems/sbb-angular/issues/1251)) ([6fee165](https://github.com/sbb-design-systems/sbb-angular/commit/6fee165948100df14e962c0ebc1e35d25401c98f))
+* **angular/menu:** allow grouping of elements ([#1249](https://github.com/sbb-design-systems/sbb-angular/issues/1249)) ([257b2a5](https://github.com/sbb-design-systems/sbb-angular/commit/257b2a57868e144960a23dd11e3cbe9bfa6a6c09)), closes [#201](https://github.com/sbb-design-systems/sbb-angular/issues/201)
+
+
+### Bug Fixes
+
+* **angular/autocomplete:** able to tab into descendants with visibility while closed ([#1269](https://github.com/sbb-design-systems/sbb-angular/issues/1269)) ([f13de08](https://github.com/sbb-design-systems/sbb-angular/commit/f13de08649b8bb095aa0592d469f838f3397aedf))
+* **angular/autocomplete:** correct color of hover elements ([#1266](https://github.com/sbb-design-systems/sbb-angular/issues/1266)) ([14611d1](https://github.com/sbb-design-systems/sbb-angular/commit/14611d16746094e456a9e3340fee761eb9d884c6))
+* **angular/button:** avoid setting a tabindex on all link buttons ([#1261](https://github.com/sbb-design-systems/sbb-angular/issues/1261)) ([9c1c636](https://github.com/sbb-design-systems/sbb-angular/commit/9c1c63640ccf05557b36f2c8787f6f8fe296455b))
+* **angular/chips:** create new array or set on update ([#1273](https://github.com/sbb-design-systems/sbb-angular/issues/1273)) ([d708b4a](https://github.com/sbb-design-systems/sbb-angular/commit/d708b4a9348b08c612006ace9bdcd6bb9f4916b3))
+* **angular/dialog:** don't block child component animations on open ([#1262](https://github.com/sbb-design-systems/sbb-angular/issues/1262)) ([6a90e5c](https://github.com/sbb-design-systems/sbb-angular/commit/6a90e5cdf12342d1f7942f9eb90b03da7c5b923a))
+* **angular/dialog:** don't wait for animation before moving focus ([#1275](https://github.com/sbb-design-systems/sbb-angular/issues/1275)) ([99d6a05](https://github.com/sbb-design-systems/sbb-angular/commit/99d6a0557164c1b591318e7a962d962e3954bb15))
+* **angular/select:** disabled state out of sync when swapping form group with a disabled one ([#1256](https://github.com/sbb-design-systems/sbb-angular/issues/1256)) ([773d480](https://github.com/sbb-design-systems/sbb-angular/commit/773d480c4eb0ae63b9114631536fd47cbdc63353))
+* **angular/tooltip:** decouple removal logic from change detection ([#1264](https://github.com/sbb-design-systems/sbb-angular/issues/1264)) ([9c24067](https://github.com/sbb-design-systems/sbb-angular/commit/9c24067a3f2acb57249ad067e157f1fc4eca41a6))
+* **deps:** update dependency rxjs to v7.5.5 ([#1267](https://github.com/sbb-design-systems/sbb-angular/issues/1267)) ([e364947](https://github.com/sbb-design-systems/sbb-angular/commit/e364947fab9ff3153ee079336d2acf6a841335f2))
+* **deps:** update dependency zone.js to v0.11.5 ([#1254](https://github.com/sbb-design-systems/sbb-angular/issues/1254)) ([7b72b24](https://github.com/sbb-design-systems/sbb-angular/commit/7b72b2433a9b7f827d6265ae6eb1d204e0a5c06d))
+
 ## [13.8.0](https://github.com/sbb-design-systems/sbb-angular/compare/13.7.0...13.8.0) (2022-03-03)
 
 
