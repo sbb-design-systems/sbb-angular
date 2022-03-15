@@ -1,5 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
+import { FormsModule } from '@angular/forms';
 import { SbbButtonModule } from '@sbb-esta/angular/button';
 import { SbbCheckboxModule } from '@sbb-esta/angular/checkbox';
 import { SbbInputModule } from '@sbb-esta/angular/input';
@@ -21,6 +22,7 @@ const EXAMPLES = [Angular];
     SbbCheckboxModule,
     SbbRadioButtonModule,
     SbbNotificationModule,
+    FormsModule,
   ],
   declarations: EXAMPLES,
   exports: EXAMPLES,

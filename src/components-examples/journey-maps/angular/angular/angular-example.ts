@@ -1,16 +1,30 @@
-import { ChangeDetectorRef, Component, OnDestroy, OnInit, ViewChild } from '@angular/core';
+import {
+  AfterViewInit,
+  ChangeDetectorRef,
+  Component,
+  OnDestroy,
+  OnInit,
+  TemplateRef,
+  ViewChild,
+} from '@angular/core';
 import { SbbCheckboxChange } from '@sbb-esta/angular/checkbox';
 import { SbbRadioChange } from '@sbb-esta/angular/radio-button';
+import { bernBurgdorfZones } from '@sbb-esta/components-examples/journey-maps/angular/angular/test-data/zone/bern-burgdorf';
+import { baselBielZones } from '@sbb-esta/components-examples/journey-maps/angular/angular/test-data/zone/bs-bl';
 import {
   InteractionOptions,
   JourneyMapsClientComponent,
   JourneyMapsRoutingOptions,
+  ListenerOptions,
+  ListenerTypeOptions,
+  SelectionMode,
   StyleMode,
   StyleOptions,
   UIOptions,
   ViewportOptions,
   ZoomLevels,
 } from '@sbb-esta/journey-maps';
+import { FeatureCollection } from 'geojson';
 import { LngLatLike } from 'maplibre-gl';
 import { BehaviorSubject, Subject, take } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
@@ -30,9 +44,13 @@ import { zurichIndoor } from './test-data/transfer/zurich-indoor';
   templateUrl: 'angular-example.html',
   styleUrls: ['angular-example.css'],
 })
-export class Angular implements OnInit, OnDestroy {
+export class Angular implements OnInit, AfterViewInit, OnDestroy {
   @ViewChild(JourneyMapsClientComponent)
   client: JourneyMapsClientComponent;
+  @ViewChild('stationTemplate')
+  stationTemplate: TemplateRef<any>;
+  @ViewChild('routeTemplate')
+  routeTemplate: TemplateRef<any>;
 
   // @ts-ignore
   apiKey = window.JM_API_KEY;
@@ -52,9 +70,21 @@ export class Angular implements OnInit, OnDestroy {
     basemapSwitch: true,
     homeButton: true,
   };
+  listenerOptions: {
+    MARKER: ListenerTypeOptions;
+    ROUTE: ListenerTypeOptions;
+    STATION: ListenerTypeOptions;
+    ZONE: ListenerTypeOptions;
+  } = {
+    MARKER: { watch: true, selectionMode: SelectionMode.Single },
+    ROUTE: { watch: true, popup: true, selectionMode: SelectionMode.Multi },
+    STATION: { watch: true, popup: true },
+    ZONE: { watch: true, selectionMode: SelectionMode.Multi },
+  };
   styleOptions: StyleOptions = { brightId: 'base_bright_v2_ki' };
   markerOptions = markers;
   journeyMapsRoutingOption: JourneyMapsRoutingOptions;
+  journeyMapsZones: FeatureCollection;
   journeyMapsRoutingOptions = [
     'journey',
     'transfer luzern',
@@ -62,6 +92,7 @@ export class Angular implements OnInit, OnDestroy {
     'transfer bern indoor',
     'transfer geneve indoor',
   ];
+  journeyMapsZoneOptions = ['bern-burgdorf', 'bs-bl'];
   viewportOptions: ViewportOptions = {};
   zoomLevels: ZoomLevels;
   visibleLevels$ = new BehaviorSubject<number[]>([]);
@@ -74,6 +105,16 @@ export class Angular implements OnInit, OnDestroy {
     this.mapCenterChange
       .pipe(takeUntil(this._destroyed))
       .subscribe((mapCenter) => (this.mapCenter = mapCenter));
+  }
+
+  ngAfterViewInit() {
+    if (this.listenerOptions.STATION) {
+      this.listenerOptions.STATION.clickTemplate = this.stationTemplate;
+    }
+    if (this.listenerOptions.ROUTE) {
+      this.listenerOptions.ROUTE.hoverTemplate = this.routeTemplate;
+    }
+    this.updateListenerOptions();
   }
 
   ngOnDestroy(): void {
@@ -123,6 +164,21 @@ export class Angular implements OnInit, OnDestroy {
     }
   }
 
+  setJourneyMapsZoneInput(event: Event): void {
+    this.journeyMapsZones = undefined as any;
+
+    if ((event.target as HTMLOptionElement).value === 'bern-burgdorf') {
+      this.journeyMapsZones = bernBurgdorfZones;
+    }
+    if ((event.target as HTMLOptionElement).value === 'bs-bl') {
+      this.journeyMapsZones = baselBielZones;
+    }
+
+    if (this.journeyMapsZones?.bbox) {
+      this._setBbox(this.journeyMapsZones!.bbox);
+    }
+  }
+
   setMarkerId(event: SbbRadioChange): void {
     this.selectedMarkerId = event.value;
   }
@@ -137,6 +193,10 @@ export class Angular implements OnInit, OnDestroy {
 
   setSelectedLevel(selectedLevel: number): void {
     this.selectedLevel = selectedLevel;
+  }
+
+  updateListenerOptions(): void {
+    this.listenerOptions = { ...this.listenerOptions };
   }
 
   private _setBbox(bbox: number[]): void {

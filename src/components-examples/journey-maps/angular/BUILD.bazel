@@ -25,6 +25,7 @@ ng_module(
         "//src/journey-maps/angular",
         "@npm//@angular/common",
         "@npm//@angular/core",
+        "@npm//@angular/forms",
         "@npm//@types/geojson",
         "@npm//maplibre-gl",
         "@npm//rxjs",

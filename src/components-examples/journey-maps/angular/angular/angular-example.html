@@ -1,5 +1,5 @@
+<sbb-notification type="info">This example uses a test API key, that might be disabled at any time.</sbb-notification>
 <div class="web-map">
-  <sbb-notification *ngIf="!apiKey?.length" type="error">Map API key was not provided</sbb-notification>
   <ng-container *ngIf="mapVisible">
     <!--
     Simple usage example:
@@ -9,12 +9,14 @@
       language="en"
       [styleOptions]="styleOptions"
       [interactionOptions]="interactionOptions"
+      [listenerOptions]="listenerOptions"
       [uiOptions]="uiOptions"
       [viewportOptions]="viewportOptions"
       [apiKey]="apiKey"
       [markerOptions]="markerOptions"
       [markerDetailsTemplate]="markerDetailsTemplate"
       [journeyMapsRoutingOption]="journeyMapsRoutingOption"
+      [journeyMapsZones]="journeyMapsZones"
       [(selectedMarkerId)]="selectedMarkerId"
       [(selectedLevel)]="selectedLevel"
       (mapCenterChange)="mapCenterChange.next($event)"
@@ -26,8 +28,15 @@
     <div class="markerdetails-title">{{marker.title}}</div>
     <div class="markerdetails-subtitle">{{marker.subtitle}}</div>
   </ng-template>
+  <ng-template #stationTemplate let-station>
+    <div class="station-title">{{station.properties.name}}</div>
+    <div class="station-subtitle">{{station.properties.sbb_id}}</div>
+  </ng-template>
+  <ng-template #routeTemplate let-route>
+    <div class="route-title">{{route.properties.routeId}}</div>
+  </ng-template>
 </div>
-<div *ngIf="apiKey?.length">
+<div>
   <ul>
     <li>
       <sbb-label>Map center: {{mapCenter}}</sbb-label>
@@ -37,23 +46,34 @@
         ): {{zoomLevels?.currentZoom}}</sbb-label>
     </li>
     <li>
-      <sbb-checkbox (change)="mapVisible=!mapVisible" [checked]="mapVisible">Map visibility</sbb-checkbox>
-    </li>
-    <li>
-      <label for="small-buttons-checkbox">
-        <sbb-checkbox id="small-buttons-checkbox" (change)="setShowSmallButtons($event)"
-                      [checked]="uiOptions.showSmallButtons??false"
+      <div class="sbb-checkbox-group-horizontal">
+        <sbb-checkbox (change)="mapVisible=!mapVisible" [checked]="mapVisible">Map visibility</sbb-checkbox>
+        <sbb-checkbox (change)="setShowSmallButtons($event)" [checked]="uiOptions.showSmallButtons??false"
                       value="smallButtons">Small map controls
         </sbb-checkbox>
-      </label>
+      </div>
     </li>
     <li>
-      <sbb-checkbox [checked]="interactionOptions.oneFingerPan??false" disabled>Map move / pan with one finger
-      </sbb-checkbox>
+      <div class="sbb-checkbox-group-horizontal">
+        <sbb-checkbox [checked]="interactionOptions.oneFingerPan??false" disabled>Map move / pan with one finger
+        </sbb-checkbox>
+        <sbb-checkbox [checked]="interactionOptions.scrollZoom??false" disabled>Map zoom with scroll wheel
+        </sbb-checkbox>
+      </div>
     </li>
     <li>
-      <sbb-checkbox [checked]="interactionOptions.scrollZoom??false" disabled>Map zoom with scroll wheel
-      </sbb-checkbox>
+      <div>
+        <sbb-label>Map interaction configuration</sbb-label>
+        <div class="sbb-checkbox-group-horizontal">
+          <sbb-checkbox [(ngModel)]="listenerOptions.MARKER.watch" (change)="updateListenerOptions()">Marker
+          </sbb-checkbox>
+          <sbb-checkbox [(ngModel)]="listenerOptions.ROUTE.watch" (change)="updateListenerOptions()">Route
+          </sbb-checkbox>
+          <sbb-checkbox [(ngModel)]="listenerOptions.STATION.watch" (change)="updateListenerOptions()">Station
+          </sbb-checkbox>
+          <sbb-checkbox [(ngModel)]="listenerOptions.ZONE.watch" (change)="updateListenerOptions()">Zone</sbb-checkbox>
+        </div>
+      </div>
     </li>
     <li>
       <sbb-label>Switch map to dark mode / bright mode</sbb-label>
@@ -80,14 +100,19 @@
       <button sbb-ghost-button (click)="selectedMarkerId=undefined">Unselect all</button>
     </li>
     <li>
-      <label for="routing-geo-json-select">
-        <sbb-label>Select a journey</sbb-label>
-        <select class="select-journey" sbbInput id="routing-geo-json-select"
-                (change)="setJourneyMapsRoutingInput($event)">
-          <option value="" (change)="setJourneyMapsRoutingInput($event)">(none)</option>
-          <option *ngFor="let input of journeyMapsRoutingOptions" [value]="input">{{input}}</option>
-        </select>
-      </label>
+      <sbb-label>Select zones</sbb-label>
+      <select sbbInput (change)="setJourneyMapsZoneInput($event)">
+        <option value="" (change)="setJourneyMapsZoneInput($event)">(none)</option>
+        <option *ngFor="let input of journeyMapsZoneOptions" [value]="input">{{input}}</option>
+      </select>
+    </li>
+    <li>
+      <sbb-label>Select a journey</sbb-label>
+      <select class="select-journey" sbbInput
+              (change)="setJourneyMapsRoutingInput($event)">
+        <option value="" (change)="setJourneyMapsRoutingInput($event)">(none)</option>
+        <option *ngFor="let input of journeyMapsRoutingOptions" [value]="input">{{input}}</option>
+      </select>
     </li>
     <li *ngIf="visibleLevels$ | async as visibleLevels">
       <sbb-notification *ngIf="!visibleLevels.length" type="info">No indoor data visible in map</sbb-notification>

@@ -29,15 +29,6 @@ export const markers = {
       triggerEvent: false,
     },
     {
-      id: 'playground',
-      title: 'Playground',
-      subtitle: 'Sun, fun and nothing to do',
-      position: [7.299265, 47.07212],
-      category: MarkerCategory.CUSTOM,
-      icon: 'assets/icons/train.png',
-      iconSelected: 'assets/icons/train_selected.png',
-    },
-    {
       id: 'work',
       title: 'Office',
       subtitle: 'SBB Wylerpark',

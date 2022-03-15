@@ -48,6 +48,9 @@ sass_library(
 sass_binary(
     name = "journey_maps_client_component_scss",
     src = "journey-maps-client.component.scss",
+    deps = [
+        ":angular_scss_lib",
+    ],
 )
 
 sass_binary(
@@ -62,6 +65,7 @@ sass_binary(
     name = "components_global_styles_global_styles_component_scss",
     src = "components/global-styles/global-styles.component.scss",
     deps = [
+        ":angular_scss_lib",
         "//src/angular/styles:common_scss_lib",
     ],
 )
@@ -77,6 +81,9 @@ sass_binary(
 sass_binary(
     name = "components_leit_poi_leit_poi_component_scss",
     src = "components/leit-poi/leit-poi.component.scss",
+    deps = [
+        ":angular_scss_lib",
+    ],
 )
 
 sass_binary(
