@@ -44,8 +44,6 @@ import { baselBielZones } from './test-data/zone/bs-bl';
   styleUrls: ['angular-example.css'],
 })
 export class Angular implements OnInit, AfterViewInit, OnDestroy {
-  @ViewChild('basicMap')
-  clientBasic: JourneyMapsClientComponent;
   @ViewChild('advancedMap')
   client: JourneyMapsClientComponent;
   @ViewChild('stationTemplate')
@@ -63,6 +61,13 @@ export class Angular implements OnInit, AfterViewInit, OnDestroy {
   interactionOptions: InteractionOptions = {
     oneFingerPan: true,
     scrollZoom: true,
+  };
+  uiOptionsBasic: UIOptions = {
+    showSmallButtons: false,
+    levelSwitch: false,
+    zoomControls: true,
+    basemapSwitch: true,
+    homeButton: true,
   };
   uiOptions: UIOptions = {
     showSmallButtons: false,
