@@ -247,7 +247,7 @@ export abstract class _SbbDialogContainerBase extends BasePortalOutlet {
     '[attr.aria-labelledby]': '_config.ariaLabel ? null : _ariaLabelledBy',
     '[attr.aria-label]': '_config.ariaLabel',
     '[attr.aria-describedby]': '_config.ariaDescribedBy || null',
-    '[@dialogContainer]': '_state',
+    '[@dialogContainer]': `_getAnimationState()`,
   },
 })
 export class SbbDialogContainer extends _SbbDialogContainerBase {
@@ -293,5 +293,15 @@ export class SbbDialogContainer extends _SbbDialogContainerBase {
     if (!this._config.delayFocusTrap) {
       this._trapFocus();
     }
+  }
+
+  _getAnimationState() {
+    return {
+      value: this._state,
+      params: {
+        enterAnimationDuration: this._config.enterAnimationDuration || '150ms',
+        exitAnimationDuration: this._config.exitAnimationDuration || '75ms',
+      },
+    };
   }
 }
