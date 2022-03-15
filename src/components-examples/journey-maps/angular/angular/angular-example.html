@@ -100,6 +100,14 @@
       <button sbb-ghost-button (click)="selectedMarkerId=undefined">Unselect all</button>
     </li>
     <li>
+      <sbb-label>Map marker info style</sbb-label>
+      <sbb-radio-group class="sbb-checkbox-group-horizontal" (change)="setPopupInput($event)"
+                       [selected]="popup">
+        <sbb-radio-button #popup value="true">Popup</sbb-radio-button>
+        <sbb-radio-button value="false">Teaser</sbb-radio-button>
+      </sbb-radio-group>
+    </li>
+    <li>
       <sbb-label>Select zones</sbb-label>
       <select sbbInput (change)="setJourneyMapsZoneInput($event)">
         <option value="" (change)="setJourneyMapsZoneInput($event)">(none)</option>

@@ -197,6 +197,14 @@ export class Angular implements OnInit, AfterViewInit, OnDestroy {
     };
   }
 
+  setPopupInput(event: SbbRadioChange) {
+    this.selectedMarkerId = undefined;
+    this.markerOptions = {
+      ...this.markerOptions,
+      popup: event.value === 'true',
+    };
+  }
+
   setSelectedLevel(selectedLevel: number): void {
     this.selectedLevel = selectedLevel;
   }
