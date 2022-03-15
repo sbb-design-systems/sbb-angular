@@ -9,13 +9,10 @@ import {
 } from '@angular/core';
 import { SbbCheckboxChange } from '@sbb-esta/angular/checkbox';
 import { SbbRadioChange } from '@sbb-esta/angular/radio-button';
-import { bernBurgdorfZones } from '@sbb-esta/components-examples/journey-maps/angular/angular/test-data/zone/bern-burgdorf';
-import { baselBielZones } from '@sbb-esta/components-examples/journey-maps/angular/angular/test-data/zone/bs-bl';
 import {
   InteractionOptions,
   JourneyMapsClientComponent,
   JourneyMapsRoutingOptions,
-  ListenerOptions,
   ListenerTypeOptions,
   SelectionMode,
   StyleMode,
@@ -25,7 +22,7 @@ import {
   ZoomLevels,
 } from '@sbb-esta/journey-maps';
 import { FeatureCollection } from 'geojson';
-import { LngLatLike } from 'maplibre-gl';
+import { LngLatBoundsLike, LngLatLike } from 'maplibre-gl';
 import { BehaviorSubject, Subject, take } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
 
@@ -35,6 +32,8 @@ import { bernIndoor } from './test-data/transfer/bern-indoor';
 import { geneveIndoor } from './test-data/transfer/geneve-indoor';
 import { luzern4j } from './test-data/transfer/luzern4-j';
 import { zurichIndoor } from './test-data/transfer/zurich-indoor';
+import { bernBurgdorfZones } from './test-data/zone/bern-burgdorf';
+import { baselBielZones } from './test-data/zone/bs-bl';
 
 /**
  * @title Journey Maps Angular examples
@@ -45,7 +44,9 @@ import { zurichIndoor } from './test-data/transfer/zurich-indoor';
   styleUrls: ['angular-example.css'],
 })
 export class Angular implements OnInit, AfterViewInit, OnDestroy {
-  @ViewChild(JourneyMapsClientComponent)
+  @ViewChild('basicMap')
+  clientBasic: JourneyMapsClientComponent;
+  @ViewChild('advancedMap')
   client: JourneyMapsClientComponent;
   @ViewChild('stationTemplate')
   stationTemplate: TemplateRef<any>;
@@ -199,13 +200,17 @@ export class Angular implements OnInit, AfterViewInit, OnDestroy {
     this.listenerOptions = { ...this.listenerOptions };
   }
 
+  bboxToLngLatBounds(bbox: number[]): LngLatBoundsLike {
+    return [
+      [bbox[0], bbox[1]],
+      [bbox[2], bbox[3]],
+    ];
+  }
+
   private _setBbox(bbox: number[]): void {
     this.viewportOptions = {
       ...this.viewportOptions,
-      boundingBox: [
-        [bbox[0], bbox[1]],
-        [bbox[2], bbox[3]],
-      ],
+      boundingBox: this.bboxToLngLatBounds(bbox),
     };
   }
 }

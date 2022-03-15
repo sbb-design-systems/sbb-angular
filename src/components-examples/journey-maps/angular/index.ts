@@ -6,6 +6,7 @@ import { SbbCheckboxModule } from '@sbb-esta/angular/checkbox';
 import { SbbInputModule } from '@sbb-esta/angular/input';
 import { SbbNotificationModule } from '@sbb-esta/angular/notification';
 import { SbbRadioButtonModule } from '@sbb-esta/angular/radio-button';
+import { SbbTabsModule } from '@sbb-esta/angular/tabs';
 import { JourneyMapsClientModule } from '@sbb-esta/journey-maps/angular';
 
 import { Angular } from './angular/angular-example';
@@ -23,6 +24,7 @@ const EXAMPLES = [Angular];
     SbbRadioButtonModule,
     SbbNotificationModule,
     FormsModule,
+    SbbTabsModule,
   ],
   declarations: EXAMPLES,
   exports: EXAMPLES,

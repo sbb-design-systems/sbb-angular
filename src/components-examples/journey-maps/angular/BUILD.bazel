@@ -21,6 +21,7 @@ ng_module(
         "//src/angular/input",
         "//src/angular/notification",
         "//src/angular/radio-button",
+        "//src/angular/tabs",
         "//src/journey-maps",
         "//src/journey-maps/angular",
         "@npm//@angular/common",
