@@ -38,38 +38,36 @@ const PROVIDE_FAKE_MEDIA_MATCHER = {
 describe('SbbIconSidebar', () => {
   let mediaMatcher: FakeMediaMatcher;
 
-  beforeEach(
-    waitForAsync(() => {
-      TestBed.configureTestingModule({
-        imports: [
-          SbbSidebarModule,
-          A11yModule,
-          NoopAnimationsModule,
-          CommonModule,
-          SbbIconModule,
-          SbbIconTestingModule,
-          RouterTestingModule,
-        ],
-        declarations: [
-          BasicTestComponent,
-          SidebarSetToExpandedFalseTestComponent,
-          SidebarSetToExpandedTrueTestComponent,
-          TwoSidebarsTestComponent,
-          SidebarExpandedBindingTestComponent,
-          IndirectDescendantSidebarTestComponent,
-          NestedSidebarContainersTestComponent,
-          IconSidebarWithLinksTestComponent,
-        ],
-        providers: [PROVIDE_FAKE_MEDIA_MATCHER],
-      });
+  beforeEach(waitForAsync(() => {
+    TestBed.configureTestingModule({
+      imports: [
+        SbbSidebarModule,
+        A11yModule,
+        NoopAnimationsModule,
+        CommonModule,
+        SbbIconModule,
+        SbbIconTestingModule,
+        RouterTestingModule,
+      ],
+      declarations: [
+        BasicTestComponent,
+        SidebarSetToExpandedFalseTestComponent,
+        SidebarSetToExpandedTrueTestComponent,
+        TwoSidebarsTestComponent,
+        SidebarExpandedBindingTestComponent,
+        IndirectDescendantSidebarTestComponent,
+        NestedSidebarContainersTestComponent,
+        IconSidebarWithLinksTestComponent,
+      ],
+      providers: [PROVIDE_FAKE_MEDIA_MATCHER],
+    });
 
-      TestBed.compileComponents();
+    TestBed.compileComponents();
 
-      inject([MediaMatcher], (fm: FakeMediaMatcher) => {
-        mediaMatcher = fm;
-      })();
-    })
-  );
+    inject([MediaMatcher], (fm: FakeMediaMatcher) => {
+      mediaMatcher = fm;
+    })();
+  }));
 
   afterEach(() => mediaMatcher.clear());
 
@@ -215,16 +213,14 @@ describe('SbbIconSidebar', () => {
     let sidebar: DebugElement;
     let sidebarComponent: SbbIconSidebar;
 
-    beforeEach(
-      waitForAsync(() => {
-        fixture = TestBed.createComponent(IconSidebarWithLinksTestComponent);
+    beforeEach(waitForAsync(() => {
+      fixture = TestBed.createComponent(IconSidebarWithLinksTestComponent);
 
-        fixture.detectChanges();
+      fixture.detectChanges();
 
-        sidebar = fixture.debugElement.query(By.directive(SbbIconSidebar));
-        sidebarComponent = sidebar!.componentInstance;
-      })
-    );
+      sidebar = fixture.debugElement.query(By.directive(SbbIconSidebar));
+      sidebarComponent = sidebar!.componentInstance;
+    }));
 
     it('should collapse icon sidebar by default', () => {
       expect(sidebarComponent.expanded).toBe(false);
@@ -373,33 +369,31 @@ describe('SbbIconSidebar', () => {
 describe('SbbIconSidebarContainer', () => {
   let mediaMatcher: FakeMediaMatcher;
 
-  beforeEach(
-    waitForAsync(() => {
-      TestBed.configureTestingModule({
-        imports: [
-          SbbSidebarModule,
-          A11yModule,
-          NoopAnimationsModule,
-          SbbIconModule,
-          SbbIconTestingModule,
-        ],
-        declarations: [
-          SidebarContainerEmptyTestComponent,
-          SidebarDelayedTestComponent,
-          SidebarSetToExpandedTrueTestComponent,
-          BasicTestComponent,
-          SidebarContainerWithContentTestComponent,
-        ],
-        providers: [PROVIDE_FAKE_MEDIA_MATCHER],
-      });
+  beforeEach(waitForAsync(() => {
+    TestBed.configureTestingModule({
+      imports: [
+        SbbSidebarModule,
+        A11yModule,
+        NoopAnimationsModule,
+        SbbIconModule,
+        SbbIconTestingModule,
+      ],
+      declarations: [
+        SidebarContainerEmptyTestComponent,
+        SidebarDelayedTestComponent,
+        SidebarSetToExpandedTrueTestComponent,
+        BasicTestComponent,
+        SidebarContainerWithContentTestComponent,
+      ],
+      providers: [PROVIDE_FAKE_MEDIA_MATCHER],
+    });
 
-      TestBed.compileComponents();
+    TestBed.compileComponents();
 
-      inject([MediaMatcher], (fm: FakeMediaMatcher) => {
-        mediaMatcher = fm;
-      })();
-    })
-  );
+    inject([MediaMatcher], (fm: FakeMediaMatcher) => {
+      mediaMatcher = fm;
+    })();
+  }));
 
   afterEach(() => mediaMatcher.clear());
 

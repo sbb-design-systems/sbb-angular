@@ -30,14 +30,12 @@ class BasicOption {
 class InsideGroup {}
 
 describe('SbbOption component', () => {
-  beforeEach(
-    waitForAsync(() => {
-      TestBed.configureTestingModule({
-        imports: [SbbOptionModule],
-        declarations: [BasicOption],
-      }).compileComponents();
-    })
-  );
+  beforeEach(waitForAsync(() => {
+    TestBed.configureTestingModule({
+      imports: [SbbOptionModule],
+      declarations: [BasicOption],
+    }).compileComponents();
+  }));
 
   it('should complete the `stateChanges` stream on destroy', () => {
     const fixture = TestBed.createComponent(BasicOption);
@@ -172,24 +170,22 @@ describe('SbbOption component', () => {
   describe('inside inert group', () => {
     let fixture: ComponentFixture<InsideGroup>;
 
-    beforeEach(
-      waitForAsync(() => {
-        TestBed.resetTestingModule();
-        TestBed.configureTestingModule({
-          imports: [SbbOptionModule],
-          declarations: [InsideGroup],
-          providers: [
-            {
-              provide: SBB_OPTION_PARENT_COMPONENT,
-              useValue: { inertGroups: true },
-            },
-          ],
-        }).compileComponents();
+    beforeEach(waitForAsync(() => {
+      TestBed.resetTestingModule();
+      TestBed.configureTestingModule({
+        imports: [SbbOptionModule],
+        declarations: [InsideGroup],
+        providers: [
+          {
+            provide: SBB_OPTION_PARENT_COMPONENT,
+            useValue: { inertGroups: true },
+          },
+        ],
+      }).compileComponents();
 
-        fixture = TestBed.createComponent(InsideGroup);
-        fixture.detectChanges();
-      })
-    );
+      fixture = TestBed.createComponent(InsideGroup);
+      fixture.detectChanges();
+    }));
 
     it('should remove all accessibility-related attributes from the group', () => {
       const group: HTMLElement = fixture.nativeElement.querySelector('sbb-optgroup');

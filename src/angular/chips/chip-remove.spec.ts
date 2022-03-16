@@ -8,16 +8,14 @@ import { SbbChip } from './chip';
 import { SbbChipsModule } from './chips.module';
 
 describe('Chip Remove', () => {
-  beforeEach(
-    waitForAsync(() => {
-      TestBed.configureTestingModule({
-        imports: [SbbChipsModule, SbbIconModule, SbbIconTestingModule],
-        declarations: [TestChip, ChipWithoutRemoveIcon],
-      });
+  beforeEach(waitForAsync(() => {
+    TestBed.configureTestingModule({
+      imports: [SbbChipsModule, SbbIconModule, SbbIconTestingModule],
+      declarations: [TestChip, ChipWithoutRemoveIcon],
+    });
 
-      TestBed.compileComponents();
-    })
-  );
+    TestBed.compileComponents();
+  }));
 
   describe('basic behavior', () => {
     let fixture: ComponentFixture<TestChip>;
@@ -25,16 +23,14 @@ describe('Chip Remove', () => {
     let chipDebugElement: DebugElement;
     let chipNativeElement: HTMLElement;
 
-    beforeEach(
-      waitForAsync(() => {
-        fixture = TestBed.createComponent(TestChip);
-        testChip = fixture.debugElement.componentInstance;
-        fixture.detectChanges();
+    beforeEach(waitForAsync(() => {
+      fixture = TestBed.createComponent(TestChip);
+      testChip = fixture.debugElement.componentInstance;
+      fixture.detectChanges();
 
-        chipDebugElement = fixture.debugElement.query(By.directive(SbbChip))!;
-        chipNativeElement = chipDebugElement.nativeElement;
-      })
-    );
+      chipDebugElement = fixture.debugElement.query(By.directive(SbbChip))!;
+      chipNativeElement = chipDebugElement.nativeElement;
+    }));
 
     it('should apply a CSS class to the remove icon', () => {
       const buttonElement = chipNativeElement.querySelector('button')!;
@@ -90,16 +86,14 @@ describe('Chip Remove', () => {
     let chipDebugElement: DebugElement;
     let chipNativeElement: HTMLElement;
 
-    beforeEach(
-      waitForAsync(() => {
-        fixture = TestBed.createComponent(ChipWithoutRemoveIcon);
-        testChip = fixture.debugElement.componentInstance;
-        fixture.detectChanges();
+    beforeEach(waitForAsync(() => {
+      fixture = TestBed.createComponent(ChipWithoutRemoveIcon);
+      testChip = fixture.debugElement.componentInstance;
+      fixture.detectChanges();
 
-        chipDebugElement = fixture.debugElement.query(By.directive(SbbChip))!;
-        chipNativeElement = chipDebugElement.nativeElement;
-      })
-    );
+      chipDebugElement = fixture.debugElement.query(By.directive(SbbChip))!;
+      chipNativeElement = chipDebugElement.nativeElement;
+    }));
 
     it('should fallback to default remove icon', () => {
       const iconElement = chipNativeElement.querySelector('sbb-icon')!;

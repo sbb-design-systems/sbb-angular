@@ -53,32 +53,30 @@ const registerClearMediaMatcher = () => {
 };
 
 describe('SbbSidebar', () => {
-  beforeEach(
-    waitForAsync(() => {
-      TestBed.configureTestingModule({
-        imports: [
-          SbbSidebarModule,
-          A11yModule,
-          NoopAnimationsModule,
-          CommonModule,
-          SbbIconTestingModule,
-        ],
-        declarations: [
-          BasicTestComponent,
-          SidebarSetToOpenedTrueTestComponent,
-          TwoSidebarsTestComponent,
-          SidebarWithFocusableElementsTestComponent,
-          SidebarOpenBindingTestComponent,
-          SidebarWithoutFocusableElementsTestComponent,
-          IndirectDescendantSidebarTestComponent,
-          NestedSidebarContainersTestComponent,
-        ],
-        providers: [PROVIDE_FAKE_MEDIA_MATCHER],
-      });
+  beforeEach(waitForAsync(() => {
+    TestBed.configureTestingModule({
+      imports: [
+        SbbSidebarModule,
+        A11yModule,
+        NoopAnimationsModule,
+        CommonModule,
+        SbbIconTestingModule,
+      ],
+      declarations: [
+        BasicTestComponent,
+        SidebarSetToOpenedTrueTestComponent,
+        TwoSidebarsTestComponent,
+        SidebarWithFocusableElementsTestComponent,
+        SidebarOpenBindingTestComponent,
+        SidebarWithoutFocusableElementsTestComponent,
+        IndirectDescendantSidebarTestComponent,
+        NestedSidebarContainersTestComponent,
+      ],
+      providers: [PROVIDE_FAKE_MEDIA_MATCHER],
+    });
 
-      TestBed.compileComponents();
-    })
-  );
+    TestBed.compileComponents();
+  }));
 
   registerClearMediaMatcher();
 
@@ -652,31 +650,29 @@ describe('SbbSidebar', () => {
 });
 
 describe('SbbSidebarContainer', () => {
-  beforeEach(
-    waitForAsync(() => {
-      TestBed.configureTestingModule({
-        imports: [
-          SbbSidebarModule,
-          A11yModule,
-          NoopAnimationsModule,
-          CommonModule,
-          SbbIconTestingModule,
-        ],
-        declarations: [
-          SidebarContainerEmptyTestComponent,
-          SidebarDelayedTestComponent,
-          SidebarSetToOpenedTrueTestComponent,
-          SidebarContainerStateChangesTestAppTestComponent,
-          ZeroWithSidebarTestComponent,
-          BasicTestComponent,
-          SidebarContainerWithContentTestComponent,
-        ],
-        providers: [PROVIDE_FAKE_MEDIA_MATCHER],
-      });
+  beforeEach(waitForAsync(() => {
+    TestBed.configureTestingModule({
+      imports: [
+        SbbSidebarModule,
+        A11yModule,
+        NoopAnimationsModule,
+        CommonModule,
+        SbbIconTestingModule,
+      ],
+      declarations: [
+        SidebarContainerEmptyTestComponent,
+        SidebarDelayedTestComponent,
+        SidebarSetToOpenedTrueTestComponent,
+        SidebarContainerStateChangesTestAppTestComponent,
+        ZeroWithSidebarTestComponent,
+        BasicTestComponent,
+        SidebarContainerWithContentTestComponent,
+      ],
+      providers: [PROVIDE_FAKE_MEDIA_MATCHER],
+    });
 
-      TestBed.compileComponents();
-    })
-  );
+    TestBed.compileComponents();
+  }));
 
   registerClearMediaMatcher();
 
@@ -852,31 +848,29 @@ describe('SbbSidebarContainer', () => {
 describe('SbbSidebar Usage', () => {
   let fixture: ComponentFixture<SbbSidebarTestComponent>;
   let sidebar: DebugElement;
-  beforeEach(
-    waitForAsync(() => {
-      TestBed.configureTestingModule({
-        imports: [
-          SbbSidebarModule,
-          A11yModule,
-          NoopAnimationsModule,
-          SbbAccordionModule,
-          RouterTestingModule.withRoutes([
-            { path: 'link', pathMatch: 'full', component: SimpleRouteComponent },
-          ]),
-          SbbIconTestingModule,
-        ],
-        declarations: [SbbSidebarTestComponent, SimpleRouteComponent],
-        providers: [PROVIDE_FAKE_MEDIA_MATCHER],
-      });
+  beforeEach(waitForAsync(() => {
+    TestBed.configureTestingModule({
+      imports: [
+        SbbSidebarModule,
+        A11yModule,
+        NoopAnimationsModule,
+        SbbAccordionModule,
+        RouterTestingModule.withRoutes([
+          { path: 'link', pathMatch: 'full', component: SimpleRouteComponent },
+        ]),
+        SbbIconTestingModule,
+      ],
+      declarations: [SbbSidebarTestComponent, SimpleRouteComponent],
+      providers: [PROVIDE_FAKE_MEDIA_MATCHER],
+    });
 
-      TestBed.compileComponents();
+    TestBed.compileComponents();
 
-      fixture = TestBed.createComponent(SbbSidebarTestComponent);
-      sidebar = fixture.debugElement.query(By.directive(SbbSidebar));
+    fixture = TestBed.createComponent(SbbSidebarTestComponent);
+    sidebar = fixture.debugElement.query(By.directive(SbbSidebar));
 
-      fixture.detectChanges();
-    })
-  );
+    fixture.detectChanges();
+  }));
 
   registerClearMediaMatcher();
 

@@ -32,13 +32,11 @@ class DateFormat {
 describe('i18n sbb patch', () => {
   let fixture: ComponentFixture<DateFormat>;
 
-  beforeEach(
-    waitForAsync(() => {
-      TestBed.configureTestingModule({
-        declarations: [DateFormat],
-      }).compileComponents();
-    })
-  );
+  beforeEach(waitForAsync(() => {
+    TestBed.configureTestingModule({
+      declarations: [DateFormat],
+    }).compileComponents();
+  }));
 
   beforeEach(() => {
     $localize.locale = 'en-CH';

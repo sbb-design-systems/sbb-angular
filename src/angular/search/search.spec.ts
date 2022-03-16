@@ -144,14 +144,12 @@ describe('SbbSearch', () => {
     let component: SimpleSearchComponent;
     let fixture: ComponentFixture<SimpleSearchComponent>;
 
-    beforeEach(
-      waitForAsync(() => {
-        TestBed.configureTestingModule({
-          imports: [NoopAnimationsModule, SbbIconTestingModule, SbbInputModule, SbbSearchModule],
-          declarations: [SimpleSearchComponent],
-        }).compileComponents();
-      })
-    );
+    beforeEach(waitForAsync(() => {
+      TestBed.configureTestingModule({
+        imports: [NoopAnimationsModule, SbbIconTestingModule, SbbInputModule, SbbSearchModule],
+        declarations: [SimpleSearchComponent],
+      }).compileComponents();
+    }));
 
     beforeEach(() => {
       fixture = TestBed.createComponent(SimpleSearchComponent);
@@ -202,21 +200,19 @@ describe('SbbSearch', () => {
     let component: SimpleSearchAutocompleteComponent;
     let fixture: ComponentFixture<SimpleSearchAutocompleteComponent>;
 
-    beforeEach(
-      waitForAsync(() => {
-        TestBed.configureTestingModule({
-          imports: [
-            NoopAnimationsModule,
-            OverlayModule,
-            SbbAutocompleteModule,
-            SbbIconTestingModule,
-            SbbInputModule,
-            SbbSearchModule,
-          ],
-          declarations: [SimpleSearchAutocompleteComponent],
-        }).compileComponents();
-      })
-    );
+    beforeEach(waitForAsync(() => {
+      TestBed.configureTestingModule({
+        imports: [
+          NoopAnimationsModule,
+          OverlayModule,
+          SbbAutocompleteModule,
+          SbbIconTestingModule,
+          SbbInputModule,
+          SbbSearchModule,
+        ],
+        declarations: [SimpleSearchAutocompleteComponent],
+      }).compileComponents();
+    }));
 
     beforeEach(() => {
       fixture = TestBed.createComponent(SimpleSearchAutocompleteComponent);
@@ -346,25 +342,23 @@ describe('SbbSearch', () => {
       let fixture: ComponentFixture<SimpleSearchHeaderComponent>;
       let overlayContainerElement: HTMLElement;
 
-      beforeEach(
-        waitForAsync(() => {
-          TestBed.configureTestingModule({
-            imports: [
-              BrowserAnimationsModule,
-              OverlayModule,
-              SbbAutocompleteModule,
-              SbbIconTestingModule,
-              SbbInputModule,
-              SbbSearchModule,
-            ],
-            declarations: [SimpleSearchHeaderComponent],
-          }).compileComponents();
+      beforeEach(waitForAsync(() => {
+        TestBed.configureTestingModule({
+          imports: [
+            BrowserAnimationsModule,
+            OverlayModule,
+            SbbAutocompleteModule,
+            SbbIconTestingModule,
+            SbbInputModule,
+            SbbSearchModule,
+          ],
+          declarations: [SimpleSearchHeaderComponent],
+        }).compileComponents();
 
-          inject([OverlayContainer], (oc: OverlayContainer) => {
-            overlayContainerElement = oc.getContainerElement();
-          })();
-        })
-      );
+        inject([OverlayContainer], (oc: OverlayContainer) => {
+          overlayContainerElement = oc.getContainerElement();
+        })();
+      }));
 
       beforeEach(() => {
         fixture = TestBed.createComponent(SimpleSearchHeaderComponent);
@@ -398,25 +392,23 @@ describe('SbbSearch', () => {
       let fixture: ComponentFixture<SimpleSearchAutocompleteHeaderComponent>;
       let overlayContainerElement: HTMLElement;
 
-      beforeEach(
-        waitForAsync(() => {
-          TestBed.configureTestingModule({
-            imports: [
-              NoopAnimationsModule,
-              OverlayModule,
-              SbbAutocompleteModule,
-              SbbIconTestingModule,
-              SbbInputModule,
-              SbbSearchModule,
-            ],
-            declarations: [SimpleSearchAutocompleteHeaderComponent],
-          }).compileComponents();
+      beforeEach(waitForAsync(() => {
+        TestBed.configureTestingModule({
+          imports: [
+            NoopAnimationsModule,
+            OverlayModule,
+            SbbAutocompleteModule,
+            SbbIconTestingModule,
+            SbbInputModule,
+            SbbSearchModule,
+          ],
+          declarations: [SimpleSearchAutocompleteHeaderComponent],
+        }).compileComponents();
 
-          inject([OverlayContainer], (oc: OverlayContainer) => {
-            overlayContainerElement = oc.getContainerElement();
-          })();
-        })
-      );
+        inject([OverlayContainer], (oc: OverlayContainer) => {
+          overlayContainerElement = oc.getContainerElement();
+        })();
+      }));
 
       beforeEach(() => {
         fixture = TestBed.createComponent(SimpleSearchAutocompleteHeaderComponent);

@@ -13,26 +13,24 @@ describe('SbbTabNavBar', () => {
   const dir: Direction = 'ltr';
   const dirChange = new Subject<void>();
 
-  beforeEach(
-    waitForAsync(() => {
-      TestBed.configureTestingModule({
-        imports: [SbbTabsModule, SbbIconTestingModule],
-        declarations: [
-          SimpleTabNavBarTestApp,
-          TabLinkWithNgIf,
-          TabLinkWithTabIndexBinding,
-          TabLinkWithNativeTabindexAttr,
-          TabBarWithInactiveTabsOnInit,
-          TabBarWithPanel,
-        ],
-        providers: [
-          { provide: Directionality, useFactory: () => ({ value: dir, change: dirChange }) },
-        ],
-      });
+  beforeEach(waitForAsync(() => {
+    TestBed.configureTestingModule({
+      imports: [SbbTabsModule, SbbIconTestingModule],
+      declarations: [
+        SimpleTabNavBarTestApp,
+        TabLinkWithNgIf,
+        TabLinkWithTabIndexBinding,
+        TabLinkWithNativeTabindexAttr,
+        TabBarWithInactiveTabsOnInit,
+        TabBarWithPanel,
+      ],
+      providers: [
+        { provide: Directionality, useFactory: () => ({ value: dir, change: dirChange }) },
+      ],
+    });
 
-      TestBed.compileComponents();
-    })
-  );
+    TestBed.compileComponents();
+  }));
 
   describe('basic behavior', () => {
     let fixture: ComponentFixture<SimpleTabNavBarTestApp>;

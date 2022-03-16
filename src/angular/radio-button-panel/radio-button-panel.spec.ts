@@ -65,24 +65,22 @@ class RadioButtonPanelIconTest {
 }
 
 describe('SbbRadioButtonPanel', () => {
-  beforeEach(
-    waitForAsync(() => {
-      TestBed.configureTestingModule({
-        imports: [
-          FormsModule,
-          ReactiveFormsModule,
-          SbbRadioButtonPanelModule,
-          SbbIconModule,
-          SbbIconTestingModule,
-        ],
-        declarations: [
-          ModelOptionSelectionTest,
-          RadioButtonPanelDirectiveTest,
-          RadioButtonPanelIconTest,
-        ],
-      }).compileComponents();
-    })
-  );
+  beforeEach(waitForAsync(() => {
+    TestBed.configureTestingModule({
+      imports: [
+        FormsModule,
+        ReactiveFormsModule,
+        SbbRadioButtonPanelModule,
+        SbbIconModule,
+        SbbIconTestingModule,
+      ],
+      declarations: [
+        ModelOptionSelectionTest,
+        RadioButtonPanelDirectiveTest,
+        RadioButtonPanelIconTest,
+      ],
+    }).compileComponents();
+  }));
 
   describe('multi selection', () => {
     let component: ModelOptionSelectionTest;

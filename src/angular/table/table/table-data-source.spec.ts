@@ -8,14 +8,12 @@ import { SbbTableModule } from '../table.module';
 import { SbbTableDataSource, SbbTableFilter } from './table-data-source';
 
 describe('SbbTableDataSource', () => {
-  beforeEach(
-    waitForAsync(() => {
-      TestBed.configureTestingModule({
-        imports: [SbbTableModule, NoopAnimationsModule],
-        declarations: [SbbSortApp],
-      }).compileComponents();
-    })
-  );
+  beforeEach(waitForAsync(() => {
+    TestBed.configureTestingModule({
+      imports: [SbbTableModule, NoopAnimationsModule],
+      declarations: [SbbSortApp],
+    }).compileComponents();
+  }));
 
   describe('sort', () => {
     let dataSource: SbbTableDataSource<any>;

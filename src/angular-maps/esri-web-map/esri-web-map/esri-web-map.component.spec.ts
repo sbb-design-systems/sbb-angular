@@ -6,13 +6,11 @@ describe('SbbEsriWebMap', () => {
   let component: SbbEsriWebMap;
   let fixture: ComponentFixture<SbbEsriWebMap>;
 
-  beforeEach(
-    waitForAsync(() => {
-      TestBed.configureTestingModule({
-        declarations: [SbbEsriWebMap],
-      }).compileComponents();
-    })
-  );
+  beforeEach(waitForAsync(() => {
+    TestBed.configureTestingModule({
+      declarations: [SbbEsriWebMap],
+    }).compileComponents();
+  }));
 
   beforeEach(() => {
     fixture = TestBed.createComponent(SbbEsriWebMap);

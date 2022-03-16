@@ -6,13 +6,11 @@ describe('SbbEsriWebScene', () => {
   let component: SbbEsriWebScene;
   let fixture: ComponentFixture<SbbEsriWebScene>;
 
-  beforeEach(
-    waitForAsync(() => {
-      TestBed.configureTestingModule({
-        declarations: [SbbEsriWebScene],
-      }).compileComponents();
-    })
-  );
+  beforeEach(waitForAsync(() => {
+    TestBed.configureTestingModule({
+      declarations: [SbbEsriWebScene],
+    }).compileComponents();
+  }));
 
   beforeEach(() => {
     fixture = TestBed.createComponent(SbbEsriWebScene);

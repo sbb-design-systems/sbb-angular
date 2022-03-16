@@ -31,20 +31,18 @@ class StatusWithMessageComponent {
 class StatusWithAriaLabelComponent {}
 
 describe('SbbStatus', () => {
-  beforeEach(
-    waitForAsync(() => {
-      TestBed.configureTestingModule({
-        declarations: [
-          ValidStatusComponent,
-          WarningStatusComponent,
-          InvalidStatusComponent,
-          StatusWithMessageComponent,
-          StatusWithAriaLabelComponent,
-        ],
-        imports: [SbbStatusModule, SbbIconTestingModule],
-      }).compileComponents();
-    })
-  );
+  beforeEach(waitForAsync(() => {
+    TestBed.configureTestingModule({
+      declarations: [
+        ValidStatusComponent,
+        WarningStatusComponent,
+        InvalidStatusComponent,
+        StatusWithMessageComponent,
+        StatusWithAriaLabelComponent,
+      ],
+      imports: [SbbStatusModule, SbbIconTestingModule],
+    }).compileComponents();
+  }));
 
   describe('valid', () => {
     let fixture: ComponentFixture<ValidStatusComponent>;

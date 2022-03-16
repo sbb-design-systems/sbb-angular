@@ -29,34 +29,32 @@ describe('SbbTable', () => {
     change: () => viewPortRulerMockChangeTrigger,
   };
 
-  beforeEach(
-    waitForAsync(() => {
-      TestBed.configureTestingModule({
-        imports: [
-          SbbTableModule,
-          SbbPaginationModule,
-          NoopAnimationsModule,
-          SbbIconModule,
-          SbbIconTestingModule,
-        ],
-        declarations: [
-          SbbTableTestComponent,
-          SbbTableWithWhenRowTestComponent,
-          ArrayDataSourceSbbTableTestComponent,
-          NativeHtmlTableTestComponent,
-          SbbTableWithSortTestComponent,
-          SbbTableWithPaginatorTestComponent,
-          StickyTableTestComponent,
-          TableWithNgContainerRowTestComponent,
-          NestedHtmlTableTestComponent,
-          TableWithColumnGroupingTestComponent,
-          TableWithWrapperAndStickyColumnsTestComponent,
-          TableWithTwoStickyColumnsTestComponent,
-        ],
-        providers: [ViewportRuler, { provide: ViewportRuler, useValue: viewportRulerMock }],
-      }).compileComponents();
-    })
-  );
+  beforeEach(waitForAsync(() => {
+    TestBed.configureTestingModule({
+      imports: [
+        SbbTableModule,
+        SbbPaginationModule,
+        NoopAnimationsModule,
+        SbbIconModule,
+        SbbIconTestingModule,
+      ],
+      declarations: [
+        SbbTableTestComponent,
+        SbbTableWithWhenRowTestComponent,
+        ArrayDataSourceSbbTableTestComponent,
+        NativeHtmlTableTestComponent,
+        SbbTableWithSortTestComponent,
+        SbbTableWithPaginatorTestComponent,
+        StickyTableTestComponent,
+        TableWithNgContainerRowTestComponent,
+        NestedHtmlTableTestComponent,
+        TableWithColumnGroupingTestComponent,
+        TableWithWrapperAndStickyColumnsTestComponent,
+        TableWithTwoStickyColumnsTestComponent,
+      ],
+      providers: [ViewportRuler, { provide: ViewportRuler, useValue: viewportRulerMock }],
+    }).compileComponents();
+  }));
 
   describe('with basic data source', () => {
     it('should be able to create a table with the right content and without when row', () => {

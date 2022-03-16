@@ -921,19 +921,17 @@ describe('SbbSelect', () => {
   });
 
   describe('core', () => {
-    beforeEach(
-      waitForAsync(() => {
-        configureSbbSelectTestingModule([
-          BasicSelect,
-          MultiSelect,
-          SelectWithGroups,
-          SelectWithGroupsAndNgContainer,
-          SelectWithFormFieldLabel,
-          SelectWithChangeEvent,
-          SelectInsideDynamicFormGroup,
-        ]);
-      })
-    );
+    beforeEach(waitForAsync(() => {
+      configureSbbSelectTestingModule([
+        BasicSelect,
+        MultiSelect,
+        SelectWithGroups,
+        SelectWithGroupsAndNgContainer,
+        SelectWithFormFieldLabel,
+        SelectWithChangeEvent,
+        SelectInsideDynamicFormGroup,
+      ]);
+    }));
 
     describe('accessibility', () => {
       describe('for select', () => {
@@ -3337,11 +3335,8 @@ describe('SbbSelect', () => {
   });
 
   describe('with a sibling component that throws an error', () => {
-    beforeEach(
-      waitForAsync(() =>
-        configureSbbSelectTestingModule([SelectWithErrorSibling, ThrowsErrorOnInit])
-      )
-    );
+    beforeEach(waitForAsync(() =>
+      configureSbbSelectTestingModule([SelectWithErrorSibling, ThrowsErrorOnInit])));
 
     it('should not crash the browser when a sibling throws an error on init', fakeAsync(() => {
       // Note that this test can be considered successful if the error being thrown didn't
@@ -3719,9 +3714,8 @@ describe('SbbSelect', () => {
   });
 
   describe('with preselected array values', () => {
-    beforeEach(
-      waitForAsync(() => configureSbbSelectTestingModule([SingleSelectWithPreselectedArrayValues]))
-    );
+    beforeEach(waitForAsync(() =>
+      configureSbbSelectTestingModule([SingleSelectWithPreselectedArrayValues])));
 
     it('should be able to preselect an array value in single-selection mode', fakeAsync(() => {
       const fixture = TestBed.createComponent(SingleSelectWithPreselectedArrayValues);
@@ -3737,11 +3731,8 @@ describe('SbbSelect', () => {
   });
 
   describe('with custom value accessor', () => {
-    beforeEach(
-      waitForAsync(() =>
-        configureSbbSelectTestingModule([CompWithCustomSelect, CustomSelectAccessor])
-      )
-    );
+    beforeEach(waitForAsync(() =>
+      configureSbbSelectTestingModule([CompWithCustomSelect, CustomSelectAccessor])));
 
     it('should support use inside a custom value accessor', fakeAsync(() => {
       const fixture = TestBed.createComponent(CompWithCustomSelect);
@@ -3777,11 +3768,8 @@ describe('SbbSelect', () => {
   });
 
   describe('with OnPush', () => {
-    beforeEach(
-      waitForAsync(() =>
-        configureSbbSelectTestingModule([BasicSelectOnPush, BasicSelectOnPushPreselected])
-      )
-    );
+    beforeEach(waitForAsync(() =>
+      configureSbbSelectTestingModule([BasicSelectOnPush, BasicSelectOnPushPreselected])));
 
     it('should set the trigger text based on the value when initialized', fakeAsync(() => {
       const fixture = TestBed.createComponent(BasicSelectOnPushPreselected);
@@ -3950,15 +3938,12 @@ describe('SbbSelect', () => {
   });
 
   describe('without Angular forms', () => {
-    beforeEach(
-      waitForAsync(() =>
-        configureSbbSelectTestingModule([
-          BasicSelectWithoutForms,
-          BasicSelectWithoutFormsPreselected,
-          BasicSelectWithoutFormsMultiple,
-        ])
-      )
-    );
+    beforeEach(waitForAsync(() =>
+      configureSbbSelectTestingModule([
+        BasicSelectWithoutForms,
+        BasicSelectWithoutFormsPreselected,
+        BasicSelectWithoutFormsMultiple,
+      ])));
 
     it('should set the value when options are clicked', fakeAsync(() => {
       const fixture = TestBed.createComponent(BasicSelectWithoutForms);
@@ -4290,11 +4275,8 @@ describe('SbbSelect', () => {
   });
 
   describe('with multiple selection', () => {
-    beforeEach(
-      waitForAsync(() =>
-        configureSbbSelectTestingModule([MultiSelect, MultiSelectWithLotsOfOptions])
-      )
-    );
+    beforeEach(waitForAsync(() =>
+      configureSbbSelectTestingModule([MultiSelect, MultiSelectWithLotsOfOptions])));
 
     let fixture: ComponentFixture<MultiSelect>;
     let testInstance: MultiSelect;

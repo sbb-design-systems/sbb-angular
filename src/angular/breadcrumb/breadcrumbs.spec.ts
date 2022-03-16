@@ -71,14 +71,12 @@ describe('SbbBreadcrumbs', () => {
     let component: SbbBreadcrumbs;
     let fixture: ComponentFixture<SbbBreadcrumbs>;
 
-    beforeEach(
-      waitForAsync(() => {
-        TestBed.configureTestingModule({
-          declarations: [SbbBreadcrumbs, SbbBreadcrumb],
-          imports: [CommonModule, SbbMenuModule, SbbIconModule, SbbIconTestingModule],
-        }).compileComponents();
-      })
-    );
+    beforeEach(waitForAsync(() => {
+      TestBed.configureTestingModule({
+        declarations: [SbbBreadcrumbs, SbbBreadcrumb],
+        imports: [CommonModule, SbbMenuModule, SbbIconModule, SbbIconTestingModule],
+      }).compileComponents();
+    }));
 
     beforeEach(() => {
       fixture = TestBed.createComponent(SbbBreadcrumbs);
@@ -94,20 +92,18 @@ describe('SbbBreadcrumbs', () => {
   describe('Breadcrumbs standalone', () => {
     let fixture: ComponentFixture<BreadcrumbsSimpleTest>;
 
-    beforeEach(
-      waitForAsync(() => {
-        TestBed.configureTestingModule({
-          declarations: [BreadcrumbsSimpleTest],
-          imports: [
-            CommonModule,
-            SbbBreadcrumbModule,
-            SbbMenuModule,
-            SbbIconModule,
-            SbbIconTestingModule,
-          ],
-        }).compileComponents();
-      })
-    );
+    beforeEach(waitForAsync(() => {
+      TestBed.configureTestingModule({
+        declarations: [BreadcrumbsSimpleTest],
+        imports: [
+          CommonModule,
+          SbbBreadcrumbModule,
+          SbbMenuModule,
+          SbbIconModule,
+          SbbIconTestingModule,
+        ],
+      }).compileComponents();
+    }));
 
     beforeEach(() => {
       fixture = TestBed.createComponent(BreadcrumbsSimpleTest);
@@ -164,21 +160,19 @@ describe('SbbBreadcrumbs', () => {
   describe('Breadcrumbs with menu', () => {
     let fixture: ComponentFixture<BreadcrumbsMenuTest>;
 
-    beforeEach(
-      waitForAsync(() => {
-        TestBed.configureTestingModule({
-          declarations: [BreadcrumbsMenuTest],
-          imports: [
-            CommonModule,
-            SbbBreadcrumbModule,
-            SbbMenuModule,
-            SbbIconModule,
-            SbbIconTestingModule,
-            NoopAnimationsModule,
-          ],
-        }).compileComponents();
-      })
-    );
+    beforeEach(waitForAsync(() => {
+      TestBed.configureTestingModule({
+        declarations: [BreadcrumbsMenuTest],
+        imports: [
+          CommonModule,
+          SbbBreadcrumbModule,
+          SbbMenuModule,
+          SbbIconModule,
+          SbbIconTestingModule,
+          NoopAnimationsModule,
+        ],
+      }).compileComponents();
+    }));
 
     beforeEach(() => {
       fixture = TestBed.createComponent(BreadcrumbsMenuTest);

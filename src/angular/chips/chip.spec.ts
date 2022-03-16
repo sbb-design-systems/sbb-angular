@@ -16,21 +16,19 @@ describe('SbbChip', () => {
   let chipNativeElement: HTMLElement;
   let chipInstance: SbbChip;
 
-  beforeEach(
-    waitForAsync(() => {
-      TestBed.configureTestingModule({
-        imports: [SbbChipsModule, SbbIconModule, SbbIconTestingModule],
-        declarations: [
-          BasicChip,
-          SingleChip,
-          BasicChipWithStaticTabindex,
-          BasicChipWithBoundTabindex,
-        ],
-      });
+  beforeEach(waitForAsync(() => {
+    TestBed.configureTestingModule({
+      imports: [SbbChipsModule, SbbIconModule, SbbIconTestingModule],
+      declarations: [
+        BasicChip,
+        SingleChip,
+        BasicChipWithStaticTabindex,
+        BasicChipWithBoundTabindex,
+      ],
+    });
 
-      TestBed.compileComponents();
-    })
-  );
+    TestBed.compileComponents();
+  }));
 
   describe('SbbBasicChip', () => {
     it('adds a class to indicate that it is a basic chip', () => {
