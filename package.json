@@ -76,7 +76,7 @@
     "@angular/dev-infra-private": "https://github.com/angular/dev-infra-private-builds.git#b6656cffbd46bb3637b09b08561e5f1a147603c9",
     "@angular/language-service": "13.2.6",
     "@angular/localize": "13.2.6",
-    "@babel/core": "7.17.5",
+    "@babel/core": "7.17.7",
     "@babel/traverse": "7.17.3",
     "@bazel/bazelisk": "1.11.0",
     "@bazel/buildifier": "4.2.5",
