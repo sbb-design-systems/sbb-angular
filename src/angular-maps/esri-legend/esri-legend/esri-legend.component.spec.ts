@@ -6,13 +6,11 @@ describe('SbbEsriLegend', () => {
   let component: SbbEsriLegend;
   let fixture: ComponentFixture<SbbEsriLegend>;
 
-  beforeEach(
-    waitForAsync(() => {
-      TestBed.configureTestingModule({
-        declarations: [SbbEsriLegend],
-      }).compileComponents();
-    })
-  );
+  beforeEach(waitForAsync(() => {
+    TestBed.configureTestingModule({
+      declarations: [SbbEsriLegend],
+    }).compileComponents();
+  }));
 
   beforeEach(() => {
     fixture = TestBed.createComponent(SbbEsriLegend);

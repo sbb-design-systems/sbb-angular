@@ -202,23 +202,21 @@ describe('SbbToggle', () => {
   describe('case reactive using mock component', () => {
     let fixtureTest: ComponentFixture<ToggleReactiveTestComponent>;
 
-    beforeEach(
-      waitForAsync(() => {
-        TestBed.configureTestingModule({
-          imports: [
-            SbbToggleModule,
-            CommonModule,
-            NoopAnimationsModule,
-            SbbIconModule,
-            SbbDatepickerModule,
-            SbbInputModule,
-            ReactiveFormsModule,
-            SbbIconTestingModule,
-          ],
-          declarations: [ToggleReactiveTestComponent],
-        }).compileComponents();
-      })
-    );
+    beforeEach(waitForAsync(() => {
+      TestBed.configureTestingModule({
+        imports: [
+          SbbToggleModule,
+          CommonModule,
+          NoopAnimationsModule,
+          SbbIconModule,
+          SbbDatepickerModule,
+          SbbInputModule,
+          ReactiveFormsModule,
+          SbbIconTestingModule,
+        ],
+        declarations: [ToggleReactiveTestComponent],
+      }).compileComponents();
+    }));
 
     beforeEach(() => {
       fixtureTest = TestBed.createComponent(ToggleReactiveTestComponent);
@@ -301,23 +299,21 @@ describe('SbbToggle', () => {
   describe('case reactive with default value using mock component', () => {
     let fixtureTest: ComponentFixture<ToggleReactiveDefaultValueTestComponent>;
 
-    beforeEach(
-      waitForAsync(() => {
-        TestBed.configureTestingModule({
-          imports: [
-            SbbToggleModule,
-            CommonModule,
-            NoopAnimationsModule,
-            SbbIconModule,
-            SbbDatepickerModule,
-            SbbInputModule,
-            ReactiveFormsModule,
-            SbbIconTestingModule,
-          ],
-          declarations: [ToggleReactiveDefaultValueTestComponent],
-        }).compileComponents();
-      })
-    );
+    beforeEach(waitForAsync(() => {
+      TestBed.configureTestingModule({
+        imports: [
+          SbbToggleModule,
+          CommonModule,
+          NoopAnimationsModule,
+          SbbIconModule,
+          SbbDatepickerModule,
+          SbbInputModule,
+          ReactiveFormsModule,
+          SbbIconTestingModule,
+        ],
+        declarations: [ToggleReactiveDefaultValueTestComponent],
+      }).compileComponents();
+    }));
 
     beforeEach(() => {
       fixtureTest = TestBed.createComponent(ToggleReactiveDefaultValueTestComponent);
@@ -339,23 +335,21 @@ describe('SbbToggle', () => {
   describe('case template driven using mock component', () => {
     let fixtureTest: ComponentFixture<ToggleTemplateDrivenTestComponent>;
 
-    beforeEach(
-      waitForAsync(() => {
-        TestBed.configureTestingModule({
-          imports: [
-            SbbToggleModule,
-            CommonModule,
-            NoopAnimationsModule,
-            SbbIconModule,
-            SbbDatepickerModule,
-            SbbInputModule,
-            FormsModule,
-            SbbIconTestingModule,
-          ],
-          declarations: [ToggleTemplateDrivenTestComponent],
-        }).compileComponents();
-      })
-    );
+    beforeEach(waitForAsync(() => {
+      TestBed.configureTestingModule({
+        imports: [
+          SbbToggleModule,
+          CommonModule,
+          NoopAnimationsModule,
+          SbbIconModule,
+          SbbDatepickerModule,
+          SbbInputModule,
+          FormsModule,
+          SbbIconTestingModule,
+        ],
+        declarations: [ToggleTemplateDrivenTestComponent],
+      }).compileComponents();
+    }));
 
     beforeEach(() => {
       fixtureTest = TestBed.createComponent(ToggleTemplateDrivenTestComponent);
@@ -398,14 +392,12 @@ describe('SbbToggle', () => {
   describe('simple case using mock component', () => {
     let fixtureTest: ComponentFixture<ToggleSimpleCaseTestComponent>;
 
-    beforeEach(
-      waitForAsync(() => {
-        TestBed.configureTestingModule({
-          imports: [SbbToggleModule, CommonModule, NoopAnimationsModule, SbbIconTestingModule],
-          declarations: [ToggleSimpleCaseTestComponent],
-        }).compileComponents();
-      })
-    );
+    beforeEach(waitForAsync(() => {
+      TestBed.configureTestingModule({
+        imports: [SbbToggleModule, CommonModule, NoopAnimationsModule, SbbIconTestingModule],
+        declarations: [ToggleSimpleCaseTestComponent],
+      }).compileComponents();
+    }));
 
     beforeEach(() => {
       fixtureTest = TestBed.createComponent(ToggleSimpleCaseTestComponent);
@@ -447,21 +439,19 @@ describe('SbbToggle', () => {
   describe('case with only toggle content for second toggle', () => {
     let fixtureTest: ComponentFixture<ToggleOnlySecondWithContentTestComponent>;
 
-    beforeEach(
-      waitForAsync(() => {
-        TestBed.configureTestingModule({
-          imports: [
-            SbbToggleModule,
-            CommonModule,
-            NoopAnimationsModule,
-            ReactiveFormsModule,
-            SbbIconModule,
-            SbbIconTestingModule,
-          ],
-          declarations: [ToggleOnlySecondWithContentTestComponent],
-        }).compileComponents();
-      })
-    );
+    beforeEach(waitForAsync(() => {
+      TestBed.configureTestingModule({
+        imports: [
+          SbbToggleModule,
+          CommonModule,
+          NoopAnimationsModule,
+          ReactiveFormsModule,
+          SbbIconModule,
+          SbbIconTestingModule,
+        ],
+        declarations: [ToggleOnlySecondWithContentTestComponent],
+      }).compileComponents();
+    }));
 
     beforeEach(() => {
       fixtureTest = TestBed.createComponent(ToggleOnlySecondWithContentTestComponent);

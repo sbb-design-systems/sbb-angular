@@ -21,19 +21,17 @@ import {
 describe('AccordionDirective', () => {
   let focusMonitor: FocusMonitor;
 
-  beforeEach(
-    waitForAsync(() => {
-      TestBed.configureTestingModule({
-        imports: [BrowserAnimationsModule, SbbAccordionModule, SbbIconTestingModule],
-        declarations: [AccordionWithHideToggle, NestedPanel, SetOfItems, NestedAccordions],
-      });
-      TestBed.compileComponents();
+  beforeEach(waitForAsync(() => {
+    TestBed.configureTestingModule({
+      imports: [BrowserAnimationsModule, SbbAccordionModule, SbbIconTestingModule],
+      declarations: [AccordionWithHideToggle, NestedPanel, SetOfItems, NestedAccordions],
+    });
+    TestBed.compileComponents();
 
-      inject([FocusMonitor], (fm: FocusMonitor) => {
-        focusMonitor = fm;
-      })();
-    })
-  );
+    inject([FocusMonitor], (fm: FocusMonitor) => {
+      focusMonitor = fm;
+    })();
+  }));
 
   it('should ensure only one item is expanded at a time', () => {
     const fixture = TestBed.createComponent(SetOfItems);

@@ -150,27 +150,25 @@ class RadioButtonWithPredefinedTabindex {}
 class RadioButtonWithPredefinedAriaAttributes {}
 
 describe('RadioButton', () => {
-  beforeEach(
-    waitForAsync(() => {
-      TestBed.configureTestingModule({
-        imports: [FormsModule, ReactiveFormsModule, SbbRadioButtonModule],
-        declarations: [
-          DisableableSbbRadioButton,
-          FocusableSbbRadioButton,
-          RadiosInsideRadioGroup,
-          RadioGroupWithNgModel,
-          RadioGroupWithFormControl,
-          StandaloneRadioButtons,
-          InterleavedRadioGroup,
-          TranscludingWrapper,
-          RadioButtonWithPredefinedTabindex,
-          RadioButtonWithPredefinedAriaAttributes,
-        ],
-      });
+  beforeEach(waitForAsync(() => {
+    TestBed.configureTestingModule({
+      imports: [FormsModule, ReactiveFormsModule, SbbRadioButtonModule],
+      declarations: [
+        DisableableSbbRadioButton,
+        FocusableSbbRadioButton,
+        RadiosInsideRadioGroup,
+        RadioGroupWithNgModel,
+        RadioGroupWithFormControl,
+        StandaloneRadioButtons,
+        InterleavedRadioGroup,
+        TranscludingWrapper,
+        RadioButtonWithPredefinedTabindex,
+        RadioButtonWithPredefinedAriaAttributes,
+      ],
+    });
 
-      TestBed.compileComponents();
-    })
-  );
+    TestBed.compileComponents();
+  }));
 
   describe('inside of a group', () => {
     let fixture: ComponentFixture<RadiosInsideRadioGroup>;
@@ -182,27 +180,25 @@ describe('RadioButton', () => {
     let radioInstances: SbbRadioButton[];
     let testComponent: RadiosInsideRadioGroup;
 
-    beforeEach(
-      waitForAsync(() => {
-        fixture = TestBed.createComponent(RadiosInsideRadioGroup);
-        fixture.detectChanges();
+    beforeEach(waitForAsync(() => {
+      fixture = TestBed.createComponent(RadiosInsideRadioGroup);
+      fixture.detectChanges();
 
-        testComponent = fixture.debugElement.componentInstance;
+      testComponent = fixture.debugElement.componentInstance;
 
-        groupDebugElement = fixture.debugElement.query(By.directive(SbbRadioGroup))!;
-        groupInstance = groupDebugElement.injector.get<SbbRadioGroup>(SbbRadioGroup);
+      groupDebugElement = fixture.debugElement.query(By.directive(SbbRadioGroup))!;
+      groupInstance = groupDebugElement.injector.get<SbbRadioGroup>(SbbRadioGroup);
 
-        radioDebugElements = fixture.debugElement.queryAll(By.directive(SbbRadioButton));
-        radioInstances = radioDebugElements.map((debugEl) => debugEl.componentInstance);
+      radioDebugElements = fixture.debugElement.queryAll(By.directive(SbbRadioButton));
+      radioInstances = radioDebugElements.map((debugEl) => debugEl.componentInstance);
 
-        radioLabelElements = radioDebugElements.map(
-          (debugEl) => debugEl.query(By.css('label'))!.nativeElement
-        );
-        radioInputElements = radioDebugElements.map(
-          (debugEl) => debugEl.query(By.css('input'))!.nativeElement
-        );
-      })
-    );
+      radioLabelElements = radioDebugElements.map(
+        (debugEl) => debugEl.query(By.css('label'))!.nativeElement
+      );
+      radioInputElements = radioDebugElements.map(
+        (debugEl) => debugEl.query(By.css('input'))!.nativeElement
+      );
+    }));
 
     it('should set individual radio names based on the group name', () => {
       expect(groupInstance.name).toBeTruthy();
@@ -844,17 +840,15 @@ describe('RadioButton', () => {
     let radioDebugElements: DebugElement[];
     let radioInstances: SbbRadioButton[];
 
-    beforeEach(
-      waitForAsync(() => {
-        fixture = TestBed.createComponent(InterleavedRadioGroup);
-        fixture.detectChanges();
+    beforeEach(waitForAsync(() => {
+      fixture = TestBed.createComponent(InterleavedRadioGroup);
+      fixture.detectChanges();
 
-        groupDebugElement = fixture.debugElement.query(By.directive(SbbRadioGroup))!;
-        groupInstance = groupDebugElement.injector.get<SbbRadioGroup>(SbbRadioGroup);
-        radioDebugElements = fixture.debugElement.queryAll(By.directive(SbbRadioButton));
-        radioInstances = radioDebugElements.map((debugEl) => debugEl.componentInstance);
-      })
-    );
+      groupDebugElement = fixture.debugElement.query(By.directive(SbbRadioGroup))!;
+      groupInstance = groupDebugElement.injector.get<SbbRadioGroup>(SbbRadioGroup);
+      radioDebugElements = fixture.debugElement.queryAll(By.directive(SbbRadioButton));
+      radioInstances = radioDebugElements.map((debugEl) => debugEl.componentInstance);
+    }));
 
     it('should initialize selection of radios based on model value', () => {
       expect(groupInstance.selected).toBe(radioInstances[2]);

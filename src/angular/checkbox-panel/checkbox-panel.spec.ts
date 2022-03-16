@@ -66,25 +66,23 @@ class CheckboxPanelIconTest {
 }
 
 describe('SbbCheckboxPanel', () => {
-  beforeEach(
-    waitForAsync(() => {
-      TestBed.configureTestingModule({
-        imports: [
-          CommonModule,
-          FormsModule,
-          ReactiveFormsModule,
-          SbbCheckboxPanelModule,
-          SbbIconModule,
-          SbbIconTestingModule,
-        ],
-        declarations: [
-          ModelOptionSelectionMultipleTest,
-          CheckboxPanelDirectivesTest,
-          CheckboxPanelIconTest,
-        ],
-      }).compileComponents();
-    })
-  );
+  beforeEach(waitForAsync(() => {
+    TestBed.configureTestingModule({
+      imports: [
+        CommonModule,
+        FormsModule,
+        ReactiveFormsModule,
+        SbbCheckboxPanelModule,
+        SbbIconModule,
+        SbbIconTestingModule,
+      ],
+      declarations: [
+        ModelOptionSelectionMultipleTest,
+        CheckboxPanelDirectivesTest,
+        CheckboxPanelIconTest,
+      ],
+    }).compileComponents();
+  }));
 
   describe('multi selection', () => {
     let component: ModelOptionSelectionMultipleTest;

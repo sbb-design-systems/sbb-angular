@@ -34,28 +34,26 @@ describe('SbbTabHeader', () => {
   let fixture: ComponentFixture<SimpleTabHeaderApp>;
   let appComponent: SimpleTabHeaderApp;
 
-  beforeEach(
-    waitForAsync(() => {
-      dir = 'ltr';
-      TestBed.configureTestingModule({
-        imports: [
-          CommonModule,
-          PortalModule,
-          ScrollingModule,
-          ObserversModule,
-          SbbIconTestingModule,
-          SbbIconModule,
-        ],
-        declarations: [SbbTabHeader, SbbTabLabelWrapper, SimpleTabHeaderApp],
-        providers: [
-          ViewportRuler,
-          { provide: Directionality, useFactory: () => ({ value: dir, change: change }) },
-        ],
-      });
+  beforeEach(waitForAsync(() => {
+    dir = 'ltr';
+    TestBed.configureTestingModule({
+      imports: [
+        CommonModule,
+        PortalModule,
+        ScrollingModule,
+        ObserversModule,
+        SbbIconTestingModule,
+        SbbIconModule,
+      ],
+      declarations: [SbbTabHeader, SbbTabLabelWrapper, SimpleTabHeaderApp],
+      providers: [
+        ViewportRuler,
+        { provide: Directionality, useFactory: () => ({ value: dir, change: change }) },
+      ],
+    });
 
-      TestBed.compileComponents();
-    })
-  );
+    TestBed.compileComponents();
+  }));
 
   describe('focusing', () => {
     let tabListContainer: HTMLElement;

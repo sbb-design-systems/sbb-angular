@@ -8,25 +8,23 @@ import { SbbIconTestingModule } from '@sbb-esta/angular/icon/testing';
 import { SbbButton, SbbButtonModule } from './index';
 
 describe('SbbButton', () => {
-  beforeEach(
-    waitForAsync(() => {
-      TestBed.configureTestingModule({
-        imports: [SbbButtonModule, SbbIconModule, SbbIconTestingModule],
-        declarations: [
-          ButtonTest,
-          ButtonWithCustomSvgIconTest,
-          ButtonAltTest,
-          ButtonSecondaryTest,
-          ButtonGhostTest,
-          ButtonIconTest,
-          ButtonFramelessTest,
-          LinkTest,
-        ],
-      });
+  beforeEach(waitForAsync(() => {
+    TestBed.configureTestingModule({
+      imports: [SbbButtonModule, SbbIconModule, SbbIconTestingModule],
+      declarations: [
+        ButtonTest,
+        ButtonWithCustomSvgIconTest,
+        ButtonAltTest,
+        ButtonSecondaryTest,
+        ButtonGhostTest,
+        ButtonIconTest,
+        ButtonFramelessTest,
+        LinkTest,
+      ],
+    });
 
-      TestBed.compileComponents();
-    })
-  );
+    TestBed.compileComponents();
+  }));
 
   // General button tests
   it('should not clear previous defined classes', () => {

@@ -29,14 +29,12 @@ class FormControlTimeInput {
 }
 
 describe('SbbTimeInput', () => {
-  beforeEach(
-    waitForAsync(() => {
-      TestBed.configureTestingModule({
-        imports: [FormsModule, ReactiveFormsModule, SbbTimeInputModule, SbbInputModule],
-        declarations: [BasicTimeInput, FormControlTimeInput, PlaceholderTimeInput],
-      }).compileComponents();
-    })
-  );
+  beforeEach(waitForAsync(() => {
+    TestBed.configureTestingModule({
+      imports: [FormsModule, ReactiveFormsModule, SbbTimeInputModule, SbbInputModule],
+      declarations: [BasicTimeInput, FormControlTimeInput, PlaceholderTimeInput],
+    }).compileComponents();
+  }));
 
   const values = [
     { input: '16:30', expectedOutput: '16:30' },

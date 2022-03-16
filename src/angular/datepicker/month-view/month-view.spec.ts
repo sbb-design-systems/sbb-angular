@@ -53,24 +53,22 @@ class MonthViewWithDateFilterComponent {
 }
 
 describe('SbbMonthView', () => {
-  beforeEach(
-    waitForAsync(() => {
-      TestBed.configureTestingModule({
-        declarations: [
-          SbbCalendarBody,
-          SbbMonthView,
+  beforeEach(waitForAsync(() => {
+    TestBed.configureTestingModule({
+      declarations: [
+        SbbCalendarBody,
+        SbbMonthView,
 
-          // Test components.
-          StandardMonthViewComponent,
-          MonthViewWithDateFilterComponent,
-        ],
-        providers: [
-          { provide: SbbDateAdapter, useClass: SbbNativeDateAdapter },
-          { provide: SBB_DATE_FORMATS, useValue: SBB_DATE_PIPE_DATE_FORMATS },
-        ],
-      }).compileComponents();
-    })
-  );
+        // Test components.
+        StandardMonthViewComponent,
+        MonthViewWithDateFilterComponent,
+      ],
+      providers: [
+        { provide: SbbDateAdapter, useClass: SbbNativeDateAdapter },
+        { provide: SBB_DATE_FORMATS, useValue: SBB_DATE_PIPE_DATE_FORMATS },
+      ],
+    }).compileComponents();
+  }));
 
   describe('standard month view', () => {
     let fixture: ComponentFixture<StandardMonthViewComponent>;

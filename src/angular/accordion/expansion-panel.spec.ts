@@ -32,24 +32,22 @@ describe('SbbExpansionPanel', () => {
     jasmine.DEFAULT_TIMEOUT_INTERVAL = originalTimeout;
   });
 
-  beforeEach(
-    waitForAsync(() => {
-      TestBed.configureTestingModule({
-        imports: [NoopAnimationsModule, SbbAccordionModule, SbbIconTestingModule],
-        declarations: [
-          PanelWithContent,
-          PanelWithContentInNgIf,
-          PanelWithCustomMargin,
-          LazyPanelWithContent,
-          LazyPanelOpenOnLoad,
-          PanelWithTwoWayBinding,
-          PanelWithHeaderTabindex,
-          NestedLazyPanelWithContent,
-        ],
-      });
-      TestBed.compileComponents();
-    })
-  );
+  beforeEach(waitForAsync(() => {
+    TestBed.configureTestingModule({
+      imports: [NoopAnimationsModule, SbbAccordionModule, SbbIconTestingModule],
+      declarations: [
+        PanelWithContent,
+        PanelWithContentInNgIf,
+        PanelWithCustomMargin,
+        LazyPanelWithContent,
+        LazyPanelOpenOnLoad,
+        PanelWithTwoWayBinding,
+        PanelWithHeaderTabindex,
+        NestedLazyPanelWithContent,
+      ],
+    });
+    TestBed.compileComponents();
+  }));
 
   it('should expand and collapse the panel', fakeAsync(() => {
     const fixture = TestBed.createComponent(PanelWithContent);

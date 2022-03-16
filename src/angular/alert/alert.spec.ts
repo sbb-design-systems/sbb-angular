@@ -8,14 +8,12 @@ import { SbbIconTestingModule } from '@sbb-esta/angular/icon/testing';
 import { SbbAlert, SbbAlertModule, SbbAlertOutlet, SbbAlertService } from './index';
 
 describe('SbbAlert', () => {
-  beforeEach(
-    waitForAsync(() => {
-      TestBed.configureTestingModule({
-        imports: [RouterTestingModule, NoopAnimationsModule, SbbIconTestingModule, SbbAlertModule],
-        declarations: [AlertSimple, AlertRouterLink, AlertExternalLink],
-      }).compileComponents();
-    })
-  );
+  beforeEach(waitForAsync(() => {
+    TestBed.configureTestingModule({
+      imports: [RouterTestingModule, NoopAnimationsModule, SbbIconTestingModule, SbbAlertModule],
+      declarations: [AlertSimple, AlertRouterLink, AlertExternalLink],
+    }).compileComponents();
+  }));
 
   describe('normal variant', () => {
     let fixture: ComponentFixture<AlertSimple>;
@@ -107,19 +105,12 @@ describe('SbbAlertOutlet', () => {
     let fixture: ComponentFixture<AlertOutletSimple>;
     let alertService: SbbAlertService;
 
-    beforeEach(
-      waitForAsync(() => {
-        TestBed.configureTestingModule({
-          imports: [
-            RouterTestingModule,
-            NoopAnimationsModule,
-            SbbIconTestingModule,
-            SbbAlertModule,
-          ],
-          declarations: [AlertOutletSimple],
-        }).compileComponents();
-      })
-    );
+    beforeEach(waitForAsync(() => {
+      TestBed.configureTestingModule({
+        imports: [RouterTestingModule, NoopAnimationsModule, SbbIconTestingModule, SbbAlertModule],
+        declarations: [AlertOutletSimple],
+      }).compileComponents();
+    }));
 
     beforeEach(() => {
       fixture = TestBed.createComponent(AlertOutletSimple);
@@ -234,19 +225,12 @@ describe('SbbAlertOutlet', () => {
     let fixture: ComponentFixture<AlertOutletWithInnerAlert>;
     let alertService: SbbAlertService;
 
-    beforeEach(
-      waitForAsync(() => {
-        TestBed.configureTestingModule({
-          imports: [
-            RouterTestingModule,
-            NoopAnimationsModule,
-            SbbIconTestingModule,
-            SbbAlertModule,
-          ],
-          declarations: [AlertOutletWithInnerAlert],
-        }).compileComponents();
-      })
-    );
+    beforeEach(waitForAsync(() => {
+      TestBed.configureTestingModule({
+        imports: [RouterTestingModule, NoopAnimationsModule, SbbIconTestingModule, SbbAlertModule],
+        declarations: [AlertOutletWithInnerAlert],
+      }).compileComponents();
+    }));
 
     beforeEach(() => {
       fixture = TestBed.createComponent(AlertOutletWithInnerAlert);
@@ -280,19 +264,12 @@ describe('SbbAlertOutlet', () => {
   });
 
   describe('with two outlets', () => {
-    beforeEach(
-      waitForAsync(() => {
-        TestBed.configureTestingModule({
-          imports: [
-            RouterTestingModule,
-            NoopAnimationsModule,
-            SbbIconTestingModule,
-            SbbAlertModule,
-          ],
-          declarations: [AlertOutletError],
-        }).compileComponents();
-      })
-    );
+    beforeEach(waitForAsync(() => {
+      TestBed.configureTestingModule({
+        imports: [RouterTestingModule, NoopAnimationsModule, SbbIconTestingModule, SbbAlertModule],
+        declarations: [AlertOutletError],
+      }).compileComponents();
+    }));
 
     it('should throw', () => {
       expect(() => TestBed.createComponent(AlertOutletError)).toThrow();
@@ -303,19 +280,12 @@ describe('SbbAlertOutlet', () => {
     let fixture: ComponentFixture<AlertOutletWithInnerAlert>;
     let alertService: SbbAlertService;
 
-    beforeEach(
-      waitForAsync(() => {
-        TestBed.configureTestingModule({
-          imports: [
-            RouterTestingModule,
-            NoopAnimationsModule,
-            SbbIconTestingModule,
-            SbbAlertModule,
-          ],
-          declarations: [AlertOutletWithoutOutlet],
-        }).compileComponents();
-      })
-    );
+    beforeEach(waitForAsync(() => {
+      TestBed.configureTestingModule({
+        imports: [RouterTestingModule, NoopAnimationsModule, SbbIconTestingModule, SbbAlertModule],
+        declarations: [AlertOutletWithoutOutlet],
+      }).compileComponents();
+    }));
 
     beforeEach(() => {
       fixture = TestBed.createComponent(AlertOutletWithoutOutlet);

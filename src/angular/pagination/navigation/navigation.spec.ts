@@ -64,14 +64,12 @@ describe('SbbNavigation', () => {
   let component: SbbNavigation;
   let fixture: ComponentFixture<SbbNavigation>;
 
-  beforeEach(
-    waitForAsync(() => {
-      TestBed.configureTestingModule({
-        imports: [SbbIconModule, SbbIconTestingModule, CommonModule, RouterTestingModule],
-        declarations: [SbbNavigation],
-      }).compileComponents();
-    })
-  );
+  beforeEach(waitForAsync(() => {
+    TestBed.configureTestingModule({
+      imports: [SbbIconModule, SbbIconTestingModule, CommonModule, RouterTestingModule],
+      declarations: [SbbNavigation],
+    }).compileComponents();
+  }));
 
   beforeEach(() => {
     fixture = TestBed.createComponent(SbbNavigation);
@@ -88,20 +86,18 @@ describe('SbbNavigation behaviour', () => {
   let component: NavigationTestComponent;
   let fixture: ComponentFixture<NavigationTestComponent>;
 
-  beforeEach(
-    waitForAsync(() => {
-      TestBed.configureTestingModule({
-        imports: [
-          SbbPaginationModule,
-          SbbIconTestingModule,
-          RouterTestingModule,
-          SbbButtonModule,
-          FormsModule,
-        ],
-        declarations: [NavigationTestComponent],
-      }).compileComponents();
-    })
-  );
+  beforeEach(waitForAsync(() => {
+    TestBed.configureTestingModule({
+      imports: [
+        SbbPaginationModule,
+        SbbIconTestingModule,
+        RouterTestingModule,
+        SbbButtonModule,
+        FormsModule,
+      ],
+      declarations: [NavigationTestComponent],
+    }).compileComponents();
+  }));
 
   beforeEach(() => {
     fixture = TestBed.createComponent(NavigationTestComponent);

@@ -22,26 +22,24 @@ describe('SbbTabBody', () => {
   let dir: Direction = 'ltr';
   const dirChange: Subject<Direction> = new Subject<Direction>();
 
-  beforeEach(
-    waitForAsync(() => {
-      dir = 'ltr';
-      TestBed.configureTestingModule({
-        imports: [
-          CommonModule,
-          PortalModule,
-          NoopAnimationsModule,
-          SbbIconTestingModule,
-          SbbIconModule,
-        ],
-        declarations: [SbbTabBody, SbbTabBodyPortal, SimpleTabBodyApp],
-        providers: [
-          { provide: Directionality, useFactory: () => ({ value: dir, change: dirChange }) },
-        ],
-      });
+  beforeEach(waitForAsync(() => {
+    dir = 'ltr';
+    TestBed.configureTestingModule({
+      imports: [
+        CommonModule,
+        PortalModule,
+        NoopAnimationsModule,
+        SbbIconTestingModule,
+        SbbIconModule,
+      ],
+      declarations: [SbbTabBody, SbbTabBodyPortal, SimpleTabBodyApp],
+      providers: [
+        { provide: Directionality, useFactory: () => ({ value: dir, change: dirChange }) },
+      ],
+    });
 
-      TestBed.compileComponents();
-    })
-  );
+    TestBed.compileComponents();
+  }));
 
   describe('when initialized as center', () => {
     let fixture: ComponentFixture<SimpleTabBodyApp>;

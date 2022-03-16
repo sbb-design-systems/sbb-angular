@@ -29,14 +29,12 @@ class BasicTextexpand {
 class InvalidTextexpand {}
 
 describe('SbbTextexpand', () => {
-  beforeEach(
-    waitForAsync(() => {
-      TestBed.configureTestingModule({
-        declarations: [BasicTextexpand, InvalidTextexpand],
-        imports: [CommonModule, SbbTextexpandModule],
-      }).compileComponents();
-    })
-  );
+  beforeEach(waitForAsync(() => {
+    TestBed.configureTestingModule({
+      declarations: [BasicTextexpand, InvalidTextexpand],
+      imports: [CommonModule, SbbTextexpandModule],
+    }).compileComponents();
+  }));
 
   it('should expand and collapse text', () => {
     const fixture = TestBed.createComponent(BasicTextexpand);

@@ -6,14 +6,12 @@ describe('SbbEsriBasemapGallery', () => {
   let component: SbbEsriBasemapGallery;
   let fixture: ComponentFixture<SbbEsriBasemapGallery>;
 
-  beforeEach(
-    waitForAsync(() => {
-      TestBed.configureTestingModule({
-        declarations: [SbbEsriBasemapGallery],
-        providers: [],
-      }).compileComponents();
-    })
-  );
+  beforeEach(waitForAsync(() => {
+    TestBed.configureTestingModule({
+      declarations: [SbbEsriBasemapGallery],
+      providers: [],
+    }).compileComponents();
+  }));
 
   beforeEach(() => {
     fixture = TestBed.createComponent(SbbEsriBasemapGallery);

@@ -29,23 +29,21 @@ describe('SbbSort', () => {
     let fixture: ComponentFixture<SimpleSbbSortApp>;
     let component: SimpleSbbSortApp;
 
-    beforeEach(
-      waitForAsync(() => {
-        TestBed.configureTestingModule({
-          imports: [SbbTableModule, CdkTableModule, NoopAnimationsModule],
-          declarations: [
-            SimpleSbbSortApp,
-            CdkTableSbbSortApp,
-            SbbTableSbbSortApp,
-            SbbSortHeaderMissingSbbSortApp,
-            SbbSortDuplicateSbbSortableIdsApp,
-            SbbSortableMissingIdApp,
-            SbbSortableInvalidDirection,
-            SbbSortWithArrowPosition,
-          ],
-        }).compileComponents();
-      })
-    );
+    beforeEach(waitForAsync(() => {
+      TestBed.configureTestingModule({
+        imports: [SbbTableModule, CdkTableModule, NoopAnimationsModule],
+        declarations: [
+          SimpleSbbSortApp,
+          CdkTableSbbSortApp,
+          SbbTableSbbSortApp,
+          SbbSortHeaderMissingSbbSortApp,
+          SbbSortDuplicateSbbSortableIdsApp,
+          SbbSortableMissingIdApp,
+          SbbSortableInvalidDirection,
+          SbbSortWithArrowPosition,
+        ],
+      }).compileComponents();
+    }));
 
     beforeEach(() => {
       fixture = TestBed.createComponent(SimpleSbbSortApp);
@@ -507,22 +505,20 @@ describe('SbbSort', () => {
     let fixture: ComponentFixture<SbbSortWithoutExplicitInputs>;
     let component: SbbSortWithoutExplicitInputs;
 
-    beforeEach(
-      waitForAsync(() => {
-        TestBed.configureTestingModule({
-          imports: [SbbTableModule, CdkTableModule, NoopAnimationsModule],
-          declarations: [SbbSortWithoutExplicitInputs],
-          providers: [
-            {
-              provide: SBB_SORT_DEFAULT_OPTIONS,
-              useValue: {
-                disableClear: true,
-              },
+    beforeEach(waitForAsync(() => {
+      TestBed.configureTestingModule({
+        imports: [SbbTableModule, CdkTableModule, NoopAnimationsModule],
+        declarations: [SbbSortWithoutExplicitInputs],
+        providers: [
+          {
+            provide: SBB_SORT_DEFAULT_OPTIONS,
+            useValue: {
+              disableClear: true,
             },
-          ],
-        }).compileComponents();
-      })
-    );
+          },
+        ],
+      }).compileComponents();
+    }));
 
     beforeEach(() => {
       fixture = TestBed.createComponent(SbbSortWithoutExplicitInputs);
@@ -543,23 +539,21 @@ describe('SbbSort', () => {
   describe('with default arrowPosition', () => {
     let fixture: ComponentFixture<SbbSortWithoutInputs>;
 
-    beforeEach(
-      waitForAsync(() => {
-        TestBed.configureTestingModule({
-          imports: [SbbTableModule, CdkTableModule, NoopAnimationsModule],
-          declarations: [SbbSortWithoutInputs],
-          providers: [
-            {
-              provide: SBB_SORT_DEFAULT_OPTIONS,
-              useValue: {
-                disableClear: true,
-                arrowPosition: 'before',
-              },
+    beforeEach(waitForAsync(() => {
+      TestBed.configureTestingModule({
+        imports: [SbbTableModule, CdkTableModule, NoopAnimationsModule],
+        declarations: [SbbSortWithoutInputs],
+        providers: [
+          {
+            provide: SBB_SORT_DEFAULT_OPTIONS,
+            useValue: {
+              disableClear: true,
+              arrowPosition: 'before',
             },
-          ],
-        }).compileComponents();
-      })
-    );
+          },
+        ],
+      }).compileComponents();
+    }));
 
     beforeEach(() => {
       fixture = TestBed.createComponent(SbbSortWithoutInputs);

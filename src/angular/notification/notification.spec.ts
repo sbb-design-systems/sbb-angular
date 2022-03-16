@@ -15,19 +15,17 @@ describe('SbbNotification', () => {
     let component: SbbNotification;
     let fixture: ComponentFixture<SbbNotification>;
 
-    beforeEach(
-      waitForAsync(() => {
-        TestBed.configureTestingModule({
-          imports: [
-            CommonModule,
-            NoopAnimationsModule,
-            SbbNotificationModule,
-            SbbIconModule,
-            SbbIconTestingModule,
-          ],
-        }).compileComponents();
-      })
-    );
+    beforeEach(waitForAsync(() => {
+      TestBed.configureTestingModule({
+        imports: [
+          CommonModule,
+          NoopAnimationsModule,
+          SbbNotificationModule,
+          SbbIconModule,
+          SbbIconTestingModule,
+        ],
+      }).compileComponents();
+    }));
 
     beforeEach(() => {
       fixture = TestBed.createComponent(SbbNotification);
@@ -44,21 +42,19 @@ describe('SbbNotification', () => {
     let testFixture: ComponentFixture<NotificationMockComponent>;
     let testComponent: NotificationMockComponent;
 
-    beforeEach(
-      waitForAsync(() => {
-        TestBed.configureTestingModule({
-          imports: [
-            CommonModule,
-            FormsModule,
-            NoopAnimationsModule,
-            SbbNotificationModule,
-            SbbIconModule,
-            SbbIconTestingModule,
-          ],
-          declarations: [NotificationMockComponent],
-        }).compileComponents();
-      })
-    );
+    beforeEach(waitForAsync(() => {
+      TestBed.configureTestingModule({
+        imports: [
+          CommonModule,
+          FormsModule,
+          NoopAnimationsModule,
+          SbbNotificationModule,
+          SbbIconModule,
+          SbbIconTestingModule,
+        ],
+        declarations: [NotificationMockComponent],
+      }).compileComponents();
+    }));
 
     beforeEach(() => {
       testFixture = TestBed.createComponent(NotificationMockComponent);
