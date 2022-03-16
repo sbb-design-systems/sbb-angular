@@ -75,6 +75,16 @@
       }
     },
     {
+      "matchPackageNames": ["prettier"],
+      "postUpgradeTasks": {
+        "commands": [
+          "yarn install --frozen-lockfile --non-interactive",
+          "yarn format:prettier"
+        ],
+        "fileFilters": ["**/**"]
+      }
+    },
+    {
       "matchPackageNames": ["renovate"],
       "extends": ["schedule:monthly"]
     }
