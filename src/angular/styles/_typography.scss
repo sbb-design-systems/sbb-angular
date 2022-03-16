@@ -1117,6 +1117,25 @@ textarea {
 }
 
 // ----------------------------------------------------------------------------------------------------
+// Helper Classes
+// ----------------------------------------------------------------------------------------------------
+
+.sbb-fit-to-parent-hidden {
+  opacity: 0;
+  position: absolute;
+  top: 0;
+  left: 0;
+  margin: 0;
+  width: 100%;
+  height: 100%;
+  cursor: inherit;
+
+  // Puts the element behind the parent while keeping it visible so that
+  // it allows `click` events to propagate up.
+  z-index: -1;
+}
+
+// ----------------------------------------------------------------------------------------------------
 // Button Resets
 // ----------------------------------------------------------------------------------------------------
 
@@ -1741,21 +1760,6 @@ textarea {
   }
 }
 
-.sbb-radio-input {
-  opacity: 0;
-  position: absolute;
-  top: 0;
-  left: 0;
-  margin: 0;
-  width: 100%;
-  height: 100%;
-  cursor: inherit;
-
-  // Puts the input behind the circle while keeping it visible so that
-  // it allows `click` events to propagate up to the `label` wrapper.
-  z-index: -1;
-}
-
 // ----------------------------------------------------------------------------------------------------
 // SBB Checkbox Panel & Radio Button Panel
 // ----------------------------------------------------------------------------------------------------
@@ -1770,7 +1774,6 @@ textarea {
   color: var(--sbb-color-grey);
   width: 100%;
   transition: border-color 0.15s ease-in-out;
-  @include user-select(none);
   position: relative;
 
   &.sbb-selection-checked {
@@ -2535,19 +2538,6 @@ $menuItemPaddingTopBottom: 4;
 }
 
 // ----------------------------------------------------------------------------------------------------
-// Dividers (should to be at the very bottom of the typography to ensure overwriting styles which have already a margin defined)
-// ----------------------------------------------------------------------------------------------------
-
-@each $size in thin, small, medium, big {
-  @each $position in top, bottom {
-    .sbb-divider-#{$size}-vertical,
-    .sbb-divider-#{$size}-#{$position} {
-      margin-#{$position}: var(--sbb-divider-#{$size});
-    }
-  }
-}
-
-// ----------------------------------------------------------------------------------------------------
 // Sbb Tooltip
 // ----------------------------------------------------------------------------------------------------
 
@@ -2562,4 +2552,17 @@ $menuItemPaddingTopBottom: 4;
   outline: none;
   color: var(--sbb-color-call-to-action-hover);
   border-color: var(--sbb-color-call-to-action-hover);
+}
+
+// ----------------------------------------------------------------------------------------------------
+// Dividers (should to be at the very bottom of the typography to ensure overwriting styles which have already a margin defined)
+// ----------------------------------------------------------------------------------------------------
+
+@each $size in thin, small, medium, big {
+  @each $position in top, bottom {
+    .sbb-divider-#{$size}-vertical,
+    .sbb-divider-#{$size}-#{$position} {
+      margin-#{$position}: var(--sbb-divider-#{$size});
+    }
+  }
 }

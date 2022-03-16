@@ -58,6 +58,8 @@
 }
 
 .sbb-tag-label {
+  position: relative;
+
   .sbb-tag:not(.sbb-tag-disabled):is(:hover, :focus, .cdk-focused) & {
     background-color: var(--sbb-color-cloud);
     color: var(--sbb-color-black);
