@@ -1,4 +1,4 @@
-import { Direction, Directionality } from '@angular/cdk/bidi';
+import { Direction } from '@angular/cdk/bidi';
 import { END, ENTER, HOME, LEFT_ARROW, RIGHT_ARROW, SPACE } from '@angular/cdk/keycodes';
 import { MutationObserverFactory, ObserversModule } from '@angular/cdk/observers';
 import { PortalModule } from '@angular/cdk/portal';
@@ -23,19 +23,15 @@ import {
 } from '@sbb-esta/angular/core/testing';
 import { SbbIconModule } from '@sbb-esta/angular/icon';
 import { SbbIconTestingModule } from '@sbb-esta/angular/icon/testing';
-import { Subject } from 'rxjs';
 
 import { SbbTabHeader } from './tab-header';
 import { SbbTabLabelWrapper } from './tab-label-wrapper';
 
 describe('SbbTabHeader', () => {
-  let dir: Direction = 'ltr';
-  const change = new Subject<void>();
   let fixture: ComponentFixture<SimpleTabHeaderApp>;
   let appComponent: SimpleTabHeaderApp;
 
   beforeEach(waitForAsync(() => {
-    dir = 'ltr';
     TestBed.configureTestingModule({
       imports: [
         CommonModule,
@@ -46,10 +42,7 @@ describe('SbbTabHeader', () => {
         SbbIconModule,
       ],
       declarations: [SbbTabHeader, SbbTabLabelWrapper, SimpleTabHeaderApp],
-      providers: [
-        ViewportRuler,
-        { provide: Directionality, useFactory: () => ({ value: dir, change: change }) },
-      ],
+      providers: [ViewportRuler],
     });
 
     TestBed.compileComponents();
@@ -249,11 +242,11 @@ describe('SbbTabHeader', () => {
 
     describe('ltr', () => {
       beforeEach(() => {
-        dir = 'ltr';
         fixture = TestBed.createComponent(SimpleTabHeaderApp);
-        fixture.detectChanges();
 
         appComponent = fixture.componentInstance;
+        appComponent.dir = 'ltr';
+        fixture.detectChanges();
       });
 
       it('should show width when tab list width exceeds container', () => {
@@ -265,24 +258,6 @@ describe('SbbTabHeader', () => {
         fixture.detectChanges();
 
         expect(appComponent.tabHeader._showPaginationControls).toBe(true);
-      });
-
-      it('should scroll to show the focused tab label', () => {
-        appComponent.addTabsForScrolling();
-        fixture.detectChanges();
-        expect(appComponent.tabHeader.scrollDistance).toBe(0);
-
-        // Focus on the last tab, expect this to be the maximum scroll distance.
-        appComponent.tabHeader.focusIndex = appComponent.tabs.length - 1;
-        fixture.detectChanges();
-        expect(appComponent.tabHeader.scrollDistance).toBe(
-          appComponent.tabHeader._getMaxScrollDistance()
-        );
-
-        // Focus on the first tab, expect this to be the maximum scroll distance.
-        appComponent.tabHeader.focusIndex = 0;
-        fixture.detectChanges();
-        expect(appComponent.tabHeader.scrollDistance).toBe(0);
       });
 
       it('should scroll to show the focused tab label', () => {

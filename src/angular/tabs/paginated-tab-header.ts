@@ -26,7 +26,15 @@ import {
 import { ANIMATION_MODULE_TYPE } from '@angular/platform-browser/animations';
 import { mixinVariant } from '@sbb-esta/angular/core';
 import { fromEvent, merge, Subject, timer } from 'rxjs';
-import { distinctUntilChanged, filter, map, startWith, switchMap, takeUntil } from 'rxjs/operators';
+import {
+  distinctUntilChanged,
+  filter,
+  map,
+  startWith,
+  switchMap,
+  take,
+  takeUntil,
+} from 'rxjs/operators';
 
 /** Config used to bind passive event listeners */
 const passiveEventListenerOptions = normalizePassiveListenerOptions({
@@ -214,7 +222,9 @@ export abstract class SbbPaginatedTabHeader
 
     // Defer the first call in order to allow for slower browsers to lay out the elements.
     // This helps in cases where the user lands directly on a page with paginated tabs.
-    typeof requestAnimationFrame !== 'undefined' ? requestAnimationFrame(realign) : realign();
+    // Note that we use `onStable` instead of `requestAnimationFrame`, because the latter
+    // can hold up tests that are in a background tab.
+    this._ngZone.onStable.pipe(take(1)).subscribe(realign);
 
     // On window resize, items change or variant change, realign
     merge(resize, this._items.changes, this.variant)
