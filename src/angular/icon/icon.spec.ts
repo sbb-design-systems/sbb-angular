@@ -819,29 +819,6 @@ describe('SbbIcon', () => {
       expect(svgElement.getAttribute('viewBox')).toBe('0 0 43 43');
     });
 
-    it('should add an extra string to the end of `style` tags inside SVG', fakeAsync(() => {
-      iconRegistry.addSvgIconLiteral(
-        'fido',
-        trustHtml(`
-        <svg>
-          <style>#woof {color: blue;}</style>
-          <path id="woof" name="woof"></path>
-        </svg>
-      `)
-      );
-
-      const fixture = TestBed.createComponent(IconFromSvgName);
-      fixture.componentInstance.iconName = 'fido';
-      fixture.detectChanges();
-      const styleTag = fixture.nativeElement.querySelector('sbb-icon svg style');
-
-      // Note the extra whitespace at the end which is what we're testing for. This is a
-      // workaround for IE and Edge ignoring `style` tags in dynamically-created SVGs.
-      expect(styleTag.textContent).toBe('#woof {color: blue;} ');
-
-      tick();
-    }));
-
     it('should prepend the current path to attributes with `url()` references', fakeAsync(() => {
       iconRegistry.addSvgIconLiteral(
         'fido',
