@@ -192,7 +192,6 @@ export class SbbAutocompleteTrigger
   get autocomplete(): SbbAutocomplete {
     return this._autocomplete;
   }
-
   set autocomplete(autocomplete: SbbAutocomplete) {
     this._autocomplete = autocomplete;
 
@@ -232,7 +231,6 @@ export class SbbAutocompleteTrigger
         }
       });
   }
-
   private _autocomplete: SbbAutocomplete;
 
   /**
@@ -264,7 +262,6 @@ export class SbbAutocompleteTrigger
   get autocompleteDisabled(): boolean {
     return this._autocompleteDisabled;
   }
-
   set autocompleteDisabled(value: BooleanInput) {
     this._autocompleteDisabled = coerceBooleanProperty(value);
   }
@@ -327,7 +324,6 @@ export class SbbAutocompleteTrigger
   get panelOpen(): boolean {
     return this._overlayAttached && this.autocomplete.showPanel;
   }
-
   private _overlayAttached: boolean = false;
 
   /** Opens the autocomplete suggestion panel. */
