@@ -25,7 +25,7 @@ import {
   ViewEncapsulation,
 } from '@angular/core';
 
-import { sbbDialogAnimations } from './dialog-animations';
+import { defaultParams, sbbDialogAnimations } from './dialog-animations';
 import { SbbDialogConfig } from './dialog-config';
 
 /** Event that captures the state of dialog container animations. */
@@ -299,8 +299,11 @@ export class SbbDialogContainer extends _SbbDialogContainerBase {
     return {
       value: this._state,
       params: {
-        enterAnimationDuration: this._config.enterAnimationDuration || '150ms',
-        exitAnimationDuration: this._config.exitAnimationDuration || '75ms',
+        // See https://github.com/angular/components/commit/575332c9296c28776376f4b4f7fb39c9743761aa
+        'enterAnimationDuration': // prettier-ignore
+          this._config.enterAnimationDuration || defaultParams.params.enterAnimationDuration,
+        'exitAnimationDuration': // prettier-ignore
+          this._config.exitAnimationDuration || defaultParams.params.exitAnimationDuration,
       },
     };
   }

@@ -11,6 +11,14 @@ import {
 } from '@angular/animations';
 
 /**
+ * Default parameters for the animation for backwards compatibility.
+ * @docs-private
+ */
+export const defaultParams = {
+  params: { enterAnimationDuration: '150ms', exitAnimationDuration: '75ms' },
+};
+
+/**
  * Animations used by SbbDialog.
  * @docs-private
  */
@@ -32,14 +40,16 @@ export const sbbDialogAnimations: {
           style({ transform: 'none', opacity: 1 })
         ),
         query('@*', animateChild(), { optional: true }),
-      ])
+      ]),
+      defaultParams
     ),
     transition(
       '* => void, * => exit',
       group([
         animate('{{exitAnimationDuration}} cubic-bezier(0.4, 0.0, 0.2, 1)', style({ opacity: 0 })),
         query('@*', animateChild(), { optional: true }),
-      ])
+      ]),
+      defaultParams
     ),
   ]),
 };
