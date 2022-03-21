@@ -654,21 +654,24 @@ describe('SbbAutocomplete', () => {
         .toContain('Zwei');
     });
 
-    it('should show the panel when the first open is after the initial zone stabilization', waitForAsync(() => {
-      // Note that we're running outside the Angular zone, in order to be able
-      // to test properly without the subscription from `_subscribeToClosingActions`
-      // giving us a false positive.
-      // tslint:disable-next-line:no-non-null-assertion
-      fixture.ngZone!.runOutsideAngular(() => {
-        fixture.componentInstance.trigger.openPanel();
+    it(
+      'should show the panel when the first open is after the initial zone stabilization',
+      waitForAsync(() => {
+        // Note that we're running outside the Angular zone, in order to be able
+        // to test properly without the subscription from `_subscribeToClosingActions`
+        // giving us a false positive.
+        // tslint:disable-next-line:no-non-null-assertion
+        fixture.ngZone!.runOutsideAngular(() => {
+          fixture.componentInstance.trigger.openPanel();
 
-        Promise.resolve().then(() => {
-          expect(fixture.componentInstance.panel.showPanel)
-            .withContext(`Expected panel to be visible.`)
-            .toBe(true);
+          Promise.resolve().then(() => {
+            expect(fixture.componentInstance.panel.showPanel)
+              .withContext(`Expected panel to be visible.`)
+              .toBe(true);
+          });
         });
-      });
-    }));
+      })
+    );
 
     it('should close the panel when the user clicks away', fakeAsync(() => {
       dispatchFakeEvent(input, 'focusin');
@@ -3230,6 +3233,21 @@ describe('SbbAutocomplete', () => {
       expect(numberCtrl.value).toBe('ei');
       expect(input.value).toBe('ei');
       expect(trigger.panelOpen).toBe(false);
+      expect(closedSpy).toHaveBeenCalledTimes(1);
+    }));
+
+    it('should emit a closed event if no option is displayed', fakeAsync(() => {
+      const { openedSpy, closedSpy } = fixture.componentInstance;
+      const input: HTMLInputElement = fixture.nativeElement.querySelector('input');
+
+      typeInElement(input, 'Eins'); // Valid option
+      fixture.detectChanges();
+      tick();
+      expect(openedSpy).toHaveBeenCalledTimes(1);
+
+      typeInElement(input, 'Einss'); // Invalid option
+      fixture.detectChanges();
+      tick();
       expect(closedSpy).toHaveBeenCalledTimes(1);
     }));
 
