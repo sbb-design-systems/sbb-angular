@@ -299,7 +299,7 @@ export class SbbDialogContainer extends _SbbDialogContainerBase {
     return {
       value: this._state,
       params: {
-        // see https://github.com/angular/components/commit/575332c9296c28776376f4b4f7fb39c9743761aa
+        // See https://github.com/angular/components/commit/575332c9296c28776376f4b4f7fb39c9743761aa
         'enterAnimationDuration': // prettier-ignore
           this._config.enterAnimationDuration || defaultParams.params.enterAnimationDuration,
         'exitAnimationDuration': // prettier-ignore
