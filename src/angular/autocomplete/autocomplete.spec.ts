@@ -3242,7 +3242,7 @@ describe('SbbAutocomplete', () => {
 
       trigger.openPanel();
       fixture.detectChanges();
-      typeInElement(input, 'Zweiundvierzig'); // not a valid option
+      typeInElement(input, 'Zweiundvierzig'); // Invalid option
       fixture.detectChanges();
       tick();
 
