@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { SbbDialog, SbbDialogRef } from '@sbb-esta/angular/dialog';
+import { SbbDialog } from '@sbb-esta/angular/dialog';
 
 /**
  * @title Dialog Animations
@@ -33,6 +33,4 @@ export class DialogAnimationsExample {
     </div>
   `,
 })
-export class DialogAnimationsExampleDialog {
-  constructor(public dialogRef: SbbDialogRef<DialogAnimationsExampleDialog>) {}
-}
+export class DialogAnimationsExampleDialog {}

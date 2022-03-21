@@ -26,7 +26,7 @@ import { sbbLightboxAnimations } from './lightbox-animations';
     '[attr.aria-labelledby]': '_config.ariaLabel ? null : _ariaLabelledBy',
     '[attr.aria-label]': '_config.ariaLabel',
     '[attr.aria-describedby]': '_config.ariaDescribedBy || null',
-    '[@lightboxContainer]': '_state',
+    '[@lightboxContainer]': `_getAnimationState()`,
   },
 })
 export class SbbLightboxContainer extends _SbbDialogContainerBase {
