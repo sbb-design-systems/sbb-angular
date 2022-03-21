@@ -114,7 +114,7 @@ due to the timezone conversion.
 | ----------------------------- | ------------------------ |
 | new Date(2020, 0, 1, 0, 0, 0) | 2019-12-31T23:00:00.000Z |
 
-We recommend to convert the `Date` object to a string represation of only the date part.
+We recommend converting the `Date` object to a string representation of only the date part.
 
 | Usage examples | Format `yyyy-mm-dd`                                                                                                              |
 | -------------- | -------------------------------------------------------------------------------------------------------------------------------- |
