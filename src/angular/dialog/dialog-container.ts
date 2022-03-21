@@ -52,6 +52,9 @@ export function throwSbbDialogContentAlreadyAttachedError() {
 export abstract class _SbbDialogContainerBase extends BasePortalOutlet {
   protected _document: Document;
 
+  /** State of the animation. */
+  _state: 'void' | 'enter' | 'exit' = 'enter';
+
   /** The portal outlet inside of this container into which the dialog content will be loaded. */
   @ViewChild(CdkPortalOutlet, { static: true }) _portalOutlet: CdkPortalOutlet;
 
@@ -143,6 +146,19 @@ export abstract class _SbbDialogContainerBase extends BasePortalOutlet {
 
     return this._portalOutlet.attachDomPortal(portal);
   };
+
+  _getAnimationState() {
+    return {
+      value: this._state,
+      params: {
+        // See https://github.com/angular/components/commit/575332c9296c28776376f4b4f7fb39c9743761aa
+        'enterAnimationDuration': // prettier-ignore
+            this._config.enterAnimationDuration || defaultParams.params.enterAnimationDuration,
+        'exitAnimationDuration': // prettier-ignore
+            this._config.exitAnimationDuration || defaultParams.params.exitAnimationDuration,
+      },
+    };
+  }
 
   /** Moves focus back into the dialog if it was moved out. */
   _recaptureFocus() {
@@ -251,9 +267,6 @@ export abstract class _SbbDialogContainerBase extends BasePortalOutlet {
   },
 })
 export class SbbDialogContainer extends _SbbDialogContainerBase {
-  /** State of the dialog animation. */
-  _state: 'void' | 'enter' | 'exit' = 'enter';
-
   /** Callback, invoked whenever an animation on the host completes. */
   @HostListener('@dialogContainer.done', ['$event'])
   _onAnimationDone({ toState, totalTime }: AnimationEvent) {
@@ -293,18 +306,5 @@ export class SbbDialogContainer extends _SbbDialogContainerBase {
     if (!this._config.delayFocusTrap) {
       this._trapFocus();
     }
-  }
-
-  _getAnimationState() {
-    return {
-      value: this._state,
-      params: {
-        // See https://github.com/angular/components/commit/575332c9296c28776376f4b4f7fb39c9743761aa
-        'enterAnimationDuration': // prettier-ignore
-          this._config.enterAnimationDuration || defaultParams.params.enterAnimationDuration,
-        'exitAnimationDuration': // prettier-ignore
-          this._config.exitAnimationDuration || defaultParams.params.exitAnimationDuration,
-      },
-    };
   }
 }
