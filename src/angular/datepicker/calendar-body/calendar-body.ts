@@ -117,7 +117,7 @@ export class SbbCalendarBody implements AfterViewChecked {
    * Focuses the active cell after the microtask queue is empty.
    *
    * Adding a 0ms setTimeout seems to fix Voiceover losing focus when pressing PageUp/PageDown
-   * (issue #24330).
+   * (issue angular/components#24330).
    *
    * Determined a 0ms by gradually increasing duration from 0 and testing two use cases with screen
    * reader enabled:
