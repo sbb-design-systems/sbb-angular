@@ -192,6 +192,7 @@ export class SbbAutocompleteTrigger
   get autocomplete(): SbbAutocomplete {
     return this._autocomplete;
   }
+
   set autocomplete(autocomplete: SbbAutocomplete) {
     this._autocomplete = autocomplete;
 
@@ -231,6 +232,7 @@ export class SbbAutocompleteTrigger
         }
       });
   }
+
   private _autocomplete: SbbAutocomplete;
 
   /**
@@ -262,6 +264,7 @@ export class SbbAutocompleteTrigger
   get autocompleteDisabled(): boolean {
     return this._autocompleteDisabled;
   }
+
   set autocompleteDisabled(value: BooleanInput) {
     this._autocompleteDisabled = coerceBooleanProperty(value);
   }
@@ -324,6 +327,7 @@ export class SbbAutocompleteTrigger
   get panelOpen(): boolean {
     return this._overlayAttached && this.autocomplete.showPanel;
   }
+
   private _overlayAttached: boolean = false;
 
   /** Opens the autocomplete suggestion panel. */
@@ -598,7 +602,7 @@ export class SbbAutocompleteTrigger
               }
 
               if (wasOpen !== this.panelOpen) {
-                // If the `panelOpen` state changed to, we need to make sure to emit the `opened` or
+                // If the `panelOpen` state changed, we need to make sure to emit the `opened` or
                 // `closed` event, because we may not have emitted it. This can happen
                 // - if the users opens the panel and there are no options, but the
                 //   options come in slightly later or as a result of the value changing,
