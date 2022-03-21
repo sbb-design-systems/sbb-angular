@@ -111,7 +111,7 @@ export function getSbbAutocompleteMissingPanelError(): Error {
     // Note: we use `focusin`, as opposed to `focus`, in order to open the panel
     // a little earlier. This avoids issues where IE delays the focusing of the input.
     '(focusin)': '_handleFocus()',
-    '(blur)': '_handleBlur()',
+    '(blur)': '_onTouched()',
     '(input)': '_handleInput($event)',
     '(keydown)': '_handleKeydown($event)',
     '(click)': '_handleClick()',
@@ -551,17 +551,6 @@ export class SbbAutocompleteTrigger
     }
   }
 
-  /**
-   * Ensure the close event is always emitted if the panel was open before,
-   * even if the user entered a string that does not match any option.
-   */
-  _handleBlur(): void {
-    if (this._overlayAttached) {
-      this.autocomplete.closed.emit();
-    }
-    this._onTouched();
-  }
-
   _handleClick(): void {
     if (this._canOpen() && !this.panelOpen) {
       this.openPanel();
@@ -600,15 +589,20 @@ export class SbbAutocompleteTrigger
             this.autocomplete._setVisibility();
             this._changeDetectorRef.detectChanges();
 
-            if (this.panelOpen) {
+            if (this.panelOpen !== wasOpen) {
               this._overlayRef!.updatePosition();
 
-              // If the `panelOpen` state changed, we need to make sure to emit the `opened`
-              // event, because we may not have emitted it when the panel was attached. This
-              // can happen if the users opens the panel and there are no options, but the
-              // options come in slightly later or as a result of the value changing.
-              if (wasOpen !== this.panelOpen) {
+              // If the `panelOpen` state changed to, we need to make sure to emit the `opened` or
+              // `closed` event, because we may not have emitted it. This can happen
+              // - if the users opens the panel and there are no options, but the
+              //   options come in slightly later or as a result of the value changing,
+              // - if the panel is closed after the user entered a string that did not match any
+              //   of the available options,
+              // - if a valid string is entered after an invalid one.
+              if (this.panelOpen) {
                 this.autocomplete.opened.emit();
+              } else {
+                this.autocomplete.closed.emit();
               }
             }
 

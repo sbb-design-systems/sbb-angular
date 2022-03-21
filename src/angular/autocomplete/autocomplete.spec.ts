@@ -3236,22 +3236,18 @@ describe('SbbAutocomplete', () => {
       expect(closedSpy).toHaveBeenCalledTimes(1);
     }));
 
-    it('should emit a closed event on blur if it was not emitted before', fakeAsync(() => {
-      const { trigger, openedSpy, closedSpy } = fixture.componentInstance;
+    fit('should emit a closed event if no option is displayed', fakeAsync(() => {
+      const { openedSpy, closedSpy } = fixture.componentInstance;
       const input: HTMLInputElement = fixture.nativeElement.querySelector('input');
 
-      trigger.openPanel();
-      fixture.detectChanges();
-      typeInElement(input, 'Zweiundvierzig'); // Invalid option
+      typeInElement(input, 'Eins'); // Valid option
       fixture.detectChanges();
       tick();
-
-      expect(closedSpy).not.toHaveBeenCalled();
-
-      input.blur();
-      fixture.detectChanges();
-
       expect(openedSpy).toHaveBeenCalledTimes(1);
+
+      typeInElement(input, 'Einss'); // Invalid option
+      fixture.detectChanges();
+      tick();
       expect(closedSpy).toHaveBeenCalledTimes(1);
     }));
 
