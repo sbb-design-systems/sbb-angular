@@ -30,9 +30,6 @@ import { sbbLightboxAnimations } from './lightbox-animations';
   },
 })
 export class SbbLightboxContainer extends _SbbDialogContainerBase {
-  /** State of the lightbox animation. */
-  _state: 'void' | 'enter' | 'exit' = 'enter';
-
   /** Callback, invoked whenever an animation on the host completes. */
   @HostListener('@lightboxContainer.done', ['$event'])
   _onAnimationDone({ toState, totalTime }: AnimationEvent) {
