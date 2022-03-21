@@ -1419,6 +1419,7 @@ textarea {
 }
 
 .sbb-link.sbb-button-base {
+  white-space: normal;
   :where(html.sbb-lean) & {
     padding-right: calc(#{pxToRem(30)} * var(--sbb-scaling-factor));
   }
@@ -1484,6 +1485,16 @@ textarea {
   }
 
   .sbb-button-base.sbb-link & {
+    top: unset;
+    margin-top: unset;
+    // !important is necessary here to overwrite the transform rules.
+    transform: translateY(calc(#{pxToRem(0.5)} * var(--sbb-scaling-factor))) !important;
+
+    :where(html.sbb-lean) & {
+      // !important is necessary here to overwrite the transform rules.
+      transform: translateY(#{pxToRem(-1)}) !important;
+    }
+
     :where(html:not(.sbb-lean)) & {
       color: var(--sbb-color-call-to-action);
     }
@@ -1497,8 +1508,6 @@ textarea {
 
   .sbb-link-group :is(&, &:hover) {
     transition: none;
-    // !important is necessary here to overwrite the transform rules below.
-    transform: none !important;
   }
 }
 
