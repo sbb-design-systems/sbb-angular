@@ -556,7 +556,7 @@ export class SbbAutocompleteTrigger
    * even if the user entered a string that does not match any option.
    */
   _handleBlur(): void {
-    if (this.autocomplete._isOpen) {
+    if (this._overlayAttached) {
       this.autocomplete.closed.emit();
     }
     this._onTouched();
