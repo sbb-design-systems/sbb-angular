@@ -64,6 +64,11 @@ jobs:
                 repo: context.repo.repo,
               });
 
+              // Don't comment renovate bot PRs
+              if (fullPr?.user?.login === 'sbb-angular-renovate[bot]') {
+                return;
+              }
+
               const stagingBaseUrl = `${stagingUrl}/${pullRequest.number}`;
               let moduleUrl = '';
               if (fullPr?.title) {
