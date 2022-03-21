@@ -299,7 +299,7 @@ export class SbbDialogContainer extends _SbbDialogContainerBase {
     return {
       value: this._state,
       params: {
-        enterAnimationDuration:
+        'enterAnimationDuration':
           this._config.enterAnimationDuration || defaultParams.params.enterAnimationDuration,
         'exitAnimationDuration':
           this._config.exitAnimationDuration || defaultParams.params.exitAnimationDuration,
