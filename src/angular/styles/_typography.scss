@@ -192,6 +192,10 @@
   --sbb-datepicker-calendar-body-cell-disabled-offset: #{pxToRem(12)};
   --sbb-datepicker-calendar-body-cell-size: calc(#{pxToRem(40)} * var(--sbb-scaling-factor));
 
+  // Fieldset
+  --sbb-fieldset-legend-font-size: #{pxToRem(24)};
+  --sbb-fieldset-legend-nested-font-size: #{pxToRem(20)};
+
   // Forms
   --sbb-form-background-color-readonly: var(--sbb-color-milk);
   --sbb-form-border-color-readonly: var(--sbb-color-aluminum);
@@ -360,6 +364,12 @@
       // Expansion Panel
       --sbb-expansion-panel-padding-horizontal: calc(#{pxToRem(32)} * var(--sbb-scaling-factor));
 
+      // Fieldset
+      --sbb-fieldset-legend-font-size: calc(#{pxToRem(32)} * var(--sbb-scaling-factor));
+      --sbb-fieldset-legend-nested-font-size: calc(
+        #{pxToRem(20)} * var(--sbb-scaling-factor) + #{pxToRem(2)}
+      );
+
       // Lightbox
       --sbb-lightbox-padding-horizontal: calc(#{pxToRem(136)} * var(--sbb-scaling-factor));
 
@@ -445,6 +455,10 @@
     --sbb-datepicker-calendar-controls-padding: #{pxToRem(8)};
     --sbb-datepicker-calendar-body-cell-padding: #{pxToRem(16.5)};
     --sbb-datepicker-calendar-body-cell-size: #{pxToRem(30)};
+
+    // Fieldset
+    --sbb-fieldset-legend-font-size: #{pxToRem(21)};
+    --sbb-fieldset-legend-nested-font-size: #{pxToRem(16)};
 
     // Forms
     --sbb-form-background-color-readonly: transparent;
@@ -1051,7 +1065,6 @@ textarea {
 // ----------------------------------------------------------------------------------------------------
 
 :is(fieldset, .sbb-fieldset) {
-  $borderWidth: 1;
   margin: 0;
   min-width: 0;
   font-size: var(--sbb-font-size);
@@ -1071,22 +1084,19 @@ textarea {
     padding: 0;
     font-family: var(--sbb-font-light);
     font-weight: 400;
-    font-size: pxToRem(24);
+    font-size: var(--sbb-fieldset-legend-font-size);
     line-height: 1.2;
     margin: 0 0 var(--sbb-divider-small);
     float: left;
 
-    :where(html:not(.sbb-lean)) & {
-      @include mq($from: desktop) {
-        font-size: calc(#{pxToRem(32)} * var(--sbb-scaling-factor));
-      }
-    }
-    :where(html.sbb-lean) & {
-      font-size: pxToRem(21);
+    + * {
+      clear: both;
     }
   }
 
   fieldset {
+    --sbb-fieldset-legend-font-size: var(--sbb-fieldset-legend-nested-font-size);
+
     border-top: none;
     border-right: none;
     border-left: none;
@@ -1099,19 +1109,6 @@ textarea {
 
     :where(html.sbb-lean) & {
       border-color: var(--sbb-color-cloud);
-    }
-
-    > legend {
-      font-size: pxToRem(20);
-
-      :where(html:not(.sbb-lean)) & {
-        @include mq($from: desktop) {
-          font-size: calc(#{pxToRem(20)} * var(--sbb-scaling-factor) + #{pxToRem(2)});
-        }
-      }
-      :where(html.sbb-lean) & {
-        font-size: pxToRem(16);
-      }
     }
   }
 }
