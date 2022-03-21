@@ -151,7 +151,7 @@
     "shelljs": "0.8.5",
     "standard-version": "9.3.2",
     "stylelint": "14.6.0",
-    "stylelint-config-recommended-scss": "5.0.2",
+    "stylelint-config-recommended-scss": "6.0.0",
     "stylelint-scss": "4.2.0",
     "terser": "5.12.1",
     "ts-node": "10.7.0",
