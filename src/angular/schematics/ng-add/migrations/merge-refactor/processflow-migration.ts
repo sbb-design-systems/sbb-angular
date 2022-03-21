@@ -27,7 +27,7 @@ export class ProcessflowMigration extends RefactorMigration {
 
     for (const property of element.properties()) {
       if (property.name.startsWith('#')) {
-        const name = property.name.substr(1);
+        const name = property.name.slice(1);
         const prevStepRegex = new RegExp(`${name}\\.prevStep()`, 'g');
         let match: RegExpMatchArray | null;
         while ((match = prevStepRegex.exec(element.resource.content))) {

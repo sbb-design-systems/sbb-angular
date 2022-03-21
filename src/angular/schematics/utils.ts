@@ -364,10 +364,7 @@ export class MigrationElement {
   }
 
   outerHtml() {
-    return this.resource.content.substr(
-      this.location.startOffset,
-      this.location.endOffset - this.location.startOffset
-    );
+    return this.resource.content.slice(this.location.startOffset, this.location.endOffset);
   }
 
   innerHtml() {
@@ -464,9 +461,6 @@ export class MigrationElementProperty {
   }
 
   toString() {
-    return this._element.resource.content.substr(
-      this.location.startOffset,
-      this.location.endOffset - this.location.startOffset
-    );
+    return this._element.resource.content.slice(this.location.startOffset, this.location.endOffset);
   }
 }
