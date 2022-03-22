@@ -29,18 +29,16 @@ describe('SbbTooltipWrapper', () => {
     let fixture: ComponentFixture<TooltipTestComponent>;
     let overlayContainer: OverlayContainer;
 
-    beforeEach(
-      waitForAsync(() => {
-        TestBed.configureTestingModule({
-          imports: [SbbTooltipModule, SbbButtonModule, SbbIconTestingModule, NoopAnimationsModule],
-          declarations: [TooltipTestComponent],
-        }).compileComponents();
+    beforeEach(waitForAsync(() => {
+      TestBed.configureTestingModule({
+        imports: [SbbTooltipModule, SbbButtonModule, SbbIconTestingModule, NoopAnimationsModule],
+        declarations: [TooltipTestComponent],
+      }).compileComponents();
 
-        inject([OverlayContainer], (oc: OverlayContainer) => {
-          overlayContainer = oc;
-        })();
-      })
-    );
+      inject([OverlayContainer], (oc: OverlayContainer) => {
+        overlayContainer = oc;
+      })();
+    }));
 
     beforeEach(() => {
       fixture = TestBed.createComponent(TooltipTestComponent);
@@ -199,14 +197,12 @@ describe('SbbTooltipWrapper', () => {
     let component: DoubleTooltipTestComponent;
     let fixture: ComponentFixture<DoubleTooltipTestComponent>;
 
-    beforeEach(
-      waitForAsync(() => {
-        TestBed.configureTestingModule({
-          imports: [SbbTooltipModule, SbbIconTestingModule, NoopAnimationsModule],
-          declarations: [DoubleTooltipTestComponent],
-        }).compileComponents();
-      })
-    );
+    beforeEach(waitForAsync(() => {
+      TestBed.configureTestingModule({
+        imports: [SbbTooltipModule, SbbIconTestingModule, NoopAnimationsModule],
+        declarations: [DoubleTooltipTestComponent],
+      }).compileComponents();
+    }));
 
     beforeEach(() => {
       fixture = TestBed.createComponent(DoubleTooltipTestComponent);

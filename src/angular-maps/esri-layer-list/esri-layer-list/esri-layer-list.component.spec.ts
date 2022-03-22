@@ -6,13 +6,11 @@ describe('SbbEsriLayerList', () => {
   let component: SbbEsriLayerList;
   let fixture: ComponentFixture<SbbEsriLayerList>;
 
-  beforeEach(
-    waitForAsync(() => {
-      TestBed.configureTestingModule({
-        declarations: [SbbEsriLayerList],
-      }).compileComponents();
-    })
-  );
+  beforeEach(waitForAsync(() => {
+    TestBed.configureTestingModule({
+      declarations: [SbbEsriLayerList],
+    }).compileComponents();
+  }));
 
   beforeEach(() => {
     fixture = TestBed.createComponent(SbbEsriLayerList);

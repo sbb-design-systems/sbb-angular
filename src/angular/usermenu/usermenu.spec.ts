@@ -31,21 +31,19 @@ describe('SbbUsermenu', () => {
   let usermenuComponent: SbbUsermenu;
   let fixtureUsermenu: ComponentFixture<SbbUsermenu>;
 
-  beforeEach(
-    waitForAsync(() => {
-      TestBed.configureTestingModule({
-        declarations: [SbbUsermenu],
-        imports: [
-          CommonModule,
-          SbbIconModule,
-          SbbIconTestingModule,
-          OverlayModule,
-          NoopAnimationsModule,
-          SbbMenuModule,
-        ],
-      }).compileComponents();
-    })
-  );
+  beforeEach(waitForAsync(() => {
+    TestBed.configureTestingModule({
+      declarations: [SbbUsermenu],
+      imports: [
+        CommonModule,
+        SbbIconModule,
+        SbbIconTestingModule,
+        OverlayModule,
+        NoopAnimationsModule,
+        SbbMenuModule,
+      ],
+    }).compileComponents();
+  }));
 
   beforeEach(() => {
     fixtureUsermenu = TestBed.createComponent(SbbUsermenu);
@@ -62,22 +60,20 @@ describe('SbbUsermenu with userName and displayName without image', () => {
   let fixtureTest: ComponentFixture<UsermenuWithDisplayNameAndUserNameTestComponent>;
   let overlayContainerElement: HTMLElement;
 
-  beforeEach(
-    waitForAsync(() => {
-      TestBed.configureTestingModule({
-        imports: [
-          SbbUsermenuModule,
-          CommonModule,
-          SbbIconModule,
-          SbbIconTestingModule,
-          RouterTestingModule,
-          NoopAnimationsModule,
-          SbbMenuModule,
-        ],
-        declarations: [UsermenuWithDisplayNameAndUserNameTestComponent],
-      }).compileComponents();
-    })
-  );
+  beforeEach(waitForAsync(() => {
+    TestBed.configureTestingModule({
+      imports: [
+        SbbUsermenuModule,
+        CommonModule,
+        SbbIconModule,
+        SbbIconTestingModule,
+        RouterTestingModule,
+        NoopAnimationsModule,
+        SbbMenuModule,
+      ],
+      declarations: [UsermenuWithDisplayNameAndUserNameTestComponent],
+    }).compileComponents();
+  }));
 
   beforeEach(() => {
     fixtureTest = TestBed.createComponent(UsermenuWithDisplayNameAndUserNameTestComponent);
@@ -299,21 +295,19 @@ describe('SbbUsermenu with userName and displayName without image', () => {
 describe('SbbUsermenu with only displayName', () => {
   let fixtureTest: ComponentFixture<UsermenuWithOnlyDisplayNameTestComponent>;
 
-  beforeEach(
-    waitForAsync(() => {
-      TestBed.configureTestingModule({
-        imports: [
-          SbbUsermenuModule,
-          CommonModule,
-          SbbIconModule,
-          SbbIconTestingModule,
-          NoopAnimationsModule,
-          SbbMenuModule,
-        ],
-        declarations: [UsermenuWithOnlyDisplayNameTestComponent],
-      }).compileComponents();
-    })
-  );
+  beforeEach(waitForAsync(() => {
+    TestBed.configureTestingModule({
+      imports: [
+        SbbUsermenuModule,
+        CommonModule,
+        SbbIconModule,
+        SbbIconTestingModule,
+        NoopAnimationsModule,
+        SbbMenuModule,
+      ],
+      declarations: [UsermenuWithOnlyDisplayNameTestComponent],
+    }).compileComponents();
+  }));
 
   beforeEach(() => {
     fixtureTest = TestBed.createComponent(UsermenuWithOnlyDisplayNameTestComponent);
@@ -340,21 +334,19 @@ describe('SbbUsermenu with only displayName', () => {
 describe('SbbUsermenu with only userName', () => {
   let fixtureTest: ComponentFixture<UsermenuWithOnlyUsernameTestComponent>;
 
-  beforeEach(
-    waitForAsync(() => {
-      TestBed.configureTestingModule({
-        imports: [
-          SbbUsermenuModule,
-          CommonModule,
-          SbbIconModule,
-          SbbIconTestingModule,
-          NoopAnimationsModule,
-          SbbMenuModule,
-        ],
-        declarations: [UsermenuWithOnlyUsernameTestComponent],
-      }).compileComponents();
-    })
-  );
+  beforeEach(waitForAsync(() => {
+    TestBed.configureTestingModule({
+      imports: [
+        SbbUsermenuModule,
+        CommonModule,
+        SbbIconModule,
+        SbbIconTestingModule,
+        NoopAnimationsModule,
+        SbbMenuModule,
+      ],
+      declarations: [UsermenuWithOnlyUsernameTestComponent],
+    }).compileComponents();
+  }));
 
   beforeEach(() => {
     fixtureTest = TestBed.createComponent(UsermenuWithOnlyUsernameTestComponent);
@@ -381,21 +373,19 @@ describe('SbbUsermenu with only userName', () => {
 describe('SbbUsermenu with custom image', () => {
   let fixtureTest: ComponentFixture<UsermenuWithCustomImageTestComponent>;
 
-  beforeEach(
-    waitForAsync(() => {
-      TestBed.configureTestingModule({
-        imports: [
-          SbbUsermenuModule,
-          CommonModule,
-          SbbIconModule,
-          SbbIconTestingModule,
-          NoopAnimationsModule,
-          SbbMenuModule,
-        ],
-        declarations: [UsermenuWithCustomImageTestComponent],
-      }).compileComponents();
-    })
-  );
+  beforeEach(waitForAsync(() => {
+    TestBed.configureTestingModule({
+      imports: [
+        SbbUsermenuModule,
+        CommonModule,
+        SbbIconModule,
+        SbbIconTestingModule,
+        NoopAnimationsModule,
+        SbbMenuModule,
+      ],
+      declarations: [UsermenuWithCustomImageTestComponent],
+    }).compileComponents();
+  }));
 
   beforeEach(() => {
     fixtureTest = TestBed.createComponent(UsermenuWithCustomImageTestComponent);
@@ -417,14 +407,12 @@ describe('SbbUsermenu with custom image', () => {
 describe('SbbUsermenu with no connected menu', () => {
   let fixtureTest: ComponentFixture<UsermenuNoMenuTestComponent>;
 
-  beforeEach(
-    waitForAsync(() => {
-      TestBed.configureTestingModule({
-        imports: [SbbUsermenuModule, CommonModule, SbbIconTestingModule, NoopAnimationsModule],
-        declarations: [UsermenuNoMenuTestComponent],
-      }).compileComponents();
-    })
-  );
+  beforeEach(waitForAsync(() => {
+    TestBed.configureTestingModule({
+      imports: [SbbUsermenuModule, CommonModule, SbbIconTestingModule, NoopAnimationsModule],
+      declarations: [UsermenuNoMenuTestComponent],
+    }).compileComponents();
+  }));
 
   beforeEach(() => {
     fixtureTest = TestBed.createComponent(UsermenuNoMenuTestComponent);

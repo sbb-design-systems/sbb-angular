@@ -68,7 +68,7 @@ jobs:
 
     - name: "Bazel: Restore remote cache"
       if: ${{ success() || failure() }}
-      uses: actions/cache@v2
+      uses: actions/cache@v3
       with:
         path: ~/.bazel-cache/sbb-angular
         key: bazel-packages-${{ env.BAZEL_CACHE_VERSION }}-${{ github.sha }}-${{ github.run_attempt }}

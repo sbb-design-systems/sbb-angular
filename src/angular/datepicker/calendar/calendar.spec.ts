@@ -90,21 +90,19 @@ class CalendarWithSelectableMinDateComponent {
 describe('SbbCalendar', () => {
   let zone: MockNgZone;
 
-  beforeEach(
-    waitForAsync(() => {
-      TestBed.configureTestingModule({
-        imports: [SbbDatepickerModule, SbbIconModule, SbbIconTestingModule],
-        declarations: [
-          // Test components.
-          StandardCalendarComponent,
-          CalendarWithMinMaxComponent,
-          CalendarWithDateFilterComponent,
-          CalendarWithSelectableMinDateComponent,
-        ],
-        providers: [{ provide: NgZone, useFactory: () => (zone = new MockNgZone()) }],
-      }).compileComponents();
-    })
-  );
+  beforeEach(waitForAsync(() => {
+    TestBed.configureTestingModule({
+      imports: [SbbDatepickerModule, SbbIconModule, SbbIconTestingModule],
+      declarations: [
+        // Test components.
+        StandardCalendarComponent,
+        CalendarWithMinMaxComponent,
+        CalendarWithDateFilterComponent,
+        CalendarWithSelectableMinDateComponent,
+      ],
+      providers: [{ provide: NgZone, useFactory: () => (zone = new MockNgZone()) }],
+    }).compileComponents();
+  }));
 
   describe('standard calendar', () => {
     let fixture: ComponentFixture<StandardCalendarComponent>;

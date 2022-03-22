@@ -21,35 +21,31 @@ describe('SbbChipInput', () => {
   let inputNativeElement: HTMLElement;
   let chipInputDirective: SbbChipInput;
 
-  beforeEach(
-    waitForAsync(() => {
-      TestBed.configureTestingModule({
-        imports: [
-          PlatformModule,
-          SbbChipsModule,
-          SbbFormFieldModule,
-          NoopAnimationsModule,
-          SbbIconModule,
-          SbbIconTestingModule,
-        ],
-        declarations: [TestChipInput],
-      });
+  beforeEach(waitForAsync(() => {
+    TestBed.configureTestingModule({
+      imports: [
+        PlatformModule,
+        SbbChipsModule,
+        SbbFormFieldModule,
+        NoopAnimationsModule,
+        SbbIconModule,
+        SbbIconTestingModule,
+      ],
+      declarations: [TestChipInput],
+    });
 
-      TestBed.compileComponents();
-    })
-  );
+    TestBed.compileComponents();
+  }));
 
-  beforeEach(
-    waitForAsync(() => {
-      fixture = TestBed.createComponent(TestChipInput);
-      testChipInput = fixture.debugElement.componentInstance;
-      fixture.detectChanges();
+  beforeEach(waitForAsync(() => {
+    fixture = TestBed.createComponent(TestChipInput);
+    testChipInput = fixture.debugElement.componentInstance;
+    fixture.detectChanges();
 
-      inputDebugElement = fixture.debugElement.query(By.directive(SbbChipInput))!;
-      chipInputDirective = inputDebugElement.injector.get<SbbChipInput>(SbbChipInput);
-      inputNativeElement = inputDebugElement.nativeElement;
-    })
-  );
+    inputDebugElement = fixture.debugElement.query(By.directive(SbbChipInput))!;
+    chipInputDirective = inputDebugElement.injector.get<SbbChipInput>(SbbChipInput);
+    inputNativeElement = inputDebugElement.nativeElement;
+  }));
 
   describe('basic behavior', () => {
     it('emits the (chipEnd) on enter keyup', () => {

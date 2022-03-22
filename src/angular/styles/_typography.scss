@@ -192,6 +192,10 @@
   --sbb-datepicker-calendar-body-cell-disabled-offset: #{pxToRem(12)};
   --sbb-datepicker-calendar-body-cell-size: calc(#{pxToRem(40)} * var(--sbb-scaling-factor));
 
+  // Fieldset
+  --sbb-fieldset-legend-font-size: #{pxToRem(24)};
+  --sbb-fieldset-legend-nested-font-size: #{pxToRem(20)};
+
   // Forms
   --sbb-form-background-color-readonly: var(--sbb-color-milk);
   --sbb-form-border-color-readonly: var(--sbb-color-aluminum);
@@ -360,6 +364,12 @@
       // Expansion Panel
       --sbb-expansion-panel-padding-horizontal: calc(#{pxToRem(32)} * var(--sbb-scaling-factor));
 
+      // Fieldset
+      --sbb-fieldset-legend-font-size: calc(#{pxToRem(32)} * var(--sbb-scaling-factor));
+      --sbb-fieldset-legend-nested-font-size: calc(
+        #{pxToRem(20)} * var(--sbb-scaling-factor) + #{pxToRem(2)}
+      );
+
       // Lightbox
       --sbb-lightbox-padding-horizontal: calc(#{pxToRem(136)} * var(--sbb-scaling-factor));
 
@@ -445,6 +455,10 @@
     --sbb-datepicker-calendar-controls-padding: #{pxToRem(8)};
     --sbb-datepicker-calendar-body-cell-padding: #{pxToRem(16.5)};
     --sbb-datepicker-calendar-body-cell-size: #{pxToRem(30)};
+
+    // Fieldset
+    --sbb-fieldset-legend-font-size: #{pxToRem(21)};
+    --sbb-fieldset-legend-nested-font-size: #{pxToRem(16)};
 
     // Forms
     --sbb-form-background-color-readonly: transparent;
@@ -1051,7 +1065,6 @@ textarea {
 // ----------------------------------------------------------------------------------------------------
 
 :is(fieldset, .sbb-fieldset) {
-  $borderWidth: 1;
   margin: 0;
   min-width: 0;
   font-size: var(--sbb-font-size);
@@ -1071,22 +1084,19 @@ textarea {
     padding: 0;
     font-family: var(--sbb-font-light);
     font-weight: 400;
-    font-size: pxToRem(24);
+    font-size: var(--sbb-fieldset-legend-font-size);
     line-height: 1.2;
     margin: 0 0 var(--sbb-divider-small);
     float: left;
 
-    :where(html:not(.sbb-lean)) & {
-      @include mq($from: desktop) {
-        font-size: calc(#{pxToRem(32)} * var(--sbb-scaling-factor));
-      }
-    }
-    :where(html.sbb-lean) & {
-      font-size: pxToRem(21);
+    + * {
+      clear: both;
     }
   }
 
   fieldset {
+    --sbb-fieldset-legend-font-size: var(--sbb-fieldset-legend-nested-font-size);
+
     border-top: none;
     border-right: none;
     border-left: none;
@@ -1100,20 +1110,26 @@ textarea {
     :where(html.sbb-lean) & {
       border-color: var(--sbb-color-cloud);
     }
-
-    > legend {
-      font-size: pxToRem(20);
-
-      :where(html:not(.sbb-lean)) & {
-        @include mq($from: desktop) {
-          font-size: calc(#{pxToRem(20)} * var(--sbb-scaling-factor) + #{pxToRem(2)});
-        }
-      }
-      :where(html.sbb-lean) & {
-        font-size: pxToRem(16);
-      }
-    }
   }
+}
+
+// ----------------------------------------------------------------------------------------------------
+// Helper Classes
+// ----------------------------------------------------------------------------------------------------
+
+.sbb-transparent-parent-overlay {
+  opacity: 0;
+  position: absolute;
+  top: 0;
+  left: 0;
+  margin: 0;
+  width: 100%;
+  height: 100%;
+  cursor: inherit;
+
+  // Puts the element behind the parent while keeping it visible so that
+  // it allows `click` events to propagate up.
+  z-index: -1;
 }
 
 // ----------------------------------------------------------------------------------------------------
@@ -1134,6 +1150,14 @@ textarea {
 
 .sbb-badge {
   position: relative;
+
+  // The badge should make sure its host is overflow visible so that the badge content
+  // can be rendered outside of the element. Some components such as <sbb-icon> explicitly
+  // style `overflow: hidden` so this requires extra specificity so that it does not
+  // depend on style load order.
+  &.sbb-badge {
+    overflow: visible;
+  }
 }
 
 .sbb-badge-content {
@@ -1419,6 +1443,7 @@ textarea {
 }
 
 .sbb-link.sbb-button-base {
+  white-space: normal;
   :where(html.sbb-lean) & {
     padding-right: calc(#{pxToRem(30)} * var(--sbb-scaling-factor));
   }
@@ -1484,6 +1509,16 @@ textarea {
   }
 
   .sbb-button-base.sbb-link & {
+    top: unset;
+    margin-top: unset;
+    // !important is necessary here to overwrite the transform rules.
+    transform: translateY(calc(#{pxToRem(0.5)} * var(--sbb-scaling-factor))) !important;
+
+    :where(html.sbb-lean) & {
+      // !important is necessary here to overwrite the transform rules.
+      transform: translateY(#{pxToRem(-1)}) !important;
+    }
+
     :where(html:not(.sbb-lean)) & {
       color: var(--sbb-color-call-to-action);
     }
@@ -1497,8 +1532,6 @@ textarea {
 
   .sbb-link-group :is(&, &:hover) {
     transition: none;
-    // !important is necessary here to overwrite the transform rules below.
-    transform: none !important;
   }
 }
 
@@ -1741,21 +1774,6 @@ textarea {
   }
 }
 
-.sbb-radio-input {
-  opacity: 0;
-  position: absolute;
-  top: 0;
-  left: 0;
-  margin: 0;
-  width: 100%;
-  height: 100%;
-  cursor: inherit;
-
-  // Puts the input behind the circle while keeping it visible so that
-  // it allows `click` events to propagate up to the `label` wrapper.
-  z-index: -1;
-}
-
 // ----------------------------------------------------------------------------------------------------
 // SBB Checkbox Panel & Radio Button Panel
 // ----------------------------------------------------------------------------------------------------
@@ -1770,7 +1788,6 @@ textarea {
   color: var(--sbb-color-grey);
   width: 100%;
   transition: border-color 0.15s ease-in-out;
-  @include user-select(none);
   position: relative;
 
   &.sbb-selection-checked {
@@ -2535,19 +2552,6 @@ $menuItemPaddingTopBottom: 4;
 }
 
 // ----------------------------------------------------------------------------------------------------
-// Dividers (should to be at the very bottom of the typography to ensure overwriting styles which have already a margin defined)
-// ----------------------------------------------------------------------------------------------------
-
-@each $size in thin, small, medium, big {
-  @each $position in top, bottom {
-    .sbb-divider-#{$size}-vertical,
-    .sbb-divider-#{$size}-#{$position} {
-      margin-#{$position}: var(--sbb-divider-#{$size});
-    }
-  }
-}
-
-// ----------------------------------------------------------------------------------------------------
 // Sbb Tooltip
 // ----------------------------------------------------------------------------------------------------
 
@@ -2562,4 +2566,17 @@ $menuItemPaddingTopBottom: 4;
   outline: none;
   color: var(--sbb-color-call-to-action-hover);
   border-color: var(--sbb-color-call-to-action-hover);
+}
+
+// ----------------------------------------------------------------------------------------------------
+// Dividers (should to be at the very bottom of the typography to ensure overwriting styles which have already a margin defined)
+// ----------------------------------------------------------------------------------------------------
+
+@each $size in thin, small, medium, big {
+  @each $position in top, bottom {
+    .sbb-divider-#{$size}-vertical,
+    .sbb-divider-#{$size}-#{$position} {
+      margin-#{$position}: var(--sbb-divider-#{$size});
+    }
+  }
 }

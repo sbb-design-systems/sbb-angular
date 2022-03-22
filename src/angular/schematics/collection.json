@@ -5,25 +5,29 @@
       "description": "Add @sbb-esta/angular to project",
       "factory": "./ng-add/index#ngAdd",
       "schema": "./ng-add/schema.json",
-      "aliases": ["install"]
+      "aliases": ["install"],
+      "hidden": true
     },
     "ng-add-setup-project": {
       "description": "Sets up the specified project after the ng-add dependencies have been installed.",
       "private": true,
       "factory": "./ng-add/setup-project",
-      "schema": "./ng-add/schema.json"
+      "schema": "./ng-add/schema.json",
+      "hidden": true
     },
     "ng-add-migrate": {
       "description": "Migrates from @sbb-esta/angular-business and @sbb-esta/angular-public to @sbb-esta/angular",
       "private": true,
       "factory": "./ng-add/merge-migration#mergePublicAndBusiness",
-      "schema": "./ng-add/schema.json"
+      "schema": "./ng-add/schema.json",
+      "hidden": true
     },
     "ng-migration-clean-up": {
       "description": "Cleans up after all migrations have been applied",
       "private": true,
       "factory": "./ng-add/clean-up#cleanUp",
-      "schema": "./ng-add/schema.json"
+      "schema": "./ng-add/schema.json",
+      "hidden": true
     }
   }
 }

@@ -43,41 +43,39 @@ describe('SbbIcon', () => {
   let fakePath: string;
   let errorHandler: jasmine.SpyObj<ErrorHandler>;
 
-  beforeEach(
-    waitForAsync(() => {
-      // The $ prefix tells Karma not to try to process the
-      // request so that we don't get warnings in our logs.
-      fakePath = '/$fake-path';
-      errorHandler = jasmine.createSpyObj('errorHandler', ['handleError']);
+  beforeEach(waitForAsync(() => {
+    // The $ prefix tells Karma not to try to process the
+    // request so that we don't get warnings in our logs.
+    fakePath = '/$fake-path';
+    errorHandler = jasmine.createSpyObj('errorHandler', ['handleError']);
 
-      TestBed.configureTestingModule({
-        imports: [HttpClientTestingModule, SbbIconModule],
-        declarations: [
-          IconWithLigature,
-          IconWithCustomFontCss,
-          IconFromSvgName,
-          IconWithAriaHiddenFalse,
-          IconWithBindingAndNgIf,
-          InlineIcon,
-          SvgIconWithUserContent,
-          IconWithLigatureAndSvgBinding,
-          BlankIcon,
-        ],
-        providers: [
-          {
-            provide: SBB_ICON_LOCATION,
-            useValue: { getPathname: () => fakePath },
-          },
-          {
-            provide: ErrorHandler,
-            useValue: errorHandler,
-          },
-        ],
-      });
+    TestBed.configureTestingModule({
+      imports: [HttpClientTestingModule, SbbIconModule],
+      declarations: [
+        IconWithLigature,
+        IconWithCustomFontCss,
+        IconFromSvgName,
+        IconWithAriaHiddenFalse,
+        IconWithBindingAndNgIf,
+        InlineIcon,
+        SvgIconWithUserContent,
+        IconWithLigatureAndSvgBinding,
+        BlankIcon,
+      ],
+      providers: [
+        {
+          provide: SBB_ICON_LOCATION,
+          useValue: { getPathname: () => fakePath },
+        },
+        {
+          provide: ErrorHandler,
+          useValue: errorHandler,
+        },
+      ],
+    });
 
-      TestBed.compileComponents();
-    })
-  );
+    TestBed.compileComponents();
+  }));
 
   let iconRegistry: SbbIconRegistry;
   let http: HttpTestingController;
@@ -821,29 +819,6 @@ describe('SbbIcon', () => {
       expect(svgElement.getAttribute('viewBox')).toBe('0 0 43 43');
     });
 
-    it('should add an extra string to the end of `style` tags inside SVG', fakeAsync(() => {
-      iconRegistry.addSvgIconLiteral(
-        'fido',
-        trustHtml(`
-        <svg>
-          <style>#woof {color: blue;}</style>
-          <path id="woof" name="woof"></path>
-        </svg>
-      `)
-      );
-
-      const fixture = TestBed.createComponent(IconFromSvgName);
-      fixture.componentInstance.iconName = 'fido';
-      fixture.detectChanges();
-      const styleTag = fixture.nativeElement.querySelector('sbb-icon svg style');
-
-      // Note the extra whitespace at the end which is what we're testing for. This is a
-      // workaround for IE and Edge ignoring `style` tags in dynamically-created SVGs.
-      expect(styleTag.textContent).toBe('#woof {color: blue;} ');
-
-      tick();
-    }));
-
     it('should prepend the current path to attributes with `url()` references', fakeAsync(() => {
       iconRegistry.addSvgIconLiteral(
         'fido',
@@ -1157,16 +1132,14 @@ describe('SbbIcon without HttpClientModule', () => {
   let iconRegistry: SbbIconRegistry;
   let sanitizer: DomSanitizer;
 
-  beforeEach(
-    waitForAsync(() => {
-      TestBed.configureTestingModule({
-        imports: [SbbIconModule],
-        declarations: [IconFromSvgName],
-      });
+  beforeEach(waitForAsync(() => {
+    TestBed.configureTestingModule({
+      imports: [SbbIconModule],
+      declarations: [IconFromSvgName],
+    });
 
-      TestBed.compileComponents();
-    })
-  );
+    TestBed.compileComponents();
+  }));
 
   beforeEach(inject([SbbIconRegistry, DomSanitizer], (mir: SbbIconRegistry, ds: DomSanitizer) => {
     iconRegistry = mir;

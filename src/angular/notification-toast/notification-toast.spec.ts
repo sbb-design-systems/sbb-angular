@@ -39,29 +39,27 @@ describe('SbbNotificationToast icons', () => {
   let testComponent: NotificationMockComponent;
   let overlayContainerElement: HTMLElement;
 
-  beforeEach(
-    waitForAsync(() => {
-      TestBed.configureTestingModule({
-        imports: [
-          SbbNotificationToastModule,
-          NotificationToastTestModule,
-          NoopAnimationsModule,
-          SbbIconTestingModule,
-        ],
-        providers: [
-          SbbNotificationToast,
-          { provide: SBB_NOTIFICATION_TOAST_DATA, useValue: SbbNotificationToastConfig },
-          {
-            provide: OverlayContainer,
-            useFactory: () => {
-              overlayContainerElement = document.createElement('div');
-              return { getContainerElement: () => overlayContainerElement };
-            },
+  beforeEach(waitForAsync(() => {
+    TestBed.configureTestingModule({
+      imports: [
+        SbbNotificationToastModule,
+        NotificationToastTestModule,
+        NoopAnimationsModule,
+        SbbIconTestingModule,
+      ],
+      providers: [
+        SbbNotificationToast,
+        { provide: SBB_NOTIFICATION_TOAST_DATA, useValue: SbbNotificationToastConfig },
+        {
+          provide: OverlayContainer,
+          useFactory: () => {
+            overlayContainerElement = document.createElement('div');
+            return { getContainerElement: () => overlayContainerElement };
           },
-        ],
-      }).compileComponents();
-    })
-  );
+        },
+      ],
+    }).compileComponents();
+  }));
 
   beforeEach(() => {
     testFixture = TestBed.createComponent(NotificationMockComponent);

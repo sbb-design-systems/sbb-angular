@@ -27,17 +27,15 @@ class StandardCalendarComponent {
 }
 
 describe('SbbCalendarHeader', () => {
-  beforeEach(
-    waitForAsync(() => {
-      TestBed.configureTestingModule({
-        imports: [SbbDatepickerModule, SbbIconTestingModule],
-        declarations: [
-          // Test components.
-          StandardCalendarComponent,
-        ],
-      }).compileComponents();
-    })
-  );
+  beforeEach(waitForAsync(() => {
+    TestBed.configureTestingModule({
+      imports: [SbbDatepickerModule, SbbIconTestingModule],
+      declarations: [
+        // Test components.
+        StandardCalendarComponent,
+      ],
+    }).compileComponents();
+  }));
 
   describe('standard calendar', () => {
     let fixture: ComponentFixture<StandardCalendarComponent>;

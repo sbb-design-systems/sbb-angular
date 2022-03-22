@@ -13,26 +13,24 @@ import { SbbHeaderLeanModule } from './index';
 describe('SbbHeaderLean', () => {
   let mediaMatcher: FakeMediaMatcher;
 
-  beforeEach(
-    waitForAsync(() => {
-      TestBed.configureTestingModule({
-        imports: [NoopAnimationsModule, SbbHeaderLeanModule, SbbIconTestingModule],
-        declarations: [SimpleHeaderLean, HeaderLeanWithAppChooser],
-        providers: [
-          {
-            provide: MediaMatcher,
-            useFactory: () => {
-              mediaMatcher = new FakeMediaMatcher();
-              mediaMatcher.defaultMatches = false; // enforce desktop view
-              return mediaMatcher;
-            },
+  beforeEach(waitForAsync(() => {
+    TestBed.configureTestingModule({
+      imports: [NoopAnimationsModule, SbbHeaderLeanModule, SbbIconTestingModule],
+      declarations: [SimpleHeaderLean, HeaderLeanWithAppChooser],
+      providers: [
+        {
+          provide: MediaMatcher,
+          useFactory: () => {
+            mediaMatcher = new FakeMediaMatcher();
+            mediaMatcher.defaultMatches = false; // enforce desktop view
+            return mediaMatcher;
           },
-        ],
-      });
+        },
+      ],
+    });
 
-      TestBed.compileComponents();
-    })
-  );
+    TestBed.compileComponents();
+  }));
 
   describe('without app chooser', () => {
     let fixture: ComponentFixture<SimpleHeaderLean>;

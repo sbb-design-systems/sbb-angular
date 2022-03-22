@@ -30,7 +30,7 @@ export class BadgeMigration extends RefactorMigration {
     element.recorder.remove(start + startTag.endOffset, endTag.startOffset - startTag.endOffset);
     const badge =
       content.startsWith('{{') && content.endsWith('}}')
-        ? `[sbbBadge]="${content.substr(2, content.length - 4).trim()}"`
+        ? `[sbbBadge]="${content.slice(2, content.length - 2).trim()}"`
         : `sbbBadge="${content}"`;
     element.recorder.remove(start + startTag.startOffset + 1, 9);
     element.recorder.insertRight(start + startTag.startOffset + 1, `span ${badge}`);

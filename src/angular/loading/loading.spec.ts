@@ -6,13 +6,11 @@ describe('SbbLoading', () => {
   let component: SbbLoading;
   let fixture: ComponentFixture<SbbLoading>;
 
-  beforeEach(
-    waitForAsync(() => {
-      TestBed.configureTestingModule({
-        declarations: [SbbLoading],
-      }).compileComponents();
-    })
-  );
+  beforeEach(waitForAsync(() => {
+    TestBed.configureTestingModule({
+      declarations: [SbbLoading],
+    }).compileComponents();
+  }));
 
   beforeEach(() => {
     fixture = TestBed.createComponent(SbbLoading);

@@ -26,13 +26,10 @@ import { sbbLightboxAnimations } from './lightbox-animations';
     '[attr.aria-labelledby]': '_config.ariaLabel ? null : _ariaLabelledBy',
     '[attr.aria-label]': '_config.ariaLabel',
     '[attr.aria-describedby]': '_config.ariaDescribedBy || null',
-    '[@lightboxContainer]': '_state',
+    '[@lightboxContainer]': `_getAnimationState()`,
   },
 })
 export class SbbLightboxContainer extends _SbbDialogContainerBase {
-  /** State of the lightbox animation. */
-  _state: 'void' | 'enter' | 'exit' = 'enter';
-
   /** Callback, invoked whenever an animation on the host completes. */
   @HostListener('@lightboxContainer.done', ['$event'])
   _onAnimationDone({ toState, totalTime }: AnimationEvent) {

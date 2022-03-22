@@ -523,7 +523,7 @@ describe('SbbDatepicker', () => {
         expect(toggle.getAttribute('type')).toBe('button');
       });
 
-      it('should restore focus to the toggle after the calendar is closed', () => {
+      it('should restore focus to the toggle after the calendar is closed', fakeAsync(() => {
         const toggle = fixture.debugElement.query(By.css('button')).nativeElement;
 
         fixture.detectChanges();
@@ -533,6 +533,7 @@ describe('SbbDatepicker', () => {
 
         fixture.componentInstance.datepicker.open();
         fixture.detectChanges();
+        tick();
 
         // tslint:disable-next-line:no-non-null-assertion
         const pane = document.querySelector('.cdk-overlay-pane')!;
@@ -544,11 +545,12 @@ describe('SbbDatepicker', () => {
 
         fixture.componentInstance.datepicker.close();
         fixture.detectChanges();
+        flush();
 
         expect(document.activeElement)
           .withContext('Expected focus to be restored to toggle.')
           .toBe(toggle);
-      });
+      }));
 
       it('should toggle the active state of the datepicker toggle', fakeAsync(() => {
         const toggle = fixture.debugElement.query(By.css('sbb-datepicker-toggle')).nativeElement;

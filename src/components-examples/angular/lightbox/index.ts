@@ -8,6 +8,10 @@ import { SbbLightboxModule } from '@sbb-esta/angular/lightbox';
 import { SbbRadioButtonModule } from '@sbb-esta/angular/radio-button';
 
 import {
+  LightboxAnimationsExample,
+  LightboxAnimationsExampleContent,
+} from './lightbox-animations/lightbox-animations-example';
+import {
   LightboxComponentExample,
   LightboxComponentExampleContent,
 } from './lightbox-component/lightbox-component-example';
@@ -26,6 +30,8 @@ export {
   LightboxConfirmationExample,
   LightboxWithConfirmationOnClose,
   LightboxTemplateExample,
+  LightboxAnimationsExample,
+  LightboxAnimationsExampleContent,
 };
 
 const EXAMPLES = [
@@ -36,6 +42,8 @@ const EXAMPLES = [
   LightboxConfirmationExample,
   LightboxWithConfirmationOnClose,
   LightboxTemplateExample,
+  LightboxAnimationsExample,
+  LightboxAnimationsExampleContent,
 ];
 
 @NgModule({

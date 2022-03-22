@@ -106,13 +106,11 @@ describe('SbbTags', () => {
     let component: SbbTags;
     let fixture: ComponentFixture<SbbTags>;
 
-    beforeEach(
-      waitForAsync(() => {
-        TestBed.configureTestingModule({
-          imports: [SbbBadgeModule, SbbTagModule],
-        }).compileComponents();
-      })
-    );
+    beforeEach(waitForAsync(() => {
+      TestBed.configureTestingModule({
+        imports: [SbbBadgeModule, SbbTagModule],
+      }).compileComponents();
+    }));
 
     beforeEach(() => {
       fixture = TestBed.createComponent(SbbTags);
@@ -133,14 +131,12 @@ describe('SbbTags', () => {
     let component: TagsTestFixtureComponent;
     let fixture: ComponentFixture<TagsTestFixtureComponent>;
 
-    beforeEach(
-      waitForAsync(() => {
-        TestBed.configureTestingModule({
-          imports: [CommonModule, FormsModule, SbbBadgeModule, SbbTagModule],
-          declarations: [TagsTestFixtureComponent],
-        }).compileComponents();
-      })
-    );
+    beforeEach(waitForAsync(() => {
+      TestBed.configureTestingModule({
+        imports: [CommonModule, FormsModule, SbbBadgeModule, SbbTagModule],
+        declarations: [TagsTestFixtureComponent],
+      }).compileComponents();
+    }));
 
     beforeEach(() => {
       fixture = TestBed.createComponent(TagsTestFixtureComponent);
@@ -419,14 +415,12 @@ describe('SbbTags', () => {
     let component: TagsTestFixtureReactiveComponent;
     let fixture: ComponentFixture<TagsTestFixtureReactiveComponent>;
 
-    beforeEach(
-      waitForAsync(() => {
-        TestBed.configureTestingModule({
-          imports: [CommonModule, ReactiveFormsModule, SbbBadgeModule, SbbTagModule],
-          declarations: [TagsTestFixtureReactiveComponent],
-        }).compileComponents();
-      })
-    );
+    beforeEach(waitForAsync(() => {
+      TestBed.configureTestingModule({
+        imports: [CommonModule, ReactiveFormsModule, SbbBadgeModule, SbbTagModule],
+        declarations: [TagsTestFixtureReactiveComponent],
+      }).compileComponents();
+    }));
 
     beforeEach(() => {
       fixture = TestBed.createComponent(TagsTestFixtureReactiveComponent);
@@ -557,14 +551,12 @@ describe('SbbTags', () => {
 describe('SBB Tag Link', () => {
   let fixture: ComponentFixture<TagLinkTestFixtureComponent>;
 
-  beforeEach(
-    waitForAsync(() => {
-      TestBed.configureTestingModule({
-        imports: [SbbBadgeModule, SbbTagModule],
-        declarations: [TagLinkTestFixtureComponent],
-      }).compileComponents();
-    })
-  );
+  beforeEach(waitForAsync(() => {
+    TestBed.configureTestingModule({
+      imports: [SbbBadgeModule, SbbTagModule],
+      declarations: [TagLinkTestFixtureComponent],
+    }).compileComponents();
+  }));
 
   beforeEach(() => {
     fixture = TestBed.createComponent(TagLinkTestFixtureComponent);
