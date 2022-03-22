@@ -58,7 +58,7 @@ jobs:
             if (artifacts.length && context.payload.workflow_run.pull_requests.length) {
               const pullRequest = context.payload.workflow_run.pull_requests[0];
 
-              const fullPr = github.rest.pulls.get({
+              const { data: fullPr } = await github.rest.pulls.get({
                 pull_number: pullRequest.number,
                 owner: context.repo.owner,
                 repo: context.repo.repo,
