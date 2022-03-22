@@ -1,6 +1,8 @@
 import { ScrollStrategy } from '@angular/cdk/overlay';
 import { ComponentFactoryResolver, ViewContainerRef } from '@angular/core';
 
+import { defaultParams } from './dialog-animations';
+
 /** Valid ARIA roles for a dialog element. */
 export type SbbDialogRole = 'dialog' | 'alertdialog';
 
@@ -106,6 +108,12 @@ export class SbbDialogConfig<D = any> {
 
   /** Alternate `ComponentFactoryResolver` to use when resolving the associated component. */
   componentFactoryResolver?: ComponentFactoryResolver;
+
+  /** Duration of the enter animation. Has to be a valid CSS value (e.g. 100ms). */
+  enterAnimationDuration?: string = defaultParams.params.enterAnimationDuration;
+
+  /** Duration of the exit animation. Has to be a valid CSS value (e.g. 50ms). */
+  exitAnimationDuration?: string = defaultParams.params.exitAnimationDuration;
 
   // TODO(jelbourn): add configuration for lifecycle hooks, ARIA labelling.
 }

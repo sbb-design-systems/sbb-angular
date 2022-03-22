@@ -10,6 +10,10 @@ import {
   ComponentDataDialogExample,
 } from './component-data-dialog/component-data-dialog-example';
 import {
+  DialogAnimationsExample,
+  DialogAnimationsExampleDialog,
+} from './dialog-animations/dialog-animations-example';
+import {
   SharedDataDialogComponent,
   SharedDataDialogExample,
 } from './shared-data-dialog/shared-data-dialog-example';
@@ -21,6 +25,8 @@ export {
   SharedDataDialogComponent,
   SharedDataDialogExample,
   TemplateDialogExample,
+  DialogAnimationsExample,
+  DialogAnimationsExampleDialog,
 };
 
 const EXAMPLES = [
@@ -29,6 +35,8 @@ const EXAMPLES = [
   SharedDataDialogComponent,
   SharedDataDialogExample,
   TemplateDialogExample,
+  DialogAnimationsExample,
+  DialogAnimationsExampleDialog,
 ];
 
 @NgModule({
