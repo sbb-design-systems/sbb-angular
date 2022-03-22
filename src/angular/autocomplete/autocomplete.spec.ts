@@ -3240,11 +3240,15 @@ describe('SbbAutocomplete', () => {
       typeInElement(input, 'Eins'); // Valid option
       fixture.detectChanges();
       tick();
-      expect(openedSpy).toHaveBeenCalledTimes(1);
 
-      typeInElement(input, 'Einss'); // Invalid option
+      expect(openedSpy).toHaveBeenCalledTimes(1);
+      expect(closedSpy).toHaveBeenCalledTimes(0);
+
+      typeInElement(input, '_x'); // Invalidate option to 'Eins_x'
       fixture.detectChanges();
       tick();
+
+      expect(openedSpy).toHaveBeenCalledTimes(1);
       expect(closedSpy).toHaveBeenCalledTimes(1);
     }));
 
