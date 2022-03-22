@@ -271,6 +271,7 @@ export class _SbbCheckboxBase
   /** Toggles the `checked` state of the checkbox. */
   toggle(): void {
     this.checked = !this.checked;
+    this._controlValueAccessorChangeFn(this.checked);
   }
 
   /**
@@ -301,7 +302,7 @@ export class _SbbCheckboxBase
         });
       }
 
-      this.toggle();
+      this._checked = !this._checked;
 
       // Emit our custom change event if the native input emitted one.
       // It is important to only emit it, if the native input triggered one, because
