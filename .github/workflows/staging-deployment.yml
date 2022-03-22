@@ -72,7 +72,7 @@ jobs:
               const stagingBaseUrl = `${stagingUrl}/${pullRequest.number}`;
               let moduleUrl = '';
               if (fullPr?.title) {
-                const moduleName = fullPr.title.match(/^.*\(angular\/(.*)\):/gi)?.[1];
+                const moduleName = fullPr.title.match(/^.*\(angular\/(.*)\):/i)?.[1];
                 if (moduleName) {
                   moduleUrl = `${stagingBaseUrl}/angular/components/${match[1]?.length}/examples`;
                 }
