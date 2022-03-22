@@ -2947,6 +2947,17 @@ describe('SbbSelect', () => {
           .withContext(`Expected control to stay pristine after programmatic change.`)
           .toEqual(false);
       }));
+
+      it('should propagate the value set through the `value` property to the form field', fakeAsync(() => {
+        const control = fixture.componentInstance.control;
+
+        expect(control.value).toBeFalsy();
+
+        fixture.componentInstance.select.value = 'pizza-1';
+        fixture.detectChanges();
+
+        expect(control.value).toBe('pizza-1');
+      }));
     });
 
     describe('disabled behavior', () => {
