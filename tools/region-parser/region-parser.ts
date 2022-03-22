@@ -130,5 +130,5 @@ function leftAlign(lines: string[]): string[] {
       indent = Math.min(lineIndent, indent);
     }
   });
-  return lines.map((line) => line.substr(indent));
+  return lines.map((line) => line.slice(indent));
 }

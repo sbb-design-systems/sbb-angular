@@ -229,7 +229,7 @@ export class EntryPointGrouper implements Processor {
   private _findMatchingEntryPoint(relativeFilePath: string): string | null {
     let foundEntryPoint: string | null = null;
     if (relativeFilePath.startsWith('../external/npm/node_modules/@angular')) {
-      return path.dirname(relativeFilePath.substr(29));
+      return path.dirname(relativeFilePath.slice(29));
     }
 
     for (const entryPoint of this.entryPoints) {
