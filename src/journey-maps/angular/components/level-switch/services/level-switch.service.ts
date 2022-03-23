@@ -1,6 +1,7 @@
 import { EventEmitter, Injectable } from '@angular/core';
 import { Map as MaplibreMap } from 'maplibre-gl';
-import { BehaviorSubject, Subject, Subscription } from 'rxjs';
+import { BehaviorSubject, Subject } from 'rxjs';
+import { takeUntil } from 'rxjs/operators';
 
 import { LocaleService } from '../../../services/locale.service';
 import { MapLeitPoiService } from '../../../services/map/map-leit-poi.service';
@@ -18,8 +19,7 @@ export class LevelSwitchService {
   private _map: MaplibreMap;
   private _lastZoom: number; // needed to detect when we cross zoom threshold to show or hide the level switcher component
 
-  private readonly _subscriptions = new Subscription();
-
+  private readonly _destroyed = new Subject<void>();
   private readonly _defaultLevel = 0;
   // same minZoom as in Android and iOS map
   private readonly _levelButtonMinMapZoom = 15;
@@ -73,7 +73,8 @@ export class LevelSwitchService {
   }
 
   destroy(): void {
-    this._subscriptions.unsubscribe();
+    this._destroyed.next();
+    this._destroyed.complete();
   }
 
   isVisible(): boolean {
@@ -95,33 +96,28 @@ export class LevelSwitchService {
     // call outside component-zone, trigger detect changes manually
     this.changeDetectionEmitter.emit();
 
-    this._subscriptions.add(
-      this._zoomChanged.subscribe(() => {
-        this._onZoomChanged();
-      })
-    );
+    this._zoomChanged.pipe(takeUntil(this._destroyed)).subscribe(() => {
+      this._onZoomChanged();
+    });
 
-    this._subscriptions.add(
-      this._mapMoved.subscribe(() => {
-        this._updateLevels();
-      })
-    );
+    this._mapMoved.pipe(takeUntil(this._destroyed)).subscribe(() => {
+      this._updateLevels();
+    });
 
     // called whenever the level is switched via the leit-pois (or when the map is set to a specific floor for a new transfer)
-    this._subscriptions.add(
-      this._mapLeitPoiService.levelSwitched.subscribe((nextLevel) => {
-        this._setSelectedLevel(nextLevel);
-      })
-    );
 
-    this._subscriptions.add(
-      this._selectedLevel.subscribe((selectedLevel) => {
-        this._mapLayerFilterService.setLevelFilter(selectedLevel);
-        this._mapTransferService.updateOutdoorWalkFloor(this._map, selectedLevel);
-        // call outside component-zone, trigger detect changes manually
-        this.changeDetectionEmitter.emit();
-      })
-    );
+    this._mapLeitPoiService.levelSwitched
+      .pipe(takeUntil(this._destroyed))
+      .subscribe((nextLevel) => {
+        this._setSelectedLevel(nextLevel);
+      });
+
+    this._selectedLevel.pipe(takeUntil(this._destroyed)).subscribe((selectedLevel) => {
+      this._mapLayerFilterService.setLevelFilter(selectedLevel);
+      this._mapTransferService.updateOutdoorWalkFloor(this._map, selectedLevel);
+      // call outside component-zone, trigger detect changes manually
+      this.changeDetectionEmitter.emit();
+    });
 
     // call setSelectedLevel() here, as calling it from the constructor doesn't seem to notify the elements testapp
     this._setSelectedLevel(this._defaultLevel);
