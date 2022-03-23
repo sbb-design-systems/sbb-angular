@@ -1706,6 +1706,10 @@ textarea {
     :where(html.sbb-lean) & {
       background-color: var(--sbb-color-iron);
     }
+
+    @include cdk.high-contrast(active, off) {
+      background-color: CanvasText;
+    }
   }
 
   .sbb-selection-disabled & {
