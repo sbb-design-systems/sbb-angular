@@ -1702,18 +1702,13 @@ textarea {
     border-radius: 50%;
     transform: scale(0.65);
     background-color: var(--sbb-color-red);
-    forced-color-adjust: none;
 
     :where(html.sbb-lean) & {
       background-color: var(--sbb-color-iron);
     }
 
-    @include cdk.high-contrast(white-on-black, off) {
-      background-color: white;
-    }
-
-    @include cdk.high-contrast(black-on-white, off) {
-      background-color: black;
+    @include cdk.high-contrast(active, off) {
+      background-color: CanvasText;
     }
   }
 
