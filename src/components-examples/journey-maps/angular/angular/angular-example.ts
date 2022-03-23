@@ -46,6 +46,8 @@ import { baselBielZones } from './test-data/zone/bs-bl';
 export class Angular implements OnInit, AfterViewInit, OnDestroy {
   @ViewChild('advancedMap')
   client: JourneyMapsClientComponent;
+  @ViewChild('basicMap')
+  clientBasic: JourneyMapsClientComponent;
   @ViewChild('stationTemplate')
   stationTemplate: TemplateRef<any>;
   @ViewChild('routeTemplate')

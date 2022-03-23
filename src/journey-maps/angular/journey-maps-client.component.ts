@@ -64,6 +64,7 @@ const SATELLITE_MAP_URL_TEMPLATE =
   selector: 'sbb-journey-maps',
   templateUrl: './journey-maps-client.component.html',
   styleUrls: ['./journey-maps-client.component.css'],
+  providers: [LevelSwitchService, MapLayerFilterService],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class JourneyMapsClientComponent implements OnInit, AfterViewInit, OnDestroy, OnChanges {
@@ -624,6 +625,7 @@ export class JourneyMapsClientComponent implements OnInit, AfterViewInit, OnDest
     this._destroyed.next();
     this._destroyed.complete();
     this._mapLeitPoiService.destroy();
+    this._levelSwitchService.destroy();
   }
 
   private _setupSubjects(): void {

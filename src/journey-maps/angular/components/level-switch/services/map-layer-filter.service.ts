@@ -1,9 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Map as MaplibreMap } from 'maplibre-gl';
 
-@Injectable({
-  providedIn: 'root',
-})
+@Injectable()
 export class MapLayerFilterService {
   private _map: MaplibreMap;
   private _knownLayerTypes = ['fill', 'fill-extrusion', 'line', 'symbol'];

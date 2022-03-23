@@ -1,6 +1,6 @@
 import { EventEmitter, Injectable } from '@angular/core';
 import { Map as MaplibreMap } from 'maplibre-gl';
-import { BehaviorSubject, Subject } from 'rxjs';
+import { BehaviorSubject, Subject, Subscription } from 'rxjs';
 
 import { LocaleService } from '../../../services/locale.service';
 import { MapLeitPoiService } from '../../../services/map/map-leit-poi.service';
@@ -9,12 +9,16 @@ import { MapTransferService } from '../../../services/map/map-transfer.service';
 import { MapLayerFilterService } from './map-layer-filter.service';
 import { QueryMapFeaturesService } from './query-map-features.service';
 
-@Injectable({
-  providedIn: 'root',
-})
+/**
+ journey-maps-client component scope service.
+ Use one service instance per map instance.
+ */
+@Injectable()
 export class LevelSwitchService {
   private _map: MaplibreMap;
   private _lastZoom: number; // needed to detect when we cross zoom threshold to show or hide the level switcher component
+
+  private readonly _subscriptions = new Subscription();
 
   private readonly _defaultLevel = 0;
   // same minZoom as in Android and iOS map
@@ -68,6 +72,10 @@ export class LevelSwitchService {
     return this._map?.getZoom() >= this._levelButtonMinMapZoom;
   }
 
+  destroy(): void {
+    this._subscriptions.unsubscribe();
+  }
+
   isVisible(): boolean {
     return this._isVisibleInCurrentMapZoomLevel() && this.availableLevels.length > 0;
   }
@@ -87,25 +95,33 @@ export class LevelSwitchService {
     // call outside component-zone, trigger detect changes manually
     this.changeDetectionEmitter.emit();
 
-    this._zoomChanged.subscribe(() => {
-      this._onZoomChanged();
-    });
+    this._subscriptions.add(
+      this._zoomChanged.subscribe(() => {
+        this._onZoomChanged();
+      })
+    );
 
-    this._mapMoved.subscribe(() => {
-      this._updateLevels();
-    });
+    this._subscriptions.add(
+      this._mapMoved.subscribe(() => {
+        this._updateLevels();
+      })
+    );
 
     // called whenever the level is switched via the leit-pois (or when the map is set to a specific floor for a new transfer)
-    this._mapLeitPoiService.levelSwitched.subscribe((nextLevel) => {
-      this._setSelectedLevel(nextLevel);
-    });
+    this._subscriptions.add(
+      this._mapLeitPoiService.levelSwitched.subscribe((nextLevel) => {
+        this._setSelectedLevel(nextLevel);
+      })
+    );
 
-    this._selectedLevel.subscribe((selectedLevel) => {
-      this._mapLayerFilterService.setLevelFilter(selectedLevel);
-      this._mapTransferService.updateOutdoorWalkFloor(this._map, selectedLevel);
-      // call outside component-zone, trigger detect changes manually
-      this.changeDetectionEmitter.emit();
-    });
+    this._subscriptions.add(
+      this._selectedLevel.subscribe((selectedLevel) => {
+        this._mapLayerFilterService.setLevelFilter(selectedLevel);
+        this._mapTransferService.updateOutdoorWalkFloor(this._map, selectedLevel);
+        // call outside component-zone, trigger detect changes manually
+        this.changeDetectionEmitter.emit();
+      })
+    );
 
     // call setSelectedLevel() here, as calling it from the constructor doesn't seem to notify the elements testapp
     this._setSelectedLevel(this._defaultLevel);
