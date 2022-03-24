@@ -149,7 +149,7 @@
     "sass": "1.49.9",
     "scss-bundle": "3.1.2",
     "semver": "7.3.5",
-    "send": "0.17.2",
+    "send": "0.18.0",
     "shelljs": "0.8.5",
     "standard-version": "9.3.2",
     "stylelint": "14.6.0",
