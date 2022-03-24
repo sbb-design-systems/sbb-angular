@@ -318,10 +318,10 @@
     "@angular/core" "^13.0.0 || ^14.0.0-0"
     reflect-metadata "^0.1.13"
 
-"@angular/cdk@13.3.0":
-  version "13.3.0"
-  resolved "https://registry.yarnpkg.com/@angular/cdk/-/cdk-13.3.0.tgz#9915998994df8e0dd3f276f0b02c6006d7df02fa"
-  integrity sha512-TyTcs9/Vd0TyQIjRf40xCDrTBK2GGCUrrHCVuHTXIqL8yvaGRnz815fL9X3hSZySCcbRV4NeK1yWeiZ9jf4Vxw==
+"@angular/cdk@13.3.1":
+  version "13.3.1"
+  resolved "https://registry.yarnpkg.com/@angular/cdk/-/cdk-13.3.1.tgz#a0feed1ed08690691c2d443c879a50284cb3f19a"
+  integrity sha512-JUCvhN6XomY5JOMH7Qyj/JodAuAtKgLlJYKs0tPmjCkGcBdR/T3/hOJ9gSRhz8PCOoiEORj+3xCh547oJRyesA==
   dependencies:
     tslib "^2.3.0"
   optionalDependencies:
