@@ -1,3 +1,4 @@
+@use 'external/npm/node_modules/@angular/cdk' as cdk;
 @import '../styles/common';
 
 .sbb-toggle {
@@ -99,6 +100,12 @@
 
 .sbb-toggle-option-button-label-wrapper {
   text-align: center;
+
+  :where(.sbb-toggle-option-selected) & {
+    @include cdk.high-contrast(active, off) {
+      color: Highlight;
+    }
+  }
 }
 
 .sbb-toggle-option-button-label {
