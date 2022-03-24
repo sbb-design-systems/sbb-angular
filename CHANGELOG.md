@@ -2,6 +2,32 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [13.10.0](https://github.com/sbb-design-systems/sbb-angular/compare/13.9.0...13.10.0) (2022-03-24)
+
+
+### Features
+
+* **angular/dialog:** add the ability to control the animation duration ([#1284](https://github.com/sbb-design-systems/sbb-angular/issues/1284)) ([afc7bf0](https://github.com/sbb-design-systems/sbb-angular/commit/afc7bf04dbb84b4fdd3a8882eb4e461271bdff74))
+
+
+### Bug Fixes
+
+* **angular/autocomplete:** re-enter the Angular zone when the `NgZone.onStable` emits ([#1314](https://github.com/sbb-design-systems/sbb-angular/issues/1314)) ([70fa240](https://github.com/sbb-design-systems/sbb-angular/commit/70fa240da3954d6b47ea69fccbb5c60fbeaac0dc))
+* **angular/badge:** ensure overflow visible ([#1312](https://github.com/sbb-design-systems/sbb-angular/issues/1312)) ([ba6cf81](https://github.com/sbb-design-systems/sbb-angular/commit/ba6cf81180f8807c88cba118944773ce77f3c10f))
+* **angular/button:** fix wrapping of sbb-link ([#1300](https://github.com/sbb-design-systems/sbb-angular/issues/1300)) ([5498488](https://github.com/sbb-design-systems/sbb-angular/commit/54984882bc3a565f7567ccbd36377ffc7db1cca9)), closes [#1296](https://github.com/sbb-design-systems/sbb-angular/issues/1296)
+* **angular/checkbox:** model value not updated when using toggle method ([#1323](https://github.com/sbb-design-systems/sbb-angular/issues/1323)) ([b90dc32](https://github.com/sbb-design-systems/sbb-angular/commit/b90dc3293a0a7e21080a68a390835b02070abe13))
+* **angular/datepicker:** fix Voiceover losing focus on PageDown ([#1286](https://github.com/sbb-design-systems/sbb-angular/issues/1286)) ([d976c81](https://github.com/sbb-design-systems/sbb-angular/commit/d976c818e8653a5a4b5caa0694d158830700710b))
+* **angular/datepicker:** use cdk-visually-hidden on calendar header ([#1311](https://github.com/sbb-design-systems/sbb-angular/issues/1311)) ([4a6ed2e](https://github.com/sbb-design-systems/sbb-angular/commit/4a6ed2e7d25c13b6d09966bee77d01401d66e83a))
+* **angular/icon:** clip overflowing icon elements ([#1301](https://github.com/sbb-design-systems/sbb-angular/issues/1301)) ([be0aa3b](https://github.com/sbb-design-systems/sbb-angular/commit/be0aa3b66d0c7a324a2044ffa950d07cb80ea5cf))
+* **angular/input:** resolve memory leak on iOS ([#1313](https://github.com/sbb-design-systems/sbb-angular/issues/1313)) ([a1c1ede](https://github.com/sbb-design-systems/sbb-angular/commit/a1c1ede66a6cc802ae0728b7b1836bad0e1cd68b))
+* **angular/radio:** fix empty radio in high-contrast-mode ([#1327](https://github.com/sbb-design-systems/sbb-angular/issues/1327)) ([bb0096c](https://github.com/sbb-design-systems/sbb-angular/commit/bb0096c358f7d1555c1e0a4e5e3f0bfc6cdb9ec7))
+* **angular/schematics:** mark ng-add schematics as hidden ([#1317](https://github.com/sbb-design-systems/sbb-angular/issues/1317)) ([cb32ee2](https://github.com/sbb-design-systems/sbb-angular/commit/cb32ee28d019201d7a4c63949c94a85ee37c04a9))
+* **angular/select:** value set through property not being propagated to value accessor ([#1324](https://github.com/sbb-design-systems/sbb-angular/issues/1324)) ([a4e0f07](https://github.com/sbb-design-systems/sbb-angular/commit/a4e0f07ba3007cbe2ff1b1be33e891dcc00e0bed))
+* **angular/styles:** remove float style from fieldset legend ([#1299](https://github.com/sbb-design-systems/sbb-angular/issues/1299)) ([0d1b7d2](https://github.com/sbb-design-systems/sbb-angular/commit/0d1b7d27eb2a45e5488c876c4e50e0c5a005a99e)), closes [#1297](https://github.com/sbb-design-systems/sbb-angular/issues/1297)
+* **angular/tabs:** avoid timeouts in background tabs ([#1283](https://github.com/sbb-design-systems/sbb-angular/issues/1283)) ([6836a8c](https://github.com/sbb-design-systems/sbb-angular/commit/6836a8cfcba76730962043fe9a671078b2327aa7))
+* **angular/toggle:** highlight toggle in high contrast mode ([#1331](https://github.com/sbb-design-systems/sbb-angular/issues/1331)) ([722830b](https://github.com/sbb-design-systems/sbb-angular/commit/722830b2995f5639b39b55f4e9285a2dfa6eedbc))
+* **angular:** scale native hidden inputs to its labels ([#1298](https://github.com/sbb-design-systems/sbb-angular/issues/1298)) ([bc0c6bf](https://github.com/sbb-design-systems/sbb-angular/commit/bc0c6bf833f9ea72281ca967d214c21943fcb3b5)), closes [#1295](https://github.com/sbb-design-systems/sbb-angular/issues/1295)
+
 ## [13.9.0](https://github.com/sbb-design-systems/sbb-angular/compare/13.8.0...13.9.0) (2022-03-10)
 
 
