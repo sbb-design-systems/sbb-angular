@@ -1,4 +1,4 @@
-import { NgControl } from '@angular/forms';
+import { AbstractControlDirective, NgControl } from '@angular/forms';
 import { Observable } from 'rxjs';
 
 /** An interface which allows a control to work inside of a `SbbField`. */
@@ -12,8 +12,8 @@ export abstract class SbbFormFieldControl<TValue> {
   readonly stateChanges: Observable<void>;
   /** The id of the form field. */
   readonly id: string;
-  /** The attached NgControl, if any exists. */
-  readonly ngControl: NgControl | undefined;
+  /** The attached NgControl or AbstractControlDirective, if any exists. */
+  readonly ngControl: NgControl | AbstractControlDirective | undefined;
   /** Whether the control is focused. */
   readonly focused: boolean;
   /** Whether the control is empty. */

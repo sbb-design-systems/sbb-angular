@@ -14,7 +14,7 @@ import {
   ViewChild,
   ViewEncapsulation,
 } from '@angular/core';
-import { NgControl } from '@angular/forms';
+import { AbstractControlDirective } from '@angular/forms';
 import { Subject } from 'rxjs';
 import { startWith, takeUntil } from 'rxjs/operators';
 
@@ -132,10 +132,13 @@ export class SbbFormField implements AfterContentInit, AfterContentChecked, OnDe
     this._destroyed.complete();
   }
 
-  /** Determines whether a class from the NgControl should be forwarded to the host element. */
-  _shouldForward(prop: keyof NgControl): boolean {
-    const ngControl = this._control ? this._control.ngControl : null;
-    return ngControl && ngControl[prop];
+  /**
+   * Determines whether a class from the AbstractControlDirective
+   * should be forwarded to the host element.
+   */
+  _shouldForward(prop: keyof AbstractControlDirective): boolean {
+    const control = this._control ? this._control.ngControl : null;
+    return control && control[prop];
   }
 
   _hasLabel() {
