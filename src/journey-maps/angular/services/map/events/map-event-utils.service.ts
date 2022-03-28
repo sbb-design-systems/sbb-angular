@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { Map as MaplibreMap, MapboxGeoJSONFeature } from 'maplibre-gl';
 
 import { FeatureData, FeatureDataType } from '../../../journey-maps-client.interfaces';
-import { Constants } from '../../constants';
+import { MARKER_SOURCE, ROUTE_SOURCE, ZONE_SOURCE } from '../../constants';
 
 @Injectable({ providedIn: 'root' })
 export class MapEventUtilsService {
@@ -114,11 +114,11 @@ export class MapEventUtilsService {
   private static _getSourceMapping(featureDataType: FeatureDataType): string | undefined {
     switch (featureDataType) {
       case FeatureDataType.MARKER:
-        return Constants.MARKER_SOURCE;
+        return MARKER_SOURCE;
       case FeatureDataType.ROUTE:
-        return Constants.ROUTE_SOURCE;
+        return ROUTE_SOURCE;
       case FeatureDataType.ZONE:
-        return Constants.ZONE_SOURCE;
+        return ZONE_SOURCE;
       default:
         return undefined;
     }

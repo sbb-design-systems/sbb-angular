@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { GeoJSONSource, Map as MaplibreMap } from 'maplibre-gl';
 
 import { FeatureDataType } from '../../journey-maps-client.interfaces';
-import { Constants } from '../constants';
+import { ROUTE_SOURCE } from '../constants';
 
 import { MapSelectionEventService } from './events/map-selection-event.service';
 import { EMPTY_FEATURE_COLLECTION } from './map.service';
@@ -14,9 +14,9 @@ export class MapRouteService {
     mapSelectionEventService: MapSelectionEventService,
     routeFeatureCollection: GeoJSON.FeatureCollection = EMPTY_FEATURE_COLLECTION
   ): void {
-    const source = map.getSource(Constants.ROUTE_SOURCE) as GeoJSONSource;
+    const source = map.getSource(ROUTE_SOURCE) as GeoJSONSource;
     source.setData(routeFeatureCollection);
-    map.removeFeatureState({ source: Constants.ROUTE_SOURCE });
+    map.removeFeatureState({ source: ROUTE_SOURCE });
     if (routeFeatureCollection.features?.length) {
       map.once('idle', () =>
         mapSelectionEventService.initSelectedState(

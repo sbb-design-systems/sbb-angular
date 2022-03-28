@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { GeoJSONSource, Map as MaplibreMap } from 'maplibre-gl';
 
-import { Constants } from '../constants';
+import { WALK_SOURCE } from '../constants';
 
 import { EMPTY_FEATURE_COLLECTION } from './map.service';
 
@@ -37,6 +37,6 @@ export class MapTransferService {
   }
 
   private _getSource(map: MaplibreMap): GeoJSONSource {
-    return map.getSource(Constants.WALK_SOURCE) as GeoJSONSource;
+    return map.getSource(WALK_SOURCE) as GeoJSONSource;
   }
 }

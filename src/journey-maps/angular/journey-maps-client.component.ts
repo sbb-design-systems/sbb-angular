@@ -39,7 +39,7 @@ import {
 import { Marker } from './model/marker';
 import { StyleMode } from './model/style-mode.enum';
 import { bufferTimeOnValue } from './services/bufferTimeOnValue';
-import { Constants } from './services/constants';
+import { MARKER_BOUNDS_PADDING, ROUTE_SOURCE, WALK_SOURCE } from './services/constants';
 import { LocaleService } from './services/locale.service';
 import { MapConfigService } from './services/map/map-config.service';
 import { MapInitService } from './services/map/map-init.service';
@@ -575,7 +575,7 @@ export class JourneyMapsClientComponent implements OnInit, AfterViewInit, OnDest
         this.viewportOptions.boundingBox ?? this.getMarkersBounds,
         this.viewportOptions.boundingBox
           ? this.viewportOptions.boundingBoxPadding
-          : Constants.MARKER_BOUNDS_PADDING,
+          : MARKER_BOUNDS_PADDING,
         this.interactionOptions.oneFingerPan
       )
       .subscribe((m) => {
@@ -641,7 +641,7 @@ export class JourneyMapsClientComponent implements OnInit, AfterViewInit, OnDest
           this.viewportOptions.boundingBox ?? this.getMarkersBounds,
           this.viewportOptions.boundingBox
             ? this.viewportOptions.boundingBoxPadding
-            : Constants.MARKER_BOUNDS_PADDING,
+            : MARKER_BOUNDS_PADDING,
           this.viewportOptions.zoomLevel,
           this.viewportOptions.mapCenter
         )
@@ -704,8 +704,8 @@ export class JourneyMapsClientComponent implements OnInit, AfterViewInit, OnDest
     this._map.resize();
     // @ts-ignore
     this._mapService.verifySources(this._map, [
-      Constants.ROUTE_SOURCE,
-      Constants.WALK_SOURCE,
+      ROUTE_SOURCE,
+      WALK_SOURCE,
       ...this._mapMarkerService.sources,
     ]);
     this._addSatelliteSource(this._map);

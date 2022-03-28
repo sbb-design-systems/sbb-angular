@@ -13,7 +13,14 @@ import { Marker } from '../../model/marker';
 import { MarkerCategoryMapping } from '../../model/marker-category-mapping';
 import { MarkerCategory } from '../../model/marker-category.enum';
 import { StyleMode } from '../../model/style-mode.enum';
-import { Constants } from '../constants';
+import {
+  CLUSTER_LAYER,
+  CLUSTER_RADIUS,
+  MARKER_LAYER,
+  MARKER_LAYER_SELECTED,
+  MARKER_SOURCE,
+  METADATA_MAPPINGS,
+} from '../constants';
 import { MarkerConverterService } from '../marker-converter.service';
 
 import { MapConfigService } from './map-config.service';
@@ -37,11 +44,11 @@ export class MapMarkerService {
 
   initStyleData(map: MaplibreMap): void {
     this.markerCategoryMappings.clear();
-    this.sources = [Constants.MARKER_SOURCE];
-    this.markerLayers = [Constants.MARKER_LAYER];
-    this.markerLayersSelected = [Constants.MARKER_LAYER_SELECTED];
+    this.sources = [MARKER_SOURCE];
+    this.markerLayers = [MARKER_LAYER];
+    this.markerLayersSelected = [MARKER_LAYER_SELECTED];
 
-    const markerCategoryMappings = ((map.getStyle().metadata ?? {})[Constants.METADATA_MAPPINGS] ??
+    const markerCategoryMappings = ((map.getStyle().metadata ?? {})[METADATA_MAPPINGS] ??
       []) as MarkerCategoryMapping[];
     for (const mapping of markerCategoryMappings) {
       this.sources.push(mapping.source);
@@ -52,7 +59,7 @@ export class MapMarkerService {
   }
 
   get allMarkerAndClusterLayers(): string[] {
-    return [Constants.CLUSTER_LAYER, ...this.allMarkerLayers];
+    return [CLUSTER_LAYER, ...this.allMarkerLayers];
   }
 
   get allMarkerLayers(): string[] {
@@ -74,7 +81,7 @@ export class MapMarkerService {
     const featuresPerSource = new Map<string, Feature[]>();
     for (const marker of markers ?? []) {
       const mapping = this.markerCategoryMappings.get(marker.category);
-      const sourceId = mapping?.source ?? Constants.MARKER_SOURCE;
+      const sourceId = mapping?.source ?? MARKER_SOURCE;
       if (!featuresPerSource.has(sourceId)) {
         featuresPerSource.set(sourceId, []);
       }
@@ -91,7 +98,7 @@ export class MapMarkerService {
   }
 
   private _getPrimaryMarkerSource(map: MaplibreMap): GeoJSONSource {
-    return map.getSource(Constants.MARKER_SOURCE) as GeoJSONSource;
+    return map.getSource(MARKER_SOURCE) as GeoJSONSource;
   }
 
   onClusterClicked(map: MaplibreMap, cluster: FeatureData): void {
@@ -191,7 +198,7 @@ export class MapMarkerService {
     position: GeoJSON.Position
   ): MapboxGeoJSONFeature | undefined {
     const point = map.project(position as LngLatLike);
-    const range = Constants.CLUSTER_RADIUS / 2;
+    const range = CLUSTER_RADIUS / 2;
 
     const clusters = map.queryRenderedFeatures(
       [
@@ -199,7 +206,7 @@ export class MapMarkerService {
         [point.x + range, point.y + range],
       ],
       {
-        layers: [Constants.CLUSTER_LAYER],
+        layers: [CLUSTER_LAYER],
       }
     );
 
