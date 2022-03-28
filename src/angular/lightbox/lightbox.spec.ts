@@ -10,8 +10,10 @@ import {
   ChangeDetectionStrategy,
   Component,
   ComponentFactoryResolver,
+  createNgModuleRef,
   Directive,
   Inject,
+  Injectable,
   Injector,
   NgModule,
   NgZone,
@@ -1703,6 +1705,37 @@ describe('SbbLightbox with animations enabled', () => {
   }));
 });
 
+describe('SbbDialog with explicit injector provided', () => {
+  let overlayContainerElement: HTMLElement;
+  let fixture: ComponentFixture<ModuleBoundLightboxParentComponent>;
+
+  beforeEach(fakeAsync(() => {
+    TestBed.configureTestingModule({
+      imports: [SbbLightboxModule, BrowserAnimationsModule],
+      declarations: [ModuleBoundLightboxParentComponent],
+    });
+
+    TestBed.compileComponents();
+  }));
+
+  beforeEach(inject([OverlayContainer], (oc: OverlayContainer) => {
+    overlayContainerElement = oc.getContainerElement();
+  }));
+
+  beforeEach(() => {
+    fixture = TestBed.createComponent(ModuleBoundLightboxParentComponent);
+  });
+
+  it('should use the standalone injector and render the lightbox successfully', fakeAsync(() => {
+    fixture.componentInstance.openLightbox();
+    fixture.detectChanges();
+
+    expect(
+      overlayContainerElement.querySelector('module-bound-lightbox-child-component')!.innerHTML
+    ).toEqual('<p>Pasta</p>');
+  }));
+});
+
 describe('SbbLightbox with template only', () => {
   let fixture: ComponentFixture<ContentElementDialog>;
 
@@ -1915,3 +1948,41 @@ const TEST_DIRECTIVES = [
   declarations: TEST_DIRECTIVES,
 })
 class DialogTestModule {}
+
+@Component({ template: '' })
+class ModuleBoundLightboxParentComponent {
+  constructor(private _injector: Injector, private _lightbox: SbbLightbox) {}
+
+  openLightbox(): void {
+    const ngModuleRef = createNgModuleRef(
+      ModuleBoundLightboxModule,
+      /* parentInjector */ this._injector
+    );
+
+    this._lightbox.open(ModuleBoundLightboxComponent, { injector: ngModuleRef.injector });
+  }
+}
+
+@Injectable({ providedIn: 'root' })
+class ModuleBoundLightboxService {
+  name = 'Pasta';
+}
+
+@Component({
+  template: '<module-bound-lightbox-child-component></module-bound-lightbox-child-component>',
+})
+class ModuleBoundLightboxComponent {}
+
+@Component({
+  selector: 'module-bound-lightbox-child-component',
+  template: '<p>{{service.name}}</p>',
+})
+class ModuleBoundLightboxChildComponent {
+  constructor(public service: ModuleBoundLightboxService) {}
+}
+
+@NgModule({
+  declarations: [ModuleBoundLightboxComponent, ModuleBoundLightboxChildComponent],
+  providers: [ModuleBoundLightboxService],
+})
+class ModuleBoundLightboxModule {}
