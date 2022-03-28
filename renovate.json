@@ -7,7 +7,7 @@
   "includePaths": ["package.json", ".github/**"],
   "schedule": ["after 10pm every weekday", "before 5am every weekday", "every weekend"],
   "lockFileMaintenance": {
-    "schedule": ["every weekend"],
+    "schedule": ["before 5am on thursday"],
     "enabled": true
   },
   "allowPostUpgradeCommandTemplating": true,
