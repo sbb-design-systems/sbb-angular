@@ -1,4 +1,4 @@
-import { LEFT_ARROW } from '@angular/cdk/keycodes';
+import { LEFT_ARROW, RIGHT_ARROW } from '@angular/cdk/keycodes';
 import { CommonModule } from '@angular/common';
 import { Component, DebugElement, OnInit, QueryList, ViewChild, ViewChildren } from '@angular/core';
 import {
@@ -313,6 +313,23 @@ describe('SbbTabGroup', () => {
       fixture.detectChanges();
 
       expect(tabHeader.focusIndex).not.toBe(3);
+    });
+
+    it('should update the tabindex of the labels when navigating via keyboard', () => {
+      fixture.detectChanges();
+
+      const tabLabels = fixture.debugElement
+        .queryAll(By.css('.sbb-tab-label'))
+        .map((label) => label.nativeElement);
+      const tabLabelContainer = fixture.debugElement.query(By.css('.sbb-tab-label-container'))
+        .nativeElement as HTMLElement;
+
+      expect(tabLabels.map((label) => label.getAttribute('tabindex'))).toEqual(['-1', '0', '-1']);
+
+      dispatchKeyboardEvent(tabLabelContainer, 'keydown', RIGHT_ARROW);
+      fixture.detectChanges();
+
+      expect(tabLabels.map((label) => label.getAttribute('tabindex'))).toEqual(['-1', '-1', '0']);
     });
   });
 
