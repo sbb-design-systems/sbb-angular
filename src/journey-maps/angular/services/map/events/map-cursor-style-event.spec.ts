@@ -1,6 +1,6 @@
 import { MapboxGeoJSONFeature } from 'maplibre-gl';
 
-import { MaplibreMapMock } from '../../../model/maplibre-map-mock';
+import { MaplibreMapMock } from '../../../testing/maplibre-map-mock';
 
 import { MapCursorStyleEvent } from './map-cursor-style-event';
 

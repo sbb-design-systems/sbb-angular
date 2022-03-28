@@ -1,5 +1,5 @@
 import { FeatureData, FeatureDataType } from '../../../journey-maps-client.interfaces';
-import { MaplibreMapMock } from '../../../model/maplibre-map-mock';
+import { MaplibreMapMock } from '../../../testing/maplibre-map-mock';
 
 import { FeaturesHoverEvent } from './features-hover-event';
 import { MapEventUtilsService } from './map-event-utils.service';

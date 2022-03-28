@@ -3,7 +3,7 @@ import {
   FeatureDataType,
   FeaturesClickEventData,
 } from '../../../journey-maps-client.interfaces';
-import { MaplibreMapMock } from '../../../model/maplibre-map-mock';
+import { MaplibreMapMock } from '../../../testing/maplibre-map-mock';
 
 import { FeaturesClickEvent } from './features-click-event';
 import { MapEventUtilsService } from './map-event-utils.service';

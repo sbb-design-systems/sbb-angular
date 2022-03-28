@@ -1,22 +1,20 @@
-<ng-container>
-  <rokas-teaser
-    [rendered]="shouldRender"
-    [templateContext]="selectedMarker"
-    (closeClicked)="closeClicked.next()"
-    [template]="template"
-    [attr.aria-live]="'polite'"
-    *ngIf="!popup"
-  ></rokas-teaser>
-  <rokas-popup
-    [rendered]="shouldRender"
-    [map]="map"
-    [templateContext]="selectedMarker"
-    [position]="getLngLatLike(selectedMarker?.position)"
-    [offset]="popupOffset"
-    (closeClicked)="closeClicked.next()"
-    [template]="template"
-    [additionalClassName]="'marker-details'"
-    *ngIf="popup"
-  >
-  </rokas-popup>
-</ng-container>
+<rokas-teaser
+  [rendered]="shouldRender"
+  [templateContext]="selectedMarker"
+  (closeClicked)="closeClicked.next()"
+  [template]="template"
+  [attr.aria-live]="'polite'"
+  *ngIf="!popup"
+></rokas-teaser>
+<rokas-popup
+  [rendered]="shouldRender"
+  [map]="map"
+  [templateContext]="selectedMarker"
+  [position]="getLngLatLike(selectedMarker?.position)"
+  [offset]="popupOffset"
+  (closeClicked)="closeClicked.next()"
+  [template]="template"
+  [additionalClassName]="'marker-details'"
+  *ngIf="popup"
+>
+</rokas-popup>
