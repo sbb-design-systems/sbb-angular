@@ -226,7 +226,7 @@ export abstract class _SbbDialogBase<
    * @returns A promise resolving to a ComponentRef for the attached container.
    */
   private _attachDialogContainer(overlay: OverlayRef, config: SbbDialogConfig): C {
-    const userInjector = config && config.viewContainerRef && config.viewContainerRef.injector;
+    const userInjector = config.injector ?? config.viewContainerRef?.injector;
     const injector = Injector.create({
       parent: userInjector || this._injector,
       providers: [{ provide: SbbDialogConfig, useValue: config }],

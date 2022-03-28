@@ -1,5 +1,5 @@
 import { ScrollStrategy } from '@angular/cdk/overlay';
-import { ComponentFactoryResolver, ViewContainerRef } from '@angular/core';
+import { ComponentFactoryResolver, Injector, ViewContainerRef } from '@angular/core';
 
 import { defaultParams } from './dialog-animations';
 
@@ -32,6 +32,12 @@ export class SbbDialogConfig<D = any> {
    * content will be rendered.
    */
   viewContainerRef?: ViewContainerRef;
+
+  /**
+   * Injector used for the instantiation of the component to be attached. If provided,
+   * takes precedence over the injector indirectly provided by `ViewContainerRef`.
+   */
+  injector?: Injector;
 
   /** ID for the dialog. If omitted, a unique one will be generated. */
   id?: string;
