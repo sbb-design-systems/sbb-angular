@@ -1,4 +1,4 @@
-@use './../../style/colors' as c;
+@use './../../style/variables' as v;
 @use './../../style/icons' as i;
 @use '../../../../angular/styles/common' as esta;
 
@@ -10,7 +10,7 @@
   height: 100%;
   overflow-y: auto;
   padding: 1rem;
-  background-color: c.$white;
+  background-color: esta.$sbbColorWhite;
   box-shadow: -5px 0px 5px -5px rgba(0, 0, 0, 0.15);
 
   .close {
@@ -21,10 +21,9 @@
     height: 24px;
     width: 24px;
     cursor: pointer;
-    background: none;
     padding: 0;
     border: none;
-    background-color: c.$darkgray;
+    background: v.$darkgray none;
     @include i.icon-mask('circle-cross');
   }
 

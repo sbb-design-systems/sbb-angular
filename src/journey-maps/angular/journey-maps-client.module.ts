@@ -31,7 +31,7 @@ import { JourneyMapsClientComponent } from './journey-maps-client.component';
     OverlayPaginatorComponent,
     ResizedDirective,
   ],
-  imports: [CommonModule /*AngularResizeEventModule*/],
+  imports: [CommonModule],
   exports: [JourneyMapsClientComponent, PopupComponent, TeaserComponent],
 })
 export class JourneyMapsClientModule {}

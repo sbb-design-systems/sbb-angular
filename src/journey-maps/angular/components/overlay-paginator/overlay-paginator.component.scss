@@ -1,4 +1,4 @@
-@use './../../style/colors' as c;
+@use '../../../../angular/styles/common' as esta;
 @use './../../style/icons' as i;
 
 $iconSize: 24px;
@@ -10,7 +10,7 @@ $iconSize: 24px;
 
   &-item {
     cursor: pointer;
-    background-color: c.$black;
+    background-color: esta.$sbbColorBlack;
     width: $iconSize;
 
     &.var-next {
@@ -31,7 +31,7 @@ $iconSize: 24px;
 
     &.disabled {
       cursor: not-allowed;
-      background-color: c.$lightgray;
+      background-color: esta.$sbbColorCloud;
     }
   }
 }

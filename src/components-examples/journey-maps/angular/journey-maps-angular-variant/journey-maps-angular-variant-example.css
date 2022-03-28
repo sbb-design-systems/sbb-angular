@@ -1,5 +1,9 @@
 @import 'https://unpkg.com/maplibre-gl@1.15.2/dist/maplibre-gl.css';
 
+sbb-notification.api-key-info {
+  margin-bottom: 30px;
+}
+
 ul {
   margin: 9px 0;
   padding: 0;

@@ -26,24 +26,30 @@ import { LngLatBoundsLike, LngLatLike } from 'maplibre-gl';
 import { BehaviorSubject, Subject, take } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
 
-import { zhShWaldfriedhof } from './test-data/journey/zh-sh_waldfriedhof';
-import { markers } from './test-data/markers';
-import { bernIndoor } from './test-data/transfer/bern-indoor';
-import { geneveIndoor } from './test-data/transfer/geneve-indoor';
-import { luzern4j } from './test-data/transfer/luzern4-j';
-import { zurichIndoor } from './test-data/transfer/zurich-indoor';
-import { bernBurgdorfZones } from './test-data/zone/bern-burgdorf';
-import { baselBielZones } from './test-data/zone/bs-bl';
+import { zhShWaldfriedhof } from './mock-response/journey/zh-sh_waldfriedhof';
+import { markers } from './mock-response/markers';
+import { bernIndoor } from './mock-response/transfer/bern-indoor';
+import { geneveIndoor } from './mock-response/transfer/geneve-indoor';
+import { luzern4j } from './mock-response/transfer/luzern4-j';
+import { zurichIndoor } from './mock-response/transfer/zurich-indoor';
+import { bernBurgdorfZones } from './mock-response/zone/bern-burgdorf';
+import { baselBielZones } from './mock-response/zone/bs-bl';
+
+declare global {
+  interface Window {
+    JM_API_KEY: string;
+  }
+}
 
 /**
  * @title Journey Maps Angular examples
  */
 @Component({
-  selector: 'sbb-angular-example',
-  templateUrl: 'angular-example.html',
-  styleUrls: ['angular-example.css'],
+  selector: 'sbb-journey-maps-angular-variant-example',
+  templateUrl: 'journey-maps-angular-variant-example.html',
+  styleUrls: ['journey-maps-angular-variant-example.css'],
 })
-export class Angular implements OnInit, AfterViewInit, OnDestroy {
+export class JourneyMapsAngularVariant implements OnInit, AfterViewInit, OnDestroy {
   @ViewChild('advancedMap')
   client: JourneyMapsClientComponent;
   @ViewChild('stationTemplate')
@@ -51,7 +57,6 @@ export class Angular implements OnInit, AfterViewInit, OnDestroy {
   @ViewChild('routeTemplate')
   routeTemplate: TemplateRef<any>;
 
-  // @ts-ignore
   apiKey = window.JM_API_KEY;
   mapVisible = true;
   selectedMarkerId?: string;
@@ -101,7 +106,7 @@ export class Angular implements OnInit, AfterViewInit, OnDestroy {
   journeyMapsZoneOptions = ['bern-burgdorf', 'bs-bl'];
   viewportOptions: ViewportOptions = {};
   zoomLevels: ZoomLevels;
-  visibleLevels$ = new BehaviorSubject<number[]>([]);
+  visibleLevels = new BehaviorSubject<number[]>([]);
 
   private _destroyed = new Subject<void>();
 
@@ -110,7 +115,7 @@ export class Angular implements OnInit, AfterViewInit, OnDestroy {
   ngOnInit() {
     this.mapCenterChange
       .pipe(takeUntil(this._destroyed))
-      .subscribe((mapCenter) => (this.mapCenter = mapCenter));
+      .subscribe((mapCenter: LngLatLike) => (this.mapCenter = mapCenter));
   }
 
   ngAfterViewInit() {
@@ -138,7 +143,7 @@ export class Angular implements OnInit, AfterViewInit, OnDestroy {
   setJourneyMapsRoutingInput(event: Event): void {
     this.journeyMapsRoutingOption = {};
 
-    let bbox;
+    let bbox: number[] | undefined;
     let updateDataFunction: () => void;
     if ((event.target as HTMLOptionElement).value === 'journey') {
       updateDataFunction = () => (this.journeyMapsRoutingOption = { journey: zhShWaldfriedhof });
@@ -218,6 +223,13 @@ export class Angular implements OnInit, AfterViewInit, OnDestroy {
       [bbox[0], bbox[1]],
       [bbox[2], bbox[3]],
     ];
+  }
+
+  mapCenterInfo(): { lng: number; lat: number } | undefined {
+    if (!this.mapCenter) {
+      return;
+    }
+    return this.mapCenter as { lng: number; lat: number };
   }
 
   private _setBbox(bbox: number[]): void {

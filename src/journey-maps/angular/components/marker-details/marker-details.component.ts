@@ -18,7 +18,6 @@ import { MapMarkerService } from '../../services/map/map-marker.service';
 @Component({
   selector: 'rokas-marker-details',
   templateUrl: './marker-details.component.html',
-  styleUrls: ['./marker-details.component.css'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class MarkerDetailsComponent implements OnChanges {

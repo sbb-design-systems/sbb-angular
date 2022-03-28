@@ -16,8 +16,8 @@ import { MultiTouchSupport } from '../multiTouchSupport';
   providedIn: 'root',
 })
 export class MapInitService {
-  public static minZoom: number = 1;
-  public static maxZoom: number = 23; /* same as in mobile-clients */
+  static minZoom: number = 1;
+  static maxZoom: number = 23; /* same as in mobile-clients */
 
   private readonly _defaultZoom = 7.5;
   private readonly _defaultMapCenter: LngLatLike = [7.299265, 47.07212];
@@ -111,11 +111,11 @@ export class MapInitService {
     return options;
   }
 
-  public getDefaultBoundingBox() {
+  getDefaultBoundingBox() {
     return this._defaultBoundingBox;
   }
 
-  public fetchStyle(styleUrl: string): Observable<Style> {
+  fetchStyle(styleUrl: string): Observable<Style> {
     return this._http.get(styleUrl).pipe(map((style) => style as Style));
   }
 

@@ -23,7 +23,6 @@ ng_module(
         ":components/home-button/home-button.component.css",
         ":components/leit-poi/leit-poi.component.css",
         ":components/level-switch/level-switch.component.css",
-        ":components/marker-details/marker-details.component.css",
         ":components/overlay-paginator/overlay-paginator.component.css",
         ":components/popup/popup.component.css",
         ":components/teaser/teaser.component.css",
@@ -93,11 +92,6 @@ sass_binary(
         ":angular_scss_lib",
         "//src/angular/styles:common_scss_lib",
     ],
-)
-
-sass_binary(
-    name = "components_marker_details_marker_details_component_scss",
-    src = "components/marker-details/marker-details.component.scss",
 )
 
 sass_binary(

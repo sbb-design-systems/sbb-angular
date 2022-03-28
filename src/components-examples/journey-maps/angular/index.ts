@@ -9,10 +9,10 @@ import { SbbRadioButtonModule } from '@sbb-esta/angular/radio-button';
 import { SbbTabsModule } from '@sbb-esta/angular/tabs';
 import { JourneyMapsClientModule } from '@sbb-esta/journey-maps/angular';
 
-import { Angular } from './angular/angular-example';
+import { JourneyMapsAngularVariant } from './journey-maps-angular-variant/journey-maps-angular-variant-example';
 
-export { Angular };
-const EXAMPLES = [Angular];
+export { JourneyMapsAngularVariant };
+const EXAMPLES = [JourneyMapsAngularVariant];
 
 @NgModule({
   imports: [

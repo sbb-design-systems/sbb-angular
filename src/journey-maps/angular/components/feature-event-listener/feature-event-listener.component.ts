@@ -77,7 +77,7 @@ export class FeatureEventListenerComponent implements OnChanges, OnDestroy {
     private _routeUtilsService: RouteUtilsService,
     private _mapEventUtils: MapEventUtilsService,
     private _cd: ChangeDetectorRef,
-    public readonly mapSelectionEventService: MapSelectionEventService
+    readonly mapSelectionEventService: MapSelectionEventService
   ) {}
 
   ngOnDestroy(): void {

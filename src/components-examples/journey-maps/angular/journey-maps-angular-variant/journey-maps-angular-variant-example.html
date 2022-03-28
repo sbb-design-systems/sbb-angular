@@ -1,8 +1,6 @@
-<sbb-notification type="info"
-  >This example uses a test API key, that might be disabled at any time.</sbb-notification
->
-<br />
-<br />
+<sbb-notification type="info" class="api-key-info"
+  >This example uses a test API key, that might be disabled at any time.
+</sbb-notification>
 <sbb-tab-group>
   <!-- ************************* Basic ************************* -->
   <sbb-tab label="Basic">
@@ -40,7 +38,7 @@
         [(selectedLevel)]="selectedLevel"
         (mapCenterChange)="mapCenterChange.next($event)"
         (zoomLevelsChange)="zoomLevels=$event"
-        (visibleLevelsChange)="visibleLevels$.next($event)"
+        (visibleLevelsChange)="visibleLevels.next($event)"
       ></sbb-journey-maps>
       <ng-template #markerDetailsTemplate let-marker>
         <div class="markerdetails-title">{{marker.title}}</div>
@@ -56,19 +54,28 @@
     </div>
     <div>
       <ul>
-        <li>
-          <sbb-label>Map center: {{mapCenter}}</sbb-label>
+        <li class="sbb-label">
+          Map move / pan with one finger: {{(interactionOptions.oneFingerPan ?? false) ? 'on' :
+          'off'}}
+        </li>
+        <li class="sbb-label">
+          Map zoom with scroll wheel: {{(interactionOptions.scrollZoom ?? false) ? 'on' : 'off'}}
+        </li>
+        <li class="sbb-label">
+          Map center (x / lng, y / lat): {{mapCenterInfo()?.lng | number: '1.1-6'}},
+          {{mapCenterInfo()?.lat | number:'1.1-6'}}
+        </li>
+        <li class="sbb-label">
+          Map zoom (within range {{zoomLevels?.minZoom}}..{{zoomLevels?.maxZoom}} ):
+          {{zoomLevels?.currentZoom | number: '1.1-2'}}
         </li>
         <li>
-          <sbb-label
-            >Map zoom (within range {{zoomLevels?.minZoom}}..{{zoomLevels?.maxZoom}} ):
-            {{zoomLevels?.currentZoom}}</sbb-label
-          >
+          <hr />
         </li>
         <li>
           <sbb-checkbox (change)="mapVisible=!mapVisible" [checked]="mapVisible"
-            >Map visibility</sbb-checkbox
-          >
+            >Map visibility
+          </sbb-checkbox>
         </li>
         <li>
           <sbb-checkbox
@@ -79,17 +86,7 @@
           </sbb-checkbox>
         </li>
         <li>
-          <sbb-checkbox [checked]="interactionOptions.oneFingerPan??false" disabled
-            >Map move / pan with one finger
-          </sbb-checkbox>
-        </li>
-        <li>
-          <sbb-checkbox [checked]="interactionOptions.scrollZoom??false" disabled
-            >Map zoom with scroll wheel
-          </sbb-checkbox>
-        </li>
-        <li>
-          <sbb-label>Switch map to dark mode / bright mode</sbb-label>
+          <span class="sbb-label">Switch map to dark mode / bright mode</span>
           <sbb-radio-group
             class="sbb-checkbox-group-horizontal"
             (change)="setStyleModeInput($event)"
@@ -100,12 +97,12 @@
           </sbb-radio-group>
         </li>
         <li>
-          <sbb-label>Zoom map</sbb-label>
+          <span class="sbb-label">Zoom map</span>
           <button sbb-ghost-button (click)="client.zoomIn()">Zoom In</button>
           <button sbb-ghost-button (click)="client.zoomOut()">Zoom Out</button>
         </li>
         <li>
-          <sbb-label>Move / pan map</sbb-label>
+          <span class="sbb-label">Move / pan map</span>
           <button sbb-ghost-button (click)="client.moveNorth()">North</button>
           <button sbb-ghost-button (click)="client.moveEast()">East</button>
           <button sbb-ghost-button (click)="client.moveSouth()">South</button>
@@ -113,7 +110,7 @@
         </li>
         <li>
           <div>
-            <sbb-label>Map interaction configuration</sbb-label>
+            <span class="sbb-label">Map interaction configuration</span>
             <div class="sbb-checkbox-group-horizontal">
               <sbb-checkbox
                 [(ngModel)]="listenerOptions.MARKER.watch"
@@ -139,16 +136,14 @@
           </div>
         </li>
         <li>
-          <sbb-label
-            >Map markers<span *ngIf="selectedMarkerId">
-              (selected: {{selectedMarkerId}})</span
-            ></sbb-label
+          <span class="sbb-label">
+            Map markers<span *ngIf="selectedMarkerId"> (selected: {{selectedMarkerId}})</span></span
           >
           <button sbb-ghost-button (click)="selectedMarkerId='home'">'Home Office'</button>
           <button sbb-ghost-button (click)="selectedMarkerId=undefined">Unselect all</button>
         </li>
         <li>
-          <sbb-label>Map marker info style</sbb-label>
+          <span class="sbb-label">Map marker info style</span>
           <sbb-radio-group
             class="sbb-checkbox-group-horizontal"
             (change)="setPopupInput($event)"
@@ -159,14 +154,14 @@
           </sbb-radio-group>
         </li>
         <li>
-          <sbb-label>Select zones</sbb-label>
+          <span class="sbb-label">Select zones</span>
           <select sbbInput (change)="setJourneyMapsZoneInput($event)">
             <option value="" (change)="setJourneyMapsZoneInput($event)">(none)</option>
             <option *ngFor="let input of journeyMapsZoneOptions" [value]="input">{{input}}</option>
           </select>
         </li>
         <li>
-          <sbb-label>Select a journey</sbb-label>
+          <span class="sbb-label">Select a journey</span>
           <select class="select-journey" sbbInput (change)="setJourneyMapsRoutingInput($event)">
             <option value="" (change)="setJourneyMapsRoutingInput($event)">(none)</option>
             <option *ngFor="let input of journeyMapsRoutingOptions" [value]="input">
@@ -174,12 +169,12 @@
             </option>
           </select>
         </li>
-        <li *ngIf="visibleLevels$ | async as visibleLevels">
+        <li *ngIf="visibleLevels | async as visibleLevels">
           <sbb-notification *ngIf="!visibleLevels.length" type="info"
-            >No indoor data visible in map</sbb-notification
-          >
+            >No indoor data visible in map
+          </sbb-notification>
           <div *ngIf="visibleLevels.length">
-            <sbb-label>Select indoor level</sbb-label>
+            <span class="sbb-label">Select indoor level</span>
             <ng-container *ngFor="let level of visibleLevels">
               <button
                 sbb-icon-button

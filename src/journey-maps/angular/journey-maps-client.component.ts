@@ -90,7 +90,7 @@ export class JourneyMapsClientComponent implements OnInit, AfterViewInit, OnDest
 
   set language(language: string) {
     if (language == null) {
-      throw new TypeError("language mustn't be null");
+      throw new TypeError('language must not be null');
     }
 
     language = language.toLowerCase();
@@ -335,8 +335,8 @@ export class JourneyMapsClientComponent implements OnInit, AfterViewInit, OnDest
 
   // visible for testing
   touchEventCollector: Subject<TouchEvent> = new Subject<TouchEvent>();
-  public touchOverlayText: string;
-  public touchOverlayStyleClass: string = '';
+  touchOverlayText: string;
+  touchOverlayStyleClass: string = '';
 
   // _map._isStyleLoaded() returns sometimes false when sources are being updated.
   // Therefore we set this variable to true once the style has been loaded.
@@ -387,7 +387,7 @@ export class JourneyMapsClientComponent implements OnInit, AfterViewInit, OnDest
     this.touchEventCollector.next(event);
   }
 
-  public set selectedMarker(value: Marker | undefined) {
+  set selectedMarker(value: Marker | undefined) {
     if (value && (value.triggerEvent || value.triggerEvent === undefined)) {
       this.selectedMarkerIdChange.emit(value.id);
     } else {
@@ -400,49 +400,49 @@ export class JourneyMapsClientComponent implements OnInit, AfterViewInit, OnDest
     }
   }
 
-  public get selectedMarker(): Marker | undefined {
+  get selectedMarker(): Marker | undefined {
     return this._selectedMarker;
   }
 
   /**
    * Move the map North as if pressing the up arrow key on the keyboard
    */
-  public moveNorth(): void {
+  moveNorth(): void {
     this._mapService.pan(this._map, Direction.NORTH);
   }
 
   /**
    * Move the map East as if pressing the right arrow key on the keyboard
    */
-  public moveEast(): void {
+  moveEast(): void {
     this._mapService.pan(this._map, Direction.EAST);
   }
 
   /**
    * Move the map South as if pressing the down arrow key on the keyboard
    */
-  public moveSouth(): void {
+  moveSouth(): void {
     this._mapService.pan(this._map, Direction.SOUTH);
   }
 
   /**
    * Move the map West as if pressing the left arrow key on the keyboard
    */
-  public moveWest(): void {
+  moveWest(): void {
     this._mapService.pan(this._map, Direction.WEST);
   }
 
   /**
    * Zoom In
    */
-  public zoomIn(): void {
+  zoomIn(): void {
     this._map?.zoomIn();
   }
 
   /**
    * Zoom Out
    */
-  public zoomOut(): void {
+  zoomOut(): void {
     this._map?.zoomOut();
   }
 
