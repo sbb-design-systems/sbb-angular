@@ -40,12 +40,12 @@ export class MaintenanceIssueUpdater {
 
     return this._octokit.rest.issues.update({
       ...issuePath,
-      body: `${hint}\r\n${openTasks.join('\r\n')}\r\n${dateInfo}`,
+      body: `${hint}\n${openTasks.join('\n')}\n\n${dateInfo}`,
     });
   }
 
   private _extractOpenTasks(issueBody: string = ''): string[] {
-    return issueBody.split('\r\n').filter((line) => line.startsWith('- [ ]'));
+    return issueBody.split('\n').filter((line) => line.startsWith('- [ ]'));
   }
 
   private _addNewTask(tasks: string[], newTask: string): string[] {
