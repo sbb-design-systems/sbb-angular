@@ -1,0 +1,26 @@
+name: Add or remove maintenance labels
+
+on:
+  pull_request:
+    branches: [master]
+
+jobs:
+  add_label:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v3
+      with:
+        fetch-depth: 0
+    - name: "Get @breaking-change annotation counts"
+      id: deprecations
+      run: echo "::set-output name=count::$(git diff ${{ github.event.pull_request.base.sha }} ${{ github.sha }} | egrep "^\+" | grep '@breaking-change' -c)"
+    - name: "Add maintenance label"
+      uses: actions-ecosystem/action-add-labels@v1
+      if: steps.deprecations.outputs.count == '0'
+      with:
+        labels: "target: maintenance"
+    - name: "Remove maintenance label"
+      uses: actions-ecosystem/action-remove-labels@v1
+      if: steps.deprecations.outputs.count != '0'
+      with:
+        labels: "target: maintenance"

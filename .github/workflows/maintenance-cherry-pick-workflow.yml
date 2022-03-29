@@ -1,0 +1,40 @@
+name: cherry-pick on maintenance branch
+
+on:
+  pull_request:
+    types: [closed]
+
+jobs:
+  cherry_pick:
+    runs-on: ubuntu-latest
+    outputs:
+      output: ${{ steps.cherry_pick.outputs.output }}
+    if: |
+      github.event.pull_request.merged == true &&
+      contains(github.event.pull_request.labels.*.name, 'target: maintenance')
+    steps:
+    - uses: actions/checkout@v3
+      with:
+        fetch-depth: 0
+    - name: "Cherry-pick changes into maintenance"
+      id: cherry_pick
+      run: |
+        git checkout maintenance
+        echo "::set-output name=output::$(git -c user.name="cherry.picker" \
+          -c user.email="cherry.picker@sbb.ch" cherry-pick ${{ github.sha }} | xargs)"
+        git push
+  update_maintenance_issue:
+    runs-on: ubuntu-latest
+    needs: cherry_pick
+    if: ${{ contains(needs.cherry_pick.outputs.output, 'CONFLICT') }}
+    steps:
+    - uses: actions/checkout@v3
+    - uses: actions/setup-node@v3
+      with:
+        node-version: 16
+    - uses: ./.github/actions/yarn-install
+    - name: "Update maintenance issue"
+      run: yarn ts-node scripts/update-maintenance-issue.ts
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        PR_NUMBER: ${{ github.event.number }}
