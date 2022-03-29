@@ -8,19 +8,19 @@ jobs:
   add_label:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v3
-        with:
-          fetch-depth: 0
-      - name: "Search for commit messages containing 'BREAKING CHANGE:'"
-        id: breakting_changes
-        run: echo "::set-output name=count::$(git cherry -v origin/master origin/${{ github.head_ref }} | grep "BREAKING CHANGE:" -c)"
-      - name: "Add maintenance label"
-        uses: actions-ecosystem/action-add-labels@v1
-        if: steps.breakting_changes.outputs.count == '0'
-        with:
-          labels: "target: maintenance"
-      - name: "Remove maintenance label"
-        uses: actions-ecosystem/action-remove-labels@v1
-        if: steps.breakting_changes.outputs.count != '0'
-        with:
-          labels: "target: maintenance"
+    - uses: actions/checkout@v3
+      with:
+        fetch-depth: 0
+    - name: "Search for commit messages containing 'BREAKING CHANGE:'"
+      id: breakting_changes
+      run: echo "::set-output name=count::$(git cherry -v origin/master origin/${{ github.head_ref }} | grep "BREAKING CHANGE:" -c)"
+    - name: "Add maintenance label"
+      uses: actions-ecosystem/action-add-labels@v1
+      if: steps.breakting_changes.outputs.count == '0'
+      with:
+        labels: "target: maintenance"
+    - name: "Remove maintenance label"
+      uses: actions-ecosystem/action-remove-labels@v1
+      if: steps.breakting_changes.outputs.count != '0'
+      with:
+        labels: "target: maintenance"
