@@ -14,7 +14,6 @@ import {
   JourneyMapsClientComponent,
   JourneyMapsRoutingOptions,
   ListenerTypeOptions,
-  SelectionMode,
   StyleMode,
   StyleOptions,
   UIOptions,

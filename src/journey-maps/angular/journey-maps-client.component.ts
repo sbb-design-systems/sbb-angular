@@ -37,7 +37,6 @@ import {
   ZoomLevels,
 } from './journey-maps-client.interfaces';
 import { Marker } from './model/marker';
-import { StyleMode } from './model/style-mode.enum';
 import { bufferTimeOnValue } from './services/bufferTimeOnValue';
 import { MARKER_BOUNDS_PADDING, ROUTE_SOURCE, WALK_SOURCE } from './services/constants';
 import { LocaleService } from './services/locale.service';
@@ -49,7 +48,7 @@ import { MapMarkerService } from './services/map/map-marker.service';
 import { MapRoutesService } from './services/map/map-routes.service';
 import { MapTransferService } from './services/map/map-transfer.service';
 import { MapZoneService } from './services/map/map-zone.service';
-import { Direction, MapService } from './services/map/map.service';
+import { MapService } from './services/map/map.service';
 
 const SATELLITE_MAP_MAX_ZOOM = 19.2;
 const SATELLITE_MAP_TILE_SIZE = 256;
