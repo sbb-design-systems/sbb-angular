@@ -87,10 +87,10 @@ export class JourneyMapsAngularVariant implements OnInit, AfterViewInit, OnDestr
     STATION: ListenerTypeOptions;
     ZONE: ListenerTypeOptions;
   } = {
-    MARKER: { watch: true, selectionMode: SelectionMode.Single },
-    ROUTE: { watch: true, popup: true, selectionMode: SelectionMode.Multi },
+    MARKER: { watch: true, selectionMode: 'single' },
+    ROUTE: { watch: true, popup: true, selectionMode: 'multi' },
     STATION: { watch: true, popup: true },
-    ZONE: { watch: true, selectionMode: SelectionMode.Multi },
+    ZONE: { watch: true, selectionMode: 'multi' },
   };
   styleOptions: StyleOptions = { brightId: 'base_bright_v2_ki' };
   markerOptions = markers;

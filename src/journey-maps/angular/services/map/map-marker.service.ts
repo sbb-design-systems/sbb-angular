@@ -76,7 +76,7 @@ export class MapMarkerService {
     if (!selectedMarker) {
       this.unselectFeature(map);
     }
-    this.addMissingImages(map, markers!, styleMode === 'DARK');
+    this.addMissingImages(map, markers!, styleMode === 'dark');
 
     const featuresPerSource = new Map<string, Feature[]>();
     for (const marker of markers ?? []) {

@@ -12,7 +12,7 @@ export interface StyleOptions {
   brightId?: string;
   /** Overwrite this value if you want to use a custom style id for the dark mode. */
   darkId?: string;
-  /** Select the style mode between BRIGHT and DARK. */
+  /** Select the style mode between bright and dark. */
   mode?: StyleMode;
 }
 
@@ -123,10 +123,7 @@ export interface ListenerTypeOptions {
 }
 
 /** Selection mode options */
-export enum SelectionMode {
-  Single,
-  Multi,
-}
+export type SelectionMode = 'single' | 'multi';
 
 export interface FeaturesHoverChangeEventData {
   /** Event screen position. */

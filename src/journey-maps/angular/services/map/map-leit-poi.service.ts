@@ -120,7 +120,7 @@ export class MapLeitPoiService {
         return {
           travelType: feature.properties.travelType.toLowerCase(),
           travelDirection: feature.properties.direction.toLowerCase(),
-          placement: feature.properties.placement.toUpperCase(),
+          placement: feature.properties.placement.toLowerCase(),
           sourceLevel: Number(feature.properties.sourceFloor),
           location: (feature.geometry as any).coordinates,
           destinationLevel: Number(feature.properties.destinationFloor),
