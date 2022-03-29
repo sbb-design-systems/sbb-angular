@@ -1,4 +1,4 @@
-name: cherry-pick on maintenance branch
+name: cherry-pick into target branches
 
 on:
   pull_request:
@@ -7,34 +7,57 @@ on:
 jobs:
   cherry_pick:
     runs-on: ubuntu-latest
+    if: github.event.pull_request.merged == true
     outputs:
-      output: ${{ steps.cherry_pick.outputs.output }}
-    if: |
-      github.event.pull_request.merged == true &&
-      contains(github.event.pull_request.labels.*.name, 'target: maintenance')
+      failed_branches: ${{ steps.update_failed_branches.outputs.failed_branches }}
+    strategy:
+      matrix:
+        label: ${{ github.event.pull_request.labels.*.name }}
+
     steps:
-    - uses: actions/checkout@v3
-      with:
-        fetch-depth: 0
-    - name: "Cherry-pick changes into maintenance"
-      id: cherry_pick
-      run: |
-        git checkout maintenance
-        echo "::set-output name=output::$(git -c user.name="github-actions" \
-          -c user.email="github-actions@github.com" cherry-pick ${{ github.sha }} | xargs)"
-        git push
+      - name: Get branch name from label
+        id: branch_name
+        run: |
+          echo "::set-output name=branch::$(echo ${{ matrix.label }} | sed -n 's/target: \([0-9]*.x\).*/\1/p')"
+
+      - uses: actions/checkout@v3
+        if: steps.branch_name.outputs.branch
+        with:
+          fetch-depth: 0
+
+      - name: Cherry-pick changes into  ${{ steps.branch_name.outputs.branch }}
+        if: steps.branch_name.outputs.branch
+        run: |
+          git checkout ${{ steps.branch_name.outputs.branch }}
+          git -c user.name="github-actions" -c user.email="github-actions@github.com" cherry-pick ${{ github.sha }}
+          git push
+
+      - name: Update failed branches
+        if: ${{ failure() }}
+        id: update_failed_branches
+        run: |
+          echo "::set-output name=failed_branches::$(echo ${{ steps.branch_name.outputs.branch }} ${{ steps.update_failed_branches.outputs.failed_branches}})"
+
   update_maintenance_issue:
     runs-on: ubuntu-latest
     needs: cherry_pick
-    if: ${{ contains(needs.cherry_pick.outputs.output, 'CONFLICT') }}
+    if: always() && needs.cherry_pick.result == 'failure'
+
     steps:
-    - uses: actions/checkout@v3
-    - uses: actions/setup-node@v3
-      with:
-        node-version: 16
-    - uses: ./.github/actions/yarn-install
-    - name: "Update maintenance issue"
-      run: yarn ts-node scripts/update-maintenance-issue.ts
-      env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        PR_NUMBER: ${{ github.event.number }}
+      - uses: actions/checkout@v3
+
+      - uses: actions/setup-node@v3
+        if: needs.cherry_pick.outputs.failed_branches
+        with:
+          node-version: 16
+
+      - uses: ./.github/actions/yarn-install
+        if: needs.cherry_pick.outputs.failed_branches
+
+      - name: Update maintenance issue
+        if: needs.cherry_pick.outputs.failed_branches
+        run: yarn ts-node scripts/update-maintenance-issue.ts
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          PR_NUMBER: ${{ github.event.number }}
+          FAILED_BRANCHES: ${{ needs.cherry_pick.outputs.failed_branches }}

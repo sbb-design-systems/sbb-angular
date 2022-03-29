@@ -2,6 +2,7 @@ import { Octokit } from 'octokit';
 
 const githubToken = process.env['GITHUB_TOKEN'];
 const pullRequestNumber = parseInt(process.env['PR_NUMBER']!, 10);
+const failedBranches = process.env['FAILED_BRANCHES']!.split(' ').join(', ');
 
 const repoConfig = {
   owner: 'sbb-design-systems',
@@ -33,10 +34,13 @@ class MaintenanceIssueUpdater {
       throw new Error('Could not load pull request');
     }
 
-    const hint = '**Unable to merge the following pull requests into the maintenance branch**';
+    const hint = '**Unable to cherry-pick the following pull requests**';
     const dateInfo = `${this._now.toISOString()}`;
     let openTasks = this._extractOpenTasks(issue.data.body);
-    openTasks = this._addNewTask(openTasks, `- [ ] [${pr.data.title}](${pr.data.html_url})`);
+    openTasks = this._addNewTask(
+      openTasks,
+      `- [ ] [${pr.data.title}](${pr.data.html_url}) (Branches: ${failedBranches})`
+    );
 
     return this._octokit.rest.issues.update({
       ...issuePath,
