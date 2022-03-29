@@ -18,7 +18,7 @@ const prPath = {
   pull_number: pullRequestNumber,
 };
 
-export class MaintenanceIssueUpdater {
+class MaintenanceIssueUpdater {
   constructor(private _octokit: Octokit, private _now: Date) {}
 
   async run() {
