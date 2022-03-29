@@ -36,8 +36,7 @@ export class MaintenanceIssueUpdater {
     const hint = '**Unable to merge the following pull requests into the maintenance branch**';
     const dateInfo = `${this._now.toISOString()}`;
     let openTasks = this._extractOpenTasks(issue.data.body);
-    openTasks.push(`- [ ] [${pr.data.title}](${pr.data.html_url})`);
-    openTasks = [...new Set(openTasks)];
+    openTasks = this._addNewTask(openTasks, `- [ ] [${pr.data.title}](${pr.data.html_url})`);
 
     return this._octokit.rest.issues.update({
       ...issuePath,
@@ -47,6 +46,11 @@ export class MaintenanceIssueUpdater {
 
   private _extractOpenTasks(issueBody: string = ''): string[] {
     return issueBody.split('\r\n').filter((line) => line.startsWith('- [ ]'));
+  }
+
+  private _addNewTask(tasks: string[], newTask: string): string[] {
+    const newTasks = [...tasks, newTask];
+    return [...new Set(newTasks)];
   }
 }
 
