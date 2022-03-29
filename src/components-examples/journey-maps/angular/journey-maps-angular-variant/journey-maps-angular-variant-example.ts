@@ -198,7 +198,7 @@ export class JourneyMapsAngularVariant implements OnInit, AfterViewInit, OnDestr
     this.selectedMarkerId = undefined;
     this.styleOptions = {
       ...this.styleOptions,
-      mode: StyleMode[event.value as StyleMode],
+      mode: event.value as StyleMode,
     };
   }
 

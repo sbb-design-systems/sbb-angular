@@ -33,10 +33,8 @@ export class MapService {
    * Emulate moving the map with the keyboard's arrow keys
    */
   pan(map: MaplibreMap, dir: Direction): void {
-    // tslint:disable-next-line:naming-convention
-    const { NORTH, EAST, SOUTH, WEST } = Direction;
-    const xDir = dir === WEST ? 1 : dir === EAST ? -1 : 0;
-    const yDir = dir === NORTH ? 1 : dir === SOUTH ? -1 : 0;
+    const xDir = dir === 'WEST' ? 1 : dir === 'EAST' ? -1 : 0;
+    const yDir = dir === 'NORTH' ? 1 : dir === 'SOUTH' ? -1 : 0;
 
     // same default values as KeyboardHandler.keydown() in mapbox's keyboard.js
     const panStep = 100; // pixels
@@ -95,9 +93,4 @@ export class MapService {
   }
 }
 
-export enum Direction {
-  NORTH,
-  EAST,
-  SOUTH,
-  WEST,
-}
+export type Direction = 'NORTH' | 'EAST' | 'SOUTH' | 'WEST';

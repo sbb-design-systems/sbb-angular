@@ -59,10 +59,10 @@ export class MapLeitPoiCreatorService {
   }
 
   private _isNorth(placement: LeitPoiPlacement): boolean {
-    return placement === LeitPoiPlacement.Northwest || placement === LeitPoiPlacement.Northeast;
+    return placement === 'NORTHWEST' || placement === 'NORTHEAST';
   }
 
   private _isEast(placement: LeitPoiPlacement): boolean {
-    return placement === LeitPoiPlacement.Southeast || placement === LeitPoiPlacement.Northeast;
+    return placement === 'SOUTHEAST' || placement === 'NORTHEAST';
   }
 }

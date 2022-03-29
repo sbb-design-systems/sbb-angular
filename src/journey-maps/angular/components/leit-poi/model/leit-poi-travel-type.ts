@@ -1,7 +1,1 @@
-export enum LeitPoiTravelType {
-  'default',
-  'stairs',
-  'lift',
-  'ramp',
-  'escalator',
-}
+export type LeitPoiTravelType = 'default' | 'stairs' | 'lift' | 'ramp' | 'escalator';

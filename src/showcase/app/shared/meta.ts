@@ -157,7 +157,10 @@ export const PACKAGES: { [key: string]: ShowcaseMetaPackage } = {
     sections: [
       {
         name: 'Introduction',
-        entries: [{ label: 'Getting started', link: './introduction/getting-started' }],
+        entries: [
+          { label: 'Getting started', link: './introduction/getting-started' },
+          { label: 'Migrate to SBB Angular', link: './introduction/migrate-to-sbb-angular' },
+        ],
       },
       {
         name: 'Components',

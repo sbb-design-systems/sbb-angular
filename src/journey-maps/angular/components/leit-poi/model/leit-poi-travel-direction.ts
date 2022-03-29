@@ -1,5 +1,1 @@
-export enum LeitPoiTravelDirection {
-  'default',
-  'upstairs',
-  'downstairs',
-}
+export type LeitPoiTravelDirection = 'default' | 'upstairs' | 'downstairs';

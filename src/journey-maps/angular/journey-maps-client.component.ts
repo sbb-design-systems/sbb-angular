@@ -107,7 +107,7 @@ export class JourneyMapsClientComponent implements OnInit, AfterViewInit, OnDest
     url: 'https://journey-maps-tiles.geocdn.sbb.ch/styles/{styleId}/style.json?api_key={apiKey}',
     brightId: 'base_bright_v2_ki',
     darkId: 'base_dark_v2_ki',
-    mode: StyleMode.BRIGHT,
+    mode: 'BRIGHT',
   };
 
   /**
@@ -408,28 +408,28 @@ export class JourneyMapsClientComponent implements OnInit, AfterViewInit, OnDest
    * Move the map North as if pressing the up arrow key on the keyboard
    */
   moveNorth(): void {
-    this._mapService.pan(this._map, Direction.NORTH);
+    this._mapService.pan(this._map, 'NORTH');
   }
 
   /**
    * Move the map East as if pressing the right arrow key on the keyboard
    */
   moveEast(): void {
-    this._mapService.pan(this._map, Direction.EAST);
+    this._mapService.pan(this._map, 'EAST');
   }
 
   /**
    * Move the map South as if pressing the down arrow key on the keyboard
    */
   moveSouth(): void {
-    this._mapService.pan(this._map, Direction.SOUTH);
+    this._mapService.pan(this._map, 'SOUTH');
   }
 
   /**
    * Move the map West as if pressing the left arrow key on the keyboard
    */
   moveWest(): void {
-    this._mapService.pan(this._map, Direction.WEST);
+    this._mapService.pan(this._map, 'WEST');
   }
 
   /**
@@ -614,7 +614,7 @@ export class JourneyMapsClientComponent implements OnInit, AfterViewInit, OnDest
   }
 
   private _getStyleId(): string | undefined {
-    return this.styleOptions.mode === StyleMode.DARK
+    return this.styleOptions.mode === 'DARK'
       ? this.styleOptions.darkId
       : this.styleOptions.brightId;
   }
