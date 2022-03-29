@@ -12,7 +12,12 @@ export function migrateI18n(options: Schema): Rule {
 function migrateAngularJson(options: Schema): Rule {
   return (tree: Tree, context: SchematicContext) => {
     return updateWorkspace((workspace) => {
-      const project = getProjectFromWorkspace(workspace, options.project) as ProjectDefinition;
+      const project = getProjectFromWorkspace(
+        workspace,
+        options.project ||
+          (workspace.extensions.defaultProject as string) ||
+          Array.from(workspace.projects.keys())[0]
+      ) as ProjectDefinition;
       const extensions = project.extensions as {
         i18n?: { locales?: Record<string, { translation?: string | string[] }> | string };
       };
@@ -85,7 +90,12 @@ function migrateAngularJson(options: Schema): Rule {
 function migrateMainTs(options: Schema): Rule {
   return async (tree: Tree) => {
     const workspace = await getWorkspace(tree);
-    const project = getProjectFromWorkspace(workspace, options.project);
+    const project = getProjectFromWorkspace(
+      workspace,
+      options.project ||
+        (workspace.extensions.defaultProject as string) ||
+        Array.from(workspace.projects.keys())[0]
+    );
     const mainTsPath = getProjectMainFile(project);
     if (tree.exists(mainTsPath)) {
       const mainTsContent = tree.read(mainTsPath)!.toString('utf8');

@@ -8,7 +8,6 @@ import {
   StepperOptions,
   STEPPER_GLOBAL_OPTIONS,
 } from '@angular/cdk/stepper';
-import { DOCUMENT } from '@angular/common';
 import {
   AfterContentInit,
   ChangeDetectionStrategy,
@@ -142,10 +141,9 @@ export class SbbProcessflow extends CdkStepper implements AfterContentInit {
   constructor(
     @Optional() dir: Directionality,
     changeDetectorRef: ChangeDetectorRef,
-    elementRef: ElementRef<HTMLElement>,
-    @Inject(DOCUMENT) document: any
+    elementRef: ElementRef<HTMLElement>
   ) {
-    super(dir, changeDetectorRef, elementRef, document);
+    super(dir, changeDetectorRef, elementRef);
   }
 
   override ngAfterContentInit() {
