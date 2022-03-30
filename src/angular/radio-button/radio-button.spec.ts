@@ -60,6 +60,17 @@ class StandaloneRadioButtons {
 
 @Component({
   template: `
+    <sbb-radio-group name="test-name">
+      <sbb-radio-button value="fire">Charmander</sbb-radio-button>
+      <sbb-radio-button value="water">Squirtle</sbb-radio-button>
+      <sbb-radio-button value="leaf" checked>Bulbasaur</sbb-radio-button>
+    </sbb-radio-group>
+  `,
+})
+class RadiosInsidePreCheckedRadioGroup {}
+
+@Component({
+  template: `
     <sbb-radio-group [name]="groupName" [(ngModel)]="modelValue" (change)="lastEvent = $event">
       <sbb-radio-button *ngFor="let option of options" [value]="option.value">
         {{ option.label }}
@@ -164,6 +175,7 @@ describe('RadioButton', () => {
         TranscludingWrapper,
         RadioButtonWithPredefinedTabindex,
         RadioButtonWithPredefinedAriaAttributes,
+        RadiosInsidePreCheckedRadioGroup,
       ],
     });
 
@@ -428,6 +440,45 @@ describe('RadioButton', () => {
       expect(radioInstances[2].checked)
         .withContext('should not select the third button')
         .toBeFalsy();
+    });
+
+    it('should set the input tabindex based on the selected radio button', () => {
+      const getTabIndexes = () => {
+        return radioInputElements.map((element) =>
+          parseInt(element.getAttribute('tabindex') || '', 10)
+        );
+      };
+
+      expect(getTabIndexes()).toEqual([0, 0, 0]);
+
+      radioLabelElements[0].click();
+      fixture.detectChanges();
+
+      expect(getTabIndexes()).toEqual([0, -1, -1]);
+
+      radioLabelElements[1].click();
+      fixture.detectChanges();
+
+      expect(getTabIndexes()).toEqual([-1, 0, -1]);
+
+      radioLabelElements[2].click();
+      fixture.detectChanges();
+
+      expect(getTabIndexes()).toEqual([-1, -1, 0]);
+    });
+
+    it('should set the input tabindex correctly with a pre-checked radio button', () => {
+      const precheckedFixture = TestBed.createComponent(RadiosInsidePreCheckedRadioGroup);
+      precheckedFixture.detectChanges();
+
+      const radios: NodeListOf<HTMLElement> =
+        precheckedFixture.nativeElement.querySelectorAll('sbb-radio-button input');
+
+      expect(
+        Array.from(radios).map((radio) => {
+          return radio.getAttribute('tabindex');
+        })
+      ).toEqual(['-1', '-1', '0']);
     });
   });
 

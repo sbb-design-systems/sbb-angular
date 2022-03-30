@@ -10,8 +10,10 @@ import {
   ChangeDetectionStrategy,
   Component,
   ComponentFactoryResolver,
+  createNgModuleRef,
   Directive,
   Inject,
+  Injectable,
   Injector,
   NgModule,
   NgZone,
@@ -1952,6 +1954,37 @@ describe('SbbDialog with animations enabled', () => {
   }));
 });
 
+describe('SbbDialog with explicit injector provided', () => {
+  let overlayContainerElement: HTMLElement;
+  let fixture: ComponentFixture<ModuleBoundDialogParentComponent>;
+
+  beforeEach(fakeAsync(() => {
+    TestBed.configureTestingModule({
+      imports: [SbbDialogModule, BrowserAnimationsModule],
+      declarations: [ModuleBoundDialogParentComponent],
+    });
+
+    TestBed.compileComponents();
+  }));
+
+  beforeEach(inject([OverlayContainer], (oc: OverlayContainer) => {
+    overlayContainerElement = oc.getContainerElement();
+  }));
+
+  beforeEach(() => {
+    fixture = TestBed.createComponent(ModuleBoundDialogParentComponent);
+  });
+
+  it('should use the standalone injector and render the dialog successfully', fakeAsync(() => {
+    fixture.componentInstance.openDialog();
+    fixture.detectChanges();
+
+    expect(
+      overlayContainerElement.querySelector('module-bound-dialog-child-component')!.innerHTML
+    ).toEqual('<p>Pasta</p>');
+  }));
+});
+
 describe('SbbDialog with template only', () => {
   let fixture: ComponentFixture<ContentElementDialog>;
 
@@ -2164,3 +2197,38 @@ const TEST_DIRECTIVES = [
   declarations: TEST_DIRECTIVES,
 })
 class DialogTestModule {}
+
+@Component({ template: '' })
+class ModuleBoundDialogParentComponent {
+  constructor(private _injector: Injector, private _dialog: SbbDialog) {}
+
+  openDialog(): void {
+    const ngModuleRef = createNgModuleRef(
+      ModuleBoundDialogModule,
+      /* parentInjector */ this._injector
+    );
+
+    this._dialog.open(ModuleBoundDialogComponent, { injector: ngModuleRef.injector });
+  }
+}
+
+@Injectable()
+class ModuleBoundDialogService {
+  name = 'Pasta';
+}
+
+@Component({
+  template: '<module-bound-dialog-child-component></module-bound-dialog-child-component>',
+})
+class ModuleBoundDialogComponent {}
+
+@Component({ selector: 'module-bound-dialog-child-component', template: '<p>{{service.name}}</p>' })
+class ModuleBoundDialogChildComponent {
+  constructor(public service: ModuleBoundDialogService) {}
+}
+
+@NgModule({
+  declarations: [ModuleBoundDialogComponent, ModuleBoundDialogChildComponent],
+  providers: [ModuleBoundDialogService],
+})
+class ModuleBoundDialogModule {}
