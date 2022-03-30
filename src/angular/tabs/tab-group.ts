@@ -252,6 +252,7 @@ export abstract class SbbTabGroupBase implements AfterContentInit, AfterContentC
       // explicit change that selects a different tab.
       if (indexToSelect === this._selectedIndex) {
         const tabs = this._tabs.toArray();
+        let selectedTab: SbbTab | undefined;
 
         for (let i = 0; i < tabs.length; i++) {
           if (tabs[i].isActive) {
@@ -260,8 +261,19 @@ export abstract class SbbTabGroupBase implements AfterContentInit, AfterContentC
             // adding a tab within the `selectedIndexChange` event.
             this._indexToSelect = this._selectedIndex = i;
             this._lastFocusedTabIndex = null;
+            selectedTab = tabs[i];
             break;
           }
+        }
+
+        // If we haven't found an active tab and a tab exists at the selected index, it means
+        // that the active tab was swapped out. Since this won't be picked up by the rendering
+        // loop in `ngAfterContentChecked`, we need to sync it up manually.
+        if (!selectedTab && tabs[indexToSelect]) {
+          Promise.resolve().then(() => {
+            tabs[indexToSelect].isActive = true;
+            this.selectedTabChange.emit(this._createChangeEvent(indexToSelect));
+          });
         }
       }
 
