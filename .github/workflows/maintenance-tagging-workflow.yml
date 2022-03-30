@@ -2,7 +2,8 @@ name: Add or remove maintenance labels
 
 on:
   pull_request:
-    branches: [master]
+    types: [opened, edited]
+    branches: [master] # target branch
 
 env:
   TARGET_RELEASE: 13.x
@@ -11,19 +12,13 @@ jobs:
   add_label:
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v3
-      with:
-        fetch-depth: 0
-    - name: "Search for commit messages containing 'BREAKING CHANGE:'"
-      id: breaking_changes
-      run: echo "::set-output name=count::$(git cherry -v origin/master origin/${{ github.head_ref }} | grep "BREAKING CHANGE:" -c)"
-    - name: "Add target label"
-      uses: actions-ecosystem/action-add-labels@v1
-      if: steps.breaking_changes.outputs.count == '0'
-      with:
-        labels: "target: ${{ env.TARGET_RELEASE }}"
-    - name: "Remove target label"
-      uses: actions-ecosystem/action-remove-labels@v1
-      if: steps.breaking_changes.outputs.count != '0'
-      with:
-        labels: "target: ${{ env.TARGET_RELEASE }}"
+      - name: "Add target label"
+        if: ${{ contains(github.event.pull_request.body, 'BREAKING CHANGE:') }}=
+        uses: actions-ecosystem/action-add-labels@v1
+        with:
+          labels: "target: ${{ env.TARGET_RELEASE }}"
+      - name: "Remove target label"
+        if: ${{ !contains(github.event.pull_request.body, 'BREAKING CHANGE:') }}=
+        uses: actions-ecosystem/action-remove-labels@v1
+        with:
+          labels: "target: ${{ env.TARGET_RELEASE }}"
