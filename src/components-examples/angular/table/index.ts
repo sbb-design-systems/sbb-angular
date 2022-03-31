@@ -15,6 +15,7 @@ import { SbbTableModule } from '@sbb-esta/angular/table';
 
 import { ButtonsInTableExample } from './buttons-in-table/buttons-in-table-example';
 import { CellActionsTableExample } from './cell-actions-table/cell-actions-table-example';
+import { ExpandableTableExample } from './expandable-table/expandable-table-example';
 import { FilterSortPaginatorTableExample } from './filter-sort-paginator-table/filter-sort-paginator-table-example';
 import { GroupedColumnsTableExample } from './grouped-columns-table/grouped-columns-table-example';
 import { GroupedRowsAndColumnsTableExample } from './grouped-rows-and-columns-table/grouped-rows-and-columns-table-example';
@@ -37,6 +38,7 @@ export {
   SimpleTableExample,
   SortableTableExample,
   StickyTableExample,
+  ExpandableTableExample,
 };
 
 const EXAMPLES = [
@@ -51,6 +53,7 @@ const EXAMPLES = [
   SimpleTableExample,
   SortableTableExample,
   StickyTableExample,
+  ExpandableTableExample,
 ];
 
 @NgModule({

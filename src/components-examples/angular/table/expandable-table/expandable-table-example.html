@@ -1,0 +1,40 @@
+<p>This table uses the when predicate for expanding and collapsing detail columns on row click.</p>
+
+<sbb-table-wrapper>
+  <table sbb-table [dataSource]="dataSource" [multiTemplateDataRows]="true">
+    <ng-container sbbColumnDef="time">
+      <th sbb-header-cell *sbbHeaderCellDef>Zeit</th>
+      <td sbb-cell *sbbCellDef="let element">{{ element.time }}</td>
+    </ng-container>
+
+    <ng-container sbbColumnDef="connection">
+      <th sbb-header-cell *sbbHeaderCellDef>Verbindung Bern - Olten</th>
+      <td sbb-cell *sbbCellDef="let element">{{ element.connection }}</td>
+    </ng-container>
+
+    <ng-container sbbColumnDef="duration">
+      <th sbb-header-cell *sbbHeaderCellDef>Dauer</th>
+      <td sbb-cell *sbbCellDef="let element">{{ element.duration }}</td>
+    </ng-container>
+
+    <!-- Expanded content column - The detail row is made up of this one column -->
+    <ng-container sbbColumnDef="expandedDetail">
+      <td sbb-cell class="detail" *sbbCellDef="let element" colspan="3">
+        <sbb-icon svgIcon="kom:circle-information-small"></sbb-icon>
+        {{ element.details }}
+      </td>
+    </ng-container>
+
+    <tr sbb-header-row *sbbHeaderRowDef="displayedColumns"></tr>
+    <tr
+      sbb-row
+      *sbbRowDef="let row; columns: displayedColumns; when: isNotExpansionDetailRow"
+      (click)="selectedId = row.id"
+    ></tr>
+    <tr
+      sbb-row
+      *sbbRowDef="let row; columns: ['expandedDetail']; when: isExpansionDetailRow"
+      [ngStyle]="{ visibility: row.id == selectedId ? 'visible' : 'collapse'}"
+    ></tr>
+  </table>
+</sbb-table-wrapper>
