@@ -4,4 +4,5 @@
 
 - `styleOptions.mode` changed enum constants to strings: 'bright' | 'dark'
 - `ListenerTypeOptions.selectionMode` changed enum constants to strings: 'single' | 'multi'
--
+- `MarkerColor`
+- `MarkerPriority`
