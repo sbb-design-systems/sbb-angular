@@ -2,6 +2,21 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [13.11.0](https://github.com/sbb-design-systems/sbb-angular/compare/13.10.0...13.11.0) (2022-03-31)
+
+
+### Features
+
+* **angular/dialog:** add support for explicit injector ([#1342](https://github.com/sbb-design-systems/sbb-angular/issues/1342)) ([3056dd0](https://github.com/sbb-design-systems/sbb-angular/commit/3056dd0b1ce0f8da0a3236f299654f3b0cd001e0))
+
+
+### Bug Fixes
+
+* **angular/autocomplete:** always emit closed event ([#1320](https://github.com/sbb-design-systems/sbb-angular/issues/1320)) ([670f881](https://github.com/sbb-design-systems/sbb-angular/commit/670f881d995b31f6f60418fcc6dba726bbf3e9e0))
+* **angular/radio:** set tabindex based on selected state ([#1345](https://github.com/sbb-design-systems/sbb-angular/issues/1345)) ([71712ed](https://github.com/sbb-design-systems/sbb-angular/commit/71712ededcfb4c6175956349f2927cb39e8677b9))
+* **angular/tabs:** focus wrapping back to selected label when using shift + tab ([#1343](https://github.com/sbb-design-systems/sbb-angular/issues/1343)) ([c7bceb2](https://github.com/sbb-design-systems/sbb-angular/commit/c7bceb2e414b78330754aa37018fd8e82403c193))
+* **angular/tabs:** update tab state when active tab is swapped out ([#1344](https://github.com/sbb-design-systems/sbb-angular/issues/1344)) ([9ac88ac](https://github.com/sbb-design-systems/sbb-angular/commit/9ac88acee9e677ae3677368860be2465bc6d98eb))
+
 ## [13.10.0](https://github.com/sbb-design-systems/sbb-angular/compare/13.9.0...13.10.0) (2022-03-24)
 
 
