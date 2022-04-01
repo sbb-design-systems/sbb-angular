@@ -1,10 +1,12 @@
 {
   "compilerOptions": {
-    "lib": ["es2015"],
+    "outDir": "../dist/tools",
+    "target": "es2020",
     "module": "commonjs",
-    "target": "es5",
-    "sourceMap": true,
-    "types": ["node"]
+    "moduleResolution": "node",
+    "esModuleInterop": true,
+    "lib": ["es2020"],
+    "skipLibCheck": true
   },
   "bazelOptions": {
     "suppressTsconfigOverrideWarnings": true

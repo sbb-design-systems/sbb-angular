@@ -1,3 +1,5 @@
+load("@build_bazel_rules_nodejs//:index.bzl", "nodejs_binary")
+
 package(default_visibility = ["//visibility:public"])
 
 # This export allows targets in other packages to reference files that live
@@ -8,3 +10,10 @@ exports_files([
     "LICENSE",
     "scss-bundle.config.json",
 ])
+
+nodejs_binary(
+    name = "yarn_vendored",
+    data = [".yarn/releases/yarn-1.22.18.cjs"],
+    entry_point = ".yarn/releases/yarn-1.22.18.cjs",
+    visibility = ["//integration:__subpackages__"],
+)

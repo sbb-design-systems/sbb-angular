@@ -13,7 +13,7 @@ load("@npm//@angular/dev-infra-private/bazel/http-server:index.bzl", _http_serve
 load("@npm//@angular/dev-infra-private/bazel:extract_js_module_output.bzl", "extract_js_module_output")
 load("@npm//@bazel/jasmine:index.bzl", _jasmine_node_test = "jasmine_node_test")
 load("@npm//@bazel/protractor:index.bzl", _protractor_web_test_suite = "protractor_web_test_suite")
-load("@npm//@bazel/typescript:index.bzl", _ts_library = "ts_library")
+load("@npm//@bazel/concatjs:index.bzl", _ts_library = "ts_library")
 load("//:packages.bzl", "NO_STAMP_NPM_PACKAGE_SUBSTITUTIONS", "NPM_PACKAGE_SUBSTITUTIONS")
 load("//:pkg-externals.bzl", "PKG_EXTERNALS")
 load("//tools/markdown-to-html:index.bzl", _markdown_to_html = "markdown_to_html")
@@ -238,7 +238,7 @@ def jasmine_node_test(**kwargs):
     kwargs["templated_args"] = ["--bazel_patch_module_resolver"] + kwargs.get("templated_args", [])
     _jasmine_node_test(**kwargs)
 
-def ng_test_library(deps = [], tsconfig = None, **kwargs):
+def ng_test_library(deps = [], **kwargs):
     local_deps = [
         # We declare "@angular/core" as default dependencies because
         # all Angular component unit tests use the `TestBed` and `Component` exports.
@@ -252,7 +252,7 @@ def ng_test_library(deps = [], tsconfig = None, **kwargs):
         **kwargs
     )
 
-def ng_e2e_test_library(deps = [], tsconfig = None, **kwargs):
+def ng_e2e_test_library(deps = [], **kwargs):
     local_deps = [
         "@npm//@types/jasmine",
         "@npm//@types/selenium-webdriver",
@@ -267,7 +267,6 @@ def ng_e2e_test_library(deps = [], tsconfig = None, **kwargs):
 
 # buildifier: disable=function-docstring
 def karma_web_test_suite(name, **kwargs):
-    web_test_args = {}
     test_deps = kwargs.get("deps", [])
 
     kwargs["tags"] = ["partial-compilation-integration"] + kwargs.get("tags", [])

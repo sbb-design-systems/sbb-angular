@@ -1,4 +1,4 @@
-load("@npm//@bazel/typescript:index.bzl", "ts_config")
+load("@npm//@bazel/concatjs:index.bzl", "ts_config")
 load("//src/angular:config.bzl", "ANGULAR_ENTRYPOINTS", "ANGULAR_TESTING_ENTRYPOINTS")
 load("//src/angular-experimental:config.bzl", "EXPERIMENTAL_ENTRYPOINTS", "EXPERIMENTAL_TESTING_ENTRYPOINTS")
 load("//src/angular-maps:config.bzl", "MAPS_ENTRYPOINTS", "MAPS_TESTING_ENTRYPOINTS")

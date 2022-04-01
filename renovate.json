@@ -23,7 +23,6 @@
     "@bazel/protractor",
     "@bazel/rollup",
     "@bazel/runfiles",
-    "@bazel/typescript",
     "@types/marked",
     "browser-sync",
     "browser-sync-client",
