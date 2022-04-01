@@ -5,7 +5,6 @@ import {
   Component,
   ElementRef,
   EventEmitter,
-  HostListener,
   Input,
   OnChanges,
   OnDestroy,
@@ -67,181 +66,18 @@ const SATELLITE_MAP_URL_TEMPLATE =
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class JourneyMapsClientComponent implements OnInit, AfterViewInit, OnDestroy, OnChanges {
-  private _map: MaplibreMap;
-  @ViewChild('map') private _mapElementRef: ElementRef;
-
-  @ViewChild(FeatureEventListenerComponent)
-  private _featureEventListenerComponent: FeatureEventListenerComponent;
-
   /** Your personal API key. Ask <a href="mailto:dlrokas@sbb.ch">dlrokas@sbb.ch</a> if you need one. */
   @Input() apiKey: string;
-
-  // **************************************** LANGUAGE *****************************************/
-
-  /**
-   * The language used for localized labels.
-   * Allowed values are <code>de</code>, <code>fr</code>, <code>it</code>, <code>en</code>.
-   */
-  @Input()
-  get language(): string {
-    return this._i18n.language;
-  }
-
-  set language(language: string) {
-    if (language == null) {
-      throw new TypeError('language must not be null');
-    }
-
-    language = language.toLowerCase();
-    if (language === 'de' || language === 'fr' || language === 'it' || language === 'en') {
-      this._i18n.language = language;
-    } else {
-      throw new TypeError('Illegal value for language. Allowed values are de|fr|it|en.');
-    }
-  }
-
-  // **************************************** STYLE OPTIONS *****************************************/
-
-  private _defaultStyleOptions: StyleOptions = {
-    url: 'https://journey-maps-tiles.geocdn.sbb.ch/styles/{styleId}/style.json?api_key={apiKey}',
-    brightId: 'base_bright_v2_ki',
-    darkId: 'base_dark_v2_ki',
-    mode: 'bright',
-  };
-
-  /**
-   * Settings to control the map (bright and dark) styles
-   */
-  @Input()
-  get styleOptions(): StyleOptions {
-    return this._styleOptions;
-  }
-
-  set styleOptions(styleOptions: StyleOptions) {
-    this._styleOptions = {
-      ...this._defaultStyleOptions,
-      ...styleOptions,
-    };
-  }
-
-  private _styleOptions: StyleOptions = this._defaultStyleOptions;
-
-  // **************************************** CONTROL OPTIONS *****************************************/
-
-  private _defaultInteractionOptions: InteractionOptions = {
-    /** Mobile-friendly default: you get a message-overlay if you try to pan with one finger. */
-    oneFingerPan: false,
-    scrollZoom: true,
-  };
-
-  /**
-   * Settings to control the movement of the map by means other than via the buttons on the _map
-   */
-  @Input()
-  get interactionOptions(): InteractionOptions {
-    return this._interactionOptions;
-  }
-
-  set interactionOptions(interactionOptions: InteractionOptions) {
-    this._interactionOptions = {
-      ...this._defaultInteractionOptions,
-      ...interactionOptions,
-    };
-  }
-
-  private _interactionOptions: InteractionOptions = this._defaultInteractionOptions;
-
-  // **************************************** UI OPTIONS *****************************************/
-
-  private _defaultUIOptions: UIOptions = {
-    showSmallButtons: false,
-    levelSwitch: true,
-    zoomControls: true,
-    basemapSwitch: true,
-    homeButton: false,
-  };
-
-  /**
-   * Settings to control which control buttons are shown on the _map
-   */
-  @Input()
-  get uiOptions(): UIOptions {
-    return this._uiOptions;
-  }
-
-  set uiOptions(uiOptions: UIOptions) {
-    this._uiOptions = {
-      ...this._defaultUIOptions,
-      ...uiOptions,
-    };
-  }
-
-  private _uiOptions: UIOptions = this._defaultUIOptions;
-
-  // **************************************** VIEWPORT OPTIONS *****************************************/
-
-  private readonly _homeButtonBoundingBoxPadding = 0;
-
-  private _defaultViewportOptions: ViewportOptions = {
-    boundingBoxPadding: this._homeButtonBoundingBoxPadding,
-  };
-
-  /**
-   * Settings that control what portion of the map is shown initially
-   */
-  @Input()
-  get viewportOptions(): ViewportOptions {
-    return this._viewportOptions;
-  }
-
-  set viewportOptions(viewportOptions: ViewportOptions) {
-    this._viewportOptions = {
-      ...this._defaultViewportOptions,
-      ...viewportOptions,
-    };
-  }
-
-  private _viewportOptions: ViewportOptions = this._defaultViewportOptions;
-
-  /* **************************************** JOURNEY-MAPS ROUTING OPTIONS *****************************************/
-
   /**
    * Input to display JourneyMaps GeoJson routing data on the map.
    *
    * **WARNING:** The map currently doesn't support more than one of these fields to be set at a time
    */
   @Input() journeyMapsRoutingOption: JourneyMapsRoutingOptions;
-
-  /* **************************************** JOURNEY-MAPS ZONES *****************************************/
-
   /**
    * Input to display JourneyMaps GeoJson zone data on the map.
    */
   @Input() journeyMapsZones: GeoJSON.FeatureCollection;
-
-  /* **************************************** MARKER OPTIONS *****************************************/
-
-  private _defaultMarkerOptions: MarkerOptions = {
-    popup: false,
-  };
-
-  /**
-   * Settings to control interacting with markers on the _map
-   */
-  @Input()
-  get markerOptions(): MarkerOptions {
-    return this._markerOptions;
-  }
-
-  set markerOptions(markerOptions: MarkerOptions) {
-    this._markerOptions = {
-      ...this._defaultMarkerOptions,
-      ...markerOptions,
-    };
-  }
-
-  private _markerOptions: MarkerOptions = this._defaultMarkerOptions;
-
   /**
    * Custom <code>ng-template</code> for the marker details. (Popup or Teaser)
    * See examples for details.
@@ -249,36 +85,9 @@ export class JourneyMapsClientComponent implements OnInit, AfterViewInit, OnDest
    * <b>NOTE:</b> This does not work - at the moment - when using the Web Component version of the library.
    */
   @Input() markerDetailsTemplate?: TemplateRef<any>;
-
-  // **************************************** 2 WAY-BINDING (INPUTS) *****************************************/
-
-  /**
-   * Select one of the markers contained in {@link JourneyMapsClientComponent#markers}
-   *
-   * Allowed values are either the ID of a marker to select or <code>undefined</code> to unselect.
-   */
-  @Input()
-  get selectedMarkerId(): string | undefined {
-    // without this getter, the setter is never called when passing 'undefined' (via the 'elements' web component)
-    return this.selectedMarker?.id;
-  }
-
-  set selectedMarkerId(markerId: string | undefined) {
-    if (!!markerId) {
-      const selectedMarker = this.markerOptions.markers?.find((marker) => marker.id === markerId);
-      this.onMarkerSelected(selectedMarker!);
-    } else if (!!this.selectedMarker) {
-      this.onMarkerUnselected();
-    }
-  }
-
   /** Which (floor-)level should be shown */
   @Input() selectedLevel: number;
-
   @Input() listenerOptions: ListenerOptions;
-
-  // **************************************** 2 WAY-BINDING (OUTPUTS) *****************************************
-
   /**
    * This event is emitted whenever a marker, with property triggerEvent, is selected or unselected.
    */
@@ -292,21 +101,16 @@ export class JourneyMapsClientComponent implements OnInit, AfterViewInit, OnDest
    */
   @Output() selectedFeaturesChange: EventEmitter<FeaturesSelectEventData> =
     new EventEmitter<FeaturesSelectEventData>();
-
-  // **************************************** OTHER OUTPUTS *****************************************
-
   /**
    * This event is emitted whenever map features were clicked.
    */
   @Output() featuresClick: EventEmitter<FeaturesClickEventData> =
     new EventEmitter<FeaturesClickEventData>();
-
   /**
    * This event is emitted whenever mouse hovered or leaved map features.
    */
   @Output() featuresHoverChange: EventEmitter<FeaturesHoverChangeEventData> =
     new EventEmitter<FeaturesHoverChangeEventData>();
-
   /**
    * This event is emitted whenever the list of available (floor-) levels changes
    */
@@ -324,28 +128,54 @@ export class JourneyMapsClientComponent implements OnInit, AfterViewInit, OnDest
    */
   @Output() mapReady: ReplaySubject<MaplibreMap> = new ReplaySubject<MaplibreMap>(1);
 
-  private _currentZoomLevelDebouncer = new Subject<void>();
-  private _mapCenterChangeDebouncer = new Subject<void>();
-  private _windowResized = new Subject<void>();
-  private _destroyed = new Subject<void>();
-  private _styleLoaded = new ReplaySubject<void>(1);
-  private _viewportOptionsChanged = new Subject<void>();
-  private _mapStyleModeChanged = new Subject<void>();
-
   // visible for testing
   touchEventCollector: Subject<TouchEvent> = new Subject<TouchEvent>();
   touchOverlayText: string;
   touchOverlayStyleClass: string = '';
 
+  private _map: MaplibreMap;
+  @ViewChild('map') private _mapElementRef: ElementRef;
+  @ViewChild(FeatureEventListenerComponent)
+  private _featureEventListenerComponent: FeatureEventListenerComponent;
+  private _defaultStyleOptions: StyleOptions = {
+    url: 'https://journey-maps-tiles.geocdn.sbb.ch/styles/{styleId}/style.json?api_key={apiKey}',
+    brightId: 'base_bright_v2_ki',
+    darkId: 'base_dark_v2_ki',
+    mode: 'bright',
+  };
+  private _defaultInteractionOptions: InteractionOptions = {
+    /** Mobile-friendly default: you get a message-overlay if you try to pan with one finger. */
+    oneFingerPan: false,
+    scrollZoom: true,
+  };
+  private _defaultUIOptions: UIOptions = {
+    showSmallButtons: false,
+    levelSwitch: true,
+    zoomControls: true,
+    basemapSwitch: true,
+    homeButton: false,
+  };
+  private readonly _homeButtonBoundingBoxPadding = 0;
+  private _defaultViewportOptions: ViewportOptions = {
+    boundingBoxPadding: this._homeButtonBoundingBoxPadding,
+  };
+  private _defaultMarkerOptions: MarkerOptions = {
+    popup: false,
+  };
+  private _currentZoomLevelDebouncer = new Subject<void>();
+  private _mapCenterChangeDebouncer = new Subject<void>();
+  private _mapResized = new Subject<void>();
+  private _destroyed = new Subject<void>();
+  private _styleLoaded = new ReplaySubject<void>(1);
+  private _viewportOptionsChanged = new Subject<void>();
+  private _mapStyleModeChanged = new Subject<void>();
   // _map._isStyleLoaded() returns sometimes false when sources are being updated.
   // Therefore we set this variable to true once the style has been loaded.
   private _isStyleLoaded = false;
-
-  private _selectedMarker: Marker | undefined;
-
   private _isSatelliteMap = false;
   private _satelliteLayerId = 'esriWorldImageryLayer';
   private _satelliteImageSourceName = 'esriWorldImagerySource';
+  private _observer: ResizeObserver;
 
   constructor(
     private _mapInitService: MapInitService,
@@ -373,17 +203,137 @@ export class JourneyMapsClientComponent implements OnInit, AfterViewInit, OnDest
     this._host.nativeElement.zoomOut = this.zoomOut.bind(this);
   }
 
-  onTouchStart(event: TouchEvent): void {
-    // https://docs.mapbox.com/mapbox-gl-js/example/toggle-interaction-handlers/
-    if (!this.interactionOptions.oneFingerPan) {
-      this._map.dragPan.disable();
-    }
-    this.touchEventCollector.next(event);
+  private _styleOptions: StyleOptions = this._defaultStyleOptions;
+
+  /**
+   * Settings to control the map (bright and dark) styles
+   */
+  @Input()
+  get styleOptions(): StyleOptions {
+    return this._styleOptions;
   }
 
-  onTouchEnd(event: TouchEvent): void {
-    this.touchOverlayStyleClass = '';
-    this.touchEventCollector.next(event);
+  set styleOptions(styleOptions: StyleOptions) {
+    this._styleOptions = {
+      ...this._defaultStyleOptions,
+      ...styleOptions,
+    };
+  }
+
+  /**
+   * The language used for localized labels.
+   * Allowed values are <code>de</code>, <code>fr</code>, <code>it</code>, <code>en</code>.
+   */
+  @Input()
+  get language(): string {
+    return this._i18n.language;
+  }
+
+  set language(language: string) {
+    if (language == null) {
+      throw new TypeError('language must not be null');
+    }
+
+    language = language.toLowerCase();
+    if (language === 'de' || language === 'fr' || language === 'it' || language === 'en') {
+      this._i18n.language = language;
+    } else {
+      throw new TypeError('Illegal value for language. Allowed values are de|fr|it|en.');
+    }
+  }
+
+  private _interactionOptions: InteractionOptions = this._defaultInteractionOptions;
+
+  /**
+   * Settings to control the movement of the map by means other than via the buttons on the _map
+   */
+  @Input()
+  get interactionOptions(): InteractionOptions {
+    return this._interactionOptions;
+  }
+
+  set interactionOptions(interactionOptions: InteractionOptions) {
+    this._interactionOptions = {
+      ...this._defaultInteractionOptions,
+      ...interactionOptions,
+    };
+  }
+
+  private _uiOptions: UIOptions = this._defaultUIOptions;
+
+  /**
+   * Settings to control which control buttons are shown on the _map
+   */
+  @Input()
+  get uiOptions(): UIOptions {
+    return this._uiOptions;
+  }
+
+  set uiOptions(uiOptions: UIOptions) {
+    this._uiOptions = {
+      ...this._defaultUIOptions,
+      ...uiOptions,
+    };
+  }
+
+  private _viewportOptions: ViewportOptions = this._defaultViewportOptions;
+
+  /**
+   * Settings that control what portion of the map is shown initially
+   */
+  @Input()
+  get viewportOptions(): ViewportOptions {
+    return this._viewportOptions;
+  }
+
+  set viewportOptions(viewportOptions: ViewportOptions) {
+    this._viewportOptions = {
+      ...this._defaultViewportOptions,
+      ...viewportOptions,
+    };
+  }
+
+  private _markerOptions: MarkerOptions = this._defaultMarkerOptions;
+
+  /**
+   * Settings to control interacting with markers on the _map
+   */
+  @Input()
+  get markerOptions(): MarkerOptions {
+    return this._markerOptions;
+  }
+
+  set markerOptions(markerOptions: MarkerOptions) {
+    this._markerOptions = {
+      ...this._defaultMarkerOptions,
+      ...markerOptions,
+    };
+  }
+
+  /**
+   * Select one of the markers contained in {@link JourneyMapsClientComponent#markers}
+   *
+   * Allowed values are either the ID of a marker to select or <code>undefined</code> to unselect.
+   */
+  @Input()
+  get selectedMarkerId(): string | undefined {
+    // without this getter, the setter is never called when passing 'undefined' (via the 'elements' web component)
+    return this.selectedMarker?.id;
+  }
+
+  set selectedMarkerId(markerId: string | undefined) {
+    if (!!markerId) {
+      const selectedMarker = this.markerOptions.markers?.find((marker) => marker.id === markerId);
+      this.onMarkerSelected(selectedMarker!);
+    } else if (!!this.selectedMarker) {
+      this.onMarkerUnselected();
+    }
+  }
+
+  private _selectedMarker: Marker | undefined;
+
+  get selectedMarker(): Marker | undefined {
+    return this._selectedMarker;
   }
 
   set selectedMarker(value: Marker | undefined) {
@@ -399,8 +349,23 @@ export class JourneyMapsClientComponent implements OnInit, AfterViewInit, OnDest
     }
   }
 
-  get selectedMarker(): Marker | undefined {
-    return this._selectedMarker;
+  get getMarkersBounds(): LngLatBounds | undefined {
+    return this.markerOptions.zoomToMarkers
+      ? this.computeMarkersBounds(this.markerOptions.markers)
+      : undefined;
+  }
+
+  onTouchStart(event: TouchEvent): void {
+    // https://docs.mapbox.com/mapbox-gl-js/example/toggle-interaction-handlers/
+    if (!this.interactionOptions.oneFingerPan) {
+      this._map.dragPan.disable();
+    }
+    this.touchEventCollector.next(event);
+  }
+
+  onTouchEnd(event: TouchEvent): void {
+    this.touchOverlayStyleClass = '';
+    this.touchEventCollector.next(event);
   }
 
   /**
@@ -443,35 +408,6 @@ export class JourneyMapsClientComponent implements OnInit, AfterViewInit, OnDest
    */
   zoomOut(): void {
     this._map?.zoomOut();
-  }
-
-  private _updateMarkers(): void {
-    this.selectedMarker = this.markerOptions.markers?.find(
-      (marker) => this.selectedMarkerId === marker.id
-    );
-    this._executeWhenMapStyleLoaded(() => {
-      this._mapMarkerService.updateMarkers(
-        this._map,
-        this.markerOptions.markers,
-        this.selectedMarker,
-        this.styleOptions.mode
-      );
-      this._cd.detectChanges();
-    });
-  }
-
-  private _executeWhenMapStyleLoaded(callback: () => void): void {
-    if (this._isStyleLoaded) {
-      callback();
-    } else {
-      this._styleLoaded.pipe(take(1), delay(500)).subscribe(() => callback());
-    }
-  }
-
-  get getMarkersBounds(): LngLatBounds | undefined {
-    return this.markerOptions.zoomToMarkers
-      ? this.computeMarkersBounds(this.markerOptions.markers)
-      : undefined;
   }
 
   ngOnInit(): void {
@@ -559,7 +495,6 @@ export class JourneyMapsClientComponent implements OnInit, AfterViewInit, OnDest
   }
 
   ngAfterViewInit(): void {
-    // CHECKME ses: Lazy initialization with IntersectionObserver?
     const styleUrl = this._getStyleUrl();
 
     this.touchOverlayText = this._i18n.getText('touchOverlay.tip');
@@ -604,21 +539,12 @@ export class JourneyMapsClientComponent implements OnInit, AfterViewInit, OnDest
           this._cd.detectChanges();
         }
       });
-  }
 
-  private _getStyleUrl(): string {
-    return this.styleOptions
-      .url!.replace('{styleId}', this._getStyleId()!)
-      .replace('{apiKey}', this.apiKey);
-  }
-
-  private _getStyleId(): string | undefined {
-    return this.styleOptions.mode === 'dark'
-      ? this.styleOptions.darkId
-      : this.styleOptions.brightId;
+    this._setupResizeObserver();
   }
 
   ngOnDestroy(): void {
+    this._observer?.disconnect();
     this._map?.remove();
 
     this._destroyed.next();
@@ -627,108 +553,6 @@ export class JourneyMapsClientComponent implements OnInit, AfterViewInit, OnDest
     this._levelSwitchService.destroy();
   }
 
-  private _setupSubjects(): void {
-    this._windowResized
-      .pipe(debounceTime(500), takeUntil(this._destroyed))
-      .subscribe(() => this._map.resize());
-
-    this._viewportOptionsChanged
-      .pipe(debounceTime(200), takeUntil(this._destroyed))
-      .subscribe(() =>
-        this._mapService.moveMap(
-          this._map,
-          this.viewportOptions.boundingBox ?? this.getMarkersBounds,
-          this.viewportOptions.boundingBox
-            ? this.viewportOptions.boundingBoxPadding
-            : MARKER_BOUNDS_PADDING,
-          this.viewportOptions.zoomLevel,
-          this.viewportOptions.mapCenter
-        )
-      );
-
-    this._mapStyleModeChanged
-      .pipe(
-        debounceTime(200),
-        switchMap(() => this._mapInitService.fetchStyle(this._getStyleUrl())),
-        takeUntil(this._destroyed)
-      )
-      .subscribe((style) => {
-        this._map.setStyle(style, { diff: false });
-        this._map.once('styledata', () => {
-          this._mapMarkerService.updateMarkers(
-            this._map,
-            this.markerOptions.markers,
-            this.selectedMarker,
-            this.styleOptions.mode
-          );
-          this._mapLayerFilterService.collectLvlLayers();
-          this._levelSwitchService.switchLevel(this._levelSwitchService.selectedLevel);
-        });
-      });
-
-    this._currentZoomLevelDebouncer
-      .pipe(debounceTime(200), takeUntil(this._destroyed))
-      .subscribe(() => this.zoomLevelsChange.emit(this._getZooomLevels()));
-
-    this._mapCenterChangeDebouncer
-      .pipe(debounceTime(200), takeUntil(this._destroyed))
-      .subscribe(() => this.mapCenterChange.emit(this._map.getCenter()));
-
-    this._levelSwitchService.selectedLevel$
-      .pipe(takeUntil(this._destroyed))
-      .subscribe((level) => this.selectedLevelChange.emit(level));
-    this._levelSwitchService.visibleLevels$
-      .pipe(takeUntil(this._destroyed))
-      .subscribe((levels) => this.visibleLevelsChange.emit(levels));
-  }
-
-  @HostListener('window:resize')
-  onResize(): void {
-    this._windowResized.next();
-  }
-
-  onResized(): void {
-    if (this._map) {
-      this._map.resize();
-    }
-  }
-
-  private _onStyleLoaded(): void {
-    if (this._isStyleLoaded) {
-      return;
-    }
-
-    this._mapMarkerService.initStyleData(this._map);
-    this._levelSwitchService.onInit(this._map);
-    this._map.resize();
-    // @ts-ignore
-    this._mapService.verifySources(this._map, [
-      ROUTE_SOURCE,
-      WALK_SOURCE,
-      ...this._mapMarkerService.sources,
-    ]);
-    this._addSatelliteSource(this._map);
-
-    this._map.on('zoomend', () => this._currentZoomLevelDebouncer.next());
-    this._map.on('moveend', () => this._mapCenterChangeDebouncer.next());
-    // Emit initial values
-    this._currentZoomLevelDebouncer.next();
-    this._mapCenterChangeDebouncer.next();
-
-    this._isStyleLoaded = true;
-    this._styleLoaded.next();
-    this.mapReady.next(this._map);
-  }
-
-  private _addSatelliteSource(map: maplibregl.Map) {
-    map.addSource(this._satelliteImageSourceName, {
-      type: 'raster',
-      tiles: [SATELLITE_MAP_URL_TEMPLATE],
-      tileSize: SATELLITE_MAP_TILE_SIZE,
-    });
-  }
-
-  /** @docs-private */
   // When a marker has been unselected from outside the map.
   onMarkerUnselected(): void {
     this.selectedMarker = undefined;
@@ -736,21 +560,6 @@ export class JourneyMapsClientComponent implements OnInit, AfterViewInit, OnDest
     this._cd.detectChanges();
   }
 
-  private _getZooomLevels(): ZoomLevels {
-    return {
-      minZoom: MapInitService.minZoom,
-      maxZoom: MapInitService.maxZoom,
-      currentZoom: this._map.getZoom(),
-    };
-  }
-
-  private _validateInputParameter(): void {
-    if (!this.apiKey) {
-      throw new Error('Input parameter apiKey is mandatory');
-    }
-  }
-
-  /** @docs-private */
   // When a marker has been selected from outside the map.
   onMarkerSelected(marker: Marker): void {
     if (marker?.id !== this.selectedMarkerId) {
@@ -760,7 +569,6 @@ export class JourneyMapsClientComponent implements OnInit, AfterViewInit, OnDest
     }
   }
 
-  /** @docs-private */
   computeMarkersBounds(markers: Marker[] | undefined): LngLatBounds {
     const bounds = new LngLatBounds();
     markers?.forEach((marker: Marker) => {
@@ -826,5 +634,149 @@ export class JourneyMapsClientComponent implements OnInit, AfterViewInit, OnDest
       this._mapInitService.getDefaultBoundingBox(),
       this._homeButtonBoundingBoxPadding
     );
+  }
+
+  private _updateMarkers(): void {
+    this.selectedMarker = this.markerOptions.markers?.find(
+      (marker) => this.selectedMarkerId === marker.id
+    );
+    this._executeWhenMapStyleLoaded(() => {
+      this._mapMarkerService.updateMarkers(
+        this._map,
+        this.markerOptions.markers,
+        this.selectedMarker,
+        this.styleOptions.mode
+      );
+      this._cd.detectChanges();
+    });
+  }
+
+  private _executeWhenMapStyleLoaded(callback: () => void): void {
+    if (this._isStyleLoaded) {
+      callback();
+    } else {
+      this._styleLoaded.pipe(take(1), delay(500)).subscribe(() => callback());
+    }
+  }
+
+  private _getStyleUrl(): string {
+    return this.styleOptions
+      .url!.replace('{styleId}', this._getStyleId()!)
+      .replace('{apiKey}', this.apiKey);
+  }
+
+  private _getStyleId(): string | undefined {
+    return this.styleOptions.mode === 'dark'
+      ? this.styleOptions.darkId
+      : this.styleOptions.brightId;
+  }
+
+  private _setupSubjects(): void {
+    this._mapResized
+      .pipe(debounceTime(500), takeUntil(this._destroyed))
+      .subscribe(() => this._map?.resize());
+
+    this._viewportOptionsChanged
+      .pipe(debounceTime(200), takeUntil(this._destroyed))
+      .subscribe(() =>
+        this._mapService.moveMap(
+          this._map,
+          this.viewportOptions.boundingBox ?? this.getMarkersBounds,
+          this.viewportOptions.boundingBox
+            ? this.viewportOptions.boundingBoxPadding
+            : MARKER_BOUNDS_PADDING,
+          this.viewportOptions.zoomLevel,
+          this.viewportOptions.mapCenter
+        )
+      );
+
+    this._mapStyleModeChanged
+      .pipe(
+        debounceTime(200),
+        switchMap(() => this._mapInitService.fetchStyle(this._getStyleUrl())),
+        takeUntil(this._destroyed)
+      )
+      .subscribe((style) => {
+        this._map.setStyle(style, { diff: false });
+        this._map.once('styledata', () => {
+          this._mapMarkerService.updateMarkers(
+            this._map,
+            this.markerOptions.markers,
+            this.selectedMarker,
+            this.styleOptions.mode
+          );
+          this._mapLayerFilterService.collectLvlLayers();
+          this._levelSwitchService.switchLevel(this._levelSwitchService.selectedLevel);
+        });
+      });
+
+    this._currentZoomLevelDebouncer
+      .pipe(debounceTime(200), takeUntil(this._destroyed))
+      .subscribe(() => this.zoomLevelsChange.emit(this._getZooomLevels()));
+
+    this._mapCenterChangeDebouncer
+      .pipe(debounceTime(200), takeUntil(this._destroyed))
+      .subscribe(() => this.mapCenterChange.emit(this._map.getCenter()));
+
+    this._levelSwitchService.selectedLevel$
+      .pipe(takeUntil(this._destroyed))
+      .subscribe((level) => this.selectedLevelChange.emit(level));
+    this._levelSwitchService.visibleLevels$
+      .pipe(takeUntil(this._destroyed))
+      .subscribe((levels) => this.visibleLevelsChange.emit(levels));
+  }
+
+  private _onStyleLoaded(): void {
+    if (this._isStyleLoaded) {
+      return;
+    }
+
+    this._mapMarkerService.initStyleData(this._map);
+    this._levelSwitchService.onInit(this._map);
+    this._map.resize();
+    // @ts-ignore
+    this._mapService.verifySources(this._map, [
+      ROUTE_SOURCE,
+      WALK_SOURCE,
+      ...this._mapMarkerService.sources,
+    ]);
+    this._addSatelliteSource(this._map);
+
+    this._map.on('zoomend', () => this._currentZoomLevelDebouncer.next());
+    this._map.on('moveend', () => this._mapCenterChangeDebouncer.next());
+    // Emit initial values
+    this._currentZoomLevelDebouncer.next();
+    this._mapCenterChangeDebouncer.next();
+
+    this._isStyleLoaded = true;
+    this._styleLoaded.next();
+    this.mapReady.next(this._map);
+  }
+
+  private _addSatelliteSource(map: maplibregl.Map) {
+    map.addSource(this._satelliteImageSourceName, {
+      type: 'raster',
+      tiles: [SATELLITE_MAP_URL_TEMPLATE],
+      tileSize: SATELLITE_MAP_TILE_SIZE,
+    });
+  }
+
+  private _getZooomLevels(): ZoomLevels {
+    return {
+      minZoom: MapInitService.minZoom,
+      maxZoom: MapInitService.maxZoom,
+      currentZoom: this._map.getZoom(),
+    };
+  }
+
+  private _validateInputParameter(): void {
+    if (!this.apiKey) {
+      throw new Error('Input parameter apiKey is mandatory');
+    }
+  }
+
+  private _setupResizeObserver() {
+    this._observer = new ResizeObserver(() => this._mapResized.next());
+    this._observer.observe(this._mapElementRef.nativeElement);
   }
 }

@@ -12,7 +12,6 @@ import { OverlayPaginatorComponent } from './components/overlay-paginator/overla
 import { PopupComponent } from './components/popup/popup.component';
 import { TeaserComponent } from './components/teaser/teaser.component';
 import { ZoomControlsComponent } from './components/zoom-controls/zoom-controls.component';
-import { ResizedDirective } from './directives/resized.directive';
 import { JourneyMapsClientComponent } from './journey-maps-client.component';
 
 @NgModule({
@@ -29,7 +28,6 @@ import { JourneyMapsClientComponent } from './journey-maps-client.component';
     LeitPoiComponent,
     HomeButtonComponent,
     OverlayPaginatorComponent,
-    ResizedDirective,
   ],
   imports: [CommonModule],
   exports: [JourneyMapsClientComponent, PopupComponent, TeaserComponent],
