@@ -16,12 +16,12 @@ describe('FeaturesHoverEvent', () => {
 
     featureData = [
       {
-        featureDataType: FeatureDataType.ROUTE,
+        featureDataType: 'ROUTE',
         geometry: { type: 'Line' },
         source: 'routes-source',
       },
       {
-        featureDataType: FeatureDataType.ROUTE,
+        featureDataType: 'ROUTE',
         geometry: { type: 'Line' },
         source: 'routes-source',
       },
@@ -36,7 +36,7 @@ describe('FeaturesHoverEvent', () => {
 
     const layers = ['route-layer-1', 'route-layer-2'];
     watchOnLayers = new Map<string, FeatureDataType>();
-    layers.forEach((id) => watchOnLayers.set(id, FeatureDataType.ROUTE));
+    layers.forEach((id) => watchOnLayers.set(id, 'ROUTE'));
 
     featuresHoverEvent = new FeaturesHoverEvent(
       mapMock.get(),

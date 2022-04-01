@@ -16,8 +16,8 @@ describe('FeaturesClickEvent', () => {
 
   beforeEach(() => {
     featureData = [
-      { featureDataType: FeatureDataType.ROUTE, geometry: { type: 'Line' } },
-      { featureDataType: FeatureDataType.ROUTE, geometry: { type: 'Line' } },
+      { featureDataType: 'ROUTE', geometry: { type: 'Line' } },
+      { featureDataType: 'ROUTE', geometry: { type: 'Line' } },
     ] as unknown as FeatureData[];
 
     mapMock = new MaplibreMapMock();
@@ -43,7 +43,7 @@ describe('FeaturesClickEvent', () => {
 
   it('should submit event on map click with geometry priority check', (doneFn) => {
     featureData.push({
-      featureDataType: FeatureDataType.STATION,
+      featureDataType: 'STATION',
       geometry: { type: 'Point' },
     } as unknown as FeatureData);
 
