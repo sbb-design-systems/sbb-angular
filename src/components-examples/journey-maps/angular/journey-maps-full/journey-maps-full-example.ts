@@ -7,14 +7,13 @@ import {
   TemplateRef,
   ViewChild,
 } from '@angular/core';
-import { SbbCheckboxChange } from '@sbb-esta/angular/checkbox';
+import { FormBuilder, FormGroup } from '@angular/forms';
 import { SbbRadioChange } from '@sbb-esta/angular/radio-button';
 import {
   InteractionOptions,
   JourneyMapsClientComponent,
   JourneyMapsRoutingOptions,
   ListenerTypeOptions,
-  StyleMode,
   StyleOptions,
   UIOptions,
   ViewportOptions,
@@ -41,14 +40,14 @@ declare global {
 }
 
 /**
- * @title Journey Maps Angular examples
+ * @title Journey Maps Full Example
  */
 @Component({
-  selector: 'sbb-journey-maps-angular-variant-example',
-  templateUrl: 'journey-maps-angular-variant-example.html',
-  styleUrls: ['journey-maps-angular-variant-example.css'],
+  selector: 'sbb-journey-maps-full-example',
+  templateUrl: 'journey-maps-full-example.html',
+  styleUrls: ['journey-maps-full-example.css'],
 })
-export class JourneyMapsAngularVariant implements OnInit, AfterViewInit, OnDestroy {
+export class JourneyMapsFullExample implements OnInit, AfterViewInit, OnDestroy {
   @ViewChild('advancedMap')
   client: JourneyMapsClientComponent;
   @ViewChild('stationTemplate')
@@ -57,21 +56,12 @@ export class JourneyMapsAngularVariant implements OnInit, AfterViewInit, OnDestr
   routeTemplate: TemplateRef<any>;
 
   apiKey = window.JM_API_KEY;
-  mapVisible = true;
   selectedMarkerId?: string;
-  selectedLevel = 0;
   mapCenter?: LngLatLike;
   mapCenterChange = new Subject<LngLatLike>();
   interactionOptions: InteractionOptions = {
     oneFingerPan: true,
     scrollZoom: true,
-  };
-  uiOptionsBasic: UIOptions = {
-    showSmallButtons: false,
-    levelSwitch: false,
-    zoomControls: true,
-    basemapSwitch: true,
-    homeButton: true,
   };
   uiOptions: UIOptions = {
     showSmallButtons: false,
@@ -91,7 +81,7 @@ export class JourneyMapsAngularVariant implements OnInit, AfterViewInit, OnDestr
     STATION: { watch: true, popup: true },
     ZONE: { watch: true, selectionMode: 'multi' },
   };
-  styleOptions: StyleOptions = { brightId: 'base_bright_v2_ki' };
+  styleOptions: StyleOptions = {};
   markerOptions = markers;
   journeyMapsRoutingOption: JourneyMapsRoutingOptions;
   journeyMapsZones: FeatureCollection;
@@ -106,10 +96,35 @@ export class JourneyMapsAngularVariant implements OnInit, AfterViewInit, OnDestr
   viewportOptions: ViewportOptions = {};
   zoomLevels: ZoomLevels;
   visibleLevels = new BehaviorSubject<number[]>([]);
+  form: FormGroup;
+  zoomButtons = [
+    { label: 'Zoom In', action: () => this.client.zoomIn() },
+    { label: 'Zoom out', action: () => this.client.zoomOut() },
+  ];
+  moveButtons = [
+    { label: 'North', action: () => this.client.moveNorth() },
+    { label: 'East', action: () => this.client.moveEast() },
+    { label: 'South', action: () => this.client.moveSouth() },
+    { label: 'West', action: () => this.client.moveWest() },
+  ];
 
   private _destroyed = new Subject<void>();
 
-  constructor(private _cd: ChangeDetectorRef) {}
+  constructor(private _cd: ChangeDetectorRef, private _fb: FormBuilder) {
+    this.form = _fb.group({
+      mapVisible: [true],
+      smallControls: [false],
+      mapStyle: ['bright'],
+      popup: [true],
+      level: [0],
+      listener: _fb.group({
+        marker: [true],
+        route: [true],
+        station: [true],
+        zone: [true],
+      }),
+    });
+  }
 
   ngOnInit() {
     this.mapCenterChange
@@ -132,10 +147,10 @@ export class JourneyMapsAngularVariant implements OnInit, AfterViewInit, OnDestr
     this._destroyed.complete();
   }
 
-  setShowSmallButtons(event: SbbCheckboxChange): void {
+  updateUIOptions(): void {
     this.uiOptions = {
       ...this.uiOptions,
-      showSmallButtons: event.source.checked,
+      showSmallButtons: this.form.get('smallControls')?.value,
     };
   }
 
@@ -144,23 +159,25 @@ export class JourneyMapsAngularVariant implements OnInit, AfterViewInit, OnDestr
 
     let bbox: number[] | undefined;
     let updateDataFunction: () => void;
-    if ((event.target as HTMLOptionElement).value === 'journey') {
+    const value = (event.target as HTMLOptionElement).value;
+
+    if (value === 'journey') {
       updateDataFunction = () => (this.journeyMapsRoutingOption = { journey: zhShWaldfriedhof });
       bbox = zhShWaldfriedhof.bbox;
     }
-    if ((event.target as HTMLOptionElement).value === 'transfer luzern') {
+    if (value === 'transfer luzern') {
       updateDataFunction = () => (this.journeyMapsRoutingOption = { transfer: luzern4j });
       bbox = luzern4j.bbox;
     }
-    if ((event.target as HTMLOptionElement).value === 'transfer zurich indoor') {
+    if (value === 'transfer zurich indoor') {
       updateDataFunction = () => (this.journeyMapsRoutingOption = { transfer: zurichIndoor });
       bbox = zurichIndoor.bbox;
     }
-    if ((event.target as HTMLOptionElement).value === 'transfer bern indoor') {
+    if (value === 'transfer bern indoor') {
       updateDataFunction = () => (this.journeyMapsRoutingOption = { transfer: bernIndoor });
       bbox = bernIndoor.bbox;
     }
-    if ((event.target as HTMLOptionElement).value === 'transfer geneve indoor') {
+    if (value === 'transfer geneve indoor') {
       updateDataFunction = () => (this.journeyMapsRoutingOption = { transfer: geneveIndoor });
       bbox = geneveIndoor.bbox;
     }
@@ -176,11 +193,12 @@ export class JourneyMapsAngularVariant implements OnInit, AfterViewInit, OnDestr
 
   setJourneyMapsZoneInput(event: Event): void {
     this.journeyMapsZones = undefined as any;
+    const value = (event.target as HTMLOptionElement).value;
 
-    if ((event.target as HTMLOptionElement).value === 'bern-burgdorf') {
+    if (value === 'bern-burgdorf') {
       this.journeyMapsZones = bernBurgdorfZones;
     }
-    if ((event.target as HTMLOptionElement).value === 'bs-bl') {
+    if (value === 'bs-bl') {
       this.journeyMapsZones = baselBielZones;
     }
 
@@ -193,27 +211,28 @@ export class JourneyMapsAngularVariant implements OnInit, AfterViewInit, OnDestr
     this.selectedMarkerId = event.value;
   }
 
-  setStyleModeInput(event: SbbRadioChange): void {
+  updateStyleOptions(): void {
     this.selectedMarkerId = undefined;
     this.styleOptions = {
       ...this.styleOptions,
-      mode: event.value as StyleMode,
+      mode: this.form.get('mapStyle')?.value,
     };
   }
 
-  setPopupInput(event: SbbRadioChange) {
+  updateMarkerOptions() {
     this.selectedMarkerId = undefined;
     this.markerOptions = {
       ...this.markerOptions,
-      popup: event.value === 'true',
+      popup: this.form.get('popup')?.value,
     };
   }
 
-  setSelectedLevel(selectedLevel: number): void {
-    this.selectedLevel = selectedLevel;
-  }
-
   updateListenerOptions(): void {
+    const group = this.form.get('listener')!;
+    this.listenerOptions.MARKER.watch = group.get('marker')?.value;
+    this.listenerOptions.STATION.watch = group.get('station')?.value;
+    this.listenerOptions.ROUTE.watch = group.get('route')?.value;
+    this.listenerOptions.ZONE.watch = group.get('zone')?.value;
     this.listenerOptions = { ...this.listenerOptions };
   }
 
@@ -229,6 +248,10 @@ export class JourneyMapsAngularVariant implements OnInit, AfterViewInit, OnDestr
       return;
     }
     return this.mapCenter as { lng: number; lat: number };
+  }
+
+  listenerOptionTypes() {
+    return Object.keys(this.listenerOptions).map((key) => key.toLowerCase());
   }
 
   private _setBbox(bbox: number[]): void {

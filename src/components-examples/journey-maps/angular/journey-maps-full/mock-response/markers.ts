@@ -2,6 +2,7 @@ import { MarkerCategory, MarkerColor } from '@sbb-esta/journey-maps';
 
 export const markers = {
   popup: true,
+  zoomToMarkers: true,
   markers: [
     {
       id: 'velo',
@@ -10,14 +11,6 @@ export const markers = {
       position: [7.5897, 47.5476],
       category: MarkerCategory.BICYCLEPARKING,
       color: MarkerColor.BLACK,
-    },
-    {
-      id: 'home',
-      title: 'Home Office',
-      subtitle: 'My home is my castle',
-      position: [7.296515, 47.069815],
-      category: MarkerCategory.WARNING,
-      color: MarkerColor.RED,
     },
     {
       id: 'biel',

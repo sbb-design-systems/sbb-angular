@@ -1,0 +1,158 @@
+<sbb-notification type="info" class="api-key-info"
+  >This example uses a test API key, that might be disabled at any time.
+</sbb-notification>
+<div class="web-map">
+  <sbb-journey-maps
+    #advancedMap
+    *ngIf='form.get("mapVisible")?.value'
+    language="en"
+    [styleOptions]="styleOptions"
+    [interactionOptions]="interactionOptions"
+    [listenerOptions]="listenerOptions"
+    [uiOptions]="uiOptions"
+    [viewportOptions]="viewportOptions"
+    [apiKey]="apiKey"
+    [markerOptions]="markerOptions"
+    [markerDetailsTemplate]="markerDetailsTemplate"
+    [journeyMapsRoutingOption]="journeyMapsRoutingOption"
+    [journeyMapsZones]="journeyMapsZones"
+    [(selectedMarkerId)]="selectedMarkerId"
+    [selectedLevel]="this.form.get('level')?.value ?? 0"
+    (selectedLevelChange)="this.form.patchValue({level: $event})"
+    (mapCenterChange)="mapCenterChange.next($event)"
+    (zoomLevelsChange)="zoomLevels=$event"
+    (visibleLevelsChange)="visibleLevels.next($event)"
+  ></sbb-journey-maps>
+  <ng-template #markerDetailsTemplate let-marker>
+    <div class="markerdetails-title">{{marker.title}}</div>
+    <div class="markerdetails-subtitle">{{marker.subtitle}}</div>
+  </ng-template>
+  <ng-template #stationTemplate let-station>
+    <div class="station-title">{{station.properties.name}}</div>
+    <div class="station-subtitle">{{station.properties.sbb_id}}</div>
+  </ng-template>
+  <ng-template #routeTemplate let-route>
+    <div class="route-title">{{route.properties.routeId}}</div>
+  </ng-template>
+</div>
+<div>
+  <form [formGroup]="form">
+    <ul>
+      <li class="sbb-label">
+        Map move / pan with one finger: {{(interactionOptions.oneFingerPan ?? false) ? 'on' :
+        'off'}}
+      </li>
+      <li class="sbb-label">
+        Map zoom with scroll wheel: {{(interactionOptions.scrollZoom ?? false) ? 'on' : 'off'}}
+      </li>
+      <li class="sbb-label">
+        Map center (x / lng, y / lat): {{mapCenterInfo()?.lng | number: '1.1-6'}},
+        {{mapCenterInfo()?.lat | number:'1.1-6'}}
+      </li>
+      <li class="sbb-label">
+        Map zoom (within range {{zoomLevels?.minZoom}}..{{zoomLevels?.maxZoom}} ):
+        {{zoomLevels?.currentZoom | number: '1.1-2'}}
+      </li>
+      <li>
+        <hr />
+      </li>
+      <li>
+        <sbb-checkbox formControlName="mapVisible"> Map visibility</sbb-checkbox>
+      </li>
+      <li>
+        <sbb-checkbox formControlName="smallControls" (change)="updateUIOptions()"
+          >Small map controls
+        </sbb-checkbox>
+      </li>
+      <li>
+        <span class="sbb-label">Switch map to dark mode / bright mode</span>
+        <sbb-radio-group
+          class="sbb-checkbox-group-horizontal"
+          formControlName="mapStyle"
+          (change)="updateStyleOptions()"
+        >
+          <sbb-radio-button value="bright">Bright Mode</sbb-radio-button>
+          <sbb-radio-button value="dark">Dark Mode</sbb-radio-button>
+        </sbb-radio-group>
+      </li>
+      <li>
+        <span class="sbb-label">Zoom map</span>
+        <button
+          sbb-ghost-button
+          (click)="zoomButton.action()"
+          *ngFor="let zoomButton of zoomButtons"
+        >
+          {{zoomButton.label}}
+        </button>
+      </li>
+      <li>
+        <span class="sbb-label">Move / pan map</span>
+        <button
+          sbb-ghost-button
+          (click)="moveButton.action()"
+          *ngFor="let moveButton of moveButtons"
+        >
+          {{moveButton.label}}
+        </button>
+      </li>
+      <li>
+        <div formGroupName="listener">
+          <span class="sbb-label">Map interaction configuration</span>
+          <div class="sbb-checkbox-group-horizontal">
+            <sbb-checkbox
+              [formControlName]="type"
+              (change)="updateListenerOptions()"
+              *ngFor="let type of listenerOptionTypes()"
+              >{{type | titlecase}}</sbb-checkbox
+            >
+          </div>
+        </div>
+      </li>
+      <li>
+        <span class="sbb-label">
+          Map markers<span *ngIf="selectedMarkerId"> (selected: {{selectedMarkerId}})</span></span
+        >
+        <button sbb-ghost-button (click)="selectedMarkerId='velo'">Basel</button>
+        <button sbb-ghost-button (click)="selectedMarkerId=undefined">Unselect all</button>
+      </li>
+      <li>
+        <span class="sbb-label">Map marker info style</span>
+        <sbb-radio-group
+          class="sbb-checkbox-group-horizontal"
+          formControlName="popup"
+          (change)="updateMarkerOptions()"
+        >
+          <sbb-radio-button [value]="true">Popup</sbb-radio-button>
+          <sbb-radio-button [value]="false">Teaser</sbb-radio-button>
+        </sbb-radio-group>
+      </li>
+      <li>
+        <span class="sbb-label">Select zones</span>
+        <select sbbInput (change)="setJourneyMapsZoneInput($event)">
+          <option value="" (change)="setJourneyMapsZoneInput($event)">(none)</option>
+          <option *ngFor="let input of journeyMapsZoneOptions" [value]="input">{{input}}</option>
+        </select>
+      </li>
+      <li>
+        <span class="sbb-label">Select a journey</span>
+        <select class="select-journey" sbbInput (change)="setJourneyMapsRoutingInput($event)">
+          <option value="" (change)="setJourneyMapsRoutingInput($event)">(none)</option>
+          <option *ngFor="let input of journeyMapsRoutingOptions" [value]="input">{{input}}</option>
+        </select>
+      </li>
+      <li *ngIf="visibleLevels | async as visibleLevels">
+        <sbb-notification *ngIf="!visibleLevels.length" type="info"
+          >No indoor data visible in map
+        </sbb-notification>
+        <div *ngIf="visibleLevels.length">
+          <span class="sbb-label">Select indoor level</span>
+          <sbb-radio-group class="sbb-checkbox-group-horizontal" formControlName="level">
+            <sbb-radio-button [value]="level" *ngFor="let level of visibleLevels"
+              >Level {{level}}</sbb-radio-button
+            >
+          </sbb-radio-group>
+        </div>
+      </li>
+    </ul>
+  </form>
+</div>
