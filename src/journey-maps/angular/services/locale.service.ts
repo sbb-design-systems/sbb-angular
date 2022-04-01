@@ -1,10 +1,10 @@
-import { Injectable } from '@angular/core';
+import { Inject, Injectable, LOCALE_ID } from '@angular/core';
 
 @Injectable({
   providedIn: 'root',
 })
 export class LocaleService {
-  language: string = 'de';
+  language: string;
 
   private _i18n = {
     de: {
@@ -65,7 +65,9 @@ export class LocaleService {
     },
   };
 
-  constructor() {}
+  constructor(@Inject(LOCALE_ID) private _locale: string) {
+    this.language = _locale?.split('-')[0] ?? 'de';
+  }
 
   getText(key: string): string {
     const path = `${this.language}.${key}`.split('.');

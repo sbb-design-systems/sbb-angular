@@ -7,8 +7,6 @@ export class MapLayerFilterService {
   private _knownLayerTypes = ['fill', 'fill-extrusion', 'line', 'symbol'];
   private _knownLvlLayerIds: string[] = [];
 
-  constructor() {}
-
   setMap(map: MaplibreMap): void {
     this._map = map;
     this.collectLvlLayers();

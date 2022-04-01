@@ -6,8 +6,6 @@ import { Marker } from '../model/marker';
   providedIn: 'root',
 })
 export class TestDataService {
-  constructor() {}
-
   createMarker(): Marker {
     return {
       id: 'work',
