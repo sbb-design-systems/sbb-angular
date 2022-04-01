@@ -1,4 +1,3 @@
-@use 'variables' as v;
 @use 'icons' as i;
 @use '../../../angular/styles/common' as esta;
 
@@ -76,7 +75,7 @@
 
 @mixin map-control-icon-button($icon) {
   .map-control-button {
-    background-color: v.$darkgray;
+    background-color: #212121;
     cursor: pointer;
     height: 36px;
     pointer-events: auto;
