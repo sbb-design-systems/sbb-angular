@@ -1,34 +1,33 @@
 # Journey Maps for Angular
 
-## Key features
-
-Journey Maps for Angular displays an interactive map, with specific style for public transport.
-
-Use Journey Maps to display any of the following public transport data:
-
-- routes (for train, bus, tram, ship, etc.)
-- customer journey
-- customer transfer and indoor-transfer
-
 ## Get started
+
+### Get an API key
+
+A valid API key must be provided to access the map style and data.
+
+```html
+<sbb-journey-maps apiKey="<API-KEY>" language="en"></sbb-journey-maps>
+```
+
+Subscribe on the [SBB API Plattform](https://developer.sbb.ch/apis/journey-maps-tiles).
 
 ### Install and set up
 
-#### You have to add the `@sbb-esta/journey-maps` dependency in your Angular project
-
-via npm:
+#### Add the node dependencies in your Angular project
 
 ```sh
 npm install @sbb-esta/journey-maps
 ```
 
-or, if using yarn:
-
 ```sh
-yarn add @sbb-esta/journey-maps
+npm install maplibre-gl@1.15.2
 ```
 
-#### Reference the MapLibre CSS from CDN
+**NOTE**
+The `maplibre-gl` version compatible with this version of `journey-maps` is `1.15`.
+
+#### Reference the MapLibre CSS
 
 in HTML:
 
@@ -36,18 +35,19 @@ in HTML:
 <link rel="stylesheet" href="https://unpkg.com/maplibre-gl@latest/dist/maplibre-gl.css" />
 ```
 
-or in your main CSS file:
+Or for example in the `styles` array of your `angular.json` file:
 
-```css
-@import 'https://unpkg.com/maplibre-gl@latest/dist/maplibre-gl.css';
+```json lines
+"styles": [
+  "src/styles.scss",
+  "node_modules/maplibre-gl/dist/maplibre-gl.css"
+],
 ```
 
-### Get an API key
+### i18n
 
-A valid `<API-KEY>` must be provided to access the map style and data.
+The component requires a mandatory `language` input parameter. The component itself has no visual labels. But it's needed for `aria-label` or `alt` texts. The corresponding texts are already translated and stored in the bundle.
 
 ```html
-<sbb-journey-maps apiKey="<API-KEY>" language="en"></sbb-journey-maps>
+<sbb-journey-maps language="en"></sbb-journey-maps>
 ```
-
-Get a subscription and check the available plans on [SBB API Plattform](https://developer.sbb.ch/apis/journey-maps-tiles).

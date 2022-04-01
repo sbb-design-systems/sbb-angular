@@ -159,6 +159,7 @@ export const PACKAGES: { [key: string]: ShowcaseMetaPackage } = {
         name: 'Introduction',
         entries: [
           { label: 'Getting started', link: './introduction/getting-started' },
+          { label: 'VS angular-maps', link: './introduction/comparison' },
           {
             label: 'Migrate from ROKAS',
             link: './introduction/migrate-from-rokas',

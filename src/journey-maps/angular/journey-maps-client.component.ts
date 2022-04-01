@@ -56,7 +56,6 @@ const SATELLITE_MAP_URL_TEMPLATE =
 
 /**
  * This component uses the Maplibre GL JS api to render a map and display the given data on the map.
- * <example-url>/</example-url>
  */
 @Component({
   selector: 'sbb-journey-maps',
