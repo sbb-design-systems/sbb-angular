@@ -8,11 +8,10 @@ import {
   PointLike,
 } from 'maplibre-gl';
 
-import { FeatureData } from '../../journey-maps-client.interfaces';
+import { FeatureData, StyleMode } from '../../journey-maps-client.interfaces';
 import { Marker } from '../../model/marker';
 import { MarkerCategoryMapping } from '../../model/marker-category-mapping';
 import { MarkerCategory } from '../../model/marker-category.enum';
-import { StyleMode } from '../../model/style-mode.enum';
 import {
   CLUSTER_LAYER,
   CLUSTER_RADIUS,

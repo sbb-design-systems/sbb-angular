@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { Feature } from 'geojson';
 import { Map as MaplibreMap } from 'maplibre-gl';
 
-import { FeatureData, FeatureDataType } from '../../../journey-maps-client.interfaces';
+import { FeatureData } from '../../../journey-maps-client.interfaces';
 import { MapRoutesService } from '../map-routes.service';
 
 import { MapEventUtilsService } from './map-event-utils.service';
@@ -29,18 +29,9 @@ export class RouteUtilsService {
     const filter = this._createRelatedRoutesFilter(routeFeature);
     if (find === 'visibleOnly') {
       const layers = MapRoutesService.ALL_ROUTE_LAYERS;
-      return this._mapEventUtils.queryVisibleFeaturesByFilter(
-        mapInstance,
-        FeatureDataType.ROUTE,
-        layers,
-        filter
-      );
+      return this._mapEventUtils.queryVisibleFeaturesByFilter(mapInstance, 'ROUTE', layers, filter);
     } else {
-      return this._mapEventUtils.queryFeatureSourceByFilter(
-        mapInstance,
-        FeatureDataType.ROUTE,
-        filter
-      );
+      return this._mapEventUtils.queryFeatureSourceByFilter(mapInstance, 'ROUTE', filter);
     }
   }
 

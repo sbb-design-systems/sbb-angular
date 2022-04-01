@@ -94,22 +94,19 @@ export class FeatureEventListenerComponent implements OnChanges, OnDestroy {
       this._watchOnLayers.clear();
 
       if (this.listenerOptions.MARKER?.watch) {
-        this._updateWatchOnLayers(
-          this._mapMarkerService.allMarkerAndClusterLayers,
-          FeatureDataType.MARKER
-        );
+        this._updateWatchOnLayers(this._mapMarkerService.allMarkerAndClusterLayers, 'MARKER');
       }
       if (this.listenerOptions.ROUTE?.watch) {
-        this._updateWatchOnLayers(MapRoutesService.ALL_ROUTE_LAYERS, FeatureDataType.ROUTE);
+        this._updateWatchOnLayers(MapRoutesService.ALL_ROUTE_LAYERS, 'ROUTE');
       }
       if (this.listenerOptions.STATION?.watch) {
-        this._updateWatchOnLayers([MapStationService.STATION_LAYER], FeatureDataType.STATION);
+        this._updateWatchOnLayers([MapStationService.STATION_LAYER], 'STATION');
         this._mapStationService.registerStationUpdater(this.map);
       } else {
         this._mapStationService.deregisterStationUpdater(this.map);
       }
       if (this.listenerOptions.ZONE?.watch) {
-        this._updateWatchOnLayers([MapZoneService.ZONE_LAYER], FeatureDataType.ZONE);
+        this._updateWatchOnLayers([MapZoneService.ZONE_LAYER], 'ZONE');
       }
 
       this._mapCursorStyleEvent?.complete();
@@ -161,19 +158,10 @@ export class FeatureEventListenerComponent implements OnChanges, OnDestroy {
 
   private _listenerOptionsToSelectionModes() {
     const selectionModes = new Map<FeatureDataType, SelectionMode>();
-    selectionModes.set(
-      FeatureDataType.ROUTE,
-      this.listenerOptions.ROUTE?.selectionMode ?? 'single'
-    );
-    selectionModes.set(
-      FeatureDataType.MARKER,
-      this.listenerOptions.MARKER?.selectionMode ?? 'single'
-    );
-    selectionModes.set(
-      FeatureDataType.STATION,
-      this.listenerOptions.STATION?.selectionMode ?? 'single'
-    );
-    selectionModes.set(FeatureDataType.ZONE, this.listenerOptions.ZONE?.selectionMode ?? 'multi');
+    selectionModes.set('ROUTE', this.listenerOptions.ROUTE?.selectionMode ?? 'single');
+    selectionModes.set('MARKER', this.listenerOptions.MARKER?.selectionMode ?? 'single');
+    selectionModes.set('STATION', this.listenerOptions.STATION?.selectionMode ?? 'single');
+    selectionModes.set('ZONE', this.listenerOptions.ZONE?.selectionMode ?? 'multi');
     return selectionModes;
   }
 
@@ -187,7 +175,7 @@ export class FeatureEventListenerComponent implements OnChanges, OnDestroy {
 
   private _filterOverlayFeatures(features: FeatureData[], type: FeatureDataType): FeatureData[] {
     const filteredByType = features.filter((f) => f.featureDataType === type);
-    if (type !== FeatureDataType.ROUTE) {
+    if (type !== 'ROUTE') {
       return filteredByType;
     }
 

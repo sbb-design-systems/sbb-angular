@@ -58,9 +58,9 @@ export class MapSelectionEventService {
       const selected = !feature.state.selected;
       this._setFeatureSelection(feature, selected);
 
-      if (feature.featureDataType === FeatureDataType.ZONE) {
+      if (feature.featureDataType === 'ZONE') {
         this._touchedZoneIds.add(Number(feature.id));
-      } else if (feature.featureDataType === FeatureDataType.ROUTE) {
+      } else if (feature.featureDataType === 'ROUTE') {
         lastRouteEventDataCandidate.set(feature, feature.state.selected);
       }
     }
@@ -76,19 +76,19 @@ export class MapSelectionEventService {
     featureDataType: FeatureDataType
   ): void {
     const selectedFeatures = features.filter((f) => f.properties![SELECTED_PROPERTY_NAME]);
-    if (featureDataType === FeatureDataType.ROUTE) {
+    if (featureDataType === 'ROUTE') {
       selectedFeatures.forEach((feature) => {
         this._routeUtilsService.setRelatedRouteFeaturesSelection(mapInstance, feature, true);
       });
       this._lastRouteEventData = new Map(selectedFeatures.map((f) => [f, true]));
     }
-    if (featureDataType === FeatureDataType.ZONE) {
+    if (featureDataType === 'ZONE') {
       this._touchedZoneIds = new Set<number>();
-      const featureDatas = this._mapEventUtils.queryFeatureSourceByFilter(
-        mapInstance,
-        FeatureDataType.ZONE,
-        ['==', SELECTED_PROPERTY_NAME, true]
-      );
+      const featureDatas = this._mapEventUtils.queryFeatureSourceByFilter(mapInstance, 'ZONE', [
+        '==',
+        SELECTED_PROPERTY_NAME,
+        true,
+      ]);
       featureDatas.forEach((featureData) =>
         this._mapEventUtils.setFeatureState(featureData, mapInstance, { selected: true })
       );
@@ -128,11 +128,11 @@ export class MapSelectionEventService {
       this._lastRouteEventData?.forEach((isSelected, feature) => {
         this._routeUtilsService.setRelatedRouteFeaturesSelection(map, feature, isSelected);
       });
-      const featureDatas = this._mapEventUtils.queryFeatureSourceByFilter(
-        map,
-        FeatureDataType.ZONE,
-        ['all', ['==', SELECTED_PROPERTY_NAME, true], ['!in', '$id', ...this._touchedZoneIds]]
-      );
+      const featureDatas = this._mapEventUtils.queryFeatureSourceByFilter(map, 'ZONE', [
+        'all',
+        ['==', SELECTED_PROPERTY_NAME, true],
+        ['!in', '$id', ...this._touchedZoneIds],
+      ]);
       featureDatas.forEach((featureData) =>
         this._mapEventUtils.setFeatureState(featureData, map, { selected: true })
       );

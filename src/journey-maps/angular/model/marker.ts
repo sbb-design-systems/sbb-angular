@@ -1,7 +1,6 @@
 import { Position } from 'geojson';
 
 import { MarkerCategory } from './marker-category.enum';
-import { MarkerColor } from './marker-color.enum';
 import { MarkerPriority } from './marker-priority.enum';
 
 /**
@@ -28,7 +27,7 @@ export interface Marker {
    * Not all combinations are possible between category and color.
    * Selected color is always RED.
    */
-  color?: MarkerColor | string;
+  color?: 'BLACK' | 'RED' | 'DARKBLUE' | 'BRIGHTBLUE';
 
   /**
    * The priority of the marker. It can be used to customize the styling of clustered markers.

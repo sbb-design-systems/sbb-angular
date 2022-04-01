@@ -113,11 +113,11 @@ export class MapEventUtilsService {
 
   private static _getSourceMapping(featureDataType: FeatureDataType): string | undefined {
     switch (featureDataType) {
-      case FeatureDataType.MARKER:
+      case 'MARKER':
         return MARKER_SOURCE;
-      case FeatureDataType.ROUTE:
+      case 'ROUTE':
         return ROUTE_SOURCE;
-      case FeatureDataType.ZONE:
+      case 'ZONE':
         return ZONE_SOURCE;
       default:
         return undefined;

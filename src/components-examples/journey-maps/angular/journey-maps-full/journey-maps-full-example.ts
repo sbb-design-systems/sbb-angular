@@ -13,7 +13,7 @@ import {
   InteractionOptions,
   JourneyMapsClientComponent,
   JourneyMapsRoutingOptions,
-  ListenerTypeOptions,
+  ListenerOptions,
   StyleOptions,
   UIOptions,
   ViewportOptions,
@@ -70,12 +70,7 @@ export class JourneyMapsFullExample implements OnInit, AfterViewInit, OnDestroy 
     basemapSwitch: true,
     homeButton: true,
   };
-  listenerOptions: {
-    MARKER: ListenerTypeOptions;
-    ROUTE: ListenerTypeOptions;
-    STATION: ListenerTypeOptions;
-    ZONE: ListenerTypeOptions;
-  } = {
+  listenerOptions: ListenerOptions = {
     MARKER: { watch: true, selectionMode: 'single' },
     ROUTE: { watch: true, popup: true, selectionMode: 'multi' },
     STATION: { watch: true, popup: true },
@@ -229,10 +224,10 @@ export class JourneyMapsFullExample implements OnInit, AfterViewInit, OnDestroy 
 
   updateListenerOptions(): void {
     const group = this.form.get('listener')!;
-    this.listenerOptions.MARKER.watch = group.get('marker')?.value;
-    this.listenerOptions.STATION.watch = group.get('station')?.value;
-    this.listenerOptions.ROUTE.watch = group.get('route')?.value;
-    this.listenerOptions.ZONE.watch = group.get('zone')?.value;
+    this.listenerOptions.MARKER!.watch = group.get('marker')?.value;
+    this.listenerOptions.STATION!.watch = group.get('station')?.value;
+    this.listenerOptions.ROUTE!.watch = group.get('route')?.value;
+    this.listenerOptions.ZONE!.watch = group.get('zone')?.value;
     this.listenerOptions = { ...this.listenerOptions };
   }
 

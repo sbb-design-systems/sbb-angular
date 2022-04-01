@@ -3,7 +3,8 @@ import { FeatureCollection } from 'geojson';
 import { LngLatBoundsLike, LngLatLike, MapboxGeoJSONFeature } from 'maplibre-gl';
 
 import { Marker } from './model/marker';
-import { StyleMode } from './model/style-mode.enum';
+
+export type StyleMode = 'bright' | 'dark';
 
 export interface StyleOptions {
   /** Overwrite this value if you want to use a style from a different source. */
@@ -161,9 +162,4 @@ export type SelectableFeatureCollection = FeatureCollection & {
   isSelected?: boolean;
 };
 
-export enum FeatureDataType {
-  MARKER = 'MARKER',
-  ROUTE = 'ROUTE',
-  STATION = 'STATION',
-  ZONE = 'ZONE',
-}
+export type FeatureDataType = 'MARKER' | 'ROUTE' | 'STATION' | 'ZONE';

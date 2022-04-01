@@ -1,7 +1,6 @@
 import { Injectable } from '@angular/core';
 import { GeoJSONSource, Map as MaplibreMap } from 'maplibre-gl';
 
-import { FeatureDataType } from '../../journey-maps-client.interfaces';
 import { ZONE_SOURCE } from '../constants';
 
 import { MapSelectionEventService } from './events/map-selection-event.service';
@@ -23,11 +22,7 @@ export class MapZoneService {
 
     if (zonesFeatureCollection.features?.length) {
       map.once('idle', () => {
-        mapSelectionEventService.initSelectedState(
-          map,
-          zonesFeatureCollection.features,
-          FeatureDataType.ZONE
-        );
+        mapSelectionEventService.initSelectedState(map, zonesFeatureCollection.features, 'ZONE');
       });
     }
   }

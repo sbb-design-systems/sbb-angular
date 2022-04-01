@@ -1,6 +1,6 @@
-import { MarkerCategory, MarkerColor } from '@sbb-esta/journey-maps';
+import { MarkerCategory, MarkerOptions } from '@sbb-esta/journey-maps';
 
-export const markers = {
+export const markers: MarkerOptions = {
   popup: true,
   zoomToMarkers: true,
   markers: [
@@ -10,14 +10,14 @@ export const markers = {
       subtitle: 'Rent a Bike - Ihr Mietvelo',
       position: [7.5897, 47.5476],
       category: MarkerCategory.BICYCLEPARKING,
-      color: MarkerColor.BLACK,
+      color: 'BLACK',
     },
     {
       id: 'biel',
       title: 'Biel, my town, my rules !',
       position: [7.2468, 47.1368],
       category: MarkerCategory.DISRUPTION,
-      color: MarkerColor.RED,
+      color: 'RED',
       markerUrl: 'https://www.biel-bienne.ch/',
       triggerEvent: false,
     },
@@ -27,7 +27,7 @@ export const markers = {
       subtitle: 'SBB Wylerpark',
       position: [7.44645, 46.961409],
       category: MarkerCategory.RAIL,
-      color: MarkerColor.DARKBLUE,
+      color: 'DARKBLUE',
     },
     {
       id: 'work2',
@@ -35,7 +35,7 @@ export const markers = {
       subtitle: 'SBB Wylerpark2',
       position: [7.44649, 46.961409],
       category: MarkerCategory.RAIL,
-      color: MarkerColor.DARKBLUE,
+      color: 'DARKBLUE',
     },
   ],
 };
