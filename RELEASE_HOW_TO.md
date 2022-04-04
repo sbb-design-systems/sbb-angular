@@ -40,3 +40,7 @@ successfully published to https://angular.app.sbb.ch.
 ## Publishing the release
 
 On the GitHub release page, click on "Publish release" to publish everything.
+
+## Update the blueprint
+
+Update the internal blueprint `esta-cloud-angular` repo with the new sbb-angular version.
