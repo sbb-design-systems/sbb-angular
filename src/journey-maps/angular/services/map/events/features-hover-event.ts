@@ -3,41 +3,41 @@ import { ReplaySubject, Subject, Subscription } from 'rxjs';
 import { sampleTime } from 'rxjs/operators';
 
 import {
-  FeatureData,
-  FeatureDataType,
-  FeaturesHoverChangeEventData,
-} from '../../../journey-maps-client.interfaces';
+  SbbFeatureData,
+  SbbFeatureDataType,
+  SbbFeaturesHoverChangeEventData,
+} from '../../../journey-maps.interfaces';
 
-import { MapEventUtilsService } from './map-event-utils.service';
-import { RouteUtilsService } from './route-utils.service';
+import { SbbMapEventUtils } from './map-event-utils';
+import { SbbRouteUtils } from './route-utils';
 
-const REPEAT_EVENTS = 1;
-const HOVER_DELAY_TIME = 25;
+const SBB_REPEAT_EVENTS = 1;
+const SBB_HOVER_DELAY_TIME = 25;
 
-interface MouseMovedEventData {
-  mapEvent: MapEventData;
-  hoverState: MouseHoverState;
+interface SbbMouseMovedEventData {
+  mapEvent: SbbMapEventData;
+  hoverState: SbbMouseHoverState;
 }
 
-interface MapEventData {
+interface SbbMapEventData {
   point: Point;
   lngLat: LngLat;
 }
 
-interface MouseHoverState {
-  hoveredFeatures: FeatureData[];
+interface SbbMouseHoverState {
+  hoveredFeatures: SbbFeatureData[];
 }
 
-export class FeaturesHoverEvent extends ReplaySubject<FeaturesHoverChangeEventData> {
+export class SbbFeaturesHoverEvent extends ReplaySubject<SbbFeaturesHoverChangeEventData> {
   private _subscription: Subscription;
 
   constructor(
     private _mapInstance: MaplibreMap,
-    private _mapEventUtils: MapEventUtilsService,
-    private _layers: Map<string, FeatureDataType>,
-    private _routeUtilsService: RouteUtilsService
+    private _mapEventUtils: SbbMapEventUtils,
+    private _layers: Map<string, SbbFeatureDataType>,
+    private _routeUtilsService: SbbRouteUtils
   ) {
-    super(REPEAT_EVENTS);
+    super(SBB_REPEAT_EVENTS);
     if (!this._layers.size) {
       return;
     }
@@ -51,19 +51,19 @@ export class FeaturesHoverEvent extends ReplaySubject<FeaturesHoverChangeEventDa
 
   private _attachEvent(): void {
     const mouseMovedSubject = this._getMouseMovedSubject();
-    const hoverState: MouseHoverState = { hoveredFeatures: [] };
+    const hoverState: SbbMouseHoverState = { hoveredFeatures: [] };
     this._mapInstance.on('mousemove', (mapEvent) => {
       mouseMovedSubject.next({
-        mapEvent: FeaturesHoverEvent._eventToMapEventData(mapEvent),
+        mapEvent: SbbFeaturesHoverEvent._eventToMapEventData(mapEvent),
         hoverState,
       });
     });
   }
 
-  private _getMouseMovedSubject(): Subject<MouseMovedEventData> {
-    const mouseMovedSubject = new Subject<MouseMovedEventData>();
+  private _getMouseMovedSubject(): Subject<SbbMouseMovedEventData> {
+    const mouseMovedSubject = new Subject<SbbMouseMovedEventData>();
     this._subscription = mouseMovedSubject
-      .pipe(sampleTime(HOVER_DELAY_TIME))
+      .pipe(sampleTime(SBB_HOVER_DELAY_TIME))
       .subscribe((eventData) => {
         // FIXME: beim click und doppel-click passiert nichts :-(
         this._onHoverChanged(eventData);
@@ -71,14 +71,14 @@ export class FeaturesHoverEvent extends ReplaySubject<FeaturesHoverChangeEventDa
     return mouseMovedSubject;
   }
 
-  private _onHoverChanged(eventData: MouseMovedEventData) {
+  private _onHoverChanged(eventData: SbbMouseMovedEventData) {
     const event = eventData.mapEvent;
     const state = eventData.hoverState;
 
     const eventPoint = { x: event.point.x, y: event.point.y };
     const eventLngLat = { lng: event.lngLat.lng, lat: event.lngLat.lat };
 
-    let currentFeatures: FeatureData[] = this._mapEventUtils.queryFeaturesByLayerIds(
+    let currentFeatures: SbbFeatureData[] = this._mapEventUtils.queryFeaturesByLayerIds(
       this._mapInstance,
       [eventPoint.x, eventPoint.y],
       this._layers
@@ -106,11 +106,11 @@ export class FeaturesHoverEvent extends ReplaySubject<FeaturesHoverChangeEventDa
       const removeFeatures = state.hoveredFeatures.filter(
         (current) =>
           !currentFeatures.find((added) =>
-            FeaturesHoverEvent._featureEventDataEquals(current, added)
+            SbbFeaturesHoverEvent._featureEventDataEquals(current, added)
           )
       );
       if (removeFeatures.length) {
-        const data = FeaturesHoverEvent._eventToHoverChangeEventData(
+        const data = SbbFeaturesHoverEvent._eventToHoverChangeEventData(
           eventPoint,
           eventLngLat,
           removeFeatures,
@@ -123,7 +123,7 @@ export class FeaturesHoverEvent extends ReplaySubject<FeaturesHoverChangeEventDa
       const newFeatures = currentFeatures.filter(
         (current) =>
           !state.hoveredFeatures.find((added) =>
-            FeaturesHoverEvent._featureEventDataEquals(current, added)
+            SbbFeaturesHoverEvent._featureEventDataEquals(current, added)
           )
       );
       if (newFeatures.length) {
@@ -133,7 +133,7 @@ export class FeaturesHoverEvent extends ReplaySubject<FeaturesHoverChangeEventDa
       }
     }
     if (hasNewFeatures && currentFeatures?.length) {
-      const data = FeaturesHoverEvent._eventToHoverChangeEventData(
+      const data = SbbFeaturesHoverEvent._eventToHoverChangeEventData(
         eventPoint,
         eventLngLat,
         currentFeatures,
@@ -154,7 +154,7 @@ export class FeaturesHoverEvent extends ReplaySubject<FeaturesHoverChangeEventDa
     );
   }
 
-  private static _eventToMapEventData(mapEvent: { point: Point; lngLat: LngLat }): MapEventData {
+  private static _eventToMapEventData(mapEvent: { point: Point; lngLat: LngLat }): SbbMapEventData {
     return {
       point: mapEvent.point,
       lngLat: mapEvent.lngLat,
@@ -164,9 +164,9 @@ export class FeaturesHoverEvent extends ReplaySubject<FeaturesHoverChangeEventDa
   private static _eventToHoverChangeEventData(
     eventPoint: { x: number; y: number },
     eventLngLat: { lng: number; lat: number },
-    features: FeatureData[],
+    features: SbbFeatureData[],
     hover: boolean
-  ): FeaturesHoverChangeEventData {
+  ): SbbFeaturesHoverChangeEventData {
     const leave = !hover;
     return {
       eventPoint,

@@ -1,1 +1,1 @@
-export type LeitPoiPlacement = 'northeast' | 'southeast' | 'southwest' | 'northwest';
+export type SbbLeitPoiPlacement = 'northeast' | 'southeast' | 'southwest' | 'northwest';

@@ -1,13 +1,10 @@
+import { SbbLeitPoiPlacement } from '@sbb-esta/journey-maps/angular/components/leit-poi/model/leit-poi-placement';
 import { LngLatLike } from 'maplibre-gl';
 
-import { LeitPoiPlacement } from './leit-poi-placement';
-import { LeitPoiTravelDirection } from './leit-poi-travel-direction';
-import { LeitPoiTravelType } from './leit-poi-travel-type';
-
-export interface LeitPoiFeature {
-  travelType: LeitPoiTravelType;
-  travelDirection: LeitPoiTravelDirection;
-  placement: LeitPoiPlacement;
+export interface SbbLeitPoiFeature {
+  travelType: 'default' | 'stairs' | 'lift' | 'ramp' | 'escalator';
+  travelDirection: 'default' | 'upstairs' | 'downstairs';
+  placement: SbbLeitPoiPlacement;
   sourceLevel: number;
   location: LngLatLike;
   destinationLevel: number;

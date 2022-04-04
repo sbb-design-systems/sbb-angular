@@ -17,16 +17,16 @@ ng_module(
         exclude = ["**/*.spec.ts"],
     ),
     assets = [
-        ":journey-maps-client.component.css",
-        ":components/basemap-switch/basemap-switch.component.css",
-        ":components/global-styles/global-styles.component.css",
-        ":components/home-button/home-button.component.css",
-        ":components/leit-poi/leit-poi.component.css",
-        ":components/level-switch/level-switch.component.css",
-        ":components/overlay-paginator/overlay-paginator.component.css",
-        ":components/popup/popup.component.css",
-        ":components/teaser/teaser.component.css",
-        ":components/zoom-controls/zoom-controls.component.css",
+        ":journey-maps.css",
+        ":components/basemap-switch/basemap-switch.css",
+        ":components/global-styles/global-styles.css",
+        ":components/home-button/home-button.css",
+        ":components/leit-poi/leit-poi.css",
+        ":components/level-switch/level-switch.css",
+        ":components/overlay-paginator/overlay-paginator.css",
+        ":components/popup/popup.css",
+        ":components/teaser/teaser.css",
+        ":components/zoom-controls/zoom-controls.css",
     ] + glob(["**/*.html"]),
     deps = [
         "@npm//@angular/animations",
@@ -45,49 +45,24 @@ sass_library(
 )
 
 sass_binary(
-    name = "journey_maps_client_component_scss",
-    src = "journey-maps-client.component.scss",
+    name = "journey_maps_scss",
+    src = "journey-maps.scss",
     deps = [
         ":angular_scss_lib",
     ],
 )
 
 sass_binary(
-    name = "components_basemap_switch_basemap_switch_component_scss",
-    src = "components/basemap-switch/basemap-switch.component.scss",
+    name = "components_basemap_switch_basemap_switch_scss",
+    src = "components/basemap-switch/basemap-switch.scss",
     deps = [
         ":angular_scss_lib",
     ],
 )
 
 sass_binary(
-    name = "components_global_styles_global_styles_component_scss",
-    src = "components/global-styles/global-styles.component.scss",
-    deps = [
-        ":angular_scss_lib",
-        "//src/angular/styles:common_scss_lib",
-    ],
-)
-
-sass_binary(
-    name = "components_home_button_home_button_component_scss",
-    src = "components/home-button/home-button.component.scss",
-    deps = [
-        ":angular_scss_lib",
-    ],
-)
-
-sass_binary(
-    name = "components_leit_poi_leit_poi_component_scss",
-    src = "components/leit-poi/leit-poi.component.scss",
-    deps = [
-        ":angular_scss_lib",
-    ],
-)
-
-sass_binary(
-    name = "components_level_switch_level_switch_component_scss",
-    src = "components/level-switch/level-switch.component.scss",
+    name = "components_global_styles_global_styles_scss",
+    src = "components/global-styles/global-styles.scss",
     deps = [
         ":angular_scss_lib",
         "//src/angular/styles:common_scss_lib",
@@ -95,21 +70,24 @@ sass_binary(
 )
 
 sass_binary(
-    name = "components_overlay_paginator_overlay_paginator_component_scss",
-    src = "components/overlay-paginator/overlay-paginator.component.scss",
+    name = "components_home_button_home_button_scss",
+    src = "components/home-button/home-button.scss",
     deps = [
         ":angular_scss_lib",
     ],
 )
 
 sass_binary(
-    name = "components_popup_popup_component_scss",
-    src = "components/popup/popup.component.scss",
+    name = "components_leit_poi_leit_poi_scss",
+    src = "components/leit-poi/leit-poi.scss",
+    deps = [
+        ":angular_scss_lib",
+    ],
 )
 
 sass_binary(
-    name = "components_teaser_teaser_component_scss",
-    src = "components/teaser/teaser.component.scss",
+    name = "components_level_switch_level_switch_scss",
+    src = "components/level-switch/level-switch.scss",
     deps = [
         ":angular_scss_lib",
         "//src/angular/styles:common_scss_lib",
@@ -117,8 +95,30 @@ sass_binary(
 )
 
 sass_binary(
-    name = "components_zoom_controls_zoom_controls_component_scss",
-    src = "components/zoom-controls/zoom-controls.component.scss",
+    name = "components_overlay_paginator_overlay_paginator_scss",
+    src = "components/overlay-paginator/overlay-paginator.scss",
+    deps = [
+        ":angular_scss_lib",
+    ],
+)
+
+sass_binary(
+    name = "components_popup_popup_scss",
+    src = "components/popup/popup.scss",
+)
+
+sass_binary(
+    name = "components_teaser_teaser_scss",
+    src = "components/teaser/teaser.scss",
+    deps = [
+        ":angular_scss_lib",
+        "//src/angular/styles:common_scss_lib",
+    ],
+)
+
+sass_binary(
+    name = "components_zoom_controls_zoom_controls_scss",
+    src = "components/zoom-controls/zoom-controls.scss",
     deps = [
         ":angular_scss_lib",
         "//src/angular/styles:common_scss_lib",

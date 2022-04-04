@@ -3,7 +3,7 @@ import { Map as MaplibreMap } from 'maplibre-gl';
 // https://www.npmjs.com/package/mapbox-gl-multitouch
 // https://github.com/mapbox/mapbox-gl-js/issues/2618
 // https://github.com/Pitbi/mapbox-gl-multitouch
-export class MultiTouchSupport {
+export class SbbMultiTouchSupport {
   private _state = { panStart: { x: 0, y: 0 }, distanceStart: 0 };
   private _map: MaplibreMap | undefined;
   private _container: HTMLDivElement | undefined;

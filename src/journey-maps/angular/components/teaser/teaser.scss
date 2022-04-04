@@ -1,0 +1,41 @@
+@use './../../style/icons' as i;
+@use '../../../../angular/styles/common' as esta;
+
+.teaser-container {
+  z-index: 99;
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  overflow-y: auto;
+  padding: 1rem;
+  background-color: esta.$sbbColorWhite;
+  box-shadow: -5px 0px 5px -5px rgba(0, 0, 0, 0.15);
+
+  .close {
+    z-index: 101;
+    position: absolute;
+    top: 5px;
+    right: 5px;
+    height: 24px;
+    width: 24px;
+    cursor: pointer;
+    padding: 0;
+    border: none;
+    background: #212121 none;
+    @include i.icon-mask('circle-cross');
+  }
+
+  width: 100%;
+  @include esta.mq($from: tabletPortrait) {
+    width: 20rem;
+  }
+
+  sbb-overlay-paginator {
+    position: absolute;
+    top: 5px;
+    left: 0;
+    right: 0;
+    z-index: 100;
+  }
+}

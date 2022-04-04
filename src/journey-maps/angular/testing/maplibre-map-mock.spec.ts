@@ -1,12 +1,12 @@
 import { MapboxGeoJSONFeature } from 'maplibre-gl';
 
-import { MaplibreMapMock } from './maplibre-map-mock';
+import { SbbMaplibreMapMock } from './maplibre-map-mock';
 
 describe('MaplibreMapMock', () => {
-  let mapMock: MaplibreMapMock;
+  let mapMock: SbbMaplibreMapMock;
 
   beforeEach(() => {
-    mapMock = new MaplibreMapMock();
+    mapMock = new SbbMaplibreMapMock();
   });
 
   it('should be created', () => {

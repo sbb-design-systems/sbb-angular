@@ -5,7 +5,7 @@ interface EventInfo {
   callbackFn: any;
 }
 
-export class MaplibreMapMock {
+export class SbbMaplibreMapMock {
   static readonly EVENT_POINT: Point = new Point(150, 100);
 
   private readonly _callbackFnCache = new Map<String, EventInfo[] | any[]>();
@@ -71,7 +71,7 @@ export class MaplibreMapMock {
     point: PointLike,
     options?: { layers?: string[] }
   ): MapboxGeoJSONFeature[] | null {
-    const data = this._featureData.get(MaplibreMapMock._stringify(point));
+    const data = this._featureData.get(SbbMaplibreMapMock._stringify(point));
     if (
       data &&
       (!options?.layers?.length || data.layers.some((l) => options.layers?.includes(l)))
@@ -92,15 +92,15 @@ export class MaplibreMapMock {
     for (const callback of callbackList) {
       if (callback._layerId) {
         const info = callback as EventInfo;
-        MaplibreMapMock._callbackWithEventArgs(eventName, info.callbackFn);
+        SbbMaplibreMapMock._callbackWithEventArgs(eventName, info.callbackFn);
       } else {
-        MaplibreMapMock._callbackWithEventArgs(eventName, callback);
+        SbbMaplibreMapMock._callbackWithEventArgs(eventName, callback);
       }
     }
   }
 
   addFeatureData(point: PointLike, layers: string[], features: MapboxGeoJSONFeature[]) {
-    this._featureData.set(MaplibreMapMock._stringify(point), { layers, features });
+    this._featureData.set(SbbMaplibreMapMock._stringify(point), { layers, features });
   }
 
   private static _callbackWithEventArgs(eventName: string, callback: any) {
@@ -110,7 +110,7 @@ export class MaplibreMapMock {
       case 'mouseleave':
       case 'click': {
         callback({
-          point: MaplibreMapMock.EVENT_POINT,
+          point: SbbMaplibreMapMock.EVENT_POINT,
           lngLat: { lng: 7.265078, lat: 46.565312 },
         });
         break;

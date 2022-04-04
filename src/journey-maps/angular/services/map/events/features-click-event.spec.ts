@@ -1,31 +1,31 @@
 import {
-  FeatureData,
-  FeatureDataType,
-  FeaturesClickEventData,
-} from '../../../journey-maps-client.interfaces';
-import { MaplibreMapMock } from '../../../testing/maplibre-map-mock';
+  SbbFeatureData,
+  SbbFeatureDataType,
+  SbbFeaturesClickEventData,
+} from '../../../journey-maps.interfaces';
+import { SbbMaplibreMapMock } from '../../../testing/maplibre-map-mock';
 
-import { FeaturesClickEvent } from './features-click-event';
-import { MapEventUtilsService } from './map-event-utils.service';
+import { SbbFeaturesClickEvent } from './features-click-event';
+import { SbbMapEventUtils } from './map-event-utils';
 
 describe('FeaturesClickEvent', () => {
-  let featuresClickEvent: FeaturesClickEvent;
-  let mapMock: MaplibreMapMock;
+  let featuresClickEvent: SbbFeaturesClickEvent;
+  let mapMock: SbbMaplibreMapMock;
   let mapEventUtilsMock: any;
-  let featureData: FeatureData[];
+  let featureData: SbbFeatureData[];
 
   beforeEach(() => {
     featureData = [
       { featureDataType: 'ROUTE', geometry: { type: 'Line' } },
       { featureDataType: 'ROUTE', geometry: { type: 'Line' } },
-    ] as unknown as FeatureData[];
+    ] as unknown as SbbFeatureData[];
 
-    mapMock = new MaplibreMapMock();
-    mapEventUtilsMock = new MapEventUtilsService();
+    mapMock = new SbbMaplibreMapMock();
+    mapEventUtilsMock = new SbbMapEventUtils();
     spyOn(mapEventUtilsMock, 'queryFeaturesByLayerIds').and.returnValue(featureData);
 
-    const layers = new Map<string, FeatureDataType>();
-    featuresClickEvent = new FeaturesClickEvent(mapMock.get(), mapEventUtilsMock, layers);
+    const layers = new Map<string, SbbFeatureDataType>();
+    featuresClickEvent = new SbbFeaturesClickEvent(mapMock.get(), mapEventUtilsMock, layers);
   });
 
   it('should be created', () => {
@@ -33,7 +33,7 @@ describe('FeaturesClickEvent', () => {
   });
 
   it('should submit event on map click', (doneFn) => {
-    featuresClickEvent.subscribe((args: FeaturesClickEventData) => {
+    featuresClickEvent.subscribe((args: SbbFeaturesClickEventData) => {
       expect(args.features.length).toBe(2);
       doneFn();
     });
@@ -45,9 +45,9 @@ describe('FeaturesClickEvent', () => {
     featureData.push({
       featureDataType: 'STATION',
       geometry: { type: 'Point' },
-    } as unknown as FeatureData);
+    } as unknown as SbbFeatureData);
 
-    featuresClickEvent.subscribe((args: FeaturesClickEventData) => {
+    featuresClickEvent.subscribe((args: SbbFeaturesClickEventData) => {
       expect(args.features.length).toBe(1);
       expect(args.features[0].geometry.type).toBe('Point');
       doneFn();

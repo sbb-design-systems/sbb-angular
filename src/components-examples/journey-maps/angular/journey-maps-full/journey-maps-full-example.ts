@@ -10,14 +10,14 @@ import {
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { SbbRadioChange } from '@sbb-esta/angular/radio-button';
 import {
-  InteractionOptions,
-  JourneyMapsClientComponent,
-  JourneyMapsRoutingOptions,
-  ListenerOptions,
-  StyleOptions,
-  UIOptions,
-  ViewportOptions,
-  ZoomLevels,
+  SbbInteractionOptions,
+  SbbJourneyMaps,
+  SbbJourneyMapsRoutingOptions,
+  SbbListenerOptions,
+  SbbStyleOptions,
+  SbbUIOptions,
+  SbbViewportOptions,
+  SbbZoomLevels,
 } from '@sbb-esta/journey-maps';
 import { FeatureCollection } from 'geojson';
 import { LngLatBoundsLike, LngLatLike } from 'maplibre-gl';
@@ -49,7 +49,7 @@ declare global {
 })
 export class JourneyMapsFullExample implements OnInit, AfterViewInit, OnDestroy {
   @ViewChild('advancedMap')
-  client: JourneyMapsClientComponent;
+  client: SbbJourneyMaps;
   @ViewChild('stationTemplate')
   stationTemplate: TemplateRef<any>;
   @ViewChild('routeTemplate')
@@ -59,26 +59,26 @@ export class JourneyMapsFullExample implements OnInit, AfterViewInit, OnDestroy 
   selectedMarkerId?: string;
   mapCenter?: LngLatLike;
   mapCenterChange = new Subject<LngLatLike>();
-  interactionOptions: InteractionOptions = {
+  interactionOptions: SbbInteractionOptions = {
     oneFingerPan: true,
     scrollZoom: true,
   };
-  uiOptions: UIOptions = {
+  uiOptions: SbbUIOptions = {
     showSmallButtons: false,
     levelSwitch: true,
     zoomControls: true,
     basemapSwitch: true,
     homeButton: true,
   };
-  listenerOptions: ListenerOptions = {
+  listenerOptions: SbbListenerOptions = {
     MARKER: { watch: true, selectionMode: 'single' },
     ROUTE: { watch: true, popup: true, selectionMode: 'multi' },
     STATION: { watch: true, popup: true },
     ZONE: { watch: true, selectionMode: 'multi' },
   };
-  styleOptions: StyleOptions = {};
+  styleOptions: SbbStyleOptions = {};
   markerOptions = markers;
-  journeyMapsRoutingOption: JourneyMapsRoutingOptions;
+  journeyMapsRoutingOption: SbbJourneyMapsRoutingOptions;
   journeyMapsZones: FeatureCollection;
   journeyMapsRoutingOptions = [
     'journey',
@@ -88,8 +88,8 @@ export class JourneyMapsFullExample implements OnInit, AfterViewInit, OnDestroy 
     'transfer geneve indoor',
   ];
   journeyMapsZoneOptions = ['bern-burgdorf', 'bs-bl'];
-  viewportOptions: ViewportOptions = {};
-  zoomLevels: ZoomLevels;
+  viewportOptions: SbbViewportOptions = {};
+  zoomLevels: SbbZoomLevels;
   visibleLevels = new BehaviorSubject<number[]>([]);
   form: FormGroup;
   zoomButtons = [

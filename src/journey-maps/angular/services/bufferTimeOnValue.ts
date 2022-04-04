@@ -5,7 +5,7 @@ import { buffer, debounceTime, throttleTime } from 'rxjs/operators';
 
 // Upon receiving the first value this operator buffers all values for <dueTime> milliseconds
 // and then emits them as an array.
-export const bufferTimeOnValue =
+export const sbbBufferTimeOnValue =
   <T>(dueTime: number): OperatorFunction<T, T[]> =>
   (source: Observable<T>): Observable<T[]> =>
     source.pipe(

@@ -1,12 +1,12 @@
 import { Position } from 'geojson';
 
-import { MarkerCategory } from './marker-category.enum';
-import { MarkerPriority } from './marker-priority.enum';
+import { SbbMarkerCategory } from './marker-category';
+import { SbbMarkerPriority } from './marker-priority';
 
 /**
  * Defines a marker (point) that will be displayed on the map.
  */
-export interface Marker {
+export interface SbbMarker {
   /** ID identifying the marker */
   id: string;
 
@@ -20,7 +20,7 @@ export interface Marker {
    * The category of the marker. The category controls which icon is displayed.
    * Use <code>CUSTOM</code> if you want to use a custom icon.
    */
-  category: MarkerCategory | string;
+  category: SbbMarkerCategory | string;
 
   /**
    * The color of the marker. Default is BLACK.
@@ -32,7 +32,7 @@ export interface Marker {
   /**
    * The priority of the marker. It can be used to customize the styling of clustered markers.
    */
-  priority?: MarkerPriority | number;
+  priority?: SbbMarkerPriority | number;
 
   /**
    * URL of the custom marker icon. Only relevant for category <code>CUSTOM</code>.

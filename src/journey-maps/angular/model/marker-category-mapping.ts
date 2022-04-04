@@ -1,4 +1,4 @@
-export interface MarkerCategoryMapping {
+export interface SbbMarkerCategoryMapping {
   category: string;
   source: string;
   layer: string;

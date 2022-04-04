@@ -2,22 +2,22 @@ import { Map as MaplibreMap, MapLayerMouseEvent } from 'maplibre-gl';
 import { ReplaySubject, Subject, Subscription } from 'rxjs';
 import { debounceTime } from 'rxjs/operators';
 
-import { FeatureDataType, FeaturesClickEventData } from '../../../journey-maps-client.interfaces';
+import { SbbFeatureDataType, SbbFeaturesClickEventData } from '../../../journey-maps.interfaces';
 
-import { MapEventUtilsService } from './map-event-utils.service';
+import { SbbMapEventUtils } from './map-event-utils';
 
-const REPEAT_EVENTS = 1;
-const MAP_CLICK_EVENT_DEBOUNCE_TIME = 200;
+const SBB_REPEAT_EVENTS = 1;
+const SBB_MAP_CLICK_EVENT_DEBOUNCE_TIME = 200;
 
-export class FeaturesClickEvent extends ReplaySubject<FeaturesClickEventData> {
+export class SbbFeaturesClickEvent extends ReplaySubject<SbbFeaturesClickEventData> {
   private _subscription: Subscription;
 
   constructor(
     private _mapInstance: MaplibreMap,
-    private _mapEventUtils: MapEventUtilsService,
-    private _layers: Map<string, FeatureDataType>
+    private _mapEventUtils: SbbMapEventUtils,
+    private _layers: Map<string, SbbFeatureDataType>
   ) {
-    super(REPEAT_EVENTS);
+    super(SBB_REPEAT_EVENTS);
     this._attachEvent();
   }
 
@@ -29,7 +29,7 @@ export class FeaturesClickEvent extends ReplaySubject<FeaturesClickEventData> {
   private _attachEvent(): void {
     const mapClicked = new Subject<MapLayerMouseEvent>();
     this._subscription = mapClicked
-      .pipe(debounceTime(MAP_CLICK_EVENT_DEBOUNCE_TIME))
+      .pipe(debounceTime(SBB_MAP_CLICK_EVENT_DEBOUNCE_TIME))
       .subscribe((e) => {
         let features = this._mapEventUtils.queryFeaturesByLayerIds(
           this._mapInstance,

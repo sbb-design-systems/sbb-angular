@@ -1,7 +1,7 @@
 import { buffer, bufferTime, debounceTime, delay, throttleTime } from 'rxjs/operators';
 import { TestScheduler } from 'rxjs/testing';
 
-import { bufferTimeOnValue } from './bufferTimeOnValue';
+import { sbbBufferTimeOnValue } from './bufferTimeOnValue';
 
 const getTestScheduler = () =>
   new TestScheduler((actual, expected) => {
@@ -132,7 +132,7 @@ describe('bufferTimeOnValue', () => {
         z: [],
       };
 
-      expectObservable(cold(actual).pipe(bufferTimeOnValue(time))).toBe(expected, values);
+      expectObservable(cold(actual).pipe(sbbBufferTimeOnValue(time))).toBe(expected, values);
     });
   });
 
@@ -143,7 +143,7 @@ describe('bufferTimeOnValue', () => {
       const expected = '-------(x|)';
       const values = { x: [] };
 
-      expectObservable(cold(actual).pipe(bufferTimeOnValue(time))).toBe(expected, values);
+      expectObservable(cold(actual).pipe(sbbBufferTimeOnValue(time))).toBe(expected, values);
     });
   });
 });

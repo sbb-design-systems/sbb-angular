@@ -1,13 +1,13 @@
-import { MultiTouchSupport } from './multiTouchSupport';
+import { SbbMultiTouchSupport } from './multiTouchSupport';
 
 describe('MultiTouchSupport', () => {
-  let service: MultiTouchSupport;
+  let service: SbbMultiTouchSupport;
   let map: any;
 
   const initialZoom = 11;
 
   beforeEach(() => {
-    service = new MultiTouchSupport();
+    service = new SbbMultiTouchSupport();
     map = {
       panBy: jasmine.createSpy(),
       setZoom: jasmine.createSpy(),

@@ -2,9 +2,9 @@ import { Map as MaplibreMap, MapMouseEvent, Point } from 'maplibre-gl';
 import { Subject, Subscription } from 'rxjs';
 import { sampleTime } from 'rxjs/operators';
 
-const CURSOR_STYLE_DELAY = 25;
+const SBB_CURSOR_STYLE_DELAY = 25;
 
-export class MapCursorStyleEvent {
+export class SbbMapCursorStyleEvent {
   private _subject = new Subject<Point>();
   private _subscription: Subscription;
   private _mouseEventListener: (event: MapMouseEvent) => void;
@@ -15,7 +15,7 @@ export class MapCursorStyleEvent {
     }
 
     this._subscription = this._subject
-      .pipe(sampleTime(CURSOR_STYLE_DELAY))
+      .pipe(sampleTime(SBB_CURSOR_STYLE_DELAY))
       .subscribe((point) => this._updateCursorStyle(point));
 
     this._mouseEventListener = (e: MapMouseEvent) =>

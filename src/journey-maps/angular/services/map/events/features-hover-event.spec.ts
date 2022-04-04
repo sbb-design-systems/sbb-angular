@@ -1,18 +1,18 @@
-import { FeatureData, FeatureDataType } from '../../../journey-maps-client.interfaces';
-import { MaplibreMapMock } from '../../../testing/maplibre-map-mock';
+import { SbbFeatureData, SbbFeatureDataType } from '../../../journey-maps.interfaces';
+import { SbbMaplibreMapMock } from '../../../testing/maplibre-map-mock';
 
-import { FeaturesHoverEvent } from './features-hover-event';
-import { MapEventUtilsService } from './map-event-utils.service';
-import { RouteUtilsService } from './route-utils.service';
+import { SbbFeaturesHoverEvent } from './features-hover-event';
+import { SbbMapEventUtils } from './map-event-utils';
+import { SbbRouteUtils } from './route-utils';
 
 describe('FeaturesHoverEvent', () => {
-  let watchOnLayers: Map<string, FeatureDataType>;
-  let featuresHoverEvent: FeaturesHoverEvent;
-  let mapMock: MaplibreMapMock;
-  let featureData: FeatureData[];
+  let watchOnLayers: Map<string, SbbFeatureDataType>;
+  let featuresHoverEvent: SbbFeaturesHoverEvent;
+  let mapMock: SbbMaplibreMapMock;
+  let featureData: SbbFeatureData[];
 
   beforeEach(() => {
-    mapMock = new MaplibreMapMock();
+    mapMock = new SbbMaplibreMapMock();
 
     featureData = [
       {
@@ -25,20 +25,20 @@ describe('FeaturesHoverEvent', () => {
         geometry: { type: 'Line' },
         source: 'routes-source',
       },
-    ] as unknown as FeatureData[];
+    ] as unknown as SbbFeatureData[];
 
-    const mapEventUtilsMock = new MapEventUtilsService();
+    const mapEventUtilsMock = new SbbMapEventUtils();
     spyOn(mapEventUtilsMock, 'queryFeaturesByLayerIds').and.returnValue(featureData);
 
     const routeUtilsMock = {
       filterRouteFeatures: () => [],
-    } as unknown as RouteUtilsService;
+    } as unknown as SbbRouteUtils;
 
     const layers = ['route-layer-1', 'route-layer-2'];
-    watchOnLayers = new Map<string, FeatureDataType>();
+    watchOnLayers = new Map<string, SbbFeatureDataType>();
     layers.forEach((id) => watchOnLayers.set(id, 'ROUTE'));
 
-    featuresHoverEvent = new FeaturesHoverEvent(
+    featuresHoverEvent = new SbbFeaturesHoverEvent(
       mapMock.get(),
       mapEventUtilsMock,
       watchOnLayers,
