@@ -24,7 +24,7 @@ The following steps create a release tag and generate a changelog:
 Open the [SBB Angular Github page](https://github.com/sbb-design-systems/sbb-angular) and click on
 "Releases".
 
-Click on "Draft a new release". Add the title, e.g. `Release x.z.y` and use the
+Click on "Draft a new release". Select the corresponding tag from the list. Add the title, e.g. `Release x.z.y` and use the
 corresponding section from `CHANGELOG.md` as the release description.
 
 Next, update the showcase before publishing this page.
