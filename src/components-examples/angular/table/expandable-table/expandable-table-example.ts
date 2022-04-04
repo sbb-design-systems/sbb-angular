@@ -12,7 +12,7 @@ import { Component } from '@angular/core';
 export class ExpandableTableExample {
   displayedColumns: string[] = ['connection', 'time', 'duration'];
   dataSource = TABLE_EXAMPLE_DATA;
-  selectedId: number;
+  selectedId?: number;
 
   isExpansionDetailRow = (i: number, row: Object) => row.hasOwnProperty('details');
 }
