@@ -1,0 +1,41 @@
+# How to create a new Release
+
+This Readme describes how to create a new release of SBB Angular.
+
+## Preparation
+
+The following steps create a release tag and generate a changelog:
+
+1. Check out the `master` branch and ensure it's up-to-date.
+2. Run `yarn release` to create a tag and to generate the changelog.
+3. Check if the automatically updated `CHANGELOG.md` file contains all the information relevant for
+   the release. If everything worked well, continue with step 6.
+4. If necessary, update the changelog file. Afterwards, delete the tag created in step 3, e.g.
+   by running `git tag -d x.y.z`.
+5. Amend the modified `CHANGELOG.md` to the release commit by running
+   `git add CHANGELOG.md && git commit --amend`)
+6. Recreate the release tag and push it: `git tag x.y.z && gut push origin master --tags`.
+
+## Creating the Release
+
+### GitHub
+
+Open the [SBB Angular Github page](https://github.com/sbb-design-systems/sbb-angular) and click on
+"Releases".
+
+Click on "Draft a new release". Add the title, e.g. `Release x.z.y` and use the
+corresponding section from `CHANGELOG.md` as the release description.
+
+Next, update the showcase before publishing this page.
+
+### Update the showcase (SBB internal)
+
+Checkout the `esta-apps-argocd` repository and enter the new version number
+In the ArgoCD, enter the new version number under `maggie/clew-esta-prod/sbb-angular/values.yaml`.
+
+After having committed the changes, sync the app using the ArgoCD GUI. Check if the showcase was
+successfully published to https://angular.app.sbb.ch.
+
+## Publishing the release
+
+On the GitHub release page, click on "Publish release" to publish everything.
