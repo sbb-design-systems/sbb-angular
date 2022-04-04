@@ -11,6 +11,7 @@ env:
 jobs:
   add_label:
     runs-on: ubuntu-latest
+    if: github.event.pull_request.user.login != 'sbb-angular-renovate[bot]'
     steps:
       - name: "Add target label"
         if: ${{ !contains(github.event.pull_request.body, 'BREAKING CHANGE:') }}
