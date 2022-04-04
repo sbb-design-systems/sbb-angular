@@ -128,8 +128,11 @@ export class JourneyMapsClientComponent implements OnInit, AfterViewInit, OnDest
   @Output() mapReady: ReplaySubject<MaplibreMap> = new ReplaySubject<MaplibreMap>(1);
 
   // visible for testing
+  /** @docs-private */
   touchEventCollector: Subject<TouchEvent> = new Subject<TouchEvent>();
+  /** @docs-private */
   touchOverlayText: string;
+  /** @docs-private */
   touchOverlayStyleClass: string = '';
 
   private _map: MaplibreMap;
@@ -331,6 +334,7 @@ export class JourneyMapsClientComponent implements OnInit, AfterViewInit, OnDest
 
   private _selectedMarker: Marker | undefined;
 
+  /** The currently selected map marker or undefined if none is selected. */
   get selectedMarker(): Marker | undefined {
     return this._selectedMarker;
   }
@@ -348,12 +352,14 @@ export class JourneyMapsClientComponent implements OnInit, AfterViewInit, OnDest
     }
   }
 
+  /** @docs-private */
   get getMarkersBounds(): LngLatBounds | undefined {
     return this.markerOptions.zoomToMarkers
       ? this.computeMarkersBounds(this.markerOptions.markers)
       : undefined;
   }
 
+  /** @docs-private */
   onTouchStart(event: TouchEvent): void {
     // https://docs.mapbox.com/mapbox-gl-js/example/toggle-interaction-handlers/
     if (!this.interactionOptions.oneFingerPan) {
@@ -362,6 +368,7 @@ export class JourneyMapsClientComponent implements OnInit, AfterViewInit, OnDest
     this.touchEventCollector.next(event);
   }
 
+  /** @docs-private */
   onTouchEnd(event: TouchEvent): void {
     this.touchOverlayStyleClass = '';
     this.touchEventCollector.next(event);
@@ -552,14 +559,20 @@ export class JourneyMapsClientComponent implements OnInit, AfterViewInit, OnDest
     this._levelSwitchService.destroy();
   }
 
-  // When a marker has been unselected from outside the map.
+  /**
+   * When a marker has been unselected from outside the map.
+   * @docs-private
+   */
   onMarkerUnselected(): void {
     this.selectedMarker = undefined;
     this._mapMarkerService.unselectFeature(this._map);
     this._cd.detectChanges();
   }
 
-  // When a marker has been selected from outside the map.
+  /**
+   * When a marker has been selected from outside the map.
+   * @docs-private
+   */
   onMarkerSelected(marker: Marker): void {
     if (marker?.id !== this.selectedMarkerId) {
       this.selectedMarker = marker;
@@ -568,6 +581,7 @@ export class JourneyMapsClientComponent implements OnInit, AfterViewInit, OnDest
     }
   }
 
+  /** @docs-private */
   computeMarkersBounds(markers: Marker[] | undefined): LngLatBounds {
     const bounds = new LngLatBounds();
     markers?.forEach((marker: Marker) => {
@@ -576,6 +590,7 @@ export class JourneyMapsClientComponent implements OnInit, AfterViewInit, OnDest
     return bounds;
   }
 
+  /** @docs-private */
   onToggleBasemap() {
     this._isSatelliteMap = !this._isSatelliteMap;
     if (this._isSatelliteMap) {
@@ -593,6 +608,7 @@ export class JourneyMapsClientComponent implements OnInit, AfterViewInit, OnDest
     }
   }
 
+  /** @docs-private */
   handleMarkerOrClusterClick(features: FeatureData[]) {
     const featureEventDataList = features.filter((feature) =>
       this._mapMarkerService.allMarkerAndClusterLayers.includes(feature.layer.id)
@@ -627,6 +643,7 @@ export class JourneyMapsClientComponent implements OnInit, AfterViewInit, OnDest
     }
   }
 
+  /** @docs-private */
   onHomeButtonClicked() {
     this._mapService.moveMap(
       this._map,

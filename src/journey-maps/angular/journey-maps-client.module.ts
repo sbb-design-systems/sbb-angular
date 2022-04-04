@@ -30,6 +30,6 @@ import { JourneyMapsClientComponent } from './journey-maps-client.component';
     OverlayPaginatorComponent,
   ],
   imports: [CommonModule],
-  exports: [JourneyMapsClientComponent, PopupComponent, TeaserComponent],
+  exports: [JourneyMapsClientComponent],
 })
 export class JourneyMapsClientModule {}
