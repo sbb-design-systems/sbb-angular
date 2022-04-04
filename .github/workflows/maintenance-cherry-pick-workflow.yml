@@ -5,7 +5,16 @@ on:
     types: [closed]
 
 jobs:
+  # Check if labels exist before executing the next job.
+  # We cannot use `if` because the matrix is evaluated before the `if` statement.
+  check_labels:
+    runs-on: ubuntu-latest
+    if: ${{ join(github.event.pull_request.labels) != '' }}
+    steps:
+      - run: echo Labels are not empty, continuing
+
   cherry_pick:
+    needs: [check_labels]
     runs-on: ubuntu-latest
     if: github.event.pull_request.merged == true &&
       github.event.pull_request.user.login != 'sbb-angular-renovate[bot]'
