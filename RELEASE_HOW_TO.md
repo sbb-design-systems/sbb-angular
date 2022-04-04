@@ -1,4 +1,4 @@
-# How to create a new Release
+# How to create a new release
 
 This Readme describes how to create a new release of SBB Angular.
 
