@@ -9,7 +9,7 @@ The following steps create a release tag and generate a changelog:
 1. Check out the `master` or your desired release branch and ensure it's up-to-date.
 2. Run `yarn release` to create a tag and to generate the changelog.
 3. Check if the automatically updated `CHANGELOG.md` file contains all the information relevant for
-   the release. If everything worked well, continue with step 6.
+   the release. If everything worked well, continue with step 7.
 4. If necessary, update the `CHANGELOG.md` file. Afterwards, delete the tag created in step 3, e.g.
    by running `git tag -d x.y.z`.
 5. Amend the modified `CHANGELOG.md` to the release commit by running
