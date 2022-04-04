@@ -33,7 +33,7 @@
     <tr
       sbb-row
       *sbbRowDef="let row; columns: ['expandedDetail']; when: isExpansionDetailRow"
-      [ngStyle]="{ visibility: row.id == selectedId ? 'visible' : 'collapse'}"
+      [style.visibility]="row.id == selectedId ? 'visible' : 'collapse'"
     ></tr>
   </table>
 </sbb-table-wrapper>
