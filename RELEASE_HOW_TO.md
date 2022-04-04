@@ -6,7 +6,7 @@ This document describes how to create a new release of SBB Angular.
 
 The following steps create a release tag and generate a changelog:
 
-1. Check out the `master` branch and ensure it's up-to-date.
+1. Check out the `master` or your desired release branch and ensure it's up-to-date.
 2. Run `yarn release` to create a tag and to generate the changelog.
 3. Check if the automatically updated `CHANGELOG.md` file contains all the information relevant for
    the release. If everything worked well, continue with step 6.
