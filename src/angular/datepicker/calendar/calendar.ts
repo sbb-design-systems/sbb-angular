@@ -281,7 +281,7 @@ export class SbbCalendar<D> implements AfterContentInit, AfterViewChecked, OnDes
   ngOnChanges(changes: SimpleChanges) {
     // Ignore date changes that are at a different time on the same day. This fixes issues where
     // the calendar re-renders when there is no meaningful change to [minDate] or [maxDate]
-    // (#24435).
+    // (angular/components#24435).
     const minDateChange: SimpleChange | undefined =
       changes['minDate'] &&
       !this._dateAdapter.sameDate(changes['minDate'].previousValue, changes['minDate'].currentValue)
