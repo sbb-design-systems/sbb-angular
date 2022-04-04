@@ -4,16 +4,16 @@
   "username": "sbb-angular-renovate[bot]",
   "gitAuthor": "sbb-angular-renovate<52953647+sbb-angular-renovate[bot]@users.noreply.github.com>",
   "repositories": ["sbb-design-systems/sbb-angular"],
+  "baseBranches": ["master", "13.x"],
   "includePaths": ["package.json", ".github/**"],
   "schedule": ["after 10pm every weekday", "before 5am every weekday", "every weekend"],
   "lockFileMaintenance": {
-    "schedule": ["before 5am on thursday"],
+    "schedule": ["before 7am on thursday"],
     "enabled": true
   },
   "allowPostUpgradeCommandTemplating": true,
   "allowedPostUpgradeCommands": ["^yarn"],
   "ignoreDeps": [
-    "@angular/dev-infra-private",
     "@arcgis/core",
     "@bazel/buildifier",
     "@bazel/buildozer",
@@ -23,7 +23,6 @@
     "@bazel/protractor",
     "@bazel/rollup",
     "@bazel/runfiles",
-    "@bazel/typescript",
     "@types/marked",
     "browser-sync",
     "browser-sync-client",
@@ -35,6 +34,11 @@
     "yarn"
   ],
   "packageRules": [
+    {
+      "matchUpdateTypes": ["minor", "patch", "pin", "digest", "lockFileMaintenance", "bump"],
+      "automerge": true,
+      "automergeType": "branch"
+    },
     {
       "matchPackageNames": ["@types/grecaptcha", "@types/node", "jasmine", "jasmine-core"],
       "matchUpdateTypes": ["major"],
