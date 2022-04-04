@@ -17,7 +17,7 @@ The following steps create a release tag and generate a changelog:
 6. Recreate the release tag: `git tag x.y.z`.
 7. Push the commit including the tags: `git push origin master --tags`.
 
-## Creating the Release
+## Creating the release
 
 ### GitHub
 
