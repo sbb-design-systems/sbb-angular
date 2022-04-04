@@ -14,7 +14,8 @@ The following steps create a release tag and generate a changelog:
    by running `git tag -d x.y.z`.
 5. Amend the modified `CHANGELOG.md` to the release commit by running
    `git add CHANGELOG.md && git commit --amend`)
-6. Recreate the release tag and push it: `git tag x.y.z && gut push origin master --tags`.
+6. Recreate the release tag: `git tag x.y.z`.
+7. Push the commit including the tags: `git push origin master --tags`.
 
 ## Creating the Release
 
