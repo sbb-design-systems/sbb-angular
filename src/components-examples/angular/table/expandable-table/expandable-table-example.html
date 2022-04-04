@@ -29,11 +29,7 @@
     </ng-container>
 
     <tr sbb-header-row *sbbHeaderRowDef="displayedColumns"></tr>
-    <tr
-      sbb-row
-      *sbbRowDef="let row; columns: displayedColumns; when: isNotExpansionDetailRow"
-      (click)="selectedId = row.id"
-    ></tr>
+    <tr sbb-row *sbbRowDef="let row; columns: displayedColumns;" (click)="selectedId = row.id"></tr>
     <tr
       sbb-row
       *sbbRowDef="let row; columns: ['expandedDetail']; when: isExpansionDetailRow"
