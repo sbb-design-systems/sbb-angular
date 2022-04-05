@@ -271,6 +271,7 @@ export abstract class _SbbDialogBase<
           <any>{
             $implicit: config.data,
             dialogRef,
+            lightboxRef: dialogRef,
           },
           injector
         )
