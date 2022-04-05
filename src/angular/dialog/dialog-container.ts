@@ -106,6 +106,11 @@ export abstract class _SbbDialogContainerBase extends BasePortalOutlet {
     if (this._document) {
       this._elementFocusedBeforeDialogWasOpened = _getFocusedElementPierceShadowDom();
     }
+
+    if (!this._config.delayFocusTrap) {
+      this._trapFocus();
+    }
+
     // Move focus onto the dialog immediately in order to prevent the user
     // from accidentally opening multiple dialogs at the same time.
     this._focusDialogContainer();
@@ -239,6 +244,18 @@ export abstract class _SbbDialogContainerBase extends BasePortalOutlet {
     const activeElement = _getFocusedElementPierceShadowDom();
     return element === activeElement || element.contains(activeElement);
   }
+
+  /**
+   * Callback for when the open dialog animation has finished. Intended to
+   * be called by sub-classes that use different animation implementations.
+   */
+  protected _openAnimationDone(totalTime: number) {
+    if (this._config.delayFocusTrap) {
+      this._trapFocus();
+    }
+
+    this._animationStateChanged.next({ state: 'opened', totalTime });
+  }
 }
 
 /**
@@ -271,10 +288,7 @@ export class SbbDialogContainer extends _SbbDialogContainerBase {
   @HostListener('@dialogContainer.done', ['$event'])
   _onAnimationDone({ toState, totalTime }: AnimationEvent) {
     if (toState === 'enter') {
-      if (this._config.delayFocusTrap) {
-        this._trapFocus();
-      }
-      this._animationStateChanged.next({ state: 'opened', totalTime });
+      this._openAnimationDone(totalTime);
     } else if (toState === 'exit') {
       this._restoreFocus();
       this._animationStateChanged.next({ state: 'closed', totalTime });
@@ -298,13 +312,5 @@ export class SbbDialogContainer extends _SbbDialogContainerBase {
     // Mark the container for check so it can react if the
     // view container is using OnPush change detection.
     this._changeDetectorRef.markForCheck();
-  }
-
-  override _initializeWithAttachedContent() {
-    super._initializeWithAttachedContent();
-
-    if (!this._config.delayFocusTrap) {
-      this._trapFocus();
-    }
   }
 }
