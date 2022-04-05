@@ -4,6 +4,22 @@ This document describes how to create a new release of SBB Angular.
 
 ## Preparation
 
+### Major release preparation
+
+- Update Angular packages to align with new angular major version.
+- Update ng-update schematics.
+- Update stackblitz assets.
+- Check TODOs, @breaking-change annotations and @deprecation annotations.
+- Check angular components commits to be considered for next major release on https://github.com/sbb-design-systems/sbb-angular/issues/1047.
+- Create new route for previous release (e.g. angular-v13.app.sbb.ch) and deploy corresponding version.
+- Github maintenance workflow
+  - Create new maintenance branch (e.g. 14.x).
+  - Create [branch protection rules](https://github.com/sbb-design-systems/sbb-angular/settings/branches) for the newly created branch.
+  - Edit TARGET_RELEASE in `.github/workflows/maintenance-tagging-workflow.yml`.
+  - Edit `baseBranches` property in `renovate.json` to activate renovate on new branch.
+
+## Release preparation
+
 The following steps create a release tag and generate a changelog:
 
 1. Check out the `master` or your desired release branch and ensure it's up-to-date.
@@ -41,6 +57,10 @@ successfully published to https://angular.app.sbb.ch.
 
 On the GitHub release page, click on "Publish release" to publish everything.
 
-## Update the blueprint
+## Update the blueprint
 
 Update the internal blueprint `esta-cloud-angular` repo with the new sbb-angular version.
+
+## Blogpost
+
+Consider creating an internal blog post, to inform about special changes. For major updates this is mandatory.
