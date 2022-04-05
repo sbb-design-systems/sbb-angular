@@ -1,6 +1,6 @@
 import * as Lint from 'tslint';
 import * as tsutils from 'tsutils';
-import * as ts from 'typescript';
+import ts from 'typescript';
 
 export class Rule extends Lint.Rules.AbstractRule {
   apply(sourceFile: ts.SourceFile): Lint.RuleFailure[] {

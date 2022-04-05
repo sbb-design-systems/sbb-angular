@@ -1,6 +1,6 @@
 import { SchematicsException, Tree } from '@angular-devkit/schematics';
 import { SchematicTestRunner, UnitTestTree } from '@angular-devkit/schematics/testing';
-import { addModuleImportToRootModule, getProjectFromWorkspace } from '@angular/cdk/schematics';
+import { addModuleImportToRootModule } from '@angular/cdk/schematics';
 import { Schema as ApplicationOptions, Style } from '@schematics/angular/application/schema';
 import { getWorkspace } from '@schematics/angular/utility/workspace';
 import { Schema as WorkspaceOptions } from '@schematics/angular/workspace/schema';
@@ -32,23 +32,28 @@ const appOptions: ApplicationOptions = {
   style: Style.Css,
 };
 
-function runNgAddSetupProject(
-  runner: SchematicTestRunner,
-  tree: UnitTestTree,
-  variant: 'standard' | 'lean'
-) {
-  const variantFull =
-    variant === 'standard'
-      ? 'standard (previously known as public)'
-      : 'lean (previously known as business)';
-  return runner
-    .runSchematicAsync('ng-add-setup-project', { variant: variantFull } as Schema, tree)
-    .toPromise();
-}
-
 describe('ngAdd', () => {
+  const baseOptions = { project: appOptions.name };
   let runner: SchematicTestRunner;
   let tree: UnitTestTree;
+
+  function runNgAddSetupProject(
+    testRunner: SchematicTestRunner,
+    testTree: UnitTestTree,
+    variant: 'standard' | 'lean'
+  ) {
+    const variantFull =
+      variant === 'standard'
+        ? 'standard (previously known as public)'
+        : 'lean (previously known as business)';
+    return testRunner
+      .runSchematicAsync(
+        'ng-add-setup-project',
+        { variant: variantFull, ...baseOptions } as Schema,
+        testTree
+      )
+      .toPromise();
+  }
 
   /** Assert that file exists and parse json file to object */
   function readJsonFile(host: Tree, path: string) {
@@ -85,7 +90,7 @@ describe('ngAdd', () => {
       )
     );
 
-    await runner.runSchematicAsync('ng-add', {}, tree).toPromise();
+    await runner.runSchematicAsync('ng-add', baseOptions, tree).toPromise();
 
     expect(
       runner.tasks.some((task) => (task.options as any)!.name === 'ng-add-setup-project')
@@ -95,7 +100,7 @@ describe('ngAdd', () => {
   it('should abort ng-add if @angular/cdk major version is below 13', async () => {
     addPackageToPackageJson(tree, '@angular/cdk', '12.0.0');
 
-    await runner.runSchematicAsync('ng-add', {}, tree).toPromise();
+    await runner.runSchematicAsync('ng-add', baseOptions, tree).toPromise();
 
     expect(
       runner.tasks.some((task) => (task.options as any)!.name === 'ng-add-setup-project')
@@ -105,7 +110,7 @@ describe('ngAdd', () => {
   it('should add @angular/cdk, @angular/animations and @angular/forms to "package.json" file', async () => {
     expect(readJsonFile(tree, '/package.json').dependencies['@angular/cdk']).toBeUndefined();
 
-    await runner.runSchematicAsync('ng-add', {}, tree).toPromise();
+    await runner.runSchematicAsync('ng-add', baseOptions, tree).toPromise();
 
     expect(readJsonFile(tree, '/package.json').dependencies['@angular/cdk']).toBe(`0.0.0-CDK`);
     expect(readJsonFile(tree, '/package.json').dependencies['@angular/animations']).toBeDefined();
@@ -124,7 +129,7 @@ describe('ngAdd', () => {
 
     expect(readJsonFile(tree, '/package.json').dependencies['@angular/cdk']).toBe('13.0.0');
 
-    await runner.runSchematicAsync('ng-add', {}, tree).toPromise();
+    await runner.runSchematicAsync('ng-add', baseOptions, tree).toPromise();
 
     expect(readJsonFile(tree, '/package.json').dependencies['@angular/cdk']).toBe('13.0.0');
 
@@ -137,14 +142,14 @@ describe('ngAdd', () => {
   });
 
   it('should not abort when running ng add two times', async () => {
-    await runner.runSchematicAsync('ng-add', {}, tree).toPromise();
-    await runner.runSchematicAsync('ng-add-setup-project', {}, tree).toPromise();
-    await runner.runSchematicAsync('ng-add', {}, tree).toPromise();
-    await runner.runSchematicAsync('ng-add-setup-project', {}, tree).toPromise();
+    await runner.runSchematicAsync('ng-add', baseOptions, tree).toPromise();
+    await runner.runSchematicAsync('ng-add-setup-project', baseOptions, tree).toPromise();
+    await runner.runSchematicAsync('ng-add', baseOptions, tree).toPromise();
+    await runner.runSchematicAsync('ng-add-setup-project', baseOptions, tree).toPromise();
   });
 
   it('should add typography to angular.json and configure animationsModule', async () => {
-    await runner.runSchematicAsync('ng-add-setup-project', {}, tree).toPromise();
+    await runner.runSchematicAsync('ng-add-setup-project', baseOptions, tree).toPromise();
 
     expect(
       readJsonFile(tree, '/angular.json').projects.dummy.architect.build.options.styles
@@ -160,8 +165,8 @@ describe('ngAdd', () => {
   });
 
   it('should not add typography a second time if entry already exists', async () => {
-    await runner.runSchematicAsync('ng-add-setup-project', {}, tree).toPromise();
-    await runner.runSchematicAsync('ng-add-setup-project', {}, tree).toPromise();
+    await runner.runSchematicAsync('ng-add-setup-project', baseOptions, tree).toPromise();
+    await runner.runSchematicAsync('ng-add-setup-project', baseOptions, tree).toPromise();
 
     expect(
       readJsonFile(tree, '/angular.json').projects.dummy.architect.build.options.styles
@@ -173,7 +178,7 @@ describe('ngAdd', () => {
     delete angularJson.projects.dummy.architect.build.options.styles;
     tree.overwrite('/angular.json', JSON.stringify(angularJson, null, 2));
 
-    await runner.runSchematicAsync('ng-add-setup-project', {}, tree).toPromise();
+    await runner.runSchematicAsync('ng-add-setup-project', baseOptions, tree).toPromise();
 
     expect(
       readJsonFile(tree, '/angular.json').projects.dummy.architect.build.options.styles
@@ -186,7 +191,7 @@ describe('ngAdd', () => {
       `@import '@sbb-esta/angular-public/typography.css'`
     );
 
-    await runner.runSchematicAsync('ng-add-setup-project', {}, tree).toPromise();
+    await runner.runSchematicAsync('ng-add-setup-project', baseOptions, tree).toPromise();
 
     expect(
       readJsonFile(tree, '/angular.json').projects.dummy.architect.build.options.styles
@@ -223,7 +228,11 @@ describe('ngAdd', () => {
   describe('animations disabled', () => {
     it('should add NoopAnimationsModule', async () => {
       await runner
-        .runSchematicAsync('ng-add-setup-project', { animations: 'disabled' } as Schema, tree)
+        .runSchematicAsync(
+          'ng-add-setup-project',
+          { animations: 'disabled', ...baseOptions } as Schema,
+          tree
+        )
         .toPromise();
 
       expect(readStringFile(tree, '/projects/dummy/src/app/app.module.ts'))
@@ -233,7 +242,9 @@ describe('ngAdd', () => {
 
     it('should not add NoopAnimationsModule if BrowserAnimationsModule is set up', async () => {
       const workspace = await getWorkspace(tree);
-      const project = getProjectFromWorkspace(workspace);
+      const projects = Array.from(workspace.projects.values());
+      expect(projects.length).toBe(1);
+      const project = projects[0];
       // Simulate the case where a developer uses `ng-add` on an Angular CLI project which already
       // explicitly uses the `BrowserAnimationsModule`. It would be wrong to forcibly change
       // to noop animations.
@@ -256,7 +267,7 @@ describe('ngAdd', () => {
   describe('animations excluded', () => {
     it('should not add any animations code if animations are excluded', async () => {
       const localTree = await runner
-        .runSchematicAsync('ng-add-setup-project', { animations: 'excluded' }, tree)
+        .runSchematicAsync('ng-add-setup-project', { animations: 'excluded', ...baseOptions }, tree)
         .toPromise();
       const fileContent = readStringFile(localTree!, '/projects/dummy/src/app/app.module.ts');
 
@@ -366,7 +377,7 @@ describe('ngAdd', () => {
       '12.0.0'
     );
 
-    await runner.runSchematicAsync('ng-add', {}, tree).toPromise();
+    await runner.runSchematicAsync('ng-add', baseOptions, tree).toPromise();
 
     expect(runner.tasks.some((task) => (task.options as any)!.name === 'ng-add-migrate'))
       .withContext('Expected the ng-add-migrate schematic to be scheduled.')
@@ -374,7 +385,7 @@ describe('ngAdd', () => {
   });
 
   it('should not execute migration from public, business and core', async () => {
-    await runner.runSchematicAsync('ng-add', {}, tree).toPromise();
+    await runner.runSchematicAsync('ng-add', baseOptions, tree).toPromise();
 
     expect(runner.tasks.some((task) => (task.options as any)!.name === 'ng-add-migrate'))
       .withContext('Expected the ng-add-migrate schematic not to be scheduled.')
@@ -384,7 +395,7 @@ describe('ngAdd', () => {
   it('should not execute migration from public, business and core if major versions are not 12', async () => {
     addPackageToPackageJson(tree, '@sbb-esta/angular-business', '11.0.0');
 
-    await runner.runSchematicAsync('ng-add', {}, tree).toPromise();
+    await runner.runSchematicAsync('ng-add', baseOptions, tree).toPromise();
 
     expect(runner.tasks.some((task) => (task.options as any)!.name === 'ng-add-migrate'))
       .withContext('Expected the ng-add-migrate schematic not to be scheduled.')

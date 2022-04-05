@@ -1,21 +1,23 @@
 import { JsonValue } from '@angular-devkit/core';
-import { noop, Rule, SchematicContext, Tree } from '@angular-devkit/schematics';
-import { getProjectFromWorkspace, getProjectTargetOptions } from '@angular/cdk/schematics';
+import { ProjectDefinition } from '@angular-devkit/core/src/workspace';
+import { chain, noop, Rule, SchematicContext, Tree } from '@angular-devkit/schematics';
+import { getProjectTargetOptions } from '@angular/cdk/schematics';
 import { getWorkspace } from '@schematics/angular/utility/workspace';
 import { ProjectType } from '@schematics/angular/utility/workspace-models';
 
 import { TEST_TS_LEAN_CONFIG } from '../../ng-add/setup-project';
 
 export function leanTestConfigurationMigration(): Rule {
-  return async (host: Tree, context: SchematicContext) => {
+  return async (host: Tree, _context: SchematicContext): Promise<Rule> => {
     const workspace = await getWorkspace(host);
-    const project = getProjectFromWorkspace(workspace);
-
-    if (project.extensions.projectType === ProjectType.Application) {
-      return updateTestTs();
-    } else {
+    const projects = Array.from(workspace.projects.values()).filter(
+      (project) => project.extensions.projectType === ProjectType.Application
+    );
+    if (!projects.length) {
       return noop();
     }
+
+    return chain(projects.map((project) => updateTestTs(project)));
   };
 }
 
@@ -45,11 +47,8 @@ function isLeanProject(targetOptions: Record<string, JsonValue | undefined>, tre
   return classList?.includes('sbb-lean');
 }
 
-function updateTestTs(): Rule {
+function updateTestTs(project: ProjectDefinition): Rule {
   return async (tree: Tree, context: SchematicContext) => {
-    const workspace = await getWorkspace(tree);
-    const project = getProjectFromWorkspace(workspace);
-
     const targetOptions = getProjectTargetOptions(project, 'build');
 
     if (!isLeanProject(targetOptions, tree)) {
