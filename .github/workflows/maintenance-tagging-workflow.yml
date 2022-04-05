@@ -2,7 +2,7 @@ name: Add or remove maintenance labels
 
 on:
   pull_request:
-    types: [opened, edited]
+    types: [opened, edited, labeled]
     branches: [master] # target branch
 
 env:
@@ -14,12 +14,12 @@ jobs:
     if: github.event.pull_request.user.login != 'sbb-angular-renovate[bot]'
     steps:
       - name: "Add target label"
-        if: ${{ !contains(github.event.pull_request.body, 'BREAKING CHANGE:') }}
+        if: "${{ !contains(github.event.pull_request.body, 'BREAKING CHANGE:') && !contains(github.event.pull_request.labels.*.name, 'target: major') }}"
         uses: actions-ecosystem/action-add-labels@v1
         with:
           labels: "target: ${{ env.TARGET_RELEASE }}"
       - name: "Remove target label"
-        if: ${{ contains(github.event.pull_request.body, 'BREAKING CHANGE:') }}
+        if: "${{ contains(github.event.pull_request.body, 'BREAKING CHANGE:') || contains(github.event.pull_request.labels.*.name, 'target: major') }}"
         uses: actions-ecosystem/action-remove-labels@v1
         with:
           labels: "target: ${{ env.TARGET_RELEASE }}"
