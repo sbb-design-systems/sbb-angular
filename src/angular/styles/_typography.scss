@@ -2563,6 +2563,11 @@ $menuItemPaddingTopBottom: 4;
 .sbb-tooltip-icon {
   line-height: 0;
   cursor: pointer;
+
+  .sbb-tooltip-inline & {
+    vertical-align: text-bottom;
+    margin-bottom: calc(pxToRem(-3.5) * var(--sbb-scaling-factor));
+  }
 }
 
 :is(.sbb-tooltip-icon, .sbb-tooltip-trigger):is(:active, :hover, :focus),
