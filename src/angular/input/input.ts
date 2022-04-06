@@ -18,6 +18,7 @@ import {
 import { FormGroupDirective, NgControl, NgForm } from '@angular/forms';
 import { CanUpdateErrorState, mixinErrorState, SbbErrorStateMatcher } from '@sbb-esta/angular/core';
 import { SbbFormFieldControl } from '@sbb-esta/angular/form-field';
+import { Subject } from 'rxjs';
 
 import { getSbbInputUnsupportedTypeError } from './input-errors';
 import { SBB_INPUT_VALUE_ACCESSOR } from './input-value-accessor';
@@ -40,11 +41,22 @@ const SBB_INPUT_INVALID_TYPES = [
 // tslint:disable-next-line:naming-convention
 const _SbbInputBase = mixinErrorState(
   class {
+    /**
+     * Emits whenever the component state changes and should cause the parent
+     * form-field to update. Implemented as part of `SbbFormFieldControl`.
+     * @docs-private
+     */
+    readonly stateChanges = new Subject<void>();
+
     constructor(
       public _defaultErrorStateMatcher: SbbErrorStateMatcher,
       public _parentForm: NgForm,
       public _parentFormGroup: FormGroupDirective,
-      /** @docs-private */
+      /**
+       * Form control bound to the component.
+       * Implemented as part of `SbbFormFieldControl`.
+       * @docs-private
+       */
       public ngControl: NgControl
     ) {}
   }

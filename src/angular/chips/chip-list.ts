@@ -33,11 +33,22 @@ import { SBB_CHIP, SBB_CHIP_LIST } from './chip-tokens';
 // tslint:disable-next-line:naming-convention
 const _SbbChipListBase = mixinErrorState(
   class {
+    /**
+     * Emits whenever the component state changes and should cause the parent
+     * form-field to update. Implemented as part of `SbbFormFieldControl`.
+     * @docs-private
+     */
+    readonly stateChanges = new Subject<void>();
+
     constructor(
       public _defaultErrorStateMatcher: SbbErrorStateMatcher,
       public _parentForm: NgForm,
       public _parentFormGroup: FormGroupDirective,
-      /** @docs-private */
+      /**
+       * Form control bound to the component.
+       * Implemented as part of `SbbFormFieldControl`.
+       * @docs-private
+       */
       public ngControl: NgControl
     ) {}
   }
