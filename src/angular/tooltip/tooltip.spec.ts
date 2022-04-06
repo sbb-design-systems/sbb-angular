@@ -407,6 +407,21 @@ describe('SbbTooltip', () => {
         .toContain('custom-two');
     }));
 
+    it('should allow extra classes to be set on the tooltip panel', fakeAsync(() => {
+      assertTooltipInstance(tooltipDirective, false);
+
+      tooltipDirective.show();
+      tick(0); // Tick for the show delay (default is 0)
+      fixture.detectChanges();
+
+      // Make sure classes are correctly added
+      const tooltipElement = overlayContainerElement.querySelector(
+        '.sbb-tooltip-panel'
+      ) as HTMLElement;
+      expect(tooltipElement.classList).toContain('custom-panel-one');
+      expect(tooltipElement.classList).toContain('custom-panel-two');
+    }));
+
     it('should be removed after parent destroyed', fakeAsync(() => {
       tooltipDirective.show();
       tick(0); // Tick for the show delay (default is 0)
@@ -1245,6 +1260,7 @@ describe('SbbTooltip', () => {
     *ngIf="showButton"
     [sbbTooltip]="message"
     [sbbTooltipClass]="{ 'custom-one': showTooltipClass, 'custom-two': showTooltipClass }"
+    sbbTooltipPanelClass="custom-panel-one custom-panel-two"
     [sbbTooltipTouchGestures]="touchGestures"
   >
     Button

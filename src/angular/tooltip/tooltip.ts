@@ -9,6 +9,7 @@ import {
   BooleanInput,
   coerceBooleanProperty,
   coerceNumberProperty,
+  coerceStringArray,
   NumberInput,
 } from '@angular/cdk/coercion';
 import { ESCAPE, hasModifierKey } from '@angular/cdk/keycodes';
@@ -290,6 +291,10 @@ export abstract class _SbbTooltipBase<T extends _TooltipComponentBase>
     }
   }
 
+  /** Classes to be passed to the tooltip panel. Supports the same syntax as `ngClass`. */
+  @Input('sbbTooltipPanelClass')
+  tooltipPanelClass: string | string[] | Set<string> | { [key: string]: any } = '';
+
   /** Manually-bound passive event listeners. */
   private readonly _passiveListeners: (readonly [string, EventListenerOrEventListenerObject])[] =
     [];
@@ -540,7 +545,9 @@ export abstract class _SbbTooltipBase<T extends _TooltipComponentBase>
 
     this._overlayRef = this._overlay.create({
       positionStrategy: strategy,
-      panelClass: `${this._cssClassPrefix}-${PANEL_CLASS}`,
+      panelClass: coerceStringArray(this.tooltipPanelClass).concat(
+        `${this._cssClassPrefix}-${PANEL_CLASS}`
+      ),
       scrollStrategy: this._scrollStrategy(),
     });
 
