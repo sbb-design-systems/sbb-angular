@@ -204,6 +204,10 @@ export class SbbDialogActions {
   @Input() align?: 'start' | 'center' | 'end' = 'end';
 }
 
+// TODO(crisbeto): this utility shouldn't be necessary anymore, because the dialog ref is provided
+// both to component and template dialogs through DI. We need to keep it around, because there are
+// some internal wrappers around `SbbDialog` that happened to work by accident, because we had this
+// fallback logic in place.
 /**
  * Finds the closest SbbDialogRef to an element by looking at the DOM.
  * @param element Element relative to which to look for a dialog.

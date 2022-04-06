@@ -31,6 +31,7 @@ const appOptions: ApplicationOptions = {
 };
 
 describe('MergeRefactorMigration', () => {
+  const baseOptions = { project: appOptions.name };
   let runner: SchematicTestRunner;
   let tree: UnitTestTree;
   let project: ProjectDefinition;
@@ -61,7 +62,7 @@ describe('MergeRefactorMigration', () => {
   it('should import SbbBadgeModule when migrating sbb-tabs with badgePill', async () => {
     expect(hasNgModuleImport(tree, appModulePath, 'SbbBadgeModule')).toBe(false);
 
-    await runner.runSchematicAsync('ng-add-migrate', {}, tree).toPromise();
+    await runner.runSchematicAsync('ng-add-migrate', baseOptions, tree).toPromise();
 
     expect(hasNgModuleImport(tree, appModulePath, 'SbbBadgeModule')).toBe(true);
   });
@@ -70,7 +71,7 @@ describe('MergeRefactorMigration', () => {
     addModuleImportToRootModule(tree, 'SbbBadgeModule', '@sbb-esta/angular/badge', project);
     expect(hasNgModuleImport(tree, appModulePath, 'SbbBadgeModule')).toBe(true);
 
-    await runner.runSchematicAsync('ng-add-migrate', {}, tree).toPromise();
+    await runner.runSchematicAsync('ng-add-migrate', baseOptions, tree).toPromise();
 
     expect((tree.readContent(appModulePath).match(/SbbBadgeModule/g) || []).length)
       .withContext(

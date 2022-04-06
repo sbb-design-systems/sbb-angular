@@ -9,9 +9,6 @@ const NO_IMPORT_NAMED_SYMBOLS_FAILURE_STR =
   `Imports from SBB Angular should import ` +
   `specific symbols rather than importing the entire library.`;
 
-/** Parsed version of TypeScript that can be used for comparisons. */
-const PARSED_TS_VERSION = parseFloat(ts.versionMajorMinor);
-
 /**
  * Regex for testing file paths against to determine if the file is from the
  * SBB Angular library.
@@ -253,8 +250,8 @@ function applyRenames(elements: ts.ImportSpecifier[]) {
           CLASS_NAME_RENAMES.get(elementName.text)!
         );
         return element.propertyName
-          ? createImportSpecifier(nameIdentifier, element.name)
-          : createImportSpecifier(undefined, nameIdentifier);
+          ? ts.factory.createImportSpecifier(false, nameIdentifier, element.name)
+          : ts.factory.createImportSpecifier(false, undefined, nameIdentifier);
       })
       // If the import name occurs multiple times, filter out the duplicates.
       // (e.g. both SbbLinksModule and SbbButtonModule will be SbbButtonModule,
@@ -264,15 +261,4 @@ function applyRenames(elements: ts.ImportSpecifier[]) {
           e.propertyName || a.findIndex((v) => !v.propertyName && v.name.text === e.name.text) === i
       )
   );
-}
-
-// TODO(crisbeto): backwards-compatibility layer that allows us to support both TS 4.4 and 4.5.
-// Should be removed once we don't have to support 4.4 anymore.
-function createImportSpecifier(
-  propertyName: ts.Identifier | undefined,
-  name: ts.Identifier
-): ts.ImportSpecifier {
-  return PARSED_TS_VERSION > 4.4
-    ? ts.factory.createImportSpecifier(false, propertyName, name)
-    : (ts.createImportSpecifier as any)(propertyName, name);
 }

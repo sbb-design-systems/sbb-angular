@@ -57,7 +57,12 @@ function migrateTypographyInAngularJsonPerTarget(
   targetName: 'build' | 'test'
 ): Rule {
   return updateWorkspace((workspace) => {
-    const project = getProjectFromWorkspace(workspace, options.project);
+    const project = getProjectFromWorkspace(
+      workspace,
+      options.project ||
+        (workspace.extensions.defaultProject as string) ||
+        Array.from(workspace.projects.keys())[0]
+    );
 
     const targetOptions = getProjectTargetOptions(project, targetName);
     const styles = targetOptions.styles as (string | { input: string })[];

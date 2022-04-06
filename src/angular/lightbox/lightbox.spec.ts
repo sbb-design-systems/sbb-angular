@@ -1963,7 +1963,7 @@ class ModuleBoundLightboxParentComponent {
   }
 }
 
-@Injectable({ providedIn: 'root' })
+@Injectable()
 class ModuleBoundLightboxService {
   name = 'Pasta';
 }

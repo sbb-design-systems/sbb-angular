@@ -9,9 +9,17 @@ which can be clicked to open the tooltip.
 
 The overlay is either displayed above or below the icon, depending on space available.
 
+### Inline Usage
+
+If using the tooltip in a textual context, you can add the css class `sbb-tooltip-inline` to achieve an appropriate styling.
+
+```html
+<sbb-tooltip class="sbb-tooltip-inline"></sbb-tooltip>
+```
+
 ### Directive usage
 
-Additionally we provide a directive usage for the tooltip. This is also internally used inside
+Additionally, we provide a directive usage for the tooltip. This is also internally used inside
 `sbb-tooltip`.
 
 ```html
