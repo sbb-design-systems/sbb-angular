@@ -14,7 +14,6 @@ This document describes how to create a new release of SBB Angular.
 - Create new route for previous release (e.g. angular-v13.app.sbb.ch) and deploy corresponding version.
 - Github maintenance workflow
   - Create new maintenance branch (e.g. 14.x).
-  - Create [branch protection rules](https://github.com/sbb-design-systems/sbb-angular/settings/branches) for the newly created branch.
   - Edit TARGET_RELEASE in `.github/workflows/maintenance-tagging-workflow.yml`.
   - Edit `baseBranches` property in `renovate.json` to activate renovate on new branch.
 
