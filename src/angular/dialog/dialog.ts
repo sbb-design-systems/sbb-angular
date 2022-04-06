@@ -261,17 +261,22 @@ export abstract class _SbbDialogBase<
     // Create a reference to the dialog we're creating in order to give the user a handle
     // to modify and close it.
     const dialogRef = new this._dialogRefConstructor(overlayRef, dialogContainer, config.id);
+    const injector = this._createInjector<T>(config, dialogRef, dialogContainer);
 
     if (componentOrTemplateRef instanceof TemplateRef) {
       dialogContainer.attachTemplatePortal(
-        new TemplatePortal<T>(componentOrTemplateRef, null!, <any>{
-          $implicit: config.data,
-          dialogRef,
-          lightboxRef: dialogRef,
-        })
+        new TemplatePortal<T>(
+          componentOrTemplateRef,
+          null!,
+          <any>{
+            $implicit: config.data,
+            dialogRef,
+            lightboxRef: dialogRef,
+          },
+          injector
+        )
       );
     } else {
-      const injector = this._createInjector<T>(config, dialogRef, dialogContainer);
       const contentRef = dialogContainer.attachComponentPortal<T>(
         new ComponentPortal(
           componentOrTemplateRef,
