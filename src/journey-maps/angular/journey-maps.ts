@@ -72,11 +72,11 @@ export class SbbJourneyMaps implements OnInit, AfterViewInit, OnDestroy, OnChang
    *
    * **WARNING:** The map currently doesn't support more than one of these fields to be set at a time
    */
-  @Input() journeyMapsRoutingOption: SbbJourneyMapsRoutingOptions;
+  @Input() journeyMapsRoutingOption?: SbbJourneyMapsRoutingOptions;
   /**
    * Input to display JourneyMaps GeoJson zone data on the map.
    */
-  @Input() journeyMapsZones: GeoJSON.FeatureCollection;
+  @Input() journeyMapsZones?: GeoJSON.FeatureCollection;
   /**
    * Custom <code>ng-template</code> for the marker details. (Popup or Teaser)
    * See examples for details.
@@ -447,21 +447,21 @@ export class SbbJourneyMaps implements OnInit, AfterViewInit, OnDestroy, OnChang
           this._mapJourneyService.updateJourney(
             this._map,
             mapSelectionEventService,
-            this.journeyMapsRoutingOption.journey
+            this.journeyMapsRoutingOption!.journey
           );
         }
         if (changes.journeyMapsRoutingOption?.currentValue?.transfer) {
           this._mapTransferService.updateTransfer(
             this._map,
-            this.journeyMapsRoutingOption.transfer
+            this.journeyMapsRoutingOption!.transfer
           );
-          this._mapLeitPoiService.processData(this._map, this.journeyMapsRoutingOption.transfer);
+          this._mapLeitPoiService.processData(this._map, this.journeyMapsRoutingOption!.transfer);
         }
         if (changes.journeyMapsRoutingOption?.currentValue?.routes) {
           this._mapRoutesService.updateRoutes(
             this._map,
             mapSelectionEventService,
-            this.journeyMapsRoutingOption.routes
+            this.journeyMapsRoutingOption!.routes
           );
         }
       });

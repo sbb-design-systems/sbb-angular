@@ -6,16 +6,16 @@
     #advancedMap
     *ngIf='form.get("mapVisible")?.value'
     language="en"
-    [styleOptions]="styleOptions"
+    [styleOptions]="form.get('styleOptions')?.value"
     [interactionOptions]="interactionOptions"
-    [listenerOptions]="listenerOptions"
-    [uiOptions]="uiOptions"
+    [listenerOptions]="form.get('listenerOptions')?.value"
+    [uiOptions]="form.get('uiOptions')?.value"
     [viewportOptions]="viewportOptions"
     [apiKey]="apiKey"
-    [markerOptions]="markerOptions"
+    [markerOptions]="form.get('markerOptions')?.value"
     [markerDetailsTemplate]="markerDetailsTemplate"
     [journeyMapsRoutingOption]="journeyMapsRoutingOption"
-    [journeyMapsZones]="journeyMapsZones"
+    [journeyMapsZones]="form.get('zoneGeoJson')?.value"
     [(selectedMarkerId)]="selectedMarkerId"
     [selectedLevel]="this.form.get('level')?.value ?? 0"
     (selectedLevelChange)="this.form.patchValue({level: $event})"
@@ -46,8 +46,8 @@
         Map zoom with scroll wheel: {{(interactionOptions.scrollZoom ?? false) ? 'on' : 'off'}}
       </li>
       <li class="sbb-label">
-        Map center (x / lng, y / lat): {{mapCenterInfo()?.lng | number: '1.1-6'}},
-        {{mapCenterInfo()?.lat | number:'1.1-6'}}
+        Map center (lng / lat): {{mapCenterInfo()?.lng | number: '1.1-6'}}, {{mapCenterInfo()?.lat |
+        number:'1.1-6'}}
       </li>
       <li class="sbb-label">
         Map zoom (within range {{zoomLevels?.minZoom}}..{{zoomLevels?.maxZoom}} ):
@@ -57,54 +57,39 @@
         <hr />
       </li>
       <li>
-        <sbb-checkbox formControlName="mapVisible"> Map visibility</sbb-checkbox>
+        <div class="sbb-checkbox-group-horizontal">
+          <sbb-checkbox formControlName="mapVisible"> Map visibility</sbb-checkbox>
+          <ng-container formGroupName="uiOptions">
+            <sbb-checkbox formControlName="showSmallButtons">Small map controls </sbb-checkbox>
+            <sbb-checkbox formControlName="basemapSwitch">Basemap Switch</sbb-checkbox>
+          </ng-container>
+        </div>
       </li>
-      <li>
-        <sbb-checkbox formControlName="smallControls" (change)="updateUIOptions()"
-          >Small map controls
-        </sbb-checkbox>
-      </li>
-      <li>
-        <span class="sbb-label">Switch map to dark mode / bright mode</span>
-        <sbb-radio-group
-          class="sbb-checkbox-group-horizontal"
-          formControlName="mapStyle"
-          (change)="updateStyleOptions()"
-        >
+      <li formGroupName="styleOptions">
+        <sbb-radio-group class="sbb-checkbox-group-horizontal" formControlName="mode">
           <sbb-radio-button value="bright">Bright Mode</sbb-radio-button>
           <sbb-radio-button value="dark">Dark Mode</sbb-radio-button>
         </sbb-radio-group>
       </li>
       <li>
         <span class="sbb-label">Zoom map</span>
-        <button
-          sbb-ghost-button
-          (click)="zoomButton.action()"
-          *ngFor="let zoomButton of zoomButtons"
-        >
-          {{zoomButton.label}}
-        </button>
+        <button sbb-ghost-button (click)="client.zoomIn()">Zoom In</button>
+        <button sbb-ghost-button (click)="client.zoomOut()">Zoom Out</button>
       </li>
       <li>
         <span class="sbb-label">Move / pan map</span>
-        <button
-          sbb-ghost-button
-          (click)="moveButton.action()"
-          *ngFor="let moveButton of moveButtons"
-        >
-          {{moveButton.label}}
-        </button>
+        <button sbb-ghost-button (click)="client.moveNorth()">North</button>
+        <button sbb-ghost-button (click)="client.moveEast()">East</button>
+        <button sbb-ghost-button (click)="client.moveSouth()">South</button>
+        <button sbb-ghost-button (click)="client.moveWest()">West</button>
       </li>
       <li>
-        <div formGroupName="listener">
+        <div formGroupName="listenerOptions">
           <span class="sbb-label">Map interaction configuration</span>
           <div class="sbb-checkbox-group-horizontal">
-            <sbb-checkbox
-              [formControlName]="type"
-              (change)="updateListenerOptions()"
-              *ngFor="let type of listenerOptionTypes()"
-              >{{type | titlecase}}</sbb-checkbox
-            >
+            <ng-container *ngFor="let type of listenerOptionTypes()" [formGroupName]="type">
+              <sbb-checkbox formControlName="watch">{{type | titlecase}}</sbb-checkbox>
+            </ng-container>
           </div>
         </div>
       </li>
@@ -115,30 +100,28 @@
         <button sbb-ghost-button (click)="selectedMarkerId='velo'">Basel</button>
         <button sbb-ghost-button (click)="selectedMarkerId=undefined">Unselect all</button>
       </li>
-      <li>
+      <li formGroupName="markerOptions">
         <span class="sbb-label">Map marker info style</span>
-        <sbb-radio-group
-          class="sbb-checkbox-group-horizontal"
-          formControlName="popup"
-          (change)="updateMarkerOptions()"
-        >
+        <sbb-radio-group class="sbb-checkbox-group-horizontal" formControlName="popup">
           <sbb-radio-button [value]="true">Popup</sbb-radio-button>
           <sbb-radio-button [value]="false">Teaser</sbb-radio-button>
         </sbb-radio-group>
       </li>
       <li>
-        <span class="sbb-label">Select zones</span>
-        <select sbbInput (change)="setJourneyMapsZoneInput($event)">
-          <option value="" (change)="setJourneyMapsZoneInput($event)">(none)</option>
-          <option *ngFor="let input of journeyMapsZoneOptions" [value]="input">{{input}}</option>
-        </select>
-      </li>
-      <li>
-        <span class="sbb-label">Select a journey</span>
-        <select class="select-journey" sbbInput (change)="setJourneyMapsRoutingInput($event)">
-          <option value="" (change)="setJourneyMapsRoutingInput($event)">(none)</option>
-          <option *ngFor="let input of journeyMapsRoutingOptions" [value]="input">{{input}}</option>
-        </select>
+        <sbb-form-field label="Select zones">
+          <sbb-select formControlName="zoneGeoJson" placeholder="(none)">
+            <sbb-option *ngFor="let input of journeyMapsZoneOptions" [value]="input.value"
+              >{{input.label}}</sbb-option
+            >
+          </sbb-select>
+        </sbb-form-field>
+        <sbb-form-field label="Select a journey / transfer">
+          <sbb-select formControlName="routingGeoJson" placeholder="(none)">
+            <sbb-option *ngFor="let input of journeyMapsRoutingOptions" [value]="input.value">
+              {{input.label}}
+            </sbb-option>
+          </sbb-select>
+        </sbb-form-field>
       </li>
       <li *ngIf="visibleLevels | async as visibleLevels">
         <sbb-notification *ngIf="!visibleLevels.length" type="info"

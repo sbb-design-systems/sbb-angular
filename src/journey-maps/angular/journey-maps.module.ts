@@ -1,9 +1,9 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 
+import { SbbAttribution } from './components/attribution/attribution';
 import { SbbBasemapSwitch } from './components/basemap-switch/basemap-switch';
 import { SbbFeatureEventListener } from './components/feature-event-listener/feature-event-listener';
-import { SbbGlobalStyles } from './components/global-styles/global-styles';
 import { SbbHomeButton } from './components/home-button/home-button';
 import { SbbLeitPoi } from './components/leit-poi/leit-poi';
 import { SbbLevelSwitch } from './components/level-switch/level-switch';
@@ -18,7 +18,7 @@ import { SbbJourneyMaps } from './journey-maps';
   declarations: [
     SbbJourneyMaps,
     SbbTeaser,
-    SbbGlobalStyles,
+    SbbAttribution,
     SbbLevelSwitch,
     SbbZoomControls,
     SbbBasemapSwitch,

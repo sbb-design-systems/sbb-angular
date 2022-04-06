@@ -1,7 +1,3 @@
-# Journey Maps for Angular
-
-## Get started
-
 ### Get an API key
 
 A valid API key must be provided to access the map style and data.
@@ -12,9 +8,7 @@ A valid API key must be provided to access the map style and data.
 
 Subscribe on the [SBB API Plattform](https://developer.sbb.ch/apis/journey-maps-tiles).
 
-### Install and set up
-
-#### Add the node dependencies in your Angular project
+### Add the node dependencies in your Angular project
 
 ```sh
 npm install @sbb-esta/journey-maps
@@ -27,7 +21,7 @@ npm install maplibre-gl@1.15.2
 **NOTE**
 The `maplibre-gl` version compatible with this version of `journey-maps` is `1.15`.
 
-#### Reference the MapLibre CSS
+### Reference the MapLibre CSS
 
 in HTML:
 

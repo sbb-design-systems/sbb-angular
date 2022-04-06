@@ -11,6 +11,7 @@ import {
   SimpleChanges,
   TemplateRef,
   ViewChild,
+  ViewEncapsulation,
 } from '@angular/core';
 import { LngLatLike, Map as MaplibreMap, Offset, Popup, PopupOptions } from 'maplibre-gl';
 
@@ -21,6 +22,7 @@ import { SbbLocaleService } from '../../services/locale-service';
   templateUrl: './popup.html',
   styleUrls: ['./popup.css'],
   changeDetection: ChangeDetectionStrategy.OnPush,
+  encapsulation: ViewEncapsulation.None,
 })
 export class SbbPopup implements OnChanges, OnDestroy {
   @Input() rendered: boolean;

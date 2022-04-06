@@ -1,5 +1,4 @@
 import {
-  AfterViewInit,
   ChangeDetectorRef,
   Component,
   OnDestroy,
@@ -13,16 +12,12 @@ import {
   SbbInteractionOptions,
   SbbJourneyMaps,
   SbbJourneyMapsRoutingOptions,
-  SbbListenerOptions,
-  SbbStyleOptions,
-  SbbUIOptions,
   SbbViewportOptions,
   SbbZoomLevels,
 } from '@sbb-esta/journey-maps';
-import { FeatureCollection } from 'geojson';
 import { LngLatBoundsLike, LngLatLike } from 'maplibre-gl';
-import { BehaviorSubject, Subject, take } from 'rxjs';
-import { takeUntil } from 'rxjs/operators';
+import { BehaviorSubject, filter, Subject, take } from 'rxjs';
+import { map, takeUntil } from 'rxjs/operators';
 
 import { zhShWaldfriedhof } from './mock-response/journey/zh-sh_waldfriedhof';
 import { markers } from './mock-response/markers';
@@ -47,12 +42,12 @@ declare global {
   templateUrl: 'journey-maps-full-example.html',
   styleUrls: ['journey-maps-full-example.css'],
 })
-export class JourneyMapsFullExample implements OnInit, AfterViewInit, OnDestroy {
+export class JourneyMapsFullExample implements OnInit, OnDestroy {
   @ViewChild('advancedMap')
   client: SbbJourneyMaps;
-  @ViewChild('stationTemplate')
+  @ViewChild('stationTemplate', { static: true })
   stationTemplate: TemplateRef<any>;
-  @ViewChild('routeTemplate')
+  @ViewChild('routeTemplate', { static: true })
   routeTemplate: TemplateRef<any>;
 
   apiKey = window.JM_API_KEY;
@@ -63,61 +58,76 @@ export class JourneyMapsFullExample implements OnInit, AfterViewInit, OnDestroy 
     oneFingerPan: true,
     scrollZoom: true,
   };
-  uiOptions: SbbUIOptions = {
-    showSmallButtons: false,
-    levelSwitch: true,
-    zoomControls: true,
-    basemapSwitch: true,
-    homeButton: true,
-  };
-  listenerOptions: SbbListenerOptions = {
-    MARKER: { watch: true, selectionMode: 'single' },
-    ROUTE: { watch: true, popup: true, selectionMode: 'multi' },
-    STATION: { watch: true, popup: true },
-    ZONE: { watch: true, selectionMode: 'multi' },
-  };
-  styleOptions: SbbStyleOptions = {};
-  markerOptions = markers;
-  journeyMapsRoutingOption: SbbJourneyMapsRoutingOptions;
-  journeyMapsZones: FeatureCollection;
-  journeyMapsRoutingOptions = [
-    'journey',
-    'transfer luzern',
-    'transfer zurich indoor',
-    'transfer bern indoor',
-    'transfer geneve indoor',
+
+  journeyMapsZoneOptions = [
+    { label: '(none)', value: undefined },
+    { label: 'Berne / Burgdorf', value: bernBurgdorfZones },
+    { label: 'Basel / Biel', value: baselBielZones },
   ];
-  journeyMapsZoneOptions = ['bern-burgdorf', 'bs-bl'];
+  journeyMapsRoutingOption: SbbJourneyMapsRoutingOptions;
+  journeyMapsRoutingOptions = [
+    { label: '(none)', value: undefined },
+    { label: 'Zürich - Schaffhausen, Waldfriedhof', value: { journey: zhShWaldfriedhof } },
+    { label: 'Transfer Bern', value: { transfer: bernIndoor } },
+    { label: 'Transfer Genf', value: { transfer: geneveIndoor } },
+    { label: 'Transfer Luzern', value: { transfer: luzern4j } },
+    { label: 'Transfer Zürich', value: { transfer: zurichIndoor } },
+  ];
   viewportOptions: SbbViewportOptions = {};
   zoomLevels: SbbZoomLevels;
   visibleLevels = new BehaviorSubject<number[]>([]);
   form: FormGroup;
-  zoomButtons = [
-    { label: 'Zoom In', action: () => this.client.zoomIn() },
-    { label: 'Zoom out', action: () => this.client.zoomOut() },
-  ];
-  moveButtons = [
-    { label: 'North', action: () => this.client.moveNorth() },
-    { label: 'East', action: () => this.client.moveEast() },
-    { label: 'South', action: () => this.client.moveSouth() },
-    { label: 'West', action: () => this.client.moveWest() },
-  ];
 
   private _destroyed = new Subject<void>();
 
   constructor(private _cd: ChangeDetectorRef, private _fb: FormBuilder) {
+    // Pseudo validator to reset the selected marker id before the value changes
+    const resetSelectedMarkerIdValidator = () => {
+      this.selectedMarkerId = undefined;
+      return null;
+    };
+
     this.form = _fb.group({
       mapVisible: [true],
-      smallControls: [false],
-      mapStyle: ['bright'],
-      popup: [true],
       level: [0],
-      listener: _fb.group({
-        marker: [true],
-        route: [true],
-        station: [true],
-        zone: [true],
+      uiOptions: _fb.group({
+        showSmallButtons: [false],
+        levelSwitch: [true],
+        zoomControls: [true],
+        basemapSwitch: [true],
+        homeButton: [true],
       }),
+      styleOptions: _fb.group({
+        mode: ['bright', resetSelectedMarkerIdValidator],
+      }),
+      listenerOptions: _fb.group({
+        MARKER: _fb.group({
+          watch: [true],
+          selectionMode: ['single'],
+        }),
+        ROUTE: _fb.group({
+          watch: [true],
+          popup: [true],
+          selectionMode: ['multi'],
+          hoverTemplate: [],
+        }),
+        STATION: _fb.group({
+          watch: [true],
+          popup: [true],
+          clickTemplate: [],
+        }),
+        ZONE: _fb.group({
+          watch: [true],
+          selectionMode: ['multi'],
+        }),
+      }),
+      markerOptions: _fb.group({
+        zoomToMarkers: [true],
+        popup: [true, resetSelectedMarkerIdValidator],
+        markers: [markers],
+      }),
+      zoneGeoJson: [],
+      routingGeoJson: [],
     });
   }
 
@@ -125,16 +135,35 @@ export class JourneyMapsFullExample implements OnInit, AfterViewInit, OnDestroy 
     this.mapCenterChange
       .pipe(takeUntil(this._destroyed))
       .subscribe((mapCenter: LngLatLike) => (this.mapCenter = mapCenter));
-  }
 
-  ngAfterViewInit() {
-    if (this.listenerOptions.STATION) {
-      this.listenerOptions.STATION.clickTemplate = this.stationTemplate;
-    }
-    if (this.listenerOptions.ROUTE) {
-      this.listenerOptions.ROUTE.hoverTemplate = this.routeTemplate;
-    }
-    this.updateListenerOptions();
+    this.form.get('listenerOptions.ROUTE')?.patchValue({ hoverTemplate: this.routeTemplate });
+    this.form.get('listenerOptions.STATION')?.patchValue({ clickTemplate: this.stationTemplate });
+
+    this.form
+      .get('zoneGeoJson')
+      ?.valueChanges.pipe(
+        takeUntil(this._destroyed),
+        map((val: GeoJSON.FeatureCollection) => val?.bbox),
+        filter((bbox) => !!bbox)
+      )
+      .subscribe((bbox) => this._setBbox(bbox!));
+
+    this.form
+      .get('routingGeoJson')
+      ?.valueChanges.pipe(takeUntil(this._destroyed))
+      .subscribe((val: SbbJourneyMapsRoutingOptions) => {
+        const bbox = val?.journey?.bbox ?? val?.transfer?.bbox;
+        if (bbox) {
+          this._setBbox(bbox);
+          this.mapCenterChange.pipe(take(1)).subscribe(() => {
+            // Wait until map is idle. So that the correct starting level will be displayed.
+            this.journeyMapsRoutingOption = val;
+            this._cd.detectChanges();
+          });
+        } else {
+          this.journeyMapsRoutingOption = val;
+        }
+      });
   }
 
   ngOnDestroy(): void {
@@ -142,93 +171,8 @@ export class JourneyMapsFullExample implements OnInit, AfterViewInit, OnDestroy 
     this._destroyed.complete();
   }
 
-  updateUIOptions(): void {
-    this.uiOptions = {
-      ...this.uiOptions,
-      showSmallButtons: this.form.get('smallControls')?.value,
-    };
-  }
-
-  setJourneyMapsRoutingInput(event: Event): void {
-    this.journeyMapsRoutingOption = {};
-
-    let bbox: number[] | undefined;
-    let updateDataFunction: () => void;
-    const value = (event.target as HTMLOptionElement).value;
-
-    if (value === 'journey') {
-      updateDataFunction = () => (this.journeyMapsRoutingOption = { journey: zhShWaldfriedhof });
-      bbox = zhShWaldfriedhof.bbox;
-    }
-    if (value === 'transfer luzern') {
-      updateDataFunction = () => (this.journeyMapsRoutingOption = { transfer: luzern4j });
-      bbox = luzern4j.bbox;
-    }
-    if (value === 'transfer zurich indoor') {
-      updateDataFunction = () => (this.journeyMapsRoutingOption = { transfer: zurichIndoor });
-      bbox = zurichIndoor.bbox;
-    }
-    if (value === 'transfer bern indoor') {
-      updateDataFunction = () => (this.journeyMapsRoutingOption = { transfer: bernIndoor });
-      bbox = bernIndoor.bbox;
-    }
-    if (value === 'transfer geneve indoor') {
-      updateDataFunction = () => (this.journeyMapsRoutingOption = { transfer: geneveIndoor });
-      bbox = geneveIndoor.bbox;
-    }
-
-    if (bbox) {
-      this._setBbox(bbox);
-      this.mapCenterChange.pipe(take(1)).subscribe(() => {
-        updateDataFunction();
-        this._cd.detectChanges();
-      });
-    }
-  }
-
-  setJourneyMapsZoneInput(event: Event): void {
-    this.journeyMapsZones = undefined as any;
-    const value = (event.target as HTMLOptionElement).value;
-
-    if (value === 'bern-burgdorf') {
-      this.journeyMapsZones = bernBurgdorfZones;
-    }
-    if (value === 'bs-bl') {
-      this.journeyMapsZones = baselBielZones;
-    }
-
-    if (this.journeyMapsZones?.bbox) {
-      this._setBbox(this.journeyMapsZones!.bbox);
-    }
-  }
-
   setMarkerId(event: SbbRadioChange): void {
     this.selectedMarkerId = event.value;
-  }
-
-  updateStyleOptions(): void {
-    this.selectedMarkerId = undefined;
-    this.styleOptions = {
-      ...this.styleOptions,
-      mode: this.form.get('mapStyle')?.value,
-    };
-  }
-
-  updateMarkerOptions() {
-    this.selectedMarkerId = undefined;
-    this.markerOptions = {
-      ...this.markerOptions,
-      popup: this.form.get('popup')?.value,
-    };
-  }
-
-  updateListenerOptions(): void {
-    const group = this.form.get('listener')!;
-    this.listenerOptions.MARKER!.watch = group.get('marker')?.value;
-    this.listenerOptions.STATION!.watch = group.get('station')?.value;
-    this.listenerOptions.ROUTE!.watch = group.get('route')?.value;
-    this.listenerOptions.ZONE!.watch = group.get('zone')?.value;
-    this.listenerOptions = { ...this.listenerOptions };
   }
 
   bboxToLngLatBounds(bbox: number[]): LngLatBoundsLike {
@@ -246,7 +190,8 @@ export class JourneyMapsFullExample implements OnInit, AfterViewInit, OnDestroy 
   }
 
   listenerOptionTypes() {
-    return Object.keys(this.listenerOptions).map((key) => key.toLowerCase());
+    const listenerOptions: FormGroup = this.form.get('listenerOptions') as FormGroup;
+    return Object.keys(listenerOptions.controls);
   }
 
   private _setBbox(bbox: number[]): void {

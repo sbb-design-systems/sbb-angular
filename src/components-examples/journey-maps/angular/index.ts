@@ -6,6 +6,7 @@ import { SbbCheckboxModule } from '@sbb-esta/angular/checkbox';
 import { SbbInputModule } from '@sbb-esta/angular/input';
 import { SbbNotificationModule } from '@sbb-esta/angular/notification';
 import { SbbRadioButtonModule } from '@sbb-esta/angular/radio-button';
+import { SbbSelectModule } from '@sbb-esta/angular/select';
 import { SbbTabsModule } from '@sbb-esta/angular/tabs';
 import { SbbJourneyMapsModule } from '@sbb-esta/journey-maps/angular';
 
@@ -27,6 +28,7 @@ const EXAMPLES = [JourneyMapsBasicExample, JourneyMapsFullExample];
     FormsModule,
     SbbTabsModule,
     ReactiveFormsModule,
+    SbbSelectModule,
   ],
   declarations: EXAMPLES,
   exports: EXAMPLES,

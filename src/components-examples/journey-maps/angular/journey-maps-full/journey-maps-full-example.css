@@ -19,12 +19,8 @@ li button {
   margin: 3px 9px 3px 0;
 }
 
-.map-container {
-  display: inline-block;
-}
-
-.select-journey {
-  min-width: 130px;
+sbb-form-field {
+  padding-right: 1em;
 }
 
 .web-map {
