@@ -53,6 +53,15 @@ To add a delay before showing or hiding the tooltip, you can use the inputs `hov
 To completely disable a tooltip, set `disabled` on `sbb-tooltip` or `sbbTooltipDisabled` on
 `sbbTooltip`. While disabled, a tooltip will never be shown.
 
+#### Zero panel padding
+
+To gain more control over the tooltip content styling, you can add the panel class `sbb-tooltip-zero-padding` to remove any padding.
+Please note, that you have to place the close icon yourself.
+
+```html
+<sbb-tooltip sbbTooltipPanelClass="sbb-tooltip-zero-padding"></sbb-tooltip>
+```
+
 ### Accessibility
 
 `SbbTooltip` adds an `aria-describedby` description that provides a reference

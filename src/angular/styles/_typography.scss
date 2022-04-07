@@ -269,6 +269,7 @@
     #{pxToRem(math.div(24, math.sqrt(2)))} * var(--sbb-scaling-factor)
   );
   --sbb-tooltip-shadow-arrow-size: calc(#{pxToRem(12)} * var(--sbb-scaling-factor));
+  --sbb-tooltip-background-color: var(--sbb-color-background);
 
   // Usermenu
   --sbb-usermenu-panel-width: calc(#{pxToRem(288)} * var(--sbb-scaling-factor));

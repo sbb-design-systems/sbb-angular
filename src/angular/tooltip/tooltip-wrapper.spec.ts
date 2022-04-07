@@ -191,6 +191,24 @@ describe('SbbTooltipWrapper', () => {
       // throw if we have any timers by the end of the test.
       fixture.destroy();
     }));
+
+    it('should forward tooltip classes', fakeAsync(() => {
+      component.tooltip.show();
+      tick();
+      fixture.detectChanges();
+
+      const tooltipPanel = overlayContainer
+        .getContainerElement()
+        .querySelector('.sbb-tooltip-panel') as HTMLElement;
+      expect(tooltipPanel.classList).toContain('custom-panel-one');
+      expect(tooltipPanel.classList).toContain('custom-panel-two');
+
+      const tooltip = overlayContainer
+        .getContainerElement()
+        .querySelector('.sbb-tooltip') as HTMLElement;
+      expect(tooltip.classList).toContain('custom-one');
+      expect(tooltip.classList).toContain('custom-two');
+    }));
   });
 
   describe('using two tooltips', () => {
@@ -234,7 +252,11 @@ describe('SbbTooltipWrapper', () => {
 @Component({
   selector: 'sbb-tooltip-test',
   template: `
-    <sbb-tooltip #t1>
+    <sbb-tooltip
+      #t1
+      [sbbTooltipClass]="['custom-one', 'custom-two']"
+      [sbbTooltipPanelClass]="['custom-panel-one', 'custom-panel-two']"
+    >
       <p>This is a tooltip with a button inside.</p>
       <button sbb-secondary-button (click)="t1.hide()">Close tooltip</button>
     </sbb-tooltip>
