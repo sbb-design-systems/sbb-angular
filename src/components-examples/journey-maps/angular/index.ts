@@ -8,7 +8,7 @@ import { SbbNotificationModule } from '@sbb-esta/angular/notification';
 import { SbbRadioButtonModule } from '@sbb-esta/angular/radio-button';
 import { SbbSelectModule } from '@sbb-esta/angular/select';
 import { SbbTabsModule } from '@sbb-esta/angular/tabs';
-import { SbbJourneyMapsModule } from '@sbb-esta/journey-maps/angular';
+import { SbbJourneyMapsModule } from '@sbb-esta/journey-maps';
 
 import { JourneyMapsBasicExample } from './journey-maps-basic/journey-maps-basic-example';
 import { JourneyMapsFullExample } from './journey-maps-full/journey-maps-full-example';

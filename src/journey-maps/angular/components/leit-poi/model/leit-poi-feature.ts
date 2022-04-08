@@ -1,5 +1,6 @@
-import { SbbLeitPoiPlacement } from '@sbb-esta/journey-maps/angular/components/leit-poi/model/leit-poi-placement';
 import { LngLatLike } from 'maplibre-gl';
+
+import { SbbLeitPoiPlacement } from './leit-poi-placement';
 
 export interface SbbLeitPoiFeature {
   travelType: 'default' | 'stairs' | 'lift' | 'ramp' | 'escalator';

@@ -7,11 +7,11 @@ import {
   Injectable,
   Injector,
 } from '@angular/core';
-import { SbbLeitPoiPlacement } from '@sbb-esta/journey-maps/angular/components/leit-poi/model/leit-poi-placement';
 import { Map as MaplibreMap, Popup } from 'maplibre-gl';
 
 import { SbbLeitPoi } from '../../components/leit-poi/leit-poi';
 import { SbbLeitPoiFeature } from '../../components/leit-poi/model/leit-poi-feature';
+import { SbbLeitPoiPlacement } from '../../components/leit-poi/model/leit-poi-placement';
 import { SbbMapLeitPoi } from '../../model/map-leit-poi';
 
 @Injectable({

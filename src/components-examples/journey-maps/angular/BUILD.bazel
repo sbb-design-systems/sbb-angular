@@ -24,7 +24,6 @@ ng_module(
         "//src/angular/select",
         "//src/angular/tabs",
         "//src/journey-maps",
-        "//src/journey-maps/angular",
         "@npm//@angular/common",
         "@npm//@angular/core",
         "@npm//@angular/forms",
