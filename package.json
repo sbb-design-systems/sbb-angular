@@ -52,6 +52,7 @@
     "@angular/cdk": "14.0.0-next.9",
     "@angular/common": "14.0.0-next.11",
     "@angular/core": "14.0.0-next.11",
+    "@angular/elements": "14.0.0-next.11",
     "@angular/forms": "14.0.0-next.11",
     "@angular/platform-browser": "14.0.0-next.11",
     "@angular/platform-browser-dynamic": "14.0.0-next.11",

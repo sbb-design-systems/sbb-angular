@@ -1,0 +1,73 @@
+load(
+    "//tools:defaults.bzl",
+    "esbuild",
+    "markdown_to_html",
+    "ng_module",
+    "sass_binary",
+)
+load("@build_bazel_rules_nodejs//:index.bzl", "pkg_npm")
+load("//tools/angular:index.bzl", "LINKER_PROCESSED_FW_PACKAGES")
+
+package(default_visibility = ["//visibility:public"])
+
+pkg_npm(
+    name = "npm_package",
+    srcs = ["package.json"],
+    validate = False,
+    deps = [
+        ":bundle",
+        ":styles_scss",
+    ],
+)
+
+esbuild(
+    name = "bundle",
+    args = {
+        "resolveExtensions": [
+            ".mjs",
+            ".js",
+        ],
+        "sourcemap": True,
+    },
+    entry_point = "main.prod.ts",
+    minify = True,
+    deps = LINKER_PROCESSED_FW_PACKAGES + [
+        ":web-component",
+        "@npm//@angular/common",
+        "@npm//@angular/core",
+        "@npm//@angular/elements",
+    ],
+)
+
+ng_module(
+    name = "web-component",
+    srcs = glob(
+        ["**/*.ts"],
+        exclude = ["**/*.spec.ts"],
+    ),
+    assets = [":styles.css"] + glob(["**/*.html"]),
+    deps = [
+        "//src/journey-maps/angular",
+        "@npm//@angular/common",
+        "@npm//@angular/core",
+        "@npm//@angular/elements",
+        "@npm//@angular/platform-browser",
+        "@npm//zone.js",
+    ],
+)
+
+sass_binary(
+    name = "styles_scss",
+    src = "styles.scss",
+    include_paths = ["external/npm/node_modules"],
+)
+
+markdown_to_html(
+    name = "overview",
+    srcs = [":web-component.md"],
+)
+
+filegroup(
+    name = "source-files",
+    srcs = glob(["**/*.ts"]),
+)

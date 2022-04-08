@@ -1,0 +1,27 @@
+import { HttpClientModule } from '@angular/common/http';
+import {
+  ApplicationRef,
+  CUSTOM_ELEMENTS_SCHEMA,
+  DoBootstrap,
+  Injector,
+  NgModule,
+} from '@angular/core';
+import { createCustomElement } from '@angular/elements';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { SbbJourneyMaps, SbbJourneyMapsModule } from '@sbb-esta/journey-maps/angular';
+
+@NgModule({
+  declarations: [],
+  imports: [HttpClientModule, BrowserAnimationsModule, SbbJourneyMapsModule],
+  providers: [],
+  bootstrap: [],
+  schemas: [CUSTOM_ELEMENTS_SCHEMA],
+})
+export class SbbJourneyMapsCustomElementModule implements DoBootstrap {
+  constructor(private _injector: Injector) {}
+
+  ngDoBootstrap(appRef: ApplicationRef): void {
+    const element = createCustomElement(SbbJourneyMaps, { injector: this._injector });
+    customElements.define('sbb-journey-maps-wc', element);
+  }
+}
