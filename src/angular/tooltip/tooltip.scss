@@ -36,6 +36,7 @@
     .sbb-tooltip-panel-above & {
       top: auto;
       bottom: calc(0.5 * var(--sbb-tooltip-shadow-arrow-size));
+      transform: rotate(225deg);
     }
 
     .sbb-tooltip-panel-left & {
@@ -53,9 +54,20 @@
   }
 
   &::after {
-    background-color: var(--sbb-color-background);
+    background-color: var(--sbb-tooltip-background-color);
     background-clip: padding-box;
     z-index: 2;
+
+    --sbb-tooltip-arrow-padding-offset: 0rem; // Unit is necessary for calc()
+    clip-path: polygon(
+      0 0,
+      calc(var(--sbb-tooltip-content-arrow-size) - var(--sbb-tooltip-arrow-padding-offset)) 0,
+      0 calc(var(--sbb-tooltip-content-arrow-size) - var(--sbb-tooltip-arrow-padding-offset))
+    );
+
+    html.sbb-lean & {
+      --sbb-tooltip-arrow-padding-offset: #{pxToRem(1)};
+    }
   }
 
   .sbb-tooltip-panel-above & {
@@ -99,7 +111,7 @@
   overflow: hidden;
   color: var(--sbb-color-grey);
   text-overflow: ellipsis;
-  background-color: var(--sbb-color-background);
+  background-color: var(--sbb-tooltip-background-color);
   border: var(--sbb-border-width) solid var(--sbb-color-weak-accent);
   border-radius: var(--sbb-border-radius);
   z-index: 2;
@@ -117,11 +129,19 @@
   }
 }
 
+.sbb-tooltip-zero-padding {
+  --sbb-tooltip-padding: 0;
+}
+
 .sbb-tooltip-has-close-button {
   padding-right: calc(#{pxToRem(71)} * var(--sbb-scaling-factor));
 
   :where(html.sbb-lean) & {
     padding-right: pxToRem(48);
+  }
+
+  .sbb-tooltip-zero-padding & {
+    padding-right: 0;
   }
 }
 
