@@ -1,0 +1,141 @@
+<sbb-notification type="info" class="api-key-info"
+  >This example uses a test API key, that might be disabled at any time.
+</sbb-notification>
+<div class="web-map">
+  <sbb-journey-maps
+    #advancedMap
+    *ngIf='form.get("mapVisible")?.value'
+    language="en"
+    [styleOptions]="form.get('styleOptions')?.value"
+    [interactionOptions]="interactionOptions"
+    [listenerOptions]="form.get('listenerOptions')?.value"
+    [uiOptions]="form.get('uiOptions')?.value"
+    [viewportOptions]="viewportOptions"
+    [apiKey]="apiKey"
+    [markerOptions]="form.get('markerOptions')?.value"
+    [markerDetailsTemplate]="markerDetailsTemplate"
+    [journeyMapsRoutingOption]="journeyMapsRoutingOption"
+    [journeyMapsZones]="form.get('zoneGeoJson')?.value"
+    [(selectedMarkerId)]="selectedMarkerId"
+    [selectedLevel]="this.form.get('level')?.value ?? 0"
+    (selectedLevelChange)="this.form.patchValue({level: $event})"
+    (mapCenterChange)="mapCenterChange.next($event)"
+    (zoomLevelsChange)="zoomLevels=$event"
+    (visibleLevelsChange)="visibleLevels.next($event)"
+  ></sbb-journey-maps>
+  <ng-template #markerDetailsTemplate let-marker>
+    <div class="markerdetails-title">{{marker.title}}</div>
+    <div class="markerdetails-subtitle">{{marker.subtitle}}</div>
+  </ng-template>
+  <ng-template #stationTemplate let-station>
+    <div class="station-title">{{station.properties.name}}</div>
+    <div class="station-subtitle">{{station.properties.sbb_id}}</div>
+  </ng-template>
+  <ng-template #routeTemplate let-route>
+    <div class="route-title">{{route.properties.routeId}}</div>
+  </ng-template>
+</div>
+<div>
+  <form [formGroup]="form">
+    <ul>
+      <li class="sbb-label">
+        Map move / pan with one finger: {{(interactionOptions.oneFingerPan ?? false) ? 'on' :
+        'off'}}
+      </li>
+      <li class="sbb-label">
+        Map zoom with scroll wheel: {{(interactionOptions.scrollZoom ?? false) ? 'on' : 'off'}}
+      </li>
+      <li class="sbb-label">
+        Map center (lng / lat): {{mapCenterInfo()?.lng | number: '1.1-6'}}, {{mapCenterInfo()?.lat |
+        number:'1.1-6'}}
+      </li>
+      <li class="sbb-label">
+        Map zoom (within range {{zoomLevels?.minZoom}}..{{zoomLevels?.maxZoom}} ):
+        {{zoomLevels?.currentZoom | number: '1.1-2'}}
+      </li>
+      <li>
+        <hr />
+      </li>
+      <li>
+        <div class="sbb-checkbox-group-horizontal">
+          <sbb-checkbox formControlName="mapVisible"> Map visibility</sbb-checkbox>
+          <ng-container formGroupName="uiOptions">
+            <sbb-checkbox formControlName="showSmallButtons">Small map controls </sbb-checkbox>
+            <sbb-checkbox formControlName="basemapSwitch">Basemap Switch</sbb-checkbox>
+          </ng-container>
+        </div>
+      </li>
+      <li formGroupName="styleOptions">
+        <sbb-radio-group class="sbb-checkbox-group-horizontal" formControlName="mode">
+          <sbb-radio-button value="bright">Bright Mode</sbb-radio-button>
+          <sbb-radio-button value="dark">Dark Mode</sbb-radio-button>
+        </sbb-radio-group>
+      </li>
+      <li>
+        <span class="sbb-label">Zoom map</span>
+        <button sbb-ghost-button (click)="client.zoomIn()">Zoom In</button>
+        <button sbb-ghost-button (click)="client.zoomOut()">Zoom Out</button>
+      </li>
+      <li>
+        <span class="sbb-label">Move / pan map</span>
+        <button sbb-ghost-button (click)="client.moveNorth()">North</button>
+        <button sbb-ghost-button (click)="client.moveEast()">East</button>
+        <button sbb-ghost-button (click)="client.moveSouth()">South</button>
+        <button sbb-ghost-button (click)="client.moveWest()">West</button>
+      </li>
+      <li>
+        <div formGroupName="listenerOptions">
+          <span class="sbb-label">Map interaction configuration</span>
+          <div class="sbb-checkbox-group-horizontal">
+            <ng-container *ngFor="let type of listenerOptionTypes()" [formGroupName]="type">
+              <sbb-checkbox formControlName="watch">{{type | titlecase}}</sbb-checkbox>
+            </ng-container>
+          </div>
+        </div>
+      </li>
+      <li>
+        <span class="sbb-label">
+          Map markers<span *ngIf="selectedMarkerId"> (selected: {{selectedMarkerId}})</span></span
+        >
+        <button sbb-ghost-button (click)="selectedMarkerId='velo'">Basel</button>
+        <button sbb-ghost-button (click)="selectedMarkerId=undefined">Unselect all</button>
+      </li>
+      <li formGroupName="markerOptions">
+        <span class="sbb-label">Map marker info style</span>
+        <sbb-radio-group class="sbb-checkbox-group-horizontal" formControlName="popup">
+          <sbb-radio-button [value]="true">Popup</sbb-radio-button>
+          <sbb-radio-button [value]="false">Teaser</sbb-radio-button>
+        </sbb-radio-group>
+      </li>
+      <li>
+        <sbb-form-field label="Select zones">
+          <sbb-select formControlName="zoneGeoJson" placeholder="(none)">
+            <sbb-option *ngFor="let input of journeyMapsZoneOptions" [value]="input.value"
+              >{{input.label}}</sbb-option
+            >
+          </sbb-select>
+        </sbb-form-field>
+        <sbb-form-field label="Select a journey / transfer">
+          <sbb-select formControlName="routingGeoJson" placeholder="(none)">
+            <sbb-option *ngFor="let input of journeyMapsRoutingOptions" [value]="input.value">
+              {{input.label}}
+            </sbb-option>
+          </sbb-select>
+        </sbb-form-field>
+      </li>
+      <li *ngIf="visibleLevels | async as visibleLevels">
+        <sbb-notification *ngIf="!visibleLevels.length" type="info"
+          >No indoor data visible in map
+        </sbb-notification>
+        <div *ngIf="visibleLevels.length">
+          <span class="sbb-label">Select indoor level</span>
+          <sbb-radio-group class="sbb-checkbox-group-horizontal" formControlName="level">
+            <sbb-radio-button [value]="level" *ngFor="let level of visibleLevels"
+              >Level {{level}}</sbb-radio-button
+            >
+          </sbb-radio-group>
+        </div>
+      </li>
+    </ul>
+  </form>
+</div>

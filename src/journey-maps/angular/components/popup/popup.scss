@@ -1,0 +1,111 @@
+@use '../../../../angular/styles/common' as esta;
+@use './../../style/icons' as i;
+
+.maplibregl-popup {
+  &.rokas {
+    $closeIconSize: 24px;
+
+    max-width: 400px !important;
+    max-height: 75%;
+    z-index: 3;
+
+    @include esta.mq($to: tabletPortrait) {
+      max-width: 100% !important;
+      transform: none !important;
+
+      $mobileSpacing: 10px;
+      left: $mobileSpacing;
+      bottom: $mobileSpacing;
+      right: $mobileSpacing;
+      top: unset;
+    }
+
+    .maplibregl-popup-content {
+      font-family: esta.$fontSbbRoman;
+      box-shadow: 0 0 20px rgb(0 0 0 / 25%);
+      border-radius: 8px;
+      overflow-y: auto;
+
+      > div {
+        padding: $closeIconSize;
+      }
+
+      @include esta.mq($to: tabletPortrait) {
+        width: 100%;
+      }
+
+      sbb-overlay-paginator {
+        display: block;
+        margin-top: $closeIconSize * 0.5;
+        margin-bottom: $closeIconSize * -1;
+      }
+    }
+
+    .maplibregl-popup-tip {
+      @include esta.mq($to: tabletPortrait) {
+        display: none;
+      }
+    }
+
+    .maplibregl-popup-close-button {
+      background-image: i.icon('close');
+      background-color: white;
+      font-size: 0;
+      height: $closeIconSize;
+      width: $closeIconSize;
+      margin-top: 10px;
+      margin-right: 10px;
+    }
+
+    &.maplibregl-popup-anchor- {
+      &bottom-left .maplibregl-popup-content {
+        @include esta.mq($from: tabletPortrait) {
+          border-bottom-left-radius: 0 !important;
+        }
+      }
+
+      &bottom-right .maplibregl-popup-content {
+        @include esta.mq($from: tabletPortrait) {
+          border-bottom-right-radius: 0 !important;
+        }
+      }
+
+      &top-left .maplibregl-popup-content {
+        @include esta.mq($from: tabletPortrait) {
+          border-top-left-radius: 0 !important;
+        }
+      }
+
+      &top-right .maplibregl-popup-content {
+        @include esta.mq($from: tabletPortrait) {
+          border-top-right-radius: 0 !important;
+        }
+      }
+    }
+  }
+
+  &.rokas.marker-details {
+    // FIXME: Remove and adapt offset accordingly.
+    //  (not so simple as offset is also defined in the style itself =/)
+    margin-top: 1rem;
+  }
+
+  &.leit-poi-popup {
+    .maplibregl-popup-tip {
+      padding: 0;
+      height: 0;
+      display: none;
+    }
+
+    .maplibregl-popup-content {
+      border-radius: 25px;
+      padding: 6px;
+      border: 1px solid #000000;
+      cursor: pointer;
+    }
+  }
+
+  &.leit-poi-popup-hidden {
+    display: none !important;
+  }
+}

@@ -37,27 +37,29 @@ export class FlexibleSassDependencyResolver implements SassDependencyResolver {
   }
 
   private _findStylesheetDependencies(file: FileEntry, moduleDir: DirEntry) {
-    const matches = file.content.toString().match(/(@import|@use) '([^']+)';/g);
+    const matches = file.content.toString().match(/(@import|@use) '([^']+)'[ \w]*;/g);
     if (!matches) {
       return [];
     }
     return matches
       .filter((s) => !s.match(/@use ['"]sass:/))
-      .map((s) => s.substring(9, s.length - 2))
+      .map((s) =>
+        s.substring(s.trim().startsWith('@use') ? 6 : 9, s.length - 2).replace(/['"][ \w]*/, '')
+      )
       .map((importPath) => {
         const occurence = Array.from(this._dependencyByOccurence.keys()).find((o) =>
           importPath.includes(o)
         );
         if (occurence) {
           return this._dependencyByOccurence.get(occurence)!;
-        } else if (this._isInModule(join(dirname(file.path), importPath), moduleDir)) {
-          return `:${basename(moduleDir.path)}_scss_lib`;
         } else if (importPath.includes('/node_modules/')) {
           return this._npmDependencyResolver.toBazelNodeDependency(
             importPath.split('/node_modules/')[1]
           );
         } else if (importPath.includes('~')) {
           return this._npmDependencyResolver.toBazelNodeDependency(importPath.split('~')[1]);
+        } else if (this._isInModule(join(dirname(file.path), importPath), moduleDir)) {
+          return `:${basename(moduleDir.path).replace(/-/g, '_')}_scss_lib`;
         } else {
           this._logger.warn(`${file.path}: Could not resolve stylesheet import '${importPath}'`);
           return '';

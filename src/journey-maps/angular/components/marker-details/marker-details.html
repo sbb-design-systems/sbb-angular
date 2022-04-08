@@ -1,0 +1,20 @@
+<sbb-teaser
+  [rendered]="shouldRender"
+  [templateContext]="selectedMarker"
+  (closeClicked)="closeClicked.next()"
+  [template]="template"
+  [attr.aria-live]="'polite'"
+  *ngIf="!popup"
+></sbb-teaser>
+<sbb-popup
+  [rendered]="shouldRender"
+  [map]="map"
+  [templateContext]="selectedMarker"
+  [position]="getLngLatLike(selectedMarker?.position)"
+  [offset]="popupOffset"
+  (closeClicked)="closeClicked.next()"
+  [template]="template"
+  [additionalClassName]="'marker-details'"
+  *ngIf="popup"
+>
+</sbb-popup>

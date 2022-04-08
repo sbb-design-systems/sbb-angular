@@ -1,0 +1,13 @@
+export const SBB_CLUSTER_RADIUS = 50;
+export const SBB_MARKER_BOUNDS_PADDING = 40;
+
+export const SBB_MARKER_SOURCE = 'rokas-marker-source';
+export const SBB_ROUTE_SOURCE = 'rokas-route-source';
+export const SBB_WALK_SOURCE = 'rokas-walk-source';
+export const SBB_ZONE_SOURCE = 'rokas-zone-source';
+
+export const SBB_CLUSTER_LAYER = 'rokas-marker-cluster';
+export const SBB_MARKER_LAYER = 'sbb-marker';
+export const SBB_MARKER_LAYER_SELECTED = 'sbb-marker-selected';
+
+export const SBB_METADATA_MAPPINGS = 'rokas:markerCategoryMapping';

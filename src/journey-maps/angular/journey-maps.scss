@@ -1,0 +1,87 @@
+@use './style/icons' as i;
+
+:host,
+.map,
+.jmc-container {
+  height: 100%;
+}
+
+.jmc-container {
+  position: relative;
+  z-index: 0;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+.map-container {
+  position: relative;
+  min-height: 100px;
+  overflow: hidden;
+  flex: 1 0 auto;
+}
+
+.map {
+  // important is necessary for Safari
+  position: absolute !important;
+  top: 0;
+  left: 0;
+  width: 100%;
+}
+
+.mod_map_container_mobile_overlay {
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  flex-wrap: nowrap;
+  align-items: center;
+  justify-content: center;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  transition: opacity 0.3s ease-in-out;
+  opacity: 0 !important;
+  background-color: rgba(0, 0, 0, 0.6);
+  z-index: 4;
+}
+
+.mod_map_container_mobile_overlay.is_visible {
+  opacity: 0.9999 !important;
+}
+
+.mod_map_container_mobile_overlay_text {
+  color: #fff;
+  font-family: SBBWeb Bold, Helvetica Neue, Helvetica, Arial, sans-serif;
+  font-size: 1.4em;
+  line-height: 1.4;
+  text-align: center;
+  padding: 0 1.6em;
+  margin-top: 0.66667em;
+  text-shadow: 0 0.06667em 0.53333em rgba(0, 0, 0, 0.4);
+}
+
+.mod_map_container_mobile_overlay_icon_wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 4.26667em;
+  height: 4.26667em;
+  background: #fff;
+  border-radius: 50%;
+  box-shadow: 0 0.06667em 0.53333em rgba(0, 0, 0, 0.4);
+}
+
+div.mod_map_container_mobile_overlay_icon {
+  width: 3.3em;
+  height: 3.4em;
+  background: center / 100% no-repeat i.icon('hand-touch');
+}
+
+.map-widgets {
+  position: absolute;
+  right: 0;
+  top: 0;
+  z-index: 2;
+}

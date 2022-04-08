@@ -48,3 +48,4 @@ Thumbs.db
 .js
 .js.map
 .d.ts
+.bazel-out_tmp

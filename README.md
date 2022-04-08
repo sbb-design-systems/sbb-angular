@@ -1,4 +1,4 @@
-# SBB Components and Design for Angular
+1# SBB Components and Design for Angular
 
 This is the repository for the Angular component library for SBB.
 
@@ -20,9 +20,17 @@ The package containing the components/modules for SBB websites and applications.
 
 `ng add @sbb-esta/angular-maps`
 
-The package containing components to display 2D/3D maps and to provide map interaction.
+The package containing components to display 2D/3D maps and to provide map interaction. All based on the ArcGIS / Esri stack.
 
 [Documentation](https://angular.app.sbb.ch/angular-maps)
+
+### [@sbb-esta/journey-maps](https://www.npmjs.com/package/@sbb-esta/journey-maps)
+
+`ng add @sbb-esta/journey-maps`
+
+The package containing a MapLibre based map component (Angular & Web Component) to display public transport data, points of interest and much more.
+
+[Documentation](https://angular.app.sbb.ch/journey-maps)
 
 ## Browser and screen reader support
 

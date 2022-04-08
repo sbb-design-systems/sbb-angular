@@ -60,6 +60,7 @@
     "@arcgis/core": "~4.20.2",
     "@stackblitz/sdk": "1.6.0",
     "rxjs": "7.5.5",
+    "maplibre-gl": "^1.15.2",
     "tslib": "2.3.1",
     "zone.js": "0.11.5"
   },
@@ -97,6 +98,7 @@
     "@types/browser-sync": "2.26.3",
     "@types/events": "3.0.0",
     "@types/fs-extra": "9.0.13",
+    "@types/geojson": "7946.0.8",
     "@types/glob": "7.2.0",
     "@types/grecaptcha": "2.0.36",
     "@types/highlight.js": "10.1.0",

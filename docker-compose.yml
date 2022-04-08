@@ -3,4 +3,6 @@ services:
   showcase:
     build: .
     ports:
-    - "8080:8080"
+      - "8080:8080"
+    environment:
+      - JM_API_KEY

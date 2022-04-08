@@ -1,0 +1,7 @@
+<div class="poi_container" (click)="onClick()">
+  <div class="poi_icon" [class]="'travel_type_' + this.feature.travelType">&nbsp;</div>
+  <div class="poi_icon stroke">&nbsp;</div>
+  <div class="poi_icon travel_destination_level">{{ this.feature.destinationLevel }}</div>
+  <div class="poi_icon stroke">&nbsp;</div>
+  <div class="poi_icon" [class]="'travel_direction_' + this.feature.travelDirection">&nbsp;</div>
+</div>

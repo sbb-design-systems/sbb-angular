@@ -1,0 +1,71 @@
+@use './../../style/icons' as i;
+
+$fontColor: #000000;
+$backgroundColor: #ffffff;
+$fontSize: 1.1em;
+$travelTypeSize: 90% 100%;
+$travelDirectionSize: 40% 100%;
+
+/* end of constants */
+
+.poi_container {
+  display: flex;
+  width: 100px;
+  height: 23px;
+  text-align: center;
+  vertical-align: middle;
+  background-color: $backgroundColor;
+}
+
+.poi_icon {
+  background-color: white;
+  background-position: center;
+  background-repeat: no-repeat;
+  color: $fontColor;
+  font-size: $fontSize;
+  width: 33%;
+}
+
+.travel_destination_level {
+  font-size: $fontSize;
+  font-weight: normal;
+}
+
+.stroke {
+  background-color: #d8d8d8;
+  height: 28px;
+  margin-top: -2px;
+  width: 1px;
+}
+
+.travel_type_lift {
+  background-image: i.icon('leit-poi-lift');
+  background-size: $travelTypeSize;
+}
+
+.travel_type_ramp {
+  background-image: i.icon('leit-poi-rampe');
+  background-size: $travelTypeSize;
+}
+
+.travel_type_stairs {
+  background-image: i.icon('leit-poi-treppe');
+  background-size: $travelTypeSize;
+}
+
+.travel_type_default,
+.travel_type_escalator {
+  background-image: i.icon('leit-poi-rolltreppe');
+  background-size: $travelTypeSize;
+}
+
+.travel_direction_downstairs {
+  background-image: i.icon('leit-poi-down');
+  background-size: $travelDirectionSize;
+}
+
+.travel_direction_default,
+.travel_direction_upstairs {
+  background-image: i.icon('leit-poi-up');
+  background-size: $travelDirectionSize;
+}

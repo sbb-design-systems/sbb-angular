@@ -1,0 +1,47 @@
+load(
+    "//src/journey-maps:config.bzl",
+    "JOURNEY_MAPS_ENTRYPOINTS",
+    "JOURNEY_MAPS_MARKDOWN_TARGETS",
+    "JOURNEY_MAPS_TARGETS",
+    "JOURNEY_MAPS_TESTING_TARGETS",
+)
+load(
+    "//tools:defaults.bzl",
+    "markdown_to_html",
+    "ng_module",
+    "ng_package",
+)
+
+package(default_visibility = ["//visibility:public"])
+
+# Root "@sbb-esta/journey-maps" entry-point.
+ng_module(
+    name = "journey-maps",
+    srcs = glob(
+        ["*.ts"],
+        exclude = ["**/*.spec.ts"],
+    ),
+    deps = ["//src/journey-maps/%s" % p for p in JOURNEY_MAPS_ENTRYPOINTS],
+)
+
+markdown_to_html(
+    name = "overview",
+    srcs = glob(["*.md"]),
+)
+
+filegroup(
+    name = "overviews",
+    srcs = [":overview"] + ["//src/journey-maps/%s:overview" % name for name in JOURNEY_MAPS_MARKDOWN_TARGETS],
+)
+
+# Creates the @sbb-esta/journey-maps package published to npm.
+ng_package(
+    name = "npm_package",
+    srcs = [
+        "package.json",
+    ],
+    data = [
+    ],
+    tags = ["release-package"],
+    deps = JOURNEY_MAPS_TARGETS + JOURNEY_MAPS_TESTING_TARGETS,
+)

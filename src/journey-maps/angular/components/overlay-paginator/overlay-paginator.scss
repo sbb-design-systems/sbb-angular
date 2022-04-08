@@ -1,0 +1,37 @@
+@use '../../../../angular/styles/common' as esta;
+@use './../../style/icons' as i;
+
+$iconSize: 24px;
+
+.rokas-paginator {
+  display: flex;
+  justify-content: center;
+  height: $iconSize;
+
+  &-item {
+    cursor: pointer;
+    background-color: esta.$sbbColorBlack;
+    width: $iconSize;
+
+    &.var-next {
+      @include i.icon-mask('chevron-right');
+    }
+
+    &.var-previous {
+      @include i.icon-mask('chevron-left');
+    }
+
+    &.var-index {
+      @include i.icon-mask('paginator-inactive');
+
+      &.active {
+        @include i.icon-mask('paginator-active');
+      }
+    }
+
+    &.disabled {
+      cursor: not-allowed;
+      background-color: esta.$sbbColorCloud;
+    }
+  }
+}

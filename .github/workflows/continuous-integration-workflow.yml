@@ -31,7 +31,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v3
-    - name: "Bazel: Copy bazel.rc to user home"
+    - name: "Bazel: Copy .bazelrc to user home"
       run: cp ./.github/.bazelrc ~/
     - uses: actions/setup-node@v3
       with:
@@ -58,7 +58,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v3
-    - name: "Bazel: Copy bazel.rc to user home"
+    - name: "Bazel: Copy .bazelrc to user home"
       run: cp ./.github/.bazelrc ~/
     - uses: actions/setup-node@v3
       with:
@@ -87,7 +87,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v3
-    - name: "Bazel: Copy bazel.rc to user home"
+    - name: "Bazel: Copy .bazelrc to user home"
       run: cp ./.github/.bazelrc ~/
     - uses: actions/setup-node@v3
       with:
@@ -115,7 +115,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v3
-    - name: "Bazel: Copy bazel.rc to user home"
+    - name: "Bazel: Copy .bazelrc to user home"
       run: cp ./.github/.bazelrc ~/
     - uses: actions/setup-node@v3
       with:
@@ -129,6 +129,8 @@ jobs:
     - name: "Bazel: Build showcase"
       if: ${{ success() || failure() }}
       run: yarn -s build showcase
+      env:
+        JM_API_KEY: ${{ secrets.JM_API_KEY }}
     - name: "Bazel: Clean bazel disk cache"
       if: ${{ success() || failure() }}
       run: yarn -s bazel:cache clean --individualMaxSize=${{ env.BAZEL_CACHE_INTERMEDIATE_FILE_MAX_SIZE }}
@@ -138,6 +140,10 @@ jobs:
       with:
         key: bazel-cache-showcase
 
+    - name: "Deploy: Insert JM_API_KEY"
+      run: sed -i "s|</head>|<script>window.JM_API_KEY='$JM_API_KEY'</script></head>|" dist/releases/showcase/index.html
+      env:
+        JM_API_KEY: ${{ secrets.JM_API_KEY }}
     - name: "Deploy: Pack showcase"
       run: mv $(npm pack ./dist/releases/showcase | tail -n 1) sbb-esta-angular-showcase.tgz
     - name: "Artifact: Upload showcase merge artifact for pull request"

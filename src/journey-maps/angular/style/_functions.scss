@@ -1,0 +1,106 @@
+@use 'icons' as i;
+@use '../../../angular/styles/common' as esta;
+
+@mixin map-controls-shared {
+  button {
+    display: block;
+    width: 100%;
+    background-color: inherit;
+    border: 0;
+    padding: 0;
+  }
+
+  .map-control-container {
+    margin: 8px;
+    background: esta.$sbbColorWhite;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.25);
+    border-radius: 24px;
+
+    @include esta.mq($from: tabletPortrait) {
+      &.small-buttons {
+        margin: 6px;
+      }
+    }
+  }
+
+  .map-control-button-wrapper {
+    line-height: 36px;
+    padding: 6px;
+    width: 48px;
+
+    @include esta.mq($from: tabletPortrait) {
+      @at-root .map-control-container.small-buttons #{&} {
+        line-height: 26px;
+        padding: 3px;
+        width: 32px;
+      }
+    }
+  }
+}
+
+@mixin map-control-icon {
+  .map-control-button-wrapper {
+    // this makes sure we only show the hover effect when clicking on the button actually has an effect
+    // (i.e. NOT when the mouse is hovering over the outer edges of the button)
+    pointer-events: none;
+
+    border-radius: 24px;
+
+    @include esta.mq($from: tabletPortrait) {
+      @at-root .map-control-container.small-buttons #{&} {
+        border-radius: 16px;
+      }
+    }
+
+    &:not([data-disabled='true']):active {
+      @include _map-control-button-wrapper-active;
+    }
+
+    @media (hover: hover) {
+      &:not([data-disabled='true']):hover {
+        @include _map-control-button-wrapper-active;
+      }
+    }
+  }
+}
+
+@mixin _map-control-button-wrapper-active {
+  background-color: #212121;
+  background-clip: content-box;
+
+  .map-control-button {
+    background-color: esta.$sbbColorWhite;
+  }
+}
+
+@mixin map-control-icon-button($icon) {
+  .map-control-button {
+    background-color: #212121;
+    cursor: pointer;
+    height: 36px;
+    pointer-events: auto;
+    text-align: center;
+    @include i.icon-mask($icon);
+
+    &:not([disabled]):active {
+      background-color: esta.$sbbColorWhite;
+    }
+
+    @media (hover: hover) {
+      &:not([disabled]):hover {
+        background-color: esta.$sbbColorWhite;
+      }
+    }
+
+    &:disabled {
+      cursor: default;
+      background-color: esta.$sbbColorCloud;
+    }
+
+    @include esta.mq($from: tabletPortrait) {
+      @at-root .map-control-container.small-buttons #{&} {
+        height: 26px;
+      }
+    }
+  }
+}

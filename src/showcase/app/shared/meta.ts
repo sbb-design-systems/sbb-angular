@@ -149,6 +149,29 @@ export const PACKAGES: { [key: string]: ShowcaseMetaPackage } = {
       },
     ],
   },
+  'journey-maps': {
+    name: '@sbb-esta/journey-maps',
+    svgIcon: 'kom:switzerland-route-small',
+    image: 'assets/maps.jpg',
+    description: '',
+    sections: [
+      {
+        name: 'Introduction',
+        entries: [
+          { label: 'Getting started', link: './introduction/getting-started' },
+          { label: 'VS angular-maps', link: './introduction/comparison' },
+          {
+            label: 'Migrate from ROKAS',
+            link: './introduction/migrate-from-rokas',
+          },
+        ],
+      },
+      {
+        name: 'Components',
+        entries: [{ label: 'JourneyMaps', link: './components/angular' }],
+      },
+    ],
+  },
 };
 
 export function findPackageEntry(packageName: string, componentId: string): ShowcaseMetaEntry {

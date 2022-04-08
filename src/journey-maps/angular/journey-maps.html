@@ -1,0 +1,56 @@
+<sbb-attribution></sbb-attribution>
+<div class="jmc-container" lang="{{ language }}">
+  <div class="map-container" (touchstart)="onTouchStart($event)" (touchend)="onTouchEnd($event)">
+    <div
+      class="mod_map_container_mobile_overlay"
+      [ngClass]="touchOverlayStyleClass"
+      style="opacity: 0"
+    >
+      <span class="mod_map_container_mobile_overlay_icon_wrapper">
+        <div class="mod_svgsprite_icon mod_map_container_mobile_overlay_icon"></div>
+      </span>
+      <p class="mod_map_container_mobile_overlay_text">{{ touchOverlayText }}</p>
+    </div>
+    <sbb-feature-event-listener
+      [listenerOptions]="listenerOptions"
+      [map]="mapReady | async"
+      (featuresHoverChange)="featuresHoverChange.next($event)"
+      (featuresClick)="featuresClick.next($event); handleMarkerOrClusterClick($event.features)"
+      (featureSelectionsChange)="selectedFeaturesChange.next($event)"
+    ></sbb-feature-event-listener>
+    <sbb-marker-details
+      [selectedMarker]="selectedMarker"
+      [template]="markerDetailsTemplate"
+      [map]="mapReady | async"
+      [popup]="markerOptions.popup"
+      (closeClicked)="onMarkerUnselected()"
+    >
+    </sbb-marker-details>
+
+    <div class="map-widgets">
+      <sbb-zoom-controls
+        *ngIf="uiOptions.zoomControls"
+        [map]="mapReady | async"
+        [showSmallButtons]="uiOptions.showSmallButtons"
+      ></sbb-zoom-controls>
+      <sbb-basemap-switch
+        *ngIf="uiOptions.basemapSwitch"
+        [map]="mapReady | async"
+        [showSmallButtons]="uiOptions.showSmallButtons"
+        (toggleBasemap)="onToggleBasemap()"
+      ></sbb-basemap-switch>
+      <sbb-home-button
+        *ngIf="uiOptions.homeButton"
+        [map]="mapReady | async"
+        [showSmallButtons]="uiOptions.showSmallButtons"
+        (homeButtonClicked)="onHomeButtonClicked()"
+      ></sbb-home-button>
+      <sbb-level-switch
+        *ngIf="uiOptions.levelSwitch"
+        [map]="mapReady | async"
+        [showSmallButtons]="uiOptions.showSmallButtons"
+      ></sbb-level-switch>
+    </div>
+    <div class="map" #map></div>
+  </div>
+</div>

@@ -1,0 +1,23 @@
+<sbb-popup
+  [rendered]="overlayVisible"
+  [map]="map"
+  [template]="overlayTemplate"
+  [templateContext]="overlayFeatures"
+  [withPaginator]="true"
+  [position]="overlayPosition"
+  (closeClicked)="overlayVisible = false"
+  (mouseEvent)="onOverlayMouseEvent($event)"
+  *ngIf="overlayIsPopup"
+>
+</sbb-popup>
+
+<sbb-teaser
+  [rendered]="overlayVisible"
+  [template]="overlayTemplate"
+  [templateContext]="overlayFeatures"
+  [withPaginator]="true"
+  (closeClicked)="overlayVisible = false"
+  (mouseEvent)="onOverlayMouseEvent($event)"
+  *ngIf="!overlayIsPopup"
+>
+</sbb-teaser>
