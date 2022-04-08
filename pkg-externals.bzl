@@ -4,6 +4,7 @@
 
 load("//src/angular:config.bzl", "ANGULAR_ENTRYPOINTS")
 load("//src/angular-maps:config.bzl", "MAPS_ENTRYPOINTS")
+load("//src/journey-maps:config.bzl", "JOURNEY_MAPS_ENTRYPOINTS")
 
 # Base list of externals which should not be bundled into the APF package output.
 # Note that we want to disable sorting of the externals as we manually group entries.
@@ -47,6 +48,7 @@ PKG_EXTERNALS = [
     # Primary entry-points in the project.
     "@sbb-esta/angular",
     "@sbb-esta/angular-maps",
+    "@sbb-esta/journey-maps",
 
     # Third-party libraries.
     "@arcgis/core/Camera",
@@ -75,8 +77,10 @@ def setup_entry_point_externals(packageName, entryPoints):
 
 setup_entry_point_externals("angular", ANGULAR_ENTRYPOINTS)
 setup_entry_point_externals("angular-maps", MAPS_ENTRYPOINTS)
+setup_entry_point_externals("journey-maps", JOURNEY_MAPS_ENTRYPOINTS)
 
 # External module names in the examples package. Individual examples are grouped
 # by package and component, so we add configure such entry-points as external.
 setup_entry_point_externals("components-examples/angular", ANGULAR_ENTRYPOINTS)
 setup_entry_point_externals("components-examples/angular-maps", MAPS_ENTRYPOINTS)
+setup_entry_point_externals("components-examples/journey-maps", JOURNEY_MAPS_ENTRYPOINTS)

@@ -1,0 +1,19 @@
+<ng-container *ngIf="rendered">
+  <div #container class="teaser-container" @showHideTrigger>
+    <button
+      class="close"
+      (click)="closeClicked.emit()"
+      [attr.aria-label]="closeLabel"
+      data-testid="close-button"
+    ></button>
+
+    <sbb-overlay-paginator
+      *ngIf="withPaginator && templateContextSize > 1"
+      [index]="templateContextIndex"
+      [size]="templateContextSize"
+      (indexClicked)="onIndexSelected($event)"
+    >
+    </sbb-overlay-paginator>
+    <ng-container *ngTemplateOutlet="template!; context: getTemplateContext()"> </ng-container>
+  </div>
+</ng-container>

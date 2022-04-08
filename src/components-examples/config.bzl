@@ -50,4 +50,5 @@ ALL_EXAMPLES = [
     "//src/components-examples/angular-maps/esri-legend",
     "//src/components-examples/angular-maps/esri-web-map",
     "//src/components-examples/angular-maps/esri-web-scene",
+    "//src/components-examples/journey-maps/angular",
 ]

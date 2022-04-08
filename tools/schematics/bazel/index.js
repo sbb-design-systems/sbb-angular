@@ -225,7 +225,14 @@ var NgPackage = class extends NgModule {
     this.hasSchematics = dir.subdirs.includes((0, import_core4.fragment)("schematics"));
     this.hasSrcFiles = dir.subdirs.includes((0, import_core4.fragment)("src"));
     this.hasStyleBundle = dir.subfiles.includes((0, import_core4.fragment)("_style_bundle.scss"));
+    if (this.hasStyleBundle && !this._fileRegistry.scssLibaryFiles.find((s) => !s.path.includes("_style_bundle.scss"))) {
+      this.hasSassLibrary = false;
+    }
     this.hasTypography = dir.subfiles.includes((0, import_core4.fragment)("typography.scss"));
+    if (this.hasTypography) {
+      this.sassBinaries = this.sassBinaries.filter((s) => !s.path.includes("typography.scss"));
+      this.stylesheets = this.stylesheets.filter((s) => !s.includes("typography.css"));
+    }
     this.markdownModules = ngModules.filter((m) => m.hasMarkdown).map((m) => this._resolvePath(m));
   }
   _resolvePath(m) {
@@ -233,7 +240,8 @@ var NgPackage = class extends NgModule {
   }
   _templateOptions() {
     return __spreadProps(__spreadValues(__spreadProps(__spreadValues({}, import_core4.strings), {
-      uc: (s) => s.toUpperCase()
+      constant: (s) => s.replace(/-/g, "_").toUpperCase(),
+      bazelName: (s) => s.replace(/-/g, "_")
     }), this), {
       dependencies: this.dependencies.filter((d) => !d.startsWith(`//src/${this.name}`))
     });
@@ -309,20 +317,20 @@ var FlexibleSassDependencyResolver = class {
     });
   }
   _findStylesheetDependencies(file, moduleDir) {
-    const matches = file.content.toString().match(/(@import|@use) '([^']+)';/g);
+    const matches = file.content.toString().match(/(@import|@use) '([^']+)'[ \w]*;/g);
     if (!matches) {
       return [];
     }
-    return matches.filter((s) => !s.match(/@use ['"]sass:/)).map((s) => s.substring(9, s.length - 2)).map((importPath) => {
+    return matches.filter((s) => !s.match(/@use ['"]sass:/)).map((s) => s.substring(s.trim().startsWith("@use") ? 6 : 9, s.length - 2).replace(/['"][ \w]*/, "")).map((importPath) => {
       const occurence = Array.from(this._dependencyByOccurence.keys()).find((o) => importPath.includes(o));
       if (occurence) {
         return this._dependencyByOccurence.get(occurence);
-      } else if (this._isInModule((0, import_core5.join)((0, import_core5.dirname)(file.path), importPath), moduleDir)) {
-        return `:${(0, import_core5.basename)(moduleDir.path)}_scss_lib`;
       } else if (importPath.includes("/node_modules/")) {
         return this._npmDependencyResolver.toBazelNodeDependency(importPath.split("/node_modules/")[1]);
       } else if (importPath.includes("~")) {
         return this._npmDependencyResolver.toBazelNodeDependency(importPath.split("~")[1]);
+      } else if (this._isInModule((0, import_core5.join)((0, import_core5.dirname)(file.path), importPath), moduleDir)) {
+        return `:${(0, import_core5.basename)(moduleDir.path).replace(/-/g, "_")}_scss_lib`;
       } else {
         this._logger.warn(`${file.path}: Could not resolve stylesheet import '${importPath}'`);
         return "";

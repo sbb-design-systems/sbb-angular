@@ -27,6 +27,7 @@ ng_module(
         "//src/angular/sidebar",
         "//src/showcase/app/angular",
         "//src/showcase/app/angular-experimental",
+        "//src/showcase/app/journey-maps",
         "//src/showcase/app/maps",
         "//src/showcase/app/shared",
         "@npm//@angular/cdk",
