@@ -398,9 +398,9 @@
   resolved "https://registry.yarnpkg.com/@angular/core/-/core-9.0.0.tgz#227dc53e1ac81824f998c6e76000b7efc522641e"
   integrity sha512-6Pxgsrf0qF9iFFqmIcWmjJGkkCaCm6V5QNnxMy2KloO3SDq6QuMVRbN9RtC8Urmo25LP+eZ6ZgYqFYpdD8Hd9w==
 
-"@angular/dev-infra-private@https://github.com/angular/dev-infra-private-builds.git#6f3010d74e42721d7f38587664aa6d73f7b9b5dc":
-  version "0.0.0-dee9076d91fa4c2c3e9d27c2ae8996e7b7a93504"
-  resolved "https://github.com/angular/dev-infra-private-builds.git#6f3010d74e42721d7f38587664aa6d73f7b9b5dc"
+"@angular/dev-infra-private@https://github.com/angular/dev-infra-private-builds.git#ef14a042efaa4572d62ef555de2e1934478de2e9":
+  version "0.0.0-b14389086e2f486043fe660e280b9570db312810"
+  resolved "https://github.com/angular/dev-infra-private-builds.git#ef14a042efaa4572d62ef555de2e1934478de2e9"
   dependencies:
     "@angular-devkit/build-angular" "14.0.0-next.8"
     "@angular/benchpress" "0.3.0"
@@ -412,7 +412,7 @@
     "@bazel/runfiles" "5.4.0"
     "@bazel/terser" "5.4.0"
     "@bazel/typescript" "5.4.0"
-    "@microsoft/api-extractor" "7.21.1"
+    "@microsoft/api-extractor" "7.21.2"
     "@types/browser-sync" "^2.26.3"
     "@types/node" "16.10.9"
     "@types/node-fetch" "^2.5.10"
@@ -2927,10 +2927,10 @@
     source-map "~0.6.1"
     typescript "~4.5.2"
 
-"@microsoft/api-extractor@7.21.1":
-  version "7.21.1"
-  resolved "https://registry.yarnpkg.com/@microsoft/api-extractor/-/api-extractor-7.21.1.tgz#9e6eb31eb44f5d4913090df1e5865fda2c6c993c"
-  integrity sha512-mXcp07x92o6b9X9DcewHRBgrU0AVq5JBLWz6vaD9qe3GFoTOeVRu0gCENupayacOarWcX9JKH7qftXERz/AZKw==
+"@microsoft/api-extractor@7.21.2":
+  version "7.21.2"
+  resolved "https://registry.yarnpkg.com/@microsoft/api-extractor/-/api-extractor-7.21.2.tgz#0f524e7e1cf7b000924772fb8f6b5f60cf42fba8"
+  integrity sha512-m0+YPaXVou01O/V9swugZG7Gn4mw6HSWY+uisf0j2JPRZcoEDyoYe4hg0ERKXOEf0hByOnMLT28nQ82v8ig9Yw==
   dependencies:
     "@microsoft/api-extractor-model" "7.16.1"
     "@microsoft/tsdoc" "0.13.2"
