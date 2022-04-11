@@ -1,12 +1,11 @@
 load(
     "//tools:defaults.bzl",
-    "esbuild",
     "markdown_to_html",
     "ng_module",
     "sass_binary",
 )
 load("@build_bazel_rules_nodejs//:index.bzl", "pkg_npm")
-load("//tools/angular:index.bzl", "LINKER_PROCESSED_FW_PACKAGES")
+load("@npm//@angular/dev-infra-private/bazel/benchmark/app_bundling:index.bzl", "app_bundle")
 
 package(default_visibility = ["//visibility:public"])
 
@@ -20,18 +19,11 @@ pkg_npm(
     ],
 )
 
-esbuild(
+app_bundle(
     name = "bundle",
-    args = {
-        "resolveExtensions": [
-            ".mjs",
-            ".js",
-        ],
-        "sourcemap": True,
-    },
     entry_point = "main.prod.ts",
     minify = True,
-    deps = LINKER_PROCESSED_FW_PACKAGES + [
+    deps = [
         ":web-component",
         "@npm//@angular/common",
         "@npm//@angular/core",
