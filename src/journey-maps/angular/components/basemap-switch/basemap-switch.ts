@@ -6,7 +6,7 @@ import { SbbLocaleService } from '../../services/locale-service';
 @Component({
   selector: 'sbb-basemap-switch',
   templateUrl: './basemap-switch.html',
-  styleUrls: ['./basemap-switch.scss'],
+  styleUrls: ['./basemap-switch.css'],
 })
 export class SbbBasemapSwitch implements OnInit {
   @Input() map: MaplibreMap | null;
