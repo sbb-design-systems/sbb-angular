@@ -11,6 +11,7 @@ load("@npm//@angular/dev-infra-private/bazel/esbuild:index.bzl", _esbuild = "esb
 load("@npm//@angular/dev-infra-private/bazel/spec-bundling:index.bzl", _spec_bundle = "spec_bundle")
 load("@npm//@angular/dev-infra-private/bazel/http-server:index.bzl", _http_server = "http_server")
 load("@npm//@angular/dev-infra-private/bazel:extract_js_module_output.bzl", "extract_js_module_output")
+load("@npm//@angular/dev-infra-private/bazel/benchmark/app_bundling:index.bzl", _app_bundle = "app_bundle")
 load("@npm//@bazel/jasmine:index.bzl", _jasmine_node_test = "jasmine_node_test")
 load("@npm//@bazel/protractor:index.bzl", _protractor_web_test_suite = "protractor_web_test_suite")
 load("@npm//@bazel/concatjs:index.bzl", _ts_library = "ts_library")
@@ -33,6 +34,7 @@ markdown_to_html = _markdown_to_html
 esbuild = _esbuild
 esbuild_config = _esbuild_config
 http_server = _http_server
+app_bundle = _app_bundle
 
 def _compute_module_name(testonly):
     current_pkg = native.package_name()
