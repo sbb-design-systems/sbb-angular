@@ -11,30 +11,31 @@ Subscribe on the [SBB API Plattform](https://developer.sbb.ch/apis/journey-maps-
 ### Add the node dependencies in your Angular project
 
 ```sh
-npm install @sbb-esta/journey-maps
+npm install --save @sbb-esta/journey-maps
 ```
 
 ```sh
-npm install maplibre-gl@1.15.2
+npm install --save maplibre-gl@1.15.2
+npm install --save-dev @types/geojson
 ```
 
-**NOTE**
+**NOTE** \
 The `maplibre-gl` version compatible with this version of `journey-maps` is `1.15`.
 
-### Reference the MapLibre CSS
+### Reference the CSS
 
-in HTML:
+You should add the following two CSS files to your application:
 
-```html
-<link rel="stylesheet" href="https://unpkg.com/maplibre-gl@latest/dist/maplibre-gl.css" />
-```
+- `@maplibre-gl/dist/maplibre-gl.css` (Required)
+- `@sbb-esta/angular/typography.css` (Recommended)
 
-Or for example in the `styles` array of your `angular.json` file:
+You can add them for example in the `styles` array of your `angular.json` file:
 
 ```json lines
 "styles": [
   "src/styles.scss",
   "node_modules/maplibre-gl/dist/maplibre-gl.css"
+  "node_modules/@sbb-esta/angular/typography.css"
 ],
 ```
 
