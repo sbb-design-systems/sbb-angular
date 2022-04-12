@@ -51,7 +51,16 @@ import {
   Subject,
   Subscription,
 } from 'rxjs';
-import { delay, filter, map, mergeMap, startWith, switchMap, take, tap } from 'rxjs/operators';
+import {
+  delay,
+  distinctUntilChanged,
+  filter,
+  map,
+  startWith,
+  switchMap,
+  take,
+  tap,
+} from 'rxjs/operators';
 
 import {
   SbbAutocomplete,
@@ -201,7 +210,7 @@ export class SbbAutocompleteTrigger
       return;
     }
 
-    const onReady = autocomplete.options ? observableOf(null) : this._zone.onStable.asObservable();
+    const onReady = autocomplete.options ? observableOf(null) : this._zone.onStable.pipe(take(1));
     this._highlightSubscription = onReady
       .pipe(
         switchMap(() =>
@@ -220,15 +229,16 @@ export class SbbAutocompleteTrigger
         );
       });
 
-    this._connectedElementClassSubscription = onReady
-      .pipe(mergeMap(() => this.autocomplete._showPanel))
-      .subscribe((showPanel) => {
-        if (!showPanel) {
-          this._getConnectedElement().nativeElement.classList.remove('sbb-input-with-open-panel');
-          this._getConnectedElement().nativeElement.classList.remove(
-            'sbb-input-with-open-panel-above'
-          );
-        }
+    this._connectedElementClassSubscription = this.autocomplete._showPanel
+      .pipe(
+        distinctUntilChanged(),
+        filter((s) => !s)
+      )
+      .subscribe(() => {
+        this._getConnectedElement().nativeElement.classList.remove('sbb-input-with-open-panel');
+        this._getConnectedElement().nativeElement.classList.remove(
+          'sbb-input-with-open-panel-above'
+        );
       });
   }
   private _autocomplete: SbbAutocomplete;
