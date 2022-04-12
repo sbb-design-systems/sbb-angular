@@ -42,9 +42,7 @@ ng_package(
     ],
     data = [
     ],
-    nested_packages = [
-        "//src/journey-maps/web-component:npm_package",
-    ],
+    nested_packages = ["//src/journey-maps/web-component:npm_package"],
     tags = ["release-package"],
     deps = JOURNEY_MAPS_TARGETS + JOURNEY_MAPS_TESTING_TARGETS,
 )
