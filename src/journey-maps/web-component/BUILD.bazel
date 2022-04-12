@@ -1,6 +1,9 @@
 load(
     "//tools:defaults.bzl",
     "app_bundle",
+    "esbuild",
+    "html_insert_assets",
+    "http_server",
     "markdown_to_html",
     "ng_module",
     "pkg_npm",
@@ -8,6 +11,49 @@ load(
 )
 
 package(default_visibility = ["//visibility:public"])
+
+_DEV_SERVER_ASSETS = [
+    ":styles.css",
+    ":bundle.debug.js",
+]
+
+esbuild(
+    name = "showcase",
+    entry_point = "showcase.ts",
+    format = "esm",
+)
+
+html_insert_assets(
+    name = "index_html_dev",
+    outs = ["index.html"],
+    args = [
+        "--html=$(execpath :showcase.template.html)",
+        "--stamp=none",
+        "--out=$@",
+        "--roots=. $(RULEDIR)",
+        "--assets",
+    ] + ["$(execpath %s)" % s for s in _DEV_SERVER_ASSETS] + [
+        "--scripts --module showcase.js",
+    ],
+    data = [
+        ":showcase.template.html",
+        ":showcase.js",
+    ] + _DEV_SERVER_ASSETS,
+)
+
+http_server(
+    name = "devserver",
+    srcs = [
+        ":index.html",
+        ":showcase.js",
+    ] + _DEV_SERVER_ASSETS,
+    environment_variables = [
+        "JM_API_KEY",
+    ],
+    deps = [
+        ":index_html_dev",
+    ],
+)
 
 pkg_npm(
     name = "npm_package",
@@ -33,9 +79,15 @@ ng_module(
     name = "web-component",
     srcs = glob(
         ["**/*.ts"],
-        exclude = ["**/*.spec.ts"],
+        exclude = [
+            "**/*.spec.ts",
+            "showcase.ts",
+        ],
     ),
-    assets = [":styles.css"] + glob(["**/*.html"]),
+    assets = [":styles.css"] + glob(
+        ["**/*.html"],
+        exclude = ["showcase.template.html"],
+    ),
     deps = [
         "//src/journey-maps/angular",
         "@npm//@angular/common",
@@ -55,9 +107,4 @@ sass_binary(
 markdown_to_html(
     name = "overview",
     srcs = [":web-component.md"],
-)
-
-filegroup(
-    name = "source-files",
-    srcs = glob(["**/*.ts"]),
 )

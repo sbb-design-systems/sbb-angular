@@ -19,6 +19,7 @@ load("//:packages.bzl", "NO_STAMP_NPM_PACKAGE_SUBSTITUTIONS", "NPM_PACKAGE_SUBST
 load("//:pkg-externals.bzl", "PKG_EXTERNALS")
 load("//tools/markdown-to-html:index.bzl", _markdown_to_html = "markdown_to_html")
 load("//tools/angular:index.bzl", "LINKER_PROCESSED_FW_PACKAGES_TEST")
+load("@npm//html-insert-assets:index.bzl", _html_insert_assets = "html_insert_assets")
 
 _DEFAULT_TSCONFIG_BUILD = "//src:bazel-tsconfig-build.json"
 _DEFAULT_TSCONFIG_TEST = "//src:tsconfig-test"
@@ -35,6 +36,7 @@ esbuild = _esbuild
 esbuild_config = _esbuild_config
 http_server = _http_server
 app_bundle = _app_bundle
+html_insert_assets = _html_insert_assets
 
 def _compute_module_name(testonly):
     current_pkg = native.package_name()
