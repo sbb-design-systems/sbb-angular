@@ -1,6 +1,8 @@
 load(
     "//tools:defaults.bzl",
     "app_bundle",
+    "html_insert_assets",
+    "http_server",
     "markdown_to_html",
     "ng_module",
     "pkg_npm",
@@ -8,6 +10,37 @@ load(
 )
 
 package(default_visibility = ["//visibility:public"])
+
+_DEV_SERVER_ASSETS = [
+    ":styles.css",
+    ":bundle.debug.js",
+]
+
+html_insert_assets(
+    name = "index_html_dev",
+    outs = ["index.html"],
+    args = [
+        "--html=$(execpath :index.template.html)",
+        "--stamp=none",
+        "--out=$@",
+        "--roots=. $(RULEDIR)",
+        "--assets",
+    ] + ["$(execpath %s)" % s for s in _DEV_SERVER_ASSETS],
+    data = [
+        ":index.template.html",
+    ] + _DEV_SERVER_ASSETS,
+)
+
+http_server(
+    name = "devserver",
+    srcs = [":index.html"] + _DEV_SERVER_ASSETS,
+    environment_variables = [
+        "JM_API_KEY",
+    ],
+    deps = [
+        ":index_html_dev",
+    ],
+)
 
 pkg_npm(
     name = "npm_package",
@@ -35,7 +68,10 @@ ng_module(
         ["**/*.ts"],
         exclude = ["**/*.spec.ts"],
     ),
-    assets = [":styles.css"] + glob(["**/*.html"]),
+    assets = [":styles.css"] + glob(
+        ["**/*.html"],
+        exclude = ["index.template.html"],
+    ),
     deps = [
         "//src/journey-maps/angular",
         "@npm//@angular/common",

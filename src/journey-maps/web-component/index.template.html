@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <title>SBB Angular - Journey Maps Web Component</title>
+    <style type="text/css">
+      .main {
+        padding: 20px;
+      }
+
+      #container {
+        height: 70vh;
+        box-shadow: 0 0 10px rgb(0 0 0 / 25%);
+        border-radius: 2px;
+      }
+    </style>
+  </head>
+  <body>
+    <script>
+      var client = document.createElement('sbb-journey-maps-wc');
+      client.language = 'en';
+      client.apiKey = window.JM_API_KEY;
+
+      client.markerOptions = {
+        popup: false,
+        markers: [
+          {
+            id: 'velo',
+            title: 'Basel - Bahnhof SBB',
+            subtitle: 'Rent a Bike - Ihr Mietvelo',
+            position: [7.5897, 47.5476],
+            category: 'BIKE-PROFILE-SIGN-PARKING',
+          },
+          {
+            id: 'work',
+            title: 'Office',
+            subtitle: 'SBB Wylerpark',
+            position: [7.44645, 46.961409],
+            category: 'MISSED-CONNECTION',
+          },
+        ],
+      };
+      client.listenerOptions = {
+        MARKER: { watch: true },
+      };
+
+      client.addEventListener('zoomLevelsChange', (event) =>
+        console.log('Current zoom: ', event.detail.currentZoom)
+      );
+
+      document.addEventListener('DOMContentLoaded', () =>
+        document.getElementById('container').appendChild(client)
+      );
+    </script>
+
+    <div class="main">
+      <div id="container"></div>
+    </div>
+  </body>
+</html>
