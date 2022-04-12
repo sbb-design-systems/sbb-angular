@@ -26,7 +26,7 @@ angular_experimental_api_entry_points = EXPERIMENTAL_ENTRYPOINTS + EXPERIMENTAL_
 
 maps_api_entry_points = MAPS_ENTRYPOINTS + MAPS_TESTING_ENTRYPOINTS
 
-journey_maps_api_entry_points = [ep for ep in JOURNEY_MAPS_ENTRYPOINTS if not "web-component" in ep] + JOURNEY_MAPS_TESTING_ENTRYPOINTS
+journey_maps_api_entry_points = JOURNEY_MAPS_ENTRYPOINTS + JOURNEY_MAPS_TESTING_ENTRYPOINTS
 
 # List that contains all source files that need to be processed by Dgeni.
 api_source_files = ["//src/angular/%s:source-files" % name for name in angular_api_entry_points] + \

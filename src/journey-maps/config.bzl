@@ -5,7 +5,6 @@
 entry_points = [
     # do not sort
     "angular",
-    "web-component",
 ]
 
 # List of all non-testing entry-points of the Journey-maps package.

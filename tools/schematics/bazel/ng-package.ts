@@ -37,6 +37,9 @@ export class NgPackage extends NgModule {
       this.stylesheets = this.stylesheets.filter((s) => !s.includes('typography.css'));
     }
     this.markdownModules = ngModules.filter((m) => m.hasMarkdown).map((m) => this._resolvePath(m));
+    if (this.name === 'journey-maps') {
+      this.markdownModules.push('web-component');
+    }
   }
 
   private _resolvePath(m: NgModule) {
