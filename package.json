@@ -20,6 +20,7 @@
     "bazel:cache": "ts-node-script -T ./scripts/cache.ts",
     "start": "ibazel run //src/showcase:devserver",
     "start:prod": "ibazel run //src/showcase:prodserver",
+    "start:journey-maps-wc": "ibazel run //src/journey-maps/web-component:devserver",
     "test": "node ./scripts/run-component-tests.js",
     "test-local": "yarn -s test --local",
     "test-firefox": "yarn -s test --firefox",
