@@ -340,4 +340,4 @@ specific role makes sense, `role="region"` is again a good fallback.
 
 The sidebar has the ability to capture focus. This behavior is turned on for mobile devices and it is off for desktop devices.
 
-By default the first tabbable element will recieve focus upon open. If you want a different element to be focused, you can set the `cdkFocusInitial` attribute on it.
+By default the first tabbable element will receive focus upon open. If you want a different element to be focused, you can set the `cdkFocusInitial` attribute on it.
