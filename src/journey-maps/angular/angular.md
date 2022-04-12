@@ -19,7 +19,7 @@ npm install --save maplibre-gl@1.15.2
 npm install --save-dev @types/geojson
 ```
 
-**NOTE**
+**NOTE** \
 The `maplibre-gl` version compatible with this version of `journey-maps` is `1.15`.
 
 ### Reference the CSS
