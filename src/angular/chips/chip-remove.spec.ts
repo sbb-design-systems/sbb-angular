@@ -1,6 +1,7 @@
 import { Component, DebugElement } from '@angular/core';
 import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
+import { dispatchMouseEvent } from '@sbb-esta/angular/core/testing';
 import { SbbIconModule } from '@sbb-esta/angular/icon';
 import { SbbIconTestingModule } from '@sbb-esta/angular/icon/testing';
 
@@ -77,6 +78,14 @@ describe('Chip Remove', () => {
       fixture.detectChanges();
 
       expect(testChip.didRemove).not.toHaveBeenCalled();
+    });
+
+    it('should prevent the default click action', () => {
+      const buttonElement = chipNativeElement.querySelector('button')!;
+      const event = dispatchMouseEvent(buttonElement, 'click');
+      fixture.detectChanges();
+
+      expect(event.defaultPrevented).toBe(true);
     });
   });
 

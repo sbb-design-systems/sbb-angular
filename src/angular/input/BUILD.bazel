@@ -21,6 +21,7 @@ ng_module(
         "@npm//@angular/cdk",
         "@npm//@angular/core",
         "@npm//@angular/forms",
+        "@npm//rxjs",
     ],
 )
 
