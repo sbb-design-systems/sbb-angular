@@ -454,23 +454,6 @@ describe('SbbDatepicker', () => {
       });
     });
 
-    describe('datepicker with formControl', () => {
-      let fixture: ComponentFixture<DatepickerWithFormControlComponent>;
-      let testComponent: DatepickerWithFormControlComponent;
-
-      beforeEach(fakeAsync(() => {
-        fixture = createComponent(DatepickerWithFormControlComponent);
-        fixture.detectChanges();
-
-        testComponent = fixture.componentInstance;
-      }));
-
-      afterEach(fakeAsync(() => {
-        testComponent.datepicker.close();
-        fixture.detectChanges();
-      }));
-    });
-
     describe('datepicker with sbb-datepicker-toggle', () => {
       let fixture: ComponentFixture<DatepickerWithToggleComponent>;
       let testComponent: DatepickerWithToggleComponent;
@@ -964,19 +947,6 @@ class DatepickerWithStartAtComponent {
 })
 class DatepickerWithNgModelComponent {
   selected: Date | null = null;
-  @ViewChild('d') datepicker: SbbDatepicker<Date>;
-  @ViewChild(SbbDateInput) datepickerInput: SbbDateInput<Date>;
-}
-
-@Component({
-  template: `
-    <sbb-datepicker #d>
-      <input [formControl]="formControl" sbbDateInput />
-    </sbb-datepicker>
-  `,
-})
-class DatepickerWithFormControlComponent {
-  formControl = new FormControl();
   @ViewChild('d') datepicker: SbbDatepicker<Date>;
   @ViewChild(SbbDateInput) datepickerInput: SbbDateInput<Date>;
 }
