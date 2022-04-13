@@ -91,9 +91,9 @@ export class SbbNotificationToast implements OnDestroy {
    * @param component Component to be instantiated.
    * @param config Extra configuration for the notification toast.
    */
-  openFromComponent<T>(
+  openFromComponent<T, D = any>(
     component: ComponentType<T>,
-    config?: SbbNotificationToastConfig
+    config?: SbbNotificationToastConfig<D>
   ): SbbNotificationToastRef<T> {
     return this._attach(component, config) as SbbNotificationToastRef<T>;
   }
