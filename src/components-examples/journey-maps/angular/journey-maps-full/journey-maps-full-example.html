@@ -115,7 +115,7 @@
             >
           </sbb-select>
         </sbb-form-field>
-        <sbb-form-field label="Select a journey / transfer">
+        <sbb-form-field label="Select route">
           <sbb-select formControlName="routingGeoJson" placeholder="(none)">
             <sbb-option *ngFor="let input of journeyMapsRoutingOptions" [value]="input.value">
               {{input.label}}

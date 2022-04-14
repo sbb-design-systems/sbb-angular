@@ -9,10 +9,10 @@ import {
   OnInit,
   Output,
   SimpleChanges,
-  TemplateRef,
   ViewChild,
 } from '@angular/core';
 
+import { SbbTemplateType } from '../../journey-maps.interfaces';
 import { SbbLocaleService } from '../../services/locale-service';
 
 @Component({
@@ -33,7 +33,7 @@ import { SbbLocaleService } from '../../services/locale-service';
 export class SbbTeaser implements OnInit, OnChanges {
   @Input() rendered: boolean;
   @Input() templateContext: any;
-  @Input() template: TemplateRef<any> | undefined;
+  @Input() template: SbbTemplateType;
   @Input() withPaginator: boolean = false;
   @Output() closeClicked: EventEmitter<void> = new EventEmitter<void>();
   @Output() mouseEvent: EventEmitter<'enter' | 'leave'> = new EventEmitter<'enter' | 'leave'>();
