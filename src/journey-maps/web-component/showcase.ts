@@ -36,12 +36,12 @@ function addClickListener(client: HTMLElement & SbbJourneyMaps) {
     if (isCustomEvent(event)) {
       const detail: SbbFeaturesClickEventData = event.detail;
       const feature = detail.features?.[0];
-      switch (feature.featureDataType) {
+      switch (feature?.featureDataType) {
         case 'MARKER':
-          updateMarkerDetailsTemplate(client, feature);
+          updateMarkerDetailsTemplate(feature);
           break;
         case 'STATION':
-          updateStationTemplate(client, feature);
+          updateStationTemplate(feature);
           break;
       }
     }
@@ -67,22 +67,22 @@ function createStationTemplate(client: SbbJourneyMapsElement) {
   document.getElementById('main')!.appendChild(template);
 }
 
-function updateMarkerDetailsTemplate(client: SbbJourneyMapsElement, marker: SbbFeatureData) {
+function updateMarkerDetailsTemplate(marker: SbbFeatureData) {
   const template = document.getElementById('markerDetailsTemplate')!;
   template.innerHTML = `
     <div>
-      <div>${marker?.properties?.title}</div>
-      <div>${marker?.properties?.subtitle}</div>
+      <div>${marker.properties?.title}</div>
+      <div>${marker.properties?.subtitle}</div>
     </div>
   `;
 }
 
-function updateStationTemplate(client: SbbJourneyMapsElement, station: SbbFeatureData) {
+function updateStationTemplate(station: SbbFeatureData) {
   const template = document.getElementById('stationTemplate')!;
   template.innerHTML = `
     <div>
-      <div>${station?.properties?.name}</div>
-      <div>${station?.properties?.uic_ref}</div>
+      <div>${station.properties?.name}</div>
+      <div>${station.properties?.uic_ref}</div>
     </div>
   `;
 }
