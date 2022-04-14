@@ -5,9 +5,21 @@ COPY ./.github/default.conf /etc/nginx/conf.d/default.conf
 
 # Copy showcase
 COPY ./dist/releases/showcase /usr/share/nginx/html
+
 USER root
+
+# Add configuration for ngssc
+RUN echo '{"variant":"global","environmentVariables":["JM_API_KEY"],"filePattern":"index.html"}' > /usr/share/nginx/html/ngssc.json
+
+# Add write permission for random user for the index.html
 RUN chmod +w /usr/share/nginx/html/index.html
-USER $UID
+
+# Install ngssc binary
+ADD https://github.com/kyubisation/angular-server-side-configuration/releases/download/v13.2.1/ngssc_64bit /usr/sbin/ngssc
+RUN chmod +x /usr/sbin/ngssc
 
 # Copy insert key script and assign execute permission
-COPY ./scripts/insert_key.sh /docker-entrypoint.d/insert_key.sh
+COPY ./scripts/ngssc.sh /docker-entrypoint.d/ngssc.sh
+RUN chmod +x /docker-entrypoint.d/ngssc.sh
+
+USER $UID
