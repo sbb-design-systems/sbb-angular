@@ -2,7 +2,7 @@
   [rendered]="shouldRender"
   [templateContext]="selectedMarker"
   (closeClicked)="closeClicked.next()"
-  [template]="template"
+  [template]="template!"
   [attr.aria-live]="'polite'"
   *ngIf="!popup"
 ></sbb-teaser>
@@ -13,7 +13,7 @@
   [position]="getLngLatLike(selectedMarker?.position)"
   [offset]="popupOffset"
   (closeClicked)="closeClicked.next()"
-  [template]="template"
+  [template]="template!"
   [additionalClassName]="'marker-details'"
   *ngIf="popup"
 >

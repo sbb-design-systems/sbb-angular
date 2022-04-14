@@ -7,11 +7,11 @@ import {
   OnChanges,
   Output,
   SimpleChanges,
-  TemplateRef,
 } from '@angular/core';
 import { Position } from 'geojson';
 import { LngLatLike, Map as MaplibreMap, Offset } from 'maplibre-gl';
 
+import { SbbTemplateType } from '../../journey-maps.interfaces';
 import { SbbMarker } from '../../model/marker';
 import { SbbMapMarkerService } from '../../services/map/map-marker-service';
 
@@ -22,7 +22,7 @@ import { SbbMapMarkerService } from '../../services/map/map-marker-service';
 })
 export class SbbMarkerDetails implements OnChanges {
   @Input() selectedMarker: SbbMarker | undefined;
-  @Input() template?: TemplateRef<any>;
+  @Input() template?: SbbTemplateType;
   @Input() popup: boolean | undefined;
   @Input() map: MaplibreMap | null;
   @Output() closeClicked: EventEmitter<void> = new EventEmitter<void>();

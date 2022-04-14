@@ -69,3 +69,47 @@ document.addEventListener('DOMContentLoaded', () =>
   document.getElementById('container').appendChild(client)
 );
 ```
+
+### Define templates for click or hover events
+
+The usage of templates (e.g. what to display in the popup when a marker is clicked) is a little bit different than with Angular.
+
+We use the [HTML template tag](https://developer.mozilla.org/de/docs/Web/HTML/Element/template) (`<template>`) instead of `<ng-template>`.
+
+The first step is to define the template and its id attribute:
+
+```html
+<template id="myTemplate">
+  <div>Hello World</div>
+</template>
+```
+
+Then you pass the id of the template to the client:
+
+```js
+// Set the template
+client.markerDetailsTemplate = 'myTemplate';
+
+// Make markers clickable
+client.listenerOptions = {
+  MARKER: { watch: true },
+};
+```
+
+Now you can click on a marker and your template will be displayed in the defined overlay. (teaser or popup)
+
+Normally you want the content of your template to differ depending on what has been selected.
+This can be achieved if you register to one of our output events (e.g. `featuresClick`) and update your template when an event occurs.
+
+```js
+client.addEventListener('featuresClick', (event) => {
+  const feature = event.detail?.features?.[0];
+  if (feature?.featureDataType === 'MARKER') {
+    document.getElementById('myTemplate').innerHTML = `Hello this is ${feature.properties?.title}`;
+  }
+});
+```
+
+**NOTE** \
+Don't replace the whole template node. Just update its content.
+Because internally we are using an [MutationObserver](https://developer.mozilla.org/de/docs/Web/API/MutationObserver) to watch for changes.
