@@ -102,7 +102,7 @@
     "@types/glob": "7.2.0",
     "@types/grecaptcha": "2.0.36",
     "@types/highlight.js": "10.1.0",
-    "@types/jasmine": "4.0.2",
+    "@types/jasmine": "4.0.3",
     "@types/jasminewd2": "2.0.10",
     "@types/marked": "^2.0.2",
     "@types/node": "16.11.26",
