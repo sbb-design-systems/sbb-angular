@@ -1,4 +1,8 @@
-import { SbbJourneyMaps } from '@sbb-esta/journey-maps/angular';
+import {
+  SbbFeatureData,
+  SbbFeaturesClickEventData,
+  SbbJourneyMaps,
+} from '@sbb-esta/journey-maps/angular';
 
 function addMarkers(client: SbbJourneyMapsElement) {
   client.markerOptions = {
@@ -27,14 +31,60 @@ function addMarkers(client: SbbJourneyMapsElement) {
   return client;
 }
 
-function addEventListeners(client: HTMLElement & SbbJourneyMaps) {
-  client.addEventListener('zoomLevelsChange', (event: Event) => {
-    if (!isCustomEvent(event)) {
-      throw new Error('Illegal event type');
+function addClickListener(client: HTMLElement & SbbJourneyMaps) {
+  client.addEventListener('featuresClick', (event) => {
+    if (isCustomEvent(event)) {
+      const detail: SbbFeaturesClickEventData = event.detail;
+      const feature = detail.features?.[0];
+      switch (feature.featureDataType) {
+        case 'MARKER':
+          updateMarkerDetailsTemplate(client, feature);
+          break;
+        case 'STATION':
+          updateStationTemplate(client, feature);
+          break;
+      }
     }
-
-    console.log('Current zoom: ', event.detail.currentZoom);
   });
+}
+
+function createMarkerDetailsTemplate(client: SbbJourneyMapsElement) {
+  const template = document.createElement('template');
+  template.id = 'markerDetailsTemplate';
+
+  client.markerDetailsTemplate = template.id;
+  document.getElementById('main')!.appendChild(template);
+}
+
+function createStationTemplate(client: SbbJourneyMapsElement) {
+  const template = document.createElement('template');
+  template.id = 'stationTemplate';
+
+  client.listenerOptions = {
+    ...client.listenerOptions,
+    STATION: { watch: true, popup: true, clickTemplate: template.id, selectionMode: 'single' },
+  };
+  document.getElementById('main')!.appendChild(template);
+}
+
+function updateMarkerDetailsTemplate(client: SbbJourneyMapsElement, marker: SbbFeatureData) {
+  const template = document.getElementById('markerDetailsTemplate')!;
+  template.innerHTML = `
+    <div>
+      <div>${marker?.properties?.title}</div>
+      <div>${marker?.properties?.subtitle}</div>
+    </div>
+  `;
+}
+
+function updateStationTemplate(client: SbbJourneyMapsElement, station: SbbFeatureData) {
+  const template = document.getElementById('stationTemplate')!;
+  template.innerHTML = `
+    <div>
+      <div>${station?.properties?.name}</div>
+      <div>${station?.properties?.uic_ref}</div>
+    </div>
+  `;
 }
 
 function createSbbJourneyMapsElement() {
@@ -43,9 +93,11 @@ function createSbbJourneyMapsElement() {
   client.apiKey = window.JM_API_KEY;
 
   addMarkers(client);
-  addEventListeners(client);
+  createMarkerDetailsTemplate(client);
+  createStationTemplate(client);
+  addClickListener(client);
 
-  return client;
+  document.getElementById('container')!.appendChild(client);
 }
 
 function isCustomEvent(event: Event): event is CustomEvent {
@@ -61,6 +113,6 @@ declare global {
 type SbbJourneyMapsElement = HTMLElement & SbbJourneyMaps;
 
 // Add custom element to DOM
-document.addEventListener('DOMContentLoaded', () =>
-  document.getElementById('container')!.appendChild(createSbbJourneyMapsElement())
-);
+document.addEventListener('DOMContentLoaded', () => {
+  createSbbJourneyMapsElement();
+});

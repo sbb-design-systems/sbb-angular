@@ -11,7 +11,6 @@ import {
   OnInit,
   Output,
   SimpleChanges,
-  TemplateRef,
   ViewChild,
 } from '@angular/core';
 import { LngLatBounds, LngLatLike, Map as MaplibreMap } from 'maplibre-gl';
@@ -31,6 +30,7 @@ import {
   SbbListenerOptions,
   SbbMarkerOptions,
   SbbStyleOptions,
+  SbbTemplateType,
   SbbUIOptions,
   SbbViewportOptions,
   SbbZoomLevels,
@@ -83,7 +83,7 @@ export class SbbJourneyMaps implements OnInit, AfterViewInit, OnDestroy, OnChang
    *
    * <b>NOTE:</b> This does not work - at the moment - when using the Web Component version of the library.
    */
-  @Input() markerDetailsTemplate?: TemplateRef<any>;
+  @Input() markerDetailsTemplate?: SbbTemplateType;
   /** Which (floor-)level should be shown */
   @Input() selectedLevel: number;
   @Input() listenerOptions: SbbListenerOptions;

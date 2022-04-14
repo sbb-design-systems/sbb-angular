@@ -15,12 +15,13 @@ import {
   SbbViewportOptions,
   SbbZoomLevels,
 } from '@sbb-esta/journey-maps';
-import { LngLatBoundsLike, LngLatLike } from 'maplibre-gl';
+import { LngLatBounds, LngLatBoundsLike, LngLatLike } from 'maplibre-gl';
 import { BehaviorSubject, filter, Subject, take } from 'rxjs';
 import { map, takeUntil } from 'rxjs/operators';
 
 import { zhShWaldfriedhof } from './mock-response/journey/zh-sh_waldfriedhof';
 import { markers } from './mock-response/markers';
+import { bnLsRoutes } from './mock-response/routes/bn-ls';
 import { bernIndoor } from './mock-response/transfer/bern-indoor';
 import { geneveIndoor } from './mock-response/transfer/geneve-indoor';
 import { luzern4j } from './mock-response/transfer/luzern4-j';
@@ -68,6 +69,7 @@ export class JourneyMapsFullExample implements OnInit, OnDestroy {
   journeyMapsRoutingOptions = [
     { label: '(none)', value: undefined },
     { label: 'Zürich - Schaffhausen, Waldfriedhof', value: { journey: zhShWaldfriedhof } },
+    { label: 'Bern - Lausanne', value: { routes: bnLsRoutes } },
     { label: 'Transfer Bern', value: { transfer: bernIndoor } },
     { label: 'Transfer Genf', value: { transfer: geneveIndoor } },
     { label: 'Transfer Luzern', value: { transfer: luzern4j } },
@@ -152,7 +154,7 @@ export class JourneyMapsFullExample implements OnInit, OnDestroy {
       .get('routingGeoJson')
       ?.valueChanges.pipe(takeUntil(this._destroyed))
       .subscribe((val: SbbJourneyMapsRoutingOptions) => {
-        const bbox = val?.journey?.bbox ?? val?.transfer?.bbox;
+        const bbox = this._getBbox(val);
         if (bbox) {
           this._setBbox(bbox);
           this.mapCenterChange.pipe(take(1)).subscribe(() => {
@@ -164,6 +166,30 @@ export class JourneyMapsFullExample implements OnInit, OnDestroy {
           this.journeyMapsRoutingOption = val;
         }
       });
+  }
+
+  private _getBbox(options: SbbJourneyMapsRoutingOptions) {
+    if (!options) {
+      return;
+    }
+
+    if (options.journey) {
+      return options.journey.bbox;
+    }
+    if (options.transfer) {
+      return options.transfer.bbox;
+    }
+
+    if (options.routes) {
+      const bounds = new LngLatBounds();
+      options.routes
+        .filter((r) => r.bbox)
+        .forEach((r) => bounds.extend(r.bbox as [number, number, number, number]));
+
+      return bounds;
+    }
+
+    return;
   }
 
   ngOnDestroy(): void {
@@ -194,10 +220,14 @@ export class JourneyMapsFullExample implements OnInit, OnDestroy {
     return Object.keys(listenerOptions.controls);
   }
 
-  private _setBbox(bbox: number[]): void {
+  private _setBbox(bbox: number[] | LngLatBounds): void {
     this.viewportOptions = {
       ...this.viewportOptions,
-      boundingBox: this.bboxToLngLatBounds(bbox),
+      boundingBox: this._isLngLatBounds(bbox) ? bbox : this.bboxToLngLatBounds(bbox),
     };
+  }
+
+  private _isLngLatBounds(bbox: number[] | LngLatBounds): bbox is LngLatBounds {
+    return (bbox as LngLatBounds).getWest !== undefined;
   }
 }
