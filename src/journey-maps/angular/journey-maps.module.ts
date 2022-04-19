@@ -11,8 +11,8 @@ import { SbbMarkerDetails } from './components/marker-details/marker-details';
 import { SbbOverlayPaginator } from './components/overlay-paginator/overlay-paginator';
 import { SbbPopup } from './components/popup/popup';
 import { SbbTeaser } from './components/teaser/teaser';
-import { SbbTemplateRenderer } from './components/template-renderer/template-renderer';
 import { SbbZoomControls } from './components/zoom-controls/zoom-controls';
+import { SbbTemplateOutlet } from './directives/TemplateOutlet';
 import { SbbJourneyMaps } from './journey-maps';
 
 @NgModule({
@@ -29,7 +29,7 @@ import { SbbJourneyMaps } from './journey-maps';
     SbbLeitPoi,
     SbbHomeButton,
     SbbOverlayPaginator,
-    SbbTemplateRenderer,
+    SbbTemplateOutlet,
   ],
   imports: [CommonModule],
   exports: [SbbJourneyMaps],

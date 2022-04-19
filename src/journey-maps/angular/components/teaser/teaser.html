@@ -15,7 +15,6 @@
     >
     </sbb-overlay-paginator>
 
-    <sbb-template-renderer [template]="template" [templateContext]="getTemplateContext()">
-    </sbb-template-renderer>
+    <div [sbbTemplateOutlet]="template" [sbbTemplateOutletContext]="getTemplateContext()"></div>
   </div>
 </ng-container>
