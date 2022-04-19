@@ -11,10 +11,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { SbbJourneyMaps, SbbJourneyMapsModule } from '@sbb-esta/journey-maps/angular';
 
 @NgModule({
-  declarations: [],
   imports: [HttpClientModule, BrowserAnimationsModule, SbbJourneyMapsModule],
-  providers: [],
-  bootstrap: [],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
 })
 export class SbbJourneyMapsCustomElementModule implements DoBootstrap {
