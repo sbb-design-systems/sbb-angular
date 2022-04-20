@@ -1,1 +1,0 @@
-sed -i "s|</head>|<script>window.JM_API_KEY=\'$JM_API_KEY\'</script></head>|" /usr/share/nginx/html/index.html

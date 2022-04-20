@@ -59,8 +59,8 @@
     "@angular/router": "13.3.3",
     "@arcgis/core": "~4.20.2",
     "@stackblitz/sdk": "1.6.0",
-    "rxjs": "7.5.5",
     "maplibre-gl": "1.15.3",
+    "rxjs": "7.5.5",
     "tslib": "2.3.1",
     "zone.js": "0.11.5"
   },
@@ -110,6 +110,7 @@
     "@types/sass": "1.43.1",
     "@types/send": "0.17.1",
     "@types/yargs": "17.0.10",
+    "angular-server-side-configuration": "^13.2.1",
     "angular-t9n": "13.0.0",
     "browser-sync": "2.23.6",
     "codelyzer": "6.0.2",
