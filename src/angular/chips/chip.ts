@@ -71,9 +71,7 @@ const _SbbChipMixinBase = mixinTabIndex(SbbChipBase, -1);
 })
 export class SbbChipTrailingIcon {}
 
-/**
- * Design styled Chip component. Used inside the SbbChipList component.
- */
+/** SBB Design styled chip directive. Used inside the MatChipList component. */
 @Component({
   selector: `sbb-basic-chip, [sbb-basic-chip], sbb-chip, [sbb-chip]`,
   inputs: ['tabIndex'],
