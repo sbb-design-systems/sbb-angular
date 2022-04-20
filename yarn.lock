@@ -4735,7 +4735,7 @@ amdefine@>=0.0.4:
   resolved "https://registry.yarnpkg.com/amdefine/-/amdefine-1.0.1.tgz#4a5282ac164729e93619bcfd3ad151f817ce91f5"
   integrity sha1-SlKCrBZHKek2Gbz9OtFR+BfOkfU=
 
-angular-server-side-configuration@^13.2.1:
+angular-server-side-configuration@13.2.1:
   version "13.2.1"
   resolved "https://registry.yarnpkg.com/angular-server-side-configuration/-/angular-server-side-configuration-13.2.1.tgz#f9c39e8a441e2a30c72a2c81cb342f8c10316ae2"
   integrity sha512-9zhc0LhF779/iUcdvmf5yXIL4AFH67NRrvCZMBtfvokbCVgijOoHjPvdAjD+XJlojwzx6p/pn6E4YTeIAxU7TA==
