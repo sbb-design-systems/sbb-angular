@@ -2,6 +2,28 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [13.13.0](https://github.com/sbb-design-systems/sbb-angular/compare/13.12.0...13.13.0) (2022-04-21)
+
+
+### Features
+
+* **angular/select:** allow user-defined aria-describedby ([#1402](https://github.com/sbb-design-systems/sbb-angular/issues/1402)) ([0de0096](https://github.com/sbb-design-systems/sbb-angular/commit/0de00960f0a8b89f1e6bc84f7781f84bbf7b4a34))
+* **journey-maps:** migrate web component ([#1403](https://github.com/sbb-design-systems/sbb-angular/issues/1403)) ([5fae5ba](https://github.com/sbb-design-systems/sbb-angular/commit/5fae5ba54d2a99dfd8770d892eb5260611415866))
+
+
+### Bug Fixes
+
+* **angular/chips:** prevent default behavior on remove button ([#1393](https://github.com/sbb-design-systems/sbb-angular/issues/1393)) ([78fa29b](https://github.com/sbb-design-systems/sbb-angular/commit/78fa29b5e969951518372385227899da0e22f830))
+* **angular/styles:** provide missing colors smoke, charcoal and midnight as vars ([#1396](https://github.com/sbb-design-systems/sbb-angular/issues/1396)) ([f9dd524](https://github.com/sbb-design-systems/sbb-angular/commit/f9dd524ee5ed2931a2aae1b35d44952264576196))
+* **angular/toast:** update generic types for openFromComponent ([#1392](https://github.com/sbb-design-systems/sbb-angular/issues/1392)) ([015bf32](https://github.com/sbb-design-systems/sbb-angular/commit/015bf32716159f2f8e95f98308deef9f4feb6d37))
+* **deps:** update angular to v13.3.4 ([833e63f](https://github.com/sbb-design-systems/sbb-angular/commit/833e63f0cbc324222b2461389b36340ebbe508d1))
+* **deps:** update dependency maplibre-gl to v1.15.3 ([4c9f2b1](https://github.com/sbb-design-systems/sbb-angular/commit/4c9f2b1eb32e1362f779c0877a1bd8507a798172))
+
+
+### Documentation
+
+* fix readme title ([#1394](https://github.com/sbb-design-systems/sbb-angular/issues/1394)) ([55178cd](https://github.com/sbb-design-systems/sbb-angular/commit/55178cd8c098295bcedd29328e2a9174de42fccc))
+
 ## [13.12.0](https://github.com/sbb-design-systems/sbb-angular/compare/13.11.0...13.12.0) (2022-04-12)
 
 
