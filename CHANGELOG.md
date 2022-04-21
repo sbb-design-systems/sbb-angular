@@ -2,6 +2,32 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [13.12.0](https://github.com/sbb-design-systems/sbb-angular/compare/13.11.0...13.12.0) (2022-04-12)
+
+
+### Features
+
+* **angular/tooltip:** allow zero padding styling ([#1379](https://github.com/sbb-design-systems/sbb-angular/issues/1379)) ([2952482](https://github.com/sbb-design-systems/sbb-angular/commit/29524828c8f262caf8e38482f6e0f0282db55062)), closes [#939](https://github.com/sbb-design-systems/sbb-angular/issues/939)
+* **angular/tooltip:** provide style class to use tooltip inline ([#1376](https://github.com/sbb-design-systems/sbb-angular/issues/1376)) ([9531986](https://github.com/sbb-design-systems/sbb-angular/commit/953198602c7c493731d176f25e46400c148332c8)), closes [#1375](https://github.com/sbb-design-systems/sbb-angular/issues/1375)
+* **journey-maps:** migrate journey-maps to sbb-angular ([#1285](https://github.com/sbb-design-systems/sbb-angular/issues/1285)) ([9fbf6db](https://github.com/sbb-design-systems/sbb-angular/commit/9fbf6dbf8939558ee58ee5e66a6a55df16290ccb))
+
+
+### Bug Fixes
+
+* **angular/autocomplete:** prevent clean-up from repeatedly being called ([#1386](https://github.com/sbb-design-systems/sbb-angular/issues/1386)) ([b528551](https://github.com/sbb-design-systems/sbb-angular/commit/b5285510499181b026baa654008098f9fe542062))
+* **angular/checkbox:** add the boolean property coercion for checked input ([#1365](https://github.com/sbb-design-systems/sbb-angular/issues/1365)) ([1f7355a](https://github.com/sbb-design-systems/sbb-angular/commit/1f7355a2c936cd0c24fd8e758f5cb35120458aa3))
+* **angular/datepicker:** avoid rerender when min/maxDate changes to different time on the same day ([#1361](https://github.com/sbb-design-systems/sbb-angular/issues/1361)) ([8ebb53c](https://github.com/sbb-design-systems/sbb-angular/commit/8ebb53cb257a20e4822c23e6bb57ed8fe8cc5e0c))
+* **angular/tabs:** wrong scroll distance if selected tab is removed ([#1360](https://github.com/sbb-design-systems/sbb-angular/issues/1360)) ([b225276](https://github.com/sbb-design-systems/sbb-angular/commit/b225276ef0d17fe053035e8afe1c6cb1cc792ee6))
+* **deps:** pin dependency maplibre-gl to v ([66d413f](https://github.com/sbb-design-systems/sbb-angular/commit/66d413f49680e6d7ead85880cefce1f5f9e1e247))
+
+
+### Documentation
+
+* **angular/sidebar:** typo ([#1387](https://github.com/sbb-design-systems/sbb-angular/issues/1387)) ([b08c890](https://github.com/sbb-design-systems/sbb-angular/commit/b08c8906a8e85d458ea608581ca5cbb7d53e5de2))
+* **angular/table:** add example for expandable table ([#1355](https://github.com/sbb-design-systems/sbb-angular/issues/1355)) ([f6d99a2](https://github.com/sbb-design-systems/sbb-angular/commit/f6d99a2a01a8bfe66c5e40e40d3c000f8cb0811e))
+* **angular/tabs:** typo ([#1388](https://github.com/sbb-design-systems/sbb-angular/issues/1388)) ([3d06da9](https://github.com/sbb-design-systems/sbb-angular/commit/3d06da92fa216232da62bc826158316cb9f1e3cf))
+* how to release ([#1366](https://github.com/sbb-design-systems/sbb-angular/issues/1366)) ([1653aa4](https://github.com/sbb-design-systems/sbb-angular/commit/1653aa46b168a06b77f8ef9a79a6392f5b6e6bf2))
+
 ## [13.11.0](https://github.com/sbb-design-systems/sbb-angular/compare/13.10.0...13.11.0) (2022-03-31)
 
 
