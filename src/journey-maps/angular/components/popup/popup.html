@@ -1,8 +1,6 @@
 <ng-container *ngIf="rendered">
   <div #popupContent>
-    <ng-container
-      *ngTemplateOutlet="template ?? null; context: getTemplateContext()"
-    ></ng-container>
+    <div [sbbTemplateOutlet]="template" [sbbTemplateOutletContext]="getTemplateContext()"></div>
     <sbb-overlay-paginator
       *ngIf="withPaginator && templateContextSize > 1"
       [index]="templateContextIndex"

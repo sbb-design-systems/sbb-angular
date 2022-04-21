@@ -12,6 +12,7 @@ import { SbbOverlayPaginator } from './components/overlay-paginator/overlay-pagi
 import { SbbPopup } from './components/popup/popup';
 import { SbbTeaser } from './components/teaser/teaser';
 import { SbbZoomControls } from './components/zoom-controls/zoom-controls';
+import { SbbTemplateOutlet } from './directives/template-outlet';
 import { SbbJourneyMaps } from './journey-maps';
 
 @NgModule({
@@ -28,6 +29,7 @@ import { SbbJourneyMaps } from './journey-maps';
     SbbLeitPoi,
     SbbHomeButton,
     SbbOverlayPaginator,
+    SbbTemplateOutlet,
   ],
   imports: [CommonModule],
   exports: [SbbJourneyMaps],

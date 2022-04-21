@@ -116,9 +116,9 @@ export interface SbbListenerTypeOptions {
   /** If a template is defined for an event: Should it be displayed in a popup or teaser ? */
   popup?: boolean;
   /** Template to display when a feature is clicked. */
-  clickTemplate?: TemplateRef<any>;
+  clickTemplate?: SbbTemplateType;
   /** Template to display when a feature is hovered. */
-  hoverTemplate?: TemplateRef<any>;
+  hoverTemplate?: SbbTemplateType;
   /** Selection mode */
   selectionMode?: SbbSelectionMode;
 }
@@ -163,3 +163,6 @@ export type SbbSelectableFeatureCollection = FeatureCollection & {
 };
 
 export type SbbFeatureDataType = 'MARKER' | 'ROUTE' | 'STATION' | 'ZONE';
+
+/** Angular TemplateRef or an id of a HTML <template>. */
+export type SbbTemplateType = TemplateRef<any> | string;

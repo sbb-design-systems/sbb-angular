@@ -168,7 +168,10 @@ export const PACKAGES: { [key: string]: ShowcaseMetaPackage } = {
       },
       {
         name: 'Components',
-        entries: [{ label: 'JourneyMaps', link: './components/angular' }],
+        entries: [
+          { label: 'JourneyMaps', link: './components/angular' },
+          { label: 'JourneyMaps Web Component', link: './components/web-component' },
+        ],
       },
     ],
   },

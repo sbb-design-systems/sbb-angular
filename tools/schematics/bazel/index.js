@@ -200,7 +200,7 @@ var NgModule = class {
     return new NgModule(dir, this._tree, this._context);
   }
   _findFiles(dir, skipModuleCheck = true) {
-    if (["schematics", "styles"].some((d) => (0, import_core3.basename)(dir.path) === d)) {
+    if (["schematics", "styles", "web-component"].some((d) => (0, import_core3.basename)(dir.path) === d)) {
       return;
     } else if (!skipModuleCheck && this._context.moduleDetector.isModuleDirectory(dir)) {
       this._modules.push(this._createSubModule(dir));
@@ -234,6 +234,9 @@ var NgPackage = class extends NgModule {
       this.stylesheets = this.stylesheets.filter((s) => !s.includes("typography.css"));
     }
     this.markdownModules = ngModules.filter((m) => m.hasMarkdown).map((m) => this._resolvePath(m));
+    if (this.name === "journey-maps") {
+      this.markdownModules.push("web-component");
+    }
   }
   _resolvePath(m) {
     return (0, import_core4.relative)(this.path, m.path);

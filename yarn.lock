@@ -434,6 +434,13 @@
     uuid "^8.3.2"
     yargs "^17.0.0"
 
+"@angular/elements@14.0.0-next.11":
+  version "14.0.0-next.11"
+  resolved "https://registry.yarnpkg.com/@angular/elements/-/elements-14.0.0-next.11.tgz#f8fb583c53a9a460982a7072214c5e4147a05a5c"
+  integrity sha512-SORW6/of9x7h/JLmAqJhtmYZUZJvYz58POJU0eZsAp5I6gqWYglMtAyOQ8NmlB+XLKXB1bBVKQbhLKnXysC4Ow==
+  dependencies:
+    tslib "^2.3.0"
+
 "@angular/forms@14.0.0-next.11":
   version "14.0.0-next.11"
   resolved "https://registry.yarnpkg.com/@angular/forms/-/forms-14.0.0-next.11.tgz#27a96bb9685403a26c5873408e99afaaf8f612bd"

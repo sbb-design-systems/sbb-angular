@@ -14,6 +14,7 @@
       (indexClicked)="onIndexSelected($event)"
     >
     </sbb-overlay-paginator>
-    <ng-container *ngTemplateOutlet="template!; context: getTemplateContext()"> </ng-container>
+
+    <div [sbbTemplateOutlet]="template" [sbbTemplateOutletContext]="getTemplateContext()"></div>
   </div>
 </ng-container>

@@ -116,7 +116,7 @@ export class NgModule {
   }
 
   private _findFiles(dir: DirEntry, skipModuleCheck = true) {
-    if (['schematics', 'styles'].some((d) => basename(dir.path) === d)) {
+    if (['schematics', 'styles', 'web-component'].some((d) => basename(dir.path) === d)) {
       return;
     } else if (!skipModuleCheck && this._context.moduleDetector.isModuleDirectory(dir)) {
       this._modules.push(this._createSubModule(dir));
