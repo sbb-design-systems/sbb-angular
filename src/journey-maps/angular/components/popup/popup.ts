@@ -9,12 +9,12 @@ import {
   OnDestroy,
   Output,
   SimpleChanges,
-  TemplateRef,
   ViewChild,
   ViewEncapsulation,
 } from '@angular/core';
 import { LngLatLike, Map as MaplibreMap, Offset, Popup, PopupOptions } from 'maplibre-gl';
 
+import { SbbTemplateType } from '../../journey-maps.interfaces';
 import { SbbLocaleService } from '../../services/locale-service';
 
 @Component({
@@ -27,7 +27,7 @@ import { SbbLocaleService } from '../../services/locale-service';
 export class SbbPopup implements OnChanges, OnDestroy {
   @Input() rendered: boolean;
   @Input() map: MaplibreMap | null;
-  @Input() template?: TemplateRef<any>;
+  @Input() template: SbbTemplateType;
   @Input() templateContext: any;
   @Input() position: LngLatLike;
   @Input() offset: Offset;

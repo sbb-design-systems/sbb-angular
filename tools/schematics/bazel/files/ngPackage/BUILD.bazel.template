@@ -126,7 +126,8 @@ ng_package(
         ":typography",<% } %><% if (name === 'angular') { %>
         "//src/angular/i18n:xlf",<% } %>
     ],<% if (hasSchematics) { %>
-    nested_packages = ["//src/<%= name %>/schematics:npm_package"],<% } %><% if (hasReadme) { %>
+    nested_packages = ["//src/<%= name %>/schematics:npm_package"],<% } %><% if (name === 'journey-maps') { %>
+    nested_packages = ["//src/<%= name %>/web-component:npm_package"],<% } %><% if (hasReadme) { %>
     readme_md = "README.md",<% } %>
     tags = ["release-package"],
     deps = <%= constant(shortName) %>_TARGETS + <%= constant(shortName) %>_TESTING_TARGETS,
