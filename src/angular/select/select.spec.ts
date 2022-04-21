@@ -78,6 +78,7 @@ import { SbbSelectModule } from './select.module';
         [formControl]="control"
         [required]="isRequired"
         [tabIndex]="tabIndexOverride"
+        [aria-describedby]="ariaDescribedBy"
         [aria-label]="ariaLabel"
         [aria-labelledby]="ariaLabelledby"
         [panelClass]="panelClass"
@@ -107,6 +108,7 @@ class BasicSelect {
   heightAbove = 0;
   heightBelow = 0;
   tabIndexOverride: number;
+  ariaDescribedBy: string;
   ariaLabel: string;
   ariaLabelledby: string;
   panelClass = ['custom-one', 'custom-two'];
@@ -1101,6 +1103,12 @@ describe('SbbSelect', () => {
 
           expect(select.getAttribute('aria-labelledby')?.trim()).toBe(valueId);
         });
+
+        it('should support user binding to `aria-describedby`', fakeAsync(() => {
+          fixture.componentInstance.ariaDescribedBy = 'test';
+          fixture.detectChanges();
+          expect(select.getAttribute('aria-describedby')).toBe('test');
+        }));
 
         it('should select options via the UP/DOWN arrow keys on a closed select', fakeAsync(() => {
           const formControl = fixture.componentInstance.control;
