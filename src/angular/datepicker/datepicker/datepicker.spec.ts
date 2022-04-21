@@ -270,17 +270,19 @@ describe('SbbDatepicker', () => {
         for (let i = 0; i < 3; i++) {
           testComponent.datepicker.open();
           fixture.detectChanges();
+          flush();
 
           testComponent.datepicker.close();
           fixture.detectChanges();
+          flush();
         }
 
         testComponent.datepicker.open();
         fixture.detectChanges();
+        flush();
 
         const spy = jasmine.createSpy('close event spy');
         const subscription = testComponent.datepicker.closedStream.subscribe(spy);
-        // tslint:disable-next-line:no-non-null-assertion
         const backdrop = document.querySelector('.cdk-overlay-backdrop')! as HTMLElement;
 
         backdrop.click();

@@ -63,8 +63,6 @@ ng_package(
     name = "npm_package",
     srcs = [
         "package.json",
-    ],
-    data = [
         ":styles_bundle",
         ":typography",
         "//src/angular/i18n:xlf",

@@ -119,9 +119,7 @@ filegroup(
 ng_package(
     name = "npm_package",
     srcs = [
-        "package.json",
-    ],
-    data = [<% if (hasStyleBundle) { %>
+        "package.json",<% if (hasStyleBundle) { %>
         ":styles_bundle",<% } %><% if (hasTypography) { %>
         ":typography",<% } %><% if (name === 'angular') { %>
         "//src/angular/i18n:xlf",<% } %>
