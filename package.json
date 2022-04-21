@@ -61,8 +61,8 @@
     "@angular/router": "14.0.0-next.11",
     "@arcgis/core": "~4.20.2",
     "@stackblitz/sdk": "1.6.0",
-    "maplibre-gl": "1.15.3",
     "rxjs": "7.5.5",
+    "maplibre-gl": "1.15.3",
     "tslib": "2.3.1",
     "zone.js": "0.11.5"
   },
