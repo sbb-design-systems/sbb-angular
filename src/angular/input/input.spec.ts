@@ -9,12 +9,12 @@ import {
 } from '@angular/core';
 import { ComponentFixture, fakeAsync, flush, TestBed } from '@angular/core/testing';
 import {
-  FormControl,
-  FormGroup,
   FormGroupDirective,
   FormsModule,
   NgForm,
   ReactiveFormsModule,
+  UntypedFormControl,
+  UntypedFormGroup,
   Validators,
 } from '@angular/forms';
 import { By } from '@angular/platform-browser';
@@ -938,7 +938,7 @@ class SbbInputWithType {
   </sbb-form-field>`,
 })
 class SbbInputWithFormControl {
-  formControl = new FormControl();
+  formControl = new UntypedFormControl();
 }
 
 @Component({
@@ -951,7 +951,7 @@ class SbbInputWithSubscriptAndAriaDescribedBy {
   label: string = '';
   userDescribedByValue: string = '';
   showError = false;
-  formControl = new FormControl();
+  formControl = new UntypedFormControl();
 }
 
 @Component({ template: `<sbb-form-field><input sbbInput [type]="t" /></sbb-form-field>` })
@@ -1033,7 +1033,10 @@ class SbbInputMissingSbbInputTestController {}
 })
 class SbbInputWithFormErrorMessages {
   @ViewChild('form') form: NgForm;
-  formControl = new FormControl('', [Validators.required, Validators.pattern(/valid value/)]);
+  formControl = new UntypedFormControl('', [
+    Validators.required,
+    Validators.pattern(/valid value/),
+  ]);
   renderError = true;
 }
 
@@ -1048,8 +1051,8 @@ class SbbInputWithFormErrorMessages {
   `,
 })
 class SbbInputWithCustomErrorStateMatcher {
-  formGroup = new FormGroup({
-    name: new FormControl('', [Validators.required, Validators.pattern(/valid value/)]),
+  formGroup = new UntypedFormGroup({
+    name: new UntypedFormControl('', [Validators.required, Validators.pattern(/valid value/)]),
   });
 
   errorState = false;
@@ -1071,8 +1074,8 @@ class SbbInputWithCustomErrorStateMatcher {
 })
 class SbbInputWithFormGroupErrorMessages {
   @ViewChild(FormGroupDirective) formGroupDirective: FormGroupDirective;
-  formGroup = new FormGroup({
-    name: new FormControl('', [Validators.required, Validators.pattern(/valid value/)]),
+  formGroup = new UntypedFormGroup({
+    name: new UntypedFormControl('', [Validators.required, Validators.pattern(/valid value/)]),
   });
 }
 
@@ -1096,7 +1099,7 @@ class SbbInputWithNgIf {
   `,
 })
 class SbbInputOnPush {
-  formControl = new FormControl('');
+  formControl = new UntypedFormControl('');
 }
 
 @Component({
@@ -1206,5 +1209,5 @@ class SbbInputWithVariablePlaceholder {
 })
 class SbbInputReadonly {
   readonly = true;
-  formControl = new FormControl();
+  formControl = new UntypedFormControl();
 }

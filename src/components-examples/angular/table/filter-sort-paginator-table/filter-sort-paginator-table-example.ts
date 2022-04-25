@@ -1,6 +1,6 @@
 import { LiveAnnouncer } from '@angular/cdk/a11y';
 import { AfterViewInit, Component, OnDestroy, ViewChild } from '@angular/core';
-import { FormControl, FormGroup } from '@angular/forms';
+import { UntypedFormControl, UntypedFormGroup } from '@angular/forms';
 import { SbbPaginator } from '@sbb-esta/angular/pagination';
 import {
   SbbSort,
@@ -56,11 +56,11 @@ export class FilterSortPaginatorTableExample implements AfterViewInit, OnDestroy
     VEHICLE_EXAMPLE_DATA.map((vehicleExampleItem) => vehicleExampleItem.category)
   );
 
-  vehicleFilterForm = new FormGroup({
-    _: new FormControl(''),
-    category: new FormControl(),
-    name: new FormControl(''),
-    description: new FormControl(''),
+  vehicleFilterForm = new UntypedFormGroup({
+    _: new UntypedFormControl(''),
+    category: new UntypedFormControl(),
+    name: new UntypedFormControl(''),
+    description: new UntypedFormControl(''),
   });
 
   descriptions: Observable<string[]>;

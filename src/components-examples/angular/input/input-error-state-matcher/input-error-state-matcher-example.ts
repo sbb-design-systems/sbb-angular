@@ -1,10 +1,13 @@
 import { Component } from '@angular/core';
-import { FormControl, FormGroupDirective, NgForm, Validators } from '@angular/forms';
+import { FormGroupDirective, NgForm, UntypedFormControl, Validators } from '@angular/forms';
 import { SbbErrorStateMatcher } from '@sbb-esta/angular/core';
 
 /** Error when invalid control is dirty, touched, or submitted. */
 export class MyErrorStateMatcher implements SbbErrorStateMatcher {
-  isErrorState(control: FormControl | null, form: FormGroupDirective | NgForm | null): boolean {
+  isErrorState(
+    control: UntypedFormControl | null,
+    form: FormGroupDirective | NgForm | null
+  ): boolean {
     const isSubmitted = form && form.submitted;
     return !!(control && control.invalid && (control.dirty || control.touched || isSubmitted));
   }
@@ -20,7 +23,7 @@ export class MyErrorStateMatcher implements SbbErrorStateMatcher {
   styleUrls: ['input-error-state-matcher-example.css'],
 })
 export class InputErrorStateMatcherExample {
-  emailFormControl = new FormControl('', [Validators.required, Validators.email]);
+  emailFormControl = new UntypedFormControl('', [Validators.required, Validators.email]);
 
   matcher = new MyErrorStateMatcher();
 }

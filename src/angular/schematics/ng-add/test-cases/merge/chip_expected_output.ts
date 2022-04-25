@@ -2,8 +2,8 @@ import { Component, NgModule, ViewChild } from '@angular/core';
 import { SbbAutocompleteModule } from '@sbb-esta/angular/autocomplete';
 import { SbbChipList, SbbChipInputEvent, SbbChipsModule } from '@sbb-esta/angular/chips';
 import {
-  FormBuilder,
-  FormControl,
+  UntypedFormBuilder,
+  UntypedFormControl,
   FormsModule,
   ReactiveFormsModule,
   Validators,
@@ -42,14 +42,14 @@ export class ChipTestComponent {
 
   options = [];
   model: string;
-  formControl: FormControl;
+  formControl: UntypedFormControl;
 
   formGroup = this.formBuilder.group({
     formName: [[], Validators.required],
   });
   formNameVar: string;
 
-  constructor(private formBuilder: FormBuilder) {}
+  constructor(private formBuilder: UntypedFormBuilder) {}
 
   required() {
     return true;

@@ -2,7 +2,7 @@ import { DOWN_ARROW, ENTER, ESCAPE, UP_ARROW } from '@angular/cdk/keycodes';
 import { OverlayContainer } from '@angular/cdk/overlay';
 import { Component, FactoryProvider, Type, ValueProvider, ViewChild } from '@angular/core';
 import { ComponentFixture, fakeAsync, flush, inject, TestBed, tick } from '@angular/core/testing';
-import { FormControl, FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule, UntypedFormControl } from '@angular/forms';
 import { By } from '@angular/platform-browser';
 import { BrowserDynamicTestingModule } from '@angular/platform-browser-dynamic/testing';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
@@ -1027,8 +1027,8 @@ class DatepickerOpeningOnFocusComponent {
     </sbb-datepicker>`,
 })
 class DatepickerConnectedComponent {
-  firstDatepicker = new FormControl();
-  secondDatepicker = new FormControl();
+  firstDatepicker = new UntypedFormControl();
+  secondDatepicker = new UntypedFormControl();
 }
 
 @Component({
@@ -1068,7 +1068,7 @@ class DatepickerWithArrows {
   `,
 })
 class DatepickerReadonlyComponent {
-  date = new FormControl();
+  date = new UntypedFormControl();
   readonly: boolean = false;
   placeholder?: string = undefined;
 }

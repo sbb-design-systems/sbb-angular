@@ -24,7 +24,7 @@ import {
   tick,
   waitForAsync,
 } from '@angular/core/testing';
-import { FormControl, FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule, UntypedFormControl } from '@angular/forms';
 import { By } from '@angular/platform-browser';
 import { SbbOption, SbbOptionModule, SbbOptionSelectionChange } from '@sbb-esta/angular/core';
 import {
@@ -89,7 +89,7 @@ const SIMPLE_AUTOCOMPLETE_TEMPLATE = `
   template: SIMPLE_AUTOCOMPLETE_TEMPLATE,
 })
 class SimpleAutocomplete implements OnDestroy {
-  numberCtrl = new FormControl();
+  numberCtrl = new UntypedFormControl();
   filteredNumbers: any[];
   valueSub: Subscription;
   position = 'auto';
@@ -158,7 +158,7 @@ class SimpleAutocompleteShadowDom extends SimpleAutocomplete {}
   `,
 })
 class NgIfAutocomplete {
-  optionCtrl = new FormControl();
+  optionCtrl = new UntypedFormControl();
   filteredOptions: Observable<any>;
   isVisible = true;
   options = ['One', 'Two', 'Three'];
@@ -297,7 +297,7 @@ class AutocompleteWithOnPushDelay implements OnInit {
   `,
 })
 class AutocompleteWithNativeInput {
-  optionCtrl = new FormControl();
+  optionCtrl = new UntypedFormControl();
   filteredOptions: Observable<any>;
   options = ['En', 'To', 'Tre', 'Fire', 'Fem'];
 
@@ -321,7 +321,7 @@ class AutocompleteWithNativeInput {
 })
 class AutocompleteWithoutPanel {
   @ViewChild(SbbAutocompleteTrigger) trigger: SbbAutocompleteTrigger;
-  control = new FormControl();
+  control = new UntypedFormControl();
 }
 
 @Component({
@@ -408,7 +408,7 @@ class AutocompleteWithSelectEvent {
   `,
 })
 class PlainAutocompleteInputWithFormControl {
-  formControl = new FormControl();
+  formControl = new UntypedFormControl();
 }
 
 @Component({

@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { FormControl, Validators } from '@angular/forms';
+import { UntypedFormControl, Validators } from '@angular/forms';
 import { SbbCheckboxChange } from '@sbb-esta/angular/checkbox';
 
 /**
@@ -11,8 +11,8 @@ import { SbbCheckboxChange } from '@sbb-esta/angular/checkbox';
   templateUrl: 'form-field-text-input-attribute-label-example.html',
 })
 export class FormFieldTextInputAttributeLabelExample {
-  name: FormControl = new FormControl('', [Validators.required]);
-  readonly: FormControl = new FormControl(false);
+  name: UntypedFormControl = new UntypedFormControl('', [Validators.required]);
+  readonly: UntypedFormControl = new UntypedFormControl(false);
 
   inputSize: '' | 'short' | 'medium' | 'long' = '';
 

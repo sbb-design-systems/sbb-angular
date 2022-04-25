@@ -1,5 +1,5 @@
 import { Component, OnDestroy } from '@angular/core';
-import { FormArray, FormBuilder, FormGroup } from '@angular/forms';
+import { UntypedFormArray, UntypedFormBuilder, UntypedFormGroup } from '@angular/forms';
 import { Subject } from 'rxjs';
 import { startWith, takeUntil } from 'rxjs/operators';
 
@@ -21,12 +21,12 @@ export class CheckboxPanelGroupExample implements OnDestroy {
     'desktop4k',
     'desktop5k',
   ];
-  checkboxes = new FormArray([]);
-  form: FormGroup;
+  checkboxes = new UntypedFormArray([]);
+  form: UntypedFormGroup;
   groupClasses: string[] = [];
   private _destroyed = new Subject<void>();
 
-  constructor(private _formBuilder: FormBuilder) {
+  constructor(private _formBuilder: UntypedFormBuilder) {
     this.form = this._formBuilder.group({
       amount: 9,
       tablet: 1,

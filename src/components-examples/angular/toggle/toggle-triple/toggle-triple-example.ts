@@ -1,5 +1,5 @@
 import { Component, ViewEncapsulation } from '@angular/core';
-import { FormControl } from '@angular/forms';
+import { UntypedFormControl } from '@angular/forms';
 
 /**
  * @title Toggle Triple
@@ -11,5 +11,5 @@ import { FormControl } from '@angular/forms';
   encapsulation: ViewEncapsulation.None,
 })
 export class ToggleTripleExample {
-  journey = new FormControl('option1');
+  journey = new UntypedFormControl('option1');
 }

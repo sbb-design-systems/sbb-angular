@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { UntypedFormControl, UntypedFormGroup, Validators } from '@angular/forms';
 
 /**
  * @title Textarea Reactive Forms With Sbb Form Field
@@ -11,7 +11,7 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
   styleUrls: ['textarea-reactive-forms-with-sbb-form-field-example.css'],
 })
 export class TextareaReactiveFormsWithSbbFormFieldExample {
-  form: FormGroup = new FormGroup({
-    textarea: new FormControl('', [Validators.required]),
+  form: UntypedFormGroup = new UntypedFormGroup({
+    textarea: new UntypedFormControl('', [Validators.required]),
   });
 }

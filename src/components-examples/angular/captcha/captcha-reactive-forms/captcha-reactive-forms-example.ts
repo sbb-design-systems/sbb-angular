@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { FormControl, Validators } from '@angular/forms';
+import { UntypedFormControl, Validators } from '@angular/forms';
 
 /**
  * @title Captcha Reactive Forms
@@ -13,5 +13,5 @@ import { FormControl, Validators } from '@angular/forms';
 export class CaptchaReactiveFormsExample {
   testSiteKey: string = '6LeIxAcTAAAAAJcZVRqyHh71UMIEGNQ_MXjiZKhI';
 
-  formControl: FormControl = new FormControl('', [Validators.required]);
+  formControl: UntypedFormControl = new UntypedFormControl('', [Validators.required]);
 }

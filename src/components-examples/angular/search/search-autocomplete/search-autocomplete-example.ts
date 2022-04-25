@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { FormControl } from '@angular/forms';
+import { UntypedFormControl } from '@angular/forms';
 
 /**
  * @title Search Autocomplete
@@ -10,7 +10,7 @@ import { FormControl } from '@angular/forms';
   templateUrl: 'search-autocomplete-example.html',
 })
 export class SearchAutocompleteExample {
-  searchControl = new FormControl('');
+  searchControl = new UntypedFormControl('');
   searchValues: string[] = [];
   options: string[] = [
     'one',

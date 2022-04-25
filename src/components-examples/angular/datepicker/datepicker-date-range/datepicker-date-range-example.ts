@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { FormControl } from '@angular/forms';
+import { UntypedFormControl } from '@angular/forms';
 
 /**
  * @title Datepicker Date Range
@@ -10,6 +10,6 @@ import { FormControl } from '@angular/forms';
   templateUrl: 'datepicker-date-range-example.html',
 })
 export class DatepickerDateRangeExample {
-  start = new FormControl();
-  end = new FormControl();
+  start = new UntypedFormControl();
+  end = new UntypedFormControl();
 }

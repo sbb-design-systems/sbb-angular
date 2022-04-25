@@ -6,8 +6,8 @@ import {
   SbbChipModule,
 } from '@sbb-esta/angular-business';
 import {
-  FormBuilder,
-  FormControl,
+  UntypedFormBuilder,
+  UntypedFormControl,
   FormsModule,
   ReactiveFormsModule,
   Validators,
@@ -46,14 +46,14 @@ export class ChipTestComponent {
 
   options = [];
   model: string;
-  formControl: FormControl;
+  formControl: UntypedFormControl;
 
   formGroup = this.formBuilder.group({
     formName: [[], Validators.required],
   });
   formNameVar: string;
 
-  constructor(private formBuilder: FormBuilder) {}
+  constructor(private formBuilder: UntypedFormBuilder) {}
 
   required() {
     return true;

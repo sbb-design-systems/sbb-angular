@@ -1,5 +1,5 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
-import { FormControl } from '@angular/forms';
+import { UntypedFormControl } from '@angular/forms';
 import { SbbCheckboxChange } from '@sbb-esta/angular/checkbox';
 import { SbbFileSelectorTypesService } from '@sbb-esta/angular/file-selector';
 import { Subject } from 'rxjs';
@@ -15,7 +15,7 @@ import { takeUntil } from 'rxjs/operators';
 })
 export class MultipleModeDefaultFileSelectorExample implements OnInit, OnDestroy {
   filesList: File[] = [];
-  fileControl = new FormControl();
+  fileControl = new UntypedFormControl();
   disabled: boolean;
   accept: string;
   private _destroyed = new Subject<void>();

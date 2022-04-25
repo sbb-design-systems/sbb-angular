@@ -1,5 +1,5 @@
 import { Component, OnDestroy } from '@angular/core';
-import { FormControl } from '@angular/forms';
+import { UntypedFormControl } from '@angular/forms';
 import { SbbTagChange } from '@sbb-esta/angular/tag';
 import { Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
@@ -41,7 +41,7 @@ const tagItems: Tag[] = [
 export class TagAdvancedExample implements OnDestroy {
   tags: Tag[];
 
-  amountFirstItem = new FormControl();
+  amountFirstItem = new UntypedFormControl();
   private _destroyed = new Subject<void>();
 
   constructor() {

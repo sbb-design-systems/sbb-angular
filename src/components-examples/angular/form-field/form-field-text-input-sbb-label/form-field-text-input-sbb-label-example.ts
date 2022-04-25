@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { FormControl, Validators } from '@angular/forms';
+import { UntypedFormControl, Validators } from '@angular/forms';
 import { SbbCheckboxChange } from '@sbb-esta/angular/checkbox';
 
 /**
@@ -11,7 +11,10 @@ import { SbbCheckboxChange } from '@sbb-esta/angular/checkbox';
   templateUrl: 'form-field-text-input-sbb-label-example.html',
 })
 export class FormFieldTextInputSbbLabelExample {
-  name: FormControl = new FormControl('', [Validators.required, Validators.minLength(3)]);
+  name: UntypedFormControl = new UntypedFormControl('', [
+    Validators.required,
+    Validators.minLength(3),
+  ]);
 
   toggleDisabled(sbbCheckboxChange: SbbCheckboxChange) {
     sbbCheckboxChange.checked ? this.name.disable() : this.name.enable();

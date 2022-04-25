@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { FormBuilder, FormGroup } from '@angular/forms';
+import { UntypedFormBuilder, UntypedFormGroup } from '@angular/forms';
 
 /**
  * @title Select Reactive Forms
@@ -10,9 +10,9 @@ import { FormBuilder, FormGroup } from '@angular/forms';
   templateUrl: 'select-reactive-forms-example.html',
 })
 export class SelectReactiveFormsExample {
-  form: FormGroup;
+  form: UntypedFormGroup;
 
-  constructor(formBuilder: FormBuilder) {
+  constructor(formBuilder: UntypedFormBuilder) {
     this.form = formBuilder.group({
       value: '',
       optionDisabled: false,

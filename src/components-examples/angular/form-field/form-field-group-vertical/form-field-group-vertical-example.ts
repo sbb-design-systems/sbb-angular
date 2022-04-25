@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { UntypedFormBuilder, UntypedFormGroup, Validators } from '@angular/forms';
 
 /**
  * @title Form Field Group Vertical
@@ -10,10 +10,10 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
   templateUrl: 'form-field-group-vertical-example.html',
 })
 export class FormFieldGroupVerticalExample {
-  formGroup: FormGroup;
+  formGroup: UntypedFormGroup;
   lastSubmission?: { name: string; date: Date };
 
-  constructor(formBuilder: FormBuilder) {
+  constructor(formBuilder: UntypedFormBuilder) {
     this.formGroup = formBuilder.group({
       name: ['', [Validators.required, Validators.minLength(3)]],
       date: [new Date(), Validators.required],
