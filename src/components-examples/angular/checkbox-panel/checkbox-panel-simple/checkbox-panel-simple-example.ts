@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { UntypedFormControl } from '@angular/forms';
+import { FormControl } from '@angular/forms';
 
 /**
  * @title Simple Checkbox Panel
@@ -10,5 +10,5 @@ import { UntypedFormControl } from '@angular/forms';
   templateUrl: 'checkbox-panel-simple-example.html',
 })
 export class CheckboxPanelSimpleExample {
-  checked = new UntypedFormControl(false);
+  checked = new FormControl(false);
 }

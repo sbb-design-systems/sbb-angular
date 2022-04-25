@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { UntypedFormControl } from '@angular/forms';
+import { FormControl } from '@angular/forms';
 import { Observable } from 'rxjs';
 import { debounceTime, distinctUntilChanged, map, startWith } from 'rxjs/operators';
 
@@ -12,7 +12,7 @@ import { debounceTime, distinctUntilChanged, map, startWith } from 'rxjs/operato
   templateUrl: 'autocomplete-option-group-example.html',
 })
 export class AutocompleteOptionGroupExample implements OnInit {
-  myControlStatic = new UntypedFormControl('one');
+  myControlStatic = new FormControl('one', { initialValueIsDefault: true });
 
   options: Observable<string[]>;
 

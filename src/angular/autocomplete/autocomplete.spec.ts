@@ -24,7 +24,7 @@ import {
   tick,
   waitForAsync,
 } from '@angular/core/testing';
-import { FormsModule, ReactiveFormsModule, UntypedFormControl } from '@angular/forms';
+import { FormControl, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { By } from '@angular/platform-browser';
 import { SbbOption, SbbOptionModule, SbbOptionSelectionChange } from '@sbb-esta/angular/core';
 import {
@@ -89,7 +89,9 @@ const SIMPLE_AUTOCOMPLETE_TEMPLATE = `
   template: SIMPLE_AUTOCOMPLETE_TEMPLATE,
 })
 class SimpleAutocomplete implements OnDestroy {
-  numberCtrl = new UntypedFormControl();
+  numberCtrl = new FormControl<{ name: string; code: string; height: number } | string | null>(
+    null
+  );
   filteredNumbers: any[];
   valueSub: Subscription;
   position = 'auto';
@@ -127,7 +129,7 @@ class SimpleAutocomplete implements OnDestroy {
     this.filteredNumbers = this.numbers;
     this.valueSub = this.numberCtrl.valueChanges.subscribe((val) => {
       this.filteredNumbers = val
-        ? this.numbers.filter((s) => s.name.match(new RegExp(val, 'gi')))
+        ? this.numbers.filter((s) => s.name.match(new RegExp(val as string, 'gi')))
         : this.numbers;
     });
   }
@@ -158,7 +160,7 @@ class SimpleAutocompleteShadowDom extends SimpleAutocomplete {}
   `,
 })
 class NgIfAutocomplete {
-  optionCtrl = new UntypedFormControl();
+  optionCtrl = new FormControl('');
   filteredOptions: Observable<any>;
   isVisible = true;
   options = ['One', 'Two', 'Three'];
@@ -170,7 +172,7 @@ class NgIfAutocomplete {
   constructor() {
     this.filteredOptions = this.optionCtrl.valueChanges.pipe(
       startWith(null),
-      map((val: string) => {
+      map((val) => {
         return val
           ? this.options.filter((option) => new RegExp(val, 'gi').test(option))
           : this.options.slice();
@@ -297,7 +299,7 @@ class AutocompleteWithOnPushDelay implements OnInit {
   `,
 })
 class AutocompleteWithNativeInput {
-  optionCtrl = new UntypedFormControl();
+  optionCtrl = new FormControl('');
   filteredOptions: Observable<any>;
   options = ['En', 'To', 'Tre', 'Fire', 'Fem'];
 
@@ -307,7 +309,7 @@ class AutocompleteWithNativeInput {
   constructor() {
     this.filteredOptions = this.optionCtrl.valueChanges.pipe(
       startWith(null),
-      map((val: string) => {
+      map((val) => {
         return val
           ? this.options.filter((option) => new RegExp(val, 'gi').test(option))
           : this.options.slice();
@@ -321,7 +323,7 @@ class AutocompleteWithNativeInput {
 })
 class AutocompleteWithoutPanel {
   @ViewChild(SbbAutocompleteTrigger) trigger: SbbAutocompleteTrigger;
-  control = new UntypedFormControl();
+  control = new FormControl('');
 }
 
 @Component({
@@ -408,7 +410,7 @@ class AutocompleteWithSelectEvent {
   `,
 })
 class PlainAutocompleteInputWithFormControl {
-  formControl = new UntypedFormControl();
+  formControl = new FormControl('');
 }
 
 @Component({
@@ -1199,6 +1201,7 @@ describe('SbbAutocomplete', () => {
       fixture.componentInstance.numberCtrl.setValue({
         code: '1',
         name: 'Eins',
+        height: 48,
       });
       fixture.detectChanges();
       tick();
@@ -3302,7 +3305,7 @@ describe('SbbAutocomplete', () => {
       dispatchFakeEvent(document, 'click');
       fixture.detectChanges();
 
-      expect(numberCtrl.value.name).toEqual('Eins');
+      expect((numberCtrl.value as any).name).toEqual('Eins');
       expect(input.value).toBe('Eins');
     }));
 
@@ -3327,7 +3330,7 @@ describe('SbbAutocomplete', () => {
       dispatchKeyboardEvent(input, 'keydown', TAB);
       fixture.detectChanges();
 
-      expect(numberCtrl.value.name).toEqual('Eins');
+      expect((numberCtrl.value as any).name).toEqual('Eins');
       expect(input.value).toBe('Eins');
     }));
 
@@ -3352,7 +3355,7 @@ describe('SbbAutocomplete', () => {
       dispatchKeyboardEvent(input, 'keydown', ENTER);
       fixture.detectChanges();
 
-      expect(numberCtrl.value.name).toEqual('Eins');
+      expect((numberCtrl.value as any).name).toEqual('Eins');
       expect(input.value).toBe('Eins');
     }));
 
@@ -3380,7 +3383,7 @@ describe('SbbAutocomplete', () => {
       options[2].click();
       fixture.detectChanges();
 
-      expect(numberCtrl.value.name).toEqual('Drei');
+      expect((numberCtrl.value as any).name).toEqual('Drei');
       expect(input.value).toBe('Drei');
     }));
   });

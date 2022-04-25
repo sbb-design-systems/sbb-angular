@@ -1,5 +1,5 @@
-import { Component, OnInit } from '@angular/core';
-import { UntypedFormBuilder, UntypedFormGroup, Validators } from '@angular/forms';
+import { Component } from '@angular/core';
+import { FormBuilder, Validators } from '@angular/forms';
 
 /**
  * @title Processflow overview
@@ -10,19 +10,14 @@ import { UntypedFormBuilder, UntypedFormGroup, Validators } from '@angular/forms
   templateUrl: 'processflow-overview-example.html',
   styleUrls: ['processflow-overview-example.css'],
 })
-export class ProcessflowOverviewExample implements OnInit {
+export class ProcessflowOverviewExample {
   linear = true;
-  firstFormGroup: UntypedFormGroup;
-  secondFormGroup: UntypedFormGroup;
+  firstFormGroup = this._formBuilder.group({
+    firstCtrl: ['', Validators.required],
+  });
+  secondFormGroup = this._formBuilder.group({
+    secondCtrl: ['', Validators.required],
+  });
 
-  constructor(private _formBuilder: UntypedFormBuilder) {}
-
-  ngOnInit() {
-    this.firstFormGroup = this._formBuilder.group({
-      firstCtrl: ['', Validators.required],
-    });
-    this.secondFormGroup = this._formBuilder.group({
-      secondCtrl: ['', Validators.required],
-    });
-  }
+  constructor(private _formBuilder: FormBuilder) {}
 }

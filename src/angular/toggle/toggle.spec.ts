@@ -1,12 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { Component, ContentChildren, QueryList } from '@angular/core';
 import { ComponentFixture, fakeAsync, flush, TestBed, waitForAsync } from '@angular/core/testing';
-import {
-  FormsModule,
-  ReactiveFormsModule,
-  UntypedFormControl,
-  UntypedFormGroup,
-} from '@angular/forms';
+import { FormControl, FormGroup, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { By } from '@angular/platform-browser';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { SbbDatepickerModule } from '@sbb-esta/angular/datepicker';
@@ -62,8 +57,8 @@ class ToggleReactiveTestComponent {
   ];
   toggleOptions: Observable<any> = of(this.rawOptions);
 
-  form = new UntypedFormGroup({
-    test: new UntypedFormControl(this.rawOptions[0].value),
+  form = new FormGroup({
+    test: new FormControl(this.rawOptions[0].value),
   });
 }
 
@@ -98,8 +93,8 @@ class ToggleReactiveTestComponent {
   `,
 })
 class ToggleReactiveDefaultValueTestComponent {
-  form = new UntypedFormGroup({
-    test: new UntypedFormControl('Option_2'),
+  form = new FormGroup({
+    test: new FormControl('Option_2'),
   });
 
   toggleOptions: Observable<any> = of([
@@ -200,7 +195,7 @@ class ToggleSimpleCaseTestComponent {
   `,
 })
 class ToggleOnlySecondWithContentTestComponent {
-  journey = new UntypedFormControl('ReturnJourney');
+  journey = new FormControl('ReturnJourney');
 }
 
 describe('SbbToggle', () => {

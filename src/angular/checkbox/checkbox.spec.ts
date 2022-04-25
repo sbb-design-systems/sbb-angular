@@ -6,7 +6,7 @@ import {
   flushMicrotasks,
   TestBed,
 } from '@angular/core/testing';
-import { FormsModule, NgModel, ReactiveFormsModule, UntypedFormControl } from '@angular/forms';
+import { FormControl, FormsModule, NgModel, ReactiveFormsModule } from '@angular/forms';
 import { By } from '@angular/platform-browser';
 import { dispatchFakeEvent } from '@sbb-esta/angular/core/testing';
 
@@ -1023,7 +1023,7 @@ class CheckboxWithChangeEvent {
   template: `<sbb-checkbox [formControl]="formControl"></sbb-checkbox>`,
 })
 class CheckboxWithFormControl {
-  formControl = new UntypedFormControl();
+  formControl = new FormControl(false);
 }
 
 /** Test component with the native tabindex attribute. */

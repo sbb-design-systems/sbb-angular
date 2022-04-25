@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { UntypedFormBuilder, UntypedFormGroup } from '@angular/forms';
+import { FormBuilder } from '@angular/forms';
 
 /**
  * @title Tag Reactive Forms
@@ -10,13 +10,11 @@ import { UntypedFormBuilder, UntypedFormGroup } from '@angular/forms';
   templateUrl: 'tag-reactive-forms-example.html',
 })
 export class TagReactiveFormsExample {
-  formGroup: UntypedFormGroup;
+  formGroup = this._formBuilder.group({
+    trains: [true],
+    cars: [true],
+    bicycles: [false],
+  });
 
-  constructor(formBuilder: UntypedFormBuilder) {
-    this.formGroup = formBuilder.group({
-      trains: [true],
-      cars: [true],
-      bicycles: [false],
-    });
-  }
+  constructor(private _formBuilder: FormBuilder) {}
 }

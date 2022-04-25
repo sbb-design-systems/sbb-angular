@@ -1,5 +1,5 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
-import { UntypedFormControl } from '@angular/forms';
+import { FormControl } from '@angular/forms';
 import { Subject } from 'rxjs';
 import { distinctUntilChanged, takeUntil } from 'rxjs/operators';
 
@@ -13,7 +13,7 @@ import { distinctUntilChanged, takeUntil } from 'rxjs/operators';
 })
 export class AutocompleteHintExample implements OnInit, OnDestroy {
   readonly maxOptionsListLength = 5;
-  myControlHint = new UntypedFormControl('');
+  myControlHint = new FormControl('', { initialValueIsDefault: true });
   filteredOptionsHint = options.slice(0);
   private _destroyed = new Subject<void>();
 

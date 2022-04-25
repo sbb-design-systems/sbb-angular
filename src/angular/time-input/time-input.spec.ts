@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { TestBed, waitForAsync } from '@angular/core/testing';
-import { FormsModule, ReactiveFormsModule, UntypedFormControl } from '@angular/forms';
+import { FormControl, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { By } from '@angular/platform-browser';
 import { typeInElement } from '@sbb-esta/angular/core/testing';
 import { SbbInputModule } from '@sbb-esta/angular/input';
@@ -25,7 +25,7 @@ class PlaceholderTimeInput {
   </sbb-form-field>`,
 })
 class FormControlTimeInput {
-  formControl = new UntypedFormControl('');
+  formControl = new FormControl('');
 }
 
 describe('SbbTimeInput', () => {

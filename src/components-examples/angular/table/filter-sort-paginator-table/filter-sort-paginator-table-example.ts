@@ -1,6 +1,6 @@
 import { LiveAnnouncer } from '@angular/cdk/a11y';
 import { AfterViewInit, Component, OnDestroy, ViewChild } from '@angular/core';
-import { UntypedFormControl, UntypedFormGroup } from '@angular/forms';
+import { FormControl, FormGroup } from '@angular/forms';
 import { SbbPaginator } from '@sbb-esta/angular/pagination';
 import {
   SbbSort,
@@ -56,11 +56,12 @@ export class FilterSortPaginatorTableExample implements AfterViewInit, OnDestroy
     VEHICLE_EXAMPLE_DATA.map((vehicleExampleItem) => vehicleExampleItem.category)
   );
 
-  vehicleFilterForm = new UntypedFormGroup({
-    _: new UntypedFormControl(''),
-    category: new UntypedFormControl(),
-    name: new UntypedFormControl(''),
-    description: new UntypedFormControl(''),
+  // TODO mario (26.04.2022): Does it make sense to allow null values in SbbTableFilter?
+  vehicleFilterForm = new FormGroup({
+    _: new FormControl('', { initialValueIsDefault: true }),
+    category: new FormControl<string[]>([], { initialValueIsDefault: true }),
+    name: new FormControl('', { initialValueIsDefault: true }),
+    description: new FormControl('', { initialValueIsDefault: true }),
   });
 
   descriptions: Observable<string[]>;
@@ -75,7 +76,7 @@ export class FilterSortPaginatorTableExample implements AfterViewInit, OnDestroy
     this.table.dataSource = this.dataSource;
     this.vehicleFilterForm.valueChanges
       .pipe(takeUntil(this._destroyed))
-      .subscribe((vehicleFilterForm: VehicleFilter) => {
+      .subscribe((vehicleFilterForm) => {
         this.dataSource.filter = vehicleFilterForm;
       });
 

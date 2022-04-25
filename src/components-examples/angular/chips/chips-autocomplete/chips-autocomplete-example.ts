@@ -1,6 +1,6 @@
 import { COMMA, ENTER } from '@angular/cdk/keycodes';
 import { Component } from '@angular/core';
-import { UntypedFormControl } from '@angular/forms';
+import { FormControl } from '@angular/forms';
 import { Observable } from 'rxjs';
 import { map, startWith } from 'rxjs/operators';
 
@@ -14,11 +14,11 @@ import { map, startWith } from 'rxjs/operators';
 })
 export class ChipsAutocompleteExample {
   separatorKeysCodes: number[] = [ENTER, COMMA];
-  selectedFruits = new UntypedFormControl(['Lemon']);
+  selectedFruits = new FormControl(['Lemon']);
   allFruits = ['Apple', 'Lemon', 'Lime', 'Orange', 'Strawberry'];
 
   // FruitInputCtrl is only used to track value changes in order to update autocomplete list
-  fruitInputCtrl = new UntypedFormControl();
+  fruitInputCtrl = new FormControl('');
   filteredFruits: Observable<string[]> = this.fruitInputCtrl.valueChanges.pipe(
     startWith(null),
     map((fruit: string | null) => (fruit ? this._filter(fruit) : this.allFruits.slice()))

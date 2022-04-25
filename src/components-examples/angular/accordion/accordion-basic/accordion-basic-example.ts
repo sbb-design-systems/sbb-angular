@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { UntypedFormControl } from '@angular/forms';
+import { FormControl } from '@angular/forms';
 
 /**
  * @title Basic Accordion
@@ -11,9 +11,9 @@ import { UntypedFormControl } from '@angular/forms';
   styleUrls: ['accordion-basic-example.css'],
 })
 export class AccordionBasicExample {
-  multi = new UntypedFormControl(false);
-  hideToggle = new UntypedFormControl(false);
-  disabled = new UntypedFormControl(false);
+  multi = new FormControl(false);
+  hideToggle = new FormControl(false);
+  disabled = new FormControl(false);
   firstPanelExpanded = false;
   secondPanelExpanded = false;
 

@@ -1,5 +1,5 @@
-import { Component, OnInit } from '@angular/core';
-import { UntypedFormBuilder, UntypedFormGroup, Validators } from '@angular/forms';
+import { Component } from '@angular/core';
+import { FormBuilder, Validators } from '@angular/forms';
 
 /**
  * @title Processflow with editable steps
@@ -10,19 +10,14 @@ import { UntypedFormBuilder, UntypedFormGroup, Validators } from '@angular/forms
   templateUrl: 'processflow-editable-example.html',
   styleUrls: ['processflow-editable-example.css'],
 })
-export class ProcessflowEditableExample implements OnInit {
-  firstFormGroup: UntypedFormGroup;
-  secondFormGroup: UntypedFormGroup;
+export class ProcessflowEditableExample {
+  firstFormGroup = this._formBuilder.group({
+    firstCtrl: ['', Validators.required],
+  });
+  secondFormGroup = this._formBuilder.group({
+    secondCtrl: ['', Validators.required],
+  });
   disableEditable = true;
 
-  constructor(private _formBuilder: UntypedFormBuilder) {}
-
-  ngOnInit() {
-    this.firstFormGroup = this._formBuilder.group({
-      firstCtrl: ['', Validators.required],
-    });
-    this.secondFormGroup = this._formBuilder.group({
-      secondCtrl: ['', Validators.required],
-    });
-  }
+  constructor(private _formBuilder: FormBuilder) {}
 }

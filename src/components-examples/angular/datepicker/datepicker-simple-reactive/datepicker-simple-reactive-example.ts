@@ -1,5 +1,5 @@
 import { Component, OnDestroy } from '@angular/core';
-import { UntypedFormControl } from '@angular/forms';
+import { FormControl } from '@angular/forms';
 import { SbbDateAdapter } from '@sbb-esta/angular/core';
 import { SbbDateInputEvent } from '@sbb-esta/angular/datepicker';
 import { Subject } from 'rxjs';
@@ -14,15 +14,15 @@ import { takeUntil } from 'rxjs/operators';
   templateUrl: 'datepicker-simple-reactive-example.html',
 })
 export class DatepickerSimpleReactiveExample implements OnDestroy {
-  date = new UntypedFormControl(new Date());
+  date = new FormControl(new Date());
 
-  minDate = new UntypedFormControl();
-  maxDate = new UntypedFormControl();
+  minDate = new FormControl<Date | null>(null);
+  maxDate = new FormControl<Date | null>(null);
 
-  toggle = new UntypedFormControl(true);
-  arrows = new UntypedFormControl(false);
-  disabled = new UntypedFormControl(false);
-  readonly = new UntypedFormControl(false);
+  toggle = new FormControl(true);
+  arrows = new FormControl(false);
+  disabled = new FormControl(false);
+  readonly = new FormControl(false);
 
   private _destroyed = new Subject<void>();
 

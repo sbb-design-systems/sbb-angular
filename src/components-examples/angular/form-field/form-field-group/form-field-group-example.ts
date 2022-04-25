@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { UntypedFormBuilder, UntypedFormGroup, Validators } from '@angular/forms';
+import { FormBuilder, Validators } from '@angular/forms';
 
 /**
  * @title Form Field Group
@@ -10,15 +10,13 @@ import { UntypedFormBuilder, UntypedFormGroup, Validators } from '@angular/forms
   templateUrl: 'form-field-group-example.html',
 })
 export class FormFieldGroupExample {
-  formGroup: UntypedFormGroup;
-  lastSubmission?: { name: string; date: Date };
+  formGroup = this._formBuilder.group({
+    name: ['', [Validators.required, Validators.minLength(3)]],
+    date: [new Date(), Validators.required],
+  });
+  lastSubmission?: { name?: string | null; date?: Date | null };
 
-  constructor(formBuilder: UntypedFormBuilder) {
-    this.formGroup = formBuilder.group({
-      name: ['', [Validators.required, Validators.minLength(3)]],
-      date: [new Date(), Validators.required],
-    });
-  }
+  constructor(private _formBuilder: FormBuilder) {}
 
   handleSubmit() {
     if (!this.formGroup.valid) {

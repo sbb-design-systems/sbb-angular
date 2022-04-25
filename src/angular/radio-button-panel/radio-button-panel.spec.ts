@@ -1,6 +1,6 @@
 import { Component, QueryList, ViewChildren } from '@angular/core';
 import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
-import { FormsModule, ReactiveFormsModule, UntypedFormControl } from '@angular/forms';
+import { FormControl, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { By } from '@angular/platform-browser';
 import { SbbIconModule } from '@sbb-esta/angular/icon';
 import { SbbIconTestingModule } from '@sbb-esta/angular/icon/testing';
@@ -41,7 +41,7 @@ class ModelOptionSelectionTest {
   `,
 })
 class RadioButtonPanelDirectiveTest {
-  control = new UntypedFormControl(false);
+  control = new FormControl(false);
   subtitle = 'Valid: Mo, 01.03.2021';
   warning = 'Reservation not possible';
   note = 'CHF 250.00';
@@ -61,7 +61,7 @@ class RadioButtonPanelDirectiveTest {
   `,
 })
 class RadioButtonPanelIconTest {
-  control = new UntypedFormControl(false);
+  control = new FormControl(false);
 }
 
 describe('SbbRadioButtonPanel', () => {

@@ -24,12 +24,12 @@ import {
 } from '@angular/core';
 import { ComponentFixture, fakeAsync, TestBed, tick } from '@angular/core/testing';
 import {
+  FormBuilder,
+  FormControl,
+  FormGroup,
   FormsModule,
   NgForm,
   ReactiveFormsModule,
-  UntypedFormBuilder,
-  UntypedFormControl,
-  UntypedFormGroup,
   Validators,
 } from '@angular/forms';
 import { By } from '@angular/platform-browser';
@@ -801,7 +801,7 @@ describe('SbbChipList', () => {
       zone.simulateZoneExit();
       fixture.detectChanges();
 
-      testChipsAutocomplete.selectedFruits.value.push('Pineapple');
+      (testChipsAutocomplete!.selectedFruits!.value! as string[]).push('Pineapple');
 
       fixture.detectChanges();
       await fixture.whenStable();
@@ -812,7 +812,7 @@ describe('SbbChipList', () => {
     it('should skip repositioning autocomplete if autocomplete is closed', async () => {
       spyOn(testChipsAutocomplete.trigger, 'updatePosition').and.callThrough();
 
-      testChipsAutocomplete.selectedFruits.value.push('Pineapple');
+      (testChipsAutocomplete!.selectedFruits!.value! as string[]).push('Pineapple');
 
       fixture.detectChanges();
       await fixture.whenStable();
@@ -877,7 +877,7 @@ describe('SbbChipList', () => {
       });
 
       it('should return a new Set on update', async () => {
-        testChipsAutocomplete.selectedFruits = new UntypedFormControl(new Set(['Lemon']));
+        testChipsAutocomplete.selectedFruits = new FormControl(new Set(['Lemon']));
         fixture.detectChanges();
         const before = testChipsAutocomplete.selectedFruits.value;
 
@@ -897,7 +897,7 @@ describe('SbbChipList', () => {
       });
 
       it('should add value to form control Set', async () => {
-        testChipsAutocomplete.selectedFruits = new UntypedFormControl(new Set(['Lemon']));
+        testChipsAutocomplete.selectedFruits = new FormControl(new Set(['Lemon']));
         fixture.detectChanges();
 
         input.focus();
@@ -905,18 +905,21 @@ describe('SbbChipList', () => {
         dispatchKeyboardEvent(input, 'keydown', ENTER);
         await fixture.whenStable();
 
-        expect([...testChipsAutocomplete.selectedFruits.value]).toEqual(['Lemon', '123']);
+        expect([...(testChipsAutocomplete!.selectedFruits!.value as string[])]).toEqual([
+          'Lemon',
+          '123',
+        ]);
         expect(input.value).toEqual('');
       });
 
       it('should remove value from form control Set', async () => {
-        testChipsAutocomplete.selectedFruits = new UntypedFormControl(new Set(['Lemon']));
+        testChipsAutocomplete.selectedFruits = new FormControl(new Set(['Lemon']));
         fixture.detectChanges();
 
         chips.last.remove();
         await fixture.whenStable();
 
-        expect([...testChipsAutocomplete.selectedFruits.value]).toEqual([]);
+        expect([...(testChipsAutocomplete.selectedFruits.value as Set<string>)]).toEqual([]);
       });
 
       it('should not add empty value to form control', async () => {
@@ -1124,7 +1127,7 @@ class InputChipList {
     { value: 'pasta-6', viewValue: 'Pasta' },
     { value: 'sushi-7', viewValue: 'Sushi' },
   ];
-  control = new UntypedFormControl();
+  control = new FormControl<string | null>(null);
 
   separatorKeyCodes = [ENTER, SPACE];
   addOnBlur: boolean = true;
@@ -1180,7 +1183,7 @@ class ChipListWithFormErrorMessages {
   @ViewChildren(SbbChip) chips: QueryList<SbbChip>;
 
   @ViewChild('form') form: NgForm;
-  formControl = new UntypedFormControl('', Validators.required);
+  formControl = new FormControl('', Validators.required);
 }
 
 @Component({
@@ -1241,9 +1244,9 @@ class ChipListWithRemove {
 })
 class ChipListInsideDynamicFormGroup {
   @ViewChild(SbbChipList) chipList: SbbChipList;
-  form: UntypedFormGroup;
+  form: FormGroup;
 
-  constructor(private _formBuilder: UntypedFormBuilder) {
+  constructor(private _formBuilder: FormBuilder) {
     this.assignGroup(false);
   }
 
@@ -1277,7 +1280,7 @@ class ChipListInsideDynamicFormGroup {
   `,
 })
 class ChipsAutocomplete {
-  selectedFruits = new UntypedFormControl(['Lemon']);
+  selectedFruits = new FormControl<string[] | Set<string> | null>(['Lemon']);
   allFruits = ['Apple', 'Lemon', 'Lime', 'Orange', 'Strawberry'];
   @ViewChild('trigger') trigger: SbbAutocompleteTrigger;
 }
@@ -1309,7 +1312,7 @@ class ChipsAutocomplete {
   `,
 })
 class ChipsAutocompleteCustomHandlers {
-  selectedFruits = new UntypedFormControl(['Lemon']);
+  selectedFruits = new FormControl(['Lemon']);
   allFruits = ['Apple', 'Lemon', 'Lime', 'Orange', 'Strawberry'];
 
   add($event: SbbChipInputEvent) {}

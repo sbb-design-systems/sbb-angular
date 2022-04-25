@@ -1,5 +1,5 @@
 import { Component, OnDestroy } from '@angular/core';
-import { UntypedFormControl } from '@angular/forms';
+import { FormControl } from '@angular/forms';
 import { SbbTagChange } from '@sbb-esta/angular/tag';
 import { Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
@@ -41,7 +41,7 @@ const tagItems: Tag[] = [
 export class TagAdvancedExample implements OnDestroy {
   tags: Tag[];
 
-  amountFirstItem = new UntypedFormControl();
+  amountFirstItem = new FormControl<number>(0, { initialValueIsDefault: true });
   private _destroyed = new Subject<void>();
 
   constructor() {
@@ -64,7 +64,8 @@ export class TagAdvancedExample implements OnDestroy {
 
   reset() {
     this.tags = JSON.parse(JSON.stringify(tagItems)); // Create a deep copy for example purposes
-    this.amountFirstItem.setValue('', { emitEvent: false });
+    // TODO mario (26.04.2022): usage of `0` as default value okay?
+    this.amountFirstItem.setValue(0, { emitEvent: false });
   }
 
   change(evt: SbbTagChange) {

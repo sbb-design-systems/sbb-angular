@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { UntypedFormControl } from '@angular/forms';
+import { FormControl } from '@angular/forms';
 
 /**
  * @title Radio Button Group Reactive Forms Vertical
@@ -24,5 +24,5 @@ export class RadioButtonGroupReactiveFormsVerticalExample {
       value: 'value3',
     },
   ];
-  radioGroup: UntypedFormControl = new UntypedFormControl('value1');
+  radioGroup: FormControl = new FormControl('value1');
 }
