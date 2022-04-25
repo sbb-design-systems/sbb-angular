@@ -133,7 +133,7 @@ export class SbbSortHeader
   @Input() arrowPosition: SbbSortHeaderArrowPosition = 'after';
 
   /** Overrides the sort start value of the containing SbbSort for this SbbSortable. */
-  @Input() start: 'asc' | 'desc';
+  @Input() start: SbbSortDirection;
 
   /**
    * Description applied to SbbSortHeader's button element with aria-describedby. This text should
