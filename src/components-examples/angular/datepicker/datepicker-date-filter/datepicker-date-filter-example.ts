@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { FormControl } from '@angular/forms';
+import { UntypedFormControl } from '@angular/forms';
 
 /**
  * @title Datepicker Date Filter
@@ -10,7 +10,7 @@ import { FormControl } from '@angular/forms';
   templateUrl: 'datepicker-date-filter-example.html',
 })
 export class DatepickerDateFilterExample {
-  date = new FormControl();
+  date = new UntypedFormControl();
 
   filterDates = (date: Date | null): boolean => date?.getDate() === 1;
 }

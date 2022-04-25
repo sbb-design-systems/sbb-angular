@@ -1,6 +1,11 @@
 import { Component, DebugElement } from '@angular/core';
 import { ComponentFixture, fakeAsync, flush, TestBed, waitForAsync } from '@angular/core/testing';
-import { FormControl, FormGroup, FormsModule, ReactiveFormsModule } from '@angular/forms';
+import {
+  FormsModule,
+  ReactiveFormsModule,
+  UntypedFormControl,
+  UntypedFormGroup,
+} from '@angular/forms';
 import { By } from '@angular/platform-browser';
 import {
   clearElement,
@@ -50,8 +55,8 @@ class TextareaTestComponent {
   `,
 })
 class TextareaSbbFieldTestComponent {
-  form: FormGroup = new FormGroup({
-    textarea: new FormControl('SBB'),
+  form: UntypedFormGroup = new UntypedFormGroup({
+    textarea: new UntypedFormControl('SBB'),
   });
 }
 

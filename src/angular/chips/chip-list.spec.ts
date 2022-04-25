@@ -24,12 +24,12 @@ import {
 } from '@angular/core';
 import { ComponentFixture, fakeAsync, TestBed, tick } from '@angular/core/testing';
 import {
-  FormBuilder,
-  FormControl,
-  FormGroup,
   FormsModule,
   NgForm,
   ReactiveFormsModule,
+  UntypedFormBuilder,
+  UntypedFormControl,
+  UntypedFormGroup,
   Validators,
 } from '@angular/forms';
 import { By } from '@angular/platform-browser';
@@ -877,7 +877,7 @@ describe('SbbChipList', () => {
       });
 
       it('should return a new Set on update', async () => {
-        testChipsAutocomplete.selectedFruits = new FormControl(new Set(['Lemon']));
+        testChipsAutocomplete.selectedFruits = new UntypedFormControl(new Set(['Lemon']));
         fixture.detectChanges();
         const before = testChipsAutocomplete.selectedFruits.value;
 
@@ -897,7 +897,7 @@ describe('SbbChipList', () => {
       });
 
       it('should add value to form control Set', async () => {
-        testChipsAutocomplete.selectedFruits = new FormControl(new Set(['Lemon']));
+        testChipsAutocomplete.selectedFruits = new UntypedFormControl(new Set(['Lemon']));
         fixture.detectChanges();
 
         input.focus();
@@ -910,7 +910,7 @@ describe('SbbChipList', () => {
       });
 
       it('should remove value from form control Set', async () => {
-        testChipsAutocomplete.selectedFruits = new FormControl(new Set(['Lemon']));
+        testChipsAutocomplete.selectedFruits = new UntypedFormControl(new Set(['Lemon']));
         fixture.detectChanges();
 
         chips.last.remove();
@@ -1124,7 +1124,7 @@ class InputChipList {
     { value: 'pasta-6', viewValue: 'Pasta' },
     { value: 'sushi-7', viewValue: 'Sushi' },
   ];
-  control = new FormControl();
+  control = new UntypedFormControl();
 
   separatorKeyCodes = [ENTER, SPACE];
   addOnBlur: boolean = true;
@@ -1180,7 +1180,7 @@ class ChipListWithFormErrorMessages {
   @ViewChildren(SbbChip) chips: QueryList<SbbChip>;
 
   @ViewChild('form') form: NgForm;
-  formControl = new FormControl('', Validators.required);
+  formControl = new UntypedFormControl('', Validators.required);
 }
 
 @Component({
@@ -1241,9 +1241,9 @@ class ChipListWithRemove {
 })
 class ChipListInsideDynamicFormGroup {
   @ViewChild(SbbChipList) chipList: SbbChipList;
-  form: FormGroup;
+  form: UntypedFormGroup;
 
-  constructor(private _formBuilder: FormBuilder) {
+  constructor(private _formBuilder: UntypedFormBuilder) {
     this.assignGroup(false);
   }
 
@@ -1277,7 +1277,7 @@ class ChipListInsideDynamicFormGroup {
   `,
 })
 class ChipsAutocomplete {
-  selectedFruits = new FormControl(['Lemon']);
+  selectedFruits = new UntypedFormControl(['Lemon']);
   allFruits = ['Apple', 'Lemon', 'Lime', 'Orange', 'Strawberry'];
   @ViewChild('trigger') trigger: SbbAutocompleteTrigger;
 }
@@ -1309,7 +1309,7 @@ class ChipsAutocomplete {
   `,
 })
 class ChipsAutocompleteCustomHandlers {
-  selectedFruits = new FormControl(['Lemon']);
+  selectedFruits = new UntypedFormControl(['Lemon']);
   allFruits = ['Apple', 'Lemon', 'Lime', 'Orange', 'Strawberry'];
 
   add($event: SbbChipInputEvent) {}

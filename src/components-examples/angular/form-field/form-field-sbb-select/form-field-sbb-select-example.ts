@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { FormControl, Validators } from '@angular/forms';
+import { UntypedFormControl, Validators } from '@angular/forms';
 
 /**
  * @title Form Field Sbb Select
@@ -10,5 +10,5 @@ import { FormControl, Validators } from '@angular/forms';
   templateUrl: 'form-field-sbb-select-example.html',
 })
 export class FormFieldSbbSelectExample {
-  select: FormControl = new FormControl('', [Validators.required]);
+  select: UntypedFormControl = new UntypedFormControl('', [Validators.required]);
 }

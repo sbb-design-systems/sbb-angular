@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { UntypedFormBuilder, UntypedFormGroup, Validators } from '@angular/forms';
 
 /**
  * @title Processflow overview
@@ -12,10 +12,10 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 })
 export class ProcessflowOverviewExample implements OnInit {
   linear = true;
-  firstFormGroup: FormGroup;
-  secondFormGroup: FormGroup;
+  firstFormGroup: UntypedFormGroup;
+  secondFormGroup: UntypedFormGroup;
 
-  constructor(private _formBuilder: FormBuilder) {}
+  constructor(private _formBuilder: UntypedFormBuilder) {}
 
   ngOnInit() {
     this.firstFormGroup = this._formBuilder.group({

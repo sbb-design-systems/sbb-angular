@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { FormControl } from '@angular/forms';
+import { UntypedFormControl } from '@angular/forms';
 
 // @ts-ignore versions.ts is generated automatically by bazel
 import { libraryVersion } from '../versions';
@@ -11,5 +11,5 @@ import { libraryVersion } from '../versions';
 export class HowToUpdateComponent {
   libraryMajorVersion: number = +libraryVersion.split('.')[0];
   libraryPredecessorMajorVersion = this.libraryMajorVersion - 1;
-  fullCommand = new FormControl(false);
+  fullCommand = new UntypedFormControl(false);
 }

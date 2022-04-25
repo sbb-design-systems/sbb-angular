@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { FormControl } from '@angular/forms';
+import { UntypedFormControl } from '@angular/forms';
 
 /**
  * @title Search Simple Header Mode
@@ -11,7 +11,7 @@ import { FormControl } from '@angular/forms';
 })
 export class SearchSimpleHeaderModeExample {
   searchValues: string[] = [];
-  searchControl = new FormControl('');
+  searchControl = new UntypedFormControl('');
 
   handleSearch(value: string) {
     // Only display up to the last five search values.

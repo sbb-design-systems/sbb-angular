@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, OnDestroy, OnInit } from '@angular/core';
-import { FormControl } from '@angular/forms';
+import { UntypedFormControl } from '@angular/forms';
 import { Subject } from 'rxjs';
 import { distinctUntilChanged, map, switchMap, takeUntil, tap } from 'rxjs/operators';
 
@@ -23,7 +23,7 @@ interface ImageRecord {
   styleUrls: ['search-historic-railway-pictures-example.css'],
 })
 export class SearchHistoricRailwayPicturesExample implements OnInit, OnDestroy {
-  searchControl = new FormControl('');
+  searchControl = new UntypedFormControl('');
   showSpinner = false;
   searchSubject = new Subject<string>();
   searchResults: ImageRecord[] = [];

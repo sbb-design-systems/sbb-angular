@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { FormControl, Validators } from '@angular/forms';
+import { UntypedFormControl, Validators } from '@angular/forms';
 import { SbbShowOnDirtyErrorStateMatcher } from '@sbb-esta/angular/core';
 
 /**
@@ -11,7 +11,10 @@ import { SbbShowOnDirtyErrorStateMatcher } from '@sbb-esta/angular/core';
   templateUrl: 'form-field-dirty-error-state-example.html',
 })
 export class FormFieldDirtyErrorStateExample {
-  name: FormControl = new FormControl('', [Validators.required, Validators.minLength(5)]);
+  name: UntypedFormControl = new UntypedFormControl('', [
+    Validators.required,
+    Validators.minLength(5),
+  ]);
 
   constructor(readonly errorStateMatcher: SbbShowOnDirtyErrorStateMatcher) {}
 }

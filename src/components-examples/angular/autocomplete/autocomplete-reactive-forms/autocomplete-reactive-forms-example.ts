@@ -1,5 +1,5 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
-import { FormControl } from '@angular/forms';
+import { UntypedFormControl } from '@angular/forms';
 import { Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
 
@@ -12,7 +12,7 @@ import { takeUntil } from 'rxjs/operators';
   templateUrl: 'autocomplete-reactive-forms-example.html',
 })
 export class AutocompleteReactiveFormsExample implements OnInit, OnDestroy {
-  myControl = new FormControl('');
+  myControl = new UntypedFormControl('');
   filteredOptions = options.slice(0);
   private _destroyed = new Subject<void>();
 

@@ -40,8 +40,6 @@ ng_package(
     srcs = [
         "package.json",
     ],
-    data = [
-    ],
     nested_packages = ["//src/angular-experimental/schematics:npm_package"],
     tags = ["release-package"],
     deps = EXPERIMENTAL_TARGETS + EXPERIMENTAL_TESTING_TARGETS,

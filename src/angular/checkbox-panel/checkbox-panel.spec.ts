@@ -1,7 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { Component, QueryList, ViewChildren } from '@angular/core';
 import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
-import { FormControl, FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule, UntypedFormControl } from '@angular/forms';
 import { By } from '@angular/platform-browser';
 import { createMouseEvent, dispatchEvent } from '@sbb-esta/angular/core/testing';
 import { SbbIconModule } from '@sbb-esta/angular/icon';
@@ -44,7 +44,7 @@ class ModelOptionSelectionMultipleTest {
   `,
 })
 class CheckboxPanelDirectivesTest {
-  control = new FormControl(false);
+  control = new UntypedFormControl(false);
   subtitle = 'Valid: Mo, 01.03.2021';
   warning = 'Reservation not possible';
   note = 'CHF 250.00';
@@ -62,7 +62,7 @@ class CheckboxPanelDirectivesTest {
   `,
 })
 class CheckboxPanelIconTest {
-  control = new FormControl(false);
+  control = new UntypedFormControl(false);
 }
 
 describe('SbbCheckboxPanel', () => {

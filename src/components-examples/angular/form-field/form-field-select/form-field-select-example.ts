@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { FormControl, Validators } from '@angular/forms';
+import { UntypedFormControl, Validators } from '@angular/forms';
 
 /**
  * @title Form Field Select
@@ -10,5 +10,5 @@ import { FormControl, Validators } from '@angular/forms';
   templateUrl: 'form-field-select-example.html',
 })
 export class FormFieldSelectExample {
-  select: FormControl = new FormControl('', [Validators.required]);
+  select: UntypedFormControl = new UntypedFormControl('', [Validators.required]);
 }

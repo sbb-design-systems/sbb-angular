@@ -1,5 +1,5 @@
 import { Component, OnDestroy, ViewEncapsulation } from '@angular/core';
-import { FormControl } from '@angular/forms';
+import { UntypedFormControl } from '@angular/forms';
 import { Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
 
@@ -22,7 +22,7 @@ interface RowEntry {
   encapsulation: ViewEncapsulation.None,
 })
 export class NativeTableExample implements OnDestroy {
-  filterControl: FormControl = new FormControl('');
+  filterControl: UntypedFormControl = new UntypedFormControl('');
   rows = ROW_DATA.slice();
   private _destroyed = new Subject<void>();
 

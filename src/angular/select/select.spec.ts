@@ -35,13 +35,13 @@ import {
 } from '@angular/core/testing';
 import {
   ControlValueAccessor,
-  FormBuilder,
-  FormControl,
-  FormGroup,
   FormGroupDirective,
   FormsModule,
   NG_VALUE_ACCESSOR,
   ReactiveFormsModule,
+  UntypedFormBuilder,
+  UntypedFormControl,
+  UntypedFormGroup,
   Validators,
 } from '@angular/forms';
 import { By } from '@angular/platform-browser';
@@ -103,7 +103,7 @@ class BasicSelect {
     { value: 'pasta-6', viewValue: 'Pasta' },
     { value: 'sushi-7', viewValue: 'Sushi' },
   ];
-  control = new FormControl();
+  control = new UntypedFormControl();
   isRequired: boolean;
   heightAbove = 0;
   heightBelow = 0;
@@ -183,7 +183,7 @@ class NgIfSelect {
     { value: 'pizza-1', viewValue: 'Pizza' },
     { value: 'tacos-2', viewValue: 'Tacos' },
   ];
-  control = new FormControl('pizza-1');
+  control = new UntypedFormControl('pizza-1');
 
   @ViewChild(SbbSelect) select: SbbSelect;
 }
@@ -227,7 +227,7 @@ class SelectWithChangeEvent {
 })
 class SelectInitWithoutOptions {
   foods: any[];
-  control = new FormControl('pizza-1');
+  control = new UntypedFormControl('pizza-1');
 
   @ViewChild(SbbSelect) select: SbbSelect;
   @ViewChildren(SbbOption) options: QueryList<SbbOption>;
@@ -272,7 +272,7 @@ class CustomSelectAccessor implements ControlValueAccessor {
   ],
 })
 class CompWithCustomSelect {
-  ctrl = new FormControl('initial value');
+  ctrl = new UntypedFormControl('initial value');
   @ViewChild(CustomSelectAccessor, { static: true }) customAccessor: CustomSelectAccessor;
 }
 
@@ -318,7 +318,7 @@ class BasicSelectOnPush {
     { value: 'pizza-1', viewValue: 'Pizza' },
     { value: 'tacos-2', viewValue: 'Tacos' },
   ];
-  control = new FormControl();
+  control = new UntypedFormControl();
 }
 
 @Component({
@@ -341,7 +341,7 @@ class BasicSelectOnPushPreselected {
     { value: 'pizza-1', viewValue: 'Pizza' },
     { value: 'tacos-2', viewValue: 'Tacos' },
   ];
-  control = new FormControl('pizza-1');
+  control = new UntypedFormControl('pizza-1');
 }
 
 @Component({
@@ -372,7 +372,7 @@ class MultiSelect {
     { value: 'pasta-6', viewValue: 'Pasta' },
     { value: 'sushi-7', viewValue: 'Sushi' },
   ];
-  control = new FormControl();
+  control = new UntypedFormControl();
 
   @ViewChild(SbbSelect) select: SbbSelect;
   @ViewChildren(SbbOption) options: QueryList<SbbOption>;
@@ -444,7 +444,7 @@ class ResetValuesSelect {
     { viewValue: 'Undefined' },
     { value: null, viewValue: 'Null' },
   ];
-  control = new FormControl();
+  control = new UntypedFormControl();
 
   @ViewChild(SbbSelect) select: SbbSelect;
 }
@@ -465,7 +465,7 @@ class FalsyValueSelect {
     { value: 0, viewValue: 'Steak' },
     { value: 1, viewValue: 'Pizza' },
   ];
-  control = new FormControl();
+  control = new UntypedFormControl();
   @ViewChildren(SbbOption) options: QueryList<SbbOption>;
 }
 
@@ -489,7 +489,7 @@ class FalsyValueSelect {
   `,
 })
 class SelectWithGroups {
-  control = new FormControl();
+  control = new UntypedFormControl();
   pokemonTypes = [
     {
       name: 'Grass',
@@ -544,7 +544,7 @@ class SelectWithGroups {
   `,
 })
 class SelectWithGroupsAndNgContainer {
-  control = new FormControl();
+  control = new UntypedFormControl();
   pokemonTypes = [
     {
       name: 'Grass',
@@ -588,8 +588,8 @@ class SelectInsideFormGroup {
     { value: 'steak-0', viewValue: 'Steak' },
     { value: 'pizza-1', viewValue: 'Pizza' },
   ];
-  formControl = new FormControl('', Validators.required);
-  formGroup = new FormGroup({
+  formControl = new UntypedFormControl('', Validators.required);
+  formGroup = new UntypedFormGroup({
     food: this.formControl,
   });
 }
@@ -720,7 +720,7 @@ class NgModelCompareWithSelect {
 })
 class CustomErrorBehaviorSelect {
   @ViewChild(SbbSelect) select: SbbSelect;
-  control = new FormControl();
+  control = new UntypedFormControl();
   foods: any[] = [
     { value: 'steak-0', viewValue: 'Steak' },
     { value: 'pizza-1', viewValue: 'Pizza' },
@@ -819,7 +819,7 @@ class MultiSelectWithLotsOfOptions {
 class SelectWithResetOptionAndFormControl {
   @ViewChild(SbbSelect) select: SbbSelect;
   @ViewChildren(SbbOption) options: QueryList<SbbOption>;
-  control = new FormControl();
+  control = new UntypedFormControl();
 }
 
 @Component({
@@ -851,9 +851,9 @@ class SelectInNgContainer {}
 })
 class SelectInsideDynamicFormGroup {
   @ViewChild(SbbSelect) select: SbbSelect;
-  form: FormGroup;
+  form: UntypedFormGroup;
 
-  constructor(private _formBuilder: FormBuilder) {
+  constructor(private _formBuilder: UntypedFormBuilder) {
     this.assignGroup(false);
   }
 
@@ -2740,7 +2740,7 @@ describe('SbbSelect', () => {
       }));
 
       it('should take an initial view value with reactive forms', fakeAsync(() => {
-        fixture.componentInstance.control = new FormControl('pizza-1');
+        fixture.componentInstance.control = new UntypedFormControl('pizza-1');
         fixture.detectChanges();
 
         const value = fixture.debugElement.query(By.css('.sbb-select-value'))!;

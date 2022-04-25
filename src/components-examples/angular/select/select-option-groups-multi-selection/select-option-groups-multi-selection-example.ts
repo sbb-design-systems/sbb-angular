@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { FormBuilder, FormGroup } from '@angular/forms';
+import { UntypedFormBuilder, UntypedFormGroup } from '@angular/forms';
 
 /**
  * @title Select Option Groups Multi Selection
@@ -10,7 +10,7 @@ import { FormBuilder, FormGroup } from '@angular/forms';
   templateUrl: 'select-option-groups-multi-selection-example.html',
 })
 export class SelectOptionGroupsMultiSelectionExample {
-  form: FormGroup;
+  form: UntypedFormGroup;
   foodFromTheWorld: any[] = [
     {
       nation: 'Italy',
@@ -38,7 +38,7 @@ export class SelectOptionGroupsMultiSelectionExample {
     },
   ];
 
-  constructor(formBuilder: FormBuilder) {
+  constructor(formBuilder: UntypedFormBuilder) {
     this.form = formBuilder.group({
       value: [[]],
     });

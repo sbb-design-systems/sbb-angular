@@ -1,5 +1,5 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
-import { FormControl } from '@angular/forms';
+import { UntypedFormControl } from '@angular/forms';
 import { Subject } from 'rxjs';
 import { debounceTime, distinctUntilChanged, takeUntil } from 'rxjs/operators';
 
@@ -12,7 +12,7 @@ import { debounceTime, distinctUntilChanged, takeUntil } from 'rxjs/operators';
   templateUrl: 'search-custom-icon-autocomplete-static-options-example.html',
 })
 export class SearchCustomIconAutocompleteStaticOptionsExample implements OnInit, OnDestroy {
-  searchControl = new FormControl('');
+  searchControl = new UntypedFormControl('');
   staticOptions: string[] = ['static option one', 'static option two'];
   options = new Subject<string[]>();
 

@@ -40,8 +40,6 @@ ng_package(
     srcs = [
         "package.json",
     ],
-    data = [
-    ],
     tags = ["release-package"],
     deps = MAPS_TARGETS + MAPS_TESTING_TARGETS,
 )

@@ -6,7 +6,7 @@ import {
   TemplateRef,
   ViewChild,
 } from '@angular/core';
-import { FormBuilder, FormGroup } from '@angular/forms';
+import { UntypedFormBuilder, UntypedFormGroup } from '@angular/forms';
 import { SbbRadioChange } from '@sbb-esta/angular/radio-button';
 import {
   SbbInteractionOptions,
@@ -78,11 +78,11 @@ export class JourneyMapsFullExample implements OnInit, OnDestroy {
   viewportOptions: SbbViewportOptions = {};
   zoomLevels: SbbZoomLevels;
   visibleLevels = new BehaviorSubject<number[]>([]);
-  form: FormGroup;
+  form: UntypedFormGroup;
 
   private _destroyed = new Subject<void>();
 
-  constructor(private _cd: ChangeDetectorRef, private _fb: FormBuilder) {
+  constructor(private _cd: ChangeDetectorRef, private _fb: UntypedFormBuilder) {
     // Pseudo validator to reset the selected marker id before the value changes
     const resetSelectedMarkerIdValidator = () => {
       this.selectedMarkerId = undefined;
@@ -216,7 +216,7 @@ export class JourneyMapsFullExample implements OnInit, OnDestroy {
   }
 
   listenerOptionTypes() {
-    const listenerOptions: FormGroup = this.form.get('listenerOptions') as FormGroup;
+    const listenerOptions: UntypedFormGroup = this.form.get('listenerOptions') as UntypedFormGroup;
     return Object.keys(listenerOptions.controls);
   }
 

@@ -1,7 +1,7 @@
 import { BreakpointObserver } from '@angular/cdk/layout';
 import { DOCUMENT } from '@angular/common';
 import { AfterContentInit, Component, Inject, isDevMode, OnDestroy } from '@angular/core';
-import { FormControl } from '@angular/forms';
+import { UntypedFormControl } from '@angular/forms';
 import { DomSanitizer } from '@angular/platform-browser';
 import { Breakpoints } from '@sbb-esta/angular/core';
 import { SbbIconRegistry } from '@sbb-esta/angular/icon';
@@ -29,7 +29,7 @@ export class AppComponent implements AfterContentInit, OnDestroy {
   angularVersion = angularVersion;
   showcaseVersion = libraryVersion;
   expanded: boolean = true;
-  sbbVariant: FormControl = this._variantSwitch.sbbVariant;
+  sbbVariant: UntypedFormControl = this._variantSwitch.sbbVariant;
   packages = isDevMode() ? PACKAGES : DEV_PACKAGES;
   previousMajorVersions: number[];
   shouldShowPreviousVersions: boolean;
