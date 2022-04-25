@@ -20,6 +20,8 @@ export type SbbTableWrapperScrollOffset = 'none' | 'both' | 'left' | 'right';
   selector: 'sbb-table-wrapper',
   host: {
     class: 'sbb-table-wrapper sbb-scrollbar',
+    '[attr.tabindex]': '0',
+    role: 'section',
   },
 })
 export class SbbTableWrapper implements AfterViewInit, OnDestroy {
