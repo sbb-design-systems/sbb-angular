@@ -66,7 +66,7 @@ jobs:
     - name: Login to GitHub Docker Repository
       uses: azure/docker-login@v1
       with:
-        login-server: docker.pkg.github.com
+        login-server: ghcr.io
         username: ${{ github.actor }}
         password: ${{ secrets.GITHUB_TOKEN }}
     - uses: actions/checkout@v3
@@ -94,10 +94,10 @@ jobs:
     - name: "Docker: Build image"
       run: |
         docker build \
-        -t docker.pkg.github.com/sbb-design-systems/sbb-angular/showcase:${{ steps.docker_release_version.outputs.docker_release_version }} \
-        -t docker.pkg.github.com/sbb-design-systems/sbb-angular/showcase:latest \
+        -t ghcr.io/sbb-design-systems/sbb-angular/showcase:${{ steps.docker_release_version.outputs.docker_release_version }} \
+        -t ghcr.io/sbb-design-systems/sbb-angular/showcase:latest \
         .
     - name: "Docker: Publish image"
-      run: docker push docker.pkg.github.com/sbb-design-systems/sbb-angular/showcase:${{ steps.docker_release_version.outputs.docker_release_version }}
+      run: docker push ghcr.io/sbb-design-systems/sbb-angular/showcase:${{ steps.docker_release_version.outputs.docker_release_version }}
     - name: "Docker: Publish image as latest"
-      run: docker push docker.pkg.github.com/sbb-design-systems/sbb-angular/showcase:latest
+      run: docker push ghcr.io/sbb-design-systems/sbb-angular/showcase:latest
