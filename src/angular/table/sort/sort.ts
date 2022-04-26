@@ -35,7 +35,7 @@ export interface SbbSortable {
   id: string;
 
   /** Starting sort direction. */
-  start: 'asc' | 'desc';
+  start: SbbSortDirection;
 
   /** Whether to disable clearing the sorting state. */
   disableClear: boolean;
@@ -92,7 +92,7 @@ export class SbbSort
    * The direction to set when an SbbSortable is initially sorted.
    * May be overridden by the SbbSortable's sort start.
    */
-  @Input('sbbSortStart') start: 'asc' | 'desc' = 'asc';
+  @Input('sbbSortStart') start: SbbSortDirection = 'asc';
 
   /** The sort direction of the currently active SbbSortable. */
   @Input('sbbSortDirection')
@@ -208,7 +208,7 @@ export class SbbSort
 }
 
 /** Returns the sort direction cycle to use given the provided parameters of order and clear. */
-function getSortDirectionCycle(start: 'asc' | 'desc', disableClear: boolean): SbbSortDirection[] {
+function getSortDirectionCycle(start: SbbSortDirection, disableClear: boolean): SbbSortDirection[] {
   const sortOrder: SbbSortDirection[] = ['asc', 'desc'];
   if (start === 'desc') {
     sortOrder.reverse();
