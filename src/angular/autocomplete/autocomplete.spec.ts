@@ -3781,6 +3781,31 @@ describe('SbbAutocomplete', () => {
     expect(fixture.componentInstance.trigger.panelOpen).toBe(true);
   });
 
+  it('should emit from `autocomplete.closed` after click outside inside the NgZone', fakeAsync(() => {
+    const inZoneSpy = jasmine.createSpy('in zone spy');
+
+    const fixture = createComponent(SimpleAutocomplete, [
+      { provide: NgZone, useFactory: () => new NgZone({ enableLongStackTrace: false }) },
+    ]);
+    const ngZone = TestBed.inject(NgZone);
+    fixture.detectChanges();
+
+    fixture.componentInstance.trigger.openPanel();
+    fixture.detectChanges();
+    flush();
+
+    const subscription = fixture.componentInstance.trigger.autocomplete.closed.subscribe(() =>
+      inZoneSpy(NgZone.isInAngularZone())
+    );
+    ngZone.onStable.emit(null);
+
+    dispatchFakeEvent(document, 'click');
+
+    expect(inZoneSpy).toHaveBeenCalledWith(true);
+
+    subscription.unsubscribe();
+  }));
+
   describe('highlighting', () => {
     let fixture: ComponentFixture<AutocompleteLocaleNormalizer>;
     let input: HTMLInputElement;
