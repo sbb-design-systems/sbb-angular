@@ -21,7 +21,6 @@ export class AutocompleteDisplayWithExample {
 
   filteredOptions: Observable<ExampleOption[]> = this.myControl.valueChanges.pipe(
     startWith(''),
-    // TODO mario (26.04.2022): `any` okay?
     map((newValue: any) =>
       options.filter(
         (option) =>
