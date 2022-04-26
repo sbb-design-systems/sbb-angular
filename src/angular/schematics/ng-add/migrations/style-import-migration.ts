@@ -1,5 +1,5 @@
 import { extname } from '@angular-devkit/core';
-import { chain, Rule } from '@angular-devkit/schematics';
+import { chain, Rule, SchematicContext, Tree } from '@angular-devkit/schematics';
 import {
   DevkitContext,
   getProjectFromWorkspace,
@@ -10,6 +10,7 @@ import {
 } from '@angular/cdk/schematics';
 import { updateWorkspace } from '@schematics/angular/utility/workspace';
 
+import { getProjectName } from '../../utils';
 import { Schema } from '../schema';
 
 export class StyleImportMigration extends Migration<null, DevkitContext> {
@@ -56,30 +57,35 @@ function migrateTypographyInAngularJsonPerTarget(
   options: Schema,
   targetName: 'build' | 'test'
 ): Rule {
-  return updateWorkspace((workspace) => {
-    const project = getProjectFromWorkspace(
-      workspace,
-      options.project ||
-        (workspace.extensions.defaultProject as string) ||
-        Array.from(workspace.projects.keys())[0]
-    );
+  return async (host: Tree, context: SchematicContext) => {
+    return updateWorkspace((workspace) => {
+      const project = getProjectFromWorkspace(workspace, getProjectName(options, workspace));
 
-    const targetOptions = getProjectTargetOptions(project, targetName);
-    const styles = targetOptions.styles as (string | { input: string })[];
+      let targetOptions;
+      try {
+        targetOptions = getProjectTargetOptions(project, targetName);
+      } catch (e) {
+        context.logger.warn(
+          `Skipped typography migration for ${targetName} configuration due to missing file.`
+        );
+        return;
+      }
+      const styles = targetOptions.styles as (string | { input: string })[];
 
-    if (styles) {
-      targetOptions.styles = styles.map((path) => {
-        function replace(pathToReplace: string) {
-          return pathToReplace.replace(/angular-(public|business)\//g, 'angular/');
-        }
+      if (styles) {
+        targetOptions.styles = styles.map((path) => {
+          function replace(pathToReplace: string) {
+            return pathToReplace.replace(/angular-(public|business)\//g, 'angular/');
+          }
 
-        if (typeof path === 'string') {
-          return replace(path);
-        } else {
-          path.input = replace(path.input);
-          return path;
-        }
-      });
-    }
-  });
+          if (typeof path === 'string') {
+            return replace(path);
+          } else {
+            path.input = replace(path.input);
+            return path;
+          }
+        });
+      }
+    });
+  };
 }
