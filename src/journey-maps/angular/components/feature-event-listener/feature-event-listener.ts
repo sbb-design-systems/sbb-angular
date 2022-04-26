@@ -30,6 +30,7 @@ import { SbbMapEventUtils } from '../../services/map/events/map-event-utils';
 import { SbbMapSelectionEvent } from '../../services/map/events/map-selection-event';
 import { SbbRouteUtils, SBB_ROUTE_ID_PROPERTY_NAME } from '../../services/map/events/route-utils';
 import { SbbMapMarkerService } from '../../services/map/map-marker-service';
+import { SBB_POI_LAYER } from '../../services/map/map-poi-service';
 import { SbbMapRoutesService, SBB_ALL_ROUTE_LAYERS } from '../../services/map/map-routes.service';
 import { SbbMapStationService, SBB_STATION_LAYER } from '../../services/map/map-station-service';
 import { SBB_ZONE_LAYER } from '../../services/map/map-zone-service';
@@ -104,6 +105,9 @@ export class SbbFeatureEventListener implements OnChanges, OnDestroy {
       }
       if (this.listenerOptions.ZONE?.watch) {
         this._updateWatchOnLayers([SBB_ZONE_LAYER], 'ZONE');
+      }
+      if (this.listenerOptions.POI?.watch) {
+        this._updateWatchOnLayers([SBB_POI_LAYER], 'POI');
       }
 
       this._mapCursorStyleEvent?.complete();
