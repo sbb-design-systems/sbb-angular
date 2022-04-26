@@ -12,7 +12,7 @@ import { debounceTime, distinctUntilChanged, map, startWith } from 'rxjs/operato
   templateUrl: 'autocomplete-option-group-example.html',
 })
 export class AutocompleteOptionGroupExample implements OnInit {
-  myControlStatic = new FormControl('one', { initialValueIsDefault: true });
+  myControlStatic = new FormControl('one');
 
   options: Observable<string[]>;
 
@@ -24,7 +24,7 @@ export class AutocompleteOptionGroupExample implements OnInit {
       debounceTime(500),
       distinctUntilChanged(),
       map((newValue) =>
-        newValue.length < 2
+        !newValue || newValue.length < 2
           ? []
           : options.filter(
               (option) => option.toLocaleUpperCase().indexOf(newValue.toLocaleUpperCase()) > -1

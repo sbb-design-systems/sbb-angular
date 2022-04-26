@@ -23,7 +23,7 @@ interface ImageRecord {
   styleUrls: ['search-historic-railway-pictures-example.css'],
 })
 export class SearchHistoricRailwayPicturesExample implements OnInit, OnDestroy {
-  searchControl = new FormControl('', { initialValueIsDefault: true });
+  searchControl = new FormControl('');
   showSpinner = false;
   searchSubject = new Subject<string>();
   searchResults: ImageRecord[] = [];
@@ -49,7 +49,8 @@ export class SearchHistoricRailwayPicturesExample implements OnInit, OnDestroy {
       .pipe(
         map((newValue) =>
           this.cities.filter(
-            (option) => option.toLocaleUpperCase().indexOf(newValue.toLocaleUpperCase()) > -1
+            (option) =>
+              newValue && option.toLocaleUpperCase().indexOf(newValue.toLocaleUpperCase()) > -1
           )
         ),
         takeUntil(this._destroyed)
@@ -95,6 +96,6 @@ export class SearchHistoricRailwayPicturesExample implements OnInit, OnDestroy {
   }
 
   search() {
-    this.searchSubject.next(this.searchControl.value);
+    this.searchSubject.next(this.searchControl.value || '');
   }
 }

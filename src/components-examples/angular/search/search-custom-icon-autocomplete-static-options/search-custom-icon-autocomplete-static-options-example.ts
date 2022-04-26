@@ -12,7 +12,7 @@ import { debounceTime, distinctUntilChanged, takeUntil } from 'rxjs/operators';
   templateUrl: 'search-custom-icon-autocomplete-static-options-example.html',
 })
 export class SearchCustomIconAutocompleteStaticOptionsExample implements OnInit, OnDestroy {
-  searchControl = new FormControl('', { initialValueIsDefault: true });
+  searchControl = new FormControl('');
   staticOptions: string[] = ['static option one', 'static option two'];
   options = new Subject<string[]>();
 
@@ -22,7 +22,7 @@ export class SearchCustomIconAutocompleteStaticOptionsExample implements OnInit,
     this.searchControl.valueChanges
       .pipe(debounceTime(500), distinctUntilChanged(), takeUntil(this._destroyed))
       .subscribe((newValue) => {
-        if (newValue.length >= 2) {
+        if (newValue && newValue.length >= 2) {
           this.options.next(
             options.filter(
               (option) => option.toLocaleUpperCase().indexOf(newValue.toLocaleUpperCase()) > -1

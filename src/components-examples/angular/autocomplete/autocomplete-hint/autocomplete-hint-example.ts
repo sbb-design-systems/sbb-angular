@@ -13,7 +13,7 @@ import { distinctUntilChanged, takeUntil } from 'rxjs/operators';
 })
 export class AutocompleteHintExample implements OnInit, OnDestroy {
   readonly maxOptionsListLength = 5;
-  myControlHint = new FormControl('', { initialValueIsDefault: true });
+  myControlHint = new FormControl('');
   filteredOptionsHint = options.slice(0);
   private _destroyed = new Subject<void>();
 
@@ -22,7 +22,7 @@ export class AutocompleteHintExample implements OnInit, OnDestroy {
       .pipe(distinctUntilChanged(), takeUntil(this._destroyed))
       .subscribe((newValue) => {
         this.filteredOptionsHint = options.filter(
-          (option) => option.toLocaleUpperCase().indexOf(newValue.toLocaleUpperCase()) > -1
+          (option) => option.toLocaleUpperCase().indexOf(newValue!.toLocaleUpperCase()) > -1
         );
       });
   }
