@@ -55,7 +55,6 @@ genrule(
       ./$(execpath //tools/stack-blitz-module-template:bazel-bin) \
           "$(execpath stack-blitz/src/app/sbb.module.ts)" \
           "@sbb-esta/angular" \
-          "@sbb-esta/journey-maps" \
           %s
     """ % " ".join([ep for ep in ANGULAR_ENTRYPOINTS if ep != "core" and ep != "i18n" and ep != "oauth"]),
     output_to_bindir = True,
