@@ -1,13 +1,14 @@
 import { COMMA, ENTER } from '@angular/cdk/keycodes';
 import { Component } from '@angular/core';
-import { SbbChipInputEvent } from '@sbb-esta/angular/chips';
+import { FormControl } from '@angular/forms';
+import { SbbChipEvent, SbbChipInputEvent } from '@sbb-esta/angular/chips';
 
 export interface Fruit {
   name: string;
   color: string;
 }
 
-const availableFruits = [
+const availableFruits: Fruit[] = [
   { name: 'Lemon', color: 'yellow' },
   { name: 'Lime', color: 'green' },
   { name: 'Apple', color: 'red' },
@@ -15,7 +16,7 @@ const availableFruits = [
 
 /**
  * @title Chips With Custom Chip Token Handlers
- * @order 3
+ * @order 4
  */
 @Component({
   selector: 'sbb-chips-input-custom-handler-example',
@@ -23,11 +24,13 @@ const availableFruits = [
 })
 export class ChipsInputCustomHandlerExample {
   readonly separatorKeysCodes = [ENTER, COMMA];
-  fruits: Fruit[] = availableFruits.slice(0, 1);
+  favoriteFruits = new FormControl(new Set(availableFruits.slice(0, 1)));
+  get favoriteFruitsAsArray() {
+    return [...this.favoriteFruits.value!];
+  }
 
   add(inputEvent: SbbChipInputEvent): void {
     const value = (inputEvent.value || '').trim();
-
     if (!value) {
       return;
     }
@@ -39,15 +42,16 @@ export class ChipsInputCustomHandlerExample {
       alert('fruit not available');
       return;
     }
-    this.fruits.push(foundFruit);
+    this.favoriteFruits.patchValue(new Set([...this.favoriteFruits.value!, foundFruit]));
+    this.favoriteFruits.markAsDirty();
     inputEvent.chipInput!.clear();
   }
 
-  remove(fruit: Fruit): void {
-    const index = this.fruits.indexOf(fruit);
-
-    if (index >= 0) {
-      this.fruits.splice(index, 1);
-    }
+  remove(chipEvent: SbbChipEvent): void {
+    const fruitToDelete = chipEvent.chip.value as Fruit;
+    const fruitsCopy = new Set(this.favoriteFruits.value);
+    fruitsCopy.delete(fruitToDelete);
+    this.favoriteFruits.patchValue(fruitsCopy);
+    this.favoriteFruits.markAsDirty();
   }
 }

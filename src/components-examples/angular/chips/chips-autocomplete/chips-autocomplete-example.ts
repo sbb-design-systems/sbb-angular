@@ -6,7 +6,7 @@ import { map, startWith } from 'rxjs/operators';
 
 /**
  * @title Chips Autocomplete
- * @order 4
+ * @order 3
  */
 @Component({
   selector: 'sbb-chips-autocomplete-example',

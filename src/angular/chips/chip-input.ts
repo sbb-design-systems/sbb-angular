@@ -82,7 +82,7 @@ export class SbbChipInput implements SbbChipTextControl, OnChanges, OnDestroy, A
   }
 
   /**
-   * Whether or not the chipEnd event will be emitted when the input is blurred.
+   * Whether the chipEnd event will be emitted when the input is blurred.
    */
   @Input('sbbChipInputAddOnBlur')
   get addOnBlur(): boolean {
@@ -275,6 +275,7 @@ export class SbbChipInput implements SbbChipTextControl, OnChanges, OnDestroy, A
       control.patchValue(new Set([...currentCollection, inputValue]));
     }
     if (isArray || isSet) {
+      this._chipList.ngControl.control.markAsDirty();
       this.clear();
     }
   }
