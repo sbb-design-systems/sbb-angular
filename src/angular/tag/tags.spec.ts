@@ -74,9 +74,10 @@ class TagsTestFixtureComponent {
   `,
 })
 class TagsTestFixtureReactiveComponent {
-  formGroup = new FormGroup<any>({
+  formGroup = new FormGroup({
     services: new FormControl(false),
     restaurants: new FormControl(false),
+    onemore: new FormControl(false),
   });
   tagItems: Tag[] = [
     {

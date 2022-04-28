@@ -1522,11 +1522,7 @@ class LinearSbbVerticalStepperApp implements OnInit {
       oneCtrl: new FormControl('', Validators.required),
     });
     this.twoGroup = new FormGroup({
-      twoCtrl: new FormControl(
-        '' as string,
-        Validators.required,
-        asyncValidator(3, this.validationTrigger)
-      ),
+      twoCtrl: new FormControl('', Validators.required, asyncValidator(3, this.validationTrigger)),
     });
     this.threeGroup = new FormGroup({
       threeCtrl: new FormControl('', Validators.pattern(VALID_REGEX)),

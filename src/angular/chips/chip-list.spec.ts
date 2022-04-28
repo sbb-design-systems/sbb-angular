@@ -905,7 +905,7 @@ describe('SbbChipList', () => {
         dispatchKeyboardEvent(input, 'keydown', ENTER);
         await fixture.whenStable();
 
-        expect([...(testChipsAutocomplete!.selectedFruits!.value as string[])]).toEqual([
+        expect([...(testChipsAutocomplete!.selectedFruits!.value as Set<string>)]).toEqual([
           'Lemon',
           '123',
         ]);
