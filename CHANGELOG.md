@@ -2,6 +2,15 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [13.13.1](https://github.com/sbb-design-systems/sbb-angular/compare/13.13.0...13.13.1) (2022-04-28)
+
+
+### Bug Fixes
+
+* **angular/autocomplete:** outside click in Angular zone ([#1409](https://github.com/sbb-design-systems/sbb-angular/issues/1409)) ([ae9e082](https://github.com/sbb-design-systems/sbb-angular/commit/ae9e082d04122440a132d74362a2a805b931aba1))
+* **deps:** update dependency tslib to v2.4.0 ([814ea58](https://github.com/sbb-design-systems/sbb-angular/commit/814ea5888e3f1120a2a3b3a113842656e92cb4fd))
+* remove journey-maps from stackblitz example to make it working again ([#1416](https://github.com/sbb-design-systems/sbb-angular/issues/1416)) ([97ed2cb](https://github.com/sbb-design-systems/sbb-angular/commit/97ed2cb7551fece93432ed83d702643b572c17c2))
+
 ## [13.13.0](https://github.com/sbb-design-systems/sbb-angular/compare/13.12.0...13.13.0) (2022-04-21)
 
 
