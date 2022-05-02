@@ -169,7 +169,7 @@ export type SbbTemplateType = TemplateRef<any> | string;
 
 /** points of interest options */
 export interface SbbPointsOfInterestOptions {
-  /** configure points of interest categories */
+  /** Configure a list of points of interest categories visible in the map. Set empty, to hide all POIs. */
   categories: SbbPointsOfInterestCategoryType[];
 }
 
