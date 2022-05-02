@@ -14,7 +14,11 @@ export class SbbMapPoisService {
   configurePoiOptions(map: MaplibreMap, poiOptions: SbbPointsOfInterestOptions): void {
     if (poiOptions.categories?.length) {
       map.setFilter(SBB_POIS_LAYER, ['in', 'subCategory', ...poiOptions.categories]);
-      map.setLayoutProperty(SBB_POIS_LAYER, 'visibility', 'visible');
     }
+    map.setLayoutProperty(
+      SBB_POIS_LAYER,
+      'visibility',
+      poiOptions.categories?.length ? 'visible' : 'none'
+    );
   }
 }
