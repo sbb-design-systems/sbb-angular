@@ -45,7 +45,7 @@ import { SBB_ZONE_LAYER } from '../../services/map/map-zone-service';
 export class SbbFeatureEventListener implements OnChanges, OnDestroy {
   @Input() listenerOptions: SbbListenerOptions;
   @Input() map: MapLibreMap | null;
-  @Input() poiOptions: SbbPointsOfInterestOptions;
+  @Input() poiOptions?: SbbPointsOfInterestOptions;
 
   @Output() featureSelectionsChange: EventEmitter<SbbFeaturesSelectEventData> =
     new EventEmitter<SbbFeaturesSelectEventData>();

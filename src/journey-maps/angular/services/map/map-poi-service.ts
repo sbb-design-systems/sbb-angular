@@ -11,7 +11,7 @@ export const SBB_POIS_INTERACTION_SOURCE = {
 
 @Injectable({ providedIn: 'root' })
 export class SbbMapPoisService {
-  configurePoiOptions(map: MaplibreMap, poiOptions: SbbPointsOfInterestOptions): void {
+  configurePoiOptions(map: MaplibreMap, poiOptions?: SbbPointsOfInterestOptions): void {
     const hasAnyPois = poiOptions?.categories?.length;
     if (hasAnyPois) {
       map.setFilter(SBB_POIS_LAYER, ['in', 'subCategory', ...poiOptions.categories]);

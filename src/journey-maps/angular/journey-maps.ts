@@ -91,7 +91,7 @@ export class SbbJourneyMaps implements OnInit, AfterViewInit, OnDestroy, OnChang
   /**
    * Specify which points of interest categories should be visible in map.
    */
-  @Input() poiOptions: SbbPointsOfInterestOptions;
+  @Input() poiOptions?: SbbPointsOfInterestOptions;
   /**
    * This event is emitted whenever a marker, with property triggerEvent, is selected or unselected.
    */
