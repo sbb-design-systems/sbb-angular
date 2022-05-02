@@ -12,13 +12,10 @@ export const SBB_POIS_INTERACTION_SOURCE = {
 @Injectable({ providedIn: 'root' })
 export class SbbMapPoisService {
   configurePoiOptions(map: MaplibreMap, poiOptions: SbbPointsOfInterestOptions): void {
-    if (poiOptions.categories?.length) {
+    const hasAnyPois = poiOptions?.categories?.length;
+    if (hasAnyPois) {
       map.setFilter(SBB_POIS_LAYER, ['in', 'subCategory', ...poiOptions.categories]);
     }
-    map.setLayoutProperty(
-      SBB_POIS_LAYER,
-      'visibility',
-      poiOptions.categories?.length ? 'visible' : 'none'
-    );
+    map.setLayoutProperty(SBB_POIS_LAYER, 'visibility', hasAnyPois ? 'visible' : 'none');
   }
 }
