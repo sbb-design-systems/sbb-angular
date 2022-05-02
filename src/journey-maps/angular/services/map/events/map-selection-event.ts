@@ -11,6 +11,7 @@ import {
   SbbFeaturesSelectEventData,
   SbbSelectionMode,
 } from '../../../journey-maps.interfaces';
+import { SBB_POIS_INTERACTION_SOURCE } from '../map-poi-service';
 
 import { SbbMapEventUtils } from './map-event-utils';
 import { SbbRouteUtils } from './route-utils';
@@ -107,12 +108,16 @@ export class SbbMapSelectionEvent {
 
   private _setFeatureSelection(data: SbbFeatureData, selected: boolean) {
     if (this._selectionModes.get(data.featureDataType) === 'single') {
-      // if multiple features of same type, only the last in the list will be selected:
-      this.findSelectedFeatures()
-        .features.filter((f) => f.featureDataType === data.featureDataType)
-        .forEach((f) =>
-          this._mapEventUtils.setFeatureState(f, this._mapInstance, { selected: false })
-        );
+      if (data.featureDataType === 'POI') {
+        this._mapInstance.removeFeatureState(SBB_POIS_INTERACTION_SOURCE);
+      } else {
+        // if multiple features of same type, only the last in the list will be selected:
+        this.findSelectedFeatures()
+          .features.filter((f) => f.featureDataType === data.featureDataType)
+          .forEach((f) =>
+            this._mapEventUtils.setFeatureState(f, this._mapInstance, { selected: false })
+          );
+      }
     }
 
     this._mapEventUtils.setFeatureState(data, this._mapInstance, { selected });

@@ -31,7 +31,7 @@ import { SbbMapEventUtils } from '../../services/map/events/map-event-utils';
 import { SbbMapSelectionEvent } from '../../services/map/events/map-selection-event';
 import { SbbRouteUtils, SBB_ROUTE_ID_PROPERTY_NAME } from '../../services/map/events/route-utils';
 import { SbbMapMarkerService } from '../../services/map/map-marker-service';
-import { SbbMapPoisService, SBB_POIS_INTERACTION_LAYERS } from '../../services/map/map-poi-service';
+import { SbbMapPoisService, SBB_POIS_LAYER } from '../../services/map/map-poi-service';
 import { SbbMapRoutesService, SBB_ALL_ROUTE_LAYERS } from '../../services/map/map-routes.service';
 import { SbbMapStationService, SBB_STATION_LAYER } from '../../services/map/map-station-service';
 import { SBB_ZONE_LAYER } from '../../services/map/map-zone-service';
@@ -69,7 +69,6 @@ export class SbbFeatureEventListener implements OnChanges, OnDestroy {
   private _mapCursorStyleEvent: SbbMapCursorStyleEvent;
   private _featuresHoverEvent: SbbFeaturesHoverEvent;
   private _featuresClickEvent: SbbFeaturesClickEvent;
-  private _poiLayersRegistration: { listener: () => void } | undefined;
 
   constructor(
     private _mapPoiService: SbbMapPoisService,
@@ -113,10 +112,7 @@ export class SbbFeatureEventListener implements OnChanges, OnDestroy {
 
       this._mapPoiService.configurePoiOptions(this.map, this.poiOptions);
       if (this.listenerOptions.POI?.watch) {
-        this._updateWatchOnLayers(SBB_POIS_INTERACTION_LAYERS, 'POI');
-        this._poiLayersRegistration = this._mapPoiService.registerPoiUpdater(this.map);
-      } else {
-        this._mapPoiService.deregisterPoiUpdater(this.map, this._poiLayersRegistration);
+        this._updateWatchOnLayers([SBB_POIS_LAYER], 'POI');
       }
 
       this._mapCursorStyleEvent?.complete();
