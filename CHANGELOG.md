@@ -2,6 +2,19 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [13.13.2](https://github.com/sbb-design-systems/sbb-angular/compare/13.13.0...13.13.2) (2022-05-03)
+
+
+### Bug Fixes
+
+* allow library projects to be migrated ([#1428](https://github.com/sbb-design-systems/sbb-angular/issues/1428)) ([9eccc30](https://github.com/sbb-design-systems/sbb-angular/commit/9eccc307e5d88e4188538e876cfbced0876e8349))
+* **angular/autocomplete:** outside click in Angular zone ([#1409](https://github.com/sbb-design-systems/sbb-angular/issues/1409)) ([ae9e082](https://github.com/sbb-design-systems/sbb-angular/commit/ae9e082d04122440a132d74362a2a805b931aba1))
+* **angular/chips:** fix invalid styling when using with autocomplete ([#1420](https://github.com/sbb-design-systems/sbb-angular/issues/1420)) ([b1f9074](https://github.com/sbb-design-systems/sbb-angular/commit/b1f907450ae06034a520897f045849eb85d9e163))
+* **angular/table:** accessibility improvements on table wrapper ([#1408](https://github.com/sbb-design-systems/sbb-angular/issues/1408)) ([59dc110](https://github.com/sbb-design-systems/sbb-angular/commit/59dc1107ed99876bacfe5ab1ca1e4f15b5bcdb2a))
+* **deps:** update dependency tslib to v2.4.0 ([814ea58](https://github.com/sbb-design-systems/sbb-angular/commit/814ea5888e3f1120a2a3b3a113842656e92cb4fd))
+* remove journey-maps from stackblitz example to make it working again ([#1416](https://github.com/sbb-design-systems/sbb-angular/issues/1416)) ([97ed2cb](https://github.com/sbb-design-systems/sbb-angular/commit/97ed2cb7551fece93432ed83d702643b572c17c2))
+* **showcase:** fix icon size when using `sbb-icon-fit` ([#1421](https://github.com/sbb-design-systems/sbb-angular/issues/1421)) ([9d97337](https://github.com/sbb-design-systems/sbb-angular/commit/9d97337838c3fd5daa7903fc2e27f807db1e5a16))
+
 ## [13.13.0](https://github.com/sbb-design-systems/sbb-angular/compare/13.12.0...13.13.0) (2022-04-21)
 
 
