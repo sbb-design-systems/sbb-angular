@@ -49,6 +49,7 @@ describe('SbbTable', () => {
         TableWithNgContainerRowTestComponent,
         NestedHtmlTableTestComponent,
         TableWithColumnGroupingTestComponent,
+        TableWithWrapper,
         TableWithWrapperAndStickyColumnsTestComponent,
         TableWithTwoStickyColumnsTestComponent,
       ],
@@ -699,6 +700,27 @@ describe('SbbTable', () => {
       fixture.debugElement.nativeElement.querySelector('.sbb-column-column_b')!.style.left;
     expect(parseInt(columnBLeftOffset, 10)).toBeCloseTo(parseInt(columnAComputedStyles.width, 10));
   }));
+
+  describe('wrapped by SbbTableWrapper', () => {
+    it('should be focusable', fakeAsync(() => {
+      const fixture = TestBed.createComponent(TableWithWrapper);
+      fixture.detectChanges();
+
+      const tableWrapper = fixture.debugElement.query(By.directive(SbbTableWrapper));
+
+      expect(tableWrapper.attributes['tabindex']).toBe('0');
+    }));
+
+    it('should be configurable to be not focusable', fakeAsync(() => {
+      const fixture = TestBed.createComponent(TableWithWrapper);
+      fixture.componentInstance.focusable = false;
+      fixture.detectChanges();
+
+      const tableWrapper = fixture.debugElement.query(By.directive(SbbTableWrapper));
+
+      expect(tableWrapper.attributes['tabindex']).toBeUndefined();
+    }));
+  });
 });
 
 interface TestData {
@@ -1105,6 +1127,21 @@ class TableWithNgContainerRowTestComponent {
 class TableWithColumnGroupingTestComponent {
   dataSource: FakeDataSource | null = new FakeDataSource();
   columnsToRender = ['column_a', 'column_b'];
+}
+
+@Component({
+  template: `
+    <sbb-table-wrapper [focusable]="focusable">
+      <table>
+        <tr>
+          <td>Content</td>
+        </tr>
+      </table>
+    </sbb-table-wrapper>
+  `,
+})
+class TableWithWrapper {
+  focusable: boolean = true;
 }
 
 @Component({

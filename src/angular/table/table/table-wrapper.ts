@@ -1,6 +1,7 @@
+import { BooleanInput, coerceBooleanProperty } from '@angular/cdk/coercion';
 import { normalizePassiveListenerOptions } from '@angular/cdk/platform';
 import { ViewportRuler } from '@angular/cdk/scrolling';
-import { AfterViewInit, Directive, ElementRef, NgZone, OnDestroy } from '@angular/core';
+import { AfterViewInit, Directive, ElementRef, Input, NgZone, OnDestroy } from '@angular/core';
 import { fromEvent, merge, Subject } from 'rxjs';
 import { distinctUntilChanged, map, startWith, takeUntil } from 'rxjs/operators';
 
@@ -20,18 +21,28 @@ export type SbbTableWrapperScrollOffset = 'none' | 'both' | 'left' | 'right';
   selector: 'sbb-table-wrapper',
   host: {
     class: 'sbb-table-wrapper sbb-scrollbar',
-    '[attr.tabindex]': '0',
+    '[attr.tabindex]': 'focusable ? 0 : null',
     role: 'section',
   },
 })
 export class SbbTableWrapper implements AfterViewInit, OnDestroy {
+  private _destroyed = new Subject<void>();
+
+  /** Whether the table wrapper is focusable. */
+  @Input()
+  get focusable(): boolean {
+    return this._focusable;
+  }
+  set focusable(value: BooleanInput) {
+    this._focusable = coerceBooleanProperty(value);
+  }
+  private _focusable: boolean = true;
+
   constructor(
     private _elementRef: ElementRef<HTMLElement>,
     private _ngZone: NgZone,
     private _viewportRuler: ViewportRuler
   ) {}
-
-  private _destroyed = new Subject<void>();
 
   ngAfterViewInit(): void {
     const resize = this._viewportRuler.change(150);
