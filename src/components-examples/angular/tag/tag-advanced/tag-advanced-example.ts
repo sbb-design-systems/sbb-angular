@@ -48,24 +48,24 @@ export class TagAdvancedExample implements OnDestroy {
     this.reset();
     this.amountFirstItem.valueChanges
       .pipe(takeUntil(this._destroyed))
-      .subscribe((amount) => (this.tags[0].amount = amount));
+      .subscribe((amount) => this.tags.length > 0 && (this.tags[0].amount = amount));
   }
 
   addOneItem() {
     this.tags.push({
       label: 'New Item',
-      amount: 20,
+      amount: this.tags.length === 0 ? this.amountFirstItem.value : 20,
     });
   }
 
   removeOneItem() {
     this.tags.pop();
+    this.amountFirstItem.setValue(this.tags[0].amount);
   }
 
   reset() {
     this.tags = JSON.parse(JSON.stringify(tagItems)); // Create a deep copy for example purposes
-    // TODO mario (26.04.2022): usage of `0` as default value okay?
-    this.amountFirstItem.setValue(0, { emitEvent: false });
+    this.amountFirstItem.setValue(this.tags[0].amount);
   }
 
   change(evt: SbbTagChange) {
