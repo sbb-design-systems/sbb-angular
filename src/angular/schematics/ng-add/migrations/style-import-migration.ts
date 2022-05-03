@@ -1,4 +1,4 @@
-import { extname } from '@angular-devkit/core';
+import { extname, JsonValue } from '@angular-devkit/core';
 import { chain, Rule, SchematicContext, Tree } from '@angular-devkit/schematics';
 import {
   DevkitContext,
@@ -61,7 +61,7 @@ function migrateTypographyInAngularJsonPerTarget(
     return updateWorkspace((workspace) => {
       const project = getProjectFromWorkspace(workspace, getProjectName(options, workspace));
 
-      let targetOptions;
+      let targetOptions: Record<string, JsonValue | undefined>;
       try {
         targetOptions = getProjectTargetOptions(project, targetName);
       } catch (e) {
