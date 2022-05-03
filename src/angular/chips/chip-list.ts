@@ -64,6 +64,7 @@ let nextUniqueId = 0;
     '[class.sbb-disabled]': 'disabled',
     '[class.sbb-chip-list-invalid]': 'errorState',
     '[class.sbb-chip-list-required]': 'required',
+    '[class.sbb-expanded]': '_chipInput?.autocompleteTrigger?.autocomplete?.isOpen',
     '[class.sbb-focused]': 'focused',
     '[class.sbb-input-element]': '_chipInput',
     '[attr.aria-orientation]': 'ariaOrientation',
