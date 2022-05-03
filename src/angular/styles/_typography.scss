@@ -1941,6 +1941,10 @@ textarea {
 .sbb-table-wrapper {
   display: block;
   overflow: auto;
+
+  &:focus-visible {
+    outline: var(--sbb-border-width) solid var(--sbb-color-black);
+  }
 }
 
 .sbb-table {
