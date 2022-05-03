@@ -6,7 +6,7 @@ import { SbbButtonModule } from '@sbb-esta/angular/button';
 import { SbbCheckboxModule } from '@sbb-esta/angular/checkbox';
 import { SbbIconModule } from '@sbb-esta/angular/icon';
 import { SbbInputModule } from '@sbb-esta/angular/input';
-import { SbbLoadingModule } from '@sbb-esta/angular/loading';
+import { SbbLoadingIndicatorModule } from '@sbb-esta/angular/loading-indicator';
 import { SbbMenuModule } from '@sbb-esta/angular/menu';
 import { SbbPaginationModule } from '@sbb-esta/angular/pagination';
 import { SbbRadioButtonModule } from '@sbb-esta/angular/radio-button';
@@ -69,7 +69,7 @@ const EXAMPLES = [
     SbbPaginationModule,
     SbbAutocompleteModule,
     SbbSelectModule,
-    SbbLoadingModule,
+    SbbLoadingIndicatorModule,
     SbbIconModule,
     SbbMenuModule,
   ],

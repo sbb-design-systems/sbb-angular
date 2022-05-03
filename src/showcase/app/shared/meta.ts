@@ -65,7 +65,7 @@ export const PACKAGES: { [key: string]: ShowcaseMetaPackage } = {
           { label: 'Icon', link: './components/icon' },
           { label: 'Input', link: './components/input' },
           { label: 'Lightbox', link: './components/lightbox', variantOnly: 'standard' },
-          { label: 'Loading', link: './components/loading' },
+          { label: 'Loading Indicator', link: './components/loading-indicator' },
           { label: 'Menu', link: './components/menu' },
           { label: 'Notification', link: './components/notification' },
           {

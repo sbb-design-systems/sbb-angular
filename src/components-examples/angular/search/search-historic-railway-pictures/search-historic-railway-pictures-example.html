@@ -7,7 +7,7 @@
 
 <h4>Search results (only first 10 are shown)</h4>
 <ng-container *ngIf="!searchResults.length">No results</ng-container>
-<sbb-loading *ngIf="showSpinner" mode="fullbox"></sbb-loading>
+<sbb-loading-indicator *ngIf="showSpinner" mode="fullbox"></sbb-loading-indicator>
 <span [title]="image.station" *ngFor="let image of searchResults">
   <img
     width="300"

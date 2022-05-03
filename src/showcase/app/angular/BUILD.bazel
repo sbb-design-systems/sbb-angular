@@ -25,7 +25,7 @@ ng_module(
         "//src/angular/dialog",
         "//src/angular/icon",
         "//src/angular/input",
-        "//src/angular/loading",
+        "//src/angular/loading-indicator",
         "//src/angular/pagination",
         "//src/angular/select",
         "//src/angular/tooltip",

@@ -1,7 +1,7 @@
 The loading component is used as a progress bar to indicate progress and activity, as shown below
 
 ```html
-<sbb-loading mode="medium" aria-valuetext="Loading, please wait"></sbb-loading>
+<sbb-loading-indicator mode="medium" aria-valuetext="Loading, please wait"></sbb-loading-indicator>
 ```
 
 The loading indicator supports four modes (tiny, small, medium (default), big),

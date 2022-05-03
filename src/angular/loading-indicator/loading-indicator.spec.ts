@@ -1,19 +1,19 @@
 import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 
-import { SbbLoading } from './loading';
+import { SbbLoadingIndicator } from './loading-indicator';
 
-describe('SbbLoading', () => {
-  let component: SbbLoading;
-  let fixture: ComponentFixture<SbbLoading>;
+describe('SbbLoadingIndicator', () => {
+  let component: SbbLoadingIndicator;
+  let fixture: ComponentFixture<SbbLoadingIndicator>;
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-      declarations: [SbbLoading],
+      declarations: [SbbLoadingIndicator],
     }).compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(SbbLoading);
+    fixture = TestBed.createComponent(SbbLoadingIndicator);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

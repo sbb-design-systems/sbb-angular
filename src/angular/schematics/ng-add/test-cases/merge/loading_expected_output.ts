@@ -1,5 +1,10 @@
 import { Component, NgModule } from '@angular/core';
-import { SbbLoadingModule, SbbLoading, SbbLoadingModule as SbbBusinessLoadingModule, SbbLoadingModule as SbbBusinessLoadingModuleSecond } from '@sbb-esta/angular/loading';
+import {
+  SbbLoadingIndicatorModule,
+  SbbLoadingIndicator,
+  SbbLoadingIndicatorModule as SbbBusinessLoadingModule,
+  SbbLoadingIndicatorModule as SbbBusinessLoadingModuleSecond,
+} from '@sbb-esta/angular/loading-indicator';
 
 @Component({
   selector: 'sbb-loading-test',
@@ -9,6 +14,6 @@ export class SbbLoadingTestComponent {}
 
 @NgModule({
   declarations: [SbbLoadingTestComponent],
-  imports: [SbbLoadingModule],
+  imports: [SbbLoadingIndicatorModule],
 })
 export class LoadingPublicTestModule {}
