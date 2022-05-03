@@ -21,9 +21,9 @@ interface VehicleExampleItem {
 }
 
 interface VehicleFilter extends SbbTableFilter {
-  category?: string[];
-  name?: string;
-  description?: string;
+  category?: string[] | null;
+  name?: string | null;
+  description?: string | null;
 }
 
 /**
@@ -58,10 +58,10 @@ export class FilterSortPaginatorTableExample implements AfterViewInit, OnDestroy
 
   // TODO mario (26.04.2022): Does it make sense to allow null values in SbbTableFilter?
   vehicleFilterForm = new FormGroup({
-    _: new FormControl('', { initialValueIsDefault: true }),
-    category: new FormControl<string[]>([], { initialValueIsDefault: true }),
-    name: new FormControl('', { initialValueIsDefault: true }),
-    description: new FormControl('', { initialValueIsDefault: true }),
+    _: new FormControl(''),
+    category: new FormControl([] as string[]),
+    name: new FormControl(''),
+    description: new FormControl(''),
   });
 
   descriptions: Observable<string[]>;
@@ -83,7 +83,7 @@ export class FilterSortPaginatorTableExample implements AfterViewInit, OnDestroy
     this.descriptions = this.vehicleFilterForm.get('description')!.valueChanges.pipe(
       distinctUntilChanged(),
       map((newValue) =>
-        newValue.length === 0
+        newValue?.length === 0
           ? []
           : [...new Set(this.dataSource.filteredData.map((vehicle) => vehicle.description))].sort()
       )

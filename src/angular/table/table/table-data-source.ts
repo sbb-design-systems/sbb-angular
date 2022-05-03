@@ -37,9 +37,9 @@ const MAX_SAFE_INTEGER = 9007199254740991;
  */
 export interface SbbTableFilter {
   /** Global filter: filtering all entries */
-  _?: string | number | string[] | number[];
+  _?: string | number | string[] | number[] | null;
 
-  [key: string]: string | number | string[] | number[] | undefined;
+  [key: string]: string | number | string[] | number[] | null | undefined;
 }
 
 /** Base class for SbbTableDataSource. */
@@ -409,7 +409,11 @@ export class _SbbTableDataSource<
   _normalizeTableFilter(tableFilter: SbbTableFilter): { [key: string]: string[] } {
     const normalizedTableFilter: { [key: string]: string[] } = { _: [] };
     Object.keys(tableFilter).forEach((key) => {
-      if (typeof tableFilter[key] === 'undefined' || `${tableFilter[key]}`.trim() === '') {
+      if (
+        typeof tableFilter[key] === 'undefined' ||
+        `${tableFilter[key]}`.trim() === '' ||
+        tableFilter[key] === null
+      ) {
         return;
       }
 
