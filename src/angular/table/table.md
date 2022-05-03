@@ -515,11 +515,22 @@ so that screen readers can output a meaningful text.
 
 The `<sbb-table-wrapper>` tag can be used to make a table horizontally scrollable
 or vertically scrollable if a fix height is provided.
+The `<sbb-table-wrapper>` also adds some accessibility improvements by making the table wrapper focusable.
 
 If using sticky rows or columns, the `<sbb-table-wrapper>` is mandatory.
 
 ```html
 <sbb-table-wrapper>
+  <table sbb-table>
+    ...
+  </table>
+</sbb-table-wrapper>
+```
+
+To define the table wrapper as not focusable, set the `focusable` property to false.
+
+```html
+<sbb-table-wrapper focusable="false">
   <table sbb-table>
     ...
   </table>
