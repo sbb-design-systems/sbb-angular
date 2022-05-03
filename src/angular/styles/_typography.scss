@@ -1943,7 +1943,6 @@ textarea {
   overflow: auto;
 
   &:focus-visible {
-    outline-offset: pxToRem(1);
     outline: var(--sbb-border-width) solid var(--sbb-color-black);
   }
 }
