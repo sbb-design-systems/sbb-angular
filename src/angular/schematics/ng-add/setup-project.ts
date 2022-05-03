@@ -20,6 +20,8 @@ import {
 import { getWorkspace, updateWorkspace } from '@schematics/angular/utility/workspace';
 import { ProjectType } from '@schematics/angular/utility/workspace-models';
 
+import { getProjectName } from '../utils';
+
 import { Schema } from './schema';
 
 export const TYPOGRAPHY_CSS_PATH = 'node_modules/@sbb-esta/angular/typography.css';
@@ -38,7 +40,7 @@ export const TEST_TS_LEAN_CONFIG = `${TEST_TS_LEAN_CONFIG_COMMENT}\n${TEST_TS_LE
 export default function (options: Schema): Rule {
   return async (host: Tree, context: SchematicContext) => {
     const workspace = await getWorkspace(host);
-    const project = getProjectFromWorkspace(workspace, options.project);
+    const project = getProjectFromWorkspace(workspace, getProjectName(options, workspace));
 
     if (project.extensions.projectType === ProjectType.Application) {
       return chain([addAnimationsModule(options), addAndConfigureTypography(options)]);
@@ -61,7 +63,7 @@ export default function (options: Schema): Rule {
 function addAnimationsModule(options: Schema) {
   return async (host: Tree, context: SchematicContext) => {
     const workspace = await getWorkspace(host);
-    const project = getProjectFromWorkspace(workspace, options.project);
+    const project = getProjectFromWorkspace(workspace, getProjectName(options, workspace));
     const appModulePath = getAppModulePath(host, getProjectMainFile(project));
 
     if (options.animations === 'enabled') {
@@ -102,15 +104,23 @@ function addAnimationsModule(options: Schema) {
 function addAndConfigureTypography(options: Schema): Rule {
   return async (tree: Tree, context: SchematicContext) => {
     const workspace = await getWorkspace(tree);
-    const project = getProjectFromWorkspace(workspace, options.project);
+    const project = getProjectFromWorkspace(workspace, getProjectName(options, workspace));
 
     return chain([
-      hasLegacyTypography(tree, project, 'build')
+      hasLegacyTypography(tree, project, 'build', context.logger)
         ? noop()
-        : addTypographyToStylesNodeOfAngularJson(options.project, 'build', context.logger),
-      hasLegacyTypography(tree, project, 'test')
+        : addTypographyToStylesNodeOfAngularJson(
+            getProjectName(options, workspace),
+            'build',
+            context.logger
+          ),
+      hasLegacyTypography(tree, project, 'test', context.logger)
         ? noop()
-        : addTypographyToStylesNodeOfAngularJson(options.project, 'test', context.logger),
+        : addTypographyToStylesNodeOfAngularJson(
+            getProjectName(options, workspace),
+            'test',
+            context.logger
+          ),
       setTypographyVariant(options),
     ]);
   };
@@ -187,7 +197,17 @@ function validateDefaultTargetBuilder(
   return isDefaultBuilder;
 }
 
-function hasLegacyTypography(tree: Tree, project: ProjectDefinition, targetName: 'build' | 'test') {
+function hasLegacyTypography(
+  tree: Tree,
+  project: ProjectDefinition,
+  targetName: 'build' | 'test',
+  logger: logging.LoggerApi
+) {
+  // Do not update the builder options in case the target does not use the default CLI builder.
+  if (!validateDefaultTargetBuilder(project, targetName, logger)) {
+    return false;
+  }
+
   const targetOptions = getProjectTargetOptions(project, targetName);
   const styles = targetOptions?.styles as (string | { input: string })[] | undefined;
 
@@ -213,7 +233,7 @@ function hasLegacyTypography(tree: Tree, project: ProjectDefinition, targetName:
 function setTypographyVariant(options: Schema) {
   return async (tree: Tree, context: SchematicContext) => {
     const workspace = await getWorkspace(tree);
-    const project = getProjectFromWorkspace(workspace, options.project);
+    const project = getProjectFromWorkspace(workspace, getProjectName(options, workspace));
     const shouldBeLeanVariant = options.variant === 'lean (previously known as business)';
 
     handleIndexHtml(tree, project, shouldBeLeanVariant, context);
@@ -227,6 +247,11 @@ function handleIndexHtml(
   shouldBeLeanVariant: boolean,
   context: SchematicContext
 ) {
+  // Do not update the builder options in case the target does not use the default CLI builder.
+  if (!validateDefaultTargetBuilder(project, 'build', context.logger)) {
+    return;
+  }
+
   const targetOptions = getProjectTargetOptions(project, 'build');
 
   if (!targetOptions?.index) {
@@ -302,6 +327,11 @@ function handleTestTs(
   shouldBeLeanVariant: boolean,
   context: SchematicContext
 ) {
+  // Do not update the builder options in case the target does not use the default CLI builder.
+  if (!validateDefaultTargetBuilder(project, 'test', context.logger)) {
+    return;
+  }
+
   const testOptions = getProjectTargetOptions(project, 'test');
 
   if (!testOptions?.main) {

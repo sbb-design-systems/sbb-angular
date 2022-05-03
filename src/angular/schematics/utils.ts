@@ -1,3 +1,4 @@
+import { WorkspaceDefinition } from '@angular-devkit/core/src/workspace';
 import { SchematicsException, Tree } from '@angular-devkit/schematics';
 import {
   addImportToModule,
@@ -10,6 +11,8 @@ import type { UpdateRecorder } from '@angular/cdk/schematics/update-tool/update-
 import { InsertChange } from '@schematics/angular/utility/change';
 import type { Attribute, DocumentFragment, Element, Location } from 'parse5';
 import * as ts from 'typescript';
+
+import { Schema } from './ng-add/schema';
 
 const parse: typeof import('parse5') = parse5;
 
@@ -463,4 +466,12 @@ export class MigrationElementProperty {
   toString() {
     return this._element.resource.content.slice(this.location.startOffset, this.location.endOffset);
   }
+}
+
+export function getProjectName(options: Schema, workspace: WorkspaceDefinition) {
+  return (
+    options.project ||
+    (workspace.extensions.defaultProject as string) ||
+    Array.from(workspace.projects.keys())[0]
+  );
 }
