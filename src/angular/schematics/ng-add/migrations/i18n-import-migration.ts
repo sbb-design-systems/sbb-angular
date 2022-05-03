@@ -2,7 +2,9 @@ import { ProjectDefinition } from '@angular-devkit/core/src/workspace';
 import { chain, Rule, SchematicContext, Tree } from '@angular-devkit/schematics';
 import { getProjectFromWorkspace, getProjectMainFile } from '@angular/cdk/schematics';
 import { getWorkspace, updateWorkspace } from '@schematics/angular/utility/workspace';
+import { ProjectType } from '@schematics/angular/utility/workspace-models';
 
+import { getProjectName } from '../../utils';
 import { Schema } from '../schema';
 
 export function migrateI18n(options: Schema): Rule {
@@ -14,14 +16,12 @@ function migrateAngularJson(options: Schema): Rule {
     return updateWorkspace((workspace) => {
       const project = getProjectFromWorkspace(
         workspace,
-        options.project ||
-          (workspace.extensions.defaultProject as string) ||
-          Array.from(workspace.projects.keys())[0]
+        getProjectName(options, workspace)
       ) as ProjectDefinition;
       const extensions = project.extensions as {
         i18n?: { locales?: Record<string, { translation?: string | string[] }> | string };
       };
-      const i18n = extensions.i18n;
+      const i18n = extensions?.i18n;
 
       if (!i18n) {
         return;
@@ -90,12 +90,12 @@ function migrateAngularJson(options: Schema): Rule {
 function migrateMainTs(options: Schema): Rule {
   return async (tree: Tree) => {
     const workspace = await getWorkspace(tree);
-    const project = getProjectFromWorkspace(
-      workspace,
-      options.project ||
-        (workspace.extensions.defaultProject as string) ||
-        Array.from(workspace.projects.keys())[0]
-    );
+    const project = getProjectFromWorkspace(workspace, getProjectName(options, workspace));
+
+    if (project.extensions.projectType !== ProjectType.Application) {
+      return;
+    }
+
     const mainTsPath = getProjectMainFile(project);
     if (tree.exists(mainTsPath)) {
       const mainTsContent = tree.read(mainTsPath)!.toString('utf8');
