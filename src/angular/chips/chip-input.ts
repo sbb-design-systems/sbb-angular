@@ -172,7 +172,7 @@ export class SbbChipInput implements SbbChipTextControl, OnChanges, OnDestroy, A
           takeUntil(this._destroyed)
         )
         .subscribe((selectedEvent: SbbAutocompleteSelectedEvent) => {
-          this._addValueToControlAndEmit(selectedEvent.option.viewValue);
+          this._addValueToControl(selectedEvent.option.viewValue);
           this.chipEnd.emit({
             value: selectedEvent.option.viewValue,
             chipInput: this,
@@ -250,7 +250,7 @@ export class SbbChipInput implements SbbChipTextControl, OnChanges, OnDestroy, A
     }
 
     if (!event || this._isSeparatorKey(event)) {
-      this._addValueToControlAndEmit(this.inputElement.value);
+      this._addValueToControl(this.inputElement.value);
 
       this.chipEnd.emit({
         value: this.inputElement.value,
@@ -261,7 +261,7 @@ export class SbbChipInput implements SbbChipTextControl, OnChanges, OnDestroy, A
     }
   }
 
-  private _addValueToControlAndEmit(inputValue: string) {
+  private _addValueToControl(inputValue: string) {
     if (!this._chipList?.ngControl?.control || inputValue === '' || this.chipEnd.observers.length) {
       return;
     }

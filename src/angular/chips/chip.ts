@@ -243,14 +243,11 @@ export class SbbChip
         return;
       }
       const indexInChipList = this._chipList?.chips.toArray().indexOf(this);
-      if (
-        typeof indexInChipList !== 'undefined' &&
-        indexInChipList !== -1 &&
-        currentCollection[indexInChipList] === this.value
-      ) {
+      if (indexInChipList! >= 0 && currentCollection[indexInChipList!] === this.value) {
         control.patchValue(currentCollection.filter((val, index) => indexInChipList !== index));
       } else {
-        control.patchValue(currentCollection.filter((val) => val !== this.value)); // Can delete more than one entry
+        // Filter by value can delete more than one entry at once, so only use this as a fallback.
+        control.patchValue(currentCollection.filter((val) => val !== this.value));
       }
     } else if (isSet) {
       const newCurrentCollection = new Set(currentCollection);
