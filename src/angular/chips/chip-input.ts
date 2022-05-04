@@ -14,6 +14,7 @@ import {
   Output,
   Self,
 } from '@angular/core';
+import { NgControl } from '@angular/forms';
 import {
   SbbAutocompleteSelectedEvent,
   SbbAutocompleteTrigger,
@@ -139,7 +140,8 @@ export class SbbChipInput implements SbbChipTextControl, OnChanges, OnDestroy, A
     protected _elementRef: ElementRef<HTMLInputElement>,
     @Inject(SBB_CHIPS_DEFAULT_OPTIONS) private _defaultOptions: SbbChipsDefaultOptions,
     @Self() @Optional() public autocompleteTrigger?: SbbAutocompleteTrigger,
-    @Host() @Optional() @Inject(SBB_CHIP_LIST) chipList?: TypeRef<SbbChipList>
+    @Host() @Optional() @Inject(SBB_CHIP_LIST) chipList?: TypeRef<SbbChipList>,
+    @Optional() private _ngControl?: NgControl
   ) {
     this.inputElement = this._elementRef.nativeElement as HTMLInputElement;
 
@@ -293,6 +295,7 @@ export class SbbChipInput implements SbbChipTextControl, OnChanges, OnDestroy, A
   /** Clears the input */
   clear(): void {
     this.inputElement.value = '';
+    this._ngControl?.control?.setValue(null);
     this._focusLastChipOnBackspace = true;
   }
 

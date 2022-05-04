@@ -24,6 +24,7 @@ import {
 } from '@angular/core';
 import { ComponentFixture, fakeAsync, TestBed, tick } from '@angular/core/testing';
 import {
+  FormControl,
   FormsModule,
   NgForm,
   ReactiveFormsModule,
@@ -972,12 +973,16 @@ describe('SbbChipList', () => {
         zone.simulateZoneExit();
         fixture.detectChanges();
         await fixture.whenStable();
+        const componentInstance: ChipsAutocomplete = fixture.componentInstance;
+        expect(input.value).toEqual('A');
+        expect(componentInstance.fruitInput.value).toBe('A');
 
         dispatchKeyboardEvent(input, 'keydown', DOWN_ARROW); // Select first entry (Apple)
         dispatchKeyboardEvent(input, 'keydown', ENTER);
 
         expect(testChipsAutocomplete.selectedFruits.value).toEqual(['Lemon', 'Apple']);
         expect(input.value).toEqual('');
+        expect(componentInstance.fruitInput.value).toBe(null);
       });
     });
 
@@ -1288,6 +1293,7 @@ class ChipListInsideDynamicFormGroup {
           sbbChipInput
           [sbbAutocomplete]="auto"
           #trigger="sbbAutocompleteTrigger"
+          [formControl]="fruitInput"
         />
       </sbb-chip-list>
       <sbb-autocomplete #auto="sbbAutocomplete">
@@ -1299,6 +1305,7 @@ class ChipListInsideDynamicFormGroup {
   `,
 })
 class ChipsAutocomplete {
+  fruitInput = new FormControl('');
   selectedFruits = new UntypedFormControl(['Lemon']);
   allFruits = ['Apple', 'Lemon', 'Lime', 'Orange', 'Strawberry'];
   @ViewChild('trigger') trigger: SbbAutocompleteTrigger;
