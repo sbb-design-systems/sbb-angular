@@ -29,6 +29,7 @@ import {
   SbbJourneyMapsRoutingOptions,
   SbbListenerOptions,
   SbbMarkerOptions,
+  SbbPointsOfInterestOptions,
   SbbStyleOptions,
   SbbTemplateType,
   SbbUIOptions,
@@ -87,6 +88,10 @@ export class SbbJourneyMaps implements OnInit, AfterViewInit, OnDestroy, OnChang
   /** Which (floor-)level should be shown */
   @Input() selectedLevel: number;
   @Input() listenerOptions: SbbListenerOptions;
+  /**
+   * Specify which points of interest categories should be visible in map.
+   */
+  @Input() poiOptions?: SbbPointsOfInterestOptions;
   /**
    * This event is emitted whenever a marker, with property triggerEvent, is selected or unselected.
    */
