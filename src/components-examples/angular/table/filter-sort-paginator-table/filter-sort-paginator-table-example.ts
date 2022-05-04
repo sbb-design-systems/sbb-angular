@@ -56,7 +56,6 @@ export class FilterSortPaginatorTableExample implements AfterViewInit, OnDestroy
     VEHICLE_EXAMPLE_DATA.map((vehicleExampleItem) => vehicleExampleItem.category)
   );
 
-  // TODO mario (26.04.2022): Does it make sense to allow null values in SbbTableFilter?
   vehicleFilterForm = new FormGroup({
     _: new FormControl(''),
     category: new FormControl([] as string[]),
