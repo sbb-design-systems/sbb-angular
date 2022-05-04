@@ -22,6 +22,7 @@
     (mapCenterChange)="mapCenterChange.next($event)"
     (zoomLevelsChange)="zoomLevels=$event"
     (visibleLevelsChange)="visibleLevels.next($event)"
+    [poiOptions]="pointsOfInterestOptions"
   ></sbb-journey-maps>
   <ng-template #markerDetailsTemplate let-marker>
     <div class="markerdetails-title">{{marker.title}}</div>
@@ -60,7 +61,7 @@
         <div class="sbb-checkbox-group-horizontal">
           <sbb-checkbox formControlName="mapVisible"> Map visibility</sbb-checkbox>
           <ng-container formGroupName="uiOptions">
-            <sbb-checkbox formControlName="showSmallButtons">Small map controls </sbb-checkbox>
+            <sbb-checkbox formControlName="showSmallButtons">Small map controls</sbb-checkbox>
             <sbb-checkbox formControlName="basemapSwitch">Basemap Switch</sbb-checkbox>
           </ng-container>
         </div>

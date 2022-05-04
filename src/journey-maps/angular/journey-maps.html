@@ -13,6 +13,7 @@
     </div>
     <sbb-feature-event-listener
       [listenerOptions]="listenerOptions"
+      [poiOptions]="poiOptions"
       [map]="mapReady | async"
       (featuresHoverChange)="featuresHoverChange.next($event)"
       (featuresClick)="featuresClick.next($event); handleMarkerOrClusterClick($event.features)"

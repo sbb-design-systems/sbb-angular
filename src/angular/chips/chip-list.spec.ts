@@ -838,23 +838,41 @@ describe('SbbChipList', () => {
         input = fixture.nativeElement.querySelector('input');
       });
 
-      it('should add value to form control Array', async () => {
+      it('should add value to form control Array', fakeAsync(() => {
+        expect(testChipsAutocomplete.selectedFruits.dirty).toBeFalse();
+        expect(testChipsAutocomplete.selectedFruits.touched).toBeFalse();
+
         input.focus();
         typeInElement(input, '123');
         dispatchKeyboardEvent(input, 'keydown', ENTER);
-        await fixture.whenStable();
+        input.blur();
+        tick();
 
         expect(testChipsAutocomplete.selectedFruits.value).toEqual(['Lemon', '123']);
         expect(input.value).toEqual('');
-      });
+        expect(testChipsAutocomplete.selectedFruits.dirty).toBeTrue();
+        expect(testChipsAutocomplete.selectedFruits.touched).toBeTrue();
+      }));
 
       it('should remove value from form control Array', async () => {
         expect(testChipsAutocomplete.selectedFruits.value).toEqual(['Lemon']);
+        expect(testChipsAutocomplete.selectedFruits.dirty).toBeFalse();
 
         chips.last.remove();
         await fixture.whenStable();
 
         expect(testChipsAutocomplete.selectedFruits.value).toEqual([]);
+        expect(testChipsAutocomplete.selectedFruits.dirty).toBeTrue();
+      });
+
+      it('should remove correct value from form control array if there are several entries of the same value', async () => {
+        testChipsAutocomplete.selectedFruits.patchValue(['Lemon', 'Apple', 'Lemon', 'Orange']);
+        fixture.detectChanges();
+
+        chips.get(2)!.remove();
+        await fixture.whenStable();
+
+        expect(testChipsAutocomplete.selectedFruits.value).toEqual(['Lemon', 'Apple', 'Orange']);
       });
 
       it('should return a new array on update', async () => {
@@ -899,6 +917,7 @@ describe('SbbChipList', () => {
       it('should add value to form control Set', async () => {
         testChipsAutocomplete.selectedFruits = new FormControl(new Set(['Lemon']));
         fixture.detectChanges();
+        expect(testChipsAutocomplete.selectedFruits.dirty).toBeFalse();
 
         input.focus();
         typeInElement(input, '123');
@@ -910,16 +929,19 @@ describe('SbbChipList', () => {
           '123',
         ]);
         expect(input.value).toEqual('');
+        expect(testChipsAutocomplete.selectedFruits.dirty).toBeTrue();
       });
 
       it('should remove value from form control Set', async () => {
         testChipsAutocomplete.selectedFruits = new FormControl(new Set(['Lemon']));
         fixture.detectChanges();
+        expect(testChipsAutocomplete.selectedFruits.dirty).toBeFalse();
 
         chips.last.remove();
         await fixture.whenStable();
 
         expect([...(testChipsAutocomplete.selectedFruits.value as Set<string>)]).toEqual([]);
+        expect(testChipsAutocomplete.selectedFruits.dirty).toBeTrue();
       });
 
       it('should not add empty value to form control', async () => {
@@ -953,12 +975,16 @@ describe('SbbChipList', () => {
         zone.simulateZoneExit();
         fixture.detectChanges();
         await fixture.whenStable();
+        const componentInstance: ChipsAutocomplete = fixture.componentInstance;
+        expect(input.value).toEqual('A');
+        expect(componentInstance.fruitInput.value).toBe('A');
 
         dispatchKeyboardEvent(input, 'keydown', DOWN_ARROW); // Select first entry (Apple)
         dispatchKeyboardEvent(input, 'keydown', ENTER);
 
         expect(testChipsAutocomplete.selectedFruits.value).toEqual(['Lemon', 'Apple']);
         expect(input.value).toEqual('');
+        expect(componentInstance.fruitInput.value).toBe(null);
       });
     });
 
@@ -1269,6 +1295,7 @@ class ChipListInsideDynamicFormGroup {
           sbbChipInput
           [sbbAutocomplete]="auto"
           #trigger="sbbAutocompleteTrigger"
+          [formControl]="fruitInput"
         />
       </sbb-chip-list>
       <sbb-autocomplete #auto="sbbAutocomplete">
@@ -1280,6 +1307,7 @@ class ChipListInsideDynamicFormGroup {
   `,
 })
 class ChipsAutocomplete {
+  fruitInput = new FormControl('');
   selectedFruits = new FormControl<string[] | Set<string> | null>(['Lemon']);
   allFruits = ['Apple', 'Lemon', 'Lime', 'Orange', 'Strawberry'];
   @ViewChild('trigger') trigger: SbbAutocompleteTrigger;

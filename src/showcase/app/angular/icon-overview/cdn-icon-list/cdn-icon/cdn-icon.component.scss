@@ -7,6 +7,15 @@
   display: flex;
   align-items: center;
   justify-content: center;
+  background-color: transparent;
+  cursor: pointer;
+  color: var(--sbb-color-grey);
+  border: var(--sbb-border-width) solid var(--sbb-color-storm);
+  outline: 0;
+
+  &:is(:hover, :focus) {
+    border-color: var(--sbb-color-iron);
+  }
 }
 
 .sbb-svg-icon-path {

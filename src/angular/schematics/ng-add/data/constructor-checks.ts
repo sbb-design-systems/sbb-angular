@@ -16,4 +16,10 @@ export const constructorChecks: VersionChanges<ConstructorChecksUpgradeData> = {
       changes: ['SbbTableDataSource'],
     },
   ],
+  [TargetVersion.V14 as TargetVersion]: [
+    {
+      pr: '',
+      changes: ['SbbMenuItem'],
+    },
+  ],
 };

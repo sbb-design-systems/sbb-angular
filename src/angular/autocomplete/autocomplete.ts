@@ -192,7 +192,7 @@ export class SbbAutocomplete implements AfterContentInit, OnDestroy {
   /** Event that is emitted when the autocomplete panel is closed. */
   @Output() readonly closed: EventEmitter<void> = new EventEmitter<void>();
 
-  /** Emits whenever an option is activated using the keyboard. */
+  /** Emits whenever an option is activated. */
   @Output()
   readonly optionActivated: EventEmitter<SbbAutocompleteActivatedEvent> = new EventEmitter<SbbAutocompleteActivatedEvent>();
 

@@ -141,7 +141,7 @@ export class SbbChip
   protected _disabled: boolean = false;
 
   /**
-   * Determines whether or not the chip displays the remove styling and emits (removed) events.
+   * Determines whether the chip displays the remove styling and emits (removed) events.
    */
   @Input()
   get removable(): boolean {
@@ -233,16 +233,30 @@ export class SbbChip
     if (!control || this.removed.observers.length) {
       return;
     }
+
     const currentCollection = control.value;
-    if (Array.isArray(currentCollection)) {
+    const isArray = Array.isArray(currentCollection);
+    const isSet = currentCollection instanceof Set;
+
+    if (isArray) {
       if (!currentCollection.includes(this.value)) {
         return;
       }
-      control.patchValue(currentCollection.filter((val) => val !== this.value));
-    } else if (currentCollection instanceof Set) {
+      const indexInChipList = this._chipList?.chips.toArray().indexOf(this);
+      if (indexInChipList! >= 0 && currentCollection[indexInChipList!] === this.value) {
+        control.patchValue(currentCollection.filter((val, index) => indexInChipList !== index));
+      } else {
+        // Filter by value can delete more than one entry at once, so only use this as a fallback.
+        control.patchValue(currentCollection.filter((val) => val !== this.value));
+      }
+    } else if (isSet) {
       const newCurrentCollection = new Set(currentCollection);
       newCurrentCollection.delete(this.value);
       control.patchValue(newCurrentCollection);
+    }
+
+    if (isArray || isSet) {
+      control.markAsDirty();
     }
   }
 

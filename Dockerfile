@@ -12,7 +12,7 @@ USER root
 RUN echo '{"variant":"global","environmentVariables":["JM_API_KEY"],"filePattern":"index.html"}' > /usr/share/nginx/html/ngssc.json
 
 # Add write permission for random user for the index.html
-RUN chmod +w /usr/share/nginx/html/index.html
+RUN chmod a+w /usr/share/nginx/html/index.html
 
 # Install ngssc binary
 ADD https://github.com/kyubisation/angular-server-side-configuration/releases/download/v13.2.1/ngssc_64bit /usr/sbin/ngssc

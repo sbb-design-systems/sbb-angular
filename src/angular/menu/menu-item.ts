@@ -22,7 +22,7 @@ import { SbbMenuPanel, SBB_MENU_PANEL } from './menu-panel';
 const _SbbMenuItemMixinBase = mixinDisabled(class {});
 
 /**
- * Single item inside of a `sbb-menu`. Provides the menu item styling and accessibility treatment.
+ * Single item inside a `sbb-menu`. Provides the menu item styling and accessibility treatment.
  */
 @Component({
   selector: '[sbb-menu-item]',
@@ -64,25 +64,17 @@ export class SbbMenuItem
 
   constructor(
     private _elementRef: ElementRef<HTMLElement>,
-    private _focusMonitor?: FocusMonitor,
-    @Inject(SBB_MENU_PANEL) @Optional() public _parentMenu?: SbbMenuPanel<SbbMenuItem>,
-    /**
-     * @deprecated `_changeDetectorRef` to become a required parameter.
-     * @breaking-change 14.0.0
-     */
-    private _changeDetectorRef?: ChangeDetectorRef,
-    /**
-     * @deprecated `_document` to become a required parameter.
-     * @breaking-change 14.0.0
-     */
-    @Inject(DOCUMENT) private _document?: any
+    @Inject(DOCUMENT) private _document: any,
+    private _focusMonitor: FocusMonitor,
+    private _changeDetectorRef: ChangeDetectorRef,
+    @Inject(SBB_MENU_PANEL) @Optional() public _parentMenu?: SbbMenuPanel<SbbMenuItem>
   ) {
     super();
   }
 
   /** Focuses the menu item. */
   focus(origin?: FocusOrigin, options?: FocusOptions): void {
-    if (this._focusMonitor && origin) {
+    if (origin) {
       this._focusMonitor.focusVia(this._getHostElement(), origin, options);
     } else {
       this._getHostElement().focus(options);
@@ -92,18 +84,14 @@ export class SbbMenuItem
   }
 
   ngAfterViewInit() {
-    if (this._focusMonitor) {
-      // Start monitoring the element so it gets the appropriate focused classes. We want
-      // to show the focus style for menu items only when the focus was not caused by a
-      // mouse or touch interaction.
-      this._focusMonitor.monitor(this._elementRef, false);
-    }
+    // Start monitoring the element so it gets the appropriate focused classes. We want
+    // to show the focus style for menu items only when the focus was not caused by a
+    // mouse or touch interaction.
+    this._focusMonitor.monitor(this._elementRef, false);
   }
 
   ngOnDestroy() {
-    if (this._focusMonitor) {
-      this._focusMonitor.stopMonitoring(this._elementRef);
-    }
+    this._focusMonitor.stopMonitoring(this._elementRef);
 
     this._hovered.complete();
     this._focused.complete();
@@ -149,12 +137,11 @@ export class SbbMenuItem
     // We need to mark this for check for the case where the content is coming from a
     // `sbbMenuContent` whose change detection tree is at the declaration position,
     // not the insertion position. See #23175.
-    // @breaking-change 14.0.0 Remove null check for `_changeDetectorRef`.
     this._highlighted = isHighlighted;
-    this._changeDetectorRef?.markForCheck();
+    this._changeDetectorRef.markForCheck();
   }
 
   _hasFocus(): boolean {
-    return this._document && this._document.activeElement === this._getHostElement();
+    return this._document.activeElement === this._getHostElement();
   }
 }
