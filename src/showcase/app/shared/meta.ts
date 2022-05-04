@@ -152,7 +152,7 @@ export const PACKAGES: { [key: string]: ShowcaseMetaPackage } = {
   'journey-maps': {
     name: '@sbb-esta/journey-maps',
     svgIcon: 'kom:switzerland-route-small',
-    image: 'assets/maps.jpg',
+    image: 'assets/journey-maps.jpg',
     description: '',
     sections: [
       {
