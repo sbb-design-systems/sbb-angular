@@ -76,7 +76,7 @@
     "@angular/cli": "14.0.0-next.12",
     "@angular/compiler": "14.0.0-next.14",
     "@angular/compiler-cli": "14.0.0-next.14",
-    "@angular/dev-infra-private": "https://github.com/angular/dev-infra-private-builds.git#7577b56c92cf09d8dcd4a86584fded1ec69e78ac",
+    "@angular/dev-infra-private": "https://github.com/angular/dev-infra-private-builds.git#335aad1b04b3d95cd4cb1d719e73b93d4e90cce3",
     "@angular/language-service": "14.0.0-next.14",
     "@angular/localize": "14.0.0-next.14",
     "@babel/core": "7.17.10",
