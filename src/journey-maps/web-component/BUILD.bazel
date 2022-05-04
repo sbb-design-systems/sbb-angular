@@ -60,6 +60,7 @@ pkg_npm(
     srcs = ["package.json"],
     deps = [
         ":bundle.min",
+        ":bundle-es2015.min",
         ":styles_scss",
     ],
 )
@@ -67,6 +68,18 @@ pkg_npm(
 app_bundle(
     name = "bundle",
     entry_point = "main.prod.ts",
+    deps = [
+        ":web-component",
+        "@npm//@angular/common",
+        "@npm//@angular/core",
+        "@npm//@angular/elements",
+    ],
+)
+
+app_bundle(
+    name = "bundle-es2015",
+    entry_point = "main.prod.ts",
+    target = "es2015",
     deps = [
         ":web-component",
         "@npm//@angular/common",
