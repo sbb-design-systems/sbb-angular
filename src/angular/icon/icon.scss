@@ -28,10 +28,9 @@
   }
 
   &.sbb-icon-inline {
-    font-size: inherit;
-    height: inherit;
-    line-height: inherit;
-    width: inherit;
+    vertical-align: middle;
+    margin-block-start: calc(pxToRem(-4) * var(--sbb-scaling-factor));
+    margin-block-end: calc(pxToRem(-2) * var(--sbb-scaling-factor));
   }
 
   // If any ancestor has .sbb-icon-fit as a class, width and height will be set to 100%.
