@@ -2,7 +2,7 @@ import { ChangeDetectionStrategy, Component, Input, ViewEncapsulation } from '@a
 
 const sbbAvailableModes = ['tiny', 'small', 'medium', 'big', 'fullscreen', 'fullbox', 'inline'];
 
-export type SbbLoadingMode =
+export type SbbLoadingIndicatorMode =
   | 'tiny'
   | 'small'
   | 'medium'
@@ -34,10 +34,10 @@ export type SbbLoadingMode =
 export class SbbLoadingIndicator {
   /** Types of mode for loading indicator. */
   @Input()
-  get mode(): SbbLoadingMode {
+  get mode(): SbbLoadingIndicatorMode {
     return this._mode;
   }
-  set mode(value: SbbLoadingMode | string) {
+  set mode(value: SbbLoadingIndicatorMode | string) {
     if (!sbbAvailableModes.includes(value)) {
       this._mode = 'medium';
       return;
@@ -46,7 +46,7 @@ export class SbbLoadingIndicator {
         'The mode fullscreen for the loading indicator is deprecated and will be removed with the next major version. Please consider another mode.'
       );
     }
-    this._mode = value as SbbLoadingMode;
+    this._mode = value as SbbLoadingIndicatorMode;
   }
-  private _mode: SbbLoadingMode = 'medium';
+  private _mode: SbbLoadingIndicatorMode = 'medium';
 }
