@@ -12,6 +12,7 @@ import {
   SbbInteractionOptions,
   SbbJourneyMaps,
   SbbJourneyMapsRoutingOptions,
+  SbbPointsOfInterestOptions,
   SbbViewportOptions,
   SbbZoomLevels,
 } from '@sbb-esta/journey-maps';
@@ -75,6 +76,7 @@ export class JourneyMapsFullExample implements OnInit, OnDestroy {
     { label: 'Transfer Luzern', value: { transfer: luzern4j } },
     { label: 'Transfer Zürich', value: { transfer: zurichIndoor } },
   ];
+  pointsOfInterestOptions: SbbPointsOfInterestOptions = { categories: ['park_rail'] };
   viewportOptions: SbbViewportOptions = {};
   zoomLevels: SbbZoomLevels;
   visibleLevels = new BehaviorSubject<number[]>([]);
@@ -121,6 +123,12 @@ export class JourneyMapsFullExample implements OnInit, OnDestroy {
         ZONE: _fb.group({
           watch: [true],
           selectionMode: ['multi'],
+        }),
+        POI: _fb.group({
+          watch: [true],
+          popup: [true],
+          selectionMode: ['single'],
+          hoverTemplate: [],
         }),
       }),
       markerOptions: _fb.group({

@@ -21,6 +21,7 @@ import {
   SbbFeaturesSelectEventData,
   SbbListenerOptions,
   SbbListenerTypeOptions,
+  SbbPointsOfInterestOptions,
   SbbSelectionMode,
 } from '../../journey-maps.interfaces';
 import { SbbFeaturesClickEvent } from '../../services/map/events/features-click-event';
@@ -43,6 +44,7 @@ import { SBB_ZONE_LAYER } from '../../services/map/map-zone-service';
 export class SbbFeatureEventListener implements OnChanges, OnDestroy {
   @Input() listenerOptions: SbbListenerOptions;
   @Input() map: MapLibreMap | null;
+  @Input() poiOptions?: SbbPointsOfInterestOptions;
 
   @Output() featureSelectionsChange: EventEmitter<SbbFeaturesSelectEventData> =
     new EventEmitter<SbbFeaturesSelectEventData>();
@@ -66,6 +68,7 @@ export class SbbFeatureEventListener implements OnChanges, OnDestroy {
   private _mapCursorStyleEvent: SbbMapCursorStyleEvent;
   private _featuresHoverEvent: SbbFeaturesHoverEvent;
   private _featuresClickEvent: SbbFeaturesClickEvent;
+  private static readonly _sbbPoisLayer = 'journey-pois';
 
   constructor(
     private _mapStationService: SbbMapStationService,
@@ -104,6 +107,11 @@ export class SbbFeatureEventListener implements OnChanges, OnDestroy {
       }
       if (this.listenerOptions.ZONE?.watch) {
         this._updateWatchOnLayers([SBB_ZONE_LAYER], 'ZONE');
+      }
+
+      this._configurePoiOptions(this.map, this.poiOptions);
+      if (this.listenerOptions.POI?.watch) {
+        this._updateWatchOnLayers([SbbFeatureEventListener._sbbPoisLayer], 'POI');
       }
 
       this._mapCursorStyleEvent?.complete();
@@ -159,6 +167,7 @@ export class SbbFeatureEventListener implements OnChanges, OnDestroy {
     selectionModes.set('MARKER', this.listenerOptions.MARKER?.selectionMode ?? 'single');
     selectionModes.set('STATION', this.listenerOptions.STATION?.selectionMode ?? 'single');
     selectionModes.set('ZONE', this.listenerOptions.ZONE?.selectionMode ?? 'multi');
+    selectionModes.set('POI', this.listenerOptions.POI?.selectionMode ?? 'single');
     return selectionModes;
   }
 
@@ -231,5 +240,24 @@ export class SbbFeatureEventListener implements OnChanges, OnDestroy {
     } else if (isClick) {
       this.overlayVisible = false;
     }
+  }
+
+  private _configurePoiOptions(map: MapLibreMap, poiOptions?: SbbPointsOfInterestOptions): void {
+    const sbbPoisLayerList = [
+      SbbFeatureEventListener._sbbPoisLayer,
+      'journey-pois-hover',
+      'journey-pois-selected',
+    ];
+
+    const hasAnyPois = poiOptions?.categories?.length;
+    if (hasAnyPois) {
+      sbbPoisLayerList.forEach((layerId) => {
+        map.setFilter(layerId, ['in', 'subCategory', ...poiOptions.categories]);
+      });
+    }
+
+    sbbPoisLayerList.forEach((layerId) => {
+      map.setLayoutProperty(layerId, 'visibility', hasAnyPois ? 'visible' : 'none');
+    });
   }
 }
