@@ -10,6 +10,7 @@ import { SbbIconModule } from '@sbb-esta/angular/icon';
 
 import { ChipsAutocompleteExample } from './chips-autocomplete/chips-autocomplete-example';
 import { ChipsDragDropExample } from './chips-drag-drop/chips-drag-drop-example';
+import { ChipsInputCustomHandlerAutocompleteExample } from './chips-input-custom-handler-autocomplete/chips-input-custom-handler-autocomplete-example';
 import { ChipsInputCustomHandlerExample } from './chips-input-custom-handler/chips-input-custom-handler-example';
 import { ChipsReactiveFormsExample } from './chips-reactive-forms/chips-reactive-forms-example';
 import { ChipsTemplateDrivenFormsExample } from './chips-template-driven-forms/chips-template-driven-forms-example';
@@ -17,6 +18,7 @@ import { ChipsTemplateDrivenFormsExample } from './chips-template-driven-forms/c
 export {
   ChipsAutocompleteExample,
   ChipsDragDropExample,
+  ChipsInputCustomHandlerAutocompleteExample,
   ChipsInputCustomHandlerExample,
   ChipsReactiveFormsExample,
   ChipsTemplateDrivenFormsExample,
@@ -25,6 +27,7 @@ export {
 const EXAMPLES = [
   ChipsAutocompleteExample,
   ChipsDragDropExample,
+  ChipsInputCustomHandlerAutocompleteExample,
   ChipsInputCustomHandlerExample,
   ChipsReactiveFormsExample,
   ChipsTemplateDrivenFormsExample,
