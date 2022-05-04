@@ -15,7 +15,9 @@ npm install --save @sbb-esta/journey-maps
 
 Afterwards you have to include the following two files in your application:
 
-- `@sbb-esta/journey-maps/web-component/bundle.min.js`
+- `@sbb-esta/journey-maps/web-component/bundle.min.js` (ES2020) \
+  or \
+  `@sbb-esta/journey-maps/web-component/bundle-es2015.min.js` (ES2015)
 - `@sbb-esta/journey-maps/web-component/styles.css`
 
 ### Create an instance of the custom component
