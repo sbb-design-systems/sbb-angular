@@ -8,6 +8,9 @@ import {
   Map as MaplibreMap,
 } from 'maplibre-gl';
 
+import { SbbPointsOfInterestOptions } from '../../journey-maps.interfaces';
+import { SBB_POI_LAYER } from '../constants';
+
 export const SBB_EMPTY_FEATURE_COLLECTION: GeoJSON.FeatureCollection = {
   type: 'FeatureCollection',
   features: [],
@@ -60,6 +63,21 @@ export class SbbMapService {
         throw new Error(`${source} was not found in style definition!`);
       }
     }
+  }
+
+  updatePoiVisibility(map: MaplibreMap, poiOptions?: SbbPointsOfInterestOptions) {
+    const sbbPoisLayerList = [SBB_POI_LAYER, 'journey-pois-hover', 'journey-pois-selected'];
+
+    const hasAnyPois = poiOptions?.categories?.length;
+    if (hasAnyPois) {
+      sbbPoisLayerList.forEach((layerId) => {
+        map.setFilter(layerId, ['in', 'subCategory', ...poiOptions.categories]);
+      });
+    }
+
+    sbbPoisLayerList.forEach((layerId) => {
+      map.setLayoutProperty(layerId, 'visibility', hasAnyPois ? 'visible' : 'none');
+    });
   }
 
   private _imageLoadedCallback(map: MaplibreMap, name: string, error: any, image: any): void {
