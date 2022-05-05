@@ -70,7 +70,6 @@
     },
     {
       "matchPackageNames": [
-        "@angular/core",
         "@angular/cli",
         "@angular/cdk",
         "angular-server-side-configuration",
