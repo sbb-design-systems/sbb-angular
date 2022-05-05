@@ -171,11 +171,11 @@ export class SbbFeatureEventListener implements OnChanges, OnDestroy {
   }
 
   private _featureClicked(data: SbbFeaturesClickEventData) {
-    this.mapSelectionEventService.toggleSelection(data);
-    this.featureSelectionsChange.next(this.mapSelectionEventService.findSelectedFeatures());
+    this.mapSelectionEventService.toggleSelection(data.features);
+    const selectedFeatures = this.mapSelectionEventService.findSelectedFeatures();
+    this.featureSelectionsChange.next(selectedFeatures);
     this.featuresClick.next(data);
-
-    this._updateOverlay(data.features, 'click', data.clickLngLat);
+    this._updateOverlay(data.features, 'click', data.clickLngLat, selectedFeatures);
   }
 
   private _filterOverlayFeatures(
@@ -213,22 +213,31 @@ export class SbbFeatureEventListener implements OnChanges, OnDestroy {
   private _updateOverlay(
     features: SbbFeatureData[],
     event: 'click' | 'hover',
-    pos: { lng: number; lat: number }
+    pos: { lng: number; lat: number },
+    selectedFeatures?: SbbFeaturesSelectEventData
   ) {
     const topMostFeature = features[0];
-    const listenerTypeOptions: SbbListenerTypeOptions =
-      this.listenerOptions[topMostFeature.featureDataType]!;
+    const featureDataType = topMostFeature.featureDataType;
+    const listenerTypeOptions: SbbListenerTypeOptions = this.listenerOptions[featureDataType]!;
     const isClick = event === 'click';
     const template = isClick
       ? listenerTypeOptions?.clickTemplate
       : listenerTypeOptions?.hoverTemplate;
 
-    if (template) {
+    const selectedIds = (selectedFeatures?.features ?? [])
+      .filter((f) => f.featureDataType === featureDataType)
+      .map((f) => f.id);
+
+    // If we have a click event then we have to decide if we want to show or hide the overlay.
+    const showOverlay =
+      !isClick || features.map((f) => f.id).some((id) => selectedIds.includes(id));
+
+    if (template && showOverlay) {
       clearTimeout(this.overlayTimeoutId);
       this.overlayVisible = true;
       this.overlayEventType = event;
       this.overlayTemplate = template;
-      this.overlayFeatures = this._filterOverlayFeatures(features, topMostFeature.featureDataType);
+      this.overlayFeatures = this._filterOverlayFeatures(features, featureDataType);
       this.overlayIsPopup = listenerTypeOptions.popup!;
 
       if (topMostFeature.geometry.type === 'Point') {
@@ -238,6 +247,14 @@ export class SbbFeatureEventListener implements OnChanges, OnDestroy {
       }
     } else if (isClick) {
       this.overlayVisible = false;
+    }
+  }
+
+  onOverlayClosed() {
+    this.overlayVisible = false;
+    if (this.overlayEventType === 'click') {
+      this.mapSelectionEventService.toggleSelection(this.overlayFeatures);
+      this.featureSelectionsChange.next(this.mapSelectionEventService.findSelectedFeatures());
     }
   }
 }

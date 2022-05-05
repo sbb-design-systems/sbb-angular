@@ -51,6 +51,8 @@ export class JourneyMapsFullExample implements OnInit, OnDestroy {
   stationTemplate: TemplateRef<any>;
   @ViewChild('routeTemplate', { static: true })
   routeTemplate: TemplateRef<any>;
+  @ViewChild('poiTemplate', { static: true })
+  poiTemplate: TemplateRef<any>;
 
   apiKey = window.JM_API_KEY;
   selectedMarkerId?: string;
@@ -126,9 +128,9 @@ export class JourneyMapsFullExample implements OnInit, OnDestroy {
         }),
         POI: _fb.group({
           watch: [true],
-          popup: [true],
+          popup: [false],
           selectionMode: ['single'],
-          hoverTemplate: [],
+          clickTemplate: [],
         }),
       }),
       markerOptions: _fb.group({
@@ -148,6 +150,7 @@ export class JourneyMapsFullExample implements OnInit, OnDestroy {
 
     this.form.get('listenerOptions.ROUTE')?.patchValue({ hoverTemplate: this.routeTemplate });
     this.form.get('listenerOptions.STATION')?.patchValue({ clickTemplate: this.stationTemplate });
+    this.form.get('listenerOptions.POI')?.patchValue({ clickTemplate: this.poiTemplate });
 
     this.form
       .get('zoneGeoJson')
