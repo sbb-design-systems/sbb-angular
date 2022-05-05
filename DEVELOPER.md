@@ -3,7 +3,8 @@
 1. Make sure you have both `node` and `yarn` installed.
    We recommend using `nvm` to manage your node versions.
 2. sbb-angular uses Bazel which requires certain Bash and UNIX tools.
-   - On Windows we recommend using WSL2, with which no special setup should be necessary
+   - On Windows we recommend using WSL2. Please make sure firefox and google-chrome-stable is installed inside WSL.
+     Otherwise you might encounter `wslpath` errors when running tests.
    - On Windows on SBB Managed Devices: Follow the guide to install on windows below, but install MSYS2 to `C:\devsbb\msys64`
      and add `.bazelrc` to your user directory (`C:\Users\{user}\.bazelrc`) with the following content:
      ```
