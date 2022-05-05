@@ -21,6 +21,7 @@
   "ng-update": {
     "packageGroup": [
       "@sbb-esta/angular",
+      "@sbb-esta/angular-experimental",
       "@sbb-esta/angular-maps",
       "@sbb-esta/journey-maps"
     ],
