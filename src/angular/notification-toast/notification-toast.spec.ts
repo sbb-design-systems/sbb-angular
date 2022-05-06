@@ -566,6 +566,18 @@ describe('SbbNotificationToast', () => {
     flush();
   }));
 
+  it('should only keep one snack bar in the DOM if multiple are opened at the same time', fakeAsync(() => {
+    for (let i = 0; i < 10; i++) {
+      notificationToast.open('Notification time!');
+      viewContainerFixture.detectChanges();
+    }
+
+    flush();
+    expect(
+      overlayContainerElement.querySelectorAll('sbb-notification-toast-container').length
+    ).toBe(1);
+  }));
+
   describe('with custom component', () => {
     it('should open a custom component', () => {
       const notificationToastRef = notificationToast.openFromComponent(BurritosNotification);
