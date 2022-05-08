@@ -1,6 +1,7 @@
 <ng-container *ngIf="rendered">
   <div #container class="teaser-container" @showHideTrigger>
     <button
+      type="button"
       class="close"
       (click)="closeClicked.emit()"
       [attr.aria-label]="closeLabel"
