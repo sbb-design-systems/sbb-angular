@@ -72,7 +72,7 @@
     "@angular-devkit/core": "14.0.0-next.13",
     "@angular-devkit/schematics": "14.0.0-next.13",
     "@angular-devkit/schematics-cli": "14.0.0-next.13",
-    "@angular/bazel": "14.0.0-next.14",
+    "@angular/bazel": "14.0.0-next.16",
     "@angular/cli": "14.0.0-next.13",
     "@angular/compiler": "14.0.0-next.16",
     "@angular/compiler-cli": "14.0.0-next.16",
