@@ -150,7 +150,7 @@ export class _SbbTableDataSource<
     data: T,
     sortHeaderId: string
   ): string | number => {
-    const value = (data as { [key: string]: any })[sortHeaderId];
+    const value = (data as unknown as Record<string, any>)[sortHeaderId];
 
     if (_isNumberValue(value)) {
       const numberValue = Number(value);
@@ -241,7 +241,7 @@ export class _SbbTableDataSource<
    * @returns Whether the filter matches against the data
    */
   filterPredicate: (data: T, filter: TFilter) => boolean = (data: T, filter: TFilter): boolean => {
-    const tableData = data as { [key: string]: any };
+    const tableData = data as unknown as Record<string, any>;
 
     if (typeof filter === 'string') {
       return this._filterGlobally([filter.trim()], tableData);
