@@ -5,7 +5,7 @@
   [templateContext]="overlayFeatures"
   [withPaginator]="true"
   [position]="overlayPosition"
-  (closeClicked)="overlayVisible = false"
+  (closeClicked)="onOverlayClosed()"
   (mouseEvent)="onOverlayMouseEvent($event)"
   *ngIf="overlayIsPopup"
 >
@@ -16,7 +16,7 @@
   [template]="overlayTemplate"
   [templateContext]="overlayFeatures"
   [withPaginator]="true"
-  (closeClicked)="overlayVisible = false"
+  (closeClicked)="onOverlayClosed()"
   (mouseEvent)="onOverlayMouseEvent($event)"
   *ngIf="!overlayIsPopup"
 >
