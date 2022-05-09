@@ -71,7 +71,7 @@ markdown_to_html = rule(
         "_transform_markdown": attr.label(
             default = Label("//tools/markdown-to-html"),
             executable = True,
-            cfg = "host",
+            cfg = "exec",
         ),
     },
 )

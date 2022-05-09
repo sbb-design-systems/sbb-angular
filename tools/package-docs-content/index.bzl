@@ -90,7 +90,7 @@ package_docs_content = rule(
         "_packager": attr.label(
             default = Label("//tools/package-docs-content"),
             executable = True,
-            cfg = "host",
+            cfg = "exec",
         ),
     },
 )
