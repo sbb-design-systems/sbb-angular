@@ -1,6 +1,7 @@
 <div class="map-control-container" [class.small-buttons]="showSmallButtons" *ngIf="map">
   <div class="map-control-button-wrapper var-plus" [attr.data-disabled]="isMaxZoom">
     <button
+      type="button"
       (click)="zoomIn()"
       class="map-control-button"
       [attr.disabled]="isMaxZoom ? '' : null"
@@ -10,6 +11,7 @@
 
   <div class="map-control-button-wrapper var-minus" [attr.data-disabled]="isMinZoom">
     <button
+      type="button"
       (click)="zoomOut()"
       class="map-control-button"
       [attr.disabled]="isMinZoom ? '' : null"
