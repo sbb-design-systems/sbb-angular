@@ -24,6 +24,7 @@ import {
   SbbPointsOfInterestOptions,
   SbbSelectionMode,
 } from '../../journey-maps.interfaces';
+import { SBB_POI_LAYER } from '../../services/constants';
 import { SbbFeaturesClickEvent } from '../../services/map/events/features-click-event';
 import { SbbFeaturesHoverEvent } from '../../services/map/events/features-hover-event';
 import { SbbMapCursorStyleEvent } from '../../services/map/events/map-cursor-style-event';
@@ -68,7 +69,6 @@ export class SbbFeatureEventListener implements OnChanges, OnDestroy {
   private _mapCursorStyleEvent: SbbMapCursorStyleEvent;
   private _featuresHoverEvent: SbbFeaturesHoverEvent;
   private _featuresClickEvent: SbbFeaturesClickEvent;
-  private static readonly _sbbPoisLayer = 'journey-pois';
 
   constructor(
     private _mapStationService: SbbMapStationService,
@@ -109,9 +109,8 @@ export class SbbFeatureEventListener implements OnChanges, OnDestroy {
         this._updateWatchOnLayers([SBB_ZONE_LAYER], 'ZONE');
       }
 
-      this._configurePoiOptions(this.map, this.poiOptions);
       if (this.listenerOptions.POI?.watch) {
-        this._updateWatchOnLayers([SbbFeatureEventListener._sbbPoisLayer], 'POI');
+        this._updateWatchOnLayers([SBB_POI_LAYER], 'POI');
       }
 
       this._mapCursorStyleEvent?.complete();
@@ -240,24 +239,5 @@ export class SbbFeatureEventListener implements OnChanges, OnDestroy {
     } else if (isClick) {
       this.overlayVisible = false;
     }
-  }
-
-  private _configurePoiOptions(map: MapLibreMap, poiOptions?: SbbPointsOfInterestOptions): void {
-    const sbbPoisLayerList = [
-      SbbFeatureEventListener._sbbPoisLayer,
-      'journey-pois-hover',
-      'journey-pois-selected',
-    ];
-
-    const hasAnyPois = poiOptions?.categories?.length;
-    if (hasAnyPois) {
-      sbbPoisLayerList.forEach((layerId) => {
-        map.setFilter(layerId, ['in', 'subCategory', ...poiOptions.categories]);
-      });
-    }
-
-    sbbPoisLayerList.forEach((layerId) => {
-      map.setLayoutProperty(layerId, 'visibility', hasAnyPois ? 'visible' : 'none');
-    });
   }
 }
