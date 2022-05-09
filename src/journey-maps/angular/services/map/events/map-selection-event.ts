@@ -7,7 +7,6 @@ import { sampleTime } from 'rxjs/operators';
 import {
   SbbFeatureData,
   SbbFeatureDataType,
-  SbbFeaturesClickEventData,
   SbbFeaturesSelectEventData,
   SbbSelectionMode,
 } from '../../../journey-maps.interfaces';
@@ -52,9 +51,9 @@ export class SbbMapSelectionEvent {
     this._subscription?.unsubscribe();
   }
 
-  toggleSelection(eventData: SbbFeaturesClickEventData): void {
+  toggleSelection(features: SbbFeatureData[]): void {
     const lastRouteEventDataCandidate = new Map<SbbFeatureData, boolean>();
-    for (const feature of eventData.features) {
+    for (const feature of features) {
       const selected = !feature.state.selected;
       this._setFeatureSelection(feature, selected);
 

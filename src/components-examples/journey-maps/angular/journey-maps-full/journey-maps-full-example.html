@@ -35,6 +35,9 @@
   <ng-template #routeTemplate let-route>
     <div class="route-title">{{route.properties.routeId}}</div>
   </ng-template>
+  <ng-template #poiTemplate let-poi>
+    <div>{{poi.properties.name}}</div>
+  </ng-template>
 </div>
 <div>
   <form [formGroup]="form">
