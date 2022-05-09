@@ -21,12 +21,14 @@ export class AutocompleteDisplayWithExample {
 
   filteredOptions: Observable<ExampleOption[]> = this.myControl.valueChanges.pipe(
     startWith(''),
-    map((newValue: any) =>
+    map((newValue: string | ExampleOption | null) =>
       options.filter(
         (option) =>
           option.label
             .toLocaleUpperCase()
-            .indexOf((newValue.label ?? newValue).toLocaleUpperCase()) > -1
+            .indexOf(
+              (typeof newValue === 'object' ? newValue!.label : newValue).toLocaleUpperCase()
+            ) > -1
       )
     )
   );

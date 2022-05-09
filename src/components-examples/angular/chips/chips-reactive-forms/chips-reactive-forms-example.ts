@@ -13,6 +13,6 @@ export class ChipsReactiveFormsExample {
   formControl = new FormControl(new Set(['Re420', 'Re460']));
 
   get valuesArray() {
-    return this.formControl.value ? [...this.formControl.value.values()] : [];
+    return [...this.formControl.value!];
   }
 }
