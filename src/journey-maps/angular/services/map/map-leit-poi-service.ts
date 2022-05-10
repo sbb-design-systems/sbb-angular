@@ -10,9 +10,7 @@ import { SbbMapLeitPoi } from '../../model/map-leit-poi';
 import { SbbMapLeitPoiCreator } from './map-leit-poi-creator';
 import { SBB_EMPTY_FEATURE_COLLECTION } from './map-service';
 
-@Injectable({
-  providedIn: 'root',
-})
+@Injectable()
 export class SbbMapLeitPoiService {
   private static readonly _leitPoiPathType = 'leit_poi';
   private static readonly _defaultLevel = 0;
@@ -58,8 +56,17 @@ export class SbbMapLeitPoiService {
       const routeStartLevel = routeStartLevelFeature
         ? Number(routeStartLevelFeature.properties?.routeStartLevel)
         : SbbMapLeitPoiService._defaultLevel;
-      this.setCurrentLevel(map, routeStartLevel);
-      this.levelSwitched.next(routeStartLevel);
+
+      const switchIt = () => {
+        this.setCurrentLevel(map, routeStartLevel);
+        this.levelSwitched.next(routeStartLevel);
+      };
+
+      if (map.loaded()) {
+        switchIt();
+      } else {
+        map.once('idle', switchIt);
+      }
     }
   }
 

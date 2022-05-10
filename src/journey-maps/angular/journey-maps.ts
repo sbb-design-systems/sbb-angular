@@ -62,7 +62,7 @@ const SATELLITE_MAP_URL_TEMPLATE =
   selector: 'sbb-journey-maps',
   templateUrl: './journey-maps.html',
   styleUrls: ['./journey-maps.css'],
-  providers: [SbbLevelSwitcher, SbbMapLayerFilter],
+  providers: [SbbLevelSwitcher, SbbMapLayerFilter, SbbMapLeitPoiService],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class SbbJourneyMaps implements OnInit, AfterViewInit, OnDestroy, OnChanges {
