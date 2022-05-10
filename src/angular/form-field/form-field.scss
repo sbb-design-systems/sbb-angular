@@ -141,7 +141,7 @@
 
 // Align button width with the input width
 .sbb-form-group-vertical
-  :is(.sbb-button, .sbb-alt-button, .sbb-secondary-button, .sbb-ghost-button, .sbb-icon-button) {
+  > :is(.sbb-button, .sbb-alt-button, .sbb-secondary-button, .sbb-ghost-button, .sbb-icon-button) {
   width: var(--sbb-form-field-width);
 
   :where(html:not(.sbb-lean)) & .sbb-button-right-icon {
