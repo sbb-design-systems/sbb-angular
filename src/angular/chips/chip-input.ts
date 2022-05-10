@@ -141,7 +141,7 @@ export class SbbChipInput implements SbbChipTextControl, OnChanges, OnDestroy, A
     @Inject(SBB_CHIPS_DEFAULT_OPTIONS) private _defaultOptions: SbbChipsDefaultOptions,
     @Self() @Optional() public autocompleteTrigger?: SbbAutocompleteTrigger,
     @Host() @Optional() @Inject(SBB_CHIP_LIST) chipList?: TypeRef<SbbChipList>,
-    @Optional() private _ngControl?: NgControl
+    @Self() @Optional() private _ngControl?: NgControl
   ) {
     this.inputElement = this._elementRef.nativeElement as HTMLInputElement;
 
