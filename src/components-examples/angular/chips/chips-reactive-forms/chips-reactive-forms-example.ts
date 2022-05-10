@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { UntypedFormControl } from '@angular/forms';
+import { FormControl } from '@angular/forms';
 
 /**
  * @title Chips Reactive Forms
@@ -10,9 +10,9 @@ import { UntypedFormControl } from '@angular/forms';
   templateUrl: 'chips-reactive-forms-example.html',
 })
 export class ChipsReactiveFormsExample {
-  formControl = new UntypedFormControl(new Set(['Re420', 'Re460']));
+  formControl = new FormControl(new Set(['Re420', 'Re460']));
 
   get valuesArray() {
-    return [...this.formControl.value.values()];
+    return [...this.formControl.value!];
   }
 }

@@ -1,12 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { Component, DebugElement } from '@angular/core';
 import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
-import {
-  FormsModule,
-  ReactiveFormsModule,
-  UntypedFormControl,
-  UntypedFormGroup,
-} from '@angular/forms';
+import { FormControl, FormGroup, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { By } from '@angular/platform-browser';
 import { SbbBadge, SbbBadgeModule } from '@sbb-esta/angular/badge';
 import { SbbCheckboxChange as SbbTagChange } from '@sbb-esta/angular/checkbox';
@@ -79,9 +74,10 @@ class TagsTestFixtureComponent {
   `,
 })
 class TagsTestFixtureReactiveComponent {
-  formGroup = new UntypedFormGroup({
-    services: new UntypedFormControl(false),
-    restaurants: new UntypedFormControl(false),
+  formGroup = new FormGroup({
+    services: new FormControl(false),
+    restaurants: new FormControl(false),
+    onemore: new FormControl(false),
   });
   tagItems: Tag[] = [
     {
@@ -444,8 +440,7 @@ describe('SbbTags', () => {
       fixture.detectChanges();
 
       expectTotalAmount(100, fixture);
-
-      component.formGroup.addControl('onemore', new UntypedFormControl(false));
+      component.formGroup.addControl('onemore', new FormControl(false));
       component.tagItems.push({ id: 'onemore', amount: 3, label: 'one more' });
       fixture.detectChanges();
 

@@ -1,6 +1,6 @@
 import { DOCUMENT } from '@angular/common';
 import { Inject, Injectable, OnDestroy } from '@angular/core';
-import { UntypedFormControl } from '@angular/forms';
+import { FormControl } from '@angular/forms';
 import {
   ActivatedRouteSnapshot,
   CanActivate,
@@ -16,7 +16,7 @@ const variantLocalstorageKey = 'sbbAngularVariant';
 
 @Injectable({ providedIn: 'root' })
 export class VariantSwitch implements CanActivate, OnDestroy {
-  sbbVariant: UntypedFormControl = new UntypedFormControl(
+  sbbVariant: FormControl = new FormControl(
     localStorage.getItem(variantLocalstorageKey) || 'standard'
   );
   private _destroyed = new Subject<void>();

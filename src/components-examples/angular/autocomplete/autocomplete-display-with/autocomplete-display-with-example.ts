@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { UntypedFormControl } from '@angular/forms';
+import { FormControl } from '@angular/forms';
 import { Observable } from 'rxjs';
 import { map, startWith } from 'rxjs/operators';
 
@@ -17,16 +17,18 @@ interface ExampleOption {
   templateUrl: 'autocomplete-display-with-example.html',
 })
 export class AutocompleteDisplayWithExample {
-  myControl = new UntypedFormControl('');
+  myControl = new FormControl<string | ExampleOption>('');
 
   filteredOptions: Observable<ExampleOption[]> = this.myControl.valueChanges.pipe(
     startWith(''),
-    map((newValue) =>
+    map((newValue: string | ExampleOption | null) =>
       options.filter(
         (option) =>
           option.label
             .toLocaleUpperCase()
-            .indexOf((newValue.label ?? newValue).toLocaleUpperCase()) > -1
+            .indexOf(
+              (typeof newValue === 'object' ? newValue!.label : newValue).toLocaleUpperCase()
+            ) > -1
       )
     )
   );

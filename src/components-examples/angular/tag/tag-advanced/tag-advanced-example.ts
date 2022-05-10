@@ -1,5 +1,5 @@
 import { Component, OnDestroy } from '@angular/core';
-import { UntypedFormControl } from '@angular/forms';
+import { FormControl } from '@angular/forms';
 import { SbbTagChange } from '@sbb-esta/angular/tag';
 import { Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
@@ -41,30 +41,31 @@ const tagItems: Tag[] = [
 export class TagAdvancedExample implements OnDestroy {
   tags: Tag[];
 
-  amountFirstItem = new UntypedFormControl();
+  amountFirstItem = new FormControl<number>(0, { initialValueIsDefault: true });
   private _destroyed = new Subject<void>();
 
   constructor() {
     this.reset();
     this.amountFirstItem.valueChanges
       .pipe(takeUntil(this._destroyed))
-      .subscribe((amount) => (this.tags[0].amount = amount));
+      .subscribe((amount) => this.tags.length > 0 && (this.tags[0].amount = amount));
   }
 
   addOneItem() {
     this.tags.push({
       label: 'New Item',
-      amount: 20,
+      amount: this.tags.length === 0 ? this.amountFirstItem.value : 20,
     });
   }
 
   removeOneItem() {
     this.tags.pop();
+    this.amountFirstItem.setValue(this.tags[0].amount);
   }
 
   reset() {
     this.tags = JSON.parse(JSON.stringify(tagItems)); // Create a deep copy for example purposes
-    this.amountFirstItem.setValue('', { emitEvent: false });
+    this.amountFirstItem.setValue(this.tags[0].amount);
   }
 
   change(evt: SbbTagChange) {

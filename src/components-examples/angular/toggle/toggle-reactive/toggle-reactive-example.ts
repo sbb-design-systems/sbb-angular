@@ -1,5 +1,5 @@
 import { Component, ViewEncapsulation } from '@angular/core';
-import { UntypedFormControl } from '@angular/forms';
+import { FormControl } from '@angular/forms';
 
 /**
  * @title Toggle Reactive
@@ -11,5 +11,5 @@ import { UntypedFormControl } from '@angular/forms';
   encapsulation: ViewEncapsulation.None,
 })
 export class ToggleReactiveExample {
-  journey = new UntypedFormControl('ReturnJourney');
+  journey = new FormControl('ReturnJourney');
 }

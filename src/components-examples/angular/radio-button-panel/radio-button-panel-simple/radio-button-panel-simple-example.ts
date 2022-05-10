@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { UntypedFormControl } from '@angular/forms';
+import { FormControl } from '@angular/forms';
 
 /**
  * @title Simple Radio Button Panel
@@ -10,5 +10,5 @@ import { UntypedFormControl } from '@angular/forms';
   templateUrl: 'radio-button-panel-simple-example.html',
 })
 export class RadioButtonPanelSimpleExample {
-  value = new UntypedFormControl();
+  value = new FormControl('');
 }

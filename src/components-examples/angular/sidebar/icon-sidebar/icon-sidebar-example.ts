@@ -1,6 +1,6 @@
 import { BreakpointObserver, MediaMatcher } from '@angular/cdk/layout';
 import { AfterViewInit, Component, OnDestroy } from '@angular/core';
-import { UntypedFormControl } from '@angular/forms';
+import { FormControl } from '@angular/forms';
 import { Breakpoints } from '@sbb-esta/angular/core';
 import { FakeMediaMatcher } from '@sbb-esta/angular/core/testing';
 import { Subject } from 'rxjs';
@@ -22,7 +22,7 @@ import { startWith, takeUntil } from 'rxjs/operators';
 })
 export class IconSidebarExample implements AfterViewInit, OnDestroy {
   expanded = false;
-  simulateMobile = new UntypedFormControl(false);
+  simulateMobile = new FormControl(false, { initialValueIsDefault: true });
   private _destroyed = new Subject<void>();
 
   constructor(private _mediaMatcher: FakeMediaMatcher) {}

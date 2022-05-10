@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { UntypedFormControl, Validators } from '@angular/forms';
+import { FormControl, Validators } from '@angular/forms';
 
 /**
  * @title Form Field Datepicker
@@ -10,5 +10,5 @@ import { UntypedFormControl, Validators } from '@angular/forms';
   templateUrl: 'form-field-datepicker-example.html',
 })
 export class FormFieldDatepickerExample {
-  date: UntypedFormControl = new UntypedFormControl(new Date(), [Validators.required]);
+  date: FormControl = new FormControl(new Date(), [Validators.required]);
 }

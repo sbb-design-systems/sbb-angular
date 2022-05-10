@@ -118,7 +118,9 @@ describe('SbbTableDataSource', () => {
       ];
 
       params.forEach((param) =>
-        expect(dataTableSource.filterPredicate(testRow, param.filter)).toBe(param.expected, param)
+        expect(dataTableSource.filterPredicate(testRow, param.filter))
+          .withContext(param.toString())
+          .toBe(param.expected)
       );
     });
 
@@ -158,16 +160,45 @@ describe('SbbTableDataSource', () => {
       ];
 
       params.forEach((param) =>
-        expect(dataTableSource.filterPredicate(testRowAdvanced, param.filter)).toBe(
-          param.expected,
-          param
-        )
+        expect(dataTableSource.filterPredicate(testRowAdvanced, param.filter))
+          .withContext(param.toString())
+          .toBe(param.expected)
+      );
+    });
+
+    it('should not filter by null or undefined', () => {
+      interface TestFilter extends SbbTableFilter {
+        colNumber?: number | null;
+        colString?: string | null;
+        colNull?: null;
+        colUndefined?: null;
+        colNonexistent?: null;
+      }
+      const dataTableSource = new SbbTableDataSource<TestRow, TestFilter>();
+
+      const params: Params<TestFilter>[] = [
+        { filter: { colNumber: null }, expected: true },
+        { filter: { colNumber: undefined }, expected: true },
+        { filter: { colString: null }, expected: true },
+        { filter: { colString: undefined }, expected: true },
+        { filter: { colNull: null }, expected: true },
+        { filter: { colNull: undefined }, expected: true },
+        { filter: { colUndefined: null }, expected: true },
+        { filter: { colUndefined: undefined }, expected: true },
+        { filter: { colNonexistent: null }, expected: true },
+        { filter: { colNonexistent: undefined }, expected: true },
+      ];
+
+      params.forEach((param) =>
+        expect(dataTableSource.filterPredicate(testRowAdvanced, param.filter))
+          .withContext(param.toString())
+          .toBe(param.expected)
       );
     });
 
     it('should filter by tableFilter with number entry 0', () => {
       interface TestFilter extends SbbTableFilter {
-        colNumber?: number;
+        colNumber?: number | null;
       }
       const dataTableSource = new SbbTableDataSource<TestRow, TestFilter>();
 
@@ -180,13 +211,14 @@ describe('SbbTableDataSource', () => {
         { filter: { colNumber: 0 }, expected: true },
         { filter: { colNumber: 1 }, expected: false },
         { filter: { colNumber: -1 }, expected: false },
+        { filter: { colNumber: undefined }, expected: true },
+        { filter: { colNumber: null }, expected: true },
       ];
 
       params.forEach((param) =>
-        expect(dataTableSource.filterPredicate(dataRowWith0, param.filter)).toBe(
-          param.expected,
-          param
-        )
+        expect(dataTableSource.filterPredicate(dataRowWith0, param.filter))
+          .withContext(param.toString())
+          .toBe(param.expected)
       );
     });
 
@@ -233,10 +265,9 @@ describe('SbbTableDataSource', () => {
       ];
 
       params.forEach((param) =>
-        expect(dataTableSource.filterPredicate(testRowAdvanced, param.filter)).toBe(
-          param.expected,
-          param
-        )
+        expect(dataTableSource.filterPredicate(testRowAdvanced, param.filter))
+          .withContext(param.toString())
+          .toBe(param.expected)
       );
     });
   });

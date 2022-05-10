@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { UntypedFormControl } from '@angular/forms';
+import { FormControl } from '@angular/forms';
 
 /**
  * @title Search Simple Reactive Forms
@@ -10,7 +10,7 @@ import { UntypedFormControl } from '@angular/forms';
   templateUrl: 'search-simple-reactive-forms-example.html',
 })
 export class SearchSimpleReactiveFormsExample {
-  searchControl = new UntypedFormControl('');
+  searchControl = new FormControl('');
   searchValues: string[] = [];
 
   handleSearch(value: string) {

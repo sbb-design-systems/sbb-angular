@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { UntypedFormControl } from '@angular/forms';
+import { FormControl } from '@angular/forms';
 
 /**
  * @title Time Input Reactive Forms
@@ -10,6 +10,6 @@ import { UntypedFormControl } from '@angular/forms';
   templateUrl: 'time-input-reactive-forms-example.html',
 })
 export class TimeInputReactiveFormsExample {
-  formControl = new UntypedFormControl('');
-  readonly = new UntypedFormControl(false);
+  formControl = new FormControl('');
+  readonly = new FormControl(false);
 }

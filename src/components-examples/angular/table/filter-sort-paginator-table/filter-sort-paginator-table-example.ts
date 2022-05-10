@@ -1,6 +1,6 @@
 import { LiveAnnouncer } from '@angular/cdk/a11y';
 import { AfterViewInit, Component, OnDestroy, ViewChild } from '@angular/core';
-import { UntypedFormControl, UntypedFormGroup } from '@angular/forms';
+import { FormControl, FormGroup } from '@angular/forms';
 import { SbbPaginator } from '@sbb-esta/angular/pagination';
 import {
   SbbSort,
@@ -21,9 +21,9 @@ interface VehicleExampleItem {
 }
 
 interface VehicleFilter extends SbbTableFilter {
-  category?: string[];
-  name?: string;
-  description?: string;
+  category?: string[] | null;
+  name?: string | null;
+  description?: string | null;
 }
 
 /**
@@ -56,11 +56,11 @@ export class FilterSortPaginatorTableExample implements AfterViewInit, OnDestroy
     VEHICLE_EXAMPLE_DATA.map((vehicleExampleItem) => vehicleExampleItem.category)
   );
 
-  vehicleFilterForm = new UntypedFormGroup({
-    _: new UntypedFormControl(''),
-    category: new UntypedFormControl(),
-    name: new UntypedFormControl(''),
-    description: new UntypedFormControl(''),
+  vehicleFilterForm = new FormGroup({
+    _: new FormControl(''),
+    category: new FormControl([] as string[]),
+    name: new FormControl(''),
+    description: new FormControl(''),
   });
 
   descriptions: Observable<string[]>;
@@ -75,14 +75,14 @@ export class FilterSortPaginatorTableExample implements AfterViewInit, OnDestroy
     this.table.dataSource = this.dataSource;
     this.vehicleFilterForm.valueChanges
       .pipe(takeUntil(this._destroyed))
-      .subscribe((vehicleFilterForm: VehicleFilter) => {
+      .subscribe((vehicleFilterForm) => {
         this.dataSource.filter = vehicleFilterForm;
       });
 
     this.descriptions = this.vehicleFilterForm.get('description')!.valueChanges.pipe(
       distinctUntilChanged(),
       map((newValue) =>
-        newValue.length === 0
+        newValue?.length === 0
           ? []
           : [...new Set(this.dataSource.filteredData.map((vehicle) => vehicle.description))].sort()
       )

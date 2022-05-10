@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { UntypedFormBuilder, UntypedFormGroup } from '@angular/forms';
+import { FormBuilder } from '@angular/forms';
 
 /**
  * @title Vertical Checkbox Group
@@ -10,13 +10,11 @@ import { UntypedFormBuilder, UntypedFormGroup } from '@angular/forms';
   templateUrl: 'checkbox-group-reactive-forms-vertical-example.html',
 })
 export class CheckboxGroupReactiveFormsVerticalExample {
-  form: UntypedFormGroup;
+  form = this._formBuilder.group({
+    'Check 1': true,
+    'Check 2': false,
+    'Check 3': false,
+  });
 
-  constructor(formBuilder: UntypedFormBuilder) {
-    this.form = formBuilder.group({
-      'Check 1': true,
-      'Check 2': false,
-      'Check 3': false,
-    });
-  }
+  constructor(private _formBuilder: FormBuilder) {}
 }

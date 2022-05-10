@@ -1,5 +1,5 @@
 import { AfterViewInit, Component, Input, ViewChild } from '@angular/core';
-import { UntypedFormBuilder, UntypedFormGroup } from '@angular/forms';
+import { FormBuilder } from '@angular/forms';
 import { SbbPaginator } from '@sbb-esta/angular/pagination';
 import { merge, Observable } from 'rxjs';
 import { debounceTime, map, startWith } from 'rxjs/operators';
@@ -25,20 +25,18 @@ export class CdnIconListComponent implements AfterViewInit {
   }
   private _cdnIcons: CdnIcons;
 
-  filterForm: UntypedFormGroup;
+  filterForm = this._formBuilder.group({
+    fulltext: [''],
+    namespaces: [[]],
+    fitIcons: [true],
+  });
   filteredIcons: Observable<CdnIcon[]>;
   namespaces: string[];
   pageSize = 50;
 
   @ViewChild(SbbPaginator) private _paginator: SbbPaginator;
 
-  constructor(formBuilder: UntypedFormBuilder) {
-    this.filterForm = formBuilder.group({
-      fulltext: [''],
-      namespaces: [[]],
-      fitIcons: [true],
-    });
-  }
+  constructor(private _formBuilder: FormBuilder) {}
 
   ngAfterViewInit(): void {
     this.filteredIcons = merge(

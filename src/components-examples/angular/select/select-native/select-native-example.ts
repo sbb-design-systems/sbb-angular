@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { UntypedFormBuilder, UntypedFormGroup } from '@angular/forms';
+import { FormBuilder } from '@angular/forms';
 
 /**
  * @title Select Native
@@ -10,13 +10,11 @@ import { UntypedFormBuilder, UntypedFormGroup } from '@angular/forms';
   templateUrl: 'select-native-example.html',
 })
 export class SelectNativeExample {
-  form: UntypedFormGroup;
+  form = this._formBuilder.group({
+    value: '',
+    optionDisabled: false,
+    readonly: false,
+  });
 
-  constructor(formBuilder: UntypedFormBuilder) {
-    this.form = formBuilder.group({
-      value: '',
-      optionDisabled: false,
-      readonly: false,
-    });
-  }
+  constructor(private _formBuilder: FormBuilder) {}
 }

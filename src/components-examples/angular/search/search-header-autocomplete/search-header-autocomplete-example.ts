@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { UntypedFormControl } from '@angular/forms';
+import { FormControl } from '@angular/forms';
 
 /**
  * @title Search Header Mode With Autocomplete
@@ -11,7 +11,7 @@ import { UntypedFormControl } from '@angular/forms';
 })
 export class SearchHeaderAutocompleteExample {
   searchValues: string[] = [];
-  searchControl = new UntypedFormControl('');
+  searchControl = new FormControl('');
   options: string[] = [
     'one',
     'two',

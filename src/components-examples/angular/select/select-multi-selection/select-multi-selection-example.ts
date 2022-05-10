@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { UntypedFormBuilder, UntypedFormGroup } from '@angular/forms';
+import { FormBuilder } from '@angular/forms';
 
 /**
  * @title Select Multiple Selection
@@ -10,12 +10,10 @@ import { UntypedFormBuilder, UntypedFormGroup } from '@angular/forms';
   templateUrl: 'select-multi-selection-example.html',
 })
 export class SelectMultiSelectionExample {
-  form: UntypedFormGroup;
+  form = this._formBuilder.group({
+    value: [[]],
+    optionDisabled: false,
+  });
 
-  constructor(formBuilder: UntypedFormBuilder) {
-    this.form = formBuilder.group({
-      value: [[]],
-      optionDisabled: false,
-    });
-  }
+  constructor(private _formBuilder: FormBuilder) {}
 }
