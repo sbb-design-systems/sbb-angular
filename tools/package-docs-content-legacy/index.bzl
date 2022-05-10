@@ -87,7 +87,7 @@ package_docs_content_legacy = rule(
         "_packager": attr.label(
             default = Label("//tools/package-docs-content-legacy"),
             executable = True,
-            cfg = "host",
+            cfg = "exec",
         ),
     },
 )

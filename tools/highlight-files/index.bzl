@@ -57,7 +57,7 @@ highlight_files = rule(
         "_highlight_files": attr.label(
             default = Label("//tools/highlight-files"),
             executable = True,
-            cfg = "host",
+            cfg = "exec",
         ),
     },
 )

@@ -78,7 +78,7 @@ dgeni_api_docs = rule(
         "_dgeni_bin": attr.label(
             default = Label("//tools/dgeni"),
             executable = True,
-            cfg = "host",
+            cfg = "exec",
         ),
 
         # Dgeni document templates that should be be available as inputs to the
