@@ -25,7 +25,6 @@ const ANGULAR_FILEPATH_REGEX = new RegExp(`(${ANGULAR_FILEPATH})/(.*?)`);
 const ENTRY_POINT_MAPPINGS = new Map(
   Object.entries({
     [TargetVersion.V14]: {
-      SbbLoadingModule: 'loading-indicator',
       SbbLoadingIndicatorModule: 'loading-indicator',
     },
   })
