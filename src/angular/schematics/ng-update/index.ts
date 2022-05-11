@@ -9,9 +9,10 @@ import {
 import { ClassNamesMigration } from '../ng-add/migrations/class-names';
 
 import { leanTestConfigurationMigration } from './migrations/lean-test-configuration-migration';
+import { SecondaryEntryPointsMigration } from './migrations/secondary-entry-points-migration';
 import { sbbAngularUpgradeData } from './upgrade-data';
 
-const sbbAngularMigrations: NullableDevkitMigration[] = [];
+const sbbAngularMigrations: NullableDevkitMigration[] = [SecondaryEntryPointsMigration];
 
 /** Entry point for the migration schematics with target of SBB Angular v13 */
 export function updateToV13(): Rule {
