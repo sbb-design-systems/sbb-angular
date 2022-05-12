@@ -369,9 +369,8 @@ export class SbbDateInput<D> implements ControlValueAccessor, Validator, OnInit,
 
   /** Formats a value and sets it on the input element. */
   private _formatValue(value: D | null) {
-    this._elementRef.nativeElement.value = value
-      ? this._dateAdapter.format(value, this._dateFormats.dateInput)
-      : '';
+    this._elementRef.nativeElement.value =
+      value != null ? this._dateAdapter.format(value, this._dateFormats.dateInput) : '';
   }
 
   /**
