@@ -2,6 +2,37 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [13.14.0](https://github.com/sbb-design-systems/sbb-angular/compare/13.13.2...13.14.0) (2022-05-12)
+
+
+### Features
+
+* **journey-maps:** integrate Park-and-Rail and other Rokas points-of-interests ([#1424](https://github.com/sbb-design-systems/sbb-angular/issues/1424)) ([467a7ba](https://github.com/sbb-design-systems/sbb-angular/commit/467a7ba52e5a78e5b50f05df6d69846eee712d7e))
+
+
+### Bug Fixes
+
+* add missing packages to ng-update package group ([#1430](https://github.com/sbb-design-systems/sbb-angular/issues/1430)) ([286ceed](https://github.com/sbb-design-systems/sbb-angular/commit/286ceed80a24059e26a1322f81d7dd25f6f45b8e))
+* **angular/chips:** don't clear the chip list when adding a new item ([#1454](https://github.com/sbb-design-systems/sbb-angular/issues/1454)) ([2166565](https://github.com/sbb-design-systems/sbb-angular/commit/21665655e94c5a033c7f0a7446f0d78224ebe4bf))
+* **angular/chips:** set dirty state and correctly delete entries in arrays ([#1419](https://github.com/sbb-design-systems/sbb-angular/issues/1419)) ([70ad808](https://github.com/sbb-design-systems/sbb-angular/commit/70ad80848d51ae86ce1f68eaa194b01e292ed933))
+* **angular/datepicker:** add ability to have numeric zero value in input ([#1447](https://github.com/sbb-design-systems/sbb-angular/issues/1447)) ([7a9c1cc](https://github.com/sbb-design-systems/sbb-angular/commit/7a9c1cced46a07c25ba0a71b9f2e743e85aa105c))
+* **angular/form-field:** only style direct descendant buttons of `sbb-form-group-vertical` ([#1453](https://github.com/sbb-design-systems/sbb-angular/issues/1453)) ([ee918aa](https://github.com/sbb-design-systems/sbb-angular/commit/ee918aa722fbb86ceaa5a2734c9c2bdf466bcda5))
+* **angular/icon:** fix inline icon styles ([#1436](https://github.com/sbb-design-systems/sbb-angular/issues/1436)) ([d9ee9c3](https://github.com/sbb-design-systems/sbb-angular/commit/d9ee9c31ff10d51ff05f0134de27c252a6958186)), closes [#1433](https://github.com/sbb-design-systems/sbb-angular/issues/1433)
+* **angular/menu:** focus the first item when opening menu on iOS VoiceOver ([#1448](https://github.com/sbb-design-systems/sbb-angular/issues/1448)) ([fb5e326](https://github.com/sbb-design-systems/sbb-angular/commit/fb5e3261df259337f75637637469bc63fda7ee74))
+* **angular/select:** don't announce selected value multiple times ([#1411](https://github.com/sbb-design-systems/sbb-angular/issues/1411)) ([227ae03](https://github.com/sbb-design-systems/sbb-angular/commit/227ae035d29387d068b4a780144ea7a85f227868)), closes [#1385](https://github.com/sbb-design-systems/sbb-angular/issues/1385)
+* **angular/textarea:** fix displaying line breaks in firefox ([#1446](https://github.com/sbb-design-systems/sbb-angular/issues/1446)) ([6ca9ed1](https://github.com/sbb-design-systems/sbb-angular/commit/6ca9ed1faab30ab2d9ccb6a73d6586f55d51909d))
+* **journey-maps:** adjusted teaser styling ([#1437](https://github.com/sbb-design-systems/sbb-angular/issues/1437)) ([88d895f](https://github.com/sbb-design-systems/sbb-angular/commit/88d895ff5251584f64fe8e9b2c765249f1cd3cc3))
+* **journey-maps:** buttons must be of type button ([#1443](https://github.com/sbb-design-systems/sbb-angular/issues/1443)) ([2d8661e](https://github.com/sbb-design-systems/sbb-angular/commit/2d8661efb207e933787a30cb3bd8a01080399de3))
+* **journey-maps:** show correct start level for indoor routing ([#1450](https://github.com/sbb-design-systems/sbb-angular/issues/1450)) ([ee170f4](https://github.com/sbb-design-systems/sbb-angular/commit/ee170f459052f6930b4261a93265d68ee9e48ed7))
+* **journey-maps:** show POI when no listenerOptions are set ([#1440](https://github.com/sbb-design-systems/sbb-angular/issues/1440)) ([0facb2a](https://github.com/sbb-design-systems/sbb-angular/commit/0facb2acdd5c9c777159b339036f74bf54e1aad4))
+* **journey-maps:** synchronize click-overlay and selection state ([#1442](https://github.com/sbb-design-systems/sbb-angular/issues/1442)) ([330d123](https://github.com/sbb-design-systems/sbb-angular/commit/330d123ab598390fe4a4208410a874749dac3845))
+
+
+### Documentation
+
+* update developer documentation for wsl ([#1432](https://github.com/sbb-design-systems/sbb-angular/issues/1432)) ([ca52d1a](https://github.com/sbb-design-systems/sbb-angular/commit/ca52d1aadca93fc881e92feaaa9481d7ac6a24f4))
+* update journey-maps preview image ([#1429](https://github.com/sbb-design-systems/sbb-angular/issues/1429)) ([f2f5cf0](https://github.com/sbb-design-systems/sbb-angular/commit/f2f5cf018d6740ea761025d6065b3def6dae10ce))
+
 ### [13.13.2](https://github.com/sbb-design-systems/sbb-angular/compare/13.13.0...13.13.2) (2022-05-03)
 
 
