@@ -12,7 +12,8 @@ export type SbbLoadingIndicatorMode =
   | 'inline';
 
 @Component({
-  selector: 'sbb-loading-indicator',
+  // TODO(v15): Remove sbb-loading selector.
+  selector: 'sbb-loading-indicator, sbb-loading',
   templateUrl: './loading-indicator.html',
   styleUrls: ['./loading-indicator.css'],
   changeDetection: ChangeDetectionStrategy.OnPush,

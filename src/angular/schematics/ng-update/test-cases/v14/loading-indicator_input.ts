@@ -1,11 +1,13 @@
-import { Component, NgModule } from '@angular/core';
-import { SbbLoadingModule } from '@sbb-esta/angular/loading';
+import { Component, NgModule, ViewChild } from '@angular/core';
+import { SbbLoadingModule, SbbLoading } from '@sbb-esta/angular/loading';
 
 @Component({
   selector: 'sbb-loading-test',
   template: '<sbb-loading></sbb-loading>',
 })
-export class SbbLoadingTestComponent {}
+export class SbbLoadingTestComponent {
+  @ViewChild(SbbLoading) loading: SbbLoading;
+}
 
 @NgModule({
   declarations: [SbbLoadingTestComponent],

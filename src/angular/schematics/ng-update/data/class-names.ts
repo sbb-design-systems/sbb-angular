@@ -1,14 +1,10 @@
 import { ClassNameUpgradeData, TargetVersion, VersionChanges } from '@angular/cdk/schematics';
 
 export const classNames: VersionChanges<ClassNameUpgradeData> = {
-  [TargetVersion.V14 as TargetVersion]: [
+  [TargetVersion.V14]: [
     {
       pr: '',
       changes: [
-        {
-          replace: 'SbbLoading',
-          replaceWith: 'SbbLoadingIndicator',
-        },
         {
           replace: 'SbbLoadingModule',
           replaceWith: 'SbbLoadingIndicatorModule',
@@ -16,6 +12,10 @@ export const classNames: VersionChanges<ClassNameUpgradeData> = {
         {
           replace: 'SbbLoadingMode',
           replaceWith: 'SbbLoadingIndicatorMode',
+        },
+        {
+          replace: 'SbbLoading',
+          replaceWith: 'SbbLoadingIndicator',
         },
       ],
     },

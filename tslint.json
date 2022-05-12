@@ -8,8 +8,12 @@
   "linterOptions": {
     "exclude": [
       "tools/dgeni/**/*.ts",
-      "src/angular/schematics/ng-add/test-cases/**/*",
-      "src/angular/schematics/ng-update/test-cases/**/*",
+      "tools/schematics/*/files/**/*",
+      "src/angular/schematics/**/files/**/*",
+      "src/angular/schematics/ng-add/test-cases/**/*_input.ts",
+      "src/angular/schematics/ng-add/test-cases/**/*_expected_output.ts",
+      "src/angular/schematics/ng-update/test-cases/**/*_input.ts",
+      "src/angular/schematics/ng-update/test-cases/**/*_expected_output.ts",
       "src/showcase/assets/stack-blitz/**/*.ts"
     ]
   },

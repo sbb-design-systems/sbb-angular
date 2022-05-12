@@ -1,41 +1,45 @@
 import { chain, Rule, SchematicContext } from '@angular-devkit/schematics';
 import {
+  UpdateBuffer2,
+  UpdateBufferBase,
+} from '@angular-devkit/schematics/src/utility/update-buffer';
+import {
   cdkMigrations,
   createMigrationSchematicRule,
-  NullableDevkitMigration,
   TargetVersion,
 } from '@angular/cdk/schematics';
 
 import { ClassNamesMigration } from '../ng-add/migrations/class-names';
 
 import { leanTestConfigurationMigration } from './migrations/lean-test-configuration-migration';
-import { SecondaryEntryPointsMigration } from './migrations/secondary-entry-points-migration';
 import { sbbAngularUpgradeData } from './upgrade-data';
-
-const sbbAngularMigrations: NullableDevkitMigration[] = [SecondaryEntryPointsMigration];
 
 /** Entry point for the migration schematics with target of SBB Angular v13 */
 export function updateToV13(): Rule {
+  patchUpdateBuffer();
   return chain([
     leanTestConfigurationMigration,
-    createMigrationSchematicRule(
-      TargetVersion.V13,
-      sbbAngularMigrations,
-      sbbAngularUpgradeData,
-      onMigrationComplete
-    ),
+    createMigrationSchematicRule(TargetVersion.V13, [], sbbAngularUpgradeData, onMigrationComplete),
   ]);
 }
 
 /** Entry point for the migration schematics with target of Angular CDK 14.0.0 */
 export function updateToV14(): Rule {
+  patchUpdateBuffer();
   patchClassNamesMigration();
   return createMigrationSchematicRule(
     TargetVersion.V14,
-    sbbAngularMigrations,
+    [],
     sbbAngularUpgradeData,
     onMigrationComplete
   );
+}
+
+function patchUpdateBuffer() {
+  if (UpdateBufferBase.create) {
+    UpdateBufferBase.create = (originalContent: Buffer): UpdateBufferBase =>
+      new UpdateBuffer2(originalContent);
+  }
 }
 
 function patchClassNamesMigration() {

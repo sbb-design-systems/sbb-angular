@@ -1,7 +1,7 @@
 import { ElementSelectorUpgradeData, TargetVersion, VersionChanges } from '@angular/cdk/schematics';
 
 export const elementSelectors: VersionChanges<ElementSelectorUpgradeData> = {
-  [TargetVersion.V14 as TargetVersion]: [
+  [TargetVersion.V14]: [
     {
       pr: '',
       changes: [
