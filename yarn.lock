@@ -11175,10 +11175,10 @@ karma-firefox-launcher@2.1.2:
     is-wsl "^2.2.0"
     which "^2.0.1"
 
-karma-jasmine@5.0.0:
-  version "5.0.0"
-  resolved "https://registry.yarnpkg.com/karma-jasmine/-/karma-jasmine-5.0.0.tgz#e270c86214b5390df77ebe1b6eaab79664d87d9f"
-  integrity sha512-dsFkCoTwyoNyQnMgegS72wIA/2xPDJG5yzTry0448U6lAY7P60Wgg4UuLlbdLv8YHbimgNpDXjjmfPdc99EDWQ==
+karma-jasmine@5.0.1:
+  version "5.0.1"
+  resolved "https://registry.yarnpkg.com/karma-jasmine/-/karma-jasmine-5.0.1.tgz#854e9204b62cfa07242a8c66b8ab83751a896d02"
+  integrity sha512-FkL1Kk+JAKmim8VWU8RXKZBpl0lLI7J8LijM0/q7oP7emfB6QMZV1Az+JgqGKSLpF0tYaav+KUVFQroZUxQTHA==
   dependencies:
     jasmine-core "^4.1.0"
 
@@ -11217,10 +11217,10 @@ karma-sourcemap-loader@0.3.8:
   dependencies:
     graceful-fs "^4.1.2"
 
-karma@6.3.19:
-  version "6.3.19"
-  resolved "https://registry.yarnpkg.com/karma/-/karma-6.3.19.tgz#e50759667b0b9c6ad758655db0547d3ab4d2abf5"
-  integrity sha512-NDhWckzES/Y9xMiddyU1RzaKL76/scCsu8Mp0vR0Z3lQRvC3p72+Ab4ppoxs36S9tyPNX5V48yvaV++RNEBPZw==
+karma@6.3.20:
+  version "6.3.20"
+  resolved "https://registry.yarnpkg.com/karma/-/karma-6.3.20.tgz#12f5c3b0e68f204607cb0a3a78d4751b42ef61a8"
+  integrity sha512-HRNQhMuKOwKpjYlWiJP0DUrJOh+QjaI/DTaD8b9rEm4Il3tJ8MijutVZH4ts10LuUFst/CedwTS6vieCN8yTSw==
   dependencies:
     "@colors/colors" "1.5.0"
     body-parser "^1.19.0"
