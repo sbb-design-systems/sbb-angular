@@ -91,7 +91,7 @@
     "@bazel/protractor": "5.3.0",
     "@bazel/rollup": "5.3.0",
     "@bazel/runfiles": "5.3.0",
-    "@commitlint/cli": "16.2.4",
+    "@commitlint/cli": "16.3.0",
     "@commitlint/config-conventional": "16.2.4",
     "@rollup/plugin-commonjs": "22.0.0",
     "@rollup/plugin-node-resolve": "13.3.0",
