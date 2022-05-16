@@ -30,7 +30,7 @@ sass_binary(
     name = "usermenu_scss",
     src = "usermenu.scss",
     deps = [
-        "//src/angular/styles:common_scss_lib",
+        "//src/angular:scss_lib",
     ],
 )
 

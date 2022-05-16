@@ -1,4 +1,4 @@
-@import '../styles/common';
+@use '@sbb-esta/angular' as sbb;
 
 // Prevent rendering sbb-menu as it can affect the flex layout.
 sbb-menu {
@@ -9,13 +9,13 @@ sbb-menu {
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  min-width: calc(#{pxToRem(150)} * var(--sbb-scaling-factor));
-  max-width: calc(#{pxToRem(400)} * var(--sbb-scaling-factor));
+  min-width: calc(#{sbb.pxToRem(150)} * var(--sbb-scaling-factor));
+  max-width: calc(#{sbb.pxToRem(400)} * var(--sbb-scaling-factor));
   outline: 0;
 
   // Give the menu a minimum height so that the user can't
   // collapse it to zero when they scroll away.
-  min-height: pxToRem(72);
+  min-height: sbb.pxToRem(72);
 
   // Prevent users from interacting with the panel while it's animating. Note that
   // people won't be able to click through it, because the overlay pane will catch the click.
@@ -50,14 +50,14 @@ sbb-menu {
   }
 
   .sbb-label {
-    padding-top: calc(#{pxToRem(22)} * var(--sbb-scaling-factor));
+    padding-top: calc(#{sbb.pxToRem(22)} * var(--sbb-scaling-factor));
 
     :where(html.sbb-lean) & {
-      padding-top: pxToRem(12);
+      padding-top: sbb.pxToRem(12);
     }
 
     &:first-child {
-      padding-top: calc(#{pxToRem(6)} * var(--sbb-scaling-factor));
+      padding-top: calc(#{sbb.pxToRem(6)} * var(--sbb-scaling-factor));
     }
   }
 }
@@ -151,16 +151,16 @@ sbb-menu {
   // We have to overwrite typography styles
   &,
   :where(html.sbb-lean) &.sbb-menu-item {
-    padding-right: calc(#{pxToRem(32)} * var(--sbb-scaling-factor));
+    padding-right: calc(#{sbb.pxToRem(32)} * var(--sbb-scaling-factor));
   }
 
   &.sbb-menu-item .sbb-menu-item-submenu-trigger-icon.sbb-icon {
-    @include absoluteCenterY;
+    @include sbb.absoluteCenterY;
     // Without important it would need redefinitions for all sizes and variants.
     // It only affects submenu trigger icon, which should be ok.
     margin: 0 !important;
     float: none;
-    right: calc(#{pxToRem(5)} * var(--sbb-scaling-factor));
+    right: calc(#{sbb.pxToRem(5)} * var(--sbb-scaling-factor));
   }
 }
 

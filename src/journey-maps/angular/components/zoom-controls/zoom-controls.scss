@@ -1,5 +1,5 @@
 @use './../../style/functions' as f;
-@use '../../../../angular/styles/common' as esta;
+@use '@sbb-esta/angular' as esta;
 
 @include f.map-controls-shared;
 @include f.map-control-icon;

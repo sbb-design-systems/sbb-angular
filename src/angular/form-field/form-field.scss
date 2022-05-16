@@ -1,4 +1,4 @@
-@import '../styles/common';
+@use '@sbb-esta/angular' as sbb;
 
 .sbb-form-field {
   display: inline-block;
@@ -10,11 +10,11 @@
 .sbb-form-field-short {
   width: 33.333%;
 
-  @include mq($from: mobileLandscape) {
+  @include sbb.mq($from: mobileLandscape) {
     width: 25%;
   }
 
-  @include mq($from: desktop) {
+  @include sbb.mq($from: desktop) {
     width: 16.66666%;
   }
 }
@@ -23,7 +23,7 @@
 .sbb-form-field-medium {
   width: 100%;
 
-  @include mq($from: tabletPortrait) {
+  @include sbb.mq($from: tabletPortrait) {
     width: 50%;
   }
 }
@@ -34,10 +34,10 @@
 }
 
 .sbb-form-field-wrapper {
-  padding-bottom: calc(#{pxToRem(23)} * var(--sbb-scaling-factor));
+  padding-bottom: calc(#{sbb.pxToRem(23)} * var(--sbb-scaling-factor));
 
   :where(html.sbb-lean) & {
-    padding-bottom: pxToRem(16);
+    padding-bottom: sbb.pxToRem(16);
   }
 
   .sbb-form-field-flexible-errors & {
@@ -86,8 +86,8 @@
   :is(.sbb-icon, .sbb-tooltip-icon),
   .sbb-icon svg {
     vertical-align: bottom;
-    width: calc(#{pxToRem(16)} * var(--sbb-scaling-factor));
-    height: calc(#{pxToRem(16)} * var(--sbb-scaling-factor));
+    width: calc(#{sbb.pxToRem(16)} * var(--sbb-scaling-factor));
+    height: calc(#{sbb.pxToRem(16)} * var(--sbb-scaling-factor));
   }
   .sbb-tooltip-icon:not(:hover):not(:focus) {
     color: inherit;
@@ -95,7 +95,7 @@
 
   // Make sbb-tooltip align nicely inside sbb-label.
   .sbb-tooltip-trigger {
-    margin-left: calc(#{pxToRem(8)} * var(--sbb-scaling-factor));
+    margin-left: calc(#{sbb.pxToRem(8)} * var(--sbb-scaling-factor));
   }
 }
 

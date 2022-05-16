@@ -39,7 +39,7 @@ sass_binary(
     name = "header_search_scss",
     src = "header-search.scss",
     deps = [
-        "//src/angular/styles:common_scss_lib",
+        "//src/angular:scss_lib",
     ],
 )
 
@@ -47,7 +47,7 @@ sass_binary(
     name = "search_scss",
     src = "search.scss",
     deps = [
-        "//src/angular/styles:common_scss_lib",
+        "//src/angular:scss_lib",
     ],
 )
 

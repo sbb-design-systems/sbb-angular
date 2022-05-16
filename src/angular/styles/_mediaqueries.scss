@@ -1,3 +1,6 @@
+@use './variables';
+@use './functions';
+
 // ----------------------------------------------------------------------------------------------------
 // Mediaqueries
 // ----------------------------------------------------------------------------------------------------
@@ -12,18 +15,18 @@
  * stakeholders, designers, developers, and testers.
  */
 $mqBreakpoints: (
-  mobile: $sizeBreakpointMobilePortrait,
-  mobilePortrait: $sizeBreakpointMobilePortrait,
-  mobileLandscape: $sizeBreakpointMobileLandscape,
-  tablet: $sizeBreakpointTabletPortrait,
-  tabletPortrait: $sizeBreakpointTabletPortrait,
-  tabletLandscape: $sizeBreakpointTabletLandscape,
-  desktop: $sizeBreakpointDesktop,
-  desktopLarge: $sizeBreakpointDesktopLarge,
-  desktop2k: $sizeBreakpointDesktop2k,
-  desktopMaxWidth: $sizeBreakpointDesktopMaxWidth,
-  desktop4k: $sizeBreakpointDesktop4k,
-  desktop5k: $sizeBreakpointDesktop5k,
+  mobile: variables.$sizeBreakpointMobilePortrait,
+  mobilePortrait: variables.$sizeBreakpointMobilePortrait,
+  mobileLandscape: variables.$sizeBreakpointMobileLandscape,
+  tablet: variables.$sizeBreakpointTabletPortrait,
+  tabletPortrait: variables.$sizeBreakpointTabletPortrait,
+  tabletLandscape: variables.$sizeBreakpointTabletLandscape,
+  desktop: variables.$sizeBreakpointDesktop,
+  desktopLarge: variables.$sizeBreakpointDesktopLarge,
+  desktop2k: variables.$sizeBreakpointDesktop2k,
+  desktopMaxWidth: variables.$sizeBreakpointDesktopMaxWidth,
+  desktop4k: variables.$sizeBreakpointDesktop4k,
+  desktop5k: variables.$sizeBreakpointDesktop5k,
 );
 
 /**
@@ -86,18 +89,18 @@ $mqShowBreakpoints: (
   // From: this breakpoint (inclusive)
   @if $from {
     @if type-of($from) == number {
-      $minSize: pxToEm($from, 16);
+      $minSize: functions.pxToEm($from, 16);
     } @else {
-      $minSize: pxToEm(mqGetBreakpointWidth($from), 16);
+      $minSize: functions.pxToEm(mqGetBreakpointWidth($from), 16);
     }
   }
 
   // To: that breakpoint (exclusive)
   @if $to {
     @if type-of($to) == number {
-      $maxSize: pxToEm($to, 16) - 0.01em;
+      $maxSize: functions.pxToEm($to, 16) - 0.01em;
     } @else {
-      $maxSize: pxToEm(mqGetBreakpointWidth($to), 16) - 0.01em;
+      $maxSize: functions.pxToEm(mqGetBreakpointWidth($to), 16) - 0.01em;
     }
   }
 

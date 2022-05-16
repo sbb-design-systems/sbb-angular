@@ -1,4 +1,4 @@
-@import '../styles/common';
+@use '@sbb-esta/angular' as sbb;
 
 .sbb-processflow {
   display: block;
@@ -14,28 +14,28 @@
 .sbb-processflow-separator {
   line-height: 0;
   color: var(--sbb-color-text);
-  font-size: calc(#{pxToRem(18)} * var(--sbb-scaling-factor));
-  margin: pxToRem(3) pxToRem(15);
+  font-size: calc(#{sbb.pxToRem(18)} * var(--sbb-scaling-factor));
+  margin: sbb.pxToRem(3) sbb.pxToRem(15);
   // We use em here to reduce redeclarations
   width: 1em;
   min-width: 1em;
   height: 1em;
 
   :where(html:not(.sbb-lean)) & {
-    @include mq($from: tabletPortrait) {
-      margin: pxToRem(3) pxToRem(19);
+    @include sbb.mq($from: tabletPortrait) {
+      margin: sbb.pxToRem(3) sbb.pxToRem(19);
     }
-    @include mq($from: desktop) {
-      margin: calc(#{pxToRem(3)} * var(--sbb-scaling-factor))
-        calc(#{pxToRem(27)} * var(--sbb-scaling-factor));
+    @include sbb.mq($from: desktop) {
+      margin: calc(#{sbb.pxToRem(3)} * var(--sbb-scaling-factor))
+        calc(#{sbb.pxToRem(27)} * var(--sbb-scaling-factor));
     }
-    @include mq($from: desktop4k, $to: desktop5k) {
-      margin: pxToRem(4) pxToRem(40);
+    @include sbb.mq($from: desktop4k, $to: desktop5k) {
+      margin: sbb.pxToRem(4) sbb.pxToRem(40);
     }
   }
   :where(html.sbb-lean) & {
-    font-size: pxToRem(12);
-    margin: pxToRem(1) pxToRem(22) 0;
+    font-size: sbb.pxToRem(12);
+    margin: sbb.pxToRem(1) sbb.pxToRem(22) 0;
   }
 
   // This matches all separators after the currently active step.
@@ -69,10 +69,10 @@
 // We want to display a gap between buttons. Vertically for mobile resolution
 // and horizontally for above.
 .sbb-processflow-previous + :is(.sbb-processflow-next, .sbb-button-base) {
-  @include mq($to: tabletPortrait) {
-    margin-top: pxToRem(8);
+  @include sbb.mq($to: tabletPortrait) {
+    margin-top: sbb.pxToRem(8);
   }
-  @include mq($from: tabletPortrait) {
-    margin-left: calc(#{pxToRem(8)} * var(--sbb-scaling-factor));
+  @include sbb.mq($from: tabletPortrait) {
+    margin-left: calc(#{sbb.pxToRem(8)} * var(--sbb-scaling-factor));
   }
 }

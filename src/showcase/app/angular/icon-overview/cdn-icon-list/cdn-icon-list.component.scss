@@ -1,4 +1,4 @@
-@import '../../../../../angular/styles/common';
+@use '@sbb-esta/angular' as sbb;
 
 sbb-cdn-icon {
   width: 100px;
@@ -11,7 +11,7 @@ sbb-cdn-icon {
 .sbb-cdn-icon-filter-bar {
   margin-bottom: 30px;
 
-  @include mq($from: desktop) {
+  @include sbb.mq($from: desktop) {
     display: flex;
 
     sbb-form-field,

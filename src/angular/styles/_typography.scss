@@ -1,6 +1,6 @@
 @use 'external/npm/node_modules/@angular/cdk' as cdk;
 @use 'sass:math';
-@import './common';
+@use '@sbb-esta/angular' as sbb;
 
 // ----------------------------------------------------------------------------------------------------
 // Custom Webfonts
@@ -47,63 +47,63 @@
 
 :root {
   // Fonts
-  --sbb-font-roman: #{$fontSbbRoman};
-  --sbb-font-bold: #{$fontSbbBold};
-  --sbb-font-light: #{$fontSbbLight};
-  --sbb-font-thin: #{$fontSbbThin};
+  --sbb-font-roman: #{sbb.$fontSbbRoman};
+  --sbb-font-bold: #{sbb.$fontSbbBold};
+  --sbb-font-light: #{sbb.$fontSbbLight};
+  --sbb-font-thin: #{sbb.$fontSbbThin};
 
   // Colors
-  --sbb-color-red: #{$sbbColorRed};
-  --sbb-color-red125: #{$sbbColorRed125};
-  --sbb-color-red150: #{$sbbColorRed150};
-  --sbb-color-white: #{$sbbColorWhite};
-  --sbb-color-milk: #{$sbbColorMilk};
-  --sbb-color-cloud: #{$sbbColorCloud};
-  --sbb-color-silver: #{$sbbColorSilver};
-  --sbb-color-aluminum: #{$sbbColorAluminum};
-  --sbb-color-platinum: #{$sbbColorPlatinum};
-  --sbb-color-cement: #{$sbbColorCement};
-  --sbb-color-graphite: #{$sbbColorGraphite};
-  --sbb-color-storm: #{$sbbColorStorm};
-  --sbb-color-smoke: #{$sbbColorSmoke};
-  --sbb-color-metal: #{$sbbColorMetal};
-  --sbb-color-granite: #{$sbbColorGranite};
-  --sbb-color-anthracite: #{$sbbColorAnthracite};
-  --sbb-color-iron: #{$sbbColorIron};
-  --sbb-color-charcoal: #{$sbbColorCharcoal};
-  --sbb-color-midnight: #{$sbbColorMidnight};
-  --sbb-color-black: #{$sbbColorBlack};
-  --sbb-color-blue: #{$sbbColorBlue};
+  --sbb-color-red: #{sbb.$sbbColorRed};
+  --sbb-color-red125: #{sbb.$sbbColorRed125};
+  --sbb-color-red150: #{sbb.$sbbColorRed150};
+  --sbb-color-white: #{sbb.$sbbColorWhite};
+  --sbb-color-milk: #{sbb.$sbbColorMilk};
+  --sbb-color-cloud: #{sbb.$sbbColorCloud};
+  --sbb-color-silver: #{sbb.$sbbColorSilver};
+  --sbb-color-aluminum: #{sbb.$sbbColorAluminum};
+  --sbb-color-platinum: #{sbb.$sbbColorPlatinum};
+  --sbb-color-cement: #{sbb.$sbbColorCement};
+  --sbb-color-graphite: #{sbb.$sbbColorGraphite};
+  --sbb-color-storm: #{sbb.$sbbColorStorm};
+  --sbb-color-smoke: #{sbb.$sbbColorSmoke};
+  --sbb-color-metal: #{sbb.$sbbColorMetal};
+  --sbb-color-granite: #{sbb.$sbbColorGranite};
+  --sbb-color-anthracite: #{sbb.$sbbColorAnthracite};
+  --sbb-color-iron: #{sbb.$sbbColorIron};
+  --sbb-color-charcoal: #{sbb.$sbbColorCharcoal};
+  --sbb-color-midnight: #{sbb.$sbbColorMidnight};
+  --sbb-color-black: #{sbb.$sbbColorBlack};
+  --sbb-color-blue: #{sbb.$sbbColorBlue};
 
   // With Alpha
-  --sbb-color-granite-alpha40: #{rgba($sbbColorGranite, 0.4)};
-  --sbb-color-red-alpha40: #{rgba($sbbColorRed, 0.4)};
-  --sbb-color-silver-alpha40: #{rgba($sbbColorSilver, 0.4)};
-  --sbb-color-storm-alpha40: #{rgba($sbbColorStorm, 0.4)};
-  --sbb-color-iron-alpha40: #{rgba($sbbColorIron, 0.4)};
-  --sbb-color-iron-alpha50: #{rgba($sbbColorIron, 0.5)};
-  --sbb-color-white-alpha50: #{rgba($sbbColorWhite, 0.5)};
-  --sbb-color-white-alpha70: #{rgba($sbbColorWhite, 0.7)};
+  --sbb-color-granite-alpha40: #{rgba(sbb.$sbbColorGranite, 0.4)};
+  --sbb-color-red-alpha40: #{rgba(sbb.$sbbColorRed, 0.4)};
+  --sbb-color-silver-alpha40: #{rgba(sbb.$sbbColorSilver, 0.4)};
+  --sbb-color-storm-alpha40: #{rgba(sbb.$sbbColorStorm, 0.4)};
+  --sbb-color-iron-alpha40: #{rgba(sbb.$sbbColorIron, 0.4)};
+  --sbb-color-iron-alpha50: #{rgba(sbb.$sbbColorIron, 0.5)};
+  --sbb-color-white-alpha50: #{rgba(sbb.$sbbColorWhite, 0.5)};
+  --sbb-color-white-alpha70: #{rgba(sbb.$sbbColorWhite, 0.7)};
 
   // Extended Colors
-  --sbb-color-sky: #{$sbbColorSky};
-  --sbb-color-night: #{$sbbColorNight};
-  --sbb-color-violet: #{$sbbColorViolet};
-  --sbb-color-autumn: #{$sbbColorAutumn};
-  --sbb-color-orange: #{$sbbColorOrange};
-  --sbb-color-peach: #{$sbbColorPeach};
-  --sbb-color-lemon: #{$sbbColorLemon};
-  --sbb-color-green: #{$sbbColorGreen};
+  --sbb-color-sky: #{sbb.$sbbColorSky};
+  --sbb-color-night: #{sbb.$sbbColorNight};
+  --sbb-color-violet: #{sbb.$sbbColorViolet};
+  --sbb-color-autumn: #{sbb.$sbbColorAutumn};
+  --sbb-color-orange: #{sbb.$sbbColorOrange};
+  --sbb-color-peach: #{sbb.$sbbColorPeach};
+  --sbb-color-lemon: #{sbb.$sbbColorLemon};
+  --sbb-color-green: #{sbb.$sbbColorGreen};
 
   // Non-Standard Colors
-  --sbb-color-grey: #{$sbbColorGrey};
-  --sbb-color-grey-medium: #{$sbbColorGreyMedium};
+  --sbb-color-grey: #{sbb.$sbbColorGrey};
+  --sbb-color-grey-medium: #{sbb.$sbbColorGreyMedium};
 
   // Context Colors
   --sbb-color-background: var(--sbb-color-white);
   --sbb-color-call-to-action: var(--sbb-color-red);
   --sbb-color-call-to-action-hover: var(--sbb-color-red125);
-  --sbb-color-error: #{$sbbColorError};
+  --sbb-color-error: #{sbb.$sbbColorError};
   --sbb-color-text: var(--sbb-color-black);
   --sbb-color-weak-accent: var(--sbb-color-grey);
 
@@ -111,27 +111,27 @@
   --sbb-scaling-factor: 1;
 
   // Sizings
-  --sbb-border-radius: calc(#{pxToRem(2)} * var(--sbb-scaling-factor));
-  --sbb-border-width: calc(#{pxToRem(2)} * var(--sbb-scaling-factor));
+  --sbb-border-radius: calc(#{sbb.pxToRem(2)} * var(--sbb-scaling-factor));
+  --sbb-border-width: calc(#{sbb.pxToRem(2)} * var(--sbb-scaling-factor));
   --sbb-border-width-negative: calc(var(--sbb-border-width) * -1);
-  --sbb-border-width-thin: #{pxToRem(1)};
+  --sbb-border-width-thin: #{sbb.pxToRem(1)};
   --sbb-border-width-thin-negative: calc(var(--sbb-border-width-thin) * -1);
-  --sbb-button-gap: calc(#{pxToRem(8)} * var(--sbb-scaling-factor));
-  --sbb-font-size-constant: #{pxToRem($sizeFontDefault)};
+  --sbb-button-gap: calc(#{sbb.pxToRem(8)} * var(--sbb-scaling-factor));
+  --sbb-font-size-constant: #{sbb.pxToRem(sbb.$sizeFontDefault)};
   --sbb-font-size: var(--sbb-font-size-constant);
-  --sbb-line-height-constant: #{pxToRem($sizeLineHeightDefault)};
+  --sbb-line-height-constant: #{sbb.pxToRem(sbb.$sizeLineHeightDefault)};
   --sbb-line-height: var(--sbb-line-height-constant);
-  --sbb-line-height-root: #{$sizeLineHeightBase};
-  --sbb-font-size-small: #{pxToRem(13)};
-  --sbb-line-height-small: #{pxToRem(20)};
-  --sbb-line-height-medium: #{pxToRem(23)};
-  --sbb-font-size-large: #{pxToRem(20)};
+  --sbb-line-height-root: #{sbb.$sizeLineHeightBase};
+  --sbb-font-size-small: #{sbb.pxToRem(13)};
+  --sbb-line-height-small: #{sbb.pxToRem(20)};
+  --sbb-line-height-medium: #{sbb.pxToRem(23)};
+  --sbb-font-size-large: #{sbb.pxToRem(20)};
 
   // Dividers
-  --sbb-divider-thin: calc(#{pxToRem(8)} * var(--sbb-scaling-factor));
-  --sbb-divider-small: calc(#{pxToRem(24)} * var(--sbb-scaling-factor));
-  --sbb-divider-medium: #{pxToRem(36)};
-  --sbb-divider-big: #{pxToRem(48)};
+  --sbb-divider-thin: calc(#{sbb.pxToRem(8)} * var(--sbb-scaling-factor));
+  --sbb-divider-small: calc(#{sbb.pxToRem(24)} * var(--sbb-scaling-factor));
+  --sbb-divider-medium: #{sbb.pxToRem(36)};
+  --sbb-divider-big: #{sbb.pxToRem(48)};
 
   // Animation
   --sbb-transition-duration-fast: 225ms;
@@ -145,12 +145,12 @@
     var(--sbb-transition-timing-default);
 
   // Breadcrumb
-  --sbb-breadcrumb-trigger-padding-horizontal: calc(#{pxToRem(30)} * var(--sbb-scaling-factor));
-  --sbb-breadcrumb-trigger-padding-vertical: calc(#{pxToRem(14)} * var(--sbb-scaling-factor));
+  --sbb-breadcrumb-trigger-padding-horizontal: calc(#{sbb.pxToRem(30)} * var(--sbb-scaling-factor));
+  --sbb-breadcrumb-trigger-padding-vertical: calc(#{sbb.pxToRem(14)} * var(--sbb-scaling-factor));
 
   // Button
-  --sbb-button-height: calc(#{pxToRem(48)} * var(--sbb-scaling-factor));
-  --sbb-button-icon-top-margin: calc(#{pxToRem(-12.5)} * var(--sbb-scaling-factor));
+  --sbb-button-height: calc(#{sbb.pxToRem(48)} * var(--sbb-scaling-factor));
+  --sbb-button-icon-top-margin: calc(#{sbb.pxToRem(-12.5)} * var(--sbb-scaling-factor));
 
   // Chips
   --sbb-chips-list-height: var(--sbb-form-input-min-height);
@@ -159,85 +159,87 @@
     var(--sbb-chips-list-height) - 2 * var(--sbb-chips-chip-margin-vertical) - 2 *
       var(--sbb-border-width)
   );
-  --sbb-chips-chip-padding-horizontal: calc(#{pxToRem(8)} * var(--sbb-scaling-factor));
-  --sbb-chips-input-width: calc(#{pxToRem(150)} * var(--sbb-scaling-factor));
+  --sbb-chips-chip-padding-horizontal: calc(#{sbb.pxToRem(8)} * var(--sbb-scaling-factor));
+  --sbb-chips-input-width: calc(#{sbb.pxToRem(150)} * var(--sbb-scaling-factor));
 
   // Dialog
-  --sbb-dialog-padding: calc(#{pxToRem(16)} * var(--sbb-scaling-factor));
+  --sbb-dialog-padding: calc(#{sbb.pxToRem(16)} * var(--sbb-scaling-factor));
 
   // Datepicker
   --sbb-datepicker-toggle-or-arrows-padding: calc(
-    #{pxToRem(44)} * var(--sbb-scaling-factor) - var(--sbb-border-width)
+    #{sbb.pxToRem(44)} * var(--sbb-scaling-factor) - var(--sbb-border-width)
   );
   --sbb-datepicker-toggle-and-arrows-padding: calc(
-    #{pxToRem(72)} * var(--sbb-scaling-factor) - var(--sbb-border-width)
+    #{sbb.pxToRem(72)} * var(--sbb-scaling-factor) - var(--sbb-border-width)
   );
-  --sbb-datepicker-button-offset: calc(#{pxToRem(12)} * var(--sbb-scaling-factor));
-  --sbb-datepicker-button-gap: calc(#{pxToRem(4)} * var(--sbb-scaling-factor));
+  --sbb-datepicker-button-offset: calc(#{sbb.pxToRem(12)} * var(--sbb-scaling-factor));
+  --sbb-datepicker-button-gap: calc(#{sbb.pxToRem(4)} * var(--sbb-scaling-factor));
   --sbb-datepicker-adjacent-button-offset: calc(
     var(--sbb-datepicker-button-offset) + var(--sbb-icon-size-default) +
       var(--sbb-datepicker-button-gap)
   );
-  --sbb-datepicker-content-offset: calc(#{pxToRem(17)} * var(--sbb-scaling-factor));
-  --sbb-datepicker-calendar-header-height: calc(#{pxToRem(68)} * var(--sbb-scaling-factor));
+  --sbb-datepicker-content-offset: calc(#{sbb.pxToRem(17)} * var(--sbb-scaling-factor));
+  --sbb-datepicker-calendar-header-height: calc(#{sbb.pxToRem(68)} * var(--sbb-scaling-factor));
   --sbb-datepicker-calendar-header-color: var(--sbb-color-metal);
   --sbb-datepicker-calendar-line-color: var(--sbb-color-platinum);
   --sbb-datepicker-calendar-table-range-bg-color: var(--sbb-color-milk);
-  --sbb-datepicker-calendar-table-content-padding-width: #{pxToRem(11)};
-  --sbb-datepicker-calendar-arrow-width: calc(#{pxToRem(20)} * var(--sbb-scaling-factor));
+  --sbb-datepicker-calendar-table-content-padding-width: #{sbb.pxToRem(11)};
+  --sbb-datepicker-calendar-arrow-width: calc(#{sbb.pxToRem(20)} * var(--sbb-scaling-factor));
   --sbb-datepicker-calendar-arrow-offset: calc(
     var(--sbb-datepicker-calendar-arrow-width) / -2 + var(--sbb-border-width)
   );
-  --sbb-datepicker-calendar-width: #{pxToRem(340)};
-  --sbb-datepicker-calendar-height: calc(#{pxToRem(428)} * var(--sbb-scaling-factor));
-  --sbb-datepicker-calendar-controls-padding: #{pxToRem(6)};
-  --sbb-datepicker-calendar-body-cell-padding: calc(#{pxToRem(24)} * var(--sbb-scaling-factor));
-  --sbb-datepicker-calendar-body-cell-disabled-offset: #{pxToRem(12)};
-  --sbb-datepicker-calendar-body-cell-size: calc(#{pxToRem(40)} * var(--sbb-scaling-factor));
+  --sbb-datepicker-calendar-width: #{sbb.pxToRem(340)};
+  --sbb-datepicker-calendar-height: calc(#{sbb.pxToRem(428)} * var(--sbb-scaling-factor));
+  --sbb-datepicker-calendar-controls-padding: #{sbb.pxToRem(6)};
+  --sbb-datepicker-calendar-body-cell-padding: calc(#{sbb.pxToRem(24)} * var(--sbb-scaling-factor));
+  --sbb-datepicker-calendar-body-cell-disabled-offset: #{sbb.pxToRem(12)};
+  --sbb-datepicker-calendar-body-cell-size: calc(#{sbb.pxToRem(40)} * var(--sbb-scaling-factor));
 
   // Fieldset
-  --sbb-fieldset-legend-font-size: #{pxToRem(24)};
-  --sbb-fieldset-legend-nested-font-size: #{pxToRem(20)};
+  --sbb-fieldset-legend-font-size: #{sbb.pxToRem(24)};
+  --sbb-fieldset-legend-nested-font-size: #{sbb.pxToRem(20)};
 
   // Forms
   --sbb-form-background-color-readonly: var(--sbb-color-milk);
   --sbb-form-border-color-readonly: var(--sbb-color-aluminum);
-  --sbb-form-field-width: #{pxToRem(320)};
+  --sbb-form-field-width: #{sbb.pxToRem(320)};
   --sbb-form-input-color: var(--sbb-color-weak-accent);
   --sbb-form-input-color-disabled: var(--sbb-color-grey);
-  --sbb-form-input-min-height: calc(#{pxToRem(48)} * var(--sbb-scaling-factor));
-  --sbb-form-label-line-height: calc(#{pxToRem(16)} * var(--sbb-scaling-factor));
-  --sbb-form-label-wrapper-margin-bottom: calc(#{pxToRem(5)} * var(--sbb-scaling-factor));
-  --sbb-form-label-wrapper-padding-left: calc(#{pxToRem(10)} * var(--sbb-scaling-factor));
+  --sbb-form-input-min-height: calc(#{sbb.pxToRem(48)} * var(--sbb-scaling-factor));
+  --sbb-form-label-line-height: calc(#{sbb.pxToRem(16)} * var(--sbb-scaling-factor));
+  --sbb-form-label-wrapper-margin-bottom: calc(#{sbb.pxToRem(5)} * var(--sbb-scaling-factor));
+  --sbb-form-label-wrapper-padding-left: calc(#{sbb.pxToRem(10)} * var(--sbb-scaling-factor));
 
   // Expansion Panel
-  --sbb-expansion-panel-padding-horizontal: #{pxToRem(24)};
-  --sbb-expansion-panel-header-padding-top: #{pxToRem(23)};
-  --sbb-expansion-panel-header-padding-bottom: #{pxToRem(26)};
-  --sbb-expansion-panel-line-height: #{pxToRem(28)};
+  --sbb-expansion-panel-padding-horizontal: #{sbb.pxToRem(24)};
+  --sbb-expansion-panel-header-padding-top: #{sbb.pxToRem(23)};
+  --sbb-expansion-panel-header-padding-bottom: #{sbb.pxToRem(26)};
+  --sbb-expansion-panel-line-height: #{sbb.pxToRem(28)};
 
   // Header
-  --sbb-header-lean-height: calc(#{pxToRem(54)} * var(--sbb-scaling-factor));
+  --sbb-header-lean-height: calc(#{sbb.pxToRem(54)} * var(--sbb-scaling-factor));
   --sbb-header-lean-base-z-index: 1000;
   --sbb-header-lean-side-menu-z-index: 800;
   --sbb-header-lean-menu-mobile-z-index: 1100;
   --sbb-header-lean-menu-tablet-z-index: 700;
-  --sbb-header-lean-menu-width: calc(#{pxToRem(300)} * var(--sbb-scaling-factor));
-  --sbb-header-lean-label-line-height: calc(#{pxToRem(25)} * var(--sbb-scaling-factor));
+  --sbb-header-lean-menu-width: calc(#{sbb.pxToRem(300)} * var(--sbb-scaling-factor));
+  --sbb-header-lean-label-line-height: calc(#{sbb.pxToRem(25)} * var(--sbb-scaling-factor));
 
   // Lightbox
-  --sbb-lightbox-padding-horizontal: #{pxToRem(24)};
-  --sbb-lightbox-actions-padding-vertical: calc(#{pxToRem(24)} * var(--sbb-scaling-factor));
+  --sbb-lightbox-padding-horizontal: #{sbb.pxToRem(24)};
+  --sbb-lightbox-actions-padding-vertical: calc(#{sbb.pxToRem(24)} * var(--sbb-scaling-factor));
 
   // Notification
-  --sbb-notification-message-padding: calc(#{pxToRem(16)} * var(--sbb-scaling-factor));
-  --sbb-notification-message-padding-horizontal: calc(#{pxToRem(24)} * var(--sbb-scaling-factor));
+  --sbb-notification-message-padding: calc(#{sbb.pxToRem(16)} * var(--sbb-scaling-factor));
+  --sbb-notification-message-padding-horizontal: calc(
+    #{sbb.pxToRem(24)} * var(--sbb-scaling-factor)
+  );
 
   // Pagination
   --sbb-pagination-base-color: var(--sbb-color-grey);
   --sbb-pagination-disabled-color: var(--sbb-color-silver);
-  --sbb-pagination-paginator-size: calc(#{pxToRem(40)} * var(--sbb-scaling-factor));
-  --sbb-pagination-navigation-item-margin: calc(#{pxToRem(4)} * var(--sbb-scaling-factor));
+  --sbb-pagination-paginator-size: calc(#{sbb.pxToRem(40)} * var(--sbb-scaling-factor));
+  --sbb-pagination-navigation-item-margin: calc(#{sbb.pxToRem(4)} * var(--sbb-scaling-factor));
 
   // Sidebar
   --sbb-sidebar-mobile-menu-bar-height: calc(2 * var(--sbb-icon-size-default));
@@ -245,42 +247,42 @@
 
   // Menu
   // (36 (Desired width) - 24 (icon width)) / 2
-  --sbb-menu-trigger-padding: calc(#{pxToRem(6)} * var(--sbb-scaling-factor));
+  --sbb-menu-trigger-padding: calc(#{sbb.pxToRem(6)} * var(--sbb-scaling-factor));
 
   // Table
   --sbb-table-background-color: var(--sbb-color-background);
   --sbb-table-thead-background-color: var(--sbb-color-cloud);
   --sbb-table-tbody-stripe-background-color: var(--sbb-color-milk);
-  --sbb-table-thead-padding: calc(#{pxToRem(16)} * var(--sbb-scaling-factor));
-  --sbb-table-thead-padding-vertical-top: calc(#{pxToRem(29)} * var(--sbb-scaling-factor));
-  --sbb-table-thead-padding-vertical-bottom: calc(#{pxToRem(30)} * var(--sbb-scaling-factor));
-  --sbb-table-tbody-padding: calc(#{pxToRem(16)} * var(--sbb-scaling-factor));
-  --sbb-table-cell-padding-horizontal: calc(#{pxToRem(12)});
-  --sbb-table-cell-padding-vertical-top: calc(#{pxToRem(18)} * var(--sbb-scaling-factor));
-  --sbb-table-cell-padding-vertical-bottom: calc(#{pxToRem(19)} * var(--sbb-scaling-factor));
-  --sbb-table-sticky-shadow-width: #{pxToRem(8)};
-  --sbb-table-sticky-shadow-offset: #{pxToRem(-9)};
-  --sbb-table-sort-header-arrow-margin: calc(#{pxToRem(8)} * var(--sbb-scaling-factor));
+  --sbb-table-thead-padding: calc(#{sbb.pxToRem(16)} * var(--sbb-scaling-factor));
+  --sbb-table-thead-padding-vertical-top: calc(#{sbb.pxToRem(29)} * var(--sbb-scaling-factor));
+  --sbb-table-thead-padding-vertical-bottom: calc(#{sbb.pxToRem(30)} * var(--sbb-scaling-factor));
+  --sbb-table-tbody-padding: calc(#{sbb.pxToRem(16)} * var(--sbb-scaling-factor));
+  --sbb-table-cell-padding-horizontal: calc(#{sbb.pxToRem(12)});
+  --sbb-table-cell-padding-vertical-top: calc(#{sbb.pxToRem(18)} * var(--sbb-scaling-factor));
+  --sbb-table-cell-padding-vertical-bottom: calc(#{sbb.pxToRem(19)} * var(--sbb-scaling-factor));
+  --sbb-table-sticky-shadow-width: #{sbb.pxToRem(8)};
+  --sbb-table-sticky-shadow-offset: #{sbb.pxToRem(-9)};
+  --sbb-table-sort-header-arrow-margin: calc(#{sbb.pxToRem(8)} * var(--sbb-scaling-factor));
 
   // Tooltip
-  --sbb-tooltip-padding: calc(#{pxToRem(23)} * var(--sbb-scaling-factor));
-  --sbb-tooltip-arrow-offset: calc(#{pxToRem(7.2)} * var(--sbb-scaling-factor));
-  --sbb-tooltip-arrow-horizontal-space: calc(#{pxToRem(8)} * var(--sbb-scaling-factor));
+  --sbb-tooltip-padding: calc(#{sbb.pxToRem(23)} * var(--sbb-scaling-factor));
+  --sbb-tooltip-arrow-offset: calc(#{sbb.pxToRem(7.2)} * var(--sbb-scaling-factor));
+  --sbb-tooltip-arrow-horizontal-space: calc(#{sbb.pxToRem(8)} * var(--sbb-scaling-factor));
   // The diagonal of the indicator square is 24 pixel. The width and height of the
   // indicator square is therefore d / √2 = a.
   --sbb-tooltip-content-arrow-size: calc(
-    #{pxToRem(math.div(24, math.sqrt(2)))} * var(--sbb-scaling-factor)
+    #{sbb.pxToRem(math.div(24, math.sqrt(2)))} * var(--sbb-scaling-factor)
   );
-  --sbb-tooltip-shadow-arrow-size: calc(#{pxToRem(12)} * var(--sbb-scaling-factor));
+  --sbb-tooltip-shadow-arrow-size: calc(#{sbb.pxToRem(12)} * var(--sbb-scaling-factor));
   --sbb-tooltip-background-color: var(--sbb-color-background);
 
   // Usermenu
-  --sbb-usermenu-panel-width: calc(#{pxToRem(288)} * var(--sbb-scaling-factor));
-  --sbb-usermenu-trigger-height: calc(#{pxToRem(48)} * var(--sbb-scaling-factor));
-  --sbb-usermenu-trigger-padding: calc(#{pxToRem(12)} * var(--sbb-scaling-factor));
+  --sbb-usermenu-panel-width: calc(#{sbb.pxToRem(288)} * var(--sbb-scaling-factor));
+  --sbb-usermenu-trigger-height: calc(#{sbb.pxToRem(48)} * var(--sbb-scaling-factor));
+  --sbb-usermenu-trigger-padding: calc(#{sbb.pxToRem(12)} * var(--sbb-scaling-factor));
 
   // Icons
-  --sbb-icon-size-default: calc(#{pxToRem(24)} * var(--sbb-scaling-factor));
+  --sbb-icon-size-default: calc(#{sbb.pxToRem(24)} * var(--sbb-scaling-factor));
   --sbb-icon-size-large: calc(1.5 * var(--sbb-icon-size-default));
 
   // Arrow-right-small color black applied
@@ -321,100 +323,104 @@
   --sbb-box-shadow-color: rgba(0, 0, 0, 0.15);
   --sbb-box-shadow-below: 0 var(--sbb-box-shadow-width) 0 var(--sbb-box-shadow-color);
   --sbb-box-shadow-horizontal-border-top: 0
-    calc(var(--sbb-border-width) + calc(#{pxToRem(1)} * var(--sbb-scaling-factor))) 0
+    calc(var(--sbb-border-width) + calc(#{sbb.pxToRem(1)} * var(--sbb-scaling-factor))) 0
     calc(var(--sbb-border-width) * -1) var(--sbb-color-cloud);
   --sbb-box-shadow-horizontal-border-bottom: 0
-    calc(var(--sbb-border-width) * -1 - calc(#{pxToRem(1)} * var(--sbb-scaling-factor))) 0
+    calc(var(--sbb-border-width) * -1 - calc(#{sbb.pxToRem(1)} * var(--sbb-scaling-factor))) 0
     calc(var(--sbb-border-width) * -1) var(--sbb-color-cloud);
   --sbb-box-shadow-horizontal-border-offset-top-above: calc(
-    calc(var(--sbb-border-width) - #{pxToRem(1)}) * var(--sbb-scaling-factor)
+    calc(var(--sbb-border-width) - #{sbb.pxToRem(1)}) * var(--sbb-scaling-factor)
   );
   --sbb-box-shadow-horizontal-border-offset-top-below: calc(
     var(--sbb-box-shadow-horizontal-border-offset-top-above) * -1
   );
 
   &:where(:not(.sbb-lean)) {
-    @include mq($from: tablet) {
+    @include sbb.mq($from: tablet) {
       // Dividers
-      --sbb-divider-medium: calc(#{pxToRem(48)} * var(--sbb-scaling-factor));
-      --sbb-divider-big: #{pxToRem(72)};
+      --sbb-divider-medium: calc(#{sbb.pxToRem(48)} * var(--sbb-scaling-factor));
+      --sbb-divider-big: #{sbb.pxToRem(72)};
 
       // Sizings
-      --sbb-font-size-large: #{pxToRem(21)};
+      --sbb-font-size-large: #{sbb.pxToRem(21)};
 
       // Datepicker
       --sbb-datepicker-calendar-table-content-padding-width: calc(
-        #{pxToRem(18)} * var(--sbb-scaling-factor)
+        #{sbb.pxToRem(18)} * var(--sbb-scaling-factor)
       );
-      --sbb-datepicker-calendar-width: calc(#{pxToRem(428)} * var(--sbb-scaling-factor));
-      --sbb-datepicker-calendar-controls-padding: calc(#{pxToRem(8)} * var(--sbb-scaling-factor));
+      --sbb-datepicker-calendar-width: calc(#{sbb.pxToRem(428)} * var(--sbb-scaling-factor));
+      --sbb-datepicker-calendar-controls-padding: calc(
+        #{sbb.pxToRem(8)} * var(--sbb-scaling-factor)
+      );
       --sbb-datepicker-calendar-body-cell-disabled-offset: calc(
-        #{pxToRem(17)} * var(--sbb-scaling-factor)
+        #{sbb.pxToRem(17)} * var(--sbb-scaling-factor)
       );
 
       // Expansion Panel
-      --sbb-expansion-panel-padding-horizontal: #{pxToRem(48)};
-      --sbb-expansion-panel-header-padding-top: #{pxToRem(34)};
-      --sbb-expansion-panel-header-padding-bottom: #{pxToRem(36)};
-      --sbb-expansion-panel-line-height: calc(#{pxToRem(30)} * var(--sbb-scaling-factor));
+      --sbb-expansion-panel-padding-horizontal: #{sbb.pxToRem(48)};
+      --sbb-expansion-panel-header-padding-top: #{sbb.pxToRem(34)};
+      --sbb-expansion-panel-header-padding-bottom: #{sbb.pxToRem(36)};
+      --sbb-expansion-panel-line-height: calc(#{sbb.pxToRem(30)} * var(--sbb-scaling-factor));
 
       // Table
-      --sbb-table-cell-padding-horizontal: calc(#{pxToRem(16)} * var(--sbb-scaling-factor));
+      --sbb-table-cell-padding-horizontal: calc(#{sbb.pxToRem(16)} * var(--sbb-scaling-factor));
     }
-    @include mq($from: desktop) {
+    @include sbb.mq($from: desktop) {
       // Dividers
-      --sbb-divider-big: calc(#{pxToRem(96)} * var(--sbb-scaling-factor));
+      --sbb-divider-big: calc(#{sbb.pxToRem(96)} * var(--sbb-scaling-factor));
 
       // Expansion Panel
-      --sbb-expansion-panel-padding-horizontal: calc(#{pxToRem(32)} * var(--sbb-scaling-factor));
+      --sbb-expansion-panel-padding-horizontal: calc(
+        #{sbb.pxToRem(32)} * var(--sbb-scaling-factor)
+      );
 
       // Fieldset
-      --sbb-fieldset-legend-font-size: calc(#{pxToRem(32)} * var(--sbb-scaling-factor));
+      --sbb-fieldset-legend-font-size: calc(#{sbb.pxToRem(32)} * var(--sbb-scaling-factor));
       --sbb-fieldset-legend-nested-font-size: calc(
-        #{pxToRem(20)} * var(--sbb-scaling-factor) + #{pxToRem(2)}
+        #{sbb.pxToRem(20)} * var(--sbb-scaling-factor) + #{sbb.pxToRem(2)}
       );
 
       // Lightbox
-      --sbb-lightbox-padding-horizontal: calc(#{pxToRem(136)} * var(--sbb-scaling-factor));
+      --sbb-lightbox-padding-horizontal: calc(#{sbb.pxToRem(136)} * var(--sbb-scaling-factor));
 
       // Sidebar
-      --sbb-sidebar-mobile-menu-bar-height: calc(#{pxToRem(48)} * var(--sbb-scaling-factor));
+      --sbb-sidebar-mobile-menu-bar-height: calc(#{sbb.pxToRem(48)} * var(--sbb-scaling-factor));
     }
-    @include mq($from: desktop4k) {
+    @include sbb.mq($from: desktop4k) {
       // Scaling
       --sbb-scaling-factor: 1.5;
 
       // Sizings
-      --sbb-border-width-thin: #{pxToRem(2)};
-      --sbb-font-size: #{pxToRem($sizeFontDefault4k)};
-      --sbb-line-height: #{pxToRem($sizeLineHeightDefault4k)};
-      --sbb-font-size-small: #{pxToRem(20)};
-      --sbb-line-height-small: #{pxToRem(30)};
-      --sbb-line-height-medium: #{pxToRem(35)};
-      --sbb-font-size-large: #{pxToRem(32)};
+      --sbb-border-width-thin: #{sbb.pxToRem(2)};
+      --sbb-font-size: #{sbb.pxToRem(sbb.$sizeFontDefault4k)};
+      --sbb-line-height: #{sbb.pxToRem(sbb.$sizeLineHeightDefault4k)};
+      --sbb-font-size-small: #{sbb.pxToRem(20)};
+      --sbb-line-height-small: #{sbb.pxToRem(30)};
+      --sbb-line-height-medium: #{sbb.pxToRem(35)};
+      --sbb-font-size-large: #{sbb.pxToRem(32)};
 
       // Expansion Panel
-      --sbb-expansion-panel-header-padding-top: #{pxToRem(51)};
-      --sbb-expansion-panel-header-padding-bottom: #{pxToRem(54)};
+      --sbb-expansion-panel-header-padding-top: #{sbb.pxToRem(51)};
+      --sbb-expansion-panel-header-padding-bottom: #{sbb.pxToRem(54)};
 
       // Forms
-      --sbb-form-field-width: #{pxToRem(400)};
+      --sbb-form-field-width: #{sbb.pxToRem(400)};
     }
-    @include mq($from: desktop5k) {
+    @include sbb.mq($from: desktop5k) {
       // Scaling
       --sbb-scaling-factor: 2;
 
       // Sizings
-      --sbb-font-size: #{pxToRem($sizeFontDefault5k)};
-      --sbb-line-height: #{pxToRem($sizeLineHeightDefault5k)};
-      --sbb-font-size-small: #{pxToRem(26)};
-      --sbb-line-height-small: #{pxToRem(40)};
-      --sbb-line-height-medium: #{pxToRem(45)};
-      --sbb-font-size-large: #{pxToRem(42)};
+      --sbb-font-size: #{sbb.pxToRem(sbb.$sizeFontDefault5k)};
+      --sbb-line-height: #{sbb.pxToRem(sbb.$sizeLineHeightDefault5k)};
+      --sbb-font-size-small: #{sbb.pxToRem(26)};
+      --sbb-line-height-small: #{sbb.pxToRem(40)};
+      --sbb-line-height-medium: #{sbb.pxToRem(45)};
+      --sbb-font-size-large: #{sbb.pxToRem(42)};
 
       // Expansion Panel
-      --sbb-expansion-panel-header-padding-top: #{pxToRem(70)};
-      --sbb-expansion-panel-header-padding-bottom: #{pxToRem(70)};
+      --sbb-expansion-panel-header-padding-top: #{sbb.pxToRem(70)};
+      --sbb-expansion-panel-header-padding-bottom: #{sbb.pxToRem(70)};
     }
   }
   &:where(.sbb-lean) {
@@ -428,72 +434,74 @@
     --sbb-color-weak-accent: var(--sbb-color-iron);
 
     // Dividers
-    --sbb-divider-thin: #{pxToRem(4)};
-    --sbb-divider-small: #{pxToRem(8)};
-    --sbb-divider-medium: #{pxToRem(16)};
-    --sbb-divider-big: #{pxToRem(24)};
+    --sbb-divider-thin: #{sbb.pxToRem(4)};
+    --sbb-divider-small: #{sbb.pxToRem(8)};
+    --sbb-divider-medium: #{sbb.pxToRem(16)};
+    --sbb-divider-big: #{sbb.pxToRem(24)};
 
     // Sizings
-    --sbb-border-width: #{pxToRem(1)};
-    --sbb-line-height: #{pxToRem($sizeLineHeightDefaultLean)};
-    --sbb-line-height-root: #{math.div($sizeLineHeightDefaultLean, 15)}; // 15 = $sizeFontBase without unit
-    --sbb-line-height-medium: #{pxToRem(20)};
-    --sbb-font-size-large: #{pxToRem(21)};
+    --sbb-border-width: #{sbb.pxToRem(1)};
+    --sbb-line-height: #{sbb.pxToRem(sbb.$sizeLineHeightDefaultLean)};
+    --sbb-line-height-root: #{math.div(sbb.$sizeLineHeightDefaultLean, 15)}; // 15 = sbb.$sizeFontBase without unit
+    --sbb-line-height-medium: #{sbb.pxToRem(20)};
+    --sbb-font-size-large: #{sbb.pxToRem(21)};
 
     // Button
-    --sbb-button-height: #{pxToRem(36)};
+    --sbb-button-height: #{sbb.pxToRem(36)};
 
     // Datepicker
-    --sbb-datepicker-toggle-or-arrows-padding: calc(#{pxToRem(38)} - var(--sbb-border-width));
-    --sbb-datepicker-toggle-and-arrows-padding: calc(#{pxToRem(62)} - var(--sbb-border-width));
-    --sbb-datepicker-button-offset: #{pxToRem(6)};
+    --sbb-datepicker-toggle-or-arrows-padding: calc(#{sbb.pxToRem(38)} - var(--sbb-border-width));
+    --sbb-datepicker-toggle-and-arrows-padding: calc(#{sbb.pxToRem(62)} - var(--sbb-border-width));
+    --sbb-datepicker-button-offset: #{sbb.pxToRem(6)};
     // rem (or any unit) is necessary for correct calc calculation.
     --sbb-datepicker-button-gap: 0rem;
-    --sbb-datepicker-content-offset: #{pxToRem(8)};
-    --sbb-datepicker-calendar-header-height: #{pxToRem(36)};
+    --sbb-datepicker-content-offset: #{sbb.pxToRem(8)};
+    --sbb-datepicker-calendar-header-height: #{sbb.pxToRem(36)};
     --sbb-datepicker-calendar-header-color: var(--sbb-color-iron);
     --sbb-datepicker-calendar-line-color: var(--sbb-color-cloud);
-    --sbb-datepicker-calendar-table-content-padding-width: #{pxToRem(8)};
-    --sbb-datepicker-calendar-width: #{pxToRem(303)};
-    --sbb-datepicker-calendar-height: #{pxToRem(303)};
-    --sbb-datepicker-calendar-controls-padding: #{pxToRem(8)};
-    --sbb-datepicker-calendar-body-cell-padding: #{pxToRem(16.5)};
-    --sbb-datepicker-calendar-body-cell-size: #{pxToRem(30)};
+    --sbb-datepicker-calendar-table-content-padding-width: #{sbb.pxToRem(8)};
+    --sbb-datepicker-calendar-width: #{sbb.pxToRem(303)};
+    --sbb-datepicker-calendar-height: #{sbb.pxToRem(303)};
+    --sbb-datepicker-calendar-controls-padding: #{sbb.pxToRem(8)};
+    --sbb-datepicker-calendar-body-cell-padding: #{sbb.pxToRem(16.5)};
+    --sbb-datepicker-calendar-body-cell-size: #{sbb.pxToRem(30)};
 
     // Fieldset
-    --sbb-fieldset-legend-font-size: #{pxToRem(21)};
-    --sbb-fieldset-legend-nested-font-size: #{pxToRem(16)};
+    --sbb-fieldset-legend-font-size: #{sbb.pxToRem(21)};
+    --sbb-fieldset-legend-nested-font-size: #{sbb.pxToRem(16)};
 
     // Forms
     --sbb-form-background-color-readonly: transparent;
     --sbb-form-border-color-readonly: transparent;
-    --sbb-form-field-width: #{pxToRem(230)};
-    --sbb-form-input-min-height: #{pxToRem(36)};
-    --sbb-form-label-wrapper-margin-bottom: #{pxToRem(3)};
+    --sbb-form-field-width: #{sbb.pxToRem(230)};
+    --sbb-form-input-min-height: #{sbb.pxToRem(36)};
+    --sbb-form-label-wrapper-margin-bottom: #{sbb.pxToRem(3)};
     --sbb-form-label-wrapper-padding-left: 0rem;
 
     // Notification
-    --sbb-notification-message-padding: #{pxToRem(11)};
-    --sbb-notification-message-padding-horizontal: #{pxToRem(15)};
+    --sbb-notification-message-padding: #{sbb.pxToRem(11)};
+    --sbb-notification-message-padding-horizontal: #{sbb.pxToRem(15)};
 
     // Expansion Panel
-    --sbb-expansion-panel-padding-horizontal: #{pxToRem(16)};
-    --sbb-expansion-panel-header-padding-top: calc(#{pxToRem(12)} - var(--sbb-border-width-thin));
+    --sbb-expansion-panel-padding-horizontal: #{sbb.pxToRem(16)};
+    --sbb-expansion-panel-header-padding-top: calc(
+      #{sbb.pxToRem(12)} - var(--sbb-border-width-thin)
+    );
     --sbb-expansion-panel-header-padding-bottom: var(--sbb-expansion-panel-header-padding-top);
-    --sbb-expansion-panel-line-height: #{pxToRem(25)};
+    --sbb-expansion-panel-line-height: #{sbb.pxToRem(25)};
 
     // Pagination
     --sbb-pagination-disabled-color: var(--sbb-color-storm);
-    --sbb-pagination-paginator-size: #{pxToRem(30)};
+    --sbb-pagination-paginator-size: #{sbb.pxToRem(30)};
 
     // Table
-    --sbb-table-cell-padding-vertical: #{pxToRem(6)};
+    --sbb-table-cell-padding-vertical: #{sbb.pxToRem(6)};
 
     // Tooltip
-    --sbb-tooltip-padding: #{pxToRem(8)};
+    --sbb-tooltip-padding: #{sbb.pxToRem(8)};
 
     // Usermenu
-    --sbb-usermenu-trigger-padding: #{pxToRem(8)};
+    --sbb-usermenu-trigger-padding: #{sbb.pxToRem(8)};
 
     // Shadow
     --sbb-box-shadow-arrow-clip-path: polygon(
@@ -506,12 +514,12 @@
       35% 100%
     );
 
-    @include mq($from: desktop) {
+    @include sbb.mq($from: desktop) {
       // Dividers
-      --sbb-divider-thin: #{pxToRem(8)};
-      --sbb-divider-small: #{pxToRem(16)};
-      --sbb-divider-medium: #{pxToRem(24)};
-      --sbb-divider-big: #{pxToRem(32)};
+      --sbb-divider-thin: #{sbb.pxToRem(8)};
+      --sbb-divider-small: #{sbb.pxToRem(16)};
+      --sbb-divider-medium: #{sbb.pxToRem(24)};
+      --sbb-divider-big: #{sbb.pxToRem(32)};
     }
   }
 }
@@ -526,16 +534,16 @@
   color: var(--sbb-color-text);
   // !important is required, as arcgis defines its own font-family and we need to overwrite it.
   font-family: var(--sbb-font-roman) !important;
-  font-size: math.div($sizeFontBase, 16px) * 100%;
+  font-size: math.div(sbb.$sizeFontBase, 16px) * 100%;
   line-height: var(--sbb-line-height-root);
 
-  @include fontSmoothing;
+  @include sbb.fontSmoothing;
 
   &:where(:not(.sbb-lean)) {
-    @include mq($from: desktop4k) {
+    @include sbb.mq($from: desktop4k) {
       line-height: var(--sbb-line-height-4k);
     }
-    @include mq($from: desktop5k) {
+    @include sbb.mq($from: desktop5k) {
       line-height: var(--sbb-line-height-5k);
     }
   }
@@ -623,27 +631,27 @@ textarea {
 :is(h1, .sbb-headline1) {
   font-family: var(--sbb-font-thin);
   font-weight: normal;
-  font-size: pxToRem(28);
+  font-size: sbb.pxToRem(28);
   line-height: 1.2;
   margin: var(--sbb-divider-big) 0 var(--sbb-divider-medium);
 
   :where(html:not(.sbb-lean)) & {
-    @include mq($from: tablet) {
-      font-size: pxToRem(30);
+    @include sbb.mq($from: tablet) {
+      font-size: sbb.pxToRem(30);
     }
-    @include mq($from: desktop) {
-      font-size: calc(#{pxToRem(40)} * var(--sbb-scaling-factor));
+    @include sbb.mq($from: desktop) {
+      font-size: calc(#{sbb.pxToRem(40)} * var(--sbb-scaling-factor));
     }
   }
   :where(html.sbb-lean) & {
     font-family: var(--sbb-font-light);
     font-weight: normal;
-    font-size: pxToRem(21);
-    line-height: pxToRem(25);
+    font-size: sbb.pxToRem(21);
+    line-height: sbb.pxToRem(25);
 
-    @include mq($from: desktop) {
-      font-size: pxToRem(28);
-      line-height: pxToRem(34);
+    @include sbb.mq($from: desktop) {
+      font-size: sbb.pxToRem(28);
+      line-height: sbb.pxToRem(34);
     }
   }
 }
@@ -651,22 +659,22 @@ textarea {
 :is(h2, .sbb-headline2) {
   font-family: var(--sbb-font-light);
   font-weight: normal;
-  font-size: pxToRem(24);
+  font-size: sbb.pxToRem(24);
   line-height: 1.2;
   margin: var(--sbb-divider-medium) 0 var(--sbb-divider-small);
 
   :where(html:not(.sbb-lean)) & {
-    @include mq($from: desktop) {
-      font-size: calc(#{pxToRem(32)} * var(--sbb-scaling-factor));
+    @include sbb.mq($from: desktop) {
+      font-size: calc(#{sbb.pxToRem(32)} * var(--sbb-scaling-factor));
     }
   }
   :where(html.sbb-lean) & {
-    font-size: pxToRem(18);
-    line-height: pxToRem(19);
+    font-size: sbb.pxToRem(18);
+    line-height: sbb.pxToRem(19);
 
-    @include mq($from: desktop) {
-      font-size: pxToRem(21);
-      line-height: pxToRem(25);
+    @include sbb.mq($from: desktop) {
+      font-size: sbb.pxToRem(21);
+      line-height: sbb.pxToRem(25);
     }
   }
 }
@@ -679,12 +687,12 @@ textarea {
   margin: var(--sbb-divider-small) 0 var(--sbb-divider-thin);
 
   :where(html.sbb-lean) & {
-    font-size: pxToRem(16);
-    line-height: pxToRem(17);
+    font-size: sbb.pxToRem(16);
+    line-height: sbb.pxToRem(17);
 
-    @include mq($from: desktop) {
-      font-size: pxToRem(18);
-      line-height: pxToRem(22);
+    @include sbb.mq($from: desktop) {
+      font-size: sbb.pxToRem(18);
+      line-height: sbb.pxToRem(22);
     }
   }
 }
@@ -697,13 +705,13 @@ textarea {
   margin: var(--sbb-divider-small) 0 var(--sbb-divider-thin);
 
   :where(html.sbb-lean) & {
-    line-height: pxToRem(17);
-    margin: pxToRem(8) 0 pxToRem(4);
+    line-height: sbb.pxToRem(17);
+    margin: sbb.pxToRem(8) 0 sbb.pxToRem(4);
 
-    @include mq($from: desktop) {
-      font-size: pxToRem(16);
-      line-height: pxToRem(19);
-      margin: pxToRem(16) 0 pxToRem(8);
+    @include sbb.mq($from: desktop) {
+      font-size: sbb.pxToRem(16);
+      line-height: sbb.pxToRem(19);
+      margin: sbb.pxToRem(16) 0 sbb.pxToRem(8);
     }
   }
 }
@@ -718,7 +726,7 @@ textarea {
 }
 
 .sbb-text-ellipsis {
-  @include ellipsis();
+  @include sbb.ellipsis();
 }
 
 :is(p, .sbb-copy) {
@@ -730,17 +738,17 @@ textarea {
 .sbb-text-lead {
   font-family: var(--sbb-font-light);
   font-weight: normal;
-  color: $sbbColorText;
+  color: sbb.$sbbColorText;
   font-size: var(--sbb-font-size-large);
   line-height: 1.3;
   margin: var(--sbb-divider-medium) 0;
 
   :where(html:not(.sbb-lean)) & {
-    @include mq($from: desktop, $to: desktop4k) {
-      line-height: pxToRem(32);
+    @include sbb.mq($from: desktop, $to: desktop4k) {
+      line-height: sbb.pxToRem(32);
     }
-    @include mq($from: desktop5k) {
-      font-size: pxToRem(40);
+    @include sbb.mq($from: desktop5k) {
+      font-size: sbb.pxToRem(40);
     }
   }
 }
@@ -781,12 +789,12 @@ textarea {
 :is(ul, .sbb-unordered-list, ol, .sbb-ordered-list) {
   font-size: var(--sbb-font-size);
   line-height: var(--sbb-line-height);
-  margin-top: calc(#{pxToRem(17)} * var(--sbb-scaling-factor));
-  margin-bottom: calc(#{pxToRem(48)} * var(--sbb-scaling-factor));
-  margin-left: calc(#{pxToRem(10)} * var(--sbb-scaling-factor));
+  margin-top: calc(#{sbb.pxToRem(17)} * var(--sbb-scaling-factor));
+  margin-bottom: calc(#{sbb.pxToRem(48)} * var(--sbb-scaling-factor));
+  margin-left: calc(#{sbb.pxToRem(10)} * var(--sbb-scaling-factor));
 
-  @include mq($from: desktop) {
-    margin-top: calc(#{pxToRem(25)} * var(--sbb-scaling-factor));
+  @include sbb.mq($from: desktop) {
+    margin-top: calc(#{sbb.pxToRem(25)} * var(--sbb-scaling-factor));
   }
 
   li {
@@ -794,17 +802,17 @@ textarea {
   }
 
   :is(ol, ul) {
-    margin: calc(#{pxToRem(6)} * var(--sbb-scaling-factor)) 0 0
-      calc(#{pxToRem(8)} * var(--sbb-scaling-factor));
+    margin: calc(#{sbb.pxToRem(6)} * var(--sbb-scaling-factor)) 0 0
+      calc(#{sbb.pxToRem(8)} * var(--sbb-scaling-factor));
   }
 }
 
 :is(ul, .sbb-unordered-list) {
   list-style-type: disc;
-  padding-left: calc(pxToRem(16) * var(--sbb-scaling-factor));
+  padding-left: calc(sbb.pxToRem(16) * var(--sbb-scaling-factor));
 
   li {
-    padding-left: calc(pxToRem(16 - 6) * var(--sbb-scaling-factor));
+    padding-left: calc(sbb.pxToRem(16 - 6) * var(--sbb-scaling-factor));
 
     // if ol is nested inside ul, we need just 1 hierarchy level for the counter
     ol > li::before {
@@ -828,7 +836,7 @@ textarea {
     counter-increment: item;
 
     display: table-cell;
-    padding-right: calc(pxToRem(13) * var(--sbb-scaling-factor));
+    padding-right: calc(sbb.pxToRem(13) * var(--sbb-scaling-factor));
   }
 }
 
@@ -850,7 +858,7 @@ textarea {
 :is(.sbb-input-element, input:where([type='email'], [type='password'], [type='search'], [type='text'], [type='number'], [type='tel'], [type='time'], [type='datetime'], [type='datetime-local'], [type='url'], :not([type]))) {
   outline: none;
   background-color: var(--sbb-color-background);
-  padding: pxToRem(10) pxToRem(14) pxToRem(11);
+  padding: sbb.pxToRem(10) sbb.pxToRem(14) sbb.pxToRem(11);
   border: var(--sbb-border-width) solid var(--sbb-color-graphite);
   border-radius: var(--sbb-border-radius);
   color: var(--sbb-form-input-color);
@@ -859,19 +867,19 @@ textarea {
   min-height: var(--sbb-form-input-min-height);
 
   &:where(:not(textarea)) {
-    @include ellipsis;
+    @include sbb.ellipsis;
   }
 
   :where(html:not(.sbb-lean)) & {
-    @include mq($from: desktop4k) {
-      padding: pxToRem(15) pxToRem(21) pxToRem(16);
+    @include sbb.mq($from: desktop4k) {
+      padding: sbb.pxToRem(15) sbb.pxToRem(21) sbb.pxToRem(16);
     }
-    @include mq($from: desktop5k) {
-      padding: pxToRem(21) pxToRem(28) pxToRem(22);
+    @include sbb.mq($from: desktop5k) {
+      padding: sbb.pxToRem(21) sbb.pxToRem(28) sbb.pxToRem(22);
     }
   }
   :where(html.sbb-lean) & {
-    padding: pxToRem(6) pxToRem(7) pxToRem(8);
+    padding: sbb.pxToRem(6) sbb.pxToRem(7) sbb.pxToRem(8);
   }
 
   &::placeholder {
@@ -983,17 +991,17 @@ select {
   display: inline-flex;
   box-sizing: border-box;
   // We need to specify !important, due to being less specific than .sbb-input-element
-  padding-right: calc(#{pxToRem(44)} * var(--sbb-scaling-factor)) !important;
+  padding-right: calc(#{sbb.pxToRem(44)} * var(--sbb-scaling-factor)) !important;
 
   // Custom select expand icon
   align-items: center;
   background: transparent var(--sbb-url-icon-chevron-small-down-small-grey) no-repeat center right
-    calc(#{pxToRem(9)} * var(--sbb-scaling-factor));
+    calc(#{sbb.pxToRem(9)} * var(--sbb-scaling-factor));
   background-size: var(--sbb-icon-size-default);
 
   :where(html.sbb-lean) & {
-    padding-right: pxToRem(38) !important;
-    background-position: center right pxToRem(6);
+    padding-right: sbb.pxToRem(38) !important;
+    background-position: center right sbb.pxToRem(6);
     background-image: var(--sbb-url-icon-chevron-down-small-granite);
   }
 
@@ -1057,12 +1065,12 @@ textarea {
   font-family: var(--sbb-font-roman);
   color: var(--sbb-color-error);
 
-  font-size: calc(#{pxToRem(14)} * var(--sbb-scaling-factor));
-  line-height: calc(#{pxToRem(21)} * var(--sbb-scaling-factor));
+  font-size: calc(#{sbb.pxToRem(14)} * var(--sbb-scaling-factor));
+  line-height: calc(#{sbb.pxToRem(21)} * var(--sbb-scaling-factor));
 
   :where(html.sbb-lean) & {
-    font-size: pxToRem(13);
-    line-height: pxToRem(16);
+    font-size: sbb.pxToRem(13);
+    line-height: sbb.pxToRem(16);
   }
 }
 
@@ -1080,7 +1088,7 @@ textarea {
 
   :where(html.sbb-lean) & {
     border-color: var(--sbb-color-graphite);
-    padding: pxToRem(15);
+    padding: sbb.pxToRem(15);
   }
 
   > legend {
@@ -1143,11 +1151,11 @@ textarea {
 // ----------------------------------------------------------------------------------------------------
 
 .sbb-button-reset {
-  @include buttonReset();
+  @include sbb.buttonReset();
 }
 
 .sbb-button-reset-frameless {
-  @include buttonResetFrameless();
+  @include sbb.buttonResetFrameless();
 }
 
 // ----------------------------------------------------------------------------------------------------
@@ -1177,24 +1185,24 @@ textarea {
   text-overflow: ellipsis;
   pointer-events: none;
 
-  min-width: calc(#{pxToRem(18)} * var(--sbb-scaling-factor));
+  min-width: calc(#{sbb.pxToRem(18)} * var(--sbb-scaling-factor));
   border-radius: 1em; // 1em ensures the borders are always fully rounded, but not oval.
-  padding: calc(#{pxToRem(4)} * var(--sbb-scaling-factor))
-    calc(#{pxToRem(5)} * var(--sbb-scaling-factor));
-  margin-left: calc(#{pxToRem(2)} * var(--sbb-scaling-factor));
+  padding: calc(#{sbb.pxToRem(4)} * var(--sbb-scaling-factor))
+    calc(#{sbb.pxToRem(5)} * var(--sbb-scaling-factor));
+  margin-left: calc(#{sbb.pxToRem(2)} * var(--sbb-scaling-factor));
   background-color: var(--sbb-color-red);
   color: var(--sbb-color-white);
   font-family: var(--sbb-font-bold);
   line-height: 1;
-  height: calc(#{pxToRem(18)} * var(--sbb-scaling-factor));
-  font-size: pxToRem(11);
+  height: calc(#{sbb.pxToRem(18)} * var(--sbb-scaling-factor));
+  font-size: sbb.pxToRem(11);
 
   :where(html:not(.sbb-lean)) & {
-    @include mq($from: desktop4k) {
-      font-size: pxToRem(17);
+    @include sbb.mq($from: desktop4k) {
+      font-size: sbb.pxToRem(17);
     }
-    @include mq($from: desktop5k) {
-      font-size: pxToRem(22);
+    @include sbb.mq($from: desktop5k) {
+      font-size: sbb.pxToRem(22);
     }
   }
   :where(html.sbb-lean) & {
@@ -1202,7 +1210,7 @@ textarea {
   }
 
   .sbb-badge-above & {
-    top: calc(#{pxToRem(-2)} * var(--sbb-scaling-factor));
+    top: calc(#{sbb.pxToRem(-2)} * var(--sbb-scaling-factor));
   }
 
   .sbb-badge-after & {
@@ -1240,7 +1248,7 @@ textarea {
 // ----------------------------------------------------------------------------------------------------
 
 :is(.sbb-button, .sbb-alt-button, .sbb-secondary-button, .sbb-ghost-button, .sbb-icon-button) {
-  @include ellipsis;
+  @include sbb.ellipsis;
   width: 100%;
   // We need to explicitly define the button height, due to rounding issues in Firefox
   height: var(--sbb-button-height);
@@ -1257,34 +1265,34 @@ textarea {
   border-radius: var(--sbb-border-radius);
   // Subtract 1 from the padding values, since we always use the border
   // in order to avoid tearing on state changes.
-  padding: pxToRem(9) pxToRem(39) pxToRem(11);
+  padding: sbb.pxToRem(9) sbb.pxToRem(39) sbb.pxToRem(11);
   margin: 0;
   -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
   outline: none;
 
-  @include mq($from: tabletPortrait) {
+  @include sbb.mq($from: tabletPortrait) {
     width: auto;
     // We use em here, in order to scale for 4k and 5k
-    min-width: calc(#{pxToRem(60)} * var(--sbb-scaling-factor));
-    max-width: calc(#{pxToRem(400)} * var(--sbb-scaling-factor));
+    min-width: calc(#{sbb.pxToRem(60)} * var(--sbb-scaling-factor));
+    max-width: calc(#{sbb.pxToRem(400)} * var(--sbb-scaling-factor));
   }
 
   :where(html:not(.sbb-lean)) & {
-    @include mq($from: desktop4k) {
+    @include sbb.mq($from: desktop4k) {
       // Subtract 2 from the padding values, since we always use the border
       // in order to avoid tearing on state changes.
-      padding: pxToRem(14) pxToRem(58) pxToRem(15);
+      padding: sbb.pxToRem(14) sbb.pxToRem(58) sbb.pxToRem(15);
     }
-    @include mq($from: desktop5k) {
+    @include sbb.mq($from: desktop5k) {
       // Subtract 2 from the padding values, since we always use the border
       // in order to avoid tearing on state changes.
-      padding: pxToRem(19) pxToRem(78) pxToRem(21);
+      padding: sbb.pxToRem(19) sbb.pxToRem(78) sbb.pxToRem(21);
     }
   }
   :where(html.sbb-lean) & {
     // Subtract 1 from the padding values, since we always use the border
     // in order to avoid tearing on state changes.
-    padding: pxToRem(5) pxToRem(15) pxToRem(6);
+    padding: sbb.pxToRem(5) sbb.pxToRem(15) sbb.pxToRem(6);
   }
 
   &:not(:disabled):not(.sbb-disabled) {
@@ -1361,18 +1369,18 @@ textarea {
       timing-function: var(--sbb-transition-timing-default);
       property: transform, padding-left, padding-right;
     }
-    padding-left: calc(#{pxToRem(39)} * var(--sbb-scaling-factor));
-    padding-right: calc(#{pxToRem(69)} * var(--sbb-scaling-factor));
+    padding-left: calc(#{sbb.pxToRem(39)} * var(--sbb-scaling-factor));
+    padding-right: calc(#{sbb.pxToRem(69)} * var(--sbb-scaling-factor));
 
     // This solves a bug with the placement of the right icon, which is otherwise displayed
     // inside the text.
     .sbb-button-right-icon {
-      right: calc(#{pxToRem(39)} * var(--sbb-scaling-factor));
+      right: calc(#{sbb.pxToRem(39)} * var(--sbb-scaling-factor));
     }
 
     &:hover {
-      padding-left: calc(#{pxToRem(69)} * var(--sbb-scaling-factor));
-      padding-right: calc(#{pxToRem(39)} * var(--sbb-scaling-factor));
+      padding-left: calc(#{sbb.pxToRem(69)} * var(--sbb-scaling-factor));
+      padding-right: calc(#{sbb.pxToRem(39)} * var(--sbb-scaling-factor));
 
       .sbb-button-right-icon {
         right: 0;
@@ -1404,8 +1412,8 @@ textarea {
 .sbb-icon-button {
   // Subtract 1 from the padding values, since we always use the border
   // in order to avoid tearing on state changes.
-  padding: calc(#{pxToRem(5)} * var(--sbb-scaling-factor)) !important;
-  height: calc(#{pxToRem(36)} * var(--sbb-scaling-factor));
+  padding: calc(#{sbb.pxToRem(5)} * var(--sbb-scaling-factor)) !important;
+  height: calc(#{sbb.pxToRem(36)} * var(--sbb-scaling-factor));
   min-width: auto;
   line-height: 0 !important;
 }
@@ -1414,8 +1422,8 @@ textarea {
   .sbb-frameless-button,
   // We only want to style .sbb-link classes which use the sbb-link component
   .sbb-link:where(.sbb-button-base)) {
-  @include buttonResetFrameless();
-  @include ellipsis;
+  @include sbb.buttonResetFrameless();
+  @include sbb.ellipsis;
   position: relative;
   display: inline-block;
   font-size: var(--sbb-font-size);
@@ -1438,10 +1446,10 @@ textarea {
         property: transform, padding-left, padding-right;
       }
       padding-left: 0;
-      padding-right: calc(#{pxToRem(30)} * var(--sbb-scaling-factor));
+      padding-right: calc(#{sbb.pxToRem(30)} * var(--sbb-scaling-factor));
 
       &:hover {
-        padding-left: calc(#{pxToRem(30)} * var(--sbb-scaling-factor));
+        padding-left: calc(#{sbb.pxToRem(30)} * var(--sbb-scaling-factor));
         padding-right: 0;
       }
     }
@@ -1451,11 +1459,11 @@ textarea {
 .sbb-link.sbb-button-base {
   white-space: normal;
   :where(html.sbb-lean) & {
-    padding-right: calc(#{pxToRem(30)} * var(--sbb-scaling-factor));
+    padding-right: calc(#{sbb.pxToRem(30)} * var(--sbb-scaling-factor));
   }
 
   .sbb-link-group &:not(:disabled):not(.sbb-disabled) {
-    padding: var(--sbb-divider-thin) calc(#{pxToRem(28)} * var(--sbb-scaling-factor))
+    padding: var(--sbb-divider-thin) calc(#{sbb.pxToRem(28)} * var(--sbb-scaling-factor))
       var(--sbb-divider-thin) 0;
     border-bottom: var(--sbb-border-width-thin) solid var(--sbb-color-silver);
 
@@ -1518,11 +1526,11 @@ textarea {
     top: unset;
     margin-top: unset;
     // !important is necessary here to overwrite the transform rules.
-    transform: translateY(calc(#{pxToRem(0.5)} * var(--sbb-scaling-factor))) !important;
+    transform: translateY(calc(#{sbb.pxToRem(0.5)} * var(--sbb-scaling-factor))) !important;
 
     :where(html.sbb-lean) & {
       // !important is necessary here to overwrite the transform rules.
-      transform: translateY(#{pxToRem(-1)}) !important;
+      transform: translateY(#{sbb.pxToRem(-1)}) !important;
     }
 
     :where(html:not(.sbb-lean)) & {
@@ -1542,8 +1550,8 @@ textarea {
 }
 
 .sbb-button-left-icon {
-  margin-left: calc(#{pxToRem(-30)} * var(--sbb-scaling-factor));
-  transform: translateX(calc(#{pxToRem(-26)} * var(--sbb-scaling-factor)));
+  margin-left: calc(#{sbb.pxToRem(-30)} * var(--sbb-scaling-factor));
+  transform: translateX(calc(#{sbb.pxToRem(-26)} * var(--sbb-scaling-factor)));
   opacity: 0;
 
   .sbb-button-base:hover & {
@@ -1557,17 +1565,17 @@ textarea {
 }
 
 .sbb-button-right-icon {
-  margin-left: calc(#{pxToRem(6)} * var(--sbb-scaling-factor));
+  margin-left: calc(#{sbb.pxToRem(6)} * var(--sbb-scaling-factor));
   transform: translateX(0);
   opacity: 1;
 
   :where(html.sbb-lean) & {
-    transform: translateX(calc(#{pxToRem(-24)} * var(--sbb-scaling-factor)));
+    transform: translateX(calc(#{sbb.pxToRem(-24)} * var(--sbb-scaling-factor)));
   }
 
   .sbb-button-base:hover & {
     :where(html:not(.sbb-lean)) & {
-      transform: translateX(calc(#{pxToRem(26)} * var(--sbb-scaling-factor)));
+      transform: translateX(calc(#{sbb.pxToRem(26)} * var(--sbb-scaling-factor)));
       opacity: 0;
     }
   }
@@ -1586,7 +1594,7 @@ textarea {
 
 .sbb-link-group {
   display: inline-flex;
-  width: calc(#{pxToRem(250)} * var(--sbb-scaling-factor));
+  width: calc(#{sbb.pxToRem(250)} * var(--sbb-scaling-factor));
   flex-direction: column;
   border-top: var(--sbb-border-width-thin) solid var(--sbb-color-silver);
 }
@@ -1613,14 +1621,14 @@ textarea {
 .sbb-selection-container {
   display: inline-block;
   background-color: var(--sbb-color-background);
-  margin-top: calc(#{pxToRem(3)} * var(--sbb-scaling-factor));
+  margin-top: calc(#{sbb.pxToRem(3)} * var(--sbb-scaling-factor));
 
-  width: calc(#{pxToRem(20)} * var(--sbb-scaling-factor));
-  min-width: calc(#{pxToRem(20)} * var(--sbb-scaling-factor));
-  height: calc(#{pxToRem(20)} * var(--sbb-scaling-factor));
-  min-height: calc(#{pxToRem(20)} * var(--sbb-scaling-factor));
+  width: calc(#{sbb.pxToRem(20)} * var(--sbb-scaling-factor));
+  min-width: calc(#{sbb.pxToRem(20)} * var(--sbb-scaling-factor));
+  height: calc(#{sbb.pxToRem(20)} * var(--sbb-scaling-factor));
+  min-height: calc(#{sbb.pxToRem(20)} * var(--sbb-scaling-factor));
   border: var(--sbb-border-width) solid var(--sbb-color-graphite);
-  margin-right: calc(#{pxToRem(8)} * var(--sbb-scaling-factor));
+  margin-right: calc(#{sbb.pxToRem(8)} * var(--sbb-scaling-factor));
 
   :where(html.sbb-lean) & {
     margin-top: 0;
@@ -1652,11 +1660,11 @@ textarea {
   .sbb-selection-indeterminate &::before {
     content: '';
     position: relative;
-    height: pxToRem(1);
-    width: pxToRem(10);
-    left: calc(50% - #{pxToRem(5)});
-    top: calc(50% - #{pxToRem(0.5)});
-    border: pxToRem(1) solid var(--sbb-color-red);
+    height: sbb.pxToRem(1);
+    width: sbb.pxToRem(10);
+    left: calc(50% - #{sbb.pxToRem(5)});
+    top: calc(50% - #{sbb.pxToRem(0.5)});
+    border: sbb.pxToRem(1) solid var(--sbb-color-red);
     display: block;
     background-color: var(
       --sbb-color-red
@@ -1732,12 +1740,12 @@ textarea {
 }
 
 .sbb-selection-content {
-  @include user-select(auto);
+  @include sbb.user-select(auto);
   color: var(--sbb-color-grey);
   transition: color var(--sbb-transition-default);
 
   :where(html.sbb-lean) & {
-    line-height: pxToRem(20);
+    line-height: sbb.pxToRem(20);
   }
 
   :is(.sbb-selection-checked, .sbb-selection-indeterminate) & {
@@ -1766,10 +1774,10 @@ textarea {
   flex-wrap: wrap;
   flex-direction: column;
   align-items: flex-start;
-  row-gap: calc(#{pxToRem(16)} * var(--sbb-scaling-factor));
+  row-gap: calc(#{sbb.pxToRem(16)} * var(--sbb-scaling-factor));
 
   :where(html.sbb-lean) & {
-    row-gap: pxToRem(3);
+    row-gap: sbb.pxToRem(3);
   }
 }
 
@@ -1777,10 +1785,10 @@ textarea {
   display: flex;
   flex-wrap: wrap;
   align-items: flex-start;
-  column-gap: calc(#{pxToRem(32)} * var(--sbb-scaling-factor));
+  column-gap: calc(#{sbb.pxToRem(32)} * var(--sbb-scaling-factor));
 
   :where(html.sbb-lean) & {
-    column-gap: pxToRem(15);
+    column-gap: sbb.pxToRem(15);
   }
 }
 
@@ -1834,14 +1842,14 @@ textarea {
 }
 
 .sbb-selection-panel-item .sbb-selection-item-label {
-  padding: pxToRem(18) pxToRem(24);
+  padding: sbb.pxToRem(18) sbb.pxToRem(24);
 
   :where(html:not(.sbb-lean)) & {
-    @include mq($from: desktop4k) {
-      padding: pxToRem(27) pxToRem(36) pxToRem(26);
+    @include sbb.mq($from: desktop4k) {
+      padding: sbb.pxToRem(27) sbb.pxToRem(36) sbb.pxToRem(26);
     }
-    @include mq($from: desktop5k) {
-      padding: pxToRem(37) pxToRem(48) pxToRem(35);
+    @include sbb.mq($from: desktop5k) {
+      padding: sbb.pxToRem(37) sbb.pxToRem(48) sbb.pxToRem(35);
     }
   }
 }
@@ -1850,10 +1858,10 @@ textarea {
   flex-direction: column;
   display: flex;
   flex: 1 1 50%;
-  padding-right: calc(#{pxToRem(8)} * var(--sbb-scaling-factor));
-  margin-bottom: calc(#{pxToRem(8)} * var(--sbb-scaling-factor));
+  padding-right: calc(#{sbb.pxToRem(8)} * var(--sbb-scaling-factor));
+  margin-bottom: calc(#{sbb.pxToRem(8)} * var(--sbb-scaling-factor));
 
-  @include mq($from: tablet) {
+  @include sbb.mq($from: tablet) {
     margin-bottom: 0;
   }
 }
@@ -1869,9 +1877,9 @@ textarea {
   order: 3;
   color: var(--sbb-color-grey);
 
-  @include mq($from: tablet) {
-    padding-left: calc(#{pxToRem(24)} * var(--sbb-scaling-factor));
-    padding-right: calc(#{pxToRem(8)} * var(--sbb-scaling-factor));
+  @include sbb.mq($from: tablet) {
+    padding-left: calc(#{sbb.pxToRem(24)} * var(--sbb-scaling-factor));
+    padding-right: calc(#{sbb.pxToRem(8)} * var(--sbb-scaling-factor));
     flex-basis: auto;
     order: initial;
   }
@@ -1879,14 +1887,14 @@ textarea {
 
 .sbb-selection-panel-note {
   margin-left: auto;
-  margin-bottom: calc(#{pxToRem(8)} * var(--sbb-scaling-factor));
+  margin-bottom: calc(#{sbb.pxToRem(8)} * var(--sbb-scaling-factor));
 
-  @include mq($from: tablet) {
+  @include sbb.mq($from: tablet) {
     margin-bottom: 0;
   }
 
   img {
-    max-height: calc(#{pxToRem(24)} * var(--sbb-scaling-factor));
+    max-height: calc(#{sbb.pxToRem(24)} * var(--sbb-scaling-factor));
   }
 }
 
@@ -1895,8 +1903,8 @@ textarea {
 :is(.sbb-checkbox-panel-group, .sbb-radio-panel-group) {
   display: grid;
   grid-template-columns: 1fr;
-  gap: calc(#{pxToRem(8)} * var(--sbb-scaling-factor))
-    calc(#{pxToRem(6)} * var(--sbb-scaling-factor));
+  gap: calc(#{sbb.pxToRem(8)} * var(--sbb-scaling-factor))
+    calc(#{sbb.pxToRem(6)} * var(--sbb-scaling-factor));
   font-size: var(--sbb-font-size);
 
   // The number indicates the max number of columns for the resolution
@@ -1910,7 +1918,7 @@ textarea {
   );
 
   @each $from, $max in $sbbSelectionPanelResolutions {
-    @include mq($from: $from) {
+    @include sbb.mq($from: $from) {
       @for $i from 2 through $max {
         &.sbb-col-#{$from}-#{$i} {
           grid-template-columns: repeat(#{$i}, 1fr);
@@ -2017,7 +2025,7 @@ textarea {
       padding: var(--sbb-table-thead-padding-vertical-top) var(--sbb-table-cell-padding-horizontal)
         var(--sbb-table-thead-padding-vertical-bottom) var(--sbb-table-cell-padding-horizontal);
 
-      @include mq($from: tabletPortrait) {
+      @include sbb.mq($from: tabletPortrait) {
         &:first-child {
           border-left: var(--sbb-table-thead-padding) solid var(--sbb-table-thead-background-color);
         }
@@ -2061,7 +2069,7 @@ textarea {
         padding: var(--sbb-table-cell-padding-vertical-top) var(--sbb-table-cell-padding-horizontal)
           var(--sbb-table-cell-padding-vertical-bottom) var(--sbb-table-cell-padding-horizontal);
 
-        @include mq($from: tabletPortrait) {
+        @include sbb.mq($from: tabletPortrait) {
           &:first-child {
             border-left: var(--sbb-table-thead-padding) solid var(--sbb-table-background-color);
           }
@@ -2133,7 +2141,7 @@ textarea {
 
   .sbb-icon-button,
   .sbb-menu-trigger-contextmenu {
-    transform: translateY(calc(#{pxToRem(7)} * var(--sbb-scaling-factor)));
+    transform: translateY(calc(#{sbb.pxToRem(7)} * var(--sbb-scaling-factor)));
   }
 }
 
@@ -2208,8 +2216,8 @@ textarea {
   position: absolute;
   left: 0;
   right: 0;
-  top: pxToRem(-1);
-  border-top: pxToRem(1) solid var(--sbb-color-aluminum);
+  top: sbb.pxToRem(-1);
+  border-top: sbb.pxToRem(1) solid var(--sbb-color-aluminum);
 }
 
 .sbb-table-fixed-layout {
@@ -2228,12 +2236,13 @@ textarea {
   position: absolute;
   right: 0;
   top: 0;
-  gap: calc(#{pxToRem(2)} * var(--sbb-scaling-factor));
-  padding: calc(#{pxToRem(12)} * var(--sbb-scaling-factor))
-    calc(#{pxToRem(12)} * var(--sbb-scaling-factor)) 0
-    calc(#{pxToRem(2)} * var(--sbb-scaling-factor));
-  box-shadow: 0 0 calc(#{pxToRem(8)} * var(--sbb-scaling-factor))
-    calc(#{pxToRem(8)} * var(--sbb-scaling-factor)) var(--sbb-table-cell-actions-background-color);
+  gap: calc(#{sbb.pxToRem(2)} * var(--sbb-scaling-factor));
+  padding: calc(#{sbb.pxToRem(12)} * var(--sbb-scaling-factor))
+    calc(#{sbb.pxToRem(12)} * var(--sbb-scaling-factor)) 0
+    calc(#{sbb.pxToRem(2)} * var(--sbb-scaling-factor));
+  box-shadow: 0 0 calc(#{sbb.pxToRem(8)} * var(--sbb-scaling-factor))
+    calc(#{sbb.pxToRem(8)} * var(--sbb-scaling-factor))
+    var(--sbb-table-cell-actions-background-color);
   background-color: var(--sbb-table-cell-actions-background-color);
 
   // Cut right and top shadow.
@@ -2245,8 +2254,8 @@ textarea {
 
   :where(html.sbb-lean) & {
     --sbb-table-cell-actions-background-color: var(--sbb-color-milk);
-    padding: pxToRem(5) pxToRem(5) pxToRem(0) pxToRem(2);
-    box-shadow: 0 0 pxToRem(4) pxToRem(4) var(--sbb-table-cell-actions-background-color);
+    padding: sbb.pxToRem(5) sbb.pxToRem(5) sbb.pxToRem(0) sbb.pxToRem(2);
+    box-shadow: 0 0 sbb.pxToRem(4) sbb.pxToRem(4) var(--sbb-table-cell-actions-background-color);
   }
 
   .sbb-button-base {
@@ -2264,13 +2273,13 @@ textarea {
 // ----------------------------------------------------------------------------------------------------
 
 input.sbb-input-element.sbb-time-input {
-  width: calc(#{pxToRem(84)} * var(--sbb-scaling-factor));
-  height: calc(#{pxToRem(48)} * var(--sbb-scaling-factor));
+  width: calc(#{sbb.pxToRem(84)} * var(--sbb-scaling-factor));
+  height: calc(#{sbb.pxToRem(48)} * var(--sbb-scaling-factor));
   text-align: center;
 
   :where(html.sbb-lean) & {
-    width: pxToRem(70);
-    height: pxToRem(36);
+    width: sbb.pxToRem(70);
+    height: sbb.pxToRem(36);
   }
 
   &:is([readonly], .sbb-readonly) {
@@ -2366,24 +2375,24 @@ $panelBorderRadius: 2;
   box-shadow: var(--sbb-box-shadow-below), var(--sbb-box-shadow-horizontal-border-bottom);
 
   hr {
-    margin: pxToRem(10) 0;
+    margin: sbb.pxToRem(10) 0;
     padding: 0;
     border: none;
     border-top: var(--sbb-border-width-thin) solid var(--sbb-color-cloud);
 
     :where(html.sbb-lean) & {
-      margin: pxToRem(4) 0;
+      margin: sbb.pxToRem(4) 0;
     }
   }
 
   .sbb-label {
     color: var(--sbb-color-metal);
-    padding: calc(#{pxToRem(5)} * var(--sbb-scaling-factor))
-      calc(#{pxToRem(14)} * var(--sbb-scaling-factor));
+    padding: calc(#{sbb.pxToRem(5)} * var(--sbb-scaling-factor))
+      calc(#{sbb.pxToRem(14)} * var(--sbb-scaling-factor));
 
     :where(html.sbb-lean) & {
       color: var(--sbb-color-granite);
-      padding: pxToRem(4) pxToRem(8);
+      padding: sbb.pxToRem(4) sbb.pxToRem(8);
     }
   }
 }
@@ -2398,12 +2407,12 @@ $panelBorderRadius: 2;
 }
 
 .sbb-panel-padded {
-  padding-top: calc(#{pxToRem(10)} * var(--sbb-scaling-factor));
-  padding-bottom: calc(#{pxToRem(10)} * var(--sbb-scaling-factor));
+  padding-top: calc(#{sbb.pxToRem(10)} * var(--sbb-scaling-factor));
+  padding-bottom: calc(#{sbb.pxToRem(10)} * var(--sbb-scaling-factor));
 
   :where(html.sbb-lean) & {
-    padding-top: pxToRem(4);
-    padding-bottom: pxToRem(4);
+    padding-top: sbb.pxToRem(4);
+    padding-bottom: sbb.pxToRem(4);
   }
 }
 
@@ -2429,14 +2438,14 @@ $menuItemPaddingLeftRightStandard: 14;
 $menuItemPaddingTopBottom: 4;
 
 .sbb-menu-item {
-  @include ellipsis;
-  @include buttonResetFrameless;
+  @include sbb.ellipsis;
+  @include sbb.buttonResetFrameless;
 
   position: relative;
   display: block;
   text-decoration: none;
-  padding: calc(#{pxToRem(4)} * var(--sbb-scaling-factor))
-    calc(#{pxToRem(14)} * var(--sbb-scaling-factor));
+  padding: calc(#{sbb.pxToRem(4)} * var(--sbb-scaling-factor))
+    calc(#{sbb.pxToRem(14)} * var(--sbb-scaling-factor));
   text-align: left;
   max-width: 100%;
   cursor: pointer;
@@ -2446,8 +2455,8 @@ $menuItemPaddingTopBottom: 4;
   line-height: var(--sbb-line-height-medium);
 
   :where(html.sbb-lean) & {
-    padding-left: pxToRem(8);
-    padding-right: pxToRem(8);
+    padding-left: sbb.pxToRem(8);
+    padding-right: sbb.pxToRem(8);
   }
 
   &:not(.sbb-focused) strong {
@@ -2458,14 +2467,14 @@ $menuItemPaddingTopBottom: 4;
     color: var(--sbb-color-text);
 
     :where(html.sbb-lean) & {
-      @include sbbMenuItemBlackLean();
+      @include sbb.sbbMenuItemBlackLean();
     }
   }
 
   &:is(:disabled, [disabled], .sbb-disabled) {
     cursor: default;
     opacity: 0.5;
-    @include user-select(none);
+    @include sbb.user-select(none);
   }
 
   &:is(:not(:disabled):not([disabled]):not(.sbb-disabled):is(:hover, :focus), .sbb-focused) {
@@ -2473,40 +2482,40 @@ $menuItemPaddingTopBottom: 4;
       color: var(--sbb-color-red);
 
       :where(html.sbb-lean) & {
-        @include sbbMenuItemRedLean();
+        @include sbb.sbbMenuItemRedLean();
       }
     }
   }
 
   .sbb-icon {
     line-height: 0;
-    margin: pxToRem(-7) 0 pxToRem(-7) 0;
-    transform: translateY(calc(#{pxToRem(7)} * var(--sbb-scaling-factor)));
+    margin: sbb.pxToRem(-7) 0 sbb.pxToRem(-7) 0;
+    transform: translateY(calc(#{sbb.pxToRem(7)} * var(--sbb-scaling-factor)));
     width: var(--sbb-icon-size-default);
     height: var(--sbb-icon-size-default);
 
     :where(html:not(.sbb-lean)) & {
-      @include mq($from: desktop4k) {
-        margin-top: pxToRem(-12);
-        margin-bottom: pxToRem(-12);
+      @include sbb.mq($from: desktop4k) {
+        margin-top: sbb.pxToRem(-12);
+        margin-bottom: sbb.pxToRem(-12);
       }
-      @include mq($from: desktop5k) {
-        margin-top: pxToRem(-15);
-        margin-bottom: pxToRem(-15);
+      @include sbb.mq($from: desktop5k) {
+        margin-top: sbb.pxToRem(-15);
+        margin-bottom: sbb.pxToRem(-15);
       }
     }
     :where(html.sbb-lean) & {
-      margin: pxToRem(-9) 0 pxToRem(-9) 0;
+      margin: sbb.pxToRem(-9) 0 sbb.pxToRem(-9) 0;
     }
   }
 
   > .sbb-icon:first-child {
     float: left; // used to ignore users whitespace and to ensure margin is correct
-    margin-right: calc(#{pxToRem(11)} * var(--sbb-scaling-factor));
-    margin-left: calc(#{pxToRem(-1)} * var(--sbb-scaling-factor));
+    margin-right: calc(#{sbb.pxToRem(11)} * var(--sbb-scaling-factor));
+    margin-left: calc(#{sbb.pxToRem(-1)} * var(--sbb-scaling-factor));
 
     :where(html.sbb-lean) & {
-      margin-right: pxToRem(8);
+      margin-right: sbb.pxToRem(8);
       margin-left: 0;
     }
   }
@@ -2516,51 +2525,51 @@ $menuItemPaddingTopBottom: 4;
   display: block;
 
   .sbb-menu-item {
-    padding-left: calc(#{pxToRem(22)} * var(--sbb-scaling-factor));
+    padding-left: calc(#{sbb.pxToRem(22)} * var(--sbb-scaling-factor));
 
     :where(html.sbb-lean) & {
-      padding-left: pxToRem(16);
+      padding-left: sbb.pxToRem(16);
     }
   }
 
   &:first-child > .sbb-label:first-child {
-    padding-top: calc(#{pxToRem(16)} * var(--sbb-scaling-factor));
+    padding-top: calc(#{sbb.pxToRem(16)} * var(--sbb-scaling-factor));
 
     .sbb-panel-padded > & {
-      padding-top: calc(#{pxToRem(6)} * var(--sbb-scaling-factor));
+      padding-top: calc(#{sbb.pxToRem(6)} * var(--sbb-scaling-factor));
     }
   }
 
   .sbb-label:where(:not(.sbb-autocomplete-hint)) {
-    padding-top: calc(#{pxToRem(22)} * var(--sbb-scaling-factor));
+    padding-top: calc(#{sbb.pxToRem(22)} * var(--sbb-scaling-factor));
 
     :where(html.sbb-lean) & {
-      padding-top: pxToRem(12);
+      padding-top: sbb.pxToRem(12);
     }
   }
 
   :is(& + &, .sbb-menu-item + &, & + .sbb-menu-item) {
     border-top: var(--sbb-border-width-thin) solid var(--sbb-color-cloud);
-    margin-top: calc(#{pxToRem(8)} * var(--sbb-scaling-factor));
+    margin-top: calc(#{sbb.pxToRem(8)} * var(--sbb-scaling-factor));
 
     :where(html.sbb-lean) & {
-      margin-top: pxToRem(4);
+      margin-top: sbb.pxToRem(4);
     }
 
     .sbb-label:where(:not(.sbb-autocomplete-hint)) {
-      padding-top: calc(#{pxToRem(16)} * var(--sbb-scaling-factor));
+      padding-top: calc(#{sbb.pxToRem(16)} * var(--sbb-scaling-factor));
 
       :where(html.sbb-lean) & {
-        padding-top: pxToRem(8);
+        padding-top: sbb.pxToRem(8);
       }
     }
   }
 
   & + .sbb-menu-item {
-    padding-top: calc(#{pxToRem(14)} * var(--sbb-scaling-factor));
+    padding-top: calc(#{sbb.pxToRem(14)} * var(--sbb-scaling-factor));
 
     :where(html.sbb-lean) & {
-      padding-top: pxToRem(8);
+      padding-top: sbb.pxToRem(8);
     }
   }
 }
@@ -2576,7 +2585,7 @@ $menuItemPaddingTopBottom: 4;
 
   .sbb-tooltip-inline & {
     vertical-align: text-bottom;
-    margin-bottom: calc(pxToRem(-3.5) * var(--sbb-scaling-factor));
+    margin-bottom: calc(sbb.pxToRem(-3.5) * var(--sbb-scaling-factor));
   }
 }
 

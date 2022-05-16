@@ -224,10 +224,6 @@ var NgPackage = class extends NgModule {
     this.hasReadme = dir.subfiles.includes((0, import_core4.fragment)("README.md"));
     this.hasSchematics = dir.subdirs.includes((0, import_core4.fragment)("schematics"));
     this.hasSrcFiles = dir.subdirs.includes((0, import_core4.fragment)("src"));
-    this.hasStyleBundle = dir.subfiles.includes((0, import_core4.fragment)("_style_bundle.scss"));
-    if (this.hasStyleBundle && !this._fileRegistry.scssLibaryFiles.find((s) => !s.path.includes("_style_bundle.scss"))) {
-      this.hasSassLibrary = false;
-    }
     this.hasTypography = dir.subfiles.includes((0, import_core4.fragment)("typography.scss"));
     if (this.hasTypography) {
       this.sassBinaries = this.sassBinaries.filter((s) => !s.path.includes("typography.scss"));
@@ -528,7 +524,7 @@ function bazel(options) {
           dependencyByOccurence
         };
         const typeScriptDependencyResolver = isShowcase ? new RelativeModuleTypeScriptDependencyResolver(tsConfig) : new StrictModuleTypeScriptDependencyResolver(tsConfig);
-        const styleReplaceMap = (/* @__PURE__ */ new Map()).set("../styles/common", "//src/angular/styles:common_scss_lib").set("/angular/styles/common", "//src/angular/styles:common_scss_lib").set("external/npm/node_modules/@angular/cdk", "//src/angular/styles:common_scss_lib");
+        const styleReplaceMap = (/* @__PURE__ */ new Map()).set("@sbb-esta/angular", "//src/angular:scss_lib").set("external/npm/node_modules/@angular/cdk", "//src/angular:scss_lib");
         const sassDependencyResolver = new FlexibleSassDependencyResolver(moduleDetector, npmDependencyResolver, context.logger, styleReplaceMap);
         const bazelGenruleResolver = new BazelGenruleResolver();
         if (isShowcase) {

@@ -31,7 +31,7 @@ sass_binary(
     name = "notification_scss",
     src = "notification.scss",
     deps = [
-        "//src/angular/styles:common_scss_lib",
+        "//src/angular:scss_lib",
     ],
 )
 

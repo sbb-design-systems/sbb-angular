@@ -1,4 +1,4 @@
-@import '../styles/common';
+@use '@sbb-esta/angular' as sbb;
 
 .sbb-header-menu {
   display: none;
@@ -10,7 +10,7 @@
   background-color: var(--sbb-color-milk);
   z-index: var(--sbb-header-lean-menu-mobile-z-index);
 
-  @include mq($from: tabletPortrait) {
+  @include sbb.mq($from: tabletPortrait) {
     width: calc(100vw - var(--sbb-header-lean-menu-width));
     z-index: var(--sbb-header-lean-menu-tablet-z-index);
   }
@@ -22,7 +22,7 @@
 
 button.sbb-header-menu-back,
 .sbb-header-menu > div.sbb-header-menu-title {
-  @include buttonResetFrameless();
+  @include sbb.buttonResetFrameless();
   height: var(--sbb-header-lean-height);
   width: 100%;
   font-size: var(--sbb-font-size);
@@ -34,11 +34,11 @@ button.sbb-header-menu-back,
 
 button.sbb-header-menu-back {
   display: flex;
-  padding-top: calc(#{pxToRem(15)} * var(--sbb-scaling-factor));
-  padding-left: calc(#{pxToRem(8)} * var(--sbb-scaling-factor));
+  padding-top: calc(#{sbb.pxToRem(15)} * var(--sbb-scaling-factor));
+  padding-left: calc(#{sbb.pxToRem(8)} * var(--sbb-scaling-factor));
   cursor: pointer;
 
-  @include mq($from: tabletPortrait) {
+  @include sbb.mq($from: tabletPortrait) {
     display: none;
   }
 
@@ -50,14 +50,14 @@ button.sbb-header-menu-back {
 .sbb-header-menu > div.sbb-header-menu-title {
   font-size: var(--sbb-font-size-large);
   line-height: var(--sbb-header-lean-label-line-height);
-  padding-top: calc(#{pxToRem(15)} * var(--sbb-scaling-factor));
-  padding-left: calc(#{pxToRem(15)} * var(--sbb-scaling-factor));
+  padding-top: calc(#{sbb.pxToRem(15)} * var(--sbb-scaling-factor));
+  padding-left: calc(#{sbb.pxToRem(15)} * var(--sbb-scaling-factor));
 }
 
 .sbb-header-menu > div.sbb-header-menu-panel-container {
   height: calc(100% - var(--sbb-header-lean-height) * 2);
 
-  @include mq($from: tabletPortrait) {
+  @include sbb.mq($from: tabletPortrait) {
     height: calc(100% - var(--sbb-header-lean-height));
   }
 
@@ -66,7 +66,7 @@ button.sbb-header-menu-back {
     flex-direction: column;
     overflow-y: auto;
     padding: 0;
-    margin-top: calc(#{pxToRem(32)} * var(--sbb-scaling-factor));
+    margin-top: calc(#{sbb.pxToRem(32)} * var(--sbb-scaling-factor));
     box-shadow: none;
     border: 0;
 
@@ -75,10 +75,10 @@ button.sbb-header-menu-back {
     }
 
     & > :is(a, button) {
-      padding: calc(#{pxToRem(7)} * var(--sbb-scaling-factor))
-        calc(#{pxToRem(48)} * var(--sbb-scaling-factor))
-        calc(#{pxToRem(11)} * var(--sbb-scaling-factor))
-        calc(#{pxToRem(16)} * var(--sbb-scaling-factor));
+      padding: calc(#{sbb.pxToRem(7)} * var(--sbb-scaling-factor))
+        calc(#{sbb.pxToRem(48)} * var(--sbb-scaling-factor))
+        calc(#{sbb.pxToRem(11)} * var(--sbb-scaling-factor))
+        calc(#{sbb.pxToRem(16)} * var(--sbb-scaling-factor));
       color: var(--sbb-color-weak-accent);
       line-height: var(--sbb-line-height-medium);
       font-size: var(--sbb-font-size);
@@ -92,7 +92,7 @@ button.sbb-header-menu-back {
         width: var(--sbb-icon-size-default);
         height: var(--sbb-icon-size-default);
         position: absolute;
-        right: calc(#{pxToRem(16)} * var(--sbb-scaling-factor));
+        right: calc(#{sbb.pxToRem(16)} * var(--sbb-scaling-factor));
         vertical-align: middle;
       }
 

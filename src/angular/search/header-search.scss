@@ -1,21 +1,21 @@
-@import '../styles/common';
+@use '@sbb-esta/angular' as sbb;
 
 .sbb-header-search {
   display: inline-flex;
   cursor: pointer;
   color: var(--sbb-color-metal);
-  font-size: calc(#{pxToRem(14)} * var(--sbb-scaling-factor));
-  line-height: calc(#{pxToRem(17)} * var(--sbb-scaling-factor));
+  font-size: calc(#{sbb.pxToRem(14)} * var(--sbb-scaling-factor));
+  line-height: calc(#{sbb.pxToRem(17)} * var(--sbb-scaling-factor));
   outline: none;
-  padding: calc(#{pxToRem(12)} * var(--sbb-scaling-factor)) 0;
+  padding: calc(#{sbb.pxToRem(12)} * var(--sbb-scaling-factor)) 0;
 
   :where(html:not(.sbb-lean)) & {
-    @include mq($from: desktop4k, $to: desktop5k) {
-      line-height: pxToRem(25);
+    @include sbb.mq($from: desktop4k, $to: desktop5k) {
+      line-height: sbb.pxToRem(25);
     }
   }
   :where(html.sbb-lean) & {
-    padding: pxToRem(6) 0;
+    padding: sbb.pxToRem(6) 0;
   }
 
   &:is(:hover, :focus) {
@@ -24,11 +24,11 @@
 }
 
 .sbb-header-search-label {
-  padding-left: calc(#{pxToRem(8)} * var(--sbb-scaling-factor));
-  padding-top: calc(#{pxToRem(4)} * var(--sbb-scaling-factor));
+  padding-left: calc(#{sbb.pxToRem(8)} * var(--sbb-scaling-factor));
+  padding-top: calc(#{sbb.pxToRem(4)} * var(--sbb-scaling-factor));
 
-  @include mq($to: tablet) {
-    @include sbbVisuallyHidden();
+  @include sbb.mq($to: tablet) {
+    @include sbb.sbbVisuallyHidden();
   }
 }
 

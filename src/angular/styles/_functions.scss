@@ -1,15 +1,16 @@
 @use 'sass:math';
+@use './variables';
 
 // ----------------------------------------------------------------------------------------------------
 // Functions
 // ----------------------------------------------------------------------------------------------------
 
-@function pxToEm($px, $ref: $sizeFontBase) {
+@function pxToEm($px, $ref: variables.$sizeFontBase) {
   @return toEm(math.div(toPx($px), toPx($ref)));
 }
 
 @function pxToRem($px) {
-  @return toRem(math.div(toPx($px), toPx($sizeFontBase)));
+  @return toRem(math.div(toPx($px), toPx(variables.$sizeFontBase)));
 }
 
 @function toEm($val) {

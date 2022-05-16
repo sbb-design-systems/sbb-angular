@@ -1,4 +1,4 @@
-@import '../../styles/common';
+@use '@sbb-esta/angular' as sbb;
 
 .sbb-option.sbb-menu-item {
   cursor: default;
@@ -6,8 +6,8 @@
 
 .sbb-pseudo-checkbox {
   display: inline-block;
-  margin-right: calc(#{pxToRem(8)} * var(--sbb-scaling-factor));
-  margin-bottom: calc(#{pxToRem(-4.5)} * var(--sbb-scaling-factor));
+  margin-right: calc(#{sbb.pxToRem(8)} * var(--sbb-scaling-factor));
+  margin-bottom: calc(#{sbb.pxToRem(-4.5)} * var(--sbb-scaling-factor));
   overflow: hidden;
   line-height: 0;
 

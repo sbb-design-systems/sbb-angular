@@ -35,7 +35,7 @@ sass_binary(
     name = "processflow_scss",
     src = "processflow.scss",
     deps = [
-        "//src/angular/styles:common_scss_lib",
+        "//src/angular:scss_lib",
     ],
 )
 
@@ -43,7 +43,7 @@ sass_binary(
     name = "step_header_scss",
     src = "step-header.scss",
     deps = [
-        "//src/angular/styles:common_scss_lib",
+        "//src/angular:scss_lib",
     ],
 )
 

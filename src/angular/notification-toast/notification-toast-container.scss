@@ -1,27 +1,29 @@
-@import '../styles/common';
+@use '@sbb-esta/angular' as sbb;
 
 .sbb-notification-toast {
   display: flex;
-  min-height: calc(#{pxToRem(48)} * var(--sbb-scaling-factor));
+  min-height: calc(#{sbb.pxToRem(48)} * var(--sbb-scaling-factor));
   border-radius: var(--sbb-border-radius);
   color: var(--sbb-color-white);
   background-color: var(--sbb-color-background);
   font-size: var(--sbb-font-size);
   line-height: var(--sbb-line-height);
-  padding-top: calc(#{pxToRem(12)} * var(--sbb-scaling-factor) - var(--sbb-border-width-thin));
+  padding-top: calc(#{sbb.pxToRem(12)} * var(--sbb-scaling-factor) - var(--sbb-border-width-thin));
   padding-bottom: calc(
-    #{pxToRem(12)} * var(--sbb-scaling-factor) - var(--sbb-border-width-thin) - var(
+    #{sbb.pxToRem(12)} * var(--sbb-scaling-factor) - var(--sbb-border-width-thin) - var(
         --sbb-line-height
       ) + var(--sbb-icon-size-default)
   );
-  margin: calc(#{pxToRem(20)} * var(--sbb-scaling-factor));
+  margin: calc(#{sbb.pxToRem(20)} * var(--sbb-scaling-factor));
 
   :where(html.sbb-lean) & {
-    padding-bottom: calc(#{pxToRem(12)} * var(--sbb-scaling-factor) - var(--sbb-border-width-thin));
+    padding-bottom: calc(
+      #{sbb.pxToRem(12)} * var(--sbb-scaling-factor) - var(--sbb-border-width-thin)
+    );
   }
 
   .sbb-notification-toast-mobile & {
-    margin: calc(#{pxToRem(8)} * var(--sbb-scaling-factor));
+    margin: calc(#{sbb.pxToRem(8)} * var(--sbb-scaling-factor));
     max-width: 100%;
     min-width: 0;
     width: 100%;
@@ -65,15 +67,15 @@
 }
 
 .sbb-notification-toast-content {
-  margin-left: calc(#{pxToRem(8)} * var(--sbb-scaling-factor));
-  margin-right: calc(#{pxToRem(24)} * var(--sbb-scaling-factor));
+  margin-left: calc(#{sbb.pxToRem(8)} * var(--sbb-scaling-factor));
+  margin-right: calc(#{sbb.pxToRem(24)} * var(--sbb-scaling-factor));
 }
 
 .sbb-notification-toast-icon-wrapper {
   min-width: var(--sbb-icon-size-default);
   width: var(--sbb-icon-size-default);
   height: var(--sbb-icon-size-default);
-  margin-left: calc(#{pxToRem(16)} * var(--sbb-scaling-factor));
+  margin-left: calc(#{sbb.pxToRem(16)} * var(--sbb-scaling-factor));
   border: none;
   background: none;
   padding: 0;
@@ -83,5 +85,5 @@
 .sbb-notification-toast-icon-close-wrapper {
   cursor: pointer;
   margin-left: auto;
-  margin-right: calc(#{pxToRem(22)} * var(--sbb-scaling-factor));
+  margin-right: calc(#{sbb.pxToRem(22)} * var(--sbb-scaling-factor));
 }
