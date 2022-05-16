@@ -152,11 +152,11 @@ jobs:
       with:
         name: showcase-artifact-${{ github.event.number }}
         path: sbb-esta-angular-showcase.tgz
-    - name: "Artifact: Upload showcase merge artifact for master branch"
-      if: github.ref == 'refs/heads/master'
+    - name: "Artifact: Upload showcase merge artifact for main branch"
+      if: github.ref == 'refs/heads/main'
       uses: actions/upload-artifact@v3
       with:
-        name: showcase-artifact-master
+        name: showcase-artifact-main
         path: sbb-esta-angular-showcase.tgz
 
   merge-caches:

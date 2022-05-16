@@ -342,7 +342,7 @@ this.selection = new SelectionModel<MyDataType>(allowMultiSelect, initialSelecti
 
 ##### 2. Define a selection column
 
-Add a column definition for displaying the row checkboxes, including a master toggle checkbox for
+Add a column definition for displaying the row checkboxes, including a main toggle checkbox for
 the header. The column name should be added to the list of displayed columns provided to the
 header and data row.
 
@@ -350,7 +350,7 @@ header and data row.
 <ng-container sbbColumnDef="select">
   <th sbb-header-cell *sbbHeaderCellDef>
     <sbb-checkbox
-      (change)="$event ? masterToggle() : null"
+      (change)="$event ? parentToggle() : null"
       [checked]="selection.hasValue() && isAllSelected()"
       [indeterminate]="selection.hasValue() && !isAllSelected()"
     >
@@ -369,7 +369,7 @@ header and data row.
 
 ##### 3. Add event handling logic
 
-Implement the behavior in your component's logic to handle the header's master toggle and checking
+Implement the behavior in your component's logic to handle the header's main toggle and checking
 if all rows are selected.
 
 ```ts
@@ -381,7 +381,7 @@ isAllSelected() {
 }
 
 /** Selects all rows if they are not all selected; otherwise clear selection. */
-masterToggle() {
+parentToggle() {
   this.isAllSelected() ?
       this.selection.clear() :
       this.dataSource.data.forEach(row => this.selection.select(row));
