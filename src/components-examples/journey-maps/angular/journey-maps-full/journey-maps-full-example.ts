@@ -16,7 +16,7 @@ import {
   SbbViewportOptions,
   SbbZoomLevels,
 } from '@sbb-esta/journey-maps';
-import { LngLatBounds, LngLatBoundsLike, LngLatLike } from 'maplibre-gl';
+import { GeolocateControl, LngLatBounds, LngLatBoundsLike, LngLatLike } from 'maplibre-gl';
 import { BehaviorSubject, filter, Subject, take } from 'rxjs';
 import { map, takeUntil } from 'rxjs/operators';
 
@@ -240,5 +240,16 @@ export class JourneyMapsFullExample implements OnInit, OnDestroy {
 
   private _isLngLatBounds(bbox: number[] | LngLatBounds): bbox is LngLatBounds {
     return (bbox as LngLatBounds).getWest !== undefined;
+  }
+
+  onMapReady(maplibreMap: maplibregl.Map) {
+    maplibreMap.addControl(
+      new GeolocateControl({
+        positionOptions: {
+          enableHighAccuracy: true,
+        },
+        trackUserLocation: true,
+      })
+    );
   }
 }

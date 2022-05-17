@@ -23,6 +23,7 @@
     (zoomLevelsChange)="zoomLevels=$event"
     (visibleLevelsChange)="visibleLevels.next($event)"
     [poiOptions]="pointsOfInterestOptions"
+    (mapReady)="onMapReady($event)"
   ></sbb-journey-maps>
   <ng-template #markerDetailsTemplate let-marker>
     <div class="markerdetails-title">{{marker.title}}</div>
