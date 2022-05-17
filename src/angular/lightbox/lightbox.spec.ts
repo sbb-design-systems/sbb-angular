@@ -1628,8 +1628,8 @@ describe('SbbLightbox with default options', () => {
     expect(document.activeElement!.tagName).not.toBe('INPUT');
 
     const overlayPane = overlayContainerElement.querySelector('.cdk-overlay-pane') as HTMLElement;
-    expect(overlayPane.style.width).toBe('');
-    expect(overlayPane.style.height).toBe('');
+    expect(overlayPane.style.width).toBe('100vw');
+    expect(overlayPane.style.height).toBe('100vh');
     expect(overlayPane.style.minWidth).toBe('100vw');
     expect(overlayPane.style.minHeight).toBe('100vh');
     expect(overlayPane.style.maxWidth).toBe('100vw');

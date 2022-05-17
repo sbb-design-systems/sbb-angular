@@ -1,3 +1,4 @@
+import { DialogModule } from '@angular/cdk/dialog';
 import { OverlayModule } from '@angular/cdk/overlay';
 import { PortalModule } from '@angular/cdk/portal';
 import { CommonModule } from '@angular/common';
@@ -15,7 +16,14 @@ import {
 } from './lightbox-content-directives';
 
 @NgModule({
-  imports: [CommonModule, OverlayModule, PortalModule, SbbCommonModule, SbbIconModule],
+  imports: [
+    DialogModule,
+    CommonModule,
+    OverlayModule,
+    PortalModule,
+    SbbCommonModule,
+    SbbIconModule,
+  ],
   exports: [
     SbbLightboxContainer,
     SbbLightboxClose,

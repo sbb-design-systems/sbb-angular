@@ -1,6 +1,19 @@
 import { AnimationEvent } from '@angular/animations';
-import { ChangeDetectionStrategy, Component, HostListener, ViewEncapsulation } from '@angular/core';
-import { _SbbDialogContainerBase } from '@sbb-esta/angular/dialog';
+import { FocusMonitor, FocusTrapFactory, InteractivityChecker } from '@angular/cdk/a11y';
+import { OverlayRef } from '@angular/cdk/overlay';
+import { DOCUMENT } from '@angular/common';
+import {
+  ChangeDetectionStrategy,
+  ChangeDetectorRef,
+  Component,
+  ElementRef,
+  HostListener,
+  Inject,
+  NgZone,
+  Optional,
+  ViewEncapsulation,
+} from '@angular/core';
+import { SbbDialogConfig, _SbbDialogContainerBase } from '@sbb-esta/angular/dialog';
 
 import { sbbLightboxAnimations } from './lightbox-animations';
 
@@ -21,7 +34,7 @@ import { sbbLightboxAnimations } from './lightbox-animations';
     class: 'sbb-lightbox-container',
     tabindex: '-1',
     'aria-modal': 'true',
-    '[id]': '_id',
+    '[id]': '_config.id',
     '[attr.role]': '_config.role',
     '[attr.aria-labelledby]': '_config.ariaLabel ? null : _ariaLabelledBy',
     '[attr.aria-label]': '_config.ariaLabel',
@@ -37,7 +50,6 @@ export class SbbLightboxContainer extends _SbbDialogContainerBase {
       this._trapFocus();
       this._animationStateChanged.next({ state: 'opened', totalTime });
     } else if (toState === 'exit') {
-      this._restoreFocus();
       this._animationStateChanged.next({ state: 'closed', totalTime });
     }
   }
@@ -59,5 +71,28 @@ export class SbbLightboxContainer extends _SbbDialogContainerBase {
     // Mark the container for check so it can react if the
     // view container is using OnPush change detection.
     this._changeDetectorRef.markForCheck();
+  }
+
+  constructor(
+    elementRef: ElementRef,
+    focusTrapFactory: FocusTrapFactory,
+    @Optional() @Inject(DOCUMENT) document: any,
+    dialogConfig: SbbDialogConfig,
+    checker: InteractivityChecker,
+    ngZone: NgZone,
+    overlayRef: OverlayRef,
+    private _changeDetectorRef: ChangeDetectorRef,
+    focusMonitor?: FocusMonitor
+  ) {
+    super(
+      elementRef,
+      focusTrapFactory,
+      document,
+      dialogConfig,
+      checker,
+      ngZone,
+      overlayRef,
+      focusMonitor
+    );
   }
 }

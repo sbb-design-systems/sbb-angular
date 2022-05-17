@@ -151,7 +151,7 @@ export abstract class _SbbDialogBase<
           { provide: DialogConfig, useValue: config },
         ],
       },
-      templateContext: () => ({ dialogRef }),
+      templateContext: () => ({ dialogRef, lightboxRef: dialogRef }),
       providers: (ref, cdkConfig, dialogContainer) => {
         dialogRef = new this._dialogRefConstructor(ref, config, dialogContainer);
         dialogRef.updatePosition(config?.position);

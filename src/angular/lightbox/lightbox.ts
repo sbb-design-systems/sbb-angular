@@ -47,11 +47,16 @@ export const SBB_LIGHTBOX_SCROLL_STRATEGY_PROVIDER = {
   useFactory: SBB_LIGHTBOX_SCROLL_STRATEGY_PROVIDER_FACTORY,
 };
 
+// Counter for unique dialog ids.
+let uniqueId = 0;
+
 /**
  * Service to open modal lightboxes.
  */
 @Injectable()
 export class SbbLightbox extends _SbbDialogBase<SbbLightboxContainer, SbbLightboxRef<any>> {
+  protected override _idPrefix: string = 'sbb-lightbox-';
+
   /** Keeps track of the currently-open lightboxes. */
   get openLightboxes(): SbbLightboxRef<any>[] {
     return this.openDialogs;
@@ -63,6 +68,10 @@ export class SbbLightbox extends _SbbDialogBase<SbbLightboxContainer, SbbLightbo
     @Optional() @Inject(SBB_LIGHTBOX_DEFAULT_OPTIONS) defaultOptions: SbbLightboxConfig,
     @Inject(SBB_LIGHTBOX_SCROLL_STRATEGY) scrollStrategy: any,
     @Optional() @SkipSelf() parentDialog: SbbLightbox,
+    /**
+     * @deprecated No longer used. To be removed.
+     * @breaking-change 15.0.0
+     */
     overlayContainer: OverlayContainer
   ) {
     super(
@@ -97,6 +106,7 @@ export class SbbLightbox extends _SbbDialogBase<SbbLightboxContainer, SbbLightbo
       minHeight: '100vh',
       maxHeight: '100vh',
     };
+    dialogConfig.id = dialogConfig.id || `${this._idPrefix}${uniqueId++}`;
     return super.open(componentOrTemplateRef, dialogConfig) as any;
   }
 
