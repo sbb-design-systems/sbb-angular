@@ -33,7 +33,7 @@ sass_binary(
     name = "toggle_scss",
     src = "toggle.scss",
     deps = [
-        "//src/angular/styles:common_scss_lib",
+        "//src/angular:scss_lib",
     ],
 )
 

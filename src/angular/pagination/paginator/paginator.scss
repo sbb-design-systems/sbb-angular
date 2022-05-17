@@ -1,4 +1,4 @@
-@import '../../styles/common';
+@use '@sbb-esta/angular' as sbb;
 
 .sbb-paginator {
   display: inline-block;
@@ -37,7 +37,7 @@
   }
 
   :where(html.sbb-lean) & {
-    border-width: pxToRem(2);
+    border-width: sbb.pxToRem(2);
   }
 }
 

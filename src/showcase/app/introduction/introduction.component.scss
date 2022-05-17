@@ -1,13 +1,13 @@
-@import '../../../angular/styles/common';
+@use '@sbb-esta/angular' as sbb;
 
 .sbb-notification {
   margin-bottom: 2em;
-  max-width: pxToEm(700);
+  max-width: sbb.pxToEm(700);
 }
 
 :host nav {
   padding: 0;
-  margin: pxToEm(50) 0 pxToEm(50) 0;
+  margin: sbb.pxToEm(50) 0 sbb.pxToEm(50) 0;
   font-size: var(--sbb-font-size);
 
   ul {
@@ -21,11 +21,11 @@
     font-size: inherit !important;
 
     > li {
-      width: pxToEm(300);
-      margin: 0 pxToEm(20) pxToEm(20) 0;
-      border-radius: pxToEm(6);
+      width: sbb.pxToEm(300);
+      margin: 0 sbb.pxToEm(20) sbb.pxToEm(20) 0;
+      border-radius: sbb.pxToEm(6);
       background: #fff;
-      border: solid pxToEm(1) #cccccc;
+      border: solid sbb.pxToEm(1) #cccccc;
       color: #1b1b1b;
       cursor: pointer;
       position: relative;
@@ -53,8 +53,8 @@
           overflow: hidden;
           display: block;
           width: 100%;
-          height: pxToEm(180);
-          border-radius: pxToEm(4) pxToEm(4) 0 0;
+          height: sbb.pxToEm(180);
+          border-radius: sbb.pxToEm(4) sbb.pxToEm(4) 0 0;
         }
 
         .hero img {
@@ -67,13 +67,13 @@
         }
 
         .title {
-          margin: pxToEm(15) pxToEm(20) 0 pxToEm(20);
+          margin: sbb.pxToEm(15) sbb.pxToEm(20) 0 sbb.pxToEm(20);
           display: block;
           font-weight: 400;
         }
 
         .text {
-          margin: pxToEm(5) pxToEm(20) pxToEm(15) pxToEm(20);
+          margin: sbb.pxToEm(5) sbb.pxToEm(20) sbb.pxToEm(15) sbb.pxToEm(20);
           display: block;
           font-weight: 200;
         }

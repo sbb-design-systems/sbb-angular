@@ -33,7 +33,7 @@ sass_binary(
     name = "lightbox_scss",
     src = "lightbox.scss",
     deps = [
-        "//src/angular/styles:common_scss_lib",
+        "//src/angular:scss_lib",
     ],
 )
 

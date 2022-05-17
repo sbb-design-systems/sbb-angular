@@ -53,7 +53,7 @@ yarn add @sbb-esta/angular @angular/cdk
 Including typography is required to apply all SBB styles to your application. That is doable by editing the `styles.(s)css`:
 
 ```css
-@import '../node_modules/@sbb-esta/angular/typography.css';
+@import '@sbb-esta/angular/typography.css';
 ```
 
 or editing your `angular.json`:
@@ -150,8 +150,8 @@ Whichever approach you use, be sure to import the modules after Angular's Browse
 ## Step 3 (Optional): Use mixins and functions from the library
 
 If you need to reuse some mixins from the library, you have to configure your own Angular application in
-SCSS mode and import `_styles.scss` from the library into your `styles.scss`:
+SCSS mode and import via `@use`:
 
 ```scss
-@import 'node_modules/@sbb-esta/angular/styles';
+@use '@sbb-esta/angular' as sbb;
 ```

@@ -31,7 +31,7 @@ sass_binary(
     name = "file_selector_scss",
     src = "file-selector.scss",
     deps = [
-        "//src/angular/styles:common_scss_lib",
+        "//src/angular:scss_lib",
     ],
 )
 

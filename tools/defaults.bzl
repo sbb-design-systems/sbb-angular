@@ -68,6 +68,7 @@ def _getDefaultTsConfig(testonly):
 def sass_binary(sourcemap = False, **kwargs):
     _sass_binary(
         sourcemap = sourcemap,
+        compiler = "//tools/sass:compiler",
         **kwargs
     )
 

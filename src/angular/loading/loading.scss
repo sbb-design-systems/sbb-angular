@@ -1,5 +1,5 @@
 @use 'sass:math';
-@import '../styles/common';
+@use '@sbb-esta/angular' as sbb;
 
 // Standard settings
 $numberOfItems: 5;

@@ -28,7 +28,7 @@ sass_binary(
     name = "loading_scss",
     src = "loading.scss",
     deps = [
-        "//src/angular/styles:common_scss_lib",
+        "//src/angular:scss_lib",
     ],
 )
 

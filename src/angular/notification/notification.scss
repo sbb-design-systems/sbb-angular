@@ -1,4 +1,4 @@
-@import '../styles/common';
+@use '@sbb-esta/angular' as sbb;
 
 .sbb-notification {
   display: flex;
@@ -15,7 +15,7 @@
 
   :where(html:not(.sbb-lean)) & {
     &:not(.ng-animating) {
-      min-height: calc(#{pxToRem(68)} * var(--sbb-scaling-factor));
+      min-height: calc(#{sbb.pxToRem(68)} * var(--sbb-scaling-factor));
     }
   }
   :where(html.sbb-lean) & {
@@ -49,9 +49,9 @@
 }
 
 .sbb-notification-has-jump-marks {
-  padding: calc(#{pxToRem(23)} * var(--sbb-scaling-factor))
+  padding: calc(#{sbb.pxToRem(23)} * var(--sbb-scaling-factor))
     var(--sbb-notification-message-padding-horizontal)
-    calc(#{pxToRem(23)} * var(--sbb-scaling-factor)) var(--sbb-notification-message-padding);
+    calc(#{sbb.pxToRem(23)} * var(--sbb-scaling-factor)) var(--sbb-notification-message-padding);
 
   :is(&, & a) {
     line-height: var(--sbb-line-height-medium);
@@ -63,11 +63,11 @@
 
   :where(html:not(.sbb-lean)) & {
     &:not(.ng-animating) {
-      min-height: calc(#{pxToRem(92)} * var(--sbb-scaling-factor));
+      min-height: calc(#{sbb.pxToRem(92)} * var(--sbb-scaling-factor));
     }
   }
   :where(html.sbb-lean) & {
-    padding: pxToRem(11) pxToRem(15) pxToRem(13.5);
+    padding: sbb.pxToRem(11) sbb.pxToRem(15) sbb.pxToRem(13.5);
   }
 }
 
@@ -89,7 +89,7 @@
   margin-left: var(--sbb-notification-message-padding);
 
   :where(html.sbb-lean) & {
-    margin-left: pxToRem(8);
+    margin-left: sbb.pxToRem(8);
   }
 }
 

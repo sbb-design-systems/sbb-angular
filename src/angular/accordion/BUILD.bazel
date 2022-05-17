@@ -31,7 +31,7 @@ sass_binary(
     name = "expansion_panel_scss",
     src = "expansion-panel.scss",
     deps = [
-        "//src/angular/styles:common_scss_lib",
+        "//src/angular:scss_lib",
     ],
 )
 

@@ -1,4 +1,4 @@
-@import '../styles/common';
+@use '@sbb-esta/angular' as sbb;
 
 .sbb-header-lean {
   display: flex;
@@ -19,11 +19,11 @@
   flex-grow: 1;
 
   > :is(a, button) {
-    margin-right: calc(#{pxToRem(15)} * var(--sbb-scaling-factor));
+    margin-right: calc(#{sbb.pxToRem(15)} * var(--sbb-scaling-factor));
   }
 
   .sbb-header-fixed-columns & {
-    margin-left: calc(#{pxToRem(50)} * var(--sbb-scaling-factor));
+    margin-left: calc(#{sbb.pxToRem(50)} * var(--sbb-scaling-factor));
 
     > :is(a, button) {
       flex: 0 0 20%;
@@ -36,14 +36,14 @@
 .sbb-header-environment {
   z-index: 1;
   pointer-events: none;
-  width: calc(#{pxToRem(80)} * var(--sbb-scaling-factor));
+  width: calc(#{sbb.pxToRem(80)} * var(--sbb-scaling-factor));
   position: absolute;
-  top: calc(#{pxToRem(12)} * var(--sbb-scaling-factor));
-  left: calc(#{pxToRem(-20)} * var(--sbb-scaling-factor));
+  top: calc(#{sbb.pxToRem(12)} * var(--sbb-scaling-factor));
+  left: calc(#{sbb.pxToRem(-20)} * var(--sbb-scaling-factor));
   text-align: center;
-  line-height: calc(#{pxToRem(12)} * var(--sbb-scaling-factor));
+  line-height: calc(#{sbb.pxToRem(12)} * var(--sbb-scaling-factor));
   letter-spacing: 0;
-  font-size: calc(#{pxToRem(10)} * var(--sbb-scaling-factor));
+  font-size: calc(#{sbb.pxToRem(10)} * var(--sbb-scaling-factor));
   color: var(--sbb-color-white);
   transform: rotate(-45deg);
 }
@@ -71,7 +71,7 @@
   flex-shrink: 0;
   width: var(--sbb-icon-size-default);
   height: var(--sbb-icon-size-default);
-  margin-left: calc(#{pxToRem(15)} * var(--sbb-scaling-factor));
+  margin-left: calc(#{sbb.pxToRem(15)} * var(--sbb-scaling-factor));
   cursor: pointer;
   position: relative;
   outline: none;
@@ -94,19 +94,19 @@
   flex-grow: 0;
   flex-direction: column;
   width: auto;
-  margin-left: calc(#{pxToRem(15)} * var(--sbb-scaling-factor));
-  margin-right: calc(#{pxToRem(38)} * var(--sbb-scaling-factor));
+  margin-left: calc(#{sbb.pxToRem(15)} * var(--sbb-scaling-factor));
+  margin-right: calc(#{sbb.pxToRem(38)} * var(--sbb-scaling-factor));
   font-family: var(--sbb-font-light);
 
   .sbb-header-fixed-columns & {
-    width: calc(#{pxToRem(200)} * var(--sbb-scaling-factor));
+    width: calc(#{sbb.pxToRem(200)} * var(--sbb-scaling-factor));
     margin-right: unset;
   }
 }
 
 .sbb-header-lean-label,
 .sbb-header-lean-subtitle {
-  @include ellipsis();
+  @include sbb.ellipsis();
 }
 
 .sbb-header-lean-label {
@@ -119,7 +119,7 @@
 .sbb-header-lean-subtitle {
   font-size: var(--sbb-font-size-small);
   font-weight: 300;
-  line-height: calc(#{pxToRem(16)} * var(--sbb-scaling-factor));
+  line-height: calc(#{sbb.pxToRem(16)} * var(--sbb-scaling-factor));
   color: var(--sbb-color-anthracite);
 }
 
@@ -128,14 +128,14 @@
     text-decoration: none;
   }
   > button:where(:not(.sbb-menu-panel-trigger)) {
-    @include buttonResetFrameless();
+    @include sbb.buttonResetFrameless();
   }
   > :is(a, button) {
     font-size: var(--sbb-font-size);
     line-height: var(--sbb-line-height);
     border: var(--sbb-border-width-thin) solid transparent;
-    padding: calc(#{pxToRem(6)} * var(--sbb-scaling-factor))
-      calc(#{pxToRem(8)} * var(--sbb-scaling-factor));
+    padding: calc(#{sbb.pxToRem(6)} * var(--sbb-scaling-factor))
+      calc(#{sbb.pxToRem(8)} * var(--sbb-scaling-factor));
     outline: none;
     color: var(--sbb-color-text);
     font-family: var(--sbb-font-roman);
@@ -152,7 +152,7 @@
 :is(.sbb-menu-trigger.sbb-menu-trigger-header, .sbb-menu-panel-type-header
     .sbb-menu-panel-trigger) {
   position: relative;
-  padding-right: calc(#{pxToRem(24)} * var(--sbb-scaling-factor));
+  padding-right: calc(#{sbb.pxToRem(24)} * var(--sbb-scaling-factor));
   font-size: var(--sbb-font-size);
   line-height: var(--sbb-line-height);
 
@@ -188,8 +188,8 @@
 .sbb-menu-panel-type-header .sbb-menu-panel-trigger {
   width: 100%;
   text-align: left;
-  padding-left: calc(#{pxToRem(8)} * var(--sbb-scaling-factor));
-  padding-right: calc(#{pxToRem(8)} * var(--sbb-scaling-factor));
+  padding-left: calc(#{sbb.pxToRem(8)} * var(--sbb-scaling-factor));
+  padding-right: calc(#{sbb.pxToRem(8)} * var(--sbb-scaling-factor));
 }
 
 .sbb-header-lean-container-end {
@@ -197,12 +197,12 @@
   display: flex;
   align-items: center;
   justify-content: flex-end;
-  margin-right: calc(#{pxToRem(35)} * var(--sbb-scaling-factor));
+  margin-right: calc(#{sbb.pxToRem(35)} * var(--sbb-scaling-factor));
 
   > .sbb-header-lean-usermenu {
     z-index: 1;
-    margin-left: calc(#{pxToRem(15)} * var(--sbb-scaling-factor));
-    margin-right: calc(#{pxToRem(15)} * var(--sbb-scaling-factor));
+    margin-left: calc(#{sbb.pxToRem(15)} * var(--sbb-scaling-factor));
+    margin-right: calc(#{sbb.pxToRem(15)} * var(--sbb-scaling-factor));
   }
 }
 
@@ -211,7 +211,7 @@
   height: var(--sbb-header-lean-height);
 
   > svg {
-    width: calc(#{pxToRem(80)} * var(--sbb-scaling-factor));
+    width: calc(#{sbb.pxToRem(80)} * var(--sbb-scaling-factor));
   }
 }
 
@@ -246,13 +246,13 @@
   display: flex;
   align-items: center;
   height: var(--sbb-header-lean-height);
-  margin-bottom: calc(#{pxToRem(12)} * var(--sbb-scaling-factor));
+  margin-bottom: calc(#{sbb.pxToRem(12)} * var(--sbb-scaling-factor));
   flex: 0 0 auto;
 }
 
 .sbb-header-lean-side-menu {
   flex-direction: column;
-  margin: 0 calc(#{pxToRem(15)} * var(--sbb-scaling-factor));
+  margin: 0 calc(#{sbb.pxToRem(15)} * var(--sbb-scaling-factor));
 
   > :is(a, button) {
     display: block;

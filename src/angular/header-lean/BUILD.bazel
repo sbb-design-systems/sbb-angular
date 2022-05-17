@@ -38,7 +38,7 @@ sass_binary(
     name = "app_chooser_section_scss",
     src = "app-chooser-section.scss",
     deps = [
-        "//src/angular/styles:common_scss_lib",
+        "//src/angular:scss_lib",
     ],
 )
 
@@ -46,7 +46,7 @@ sass_binary(
     name = "header_menu_trigger_scss",
     src = "header-menu-trigger.scss",
     deps = [
-        "//src/angular/styles:common_scss_lib",
+        "//src/angular:scss_lib",
     ],
 )
 
@@ -54,7 +54,7 @@ sass_binary(
     name = "header_menu_scss",
     src = "header-menu.scss",
     deps = [
-        "//src/angular/styles:common_scss_lib",
+        "//src/angular:scss_lib",
     ],
 )
 
@@ -62,7 +62,7 @@ sass_binary(
     name = "header_scss",
     src = "header.scss",
     deps = [
-        "//src/angular/styles:common_scss_lib",
+        "//src/angular:scss_lib",
     ],
 )
 

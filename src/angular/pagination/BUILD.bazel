@@ -34,7 +34,7 @@ sass_binary(
     name = "navigation_navigation_scss",
     src = "navigation/navigation.scss",
     deps = [
-        "//src/angular/styles:common_scss_lib",
+        "//src/angular:scss_lib",
     ],
 )
 
@@ -42,7 +42,7 @@ sass_binary(
     name = "paginator_paginator_scss",
     src = "paginator/paginator.scss",
     deps = [
-        "//src/angular/styles:common_scss_lib",
+        "//src/angular:scss_lib",
     ],
 )
 

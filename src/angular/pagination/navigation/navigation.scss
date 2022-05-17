@@ -1,4 +1,4 @@
-@import '../../styles/common';
+@use '@sbb-esta/angular' as sbb;
 
 .sbb-navigation {
   display: flex;
@@ -68,7 +68,7 @@
 }
 
 .sbb-navigation-item-boundary-text {
-  @include ellipsis;
+  @include sbb.ellipsis;
   max-width: 100%;
 
   .sbb-navigation-item-boundary-left & {

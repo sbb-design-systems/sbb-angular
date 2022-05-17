@@ -1,4 +1,4 @@
-@import '../styles/common';
+@use '@sbb-esta/angular' as sbb;
 
 .sbb-breadcrumbs {
   display: block;
@@ -8,8 +8,8 @@
   display: flex;
   align-items: center;
   flex-wrap: wrap;
-  gap: calc(#{pxToRem(12)} * var(--sbb-scaling-factor))
-    calc(#{pxToRem(6)} * var(--sbb-scaling-factor));
+  gap: calc(#{sbb.pxToRem(12)} * var(--sbb-scaling-factor))
+    calc(#{sbb.pxToRem(6)} * var(--sbb-scaling-factor));
 }
 
 .sbb-breadcrumb {
@@ -18,10 +18,10 @@
   max-width: 100%;
 
   :where(html.sbb-lean) & {
-    margin-right: pxToRem(4);
+    margin-right: sbb.pxToRem(4);
   }
 
-  @include mq($from: tabletPortrait) {
+  @include sbb.mq($from: tabletPortrait) {
     display: flex;
   }
 
@@ -58,17 +58,17 @@
     background-size: var(--sbb-icon-size-default) var(--sbb-icon-size-default);
     width: var(--sbb-icon-size-default);
     height: var(--sbb-icon-size-default);
-    margin-right: calc(#{pxToRem(6)} * var(--sbb-scaling-factor));
+    margin-right: calc(#{sbb.pxToRem(6)} * var(--sbb-scaling-factor));
     flex-shrink: 0;
 
     :where(html.sbb-lean) & {
       background-image: var(--sbb-url-icon-chevron-small-right-small-granite);
-      margin-right: pxToRem(4);
+      margin-right: sbb.pxToRem(4);
     }
   }
 
   :is(a, button, .sbb-menu-trigger-breadcrumb.sbb-menu-trigger-root) {
-    @include buttonResetFrameless();
+    @include sbb.buttonResetFrameless();
     outline: 0;
     cursor: pointer;
   }
@@ -94,7 +94,7 @@
     display: none;
   }
 
-  @include mq($from: tabletPortrait) {
+  @include sbb.mq($from: tabletPortrait) {
     display: none;
   }
 }
@@ -103,7 +103,7 @@
 :is(.sbb-breadcrumb
     :is(a, button), .sbb-menu-trigger-breadcrumb.sbb-menu-trigger-root, .sbb-menu-panel-type-breadcrumb
     .sbb-menu-panel-trigger) {
-  @include ellipsis;
+  @include sbb.ellipsis;
   font-family: var(--sbb-font-roman);
   font-size: var(--sbb-font-size-small);
   line-height: var(--sbb-line-height-small);
@@ -112,7 +112,7 @@
   text-decoration: none;
 
   :where(html.sbb-lean) & {
-    line-height: pxToRem(16);
+    line-height: sbb.pxToRem(16);
   }
 
   &:is(:hover, :focus) {
@@ -135,7 +135,7 @@
   &::after {
     content: '';
     display: inline-block;
-    @include absoluteCenterY;
+    @include sbb.absoluteCenterY;
     background: var(--sbb-url-icon-chevron-small-down-circle-small-granite) no-repeat center;
     background-size: var(--sbb-icon-size-default) var(--sbb-icon-size-default);
     width: var(--sbb-icon-size-default);
@@ -170,7 +170,7 @@
 
       animation: var(--sbb-transition-fast-start) 0s 1 arrowRotate;
       transform: translateY(-50%) rotate(-180deg);
-      margin-top: calc(#{pxToRem(-1)} * var(--sbb-scaling-factor));
+      margin-top: calc(#{sbb.pxToRem(-1)} * var(--sbb-scaling-factor));
       background-image: var(--sbb-url-icon-chevron-small-down-circle-small-red125);
     }
   }
@@ -184,7 +184,7 @@
     box-shadow: var(--sbb-box-shadow-below), var(--sbb-box-shadow-horizontal-border-bottom);
 
     &::after {
-      margin-top: calc(var(--sbb-border-width) - #{pxToRem(1)});
+      margin-top: calc(var(--sbb-border-width) - #{sbb.pxToRem(1)});
     }
   }
 }

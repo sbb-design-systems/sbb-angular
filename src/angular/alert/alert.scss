@@ -1,4 +1,4 @@
-@import '../styles/common';
+@use '@sbb-esta/angular' as sbb;
 
 .sbb-alert {
   display: flex;
@@ -11,13 +11,13 @@
   outline: none;
   overflow-y: hidden;
 
-  padding: pxToRem(16);
-  @include mq($from: tablet) {
-    padding: pxToRem(36) pxToRem(24) pxToRem(36) pxToRem(48);
+  padding: sbb.pxToRem(16);
+  @include sbb.mq($from: tablet) {
+    padding: sbb.pxToRem(36) sbb.pxToRem(24) sbb.pxToRem(36) sbb.pxToRem(48);
   }
-  @include mq($from: desktop) {
-    padding: calc(#{pxToRem(40)} * var(--sbb-scaling-factor))
-      calc(#{pxToRem(56)} * var(--sbb-scaling-factor));
+  @include sbb.mq($from: desktop) {
+    padding: calc(#{sbb.pxToRem(40)} * var(--sbb-scaling-factor))
+      calc(#{sbb.pxToRem(56)} * var(--sbb-scaling-factor));
   }
 
   :is(a, a:is(:hover, :focus)) {
@@ -41,7 +41,7 @@
   line-height: 0;
 
   :where(html:not(.sbb-lean)) & {
-    @include mq($from: desktop4k) {
+    @include sbb.mq($from: desktop4k) {
       flex-shrink: 1;
       flex-grow: 1;
       text-align: right;
@@ -51,14 +51,14 @@
 
 .sbb-alert-content {
   flex: 1 1 auto;
-  margin: calc(#{pxToRem(-2)} * var(--sbb-scaling-factor)) pxToRem(12) pxToRem(0);
+  margin: calc(#{sbb.pxToRem(-2)} * var(--sbb-scaling-factor)) sbb.pxToRem(12) sbb.pxToRem(0);
 
   :where(html:not(.sbb-lean)) & {
-    @include mq($from: tablet) {
-      margin-left: calc(#{pxToRem(24)} * var(--sbb-scaling-factor));
-      margin-right: calc(#{pxToRem(24)} * var(--sbb-scaling-factor));
+    @include sbb.mq($from: tablet) {
+      margin-left: calc(#{sbb.pxToRem(24)} * var(--sbb-scaling-factor));
+      margin-right: calc(#{sbb.pxToRem(24)} * var(--sbb-scaling-factor));
     }
-    @include mq($from: desktop4k) {
+    @include sbb.mq($from: desktop4k) {
       flex: 0 0 50%;
     }
   }
@@ -70,20 +70,20 @@
 
 .sbb-alert-content-link-icon {
   vertical-align: middle;
-  margin-left: calc(#{pxToRem(3)} * var(--sbb-scaling-factor));
+  margin-left: calc(#{sbb.pxToRem(3)} * var(--sbb-scaling-factor));
 }
 
 .sbb-alert-close-button {
   cursor: pointer;
   color: var(--sbb-color-white);
 
-  @include mq($from: desktop) {
+  @include sbb.mq($from: desktop) {
     align-self: center;
   }
 }
 
 .sbb-alert-close-button-icon {
-  padding: calc(#{pxToRem(3)} * var(--sbb-scaling-factor));
+  padding: calc(#{sbb.pxToRem(3)} * var(--sbb-scaling-factor));
   border: var(--sbb-color-white) solid var(--sbb-border-width-thin);
   border-radius: 50%;
 }

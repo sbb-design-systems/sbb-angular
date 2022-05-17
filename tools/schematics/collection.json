@@ -12,6 +12,10 @@
     "selectorGroups": {
       "description": "Get a list of selector for metrics",
       "factory": "./selector-groups/index#selectorGroups"
+    },
+    "sassMigration": {
+      "description": "Migrate sass imports to use",
+      "factory": "./sass-migration/index#sassMigration"
     }
   }
 }
