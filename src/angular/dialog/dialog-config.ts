@@ -100,7 +100,7 @@ export class SbbDialogConfig<D = any> {
   restoreFocus?: boolean = true;
 
   /** Whether to wait for the opening animation to finish before trapping focus. */
-  delayFocusTrap?: boolean = true;
+  delayFocusTrap?: boolean = false;
 
   /** Scroll strategy to be used for the dialog. */
   scrollStrategy?: ScrollStrategy;
