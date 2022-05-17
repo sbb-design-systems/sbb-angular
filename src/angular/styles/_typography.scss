@@ -1851,11 +1851,6 @@ textarea {
   display: flex;
   flex: 1 1 50%;
   padding-right: calc(#{pxToRem(8)} * var(--sbb-scaling-factor));
-  margin-bottom: calc(#{pxToRem(8)} * var(--sbb-scaling-factor));
-
-  @include mq($from: tablet) {
-    margin-bottom: 0;
-  }
 }
 
 .sbb-selection-panel-subtitle {
@@ -1868,12 +1863,14 @@ textarea {
   flex: 1 100%;
   order: 3;
   color: var(--sbb-color-grey);
+  margin-top: calc(#{pxToRem(8)} * var(--sbb-scaling-factor));
 
   @include mq($from: tablet) {
     padding-left: calc(#{pxToRem(24)} * var(--sbb-scaling-factor));
     padding-right: calc(#{pxToRem(8)} * var(--sbb-scaling-factor));
-    flex-basis: auto;
+    flex-basis: 0%;
     order: initial;
+    margin-top: initial;
   }
 }
 
