@@ -17,7 +17,7 @@ export class CheckboxIndeterminateStateExample {
     return this.selection.selected.length === this.options.length;
   }
 
-  masterToggle() {
+  parentToggle() {
     this.isAllSelected()
       ? this.selection.clear()
       : this.options.forEach((option) => this.selection.select(option));

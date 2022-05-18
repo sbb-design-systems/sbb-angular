@@ -32,7 +32,7 @@ sass_binary(
     name = "sort_sort_header_scss",
     src = "sort/sort-header.scss",
     deps = [
-        "//src/angular/styles:common_scss_lib",
+        "//src/angular:scss_lib",
     ],
 )
 

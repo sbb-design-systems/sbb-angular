@@ -1,4 +1,5 @@
-@import './tabs';
+@use '@sbb-esta/angular' as sbb;
+@use './tabs';
 
 .sbb-tab-group {
   display: flex;
@@ -7,7 +8,7 @@
 
 // Wraps each tab label
 .sbb-tab-label {
-  @include tab-label;
+  @include tabs.tab-label;
   position: relative;
 }
 
@@ -19,13 +20,13 @@
 
 // The bottom section of the view; contains the tab bodies
 .sbb-tab-body-wrapper {
-  @include tab-body-wrapper;
+  @include tabs.tab-body-wrapper;
   display: flex;
 }
 
 // Wraps each tab body
 .sbb-tab-body {
-  @include sbbAbsoluteFill();
+  @include sbb.sbbAbsoluteFill();
 
   display: block;
   overflow: hidden;
@@ -34,7 +35,7 @@
   flex-basis: 100%;
 
   :where(html.sbb-lean) & {
-    padding: pxToRem(15);
+    padding: sbb.pxToRem(15);
   }
 
   &.sbb-tab-body-active {

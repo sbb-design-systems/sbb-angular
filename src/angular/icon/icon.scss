@@ -1,4 +1,4 @@
-@import '../styles/common';
+@use '@sbb-esta/angular' as sbb;
 
 .sbb-icon {
   background-repeat: no-repeat;
@@ -29,8 +29,8 @@
 
   &.sbb-icon-inline {
     vertical-align: middle;
-    margin-block-start: calc(pxToRem(-4) * var(--sbb-scaling-factor));
-    margin-block-end: calc(pxToRem(-2) * var(--sbb-scaling-factor));
+    margin-block-start: calc(sbb.pxToRem(-4) * var(--sbb-scaling-factor));
+    margin-block-end: calc(sbb.pxToRem(-2) * var(--sbb-scaling-factor));
   }
 
   // If any ancestor has .sbb-icon-fit as a class, width and height will be set to 100%.

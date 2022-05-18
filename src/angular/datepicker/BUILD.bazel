@@ -37,7 +37,7 @@ sass_binary(
     name = "datepicker_datepicker_scss",
     src = "datepicker/datepicker.scss",
     deps = [
-        "//src/angular/styles:common_scss_lib",
+        "//src/angular:scss_lib",
     ],
 )
 
@@ -45,7 +45,7 @@ sass_binary(
     name = "datepicker_content_datepicker_content_scss",
     src = "datepicker-content/datepicker-content.scss",
     deps = [
-        "//src/angular/styles:common_scss_lib",
+        "//src/angular:scss_lib",
     ],
 )
 

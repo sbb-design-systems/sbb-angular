@@ -51,12 +51,8 @@ export function bazel(options: { filter?: string }): Rule {
               ? new RelativeModuleTypeScriptDependencyResolver(tsConfig)
               : new StrictModuleTypeScriptDependencyResolver(tsConfig);
             const styleReplaceMap = new Map<string, string>()
-              .set('../styles/common', '//src/angular/styles:common_scss_lib')
-              .set('/angular/styles/common', '//src/angular/styles:common_scss_lib')
-              .set(
-                'external/npm/node_modules/@angular/cdk',
-                '//src/angular/styles:common_scss_lib'
-              );
+              .set('@sbb-esta/angular', '//src/angular:scss_lib')
+              .set('external/npm/node_modules/@angular/cdk', '//src/angular:scss_lib');
             const sassDependencyResolver = new FlexibleSassDependencyResolver(
               moduleDetector,
               npmDependencyResolver,

@@ -1,8 +1,8 @@
-@import '../../../../../angular/styles/common';
+@use '@sbb-esta/angular' as sbb;
 
 :host {
   display: block;
-  padding: pxToEm(24);
+  padding: sbb.pxToEm(24);
   margin-bottom: 1em;
   position: relative;
   border: 1px solid var(--sbb-color-silver);
@@ -16,15 +16,15 @@
 .example-viewer-header {
   border-bottom: 1px solid var(--sbb-color-silver);
   display: flex;
-  padding-bottom: pxToEm(20);
+  padding-bottom: sbb.pxToEm(20);
   margin-bottom: 1em;
 }
 
 .example-viewer-header-button {
   flex-shrink: 0;
   margin-left: 0.5em;
-  width: pxToEm(36);
-  height: pxToEm(36);
+  width: sbb.pxToEm(36);
+  height: sbb.pxToEm(36);
 }
 
 .example-viewer-title {

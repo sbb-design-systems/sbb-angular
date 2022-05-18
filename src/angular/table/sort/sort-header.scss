@@ -1,4 +1,4 @@
-@import '../../styles/common';
+@use '@sbb-esta/angular' as sbb;
 
 .sbb-sort-header {
   cursor: pointer;
@@ -7,7 +7,7 @@
   // Usually we could rely on the arrow showing up to be focus indication, but if a header is
   // active, the arrow will always be shown so the user has no way of telling the difference.
   &:is(.cdk-keyboard-focused, .cdk-program-focused) {
-    @include sbbFocusOutline();
+    @include sbb.sbbFocusOutline();
   }
 
   &:hover .sbb-sort-header-container {
@@ -57,14 +57,14 @@
   // This will be overwritten when the arrow animations kick in. See #11819.
   opacity: 0;
 
-  margin: calc(#{pxToRem(-1)} * var(--sbb-scaling-factor))
-    calc(#{pxToRem(-8)} * var(--sbb-scaling-factor))
-    calc(#{pxToRem(-1)} * var(--sbb-scaling-factor)) var(--sbb-table-sort-header-arrow-margin);
+  margin: calc(#{sbb.pxToRem(-1)} * var(--sbb-scaling-factor))
+    calc(#{sbb.pxToRem(-8)} * var(--sbb-scaling-factor))
+    calc(#{sbb.pxToRem(-1)} * var(--sbb-scaling-factor)) var(--sbb-table-sort-header-arrow-margin);
 
   .sbb-sort-header-position-before & {
-    margin: calc(#{pxToRem(-1)} * var(--sbb-scaling-factor))
-      var(--sbb-table-sort-header-arrow-margin) calc(#{pxToRem(-1)} * var(--sbb-scaling-factor))
-      calc(#{pxToRem(-1)} * var(--sbb-scaling-factor));
+    margin: calc(#{sbb.pxToRem(-1)} * var(--sbb-scaling-factor))
+      var(--sbb-table-sort-header-arrow-margin) calc(#{sbb.pxToRem(-1)} * var(--sbb-scaling-factor))
+      calc(#{sbb.pxToRem(-1)} * var(--sbb-scaling-factor));
   }
 
   svg {

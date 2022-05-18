@@ -32,7 +32,7 @@ sass_binary(
     name = "notification_toast_container_scss",
     src = "notification-toast-container.scss",
     deps = [
-        "//src/angular/styles:common_scss_lib",
+        "//src/angular:scss_lib",
     ],
 )
 

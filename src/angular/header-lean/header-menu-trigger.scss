@@ -1,4 +1,4 @@
-@import '../styles/common';
+@use '@sbb-esta/angular' as sbb;
 
 .sbb-header-menu-trigger {
   position: relative;
@@ -16,18 +16,18 @@
 }
 
 .sbb-header-menu-trigger-content {
-  @include ellipsis();
+  @include sbb.ellipsis();
   border: var(--sbb-border-width-thin) solid transparent;
   display: block;
-  padding-right: calc(#{pxToRem(24)} * var(--sbb-scaling-factor));
+  padding-right: calc(#{sbb.pxToRem(24)} * var(--sbb-scaling-factor));
   background-color: var(--sbb-color-background);
 
   .sbb-header-lean-main-menu & {
     display: inline-block;
     position: relative;
-    padding: calc(#{pxToRem(6)} * var(--sbb-scaling-factor))
-      calc(#{pxToRem(8)} * var(--sbb-scaling-factor));
-    padding-right: pxToRem(32);
+    padding: calc(#{sbb.pxToRem(6)} * var(--sbb-scaling-factor))
+      calc(#{sbb.pxToRem(8)} * var(--sbb-scaling-factor));
+    padding-right: sbb.pxToRem(32);
     max-width: 100%;
   }
   .sbb-header-lean-main-menu .sbb-header-menu-trigger[aria-expanded='true'] & {
@@ -54,7 +54,7 @@
   transform: translateY(-50%) rotate(-90deg);
 
   .sbb-header-lean-main-menu & {
-    right: pxToRem(8);
+    right: sbb.pxToRem(8);
     transform: translateY(-50%) rotate(0);
     transition: transform var(--sbb-transition-default);
   }

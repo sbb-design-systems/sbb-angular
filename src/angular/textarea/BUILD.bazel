@@ -32,7 +32,7 @@ sass_binary(
     name = "textarea_textarea_scss",
     src = "textarea/textarea.scss",
     deps = [
-        "//src/angular/styles:common_scss_lib",
+        "//src/angular:scss_lib",
     ],
 )
 

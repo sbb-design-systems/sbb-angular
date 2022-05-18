@@ -1,4 +1,4 @@
-@import '../styles/common';
+@use '@sbb-esta/angular' as sbb;
 
 .sbb-select {
   display: inline-block;
@@ -6,10 +6,10 @@
   position: relative;
   text-align: left; // Used to be table header compatible where `center` is the default
 
-  padding-right: calc(#{pxToRem(44)} * var(--sbb-scaling-factor));
+  padding-right: calc(#{sbb.pxToRem(44)} * var(--sbb-scaling-factor));
 
   :where(html.sbb-lean) & {
-    padding-right: pxToRem(38);
+    padding-right: sbb.pxToRem(38);
   }
 
   &:is([readonly], .sbb-readonly) {
@@ -35,12 +35,12 @@
 }
 
 .sbb-select-arrow-icon {
-  @include absoluteCenterY();
-  right: calc(#{pxToRem(9)} * var(--sbb-scaling-factor));
+  @include sbb.absoluteCenterY();
+  right: calc(#{sbb.pxToRem(9)} * var(--sbb-scaling-factor));
   color: var(--sbb-color-grey);
 
   :where(html.sbb-lean) & {
-    right: pxToRem(6);
+    right: sbb.pxToRem(6);
   }
 
   .sbb-select:is([readonly], .sbb-readonly) & {
@@ -70,6 +70,6 @@
   }
 
   :where(html:not(.sbb-lean)) &.sbb-select-multiple .sbb-menu-group .sbb-menu-item {
-    padding-left: calc(#{pxToRem(14)} * var(--sbb-scaling-factor));
+    padding-left: calc(#{sbb.pxToRem(14)} * var(--sbb-scaling-factor));
   }
 }

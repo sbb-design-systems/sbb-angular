@@ -1,5 +1,4 @@
 <% if (customTsConfig) { %>load("@npm//@bazel/concatjs:index.bzl", "ts_config")
-<% } %><% if (hasStyleBundle) { %>load("@npm//scss-bundle:index.bzl", "scss_bundle")
 <% } %>load(
     "//src/<%= name %>:config.bzl",
     "<%= constant(shortName) %>_ENTRYPOINTS",
@@ -55,13 +54,13 @@ ts_config(
 sass_binary(
     name = "typography",
     src = "typography.scss",
-    deps = ["//src/angular/styles:typography_lib"],
+    deps = ["//src/angular/styles:scss_lib"],
 )<% } %><% if (hasSassLibrary) { %>
 
 sass_library(
-    name = "<%= bazelName(name) %>_scss_lib",
+    name = "scss_lib",
     srcs = glob(["**/_*.scss"]),
-    deps = ["//src/angular/styles:common_scss_lib"],
+    deps = ["//src/angular/styles:scss_lib"],
 )<% } %><% for (let stylesheet of sassBinaries) { %>
 
 sass_binary(
@@ -70,22 +69,6 @@ sass_binary(
     deps = [<% for (let dependency of stylesheet.dependencies) { %>
         "<%= dependency %>",<% } %>
     ],<% } %>
-)<% } %><% if (hasStyleBundle) { %>
-
-scss_bundle(
-    name = "styles_bundle",
-    outs = ["_styles.scss"],
-    args = [
-        "--entryFile=$(location :_style_bundle.scss)",
-        "--outFile=$(location :_styles.scss)",
-    ],
-    data = [
-        ":_style_bundle.scss",
-        # Config file is required by "scss-bundle" and will be automatically
-        # loaded by the CLI. It expects the config to be in the execroot.
-        "//:scss-bundle.config.json",
-        "//src/angular/styles:common_scss_lib",
-    ],
 )<% } %><% if (hasTests) { %>
 
 ng_test_library(
@@ -119,8 +102,8 @@ filegroup(
 ng_package(
     name = "npm_package",
     srcs = [
-        "package.json",<% if (hasStyleBundle) { %>
-        ":styles_bundle",<% } %><% if (hasTypography) { %>
+        "package.json",<% if (hasSassLibrary) { %>
+        ":scss_lib",<% } %><% if (hasTypography) { %>
         ":typography",<% } %><% if (name === 'angular') { %>
         "//src/angular/i18n:xlf",<% } %>
     ],<% if (hasSchematics) { %>

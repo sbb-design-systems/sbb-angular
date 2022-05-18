@@ -32,7 +32,7 @@ sass_binary(
     name = "alert_scss",
     src = "alert.scss",
     deps = [
-        "//src/angular/styles:common_scss_lib",
+        "//src/angular:scss_lib",
     ],
 )
 

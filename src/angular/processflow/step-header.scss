@@ -1,4 +1,4 @@
-@import '../styles/common';
+@use '@sbb-esta/angular' as sbb;
 
 .sbb-step-header {
   outline: none;
@@ -6,12 +6,12 @@
   font-family: var(--sbb-font-light);
   -webkit-tap-highlight-color: transparent;
   // Create a buffer space in order for the scrollbar to not be adjacent to the active underline.
-  margin-bottom: pxToRem(8);
+  margin-bottom: sbb.pxToRem(8);
 }
 
 .sbb-step-label {
   display: inline-block;
-  @include ellipsis;
+  @include sbb.ellipsis;
   vertical-align: middle;
   color: var(--sbb-color-metal);
   cursor: default;
@@ -20,18 +20,18 @@
   line-height: 1;
 
   :where(html:not(.sbb-lean)) & {
-    @include mq($from: desktop) {
+    @include sbb.mq($from: desktop) {
       padding-bottom: 1em;
     }
   }
   :where(html.sbb-lean) & {
-    font-size: pxToRem(16);
-    padding-bottom: pxToRem(5);
+    font-size: sbb.pxToRem(16);
+    padding-bottom: sbb.pxToRem(5);
   }
 }
 
 .sbb-step-text-label {
-  @include ellipsis;
+  @include sbb.ellipsis;
 }
 
 .sbb-step-label-active {
@@ -45,7 +45,7 @@
     bottom: 0;
     width: 0;
     left: 50%;
-    height: pxToRem(1);
+    height: sbb.pxToRem(1);
     border-bottom: var(--sbb-border-width-thin) solid currentColor;
     transition: {
       duration: var(--sbb-transition-duration-default);

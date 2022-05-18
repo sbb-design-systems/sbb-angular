@@ -1,4 +1,4 @@
-@import '../styles/common';
+@use '@sbb-esta/angular' as sbb;
 
 @mixin tab-line-bottom() {
   &::after {
@@ -32,7 +32,7 @@
 
 // Mixin styles for labels that are contained within the tab header.
 @mixin tab-label {
-  margin-right: pxToRem(32);
+  margin-right: sbb.pxToRem(32);
   cursor: pointer;
   box-sizing: border-box;
   text-align: center;
@@ -41,25 +41,25 @@
   align-items: center;
   white-space: nowrap;
   font-family: var(--sbb-font-light);
-  font-size: pxToRem(20);
+  font-size: sbb.pxToRem(20);
   color: var(--sbb-color-text);
   line-height: 1em;
-  padding-bottom: pxToRem(20);
+  padding-bottom: sbb.pxToRem(20);
   outline: none;
 
   @include tab-line-bottom;
 
   :where(html:not(.sbb-lean)) & {
-    @include mq($from: tablet) {
-      margin-right: calc(#{pxToRem(42)} * var(--sbb-scaling-factor));
-      font-size: calc(#{pxToRem(26)} * var(--sbb-scaling-factor));
+    @include sbb.mq($from: tablet) {
+      margin-right: calc(#{sbb.pxToRem(42)} * var(--sbb-scaling-factor));
+      font-size: calc(#{sbb.pxToRem(26)} * var(--sbb-scaling-factor));
     }
   }
 
   :where(html.sbb-lean) & {
     font-size: var(--sbb-font-size);
-    line-height: pxToRem(20);
-    padding: pxToRem(6) pxToRem(15) pxToRem(9);
+    line-height: sbb.pxToRem(20);
+    padding: sbb.pxToRem(6) sbb.pxToRem(15) sbb.pxToRem(9);
     background-color: var(--sbb-color-background);
     margin-right: 0;
     border: var(--sbb-border-width) solid transparent;
@@ -135,7 +135,7 @@
   // Reserve space for the badge in lean mode.
   .sbb-badge:not(.sbb-badge-hidden) {
     :where(html.sbb-lean) & {
-      padding-right: pxToRem(11);
+      padding-right: sbb.pxToRem(11);
     }
   }
 
@@ -158,12 +158,12 @@
 
   // The following styles only apply in lean design
   .sbb-tab-header-pagination {
-    @include user-select(none);
+    @include sbb.user-select(none);
     position: relative;
     display: none;
     justify-content: center;
     align-items: center;
-    min-width: pxToRem(32);
+    min-width: sbb.pxToRem(32);
     cursor: pointer;
     z-index: 2;
     -webkit-tap-highlight-color: transparent;
@@ -171,8 +171,8 @@
     color: var(--sbb-color-granite);
 
     // Copied shadow from components
-    box-shadow: 0 pxToRem(2) pxToRem(4) pxToRem(-1) #0003, 0 pxToRem(4) pxToRem(5) #00000024,
-      0 pxToRem(1) pxToRem(10) #0000001f;
+    box-shadow: 0 sbb.pxToRem(2) sbb.pxToRem(4) sbb.pxToRem(-1) #0003,
+      0 sbb.pxToRem(4) sbb.pxToRem(5) #00000024, 0 sbb.pxToRem(1) sbb.pxToRem(10) #0000001f;
 
     @include tab-line-bottom;
 
@@ -190,7 +190,9 @@
     }
 
     &.sbb-tab-header-pagination-after.sbb-tab-header-pagination-disabled::after {
-      left: pxToRem(-1); // Workaround to overlap 1px gap between right chevron and last tab label
+      left: sbb.pxToRem(
+        -1
+      ); // Workaround to overlap 1px gap between right chevron and last tab label
     }
   }
 
@@ -226,14 +228,14 @@
         top: 0;
         content: '';
         z-index: 2;
-        width: pxToRem(12);
+        width: sbb.pxToRem(12);
         height: calc(100% - 0.5rem);
         transition: transform var(--sbb-transition-duration-fast)
           var(--sbb-transition-timing-default);
         pointer-events: none;
 
-        @include mq($from: tablet) {
-          width: calc(#{pxToRem(24)} * var(--sbb-scaling-factor));
+        @include sbb.mq($from: tablet) {
+          width: calc(#{sbb.pxToRem(24)} * var(--sbb-scaling-factor));
         }
       }
 
@@ -263,7 +265,7 @@
 // Structural styles for the element that wraps the paginated header items.
 @mixin paginated-tab-header-item-wrapper($parent) {
   display: flex;
-  padding-top: calc(#{pxToRem(2)} * var(--sbb-scaling-factor));
+  padding-top: calc(#{sbb.pxToRem(2)} * var(--sbb-scaling-factor));
 
   :where(html.sbb-lean) & {
     padding-top: 0;
@@ -284,7 +286,7 @@
   flex-grow: 1;
   overflow-x: auto;
   z-index: 1;
-  padding-bottom: pxToRem(20);
+  padding-bottom: sbb.pxToRem(20);
 
   :where(html.sbb-lean) & {
     overflow: hidden;

@@ -42,7 +42,7 @@ export class SelectableTableExample {
   }
 
   /** Selects all rows if they are not all selected; otherwise clear selection. */
-  masterToggle() {
+  parentToggle() {
     this.isAllSelected()
       ? this.selection.clear()
       : this.dataSource.filteredData.forEach((row) => this.selection.select(row));

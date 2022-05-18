@@ -29,7 +29,7 @@ sass_binary(
     name = "textexpand_scss",
     src = "textexpand.scss",
     deps = [
-        "//src/angular/styles:common_scss_lib",
+        "//src/angular:scss_lib",
     ],
 )
 

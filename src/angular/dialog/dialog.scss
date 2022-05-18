@@ -1,5 +1,5 @@
 @use 'external/npm/node_modules/@angular/cdk' as cdk;
-@import '../styles/common';
+@use '@sbb-esta/angular' as sbb;
 
 .sbb-overlay-background {
   background-color: var(--sbb-color-white-alpha70);
@@ -26,7 +26,7 @@
   max-height: inherit;
 
   @include cdk.high-contrast(active, off) {
-    outline: solid pxToRem(1);
+    outline: solid sbb.pxToRem(1);
   }
 }
 
@@ -55,20 +55,20 @@
 
 .sbb-dialog-title {
   font-size: var(--sbb-font-size);
-  padding: calc(#{pxToRem(15)} * var(--sbb-scaling-factor))
-    calc(#{pxToRem(40)} * var(--sbb-scaling-factor))
-    calc(#{pxToRem(15)} * var(--sbb-scaling-factor)) var(--sbb-dialog-padding);
+  padding: calc(#{sbb.pxToRem(15)} * var(--sbb-scaling-factor))
+    calc(#{sbb.pxToRem(40)} * var(--sbb-scaling-factor))
+    calc(#{sbb.pxToRem(15)} * var(--sbb-scaling-factor)) var(--sbb-dialog-padding);
   flex: 0 0 auto;
   display: block;
   position: relative;
   box-shadow: var(--sbb-box-shadow-horizontal-border-top);
-  @include ellipsis;
-  min-height: calc(#{pxToRem(53)} * var(--sbb-scaling-factor)); // Supports empty title
+  @include sbb.ellipsis;
+  min-height: calc(#{sbb.pxToRem(53)} * var(--sbb-scaling-factor)); // Supports empty title
 }
 
 .sbb-dialog-title-close-button {
   position: absolute;
-  right: calc(#{pxToRem(16)} * var(--sbb-scaling-factor));
+  right: calc(#{sbb.pxToRem(16)} * var(--sbb-scaling-factor));
   cursor: pointer;
   line-height: 0;
 
@@ -78,8 +78,8 @@
 }
 
 .sbb-dialog-actions {
-  padding: calc(#{pxToRem(7)} * var(--sbb-scaling-factor))
-    calc(#{pxToRem(16)} * var(--sbb-scaling-factor));
+  padding: calc(#{sbb.pxToRem(7)} * var(--sbb-scaling-factor))
+    calc(#{sbb.pxToRem(16)} * var(--sbb-scaling-factor));
   display: flex;
   flex: 0 0 auto;
   flex-wrap: wrap;

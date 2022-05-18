@@ -1,4 +1,4 @@
-@import '../styles/common';
+@use '@sbb-esta/angular' as sbb;
 
 .sbb-status {
   display: inline-flex;
@@ -32,9 +32,10 @@
 .sbb-status-message {
   background-color: var(--sbb-color-milk);
   color: var(--sbb-color-grey);
-  line-height: calc(#{pxToRem(20)} * var(--sbb-scaling-factor));
+  line-height: calc(#{sbb.pxToRem(20)} * var(--sbb-scaling-factor));
   font-family: var(--sbb-font-roman);
-  margin-left: calc(#{pxToRem(8)} * var(--sbb-scaling-factor));
-  padding: calc(#{pxToRem(1)} * var(--sbb-scaling-factor))
-    calc(#{pxToRem(8)} * var(--sbb-scaling-factor)) calc(#{pxToRem(3)} * var(--sbb-scaling-factor));
+  margin-left: calc(#{sbb.pxToRem(8)} * var(--sbb-scaling-factor));
+  padding: calc(#{sbb.pxToRem(1)} * var(--sbb-scaling-factor))
+    calc(#{sbb.pxToRem(8)} * var(--sbb-scaling-factor))
+    calc(#{sbb.pxToRem(3)} * var(--sbb-scaling-factor));
 }

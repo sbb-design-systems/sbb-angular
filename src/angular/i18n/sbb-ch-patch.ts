@@ -3,10 +3,10 @@ export {};
 /**
  * We want to patch the swiss locales in order to match the date format defined by SBB.
  * The locales are defined at:
- *  - https://github.com/angular/angular/blob/master/packages/common/locales/global/de-CH.js
- *  - https://github.com/angular/angular/blob/master/packages/common/locales/global/en-CH.js
- *  - https://github.com/angular/angular/blob/master/packages/common/locales/global/fr-CH.js
- *  - https://github.com/angular/angular/blob/master/packages/common/locales/global/it-CH.js
+ *  - https://github.com/angular/angular/blob/main/packages/common/locales/global/de-CH.js
+ *  - https://github.com/angular/angular/blob/main/packages/common/locales/global/en-CH.js
+ *  - https://github.com/angular/angular/blob/main/packages/common/locales/global/fr-CH.js
+ *  - https://github.com/angular/angular/blob/main/packages/common/locales/global/it-CH.js
  */
 
 // tslint:disable:no-var-keyword prefer-const

@@ -1,4 +1,4 @@
-@import '../styles/common';
+@use '@sbb-esta/angular' as sbb;
 
 .sbb-file-selector {
   display: inline-block;
@@ -10,7 +10,7 @@
 
 .sbb-file-selector-upload-icon {
   display: inline-block;
-  margin-left: calc(#{pxToRem(6)} * var(--sbb-scaling-factor));
+  margin-left: calc(#{sbb.pxToRem(6)} * var(--sbb-scaling-factor));
 
   // Achieve that icon is not greater than line-height
   margin-bottom: -0.5em;
@@ -45,7 +45,7 @@
 }
 
 .sbb-file-selector-list-type-icon {
-  margin-right: calc(#{pxToRem(8)} * var(--sbb-scaling-factor));
+  margin-right: calc(#{sbb.pxToRem(8)} * var(--sbb-scaling-factor));
 
   :where(html.sbb-lean) & {
     vertical-align: top;
@@ -58,15 +58,15 @@
 
 .sbb-file-selector-list-remove-icon {
   position: relative;
-  width: calc(#{pxToRem(32)} * var(--sbb-scaling-factor));
-  height: calc(#{pxToRem(32)} * var(--sbb-scaling-factor));
-  margin-left: calc(#{pxToRem(8)} * var(--sbb-scaling-factor));
+  width: calc(#{sbb.pxToRem(32)} * var(--sbb-scaling-factor));
+  height: calc(#{sbb.pxToRem(32)} * var(--sbb-scaling-factor));
+  margin-left: calc(#{sbb.pxToRem(8)} * var(--sbb-scaling-factor));
   cursor: pointer;
   outline: 0;
   color: var(--sbb-color-granite);
   border: var(--sbb-border-width-thin) solid var(--sbb-color-storm);
   border-radius: 50%;
-  padding: calc(#{pxToRem(3)} * var(--sbb-scaling-factor));
+  padding: calc(#{sbb.pxToRem(3)} * var(--sbb-scaling-factor));
 
   &:is(:hover, :focus, :active) {
     color: var(--sbb-color-call-to-action-hover);

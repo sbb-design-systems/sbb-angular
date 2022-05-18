@@ -1,4 +1,4 @@
-@import '../styles/common';
+@use '@sbb-esta/angular' as sbb;
 
 .sbb-usermenu {
   display: inline-block;
@@ -39,8 +39,8 @@
     width: 100%;
     left: 0;
     background-color: var(--sbb-color-cloud);
-    height: pxToRem(1);
-    bottom: pxToRem(-1);
+    height: sbb.pxToRem(1);
+    bottom: sbb.pxToRem(-1);
   }
 
   flex-grow: 0;
@@ -50,12 +50,12 @@
 }
 
 .sbb-usermenu-logged-out-icon {
-  margin-right: calc(#{pxToRem(4)} * var(--sbb-scaling-factor));
+  margin-right: calc(#{sbb.pxToRem(4)} * var(--sbb-scaling-factor));
 }
 
 .sbb-usermenu-logged-out-label {
   display: none;
-  @include mq($from: tablet) {
+  @include sbb.mq($from: tablet) {
     display: inline;
   }
 }
@@ -77,8 +77,8 @@
 }
 
 :is(.sbb-usermenu-identification img, .sbb-usermenu-initial-letters) {
-  width: calc(#{pxToRem(30)} * var(--sbb-scaling-factor));
-  height: calc(#{pxToRem(30)} * var(--sbb-scaling-factor));
+  width: calc(#{sbb.pxToRem(30)} * var(--sbb-scaling-factor));
+  height: calc(#{sbb.pxToRem(30)} * var(--sbb-scaling-factor));
 
   :where(html.sbb-lean) & {
     width: var(--sbb-icon-size-default);
@@ -98,13 +98,13 @@
   font-family: var(--sbb-font-bold);
   font-weight: 700;
   text-align: center;
-  font-size: calc(#{pxToRem(13)} * var(--sbb-scaling-factor));
+  font-size: calc(#{sbb.pxToRem(13)} * var(--sbb-scaling-factor));
 
   :where(html:not(.sbb-lean)) & {
     line-height: 1;
   }
   :where(html.sbb-lean) & {
-    font-size: pxToRem(10);
+    font-size: sbb.pxToRem(10);
   }
 }
 
@@ -115,7 +115,7 @@
   justify-content: flex-start;
   overflow: hidden;
   color: var(--sbb-color-weak-accent);
-  padding-left: calc(#{pxToRem(8)} * var(--sbb-scaling-factor));
+  padding-left: calc(#{sbb.pxToRem(8)} * var(--sbb-scaling-factor));
 
   :is(.sbb-usermenu-user-info-has-display-name, .sbb-menu-panel-wrapper) & {
     display: flex;
@@ -125,7 +125,7 @@
 :is(.sbb-usermenu-user-info-display-name, .sbb-usermenu-user-info-name) {
   display: none;
   text-align: left;
-  @include ellipsis();
+  @include sbb.ellipsis();
 
   .sbb-menu-panel-type-usermenu.ng-animating & {
     text-overflow: clip; // Prevents showing ellipsis during animation
@@ -134,7 +134,7 @@
 
 .sbb-usermenu-user-info-display-name {
   .sbb-usermenu-user-info-has-display-name & {
-    @include mq($from: tablet) {
+    @include sbb.mq($from: tablet) {
       display: inline-block;
     }
   }
@@ -151,7 +151,7 @@
 
   color: var(--sbb-color-metal);
   font-size: var(--sbb-font-size-small);
-  line-height: calc(#{pxToRem(14)} * var(--sbb-scaling-factor));
+  line-height: calc(#{sbb.pxToRem(14)} * var(--sbb-scaling-factor));
 
   :where(html.sbb-lean) & {
     color: var(--sbb-color-iron);
@@ -162,10 +162,10 @@
   display: none;
   flex-shrink: 0;
   flex-grow: 0;
-  margin-right: calc(#{pxToRem(8)} * var(--sbb-scaling-factor));
+  margin-right: calc(#{sbb.pxToRem(8)} * var(--sbb-scaling-factor));
   transition: transform var(--sbb-transition-default);
 
-  @include mq($from: tablet) {
+  @include sbb.mq($from: tablet) {
     display: inline-block;
   }
   .sbb-overlay-panel & {
@@ -173,7 +173,7 @@
   }
 
   :where(html.sbb-lean) & {
-    margin-left: pxToRem(8);
+    margin-left: sbb.pxToRem(8);
     transform: rotate(90deg);
   }
 
@@ -238,8 +238,8 @@
   max-width: 100%;
   position: absolute;
   right: 0;
-  --sbb-menu-trigger-width: #{pxToRem(48)}; // Only fallback, will normally be defined programmatically
-  --sbb-menu-trigger-height: #{pxToRem(48)}; // Only fallback, will normally be defined programmatically
+  --sbb-menu-trigger-width: #{sbb.pxToRem(48)}; // Only fallback, will normally be defined programmatically
+  --sbb-menu-trigger-height: #{sbb.pxToRem(48)}; // Only fallback, will normally be defined programmatically
   min-width: calc(var(--sbb-menu-trigger-width) + var(--sbb-usermenu-trigger-padding));
   min-height: var(--sbb-menu-trigger-height);
 

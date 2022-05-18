@@ -1,12 +1,12 @@
-@import '../../styles/common';
-@import '../sidebar';
+@use '@sbb-esta/angular' as sbb;
+@use '../sidebar';
 
 :is(.sbb-sidebar-container.sbb-sidebar-after-header, .sbb-header-lean + .sbb-sidebar-container) {
   top: var(--sbb-header-lean-height);
 }
 
 .sbb-sidebar-backdrop {
-  @include sbb-sidebar-fill();
+  @include sidebar.sbb-sidebar-fill();
 
   display: block;
 
@@ -34,7 +34,7 @@
 }
 
 .sbb-sidebar-container {
-  @include sbb-sidebar-container('.sbb-sidebar-backdrop, .sbb-sidebar-content');
+  @include sidebar.sbb-sidebar-container('.sbb-sidebar-backdrop, .sbb-sidebar-content');
 
   // Need this to take up space in the layout.
   display: flex;
@@ -49,7 +49,7 @@
 }
 
 .sbb-sidebar-content {
-  @include sbb-sidebar-content;
+  @include sidebar.sbb-sidebar-content;
   z-index: 1;
   height: 100%;
 
@@ -67,11 +67,11 @@
 }
 
 .sbb-sidebar {
-  @include sbb-sidebar;
+  @include sidebar.sbb-sidebar;
   position: absolute;
   top: 0;
   bottom: 0;
-  width: calc(#{pxToRem(300)} * var(--sbb-scaling-factor));
+  width: calc(#{sbb.pxToRem(300)} * var(--sbb-scaling-factor));
   transform: translate3d(-100%, 0, 0);
   border-right: var(--sbb-border-width-thin) solid var(--sbb-color-cloud);
   background-color: var(--sbb-color-background);
@@ -99,7 +99,7 @@
 }
 
 .sbb-sidebar-inner-container {
-  @include sbb-sidebar-inner-container();
+  @include sidebar.sbb-sidebar-inner-container();
 
   .sbb-sidebar-container-mobile & {
     padding-top: var(--sbb-sidebar-mobile-menu-bar-height);
@@ -110,9 +110,11 @@
   :where(html:not(.sbb-lean)) & {
     // Standard styles for sbb-sidebar are taken from NBC definitions and are a simple
     // modification to achieve a minimal acceptable look of the sbb-sidebar in standard.
-    --sbb-expansion-panel-padding-horizontal: calc(#{pxToRem(24)} * var(--sbb-scaling-factor));
-    --sbb-expansion-panel-header-padding-top: calc(#{pxToRem(24)} * var(--sbb-scaling-factor));
-    --sbb-expansion-panel-header-padding-bottom: calc(#{pxToRem(24)} * var(--sbb-scaling-factor));
+    --sbb-expansion-panel-padding-horizontal: calc(#{sbb.pxToRem(24)} * var(--sbb-scaling-factor));
+    --sbb-expansion-panel-header-padding-top: calc(#{sbb.pxToRem(24)} * var(--sbb-scaling-factor));
+    --sbb-expansion-panel-header-padding-bottom: calc(
+      #{sbb.pxToRem(24)} * var(--sbb-scaling-factor)
+    );
     --sbb-divider-medium: var(--sbb-divider-small);
   }
 
@@ -158,12 +160,14 @@
 
     + :is(.sbb-expansion-panel, fieldset) {
       margin-top: calc(
-        var(--sbb-divider-medium) - var(--sbb-expansion-panel-header-padding-top) - #{pxToRem(3)} * var(--sbb-scaling-factor)
+        var(--sbb-divider-medium) - var(--sbb-expansion-panel-header-padding-top) - #{sbb.pxToRem(3)} *
+          var(--sbb-scaling-factor)
       );
 
       :where(html.sbb-lean) & {
         margin-top: calc(
-          var(--sbb-divider-big) - var(--sbb-expansion-panel-header-padding-top) - #{pxToRem(3)} * var(--sbb-scaling-factor)
+          var(--sbb-divider-big) - var(--sbb-expansion-panel-header-padding-top) - #{sbb.pxToRem(3)} *
+            var(--sbb-scaling-factor)
         );
       }
     }
@@ -183,21 +187,22 @@
   align-items: center;
   // Overlap spacing of expansion panel padding
   width: calc(100% + var(--sbb-expansion-panel-padding-horizontal) - var(--sbb-border-width-thin));
-  padding: calc(#{pxToRem(5)} * var(--sbb-scaling-factor))
-    var(--sbb-expansion-panel-padding-horizontal) calc(#{pxToRem(7)} * var(--sbb-scaling-factor))
-    calc(#{pxToRem(16)} * var(--sbb-scaling-factor));
+  padding: calc(#{sbb.pxToRem(5)} * var(--sbb-scaling-factor))
+    var(--sbb-expansion-panel-padding-horizontal)
+    calc(#{sbb.pxToRem(7)} * var(--sbb-scaling-factor))
+    calc(#{sbb.pxToRem(16)} * var(--sbb-scaling-factor));
 
   &:is(:hover, :focus) {
-    @include sbbMenuItemRedLean();
+    @include sbb.sbbMenuItemRedLean();
   }
 
   &.sbb-active {
-    @include sbbMenuItemBlackLean();
+    @include sbb.sbbMenuItemBlackLean();
     pointer-events: none;
     cursor: default;
 
     &:focus-visible {
-      @include sbbFocusOutline();
+      @include sbb.sbbFocusOutline();
     }
   }
 
@@ -209,7 +214,7 @@
 }
 
 .sbb-sidebar-link-label {
-  @include ellipsis();
+  @include sbb.ellipsis();
   flex: 1 1;
 }
 
@@ -235,7 +240,7 @@
   align-items: center;
   justify-content: center;
   line-height: 0;
-  width: calc(#{pxToRem(54)} * var(--sbb-scaling-factor));
+  width: calc(#{sbb.pxToRem(54)} * var(--sbb-scaling-factor));
   height: var(--sbb-sidebar-mobile-menu-bar-height);
   cursor: pointer;
   outline: none;

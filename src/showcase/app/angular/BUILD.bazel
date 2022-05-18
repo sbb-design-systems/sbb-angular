@@ -49,7 +49,7 @@ sass_binary(
     name = "icon_overview_cdn_icon_list_cdn_icon_list_component_scss",
     src = "icon-overview/cdn-icon-list/cdn-icon-list.component.scss",
     deps = [
-        "//src/angular/styles:common_scss_lib",
+        "//src/angular:scss_lib",
     ],
 )
 
@@ -57,7 +57,7 @@ sass_binary(
     name = "icon_overview_cdn_icon_list_cdn_icon_cdn_icon_component_scss",
     src = "icon-overview/cdn-icon-list/cdn-icon/cdn-icon.component.scss",
     deps = [
-        "//src/angular/styles:common_scss_lib",
+        "//src/angular:scss_lib",
     ],
 )
 

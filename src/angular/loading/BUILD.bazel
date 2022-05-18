@@ -27,7 +27,7 @@ sass_binary(
     name = "loading_indicator_scss",
     src = "loading-indicator.scss",
     deps = [
-        "//src/angular/styles:common_scss_lib",
+        "//src/angular:scss_lib",
     ],
 )
 

@@ -1,4 +1,4 @@
-@import '../styles/common';
+@use '@sbb-esta/angular' as sbb;
 
 .sbb-autocomplete-visible {
   visibility: visible;
@@ -11,6 +11,6 @@
 
 .sbb-autocomplete-panel .sbb-menu-group .sbb-menu-item {
   :where(html:not(.sbb-lean)) & {
-    padding-left: calc(#{pxToRem(14)} * var(--sbb-scaling-factor));
+    padding-left: calc(#{sbb.pxToRem(14)} * var(--sbb-scaling-factor));
   }
 }

@@ -4,7 +4,7 @@
     <ng-container sbbColumnDef="select">
       <th sbb-header-cell *sbbHeaderCellDef style="width: 50px">
         <sbb-checkbox
-          (change)="$event ? masterToggle() : null"
+          (change)="$event ? parentToggle() : null"
           [checked]="selection.hasValue() && isAllSelected()"
           [indeterminate]="selection.hasValue() && !isAllSelected()"
           [aria-label]="checkboxLabel()"
