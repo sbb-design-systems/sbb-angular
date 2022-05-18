@@ -1,4 +1,4 @@
-@import '../styles/common';
+@use '@sbb-esta/angular' as sbb;
 
 :is(.sbb-tag, .sbb-tag-link) {
   .sbb-badge {
@@ -6,7 +6,7 @@
     align-self: center;
     // In order to align in the center, we need to slightly move the badge downwards.
     // This is due to the padding of the label inside the sbb-tag.
-    margin-top: pxToRem(1);
+    margin-top: sbb.pxToRem(1);
   }
   .sbb-badge-content {
     position: relative;
@@ -22,7 +22,7 @@
 .sbb-tags {
   display: flex;
   flex-wrap: wrap;
-  gap: calc(#{pxToRem(8)} * var(--sbb-scaling-factor));
+  gap: calc(#{sbb.pxToRem(8)} * var(--sbb-scaling-factor));
 }
 
 .sbb-tag-base {
@@ -40,20 +40,20 @@
 
   font-size: var(--sbb-font-size);
   line-height: var(--sbb-line-height-medium);
-  padding: pxToRem(4) pxToRem(8) pxToRem(6) pxToRem(15);
+  padding: sbb.pxToRem(4) sbb.pxToRem(8) sbb.pxToRem(6) sbb.pxToRem(15);
 
   :where(html:not(.sbb-lean)) & {
-    @include mq($from: desktop4k) {
-      padding: pxToRem(6) pxToRem(12) pxToRem(7) pxToRem(22);
+    @include sbb.mq($from: desktop4k) {
+      padding: sbb.pxToRem(6) sbb.pxToRem(12) sbb.pxToRem(7) sbb.pxToRem(22);
     }
-    @include mq($from: desktop5k) {
-      padding: pxToRem(9) pxToRem(16) pxToRem(12) pxToRem(30);
+    @include sbb.mq($from: desktop5k) {
+      padding: sbb.pxToRem(9) sbb.pxToRem(16) sbb.pxToRem(12) sbb.pxToRem(30);
     }
   }
 
   :where(html.sbb-lean) & {
     line-height: var(--sbb-line-height);
-    padding: pxToRem(2) pxToRem(6) pxToRem(3) pxToRem(13);
+    padding: sbb.pxToRem(2) sbb.pxToRem(6) sbb.pxToRem(3) sbb.pxToRem(13);
   }
 }
 

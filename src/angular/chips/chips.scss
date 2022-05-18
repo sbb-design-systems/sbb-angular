@@ -1,4 +1,4 @@
-@import '../styles/common';
+@use '@sbb-esta/angular' as sbb;
 
 .sbb-chip-list {
   display: flex;
@@ -26,12 +26,12 @@
   }
 
   :where(html.sbb-lean) & {
-    padding-bottom: pxToRem(6);
+    padding-bottom: sbb.pxToRem(6);
   }
 }
 
 .sbb-standard-chip {
-  @include ellipsis();
+  @include sbb.ellipsis();
   font-size: var(--sbb-font-size);
   line-height: 1;
 
@@ -46,10 +46,10 @@
   padding: calc(
       0.5 *
         (
-          var(--sbb-chips-chip-height) - var(--sbb-font-size) - #{pxToRem(1)} * var(--sbb-scaling-factor)
+          var(--sbb-chips-chip-height) - var(--sbb-font-size) - #{sbb.pxToRem(1)} * var(--sbb-scaling-factor)
         )
     )
-    calc(#{pxToRem(14)} * var(--sbb-scaling-factor));
+    calc(#{sbb.pxToRem(14)} * var(--sbb-scaling-factor));
 
   &:not(.sbb-chip-disabled):is(:hover, :focus) {
     background-color: var(--sbb-color-aluminum);
@@ -65,13 +65,13 @@
 
   &.sbb-chip-with-trailing-icon {
     padding-right: calc(
-      #{pxToRem(4)} * var(--sbb-scaling-factor) + var(--sbb-icon-size-default) + var(--sbb-chips-chip-padding-horizontal)
+      #{sbb.pxToRem(4)} * var(--sbb-scaling-factor) + var(--sbb-icon-size-default) + var(--sbb-chips-chip-padding-horizontal)
     );
     position: relative;
   }
 
   :is(.sbb-chip-remove, .sbb-chip-trailing-icon) {
-    @include absoluteCenterY();
+    @include sbb.absoluteCenterY();
     cursor: pointer;
     margin-left: var(--sbb-chips-chip-padding-horizontal);
     right: var(--sbb-chips-chip-padding-horizontal);

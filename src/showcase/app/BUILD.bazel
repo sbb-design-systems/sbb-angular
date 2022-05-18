@@ -57,7 +57,7 @@ sass_binary(
     name = "app_component_scss",
     src = "app.component.scss",
     deps = [
-        "//src/angular/styles:common_scss_lib",
+        "//src/angular:scss_lib",
     ],
 )
 
@@ -65,7 +65,7 @@ sass_binary(
     name = "introduction_introduction_component_scss",
     src = "introduction/introduction.component.scss",
     deps = [
-        "//src/angular/styles:common_scss_lib",
+        "//src/angular:scss_lib",
     ],
 )
 

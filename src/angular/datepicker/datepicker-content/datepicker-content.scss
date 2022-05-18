@@ -1,4 +1,4 @@
-@import '../../styles/common';
+@use '@sbb-esta/angular' as sbb;
 
 @mixin datePickerCellContentBase() {
   position: absolute;
@@ -10,8 +10,8 @@
   width: var(--sbb-datepicker-calendar-body-cell-size);
   height: var(--sbb-datepicker-calendar-body-cell-size);
   line-height: 1;
-  padding-left: calc(#{pxToRem(1)} * var(--sbb-scaling-factor));
-  padding-bottom: calc(#{pxToRem(1)} * var(--sbb-scaling-factor));
+  padding-left: calc(#{sbb.pxToRem(1)} * var(--sbb-scaling-factor));
+  padding-bottom: calc(#{sbb.pxToRem(1)} * var(--sbb-scaling-factor));
 }
 
 .sbb-datepicker-content {
@@ -105,7 +105,7 @@
 }
 
 .sbb-calendar-controls-button {
-  @include buttonResetFrameless();
+  @include sbb.buttonResetFrameless();
 
   display: flex;
   align-items: center;
@@ -143,19 +143,19 @@
   flex-grow: 1;
   flex-shrink: 1;
   font-family: var(--sbb-font-light);
-  font-size: #{pxToRem(21)};
+  font-size: #{sbb.pxToRem(21)};
   line-height: 3.2;
   color: var(--sbb-datepicker-calendar-header-color);
 
   :where(html:not(.sbb-lean)) & {
-    @include mq($from: tablet) {
+    @include sbb.mq($from: tablet) {
       font-size: var(--sbb-font-size-large);
     }
   }
 
   :where(html.sbb-lean) & {
     font-size: var(--sbb-font-size);
-    line-height: pxToRem(36);
+    line-height: sbb.pxToRem(36);
   }
 }
 
@@ -182,7 +182,7 @@
     content: '';
     display: block;
     position: absolute;
-    top: calc(#{pxToRem(33)} * var(--sbb-scaling-factor));
+    top: calc(#{sbb.pxToRem(33)} * var(--sbb-scaling-factor));
     border-bottom: var(--sbb-border-width-thin) solid var(--sbb-datepicker-calendar-line-color);
     width: calc(100% + var(--sbb-datepicker-calendar-table-content-padding-width) * 2);
     left: calc(var(--sbb-datepicker-calendar-table-content-padding-width) * -1);
@@ -193,13 +193,13 @@
     font-weight: 400;
     font-size: var(--sbb-font-size-small);
     text-transform: uppercase;
-    padding: calc(#{pxToRem(7)} * var(--sbb-scaling-factor));
+    padding: calc(#{sbb.pxToRem(7)} * var(--sbb-scaling-factor));
     color: var(--sbb-datepicker-calendar-header-color);
   }
 }
 
 .sbb-calendar-table-header-divider {
-  height: calc(#{pxToRem(15)} * var(--sbb-scaling-factor));
+  height: calc(#{sbb.pxToRem(15)} * var(--sbb-scaling-factor));
 }
 
 .sbb-calendar-body-cell-container {
@@ -289,9 +289,9 @@
 
   &::after {
     content: '';
-    width: calc(#{pxToRem(32)} * var(--sbb-scaling-factor));
-    height: calc(#{pxToRem(1)} * var(--sbb-scaling-factor));
-    top: calc(#{pxToRem(25)} * var(--sbb-scaling-factor));
+    width: calc(#{sbb.pxToRem(32)} * var(--sbb-scaling-factor));
+    height: calc(#{sbb.pxToRem(1)} * var(--sbb-scaling-factor));
+    top: calc(#{sbb.pxToRem(25)} * var(--sbb-scaling-factor));
     left: calc(50% - var(--sbb-datepicker-calendar-body-cell-disabled-offset));
     background-color: var(--sbb-color-cement);
     display: block;
@@ -300,8 +300,8 @@
 
     :where(html.sbb-lean) & {
       background-color: var(--sbb-color-storm);
-      width: pxToRem(24);
-      top: pxToRem(18);
+      width: sbb.pxToRem(24);
+      top: sbb.pxToRem(18);
     }
   }
 }

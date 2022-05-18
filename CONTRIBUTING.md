@@ -56,7 +56,7 @@ Before you submit your Pull Request (PR) consider the following guidelines:
 * Make your changes in a new git branch:
 
      ```shell
-     git checkout -b my-fix-branch master
+     git checkout -b my-fix-branch main
      ```
 
 * Create your patch, **including appropriate test cases**.
@@ -78,7 +78,7 @@ Before you submit your Pull Request (PR) consider the following guidelines:
     git push my-fork my-fix-branch
     ```
 
-* In GitHub, send a pull request to `sbb-angular:master`.
+* In GitHub, send a pull request to `sbb-angular:main`.
 The PR title and message should as well conform to the [commit message conventions](#commit).
 
 ## <a name="rules"></a> Coding Rules

@@ -1,4 +1,4 @@
-@import '../styles/common';
+@use '@sbb-esta/angular' as sbb;
 
 .sbb-textexpand {
   font-size: var(--sbb-font-size-small);

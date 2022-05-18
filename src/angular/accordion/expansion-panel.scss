@@ -1,4 +1,4 @@
-@import '../styles/common';
+@use '@sbb-esta/angular' as sbb;
 
 .sbb-expansion-panel {
   box-sizing: content-box;
@@ -43,7 +43,7 @@
   padding-bottom: var(--sbb-expansion-panel-header-padding-bottom);
 
   :where(html.sbb-lean) & {
-    padding-bottom: calc(#{pxToRem(12)} - var(--sbb-border-width-thin));
+    padding-bottom: calc(#{sbb.pxToRem(12)} - var(--sbb-border-width-thin));
   }
 
   &.sbb-expanded::after {
@@ -74,7 +74,7 @@
   line-height: 0; // Centers the svg icon inside sbb-icon
   height: var(--sbb-icon-size-default);
   width: var(--sbb-icon-size-default);
-  margin-left: pxToRem(24);
+  margin-left: sbb.pxToRem(24);
 
   // Workaround to ensure calculated height of icon is not greater than line-height
   margin-top: -0.5em;
@@ -84,23 +84,23 @@
     border: var(--sbb-border-width-thin) solid var(--sbb-color-storm);
     border-radius: 50%;
     color: var(--sbb-color-granite);
-    padding: calc(#{pxToRem(4)} * var(--sbb-scaling-factor) - var(--sbb-border-width-thin));
+    padding: calc(#{sbb.pxToRem(4)} * var(--sbb-scaling-factor) - var(--sbb-border-width-thin));
 
-    @include mq($from: tablet, $to: desktop) {
-      margin-left: pxToRem(40);
+    @include sbb.mq($from: tablet, $to: desktop) {
+      margin-left: sbb.pxToRem(40);
     }
 
-    @include mq($from: tablet) {
-      height: calc(#{pxToRem(32)} * var(--sbb-scaling-factor));
-      width: calc(#{pxToRem(32)} * var(--sbb-scaling-factor));
+    @include sbb.mq($from: tablet) {
+      height: calc(#{sbb.pxToRem(32)} * var(--sbb-scaling-factor));
+      width: calc(#{sbb.pxToRem(32)} * var(--sbb-scaling-factor));
     }
 
-    @include mq($from: desktop4k) {
-      margin-left: pxToRem(36);
+    @include sbb.mq($from: desktop4k) {
+      margin-left: sbb.pxToRem(36);
     }
 
-    @include mq($from: desktop5k) {
-      margin-left: pxToRem(44);
+    @include sbb.mq($from: desktop5k) {
+      margin-left: sbb.pxToRem(44);
     }
   }
 }

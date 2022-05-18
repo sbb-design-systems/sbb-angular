@@ -15,7 +15,7 @@
   "homepage": "https://angular.app.sbb.ch",
   "exports": {
     ".": {
-      "sass": "./_styles.scss"
+      "sass": "./_index.scss"
     },
     "./typography.css": {
       "style": "./typography.css"

@@ -1,19 +1,20 @@
-@import './tabs';
+@use '@sbb-esta/angular' as sbb;
+@use './tabs';
 
-@include paginated-tab-header;
-@include paginated-tab-header-shadows;
+@include tabs.paginated-tab-header;
+@include tabs.paginated-tab-header-shadows;
 
 .sbb-tab-links {
-  @include paginated-tab-header-item-wrapper('.sbb-tab-link-container');
+  @include tabs.paginated-tab-header-item-wrapper('.sbb-tab-link-container');
 }
 
 .sbb-tab-link-container {
-  @include paginated-tab-header-container;
+  @include tabs.paginated-tab-header-container;
 }
 
 // Wraps each link in the header
 .sbb-tab-link {
-  @include tab-label;
+  @include tabs.tab-label;
   vertical-align: top;
   text-decoration: none; // Removes anchor underline styling
   position: relative;
@@ -42,9 +43,9 @@
 
 // The bottom section of the view; contains the tab bodies
 :is(.sbb-tab-nav-panel, .sbb-tab-nav-bar-body) {
-  @include tab-body-wrapper;
+  @include tabs.tab-body-wrapper;
 
   :where(html.sbb-lean) & {
-    padding: pxToRem(15);
+    padding: sbb.pxToRem(15);
   }
 }

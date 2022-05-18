@@ -1,4 +1,4 @@
-@import '../../styles/common';
+@use '@sbb-esta/angular' as sbb;
 
 .sbb-datepicker {
   display: inline-block;
@@ -33,8 +33,8 @@
 }
 
 :is(.sbb-datepicker-arrow-button, .sbb-datepicker-toggle-button) {
-  @include buttonResetFrameless();
-  @include absoluteCenterY();
+  @include sbb.buttonResetFrameless();
+  @include sbb.absoluteCenterY();
   outline: 0;
   color: inherit;
   line-height: 0;

@@ -34,7 +34,7 @@ sass_binary(
     name = "chips_scss",
     src = "chips.scss",
     deps = [
-        "//src/angular/styles:common_scss_lib",
+        "//src/angular:scss_lib",
     ],
 )
 

@@ -1,5 +1,5 @@
 @use 'external/npm/node_modules/@angular/cdk' as cdk;
-@import '../styles/common';
+@use '@sbb-esta/angular' as sbb;
 
 .sbb-tooltip-component {
   display: block;
@@ -66,12 +66,12 @@
     );
 
     html.sbb-lean & {
-      --sbb-tooltip-arrow-padding-offset: #{pxToRem(1)};
+      --sbb-tooltip-arrow-padding-offset: #{sbb.pxToRem(1)};
     }
   }
 
   .sbb-tooltip-panel-above & {
-    margin-bottom: calc(#{pxToRem(12)} * var(--sbb-scaling-factor));
+    margin-bottom: calc(#{sbb.pxToRem(12)} * var(--sbb-scaling-factor));
   }
 }
 
@@ -105,7 +105,7 @@
 }
 
 .sbb-tooltip {
-  max-width: calc(#{pxToRem(460)} * var(--sbb-scaling-factor));
+  max-width: calc(#{sbb.pxToRem(460)} * var(--sbb-scaling-factor));
   padding: var(--sbb-tooltip-padding);
   position: relative;
   overflow: hidden;
@@ -134,10 +134,10 @@
 }
 
 .sbb-tooltip-has-close-button {
-  padding-right: calc(#{pxToRem(71)} * var(--sbb-scaling-factor));
+  padding-right: calc(#{sbb.pxToRem(71)} * var(--sbb-scaling-factor));
 
   :where(html.sbb-lean) & {
-    padding-right: pxToRem(48);
+    padding-right: sbb.pxToRem(48);
   }
 
   .sbb-tooltip-zero-padding & {

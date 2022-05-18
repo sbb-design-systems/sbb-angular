@@ -3,7 +3,7 @@ name: Add or remove maintenance labels
 on:
   pull_request:
     types: [opened, edited, labeled]
-    branches: [master] # target branch
+    branches: [main] # target branch
 
 env:
   TARGET_RELEASE: 13.x
