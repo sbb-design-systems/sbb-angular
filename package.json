@@ -91,7 +91,7 @@
     "@bazel/protractor": "5.4.2",
     "@bazel/rollup": "5.4.2",
     "@bazel/runfiles": "5.4.2",
-    "@bazel/worker": "5.4.2",
+    "@bazel/worker": "5.5.0",
     "@commitlint/cli": "17.0.0",
     "@commitlint/config-conventional": "17.0.0",
     "@rollup/plugin-commonjs": "22.0.0",
