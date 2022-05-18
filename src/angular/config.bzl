@@ -90,6 +90,7 @@ ANGULAR_MARKDOWN_TARGETS = [
     "icon",
     "input",
     "lightbox",
+    "loading",
     "menu",
     "notification",
     "notification-toast",
