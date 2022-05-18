@@ -1,7 +1,9 @@
 load(
     "//tools:defaults.bzl",
-    "markdown_to_html",
     "ng_module",
+    "ng_test_library",
+    "ng_web_test_suite",
+    "sass_binary",
 )
 
 package(default_visibility = ["//visibility:public"])
@@ -12,14 +14,37 @@ ng_module(
         ["**/*.ts"],
         exclude = ["**/*.spec.ts"],
     ),
+    assets = [":loading-indicator.css"] + glob(["**/*.html"]),
     deps = [
-        "//src/angular/loading-indicator",
+        "//src:dev_mode_types",
+        "//src/angular/core",
+        "@npm//@angular/common",
+        "@npm//@angular/core",
     ],
 )
 
-markdown_to_html(
-    name = "overview",
-    srcs = [":loading.md"],
+sass_binary(
+    name = "loading_indicator_scss",
+    src = "loading-indicator.scss",
+    deps = [
+        "//src/angular/styles:common_scss_lib",
+    ],
+)
+
+ng_test_library(
+    name = "unit_test_sources",
+    srcs = glob(
+        ["**/*.spec.ts"],
+        exclude = ["**/*.e2e.spec.ts"],
+    ),
+    deps = [
+        ":loading",
+    ],
+)
+
+ng_web_test_suite(
+    name = "unit_tests",
+    deps = [":unit_test_sources"],
 )
 
 filegroup(

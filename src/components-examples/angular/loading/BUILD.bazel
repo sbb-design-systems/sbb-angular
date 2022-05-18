@@ -6,7 +6,7 @@ load(
 package(default_visibility = ["//visibility:public"])
 
 ng_module(
-    name = "loading-indicator",
+    name = "loading",
     srcs = glob(
         ["**/*.ts"],
         exclude = ["**/*.spec.ts"],
@@ -17,7 +17,7 @@ ng_module(
     ]),
     deps = [
         "//src/angular/button",
-        "//src/angular/loading-indicator",
+        "//src/angular/loading",
         "@npm//@angular/common",
         "@npm//@angular/core",
     ],

@@ -21,7 +21,7 @@ ng_module(
         "//src/angular/checkbox",
         "//src/angular/icon",
         "//src/angular/input",
-        "//src/angular/loading-indicator",
+        "//src/angular/loading",
         "//src/angular/menu",
         "//src/angular/pagination",
         "//src/angular/radio-button",

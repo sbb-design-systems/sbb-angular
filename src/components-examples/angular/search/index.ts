@@ -4,7 +4,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { SbbAutocompleteModule } from '@sbb-esta/angular/autocomplete';
 import { SbbIconModule } from '@sbb-esta/angular/icon';
 import { SbbInputModule } from '@sbb-esta/angular/input';
-import { SbbLoadingIndicatorModule } from '@sbb-esta/angular/loading-indicator';
+import { SbbLoadingIndicatorModule } from '@sbb-esta/angular/loading';
 import { SbbSearchModule } from '@sbb-esta/angular/search';
 
 import { SearchAutocompleteExample } from './search-autocomplete/search-autocomplete-example';

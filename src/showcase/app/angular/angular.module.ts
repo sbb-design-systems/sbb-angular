@@ -7,7 +7,7 @@ import { SbbCheckboxModule } from '@sbb-esta/angular/checkbox';
 import { SbbDialogModule } from '@sbb-esta/angular/dialog';
 import { SbbIconModule } from '@sbb-esta/angular/icon';
 import { SbbInputModule } from '@sbb-esta/angular/input';
-import { SbbLoadingIndicatorModule } from '@sbb-esta/angular/loading-indicator';
+import { SbbLoadingIndicatorModule } from '@sbb-esta/angular/loading';
 import { SbbPaginationModule } from '@sbb-esta/angular/pagination';
 import { SbbSelectModule } from '@sbb-esta/angular/select';
 import { SbbTooltipModule } from '@sbb-esta/angular/tooltip';
