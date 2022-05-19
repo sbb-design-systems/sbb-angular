@@ -1862,7 +1862,7 @@ textarea {
   padding-right: calc(#{sbb.pxToRem(8)} * var(--sbb-scaling-factor));
 
   &:not(:only-child) {
-    padding-right: calc(#{sbb.pxToRem(16)} * var(--sbb-scaling-factor));
+    margin-right: calc(#{sbb.pxToRem(16)} * var(--sbb-scaling-factor));
   }
 }
 
