@@ -1,16 +1,12 @@
 import { FocusOrigin } from '@angular/cdk/a11y';
+import { DialogRef } from '@angular/cdk/dialog';
 import { ESCAPE, hasModifierKey } from '@angular/cdk/keycodes';
-import { GlobalPositionStrategy, OverlayRef } from '@angular/cdk/overlay';
-import { Observable, Subject } from 'rxjs';
+import { GlobalPositionStrategy } from '@angular/cdk/overlay';
+import { merge, Observable, Subject } from 'rxjs';
 import { filter, take } from 'rxjs/operators';
 
-import { SbbDialogPosition } from './dialog-config';
+import { SbbDialogConfig, SbbDialogPosition } from './dialog-config';
 import { _SbbDialogContainerBase } from './dialog-container';
-
-// TODO(jelbourn): resizing
-
-// Counter for unique dialog ids.
-let uniqueId = 0;
 
 /** Possible states of the lifecycle of a dialog. */
 export const enum SbbDialogState {
@@ -27,13 +23,13 @@ export class SbbDialogRef<T, R = any> {
   componentInstance: T;
 
   /** Whether the user is allowed to close the dialog. */
-  disableClose: boolean | undefined = this._containerInstance._config.disableClose;
+  disableClose: boolean | undefined;
+
+  /** Unique ID for the dialog. */
+  id: string;
 
   /** Subject for notifying the user that the dialog has finished opening. */
   private readonly _afterOpened = new Subject<void>();
-
-  /** Subject for notifying the user that the dialog has finished closing. */
-  private readonly _afterClosed = new Subject<R | undefined>();
 
   /** Subject for notifying the user that the dialog has started closing. */
   private readonly _beforeClosed = new Subject<R | undefined>();
@@ -47,14 +43,20 @@ export class SbbDialogRef<T, R = any> {
   /** Current state of the dialog. */
   private _state = SbbDialogState.OPEN;
 
+  // TODO(crisbeto): we shouldn't have to declare this property, because `DialogRef.close`
+  // already has a second `options` parameter that we can use. The problem is that internal tests
+  // have assertions like `expect(SbbDialogRef.close).toHaveBeenCalledWith(foo)` which will break,
+  // because it'll be called with two arguments by things like `SbbDialogClose`.
+  /** Interaction that caused the dialog to close. */
+  private _closeInteractionType: FocusOrigin | undefined;
+
   constructor(
-    private _overlayRef: OverlayRef,
-    public _containerInstance: _SbbDialogContainerBase,
-    /** Id of the dialog. */
-    readonly id: string = `sbb-dialog-${uniqueId++}`
+    public ref: DialogRef<R, T>,
+    config: SbbDialogConfig,
+    public _containerInstance: _SbbDialogContainerBase
   ) {
-    // Pass the id along to the container.
-    _containerInstance._id = id;
+    this.disableClose = config.disableClose;
+    this.id = ref.id;
 
     // Emit when opening animation completes
     _containerInstance._animationStateChanged
@@ -78,32 +80,21 @@ export class SbbDialogRef<T, R = any> {
         this._finishDialogClose();
       });
 
-    _overlayRef.detachments().subscribe(() => {
+    ref.overlayRef.detachments().subscribe(() => {
       this._beforeClosed.next(this._result);
       this._beforeClosed.complete();
-      this._afterClosed.next(this._result);
-      this._afterClosed.complete();
-      this.componentInstance = null!;
-      this._overlayRef.dispose();
+      this._finishDialogClose();
     });
 
-    _overlayRef
-      .keydownEvents()
-      .pipe(
-        filter((event) => {
-          return event.keyCode === ESCAPE && !this.disableClose && !hasModifierKey(event);
-        })
+    merge(
+      this.backdropClick(),
+      this.keydownEvents().pipe(
+        filter((event) => event.keyCode === ESCAPE && !this.disableClose && !hasModifierKey(event))
       )
-      .subscribe((event) => {
+    ).subscribe((event) => {
+      if (!this.disableClose) {
         event.preventDefault();
-        _closeDialogVia(this, 'keyboard');
-      });
-
-    _overlayRef.backdropClick().subscribe(() => {
-      if (this.disableClose) {
-        this._containerInstance._recaptureFocus();
-      } else {
-        _closeDialogVia(this, 'mouse');
+        _closeDialogVia(this, event.type === 'keydown' ? 'keyboard' : 'mouse');
       }
     });
   }
@@ -124,7 +115,7 @@ export class SbbDialogRef<T, R = any> {
       .subscribe((event) => {
         this._beforeClosed.next(dialogResult);
         this._beforeClosed.complete();
-        this._overlayRef.detachBackdrop();
+        this.ref.overlayRef.detachBackdrop();
 
         // The logic that disposes of the overlay depends on the exit animation completing, however
         // it isn't guaranteed if the parent view is destroyed while it's running. Add a fallback
@@ -152,7 +143,7 @@ export class SbbDialogRef<T, R = any> {
    * Gets an observable that is notified when the dialog is finished closing.
    */
   afterClosed(): Observable<R | undefined> {
-    return this._afterClosed;
+    return this.ref.closed;
   }
 
   /**
@@ -166,14 +157,14 @@ export class SbbDialogRef<T, R = any> {
    * Gets an observable that emits when the overlay's backdrop has been clicked.
    */
   backdropClick(): Observable<MouseEvent> {
-    return this._overlayRef.backdropClick();
+    return this.ref.backdropClick;
   }
 
   /**
    * Gets an observable that emits when keydown events are targeted on the overlay.
    */
   keydownEvents(): Observable<KeyboardEvent> {
-    return this._overlayRef.keydownEvents();
+    return this.ref.keydownEvents;
   }
 
   /**
@@ -181,7 +172,7 @@ export class SbbDialogRef<T, R = any> {
    * @param position New dialog position.
    */
   updatePosition(position?: SbbDialogPosition): this {
-    const strategy = this._getPositionStrategy();
+    const strategy = this.ref.config.positionStrategy as GlobalPositionStrategy;
 
     if (position && (position.left || position.right)) {
       position.left ? strategy.left(position.left) : strategy.right(position.right);
@@ -195,7 +186,7 @@ export class SbbDialogRef<T, R = any> {
       strategy.centerVertically();
     }
 
-    this._overlayRef.updatePosition();
+    this.ref.updatePosition();
 
     return this;
   }
@@ -206,20 +197,19 @@ export class SbbDialogRef<T, R = any> {
    * @param height New height of the dialog.
    */
   updateSize(width: string = '', height: string = ''): this {
-    this._overlayRef.updateSize({ width, height });
-    this._overlayRef.updatePosition();
+    this.ref.updateSize(width, height);
     return this;
   }
 
   /** Add a CSS class or an array of classes to the overlay pane. */
   addPanelClass(classes: string | string[]): this {
-    this._overlayRef.addPanelClass(classes);
+    this.ref.addPanelClass(classes);
     return this;
   }
 
   /** Remove a CSS class or an array of classes from the overlay pane. */
   removePanelClass(classes: string | string[]): this {
-    this._overlayRef.removePanelClass(classes);
+    this.ref.removePanelClass(classes);
     return this;
   }
 
@@ -234,12 +224,8 @@ export class SbbDialogRef<T, R = any> {
    */
   private _finishDialogClose() {
     this._state = SbbDialogState.CLOSED;
-    this._overlayRef.dispose();
-  }
-
-  /** Fetches the position strategy object from the overlay ref. */
-  private _getPositionStrategy(): GlobalPositionStrategy {
-    return this._overlayRef.getConfig().positionStrategy as GlobalPositionStrategy;
+    this.ref.close(this._result, { focusOrigin: this._closeInteractionType });
+    this.componentInstance = null!;
   }
 }
 
@@ -251,10 +237,7 @@ export class SbbDialogRef<T, R = any> {
 // TODO: Move this back into `SbbDialogRef` when we provide an official mock dialog ref.
 // tslint:disable-next-line: naming-convention
 export function _closeDialogVia<R>(ref: SbbDialogRef<R>, interactionType: FocusOrigin, result?: R) {
-  // Some mock dialog ref instances in tests do not have the `_containerInstance` property.
-  // For those, we keep the behavior as is and do not deal with the interaction type.
-  if (ref._containerInstance !== undefined) {
-    ref._containerInstance._closeInteractionType = interactionType;
-  }
+  (ref as unknown as { _closeInteractionType: FocusOrigin })._closeInteractionType =
+    interactionType;
   return ref.close(result);
 }

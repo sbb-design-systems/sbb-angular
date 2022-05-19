@@ -1,11 +1,9 @@
+import { DialogRef } from '@angular/cdk/dialog';
 import { ESCAPE, hasModifierKey } from '@angular/cdk/keycodes';
-import { OverlayRef } from '@angular/cdk/overlay';
 import { SbbDialogRef, _SbbDialogContainerBase } from '@sbb-esta/angular/dialog';
+import { SbbLightboxConfig } from '@sbb-esta/angular/lightbox/lightbox-config';
 import { Subject } from 'rxjs';
 import { filter } from 'rxjs/operators';
-
-// Counter for unique dialog ids.
-let uniqueId = 0;
 
 /**
  * Reference to a dialog opened via the SbbLightbox service.
@@ -17,21 +15,20 @@ export class SbbLightboxRef<T, R = any> extends SbbDialogRef<T, R> {
   readonly closeRequest: Subject<void> = new Subject<void>();
 
   constructor(
-    overlayRef: OverlayRef,
-    containerInstance: _SbbDialogContainerBase,
-    /** Id of the dialog. */
-    id: string = `sbb-lightbox-${uniqueId++}`
+    ref: DialogRef<R, T>,
+    config: SbbLightboxConfig,
+    containerInstance: _SbbDialogContainerBase
   ) {
-    super(overlayRef, containerInstance, id);
+    super(ref, config, containerInstance);
 
-    overlayRef
+    ref.overlayRef
       .keydownEvents()
       .pipe(
         filter((event) => event.keyCode === ESCAPE && !!this.disableClose && !hasModifierKey(event))
       )
       .subscribe(() => this.closeRequest.next(null!));
 
-    overlayRef.detachments().subscribe(() => {
+    ref.overlayRef.detachments().subscribe(() => {
       this.closeRequest.complete();
     });
   }
