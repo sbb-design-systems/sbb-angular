@@ -158,7 +158,7 @@
     "stylelint-config-recommended-scss": "6.0.0",
     "stylelint-scss": "4.2.0",
     "terser": "5.13.1",
-    "ts-node": "10.7.0",
+    "ts-node": "10.8.0",
     "tsconfig-paths": "4.0.0",
     "tslint": "6.1.3",
     "tslint-config-prettier": "1.18.0",
