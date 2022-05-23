@@ -1878,7 +1878,7 @@ textarea {
   color: var(--sbb-color-grey);
 
   @include sbb.mq($from: tablet) {
-    flex-basis: 0%;
+    flex-basis: 0;
     order: initial;
     margin-top: initial;
   }
