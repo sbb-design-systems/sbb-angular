@@ -1838,6 +1838,7 @@ textarea {
     display: flex;
     flex-wrap: wrap;
     overflow-x: hidden;
+    gap: calc(#{sbb.pxToRem(8)} * var(--sbb-scaling-factor));
   }
 }
 
@@ -1859,10 +1860,9 @@ textarea {
   display: flex;
   flex: 1 1 50%;
   padding-right: calc(#{sbb.pxToRem(8)} * var(--sbb-scaling-factor));
-  margin-bottom: calc(#{sbb.pxToRem(8)} * var(--sbb-scaling-factor));
 
-  @include sbb.mq($from: tablet) {
-    margin-bottom: 0;
+  &:not(:only-child) {
+    margin-right: calc(#{sbb.pxToRem(16)} * var(--sbb-scaling-factor));
   }
 }
 
@@ -1878,10 +1878,9 @@ textarea {
   color: var(--sbb-color-grey);
 
   @include sbb.mq($from: tablet) {
-    padding-left: calc(#{sbb.pxToRem(24)} * var(--sbb-scaling-factor));
-    padding-right: calc(#{sbb.pxToRem(8)} * var(--sbb-scaling-factor));
-    flex-basis: auto;
+    flex-basis: 0;
     order: initial;
+    margin-top: initial;
   }
 }
 
