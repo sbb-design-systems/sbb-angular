@@ -1,0 +1,69 @@
+<ng-container [formGroup]="vehicleFilterForm">
+  <sbb-table-wrapper>
+    <table sbb-table>
+      <ng-container sbbColumnDef="select">
+        <th sbb-header-cell *sbbHeaderCellDef style="width: 50px">
+          <sbb-checkbox
+            (change)="$event ? masterToggle() : null"
+            [checked]="selection.hasValue() && isAllSelected()"
+            [indeterminate]="selection.hasValue() && !isAllSelected()"
+            [aria-label]="checkboxLabel()"
+          >
+          </sbb-checkbox>
+        </th>
+        <td sbb-cell *sbbCellDef="let row">
+          <sbb-checkbox
+            (click)="$event.stopPropagation()"
+            (change)="$event ? selection.toggle(row) : null"
+            [checked]="selection.isSelected(row)"
+            [aria-label]="checkboxLabel(row)"
+          >
+          </sbb-checkbox>
+        </td>
+      </ng-container>
+      <ng-container *ngFor="let column of columns.slice(1)" [sbbColumnDef]="column">
+        <th sbb-header-cell *sbbHeaderCellDef style="width: 20%">{{ column }}</th>
+        <td sbb-cell *sbbCellDef="let element">{{ element[column] }}</td>
+      </ng-container>
+
+      <ng-container sbbColumnDef="filter-name">
+        <th sbb-header-cell *sbbHeaderCellDef class="sbb-table-filter">
+          <input class="sbb-input-element" formControlName="name" />
+        </th>
+      </ng-container>
+      <ng-container sbbColumnDef="filter-description">
+        <th sbb-header-cell *sbbHeaderCellDef class="sbb-table-filter">
+          <input class="sbb-input-element" formControlName="description" />
+        </th>
+      </ng-container>
+      <ng-container sbbColumnDef="filter-category">
+        <th sbb-header-cell *sbbHeaderCellDef class="sbb-table-filter">
+          <sbb-select formControlName="category" multiple placeholder="Select category...">
+            <sbb-option *ngFor="let category of categories" [value]="category"
+              >{{ category }}</sbb-option
+            >
+          </sbb-select>
+        </th>
+      </ng-container>
+
+      <ng-container sbbColumnDef="empty">
+        <th sbb-header-cell *sbbHeaderCellDef></th>
+      </ng-container>
+
+      <tr sbb-header-row *sbbHeaderRowDef="columns"></tr>
+      <tr
+        sbb-header-row
+        *sbbHeaderRowDef="['empty', 'empty', 'filter-name', 'empty', 'filter-description', 'filter-category']"
+      ></tr>
+      <tr sbb-row *sbbRowDef="let row; columns: columns"></tr>
+    </table>
+  </sbb-table-wrapper>
+
+  <p *ngIf="dataSource.filteredData.length === 0">No keywords match your filters.</p>
+
+  <sbb-paginator class="sbb-divider-small-top" [pageSize]="5"></sbb-paginator>
+</ng-container>
+
+<h4>Selected Models</h4>
+<sbb-checkbox [formControl]="includeFilteredCtrl">Include filtered out data</sbb-checkbox>
+<pre>{{ selectedData | json }}</pre>

@@ -12,6 +12,7 @@ import { SbbPaginationModule } from '@sbb-esta/angular/pagination';
 import { SbbRadioButtonModule } from '@sbb-esta/angular/radio-button';
 import { SbbSelectModule } from '@sbb-esta/angular/select';
 import { SbbTableModule } from '@sbb-esta/angular/table';
+import { FilterSelectTableExample } from '@sbb-esta/components-examples/angular/table/filter-select-table/filter-select-table-example';
 
 import { ButtonsInTableExample } from './buttons-in-table/buttons-in-table-example';
 import { CellActionsTableExample } from './cell-actions-table/cell-actions-table-example';
@@ -39,6 +40,7 @@ export {
   SortableTableExample,
   StickyTableExample,
   ExpandableTableExample,
+  FilterSelectTableExample,
 };
 
 const EXAMPLES = [
@@ -54,6 +56,7 @@ const EXAMPLES = [
   SortableTableExample,
   StickyTableExample,
   ExpandableTableExample,
+  FilterSelectTableExample,
 ];
 
 @NgModule({
