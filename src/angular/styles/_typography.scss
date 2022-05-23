@@ -1830,6 +1830,7 @@ textarea {
     display: flex;
     flex-wrap: wrap;
     overflow-x: hidden;
+    gap: calc(#{pxToRem(8)} * var(--sbb-scaling-factor));
   }
 }
 
@@ -1851,10 +1852,9 @@ textarea {
   display: flex;
   flex: 1 1 50%;
   padding-right: calc(#{pxToRem(8)} * var(--sbb-scaling-factor));
-  margin-bottom: calc(#{pxToRem(8)} * var(--sbb-scaling-factor));
 
-  @include mq($from: tablet) {
-    margin-bottom: 0;
+  &:not(:only-child) {
+    margin-right: calc(#{pxToRem(16)} * var(--sbb-scaling-factor));
   }
 }
 
@@ -1870,10 +1870,9 @@ textarea {
   color: var(--sbb-color-grey);
 
   @include mq($from: tablet) {
-    padding-left: calc(#{pxToRem(24)} * var(--sbb-scaling-factor));
-    padding-right: calc(#{pxToRem(8)} * var(--sbb-scaling-factor));
-    flex-basis: auto;
+    flex-basis: 0;
     order: initial;
+    margin-top: initial;
   }
 }
 
