@@ -48,9 +48,11 @@ Next, update the showcase before publishing this page.
 
 Checkout the `esta-apps-argocd` repository and enter the new version number
 In the ArgoCD, enter the new version number under `maggie/clew-esta-prod/sbb-angular/values.yaml`.
+If this was a major release, also update the `legacyVersions` in our ArgoCD repository.
 
 After having committed the changes, sync the app using the ArgoCD GUI. Check if the showcase was
 successfully published to https://angular.app.sbb.ch.
+
 
 ## Publishing the release
 
