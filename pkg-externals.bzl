@@ -69,6 +69,7 @@ PKG_EXTERNALS = [
     "rxjs",
     "rxjs/operators",
     "keycloak-js",
+    "maplibre-gl",
 ]
 
 # Creates externals for a given package and its entry-points.
