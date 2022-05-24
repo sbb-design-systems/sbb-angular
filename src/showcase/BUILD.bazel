@@ -130,6 +130,7 @@ http_server(
     # example: `["API_KEY"]` => and then reference as `window.API_KEY`
     environment_variables = [
         "JM_API_KEY",
+        "LEGACY_VERSIONS",
     ],
     tags = ["manual"],
     deps = [
