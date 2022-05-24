@@ -67,7 +67,7 @@
     "zone.js": "0.11.5"
   },
   "devDependencies": {
-    "@actions/cache": "2.0.4",
+    "@actions/cache": "2.0.5",
     "@angular-devkit/build-angular": "14.0.0-rc.1",
     "@angular-devkit/core": "14.0.0-rc.1",
     "@angular-devkit/schematics": "14.0.0-rc.1",
