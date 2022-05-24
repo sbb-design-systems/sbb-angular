@@ -72,8 +72,8 @@ export class SbbMapInitService {
     this._addControls(maplibreMap, oneFingerPan);
 
     // https://docs.mapbox.com/mapbox-gl-js/example/toggle-interaction-handlers/
-    maplibreMap.dragRotate.disable();
-    maplibreMap.touchPitch.disable();
+    maplibreMap.keyboard.disableRotation();
+    maplibreMap.touchZoomRotate.disableRotation();
 
     return this.fetchStyle(styleUrl).pipe(
       tap((style) => maplibreMap.setStyle(style)),
@@ -95,6 +95,7 @@ export class SbbMapInitService {
       maxZoom: SBB_MAX_ZOOM,
       scrollZoom,
       dragRotate: false,
+      touchPitch: false,
       fadeDuration: 10,
     };
 
