@@ -2,6 +2,16 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [13.14.1](https://github.com/sbb-design-systems/sbb-angular/compare/13.14.0...13.14.1) (2022-05-25)
+
+
+### Bug Fixes
+
+* **angular/checkbox-panel:** correct spacing in checkbox-panel ([#1468](https://github.com/sbb-design-systems/sbb-angular/issues/1468)) ([ad0b5a1](https://github.com/sbb-design-systems/sbb-angular/commit/ad0b5a113479a9f5e9d546c3c7ea755464cc1201))
+* **deps:** update angular ([c66d352](https://github.com/sbb-design-systems/sbb-angular/commit/c66d3520d805ad4d3e253e615dea1043675d4791))
+* **journey-maps:** disable all map rotation ([#1471](https://github.com/sbb-design-systems/sbb-angular/issues/1471)) ([66656e7](https://github.com/sbb-design-systems/sbb-angular/commit/66656e708439075854bcca6f4d82dfff1c9a87c2))
+* **journey-maps:** don't bundle maplibre-gl into the APF ([#1470](https://github.com/sbb-design-systems/sbb-angular/issues/1470)) ([77999da](https://github.com/sbb-design-systems/sbb-angular/commit/77999da7d46dd4fb50ae35f08044323e99aa81b9))
+
 ## [13.14.0](https://github.com/sbb-design-systems/sbb-angular/compare/13.13.2...13.14.0) (2022-05-12)
 
 
