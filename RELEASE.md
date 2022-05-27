@@ -53,7 +53,6 @@ If this was a major release, also update the `legacyVersions` in our ArgoCD repo
 After having committed the changes, sync the app using the ArgoCD GUI. Check if the showcase was
 successfully published to https://angular.app.sbb.ch.
 
-
 ## Publishing the release
 
 On the GitHub release page, click on "Publish release" to publish everything.
