@@ -14,14 +14,10 @@
   border-radius: 8px;
   width: calc(100% - 32px);
 
-  @include esta.mq($from: desktop) {
+  @include esta.mq($from: tablet) {
     width: 20rem;
+    max-width: calc(100% - 96px);
     top: 0;
-  }
-  @include esta.mq($to: tabletPortrait) {
-    bottom: 0;
-    height: calc(33% - 32px);
-    min-height: 10rem;
   }
 
   .close {
