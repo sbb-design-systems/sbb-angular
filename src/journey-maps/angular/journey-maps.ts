@@ -728,7 +728,8 @@ export class SbbJourneyMaps implements OnInit, AfterViewInit, OnDestroy, OnChang
         }
         this._map
           .setMinZoom(this.viewportOptions.minZoomLevel)
-          .setMaxZoom(this.viewportOptions.maxZoomLevel);
+          .setMaxZoom(this.viewportOptions.maxZoomLevel)
+          .setMaxBounds(this.viewportOptions.maxBounds);
         this.zoomLevelsChange.next(this._getZooomLevels());
       });
 

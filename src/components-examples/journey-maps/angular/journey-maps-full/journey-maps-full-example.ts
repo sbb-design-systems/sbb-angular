@@ -35,6 +35,11 @@ declare global {
   }
 }
 
+const CH_BOUNDS: LngLatBoundsLike = [
+  [5.7349, 45.6755],
+  [10.6677, 47.9163],
+];
+
 /**
  * @title Journey Maps Full Example
  */
@@ -93,6 +98,7 @@ export class JourneyMapsFullExample implements OnInit, OnDestroy {
 
     this.form = _fb.group({
       mapVisible: [true],
+      limitMaxBounds: [false],
       level: [0],
       uiOptions: _fb.group({
         showSmallButtons: [false],
@@ -140,6 +146,7 @@ export class JourneyMapsFullExample implements OnInit, OnDestroy {
         minZoomLevel: [1],
         maxZoomLevel: [23],
         boundingBox: [],
+        maxBounds: [],
       }),
       zoneGeoJson: [],
       routingGeoJson: [],
@@ -180,6 +187,15 @@ export class JourneyMapsFullExample implements OnInit, OnDestroy {
           this.journeyMapsRoutingOption = val;
         }
       });
+
+    this.form
+      .get('limitMaxBounds')
+      ?.valueChanges.pipe(takeUntil(this._destroyed))
+      .subscribe((limitMaxBounds: boolean) =>
+        this.form
+          .get('viewportOptions.maxBounds')
+          ?.patchValue(limitMaxBounds ? CH_BOUNDS : undefined)
+      );
   }
 
   private _getBbox(options: SbbJourneyMapsRoutingOptions) {

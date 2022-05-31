@@ -56,6 +56,8 @@ export interface SbbViewportOptions {
   boundingBox?: LngLatBoundsLike;
   /** The amount of padding in pixels to add to the given bounding box. */
   boundingBoxPadding?: number;
+  /** Pan and zoom operations are constrained within these bounds. Leave empty for no bounds. */
+  maxBounds?: LngLatBoundsLike;
 }
 
 /**

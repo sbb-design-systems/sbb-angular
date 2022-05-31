@@ -81,6 +81,7 @@ export class SbbMapInitService {
       container,
       minZoom: viewportOptions.minZoomLevel,
       maxZoom: viewportOptions.maxZoomLevel,
+      maxBounds: viewportOptions.maxBounds,
       scrollZoom: interactionOptions.scrollZoom,
       dragRotate: false,
       fadeDuration: 10,
