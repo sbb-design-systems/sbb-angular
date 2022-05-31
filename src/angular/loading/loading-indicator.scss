@@ -13,7 +13,7 @@ $sizes: (tiny, 0.53333em, 0.33333em, 0.2em, 6em), (small, 1em, 0.6em, 0.2em, 8em
 
 $loadingRectangleOpacities: (1, 0.5, 0), (2, 1, 0.5), (3, 0.5, 1), (4, 0.25, 0.5), (5, 0, 0.25);
 
-.sbb-loading {
+.sbb-loading-indicator {
   display: flex;
 
   & > div {
@@ -59,7 +59,7 @@ $loadingRectangleOpacities: (1, 0.5, 0), (2, 1, 0.5), (3, 0.5, 1), (4, 0.25, 0.5
 }
 
 @each $size, $width, $height, $gutterWidth, $perspective in $sizes {
-  .sbb-loading-#{$size} {
+  .sbb-loading-indicator-#{$size} {
     height: $height * 5;
     padding-top: $height * 2;
 
@@ -85,7 +85,7 @@ $loadingRectangleOpacities: (1, 0.5, 0), (2, 1, 0.5), (3, 0.5, 1), (4, 0.25, 0.5
   }
 }
 
-.sbb-loading-inline {
+.sbb-loading-indicator-inline {
   display: inline-flex;
   height: auto;
   padding-top: 0;
@@ -96,7 +96,7 @@ $loadingRectangleOpacities: (1, 0.5, 0), (2, 1, 0.5), (3, 0.5, 1), (4, 0.25, 0.5
   }
 }
 
-:is(.sbb-loading-fullbox, .sbb-loading-fullscreen) {
+:is(.sbb-loading-indicator-fullbox, .sbb-loading-indicator-fullscreen) {
   top: 0;
   left: 0;
   height: 100%;
@@ -112,11 +112,11 @@ $loadingRectangleOpacities: (1, 0.5, 0), (2, 1, 0.5), (3, 0.5, 1), (4, 0.25, 0.5
   }
 }
 
-.sbb-loading-fullbox {
+.sbb-loading-indicator-fullbox {
   position: absolute;
 }
 
-.sbb-loading-fullscreen {
+.sbb-loading-indicator-fullscreen {
   position: fixed;
 }
 

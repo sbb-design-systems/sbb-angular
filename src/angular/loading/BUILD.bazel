@@ -15,7 +15,7 @@ ng_module(
         ["**/*.ts"],
         exclude = ["**/*.spec.ts"],
     ),
-    assets = [":loading.css"] + glob(["**/*.html"]),
+    assets = [":loading-indicator.css"] + glob(["**/*.html"]),
     deps = [
         "//src:dev_mode_types",
         "//src/angular/core",
@@ -25,8 +25,8 @@ ng_module(
 )
 
 sass_binary(
-    name = "loading_scss",
-    src = "loading.scss",
+    name = "loading_indicator_scss",
+    src = "loading-indicator.scss",
     deps = [
         "//src/angular:scss_lib",
     ],

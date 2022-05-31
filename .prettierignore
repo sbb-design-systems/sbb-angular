@@ -5,8 +5,8 @@ angular.json
 .github/*
 .vscode/*
 src/*/schematics/*/*/files
-src/*/schematics/ng-update/test-cases
-src/*/schematics/ng-add/test-cases
+src/*/schematics/*/test-cases/**/*_input.ts
+src/*/schematics/*/test-cases/**/*_expected_output.ts
 tools/schematics/*/index.js
 tools/schematics/*/files
 coverage

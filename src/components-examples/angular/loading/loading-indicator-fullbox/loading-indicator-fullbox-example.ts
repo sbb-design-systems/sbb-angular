@@ -5,10 +5,10 @@ import { Component } from '@angular/core';
  * @order 20
  */
 @Component({
-  selector: 'sbb-loading-fullbox-example',
-  templateUrl: 'loading-fullbox-example.html',
+  selector: 'sbb-loading-indicator-fullbox-example',
+  templateUrl: 'loading-indicator-fullbox-example.html',
 })
-export class LoadingFullboxExample {
+export class LoadingIndicatorFullboxExample {
   showSpinner: boolean;
 
   activateSpinner() {

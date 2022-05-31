@@ -13,7 +13,7 @@ describe('SBB Angular upgrade test cases', () => {
   // detected through Bazel's runfiles manifest.
   versionNames.forEach((version) =>
     describe(`${version} update`, () => {
-      defineJasmineTestCases(version, MIGRATION_PATH, testCasesMap.get(version));
+      defineJasmineTestCases(`migration-${version}`, MIGRATION_PATH, testCasesMap.get(version));
     })
   );
 });
