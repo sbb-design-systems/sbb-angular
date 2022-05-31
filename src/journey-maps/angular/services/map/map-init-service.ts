@@ -22,8 +22,8 @@ export class SbbMapInitService {
   private readonly _defaultZoom = 7.5;
   private readonly _defaultMapCenter: LngLatLike = [7.299265, 47.07212];
   private readonly _defaultBoundingBox: LngLatBoundsLike = [
-    [5.7349, 47.9163],
-    [10.6677, 45.6755],
+    [5.7349, 45.6755],
+    [10.6677, 47.9163],
   ]; // CH bounds;
   private readonly _controlLabels: any = {
     de: {
