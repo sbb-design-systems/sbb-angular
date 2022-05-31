@@ -1,9 +1,10 @@
 import { DialogRef } from '@angular/cdk/dialog';
 import { ESCAPE, hasModifierKey } from '@angular/cdk/keycodes';
 import { SbbDialogRef, _SbbDialogContainerBase } from '@sbb-esta/angular/dialog';
-import { SbbLightboxConfig } from '@sbb-esta/angular/lightbox/lightbox-config';
 import { Subject } from 'rxjs';
 import { filter } from 'rxjs/operators';
+
+import { SbbLightboxConfig } from './lightbox-config';
 
 /**
  * Reference to a dialog opened via the SbbLightbox service.
