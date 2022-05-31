@@ -12,3 +12,6 @@ export const SBB_MARKER_LAYER = 'sbb-marker';
 export const SBB_MARKER_LAYER_SELECTED = 'sbb-marker-selected';
 
 export const SBB_METADATA_MAPPINGS = 'rokas:markerCategoryMapping';
+
+export const SBB_MIN_ZOOM = 1;
+export const SBB_MAX_ZOOM = 23;

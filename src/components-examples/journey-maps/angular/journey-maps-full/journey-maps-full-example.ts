@@ -13,7 +13,6 @@ import {
   SbbJourneyMaps,
   SbbJourneyMapsRoutingOptions,
   SbbPointsOfInterestOptions,
-  SbbViewportOptions,
   SbbZoomLevels,
 } from '@sbb-esta/journey-maps';
 import { LngLatBounds, LngLatBoundsLike, LngLatLike } from 'maplibre-gl';
@@ -79,7 +78,6 @@ export class JourneyMapsFullExample implements OnInit, OnDestroy {
     { label: 'Transfer Zürich', value: { transfer: zurichIndoor } },
   ];
   pointsOfInterestOptions: SbbPointsOfInterestOptions = { categories: ['park_rail'] };
-  viewportOptions: SbbViewportOptions = {};
   zoomLevels: SbbZoomLevels;
   visibleLevels = new BehaviorSubject<number[]>([]);
   form: UntypedFormGroup;
@@ -137,6 +135,11 @@ export class JourneyMapsFullExample implements OnInit, OnDestroy {
         zoomToMarkers: [true],
         popup: [true, resetSelectedMarkerIdValidator],
         markers: [markers],
+      }),
+      viewportOptions: _fb.group({
+        minZoomLevel: [1],
+        maxZoomLevel: [23],
+        boundingBox: [],
       }),
       zoneGeoJson: [],
       routingGeoJson: [],
@@ -232,10 +235,9 @@ export class JourneyMapsFullExample implements OnInit, OnDestroy {
   }
 
   private _setBbox(bbox: number[] | LngLatBounds): void {
-    this.viewportOptions = {
-      ...this.viewportOptions,
-      boundingBox: this._isLngLatBounds(bbox) ? bbox : this.bboxToLngLatBounds(bbox),
-    };
+    this.form
+      .get('viewportOptions.boundingBox')
+      ?.patchValue(this._isLngLatBounds(bbox) ? bbox : this.bboxToLngLatBounds(bbox));
   }
 
   private _isLngLatBounds(bbox: number[] | LngLatBounds): bbox is LngLatBounds {

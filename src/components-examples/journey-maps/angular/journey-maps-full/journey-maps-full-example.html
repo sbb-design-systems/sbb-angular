@@ -10,7 +10,7 @@
     [interactionOptions]="interactionOptions"
     [listenerOptions]="form.get('listenerOptions')?.value"
     [uiOptions]="form.get('uiOptions')?.value"
-    [viewportOptions]="viewportOptions"
+    [viewportOptions]="form.get('viewportOptions')?.value"
     [apiKey]="apiKey"
     [markerOptions]="form.get('markerOptions')?.value"
     [markerDetailsTemplate]="markerDetailsTemplate"
@@ -79,6 +79,16 @@
         <span class="sbb-label">Zoom map</span>
         <button sbb-ghost-button (click)="client.zoomIn()">Zoom In</button>
         <button sbb-ghost-button (click)="client.zoomOut()">Zoom Out</button>
+      </li>
+      <li formGroupName="viewportOptions">
+        <sbb-form-field>
+          <span class="sbb-label">Min Zoom</span>
+          <input type="number" sbbInput min="0" max="24" formControlName="minZoomLevel" />
+        </sbb-form-field>
+        <sbb-form-field>
+          <span class="sbb-label">Max Zoom</span>
+          <input type="number" sbbInput min="0" max="24" formControlName="maxZoomLevel" />
+        </sbb-form-field>
       </li>
       <li>
         <span class="sbb-label">Move / pan map</span>
