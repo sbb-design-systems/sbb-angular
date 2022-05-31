@@ -6,7 +6,6 @@ import { SbbOptionModule } from '@sbb-esta/angular/core';
 import { SbbCommonModule } from '@sbb-esta/angular/core';
 
 import { SbbAutocomplete } from './autocomplete';
-import { SbbAutocompleteHint } from './autocomplete-hint';
 import { SbbAutocompleteOrigin } from './autocomplete-origin';
 import {
   SbbAutocompleteTrigger,
@@ -15,19 +14,13 @@ import {
 
 @NgModule({
   imports: [CommonModule, A11yModule, OverlayModule, SbbCommonModule, SbbOptionModule],
-  declarations: [
-    SbbAutocomplete,
-    SbbAutocompleteOrigin,
-    SbbAutocompleteTrigger,
-    SbbAutocompleteHint,
-  ],
+  declarations: [SbbAutocomplete, SbbAutocompleteOrigin, SbbAutocompleteTrigger],
   exports: [
     SbbOptionModule,
     OverlayModule,
     SbbAutocomplete,
     SbbAutocompleteOrigin,
     SbbAutocompleteTrigger,
-    SbbAutocompleteHint,
   ],
   providers: [SBB_AUTOCOMPLETE_SCROLL_STRATEGY_FACTORY_PROVIDER],
 })

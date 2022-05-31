@@ -19,5 +19,6 @@ export * from './option/option.module';
 export * from './option/option';
 export * from './option/option-parent';
 export * from './option/optgroup';
+export * from './option/option-hint';
 export * from './option/pseudo-checkbox';
 export * from './version';

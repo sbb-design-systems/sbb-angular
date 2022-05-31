@@ -140,16 +140,16 @@ autocomplete is attached to using the `sbbAutocompleteOrigin` directive together
 
 ### Autocomplete hint
 
-`sbb-autocomplete-hint` can be used to add additional information in option list:
+`sbb-option-hint` can be used to add additional information in option list:
 
-<!-- example(autocomplete-hint) -->
+<!-- example(option-hint) -->
 
 ```html
 <sbb-autocomplete #autoHint="sbbAutocomplete">
   <sbb-option *ngFor="let option of filteredOptions" [value]="option">
     {{ option.name }}
   </sbb-option>
-  <sbb-autocomplete-hint> {{ remainingOptionsCount }} further results found </sbb-autocomplete-hint>
+  <sbb-option-hint> {{ remainingOptionsCount }} further results found </sbb-option-hint>
 </sbb-autocomplete>
 ```
 
@@ -158,7 +158,7 @@ add the attribute `showHintIfNoOptions` to the `<sbb-autocomplete>`.
 
 ```html
 <sbb-autocomplete showHintIfNoOptions>
-  <sbb-autocomplete-hint> {{ remainingOptionsCount }} further results found </sbb-autocomplete-hint>
+  <sbb-option-hint> {{ remainingOptionsCount }} further results found </sbb-option-hint>
 </sbb-autocomplete>
 ```
 

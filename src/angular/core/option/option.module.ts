@@ -1,5 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
+import { SbbOptionHint } from '@sbb-esta/angular/core/option/option-hint';
 
 import { SbbCommonModule } from '../common-behaviors/common.module';
 
@@ -9,7 +10,7 @@ import { SbbPseudoCheckbox } from './pseudo-checkbox';
 
 @NgModule({
   imports: [CommonModule, SbbCommonModule],
-  declarations: [SbbOption, SbbOptgroup, SbbPseudoCheckbox],
-  exports: [SbbOption, SbbOptgroup, SbbPseudoCheckbox],
+  declarations: [SbbOption, SbbOptionHint, SbbOptgroup, SbbPseudoCheckbox],
+  exports: [SbbOption, SbbOptionHint, SbbOptgroup, SbbPseudoCheckbox],
 })
 export class SbbOptionModule {}

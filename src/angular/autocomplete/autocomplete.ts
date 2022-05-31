@@ -19,10 +19,13 @@ import {
   ViewChild,
   ViewEncapsulation,
 } from '@angular/core';
-import { SbbOptgroup, SbbOption, SBB_OPTION_PARENT_COMPONENT } from '@sbb-esta/angular/core';
+import {
+  SbbOptgroup,
+  SbbOption,
+  SbbOptionHint,
+  SBB_OPTION_PARENT_COMPONENT,
+} from '@sbb-esta/angular/core';
 import { BehaviorSubject, Subscription } from 'rxjs';
-
-import { SbbAutocompleteHint } from './autocomplete-hint';
 
 /**
  * Autocomplete IDs need to be unique across components, so this counter exists outside of
@@ -131,9 +134,9 @@ export class SbbAutocomplete implements AfterContentInit, OnDestroy {
   /** All of the defined groups of options. */
   @ContentChildren(SbbOptgroup, { descendants: true }) optionGroups: QueryList<SbbOptgroup>;
 
-  /** All of the defined autocomplete hints. */
-  @ContentChildren(SbbAutocompleteHint, { descendants: true })
-  hints: QueryList<SbbAutocompleteHint>;
+  /** All of the defined option hints. */
+  @ContentChildren(SbbOptionHint, { descendants: true })
+  hints: QueryList<SbbOptionHint>;
 
   /** Aria label of the autocomplete. If not specified, the placeholder will be used as label. */
   @Input('aria-label') ariaLabel: string;
