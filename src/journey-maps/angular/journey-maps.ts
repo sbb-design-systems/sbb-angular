@@ -168,7 +168,7 @@ export class SbbJourneyMaps implements OnInit, AfterViewInit, OnDestroy, OnChang
     boundingBoxPadding: this._defaultBoundingBoxPadding,
   };
   private _defaultHomeButtonOptions: SbbHomeButtonOptions = {
-    boundingBox: this._mapInitService.getDefaultBoundingBox(),
+    boundingBox: SbbMapInitService.DEFAULT_BOUNDING_BOX,
     boundingBoxPadding: this._defaultBoundingBoxPadding,
   };
   private _defaultMarkerOptions: SbbMarkerOptions = {

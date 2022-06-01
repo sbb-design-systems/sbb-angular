@@ -19,12 +19,13 @@ export const SBB_MAX_ZOOM = 23; /* same as in mobile-clients */
   providedIn: 'root',
 })
 export class SbbMapInitService {
-  private readonly _defaultZoom = 7.5;
-  private readonly _defaultMapCenter: LngLatLike = [7.299265, 47.07212];
-  private readonly _defaultBoundingBox: LngLatBoundsLike = [
+  public static readonly DEFAULT_BOUNDING_BOX: LngLatBoundsLike = [
+    // CH bounds;
     [5.7349, 47.9163],
     [10.6677, 45.6755],
-  ]; // CH bounds;
+  ];
+  private readonly _defaultZoom = 7.5;
+  private readonly _defaultMapCenter: LngLatLike = [7.299265, 47.07212];
   private readonly _controlLabels: any = {
     de: {
       'NavigationControl.ZoomIn': 'Hineinzoomen',
@@ -106,14 +107,10 @@ export class SbbMapInitService {
       options.bounds = boundingBox;
       options.fitBoundsOptions = { padding: boundingBoxPadding };
     } else {
-      options.bounds = this._defaultBoundingBox;
+      options.bounds = SbbMapInitService.DEFAULT_BOUNDING_BOX;
     }
 
     return options;
-  }
-
-  getDefaultBoundingBox() {
-    return this._defaultBoundingBox;
   }
 
   fetchStyle(styleUrl: string): Observable<Style> {
