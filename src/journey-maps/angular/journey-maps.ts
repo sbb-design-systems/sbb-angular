@@ -39,7 +39,12 @@ import {
 } from './journey-maps.interfaces';
 import { SbbMarker } from './model/marker';
 import { sbbBufferTimeOnValue } from './services/bufferTimeOnValue';
-import { SBB_MARKER_BOUNDS_PADDING, SBB_ROUTE_SOURCE, SBB_WALK_SOURCE } from './services/constants';
+import {
+  SBB_BOUNDING_BOX,
+  SBB_MARKER_BOUNDS_PADDING,
+  SBB_ROUTE_SOURCE,
+  SBB_WALK_SOURCE,
+} from './services/constants';
 import { SbbLocaleService } from './services/locale-service';
 import { SbbMapConfig } from './services/map/map-config';
 import { SbbMapInitService, SBB_MAX_ZOOM, SBB_MIN_ZOOM } from './services/map/map-init-service';
@@ -168,7 +173,7 @@ export class SbbJourneyMaps implements OnInit, AfterViewInit, OnDestroy, OnChang
     boundingBoxPadding: this._defaultBoundingBoxPadding,
   };
   private _defaultHomeButtonOptions: SbbHomeButtonOptions = {
-    boundingBox: SbbMapInitService.DEFAULT_BOUNDING_BOX,
+    boundingBox: SBB_BOUNDING_BOX,
     boundingBoxPadding: this._defaultBoundingBoxPadding,
   };
   private _defaultMarkerOptions: SbbMarkerOptions = {

@@ -1,5 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { SBB_BOUNDING_BOX } from '@sbb-esta/journey-maps/angular/services/constants';
 import {
   LngLatBoundsLike,
   LngLatLike,
@@ -19,11 +20,6 @@ export const SBB_MAX_ZOOM = 23; /* same as in mobile-clients */
   providedIn: 'root',
 })
 export class SbbMapInitService {
-  public static readonly DEFAULT_BOUNDING_BOX: LngLatBoundsLike = [
-    // CH bounds;
-    [5.7349, 47.9163],
-    [10.6677, 45.6755],
-  ];
   private readonly _defaultZoom = 7.5;
   private readonly _defaultMapCenter: LngLatLike = [7.299265, 47.07212];
   private readonly _controlLabels: any = {
@@ -107,7 +103,7 @@ export class SbbMapInitService {
       options.bounds = boundingBox;
       options.fitBoundsOptions = { padding: boundingBoxPadding };
     } else {
-      options.bounds = SbbMapInitService.DEFAULT_BOUNDING_BOX;
+      options.bounds = SBB_BOUNDING_BOX;
     }
 
     return options;
