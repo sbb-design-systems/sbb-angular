@@ -25,6 +25,7 @@ import {
   SbbFeaturesClickEventData,
   SbbFeaturesHoverChangeEventData,
   SbbFeaturesSelectEventData,
+  SbbHomeButtonOptions,
   SbbInteractionOptions,
   SbbJourneyMapsRoutingOptions,
   SbbListenerOptions,
@@ -166,7 +167,7 @@ export class SbbJourneyMaps implements OnInit, AfterViewInit, OnDestroy, OnChang
   private _defaultViewportOptions: SbbViewportOptions = {
     boundingBoxPadding: this._defaultBoundingBoxPadding,
   };
-  private _defaultHomeButtonOptions: SbbViewportOptions = {
+  private _defaultHomeButtonOptions: SbbHomeButtonOptions = {
     boundingBox: SbbMapInitService.DEFAULT_BOUNDING_BOX,
     boundingBoxPadding: this._defaultBoundingBoxPadding,
   };
@@ -304,18 +305,18 @@ export class SbbJourneyMaps implements OnInit, AfterViewInit, OnDestroy, OnChang
     };
   }
 
-  private _homeButtonOptions: SbbViewportOptions = this._defaultHomeButtonOptions;
+  private _homeButtonOptions: SbbHomeButtonOptions = this._defaultHomeButtonOptions;
 
   /**
    * Settings that control what portion of the map is shown when the home button is clicked.
    * If `mapcenter` or `zoomLevel` are set, then the other fields `boundingBox` and `boundingBoxPadding` are ignored.
    */
   @Input()
-  get homeButtonOptions(): SbbViewportOptions {
+  get homeButtonOptions(): SbbHomeButtonOptions {
     return this._homeButtonOptions;
   }
 
-  set homeButtonOptions(homeButtonOptions: SbbViewportOptions) {
+  set homeButtonOptions(homeButtonOptions: SbbHomeButtonOptions) {
     this._homeButtonOptions = {
       ...this._defaultHomeButtonOptions,
       ...homeButtonOptions,
