@@ -25,6 +25,7 @@ import {
   SbbFeaturesClickEventData,
   SbbFeaturesHoverChangeEventData,
   SbbFeaturesSelectEventData,
+  SbbHomeButtonOptions,
   SbbInteractionOptions,
   SbbJourneyMapsRoutingOptions,
   SbbListenerOptions,
@@ -162,9 +163,13 @@ export class SbbJourneyMaps implements OnInit, AfterViewInit, OnDestroy, OnChang
     basemapSwitch: true,
     homeButton: false,
   };
-  private readonly _homeButtonBoundingBoxPadding = 0;
+  private readonly _defaultBoundingBoxPadding = 0;
   private _defaultViewportOptions: SbbViewportOptions = {
-    boundingBoxPadding: this._homeButtonBoundingBoxPadding,
+    boundingBoxPadding: this._defaultBoundingBoxPadding,
+  };
+  private _defaultHomeButtonOptions: SbbHomeButtonOptions = {
+    boundingBox: this._mapInitService.getDefaultBoundingBox(),
+    boundingBoxPadding: this._defaultBoundingBoxPadding,
   };
   private _defaultMarkerOptions: SbbMarkerOptions = {
     popup: false,
@@ -297,6 +302,24 @@ export class SbbJourneyMaps implements OnInit, AfterViewInit, OnDestroy, OnChang
     this._viewportOptions = {
       ...this._defaultViewportOptions,
       ...viewportOptions,
+    };
+  }
+
+  private _homeButtonOptions: SbbHomeButtonOptions = this._defaultHomeButtonOptions;
+
+  /**
+   * Settings that control what portion of the map is shown when the home button is clicked.
+   * If `mapcenter` or `zoomLevel` are set, then the other fields `boundingBox` and `boundingBoxPadding` are ignored.
+   */
+  @Input()
+  get homeButtonOptions(): SbbHomeButtonOptions {
+    return this._homeButtonOptions;
+  }
+
+  set homeButtonOptions(homeButtonOptions: SbbHomeButtonOptions) {
+    this._homeButtonOptions = {
+      ...this._defaultHomeButtonOptions,
+      ...homeButtonOptions,
     };
   }
 
@@ -658,8 +681,10 @@ export class SbbJourneyMaps implements OnInit, AfterViewInit, OnDestroy, OnChang
   onHomeButtonClicked() {
     this._mapService.moveMap(
       this._map,
-      this._mapInitService.getDefaultBoundingBox(),
-      this._homeButtonBoundingBoxPadding
+      this._homeButtonOptions.boundingBox,
+      this._homeButtonOptions.boundingBoxPadding,
+      this._homeButtonOptions.zoomLevel,
+      this._homeButtonOptions.mapCenter
     );
   }
 

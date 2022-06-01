@@ -9,6 +9,7 @@ import {
 import { UntypedFormBuilder, UntypedFormGroup } from '@angular/forms';
 import { SbbRadioChange } from '@sbb-esta/angular/radio-button';
 import {
+  SbbHomeButtonOptions,
   SbbInteractionOptions,
   SbbJourneyMaps,
   SbbJourneyMapsRoutingOptions,
@@ -80,6 +81,7 @@ export class JourneyMapsFullExample implements OnInit, OnDestroy {
   ];
   pointsOfInterestOptions: SbbPointsOfInterestOptions = { categories: ['park_rail'] };
   viewportOptions: SbbViewportOptions = {};
+  homeButtonOptions: SbbHomeButtonOptions = {};
   zoomLevels: SbbZoomLevels;
   visibleLevels = new BehaviorSubject<number[]>([]);
   form: UntypedFormGroup;

@@ -11,18 +11,19 @@
     [listenerOptions]="form.get('listenerOptions')?.value"
     [uiOptions]="form.get('uiOptions')?.value"
     [viewportOptions]="viewportOptions"
+    [homeButtonOptions]="homeButtonOptions"
     [apiKey]="apiKey"
     [markerOptions]="form.get('markerOptions')?.value"
     [markerDetailsTemplate]="markerDetailsTemplate"
     [journeyMapsRoutingOption]="journeyMapsRoutingOption"
     [journeyMapsZones]="form.get('zoneGeoJson')?.value"
+    [poiOptions]="pointsOfInterestOptions"
     [(selectedMarkerId)]="selectedMarkerId"
     [selectedLevel]="this.form.get('level')?.value ?? 0"
     (selectedLevelChange)="this.form.patchValue({level: $event})"
     (mapCenterChange)="mapCenterChange.next($event)"
     (zoomLevelsChange)="zoomLevels=$event"
     (visibleLevelsChange)="visibleLevels.next($event)"
-    [poiOptions]="pointsOfInterestOptions"
   ></sbb-journey-maps>
   <ng-template #markerDetailsTemplate let-marker>
     <div class="markerdetails-title">{{marker.title}}</div>
