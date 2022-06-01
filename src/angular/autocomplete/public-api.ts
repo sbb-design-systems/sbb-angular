@@ -6,4 +6,4 @@ export * from './autocomplete-trigger';
 export {
   /** @deprecated Use SbbOptionHint instead */
   SbbOptionHint as SbbAutocompleteHint,
-} from '../core/option/option-hint';
+} from '@sbb-esta/angular/core/option/option-hint';

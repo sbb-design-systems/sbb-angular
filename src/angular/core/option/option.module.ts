@@ -1,11 +1,11 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
-import { SbbOptionHint } from './option-hint';
 
 import { SbbCommonModule } from '../common-behaviors/common.module';
 
 import { SbbOptgroup } from './optgroup';
 import { SbbOption } from './option';
+import { SbbOptionHint } from './option-hint';
 import { SbbPseudoCheckbox } from './pseudo-checkbox';
 
 @NgModule({
