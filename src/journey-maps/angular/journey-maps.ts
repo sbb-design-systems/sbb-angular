@@ -38,10 +38,16 @@ import {
 } from './journey-maps.interfaces';
 import { SbbMarker } from './model/marker';
 import { sbbBufferTimeOnValue } from './services/bufferTimeOnValue';
-import { SBB_MARKER_BOUNDS_PADDING, SBB_ROUTE_SOURCE, SBB_WALK_SOURCE } from './services/constants';
+import {
+  SBB_MARKER_BOUNDS_PADDING,
+  SBB_MAX_ZOOM,
+  SBB_MIN_ZOOM,
+  SBB_ROUTE_SOURCE,
+  SBB_WALK_SOURCE,
+} from './services/constants';
 import { SbbLocaleService } from './services/locale-service';
 import { SbbMapConfig } from './services/map/map-config';
-import { SbbMapInitService, SBB_MAX_ZOOM, SBB_MIN_ZOOM } from './services/map/map-init-service';
+import { SbbMapInitService } from './services/map/map-init-service';
 import { SbbMapJourneyService } from './services/map/map-journey-service';
 import { SbbMapLeitPoiService } from './services/map/map-leit-poi-service';
 import { SbbMapMarkerService } from './services/map/map-marker-service';
@@ -141,7 +147,7 @@ export class SbbJourneyMaps implements OnInit, AfterViewInit, OnDestroy, OnChang
   touchOverlayStyleClass: string = '';
 
   private _map: MaplibreMap;
-  @ViewChild('map') private _mapElementRef: ElementRef;
+  @ViewChild('map') private _mapElementRef: ElementRef<HTMLElement>;
   @ViewChild(SbbFeatureEventListener)
   private _featureEventListenerComponent: SbbFeatureEventListener;
   private _defaultStyleOptions: SbbStyleOptions = {
@@ -165,6 +171,8 @@ export class SbbJourneyMaps implements OnInit, AfterViewInit, OnDestroy, OnChang
   private readonly _homeButtonBoundingBoxPadding = 0;
   private _defaultViewportOptions: SbbViewportOptions = {
     boundingBoxPadding: this._homeButtonBoundingBoxPadding,
+    minZoomLevel: SBB_MIN_ZOOM,
+    maxZoomLevel: SBB_MAX_ZOOM,
   };
   private _defaultMarkerOptions: SbbMarkerOptions = {
     popup: false,
@@ -174,7 +182,7 @@ export class SbbJourneyMaps implements OnInit, AfterViewInit, OnDestroy, OnChang
   private _mapResized = new Subject<void>();
   private _destroyed = new Subject<void>();
   private _styleLoaded = new ReplaySubject<void>(1);
-  private _viewportOptionsChanged = new Subject<void>();
+  private _viewportOptionsChanged = new Subject<boolean>();
   private _mapStyleModeChanged = new Subject<void>();
   // _map._isStyleLoaded() returns sometimes false when sources are being updated.
   // Therefore we set this variable to true once the style has been loaded.
@@ -499,7 +507,13 @@ export class SbbJourneyMaps implements OnInit, AfterViewInit, OnDestroy, OnChang
     }
 
     if (changes.viewportOptions) {
-      this._viewportOptionsChanged.next();
+      const prev: SbbViewportOptions | undefined = changes.viewportOptions.previousValue;
+      const curr: SbbViewportOptions | undefined = changes.viewportOptions.currentValue;
+
+      const moveMap =
+        JSON.stringify(prev?.mapCenter) !== JSON.stringify(curr?.mapCenter) ||
+        JSON.stringify(prev?.boundingBox) !== JSON.stringify(curr?.boundingBox);
+      this._viewportOptionsChanged.next(moveMap);
     }
 
     if (changes.styleOptions?.currentValue.mode !== changes.styleOptions?.previousValue?.mode) {
@@ -520,14 +534,9 @@ export class SbbJourneyMaps implements OnInit, AfterViewInit, OnDestroy, OnChang
         this._mapElementRef.nativeElement,
         this._i18n.language,
         styleUrl,
-        this.interactionOptions.scrollZoom!,
-        this.viewportOptions.zoomLevel,
-        this.viewportOptions.mapCenter,
-        this.viewportOptions.boundingBox ?? this.getMarkersBounds,
-        this.viewportOptions.boundingBox
-          ? this.viewportOptions.boundingBoxPadding
-          : SBB_MARKER_BOUNDS_PADDING,
-        this.interactionOptions.oneFingerPan
+        this.interactionOptions,
+        this.viewportOptions,
+        this.getMarkersBounds
       )
       .subscribe((m) => {
         this._map = m;
@@ -705,17 +714,24 @@ export class SbbJourneyMaps implements OnInit, AfterViewInit, OnDestroy, OnChang
 
     this._viewportOptionsChanged
       .pipe(debounceTime(200), takeUntil(this._destroyed))
-      .subscribe(() =>
-        this._mapService.moveMap(
-          this._map,
-          this.viewportOptions.boundingBox ?? this.getMarkersBounds,
-          this.viewportOptions.boundingBox
-            ? this.viewportOptions.boundingBoxPadding
-            : SBB_MARKER_BOUNDS_PADDING,
-          this.viewportOptions.zoomLevel,
-          this.viewportOptions.mapCenter
-        )
-      );
+      .subscribe((moveMap) => {
+        if (moveMap) {
+          this._mapService.moveMap(
+            this._map,
+            this.viewportOptions.boundingBox ?? this.getMarkersBounds,
+            this.viewportOptions.boundingBox
+              ? this.viewportOptions.boundingBoxPadding
+              : SBB_MARKER_BOUNDS_PADDING,
+            this.viewportOptions.zoomLevel,
+            this.viewportOptions.mapCenter
+          );
+        }
+        this._map
+          .setMinZoom(this.viewportOptions.minZoomLevel)
+          .setMaxZoom(this.viewportOptions.maxZoomLevel)
+          .setMaxBounds(this.viewportOptions.maxBounds);
+        this.zoomLevelsChange.next(this._getZooomLevels());
+      });
 
     this._mapStyleModeChanged
       .pipe(
@@ -790,8 +806,8 @@ export class SbbJourneyMaps implements OnInit, AfterViewInit, OnDestroy, OnChang
 
   private _getZooomLevels(): SbbZoomLevels {
     return {
-      minZoom: SBB_MIN_ZOOM,
-      maxZoom: SBB_MAX_ZOOM,
+      minZoom: this._map.getMinZoom(),
+      maxZoom: this._map.getMaxZoom(),
       currentZoom: this._map.getZoom(),
     };
   }

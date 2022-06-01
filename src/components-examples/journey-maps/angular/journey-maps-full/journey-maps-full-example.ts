@@ -13,7 +13,6 @@ import {
   SbbJourneyMaps,
   SbbJourneyMapsRoutingOptions,
   SbbPointsOfInterestOptions,
-  SbbViewportOptions,
   SbbZoomLevels,
 } from '@sbb-esta/journey-maps';
 import { LngLatBounds, LngLatBoundsLike, LngLatLike } from 'maplibre-gl';
@@ -35,6 +34,11 @@ declare global {
     JM_API_KEY: string;
   }
 }
+
+const CH_BOUNDS: LngLatBoundsLike = [
+  [5.7349, 45.6755],
+  [10.6677, 47.9163],
+];
 
 /**
  * @title Journey Maps Full Example
@@ -79,7 +83,6 @@ export class JourneyMapsFullExample implements OnInit, OnDestroy {
     { label: 'Transfer Zürich', value: { transfer: zurichIndoor } },
   ];
   pointsOfInterestOptions: SbbPointsOfInterestOptions = { categories: ['park_rail'] };
-  viewportOptions: SbbViewportOptions = {};
   zoomLevels: SbbZoomLevels;
   visibleLevels = new BehaviorSubject<number[]>([]);
   form: UntypedFormGroup;
@@ -95,6 +98,7 @@ export class JourneyMapsFullExample implements OnInit, OnDestroy {
 
     this.form = _fb.group({
       mapVisible: [true],
+      limitMaxBounds: [false],
       level: [0],
       uiOptions: _fb.group({
         showSmallButtons: [false],
@@ -138,6 +142,12 @@ export class JourneyMapsFullExample implements OnInit, OnDestroy {
         popup: [true, resetSelectedMarkerIdValidator],
         markers: [markers],
       }),
+      viewportOptions: _fb.group({
+        minZoomLevel: [1],
+        maxZoomLevel: [23],
+        boundingBox: [],
+        maxBounds: [],
+      }),
       zoneGeoJson: [],
       routingGeoJson: [],
     });
@@ -177,6 +187,15 @@ export class JourneyMapsFullExample implements OnInit, OnDestroy {
           this.journeyMapsRoutingOption = val;
         }
       });
+
+    this.form
+      .get('limitMaxBounds')
+      ?.valueChanges.pipe(takeUntil(this._destroyed))
+      .subscribe((limitMaxBounds: boolean) =>
+        this.form
+          .get('viewportOptions.maxBounds')
+          ?.patchValue(limitMaxBounds ? CH_BOUNDS : undefined)
+      );
   }
 
   private _getBbox(options: SbbJourneyMapsRoutingOptions) {
@@ -232,10 +251,9 @@ export class JourneyMapsFullExample implements OnInit, OnDestroy {
   }
 
   private _setBbox(bbox: number[] | LngLatBounds): void {
-    this.viewportOptions = {
-      ...this.viewportOptions,
-      boundingBox: this._isLngLatBounds(bbox) ? bbox : this.bboxToLngLatBounds(bbox),
-    };
+    this.form
+      .get('viewportOptions.boundingBox')
+      ?.patchValue(this._isLngLatBounds(bbox) ? bbox : this.bboxToLngLatBounds(bbox));
   }
 
   private _isLngLatBounds(bbox: number[] | LngLatBounds): bbox is LngLatBounds {
