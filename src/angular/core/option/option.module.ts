@@ -1,6 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
-import { SbbOptionHint } from '@sbb-esta/angular/core/option/option-hint';
+import { SbbOptionHint } from './option-hint';
 
 import { SbbCommonModule } from '../common-behaviors/common.module';
 
