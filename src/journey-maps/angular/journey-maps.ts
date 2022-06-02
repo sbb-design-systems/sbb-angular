@@ -21,7 +21,6 @@ import { SbbFeatureEventListener } from './components/feature-event-listener/fea
 import { SbbLevelSwitcher } from './components/level-switch/services/level-switcher';
 import { SbbMapLayerFilter } from './components/level-switch/services/map-layer-filter';
 import {
-  SbbBoundingBoxOptions,
   SbbFeatureData,
   SbbFeaturesClickEventData,
   SbbFeaturesHoverChangeEventData,
@@ -30,7 +29,6 @@ import {
   SbbInteractionOptions,
   SbbJourneyMapsRoutingOptions,
   SbbListenerOptions,
-  SbbMapCenterOptions,
   SbbMarkerOptions,
   SbbPointsOfInterestOptions,
   SbbStyleOptions,
@@ -686,12 +684,6 @@ export class SbbJourneyMaps implements OnInit, AfterViewInit, OnDestroy, OnChang
       );
       this._cd.detectChanges();
     }
-  }
-
-  isSbbBoundingBoxOptions(
-    obj: SbbBoundingBoxOptions | SbbMapCenterOptions
-  ): obj is SbbBoundingBoxOptions {
-    return 'boundingBox' in obj;
   }
 
   /** @docs-private */
