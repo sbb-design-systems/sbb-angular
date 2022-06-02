@@ -2,6 +2,24 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [13.15.0](https://github.com/sbb-design-systems/sbb-angular/compare/13.14.1...13.15.0) (2022-06-02)
+
+
+### Features
+
+* **journey-maps:** add new input parameters to restrict map zoom or bounds  ([#1479](https://github.com/sbb-design-systems/sbb-angular/issues/1479)) ([5bcb343](https://github.com/sbb-design-systems/sbb-angular/commit/5bcb343c900bda644237d10207ee10c3ef01c598))
+
+
+### Bug Fixes
+
+* **deps:** update angular to v13.3.11 ([d4810cb](https://github.com/sbb-design-systems/sbb-angular/commit/d4810cb5ccaa585bc8c5516c8b0b7c25eef68038))
+* **journey-maps:** adjusted breakpoint for teaser styling ([#1475](https://github.com/sbb-design-systems/sbb-angular/issues/1475)) ([1ce9edc](https://github.com/sbb-design-systems/sbb-angular/commit/1ce9edc4bda9f443bbffe5696a0cf61b24e5b192))
+
+
+### Documentation
+
+* update macOS DEVELOPER.md ([#1478](https://github.com/sbb-design-systems/sbb-angular/issues/1478)) ([2bcf447](https://github.com/sbb-design-systems/sbb-angular/commit/2bcf4471a28bb7b5481727c2edce0583862555cb))
+
 ### [13.14.1](https://github.com/sbb-design-systems/sbb-angular/compare/13.14.0...13.14.1) (2022-05-25)
 
 
