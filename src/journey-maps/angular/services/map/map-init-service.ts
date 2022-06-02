@@ -9,8 +9,12 @@ import { LngLatBounds, Map as MaplibreMap, MapboxOptions, Style } from 'maplibre
 import { Observable } from 'rxjs';
 import { map, tap } from 'rxjs/operators';
 
-import { SbbInteractionOptions, SbbViewportOptions } from '../../journey-maps.interfaces';
-import { SBB_MARKER_BOUNDS_PADDING } from '../constants';
+import {
+  SbbInteractionOptions,
+  SbbViewportBounds,
+  SbbViewportOptions,
+} from '../../journey-maps.interfaces';
+import { SBB_MARKER_BOUNDS_PADDING, SBB_MAX_ZOOM, SBB_MIN_ZOOM } from '../constants';
 import { SbbMultiTouchSupport } from '../multiTouchSupport';
 
 @Injectable({
@@ -44,10 +48,17 @@ export class SbbMapInitService {
     styleUrl: string,
     interactionOptions: SbbInteractionOptions,
     viewportOptions: SbbViewportOptions,
+    viewportBounds?: SbbViewportBounds,
     markerBounds?: LngLatBounds
   ): Observable<MaplibreMap> {
     const maplibreMap = new MaplibreMap(
-      this._createOptions(mapNativeElement, interactionOptions, viewportOptions, markerBounds)
+      this._createOptions(
+        mapNativeElement,
+        interactionOptions,
+        viewportOptions,
+        viewportBounds,
+        markerBounds
+      )
     );
 
     this._translateControlLabels(maplibreMap, language);
@@ -67,13 +78,14 @@ export class SbbMapInitService {
     container: HTMLElement,
     interactionOptions: SbbInteractionOptions,
     viewportOptions: SbbViewportOptions,
+    viewportBounds?: SbbViewportBounds,
     markerBounds?: LngLatBounds
   ): MapboxOptions {
     const options: MapboxOptions = {
       container,
-      minZoom: viewportOptions.minZoomLevel,
-      maxZoom: viewportOptions.maxZoomLevel,
-      maxBounds: viewportOptions.maxBounds,
+      minZoom: viewportBounds?.minZoomLevel ?? SBB_MIN_ZOOM,
+      maxZoom: viewportBounds?.maxZoomLevel ?? SBB_MAX_ZOOM,
+      maxBounds: viewportBounds?.maxBounds,
       scrollZoom: interactionOptions.scrollZoom,
       dragRotate: false,
       touchPitch: false,

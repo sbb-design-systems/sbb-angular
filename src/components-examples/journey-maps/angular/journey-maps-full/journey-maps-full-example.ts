@@ -14,6 +14,7 @@ import {
   SbbJourneyMapsRoutingOptions,
   SbbPointsOfInterestOptions,
   SbbViewportDimensions,
+  SbbViewportOptions,
   SbbZoomLevels,
 } from '@sbb-esta/journey-maps';
 import { SBB_BOUNDING_BOX } from '@sbb-esta/journey-maps/angular/services/constants';
@@ -86,6 +87,7 @@ export class JourneyMapsFullExample implements OnInit, OnDestroy {
   ];
   pointsOfInterestOptions: SbbPointsOfInterestOptions = { categories: ['park_rail'] };
   homeButtonOptions: SbbViewportDimensions = { boundingBox: SBB_BOUNDING_BOX };
+  viewportOptions: SbbViewportOptions = {};
   zoomLevels: SbbZoomLevels;
   visibleLevels = new BehaviorSubject<number[]>([]);
   form: UntypedFormGroup;
@@ -145,10 +147,9 @@ export class JourneyMapsFullExample implements OnInit, OnDestroy {
         popup: [true, resetSelectedMarkerIdValidator],
         markers: [markers],
       }),
-      viewportOptions: _fb.group({
+      viewportBounds: _fb.group({
         minZoomLevel: [1],
         maxZoomLevel: [23],
-        boundingBox: [],
         maxBounds: [],
       }),
       zoneGeoJson: [],
@@ -196,7 +197,7 @@ export class JourneyMapsFullExample implements OnInit, OnDestroy {
       ?.valueChanges.pipe(takeUntil(this._destroyed))
       .subscribe((limitMaxBounds: boolean) =>
         this.form
-          .get('viewportOptions.maxBounds')
+          .get('viewportBounds.maxBounds')
           ?.patchValue(limitMaxBounds ? CH_BOUNDS : undefined)
       );
   }
@@ -254,9 +255,10 @@ export class JourneyMapsFullExample implements OnInit, OnDestroy {
   }
 
   private _setBbox(bbox: number[] | LngLatBounds): void {
-    this.form
-      .get('viewportOptions.boundingBox')
-      ?.patchValue(this._isLngLatBounds(bbox) ? bbox : this.bboxToLngLatBounds(bbox));
+    this.viewportOptions = {
+      ...this.viewportOptions,
+      boundingBox: this._isLngLatBounds(bbox) ? bbox : this.bboxToLngLatBounds(bbox),
+    };
   }
 
   private _isLngLatBounds(bbox: number[] | LngLatBounds): bbox is LngLatBounds {

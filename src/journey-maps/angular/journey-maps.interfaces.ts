@@ -48,14 +48,17 @@ export interface SbbViewportOptions {
   mapCenter?: LngLatLike;
   /** The initial zoom level of the map. */
   zoomLevel?: number;
-  /** The minimum zoom level of the map */
-  minZoomLevel?: number;
-  /** The maximum zoom level of the map */
-  maxZoomLevel?: number;
   /** The initial bounding box of the map. */
   boundingBox?: LngLatBoundsLike;
   /** The amount of padding in pixels to add to the given bounding box. */
   boundingBoxPadding?: number;
+}
+
+export interface SbbViewportBounds {
+  /** The minimum zoom level of the map (0-24)*/
+  minZoomLevel?: number;
+  /** The maximum zoom level of the map (0-24)*/
+  maxZoomLevel?: number;
   /** Pan and zoom operations are constrained within these bounds. Leave empty for no bounds. */
   maxBounds?: LngLatBoundsLike;
 }

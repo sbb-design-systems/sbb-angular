@@ -10,7 +10,8 @@
     [interactionOptions]="interactionOptions"
     [listenerOptions]="form.get('listenerOptions')?.value"
     [uiOptions]="form.get('uiOptions')?.value"
-    [viewportOptions]="form.get('viewportOptions')?.value"
+    [viewportOptions]="viewportOptions"
+    [viewportBounds]="form.get('viewportBounds')?.value"
     [homeButtonOptions]="homeButtonOptions"
     [apiKey]="apiKey"
     [markerOptions]="form.get('markerOptions')?.value"
@@ -82,14 +83,28 @@
         <button sbb-ghost-button (click)="client.zoomIn()">Zoom In</button>
         <button sbb-ghost-button (click)="client.zoomOut()">Zoom Out</button>
       </li>
-      <li formGroupName="viewportOptions">
+      <li formGroupName="viewportBounds">
         <sbb-form-field>
           <span class="sbb-label">Min Zoom</span>
-          <input type="number" sbbInput min="0" max="24" formControlName="minZoomLevel" />
+          <input
+            sbbInput
+            type="number"
+            required="true"
+            min="0"
+            [max]="(form.get('viewportBounds.maxZoomLevel')?.value ?? 24) - 1"
+            formControlName="minZoomLevel"
+          />
         </sbb-form-field>
         <sbb-form-field>
           <span class="sbb-label">Max Zoom</span>
-          <input type="number" sbbInput min="0" max="24" formControlName="maxZoomLevel" />
+          <input
+            sbbInput
+            type="number"
+            required="true"
+            [min]="(form.get('viewportBounds.minZoomLevel')?.value ?? 0) + 1"
+            max="24"
+            formControlName="maxZoomLevel"
+          />
         </sbb-form-field>
       </li>
       <li>
