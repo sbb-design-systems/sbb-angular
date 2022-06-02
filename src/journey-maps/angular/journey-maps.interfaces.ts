@@ -54,7 +54,7 @@ export interface SbbViewportOptions {
   boundingBoxPadding?: number;
 }
 
-export type SbbHomeButtonOptions = SbbMapCenterOptions | SbbBoundingBoxOptions;
+export type SbbViewportDimensions = SbbMapCenterOptions | SbbBoundingBoxOptions;
 
 export interface SbbMapCenterOptions {
   /**
