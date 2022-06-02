@@ -1,6 +1,12 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { SBB_BOUNDING_BOX } from '@sbb-esta/journey-maps/angular/services/constants';
+import {
+  SBB_BOUNDING_BOX,
+  SBB_DEFAULT_MAP_CENTER,
+  SBB_DEFAULT_ZOOM,
+  SBB_MAX_ZOOM,
+  SBB_MIN_ZOOM,
+} from '@sbb-esta/journey-maps/angular/services/constants';
 import {
   LngLatBoundsLike,
   LngLatLike,
@@ -13,15 +19,10 @@ import { map, tap } from 'rxjs/operators';
 
 import { SbbMultiTouchSupport } from '../multiTouchSupport';
 
-export const SBB_MIN_ZOOM = 1;
-export const SBB_MAX_ZOOM = 23; /* same as in mobile-clients */
-
 @Injectable({
   providedIn: 'root',
 })
 export class SbbMapInitService {
-  private readonly _defaultZoom = 7.5;
-  private readonly _defaultMapCenter: LngLatLike = [7.299265, 47.07212];
   private readonly _controlLabels: any = {
     de: {
       'NavigationControl.ZoomIn': 'Hineinzoomen',
@@ -97,8 +98,8 @@ export class SbbMapInitService {
     };
 
     if (zoomLevel || mapCenter) {
-      options.zoom = zoomLevel ?? this._defaultZoom;
-      options.center = mapCenter ?? this._defaultMapCenter;
+      options.zoom = zoomLevel ?? SBB_DEFAULT_ZOOM;
+      options.center = mapCenter ?? SBB_DEFAULT_MAP_CENTER;
     } else if (boundingBox) {
       options.bounds = boundingBox;
       options.fitBoundsOptions = { padding: boundingBoxPadding };

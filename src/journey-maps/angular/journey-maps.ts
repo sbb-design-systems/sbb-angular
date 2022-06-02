@@ -21,6 +21,7 @@ import { SbbFeatureEventListener } from './components/feature-event-listener/fea
 import { SbbLevelSwitcher } from './components/level-switch/services/level-switcher';
 import { SbbMapLayerFilter } from './components/level-switch/services/map-layer-filter';
 import {
+  SbbBoundingBoxOptions,
   SbbFeatureData,
   SbbFeaturesClickEventData,
   SbbFeaturesHoverChangeEventData,
@@ -29,6 +30,7 @@ import {
   SbbInteractionOptions,
   SbbJourneyMapsRoutingOptions,
   SbbListenerOptions,
+  SbbMapCenterOptions,
   SbbMarkerOptions,
   SbbPointsOfInterestOptions,
   SbbStyleOptions,
@@ -41,13 +43,17 @@ import { SbbMarker } from './model/marker';
 import { sbbBufferTimeOnValue } from './services/bufferTimeOnValue';
 import {
   SBB_BOUNDING_BOX,
+  SBB_DEFAULT_MAP_CENTER,
+  SBB_DEFAULT_ZOOM,
   SBB_MARKER_BOUNDS_PADDING,
+  SBB_MAX_ZOOM,
+  SBB_MIN_ZOOM,
   SBB_ROUTE_SOURCE,
   SBB_WALK_SOURCE,
 } from './services/constants';
 import { SbbLocaleService } from './services/locale-service';
 import { SbbMapConfig } from './services/map/map-config';
-import { SbbMapInitService, SBB_MAX_ZOOM, SBB_MIN_ZOOM } from './services/map/map-init-service';
+import { SbbMapInitService } from './services/map/map-init-service';
 import { SbbMapJourneyService } from './services/map/map-journey-service';
 import { SbbMapLeitPoiService } from './services/map/map-leit-poi-service';
 import { SbbMapMarkerService } from './services/map/map-marker-service';
@@ -174,7 +180,7 @@ export class SbbJourneyMaps implements OnInit, AfterViewInit, OnDestroy, OnChang
   };
   private _defaultHomeButtonOptions: SbbHomeButtonOptions = {
     boundingBox: SBB_BOUNDING_BOX,
-    boundingBoxPadding: this._defaultBoundingBoxPadding,
+    padding: this._defaultBoundingBoxPadding,
   };
   private _defaultMarkerOptions: SbbMarkerOptions = {
     popup: false,
@@ -297,6 +303,7 @@ export class SbbJourneyMaps implements OnInit, AfterViewInit, OnDestroy, OnChang
 
   /**
    * Settings that control what portion of the map is shown initially
+   * If `mapcenter` or `zoomLevel` are set, then the other fields `boundingBox` and `boundingBoxPadding` are ignored.
    */
   @Input()
   get viewportOptions(): SbbViewportOptions {
@@ -314,7 +321,6 @@ export class SbbJourneyMaps implements OnInit, AfterViewInit, OnDestroy, OnChang
 
   /**
    * Settings that control what portion of the map is shown when the home button is clicked.
-   * If `mapcenter` or `zoomLevel` are set, then the other fields `boundingBox` and `boundingBoxPadding` are ignored.
    */
   @Input()
   get homeButtonOptions(): SbbHomeButtonOptions {
@@ -682,15 +688,15 @@ export class SbbJourneyMaps implements OnInit, AfterViewInit, OnDestroy, OnChang
     }
   }
 
+  isSbbBoundingBoxOptions(
+    obj: SbbBoundingBoxOptions | SbbMapCenterOptions
+  ): obj is SbbBoundingBoxOptions {
+    return 'boundingBox' in obj;
+  }
+
   /** @docs-private */
   onHomeButtonClicked() {
-    this._mapService.moveMap(
-      this._map,
-      this._homeButtonOptions.boundingBox,
-      this._homeButtonOptions.boundingBoxPadding,
-      this._homeButtonOptions.zoomLevel,
-      this._homeButtonOptions.mapCenter
-    );
+    this._mapService.moveMap(this._map, this._homeButtonOptions);
   }
 
   private _updateMarkers(): void {
@@ -728,6 +734,26 @@ export class SbbJourneyMaps implements OnInit, AfterViewInit, OnDestroy, OnChang
       : this.styleOptions.brightId;
   }
 
+  // TODO: remove this logic when we upgrade to Angular 14.
+  //  Make `this.viewportOptions` use union type SbbBoundingBoxOptions | SbbMapCenterOptions
+  private _convertToUnionType(viewportOptions: SbbViewportOptions) {
+    if (this.viewportOptions.zoomLevel || this.viewportOptions.mapCenter) {
+      return {
+        zoomLevel: this.viewportOptions.zoomLevel ?? SBB_DEFAULT_ZOOM,
+        mapCenter: this.viewportOptions.mapCenter ?? SBB_DEFAULT_MAP_CENTER,
+      };
+    } else {
+      return {
+        boundingBox: this.viewportOptions.boundingBox ?? this.getMarkersBounds ?? SBB_BOUNDING_BOX,
+        padding: this.viewportOptions.boundingBox
+          ? this.viewportOptions.boundingBoxPadding
+          : this.getMarkersBounds
+          ? SBB_MARKER_BOUNDS_PADDING
+          : undefined,
+      };
+    }
+  }
+
   private _setupSubjects(): void {
     this._mapResized
       .pipe(debounceTime(500), takeUntil(this._destroyed))
@@ -736,15 +762,7 @@ export class SbbJourneyMaps implements OnInit, AfterViewInit, OnDestroy, OnChang
     this._viewportOptionsChanged
       .pipe(debounceTime(200), takeUntil(this._destroyed))
       .subscribe(() =>
-        this._mapService.moveMap(
-          this._map,
-          this.viewportOptions.boundingBox ?? this.getMarkersBounds,
-          this.viewportOptions.boundingBox
-            ? this.viewportOptions.boundingBoxPadding
-            : SBB_MARKER_BOUNDS_PADDING,
-          this.viewportOptions.zoomLevel,
-          this.viewportOptions.mapCenter
-        )
+        this._mapService.moveMap(this._map, this._convertToUnionType(this.viewportOptions))
       );
 
     this._mapStyleModeChanged
