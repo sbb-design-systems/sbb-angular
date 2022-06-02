@@ -5,8 +5,8 @@ export const SBB_MARKER_BOUNDS_PADDING = 40;
 
 export const SBB_BOUNDING_BOX: LngLatBoundsLike = [
   // CH bounds;
-  [5.7349, 47.9163],
-  [10.6677, 45.6755],
+  [5.7349, 45.6755],
+  [10.6677, 47.9163],
 ];
 
 export const SBB_MARKER_SOURCE = 'rokas-marker-source';
