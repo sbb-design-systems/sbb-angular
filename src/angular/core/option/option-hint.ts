@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Directive } from '@angular/core';
 
 /**
  * Option-hint IDs need to be unique across components, so this counter exists outside of
@@ -6,10 +6,9 @@ import { Component } from '@angular/core';
  */
 let nextId = 0;
 
-@Component({
+@Directive({
   // TODO(v15): Remove sbb-autocomplete-hint selector.
   selector: 'sbb-option-hint, sbb-autocomplete-hint',
-  templateUrl: './option-hint.html',
   host: {
     class: 'sbb-option-hint sbb-label',
     '[attr.id]': 'id',

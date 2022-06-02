@@ -2,8 +2,7 @@ import { A11yModule } from '@angular/cdk/a11y';
 import { OverlayModule } from '@angular/cdk/overlay';
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
-import { SbbOptionModule } from '@sbb-esta/angular/core';
-import { SbbCommonModule } from '@sbb-esta/angular/core';
+import { SbbCommonModule, SbbOptionModule } from '@sbb-esta/angular/core';
 
 import { SbbAutocomplete } from './autocomplete';
 import { SbbAutocompleteOrigin } from './autocomplete-origin';
