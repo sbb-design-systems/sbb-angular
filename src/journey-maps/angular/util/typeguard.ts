@@ -1,4 +1,7 @@
-import { SbbBoundingBoxOptions, SbbMapCenterOptions } from '@sbb-esta/journey-maps/angular';
+import {
+  SbbBoundingBoxOptions,
+  SbbMapCenterOptions,
+} from '@sbb-esta/journey-maps/angular/journey-maps.interfaces';
 
 export const isSbbMapCenterOptions = (
   obj: SbbBoundingBoxOptions | SbbMapCenterOptions
