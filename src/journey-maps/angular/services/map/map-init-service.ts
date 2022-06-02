@@ -4,19 +4,13 @@ import {
   SBB_BOUNDING_BOX,
   SBB_DEFAULT_MAP_CENTER,
   SBB_DEFAULT_ZOOM,
-  SBB_MAX_ZOOM,
-  SBB_MIN_ZOOM,
 } from '@sbb-esta/journey-maps/angular/services/constants';
-import {
-  LngLatBoundsLike,
-  LngLatLike,
-  Map as MaplibreMap,
-  MapboxOptions,
-  Style,
-} from 'maplibre-gl';
+import { LngLatBounds, Map as MaplibreMap, MapboxOptions, Style } from 'maplibre-gl';
 import { Observable } from 'rxjs';
 import { map, tap } from 'rxjs/operators';
 
+import { SbbInteractionOptions, SbbViewportOptions } from '../../journey-maps.interfaces';
+import { SBB_MARKER_BOUNDS_PADDING } from '../constants';
 import { SbbMultiTouchSupport } from '../multiTouchSupport';
 
 @Injectable({
@@ -45,29 +39,19 @@ export class SbbMapInitService {
   constructor(private _http: HttpClient) {}
 
   initializeMap(
-    mapNativeElement: any,
+    mapNativeElement: HTMLElement,
     language: string,
     styleUrl: string,
-    scrollZoom: boolean,
-    zoomLevel?: number,
-    mapCenter?: LngLatLike,
-    boundingBox?: LngLatBoundsLike,
-    boundingBoxPadding?: number,
-    oneFingerPan?: boolean
+    interactionOptions: SbbInteractionOptions,
+    viewportOptions: SbbViewportOptions,
+    markerBounds?: LngLatBounds
   ): Observable<MaplibreMap> {
     const maplibreMap = new MaplibreMap(
-      this._createOptions(
-        mapNativeElement,
-        scrollZoom,
-        zoomLevel,
-        mapCenter,
-        boundingBox,
-        boundingBoxPadding
-      )
+      this._createOptions(mapNativeElement, interactionOptions, viewportOptions, markerBounds)
     );
 
     this._translateControlLabels(maplibreMap, language);
-    this._addControls(maplibreMap, oneFingerPan);
+    this._addControls(maplibreMap, interactionOptions.oneFingerPan);
 
     // https://docs.mapbox.com/mapbox-gl-js/example/toggle-interaction-handlers/
     maplibreMap.keyboard.disableRotation();
@@ -80,29 +64,34 @@ export class SbbMapInitService {
   }
 
   private _createOptions(
-    container: any,
-    scrollZoom: boolean,
-    zoomLevel?: number,
-    mapCenter?: LngLatLike,
-    boundingBox?: LngLatBoundsLike,
-    boundingBoxPadding?: number
+    container: HTMLElement,
+    interactionOptions: SbbInteractionOptions,
+    viewportOptions: SbbViewportOptions,
+    markerBounds?: LngLatBounds
   ): MapboxOptions {
     const options: MapboxOptions = {
       container,
-      minZoom: SBB_MIN_ZOOM,
-      maxZoom: SBB_MAX_ZOOM,
-      scrollZoom,
+      minZoom: viewportOptions.minZoomLevel,
+      maxZoom: viewportOptions.maxZoomLevel,
+      maxBounds: viewportOptions.maxBounds,
+      scrollZoom: interactionOptions.scrollZoom,
       dragRotate: false,
       touchPitch: false,
       fadeDuration: 10,
     };
 
-    if (zoomLevel || mapCenter) {
-      options.zoom = zoomLevel ?? SBB_DEFAULT_ZOOM;
-      options.center = mapCenter ?? SBB_DEFAULT_MAP_CENTER;
+    const boundingBox = viewportOptions.boundingBox ?? markerBounds;
+
+    if (viewportOptions.zoomLevel || viewportOptions.mapCenter) {
+      options.zoom = viewportOptions.zoomLevel ?? SBB_DEFAULT_ZOOM;
+      options.center = viewportOptions.mapCenter ?? SBB_DEFAULT_MAP_CENTER;
     } else if (boundingBox) {
       options.bounds = boundingBox;
-      options.fitBoundsOptions = { padding: boundingBoxPadding };
+      options.fitBoundsOptions = {
+        padding: viewportOptions.boundingBox
+          ? viewportOptions.boundingBoxPadding
+          : SBB_MARKER_BOUNDS_PADDING,
+      };
     } else {
       options.bounds = SBB_BOUNDING_BOX;
     }
