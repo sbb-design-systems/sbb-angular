@@ -42,9 +42,6 @@ import { SbbMarker } from './model/marker';
 import { sbbBufferTimeOnValue } from './services/bufferTimeOnValue';
 import {
   SBB_BOUNDING_BOX,
-  SBB_DEFAULT_MAP_CENTER,
-  SBB_DEFAULT_ZOOM,
-  SBB_MARKER_BOUNDS_PADDING,
   SBB_MAX_ZOOM,
   SBB_MIN_ZOOM,
   SBB_ROUTE_SOURCE,
@@ -103,7 +100,7 @@ export class SbbJourneyMaps implements OnInit, AfterViewInit, OnDestroy, OnChang
    * Specify which points of interest categories should be visible in map.
    */
   @Input() poiOptions?: SbbPointsOfInterestOptions;
-  /** Restrict the visible part and possible zoom levels of the map.*/
+  /** Restrict the visible part and possible zoom levels of the map. */
   @Input() viewportBounds?: SbbViewportBounds;
   /**
    * This event is emitted whenever a marker, with property triggerEvent, is selected or unselected.
@@ -320,9 +317,7 @@ export class SbbJourneyMaps implements OnInit, AfterViewInit, OnDestroy, OnChang
 
   private _homeButtonOptions: SbbViewportDimensions = this._defaultHomeButtonOptions;
 
-  /**
-   * Settings that control what portion of the map is shown when the home button is clicked.
-   */
+  /** Settings that control what portion of the map is shown when the home button is clicked. */
   @Input()
   get homeButtonOptions(): SbbViewportDimensions {
     return this._homeButtonOptions;
@@ -736,23 +731,23 @@ export class SbbJourneyMaps implements OnInit, AfterViewInit, OnDestroy, OnChang
   }
 
   // TODO: remove this logic when we upgrade to Angular 14.
-  //  Make `this.viewportOptions` use union type SbbBoundingBoxOptions | SbbMapCenterOptions
-  private _convertToUnionType(viewportOptions: SbbViewportOptions) {
+  //  Make `this.viewportOptions` use type SbbViewportDimensions
+  private _convertToViewportDimensions(
+    viewportOptions: SbbViewportOptions
+  ): SbbViewportDimensions | undefined {
     if (viewportOptions.zoomLevel || viewportOptions.mapCenter) {
       return {
-        zoomLevel: viewportOptions.zoomLevel ?? SBB_DEFAULT_ZOOM,
-        mapCenter: viewportOptions.mapCenter ?? SBB_DEFAULT_MAP_CENTER,
+        zoomLevel: viewportOptions.zoomLevel ?? this._map.getZoom(),
+        mapCenter: viewportOptions.mapCenter ?? this._map.getCenter(),
       };
-    } else {
+    } else if (viewportOptions.boundingBox) {
       return {
-        boundingBox: viewportOptions.boundingBox ?? this.getMarkersBounds ?? SBB_BOUNDING_BOX,
-        padding: viewportOptions.boundingBox
-          ? viewportOptions.boundingBoxPadding
-          : this.getMarkersBounds
-          ? SBB_MARKER_BOUNDS_PADDING
-          : undefined,
+        boundingBox: viewportOptions.boundingBox,
+        padding: viewportOptions.boundingBoxPadding,
       };
     }
+
+    return undefined;
   }
 
   private _setupSubjects(): void {
@@ -763,7 +758,10 @@ export class SbbJourneyMaps implements OnInit, AfterViewInit, OnDestroy, OnChang
     this._viewportOptionsChanged
       .pipe(debounceTime(200), takeUntil(this._destroyed))
       .subscribe((moveMap) => {
-        this._mapService.moveMap(this._map, this._convertToUnionType(this.viewportOptions));
+        const viewportDimensions = this._convertToViewportDimensions(this.viewportOptions);
+        if (viewportDimensions) {
+          this._mapService.moveMap(this._map, viewportDimensions);
+        }
       });
 
     this._mapStyleModeChanged

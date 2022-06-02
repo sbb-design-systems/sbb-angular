@@ -3,11 +3,7 @@ import { isSbbMapCenterOptions } from '@sbb-esta/journey-maps/angular/util/typeg
 import { Geometry, Point } from 'geojson';
 import { FlyToOptions, LngLat, LngLatLike, Map as MaplibreMap } from 'maplibre-gl';
 
-import {
-  SbbBoundingBoxOptions,
-  SbbMapCenterOptions,
-  SbbPointsOfInterestOptions,
-} from '../../journey-maps.interfaces';
+import { SbbPointsOfInterestOptions, SbbViewportDimensions } from '../../journey-maps.interfaces';
 import { SBB_POI_LAYER } from '../constants';
 
 export const SBB_EMPTY_FEATURE_COLLECTION: GeoJSON.FeatureCollection = {
@@ -17,11 +13,11 @@ export const SBB_EMPTY_FEATURE_COLLECTION: GeoJSON.FeatureCollection = {
 
 @Injectable({ providedIn: 'root' })
 export class SbbMapService {
-  moveMap(map: MaplibreMap, viewportOptions: SbbMapCenterOptions | SbbBoundingBoxOptions): void {
-    if (isSbbMapCenterOptions(viewportOptions)) {
-      this._centerMap(map, viewportOptions.mapCenter, viewportOptions.zoomLevel);
+  moveMap(map: MaplibreMap, viewportDimensions: SbbViewportDimensions): void {
+    if (isSbbMapCenterOptions(viewportDimensions)) {
+      this._centerMap(map, viewportDimensions.mapCenter, viewportDimensions.zoomLevel);
     } else {
-      map.fitBounds(viewportOptions.boundingBox, { padding: viewportOptions.padding });
+      map.fitBounds(viewportDimensions.boundingBox, { padding: viewportDimensions.padding });
     }
   }
 

@@ -55,9 +55,9 @@ export interface SbbViewportOptions {
 }
 
 export interface SbbViewportBounds {
-  /** The minimum zoom level of the map (0-24)*/
+  /** The minimum zoom level of the map (0-24) */
   minZoomLevel?: number;
-  /** The maximum zoom level of the map (0-24)*/
+  /** The maximum zoom level of the map (0-24) */
   maxZoomLevel?: number;
   /** Pan and zoom operations are constrained within these bounds. Leave empty for no bounds. */
   maxBounds?: LngLatBoundsLike;
@@ -66,10 +66,7 @@ export interface SbbViewportBounds {
 export type SbbViewportDimensions = SbbMapCenterOptions | SbbBoundingBoxOptions;
 
 export interface SbbMapCenterOptions {
-  /**
-   * The desired center of the map. You should pass an array with two numbers,
-   * the first one being the longitude and the second one the latitude.
-   */
+  /** The desired center of the map. */
   mapCenter: LngLatLike;
   /** The desired zoom level of the map. */
   zoomLevel: number;
