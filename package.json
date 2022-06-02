@@ -50,7 +50,7 @@
   "schematics": "./tools/schematics/collection.json",
   "dependencies": {
     "@angular/animations": "13.3.11",
-    "@angular/cdk": "13.3.8",
+    "@angular/cdk": "13.3.9",
     "@angular/common": "13.3.11",
     "@angular/core": "13.3.11",
     "@angular/elements": "13.3.11",
