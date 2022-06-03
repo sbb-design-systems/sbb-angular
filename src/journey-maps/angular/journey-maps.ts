@@ -35,7 +35,6 @@ import {
   SbbUIOptions,
   SbbViewportBounds,
   SbbViewportDimensions,
-  SbbViewportOptions,
   SbbZoomLevels,
 } from './journey-maps.interfaces';
 import { SbbMarker } from './model/marker';
@@ -100,6 +99,8 @@ export class SbbJourneyMaps implements OnInit, AfterViewInit, OnDestroy, OnChang
    * Specify which points of interest categories should be visible in map.
    */
   @Input() poiOptions?: SbbPointsOfInterestOptions;
+  /** Define the currently visible part of the map. */
+  @Input() viewportDimensions?: SbbViewportDimensions;
   /** Restrict the visible part and possible zoom levels of the map. */
   @Input() viewportBounds?: SbbViewportBounds;
   /**
@@ -172,13 +173,9 @@ export class SbbJourneyMaps implements OnInit, AfterViewInit, OnDestroy, OnChang
     basemapSwitch: true,
     homeButton: false,
   };
-  private readonly _defaultBoundingBoxPadding = 0;
-  private _defaultViewportOptions: SbbViewportOptions = {
-    boundingBoxPadding: this._defaultBoundingBoxPadding,
-  };
   private _defaultHomeButtonOptions: SbbViewportDimensions = {
     boundingBox: SBB_BOUNDING_BOX,
-    padding: this._defaultBoundingBoxPadding,
+    padding: 0,
   };
   private _defaultMarkerOptions: SbbMarkerOptions = {
     popup: false,
@@ -188,7 +185,7 @@ export class SbbJourneyMaps implements OnInit, AfterViewInit, OnDestroy, OnChang
   private _mapResized = new Subject<void>();
   private _destroyed = new Subject<void>();
   private _styleLoaded = new ReplaySubject<void>(1);
-  private _viewportOptionsChanged = new Subject<void>();
+  private _viewportDimensionsChanged = new Subject<void>();
   private _mapStyleModeChanged = new Subject<void>();
   // _map._isStyleLoaded() returns sometimes false when sources are being updated.
   // Therefore we set this variable to true once the style has been loaded.
@@ -294,24 +291,6 @@ export class SbbJourneyMaps implements OnInit, AfterViewInit, OnDestroy, OnChang
     this._uiOptions = {
       ...this._defaultUIOptions,
       ...uiOptions,
-    };
-  }
-
-  private _viewportOptions: SbbViewportOptions = this._defaultViewportOptions;
-
-  /**
-   * Settings that control what portion of the map is shown initially
-   * If `mapcenter` or `zoomLevel` are set, then the other fields `boundingBox` and `boundingBoxPadding` are ignored.
-   */
-  @Input()
-  get viewportOptions(): SbbViewportOptions {
-    return this._viewportOptions;
-  }
-
-  set viewportOptions(viewportOptions: SbbViewportOptions) {
-    this._viewportOptions = {
-      ...this._defaultViewportOptions,
-      ...viewportOptions,
     };
   }
 
@@ -528,8 +507,8 @@ export class SbbJourneyMaps implements OnInit, AfterViewInit, OnDestroy, OnChang
       return;
     }
 
-    if (changes.viewportOptions) {
-      this._viewportOptionsChanged.next();
+    if (changes.viewportDimensions) {
+      this._viewportDimensionsChanged.next();
     }
 
     if (changes.viewportBounds) {
@@ -561,7 +540,7 @@ export class SbbJourneyMaps implements OnInit, AfterViewInit, OnDestroy, OnChang
         this._i18n.language,
         styleUrl,
         this.interactionOptions,
-        this.viewportOptions,
+        this.viewportDimensions,
         this.viewportBounds,
         this.getMarkersBounds
       )
@@ -730,37 +709,16 @@ export class SbbJourneyMaps implements OnInit, AfterViewInit, OnDestroy, OnChang
       : this.styleOptions.brightId;
   }
 
-  // TODO: remove this logic when we upgrade to Angular 14.
-  //  Make `this.viewportOptions` use type SbbViewportDimensions
-  private _convertToViewportDimensions(
-    viewportOptions: SbbViewportOptions
-  ): SbbViewportDimensions | undefined {
-    if (viewportOptions.zoomLevel || viewportOptions.mapCenter) {
-      return {
-        zoomLevel: viewportOptions.zoomLevel ?? this._map.getZoom(),
-        mapCenter: viewportOptions.mapCenter ?? this._map.getCenter(),
-      };
-    } else if (viewportOptions.boundingBox) {
-      return {
-        boundingBox: viewportOptions.boundingBox,
-        padding: viewportOptions.boundingBoxPadding,
-      };
-    }
-
-    return undefined;
-  }
-
   private _setupSubjects(): void {
     this._mapResized
       .pipe(debounceTime(500), takeUntil(this._destroyed))
       .subscribe(() => this._map?.resize());
 
-    this._viewportOptionsChanged
+    this._viewportDimensionsChanged
       .pipe(debounceTime(200), takeUntil(this._destroyed))
-      .subscribe((moveMap) => {
-        const viewportDimensions = this._convertToViewportDimensions(this.viewportOptions);
-        if (viewportDimensions) {
-          this._mapService.moveMap(this._map, viewportDimensions);
+      .subscribe(() => {
+        if (this.viewportDimensions) {
+          this._mapService.moveMap(this._map, this.viewportDimensions);
         }
       });
 

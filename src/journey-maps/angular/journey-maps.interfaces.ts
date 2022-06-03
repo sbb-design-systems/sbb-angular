@@ -40,20 +40,6 @@ export interface SbbUIOptions {
   homeButton?: boolean;
 }
 
-export interface SbbViewportOptions {
-  /**
-   * The initial center of the map. You should pass an array with two numbers,
-   * the first one being the longitude and the second one the latitude.
-   */
-  mapCenter?: LngLatLike;
-  /** The initial zoom level of the map. */
-  zoomLevel?: number;
-  /** The initial bounding box of the map. */
-  boundingBox?: LngLatBoundsLike;
-  /** The amount of padding in pixels to add to the given bounding box. */
-  boundingBoxPadding?: number;
-}
-
 export interface SbbViewportBounds {
   /** The minimum zoom level of the map (0-24) */
   minZoomLevel?: number;

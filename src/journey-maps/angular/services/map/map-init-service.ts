@@ -1,10 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import {
-  SBB_BOUNDING_BOX,
-  SBB_DEFAULT_MAP_CENTER,
-  SBB_DEFAULT_ZOOM,
-} from '@sbb-esta/journey-maps/angular/services/constants';
+import { SBB_BOUNDING_BOX } from '@sbb-esta/journey-maps/angular/services/constants';
 import { LngLatBounds, Map as MaplibreMap, MapboxOptions, Style } from 'maplibre-gl';
 import { Observable } from 'rxjs';
 import { map, tap } from 'rxjs/operators';
@@ -12,8 +8,9 @@ import { map, tap } from 'rxjs/operators';
 import {
   SbbInteractionOptions,
   SbbViewportBounds,
-  SbbViewportOptions,
+  SbbViewportDimensions,
 } from '../../journey-maps.interfaces';
+import { isSbbBoundingBoxOptions, isSbbMapCenterOptions } from '../../util/typeguard';
 import { SBB_MARKER_BOUNDS_PADDING, SBB_MAX_ZOOM, SBB_MIN_ZOOM } from '../constants';
 import { SbbMultiTouchSupport } from '../multiTouchSupport';
 
@@ -47,7 +44,7 @@ export class SbbMapInitService {
     language: string,
     styleUrl: string,
     interactionOptions: SbbInteractionOptions,
-    viewportOptions: SbbViewportOptions,
+    viewportDimensions?: SbbViewportDimensions,
     viewportBounds?: SbbViewportBounds,
     markerBounds?: LngLatBounds
   ): Observable<MaplibreMap> {
@@ -55,7 +52,7 @@ export class SbbMapInitService {
       this._createOptions(
         mapNativeElement,
         interactionOptions,
-        viewportOptions,
+        viewportDimensions,
         viewportBounds,
         markerBounds
       )
@@ -77,7 +74,7 @@ export class SbbMapInitService {
   private _createOptions(
     container: HTMLElement,
     interactionOptions: SbbInteractionOptions,
-    viewportOptions: SbbViewportOptions,
+    viewportDimensions?: SbbViewportDimensions,
     viewportBounds?: SbbViewportBounds,
     markerBounds?: LngLatBounds
   ): MapboxOptions {
@@ -92,20 +89,25 @@ export class SbbMapInitService {
       fadeDuration: 10,
     };
 
-    const boundingBox = viewportOptions.boundingBox ?? markerBounds;
-
-    if (viewportOptions.zoomLevel || viewportOptions.mapCenter) {
-      options.zoom = viewportOptions.zoomLevel ?? SBB_DEFAULT_ZOOM;
-      options.center = viewportOptions.mapCenter ?? SBB_DEFAULT_MAP_CENTER;
-    } else if (boundingBox) {
-      options.bounds = boundingBox;
-      options.fitBoundsOptions = {
-        padding: viewportOptions.boundingBox
-          ? viewportOptions.boundingBoxPadding
-          : SBB_MARKER_BOUNDS_PADDING,
-      };
+    if (isSbbMapCenterOptions(viewportDimensions)) {
+      options.center = viewportDimensions.mapCenter;
+      options.zoom = viewportDimensions.zoomLevel;
     } else {
-      options.bounds = SBB_BOUNDING_BOX;
+      let bounds, padding;
+      if (isSbbBoundingBoxOptions(viewportDimensions)) {
+        bounds = viewportDimensions.boundingBox;
+        padding = viewportDimensions.padding;
+      } else if (markerBounds) {
+        bounds = markerBounds;
+        padding = SBB_MARKER_BOUNDS_PADDING;
+      } else {
+        bounds = SBB_BOUNDING_BOX;
+        padding = 0;
+      }
+      options.bounds = bounds;
+      options.fitBoundsOptions = {
+        padding,
+      };
     }
 
     return options;

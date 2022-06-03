@@ -14,7 +14,6 @@ import {
   SbbJourneyMapsRoutingOptions,
   SbbPointsOfInterestOptions,
   SbbViewportDimensions,
-  SbbViewportOptions,
   SbbZoomLevels,
 } from '@sbb-esta/journey-maps';
 import { SBB_BOUNDING_BOX } from '@sbb-esta/journey-maps/angular/services/constants';
@@ -87,7 +86,7 @@ export class JourneyMapsFullExample implements OnInit, OnDestroy {
   ];
   pointsOfInterestOptions: SbbPointsOfInterestOptions = { categories: ['park_rail'] };
   homeButtonOptions: SbbViewportDimensions = { boundingBox: SBB_BOUNDING_BOX };
-  viewportOptions: SbbViewportOptions = {};
+  viewportDimensions?: SbbViewportDimensions;
   zoomLevels: SbbZoomLevels;
   visibleLevels = new BehaviorSubject<number[]>([]);
   form: UntypedFormGroup;
@@ -255,8 +254,7 @@ export class JourneyMapsFullExample implements OnInit, OnDestroy {
   }
 
   private _setBbox(bbox: number[] | LngLatBounds): void {
-    this.viewportOptions = {
-      ...this.viewportOptions,
+    this.viewportDimensions = {
       boundingBox: this._isLngLatBounds(bbox) ? bbox : this.bboxToLngLatBounds(bbox),
     };
   }

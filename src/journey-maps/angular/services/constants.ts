@@ -1,12 +1,10 @@
-import { LngLatBoundsLike, LngLatLike } from 'maplibre-gl';
+import { LngLatBoundsLike } from 'maplibre-gl';
 
 export const SBB_CLUSTER_RADIUS = 50;
 export const SBB_MARKER_BOUNDS_PADDING = 40;
 
 export const SBB_MIN_ZOOM = 1;
 export const SBB_MAX_ZOOM = 23; /* same as in mobile-clients */
-export const SBB_DEFAULT_ZOOM = 7.5;
-export const SBB_DEFAULT_MAP_CENTER: LngLatLike = [7.299265, 47.07212];
 export const SBB_BOUNDING_BOX: LngLatBoundsLike = [
   // CH bounds;
   [5.7349, 45.6755],
