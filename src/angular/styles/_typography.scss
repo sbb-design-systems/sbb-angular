@@ -1345,7 +1345,7 @@ textarea {
   }
 }
 
-:is(.sbb-secondary-button, .sbb-icon-button) {
+.sbb-secondary-button {
   background-color: var(--sbb-color-silver);
   color: var(--sbb-color-iron);
 
