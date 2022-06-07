@@ -35,8 +35,9 @@ describe('SbbButton', () => {
 
     fixture.detectChanges();
 
-    expect(buttonDebugElement.nativeElement.classList.contains('sbb-button-base')).toBe(true);
-    expect(buttonDebugElement.nativeElement.classList.contains('custom-class')).toBe(true);
+    expect(buttonDebugElement.nativeElement.classList.contains('sbb-button-base')).toBeTrue();
+    expect(buttonDebugElement.nativeElement.classList.contains('sbb-iconButton')).toBeFalse();
+    expect(buttonDebugElement.nativeElement.classList.contains('custom-class')).toBeTrue();
   });
 
   it('should be able to focus button with a specific focus origin', () => {
@@ -125,6 +126,7 @@ describe('SbbButton', () => {
           By.css('button[sbb-button] sbb-icon')
         );
         const icons: SbbIcon[] = svgIconElements.map((i) => i.componentInstance);
+        expect(fixture.nativeElement.classList.contains('sbb-icon-button')).toBeFalse();
         expect(icons.every((i) => i.svgIcon === fixture.componentInstance.svgIcon)).toBeTrue();
       });
 
@@ -471,6 +473,7 @@ describe('SbbButton', () => {
         fixture.detectChanges();
         const buttonDebugElement = fixture.debugElement.query(By.css('button'))!;
         const buttonStyles = getComputedStyle(buttonDebugElement.nativeElement);
+        expect(buttonDebugElement.nativeElement.classList.contains('sbb-icon-button')).toBeTrue();
         expect(buttonStyles.getPropertyValue('background-color')).toBe('rgb(220, 220, 220)');
       });
     });
@@ -635,7 +638,7 @@ class ButtonGhostTest extends ButtonTestBase {}
 @Component({
   selector: 'button-icon-test',
   template: `
-    <button sbb-icon-button type="button" (click)="increment()" [disabled]="isDisabled">
+    <button sbb-button type="button" (click)="increment()" [disabled]="isDisabled">
       <sbb-icon svgIcon="example"></sbb-icon>
     </button>
   `,
