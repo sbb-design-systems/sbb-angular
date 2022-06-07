@@ -14,6 +14,8 @@ To be consistent with @sbb-esta we prefixed all our classes, constants, interfac
 
 The selector of the main component changed from `rokas-journey-maps-client` to `sbb-journey-maps`.
 
+### Modules
+
 The main module changed from `JourneyMapsClientModule` to `SbbJourneyMapsModule`.
 
 ### Enums
