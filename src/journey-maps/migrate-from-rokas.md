@@ -14,6 +14,8 @@ To be consistent with @sbb-esta we prefixed all our classes, constants, interfac
 
 The selector of the main component changed from `rokas-journey-maps-client` to `sbb-journey-maps`.
 
+The main module changed from `JourneyMapsClientModule` to `SbbJourneyMapsModule`.
+
 ### Enums
 
 We replaced most of our enums (all except `MarkerCategory` and `MarkerPriority`) with union types. This affects the following enums:
