@@ -13,6 +13,10 @@ export const elementSelectors: VersionChanges<ElementSelectorUpgradeData> = {
           replace: 'sbb-autocomplete-hint',
           replaceWith: 'sbb-option-hint',
         },
+        {
+          replace: 'sbb-icon-button',
+          replaceWith: 'sbb-secondary-button',
+        },
       ],
     },
   ],
