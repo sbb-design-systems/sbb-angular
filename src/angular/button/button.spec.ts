@@ -464,7 +464,7 @@ describe('SbbButton', () => {
     });
   });
 
-  describe('button[sbb-icon-button]', () => {
+  describe('button[.sbb-icon-button]', () => {
     describe('lean', () => {
       switchToLean();
 
@@ -638,7 +638,7 @@ class ButtonGhostTest extends ButtonTestBase {}
 @Component({
   selector: 'button-icon-test',
   template: `
-    <button sbb-button type="button" (click)="increment()" [disabled]="isDisabled">
+    <button sbb-secondary-button type="button" (click)="increment()" [disabled]="isDisabled">
       <sbb-icon svgIcon="example"></sbb-icon>
     </button>
   `,
