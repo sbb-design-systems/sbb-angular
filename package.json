@@ -114,7 +114,7 @@
     "@types/send": "0.17.1",
     "@types/yargs": "17.0.10",
     "angular-server-side-configuration": "14.0.1",
-    "angular-t9n": "13.0.0",
+    "angular-t9n": "14.0.0",
     "browser-sync": "2.23.6",
     "codelyzer": "6.0.2",
     "dgeni": "^0.4.14",
