@@ -15,5 +15,13 @@ export const constructorChecks: VersionChanges<ConstructorChecksUpgradeData> = {
       pr: '',
       changes: ['SbbMenuItem'],
     },
+    {
+      pr: '',
+      changes: ['SbbAnchor'],
+    },
+    {
+      pr: '',
+      changes: ['SbbDatepicker'],
+    },
   ],
 };

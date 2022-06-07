@@ -12,7 +12,6 @@ import {
 } from '@angular/cdk/overlay';
 import { _getFocusedElementPierceShadowDom } from '@angular/cdk/platform';
 import { ComponentPortal, ComponentType } from '@angular/cdk/portal';
-import { DOCUMENT } from '@angular/common';
 import {
   ChangeDetectionStrategy,
   ChangeDetectorRef,
@@ -277,8 +276,6 @@ export class SbbDatepicker<D> implements OnDestroy {
     private _changeDetectorRef: ChangeDetectorRef,
     @Inject(SBB_DATEPICKER_SCROLL_STRATEGY) private _scrollStrategy: any,
     @Optional() private _dateAdapter: SbbDateAdapter<D>,
-    /** @breaking-change 14.0.0 remove document as parameter **/
-    @Optional() @Inject(DOCUMENT) _document: any,
     @Inject(LOCALE_ID) public readonly locale: string
   ) {
     if (!this._dateAdapter) {
