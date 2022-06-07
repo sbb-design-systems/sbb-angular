@@ -1,4 +1,4 @@
-# Migration Guide
+# Migration Guide V13
 
 This guide should help you migrate from `@sbb-esta/angular-public`, `@sbb-esta/angular-business`
 and `@sbb-esta/angular-core` to `@sbb-esta/angular`.
