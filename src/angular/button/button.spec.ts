@@ -36,7 +36,7 @@ describe('SbbButton', () => {
     fixture.detectChanges();
 
     expect(buttonDebugElement.nativeElement.classList.contains('sbb-button-base')).toBeTrue();
-    expect(buttonDebugElement.nativeElement.classList.contains('sbb-iconButton')).toBeFalse();
+    expect(buttonDebugElement.nativeElement.classList.contains('sbb-icon-button')).toBeFalse();
     expect(buttonDebugElement.nativeElement.classList.contains('custom-class')).toBeTrue();
   });
 

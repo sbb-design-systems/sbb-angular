@@ -62,8 +62,7 @@ const _SbbButtonMixinBase = mixinDisabled(
  */
 @Component({
   selector: `button[sbb-button], button[sbb-alt-button], button[sbb-secondary-button],
-             button[sbb-ghost-button], button[sbb-icon-button], button[sbb-frameless-button],
-             button[sbb-link]`, // TODO: make icon-button deprecated or add migration
+             button[sbb-ghost-button],  button[sbb-frameless-button], button[sbb-link]`,
   exportAs: 'sbbButton',
   host: {
     '[attr.disabled]': 'disabled || null',
