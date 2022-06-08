@@ -23,7 +23,7 @@ ALL_EXAMPLES = [
     "//src/components-examples/angular/icon",
     "//src/components-examples/angular/input",
     "//src/components-examples/angular/lightbox",
-    "//src/components-examples/angular/loading",
+    "//src/components-examples/angular/loading-indicator",
     "//src/components-examples/angular/menu",
     "//src/components-examples/angular/notification",
     "//src/components-examples/angular/notification-toast",
