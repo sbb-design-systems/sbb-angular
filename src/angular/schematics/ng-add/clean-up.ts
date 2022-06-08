@@ -44,5 +44,5 @@ function onMigrationComplete(
   }
 
   // Restore cdkMigrations
-  cdkMigrationsTemp.forEach((cdkMigration) => cdkMigrations.push(cdkMigration));
+  cdkMigrations.push(...cdkMigrationsTemp);
 }

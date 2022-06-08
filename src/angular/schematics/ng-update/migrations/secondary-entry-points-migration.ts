@@ -27,6 +27,15 @@ const ENTRY_POINT_MAPPINGS = new Map(
     [TargetVersion.V14]: {
       SbbLoadingIndicatorModule: 'loading-indicator',
       SbbLoadingIndicator: 'loading-indicator',
+      SbbLoadingIndicatorMode: 'loading-indicator',
+      SbbOptionHint: 'core',
+      SbbAutocomplete: 'autocomplete',
+      SbbAutocompleteModule: 'autocomplete',
+      SbbAutocompleteOrigin: 'autocomplete',
+      SbbAutocompleteTrigger: 'autocomplete',
+      SbbAutocompleteSelectedEvent: 'autocomplete',
+      SbbAutocompleteActivatedEvent: 'autocomplete',
+      SbbAutocompleteDefaultOptions: 'autocomplete',
     },
   })
 );

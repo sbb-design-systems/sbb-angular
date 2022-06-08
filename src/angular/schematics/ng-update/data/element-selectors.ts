@@ -9,6 +9,10 @@ export const elementSelectors: VersionChanges<ElementSelectorUpgradeData> = {
           replace: 'sbb-loading',
           replaceWith: 'sbb-loading-indicator',
         },
+        {
+          replace: 'sbb-autocomplete-hint',
+          replaceWith: 'sbb-option-hint',
+        },
       ],
     },
   ],

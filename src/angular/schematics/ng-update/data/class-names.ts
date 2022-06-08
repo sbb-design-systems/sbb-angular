@@ -17,6 +17,10 @@ export const classNames: VersionChanges<ClassNameUpgradeData> = {
           replace: 'SbbLoading',
           replaceWith: 'SbbLoadingIndicator',
         },
+        {
+          replace: 'SbbAutocompleteHint',
+          replaceWith: 'SbbOptionHint',
+        },
       ],
     },
   ],
