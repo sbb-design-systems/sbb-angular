@@ -1,5 +1,5 @@
 import { Component, NgModule, ViewChild } from '@angular/core';
-import { SbbLoadingIndicatorModule, SbbLoadingIndicator } from '@sbb-esta/angular/loading';
+import { SbbLoadingIndicatorModule, SbbLoadingIndicator } from '@sbb-esta/angular/loading-indicator';
 
 @Component({
   selector: 'sbb-loading-test',

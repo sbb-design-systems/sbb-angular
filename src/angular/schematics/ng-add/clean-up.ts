@@ -2,15 +2,21 @@ import { Rule, SchematicContext } from '@angular-devkit/schematics';
 import {
   cdkMigrations,
   createMigrationSchematicRule,
+  MigrationCtor,
   TargetVersion,
+  UpgradeData,
 } from '@angular/cdk/schematics';
 
 import { DuplicateMigration } from './migrations/duplicate-migration';
+
+let cdkMigrationsTemp: MigrationCtor<UpgradeData>[];
 
 // noinspection JSUnusedGlobalSymbols
 /** Entry point for the migration clean-up schematics */
 export function cleanUp(): Rule {
   // Remove all CDK migrations, since they are executed with the merge migration.
+  cdkMigrationsTemp = [...cdkMigrations];
+
   cdkMigrations.splice(0, cdkMigrations.length);
   return createMigrationSchematicRule(
     'merge' as TargetVersion,
@@ -36,4 +42,7 @@ function onMigrationComplete(
         'output above and fix these issues manually.'
     );
   }
+
+  // Restore cdkMigrations
+  cdkMigrationsTemp.forEach((cdkMigration) => cdkMigrations.push(cdkMigration));
 }

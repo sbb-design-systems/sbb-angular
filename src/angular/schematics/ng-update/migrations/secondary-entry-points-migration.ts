@@ -26,6 +26,7 @@ const ENTRY_POINT_MAPPINGS = new Map(
   Object.entries({
     [TargetVersion.V14]: {
       SbbLoadingIndicatorModule: 'loading-indicator',
+      SbbLoadingIndicator: 'loading-indicator',
     },
   })
 );
