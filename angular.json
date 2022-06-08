@@ -37,7 +37,6 @@
       }
     }
   },
-  "defaultProject": "angular-showcase",
   "cli": {
     "packageManager": "yarn",
     "analytics": false
