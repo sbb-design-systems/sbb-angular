@@ -14,6 +14,7 @@ ng_module(
     ),
     assets = [
         ":app.component.css",
+        ":howtoupdate/how-to-update.component.css",
         ":introduction/introduction.component.css",
     ] + glob(["**/*.html"]),
     tsconfig = "//src/showcase:tsconfig.json",
@@ -22,8 +23,10 @@ ng_module(
         "//src/angular/core",
         "//src/angular/header-lean",
         "//src/angular/icon",
+        "//src/angular/input",
         "//src/angular/notification",
         "//src/angular/radio-button",
+        "//src/angular/select",
         "//src/angular/sidebar",
         "//src/showcase/app/angular",
         "//src/showcase/app/angular-experimental",
@@ -59,6 +62,11 @@ sass_binary(
     deps = [
         "//src/angular:scss_lib",
     ],
+)
+
+sass_binary(
+    name = "howtoupdate_how_to_update_component_scss",
+    src = "howtoupdate/how-to-update.component.scss",
 )
 
 sass_binary(
