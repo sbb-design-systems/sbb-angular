@@ -36,6 +36,7 @@ describe('ngAdd', () => {
   const baseOptions = { project: appOptions.name };
   let runner: SchematicTestRunner;
   let tree: UnitTestTree;
+  let errorOutput: string[];
 
   function runNgAddSetupProject(
     testRunner: SchematicTestRunner,
@@ -79,6 +80,13 @@ describe('ngAdd', () => {
     tree = (await runner
       .runExternalSchematicAsync('@schematics/angular', 'application', appOptions, tree)
       .toPromise())!;
+
+    errorOutput = [];
+    runner.logger.subscribe((e) => {
+      if (e.level === 'error') {
+        errorOutput.push(e.message);
+      }
+    });
   });
 
   it('should abort ng-add if @angular/core major version is below 13', async () => {
@@ -223,6 +231,80 @@ describe('ngAdd', () => {
     expect(readStringFile(tree, '/projects/dummy/src/index.html')).toContain(
       '<html class="sbb-lean" lang="en">'
     );
+  });
+
+  describe('animations enabled', () => {
+    it('should add the BrowserAnimationsModule to the project module', async () => {
+      await runner.runSchematicAsync('ng-add-setup-project', baseOptions, tree).toPromise();
+      const fileContent = readStringFile(tree, '/projects/dummy/src/app/app.module.ts');
+      console.error(fileContent);
+      expect(fileContent)
+        .withContext('Expected the project app module to import the "BrowserAnimationsModule".')
+        .toContain('BrowserAnimationsModule');
+    });
+
+    it('should not add BrowserAnimationsModule if NoopAnimationsModule is set up', async () => {
+      const workspace = await getWorkspace(tree);
+      const projects = Array.from(workspace.projects.values());
+      expect(projects.length).toBe(1);
+      const [project] = projects;
+      // Simulate the case where a developer uses `ng-add` on an Angular CLI project which already
+      // explicitly uses the `NoopAnimationsModule`. It would be wrong to forcibly enable browser
+      // animations without knowing what other components would be affected. In this case, we
+      // just print a warning message.
+      addModuleImportToRootModule(
+        tree,
+        'NoopAnimationsModule',
+        '@angular/platform-browser/animations',
+        project
+      );
+      await runner.runSchematicAsync('ng-add-setup-project', baseOptions, tree).toPromise();
+      expect(errorOutput.length).toBe(1);
+      expect(errorOutput[0]).toMatch(/Could not set up "BrowserAnimationsModule"/);
+    });
+
+    it('should add the BrowserAnimationsModule to a bootstrapApplication call', async () => {
+      tree.delete('/projects/dummy/src/app/app.module.ts');
+      tree.overwrite(
+        '/projects/dummy/src/main.ts',
+        `
+          import { importProvidersFrom } from '@angular/core';
+          import { BrowserModule, bootstrapApplication } from '@angular/platform-browser';
+          import { AppComponent } from './app/app.component';
+          bootstrapApplication(AppComponent, {
+            providers: [{provide: 'foo', useValue: 1}, importProvidersFrom(BrowserModule)]
+          });
+        `
+      );
+
+      await runner.runSchematicAsync('ng-add-setup-project', baseOptions, tree).toPromise();
+      const fileContent = readStringFile(tree, '/projects/dummy/src/main.ts');
+      expect(fileContent).toContain('importProvidersFrom(BrowserModule, BrowserAnimationsModule)');
+    });
+
+    it('should not add BrowserAnimationsModule if NoopAnimationsModule is set up in a bootstrapApplication call', async () => {
+      tree.delete('/projects/dummy/src/app/app.module.ts');
+      tree.overwrite(
+        '/projects/dummy/src/main.ts',
+        `
+          import { importProvidersFrom } from '@angular/core';
+          import { bootstrapApplication } from '@angular/platform-browser';
+          import { NoopAnimationsModule } from '@angular/platform-browser/animations';
+          import { AppComponent } from './app/app.component';
+          
+          bootstrapApplication(AppComponent, {
+            providers: [{provide: 'foo', useValue: 1}, importProvidersFrom(NoopAnimationsModule)]
+          });
+        `
+      );
+
+      await runner.runSchematicAsync('ng-add-setup-project', baseOptions, tree).toPromise();
+
+      expect(errorOutput.length).toBe(1);
+      expect(errorOutput[0]).toMatch(
+        /Could not set up "BrowserAnimationsModule" because "NoopAnimationsModule" is already imported/
+      );
+    });
   });
 
   describe('animations disabled', () => {
