@@ -69,12 +69,7 @@
       "matchPackagePrefixes": ["jasmine", "@types/jasmine"]
     },
     {
-      "matchPackageNames": [
-        "@angular/cli",
-        "@angular/cdk",
-        "angular-server-side-configuration",
-        "angular-t9n"
-      ],
+      "matchPackageNames": ["@angular/cli", "@angular/cdk", "angular-server-side-configuration"],
       "postUpgradeTasks": {
         "commands": [
           "yarn install --frozen-lockfile --non-interactive",
