@@ -2539,7 +2539,7 @@ $menuItemPaddingTopBottom: 4;
     }
   }
 
-  .sbb-label:where(:not(.sbb-autocomplete-hint)) {
+  .sbb-label:where(:not(.sbb-option-hint)) {
     padding-top: calc(#{sbb.pxToRem(22)} * var(--sbb-scaling-factor));
 
     :where(html.sbb-lean) & {
@@ -2555,7 +2555,7 @@ $menuItemPaddingTopBottom: 4;
       margin-top: sbb.pxToRem(4);
     }
 
-    .sbb-label:where(:not(.sbb-autocomplete-hint)) {
+    .sbb-label:where(:not(.sbb-option-hint)) {
       padding-top: calc(#{sbb.pxToRem(16)} * var(--sbb-scaling-factor));
 
       :where(html.sbb-lean) & {

@@ -532,7 +532,7 @@ class AutocompleteLocaleNormalizer {
   template: `<input type="text" [sbbAutocomplete]="auto" />
     <sbb-autocomplete #auto="sbbAutocomplete" [showHintIfNoOptions]="showHintIfNoOptions">
       <sbb-option *ngIf="showOption">option</sbb-option>
-      <sbb-autocomplete-hint *ngIf="showHint">hint</sbb-autocomplete-hint>
+      <sbb-option-hint *ngIf="showHint">hint</sbb-option-hint>
     </sbb-autocomplete>`,
 })
 class AutocompleteHint {

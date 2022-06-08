@@ -7,8 +7,8 @@
     [value]="option"
     >{{ option }}</sbb-option
   >
-  <sbb-autocomplete-hint *ngIf="filteredOptionsHint.length > maxOptionsListLength">
+  <sbb-option-hint *ngIf="filteredOptionsHint.length > maxOptionsListLength">
     {{ filteredOptionsHint.length - maxOptionsListLength }} further hits found
-  </sbb-autocomplete-hint>
+  </sbb-option-hint>
 </sbb-autocomplete>
 <pre>{{ myControlHint.value | json }}</pre>
