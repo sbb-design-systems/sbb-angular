@@ -33,7 +33,8 @@ export class SbbMapLeitPoiService {
 
   processData(
     map: MaplibreMap,
-    featureCollection: GeoJSON.FeatureCollection = SBB_EMPTY_FEATURE_COLLECTION
+    featureCollection: GeoJSON.FeatureCollection = SBB_EMPTY_FEATURE_COLLECTION,
+    switchLevelOnInit: boolean = false
   ): void {
     this._removeMapLeitPois();
     if (!featureCollection || !featureCollection.features?.length) {
@@ -50,22 +51,24 @@ export class SbbMapLeitPoiService {
 
     if (this._leitPoiFeatures.length) {
       this._registerMapZoomEvent(map);
-      const routeStartLevelFeature = featureCollection.features.find(
-        (f) => !!f.properties?.step && f.properties?.routeStartLevel
-      );
-      const routeStartLevel = routeStartLevelFeature
-        ? Number(routeStartLevelFeature.properties?.routeStartLevel)
-        : SbbMapLeitPoiService._defaultLevel;
+      if (switchLevelOnInit) {
+        const routeStartLevelFeature = featureCollection.features.find(
+          (f) => !!f.properties?.step && f.properties?.routeStartLevel
+        );
+        const routeStartLevel = routeStartLevelFeature
+          ? Number(routeStartLevelFeature.properties?.routeStartLevel)
+          : SbbMapLeitPoiService._defaultLevel;
 
-      const switchIt = () => {
-        this.setCurrentLevel(map, routeStartLevel);
-        this.levelSwitched.next(routeStartLevel);
-      };
+        const switchIt = () => {
+          this.setCurrentLevel(map, routeStartLevel);
+          this.levelSwitched.next(routeStartLevel);
+        };
 
-      if (map.loaded()) {
-        switchIt();
-      } else {
-        map.once('idle', switchIt);
+        if (map.loaded()) {
+          switchIt();
+        } else {
+          map.once('idle', switchIt);
+        }
       }
     }
   }
