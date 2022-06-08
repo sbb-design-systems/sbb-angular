@@ -1416,6 +1416,17 @@ textarea {
   height: calc(#{sbb.pxToRem(36)} * var(--sbb-scaling-factor));
   min-width: auto;
   line-height: 0 !important;
+
+  &:is(:disabled, .sbb-disabled):before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    height: 1px;
+    left: calc(#{sbb.pxToRem(5)} * var(--sbb-scaling-factor));
+    right: calc(#{sbb.pxToRem(5)} * var(--sbb-scaling-factor));
+    background: var(--sbb-color-grey);
+    transform: translateY(-50%);
+  }
 }
 
 :is(
