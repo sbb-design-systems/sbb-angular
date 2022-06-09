@@ -36,84 +36,21 @@ var __copyProps = (to, from, except, desc) => {
 var __toESM = (mod, isNodeMode, target) => (target = mod != null ? __create(__getProtoOf(mod)) : {}, __copyProps(isNodeMode || !mod || !mod.__esModule ? __defProp(target, "default", { value: mod, enumerable: true }) : target, mod));
 var __toCommonJS = (mod) => __copyProps(__defProp({}, "__esModule", { value: true }), mod);
 
-// tools/schematics/merge-symbols/index.ts
-var merge_symbols_exports = {};
-__export(merge_symbols_exports, {
-  mergeSymbols: () => mergeSymbols
+// tools/schematics/extract-symbols/index.ts
+var extract_symbols_exports = {};
+__export(extract_symbols_exports, {
+  extractSymbols: () => extractSymbols
 });
-module.exports = __toCommonJS(merge_symbols_exports);
+module.exports = __toCommonJS(extract_symbols_exports);
 var import_core = require("@angular-devkit/core");
 var import_typescript = __toESM(require("@schematics/angular/third_party/github.com/Microsoft/TypeScript/lib/typescript"));
-var IGNORED_FOLDERS = [
-  "/src/angular/schematics/ng-add/test-cases/",
-  "/src/angular/schematics/ng-update/test-cases/"
-];
-function mergeSymbols() {
+var IGNORED_FOLDERS = ["/src/angular/schematics/ng-update/test-cases/"];
+function extractSymbols() {
   return (tree) => {
-    let symbols = {
-      SbbOptionGroup: "core",
-      SbbLinksModule: "button",
-      SbbLink: "button",
-      SbbContextmenuModule: "menu",
-      SbbDropdown: "menu",
-      SbbDropdownSelectedEvent: "menu",
-      getSbbDropdownMissingPanelError: "menu",
-      SBB_DROPDOWN_SCROLL_STRATEGY: "menu",
-      SBB_DROPDOWN_SCROLL_STRATEGY_FACTORY: "menu",
-      SBB_DROPDOWN_OPTION_HEIGHT: "menu",
-      SBB_DROPDOWN_PANEL_HEIGHT: "menu",
-      SBB_DROPDOWN_SCROLL_STRATEGY_FACTORY_PROVIDER: "menu",
-      SbbDropdownTrigger: "menu",
-      SbbDropdownOrigin: "menu",
-      SbbDropdownSelectionChange: "menu",
-      SbbDropdownParent: "menu",
-      SBB_DROPDOWN_ITEM_PARENT_COMPONENT: "menu",
-      getDropdownItemScrollPosition: "menu",
-      SbbDropdownItem: "menu",
-      SbbDropdownModule: "menu",
-      SbbDropdownDefaultOptions: "menu",
-      SbbBusinessDateAdapter: "core",
-      SBB_BUSINESS_DATE_ADAPTER: "core",
-      SbbChipInputChange: "chips",
-      SbbChipModule: "chips",
-      SbbPaginatorComponent: "pagination",
-      SbbPageChangeEvent: "pagination",
-      SbbPagination: "pagination",
-      SbbTabs: "tabs",
-      SbbDialogHeader: "dialog",
-      SbbDialogFooter: "dialog",
-      SbbLightboxHeader: "lightbox",
-      SbbLightboxFooter: "lightbox",
-      SbbProcessflowStep: "processflow",
-      SbbTagChange: "tag",
-      SbbGhettoboxContainer: "alert",
-      SbbGhettobox: "alert",
-      sbbGhettoboxAnimations: "alert",
-      SbbGhettoboxConfig: "alert",
-      SbbGhettoboxEvent: "alert",
-      SbbGhettoboxModule: "alert",
-      SbbGhettoboxRef: "alert",
-      SbbGhettoboxRefConnector: "alert",
-      SbbGhettoboxService: "alert",
-      SbbGhettoboxState: "alert",
-      SbbGhettoboxDeletedEvent: "alert",
-      SBB_GHETTOBOX_PANEL_ONDELETE_TIMING: "alert",
-      SBB_GHETTOBOX_ANIMATIONS: "alert",
-      SBB_GHETTOBOX_PANEL_ANIMATION_TIMING: "alert",
-      SbbGhettoboxContainerService: "alert",
-      SbbTooltipComponent: "tooltip",
-      SbbSortHeaderComponent: "table",
-      SbbSortDirective: "table",
-      SbbSort: "table",
-      NotificationType: "notification",
-      SbbUsermenuItem: "menu",
-      SbbHeader: "header-lean",
-      StepperSelectionEvent: "@angular/cdk/stepper"
-    };
+    let symbols = {};
     extractExportsForModule("src/angular/");
-    extractExportsForModule("src/angular-maps/");
     sortSymbols();
-    tree.overwrite("/src/angular/schematics/ng-add/migrations/sbb-angular-symbols.json", JSON.stringify(symbols, null, 2));
+    tree.overwrite("/src/angular/schematics/ng-update/migrations/sbb-angular-symbols.json", JSON.stringify(symbols, null, 2));
     function extractExportsForModule(rootPath) {
       tree.getDir(rootPath).visit((filePath, moduleDirEntry) => {
         if (!(moduleDirEntry && filePath.endsWith(".ts") && !filePath.endsWith(".spec.ts")) || isInIgnoredFolders(filePath)) {
@@ -181,5 +118,5 @@ function mergeSymbols() {
 }
 // Annotate the CommonJS export names for ESM import in node:
 0 && (module.exports = {
-  mergeSymbols
+  extractSymbols
 });

@@ -31,17 +31,16 @@ export function ngAdd(options: Schema): Rule {
     const angularDependencyVersion = ngCoreVersionTag || `0.0.0-NG`;
 
     if (
-      getMajorVersion(ngCoreVersionTag) < 13 ||
-      (cdkVersionTag != null && getMajorVersion(cdkVersionTag) < 13)
+      getMajorVersion(ngCoreVersionTag) < 14 ||
+      (cdkVersionTag != null && getMajorVersion(cdkVersionTag) < 14)
     ) {
       context.logger.error(
-        `Please update Angular dependencies first (See https://update.angular.io/?l=3&v=12.0-13.0): `
+        `Please update Angular dependencies first (See https://update.angular.io/?l=3&v=13.0-14.0): `
       );
       context.logger.error('');
-      context.logger.error(`  ng update @angular/core@13 @angular/cli@13 @angular/cdk@13 --force`);
+      context.logger.error(`  ng update @angular/core@14 @angular/cli@14 @angular/cdk@14 --force`);
       context.logger.error('');
       context.logger.error(`'--force' is required due to peer dependencies conflicts.`);
-      context.logger.error(`Afterwards run 'ng add @sbb-esta/angular' once more.`);
       return;
     }
 
@@ -66,31 +65,21 @@ export function ngAdd(options: Schema): Rule {
     // Since the Angular SBB schematics depend on the schematic utility functions from the
     // CDK, we need to install the CDK before loading the schematic files that import from the CDK.
     const installTaskId = context.addTask(new NodePackageInstallTask());
-    const setupProjectId = context.addTask(new RunSchematicTask('ng-add-setup-project', options), [
-      installTaskId,
-    ]);
+    context.addTask(new RunSchematicTask('ng-add-setup-project', options), [installTaskId]);
 
-    // If there are existing imports to @sbb-esta/angular-public, @sbb-esta/angular-business, @sbb-esta/angular-core run migration
+    // If there are existing imports to @sbb-esta/angular-public, @sbb-esta/angular-business, @sbb-esta/angular-core log a warning
     const legacyVersions = [
       '@sbb-esta/angular-business',
       '@sbb-esta/angular-public',
       '@sbb-esta/angular-core',
-    ]
-      .map((packageName) => getPackageVersionFromPackageJson(host, packageName))
-      .filter((version) => !!version);
+    ].filter((packageName) => !!getPackageVersionFromPackageJson(host, packageName));
 
-    if (legacyVersions.some((version) => getMajorVersion(version) < 12)) {
+    if (legacyVersions.length) {
       context.logger.warn(
-        `Skipped automatic migration because one of the packages @sbb-esta/angular-business, @sbb-esta/angular-public or @sbb-esta/angular-core has a major version not equals to 12.`
+        `Your repository includes the deprecated packages ${legacyVersions.join(
+          ', '
+        )}. If you like to automatically migrate from the legacy packages to @sbb-esta/angular, please add version 13 first and see our how-to-update guide.`
       );
-      context.logger.warn(
-        `You can run the migration manually by running ng generate @sbb-esta/angular:ng-add-migrate && ng generate @sbb-esta/angular:ng-migration-clean-up`
-      );
-    } else if (legacyVersions.length) {
-      const migrateId = context.addTask(new RunSchematicTask('ng-add-migrate', options), [
-        setupProjectId,
-      ]);
-      context.addTask(new RunSchematicTask('ng-migration-clean-up', options), [migrateId]);
     }
   };
 }

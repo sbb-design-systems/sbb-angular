@@ -37,7 +37,7 @@ export const PACKAGES: { [key: string]: ShowcaseMetaPackage } = {
       {
         name: 'Guides',
         entries: [
-          { label: 'Migration Guide v13', link: './guides/migration-guide' },
+          { label: 'Migration Guide v12 to v13', link: './guides/migration-guide' },
           {
             label: 'Custom form field control',
             link: './guides/creating-a-custom-form-field-control',

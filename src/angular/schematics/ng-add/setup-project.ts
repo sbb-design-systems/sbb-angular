@@ -78,7 +78,8 @@ function addAnimationsModule(options: Schema) {
     }
   };
 }
-/** Adds the animations module to an app that is bootstrap using the standalone component APIs. */
+
+/** Adds the animations module to an app that is bootstrapped using the standalone component APIs. */
 function addAnimationsModuleToStandaloneApp(
   host: Tree,
   project: ProjectDefinition,
@@ -170,23 +171,18 @@ function addAnimationsModuleToNonStandaloneApp(
 function addAndConfigureTypography(options: Schema): Rule {
   return async (tree: Tree, context: SchematicContext) => {
     const workspace = await getWorkspace(tree);
-    const project = getProjectFromWorkspace(workspace, getProjectName(options, workspace));
 
     return chain([
-      hasLegacyTypography(tree, project, 'build', context.logger)
-        ? noop()
-        : addTypographyToStylesNodeOfAngularJson(
-            getProjectName(options, workspace),
-            'build',
-            context.logger
-          ),
-      hasLegacyTypography(tree, project, 'test', context.logger)
-        ? noop()
-        : addTypographyToStylesNodeOfAngularJson(
-            getProjectName(options, workspace),
-            'test',
-            context.logger
-          ),
+      addTypographyToStylesNodeOfAngularJson(
+        getProjectName(options, workspace),
+        'build',
+        context.logger
+      ),
+      addTypographyToStylesNodeOfAngularJson(
+        getProjectName(options, workspace),
+        'test',
+        context.logger
+      ),
       setTypographyVariant(options),
     ]);
   };
@@ -261,39 +257,6 @@ function validateDefaultTargetBuilder(
   }
 
   return isDefaultBuilder;
-}
-
-function hasLegacyTypography(
-  tree: Tree,
-  project: ProjectDefinition,
-  targetName: 'build' | 'test',
-  logger: logging.LoggerApi
-) {
-  // Do not update the builder options in case the target does not use the default CLI builder.
-  if (!validateDefaultTargetBuilder(project, targetName, logger)) {
-    return false;
-  }
-
-  const targetOptions = getProjectTargetOptions(project, targetName);
-  const styles = targetOptions?.styles as (string | { input: string })[] | undefined;
-
-  if (!styles) {
-    return false;
-  }
-
-  const legacyImportRegex = /@sbb-esta\/angular-(public|business)\/typography.css/g;
-  const normalizedStyleFilenames = styles.map((s) => (typeof s === 'string' ? s : s.input));
-  if (normalizedStyleFilenames.some((fileName) => legacyImportRegex.test(fileName))) {
-    return true;
-  }
-
-  return normalizedStyleFilenames.some((fileName) => {
-    const file = tree.read(fileName)?.toString('utf-8');
-    if (!file) {
-      return false;
-    }
-    return legacyImportRegex.test(file);
-  });
 }
 
 function setTypographyVariant(options: Schema) {
