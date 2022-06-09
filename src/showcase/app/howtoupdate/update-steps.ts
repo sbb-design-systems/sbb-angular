@@ -4,15 +4,14 @@ export interface UpdateStep {
   actions: string[];
 }
 
-const getGeneralActions = (version: number): string[] =>
-  [
-    `Update your Angular dependencies to version %VERSION%.x.x with "--force" flag (due to unmet peer ependencies).<br/>
+const getGeneralActions = (version: number): string[] => [
+  `Update your Angular dependencies to version ${version}.x.x with "--force" flag (due to unmet peer ependencies).<br/>
         See <a href='https://update.angular.io'>update.angular.io</a> for a step-by-step guide for updating Angular.<br/>
-        <pre>npx @angular/cli@13 update @angular/core@%VERSION% @angular/cli@%VERSION% --force</pre>`,
+        <pre>npx @angular/cli@13 update @angular/core@${version} @angular/cli@${version} --force</pre>`,
 
-    `Update Angular CDK in a separate step to avoid dependency version resolving problems.<br/>
-        <pre>npx @angular/cli@%VERSION% update @angular/cdk@%VERSION% --force</pre>`,
-  ].map((a) => a.replace(/%VERSION%/g, version.toString()));
+  `Update Angular CDK in a separate step to avoid dependency version resolving problems.<br/>
+        <pre>npx @angular/cli@${version} update @angular/cdk@${version} --force</pre>`,
+];
 
 export const UPDATE_STEPS: UpdateStep[] = [
   {
