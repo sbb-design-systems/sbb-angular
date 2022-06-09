@@ -15,8 +15,8 @@ import {
   SbbPointsOfInterestOptions,
   SbbViewportDimensions,
   SbbZoomLevels,
+  SBB_BOUNDING_BOX,
 } from '@sbb-esta/journey-maps';
-import { SBB_BOUNDING_BOX } from '@sbb-esta/journey-maps/angular/services/constants';
 import { LngLatBounds, LngLatBoundsLike, LngLatLike } from 'maplibre-gl';
 import { BehaviorSubject, filter, Subject, take } from 'rxjs';
 import { map, takeUntil } from 'rxjs/operators';

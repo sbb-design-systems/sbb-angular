@@ -2,7 +2,7 @@ import {
   SbbBoundingBoxOptions,
   SbbMapCenterOptions,
   SbbViewportDimensions,
-} from '@sbb-esta/journey-maps/angular/journey-maps.interfaces';
+} from '../journey-maps.interfaces';
 
 export function isSbbMapCenterOptions(
   viewportDimensions?: SbbViewportDimensions
