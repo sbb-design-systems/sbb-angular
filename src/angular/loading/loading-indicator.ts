@@ -26,7 +26,7 @@ export type SbbLoadingIndicatorMode =
     '[class.sbb-loading-indicator-small]': `this.mode === 'small'`,
     '[class.sbb-loading-indicator-medium]': `this.mode === 'medium'`,
     '[class.sbb-loading-indicator-big]': `this.mode === 'big'`,
-    // TODO: @deprecated mode fullscreen will be removed with next major version
+    // TODO: @deprecated mode fullscreen will be removed with next major version (v15)
     '[class.sbb-loading-indicator-fullscreen]': `this.mode === 'fullscreen'`,
     '[class.sbb-loading-indicator-fullbox]': `this.mode === 'fullbox'`,
     '[class.sbb-loading-indicator-inline]': `this.mode === 'inline'`,

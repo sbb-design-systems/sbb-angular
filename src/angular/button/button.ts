@@ -185,8 +185,7 @@ export class SbbAnchor extends SbbButton implements AfterViewInit, OnDestroy {
     focusMonitor: FocusMonitor,
     elementRef: ElementRef,
     @Optional() @Inject(ANIMATION_MODULE_TYPE) animationMode: string,
-    /** @breaking-change 14.0.0 _ngZone will be required. */
-    @Optional() private _ngZone?: NgZone
+    private _ngZone: NgZone
   ) {
     super(elementRef, focusMonitor, animationMode);
   }
@@ -194,14 +193,9 @@ export class SbbAnchor extends SbbButton implements AfterViewInit, OnDestroy {
   override ngAfterViewInit(): void {
     super.ngAfterViewInit();
 
-    /** @breaking-change 14.0.0 _ngZone will be required. */
-    if (this._ngZone) {
-      this._ngZone.runOutsideAngular(() => {
-        this._elementRef.nativeElement.addEventListener('click', this._haltDisabledEvents);
-      });
-    } else {
+    this._ngZone.runOutsideAngular(() => {
       this._elementRef.nativeElement.addEventListener('click', this._haltDisabledEvents);
-    }
+    });
   }
 
   override ngOnDestroy(): void {
