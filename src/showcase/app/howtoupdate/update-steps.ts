@@ -7,7 +7,7 @@ export interface UpdateStep {
 const getGeneralActions = (version: number): string[] => [
   `Update your Angular dependencies to version ${version}.x.x with "--force" flag (due to unmet peer ependencies).<br/>
         See <a href='https://update.angular.io'>update.angular.io</a> for a step-by-step guide for updating Angular.<br/>
-        <pre>npx @angular/cli@13 update @angular/core@${version} @angular/cli@${version} --force</pre>`,
+        <pre>npx @angular/cli@${version} update @angular/core@${version} @angular/cli@${version} --force</pre>`,
 
   `Update Angular CDK in a separate step to avoid dependency version resolving problems.<br/>
         <pre>npx @angular/cli@${version} update @angular/cdk@${version} --force</pre>`,
