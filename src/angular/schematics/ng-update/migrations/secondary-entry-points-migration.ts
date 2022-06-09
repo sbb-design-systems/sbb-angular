@@ -36,6 +36,13 @@ const ENTRY_POINT_MAPPINGS = new Map(
       SbbAutocompleteSelectedEvent: 'autocomplete',
       SbbAutocompleteActivatedEvent: 'autocomplete',
       SbbAutocompleteDefaultOptions: 'autocomplete',
+      SBB_AUTOCOMPLETE_DEFAULT_OPTIONS: 'autocomplete',
+      SBB_AUTOCOMPLETE_DEFAULT_OPTIONS_FACTORY: 'autocomplete',
+      SBB_AUTOCOMPLETE_SCROLL_STRATEGY: 'autocomplete',
+      SBB_AUTOCOMPLETE_SCROLL_STRATEGY_FACTORY: 'autocomplete',
+      SBB_AUTOCOMPLETE_SCROLL_STRATEGY_FACTORY_PROVIDER: 'autocomplete',
+      getSbbAutocompleteMissingPanelError: 'autocomplete',
+      
     },
   })
 );
