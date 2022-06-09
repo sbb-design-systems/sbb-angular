@@ -147,7 +147,7 @@ export function findBazelVersionTestCases(basePath: string) {
   // the Bazel runfiles manifest. Read more about the manifest here: https://github.com/bazelbuild/bazel/blob/701913139adc0eba49a7a9963fea4f555fcd844f/src/main/java/com/google/devtools/build/lib/analysis/SourceManifestAction.java#L214-L221
   readFileSync(manifestPath, 'utf8')
     .split('\n')
-    .forEach((line) => {
+    .forEach((line: string) => {
       const [runfilePath, realPath] = line.split(' ');
 
       // In case the mapped runfile starts with the specified base path and ends with "_input.ts",

@@ -7,8 +7,7 @@ import { Directive } from '@angular/core';
 let nextId = 0;
 
 @Directive({
-  // TODO(v15): Remove sbb-autocomplete-hint selector.
-  selector: 'sbb-option-hint, sbb-autocomplete-hint',
+  selector: 'sbb-option-hint',
   host: {
     class: 'sbb-option-hint sbb-label',
     '[attr.id]': 'id',
