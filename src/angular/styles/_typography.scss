@@ -1509,7 +1509,7 @@ textarea {
 }
 
 // We need to position icons inside the buttons in a special way.
-:is(.sbb-button, .sbb-alt-button, .sbb-secondary-button, .sbb-ghost-button, .sbb-frameless-button, .sbb-link:where(.sbb-button-base)):not(.sbb-icon-button)
+:is(.sbb-button, .sbb-alt-button, .sbb-secondary-button, .sbb-ghost-button, .sbb-frameless-button, .sbb-link:where(.sbb-button-base)):where(:not(.sbb-icon-button))
   .sbb-icon {
   margin-top: var(--sbb-button-icon-top-margin);
 
