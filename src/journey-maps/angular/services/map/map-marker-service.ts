@@ -4,7 +4,7 @@ import {
   GeoJSONSource,
   LngLatLike,
   Map as MaplibreMap,
-  MapboxGeoJSONFeature,
+  MapGeoJSONFeature,
   PointLike,
 } from 'maplibre-gl';
 
@@ -47,8 +47,9 @@ export class SbbMapMarkerService {
     this.markerLayers = [SBB_MARKER_LAYER];
     this.markerLayersSelected = [SBB_MARKER_LAYER_SELECTED];
 
-    const markerCategoryMappings = ((map.getStyle().metadata ?? {})[SBB_METADATA_MAPPINGS] ??
-      []) as SbbMarkerCategoryMapping[];
+    const markerCategoryMappings = (((map.getStyle().metadata as any) ?? {})[
+      SBB_METADATA_MAPPINGS
+    ] ?? []) as SbbMarkerCategoryMapping[];
     for (const mapping of markerCategoryMappings) {
       this.sources.push(mapping.source);
       this.markerLayers.push(mapping.layer);
@@ -115,7 +116,7 @@ export class SbbMapMarkerService {
     offset: PointLike = [0, 0]
   ): void {
     this._getPrimaryMarkerSource(map).getClusterExpansionZoom(clusterId, (err, zoom) => {
-      if (!err) {
+      if (zoom) {
         this._easeTo(map, center, { zoom: zoom + 0.1, offset });
       }
     });
@@ -195,7 +196,7 @@ export class SbbMapMarkerService {
   private _queryClusterAtPosition(
     map: MaplibreMap,
     position: GeoJSON.Position
-  ): MapboxGeoJSONFeature | undefined {
+  ): MapGeoJSONFeature | undefined {
     const point = map.project(position as LngLatLike);
     const range = SBB_CLUSTER_RADIUS / 2;
 
@@ -222,7 +223,7 @@ export class SbbMapMarkerService {
     this._getPrimaryMarkerSource(map).getClusterChildren(clusterId, (e1, children) => {
       // Skip processing if marker has been found
       if (!found.length) {
-        for (const child of children) {
+        for (const child of children ?? []) {
           if (child.id === marker.id) {
             found.push(true);
             this._zoomToCluster(

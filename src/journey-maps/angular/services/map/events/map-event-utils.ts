@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Map as MaplibreMap, MapboxGeoJSONFeature } from 'maplibre-gl';
+import { Map as MaplibreMap, MapGeoJSONFeature } from 'maplibre-gl';
 
 import { SbbFeatureData, SbbFeatureDataType } from '../../../journey-maps.interfaces';
 import { SBB_MARKER_SOURCE, SBB_ROUTE_SOURCE, SBB_ZONE_SOURCE } from '../../constants';
@@ -45,16 +45,18 @@ export class SbbMapEventUtils {
     if (!sourceId) {
       throw new Error('Missing source mapping for feature type: ' + featureDataType);
     }
-    return mapInstance.querySourceFeatures(sourceId, { filter }).map((f) => {
-      const data = SbbMapEventUtils._toFeatureEventData(f, featureDataType);
-      if (!data.source) {
-        data.source = sourceId;
-      }
-      return data;
-    });
+    return mapInstance
+      .querySourceFeatures(sourceId, filter ? { sourceLayer: 'ignored', filter } : undefined)
+      .map((f) => {
+        const data = SbbMapEventUtils._toFeatureEventData(f, featureDataType);
+        if (!data.source) {
+          data.source = sourceId;
+        }
+        return data;
+      });
   }
 
-  setFeatureState(mapFeature: MapboxGeoJSONFeature, mapInstance: MaplibreMap, state: any) {
+  setFeatureState(mapFeature: MapGeoJSONFeature, mapInstance: MaplibreMap, state: any) {
     /* This part is important:
     - get fresh feature state instance from map source
     - override the input feature state -> keep in sync
@@ -71,7 +73,7 @@ export class SbbMapEventUtils {
   queryFeaturesByProperty(
     mapInstance: MaplibreMap,
     layers: Map<string, SbbFeatureDataType>,
-    propertyFilter: (value: MapboxGeoJSONFeature) => boolean
+    propertyFilter: (value: MapGeoJSONFeature) => boolean
   ): SbbFeatureData[] {
     return mapInstance
       .queryRenderedFeatures(undefined, {
@@ -100,7 +102,7 @@ export class SbbMapEventUtils {
 
   /* private functions */
   private static _toFeatureEventData(
-    feature: MapboxGeoJSONFeature,
+    feature: MapGeoJSONFeature,
     featureDataType: SbbFeatureDataType
   ): SbbFeatureData {
     return {
@@ -108,6 +110,9 @@ export class SbbMapEventUtils {
       // @ts-ignore - feature geometry is a getter function, so we must do map manually:
       geometry: feature.geometry,
       ...feature,
+      toJSON: () => {
+        throw new Error('not implemented');
+      },
     };
   }
 

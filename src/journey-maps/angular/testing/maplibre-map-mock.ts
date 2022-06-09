@@ -1,4 +1,5 @@
-import { Map as MapLibreMap, MapboxGeoJSONFeature, Point, PointLike } from 'maplibre-gl';
+import Point from '@mapbox/point-geometry';
+import { Map as MapLibreMap, MapGeoJSONFeature, PointLike } from 'maplibre-gl';
 
 interface EventInfo {
   _layerId: string;
@@ -13,7 +14,7 @@ export class SbbMaplibreMapMock {
 
   private readonly _featureData = new Map<
     string,
-    { layers: string[]; features: MapboxGeoJSONFeature[] }
+    { layers: string[]; features: MapGeoJSONFeature[] }
   >();
 
   get(): MapLibreMap {
@@ -70,7 +71,7 @@ export class SbbMaplibreMapMock {
   queryRenderedFeatures(
     point: PointLike,
     options?: { layers?: string[] }
-  ): MapboxGeoJSONFeature[] | null {
+  ): MapGeoJSONFeature[] | null {
     const data = this._featureData.get(SbbMaplibreMapMock._stringify(point));
     if (
       data &&
@@ -99,7 +100,7 @@ export class SbbMaplibreMapMock {
     }
   }
 
-  addFeatureData(point: PointLike, layers: string[], features: MapboxGeoJSONFeature[]) {
+  addFeatureData(point: PointLike, layers: string[], features: MapGeoJSONFeature[]) {
     this._featureData.set(SbbMaplibreMapMock._stringify(point), { layers, features });
   }
 

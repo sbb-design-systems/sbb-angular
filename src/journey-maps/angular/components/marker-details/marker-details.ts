@@ -51,7 +51,7 @@ export class SbbMarkerDetails implements OnChanges {
         this._mapMarkerService.markerCategoryMappings.get(this.selectedMarker.category)
           ?.popupOffset ?? this._defaultPopupOffset;
     } else {
-      this.popupOffset = {};
+      this.popupOffset = 0;
     }
   }
 

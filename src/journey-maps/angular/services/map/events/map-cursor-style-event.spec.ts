@@ -1,4 +1,4 @@
-import { MapboxGeoJSONFeature } from 'maplibre-gl';
+import { MapGeoJSONFeature } from 'maplibre-gl';
 
 import { SbbMaplibreMapMock } from '../../../testing/maplibre-map-mock';
 
@@ -42,7 +42,7 @@ describe('MapCursorStyleEvent', () => {
 });
 
 const layers = ['layer-1', 'layer-2'];
-const dummyFeature: MapboxGeoJSONFeature[] = [
+const dummyFeature: MapGeoJSONFeature[] = [
   {
     type: 'Feature',
     id: 'test-feature',
@@ -52,5 +52,5 @@ const dummyFeature: MapboxGeoJSONFeature[] = [
     source: null,
     sourceLayer: null,
     state: null,
-  } as unknown as MapboxGeoJSONFeature,
+  } as unknown as MapGeoJSONFeature,
 ];
