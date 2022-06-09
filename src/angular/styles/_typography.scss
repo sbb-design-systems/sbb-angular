@@ -1417,15 +1417,17 @@ textarea {
   min-width: auto;
   line-height: 0 !important;
 
-  &:is(:disabled, .sbb-disabled):before {
-    content: '';
-    position: absolute;
-    top: 50%;
-    height: var(--sbb-border-width-thin);
-    left: calc(#{sbb.pxToRem(5)} * var(--sbb-scaling-factor));
-    right: calc(#{sbb.pxToRem(5)} * var(--sbb-scaling-factor));
-    background: var(--sbb-color-smoke);
-    transform: translateY(-50%);
+  :where(html:not(.sbb-lean)) & {
+    padding: calc(#{sbb.pxToRem(11)} * var(--sbb-scaling-factor)) !important;
+    height: var(--sbb-button-height);
+
+    // Strike through icons in disabled buttons.
+    &:is(:disabled, .sbb-disabled):before {
+      @include sbb.absoluteCenterY();
+      content: '';
+      width: calc(#{sbb.pxToRem(24)} * var(--sbb-scaling-factor));
+      border-top: var(--sbb-border-width-thin) solid var(--sbb-color-smoke);
+    }
   }
 }
 
