@@ -10,7 +10,6 @@ import { SbbButton, SbbButtonModule } from './index';
 describe('SbbButton', () => {
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-      imports: [SbbButtonModule, SbbIconModule, SbbIconTestingModule],
       declarations: [
         ButtonTest,
         ButtonWithCustomSvgIconTest,
@@ -19,8 +18,10 @@ describe('SbbButton', () => {
         ButtonGhostTest,
         ButtonIconTest,
         ButtonFramelessTest,
+        ButtonIconTestMultiple,
         LinkTest,
       ],
+      imports: [SbbButtonModule, SbbIconModule, SbbIconTestingModule],
     });
 
     TestBed.compileComponents();
@@ -476,6 +477,34 @@ describe('SbbButton', () => {
         expect(buttonDebugElement.nativeElement.classList.contains('sbb-icon-button')).toBeTrue();
         expect(buttonStyles.getPropertyValue('background-color')).toBe('rgb(220, 220, 220)');
       });
+
+      it('should add the `sbb-icon-button` class if only an icon is contained', () => {
+        const fixture = TestBed.createComponent(ButtonIconTestMultiple);
+        fixture.detectChanges();
+        const nonIconButtonElements = fixture.debugElement.queryAll(
+          By.css('p.non-icon-buttons > :is(a, button)')
+        )!;
+        const iconButtonElements = fixture.debugElement.queryAll(
+          By.css('p.icon-buttons > :is(a, button)')
+        )!;
+
+        expect(nonIconButtonElements.length).toEqual(10);
+        expect(iconButtonElements.length).toEqual(8);
+
+        expect(
+          nonIconButtonElements.every(
+            (btn) => !btn.nativeElement.classList.contains('sbb-icon-button')
+          )
+        )
+          .withContext('Expected non-icon-buttons not to habe an sbb-icon-button class')
+          .toBeTrue();
+
+        expect(
+          iconButtonElements.every((btn) => btn.nativeElement.classList.contains('sbb-icon-button'))
+        )
+          .withContext('Expected icon-buttons to have an sbb-icon-button class')
+          .toBeTrue();
+      });
     });
   });
 
@@ -644,6 +673,44 @@ class ButtonGhostTest extends ButtonTestBase {}
   `,
 })
 class ButtonIconTest extends ButtonTestBase {}
+
+@Component({
+  selector: 'button-icon-test-multiple',
+  template: `
+    <button sbb-secondary-button type="button"><sbb-icon svgIcon="example"></sbb-icon></button>
+    <p class="icon-buttons">
+      <!-- Buttons that should get an sbb-icon-button class -->
+      <a sbb-button type="button"><sbb-icon svgIcon="example"></sbb-icon></a>
+      <a sbb-alt-button type="button"><sbb-icon svgIcon="example"></sbb-icon></a>
+      <a sbb-secondary-button type="button"><sbb-icon svgIcon="example"></sbb-icon></a>
+      <a sbb-ghost-button type="button"><sbb-icon svgIcon="example"></sbb-icon></a>
+      <button sbb-button type="button"><sbb-icon svgIcon="example"></sbb-icon></button>
+      <button sbb-alt-button type="button"><sbb-icon svgIcon="example"></sbb-icon></button>
+      <button sbb-secondary-button type="button"><sbb-icon svgIcon="example"></sbb-icon></button>
+      <button sbb-ghost-button type="button"><sbb-icon svgIcon="example"></sbb-icon></button>
+    </p>
+
+    <p class="non-icon-buttons">
+      <!-- Buttons that should not get an sbb-icon-button class -->
+      <!-- ... sbb-link and sbb-frameless-button are not valid for icon buttons -->
+      <button type="button" sbb-frameless-button>Frameless</button>
+      <a href="http://www.google.com" sbb-link>Link</a>
+
+      <!-- ... no icon button because there's text inside the button -->
+      <a sbb-button type="button"><sbb-icon svgIcon="example">Test</sbb-icon></a>
+      <a sbb-alt-button type="button">Test<sbb-icon svgIcon="example"></sbb-icon></a>
+      <a sbb-secondary-button type="button">Test</a>
+      <a sbb-ghost-button type="button"><sbb-icon svgIcon="example">Test</sbb-icon></a>
+      <button sbb-button type="button">Test</button>
+      <button sbb-alt-button type="button">Test</button>
+      <button sbb-secondary-button type="button">
+        <sbb-icon svgIcon="example"></sbb-icon>Test
+      </button>
+      <button sbb-ghost-button type="button">Test</button>
+    </p>
+  `,
+})
+class ButtonIconTestMultiple extends ButtonTestBase {}
 
 @Component({
   selector: 'button-frameless-test',
