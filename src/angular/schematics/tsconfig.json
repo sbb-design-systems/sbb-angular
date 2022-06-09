@@ -18,13 +18,7 @@
     "types": ["jasmine", "node"],
     "baseUrl": "."
   },
-  "exclude": [
-    "**/files/**/*",
-    "**/*.spec.ts",
-    "ng-add/test-cases/**/*",
-    "ng-update/test-cases/**/*",
-    "testing/**/*.ts"
-  ],
+  "exclude": ["**/files/**/*", "**/*.spec.ts", "ng-update/test-cases/**/*", "testing/**/*.ts"],
   "bazelOptions": {
     "suppressTsconfigOverrideWarnings": true
   }

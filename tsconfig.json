@@ -41,8 +41,6 @@
     "node_modules/",
     "tools/schematics/*/files/**/*",
     "src/angular/schematics/**/files/**/*",
-    "src/angular/schematics/ng-add/test-cases/**/*_input.ts",
-    "src/angular/schematics/ng-add/test-cases/**/*_expected_output.ts",
     "src/angular/schematics/ng-update/test-cases/**/*_input.ts",
     "src/angular/schematics/ng-update/test-cases/**/*_expected_output.ts"
   ],

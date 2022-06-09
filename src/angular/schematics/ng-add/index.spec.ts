@@ -19,7 +19,7 @@ import {
 const workspaceOptions: WorkspaceOptions = {
   name: 'workspace',
   newProjectRoot: 'projects',
-  version: '13.0.0',
+  version: '14.0.0',
 };
 
 const appOptions: ApplicationOptions = {
@@ -89,30 +89,30 @@ describe('ngAdd', () => {
     });
   });
 
-  it('should abort ng-add if @angular/core major version is below 13', async () => {
+  it('should abort ng-add if @angular/core major version is below 14', async () => {
     tree.overwrite(
       '/package.json',
       readStringFile(tree, '/package.json').replace(
         /"@angular\/core": "(.*)",/g,
-        '"@angular/core": "~12.0.0",'
+        '"@angular/core": "~13.0.0",'
       )
     );
 
     await runner.runSchematicAsync('ng-add', baseOptions, tree).toPromise();
 
-    expect(
-      runner.tasks.some((task) => (task.options as any)!.name === 'ng-add-setup-project')
-    ).toBe(false, 'Expected the ng-add-setup-project schematic not to be scheduled.');
+    expect(runner.tasks.some((task) => (task.options as any)!.name === 'ng-add-setup-project'))
+      .withContext('Expected the ng-add-setup-project schematic not to be scheduled.')
+      .toBe(false);
   });
 
   it('should abort ng-add if @angular/cdk major version is below 13', async () => {
-    addPackageToPackageJson(tree, '@angular/cdk', '12.0.0');
+    addPackageToPackageJson(tree, '@angular/cdk', '13.0.0');
 
     await runner.runSchematicAsync('ng-add', baseOptions, tree).toPromise();
 
-    expect(
-      runner.tasks.some((task) => (task.options as any)!.name === 'ng-add-setup-project')
-    ).toBe(false, 'Expected the ng-add-setup-project schematic not to be scheduled.');
+    expect(runner.tasks.some((task) => (task.options as any)!.name === 'ng-add-setup-project'))
+      .withContext('Expected the ng-add-setup-project schematic not to be scheduled.')
+      .toBe(false);
   });
 
   it('should add @angular/cdk, @angular/animations and @angular/forms to "package.json" file', async () => {
@@ -133,13 +133,13 @@ describe('ngAdd', () => {
   });
 
   it('should do nothing if @angular/cdk is in "package.json" file already', async () => {
-    addPackageToPackageJson(tree, '@angular/cdk', '13.0.0');
+    addPackageToPackageJson(tree, '@angular/cdk', '14.0.0');
 
-    expect(readJsonFile(tree, '/package.json').dependencies['@angular/cdk']).toBe('13.0.0');
+    expect(readJsonFile(tree, '/package.json').dependencies['@angular/cdk']).toBe('14.0.0');
 
     await runner.runSchematicAsync('ng-add', baseOptions, tree).toPromise();
 
-    expect(readJsonFile(tree, '/package.json').dependencies['@angular/cdk']).toBe('13.0.0');
+    expect(readJsonFile(tree, '/package.json').dependencies['@angular/cdk']).toBe('14.0.0');
 
     // expect that there is a "node-package" install task. The task is
     // needed to update the lock file.
@@ -193,51 +193,10 @@ describe('ngAdd', () => {
     ).toEqual([TYPOGRAPHY_CSS_PATH]);
   });
 
-  it('should not add typography in angular.json if legacy typography import exists in styles.scss', async () => {
-    tree.overwrite(
-      'projects/dummy/src/styles.css',
-      `@import '@sbb-esta/angular-public/typography.css'`
-    );
-
-    await runner.runSchematicAsync('ng-add-setup-project', baseOptions, tree).toPromise();
-
-    expect(
-      readJsonFile(tree, '/angular.json').projects.dummy.architect.build.options.styles
-    ).toEqual(['projects/dummy/src/styles.css']);
-
-    expect(
-      readJsonFile(tree, '/angular.json').projects.dummy.architect.test.options.styles
-    ).toEqual(['projects/dummy/src/styles.css']);
-  });
-
-  it('should not add typography in angular.json if legacy typography import exists in angular.json', async () => {
-    const angularJson = readJsonFile(tree, '/angular.json');
-    const legacyImport = 'node_modules/@sbb-esta/angular-business/typography.css';
-    (angularJson.projects.dummy.architect.build.options.styles as string[]).push(legacyImport);
-    (angularJson.projects.dummy.architect.test.options.styles as string[]).push(legacyImport);
-    tree.overwrite('/angular.json', JSON.stringify(angularJson, null, 2));
-
-    await runNgAddSetupProject(runner, tree, 'lean');
-
-    expect(
-      readJsonFile(tree, '/angular.json').projects.dummy.architect.build.options.styles
-    ).toEqual(['projects/dummy/src/styles.css', legacyImport]);
-
-    expect(
-      readJsonFile(tree, '/angular.json').projects.dummy.architect.test.options.styles
-    ).toEqual(['projects/dummy/src/styles.css', legacyImport]);
-
-    // Should configure variant regardless of legacy packages
-    expect(readStringFile(tree, '/projects/dummy/src/index.html')).toContain(
-      '<html class="sbb-lean" lang="en">'
-    );
-  });
-
   describe('animations enabled', () => {
     it('should add the BrowserAnimationsModule to the project module', async () => {
       await runner.runSchematicAsync('ng-add-setup-project', baseOptions, tree).toPromise();
       const fileContent = readStringFile(tree, '/projects/dummy/src/app/app.module.ts');
-      console.error(fileContent);
       expect(fileContent)
         .withContext('Expected the project app module to import the "BrowserAnimationsModule".')
         .toContain('BrowserAnimationsModule');
@@ -291,7 +250,7 @@ describe('ngAdd', () => {
           import { bootstrapApplication } from '@angular/platform-browser';
           import { NoopAnimationsModule } from '@angular/platform-browser/animations';
           import { AppComponent } from './app/app.component';
-          
+
           bootstrapApplication(AppComponent, {
             providers: [{provide: 'foo', useValue: 1}, importProvidersFrom(NoopAnimationsModule)]
           });
@@ -451,36 +410,5 @@ describe('ngAdd', () => {
       expect(readStringFile(tree, '/projects/dummy/src/test.ts')).not.toContain('sbb-lean');
       expect(readStringFile(tree, '/projects/dummy/src/test.ts')).toBe('\n');
     });
-  });
-
-  it('should execute migration from public, business and core', async () => {
-    addPackageToPackageJson(tree, '@sbb-esta/angular-business', '12.0.0');
-    expect(readJsonFile(tree, '/package.json').dependencies['@sbb-esta/angular-business']).toBe(
-      '12.0.0'
-    );
-
-    await runner.runSchematicAsync('ng-add', baseOptions, tree).toPromise();
-
-    expect(runner.tasks.some((task) => (task.options as any)!.name === 'ng-add-migrate'))
-      .withContext('Expected the ng-add-migrate schematic to be scheduled.')
-      .toBe(true);
-  });
-
-  it('should not execute migration from public, business and core', async () => {
-    await runner.runSchematicAsync('ng-add', baseOptions, tree).toPromise();
-
-    expect(runner.tasks.some((task) => (task.options as any)!.name === 'ng-add-migrate'))
-      .withContext('Expected the ng-add-migrate schematic not to be scheduled.')
-      .toBe(false);
-  });
-
-  it('should not execute migration from public, business and core if major versions are not 12', async () => {
-    addPackageToPackageJson(tree, '@sbb-esta/angular-business', '11.0.0');
-
-    await runner.runSchematicAsync('ng-add', baseOptions, tree).toPromise();
-
-    expect(runner.tasks.some((task) => (task.options as any)!.name === 'ng-add-migrate'))
-      .withContext('Expected the ng-add-migrate schematic not to be scheduled.')
-      .toBe(false);
   });
 });
