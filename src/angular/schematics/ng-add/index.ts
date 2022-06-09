@@ -78,7 +78,7 @@ export function ngAdd(options: Schema): Rule {
       context.logger.warn(
         `Your repository includes the deprecated packages ${legacyVersions.join(
           ', '
-        )}. If you like to automatically migrate from the legacy packages to @sbb-esta/angular, please add version 13 first and see our How to update guide.`
+        )}. If you like to automatically migrate from the legacy packages to @sbb-esta/angular, please add version 13 first and see our how-to-update guide.`
       );
     }
   };
