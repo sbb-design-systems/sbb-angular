@@ -1,6 +1,5 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { SBB_BOUNDING_BOX } from '@sbb-esta/journey-maps/angular/services/constants';
 import { LngLatBounds, Map as MaplibreMap, MapboxOptions, Style } from 'maplibre-gl';
 import { Observable } from 'rxjs';
 import { map, tap } from 'rxjs/operators';
@@ -11,6 +10,7 @@ import {
   SbbViewportDimensions,
 } from '../../journey-maps.interfaces';
 import { isSbbBoundingBoxOptions, isSbbMapCenterOptions } from '../../util/typeguard';
+import { SBB_BOUNDING_BOX } from '../constants';
 import { SBB_MARKER_BOUNDS_PADDING, SBB_MAX_ZOOM, SBB_MIN_ZOOM } from '../constants';
 import { SbbMultiTouchSupport } from '../multiTouchSupport';
 

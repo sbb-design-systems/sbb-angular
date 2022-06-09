@@ -8,3 +8,4 @@ export * from './journey-maps.interfaces';
 export * from './model/marker';
 export * from './model/marker-category';
 export * from './model/marker-priority';
+export * from './services/constants';
