@@ -1424,7 +1424,7 @@ textarea {
     height: var(--sbb-border-width-thin);
     left: calc(#{sbb.pxToRem(5)} * var(--sbb-scaling-factor));
     right: calc(#{sbb.pxToRem(5)} * var(--sbb-scaling-factor));
-    background: var(--sbb-color-grey);
+    background: var(--sbb-color-smoke);
     transform: translateY(-50%);
   }
 }
