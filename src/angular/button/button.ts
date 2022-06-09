@@ -40,6 +40,13 @@ const INDICATOR_ATTRIBUTES = [
   'sbb-link',
 ];
 
+const VALID_ICON_BUTTON_ATTRIBUTES = [
+  'sbb-button',
+  'sbb-alt-button',
+  'sbb-secondary-button',
+  'sbb-ghost-button',
+];
+
 const DEFAULT_INDICATOR_ICONS: { [attr: string]: string } = {
   'sbb-button': 'kom:arrow-right-small',
   'sbb-secondary-button': 'kom:arrow-right-small',
@@ -130,7 +137,12 @@ export class SbbButton
   ngAfterContentInit() {
     this._isIconButton = this._iconRefs.changes.pipe(
       startWith(this._iconRefs),
-      map((icons) => this._elementRef.nativeElement.textContent.trim() === '' && icons.length === 1)
+      map(
+        (icons) =>
+          this._hasHostAttributes(...VALID_ICON_BUTTON_ATTRIBUTES) &&
+          this._elementRef.nativeElement.textContent.trim() === '' &&
+          icons.length === 1
+      )
     );
 
     this._isIconButton.subscribe((isIconButton) => (this._hasIconButtonClass = isIconButton));
@@ -182,7 +194,7 @@ export class SbbButton
  */
 @Component({
   selector: `a[sbb-button], a[sbb-alt-button], a[sbb-secondary-button],
-             a[sbb-ghost-button], a[sbb-icon-button], a[sbb-frameless-button], a[sbb-link]`,
+             a[sbb-ghost-button], a[sbb-frameless-button], a[sbb-link]`,
   exportAs: 'sbbButton, sbbAnchor',
   host: {
     // Note that we ignore the user-specified tabindex when it's disabled for
