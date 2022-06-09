@@ -2,7 +2,7 @@ import { ScrollStrategy } from '@angular/cdk/overlay';
 import { ComponentFactoryResolver, Injector, ViewContainerRef } from '@angular/core';
 import { SbbDialogRole } from '@sbb-esta/angular/dialog';
 
-import { defaultParams } from './lightbox-animations';
+import { sbbLightboxAnimationsDefaultParams } from './lightbox-animations';
 
 /**
  * Configuration for opening a modal dialog with the SbbLightbox service.
@@ -69,10 +69,11 @@ export class SbbLightboxConfig<D = any> {
   componentFactoryResolver?: ComponentFactoryResolver;
 
   /** Duration of the enter animation. Has to be a valid CSS value (e.g. 100ms). */
-  enterAnimationDuration?: string = defaultParams.params.enterAnimationDuration;
+  enterAnimationDuration?: string =
+    sbbLightboxAnimationsDefaultParams.params.enterAnimationDuration;
 
   /** Duration of the exit animation. Has to be a valid CSS value (e.g. 50ms). */
-  exitAnimationDuration?: string = defaultParams.params.exitAnimationDuration;
+  exitAnimationDuration?: string = sbbLightboxAnimationsDefaultParams.params.exitAnimationDuration;
 
   // TODO(jelbourn): add configuration for lifecycle hooks, ARIA labelling.
 }

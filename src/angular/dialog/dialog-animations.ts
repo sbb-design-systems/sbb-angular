@@ -14,7 +14,7 @@ import {
  * Default parameters for the animation for backwards compatibility.
  * @docs-private
  */
-export const defaultParams = {
+export const sbbDialogAnimationsDefaultParams = {
   params: { enterAnimationDuration: '150ms', exitAnimationDuration: '75ms' },
 };
 
@@ -41,7 +41,7 @@ export const sbbDialogAnimations: {
         ),
         query('@*', animateChild(), { optional: true }),
       ]),
-      defaultParams
+      sbbDialogAnimationsDefaultParams
     ),
     transition(
       '* => void, * => exit',
@@ -49,7 +49,7 @@ export const sbbDialogAnimations: {
         animate('{{exitAnimationDuration}} cubic-bezier(0.4, 0.0, 0.2, 1)', style({ opacity: 0 })),
         query('@*', animateChild(), { optional: true }),
       ]),
-      defaultParams
+      sbbDialogAnimationsDefaultParams
     ),
   ]),
 };
