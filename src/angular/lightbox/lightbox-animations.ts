@@ -11,7 +11,7 @@ import {
  * Default parameters for the animation for backwards compatibility.
  * @docs-private
  */
-export const defaultParams = {
+export const sbbLightboxAnimationsDefaultParams = {
   params: { enterAnimationDuration: '150ms', exitAnimationDuration: '75ms' },
 };
 
@@ -35,12 +35,12 @@ export const sbbLightboxAnimations: {
         '{{enterAnimationDuration}} cubic-bezier(0, 0, 0.2, 1)',
         style({ transform: 'none', opacity: 1 })
       ),
-      defaultParams
+      sbbLightboxAnimationsDefaultParams
     ),
     transition(
       '* => void, * => exit',
       animate('{{exitAnimationDuration}} cubic-bezier(0.4, 0.0, 0.2, 1)', style({ opacity: 0 })),
-      defaultParams
+      sbbLightboxAnimationsDefaultParams
     ),
   ]),
 };
