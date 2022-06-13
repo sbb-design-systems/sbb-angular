@@ -2,81 +2,18 @@ import { Path, PathFragment, PathIsFileException } from '@angular-devkit/core';
 import { Rule, Tree } from '@angular-devkit/schematics';
 import ts from '@schematics/angular/third_party/github.com/Microsoft/TypeScript/lib/typescript';
 
-const IGNORED_FOLDERS = [
-  '/src/angular/schematics/ng-add/test-cases/',
-  '/src/angular/schematics/ng-update/test-cases/',
-];
+const IGNORED_FOLDERS = ['/src/angular/schematics/ng-update/test-cases/'];
 
-export function mergeSymbols(): Rule {
+export function extractSymbols(): Rule {
   return (tree: Tree) => {
     // Initialize collection with deprecated symbols (re-exports)
-    let symbols: { [key: string]: string } = {
-      SbbOptionGroup: 'core',
-      SbbLinksModule: 'button',
-      SbbLink: 'button',
-      SbbContextmenuModule: 'menu',
-      SbbDropdown: 'menu',
-      SbbDropdownSelectedEvent: 'menu',
-      getSbbDropdownMissingPanelError: 'menu',
-      SBB_DROPDOWN_SCROLL_STRATEGY: 'menu',
-      SBB_DROPDOWN_SCROLL_STRATEGY_FACTORY: 'menu',
-      SBB_DROPDOWN_OPTION_HEIGHT: 'menu',
-      SBB_DROPDOWN_PANEL_HEIGHT: 'menu',
-      SBB_DROPDOWN_SCROLL_STRATEGY_FACTORY_PROVIDER: 'menu',
-      SbbDropdownTrigger: 'menu',
-      SbbDropdownOrigin: 'menu',
-      SbbDropdownSelectionChange: 'menu',
-      SbbDropdownParent: 'menu',
-      SBB_DROPDOWN_ITEM_PARENT_COMPONENT: 'menu',
-      getDropdownItemScrollPosition: 'menu',
-      SbbDropdownItem: 'menu',
-      SbbDropdownModule: 'menu',
-      SbbDropdownDefaultOptions: 'menu',
-      SbbBusinessDateAdapter: 'core',
-      SBB_BUSINESS_DATE_ADAPTER: 'core',
-      SbbChipInputChange: 'chips',
-      SbbChipModule: 'chips',
-      SbbPaginatorComponent: 'pagination',
-      SbbPageChangeEvent: 'pagination',
-      SbbPagination: 'pagination',
-      SbbTabs: 'tabs',
-      SbbDialogHeader: 'dialog',
-      SbbDialogFooter: 'dialog',
-      SbbLightboxHeader: 'lightbox',
-      SbbLightboxFooter: 'lightbox',
-      SbbProcessflowStep: 'processflow',
-      SbbTagChange: 'tag',
-      SbbGhettoboxContainer: 'alert',
-      SbbGhettobox: 'alert',
-      sbbGhettoboxAnimations: 'alert',
-      SbbGhettoboxConfig: 'alert',
-      SbbGhettoboxEvent: 'alert',
-      SbbGhettoboxModule: 'alert',
-      SbbGhettoboxRef: 'alert',
-      SbbGhettoboxRefConnector: 'alert',
-      SbbGhettoboxService: 'alert',
-      SbbGhettoboxState: 'alert',
-      SbbGhettoboxDeletedEvent: 'alert',
-      SBB_GHETTOBOX_PANEL_ONDELETE_TIMING: 'alert',
-      SBB_GHETTOBOX_ANIMATIONS: 'alert',
-      SBB_GHETTOBOX_PANEL_ANIMATION_TIMING: 'alert',
-      SbbGhettoboxContainerService: 'alert',
-      SbbTooltipComponent: 'tooltip',
-      SbbSortHeaderComponent: 'table',
-      SbbSortDirective: 'table',
-      SbbSort: 'table',
-      NotificationType: 'notification',
-      SbbUsermenuItem: 'menu',
-      SbbHeader: 'header-lean',
-      StepperSelectionEvent: '@angular/cdk/stepper',
-    };
+    let symbols: { [key: string]: string } = {};
 
     extractExportsForModule('src/angular/');
-    extractExportsForModule('src/angular-maps/');
     sortSymbols();
 
     tree.overwrite(
-      '/src/angular/schematics/ng-add/migrations/sbb-angular-symbols.json',
+      '/src/angular/schematics/ng-update/migrations/sbb-angular-symbols.json',
       JSON.stringify(symbols, null, 2)
     );
 

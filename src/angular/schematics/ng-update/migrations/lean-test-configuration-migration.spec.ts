@@ -9,7 +9,7 @@ import { join } from 'path';
 import { MIGRATION_PATH } from '../../paths';
 import { createTestCaseSetup } from '../../testing';
 
-describe('v13 lean test configuration migration', () => {
+describe('lean test configuration migration', () => {
   const projectPath = '/projects/cdk-testing';
   const indexHtmlPath = join(projectPath, 'src/index.html');
   const testTsPath = join(projectPath, 'src/test.ts');

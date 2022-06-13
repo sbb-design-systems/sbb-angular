@@ -5,9 +5,9 @@
       "description": "Bazelify",
       "factory": "./bazel/index#bazel"
     },
-    "mergeSymbols": {
-      "description": "Create map for symbols of all packages to migrate to @sbb-esta/angular package",
-      "factory": "./merge-symbols/index#mergeSymbols"
+    "extractSymbols": {
+      "description": "Create map for symbols of @sbb-esta/angular package.",
+      "factory": "./extract-symbols/index#extractSymbols"
     },
     "selectorGroups": {
       "description": "Get a list of selector for metrics",

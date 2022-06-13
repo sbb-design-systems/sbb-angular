@@ -1,7 +1,10 @@
-# Migration Guide V13
+# Migration Guide v12 to v13
 
 This guide should help you migrate from `@sbb-esta/angular-public`, `@sbb-esta/angular-business`
 and `@sbb-esta/angular-core` to `@sbb-esta/angular`.
+
+**If you're using version 12 or below, please update `@sbb-esta/angular` to v13 first and avoid directly adding newer versions.
+This migration guide doesn't contain changes which were made after version 13**
 
 `@sbb-esta/angular` now contains all modules in either `standard` (previously public),
 `lean` (previously business) or in both variants. If a module is only available for either

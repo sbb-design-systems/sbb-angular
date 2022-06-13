@@ -19,29 +19,14 @@ const ANGULAR_FILEPATH = '@sbb-esta/angular';
  */
 const ANGULAR_FILEPATH_REGEX = new RegExp(`(${ANGULAR_FILEPATH})/(.*?)`);
 
-/**
- * Mapping of the class name rename migrations.
- */
+// Map of all moved symbols
 const ENTRY_POINT_MAPPINGS = new Map(
   Object.entries({
     [TargetVersion.V14]: {
-      SbbLoadingIndicatorModule: 'loading-indicator',
-      SbbLoadingIndicator: 'loading-indicator',
-      SbbLoadingIndicatorMode: 'loading-indicator',
-      SbbOptionHint: 'core',
-      SbbAutocomplete: 'autocomplete',
-      SbbAutocompleteModule: 'autocomplete',
-      SbbAutocompleteOrigin: 'autocomplete',
-      SbbAutocompleteTrigger: 'autocomplete',
-      SbbAutocompleteSelectedEvent: 'autocomplete',
-      SbbAutocompleteActivatedEvent: 'autocomplete',
-      SbbAutocompleteDefaultOptions: 'autocomplete',
-      SBB_AUTOCOMPLETE_DEFAULT_OPTIONS: 'autocomplete',
-      SBB_AUTOCOMPLETE_DEFAULT_OPTIONS_FACTORY: 'autocomplete',
-      SBB_AUTOCOMPLETE_SCROLL_STRATEGY: 'autocomplete',
-      SBB_AUTOCOMPLETE_SCROLL_STRATEGY_FACTORY: 'autocomplete',
-      SBB_AUTOCOMPLETE_SCROLL_STRATEGY_FACTORY_PROVIDER: 'autocomplete',
-      getSbbAutocompleteMissingPanelError: 'autocomplete',
+      SbbLoadingModule: 'loading-indicator',
+      SbbLoading: 'loading-indicator',
+      SbbLoadingMode: 'loading-indicator',
+      SbbAutocompleteHint: 'core',
     },
   })
 );
@@ -62,7 +47,10 @@ export class SecondaryEntryPointsMigration extends Migration<null, DevkitContext
 
   enabled: boolean = ENTRY_POINT_MAPPINGS.has(this.targetVersion);
 
-  private _entryPointMappings = ENTRY_POINT_MAPPINGS.get(this.targetVersion);
+  private _entryPointMappings = {
+    ...require('./sbb-angular-symbols.json'),
+    ...ENTRY_POINT_MAPPINGS.get(this.targetVersion),
+  };
 
   private _fileImportMap = new Map<ts.SourceFile, SecondaryEntryPointContext>();
 
