@@ -2,7 +2,7 @@ import { OverlayRef } from '@angular/cdk/overlay';
 import { TypeRef } from '@sbb-esta/angular/core';
 import { Observable, Subject } from 'rxjs';
 
-import type { SbbNotificationToastContainer } from './notification-toast-container';
+import type { SbbNotificationToastContainerBase } from './notification-toast-container';
 
 /** Maximum amount of milliseconds that can be passed into setTimeout. */
 const MAX_TIMEOUT = Math.pow(2, 31) - 1;
@@ -16,7 +16,7 @@ export class SbbNotificationToastRef<T> {
    * The instance of the component making up the content of the notification toast.
    * @docs-private
    */
-  containerInstance: SbbNotificationToastContainer;
+  containerInstance: SbbNotificationToastContainerBase;
 
   /** Subject for notifying the user that the notification toast has been dismissed. */
   private readonly _afterDismissed = new Subject<void>();
@@ -31,7 +31,7 @@ export class SbbNotificationToastRef<T> {
   private _durationTimeoutId: any;
 
   constructor(
-    containerInstance: TypeRef<SbbNotificationToastContainer>,
+    containerInstance: TypeRef<SbbNotificationToastContainerBase>,
     private _overlayRef: OverlayRef
   ) {
     this.containerInstance = containerInstance;
