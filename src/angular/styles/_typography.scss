@@ -2276,6 +2276,7 @@ textarea {
 
   .sbb-icon-button {
     :where(html:not(.sbb-lean)) & {
+      // Reduce button size
       padding: calc(#{sbb.pxToRem(5)} * var(--sbb-scaling-factor)) !important;
       height: var(--sbb-icon-size-large);
     }
