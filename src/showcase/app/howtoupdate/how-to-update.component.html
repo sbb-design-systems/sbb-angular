@@ -1,73 +1,22 @@
 <h1>How to update</h1>
 
-<h4>Upgrade from version 12.x.x to 13.x.x</h4>
-<ol>
-  <li>
-    Update your Angular dependencies to version 13.x.x with "--force" flag (due to unmet peer
-    dependencies). <br />
-    See <a href="https://update.angular.io">update.angular.io</a> for a step-by-step guide for
-    updating Angular.
-    <pre style="user-select: all">
-npx @angular/cli@13 update @angular/core@13 @angular/cli@13 --force</pre
-    >
-  </li>
-  <li>
-    Update Angular CDK in a separate step to avoid dependency version resolving problems.
-    <pre style="user-select: all">npx @angular/cli@13 update @angular/cdk@13 --force</pre>
-  </li>
-  <li>
-    Use <code>ng add</code> to add <code>@sbb-esta/angular</code> package. Our automatic migration
-    takes care of most of the changes and also sets up your typography design variant (standard or
-    lean).
-    <pre style="user-select: all">ng add @sbb-esta/angular</pre>
-  </li>
-  <li>
-    Check console output, added TODOs in your code and consult
-    <a href="/angular/guides/migration-guide">migration guide</a> for more explanations on changes.
-  </li>
-  <li>
-    (Optional) if possible, remove deprecated dependencies <code>@sbb-esta/angular-public</code>,
-    <code>@sbb-esta/angular-business</code>, <code>@sbb-esta/angular-core</code>,
-    <code>@sbb-esta/angular-icons</code> and <code>@sbb-esta/angular-keycloak</code> from your
-    project.
-  </li>
-  <li>
-    (Optional) run <code>npx @angular/cli@13 update @sbb-esta/maps</code> if you are using maps
-    package.
-  </li>
-  <li>Clear angular cache (`.angular` folder) to avoid caching problems.</li>
-</ol>
+<form class="sbb-form-group" [formGroup]="versionSelect">
+  <sbb-form-field label="From">
+    <sbb-select formControlName="from">
+      <sbb-option *ngFor="let v of versions" [value]="v">{{ toVersionString(v) }}</sbb-option>
+    </sbb-select>
+  </sbb-form-field>
 
-<h4>Update from version 13.x.x upwards</h4>
-<!-- Re-add for version 14
-<p>
-  Before updating make sure your Angular packages (@angular/...) are up to date. For example if you
-  would like to update from version
-  {{ libraryPredecessorMajorVersion }}.x.x to version {{ libraryMajorVersion }}.x.x of our SBB
-  Angular packages (@sbb-esta/...), you would first need to update the Angular packages to version
-  {{ libraryMajorVersion }}.x.x. See <a href="https://update.angular.io">update.angular.io</a> for a
-  step-by-step guide for updating Angular. Don't forget to update @angular/cdk as well.
-</p>
--->
-<p>
-  To update the SBB Angular packages, use the <code>ng update</code> command.
-  <code>ng update</code> will update all related packages and will automatically run update
-  schematics which helps keeping up with breaking changes. After updating, clear the angular cache
-  (`.angular` folder) to avoid caching problems.
-</p>
-<sbb-checkbox [formControl]="fullCommand">Show command for @angular packages update</sbb-checkbox>
+  <sbb-form-field label="To">
+    <sbb-select formControlName="to">
+      <sbb-option *ngFor="let v of versions" [value]="v">{{ toVersionString(v) }}</sbb-option>
+    </sbb-select>
+  </sbb-form-field>
+</form>
 
-<ng-container *ngIf="fullCommand.value">
-  <h5>@angular/cli & @angular/core</h5>
-  <pre style="user-select: all">
-npx @angular/cli@{{ libraryMajorVersion }} update @angular/core@{{
-      libraryMajorVersion
-    }} @angular/cli@{{ libraryMajorVersion }}</pre
-  >
-  <h5>@angular/cdk & @sbb-esta/angular</h5>
-</ng-container>
-<pre style="user-select: all">
-npx @angular/cli@{{ libraryMajorVersion }} update @angular/cdk@{{
-    libraryMajorVersion
-  }} @sbb-esta/angular@{{ libraryMajorVersion }}</pre
->
+<div *ngFor="let step of steps | async">
+  <h2>Update from Version {{ toVersionString(step.from) }} to {{ toVersionString(step.to) }}</h2>
+  <ol>
+    <li *ngFor="let action of step.actions" [innerHTML]="action"></li>
+  </ol>
+</div>

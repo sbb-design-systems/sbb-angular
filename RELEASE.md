@@ -9,6 +9,7 @@ This document describes how to create a new release of SBB Angular.
 - Update Angular packages to align with new angular major version.
 - Update ng-update schematics.
 - Update stackblitz assets.
+- Update the "How to update" guide.
 - Check TODOs, @breaking-change annotations and @deprecated annotations.
 - Check angular components commits to be considered for next major release in the [sync issue](https://github.com/sbb-design-systems/sbb-angular/issues/1047).
 - Create new route for previous release (e.g. angular-v13.app.sbb.ch) and deploy corresponding version.
