@@ -1413,19 +1413,18 @@ textarea {
   // Subtract 1 from the padding values, since we always use the border
   // in order to avoid tearing on state changes.
   padding: calc(#{sbb.pxToRem(5)} * var(--sbb-scaling-factor)) !important;
-  height: calc(#{sbb.pxToRem(36)} * var(--sbb-scaling-factor));
+  height: var(--sbb-button-height);
   min-width: auto;
   line-height: 0 !important;
 
   :where(html:not(.sbb-lean)) & {
     padding: calc(#{sbb.pxToRem(11)} * var(--sbb-scaling-factor)) !important;
-    height: var(--sbb-button-height);
 
     // Strike through icons in disabled buttons.
     &:is(:disabled, .sbb-disabled):before {
       @include sbb.absoluteCenterY();
       content: '';
-      width: calc(#{sbb.pxToRem(24)} * var(--sbb-scaling-factor));
+      width: var(--sbb-icon-size-default);
       border-top: var(--sbb-border-width-thin) solid var(--sbb-color-smoke);
     }
   }
