@@ -1419,7 +1419,6 @@ textarea {
 
   :where(html:not(.sbb-lean)) & {
     padding: calc(#{sbb.pxToRem(11)} * var(--sbb-scaling-factor)) !important;
-    height: var(--sbb-button-height);
 
     // Strike through icons in disabled buttons.
     &:is(:disabled, .sbb-disabled):before {
