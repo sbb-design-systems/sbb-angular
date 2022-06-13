@@ -1413,7 +1413,7 @@ textarea {
   // Subtract 1 from the padding values, since we always use the border
   // in order to avoid tearing on state changes.
   padding: calc(#{sbb.pxToRem(5)} * var(--sbb-scaling-factor)) !important;
-  height: calc(#{sbb.pxToRem(36)} * var(--sbb-scaling-factor));
+  height: var(--sbb-button-height);
   min-width: auto;
   line-height: 0 !important;
 
