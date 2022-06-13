@@ -6,7 +6,7 @@ on:
     branches: [main] # target branch
 
 env:
-  TARGET_RELEASE: 13.x
+  TARGET_RELEASE: 14.x
 
 jobs:
   add_label:
