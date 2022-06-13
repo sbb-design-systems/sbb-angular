@@ -2274,6 +2274,13 @@ textarea {
     transform: none;
   }
 
+  .sbb-icon-button {
+    :where(html:not(.sbb-lean)) & {
+      padding: calc(#{sbb.pxToRem(5)} * var(--sbb-scaling-factor)) !important;
+      height: var(--sbb-icon-size-large);
+    }
+  }
+
   tr:is(:hover, :focus, :focus-within) & {
     display: flex;
   }
