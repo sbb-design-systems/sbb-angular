@@ -1,0 +1,95 @@
+name: Preview Deployment
+# Secure deployment of pull request artifacts
+# https://securitylab.github.com/research/github-actions-preventing-pwn-requests/
+on:
+  workflow_run:
+    workflows: ["Continuous Integration"]
+    types: [completed]
+
+jobs:
+  preview-deployment:
+    runs-on: ubuntu-latest
+    if: ${{ github.event.workflow_run.conclusion == 'success' }}
+    steps:
+      - uses: actions/setup-node@v3
+        with:
+          node-version: 16
+      - run: npm i decompress@4.2.1 node-fetch@2.6.2 form-data@4.0.0
+      - name: Download Artifacts
+        uses: actions/github-script@v6
+        env:
+          previewUser: ${{ secrets.PREVIEW_USER }}
+          previewPassword: ${{ secrets.PREVIEW_PASSWORD }}
+          previewUrl: https://preview-sbb-angular.app.sbb.ch
+        with:
+          script: |
+            const decompress = require('decompress');
+            const { createReadStream } = require('fs');
+            const fetch = require('node-fetch');
+            const FormData = require('form-data');
+
+            const { previewUser, previewPassword, previewUrl } = process.env;
+            const artifactsUrl = context.payload.workflow_run.artifacts_url;
+
+            const artifactsResult = await github.request(artifactsUrl);
+            const artifacts = artifactsResult.data.artifacts.filter((a) =>
+              a.name.startsWith('showcase-artifact-')
+            );
+
+            for (const artifactEntry of artifacts) {
+              try {
+                const artifact = await github.request(artifactEntry.archive_download_url);
+                const result = await decompress(Buffer.from(artifact.data), '.');
+
+                const version = artifactEntry.name.match(/-([\w\d]+)$/)[1];
+                const form = new FormData();
+                form.append('key', version);
+                form.append('file', createReadStream(result[0].path));
+                const authorization = `Basic ${Buffer.from(`${previewUser}:${previewPassword}`).toString('base64')}`;
+                await fetch(`${previewUrl}`, {
+                  method: 'POST',
+                  headers: form.getHeaders({ authorization }),
+                  body: form,
+                });
+              } catch (e) {
+                console.error(`Failed to download and unzip ${artifactEntry.name}`);
+              }
+            }
+
+            if (artifacts.length && context.payload.workflow_run.pull_requests.length) {
+              const pullRequest = context.payload.workflow_run.pull_requests[0];
+
+              const { data: fullPr } = await github.rest.pulls.get({
+                pull_number: pullRequest.number,
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+              });
+
+              // Don't comment renovate bot PRs
+              if (fullPr?.user?.login === 'sbb-angular-renovate[bot]') {
+                return;
+              }
+
+              const previewBaseUrl = `${previewUrl}/${pullRequest.number}`;
+              let moduleUrl = '';
+              if (fullPr?.title) {
+                const moduleName = fullPr.title.match(/^.*\(angular\/(.*)\):/i)?.[1];
+                if (moduleName) {
+                  moduleUrl = `${previewBaseUrl}/angular/components/${moduleName}/examples`;
+                }
+              }
+
+              const createdAtDate = new Date(
+                context.payload.workflow_run.created_at
+              ).toLocaleString('de');
+              github.rest.issues.createComment({
+                issue_number: pullRequest.number,
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                body: `Preview ready from ${
+                  pullRequest.head.sha
+                } at ${createdAtDate}:\n- ${previewBaseUrl}${
+                  moduleUrl ? `\n- Examples link: ${moduleUrl}` : ''
+                }`,
+              });
+            }
