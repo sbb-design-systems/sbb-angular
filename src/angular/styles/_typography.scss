@@ -1362,7 +1362,7 @@ textarea {
 }
 
 // Icon animation for primary/secondary button.
-.sbb-button-base:is(.sbb-button, .sbb-secondary-button):not(.sbb-disabled) {
+.sbb-button-base:is(.sbb-button, .sbb-secondary-button):not(.sbb-disabled, .sbb-icon-button) {
   :where(html:not(.sbb-lean)) & {
     transition: {
       duration: var(--sbb-transition-duration-default);
