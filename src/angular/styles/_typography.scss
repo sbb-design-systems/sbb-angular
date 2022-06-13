@@ -1269,7 +1269,7 @@ textarea {
   -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
   outline: none;
 
-  // Only icon button should always be quadratic
+  // Icon button should always be quadratic
   &:where(:not(.sbb-icon-button)) {
     width: 100%;
   }
