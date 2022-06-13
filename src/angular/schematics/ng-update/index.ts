@@ -23,7 +23,7 @@ export function updateToV13(): Rule {
   ]);
 }
 
-/** Entry point for the migration schematics with target of Angular CDK 14.0.0 */
+/** Entry point for the migration schematics with target of Angular v14 */
 export function updateToV14(): Rule {
   patchUpdateBuffer();
   patchClassNamesMigration();
