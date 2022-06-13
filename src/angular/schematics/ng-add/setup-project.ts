@@ -70,7 +70,7 @@ function addAnimationsModule(options: Schema) {
     try {
       addAnimationsModuleToNonStandaloneApp(host, project, context, options);
     } catch (e) {
-      if (e instanceof SchematicsException && e.message.includes('Bootstrap call not found')) {
+      if ((e as { message?: string }).message?.includes('Bootstrap call not found')) {
         addAnimationsModuleToStandaloneApp(host, project, context, options);
       } else {
         throw e;
