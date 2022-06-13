@@ -1249,7 +1249,6 @@ textarea {
 
 :is(.sbb-button, .sbb-alt-button, .sbb-secondary-button, .sbb-ghost-button, .sbb-icon-button) {
   @include sbb.ellipsis;
-  width: 100%;
   // We need to explicitly define the button height, due to rounding issues in Firefox
   height: var(--sbb-button-height);
   background: none;
@@ -1269,6 +1268,11 @@ textarea {
   margin: 0;
   -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
   outline: none;
+
+  // Only icon button should always be quadratic
+  &:where(:not(.sbb-icon-button)) {
+    width: 100%;
+  }
 
   @include sbb.mq($from: tabletPortrait) {
     width: auto;
