@@ -1425,7 +1425,7 @@ textarea {
     &:is(:disabled, .sbb-disabled):before {
       @include sbb.absoluteCenterY();
       content: '';
-      width: calc(#{sbb.pxToRem(24)} * var(--sbb-scaling-factor));
+      width: var(--sbb-icon-size-default);
       border-top: var(--sbb-border-width-thin) solid var(--sbb-color-smoke);
     }
   }
