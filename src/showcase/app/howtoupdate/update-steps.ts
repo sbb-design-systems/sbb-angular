@@ -43,7 +43,7 @@ export const UPDATE_STEPS: UpdateStep[] = [
         <pre>ng update @sbb-esta/angular@14</pre>`,
       `If your sass files contain any <code>@import</code> to our mixins or sass variables, you have to manually migrate to <code>@use</code>.
       Example: <p><code>@import '@sbb-esta/angular/styles.scss';</code> becomes <code>@use '@sbb-esta/angular' as sbb;</code>.</p>
-      <p>Additionally, you have to prefix all imported symbols: e.g. <code>pxToRem(3)</code> becomes <code>sbb.pxToRem(5)</code></p>
+      <p>Additionally, you have to prefix all imported symbols: e.g. <code>pxToRem(5)</code> becomes <code>sbb.pxToRem(5)</code></p>
       <p>Read more at <a href="https://sass-lang.com/documentation/at-rules/use">https://sass-lang.com/documentation/at-rules/use</a>.</p>`,
     ],
   },
