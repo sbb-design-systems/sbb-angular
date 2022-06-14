@@ -69,8 +69,11 @@ export class SecondaryEntryPointsMigration extends Migration<null, DevkitContext
       return;
     }
     const importLocation = declaration.moduleSpecifier.text;
-    // If the import module is not in an SBB angular module specifier, skip the check.
-    if (!ANGULAR_FILEPATH_REGEX.test(importLocation)) {
+    // If the import module is not in an SBB angular module or an i18n import specifier, skip the check.
+    if (
+      !ANGULAR_FILEPATH_REGEX.test(importLocation) ||
+      importLocation === '@sbb-esta/angular/i18n'
+    ) {
       return;
     }
 
