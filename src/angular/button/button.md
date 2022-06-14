@@ -21,9 +21,21 @@ There are several button variants, each applied as an attribute:
 | `sbb-alt-button` (lean only)           | An alternate primary button for lean.                                                                                    |
 | `sbb-secondary-button`                 | The secondary button, which can be placed next to or on the same page as a primary button. Has an animation on standard. |
 | `sbb-ghost-button`                     | The ghost button, which can be placed next to or on the same page as a primary button.                                   |
-| `sbb-icon-button` (lean only)          | The icon button, which is intended to contain a single icon.                                                             |
 | `sbb-frameless-button` (standard only) | The frameless button, which is displayed simply as text with no surrounding box.                                         |
 | `sbb-link`                             | This is the link variant, which has an animation on standard and a single indicator icon on lean.                        |
+
+### Icon Buttons
+
+All buttons except `sbb-frameless-button` and `sbb-link` can be used as a pure icon button.
+If a single `sbb-icon` is placed inside the button, the icon button style is applied automatically.
+
+```
+<button type="button" sbb-secondary-button>
+  <sbb-icon svgIcon="kom:pen-small"></sbb-icon>
+</button>
+```
+
+These buttons are only intended to be used with lean variant.
 
 ### Custom indicator icon
 
@@ -62,9 +74,9 @@ URL_. All standard accessibility best practices for buttons and anchors apply to
 `tabindex="-1"`. Always test disabled anchors in your application to ensure compatibility
 with any assistive technology your application supports.
 
-#### Buttons with icons
+#### Icon Buttons
 
-Buttons or links containing only icons (`sbb-icon-button`)
-should be given a meaningful label via `aria-label` or `aria-labelledby`. [See the documentation
-for `SbbIcon`](https://angular.app.sbb.ch/angular/components/icon) for more
+Buttons or links containing only icons should be given a meaningful label via `aria-label` or
+`aria-labelledby`.
+[See the documentation for `SbbIcon`](https://angular.app.sbb.ch/angular/components/icon) for more
 information on using icons in buttons.

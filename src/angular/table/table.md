@@ -494,14 +494,14 @@ so that screen readers can output a meaningful text.
 <td>
   <div class="sbb-table-cell-actions" aria-label="Press tab key to access actions.">
     <a
-      sbb-icon-button
+      sbb-secondary-button
       [routerLink]="['./edit', element.id]"
       attr.aria-label="Edit {{element.vehicle}}."
     >
       <sbb-icon svgIcon="kom:pen-small"></sbb-icon>
     </a>
     <button
-      sbb-icon-button
+      sbb-secondary-button
       attr.aria-label="Save {{element.vehicle}} as favorite."
       (click)="action()"
     >

@@ -1,7 +1,7 @@
 <div class="example-viewer-header sbb-icon-scaled">
   <h3 class="example-viewer-title">{{ this.exampleData.description }}</h3>
   <button
-    sbb-icon-button
+    sbb-secondary-button
     type="button"
     (click)="showSource = !showSource"
     class="example-viewer-header-button"
@@ -13,7 +13,7 @@
 
   <button
     *ngIf="stackBlitzEnabled() | async"
-    sbb-icon-button
+    sbb-secondary-button
     sbb-stack-blitz-button
     type="button"
     [example]="exampleData.id"

@@ -10,7 +10,6 @@ import { SbbButton, SbbButtonModule } from './index';
 describe('SbbButton', () => {
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-      imports: [SbbButtonModule, SbbIconModule, SbbIconTestingModule],
       declarations: [
         ButtonTest,
         ButtonWithCustomSvgIconTest,
@@ -19,8 +18,10 @@ describe('SbbButton', () => {
         ButtonGhostTest,
         ButtonIconTest,
         ButtonFramelessTest,
+        ButtonIconTestMultiple,
         LinkTest,
       ],
+      imports: [SbbButtonModule, SbbIconModule, SbbIconTestingModule],
     });
 
     TestBed.compileComponents();
@@ -35,8 +36,9 @@ describe('SbbButton', () => {
 
     fixture.detectChanges();
 
-    expect(buttonDebugElement.nativeElement.classList.contains('sbb-button-base')).toBe(true);
-    expect(buttonDebugElement.nativeElement.classList.contains('custom-class')).toBe(true);
+    expect(buttonDebugElement.nativeElement.classList.contains('sbb-button-base')).toBeTrue();
+    expect(buttonDebugElement.nativeElement.classList.contains('sbb-icon-button')).toBeFalse();
+    expect(buttonDebugElement.nativeElement.classList.contains('custom-class')).toBeTrue();
   });
 
   it('should be able to focus button with a specific focus origin', () => {
@@ -125,6 +127,7 @@ describe('SbbButton', () => {
           By.css('button[sbb-button] sbb-icon')
         );
         const icons: SbbIcon[] = svgIconElements.map((i) => i.componentInstance);
+        expect(fixture.nativeElement.classList.contains('sbb-icon-button')).toBeFalse();
         expect(icons.every((i) => i.svgIcon === fixture.componentInstance.svgIcon)).toBeTrue();
       });
 
@@ -462,7 +465,7 @@ describe('SbbButton', () => {
     });
   });
 
-  describe('button[sbb-icon-button]', () => {
+  describe('button[.sbb-icon-button]', () => {
     describe('lean', () => {
       switchToLean();
 
@@ -471,7 +474,36 @@ describe('SbbButton', () => {
         fixture.detectChanges();
         const buttonDebugElement = fixture.debugElement.query(By.css('button'))!;
         const buttonStyles = getComputedStyle(buttonDebugElement.nativeElement);
+        expect(buttonDebugElement.nativeElement.classList.contains('sbb-icon-button')).toBeTrue();
         expect(buttonStyles.getPropertyValue('background-color')).toBe('rgb(220, 220, 220)');
+      });
+
+      it('should add the `sbb-icon-button` class if only an icon is contained', () => {
+        const fixture = TestBed.createComponent(ButtonIconTestMultiple);
+        fixture.detectChanges();
+        const nonIconButtonElements = fixture.debugElement.queryAll(
+          By.css('p.non-icon-buttons > :is(a, button)')
+        )!;
+        const iconButtonElements = fixture.debugElement.queryAll(
+          By.css('p.icon-buttons > :is(a, button)')
+        )!;
+
+        expect(nonIconButtonElements.length).toEqual(10);
+        expect(iconButtonElements.length).toEqual(8);
+
+        expect(
+          nonIconButtonElements.every(
+            (btn) => !btn.nativeElement.classList.contains('sbb-icon-button')
+          )
+        )
+          .withContext('Expected non-icon-buttons not to habe an sbb-icon-button class')
+          .toBeTrue();
+
+        expect(
+          iconButtonElements.every((btn) => btn.nativeElement.classList.contains('sbb-icon-button'))
+        )
+          .withContext('Expected icon-buttons to have an sbb-icon-button class')
+          .toBeTrue();
       });
     });
   });
@@ -635,12 +667,50 @@ class ButtonGhostTest extends ButtonTestBase {}
 @Component({
   selector: 'button-icon-test',
   template: `
-    <button sbb-icon-button type="button" (click)="increment()" [disabled]="isDisabled">
+    <button sbb-secondary-button type="button" (click)="increment()" [disabled]="isDisabled">
       <sbb-icon svgIcon="example"></sbb-icon>
     </button>
   `,
 })
 class ButtonIconTest extends ButtonTestBase {}
+
+@Component({
+  selector: 'button-icon-test-multiple',
+  template: `
+    <button sbb-secondary-button type="button"><sbb-icon svgIcon="example"></sbb-icon></button>
+    <p class="icon-buttons">
+      <!-- Buttons that should get an sbb-icon-button class -->
+      <a sbb-button type="button"><sbb-icon svgIcon="example"></sbb-icon></a>
+      <a sbb-alt-button type="button"><sbb-icon svgIcon="example"></sbb-icon></a>
+      <a sbb-secondary-button type="button"><sbb-icon svgIcon="example"></sbb-icon></a>
+      <a sbb-ghost-button type="button"><sbb-icon svgIcon="example"></sbb-icon></a>
+      <button sbb-button type="button"><sbb-icon svgIcon="example"></sbb-icon></button>
+      <button sbb-alt-button type="button"><sbb-icon svgIcon="example"></sbb-icon></button>
+      <button sbb-secondary-button type="button"><sbb-icon svgIcon="example"></sbb-icon></button>
+      <button sbb-ghost-button type="button"><sbb-icon svgIcon="example"></sbb-icon></button>
+    </p>
+
+    <p class="non-icon-buttons">
+      <!-- Buttons that should not get an sbb-icon-button class -->
+      <!-- ... sbb-link and sbb-frameless-button are not valid for icon buttons -->
+      <button type="button" sbb-frameless-button>Frameless</button>
+      <a href="http://www.google.com" sbb-link>Link</a>
+
+      <!-- ... no icon button because there's text inside the button -->
+      <a sbb-button type="button"><sbb-icon svgIcon="example">Test</sbb-icon></a>
+      <a sbb-alt-button type="button">Test<sbb-icon svgIcon="example"></sbb-icon></a>
+      <a sbb-secondary-button type="button">Test</a>
+      <a sbb-ghost-button type="button"><sbb-icon svgIcon="example">Test</sbb-icon></a>
+      <button sbb-button type="button">Test</button>
+      <button sbb-alt-button type="button">Test</button>
+      <button sbb-secondary-button type="button">
+        <sbb-icon svgIcon="example"></sbb-icon>Test
+      </button>
+      <button sbb-ghost-button type="button">Test</button>
+    </p>
+  `,
+})
+class ButtonIconTestMultiple extends ButtonTestBase {}
 
 @Component({
   selector: 'button-frameless-test',

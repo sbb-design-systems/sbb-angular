@@ -1249,7 +1249,6 @@ textarea {
 
 :is(.sbb-button, .sbb-alt-button, .sbb-secondary-button, .sbb-ghost-button, .sbb-icon-button) {
   @include sbb.ellipsis;
-  width: 100%;
   // We need to explicitly define the button height, due to rounding issues in Firefox
   height: var(--sbb-button-height);
   background: none;
@@ -1269,6 +1268,11 @@ textarea {
   margin: 0;
   -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
   outline: none;
+
+  // Icon button should always be quadratic
+  &:where(:not(.sbb-icon-button)) {
+    width: 100%;
+  }
 
   @include sbb.mq($from: tabletPortrait) {
     width: auto;
@@ -1345,7 +1349,7 @@ textarea {
   }
 }
 
-:is(.sbb-secondary-button, .sbb-icon-button) {
+.sbb-secondary-button {
   background-color: var(--sbb-color-silver);
   color: var(--sbb-color-iron);
 
@@ -1362,7 +1366,7 @@ textarea {
 }
 
 // Icon animation for primary/secondary button.
-.sbb-button-base:is(.sbb-button, .sbb-secondary-button):not(.sbb-disabled) {
+.sbb-button-base:is(.sbb-button, .sbb-secondary-button):not(.sbb-disabled, .sbb-icon-button) {
   :where(html:not(.sbb-lean)) & {
     transition: {
       duration: var(--sbb-transition-duration-default);
@@ -1412,10 +1416,22 @@ textarea {
 .sbb-icon-button {
   // Subtract 1 from the padding values, since we always use the border
   // in order to avoid tearing on state changes.
-  padding: calc(#{sbb.pxToRem(5)} * var(--sbb-scaling-factor)) !important;
-  height: calc(#{sbb.pxToRem(36)} * var(--sbb-scaling-factor));
+  height: var(--sbb-button-height);
+  padding: calc(#{sbb.pxToRem(11)} * var(--sbb-scaling-factor)) !important;
   min-width: auto;
   line-height: 0 !important;
+
+  // Strike through icons in disabled buttons in standard mode.
+  :where(html:not(.sbb-lean)) &:is(:disabled, .sbb-disabled):before {
+    @include sbb.absoluteCenterY();
+    content: '';
+    width: var(--sbb-icon-size-default);
+    border-top: var(--sbb-border-width-thin) solid var(--sbb-color-smoke);
+  }
+
+  :where(html.sbb-lean) & {
+    padding: calc(#{sbb.pxToRem(5)} * var(--sbb-scaling-factor)) !important;
+  }
 }
 
 :is(
@@ -1498,7 +1514,7 @@ textarea {
 }
 
 // We need to position icons inside the buttons in a special way.
-:is(.sbb-button, .sbb-alt-button, .sbb-secondary-button, .sbb-ghost-button, .sbb-frameless-button, .sbb-link:where(.sbb-button-base))
+:is(.sbb-button, .sbb-alt-button, .sbb-secondary-button, .sbb-ghost-button, .sbb-frameless-button, .sbb-link:where(.sbb-button-base)):where(:not(.sbb-icon-button))
   .sbb-icon {
   margin-top: var(--sbb-button-icon-top-margin);
 
@@ -2260,6 +2276,14 @@ textarea {
   .sbb-button-base {
     margin: 0;
     transform: none;
+  }
+
+  .sbb-icon-button {
+    :where(html:not(.sbb-lean)) & {
+      // Reduce button size
+      padding: calc(#{sbb.pxToRem(5)} * var(--sbb-scaling-factor)) !important;
+      height: var(--sbb-icon-size-large);
+    }
   }
 
   tr:is(:hover, :focus, :focus-within) & {

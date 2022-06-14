@@ -16,18 +16,18 @@
         {{ element.price }}
 
         <div class="sbb-table-cell-actions" aria-label="Press tab key to access actions.">
-          <a sbb-icon-button href="#" attr.aria-label="Edit {{element.vehicle}}.">
+          <a sbb-secondary-button href="#" attr.aria-label="Edit {{element.vehicle}}.">
             <sbb-icon svgIcon="kom:pen-small"></sbb-icon>
           </a>
           <button
-            sbb-icon-button
+            sbb-secondary-button
             attr.aria-label="Save {{element.vehicle}} as favorite."
             (click)="logActionButtonClicked($event)"
           >
             <sbb-icon svgIcon="kom:star-small"></sbb-icon>
           </button>
           <button
-            sbb-icon-button
+            sbb-secondary-button
             attr.aria-label="Delete {{element.vehicle}}."
             (click)="logActionButtonClicked($event)"
           >

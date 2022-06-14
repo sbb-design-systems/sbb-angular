@@ -23,13 +23,13 @@
 .example-viewer-header-button {
   flex-shrink: 0;
   margin-left: 0.5em;
-  width: sbb.pxToEm(36);
-  height: sbb.pxToEm(36);
 }
 
 .example-viewer-title {
   flex-grow: 1;
-  margin-top: 0;
+  display: flex;
+  align-items: center;
+  margin: 0;
 }
 
 .sbb-example-viewer-tabs {

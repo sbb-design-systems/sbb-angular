@@ -1,20 +1,24 @@
 import { FocusableOption, FocusMonitor, FocusOrigin } from '@angular/cdk/a11y';
 import {
+  AfterContentInit,
   AfterViewInit,
   ChangeDetectionStrategy,
   Component,
+  ContentChildren,
   ElementRef,
   Inject,
   Input,
   NgZone,
   OnDestroy,
   Optional,
+  QueryList,
   ViewEncapsulation,
 } from '@angular/core';
 import { ANIMATION_MODULE_TYPE } from '@angular/platform-browser/animations';
 import { CanDisable, mixinDisabled, mixinVariant } from '@sbb-esta/angular/core';
-import { Observable } from 'rxjs';
-import { map } from 'rxjs/operators';
+import { SbbIcon } from '@sbb-esta/angular/icon';
+import { Observable, withLatestFrom } from 'rxjs';
+import { map, startWith } from 'rxjs/operators';
 
 /**
  * List of classes to add to SbbButton instances based on host attributes to
@@ -25,7 +29,6 @@ const BUTTON_HOST_ATTRIBUTES = [
   'sbb-alt-button',
   'sbb-secondary-button',
   'sbb-ghost-button',
-  'sbb-icon-button',
   'sbb-frameless-button',
   'sbb-link',
 ];
@@ -35,6 +38,13 @@ const INDICATOR_ATTRIBUTES = [
   'sbb-secondary-button',
   'sbb-frameless-button',
   'sbb-link',
+];
+
+const VALID_ICON_BUTTON_ATTRIBUTES = [
+  'sbb-button',
+  'sbb-alt-button',
+  'sbb-secondary-button',
+  'sbb-ghost-button',
 ];
 
 const DEFAULT_INDICATOR_ICONS: { [attr: string]: string } = {
@@ -59,13 +69,13 @@ const _SbbButtonMixinBase = mixinDisabled(
  */
 @Component({
   selector: `button[sbb-button], button[sbb-alt-button], button[sbb-secondary-button],
-             button[sbb-ghost-button], button[sbb-icon-button], button[sbb-frameless-button],
-             button[sbb-link]`,
+             button[sbb-ghost-button],  button[sbb-frameless-button], button[sbb-link]`,
   exportAs: 'sbbButton',
   host: {
     '[attr.disabled]': 'disabled || null',
     '[class._sbb-animation-noopable]': '_animationMode === "NoopAnimations"',
     '[class.sbb-disabled]': 'disabled',
+    '[class.sbb-icon-button]': '_hasIconButtonClass',
   },
   templateUrl: 'button.html',
   inputs: ['disabled'],
@@ -74,7 +84,7 @@ const _SbbButtonMixinBase = mixinDisabled(
 })
 export class SbbButton
   extends _SbbButtonMixinBase
-  implements AfterViewInit, OnDestroy, CanDisable, FocusableOption
+  implements AfterViewInit, AfterContentInit, OnDestroy, CanDisable, FocusableOption
 {
   /** Whether this button has an icon indicator. */
   _hasIconIndicator: boolean = this._hasHostAttributes(...INDICATOR_ATTRIBUTES);
@@ -82,7 +92,10 @@ export class SbbButton
   _leftIconVisible: Observable<boolean>;
   /** Whether the right indicator icon is visible. */
   _rightIconVisible: Observable<boolean>;
-
+  /** Whether the button has the `sbb-icon-button` class */
+  _hasIconButtonClass: boolean = false;
+  /** Whether the button is an icon button. */
+  _isIconButton: Observable<boolean>;
   /**
    * The indicator icon, which will be shown around the button content
    * in the standard variant or behind the sbb-link in lean variant.
@@ -92,22 +105,15 @@ export class SbbButton
    */
   @Input() svgIcon: string;
 
+  @ContentChildren(SbbIcon, { read: ElementRef }) _iconRefs: QueryList<ElementRef> =
+    new QueryList<ElementRef>();
+
   constructor(
     elementRef: ElementRef,
     private _focusMonitor: FocusMonitor,
     @Optional() @Inject(ANIMATION_MODULE_TYPE) public _animationMode: string
   ) {
     super(elementRef);
-    this._leftIconVisible = this.variant.pipe(
-      map((v) => v === 'standard' && this._hasIconIndicator)
-    );
-    this._rightIconVisible = this.variant.pipe(
-      map(
-        (v) =>
-          (v === 'standard' && this._hasIconIndicator) ||
-          (v === 'lean' && this._hasHostAttributes('sbb-link'))
-      )
-    );
 
     // For each of the variant selectors that is present in the button's host
     // attributes, add the correct corresponding class.
@@ -126,6 +132,34 @@ export class SbbButton
     // wants to target all sbb-angular buttons. We do it here rather than `host` to ensure that
     // the class is applied to derived classes.
     elementRef.nativeElement.classList.add('sbb-button-base');
+  }
+
+  ngAfterContentInit() {
+    this._isIconButton = this._iconRefs.changes.pipe(
+      startWith(this._iconRefs),
+      map(
+        (icons) =>
+          this._hasHostAttributes(...VALID_ICON_BUTTON_ATTRIBUTES) &&
+          this._elementRef.nativeElement.textContent.trim() === '' &&
+          icons.length === 1
+      )
+    );
+
+    this._isIconButton.subscribe((isIconButton) => (this._hasIconButtonClass = isIconButton));
+
+    this._leftIconVisible = this.variant.pipe(
+      withLatestFrom(this._isIconButton),
+      map(([v, isIconButton]) => !isIconButton && v === 'standard' && this._hasIconIndicator)
+    );
+    this._rightIconVisible = this.variant.pipe(
+      withLatestFrom(this._isIconButton),
+      map(
+        ([v, isIconButton]) =>
+          !isIconButton &&
+          ((v === 'standard' && this._hasIconIndicator) ||
+            (v === 'lean' && this._hasHostAttributes('sbb-link')))
+      )
+    );
   }
 
   ngAfterViewInit() {
@@ -160,7 +194,7 @@ export class SbbButton
  */
 @Component({
   selector: `a[sbb-button], a[sbb-alt-button], a[sbb-secondary-button],
-             a[sbb-ghost-button], a[sbb-icon-button], a[sbb-frameless-button], a[sbb-link]`,
+             a[sbb-ghost-button], a[sbb-frameless-button], a[sbb-link]`,
   exportAs: 'sbbButton, sbbAnchor',
   host: {
     // Note that we ignore the user-specified tabindex when it's disabled for

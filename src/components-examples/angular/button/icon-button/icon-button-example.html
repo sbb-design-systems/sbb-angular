@@ -1,0 +1,33 @@
+<p>
+  Icon button style is applied if a button contains no text. This works for buttons of type
+  `sbb-button`, `sbb-alt-button`, `sbb-secondary-button` and `sbb-ghost-button`.
+</p>
+
+<h4>sbb-button</h4>
+
+<button type="button" sbb-button [disabled]="disabled">
+  <sbb-icon svgIcon="kom:pen-small"></sbb-icon>
+</button>
+
+<h4>sbb-secondary-button</h4>
+
+<button type="button" sbb-secondary-button [disabled]="disabled">
+  <sbb-icon svgIcon="kom:pen-small"></sbb-icon>
+</button>
+
+<h4>sbb-alt-button (lean only)</h4>
+<p>This button is only intended to be used with lean variant.</p>
+
+<button type="button" sbb-alt-button [disabled]="disabled">
+  <sbb-icon svgIcon="kom:pen-small"></sbb-icon>
+</button>
+
+<h4>sbb-ghost-button</h4>
+<p>In standard variant, this button will be hidden when disabled.</p>
+
+<button type="button" sbb-ghost-button [disabled]="disabled">
+  <sbb-icon svgIcon="kom:pen-small"></sbb-icon>
+</button>
+
+<h3 class="properties">Properties</h3>
+<sbb-checkbox [(ngModel)]="disabled">Disable Buttons</sbb-checkbox>
