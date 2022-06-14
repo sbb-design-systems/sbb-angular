@@ -25,9 +25,7 @@ export class SbbQueryMapFeatures {
     // Seems like a king of bug in javascript. Even if it's a list of numbers,
     // the default sort doesn't work as expected and an arrow fn must be provided.
     // Check the unit test 'getVisibleLevels should merge level lists if multiple features were found'.
-    return this._flatten(allLevels)
-      .sort((a, b) => a - b)
-      .reverse();
+    return this._flatten(allLevels).sort((a, b) => b - a);
   }
 
   private _extractLevels(properties: any): number[] {
