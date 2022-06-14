@@ -33,12 +33,14 @@ import {
   SbbStyleOptions,
   SbbTemplateType,
   SbbUIOptions,
+  SbbViewportDimensions,
   SbbViewportOptions,
   SbbZoomLevels,
 } from './journey-maps.interfaces';
 import { SbbMarker } from './model/marker';
 import { sbbBufferTimeOnValue } from './services/bufferTimeOnValue';
 import {
+  SBB_BOUNDING_BOX,
   SBB_MARKER_BOUNDS_PADDING,
   SBB_MAX_ZOOM,
   SBB_MIN_ZOOM,
@@ -174,6 +176,10 @@ export class SbbJourneyMaps implements OnInit, AfterViewInit, OnDestroy, OnChang
     minZoomLevel: SBB_MIN_ZOOM,
     maxZoomLevel: SBB_MAX_ZOOM,
   };
+  private _defaultHomeButtonOptions: SbbViewportDimensions = {
+    boundingBox: SBB_BOUNDING_BOX,
+    padding: 0,
+  };
   private _defaultMarkerOptions: SbbMarkerOptions = {
     popup: false,
   };
@@ -305,6 +311,21 @@ export class SbbJourneyMaps implements OnInit, AfterViewInit, OnDestroy, OnChang
     this._viewportOptions = {
       ...this._defaultViewportOptions,
       ...viewportOptions,
+    };
+  }
+
+  private _homeButtonOptions: SbbViewportDimensions = this._defaultHomeButtonOptions;
+
+  /** Settings that control what portion of the map is shown when the home button is clicked. */
+  @Input()
+  get homeButtonOptions(): SbbViewportDimensions {
+    return this._homeButtonOptions;
+  }
+
+  set homeButtonOptions(homeButtonOptions: SbbViewportDimensions) {
+    this._homeButtonOptions = {
+      ...this._defaultHomeButtonOptions,
+      ...homeButtonOptions,
     };
   }
 

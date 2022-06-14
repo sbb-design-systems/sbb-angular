@@ -13,8 +13,10 @@ import {
   SbbJourneyMaps,
   SbbJourneyMapsRoutingOptions,
   SbbPointsOfInterestOptions,
+  SbbViewportDimensions,
   SbbZoomLevels,
 } from '@sbb-esta/journey-maps';
+import { SBB_BOUNDING_BOX } from '@sbb-esta/journey-maps/angular/services/constants';
 import { LngLatBounds, LngLatBoundsLike, LngLatLike } from 'maplibre-gl';
 import { BehaviorSubject, filter, Subject, take } from 'rxjs';
 import { map, takeUntil } from 'rxjs/operators';
@@ -83,6 +85,7 @@ export class JourneyMapsFullExample implements OnInit, OnDestroy {
     { label: 'Transfer Zürich', value: { transfer: zurichIndoor } },
   ];
   pointsOfInterestOptions: SbbPointsOfInterestOptions = { categories: ['park_rail'] };
+  homeButtonOptions: SbbViewportDimensions = { boundingBox: SBB_BOUNDING_BOX };
   zoomLevels: SbbZoomLevels;
   visibleLevels = new BehaviorSubject<number[]>([]);
   form: FormGroup;

@@ -1,5 +1,13 @@
+import { LngLatBoundsLike } from 'maplibre-gl';
+
 export const SBB_CLUSTER_RADIUS = 50;
 export const SBB_MARKER_BOUNDS_PADDING = 40;
+
+export const SBB_BOUNDING_BOX: LngLatBoundsLike = [
+  // CH bounds;
+  [5.7349, 45.6755],
+  [10.6677, 47.9163],
+];
 
 export const SBB_MARKER_SOURCE = 'rokas-marker-source';
 export const SBB_ROUTE_SOURCE = 'rokas-route-source';

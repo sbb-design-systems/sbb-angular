@@ -60,6 +60,22 @@ export interface SbbViewportOptions {
   maxBounds?: LngLatBoundsLike;
 }
 
+export type SbbViewportDimensions = SbbMapCenterOptions | SbbBoundingBoxOptions;
+
+export interface SbbMapCenterOptions {
+  /** The desired center of the map. */
+  mapCenter: LngLatLike;
+  /** The desired zoom level of the map. */
+  zoomLevel: number;
+}
+
+export interface SbbBoundingBoxOptions {
+  /** The desired bounding box of the map. */
+  boundingBox: LngLatBoundsLike;
+  /** The amount of padding in pixels to add to the given bounding box. */
+  padding?: number;
+}
+
 /**
  * **WARNING:** The map currently doesn't support more than one of these fields to be set at a time.
  */
