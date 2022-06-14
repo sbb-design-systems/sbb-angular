@@ -27,6 +27,21 @@ jobs:
     - name: "Lint: Run tslint and bazel linter"
       run: yarn lint
 
+  integrity:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v3
+    - uses: actions/setup-node@v3
+      with:
+        node-version: 16
+    - name: "Yarn: Install"
+      uses: ./.github/actions/yarn-install
+
+    - name: "Integrity: Verify workspace integrity"
+      run: yarn integrity
+    - name: "Integrity: Assert no changes"
+      run: git diff --exit-code
+
   build:
     runs-on: ubuntu-latest
     steps:
