@@ -1,30 +1,23 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import {
-  LngLatBounds,
-  LngLatBoundsLike,
-  LngLatLike,
-  Map as MaplibreMap,
-  MapboxOptions,
-  Style,
-} from 'maplibre-gl';
+import { SBB_BOUNDING_BOX } from '@sbb-esta/journey-maps/angular/services/constants';
+import { LngLatBounds, Map as MaplibreMap, MapboxOptions, Style } from 'maplibre-gl';
 import { Observable } from 'rxjs';
 import { map, tap } from 'rxjs/operators';
 
-import { SbbInteractionOptions, SbbViewportOptions } from '../../journey-maps.interfaces';
-import { SBB_MARKER_BOUNDS_PADDING } from '../constants';
+import {
+  SbbInteractionOptions,
+  SbbViewportBounds,
+  SbbViewportDimensions,
+} from '../../journey-maps.interfaces';
+import { isSbbBoundingBoxOptions, isSbbMapCenterOptions } from '../../util/typeguard';
+import { SBB_MARKER_BOUNDS_PADDING, SBB_MAX_ZOOM, SBB_MIN_ZOOM } from '../constants';
 import { SbbMultiTouchSupport } from '../multiTouchSupport';
 
 @Injectable({
   providedIn: 'root',
 })
 export class SbbMapInitService {
-  private readonly _defaultZoom = 7.5;
-  private readonly _defaultMapCenter: LngLatLike = [7.299265, 47.07212];
-  private readonly _defaultBoundingBox: LngLatBoundsLike = [
-    [5.7349, 45.6755],
-    [10.6677, 47.9163],
-  ]; // CH bounds;
   private readonly _controlLabels: any = {
     de: {
       'NavigationControl.ZoomIn': 'Hineinzoomen',
@@ -51,11 +44,18 @@ export class SbbMapInitService {
     language: string,
     styleUrl: string,
     interactionOptions: SbbInteractionOptions,
-    viewportOptions: SbbViewportOptions,
+    viewportDimensions?: SbbViewportDimensions,
+    viewportBounds?: SbbViewportBounds,
     markerBounds?: LngLatBounds
   ): Observable<MaplibreMap> {
     const maplibreMap = new MaplibreMap(
-      this._createOptions(mapNativeElement, interactionOptions, viewportOptions, markerBounds)
+      this._createOptions(
+        mapNativeElement,
+        interactionOptions,
+        viewportDimensions,
+        viewportBounds,
+        markerBounds
+      )
     );
 
     this._translateControlLabels(maplibreMap, language);
@@ -74,41 +74,43 @@ export class SbbMapInitService {
   private _createOptions(
     container: HTMLElement,
     interactionOptions: SbbInteractionOptions,
-    viewportOptions: SbbViewportOptions,
+    viewportDimensions?: SbbViewportDimensions,
+    viewportBounds?: SbbViewportBounds,
     markerBounds?: LngLatBounds
   ): MapboxOptions {
     const options: MapboxOptions = {
       container,
-      minZoom: viewportOptions.minZoomLevel,
-      maxZoom: viewportOptions.maxZoomLevel,
-      maxBounds: viewportOptions.maxBounds,
+      minZoom: viewportBounds?.minZoomLevel ?? SBB_MIN_ZOOM,
+      maxZoom: viewportBounds?.maxZoomLevel ?? SBB_MAX_ZOOM,
+      maxBounds: viewportBounds?.maxBounds,
       scrollZoom: interactionOptions.scrollZoom,
       dragRotate: false,
       touchPitch: false,
       fadeDuration: 10,
     };
 
-    const boundingBox = viewportOptions.boundingBox ?? markerBounds;
-
-    if (viewportOptions.zoomLevel || viewportOptions.mapCenter) {
-      options.zoom = viewportOptions.zoomLevel ?? this._defaultZoom;
-      options.center = viewportOptions.mapCenter ?? this._defaultMapCenter;
-    } else if (boundingBox) {
-      options.bounds = boundingBox;
-      options.fitBoundsOptions = {
-        padding: viewportOptions.boundingBox
-          ? viewportOptions.boundingBoxPadding
-          : SBB_MARKER_BOUNDS_PADDING,
-      };
+    if (isSbbMapCenterOptions(viewportDimensions)) {
+      options.center = viewportDimensions.mapCenter;
+      options.zoom = viewportDimensions.zoomLevel;
     } else {
-      options.bounds = this._defaultBoundingBox;
+      let bounds, padding;
+      if (isSbbBoundingBoxOptions(viewportDimensions)) {
+        bounds = viewportDimensions.boundingBox;
+        padding = viewportDimensions.padding;
+      } else if (markerBounds) {
+        bounds = markerBounds;
+        padding = SBB_MARKER_BOUNDS_PADDING;
+      } else {
+        bounds = SBB_BOUNDING_BOX;
+        padding = 0;
+      }
+      options.bounds = bounds;
+      options.fitBoundsOptions = {
+        padding,
+      };
     }
 
     return options;
-  }
-
-  getDefaultBoundingBox() {
-    return this._defaultBoundingBox;
   }
 
   fetchStyle(styleUrl: string): Observable<Style> {

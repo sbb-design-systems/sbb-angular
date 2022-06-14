@@ -33,13 +33,14 @@ import {
   SbbStyleOptions,
   SbbTemplateType,
   SbbUIOptions,
-  SbbViewportOptions,
+  SbbViewportBounds,
+  SbbViewportDimensions,
   SbbZoomLevels,
 } from './journey-maps.interfaces';
 import { SbbMarker } from './model/marker';
 import { sbbBufferTimeOnValue } from './services/bufferTimeOnValue';
 import {
-  SBB_MARKER_BOUNDS_PADDING,
+  SBB_BOUNDING_BOX,
   SBB_MAX_ZOOM,
   SBB_MIN_ZOOM,
   SBB_ROUTE_SOURCE,
@@ -98,6 +99,10 @@ export class SbbJourneyMaps implements OnInit, AfterViewInit, OnDestroy, OnChang
    * Specify which points of interest categories should be visible in map.
    */
   @Input() poiOptions?: SbbPointsOfInterestOptions;
+  /** Define the currently visible part of the map. */
+  @Input() viewportDimensions?: SbbViewportDimensions;
+  /** Restrict the visible part and possible zoom levels of the map. */
+  @Input() viewportBounds?: SbbViewportBounds;
   /**
    * This event is emitted whenever a marker, with property triggerEvent, is selected or unselected.
    */
@@ -168,21 +173,19 @@ export class SbbJourneyMaps implements OnInit, AfterViewInit, OnDestroy, OnChang
     basemapSwitch: true,
     homeButton: false,
   };
-  private readonly _homeButtonBoundingBoxPadding = 0;
-  private _defaultViewportOptions: SbbViewportOptions = {
-    boundingBoxPadding: this._homeButtonBoundingBoxPadding,
-    minZoomLevel: SBB_MIN_ZOOM,
-    maxZoomLevel: SBB_MAX_ZOOM,
+  private _defaultHomeButtonOptions: SbbViewportDimensions = {
+    boundingBox: SBB_BOUNDING_BOX,
+    padding: 0,
   };
   private _defaultMarkerOptions: SbbMarkerOptions = {
     popup: false,
   };
-  private _currentZoomLevelDebouncer = new Subject<void>();
+  private _zoomLevelDebouncer = new Subject<void>();
   private _mapCenterChangeDebouncer = new Subject<void>();
   private _mapResized = new Subject<void>();
   private _destroyed = new Subject<void>();
   private _styleLoaded = new ReplaySubject<void>(1);
-  private _viewportOptionsChanged = new Subject<boolean>();
+  private _viewportDimensionsChanged = new Subject<void>();
   private _mapStyleModeChanged = new Subject<void>();
   // _map._isStyleLoaded() returns sometimes false when sources are being updated.
   // Therefore we set this variable to true once the style has been loaded.
@@ -291,20 +294,18 @@ export class SbbJourneyMaps implements OnInit, AfterViewInit, OnDestroy, OnChang
     };
   }
 
-  private _viewportOptions: SbbViewportOptions = this._defaultViewportOptions;
+  private _homeButtonOptions: SbbViewportDimensions = this._defaultHomeButtonOptions;
 
-  /**
-   * Settings that control what portion of the map is shown initially
-   */
+  /** Settings that control what portion of the map is shown when the home button is clicked. */
   @Input()
-  get viewportOptions(): SbbViewportOptions {
-    return this._viewportOptions;
+  get homeButtonOptions(): SbbViewportDimensions {
+    return this._homeButtonOptions;
   }
 
-  set viewportOptions(viewportOptions: SbbViewportOptions) {
-    this._viewportOptions = {
-      ...this._defaultViewportOptions,
-      ...viewportOptions,
+  set homeButtonOptions(homeButtonOptions: SbbViewportDimensions) {
+    this._homeButtonOptions = {
+      ...this._defaultHomeButtonOptions,
+      ...homeButtonOptions,
     };
   }
 
@@ -506,14 +507,18 @@ export class SbbJourneyMaps implements OnInit, AfterViewInit, OnDestroy, OnChang
       return;
     }
 
-    if (changes.viewportOptions) {
-      const prev: SbbViewportOptions | undefined = changes.viewportOptions.previousValue;
-      const curr: SbbViewportOptions | undefined = changes.viewportOptions.currentValue;
+    if (changes.viewportDimensions) {
+      this._viewportDimensionsChanged.next();
+    }
 
-      const moveMap =
-        JSON.stringify(prev?.mapCenter) !== JSON.stringify(curr?.mapCenter) ||
-        JSON.stringify(prev?.boundingBox) !== JSON.stringify(curr?.boundingBox);
-      this._viewportOptionsChanged.next(moveMap);
+    if (changes.viewportBounds) {
+      this._executeWhenMapStyleLoaded(() => {
+        this._map
+          .setMinZoom(this.viewportBounds?.minZoomLevel ?? SBB_MIN_ZOOM)
+          .setMaxZoom(this.viewportBounds?.maxZoomLevel ?? SBB_MAX_ZOOM)
+          .setMaxBounds(this.viewportBounds?.maxBounds);
+        this._zoomLevelDebouncer.next();
+      });
     }
 
     if (changes.styleOptions?.currentValue.mode !== changes.styleOptions?.previousValue?.mode) {
@@ -535,7 +540,8 @@ export class SbbJourneyMaps implements OnInit, AfterViewInit, OnDestroy, OnChang
         this._i18n.language,
         styleUrl,
         this.interactionOptions,
-        this.viewportOptions,
+        this.viewportDimensions,
+        this.viewportBounds,
         this.getMarkersBounds
       )
       .subscribe((m) => {
@@ -665,11 +671,7 @@ export class SbbJourneyMaps implements OnInit, AfterViewInit, OnDestroy, OnChang
 
   /** @docs-private */
   onHomeButtonClicked() {
-    this._mapService.moveMap(
-      this._map,
-      this._mapInitService.getDefaultBoundingBox(),
-      this._homeButtonBoundingBoxPadding
-    );
+    this._mapService.moveMap(this._map, this._homeButtonOptions);
   }
 
   private _updateMarkers(): void {
@@ -712,25 +714,12 @@ export class SbbJourneyMaps implements OnInit, AfterViewInit, OnDestroy, OnChang
       .pipe(debounceTime(500), takeUntil(this._destroyed))
       .subscribe(() => this._map?.resize());
 
-    this._viewportOptionsChanged
+    this._viewportDimensionsChanged
       .pipe(debounceTime(200), takeUntil(this._destroyed))
-      .subscribe((moveMap) => {
-        if (moveMap) {
-          this._mapService.moveMap(
-            this._map,
-            this.viewportOptions.boundingBox ?? this.getMarkersBounds,
-            this.viewportOptions.boundingBox
-              ? this.viewportOptions.boundingBoxPadding
-              : SBB_MARKER_BOUNDS_PADDING,
-            this.viewportOptions.zoomLevel,
-            this.viewportOptions.mapCenter
-          );
+      .subscribe(() => {
+        if (this.viewportDimensions) {
+          this._mapService.moveMap(this._map, this.viewportDimensions);
         }
-        this._map
-          .setMinZoom(this.viewportOptions.minZoomLevel)
-          .setMaxZoom(this.viewportOptions.maxZoomLevel)
-          .setMaxBounds(this.viewportOptions.maxBounds);
-        this.zoomLevelsChange.next(this._getZooomLevels());
       });
 
     this._mapStyleModeChanged
@@ -753,7 +742,7 @@ export class SbbJourneyMaps implements OnInit, AfterViewInit, OnDestroy, OnChang
         });
       });
 
-    this._currentZoomLevelDebouncer
+    this._zoomLevelDebouncer
       .pipe(debounceTime(200), takeUntil(this._destroyed))
       .subscribe(() => this.zoomLevelsChange.emit(this._getZooomLevels()));
 
@@ -785,10 +774,10 @@ export class SbbJourneyMaps implements OnInit, AfterViewInit, OnDestroy, OnChang
     ]);
     this._addSatelliteSource(this._map);
 
-    this._map.on('zoomend', () => this._currentZoomLevelDebouncer.next());
+    this._map.on('zoomend', () => this._zoomLevelDebouncer.next());
     this._map.on('moveend', () => this._mapCenterChangeDebouncer.next());
     // Emit initial values
-    this._currentZoomLevelDebouncer.next();
+    this._zoomLevelDebouncer.next();
     this._mapCenterChangeDebouncer.next();
 
     this._isStyleLoaded = true;

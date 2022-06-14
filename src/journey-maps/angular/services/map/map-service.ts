@@ -1,14 +1,9 @@
 import { Injectable } from '@angular/core';
+import { isSbbMapCenterOptions } from '@sbb-esta/journey-maps/angular/util/typeguard';
 import { Geometry, Point } from 'geojson';
-import {
-  FlyToOptions,
-  LngLat,
-  LngLatBoundsLike,
-  LngLatLike,
-  Map as MaplibreMap,
-} from 'maplibre-gl';
+import { FlyToOptions, LngLat, LngLatLike, Map as MaplibreMap } from 'maplibre-gl';
 
-import { SbbPointsOfInterestOptions } from '../../journey-maps.interfaces';
+import { SbbPointsOfInterestOptions, SbbViewportDimensions } from '../../journey-maps.interfaces';
 import { SBB_POI_LAYER } from '../constants';
 
 export const SBB_EMPTY_FEATURE_COLLECTION: GeoJSON.FeatureCollection = {
@@ -18,17 +13,11 @@ export const SBB_EMPTY_FEATURE_COLLECTION: GeoJSON.FeatureCollection = {
 
 @Injectable({ providedIn: 'root' })
 export class SbbMapService {
-  moveMap(
-    map: MaplibreMap,
-    boundingBox?: LngLatBoundsLike,
-    boundingBoxPadding?: number,
-    zoomLevel?: number,
-    center?: LngLatLike
-  ): void {
-    if (zoomLevel || center) {
-      this._centerMap(map, center, zoomLevel);
-    } else if (boundingBox) {
-      map.fitBounds(boundingBox, { padding: boundingBoxPadding });
+  moveMap(map: MaplibreMap, viewportDimensions: SbbViewportDimensions): void {
+    if (isSbbMapCenterOptions(viewportDimensions)) {
+      this._centerMap(map, viewportDimensions.mapCenter, viewportDimensions.zoomLevel);
+    } else {
+      map.fitBounds(viewportDimensions.boundingBox, { padding: viewportDimensions.padding });
     }
   }
 

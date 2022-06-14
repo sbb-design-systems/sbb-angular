@@ -40,24 +40,29 @@ export interface SbbUIOptions {
   homeButton?: boolean;
 }
 
-export interface SbbViewportOptions {
-  /**
-   * The initial center of the map. You should pass an array with two numbers,
-   * the first one being the longitude and the second one the latitude.
-   */
-  mapCenter?: LngLatLike;
-  /** The initial zoom level of the map. */
-  zoomLevel?: number;
-  /** The minimum zoom level of the map */
+export interface SbbViewportBounds {
+  /** The minimum zoom level of the map (0-24) */
   minZoomLevel?: number;
-  /** The maximum zoom level of the map */
+  /** The maximum zoom level of the map (0-24) */
   maxZoomLevel?: number;
-  /** The initial bounding box of the map. */
-  boundingBox?: LngLatBoundsLike;
-  /** The amount of padding in pixels to add to the given bounding box. */
-  boundingBoxPadding?: number;
   /** Pan and zoom operations are constrained within these bounds. Leave empty for no bounds. */
   maxBounds?: LngLatBoundsLike;
+}
+
+export type SbbViewportDimensions = SbbMapCenterOptions | SbbBoundingBoxOptions;
+
+export interface SbbMapCenterOptions {
+  /** The desired center of the map. */
+  mapCenter: LngLatLike;
+  /** The desired zoom level of the map. */
+  zoomLevel: number;
+}
+
+export interface SbbBoundingBoxOptions {
+  /** The desired bounding box of the map. */
+  boundingBox: LngLatBoundsLike;
+  /** The amount of padding in pixels to add to the given bounding box. */
+  padding?: number;
 }
 
 /**
