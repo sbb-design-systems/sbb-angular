@@ -109,7 +109,7 @@
     "@types/jasmine": "4.0.3",
     "@types/jasminewd2": "2.0.10",
     "@types/marked": "^2.0.2",
-    "@types/node": "16.11.39",
+    "@types/node": "16.11.40",
     "@types/parse5": "6.0.3",
     "@types/sass": "1.43.1",
     "@types/send": "0.17.1",
