@@ -1,9 +1,11 @@
+import { ModifierKeys } from '@angular/cdk/testing';
+
 import {
   createFakeEvent,
   createKeyboardEvent,
   createMouseEvent,
+  createPointerEvent,
   createTouchEvent,
-  ModifierKeys,
 } from './event-objects';
 
 /**
@@ -19,8 +21,8 @@ export function dispatchEvent<T extends Event>(node: Node | Window, event: T): T
  * Shorthand to dispatch a fake event on a specified node.
  * @docs-private
  */
-export function dispatchFakeEvent(node: Node | Window, type: string, canBubble?: boolean): Event {
-  return dispatchEvent(node, createFakeEvent(type, canBubble));
+export function dispatchFakeEvent(node: Node | Window, type: string, bubbles?: boolean): Event {
+  return dispatchEvent(node, createFakeEvent(type, bubbles));
 }
 
 /**
@@ -42,14 +44,52 @@ export function dispatchKeyboardEvent(
  * Shorthand to dispatch a mouse event on the specified coordinates.
  * @docs-private
  */
-export function dispatchMouseEvent(node: Node, type: string, clientX = 0, clientY = 0): MouseEvent {
-  return dispatchEvent(node, createMouseEvent(type, clientX, clientY));
+export function dispatchMouseEvent(
+  node: Node,
+  type: string,
+  clientX = 0,
+  clientY = 0,
+  offsetX?: number,
+  offsetY?: number,
+  button?: number,
+  modifiers?: ModifierKeys
+): MouseEvent {
+  return dispatchEvent(
+    node,
+    createMouseEvent(type, clientX, clientY, offsetX, offsetY, button, modifiers)
+  );
+}
+
+/**
+ * Shorthand to dispatch a pointer event on the specified coordinates.
+ * @docs-private
+ */
+export function dispatchPointerEvent(
+  node: Node,
+  type: string,
+  clientX = 0,
+  clientY = 0,
+  offsetX?: number,
+  offsetY?: number,
+  options?: PointerEventInit
+): PointerEvent {
+  return dispatchEvent(
+    node,
+    createPointerEvent(type, clientX, clientY, offsetX, offsetY, options)
+  ) as PointerEvent;
 }
 
 /**
  * Shorthand to dispatch a touch event on the specified coordinates.
  * @docs-private
  */
-export function dispatchTouchEvent(node: Node, type: string, x = 0, y = 0) {
-  return dispatchEvent(node, createTouchEvent(type, x, y));
+export function dispatchTouchEvent(
+  node: Node,
+  type: string,
+  pageX = 0,
+  pageY = 0,
+  clientX = 0,
+  clientY = 0
+) {
+  return dispatchEvent(node, createTouchEvent(type, pageX, pageY, clientX, clientY));
 }
