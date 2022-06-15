@@ -22,7 +22,10 @@ import {
   SbbNotificationToastConfig,
   SBB_NOTIFICATION_TOAST_DATA,
 } from './notification-toast-config';
-import { SbbNotificationToastContainer } from './notification-toast-container';
+import {
+  SbbNotificationToastContainer,
+  SbbNotificationToastContainerBase,
+} from './notification-toast-container';
 import { SbbNotificationToastRef } from './notification-toast-ref';
 import { SbbNotificationToastModule } from './notification-toast.module';
 import { SbbSimpleNotification, SbbTextOnlyNotificationToast } from './simple-notification';
@@ -54,7 +57,7 @@ export class SbbNotificationToast implements OnDestroy {
     SbbSimpleNotification;
 
   /** The container component that attaches the provided template or component. */
-  protected _notificationToastContainerComponent: Type<SbbNotificationToastContainer> =
+  protected _notificationToastContainerComponent: Type<SbbNotificationToastContainerBase> =
     SbbNotificationToastContainer;
 
   /** The CSS class to applie for mobile mode. */
@@ -155,7 +158,7 @@ export class SbbNotificationToast implements OnDestroy {
   private _attachNotificationToastContainer(
     overlayRef: OverlayRef,
     config: SbbNotificationToastConfig
-  ): SbbNotificationToastContainer {
+  ): SbbNotificationToastContainerBase {
     const userInjector = config?.viewContainerRef?.injector;
     const injector = new PortalInjector(
       userInjector || this._injector,
@@ -167,7 +170,7 @@ export class SbbNotificationToast implements OnDestroy {
       config.viewContainerRef,
       injector
     );
-    const containerRef: ComponentRef<SbbNotificationToastContainer> =
+    const containerRef: ComponentRef<SbbNotificationToastContainerBase> =
       overlayRef.attach(containerPortal);
     containerRef.instance.config = config;
     return containerRef.instance;
