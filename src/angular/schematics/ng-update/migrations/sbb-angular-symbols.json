@@ -334,6 +334,7 @@
   "SbbNotificationToast": "notification-toast",
   "SbbNotificationToastConfig": "notification-toast",
   "SbbNotificationToastContainer": "notification-toast",
+  "SbbNotificationToastContainerBase": "notification-toast",
   "SbbNotificationToastModule": "notification-toast",
   "SbbNotificationToastRef": "notification-toast",
   "SbbNotificationToastVerticalPosition": "notification-toast",
