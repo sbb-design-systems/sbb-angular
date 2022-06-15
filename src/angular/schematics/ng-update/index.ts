@@ -35,6 +35,18 @@ export function updateToV14(): Rule {
   );
 }
 
+/** Entry point for the migration schematics with target of Angular 15 */
+export function updateToV15(): Rule {
+  patchUpdateBuffer();
+  patchClassNamesMigration();
+  return createMigrationSchematicRule(
+    TargetVersion.V15,
+    [],
+    sbbAngularUpgradeData,
+    onMigrationComplete
+  );
+}
+
 function patchUpdateBuffer() {
   if (UpdateBufferBase.create) {
     UpdateBufferBase.create = (originalContent: Buffer): UpdateBufferBase =>
