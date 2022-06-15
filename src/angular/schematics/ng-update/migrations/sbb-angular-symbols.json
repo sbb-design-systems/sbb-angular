@@ -423,6 +423,7 @@
   "TYPOGRAPHY_CSS_PATH": "schematics",
   "updateToV13": "schematics",
   "updateToV14": "schematics",
+  "updateToV15": "schematics",
   "_patchTypeScriptDefaultLib": "schematics/testing",
   "createFileSystemTestApp": "schematics/testing",
   "createTestApp": "schematics/testing",
