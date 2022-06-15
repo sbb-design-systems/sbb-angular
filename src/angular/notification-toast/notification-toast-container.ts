@@ -11,6 +11,7 @@ import {
   ChangeDetectorRef,
   Component,
   ComponentRef,
+  Directive,
   ElementRef,
   EmbeddedViewRef,
   NgZone,
@@ -24,29 +25,15 @@ import { take } from 'rxjs/operators';
 import { SBB_NOTIFICATION_TOAST_ANIMATIONS } from './notification-toast-animations';
 import { SbbNotificationToastConfig } from './notification-toast-config';
 
-@Component({
-  selector: 'sbb-notification-toast-container',
-  templateUrl: './notification-toast-container.html',
-  styleUrls: ['./notification-toast-container.css'],
-  // In Ivy embedded views will be change detected from their declaration place, rather than
-  // where they were stamped out. This means that we can't have the notification container be OnPush,
-  // because it might cause notifications that were opened from a template not to be out of date.
-  // tslint:disable-next-line:validate-decorators
-  changeDetection: ChangeDetectionStrategy.Default,
-  encapsulation: ViewEncapsulation.None,
-  animations: [SBB_NOTIFICATION_TOAST_ANIMATIONS.notificationState],
-  host: {
-    class: 'sbb-notification-toast',
-    '[class.sbb-notification-toast-success]': 'config.type === "success"',
-    '[class.sbb-notification-toast-info]': 'config.type === "info"',
-    '[class.sbb-notification-toast-warn]': 'config.type === "warn"',
-    '[class.sbb-notification-toast-error]': 'config.type === "error"',
-    '[attr.role]': '_role',
-    '[@state]': '_animationState',
-    '(@state.done)': 'onAnimationEnd($event)',
-  },
-})
-export class SbbNotificationToastContainer extends BasePortalOutlet implements OnDestroy {
+/**
+ * Base class for notification toast container.
+ * @docs-private
+ */
+@Directive()
+export abstract class SbbNotificationToastContainerBase
+  extends BasePortalOutlet
+  implements OnDestroy
+{
   private _destroyed = false;
 
   /** The portal outlet inside of this container into which the notification toast content will be loaded. */
@@ -78,7 +65,7 @@ export class SbbNotificationToastContainer extends BasePortalOutlet implements O
 
   constructor(
     private _ngZone: NgZone,
-    private _elementRef: ElementRef<HTMLElement>,
+    protected _elementRef: ElementRef<HTMLElement>,
     private _changeDetectorRef: ChangeDetectorRef,
     public config: SbbNotificationToastConfig
   ) {
@@ -98,15 +85,17 @@ export class SbbNotificationToastContainer extends BasePortalOutlet implements O
   /** Attach a component portal as content to this notification toast container. */
   attachComponentPortal<T>(portal: ComponentPortal<T>): ComponentRef<T> {
     this._assertNotAttached();
-    this._applyNotificationClasses();
-    return this._portalOutlet.attachComponentPortal(portal);
+    const result = this._portalOutlet.attachComponentPortal(portal);
+    this._afterPortalAttached();
+    return result;
   }
 
   /** Attach a template portal as content to this notification toast container. */
   attachTemplatePortal<C>(portal: TemplatePortal<C>): EmbeddedViewRef<C> {
     this._assertNotAttached();
-    this._applyNotificationClasses();
-    return this._portalOutlet.attachTemplatePortal(portal);
+    const result = this._portalOutlet.attachTemplatePortal(portal);
+    this._afterPortalAttached();
+    return result;
   }
 
   /**
@@ -116,8 +105,9 @@ export class SbbNotificationToastContainer extends BasePortalOutlet implements O
    */
   override attachDomPortal = (portal: DomPortal) => {
     this._assertNotAttached();
-    this._applyNotificationClasses();
-    return this._portalOutlet.attachDomPortal(portal);
+    const result = this._portalOutlet.attachDomPortal(portal);
+    this._afterPortalAttached();
+    return result;
   };
 
   /** Handle end of animations, updating the state of the notification toast. */
@@ -180,8 +170,11 @@ export class SbbNotificationToastContainer extends BasePortalOutlet implements O
     });
   }
 
-  /** Applies the various positioning and user-configured CSS classes to the notification toast. */
-  private _applyNotificationClasses() {
+  /**
+   * Called after the portal contents have been attached. Can be
+   * used to modify the DOM once it's guaranteed to be in place.
+   */
+  protected _afterPortalAttached() {
     const element: HTMLElement = this._elementRef.nativeElement;
     const panelClasses = this.config.panelClass;
 
@@ -196,16 +189,44 @@ export class SbbNotificationToastContainer extends BasePortalOutlet implements O
 
     // currently, only a centered position is supported
     element.classList.add('sbb-notification-toast-center');
-
-    if (this.config.verticalPosition === 'top') {
-      element.classList.add('sbb-notification-toast-top');
-    }
   }
 
   /** Asserts that no content is already attached to the container. */
   private _assertNotAttached() {
     if (this._portalOutlet.hasAttached()) {
       throw Error('Attempting to attach notification content after content is already attached');
+    }
+  }
+}
+
+@Component({
+  selector: 'sbb-notification-toast-container',
+  templateUrl: './notification-toast-container.html',
+  styleUrls: ['./notification-toast-container.css'],
+  // In Ivy embedded views will be change detected from their declaration place, rather than
+  // where they were stamped out. This means that we can't have the notification container be OnPush,
+  // because it might cause notifications that were opened from a template not to be out of date.
+  // tslint:disable-next-line:validate-decorators
+  changeDetection: ChangeDetectionStrategy.Default,
+  encapsulation: ViewEncapsulation.None,
+  animations: [SBB_NOTIFICATION_TOAST_ANIMATIONS.notificationState],
+  host: {
+    class: 'sbb-notification-toast',
+    '[class.sbb-notification-toast-success]': 'config.type === "success"',
+    '[class.sbb-notification-toast-info]': 'config.type === "info"',
+    '[class.sbb-notification-toast-warn]': 'config.type === "warn"',
+    '[class.sbb-notification-toast-error]': 'config.type === "error"',
+    '[attr.role]': '_role',
+    '[@state]': '_animationState',
+    '(@state.done)': 'onAnimationEnd($event)',
+  },
+})
+export class SbbNotificationToastContainer extends SbbNotificationToastContainerBase {
+  protected override _afterPortalAttached() {
+    super._afterPortalAttached();
+
+    if (this.config.verticalPosition === 'top') {
+      this._elementRef.nativeElement.classList.add('sbb-notification-toast-top');
     }
   }
 }
