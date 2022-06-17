@@ -306,10 +306,10 @@
     "@angular/core" "^13.0.0 || ^14.0.0-0"
     reflect-metadata "^0.1.13"
 
-"@angular/cdk@14.0.1":
-  version "14.0.1"
-  resolved "https://registry.yarnpkg.com/@angular/cdk/-/cdk-14.0.1.tgz#fda9480461f4e37e6b514f0aaef6500503b89d59"
-  integrity sha512-kiCzcNaUjJ/muxUk1OyIl9tuSlt2PzY3vO6A0/mRUGk7ejXbiN07jZCgNAQuWNcvaLpAtqTi7sWOVNUNooCgxw==
+"@angular/cdk@14.0.2":
+  version "14.0.2"
+  resolved "https://registry.yarnpkg.com/@angular/cdk/-/cdk-14.0.2.tgz#49755c854c4fa3ab64d91d9855bcd1807f9945c5"
+  integrity sha512-751Sshu+HKYOqmnGRriHjd4ybMradgkLYOM9dBoX7YFpZce+IcEtojALGfLA4YDZwJF2RhBD6lFcJdWJPC9wCw==
   dependencies:
     tslib "^2.3.0"
   optionalDependencies:
