@@ -1,26 +1,9 @@
 var __create = Object.create;
 var __defProp = Object.defineProperty;
-var __defProps = Object.defineProperties;
 var __getOwnPropDesc = Object.getOwnPropertyDescriptor;
-var __getOwnPropDescs = Object.getOwnPropertyDescriptors;
 var __getOwnPropNames = Object.getOwnPropertyNames;
-var __getOwnPropSymbols = Object.getOwnPropertySymbols;
 var __getProtoOf = Object.getPrototypeOf;
 var __hasOwnProp = Object.prototype.hasOwnProperty;
-var __propIsEnum = Object.prototype.propertyIsEnumerable;
-var __defNormalProp = (obj, key, value) => key in obj ? __defProp(obj, key, { enumerable: true, configurable: true, writable: true, value }) : obj[key] = value;
-var __spreadValues = (a, b) => {
-  for (var prop in b || (b = {}))
-    if (__hasOwnProp.call(b, prop))
-      __defNormalProp(a, prop, b[prop]);
-  if (__getOwnPropSymbols)
-    for (var prop of __getOwnPropSymbols(b)) {
-      if (__propIsEnum.call(b, prop))
-        __defNormalProp(a, prop, b[prop]);
-    }
-  return a;
-};
-var __spreadProps = (a, b) => __defProps(a, __getOwnPropDescs(b));
 var __export = (target, all) => {
   for (var name in all)
     __defProp(target, name, { get: all[name], enumerable: true });
@@ -238,12 +221,13 @@ var NgPackage = class extends NgModule {
     return (0, import_core4.relative)(this.path, m.path);
   }
   _templateOptions() {
-    return __spreadProps(__spreadValues(__spreadProps(__spreadValues({}, import_core4.strings), {
+    return {
+      ...import_core4.strings,
       constant: (s) => s.replace(/-/g, "_").toUpperCase(),
-      bazelName: (s) => s.replace(/-/g, "_")
-    }), this), {
+      bazelName: (s) => s.replace(/-/g, "_"),
+      ...this,
       dependencies: this.dependencies.filter((d) => !d.startsWith(`//src/${this.name}`))
-    });
+    };
   }
 };
 
@@ -255,9 +239,10 @@ var NgPackageExamples = class extends NgPackage {
     this.shortName = this.name.replace("components-", "");
   }
   _templateOptions() {
-    return __spreadProps(__spreadValues({}, super._templateOptions()), {
+    return {
+      ...super._templateOptions(),
       exampleModules: this.ngModules().filter((ngModule) => ngModule !== this)
-    });
+    };
   }
 };
 
@@ -409,7 +394,7 @@ var TypeScriptDependencyResolverBase = class {
   }
   _findStaticDependencies(details) {
     const sourceFile = schematicsTs.createSourceFile((0, import_core7.basename)(details.file.path), details.file.content.toString(), schematicsTs.ScriptTarget.ESNext, true);
-    return this._findImportsAndReexports(sourceFile).concat(this._findDynamicImports(sourceFile)).concat(this._findReferences(sourceFile)).filter((i) => !!i).map((importPath) => this._resolveTypeScriptImport(__spreadValues({ importPath }, details)));
+    return this._findImportsAndReexports(sourceFile).concat(this._findDynamicImports(sourceFile)).concat(this._findReferences(sourceFile)).filter((i) => !!i).map((importPath) => this._resolveTypeScriptImport({ importPath, ...details }));
   }
   _findImportsAndReexports(sourceFile) {
     return [
@@ -528,32 +513,35 @@ function bazel(options) {
         const sassDependencyResolver = new FlexibleSassDependencyResolver(moduleDetector, npmDependencyResolver, context.logger, styleReplaceMap);
         const bazelGenruleResolver = new BazelGenruleResolver();
         if (isShowcase) {
-          return new ShowcasePackage(packageDir, tree, __spreadProps(__spreadValues({}, context), {
+          return new ShowcasePackage(packageDir, tree, {
+            ...context,
             organization,
             srcRoot,
             moduleDetector,
             typeScriptDependencyResolver,
             sassDependencyResolver,
             bazelGenruleResolver
-          }));
+          });
         } else if (isComponentsExamples) {
-          return new NgPackageExamples(packageDir, tree, __spreadProps(__spreadValues({}, context), {
+          return new NgPackageExamples(packageDir, tree, {
+            ...context,
             organization,
             srcRoot,
             moduleDetector,
             typeScriptDependencyResolver,
             sassDependencyResolver,
             bazelGenruleResolver
-          }));
+          });
         } else {
-          return new NgPackage(packageDir, tree, __spreadProps(__spreadValues({}, context), {
+          return new NgPackage(packageDir, tree, {
+            ...context,
             organization,
             srcRoot,
             moduleDetector,
             typeScriptDependencyResolver,
             sassDependencyResolver,
             bazelGenruleResolver
-          }));
+          });
         }
       }).reduce((current, next) => current.concat(next.render()), []));
     }
