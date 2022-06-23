@@ -51,8 +51,13 @@
     )
     calc(#{sbb.pxToRem(14)} * var(--sbb-scaling-factor));
 
-  &:not(.sbb-chip-disabled):is(:hover, :focus) {
-    background-color: var(--sbb-color-aluminum);
+  &:not(.sbb-chip-disabled) {
+    &:is(:hover, :focus) {
+      background-color: var(--sbb-color-aluminum);
+    }
+    &.cdk-drag {
+      cursor: pointer;
+    }
   }
 
   &.sbb-chip-disabled {
