@@ -1764,6 +1764,10 @@ textarea {
     line-height: sbb.pxToRem(20);
   }
 
+  .sbb-checkbox & {
+    color: var(--sbb-color-granite);
+  }
+
   :is(.sbb-selection-checked, .sbb-selection-indeterminate) & {
     color: var(--sbb-color-text);
 
