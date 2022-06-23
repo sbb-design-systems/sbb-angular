@@ -1,4 +1,4 @@
-import Point from '@mapbox/point-geometry';
+import type Point from '@mapbox/point-geometry';
 import { Map as MaplibreMap, MapMouseEvent } from 'maplibre-gl';
 import { Subject, Subscription } from 'rxjs';
 import { sampleTime } from 'rxjs/operators';

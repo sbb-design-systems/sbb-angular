@@ -1,4 +1,4 @@
-import Point from '@mapbox/point-geometry';
+import type Point from '@mapbox/point-geometry';
 import { LngLat, Map as MaplibreMap, MapGeoJSONFeature } from 'maplibre-gl';
 import { ReplaySubject, Subject, Subscription } from 'rxjs';
 import { sampleTime } from 'rxjs/operators';
