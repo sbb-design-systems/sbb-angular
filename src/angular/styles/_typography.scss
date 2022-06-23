@@ -2307,10 +2307,10 @@ input.sbb-input-element.sbb-time-input {
   :where(html.sbb-lean) & {
     width: sbb.pxToRem(70);
     height: sbb.pxToRem(36);
-  }
 
-  &:is([readonly], .sbb-readonly) {
-    text-align: left;
+    &:is([readonly], .sbb-readonly) {
+      text-align: left;
+    }
   }
 }
 
