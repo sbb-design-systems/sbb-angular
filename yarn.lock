@@ -2495,6 +2495,13 @@
   dependencies:
     google-protobuf "^3.6.1"
 
+"@bazel/worker@5.5.1":
+  version "5.5.1"
+  resolved "https://registry.yarnpkg.com/@bazel/worker/-/worker-5.5.1.tgz#1927143f144f22ed569eece22eb14b724e7c10a9"
+  integrity sha512-3KmFRqEL/rMwKeFMZL5oCi2JbdqbO0TpJ4S+yMznjKUJ+YcwWMj1kF9/PVPD3rinBGtgQdg4EMg7zG9YF/tgWg==
+  dependencies:
+    google-protobuf "^3.6.1"
+
 "@bcoe/v8-coverage@^0.2.3":
   version "0.2.3"
   resolved "https://registry.yarnpkg.com/@bcoe/v8-coverage/-/v8-coverage-0.2.3.tgz#75a2e8b51cb758a7553d6804a5932d7aace75c39"
