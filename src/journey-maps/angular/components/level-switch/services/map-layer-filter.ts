@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Map as MaplibreMap } from 'maplibre-gl';
+import { FilterSpecification, Map as MaplibreMap } from 'maplibre-gl';
 
 @Injectable()
 export class SbbMapLayerFilter {
@@ -20,7 +20,7 @@ export class SbbMapLayerFilter {
   setLevelFilter(level: number): void {
     this._knownLvlLayerIds.forEach((layerId) => {
       try {
-        const oldFilter = this._map.getFilter(layerId);
+        const oldFilter = this._map.getFilter(layerId) ?? undefined;
         const newFilter = this._calculateLayerFilter(oldFilter, level);
         this._map.setFilter(layerId, newFilter);
       } catch (e) {
@@ -31,20 +31,23 @@ export class SbbMapLayerFilter {
     this._setLayerVisibility('rokas_background_mask', level < 0);
   }
 
-  private _calculateLayerFilter(oldFilter: any[], level: number): any[] {
+  private _calculateLayerFilter(
+    oldFilter: FilterSpecification | undefined,
+    level: number
+  ): FilterSpecification | null {
     if (oldFilter == null || oldFilter.length < 1) {
-      return oldFilter;
+      return null;
     }
 
     const newFilter = [];
     newFilter.push(oldFilter[0]);
     let floorFound = false;
     oldFilter.slice(1).forEach((part) => {
-      if (this._isString(part) && this._isFloorFilter(part)) {
+      if (typeof part === 'string' && this._isFloorFilter(part)) {
         // "floor" in "rokas_indoor" and "geojson_walk" layers
         floorFound = true;
         newFilter.push(part);
-      } else if (this._isArray(part)) {
+      } else if (Array.isArray(part)) {
         let levelFound = false;
         const newInnerPart = [part[0]];
         part.slice(1).forEach((innerPart: any) => {
@@ -96,14 +99,6 @@ export class SbbMapLayerFilter {
         this._knownLvlLayerIds.push(layer.id);
       }
     });
-  }
-
-  private _isString(value: any): boolean {
-    return Object.prototype.toString.call(value) === '[object String]';
-  }
-
-  private _isArray(value: any): boolean {
-    return Object.prototype.toString.call(value) === '[object Array]';
   }
 
   private _setLayerVisibility(layerIdPrefix: string, show: boolean): void {

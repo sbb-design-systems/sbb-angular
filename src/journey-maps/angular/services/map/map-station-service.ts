@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { AnyLayer, GeoJSONSource, Map as MaplibreMap } from 'maplibre-gl';
+import { GeoJSONSource, LayerSpecification, Map as MaplibreMap } from 'maplibre-gl';
 
 export const SBB_STATION_LAYER = 'rokas-station-hover';
 export const SBB_STATION_SOURCE = 'rokas-station-hover-source';
@@ -41,7 +41,7 @@ export class SbbMapStationService {
   private _extractStationLayers(map: MaplibreMap): string[] | undefined {
     return map
       .getStyle()
-      .layers?.filter((layer: AnyLayer) => {
+      .layers?.filter((layer: LayerSpecification) => {
         const sourceLayer = 'source-layer' in layer ? layer['source-layer'] : undefined;
         const id = layer.id;
 
@@ -51,6 +51,6 @@ export class SbbMapStationService {
             (sourceLayer === 'poi' && id.startsWith('station_ship')))
         );
       })
-      .map((layer: AnyLayer) => layer.id);
+      .map((layer: LayerSpecification) => layer.id);
   }
 }

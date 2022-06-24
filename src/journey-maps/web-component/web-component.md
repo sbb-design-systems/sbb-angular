@@ -20,6 +20,10 @@ Afterwards you have to include the following two files in your application:
   `@sbb-esta/journey-maps/web-component/bundle-es2015.min.js` (ES2015)
 - `@sbb-esta/journey-maps/web-component/styles.css`
 
+**NOTE** \
+This library does NOT need any peer dependencies. MapLibre and Angular are included in the bundle.
+Because of a technical limitation it uses the same `package.json` as the Angular library. Therefore you might get a warning about missing peer dependencies.
+
 ### Create an instance of the custom component
 
 To avoid problems with the angular component we named this component `sbb-journey-maps-wc` (instead of `sbb-journey-maps`).

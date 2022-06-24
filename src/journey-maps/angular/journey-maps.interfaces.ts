@@ -1,6 +1,6 @@
 import { TemplateRef } from '@angular/core';
 import { FeatureCollection } from 'geojson';
-import { LngLatBoundsLike, LngLatLike, MapboxGeoJSONFeature } from 'maplibre-gl';
+import { LngLatBoundsLike, LngLatLike, MapGeoJSONFeature } from 'maplibre-gl';
 
 import { SbbMarker } from './model/marker';
 
@@ -164,7 +164,7 @@ export interface SbbFeaturesClickEventData {
   features: SbbFeatureData[];
 }
 
-export type SbbFeatureData = MapboxGeoJSONFeature & {
+export type SbbFeatureData = MapGeoJSONFeature & {
   featureDataType: SbbFeatureDataType;
 };
 
