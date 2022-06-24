@@ -1,4 +1,5 @@
-import { Map as MaplibreMap, MapMouseEvent, Point } from 'maplibre-gl';
+import type Point from '@mapbox/point-geometry';
+import { Map as MaplibreMap, MapMouseEvent } from 'maplibre-gl';
 import { Subject, Subscription } from 'rxjs';
 import { sampleTime } from 'rxjs/operators';
 
@@ -18,8 +19,7 @@ export class SbbMapCursorStyleEvent {
       .pipe(sampleTime(SBB_CURSOR_STYLE_DELAY))
       .subscribe((point) => this._updateCursorStyle(point));
 
-    this._mouseEventListener = (e: MapMouseEvent) =>
-      this._subject.next(new Point(e.point.x, e.point.y));
+    this._mouseEventListener = (e: MapMouseEvent) => this._subject.next(e.point.clone());
 
     this._layerIds.forEach((layerId) => {
       this._mapInstance.on('mouseenter', layerId, this._mouseEventListener);

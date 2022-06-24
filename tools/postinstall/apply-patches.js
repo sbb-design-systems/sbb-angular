@@ -55,6 +55,12 @@ function applyPatches() {
   // Switches the devmode output for Angular Bazel to ES2020 target and module.
   applyPatch(path.join(__dirname, './devmode-es2020-bazel.patch'));
 
+  searchAndReplace(
+    `{ "type": "commonjs" }`,
+    `{ "type": "commonjs", "name": "maplibre-gl" }`,
+    'node_modules/maplibre-gl/dist/package.json'
+  );
+
   // More info in https://github.com/angular/angular/pull/33786
   shelljs.rm('-rf', [
     'node_modules/rxjs/add/',

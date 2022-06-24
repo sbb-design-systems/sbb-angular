@@ -1,8 +1,8 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { LngLatBounds, Map as MaplibreMap, MapboxOptions, Style } from 'maplibre-gl';
+import { LngLatBounds, Map as MaplibreMap, MapOptions, StyleSpecification } from 'maplibre-gl';
 import { Observable } from 'rxjs';
-import { map, tap } from 'rxjs/operators';
+import { map } from 'rxjs/operators';
 
 import {
   SbbInteractionOptions,
@@ -48,8 +48,33 @@ export class SbbMapInitService {
     viewportBounds?: SbbViewportBounds,
     markerBounds?: LngLatBounds
   ): Observable<MaplibreMap> {
+    return this.fetchStyle(styleUrl).pipe(
+      map((style) =>
+        this._createMap(
+          style,
+          mapNativeElement,
+          interactionOptions,
+          language,
+          viewportDimensions,
+          viewportBounds,
+          markerBounds
+        )
+      )
+    );
+  }
+
+  private _createMap(
+    style: StyleSpecification,
+    mapNativeElement: HTMLElement,
+    interactionOptions: SbbInteractionOptions,
+    language: string,
+    viewportDimensions?: SbbViewportDimensions,
+    viewportBounds?: SbbViewportBounds,
+    markerBounds?: LngLatBounds
+  ): MaplibreMap {
     const maplibreMap = new MaplibreMap(
       this._createOptions(
+        style,
         mapNativeElement,
         interactionOptions,
         viewportDimensions,
@@ -65,20 +90,19 @@ export class SbbMapInitService {
     maplibreMap.keyboard.disableRotation();
     maplibreMap.touchZoomRotate.disableRotation();
 
-    return this.fetchStyle(styleUrl).pipe(
-      tap((style) => maplibreMap.setStyle(style)),
-      map(() => maplibreMap)
-    );
+    return maplibreMap;
   }
 
   private _createOptions(
+    style: StyleSpecification,
     container: HTMLElement,
     interactionOptions: SbbInteractionOptions,
     viewportDimensions?: SbbViewportDimensions,
     viewportBounds?: SbbViewportBounds,
     markerBounds?: LngLatBounds
-  ): MapboxOptions {
-    const options: MapboxOptions = {
+  ): MapOptions {
+    const options: MapOptions = {
+      style,
       container,
       minZoom: viewportBounds?.minZoomLevel ?? SBB_MIN_ZOOM,
       maxZoom: viewportBounds?.maxZoomLevel ?? SBB_MAX_ZOOM,
@@ -113,8 +137,8 @@ export class SbbMapInitService {
     return options;
   }
 
-  fetchStyle(styleUrl: string): Observable<Style> {
-    return this._http.get(styleUrl).pipe(map((style) => style as Style));
+  fetchStyle(styleUrl: string): Observable<StyleSpecification> {
+    return this._http.get(styleUrl).pipe(map((style) => style as StyleSpecification));
   }
 
   private _translateControlLabels(maplibreMap: MaplibreMap, language: string): void {

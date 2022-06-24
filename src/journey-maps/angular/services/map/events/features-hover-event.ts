@@ -1,4 +1,5 @@
-import { LngLat, Map as MaplibreMap, MapboxGeoJSONFeature, Point } from 'maplibre-gl';
+import type Point from '@mapbox/point-geometry';
+import { LngLat, Map as MaplibreMap, MapGeoJSONFeature } from 'maplibre-gl';
 import { ReplaySubject, Subject, Subscription } from 'rxjs';
 import { sampleTime } from 'rxjs/operators';
 
@@ -148,7 +149,7 @@ export class SbbFeaturesHoverEvent extends ReplaySubject<SbbFeaturesHoverChangeE
     state.hoveredFeatures = currentFeatures ?? [];
   }
 
-  private _setFeatureHoverState(features: MapboxGeoJSONFeature[], hover: boolean) {
+  private _setFeatureHoverState(features: MapGeoJSONFeature[], hover: boolean) {
     features.forEach((feature) =>
       this._mapEventUtils.setFeatureState(feature, this._mapInstance, { hover })
     );
@@ -178,8 +179,8 @@ export class SbbFeaturesHoverEvent extends ReplaySubject<SbbFeaturesHoverChangeE
   }
 
   private static _featureEventDataEquals(
-    current: MapboxGeoJSONFeature,
-    added: MapboxGeoJSONFeature
+    current: MapGeoJSONFeature,
+    added: MapGeoJSONFeature
   ): boolean {
     return (
       current.layer.id === added.layer.id &&
