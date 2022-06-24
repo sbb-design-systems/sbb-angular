@@ -95,7 +95,7 @@
     "@bazel/worker": "5.5.1",
     "@commitlint/cli": "17.0.2",
     "@commitlint/config-conventional": "17.0.2",
-    "@rollup/plugin-commonjs": "22.0.0",
+    "@rollup/plugin-commonjs": "22.0.1",
     "@rollup/plugin-node-resolve": "13.3.0",
     "@rollup/plugin-typescript": "8.3.3",
     "@schematics/angular": "14.0.3",
