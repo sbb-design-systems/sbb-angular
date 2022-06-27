@@ -203,7 +203,7 @@
   --sbb-form-background-color-readonly: var(--sbb-color-milk);
   --sbb-form-border-color-readonly: var(--sbb-color-aluminum);
   --sbb-form-field-width: #{sbb.pxToRem(320)};
-  --sbb-form-input-color: var(--sbb-color-weak-accent);
+  --sbb-form-input-color: var(--sbb-color-charcoal);
   --sbb-form-input-color-disabled: var(--sbb-color-grey);
   --sbb-form-input-min-height: calc(#{sbb.pxToRem(48)} * var(--sbb-scaling-factor));
   --sbb-form-label-line-height: calc(#{sbb.pxToRem(16)} * var(--sbb-scaling-factor));
@@ -884,7 +884,7 @@ textarea {
   }
 
   &::placeholder {
-    color: var(--sbb-color-storm);
+    color: var(--sbb-color-metal);
     opacity: 1; // Needed for Firefox
   }
 
