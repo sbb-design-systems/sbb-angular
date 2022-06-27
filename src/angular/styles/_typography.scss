@@ -453,6 +453,7 @@
     --sbb-datepicker-toggle-or-arrows-padding: calc(#{sbb.pxToRem(38)} - var(--sbb-border-width));
     --sbb-datepicker-toggle-and-arrows-padding: calc(#{sbb.pxToRem(62)} - var(--sbb-border-width));
     --sbb-datepicker-button-offset: #{sbb.pxToRem(6)};
+    --sbb-datepicker-calendar-arrow-width: #{sbb.pxToRem(14)};
     // rem (or any unit) is necessary for correct calc calculation.
     --sbb-datepicker-button-gap: 0rem;
     --sbb-datepicker-content-offset: #{sbb.pxToRem(8)};
