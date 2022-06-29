@@ -11,7 +11,7 @@ We appreciate all kinds of contributions. As a contributor, here are the guideli
 
 ## <a name="issue"></a> Found an Issue?
 If you find a bug in the source code or a mistake in the documentation, you can help us by
-[submitting an issue](#submit-issue) to our [GitHub Repository][github]. Including an issue
+[submitting an issue](#submit-issue) to our [GitHub Repository](https://github.com/sbb-design-systems/sbb-angular/issues/new). Including an issue
 reproduction (via StackBlitz, JsBin, Plunkr, etc.) is the absolute best way to help the team quickly
 diagnose the problem. Screenshots are also helpful.
 
@@ -19,8 +19,9 @@ You can help the team even more and [submit a Pull Request](#submit-pr) with a f
 
 
 ## <a name="feature"></a> Want a Feature?
-You can *request* a new feature by [submitting an issue](#submit-issue) to our [GitHub
-Repository][github]. If you would like to *implement* a new feature, please submit an issue with
+You can *request* a new feature by [submitting an issue](#submit-issue)
+to our [GitHub Repository](https://github.com/sbb-design-systems/sbb-angular/issues/new).
+If you would like to *implement* a new feature, please submit an issue with
 a proposal for your work first, to be sure that we can use it.
 Please consider what kind of change it is:
 
@@ -36,12 +37,12 @@ Providing the following information will increase the
 chances of your issue being dealt with quickly:
 
 * **Overview of the Issue** - if an error is being thrown a non-minified stack trace helps
-* **Angular and @sbb-esta/angular-public Versions** - which versions of Angular and @sbb-esta/angular-public are affected
+* **Angular and @sbb-esta/angular Versions** - which versions of Angular and @sbb-esta/angular are affected
 * **Motivation for or Use Case** - explain what are you trying to do and why the current behavior
     is a bug for you
 * **Browsers and Operating System** - is this a problem with all browsers?
 * **Reproduce the Error** - provide a live example (using StackBlitz or similar) or a unambiguous set of steps
-* **Screenshots** - Due to the visual nature of @sbb-esta/angular-public, screenshots can help the team
+* **Screenshots** - Due to the visual nature of @sbb-esta/angular, screenshots can help the team
     triage issues far more quickly than a text description.
 * **Related Issues** - has a similar issue been reported before?
 * **Suggest a Fix** - if you can't fix the bug yourself, perhaps you can point to what might be
@@ -141,13 +142,6 @@ reference GitHub issues that this commit **Closes**.
 
 **Breaking Changes** should start with the word `BREAKING CHANGE:` with a space or two newlines.
 The rest of the commit message is then used for this.
-
-## <a name="packages"></a> Packages
-This project publishes the following packages:
-
-* @sbb-esta/angular
-* @sbb-esta/angular-maps
-* @sbb-esta/journey-maps
 
 ### Styling
 This project uses [SASS](https://sass-lang.com/) for styling the components.
