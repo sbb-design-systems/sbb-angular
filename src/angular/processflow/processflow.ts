@@ -29,7 +29,7 @@ import {
   ViewContainerRef,
   ViewEncapsulation,
 } from '@angular/core';
-import { FormControl, FormGroupDirective, NgForm } from '@angular/forms';
+import { AbstractControl, FormGroupDirective, NgForm } from '@angular/forms';
 import { SbbErrorStateMatcher } from '@sbb-esta/angular/core';
 import { Subject, Subscription } from 'rxjs';
 import { distinctUntilChanged, map, startWith, switchMap, takeUntil } from 'rxjs/operators';
@@ -93,7 +93,7 @@ export class SbbStep extends CdkStep implements SbbErrorStateMatcher, AfterConte
   }
 
   /** Custom error state matcher that additionally checks for validity of interacted form. */
-  isErrorState(control: FormControl | null, form: FormGroupDirective | NgForm | null): boolean {
+  isErrorState(control: AbstractControl | null, form: FormGroupDirective | NgForm | null): boolean {
     const originalErrorState = this._errorStateMatcher.isErrorState(control, form);
 
     // Custom error state checks for the validity of form that is not submitted or touched
