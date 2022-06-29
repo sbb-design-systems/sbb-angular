@@ -64,6 +64,7 @@ describe('SbbTooltip', () => {
         TooltipOnDraggableElement,
         DataBoundAriaLabelTooltip,
         TriggerConfigurableTooltip,
+        TooltipTriggerBubble,
       ],
       providers: [
         {
@@ -1251,6 +1252,19 @@ describe('SbbTooltip', () => {
       expect(document.querySelector('.sbb-tooltip-close-button')).toBeFalsy();
     }));
   });
+
+  describe('click bubbling', () => {
+    it('should stop propagation on trigger click', fakeAsync(() => {
+      const fixture = TestBed.createComponent(TooltipTriggerBubble);
+      const outerClickSpy = spyOn(fixture.componentInstance, 'outerDivClick');
+      fixture.detectChanges();
+
+      fixture.nativeElement.querySelector('button').click();
+      tick();
+
+      expect(outerClickSpy).not.toHaveBeenCalled();
+    }));
+  });
 });
 
 @Component({
@@ -1379,6 +1393,19 @@ class TooltipDemoWithoutPositionBinding {
   message: any = initialTooltipMessage;
   @ViewChild(SbbTooltip) tooltip: SbbTooltip;
   @ViewChild('button') button: ElementRef<HTMLButtonElement>;
+}
+
+@Component({
+  template: `
+    <div (click)="outerDivClick()">
+      <button [sbbTooltip]="'content'" sbbTooltipTrigger="click">Show tooltip</button>
+    </div>
+  `,
+})
+class TooltipTriggerBubble {
+  @ViewChild(SbbTooltip) tooltip: SbbTooltip;
+
+  outerDivClick() {}
 }
 
 /** Asserts whether a tooltip directive has a tooltip instance. */

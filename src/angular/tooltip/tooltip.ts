@@ -31,6 +31,7 @@ import {
   Directive,
   ElementRef,
   EventEmitter,
+  HostListener,
   Inject,
   InjectionToken,
   Input,
@@ -335,6 +336,11 @@ export abstract class _SbbTooltipBase<T extends _TooltipComponentBase>
     if (_defaultOptions?.touchGestures) {
       this.touchGestures = _defaultOptions.touchGestures;
     }
+  }
+
+  @HostListener('click', ['$event'])
+  _preventClickBubbling(event: Event) {
+    event.stopPropagation();
   }
 
   ngAfterViewInit() {
