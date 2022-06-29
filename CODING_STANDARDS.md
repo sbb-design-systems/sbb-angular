@@ -50,17 +50,13 @@ In HTML code, use `<!-- ... -->` comments, which will be stripped when packaging
 For example, rather than doing this:
 
 ```html
-<mat-button>Basic button</mat-button>
-<mat-button class="mat-fab">FAB</mat-button>
-<mat-button class="mat-icon-button">pony</mat-button>
+<sbb-button class="sbb-secondary-button">Secondary Button</sbb-button>
 ```
 
 do this:
 
 ```html
-<mat-button>Basic button</mat-button>
-<mat-fab>FAB</mat-fab>
-<mat-icon-button>pony</mat-icon-button>
+<sbb-secondary-button>Secondary Button</sbb-secondary-button>
 ```
 
 #### Prefer small, focused modules
@@ -241,7 +237,7 @@ class UniqueSelectionDispatcher { }
 Avoid suffixing a class with "Service", as it communicates nothing about what the class does. Try to
 think of the class name as a person's job title.
 
-Classes that correspond to a directive with an `mat-` prefix should also be prefixed with `Sbb`.
+Classes that correspond to a directive with an `sbb-` prefix should also be prefixed with `Sbb`.
 CDK classes should only have a `Cdk` prefix when the class is a directive with a `cdk` selector
 prefix.
 
