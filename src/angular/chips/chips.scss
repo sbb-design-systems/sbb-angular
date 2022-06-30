@@ -12,15 +12,12 @@
     border-color: var(--sbb-form-input-color);
   }
 
-  &.cdk-drop-list {
-    &.cdk-drop-list-dragging .cdk-drag,
-    &.cdk-drop-list-dragging .cdk-drag:active {
-      cursor: grabbing;
-    }
+  .cdk-drag {
+    cursor: grab;
+  }
 
-    .cdk-drag {
-      cursor: grab;
-    }
+  &.cdk-drop-list-dragging {
+    cursor: grabbing;
   }
 }
 
