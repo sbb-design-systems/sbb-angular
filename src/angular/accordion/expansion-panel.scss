@@ -83,6 +83,7 @@
   :where(html:not(.sbb-lean)) & {
     border: var(--sbb-border-width-thin) solid var(--sbb-color-storm);
     border-radius: 50%;
+    color: var(--sbb-color-black);
     padding: calc(#{sbb.pxToRem(4)} * var(--sbb-scaling-factor) - var(--sbb-border-width-thin));
 
     @include sbb.mq($from: tablet, $to: desktop) {
