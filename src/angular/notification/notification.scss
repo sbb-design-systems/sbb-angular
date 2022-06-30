@@ -32,6 +32,12 @@
   background-color: var(--sbb-color-red);
 }
 
+.sbb-notification-info-light {
+  background-color: var(--sbb-color-white);
+  border: var(--sbb-border-width-thin) solid var(--sbb-color-granite);
+  color: var(--sbb-color-granite);
+}
+
 :where(html.sbb-lean) .sbb-notification-success {
   color: var(--sbb-color-green);
   background-color: var(--sbb-color-background);

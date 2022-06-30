@@ -30,7 +30,7 @@ export interface SbbJumpMark {
 }
 
 /** The supported types of notifications. */
-export type SbbNotificationType = 'success' | 'info' | 'warn' | 'error';
+export type SbbNotificationType = 'success' | 'info' | 'warn' | 'error' | 'info-light';
 
 /** Notification event.  */
 export interface SbbNotificationEvent {
@@ -56,6 +56,7 @@ let nextId = 0;
     '[class.sbb-notification-info]': `type === 'info'`,
     '[class.sbb-notification-error]': `type === 'error'`,
     '[class.sbb-notification-warn]': `type === 'warn'`,
+    '[class.sbb-notification-info-light]': `type === 'info-light'`,
     '[class.sbb-notification-has-jump-marks]': 'jumpMarks && jumpMarks.length',
     '[id]': 'id',
     '[attr.hidden]': '_closed ? true : null',
@@ -126,6 +127,8 @@ export class SbbNotification extends _SbbNotificationMixinBase implements OnChan
           return variant === 'standard' ? 'kom:sign-exclamation-point-small' : 'kom:sign-x-small';
         } else if (this.type === 'warn') {
           return 'kom:sign-exclamation-point-small';
+        } else if (this.type === 'info-light') {
+          return 'kom:circle-information-small';
         } else {
           return 'kom:circle-information-small';
         }
