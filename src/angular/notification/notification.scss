@@ -33,9 +33,10 @@
 }
 
 .sbb-notification-info-light {
+  color: var(--sbb-color-granite);
   background-color: var(--sbb-color-white);
   border: var(--sbb-border-width-thin) solid var(--sbb-color-granite);
-  color: var(--sbb-color-granite);
+  border-radius: 0;
 }
 
 :where(html.sbb-lean) .sbb-notification-success {
