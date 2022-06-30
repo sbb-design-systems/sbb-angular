@@ -86,7 +86,7 @@ describe('SbbStatus', () => {
 
     it('should have exclamation point icon', () => {
       const element = fixture.debugElement.query(
-        By.css('sbb-icon[svgIcon="kom:exclamation-point-small"]')
+        By.css('sbb-icon[svgIcon="kom:sign-exclamation-point-small"]')
       ).nativeElement;
       expect(element).toBeTruthy();
     });
@@ -98,12 +98,12 @@ describe('SbbStatus', () => {
       expect(element).toBeTruthy();
     });
 
-    it('should have orange background', () => {
+    it('should have peach background', () => {
       const element: HTMLElement = fixture.debugElement.query(
         By.css('.sbb-status-icon.sbb-status-icon-warning')
       ).nativeElement;
       expect(getComputedStyle(element).getPropertyValue('background-color')).toBe(
-        'rgb(242, 126, 0)'
+        'rgb(252, 187, 0)'
       );
     });
   });
@@ -118,7 +118,7 @@ describe('SbbStatus', () => {
 
     it('should have cross icon', () => {
       const element = fixture.debugElement.query(
-        By.css('sbb-icon[svgIcon="kom:cross-small"]')
+        By.css('sbb-icon[svgIcon="kom:circle-cross-small"]')
       ).nativeElement;
       expect(element).toBeTruthy();
     });

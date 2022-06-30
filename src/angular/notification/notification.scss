@@ -55,7 +55,8 @@
 }
 
 :where(html.sbb-lean) .sbb-notification-warn {
-  background-color: var(--sbb-color-orange);
+  background-color: var(--sbb-color-peach);
+  color: var(--sbb-color-black);
 }
 
 .sbb-notification-has-jump-marks {

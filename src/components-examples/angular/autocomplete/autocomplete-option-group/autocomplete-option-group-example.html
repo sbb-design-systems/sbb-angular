@@ -3,7 +3,7 @@
 </sbb-form-field>
 <sbb-autocomplete #autoStatic="sbbAutocomplete">
   <sbb-option *ngFor="let option of options | async" [value]="option">{{ option }}</sbb-option>
-  <sbb-optgroup label="Oft gesucht:">
+  <sbb-optgroup label="Oft gesucht">
     <sbb-option *ngFor="let option of staticOptions" [value]="option">{{ option }}</sbb-option>
     <sbb-option-hint>Hint for "Oft gesucht"</sbb-option-hint>
   </sbb-optgroup>
