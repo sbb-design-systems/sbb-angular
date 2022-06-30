@@ -862,7 +862,7 @@ describe('SbbInput with forms', () => {
 
       describe(`standard design`, () => {
         it(`should apply correct styles`, fakeAsync(() => {
-          expect(inputElementStyles.color).toBe('rgb(102, 102, 102)');
+          expect(inputElementStyles.color).toBe('rgb(33, 33, 33)');
           expect(inputElementStyles.webkitTextFillColor).toBe(inputElementStyles.color);
           expect(inputElementStyles.backgroundColor).toBe('rgb(246, 246, 246)');
           expect(inputElementStyles.borderTopColor).toBe('rgb(210, 210, 210)');
@@ -872,7 +872,7 @@ describe('SbbInput with forms', () => {
         switchToLean(fixture);
 
         it(`should apply correct styles`, fakeAsync(() => {
-          expect(inputElementStyles.color).toBe('rgb(68, 68, 68)');
+          expect(inputElementStyles.color).toBe('rgb(33, 33, 33)');
           expect(inputElementStyles.webkitTextFillColor).toBe(inputElementStyles.color);
           expect(inputElementStyles.backgroundColor).toBe('rgba(0, 0, 0, 0)'); // transparent
           expect(inputElementStyles.borderTopColor).toBe('rgba(0, 0, 0, 0)'); // transparent

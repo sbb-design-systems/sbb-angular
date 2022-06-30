@@ -203,7 +203,7 @@
   --sbb-form-background-color-readonly: var(--sbb-color-milk);
   --sbb-form-border-color-readonly: var(--sbb-color-aluminum);
   --sbb-form-field-width: #{sbb.pxToRem(320)};
-  --sbb-form-input-color: var(--sbb-color-weak-accent);
+  --sbb-form-input-color: var(--sbb-color-charcoal);
   --sbb-form-input-color-disabled: var(--sbb-color-grey);
   --sbb-form-input-min-height: calc(#{sbb.pxToRem(48)} * var(--sbb-scaling-factor));
   --sbb-form-label-line-height: calc(#{sbb.pxToRem(16)} * var(--sbb-scaling-factor));
@@ -453,6 +453,7 @@
     --sbb-datepicker-toggle-or-arrows-padding: calc(#{sbb.pxToRem(38)} - var(--sbb-border-width));
     --sbb-datepicker-toggle-and-arrows-padding: calc(#{sbb.pxToRem(62)} - var(--sbb-border-width));
     --sbb-datepicker-button-offset: #{sbb.pxToRem(6)};
+    --sbb-datepicker-calendar-arrow-width: #{sbb.pxToRem(14)};
     // rem (or any unit) is necessary for correct calc calculation.
     --sbb-datepicker-button-gap: 0rem;
     --sbb-datepicker-content-offset: #{sbb.pxToRem(8)};
@@ -883,7 +884,7 @@ textarea {
   }
 
   &::placeholder {
-    color: var(--sbb-color-storm);
+    color: var(--sbb-color-metal);
     opacity: 1; // Needed for Firefox
   }
 
@@ -2303,10 +2304,10 @@ input.sbb-input-element.sbb-time-input {
   :where(html.sbb-lean) & {
     width: sbb.pxToRem(70);
     height: sbb.pxToRem(36);
-  }
 
-  &:is([readonly], .sbb-readonly) {
-    text-align: left;
+    &:is([readonly], .sbb-readonly) {
+      text-align: left;
+    }
   }
 }
 

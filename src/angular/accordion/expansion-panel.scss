@@ -75,6 +75,7 @@
   height: var(--sbb-icon-size-default);
   width: var(--sbb-icon-size-default);
   margin-left: sbb.pxToRem(24);
+  color: var(--sbb-color-black);
 
   // Workaround to ensure calculated height of icon is not greater than line-height
   margin-top: -0.5em;
@@ -83,7 +84,6 @@
   :where(html:not(.sbb-lean)) & {
     border: var(--sbb-border-width-thin) solid var(--sbb-color-storm);
     border-radius: 50%;
-    color: var(--sbb-color-granite);
     padding: calc(#{sbb.pxToRem(4)} * var(--sbb-scaling-factor) - var(--sbb-border-width-thin));
 
     @include sbb.mq($from: tablet, $to: desktop) {

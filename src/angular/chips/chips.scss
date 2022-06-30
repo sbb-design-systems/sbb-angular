@@ -11,6 +11,14 @@
   .sbb-input-with-open-panel & {
     border-color: var(--sbb-form-input-color);
   }
+
+  .cdk-drag {
+    cursor: grab;
+  }
+
+  &.cdk-drop-list-dragging {
+    cursor: grabbing;
+  }
 }
 
 // Selector .sbb-form-field is needed to be specific enough in form-field context

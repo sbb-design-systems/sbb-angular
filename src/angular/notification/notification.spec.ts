@@ -159,14 +159,14 @@ describe('SbbNotification', () => {
         expect(styles.getPropertyValue('background-color')).toBe('rgb(255, 255, 255)');
       });
 
-      it('should have grey background when type is WARN', async () => {
+      it('should have peach colored background when type is WARN', async () => {
         testComponent.type = 'warn';
         testFixture.detectChanges();
         const notifications = testFixture.debugElement.queryAll(By.css('.sbb-notification-warn'));
         expect(notifications.length).toBeGreaterThan(0);
         await testFixture.whenRenderingDone();
         const styles = getComputedStyle(notifications[0].nativeElement);
-        expect(styles.getPropertyValue('background-color')).toBe('rgb(242, 126, 0)');
+        expect(styles.getPropertyValue('background-color')).toBe('rgb(252, 187, 0)');
       });
 
       it('should have white background and granite color when type is INFO-LIGHT', async () => {
