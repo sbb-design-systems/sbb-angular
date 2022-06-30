@@ -2,6 +2,31 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [14.1.0](https://github.com/sbb-design-systems/sbb-angular/compare/14.0.0...14.1.0) (2022-06-30)
+
+
+### Features
+
+* **angular/notification:** add type `info-light` ([#1561](https://github.com/sbb-design-systems/sbb-angular/issues/1561)) ([731e4bf](https://github.com/sbb-design-systems/sbb-angular/commit/731e4bf11237dcafcc5e33004fc737162e7ee119))
+
+
+### Bug Fixes
+
+* **angular/processflow:** accept AbstractControl in isErrorState ([#1552](https://github.com/sbb-design-systems/sbb-angular/issues/1552)) ([f265a8c](https://github.com/sbb-design-systems/sbb-angular/commit/f265a8cdd884cc46b4c44f107b6ca0200590d222))
+* **angular/tooltip:** stop event propagation on trigger click ([f84c82a](https://github.com/sbb-design-systems/sbb-angular/commit/f84c82a1e293e3099b4e9ff3029d14e840ffc1b8)), closes [#1554](https://github.com/sbb-design-systems/sbb-angular/issues/1554)
+* **deps:** update angular to v14.0.3 ([#1545](https://github.com/sbb-design-systems/sbb-angular/issues/1545)) ([1680df3](https://github.com/sbb-design-systems/sbb-angular/commit/1680df3194e3bfa51ae13f090d09855cb9ac3930))
+* **deps:** update dependency @angular/cdk to v14.0.2 ([ad2d58b](https://github.com/sbb-design-systems/sbb-angular/commit/ad2d58b16b595681c9470b703c4c27798edb7448))
+* **deps:** update dependency zone.js to v0.11.6 ([369295c](https://github.com/sbb-design-systems/sbb-angular/commit/369295c80304b0a99ee9828f0f3b97c7ef7b2feb))
+* **journey-maps:** simplify sort logic ([#1514](https://github.com/sbb-design-systems/sbb-angular/issues/1514)) ([c1a7727](https://github.com/sbb-design-systems/sbb-angular/commit/c1a77271018d1b2d9090be4b3c1a59a013ffaf55))
+* **multiple:** style changes for better accessibility ([#1546](https://github.com/sbb-design-systems/sbb-angular/issues/1546)) ([132dc6a](https://github.com/sbb-design-systems/sbb-angular/commit/132dc6a7515cd69f9e9886f785261c39961cfadd))
+
+
+### Documentation
+
+* **angular/select:** improve section about disabling the control, options or groups ([#1532](https://github.com/sbb-design-systems/sbb-angular/issues/1532)) ([bdae6bb](https://github.com/sbb-design-systems/sbb-angular/commit/bdae6bbc045a89ecf7ba75567deb18572b47cc13))
+* remove angular-public package from CONTRIBUTING.md ([#1553](https://github.com/sbb-design-systems/sbb-angular/issues/1553)) ([d60467c](https://github.com/sbb-design-systems/sbb-angular/commit/d60467c78dc861294a7dba30d1b7e6801ea86926))
+* update stackblitz tsconfig.json ([#1556](https://github.com/sbb-design-systems/sbb-angular/issues/1556)) ([2e5e872](https://github.com/sbb-design-systems/sbb-angular/commit/2e5e872d33049823683619d266b7914fbabfa2e2))
+
 ## [14.0.0](https://github.com/sbb-design-systems/sbb-angular/compare/13.11.0...14.0.0) (2022-06-14)
 
 
