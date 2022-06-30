@@ -30,7 +30,7 @@ export interface SbbJumpMark {
 }
 
 /** The supported types of notifications. */
-export type SbbNotificationType = 'success' | 'info' | 'warn' | 'error';
+export type SbbNotificationType = 'success' | 'info' | 'info-light' | 'warn' | 'error';
 
 /** Notification event.  */
 export interface SbbNotificationEvent {
@@ -54,6 +54,7 @@ let nextId = 0;
     class: 'sbb-notification',
     '[class.sbb-notification-success]': `type === 'success'`,
     '[class.sbb-notification-info]': `type === 'info'`,
+    '[class.sbb-notification-info-light]': `type === 'info-light'`,
     '[class.sbb-notification-error]': `type === 'error'`,
     '[class.sbb-notification-warn]': `type === 'warn'`,
     '[class.sbb-notification-has-jump-marks]': 'jumpMarks && jumpMarks.length',

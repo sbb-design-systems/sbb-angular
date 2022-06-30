@@ -169,6 +169,23 @@ describe('SbbNotification', () => {
         expect(styles.getPropertyValue('background-color')).toBe('rgb(242, 126, 0)');
       });
 
+      it('should have white background and granite color when type is INFO-LIGHT', async () => {
+        testComponent.type = 'info-light';
+        testFixture.detectChanges();
+        const notifications = testFixture.debugElement.queryAll(
+          By.css('.sbb-notification-info-light')
+        );
+        expect(notifications.length).toBeGreaterThan(0);
+        await testFixture.whenRenderingDone();
+        const styles = getComputedStyle(notifications[0].nativeElement);
+        const iconStyles = getComputedStyle(
+          notifications[0].queryAll(By.css('.sbb-icon'))[0].nativeElement
+        );
+        expect(styles.getPropertyValue('background-color')).toBe('rgb(255, 255, 255)');
+        expect(styles.getPropertyValue('color')).toBe('rgb(104, 104, 104)');
+        expect(iconStyles.getPropertyValue('color')).toBe('rgb(104, 104, 104)');
+      });
+
       it('should change height with jump marks', async () => {
         const componentStyles = getComputedStyle(
           testFixture.debugElement.query(By.css('.sbb-notification')).nativeElement
