@@ -84,7 +84,8 @@
     </unit>
     <unit id="sbbDialogCloseDialog">
       <notes>
-        <note category="location">../../../../../../src/angular/dialog/dialog-content-directives.ts:24</note>
+        <note category="location">../../../../../../src/angular/dialog/dialog-content-directives.ts:38</note>
+        <note category="location">../../../../../../src/angular/dialog/dialog-content-directives.ts:110</note>
         <note category="description">Aria label to close a dialog</note>
       </notes>
       <segment>
@@ -138,7 +139,8 @@
     </unit>
     <unit id="sbbLightboxCloseLightbox">
       <notes>
-        <note category="location">../../../../../../src/angular/lightbox/lightbox-content-directives.ts:25</note>
+        <note category="location">../../../../../../src/angular/lightbox/lightbox-content-directives.ts:39</note>
+        <note category="location">../../../../../../src/angular/lightbox/lightbox-content-directives.ts:101</note>
         <note category="description">Aria label to close a dialog</note>
       </notes>
       <segment>
