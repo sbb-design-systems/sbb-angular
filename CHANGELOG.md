@@ -2,6 +2,14 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [14.1.1](https://github.com/sbb-design-systems/sbb-angular/compare/14.1.0...14.1.1) (2022-07-07)
+
+
+### Bug Fixes
+
+* remove global $localize usage ([#1570](https://github.com/sbb-design-systems/sbb-angular/issues/1570)) ([630767b](https://github.com/sbb-design-systems/sbb-angular/commit/630767bac6778f21763fba1ae4842d0d278bf70a))
+* **tooltip:** allow click event bubbling on hover trigger ([#1574](https://github.com/sbb-design-systems/sbb-angular/issues/1574)) ([f96599c](https://github.com/sbb-design-systems/sbb-angular/commit/f96599cd549589b002bec520ca9721692ef37aa6))
+
 ## [14.1.0](https://github.com/sbb-design-systems/sbb-angular/compare/14.0.0...14.1.0) (2022-06-30)
 
 
