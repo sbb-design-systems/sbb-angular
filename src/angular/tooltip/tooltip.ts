@@ -340,7 +340,12 @@ export abstract class _SbbTooltipBase<T extends _TooltipComponentBase>
 
   @HostListener('click', ['$event'])
   _preventClickBubbling(event: Event) {
-    event.stopPropagation();
+    if (!this.disabled && this.trigger === 'click') {
+      // Only prevent event bubbling on click trigger and when enabled.
+      // For hover the click event should allow bubbling, which allows
+      // consumers to react to it.
+      event.stopPropagation();
+    }
   }
 
   ngAfterViewInit() {

@@ -1264,6 +1264,32 @@ describe('SbbTooltip', () => {
 
       expect(outerClickSpy).not.toHaveBeenCalled();
     }));
+
+    it('should allow propagation on hover click', fakeAsync(() => {
+      const fixture = TestBed.createComponent(TooltipTriggerBubble);
+      fixture.componentInstance.trigger = 'hover';
+      fixture.detectChanges();
+      const outerClickSpy = spyOn(fixture.componentInstance, 'outerDivClick');
+      fixture.detectChanges();
+
+      fixture.nativeElement.querySelector('button').click();
+      tick();
+
+      expect(outerClickSpy).toHaveBeenCalled();
+    }));
+
+    it('should allow propagation when disabled', fakeAsync(() => {
+      const fixture = TestBed.createComponent(TooltipTriggerBubble);
+      fixture.componentInstance.disabled = true;
+      fixture.detectChanges();
+      const outerClickSpy = spyOn(fixture.componentInstance, 'outerDivClick');
+      fixture.detectChanges();
+
+      fixture.nativeElement.querySelector('button').click();
+      tick();
+
+      expect(outerClickSpy).toHaveBeenCalled();
+    }));
   });
 });
 
@@ -1398,11 +1424,19 @@ class TooltipDemoWithoutPositionBinding {
 @Component({
   template: `
     <div (click)="outerDivClick()">
-      <button [sbbTooltip]="'content'" sbbTooltipTrigger="click">Show tooltip</button>
+      <button
+        [sbbTooltip]="'content'"
+        [sbbTooltipTrigger]="trigger"
+        [sbbTooltipDisabled]="disabled"
+      >
+        Show tooltip
+      </button>
     </div>
   `,
 })
 class TooltipTriggerBubble {
+  disabled = false;
+  trigger: 'click' | 'hover' = 'click';
   @ViewChild(SbbTooltip) tooltip: SbbTooltip;
 
   outerDivClick() {}
