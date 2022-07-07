@@ -21,8 +21,6 @@ import { SbbDialogRef, _closeDialogVia } from './dialog-ref';
 /** Counter used to generate unique IDs for dialog elements. */
 let dialogElementUid = 0;
 
-const closeAriaLabel = $localize`:Aria label to close a dialog@@sbbDialogCloseDialog:Close dialog`;
-
 /**
  * Button that will close the current dialog.
  */
@@ -36,7 +34,8 @@ const closeAriaLabel = $localize`:Aria label to close a dialog@@sbbDialogCloseDi
 })
 export class SbbDialogClose implements OnInit, OnChanges {
   /** Screenreader label for the button. */
-  @Input('aria-label') ariaLabel: string = closeAriaLabel;
+  @Input('aria-label')
+  ariaLabel: string = $localize`:Aria label to close a dialog@@sbbDialogCloseDialog:Close dialog`;
 
   /** Default to "button" to prevents accidental form submits. */
   @Input() type: 'submit' | 'button' | 'reset' = 'button';
@@ -107,7 +106,8 @@ export class _SbbDialogTitleBase implements OnInit {
   @Input() id: string = `sbb-dialog-title-${dialogElementUid++}`;
 
   /** Arial label for the close button. */
-  @Input() closeAriaLabel: string = closeAriaLabel;
+  @Input()
+  closeAriaLabel: string = $localize`:Aria label to close a dialog@@sbbDialogCloseDialog:Close dialog`;
 
   /** Whether the close button is enabled for the dialog. */
   _closeEnabled: boolean = true;
