@@ -1,4 +1,11 @@
-import { ChangeDetectionStrategy, Component, EventEmitter, Input, Output } from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  Component,
+  EventEmitter,
+  Input,
+  Output,
+  ViewEncapsulation,
+} from '@angular/core';
 
 import { SbbLeitPoiFeature } from './model/leit-poi-feature';
 
@@ -7,6 +14,7 @@ import { SbbLeitPoiFeature } from './model/leit-poi-feature';
   templateUrl: './leit-poi.html',
   styleUrls: ['./leit-poi.css'],
   changeDetection: ChangeDetectionStrategy.OnPush,
+  encapsulation: ViewEncapsulation.None,
 })
 export class SbbLeitPoi {
   @Input() feature: SbbLeitPoiFeature = {} as SbbLeitPoiFeature;

@@ -69,3 +69,25 @@ $travelDirectionSize: 40% 100%;
   background-image: i.icon('leit-poi-up');
   background-size: $travelDirectionSize;
 }
+
+/* global styling for leit-poi-popup styling ROKAS-1018 */
+.maplibregl-popup {
+  &.leit-poi-popup {
+    .maplibregl-popup-tip {
+      padding: 0;
+      height: 0;
+      display: none;
+    }
+
+    .maplibregl-popup-content {
+      border-radius: 25px;
+      padding: 6px;
+      border: 1px solid #000000;
+      cursor: pointer;
+    }
+  }
+
+  &.leit-poi-popup-hidden {
+    display: none !important;
+  }
+}
