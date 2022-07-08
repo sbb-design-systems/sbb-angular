@@ -22,7 +22,7 @@ export const UPDATE_STEPS: UpdateStep[] = [
 
       `Use <code>ng add</code> to add <code>@sbb-esta/angular</code> package. Our automatic
        migration takes care of most of the changes and also sets up your typography design variant (standard or lean).
-        <pre>ng add @sbb-esta/angular</pre>`,
+        <pre>ng add @sbb-esta/angular@13</pre>`,
 
       `Check console output, added TODOs in your code and consult <a href="/angular/guides/migration-guide">migration guide</a> for more explanations on changes.`,
 
