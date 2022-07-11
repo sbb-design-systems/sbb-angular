@@ -89,23 +89,4 @@
     //  (not so simple as offset is also defined in the style itself =/)
     margin-top: 1rem;
   }
-
-  &.leit-poi-popup {
-    .maplibregl-popup-tip {
-      padding: 0;
-      height: 0;
-      display: none;
-    }
-
-    .maplibregl-popup-content {
-      border-radius: 25px;
-      padding: 6px;
-      border: 1px solid #000000;
-      cursor: pointer;
-    }
-  }
-
-  &.leit-poi-popup-hidden {
-    display: none !important;
-  }
 }
