@@ -4,21 +4,17 @@ export interface UpdateStep {
   actions: string[];
 }
 
-const getGeneralActions = (version: number): string[] => [
-  `Update your Angular dependencies to version ${version}.x.x with "--force" flag (due to unmet peer ependencies).<br/>
-        See <a href='https://update.angular.io'>update.angular.io</a> for a step-by-step guide for updating Angular.<br/>
-        <pre>npx @angular/cli@${version} update @angular/core@${version} @angular/cli@${version} --force</pre>`,
-
-  `Update Angular CDK in a separate step to avoid dependency version resolving problems.<br/>
-        <pre>npx @angular/cli@${version} update @angular/cdk@${version} --force</pre>`,
-];
-
 export const UPDATE_STEPS: UpdateStep[] = [
   {
     from: 1200,
     to: 1300,
     actions: [
-      ...getGeneralActions(13),
+      `Update your Angular dependencies to version 13.x.x with "--force" flag (due to unmet peer ependencies).<br/>
+        See <a href='https://update.angular.io'>update.angular.io</a> for a step-by-step guide for updating Angular.<br/>
+        <pre>npx @angular/cli@13 update @angular/core@13 @angular/cli@13 --force</pre>`,
+
+      `Update Angular CDK and <code>angular-devkit/build-angular</code> in a separate step to avoid dependency version resolving problems.<br/>
+        <pre>npx @angular/cli@13 update @angular-devkit/build-angular@13 @angular/cdk@13 --force</pre>`,
 
       `Use <code>ng add</code> to add <code>@sbb-esta/angular</code> package. Our automatic
        migration takes care of most of the changes and also sets up your typography design variant (standard or lean).
@@ -38,9 +34,16 @@ export const UPDATE_STEPS: UpdateStep[] = [
     from: 1300,
     to: 1400,
     actions: [
-      ...getGeneralActions(14),
+      `Update your Angular dependencies to version 14.x.x with "--force" flag (due to unmet peer ependencies).<br/>
+        See <a href='https://update.angular.io'>update.angular.io</a> for a step-by-step guide for updating Angular.<br/>
+        <pre>npx @angular/cli@14 update @angular/core@14 @angular/cli@14 --force</pre>`,
+
+      `Update Angular CDK in a separate step to avoid dependency version resolving problems.<br/>
+        <pre>npx @angular/cli@14 update @angular/cdk@14 --force</pre>`,
+
       `Update SBB Angular. Our automatic migration takes care of the changes.
         <pre>ng update @sbb-esta/angular@14</pre>`,
+
       `If your sass files contain any <code>@import</code> to our mixins or sass variables, you have to manually migrate to <code>@use</code>.
       Example: <p><code>@import '@sbb-esta/angular/styles.scss';</code> becomes <code>@use '@sbb-esta/angular' as sbb;</code>.</p>
       <p>Additionally, you have to prefix all imported symbols: e.g. <code>pxToRem(5)</code> becomes <code>sbb.pxToRem(5)</code></p>
