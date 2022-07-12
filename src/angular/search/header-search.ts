@@ -12,6 +12,7 @@ import {
 } from '@angular/cdk/overlay';
 import {
   ChangeDetectionStrategy,
+  ChangeDetectorRef,
   Component,
   ContentChild,
   ElementRef,
@@ -135,6 +136,7 @@ export class SbbHeaderSearch {
   constructor(
     elementRef: ElementRef<HTMLElement>,
     private _breakpointObserver: BreakpointObserver,
+    private _changeDetectorRef: ChangeDetectorRef,
     @Inject(SBB_SEARCH_SCROLL_STRATEGY) scrollStrategyFactory: any
   ) {
     this._scrollStrategyFactory = scrollStrategyFactory;
@@ -173,6 +175,7 @@ export class SbbHeaderSearch {
     if (!this._panelOpen) {
       this._panelOpen = true;
       this._animationState = 'open';
+      this._changeDetectorRef.markForCheck();
     }
   }
 
@@ -181,6 +184,7 @@ export class SbbHeaderSearch {
     if (this._panelOpen) {
       this._panelOpen = false;
       this._animationState = 'void';
+      this._changeDetectorRef.markForCheck();
     }
   }
 
