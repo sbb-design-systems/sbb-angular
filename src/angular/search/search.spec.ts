@@ -10,10 +10,7 @@ import {
   waitForAsync,
 } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
-import {
-  BrowserAnimationsModule,
-  NoopAnimationsModule,
-} from '@angular/platform-browser/animations';
+import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { SbbAutocompleteModule } from '@sbb-esta/angular/autocomplete';
 import {
   clearElement,
@@ -345,7 +342,7 @@ describe('SbbSearch', () => {
       beforeEach(waitForAsync(() => {
         TestBed.configureTestingModule({
           imports: [
-            BrowserAnimationsModule,
+            NoopAnimationsModule,
             OverlayModule,
             SbbAutocompleteModule,
             SbbIconTestingModule,
@@ -384,6 +381,43 @@ describe('SbbSearch', () => {
           const overlayInput = overlayContainerElement.querySelector('input.sbb-input-element');
           expect(document.activeElement).toBe(overlayInput);
         });
+      });
+
+      describe('when interacting with it programmatically', () => {
+        it('should be opened when calling open()', () => {
+          let searchOverlay = overlayContainerElement.querySelector('.sbb-header-search-overlay');
+          expect(searchOverlay).toBeNull();
+          component.searchComponent.open();
+          fixture.detectChanges();
+          searchOverlay = overlayContainerElement.querySelector('.sbb-header-search-overlay');
+          expect(searchOverlay).not.toBeNull();
+        });
+
+        it('should be closed when calling close()', fakeAsync(() => {
+          component.searchComponent.open();
+          fixture.detectChanges();
+          let searchOverlay = overlayContainerElement.querySelector('.sbb-header-search-overlay');
+          expect(searchOverlay).not.toBeNull();
+
+          component.searchComponent.close();
+          fixture.detectChanges();
+          flush();
+          searchOverlay = overlayContainerElement.querySelector('.sbb-header-search-overlay');
+          expect(searchOverlay).toBeNull();
+        }));
+
+        it('should toggle', fakeAsync(() => {
+          component.searchComponent.toggle();
+          fixture.detectChanges();
+          let searchOverlay = overlayContainerElement.querySelector('.sbb-header-search-overlay');
+          expect(searchOverlay).not.toBeNull();
+
+          component.searchComponent.toggle();
+          fixture.detectChanges();
+          flush();
+          searchOverlay = overlayContainerElement.querySelector('.sbb-header-search-overlay');
+          expect(searchOverlay).toBeNull();
+        }));
       });
     });
 
