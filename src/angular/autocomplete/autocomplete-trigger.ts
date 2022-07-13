@@ -609,7 +609,18 @@ export class SbbAutocompleteTrigger
               this._changeDetectorRef.detectChanges();
 
               if (this.panelOpen) {
+                /**
+                 * Fix to avoid scrolling to the top if a new element is added.
+                 * This happens because our overlay hasa dynamic height (different from @angular/material).
+                 * When the _resetBoundingBoxStyles() function in the FlexibleConnectedPositionStrategy
+                 * is called, the element is reset to full height and scaled back afterwards.
+                 *
+                 * An alternative to this hack would be to either use a maxHeight property for our overlay
+                 * or to fix this in angular/components.
+                 */
+                const scrollTop = this.autocomplete.panel.nativeElement.scrollTop;
                 this._overlayRef!.updatePosition();
+                this.autocomplete.panel.nativeElement.scrollTop = scrollTop;
               }
 
               if (wasOpen !== this.panelOpen) {
