@@ -3153,15 +3153,18 @@ describe('SbbAutocomplete', () => {
       fixture.detectChanges();
       zone.simulateZoneExit();
 
-      const scrollbar = overlayContainerElement.querySelector('.sbb-autocomplete-panel')!;
-      scrollbar.scrollTop = 5;
+      const scrollbar = overlayContainerElement.querySelector(
+        '.sbb-autocomplete-panel'
+      )! as HTMLElement;
+      scrollbar.style.height = '100px';
+      scrollbar.scrollTop = 10;
 
       fixture.componentInstance.numbers.push({ code: '42', name: 'Fourty two', height: 48 });
       flush();
       fixture.detectChanges();
       tick();
 
-      expect(scrollbar.scrollTop).toBe(5);
+      expect(scrollbar.scrollTop).toBe(10);
     }));
   });
 
