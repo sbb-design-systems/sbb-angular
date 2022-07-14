@@ -18,10 +18,6 @@
   width: 100%;
   height: 100%;
 
-  // The lightbox should always cover the entire viewbox.
-  min-height: 100vh;
-  max-height: 100vw;
-
   @include cdk.high-contrast(active, off) {
     outline: solid sbb.pxToRem(1);
   }

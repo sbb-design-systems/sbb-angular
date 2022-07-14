@@ -10,6 +10,7 @@ import {
   HostListener,
   Inject,
   NgZone,
+  OnInit,
   Optional,
   ViewEncapsulation,
 } from '@angular/core';
@@ -40,9 +41,10 @@ import { sbbLightboxAnimations } from './lightbox-animations';
     '[attr.aria-label]': '_config.ariaLabel',
     '[attr.aria-describedby]': '_config.ariaDescribedBy || null',
     '[@lightboxContainer]': `_getAnimationState()`,
+    '[style.height.px]': '_innerHeight',
   },
 })
-export class SbbLightboxContainer extends _SbbDialogContainerBase {
+export class SbbLightboxContainer extends _SbbDialogContainerBase implements OnInit {
   /** Callback, invoked whenever an animation on the host completes. */
   @HostListener('@lightboxContainer.done', ['$event'])
   _onAnimationDone({ toState, totalTime }: AnimationEvent) {
@@ -64,6 +66,11 @@ export class SbbLightboxContainer extends _SbbDialogContainerBase {
     }
   }
 
+  @HostListener('window:resize', ['$event'])
+  onResize() {
+    this._innerHeight = window.innerHeight;
+  }
+
   /** Starts the dialog exit animation. */
   _startExitAnimation(): void {
     this._state = 'exit';
@@ -72,6 +79,8 @@ export class SbbLightboxContainer extends _SbbDialogContainerBase {
     // view container is using OnPush change detection.
     this._changeDetectorRef.markForCheck();
   }
+
+  _innerHeight: number;
 
   constructor(
     elementRef: ElementRef,
@@ -94,5 +103,9 @@ export class SbbLightboxContainer extends _SbbDialogContainerBase {
       overlayRef,
       focusMonitor
     );
+  }
+
+  ngOnInit(): void {
+    this._innerHeight = window.innerHeight;
   }
 }
