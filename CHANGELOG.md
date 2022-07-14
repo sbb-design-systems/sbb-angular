@@ -2,6 +2,23 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [14.1.2](https://github.com/sbb-design-systems/sbb-angular/compare/14.1.1...14.1.2) (2022-07-14)
+
+
+### Bug Fixes
+
+* **angular/autocomplete:** do not reset scroll if an option is added ([#1589](https://github.com/sbb-design-systems/sbb-angular/issues/1589)) ([7bed87c](https://github.com/sbb-design-systems/sbb-angular/commit/7bed87cd503540208c01374f6a2ae9c450e44fca)), closes [#1571](https://github.com/sbb-design-systems/sbb-angular/issues/1571)
+* **angular/search:** close and open header search programmatically ([#1585](https://github.com/sbb-design-systems/sbb-angular/issues/1585)) ([d94797f](https://github.com/sbb-design-systems/sbb-angular/commit/d94797fd2a957f5a9531a3a966aeec0d6f3075aa)), closes [#1579](https://github.com/sbb-design-systems/sbb-angular/issues/1579)
+* **deps:** update dependency rxjs to v7.5.6 ([#1583](https://github.com/sbb-design-systems/sbb-angular/issues/1583)) ([43c4e7e](https://github.com/sbb-design-systems/sbb-angular/commit/43c4e7e7c0427f72090a0774c79287b2d0dcfbce))
+* **journey-maps:** fix styling when popup in markeroptions on false ([#1577](https://github.com/sbb-design-systems/sbb-angular/issues/1577)) ([184b8e1](https://github.com/sbb-design-systems/sbb-angular/commit/184b8e1808dcfe0b1b45d44b37b3a39a5314639e))
+* **journey-maps:** hide paginator for web component ([#1592](https://github.com/sbb-design-systems/sbb-angular/issues/1592)) ([261dccb](https://github.com/sbb-design-systems/sbb-angular/commit/261dccb6582d05f0e9eb51461e702d4a889b7966))
+
+
+### Documentation
+
+* fix update guide for `ng add` with version 13 ([#1578](https://github.com/sbb-design-systems/sbb-angular/issues/1578)) ([a392c59](https://github.com/sbb-design-systems/sbb-angular/commit/a392c59490be50377f7849571fef969a06700ef9))
+* update steps for v13 migration ([#1580](https://github.com/sbb-design-systems/sbb-angular/issues/1580)) ([68ec4f2](https://github.com/sbb-design-systems/sbb-angular/commit/68ec4f2ec886da9c6b6d605d7cfb629f10e4da59))
+
 ### [14.1.1](https://github.com/sbb-design-systems/sbb-angular/compare/14.1.0...14.1.1) (2022-07-07)
 
 
