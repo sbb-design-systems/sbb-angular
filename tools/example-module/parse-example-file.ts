@@ -13,7 +13,7 @@ interface ParsedMetadata {
 }
 
 interface ParsedMetadataResults {
-  primaryComponent: ParsedMetadata;
+  primaryComponent: ParsedMetadata | undefined;
   secondaryComponents: ParsedMetadata[];
 }
 
