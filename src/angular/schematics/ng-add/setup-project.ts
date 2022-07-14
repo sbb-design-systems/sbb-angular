@@ -12,13 +12,13 @@ import {
   addModuleImportToRootModule,
   addModuleImportToStandaloneBootstrap,
   defaultTargetBuilders,
-  getAppModulePath,
   getProjectFromWorkspace,
   getProjectMainFile,
   getProjectTargetOptions,
   hasNgModuleImport,
   importsProvidersFrom,
 } from '@angular/cdk/schematics';
+import { getAppModulePath } from '@schematics/angular/utility/ng-ast-utils';
 import { getWorkspace, updateWorkspace } from '@schematics/angular/utility/workspace';
 import { ProjectType } from '@schematics/angular/utility/workspace-models';
 
