@@ -43,6 +43,9 @@ function addClickListener(client: HTMLElement & SbbJourneyMaps) {
         case 'STATION':
           updateStationTemplate(feature);
           break;
+        case 'POI':
+          updatePoiTemplate(feature);
+          break;
       }
     }
   });
@@ -67,6 +70,18 @@ function createStationTemplate(client: SbbJourneyMapsElement) {
   document.getElementById('main')!.appendChild(template);
 }
 
+function createPoiTemplate(client: SbbJourneyMapsElement) {
+  const template = document.createElement('template');
+  template.id = 'poiTemplate';
+
+  client.poiOptions = { categories: ['park_rail', 'car_sharing'] };
+  client.listenerOptions = {
+    ...client.listenerOptions,
+    POI: { watch: true, popup: true, clickTemplate: template.id, selectionMode: 'single' },
+  };
+  document.getElementById('main')!.appendChild(template);
+}
+
 function updateMarkerDetailsTemplate(marker: SbbFeatureData) {
   const template = document.getElementById('markerDetailsTemplate')!;
   template.innerHTML = `
@@ -87,6 +102,16 @@ function updateStationTemplate(station: SbbFeatureData) {
   `;
 }
 
+function updatePoiTemplate(poi: SbbFeatureData) {
+  const template = document.getElementById('poiTemplate')!;
+  template.innerHTML = `
+    <div>
+      <div>${poi.properties?.name}</div>
+      <div>${poi.properties?.sbbId}</div>
+    </div>
+  `;
+}
+
 function createSbbJourneyMapsElement() {
   const client = document.createElement('sbb-journey-maps-wc') as SbbJourneyMapsElement;
   client.language = 'en';
@@ -95,6 +120,7 @@ function createSbbJourneyMapsElement() {
   addMarkers(client);
   createMarkerDetailsTemplate(client);
   createStationTemplate(client);
+  createPoiTemplate(client);
   addClickListener(client);
 
   document.getElementById('container')!.appendChild(client);

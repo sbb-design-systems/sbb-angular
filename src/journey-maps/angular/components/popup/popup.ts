@@ -86,6 +86,10 @@ export class SbbPopup implements OnChanges, OnDestroy {
     };
   }
 
+  showPaginator(): boolean {
+    return this.withPaginator && this.templateContextSize > 1 && typeof this.template !== 'string';
+  }
+
   private _showPopup(): void {
     if (!this.templateContext || !this._popupContent) {
       this._popup?.remove();
