@@ -82,4 +82,8 @@ export class SbbTeaser implements OnInit, OnChanges {
   onIndexSelected(index: number) {
     this.templateContextIndex = index;
   }
+
+  showPaginator() {
+    return this.withPaginator && this.templateContextSize > 1 && typeof this.template !== 'string';
+  }
 }

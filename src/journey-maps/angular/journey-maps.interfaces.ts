@@ -200,6 +200,7 @@ export type SbbPointsOfInterestCategoryType =
   | 'cafe'
   | 'camp_site'
   | 'car_repair'
+  | 'car_sharing'
   | 'casino'
   | 'cinema'
   | 'clothes'

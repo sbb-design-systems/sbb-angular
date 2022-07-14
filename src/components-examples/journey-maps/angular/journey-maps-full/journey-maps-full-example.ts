@@ -84,7 +84,9 @@ export class JourneyMapsFullExample implements OnInit, OnDestroy {
     { label: 'Transfer Luzern', value: { transfer: luzern4j } },
     { label: 'Transfer Zürich', value: { transfer: zurichIndoor } },
   ];
-  pointsOfInterestOptions: SbbPointsOfInterestOptions = { categories: ['park_rail'] };
+  pointsOfInterestOptions: SbbPointsOfInterestOptions = {
+    categories: ['park_rail', 'car_sharing'],
+  };
   homeButtonOptions: SbbViewportDimensions = { boundingBox: SBB_BOUNDING_BOX };
   viewportDimensions?: SbbViewportDimensions;
   zoomLevels: SbbZoomLevels;
