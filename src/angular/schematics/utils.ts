@@ -1,13 +1,8 @@
 import { WorkspaceDefinition } from '@angular-devkit/core/src/workspace';
 import { SchematicsException, Tree } from '@angular-devkit/schematics';
-import {
-  addImportToModule,
-  Migration,
-  parse5,
-  parseSourceFile,
-  ResolvedResource,
-} from '@angular/cdk/schematics';
+import { Migration, parse5, parseSourceFile, ResolvedResource } from '@angular/cdk/schematics';
 import type { UpdateRecorder } from '@angular/cdk/schematics/update-tool/update-recorder';
+import { addImportToModule } from '@schematics/angular/utility/ast-utils';
 import { InsertChange } from '@schematics/angular/utility/change';
 import type { Attribute, DocumentFragment, Element, Location } from 'parse5';
 import * as ts from 'typescript';
