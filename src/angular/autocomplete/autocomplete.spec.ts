@@ -3145,6 +3145,27 @@ describe('SbbAutocomplete', () => {
 
       expect(fixture.componentInstance.selectedValue).toBe(1337);
     }));
+
+    it('should not scroll to top if a new option is added', fakeAsync(() => {
+      const fixture = createComponent(SimpleAutocomplete);
+      fixture.detectChanges();
+      fixture.componentInstance.trigger.openPanel();
+      fixture.detectChanges();
+      zone.simulateZoneExit();
+
+      const scrollbar = overlayContainerElement.querySelector(
+        '.sbb-autocomplete-panel'
+      )! as HTMLElement;
+      scrollbar.style.height = '100px';
+      scrollbar.scrollTop = 10;
+
+      fixture.componentInstance.numbers.push({ code: '42', name: 'Fourty two', height: 48 });
+      flush();
+      fixture.detectChanges();
+      tick();
+
+      expect(scrollbar.scrollTop).toBe(10);
+    }));
   });
 
   it('should not focus the option when DOWN key is pressed', fakeAsync(() => {
