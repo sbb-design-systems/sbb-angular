@@ -9,7 +9,7 @@
     ></button>
 
     <sbb-overlay-paginator
-      *ngIf="withPaginator && templateContextSize > 1"
+      *ngIf="showPaginator()"
       [index]="templateContextIndex"
       [size]="templateContextSize"
       (indexClicked)="onIndexSelected($event)"
