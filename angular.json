@@ -23,9 +23,7 @@
             "polyfills": "src/showcase/polyfills.ts",
             "tsConfig": "tsconfig.json",
             "aot": true,
-            "styles": [
-              "src/showcase/styles.css"
-            ]
+            "styles": ["src/showcase/styles.css"]
           }
         },
         "extract-i18n": {

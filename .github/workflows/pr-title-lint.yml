@@ -3,6 +3,8 @@ on:
   pull_request:
     types: [opened, edited, reopened, unlocked]
 
+permissions: read-all
+
 jobs:
   lint:
     runs-on: ubuntu-latest

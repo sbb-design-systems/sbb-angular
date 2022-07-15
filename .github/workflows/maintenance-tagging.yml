@@ -8,6 +8,9 @@ on:
 env:
   TARGET_RELEASE: 14.x
 
+permissions:
+  pull-requests: write
+
 jobs:
   add_label:
     runs-on: ubuntu-latest
