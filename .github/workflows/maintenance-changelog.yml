@@ -5,6 +5,7 @@ on:
     tags: ['*.*']
 
 permissions:
+  actions: write
   issues: write
 
 jobs:
