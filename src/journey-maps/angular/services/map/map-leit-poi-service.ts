@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Feature } from 'geojson';
+import { Feature, FeatureCollection } from 'geojson';
 import { Map as MaplibreMap } from 'maplibre-gl';
 import { Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
@@ -33,7 +33,7 @@ export class SbbMapLeitPoiService {
 
   processData(
     map: MaplibreMap,
-    featureCollection: GeoJSON.FeatureCollection = SBB_EMPTY_FEATURE_COLLECTION,
+    featureCollection: FeatureCollection = SBB_EMPTY_FEATURE_COLLECTION,
     routeStartLevel?: number
   ): void {
     this._removeMapLeitPois();

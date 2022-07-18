@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import { FeatureCollection } from 'geojson';
 import { GeoJSONSource, Map as MaplibreMap } from 'maplibre-gl';
 
 import { SBB_ZONE_SOURCE } from '../constants';
@@ -13,7 +14,7 @@ export class SbbMapZoneService {
   updateZones(
     map: MaplibreMap,
     mapSelectionEventService: SbbMapSelectionEvent,
-    zonesFeatureCollection: GeoJSON.FeatureCollection = SBB_EMPTY_FEATURE_COLLECTION
+    zonesFeatureCollection: FeatureCollection = SBB_EMPTY_FEATURE_COLLECTION
   ): void {
     const source = map.getSource(SBB_ZONE_SOURCE) as GeoJSONSource;
     source.setData(zonesFeatureCollection);

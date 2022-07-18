@@ -75,7 +75,7 @@ export interface SbbJourneyMapsRoutingOptions {
    * Indoor routing is not (yet) supported.
    * Note: journey, transfer and routes cannot be displayed at the same time.
    */
-  journey?: GeoJSON.FeatureCollection;
+  journey?: FeatureCollection;
 
   /**
    * GeoJSON as returned by the <code>/transfer</code> operation of Journey-Maps.
@@ -83,7 +83,7 @@ export interface SbbJourneyMapsRoutingOptions {
    * Indoor routing is not (yet) supported.
    * Note: journey, transfer and routes cannot be displayed at the same time.
    */
-  transfer?: GeoJSON.FeatureCollection;
+  transfer?: FeatureCollection;
 
   /**
    * An array of GeoJSON objects as returned by the <code>/route</code> and <code>/routes</code> operation of Journey-Maps.
