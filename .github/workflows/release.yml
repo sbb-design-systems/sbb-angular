@@ -8,6 +8,9 @@ env:
   BAZEL_COMMAND: bazelisk
   BAZEL_CACHE_VERSION: v3
 
+permissions:
+  packages: write
+
 jobs:
   packages:
     runs-on: ubuntu-latest

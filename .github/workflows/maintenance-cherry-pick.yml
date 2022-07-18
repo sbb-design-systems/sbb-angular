@@ -4,6 +4,9 @@ on:
   pull_request:
     types: [closed]
 
+permissions:
+  issues: write
+
 jobs:
   # Check if labels exist before executing the next job.
   # We cannot use `if` because the matrix is evaluated before the `if` statement.
