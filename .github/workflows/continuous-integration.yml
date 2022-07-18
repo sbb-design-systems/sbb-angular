@@ -47,7 +47,11 @@ jobs:
       with:
         key: combined
     - name: "Bazel: Build"
-      run: yarn -s build all
+      run: |
+      # Retry build three times
+        (echo "===== Build attempt 1 ====" && yarn -s build all) || \
+        (echo "===== Build attempt 2 ====" && yarn -s build all) || \
+        (echo "===== Build attempt 3 ====" && yarn -s build all)
       timeout-minutes: 45
     - name: "Bazel: Clean bazel disk cache"
       if: ${{ success() || failure() }}
