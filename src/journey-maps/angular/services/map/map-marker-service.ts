@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Feature } from 'geojson';
+import { Feature, Position } from 'geojson';
 import {
   GeoJSONSource,
   LngLatLike,
@@ -195,7 +195,7 @@ export class SbbMapMarkerService {
 
   private _queryClusterAtPosition(
     map: MaplibreMap,
-    position: GeoJSON.Position
+    position: Position
   ): MapGeoJSONFeature | undefined {
     const point = map.project(position as LngLatLike);
     const range = SBB_CLUSTER_RADIUS / 2;
@@ -215,7 +215,7 @@ export class SbbMapMarkerService {
 
   private _zoomUntilMarkerVisible(
     map: MaplibreMap,
-    cluster: GeoJSON.Feature,
+    cluster: Feature,
     marker: SbbMarker,
     found: boolean[] = []
   ): void {
