@@ -33,10 +33,7 @@ jobs:
           git config user.email "github-actions@github.com"
           git config user.name "github-actions"
           git checkout ${{ github.event.repository.default_branch }}
-          git cherry-pick --no-commit ${{ env.TAG_COMMIT }}
-          git reset
-          git add CHANGELOG.md
-          git checkout .
+          git show ${{ env.TAG_COMMIT }} -- CHANGELOG.md | git apply -
           git commit -m "chore: update changelog"
           git push
       - name: Handling error
