@@ -1,12 +1,12 @@
 import { Injectable } from '@angular/core';
-import { Geometry, Point } from 'geojson';
+import { FeatureCollection, Geometry, Point } from 'geojson';
 import { FlyToOptions, LngLat, LngLatLike, Map as MaplibreMap } from 'maplibre-gl';
 
 import { SbbPointsOfInterestOptions, SbbViewportDimensions } from '../../journey-maps.interfaces';
 import { isSbbMapCenterOptions } from '../../util/typeguard';
 import { SBB_POI_LAYER } from '../constants';
 
-export const SBB_EMPTY_FEATURE_COLLECTION: GeoJSON.FeatureCollection = {
+export const SBB_EMPTY_FEATURE_COLLECTION: FeatureCollection = {
   type: 'FeatureCollection',
   features: [],
 };

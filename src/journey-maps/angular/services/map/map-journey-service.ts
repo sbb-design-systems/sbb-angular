@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import { Feature, FeatureCollection } from 'geojson';
 import { Map as MaplibreMap } from 'maplibre-gl';
 
 import { SbbMapSelectionEvent, SBB_SELECTED_PROPERTY_NAME } from './events/map-selection-event';
@@ -19,10 +20,10 @@ export class SbbMapJourneyService {
   updateJourney(
     map: MaplibreMap,
     mapSelectionEventService: SbbMapSelectionEvent,
-    journey: GeoJSON.FeatureCollection = SBB_EMPTY_FEATURE_COLLECTION
+    journey: FeatureCollection = SBB_EMPTY_FEATURE_COLLECTION
   ): void {
-    const routeFeatures: GeoJSON.Feature[] = [];
-    const transferFeatures: GeoJSON.Feature[] = [];
+    const routeFeatures: Feature[] = [];
+    const transferFeatures: Feature[] = [];
 
     for (const feature of journey.features) {
       const properties = feature.properties!;

@@ -13,7 +13,9 @@ import {
   SimpleChanges,
   ViewChild,
 } from '@angular/core';
+import { FeatureCollection } from 'geojson';
 import { LngLatBounds, LngLatLike, Map as MaplibreMap } from 'maplibre-gl';
+import type { Map } from 'maplibre-gl';
 import { ReplaySubject, Subject } from 'rxjs';
 import { debounceTime, delay, switchMap, take, takeUntil } from 'rxjs/operators';
 
@@ -84,7 +86,7 @@ export class SbbJourneyMaps implements OnInit, AfterViewInit, OnDestroy, OnChang
   /**
    * Input to display JourneyMaps GeoJson zone data on the map.
    */
-  @Input() journeyMapsZones?: GeoJSON.FeatureCollection;
+  @Input() journeyMapsZones?: FeatureCollection;
   /**
    * Custom <code>ng-template</code> for the marker details. (Popup or Teaser)
    * See examples for details.
@@ -786,7 +788,7 @@ export class SbbJourneyMaps implements OnInit, AfterViewInit, OnDestroy, OnChang
     this.mapReady.next(this._map);
   }
 
-  private _addSatelliteSource(map: maplibregl.Map) {
+  private _addSatelliteSource(map: Map) {
     map.addSource(this._satelliteImageSourceName, {
       type: 'raster',
       tiles: [SATELLITE_MAP_URL_TEMPLATE],

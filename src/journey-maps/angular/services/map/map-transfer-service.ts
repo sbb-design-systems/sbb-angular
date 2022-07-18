@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import { FeatureCollection } from 'geojson';
 import { GeoJSONSource, Map as MaplibreMap } from 'maplibre-gl';
 
 import { SBB_WALK_SOURCE } from '../constants';
@@ -7,11 +8,11 @@ import { SBB_EMPTY_FEATURE_COLLECTION } from './map-service';
 
 @Injectable({ providedIn: 'root' })
 export class SbbMapTransferService {
-  private _data: GeoJSON.FeatureCollection;
+  private _data: FeatureCollection;
 
   updateTransfer(
     map: MaplibreMap,
-    featureCollection: GeoJSON.FeatureCollection = SBB_EMPTY_FEATURE_COLLECTION
+    featureCollection: FeatureCollection = SBB_EMPTY_FEATURE_COLLECTION
   ): void {
     this._getSource(map).setData(featureCollection);
     this._data = featureCollection;
