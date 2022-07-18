@@ -1,7 +1,4 @@
-package.json
-package-lock.json
 dist
-angular.json
 .github/*
 .vscode/*
 src/*/schematics/*/*/files

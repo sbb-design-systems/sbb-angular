@@ -3,6 +3,10 @@ name: cherry-pick changelog from release branch into default branch
 on:
   push:
     tags: ['*.*']
+
+permissions:
+  issues: write
+
 jobs:
   cherry_pick:
     runs-on: ubuntu-latest

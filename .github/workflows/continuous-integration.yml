@@ -13,6 +13,8 @@ env:
   BAZEL_CACHE_COMBINED_MAX_SIZE: 600MB
   BAZEL_CACHE_VERSION: v3
 
+permissions: read-all
+
 jobs:
   lint:
     runs-on: ubuntu-latest

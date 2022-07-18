@@ -6,6 +6,9 @@ on:
     workflows: ["Continuous Integration"]
     types: [completed]
 
+permissions:
+  pull-requests: write
+
 jobs:
   preview-deployment:
     runs-on: ubuntu-latest
