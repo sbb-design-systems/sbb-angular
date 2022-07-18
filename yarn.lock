@@ -13040,10 +13040,10 @@ obuf@^1.0.0, obuf@^1.1.2:
   resolved "https://registry.yarnpkg.com/obuf/-/obuf-1.1.2.tgz#09bea3343d41859ebd446292d11c9d4db619084e"
   integrity sha512-PX1wu0AmAdPqOL1mWhqmlOd8kOIZQwGZw6rh7uby9fTc5lhaOWFLX3I6R1hrF9k3zUY40e6igsLGkDXK92LJNg==
 
-octokit@2.0.3:
-  version "2.0.3"
-  resolved "https://registry.yarnpkg.com/octokit/-/octokit-2.0.3.tgz#7775a8136be69ef4b6e7f474d50d0d967bd3b74a"
-  integrity sha512-k9YfQ/0vx1vCAhhmx/8LAvevY5eTRCURqqSkxZCdLVvlX12ke4tp6TxFnKo7/ewIQbrWlFd7KpzOyQCNrOlSRQ==
+octokit@2.0.4:
+  version "2.0.4"
+  resolved "https://registry.yarnpkg.com/octokit/-/octokit-2.0.4.tgz#cfd3adee6b775d3fa8cd8746590bed36127cc0a0"
+  integrity sha512-9QvgYGzrSTGmr3koSGtbgeMgqYI20QI0Vv8Bk9y6phchk6L2aHFhcrUOIeNUPj1Z+KZnEBd6A/8faNpDFNfVjg==
   dependencies:
     "@octokit/app" "^13.0.5"
     "@octokit/core" "^4.0.4"
