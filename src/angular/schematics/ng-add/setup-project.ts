@@ -10,14 +10,16 @@ import {
 } from '@angular-devkit/schematics';
 import {
   addModuleImportToRootModule,
-  addModuleImportToStandaloneBootstrap,
   defaultTargetBuilders,
   getProjectFromWorkspace,
   getProjectMainFile,
   getProjectTargetOptions,
   hasNgModuleImport,
-  importsProvidersFrom,
 } from '@angular/cdk/schematics';
+import {
+  addModuleImportToStandaloneBootstrap,
+  importsProvidersFrom,
+} from '@schematics/angular/private/components';
 import { getAppModulePath } from '@schematics/angular/utility/ng-ast-utils';
 import { getWorkspace, updateWorkspace } from '@schematics/angular/utility/workspace';
 import { ProjectType } from '@schematics/angular/utility/workspace-models';
