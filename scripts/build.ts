@@ -27,12 +27,12 @@ if (module === require.main) {
     .command({
       command: 'all',
       describe: 'Build all bazel targets',
-      handler: () => buildAllTargets(),
+      handler: retry(() => buildAllTargets()),
     })
     .command({
       command: 'packages',
       describe: 'Build packages in release mode',
-      handler: () => buildReleasePackages(releaseDir),
+      handler: retry(() => buildReleasePackages(releaseDir)),
     })
     .command({
       command: 'i18n',
@@ -46,6 +46,18 @@ if (module === require.main) {
     })
     .strict()
     .parseSync();
+
+  function retry<T>(action: () => T) {
+    // TODO: Figure out why this is even necessary.
+    return () => {
+      try {
+        return action();
+      } catch (e) {
+        console.log('Action failed once. Retrying...');
+        return action();
+      }
+    };
+  }
 }
 
 /**
