@@ -137,6 +137,7 @@ export interface SbbListenerTypeOptions {
 /** Selection mode options */
 export type SbbSelectionMode = 'single' | 'multi';
 
+// FIXME ses: 'hover' and 'leave' should be defined per feature
 export interface SbbFeaturesHoverChangeEventData {
   /** Event screen position. */
   eventPoint: { x: number; y: number };
