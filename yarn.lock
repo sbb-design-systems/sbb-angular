@@ -4041,15 +4041,10 @@
   dependencies:
     "@types/node" "*"
 
-"@types/geojson@*", "@types/geojson@^7946.0.8":
+"@types/geojson@*", "@types/geojson@7946.0.10", "@types/geojson@^7946.0.8":
   version "7946.0.10"
   resolved "https://registry.yarnpkg.com/@types/geojson/-/geojson-7946.0.10.tgz#6dfbf5ea17142f7f9a043809f1cd4c448cb68249"
   integrity sha512-Nmh0K3iWQJzniTuPRcJn5hxXkfB1T1pgB89SBig5PlJQU5yocazeu4jATJlaA0GYFKWMqDdvYemoSnF2pXgLVA==
-
-"@types/geojson@7946.0.8":
-  version "7946.0.8"
-  resolved "https://registry.yarnpkg.com/@types/geojson/-/geojson-7946.0.8.tgz#30744afdb385e2945e22f3b033f897f76b1f12ca"
-  integrity sha512-1rkryxURpr6aWP7R786/UQOkJ3PcpQiWkAXBmdWc7ryFWqN6a4xfK7BtjXvFBKO9LjQ+MWQSWxYeZX1OApnArA==
 
 "@types/glob@7.2.0":
   version "7.2.0"
@@ -4215,10 +4210,10 @@
   resolved "https://registry.yarnpkg.com/@types/node/-/node-16.10.9.tgz#8f1cdd517972f76a3b928298f4c0747cd6fef25a"
   integrity sha512-H9ReOt+yqIJPCutkTYjFjlyK6WEMQYT9hLZMlWtOjFQY2ItppsWZ6RJf8Aw+jz5qTYceuHvFgPIaKOHtLAEWBw==
 
-"@types/node@16.11.43":
-  version "16.11.43"
-  resolved "https://registry.yarnpkg.com/@types/node/-/node-16.11.43.tgz#555e5a743f76b6b897d47f945305b618525ddbe6"
-  integrity sha512-GqWykok+3uocgfAJM8imbozrqLnPyTrpFlrryURQlw1EesPUCx5XxTiucWDSFF9/NUEXDuD4bnvHm8xfVGWTpQ==
+"@types/node@16.11.45":
+  version "16.11.45"
+  resolved "https://registry.yarnpkg.com/@types/node/-/node-16.11.45.tgz#155b13a33c665ef2b136f7f245fa525da419e810"
+  integrity sha512-3rKg/L5x0rofKuuUt5zlXzOnKyIHXmIu5R8A0TuNDMF2062/AOIDBciFIjToLEJ/9F9DzkHNot+BpNsMI1OLdQ==
 
 "@types/node@^10.1.0":
   version "10.17.60"
@@ -12862,10 +12857,10 @@ obuf@^1.0.0, obuf@^1.1.2:
   resolved "https://registry.yarnpkg.com/obuf/-/obuf-1.1.2.tgz#09bea3343d41859ebd446292d11c9d4db619084e"
   integrity sha512-PX1wu0AmAdPqOL1mWhqmlOd8kOIZQwGZw6rh7uby9fTc5lhaOWFLX3I6R1hrF9k3zUY40e6igsLGkDXK92LJNg==
 
-octokit@2.0.3:
-  version "2.0.3"
-  resolved "https://registry.yarnpkg.com/octokit/-/octokit-2.0.3.tgz#7775a8136be69ef4b6e7f474d50d0d967bd3b74a"
-  integrity sha512-k9YfQ/0vx1vCAhhmx/8LAvevY5eTRCURqqSkxZCdLVvlX12ke4tp6TxFnKo7/ewIQbrWlFd7KpzOyQCNrOlSRQ==
+octokit@2.0.4:
+  version "2.0.4"
+  resolved "https://registry.yarnpkg.com/octokit/-/octokit-2.0.4.tgz#cfd3adee6b775d3fa8cd8746590bed36127cc0a0"
+  integrity sha512-9QvgYGzrSTGmr3koSGtbgeMgqYI20QI0Vv8Bk9y6phchk6L2aHFhcrUOIeNUPj1Z+KZnEBd6A/8faNpDFNfVjg==
   dependencies:
     "@octokit/app" "^13.0.5"
     "@octokit/core" "^4.0.4"
