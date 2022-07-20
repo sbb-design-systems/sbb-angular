@@ -79,74 +79,79 @@ export class SbbFeaturesHoverEvent extends ReplaySubject<SbbFeaturesHoverChangeE
     const eventPoint = { x: event.point.x, y: event.point.y };
     const eventLngLat = { lng: event.lngLat.lng, lat: event.lngLat.lat };
 
-    let currentFeatures: SbbFeatureData[] = this._mapEventUtils.queryFeaturesByLayerIds(
+    const allHoveredFeatures: SbbFeatureData[] = this._mapEventUtils.queryFeaturesByLayerIds(
       this._mapInstance,
       [eventPoint.x, eventPoint.y],
       this._layers
     );
 
-    currentFeatures = this._mapEventUtils.filterFeaturesByPriority(currentFeatures);
+    // filtered by type/priority
+    // (e.g. when hovering lines and points only keep the points)
+    const hoveredFeatures = this._mapEventUtils.filterFeaturesByPriority(allHoveredFeatures);
 
-    let hasNewFeatures = !!currentFeatures.length;
+    // Find related route features and add to hovered features
+    this._routeUtilsService
+      .filterRouteFeatures(hoveredFeatures)
+      .map((routeFeature) =>
+        this._routeUtilsService.findRelatedRoutes(routeFeature, this._mapInstance, 'visibleOnly')
+      )
+      .forEach((relatedFeatures) => hoveredFeatures.push(...relatedFeatures));
 
-    const routeFeatures = this._routeUtilsService.filterRouteFeatures(currentFeatures);
-    if (routeFeatures.length) {
-      for (const routeFeature of routeFeatures) {
-        const relatedFeatures = this._routeUtilsService.findRelatedRoutes(
-          routeFeature,
-          this._mapInstance,
-          'visibleOnly'
-        );
-        if (relatedFeatures.length) {
-          currentFeatures.push(...relatedFeatures);
-        }
-      }
-    }
+    // Previously hovered. Keep hovered
+    const keepFeatures: SbbFeatureData[] = [];
+    // Previously hovered. No longer hovered.
+    const removeFeatures: SbbFeatureData[] = [];
+    // Newly hovered.
+    const newFeatures: SbbFeatureData[] = [];
 
-    if (state.hoveredFeatures.length) {
-      const removeFeatures = state.hoveredFeatures.filter(
-        (current) =>
-          !currentFeatures.find((added) =>
-            SbbFeaturesHoverEvent._featureEventDataEquals(current, added)
-          )
-      );
-      if (removeFeatures.length) {
-        const data = SbbFeaturesHoverEvent._eventToHoverChangeEventData(
-          eventPoint,
-          eventLngLat,
-          removeFeatures,
-          false
-        );
-        // leave
-        this._setFeatureHoverState(data.features, false);
-        this.next(data);
-      }
-      const newFeatures = currentFeatures.filter(
-        (current) =>
-          !state.hoveredFeatures.find((added) =>
-            SbbFeaturesHoverEvent._featureEventDataEquals(current, added)
-          )
-      );
-      if (newFeatures.length) {
-        currentFeatures = newFeatures;
+    for (const current of state.hoveredFeatures) {
+      if (
+        hoveredFeatures.some((hovered) =>
+          SbbFeaturesHoverEvent._featureEventDataEquals(current, hovered)
+        )
+      ) {
+        keepFeatures.push(current);
       } else {
-        hasNewFeatures = false;
+        removeFeatures.push(current);
       }
     }
-    if (hasNewFeatures && currentFeatures?.length) {
+
+    // Change feature state for no longer hovered features and raise event.
+    if (removeFeatures.length) {
       const data = SbbFeaturesHoverEvent._eventToHoverChangeEventData(
         eventPoint,
         eventLngLat,
-        currentFeatures,
-        true
+        removeFeatures,
+        false
       );
-      currentFeatures = data.features;
-      // hover
-      this._setFeatureHoverState(currentFeatures, true);
+      this._setFeatureHoverState(data.features, false);
       this.next(data);
     }
 
-    state.hoveredFeatures = currentFeatures ?? [];
+    // Find newly hovered features
+    newFeatures.push(
+      ...hoveredFeatures.filter(
+        (hovered) =>
+          !keepFeatures.some((keep) => SbbFeaturesHoverEvent._featureEventDataEquals(keep, hovered))
+      )
+    );
+
+    this._setFeatureHoverState(newFeatures, true);
+
+    const mergedFeatures = [...keepFeatures, ...newFeatures];
+
+    if (mergedFeatures.length) {
+      const data = SbbFeaturesHoverEvent._eventToHoverChangeEventData(
+        eventPoint,
+        eventLngLat,
+        mergedFeatures,
+        true
+      );
+
+      this.next(data);
+    }
+
+    state.hoveredFeatures = mergedFeatures;
   }
 
   private _setFeatureHoverState(features: MapGeoJSONFeature[], hover: boolean) {
