@@ -15,14 +15,7 @@
   "allowedPostUpgradeCommands": ["^yarn"],
   "ignoreDeps": [
     "@arcgis/core",
-    "@bazel/buildifier",
-    "@bazel/buildozer",
-    "@bazel/concatjs",
-    "@bazel/esbuild",
-    "@bazel/jasmine",
-    "@bazel/protractor",
-    "@bazel/rollup",
-    "@bazel/runfiles",
+    "@types/geojson",
     "@types/marked",
     "browser-sync",
     "browser-sync-client",
@@ -30,6 +23,7 @@
     "dgeni-packages",
     "highlight.js",
     "marked",
+    "rxjs",
     "typescript",
     "yarn"
   ],
