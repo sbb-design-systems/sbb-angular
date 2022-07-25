@@ -53,7 +53,12 @@ function selectorGroups(options) {
       console.log(JSON.stringify(result, null, 2));
     } else {
       console.log(result);
-      console.log(`Amount of searchable selectors: ${Object.values(result).reduce((current, next) => current + next.length, 0)}`);
+      console.log(
+        `Amount of searchable selectors: ${Object.values(result).reduce(
+          (current, next) => current + next.length,
+          0
+        )}`
+      );
     }
   };
 }

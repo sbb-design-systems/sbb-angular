@@ -41,7 +41,10 @@ function sassMigration() {
         content = content.replace(regex, `@use '@sbb-esta/angular' as sbb;`);
         const localSymbols = [...symbols];
         content = content.replace(/@import '([^']+)';/g, (...m) => {
-          const importPath = (0, import_core.join)((0, import_core.dirname)(path), `${m[1].replace(/[\w\-\_]+$/, (im) => `_${im}`)}.scss`);
+          const importPath = (0, import_core.join)(
+            (0, import_core.dirname)(path),
+            `${m[1].replace(/[\w\-\_]+$/, (im) => `_${im}`)}.scss`
+          );
           localSymbols.push(...createSymbolsFor(importPath));
           return `@use '${m[1]}';`;
         });
@@ -61,10 +64,23 @@ function sassMigration() {
         }
         const [_match, _group, sassVariable, sassFunction, sassMixin] = trimmedLine.match(/((\$[\w\-\_]+):|@function ([\w\-\_]+)|@mixin ([\w\-\_]+))/) ?? [];
         if (sassVariable || sassFunction) {
-          const escapedValue = (sassVariable ?? sassFunction).replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
-          fileSymbols.push((content) => content.replace(new RegExp(`(\\W)(${escapedValue}\\W)`, "g"), (...m) => `${m[1]}${name}.${m[2]}`));
+          const escapedValue = (sassVariable ?? sassFunction).replace(
+            /[.*+?^${}()|[\]\\]/g,
+            "\\$&"
+          );
+          fileSymbols.push(
+            (content) => content.replace(
+              new RegExp(`(\\W)(${escapedValue}\\W)`, "g"),
+              (...m) => `${m[1]}${name}.${m[2]}`
+            )
+          );
         } else if (sassMixin) {
-          fileSymbols.push((content) => content.replace(new RegExp(`include (${sassMixin}\\W)`, "g"), (...m) => `include ${name}.${m[1]}`));
+          fileSymbols.push(
+            (content) => content.replace(
+              new RegExp(`include (${sassMixin}\\W)`, "g"),
+              (...m) => `include ${name}.${m[1]}`
+            )
+          );
         }
       }
       return fileSymbols;
