@@ -629,7 +629,7 @@ textarea {
 // Headings
 // ----------------------------------------------------------------------------------------------------
 
-:is(h1, .sbb-headline1) {
+:is(h1:where(:not([class*='mod_'])), .sbb-headline1) {
   font-family: var(--sbb-font-thin);
   font-weight: normal;
   font-size: sbb.pxToRem(28);
@@ -657,7 +657,7 @@ textarea {
   }
 }
 
-:is(h2, .sbb-headline2) {
+:is(h2:where(:not([class*='mod_'])), .sbb-headline2) {
   font-family: var(--sbb-font-light);
   font-weight: normal;
   font-size: sbb.pxToRem(24);
@@ -680,7 +680,7 @@ textarea {
   }
 }
 
-:is(h3, .sbb-headline3) {
+:is(h3:where(:not([class*='mod_'])), .sbb-headline3) {
   font-family: var(--sbb-font-light);
   font-weight: normal;
   font-size: var(--sbb-font-size-large);
@@ -698,7 +698,7 @@ textarea {
   }
 }
 
-:is(h4, .sbb-headline4) {
+:is(h4:where(:not([class*='mod_'])), .sbb-headline4) {
   font-family: var(--sbb-font-bold);
   font-weight: normal;
   font-size: var(--sbb-font-size);
@@ -730,7 +730,7 @@ textarea {
   @include sbb.ellipsis();
 }
 
-:is(p, .sbb-copy) {
+:is(p:where(:not([class*='mod_'])), .sbb-copy) {
   font-size: var(--sbb-font-size);
   line-height: var(--sbb-line-height);
   margin: var(--sbb-divider-thin) 0;
@@ -758,7 +758,7 @@ textarea {
 // Link
 // ----------------------------------------------------------------------------------------------------
 
-:is(a:where(:not(.sbb-link-reset):not(.sbb-button-base)), .sbb-link) {
+:is(a:where(:not(.sbb-link-reset):not(.sbb-button-base):not([class*='mod_'])), .sbb-link) {
   color: var(--sbb-color-text);
   text-decoration: underline;
   // Read more about here https://medium.com/@iamhiwelo/improving-text-readability-for-dyslexic-users-with-skip-ink-underlines-bf52a2f3426b
@@ -787,7 +787,7 @@ textarea {
 // Lists
 // ----------------------------------------------------------------------------------------------------
 
-:is(ul, .sbb-unordered-list, ol, .sbb-ordered-list) {
+:is(ul:where(:not([class*='mod_'])), .sbb-unordered-list, ol:where(:not([class*='mod_'])), .sbb-ordered-list) {
   font-size: var(--sbb-font-size);
   line-height: var(--sbb-line-height);
   margin-top: calc(#{sbb.pxToRem(17)} * var(--sbb-scaling-factor));
@@ -808,7 +808,7 @@ textarea {
   }
 }
 
-:is(ul, .sbb-unordered-list) {
+:is(ul:where(:not([class*='mod_'])), .sbb-unordered-list) {
   list-style-type: disc;
   padding-left: calc(sbb.pxToRem(16) * var(--sbb-scaling-factor));
 
@@ -822,7 +822,7 @@ textarea {
   }
 }
 
-:is(ol, .sbb-ordered-list) {
+:is(ol:where(:not([class*='mod_'])), .sbb-ordered-list) {
   list-style-type: none;
   counter-reset: item;
   padding-left: 0;
