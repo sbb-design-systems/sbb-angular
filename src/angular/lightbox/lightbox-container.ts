@@ -15,7 +15,7 @@ import {
   ViewEncapsulation,
 } from '@angular/core';
 import { SbbDialogConfig, _SbbDialogContainerBase } from '@sbb-esta/angular/dialog';
-import { Subject, takeUntil } from 'rxjs';
+import { startWith, Subject, takeUntil } from 'rxjs';
 
 import { sbbLightboxAnimations } from './lightbox-animations';
 
@@ -42,7 +42,7 @@ import { sbbLightboxAnimations } from './lightbox-animations';
     '[attr.aria-label]': '_config.ariaLabel',
     '[attr.aria-describedby]': '_config.ariaDescribedBy || null',
     '[@lightboxContainer]': `_getAnimationState()`,
-    '[style.height.px]': '_innerHeight',
+    '[style.height.px]': '_height',
   },
 })
 export class SbbLightboxContainer extends _SbbDialogContainerBase implements OnDestroy {
@@ -76,7 +76,12 @@ export class SbbLightboxContainer extends _SbbDialogContainerBase implements OnD
     this._changeDetectorRef.markForCheck();
   }
 
-  _innerHeight: number;
+  /**
+   * Calculated height of the Lightbox. This is necessary because on mobile Chrome and
+   * Safari, 100vh includes the address bar and is therefore taller than the actual viewport.
+   * See https://bugs.webkit.org/show_bug.cgi?id=141832#c5
+   */
+  _height?: number;
 
   private _destroyed = new Subject<void>();
 
@@ -89,8 +94,8 @@ export class SbbLightboxContainer extends _SbbDialogContainerBase implements OnD
     ngZone: NgZone,
     overlayRef: OverlayRef,
     private _changeDetectorRef: ChangeDetectorRef,
-    private _viewportRuler: ViewportRuler,
-    focusMonitor?: FocusMonitor
+    focusMonitor?: FocusMonitor,
+    private _viewportRuler?: ViewportRuler
   ) {
     super(
       elementRef,
@@ -103,16 +108,11 @@ export class SbbLightboxContainer extends _SbbDialogContainerBase implements OnD
       focusMonitor
     );
 
-    // Use ViewportRuler for height calculation. This is necessary because on mobile Chrome and
-    // Safari, 100vh includes the address bar and is therefore taller than the actual viewport.
-    // See https://bugs.webkit.org/show_bug.cgi?id=141832#c5
-    this._innerHeight = this._viewportRuler.getViewportSize().height;
-
     this._viewportRuler
-      .change()
-      .pipe(takeUntil(this._destroyed))
+      ?.change()
+      .pipe(takeUntil(this._destroyed), startWith(null))
       .subscribe(() => {
-        this._innerHeight = this._viewportRuler.getViewportSize().height;
+        this._height = this._viewportRuler!.getViewportSize().height;
       });
   }
 

@@ -14,9 +14,11 @@
   outline: 0;
   background-color: var(--sbb-color-background);
 
-  // The dialog container should completely fill its parent overlay element.
+  // The dialog container width should completely fill its parent overlay element.
   width: 100%;
-  height: 100%;
+
+  // Fallback if viewport height cannot be calculated by the component.
+  height: 100vh;
 
   @include cdk.high-contrast(active, off) {
     outline: solid sbb.pxToRem(1);
