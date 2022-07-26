@@ -16,7 +16,10 @@ var __copyProps = (to, from, except, desc) => {
   }
   return to;
 };
-var __toESM = (mod, isNodeMode, target) => (target = mod != null ? __create(__getProtoOf(mod)) : {}, __copyProps(isNodeMode || !mod || !mod.__esModule ? __defProp(target, "default", { value: mod, enumerable: true }) : target, mod));
+var __toESM = (mod, isNodeMode, target) => (target = mod != null ? __create(__getProtoOf(mod)) : {}, __copyProps(
+  isNodeMode || !mod || !mod.__esModule ? __defProp(target, "default", { value: mod, enumerable: true }) : target,
+  mod
+));
 var __toCommonJS = (mod) => __copyProps(__defProp({}, "__esModule", { value: true }), mod);
 
 // tools/schematics/extract-symbols/index.ts
@@ -33,13 +36,20 @@ function extractSymbols() {
     let symbols = {};
     extractExportsForModule("src/angular/");
     sortSymbols();
-    tree.overwrite("/src/angular/schematics/ng-update/migrations/sbb-angular-symbols.json", JSON.stringify(symbols, null, 2));
+    tree.overwrite(
+      "/src/angular/schematics/ng-update/migrations/sbb-angular-symbols.json",
+      JSON.stringify(symbols, null, 2)
+    );
     function extractExportsForModule(rootPath) {
       tree.getDir(rootPath).visit((filePath, moduleDirEntry) => {
         if (!(moduleDirEntry && filePath.endsWith(".ts") && !filePath.endsWith(".spec.ts")) || isInIgnoredFolders(filePath)) {
           return;
         }
-        const tsFile = import_typescript.default.createSourceFile(filePath, moduleDirEntry.content.toString(), import_typescript.default.ScriptTarget.Latest);
+        const tsFile = import_typescript.default.createSourceFile(
+          filePath,
+          moduleDirEntry.content.toString(),
+          import_typescript.default.ScriptTarget.Latest
+        );
         tsFile.statements.filter(hasExportModifier).forEach((statement) => {
           extractSymbolOfStatement(filePath, rootPath, statement);
         });
@@ -90,7 +100,9 @@ function extractSymbols() {
     }
     function addToSymbols(name, modulePath) {
       if (symbols[name] && symbols[name] !== modulePath) {
-        console.warn(`symbol ${name} is already in list with value ${symbols[name]}. Tried to add ${modulePath}.`);
+        console.warn(
+          `symbol ${name} is already in list with value ${symbols[name]}. Tried to add ${modulePath}.`
+        );
       }
       symbols[name] = modulePath;
     }
