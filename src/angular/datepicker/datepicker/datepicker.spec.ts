@@ -908,7 +908,6 @@ describe('SbbDatepicker', () => {
       testComponent.date.setValue(new Date(2022, JAN, 1));
       fixture.detectChanges();
 
-      // When clicking toggle
       const dateInput = fixture.debugElement.query(By.css('.sbb-date-input'));
       expect(dateInput.nativeElement.value).toBe('01.01.2022');
     });
