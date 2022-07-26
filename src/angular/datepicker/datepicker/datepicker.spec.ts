@@ -892,6 +892,27 @@ describe('SbbDatepicker', () => {
       expect(toggle).toBeTruthy();
     });
   });
+
+  describe('standalone date input', () => {
+    let fixture: ComponentFixture<StandaloneDateInputComponent>;
+    let testComponent: StandaloneDateInputComponent;
+
+    beforeEach(fakeAsync(() => {
+      fixture = createComponent(StandaloneDateInputComponent);
+      fixture.detectChanges();
+
+      testComponent = fixture.componentInstance;
+    }));
+
+    it('should show the date without the name of the week day', () => {
+      testComponent.date.setValue(new Date(2022, JAN, 1));
+      fixture.detectChanges();
+
+      // When clicking toggle
+      const dateInput = fixture.debugElement.query(By.css('.sbb-date-input'));
+      expect(dateInput.nativeElement.value).toBe('01.01.2022');
+    });
+  });
 });
 
 @Component({
@@ -1086,4 +1107,11 @@ class DatepickerWithNoToggleComponent {
   @ViewChild('d') datepicker: SbbDatepicker<Date>;
   @ViewChild(SbbDateInput) input: SbbDateInput<Date>;
   notoggle: boolean = true;
+}
+
+@Component({
+  template: ` <input sbbDateInput sbbInput [formControl]="date" /> `,
+})
+class StandaloneDateInputComponent {
+  date = new FormControl<Date | null>(null);
 }
