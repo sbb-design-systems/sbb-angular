@@ -1629,11 +1629,11 @@ describe('SbbLightbox with default options', () => {
 
     const overlayPane = overlayContainerElement.querySelector('.cdk-overlay-pane') as HTMLElement;
     expect(overlayPane.style.width).toBe('100vw');
-    expect(overlayPane.style.height).toBe('100vh');
+    expect(overlayPane.style.height).toBe('auto');
     expect(overlayPane.style.minWidth).toBe('100vw');
-    expect(overlayPane.style.minHeight).toBe('100vh');
+    expect(overlayPane.style.minHeight).toBe('auto');
     expect(overlayPane.style.maxWidth).toBe('100vw');
-    expect(overlayPane.style.maxHeight).toBe('100vh');
+    expect(overlayPane.style.maxHeight).toBe('none');
   });
 
   it('should be overridable by open() options', fakeAsync(() => {

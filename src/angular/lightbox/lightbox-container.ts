@@ -10,7 +10,6 @@ import {
   HostListener,
   Inject,
   NgZone,
-  OnInit,
   Optional,
   ViewEncapsulation,
 } from '@angular/core';
@@ -44,7 +43,7 @@ import { sbbLightboxAnimations } from './lightbox-animations';
     '[style.height.px]': '_innerHeight',
   },
 })
-export class SbbLightboxContainer extends _SbbDialogContainerBase implements OnInit {
+export class SbbLightboxContainer extends _SbbDialogContainerBase {
   /** Callback, invoked whenever an animation on the host completes. */
   @HostListener('@lightboxContainer.done', ['$event'])
   _onAnimationDone({ toState, totalTime }: AnimationEvent) {
@@ -103,9 +102,16 @@ export class SbbLightboxContainer extends _SbbDialogContainerBase implements OnI
       overlayRef,
       focusMonitor
     );
+
+    const window = this._getWindow();
+
+    if (typeof window !== 'undefined') {
+      this._innerHeight = window.innerHeight;
+    }
   }
 
-  ngOnInit(): void {
-    this._innerHeight = window.innerHeight;
+  /** Use defaultView of injected document if available or fallback to global window reference */
+  private _getWindow(): Window {
+    return this._document?.defaultView || window;
   }
 }

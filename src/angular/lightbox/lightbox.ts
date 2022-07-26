@@ -102,9 +102,9 @@ export class SbbLightbox extends _SbbDialogBase<SbbLightboxContainer, SbbLightbo
       width: '100vw',
       minWidth: '100vw',
       maxWidth: '100vw',
-      height: '100vh',
-      minHeight: '100vh',
-      maxHeight: '100vh',
+      height: 'auto',
+      minHeight: 'auto',
+      maxHeight: 'none',
     };
     dialogConfig.id = dialogConfig.id || `${this._idPrefix}${uniqueId++}`;
     return super.open(componentOrTemplateRef, dialogConfig) as any;
