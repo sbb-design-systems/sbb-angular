@@ -67,7 +67,7 @@ export class SbbLightboxContainer extends _SbbDialogContainerBase implements OnI
   }
 
   @HostListener('window:resize', ['$event'])
-  onResize() {
+  _handleResize() {
     this._innerHeight = window.innerHeight;
   }
 
