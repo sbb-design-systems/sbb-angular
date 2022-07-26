@@ -2,6 +2,16 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [14.1.3](https://github.com/sbb-design-systems/sbb-angular/compare/14.1.2...14.1.3) (2022-07-26)
+
+
+### Bug Fixes
+
+* **angular/autocomplete:** prevent outside clicks from going to other overlays ([#1616](https://github.com/sbb-design-systems/sbb-angular/issues/1616)) ([6ec25ce](https://github.com/sbb-design-systems/sbb-angular/commit/6ec25ce82d8fd7cae131fc4927d0401542d9edbb))
+* **angular/schematics:** adapt schematics imports ([#1593](https://github.com/sbb-design-systems/sbb-angular/issues/1593)) ([1ec46b9](https://github.com/sbb-design-systems/sbb-angular/commit/1ec46b9b8e6ece50e97851b298fa32da7f6f887c))
+* **deps:** update angular ([#1596](https://github.com/sbb-design-systems/sbb-angular/issues/1596)) ([0750aef](https://github.com/sbb-design-systems/sbb-angular/commit/0750aefa532d1580d73aa306816d2b0f893482a2))
+* **multiple:** do not override styles of SBB.ch ([#1618](https://github.com/sbb-design-systems/sbb-angular/issues/1618)) ([12f06ac](https://github.com/sbb-design-systems/sbb-angular/commit/12f06ac15d80867cbd7e915d575b400e4e0c1261))
+
 ### [14.1.2](https://github.com/sbb-design-systems/sbb-angular/compare/14.1.1...14.1.2) (2022-07-14)
 
 
