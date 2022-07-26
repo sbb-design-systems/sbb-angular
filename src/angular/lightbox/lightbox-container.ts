@@ -1,6 +1,6 @@
 import { AnimationEvent } from '@angular/animations';
 import { FocusMonitor, FocusTrapFactory, InteractivityChecker } from '@angular/cdk/a11y';
-import { OverlayRef } from '@angular/cdk/overlay';
+import { OverlayRef, ViewportRuler } from '@angular/cdk/overlay';
 import { DOCUMENT } from '@angular/common';
 import {
   ChangeDetectionStrategy,
@@ -10,10 +10,12 @@ import {
   HostListener,
   Inject,
   NgZone,
+  OnDestroy,
   Optional,
   ViewEncapsulation,
 } from '@angular/core';
 import { SbbDialogConfig, _SbbDialogContainerBase } from '@sbb-esta/angular/dialog';
+import { Subject, takeUntil } from 'rxjs';
 
 import { sbbLightboxAnimations } from './lightbox-animations';
 
@@ -43,7 +45,7 @@ import { sbbLightboxAnimations } from './lightbox-animations';
     '[style.height.px]': '_innerHeight',
   },
 })
-export class SbbLightboxContainer extends _SbbDialogContainerBase {
+export class SbbLightboxContainer extends _SbbDialogContainerBase implements OnDestroy {
   /** Callback, invoked whenever an animation on the host completes. */
   @HostListener('@lightboxContainer.done', ['$event'])
   _onAnimationDone({ toState, totalTime }: AnimationEvent) {
@@ -65,11 +67,6 @@ export class SbbLightboxContainer extends _SbbDialogContainerBase {
     }
   }
 
-  @HostListener('window:resize', ['$event'])
-  _handleResize() {
-    this._innerHeight = window.innerHeight;
-  }
-
   /** Starts the dialog exit animation. */
   _startExitAnimation(): void {
     this._state = 'exit';
@@ -81,6 +78,8 @@ export class SbbLightboxContainer extends _SbbDialogContainerBase {
 
   _innerHeight: number;
 
+  private _destroyed = new Subject<void>();
+
   constructor(
     elementRef: ElementRef,
     focusTrapFactory: FocusTrapFactory,
@@ -90,6 +89,7 @@ export class SbbLightboxContainer extends _SbbDialogContainerBase {
     ngZone: NgZone,
     overlayRef: OverlayRef,
     private _changeDetectorRef: ChangeDetectorRef,
+    private _viewportRuler: ViewportRuler,
     focusMonitor?: FocusMonitor
   ) {
     super(
@@ -103,15 +103,22 @@ export class SbbLightboxContainer extends _SbbDialogContainerBase {
       focusMonitor
     );
 
-    const window = this._getWindow();
+    // Use ViewportRuler for height calculation. This is necessary because on mobile Chrome and
+    // Safari, 100vh includes the address bar and is therefore taller than the actual viewport.
+    // See https://bugs.webkit.org/show_bug.cgi?id=141832#c5
+    this._innerHeight = this._viewportRuler.getViewportSize().height;
 
-    if (typeof window !== 'undefined') {
-      this._innerHeight = window.innerHeight;
-    }
+    this._viewportRuler
+      .change()
+      .pipe(takeUntil(this._destroyed))
+      .subscribe(() => {
+        this._innerHeight = this._viewportRuler.getViewportSize().height;
+      });
   }
 
-  /** Use defaultView of injected document if available or fallback to global window reference */
-  private _getWindow(): Window {
-    return this._document?.defaultView || window;
+  override ngOnDestroy(): void {
+    super.ngOnDestroy();
+    this._destroyed.next();
+    this._destroyed.complete();
   }
 }
