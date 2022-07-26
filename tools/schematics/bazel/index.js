@@ -16,7 +16,10 @@ var __copyProps = (to, from, except, desc) => {
   }
   return to;
 };
-var __toESM = (mod, isNodeMode, target) => (target = mod != null ? __create(__getProtoOf(mod)) : {}, __copyProps(isNodeMode || !mod || !mod.__esModule ? __defProp(target, "default", { value: mod, enumerable: true }) : target, mod));
+var __toESM = (mod, isNodeMode, target) => (target = mod != null ? __create(__getProtoOf(mod)) : {}, __copyProps(
+  isNodeMode || !mod || !mod.__esModule ? __defProp(target, "default", { value: mod, enumerable: true }) : target,
+  mod
+));
 var __toCommonJS = (mod) => __copyProps(__defProp({}, "__esModule", { value: true }), mod);
 
 // tools/schematics/bazel/index.ts
@@ -137,15 +140,22 @@ var NgModule = class {
     const moduleName = (0, import_core3.relative)(this._tree.getDir(this._context.srcRoot).path, this.path);
     this.moduleName = `${this._context.organization}/${moduleName}`;
     this.hasMarkdown = this._dir.subfiles.includes((0, import_core3.fragment)(`${(0, import_core3.basename)(this.path)}.md`));
-    const tsDependencies = this._context.typeScriptDependencyResolver.resolveDependencies(this._fileRegistry.tsFiles);
+    const tsDependencies = this._context.typeScriptDependencyResolver.resolveDependencies(
+      this._fileRegistry.tsFiles
+    );
     this.dependencies = tsDependencies.dependencies;
     this.genFiles = tsDependencies.files;
     this.genRules = this._context.bazelGenruleResolver.resolveGenrule(this._dir);
     this.hasTests = !!this._fileRegistry.specFiles.length;
-    const testDependencies = this._context.typeScriptDependencyResolver.resolveDependencies(this._fileRegistry.specFiles, ["@npm//@angular/core"]);
+    const testDependencies = this._context.typeScriptDependencyResolver.resolveDependencies(
+      this._fileRegistry.specFiles,
+      ["@npm//@angular/core"]
+    );
     this.testDependencies = testDependencies.dependencies;
     this.hasSassLibrary = !!this._fileRegistry.scssLibaryFiles.length;
-    this.sassBinaries = this._context.sassDependencyResolver.resolveDependencies(this._fileRegistry.scssFiles);
+    this.sassBinaries = this._context.sassDependencyResolver.resolveDependencies(
+      this._fileRegistry.scssFiles
+    );
     this.stylesheets = this.sassBinaries.map((s) => s.path.replace(".scss", ".css"));
     this.hasHtml = !!this._fileRegistry.htmlFiles.length;
     this.hasCss = !!this._fileRegistry.cssFiles.length;
@@ -156,25 +166,33 @@ var NgModule = class {
     ]);
   }
   render() {
-    return this._modules.reduce((current, next) => current.concat(next.render()), [
-      (0, import_schematics.mergeWith)((0, import_schematics.apply)((0, import_schematics.url)(this._templateUrl), [
-        (0, import_schematics.applyTemplates)(this._templateOptions()),
-        (0, import_schematics.move)(this.path),
-        (0, import_schematics.forEach)((fileEntry) => {
-          const content = formatBazelFile((0, import_core3.relative)(this._tree.root.path, fileEntry.path), fileEntry.content.toString());
-          fileEntry = {
-            path: fileEntry.path,
-            content: Buffer.from(content)
-          };
-          if (!this._tree.exists(fileEntry.path)) {
-            return fileEntry;
-          } else if (this._tree.read(fileEntry.path).toString() !== fileEntry.content.toString()) {
-            this._tree.overwrite(fileEntry.path, fileEntry.content);
-          }
-          return null;
-        })
-      ]))
-    ]);
+    return this._modules.reduce(
+      (current, next) => current.concat(next.render()),
+      [
+        (0, import_schematics.mergeWith)(
+          (0, import_schematics.apply)((0, import_schematics.url)(this._templateUrl), [
+            (0, import_schematics.applyTemplates)(this._templateOptions()),
+            (0, import_schematics.move)(this.path),
+            (0, import_schematics.forEach)((fileEntry) => {
+              const content = formatBazelFile(
+                (0, import_core3.relative)(this._tree.root.path, fileEntry.path),
+                fileEntry.content.toString()
+              );
+              fileEntry = {
+                path: fileEntry.path,
+                content: Buffer.from(content)
+              };
+              if (!this._tree.exists(fileEntry.path)) {
+                return fileEntry;
+              } else if (this._tree.read(fileEntry.path).toString() !== fileEntry.content.toString()) {
+                this._tree.overwrite(fileEntry.path, fileEntry.content);
+              }
+              return null;
+            })
+          ])
+        )
+      ]
+    );
   }
   _templateOptions() {
     return this;
@@ -305,12 +323,18 @@ var FlexibleSassDependencyResolver = class {
     if (!matches) {
       return [];
     }
-    return matches.filter((s) => !s.match(/@use ['"]sass:/)).map((s) => s.substring(s.trim().startsWith("@use") ? 6 : 9, s.length - 2).replace(/['"][ \w]*/, "")).map((importPath) => {
-      const occurence = Array.from(this._dependencyByOccurence.keys()).find((o) => importPath.includes(o));
+    return matches.filter((s) => !s.match(/@use ['"]sass:/)).map(
+      (s) => s.substring(s.trim().startsWith("@use") ? 6 : 9, s.length - 2).replace(/['"][ \w]*/, "")
+    ).map((importPath) => {
+      const occurence = Array.from(this._dependencyByOccurence.keys()).find(
+        (o) => importPath.includes(o)
+      );
       if (occurence) {
         return this._dependencyByOccurence.get(occurence);
       } else if (importPath.includes("/node_modules/")) {
-        return this._npmDependencyResolver.toBazelNodeDependency(importPath.split("/node_modules/")[1]);
+        return this._npmDependencyResolver.toBazelNodeDependency(
+          importPath.split("/node_modules/")[1]
+        );
       } else if (importPath.includes("~")) {
         return this._npmDependencyResolver.toBazelNodeDependency(importPath.split("~")[1]);
       } else if (this._isInModule((0, import_core5.join)((0, import_core5.dirname)(file.path), importPath), moduleDir)) {
@@ -361,9 +385,12 @@ var ShowcasePackage = class {
       return examplesDir.subdirs.map((e) => `    "/${examplesDir.dir(e).path}",`);
     }).reduce((current, next) => current.concat(next), []).sort().join("\n");
     const buildFile = this._dir.file((0, import_core6.fragment)("BUILD.bazel"));
-    this._tree.overwrite(buildFile.path, buildFile.content.toString().replace(/ALL_EXAMPLES = \[[^\]]+\]/m, `ALL_EXAMPLES = [
+    this._tree.overwrite(
+      buildFile.path,
+      buildFile.content.toString().replace(/ALL_EXAMPLES = \[[^\]]+\]/m, `ALL_EXAMPLES = [
 ${exampleModules}
-]`));
+]`)
+    );
     return this._appModule.render();
   }
 };
@@ -390,23 +417,36 @@ var TypeScriptDependencyResolverBase = class {
     return result;
   }
   _findFileDependencies(details) {
-    return this._findStaticDependencies(details).concat(this._findDependencyByOccurrence(details.file));
+    return this._findStaticDependencies(details).concat(
+      this._findDependencyByOccurrence(details.file)
+    );
   }
   _findStaticDependencies(details) {
-    const sourceFile = schematicsTs.createSourceFile((0, import_core7.basename)(details.file.path), details.file.content.toString(), schematicsTs.ScriptTarget.ESNext, true);
+    const sourceFile = schematicsTs.createSourceFile(
+      (0, import_core7.basename)(details.file.path),
+      details.file.content.toString(),
+      schematicsTs.ScriptTarget.ESNext,
+      true
+    );
     return this._findImportsAndReexports(sourceFile).concat(this._findDynamicImports(sourceFile)).concat(this._findReferences(sourceFile)).filter((i) => !!i).map((importPath) => this._resolveTypeScriptImport({ importPath, ...details }));
   }
   _findImportsAndReexports(sourceFile) {
     return [
       ...(0, import_ast_utils.findNodes)(sourceFile, schematicsTs.SyntaxKind.ImportDeclaration, void 0, true),
       ...(0, import_ast_utils.findNodes)(sourceFile, schematicsTs.SyntaxKind.ExportDeclaration, void 0, true)
-    ].map((n) => {
-      var _a;
-      return ((_a = n.moduleSpecifier) == null ? void 0 : _a.getText().replace(/['"]/g, "")) ?? "";
-    });
+    ].map(
+      (n) => {
+        var _a;
+        return ((_a = n.moduleSpecifier) == null ? void 0 : _a.getText().replace(/['"]/g, "")) ?? "";
+      }
+    );
   }
   _findDynamicImports(sourceFile) {
-    return (0, import_ast_utils.findNodes)(sourceFile, schematicsTs.SyntaxKind.ImportKeyword, void 0, true).filter((n) => n.getFullText().match(/ import/) && schematicsTs.isCallExpression(n.parent) && schematicsTs.isStringLiteral(n.parent.arguments[0])).map((n) => n.parent.arguments[0].getText().replace(/['"]/g, ""));
+    return (0, import_ast_utils.findNodes)(sourceFile, schematicsTs.SyntaxKind.ImportKeyword, void 0, true).filter(
+      (n) => n.getFullText().match(/ import/) && schematicsTs.isCallExpression(n.parent) && schematicsTs.isStringLiteral(n.parent.arguments[0])
+    ).map(
+      (n) => n.parent.arguments[0].getText().replace(/['"]/g, "")
+    );
   }
   _findReferences(sourceFile) {
     return sourceFile.typeReferenceDirectives.map((d) => this._config.npmDependencyResolver.resolvePackageNames(d.fileName)).reduce((cur, next) => cur.concat(next), []);
@@ -462,7 +502,9 @@ var StrictModuleTypeScriptDependencyResolver = class extends TypeScriptDependenc
     if (importFileModuleBaseDir.path !== moduleBaseDir.path) {
       console.log(importFileModuleBaseDir.path);
       console.log(moduleBaseDir.path);
-      throw new import_schematics3.SchematicsException(`Import ${importPath} in ${file.path} escapes Bazel module boundary!`);
+      throw new import_schematics3.SchematicsException(
+        `Import ${importPath} in ${file.path} escapes Bazel module boundary!`
+      );
     } else if (files.every((f) => f.path !== importFilePath)) {
       return { files: [(0, import_core7.relative)(moduleBaseDir.path, importFilePath)] };
     }
@@ -492,58 +534,67 @@ function bazel(options) {
     if (!options.filter) {
       srcDir.subdirs.forEach((d) => context.addTask(new import_tasks.RunSchematicTask("bazel", { filter: d })));
     } else {
-      return (0, import_schematics4.chain)(srcDir.subdirs.filter((d) => !options.filter || d === options.filter).map((d) => srcDir.dir(d)).map((packageDir) => {
-        const isShowcase = packageDir.path.endsWith("showcase");
-        const isComponentsExamples = packageDir.path.endsWith("components-examples");
-        const organization = "@sbb-esta";
-        const srcRoot = "src";
-        const moduleDetector = isShowcase ? new AppBazelModuleDetector(tree) : new LibraryBazelModuleDetector(tree);
-        const npmDependencyResolver = new NpmDependencyResolver(tree.read("package.json").toString());
-        const dependencyByOccurence = (/* @__PURE__ */ new Map()).set("ngDevMode", "//src:dev_mode_types").set("typeof global", "@npm//@types/node");
-        const tsConfig = {
-          organization,
-          srcRoot,
-          tree,
-          moduleDetector,
-          npmDependencyResolver,
-          dependencyByOccurence
-        };
-        const typeScriptDependencyResolver = isShowcase ? new RelativeModuleTypeScriptDependencyResolver(tsConfig) : new StrictModuleTypeScriptDependencyResolver(tsConfig);
-        const styleReplaceMap = (/* @__PURE__ */ new Map()).set("@sbb-esta/angular", "//src/angular:scss_lib").set("external/npm/node_modules/@angular/cdk", "//src/angular:scss_lib");
-        const sassDependencyResolver = new FlexibleSassDependencyResolver(moduleDetector, npmDependencyResolver, context.logger, styleReplaceMap);
-        const bazelGenruleResolver = new BazelGenruleResolver();
-        if (isShowcase) {
-          return new ShowcasePackage(packageDir, tree, {
-            ...context,
+      return (0, import_schematics4.chain)(
+        srcDir.subdirs.filter((d) => !options.filter || d === options.filter).map((d) => srcDir.dir(d)).map((packageDir) => {
+          const isShowcase = packageDir.path.endsWith("showcase");
+          const isComponentsExamples = packageDir.path.endsWith("components-examples");
+          const organization = "@sbb-esta";
+          const srcRoot = "src";
+          const moduleDetector = isShowcase ? new AppBazelModuleDetector(tree) : new LibraryBazelModuleDetector(tree);
+          const npmDependencyResolver = new NpmDependencyResolver(
+            tree.read("package.json").toString()
+          );
+          const dependencyByOccurence = (/* @__PURE__ */ new Map()).set("ngDevMode", "//src:dev_mode_types").set("typeof global", "@npm//@types/node");
+          const tsConfig = {
             organization,
             srcRoot,
+            tree,
             moduleDetector,
-            typeScriptDependencyResolver,
-            sassDependencyResolver,
-            bazelGenruleResolver
-          });
-        } else if (isComponentsExamples) {
-          return new NgPackageExamples(packageDir, tree, {
-            ...context,
-            organization,
-            srcRoot,
+            npmDependencyResolver,
+            dependencyByOccurence
+          };
+          const typeScriptDependencyResolver = isShowcase ? new RelativeModuleTypeScriptDependencyResolver(tsConfig) : new StrictModuleTypeScriptDependencyResolver(tsConfig);
+          const styleReplaceMap = (/* @__PURE__ */ new Map()).set("@sbb-esta/angular", "//src/angular:scss_lib").set("external/npm/node_modules/@angular/cdk", "//src/angular:scss_lib");
+          const sassDependencyResolver = new FlexibleSassDependencyResolver(
             moduleDetector,
-            typeScriptDependencyResolver,
-            sassDependencyResolver,
-            bazelGenruleResolver
-          });
-        } else {
-          return new NgPackage(packageDir, tree, {
-            ...context,
-            organization,
-            srcRoot,
-            moduleDetector,
-            typeScriptDependencyResolver,
-            sassDependencyResolver,
-            bazelGenruleResolver
-          });
-        }
-      }).reduce((current, next) => current.concat(next.render()), []));
+            npmDependencyResolver,
+            context.logger,
+            styleReplaceMap
+          );
+          const bazelGenruleResolver = new BazelGenruleResolver();
+          if (isShowcase) {
+            return new ShowcasePackage(packageDir, tree, {
+              ...context,
+              organization,
+              srcRoot,
+              moduleDetector,
+              typeScriptDependencyResolver,
+              sassDependencyResolver,
+              bazelGenruleResolver
+            });
+          } else if (isComponentsExamples) {
+            return new NgPackageExamples(packageDir, tree, {
+              ...context,
+              organization,
+              srcRoot,
+              moduleDetector,
+              typeScriptDependencyResolver,
+              sassDependencyResolver,
+              bazelGenruleResolver
+            });
+          } else {
+            return new NgPackage(packageDir, tree, {
+              ...context,
+              organization,
+              srcRoot,
+              moduleDetector,
+              typeScriptDependencyResolver,
+              sassDependencyResolver,
+              bazelGenruleResolver
+            });
+          }
+        }).reduce((current, next) => current.concat(next.render()), [])
+      );
     }
   };
 }
