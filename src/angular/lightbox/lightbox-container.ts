@@ -1,6 +1,6 @@
 import { AnimationEvent } from '@angular/animations';
 import { FocusMonitor, FocusTrapFactory, InteractivityChecker } from '@angular/cdk/a11y';
-import { OverlayRef } from '@angular/cdk/overlay';
+import { OverlayRef, ViewportRuler } from '@angular/cdk/overlay';
 import { DOCUMENT } from '@angular/common';
 import {
   ChangeDetectionStrategy,
@@ -10,10 +10,12 @@ import {
   HostListener,
   Inject,
   NgZone,
+  OnDestroy,
   Optional,
   ViewEncapsulation,
 } from '@angular/core';
 import { SbbDialogConfig, _SbbDialogContainerBase } from '@sbb-esta/angular/dialog';
+import { startWith, Subject, takeUntil } from 'rxjs';
 
 import { sbbLightboxAnimations } from './lightbox-animations';
 
@@ -40,9 +42,10 @@ import { sbbLightboxAnimations } from './lightbox-animations';
     '[attr.aria-label]': '_config.ariaLabel',
     '[attr.aria-describedby]': '_config.ariaDescribedBy || null',
     '[@lightboxContainer]': `_getAnimationState()`,
+    '[style.height.px]': '_height',
   },
 })
-export class SbbLightboxContainer extends _SbbDialogContainerBase {
+export class SbbLightboxContainer extends _SbbDialogContainerBase implements OnDestroy {
   /** Callback, invoked whenever an animation on the host completes. */
   @HostListener('@lightboxContainer.done', ['$event'])
   _onAnimationDone({ toState, totalTime }: AnimationEvent) {
@@ -73,6 +76,15 @@ export class SbbLightboxContainer extends _SbbDialogContainerBase {
     this._changeDetectorRef.markForCheck();
   }
 
+  /**
+   * Calculated height of the Lightbox. This is necessary because on mobile Chrome and
+   * Safari, 100vh includes the address bar and is therefore taller than the actual viewport.
+   * See https://bugs.webkit.org/show_bug.cgi?id=141832#c5
+   */
+  _height?: number;
+
+  private _destroyed = new Subject<void>();
+
   constructor(
     elementRef: ElementRef,
     focusTrapFactory: FocusTrapFactory,
@@ -82,7 +94,8 @@ export class SbbLightboxContainer extends _SbbDialogContainerBase {
     ngZone: NgZone,
     overlayRef: OverlayRef,
     private _changeDetectorRef: ChangeDetectorRef,
-    focusMonitor?: FocusMonitor
+    focusMonitor?: FocusMonitor,
+    private _viewportRuler?: ViewportRuler
   ) {
     super(
       elementRef,
@@ -94,5 +107,18 @@ export class SbbLightboxContainer extends _SbbDialogContainerBase {
       overlayRef,
       focusMonitor
     );
+
+    this._viewportRuler
+      ?.change()
+      .pipe(takeUntil(this._destroyed), startWith(null))
+      .subscribe(() => {
+        this._height = this._viewportRuler!.getViewportSize().height;
+      });
+  }
+
+  override ngOnDestroy(): void {
+    super.ngOnDestroy();
+    this._destroyed.next();
+    this._destroyed.complete();
   }
 }
