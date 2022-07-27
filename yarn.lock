@@ -388,9 +388,9 @@
   resolved "https://registry.yarnpkg.com/@angular/core/-/core-9.0.0.tgz#227dc53e1ac81824f998c6e76000b7efc522641e"
   integrity sha512-6Pxgsrf0qF9iFFqmIcWmjJGkkCaCm6V5QNnxMy2KloO3SDq6QuMVRbN9RtC8Urmo25LP+eZ6ZgYqFYpdD8Hd9w==
 
-"@angular/dev-infra-private@https://github.com/angular/dev-infra-private-builds.git#cc061c7d21af7d18cea0a6d60de490e3450f8fc9":
-  version "0.0.0-cd02891231926b56e403fa94849a6638899e98ce"
-  resolved "https://github.com/angular/dev-infra-private-builds.git#cc061c7d21af7d18cea0a6d60de490e3450f8fc9"
+"@angular/dev-infra-private@https://github.com/angular/dev-infra-private-builds.git#6d9c069f7ba8bedd07d376444d65472154026ce8":
+  version "0.0.0-e5a5a4c9edf515bcafb9b72a90fe2ad3e811df1d"
+  resolved "https://github.com/angular/dev-infra-private-builds.git#6d9c069f7ba8bedd07d376444d65472154026ce8"
   dependencies:
     "@angular-devkit/build-angular" "14.1.0-rc.3"
     "@angular/benchpress" "0.3.0"
