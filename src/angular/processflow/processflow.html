@@ -35,7 +35,6 @@
     (@stepTransition.done)="_animationDone.next($event)"
     [id]="_getStepContentId(i)"
     [attr.aria-labelledby]="_getStepLabelId(i)"
-    [attr.aria-expanded]="selectedIndex === i"
   >
     <ng-container [ngTemplateOutlet]="step.content"></ng-container>
   </div>

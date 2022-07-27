@@ -124,22 +124,6 @@ describe('SbbProcessflow', () => {
       expect(processflowEl.getAttribute('role')).toBe('tablist');
     });
 
-    it('should set aria-expanded of content correctly', () => {
-      const stepContents = fixture.debugElement.queryAll(By.css(`.sbb-processflow-content`));
-      const processflowComponent = fixture.debugElement.query(
-        By.directive(SbbProcessflow)
-      )!.componentInstance;
-      const firstStepContentEl = stepContents[0].nativeElement;
-      expect(firstStepContentEl.getAttribute('aria-expanded')).toBe('true');
-
-      processflowComponent.selectedIndex = 1;
-      fixture.detectChanges();
-
-      expect(firstStepContentEl.getAttribute('aria-expanded')).toBe('false');
-      const secondStepContentEl = stepContents[1].nativeElement;
-      expect(secondStepContentEl.getAttribute('aria-expanded')).toBe('true');
-    });
-
     it('should display the correct label', () => {
       const processflowComponent = fixture.debugElement.query(
         By.directive(SbbProcessflow)
