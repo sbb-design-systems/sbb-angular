@@ -17,18 +17,18 @@
     (click)="_onInputClick($event)"
   />
 
-  <div class="sbb-selection-container">
-    <div class="sbb-selection-container-checked"></div>
-  </div>
+  <span class="sbb-selection-container">
+    <span class="sbb-selection-container-checked"></span>
+  </span>
 
-  <div class="sbb-selection-content">
-    <div class="sbb-selection-inner-content">
+  <span class="sbb-selection-content">
+    <span class="sbb-selection-inner-content">
       <!-- Add an invisible span so JAWS can read the label -->
       <span style="display: none">&nbsp;</span>
       <span><ng-content></ng-content></span>
       <ng-content select="sbb-radio-button-panel-subtitle"></ng-content>
-    </div>
+    </span>
     <ng-content select="sbb-radio-button-panel-warning"></ng-content>
     <ng-content select="sbb-radio-button-panel-note"></ng-content>
-  </div>
+  </span>
 </label>

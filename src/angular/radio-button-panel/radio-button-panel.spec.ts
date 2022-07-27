@@ -177,6 +177,11 @@ describe('SbbRadioButtonPanel', () => {
       fixture.detectChanges();
       expect(element.classList.contains('sbb-selection-checked')).toBeTrue();
     });
+
+    it('should not contain a div inside the label', () => {
+      const element = fixture.debugElement.nativeElement as HTMLElement;
+      expect(element.querySelectorAll('label div').length).toBe(0);
+    });
   });
 
   describe('note with icon', () => {

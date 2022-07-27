@@ -95,4 +95,7 @@ This internal checkbox receives focus and is automatically labelled by the text 
 Checkboxes without text or labels should be given a meaningful label via `aria-label` or
 `aria-labelledby`.
 
+Internally, the component is wrapped in a `<label>` tag. For HTML standard conformity, please only
+use inline elements like `<span>` and `<strong>` and avoid block elements like `<div>`.
+
 The checkbox panels are essentially large checkboxes, with more content options.

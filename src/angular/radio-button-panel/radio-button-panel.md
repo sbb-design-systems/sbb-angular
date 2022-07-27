@@ -129,3 +129,6 @@ radio buttons because groups are easier to use exclusively with a keyboard.
 
 You should provide an accessible label for all `<sbb-radio-group>` elements via `aria-label` or
 `aria-labelledby`.
+
+Internally, the component is wrapped in a `<label>` tag. For HTML standard conformity, please only
+use inline elements like `<span>` and `<strong>` and avoid block elements like `<div>`.
