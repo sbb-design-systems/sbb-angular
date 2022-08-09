@@ -143,7 +143,7 @@
     "lint-staged": "13.0.3",
     "marked": "^2.0.3",
     "npm-run-all": "4.1.5",
-    "octokit": "2.0.4",
+    "octokit": "2.0.5",
     "prettier": "2.7.1",
     "protractor": "7.0.0",
     "renovate": "32.10.7",
