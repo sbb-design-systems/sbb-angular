@@ -17,7 +17,11 @@
   cursor: default;
   padding-bottom: 0.5em;
   font-size: var(--sbb-font-size-large);
-  line-height: 1;
+  // The line-height must be greater than 1 to avoid letters like "g" and "y" being cut off.
+  // The correct placing is ensured using a negative top- and bottom margin.
+  line-height: var(--sbb-line-height-medium);
+  margin-top: calc((var(--sbb-font-size-large) - var(--sbb-line-height-medium)) / 2);
+  margin-bottom: calc((var(--sbb-font-size-large) - var(--sbb-line-height-medium)) / 2);
 
   :where(html:not(.sbb-lean)) & {
     @include sbb.mq($from: desktop) {
@@ -27,6 +31,9 @@
   :where(html.sbb-lean) & {
     font-size: sbb.pxToRem(16);
     padding-bottom: sbb.pxToRem(5);
+    line-height: var(--sbb-line-height-small);
+    margin-top: calc((sbb.pxToRem(16) - var(--sbb-line-height-small)) / 2);
+    margin-bottom: calc((sbb.pxToRem(16) - var(--sbb-line-height-small)) / 2);
   }
 }
 
