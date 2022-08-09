@@ -6,7 +6,8 @@ You can use the notification component to display a simple message.
 
 ### Notification types
 
-We support different notification types: `success` (default), `info`, `warn` (Lean only) and `error`.
+We support different notification types: `success` (default), `info` and `error`.
+In the lean design variant there are the additional types `info-light` and `warn`.
 
 ```html
 <sbb-notification type="success">The action was successful.</sbb-notification>
@@ -64,4 +65,16 @@ This only applies to the Lean design, since Standard design notifications cannot
 
 ```html
 <sbb-notification readonly>I can't be closed by user.</sbb-notification>
+```
+
+### Accessibility
+
+For having the value of the notification announced by screen readers, we recommend adding
+`role="alert"` to the element. This implicitly sets the `aria-live` value to `assertive`
+and the `aria-atomic` value to `true`.
+
+```html
+<sbb-notification *ngIf="isNotificationVisible" type="error" role="alert">
+  Please fix the form errors.
+</sbb-notification>
 ```
