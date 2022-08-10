@@ -2,6 +2,24 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [14.1.4](https://github.com/sbb-design-systems/sbb-angular/compare/14.1.3...14.1.4) (2022-08-10)
+
+
+### Bug Fixes
+
+* **angular/datepicker:** no weekday in standalone date input ([#1622](https://github.com/sbb-design-systems/sbb-angular/issues/1622)) ([557f00a](https://github.com/sbb-design-systems/sbb-angular/commit/557f00a8238f5e2ee2574dee6dd5ff46e7b27871))
+* **angular/lightbox:** fix height calculation on mobile ([#1591](https://github.com/sbb-design-systems/sbb-angular/issues/1591)) ([35bb747](https://github.com/sbb-design-systems/sbb-angular/commit/35bb74795f7a716e7ec81b6db521dcd9669728e0))
+* **angular/processflow:** avoid letters being cut off ([#1638](https://github.com/sbb-design-systems/sbb-angular/issues/1638)) ([85426a2](https://github.com/sbb-design-systems/sbb-angular/commit/85426a2ed554fa5efc1e215ae944f6291e1a4840))
+* **angular/processflow:** remove obsolete aria-expanded attribute ([#1623](https://github.com/sbb-design-systems/sbb-angular/issues/1623)) ([097e8a6](https://github.com/sbb-design-systems/sbb-angular/commit/097e8a691318969134696bfc07aed9452e77d6bb))
+* **deps:** update dependency zone.js to v0.11.7 ([#1625](https://github.com/sbb-design-systems/sbb-angular/issues/1625)) ([a7e61a7](https://github.com/sbb-design-systems/sbb-angular/commit/a7e61a7df54ebf942e7a1a6c1cf5b2655ee1bca1))
+* **multipe:** don't use div containers inside labels ([#1624](https://github.com/sbb-design-systems/sbb-angular/issues/1624)) ([eb6614c](https://github.com/sbb-design-systems/sbb-angular/commit/eb6614c3718285bda5effa82eb8c4bfaaa210bc1))
+
+
+### Documentation
+
+* **angular/loading-indicator:** add accessibility section ([#1643](https://github.com/sbb-design-systems/sbb-angular/issues/1643)) ([337bead](https://github.com/sbb-design-systems/sbb-angular/commit/337bead0fa23c8991306f0e3ef9bfe5ccb2daa18))
+* **angular/notification:** add accessibility section ([#1644](https://github.com/sbb-design-systems/sbb-angular/issues/1644)) ([7097c61](https://github.com/sbb-design-systems/sbb-angular/commit/7097c612f15cc3aad2b491f0ea4843f53816f263))
+
 ### [14.1.3](https://github.com/sbb-design-systems/sbb-angular/compare/14.1.2...14.1.3) (2022-07-26)
 
 
