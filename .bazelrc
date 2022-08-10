@@ -1,3 +1,12 @@
+##################
+# Startup config #
+##################
+
+# The memory usage of the java process are skyrocketing with journey-maps build (bazel bug?).
+# Limit it to 2g make the build very fast and without error.
+# It's related with https://github.com/angular/angular/issues/46965
+startup --host_jvm_args=-Xmx2g
+
 ###############################
 # Filesystem interactions     #
 ###############################
