@@ -36,7 +36,7 @@ build --incompatible_strict_action_env
 # Use BundlingTypes strategy to avoid the `Worker process did not return a WorkResponse` error
 # being caused when Microsoft API extractor prints to stdout and conflicts with the Bazel worker 
 # IPC also using stdout. See https://github.com/angular/angular/issues/46965
-build --strategy=BundlingTypes=remote,sandboxed,local
+# build --strategy=BundlingTypes=remote,sandboxed,local
 
 ###############################
 # Output control              #
