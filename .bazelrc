@@ -7,6 +7,8 @@
 # It's related with https://github.com/angular/angular/issues/46965
 startup --host_jvm_args=-Xmx2g
 
+build --discard_analysis_cache
+
 ###############################
 # Filesystem interactions     #
 ###############################
