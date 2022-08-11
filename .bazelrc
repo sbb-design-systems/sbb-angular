@@ -1,7 +1,8 @@
-#########
-# Tests #
-#########
-
+##############
+# RAM Issues #
+##############
+# To prevent 'Worker process did not return a WorkResponse' maybe caused by a high memory consumption
+# the recommandation on https://bazel.build/docs/memory-saving-mode is tested
 build --discard_analysis_cache
 
 ###############################
