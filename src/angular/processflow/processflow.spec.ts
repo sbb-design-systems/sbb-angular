@@ -124,6 +124,23 @@ describe('SbbProcessflow', () => {
       expect(processflowEl.getAttribute('role')).toBe('tablist');
     });
 
+    it('should add the `sbb-processflow-content-hidden` class to invisible elements', () => {
+      const stepContents = fixture.debugElement.queryAll(By.css(`.sbb-processflow-content`));
+      const processflowComponent = fixture.debugElement.query(
+        By.directive(SbbProcessflow)
+      )!.componentInstance;
+      const firstStepContentEl = stepContents[0].nativeElement;
+      expect(firstStepContentEl.classList.contains('sbb-processflow-content-hidden')).toBeFalse();
+
+      processflowComponent.selectedIndex = 1;
+      fixture.detectChanges();
+
+      expect(firstStepContentEl.classList.contains('sbb-processflow-content-hidden')).toBeTrue();
+      expect(firstStepContentEl.clientHeight).toBe(0);
+      const secondStepContentEl = stepContents[1].nativeElement;
+      expect(secondStepContentEl.classList.contains('sbb-processflow-content-hidden')).toBeFalse();
+    });
+
     it('should display the correct label', () => {
       const processflowComponent = fixture.debugElement.query(
         By.directive(SbbProcessflow)
