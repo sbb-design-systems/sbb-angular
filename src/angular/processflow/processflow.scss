@@ -52,7 +52,7 @@
 .sbb-processflow-content {
   outline: 0;
 
-  &[aria-expanded='false'] {
+  &.sbb-processflow-content-hidden {
     height: 0;
     overflow: hidden;
   }
