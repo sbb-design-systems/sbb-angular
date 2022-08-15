@@ -2,6 +2,15 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [14.1.5](https://github.com/sbb-design-systems/sbb-angular/compare/14.1.4...14.1.5) (2022-08-15)
+
+
+### Bug Fixes
+
+* **angular/processflow:** fix bug that inactive steps are displayed ([#1651](https://github.com/sbb-design-systems/sbb-angular/issues/1651)) ([f48ad53](https://github.com/sbb-design-systems/sbb-angular/commit/f48ad53ac00ef668cc04ad6c0e436a0dcd379481)), closes [#1650](https://github.com/sbb-design-systems/sbb-angular/issues/1650)
+* **deps:** update dependency @angular/cdk to v14.1.2 ([fb7cf3e](https://github.com/sbb-design-systems/sbb-angular/commit/fb7cf3e0471c37033f4c2146308b9425a5b79867))
+* **deps:** update dependency zone.js to v0.11.8 ([ae3869a](https://github.com/sbb-design-systems/sbb-angular/commit/ae3869a375790efbcb38b532020dabc69b44165b))
+
 ### [14.1.4](https://github.com/sbb-design-systems/sbb-angular/compare/14.1.3...14.1.4) (2022-08-10)
 
 
