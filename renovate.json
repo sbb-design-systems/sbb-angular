@@ -15,7 +15,6 @@
   "allowedPostUpgradeCommands": ["^yarn"],
   "ignoreDeps": [
     "@arcgis/core",
-    "@types/geojson",
     "@types/marked",
     "browser-sync",
     "browser-sync-client",
@@ -23,7 +22,6 @@
     "dgeni-packages",
     "highlight.js",
     "marked",
-    "rxjs",
     "typescript",
     "yarn"
   ],
