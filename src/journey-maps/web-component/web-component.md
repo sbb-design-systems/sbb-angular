@@ -122,4 +122,4 @@ Because internally we are using an [MutationObserver](https://developer.mozilla.
 
 ### Run a showcase app using the Web Component on your local machine
 
-You can get a simple example of the Web Component up and running on your local machine by running `JM_API_KEY=<YOUR-API-KEY> yarn start:journey-maps-wc`
+If you check out this project from GitHub, You can get a simple example of the Web Component up and running on your local machine by running `JM_API_KEY=<YOUR-API-KEY> yarn start:journey-maps-wc`.
