@@ -7,10 +7,10 @@
   resolved "https://registry.yarnpkg.com/@a11y/focus-trap/-/focus-trap-1.0.5.tgz#0748189c37ca21255c702aa5de3ee00ed4821d22"
   integrity sha512-3JOd6g+BALysWS8LNf0qdB8ltR651H/RCLAvUmfS0LIHwHO579XfjZUIZbURYiAZrcbp1CBAq4QZ2YwKNQZ1hw==
 
-"@actions/cache@3.0.3":
-  version "3.0.3"
-  resolved "https://registry.yarnpkg.com/@actions/cache/-/cache-3.0.3.tgz#1c48d5a03d35b8177a4a148879a01e78eb6b24cd"
-  integrity sha512-kn0pZRQNFRg1IQnW/N7uTNbbLqYalvQW2bmrznn3C34LMY/rSuEmH6Uo69HDh335Q0vKs9kg/jsIarzUBKzEXg==
+"@actions/cache@3.0.4":
+  version "3.0.4"
+  resolved "https://registry.yarnpkg.com/@actions/cache/-/cache-3.0.4.tgz#09a8f994ffc28ca467096491b56d2de319cf0417"
+  integrity sha512-9RwVL8/ISJoYWFNH1wR/C26E+M3HDkGPWmbFJMMCKwTkjbNZJreMT4XaR/EB1bheIvN4PREQxEQQVJ18IPnf/Q==
   dependencies:
     "@actions/core" "^1.2.6"
     "@actions/exec" "^1.0.1"
