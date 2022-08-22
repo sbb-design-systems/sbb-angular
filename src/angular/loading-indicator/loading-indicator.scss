@@ -21,6 +21,7 @@ $loadingRectangleOpacities: (1, 0.5, 0), (2, 1, 0.5), (3, 0.5, 1), (4, 0.25, 0.5
     transform-origin: center;
     transform: translate3d(-3em, 0, 0);
     backface-visibility: hidden;
+    transform-style: preserve-3d;
 
     & > div {
       position: relative;
