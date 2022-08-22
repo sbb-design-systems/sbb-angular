@@ -119,3 +119,7 @@ client.addEventListener('featuresClick', (event) => {
 **NOTE** \
 Don't replace the whole template node. Just update its content.
 Because internally we are using an [MutationObserver](https://developer.mozilla.org/de/docs/Web/API/MutationObserver) to watch for changes.
+
+### Run a showcase app using the Web Component on your local machine
+
+If you check out this project from GitHub, You can get a simple example of the Web Component up and running on your local machine by running `JM_API_KEY=<YOUR-API-KEY> yarn start:journey-maps-wc`.
