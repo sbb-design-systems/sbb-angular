@@ -5,5 +5,4 @@ export * from './lightbox-container';
 export * from './lightbox-content-directives';
 export * from './lightbox-config';
 export * from './lightbox-ref';
-export * from './lightbox-animations';
 export { sbbLightboxAnimations } from './lightbox-animations';
