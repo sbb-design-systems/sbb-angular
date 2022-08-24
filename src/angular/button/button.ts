@@ -1,4 +1,5 @@
 import { FocusableOption, FocusMonitor, FocusOrigin } from '@angular/cdk/a11y';
+import { ContentObserver } from '@angular/cdk/observers';
 import {
   AfterContentInit,
   AfterViewInit,
@@ -17,7 +18,7 @@ import {
 import { ANIMATION_MODULE_TYPE } from '@angular/platform-browser/animations';
 import { CanDisable, mixinDisabled, mixinVariant } from '@sbb-esta/angular/core';
 import { SbbIcon } from '@sbb-esta/angular/icon';
-import { Observable, withLatestFrom } from 'rxjs';
+import { combineLatest, Observable } from 'rxjs';
 import { map, startWith } from 'rxjs/operators';
 
 /**
@@ -111,7 +112,9 @@ export class SbbButton
   constructor(
     elementRef: ElementRef,
     private _focusMonitor: FocusMonitor,
-    @Optional() @Inject(ANIMATION_MODULE_TYPE) public _animationMode: string
+    @Optional() @Inject(ANIMATION_MODULE_TYPE) public _animationMode: string,
+    /** @breaking-change Make required with version 15. */
+    @Optional() private _contentObserver?: ContentObserver
   ) {
     super(elementRef);
 
@@ -135,24 +138,24 @@ export class SbbButton
   }
 
   ngAfterContentInit() {
-    this._isIconButton = this._iconRefs.changes.pipe(
-      startWith(this._iconRefs),
+    const contentChangeSource =
+      this._contentObserver?.observe(this._elementRef) ?? this._iconRefs.changes;
+    this._isIconButton = contentChangeSource?.pipe(
+      startWith([]),
       map(
-        (icons) =>
+        () =>
           this._hasHostAttributes(...VALID_ICON_BUTTON_ATTRIBUTES) &&
           this._elementRef.nativeElement.textContent.trim() === '' &&
-          icons.length === 1
+          this._iconRefs.length === 1
       )
     );
 
     this._isIconButton.subscribe((isIconButton) => (this._hasIconButtonClass = isIconButton));
 
-    this._leftIconVisible = this.variant.pipe(
-      withLatestFrom(this._isIconButton),
+    this._leftIconVisible = combineLatest([this.variant, this._isIconButton]).pipe(
       map(([v, isIconButton]) => !isIconButton && v === 'standard' && this._hasIconIndicator)
     );
-    this._rightIconVisible = this.variant.pipe(
-      withLatestFrom(this._isIconButton),
+    this._rightIconVisible = combineLatest([this.variant, this._isIconButton]).pipe(
       map(
         ([v, isIconButton]) =>
           !isIconButton &&
@@ -219,9 +222,11 @@ export class SbbAnchor extends SbbButton implements AfterViewInit, OnDestroy {
     focusMonitor: FocusMonitor,
     elementRef: ElementRef,
     @Optional() @Inject(ANIMATION_MODULE_TYPE) animationMode: string,
-    private _ngZone: NgZone
+    private _ngZone: NgZone,
+    /** @breaking-change Make required with version 15. */
+    @Optional() contentObserver?: ContentObserver
   ) {
-    super(elementRef, focusMonitor, animationMode);
+    super(elementRef, focusMonitor, animationMode, contentObserver);
   }
 
   override ngAfterViewInit(): void {
