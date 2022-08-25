@@ -2,6 +2,21 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [14.1.6](https://github.com/sbb-design-systems/sbb-angular/compare/14.1.5...14.1.6) (2022-08-25)
+
+
+### Bug Fixes
+
+* **angular/button:** support content change between text and no text ([#1659](https://github.com/sbb-design-systems/sbb-angular/issues/1659)) ([08f84b2](https://github.com/sbb-design-systems/sbb-angular/commit/08f84b25b29759ad7024f030f0368e42a01ef7d9))
+* **angular/lightbox:** correct dependency tree for CDK dialog ([#1658](https://github.com/sbb-design-systems/sbb-angular/issues/1658)) ([bc94a81](https://github.com/sbb-design-systems/sbb-angular/commit/bc94a8146239a9d21ea5ec2212bad4c1157e72e1))
+* **deps:** update dependency @angular/cdk to v14.1.3 ([7d80c15](https://github.com/sbb-design-systems/sbb-angular/commit/7d80c15e6a63030d6b8d83af48675f6c51c13f09))
+* **sbb-loading:** fix 3d transformation in firefox ([#1655](https://github.com/sbb-design-systems/sbb-angular/issues/1655)) ([5146475](https://github.com/sbb-design-systems/sbb-angular/commit/5146475632a6ff7b8d5bff48393ae9c236164cc6))
+
+
+### Documentation
+
+* **journey-maps/web-component:** explain how to run the web-component showcase ([#1653](https://github.com/sbb-design-systems/sbb-angular/issues/1653)) ([3a2bc70](https://github.com/sbb-design-systems/sbb-angular/commit/3a2bc705d5cd3d1400a2d36070f3edd0df7ec622))
+
 ### [14.1.5](https://github.com/sbb-design-systems/sbb-angular/compare/14.1.4...14.1.5) (2022-08-15)
 
 
