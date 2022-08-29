@@ -27,7 +27,7 @@ export class CdnIconListComponent implements AfterViewInit {
 
   filterForm = this._formBuilder.group({
     fulltext: [''],
-    namespaces: [[]],
+    namespaces: [[]] as string[][],
     fitIcons: [true],
   });
   filteredIcons: Observable<CdnIcon[]>;
