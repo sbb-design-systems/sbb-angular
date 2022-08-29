@@ -93,7 +93,7 @@
     "@bazel/rollup": "5.5.3",
     "@bazel/runfiles": "5.5.3",
     "@bazel/worker": "5.5.3",
-    "@commitlint/cli": "17.1.1",
+    "@commitlint/cli": "17.1.2",
     "@commitlint/config-conventional": "17.1.0",
     "@rollup/plugin-commonjs": "22.0.2",
     "@rollup/plugin-node-resolve": "13.3.0",
