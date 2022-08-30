@@ -3,6 +3,9 @@
 // with AOT compilation, NGC needs the "ngsummary.json" files.
 {
   "angularCompilerOptions": {
+    "extendedDiagnostics": {
+      "defaultCategory": "error"
+    },
     // In snapshot builds the compiler-cli will now use ngtsc by default. In
     // order to be able to build the summary files, we need to use ngc.
     "enableIvy": false
