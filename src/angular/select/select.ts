@@ -233,7 +233,7 @@ export class SbbSelect
   private _scrollTop = 0;
 
   /** The last measured value for the trigger's client bounding rect. */
-  _triggerRect: ClientRect;
+  private _triggerRect: ClientRect;
 
   /** The cached font-size of the trigger element. */
   _triggerFontSize: number = 0;
@@ -1174,6 +1174,10 @@ export class SbbSelect
     }
 
     this.openedChange.emit(isOpen);
+  }
+
+  protected _getOverlayMinWidth(): number {
+    return this._triggerRect?.width;
   }
 
   /**

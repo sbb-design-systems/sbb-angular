@@ -45,6 +45,9 @@
     "src/angular/schematics/ng-update/test-cases/**/*_expected_output.ts"
   ],
   "angularCompilerOptions": {
+    "extendedDiagnostics": {
+      "defaultCategory": "error"
+    },
     "strictMetadataEmit": true
   }
 }

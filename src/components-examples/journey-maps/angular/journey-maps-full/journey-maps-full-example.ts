@@ -89,7 +89,7 @@ export class JourneyMapsFullExample implements OnInit, OnDestroy {
   };
   homeButtonOptions: SbbViewportDimensions = { boundingBox: SBB_BOUNDING_BOX };
   viewportDimensions?: SbbViewportDimensions;
-  zoomLevels: SbbZoomLevels;
+  zoomLevels?: SbbZoomLevels;
   visibleLevels = new BehaviorSubject<number[]>([]);
   form: UntypedFormGroup;
 
