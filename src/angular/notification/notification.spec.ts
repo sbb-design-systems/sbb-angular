@@ -79,7 +79,7 @@ describe('SbbNotification', () => {
       expect(notifications.length).toBeGreaterThan(0);
       await testFixture.whenRenderingDone();
       const styles = getComputedStyle(notifications[0].nativeElement);
-      expect(styles.getPropertyValue('background-color')).toBe('rgb(102, 102, 102)');
+      expect(styles.getPropertyValue('background-color')).toBe('rgb(104, 104, 104)');
     });
 
     it('should have grey background when type is INFO', async () => {
@@ -89,7 +89,7 @@ describe('SbbNotification', () => {
       expect(notifications.length).toBeGreaterThan(0);
       await testFixture.whenRenderingDone();
       const styles = getComputedStyle(notifications[0].nativeElement);
-      expect(styles.getPropertyValue('background-color')).toBe('rgb(102, 102, 102)');
+      expect(styles.getPropertyValue('background-color')).toBe('rgb(104, 104, 104)');
     });
 
     it('should change height with jump marks', async () => {

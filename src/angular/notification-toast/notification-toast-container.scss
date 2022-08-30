@@ -51,10 +51,10 @@
 }
 
 .sbb-notification-toast-info {
-  border: var(--sbb-border-width-thin) solid var(--sbb-color-grey);
+  border: var(--sbb-border-width-thin) solid var(--sbb-color-granite);
 
   :is(&, & :is(a, button)) {
-    color: var(--sbb-color-grey);
+    color: var(--sbb-color-granite);
   }
 }
 

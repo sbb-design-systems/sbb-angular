@@ -157,16 +157,16 @@ describe('SbbButton', () => {
           expect(buttonStyles.getPropertyValue('background-color')).toBe('rgba(0, 0, 0, 0)');
         });
 
-        it('should have a grey text of color rgb(102, 102, 102)/#666666', () => {
+        it('should have a grey text of color rgb(104, 104, 104)/#686868', () => {
           const fixture = TestBed.createComponent(ButtonTest);
           fixture.componentInstance.isDisabled = true;
           fixture.detectChanges();
           const buttonDebugElement = fixture.debugElement.query(By.css('button'))!;
           const buttonStyles = getComputedStyle(buttonDebugElement.nativeElement);
-          expect(buttonStyles.getPropertyValue('color')).toBe('rgb(102, 102, 102)');
+          expect(buttonStyles.getPropertyValue('color')).toBe('rgb(104, 104, 104)');
         });
 
-        it('should have a grey border color of rgb(151, 151, 151)/#979797', () => {
+        it('should have a grey border color of rgb(168, 168, 168)/#A8A8A8', () => {
           const fixture = TestBed.createComponent(ButtonTest);
           fixture.componentInstance.isDisabled = true;
           fixture.detectChanges();
@@ -177,7 +177,7 @@ describe('SbbButton', () => {
               buttonStyles.getPropertyValue('border-right-color') &&
               buttonStyles.getPropertyValue('border-bottom-color') &&
               buttonStyles.getPropertyValue('border-left-color')
-          ).toBe('rgb(151, 151, 151)');
+          ).toBe('rgb(168, 168, 168)');
         });
 
         it('should have a line-through text decoration', () => {
@@ -431,12 +431,12 @@ describe('SbbButton', () => {
         expect(buttonStyles.getPropertyValue('background-color')).toBe('rgba(0, 0, 0, 0)');
       });
 
-      it('should have a grey text of color rgb(102, 102, 102)/#666666', () => {
+      it('should have a grey text of color rgb(104, 104, 104)/#686868', () => {
         const fixture = TestBed.createComponent(ButtonGhostTest);
         fixture.detectChanges();
         const buttonDebugElement = fixture.debugElement.query(By.css('button'))!;
         const buttonStyles = getComputedStyle(buttonDebugElement.nativeElement);
-        expect(buttonStyles.getPropertyValue('color')).toBe('rgb(102, 102, 102)');
+        expect(buttonStyles.getPropertyValue('color')).toBe('rgb(104, 104, 104)');
       });
 
       it('should have a grey border color of rgb(168, 168, 168)/#A8A8A8', () => {
