@@ -1,5 +1,4 @@
 import * as Lint from 'tslint';
-import * as tsutils from 'tsutils';
 import ts from 'typescript';
 
 export class Rule extends Lint.Rules.AbstractRule {
@@ -29,8 +28,8 @@ class Walker extends Lint.RuleWalker {
         if (
           ts.isPropertyDeclaration(member) &&
           (!member.modifiers ||
-            tsutils.hasModifier(member.modifiers, ts.SyntaxKind.PublicKeyword) ||
-            tsutils.hasModifier(member.modifiers, ts.SyntaxKind.ProtectedKeyword))
+            this._hasModifier(member, ts.SyntaxKind.PublicKeyword) ||
+            this._hasModifier(member, ts.SyntaxKind.ProtectedKeyword))
         ) {
           this._validateProperty(member);
         }
@@ -96,5 +95,13 @@ class Walker extends Lint.RuleWalker {
     }
 
     return undefined;
+  }
+
+  /** Checks if a node has a specific modifier. */
+  private _hasModifier(
+    node: ts.ClassElement | ts.ParameterDeclaration,
+    targetKind: ts.SyntaxKind
+  ): boolean {
+    return !!node.modifiers?.some(({ kind }) => kind === targetKind);
   }
 }
