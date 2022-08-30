@@ -32,6 +32,11 @@
     "skipLibCheck": true,
     "types": ["arcgis-js-api", "grecaptcha", "tslib"]
   },
+  "angularCompilerOptions": {
+    "extendedDiagnostics": {
+      "defaultCategory": "error"
+    }
+  },
   "bazelOptions": {
     "suppressTsconfigOverrideWarnings": true
   }
