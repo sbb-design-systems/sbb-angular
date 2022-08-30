@@ -105,7 +105,7 @@
   --sbb-color-call-to-action-hover: var(--sbb-color-red125);
   --sbb-color-error: #{sbb.$sbbColorError};
   --sbb-color-text: var(--sbb-color-black);
-  --sbb-color-weak-accent: var(--sbb-color-grey);
+  --sbb-color-weak-accent: var(--sbb-color-granite);
 
   // Scaling
   --sbb-scaling-factor: 1;
@@ -204,7 +204,7 @@
   --sbb-form-border-color-readonly: var(--sbb-color-aluminum);
   --sbb-form-field-width: #{sbb.pxToRem(320)};
   --sbb-form-input-color: var(--sbb-color-charcoal);
-  --sbb-form-input-color-disabled: var(--sbb-color-grey);
+  --sbb-form-input-color-disabled: var(--sbb-color-granite);
   --sbb-form-input-min-height: calc(#{sbb.pxToRem(48)} * var(--sbb-scaling-factor));
   --sbb-form-label-line-height: calc(#{sbb.pxToRem(16)} * var(--sbb-scaling-factor));
   --sbb-form-label-wrapper-margin-bottom: calc(#{sbb.pxToRem(5)} * var(--sbb-scaling-factor));
@@ -236,7 +236,7 @@
   );
 
   // Pagination
-  --sbb-pagination-base-color: var(--sbb-color-grey);
+  --sbb-pagination-base-color: var(--sbb-color-granite);
   --sbb-pagination-disabled-color: var(--sbb-color-silver);
   --sbb-pagination-paginator-size: calc(#{sbb.pxToRem(40)} * var(--sbb-scaling-factor));
   --sbb-pagination-navigation-item-margin: calc(#{sbb.pxToRem(4)} * var(--sbb-scaling-factor));
@@ -424,12 +424,6 @@
     }
   }
   &:where(.sbb-lean) {
-    // Colors
-
-    // Grey is always translated into granite color in lean.
-    // We globally overwrite grey color with granite so we don't have to redefine it in every usage.
-    --sbb-color-grey: var(--sbb-color-granite);
-
     // Context Colors
     --sbb-color-weak-accent: var(--sbb-color-iron);
 
@@ -1307,8 +1301,8 @@ textarea {
   &:is(:disabled, .sbb-disabled) {
     :where(html:not(.sbb-lean)) & {
       background-color: transparent;
-      color: var(--sbb-color-grey);
-      border-color: var(--sbb-color-grey-medium);
+      color: var(--sbb-color-granite);
+      border-color: var(--sbb-color-storm);
 
       &,
       & * {
@@ -1396,7 +1390,7 @@ textarea {
 
 .sbb-ghost-button {
   background-color: transparent;
-  color: var(--sbb-color-grey);
+  color: var(--sbb-color-granite);
   border-color: var(--sbb-color-storm);
 
   &:not(:disabled):not(.sbb-disabled):is(:hover, :focus) {
@@ -1744,7 +1738,7 @@ textarea {
   }
 
   .sbb-selection-disabled & {
-    color: var(--sbb-color-grey);
+    color: var(--sbb-color-granite);
   }
 
   .sbb-selection-checked & {
@@ -1758,7 +1752,7 @@ textarea {
 
 .sbb-selection-content {
   @include sbb.user-select(auto);
-  color: var(--sbb-color-grey);
+  color: var(--sbb-color-granite);
   transition: color var(--sbb-transition-default);
 
   :where(html.sbb-lean) & {
@@ -1774,7 +1768,7 @@ textarea {
   }
 
   .sbb-selection-disabled & {
-    color: var(--sbb-color-grey);
+    color: var(--sbb-color-granite);
 
     :where(html.sbb-lean) & {
       color: var(--sbb-color-storm);
@@ -1820,7 +1814,7 @@ textarea {
   border-radius: var(--sbb-border-radius);
   font-size: var(--sbb-font-size);
   line-height: var(--sbb-line-height);
-  color: var(--sbb-color-grey);
+  color: var(--sbb-color-granite);
   width: 100%;
   transition: border-color 0.15s ease-in-out;
   position: relative;
@@ -1886,13 +1880,13 @@ textarea {
 .sbb-selection-panel-subtitle {
   font-size: var(--sbb-font-size-small);
   line-height: var(--sbb-line-height-small);
-  color: var(--sbb-color-grey);
+  color: var(--sbb-color-granite);
 }
 
 .sbb-selection-panel-warning {
   flex: 1 100%;
   order: 3;
-  color: var(--sbb-color-grey);
+  color: var(--sbb-color-granite);
 
   @include sbb.mq($from: tablet) {
     flex-basis: 0;
@@ -1956,7 +1950,7 @@ textarea {
   font-family: var(--sbb-font-roman);
   font-size: var(--sbb-font-size-small);
   line-height: var(--sbb-form-label-line-height);
-  color: var(--sbb-color-grey);
+  color: var(--sbb-color-granite);
   display: block;
 }
 

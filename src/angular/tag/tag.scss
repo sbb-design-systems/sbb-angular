@@ -36,7 +36,7 @@
   background-color: var(--sbb-color-milk);
   border: var(--sbb-border-width-thin) solid transparent;
   border-radius: 1.2em;
-  color: var(--sbb-color-grey);
+  color: var(--sbb-color-granite);
 
   font-size: var(--sbb-font-size);
   line-height: var(--sbb-line-height-medium);
@@ -78,7 +78,7 @@
   .sbb-tag-active:not(.sbb-tag-disabled):is(:hover, :focus, .cdk-focused) & {
     background-color: transparent;
     border-color: var(--sbb-color-graphite);
-    color: var(--sbb-color-grey);
+    color: var(--sbb-color-granite);
 
     .sbb-badge-content {
       background-color: var(--sbb-color-red);
