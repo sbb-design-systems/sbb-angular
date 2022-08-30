@@ -95,6 +95,10 @@
   --sbb-color-lemon: #{sbb.$sbbColorLemon};
   --sbb-color-green: #{sbb.$sbbColorGreen};
 
+  // Non-Standard Colors
+  --sbb-color-grey: #{sbb.$sbbColorGrey};
+  --sbb-color-grey-medium: #{sbb.$sbbColorGreyMedium};
+
   // Context Colors
   --sbb-color-background: var(--sbb-color-white);
   --sbb-color-call-to-action: var(--sbb-color-red);
