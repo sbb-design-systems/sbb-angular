@@ -2,6 +2,14 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [14.1.7](https://github.com/sbb-design-systems/sbb-angular/compare/14.1.6...14.1.7) (2022-09-05)
+
+
+### Bug Fixes
+
+* **multiple:** replace all usages of color grey with granite ([#1665](https://github.com/sbb-design-systems/sbb-angular/issues/1665)) ([08f1e0c](https://github.com/sbb-design-systems/sbb-angular/commit/08f1e0c442a1633942068f06758d988b9f6c210a))
+* **multiple:** resolve extended template diagnostic warnings ([#1666](https://github.com/sbb-design-systems/sbb-angular/issues/1666)) ([5ff0dea](https://github.com/sbb-design-systems/sbb-angular/commit/5ff0deaad26c5f8c292f5941944031352d7f1af7))
+
 ### [14.1.6](https://github.com/sbb-design-systems/sbb-angular/compare/14.1.5...14.1.6) (2022-08-25)
 
 
