@@ -19,6 +19,9 @@
     },
     "./typography.css": {
       "style": "./typography.css"
+    },
+    "./fullfont.css": {
+      "style": "./fullfont.css"
     }
   },
   "peerDependencies": {
