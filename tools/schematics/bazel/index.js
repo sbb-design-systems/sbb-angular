@@ -230,6 +230,11 @@ var NgPackage = class extends NgModule {
       this.sassBinaries = this.sassBinaries.filter((s) => !s.path.includes("typography.scss"));
       this.stylesheets = this.stylesheets.filter((s) => !s.includes("typography.css"));
     }
+    this.hasFullFont = dir.subfiles.includes((0, import_core4.fragment)("fullfont.scss"));
+    if (this.hasFullFont) {
+      this.sassBinaries = this.sassBinaries.filter((s) => !s.path.includes("fullfont.scss"));
+      this.stylesheets = this.stylesheets.filter((s) => !s.includes("fullfont.css"));
+    }
     this.markdownModules = ngModules.filter((m) => m.hasMarkdown).map((m) => this._resolvePath(m));
     if (this.name === "journey-maps") {
       this.markdownModules.push("web-component");

@@ -67,6 +67,14 @@ or editing your `angular.json`:
   ...
 ```
 
+The `typography.css` file only contains a subset of the `SBBWeb` fonts that does not contain all characters (e.g. the French "œ").
+For including the full fontset, we provide the `fullfont.css` file which can be added after the `typography.css` file.
+
+```css
+@import '@sbb-esta/angular/typography.css';
+@import '@sbb-esta/angular/fullfont.css';
+```
+
 If you need more details about what the typography offers to you, you can go to [typography](/angular/introduction/typography).
 
 #### Step 1.3: Configure animations
