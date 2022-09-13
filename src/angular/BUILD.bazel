@@ -32,6 +32,11 @@ sass_binary(
     deps = ["//src/angular/styles:scss_lib"],
 )
 
+sass_binary(
+    name = "fullfont",
+    src = "fullfont.scss",
+)
+
 sass_library(
     name = "scss_lib",
     srcs = glob(["**/_*.scss"]),
@@ -53,6 +58,7 @@ ng_package(
     name = "npm_package",
     srcs = [
         "package.json",
+        ":fullfont",
         ":scss_lib",
         ":typography",
         "//src/angular/i18n:xlf",

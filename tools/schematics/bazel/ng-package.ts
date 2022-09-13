@@ -11,6 +11,7 @@ export class NgPackage extends NgModule {
   hasSchematics: boolean;
   hasSrcFiles: boolean;
   hasTypography: boolean;
+  hasFullFont: boolean;
   markdownModules: string[];
 
   protected _templateUrl = './files/ngPackage';
@@ -27,6 +28,11 @@ export class NgPackage extends NgModule {
     if (this.hasTypography) {
       this.sassBinaries = this.sassBinaries.filter((s) => !s.path.includes('typography.scss'));
       this.stylesheets = this.stylesheets.filter((s) => !s.includes('typography.css'));
+    }
+    this.hasFullFont = dir.subfiles.includes(fragment('fullfont.scss'));
+    if (this.hasFullFont) {
+      this.sassBinaries = this.sassBinaries.filter((s) => !s.path.includes('fullfont.scss'));
+      this.stylesheets = this.stylesheets.filter((s) => !s.includes('fullfont.css'));
     }
     this.markdownModules = ngModules.filter((m) => m.hasMarkdown).map((m) => this._resolvePath(m));
     if (this.name === 'journey-maps') {
