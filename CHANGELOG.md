@@ -2,6 +2,18 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [14.2.0](https://github.com/sbb-design-systems/sbb-angular/compare/14.1.7...14.2.0) (2022-09-15)
+
+
+### Features
+
+* **multiple:** provide the complete set of the SBBWeb font ([#1676](https://github.com/sbb-design-systems/sbb-angular/issues/1676)) ([7845b20](https://github.com/sbb-design-systems/sbb-angular/commit/7845b20bb3d5e4803f3e37b937cca9349775b03a)), closes [#1564](https://github.com/sbb-design-systems/sbb-angular/issues/1564)
+
+
+### Bug Fixes
+
+* **journey-maps/web-component:** export the web-component in package.json ([#1675](https://github.com/sbb-design-systems/sbb-angular/issues/1675)) ([304e5b6](https://github.com/sbb-design-systems/sbb-angular/commit/304e5b6d6182511fd439fcaaed21ececd9fc6563))
+
 ### [14.1.7](https://github.com/sbb-design-systems/sbb-angular/compare/14.1.6...14.1.7) (2022-09-05)
 
 
