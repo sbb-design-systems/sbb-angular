@@ -106,8 +106,8 @@ export class SbbButton
    */
   @Input() svgIcon: string;
 
-  @ContentChildren(SbbIcon, { read: ElementRef }) _iconRefs: QueryList<ElementRef> =
-    new QueryList<ElementRef>();
+  @ContentChildren(SbbIcon, { read: ElementRef, descendants: true })
+  _iconRefs: QueryList<ElementRef> = new QueryList<ElementRef>();
 
   constructor(
     elementRef: ElementRef,

@@ -489,7 +489,7 @@ describe('SbbButton', () => {
         )!;
 
         expect(nonIconButtonElements.length).toEqual(10);
-        expect(iconButtonElements.length).toEqual(8);
+        expect(iconButtonElements.length).toEqual(9);
 
         expect(
           nonIconButtonElements.every(
@@ -684,6 +684,9 @@ class ButtonIconTest extends ButtonTestBase {}
       <a sbb-alt-button type="button"><sbb-icon svgIcon="example"></sbb-icon></a>
       <a sbb-secondary-button type="button"><sbb-icon svgIcon="example"></sbb-icon></a>
       <a sbb-ghost-button type="button"><sbb-icon svgIcon="example"></sbb-icon></a>
+      <button sbb-button type="button">
+        <a href="#"><sbb-icon svgIcon="example"></sbb-icon></a>
+      </button>
       <button sbb-button type="button"><sbb-icon svgIcon="example"></sbb-icon></button>
       <button sbb-alt-button type="button"><sbb-icon svgIcon="example"></sbb-icon></button>
       <button sbb-secondary-button type="button"><sbb-icon svgIcon="example"></sbb-icon></button>
