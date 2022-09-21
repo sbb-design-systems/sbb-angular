@@ -154,11 +154,11 @@ export class SbbCalendarHeader<D> {
 
 /**
  * A calendar that is used as part of the datepicker.
- * @docs-private
  */
 @Component({
   selector: 'sbb-calendar',
   templateUrl: 'calendar.html',
+  styleUrls: ['calendar.css'],
   exportAs: 'sbbCalendar',
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush,

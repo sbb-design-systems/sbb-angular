@@ -6,6 +6,7 @@ import { SBB_LEAN_DATE_ADAPTER } from '@sbb-esta/angular/core';
 import { SbbDatepickerModule } from '@sbb-esta/angular/datepicker';
 import { SbbInputModule } from '@sbb-esta/angular/input';
 
+import { CalendarConfigurationExample } from './calendar-configuration/calendar-configuration-example';
 import { DatepickerDateFilterExample } from './datepicker-date-filter/datepicker-date-filter-example';
 import { DatepickerDateRangeExample } from './datepicker-date-range/datepicker-date-range-example';
 import { DatepickerLeanDateAdapterExample } from './datepicker-lean-date-adapter/datepicker-lean-date-adapter-example';
@@ -18,6 +19,7 @@ export {
   DatepickerLeanDateAdapterExample,
   DatepickerSimpleReactiveExample,
   DatepickerStandaloneFormsExample,
+  CalendarConfigurationExample,
 };
 
 const EXAMPLES = [
@@ -26,6 +28,7 @@ const EXAMPLES = [
   DatepickerLeanDateAdapterExample,
   DatepickerSimpleReactiveExample,
   DatepickerStandaloneFormsExample,
+  CalendarConfigurationExample,
 ];
 
 @NgModule({
