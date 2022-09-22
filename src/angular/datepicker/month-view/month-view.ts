@@ -91,6 +91,9 @@ export class SbbMonthView<D> implements AfterContentInit {
   /** A function used to filter which dates are selectable. */
   @Input() dateFilter: (date: D) => boolean;
 
+  /** Whether to display the week number. */
+  @Input() showWeekNumbers: boolean = false;
+
   /** Emits when a new date is selected. */
   @Output()
   readonly selectedChange: EventEmitter<D | null> = new EventEmitter<D | null>();
@@ -110,6 +113,9 @@ export class SbbMonthView<D> implements AfterContentInit {
   /** Grid of calendar cells representing the dates of the month. */
   weeks: SbbCalendarCell[][];
 
+  /** Week of year for each row. */
+  weeksOfYear: number[] = [];
+
   /** The number of blank cells in the first row before the 1st of the month. */
   firstWeekOffset: number;
 
@@ -126,7 +132,15 @@ export class SbbMonthView<D> implements AfterContentInit {
   weekdays: { long: string; narrow: string }[];
 
   /** Currently active date range. */
-  dateRange: SbbDateRange<D> | null = null;
+  @Input()
+  get dateRange() {
+    return this._dateRange;
+  }
+  set dateRange(dateRange) {
+    this._dateRange = dateRange;
+    this._updateRangeBackground();
+  }
+  private _dateRange: SbbDateRange<D> | null = null;
 
   constructor(
     @Optional() public _dateAdapter: SbbDateAdapter<D>,
@@ -147,7 +161,7 @@ export class SbbMonthView<D> implements AfterContentInit {
       datepicker.datepickerInput.value &&
       datepicker.connected.datepickerInput.value
     ) {
-      this.dateRange = new SbbDateRange(
+      this._dateRange = new SbbDateRange(
         datepicker.datepickerInput.value,
         datepicker.connected.datepickerInput.value
       );
@@ -157,7 +171,7 @@ export class SbbMonthView<D> implements AfterContentInit {
       datepicker.datepickerInput.value &&
       datepicker.main.datepickerInput.value
     ) {
-      this.dateRange = new SbbDateRange(
+      this._dateRange = new SbbDateRange(
         datepicker.main.datepickerInput.value,
         datepicker.datepickerInput.value
       );
@@ -322,6 +336,7 @@ export class SbbMonthView<D> implements AfterContentInit {
     const daysInMonth = this._dateAdapter.getNumDaysInMonth(this.activeDate);
     const dateNames = this._dateAdapter.getDateNames();
     this.weeks = [[]];
+    this.weeksOfYear = [];
     for (let i = 0, cell = this.firstWeekOffset; i < daysInMonth; i++, cell++) {
       if (cell === DAYS_PER_WEEK) {
         this.weeks.push([]);
@@ -332,12 +347,36 @@ export class SbbMonthView<D> implements AfterContentInit {
         this._dateAdapter.getMonth(this.activeDate),
         i + 1
       );
+      if (i === 0 || cell === 0) {
+        this.weeksOfYear.push(parseInt(this._dateAdapter.format(date, 'w'), 10));
+      }
       const enabled = this._shouldEnableDate(date);
       const ariaLabel = this._dateAdapter.format(date, this._dateFormats.dateA11yLabel);
       const rangeBackground = this._shouldApplyRangeBackground(date);
       this.weeks[this.weeks.length - 1].push(
         new SbbCalendarCell(i + 1, dateNames[i], ariaLabel, enabled, rangeBackground)
       );
+    }
+  }
+
+  private _updateRangeBackground() {
+    let isUpdated = false;
+    if (this.weeks) {
+      for (let i = 0; i < this.weeks.length; i++) {
+        for (let j = 0; j < this.weeks[i].length; j++) {
+          const date = this._dateAdapter.createDate(
+            this._dateAdapter.getYear(this.activeDate),
+            this._dateAdapter.getMonth(this.activeDate),
+            this.weeks[i][j].value
+          );
+          const rangeBackground = this._shouldApplyRangeBackground(date);
+          isUpdated = isUpdated || this.weeks[i][j].rangeBackground !== rangeBackground;
+          this.weeks[i][j].rangeBackground = rangeBackground;
+        }
+      }
+      if (isUpdated) {
+        this.weeks = [...this.weeks];
+      }
     }
   }
 

@@ -1,3 +1,36 @@
-<sbb-calendar [(selected)]="selectedDate"> </sbb-calendar>
+<sbb-calendar
+  [dateRange]="dateRange | async"
+  [showWeekNumbers]="showWeekNumbers"
+  [(selected)]="selectedDate"
+></sbb-calendar>
 
-Selected: {{ selectedDate }}
+<pre>
+  Selected: {{ selectedDate || '-' }}
+</pre>
+
+<form [formGroup]="dateForm">
+  <sbb-form-field label="Range start date" style="display: block">
+    <sbb-datepicker>
+      <input
+        type="text"
+        sbbDateInput
+        sbbInput
+        formControlName="startDate"
+        [dateFilter]="filterStartDate"
+      />
+    </sbb-datepicker>
+  </sbb-form-field>
+
+  <sbb-form-field label="Range end date">
+    <sbb-datepicker>
+      <input
+        type="text"
+        sbbDateInput
+        sbbInput
+        formControlName="endDate"
+        [dateFilter]="filterEndDate"
+      />
+    </sbb-datepicker>
+  </sbb-form-field>
+</form>
+<sbb-checkbox [(ngModel)]="showWeekNumbers">Show week numbers</sbb-checkbox>

@@ -262,13 +262,18 @@
   color: var(--sbb-color-black);
 }
 
+.sbb-calendar-body-week {
+  font-size: var(--sbb-font-size-small);
+}
+
 .sbb-calendar-body-cell-content {
   @include datePickerCellContentBase();
   border: var(--sbb-border-width) solid transparent;
   border-radius: 50%;
   z-index: 1;
 
-  .sbb-calendar-body-cell:not(.sbb-calendar-body-disabled):is(:hover, :focus) & {
+  .sbb-calendar-body-cell:not(.sbb-calendar-body-disabled, .sbb-calendar-body-week):is(:hover, :focus)
+    & {
     background-color: var(--sbb-color-background);
     color: var(--sbb-color-call-to-action-hover);
     border-color: var(--sbb-color-call-to-action-hover);

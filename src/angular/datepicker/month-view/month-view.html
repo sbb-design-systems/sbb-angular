@@ -1,6 +1,7 @@
 <table class="sbb-calendar-table">
   <thead class="sbb-calendar-table-header">
     <tr>
+      <th *ngIf="showWeekNumbers">#</th>
       <th *ngFor="let day of weekdays">
         <span class="cdk-visually-hidden">{{day.long}}</span>
         <span aria-hidden="true">{{day.narrow}}</span>
@@ -14,6 +15,7 @@
     sbb-calendar-body
     label="{{ monthLabel }}"
     [rows]="weeks"
+    [weeksOfYear]="showWeekNumbers ? weeksOfYear : []"
     [todayValue]="todayDate!"
     [selectedValue]="selectedDate!"
     [labelMinRequiredCells]="3"

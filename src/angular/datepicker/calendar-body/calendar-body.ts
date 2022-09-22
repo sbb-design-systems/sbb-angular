@@ -1,6 +1,7 @@
 import {
   AfterViewChecked,
   ChangeDetectionStrategy,
+  ChangeDetectorRef,
   Component,
   ElementRef,
   EventEmitter,
@@ -48,7 +49,20 @@ export class SbbCalendarBody implements AfterViewChecked {
   @Input() label: string;
 
   /** The cells to display in the table. */
-  @Input() rows: SbbCalendarCell[][];
+  @Input()
+  set rows(rows) {
+    if (rows !== this._rows) {
+      this._rows = rows;
+      this._changeDetectorRef.markForCheck();
+    }
+  }
+  get rows() {
+    return this._rows;
+  }
+  private _rows: SbbCalendarCell[][];
+
+  /** Week of year for each row. */
+  @Input() weeksOfYear: number[] = [];
 
   /** The value in the table that corresponds to today. */
   @Input() todayValue: number;
@@ -73,7 +87,11 @@ export class SbbCalendarBody implements AfterViewChecked {
 
   @Output() readonly activeDateChange = new EventEmitter<number>();
 
-  constructor(private _elementRef: ElementRef<HTMLElement>, private _ngZone: NgZone) {}
+  constructor(
+    private _elementRef: ElementRef<HTMLElement>,
+    private _ngZone: NgZone,
+    private _changeDetectorRef: ChangeDetectorRef
+  ) {}
 
   ngAfterViewChecked() {
     if (this._focusActiveCellAfterViewChecked) {

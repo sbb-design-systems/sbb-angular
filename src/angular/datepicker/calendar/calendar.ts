@@ -24,6 +24,7 @@ import {
 import { SbbDateAdapter, SbbDateFormats, SBB_DATE_FORMATS } from '@sbb-esta/angular/core';
 import { Subject } from 'rxjs';
 
+import { SbbDateRange } from '../date-range';
 import { createMissingDateImplError } from '../datepicker-errors';
 import { SbbMonthView } from '../month-view/month-view';
 
@@ -219,6 +220,12 @@ export class SbbCalendar<D> implements AfterContentInit, AfterViewChecked, OnDes
     this._maxDate = this._getValidDateOrNull(this._dateAdapter.deserialize(value));
   }
   private _maxDate: D | null;
+
+  /** Whether to display the week number. */
+  @Input() showWeekNumbers: boolean = false;
+
+  /** Currently active date range. */
+  @Input() dateRange: SbbDateRange<D> | null = null;
 
   /** A function used to filter which dates are selectable. */
   @Input() dateFilter: (date: D) => boolean;
