@@ -14,7 +14,7 @@ export class SbbMapOverflowingLabelService {
    * @param interactionOptions The interaction options to decide whether to hide or not.
    */
   hideOverflowingLabels(map: MaplibreMap, interactionOptions: SbbInteractionOptions): void {
-    if (interactionOptions.cannotMoveMap) {
+    if (interactionOptions.disableInteractions) {
       const borderId = `map-viewport-line`;
       this._addBorderSource(map, borderId);
 
