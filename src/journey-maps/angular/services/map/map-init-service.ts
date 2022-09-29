@@ -6,6 +6,7 @@ import { map } from 'rxjs/operators';
 
 import {
   SbbInteractionOptions,
+  SbbPointsOfInterestEnvironmentType,
   SbbViewportBounds,
   SbbViewportDimensions,
 } from '../../journey-maps.interfaces';
@@ -46,9 +47,10 @@ export class SbbMapInitService {
     interactionOptions: SbbInteractionOptions,
     viewportDimensions?: SbbViewportDimensions,
     viewportBounds?: SbbViewportBounds,
-    markerBounds?: LngLatBounds
+    markerBounds?: LngLatBounds,
+    poiEnvironment?: SbbPointsOfInterestEnvironmentType
   ): Observable<MaplibreMap> {
-    return this.fetchStyle(styleUrl).pipe(
+    return this.fetchStyle(styleUrl, poiEnvironment).pipe(
       map((style) =>
         this._createMap(
           style,
@@ -137,8 +139,25 @@ export class SbbMapInitService {
     return options;
   }
 
-  fetchStyle(styleUrl: string): Observable<StyleSpecification> {
-    return this._http.get(styleUrl).pipe(map((style) => style as StyleSpecification));
+  fetchStyle(
+    styleUrl: string,
+    poiEnvironment?: SbbPointsOfInterestEnvironmentType
+  ): Observable<StyleSpecification> {
+    return this._http.get(styleUrl).pipe(
+      map((fetchedStyle) => {
+        const style = fetchedStyle as StyleSpecification;
+
+        // Set poi source to integration if needed
+        if (poiEnvironment === SbbPointsOfInterestEnvironmentType.INT) {
+          const poiSource = style.sources['journey-pois-source'];
+          if ('url' in poiSource && poiSource.url) {
+            poiSource.url = poiSource.url.replace('journey_pois', 'journey_pois_integration');
+          }
+        }
+
+        return style;
+      })
+    );
   }
 
   private _translateControlLabels(maplibreMap: MaplibreMap, language: string): void {

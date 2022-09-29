@@ -12,7 +12,7 @@ import {
   SbbInteractionOptions,
   SbbJourneyMaps,
   SbbJourneyMapsRoutingOptions,
-  SbbPointsOfInterestOptions,
+  SbbPointsOfInterestEnvironmentType,
   SbbViewportDimensions,
   SbbZoomLevels,
   SBB_BOUNDING_BOX,
@@ -84,9 +84,6 @@ export class JourneyMapsFullExample implements OnInit, OnDestroy {
     { label: 'Transfer Luzern', value: { transfer: luzern4j } },
     { label: 'Transfer Zürich', value: { transfer: zurichIndoor } },
   ];
-  pointsOfInterestOptions: SbbPointsOfInterestOptions = {
-    categories: ['park_rail', 'car_sharing'],
-  };
   homeButtonOptions: SbbViewportDimensions = { boundingBox: SBB_BOUNDING_BOX };
   viewportDimensions?: SbbViewportDimensions;
   zoomLevels?: SbbZoomLevels;
@@ -152,6 +149,10 @@ export class JourneyMapsFullExample implements OnInit, OnDestroy {
         minZoomLevel: [1],
         maxZoomLevel: [23],
         maxBounds: [],
+      }),
+      pointsOfInterestOptions: _fb.group({
+        categories: [['park_rail', 'car_sharing']],
+        environment: [SbbPointsOfInterestEnvironmentType.PROD],
       }),
       zoneGeoJson: [],
       routingGeoJson: [],

@@ -501,9 +501,18 @@ export class SbbJourneyMaps implements OnInit, AfterViewInit, OnDestroy, OnChang
     }
 
     if (changes.poiOptions) {
-      this._executeWhenMapStyleLoaded(() =>
-        this._mapService.updatePoiVisibility(this._map, this.poiOptions)
-      );
+      this._executeWhenMapStyleLoaded(() => {
+        const poiEnvironmentChanged =
+          !changes.poiOptions.firstChange &&
+          changes.poiOptions.previousValue?.environment !==
+            changes.poiOptions.currentValue?.environment;
+
+        if (poiEnvironmentChanged) {
+          this._mapStyleModeChanged.next();
+        }
+
+        this._mapService.updatePoiVisibility(this._map, this.poiOptions);
+      });
     }
 
     if (!this._isStyleLoaded) {
@@ -545,7 +554,8 @@ export class SbbJourneyMaps implements OnInit, AfterViewInit, OnDestroy, OnChang
         this.interactionOptions,
         this.viewportDimensions,
         this.viewportBounds,
-        this.getMarkersBounds
+        this.getMarkersBounds,
+        this.poiOptions?.environment
       )
       .subscribe((m) => {
         this._map = m;
@@ -728,7 +738,9 @@ export class SbbJourneyMaps implements OnInit, AfterViewInit, OnDestroy, OnChang
     this._mapStyleModeChanged
       .pipe(
         debounceTime(200),
-        switchMap(() => this._mapInitService.fetchStyle(this._getStyleUrl())),
+        switchMap(() =>
+          this._mapInitService.fetchStyle(this._getStyleUrl(), this.poiOptions?.environment)
+        ),
         takeUntil(this._destroyed)
       )
       .subscribe((style) => {

@@ -183,6 +183,8 @@ export type SbbTemplateType = TemplateRef<any> | string;
 export interface SbbPointsOfInterestOptions {
   /** Configure a list of points of interest categories visible in the map. Set empty, to hide all POIs. */
   categories: SbbPointsOfInterestCategoryType[];
+  /** Configure the environment from which to get the POIs from (default = PROD). */
+  environment?: SbbPointsOfInterestEnvironmentType;
 }
 
 /** points of interest category type */
@@ -274,3 +276,8 @@ export type SbbPointsOfInterestCategoryType =
   | 'watches'
   | 'water_park'
   | 'zoo';
+
+export enum SbbPointsOfInterestEnvironmentType {
+  PROD = 'prod',
+  INT = 'int',
+}
