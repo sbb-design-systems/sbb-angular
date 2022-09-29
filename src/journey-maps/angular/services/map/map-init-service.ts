@@ -111,6 +111,7 @@ export class SbbMapInitService {
       dragRotate: false,
       touchPitch: false,
       fadeDuration: 10,
+      interactive: !interactionOptions.disableInteractions,
     };
 
     if (isSbbMapCenterOptions(viewportDimensions)) {

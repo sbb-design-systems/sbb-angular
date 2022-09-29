@@ -54,6 +54,7 @@ import { SbbMapInitService } from './services/map/map-init-service';
 import { SbbMapJourneyService } from './services/map/map-journey-service';
 import { SbbMapLeitPoiService } from './services/map/map-leit-poi-service';
 import { SbbMapMarkerService } from './services/map/map-marker-service';
+import { SbbMapOverflowingLabelService } from './services/map/map-overflowing-label-service';
 import { SbbMapRoutesService } from './services/map/map-routes.service';
 import { SbbMapService } from './services/map/map-service';
 import { SbbMapTransferService } from './services/map/map-transfer-service';
@@ -209,6 +210,7 @@ export class SbbJourneyMaps implements OnInit, AfterViewInit, OnDestroy, OnChang
     private _mapLeitPoiService: SbbMapLeitPoiService,
     private _levelSwitchService: SbbLevelSwitcher,
     private _mapLayerFilterService: SbbMapLayerFilter,
+    private _mapOverflowingLabelService: SbbMapOverflowingLabelService,
     private _cd: ChangeDetectorRef,
     private _i18n: SbbLocaleService,
     private _host: ElementRef
@@ -435,6 +437,9 @@ export class SbbJourneyMaps implements OnInit, AfterViewInit, OnDestroy, OnChang
   ngOnInit(): void {
     this._validateInputParameter();
     this._setupSubjects();
+    this._executeWhenMapStyleLoaded(() => {
+      this._mapOverflowingLabelService.hideOverflowingLabels(this._map, this.interactionOptions);
+    });
   }
 
   ngOnChanges(changes: SimpleChanges): void {

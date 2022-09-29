@@ -25,6 +25,8 @@ export interface SbbInteractionOptions {
   oneFingerPan?: boolean;
   /** Whether the map can be zoomed by scrolling. */
   scrollZoom?: boolean;
+  /** Whether the map cannot be moved. */
+  disableInteractions?: boolean;
 }
 
 export interface SbbUIOptions {
