@@ -152,7 +152,7 @@ export class JourneyMapsFullExample implements OnInit, OnDestroy {
       }),
       pointsOfInterestOptions: _fb.group({
         categories: [['park_rail', 'car_sharing']],
-        environment: [SbbPointsOfInterestEnvironmentType.PROD],
+        environment: [SbbPointsOfInterestEnvironmentType.PROD], // Can also be left empty
       }),
       zoneGeoJson: [],
       routingGeoJson: [],
