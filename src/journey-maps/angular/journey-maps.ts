@@ -508,10 +508,15 @@ export class SbbJourneyMaps implements OnInit, AfterViewInit, OnDestroy, OnChang
             changes.poiOptions.currentValue?.environment;
 
         if (poiEnvironmentChanged) {
+          // Wait for Visibility to switch until new style got loaded
           this._mapStyleModeChanged.next();
+          this._map.once('styledata', () => {
+            this._mapService.updatePoiVisibility(this._map, this.poiOptions);
+          });
+        } else {
+          // Else load instantly
+          this._mapService.updatePoiVisibility(this._map, this.poiOptions);
         }
-
-        this._mapService.updatePoiVisibility(this._map, this.poiOptions);
       });
     }
 

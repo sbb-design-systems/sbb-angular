@@ -1,6 +1,12 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { LngLatBounds, Map as MaplibreMap, MapOptions, StyleSpecification } from 'maplibre-gl';
+import {
+  LngLatBounds,
+  Map as MaplibreMap,
+  MapOptions,
+  StyleSpecification,
+  VectorTileSource,
+} from 'maplibre-gl';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 
@@ -149,10 +155,8 @@ export class SbbMapInitService {
 
         // Set poi source to integration if needed
         if (poiEnvironment === SbbPointsOfInterestEnvironmentType.INT) {
-          const poiSource = style.sources['journey-pois-source'];
-          if ('url' in poiSource && poiSource.url) {
-            poiSource.url = poiSource.url.replace('journey_pois', 'journey_pois_integration');
-          }
+          const poiSource = style.sources['journey-pois-source'] as VectorTileSource;
+          poiSource.url = poiSource.url.replace('journey_pois', 'journey_pois_integration');
         }
 
         return style;
