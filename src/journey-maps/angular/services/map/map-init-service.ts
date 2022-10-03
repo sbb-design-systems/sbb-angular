@@ -21,6 +21,8 @@ import { SBB_BOUNDING_BOX } from '../constants';
 import { SBB_MARKER_BOUNDS_PADDING, SBB_MAX_ZOOM, SBB_MIN_ZOOM } from '../constants';
 import { SbbMultiTouchSupport } from '../multiTouchSupport';
 
+import { SbbMapUrlService } from './map-url-service';
+
 @Injectable({
   providedIn: 'root',
 })
@@ -44,7 +46,7 @@ export class SbbMapInitService {
     },
   };
 
-  constructor(private _http: HttpClient) {}
+  constructor(private _http: HttpClient, private _urlService: SbbMapUrlService) {}
 
   initializeMap(
     mapNativeElement: HTMLElement,
@@ -153,11 +155,12 @@ export class SbbMapInitService {
       map((fetchedStyle) => {
         const style = fetchedStyle as StyleSpecification;
 
-        // Set poi source to integration if needed
-        if (poiEnvironment === SbbPointsOfInterestEnvironmentType.INT) {
-          const poiSource = style.sources['journey-pois-source'] as VectorTileSource;
-          poiSource.url = poiSource.url.replace('journey_pois', 'journey_pois_integration');
-        }
+        // Set POI-Source-URL
+        const poiSource = style.sources['journey-pois-source'] as VectorTileSource;
+        poiSource.url = this._urlService.getPoiSourceUrlByEnvironment(
+          poiSource.url,
+          poiEnvironment
+        );
 
         return style;
       })

@@ -14,7 +14,7 @@ import {
   ViewChild,
 } from '@angular/core';
 import { FeatureCollection } from 'geojson';
-import { LngLatBounds, LngLatLike, Map as MaplibreMap } from 'maplibre-gl';
+import { LngLatBounds, LngLatLike, Map as MaplibreMap, VectorTileSource } from 'maplibre-gl';
 import type { Map } from 'maplibre-gl';
 import { ReplaySubject, Subject } from 'rxjs';
 import { debounceTime, delay, switchMap, take, takeUntil } from 'rxjs/operators';
@@ -57,6 +57,7 @@ import { SbbMapMarkerService } from './services/map/map-marker-service';
 import { SbbMapRoutesService } from './services/map/map-routes.service';
 import { SbbMapService } from './services/map/map-service';
 import { SbbMapTransferService } from './services/map/map-transfer-service';
+import { SbbMapUrlService } from './services/map/map-url-service';
 import { SbbMapZoneService } from './services/map/map-zone-service';
 
 const SATELLITE_MAP_MAX_ZOOM = 19.2;
@@ -207,6 +208,7 @@ export class SbbJourneyMaps implements OnInit, AfterViewInit, OnDestroy, OnChang
     private _mapRoutesService: SbbMapRoutesService,
     private _mapZoneService: SbbMapZoneService,
     private _mapLeitPoiService: SbbMapLeitPoiService,
+    private _urlService: SbbMapUrlService,
     private _levelSwitchService: SbbLevelSwitcher,
     private _mapLayerFilterService: SbbMapLayerFilter,
     private _cd: ChangeDetectorRef,
@@ -508,8 +510,13 @@ export class SbbJourneyMaps implements OnInit, AfterViewInit, OnDestroy, OnChang
             changes.poiOptions.currentValue?.environment;
 
         if (poiEnvironmentChanged) {
-          // Wait for Visibility to switch until new style got loaded
-          this._mapStyleModeChanged.next();
+          // Update POI-Source-URL
+          const currentPoiSource = this._map.getSource('journey-pois-source') as VectorTileSource;
+          const newPoiSourceUrl = this._urlService.getPoiSourceUrlByEnvironment(
+            currentPoiSource.url,
+            this.poiOptions?.environment
+          );
+          currentPoiSource.setUrl(newPoiSourceUrl);
           this._map.once('styledata', () => {
             this._mapService.updatePoiVisibility(this._map, this.poiOptions);
           });

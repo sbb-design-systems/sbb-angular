@@ -277,7 +277,4 @@ export type SbbPointsOfInterestCategoryType =
   | 'water_park'
   | 'zoo';
 
-export enum SbbPointsOfInterestEnvironmentType {
-  PROD = 'prod',
-  INT = 'int',
-}
+export type SbbPointsOfInterestEnvironmentType = 'prod' | 'int';
