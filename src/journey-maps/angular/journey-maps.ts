@@ -14,7 +14,7 @@ import {
   ViewChild,
 } from '@angular/core';
 import { FeatureCollection } from 'geojson';
-import { LngLatBounds, LngLatLike, Map as MaplibreMap } from 'maplibre-gl';
+import { LngLatBounds, LngLatLike, Map as MaplibreMap, VectorTileSource } from 'maplibre-gl';
 import type { Map } from 'maplibre-gl';
 import { ReplaySubject, Subject } from 'rxjs';
 import { debounceTime, delay, switchMap, take, takeUntil } from 'rxjs/operators';
@@ -58,6 +58,7 @@ import { SbbMapOverflowingLabelService } from './services/map/map-overflowing-la
 import { SbbMapRoutesService } from './services/map/map-routes.service';
 import { SbbMapService } from './services/map/map-service';
 import { SbbMapTransferService } from './services/map/map-transfer-service';
+import { SbbMapUrlService } from './services/map/map-url-service';
 import { SbbMapZoneService } from './services/map/map-zone-service';
 
 const SATELLITE_MAP_MAX_ZOOM = 19.2;
@@ -208,6 +209,7 @@ export class SbbJourneyMaps implements OnInit, AfterViewInit, OnDestroy, OnChang
     private _mapRoutesService: SbbMapRoutesService,
     private _mapZoneService: SbbMapZoneService,
     private _mapLeitPoiService: SbbMapLeitPoiService,
+    private _urlService: SbbMapUrlService,
     private _levelSwitchService: SbbLevelSwitcher,
     private _mapLayerFilterService: SbbMapLayerFilter,
     private _mapOverflowingLabelService: SbbMapOverflowingLabelService,
@@ -506,9 +508,28 @@ export class SbbJourneyMaps implements OnInit, AfterViewInit, OnDestroy, OnChang
     }
 
     if (changes.poiOptions) {
-      this._executeWhenMapStyleLoaded(() =>
-        this._mapService.updatePoiVisibility(this._map, this.poiOptions)
-      );
+      this._executeWhenMapStyleLoaded(() => {
+        const poiEnvironmentChanged =
+          !changes.poiOptions.firstChange &&
+          changes.poiOptions.previousValue?.environment !==
+            changes.poiOptions.currentValue?.environment;
+
+        if (poiEnvironmentChanged) {
+          // Update POI-Source-URL
+          const currentPoiSource = this._map.getSource('journey-pois-source') as VectorTileSource;
+          const newPoiSourceUrl = this._urlService.getPoiSourceUrlByEnvironment(
+            currentPoiSource.url,
+            this.poiOptions?.environment
+          );
+          currentPoiSource.setUrl(newPoiSourceUrl);
+          this._map.once('styledata', () => {
+            this._mapService.updatePoiVisibility(this._map, this.poiOptions);
+          });
+        } else {
+          // Else load instantly
+          this._mapService.updatePoiVisibility(this._map, this.poiOptions);
+        }
+      });
     }
 
     if (!this._isStyleLoaded) {
@@ -550,7 +571,8 @@ export class SbbJourneyMaps implements OnInit, AfterViewInit, OnDestroy, OnChang
         this.interactionOptions,
         this.viewportDimensions,
         this.viewportBounds,
-        this.getMarkersBounds
+        this.getMarkersBounds,
+        this.poiOptions?.environment
       )
       .subscribe((m) => {
         this._map = m;
@@ -733,7 +755,9 @@ export class SbbJourneyMaps implements OnInit, AfterViewInit, OnDestroy, OnChang
     this._mapStyleModeChanged
       .pipe(
         debounceTime(200),
-        switchMap(() => this._mapInitService.fetchStyle(this._getStyleUrl())),
+        switchMap(() =>
+          this._mapInitService.fetchStyle(this._getStyleUrl(), this.poiOptions?.environment)
+        ),
         takeUntil(this._destroyed)
       )
       .subscribe((style) => {

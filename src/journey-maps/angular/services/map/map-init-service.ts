@@ -1,11 +1,18 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { LngLatBounds, Map as MaplibreMap, MapOptions, StyleSpecification } from 'maplibre-gl';
+import {
+  LngLatBounds,
+  Map as MaplibreMap,
+  MapOptions,
+  StyleSpecification,
+  VectorTileSource,
+} from 'maplibre-gl';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 
 import {
   SbbInteractionOptions,
+  SbbPointsOfInterestEnvironmentType,
   SbbViewportBounds,
   SbbViewportDimensions,
 } from '../../journey-maps.interfaces';
@@ -13,6 +20,8 @@ import { isSbbBoundingBoxOptions, isSbbMapCenterOptions } from '../../util/typeg
 import { SBB_BOUNDING_BOX } from '../constants';
 import { SBB_MARKER_BOUNDS_PADDING, SBB_MAX_ZOOM, SBB_MIN_ZOOM } from '../constants';
 import { SbbMultiTouchSupport } from '../multiTouchSupport';
+
+import { SbbMapUrlService } from './map-url-service';
 
 @Injectable({
   providedIn: 'root',
@@ -37,7 +46,7 @@ export class SbbMapInitService {
     },
   };
 
-  constructor(private _http: HttpClient) {}
+  constructor(private _http: HttpClient, private _urlService: SbbMapUrlService) {}
 
   initializeMap(
     mapNativeElement: HTMLElement,
@@ -46,9 +55,10 @@ export class SbbMapInitService {
     interactionOptions: SbbInteractionOptions,
     viewportDimensions?: SbbViewportDimensions,
     viewportBounds?: SbbViewportBounds,
-    markerBounds?: LngLatBounds
+    markerBounds?: LngLatBounds,
+    poiEnvironment?: SbbPointsOfInterestEnvironmentType
   ): Observable<MaplibreMap> {
-    return this.fetchStyle(styleUrl).pipe(
+    return this.fetchStyle(styleUrl, poiEnvironment).pipe(
       map((style) =>
         this._createMap(
           style,
@@ -138,8 +148,24 @@ export class SbbMapInitService {
     return options;
   }
 
-  fetchStyle(styleUrl: string): Observable<StyleSpecification> {
-    return this._http.get(styleUrl).pipe(map((style) => style as StyleSpecification));
+  fetchStyle(
+    styleUrl: string,
+    poiEnvironment?: SbbPointsOfInterestEnvironmentType
+  ): Observable<StyleSpecification> {
+    return this._http.get(styleUrl).pipe(
+      map((fetchedStyle) => {
+        const style = fetchedStyle as StyleSpecification;
+
+        // Set POI-Source-URL
+        const poiSource = style.sources['journey-pois-source'] as VectorTileSource;
+        poiSource.url = this._urlService.getPoiSourceUrlByEnvironment(
+          poiSource.url,
+          poiEnvironment
+        );
+
+        return style;
+      })
+    );
   }
 
   private _translateControlLabels(maplibreMap: MaplibreMap, language: string): void {

@@ -18,7 +18,7 @@
     [markerDetailsTemplate]="markerDetailsTemplate"
     [journeyMapsRoutingOption]="journeyMapsRoutingOption"
     [journeyMapsZones]="form.get('zoneGeoJson')?.value"
-    [poiOptions]="pointsOfInterestOptions"
+    [poiOptions]="form.get('pointsOfInterestOptions')?.value"
     [(selectedMarkerId)]="selectedMarkerId"
     [selectedLevel]="this.form.get('level')?.value ?? 0"
     (selectedLevelChange)="this.form.patchValue({level: $event})"
@@ -137,6 +137,15 @@
           <sbb-radio-button [value]="true">Popup</sbb-radio-button>
           <sbb-radio-button [value]="false">Teaser</sbb-radio-button>
         </sbb-radio-group>
+      </li>
+      <li formGroupName="pointsOfInterestOptions">
+        <sbb-form-field label="POI Environment">
+          <sbb-select formControlName="environment">
+            <sbb-option *ngFor="let environment of ['prod', 'int']" [value]="environment"
+              >{{environment}}</sbb-option
+            >
+          </sbb-select>
+        </sbb-form-field>
       </li>
       <li>
         <sbb-form-field label="Select zones">
