@@ -8,6 +8,7 @@ import { SBB_ALL_ROUTE_LAYERS } from '../map-routes.service';
 import { SbbMapEventUtils } from './map-event-utils';
 
 export const SBB_ROUTE_ID_PROPERTY_NAME = 'routeId';
+export const SBB_ROUTE_LINE_COLOR_PROPERTY_NAME = 'lineColor';
 
 @Injectable({ providedIn: 'root' })
 export class SbbRouteUtils {

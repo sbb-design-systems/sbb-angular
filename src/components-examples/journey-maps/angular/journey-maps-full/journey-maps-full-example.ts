@@ -23,7 +23,7 @@ import { map, takeUntil } from 'rxjs/operators';
 
 import { zhShWaldfriedhof } from './mock-response/journey/zh-sh_waldfriedhof';
 import { markers } from './mock-response/markers';
-import { bnLsRoutes } from './mock-response/routes/bn-ls';
+import { bnLsRoutes, bnLsRoutesOptions } from './mock-response/routes/bn-ls';
 import { bernIndoor } from './mock-response/transfer/bern-indoor';
 import { geneveIndoor } from './mock-response/transfer/geneve-indoor';
 import { luzern4j } from './mock-response/transfer/luzern4-j';
@@ -78,7 +78,10 @@ export class JourneyMapsFullExample implements OnInit, OnDestroy {
   journeyMapsRoutingOptions = [
     { label: '(none)', value: undefined },
     { label: 'Zürich - Schaffhausen, Waldfriedhof', value: { journey: zhShWaldfriedhof } },
-    { label: 'Bern - Lausanne', value: { routes: bnLsRoutes } },
+    {
+      label: 'Bern - Lausanne',
+      value: { routes: bnLsRoutes, routesMetaInformations: bnLsRoutesOptions },
+    },
     { label: 'Transfer Bern', value: { transfer: bernIndoor } },
     { label: 'Transfer Genf', value: { transfer: geneveIndoor } },
     { label: 'Transfer Luzern', value: { transfer: luzern4j } },

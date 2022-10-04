@@ -483,7 +483,8 @@ export class SbbJourneyMaps implements OnInit, AfterViewInit, OnDestroy, OnChang
           this._mapRoutesService.updateRoutes(
             this._map,
             mapSelectionEventService,
-            this.journeyMapsRoutingOption!.routes
+            this.journeyMapsRoutingOption!.routes,
+            this.journeyMapsRoutingOption!.routesMetaInformations
           );
         }
       });
@@ -499,7 +500,13 @@ export class SbbJourneyMaps implements OnInit, AfterViewInit, OnDestroy, OnChang
       });
     }
 
-    if (Object.values(this.journeyMapsRoutingOption ?? {}).filter((val) => val).length > 1) {
+    const isNotRouteOptionWithMetadata = !(
+      !!this.journeyMapsRoutingOption?.routes &&
+      !!this.journeyMapsRoutingOption?.routesMetaInformations
+    );
+    const isMoreThanOneOption =
+      Object.values(this.journeyMapsRoutingOption ?? {}).filter((val) => val).length > 1;
+    if (isMoreThanOneOption && isNotRouteOptionWithMetadata) {
       console.error(
         'journeyMapsRoutingOption: Use either transfer or journey or routes. It does not work correctly when more than one of these properties is set.'
       );

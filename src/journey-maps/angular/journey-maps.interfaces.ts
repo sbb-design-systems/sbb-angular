@@ -3,6 +3,7 @@ import { FeatureCollection } from 'geojson';
 import { LngLatBoundsLike, LngLatLike, MapGeoJSONFeature } from 'maplibre-gl';
 
 import { SbbMarker } from './model/marker';
+import { SbbMarkerCategory } from './public-api';
 
 export type SbbStyleMode = 'bright' | 'dark';
 
@@ -94,6 +95,14 @@ export interface SbbJourneyMapsRoutingOptions {
    * Note: journey, transfer and routes cannot be displayed at the same time.
    */
   routes?: SbbSelectableFeatureCollection[];
+
+  /**
+   * An array of additional informations as defined in <code>SbbSelectableFeatureCollectionMetaInformation</code>.
+   * ID must match with ID from given routes.
+   * If no meta information for a route given, it will use the default settings.
+   * Note: journey, transfer and routes cannot be displayed at the same time.
+   */
+  routesMetaInformations?: SbbSelectableFeatureCollectionMetaInformation[];
 }
 
 export interface SbbMarkerOptions {
@@ -175,6 +184,12 @@ export type SbbSelectableFeatureCollection = FeatureCollection & {
   id?: string;
   isSelected?: boolean;
 };
+
+export interface SbbSelectableFeatureCollectionMetaInformation {
+  id?: string;
+  routeColor?: string;
+  markerCategory?: SbbMarkerCategory;
+}
 
 export type SbbFeatureDataType = 'MARKER' | 'ROUTE' | 'STATION' | 'ZONE' | 'POI';
 

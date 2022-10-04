@@ -1,4 +1,14 @@
-import { SbbSelectableFeatureCollection } from '@sbb-esta/journey-maps';
+import {
+  SbbSelectableFeatureCollection,
+  SbbSelectableFeatureCollectionMetaInformation,
+} from '@sbb-esta/journey-maps';
+
+export const bnLsRoutesOptions: SbbSelectableFeatureCollectionMetaInformation[] = [
+  {
+    id: '1',
+    routeColor: 'rgba(0, 235, 0, 1)',
+  },
+];
 
 export const bnLsRoutes: SbbSelectableFeatureCollection[] = [
   {
