@@ -2,6 +2,20 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [14.3.0](https://github.com/sbb-design-systems/sbb-angular/compare/14.2.0...14.3.0) (2022-10-04)
+
+
+### Features
+
+* **journey-maps:** implement option to remove overflowing labels on static map ([#1678](https://github.com/sbb-design-systems/sbb-angular/issues/1678)) ([cc513df](https://github.com/sbb-design-systems/sbb-angular/commit/cc513df24df9a9222f074fb29479cfa4249c3891))
+* **journey-maps:** points of interest environment option ([#1679](https://github.com/sbb-design-systems/sbb-angular/issues/1679)) ([fe7836a](https://github.com/sbb-design-systems/sbb-angular/commit/fe7836aad2ff1fdd55e424521887bf74ff375a9b))
+
+
+### Bug Fixes
+
+* **deps:** update angular to v14.2.3 ([5bef729](https://github.com/sbb-design-systems/sbb-angular/commit/5bef72910d59e87027f8627c367c1b6703f953b5))
+* **deps:** update dependency rxjs to v7.5.7 ([7e96814](https://github.com/sbb-design-systems/sbb-angular/commit/7e968143150af31a728035568b1687766e22a049))
+
 ## [14.2.0](https://github.com/sbb-design-systems/sbb-angular/compare/14.1.7...14.2.0) (2022-09-15)
 
 
