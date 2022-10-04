@@ -59,6 +59,7 @@ import { SbbMapRoutesService } from './services/map/map-routes.service';
 import { SbbMapService } from './services/map/map-service';
 import { SbbMapTransferService } from './services/map/map-transfer-service';
 import { SbbMapZoneService } from './services/map/map-zone-service';
+import { getRouteMarkers } from './util/route-marker-util';
 
 const SATELLITE_MAP_MAX_ZOOM = 19.2;
 const SATELLITE_MAP_TILE_SIZE = 256;
@@ -159,7 +160,7 @@ export class SbbJourneyMaps implements OnInit, AfterViewInit, OnDestroy, OnChang
   @ViewChild(SbbFeatureEventListener)
   private _featureEventListenerComponent: SbbFeatureEventListener;
   private _defaultStyleOptions: SbbStyleOptions = {
-    url: 'https://journey-maps-tiles.geocdn.sbb.ch/styles/{styleId}/style.json?api_key={apiKey}',
+    url: 'https://style-review-rokas.geops.io/styles/review-sbb-sbb-st-cokhaw.base_bright_v2_ki/style.json?key=key%3Dtu3yoodayei9ohx3Ohze',
     brightId: 'base_bright_v2_ki',
     darkId: 'base_dark_v2_ki',
     mode: 'bright',
@@ -696,7 +697,7 @@ export class SbbJourneyMaps implements OnInit, AfterViewInit, OnDestroy, OnChang
     this._executeWhenMapStyleLoaded(() => {
       this._mapMarkerService.updateMarkers(
         this._map,
-        this.markerOptions.markers,
+        this._getMarkers(),
         this.selectedMarker,
         this.styleOptions.mode
       );
@@ -748,7 +749,7 @@ export class SbbJourneyMaps implements OnInit, AfterViewInit, OnDestroy, OnChang
         this._map.once('styledata', () => {
           this._mapMarkerService.updateMarkers(
             this._map,
-            this.markerOptions.markers,
+            this._getMarkers(),
             this.selectedMarker,
             this.styleOptions.mode
           );
@@ -825,5 +826,15 @@ export class SbbJourneyMaps implements OnInit, AfterViewInit, OnDestroy, OnChang
   private _setupResizeObserver() {
     this._observer = new ResizeObserver(() => this._mapResized.next());
     this._observer.observe(this._mapElementRef.nativeElement);
+  }
+
+  private _getMarkers(): SbbMarker[] | undefined {
+    const normalMarkers = this.markerOptions.markers ?? [];
+    const routeMidpointMarkers =
+      getRouteMarkers(
+        this.journeyMapsRoutingOption?.routes,
+        this.journeyMapsRoutingOption?.routesMetaInformations
+      ) ?? [];
+    return [...normalMarkers, ...routeMidpointMarkers];
   }
 }
