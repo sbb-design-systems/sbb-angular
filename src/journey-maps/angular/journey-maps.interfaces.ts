@@ -2,8 +2,7 @@ import { TemplateRef } from '@angular/core';
 import { FeatureCollection } from 'geojson';
 import { LngLatBoundsLike, LngLatLike, MapGeoJSONFeature } from 'maplibre-gl';
 
-import { SbbMarker } from './model/marker';
-import { SbbMarkerCategory } from './public-api';
+import { SbbMarker, SbbMarkerConfiguration } from './model/marker';
 
 export type SbbStyleMode = 'bright' | 'dark';
 
@@ -186,9 +185,12 @@ export type SbbSelectableFeatureCollection = FeatureCollection & {
 };
 
 export interface SbbSelectableFeatureCollectionMetaInformation {
+  /** ID that matches a route in <code>SbbJourneyMapsRoutingOptions.routes</code>. */
   id?: string;
+  /** Color of the route. */
   routeColor?: string;
-  markerCategory?: SbbMarkerCategory;
+  /** Midpoint-Marker configuration. Position must be given in midpoint-feature from Journey-Maps response. */
+  midpointMarkerConfiguration?: SbbMarkerConfiguration;
 }
 
 export type SbbFeatureDataType = 'MARKER' | 'ROUTE' | 'STATION' | 'ZONE' | 'POI';
@@ -200,6 +202,8 @@ export type SbbTemplateType = TemplateRef<any> | string;
 export interface SbbPointsOfInterestOptions {
   /** Configure a list of points of interest categories visible in the map. Set empty, to hide all POIs. */
   categories: SbbPointsOfInterestCategoryType[];
+  /** Configure the environment from which to get the POIs from (default = PROD). */
+  environment?: SbbPointsOfInterestEnvironmentType;
 }
 
 /** points of interest category type */
@@ -291,3 +295,5 @@ export type SbbPointsOfInterestCategoryType =
   | 'watches'
   | 'water_park'
   | 'zoo';
+
+export type SbbPointsOfInterestEnvironmentType = 'prod' | 'int';

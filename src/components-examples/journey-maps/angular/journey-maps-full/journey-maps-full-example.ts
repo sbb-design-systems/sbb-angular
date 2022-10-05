@@ -12,7 +12,6 @@ import {
   SbbInteractionOptions,
   SbbJourneyMaps,
   SbbJourneyMapsRoutingOptions,
-  SbbPointsOfInterestOptions,
   SbbViewportDimensions,
   SbbZoomLevels,
   SBB_BOUNDING_BOX,
@@ -23,7 +22,7 @@ import { map, takeUntil } from 'rxjs/operators';
 
 import { zhShWaldfriedhof } from './mock-response/journey/zh-sh_waldfriedhof';
 import { markers } from './mock-response/markers';
-import { bielLyssRoutes } from './mock-response/routes/biel-lyss';
+import { bielLyssRoutes, bielLyssRoutesOptions } from './mock-response/routes/biel-lyss';
 import { bnLsRoutes, bnLsRoutesOptions } from './mock-response/routes/bn-ls';
 import { bernIndoor } from './mock-response/transfer/bern-indoor';
 import { geneveIndoor } from './mock-response/transfer/geneve-indoor';
@@ -83,15 +82,15 @@ export class JourneyMapsFullExample implements OnInit, OnDestroy {
       label: 'Bern - Lausanne',
       value: { routes: bnLsRoutes, routesMetaInformations: bnLsRoutesOptions },
     },
-    { label: 'Biel - Lyss', value: { routes: bielLyssRoutes } },
+    {
+      label: 'Biel - Lyss',
+      value: { routes: bielLyssRoutes, routesMetaInformations: bielLyssRoutesOptions },
+    },
     { label: 'Transfer Bern', value: { transfer: bernIndoor } },
     { label: 'Transfer Genf', value: { transfer: geneveIndoor } },
     { label: 'Transfer Luzern', value: { transfer: luzern4j } },
     { label: 'Transfer Zürich', value: { transfer: zurichIndoor } },
   ];
-  pointsOfInterestOptions: SbbPointsOfInterestOptions = {
-    categories: ['park_rail', 'car_sharing'],
-  };
   homeButtonOptions: SbbViewportDimensions = { boundingBox: SBB_BOUNDING_BOX };
   viewportDimensions?: SbbViewportDimensions;
   zoomLevels?: SbbZoomLevels;
@@ -157,6 +156,10 @@ export class JourneyMapsFullExample implements OnInit, OnDestroy {
         minZoomLevel: [1],
         maxZoomLevel: [23],
         maxBounds: [],
+      }),
+      pointsOfInterestOptions: _fb.group({
+        categories: [['park_rail', 'car_sharing']],
+        environment: ['prod'], // Can also be left empty
       }),
       zoneGeoJson: [],
       routingGeoJson: [],

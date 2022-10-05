@@ -12,27 +12,23 @@ export const getRouteMarkers = (
 ): SbbMarker[] | undefined => {
   return routes
     ?.map<SbbMarker | undefined>((route) => {
-      const markerCategory = routesOptions?.find(
+      const markerConfiguration = routesOptions?.find(
         (ro) => ro.id === route.id && !!route.id
-      )?.markerCategory;
+      )?.midpointMarkerConfiguration;
 
       const point = route.features.find((f) => f?.properties!['type'] === 'midpoint')?.geometry as
         | Point
         | undefined;
 
-      console.log(route, routesOptions);
-
-      if (!markerCategory || !point) {
+      if (!markerConfiguration || !point) {
         return;
       }
 
       return {
+        ...markerConfiguration,
         id: `jmc-generated-route-${route.id}-midpoint-marker`,
-        category: markerCategory,
-        color: 'RED',
         position: point?.coordinates,
-        title: `jmc-generated-route-${route.id}-midpoint-marker`,
-      } as SbbMarker;
+      };
     })
     .filter((m) => !!m) as SbbMarker[];
 };

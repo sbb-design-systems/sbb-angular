@@ -6,7 +6,7 @@ import { SbbMarkerPriority } from './marker-priority';
 /**
  * Defines a marker (point) that will be displayed on the map.
  */
-export interface SbbMarker {
+export interface SbbMarker extends SbbMarkerConfiguration {
   /** ID identifying the marker */
   id: string;
 
@@ -15,7 +15,12 @@ export interface SbbMarker {
    * The first one is the longitude and the second one the latitude.
    */
   position: Position;
+}
 
+/**
+ * Defines the base of a marker (without its position and id).
+ */
+export interface SbbMarkerConfiguration {
   /**
    * The category of the marker. The category controls which icon is displayed.
    * Use <code>CUSTOM</code> if you want to use a custom icon.

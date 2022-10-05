@@ -1,4 +1,5 @@
 import {
+  SbbMarkerCategory,
   SbbSelectableFeatureCollection,
   SbbSelectableFeatureCollectionMetaInformation,
 } from '@sbb-esta/journey-maps';
@@ -7,6 +8,7 @@ export const bnLsRoutesOptions: SbbSelectableFeatureCollectionMetaInformation[] 
   {
     id: '1',
     routeColor: 'rgba(0, 235, 0, 1)',
+    midpointMarkerConfiguration: { category: SbbMarkerCategory.RAIL, title: 'Marker' }, // Won't work, since there is no midpoint
   },
 ];
 

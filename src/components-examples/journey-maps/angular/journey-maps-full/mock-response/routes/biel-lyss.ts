@@ -7,7 +7,11 @@ import {
 export const bielLyssRoutesOptions: SbbSelectableFeatureCollectionMetaInformation[] = [
   {
     id: '1',
-    markerCategory: SbbMarkerCategory.RAIL,
+    midpointMarkerConfiguration: {
+      category: SbbMarkerCategory.RAIL,
+      title: 'Marker',
+      color: 'DARKBLUE',
+    },
   },
 ];
 
