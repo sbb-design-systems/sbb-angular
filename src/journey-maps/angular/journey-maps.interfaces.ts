@@ -2,7 +2,7 @@ import { TemplateRef } from '@angular/core';
 import { FeatureCollection } from 'geojson';
 import { LngLatBoundsLike, LngLatLike, MapGeoJSONFeature } from 'maplibre-gl';
 
-import { SbbMarker, SbbMarkerConfiguration } from './model/marker';
+import { SbbMarker } from './model/marker';
 
 export type SbbStyleMode = 'bright' | 'dark';
 
@@ -96,12 +96,12 @@ export interface SbbJourneyMapsRoutingOptions {
   routes?: SbbSelectableFeatureCollection[];
 
   /**
-   * An array of additional informations as defined in <code>SbbSelectableFeatureCollectionMetaInformation</code>.
+   * An array of additional informations as defined in <code>SbbRouteMetaInformation</code>.
    * ID must match with ID from given routes.
    * If no meta information for a route given, it will use the default settings.
    * Note: journey, transfer and routes cannot be displayed at the same time.
    */
-  routesMetaInformations?: SbbSelectableFeatureCollectionMetaInformation[];
+  routesMetaInformations?: SbbRouteMetaInformation[];
 }
 
 export interface SbbMarkerOptions {
@@ -184,13 +184,13 @@ export type SbbSelectableFeatureCollection = FeatureCollection & {
   isSelected?: boolean;
 };
 
-export interface SbbSelectableFeatureCollectionMetaInformation {
+export interface SbbRouteMetaInformation {
   /** ID that matches a route in <code>SbbJourneyMapsRoutingOptions.routes</code>. */
-  id?: string;
-  /** Color of the route. */
+  id: string;
+  /** Color of the route. See https://maplibre.org/maplibre-gl-js-docs/style-spec/types/ for color-format. */
   routeColor?: string;
   /** Midpoint-Marker configuration. Position must be given in midpoint-feature from Journey-Maps response. */
-  midpointMarkerConfiguration?: SbbMarkerConfiguration;
+  midpointMarkerConfiguration?: Omit<SbbMarker, 'id' | 'position'>;
 }
 
 export type SbbFeatureDataType = 'MARKER' | 'ROUTE' | 'STATION' | 'ZONE' | 'POI';

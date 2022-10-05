@@ -1,10 +1,12 @@
 import { Injectable } from '@angular/core';
+import { Point } from 'geojson';
 import { Map as MaplibreMap } from 'maplibre-gl';
 
 import {
+  SbbRouteMetaInformation,
   SbbSelectableFeatureCollection,
-  SbbSelectableFeatureCollectionMetaInformation,
 } from '../../journey-maps.interfaces';
+import { SbbMarker } from '../../public-api';
 
 import { SbbMapSelectionEvent, SBB_SELECTED_PROPERTY_NAME } from './events/map-selection-event';
 import {
@@ -31,7 +33,7 @@ export class SbbMapRoutesService {
     map: MaplibreMap,
     mapSelectionEventService: SbbMapSelectionEvent,
     routes: SbbSelectableFeatureCollection[] = [SBB_EMPTY_FEATURE_COLLECTION],
-    routesMetaInformations: SbbSelectableFeatureCollectionMetaInformation[] = []
+    routesMetaInformations: SbbRouteMetaInformation[] = []
   ): void {
     routes.forEach((featureCollection, idx) => {
       const id = featureCollection.id ?? `jmc-generated-${idx + 1}`;
@@ -42,9 +44,7 @@ export class SbbMapRoutesService {
         feature.properties![SBB_SELECTED_PROPERTY_NAME] = featureCollection.isSelected;
 
         // Set route-color if given in metadata
-        feature.properties![SBB_ROUTE_LINE_COLOR_PROPERTY_NAME] = !!metadata?.routeColor
-          ? metadata.routeColor
-          : '';
+        feature.properties![SBB_ROUTE_LINE_COLOR_PROPERTY_NAME] = metadata?.routeColor ?? '';
       }
     });
     this._mapRouteService.updateRoute(map, mapSelectionEventService, {
@@ -55,5 +55,31 @@ export class SbbMapRoutesService {
         []
       ),
     });
+  }
+
+  getRouteMarkers(
+    routes: SbbSelectableFeatureCollection[] | undefined,
+    routesOptions: SbbRouteMetaInformation[] | undefined
+  ): SbbMarker[] | undefined {
+    return routes
+      ?.map<SbbMarker | undefined>((route) => {
+        const markerConfiguration = routesOptions?.find(
+          (ro) => ro.id === route.id && !!route.id
+        )?.midpointMarkerConfiguration;
+
+        const point = route.features.find((f) => f?.properties!['type'] === 'midpoint')
+          ?.geometry as Point | undefined;
+
+        if (!markerConfiguration || !point) {
+          return;
+        }
+
+        return {
+          ...markerConfiguration,
+          id: `route-${route.id}-midpoint-marker`,
+          position: point.coordinates,
+        } as SbbMarker;
+      })
+      .filter((m) => !!m) as SbbMarker[];
   }
 }

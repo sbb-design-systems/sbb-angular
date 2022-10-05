@@ -1,10 +1,10 @@
 import {
   SbbMarkerCategory,
+  SbbRouteMetaInformation,
   SbbSelectableFeatureCollection,
-  SbbSelectableFeatureCollectionMetaInformation,
 } from '@sbb-esta/journey-maps';
 
-export const bnLsRoutesOptions: SbbSelectableFeatureCollectionMetaInformation[] = [
+export const bnLsRoutesOptions: SbbRouteMetaInformation[] = [
   {
     id: '1',
     routeColor: 'rgba(0, 235, 0, 1)',

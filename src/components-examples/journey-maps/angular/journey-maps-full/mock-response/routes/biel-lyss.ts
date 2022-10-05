@@ -1,10 +1,10 @@
 import {
   SbbMarkerCategory,
+  SbbRouteMetaInformation,
   SbbSelectableFeatureCollection,
-  SbbSelectableFeatureCollectionMetaInformation,
 } from '@sbb-esta/journey-maps';
 
-export const bielLyssRoutesOptions: SbbSelectableFeatureCollectionMetaInformation[] = [
+export const bielLyssRoutesOptions: SbbRouteMetaInformation[] = [
   {
     id: '1',
     midpointMarkerConfiguration: {

@@ -65,7 +65,7 @@ export class SbbMapMarkerService {
   get allMarkerLayers(): string[] {
     return [...this.markerLayers, ...this.markerLayersSelected];
   }
-  // TODO: add markers
+
   updateMarkers(
     map: MaplibreMap,
     markers: SbbMarker[] | undefined,

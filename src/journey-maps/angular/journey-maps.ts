@@ -60,7 +60,6 @@ import { SbbMapService } from './services/map/map-service';
 import { SbbMapTransferService } from './services/map/map-transfer-service';
 import { SbbMapUrlService } from './services/map/map-url-service';
 import { SbbMapZoneService } from './services/map/map-zone-service';
-import { getRouteMarkers } from './util/route-marker-util';
 
 const SATELLITE_MAP_MAX_ZOOM = 19.2;
 const SATELLITE_MAP_TILE_SIZE = 256;
@@ -857,7 +856,7 @@ export class SbbJourneyMaps implements OnInit, AfterViewInit, OnDestroy, OnChang
   private _getMarkers(): SbbMarker[] {
     const normalMarkers = this.markerOptions.markers ?? [];
     const routeMidpointMarkers =
-      getRouteMarkers(
+      this._mapRoutesService.getRouteMarkers(
         this.journeyMapsRoutingOption?.routes,
         this.journeyMapsRoutingOption?.routesMetaInformations
       ) ?? [];
