@@ -161,7 +161,7 @@ export class SbbJourneyMaps implements OnInit, AfterViewInit, OnDestroy, OnChang
   @ViewChild(SbbFeatureEventListener)
   private _featureEventListenerComponent: SbbFeatureEventListener;
   private _defaultStyleOptions: SbbStyleOptions = {
-    url: 'https://style-review-rokas.geops.io/styles/review-sbb-sbb-st-cokhaw.base_bright_v2_ki/style.json?key=key%3Dtu3yoodayei9ohx3Ohze',
+    url: 'https://journey-maps-tiles.geocdn.sbb.ch/styles/{styleId}/style.json?api_key={apiKey}',
     brightId: 'base_bright_v2_ki',
     darkId: 'base_dark_v2_ki',
     mode: 'bright',
