@@ -448,54 +448,63 @@ export class SbbJourneyMaps implements OnInit, AfterViewInit, OnDestroy, OnChang
   ngOnChanges(changes: SimpleChanges): void {
     this._mapConfigService.updateConfigs(this.markerOptions.popup);
 
-    const markerOptionsChanged =
-      changes.markerOptions?.currentValue.markers !== changes.markerOptions?.previousValue?.markers;
-    const routeMetaInformationsChanged =
-      changes.journeyMapsRoutingOption?.currentValue?.routesMetaInformations?.length !==
-        changes.journeyMapsRoutingOption?.previousValue?.routesMetaInformations?.length ||
-      changes.journeyMapsRoutingOption?.currentValue?.routesMetaInformations !==
-        changes.journeyMapsRoutingOption?.previousValue?.routesMetaInformations;
-    if (markerOptionsChanged || routeMetaInformationsChanged) {
+    if (
+      changes.markerOptions?.currentValue.markers !== changes.markerOptions?.previousValue?.markers
+    ) {
       this._updateMarkers();
     }
 
     // handle journey, transfer, and routes together, otherwise they can overwrite each other's transfer or route data
     if (changes.journeyMapsRoutingOption) {
-      this._executeWhenMapStyleLoaded(() => {
-        // stam: is there other way to achieve this ?
-        const mapSelectionEventService =
-          this._featureEventListenerComponent.mapSelectionEventService;
+      if (this._areRoutingOptionsValid()) {
+        if (this._haveRoutesMetaInformationsChanged(changes)) {
+          this._updateMarkers();
+        }
 
-        // remove previous data from map
-        this._mapJourneyService.updateJourney(this._map, mapSelectionEventService, undefined);
-        this._mapTransferService.updateTransfer(this._map, undefined);
-        this._mapRoutesService.updateRoutes(this._map, mapSelectionEventService, undefined);
-        this._mapLeitPoiService.processData(this._map, undefined);
-        // only add new data if we have some
-        if (changes.journeyMapsRoutingOption?.currentValue?.journey) {
-          this._mapJourneyService.updateJourney(
-            this._map,
-            mapSelectionEventService,
-            this.journeyMapsRoutingOption!.journey
-          );
-          this._mapLeitPoiService.processData(this._map, this.journeyMapsRoutingOption!.journey, 0);
-        }
-        if (changes.journeyMapsRoutingOption?.currentValue?.transfer) {
-          this._mapTransferService.updateTransfer(
-            this._map,
-            this.journeyMapsRoutingOption!.transfer
-          );
-          this._mapLeitPoiService.processData(this._map, this.journeyMapsRoutingOption!.transfer);
-        }
-        if (changes.journeyMapsRoutingOption?.currentValue?.routes) {
-          this._mapRoutesService.updateRoutes(
-            this._map,
-            mapSelectionEventService,
-            this.journeyMapsRoutingOption!.routes,
-            this.journeyMapsRoutingOption!.routesMetaInformations
-          );
-        }
-      });
+        this._executeWhenMapStyleLoaded(() => {
+          // stam: is there other way to achieve this ?
+          const mapSelectionEventService =
+            this._featureEventListenerComponent.mapSelectionEventService;
+
+          // remove previous data from map
+          this._mapJourneyService.updateJourney(this._map, mapSelectionEventService, undefined);
+          this._mapTransferService.updateTransfer(this._map, undefined);
+          this._mapRoutesService.updateRoutes(this._map, mapSelectionEventService, undefined);
+          this._mapLeitPoiService.processData(this._map, undefined);
+          // only add new data if we have some
+          if (changes.journeyMapsRoutingOption?.currentValue?.journey) {
+            this._mapJourneyService.updateJourney(
+              this._map,
+              mapSelectionEventService,
+              this.journeyMapsRoutingOption!.journey
+            );
+            this._mapLeitPoiService.processData(
+              this._map,
+              this.journeyMapsRoutingOption!.journey,
+              0
+            );
+          }
+          if (changes.journeyMapsRoutingOption?.currentValue?.transfer) {
+            this._mapTransferService.updateTransfer(
+              this._map,
+              this.journeyMapsRoutingOption!.transfer
+            );
+            this._mapLeitPoiService.processData(this._map, this.journeyMapsRoutingOption!.transfer);
+          }
+          if (changes.journeyMapsRoutingOption?.currentValue?.routes) {
+            this._mapRoutesService.updateRoutes(
+              this._map,
+              mapSelectionEventService,
+              this.journeyMapsRoutingOption!.routes,
+              this.journeyMapsRoutingOption!.routesMetaInformations
+            );
+          }
+        });
+      } else {
+        console.error(
+          'journeyMapsRoutingOption: Use either transfer or journey or routes. It does not work correctly when more than one of these properties is set.'
+        );
+      }
     }
 
     if (changes.journeyMapsZones?.currentValue || changes.journeyMapsZones?.previousValue) {
@@ -506,18 +515,6 @@ export class SbbJourneyMaps implements OnInit, AfterViewInit, OnDestroy, OnChang
           this.journeyMapsZones
         );
       });
-    }
-
-    const isNotRouteOptionWithMetadata = !(
-      !!this.journeyMapsRoutingOption?.routes &&
-      !!this.journeyMapsRoutingOption?.routesMetaInformations
-    );
-    const isMoreThanOneOption =
-      Object.values(this.journeyMapsRoutingOption ?? {}).filter((val) => val).length > 1;
-    if (isMoreThanOneOption && isNotRouteOptionWithMetadata) {
-      console.error(
-        'journeyMapsRoutingOption: Use either transfer or journey or routes. It does not work correctly when more than one of these properties is set.'
-      );
     }
 
     if (changes.poiOptions) {
@@ -865,5 +862,28 @@ export class SbbJourneyMaps implements OnInit, AfterViewInit, OnDestroy, OnChang
         this.journeyMapsRoutingOption?.routesMetaInformations
       ) ?? [];
     return [...normalMarkers, ...routeMidpointMarkers];
+  }
+
+  private _areRoutingOptionsValid(): boolean {
+    const optionsAmount = Object.values(this.journeyMapsRoutingOption ?? {}).filter(
+      (val) => val
+    ).length;
+
+    return (
+      optionsAmount === 0 ||
+      (optionsAmount === 1 && !this.journeyMapsRoutingOption?.routesMetaInformations) ||
+      (optionsAmount === 2 &&
+        !!this.journeyMapsRoutingOption?.routes &&
+        !!this.journeyMapsRoutingOption?.routesMetaInformations)
+    );
+  }
+
+  private _haveRoutesMetaInformationsChanged(changes: SimpleChanges): boolean {
+    return (
+      changes.journeyMapsRoutingOption?.currentValue?.routesMetaInformations?.length !==
+        changes.journeyMapsRoutingOption?.previousValue?.routesMetaInformations?.length ||
+      changes.journeyMapsRoutingOption?.currentValue?.routesMetaInformations !==
+        changes.journeyMapsRoutingOption?.previousValue?.routesMetaInformations
+    );
   }
 }
