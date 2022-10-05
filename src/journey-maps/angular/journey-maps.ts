@@ -857,7 +857,7 @@ export class SbbJourneyMaps implements OnInit, AfterViewInit, OnDestroy, OnChang
     this._observer.observe(this._mapElementRef.nativeElement);
   }
 
-  private _getMarkers(): SbbMarker[] | undefined {
+  private _getMarkers(): SbbMarker[] {
     const normalMarkers = this.markerOptions.markers ?? [];
     const routeMidpointMarkers =
       getRouteMarkers(
