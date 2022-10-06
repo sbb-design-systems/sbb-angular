@@ -6,7 +6,7 @@ import {
   SbbRouteMetaInformation,
   SbbSelectableFeatureCollection,
 } from '../../journey-maps.interfaces';
-import { SbbMarker } from '../../public-api';
+import { SbbMarker } from '../../model/marker';
 
 import { SbbMapSelectionEvent, SBB_SELECTED_PROPERTY_NAME } from './events/map-selection-event';
 import {
