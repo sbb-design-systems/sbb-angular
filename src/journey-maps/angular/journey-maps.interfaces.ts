@@ -94,6 +94,14 @@ export interface SbbJourneyMapsRoutingOptions {
    * Note: journey, transfer and routes cannot be displayed at the same time.
    */
   routes?: SbbSelectableFeatureCollection[];
+
+  /**
+   * An array of additional informations as defined in <code>SbbRouteMetaInformation</code>.
+   * ID must match with ID from given routes.
+   * If no meta information for a route given, it will use the default settings.
+   * Note: journey, transfer and routes cannot be displayed at the same time.
+   */
+  routesMetaInformations?: SbbRouteMetaInformation[];
 }
 
 export interface SbbMarkerOptions {
@@ -175,6 +183,15 @@ export type SbbSelectableFeatureCollection = FeatureCollection & {
   id?: string;
   isSelected?: boolean;
 };
+
+export interface SbbRouteMetaInformation {
+  /** ID that matches a route in <code>SbbJourneyMapsRoutingOptions.routes</code>. */
+  id: string;
+  /** Color of the route. See https://maplibre.org/maplibre-gl-js-docs/style-spec/types/ for color-format. */
+  routeColor?: string;
+  /** Midpoint-Marker configuration. Position must be given in midpoint-feature from Journey-Maps response. */
+  midpointMarkerConfiguration?: Omit<SbbMarker, 'id' | 'position'>;
+}
 
 export type SbbFeatureDataType = 'MARKER' | 'ROUTE' | 'STATION' | 'ZONE' | 'POI';
 
