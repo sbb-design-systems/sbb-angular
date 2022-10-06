@@ -244,6 +244,32 @@ export const bielLyssRoutes: SbbSelectableFeatureCollection[] = [
           coordinates: [7.2994824341468965, 47.11314582226865],
         },
       },
+      {
+        type: 'Feature',
+        properties: {
+          label: 'Lyss',
+          transportType: 'rail',
+          type: 'endpoint',
+          endpointType: 'from',
+        },
+        geometry: {
+          type: 'Point',
+          coordinates: [7.3064969, 47.0761137],
+        },
+      },
+      {
+        type: 'Feature',
+        properties: {
+          label: 'Biel/Bienne',
+          transportType: 'rail',
+          type: 'endpoint',
+          endpointType: 'to',
+        },
+        geometry: {
+          type: 'Point',
+          coordinates: [7.242365, 47.1322689],
+        },
+      },
     ],
   },
 ];
