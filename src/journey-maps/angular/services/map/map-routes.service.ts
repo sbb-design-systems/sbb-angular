@@ -44,7 +44,10 @@ export class SbbMapRoutesService {
         feature.properties![SBB_SELECTED_PROPERTY_NAME] = featureCollection.isSelected;
 
         // Set route-color if given in metadata
-        feature.properties![SBB_ROUTE_LINE_COLOR_PROPERTY_NAME] = metadata?.routeColor ?? '';
+        const routeColor = metadata?.routeColor;
+        if (routeColor) {
+          feature.properties![SBB_ROUTE_LINE_COLOR_PROPERTY_NAME] = routeColor;
+        }
       }
     });
     this._mapRouteService.updateRoute(map, mapSelectionEventService, {
