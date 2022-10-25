@@ -1778,6 +1778,10 @@ textarea {
 
 .sbb-selection-disabled {
   pointer-events: none;
+
+  @include cdk.high-contrast(active, off) {
+    opacity: 0.5;
+  }
 }
 
 :is(.sbb-checkbox-group-vertical, .sbb-radio-group-vertical) {
