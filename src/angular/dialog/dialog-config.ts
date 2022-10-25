@@ -90,6 +90,9 @@ export class SbbDialogConfig<D = any> {
   /** Aria label to assign to the dialog element. */
   ariaLabel?: string | null = null;
 
+  /** Whether this is a modal dialog. Used to set the `aria-modal` attribute. */
+  ariaModal?: boolean = true;
+
   /** Whether the dialog should focus the first focusable element on open. */
   autoFocus?: boolean = true;
 

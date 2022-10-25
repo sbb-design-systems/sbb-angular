@@ -121,6 +121,7 @@ describe('SbbLightbox', () => {
     const lightboxContainerElement =
       overlayContainerElement.querySelector('sbb-lightbox-container')!;
     expect(lightboxContainerElement.getAttribute('role')).toBe('dialog');
+    expect(lightboxContainerElement.getAttribute('aria-modal')).toBe('true');
   });
 
   it('should open a lightbox with a template', () => {
@@ -142,6 +143,7 @@ describe('SbbLightbox', () => {
     const lightboxContainerElement =
       overlayContainerElement.querySelector('sbb-lightbox-container')!;
     expect(lightboxContainerElement.getAttribute('role')).toBe('dialog');
+    expect(lightboxContainerElement.getAttribute('aria-modal')).toBe('true');
 
     lightboxRef.close();
   });

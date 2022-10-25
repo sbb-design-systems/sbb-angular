@@ -35,9 +35,9 @@ import { sbbLightboxAnimations } from './lightbox-animations';
   host: {
     class: 'sbb-lightbox-container',
     tabindex: '-1',
-    'aria-modal': 'true',
     '[id]': '_config.id',
     '[attr.role]': '_config.role',
+    '[attr.aria-modal]': '_config.ariaModal',
     '[attr.aria-labelledby]': '_config.ariaLabel ? null : _ariaLabelledBy',
     '[attr.aria-label]': '_config.ariaLabel',
     '[attr.aria-describedby]': '_config.ariaDescribedBy || null',
