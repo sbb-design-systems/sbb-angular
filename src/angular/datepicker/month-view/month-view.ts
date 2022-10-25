@@ -142,6 +142,8 @@ export class SbbMonthView<D> implements AfterContentInit {
   }
   private _dateRange: SbbDateRange<D> | null = null;
 
+  private _datePicker: SbbDatepicker<D>;
+
   constructor(
     @Optional() public _dateAdapter: SbbDateAdapter<D>,
     @Inject(LOCALE_ID) public readonly locale: string,
@@ -155,27 +157,8 @@ export class SbbMonthView<D> implements AfterContentInit {
     if (!this._dateFormats) {
       throw createMissingDateImplError('SBB_DATE_FORMATS');
     }
-    if (
-      datepicker &&
-      datepicker.connected &&
-      datepicker.datepickerInput.value &&
-      datepicker.connected.datepickerInput.value
-    ) {
-      this._dateRange = new SbbDateRange(
-        datepicker.datepickerInput.value,
-        datepicker.connected.datepickerInput.value
-      );
-    } else if (
-      datepicker &&
-      datepicker.main &&
-      datepicker.datepickerInput.value &&
-      datepicker.main.datepickerInput.value
-    ) {
-      this._dateRange = new SbbDateRange(
-        datepicker.main.datepickerInput.value,
-        datepicker.datepickerInput.value
-      );
-    }
+
+    this._datePicker = datepicker;
 
     const firstDayOfWeek = this._dateAdapter.getFirstDayOfWeek();
     const narrowWeekdays = this._dateAdapter.getDayOfWeekNames('narrow');
@@ -288,6 +271,29 @@ export class SbbMonthView<D> implements AfterContentInit {
 
   /** Initializes this month view. */
   init() {
+    const datepicker = this._datePicker;
+    if (
+      datepicker &&
+      datepicker.connected &&
+      datepicker.datepickerInput.value &&
+      datepicker.connected.datepickerInput.value
+    ) {
+      this._dateRange = new SbbDateRange(
+        datepicker.datepickerInput.value,
+        datepicker.connected.datepickerInput.value
+      );
+    } else if (
+      datepicker &&
+      datepicker.main &&
+      datepicker.datepickerInput.value &&
+      datepicker.main.datepickerInput.value
+    ) {
+      this._dateRange = new SbbDateRange(
+        datepicker.main.datepickerInput.value,
+        datepicker.datepickerInput.value
+      );
+    }
+
     this.selectedDate = this._getDateInCurrentMonth(this.selected);
     this.todayDate = this._getDateInCurrentMonth(this._dateAdapter.today());
     this.monthLabel = this._dateAdapter

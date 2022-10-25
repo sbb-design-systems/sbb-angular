@@ -3,7 +3,7 @@
   <td
     *ngIf="weeksOfYear.length"
     role="gridcell"
-    class="sbb-calendar-body-cell-container"
+    class="sbb-calendar-body-cell-container-week"
     [style.width.%]="100 / (numCols + 1)"
   >
     <button
@@ -34,6 +34,7 @@
     *ngFor="let item of row; let colIndex = index"
     role="gridcell"
     class="sbb-calendar-body-cell-container"
+    [ngClass]="{'sbb-first-cell': colIndex === 0}"
     [style.width.%]="100 / (numCols + (weeksOfYear.length ? 1 : 0))"
     [attr.data-sbb-row]="rowIndex"
     [attr.data-sbb-col]="colIndex"
