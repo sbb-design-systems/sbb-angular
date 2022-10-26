@@ -17,7 +17,7 @@
     "noImplicitThis": true,
     "skipLibCheck": true,
     "strictBindCallApply": true,
-    "target": "es2020",
+    "target": "ES2022",
     "lib": ["es2020", "dom"],
     "types": ["@angular/localize/init", "arcgis-js-api", "grecaptcha", "jasmine"],
     "baseUrl": ".",
@@ -28,7 +28,8 @@
       "@sbb-esta/angular-maps/*": ["src/angular-maps/*"],
       "@sbb-esta/journey-maps": ["src/journey-maps"],
       "@sbb-esta/journey-maps/*": ["src/journey-maps/*"]
-    }
+    },
+    "useDefineForClassFields": false
   },
   "include": [
     "src/**/*.ts",
