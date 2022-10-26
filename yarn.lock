@@ -328,10 +328,10 @@
     "@angular/core" "^13.0.0 || ^14.0.0-0"
     reflect-metadata "^0.1.13"
 
-"@angular/cdk@14.2.5":
-  version "14.2.5"
-  resolved "https://registry.yarnpkg.com/@angular/cdk/-/cdk-14.2.5.tgz#12cec1b890775cc9b041a2ae85d638068b5e90bb"
-  integrity sha512-kKneb9Z/2E+EXMsHuH8MWy8aygKhdFlKXYltEG7r4W/B6FJC012kJfe+Euj8X0O26akOVW9Q0X7nczCqHqU4tQ==
+"@angular/cdk@15.0.0-next.5":
+  version "15.0.0-next.5"
+  resolved "https://registry.yarnpkg.com/@angular/cdk/-/cdk-15.0.0-next.5.tgz#f9115c38068ddab5924c3f3a32c9c95b631d38a4"
+  integrity sha512-z/M/xFSgLTLWDk+OmqW4Bed//CJkfFU2Q7+oSigdlWoFJPD4PEZIiL0YhM2fRJ1FOd1jvvrIhH0dAkoVWoZ5hA==
   dependencies:
     tslib "^2.3.0"
   optionalDependencies:
