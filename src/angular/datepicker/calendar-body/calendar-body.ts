@@ -62,7 +62,7 @@ export class SbbCalendarBody implements AfterViewChecked {
   private _rows: SbbCalendarCell[][];
 
   /** Week of year for each row. */
-  @Input() weeksOfYear: number[] = [];
+  @Input() weeksInMonth: number[] = [];
 
   /** The value in the table that corresponds to today. */
   @Input() todayValue: number;
@@ -85,6 +85,9 @@ export class SbbCalendarBody implements AfterViewChecked {
   /** Emits when a new value is selected. */
   @Output() readonly selectedValueChange: EventEmitter<number> = new EventEmitter<number>();
 
+  /** Emits when a week is selected */
+  @Output() readonly selectedWeekChange: EventEmitter<number> = new EventEmitter<number>();
+
   @Output() readonly activeDateChange = new EventEmitter<number>();
 
   constructor(
@@ -105,6 +108,10 @@ export class SbbCalendarBody implements AfterViewChecked {
       return;
     }
     this.selectedValueChange.emit(cell.value);
+  }
+
+  onWeekClicked(week: number) {
+    this.selectedWeekChange.emit(week);
   }
 
   _emitActiveDateChange(cell: SbbCalendarCell, event: FocusEvent): void {

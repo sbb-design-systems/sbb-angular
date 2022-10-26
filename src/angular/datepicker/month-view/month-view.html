@@ -15,12 +15,13 @@
     sbb-calendar-body
     label="{{ monthLabel }}"
     [rows]="weeks"
-    [weeksOfYear]="showWeekNumbers ? weeksOfYear : []"
+    [weeksInMonth]="showWeekNumbers ? weeksInMonth : []"
     [todayValue]="todayDate!"
     [selectedValue]="selectedDate!"
     [labelMinRequiredCells]="3"
     [activeCell]="_dateAdapter.getDate(activeDate) - 1"
     (selectedValueChange)="dateSelected($event)"
+    (selectedWeekChange)="weekSelected($event)"
     (activeDateChange)="_updateActiveDate($event)"
     (keydown)="handleCalendarBodyKeydown($event)"
   ></tbody>

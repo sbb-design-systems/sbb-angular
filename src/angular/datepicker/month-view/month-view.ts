@@ -98,6 +98,13 @@ export class SbbMonthView<D> implements AfterContentInit {
   @Output()
   readonly selectedChange: EventEmitter<D | null> = new EventEmitter<D | null>();
 
+  /** Emits when a new week is selected. */
+  @Output()
+  readonly selectedWeekChange: EventEmitter<{
+    week: number;
+    rangeInMonth: SbbDateRange<D>;
+  } | null> = new EventEmitter();
+
   /** Emits when any date is selected. */
   @Output() readonly userSelection: EventEmitter<void> = new EventEmitter<void>();
 
@@ -114,7 +121,7 @@ export class SbbMonthView<D> implements AfterContentInit {
   weeks: SbbCalendarCell[][];
 
   /** Week of year for each row. */
-  weeksOfYear: number[] = [];
+  weeksInMonth: number[] = [];
 
   /** The number of blank cells in the first row before the 1st of the month. */
   firstWeekOffset: number;
@@ -186,6 +193,23 @@ export class SbbMonthView<D> implements AfterContentInit {
     }
 
     this.userSelection.emit();
+  }
+
+  /** Handles week selection */
+  weekSelected(week: number) {
+    const weekIndex = this.weeksInMonth.findIndex((w) => w === week);
+    if (!weekIndex || weekIndex >= this.weeks.length) {
+      return;
+    }
+
+    const selectedWeek = this.weeks[weekIndex];
+    this.selectedWeekChange.emit({
+      week,
+      rangeInMonth: new SbbDateRange(
+        this._getDateFromDayOfMonth(selectedWeek[0].value),
+        this._getDateFromDayOfMonth(selectedWeek[selectedWeek.length - 1].value)
+      ),
+    });
   }
 
   /**
@@ -342,7 +366,7 @@ export class SbbMonthView<D> implements AfterContentInit {
     const daysInMonth = this._dateAdapter.getNumDaysInMonth(this.activeDate);
     const dateNames = this._dateAdapter.getDateNames();
     this.weeks = [[]];
-    this.weeksOfYear = [];
+    this.weeksInMonth = [];
     for (let i = 0, cell = this.firstWeekOffset; i < daysInMonth; i++, cell++) {
       if (cell === DAYS_PER_WEEK) {
         this.weeks.push([]);
@@ -354,7 +378,7 @@ export class SbbMonthView<D> implements AfterContentInit {
         i + 1
       );
       if (i === 0 || cell === 0) {
-        this.weeksOfYear.push(parseInt(this._dateAdapter.format(date, 'w'), 10));
+        this.weeksInMonth.push(parseInt(this._dateAdapter.format(date, 'w'), 10));
       }
       const enabled = this._shouldEnableDate(date);
       const ariaLabel = this._dateAdapter.format(date, this._dateFormats.dateA11yLabel);

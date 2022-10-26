@@ -2,6 +2,7 @@
   [dateRange]="dateRange | async"
   [showWeekNumbers]="showWeekNumbers"
   [(selected)]="selectedDate"
+  (selectedWeekChange)="onWeekSelection($event)"
 ></sbb-calendar>
 
 <pre>

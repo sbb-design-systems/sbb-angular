@@ -43,6 +43,12 @@ export class CalendarConfigurationExample implements OnDestroy {
       });
   }
 
+  onWeekSelection(week: { week: number; rangeInMonth: SbbDateRange<Date> } | null) {
+    if (week) {
+      this.dateRange.next(week!.rangeInMonth);
+    }
+  }
+
   ngOnDestroy() {
     this._destroyed.next();
     this._destroyed.complete();
