@@ -45,16 +45,16 @@ interface SecondaryEntryPointContext {
 export class SecondaryEntryPointsMigration extends Migration<null, DevkitContext> {
   printer = ts.createPrinter();
 
-  enabled: boolean = ENTRY_POINT_MAPPINGS.has(this.targetVersion);
+  enabled: boolean = !!this.targetVersion && ENTRY_POINT_MAPPINGS.has(this.targetVersion);
 
   private _entryPointMappings = {
     ...require('./sbb-angular-symbols.json'),
-    ...ENTRY_POINT_MAPPINGS.get(this.targetVersion),
+    ...ENTRY_POINT_MAPPINGS.get(this.targetVersion || ''),
   };
 
   private _fileImportMap = new Map<ts.SourceFile, SecondaryEntryPointContext>();
 
-  private _classNameRenames = classNames[this.targetVersion]?.reduce(
+  private _classNameRenames = classNames[this.targetVersion || '']?.reduce(
     (renames, entry) =>
       entry.changes.reduce((current, next) => current.set(next.replace, next.replaceWith), renames),
     new Map<string, string>()
