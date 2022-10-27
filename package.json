@@ -81,7 +81,7 @@
     "@angular/language-service": "14.2.8",
     "@angular/localize": "14.2.8",
     "@babel/core": "7.19.6",
-    "@babel/traverse": "7.19.6",
+    "@babel/traverse": "7.20.0",
     "@bazel/bazelisk": "1.12.1",
     "@bazel/buildifier": "5.1.0",
     "@bazel/buildozer": "5.1.0",
