@@ -6,12 +6,12 @@ load("@rules_pkg//:pkg.bzl", "pkg_tar")
 load("@build_bazel_rules_nodejs//:index.bzl", _pkg_npm = "pkg_npm")
 load("@io_bazel_rules_sass//:defs.bzl", _sass_binary = "sass_binary", _sass_library = "sass_library")
 load("@npm//@angular/bazel:index.bzl", _ng_module = "ng_module", _ng_package = "ng_package")
-load("@npm//@angular/dev-infra-private/bazel/karma:index.bzl", _karma_web_test_suite = "karma_web_test_suite")
-load("@npm//@angular/dev-infra-private/bazel/esbuild:index.bzl", _esbuild = "esbuild", _esbuild_config = "esbuild_config")
-load("@npm//@angular/dev-infra-private/bazel/spec-bundling:index.bzl", _spec_bundle = "spec_bundle")
-load("@npm//@angular/dev-infra-private/bazel/http-server:index.bzl", _http_server = "http_server")
-load("@npm//@angular/dev-infra-private/bazel:extract_js_module_output.bzl", "extract_js_module_output")
-load("@npm//@angular/dev-infra-private/bazel/app-bundling:index.bzl", _app_bundle = "app_bundle")
+load("@npm//@angular/build-tooling/bazel/karma:index.bzl", _karma_web_test_suite = "karma_web_test_suite")
+load("@npm//@angular/build-tooling/bazel/esbuild:index.bzl", _esbuild = "esbuild", _esbuild_config = "esbuild_config")
+load("@npm//@angular/build-tooling/bazel/spec-bundling:index.bzl", _spec_bundle = "spec_bundle")
+load("@npm//@angular/build-tooling/bazel/http-server:index.bzl", _http_server = "http_server")
+load("@npm//@angular/build-tooling/bazel:extract_js_module_output.bzl", "extract_js_module_output")
+load("@npm//@angular/build-tooling/bazel/app-bundling:index.bzl", _app_bundle = "app_bundle")
 load("@npm//@bazel/jasmine:index.bzl", _jasmine_node_test = "jasmine_node_test")
 load("@npm//@bazel/protractor:index.bzl", _protractor_web_test_suite = "protractor_web_test_suite")
 load("@npm//@bazel/concatjs:index.bzl", _ts_library = "ts_library")
@@ -289,8 +289,8 @@ def karma_web_test_suite(name, **kwargs):
         kwargs["browsers"] = [
             # Note: when changing the browser names here, also update the "yarn test"
             # script to reflect the new browser names.
-            "@npm//@angular/dev-infra-private/bazel/browsers/chromium:chromium",
-            "@npm//@angular/dev-infra-private/bazel/browsers/firefox:firefox",
+            "@npm//@angular/build-tooling/bazel/browsers/chromium:chromium",
+            "@npm//@angular/build-tooling/bazel/browsers/firefox:firefox",
         ]
 
     # Default test suite with all configured browsers, and the debug target being
@@ -310,7 +310,7 @@ def protractor_web_test_suite(name, deps, **kwargs):
 
     _protractor_web_test_suite(
         name = name,
-        browsers = ["@npm//@angular/dev-infra-private/bazel/browsers/chromium:chromium"],
+        browsers = ["@npm//@angular/build-tooling/bazel/browsers/chromium:chromium"],
         deps = ["%s_bundle" % name],
         **kwargs
     )
