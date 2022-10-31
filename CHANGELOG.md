@@ -2,6 +2,23 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [14.4.0](https://github.com/sbb-design-systems/sbb-angular/compare/14.3.0...14.4.0) (2022-10-31)
+
+
+### Features
+
+* **journey-maps:** journey-maps display options ([#1681](https://github.com/sbb-design-systems/sbb-angular/issues/1681)) ([dad861e](https://github.com/sbb-design-systems/sbb-angular/commit/dad861e94ffdca8f9dd2ff89c17dc03039c7b811))
+
+
+### Bug Fixes
+
+* **angular/checkbox:** disabled state not distinguishable in high contrast mode ([#1691](https://github.com/sbb-design-systems/sbb-angular/issues/1691)) ([a765917](https://github.com/sbb-design-systems/sbb-angular/commit/a76591713206c17041bfda4c945f377878d2cded))
+* **angular/dialog:** aria-modal not being set ([#1689](https://github.com/sbb-design-systems/sbb-angular/issues/1689)) ([59c3dea](https://github.com/sbb-design-systems/sbb-angular/commit/59c3dea218673e55b7c625d378339a83d90fe5f0)), closes [/github.com/angular/components/blob/main/src/cdk/dialog/dialog-container.ts#L62](https://github.com/sbb-design-systems//github.com/angular/components/blob/main/src/cdk/dialog/dialog-container.ts/issues/L62)
+* **angular/lightbox:** update height on window resize ([#1698](https://github.com/sbb-design-systems/sbb-angular/issues/1698)) ([9be2af3](https://github.com/sbb-design-systems/sbb-angular/commit/9be2af3ab43a3b58e95579c92d309ac9ae53d3a4)), closes [#1696](https://github.com/sbb-design-systems/sbb-angular/issues/1696)
+* **angular/radio:** radio not preselected with static value and an ngIf ([#1695](https://github.com/sbb-design-systems/sbb-angular/issues/1695)) ([bdac9eb](https://github.com/sbb-design-systems/sbb-angular/commit/bdac9ebb6534d30e7f6d37b1463fd13fffffe7f8))
+* **deps:** update angular to v14.2.7 ([597ec3b](https://github.com/sbb-design-systems/sbb-angular/commit/597ec3b83c18ff177e29b15802d2966cd598369a))
+* **journey-maps:** do not set empty lineColor property ([#1683](https://github.com/sbb-design-systems/sbb-angular/issues/1683)) ([9ab7637](https://github.com/sbb-design-systems/sbb-angular/commit/9ab7637ea9e3901a154c745a70a0cc629121ac0a))
+
 ## [14.3.0](https://github.com/sbb-design-systems/sbb-angular/compare/14.2.0...14.3.0) (2022-10-04)
 
 
