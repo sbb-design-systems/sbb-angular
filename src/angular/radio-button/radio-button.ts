@@ -449,12 +449,6 @@ export class _SbbRadioButtonBase
     if (tabIndex) {
       this.tabIndex = coerceNumberProperty(tabIndex, 0);
     }
-
-    this._removeUniqueSelectionListener = _radioDispatcher.listen((id: string, name: string) => {
-      if (id !== this.id && name === this.name) {
-        this.checked = false;
-      }
-    });
   }
 
   /** Focuses the radio button. */
@@ -490,6 +484,12 @@ export class _SbbRadioButtonBase
       // Copy name from parent radio group
       this.name = this.radioGroup.name;
     }
+
+    this._removeUniqueSelectionListener = this._radioDispatcher.listen((id, name) => {
+      if (id !== this.id && name === this.name) {
+        this.checked = false;
+      }
+    });
   }
 
   ngDoCheck(): void {
