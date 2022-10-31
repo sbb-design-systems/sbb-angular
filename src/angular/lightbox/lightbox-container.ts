@@ -42,7 +42,6 @@ import { sbbLightboxAnimations } from './lightbox-animations';
     '[attr.aria-label]': '_config.ariaLabel',
     '[attr.aria-describedby]': '_config.ariaDescribedBy || null',
     '[@lightboxContainer]': `_getAnimationState()`,
-    '[style.height.px]': '_height',
   },
 })
 export class SbbLightboxContainer extends _SbbDialogContainerBase implements OnDestroy {
@@ -76,13 +75,6 @@ export class SbbLightboxContainer extends _SbbDialogContainerBase implements OnD
     this._changeDetectorRef.markForCheck();
   }
 
-  /**
-   * Calculated height of the Lightbox. This is necessary because on mobile Chrome and
-   * Safari, 100vh includes the address bar and is therefore taller than the actual viewport.
-   * See https://bugs.webkit.org/show_bug.cgi?id=141832#c5
-   */
-  _height?: number;
-
   private _destroyed = new Subject<void>();
 
   constructor(
@@ -108,13 +100,17 @@ export class SbbLightboxContainer extends _SbbDialogContainerBase implements OnD
       focusMonitor
     );
 
+    // Manually calculate the height of the Lightbox. This is necessary because on mobile Chrome and
+    // Safari, 100vh includes the address bar and is therefore taller than the actual viewport.
+    // See https://bugs.webkit.org/show_bug.cgi?id=141832#c5
     this._viewportRuler
       ?.change()
       .pipe(takeUntil(this._destroyed), startWith(null))
-      .subscribe(() => {
-        this._height = this._viewportRuler!.getViewportSize().height;
-        this._changeDetectorRef.markForCheck();
-      });
+      .subscribe(() =>
+        overlayRef.updateSize({
+          height: this._viewportRuler!.getViewportSize().height,
+        })
+      );
   }
 
   override ngOnDestroy(): void {
