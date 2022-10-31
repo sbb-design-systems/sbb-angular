@@ -1,3 +1,4 @@
+import { CommonModule } from '@angular/common';
 import { Component, DebugElement, ViewChild } from '@angular/core';
 import { ComponentFixture, fakeAsync, TestBed, tick, waitForAsync } from '@angular/core/testing';
 import { FormControl, FormsModule, NgModel, ReactiveFormsModule } from '@angular/forms';
@@ -160,10 +161,36 @@ class RadioButtonWithPredefinedTabindex {}
 })
 class RadioButtonWithPredefinedAriaAttributes {}
 
+@Component({
+  // Note that this is somewhat of a contrived template, but it is required to
+  // reproduce the issue. It was taken for a specific user report at #25831.
+  template: `
+    <ng-container *ngIf="true">
+      <sbb-radio-group [formControl]="controls.predecessor">
+        <sbb-radio-button value="predecessor"></sbb-radio-button>
+      </sbb-radio-group>
+    </ng-container>
+    <sbb-radio-group [formControl]="controls.target" #preselectedGroup>
+      <sbb-radio-button value="a"></sbb-radio-button>
+      <sbb-radio-button *ngIf="true" value="b" #preselectedRadio></sbb-radio-button>
+    </sbb-radio-group>
+  `,
+})
+class PreselectedRadioWithStaticValueAndNgIf {
+  @ViewChild('preselectedGroup', { read: SbbRadioGroup }) preselectedGroup: SbbRadioGroup;
+  @ViewChild('preselectedRadio', { read: SbbRadioButton })
+  preselectedRadio: SbbRadioButton;
+
+  controls = {
+    predecessor: new FormControl('predecessor'),
+    target: new FormControl('b'),
+  };
+}
+
 describe('RadioButton', () => {
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-      imports: [FormsModule, ReactiveFormsModule, SbbRadioButtonModule],
+      imports: [CommonModule, FormsModule, ReactiveFormsModule, SbbRadioButtonModule],
       declarations: [
         DisableableSbbRadioButton,
         FocusableSbbRadioButton,
@@ -176,6 +203,7 @@ describe('RadioButton', () => {
         RadioButtonWithPredefinedTabindex,
         RadioButtonWithPredefinedAriaAttributes,
         RadiosInsidePreCheckedRadioGroup,
+        PreselectedRadioWithStaticValueAndNgIf,
       ],
     });
 
@@ -904,5 +932,13 @@ describe('RadioButton', () => {
     it('should initialize selection of radios based on model value', () => {
       expect(groupInstance.selected).toBe(radioInstances[2]);
     });
+  });
+
+  it('should preselect a radio button with a static value and an ngIf', () => {
+    const fixture = TestBed.createComponent(PreselectedRadioWithStaticValueAndNgIf);
+    fixture.detectChanges();
+
+    expect(fixture.componentInstance.preselectedGroup.value).toBe('b');
+    expect(fixture.componentInstance.preselectedRadio.checked).toBe(true);
   });
 });
