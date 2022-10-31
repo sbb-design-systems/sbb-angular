@@ -113,6 +113,7 @@ export class SbbLightboxContainer extends _SbbDialogContainerBase implements OnD
       .pipe(takeUntil(this._destroyed), startWith(null))
       .subscribe(() => {
         this._height = this._viewportRuler!.getViewportSize().height;
+        this._changeDetectorRef.markForCheck();
       });
   }
 
