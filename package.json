@@ -64,7 +64,7 @@
     "@stackblitz/sdk": "1.8.0",
     "maplibre-gl": "2.1.9",
     "rxjs": "7.5.7",
-    "tslib": "2.4.0",
+    "tslib": "2.4.1",
     "zone.js": "0.11.8"
   },
   "devDependencies": {
@@ -94,8 +94,8 @@
     "@bazel/rollup": "5.7.1",
     "@bazel/runfiles": "5.7.1",
     "@bazel/worker": "5.7.1",
-    "@commitlint/cli": "17.1.2",
-    "@commitlint/config-conventional": "17.1.0",
+    "@commitlint/cli": "17.2.0",
+    "@commitlint/config-conventional": "17.2.0",
     "@rollup/plugin-commonjs": "23.0.2",
     "@rollup/plugin-node-resolve": "13.3.0",
     "@rollup/plugin-typescript": "8.5.0",

@@ -102,7 +102,7 @@ export class SbbLightbox extends _SbbDialogBase<SbbLightboxContainer, SbbLightbo
       width: '100vw',
       minWidth: '100vw',
       maxWidth: '100vw',
-      height: 'auto',
+      height: '100vh',
       minHeight: 'auto',
       maxHeight: 'none',
     };
