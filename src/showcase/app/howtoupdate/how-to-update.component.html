@@ -14,6 +14,23 @@
   </sbb-form-field>
 </form>
 
+<div *ngIf="versionSelect.controls.to.value - versionSelect.controls.from.value > 150">
+  <sbb-notification type="warn">
+    We do not support migrating across multiple major versions at once. Please migrate each major
+    version individually.
+  </sbb-notification>
+</div>
+
+<div *ngIf="versionSelect.controls.to.value < versionSelect.controls.from.value">
+  <sbb-notification type="error">
+    We do not support downgrading versions of SBB Angular.
+  </sbb-notification>
+</div>
+
+<div *ngIf="versionSelect.controls.to.value === versionSelect.controls.from.value">
+  <sbb-notification type="success">There's nothing to do.</sbb-notification>
+</div>
+
 <div *ngFor="let step of steps | async">
   <h2>Update from Version {{ toVersionString(step.from) }} to {{ toVersionString(step.to) }}</h2>
   <ol>
