@@ -1,8 +1,6 @@
-import {
-  ConstructorChecksUpgradeData,
-  TargetVersion,
-  VersionChanges,
-} from '@angular/cdk/schematics';
+import { ConstructorChecksUpgradeData, VersionChanges } from '@angular/cdk/schematics';
+
+import { TargetVersion } from '../target-version';
 
 /**
  * List of class names for which the constructor signature has been changed. The new constructor
@@ -10,7 +8,7 @@ import {
  * automatically through type checking.
  */
 export const constructorChecks: VersionChanges<ConstructorChecksUpgradeData> = {
-  [TargetVersion.V14 as TargetVersion]: [
+  [TargetVersion.V14 as string]: [
     {
       pr: '',
       changes: ['SbbMenuItem'],

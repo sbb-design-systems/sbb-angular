@@ -1,8 +1,9 @@
-import { DevkitContext, Migration, TargetVersion } from '@angular/cdk/schematics';
+import { DevkitContext, Migration } from '@angular/cdk/schematics';
 import { EOL } from 'os';
 import * as ts from 'typescript';
 
 import { classNames } from '../data';
+import { TargetVersion } from '../target-version';
 
 const NO_IMPORT_NAMED_SYMBOLS_FAILURE_STR =
   `Imports from SBB Angular should import ` +

@@ -3,15 +3,12 @@ import {
   UpdateBuffer2,
   UpdateBufferBase,
 } from '@angular-devkit/schematics/src/utility/update-buffer';
-import {
-  cdkMigrations,
-  createMigrationSchematicRule,
-  TargetVersion,
-} from '@angular/cdk/schematics';
+import { cdkMigrations, createMigrationSchematicRule } from '@angular/cdk/schematics';
 
 import { ClassNamesMigration } from './migrations/class-names';
 import { leanTestConfigurationMigration } from './migrations/lean-test-configuration-migration';
 import { SecondaryEntryPointsMigration } from './migrations/secondary-entry-points-migration';
+import { TargetVersion } from './target-version';
 import { sbbAngularUpgradeData } from './upgrade-data';
 
 /** Entry point for the migration schematics with target of SBB Angular v13 */
@@ -19,7 +16,12 @@ export function updateToV13(): Rule {
   patchUpdateBuffer();
   return chain([
     leanTestConfigurationMigration,
-    createMigrationSchematicRule(TargetVersion.V13, [], sbbAngularUpgradeData, onMigrationComplete),
+    createMigrationSchematicRule(
+      TargetVersion.V13 as any,
+      [],
+      sbbAngularUpgradeData,
+      onMigrationComplete
+    ),
   ]);
 }
 
@@ -28,7 +30,7 @@ export function updateToV14(): Rule {
   patchUpdateBuffer();
   patchClassNamesMigration();
   return createMigrationSchematicRule(
-    TargetVersion.V14,
+    TargetVersion.V14 as any,
     [SecondaryEntryPointsMigration],
     sbbAngularUpgradeData,
     onMigrationComplete
@@ -40,7 +42,7 @@ export function updateToV15(): Rule {
   patchUpdateBuffer();
   patchClassNamesMigration();
   return createMigrationSchematicRule(
-    TargetVersion.V15,
+    TargetVersion.V15 as any,
     [],
     sbbAngularUpgradeData,
     onMigrationComplete
