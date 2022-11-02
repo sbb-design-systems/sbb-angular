@@ -69,7 +69,7 @@ export class SbbTooltipWrapper extends _SbbTooltipWrapperMixinBase implements On
    *
    * e.g. svgIcon="kom:circle-question-mark-small"
    */
-  @Input() svgIcon: string = 'kom:circle-question-mark-small';
+  @Input() svgIcon: string = 'kom:circle-information-small';
 
   /** Classes to be passed to the tooltip. Supports the same syntax as `ngClass`. */
   @Input() sbbTooltipClass: string | string[] | Set<string> | { [key: string]: any };
