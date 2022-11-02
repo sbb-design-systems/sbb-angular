@@ -419,6 +419,7 @@
   "Schema": "schematics",
   "SecondaryEntryPointsMigration": "schematics",
   "symbolRemoval": "schematics",
+  "TargetVersion": "schematics",
   "TEST_TS_LEAN_CONFIG": "schematics",
   "TEST_TS_LEAN_CONFIG_COMMAND": "schematics",
   "TEST_TS_LEAN_CONFIG_COMMENT": "schematics",
