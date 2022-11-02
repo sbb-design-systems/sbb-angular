@@ -39,7 +39,7 @@ jobs:
       - name: Handling error
         if: ${{ failure() }}
         id: cherry_pick_error
-        run: echo "::set-output name=failed_release_version::$(echo ${{ env.RELEASE_VERSION }})"
+        run: echo "failed_release_version=$(echo ${{ env.RELEASE_VERSION }})" >> $GITHUB_OUTPUT
 
   update_maintenance_issue:
     runs-on: ubuntu-latest

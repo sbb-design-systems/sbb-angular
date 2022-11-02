@@ -38,7 +38,7 @@ jobs:
       - name: Get branch name from label
         id: branch_name
         run: |
-          echo "::set-output name=branch::$(echo ${{ matrix.label }} | sed -n 's/target: \([0-9]*.x\).*/\1/p')"
+          echo "branch=$(echo ${{ matrix.label }} | sed -n 's/target: \([0-9]*.x\).*/\1/p')" >> $GITHUB_OUTPUT
 
       - uses: actions/checkout@v3
         if: steps.branch_name.outputs.branch
@@ -57,7 +57,7 @@ jobs:
         if: ${{ failure() }}
         id: update_failed_branches
         run: |
-          echo "::set-output name=failed_branches::$(echo ${{ steps.branch_name.outputs.branch }} ${{ steps.update_failed_branches.outputs.failed_branches}})"
+          echo "failed_branches=$(echo ${{ steps.branch_name.outputs.branch }} ${{ steps.update_failed_branches.outputs.failed_branches}})" >> $GITHUB_OUTPUT
 
   update_maintenance_issue:
     runs-on: ubuntu-latest
