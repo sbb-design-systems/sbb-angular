@@ -35,7 +35,7 @@ export class SbbMapLayerFilter {
     oldFilter: FilterSpecification | undefined,
     level: number
   ): FilterSpecification | null {
-    if (oldFilter == null || oldFilter.length < 1) {
+    if (!Array.isArray(oldFilter) || oldFilter.length < 1) {
       return null;
     }
 
@@ -75,7 +75,7 @@ export class SbbMapLayerFilter {
         newFilter.push(part);
       }
     });
-    return newFilter;
+    return newFilter as FilterSpecification;
   }
 
   private _isCaseLvlFilter(innerPartString: string): boolean {
