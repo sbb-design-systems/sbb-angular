@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Feature, Position } from 'geojson';
 import {
+  FilterSpecification,
   GeoJSONSource,
   LngLatLike,
   Map as MaplibreMap,
@@ -252,7 +253,7 @@ export class SbbMapMarkerService {
     }
   }
 
-  private _createMarkerFilter(id: string, include = true): Array<any> {
+  private _createMarkerFilter(id: string, include = true): FilterSpecification {
     return ['all', ['!has', 'point_count'], [include ? 'in' : '!in', 'id', id]];
   }
 
