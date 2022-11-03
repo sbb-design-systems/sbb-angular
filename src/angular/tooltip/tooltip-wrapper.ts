@@ -4,21 +4,23 @@ import {
   Component,
   EventEmitter,
   Input,
+  OnChanges,
   OnDestroy,
   OnInit,
   Output,
+  SimpleChanges,
   ViewChild,
   ViewEncapsulation,
 } from '@angular/core';
-import { mixinDisabled } from '@sbb-esta/angular/core';
-import { Subject } from 'rxjs';
-import { takeUntil } from 'rxjs/operators';
+import { mixinDisabled, mixinVariant } from '@sbb-esta/angular/core';
+import { BehaviorSubject, combineLatest, Observable, Subject } from 'rxjs';
+import { map, takeUntil } from 'rxjs/operators';
 
 import { SbbTooltip, SbbTooltipChangeEvent } from './tooltip';
 
 // Boilerplate for applying mixins to SbbTooltipWrapper.
 // tslint:disable-next-line: naming-convention
-const _SbbTooltipWrapperMixinBase = mixinDisabled(class {});
+const _SbbTooltipWrapperMixinBase = mixinDisabled(mixinVariant(class {}));
 
 let nextId = 1;
 
@@ -34,7 +36,10 @@ let nextId = 1;
     '[attr.aria-expanded]': '_tooltip._isTooltipVisible()',
   },
 })
-export class SbbTooltipWrapper extends _SbbTooltipWrapperMixinBase implements OnInit, OnDestroy {
+export class SbbTooltipWrapper
+  extends _SbbTooltipWrapperMixinBase
+  implements OnInit, OnChanges, OnDestroy
+{
   /** Identifier of tooltip. */
   @Input() id: string = `sbb-tooltip-id-${nextId++}`;
 
@@ -69,7 +74,23 @@ export class SbbTooltipWrapper extends _SbbTooltipWrapperMixinBase implements On
    *
    * e.g. svgIcon="kom:circle-question-mark-small"
    */
-  @Input() svgIcon: string = 'kom:circle-information-small';
+  @Input() svgIcon: string;
+
+  /** Subject for the current icon. */
+  private _svgIconSubject = new BehaviorSubject<string | null>(null);
+
+  /** An observable of the current icon. */
+  _svgIcon: Observable<string> = combineLatest([this.variant, this._svgIconSubject]).pipe(
+    map(([variant, icon]) => {
+      if (icon) {
+        return icon;
+      } else {
+        return variant === 'standard'
+          ? 'kom:circle-question-mark-small'
+          : 'kom:circle-information-small';
+      }
+    })
+  );
 
   /** Classes to be passed to the tooltip. Supports the same syntax as `ngClass`. */
   @Input() sbbTooltipClass: string | string[] | Set<string> | { [key: string]: any };
@@ -92,6 +113,12 @@ export class SbbTooltipWrapper extends _SbbTooltipWrapperMixinBase implements On
     this._tooltip.dismissed
       .pipe(takeUntil(this._destroyed))
       .subscribe((e) => this.dismissed.emit(e));
+  }
+
+  ngOnChanges(changes: SimpleChanges): void {
+    if (changes.svgIcon && changes.svgIcon.currentValue !== changes.svgIcon.previousValue) {
+      this._svgIconSubject.next(this.svgIcon);
+    }
   }
 
   ngOnDestroy(): void {

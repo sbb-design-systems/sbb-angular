@@ -11,7 +11,7 @@
   #tooltip="sbbTooltip"
   (click)="tooltip.show(0)"
 >
-  <sbb-icon [svgIcon]="svgIcon"></sbb-icon>
+  <sbb-icon [svgIcon]="(_svgIcon | async)!"></sbb-icon>
 </button>
 <ng-template #tooltipTemplate>
   <ng-content></ng-content>
