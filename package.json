@@ -81,7 +81,7 @@
     "@angular/language-service": "15.0.0-rc.0",
     "@angular/localize": "15.0.0-rc.0",
     "@angular/ng-dev": "https://github.com/angular/dev-infra-private-ng-dev-builds.git#865c7687cdca2bd512040330e1677eecaa26e46a",
-    "@babel/core": "7.19.6",
+    "@babel/core": "7.20.2",
     "@babel/traverse": "7.20.1",
     "@bazel/bazelisk": "1.12.1",
     "@bazel/buildifier": "5.1.0",
