@@ -1,4 +1,4 @@
-import { chain, Rule, SchematicContext } from '@angular-devkit/schematics';
+import { Rule, SchematicContext } from '@angular-devkit/schematics';
 import {
   UpdateBuffer2,
   UpdateBufferBase,
@@ -10,30 +10,7 @@ import {
 } from '@angular/cdk/schematics';
 
 import { ClassNamesMigration } from './migrations/class-names';
-import { leanTestConfigurationMigration } from './migrations/lean-test-configuration-migration';
-import { SecondaryEntryPointsMigration } from './migrations/secondary-entry-points-migration';
 import { sbbAngularUpgradeData } from './upgrade-data';
-
-/** Entry point for the migration schematics with target of SBB Angular v13 */
-export function updateToV13(): Rule {
-  patchUpdateBuffer();
-  return chain([
-    leanTestConfigurationMigration,
-    createMigrationSchematicRule(TargetVersion.V13, [], sbbAngularUpgradeData, onMigrationComplete),
-  ]);
-}
-
-/** Entry point for the migration schematics with target of Angular v14 */
-export function updateToV14(): Rule {
-  patchUpdateBuffer();
-  patchClassNamesMigration();
-  return createMigrationSchematicRule(
-    TargetVersion.V14,
-    [SecondaryEntryPointsMigration],
-    sbbAngularUpgradeData,
-    onMigrationComplete
-  );
-}
 
 /** Entry point for the migration schematics with target of Angular 15 */
 export function updateToV15(): Rule {
