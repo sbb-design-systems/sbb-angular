@@ -416,6 +416,7 @@
   "sbbAngularModuleSpecifiers": "schematics",
   "sbbAngularUpgradeData": "schematics",
   "Schema": "schematics",
+  "SecondaryEntryPointsMigration": "schematics",
   "symbolRemoval": "schematics",
   "TEST_TS_LEAN_CONFIG": "schematics",
   "TEST_TS_LEAN_CONFIG_COMMAND": "schematics",
