@@ -22,12 +22,7 @@ const ANGULAR_FILEPATH_REGEX = new RegExp(`(${ANGULAR_FILEPATH})/(.*?)`);
 // Map of all moved symbols
 const ENTRY_POINT_MAPPINGS = new Map(
   Object.entries({
-    [TargetVersion.V14]: {
-      SbbLoadingModule: 'loading-indicator',
-      SbbLoading: 'loading-indicator',
-      SbbLoadingMode: 'loading-indicator',
-      SbbAutocompleteHint: 'core',
-    },
+    [TargetVersion.V15]: {},
   })
 );
 
