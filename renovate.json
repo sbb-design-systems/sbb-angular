@@ -23,7 +23,8 @@
     "highlight.js",
     "marked",
     "typescript",
-    "yarn"
+    "yarn",
+    "zone.js"
   ],
   "packageRules": [
     {
