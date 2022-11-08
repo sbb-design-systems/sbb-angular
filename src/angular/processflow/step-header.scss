@@ -1,3 +1,4 @@
+@use 'external/npm/node_modules/@angular/cdk' as cdk;
 @use '@sbb-esta/angular' as sbb;
 
 .sbb-step-header {
@@ -34,6 +35,12 @@
     line-height: var(--sbb-line-height-small);
     margin-top: calc((sbb.pxToRem(16) - var(--sbb-line-height-small)) / 2);
     margin-bottom: calc((sbb.pxToRem(16) - var(--sbb-line-height-small)) / 2);
+  }
+
+  @include cdk.high-contrast(active, off) {
+    &:where(:not(.sbb-step-label-active)) {
+      color: GrayText;
+    }
   }
 }
 
