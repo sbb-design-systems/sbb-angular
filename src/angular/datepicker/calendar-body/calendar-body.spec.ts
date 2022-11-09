@@ -21,7 +21,9 @@ import { SbbCalendarBody, SbbCalendarCell } from './calendar-body';
       [labelMinRequiredCells]="labelMinRequiredCells"
       [numCols]="numCols"
       [activeCell]="10"
+      [weeksInMonth]="weeksInMonth"
       (selectedValueChange)="onSelect($event)"
+      (selectedWeekChange)="onWeekSelect($event)"
     ></table>
   `,
 })
@@ -35,10 +37,13 @@ class StandardCalendarBodyComponent {
   selectedValue = 4;
   labelMinRequiredCells = 3;
   numCols = 7;
+  weeksInMonth: number[] = [];
 
   onSelect(value: number) {
     this.selectedValue = value;
   }
+
+  onWeekSelect(value: number) {}
 }
 
 @Component({
@@ -174,6 +179,21 @@ describe('SbbCalendarBody', () => {
     it('should mark active date', () => {
       expect((cellEls[10] as HTMLElement).innerText.trim()).toBe('11');
       expect(cellEls[10].classList).toContain('sbb-calendar-body-active');
+    });
+
+    it('should toggle week numbers', () => {
+      expect(fixture.nativeElement.querySelectorAll('.sbb-calendar-body-week').length).toBe(0);
+      fixture.componentInstance.weeksInMonth = [42, 43];
+      fixture.detectChanges();
+      expect(fixture.nativeElement.querySelectorAll('.sbb-calendar-body-week').length).toBe(2);
+    });
+
+    it('should emit the clicked week number', () => {
+      const spy = spyOn(fixture.componentInstance, 'onWeekSelect');
+      fixture.componentInstance.weeksInMonth = [42, 43];
+      fixture.detectChanges();
+      fixture.nativeElement.querySelector('.sbb-calendar-body-week').click();
+      expect(spy).toHaveBeenCalledWith(42);
     });
   });
 

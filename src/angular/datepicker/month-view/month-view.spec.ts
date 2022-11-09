@@ -27,6 +27,7 @@ import {
   MAR,
   NOV,
 } from '@sbb-esta/angular/core/testing';
+import { SbbDateRange } from '@sbb-esta/angular/datepicker/date-range';
 
 import { SbbCalendarBody } from '../calendar-body/calendar-body';
 
@@ -38,6 +39,14 @@ import { SbbMonthView } from './month-view';
 class StandardMonthViewComponent {
   date = new Date(2017, JAN, 5);
   selected = new Date(2017, JAN, 10);
+}
+
+@Component({
+  template: ` <sbb-month-view [activeDate]="activeDate" [dateRange]="dateRange"></sbb-month-view> `,
+})
+class MonthViewWithDateRangeComponent {
+  activeDate = new Date(2022, NOV, 1);
+  dateRange: SbbDateRange<Date> = new SbbDateRange(new Date(2022, NOV, 1), new Date(2022, NOV, 9));
 }
 
 @Component({
@@ -73,6 +82,7 @@ describe('SbbMonthView', () => {
         StandardMonthViewComponent,
         MonthViewWithDateFilterComponent,
         MonthViewWithDateClassComponent,
+        MonthViewWithDateRangeComponent,
       ],
       providers: [
         { provide: SbbDateAdapter, useClass: SbbNativeDateAdapter },
@@ -286,6 +296,36 @@ describe('SbbMonthView', () => {
           expect(focusSpy).not.toHaveBeenCalled();
         });
       });
+    });
+  });
+
+  describe('month view with date range', () => {
+    const rangeSelector =
+      '.sbb-calendar-body-range-background, .sbb-calendar-body-selected-begin, .sbb-calendar-body-selected-end';
+    let fixture: ComponentFixture<MonthViewWithDateRangeComponent>;
+    let monthViewNativeElement: Element;
+
+    beforeEach(() => {
+      fixture = TestBed.createComponent(MonthViewWithDateRangeComponent);
+      const monthViewDebugElement = fixture.debugElement.query(By.directive(SbbMonthView))!;
+      monthViewNativeElement = monthViewDebugElement.nativeElement;
+      fixture.detectChanges();
+    });
+
+    it('should display the date range', () => {
+      const cells = monthViewNativeElement.querySelectorAll(rangeSelector);
+      expect(cells.length).toBe(9);
+    });
+
+    it('should update the date range', () => {
+      fixture.componentInstance.dateRange = new SbbDateRange(
+        new Date(2022, NOV, 15),
+        new Date(2022, NOV, 20)
+      );
+      fixture.detectChanges();
+
+      const cells = monthViewNativeElement.querySelectorAll(rangeSelector);
+      expect(cells.length).toBe(6);
     });
   });
 
