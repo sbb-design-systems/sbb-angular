@@ -24,6 +24,7 @@ import {
 import { SbbDateAdapter, SbbDateFormats, SBB_DATE_FORMATS } from '@sbb-esta/angular/core';
 import { Subject } from 'rxjs';
 
+import { SbbCalendarCellClassFunction } from '../calendar-body/calendar-body';
 import { SbbDateRange } from '../date-range';
 import { createMissingDateImplError } from '../datepicker-errors';
 import { SbbMonthView } from '../month-view/month-view';
@@ -230,13 +231,17 @@ export class SbbCalendar<D> implements AfterContentInit, AfterViewChecked, OnDes
   /** A function used to filter which dates are selectable. */
   @Input() dateFilter: (date: D) => boolean;
 
+  /** Function that can be used to add custom CSS classes to dates. */
+  @Input() dateClass: SbbCalendarCellClassFunction<D>;
+
   /** Emits when the currently selected date changes. */
   @Output() readonly selectedChange: EventEmitter<D> = new EventEmitter<D>();
 
   @Output()
   readonly selectedWeekChange: EventEmitter<{
     week: number;
-    rangeInMonth: SbbDateRange<D>;
+    start: D;
+    end: D;
   } | null> = new EventEmitter();
 
   /** Emits when any date is selected. */
@@ -335,7 +340,13 @@ export class SbbCalendar<D> implements AfterContentInit, AfterViewChecked, OnDes
 
   /** Handles week selection in the month view. */
   weekSelected(week: { week: number; rangeInMonth: SbbDateRange<D> } | null) {
-    this.selectedWeekChange.emit(week);
+    this.selectedWeekChange.emit(
+      week && {
+        week: week.week,
+        start: week.rangeInMonth.start,
+        end: week.rangeInMonth.end,
+      }
+    );
   }
 
   userSelected(): void {

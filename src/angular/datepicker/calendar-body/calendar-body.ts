@@ -12,6 +12,12 @@ import {
 } from '@angular/core';
 import { take } from 'rxjs/operators';
 
+/** Extra CSS classes that can be associated with a calendar cell. */
+export type SbbCalendarCellCssClasses = string | string[] | Set<string> | { [key: string]: any };
+
+/** Function that can generate the extra classes that should be added to a calendar cell. */
+export type SbbCalendarCellClassFunction<D> = (date: D) => SbbCalendarCellCssClasses;
+
 /**
  * An internal class that represents the data corresponding to a single calendar cell.
  * @docs-private
@@ -22,7 +28,8 @@ export class SbbCalendarCell {
     public displayValue: string,
     public ariaLabel: string,
     public enabled: boolean,
-    public rangeBackground?: string | null
+    public rangeBackground?: string | null,
+    public cssClasses: SbbCalendarCellCssClasses = {}
   ) {}
 }
 

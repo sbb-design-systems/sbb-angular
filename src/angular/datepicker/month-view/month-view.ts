@@ -25,7 +25,11 @@ import {
 } from '@angular/core';
 import { SbbDateAdapter, SbbDateFormats, SBB_DATE_FORMATS, TypeRef } from '@sbb-esta/angular/core';
 
-import { SbbCalendarBody, SbbCalendarCell } from '../calendar-body/calendar-body';
+import {
+  SbbCalendarBody,
+  SbbCalendarCell,
+  SbbCalendarCellClassFunction,
+} from '../calendar-body/calendar-body';
 import { SbbDateRange } from '../date-range';
 import { createMissingDateImplError } from '../datepicker-errors';
 import { SBB_DATEPICKER } from '../datepicker-token';
@@ -90,6 +94,9 @@ export class SbbMonthView<D> implements AfterContentInit {
 
   /** A function used to filter which dates are selectable. */
   @Input() dateFilter: (date: D) => boolean;
+
+  /** Function that can be used to add custom CSS classes to dates. */
+  @Input() dateClass: SbbCalendarCellClassFunction<D>;
 
   /** Whether to display the week number. */
   @Input() showWeekNumbers: boolean = false;
@@ -198,7 +205,7 @@ export class SbbMonthView<D> implements AfterContentInit {
   /** Handles week selection */
   weekSelected(week: number) {
     const weekIndex = this.weeksInMonth.findIndex((w) => w === week);
-    if (!weekIndex || weekIndex >= this.weeks.length) {
+    if (weekIndex < 0 || weekIndex >= this.weeks.length) {
       return;
     }
 
@@ -383,8 +390,10 @@ export class SbbMonthView<D> implements AfterContentInit {
       const enabled = this._shouldEnableDate(date);
       const ariaLabel = this._dateAdapter.format(date, this._dateFormats.dateA11yLabel);
       const rangeBackground = this._shouldApplyRangeBackground(date);
+      const cellClasses = this.dateClass ? this.dateClass(date) : undefined;
+
       this.weeks[this.weeks.length - 1].push(
-        new SbbCalendarCell(i + 1, dateNames[i], ariaLabel, enabled, rangeBackground)
+        new SbbCalendarCell(i + 1, dateNames[i], ariaLabel, enabled, rangeBackground, cellClasses)
       );
     }
   }

@@ -1,6 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { SbbButtonModule } from '@sbb-esta/angular/button';
 import { SbbCheckboxModule } from '@sbb-esta/angular/checkbox';
 import { SBB_LEAN_DATE_ADAPTER } from '@sbb-esta/angular/core';
 import { SbbDatepickerModule } from '@sbb-esta/angular/datepicker';
@@ -39,6 +40,7 @@ const EXAMPLES = [
     SbbCheckboxModule,
     SbbDatepickerModule,
     SbbInputModule,
+    SbbButtonModule,
   ],
   declarations: EXAMPLES,
   exports: EXAMPLES,

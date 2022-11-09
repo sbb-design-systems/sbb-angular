@@ -52,6 +52,16 @@ class MonthViewWithDateFilterComponent {
   }
 }
 
+@Component({
+  template: `<sbb-month-view [activeDate]="activeDate" [dateClass]="dateClass"></sbb-month-view>`,
+})
+class MonthViewWithDateClassComponent {
+  activeDate = new Date(2017, JAN, 1);
+  dateClass(date: Date) {
+    return date.getDate() % 2 === 0 ? 'even' : undefined;
+  }
+}
+
 describe('SbbMonthView', () => {
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
@@ -62,6 +72,7 @@ describe('SbbMonthView', () => {
         // Test components.
         StandardMonthViewComponent,
         MonthViewWithDateFilterComponent,
+        MonthViewWithDateClassComponent,
       ],
       providers: [
         { provide: SbbDateAdapter, useClass: SbbNativeDateAdapter },
@@ -275,6 +286,31 @@ describe('SbbMonthView', () => {
           expect(focusSpy).not.toHaveBeenCalled();
         });
       });
+    });
+  });
+
+  describe('month view with custom date classes', () => {
+    let fixture: ComponentFixture<MonthViewWithDateClassComponent>;
+    let monthViewNativeElement: Element;
+    let dateClassSpy: jasmine.Spy;
+
+    beforeEach(() => {
+      fixture = TestBed.createComponent(MonthViewWithDateClassComponent);
+      dateClassSpy = spyOn(fixture.componentInstance, 'dateClass').and.callThrough();
+      fixture.detectChanges();
+
+      const monthViewDebugElement = fixture.debugElement.query(By.directive(SbbMonthView))!;
+      monthViewNativeElement = monthViewDebugElement.nativeElement;
+    });
+
+    it('should be able to add a custom class to some dates', () => {
+      const cells = monthViewNativeElement.querySelectorAll('.sbb-calendar-body-cell');
+      expect(cells[0].classList).not.toContain('even');
+      expect(cells[1].classList).toContain('even');
+    });
+
+    it('should call dateClass with the correct view name', () => {
+      expect(dateClassSpy).toHaveBeenCalledWith(jasmine.any(Date));
     });
   });
 

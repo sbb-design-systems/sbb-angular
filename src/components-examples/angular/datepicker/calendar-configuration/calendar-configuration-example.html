@@ -1,5 +1,6 @@
 <sbb-calendar
   [dateRange]="dateRange | async"
+  [dateClass]="dateClass"
   [showWeekNumbers]="showWeekNumbers"
   [(selected)]="selectedDate"
   (selectedWeekChange)="onWeekSelection($event)"
@@ -35,3 +36,7 @@
   </sbb-form-field>
 </form>
 <sbb-checkbox [(ngModel)]="showWeekNumbers">Show week numbers</sbb-checkbox>
+
+<div>
+  <button sbb-button (click)="clearSelection()">Clear Selection</button>
+</div>
