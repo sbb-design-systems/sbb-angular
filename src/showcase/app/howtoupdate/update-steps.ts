@@ -50,4 +50,19 @@ export const UPDATE_STEPS: UpdateStep[] = [
       <p>Read more at <a href="https://sass-lang.com/documentation/at-rules/use">https://sass-lang.com/documentation/at-rules/use</a>.</p>`,
     ],
   },
+  {
+    from: 1400,
+    to: 1500,
+    actions: [
+      `Update your Angular dependencies to version 15.x.x with "--force" flag (due to unmet peer ependencies).<br/>
+        See <a href='https://update.angular.io'>update.angular.io</a> for a step-by-step guide for updating Angular.<br/>
+        <pre>npx @angular/cli@15 update @angular/core@15 @angular/cli@15 --force</pre>`,
+
+      `Update Angular CDK in a separate step to avoid dependency version resolving problems.<br/>
+        <pre>npx @angular/cli@15 update @angular/cdk@15 --force</pre>`,
+
+      `Finally, update SBB Angular.
+        <pre>ng update @sbb-esta/angular@15</pre>`,
+    ],
+  },
 ];
