@@ -61,7 +61,7 @@
     "@angular/platform-server": "14.2.9",
     "@angular/router": "14.2.9",
     "@arcgis/core": "~4.20.2",
-    "@stackblitz/sdk": "1.8.0",
+    "@stackblitz/sdk": "1.8.1",
     "maplibre-gl": "2.4.0",
     "rxjs": "7.5.7",
     "tslib": "2.4.1",
