@@ -51,23 +51,23 @@ jobs:
               const archive = await github.request(artifact.archive_download_url);
               core.info(`Downloaded ${artifact.name}`);
               const zipResult = await decompress(Buffer.from(archive.data), '.');
-              core.info(`Decompressed ${artifact.name}:\n${zipResult.map(r => `- ${r.name}`).join('\n')}`);
+              core.info(`Decompressed ${artifact.name}:\n${zipResult.map(r => `- ${r.path}`).join('\n')}`);
               fs.mkdirSync(outputPath, { recursive: true });
               const tgzResult = await decompress(zipResult[0].path, outputPath, {
                 // Only allow files that are reasonable
-                filter: (file) => allowedExtensions.includes(path.extname(file)),
+                filter: (file) => allowedExtensions.includes(path.extname(file.path)),
                 map: (file) => {
                   file.path = file.path.replace(/^package\//, '');
                   return file;
                 },
               });
-              core.info(`Decompressed ${zipResult[0].path}:\n${tgzResult.map(r => `- ${r.name}`).join('\n')}`);
+              core.info(`Decompressed ${zipResult[0].path}:\n${tgzResult.map(r => `- ${r.path}`).join('\n')}`);
             } catch (e) {
               core.error(`Failed to download and unzip ${artifact.name}`);
               core.error(e);
             }
           } else {
-            core.info(`No artifact found`);
+            core.error(`No artifact found`);
           }
     - run: ls -llR ./dist/releases
     - name: "Docker: Build image"
