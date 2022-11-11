@@ -50,7 +50,7 @@ jobs:
               const allowedExtensions = process.env.ALLOWED_EXTENSIONS.split(/[, ]+/g).map(e => `.${e}`);
               const archive = await github.request(artifact.archive_download_url);
               core.info(`Downloaded ${artifact.name}`);
-              const zipResult = await decompress(Buffer.from(artifact.data), '.');
+              const zipResult = await decompress(Buffer.from(archive.data), '.');
               core.info(`Decompressed ${artifact.name}:\n${zipResult.map(r => `- ${r.name}`).join('\n')}`);
               fs.mkdirSync(outputPath, { recursive: true });
               const tgzResult = await decompress(zipResult[0].path, outputPath, {
