@@ -24,8 +24,8 @@ jobs:
       uses: actions/github-script@v6
       with:
         script: |
-          const artifact = await import('@actions/artifact');
-          const path = await import('path');
+          const artifact = require('@actions/artifact');
+          const path = require('path');
 
           // This lets @actions/artifact resolve the artifact of another workflow
           process.env.GITHUB_RUN_ID = context.payload.workflow_run.id;
