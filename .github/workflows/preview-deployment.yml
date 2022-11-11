@@ -14,85 +14,86 @@ jobs:
     runs-on: ubuntu-latest
     if: ${{ github.event.workflow_run.conclusion == 'success' }}
     steps:
-      - uses: actions/setup-node@v3
-        with:
-          node-version: 16
-      - run: npm i decompress@4.2.1 node-fetch@2.6.2 form-data@4.0.0
-      - name: Download Artifacts
-        uses: actions/github-script@v6
-        env:
-          previewUser: ${{ secrets.PREVIEW_USER }}
-          previewPassword: ${{ secrets.PREVIEW_PASSWORD }}
-          previewUrl: https://preview-sbb-angular.app.sbb.ch
-        with:
-          script: |
-            const decompress = require('decompress');
-            const { createReadStream } = require('fs');
-            const fetch = require('node-fetch');
-            const FormData = require('form-data');
+    - uses: actions/setup-node@v3
+      with:
+        node-version: 18
+    - run: npm i @actions/artifact@1.1.0
+    - uses: actions/checkout@v3
+    - name: Download Artifacts
+      uses: actions/github-script@v6
+      with:
+        script: |
+          console.log(context.payload);
+          const artifact = await import('@actions/artifact');
+          const path = await import('path');
 
-            const { previewUser, previewPassword, previewUrl } = process.env;
-            const artifactsUrl = context.payload.workflow_run.artifacts_url;
+          // This lets @actions/artifact resolve the artifact of another workflow
+          process.env.GITHUB_RUN_ID = context.payload.workflow_run.id;
 
-            const artifactsResult = await github.request(artifactsUrl);
-            const artifacts = artifactsResult.data.artifacts.filter((a) =>
-              a.name.startsWith('showcase-artifact-')
-            );
+          const artifactsResponse = await github.request(context.payload.workflow_run.artifacts_url);
+          const showcaseArtifact = artifactsResponse.data.artifacts.find((a) =>
+            a.name.startsWith('showcase-artifact-')
+          );
+          const artifactClient = artifact.create();
+          core.info(`Starting download for ${showcaseArtifact.name}`);
+          const downloadResponse = await artifactClient.downloadArtifact(
+            showcaseArtifact.name,
+            path.resolve('dist/releases/showcase'),
+            { createArtifactFolder: false }
+          )
+          core.info(
+            `Artifact ${downloadResponse.artifactName} was downloaded to ${downloadResponse.downloadPath}`
+          )
 
-            for (const artifactEntry of artifacts) {
-              try {
-                const artifact = await github.request(artifactEntry.archive_download_url);
-                const result = await decompress(Buffer.from(artifact.data), '.');
+    - name: "Docker: Build image"
+      run: |
+        docker build \
+        -t ghcr.io/sbb-design-systems/sbb-angular/showcase-preview:rev-${{ github.event.workflow_run.head_sha }} \
+        .
+    - name: "Docker: Publish image"
+      run: docker push ghcr.io/sbb-design-systems/sbb-angular/showcase-preview:rev-${{ github.event.workflow_run.head_sha }}
+    - name: Create PR comment
+      uses: actions/github-script@v6
+      with:
+        script: |
+          const artifactsResponse = await github.request(context.payload.workflow_run.artifacts_url);
+          const showcaseArtifact = artifactsResponse.data.artifacts.find((a) =>
+            a.name.startsWith('showcase-artifact-')
+          );
+          if (showcaseArtifact && context.payload.workflow_run.pull_requests.length) {
+            const pullRequest = context.payload.workflow_run.pull_requests[0];
 
-                const version = artifactEntry.name.match(/-([\w\d]+)$/)[1];
-                const form = new FormData();
-                form.append('key', version);
-                form.append('file', createReadStream(result[0].path));
-                const authorization = `Basic ${Buffer.from(`${previewUser}:${previewPassword}`).toString('base64')}`;
-                await fetch(`${previewUrl}`, {
-                  method: 'POST',
-                  headers: form.getHeaders({ authorization }),
-                  body: form,
-                });
-              } catch (e) {
-                console.error(`Failed to download and unzip ${artifactEntry.name}`);
+            const { data: fullPr } = await github.rest.pulls.get({
+              pull_number: pullRequest.number,
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+            });
+
+            // Don't comment renovate bot PRs
+            if (fullPr?.user?.login === 'sbb-angular-renovate[bot]') {
+              return;
+            }
+
+            const previewBaseUrl = `https://sbb-angular-preview-pr${pullRequest.number}.app.sbb.ch`;
+            let moduleUrl = '';
+            if (fullPr?.title) {
+              const moduleName = fullPr.title.match(/^.*\(angular\/(.*)\):/i)?.[1];
+              if (moduleName) {
+                moduleUrl = `${previewBaseUrl}/angular/components/${moduleName}/examples`;
               }
             }
 
-            if (artifacts.length && context.payload.workflow_run.pull_requests.length) {
-              const pullRequest = context.payload.workflow_run.pull_requests[0];
-
-              const { data: fullPr } = await github.rest.pulls.get({
-                pull_number: pullRequest.number,
-                owner: context.repo.owner,
-                repo: context.repo.repo,
-              });
-
-              // Don't comment renovate bot PRs
-              if (fullPr?.user?.login === 'sbb-angular-renovate[bot]') {
-                return;
-              }
-
-              const previewBaseUrl = `${previewUrl}/${pullRequest.number}`;
-              let moduleUrl = '';
-              if (fullPr?.title) {
-                const moduleName = fullPr.title.match(/^.*\(angular\/(.*)\):/i)?.[1];
-                if (moduleName) {
-                  moduleUrl = `${previewBaseUrl}/angular/components/${moduleName}/examples`;
-                }
-              }
-
-              const createdAtDate = new Date(
-                context.payload.workflow_run.created_at
-              ).toLocaleString('de');
-              github.rest.issues.createComment({
-                issue_number: pullRequest.number,
-                owner: context.repo.owner,
-                repo: context.repo.repo,
-                body: `Preview ready from ${
-                  pullRequest.head.sha
-                } at ${createdAtDate}:\n- ${previewBaseUrl}${
-                  moduleUrl ? `\n- Examples link: ${moduleUrl}` : ''
-                }`,
-              });
-            }
+            const createdAtDate = new Date(
+              context.payload.workflow_run.created_at
+            ).toLocaleString('de');
+            github.rest.issues.createComment({
+              issue_number: pullRequest.number,
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              body: `Preview ready from ${
+                pullRequest.head.sha
+              } at ${createdAtDate}:\n- ${previewBaseUrl}${
+                moduleUrl ? `\n- Examples link: ${moduleUrl}` : ''
+              }`,
+            });
+          }
