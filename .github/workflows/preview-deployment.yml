@@ -14,16 +14,16 @@ jobs:
     runs-on: ubuntu-latest
     if: ${{ github.event.workflow_run.conclusion == 'success' }}
     steps:
+    - uses: actions/checkout@v3
+    - run: rm package.json yarn.lock
     - uses: actions/setup-node@v3
       with:
         node-version: 18
-    - run: npm i @actions/artifact@1.1.0
-    - uses: actions/checkout@v3
+    - run: npm install @actions/artifact@1.1.0
     - name: Download Artifacts
       uses: actions/github-script@v6
       with:
         script: |
-          console.log(context.payload);
           const artifact = await import('@actions/artifact');
           const path = await import('path');
 
