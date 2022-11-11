@@ -12,46 +12,58 @@ permissions:
 jobs:
   preview-deployment:
     runs-on: ubuntu-latest
-    if: ${{ github.event.workflow_run.conclusion == 'success' }}
+    if: >
+      github.event.workflow_run.conclusion == 'success' && (
+        github.event.workflow_run.event == 'pull_request' || (
+          github.event.workflow_run.event == 'push' &&
+          github.event.workflow_run.head_branch == 'main'
+        )
+      )
+    env:
+      IMAGE_REPO: ghcr.io/sbb-design-systems/sbb-angular/showcase-preview
+      IMAGE_TAG: rev-${{ github.event.workflow_run.head_sha }}
     steps:
     - uses: actions/checkout@v3
     - run: rm package.json yarn.lock
     - uses: actions/setup-node@v3
       with:
         node-version: 18
-    - run: npm install @actions/artifact@1.1.0
+    - run: npm i decompress@4.2.1
     - name: Download Artifacts
+      id: artifacts
       uses: actions/github-script@v6
       with:
         script: |
-          const artifact = require('@actions/artifact');
-          const path = require('path');
+          const decompress = require('decompress');
+          const fs = require('fs');
 
-          // This lets @actions/artifact resolve the artifact of another workflow
-          process.env.GITHUB_RUN_ID = context.payload.workflow_run.id;
-
-          const artifactsResponse = await github.request(context.payload.workflow_run.artifacts_url);
-          const showcaseArtifact = artifactsResponse.data.artifacts.find((a) =>
+          const artifactsResult = await github.request(context.payload.workflow_run.artifacts_url);
+          const artifact = artifactsResult.data.artifacts.find((a) =>
             a.name.startsWith('showcase-artifact-')
           );
-          const artifactClient = artifact.create();
-          core.info(`Starting download for ${showcaseArtifact.name}`);
-          const downloadResponse = await artifactClient.downloadArtifact(
-            showcaseArtifact.name,
-            path.resolve('dist/releases/showcase'),
-            { createArtifactFolder: false }
-          )
-          core.info(
-            `Artifact ${downloadResponse.artifactName} was downloaded to ${downloadResponse.downloadPath}`
-          )
-
+          if (artifact) {
+            core.info(`Found artifact ${artifact.name}`);
+            try {
+              const outputPath = 'dist/releases/showcase';
+              const artifact = await github.request(artifactEntry.archive_download_url);
+              const zipResult = await decompress(Buffer.from(artifact.data), '.');
+              fs.mkdirSync(outputPath, { recursive: true });
+              const tgzResult = await decompress(result[0].path, outputPath, {
+                map: (file) => {
+                  file.path = file.path.replace(/^package\//, '');
+                  return file;
+                }
+              })
+            } catch (e) {
+              console.error(`Failed to download and unzip ${artifact.name}`);
+            }
+          } else {
+            core.info(`No artifact found`);
+          }
     - name: "Docker: Build image"
-      run: |
-        docker build \
-        -t ghcr.io/sbb-design-systems/sbb-angular/showcase-preview:rev-${{ github.event.workflow_run.head_sha }} \
-        .
+      run: docker build -t $IMAGE_REPO:$IMAGE_TAG .
     - name: "Docker: Publish image"
-      run: docker push ghcr.io/sbb-design-systems/sbb-angular/showcase-preview:rev-${{ github.event.workflow_run.head_sha }}
+      run: docker push $IMAGE_REPO:$IMAGE_TAG
     - name: Create PR comment
       uses: actions/github-script@v6
       with:
