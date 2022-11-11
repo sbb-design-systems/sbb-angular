@@ -22,6 +22,7 @@ jobs:
     env:
       IMAGE_REPO: ghcr.io/sbb-design-systems/sbb-angular/showcase-preview
       IMAGE_TAG: rev-${{ github.event.workflow_run.head_sha }}
+      ALLOWED_EXTENSIONS: css, gitignore, gitkeep, html, ico, jpg, js, json, png, scss, stackblitzrc, svg, ts
     steps:
     - uses: actions/checkout@v3
     - run: rm package.json yarn.lock
@@ -36,6 +37,7 @@ jobs:
         script: |
           const decompress = require('decompress');
           const fs = require('fs');
+          const path = require('path');
 
           const artifactsResult = await github.request(context.payload.workflow_run.artifacts_url);
           const artifact = artifactsResult.data.artifacts.find((a) =>
@@ -44,22 +46,30 @@ jobs:
           if (artifact) {
             core.info(`Found artifact ${artifact.name}`);
             try {
-              const outputPath = 'dist/releases/showcase';
-              const artifact = await github.request(artifactEntry.archive_download_url);
+              const outputPath = './dist/releases/showcase';
+              const allowedExtensions = process.env.ALLOWED_EXTENSIONS.split(/[, ]+/g).map(e => `.${e}`);
+              const archive = await github.request(artifactEntry.archive_download_url);
+              core.info(`Downloaded ${artifact.name}`);
               const zipResult = await decompress(Buffer.from(artifact.data), '.');
+              core.info(`Decompressed ${artifact.name}:\n${zipResult.map(r => `- ${r.name}`).join('\n')}`);
               fs.mkdirSync(outputPath, { recursive: true });
-              const tgzResult = await decompress(result[0].path, outputPath, {
+              const tgzResult = await decompress(zipResult[0].path, outputPath, {
+                // Only allow files that are reasonable
+                filter: (file) => allowedExtensions.includes(path.extname(file)),
                 map: (file) => {
                   file.path = file.path.replace(/^package\//, '');
                   return file;
-                }
-              })
+                },
+              });
+              core.info(`Decompressed ${zipResult[0].path}:\n${tgzResult.map(r => `- ${r.name}`).join('\n')}`);
             } catch (e) {
-              console.error(`Failed to download and unzip ${artifact.name}`);
+              core.error(`Failed to download and unzip ${artifact.name}`);
+              core.error(e);
             }
           } else {
             core.info(`No artifact found`);
           }
+    - run: ls -llR ./dist/releases
     - name: "Docker: Build image"
       run: docker build -t $IMAGE_REPO:$IMAGE_TAG .
     - name: "Docker: Publish image"
