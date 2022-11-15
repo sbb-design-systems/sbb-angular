@@ -7,6 +7,8 @@ import {
   ESCAPE,
   HOME,
   LEFT_ARROW,
+  PAGE_DOWN,
+  PAGE_UP,
   RIGHT_ARROW,
   SPACE,
   TAB,
@@ -1217,6 +1219,39 @@ describe('SbbSelect', () => {
           flush();
         }));
 
+        it('should select first/last options via the PAGE_DOWN/PAGE_UP keys on a closed select with less than 10 options', fakeAsync(() => {
+          const formControl = fixture.componentInstance.control;
+          const firstOption = fixture.componentInstance.options.first;
+          const lastOption = fixture.componentInstance.options.last;
+
+          expect(formControl.value).withContext('Expected no initial value.').toBeFalsy();
+          expect(fixture.componentInstance.select._keyManager.activeItemIndex).toBe(-1);
+
+          const endEvent = dispatchKeyboardEvent(select, 'keydown', PAGE_DOWN);
+
+          expect(fixture.componentInstance.select._keyManager.activeItemIndex).toBe(7);
+          expect(endEvent.defaultPrevented).toBe(true);
+          expect(lastOption.selected)
+            .withContext('Expected last option to be selected.')
+            .toBe(true);
+          expect(formControl.value)
+            .withContext('Expected value from last option to have been set on the model.')
+            .toBe(lastOption.value);
+
+          const homeEvent = dispatchKeyboardEvent(select, 'keydown', PAGE_UP);
+
+          expect(fixture.componentInstance.select._keyManager.activeItemIndex).toBe(0);
+          expect(homeEvent.defaultPrevented).toBe(true);
+          expect(firstOption.selected)
+            .withContext('Expected first option to be selected.')
+            .toBe(true);
+          expect(formControl.value)
+            .withContext('Expected value from first option to have been set on the model.')
+            .toBe(firstOption.value);
+
+          flush();
+        }));
+
         it('should resume focus from selected item after selecting via click', fakeAsync(() => {
           const formControl = fixture.componentInstance.control;
           const options = fixture.componentInstance.options.toArray();
@@ -2304,6 +2339,37 @@ describe('SbbSelect', () => {
         expect(event.defaultPrevented).toBe(true);
       }));
 
+      it('should focus the last option when pressing PAGE_DOWN with less than 10 options', fakeAsync(() => {
+        fixture.componentInstance.control.setValue('pizza-1');
+        fixture.detectChanges();
+
+        select.click();
+        fixture.detectChanges();
+        flush();
+
+        const event = dispatchKeyboardEvent(select, 'keydown', PAGE_DOWN);
+        fixture.detectChanges();
+
+        expect(fixture.componentInstance.select._keyManager.activeItemIndex).toBe(7);
+        expect(event.defaultPrevented).toBe(true);
+      }));
+
+      it('should focus the first option when pressing PAGE_UP with index < 10', fakeAsync(() => {
+        fixture.componentInstance.control.setValue('pizza-1');
+        fixture.detectChanges();
+
+        select.click();
+        fixture.detectChanges();
+        flush();
+
+        expect(fixture.componentInstance.select._keyManager.activeItemIndex).toBeLessThan(10);
+        const event = dispatchKeyboardEvent(select, 'keydown', PAGE_UP);
+        fixture.detectChanges();
+
+        expect(fixture.componentInstance.select._keyManager.activeItemIndex).toBe(0);
+        expect(event.defaultPrevented).toBe(true);
+      }));
+
       it('should be able to set extra classes on the panel', fakeAsync(() => {
         select.click();
         fixture.detectChanges();
@@ -3142,6 +3208,69 @@ describe('SbbSelect', () => {
         expect(panel.scrollTop)
           .withContext('Expected panel to be scrolled to the bottom')
           .toBe(684);
+      }));
+
+      it('should scroll 10 to the top or to first element when pressing PAGE_UP', fakeAsync(() => {
+        panel.style.height = '256px';
+
+        for (let i = 0; i < 18; i++) {
+          dispatchKeyboardEvent(host, 'keydown', DOWN_ARROW);
+          fixture.detectChanges();
+        }
+
+        expect(panel.scrollTop)
+          .withContext('Expected panel to be scrolled down.')
+          .toBeGreaterThan(0);
+
+        expect(fixture.componentInstance.select._keyManager.activeItemIndex).toBe(18);
+
+        dispatchKeyboardEvent(host, 'keydown', PAGE_UP);
+        fixture.detectChanges();
+
+        //  <top padding> + <option amount> * <option height>
+        // 10 + 8 × 31
+        expect(panel.scrollTop).withContext('Expected panel to be scrolled to the top').toBe(258);
+        expect(fixture.componentInstance.select._keyManager.activeItemIndex).toBe(8);
+
+        dispatchKeyboardEvent(host, 'keydown', PAGE_UP);
+        fixture.detectChanges();
+
+        expect(panel.scrollTop).withContext('Expected panel to be scrolled to the top').toBe(0);
+        expect(fixture.componentInstance.select._keyManager.activeItemIndex).toBe(0);
+      }));
+
+      it('should scroll 10 to the bottom of the panel when pressing PAGE_DOWN', fakeAsync(() => {
+        panel.style.height = '256px';
+
+        dispatchKeyboardEvent(host, 'keydown', PAGE_DOWN);
+        fixture.detectChanges();
+
+        // <top padding> + <option amount> * <option height> - <panel height> =
+        //    10 + 11 * 31 - 256 = 93
+        expect(panel.scrollTop)
+          .withContext('Expected panel to be scrolled 10 to the bottom')
+          .toBe(95);
+        expect(fixture.componentInstance.select._keyManager.activeItemIndex).toBe(10);
+
+        dispatchKeyboardEvent(host, 'keydown', PAGE_DOWN);
+        fixture.detectChanges();
+
+        // <top padding> + <option amount> * <option height> - <panel height> =
+        //    10 + 21 * 31 - 256 = 403
+        expect(panel.scrollTop)
+          .withContext('Expected panel to be scrolled 10 to the bottom')
+          .toBe(405);
+        expect(fixture.componentInstance.select._keyManager.activeItemIndex).toBe(20);
+
+        dispatchKeyboardEvent(host, 'keydown', PAGE_DOWN);
+        fixture.detectChanges();
+
+        // <top padding> + <option amount> * <option height> - <panel height> =
+        //    10 + 30 * 31 - 256 = 684
+        expect(panel.scrollTop)
+          .withContext('Expected panel to be scrolled 10 to the bottom')
+          .toBe(684);
+        expect(fixture.componentInstance.select._keyManager.activeItemIndex).toBe(29);
       }));
 
       it('should scroll to the active option when typing', fakeAsync(() => {
@@ -4755,6 +4884,52 @@ describe('SbbSelect', () => {
     expect(() => fixture.detectChanges()).not.toThrow();
   }));
 
+  describe('page up/down with disabled options', () => {
+    let fixture: ComponentFixture<BasicSelectWithFirstAndLastOptionDisabled>;
+    let host: HTMLElement;
+
+    beforeEach(waitForAsync(() =>
+      configureSbbSelectTestingModule([BasicSelectWithFirstAndLastOptionDisabled])));
+
+    beforeEach(fakeAsync(() => {
+      fixture = TestBed.createComponent(BasicSelectWithFirstAndLastOptionDisabled);
+
+      fixture.detectChanges();
+      fixture.componentInstance.select.open();
+      fixture.detectChanges();
+      flush();
+      fixture.detectChanges();
+
+      host = fixture.debugElement.query(By.css('sbb-select'))!.nativeElement;
+    }));
+
+    it('should scroll to the second one pressing PAGE_UP, because the first one is disabled', fakeAsync(() => {
+      expect(fixture.componentInstance.select._keyManager.activeItemIndex).toBe(1);
+
+      dispatchKeyboardEvent(host, 'keydown', PAGE_UP);
+      fixture.detectChanges();
+
+      expect(fixture.componentInstance.select._keyManager.activeItemIndex).toBe(1);
+
+      dispatchKeyboardEvent(host, 'keydown', PAGE_UP);
+      fixture.detectChanges();
+
+      expect(fixture.componentInstance.select._keyManager.activeItemIndex).toBe(1);
+    }));
+
+    it('should scroll by PAGE_DOWN to the one before the last, because last one is disabled', fakeAsync(() => {
+      dispatchKeyboardEvent(host, 'keydown', PAGE_DOWN);
+      fixture.detectChanges();
+
+      expect(fixture.componentInstance.select._keyManager.activeItemIndex).toBe(6);
+
+      dispatchKeyboardEvent(host, 'keydown', PAGE_DOWN);
+      fixture.detectChanges();
+
+      expect(fixture.componentInstance.select._keyManager.activeItemIndex).toBe(6);
+    }));
+  });
+
   describe('sbb-form-field integration', () => {
     beforeEach(waitForAsync(() => configureSbbSelectTestingModule([BasicSelect])));
 
@@ -4836,3 +5011,57 @@ describe('SbbSelect', () => {
     }));
   });
 });
+
+@Component({
+  selector: 'basic-select',
+  template: `
+    <div [style.height.px]="heightAbove"></div>
+    <sbb-form-field>
+      <sbb-label *ngIf="hasLabel">Select a food</sbb-label>
+      <sbb-select
+        placeholder="Food"
+        [formControl]="control"
+        [required]="isRequired"
+        [tabIndex]="tabIndexOverride"
+        [aria-describedby]="ariaDescribedBy"
+        [aria-label]="ariaLabel"
+        [aria-labelledby]="ariaLabelledby"
+        [panelClass]="panelClass"
+        [typeaheadDebounceInterval]="typeaheadDebounceInterval"
+      >
+        <sbb-option *ngFor="let food of foods" [value]="food.value" [disabled]="food.disabled">
+          {{ food.viewValue }}
+        </sbb-option>
+      </sbb-select>
+      <sbb-hint *ngIf="hint">{{ hint }}</sbb-hint>
+    </sbb-form-field>
+    <div [style.height.px]="heightBelow"></div>
+  `,
+})
+class BasicSelectWithFirstAndLastOptionDisabled {
+  foods: any[] = [
+    { value: 'steak-0', viewValue: 'Steak', disabled: true },
+    { value: 'pizza-1', viewValue: 'Pizza' },
+    { value: 'tacos-2', viewValue: 'Tacos' },
+    { value: 'sandwich-3', viewValue: 'Sandwich' },
+    { value: 'chips-4', viewValue: 'Chips' },
+    { value: 'eggs-5', viewValue: 'Eggs' },
+    { value: 'pasta-6', viewValue: 'Pasta' },
+    { value: 'sushi-7', viewValue: 'Sushi', disabled: true },
+  ];
+  control = new FormControl<string | null>(null);
+  isRequired: boolean;
+  heightAbove = 0;
+  heightBelow = 0;
+  hasLabel = true;
+  hint: string;
+  tabIndexOverride: number;
+  ariaDescribedBy: string;
+  ariaLabel: string;
+  ariaLabelledby: string;
+  panelClass = ['custom-one', 'custom-two'];
+  typeaheadDebounceInterval: number;
+
+  @ViewChild(SbbSelect, { static: true }) select: SbbSelect;
+  @ViewChildren(SbbOption) options: QueryList<SbbOption>;
+}

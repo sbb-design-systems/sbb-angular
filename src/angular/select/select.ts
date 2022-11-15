@@ -978,6 +978,7 @@ export class SbbSelect
       .withVerticalOrientation()
       .withHorizontalOrientation('ltr')
       .withHomeAndEnd()
+      .withPageUpDown()
       .withAllowedModifierKeys(['shiftKey']);
 
     this._keyManager.tabOut.pipe(takeUntil(this._destroy)).subscribe(() => {
