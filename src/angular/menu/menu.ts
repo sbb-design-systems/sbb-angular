@@ -23,7 +23,7 @@ import {
   ViewChild,
   ViewEncapsulation,
 } from '@angular/core';
-import { merge, Observable, Subject, Subscription } from 'rxjs';
+import { merge, Observable, Subject } from 'rxjs';
 import { startWith, switchMap, take } from 'rxjs/operators';
 
 import { sbbMenuAnimations } from './menu-animations';
@@ -116,9 +116,6 @@ export class SbbMenu implements AfterContentInit, SbbMenuPanel<SbbMenuItem>, OnI
 
   /** Only the direct descendant menu items. */
   _directDescendantItems: QueryList<SbbMenuItem> = new QueryList<SbbMenuItem>();
-
-  /** Subscription to tab events on the menu panel */
-  private _tabSubscription = Subscription.EMPTY;
 
   /** Config object to be passed into the menu's ngClass */
   _classList: { [key: string]: boolean } = {};
@@ -273,7 +270,7 @@ export class SbbMenu implements AfterContentInit, SbbMenuPanel<SbbMenuItem>, OnI
       .withWrap()
       .withTypeAhead()
       .withHomeAndEnd();
-    this._tabSubscription = this._keyManager.tabOut.subscribe(() => this.closed.emit('tab'));
+    this._keyManager.tabOut.subscribe(() => this.closed.emit('tab'));
 
     // If a user manually (programmatically) focuses a menu item, we need to reflect that focus
     // change back to the key manager. Note that we don't need to unsubscribe here because _focused
@@ -305,8 +302,8 @@ export class SbbMenu implements AfterContentInit, SbbMenuPanel<SbbMenuItem>, OnI
   }
 
   ngOnDestroy() {
+    this._keyManager?.destroy();
     this._directDescendantItems.destroy();
-    this._tabSubscription.unsubscribe();
     this.closed.complete();
   }
 
