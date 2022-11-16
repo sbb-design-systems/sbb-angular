@@ -23,7 +23,7 @@ import {
   ViewEncapsulation,
 } from '@angular/core';
 import { TypeRef } from '@sbb-esta/angular/core';
-import { Observable, Subject, Subscription } from 'rxjs';
+import { Observable, Subject } from 'rxjs';
 import { map, startWith, takeUntil } from 'rxjs/operators';
 
 import type { SbbHeaderLean } from './header';
@@ -130,7 +130,6 @@ export class SbbHeaderMenu implements AfterContentInit, OnDestroy {
   _animationState: 'closed' | 'open-panel' | 'open-menu' = 'closed';
 
   /** Subscription to tab events on the menu panel */
-  private _tabSubscription = Subscription.EMPTY;
   private _destroyed = new Subject<void>();
 
   constructor(
@@ -153,11 +152,11 @@ export class SbbHeaderMenu implements AfterContentInit, OnDestroy {
       )
       .subscribe((s) => (this.showPanel = s));
     this._keyManager = new FocusKeyManager(this._items).withWrap().withTypeAhead();
-    this._tabSubscription = this._keyManager.tabOut.subscribe(() => this.closed.emit('tab'));
+    this._keyManager.tabOut.subscribe(() => this.closed.emit('tab'));
   }
 
   ngOnDestroy() {
-    this._tabSubscription.unsubscribe();
+    this._keyManager?.destroy();
     this.closed.complete();
     this._destroyed.next();
     this._destroyed.complete();

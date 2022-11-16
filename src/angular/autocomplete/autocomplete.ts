@@ -267,6 +267,7 @@ export class SbbAutocomplete implements AfterContentInit, OnDestroy {
 
   ngOnDestroy() {
     this._activeOptionChanges.unsubscribe();
+    this._keyManager?.destroy();
   }
 
   /**

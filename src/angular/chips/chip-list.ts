@@ -313,9 +313,7 @@ export class SbbChipList
       .withHomeAndEnd()
       .withHorizontalOrientation('ltr');
 
-    this._keyManager.tabOut.pipe(takeUntil(this._destroyed)).subscribe(() => {
-      this._allowFocusEscape();
-    });
+    this._keyManager.tabOut.subscribe(() => this._allowFocusEscape());
 
     // When the list changes, re-subscribe
     this.chips.changes.pipe(startWith(null), takeUntil(this._destroyed)).subscribe(() => {
@@ -365,10 +363,10 @@ export class SbbChipList
   }
 
   ngOnDestroy() {
+    this._keyManager?.destroy();
     this._destroyed.next();
     this._destroyed.complete();
     this.stateChanges.complete();
-
     this._dropSubscriptions();
   }
 
