@@ -65,7 +65,7 @@
       "matchPackageNames": ["@angular/cli", "@angular/cdk", "angular-server-side-configuration"],
       "postUpgradeTasks": {
         "commands": [
-          "yarn install --frozen-lockfile --non-interactive",
+          "yarn install --ignore-scripts --frozen-lockfile --non-interactive",
           "yarn ng update {{{depName}}} --from={{{currentVersion}}} --to={{{newVersion}}} --migrate-only --allow-dirty --force",
           "yarn format"
         ],
@@ -75,7 +75,10 @@
     {
       "matchPackageNames": ["prettier"],
       "postUpgradeTasks": {
-        "commands": ["yarn install --frozen-lockfile --non-interactive", "yarn format:prettier"],
+        "commands": [
+          "yarn install --ignore-scripts --frozen-lockfile --non-interactive",
+          "yarn format:prettier"
+        ],
         "fileFilters": ["**/**"]
       }
     },
@@ -83,7 +86,7 @@
       "matchPackageNames": ["esbuild"],
       "postUpgradeTasks": {
         "commands": [
-          "yarn install --frozen-lockfile --non-interactive",
+          "yarn install --ignore-scripts --frozen-lockfile --non-interactive",
           "yarn build:schematics",
           "yarn format"
         ],
