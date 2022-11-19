@@ -5096,10 +5096,10 @@ amdefine@>=0.0.4:
   resolved "https://registry.yarnpkg.com/amdefine/-/amdefine-1.0.1.tgz#4a5282ac164729e93619bcfd3ad151f817ce91f5"
   integrity sha512-S2Hw0TtNkMJhIabBwIojKL9YHO5T0n5eNqWJ7Lrlel/zDbftQpxpapi8tZs3X1HWa+u+QeydGmzzNU0m09+Rcg==
 
-angular-server-side-configuration@14.0.1:
-  version "14.0.1"
-  resolved "https://registry.yarnpkg.com/angular-server-side-configuration/-/angular-server-side-configuration-14.0.1.tgz#76f1a272360acb4d9e0ac355b50950ff7f4d6b86"
-  integrity sha512-tZZrR/it2HM9Sqs9A8xqVS/BSgSUbKqbdWzoXrTgbuDqZN1IeEGYOLYgcN3RAvV8FHpvJ9/JHlipkJryXHOzNw==
+angular-server-side-configuration@15.0.1:
+  version "15.0.1"
+  resolved "https://registry.yarnpkg.com/angular-server-side-configuration/-/angular-server-side-configuration-15.0.1.tgz#13ddee294ebb93057d4bf0c6b9b3679d03255e5f"
+  integrity sha512-fdaec+SZUULbjhoWGWFE1TZJLCsilwbm8QI4KcRBTIPZi6ltRxL9afjlC1ipOZwEtdL/2I1k2VxN8RIzvtB63w==
   dependencies:
     tslib "^2.3.0"
 
