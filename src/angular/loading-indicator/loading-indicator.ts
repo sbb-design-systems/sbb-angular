@@ -1,15 +1,8 @@
 import { ChangeDetectionStrategy, Component, Input, ViewEncapsulation } from '@angular/core';
 
-const sbbAvailableModes = ['tiny', 'small', 'medium', 'big', 'fullscreen', 'fullbox', 'inline'];
+const sbbAvailableModes = ['tiny', 'small', 'medium', 'big', 'fullbox', 'inline'];
 
-export type SbbLoadingIndicatorMode =
-  | 'tiny'
-  | 'small'
-  | 'medium'
-  | 'big'
-  | 'fullscreen'
-  | 'fullbox'
-  | 'inline';
+export type SbbLoadingIndicatorMode = 'tiny' | 'small' | 'medium' | 'big' | 'fullbox' | 'inline';
 
 @Component({
   selector: 'sbb-loading-indicator',
@@ -25,8 +18,6 @@ export type SbbLoadingIndicatorMode =
     '[class.sbb-loading-indicator-small]': `this.mode === 'small'`,
     '[class.sbb-loading-indicator-medium]': `this.mode === 'medium'`,
     '[class.sbb-loading-indicator-big]': `this.mode === 'big'`,
-    // TODO: @deprecated mode fullscreen will be removed with next major version (v15)
-    '[class.sbb-loading-indicator-fullscreen]': `this.mode === 'fullscreen'`,
     '[class.sbb-loading-indicator-fullbox]': `this.mode === 'fullbox'`,
     '[class.sbb-loading-indicator-inline]': `this.mode === 'inline'`,
   },
@@ -41,10 +32,6 @@ export class SbbLoadingIndicator {
     if (!sbbAvailableModes.includes(value)) {
       this._mode = 'medium';
       return;
-    } else if (value === 'fullscreen' && (typeof ngDevMode === 'undefined' || ngDevMode)) {
-      console.warn(
-        'The mode fullscreen for the loading indicator is deprecated and will be removed with the next major version. Please consider another mode.'
-      );
     }
     this._mode = value as SbbLoadingIndicatorMode;
   }
