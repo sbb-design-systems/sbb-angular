@@ -30,15 +30,13 @@ import { Schema } from './schema';
 
 export const TYPOGRAPHY_CSS_PATH = 'node_modules/@sbb-esta/angular/typography.css';
 
+export const LEAN_TEST_POLYFILL_PATH = '@sbb-esta/angular/core/testing/lean-polyfill';
+
 /** Name of the Angular module that enables Angular browser animations. */
 export const BROWSER_ANIMATIONS_MODULE_NAME = 'BrowserAnimationsModule';
 
 /** Name of the module that switches Angular animations to a noop implementation. */
 export const NOOP_ANIMATIONS_MODULE_NAME = 'NoopAnimationsModule';
-
-export const TEST_TS_LEAN_CONFIG_COMMAND = `document.documentElement.classList.add('sbb-lean');`;
-export const TEST_TS_LEAN_CONFIG_COMMENT = `// Configures your test environment to use lean design variant by setting sbb-lean class on html tag.`;
-export const TEST_TS_LEAN_CONFIG = `${TEST_TS_LEAN_CONFIG_COMMENT}\n${TEST_TS_LEAN_CONFIG_COMMAND}`;
 
 // noinspection JSUnusedGlobalSymbols
 export default function (options: Schema): Rule {
@@ -173,6 +171,7 @@ function addAnimationsModuleToNonStandaloneApp(
 function addAndConfigureTypography(options: Schema): Rule {
   return async (tree: Tree, context: SchematicContext) => {
     const workspace = await getWorkspace(tree);
+    const shouldBeLeanVariant = options.variant === 'lean (previously known as business)';
 
     return chain([
       addTypographyToStylesNodeOfAngularJson(
@@ -186,6 +185,12 @@ function addAndConfigureTypography(options: Schema): Rule {
         context.logger
       ),
       setTypographyVariant(options),
+
+      addLeanTestPolyfillToAngularJson(
+        getProjectName(options, workspace),
+        shouldBeLeanVariant,
+        context.logger
+      ),
     ]);
   };
 }
@@ -220,6 +225,64 @@ function addTypographyToStylesNodeOfAngularJson(
     }
 
     styles.unshift(TYPOGRAPHY_CSS_PATH);
+  });
+}
+
+function addLeanTestPolyfillToAngularJson(
+  projectName: string,
+  shouldBeLeanVariant: boolean,
+  logger: logging.LoggerApi
+): Rule {
+  return updateWorkspace((workspace) => {
+    const project = getProjectFromWorkspace(workspace, projectName);
+    const targetName = 'test';
+
+    // Do not update the builder options in case the target does not use the default CLI builder.
+    if (!validateDefaultTargetBuilder(project, targetName, logger)) {
+      return;
+    }
+
+    const targetOptions = getProjectTargetOptions(project, targetName);
+    const polyfills = targetOptions.polyfills as string | string[] | undefined;
+
+    if (polyfills && typeof polyfills !== 'string' && !Array.isArray(polyfills)) {
+      logger.error(
+        `Could not configure testing environment.` +
+          `The 'polyfills' section in 'angular.json' has an unknown format.`
+      );
+      return;
+    }
+
+    if (shouldBeLeanVariant) {
+      if (!polyfills) {
+        targetOptions.polyfills = [LEAN_TEST_POLYFILL_PATH];
+        return;
+      }
+
+      if (typeof polyfills === 'string' && targetOptions.polyfills !== LEAN_TEST_POLYFILL_PATH) {
+        targetOptions.polyfills = [polyfills, LEAN_TEST_POLYFILL_PATH];
+      } else if (Array.isArray(polyfills) && !polyfills.includes(LEAN_TEST_POLYFILL_PATH)) {
+        polyfills.push(LEAN_TEST_POLYFILL_PATH);
+      }
+    } else {
+      if (!polyfills) {
+        return;
+      }
+
+      if (typeof polyfills === 'string' && polyfills === LEAN_TEST_POLYFILL_PATH) {
+        delete targetOptions.polyfills;
+      } else if (Array.isArray(polyfills)) {
+        targetOptions.polyfills = polyfills.filter(
+          (polyfill) => polyfill !== LEAN_TEST_POLYFILL_PATH
+        );
+      }
+    }
+
+    logger.info(
+      `✔️ Configured testing environment with ${
+        shouldBeLeanVariant ? 'lean' : 'standard'
+      } design variant.`
+    );
   });
 }
 
@@ -268,7 +331,6 @@ function setTypographyVariant(options: Schema) {
     const shouldBeLeanVariant = options.variant === 'lean (previously known as business)';
 
     handleIndexHtml(tree, project, shouldBeLeanVariant, context);
-    handleTestTs(tree, project, shouldBeLeanVariant, context);
   };
 }
 
@@ -350,63 +412,4 @@ function handleIndexHtml(
   context.logger.info(
     `✔️ Configured typography with ${hasSbbLeanClass ? 'lean' : 'standard'} design variant.`
   );
-}
-
-function handleTestTs(
-  tree: Tree,
-  project: ProjectDefinition,
-  shouldBeLeanVariant: boolean,
-  context: SchematicContext
-) {
-  // Do not update the builder options in case the target does not use the default CLI builder.
-  if (!validateDefaultTargetBuilder(project, 'test', context.logger)) {
-    return;
-  }
-
-  const testOptions = getProjectTargetOptions(project, 'test');
-
-  if (!testOptions?.main) {
-    context.logger.error(
-      `Could not configure testing environment. No main entry (test.ts) in angular.json found.`
-    );
-    return;
-  }
-
-  const testTs = tree.read(testOptions.main as string)?.toString('utf-8');
-
-  if (!testTs) {
-    context.logger.error(
-      `Could not read ${testOptions.main} file to configure design variant for tests. If you like to use the lean design variant, please ensure class sbb-lean is set on html tag of test environment.`
-    );
-    return;
-  }
-
-  const hasLean = testTs.includes('sbb-lean');
-  let newTestTs = testTs;
-
-  if (!hasLean && shouldBeLeanVariant) {
-    newTestTs += TEST_TS_LEAN_CONFIG + '\n';
-  } else if (hasLean && !shouldBeLeanVariant) {
-    const commentRegex = new RegExp(`${escapeRegex(TEST_TS_LEAN_CONFIG_COMMENT)}[\\n\\r\\s]*`, 'g');
-    const commandRegex = new RegExp(`${escapeRegex(TEST_TS_LEAN_CONFIG_COMMAND)}[\\n\\r\\s]*`, 'g');
-    newTestTs = newTestTs.replace(commentRegex, '').replace(commandRegex, '');
-
-    if (newTestTs.includes('sbb-lean')) {
-      context.logger.error(
-        `Could not fully remove lean testing configuration in ${testOptions.main} file. Please remove lean testing configuration manually.`
-      );
-    }
-  }
-
-  tree.overwrite(testOptions.main as string, newTestTs);
-
-  context.logger.info(
-    `✔️ Configured testing environment (${testOptions.main}) with ${
-      shouldBeLeanVariant ? 'lean' : 'standard'
-    } design variant.`
-  );
-}
-
-function escapeRegex(string: string) {
-  return string.replace(/[-\/\\^$*+?.()|[\]{}]/g, '\\$&');
 }

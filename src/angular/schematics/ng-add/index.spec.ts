@@ -11,8 +11,8 @@ import { addPackageToPackageJson } from './package-config';
 import { Schema } from './schema';
 import {
   BROWSER_ANIMATIONS_MODULE_NAME,
+  LEAN_TEST_POLYFILL_PATH,
   NOOP_ANIMATIONS_MODULE_NAME,
-  TEST_TS_LEAN_CONFIG,
   TYPOGRAPHY_CSS_PATH,
 } from './setup-project';
 
@@ -380,35 +380,80 @@ describe('ngAdd', () => {
     });
   });
 
-  describe('test.ts manipulation', () => {
-    it('should set lean', async () => {
+  describe('lean test polyfill', () => {
+    const leanOptions = { ...baseOptions, variant: 'lean (previously known as business)' };
+
+    it('should be added to polyfills array in angular.json', async () => {
       await runNgAddSetupProject(runner, tree, 'lean');
 
-      expect(readStringFile(tree, '/projects/dummy/src/test.ts')).toContain(TEST_TS_LEAN_CONFIG);
+      expect(
+        readJsonFile(tree, '/angular.json').projects.dummy.architect.test.options.polyfills
+      ).toEqual(['zone.js', 'zone.js/testing', LEAN_TEST_POLYFILL_PATH]);
+    });
 
-      // run migration a second time
+    it('should not be added twice to polyfills array in angular.json', async () => {
+      await runNgAddSetupProject(runner, tree, 'lean');
       await runNgAddSetupProject(runner, tree, 'lean');
 
-      // Lean should still be set, but only once (two times because of comment and code)
-      const sbbLeanOccurrences = readStringFile(tree, '/projects/dummy/src/test.ts').match(
-        /sbb-lean/g
-      );
-      expect((sbbLeanOccurrences || []).length).toBe(2);
+      expect(
+        readJsonFile(tree, '/angular.json').projects.dummy.architect.test.options.polyfills
+      ).toEqual(['zone.js', 'zone.js/testing', LEAN_TEST_POLYFILL_PATH]);
     });
 
-    it('should not set sbb-lean if standard variant was chosen', async () => {
-      await runNgAddSetupProject(runner, tree, 'standard');
+    it('should be added to polyfills string in angular.json', async () => {
+      const angularJson = readJsonFile(tree, '/angular.json');
+      angularJson.projects.dummy.architect.test.options.polyfills = 'dummy-polyfill.js';
+      tree.overwrite('/angular.json', JSON.stringify(angularJson, null, 2));
 
-      expect(readStringFile(tree, '/projects/dummy/src/test.ts')).not.toContain('sbb-lean');
+      await runner.runSchematicAsync('ng-add-setup-project', leanOptions, tree).toPromise();
+
+      expect(
+        readJsonFile(tree, '/angular.json').projects.dummy.architect.test.options.polyfills
+      ).toEqual(['dummy-polyfill.js', LEAN_TEST_POLYFILL_PATH]);
     });
 
-    it('should remove sbb-lean if standard variant was chosen but lean was set before', async () => {
-      tree.overwrite('projects/dummy/src/test.ts', `\n${TEST_TS_LEAN_CONFIG}\n`);
+    it('should throw an error if polyfill cannot be added', async () => {
+      const angularJson = readJsonFile(tree, '/angular.json');
+      angularJson.projects.dummy.architect.test.options.polyfills = { that: 'is not valid' };
+      tree.overwrite('/angular.json', JSON.stringify(angularJson, null, 2));
 
+      expect(errorOutput.length).toBe(0);
+
+      await runner.runSchematicAsync('ng-add-setup-project', leanOptions, tree).toPromise();
+
+      expect(errorOutput.length).toBe(1);
+    });
+
+    it('should not be added in standard variant', async () => {
       await runNgAddSetupProject(runner, tree, 'standard');
 
-      expect(readStringFile(tree, '/projects/dummy/src/test.ts')).not.toContain('sbb-lean');
-      expect(readStringFile(tree, '/projects/dummy/src/test.ts')).toBe('\n');
+      expect(
+        readJsonFile(tree, '/angular.json').projects.dummy.architect.test.options.polyfills
+      ).toEqual(['zone.js', 'zone.js/testing']);
+    });
+
+    it('should be removed from polyfills array in standard variant', async () => {
+      await runNgAddSetupProject(runner, tree, 'lean');
+      expect(
+        readJsonFile(tree, '/angular.json').projects.dummy.architect.test.options.polyfills
+      ).toContain(LEAN_TEST_POLYFILL_PATH);
+
+      await runNgAddSetupProject(runner, tree, 'standard');
+      expect(
+        readJsonFile(tree, '/angular.json').projects.dummy.architect.test.options.polyfills
+      ).not.toContain(LEAN_TEST_POLYFILL_PATH);
+    });
+
+    it('should be removed from polyfills string in standard variant', async () => {
+      const angularJson = readJsonFile(tree, '/angular.json');
+      angularJson.projects.dummy.architect.test.options.polyfills = LEAN_TEST_POLYFILL_PATH;
+      tree.overwrite('/angular.json', JSON.stringify(angularJson, null, 2));
+
+      await runner.runSchematicAsync('ng-add-setup-project', baseOptions, tree).toPromise();
+
+      expect(
+        readJsonFile(tree, '/angular.json').projects.dummy.architect.test.options.polyfills
+      ).toBeUndefined();
     });
   });
 });
