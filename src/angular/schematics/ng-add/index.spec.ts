@@ -391,6 +391,15 @@ describe('ngAdd', () => {
       ).toEqual(['zone.js', 'zone.js/testing', LEAN_TEST_POLYFILL_PATH]);
     });
 
+    it('should not be added twice to polyfills array in angular.json', async () => {
+      await runNgAddSetupProject(runner, tree, 'lean');
+      await runNgAddSetupProject(runner, tree, 'lean');
+
+      expect(
+        readJsonFile(tree, '/angular.json').projects.dummy.architect.test.options.polyfills
+      ).toEqual(['zone.js', 'zone.js/testing', LEAN_TEST_POLYFILL_PATH]);
+    });
+
     it('should be added to polyfills string in angular.json', async () => {
       const angularJson = readJsonFile(tree, '/angular.json');
       angularJson.projects.dummy.architect.test.options.polyfills = 'dummy-polyfill.js';
