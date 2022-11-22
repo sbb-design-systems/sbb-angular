@@ -16,6 +16,7 @@ entry_points = [
     "chips",
     "core",
     "core/testing",
+    "core/testing/lean-polyfill",
     "datepicker",
     "dialog",
     "file-selector",
