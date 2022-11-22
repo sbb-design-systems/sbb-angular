@@ -137,9 +137,7 @@ export class SbbButton
   }
 
   ngAfterContentInit() {
-    const contentChangeSource =
-      this._contentObserver?.observe(this._elementRef) ?? this._iconRefs.changes;
-    this._isIconButton = contentChangeSource?.pipe(
+    this._isIconButton = this._contentObserver.observe(this._elementRef).pipe(
       startWith([]),
       map(
         () =>
