@@ -415,7 +415,7 @@ describe('ngAdd', () => {
       expect(errorOutput.length).toBe(1);
     });
 
-    it('should be not be added in standard variant', async () => {
+    it('should not be added in standard variant', async () => {
       await runNgAddSetupProject(runner, tree, 'standard');
 
       expect(
@@ -423,7 +423,7 @@ describe('ngAdd', () => {
       ).toEqual(['zone.js', 'zone.js/testing']);
     });
 
-    it('should be removed from polyfills array in standard mode', async () => {
+    it('should be removed from polyfills array in standard variant', async () => {
       await runNgAddSetupProject(runner, tree, 'lean');
       expect(
         readJsonFile(tree, '/angular.json').projects.dummy.architect.test.options.polyfills
@@ -435,7 +435,7 @@ describe('ngAdd', () => {
       ).not.toContain(LEAN_TEST_POLYFILL_PATH);
     });
 
-    it('should be removed from polyfills string in standard mode', async () => {
+    it('should be removed from polyfills string in standard variant', async () => {
       const angularJson = readJsonFile(tree, '/angular.json');
       angularJson.projects.dummy.architect.test.options.polyfills = LEAN_TEST_POLYFILL_PATH;
       tree.overwrite('/angular.json', JSON.stringify(angularJson, null, 2));
