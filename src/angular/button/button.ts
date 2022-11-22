@@ -113,8 +113,7 @@ export class SbbButton
     elementRef: ElementRef,
     private _focusMonitor: FocusMonitor,
     @Optional() @Inject(ANIMATION_MODULE_TYPE) public _animationMode: string,
-    /** @breaking-change Make required with version 15. */
-    @Optional() private _contentObserver?: ContentObserver
+    private _contentObserver: ContentObserver
   ) {
     super(elementRef);
 
@@ -138,9 +137,7 @@ export class SbbButton
   }
 
   ngAfterContentInit() {
-    const contentChangeSource =
-      this._contentObserver?.observe(this._elementRef) ?? this._iconRefs.changes;
-    this._isIconButton = contentChangeSource?.pipe(
+    this._isIconButton = this._contentObserver.observe(this._elementRef).pipe(
       startWith([]),
       map(
         () =>
@@ -223,8 +220,7 @@ export class SbbAnchor extends SbbButton implements AfterViewInit, OnDestroy {
     elementRef: ElementRef,
     @Optional() @Inject(ANIMATION_MODULE_TYPE) animationMode: string,
     private _ngZone: NgZone,
-    /** @breaking-change Make required with version 15. */
-    @Optional() contentObserver?: ContentObserver
+    contentObserver: ContentObserver
   ) {
     super(elementRef, focusMonitor, animationMode, contentObserver);
   }

@@ -2,11 +2,7 @@ import { InjectionToken } from '@angular/core';
 
 export interface SbbDateFormats {
   dateInput: any;
-  /**
-   * Parameter `dateInputPure` will become required.
-   * @breaking-change 15.0.0
-   */
-  dateInputPure?: any;
+  dateInputPure: any;
   dateA11yLabel: any;
 }
 

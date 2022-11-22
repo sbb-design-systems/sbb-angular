@@ -1,5 +1,5 @@
 import { Dialog, DialogConfig } from '@angular/cdk/dialog';
-import { Overlay, OverlayContainer, ScrollStrategy } from '@angular/cdk/overlay';
+import { Overlay, ScrollStrategy } from '@angular/cdk/overlay';
 import { ComponentType } from '@angular/cdk/portal';
 import {
   Inject,
@@ -102,11 +102,6 @@ export abstract class _SbbDialogBase<
     injector: Injector,
     private _defaultOptions: SbbDialogConfig | undefined,
     private _parentDialog: _SbbDialogBase<C, F> | undefined,
-    /**
-     * @deprecated No longer used. To be removed.
-     * @breaking-change 15.0.0
-     */
-    _overlayContainer: OverlayContainer,
     scrollStrategy: any,
     private _dialogRefConstructor: Type<F>,
     private _dialogContainerType: Type<C>,
@@ -228,19 +223,13 @@ export class SbbDialog extends _SbbDialogBase<SbbDialogContainer> {
     injector: Injector,
     @Optional() @Inject(SBB_DIALOG_DEFAULT_OPTIONS) defaultOptions: SbbDialogConfig,
     @Inject(SBB_DIALOG_SCROLL_STRATEGY) scrollStrategy: any,
-    @Optional() @SkipSelf() parentDialog: SbbDialog,
-    /**
-     * @deprecated No longer used. To be removed.
-     * @breaking-change 15.0.0
-     */
-    overlayContainer: OverlayContainer
+    @Optional() @SkipSelf() parentDialog: SbbDialog
   ) {
     super(
       overlay,
       injector,
       defaultOptions,
       parentDialog,
-      overlayContainer,
       scrollStrategy,
       SbbDialogRef,
       SbbDialogContainer,

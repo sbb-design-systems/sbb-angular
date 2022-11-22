@@ -256,8 +256,7 @@ export class SbbMenu implements AfterContentInit, SbbMenuPanel<SbbMenuItem>, OnI
     private _elementRef: ElementRef<HTMLElement>,
     private _ngZone: NgZone,
     @Inject(SBB_MENU_DEFAULT_OPTIONS) private _defaultOptions: SbbMenuDefaultOptions,
-    // @breaking-change 15.0.0 `_changeDetectorRef` to become a required parameter.
-    private _changeDetectorRef?: ChangeDetectorRef
+    private _changeDetectorRef: ChangeDetectorRef
   ) {}
 
   ngOnInit() {
@@ -432,8 +431,7 @@ export class SbbMenu implements AfterContentInit, SbbMenuPanel<SbbMenuItem>, OnI
     classes['sbb-menu-panel-above'] = posY === 'above';
     classes['sbb-menu-panel-below'] = posY === 'below';
 
-    // @breaking-change 15.0.0 Remove null check for `_changeDetectorRef`.
-    this._changeDetectorRef?.markForCheck();
+    this._changeDetectorRef.markForCheck();
   }
 
   /** Starts the enter animation. */
