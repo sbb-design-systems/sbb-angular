@@ -2,6 +2,14 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [15.0.1](https://github.com/sbb-design-systems/sbb-angular/compare/15.0.0...15.0.1) (2022-11-23)
+
+
+### Bug Fixes
+
+* **fix:** update angular and cdk version range ([1741](https://github.com/sbb-design-systems/sbb-angular/pull/1741))
+* **deps:** update angular to v15.0.1 ([b4235c9](https://github.com/sbb-design-systems/sbb-angular/commit/b4235c916cc947f731401478b6608e69b13cbf42))
+
 ## [15.0.0](https://github.com/sbb-design-systems/sbb-angular/compare/14.0.0...15.0.0) (2022-11-22)
 
 
