@@ -3,6 +3,7 @@ name: cherry-pick changelog from release branch into default branch
 on:
   push:
     tags: ['*.*']
+    branches: ["*.x"]
 
 permissions:
   actions: write
