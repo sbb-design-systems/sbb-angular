@@ -187,7 +187,8 @@ export class SbbAutocomplete implements AfterContentInit, OnDestroy {
 
   /** Event that is emitted whenever an option from the list is selected. */
   @Output()
-  readonly optionSelected: EventEmitter<SbbAutocompleteSelectedEvent> = new EventEmitter<SbbAutocompleteSelectedEvent>();
+  readonly optionSelected: EventEmitter<SbbAutocompleteSelectedEvent> =
+    new EventEmitter<SbbAutocompleteSelectedEvent>();
 
   /** Event that is emitted when the autocomplete panel is opened. */
   @Output() readonly opened: EventEmitter<void> = new EventEmitter<void>();
@@ -197,7 +198,8 @@ export class SbbAutocomplete implements AfterContentInit, OnDestroy {
 
   /** Emits whenever an option is activated. */
   @Output()
-  readonly optionActivated: EventEmitter<SbbAutocompleteActivatedEvent> = new EventEmitter<SbbAutocompleteActivatedEvent>();
+  readonly optionActivated: EventEmitter<SbbAutocompleteActivatedEvent> =
+    new EventEmitter<SbbAutocompleteActivatedEvent>();
 
   /**
    * Takes classes set on the host sbb-autocomplete element and applies them to the panel

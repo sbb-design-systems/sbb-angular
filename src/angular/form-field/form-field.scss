@@ -124,7 +124,9 @@
 }
 
 // Buttons need to be vertically indented to align with the inputs
-:is(.sbb-form-group, .sbb-form-group-center, .sbb-form-group-wrap):where(:not(.sbb-form-group-vertical))
+:is(.sbb-form-group, .sbb-form-group-center, .sbb-form-group-wrap):where(
+    :not(.sbb-form-group-vertical)
+  )
   :is(.sbb-button, .sbb-alt-button, .sbb-secondary-button, .sbb-ghost-button, .sbb-icon-button) {
   margin-top: calc(var(--sbb-form-label-line-height) + var(--sbb-form-label-wrapper-margin-bottom));
 }
