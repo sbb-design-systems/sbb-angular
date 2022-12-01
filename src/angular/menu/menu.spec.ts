@@ -811,7 +811,7 @@ describe('SbbMenu', () => {
     fixture.detectChanges();
     const triggerEl = fixture.componentInstance.triggerEl.nativeElement;
 
-    expect(triggerEl.hasAttribute('aria-expanded')).toBe(false);
+    expect(triggerEl.getAttribute('aria-expanded')).toBe('false');
 
     fixture.componentInstance.trigger.openMenu();
     fixture.detectChanges();
@@ -823,7 +823,7 @@ describe('SbbMenu', () => {
     fixture.detectChanges();
     tick(500);
 
-    expect(triggerEl.hasAttribute('aria-expanded')).toBe(false);
+    expect(triggerEl.getAttribute('aria-expanded')).toBe('false');
   }));
 
   it('should throw if assigning a menu that contains the trigger', fakeAsync(() => {
