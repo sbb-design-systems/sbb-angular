@@ -246,8 +246,11 @@ export class SbbOption<T = any>
       const viewValue = this.viewValue;
 
       if (viewValue !== this._mostRecentViewValue) {
+        if (this._mostRecentViewValue) {
+          this._stateChanges.next();
+        }
+
         this._mostRecentViewValue = viewValue;
-        this._stateChanges.next();
       }
     }
   }
