@@ -87,7 +87,7 @@ import { SbbSelectModule } from './select.module';
         [typeaheadDebounceInterval]="typeaheadDebounceInterval"
       >
         <sbb-option *ngFor="let food of foods" [value]="food.value" [disabled]="food.disabled">
-          {{ food.viewValue }}
+          {{ capitalize ? food.viewValue.toUpperCase() : food.viewValue }}
         </sbb-option>
       </sbb-select>
     </sbb-form-field>
@@ -116,6 +116,7 @@ class BasicSelect {
   panelClass = ['custom-one', 'custom-two'];
   typeaheadDebounceInterval: number;
   label? = 'Label';
+  capitalize = false;
 
   @ViewChild(SbbSelect, { static: true }) select: SbbSelect;
   @ViewChildren(SbbOption) options: QueryList<SbbOption>;
@@ -2678,6 +2679,19 @@ describe('SbbSelect', () => {
 
         // tslint:disable-next-line:no-non-null-assertion
         expect(select.textContent!.trim()).toBe('Calzone');
+      }));
+
+      it('should update the trigger value if the text as a result of an expression change', fakeAsync(() => {
+        fixture.componentInstance.control.setValue('pizza-1');
+        fixture.detectChanges();
+
+        expect(select.textContent!.trim()).toBe('Pizza');
+
+        fixture.componentInstance.capitalize = true;
+        fixture.detectChanges();
+        fixture.checkNoChanges();
+
+        expect(select.textContent!.trim()).toBe('PIZZA');
       }));
 
       it('should not select disabled options', fakeAsync(() => {
