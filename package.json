@@ -116,7 +116,7 @@
     "@types/sass": "1.43.1",
     "@types/send": "0.17.1",
     "@types/yargs": "17.0.13",
-    "angular-server-side-configuration": "15.0.1",
+    "angular-server-side-configuration": "15.0.2",
     "angular-t9n": "15.0.0",
     "browser-sync": "2.23.6",
     "codelyzer": "6.0.2",
