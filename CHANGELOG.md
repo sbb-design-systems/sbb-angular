@@ -2,6 +2,15 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [15.0.2](https://github.com/sbb-design-systems/sbb-angular/compare/15.0.1...15.0.2) (2022-12-05)
+
+
+### Bug Fixes
+
+* **angular/menu:** explicitly set aria-expanded to true/false ([#1752](https://github.com/sbb-design-systems/sbb-angular/issues/1752)) ([edf01ec](https://github.com/sbb-design-systems/sbb-angular/commit/edf01ecae6aefe3d3ff48b1a6cf24b6014111238))
+* **angular/select:** changed after checked error if option label changes ([#1753](https://github.com/sbb-design-systems/sbb-angular/issues/1753)) ([aa583df](https://github.com/sbb-design-systems/sbb-angular/commit/aa583dff9257a0e030ccbbe502ef7cbd35bb2ac1))
+* **stackblitz:** update stackblitz assets to v15 ([#1751](https://github.com/sbb-design-systems/sbb-angular/issues/1751)) ([890066f](https://github.com/sbb-design-systems/sbb-angular/commit/890066f6638e13ab95bf0d1777fe222e3c9e36c4))
+
 ### [15.0.1](https://github.com/sbb-design-systems/sbb-angular/compare/15.0.0...15.0.1) (2022-11-23)
 
 
