@@ -634,6 +634,7 @@ export class SbbSelect
     this._destroy.next();
     this._destroy.complete();
     this.stateChanges.complete();
+    this._keyManager?.destroy();
   }
 
   /** Toggles the overlay panel open or closed. */
@@ -853,6 +854,7 @@ export class SbbSelect
   @HostListener('blur')
   _onBlur() {
     this._focused = false;
+    this._keyManager?.cancelTypeahead();
 
     if (!this.disabled && !this.panelOpen) {
       this._onTouched();
@@ -978,9 +980,10 @@ export class SbbSelect
       .withVerticalOrientation()
       .withHorizontalOrientation('ltr')
       .withHomeAndEnd()
+      .withPageUpDown()
       .withAllowedModifierKeys(['shiftKey']);
 
-    this._keyManager.tabOut.pipe(takeUntil(this._destroy)).subscribe(() => {
+    this._keyManager.tabOut.subscribe(() => {
       if (this.panelOpen) {
         // Select the active item when tabbing away. This is consistent with how the native
         // select behaves. Note that we only want to do this in single selection mode.
@@ -995,7 +998,7 @@ export class SbbSelect
       }
     });
 
-    this._keyManager.change.pipe(takeUntil(this._destroy)).subscribe(() => {
+    this._keyManager.change.subscribe(() => {
       if (this._panelOpen && this.panel) {
         this._scrollOptionIntoView(this._keyManager.activeItemIndex || 0);
       } else if (!this._panelOpen && !this.multiple && this._keyManager.activeItem) {
@@ -1022,7 +1025,10 @@ export class SbbSelect
     merge(...this.options.map((option) => option._stateChanges))
       .pipe(takeUntil(changedOrDestroyed))
       .subscribe(() => {
-        this._changeDetectorRef.markForCheck();
+        // `_stateChanges` can fire as a result of a change in the label's DOM value which may
+        // be the result of an expression changing. We have to use `detectChanges` in order
+        // to avoid "changed after checked" errors (see #14793).
+        this._changeDetectorRef.detectChanges();
         this.stateChanges.next();
       });
   }

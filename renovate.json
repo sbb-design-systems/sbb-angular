@@ -4,7 +4,7 @@
   "username": "sbb-angular-renovate[bot]",
   "gitAuthor": "sbb-angular-renovate<52953647+sbb-angular-renovate[bot]@users.noreply.github.com>",
   "repositories": ["sbb-design-systems/sbb-angular"],
-  "baseBranches": ["main", "14.x"],
+  "baseBranches": ["main", "15.x"],
   "includePaths": ["package.json", ".github/**"],
   "schedule": ["after 10pm every weekday", "before 5am every weekday", "every weekend"],
   "lockFileMaintenance": {
@@ -23,8 +23,10 @@
     "highlight.js",
     "marked",
     "typescript",
-    "yarn"
+    "yarn",
+    "zone.js"
   ],
+  "skipInstalls": false,
   "packageRules": [
     {
       "matchUpdateTypes": ["minor", "patch", "pin", "digest", "lockFileMaintenance", "bump"],
@@ -64,7 +66,7 @@
       "matchPackageNames": ["@angular/cli", "@angular/cdk", "angular-server-side-configuration"],
       "postUpgradeTasks": {
         "commands": [
-          "yarn install --frozen-lockfile --non-interactive",
+          "yarn install --ignore-scripts --frozen-lockfile --non-interactive",
           "yarn ng update {{{depName}}} --from={{{currentVersion}}} --to={{{newVersion}}} --migrate-only --allow-dirty --force",
           "yarn format"
         ],
@@ -74,7 +76,10 @@
     {
       "matchPackageNames": ["prettier"],
       "postUpgradeTasks": {
-        "commands": ["yarn install --frozen-lockfile --non-interactive", "yarn format:prettier"],
+        "commands": [
+          "yarn install --ignore-scripts --frozen-lockfile --non-interactive",
+          "yarn format:prettier"
+        ],
         "fileFilters": ["**/**"]
       }
     },
@@ -82,7 +87,7 @@
       "matchPackageNames": ["esbuild"],
       "postUpgradeTasks": {
         "commands": [
-          "yarn install --frozen-lockfile --non-interactive",
+          "yarn install --ignore-scripts --frozen-lockfile --non-interactive",
           "yarn build:schematics",
           "yarn format"
         ],
@@ -94,7 +99,7 @@
       "extends": ["schedule:monthly"]
     },
     {
-      "matchPackageNames": ["@angular/dev-infra-private", "angular/dev-infra"],
+      "matchPackageNames": ["@angular/build-tooling", "angular/dev-infra", "@angular/ng-dev"],
       "groupName": "angular shared dev-infra code",
       "schedule": ["before 5am on wednesday"]
     }

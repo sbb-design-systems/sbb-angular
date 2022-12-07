@@ -18,6 +18,7 @@ import {
   dispatchEvent,
   dispatchKeyboardEvent,
   dispatchMouseEvent,
+  switchToLean,
 } from '@sbb-esta/angular/core/testing';
 import { SbbIconTestingModule } from '@sbb-esta/angular/icon/testing';
 
@@ -209,6 +210,21 @@ describe('SbbTooltipWrapper', () => {
       expect(tooltip.classList).toContain('custom-one');
       expect(tooltip.classList).toContain('custom-two');
     }));
+
+    it('should show the correct icon in standard variant', () => {
+      const spy = jasmine.createSpy('icon subject spy');
+      component.tooltip._svgIcon.subscribe(spy);
+      expect(spy).toHaveBeenCalledWith('kom:circle-question-mark-small');
+    });
+
+    describe('lean', () => {
+      switchToLean();
+      it('should show the correct icon', () => {
+        const spy = jasmine.createSpy('icon subject spy');
+        component.tooltip._svgIcon.subscribe(spy);
+        expect(spy).toHaveBeenCalledWith('kom:circle-information-small');
+      });
+    });
   });
 
   describe('using two tooltips', () => {

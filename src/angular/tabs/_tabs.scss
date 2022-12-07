@@ -1,3 +1,4 @@
+@use 'external/npm/node_modules/@angular/cdk' as cdk;
 @use '@sbb-esta/angular' as sbb;
 
 @mixin tab-line-bottom() {
@@ -122,6 +123,10 @@
       &::after {
         width: 0 !important;
       }
+    }
+
+    @include cdk.high-contrast(active, off) {
+      color: GrayText;
     }
   }
 

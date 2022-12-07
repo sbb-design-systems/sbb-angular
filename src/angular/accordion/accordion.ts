@@ -69,6 +69,7 @@ export class SbbAccordion extends CdkAccordion implements AfterContentInit, OnDe
 
   override ngOnDestroy() {
     super.ngOnDestroy();
+    this._keyManager?.destroy();
     this._ownHeaders.destroy();
   }
 }

@@ -8,91 +8,121 @@ on:
 
 permissions:
   pull-requests: write
+  packages: write
 
 jobs:
   preview-deployment:
     runs-on: ubuntu-latest
-    if: ${{ github.event.workflow_run.conclusion == 'success' }}
+    if: >
+      github.event.workflow_run.conclusion == 'success' && (
+        github.event.workflow_run.event == 'pull_request' || (
+          github.event.workflow_run.event == 'push' &&
+          github.event.workflow_run.head_branch == 'main'
+        )
+      )
+    env:
+      IMAGE_REPO: ghcr.io/sbb-design-systems/sbb-angular/showcase-preview
+      IMAGE_TAG: rev-${{ github.event.workflow_run.head_sha }}
+      ALLOWED_EXTENSIONS: css, gitignore, gitkeep, html, ico, jpg, js, json, png, scss, stackblitzrc, svg, ts
     steps:
-      - uses: actions/setup-node@v3
-        with:
-          node-version: 16
-      - run: npm i decompress@4.2.1 node-fetch@2.6.2 form-data@4.0.0
-      - name: Download Artifacts
-        uses: actions/github-script@v6
-        env:
-          previewUser: ${{ secrets.PREVIEW_USER }}
-          previewPassword: ${{ secrets.PREVIEW_PASSWORD }}
-          previewUrl: https://preview-sbb-angular.app.sbb.ch
-        with:
-          script: |
-            const decompress = require('decompress');
-            const { createReadStream } = require('fs');
-            const fetch = require('node-fetch');
-            const FormData = require('form-data');
+    - name: Login to GitHub Docker Repository
+      uses: azure/docker-login@v1
+      with:
+        login-server: ghcr.io
+        username: ${{ github.actor }}
+        password: ${{ secrets.GITHUB_TOKEN }}
+    - uses: actions/checkout@v3
+    - run: rm package.json yarn.lock
+    - uses: actions/setup-node@v3
+      with:
+        node-version: 18
+    - run: npm i decompress@4.2.1
+    - name: Download Artifacts
+      id: artifacts
+      uses: actions/github-script@v6
+      with:
+        script: |
+          const decompress = require('decompress');
+          const fs = require('fs');
+          const path = require('path');
 
-            const { previewUser, previewPassword, previewUrl } = process.env;
-            const artifactsUrl = context.payload.workflow_run.artifacts_url;
+          const artifactsResult = await github.request(context.payload.workflow_run.artifacts_url);
+          const artifact = artifactsResult.data.artifacts.find((a) =>
+            a.name.startsWith('showcase-artifact-')
+          );
+          if (artifact) {
+            core.info(`Found artifact ${artifact.name}`);
+            try {
+              const outputPath = './dist/releases/showcase';
+              const allowedExtensions = process.env.ALLOWED_EXTENSIONS.split(/[, ]+/g).map(e => `.${e}`);
+              const archive = await github.request(artifact.archive_download_url);
+              core.info(`Downloaded ${artifact.name}`);
+              const zipResult = await decompress(Buffer.from(archive.data), '.');
+              core.info(`Decompressed ${artifact.name}:\n${zipResult.map(r => `- ${r.path}`).join('\n')}`);
+              fs.mkdirSync(outputPath, { recursive: true });
+              const tgzResult = await decompress(zipResult[0].path, outputPath, {
+                // Only allow files that are reasonable
+                filter: (file) => allowedExtensions.includes(path.extname(file.path)),
+                map: (file) => {
+                  file.path = file.path.replace(/^package\//, '');
+                  return file;
+                },
+              });
+              core.info(`Decompressed ${zipResult[0].path}:\n${tgzResult.map(r => `- ${r.path}`).join('\n')}`);
+            } catch (e) {
+              core.error(`Failed to download and unzip ${artifact.name}`);
+              core.error(e);
+            }
+          } else {
+            core.error(`No artifact found`);
+          }
+    - run: ls -llR ./dist/releases
+    - name: "Docker: Build image"
+      run: docker build -t $IMAGE_REPO:$IMAGE_TAG .
+    - name: "Docker: Publish image"
+      run: docker push $IMAGE_REPO:$IMAGE_TAG
+    - name: Create PR comment
+      uses: actions/github-script@v6
+      with:
+        script: |
+          const artifactsResponse = await github.request(context.payload.workflow_run.artifacts_url);
+          const showcaseArtifact = artifactsResponse.data.artifacts.find((a) =>
+            a.name.startsWith('showcase-artifact-')
+          );
+          if (showcaseArtifact && context.payload.workflow_run.pull_requests.length) {
+            const pullRequest = context.payload.workflow_run.pull_requests[0];
 
-            const artifactsResult = await github.request(artifactsUrl);
-            const artifacts = artifactsResult.data.artifacts.filter((a) =>
-              a.name.startsWith('showcase-artifact-')
-            );
+            const { data: fullPr } = await github.rest.pulls.get({
+              pull_number: pullRequest.number,
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+            });
 
-            for (const artifactEntry of artifacts) {
-              try {
-                const artifact = await github.request(artifactEntry.archive_download_url);
-                const result = await decompress(Buffer.from(artifact.data), '.');
+            // Don't comment renovate bot PRs
+            if (fullPr?.user?.login === 'sbb-angular-renovate[bot]') {
+              return;
+            }
 
-                const version = artifactEntry.name.match(/-([\w\d]+)$/)[1];
-                const form = new FormData();
-                form.append('key', version);
-                form.append('file', createReadStream(result[0].path));
-                const authorization = `Basic ${Buffer.from(`${previewUser}:${previewPassword}`).toString('base64')}`;
-                await fetch(`${previewUrl}`, {
-                  method: 'POST',
-                  headers: form.getHeaders({ authorization }),
-                  body: form,
-                });
-              } catch (e) {
-                console.error(`Failed to download and unzip ${artifactEntry.name}`);
+            const previewBaseUrl = `https://sbb-angular-preview-pr${pullRequest.number}.app.sbb.ch`;
+            let moduleUrl = '';
+            if (fullPr?.title) {
+              const moduleName = fullPr.title.match(/^.*\(angular\/(.*)\):/i)?.[1];
+              if (moduleName) {
+                moduleUrl = `${previewBaseUrl}/angular/components/${moduleName}/examples`;
               }
             }
 
-            if (artifacts.length && context.payload.workflow_run.pull_requests.length) {
-              const pullRequest = context.payload.workflow_run.pull_requests[0];
-
-              const { data: fullPr } = await github.rest.pulls.get({
-                pull_number: pullRequest.number,
-                owner: context.repo.owner,
-                repo: context.repo.repo,
-              });
-
-              // Don't comment renovate bot PRs
-              if (fullPr?.user?.login === 'sbb-angular-renovate[bot]') {
-                return;
-              }
-
-              const previewBaseUrl = `${previewUrl}/${pullRequest.number}`;
-              let moduleUrl = '';
-              if (fullPr?.title) {
-                const moduleName = fullPr.title.match(/^.*\(angular\/(.*)\):/i)?.[1];
-                if (moduleName) {
-                  moduleUrl = `${previewBaseUrl}/angular/components/${moduleName}/examples`;
-                }
-              }
-
-              const createdAtDate = new Date(
-                context.payload.workflow_run.created_at
-              ).toLocaleString('de');
-              github.rest.issues.createComment({
-                issue_number: pullRequest.number,
-                owner: context.repo.owner,
-                repo: context.repo.repo,
-                body: `Preview ready from ${
-                  pullRequest.head.sha
-                } at ${createdAtDate}:\n- ${previewBaseUrl}${
-                  moduleUrl ? `\n- Examples link: ${moduleUrl}` : ''
-                }`,
-              });
-            }
+            const createdAtDate = new Date(
+              context.payload.workflow_run.created_at
+            ).toLocaleString('de');
+            github.rest.issues.createComment({
+              issue_number: pullRequest.number,
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              body: `Preview ready from ${
+                pullRequest.head.sha
+              } at ${createdAtDate}:\n- ${previewBaseUrl}${
+                moduleUrl ? `\n- Examples link: ${moduleUrl}` : ''
+              }`,
+            });
+          }

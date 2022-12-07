@@ -44,9 +44,9 @@ jobs:
       run: |
         if [[ "$REF" == *"-"* ]]
         then
-            echo "::set-output name=npm_tag::next"
+            echo "npm_tag=next" >> $GITHUB_OUTPUT
         else
-            echo "::set-output name=npm_tag::latest"
+            echo "npm_tag=latest" >> $GITHUB_OUTPUT
         fi
       env:
         REF: ${{ github.ref }}

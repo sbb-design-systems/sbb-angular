@@ -1,4 +1,4 @@
-import { Overlay, OverlayContainer, ScrollStrategy } from '@angular/cdk/overlay';
+import { Overlay, ScrollStrategy } from '@angular/cdk/overlay';
 import { ComponentType } from '@angular/cdk/portal';
 import {
   Inject,
@@ -67,19 +67,13 @@ export class SbbLightbox extends _SbbDialogBase<SbbLightboxContainer, SbbLightbo
     injector: Injector,
     @Optional() @Inject(SBB_LIGHTBOX_DEFAULT_OPTIONS) defaultOptions: SbbLightboxConfig,
     @Inject(SBB_LIGHTBOX_SCROLL_STRATEGY) scrollStrategy: any,
-    @Optional() @SkipSelf() parentDialog: SbbLightbox,
-    /**
-     * @deprecated No longer used. To be removed.
-     * @breaking-change 15.0.0
-     */
-    overlayContainer: OverlayContainer
+    @Optional() @SkipSelf() parentDialog: SbbLightbox
   ) {
     super(
       overlay,
       injector,
       defaultOptions,
       parentDialog,
-      overlayContainer,
       scrollStrategy,
       SbbLightboxRef,
       SbbLightboxContainer,
@@ -102,7 +96,7 @@ export class SbbLightbox extends _SbbDialogBase<SbbLightboxContainer, SbbLightbo
       width: '100vw',
       minWidth: '100vw',
       maxWidth: '100vw',
-      height: 'auto',
+      height: '100vh',
       minHeight: 'auto',
       maxHeight: 'none',
     };

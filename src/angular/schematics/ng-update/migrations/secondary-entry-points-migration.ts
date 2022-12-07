@@ -22,12 +22,7 @@ const ANGULAR_FILEPATH_REGEX = new RegExp(`(${ANGULAR_FILEPATH})/(.*?)`);
 // Map of all moved symbols
 const ENTRY_POINT_MAPPINGS = new Map(
   Object.entries({
-    [TargetVersion.V14]: {
-      SbbLoadingModule: 'loading-indicator',
-      SbbLoading: 'loading-indicator',
-      SbbLoadingMode: 'loading-indicator',
-      SbbAutocompleteHint: 'core',
-    },
+    [TargetVersion.V15]: {},
   })
 );
 
@@ -45,16 +40,16 @@ interface SecondaryEntryPointContext {
 export class SecondaryEntryPointsMigration extends Migration<null, DevkitContext> {
   printer = ts.createPrinter();
 
-  enabled: boolean = ENTRY_POINT_MAPPINGS.has(this.targetVersion);
+  enabled: boolean = !!this.targetVersion && ENTRY_POINT_MAPPINGS.has(this.targetVersion);
 
   private _entryPointMappings = {
     ...require('./sbb-angular-symbols.json'),
-    ...ENTRY_POINT_MAPPINGS.get(this.targetVersion),
+    ...ENTRY_POINT_MAPPINGS.get(this.targetVersion || ''),
   };
 
   private _fileImportMap = new Map<ts.SourceFile, SecondaryEntryPointContext>();
 
-  private _classNameRenames = classNames[this.targetVersion]?.reduce(
+  private _classNameRenames = classNames[this.targetVersion || '']?.reduce(
     (renames, entry) =>
       entry.changes.reduce((current, next) => current.set(next.replace, next.replaceWith), renames),
     new Map<string, string>()

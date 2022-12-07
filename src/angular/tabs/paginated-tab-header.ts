@@ -248,7 +248,7 @@ export abstract class SbbPaginatedTabHeader
     // If there is a change in the focus key manager we need to emit the `indexFocused`
     // event in order to provide a public event that notifies about focus changes. Also we realign
     // the tabs container by scrolling the new focused tab into the visible section.
-    this._keyManager.change.pipe(takeUntil(this._destroyed)).subscribe((newFocusIndex) => {
+    this._keyManager.change.subscribe((newFocusIndex) => {
       this.indexFocused.emit(newFocusIndex);
       this._setTabFocus(newFocusIndex);
     });
@@ -316,6 +316,7 @@ export abstract class SbbPaginatedTabHeader
   }
 
   ngOnDestroy() {
+    this._keyManager?.destroy();
     this._destroyed.next();
     this._destroyed.complete();
     this._stopScrolling.complete();

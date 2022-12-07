@@ -3,7 +3,7 @@ import { Directionality } from '@angular/cdk/bidi';
 import { A, ESCAPE } from '@angular/cdk/keycodes';
 import { Overlay, OverlayContainer, ScrollStrategy } from '@angular/cdk/overlay';
 import { _supportsShadowDom } from '@angular/cdk/platform';
-import { ScrollDispatcher } from '@angular/cdk/scrolling';
+import { ScrollDispatcher, ViewportRuler } from '@angular/cdk/scrolling';
 import { Location } from '@angular/common';
 import { SpyLocation } from '@angular/common/testing';
 import {
@@ -67,11 +67,20 @@ describe('SbbLightbox', () => {
   let viewContainerFixture: ComponentFixture<ComponentWithChildViewContainer>;
   let mockLocation: SpyLocation;
 
+  const viewPortRulerMockChangeTrigger = new Subject<void>();
+  const viewportRulerMock = {
+    change: () => viewPortRulerMockChangeTrigger,
+    getViewportSize: () => ({
+      height: 500,
+    }),
+  };
+
   beforeEach(fakeAsync(() => {
     TestBed.configureTestingModule({
       imports: [SbbLightboxModule, DialogTestModule],
       providers: [
         { provide: Location, useClass: SpyLocation },
+        { provide: ViewportRuler, useValue: viewportRulerMock },
         {
           provide: ScrollDispatcher,
           useFactory: () => ({
@@ -623,6 +632,23 @@ describe('SbbLightbox', () => {
       expect(resolver.resolveComponentFactory).toHaveBeenCalled();
     }
   ));
+
+  it('should update height on window resize', fakeAsync(() => {
+    lightbox.open(PizzaMsg, {
+      viewContainerRef: testViewContainerRef,
+    });
+    const lightboxContainerElement =
+      overlayContainerElement.querySelector('sbb-lightbox-container')!;
+    viewContainerFixture.detectChanges();
+
+    expect(lightboxContainerElement.clientHeight).toBe(500);
+
+    spyOn(viewportRulerMock, 'getViewportSize').and.returnValue({ height: 400 });
+    viewPortRulerMockChangeTrigger.next(); // Manually trigger resize observable
+    viewContainerFixture.detectChanges();
+
+    expect(lightboxContainerElement.clientHeight).toBe(400);
+  }));
 
   describe('passing in data', () => {
     it('should be able to pass in data', () => {
@@ -1631,7 +1657,7 @@ describe('SbbLightbox with default options', () => {
 
     const overlayPane = overlayContainerElement.querySelector('.cdk-overlay-pane') as HTMLElement;
     expect(overlayPane.style.width).toBe('100vw');
-    expect(overlayPane.style.height).toBe('auto');
+    expect(overlayPane.style.height).toBe(`${window.innerHeight}px`);
     expect(overlayPane.style.minWidth).toBe('100vw');
     expect(overlayPane.style.minHeight).toBe('auto');
     expect(overlayPane.style.maxWidth).toBe('100vw');

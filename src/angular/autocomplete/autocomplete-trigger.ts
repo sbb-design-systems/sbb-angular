@@ -283,12 +283,12 @@ export class SbbAutocompleteTrigger
     private _zone: NgZone,
     private _changeDetectorRef: ChangeDetectorRef,
     @Inject(SBB_AUTOCOMPLETE_SCROLL_STRATEGY) scrollStrategy: any,
-    @Optional() @Inject(SBB_FORM_FIELD) @Host() private _formField: TypeRef<SbbFormField>,
+    @Optional() @Inject(SBB_FORM_FIELD) @Host() private _formField: TypeRef<SbbFormField> | null,
     @Optional() @Inject(DOCUMENT) private _document: any,
     private _viewportRuler: ViewportRuler,
     @Optional()
     @Inject(SBB_AUTOCOMPLETE_DEFAULT_OPTIONS)
-    private _defaults?: SbbAutocompleteDefaultOptions
+    private _defaults?: SbbAutocompleteDefaultOptions | null
   ) {
     this._scrollStrategy = scrollStrategy;
   }

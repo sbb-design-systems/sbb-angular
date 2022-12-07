@@ -110,7 +110,7 @@ const _SbbMenuTriggerMixinBase = mixinVariant(class {});
   host: {
     class: 'sbb-menu-trigger sbb-icon-fit',
     '[attr.aria-haspopup]': 'menu ? "menu" : null',
-    '[attr.aria-expanded]': 'menuOpen || null',
+    '[attr.aria-expanded]': 'menuOpen',
     '[attr.aria-controls]': 'menuOpen ? menu.panelId : null',
     '[class.sbb-menu-trigger-root]': '!_parentSbbMenu',
     '[class.sbb-menu-trigger-menu-open]': 'menuOpen',
@@ -237,11 +237,7 @@ export class SbbMenuTrigger
     private _sanitizer: DomSanitizer,
     private _breakpointObserver: BreakpointObserver,
     private _changeDetectorRef: ChangeDetectorRef,
-    /**
-     * @deprecated `ngZone` will become a required parameter.
-     * @breaking-change 15.0.0
-     */
-    private _ngZone?: NgZone
+    private _ngZone: NgZone
   ) {
     super();
 
@@ -534,14 +530,7 @@ export class SbbMenuTrigger
         this._element.nativeElement.classList.add(`sbb-menu-trigger-${posX}`);
         this._element.nativeElement.classList.add(`sbb-menu-trigger-${posY}`);
 
-        // @breaking-change 15.0.0 Remove null check for `ngZone`.
-        // `positionChanges` fires outside of the `ngZone` and `setPositionClasses` might be
-        // updating something in the view, so we need to bring it back in.
-        if (this._ngZone) {
-          this._ngZone.run(() => menu.setPositionClasses!(posX, posY));
-        } else {
-          menu.setPositionClasses!(posX, posY);
-        }
+        this._ngZone.run(() => menu.setPositionClasses!(posX, posY));
       });
     }
   }
