@@ -63,7 +63,7 @@
     "@arcgis/core": "~4.20.2",
     "@stackblitz/sdk": "1.8.1",
     "maplibre-gl": "2.4.0",
-    "rxjs": "7.5.7",
+    "rxjs": "7.6.0",
     "tslib": "2.4.1",
     "zone.js": "0.12.0"
   },
