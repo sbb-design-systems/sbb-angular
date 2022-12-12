@@ -4,6 +4,7 @@
       <th *ngIf="showWeekNumbers">#</th>
       <th *ngFor="let day of weekdays">
         <button
+          *ngIf="isWeekdaySelectable"
           type="button"
           tabindex="0"
           class="sbb-button-reset-frameless sbb-calendar-body-weekday"
@@ -12,6 +13,10 @@
         >
           {{day.narrow}}
         </button>
+        <ng-container *ngIf="!isWeekdaySelectable">
+          <span class="cdk-visually-hidden">{{day.long}}</span>
+          <span aria-hidden="true">{{day.narrow}}</span>
+        </ng-container>
       </th>
     </tr>
     <tr>
@@ -27,6 +32,8 @@
     [selectedValue]="selectedDate!"
     [labelMinRequiredCells]="3"
     [activeCell]="_dateAdapter.getDate(activeDate) - 1"
+    [isWeekSelectable]="isWeekSelectable"
+    [isWeekdaySelectable]="isWeekdaySelectable"
     (selectedValueChange)="dateSelected($event)"
     (selectedWeekChange)="weekSelected($event)"
     (activeDateChange)="_updateActiveDate($event)"

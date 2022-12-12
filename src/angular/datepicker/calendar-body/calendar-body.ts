@@ -89,6 +89,12 @@ export class SbbCalendarBody implements AfterViewChecked {
   /** The cell number of the active cell in the table. */
   @Input() activeCell: number = 0;
 
+  /** Whether the week can be selected. */
+  @Input() isWeekSelectable: boolean = false;
+
+  /** Whether the weekday can be selected. */
+  @Input() isWeekdaySelectable: boolean = false;
+
   /** Emits when a new value is selected. */
   @Output() readonly selectedValueChange: EventEmitter<number> = new EventEmitter<number>();
 

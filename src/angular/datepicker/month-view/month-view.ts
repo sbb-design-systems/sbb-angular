@@ -101,6 +101,12 @@ export class SbbMonthView<D> implements AfterContentInit {
   /** Whether to display the week number. */
   @Input() showWeekNumbers: boolean = false;
 
+  /** Whether the week can be selected. */
+  @Input() isWeekSelectable: boolean = false;
+
+  /** Whether the weekday can be selected. */
+  @Input() isWeekdaySelectable: boolean = false;
+
   /** Emits when a new date is selected. */
   @Output()
   readonly selectedChange: EventEmitter<D | null> = new EventEmitter<D | null>();

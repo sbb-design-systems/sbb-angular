@@ -172,7 +172,10 @@
   outline: none;
   font-family: inherit;
   margin: 0;
-  cursor: pointer;
+
+  &:is(button) {
+    cursor: pointer;
+  }
 
   &:is(
       .sbb-calendar-body-range-background,

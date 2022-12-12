@@ -1,12 +1,8 @@
 <!-- Create the first row separately so we can include a special spacer cell. -->
 <tr *ngFor="let row of rows; let rowIndex = index" role="row">
-  <td
-    *ngIf="weeksInMonth.length"
-    role="gridcell"
-    class="sbb-calendar-body-cell-container-week"
-    [style.width.%]="100 / (numCols + 1)"
-  >
+  <td *ngIf="weeksInMonth.length" role="gridcell" [style.width.%]="100 / (numCols + 1)">
     <button
+      *ngIf="isWeekSelectable"
       type="button"
       tabindex="0"
       class="sbb-calendar-body-cell sbb-button-reset-frameless sbb-calendar-body-week"
@@ -14,6 +10,9 @@
     >
       <div class="sbb-calendar-body-cell-content">{{ weeksInMonth[rowIndex] }}</div>
     </button>
+    <div *ngIf="!isWeekSelectable" class="sbb-calendar-body-cell sbb-calendar-body-week">
+      <div class="sbb-calendar-body-cell-content">{{ weeksInMonth[rowIndex] }}</div>
+    </div>
   </td>
   <!--
     This cell is purely decorative, but we can't put `aria-hidden` or `role="presentation"` on it,
