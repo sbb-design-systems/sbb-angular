@@ -38,6 +38,7 @@ import { SbbMonthView } from './month-view';
     <sbb-month-view
       [(activeDate)]="date"
       [(selected)]="selected"
+      [isWeekdaySelectable]="isWeekdaySelectable"
       (selectedWeekdayChange)="selectWeekday($event)"
     ></sbb-month-view>
   `,
@@ -46,6 +47,7 @@ class StandardMonthViewComponent {
   date = new Date(2017, JAN, 5);
   selected = new Date(2017, JAN, 10);
   weekday: number | null = -1;
+  isWeekdaySelectable = true;
   selectWeekday = (w: number | null) => (this.weekday = w);
 }
 

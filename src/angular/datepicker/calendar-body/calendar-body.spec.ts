@@ -22,6 +22,7 @@ import { SbbCalendarBody, SbbCalendarCell } from './calendar-body';
       [numCols]="numCols"
       [activeCell]="10"
       [weeksInMonth]="weeksInMonth"
+      [isWeekSelectable]="isWeekSelectable"
       (selectedValueChange)="onSelect($event)"
       (selectedWeekChange)="onWeekSelect($event)"
     ></table>
@@ -37,6 +38,7 @@ class StandardCalendarBodyComponent {
   selectedValue = 4;
   labelMinRequiredCells = 3;
   numCols = 7;
+  isWeekSelectable = true;
   weeksInMonth: number[] = [];
 
   onSelect(value: number) {
