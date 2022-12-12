@@ -4,10 +4,12 @@
   [showWeekNumbers]="showWeekNumbers"
   [(selected)]="selectedDate"
   (selectedWeekChange)="onWeekSelection($event)"
+  (selectedWeekdayChange)="onWeekdaySelection($event)"
 ></sbb-calendar>
 
 <pre>
-  Selected: {{ selectedDate || '-' }}
+  Selected date: {{ selectedDate || '-' }}
+  Selected weekday: {{ selectedWeekday !== null ? selectedWeekday : '-' }}
 </pre>
 
 <form [formGroup]="dateForm">

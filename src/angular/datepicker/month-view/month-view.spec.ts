@@ -34,11 +34,19 @@ import { SbbCalendarBody } from '../calendar-body/calendar-body';
 import { SbbMonthView } from './month-view';
 
 @Component({
-  template: ` <sbb-month-view [(activeDate)]="date" [(selected)]="selected"></sbb-month-view> `,
+  template: `
+    <sbb-month-view
+      [(activeDate)]="date"
+      [(selected)]="selected"
+      (selectedWeekdayChange)="selectWeekday($event)"
+    ></sbb-month-view>
+  `,
 })
 class StandardMonthViewComponent {
   date = new Date(2017, JAN, 5);
   selected = new Date(2017, JAN, 10);
+  weekday: number | null = -1;
+  selectWeekday = (w: number | null) => (this.weekday = w);
 }
 
 @Component({
@@ -139,6 +147,17 @@ describe('SbbMonthView', () => {
       const cellEls = monthViewNativeElement.querySelectorAll('.sbb-calendar-body-cell');
       expect((cellEls[4] as HTMLElement).innerText.trim()).toBe('5');
       expect(cellEls[4].classList).toContain('sbb-calendar-body-active');
+    });
+
+    it('should emit the clicked weekday', () => {
+      const weekButtons = monthViewNativeElement.querySelectorAll(
+        'button.sbb-calendar-body-weekday'
+      );
+      (weekButtons[0] as HTMLElement).click(); // Monday
+      expect(testComponent.weekday).toEqual(1);
+
+      (weekButtons[weekButtons.length - 1] as HTMLElement).click(); // Sunday
+      expect(testComponent.weekday).toEqual(0);
     });
 
     describe('a11y', () => {

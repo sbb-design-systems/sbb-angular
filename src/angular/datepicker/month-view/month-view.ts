@@ -112,6 +112,9 @@ export class SbbMonthView<D> implements AfterContentInit {
     rangeInMonth: SbbDateRange<D>;
   } | null> = new EventEmitter();
 
+  /** Emits when a weekday is selected. */
+  @Output() readonly selectedWeekdayChange: EventEmitter<number> = new EventEmitter<number>();
+
   /** Emits when any date is selected. */
   @Output() readonly userSelection: EventEmitter<void> = new EventEmitter<void>();
 
@@ -139,11 +142,16 @@ export class SbbMonthView<D> implements AfterContentInit {
    */
   selectedDate: number | null;
 
+  /**
+   * The weekday that is currently selected.
+   */
+  selectedWeekday: number | null;
+
   /** The date of the month that today falls on. Null if today is in another month. */
   todayDate: number | null;
 
   /** The names of the weekdays. */
-  weekdays: { long: string; narrow: string }[];
+  weekdays: { long: string; narrow: string; index: number }[];
 
   /** Currently active date range. */
   @Input()
@@ -180,7 +188,7 @@ export class SbbMonthView<D> implements AfterContentInit {
 
     // Rotate the labels for days of the week based on the configured first day of the week.
     const weekdays = longWeekdays.map((long, i) => {
-      return { long, narrow: narrowWeekdays[i] };
+      return { long, narrow: narrowWeekdays[i], index: i };
     });
     this.weekdays = weekdays.slice(firstDayOfWeek).concat(weekdays.slice(0, firstDayOfWeek));
 
@@ -217,6 +225,13 @@ export class SbbMonthView<D> implements AfterContentInit {
         this._getDateFromDayOfMonth(selectedWeek[selectedWeek.length - 1].value)
       ),
     });
+  }
+
+  /** Handles weekday selection. */
+  weekdaySelected(weekday: number) {
+    if (this.selectedWeekday !== weekday) {
+      this.selectedWeekdayChange.emit(weekday);
+    }
   }
 
   /**

@@ -237,12 +237,16 @@ export class SbbCalendar<D> implements AfterContentInit, AfterViewChecked, OnDes
   /** Emits when the currently selected date changes. */
   @Output() readonly selectedChange: EventEmitter<D> = new EventEmitter<D>();
 
+  /** Emits when the currently selected week changes. */
   @Output()
   readonly selectedWeekChange: EventEmitter<{
     week: number;
     start: D;
     end: D;
   } | null> = new EventEmitter();
+
+  /** Emits when the currently selected weekday changes. */
+  @Output() readonly selectedWeekdayChange: EventEmitter<number> = new EventEmitter<number>();
 
   /** Emits when any date is selected. */
   @Output() readonly userSelection: EventEmitter<void> = new EventEmitter<void>();
@@ -347,6 +351,11 @@ export class SbbCalendar<D> implements AfterContentInit, AfterViewChecked, OnDes
         end: week.rangeInMonth.end,
       }
     );
+  }
+
+  /** Handles weekday selection in the month view. */
+  weekdaySelected(weekday: number) {
+    this.selectedWeekdayChange.emit(weekday);
   }
 
   userSelected(): void {

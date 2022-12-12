@@ -22,6 +22,7 @@ export class CalendarConfigurationExample implements OnDestroy {
     endDate: new FormControl<Date | null>(null),
   });
   selectedDate: Date | null;
+  selectedWeekday: number | null;
   showWeekNumbers = true;
   dateClass: SbbCalendarCellClassFunction<Date> = (date) => {
     // Highlight 6th day of the week (Sunday)
@@ -56,7 +57,12 @@ export class CalendarConfigurationExample implements OnDestroy {
     }
   }
 
+  onWeekdaySelection(weekday: number | null) {
+    this.selectedWeekday = weekday;
+  }
+
   clearSelection() {
+    this.selectedWeekday = null;
     this.selectedDate = null;
     this.dateRange.next(null);
     this.dateForm.reset();

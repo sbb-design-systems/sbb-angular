@@ -3,8 +3,15 @@
     <tr>
       <th *ngIf="showWeekNumbers">#</th>
       <th *ngFor="let day of weekdays">
-        <span class="cdk-visually-hidden">{{day.long}}</span>
-        <span aria-hidden="true">{{day.narrow}}</span>
+        <button
+          type="button"
+          tabindex="0"
+          class="sbb-button-reset-frameless sbb-calendar-body-weekday"
+          [attr.aria-label]="day.long"
+          (click)="weekdaySelected(day.index)"
+        >
+          {{day.narrow}}
+        </button>
       </th>
     </tr>
     <tr>
