@@ -183,6 +183,8 @@
   "SbbCalendar": "datepicker",
   "SbbCalendarBody": "datepicker",
   "SbbCalendarCell": "datepicker",
+  "SbbCalendarCellClassFunction": "datepicker",
+  "SbbCalendarCellCssClasses": "datepicker",
   "SbbCalendarHeader": "datepicker",
   "SbbDateInput": "datepicker",
   "SbbDateInputEvent": "datepicker",

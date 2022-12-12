@@ -6,8 +6,7 @@ import { filter, takeUntil } from 'rxjs/operators';
 
 /**
  * @title Standalone Calendar
- * @order 1
- * TODO: change order to 60
+ * @order 60
  */
 @Component({
   selector: 'sbb-calendar-configuration-example',
@@ -46,12 +45,16 @@ export class CalendarConfigurationExample implements OnDestroy {
         filter(({ startDate, endDate }) => !!startDate && !!endDate)
       )
       .subscribe(({ startDate, endDate }) => {
+        if (startDate!.getTime() === endDate!.getTime()) {
+          this.selectedDate = startDate!;
+        }
         this.dateRange.next({ start: startDate!, end: endDate! });
       });
   }
 
   onWeekSelection(selection: { week: number; start: Date; end: Date } | null) {
     if (selection) {
+      this.selectedDate = null;
       this.dateRange.next({ start: selection.start, end: selection.end });
       this.dateForm.patchValue({ startDate: selection.start, endDate: selection.end });
     }
