@@ -781,7 +781,12 @@ textarea {
 // Lists
 // ----------------------------------------------------------------------------------------------------
 
-:is(ul:where(:not([class*='mod_'])), .sbb-unordered-list, ol:where(:not([class*='mod_'])), .sbb-ordered-list) {
+:is(
+    ul:where(:not([class*='mod_'])),
+    .sbb-unordered-list,
+    ol:where(:not([class*='mod_'])),
+    .sbb-ordered-list
+  ) {
   font-size: var(--sbb-font-size);
   line-height: var(--sbb-line-height);
   margin-top: calc(#{sbb.pxToRem(17)} * var(--sbb-scaling-factor));
@@ -850,7 +855,22 @@ textarea {
 // Form Elements
 // ----------------------------------------------------------------------------------------------------
 
-:is(.sbb-input-element, input:where([type='email'], [type='password'], [type='search'], [type='text'], [type='number'], [type='tel'], [type='time'], [type='datetime'], [type='datetime-local'], [type='url'], :not([type]))) {
+:is(
+    .sbb-input-element,
+    input:where(
+        [type='email'],
+        [type='password'],
+        [type='search'],
+        [type='text'],
+        [type='number'],
+        [type='tel'],
+        [type='time'],
+        [type='datetime'],
+        [type='datetime-local'],
+        [type='url'],
+        :not([type])
+      )
+  ) {
   outline: none;
   background-color: var(--sbb-color-background);
   padding: sbb.pxToRem(10) sbb.pxToRem(14) sbb.pxToRem(11);
@@ -905,7 +925,14 @@ textarea {
     visibility: hidden;
   }
 
-  &:where([type='date'], [type='datetime'], [type='datetime-local'], [type='month'], [type='week'], [type='time']) {
+  &:where(
+      [type='date'],
+      [type='datetime'],
+      [type='datetime-local'],
+      [type='month'],
+      [type='week'],
+      [type='time']
+    ) {
     // Due to the native input masking these inputs can be slightly taller than
     // the plain text inputs. We normalize it by resetting the line height.
     line-height: 1;
@@ -954,8 +981,10 @@ textarea {
 
   // We want to provide the error styles both for invalid state
   // in a sbb-form-field and also for Angular Form Validation.
-  :is(.sbb-form-field-invalid
-      &:not(:where([aria-expanded='true'], .sbb-expanded)), &.ng-touched.ng-invalid:not(:where([aria-expanded='true'], .sbb-expanded))) {
+  :is(
+      .sbb-form-field-invalid &:not(:where([aria-expanded='true'], .sbb-expanded)),
+      &.ng-touched.ng-invalid:not(:where([aria-expanded='true'], .sbb-expanded))
+    ) {
     color: var(--sbb-color-error);
     border-color: var(--sbb-color-error);
   }
@@ -1497,7 +1526,15 @@ textarea {
   }
 }
 
-:is(.sbb-button, .sbb-alt-button, .sbb-secondary-button, .sbb-ghost-button, .sbb-icon-button, .sbb-frameless-button, .sbb-link:where(.sbb-button-base))
+:is(
+    .sbb-button,
+    .sbb-alt-button,
+    .sbb-secondary-button,
+    .sbb-ghost-button,
+    .sbb-icon-button,
+    .sbb-frameless-button,
+    .sbb-link:where(.sbb-button-base)
+  )
   .sbb-icon {
   width: var(--sbb-icon-size-default);
   height: var(--sbb-icon-size-default);
@@ -1509,7 +1546,14 @@ textarea {
 }
 
 // We need to position icons inside the buttons in a special way.
-:is(.sbb-button, .sbb-alt-button, .sbb-secondary-button, .sbb-ghost-button, .sbb-frameless-button, .sbb-link:where(.sbb-button-base)):where(:not(.sbb-icon-button))
+:is(
+    .sbb-button,
+    .sbb-alt-button,
+    .sbb-secondary-button,
+    .sbb-ghost-button,
+    .sbb-frameless-button,
+    .sbb-link:where(.sbb-button-base)
+  ):where(:not(.sbb-icon-button))
   .sbb-icon {
   margin-top: var(--sbb-button-icon-top-margin);
 

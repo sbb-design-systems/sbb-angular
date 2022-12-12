@@ -32,7 +32,8 @@ export class SbbNavigation implements OnChanges {
 
   /** This event can be used by parent components to handle events on page change. */
   @Output()
-  pageChange: EventEmitter<SbbNavigationPageChangeEvent> = new EventEmitter<SbbNavigationPageChangeEvent>();
+  pageChange: EventEmitter<SbbNavigationPageChangeEvent> =
+    new EventEmitter<SbbNavigationPageChangeEvent>();
 
   ngOnChanges(changes: SimpleChanges) {
     if (!this.nextPage && !this.previousPage) {
