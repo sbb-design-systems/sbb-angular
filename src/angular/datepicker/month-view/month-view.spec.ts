@@ -27,9 +27,9 @@ import {
   MAR,
   NOV,
 } from '@sbb-esta/angular/core/testing';
-import { SbbDateRange } from '@sbb-esta/angular/datepicker/date-range';
 
 import { SbbCalendarBody } from '../calendar-body/calendar-body';
+import { SbbDateRange } from '../date-range';
 
 import { SbbMonthView } from './month-view';
 

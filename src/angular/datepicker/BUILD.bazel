@@ -68,7 +68,6 @@ ng_test_library(
         ":datepicker",
         "//src/angular/core",
         "//src/angular/core/testing",
-        "//src/angular/datepicker/date-range",
         "//src/angular/form-field",
         "//src/angular/icon",
         "//src/angular/icon/testing",
