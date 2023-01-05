@@ -158,7 +158,7 @@ export class JourneyMapsFullExample implements OnInit, OnDestroy {
         maxBounds: [],
       }),
       pointsOfInterestOptions: _fb.group({
-        categories: [['park_rail', 'car_sharing']],
+        categories: [['park_rail', 'car_sharing', 'bike_parking', 'bike_sharing']],
         environment: ['prod'], // Can also be left empty
       }),
       zoneGeoJson: [],
