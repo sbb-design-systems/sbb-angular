@@ -192,20 +192,8 @@ jobs:
       with:
         node-version: 16
 
-    - uses: actions/github-script@v6
-      with:
-        # Since we don't want to install the full package dependencies, we remove all dependencies that we don't need.
-        # We do this in order to reduce the time needed for this job.
-        script: |
-          const fs = require('fs');
-          let { name, version, devDependencies, scripts } = require('./package.json');
-          const packages = ['@actions/cache', '@types/node', 'ts-node', 'typescript'];
-          devDependencies = packages.reduce((deps, dep) => Object.assign(deps, { [dep]: devDependencies[dep] }), {});
-          scripts = { 'bazel:cache': scripts['bazel:cache'] };
-          fs.writeFileSync('./package.json', JSON.stringify({ name, version, devDependencies, scripts }), 'utf8');
-
     - name: "Yarn: Install reduced dependencies"
-      run: yarn install --non-interactive
+      run: yarn global add tsx
 
     - name: "Bazel: Create cache directory"
       run: mkdir -p ~/.bazel-cache/
@@ -221,7 +209,7 @@ jobs:
         key: bazel-cache-showcase
     - name: "Bazel: Clean bazel disk cache"
       if: ${{ success() || failure() }}
-      run: yarn -s bazel:cache clean --maxSize=${{ env.BAZEL_CACHE_COMBINED_MAX_SIZE }} --individualMaxSize=${{ env.BAZEL_CACHE_FILE_MAX_SIZE }}
+      run: tsx ./scripts/cache.ts clean --maxSize=${{ env.BAZEL_CACHE_COMBINED_MAX_SIZE }} --individualMaxSize=${{ env.BAZEL_CACHE_FILE_MAX_SIZE }}
 
     - name: "Bazel: Upload remote cache"
       if: ${{ success() || failure() }}

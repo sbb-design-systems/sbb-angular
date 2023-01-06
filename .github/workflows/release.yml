@@ -65,13 +65,11 @@ jobs:
 
   showcase:
     runs-on: ubuntu-latest
+    env:
+      IMAGE_REPO: ghcr.io/${{ github.repository }}/showcase
     steps:
     - name: Login to GitHub Docker Repository
-      uses: azure/docker-login@v1
-      with:
-        login-server: ghcr.io
-        username: ${{ github.actor }}
-        password: ${{ secrets.GITHUB_TOKEN }}
+      run: echo ${{ secrets.GITHUB_TOKEN }} | docker login ghcr.io --username ${{ github.actor }} --password-stdin
     - uses: actions/checkout@v3
     - name: "Bazel: Copy .bazelrc to user home"
       run: cp ./.github/.bazelrc ~/
@@ -91,16 +89,9 @@ jobs:
       env:
         JM_API_KEY: ${{ secrets.JM_API_KEY }}
 
-    - name: "Docker: Parse release version"
-      id: docker_release_version
-      run: echo ::set-output name=docker_release_version::${GITHUB_REF/refs\/tags\//}
     - name: "Docker: Build image"
-      run: |
-        docker build \
-        -t ghcr.io/sbb-design-systems/sbb-angular/showcase:${{ steps.docker_release_version.outputs.docker_release_version }} \
-        -t ghcr.io/sbb-design-systems/sbb-angular/showcase:latest \
-        .
+      run: docker build -t $IMAGE_REPO:${{ github.ref_name }} -t $IMAGE_REPO:latest .
     - name: "Docker: Publish image"
-      run: docker push ghcr.io/sbb-design-systems/sbb-angular/showcase:${{ steps.docker_release_version.outputs.docker_release_version }}
+      run: docker push $IMAGE_REPO:${{ github.ref_name }}
     - name: "Docker: Publish image as latest"
-      run: docker push ghcr.io/sbb-design-systems/sbb-angular/showcase:latest
+      run: docker push $IMAGE_REPO:latest

@@ -21,16 +21,12 @@ jobs:
         )
       )
     env:
-      IMAGE_REPO: ghcr.io/sbb-design-systems/sbb-angular/showcase-preview
+      IMAGE_REPO: ghcr.io/${{ github.repository }}/showcase-preview
       IMAGE_TAG: rev-${{ github.event.workflow_run.head_sha }}
       ALLOWED_EXTENSIONS: css, gitignore, gitkeep, html, ico, jpg, js, json, png, scss, stackblitzrc, svg, ts
     steps:
     - name: Login to GitHub Docker Repository
-      uses: azure/docker-login@v1
-      with:
-        login-server: ghcr.io
-        username: ${{ github.actor }}
-        password: ${{ secrets.GITHUB_TOKEN }}
+      run: echo ${{ secrets.GITHUB_TOKEN }} | docker login ghcr.io --username ${{ github.actor }} --password-stdin
     - uses: actions/checkout@v3
     - run: rm package.json yarn.lock
     - uses: actions/setup-node@v3
