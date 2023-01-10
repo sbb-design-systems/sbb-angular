@@ -11,10 +11,14 @@ export const SBB_BOUNDING_BOX: LngLatBoundsLike = [
   [10.6677, 47.9163],
 ];
 
+export const JOURNEY_POIS_SOURCE = 'journey-pois-source';
 export const SBB_MARKER_SOURCE = 'rokas-marker-source';
 export const SBB_ROUTE_SOURCE = 'rokas-route-source';
+export const SBB_STATION_HOVER_SOURCE = 'rokas_station_hover_source'; // TODO cdi ROKAS-1204 where is this source used ?
+export const SBB_STOPOVER_SOURCE = 'rokas_station_hover_source'; // TODO cdi ROKAS-1204 where is this source used ?
 export const SBB_WALK_SOURCE = 'rokas-walk-source';
 export const SBB_ZONE_SOURCE = 'rokas-zone-source';
+export const SERVICE_POINT_SOURCE = 'service_points';
 
 export const SBB_POI_LAYER = 'journey-pois';
 export const SBB_CLUSTER_LAYER = 'rokas-marker-cluster';

@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { FeatureCollection } from 'geojson';
 import { GeoJSONSource, Map as MaplibreMap } from 'maplibre-gl';
 
-import { SBB_ROUTE_SOURCE } from '../constants';
+import { SBB_ROUTE_SOURCE, SBB_WALK_SOURCE } from '../constants';
 
 import { SBB_EMPTY_FEATURE_COLLECTION } from './map-service';
 
@@ -37,7 +37,12 @@ export class SbbMapTransferService {
     }
   }
 
+  isV1Style(map: MaplibreMap): boolean {
+    const mapSources = map.getStyle().sources;
+    return mapSources && !!mapSources[SBB_WALK_SOURCE];
+  }
+
   private _getSource(map: MaplibreMap): GeoJSONSource {
-    return map.getSource(SBB_ROUTE_SOURCE) as GeoJSONSource;
+    return map.getSource(this.isV1Style(map) ? SBB_WALK_SOURCE : SBB_ROUTE_SOURCE) as GeoJSONSource;
   }
 }

@@ -17,7 +17,7 @@ import {
   SbbViewportDimensions,
 } from '../../journey-maps.interfaces';
 import { isSbbBoundingBoxOptions, isSbbMapCenterOptions } from '../../util/typeguard';
-import { SBB_BOUNDING_BOX } from '../constants';
+import { JOURNEY_POIS_SOURCE, SBB_BOUNDING_BOX } from '../constants';
 import { SBB_MARKER_BOUNDS_PADDING, SBB_MAX_ZOOM, SBB_MIN_ZOOM } from '../constants';
 import { SbbMultiTouchSupport } from '../multiTouchSupport';
 
@@ -157,7 +157,7 @@ export class SbbMapInitService {
         const style = fetchedStyle as StyleSpecification;
 
         // Set POI-Source-URL
-        const poiSource = style.sources['journey-pois-source'] as VectorTileSource;
+        const poiSource = style.sources[JOURNEY_POIS_SOURCE] as VectorTileSource;
         poiSource.url = this._urlService.getPoiSourceUrlByEnvironment(
           poiSource.url,
           poiEnvironment

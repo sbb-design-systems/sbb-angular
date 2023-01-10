@@ -120,6 +120,9 @@ export class JourneyMapsFullExample implements OnInit, OnDestroy {
       styleOptions: _fb.group({
         mode: ['bright', resetSelectedMarkerIdValidator],
       }),
+      styleVersion: _fb.group({
+        versionNumber: ['v2', resetSelectedMarkerIdValidator],
+      }),
       listenerOptions: _fb.group({
         MARKER: _fb.group({
           watch: [true],

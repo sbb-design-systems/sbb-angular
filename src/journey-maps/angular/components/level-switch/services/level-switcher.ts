@@ -1,4 +1,5 @@
 import { EventEmitter, Injectable } from '@angular/core';
+import { SERVICE_POINT_SOURCE } from '@sbb-esta/journey-maps/angular';
 import { Map as MaplibreMap } from 'maplibre-gl';
 import { BehaviorSubject, Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
@@ -88,7 +89,7 @@ export class SbbLevelSwitcher {
     this._map.on('moveend', () => this._mapMoved.next());
 
     this._mapLayerFilterService.setMap(this._map);
-    if (this._map.isSourceLoaded(SbbQueryMapFeatures.SERVICE_POINT_SOURCE_ID)) {
+    if (this._map.isSourceLoaded(SERVICE_POINT_SOURCE)) {
       this._updateLevels();
     } else {
       this._map.once('idle', () => this._updateLevels());
@@ -126,12 +127,6 @@ export class SbbLevelSwitcher {
   switchLevel(level: number): void {
     this._setSelectedLevel(level);
     this._mapLeitPoiService.setCurrentLevel(this._map, level);
-  }
-
-  getLevelLabel(level: number): string {
-    const txt1 = this._i18n.getText('a4a.visualFunction');
-    const txt2 = this._i18n.getTextWithParams('a4a.selectFloor', level);
-    return `${txt1} ${txt2}`;
   }
 
   /**

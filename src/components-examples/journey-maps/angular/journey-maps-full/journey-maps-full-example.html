@@ -7,6 +7,7 @@
     *ngIf='form.get("mapVisible")?.value'
     language="en"
     [styleOptions]="form.get('styleOptions')?.value"
+    [styleVersion]="form.get('styleVersion')?.value"
     [interactionOptions]="interactionOptions"
     [listenerOptions]="form.get('listenerOptions')?.value"
     [uiOptions]="form.get('uiOptions')?.value"
@@ -76,6 +77,12 @@
         <sbb-radio-group class="sbb-checkbox-group-horizontal" formControlName="mode">
           <sbb-radio-button value="bright">Bright Mode</sbb-radio-button>
           <sbb-radio-button value="dark">Dark Mode</sbb-radio-button>
+        </sbb-radio-group>
+      </li>
+      <li formGroupName="styleVersion">
+        <sbb-radio-group class="sbb-checkbox-group-horizontal" formControlName="versionNumber">
+          <sbb-radio-button value="v1">v1</sbb-radio-button>
+          <sbb-radio-button value="v2">v2</sbb-radio-button>
         </sbb-radio-group>
       </li>
       <li>

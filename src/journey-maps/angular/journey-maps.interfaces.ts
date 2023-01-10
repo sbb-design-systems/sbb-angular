@@ -5,6 +5,7 @@ import { LngLatBoundsLike, LngLatLike, MapGeoJSONFeature } from 'maplibre-gl';
 import { SbbMarker } from './model/marker';
 
 export type SbbStyleMode = 'bright' | 'dark';
+export type SbbStyleVersion = 'v1' | 'v2';
 
 export interface SbbStyleOptions {
   /** Overwrite this value if you want to use a style from a different source. */

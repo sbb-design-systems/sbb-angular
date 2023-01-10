@@ -42,6 +42,7 @@ import {
 import { SbbMarker } from './model/marker';
 import { sbbBufferTimeOnValue } from './services/bufferTimeOnValue';
 import {
+  JOURNEY_POIS_SOURCE,
   SBB_BOUNDING_BOX,
   SBB_MAX_ZOOM,
   SBB_MIN_ZOOM,
@@ -158,10 +159,17 @@ export class SbbJourneyMaps implements OnInit, AfterViewInit, OnDestroy, OnChang
   @ViewChild('map') private _mapElementRef: ElementRef<HTMLElement>;
   @ViewChild(SbbFeatureEventListener)
   private _featureEventListenerComponent: SbbFeatureEventListener;
-  private _defaultStyleOptions: SbbStyleOptions = {
-    url: 'https://journey-maps-tiles.geocdn.sbb.ch/styles/{styleId}/style.json?api_key={apiKey}',
+  private _v1StyleIds = {
+    brightId: 'base_bright_v2_ki',
+    darkId: 'base_dark_v2_ki',
+  };
+  private _v2StyleIds = {
     brightId: 'base_bright_v2_ki_v2',
     darkId: 'base_dark_v2_ki_v2',
+  };
+  private _defaultStyleOptions: SbbStyleOptions = {
+    url: 'https://journey-maps-tiles.geocdn.sbb.ch/styles/{styleId}/style.json?api_key={apiKey}',
+    ...this._v2StyleIds,
     mode: 'bright',
   };
   private _defaultInteractionOptions: SbbInteractionOptions = {
@@ -191,7 +199,7 @@ export class SbbJourneyMaps implements OnInit, AfterViewInit, OnDestroy, OnChang
   private _viewportDimensionsChanged = new Subject<void>();
   private _mapStyleModeChanged = new Subject<void>();
   // _map._isStyleLoaded() returns sometimes false when sources are being updated.
-  // Therefore we set this variable to true once the style has been loaded.
+  // Therefore, we set this variable to true once the style has been loaded.
   private _isStyleLoaded = false;
   private _isSatelliteMap = false;
   private _satelliteLayerId = 'esriWorldImageryLayer';
@@ -237,6 +245,21 @@ export class SbbJourneyMaps implements OnInit, AfterViewInit, OnDestroy, OnChang
   }
 
   set styleOptions(styleOptions: SbbStyleOptions) {
+    this._styleOptions = {
+      ...this._defaultStyleOptions,
+      ...styleOptions,
+    };
+  }
+
+  /**
+   * Settings to control the map (v1 and v2) style versions
+   */
+  @Input()
+  get styleVersion(): SbbStyleOptions {
+    return this._styleOptions;
+  }
+
+  set styleVersion(styleOptions: SbbStyleOptions) {
     this._styleOptions = {
       ...this._defaultStyleOptions,
       ...styleOptions,
@@ -524,7 +547,7 @@ export class SbbJourneyMaps implements OnInit, AfterViewInit, OnDestroy, OnChang
 
         if (poiEnvironmentChanged) {
           // Update POI-Source-URL
-          const currentPoiSource = this._map.getSource('journey-pois-source') as VectorTileSource;
+          const currentPoiSource = this._map.getSource(JOURNEY_POIS_SOURCE) as VectorTileSource;
           const newPoiSourceUrl = this._urlService.getPoiSourceUrlByEnvironment(
             currentPoiSource.url,
             this.poiOptions?.environment
@@ -558,7 +581,27 @@ export class SbbJourneyMaps implements OnInit, AfterViewInit, OnDestroy, OnChang
       });
     }
 
+    if (
+      changes.styleVersion?.currentValue.versionNumber !==
+      changes.styleVersion?.previousValue.versionNumber
+    ) {
+      this._styleOptions = {
+        ...this._styleOptions,
+        ...(changes.styleVersion.currentValue.versionNumber === 'v1'
+          ? this._v1StyleIds
+          : this._v2StyleIds),
+      };
+      console.log('new style options', this._styleOptions);
+    }
+
     if (changes.styleOptions?.currentValue.mode !== changes.styleOptions?.previousValue?.mode) {
+      this._mapStyleModeChanged.next();
+    }
+
+    if (
+      changes.styleVersion?.currentValue.versionNumber !==
+      changes.styleVersion?.previousValue?.versionNumber
+    ) {
       this._mapStyleModeChanged.next();
     }
 
