@@ -46,7 +46,6 @@ import {
   SBB_MAX_ZOOM,
   SBB_MIN_ZOOM,
   SBB_ROUTE_SOURCE,
-  SBB_WALK_SOURCE,
 } from './services/constants';
 import { SbbLocaleService } from './services/locale-service';
 import { SbbMapConfig } from './services/map/map-config';
@@ -161,8 +160,8 @@ export class SbbJourneyMaps implements OnInit, AfterViewInit, OnDestroy, OnChang
   private _featureEventListenerComponent: SbbFeatureEventListener;
   private _defaultStyleOptions: SbbStyleOptions = {
     url: 'https://journey-maps-tiles.geocdn.sbb.ch/styles/{styleId}/style.json?api_key={apiKey}',
-    brightId: 'base_bright_v2_ki',
-    darkId: 'base_dark_v2_ki',
+    brightId: 'base_bright_v2_ki_v2',
+    darkId: 'base_dark_v2_ki_v2',
     mode: 'bright',
   };
   private _defaultInteractionOptions: SbbInteractionOptions = {
@@ -810,7 +809,6 @@ export class SbbJourneyMaps implements OnInit, AfterViewInit, OnDestroy, OnChang
     // @ts-ignore
     this._mapService.verifySources(this._map, [
       SBB_ROUTE_SOURCE,
-      SBB_WALK_SOURCE,
       ...this._mapMarkerService.sources,
     ]);
     this._addSatelliteSource(this._map);
