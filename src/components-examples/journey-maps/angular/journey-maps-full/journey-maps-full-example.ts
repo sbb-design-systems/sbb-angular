@@ -126,7 +126,7 @@ export class JourneyMapsFullExample implements OnInit, OnDestroy {
         ...this._styleIds.v2,
       }),
       styleVersion: _fb.group({
-        versionNumber: ['v2', resetSelectedMarkerIdValidator], // FIXME cdi ROKAS-1204 can we simplify this structure?
+        versionNumber: ['v2', resetSelectedMarkerIdValidator],
       }),
       listenerOptions: _fb.group({
         MARKER: _fb.group({

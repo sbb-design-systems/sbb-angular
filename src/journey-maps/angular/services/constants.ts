@@ -18,7 +18,6 @@ export const ROKAS_STATION_HOVER_SOURCE = 'rokas-station-hover-source'; // TODO 
 export const ROKAS_STOPOVER_SOURCE = 'rokas-stopover-source';
 export const ROKAS_WALK_SOURCE = 'rokas-walk-source';
 export const ROKAS_ZONE_SOURCE = 'rokas-zone-source';
-export const SERVICE_POINTS_SOURCE = 'service_points';
 
 export const SBB_POI_LAYER = 'journey-pois';
 export const SBB_CLUSTER_LAYER = 'rokas-marker-cluster';
