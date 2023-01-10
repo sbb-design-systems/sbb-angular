@@ -43,10 +43,10 @@ import { SbbMarker } from './model/marker';
 import { sbbBufferTimeOnValue } from './services/bufferTimeOnValue';
 import {
   JOURNEY_POIS_SOURCE,
+  ROKAS_ROUTE_SOURCE,
   SBB_BOUNDING_BOX,
   SBB_MAX_ZOOM,
   SBB_MIN_ZOOM,
-  SBB_ROUTE_SOURCE,
 } from './services/constants';
 import { SbbLocaleService } from './services/locale-service';
 import { SbbMapConfig } from './services/map/map-config';
@@ -851,7 +851,7 @@ export class SbbJourneyMaps implements OnInit, AfterViewInit, OnDestroy, OnChang
     this._map.resize();
     // @ts-ignore
     this._mapService.verifySources(this._map, [
-      SBB_ROUTE_SOURCE,
+      ROKAS_ROUTE_SOURCE,
       ...this._mapMarkerService.sources,
     ]);
     this._addSatelliteSource(this._map);

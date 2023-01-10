@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { SERVICE_POINT_SOURCE } from '@sbb-esta/journey-maps/angular';
+import { SERVICE_POINTS_SOURCE } from '@sbb-esta/journey-maps/angular';
 import { Map as MaplibreMap } from 'maplibre-gl';
 
 @Injectable({
@@ -10,11 +10,11 @@ export class SbbQueryMapFeatures {
 
   getVisibleLevels(map: MaplibreMap): number[] {
     const mapSources = map.getStyle().sources;
-    if (!mapSources || !mapSources[SERVICE_POINT_SOURCE]) {
-      console.error(`source '${SERVICE_POINT_SOURCE}' not found in map style.`);
+    if (!mapSources || !mapSources[SERVICE_POINTS_SOURCE]) {
+      console.error(`source '${SERVICE_POINTS_SOURCE}' not found in map style.`);
       return [];
     }
-    const servicePoints = map.querySourceFeatures(SERVICE_POINT_SOURCE);
+    const servicePoints = map.querySourceFeatures(SERVICE_POINTS_SOURCE);
     // merge levels, when multiple stations found:
     const allLevels = servicePoints.map((servicePoint) =>
       this._extractLevels(servicePoint.properties)
