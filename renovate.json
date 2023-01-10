@@ -16,6 +16,7 @@
   "ignoreDeps": [
     "@arcgis/core",
     "@types/marked",
+    "@types/yargs",
     "rollup",
     "@rollup/plugin-commonjs",
     "@rollup/plugin-node-resolve",
