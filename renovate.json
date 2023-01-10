@@ -16,6 +16,9 @@
   "ignoreDeps": [
     "@arcgis/core",
     "@types/marked",
+    "rollup",
+    "@rollup/plugin-commonjs",
+    "@rollup/plugin-node-resolve",
     "browser-sync",
     "browser-sync-client",
     "dgeni",
@@ -37,6 +40,10 @@
       "matchPackageNames": ["@types/grecaptcha", "@types/node", "jasmine", "jasmine-core"],
       "matchUpdateTypes": ["major"],
       "enabled": false
+    },
+    {
+      "matchPackageNames": ["node"],
+      "allowedVersions": "<18"
     },
     {
       "groupName": "angular",
