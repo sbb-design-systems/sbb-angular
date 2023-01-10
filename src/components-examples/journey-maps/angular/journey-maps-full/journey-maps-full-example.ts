@@ -12,7 +12,6 @@ import {
   SbbInteractionOptions,
   SbbJourneyMaps,
   SbbJourneyMapsRoutingOptions,
-  SbbStyleOptions,
   SbbViewportDimensions,
   SbbZoomLevels,
   SBB_BOUNDING_BOX,
@@ -96,14 +95,12 @@ export class JourneyMapsFullExample implements OnInit, OnDestroy {
   viewportDimensions?: SbbViewportDimensions;
   zoomLevels?: SbbZoomLevels;
   visibleLevels = new BehaviorSubject<number[]>([]);
-  private _v1StyleIds = { brightId: 'base_bright_v2_ki', darkId: 'base_dark_v2_ki' };
-  private _v2StyleIds = { brightId: 'base_bright_v2_ki_v2', darkId: 'base_dark_v2_ki_v2' };
-  styleOptions: SbbStyleOptions = {
-    mode: 'bright',
-    ...this._v2StyleIds,
-  };
   form: UntypedFormGroup;
 
+  private _styleIds = {
+    v1: { brightId: 'base_bright_v2_ki', darkId: 'base_dark_v2_ki' },
+    v2: { brightId: 'base_bright_v2_ki_v2', darkId: 'base_dark_v2_ki_v2' },
+  };
   private _destroyed = new Subject<void>();
 
   constructor(private _cd: ChangeDetectorRef, private _fb: UntypedFormBuilder) {
@@ -124,8 +121,9 @@ export class JourneyMapsFullExample implements OnInit, OnDestroy {
         basemapSwitch: [true],
         homeButton: [true],
       }),
-      styleOptionsMode: _fb.group({
+      styleOptions: _fb.group({
         mode: ['bright', resetSelectedMarkerIdValidator],
+        ...this._styleIds.v2,
       }),
       styleVersion: _fb.group({
         versionNumber: ['v2', resetSelectedMarkerIdValidator], // FIXME cdi ROKAS-1204 can we simplify this structure?
@@ -221,23 +219,13 @@ export class JourneyMapsFullExample implements OnInit, OnDestroy {
       );
 
     this.form
-      .get('styleOptionsMode')
-      ?.valueChanges.pipe(takeUntil(this._destroyed))
-      .subscribe(({ mode }) => {
-        this.styleOptions = {
-          ...this.styleOptions,
-          mode,
-        };
-      });
-
-    this.form
       .get('styleVersion')
       ?.valueChanges.pipe(takeUntil(this._destroyed))
-      .subscribe(({ versionNumber }) => {
-        this.styleOptions = {
-          ...this.styleOptions,
-          ...(versionNumber === 'v1' ? this._v1StyleIds : this._v2StyleIds),
-        };
+      .subscribe(({ versionNumber }: { versionNumber: 'v1' | 'v2' }) => {
+        this.form.get('styleOptions')?.patchValue({
+          ...this.form.get('styleOptions')?.value,
+          ...this._styleIds[versionNumber],
+        });
       });
   }
 
