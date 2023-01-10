@@ -159,17 +159,10 @@ export class SbbJourneyMaps implements OnInit, AfterViewInit, OnDestroy, OnChang
   @ViewChild('map') private _mapElementRef: ElementRef<HTMLElement>;
   @ViewChild(SbbFeatureEventListener)
   private _featureEventListenerComponent: SbbFeatureEventListener;
-  private _v1StyleIds = {
-    brightId: 'base_bright_v2_ki',
-    darkId: 'base_dark_v2_ki',
-  };
-  private _v2StyleIds = {
-    brightId: 'base_bright_v2_ki_v2',
-    darkId: 'base_dark_v2_ki_v2',
-  };
   private _defaultStyleOptions: SbbStyleOptions = {
     url: 'https://journey-maps-tiles.geocdn.sbb.ch/styles/{styleId}/style.json?api_key={apiKey}',
-    ...this._v2StyleIds,
+    brightId: 'base_bright_v2_ki_v2',
+    darkId: 'base_dark_v2_ki_v2',
     mode: 'bright',
   };
   private _defaultInteractionOptions: SbbInteractionOptions = {
@@ -197,7 +190,7 @@ export class SbbJourneyMaps implements OnInit, AfterViewInit, OnDestroy, OnChang
   private _destroyed = new Subject<void>();
   private _styleLoaded = new ReplaySubject<void>(1);
   private _viewportDimensionsChanged = new Subject<void>();
-  private _mapStyleModeChanged = new Subject<void>();
+  private _mapStyleOptionsChanged = new Subject<void>();
   // _map._isStyleLoaded() returns sometimes false when sources are being updated.
   // Therefore, we set this variable to true once the style has been loaded.
   private _isStyleLoaded = false;
@@ -245,21 +238,6 @@ export class SbbJourneyMaps implements OnInit, AfterViewInit, OnDestroy, OnChang
   }
 
   set styleOptions(styleOptions: SbbStyleOptions) {
-    this._styleOptions = {
-      ...this._defaultStyleOptions,
-      ...styleOptions,
-    };
-  }
-
-  /**
-   * Settings to control the map (v1 and v2) style versions
-   */
-  @Input()
-  get styleVersion(): SbbStyleOptions {
-    return this._styleOptions;
-  }
-
-  set styleVersion(styleOptions: SbbStyleOptions) {
     this._styleOptions = {
       ...this._defaultStyleOptions,
       ...styleOptions,
@@ -582,27 +560,12 @@ export class SbbJourneyMaps implements OnInit, AfterViewInit, OnDestroy, OnChang
     }
 
     if (
-      changes.styleVersion?.currentValue.versionNumber !==
-      changes.styleVersion?.previousValue.versionNumber
+      changes.styleOptions?.currentValue.mode !== changes.styleOptions?.previousValue?.mode ||
+      changes.styleOptions?.currentValue.brightId !==
+        changes.styleOptions?.previousValue?.brightId ||
+      changes.styleOptions?.currentValue.darkId !== changes.styleOptions?.previousValue?.darkId
     ) {
-      this._styleOptions = {
-        ...this._styleOptions,
-        ...(changes.styleVersion.currentValue.versionNumber === 'v1'
-          ? this._v1StyleIds
-          : this._v2StyleIds),
-      };
-      console.log('new style options', this._styleOptions);
-    }
-
-    if (changes.styleOptions?.currentValue.mode !== changes.styleOptions?.previousValue?.mode) {
-      this._mapStyleModeChanged.next();
-    }
-
-    if (
-      changes.styleVersion?.currentValue.versionNumber !==
-      changes.styleVersion?.previousValue?.versionNumber
-    ) {
-      this._mapStyleModeChanged.next();
+      this._mapStyleOptionsChanged.next();
     }
 
     if (changes.selectedLevel?.currentValue !== undefined) {
@@ -803,7 +766,7 @@ export class SbbJourneyMaps implements OnInit, AfterViewInit, OnDestroy, OnChang
         }
       });
 
-    this._mapStyleModeChanged
+    this._mapStyleOptionsChanged
       .pipe(
         debounceTime(200),
         switchMap(() =>

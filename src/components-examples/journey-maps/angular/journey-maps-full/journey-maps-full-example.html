@@ -6,8 +6,7 @@
     #advancedMap
     *ngIf='form.get("mapVisible")?.value'
     language="en"
-    [styleOptions]="form.get('styleOptions')?.value"
-    [styleVersion]="form.get('styleVersion')?.value"
+    [styleOptions]="styleOptions"
     [interactionOptions]="interactionOptions"
     [listenerOptions]="form.get('listenerOptions')?.value"
     [uiOptions]="form.get('uiOptions')?.value"
@@ -73,7 +72,7 @@
           <sbb-checkbox formControlName="limitMaxBounds"> Limit max bounds to CH</sbb-checkbox>
         </div>
       </li>
-      <li formGroupName="styleOptions">
+      <li formGroupName="styleOptionsMode">
         <sbb-radio-group class="sbb-checkbox-group-horizontal" formControlName="mode">
           <sbb-radio-button value="bright">Bright Mode</sbb-radio-button>
           <sbb-radio-button value="dark">Dark Mode</sbb-radio-button>
