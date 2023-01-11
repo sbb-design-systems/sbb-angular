@@ -9,7 +9,7 @@ import {
   RIGHT_ARROW,
   UP_ARROW,
 } from '@angular/cdk/keycodes';
-import { Component } from '@angular/core';
+import { Component, ViewChild } from '@angular/core';
 import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 import {
@@ -81,6 +81,16 @@ class MonthViewWithDateClassComponent {
   }
 }
 
+@Component({
+  template: `<sbb-month-view [isWeekdaySelectable]="isWeekdaySelectable"></sbb-month-view>`,
+})
+class January2023MonthViewComponent {
+  @ViewChild(SbbMonthView) monthView: SbbMonthView<Date>;
+  date = new Date(2023, JAN, 1);
+  selected = new Date(2023, JAN, 1);
+  isWeekdaySelectable = true;
+}
+
 describe('SbbMonthView', () => {
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
@@ -93,6 +103,7 @@ describe('SbbMonthView', () => {
         MonthViewWithDateFilterComponent,
         MonthViewWithDateClassComponent,
         MonthViewWithDateRangeComponent,
+        January2023MonthViewComponent,
       ],
       providers: [
         { provide: SbbDateAdapter, useClass: SbbNativeDateAdapter },
@@ -391,6 +402,21 @@ describe('SbbMonthView', () => {
       const cells = monthViewNativeElement.querySelectorAll('.sbb-calendar-body-cell');
       expect(cells[0].classList).toContain('sbb-calendar-body-disabled');
       expect(cells[1].classList).not.toContain('sbb-calendar-body-disabled');
+    });
+  });
+
+  describe('january 2023 month view component', () => {
+    // See explanation in month-view.ts (search 'fixFirstWeekOfYear').
+    let fixture: ComponentFixture<January2023MonthViewComponent>;
+
+    beforeEach(() => {
+      fixture = TestBed.createComponent(January2023MonthViewComponent);
+      fixture.detectChanges();
+    });
+
+    it('whould display the correct week numbers if first day of year is a Sunday', () => {
+      expect(fixture.componentInstance.monthView._dateAdapter.getFirstDayOfWeek()).toBe(1);
+      expect(fixture.componentInstance.monthView.weeksInMonth).toEqual([52, 1, 2, 3, 4, 5]);
     });
   });
 });

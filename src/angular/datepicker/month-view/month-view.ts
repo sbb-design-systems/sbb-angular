@@ -393,20 +393,33 @@ export class SbbMonthView<D> implements AfterContentInit {
   private _createWeekCells() {
     const daysInMonth = this._dateAdapter.getNumDaysInMonth(this.activeDate);
     const dateNames = this._dateAdapter.getDateNames();
+    const month = this._dateAdapter.getMonth(this.activeDate);
+    const year = this._dateAdapter.getYear(this.activeDate);
     this.weeks = [[]];
     this.weeksInMonth = [];
+
+    // The angular datepipe does not take the firstDayOfWeek into account.
+    // Issue: https://github.com/angular/angular/issues/39606
+    // Stackblitz: https://stackblitz.com/edit/angular-ivy-k6rjgv
+    // As a consequence, if the firstDayOfWeek is 1 (Monday) and the first day of month
+    // is a Sunday (0) the calculation of week numbers does not work as expected.
+    // The following workaround fixes this issue.
+    const isFirstDayASunday =
+      this._dateAdapter.getFirstDayOfWeek() === 1 && this.firstWeekOffset === 6;
+
     for (let i = 0, cell = this.firstWeekOffset; i < daysInMonth; i++, cell++) {
       if (cell === DAYS_PER_WEEK) {
         this.weeks.push([]);
         cell = 0;
       }
-      const date = this._dateAdapter.createDate(
-        this._dateAdapter.getYear(this.activeDate),
-        this._dateAdapter.getMonth(this.activeDate),
-        i + 1
-      );
+      const date = this._dateAdapter.createDate(year, month, i + 1);
       if (i === 0 || cell === 0) {
-        this.weeksInMonth.push(parseInt(this._dateAdapter.format(date, 'w'), 10));
+        if (i === 0 && isFirstDayASunday) {
+          const prevDate = this._dateAdapter.addCalendarDays(date, -1);
+          this.weeksInMonth.push(parseInt(this._dateAdapter.format(prevDate, 'w'), 10));
+        } else {
+          this.weeksInMonth.push(parseInt(this._dateAdapter.format(date, 'w'), 10));
+        }
       }
       const enabled = this._shouldEnableDate(date);
       const ariaLabel = this._dateAdapter.format(date, this._dateFormats.dateA11yLabel);
