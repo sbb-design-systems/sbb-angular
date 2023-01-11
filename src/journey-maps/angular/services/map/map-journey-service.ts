@@ -1,14 +1,14 @@
 import { Injectable } from '@angular/core';
-import { SbbJourneyMetaInformation } from '@sbb-esta/journey-maps/angular';
-import { SbbMapEventUtils } from '@sbb-esta/journey-maps/angular/services/map/events/map-event-utils';
-import { SbbMapStopoverService } from '@sbb-esta/journey-maps/angular/services/map/map-stopover-service';
 import { Feature, FeatureCollection } from 'geojson';
 import { Map as MaplibreMap } from 'maplibre-gl';
 
+import { SbbJourneyMetaInformation } from './../../../angular';
+import { SbbMapEventUtils } from './../map/events/map-event-utils';
 import { SbbMapSelectionEvent, SBB_SELECTED_PROPERTY_NAME } from './events/map-selection-event';
 import { SBB_ROUTE_ID_PROPERTY_NAME } from './events/route-utils';
 import { SbbMapRouteService } from './map-route-service';
 import { SBB_EMPTY_FEATURE_COLLECTION } from './map-service';
+import { SbbMapStopoverService } from './map-stopover-service';
 import { SbbMapTransferService } from './map-transfer-service';
 
 @Injectable({
