@@ -466,7 +466,7 @@ export class SbbJourneyMaps implements OnInit, AfterViewInit, OnDestroy, OnChang
             this._featureEventListenerComponent.mapSelectionEventService;
 
           // remove previous data from map
-          this._mapJourneyService.updateJourney(this._map, mapSelectionEventService, undefined);
+          this._mapJourneyService.updateJourney(this._map, mapSelectionEventService);
           this._mapTransferService.updateTransfer(this._map, undefined);
           this._mapRoutesService.updateRoutes(this._map, mapSelectionEventService, undefined);
           this._mapLeitPoiService.processData(this._map, undefined);
@@ -475,7 +475,8 @@ export class SbbJourneyMaps implements OnInit, AfterViewInit, OnDestroy, OnChang
             this._mapJourneyService.updateJourney(
               this._map,
               mapSelectionEventService,
-              this.journeyMapsRoutingOption!.journey
+              this.journeyMapsRoutingOption!.journey,
+              this.journeyMapsRoutingOption!.journeyMetaInformation
             );
             this._mapLeitPoiService.processData(
               this._map,
@@ -874,10 +875,14 @@ export class SbbJourneyMaps implements OnInit, AfterViewInit, OnDestroy, OnChang
 
     return (
       optionsAmount === 0 ||
-      (optionsAmount === 1 && !this.journeyMapsRoutingOption?.routesMetaInformations) ||
+      (optionsAmount === 1 &&
+        !this.journeyMapsRoutingOption?.routesMetaInformations &&
+        !this.journeyMapsRoutingOption?.journeyMetaInformation) ||
       (optionsAmount === 2 &&
         !!this.journeyMapsRoutingOption?.routes &&
-        !!this.journeyMapsRoutingOption?.routesMetaInformations)
+        !!this.journeyMapsRoutingOption?.routesMetaInformations) ||
+      (!!this.journeyMapsRoutingOption?.journey &&
+        !!this.journeyMapsRoutingOption?.journeyMetaInformation)
     );
   }
 

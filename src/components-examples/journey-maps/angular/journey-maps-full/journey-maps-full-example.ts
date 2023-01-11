@@ -75,22 +75,26 @@ export class JourneyMapsFullExample implements OnInit, OnDestroy {
     { label: 'Basel / Biel', value: baselBielZones },
   ];
   journeyMapsRoutingOption: SbbJourneyMapsRoutingOptions;
-  journeyMapsRoutingOptions = [
-    { label: '(none)', value: undefined },
-    { label: 'Zürich - Schaffhausen, Waldfriedhof', value: { journey: zhShWaldfriedhof } },
-    {
-      label: 'Bern - Lausanne',
-      value: { routes: bnLsRoutes, routesMetaInformations: bnLsRoutesOptions },
-    },
-    {
-      label: 'Biel - Lyss',
-      value: { routes: bielLyssRoutes, routesMetaInformations: bielLyssRoutesOptions },
-    },
-    { label: 'Transfer Bern', value: { transfer: bernIndoor } },
-    { label: 'Transfer Genf', value: { transfer: geneveIndoor } },
-    { label: 'Transfer Luzern', value: { transfer: luzern4j } },
-    { label: 'Transfer Zürich', value: { transfer: zurichIndoor } },
-  ];
+  journeyMapsRoutingOptions: { label: string; value: SbbJourneyMapsRoutingOptions | undefined }[] =
+    [
+      { label: '(none)', value: undefined },
+      {
+        label: 'Zürich - Schaffhausen, Waldfriedhof',
+        value: { journey: zhShWaldfriedhof, journeyMetaInformation: { selectedLegId: '2' } },
+      },
+      {
+        label: 'Bern - Lausanne',
+        value: { routes: bnLsRoutes, routesMetaInformations: bnLsRoutesOptions },
+      },
+      {
+        label: 'Biel - Lyss',
+        value: { routes: bielLyssRoutes, routesMetaInformations: bielLyssRoutesOptions },
+      },
+      { label: 'Transfer Bern', value: { transfer: bernIndoor } },
+      { label: 'Transfer Genf', value: { transfer: geneveIndoor } },
+      { label: 'Transfer Luzern', value: { transfer: luzern4j } },
+      { label: 'Transfer Zürich', value: { transfer: zurichIndoor } },
+    ];
   homeButtonOptions: SbbViewportDimensions = { boundingBox: SBB_BOUNDING_BOX };
   viewportDimensions?: SbbViewportDimensions;
   zoomLevels?: SbbZoomLevels;
