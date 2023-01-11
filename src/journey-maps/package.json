@@ -37,6 +37,9 @@
       "types": "./index.d.ts",
       "es2015": "./web-component/bundle-es2015.min.js",
       "default": "./web-component/bundle.min.js"
+    },
+    "./web-component/styles.css": {
+      "default": "./web-component/styles.css"
     }
   }
 }
