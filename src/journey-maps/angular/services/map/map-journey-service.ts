@@ -2,7 +2,8 @@ import { Injectable } from '@angular/core';
 import { Feature, FeatureCollection } from 'geojson';
 import { Map as MaplibreMap } from 'maplibre-gl';
 
-import { SbbJourneyMetaInformation } from './../../../angular';
+import { SbbJourneyMetaInformation } from '../../journey-maps.interfaces';
+
 import { SbbMapEventUtils } from './../map/events/map-event-utils';
 import { SbbMapSelectionEvent, SBB_SELECTED_PROPERTY_NAME } from './events/map-selection-event';
 import { SBB_ROUTE_ID_PROPERTY_NAME } from './events/route-utils';
