@@ -13,6 +13,9 @@
 </pre>
 
 <form [formGroup]="dateForm">
+  <sbb-form-field label="Selected week day" style="display: block">
+    <input type="number" sbbInput formControlName="selectedWeekDay" />
+  </sbb-form-field>
   <sbb-form-field label="Range start date" style="display: block">
     <sbb-datepicker>
       <input

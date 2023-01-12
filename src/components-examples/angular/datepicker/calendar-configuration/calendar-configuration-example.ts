@@ -1,8 +1,8 @@
 import { Component, OnDestroy, ViewEncapsulation } from '@angular/core';
 import { FormBuilder, FormControl } from '@angular/forms';
 import { SbbCalendarCellClassFunction } from '@sbb-esta/angular/datepicker';
-import { BehaviorSubject, Subject } from 'rxjs';
-import { filter, takeUntil } from 'rxjs/operators';
+import { BehaviorSubject, Observable, Subject } from 'rxjs';
+import { filter, map, startWith, takeUntil } from 'rxjs/operators';
 
 /**
  * @title Standalone Calendar
@@ -19,14 +19,16 @@ export class CalendarConfigurationExample implements OnDestroy {
   dateForm = this._formBuilder.group({
     startDate: new FormControl<Date | null>(null),
     endDate: new FormControl<Date | null>(null),
+    selectedWeekDay: new FormControl(0),
   });
   selectedDate: Date | null;
   selectedWeekday: number | null;
   showWeekNumbers = true;
-  dateClass: SbbCalendarCellClassFunction<Date> = (date) => {
-    // Highlight 6th day of the week (Sunday)
-    return date.getDay() === 0 ? 'example-custom-date-class' : '';
-  };
+  dateClass: Observable<SbbCalendarCellClassFunction<Date>> =
+    this.dateForm.controls.selectedWeekDay.valueChanges.pipe(
+      startWith(this.dateForm.controls.selectedWeekDay.value),
+      map((value) => (date: Date) => date.getDay() === value ? 'example-custom-date-class' : '')
+    );
 
   filterStartDate = (date: Date | null): boolean =>
     !this.dateForm.controls.endDate.value || !date || date < this.dateForm.controls.endDate.value;
@@ -61,7 +63,7 @@ export class CalendarConfigurationExample implements OnDestroy {
   }
 
   onWeekdaySelection(weekday: number | null) {
-    this.selectedWeekday = weekday;
+    this.dateForm.controls.selectedWeekDay.patchValue(weekday);
   }
 
   clearSelection() {

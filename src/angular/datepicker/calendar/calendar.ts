@@ -22,7 +22,7 @@ import {
   ViewEncapsulation,
 } from '@angular/core';
 import { SbbDateAdapter, SbbDateFormats, SBB_DATE_FORMATS } from '@sbb-esta/angular/core';
-import { Subject } from 'rxjs';
+import { isObservable, Observable, of, Subject } from 'rxjs';
 
 import { SbbCalendarCellClassFunction } from '../calendar-body/calendar-body';
 import { SbbDateRange } from '../date-range';
@@ -231,8 +231,11 @@ export class SbbCalendar<D> implements AfterContentInit, AfterViewChecked, OnDes
   /** A function used to filter which dates are selectable. */
   @Input() dateFilter: (date: D) => boolean;
 
-  /** Function that can be used to add custom CSS classes to dates. */
-  @Input() dateClass: SbbCalendarCellClassFunction<D>;
+  /** Function or observable of function that can be used to add custom CSS classes to dates. */
+  @Input() dateClass: SbbCalendarCellClassFunction<D> | Observable<SbbCalendarCellClassFunction<D>>;
+
+  /** Observable of `dateClass` function. */
+  _dateClassObservable: Observable<SbbCalendarCellClassFunction<D>>;
 
   /** Emits when the currently selected date changes. */
   @Output() readonly selectedChange: EventEmitter<D> = new EventEmitter<D>();
@@ -326,6 +329,12 @@ export class SbbCalendar<D> implements AfterContentInit, AfterViewChecked, OnDes
         this._changeDetectorRef.detectChanges();
         view.init();
       }
+    }
+
+    if (changes.dateClass && changes.dateClass.previousValue !== changes.dateClass.currentValue) {
+      this._dateClassObservable = isObservable(this.dateClass)
+        ? this.dateClass
+        : of(this.dateClass);
     }
 
     this.stateChanges.next();

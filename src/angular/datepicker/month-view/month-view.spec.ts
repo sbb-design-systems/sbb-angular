@@ -28,7 +28,7 @@ import {
   NOV,
 } from '@sbb-esta/angular/core/testing';
 
-import { SbbCalendarBody } from '../calendar-body/calendar-body';
+import { SbbCalendarBody, SbbCalendarCellClassFunction } from '../calendar-body/calendar-body';
 import { SbbDateRange } from '../date-range';
 
 import { SbbMonthView } from './month-view';
@@ -82,13 +82,19 @@ class MonthViewWithDateClassComponent {
 }
 
 @Component({
-  template: `<sbb-month-view [isWeekdaySelectable]="isWeekdaySelectable"></sbb-month-view>`,
+  template: `<sbb-month-view
+    [isWeekdaySelectable]="isWeekdaySelectable"
+    showWeekNumbers="true"
+    [dateClass]="dateClass"
+  ></sbb-month-view>`,
 })
-class January2023MonthViewComponent {
+class MonthViewComponentWithWeekNumbers {
   @ViewChild(SbbMonthView) monthView: SbbMonthView<Date>;
   date = new Date(2023, JAN, 1);
   selected = new Date(2023, JAN, 1);
   isWeekdaySelectable = true;
+  dateClass: SbbCalendarCellClassFunction<Date> = (date: Date) =>
+    date.getDay() === 0 ? 'custom-date-class' : '';
 }
 
 describe('SbbMonthView', () => {
@@ -103,7 +109,7 @@ describe('SbbMonthView', () => {
         MonthViewWithDateFilterComponent,
         MonthViewWithDateClassComponent,
         MonthViewWithDateRangeComponent,
-        January2023MonthViewComponent,
+        MonthViewComponentWithWeekNumbers,
       ],
       providers: [
         { provide: SbbDateAdapter, useClass: SbbNativeDateAdapter },
@@ -405,18 +411,29 @@ describe('SbbMonthView', () => {
     });
   });
 
-  describe('january 2023 month view component', () => {
+  describe('month view component with week numbers', () => {
     // See explanation in month-view.ts (search 'fixFirstWeekOfYear').
-    let fixture: ComponentFixture<January2023MonthViewComponent>;
+    let fixture: ComponentFixture<MonthViewComponentWithWeekNumbers>;
 
     beforeEach(() => {
-      fixture = TestBed.createComponent(January2023MonthViewComponent);
+      fixture = TestBed.createComponent(MonthViewComponentWithWeekNumbers);
       fixture.detectChanges();
     });
 
     it('whould display the correct week numbers if first day of year is a Sunday', () => {
       expect(fixture.componentInstance.monthView._dateAdapter.getFirstDayOfWeek()).toBe(1);
       expect(fixture.componentInstance.monthView.weeksInMonth).toEqual([52, 1, 2, 3, 4, 5]);
+    });
+
+    it('should update the dateClass function', () => {
+      expect(fixture.nativeElement.querySelectorAll('.custom-date-class').length).toBe(5);
+
+      fixture.componentInstance.dateClass = (date: Date) =>
+        date.getDate() === 1 ? 'another-custom-class' : ''; // highlight the first day
+      fixture.detectChanges();
+
+      expect(fixture.nativeElement.querySelectorAll('.custom-date-class').length).toBe(0);
+      expect(fixture.nativeElement.querySelectorAll('.another-custom-class').length).toBe(1);
     });
   });
 });

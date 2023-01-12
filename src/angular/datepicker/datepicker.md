@@ -86,6 +86,51 @@ The `sbbDateInput` can be used without a `sbb-datepicker`.
 </sbb-form-field>
 ```
 
+### Standalone Calendar
+
+The `SbbCalendar` can be used without a `sbb-datepicker`.
+For defining custom CSS classes for dates, you can use the property `dateClass`.
+This property can be either a function or an observable of a function.
+
+**Using a function**
+
+```html
+<sbb-calendar [dateClass]="dateClassFunction"></sbb-calendar>
+```
+
+```js
+@Component(...)
+class Component {
+  dateClass: SbbCalendarCellClassFunction<Date> = (date) => {
+    // Add custom class to every Sunday
+    return date.getDay() === 0 ? 'example-custom-date-class' : '';
+  };
+}
+```
+
+Note: Angular's change detection would not recognice any change inside the function body.
+To update the function you have to assign a new functon to `this.dateClass`.
+
+**Using an observable**
+
+```html
+<sbb-calendar [dateClass]="dateClassObservable$"></sbb-calendar>
+
+<input [formControl]="weekSelectControl" />
+```
+
+```js
+@Component(...)
+class Component {
+  dateClassObservable$ = this.weekSelectControl.valueChanges.pipe(
+    startWith(this.weekSelectControl.value),
+    map((value) => (date: Date) => date.getDay() === value ? 'example-custom-date-class' : '')
+  );
+
+  weekSelectControl = new FormConrol(0);
+}
+```
+
 ### Date Handling
 
 `SbbDatepicker` by default uses the native [Date](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date)

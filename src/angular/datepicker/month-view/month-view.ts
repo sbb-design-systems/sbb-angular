@@ -95,8 +95,16 @@ export class SbbMonthView<D> implements AfterContentInit {
   /** A function used to filter which dates are selectable. */
   @Input() dateFilter: (date: D) => boolean;
 
-  /** Function that can be used to add custom CSS classes to dates. */
-  @Input() dateClass: SbbCalendarCellClassFunction<D>;
+  /** Function that can be used to add custDom CSS classes to dates. */
+  @Input()
+  get dateClass(): SbbCalendarCellClassFunction<D> | null {
+    return this._dateClass;
+  }
+  set dateClass(dateClass: SbbCalendarCellClassFunction<D> | null) {
+    this._dateClass = dateClass;
+    this._updateDateClasses();
+  }
+  _dateClass: SbbCalendarCellClassFunction<D> | null;
 
   /** Whether to display the week number. */
   @Input() showWeekNumbers: boolean = false;
@@ -424,7 +432,7 @@ export class SbbMonthView<D> implements AfterContentInit {
       const enabled = this._shouldEnableDate(date);
       const ariaLabel = this._dateAdapter.format(date, this._dateFormats.dateA11yLabel);
       const rangeBackground = this._shouldApplyRangeBackground(date);
-      const cellClasses = this.dateClass ? this.dateClass(date) : undefined;
+      const cellClasses = this._dateClass ? this._dateClass(date) : undefined;
 
       this.weeks[this.weeks.length - 1].push(
         new SbbCalendarCell(i + 1, dateNames[i], ariaLabel, enabled, rangeBackground, cellClasses)
@@ -432,16 +440,34 @@ export class SbbMonthView<D> implements AfterContentInit {
     }
   }
 
-  private _updateRangeBackground() {
+  private _updateDateClasses() {
     let isUpdated = false;
+    const year = this._dateAdapter.getYear(this.activeDate);
+    const month = this._dateAdapter.getMonth(this.activeDate);
     if (this.weeks) {
       for (let i = 0; i < this.weeks.length; i++) {
         for (let j = 0; j < this.weeks[i].length; j++) {
-          const date = this._dateAdapter.createDate(
-            this._dateAdapter.getYear(this.activeDate),
-            this._dateAdapter.getMonth(this.activeDate),
-            this.weeks[i][j].value
-          );
+          const date = this._dateAdapter.createDate(year, month, this.weeks[i][j].value);
+          const cellClasses = this._dateClass ? this._dateClass(date) : undefined;
+          isUpdated = isUpdated || this.weeks[i][j].cssClasses !== cellClasses;
+          this.weeks[i][j].cssClasses = cellClasses || {};
+        }
+      }
+
+      if (isUpdated) {
+        this.weeks = [...this.weeks];
+      }
+    }
+  }
+
+  private _updateRangeBackground() {
+    let isUpdated = false;
+    if (this.weeks) {
+      const year = this._dateAdapter.getYear(this.activeDate);
+      const month = this._dateAdapter.getMonth(this.activeDate);
+      for (let i = 0; i < this.weeks.length; i++) {
+        for (let j = 0; j < this.weeks[i].length; j++) {
+          const date = this._dateAdapter.createDate(year, month, this.weeks[i][j].value);
           const rangeBackground = this._shouldApplyRangeBackground(date);
           isUpdated = isUpdated || this.weeks[i][j].rangeBackground !== rangeBackground;
           this.weeks[i][j].rangeBackground = rangeBackground;
