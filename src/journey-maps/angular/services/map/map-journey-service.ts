@@ -1,27 +1,28 @@
 import { Injectable } from '@angular/core';
+import { SbbTransferSourceService } from '@sbb-esta/journey-maps/angular/services/source/transfer-source-service';
 import { Feature, FeatureCollection } from 'geojson';
 import { Map as MaplibreMap } from 'maplibre-gl';
 
 import { SbbJourneyMetaInformation } from '../../journey-maps.interfaces';
-import { ROKAS_WALK_SOURCE } from '../constants';
+import { SbbRouteSourceService } from '../source/route-source-service';
+import { SbbStyleSourceService } from '../source/style-source-service';
 
 import { SbbMapEventUtils } from './../map/events/map-event-utils';
 import { SbbMapSelectionEvent, SBB_SELECTED_PROPERTY_NAME } from './events/map-selection-event';
 import { SBB_ROUTE_ID_PROPERTY_NAME } from './events/route-utils';
-import { SbbMapRouteService } from './map-route-service';
 import { SBB_EMPTY_FEATURE_COLLECTION } from './map-service';
 import { SbbMapStopoverService } from './map-stopover-service';
-import { SbbMapTransferService } from './map-transfer-service';
 
 @Injectable({
   providedIn: 'root',
 })
 export class SbbMapJourneyService {
   constructor(
-    private _mapRouteService: SbbMapRouteService,
-    private _mapTransferService: SbbMapTransferService,
+    private _sourceRouteService: SbbRouteSourceService,
+    private _transferSourceService: SbbTransferSourceService,
     private _mapStopoverService: SbbMapStopoverService,
-    private _mapEventUtils: SbbMapEventUtils // TODO cdi ROKAS-1204 move this to it's own (e.g. util) class
+    private _mapEventUtils: SbbMapEventUtils, // TODO cdi ROKAS-1204 move this to it's own (e.g. util) class
+    private _styleSourceService: SbbStyleSourceService
   ) {}
 
   updateJourney(
@@ -80,19 +81,22 @@ export class SbbMapJourneyService {
       }
     }
 
-    this._mapRouteService.updateRoute(map, mapSelectionEventService, {
-      type: 'FeatureCollection',
-      features: this._isV1Style(map) ? routeFeatures : routeFeatures.concat(transferFeatures),
-    });
+    if (this._styleSourceService.isV1Style(map)) {
+      this._sourceRouteService.updateRoute(map, mapSelectionEventService, {
+        type: 'FeatureCollection',
+        features: routeFeatures,
+      });
 
-    this._mapTransferService.updateTransfer(map, {
-      type: 'FeatureCollection',
-      features: transferFeatures, // TODO cdi ROKAS-1204 we only need to set _data, but what happens if we set 'transferFeatures' into both sources ??
-    });
-  }
-
-  private _isV1Style(map: MaplibreMap) {
-    return !!map.getStyle().sources[ROKAS_WALK_SOURCE];
+      this._transferSourceService.updateTransferV1(map, {
+        type: 'FeatureCollection',
+        features: transferFeatures,
+      });
+    } else {
+      this._sourceRouteService.updateRoute(map, mapSelectionEventService, {
+        type: 'FeatureCollection',
+        features: routeFeatures.concat(transferFeatures),
+      });
+    }
   }
 }
 

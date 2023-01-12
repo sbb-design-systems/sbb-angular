@@ -7,13 +7,13 @@ import {
   SbbSelectableFeatureCollection,
 } from '../../journey-maps.interfaces';
 import { SbbMarker } from '../../model/marker';
+import { SbbRouteSourceService } from '../source/route-source-service';
 
 import { SbbMapSelectionEvent, SBB_SELECTED_PROPERTY_NAME } from './events/map-selection-event';
 import {
   SBB_ROUTE_ID_PROPERTY_NAME,
   SBB_ROUTE_LINE_COLOR_PROPERTY_NAME,
 } from './events/route-utils';
-import { SbbMapRouteService } from './map-route-service';
 import { SBB_EMPTY_FEATURE_COLLECTION } from './map-service';
 
 export const SBB_ALL_ROUTE_LAYERS: string[] = [
@@ -27,7 +27,7 @@ export const SBB_ALL_ROUTE_LAYERS: string[] = [
 
 @Injectable({ providedIn: 'root' })
 export class SbbMapRoutesService {
-  constructor(private _mapRouteService: SbbMapRouteService) {}
+  constructor(private _mapRouteService: SbbRouteSourceService) {}
 
   updateRoutes(
     map: MaplibreMap,
