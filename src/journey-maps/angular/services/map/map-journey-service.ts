@@ -1,9 +1,9 @@
 import { Injectable } from '@angular/core';
-import { ROKAS_WALK_SOURCE } from '@sbb-esta/journey-maps/angular';
 import { Feature, FeatureCollection } from 'geojson';
 import { Map as MaplibreMap } from 'maplibre-gl';
 
 import { SbbJourneyMetaInformation } from '../../journey-maps.interfaces';
+import { ROKAS_WALK_SOURCE } from '../constants';
 
 import { SbbMapEventUtils } from './../map/events/map-event-utils';
 import { SbbMapSelectionEvent, SBB_SELECTED_PROPERTY_NAME } from './events/map-selection-event';
