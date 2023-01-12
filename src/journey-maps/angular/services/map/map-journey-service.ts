@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import { ROKAS_ROUTE_SOURCE } from '@sbb-esta/journey-maps/angular';
 import { Feature, FeatureCollection } from 'geojson';
 import { Map as MaplibreMap } from 'maplibre-gl';
 
@@ -66,43 +67,41 @@ export class SbbMapJourneyService {
         features: routeFeatures.concat(transferFeatures),
       });
 
-      this._setStopovers(journey, journeyMetaInformation, map);
+      if (journeyMetaInformation?.selectedLegId) {
+        this._handleSelectedLeg(journey, map, journeyMetaInformation.selectedLegId);
+
+        // TODO cdi ROKAS-1204 once this works, move it outside of the if(selectedLegId)
+        // set unselected legs as not selected
+        map.once('idle', () => {
+          map
+            .querySourceFeatures(ROKAS_ROUTE_SOURCE, {
+              sourceLayer: 'ignored',
+              filter: ['!=', 'legId', journeyMetaInformation?.selectedLegId],
+            })
+            .filter((f) => f.properties.legId)
+            .forEach((f) => {
+              f.source = ROKAS_ROUTE_SOURCE;
+              // map.setFeatureState(f, { selected: false });
+              this._mapEventUtils.setFeatureState(f, map, { selected: false });
+            });
+        });
+      }
     }
   }
 
-  private _setStopovers(
-    journey: FeatureCollection,
-    journeyMetaInformation: SbbJourneyMetaInformation | undefined,
-    map: MaplibreMap
-  ) {
-    // TODO cdi ROKAS-1204 extract code into proper methods/classes
-
+  // TODO cdi ROKAS-1204 extract code into proper methods/classes
+  private _handleSelectedLeg(journey: FeatureCollection, map: MaplibreMap, selectedLegId: string) {
     // filter and group the features by legId
     const featuresByLegId: Map<string, Feature[]> = groupByLegId(journey.features);
-    const { selectedLegId } = journeyMetaInformation ?? {};
-    if (selectedLegId) {
-      // list of legIds
-      const legIds = [...featuresByLegId.keys()];
-      if (featuresByLegId.has(selectedLegId)) {
-        // put stopovers into stopover source
-        const selectedStopoverFeatures = featuresByLegId
-          .get(selectedLegId)!
-          .filter((feature) => feature.properties?.type === 'stopover');
-        this._mapStopoverService.updateStopovers(map, {
-          type: 'FeatureCollection',
-          features: selectedStopoverFeatures,
-        });
-
-        // set unselected legs as not selected
-        legIds
-          .filter((legId) => legId !== selectedLegId)
-          .map((legId) => featuresByLegId.get(legId))
-          .forEach(
-            (features) => null
-            // features!.forEach(feature =>
-            //   this._mapEventUtils.setFeatureState(feature, map, {selected: false})
-          );
-      }
+    if (featuresByLegId.has(selectedLegId)) {
+      // put stopovers into stopover source
+      const selectedStopoverFeatures = featuresByLegId
+        .get(selectedLegId)!
+        .filter((feature) => feature.properties?.type === 'stopover');
+      this._mapStopoverService.updateStopovers(map, {
+        type: 'FeatureCollection',
+        features: selectedStopoverFeatures,
+      });
     }
   }
 }
