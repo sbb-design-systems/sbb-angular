@@ -105,7 +105,6 @@ export class SbbLevelSwitcher {
     });
 
     // called whenever the level is switched via the leit-pois (or when the map is set to a specific floor for a new transfer)
-
     this._mapLeitPoiService.levelSwitched
       .pipe(takeUntil(this._destroyed))
       .subscribe((nextLevel) => {
