@@ -1,9 +1,9 @@
 import { Injectable } from '@angular/core';
-import { ROKAS_ROUTE_SOURCE } from '@sbb-esta/journey-maps/angular';
 import { Feature, FeatureCollection } from 'geojson';
 import { Map as MaplibreMap } from 'maplibre-gl';
 
 import { SbbJourneyMetaInformation } from '../../journey-maps.interfaces';
+import { ROKAS_ROUTE_SOURCE } from '../constants';
 import { SbbRouteSourceService } from '../source/route-source-service';
 import { SbbTransferSourceService } from '../source/transfer-source-service';
 import { isV1Style } from '../source/util/style-version-lookup';
