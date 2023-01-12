@@ -1,11 +1,11 @@
 import { Injectable } from '@angular/core';
-import { SbbTransferSourceService } from '@sbb-esta/journey-maps/angular/services/source/transfer-source-service';
 import { Feature, FeatureCollection } from 'geojson';
 import { Map as MaplibreMap } from 'maplibre-gl';
 
 import { SbbJourneyMetaInformation } from '../../journey-maps.interfaces';
 import { SbbRouteSourceService } from '../source/route-source-service';
 import { SbbStyleSourceService } from '../source/style-source-service';
+import { SbbTransferSourceService } from '../source/transfer-source-service';
 
 import { SbbMapEventUtils } from './../map/events/map-event-utils';
 import { SbbMapSelectionEvent, SBB_SELECTED_PROPERTY_NAME } from './events/map-selection-event';
