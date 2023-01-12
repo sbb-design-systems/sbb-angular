@@ -37,14 +37,9 @@ export class SbbMapTransferService {
     }
   }
 
-  isV1Style(map: MaplibreMap): boolean {
-    const mapSources = map.getStyle().sources;
-    return mapSources && !!mapSources[ROKAS_WALK_SOURCE];
-  }
-
   private _getSource(map: MaplibreMap): GeoJSONSource {
     return map.getSource(
-      this.isV1Style(map) ? ROKAS_WALK_SOURCE : ROKAS_ROUTE_SOURCE
+      !!map.getStyle().sources[ROKAS_WALK_SOURCE] ? ROKAS_WALK_SOURCE : ROKAS_ROUTE_SOURCE
     ) as GeoJSONSource;
   }
 }

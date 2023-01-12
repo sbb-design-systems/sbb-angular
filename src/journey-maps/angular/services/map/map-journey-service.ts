@@ -53,7 +53,6 @@ export class SbbMapJourneyService {
         // set unselected legs as not selected
         legIds
           .filter((legId) => legId !== selectedLegId)
-          .filter((legId) => featuresByLegId.has(legId))
           .map((legId) => featuresByLegId.get(legId))
           .forEach(
             (features) => null
