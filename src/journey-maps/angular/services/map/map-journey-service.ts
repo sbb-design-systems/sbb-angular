@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import { ROKAS_WALK_SOURCE } from '@sbb-esta/journey-maps/angular';
 import { Feature, FeatureCollection } from 'geojson';
 import { Map as MaplibreMap } from 'maplibre-gl';
 
@@ -81,13 +82,17 @@ export class SbbMapJourneyService {
 
     this._mapRouteService.updateRoute(map, mapSelectionEventService, {
       type: 'FeatureCollection',
-      features: routeFeatures,
+      features: this._isV1Style(map) ? routeFeatures : routeFeatures.concat(transferFeatures),
     });
 
     this._mapTransferService.updateTransfer(map, {
       type: 'FeatureCollection',
-      features: transferFeatures,
+      features: transferFeatures, // TODO cdi ROKAS-1204 we only need to set _data, but what happens if we set 'transferFeatures' into both sources ??
     });
+  }
+
+  private _isV1Style(map: MaplibreMap) {
+    return !!map.getStyle().sources[ROKAS_WALK_SOURCE];
   }
 }
 
