@@ -4,8 +4,8 @@ import { Map as MaplibreMap } from 'maplibre-gl';
 
 import { SbbJourneyMetaInformation } from '../../journey-maps.interfaces';
 import { SbbRouteSourceService } from '../source/route-source-service';
-import { SbbStyleSourceService } from '../source/style-source-service';
 import { SbbTransferSourceService } from '../source/transfer-source-service';
+import { isV1Style } from '../source/util/style-version-lookup';
 
 import { SbbMapEventUtils } from './../map/events/map-event-utils';
 import { SbbMapSelectionEvent, SBB_SELECTED_PROPERTY_NAME } from './events/map-selection-event';
@@ -21,8 +21,7 @@ export class SbbMapJourneyService {
     private _sourceRouteService: SbbRouteSourceService,
     private _transferSourceService: SbbTransferSourceService,
     private _mapStopoverService: SbbMapStopoverService,
-    private _mapEventUtils: SbbMapEventUtils, // TODO cdi ROKAS-1204 move this to it's own (e.g. util) class
-    private _styleSourceService: SbbStyleSourceService
+    private _mapEventUtils: SbbMapEventUtils // TODO cdi ROKAS-1204 move this to it's own (e.g. util) class
   ) {}
 
   updateJourney(
@@ -34,6 +33,48 @@ export class SbbMapJourneyService {
     const routeFeatures: Feature[] = [];
     const transferFeatures: Feature[] = [];
 
+    for (const feature of journey.features) {
+      const properties = feature.properties!;
+      const type = properties.type;
+      const pathType = properties.pathType;
+
+      properties[SBB_ROUTE_ID_PROPERTY_NAME] = 'journey'; // They all belong together
+      properties[SBB_SELECTED_PROPERTY_NAME] = true; // Always selected
+
+      if (type === 'path' && (pathType === 'transport' || pathType === 'bee')) {
+        routeFeatures.push(feature);
+      } else if (type === 'bbox' || type === 'stopover') {
+        // Ignore the feature (NOSONAR)
+      } else {
+        transferFeatures.push(feature);
+      }
+    }
+
+    if (isV1Style(map)) {
+      this._sourceRouteService.updateRoute(map, mapSelectionEventService, {
+        type: 'FeatureCollection',
+        features: routeFeatures,
+      });
+
+      this._transferSourceService.updateTransferV1(map, {
+        type: 'FeatureCollection',
+        features: transferFeatures,
+      });
+    } else {
+      this._sourceRouteService.updateRoute(map, mapSelectionEventService, {
+        type: 'FeatureCollection',
+        features: routeFeatures.concat(transferFeatures),
+      });
+
+      this._setStopovers(journey, journeyMetaInformation, map);
+    }
+  }
+
+  private _setStopovers(
+    journey: FeatureCollection,
+    journeyMetaInformation: SbbJourneyMetaInformation | undefined,
+    map: MaplibreMap
+  ) {
     // TODO cdi ROKAS-1204 extract code into proper methods/classes
 
     // filter and group the features by legId
@@ -62,40 +103,6 @@ export class SbbMapJourneyService {
             //   this._mapEventUtils.setFeatureState(feature, map, {selected: false})
           );
       }
-    }
-
-    for (const feature of journey.features) {
-      const properties = feature.properties!;
-      const type = properties.type;
-      const pathType = properties.pathType;
-
-      properties[SBB_ROUTE_ID_PROPERTY_NAME] = 'journey'; // They all belong together
-      properties[SBB_SELECTED_PROPERTY_NAME] = true; // Always selected
-
-      if (type === 'path' && (pathType === 'transport' || pathType === 'bee')) {
-        routeFeatures.push(feature);
-      } else if (type === 'bbox' || type === 'stopover') {
-        // Ignore the feature (NOSONAR)
-      } else {
-        transferFeatures.push(feature);
-      }
-    }
-
-    if (this._styleSourceService.isV1Style(map)) {
-      this._sourceRouteService.updateRoute(map, mapSelectionEventService, {
-        type: 'FeatureCollection',
-        features: routeFeatures,
-      });
-
-      this._transferSourceService.updateTransferV1(map, {
-        type: 'FeatureCollection',
-        features: transferFeatures,
-      });
-    } else {
-      this._sourceRouteService.updateRoute(map, mapSelectionEventService, {
-        type: 'FeatureCollection',
-        features: routeFeatures.concat(transferFeatures),
-      });
     }
   }
 }
