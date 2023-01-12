@@ -82,7 +82,7 @@ export class SbbMapJourneyService {
             .forEach((f) => {
               f.source = ROKAS_ROUTE_SOURCE;
               // map.setFeatureState(f, { selected: false });
-              this._mapEventUtils.setFeatureState(f, map, { selected: false });
+              this._mapEventUtils.setFeatureState(f, map, { 'not-selected': true });
             });
         });
       }
