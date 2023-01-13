@@ -69,24 +69,28 @@ export class SbbMapJourneyService {
 
       if (journeyMetaInformation?.selectedLegId) {
         this._handleSelectedLeg(journey, map, journeyMetaInformation.selectedLegId);
-
-        // TODO cdi ROKAS-1204 once this works, move it outside of the if(selectedLegId)
-        // set unselected legs as not selected
-        map.once('idle', () => {
-          map
-            .querySourceFeatures(ROKAS_ROUTE_SOURCE, {
-              sourceLayer: 'ignored',
-              filter: ['!=', 'legId', journeyMetaInformation?.selectedLegId],
-            })
-            .filter((f) => f.properties.legId)
-            .forEach((f) => {
-              f.source = ROKAS_ROUTE_SOURCE;
-              // map.setFeatureState(f, { selected: false });
-              this._mapEventUtils.setFeatureState(f, map, { 'not-selected': true });
-            });
-        });
+        this._setNotSelectedLegIds(map, journeyMetaInformation.selectedLegId);
+      } else {
+        this._setNotSelectedLegIds(map);
       }
     }
+  }
+
+  private _setNotSelectedLegIds(map: MaplibreMap, selectedLegId?: string) {
+    map.once('idle', () => {
+      map
+        .querySourceFeatures(ROKAS_ROUTE_SOURCE, {
+          sourceLayer: 'ignored',
+          filter: ['has', 'legId'],
+        })
+        .forEach((f) => {
+          f.source = ROKAS_ROUTE_SOURCE;
+          map.setFeatureState(f, {
+            // FIXME shouldn't we call this field 'selected' instead of 'not-selected', to simplify?
+            'not-selected': f.properties.legId !== selectedLegId,
+          });
+        });
+    });
   }
 
   // TODO cdi ROKAS-1204 extract code into proper methods/classes
