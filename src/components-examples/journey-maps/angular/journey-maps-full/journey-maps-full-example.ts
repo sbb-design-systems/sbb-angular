@@ -68,7 +68,7 @@ export class JourneyMapsFullExample implements OnInit, OnDestroy {
     { label: 'Berne / Burgdorf', value: bernBurgdorfZones },
     { label: 'Basel / Biel', value: baselBielZones },
   ];
-  journeyMapsRoutingOption: SbbJourneyMapsRoutingOptions;
+  journeyMapsRoutingOption?: SbbJourneyMapsRoutingOptions;
   journeyMapsRoutingOptions: { label: string; value: SbbJourneyMapsRoutingOptions | undefined }[] =
     [
       { label: '(none)', value: undefined },
@@ -86,7 +86,7 @@ export class JourneyMapsFullExample implements OnInit, OnDestroy {
       { label: 'Transfer Luzern', value: { transfer: luzern4j } },
       { label: 'Transfer Zürich', value: { transfer: zurichIndoor } },
     ];
-  journeyMapsRoutingLegIds: { label: string; value: string }[] = [];
+  journeyMapsRoutingLegIds: string[] = [];
   homeButtonOptions: SbbViewportDimensions = { boundingBox: SBB_BOUNDING_BOX };
   viewportDimensions?: SbbViewportDimensions;
   zoomLevels?: SbbZoomLevels;
@@ -192,7 +192,7 @@ export class JourneyMapsFullExample implements OnInit, OnDestroy {
     this.form
       .get('routingGeoJson')
       ?.valueChanges.pipe(takeUntil(this._destroyed))
-      .subscribe((routingOption: SbbJourneyMapsRoutingOptions) => {
+      .subscribe((routingOption?: SbbJourneyMapsRoutingOptions) => {
         const bbox = this._getBbox(routingOption);
         if (bbox) {
           this._setBbox(bbox);
@@ -205,7 +205,7 @@ export class JourneyMapsFullExample implements OnInit, OnDestroy {
           this.journeyMapsRoutingOption = routingOption;
         }
         this.journeyMapsRoutingLegIds = distinct(
-          routingOption.journey?.features.map((f) => f.properties?.legId) ?? []
+          routingOption?.journey?.features.map((f) => f.properties?.legId) ?? []
         );
       });
 
@@ -239,7 +239,7 @@ export class JourneyMapsFullExample implements OnInit, OnDestroy {
       });
   }
 
-  private _getBbox(options: SbbJourneyMapsRoutingOptions) {
+  private _getBbox(options?: SbbJourneyMapsRoutingOptions) {
     if (!options) {
       return;
     }
