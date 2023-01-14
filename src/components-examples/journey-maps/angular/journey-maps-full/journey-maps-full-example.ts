@@ -7,7 +7,6 @@ import {
   ViewChild,
 } from '@angular/core';
 import { UntypedFormBuilder, UntypedFormGroup } from '@angular/forms';
-import { SbbRadioChange } from '@sbb-esta/angular/radio-button';
 import {
   SbbInteractionOptions,
   SbbJourneyMaps,
@@ -30,12 +29,7 @@ import { luzern4j } from './mock-response/transfer/luzern4-j';
 import { zurichIndoor } from './mock-response/transfer/zurich-indoor';
 import { bernBurgdorfZones } from './mock-response/zone/bern-burgdorf';
 import { baselBielZones } from './mock-response/zone/bs-bl';
-
-declare global {
-  interface Window {
-    JM_API_KEY: string;
-  }
-}
+import { distinct } from './util/array-utils';
 
 const CH_BOUNDS: LngLatBoundsLike = [
   [5.7349, 45.6755],
@@ -78,10 +72,7 @@ export class JourneyMapsFullExample implements OnInit, OnDestroy {
   journeyMapsRoutingOptions: { label: string; value: SbbJourneyMapsRoutingOptions | undefined }[] =
     [
       { label: '(none)', value: undefined },
-      {
-        label: 'Zürich - Schaffhausen, Waldfriedhof',
-        value: { journey: zhShWaldfriedhof, journeyMetaInformation: { selectedLegId: '2' } },
-      },
+      { label: 'Zürich - Schaffhausen, Waldfriedhof', value: { journey: zhShWaldfriedhof } },
       {
         label: 'Bern - Lausanne',
         value: { routes: bnLsRoutes, routesMetaInformations: bnLsRoutesOptions },
@@ -95,6 +86,7 @@ export class JourneyMapsFullExample implements OnInit, OnDestroy {
       { label: 'Transfer Luzern', value: { transfer: luzern4j } },
       { label: 'Transfer Zürich', value: { transfer: zurichIndoor } },
     ];
+  journeyMapsRoutingLegIds: { label: string; value: string }[] = [];
   homeButtonOptions: SbbViewportDimensions = { boundingBox: SBB_BOUNDING_BOX };
   viewportDimensions?: SbbViewportDimensions;
   zoomLevels?: SbbZoomLevels;
@@ -175,6 +167,7 @@ export class JourneyMapsFullExample implements OnInit, OnDestroy {
       }),
       zoneGeoJson: [],
       routingGeoJson: [],
+      routingLegId: [],
     });
   }
 
@@ -199,18 +192,31 @@ export class JourneyMapsFullExample implements OnInit, OnDestroy {
     this.form
       .get('routingGeoJson')
       ?.valueChanges.pipe(takeUntil(this._destroyed))
-      .subscribe((val: SbbJourneyMapsRoutingOptions) => {
-        const bbox = this._getBbox(val);
+      .subscribe((routingOption: SbbJourneyMapsRoutingOptions) => {
+        const bbox = this._getBbox(routingOption);
         if (bbox) {
           this._setBbox(bbox);
           this.mapCenterChange.pipe(take(1)).subscribe(() => {
             // Wait until map is idle. So that the correct starting level will be displayed.
-            this.journeyMapsRoutingOption = val;
+            this.journeyMapsRoutingOption = routingOption;
             this._cd.detectChanges();
           });
         } else {
-          this.journeyMapsRoutingOption = val;
+          this.journeyMapsRoutingOption = routingOption;
         }
+        this.journeyMapsRoutingLegIds = distinct(
+          routingOption.journey?.features.map((f) => f.properties?.legId) ?? []
+        );
+      });
+
+    this.form
+      .get('routingLegId')
+      ?.valueChanges.pipe(takeUntil(this._destroyed))
+      .subscribe((selectedLegId: string) => {
+        this.journeyMapsRoutingOption = {
+          ...this.journeyMapsRoutingOption,
+          journeyMetaInformation: { selectedLegId },
+        };
       });
 
     this.form
@@ -260,10 +266,6 @@ export class JourneyMapsFullExample implements OnInit, OnDestroy {
   ngOnDestroy(): void {
     this._destroyed.next();
     this._destroyed.complete();
-  }
-
-  setMarkerId(event: SbbRadioChange): void {
-    this.selectedMarkerId = event.value;
   }
 
   bboxToLngLatBounds(bbox: number[]): LngLatBoundsLike {

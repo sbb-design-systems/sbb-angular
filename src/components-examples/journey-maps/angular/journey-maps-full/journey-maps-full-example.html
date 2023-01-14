@@ -168,6 +168,13 @@
             </sbb-option>
           </sbb-select>
         </sbb-form-field>
+        <sbb-form-field label="Select leg" *ngIf="journeyMapsRoutingLegIds.length">
+          <sbb-select formControlName="routingLegId" placeholder="(none)">
+            <sbb-option *ngFor="let legId of journeyMapsRoutingLegIds" [value]="legId">
+              {{legId}}
+            </sbb-option>
+          </sbb-select>
+        </sbb-form-field>
       </li>
       <li *ngIf="visibleLevels | async as visibleLevels">
         <sbb-notification *ngIf="!visibleLevels.length" type="info"

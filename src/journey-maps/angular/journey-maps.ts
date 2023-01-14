@@ -471,7 +471,10 @@ export class SbbJourneyMaps implements OnInit, AfterViewInit, OnDestroy, OnChang
           this._mapRoutesService.updateRoutes(this._map, mapSelectionEventService, undefined);
           this._mapLeitPoiService.processData(this._map, undefined);
           // only add new data if we have some
-          if (changes.journeyMapsRoutingOption?.currentValue?.journey) {
+          if (
+            changes.journeyMapsRoutingOption?.currentValue?.journey ||
+            changes.journeyMapsRoutingOption?.currentValue?.journeyMetaInformation
+          ) {
             this._mapJourneyService.updateJourney(
               this._map,
               mapSelectionEventService,
