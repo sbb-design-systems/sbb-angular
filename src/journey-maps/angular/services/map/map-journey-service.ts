@@ -83,9 +83,10 @@ export class SbbMapJourneyService {
         })
         .forEach((f) => {
           f.source = ROKAS_ROUTE_SOURCE;
+          // unless ONE leg is manually selected, ALL legs should show as selected => {'not-selected: false }
+          const selected = selectedLegId ? f.properties.legId === selectedLegId : true;
           map.setFeatureState(f, {
-            // should be selected by default => {'not-selected: false }
-            'not-selected': selectedLegId ? f.properties.legId !== selectedLegId : false,
+            'not-selected': !selected,
           });
         });
     });
