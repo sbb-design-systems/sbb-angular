@@ -69,10 +69,8 @@ export class SbbMapJourneyService {
 
       if (journeyMetaInformation?.selectedLegId) {
         this._handleSelectedLeg(journey, map, journeyMetaInformation.selectedLegId);
-        this._setNotSelectedLegIds(map, journeyMetaInformation.selectedLegId);
-      } else {
-        this._setNotSelectedLegIds(map);
       }
+      this._setNotSelectedLegIds(map, journeyMetaInformation?.selectedLegId);
     }
   }
 
@@ -86,16 +84,14 @@ export class SbbMapJourneyService {
         .forEach((f) => {
           f.source = ROKAS_ROUTE_SOURCE;
           map.setFeatureState(f, {
-            // FIXME shouldn't we call this field 'selected' instead of 'not-selected', to simplify?
-            'not-selected': f.properties.legId !== selectedLegId,
+            // should be selected by default => {'not-selected: false }
+            'not-selected': selectedLegId ? f.properties.legId !== selectedLegId : false,
           });
         });
     });
   }
 
-  // TODO cdi ROKAS-1204 extract code into proper methods/classes
   private _handleSelectedLeg(journey: FeatureCollection, map: MaplibreMap, selectedLegId: string) {
-    // filter and group the features by legId
     const featuresByLegId: Map<string, Feature[]> = groupByLegId(journey.features);
     if (featuresByLegId.has(selectedLegId)) {
       // put stopovers into stopover source
@@ -111,6 +107,7 @@ export class SbbMapJourneyService {
 }
 
 const groupByLegId = (features: Array<Feature>): Map<string, Feature[]> => {
+  // filter and group the features by legId
   const groupedByLegId = features
     .filter((f) => f.properties?.legId)
     .reduce(
