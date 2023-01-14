@@ -21,7 +21,8 @@ export class SbbMapZoneService {
 
     map.removeFeatureState({ source: ROKAS_ZONE_SOURCE });
 
-    if (zonesFeatureCollection.features?.length) {
+    // `zonesFeatureCollection` somehow manages to be null if we change the style from v2 to v1
+    if (zonesFeatureCollection?.features?.length) {
       map.once('idle', () => {
         mapSelectionEventService.initSelectedState(map, zonesFeatureCollection.features, 'ZONE');
       });
