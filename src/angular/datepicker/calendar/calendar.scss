@@ -296,8 +296,9 @@
   cursor: pointer;
 }
 
-button:hover:is(.sbb-calendar-body-weekday, .sbb-calendar-body-week) {
+button:is(.sbb-calendar-body-weekday, .sbb-calendar-body-week):is(:hover, :focus) {
   color: var(--sbb-color-call-to-action-hover);
+  outline: none;
 }
 
 .sbb-calendar-body-cell-content {
