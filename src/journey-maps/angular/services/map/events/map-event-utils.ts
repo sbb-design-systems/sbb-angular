@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
-import { SbbFeatureData, SbbFeatureDataType } from '@sbb-esta/journey-maps/angular';
 import { Map as MaplibreMap, MapGeoJSONFeature } from 'maplibre-gl';
 
+import { SbbFeatureData, SbbFeatureDataType } from '../../../journey-maps.interfaces';
 import {
   SBB_ROKAS_MARKER_SOURCE,
   SBB_ROKAS_ROUTE_SOURCE,
