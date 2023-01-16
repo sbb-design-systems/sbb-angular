@@ -2,7 +2,6 @@ import { Injectable } from '@angular/core';
 import { Feature, FeatureCollection } from 'geojson';
 import { GeoJSONSource, Map as MaplibreMap } from 'maplibre-gl';
 
-import { SbbJourneyMetaInformation } from '../../journey-maps.interfaces';
 import { SBB_ROKAS_ROUTE_SOURCE, SBB_ROKAS_STOPOVER_SOURCE } from '../constants';
 
 import { SbbMapEventUtils } from './../map/events/map-event-utils';
@@ -27,7 +26,7 @@ export class SbbMapJourneyService {
     map: MaplibreMap,
     mapSelectionEventService: SbbMapSelectionEvent,
     journey: FeatureCollection = SBB_EMPTY_FEATURE_COLLECTION,
-    journeyMetaInformation?: SbbJourneyMetaInformation
+    selectedLegId?: string
   ): void {
     const routeFeatures: Feature[] = [];
     const transferFeatures: Feature[] = [];
@@ -65,7 +64,7 @@ export class SbbMapJourneyService {
         features: routeFeatures.concat(transferFeatures),
       });
 
-      this._handleLegIdSelection(map, journey.features, journeyMetaInformation?.selectedLegId);
+      this._handleLegIdSelection(map, journey.features, selectedLegId);
     }
   }
 

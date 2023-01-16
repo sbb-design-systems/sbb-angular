@@ -479,7 +479,7 @@ export class SbbJourneyMaps implements OnInit, AfterViewInit, OnDestroy, OnChang
               this._map,
               mapSelectionEventService,
               this.journeyMapsRoutingOption!.journey,
-              this.journeyMapsRoutingOption!.journeyMetaInformation
+              this.journeyMapsRoutingOption!.journeyMetaInformation?.selectedLegId
             );
             this._mapLeitPoiService.processData(
               this._map,
