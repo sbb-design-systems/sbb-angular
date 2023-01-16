@@ -67,11 +67,13 @@ export class SbbMapJourneyService {
         features: routeFeatures.concat(transferFeatures),
       });
 
-      if (journeyMetaInformation?.selectedLegId) {
-        this._handleSelectedLeg(journey, map, journeyMetaInformation.selectedLegId);
-      }
-      this._setNotSelectedLegIds(map, journeyMetaInformation?.selectedLegId);
+      this._handleLegIdSelection(map, journey.features, journeyMetaInformation?.selectedLegId);
     }
+  }
+
+  private _handleLegIdSelection(map: MaplibreMap, features: Feature[], selectedLegId?: string) {
+    this._handleStopovers(features, map, selectedLegId);
+    this._setNotSelectedLegIds(map, selectedLegId);
   }
 
   private _setNotSelectedLegIds(map: MaplibreMap, selectedLegId?: string) {
@@ -92,18 +94,15 @@ export class SbbMapJourneyService {
     });
   }
 
-  private _handleSelectedLeg(journey: FeatureCollection, map: MaplibreMap, selectedLegId: string) {
-    const featuresByLegId: Map<string, Feature[]> = groupByLegId(journey.features);
-    if (featuresByLegId.has(selectedLegId)) {
-      // put stopovers into stopover source
-      const selectedStopoverFeatures = featuresByLegId
-        .get(selectedLegId)!
-        .filter((feature) => feature.properties?.type === 'stopover');
-      this._mapStopoverService.updateStopovers(map, {
-        type: 'FeatureCollection',
-        features: selectedStopoverFeatures,
-      });
-    }
+  private _handleStopovers(features: Feature[], map: MaplibreMap, selectedLegId?: string) {
+    const featuresByLegId: Map<string, Feature[]> = groupByLegId(features);
+    const selectedStopoverFeatures = (
+      selectedLegId && featuresByLegId.has(selectedLegId) ? featuresByLegId.get(selectedLegId)! : []
+    ).filter((feature) => feature.properties?.type === 'stopover');
+    this._mapStopoverService.updateStopovers(map, {
+      type: 'FeatureCollection',
+      features: selectedStopoverFeatures,
+    });
   }
 }
 

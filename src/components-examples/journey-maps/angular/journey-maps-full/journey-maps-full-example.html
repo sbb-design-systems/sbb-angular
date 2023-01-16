@@ -171,7 +171,7 @@
         <sbb-form-field label="Select leg" *ngIf="journeyMapsRoutingLegIds.length">
           <sbb-select formControlName="routingLegId" placeholder="(none)">
             <sbb-option *ngFor="let legId of journeyMapsRoutingLegIds" [value]="legId">
-              {{legId}}
+              {{legId || '(none)'}}
             </sbb-option>
           </sbb-select>
         </sbb-form-field>
