@@ -1,8 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Feature, FeatureCollection } from 'geojson';
-import { GeoJSONSource, Map as MaplibreMap } from 'maplibre-gl';
-
-import { SBB_ROKAS_ROUTE_SOURCE, SBB_ROKAS_STOPOVER_SOURCE } from '../constants';
+import { Map as MaplibreMap } from 'maplibre-gl';
 
 import { SbbMapEventUtils } from './../map/events/map-event-utils';
 import { SbbMapSelectionEvent, SBB_SELECTED_PROPERTY_NAME } from './events/map-selection-event';
@@ -59,61 +57,15 @@ export class SbbMapJourneyService {
         features: transferFeatures,
       });
     } else {
-      this._mapRouteService.updateRoute(map, mapSelectionEventService, {
-        type: 'FeatureCollection',
-        features: routeFeatures.concat(transferFeatures),
-      });
-
-      this._handleLegIdSelection(map, journey.features, selectedLegId);
-    }
-  }
-
-  private _handleLegIdSelection(map: MaplibreMap, features: Feature[], selectedLegId?: string) {
-    this._handleStopovers(features, map, selectedLegId);
-    this._setNotSelectedLegIds(map, selectedLegId);
-  }
-
-  private _setNotSelectedLegIds(map: MaplibreMap, selectedLegId?: string) {
-    map.once('idle', () => {
-      map
-        .querySourceFeatures(SBB_ROKAS_ROUTE_SOURCE, {
-          sourceLayer: 'ignored',
-          filter: ['has', 'legId'],
-        })
-        .forEach((f) => {
-          f.source = SBB_ROKAS_ROUTE_SOURCE;
-          // unless ONE leg is manually selected, ALL legs should show as selected => {'not-selected: false }
-          const selected = selectedLegId ? f.properties.legId === selectedLegId : true;
-          map.setFeatureState(f, {
-            'not-selected': !selected,
-          });
-        });
-    });
-  }
-
-  private _handleStopovers(features: Feature[], map: MaplibreMap, selectedLegId?: string) {
-    const featuresByLegId: Map<string, Feature[]> = this._groupByLegId(features);
-    const selectedStopoverFeatures = (
-      selectedLegId && featuresByLegId.has(selectedLegId) ? featuresByLegId.get(selectedLegId)! : []
-    ).filter((feature) => feature.properties?.type === 'stopover');
-    const source = map.getSource(SBB_ROKAS_STOPOVER_SOURCE) as GeoJSONSource;
-    source.setData({
-      type: 'FeatureCollection',
-      features: selectedStopoverFeatures,
-    });
-  }
-
-  private _groupByLegId(features: Array<Feature>): Map<string, Feature[]> {
-    // filter and group the features by legId
-    const groupedByLegId = features
-      .filter((f) => f.properties?.legId)
-      .reduce(
-        (res: any, curr: Feature) => ({
-          ...res,
-          [curr.properties!.legId]: [...(res[curr.properties!.legId] || []), curr],
-        }),
-        {}
+      this._mapRouteService.updateRoute(
+        map,
+        mapSelectionEventService,
+        {
+          type: 'FeatureCollection',
+          features: routeFeatures.concat(transferFeatures),
+        },
+        selectedLegId
       );
-    return new Map(Object.entries(groupedByLegId));
+    }
   }
 }
