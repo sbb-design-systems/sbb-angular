@@ -880,10 +880,10 @@ export class SbbJourneyMaps implements OnInit, AfterViewInit, OnDestroy, OnChang
         !this.journeyMapsRoutingOption?.routesMetaInformations &&
         !this.journeyMapsRoutingOption?.journeyMetaInformation) ||
       (optionsAmount === 2 &&
-        !!this.journeyMapsRoutingOption?.routes &&
-        !!this.journeyMapsRoutingOption?.routesMetaInformations) ||
-      (!!this.journeyMapsRoutingOption?.journey &&
-        !!this.journeyMapsRoutingOption?.journeyMetaInformation)
+        ((!!this.journeyMapsRoutingOption?.routes &&
+          !!this.journeyMapsRoutingOption?.routesMetaInformations) ||
+          (!!this.journeyMapsRoutingOption?.journey &&
+            !!this.journeyMapsRoutingOption?.journeyMetaInformation)))
     );
   }
 
