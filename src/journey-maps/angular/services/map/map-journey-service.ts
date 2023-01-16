@@ -57,6 +57,7 @@ export class SbbMapJourneyService {
         features: transferFeatures,
       });
     } else {
+      // handle transfer and routes together, otherwise they can overwrite each other's transfer or route data
       this._mapRouteService.updateRoute(
         map,
         mapSelectionEventService,
