@@ -1,5 +1,4 @@
 import { Injectable } from '@angular/core';
-import { SbbMapRouteService } from '@sbb-esta/journey-maps/angular/services/map/map-route-service';
 import { Feature, FeatureCollection } from 'geojson';
 import { GeoJSONSource, Map as MaplibreMap } from 'maplibre-gl';
 
@@ -9,6 +8,7 @@ import { SBB_ROKAS_ROUTE_SOURCE, SBB_ROKAS_STOPOVER_SOURCE } from '../constants'
 import { SbbMapEventUtils } from './../map/events/map-event-utils';
 import { SbbMapSelectionEvent, SBB_SELECTED_PROPERTY_NAME } from './events/map-selection-event';
 import { SBB_ROUTE_ID_PROPERTY_NAME } from './events/route-utils';
+import { SbbMapRouteService } from './map-route-service';
 import { SBB_EMPTY_FEATURE_COLLECTION } from './map-service';
 import { SbbMapTransferService } from './map-transfer-service';
 import { isV1Style } from './util/style-version-lookup';
