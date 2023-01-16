@@ -3,7 +3,7 @@ import { Feature, FeatureCollection } from 'geojson';
 import { Map as MaplibreMap } from 'maplibre-gl';
 
 import { SbbJourneyMetaInformation } from '../../journey-maps.interfaces';
-import { ROKAS_ROUTE_SOURCE } from '../constants';
+import { SBB_ROKAS_ROUTE_SOURCE } from '../constants';
 import { SbbRouteSourceService } from '../source/route-source-service';
 import { SbbTransferSourceService } from '../source/transfer-source-service';
 import { isV1Style } from '../source/util/style-version-lookup';
@@ -79,12 +79,12 @@ export class SbbMapJourneyService {
   private _setNotSelectedLegIds(map: MaplibreMap, selectedLegId?: string) {
     map.once('idle', () => {
       map
-        .querySourceFeatures(ROKAS_ROUTE_SOURCE, {
+        .querySourceFeatures(SBB_ROKAS_ROUTE_SOURCE, {
           sourceLayer: 'ignored',
           filter: ['has', 'legId'],
         })
         .forEach((f) => {
-          f.source = ROKAS_ROUTE_SOURCE;
+          f.source = SBB_ROKAS_ROUTE_SOURCE;
           // unless ONE leg is manually selected, ALL legs should show as selected => {'not-selected: false }
           const selected = selectedLegId ? f.properties.legId === selectedLegId : true;
           map.setFeatureState(f, {

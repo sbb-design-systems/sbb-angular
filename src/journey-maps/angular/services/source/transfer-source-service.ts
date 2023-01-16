@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { Feature, FeatureCollection } from 'geojson';
 import { GeoJSONSource, Map as MaplibreMap } from 'maplibre-gl';
 
-import { ROKAS_WALK_SOURCE } from '../constants';
+import { SBB_ROKAS_WALK_SOURCE } from '../constants';
 import { SBB_EMPTY_FEATURE_COLLECTION } from '../map/map-service';
 
 import { needsFloorChange, updateWalkFloor } from './util/walk-floor-updater';
@@ -30,6 +30,6 @@ export class SbbTransferSourceService {
   }
 
   private _getSource(map: MaplibreMap): GeoJSONSource {
-    return map.getSource(ROKAS_WALK_SOURCE) as GeoJSONSource;
+    return map.getSource(SBB_ROKAS_WALK_SOURCE) as GeoJSONSource;
   }
 }

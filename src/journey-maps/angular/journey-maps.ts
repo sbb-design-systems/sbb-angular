@@ -42,11 +42,11 @@ import {
 import { SbbMarker } from './model/marker';
 import { sbbBufferTimeOnValue } from './services/bufferTimeOnValue';
 import {
-  JOURNEY_POIS_SOURCE,
-  ROKAS_ROUTE_SOURCE,
   SBB_BOUNDING_BOX,
+  SBB_JOURNEY_POIS_SOURCE,
   SBB_MAX_ZOOM,
   SBB_MIN_ZOOM,
+  SBB_ROKAS_ROUTE_SOURCE,
 } from './services/constants';
 import { SbbLocaleService } from './services/locale-service';
 import { SbbMapConfig } from './services/map/map-config';
@@ -529,7 +529,7 @@ export class SbbJourneyMaps implements OnInit, AfterViewInit, OnDestroy, OnChang
 
         if (poiEnvironmentChanged) {
           // Update POI-Source-URL
-          const currentPoiSource = this._map.getSource(JOURNEY_POIS_SOURCE) as VectorTileSource;
+          const currentPoiSource = this._map.getSource(SBB_JOURNEY_POIS_SOURCE) as VectorTileSource;
           const newPoiSourceUrl = this._urlService.getPoiSourceUrlByEnvironment(
             currentPoiSource.url,
             this.poiOptions?.environment
@@ -816,7 +816,7 @@ export class SbbJourneyMaps implements OnInit, AfterViewInit, OnDestroy, OnChang
     this._map.resize();
     // @ts-ignore
     this._mapService.verifySources(this._map, [
-      ROKAS_ROUTE_SOURCE,
+      SBB_ROKAS_ROUTE_SOURCE,
       ...this._mapMarkerService.sources,
     ]);
     this._addSatelliteSource(this._map);

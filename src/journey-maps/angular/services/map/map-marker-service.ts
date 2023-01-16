@@ -14,12 +14,12 @@ import { SbbMarker } from '../../model/marker';
 import { SbbMarkerCategory } from '../../model/marker-category';
 import { SbbMarkerCategoryMapping } from '../../model/marker-category-mapping';
 import {
-  ROKAS_MARKER_SOURCE,
   SBB_CLUSTER_LAYER,
   SBB_CLUSTER_RADIUS,
   SBB_MARKER_LAYER,
   SBB_MARKER_LAYER_SELECTED,
   SBB_METADATA_MAPPINGS,
+  SBB_ROKAS_MARKER_SOURCE,
 } from '../constants';
 import { SbbMarkerConverter } from '../marker-converter';
 
@@ -44,7 +44,7 @@ export class SbbMapMarkerService {
 
   initStyleData(map: MaplibreMap): void {
     this.markerCategoryMappings.clear();
-    this.sources = [ROKAS_MARKER_SOURCE];
+    this.sources = [SBB_ROKAS_MARKER_SOURCE];
     this.markerLayers = [SBB_MARKER_LAYER];
     this.markerLayersSelected = [SBB_MARKER_LAYER_SELECTED];
 
@@ -82,7 +82,7 @@ export class SbbMapMarkerService {
     const featuresPerSource = new Map<string, Feature[]>();
     for (const marker of markers ?? []) {
       const mapping = this.markerCategoryMappings.get(marker.category);
-      const sourceId = mapping?.source ?? ROKAS_MARKER_SOURCE;
+      const sourceId = mapping?.source ?? SBB_ROKAS_MARKER_SOURCE;
       if (!featuresPerSource.has(sourceId)) {
         featuresPerSource.set(sourceId, []);
       }
@@ -99,7 +99,7 @@ export class SbbMapMarkerService {
   }
 
   private _getPrimaryMarkerSource(map: MaplibreMap): GeoJSONSource {
-    return map.getSource(ROKAS_MARKER_SOURCE) as GeoJSONSource;
+    return map.getSource(SBB_ROKAS_MARKER_SOURCE) as GeoJSONSource;
   }
 
   onClusterClicked(map: MaplibreMap, cluster: SbbFeatureData): void {

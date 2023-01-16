@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { Feature, FeatureCollection } from 'geojson';
 import { GeoJSONSource, Map as MaplibreMap } from 'maplibre-gl';
 
-import { ROKAS_ROUTE_SOURCE } from '../constants';
+import { SBB_ROKAS_ROUTE_SOURCE } from '../constants';
 import { SbbMapSelectionEvent } from '../map/events/map-selection-event';
 import { SBB_EMPTY_FEATURE_COLLECTION } from '../map/map-service';
 
@@ -17,9 +17,9 @@ export class SbbRouteSourceService {
     mapSelectionEventService: SbbMapSelectionEvent,
     routeFeatureCollection: FeatureCollection = SBB_EMPTY_FEATURE_COLLECTION
   ): void {
-    const source = map.getSource(ROKAS_ROUTE_SOURCE) as GeoJSONSource;
+    const source = map.getSource(SBB_ROKAS_ROUTE_SOURCE) as GeoJSONSource;
     source.setData(routeFeatureCollection);
-    map.removeFeatureState({ source: ROKAS_ROUTE_SOURCE });
+    map.removeFeatureState({ source: SBB_ROKAS_ROUTE_SOURCE });
     if (routeFeatureCollection.features?.length) {
       map.once('idle', () =>
         mapSelectionEventService.initSelectedState(map, routeFeatureCollection.features, 'ROUTE')
@@ -46,6 +46,6 @@ export class SbbRouteSourceService {
   }
 
   private _getSource(map: MaplibreMap): GeoJSONSource {
-    return map.getSource(ROKAS_ROUTE_SOURCE) as GeoJSONSource;
+    return map.getSource(SBB_ROKAS_ROUTE_SOURCE) as GeoJSONSource;
   }
 }
