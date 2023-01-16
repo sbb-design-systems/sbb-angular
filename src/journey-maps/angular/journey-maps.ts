@@ -455,7 +455,14 @@ export class SbbJourneyMaps implements OnInit, AfterViewInit, OnDestroy, OnChang
 
     // handle journey, transfer, and routes together, otherwise they can overwrite each other's transfer or route data
     if (changes.journeyMapsRoutingOption) {
-      if (this._areRoutingOptionsValid()) {
+      if (!this._areRoutingOptionsValid()) {
+        console.error(
+          `journeyMapsRoutingOption: Use either 'transfer' or 'journey' or 'routes'. Received: ` +
+            Object.keys(this.journeyMapsRoutingOption || {})
+              .map((k) => `'${k}'`)
+              .join(', ')
+        );
+      } else {
         if (this._haveRoutesMetaInformationsChanged(changes)) {
           this._updateMarkers();
         }
@@ -503,10 +510,6 @@ export class SbbJourneyMaps implements OnInit, AfterViewInit, OnDestroy, OnChang
             );
           }
         });
-      } else {
-        console.error(
-          'journeyMapsRoutingOption: Use either transfer or journey or routes. It does not work correctly when more than one of these properties is set.'
-        );
       }
     }
 
