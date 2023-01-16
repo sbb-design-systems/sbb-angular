@@ -284,13 +284,13 @@
   dependencies:
     tslib "^2.3.0"
 
-"@angular/bazel@15.1.0":
-  version "15.1.0"
-  resolved "https://registry.yarnpkg.com/@angular/bazel/-/bazel-15.1.0.tgz#5582da190c81a70f5c1a8b28e136e79742eee9ca"
-  integrity sha512-ZNueCYI+09n5HvNe6ek17mnmB8Ip6e5Y4xHytv6pq100WEb6BSkGkddDUZH5ja0lhN74BGvL2UJO/7Zsh8FJug==
+"@angular/bazel@15.1.0-next.3":
+  version "15.1.0-next.3"
+  resolved "https://registry.yarnpkg.com/@angular/bazel/-/bazel-15.1.0-next.3.tgz#bcb619d0764863016de60d3d72a923290bf31905"
+  integrity sha512-UeNRHDDlHkVVeG9t97O70iw9xtJQbIU2Fg82gUaeEYXI4hxa8yFrFudZL/5YjA/8Ico3cp0KZdPx+lbIQdthkA==
   dependencies:
     "@microsoft/api-extractor" "^7.24.2"
-    magic-string "^0.27.0"
+    shelljs "^0.8.5"
     tsickle "^0.46.3"
     tslib "^2.3.0"
 
@@ -15190,7 +15190,7 @@ shell-quote@^1.6.1:
   resolved "https://registry.yarnpkg.com/shell-quote/-/shell-quote-1.7.4.tgz#33fe15dee71ab2a81fcbd3a52106c5cfb9fb75d8"
   integrity sha512-8o/QEhSSRb1a5i7TFR0iM4G16Z0vYB2OQVs4G3aAFXjn3T6yEx8AZxy1PgDF7I00LZHYA3WxaSYIf5e5sAX8Rw==
 
-shelljs@0.8.5:
+shelljs@0.8.5, shelljs@^0.8.5:
   version "0.8.5"
   resolved "https://registry.yarnpkg.com/shelljs/-/shelljs-0.8.5.tgz#de055408d8361bed66c669d2f000538ced8ee20c"
   integrity sha512-TiwcRcrkhHvbrZbnRcFYMLl30Dfov3HKqzp5tO5b4pt6G/SezKcYhmDg15zXVBswHmctSAQKznqNW2LO5tTDow==
@@ -16579,10 +16579,10 @@ typedarray@^0.0.6:
   resolved "https://registry.yarnpkg.com/typedarray/-/typedarray-0.0.6.tgz#867ac74e3864187b1d3d47d996a78ec5c8830777"
   integrity sha512-/aCDEGatGvZ2BIk+HmLf4ifCJFwvKFNb9/JeZPMulfgFracn9QFcAf5GO8B/mweUjSoblS5In0cWhqpfs/5PQA==
 
-typescript@4.8.2, typescript@~4.5.4, typescript@~4.8.0:
-  version "4.8.2"
-  resolved "https://registry.yarnpkg.com/typescript/-/typescript-4.8.2.tgz#e3b33d5ccfb5914e4eeab6699cf208adee3fd790"
-  integrity sha512-C0I1UsrrDHo2fYI5oaCGbSejwX4ch+9Y5jTQELvovfmFkK3HHSZJB8MSJcWLmCUBzQBchCrZ9rMRV6GuNrvGtw==
+typescript@4.9.3, typescript@~4.5.4, typescript@~4.8.0:
+  version "4.9.3"
+  resolved "https://registry.yarnpkg.com/typescript/-/typescript-4.9.3.tgz#3aea307c1746b8c384435d8ac36b8a2e580d85db"
+  integrity sha512-CIfGzTelbKNEnLpLdGFgdyKhG23CKdKgQPOBc+OUNrkJ2vr+KSzsSV5kq5iWhEQbok+quxgGzrAtGWCyU7tHnA==
 
 typescript@^4.6.4:
   version "4.9.4"

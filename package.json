@@ -73,7 +73,7 @@
     "@angular-devkit/core": "15.1.1",
     "@angular-devkit/schematics": "15.1.1",
     "@angular-devkit/schematics-cli": "15.1.1",
-    "@angular/bazel": "15.1.0",
+    "@angular/bazel": "15.1.0-next.3",
     "@angular/build-tooling": "https://github.com/angular/dev-infra-private-build-tooling-builds.git#d94cd02db1a276929ff63739d0b5f80a45a14abf",
     "@angular/cli": "15.1.1",
     "@angular/compiler": "15.1.0",
@@ -167,14 +167,14 @@
     "tslint-config-prettier": "1.18.0",
     "tslint-consistent-codestyle": "1.16.0",
     "tslint-plugin-prettier": "2.3.0",
-    "typescript": "4.8.2",
+    "typescript": "4.9.3",
     "yargs": "17.6.2"
   },
   "resolutions": {
-    "@angular/build-tooling/typescript": "4.8.2",
-    "@angular/ng-dev/typescript": "4.8.2",
+    "@angular/build-tooling/typescript": "4.9.3",
+    "@angular/ng-dev/typescript": "4.9.3",
     "browser-sync-client": "2.26.13",
-    "dgeni-packages/typescript": "4.8.2"
+    "dgeni-packages/typescript": "4.9.3"
   },
   "standard-version": {
     "types": [
