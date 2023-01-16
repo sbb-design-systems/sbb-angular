@@ -12,10 +12,10 @@ import {
   MockNgZone,
   NOV,
 } from '@sbb-esta/angular/core/testing';
-import { SbbCalendarCellClassFunction } from '@sbb-esta/angular/datepicker';
 import { SbbIconModule } from '@sbb-esta/angular/icon';
 import { SbbIconTestingModule } from '@sbb-esta/angular/icon/testing';
 
+import { SbbCalendarCellClassFunction } from '../calendar-body/calendar-body';
 import { SbbCalendar } from '../calendar/calendar';
 import { SbbDatepickerModule } from '../datepicker.module';
 
