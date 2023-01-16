@@ -15,6 +15,7 @@ import {
   SbbZoomLevels,
   SBB_BOUNDING_BOX,
 } from '@sbb-esta/journey-maps';
+import { Feature, Polygon, Position } from 'geojson';
 import { LngLatBounds, LngLatBoundsLike, LngLatLike } from 'maplibre-gl';
 import { BehaviorSubject, filter, Subject, take } from 'rxjs';
 import { map, takeUntil } from 'rxjs/operators';
@@ -216,6 +217,12 @@ export class JourneyMapsFullExample implements OnInit, OnDestroy {
       .get('routingLegId')
       ?.valueChanges.pipe(takeUntil(this._destroyed))
       .subscribe((selectedLegId: string) => {
+        const bbox = selectedLegId
+          ? this._getBboxForLegId(selectedLegId, this.journeyMapsRoutingOption)
+          : this._getBbox(this.journeyMapsRoutingOption);
+        if (bbox) {
+          this._setBbox(bbox!);
+        }
         this.journeyMapsRoutingOption = {
           ...this.journeyMapsRoutingOption,
           journeyMetaInformation: { selectedLegId },
@@ -242,6 +249,20 @@ export class JourneyMapsFullExample implements OnInit, OnDestroy {
         this.form.get('zoneGeoJson')?.reset();
         this.form.get('routingGeoJson')?.reset();
       });
+  }
+
+  private _getBboxForLegId(
+    selectedLegId: string,
+    routingOptions?: SbbJourneyMapsRoutingOptions
+  ): number[] | undefined {
+    const legBbox: Feature | undefined = routingOptions?.journey?.features.find(
+      (f) => f.properties?.type === 'bbox' && f.properties?.legId === selectedLegId
+    );
+    if (legBbox) {
+      const p: Position[] = (legBbox.geometry as Polygon).coordinates[0];
+      return [...p[0], ...p[2]];
+    }
+    return undefined;
   }
 
   private _getBbox(options?: SbbJourneyMapsRoutingOptions) {
