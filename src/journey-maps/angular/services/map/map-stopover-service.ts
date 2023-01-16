@@ -14,6 +14,5 @@ export class SbbMapStopoverService {
   ): void {
     const source = map.getSource(ROKAS_STOPOVER_SOURCE) as GeoJSONSource;
     source.setData(routeFeatureCollection);
-    map.removeFeatureState({ source: ROKAS_STOPOVER_SOURCE });
   }
 }
