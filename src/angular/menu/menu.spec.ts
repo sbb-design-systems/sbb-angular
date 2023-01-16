@@ -826,6 +826,26 @@ describe('SbbMenu', () => {
     expect(triggerEl.getAttribute('aria-expanded')).toBe('false');
   }));
 
+  it('should toggle aria-expanded on the trigger in an OnPush component', fakeAsync(() => {
+    const fixture = createComponent(SimpleMenuOnPush, [], [FakeIcon]);
+    fixture.detectChanges();
+    const triggerEl = fixture.componentInstance.triggerEl.nativeElement;
+
+    expect(triggerEl.getAttribute('aria-expanded')).toBe('false');
+
+    fixture.componentInstance.trigger.openMenu();
+    fixture.detectChanges();
+    tick(500);
+
+    expect(triggerEl.getAttribute('aria-expanded')).toBe('true');
+
+    fixture.componentInstance.trigger.closeMenu();
+    fixture.detectChanges();
+    tick(500);
+
+    expect(triggerEl.getAttribute('aria-expanded')).toBe('false');
+  }));
+
   it('should throw if assigning a menu that contains the trigger', fakeAsync(() => {
     expect(() => {
       const fixture = createComponent(InvalidRecursiveMenu, [], [FakeIcon]);
@@ -2774,8 +2794,7 @@ describe('SbbMenu contextmenu trigger', () => {
   });
 });
 
-@Component({
-  template: `
+const SIMPLE_MENU_TEMPLATE = `
     <button
       [sbbMenuTriggerFor]="menu"
       [sbbMenuTriggerRestoreFocus]="restoreFocus"
@@ -2804,7 +2823,9 @@ describe('SbbMenu contextmenu trigger', () => {
       </button>
       <button *ngFor="let item of extraItems" sbb-menu-item type="button">{{ item }}</button>
     </sbb-menu>
-  `,
+  `;
+@Component({
+  template: SIMPLE_MENU_TEMPLATE,
 })
 class SimpleMenu {
   @ViewChild(SbbMenuTrigger) trigger: SbbMenuTrigger;
@@ -2820,6 +2841,9 @@ class SimpleMenu {
   ariaLabelledby: string;
   ariaDescribedby: string;
 }
+
+@Component({ template: SIMPLE_MENU_TEMPLATE, changeDetection: ChangeDetectionStrategy.OnPush })
+class SimpleMenuOnPush extends SimpleMenu {}
 
 @Component({
   template: `
