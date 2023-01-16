@@ -1,16 +1,15 @@
 import { Injectable } from '@angular/core';
 import { Feature, FeatureCollection } from 'geojson';
-import { Map as MaplibreMap } from 'maplibre-gl';
+import { GeoJSONSource, Map as MaplibreMap } from 'maplibre-gl';
 
 import { SbbJourneyMetaInformation } from '../../journey-maps.interfaces';
-import { SBB_ROKAS_ROUTE_SOURCE } from '../constants';
+import { SBB_ROKAS_ROUTE_SOURCE, SBB_ROKAS_STOPOVER_SOURCE } from '../constants';
 
 import { SbbMapEventUtils } from './../map/events/map-event-utils';
 import { SbbMapSelectionEvent, SBB_SELECTED_PROPERTY_NAME } from './events/map-selection-event';
 import { SBB_ROUTE_ID_PROPERTY_NAME } from './events/route-utils';
 import { SbbMapRoutesService } from './map-routes.service';
 import { SBB_EMPTY_FEATURE_COLLECTION } from './map-service';
-import { SbbMapStopoverService } from './map-stopover-service';
 import { SbbMapTransferService } from './map-transfer-service';
 import { isV1Style } from './util/style-version-lookup';
 
@@ -21,7 +20,6 @@ export class SbbMapJourneyService {
   constructor(
     private _mapRoutesService: SbbMapRoutesService,
     private _mapTransferService: SbbMapTransferService,
-    private _mapStopoverService: SbbMapStopoverService,
     private _mapEventUtils: SbbMapEventUtils // TODO cdi ROKAS-1204 move this to it's own (e.g. util) class
   ) {}
 
@@ -99,7 +97,8 @@ export class SbbMapJourneyService {
     const selectedStopoverFeatures = (
       selectedLegId && featuresByLegId.has(selectedLegId) ? featuresByLegId.get(selectedLegId)! : []
     ).filter((feature) => feature.properties?.type === 'stopover');
-    this._mapStopoverService.updateStopovers(map, {
+    const source = map.getSource(SBB_ROKAS_STOPOVER_SOURCE) as GeoJSONSource;
+    source.setData({
       type: 'FeatureCollection',
       features: selectedStopoverFeatures,
     });
