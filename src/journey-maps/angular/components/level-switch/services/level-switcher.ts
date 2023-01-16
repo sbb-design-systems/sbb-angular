@@ -3,7 +3,6 @@ import { Map as MaplibreMap } from 'maplibre-gl';
 import { BehaviorSubject, Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
 
-import { SBB_SERVICE_POINT_SOURCE } from '../../../services/constants';
 import { SbbLocaleService } from '../../../services/locale-service';
 import { SbbMapLeitPoiService } from '../../../services/map/map-leit-poi-service';
 import { SbbMapTransferService } from '../../../services/map/map-transfer-service';
@@ -89,7 +88,7 @@ export class SbbLevelSwitcher {
     this._map.on('moveend', () => this._mapMoved.next());
 
     this._mapLayerFilterService.setMap(this._map);
-    if (this._map.isSourceLoaded(SBB_SERVICE_POINT_SOURCE)) {
+    if (this._map.isSourceLoaded(SbbQueryMapFeatures.SERVICE_POINT_SOURCE_ID)) {
       this._updateLevels();
     } else {
       this._map.once('idle', () => this._updateLevels());
