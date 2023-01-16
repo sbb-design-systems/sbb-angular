@@ -29,7 +29,6 @@ import { luzern4j } from './mock-response/transfer/luzern4-j';
 import { zurichIndoor } from './mock-response/transfer/zurich-indoor';
 import { bernBurgdorfZones } from './mock-response/zone/bern-burgdorf';
 import { baselBielZones } from './mock-response/zone/bs-bl';
-import { distinct } from './util/array-utils';
 
 const CH_BOUNDS: LngLatBoundsLike = [
   [5.7349, 45.6755],
@@ -204,7 +203,7 @@ export class JourneyMapsFullExample implements OnInit, OnDestroy {
         } else {
           this.journeyMapsRoutingOption = routingOption;
         }
-        const legIds = distinct(
+        const legIds = this._distinct(
           routingOption?.journey?.features.map((f) => f.properties?.legId) ?? []
         )
           .filter((x) => x)
@@ -300,5 +299,9 @@ export class JourneyMapsFullExample implements OnInit, OnDestroy {
 
   private _isLngLatBounds(bbox: number[] | LngLatBounds): bbox is LngLatBounds {
     return (bbox as LngLatBounds).getWest !== undefined;
+  }
+
+  private _distinct<T>(vals: T[]): T[] {
+    return vals.filter((value, index, self) => self.indexOf(value) === index);
   }
 }
