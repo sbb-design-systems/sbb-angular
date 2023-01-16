@@ -1,13 +1,13 @@
 import { Injectable } from '@angular/core';
-import { Point } from 'geojson';
-import { Map as MaplibreMap } from 'maplibre-gl';
+import { FeatureCollection, Point } from 'geojson';
+import { GeoJSONSource, Map as MaplibreMap } from 'maplibre-gl';
 
 import {
   SbbRouteMetaInformation,
   SbbSelectableFeatureCollection,
 } from '../../journey-maps.interfaces';
 import { SbbMarker } from '../../model/marker';
-import { SbbRouteSourceService } from '../source/route-source-service';
+import { SBB_ROKAS_ROUTE_SOURCE } from '../constants';
 
 import { SbbMapSelectionEvent, SBB_SELECTED_PROPERTY_NAME } from './events/map-selection-event';
 import {
@@ -27,8 +27,6 @@ export const SBB_ALL_ROUTE_LAYERS: string[] = [
 
 @Injectable({ providedIn: 'root' })
 export class SbbMapRoutesService {
-  constructor(private _mapRouteService: SbbRouteSourceService) {}
-
   updateRoutes(
     map: MaplibreMap,
     mapSelectionEventService: SbbMapSelectionEvent,
@@ -50,7 +48,7 @@ export class SbbMapRoutesService {
         }
       }
     });
-    this._mapRouteService.updateRoute(map, mapSelectionEventService, {
+    this.updateRoute(map, mapSelectionEventService, {
       type: 'FeatureCollection',
       // With ES2019 we can replace this with routes.flatMap(({features}) => features)
       features: routes.reduce(
@@ -59,7 +57,6 @@ export class SbbMapRoutesService {
       ),
     });
   }
-
   getRouteMarkers(
     routes: SbbSelectableFeatureCollection[] | undefined,
     routesOptions: SbbRouteMetaInformation[] | undefined
@@ -84,5 +81,20 @@ export class SbbMapRoutesService {
         } as SbbMarker;
       })
       .filter((m) => !!m) as SbbMarker[];
+  }
+
+  updateRoute(
+    map: MaplibreMap,
+    mapSelectionEventService: SbbMapSelectionEvent,
+    routeFeatureCollection: FeatureCollection = SBB_EMPTY_FEATURE_COLLECTION
+  ): void {
+    const source = map.getSource(SBB_ROKAS_ROUTE_SOURCE) as GeoJSONSource;
+    source.setData(routeFeatureCollection);
+    map.removeFeatureState({ source: SBB_ROKAS_ROUTE_SOURCE });
+    if (routeFeatureCollection.features?.length) {
+      map.once('idle', () =>
+        mapSelectionEventService.initSelectedState(map, routeFeatureCollection.features, 'ROUTE')
+      );
+    }
   }
 }

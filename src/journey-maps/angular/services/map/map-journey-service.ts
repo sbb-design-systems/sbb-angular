@@ -4,23 +4,23 @@ import { Map as MaplibreMap } from 'maplibre-gl';
 
 import { SbbJourneyMetaInformation } from '../../journey-maps.interfaces';
 import { SBB_ROKAS_ROUTE_SOURCE } from '../constants';
-import { SbbRouteSourceService } from '../source/route-source-service';
-import { SbbTransferSourceService } from '../source/transfer-source-service';
-import { isV1Style } from '../source/util/style-version-lookup';
 
 import { SbbMapEventUtils } from './../map/events/map-event-utils';
 import { SbbMapSelectionEvent, SBB_SELECTED_PROPERTY_NAME } from './events/map-selection-event';
 import { SBB_ROUTE_ID_PROPERTY_NAME } from './events/route-utils';
+import { SbbMapRoutesService } from './map-routes.service';
 import { SBB_EMPTY_FEATURE_COLLECTION } from './map-service';
 import { SbbMapStopoverService } from './map-stopover-service';
+import { SbbMapTransferService } from './map-transfer-service';
+import { isV1Style } from './util/style-version-lookup';
 
 @Injectable({
   providedIn: 'root',
 })
 export class SbbMapJourneyService {
   constructor(
-    private _sourceRouteService: SbbRouteSourceService,
-    private _transferSourceService: SbbTransferSourceService,
+    private _mapRoutesService: SbbMapRoutesService,
+    private _mapTransferService: SbbMapTransferService,
     private _mapStopoverService: SbbMapStopoverService,
     private _mapEventUtils: SbbMapEventUtils // TODO cdi ROKAS-1204 move this to it's own (e.g. util) class
   ) {}
@@ -52,17 +52,17 @@ export class SbbMapJourneyService {
     }
 
     if (isV1Style(map)) {
-      this._sourceRouteService.updateRoute(map, mapSelectionEventService, {
+      this._mapRoutesService.updateRoute(map, mapSelectionEventService, {
         type: 'FeatureCollection',
         features: routeFeatures,
       });
 
-      this._transferSourceService.updateTransferV1(map, {
+      this._mapTransferService.updateTransfer(map, {
         type: 'FeatureCollection',
         features: transferFeatures,
       });
     } else {
-      this._sourceRouteService.updateRoute(map, mapSelectionEventService, {
+      this._mapRoutesService.updateRoute(map, mapSelectionEventService, {
         type: 'FeatureCollection',
         features: routeFeatures.concat(transferFeatures),
       });
