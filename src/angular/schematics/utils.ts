@@ -1,15 +1,18 @@
 import { WorkspaceDefinition } from '@angular-devkit/core/src/workspace';
 import { SchematicsException, Tree } from '@angular-devkit/schematics';
-import { Migration, parse5, parseSourceFile, ResolvedResource } from '@angular/cdk/schematics';
+import {
+  Element,
+  Migration,
+  parse5,
+  parseSourceFile,
+  ResolvedResource,
+} from '@angular/cdk/schematics';
 import type { UpdateRecorder } from '@angular/cdk/schematics/update-tool/update-recorder';
 import { addImportToModule } from '@schematics/angular/utility/ast-utils';
 import { InsertChange } from '@schematics/angular/utility/change';
-import type { Attribute, DocumentFragment, Element, Location } from 'parse5';
 import * as ts from 'typescript';
 
 import { Schema } from './ng-add/schema';
-
-const parse: typeof import('parse5') = parse5;
 
 /** Whether the Angular module in the given path has the specified provider. */
 export function hasNgModuleProvider(tree: Tree, modulePath: string, providerName: string): boolean {
@@ -139,9 +142,9 @@ export function iterateNodes(
 ): void {
   const root =
     typeof contentOrRoot === 'string'
-      ? (parse.parseFragment(contentOrRoot, {
+      ? parse5.parseFragment(contentOrRoot, {
           sourceCodeLocationInfo: true,
-        }) as DocumentFragment)
+        })
       : contentOrRoot;
 
   const visitNodes = (nodes: any[]) => {
@@ -231,27 +234,27 @@ export class MigrationElement {
   /** Remove all content of this element. */
   removeContent() {
     this.recorder.remove(
-      this.resource.start + this.location.startTag.endOffset,
-      this.location.endTag.startOffset - this.location.startTag.endOffset
+      this.resource.start + this.location.startTag!.endOffset,
+      this.location.endTag!.startOffset - this.location.startTag!.endOffset
     );
   }
 
   removeEndTag() {
     this.recorder.remove(
-      this.resource.start + this.location.endTag.startOffset,
-      this.location.endTag.endOffset - this.location.endTag.startOffset
+      this.resource.start + this.location.endTag!.startOffset,
+      this.location.endTag!.endOffset - this.location.endTag!.startOffset
     );
   }
 
   removeStartTag() {
     this.recorder.remove(
-      this.resource.start + this.location.startTag.startOffset,
-      this.location.startTag.endOffset - this.location.startTag.startOffset
+      this.resource.start + this.location.startTag!.startOffset,
+      this.location.startTag!.endOffset - this.location.startTag!.startOffset
     );
   }
 
   rename(tagName: string, attributeSelector?: string) {
-    const startTagPosition = this.resource.start + this.location.startTag.startOffset + 1;
+    const startTagPosition = this.resource.start + this.location.startTag!.startOffset + 1;
     const tagLength = this.element.tagName.length;
     this.recorder.remove(startTagPosition, tagLength);
     this.recorder.insertRight(
@@ -259,7 +262,7 @@ export class MigrationElement {
       attributeSelector ? `${tagName} ${attributeSelector}` : tagName
     );
 
-    const endTagPosition = this.resource.start + this.location.endTag.startOffset + 2;
+    const endTagPosition = this.resource.start + this.location.endTag!.startOffset + 2;
     this.recorder.remove(endTagPosition, tagLength);
     this.recorder.insertRight(endTagPosition, tagName);
   }
@@ -276,12 +279,12 @@ export class MigrationElement {
 
   /** Insert the given content at the start of the element. */
   insertStart(content: string) {
-    this.recorder.insertRight(this.resource.start + this.location.startTag.endOffset, content);
+    this.recorder.insertRight(this.resource.start + this.location.startTag!.endOffset, content);
   }
 
   /** Insert the given content at the end of the element. */
   insertBeforeEnd(content: string) {
-    this.recorder.insertLeft(this.resource.start + this.location.endTag.startOffset, content);
+    this.recorder.insertLeft(this.resource.start + this.location.endTag!.startOffset, content);
   }
 
   findElements(filter: (node: Element) => boolean) {
@@ -341,7 +344,7 @@ export class MigrationElement {
     return this._createMigrationElementProperty(attribute);
   }
 
-  private _createMigrationElementProperty(attribute: Attribute) {
+  private _createMigrationElementProperty(attribute: parse5.Token.Attribute) {
     const location = this.location.attrs![attribute.name];
     let value: string | undefined;
     if (!attribute.name.startsWith('[')) {
@@ -358,7 +361,7 @@ export class MigrationElement {
 
   appendProperty(name: string, value?: string) {
     const content = typeof value === 'string' ? ` ${name}="${value}"` : ` ${name}`;
-    this.recorder.insertRight(this.resource.start + this.location.startTag.endOffset - 1, content);
+    this.recorder.insertRight(this.resource.start + this.location.startTag!.endOffset - 1, content);
   }
 
   outerHtml() {
@@ -367,8 +370,8 @@ export class MigrationElement {
 
   innerHtml() {
     return this.resource.content.substring(
-      this.location.startTag.endOffset,
-      this.location.endTag.startOffset
+      this.location.startTag!.endOffset,
+      this.location.endTag!.startOffset
     );
   }
 
@@ -393,8 +396,8 @@ export class MigrationElementProperty {
   }
 
   constructor(
-    readonly attribute: Attribute,
-    readonly location: Location,
+    readonly attribute: parse5.Token.Attribute,
+    readonly location: parse5.Token.Location,
     readonly value: string | undefined,
     private _element: MigrationElement
   ) {
