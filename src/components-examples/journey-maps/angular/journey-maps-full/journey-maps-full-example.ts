@@ -248,6 +248,7 @@ export class JourneyMapsFullExample implements OnInit, OnDestroy {
         });
         this.form.get('zoneGeoJson')?.reset();
         this.form.get('routingGeoJson')?.reset();
+        this.form.get('routingLegId')?.reset();
       });
   }
 
