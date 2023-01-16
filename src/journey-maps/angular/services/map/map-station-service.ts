@@ -1,8 +1,9 @@
 import { Injectable } from '@angular/core';
 import { GeoJSONSource, LayerSpecification, Map as MaplibreMap } from 'maplibre-gl';
 
+import { ROKAS_STATION_HOVER_SOURCE } from '../constants';
+
 export const SBB_STATION_LAYER = 'rokas-station-hover';
-export const SBB_STATION_SOURCE = 'rokas-station-hover-source';
 
 @Injectable({ providedIn: 'root' })
 export class SbbMapStationService {
@@ -33,8 +34,8 @@ export class SbbMapStationService {
       .queryRenderedFeatures(undefined, { layers: this._stationLayers })
       .map((f) => ({ type: f.type, properties: f.properties, geometry: f.geometry }));
 
-    map.removeFeatureState({ source: SBB_STATION_SOURCE });
-    const source = map.getSource(SBB_STATION_SOURCE) as GeoJSONSource;
+    map.removeFeatureState({ source: ROKAS_STATION_HOVER_SOURCE });
+    const source = map.getSource(ROKAS_STATION_HOVER_SOURCE) as GeoJSONSource;
     source.setData({ type: 'FeatureCollection', features });
   }
 
