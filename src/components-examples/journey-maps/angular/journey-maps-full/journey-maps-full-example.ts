@@ -19,6 +19,7 @@ import { LngLatBounds, LngLatBoundsLike, LngLatLike } from 'maplibre-gl';
 import { BehaviorSubject, filter, Subject, take } from 'rxjs';
 import { map, takeUntil } from 'rxjs/operators';
 
+import { zhBeWyleregg } from './mock-response/journey/zh-be_wyleregg';
 import { zhShWaldfriedhof } from './mock-response/journey/zh-sh_waldfriedhof';
 import { markers } from './mock-response/markers';
 import { bielLyssRoutes, bielLyssRoutesOptions } from './mock-response/routes/biel-lyss';
@@ -71,6 +72,7 @@ export class JourneyMapsFullExample implements OnInit, OnDestroy {
   journeyMapsRoutingOptions: { label: string; value: SbbJourneyMapsRoutingOptions | undefined }[] =
     [
       { label: '(none)', value: undefined },
+      { label: 'Zürich - Bern, Wyleregg', value: { journey: zhBeWyleregg } },
       { label: 'Zürich - Schaffhausen, Waldfriedhof', value: { journey: zhShWaldfriedhof } },
       {
         label: 'Bern - Lausanne',
