@@ -12,6 +12,7 @@ import { needsFloorChange, updateWalkFloor } from './util/walk-floor-updater';
 export class SbbMapTransferService {
   private _data: FeatureCollection;
 
+  // calling this method only makes sense for clients using the v1 style.
   updateTransfer(
     map: MaplibreMap,
     featureCollection: FeatureCollection = SBB_EMPTY_FEATURE_COLLECTION
