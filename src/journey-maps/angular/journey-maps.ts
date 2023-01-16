@@ -564,10 +564,8 @@ export class SbbJourneyMaps implements OnInit, AfterViewInit, OnDestroy, OnChang
     }
 
     if (
-      changes.styleOptions?.currentValue.mode !== changes.styleOptions?.previousValue?.mode ||
-      changes.styleOptions?.currentValue.brightId !==
-        changes.styleOptions?.previousValue?.brightId ||
-      changes.styleOptions?.currentValue.darkId !== changes.styleOptions?.previousValue?.darkId
+      JSON.stringify(changes.styleOptions?.currentValue) !==
+      JSON.stringify(changes.styleOptions?.previousValue)
     ) {
       this._mapStyleOptionsChanged.next();
     }
