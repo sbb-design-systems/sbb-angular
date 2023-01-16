@@ -87,7 +87,7 @@ export class JourneyMapsFullExample implements OnInit, OnDestroy {
       { label: 'Transfer Luzern', value: { transfer: luzern4j } },
       { label: 'Transfer Zürich', value: { transfer: zurichIndoor } },
     ];
-  journeyMapsRoutingLegIds: (string | undefined)[] = [];
+  journeyMapsRoutingLegIds: string[] = [];
   homeButtonOptions: SbbViewportDimensions = { boundingBox: SBB_BOUNDING_BOX };
   viewportDimensions?: SbbViewportDimensions;
   zoomLevels?: SbbZoomLevels;
@@ -205,12 +205,11 @@ export class JourneyMapsFullExample implements OnInit, OnDestroy {
         } else {
           this.journeyMapsRoutingOption = routingOption;
         }
-        const legIds = this._distinct(
+        this.journeyMapsRoutingLegIds = this._distinct(
           routingOption?.journey?.features.map((f) => f.properties?.legId) ?? []
         )
           .filter((x) => x)
           .sort();
-        this.journeyMapsRoutingLegIds = legIds.length ? [undefined].concat(legIds) : [];
       });
 
     this.form
