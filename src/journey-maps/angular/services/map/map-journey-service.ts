@@ -95,7 +95,7 @@ export class SbbMapJourneyService {
   }
 
   private _handleStopovers(features: Feature[], map: MaplibreMap, selectedLegId?: string) {
-    const featuresByLegId: Map<string, Feature[]> = groupByLegId(features);
+    const featuresByLegId: Map<string, Feature[]> = this._groupByLegId(features);
     const selectedStopoverFeatures = (
       selectedLegId && featuresByLegId.has(selectedLegId) ? featuresByLegId.get(selectedLegId)! : []
     ).filter((feature) => feature.properties?.type === 'stopover');
@@ -104,18 +104,18 @@ export class SbbMapJourneyService {
       features: selectedStopoverFeatures,
     });
   }
-}
 
-const groupByLegId = (features: Array<Feature>): Map<string, Feature[]> => {
-  // filter and group the features by legId
-  const groupedByLegId = features
-    .filter((f) => f.properties?.legId)
-    .reduce(
-      (res: any, curr: Feature) => ({
-        ...res,
-        [curr.properties!.legId]: [...(res[curr.properties!.legId] || []), curr],
-      }),
-      {}
-    );
-  return new Map(Object.entries(groupedByLegId));
-};
+  private _groupByLegId(features: Array<Feature>): Map<string, Feature[]> {
+    // filter and group the features by legId
+    const groupedByLegId = features
+      .filter((f) => f.properties?.legId)
+      .reduce(
+        (res: any, curr: Feature) => ({
+          ...res,
+          [curr.properties!.legId]: [...(res[curr.properties!.legId] || []), curr],
+        }),
+        {}
+      );
+    return new Map(Object.entries(groupedByLegId));
+  }
+}
