@@ -5,7 +5,7 @@ import { Map as MaplibreMap } from 'maplibre-gl';
   providedIn: 'root',
 })
 export class SbbQueryMapFeatures {
-  // putting SERVICE_POINT_SOURCE_ID with the other source constants causes circular dependency on GitHub Actions
+  // putting SERVICE_POINT_SOURCE_ID with the other source constants causes circular dependency on `yarn build packages`
   static readonly SERVICE_POINT_SOURCE_ID = 'service_points';
   private readonly _levelsFeaturePropertyName = 'floor_liststring';
 
