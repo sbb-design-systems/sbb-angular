@@ -31,10 +31,8 @@ export class SbbMapTransferService {
   }
 
   private _getSource(map: MaplibreMap): GeoJSONSource {
-    if (isV1Style(map)) {
-      return map.getSource(SBB_ROKAS_WALK_SOURCE) as GeoJSONSource;
-    } else {
-      return map.getSource(SBB_ROKAS_ROUTE_SOURCE) as GeoJSONSource;
-    }
+    return map.getSource(
+      isV1Style(map) ? SBB_ROKAS_WALK_SOURCE : SBB_ROKAS_ROUTE_SOURCE
+    ) as GeoJSONSource;
   }
 }
