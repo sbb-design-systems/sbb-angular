@@ -483,7 +483,7 @@ describe('SbbDialog', () => {
   });
 
   it('should override the max-width of the overlay pane', fakeAsync(() => {
-    let dialogRef = dialog.open(PizzaMsg);
+    const dialogRef = dialog.open(PizzaMsg);
 
     viewContainerFixture.detectChanges();
 
@@ -499,7 +499,7 @@ describe('SbbDialog', () => {
     viewContainerFixture.detectChanges();
     flushMicrotasks();
 
-    dialogRef = dialog.open(PizzaMsg, {
+    dialog.open(PizzaMsg, {
       maxWidth: '100px',
     });
 
