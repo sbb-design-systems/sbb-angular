@@ -1,4 +1,4 @@
-import { SbbJourneyMapsRoutingOptions } from '../../angular';
+import { SbbJourneyMapsRoutingOptions } from '../';
 
 export const getInvalidOptionCombination = (
   routingOptions: SbbJourneyMapsRoutingOptions = {}
