@@ -60,7 +60,7 @@ import { SbbMapService } from './services/map/map-service';
 import { SbbMapTransferService } from './services/map/map-transfer-service';
 import { SbbMapUrlService } from './services/map/map-url-service';
 import { SbbMapZoneService } from './services/map/map-zone-service';
-import { getInvalidOptionCombination } from './util/input-validation';
+import { getInvalidRoutingOptionCombination } from './util/input-validation';
 
 const SATELLITE_MAP_MAX_ZOOM = 19.2;
 const SATELLITE_MAP_TILE_SIZE = 256;
@@ -456,7 +456,9 @@ export class SbbJourneyMaps implements OnInit, AfterViewInit, OnDestroy, OnChang
 
     // handle journey, transfer, and routes together, otherwise they can overwrite each other's transfer or route data
     if (changes.journeyMapsRoutingOption) {
-      const invalidKeyCombination = getInvalidOptionCombination(this.journeyMapsRoutingOption);
+      const invalidKeyCombination = getInvalidRoutingOptionCombination(
+        this.journeyMapsRoutingOption
+      );
       if (invalidKeyCombination.length) {
         console.error(
           `journeyMapsRoutingOption: Use only one of the following: 'transfer', 'journey', 'routes'. Received: ` +

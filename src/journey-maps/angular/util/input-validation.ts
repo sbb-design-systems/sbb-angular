@@ -1,6 +1,6 @@
 import { SbbJourneyMapsRoutingOptions } from '../journey-maps.interfaces';
 
-export const getInvalidOptionCombination = (
+export const getInvalidRoutingOptionCombination = (
   routingOptions: SbbJourneyMapsRoutingOptions = {}
 ): string[] => {
   const nonEmptyOptions = Object.entries(routingOptions).filter(([_, value]) => value);
