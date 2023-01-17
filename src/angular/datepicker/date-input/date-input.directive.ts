@@ -175,16 +175,16 @@ export class SbbDateInput<D> implements ControlValueAccessor, Validator, OnInit,
   }
   private _readonly = false;
 
-  /** Whether overflowing dates are allowed. */
+  /** Whether entering overflowing dates should be prevented. */
   @Input()
-  get allowOverflowingDate() {
-    return this._allowOverflowingDate;
+  get preventOverflowingDate(): boolean {
+    return this._preventOverflowingDate;
   }
-  set allowOverflowingDate(value: BooleanInput) {
-    this._allowOverflowingDate = coerceBooleanProperty(value);
+  set preventOverflowingDate(value: BooleanInput) {
+    this._preventOverflowingDate = coerceBooleanProperty(value);
     this._validatorOnChange();
   }
-  private _allowOverflowingDate = true;
+  private _preventOverflowingDate = false;
 
   /** Emits when a `change` event is fired on this `<input>`. */
   @Output() readonly dateChange: EventEmitter<SbbDateInputEvent<D>> = new EventEmitter<
@@ -254,7 +254,7 @@ export class SbbDateInput<D> implements ControlValueAccessor, Validator, OnInit,
 
   /** The form control validator for overflowing dates. */
   private _overflowValidator: ValidatorFn = (): ValidationErrors | null => {
-    return this.allowOverflowingDate ||
+    return !this.preventOverflowingDate ||
       !this._dateAdapter.isOverflowingDate(this._elementRef.nativeElement.value)
       ? null
       : { sbbDateOverflow: true };
@@ -360,7 +360,7 @@ export class SbbDateInput<D> implements ControlValueAccessor, Validator, OnInit,
     this._lastValueValid = !date || this._dateAdapter.isValid(date);
     date = this._getValidDateOrNull(date);
 
-    if (!this.allowOverflowingDate && this._dateAdapter.isOverflowingDate(value)) {
+    if (this.preventOverflowingDate && this._dateAdapter.isOverflowingDate(value)) {
       date = null;
       this._lastValueValid = false;
     }

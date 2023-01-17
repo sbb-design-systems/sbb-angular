@@ -1147,7 +1147,7 @@ class StandaloneDateInputComponent {
 }
 
 @Component({
-  template: ` <input sbbDateInput allowOverflowingDate="false" sbbInput [formControl]="date" /> `,
+  template: ` <input sbbDateInput preventOverflowingDate="true" sbbInput [formControl]="date" /> `,
 })
 class StandaloneDateInputWithoutOverflowComponent {
   date = new FormControl<Date | null>(null);
