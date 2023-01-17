@@ -23,15 +23,15 @@ export class SbbMapRouteService {
         mapSelectionEventService.initSelectedState(map, routeFeatureCollection.features, 'ROUTE')
       );
     }
-    this.handleLegIdSelection(map, routeFeatureCollection.features, selectedLegId);
+    this.handleLegSelection(map, routeFeatureCollection.features, selectedLegId);
   }
 
-  handleLegIdSelection(map: MaplibreMap, features: Feature[], selectedLegId?: string) {
+  handleLegSelection(map: MaplibreMap, features: Feature[], selectedLegId?: string) {
     this._handleStopovers(features, map, selectedLegId);
-    this._setNotSelectedLegIds(map, selectedLegId);
+    this._setNotSelectedLegs(map, selectedLegId);
   }
 
-  private _setNotSelectedLegIds(map: MaplibreMap, selectedLegId?: string) {
+  private _setNotSelectedLegs(map: MaplibreMap, selectedLegId?: string) {
     map.once('idle', () => {
       map
         .querySourceFeatures(SBB_ROKAS_ROUTE_SOURCE, {
