@@ -13,7 +13,6 @@ import {
   SimpleChanges,
   ViewChild,
 } from '@angular/core';
-import { getInvalidOptionCombination } from '@sbb-esta/journey-maps/angular/util/input-validation';
 import { FeatureCollection } from 'geojson';
 import type { Map } from 'maplibre-gl';
 import { LngLatBounds, LngLatLike, Map as MaplibreMap, VectorTileSource } from 'maplibre-gl';
@@ -61,6 +60,7 @@ import { SbbMapService } from './services/map/map-service';
 import { SbbMapTransferService } from './services/map/map-transfer-service';
 import { SbbMapUrlService } from './services/map/map-url-service';
 import { SbbMapZoneService } from './services/map/map-zone-service';
+import { getInvalidOptionCombination } from './util/input-validation';
 
 const SATELLITE_MAP_MAX_ZOOM = 19.2;
 const SATELLITE_MAP_TILE_SIZE = 256;

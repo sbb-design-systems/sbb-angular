@@ -1,5 +1,6 @@
-import { SBB_EMPTY_FEATURE_COLLECTION } from '@sbb-esta/journey-maps/angular/services/map/map-service';
-import { getInvalidOptionCombination } from '@sbb-esta/journey-maps/angular/util/input-validation';
+import { SBB_EMPTY_FEATURE_COLLECTION } from '../services/map/map-service';
+
+import { getInvalidOptionCombination } from './input-validation';
 
 describe('getInvalidKeyCombination()', () => {
   it('returns empty array', () => {

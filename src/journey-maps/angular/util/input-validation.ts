@@ -1,4 +1,4 @@
-import { SbbJourneyMapsRoutingOptions } from '@sbb-esta/journey-maps/angular';
+import { SbbJourneyMapsRoutingOptions } from '../../angular';
 
 export const getInvalidOptionCombination = (
   routingOptions: SbbJourneyMapsRoutingOptions = {}
