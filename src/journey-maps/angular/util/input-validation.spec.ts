@@ -9,34 +9,34 @@ describe('getInvalidKeyCombination()', () => {
     expect(
       getInvalidRoutingOptionCombination({
         journey: SBB_EMPTY_FEATURE_COLLECTION,
-      }).length
-    ).toBe(0);
+      })
+    ).toEqual([]);
 
     expect(
       getInvalidRoutingOptionCombination({
         journey: SBB_EMPTY_FEATURE_COLLECTION,
         journeyMetaInformation: { selectedLegId: '' },
-      }).length
-    ).toBe(0);
+      })
+    ).toEqual([]);
 
     expect(
       getInvalidRoutingOptionCombination({
         routes: [SBB_EMPTY_FEATURE_COLLECTION],
-      }).length
-    ).toBe(0);
+      })
+    ).toEqual([]);
 
     expect(
       getInvalidRoutingOptionCombination({
         routes: [SBB_EMPTY_FEATURE_COLLECTION],
         routesMetaInformations: [],
-      }).length
-    ).toBe(0);
+      })
+    ).toEqual([]);
 
     expect(
       getInvalidRoutingOptionCombination({
         transfer: SBB_EMPTY_FEATURE_COLLECTION,
-      }).length
-    ).toBe(0);
+      })
+    ).toEqual([]);
 
     expect(
       getInvalidRoutingOptionCombination({
@@ -45,8 +45,8 @@ describe('getInvalidKeyCombination()', () => {
         routes: undefined,
         routesMetaInformations: undefined,
         transfer: undefined,
-      }).length
-    ).toBe(0);
+      })
+    ).toEqual([]);
 
     expect(
       getInvalidRoutingOptionCombination({
@@ -55,8 +55,8 @@ describe('getInvalidKeyCombination()', () => {
         routes: [],
         routesMetaInformations: undefined,
         transfer: undefined,
-      }).length
-    ).toBe(0);
+      })
+    ).toEqual([]);
 
     expect(
       getInvalidRoutingOptionCombination({
@@ -65,8 +65,8 @@ describe('getInvalidKeyCombination()', () => {
         routes: undefined,
         routesMetaInformations: undefined,
         transfer: SBB_EMPTY_FEATURE_COLLECTION,
-      }).length
-    ).toBe(0);
+      })
+    ).toEqual([]);
   });
 
   it('returns non-empty array', () => {
