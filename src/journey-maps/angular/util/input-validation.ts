@@ -3,7 +3,7 @@ import { SbbJourneyMapsRoutingOptions } from '@sbb-esta/journey-maps/angular';
 export const getInvalidOptionCombination = (
   routingOptions: SbbJourneyMapsRoutingOptions = {}
 ): string[] => {
-  const nonEmptyOptions = Object.entries(routingOptions).filter(([key, value]) => value);
+  const nonEmptyOptions = Object.entries(routingOptions).filter(([_, value]) => value);
 
   const nbOfOptions = nonEmptyOptions.length;
 
@@ -16,5 +16,5 @@ export const getInvalidOptionCombination = (
       ((!!routingOptions.routes && !!routingOptions.routesMetaInformations) ||
         (!!routingOptions.journey && !!routingOptions.journeyMetaInformation)));
 
-  return isValid ? [] : nonEmptyOptions.map(([key, value]) => key);
+  return isValid ? [] : nonEmptyOptions.map(([key, _]) => key);
 };
