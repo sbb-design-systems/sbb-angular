@@ -1,4 +1,4 @@
-import { SbbJourneyMapsRoutingOptions } from '../';
+import { SbbJourneyMapsRoutingOptions } from '../journey-maps.interfaces';
 
 export const getInvalidOptionCombination = (
   routingOptions: SbbJourneyMapsRoutingOptions = {}
