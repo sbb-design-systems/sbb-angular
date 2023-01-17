@@ -195,6 +195,7 @@ export class JourneyMapsFullExample implements OnInit, OnDestroy {
       .get('routingGeoJson')
       ?.valueChanges.pipe(takeUntil(this._destroyed))
       .subscribe((routingOption?: SbbJourneyMapsRoutingOptions) => {
+        this.form.get('routingLegId')?.reset(); // calling this later has unintended side effects on bbox
         const bbox = this._getBbox(routingOption);
         if (bbox) {
           this._setBbox(bbox);
@@ -211,7 +212,6 @@ export class JourneyMapsFullExample implements OnInit, OnDestroy {
         )
           .filter((x) => x)
           .sort();
-        this.form.get('routingLegId')?.reset();
       });
 
     this.form
