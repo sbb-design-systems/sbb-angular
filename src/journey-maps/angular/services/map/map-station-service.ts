@@ -3,6 +3,8 @@ import { GeoJSONSource, LayerSpecification, Map as MaplibreMap } from 'maplibre-
 
 import { SBB_ROKAS_STATION_HOVER_SOURCE } from '../constants';
 
+import { toFeatureCollection } from './util/feature-collection-util';
+
 export const SBB_STATION_LAYER = 'rokas-station-hover';
 
 @Injectable({ providedIn: 'root' })
@@ -36,7 +38,7 @@ export class SbbMapStationService {
 
     map.removeFeatureState({ source: SBB_ROKAS_STATION_HOVER_SOURCE });
     const source = map.getSource(SBB_ROKAS_STATION_HOVER_SOURCE) as GeoJSONSource;
-    source.setData({ type: 'FeatureCollection', features });
+    source.setData(toFeatureCollection(features));
   }
 
   private _extractStationLayers(map: MaplibreMap): string[] | undefined {

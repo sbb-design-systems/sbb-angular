@@ -6,10 +6,9 @@ import { SbbPointsOfInterestOptions, SbbViewportDimensions } from '../../journey
 import { isSbbMapCenterOptions } from '../../util/typeguard';
 import { SBB_POI_LAYER } from '../constants';
 
-export const SBB_EMPTY_FEATURE_COLLECTION: FeatureCollection = {
-  type: 'FeatureCollection',
-  features: [],
-};
+import { toFeatureCollection } from './util/feature-collection-util';
+
+export const SBB_EMPTY_FEATURE_COLLECTION: FeatureCollection = toFeatureCollection([]);
 
 @Injectable({ providedIn: 'root' })
 export class SbbMapService {

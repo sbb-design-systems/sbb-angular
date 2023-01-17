@@ -6,6 +6,7 @@ import { SBB_ROKAS_ROUTE_SOURCE, SBB_ROKAS_STOPOVER_SOURCE } from '../constants'
 
 import { SbbMapSelectionEvent } from './events/map-selection-event';
 import { SBB_EMPTY_FEATURE_COLLECTION } from './map-service';
+import { toFeatureCollection } from './util/feature-collection-util';
 
 @Injectable({ providedIn: 'root' })
 export class SbbMapRouteService {
@@ -13,6 +14,7 @@ export class SbbMapRouteService {
     map: MaplibreMap,
     mapSelectionEventService: SbbMapSelectionEvent,
     routeFeatureCollection: FeatureCollection = SBB_EMPTY_FEATURE_COLLECTION,
+    stopoverFeatures: Feature[] = [],
     selectedLegId?: string
   ): void {
     const source = map.getSource(SBB_ROKAS_ROUTE_SOURCE) as GeoJSONSource;
@@ -23,11 +25,11 @@ export class SbbMapRouteService {
         mapSelectionEventService.initSelectedState(map, routeFeatureCollection.features, 'ROUTE')
       );
     }
-    this.handleLegSelection(map, routeFeatureCollection.features, selectedLegId);
+    this.handleLegSelection(map, stopoverFeatures, selectedLegId);
   }
 
-  handleLegSelection(map: MaplibreMap, features: Feature[], selectedLegId?: string) {
-    this._handleStopovers(features, map, selectedLegId);
+  handleLegSelection(map: MaplibreMap, stopoverFeatures: Feature[], selectedLegId?: string) {
+    this._handleStopovers(stopoverFeatures, map, selectedLegId);
     this._setNotSelectedLegs(map, selectedLegId);
   }
 
@@ -49,19 +51,15 @@ export class SbbMapRouteService {
     });
   }
 
-  private _handleStopovers(features: Feature[], map: MaplibreMap, selectedLegId?: string) {
+  private _handleStopovers(stopoverFeatures: Feature[], map: MaplibreMap, selectedLegId?: string) {
     const source = map.getSource(SBB_ROKAS_STOPOVER_SOURCE) as GeoJSONSource;
     if (source) {
-      const featuresByLegId: Map<string, Feature[]> = this._groupByLegId(features);
-      const selectedStopoverFeatures = (
+      const featuresByLegId: Map<string, Feature[]> = this._groupByLegId(stopoverFeatures);
+      const selectedStopoverFeatures =
         selectedLegId && featuresByLegId.has(selectedLegId)
           ? featuresByLegId.get(selectedLegId)!
-          : []
-      ).filter((feature) => feature.properties?.type === 'stopover');
-      source.setData({
-        type: 'FeatureCollection',
-        features: selectedStopoverFeatures,
-      });
+          : [];
+      source.setData(toFeatureCollection(selectedStopoverFeatures));
     }
   }
 
