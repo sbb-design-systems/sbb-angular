@@ -10,8 +10,7 @@ export const getInvalidOptionCombination = (
   const isValid =
     nbOfOptions === 0 ||
     (nbOfOptions === 1 &&
-      !routingOptions.routesMetaInformations &&
-      !routingOptions.journeyMetaInformation) ||
+      (!!routingOptions.journey || !!routingOptions.routes || !!routingOptions.transfer)) ||
     (nbOfOptions === 2 &&
       ((!!routingOptions.routes && !!routingOptions.routesMetaInformations) ||
         (!!routingOptions.journey && !!routingOptions.journeyMetaInformation)));
