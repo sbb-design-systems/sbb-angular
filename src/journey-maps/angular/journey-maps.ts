@@ -13,6 +13,7 @@ import {
   SimpleChanges,
   ViewChild,
 } from '@angular/core';
+import { getInvalidOptionCombination } from '@sbb-esta/journey-maps/angular/util/input-validation';
 import { FeatureCollection } from 'geojson';
 import type { Map } from 'maplibre-gl';
 import { LngLatBounds, LngLatLike, Map as MaplibreMap, VectorTileSource } from 'maplibre-gl';
@@ -455,13 +456,11 @@ export class SbbJourneyMaps implements OnInit, AfterViewInit, OnDestroy, OnChang
 
     // handle journey, transfer, and routes together, otherwise they can overwrite each other's transfer or route data
     if (changes.journeyMapsRoutingOption) {
-      if (!this._areRoutingOptionsValid()) {
+      const invalidKeyCombination = getInvalidOptionCombination(this.journeyMapsRoutingOption);
+      if (invalidKeyCombination.length) {
         console.error(
-          `journeyMapsRoutingOption: Use either 'transfer' or 'journey' or 'routes'. Received: ` +
-            Object.entries(this.journeyMapsRoutingOption || {})
-              .filter(([k, v]) => v)
-              .map(([k, v]) => `'${k}'`)
-              .join(', ')
+          `journeyMapsRoutingOption: Use only one of the following: 'transfer', 'journey', 'routes'. Received: ` +
+            invalidKeyCombination.map((key) => `'${key}'`).join(', ')
         );
       } else {
         if (this._haveRoutesMetaInformationsChanged(changes)) {
@@ -480,8 +479,8 @@ export class SbbJourneyMaps implements OnInit, AfterViewInit, OnDestroy, OnChang
           this._mapLeitPoiService.processData(this._map, undefined);
           // only add new data if we have some
           if (
-            changes.journeyMapsRoutingOption?.currentValue?.journey ||
-            changes.journeyMapsRoutingOption?.currentValue?.journeyMetaInformation
+            changes.journeyMapsRoutingOption.currentValue?.journey ||
+            changes.journeyMapsRoutingOption.currentValue?.journeyMetaInformation
           ) {
             this._mapJourneyService.updateJourney(
               this._map,
@@ -495,14 +494,14 @@ export class SbbJourneyMaps implements OnInit, AfterViewInit, OnDestroy, OnChang
               0
             );
           }
-          if (changes.journeyMapsRoutingOption?.currentValue?.transfer) {
+          if (changes.journeyMapsRoutingOption.currentValue?.transfer) {
             this._mapTransferService.updateTransfer(
               this._map,
               this.journeyMapsRoutingOption!.transfer
             );
             this._mapLeitPoiService.processData(this._map, this.journeyMapsRoutingOption!.transfer);
           }
-          if (changes.journeyMapsRoutingOption?.currentValue?.routes) {
+          if (changes.journeyMapsRoutingOption.currentValue?.routes) {
             this._mapRoutesService.updateRoutes(
               this._map,
               mapSelectionEventService,
@@ -871,24 +870,6 @@ export class SbbJourneyMaps implements OnInit, AfterViewInit, OnDestroy, OnChang
         this.journeyMapsRoutingOption?.routesMetaInformations
       ) ?? [];
     return [...normalMarkers, ...routeMidpointMarkers];
-  }
-
-  private _areRoutingOptionsValid(): boolean {
-    const optionsAmount = Object.values(this.journeyMapsRoutingOption ?? {}).filter(
-      (val) => val
-    ).length;
-
-    return (
-      optionsAmount === 0 ||
-      (optionsAmount === 1 &&
-        !this.journeyMapsRoutingOption?.routesMetaInformations &&
-        !this.journeyMapsRoutingOption?.journeyMetaInformation) ||
-      (optionsAmount === 2 &&
-        ((!!this.journeyMapsRoutingOption?.routes &&
-          !!this.journeyMapsRoutingOption?.routesMetaInformations) ||
-          (!!this.journeyMapsRoutingOption?.journey &&
-            !!this.journeyMapsRoutingOption?.journeyMetaInformation)))
-    );
   }
 
   private _haveRoutesMetaInformationsChanged(changes: SimpleChanges): boolean {
