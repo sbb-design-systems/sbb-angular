@@ -211,6 +211,7 @@ export class JourneyMapsFullExample implements OnInit, OnDestroy {
         )
           .filter((x) => x)
           .sort();
+        this.form.get('routingLegId')?.reset();
       });
 
     this.form
