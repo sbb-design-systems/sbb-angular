@@ -14,8 +14,8 @@ import {
   ViewChild,
 } from '@angular/core';
 import { FeatureCollection } from 'geojson';
-import { LngLatBounds, LngLatLike, Map as MaplibreMap, VectorTileSource } from 'maplibre-gl';
 import type { Map } from 'maplibre-gl';
+import { LngLatBounds, LngLatLike, Map as MaplibreMap, VectorTileSource } from 'maplibre-gl';
 import { ReplaySubject, Subject } from 'rxjs';
 import { debounceTime, delay, switchMap, take, takeUntil } from 'rxjs/operators';
 
@@ -455,11 +455,12 @@ export class SbbJourneyMaps implements OnInit, AfterViewInit, OnDestroy, OnChang
 
     // handle journey, transfer, and routes together, otherwise they can overwrite each other's transfer or route data
     if (changes.journeyMapsRoutingOption) {
-      if (!this._areRoutingOptionsValid()) {
+      if (true) {
         console.error(
           `journeyMapsRoutingOption: Use either 'transfer' or 'journey' or 'routes'. Received: ` +
-            Object.keys(this.journeyMapsRoutingOption || {})
-              .map((k) => `'${k}'`)
+            Object.entries(this.journeyMapsRoutingOption || {})
+              .filter(([k, v]) => v)
+              .map(([k, v]) => `'${k}'`)
               .join(', ')
         );
       } else {
