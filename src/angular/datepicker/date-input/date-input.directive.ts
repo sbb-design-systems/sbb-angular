@@ -175,6 +175,17 @@ export class SbbDateInput<D> implements ControlValueAccessor, Validator, OnInit,
   }
   private _readonly = false;
 
+  /** Whether overflowing dates are allowed. */
+  @Input()
+  get allowOverflowingDate() {
+    return this._allowOverflowingDate;
+  }
+  set allowOverflowingDate(value: BooleanInput) {
+    this._allowOverflowingDate = coerceBooleanProperty(value);
+    this._validatorOnChange();
+  }
+  private _allowOverflowingDate = true;
+
   /** Emits when a `change` event is fired on this `<input>`. */
   @Output() readonly dateChange: EventEmitter<SbbDateInputEvent<D>> = new EventEmitter<
     SbbDateInputEvent<D>
@@ -241,6 +252,14 @@ export class SbbDateInput<D> implements ControlValueAccessor, Validator, OnInit,
       : { sbbDateFilter: true };
   };
 
+  /** The form control validator for overflowing dates. */
+  private _overflowValidator: ValidatorFn = (): ValidationErrors | null => {
+    return this.allowOverflowingDate ||
+      !this._dateAdapter.isOverflowingDate(this._elementRef.nativeElement.value)
+      ? null
+      : { sbbDateOverflow: true };
+  };
+
   /** The combined form control validator for this input. */
   // tslint:disable-next-line:member-ordering
   private _validator: ValidatorFn | null = Validators.compose([
@@ -248,6 +267,7 @@ export class SbbDateInput<D> implements ControlValueAccessor, Validator, OnInit,
     this._minValidator,
     this._maxValidator,
     this._filterValidator,
+    this._overflowValidator,
   ]);
 
   constructor(
@@ -339,6 +359,11 @@ export class SbbDateInput<D> implements ControlValueAccessor, Validator, OnInit,
     let date = this._dateAdapter.parse(value);
     this._lastValueValid = !date || this._dateAdapter.isValid(date);
     date = this._getValidDateOrNull(date);
+
+    if (!this.allowOverflowingDate && this._dateAdapter.isOverflowingDate(value)) {
+      date = null;
+      this._lastValueValid = false;
+    }
 
     if (!this._dateAdapter.sameDate(date, this._value)) {
       this._value = date;

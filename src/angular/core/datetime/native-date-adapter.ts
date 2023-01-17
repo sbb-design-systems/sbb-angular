@@ -210,17 +210,35 @@ export class SbbNativeDateAdapter extends SbbDateAdapter<Date> {
     return !isNaN(date.valueOf());
   }
 
+  isOverflowingDate(value: string): boolean {
+    const parts = this._splitStringDate(value);
+    const date = this._parseStringDate(value);
+    if (!parts || !date) {
+      return false;
+    }
+    const [year, month, day] = parts;
+    return date.getFullYear() !== year || date.getMonth() !== month || date.getDate() !== day;
+  }
+
   invalid(): Date {
     return new Date(NaN);
   }
 
-  protected _parseStringDate(value: string) {
+  protected _splitStringDate(value: string): [number, number, number] | null {
     const match = /^(\w+,[ ]?)?(\d+)\.(\d+)\.(\d+)$/.exec(value);
     if (!match) {
       return null;
     }
+    return [+match[4], +match[3] - 1, +match[2]];
+  }
 
-    const date = this._createDateWithOverflow(+match[4], +match[3] - 1, +match[2]);
+  protected _parseStringDate(value: string) {
+    const parts = this._splitStringDate(value);
+    if (!parts) {
+      return null;
+    }
+
+    const date = this._createDateWithOverflow(...parts);
     return this._normalizeYear(date);
   }
 

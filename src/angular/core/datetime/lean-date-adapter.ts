@@ -16,11 +16,23 @@ export class SbbLeanDateAdapter extends SbbNativeDateAdapter {
     return super._parseStringDate(value) || this._parseStringDateLean(value);
   }
 
+  protected override _splitStringDate(value: string): [number, number, number] | null {
+    return super._splitStringDate(value) || this._splitStringDateLean(value);
+  }
+
   private _parseStringDateLean(value: string): null | Date {
+    const split = this._splitStringDateLean(value);
+    if (!split) {
+      return null;
+    }
+    return this._normalizeYear(this._createDateWithOverflow(...split));
+  }
+
+  private _splitStringDateLean(value: string): [number, number, number] | null {
     const match = /^(\w+,[ ]?)?(\d{2})(\d{2})(\d{2}|\d{4})$/.exec(value);
     if (!match) {
       return null;
     }
-    return this._normalizeYear(this._createDateWithOverflow(+match[4], +match[3] - 1, +match[2]));
+    return [+match[4], +match[3] - 1, +match[2]];
   }
 }

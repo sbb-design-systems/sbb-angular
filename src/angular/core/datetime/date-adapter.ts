@@ -164,6 +164,13 @@ export abstract class SbbDateAdapter<D> {
   abstract isValid(date: D): boolean;
 
   /**
+   * Checks whether a given date string contains an overflowing date.
+   * @param value The date string to check.
+   * @returns Whether the date is overflowing.
+   */
+  abstract isOverflowingDate(value: string): boolean;
+
+  /**
    * Gets date instance that is not valid.
    * @returns An invalid date.
    */

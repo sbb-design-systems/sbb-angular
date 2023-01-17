@@ -10,6 +10,7 @@ import {
   dispatchFakeEvent,
   dispatchKeyboardEvent,
   dispatchMouseEvent,
+  FEB,
   JAN,
 } from '@sbb-esta/angular/core/testing';
 import { SbbFormField } from '@sbb-esta/angular/form-field';
@@ -912,6 +913,36 @@ describe('SbbDatepicker', () => {
       expect(dateInput.nativeElement.value).toBe('01.01.2022');
     });
   });
+
+  describe('standalone date input without overflow', () => {
+    let fixture: ComponentFixture<StandaloneDateInputWithoutOverflowComponent>;
+    let testComponent: StandaloneDateInputWithoutOverflowComponent;
+
+    beforeEach(fakeAsync(() => {
+      fixture = createComponent(StandaloneDateInputWithoutOverflowComponent);
+      fixture.detectChanges();
+
+      testComponent = fixture.componentInstance;
+    }));
+
+    it('should throw an error for overflowing dates', () => {
+      const dateInput = fixture.debugElement.query(By.css('.sbb-date-input')).nativeElement;
+      dateInput.value = '30.02.2023';
+      dispatchFakeEvent(dateInput, 'input');
+      fixture.detectChanges();
+      expect(Object.keys(testComponent.date.errors!)).toContain('sbbDateOverflow');
+      expect(testComponent.date.value).toBeNull();
+    });
+
+    it('should accept non overflowing dates', () => {
+      const dateInput = fixture.debugElement.query(By.css('.sbb-date-input')).nativeElement;
+      dateInput.value = '28.02.2023';
+      dispatchFakeEvent(dateInput, 'input');
+      fixture.detectChanges();
+      expect(testComponent.date.errors).toBeNull();
+      expect(testComponent.date.value).toEqual(new Date(2023, FEB, 28));
+    });
+  });
 });
 
 @Component({
@@ -1112,5 +1143,12 @@ class DatepickerWithNoToggleComponent {
   template: ` <input sbbDateInput sbbInput [formControl]="date" /> `,
 })
 class StandaloneDateInputComponent {
+  date = new FormControl<Date | null>(null);
+}
+
+@Component({
+  template: ` <input sbbDateInput allowOverflowingDate="false" sbbInput [formControl]="date" /> `,
+})
+class StandaloneDateInputWithoutOverflowComponent {
   date = new FormControl<Date | null>(null);
 }

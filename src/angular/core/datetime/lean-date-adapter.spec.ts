@@ -47,4 +47,21 @@ describe('LeanDateAdapter', () => {
         .toBeNull()
     );
   });
+
+  it('should detect overflowing dates', () => {
+    const params = [
+      { input: '30022022', isOverflowing: true },
+      { input: '28022022', isOverflowing: false },
+      { input: '30.02.2022', isOverflowing: true },
+      { input: '28.02.2022', isOverflowing: false },
+    ];
+
+    params.forEach((param) =>
+      expect(leanDateAdapter.isOverflowingDate(param.input))
+        .withContext(
+          `Expected date '${param.input}'${param.isOverflowing ? '' : ' not'} to be overflowing`
+        )
+        .toEqual(param.isOverflowing)
+    );
+  });
 });
