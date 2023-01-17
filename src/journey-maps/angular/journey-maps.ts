@@ -457,7 +457,7 @@ export class SbbJourneyMaps implements OnInit, AfterViewInit, OnDestroy, OnChang
     // handle journey, transfer, and routes together, otherwise they can overwrite each other's transfer or route data
     if (changes.journeyMapsRoutingOption) {
       const invalidKeyCombination = getInvalidRoutingOptionCombination(
-        this.journeyMapsRoutingOption
+        this.journeyMapsRoutingOption ?? {}
       );
       if (invalidKeyCombination.length) {
         console.error(
