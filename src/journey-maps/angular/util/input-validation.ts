@@ -12,8 +12,8 @@ export const getInvalidOptionCombination = (
     (nbOfOptions === 1 &&
       (!!routingOptions.journey || !!routingOptions.routes || !!routingOptions.transfer)) ||
     (nbOfOptions === 2 &&
-      ((!!routingOptions.routes && !!routingOptions.routesMetaInformations) ||
-        (!!routingOptions.journey && !!routingOptions.journeyMetaInformation)));
+      ((!!routingOptions.journey && !!routingOptions.journeyMetaInformation) ||
+        (!!routingOptions.routes && !!routingOptions.routesMetaInformations)));
 
   return isValid ? [] : nonEmptyOptions.map(([key, _]) => key);
 };
