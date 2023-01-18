@@ -1,7 +1,7 @@
 export const groupBy = <T>(
   array: T[],
   groupKeyAccessor: (element: T) => any
-): { [key in any]: [T] } =>
+): { [key in any]: T[] } =>
   array.reduce(
     (res: any, curr: T) => ({
       ...res,
