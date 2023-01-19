@@ -7,6 +7,8 @@ import { SBB_ROUTE_ID_PROPERTY_NAME } from './events/route-utils';
 import { SbbMapRouteService } from './map-route-service';
 import { SBB_EMPTY_FEATURE_COLLECTION } from './map-service';
 import { SbbMapTransferService } from './map-transfer-service';
+import { toFeatureCollection } from './util/feature-collection-util';
+import { isV1Style } from './util/style-version-lookup';
 
 @Injectable({
   providedIn: 'root',
@@ -20,9 +22,11 @@ export class SbbMapJourneyService {
   updateJourney(
     map: MaplibreMap,
     mapSelectionEventService: SbbMapSelectionEvent,
-    journey: FeatureCollection = SBB_EMPTY_FEATURE_COLLECTION
+    journey: FeatureCollection = SBB_EMPTY_FEATURE_COLLECTION,
+    selectedLegId?: string
   ): void {
     const routeFeatures: Feature[] = [];
+    const stopoverFeatures: Feature[] = [];
     const transferFeatures: Feature[] = [];
 
     for (const feature of journey.features) {
@@ -35,21 +39,32 @@ export class SbbMapJourneyService {
 
       if (type === 'path' && (pathType === 'transport' || pathType === 'bee')) {
         routeFeatures.push(feature);
-      } else if (type === 'bbox' || type === 'stopover') {
+      } else if (type === 'stopover') {
+        stopoverFeatures.push(feature);
+      } else if (type === 'bbox') {
         // Ignore the feature (NOSONAR)
       } else {
         transferFeatures.push(feature);
       }
     }
 
-    this._mapRouteService.updateRoute(map, mapSelectionEventService, {
-      type: 'FeatureCollection',
-      features: routeFeatures,
-    });
+    if (isV1Style(map)) {
+      this._mapRouteService.updateRoute(
+        map,
+        mapSelectionEventService,
+        toFeatureCollection(routeFeatures)
+      );
 
-    this._mapTransferService.updateTransfer(map, {
-      type: 'FeatureCollection',
-      features: transferFeatures,
-    });
+      this._mapTransferService.updateTransfer(map, toFeatureCollection(transferFeatures));
+    } else {
+      // handle transfer and routes together, otherwise they can overwrite each other's transfer or route data
+      this._mapRouteService.updateRoute(
+        map,
+        mapSelectionEventService,
+        toFeatureCollection(routeFeatures.concat(transferFeatures)),
+        stopoverFeatures,
+        selectedLegId
+      );
+    }
   }
 }

@@ -96,6 +96,13 @@ export interface SbbJourneyMapsRoutingOptions {
   routes?: SbbSelectableFeatureCollection[];
 
   /**
+   * Additional information as defined in <code>SbbJourneyMetaInformation</code>.
+   * selectedLegId must match with a legId from the given journey.
+   * Note: journey, transfer and routes cannot be displayed at the same time.
+   */
+  journeyMetaInformation?: SbbJourneyMetaInformation;
+
+  /**
    * An array of additional informations as defined in <code>SbbRouteMetaInformation</code>.
    * ID must match with ID from given routes.
    * If no meta information for a route given, it will use the default settings.
@@ -191,6 +198,11 @@ export interface SbbRouteMetaInformation {
   routeColor?: string;
   /** Midpoint-Marker configuration. Position must be given in midpoint-feature from Journey-Maps response. */
   midpointMarkerConfiguration?: Omit<SbbMarker, 'id' | 'position'>;
+}
+
+export interface SbbJourneyMetaInformation {
+  /** ID that matches a leg ID in <code>SbbJourneyMapsRoutingOptions.journey</code>. */
+  selectedLegId: string;
 }
 
 export type SbbFeatureDataType = 'MARKER' | 'ROUTE' | 'STATION' | 'ZONE' | 'POI';

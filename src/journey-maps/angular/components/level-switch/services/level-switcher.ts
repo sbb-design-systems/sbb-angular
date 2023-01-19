@@ -3,6 +3,7 @@ import { Map as MaplibreMap } from 'maplibre-gl';
 import { BehaviorSubject, Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
 
+import { SBB_SERVICE_POINT_SOURCE } from '../../../services/constants';
 import { SbbLocaleService } from '../../../services/locale-service';
 import { SbbMapLeitPoiService } from '../../../services/map/map-leit-poi-service';
 import { SbbMapTransferService } from '../../../services/map/map-transfer-service';
@@ -88,7 +89,7 @@ export class SbbLevelSwitcher {
     this._map.on('moveend', () => this._mapMoved.next());
 
     this._mapLayerFilterService.setMap(this._map);
-    if (this._map.isSourceLoaded(SbbQueryMapFeatures.SERVICE_POINT_SOURCE_ID)) {
+    if (this._map.isSourceLoaded(SBB_SERVICE_POINT_SOURCE)) {
       this._updateLevels();
     } else {
       this._map.once('idle', () => this._updateLevels());
@@ -105,7 +106,6 @@ export class SbbLevelSwitcher {
     });
 
     // called whenever the level is switched via the leit-pois (or when the map is set to a specific floor for a new transfer)
-
     this._mapLeitPoiService.levelSwitched
       .pipe(takeUntil(this._destroyed))
       .subscribe((nextLevel) => {
@@ -126,12 +126,6 @@ export class SbbLevelSwitcher {
   switchLevel(level: number): void {
     this._setSelectedLevel(level);
     this._mapLeitPoiService.setCurrentLevel(this._map, level);
-  }
-
-  getLevelLabel(level: number): string {
-    const txt1 = this._i18n.getText('a4a.visualFunction');
-    const txt2 = this._i18n.getTextWithParams('a4a.selectFloor', level);
-    return `${txt1} ${txt2}`;
   }
 
   /**

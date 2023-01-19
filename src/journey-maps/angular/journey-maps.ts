@@ -14,8 +14,8 @@ import {
   ViewChild,
 } from '@angular/core';
 import { FeatureCollection } from 'geojson';
-import { LngLatBounds, LngLatLike, Map as MaplibreMap, VectorTileSource } from 'maplibre-gl';
 import type { Map } from 'maplibre-gl';
+import { LngLatBounds, LngLatLike, Map as MaplibreMap, VectorTileSource } from 'maplibre-gl';
 import { ReplaySubject, Subject } from 'rxjs';
 import { debounceTime, delay, switchMap, take, takeUntil } from 'rxjs/operators';
 
@@ -43,10 +43,10 @@ import { SbbMarker } from './model/marker';
 import { sbbBufferTimeOnValue } from './services/bufferTimeOnValue';
 import {
   SBB_BOUNDING_BOX,
+  SBB_JOURNEY_POIS_SOURCE,
   SBB_MAX_ZOOM,
   SBB_MIN_ZOOM,
-  SBB_ROUTE_SOURCE,
-  SBB_WALK_SOURCE,
+  SBB_ROKAS_ROUTE_SOURCE,
 } from './services/constants';
 import { SbbLocaleService } from './services/locale-service';
 import { SbbMapConfig } from './services/map/map-config';
@@ -60,6 +60,7 @@ import { SbbMapService } from './services/map/map-service';
 import { SbbMapTransferService } from './services/map/map-transfer-service';
 import { SbbMapUrlService } from './services/map/map-url-service';
 import { SbbMapZoneService } from './services/map/map-zone-service';
+import { getInvalidRoutingOptionCombination } from './util/input-validation';
 
 const SATELLITE_MAP_MAX_ZOOM = 19.2;
 const SATELLITE_MAP_TILE_SIZE = 256;
@@ -161,8 +162,8 @@ export class SbbJourneyMaps implements OnInit, AfterViewInit, OnDestroy, OnChang
   private _featureEventListenerComponent: SbbFeatureEventListener;
   private _defaultStyleOptions: SbbStyleOptions = {
     url: 'https://journey-maps-tiles.geocdn.sbb.ch/styles/{styleId}/style.json?api_key={apiKey}',
-    brightId: 'base_bright_v2_ki',
-    darkId: 'base_dark_v2_ki',
+    brightId: 'base_bright_v2_ki_v2',
+    darkId: 'base_dark_v2_ki_v2',
     mode: 'bright',
   };
   private _defaultInteractionOptions: SbbInteractionOptions = {
@@ -190,9 +191,9 @@ export class SbbJourneyMaps implements OnInit, AfterViewInit, OnDestroy, OnChang
   private _destroyed = new Subject<void>();
   private _styleLoaded = new ReplaySubject<void>(1);
   private _viewportDimensionsChanged = new Subject<void>();
-  private _mapStyleModeChanged = new Subject<void>();
+  private _mapStyleOptionsChanged = new Subject<void>();
   // _map._isStyleLoaded() returns sometimes false when sources are being updated.
-  // Therefore we set this variable to true once the style has been loaded.
+  // Therefore, we set this variable to true once the style has been loaded.
   private _isStyleLoaded = false;
   private _isSatelliteMap = false;
   private _satelliteLayerId = 'esriWorldImageryLayer';
@@ -455,7 +456,15 @@ export class SbbJourneyMaps implements OnInit, AfterViewInit, OnDestroy, OnChang
 
     // handle journey, transfer, and routes together, otherwise they can overwrite each other's transfer or route data
     if (changes.journeyMapsRoutingOption) {
-      if (this._areRoutingOptionsValid()) {
+      const invalidKeyCombination = getInvalidRoutingOptionCombination(
+        this.journeyMapsRoutingOption ?? {}
+      );
+      if (invalidKeyCombination.length) {
+        console.error(
+          `journeyMapsRoutingOption: Use only one of the following: 'transfer', 'journey', 'routes'. Received: ` +
+            invalidKeyCombination.map((key) => `'${key}'`).join(', ')
+        );
+      } else {
         if (this._haveRoutesMetaInformationsChanged(changes)) {
           this._updateMarkers();
         }
@@ -466,16 +475,20 @@ export class SbbJourneyMaps implements OnInit, AfterViewInit, OnDestroy, OnChang
             this._featureEventListenerComponent.mapSelectionEventService;
 
           // remove previous data from map
-          this._mapJourneyService.updateJourney(this._map, mapSelectionEventService, undefined);
+          this._mapJourneyService.updateJourney(this._map, mapSelectionEventService);
           this._mapTransferService.updateTransfer(this._map, undefined);
           this._mapRoutesService.updateRoutes(this._map, mapSelectionEventService, undefined);
           this._mapLeitPoiService.processData(this._map, undefined);
           // only add new data if we have some
-          if (changes.journeyMapsRoutingOption?.currentValue?.journey) {
+          if (
+            changes.journeyMapsRoutingOption.currentValue?.journey ||
+            changes.journeyMapsRoutingOption.currentValue?.journeyMetaInformation
+          ) {
             this._mapJourneyService.updateJourney(
               this._map,
               mapSelectionEventService,
-              this.journeyMapsRoutingOption!.journey
+              this.journeyMapsRoutingOption!.journey,
+              this.journeyMapsRoutingOption!.journeyMetaInformation?.selectedLegId
             );
             this._mapLeitPoiService.processData(
               this._map,
@@ -483,14 +496,14 @@ export class SbbJourneyMaps implements OnInit, AfterViewInit, OnDestroy, OnChang
               0
             );
           }
-          if (changes.journeyMapsRoutingOption?.currentValue?.transfer) {
+          if (changes.journeyMapsRoutingOption.currentValue?.transfer) {
             this._mapTransferService.updateTransfer(
               this._map,
               this.journeyMapsRoutingOption!.transfer
             );
             this._mapLeitPoiService.processData(this._map, this.journeyMapsRoutingOption!.transfer);
           }
-          if (changes.journeyMapsRoutingOption?.currentValue?.routes) {
+          if (changes.journeyMapsRoutingOption.currentValue?.routes) {
             this._mapRoutesService.updateRoutes(
               this._map,
               mapSelectionEventService,
@@ -499,10 +512,6 @@ export class SbbJourneyMaps implements OnInit, AfterViewInit, OnDestroy, OnChang
             );
           }
         });
-      } else {
-        console.error(
-          'journeyMapsRoutingOption: Use either transfer or journey or routes. It does not work correctly when more than one of these properties is set.'
-        );
       }
     }
 
@@ -525,7 +534,7 @@ export class SbbJourneyMaps implements OnInit, AfterViewInit, OnDestroy, OnChang
 
         if (poiEnvironmentChanged) {
           // Update POI-Source-URL
-          const currentPoiSource = this._map.getSource('journey-pois-source') as VectorTileSource;
+          const currentPoiSource = this._map.getSource(SBB_JOURNEY_POIS_SOURCE) as VectorTileSource;
           const newPoiSourceUrl = this._urlService.getPoiSourceUrlByEnvironment(
             currentPoiSource.url,
             this.poiOptions?.environment
@@ -559,8 +568,11 @@ export class SbbJourneyMaps implements OnInit, AfterViewInit, OnDestroy, OnChang
       });
     }
 
-    if (changes.styleOptions?.currentValue.mode !== changes.styleOptions?.previousValue?.mode) {
-      this._mapStyleModeChanged.next();
+    if (
+      JSON.stringify(changes.styleOptions?.currentValue) !==
+      JSON.stringify(changes.styleOptions?.previousValue)
+    ) {
+      this._mapStyleOptionsChanged.next();
     }
 
     if (changes.selectedLevel?.currentValue !== undefined) {
@@ -761,7 +773,7 @@ export class SbbJourneyMaps implements OnInit, AfterViewInit, OnDestroy, OnChang
         }
       });
 
-    this._mapStyleModeChanged
+    this._mapStyleOptionsChanged
       .pipe(
         debounceTime(200),
         switchMap(() =>
@@ -809,8 +821,7 @@ export class SbbJourneyMaps implements OnInit, AfterViewInit, OnDestroy, OnChang
     this._map.resize();
     // @ts-ignore
     this._mapService.verifySources(this._map, [
-      SBB_ROUTE_SOURCE,
-      SBB_WALK_SOURCE,
+      SBB_ROKAS_ROUTE_SOURCE,
       ...this._mapMarkerService.sources,
     ]);
     this._addSatelliteSource(this._map);
@@ -861,20 +872,6 @@ export class SbbJourneyMaps implements OnInit, AfterViewInit, OnDestroy, OnChang
         this.journeyMapsRoutingOption?.routesMetaInformations
       ) ?? [];
     return [...normalMarkers, ...routeMidpointMarkers];
-  }
-
-  private _areRoutingOptionsValid(): boolean {
-    const optionsAmount = Object.values(this.journeyMapsRoutingOption ?? {}).filter(
-      (val) => val
-    ).length;
-
-    return (
-      optionsAmount === 0 ||
-      (optionsAmount === 1 && !this.journeyMapsRoutingOption?.routesMetaInformations) ||
-      (optionsAmount === 2 &&
-        !!this.journeyMapsRoutingOption?.routes &&
-        !!this.journeyMapsRoutingOption?.routesMetaInformations)
-    );
   }
 
   private _haveRoutesMetaInformationsChanged(changes: SimpleChanges): boolean {
