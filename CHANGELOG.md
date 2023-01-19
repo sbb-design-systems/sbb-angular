@@ -2,8 +2,9 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
-## [15.2.0](https://github.com/sbb-design-systems/sbb-angular/compare/15.1.0...15.2.0) (2023-01-19)
+## [15.3.0](https://github.com/sbb-design-systems/sbb-angular/compare/15.1.0...15.3.0) (2023-01-19)
 
+Due to a hiccup with 15.2.0 we skip directly to 15.3.0.
 
 ### Features
 
