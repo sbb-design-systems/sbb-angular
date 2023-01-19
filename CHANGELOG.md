@@ -2,6 +2,19 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [15.2.0](https://github.com/sbb-design-systems/sbb-angular/compare/15.1.0...15.2.0) (2023-01-19)
+
+
+### Features
+
+* **journey-maps:** add new POIs subcategories for angular showcase as well ([#1766](https://github.com/sbb-design-systems/sbb-angular/issues/1766)) ([043bc09](https://github.com/sbb-design-systems/sbb-angular/commit/043bc09351465541f51164783393217498715b8f))
+
+
+### Bug Fixes
+
+* **deps:** update dependency rxjs to v7.8.0 ([8ef827e](https://github.com/sbb-design-systems/sbb-angular/commit/8ef827ea44ce2c07ed86b7f45aea4f9bc98ec8d8))
+* **journey-maps:** export web component CSS in package.json ([#1767](https://github.com/sbb-design-systems/sbb-angular/issues/1767)) ([46027dc](https://github.com/sbb-design-systems/sbb-angular/commit/46027dcfa1d9dc9df3bd6e59212289ecac5773bd))
+
 ## [15.1.0](https://github.com/sbb-design-systems/sbb-angular/compare/15.0.2...15.1.0) (2023-01-04)
 
 
