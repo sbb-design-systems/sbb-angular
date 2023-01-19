@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { FeatureCollection } from 'geojson';
 import { GeoJSONSource, Map as MaplibreMap } from 'maplibre-gl';
 
-import { SBB_ZONE_SOURCE } from '../constants';
+import { SBB_ROKAS_ZONE_SOURCE } from '../constants';
 
 import { SbbMapSelectionEvent } from './events/map-selection-event';
 import { SBB_EMPTY_FEATURE_COLLECTION } from './map-service';
@@ -16,12 +16,13 @@ export class SbbMapZoneService {
     mapSelectionEventService: SbbMapSelectionEvent,
     zonesFeatureCollection: FeatureCollection = SBB_EMPTY_FEATURE_COLLECTION
   ): void {
-    const source = map.getSource(SBB_ZONE_SOURCE) as GeoJSONSource;
+    const source = map.getSource(SBB_ROKAS_ZONE_SOURCE) as GeoJSONSource;
     source.setData(zonesFeatureCollection);
 
-    map.removeFeatureState({ source: SBB_ZONE_SOURCE });
+    map.removeFeatureState({ source: SBB_ROKAS_ZONE_SOURCE });
 
-    if (zonesFeatureCollection.features?.length) {
+    // `zonesFeatureCollection` somehow manages to be null if we change the style from v2 to v1
+    if (zonesFeatureCollection?.features?.length) {
       map.once('idle', () => {
         mapSelectionEventService.initSelectedState(map, zonesFeatureCollection.features, 'ZONE');
       });
