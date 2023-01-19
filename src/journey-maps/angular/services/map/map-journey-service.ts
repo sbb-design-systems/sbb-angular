@@ -2,7 +2,6 @@ import { Injectable } from '@angular/core';
 import { Feature, FeatureCollection } from 'geojson';
 import { Map as MaplibreMap } from 'maplibre-gl';
 
-import { SbbMapEventUtils } from './../map/events/map-event-utils';
 import { SbbMapSelectionEvent, SBB_SELECTED_PROPERTY_NAME } from './events/map-selection-event';
 import { SBB_ROUTE_ID_PROPERTY_NAME } from './events/route-utils';
 import { SbbMapRouteService } from './map-route-service';
@@ -17,8 +16,7 @@ import { isV1Style } from './util/style-version-lookup';
 export class SbbMapJourneyService {
   constructor(
     private _mapRouteService: SbbMapRouteService,
-    private _mapTransferService: SbbMapTransferService,
-    private _mapEventUtils: SbbMapEventUtils // TODO cdi ROKAS-1204 move this to it's own (e.g. util) class
+    private _mapTransferService: SbbMapTransferService
   ) {}
 
   updateJourney(

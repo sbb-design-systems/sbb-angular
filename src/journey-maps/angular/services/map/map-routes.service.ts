@@ -54,12 +54,7 @@ export class SbbMapRoutesService {
     this._mapRouteService.updateRoute(
       map,
       mapSelectionEventService,
-      toFeatureCollection(
-        routes.reduce(
-          (accumulatedFeatures, next) => accumulatedFeatures.concat(next.features as any),
-          []
-        )
-      )
+      toFeatureCollection(routes.flatMap((r) => r.features))
     );
   }
 

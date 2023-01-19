@@ -6,6 +6,7 @@ import { SBB_ROKAS_ROUTE_SOURCE, SBB_ROKAS_STOPOVER_SOURCE } from '../constants'
 
 import { SbbMapSelectionEvent } from './events/map-selection-event';
 import { SBB_EMPTY_FEATURE_COLLECTION } from './map-service';
+import { groupBy } from './util/array-utils';
 import { toFeatureCollection } from './util/feature-collection-util';
 
 @Injectable({ providedIn: 'root' })
@@ -64,16 +65,8 @@ export class SbbMapRouteService {
   }
 
   private _groupByLegId(features: Array<Feature>): Map<string, Feature[]> {
-    // filter and group the features by legId
-    const groupedByLegId = features
-      .filter((f) => f.properties?.legId)
-      .reduce(
-        (res: any, curr: Feature) => ({
-          ...res,
-          [curr.properties!.legId]: [...(res[curr.properties!.legId] || []), curr],
-        }),
-        {}
-      );
+    const featuresWithLegIds = features.filter((f) => f.properties?.legId);
+    const groupedByLegId = groupBy(featuresWithLegIds, (curr: Feature) => curr.properties!.legId);
     return new Map(Object.entries(groupedByLegId));
   }
 }
