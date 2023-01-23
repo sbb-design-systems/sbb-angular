@@ -15,7 +15,10 @@ ng_module(
         ["**/*.ts"],
         exclude = ["**/*.spec.ts"],
     ),
-    assets = [":expansion-panel.css"] + glob(["**/*.html"]),
+    assets = [
+        ":expansion-panel.css",
+        ":nbc.css",
+    ] + glob(["**/*.html"]),
     deps = [
         "//src/angular/core",
         "//src/angular/icon",
@@ -33,6 +36,11 @@ sass_binary(
     deps = [
         "//src/angular:scss_lib",
     ],
+)
+
+sass_binary(
+    name = "nbc_scss",
+    src = "nbc.scss",
 )
 
 ng_test_library(

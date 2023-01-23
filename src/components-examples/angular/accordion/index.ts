@@ -13,6 +13,7 @@ import { AccordionCustomHtmlExample } from './accordion-custom-html/accordion-cu
 import { AccordionNestedPanelLazyContentExample } from './accordion-nested-panel-lazy-content/accordion-nested-panel-lazy-content-example';
 import { AccordionSimplePanelExample } from './accordion-simple-panel/accordion-simple-panel-example';
 import { AccordionWizardExample } from './accordion-wizard/accordion-wizard-example';
+import { CheckoutSummaryExample } from './checkout-summary/checkout-summary-example';
 
 export {
   AccordionBasicExample,
@@ -20,6 +21,7 @@ export {
   AccordionNestedPanelLazyContentExample,
   AccordionSimplePanelExample,
   AccordionWizardExample,
+  CheckoutSummaryExample,
 };
 
 const EXAMPLES = [
@@ -28,6 +30,7 @@ const EXAMPLES = [
   AccordionNestedPanelLazyContentExample,
   AccordionSimplePanelExample,
   AccordionWizardExample,
+  CheckoutSummaryExample,
 ];
 
 @NgModule({

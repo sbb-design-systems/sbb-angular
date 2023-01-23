@@ -9,12 +9,20 @@ import { SbbAccordion } from './accordion';
 import { SbbExpansionPanel } from './expansion-panel';
 import { SbbExpansionPanelContent } from './expansion-panel-content';
 import { SbbExpansionPanelHeader } from './expansion-panel-header';
+import { SbbNbc } from './nbc';
 
 @NgModule({
   imports: [CommonModule, CdkAccordionModule, PortalModule, SbbCommonModule, SbbIconModule],
-  exports: [SbbAccordion, SbbExpansionPanel, SbbExpansionPanelHeader, SbbExpansionPanelContent],
+  exports: [
+    SbbAccordion,
+    SbbNbc,
+    SbbExpansionPanel,
+    SbbExpansionPanelHeader,
+    SbbExpansionPanelContent,
+  ],
   declarations: [
     SbbAccordion,
+    SbbNbc,
     SbbExpansionPanel,
     SbbExpansionPanelHeader,
     SbbExpansionPanelContent,

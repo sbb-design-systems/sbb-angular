@@ -1,0 +1,9 @@
+.sbb-nbc-wrapper {
+  &:where(.sbb-nbc-fixed) .sbb-nbc-content {
+    position: fixed;
+  }
+
+  .sbb-expansion-panel-content {
+    overflow-y: hidden;
+  }
+}
