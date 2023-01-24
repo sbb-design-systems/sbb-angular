@@ -1,8 +1,8 @@
 <div class="sbb-nbc-wrapper" [class.sbb-nbc-fixed]="isFixed" [style.height.px]="height">
   <div
     class="sbb-nbc-content"
+    #content
     [style.width.px]="width"
-    [style.height.px]="height"
     [style.top.px]="stickyTopMargin + topMargin"
   >
     <ng-content></ng-content>
