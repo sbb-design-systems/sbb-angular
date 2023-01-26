@@ -82,6 +82,7 @@ jobs:
     - name: "Docker: Publish image"
       run: docker push $IMAGE_REPO:$IMAGE_TAG
     - name: "Add 'preview-available' label"
+      # This label is used for filtering deployments in ArgoCD
       uses: actions-ecosystem/action-add-labels@v1
       with:
         labels: "preview-available"
