@@ -2,7 +2,11 @@ import { Injectable } from '@angular/core';
 import { Map as MaplibreMap, MapGeoJSONFeature } from 'maplibre-gl';
 
 import { SbbFeatureData, SbbFeatureDataType } from '../../../journey-maps.interfaces';
-import { SBB_MARKER_SOURCE, SBB_ROUTE_SOURCE, SBB_ZONE_SOURCE } from '../../constants';
+import {
+  SBB_ROKAS_MARKER_SOURCE,
+  SBB_ROKAS_ROUTE_SOURCE,
+  SBB_ROKAS_ZONE_SOURCE,
+} from '../../constants';
 
 @Injectable({ providedIn: 'root' })
 export class SbbMapEventUtils {
@@ -119,11 +123,11 @@ export class SbbMapEventUtils {
   private static _getSourceMapping(featureDataType: SbbFeatureDataType): string | undefined {
     switch (featureDataType) {
       case 'MARKER':
-        return SBB_MARKER_SOURCE;
+        return SBB_ROKAS_MARKER_SOURCE;
       case 'ROUTE':
-        return SBB_ROUTE_SOURCE;
+        return SBB_ROKAS_ROUTE_SOURCE;
       case 'ZONE':
-        return SBB_ZONE_SOURCE;
+        return SBB_ROKAS_ZONE_SOURCE;
       default:
         return undefined;
     }

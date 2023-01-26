@@ -3,3 +3,6 @@
 # global owners will be requested for
 # review when someone opens a pull request.
 * @kyubisation @jeripeierSBB @mhaertwig
+
+# @sbb-esta/journey-maps maintainers
+src/journey-maps @sebisteiner @swiss-chris @mstankala
