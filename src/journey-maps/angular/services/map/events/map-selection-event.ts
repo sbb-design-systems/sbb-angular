@@ -74,8 +74,8 @@ export class SbbMapSelectionEvent {
     features: Feature[],
     featureDataType: SbbFeatureDataType
   ): void {
-    const selectedFeatures = features.filter((f) => f.properties![SBB_SELECTED_PROPERTY_NAME]);
     if (featureDataType === 'ROUTE') {
+      const selectedFeatures = features.filter((f) => f.properties![SBB_SELECTED_PROPERTY_NAME]);
       selectedFeatures.forEach((feature) => {
         this._routeUtilsService.setRelatedRouteFeaturesSelection(mapInstance, feature, true);
       });

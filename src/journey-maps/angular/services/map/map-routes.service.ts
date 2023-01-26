@@ -15,6 +15,7 @@ import {
 } from './events/route-utils';
 import { SbbMapRouteService } from './map-route-service';
 import { SBB_EMPTY_FEATURE_COLLECTION } from './map-service';
+import { toFeatureCollection } from './util/feature-collection-util';
 
 export const SBB_ALL_ROUTE_LAYERS: string[] = [
   'rokas-route',
@@ -50,14 +51,11 @@ export class SbbMapRoutesService {
         }
       }
     });
-    this._mapRouteService.updateRoute(map, mapSelectionEventService, {
-      type: 'FeatureCollection',
-      // With ES2019 we can replace this with routes.flatMap(({features}) => features)
-      features: routes.reduce(
-        (accumulatedFeatures, next) => accumulatedFeatures.concat(next.features as any),
-        []
-      ),
-    });
+    this._mapRouteService.updateRoute(
+      map,
+      mapSelectionEventService,
+      toFeatureCollection(routes.flatMap((r) => r.features))
+    );
   }
 
   getRouteMarkers(

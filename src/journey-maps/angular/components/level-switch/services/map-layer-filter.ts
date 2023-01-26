@@ -94,7 +94,8 @@ export class SbbMapLayerFilter {
         this._knownLayerTypes.includes(layer.type) &&
         (layer.id.endsWith('-lvl') ||
           layer.id.startsWith('rokas_indoor') ||
-          layer.id.startsWith('geojson_walk'))
+          layer.id.startsWith('geojson_walk') ||
+          layer.id.startsWith('rokas-walk'))
       ) {
         this._knownLvlLayerIds.push(layer.id);
       }
