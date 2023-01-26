@@ -1,6 +1,7 @@
 name: Preview Deployment
 # Secure deployment of pull request artifacts
 # https://securitylab.github.com/research/github-actions-preventing-pwn-requests/
+# Changes to this file do not take effect until they are merged into the main / default branch.
 on:
   workflow_run:
     workflows: ["Continuous Integration"]
