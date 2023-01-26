@@ -1,6 +1,7 @@
 name: Preview Deployment
 # Secure deployment of pull request artifacts
 # https://securitylab.github.com/research/github-actions-preventing-pwn-requests/
+# Changes to this file do not take effect until they are merged into the main / default branch.
 on:
   workflow_run:
     workflows: ["Continuous Integration"]
@@ -81,6 +82,11 @@ jobs:
       run: docker build -t $IMAGE_REPO:$IMAGE_TAG .
     - name: "Docker: Publish image"
       run: docker push $IMAGE_REPO:$IMAGE_TAG
+    - name: "Add 'preview-available' label"
+      # This label is used for filtering deployments in ArgoCD
+      uses: actions-ecosystem/action-add-labels@v1
+      with:
+        labels: "preview-available"
     - name: Create PR comment
       uses: actions/github-script@v6
       with:
