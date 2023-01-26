@@ -85,6 +85,7 @@ jobs:
       uses: actions-ecosystem/action-add-labels@v1
       with:
         labels: "preview-available"
+        github_token: ${{ secrets.GITHUB_TOKEN }}
     - name: Create PR comment
       uses: actions/github-script@v6
       with:
