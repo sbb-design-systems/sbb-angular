@@ -2,6 +2,19 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [15.3.1](https://github.com/sbb-design-systems/sbb-angular/compare/15.3.0...15.3.1) (2023-01-27)
+
+
+### Bug Fixes
+
+* **deps:** update dependency tslib to v2.5.0 ([b82baad](https://github.com/sbb-design-systems/sbb-angular/commit/b82baad9023583139a16f0b8e4297fa0e71359d9))
+* remove engine entries in package.json ([#1795](https://github.com/sbb-design-systems/sbb-angular/issues/1795)) ([dd03e0a](https://github.com/sbb-design-systems/sbb-angular/commit/dd03e0ac5cf80283978c191af70e7593f8eb3692))
+
+
+### Documentation
+
+* **loading-indicator:** add note about fullbox mode ([#1792](https://github.com/sbb-design-systems/sbb-angular/issues/1792)) ([854fb00](https://github.com/sbb-design-systems/sbb-angular/commit/854fb00ee1ac713bb20065e13ac22651cd5c743b)), closes [#1791](https://github.com/sbb-design-systems/sbb-angular/issues/1791)
+
 ## [15.3.0](https://github.com/sbb-design-systems/sbb-angular/compare/15.1.0...15.3.0) (2023-01-19)
 
 Due to a hiccup with 15.2.0 we skip directly to 15.3.0.
