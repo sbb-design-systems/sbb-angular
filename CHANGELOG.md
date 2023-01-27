@@ -2,6 +2,21 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [13.15.1](https://github.com/sbb-design-systems/sbb-angular/compare/13.15.0...13.15.1) (2023-01-27)
+
+
+### Bug Fixes
+
+* **deps:** update dependency @angular/cdk to v13.3.9 ([9a4430e](https://github.com/sbb-design-systems/sbb-angular/commit/9a4430eab65d8c7ecc0d3a17612abfe54487d3b2))
+* **deps:** update dependency @stackblitz/sdk to v1.8.0 ([9df8ada](https://github.com/sbb-design-systems/sbb-angular/commit/9df8ada9c20fda6467204801561e2ad8520399d4))
+* **journey-maps:** add missing migration instruction ([#1499](https://github.com/sbb-design-systems/sbb-angular/issues/1499)) ([888c0c7](https://github.com/sbb-design-systems/sbb-angular/commit/888c0c7a11400134b06cd6b57844d82d73c95abf))
+* remove engine entries in package.json ([#1795](https://github.com/sbb-design-systems/sbb-angular/issues/1795)) ([cd4e8b4](https://github.com/sbb-design-systems/sbb-angular/commit/cd4e8b476dccc48e30ce0be43c00d8ca5d53bff0))
+
+
+### Documentation
+
+* update 13.x how-to-update guide ([#1688](https://github.com/sbb-design-systems/sbb-angular/issues/1688)) ([ffe6668](https://github.com/sbb-design-systems/sbb-angular/commit/ffe6668d6c6218527ed520f05c79783f1deb94c8))
+
 ## [13.15.0](https://github.com/sbb-design-systems/sbb-angular/compare/13.14.1...13.15.0) (2022-06-02)
 
 
