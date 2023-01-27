@@ -15,6 +15,40 @@ All notable changes to this project will be documented in this file. See [standa
 
 * **loading-indicator:** add note about fullbox mode ([#1792](https://github.com/sbb-design-systems/sbb-angular/issues/1792)) ([854fb00](https://github.com/sbb-design-systems/sbb-angular/commit/854fb00ee1ac713bb20065e13ac22651cd5c743b)), closes [#1791](https://github.com/sbb-design-systems/sbb-angular/issues/1791)
 
+### [14.4.1](https://github.com/sbb-design-systems/sbb-angular/compare/14.4.0...14.4.1) (2023-01-27)
+
+
+### Bug Fixes
+
+* **angular/tooltip:** animations running when timeouts haven't elapsed ([#1690](https://github.com/sbb-design-systems/sbb-angular/issues/1690)) ([5e3d10e](https://github.com/sbb-design-systems/sbb-angular/commit/5e3d10e849628a0bda5e8ae86675570bdeb4f066))
+* **deps:** update angular to v14.2.12 ([6389aad](https://github.com/sbb-design-systems/sbb-angular/commit/6389aadeff8338574b5e7b24bc9580be8465294d))
+* **deps:** update dependency @stackblitz/sdk to v1.8.1 ([7f21b02](https://github.com/sbb-design-systems/sbb-angular/commit/7f21b02749add5e6b66ec52dbd066bb21fe7d4cf))
+* **deps:** update dependency maplibre-gl to v2.4.0 (14.x) ([#1649](https://github.com/sbb-design-systems/sbb-angular/issues/1649)) ([10548d7](https://github.com/sbb-design-systems/sbb-angular/commit/10548d723b7803eae99dba4978cb7d34a1541ba6))
+* **deps:** update dependency tslib to v2.4.1 ([ebb0e22](https://github.com/sbb-design-systems/sbb-angular/commit/ebb0e2297ac7dd136f61767df9dfbb0271dbfad0))
+* **deps:** update dependency zone.js to v0.12.0 ([3d07a73](https://github.com/sbb-design-systems/sbb-angular/commit/3d07a734da7ed6d370c7cb59402bb0e7953d2201))
+* **multiple:** add HCM for disabled tabs and steps ([#1714](https://github.com/sbb-design-systems/sbb-angular/issues/1714)) ([c9bee31](https://github.com/sbb-design-systems/sbb-angular/commit/c9bee318d4ee37b6ab6df88de4625d0d2eb2ee03))
+* remove engine entries in package.json ([#1795](https://github.com/sbb-design-systems/sbb-angular/issues/1795)) ([0447eea](https://github.com/sbb-design-systems/sbb-angular/commit/0447eea285ca76e731c449fd97ef14274c3fbb1b))
+
+
+### Documentation
+
+* display warnings in update guide ([#1702](https://github.com/sbb-design-systems/sbb-angular/issues/1702)) ([813a9ad](https://github.com/sbb-design-systems/sbb-angular/commit/813a9ad27fdc998c2c20fa5a9ee393caff292efd))
+
+### [13.15.1](https://github.com/sbb-design-systems/sbb-angular/compare/13.15.0...13.15.1) (2023-01-27)
+
+
+### Bug Fixes
+
+* **deps:** update dependency @angular/cdk to v13.3.9 ([9a4430e](https://github.com/sbb-design-systems/sbb-angular/commit/9a4430eab65d8c7ecc0d3a17612abfe54487d3b2))
+* **deps:** update dependency @stackblitz/sdk to v1.8.0 ([9df8ada](https://github.com/sbb-design-systems/sbb-angular/commit/9df8ada9c20fda6467204801561e2ad8520399d4))
+* **journey-maps:** add missing migration instruction ([#1499](https://github.com/sbb-design-systems/sbb-angular/issues/1499)) ([888c0c7](https://github.com/sbb-design-systems/sbb-angular/commit/888c0c7a11400134b06cd6b57844d82d73c95abf))
+* remove engine entries in package.json ([#1795](https://github.com/sbb-design-systems/sbb-angular/issues/1795)) ([cd4e8b4](https://github.com/sbb-design-systems/sbb-angular/commit/cd4e8b476dccc48e30ce0be43c00d8ca5d53bff0))
+
+
+### Documentation
+
+* update 13.x how-to-update guide ([#1688](https://github.com/sbb-design-systems/sbb-angular/issues/1688)) ([ffe6668](https://github.com/sbb-design-systems/sbb-angular/commit/ffe6668d6c6218527ed520f05c79783f1deb94c8))
+
 ## [15.3.0](https://github.com/sbb-design-systems/sbb-angular/compare/15.1.0...15.3.0) (2023-01-19)
 
 Due to a hiccup with 15.2.0 we skip directly to 15.3.0.
