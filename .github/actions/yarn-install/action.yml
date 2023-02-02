@@ -17,6 +17,9 @@ runs:
         # See: https://docs.github.com/en/actions/guides/caching-dependencies-to-speed-up-workflows#example-using-the-cache-action.
         key: ${{ runner.os }}-yarn-v3-${{hashFiles('tools/postinstall/apply-patches.js')}}-${{hashFiles('yarn.lock')}}
         restore-keys: ${{ runner.os }}-yarn-v3-${{hashFiles('tools/postinstall/apply-patches.js')}}-
+    - name: "Git: Set pull strategy for installing yarn dependencies from GitHub repos"
+      run: git config --global pull.rebase true
+      shell: bash
     - name: "Yarn: Install dependencies"
       run: yarn install --frozen-lockfile --non-interactive
       shell: bash
