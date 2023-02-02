@@ -803,13 +803,10 @@ export class SbbJourneyMaps implements OnInit, AfterViewInit, OnDestroy, OnChang
       .pipe(debounceTime(200), takeUntil(this._destroyed))
       .subscribe(() => this.zoomLevelsChange.emit(this._getZooomLevels()));
 
-    this._mapMovementDebouncer
-      .pipe(debounceTime(200), takeUntil(this._destroyed))
-      .subscribe(() => this.mapCenterChange.emit(this._map.getCenter()));
-
-    this._mapMovementDebouncer
-      .pipe(debounceTime(200), takeUntil(this._destroyed))
-      .subscribe(() => this.mapBoundsChange.emit(this._map.getBounds()));
+    this._mapMovementDebouncer.pipe(debounceTime(200), takeUntil(this._destroyed)).subscribe(() => {
+      this.mapCenterChange.emit(this._map.getCenter());
+      this.mapBoundsChange.emit(this._map.getBounds());
+    });
 
     this._levelSwitchService.selectedLevel$
       .pipe(takeUntil(this._destroyed))
