@@ -5,7 +5,7 @@ import { writeFileSync } from 'fs';
 import { join, relative } from 'path';
 import yargs from 'yargs';
 
-const { chmod, cp, mkdir, rm, set, test } = require('shelljs');
+const { chmod, cp, mkdir, rm, set } = require('shelljs');
 
 // ShellJS should exit if a command fails.
 set('-e');
@@ -86,17 +86,6 @@ function buildReleasePackages(distPath: string) {
   const packageNames = getPackageNamesOfTargets(targets);
   const bazelBinPath = exec(`${bazelCmd} info bazel-bin`, true);
   const getOutputPath = (pkgName: string) => join(bazelBinPath, 'src', pkgName, 'npm_package');
-
-  // Walk through each release package and clear previous "npm_package" outputs. This is
-  // a workaround for: https://github.com/bazelbuild/rules_nodejs/issues/1219. We need to
-  // do this to ensure that the version placeholders are properly populated.
-  packageNames.forEach((pkgName) => {
-    const outputPath = getOutputPath(pkgName);
-    if (test('-d', outputPath)) {
-      chmod('-R', 'u+w', outputPath);
-      rm('-rf', outputPath);
-    }
-  });
 
   // Build with "--config=release" so that Bazel runs the workspace stamping script. The
   // stamping script ensures that the version placeholder is populated in the release output.
