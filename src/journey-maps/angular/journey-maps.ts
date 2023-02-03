@@ -147,6 +147,10 @@ export class SbbJourneyMaps implements OnInit, AfterViewInit, OnDestroy, OnChang
    * This event is emitted whenever the map is ready.
    */
   @Output() mapReady: ReplaySubject<MaplibreMap> = new ReplaySubject<MaplibreMap>(1);
+  /**
+   * This event is emitted whenever the bounds of the map have changed. (Whenever the map has been moved)
+   */
+  @Output() mapBoundsChange: EventEmitter<number[][]> = new EventEmitter<number[][]>();
 
   // visible for testing
   /** @docs-private */
@@ -186,7 +190,7 @@ export class SbbJourneyMaps implements OnInit, AfterViewInit, OnDestroy, OnChang
     popup: false,
   };
   private _zoomLevelDebouncer = new Subject<void>();
-  private _mapCenterChangeDebouncer = new Subject<void>();
+  private _mapMovementDebouncer = new Subject<void>();
   private _mapResized = new Subject<void>();
   private _destroyed = new Subject<void>();
   private _styleLoaded = new ReplaySubject<void>(1);
@@ -799,9 +803,10 @@ export class SbbJourneyMaps implements OnInit, AfterViewInit, OnDestroy, OnChang
       .pipe(debounceTime(200), takeUntil(this._destroyed))
       .subscribe(() => this.zoomLevelsChange.emit(this._getZooomLevels()));
 
-    this._mapCenterChangeDebouncer
-      .pipe(debounceTime(200), takeUntil(this._destroyed))
-      .subscribe(() => this.mapCenterChange.emit(this._map.getCenter()));
+    this._mapMovementDebouncer.pipe(debounceTime(200), takeUntil(this._destroyed)).subscribe(() => {
+      this.mapCenterChange.emit(this._map.getCenter());
+      this.mapBoundsChange.emit(this._map.getBounds().toArray());
+    });
 
     this._levelSwitchService.selectedLevel$
       .pipe(takeUntil(this._destroyed))
@@ -827,10 +832,10 @@ export class SbbJourneyMaps implements OnInit, AfterViewInit, OnDestroy, OnChang
     this._addSatelliteSource(this._map);
 
     this._map.on('zoomend', () => this._zoomLevelDebouncer.next());
-    this._map.on('moveend', () => this._mapCenterChangeDebouncer.next());
+    this._map.on('moveend', () => this._mapMovementDebouncer.next());
     // Emit initial values
     this._zoomLevelDebouncer.next();
-    this._mapCenterChangeDebouncer.next();
+    this._mapMovementDebouncer.next();
 
     this._isStyleLoaded = true;
     this._styleLoaded.next();
