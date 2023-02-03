@@ -14,7 +14,7 @@ import {
   ViewChild,
 } from '@angular/core';
 import { FeatureCollection } from 'geojson';
-import type { LngLatBoundsLike, Map } from 'maplibre-gl';
+import type { Map } from 'maplibre-gl';
 import { LngLatBounds, LngLatLike, Map as MaplibreMap, VectorTileSource } from 'maplibre-gl';
 import { ReplaySubject, Subject } from 'rxjs';
 import { debounceTime, delay, switchMap, take, takeUntil } from 'rxjs/operators';
@@ -148,9 +148,9 @@ export class SbbJourneyMaps implements OnInit, AfterViewInit, OnDestroy, OnChang
    */
   @Output() mapReady: ReplaySubject<MaplibreMap> = new ReplaySubject<MaplibreMap>(1);
   /**
-   * This event is emitted whenever the bounds of the map has changed. (Whenever the map has been moved)
+   * This event is emitted whenever the bounds of the map have changed. (Whenever the map has been moved)
    */
-  @Output() mapBoundsChange: EventEmitter<LngLatBoundsLike> = new EventEmitter<LngLatBoundsLike>();
+  @Output() mapBoundsChange: EventEmitter<number[][]> = new EventEmitter<number[][]>();
 
   // visible for testing
   /** @docs-private */
@@ -805,7 +805,7 @@ export class SbbJourneyMaps implements OnInit, AfterViewInit, OnDestroy, OnChang
 
     this._mapMovementDebouncer.pipe(debounceTime(200), takeUntil(this._destroyed)).subscribe(() => {
       this.mapCenterChange.emit(this._map.getCenter());
-      this.mapBoundsChange.emit(this._map.getBounds());
+      this.mapBoundsChange.emit(this._map.getBounds().toArray());
     });
 
     this._levelSwitchService.selectedLevel$
