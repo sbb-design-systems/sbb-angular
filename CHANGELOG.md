@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [14.4.3](https://github.com/sbb-design-systems/sbb-angular/compare/14.4.2...14.4.3) (2023-02-06)
+
+
+### Bug Fixes
+
+* **angular/dialog:** scrollable content if no dialog height is defined ([#1804](https://github.com/sbb-design-systems/sbb-angular/issues/1804)) ([d84660e](https://github.com/sbb-design-systems/sbb-angular/commit/d84660e394439e83874956c0937d2db37866caa1)), closes [#1803](https://github.com/sbb-design-systems/sbb-angular/issues/1803)
+
 ### [14.4.2](https://github.com/sbb-design-systems/sbb-angular/compare/14.4.1...14.4.2) (2023-01-30)
 
 
