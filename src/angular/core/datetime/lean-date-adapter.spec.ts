@@ -49,6 +49,7 @@ describe('LeanDateAdapter', () => {
   });
 
   it('should detect overflowing dates', () => {
+    leanDateAdapter = new SbbLeanDateAdapter('de-ch', 50, true);
     const params = [
       { input: '30022022', isOverflowing: true },
       { input: '28022022', isOverflowing: false },
@@ -56,12 +57,18 @@ describe('LeanDateAdapter', () => {
       { input: '28.02.2022', isOverflowing: false },
     ];
 
-    params.forEach((param) =>
+    params.forEach((param) => {
       expect(leanDateAdapter.isOverflowingDate(param.input))
         .withContext(
           `Expected date '${param.input}'${param.isOverflowing ? '' : ' not'} to be overflowing`
         )
-        .toEqual(param.isOverflowing)
-    );
+        .toEqual(param.isOverflowing);
+    });
+
+    params
+      .filter((param) => param.isOverflowing)
+      .forEach((param) => {
+        expect(isNaN(leanDateAdapter.parse(param.input)?.getTime()!)).toBeTrue();
+      });
   });
 });

@@ -175,17 +175,6 @@ export class SbbDateInput<D> implements ControlValueAccessor, Validator, OnInit,
   }
   private _readonly = false;
 
-  /** Whether entering overflowing dates should be prevented. */
-  @Input()
-  get preventOverflowingDate(): boolean {
-    return this._preventOverflowingDate;
-  }
-  set preventOverflowingDate(value: BooleanInput) {
-    this._preventOverflowingDate = coerceBooleanProperty(value);
-    this._validatorOnChange();
-  }
-  private _preventOverflowingDate = false;
-
   /** Emits when a `change` event is fired on this `<input>`. */
   @Output() readonly dateChange: EventEmitter<SbbDateInputEvent<D>> = new EventEmitter<
     SbbDateInputEvent<D>
@@ -252,14 +241,6 @@ export class SbbDateInput<D> implements ControlValueAccessor, Validator, OnInit,
       : { sbbDateFilter: true };
   };
 
-  /** The form control validator for overflowing dates. */
-  private _overflowValidator: ValidatorFn = (): ValidationErrors | null => {
-    return !this.preventOverflowingDate ||
-      !this._dateAdapter.isOverflowingDate(this._elementRef.nativeElement.value)
-      ? null
-      : { sbbDateOverflow: true };
-  };
-
   /** The combined form control validator for this input. */
   // tslint:disable-next-line:member-ordering
   private _validator: ValidatorFn | null = Validators.compose([
@@ -267,7 +248,6 @@ export class SbbDateInput<D> implements ControlValueAccessor, Validator, OnInit,
     this._minValidator,
     this._maxValidator,
     this._filterValidator,
-    this._overflowValidator,
   ]);
 
   constructor(
@@ -359,11 +339,6 @@ export class SbbDateInput<D> implements ControlValueAccessor, Validator, OnInit,
     let date = this._dateAdapter.parse(value);
     this._lastValueValid = !date || this._dateAdapter.isValid(date);
     date = this._getValidDateOrNull(date);
-
-    if (this.preventOverflowingDate && this._dateAdapter.isOverflowingDate(value)) {
-      date = null;
-      this._lastValueValid = false;
-    }
 
     if (!this._dateAdapter.sameDate(date, this._value)) {
       this._value = date;

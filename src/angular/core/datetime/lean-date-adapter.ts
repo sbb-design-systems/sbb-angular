@@ -1,15 +1,19 @@
 import { Inject, Injectable, LOCALE_ID, Optional } from '@angular/core';
 
-import { SBB_DATEPICKER_2DIGIT_YEAR_PIVOT } from './datepicker-token';
+import {
+  SBB_DATEPICKER_2DIGIT_YEAR_PIVOT,
+  SBB_DATEPICKER_PREVENT_OVERFLOW,
+} from './datepicker-token';
 import { SbbNativeDateAdapter } from './native-date-adapter';
 
 @Injectable()
 export class SbbLeanDateAdapter extends SbbNativeDateAdapter {
   constructor(
     @Inject(LOCALE_ID) protected override _locale: string,
-    @Optional() @Inject(SBB_DATEPICKER_2DIGIT_YEAR_PIVOT) yearPivot: number
+    @Optional() @Inject(SBB_DATEPICKER_2DIGIT_YEAR_PIVOT) yearPivot: number,
+    @Optional() @Inject(SBB_DATEPICKER_PREVENT_OVERFLOW) preventOverflow?: boolean
   ) {
-    super(_locale, yearPivot);
+    super(_locale, yearPivot, preventOverflow);
   }
 
   protected override _parseStringDate(value: string): null | Date {

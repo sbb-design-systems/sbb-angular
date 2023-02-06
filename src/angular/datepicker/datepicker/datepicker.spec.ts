@@ -6,6 +6,7 @@ import { FormControl, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { By } from '@angular/platform-browser';
 import { BrowserDynamicTestingModule } from '@angular/platform-browser-dynamic/testing';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
+import { SBB_DATEPICKER_PREVENT_OVERFLOW } from '@sbb-esta/angular/core';
 import {
   dispatchFakeEvent,
   dispatchKeyboardEvent,
@@ -919,18 +920,23 @@ describe('SbbDatepicker', () => {
     let testComponent: StandaloneDateInputWithoutOverflowComponent;
 
     beforeEach(fakeAsync(() => {
-      fixture = createComponent(StandaloneDateInputWithoutOverflowComponent);
+      fixture = createComponent(
+        StandaloneDateInputWithoutOverflowComponent,
+        [],
+        [{ provide: SBB_DATEPICKER_PREVENT_OVERFLOW, useValue: true }]
+      );
+
       fixture.detectChanges();
 
       testComponent = fixture.componentInstance;
     }));
 
-    it('should throw an error for overflowing dates', () => {
+    it('should not accept overflowing dates', () => {
       const dateInput = fixture.debugElement.query(By.css('.sbb-date-input')).nativeElement;
       dateInput.value = '30.02.2023';
       dispatchFakeEvent(dateInput, 'input');
       fixture.detectChanges();
-      expect(Object.keys(testComponent.date.errors!)).toContain('sbbDateOverflow');
+      expect(Object.keys(testComponent.date.errors!)).toContain('sbbDateParse');
       expect(testComponent.date.value).toBeNull();
     });
 
@@ -1147,7 +1153,7 @@ class StandaloneDateInputComponent {
 }
 
 @Component({
-  template: ` <input sbbDateInput preventOverflowingDate="true" sbbInput [formControl]="date" /> `,
+  template: ` <input sbbDateInput sbbInput [formControl]="date" /> `,
 })
 class StandaloneDateInputWithoutOverflowComponent {
   date = new FormControl<Date | null>(null);

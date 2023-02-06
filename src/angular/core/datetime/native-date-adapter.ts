@@ -2,7 +2,10 @@ import { DatePipe, TitleCasePipe } from '@angular/common';
 import { Inject, Injectable, LOCALE_ID, Optional } from '@angular/core';
 
 import { SbbDateAdapter } from './date-adapter';
-import { SBB_DATEPICKER_2DIGIT_YEAR_PIVOT } from './datepicker-token';
+import {
+  SBB_DATEPICKER_2DIGIT_YEAR_PIVOT,
+  SBB_DATEPICKER_PREVENT_OVERFLOW,
+} from './datepicker-token';
 
 /**
  * Matches strings that have the form of a valid RFC 3339 string
@@ -26,14 +29,17 @@ export class SbbNativeDateAdapter extends SbbDateAdapter<Date> {
   private _datePipe: DatePipe;
   private _yearPivot: number;
   private _titleCasePipe = new TitleCasePipe();
+  private readonly _preventOverflow: boolean;
 
   constructor(
     @Inject(LOCALE_ID) protected override _locale: string,
-    @Optional() @Inject(SBB_DATEPICKER_2DIGIT_YEAR_PIVOT) yearPivot: number
+    @Optional() @Inject(SBB_DATEPICKER_2DIGIT_YEAR_PIVOT) yearPivot: number,
+    @Optional() @Inject(SBB_DATEPICKER_PREVENT_OVERFLOW) preventOverflow?: boolean
   ) {
     super();
     this._datePipe = new DatePipe(_locale);
     this._yearPivot = typeof yearPivot === 'number' ? yearPivot : new Date().getFullYear() - 1975;
+    this._preventOverflow = typeof preventOverflow === 'boolean' ? preventOverflow : false;
   }
 
   getYear(date: Date): number {
@@ -141,6 +147,9 @@ export class SbbNativeDateAdapter extends SbbDateAdapter<Date> {
     if (typeof value === 'number') {
       return new Date(value);
     } else if (typeof value === 'string') {
+      if (this._preventOverflow && this.isOverflowingDate(value)) {
+        return new Date(NaN);
+      }
       return this._parseStringDate(value);
     }
     return null;
