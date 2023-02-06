@@ -472,7 +472,7 @@ export class SbbJourneyMaps implements OnInit, AfterViewInit, OnDestroy, OnChang
             this._featureEventListenerComponent.mapSelectionEventService;
 
           // remove previous data from map
-          this._mapJourneyService.updateJourney(this._map, mapSelectionEventService);
+          this._mapJourneyService.updateJourney(this._map, mapSelectionEventService, undefined);
           this._mapTransferService.updateTransfer(this._map, undefined);
           this._mapRoutesService.updateRoutes(this._map, mapSelectionEventService, undefined);
           this._mapLeitPoiService.processData(this._map, undefined);
@@ -481,32 +481,13 @@ export class SbbJourneyMaps implements OnInit, AfterViewInit, OnDestroy, OnChang
             changes.journeyMapsRoutingOption.currentValue?.journey ||
             changes.journeyMapsRoutingOption.currentValue?.journeyMetaInformation
           ) {
-            this._mapJourneyService.updateJourney(
-              this._map,
-              mapSelectionEventService,
-              this.journeyMapsRoutingOption!.journey,
-              this.journeyMapsRoutingOption!.journeyMetaInformation?.selectedLegId
-            );
-            this._mapLeitPoiService.processData(
-              this._map,
-              this.journeyMapsRoutingOption!.journey,
-              0
-            );
+            this._updateJourney();
           }
           if (changes.journeyMapsRoutingOption.currentValue?.transfer) {
-            this._mapTransferService.updateTransfer(
-              this._map,
-              this.journeyMapsRoutingOption!.transfer
-            );
-            this._mapLeitPoiService.processData(this._map, this.journeyMapsRoutingOption!.transfer);
+            this._updateTransfer();
           }
           if (changes.journeyMapsRoutingOption.currentValue?.routes) {
-            this._mapRoutesService.updateRoutes(
-              this._map,
-              mapSelectionEventService,
-              this.journeyMapsRoutingOption!.routes,
-              this.journeyMapsRoutingOption!.routesMetaInformations
-            );
+            this._updateRoutes();
           }
         });
       }
@@ -514,11 +495,7 @@ export class SbbJourneyMaps implements OnInit, AfterViewInit, OnDestroy, OnChang
 
     if (changes.journeyMapsZones?.currentValue || changes.journeyMapsZones?.previousValue) {
       this._executeWhenMapStyleLoaded(() => {
-        this._mapZoneService.updateZones(
-          this._map,
-          this._featureEventListenerComponent.mapSelectionEventService,
-          this.journeyMapsZones
-        );
+        this._updateZones();
       });
     }
 
@@ -779,6 +756,16 @@ export class SbbJourneyMaps implements OnInit, AfterViewInit, OnDestroy, OnChang
           );
           this._mapLayerFilterService.collectLvlLayers();
           this._levelSwitchService.switchLevel(this._levelSwitchService.selectedLevel);
+          if (this.journeyMapsRoutingOption?.journey) {
+            this._updateJourney();
+          } else if (this.journeyMapsRoutingOption?.transfer) {
+            this._updateTransfer();
+          } else if (this.journeyMapsRoutingOption?.routes) {
+            this._updateRoutes();
+          }
+          if (this.journeyMapsZones) {
+            this._updateZones();
+          }
         });
       });
 
@@ -859,6 +846,38 @@ export class SbbJourneyMaps implements OnInit, AfterViewInit, OnDestroy, OnChang
         changes.journeyMapsRoutingOption?.previousValue?.routesMetaInformations?.length ||
       changes.journeyMapsRoutingOption?.currentValue?.routesMetaInformations !==
         changes.journeyMapsRoutingOption?.previousValue?.routesMetaInformations
+    );
+  }
+
+  private _updateJourney() {
+    this._mapJourneyService.updateJourney(
+      this._map,
+      this._featureEventListenerComponent.mapSelectionEventService,
+      this.journeyMapsRoutingOption!.journey,
+      this.journeyMapsRoutingOption!.journeyMetaInformation?.selectedLegId
+    );
+    this._mapLeitPoiService.processData(this._map, this.journeyMapsRoutingOption!.journey, 0);
+  }
+
+  private _updateTransfer() {
+    this._mapTransferService.updateTransfer(this._map, this.journeyMapsRoutingOption!.transfer);
+    this._mapLeitPoiService.processData(this._map, this.journeyMapsRoutingOption!.transfer);
+  }
+
+  private _updateRoutes() {
+    this._mapRoutesService.updateRoutes(
+      this._map,
+      this._featureEventListenerComponent.mapSelectionEventService,
+      this.journeyMapsRoutingOption!.routes,
+      this.journeyMapsRoutingOption!.routesMetaInformations
+    );
+  }
+
+  private _updateZones() {
+    this._mapZoneService.updateZones(
+      this._map,
+      this._featureEventListenerComponent.mapSelectionEventService,
+      this.journeyMapsZones
     );
   }
 }
