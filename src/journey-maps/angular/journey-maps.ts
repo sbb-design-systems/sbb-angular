@@ -528,7 +528,10 @@ export class SbbJourneyMaps implements OnInit, AfterViewInit, OnDestroy, OnChang
       return;
     }
 
-    if (changes.viewportDimensions) {
+    if (
+      JSON.stringify(changes.viewportDimensions?.currentValue) !==
+      JSON.stringify(changes.viewportDimensions?.previousValue)
+    ) {
       this._viewportDimensionsChanged.next();
     }
 
