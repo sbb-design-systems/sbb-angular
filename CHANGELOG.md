@@ -2,6 +2,10 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [15.4.1](https://github.com/sbb-design-systems/sbb-angular/compare/15.4.0...15.4.1) (2023-02-07)
+
+* **ci:** fix publishing of npm package ([76cc530](https://github.com/sbb-design-systems/sbb-angular/commit/76cc530c2ed8bf2496bb3d5e4ccbd93fc6675f8d))
+
 ## [15.4.0](https://github.com/sbb-design-systems/sbb-angular/compare/15.3.1...15.4.0) (2023-02-06)
 
 
