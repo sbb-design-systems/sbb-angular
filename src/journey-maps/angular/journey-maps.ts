@@ -60,6 +60,7 @@ import { SbbMapService } from './services/map/map-service';
 import { SbbMapTransferService } from './services/map/map-transfer-service';
 import { SbbMapUrlService } from './services/map/map-url-service';
 import { SbbMapZoneService } from './services/map/map-zone-service';
+import { TwoDThreeDService } from './services/map/two-d-three-d-service';
 import { getInvalidRoutingOptionCombination } from './util/input-validation';
 
 const SATELLITE_MAP_MAX_ZOOM = 19.2;
@@ -218,6 +219,7 @@ export class SbbJourneyMaps implements OnInit, AfterViewInit, OnDestroy, OnChang
     private _levelSwitchService: SbbLevelSwitcher,
     private _mapLayerFilterService: SbbMapLayerFilter,
     private _mapOverflowingLabelService: SbbMapOverflowingLabelService,
+    private _twoDThreeDService: TwoDThreeDService,
     private _cd: ChangeDetectorRef,
     private _i18n: SbbLocaleService,
     private _host: ElementRef
@@ -581,6 +583,12 @@ export class SbbJourneyMaps implements OnInit, AfterViewInit, OnDestroy, OnChang
 
     if (changes.selectedLevel?.currentValue !== undefined) {
       this._levelSwitchService.switchLevel(this.selectedLevel);
+    }
+
+    if (
+      changes.uiOptions?.currentValue.levelSwitch !== changes.uiOptions?.previousValue.levelSwitch
+    ) {
+      this._twoDThreeDService.show2Dor3D(this._map, !!this.uiOptions.levelSwitch);
     }
   }
 

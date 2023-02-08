@@ -25,7 +25,9 @@ export class SbbLevelSwitcher {
   // same minZoom as in Android and iOS map
   private readonly _levelButtonMinMapZoom = 15;
   private readonly _selectedLevel = new BehaviorSubject<number>(0);
+  // availableLevels: levels available in the visible area of the map
   private readonly _availableLevels = new BehaviorSubject<number[]>([]);
+  // visibleLevels: same as availableLevels IF at correct zoom level, otherwise empty
   private readonly _visibleLevels = new BehaviorSubject<number[]>([]);
 
   private readonly _zoomChanged = new Subject<void>(); // gets triggered by the map's 'zoomend' event and calls onZoomChanged()
