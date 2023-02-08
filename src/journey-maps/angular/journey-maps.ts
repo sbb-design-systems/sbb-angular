@@ -844,6 +844,7 @@ export class SbbJourneyMaps implements OnInit, AfterViewInit, OnDestroy, OnChang
     // Emit initial values
     this._zoomLevelDebouncer.next();
     this._mapMovementDebouncer.next();
+    this._twoDThreeDService.show2Dor3D(this._map, !!this.uiOptions.levelSwitch);
 
     this._isStyleLoaded = true;
     this._styleLoaded.next();
