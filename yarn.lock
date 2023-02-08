@@ -302,16 +302,16 @@
     "@angular/core" "^13.0.0 || ^14.0.0-0"
     reflect-metadata "^0.1.13"
 
-"@angular/build-tooling@https://github.com/angular/dev-infra-private-build-tooling-builds.git#42a055bbd86d71d309c64c0ab82fa9fe60a5a056":
-  version "0.0.0-f86a8ab127cc57f6f270ff83bbf573b5faab08eb"
-  resolved "https://github.com/angular/dev-infra-private-build-tooling-builds.git#42a055bbd86d71d309c64c0ab82fa9fe60a5a056"
+"@angular/build-tooling@https://github.com/angular/dev-infra-private-build-tooling-builds.git#ffd5dec0bf78a2c8ff068482ad3c8434c21b54c7":
+  version "0.0.0-fb077c1937f280aac6327969fa3ab50f98b4d25a"
+  resolved "https://github.com/angular/dev-infra-private-build-tooling-builds.git#ffd5dec0bf78a2c8ff068482ad3c8434c21b54c7"
   dependencies:
     "@angular-devkit/build-angular" "15.2.0-next.3"
     "@angular/benchpress" "0.3.0"
     "@babel/core" "^7.16.0"
     "@babel/helper-annotate-as-pure" "^7.18.6"
     "@babel/plugin-proposal-async-generator-functions" "^7.20.1"
-    "@bazel/buildifier" "6.0.0"
+    "@bazel/buildifier" "6.0.1"
     "@bazel/concatjs" "5.7.3"
     "@bazel/esbuild" "5.7.3"
     "@bazel/protractor" "5.7.3"
@@ -456,9 +456,9 @@
     glob "8.1.0"
     yargs "^17.2.1"
 
-"@angular/ng-dev@https://github.com/angular/dev-infra-private-ng-dev-builds.git#e5c9d4fb7daaf8ef34876765113d9582196e03ff":
-  version "0.0.0-f86a8ab127cc57f6f270ff83bbf573b5faab08eb"
-  resolved "https://github.com/angular/dev-infra-private-ng-dev-builds.git#e5c9d4fb7daaf8ef34876765113d9582196e03ff"
+"@angular/ng-dev@https://github.com/angular/dev-infra-private-ng-dev-builds.git#f4601b680d6d0017880115cc8ee99249c34f0c12":
+  version "0.0.0-fb077c1937f280aac6327969fa3ab50f98b4d25a"
+  resolved "https://github.com/angular/dev-infra-private-ng-dev-builds.git#f4601b680d6d0017880115cc8ee99249c34f0c12"
   dependencies:
     "@yarnpkg/lockfile" "^1.1.0"
     typescript "~4.9.0"
@@ -2815,11 +2815,6 @@
   version "1.12.1"
   resolved "https://registry.yarnpkg.com/@bazel/bazelisk/-/bazelisk-1.12.1.tgz#346531286564aa29eee03a62362d210f3433e7bf"
   integrity sha512-TGCwVeIiVeQUP6yLpxAg8yluFOC+tBQnWw5l8lqwMxKhRtOA+WaH1CJKAXeCBAaS2MxohhkXq44zj/7AM+t2jg==
-
-"@bazel/buildifier@6.0.0":
-  version "6.0.0"
-  resolved "https://registry.yarnpkg.com/@bazel/buildifier/-/buildifier-6.0.0.tgz#8bbcaaed0de98b36e77cb893053608787cd12d9f"
-  integrity sha512-QIhSDSscSfQB3ZJ0DFqWZ1R99TwgYO44NcCBL7PsfFtwRobsQ7YMka4p9mkbZi4HPin0/ImIt3yUOir8H64mIQ==
 
 "@bazel/buildifier@6.0.1":
   version "6.0.1"
