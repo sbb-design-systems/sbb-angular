@@ -63,6 +63,8 @@ export class JourneyMapsFullExample implements OnInit, OnDestroy {
     oneFingerPan: true,
     scrollZoom: true,
   };
+  mapBoundingBox?: number[][];
+  mapBoundingBoxChange = new Subject<number[][]>();
 
   journeyMapsZoneOptions = [
     { label: '(none)', value: undefined },
@@ -177,6 +179,9 @@ export class JourneyMapsFullExample implements OnInit, OnDestroy {
     this.mapCenterChange
       .pipe(takeUntil(this._destroyed))
       .subscribe((mapCenter: LngLatLike) => (this.mapCenter = mapCenter));
+    this.mapBoundingBoxChange
+      .pipe(takeUntil(this._destroyed))
+      .subscribe((mapBoundingBox: number[][]) => (this.mapBoundingBox = mapBoundingBox));
 
     this.form.get('listenerOptions.ROUTE')?.patchValue({ hoverTemplate: this.routeTemplate });
     this.form.get('listenerOptions.STATION')?.patchValue({ clickTemplate: this.stationTemplate });
@@ -320,6 +325,18 @@ export class JourneyMapsFullExample implements OnInit, OnDestroy {
       return;
     }
     return this.mapCenter as { lng: number; lat: number };
+  }
+
+  mapBoundingBoxInfo(): { lngSW: number; latSW: number; lngNE: number; latNE: number } | undefined {
+    if (!this.mapBoundingBox) {
+      return;
+    }
+    return {
+      lngSW: this.mapBoundingBox[0][0],
+      latSW: this.mapBoundingBox[0][1],
+      lngNE: this.mapBoundingBox[1][0],
+      latNE: this.mapBoundingBox[1][1],
+    };
   }
 
   listenerOptionTypes() {
