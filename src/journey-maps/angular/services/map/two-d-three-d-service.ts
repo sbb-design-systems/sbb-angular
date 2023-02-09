@@ -10,7 +10,7 @@ export class TwoDThreeDService {
     this._setVisibility(map, '-lvl', show3D ? 'visible' : 'none');
   }
 
-  private _setVisibility(map: MaplibreMap, layerIdSuffix: string, visibility: string) {
+  private _setVisibility(map: MaplibreMap, layerIdSuffix: string, visibility: 'visible' | 'none') {
     map
       .getStyle()
       .layers?.filter((layer) => layer.id.endsWith(layerIdSuffix))
