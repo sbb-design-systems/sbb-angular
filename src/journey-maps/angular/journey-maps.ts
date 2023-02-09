@@ -588,7 +588,7 @@ export class SbbJourneyMaps implements OnInit, AfterViewInit, OnDestroy, OnChang
     if (
       changes.uiOptions?.currentValue.levelSwitch !== changes.uiOptions?.previousValue.levelSwitch
     ) {
-      this._twoDThreeDService.show2Dor3D(this._map, !!this.uiOptions.levelSwitch);
+      this._show2Dor3D();
     }
   }
 
@@ -844,7 +844,7 @@ export class SbbJourneyMaps implements OnInit, AfterViewInit, OnDestroy, OnChang
     // Emit initial values
     this._zoomLevelDebouncer.next();
     this._mapMovementDebouncer.next();
-    this._twoDThreeDService.show2Dor3D(this._map, !!this.uiOptions.levelSwitch);
+    this._show2Dor3D();
 
     this._isStyleLoaded = true;
     this._styleLoaded.next();
@@ -895,5 +895,13 @@ export class SbbJourneyMaps implements OnInit, AfterViewInit, OnDestroy, OnChang
       changes.journeyMapsRoutingOption?.currentValue?.routesMetaInformations !==
         changes.journeyMapsRoutingOption?.previousValue?.routesMetaInformations
     );
+  }
+
+  /**
+   * If the level-switch feature is enabled by the client, then show only 3d layers (-lvl)
+   * If the level-switch feature is disabled by the client, then show only 2d layers (-2d)
+   */
+  private _show2Dor3D() {
+    this._twoDThreeDService.show2Dor3D(this._map, !!this.uiOptions.levelSwitch);
   }
 }
