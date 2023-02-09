@@ -1,5 +1,5 @@
 import { PortalModule } from '@angular/cdk/portal';
-import { CommonModule } from '@angular/common';
+import { CommonModule, DecimalPipe } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms';
 
@@ -17,5 +17,6 @@ import { JourneyMapsRoutingModule } from './journey-maps-routing.module';
     JourneyMapsRoutingModule,
     ReactiveFormsModule,
   ],
+  providers: [DecimalPipe],
 })
 export class JourneyMapsModule {}

@@ -1,3 +1,4 @@
+import { DecimalPipe } from '@angular/common';
 import {
   ChangeDetectorRef,
   Component,
@@ -103,7 +104,11 @@ export class JourneyMapsFullExample implements OnInit, OnDestroy {
   };
   private _destroyed = new Subject<void>();
 
-  constructor(private _cd: ChangeDetectorRef, private _fb: UntypedFormBuilder) {
+  constructor(
+    private _cd: ChangeDetectorRef,
+    private _fb: UntypedFormBuilder,
+    private _decimalPipe: DecimalPipe
+  ) {
     // Pseudo validator to reset the selected marker id before the value changes
     const resetSelectedMarkerIdValidator = () => {
       this.selectedMarkerId = undefined;
@@ -327,16 +332,23 @@ export class JourneyMapsFullExample implements OnInit, OnDestroy {
     return this.mapCenter as { lng: number; lat: number };
   }
 
-  mapBoundingBoxInfo(): { lngSW: number; latSW: number; lngNE: number; latNE: number } | undefined {
-    if (!this.mapBoundingBox) {
-      return;
+  mapBoundingBoxInfo(): string {
+    let lngSW = '',
+      latSW = '',
+      lngNE = '',
+      latNE = '';
+    if (this.mapBoundingBox) {
+      lngSW = this._formatCoodinate(this.mapBoundingBox[0][0]);
+      latSW = this._formatCoodinate(this.mapBoundingBox[0][1]);
+      lngNE = this._formatCoodinate(this.mapBoundingBox[1][0]);
+      latNE = this._formatCoodinate(this.mapBoundingBox[1][1]);
     }
-    return {
-      lngSW: this.mapBoundingBox[0][0],
-      latSW: this.mapBoundingBox[0][1],
-      lngNE: this.mapBoundingBox[1][0],
-      latNE: this.mapBoundingBox[1][1],
-    };
+
+    return `Map bounding-box (lng / lat, SW then NE): ${lngSW}, ${latSW} | ${lngNE}, ${latNE}`;
+  }
+
+  private _formatCoodinate(value: number): string {
+    return this._decimalPipe.transform(value, '1.1-6')!;
   }
 
   listenerOptionTypes() {
