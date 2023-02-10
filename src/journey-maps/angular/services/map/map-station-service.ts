@@ -21,9 +21,10 @@ export class SbbMapStationService {
       map.once('idle', () => this._updateStationSource(map, stationLayers));
     }
 
-    const listener = () => map.once('idle', () => this._updateStationSource(map, stationLayers));
-    map.on('moveend', listener);
-    return listener;
+    const stationListener = () =>
+      map.once('idle', () => this._updateStationSource(map, stationLayers));
+    map.on('moveend', stationListener);
+    return stationListener;
   }
 
   deregisterStationUpdater(map: MaplibreMap, listener: () => void): void {
