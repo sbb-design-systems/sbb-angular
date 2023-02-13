@@ -760,6 +760,7 @@ export class SbbJourneyMaps implements OnInit, AfterViewInit, OnDestroy, OnChang
         this._map.setStyle(style, { diff: false });
         this._map.once('styledata', () => {
           this._featureEventListenerComponent.updateListener();
+          this._show2Dor3D();
           this._mapMarkerService.updateMarkers(
             this._map,
             this._getMarkers(),
