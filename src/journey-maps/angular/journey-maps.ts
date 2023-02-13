@@ -14,7 +14,6 @@ import {
   ViewChild,
 } from '@angular/core';
 import { FeatureCollection } from 'geojson';
-import type { Map } from 'maplibre-gl';
 import { LngLatBounds, LngLatLike, Map as MaplibreMap, VectorTileSource } from 'maplibre-gl';
 import { ReplaySubject, Subject } from 'rxjs';
 import { debounceTime, delay, switchMap, take, takeUntil } from 'rxjs/operators';
@@ -62,11 +61,6 @@ import { SbbMapUrlService } from './services/map/map-url-service';
 import { SbbMapZoneService } from './services/map/map-zone-service';
 import { TwoDThreeDService } from './services/map/two-d-three-d-service';
 import { getInvalidRoutingOptionCombination } from './util/input-validation';
-
-const SATELLITE_MAP_MAX_ZOOM = 19.2;
-const SATELLITE_MAP_TILE_SIZE = 256;
-const SATELLITE_MAP_URL_TEMPLATE =
-  'https://services.arcgisonline.com/arcgis/rest/services/World_Imagery/MapServer/WMTS/tile/1.0.0/World_Imagery/default/GoogleMapsCompatible/{z}/{y}/{x}.jpg';
 
 /**
  * This component uses the Maplibre GL JS api to render a map and display the given data on the map.
@@ -167,6 +161,7 @@ export class SbbJourneyMaps implements OnInit, AfterViewInit, OnDestroy, OnChang
   private _featureEventListenerComponent: SbbFeatureEventListener;
   private _defaultStyleOptions: SbbStyleOptions = {
     url: 'https://journey-maps-tiles.geocdn.sbb.ch/styles/{styleId}/style.json?api_key={apiKey}',
+    aerialId: 'aerial_sbb_ki_v2',
     brightId: 'base_bright_v2_ki_v2',
     darkId: 'base_dark_v2_ki_v2',
     mode: 'bright',
@@ -200,9 +195,7 @@ export class SbbJourneyMaps implements OnInit, AfterViewInit, OnDestroy, OnChang
   // _map._isStyleLoaded() returns sometimes false when sources are being updated.
   // Therefore, we set this variable to true once the style has been loaded.
   private _isStyleLoaded = false;
-  private _isSatelliteMap = false;
-  private _satelliteLayerId = 'esriWorldImageryLayer';
-  private _satelliteImageSourceName = 'esriWorldImagerySource';
+  private _isAerialSelected = false;
   private _observer: ResizeObserver;
 
   constructor(
@@ -481,7 +474,7 @@ export class SbbJourneyMaps implements OnInit, AfterViewInit, OnDestroy, OnChang
             this._featureEventListenerComponent.mapSelectionEventService;
 
           // remove previous data from map
-          this._mapJourneyService.updateJourney(this._map, mapSelectionEventService);
+          this._mapJourneyService.updateJourney(this._map, mapSelectionEventService, undefined);
           this._mapTransferService.updateTransfer(this._map, undefined);
           this._mapRoutesService.updateRoutes(this._map, mapSelectionEventService, undefined);
           this._mapLeitPoiService.processData(this._map, undefined);
@@ -490,32 +483,13 @@ export class SbbJourneyMaps implements OnInit, AfterViewInit, OnDestroy, OnChang
             changes.journeyMapsRoutingOption.currentValue?.journey ||
             changes.journeyMapsRoutingOption.currentValue?.journeyMetaInformation
           ) {
-            this._mapJourneyService.updateJourney(
-              this._map,
-              mapSelectionEventService,
-              this.journeyMapsRoutingOption!.journey,
-              this.journeyMapsRoutingOption!.journeyMetaInformation?.selectedLegId
-            );
-            this._mapLeitPoiService.processData(
-              this._map,
-              this.journeyMapsRoutingOption!.journey,
-              0
-            );
+            this._updateJourney();
           }
           if (changes.journeyMapsRoutingOption.currentValue?.transfer) {
-            this._mapTransferService.updateTransfer(
-              this._map,
-              this.journeyMapsRoutingOption!.transfer
-            );
-            this._mapLeitPoiService.processData(this._map, this.journeyMapsRoutingOption!.transfer);
+            this._updateTransfer();
           }
           if (changes.journeyMapsRoutingOption.currentValue?.routes) {
-            this._mapRoutesService.updateRoutes(
-              this._map,
-              mapSelectionEventService,
-              this.journeyMapsRoutingOption!.routes,
-              this.journeyMapsRoutingOption!.routesMetaInformations
-            );
+            this._updateRoutes();
           }
         });
       }
@@ -523,11 +497,7 @@ export class SbbJourneyMaps implements OnInit, AfterViewInit, OnDestroy, OnChang
 
     if (changes.journeyMapsZones?.currentValue || changes.journeyMapsZones?.previousValue) {
       this._executeWhenMapStyleLoaded(() => {
-        this._mapZoneService.updateZones(
-          this._map,
-          this._featureEventListenerComponent.mapSelectionEventService,
-          this.journeyMapsZones
-        );
+        this._updateZones();
       });
     }
 
@@ -560,7 +530,10 @@ export class SbbJourneyMaps implements OnInit, AfterViewInit, OnDestroy, OnChang
       return;
     }
 
-    if (changes.viewportDimensions) {
+    if (
+      JSON.stringify(changes.viewportDimensions?.currentValue) !==
+      JSON.stringify(changes.viewportDimensions?.previousValue)
+    ) {
       this._viewportDimensionsChanged.next();
     }
 
@@ -681,20 +654,8 @@ export class SbbJourneyMaps implements OnInit, AfterViewInit, OnDestroy, OnChang
 
   /** @docs-private */
   onToggleBasemap() {
-    this._isSatelliteMap = !this._isSatelliteMap;
-    if (this._isSatelliteMap) {
-      this._map.addLayer(
-        {
-          id: this._satelliteLayerId,
-          type: 'raster',
-          source: this._satelliteImageSourceName,
-          maxzoom: SATELLITE_MAP_MAX_ZOOM,
-        },
-        'waterName_point_other'
-      );
-    } else {
-      this._map.removeLayer(this._satelliteLayerId);
-    }
+    this._isAerialSelected = !this._isAerialSelected;
+    this._mapStyleOptionsChanged.next();
   }
 
   /** @docs-private */
@@ -767,7 +728,9 @@ export class SbbJourneyMaps implements OnInit, AfterViewInit, OnDestroy, OnChang
   }
 
   private _getStyleId(): string | undefined {
-    return this.styleOptions.mode === 'dark'
+    return this._isAerialSelected
+      ? this.styleOptions.aerialId
+      : this.styleOptions.mode === 'dark'
       ? this.styleOptions.darkId
       : this.styleOptions.brightId;
   }
@@ -796,6 +759,7 @@ export class SbbJourneyMaps implements OnInit, AfterViewInit, OnDestroy, OnChang
       .subscribe((style) => {
         this._map.setStyle(style, { diff: false });
         this._map.once('styledata', () => {
+          this._featureEventListenerComponent.updateListener();
           this._mapMarkerService.updateMarkers(
             this._map,
             this._getMarkers(),
@@ -804,6 +768,16 @@ export class SbbJourneyMaps implements OnInit, AfterViewInit, OnDestroy, OnChang
           );
           this._mapLayerFilterService.collectLvlLayers();
           this._levelSwitchService.switchLevel(this._levelSwitchService.selectedLevel);
+          if (this.journeyMapsRoutingOption?.journey) {
+            this._updateJourney();
+          } else if (this.journeyMapsRoutingOption?.transfer) {
+            this._updateTransfer();
+          } else if (this.journeyMapsRoutingOption?.routes) {
+            this._updateRoutes();
+          }
+          if (this.journeyMapsZones) {
+            this._updateZones();
+          }
         });
       });
 
@@ -837,7 +811,6 @@ export class SbbJourneyMaps implements OnInit, AfterViewInit, OnDestroy, OnChang
       SBB_ROKAS_ROUTE_SOURCE,
       ...this._mapMarkerService.sources,
     ]);
-    this._addSatelliteSource(this._map);
 
     this._map.on('zoomend', () => this._zoomLevelDebouncer.next());
     this._map.on('moveend', () => this._mapMovementDebouncer.next());
@@ -849,14 +822,6 @@ export class SbbJourneyMaps implements OnInit, AfterViewInit, OnDestroy, OnChang
     this._isStyleLoaded = true;
     this._styleLoaded.next();
     this.mapReady.next(this._map);
-  }
-
-  private _addSatelliteSource(map: Map) {
-    map.addSource(this._satelliteImageSourceName, {
-      type: 'raster',
-      tiles: [SATELLITE_MAP_URL_TEMPLATE],
-      tileSize: SATELLITE_MAP_TILE_SIZE,
-    });
   }
 
   private _getZooomLevels(): SbbZoomLevels {
@@ -894,6 +859,38 @@ export class SbbJourneyMaps implements OnInit, AfterViewInit, OnDestroy, OnChang
         changes.journeyMapsRoutingOption?.previousValue?.routesMetaInformations?.length ||
       changes.journeyMapsRoutingOption?.currentValue?.routesMetaInformations !==
         changes.journeyMapsRoutingOption?.previousValue?.routesMetaInformations
+    );
+  }
+
+  private _updateJourney() {
+    this._mapJourneyService.updateJourney(
+      this._map,
+      this._featureEventListenerComponent.mapSelectionEventService,
+      this.journeyMapsRoutingOption!.journey,
+      this.journeyMapsRoutingOption!.journeyMetaInformation?.selectedLegId
+    );
+    this._mapLeitPoiService.processData(this._map, this.journeyMapsRoutingOption!.journey, 0);
+  }
+
+  private _updateTransfer() {
+    this._mapTransferService.updateTransfer(this._map, this.journeyMapsRoutingOption!.transfer);
+    this._mapLeitPoiService.processData(this._map, this.journeyMapsRoutingOption!.transfer);
+  }
+
+  private _updateRoutes() {
+    this._mapRoutesService.updateRoutes(
+      this._map,
+      this._featureEventListenerComponent.mapSelectionEventService,
+      this.journeyMapsRoutingOption!.routes,
+      this.journeyMapsRoutingOption!.routesMetaInformations
+    );
+  }
+
+  private _updateZones() {
+    this._mapZoneService.updateZones(
+      this._map,
+      this._featureEventListenerComponent.mapSelectionEventService,
+      this.journeyMapsZones
     );
   }
 

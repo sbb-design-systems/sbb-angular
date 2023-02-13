@@ -15,10 +15,10 @@ export class SbbMapTransferService {
   // calling this method only makes sense for clients using the v1 style.
   updateTransfer(
     map: MaplibreMap,
-    featureCollection: FeatureCollection = SBB_EMPTY_FEATURE_COLLECTION
+    transfer: FeatureCollection = SBB_EMPTY_FEATURE_COLLECTION
   ): void {
-    this._getSource(map).setData(featureCollection);
-    this._data = featureCollection;
+    this._getSource(map).setData(transfer);
+    this._data = transfer;
   }
 
   // If we enter the station on another floor than '0' then the outdoor route should be displayed

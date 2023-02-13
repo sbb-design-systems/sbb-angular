@@ -9,31 +9,33 @@ export const SBB_STATION_LAYER = 'rokas-station-hover';
 
 @Injectable({ providedIn: 'root' })
 export class SbbMapStationService {
-  private _stationLayers: string[];
-  private _listener: () => void;
-
-  registerStationUpdater(map: MaplibreMap): void {
-    this._stationLayers = this._stationLayers ?? this._extractStationLayers(map);
+  registerStationUpdater(map: MaplibreMap): () => void {
+    const stationLayers = this._extractStationLayers(map);
+    if (!stationLayers) {
+      throw new Error('Could not extract stationLayers.');
+    }
 
     if (map.loaded()) {
-      this._updateStationSource(map);
+      this._updateStationSource(map, stationLayers);
     } else {
-      map.once('idle', () => this._updateStationSource(map));
+      map.once('idle', () => this._updateStationSource(map, stationLayers));
     }
 
-    this._listener = () => map.once('idle', () => this._updateStationSource(map));
-    map.on('moveend', this._listener);
+    const stationListener = () =>
+      map.once('idle', () => this._updateStationSource(map, stationLayers));
+    map.on('moveend', stationListener);
+    return stationListener;
   }
 
-  deregisterStationUpdater(map: MaplibreMap): void {
-    if (this._listener) {
-      map.off('moveend', this._listener);
+  deregisterStationUpdater(map: MaplibreMap, listener: () => void): void {
+    if (listener) {
+      map.off('moveend', listener);
     }
   }
 
-  private _updateStationSource(map: MaplibreMap): void {
+  private _updateStationSource(map: MaplibreMap, stationLayers: string[]): void {
     const features = map
-      .queryRenderedFeatures(undefined, { layers: this._stationLayers })
+      .queryRenderedFeatures(undefined, { layers: stationLayers })
       .map((f) => ({ type: f.type, properties: f.properties, geometry: f.geometry }));
 
     map.removeFeatureState({ source: SBB_ROKAS_STATION_HOVER_SOURCE });

@@ -250,18 +250,6 @@ export class JourneyMapsFullExample implements OnInit, OnDestroy {
           ...this.form.get('styleOptions')?.value,
           ...this._styleIds[versionNumber],
         });
-        this.form.get('zoneGeoJson')?.reset();
-        this.form.get('routingGeoJson')?.reset();
-        this.form.get('routingLegId')?.reset();
-      });
-
-    this.form
-      .get('styleOptions')
-      ?.valueChanges.pipe(takeUntil(this._destroyed))
-      .subscribe((_) => {
-        this.form.get('zoneGeoJson')?.reset();
-        this.form.get('routingGeoJson')?.reset();
-        this.form.get('routingLegId')?.reset();
       });
   }
 

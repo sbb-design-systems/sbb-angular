@@ -9,7 +9,9 @@ export type SbbStyleMode = 'bright' | 'dark';
 export interface SbbStyleOptions {
   /** Overwrite this value if you want to use a style from a different source. */
   url?: string;
-  /** Overwrite this value if you want to use a custom style id. */
+  /** Overwrite this value if you want to use a custom style id for the aerial/satellite view. */
+  aerialId?: string;
+  /** Overwrite this value if you want to use a custom style id for the bright mode. */
   brightId?: string;
   /** Overwrite this value if you want to use a custom style id for the dark mode. */
   darkId?: string;
