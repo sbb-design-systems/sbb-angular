@@ -265,7 +265,7 @@ export class SbbMapMarkerService {
       .filter((marker) => marker.originalCategory ?? marker.category === SbbMarkerCategory.CUSTOM)
       .forEach((marker) => {
         // The image will later be loaded by the category name.
-        // Therefore we have to overwrite the category.
+        // Therefore, we have to overwrite the category.
         // We also need to use the same naming convention that we use in the map style.
         // see https://gitlab.geops.de/sbb/sbb-styles/-/blob/dev/partials/_ki.json#L28
         marker.originalCategory = marker.category;

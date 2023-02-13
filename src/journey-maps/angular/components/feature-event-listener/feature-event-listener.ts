@@ -69,6 +69,7 @@ export class SbbFeatureEventListener implements OnChanges, OnDestroy {
   private _mapCursorStyleEvent: SbbMapCursorStyleEvent;
   private _featuresHoverEvent: SbbFeaturesHoverEvent;
   private _featuresClickEvent: SbbFeaturesClickEvent;
+  private _stationListener: () => void;
 
   constructor(
     private _mapStationService: SbbMapStationService,
@@ -90,6 +91,10 @@ export class SbbFeatureEventListener implements OnChanges, OnDestroy {
   }
 
   ngOnChanges(changes: SimpleChanges): void {
+    this.updateListener();
+  }
+
+  updateListener(): void {
     if (this.listenerOptions && this.map) {
       this._watchOnLayers.clear();
 
@@ -101,14 +106,14 @@ export class SbbFeatureEventListener implements OnChanges, OnDestroy {
       }
       if (this.listenerOptions.STATION?.watch) {
         this._updateWatchOnLayers([SBB_STATION_LAYER], 'STATION');
-        this._mapStationService.registerStationUpdater(this.map);
+        this._mapStationService.deregisterStationUpdater(this.map, this._stationListener);
+        this._stationListener = this._mapStationService.registerStationUpdater(this.map);
       } else {
-        this._mapStationService.deregisterStationUpdater(this.map);
+        this._mapStationService.deregisterStationUpdater(this.map, this._stationListener);
       }
       if (this.listenerOptions.ZONE?.watch) {
         this._updateWatchOnLayers([SBB_ZONE_LAYER], 'ZONE');
       }
-
       if (this.listenerOptions.POI?.watch) {
         this._updateWatchOnLayers([SBB_POI_LAYER], 'POI');
       }
