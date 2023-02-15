@@ -59,7 +59,6 @@ import { SbbMapService } from './services/map/map-service';
 import { SbbMapTransferService } from './services/map/map-transfer-service';
 import { SbbMapUrlService } from './services/map/map-url-service';
 import { SbbMapZoneService } from './services/map/map-zone-service';
-import { TwoDThreeDService } from './services/map/two-d-three-d-service';
 import { getInvalidRoutingOptionCombination } from './util/input-validation';
 
 /**
@@ -212,7 +211,6 @@ export class SbbJourneyMaps implements OnInit, AfterViewInit, OnDestroy, OnChang
     private _levelSwitchService: SbbLevelSwitcher,
     private _mapLayerFilterService: SbbMapLayerFilter,
     private _mapOverflowingLabelService: SbbMapOverflowingLabelService,
-    private _twoDThreeDService: TwoDThreeDService,
     private _cd: ChangeDetectorRef,
     private _i18n: SbbLocaleService,
     private _host: ElementRef
@@ -900,6 +898,15 @@ export class SbbJourneyMaps implements OnInit, AfterViewInit, OnDestroy, OnChang
    * If the level-switch feature is disabled by the client, then show only 2d layers (-2d)
    */
   private _show2Dor3D() {
-    this._twoDThreeDService.show2Dor3D(this._map, !!this.uiOptions.levelSwitch);
+    const show3D = !!this.uiOptions.levelSwitch;
+    this._setVisibility(this._map, '-2d', show3D ? 'none' : 'visible');
+    this._setVisibility(this._map, '-lvl', show3D ? 'visible' : 'none');
+  }
+
+  private _setVisibility(map: MaplibreMap, layerIdSuffix: string, visibility: 'visible' | 'none') {
+    map
+      .getStyle()
+      .layers?.filter((layer) => layer.id.endsWith(layerIdSuffix))
+      .forEach((layer) => map.setLayoutProperty(layer.id, 'visibility', visibility));
   }
 }
