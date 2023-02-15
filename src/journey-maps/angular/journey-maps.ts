@@ -555,6 +555,12 @@ export class SbbJourneyMaps implements OnInit, AfterViewInit, OnDestroy, OnChang
     if (changes.selectedLevel?.currentValue !== undefined) {
       this._levelSwitchService.switchLevel(this.selectedLevel);
     }
+
+    if (
+      changes.uiOptions?.currentValue.levelSwitch !== changes.uiOptions?.previousValue.levelSwitch
+    ) {
+      this._show2Dor3D();
+    }
   }
 
   ngAfterViewInit(): void {
@@ -752,6 +758,7 @@ export class SbbJourneyMaps implements OnInit, AfterViewInit, OnDestroy, OnChang
         this._map.setStyle(style, { diff: false });
         this._map.once('styledata', () => {
           this._featureEventListenerComponent.updateListener();
+          this._show2Dor3D();
           this._mapMarkerService.updateMarkers(
             this._map,
             this._getMarkers(),
@@ -809,6 +816,7 @@ export class SbbJourneyMaps implements OnInit, AfterViewInit, OnDestroy, OnChang
     // Emit initial values
     this._zoomLevelDebouncer.next();
     this._mapMovementDebouncer.next();
+    this._show2Dor3D();
 
     this._isStyleLoaded = true;
     this._styleLoaded.next();
@@ -883,5 +891,22 @@ export class SbbJourneyMaps implements OnInit, AfterViewInit, OnDestroy, OnChang
       this._featureEventListenerComponent.mapSelectionEventService,
       this.journeyMapsZones
     );
+  }
+
+  /**
+   * If the level-switch feature is enabled by the client, then show only 3d layers (-lvl)
+   * If the level-switch feature is disabled by the client, then show only 2d layers (-2d)
+   */
+  private _show2Dor3D() {
+    const show3D = !!this.uiOptions.levelSwitch;
+    this._setVisibility(this._map, '-2d', show3D ? 'none' : 'visible');
+    this._setVisibility(this._map, '-lvl', show3D ? 'visible' : 'none');
+  }
+
+  private _setVisibility(map: MaplibreMap, layerIdSuffix: string, visibility: 'visible' | 'none') {
+    map
+      .getStyle()
+      .layers?.filter((layer) => layer.id.endsWith(layerIdSuffix))
+      .forEach((layer) => map.setLayoutProperty(layer.id, 'visibility', visibility));
   }
 }
