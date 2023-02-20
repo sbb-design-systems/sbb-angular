@@ -2,6 +2,19 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [15.5.0](https://github.com/sbb-design-systems/sbb-angular/compare/15.4.1...15.5.0) (2023-02-20)
+
+
+### Features
+
+* **journey-maps:** switch between 2D and 3D layers ([#1814](https://github.com/sbb-design-systems/sbb-angular/issues/1814)) ([5c4c987](https://github.com/sbb-design-systems/sbb-angular/commit/5c4c9876148fb075594e66798f0c4a512526e1fe))
+* **journey-maps:** use the new aerial style 'aerial_sbb_ki_v2' ([#1811](https://github.com/sbb-design-systems/sbb-angular/issues/1811)) ([5d842ce](https://github.com/sbb-design-systems/sbb-angular/commit/5d842ce780df9348bbbf51c823e3349bb250bcc6))
+
+
+### Bug Fixes
+
+* **deps:** update dependency @angular/cdk to v15.1.5 ([ae851c1](https://github.com/sbb-design-systems/sbb-angular/commit/ae851c1d159ae6039942d903cf61a5a97c77680a))
+
 ### [15.4.1](https://github.com/sbb-design-systems/sbb-angular/compare/15.4.0...15.4.1) (2023-02-07)
 
 * **ci:** fix publishing of npm package ([76cc530](https://github.com/sbb-design-systems/sbb-angular/commit/76cc530c2ed8bf2496bb3d5e4ccbd93fc6675f8d))
