@@ -23,7 +23,7 @@ jobs:
       )
     env:
       IMAGE_REPO: ghcr.io/sbb-design-systems/sbb-angular/showcase-preview
-      IMAGE_TAG: rev-${{ github.event.workflow_run.head_sha }}
+      IMAGE_TAG: rev-${{ github.event.workflow_run.event == 'push' && 'main' || github.event.workflow_run.head_sha }}
       ALLOWED_EXTENSIONS: css, gitignore, gitkeep, html, ico, jpg, js, json, png, scss, stackblitzrc, svg, ts
     steps:
     - name: Login to GitHub Docker Repository
