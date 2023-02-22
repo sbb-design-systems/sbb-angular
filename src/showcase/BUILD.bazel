@@ -131,6 +131,7 @@ http_server(
     environment_variables = [
         "JM_API_KEY",
         "LEGACY_VERSIONS",
+        "ENVIRONMENT_BANNER_TEXT",
     ],
     tags = ["manual"],
     deps = [
