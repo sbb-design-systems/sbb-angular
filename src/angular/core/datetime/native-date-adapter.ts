@@ -147,7 +147,7 @@ export class SbbNativeDateAdapter extends SbbDateAdapter<Date> {
     if (typeof value === 'number') {
       return new Date(value);
     } else if (typeof value === 'string') {
-      if (this._preventOverflow && this.isOverflowingDate(value)) {
+      if (this._preventOverflow && this._isOverflowingDate(value)) {
         return new Date(NaN);
       }
       return this._parseStringDate(value);
@@ -219,16 +219,6 @@ export class SbbNativeDateAdapter extends SbbDateAdapter<Date> {
     return !isNaN(date.valueOf());
   }
 
-  isOverflowingDate(value: string): boolean {
-    const parts = this._splitStringDate(value);
-    const date = this._parseStringDate(value);
-    if (!parts || !date) {
-      return false;
-    }
-    const [year, month, day] = parts;
-    return date.getFullYear() !== year || date.getMonth() !== month || date.getDate() !== day;
-  }
-
   invalid(): Date {
     return new Date(NaN);
   }
@@ -270,5 +260,16 @@ export class SbbNativeDateAdapter extends SbbDateAdapter<Date> {
       result.setFullYear(this.getYear(result) - 1900);
     }
     return result;
+  }
+
+  /** Checks whether a given date string contains an overflowing date. */
+  private _isOverflowingDate(value: string): boolean {
+    const parts = this._splitStringDate(value);
+    const date = this._parseStringDate(value);
+    if (!parts || !date) {
+      return false;
+    }
+    const [year, month, day] = parts;
+    return date.getFullYear() !== year || date.getMonth() !== month || date.getDate() !== day;
   }
 }
