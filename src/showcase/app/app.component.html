@@ -3,7 +3,9 @@
   [subtitle]="'Version ' + showcaseVersion"
   collapseBreakpoint="mobile"
 >
-  <sbb-header-environment>dev</sbb-header-environment>
+  <sbb-header-environment *ngIf="environmentBannerText">{{
+    environmentBannerText
+  }}</sbb-header-environment>
   <sbb-app-chooser-section label="Previous Versions" *ngIf="previousMajorVersions.length">
     <a
       target="_blank"

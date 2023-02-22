@@ -7,3 +7,4 @@ services:
     environment:
       - JM_API_KEY
       - LEGACY_VERSIONS
+      - ENVIRONMENT_BANNER_TEXT
