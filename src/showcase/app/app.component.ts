@@ -21,6 +21,7 @@ const DEV_PACKAGES = Object.entries(PACKAGES)
 declare global {
   interface Window {
     LEGACY_VERSIONS?: string;
+    ENVIRONMENT_BANNER_TEXT?: string;
   }
 }
 
@@ -38,6 +39,7 @@ export class AppComponent implements AfterContentInit, OnDestroy {
   packages = isDevMode() ? PACKAGES : DEV_PACKAGES;
   previousMajorVersions: number[] =
     window.LEGACY_VERSIONS?.split(/[ ,]+/).map(Number).filter(Number.isInteger).sort() ?? [];
+  environmentBannerText = window.ENVIRONMENT_BANNER_TEXT;
   private _destroyed = new Subject<void>();
 
   constructor(

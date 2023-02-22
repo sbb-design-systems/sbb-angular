@@ -9,7 +9,7 @@ COPY ./dist/releases/showcase /usr/share/nginx/html
 USER root
 
 # Add configuration for ngssc
-RUN echo '{"variant":"global","environmentVariables":["JM_API_KEY","LEGACY_VERSIONS"],"filePattern":"index.html"}' > /usr/share/nginx/html/ngssc.json
+RUN echo '{"variant":"global","environmentVariables":["JM_API_KEY","LEGACY_VERSIONS", "ENVIRONMENT_BANNER_TEXT"],"filePattern":"index.html"}' > /usr/share/nginx/html/ngssc.json
 
 # Add write permission for random user for the index.html
 RUN chmod a+w /usr/share/nginx/html/index.html
