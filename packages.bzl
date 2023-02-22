@@ -50,6 +50,7 @@ ANGULAR_PACKAGES_CONFIG = [
         "clipboard",
         "coercion",
         "collections",
+        "dialog",
         "drag-drop",
         "keycodes",
         "layout",
