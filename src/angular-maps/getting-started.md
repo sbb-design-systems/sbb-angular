@@ -1,3 +1,15 @@
+---
+
+**sbb-esta/angular-maps is deprecated.**
+
+
+This package is deprecated and no longer supported. 
+
+If you're looking for a generic mapping solution, please check out [journey-maps](/journey-maps).
+If you're committed to ESRI technologies, please check out their libraries.
+
+---
+
 # Getting Started
 
 The package `@sbb-esta/angular-maps` provides a fast and easy way to integrate maps and geograhical 3D scenes into your Angular application. Continue reading in [Overview and usage](/maps/introduction/overview-and-usage) to learn more about the core concepts behind the package. [Mapping basics](/maps/introduction/mapping-basics) gives you a short introduction on what a map is and how to make good maps. Finally, the _Advanced Usage_ section (see sidebar menu) links to a few custom tailored samples on how to actually use the mapping components in your application workflows.
