@@ -18,12 +18,12 @@ import { SBB_EMPTY_FEATURE_COLLECTION } from './map-service';
 import { toFeatureCollection } from './util/feature-collection-util';
 
 export const SBB_ALL_ROUTE_LAYERS: string[] = [
-  'rokas-route-outline',
-  'rokas-route-outline-gen0',
-  'rokas-route-outline-gen1',
-  'rokas-route-outline-gen2',
-  'rokas-route-outline-gen3',
-  'rokas-route-outline-gen4',
+  'rokas-route-halo-shadow',
+  'rokas-route-halo-shadow-gen0',
+  'rokas-route-halo-shadow-gen1',
+  'rokas-route-halo-shadow-gen2',
+  'rokas-route-halo-shadow-gen3',
+  'rokas-route-halo-shadow-gen4',
 ];
 
 @Injectable({ providedIn: 'root' })
