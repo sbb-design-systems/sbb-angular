@@ -3,7 +3,7 @@ import { Feature } from 'geojson';
 import { Map as MaplibreMap } from 'maplibre-gl';
 
 import { SbbFeatureData } from '../../../journey-maps.interfaces';
-import { SBB_ALL_ROUTE_LAYERS } from '../map-routes.service';
+import { SbbMapRoutesService } from '../map-routes.service';
 
 import { SbbMapEventUtils } from './map-event-utils';
 
@@ -12,7 +12,10 @@ export const SBB_ROUTE_LINE_COLOR_PROPERTY_NAME = 'lineColor';
 
 @Injectable({ providedIn: 'root' })
 export class SbbRouteUtils {
-  constructor(private _mapEventUtils: SbbMapEventUtils) {}
+  constructor(
+    private _mapEventUtils: SbbMapEventUtils,
+    private _mapRoutesService: SbbMapRoutesService
+  ) {}
 
   filterRouteFeatures(currentFeatures: SbbFeatureData[]): SbbFeatureData[] {
     return currentFeatures.filter((hovered) => !!hovered.properties![SBB_ROUTE_ID_PROPERTY_NAME]);
@@ -29,7 +32,7 @@ export class SbbRouteUtils {
   ): SbbFeatureData[] {
     const filter = this._createRelatedRoutesFilter(routeFeature);
     if (find === 'visibleOnly') {
-      const layers = SBB_ALL_ROUTE_LAYERS;
+      const layers = this._mapRoutesService.getRouteLayerIds(mapInstance);
       return this._mapEventUtils.queryVisibleFeaturesByFilter(mapInstance, 'ROUTE', layers, filter);
     } else {
       return this._mapEventUtils.queryFeatureSourceByFilter(mapInstance, 'ROUTE', filter);

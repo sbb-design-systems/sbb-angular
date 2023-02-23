@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Point } from 'geojson';
 import { Map as MaplibreMap } from 'maplibre-gl';
+import { isV1Style } from './util/style-version-lookup';
 
 import {
   SbbRouteMetaInformation,
@@ -17,7 +18,16 @@ import { SbbMapRouteService } from './map-route-service';
 import { SBB_EMPTY_FEATURE_COLLECTION } from './map-service';
 import { toFeatureCollection } from './util/feature-collection-util';
 
-export const SBB_ALL_ROUTE_LAYERS: string[] = [
+const SBB_ALL_ROUTE_LAYERS_V1: string[] = [
+  'rokas-route',
+  'rokas-route-gen0',
+  'rokas-route-gen1',
+  'rokas-route-gen2',
+  'rokas-route-gen3',
+  'rokas-route-gen4',
+];
+
+const SBB_ALL_ROUTE_LAYERS_V2: string[] = [
   'rokas-route-halo-shadow',
   'rokas-route-halo-shadow-gen0',
   'rokas-route-halo-shadow-gen1',
@@ -82,5 +92,9 @@ export class SbbMapRoutesService {
         } as SbbMarker;
       })
       .filter((m) => !!m) as SbbMarker[];
+  }
+
+  getRouteLayerIds(map: MaplibreMap): string[] {
+    return isV1Style(map) ? SBB_ALL_ROUTE_LAYERS_V1 : SBB_ALL_ROUTE_LAYERS_V2;
   }
 }
