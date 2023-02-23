@@ -136,6 +136,8 @@ export abstract class _SbbDialogBase<
       // We want to do the cleanup here, rather than the CDK service, because the CDK destroys
       // the dialogs immediately whereas we want it to wait for the animations to finish.
       closeOnDestroy: false,
+      // Disable closing on detachments so that we can sync up the animation.
+      closeOnOverlayDetachments: false,
       container: {
         type: this._dialogContainerType,
         providers: () => [
