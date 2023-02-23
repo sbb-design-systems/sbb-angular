@@ -89,11 +89,11 @@ If you do not call `SbbEsriConfigModule.forRoot` at all, the default Esri ArcGIS
 Import the NgModule for each component you want to use:
 
 ```ts
-import { EsriWebMapModule, EsriWebSceneModule } from '@sbb-esta/angular-maps';
+import { SbbEsriWebMapModule, SbbEsriWebSceneModule } from '@sbb-esta/angular-maps';
 
 @NgModule({
   ...
-  imports: [EsriWebMapModule, EsriWebSceneModule],
+  imports: [SbbEsriWebMapModule, SbbEsriWebSceneModule],
   ...
 })
 export class TrainChooChooAppModule {}
