@@ -82,7 +82,7 @@
     "@angular/localize": "15.2.0",
     "@angular/ng-dev": "https://github.com/angular/dev-infra-private-ng-dev-builds.git#c7411f1f8962c677e125a697fc072b63582101d8",
     "@babel/core": "7.21.0",
-    "@babel/traverse": "7.21.0",
+    "@babel/traverse": "7.21.2",
     "@bazel/bazelisk": "1.12.1",
     "@bazel/buildifier": "6.0.1",
     "@bazel/buildozer": "6.0.1",
