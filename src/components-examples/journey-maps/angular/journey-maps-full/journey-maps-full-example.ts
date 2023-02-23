@@ -219,7 +219,7 @@ export class JourneyMapsFullExample implements OnInit, OnDestroy {
       ?.valueChanges.pipe(takeUntil(this._destroyed))
       .subscribe((selectedLegId: string) => {
         // 'journeyMapsRoutingOption' can be null on .reset() of its dropdown form data
-        if (this.journeyMapsRoutingOption) {
+        if (this.journeyMapsRoutingOption && this.journeyMapsRoutingOption.journey) {
           const bbox = selectedLegId
             ? this._getBboxForLegId(selectedLegId, this.journeyMapsRoutingOption)
             : this._getBbox(this.journeyMapsRoutingOption);
