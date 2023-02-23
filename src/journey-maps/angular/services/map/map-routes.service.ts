@@ -1,7 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Point } from 'geojson';
 import { Map as MaplibreMap } from 'maplibre-gl';
-import { isV1Style } from './util/style-version-lookup';
 
 import {
   SbbRouteMetaInformation,
@@ -17,6 +16,7 @@ import {
 import { SbbMapRouteService } from './map-route-service';
 import { SBB_EMPTY_FEATURE_COLLECTION } from './map-service';
 import { toFeatureCollection } from './util/feature-collection-util';
+import { isV1Style } from './util/style-version-lookup';
 
 const SBB_ALL_ROUTE_LAYERS_V1: string[] = [
   'rokas-route',
