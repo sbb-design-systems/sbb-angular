@@ -58,4 +58,4 @@ JM_API_KEY=<YOUR-API-KEY> yarn run start
 
 ### Using GitHub Codespaces
 
-You can run this app inside GitHub Codespaces (using the VS Code desktop app), but even with 8gb of RAM you may have to run `yarn run start` 3 or 4 times until the Bazel build finishes successfully. This only happens the first time you build a particular branch.
+You can run this app inside GitHub Codespaces (using the VS Code desktop app), but you may have to run `yarn run start` 3 or 4 times until the Bazel build finishes successfully. This only happens the first time you build a particular branch.
