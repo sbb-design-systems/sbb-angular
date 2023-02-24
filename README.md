@@ -53,9 +53,11 @@ Chrome OS: ChromeVox with Chrome.
 You can run the app with the following command:
 
 ```
-JM_API_KEY=<YOUR-API-KEY> yarn run start
+yarn run start
 ```
 
-### Using GitHub Codespaces
+To run the `journey-maps` examples, you need to provide the API key as well:
 
-You can run this app inside GitHub Codespaces (using the VS Code desktop app), but you may have to run `yarn run start` 3 or 4 times until the Bazel build finishes successfully. This only happens the first time you build a particular branch.
+```
+JM_API_KEY=<YOUR-API-KEY> yarn run start
+```
