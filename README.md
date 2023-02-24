@@ -50,13 +50,13 @@ Chrome OS: ChromeVox with Chrome.
 
 ## Running the app
 
-You can run the app with the following command:
+You can run the app with the following command
 
 ```
 yarn run start
 ```
 
-To run the `journey-maps` examples, you need to provide the API key as well:
+To run the `journey-maps` examples, you need to provide the API key as well
 
 ```
 JM_API_KEY=<YOUR-API-KEY> yarn run start
