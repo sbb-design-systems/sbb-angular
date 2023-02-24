@@ -47,3 +47,15 @@ Chrome OS: ChromeVox with Chrome.
 ## Testing Supported By
 
 <a href="https://www.browserstack.com/"><img width="160" src="https://user-images.githubusercontent.com/594745/69711802-fc138a80-1101-11ea-9b30-3e90c274737a.png" alt="BrowserStack"/></a>
+
+## Running the app
+
+You can run the app with the following command:
+
+```
+JM_API_KEY=<YOUR-API-KEY> yarn run start
+```
+
+### Using GitHub Codespaces
+
+You can run this app inside GitHub Codespaces (using the VS Code desktop app), but even with 8gb of RAM you may have to run `yarn run start` 3 or 4 times until the Bazel build finishes successfully. This only happens the first time you build a particular branch.
