@@ -18,23 +18,10 @@ import { SBB_EMPTY_FEATURE_COLLECTION } from './map-service';
 import { toFeatureCollection } from './util/feature-collection-util';
 import { isV1Style } from './util/style-version-lookup';
 
-const SBB_ALL_ROUTE_LAYERS_V1: string[] = [
-  'rokas-route',
-  'rokas-route-gen0',
-  'rokas-route-gen1',
-  'rokas-route-gen2',
-  'rokas-route-gen3',
-  'rokas-route-gen4',
-];
-
-const SBB_ALL_ROUTE_LAYERS_V2: string[] = [
-  'rokas-route-halo-shadow',
-  'rokas-route-halo-shadow-gen0',
-  'rokas-route-halo-shadow-gen1',
-  'rokas-route-halo-shadow-gen2',
-  'rokas-route-halo-shadow-gen3',
-  'rokas-route-halo-shadow-gen4',
-];
+const SBB_ROUTE_GEN_PREFIX = 'gen';
+const SBB_ROUTE_GEN_NUM = 5;
+const SBB_ROUTE_LINE_LAYER_ID = 'rokas-route';
+const SBB_ROUTE_OUTER_LINE_LAYER_ID = 'rokas-route-halo-shadow';
 
 @Injectable({ providedIn: 'root' })
 export class SbbMapRoutesService {
@@ -94,7 +81,21 @@ export class SbbMapRoutesService {
       .filter((m) => !!m) as SbbMarker[];
   }
 
+  /**
+   * Get all route layer ids, for user interaction (click, hover).
+   * @param map current map instance.
+   */
   getRouteLayerIds(map: MaplibreMap): string[] {
-    return isV1Style(map) ? SBB_ALL_ROUTE_LAYERS_V1 : SBB_ALL_ROUTE_LAYERS_V2;
+    return isV1Style(map)
+      ? this.generateRouteLayerIds(map, SBB_ROUTE_LINE_LAYER_ID)
+      : this.generateRouteLayerIds(map, SBB_ROUTE_OUTER_LINE_LAYER_ID);
+  }
+
+  generateRouteLayerIds(map: MaplibreMap, layerId: string): string[] {
+    const layerIds = [layerId];
+    for (let i = 0; i < SBB_ROUTE_GEN_NUM; i++) {
+      layerIds.push(`${layerId}-${SBB_ROUTE_GEN_PREFIX}${i}`);
+    }
+    return layerIds;
   }
 }
