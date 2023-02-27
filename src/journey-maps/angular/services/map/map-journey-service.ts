@@ -33,9 +33,10 @@ export class SbbMapJourneyService {
       const properties = feature.properties!;
       const type = properties.type;
       const pathType = properties.pathType;
+      const legId = properties.legId ?? 'journey'; // default: all belong together
 
-      properties[SBB_ROUTE_ID_PROPERTY_NAME] = 'journey'; // They all belong together
-      properties[SBB_SELECTED_PROPERTY_NAME] = true; // Always selected
+      properties[SBB_ROUTE_ID_PROPERTY_NAME] = legId;
+      properties[SBB_SELECTED_PROPERTY_NAME] = selectedLegId && selectedLegId === legId;
 
       if (type === 'path' && (pathType === 'transport' || pathType === 'bee')) {
         routeFeatures.push(feature);
