@@ -47,4 +47,26 @@ describe('LeanDateAdapter', () => {
         .toBeNull()
     );
   });
+
+  it('should detect overflowing dates', () => {
+    leanDateAdapter = new SbbLeanDateAdapter('de-ch', 50, true);
+    const params = [
+      { input: '30022022', isOverflowing: true },
+      { input: '28022022', isOverflowing: false },
+      { input: '30.02.2022', isOverflowing: true },
+      { input: '28.02.2022', isOverflowing: false },
+    ];
+
+    params
+      .filter((param) => param.isOverflowing)
+      .forEach((param) => {
+        expect(isNaN(leanDateAdapter.parse(param.input)?.getTime()!)).toBeTrue();
+      });
+
+    params
+      .filter((param) => !param.isOverflowing)
+      .forEach((param) => {
+        expect(isNaN(leanDateAdapter.parse(param.input)?.getTime()!)).toBeFalse();
+      });
+  });
 });
