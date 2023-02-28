@@ -2,7 +2,10 @@ import { DatePipe, TitleCasePipe } from '@angular/common';
 import { Inject, Injectable, LOCALE_ID, Optional } from '@angular/core';
 
 import { SbbDateAdapter } from './date-adapter';
-import { SBB_DATEPICKER_2DIGIT_YEAR_PIVOT } from './datepicker-token';
+import {
+  SBB_DATEPICKER_2DIGIT_YEAR_PIVOT,
+  SBB_DATEPICKER_PREVENT_OVERFLOW,
+} from './datepicker-token';
 
 /**
  * Matches strings that have the form of a valid RFC 3339 string
@@ -26,14 +29,17 @@ export class SbbNativeDateAdapter extends SbbDateAdapter<Date> {
   private _datePipe: DatePipe;
   private _yearPivot: number;
   private _titleCasePipe = new TitleCasePipe();
+  private readonly _preventOverflow: boolean;
 
   constructor(
     @Inject(LOCALE_ID) protected override _locale: string,
-    @Optional() @Inject(SBB_DATEPICKER_2DIGIT_YEAR_PIVOT) yearPivot: number
+    @Optional() @Inject(SBB_DATEPICKER_2DIGIT_YEAR_PIVOT) yearPivot: number,
+    @Optional() @Inject(SBB_DATEPICKER_PREVENT_OVERFLOW) preventOverflow?: boolean
   ) {
     super();
     this._datePipe = new DatePipe(_locale);
     this._yearPivot = typeof yearPivot === 'number' ? yearPivot : new Date().getFullYear() - 1975;
+    this._preventOverflow = typeof preventOverflow === 'boolean' ? preventOverflow : false;
   }
 
   getYear(date: Date): number {
@@ -141,6 +147,9 @@ export class SbbNativeDateAdapter extends SbbDateAdapter<Date> {
     if (typeof value === 'number') {
       return new Date(value);
     } else if (typeof value === 'string') {
+      if (this._preventOverflow && this._isOverflowingDate(value)) {
+        return new Date(NaN);
+      }
       return this._parseStringDate(value);
     }
     return null;
@@ -214,13 +223,21 @@ export class SbbNativeDateAdapter extends SbbDateAdapter<Date> {
     return new Date(NaN);
   }
 
-  protected _parseStringDate(value: string) {
+  protected _splitStringDate(value: string): [number, number, number] | null {
     const match = /^(\w+,[ ]?)?(\d+)\.(\d+)\.(\d+)$/.exec(value);
     if (!match) {
       return null;
     }
+    return [+match[4], +match[3] - 1, +match[2]];
+  }
 
-    const date = this._createDateWithOverflow(+match[4], +match[3] - 1, +match[2]);
+  protected _parseStringDate(value: string) {
+    const parts = this._splitStringDate(value);
+    if (!parts) {
+      return null;
+    }
+
+    const date = this._createDateWithOverflow(...parts);
     return this._normalizeYear(date);
   }
 
@@ -243,5 +260,16 @@ export class SbbNativeDateAdapter extends SbbDateAdapter<Date> {
       result.setFullYear(this.getYear(result) - 1900);
     }
     return result;
+  }
+
+  /** Checks whether a given date string contains an overflowing date. */
+  private _isOverflowingDate(value: string): boolean {
+    const parts = this._splitStringDate(value);
+    const date = this._parseStringDate(value);
+    if (!parts || !date) {
+      return false;
+    }
+    const [year, month, day] = parts;
+    return date.getFullYear() !== year || date.getMonth() !== month || date.getDate() !== day;
   }
 }

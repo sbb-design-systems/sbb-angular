@@ -144,6 +144,20 @@ have 2000 added to it, years from pivot year + 1 to 100 (exclusive) will have 19
 | 08.12.00 | 08.12.2000 |
 | 08.12.18 | 08.12.2018 |
 
+#### Overflowing dates
+
+By default, the date input accepts overflowing dates. For example, the input string '30.02.2022'
+is converted to '02.03.2022'. Overflowing dates can be prevented with 'SBB_DATEPICKER_PREVENT_OVERFLOW'.
+If this option is set to `true`, overflowing date strings are not converted to a date.
+
+```typescript
+  providers: [
+     ...
+     { provide: SBB_DATEPICKER_PREVENT_OVERFLOW, useValue: true },
+     ...
+  ]
+```
+
 #### Date Adapter
 
 A Date Adapter defines how to deal with dates and converts user inputs in to date objets.
