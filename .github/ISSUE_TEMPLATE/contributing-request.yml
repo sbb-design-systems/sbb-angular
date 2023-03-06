@@ -1,0 +1,65 @@
+name: Request for contributing
+description: Request for contributing a new component or enhancement of a component
+title: "[Contributing request]: "
+labels: ['type: contributing-request']
+assignees:
+  - octocat
+body:
+  - type: checkboxes
+    id: preflight-checklist
+    attributes:
+      label: Preflight Checklist
+      options:
+        - label: I have read the [Contributing Guidelines](https://github.com/sbb-design-systems/sbb-angular/blob/main/CONTRIBUTING.md) for this project.
+          required: true
+        - label: I agree to follow the [Code of Conduct](https://github.com/sbb-design-systems/sbb-angular/blob/main/CODE_OF_CONDUCT.md) that this project adheres to.
+          required: true
+        - label: I have searched the [issue tracker](https://github.com/orgs/sbb-design-systems/projects/1) for an issue that matches the one I want to file, without success. 
+          required: true
+  - type: markdown
+    attributes:
+      value: |
+        ## Please describe your idea in as much detail as possible.
+  - type: dropdown
+    id: new-or-enhancement
+    attributes:
+      label: Contribution type
+      options:
+        - 'Contribute a new component'
+        - 'Contribute an enhancement of a component'
+    validations:
+      required: true
+  - type: textarea
+    id: feature-description
+    attributes:
+      label: Feature Description
+      description: For what purpose is the component used? What features does it need to have? Which component should be enhanced?
+    validations:
+      required: true
+  - type: input
+    id: link
+    attributes:
+      label: Link to design proposal file
+      description: Figma-Link
+    validations:
+      required: false
+  - type: textarea
+    id: api-proposal
+    attributes:
+      label: Please describe the required properties (with type and value) for the component
+      value: |
+        Example:
+        variant (string): "primary" | "secondary" | "translucent" | "transparent"
+        size (string):  "s" | "m" | "l"
+  - type: textarea
+    id: markup-proposal
+    attributes:
+      label: Please send a proposal for a html markup
+      description: This input will be automatically formatted into html.
+      render: html
+      value: |
+        Example: 
+        <sbb-button>
+          <sbb-icon slot="icon" name="info"></sbb-icon>
+          Label
+        </sbb-button>

@@ -1,0 +1,115 @@
+name: (Angular) Bug Report
+description: File a bug report
+title: "[Bug]: "
+labels: ["bug"]
+assignees:
+  - octocat
+body:
+  - type: markdown
+    attributes:
+      value: |
+        # Thanks for taking the time to fill out this bug report!
+        ## Preflight Checklist
+  - type: checkboxes
+    id: preflight-checklist
+    attributes:
+      label: Preflight Checklist
+      options:
+        - label: I have read the [Contributing Guidelines](https://github.com/sbb-design-systems/sbb-angular/blob/main/CONTRIBUTING.md) for this project.
+          required: true
+        - label: I agree to follow the [Code of Conduct](https://github.com/sbb-design-systems/sbb-angular/blob/main/CODE_OF_CONDUCT.md) that this project adheres to.
+          required: true
+        - label: I have searched the [issue tracker](https://github.com/orgs/sbb-design-systems/projects/1) for an issue that matches the one I want to file, without success. 
+          required: true
+  - type: markdown
+    attributes:
+      value: |
+        ## General Information
+  - type: dropdown
+    id: bug-type
+    attributes:
+      label: Bug type
+      options:
+        - 'Functionality'
+        - 'Accessibility'
+        - 'Performance'
+        - 'Security vulnerability'
+        - 'Other'
+    validations:
+      required: true
+  - type: input
+    id: version
+    attributes:
+      label: Which version are you using 
+      description: e.g. 15.5.0
+    validations:
+      required: false
+  - type: markdown
+    attributes:
+      value: |
+        ## Environment
+  - type: input
+    id: os
+    attributes:
+      label: Operating system 
+      description: e.g. Windows 10
+    validations:
+      required: false
+  - type: input
+    id: browser
+    attributes:
+      label: Browser / Browser version 
+      description: e.g. Mozilla Firefox 74.0 (64-bit)
+    validations:
+      required: false
+  - type: dropdown
+    id: input-mode
+    attributes:
+      label: Input mode
+      options:
+        - 'Mouse/Keyboard'
+        - 'Touch'
+        - 'Other'
+    validations:
+      required: false
+  - type: input
+    id: additional-settings
+    attributes:
+      label: Additional settings 
+      description: e.g. save data active
+    validations:
+      required: false
+  - type: markdown
+    attributes:
+      value: |
+        ## Detailed description
+  - type: textarea
+    id: what-happened
+    attributes:
+      label: What happened?
+      description: Also tell us, what did you expect to happen?
+      placeholder: Tell us what you see!
+      value: |
+        Describe in detail the issue you are having.
+        What did you expect to happen? What happened instead? What would you like to see changed?
+        Is the issue related to a specific component?
+    validations:
+      required: true
+  - type: textarea
+    id: steps
+    attributes:
+      label: Steps to reproduce the issue
+      description: Also tell us, what did you expect to happen?
+      placeholder: Tell us what you see!
+      value: |
+        1. Step one
+        2. Step two
+        3. ...
+    validations:
+      required: true
+  - type: textarea
+    id: logs
+    attributes:
+      label: Relevant log output
+      description: Please copy and paste any relevant log output. This will be automatically formatted into code, so no need for backticks.
+      render: shell
