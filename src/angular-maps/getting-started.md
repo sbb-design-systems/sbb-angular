@@ -1,3 +1,13 @@
+---
+
+**sbb-esta/angular-maps is deprecated.**
+
+This package is deprecated and no longer supported. 
+
+If you're looking for a generic mapping solution, please check out [journey-maps](/journey-maps). For comprehesive functionality regarding visualization & symbology, or if you need general GIS features like editing, analysis and 3D visulization plus a tight integration with the [G-SHARP platform (geo.sbb.ch)](https://geo.sbb.ch) you will best move to the Esri [ArcGIS Maps SDK for JavaScript](https://developers.arcgis.com/javascript/latest/). The ArcGIS Maps SDK for JavaScript is a powerful mapping solution adopted in the SBB technology stack and can simply be used by referencing the [NPM package @arcgis/core](https://www.npmjs.com/package/@arcgis/core). Contact Digital Service GIS for further advise.
+
+---
+
 # Getting Started
 
 The package `@sbb-esta/angular-maps` provides a fast and easy way to integrate maps and geograhical 3D scenes into your Angular application. Continue reading in [Overview and usage](/maps/introduction/overview-and-usage) to learn more about the core concepts behind the package. [Mapping basics](/maps/introduction/mapping-basics) gives you a short introduction on what a map is and how to make good maps. Finally, the _Advanced Usage_ section (see sidebar menu) links to a few custom tailored samples on how to actually use the mapping components in your application workflows.
@@ -77,11 +87,11 @@ If you do not call `SbbEsriConfigModule.forRoot` at all, the default Esri ArcGIS
 Import the NgModule for each component you want to use:
 
 ```ts
-import { EsriWebMapModule, EsriWebSceneModule } from '@sbb-esta/angular-maps';
+import { SbbEsriWebMapModule, SbbEsriWebSceneModule } from '@sbb-esta/angular-maps';
 
 @NgModule({
   ...
-  imports: [EsriWebMapModule, EsriWebSceneModule],
+  imports: [SbbEsriWebMapModule, SbbEsriWebSceneModule],
   ...
 })
 export class TrainChooChooAppModule {}

@@ -35,8 +35,9 @@
       sbbIconSidebarItem
       *ngFor="let packageEntry of packages | keyvalue"
       [label]="packageEntry.value.name"
-      [title]="packageEntry.value.name"
+      [title]="packageEntry.value.isDeprecated ? 'deprecated' : packageEntry.value.name"
       [routerLink]="packageEntry.key"
+      [style.text-decoration]="packageEntry.value.isDeprecated ? 'line-through' : ''"
       routerLinkActive="sbb-active"
     >
       <sbb-icon [svgIcon]="packageEntry.value.svgIcon"></sbb-icon>
