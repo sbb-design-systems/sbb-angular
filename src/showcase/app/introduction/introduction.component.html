@@ -66,7 +66,13 @@
         <div class="hero">
           <img [attr.alt]="packageEntry.value.name" [attr.src]="packageEntry.value.image" />
         </div>
-        <span class="title">{{ packageEntry.value.name }}</span>
+        <span
+          class="title"
+          [title]="packageEntry.value.isDeprecated ? 'deprecated' : ''"
+          [style.text-decoration]="packageEntry.value.isDeprecated ? 'line-through' : ''"
+        >
+          {{ packageEntry.value.name }}
+        </span>
         <span class="text">{{ packageEntry.value.description }}</span>
       </a>
     </li>
