@@ -2,6 +2,20 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [15.6.0](https://github.com/sbb-design-systems/sbb-angular/compare/15.5.0...15.6.0) (2023-03-06)
+
+
+### Features
+
+* **angular/datepicker:** add option to prevent entering overflowing dates ([#1787](https://github.com/sbb-design-systems/sbb-angular/issues/1787)) ([58f2fcf](https://github.com/sbb-design-systems/sbb-angular/commit/58f2fcf68a2ece029e9e3363b970125a9a675663)), closes [#1761](https://github.com/sbb-design-systems/sbb-angular/issues/1761)
+* **journey-maps:** improved route hover ([#1828](https://github.com/sbb-design-systems/sbb-angular/issues/1828)) ([d8126ea](https://github.com/sbb-design-systems/sbb-angular/commit/d8126ea43dc570345d17c8f4996fc005558c643d))
+
+
+### Documentation
+
+* add deprecation note to `angular-maps` ([#1824](https://github.com/sbb-design-systems/sbb-angular/issues/1824)) ([dbafef0](https://github.com/sbb-design-systems/sbb-angular/commit/dbafef0e883ce8d1de2daa2ccb563266c9dfbad4))
+* make environment banner text configurable ([#1825](https://github.com/sbb-design-systems/sbb-angular/issues/1825)) ([ed29820](https://github.com/sbb-design-systems/sbb-angular/commit/ed298204b6be8da677f6edab40630606f9e188b3))
+
 ## [15.5.0](https://github.com/sbb-design-systems/sbb-angular/compare/15.4.1...15.5.0) (2023-02-20)
 
 
