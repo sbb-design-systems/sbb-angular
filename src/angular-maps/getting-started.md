@@ -2,12 +2,9 @@
 
 **sbb-esta/angular-maps is deprecated.**
 
-
 This package is deprecated and no longer supported. 
 
-If you're looking for a generic mapping solution, please check out [journey-maps](/journey-maps).
-If you're committed to ESRI technologies, please check out their libraries.
-
+If you're looking for a generic mapping solution, please check out [journey-maps](/journey-maps). For comprehesive functionality regarding visualization & symbology, or if you need general GIS features like editing, analysis and 3D visulization  plus a tight integration with the [G-SHARP platform (geo.sbb.ch)](https://geo.sbb.ch) you will best move to the Esri [ArcGIS Maps SDK for Javascript](https://developers.arcgis.com/javascript/latest/). The ArcGIS Maps SDK for Javascripts is a powerful mapping solution adopted in the SBB technology stack and can simply be used by referencing the [NPM package @arcgis/core](https://www.npmjs.com/package/@arcgis/core). Contact Digital Service GIS for further advise.
 ---
 
 # Getting Started
