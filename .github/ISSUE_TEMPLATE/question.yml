@@ -1,0 +1,47 @@
+name: Question
+description: Ask a question to our developers and user experience architects
+title: "[Question]: "
+labels: ['type: question']
+assignees:
+  - octocat
+body:
+  - type: checkboxes
+    id: preflight-checklist
+    attributes:
+      label: Preflight Checklist
+      options:
+        - label: I have read the [Contributing Guidelines](https://github.com/sbb-design-systems/sbb-angular/blob/main/CONTRIBUTING.md) for this project.
+          required: true
+        - label: I agree to follow the [Code of Conduct](https://github.com/sbb-design-systems/sbb-angular/blob/main/CODE_OF_CONDUCT.md) that this project adheres to.
+          required: true
+        - label: I have searched the [issue tracker](https://github.com/orgs/sbb-design-systems/projects/1) for an issue that matches the one I want to file, without success. 
+          required: true
+  - type: markdown
+    attributes:
+      value: |
+        ## Your question
+    validations:
+      required: true
+  - type: input
+    id: question
+    attributes:
+      label: Your Question
+    validations:
+      required: true 
+  - type: textarea
+    id: relevant-information
+    attributes:
+      label: Give us a summary about your question
+    validations:
+      required: false
+  - type: textarea
+    id: additional-information
+    attributes:
+      label: Provide as much useful information as you can
+      description: e.g. Links to Figma or other references
+    validations:
+      required: false
+
+
+
+      

@@ -1,0 +1,45 @@
+name: Feature request or enhancement
+description: Request for a new component or enhancement of a component
+title: "[Feature request]: "
+labels: ['type: enhancement']
+assignees:
+  - octocat
+body:
+  - type: checkboxes
+    id: preflight-checklist
+    attributes:
+      label: Preflight Checklist
+      options:
+        - label: I have read the [Contributing Guidelines](https://github.com/sbb-design-systems/sbb-angular/blob/main/CONTRIBUTING.md) for this project.
+          required: true
+        - label: I agree to follow the [Code of Conduct](https://github.com/sbb-design-systems/sbb-angular/blob/main/CODE_OF_CONDUCT.md) that this project adheres to.
+          required: true
+        - label: I have searched the [issue tracker](https://github.com/orgs/sbb-design-systems/projects/1) for an issue that matches the one I want to file, without success. 
+          required: true
+  - type: markdown
+    attributes:
+      value: |
+        ## Please describe your idea in as much detail as possible.
+  - type: dropdown
+    id: new-or-enhancement
+    attributes:
+      label: Request type
+      options:
+        - 'Request for a new component'
+        - 'Request for enhancement of a component'
+    validations:
+      required: true
+  - type: textarea
+    id: request
+    attributes:
+      label: Functionality
+      description: For what purpose is the component used? What features does it need to have? Which component should be enhanced?
+    validations:
+      required: true
+  - type: input
+    id: link
+    attributes:
+      label: Link to design proposal file
+      description: Figma-Link
+    validations:
+      required: false
