@@ -4,6 +4,7 @@ export interface ShowcaseMetaPackage {
   image: string;
   description: string;
   sections: ShowcaseMetaSection[];
+  isDeprecated?: boolean;
 }
 
 export interface ShowcaseMetaSection {
@@ -113,6 +114,7 @@ export const PACKAGES: { [key: string]: ShowcaseMetaPackage } = {
   'angular-maps': {
     name: '@sbb-esta/angular-maps',
     svgIcon: 'kom:location-pin-map-small',
+    isDeprecated: true,
     image: 'assets/maps.jpg',
     description: 'Components to display 2D/3D maps and to provide map interaction..',
     sections: [
