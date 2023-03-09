@@ -202,13 +202,15 @@ export interface SbbRouteMetaInformation {
   /** Color of the route. See https://maplibre.org/maplibre-gl-js-docs/style-spec/types/ for color-format. */
   routeColor?: string;
   /** Midpoint-Marker configuration. Position must be given in midpoint-feature from Journey-Maps response. */
-  /** Color of the route. See https://maplibre.org/maplibre-gl-js-docs/style-spec/types/ for color-format. */
   midpointMarkerConfiguration?: Omit<SbbMarker, 'id' | 'position'>;
 }
 
 export interface SbbRailNetworkOptions {
-  /** Color of the rail network, when displaying data on the map (<code>SbbJourneyMapsRoutingOptions.journey</code>, <code>SbbJourneyMapsRoutingOptions.transfer</code> or <code>SbbJourneyMapsRoutingOptions.routes</code>). */
-  /** Use 'transparent' to hide the rail network, or other color-format as defined in https://maplibre.org/maplibre-gl-js-docs/style-spec/types/. */
+  /**
+   * Color of the rail network, when displaying <code>SbbJourneyMapsRoutingOptions</code> data (journey, transfer or routes) on the map.
+   *
+   * Set 'transparent' to hide the rail network, or use other color-format as specified in https://maplibre.org/maplibre-gl-js-docs/style-spec/types/.
+   * */
   railNetworkColor?: string;
 }
 
