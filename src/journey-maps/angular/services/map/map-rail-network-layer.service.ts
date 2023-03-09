@@ -40,7 +40,7 @@ export class SbbMapRailNetworkLayerService {
     map.setPaintProperty(
       railLineLayer.id,
       RAIL_NETWORK_LAYER_CONST.colorPropName,
-      options?.railNetworkColor
+      options.railNetworkColor
     );
   }
 
