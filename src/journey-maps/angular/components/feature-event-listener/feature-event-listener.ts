@@ -32,7 +32,7 @@ import { SbbMapEventUtils } from '../../services/map/events/map-event-utils';
 import { SbbMapSelectionEvent } from '../../services/map/events/map-selection-event';
 import { SbbRouteUtils, SBB_ROUTE_ID_PROPERTY_NAME } from '../../services/map/events/route-utils';
 import { SbbMapMarkerService } from '../../services/map/map-marker-service';
-import { SbbMapRoutesService, SBB_ALL_ROUTE_LAYERS } from '../../services/map/map-routes.service';
+import { SbbMapRoutesService } from '../../services/map/map-routes.service';
 import { SbbMapStationService, SBB_STATION_LAYER } from '../../services/map/map-station-service';
 import { SBB_ZONE_LAYER } from '../../services/map/map-zone-service';
 
@@ -102,7 +102,7 @@ export class SbbFeatureEventListener implements OnChanges, OnDestroy {
         this._updateWatchOnLayers(this._mapMarkerService.allMarkerAndClusterLayers, 'MARKER');
       }
       if (this.listenerOptions.ROUTE?.watch) {
-        this._updateWatchOnLayers(SBB_ALL_ROUTE_LAYERS, 'ROUTE');
+        this._updateWatchOnLayers(this._mapRoutesService.getRouteLayerIds(this.map), 'ROUTE');
       }
       if (this.listenerOptions.STATION?.watch) {
         this._updateWatchOnLayers([SBB_STATION_LAYER], 'STATION');
