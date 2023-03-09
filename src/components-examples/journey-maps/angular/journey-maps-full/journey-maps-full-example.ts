@@ -73,23 +73,23 @@ export class JourneyMapsFullExample implements OnInit, OnDestroy {
   journeyMapsRoutingOptions: { label: string; value: SbbJourneyMapsRoutingOptions | undefined }[] =
     [
       { label: '(none)', value: undefined },
+      { label: 'Zürich - Bern, Wyleregg', value: { journey: zhBeWyleregg } },
+      { label: 'Zürich - Schaffhausen, Waldfriedhof', value: { journey: zhShWaldfriedhof } },
       {
-        label: 'Bern - Lausanne (hide rail network)',
+        label: 'Bern - Lausanne (hide rails)',
         value: {
           routes: bnLsRoutes,
           routesMetaInformations: bnLsRoutesOptions,
           railNetworkOptions: { railNetworkColor: 'transparent' },
         },
       },
-      { label: 'Zürich - Bern, Wyleregg', value: { journey: zhBeWyleregg } },
-      { label: 'Zürich - Schaffhausen, Waldfriedhof', value: { journey: zhShWaldfriedhof } },
       {
-        label: 'Bern - Lausanne',
-        value: { routes: bnLsRoutes, routesMetaInformations: bnLsRoutesOptions },
-      },
-      {
-        label: 'Biel - Lyss',
-        value: { routes: bielLyssRoutes, routesMetaInformations: bielLyssRoutesOptions },
+        label: 'Biel - Lyss (lighter rails)',
+        value: {
+          routes: bielLyssRoutes,
+          routesMetaInformations: bielLyssRoutesOptions,
+          railNetworkOptions: { railNetworkColor: 'rgba(229,229,229,1)' },
+        },
       },
       { label: 'Transfer Bern', value: { transfer: bernIndoor } },
       { label: 'Transfer Genf', value: { transfer: geneveIndoor } },
