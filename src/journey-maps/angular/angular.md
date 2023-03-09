@@ -15,12 +15,12 @@ npm install --save @sbb-esta/journey-maps
 ```
 
 ```sh
-npm install --save maplibre-gl@2.1.9
+npm install --save maplibre-gl@2.4.0
 npm install --save-dev @types/geojson
 ```
 
 **NOTE** \
-The `maplibre-gl` version compatible with this version of `journey-maps` is `2.1`.
+The `maplibre-gl` version compatible with this version of `journey-maps` is `2.4`.
 
 ### Reference the CSS
 
