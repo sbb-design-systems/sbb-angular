@@ -154,6 +154,15 @@
             >
           </sbb-select>
         </sbb-form-field>
+        <sbb-form-field label="POI Subcategories">
+          <sbb-select multiple formControlName="categories">
+            <sbb-option
+              *ngFor="let category of ['park_rail', 'car_sharing', 'bike_parking', 'bike_sharing']"
+              [value]="category"
+              >{{category}}</sbb-option
+            >
+          </sbb-select>
+        </sbb-form-field>
       </li>
       <li>
         <sbb-form-field label="Select zones">
