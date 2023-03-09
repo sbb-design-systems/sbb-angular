@@ -54,6 +54,7 @@ import { SbbMapJourneyService } from './services/map/map-journey-service';
 import { SbbMapLeitPoiService } from './services/map/map-leit-poi-service';
 import { SbbMapMarkerService } from './services/map/map-marker-service';
 import { SbbMapOverflowingLabelService } from './services/map/map-overflowing-label-service';
+import { SbbMapRailNetworkService } from './services/map/map-rail-network.service';
 import { SbbMapRoutesService } from './services/map/map-routes.service';
 import { SbbMapService } from './services/map/map-service';
 import { SbbMapTransferService } from './services/map/map-transfer-service';
@@ -205,6 +206,7 @@ export class SbbJourneyMaps implements OnInit, AfterViewInit, OnDestroy, OnChang
     private _mapJourneyService: SbbMapJourneyService,
     private _mapTransferService: SbbMapTransferService,
     private _mapRoutesService: SbbMapRoutesService,
+    private _mapRailNetworkService: SbbMapRailNetworkService,
     private _mapZoneService: SbbMapZoneService,
     private _mapLeitPoiService: SbbMapLeitPoiService,
     private _urlService: SbbMapUrlService,
@@ -489,6 +491,10 @@ export class SbbJourneyMaps implements OnInit, AfterViewInit, OnDestroy, OnChang
           if (changes.journeyMapsRoutingOption.currentValue?.routes) {
             this._updateRoutes();
           }
+          this._mapRailNetworkService.updateOptions(
+            this._map,
+            changes.journeyMapsRoutingOption.currentValue?.railNetworkOptions
+          );
         });
       }
     }

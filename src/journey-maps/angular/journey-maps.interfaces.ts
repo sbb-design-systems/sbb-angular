@@ -105,12 +105,15 @@ export interface SbbJourneyMapsRoutingOptions {
   journeyMetaInformation?: SbbJourneyMetaInformation;
 
   /**
-   * An array of additional informations as defined in <code>SbbRouteMetaInformation</code>.
+   * An array of additional information as defined in <code>SbbRouteMetaInformation</code>.
    * ID must match with ID from given routes.
    * If no meta information for a route given, it will use the default settings.
    * Note: journey, transfer and routes cannot be displayed at the same time.
    */
   routesMetaInformations?: SbbRouteMetaInformation[];
+
+  /** Additional rail network options as defined in <code>SbbRailNetworkOptions</code>. */
+  railNetworkOptions?: SbbRailNetworkOptions;
 }
 
 export interface SbbMarkerOptions {
@@ -199,7 +202,14 @@ export interface SbbRouteMetaInformation {
   /** Color of the route. See https://maplibre.org/maplibre-gl-js-docs/style-spec/types/ for color-format. */
   routeColor?: string;
   /** Midpoint-Marker configuration. Position must be given in midpoint-feature from Journey-Maps response. */
+  /** Color of the route. See https://maplibre.org/maplibre-gl-js-docs/style-spec/types/ for color-format. */
   midpointMarkerConfiguration?: Omit<SbbMarker, 'id' | 'position'>;
+}
+
+export interface SbbRailNetworkOptions {
+  /** Color of the rail network, when displaying data on the map (<code>SbbJourneyMapsRoutingOptions.journey</code>, <code>SbbJourneyMapsRoutingOptions.transfer</code> or <code>SbbJourneyMapsRoutingOptions.routes</code>). */
+  /** Use 'transparent' to hide the rail network, or other color-format as defined in https://maplibre.org/maplibre-gl-js-docs/style-spec/types/. */
+  railNetworkColor?: string;
 }
 
 export interface SbbJourneyMetaInformation {

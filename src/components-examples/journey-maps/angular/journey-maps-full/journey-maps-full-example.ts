@@ -73,6 +73,14 @@ export class JourneyMapsFullExample implements OnInit, OnDestroy {
   journeyMapsRoutingOptions: { label: string; value: SbbJourneyMapsRoutingOptions | undefined }[] =
     [
       { label: '(none)', value: undefined },
+      {
+        label: 'Bern - Lausanne (hide rail network)',
+        value: {
+          routes: bnLsRoutes,
+          routesMetaInformations: bnLsRoutesOptions,
+          railNetworkOptions: { railNetworkColor: 'transparent' },
+        },
+      },
       { label: 'Zürich - Bern, Wyleregg', value: { journey: zhBeWyleregg } },
       { label: 'Zürich - Schaffhausen, Waldfriedhof', value: { journey: zhShWaldfriedhof } },
       {
@@ -219,7 +227,7 @@ export class JourneyMapsFullExample implements OnInit, OnDestroy {
       ?.valueChanges.pipe(takeUntil(this._destroyed))
       .subscribe((selectedLegId: string) => {
         // 'journeyMapsRoutingOption' can be null on .reset() of its dropdown form data
-        if (this.journeyMapsRoutingOption && this.journeyMapsRoutingOption.journey) {
+        if (this.journeyMapsRoutingOption?.journey) {
           const bbox = selectedLegId
             ? this._getBboxForLegId(selectedLegId, this.journeyMapsRoutingOption)
             : this._getBbox(this.journeyMapsRoutingOption);
