@@ -1,4 +1,3 @@
-import { DecimalPipe } from '@angular/common';
 import {
   ChangeDetectorRef,
   Component,
@@ -104,11 +103,7 @@ export class JourneyMapsFullExample implements OnInit, OnDestroy {
   };
   private _destroyed = new Subject<void>();
 
-  constructor(
-    private _cd: ChangeDetectorRef,
-    private _fb: UntypedFormBuilder,
-    private _decimalPipe: DecimalPipe
-  ) {
+  constructor(private _cd: ChangeDetectorRef, private _fb: UntypedFormBuilder) {
     // Pseudo validator to reset the selected marker id before the value changes
     const resetSelectedMarkerIdValidator = () => {
       this.selectedMarkerId = undefined;
@@ -348,7 +343,7 @@ export class JourneyMapsFullExample implements OnInit, OnDestroy {
   }
 
   private _formatCoodinate(value: number): string {
-    return this._decimalPipe.transform(value, '1.1-6')!;
+    return value.toFixed(6);
   }
 
   listenerOptionTypes() {
