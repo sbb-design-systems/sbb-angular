@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
-import { SbbRailNetworkOptions } from '@sbb-esta/journey-maps/angular';
 import { LineLayerSpecification, Map as MaplibreMap } from 'maplibre-gl';
+
+import { SbbRailNetworkOptions } from '../../journey-maps.interfaces';
 
 const RAIL_NETWORK_LAYER_CONST = {
   idPart: '-track',
