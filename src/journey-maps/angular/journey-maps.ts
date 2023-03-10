@@ -492,8 +492,8 @@ export class SbbJourneyMaps implements OnInit, AfterViewInit, OnDestroy, OnChang
             this._updateRoutes();
           }
           if (
-            changes.journeyMapsRoutingOption.currentValue?.railNetworkOptions ||
-            changes.journeyMapsRoutingOption.previousValue?.railNetworkOptions
+            JSON.stringify(changes.journeyMapsRoutingOption.currentValue?.railNetworkOptions) !==
+            JSON.stringify(changes.journeyMapsRoutingOption.previousValue?.railNetworkOptions)
           ) {
             this._mapRailNetworkLayerService.updateOptions(
               this._map,
