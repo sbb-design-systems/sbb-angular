@@ -23,6 +23,7 @@
     [selectedLevel]="this.form.get('level')?.value ?? 0"
     (selectedLevelChange)="this.form.patchValue({level: $event})"
     (mapCenterChange)="mapCenterChange.next($event)"
+    (mapBoundsChange)="mapBoundingBoxChange.next($event)"
     (zoomLevelsChange)="zoomLevels=$event"
     (visibleLevelsChange)="visibleLevels.next($event)"
   ></sbb-journey-maps>
@@ -55,6 +56,7 @@
         Map center (lng / lat): {{mapCenterInfo()?.lng | number: '1.1-6'}}, {{mapCenterInfo()?.lat |
         number:'1.1-6'}}
       </li>
+      <li class="sbb-label">{{mapBoundingBoxInfo()}}</li>
       <li class="sbb-label">
         Map zoom (within range {{zoomLevels?.minZoom}}..{{zoomLevels?.maxZoom}} ):
         {{zoomLevels?.currentZoom | number: '1.1-2'}}
