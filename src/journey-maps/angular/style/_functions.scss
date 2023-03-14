@@ -65,7 +65,7 @@
 }
 
 @mixin _map-control-button-wrapper-active {
-  background-color: #212121;
+  background-color: esta.$sbbColorCharcoal;
   background-clip: content-box;
 
   .map-control-button {
@@ -75,8 +75,8 @@
 
 @mixin map-control-icon-button($icon) {
   .map-control-button {
-    color: #212121;
-    background-color: #212121;
+    color: esta.$sbbColorCharcoal;
+    background-color: esta.$sbbColorCharcoal;
     cursor: pointer;
     height: 36px;
     pointer-events: auto;
