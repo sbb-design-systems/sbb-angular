@@ -206,7 +206,7 @@ export interface SbbRouteMetaInformation {
 
 export interface SbbRailNetworkOptions {
   /**
-   * Color of the rail network, when displaying <code>SbbJourneyMapsRoutingOptions</code> data (journey, transfer or routes) on the map.
+   * Color of the rail network in the map.
    *
    * Set 'transparent' to hide the rail network, or use other color-format as specified in https://maplibre.org/maplibre-gl-js-docs/style-spec/types/.
    * */
