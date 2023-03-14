@@ -83,10 +83,9 @@
         <div class="rail-options" formGroupName="railNetwork">
           <span class="sbb-label">Rail network color (v2 style only)</span>
           <sbb-select formControlName="railNetworkColor">
-            <sbb-option
-              *ngFor="let color of railColors"
-              [value]="color.value"
-            >{{color.label}}</sbb-option>
+            <sbb-option *ngFor="let color of railColors" [value]="color.value"
+              >{{color.label}}</sbb-option
+            >
           </sbb-select>
         </div>
       </li>
