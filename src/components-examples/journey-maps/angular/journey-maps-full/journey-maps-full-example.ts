@@ -101,6 +101,22 @@ export class JourneyMapsFullExample implements OnInit, OnDestroy {
   viewportDimensions?: SbbViewportDimensions;
   zoomLevels?: SbbZoomLevels;
   visibleLevels = new BehaviorSubject<number[]>([]);
+
+  railColors = [
+    { label: 'default' },
+    { label: 'hide', value: 'transparent' },
+    {
+      label: 'silver',
+      value: 'rgba(220,220,220,1)',
+    },
+    { label: 'blue', value: 'rgba(45,50,125,1)' },
+    { label: 'lemon', value: 'rgba(255,222,21,1)' },
+    {
+      label: 'violet',
+      value: 'rgba(111,34,130,1)',
+    },
+  ];
+
   form: UntypedFormGroup;
 
   private _styleIds = {
