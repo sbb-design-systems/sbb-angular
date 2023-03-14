@@ -61,6 +61,10 @@
         @include _map-control-button-wrapper-active;
       }
     }
+
+    &:not([data-disabled='true']):focus-within {
+      @include _map-control-button-wrapper-active;
+    }
   }
 }
 
