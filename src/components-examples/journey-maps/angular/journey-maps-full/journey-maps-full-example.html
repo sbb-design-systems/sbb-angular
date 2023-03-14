@@ -84,14 +84,7 @@
           <span class='sbb-label'>Rail network color (v2 style only)</span>
           <sbb-select formControlName='railNetworkColor'>
             <sbb-option
-              *ngFor="let color of [
-              {label:'default'},
-              {label:'hide',value:'transparent'},
-              {label:'silver', value:'rgba(220,220,220,1)'},
-              {label:'blue',value:'rgba(45,50,125,1)'},
-              {label:'lemon',value:'rgba(255,222,21,1)'},
-              {label:'violet',value:'rgba(111,34,130,1)'}
-              ]"
+              *ngFor="let color of [{label:'default'},{label:'hide',value:'transparent'},{label:'silver', value:'rgba(220,220,220,1)'},{label:'blue',value:'rgba(45,50,125,1)'},{label:'lemon',value:'rgba(255,222,21,1)'},{label:'violet',value:'rgba(111,34,130,1)'}]"
               [value]='color.value'
             >{{color.label}}</sbb-option
             >
