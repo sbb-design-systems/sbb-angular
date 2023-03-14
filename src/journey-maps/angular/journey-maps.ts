@@ -491,15 +491,6 @@ export class SbbJourneyMaps implements OnInit, AfterViewInit, OnDestroy, OnChang
           if (changes.journeyMapsRoutingOption.currentValue?.routes) {
             this._updateRoutes();
           }
-          if (
-            JSON.stringify(changes.journeyMapsRoutingOption.currentValue?.railNetworkOptions) !==
-            JSON.stringify(changes.journeyMapsRoutingOption.previousValue?.railNetworkOptions)
-          ) {
-            this._mapRailNetworkLayerService.updateOptions(
-              this._map,
-              changes.journeyMapsRoutingOption.currentValue?.railNetworkOptions
-            );
-          }
         });
       }
     }
@@ -788,10 +779,10 @@ export class SbbJourneyMaps implements OnInit, AfterViewInit, OnDestroy, OnChang
           if (this.journeyMapsZones) {
             this._updateZones();
           }
-          if (this.journeyMapsRoutingOption?.railNetworkOptions) {
+          if (this.styleOptions.railNetwork) {
             this._mapRailNetworkLayerService.updateOptions(
               this._map,
-              this.journeyMapsRoutingOption?.railNetworkOptions
+              this.styleOptions.railNetwork
             );
           }
         });
@@ -834,6 +825,10 @@ export class SbbJourneyMaps implements OnInit, AfterViewInit, OnDestroy, OnChang
     this._zoomLevelDebouncer.next();
     this._mapMovementDebouncer.next();
     this._show2Dor3D();
+
+    if (this.styleOptions.railNetwork) {
+      this._mapRailNetworkLayerService.updateOptions(this._map, this.styleOptions.railNetwork);
+    }
 
     this._isStyleLoaded = true;
     this._styleLoaded.next();

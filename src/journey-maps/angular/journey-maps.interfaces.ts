@@ -17,6 +17,8 @@ export interface SbbStyleOptions {
   darkId?: string;
   /** Select the style mode between bright and dark. */
   mode?: SbbStyleMode;
+  /** Additional rail network options as defined in <code>SbbRailNetworkOptions</code>. */
+  railNetwork?: SbbRailNetworkOptions;
 }
 
 export interface SbbInteractionOptions {
@@ -111,9 +113,6 @@ export interface SbbJourneyMapsRoutingOptions {
    * Note: journey, transfer and routes cannot be displayed at the same time.
    */
   routesMetaInformations?: SbbRouteMetaInformation[];
-
-  /** Additional rail network options as defined in <code>SbbRailNetworkOptions</code>. */
-  railNetworkOptions?: SbbRailNetworkOptions;
 }
 
 export interface SbbMarkerOptions {

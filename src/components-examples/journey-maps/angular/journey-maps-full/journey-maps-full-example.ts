@@ -76,19 +76,17 @@ export class JourneyMapsFullExample implements OnInit, OnDestroy {
       { label: 'Zürich - Bern, Wyleregg', value: { journey: zhBeWyleregg } },
       { label: 'Zürich - Schaffhausen, Waldfriedhof', value: { journey: zhShWaldfriedhof } },
       {
-        label: 'Bern - Lausanne (hide rails)',
+        label: 'Bern - Lausanne',
         value: {
           routes: bnLsRoutes,
           routesMetaInformations: bnLsRoutesOptions,
-          railNetworkOptions: { railNetworkColor: 'transparent' },
         },
       },
       {
-        label: 'Biel - Lyss (lighter rails)',
+        label: 'Biel - Lyss',
         value: {
           routes: bielLyssRoutes,
           routesMetaInformations: bielLyssRoutesOptions,
-          railNetworkOptions: { railNetworkColor: 'rgba(229,229,229,1)' },
         },
       },
       { label: 'Transfer Bern', value: { transfer: bernIndoor } },
@@ -129,6 +127,9 @@ export class JourneyMapsFullExample implements OnInit, OnDestroy {
       }),
       styleOptions: _fb.group({
         mode: ['bright', resetSelectedMarkerIdValidator],
+        railNetwork: _fb.group({
+          railNetworkColor: [],
+        }),
         ...this._styleIds.v2,
       }),
       styleVersion: _fb.group({

@@ -37,11 +37,13 @@ export class SbbMapRailNetworkLayerService {
     options: SbbRailNetworkOptions
   ): void {
     this._backupLayerOptions(railLineLayer);
-    map.setPaintProperty(
-      railLineLayer.id,
-      RAIL_NETWORK_LAYER_CONST.colorPropName,
-      options.railNetworkColor
-    );
+    if (options.railNetworkColor) {
+      map.setPaintProperty(
+        railLineLayer.id,
+        RAIL_NETWORK_LAYER_CONST.colorPropName,
+        options.railNetworkColor
+      );
+    }
   }
 
   private _backupLayerOptions(railLineLayer: LineLayerSpecification) {
