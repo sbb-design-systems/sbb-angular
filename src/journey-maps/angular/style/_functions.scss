@@ -75,6 +75,7 @@
 
 @mixin map-control-icon-button($icon) {
   .map-control-button {
+    color: #212121;
     background-color: #212121;
     cursor: pointer;
     height: 36px;
