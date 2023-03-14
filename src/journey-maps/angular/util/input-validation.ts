@@ -3,9 +3,7 @@ import { SbbJourneyMapsRoutingOptions } from '../journey-maps.interfaces';
 export const getInvalidRoutingOptionCombination = (
   routingOptions: SbbJourneyMapsRoutingOptions
 ): string[] => {
-  const nonEmptyOptions = Object.entries(routingOptions).filter(
-    ([_, value]) => value && _ !== 'railNetworkOptions'
-  );
+  const nonEmptyOptions = Object.entries(routingOptions).filter(([_, value]) => value);
 
   const nbOfOptions = nonEmptyOptions.length;
 
