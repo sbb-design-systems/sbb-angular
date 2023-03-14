@@ -2,6 +2,21 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [15.7.0](https://github.com/sbb-design-systems/sbb-angular/compare/15.6.0...15.7.0) (2023-03-14)
+
+
+### Features
+
+* **journey-maps:** add dropdown for POI category selection ([#1835](https://github.com/sbb-design-systems/sbb-angular/issues/1835)) ([fcabe91](https://github.com/sbb-design-systems/sbb-angular/commit/fcabe913033bf38d037e27b4243297f9aa8b2f0a))
+* **journey-maps:** display bounding box info ([#1813](https://github.com/sbb-design-systems/sbb-angular/issues/1813)) ([a917611](https://github.com/sbb-design-systems/sbb-angular/commit/a9176116b29910f34c3e5b968d084437fba6dbe3))
+* **journey-maps:** v1 route hover ([#1829](https://github.com/sbb-design-systems/sbb-angular/issues/1829)) ([d664b24](https://github.com/sbb-design-systems/sbb-angular/commit/d664b2452d56811334610f6cb87384e694cd0983))
+
+
+### Documentation
+
+* added new GitHub issue templates ([#1833](https://github.com/sbb-design-systems/sbb-angular/issues/1833)) ([55c933c](https://github.com/sbb-design-systems/sbb-angular/commit/55c933cbb01d6c8d4a6103c24c48a16e6372aee6))
+* **journey-maps:** updated `journey-maps` maplibre css version to 2.4.0 ([#1836](https://github.com/sbb-design-systems/sbb-angular/issues/1836)) ([f824c06](https://github.com/sbb-design-systems/sbb-angular/commit/f824c062f98b63cf673e85d0e33cabf0481e1dab))
+
 ## [15.6.0](https://github.com/sbb-design-systems/sbb-angular/compare/15.5.0...15.6.0) (2023-03-06)
 
 
