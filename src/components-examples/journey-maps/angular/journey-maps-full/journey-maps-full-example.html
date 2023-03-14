@@ -80,13 +80,13 @@
           <sbb-radio-button value="bright">Bright Mode</sbb-radio-button>
           <sbb-radio-button value="dark">Dark Mode</sbb-radio-button>
         </sbb-radio-group>
-        <div formGroupName="railNetwork" class="rail-options">
+        <div class="rail-options" formGroupName="railNetwork">
           <span class="sbb-label">Rail network color (v2 style only)</span>
           <sbb-select formControlName="railNetworkColor">
             <sbb-option
               *ngFor="let color of railColors"
-              [value]="color.value">{{color.label}}</sbb-option
-            >
+              [value]="color.value"
+            >{{color.label}}</sbb-option>
           </sbb-select>
         </div>
       </li>
