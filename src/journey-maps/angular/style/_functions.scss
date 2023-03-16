@@ -24,7 +24,6 @@
   }
 
   .map-control-button-wrapper {
-    background-color: esta.$sbbColorWhite;
     line-height: 36px;
     padding: 6px;
     width: 48px;
@@ -63,6 +62,13 @@
       }
     }
   }
+
+  @media (forced-colors: active) {
+    .map-control-container {
+      /* Tell Windows not to change styles for this component */
+      forced-color-adjust: none;
+    }
+  }
 }
 
 @mixin _map-control-button-wrapper-active {
@@ -76,7 +82,6 @@
 
 @mixin map-control-icon-button($icon) {
   .map-control-button {
-    color: esta.$sbbColorCharcoal;
     background-color: esta.$sbbColorCharcoal;
     cursor: pointer;
     height: 36px;
