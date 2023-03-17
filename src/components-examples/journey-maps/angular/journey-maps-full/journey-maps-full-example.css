@@ -29,3 +29,11 @@ sbb-form-field {
   min-height: 500px;
   box-shadow: 0 5px 5px -5px rgba(0, 0, 0, 0.15);
 }
+
+.rail-options {
+  margin-top: 5px;
+}
+
+.rail-options .sbb-select {
+  width: 305px;
+}

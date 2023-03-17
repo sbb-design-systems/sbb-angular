@@ -54,6 +54,7 @@ import { SbbMapJourneyService } from './services/map/map-journey-service';
 import { SbbMapLeitPoiService } from './services/map/map-leit-poi-service';
 import { SbbMapMarkerService } from './services/map/map-marker-service';
 import { SbbMapOverflowingLabelService } from './services/map/map-overflowing-label-service';
+import { SbbMapRailNetworkLayerService } from './services/map/map-rail-network-layer.service';
 import { SbbMapRoutesService } from './services/map/map-routes.service';
 import { SbbMapService } from './services/map/map-service';
 import { SbbMapTransferService } from './services/map/map-transfer-service';
@@ -205,6 +206,7 @@ export class SbbJourneyMaps implements OnInit, AfterViewInit, OnDestroy, OnChang
     private _mapJourneyService: SbbMapJourneyService,
     private _mapTransferService: SbbMapTransferService,
     private _mapRoutesService: SbbMapRoutesService,
+    private _mapRailNetworkLayerService: SbbMapRailNetworkLayerService,
     private _mapZoneService: SbbMapZoneService,
     private _mapLeitPoiService: SbbMapLeitPoiService,
     private _urlService: SbbMapUrlService,
@@ -777,6 +779,12 @@ export class SbbJourneyMaps implements OnInit, AfterViewInit, OnDestroy, OnChang
           if (this.journeyMapsZones) {
             this._updateZones();
           }
+          if (this.styleOptions.railNetwork) {
+            this._mapRailNetworkLayerService.updateOptions(
+              this._map,
+              this.styleOptions.railNetwork
+            );
+          }
         });
       });
 
@@ -817,6 +825,10 @@ export class SbbJourneyMaps implements OnInit, AfterViewInit, OnDestroy, OnChang
     this._zoomLevelDebouncer.next();
     this._mapMovementDebouncer.next();
     this._show2Dor3D();
+
+    if (this.styleOptions.railNetwork) {
+      this._mapRailNetworkLayerService.updateOptions(this._map, this.styleOptions.railNetwork);
+    }
 
     this._isStyleLoaded = true;
     this._styleLoaded.next();
