@@ -1,7 +1,84 @@
-.maplibregl-ctrl-attrib-button {
-  display: none;
-}
+@use './../../style/functions' as f;
+@use './../../style/icons' as i;
 
-.maplibregl-control-container {
-  user-select: none;
+@include f.map-controls-shared;
+@include f.map-control-icon;
+@include f.map-control-icon-button('copyright');
+
+$attributionBackground: hsla(0, 0%, 100%, 0.75);
+
+.attribution-wrapper {
+  display: flex;
+  align-items: flex-end;
+
+  background: $attributionBackground;
+
+  .attribution-text {
+    display: flex;
+    flex-wrap: wrap;
+    padding: 0 5px;
+    font-size: 12px;
+    align-items: center;
+
+    .attribution-item {
+      margin-right: 0.5em;
+
+      &.var-last {
+        margin-right: 0;
+      }
+    }
+  }
+
+  .attribution-button {
+    display: none;
+  }
+
+  &.var-compact {
+    background: none;
+
+    .map-control-container {
+      // Small button
+      margin: 6px;
+    }
+
+    .map-control-button-wrapper {
+      // Small button
+      line-height: 26px;
+      padding: 3px;
+      width: 32px;
+      border-radius: 16px;
+    }
+
+    .map-control-button {
+      mask-size: 12px;
+      -webkit-mask-size: 12px;
+      // Small button
+      height: 26px;
+    }
+
+    .attribution-button {
+      display: block;
+    }
+
+    .attribution-text {
+      display: none;
+    }
+
+    &.var-open {
+      background: $attributionBackground;
+
+      .attribution-text {
+        padding-left: 12px;
+        min-height: 34px;
+        display: flex;
+      }
+      .map-control-container {
+        background: none;
+        box-shadow: none;
+      }
+      .map-control-button {
+        @include i.icon-mask('close');
+      }
+    }
+  }
 }

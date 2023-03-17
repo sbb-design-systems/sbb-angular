@@ -1,0 +1,20 @@
+<div
+  class="attribution-wrapper"
+  *ngIf="map"
+  [class.var-compact]="compact"
+  [class.var-open]="open"
+  aria-hidden="true"
+>
+  <div class="attribution-text">
+    <span *ngFor="let attribution of attributions; let lastItem = last">
+      <span [innerHTML]="attribution" class="attribution-item" [class.var-last]="lastItem"></span>
+    </span>
+  </div>
+  <div class="attribution-button">
+    <div class="map-control-container">
+      <div class="map-control-button-wrapper">
+        <button type="button" class="map-control-button" (click)="toggleOpen()"></button>
+      </div>
+    </div>
+  </div>
+</div>
