@@ -52,7 +52,8 @@
       }
     }
 
-    &:not([data-disabled='true']):active {
+    &:not([data-disabled='true']):active,
+    &:not([data-disabled='true']):has(:focus-visible) {
       @include _map-control-button-wrapper-active;
     }
 
