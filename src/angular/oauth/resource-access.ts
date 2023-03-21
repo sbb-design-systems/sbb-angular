@@ -15,12 +15,19 @@ export function resourceAccess(
 ): null | { [resource: string]: { roles: string[] } } {
   accessToken =
     !accessToken || typeof accessToken === 'string' ? accessToken : accessToken.getAccessToken();
+
   if (!accessToken || typeof accessToken !== 'string') {
     return null;
   }
 
-  const payload = base64Decode(accessToken.split('.')[1]);
-  const parsedAccessToken = JSON.parse(payload);
+  const processedAccessToken = accessToken.split('.')[1].replace(/-/g, '+').replace(/_/g, '/');
+  const payload = base64Decode(processedAccessToken);
+  const processedPayload = payload
+    .split('')
+    .map((char) => '%' + ('00' + char.charCodeAt(0).toString(16)).slice(-2))
+    .join('');
+  const parsedAccessToken = JSON.parse(decodeURIComponent(processedPayload));
+
   if (!('resource_access' in parsedAccessToken) || !parsedAccessToken.resource_access) {
     return null;
   }
