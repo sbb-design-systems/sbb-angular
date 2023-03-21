@@ -100,7 +100,7 @@
     "@rollup/plugin-node-resolve": "13.3.0",
     "@rollup/plugin-typescript": "11.0.0",
     "@schematics/angular": "15.2.4",
-    "@types/browser-sync": "2.26.3",
+    "@types/browser-sync": "2.27.0",
     "@types/events": "3.0.0",
     "@types/fs-extra": "11.0.1",
     "@types/geojson": "7946.0.10",
