@@ -56,7 +56,16 @@ export class SbbOptionSelectionChange<T = any> {
     '[class.sbb-option-multiple]': 'multiple',
     '[class.sbb-focused]': 'active',
     '[id]': 'id',
-    '[attr.aria-selected]': '_getAriaSelected()',
+    // Set aria-selected to false for non-selected items and true for selected items. Conform to
+    // [WAI ARIA Listbox authoring practices guide](
+    //  https://www.w3.org/WAI/ARIA/apg/patterns/listbox/), "If any options are selected, each
+    // selected option has either aria-selected or aria-checked set to true. All options that are
+    // selectable but not selected have either aria-selected or aria-checked set to false." Align
+    // aria-selected implementation of Chips and List components.
+    //
+    // Set `aria-selected="false"` on not-selected listbox options to fix VoiceOver announcing
+    // every option as "selected" (#21491).
+    '[attr.aria-selected]': 'selected',
     '[attr.aria-disabled]': 'disabled.toString()',
     '[class.sbb-disabled]': 'disabled',
   },
@@ -214,16 +223,6 @@ export class SbbOption<T = any>
       this._changeDetectorRef.markForCheck();
       this._emitSelectionChangeEvent(true);
     }
-  }
-
-  /**
-   * Gets the `aria-selected` value for the option. We explicitly omit the `aria-selected`
-   * attribute from single-selection, unselected options. Including the `aria-selected="false"`
-   * attributes adds a significant amount of noise to screen-reader users without providing useful
-   * information.
-   */
-  _getAriaSelected(): boolean | null {
-    return this.selected || (this.multiple ? false : null);
   }
 
   /** Returns the correct tabindex for the option depending on disabled state. */
