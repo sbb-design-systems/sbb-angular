@@ -2,6 +2,27 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [15.8.0](https://github.com/sbb-design-systems/sbb-angular/compare/15.7.0...15.8.0) (2023-03-27)
+
+
+### Features
+
+* **journey-maps:** add SbbRailNetworkOptions ([#1837](https://github.com/sbb-design-systems/sbb-angular/issues/1837)) ([1bedf40](https://github.com/sbb-design-systems/sbb-angular/commit/1bedf40479e544309bf280906e5cea37d3a5e798))
+
+
+### Bug Fixes
+
+* **angular/checkbox:** fix ARIA semantics and use native DOM properties ([#1850](https://github.com/sbb-design-systems/sbb-angular/issues/1850)) ([5e27ebc](https://github.com/sbb-design-systems/sbb-angular/commit/5e27ebceb6031475941a04d72bfe38ca110637ac))
+* **angular/core:** sbb-option sets aria-selected="false" ([#1847](https://github.com/sbb-design-systems/sbb-angular/issues/1847)) ([58538dc](https://github.com/sbb-design-systems/sbb-angular/commit/58538dc64a4aaaf7470eacb58009a5e7941842d2))
+* **deps:** update angular to v15.2.4 ([f2a01fe](https://github.com/sbb-design-systems/sbb-angular/commit/f2a01fec8ed2dcb46e34b03b4a5f97c9fa2e7729))
+* **deps:** update dependency @angular/cdk to v15.2.4 ([38dfd18](https://github.com/sbb-design-systems/sbb-angular/commit/38dfd18e407e73813c6f1285e1e5f0998cd385f4))
+* **journey-maps:** display focused controls ([#1839](https://github.com/sbb-design-systems/sbb-angular/issues/1839)) ([8cfe4aa](https://github.com/sbb-design-systems/sbb-angular/commit/8cfe4aa19ef894d71b00d34d13cec78581eba526))
+
+
+### Documentation
+
+* **angular/tabs:** explain where to set 'selectedIndex' ([#1846](https://github.com/sbb-design-systems/sbb-angular/issues/1846)) ([79eba2d](https://github.com/sbb-design-systems/sbb-angular/commit/79eba2df90e19318a50a2c757223efa86719b725))
+
 ## [15.7.0](https://github.com/sbb-design-systems/sbb-angular/compare/15.6.0...15.7.0) (2023-03-14)
 
 
