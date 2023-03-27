@@ -253,14 +253,6 @@ export class _SbbCheckboxBase
     this.disabled = isDisabled;
   }
 
-  _getAriaChecked(): 'true' | 'false' | 'mixed' {
-    if (this.checked) {
-      return 'true';
-    }
-
-    return this.indeterminate ? 'mixed' : 'false';
-  }
-
   protected _emitChangeEvent() {
     const event = new SbbCheckboxChange();
     event.source = this;
