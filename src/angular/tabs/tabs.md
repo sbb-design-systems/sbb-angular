@@ -3,7 +3,7 @@ visible at a time. Each tab's label is shown in the tab header and the active
 tab's label is designated with the animated bar. When the list of tab labels exceeds the width
 of the header, it will become scrollable.
 
-The active tab may be set using the `selectedIndex` input or when the user selects one of the
+The active tab may be set using the `selectedIndex` on `sbb-tab-group`, or when the user selects one of the
 tab labels in the header.
 
 ```html
