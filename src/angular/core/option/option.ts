@@ -56,7 +56,7 @@ export class SbbOptionSelectionChange<T = any> {
     '[class.sbb-option-multiple]': 'multiple',
     '[class.sbb-focused]': 'active',
     '[id]': 'id',
-    '[attr.aria-selected]': '_getAriaSelected()',
+    '[attr.aria-selected]': 'selected',
     '[attr.aria-disabled]': 'disabled.toString()',
     '[class.sbb-disabled]': 'disabled',
   },
@@ -214,16 +214,6 @@ export class SbbOption<T = any>
       this._changeDetectorRef.markForCheck();
       this._emitSelectionChangeEvent(true);
     }
-  }
-
-  /**
-   * Gets the `aria-selected` value for the option. We explicitly omit the `aria-selected`
-   * attribute from single-selection, unselected options. Including the `aria-selected="false"`
-   * attributes adds a significant amount of noise to screen-reader users without providing useful
-   * information.
-   */
-  _getAriaSelected(): boolean | null {
-    return this.selected || (this.multiple ? false : null);
   }
 
   /** Returns the correct tabindex for the option depending on disabled state. */
