@@ -102,6 +102,6 @@ class Walker extends Lint.RuleWalker {
     node: ts.ClassElement | ts.ParameterDeclaration,
     targetKind: ts.SyntaxKind
   ): boolean {
-    return !!node.modifiers?.some(({ kind }) => kind === targetKind);
+    return ts.canHaveModifiers(node) && !!node.modifiers?.some(({ kind }) => kind === targetKind);
   }
 }

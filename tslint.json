@@ -1,10 +1,6 @@
 {
   "extends": ["tslint-plugin-prettier", "tslint-config-prettier", "rxjs-tslint-rules"],
-  "rulesDirectory": [
-    "./tools/tslint-rules/",
-    "node_modules/codelyzer",
-    "node_modules/tslint-consistent-codestyle/rules"
-  ],
+  "rulesDirectory": ["./tools/tslint-rules/", "node_modules/tslint-consistent-codestyle/rules"],
   "linterOptions": {
     "exclude": [
       "tools/dgeni/**/*.ts",
@@ -145,7 +141,6 @@
     // disabled because all properties need to have explicit types set to work for Dgeni.
     "no-inferrable-types": [true, "ignore-params", "ignore-properties"],
     "no-misused-new": true,
-    "no-redundant-jsdoc": true,
     "no-shadowed-variable": true,
     "no-string-literal": false,
     "no-string-throw": true,
@@ -186,13 +181,9 @@
       "check-separator",
       "check-type"
     ],
-    "no-output-on-prefix": true,
-    "no-outputs-metadata-property": true,
     "no-host-metadata-property": false,
     "no-input-rename": false,
     "no-output-rename": false,
-    "use-lifecycle-interface": true,
-    "use-pipe-transform-interface": true,
     "component-class-suffix": false,
     "directive-class-suffix": false,
     "rxjs-no-unsafe-takeuntil": true,
@@ -200,6 +191,7 @@
 
     // Custom Rules
     "ts-loader": true,
-    "require-property-typedef": true
+    "require-property-typedef": true,
+    "lifecycle-hook-interface": true
   }
 }
