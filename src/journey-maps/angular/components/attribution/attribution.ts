@@ -20,14 +20,15 @@ export class SbbAttribution implements OnChanges, OnDestroy {
   compact: boolean;
   attributions: string[] = [];
 
-  private _listeners = new Map<string[], (event?: MapDataEvent) => void>();
+  private _listeners = new Map<string[], (event?: MapDataEvent) => void>([
+    [['resize'], this._setIsCompact.bind(this)],
+    [['styledata', 'sourcedata', 'terrain'], this._updateAttribution.bind(this)],
+  ]);
+
   private readonly _compactBreakpoint = 640;
   private readonly _linkRegex = /<a .+?<\/a>/gi;
 
-  constructor(private _cd: ChangeDetectorRef) {
-    this._listeners.set(['resize'], this._setIsCompact.bind(this));
-    this._listeners.set(['styledata', 'sourcedata', 'terrain'], this._updateAttribution.bind(this));
-  }
+  constructor(private _cd: ChangeDetectorRef) {}
 
   ngOnChanges(changes: SimpleChanges): void {
     const prev = changes.map?.previousValue;

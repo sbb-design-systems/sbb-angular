@@ -18,15 +18,9 @@ $attributionBackground: hsla(0, 0%, 100%, 0.75);
     flex-wrap: wrap;
     padding: 0 5px;
     font-size: 12px;
+    align-self: center;
     align-items: center;
-
-    .attribution-item {
-      margin-right: 0.5em;
-
-      &.var-last {
-        margin-right: 0;
-      }
-    }
+    column-gap: 0.5em;
   }
 
   .attribution-button {
