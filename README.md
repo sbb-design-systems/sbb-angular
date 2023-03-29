@@ -47,17 +47,3 @@ Chrome OS: ChromeVox with Chrome.
 ## Testing Supported By
 
 <a href="https://www.browserstack.com/"><img width="160" src="https://user-images.githubusercontent.com/594745/69711802-fc138a80-1101-11ea-9b30-3e90c274737a.png" alt="BrowserStack"/></a>
-
-## Running the app
-
-You can run the app with the following command
-
-```
-yarn run start
-```
-
-To run the `journey-maps` examples, you need to provide the API key as well
-
-```
-JM_API_KEY=<YOUR-API-KEY> yarn run start
-```
