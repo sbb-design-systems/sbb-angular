@@ -5,9 +5,16 @@
     [(activeDate)]="activeDate"
     [selected]="selected"
     [dateFilter]="dateFilter"
+    [dateRange]="dateRange"
+    [dateClass]="_dateClassObservable | async"
+    [showWeekNumbers]="showWeekNumbers"
     [maxDate]="maxDate"
     [minDate]="minDate"
+    [isWeekSelectable]="selectedWeekChange.observers.length > 0"
+    [isWeekdaySelectable]="selectedWeekdayChange.observers.length > 0"
     (selectedChange)="dateSelected($event)"
+    (selectedWeekChange)="weekSelected($event)"
+    (selectedWeekdayChange)="weekdaySelected($event)"
     (userSelection)="userSelected()"
   >
   </sbb-month-view>
