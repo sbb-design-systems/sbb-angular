@@ -49,7 +49,7 @@ To run lint, run `yarn lint`.
 
 ## Starting showcase
 
-To start the showcase, run
+To start the showcase, run:
 
 ```
 yarn start
