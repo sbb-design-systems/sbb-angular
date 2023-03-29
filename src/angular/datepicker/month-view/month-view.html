@@ -1,9 +1,24 @@
 <table class="sbb-calendar-table">
   <thead class="sbb-calendar-table-header">
     <tr>
+      <th *ngIf="showWeekNumbers">#</th>
       <th *ngFor="let day of weekdays">
-        <span class="cdk-visually-hidden">{{day.long}}</span>
-        <span aria-hidden="true">{{day.narrow}}</span>
+        <ng-container [ngSwitch]="isWeekdaySelectable">
+          <button
+            *ngSwitchCase="true"
+            type="button"
+            tabindex="0"
+            class="sbb-button-reset-frameless sbb-calendar-body-weekday"
+            [attr.aria-label]="day.long"
+            (click)="weekdaySelected(day.index)"
+          >
+            {{day.narrow}}
+          </button>
+          <ng-container *ngSwitchCase="false">
+            <span class="cdk-visually-hidden">{{day.long}}</span>
+            <span aria-hidden="true">{{day.narrow}}</span>
+          </ng-container>
+        </ng-container>
       </th>
     </tr>
     <tr>
@@ -14,11 +29,15 @@
     sbb-calendar-body
     label="{{ monthLabel }}"
     [rows]="weeks"
+    [weeksInMonth]="showWeekNumbers ? weeksInMonth : []"
     [todayValue]="todayDate!"
     [selectedValue]="selectedDate!"
     [labelMinRequiredCells]="3"
     [activeCell]="_dateAdapter.getDate(activeDate) - 1"
+    [isWeekSelectable]="isWeekSelectable"
+    [isWeekdaySelectable]="isWeekdaySelectable"
     (selectedValueChange)="dateSelected($event)"
+    (selectedWeekChange)="weekSelected($event)"
     (activeDateChange)="_updateActiveDate($event)"
     (keydown)="handleCalendarBodyKeydown($event)"
   ></tbody>
