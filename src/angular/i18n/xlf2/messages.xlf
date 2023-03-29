@@ -21,7 +21,7 @@
     </unit>
     <unit id="sbbDatepickerSwitchToPreviousMonth">
       <notes>
-        <note category="location">../../../../../../src/angular/datepicker/calendar/calendar.ts:41</note>
+        <note category="location">../../../../../../src/angular/datepicker/calendar/calendar.ts:43</note>
         <note category="description">Button label to switch to the previous month</note>
       </notes>
       <segment>
@@ -30,7 +30,7 @@
     </unit>
     <unit id="sbbDatepickerSwitchToNextMonth">
       <notes>
-        <note category="location">../../../../../../src/angular/datepicker/calendar/calendar.ts:43</note>
+        <note category="location">../../../../../../src/angular/datepicker/calendar/calendar.ts:45</note>
         <note category="description">Button label to switch to the next month</note>
       </notes>
       <segment>
@@ -39,7 +39,7 @@
     </unit>
     <unit id="sbbDatepickerSwitchToPreviousYear">
       <notes>
-        <note category="location">../../../../../../src/angular/datepicker/calendar/calendar.ts:45</note>
+        <note category="location">../../../../../../src/angular/datepicker/calendar/calendar.ts:47</note>
         <note category="description">Button label to switch to the previous year</note>
       </notes>
       <segment>
@@ -48,7 +48,7 @@
     </unit>
     <unit id="sbbDatepickerSwitchToNextYear">
       <notes>
-        <note category="location">../../../../../../src/angular/datepicker/calendar/calendar.ts:47</note>
+        <note category="location">../../../../../../src/angular/datepicker/calendar/calendar.ts:49</note>
         <note category="description">Button label to switch to the next year</note>
       </notes>
       <segment>

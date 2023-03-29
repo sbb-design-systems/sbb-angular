@@ -1,0 +1,47 @@
+<sbb-calendar
+  [dateRange]="dateRange | async"
+  [dateClass]="dateClass"
+  [showWeekNumbers]="showWeekNumbers"
+  [(selected)]="selectedDate"
+  (selectedWeekChange)="onWeekSelection($event)"
+  (selectedWeekdayChange)="onWeekdaySelection($event)"
+></sbb-calendar>
+
+<pre>
+  Selected date: {{ selectedDate || '-' }}
+  Selected weekday: {{ selectedWeekday !== null ? selectedWeekday : '-' }}
+</pre>
+
+<form [formGroup]="dateForm">
+  <sbb-form-field label="Selected week day" style="display: block">
+    <input type="number" sbbInput formControlName="selectedWeekDay" />
+  </sbb-form-field>
+  <sbb-form-field label="Range start date" style="display: block">
+    <sbb-datepicker>
+      <input
+        type="text"
+        sbbDateInput
+        sbbInput
+        formControlName="startDate"
+        [dateFilter]="filterStartDate"
+      />
+    </sbb-datepicker>
+  </sbb-form-field>
+
+  <sbb-form-field label="Range end date">
+    <sbb-datepicker>
+      <input
+        type="text"
+        sbbDateInput
+        sbbInput
+        formControlName="endDate"
+        [dateFilter]="filterEndDate"
+      />
+    </sbb-datepicker>
+  </sbb-form-field>
+</form>
+<sbb-checkbox [(ngModel)]="showWeekNumbers">Show week numbers</sbb-checkbox>
+
+<div>
+  <button sbb-button (click)="clearSelection()">Clear Selection</button>
+</div>

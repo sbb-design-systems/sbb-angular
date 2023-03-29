@@ -16,6 +16,7 @@ ng_module(
         exclude = ["**/*.spec.ts"],
     ),
     assets = [
+        ":calendar/calendar.css",
         ":datepicker/datepicker.css",
         ":datepicker-content/datepicker-content.css",
     ] + glob(["**/*.html"]),
@@ -30,6 +31,14 @@ ng_module(
         "@npm//@angular/forms",
         "@npm//@angular/localize",
         "@npm//rxjs",
+    ],
+)
+
+sass_binary(
+    name = "calendar_calendar_scss",
+    src = "calendar/calendar.scss",
+    deps = [
+        "//src/angular:scss_lib",
     ],
 )
 

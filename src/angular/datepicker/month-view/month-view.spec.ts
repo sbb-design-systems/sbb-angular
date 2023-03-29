@@ -9,7 +9,7 @@ import {
   RIGHT_ARROW,
   UP_ARROW,
 } from '@angular/cdk/keycodes';
-import { Component } from '@angular/core';
+import { Component, ViewChild } from '@angular/core';
 import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 import {
@@ -28,16 +28,35 @@ import {
   NOV,
 } from '@sbb-esta/angular/core/testing';
 
-import { SbbCalendarBody } from '../calendar-body/calendar-body';
+import { SbbCalendarBody, SbbCalendarCellClassFunction } from '../calendar-body/calendar-body';
+import { SbbDateRange } from '../date-range';
 
 import { SbbMonthView } from './month-view';
 
 @Component({
-  template: ` <sbb-month-view [(activeDate)]="date" [(selected)]="selected"></sbb-month-view> `,
+  template: `
+    <sbb-month-view
+      [(activeDate)]="date"
+      [(selected)]="selected"
+      [isWeekdaySelectable]="isWeekdaySelectable"
+      (selectedWeekdayChange)="selectWeekday($event)"
+    ></sbb-month-view>
+  `,
 })
 class StandardMonthViewComponent {
   date = new Date(2017, JAN, 5);
   selected = new Date(2017, JAN, 10);
+  weekday: number | null = -1;
+  isWeekdaySelectable = true;
+  selectWeekday = (w: number | null) => (this.weekday = w);
+}
+
+@Component({
+  template: ` <sbb-month-view [activeDate]="activeDate" [dateRange]="dateRange"></sbb-month-view> `,
+})
+class MonthViewWithDateRangeComponent {
+  activeDate = new Date(2022, NOV, 1);
+  dateRange: SbbDateRange<Date> = new SbbDateRange(new Date(2022, NOV, 1), new Date(2022, NOV, 9));
 }
 
 @Component({
@@ -52,6 +71,32 @@ class MonthViewWithDateFilterComponent {
   }
 }
 
+@Component({
+  template: `<sbb-month-view [activeDate]="activeDate" [dateClass]="dateClass"></sbb-month-view>`,
+})
+class MonthViewWithDateClassComponent {
+  activeDate = new Date(2017, JAN, 1);
+  dateClass(date: Date) {
+    return date.getDate() % 2 === 0 ? 'even' : undefined;
+  }
+}
+
+@Component({
+  template: `<sbb-month-view
+    [isWeekdaySelectable]="isWeekdaySelectable"
+    showWeekNumbers="true"
+    [dateClass]="dateClass"
+  ></sbb-month-view>`,
+})
+class MonthViewComponentWithWeekNumbers {
+  @ViewChild(SbbMonthView) monthView: SbbMonthView<Date>;
+  date = new Date(2023, JAN, 1);
+  selected = new Date(2023, JAN, 1);
+  isWeekdaySelectable = true;
+  dateClass: SbbCalendarCellClassFunction<Date> = (date: Date) =>
+    date.getDay() === 0 ? 'custom-date-class' : '';
+}
+
 describe('SbbMonthView', () => {
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
@@ -62,6 +107,9 @@ describe('SbbMonthView', () => {
         // Test components.
         StandardMonthViewComponent,
         MonthViewWithDateFilterComponent,
+        MonthViewWithDateClassComponent,
+        MonthViewWithDateRangeComponent,
+        MonthViewComponentWithWeekNumbers,
       ],
       providers: [
         { provide: SbbDateAdapter, useClass: SbbNativeDateAdapter },
@@ -118,6 +166,17 @@ describe('SbbMonthView', () => {
       const cellEls = monthViewNativeElement.querySelectorAll('.sbb-calendar-body-cell');
       expect((cellEls[4] as HTMLElement).innerText.trim()).toBe('5');
       expect(cellEls[4].classList).toContain('sbb-calendar-body-active');
+    });
+
+    it('should emit the clicked weekday', () => {
+      const weekButtons = monthViewNativeElement.querySelectorAll(
+        'button.sbb-calendar-body-weekday'
+      );
+      (weekButtons[0] as HTMLElement).click(); // Monday
+      expect(testComponent.weekday).toEqual(1);
+
+      (weekButtons[weekButtons.length - 1] as HTMLElement).click(); // Sunday
+      expect(testComponent.weekday).toEqual(0);
     });
 
     describe('a11y', () => {
@@ -278,6 +337,61 @@ describe('SbbMonthView', () => {
     });
   });
 
+  describe('month view with date range', () => {
+    const rangeSelector =
+      '.sbb-calendar-body-range-background, .sbb-calendar-body-selected-begin, .sbb-calendar-body-selected-end';
+    let fixture: ComponentFixture<MonthViewWithDateRangeComponent>;
+    let monthViewNativeElement: Element;
+
+    beforeEach(() => {
+      fixture = TestBed.createComponent(MonthViewWithDateRangeComponent);
+      const monthViewDebugElement = fixture.debugElement.query(By.directive(SbbMonthView))!;
+      monthViewNativeElement = monthViewDebugElement.nativeElement;
+      fixture.detectChanges();
+    });
+
+    it('should display the date range', () => {
+      const cells = monthViewNativeElement.querySelectorAll(rangeSelector);
+      expect(cells.length).toBe(9);
+    });
+
+    it('should update the date range', () => {
+      fixture.componentInstance.dateRange = new SbbDateRange(
+        new Date(2022, NOV, 15),
+        new Date(2022, NOV, 20)
+      );
+      fixture.detectChanges();
+
+      const cells = monthViewNativeElement.querySelectorAll(rangeSelector);
+      expect(cells.length).toBe(6);
+    });
+  });
+
+  describe('month view with custom date classes', () => {
+    let fixture: ComponentFixture<MonthViewWithDateClassComponent>;
+    let monthViewNativeElement: Element;
+    let dateClassSpy: jasmine.Spy;
+
+    beforeEach(() => {
+      fixture = TestBed.createComponent(MonthViewWithDateClassComponent);
+      dateClassSpy = spyOn(fixture.componentInstance, 'dateClass').and.callThrough();
+      fixture.detectChanges();
+
+      const monthViewDebugElement = fixture.debugElement.query(By.directive(SbbMonthView))!;
+      monthViewNativeElement = monthViewDebugElement.nativeElement;
+    });
+
+    it('should be able to add a custom class to some dates', () => {
+      const cells = monthViewNativeElement.querySelectorAll('.sbb-calendar-body-cell');
+      expect(cells[0].classList).not.toContain('even');
+      expect(cells[1].classList).toContain('even');
+    });
+
+    it('should call dateClass with the correct view name', () => {
+      expect(dateClassSpy).toHaveBeenCalledWith(jasmine.any(Date));
+    });
+  });
+
   describe('month view with date filter', () => {
     let fixture: ComponentFixture<MonthViewWithDateFilterComponent>;
     let monthViewNativeElement: Element;
@@ -294,6 +408,32 @@ describe('SbbMonthView', () => {
       const cells = monthViewNativeElement.querySelectorAll('.sbb-calendar-body-cell');
       expect(cells[0].classList).toContain('sbb-calendar-body-disabled');
       expect(cells[1].classList).not.toContain('sbb-calendar-body-disabled');
+    });
+  });
+
+  describe('month view component with week numbers', () => {
+    // See explanation in month-view.ts (search 'fixFirstWeekOfYear').
+    let fixture: ComponentFixture<MonthViewComponentWithWeekNumbers>;
+
+    beforeEach(() => {
+      fixture = TestBed.createComponent(MonthViewComponentWithWeekNumbers);
+      fixture.detectChanges();
+    });
+
+    it('whould display the correct week numbers if first day of year is a Sunday', () => {
+      expect(fixture.componentInstance.monthView._dateAdapter.getFirstDayOfWeek()).toBe(1);
+      expect(fixture.componentInstance.monthView.weeksInMonth).toEqual([52, 1, 2, 3, 4, 5]);
+    });
+
+    it('should update the dateClass function', () => {
+      expect(fixture.nativeElement.querySelectorAll('.custom-date-class').length).toBe(5);
+
+      fixture.componentInstance.dateClass = (date: Date) =>
+        date.getDate() === 1 ? 'another-custom-class' : ''; // highlight the first day
+      fixture.detectChanges();
+
+      expect(fixture.nativeElement.querySelectorAll('.custom-date-class').length).toBe(0);
+      expect(fixture.nativeElement.querySelectorAll('.another-custom-class').length).toBe(1);
     });
   });
 });

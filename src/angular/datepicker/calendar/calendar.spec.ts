@@ -15,6 +15,7 @@ import {
 import { SbbIconModule } from '@sbb-esta/angular/icon';
 import { SbbIconTestingModule } from '@sbb-esta/angular/icon/testing';
 
+import { SbbCalendarCellClassFunction } from '../calendar-body/calendar-body';
 import { SbbCalendar } from '../calendar/calendar';
 import { SbbDatepickerModule } from '../datepicker.module';
 
@@ -87,6 +88,13 @@ class CalendarWithSelectableMinDateComponent {
   }
 }
 
+@Component({
+  template: ` <sbb-calendar [dateClass]="dateClass"> </sbb-calendar> `,
+})
+class CalendarWithDateClassComponent {
+  dateClass: SbbCalendarCellClassFunction<Date>;
+}
+
 describe('SbbCalendar', () => {
   let zone: MockNgZone;
 
@@ -96,6 +104,7 @@ describe('SbbCalendar', () => {
       declarations: [
         // Test components.
         StandardCalendarComponent,
+        CalendarWithDateClassComponent,
         CalendarWithMinMaxComponent,
         CalendarWithDateFilterComponent,
         CalendarWithSelectableMinDateComponent,
@@ -367,6 +376,30 @@ describe('SbbCalendar', () => {
         fixture.detectChanges();
 
         expect(testComponent.selected).toBeUndefined();
+      });
+    });
+  });
+
+  describe('calendar with dateClass', () => {
+    let fixture: ComponentFixture<CalendarWithDateClassComponent>;
+    let testComponent: CalendarWithDateClassComponent;
+    let calendarInstance: SbbCalendar<Date>;
+
+    beforeEach(() => {
+      fixture = TestBed.createComponent(CalendarWithDateClassComponent);
+      fixture.detectChanges();
+      testComponent = fixture.componentInstance;
+
+      const calendarDebugElement = fixture.debugElement.query(By.directive(SbbCalendar));
+      calendarInstance = calendarDebugElement.componentInstance;
+    });
+
+    it('should convert the dateClass function into an observable', (doneFn) => {
+      testComponent.dateClass = () => 'custom-date-cell-string';
+      fixture.detectChanges();
+      calendarInstance._dateClassObservable.subscribe((dateClassFn) => {
+        expect(dateClassFn(new Date())).toEqual('custom-date-cell-string');
+        doneFn();
       });
     });
   });
