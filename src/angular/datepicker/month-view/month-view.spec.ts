@@ -84,6 +84,7 @@ class MonthViewWithDateClassComponent {
 @Component({
   template: `<sbb-month-view
     [isWeekdaySelectable]="isWeekdaySelectable"
+    [activeDate]="date"
     showWeekNumbers="true"
     [dateClass]="dateClass"
   ></sbb-month-view>`,
@@ -91,7 +92,6 @@ class MonthViewWithDateClassComponent {
 class MonthViewComponentWithWeekNumbers {
   @ViewChild(SbbMonthView) monthView: SbbMonthView<Date>;
   date = new Date(2023, JAN, 1);
-  selected = new Date(2023, JAN, 1);
   isWeekdaySelectable = true;
   dateClass: SbbCalendarCellClassFunction<Date> = (date: Date) =>
     date.getDay() === 0 ? 'custom-date-class' : '';
@@ -420,7 +420,7 @@ describe('SbbMonthView', () => {
       fixture.detectChanges();
     });
 
-    it('whould display the correct week numbers if first day of year is a Sunday', () => {
+    it('should display the correct week numbers if first day of year is a Sunday', () => {
       expect(fixture.componentInstance.monthView._dateAdapter.getFirstDayOfWeek()).toBe(1);
       expect(fixture.componentInstance.monthView.weeksInMonth).toEqual([52, 1, 2, 3, 4, 5]);
     });
