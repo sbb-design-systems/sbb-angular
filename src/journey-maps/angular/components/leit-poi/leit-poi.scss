@@ -1,7 +1,8 @@
 @use './../../style/icons' as i;
+@use '@sbb-esta/angular' as esta;
 
-$fontColor: #000000;
-$backgroundColor: #ffffff;
+$fontColor: esta.$sbbColorBlack;
+$backgroundColor: esta.$sbbColorWhite;
 $fontSize: 1.1em;
 $travelTypeSize: 90% 100%;
 $travelDirectionSize: 40% 100%;
@@ -82,7 +83,7 @@ $travelDirectionSize: 40% 100%;
     .maplibregl-popup-content {
       border-radius: 25px;
       padding: 6px;
-      border: 1px solid #000000;
+      border: 1px solid esta.$sbbColorBlack;
       cursor: pointer;
     }
   }
