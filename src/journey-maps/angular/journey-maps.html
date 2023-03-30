@@ -1,4 +1,3 @@
-<sbb-attribution></sbb-attribution>
 <div class="jmc-container" lang="{{ language }}">
   <div class="map-container" (touchstart)="onTouchStart($event)" (touchend)="onTouchEnd($event)">
     <div
@@ -51,6 +50,9 @@
         [map]="mapReady | async"
         [showSmallButtons]="uiOptions.showSmallButtons"
       ></sbb-level-switch>
+    </div>
+    <div class="map-attribution">
+      <sbb-attribution [map]="mapReady | async"></sbb-attribution>
     </div>
     <div class="map" #map></div>
   </div>
