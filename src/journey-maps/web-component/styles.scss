@@ -1,4 +1,5 @@
 @use 'external/npm/node_modules/maplibre-gl/dist/maplibre-gl.css';
+@use '@sbb-esta/angular' as esta;
 
 @font-face {
   font-family: 'SBBWeb Bold';
@@ -38,7 +39,7 @@
 sbb-journey-maps-wc {
   // Copied from ESTA typography.scss
 
-  color: #000;
+  color: esta.$sbbColorBlack;
   font-family: 'SBBWeb Roman', 'Helvetica Neue', Helvetica, Arial, sans-serif !important;
   font-size: 93.75%;
   line-height: 1.7;
