@@ -49,5 +49,16 @@ To run lint, run `yarn lint`.
 
 ## Starting showcase
 
-To start the showcase, run `yarn start`. This will run the devserver in watch mode. It might ask
-you to allow opening an outgoing port, which would allow you to open the page on another machine in the same network.
+To start the showcase, run:
+
+```
+yarn start
+```
+
+This will run the devserver in watch mode. It might ask you to allow opening an outgoing port, which would allow you to open the page on another machine in the same network.
+
+To be able to display the map inside the `journey-maps` examples, you need to provide the API key as well:
+
+```
+JM_API_KEY=<YOUR-API-KEY> yarn start
+```
