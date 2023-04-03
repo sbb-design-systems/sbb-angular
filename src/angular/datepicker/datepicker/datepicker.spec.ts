@@ -769,6 +769,21 @@ describe('SbbDatepicker', () => {
 
         flush();
       }));
+
+      it('should update the arrow keys of the connected datepicker', () => {
+        testComponent.firstDatepicker.setValue(new Date(2023, JAN, 15));
+        testComponent.secondDatepicker.setValue(new Date(2023, JAN, 15));
+        fixture.detectChanges();
+        expect(
+          fixture.nativeElement.querySelectorAll('.sbb-datepicker-arrow-button-left').length
+        ).toBe(1);
+        testComponent.firstDatepicker.setValue(new Date(2023, JAN, 13));
+        fixture.detectChanges();
+
+        expect(
+          fixture.nativeElement.querySelectorAll('.sbb-datepicker-arrow-button-left').length
+        ).toBe(2);
+      });
     });
 
     describe('datepicker in readonly mode', () => {
@@ -1078,10 +1093,10 @@ class DatepickerOpeningOnFocusComponent {
 }
 
 @Component({
-  template: `<sbb-datepicker [connected]="second">
+  template: `<sbb-datepicker arrows [connected]="second">
       <input sbbDateInput sbbInput [formControl]="firstDatepicker" />
     </sbb-datepicker>
-    <sbb-datepicker #second>
+    <sbb-datepicker #second arrows>
       <input sbbDateInput sbbInput [formControl]="secondDatepicker" />
     </sbb-datepicker>`,
 })

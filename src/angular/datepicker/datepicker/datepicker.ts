@@ -260,6 +260,8 @@ export class SbbDatepicker<D> implements OnDestroy {
 
   private _posStrategySubscription = Subscription.EMPTY;
 
+  private _mainDatepickerSubscription? = Subscription.EMPTY;
+
   /** The input element this datepicker is associated with. */
   datepickerInput: SbbDateInput<D>;
 
@@ -289,6 +291,7 @@ export class SbbDatepicker<D> implements OnDestroy {
     this._inputSubscription.unsubscribe();
     this._inputChangeSubscription.unsubscribe();
     this._connectedDatepickerSubscription.unsubscribe();
+    this._mainDatepickerSubscription?.unsubscribe();
     this.disabledChange.complete();
 
     if (this.popupRef) {
@@ -339,6 +342,11 @@ export class SbbDatepicker<D> implements OnDestroy {
       this.datepickerInput.disabledChange,
       this.datepickerInput.readonlyChange
     ).subscribe(() => this._changeDetectorRef.markForCheck());
+
+    // If the main datepicker date changes, we need to do a `markForCheck` to update the arrow keys.
+    this._mainDatepickerSubscription = this.main?.datepickerInput.valueChange.subscribe(() =>
+      this._changeDetectorRef.markForCheck()
+    );
 
     // The connected datepicker is only opened on the following conditions:
     // This datepicker has a connected datepicker and has been opened, a value selected, closed
