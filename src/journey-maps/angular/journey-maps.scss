@@ -1,4 +1,5 @@
 @use './style/icons' as i;
+@use '@sbb-esta/angular' as esta;
 
 :host,
 .map,
@@ -52,7 +53,7 @@
 }
 
 .mod_map_container_mobile_overlay_text {
-  color: #fff;
+  color: esta.$sbbColorWhite;
   font-family: SBBWeb Bold, Helvetica Neue, Helvetica, Arial, sans-serif;
   font-size: 1.4em;
   line-height: 1.4;
@@ -68,7 +69,7 @@
   align-items: center;
   width: 4.26667em;
   height: 4.26667em;
-  background: #fff;
+  background: esta.$sbbColorWhite;
   border-radius: 50%;
   box-shadow: 0 0.06667em 0.53333em rgba(0, 0, 0, 0.4);
 }
@@ -83,5 +84,12 @@ div.mod_map_container_mobile_overlay_icon {
   position: absolute;
   right: 0;
   top: 0;
+  z-index: 2;
+}
+
+.map-attribution {
+  position: absolute;
+  right: 0;
+  bottom: 0;
   z-index: 2;
 }

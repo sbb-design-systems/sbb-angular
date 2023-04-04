@@ -1,6 +1,7 @@
 import {
   AfterViewChecked,
   ChangeDetectionStrategy,
+  ChangeDetectorRef,
   Component,
   ElementRef,
   EventEmitter,
@@ -10,6 +11,12 @@ import {
   ViewEncapsulation,
 } from '@angular/core';
 import { take } from 'rxjs/operators';
+
+/** Extra CSS classes that can be associated with a calendar cell. */
+export type SbbCalendarCellCssClasses = string | string[] | Set<string> | { [key: string]: any };
+
+/** Function that can generate the extra classes that should be added to a calendar cell. */
+export type SbbCalendarCellClassFunction<D> = (date: D) => SbbCalendarCellCssClasses;
 
 /**
  * An internal class that represents the data corresponding to a single calendar cell.
@@ -21,7 +28,8 @@ export class SbbCalendarCell {
     public displayValue: string,
     public ariaLabel: string,
     public enabled: boolean,
-    public rangeBackground?: string | null
+    public rangeBackground?: string | null,
+    public cssClasses: SbbCalendarCellCssClasses = {}
   ) {}
 }
 
@@ -48,7 +56,20 @@ export class SbbCalendarBody implements AfterViewChecked {
   @Input() label: string;
 
   /** The cells to display in the table. */
-  @Input() rows: SbbCalendarCell[][];
+  @Input()
+  set rows(rows) {
+    if (rows !== this._rows) {
+      this._rows = rows;
+      this._changeDetectorRef.markForCheck();
+    }
+  }
+  get rows() {
+    return this._rows;
+  }
+  private _rows: SbbCalendarCell[][];
+
+  /** Week of year for each row. */
+  @Input() weeksInMonth: number[] = [];
 
   /** The value in the table that corresponds to today. */
   @Input() todayValue: number;
@@ -68,12 +89,25 @@ export class SbbCalendarBody implements AfterViewChecked {
   /** The cell number of the active cell in the table. */
   @Input() activeCell: number = 0;
 
+  /** Whether the week can be selected. */
+  @Input() isWeekSelectable: boolean = false;
+
+  /** Whether the weekday can be selected. */
+  @Input() isWeekdaySelectable: boolean = false;
+
   /** Emits when a new value is selected. */
   @Output() readonly selectedValueChange: EventEmitter<number> = new EventEmitter<number>();
 
+  /** Emits when a week is selected */
+  @Output() readonly selectedWeekChange: EventEmitter<number> = new EventEmitter<number>();
+
   @Output() readonly activeDateChange = new EventEmitter<number>();
 
-  constructor(private _elementRef: ElementRef<HTMLElement>, private _ngZone: NgZone) {}
+  constructor(
+    private _elementRef: ElementRef<HTMLElement>,
+    private _ngZone: NgZone,
+    private _changeDetectorRef: ChangeDetectorRef
+  ) {}
 
   ngAfterViewChecked() {
     if (this._focusActiveCellAfterViewChecked) {
@@ -87,6 +121,10 @@ export class SbbCalendarBody implements AfterViewChecked {
       return;
     }
     this.selectedValueChange.emit(cell.value);
+  }
+
+  onWeekClicked(week: number) {
+    this.selectedWeekChange.emit(week);
   }
 
   _emitActiveDateChange(cell: SbbCalendarCell, event: FocusEvent): void {

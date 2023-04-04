@@ -22,8 +22,10 @@ import {
   ViewEncapsulation,
 } from '@angular/core';
 import { SbbDateAdapter, SbbDateFormats, SBB_DATE_FORMATS } from '@sbb-esta/angular/core';
-import { Subject } from 'rxjs';
+import { isObservable, Observable, of, Subject } from 'rxjs';
 
+import { SbbCalendarCellClassFunction } from '../calendar-body/calendar-body';
+import { SbbDateRange } from '../date-range';
 import { createMissingDateImplError } from '../datepicker-errors';
 import { SbbMonthView } from '../month-view/month-view';
 
@@ -154,11 +156,11 @@ export class SbbCalendarHeader<D> {
 
 /**
  * A calendar that is used as part of the datepicker.
- * @docs-private
  */
 @Component({
   selector: 'sbb-calendar',
   templateUrl: 'calendar.html',
+  styleUrls: ['calendar.css'],
   exportAs: 'sbbCalendar',
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush,
@@ -220,11 +222,34 @@ export class SbbCalendar<D> implements AfterContentInit, AfterViewChecked, OnDes
   }
   private _maxDate: D | null;
 
+  /** Whether to display the week number. */
+  @Input() showWeekNumbers: boolean = false;
+
+  /** Currently active date range. */
+  @Input() dateRange: SbbDateRange<D> | null = null;
+
   /** A function used to filter which dates are selectable. */
   @Input() dateFilter: (date: D) => boolean;
 
+  /** Function or observable of function that can be used to add custom CSS classes to dates. */
+  @Input() dateClass: SbbCalendarCellClassFunction<D> | Observable<SbbCalendarCellClassFunction<D>>;
+
+  /** Observable of `dateClass` function. */
+  _dateClassObservable: Observable<SbbCalendarCellClassFunction<D>>;
+
   /** Emits when the currently selected date changes. */
   @Output() readonly selectedChange: EventEmitter<D> = new EventEmitter<D>();
+
+  /** Emits when the currently selected week changes. */
+  @Output()
+  readonly selectedWeekChange: EventEmitter<{
+    week: number;
+    start: D;
+    end: D;
+  } | null> = new EventEmitter();
+
+  /** Emits when the currently selected weekday changes. */
+  @Output() readonly selectedWeekdayChange: EventEmitter<number> = new EventEmitter<number>();
 
   /** Emits when any date is selected. */
   @Output() readonly userSelection: EventEmitter<void> = new EventEmitter<void>();
@@ -306,6 +331,12 @@ export class SbbCalendar<D> implements AfterContentInit, AfterViewChecked, OnDes
       }
     }
 
+    if (changes.dateClass && changes.dateClass.previousValue !== changes.dateClass.currentValue) {
+      this._dateClassObservable = isObservable(this.dateClass)
+        ? this.dateClass
+        : of(this.dateClass);
+    }
+
     this.stateChanges.next();
   }
 
@@ -318,6 +349,22 @@ export class SbbCalendar<D> implements AfterContentInit, AfterViewChecked, OnDes
     if (date && !this._dateAdapter.sameDate(date, this.selected)) {
       this.selectedChange.emit(date);
     }
+  }
+
+  /** Handles week selection in the month view. */
+  weekSelected(week: { week: number; rangeInMonth: SbbDateRange<D> } | null) {
+    this.selectedWeekChange.emit(
+      week && {
+        week: week.week,
+        start: week.rangeInMonth.start,
+        end: week.rangeInMonth.end,
+      }
+    );
+  }
+
+  /** Handles weekday selection in the month view. */
+  weekdaySelected(weekday: number) {
+    this.selectedWeekdayChange.emit(weekday);
   }
 
   userSelected(): void {

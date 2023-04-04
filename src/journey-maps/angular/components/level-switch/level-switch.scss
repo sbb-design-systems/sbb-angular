@@ -19,7 +19,7 @@
 .map-control-button:hover,
 .map-control-button-selected {
   @extend .map-control-button;
-  background-color: #212121;
+  background-color: esta.$sbbColorCharcoal;
   color: white;
 }
 

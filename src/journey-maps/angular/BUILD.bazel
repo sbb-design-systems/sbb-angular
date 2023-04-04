@@ -50,12 +50,16 @@ sass_binary(
     src = "journey-maps.scss",
     deps = [
         ":angular_scss_lib",
+        "//src/angular:scss_lib",
     ],
 )
 
 sass_binary(
     name = "components_attribution_attribution_scss",
     src = "components/attribution/attribution.scss",
+    deps = [
+        ":angular_scss_lib",
+    ],
 )
 
 sass_binary(
@@ -79,6 +83,7 @@ sass_binary(
     src = "components/leit-poi/leit-poi.scss",
     deps = [
         ":angular_scss_lib",
+        "//src/angular:scss_lib",
     ],
 )
 

@@ -122,6 +122,8 @@ export class SbbMapInitService {
       touchPitch: false,
       fadeDuration: 10,
       interactive: !interactionOptions.disableInteractions,
+      // we have our custom attribution component
+      attributionControl: false,
     };
 
     if (isSbbMapCenterOptions(viewportDimensions)) {

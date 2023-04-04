@@ -22,7 +22,7 @@
         <source>Change to the previous month</source>
         <context-group purpose="location">
           <context context-type="sourcefile">../../../../../../src/angular/datepicker/calendar/calendar.ts</context>
-          <context context-type="linenumber">41</context>
+          <context context-type="linenumber">43</context>
         </context-group>
         <note priority="1" from="description">Button label to switch to the previous month</note>
       </trans-unit>
@@ -30,7 +30,7 @@
         <source>Change to the next month</source>
         <context-group purpose="location">
           <context context-type="sourcefile">../../../../../../src/angular/datepicker/calendar/calendar.ts</context>
-          <context context-type="linenumber">43</context>
+          <context context-type="linenumber">45</context>
         </context-group>
         <note priority="1" from="description">Button label to switch to the next month</note>
       </trans-unit>
@@ -38,7 +38,7 @@
         <source>Change to the previous year</source>
         <context-group purpose="location">
           <context context-type="sourcefile">../../../../../../src/angular/datepicker/calendar/calendar.ts</context>
-          <context context-type="linenumber">45</context>
+          <context context-type="linenumber">47</context>
         </context-group>
         <note priority="1" from="description">Button label to switch to the previous year</note>
       </trans-unit>
@@ -46,7 +46,7 @@
         <source>Change to the next year</source>
         <context-group purpose="location">
           <context context-type="sourcefile">../../../../../../src/angular/datepicker/calendar/calendar.ts</context>
-          <context context-type="linenumber">47</context>
+          <context context-type="linenumber">49</context>
         </context-group>
         <note priority="1" from="description">Button label to switch to the next year</note>
       </trans-unit>
