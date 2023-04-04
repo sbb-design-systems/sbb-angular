@@ -2,6 +2,26 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [15.9.0](https://github.com/sbb-design-systems/sbb-angular/compare/15.8.0...15.9.0) (2023-04-04)
+
+
+### Features
+
+* **angular/datepicker:** expose calendar and make configurable ([#1762](https://github.com/sbb-design-systems/sbb-angular/issues/1762)) ([1431a47](https://github.com/sbb-design-systems/sbb-angular/commit/1431a477cc3b4254972b1db48c8245a6d810ce06)), closes [#1671](https://github.com/sbb-design-systems/sbb-angular/issues/1671)
+* **journey-maps:** custom map attribution component ([#1845](https://github.com/sbb-design-systems/sbb-angular/issues/1845)) ([7e643b1](https://github.com/sbb-design-systems/sbb-angular/commit/7e643b1d06dcac2424b107fe6e4f30e053647ed8))
+
+
+### Bug Fixes
+
+* **angular/datepicker:** update arrow keys of connected datepicker  ([#1858](https://github.com/sbb-design-systems/sbb-angular/issues/1858)) ([d30d3c8](https://github.com/sbb-design-systems/sbb-angular/commit/d30d3c8e0b9e15c863bc6e0bc2970792a9f8f1cd)), closes [#1852](https://github.com/sbb-design-systems/sbb-angular/issues/1852)
+* **deps:** update angular to v15.2.5 ([0d1e333](https://github.com/sbb-design-systems/sbb-angular/commit/0d1e3331836bb071ec6282957bc880712d9d58ba))
+* **journey-maps:** keep button icon visible against black background ([#1840](https://github.com/sbb-design-systems/sbb-angular/issues/1840)) ([29eca5c](https://github.com/sbb-design-systems/sbb-angular/commit/29eca5ca0a8d37e66690ff6dd5cca82808deb9ec))
+
+
+### Documentation
+
+* explain how to start the app with the api key for journey-maps ([#1853](https://github.com/sbb-design-systems/sbb-angular/issues/1853)) ([508ad91](https://github.com/sbb-design-systems/sbb-angular/commit/508ad91113c69c1c55a6706fe5a7056df2160e1c))
+
 ## [15.8.0](https://github.com/sbb-design-systems/sbb-angular/compare/15.7.0...15.8.0) (2023-03-27)
 
 
