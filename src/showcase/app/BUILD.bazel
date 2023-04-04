@@ -25,6 +25,7 @@ ng_module(
         "//src/angular/icon",
         "//src/angular/input",
         "//src/angular/notification",
+        "//src/angular/notification-toast",
         "//src/angular/radio-button",
         "//src/angular/select",
         "//src/angular/sidebar",

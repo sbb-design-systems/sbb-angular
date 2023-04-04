@@ -42,6 +42,10 @@
   }
 }
 
+:where(html.sbb-off-brand-colors) .sbb-notification-error {
+  background-color: #{sbb.$sbbColorRed};
+}
+
 :where(html.sbb-lean) .sbb-notification-success {
   color: var(--sbb-color-green);
   background-color: var(--sbb-color-background);

@@ -1,14 +1,37 @@
-import { NgModule } from '@angular/core';
+import { inject, NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { SbbNotificationToast } from '@sbb-esta/angular/notification-toast';
 
 import { HowToUpdateComponent } from './howtoupdate/how-to-update.component';
 import { IntroductionComponent } from './introduction/introduction.component';
+import { ModeNotificationToastComponent } from './shared/mode-notification-toast/mode-notification-toast.component';
 import { VariantSwitch } from './variant-switch';
+
+const modeLocalstorageKey = 'sbbAngularMode';
+const offBrandColorMode = 'sbb-off-brand-colors';
 
 const routes: Routes = [
   {
     path: '',
     canActivate: [VariantSwitch],
+    canActivateChild: [
+      (route) => {
+        if (route.queryParams.mode === offBrandColorMode) {
+          localStorage.setItem(modeLocalstorageKey, offBrandColorMode);
+        }
+
+        if (localStorage.getItem(modeLocalstorageKey) === offBrandColorMode) {
+          document.documentElement.classList.add('sbb-off-brand-colors');
+          inject(SbbNotificationToast).openFromComponent(ModeNotificationToastComponent, {
+            type: 'info',
+            verticalPosition: 'top',
+          });
+        } else {
+          document.documentElement.classList.remove(`sbb-off-brand-colors`);
+        }
+        return true;
+      },
+    ],
     children: [
       {
         path: '',
