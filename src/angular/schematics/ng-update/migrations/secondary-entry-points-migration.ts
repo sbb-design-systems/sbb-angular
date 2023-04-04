@@ -22,7 +22,7 @@ const ANGULAR_FILEPATH_REGEX = new RegExp(`(${ANGULAR_FILEPATH})/(.*?)`);
 // Map of all moved symbols
 const ENTRY_POINT_MAPPINGS = new Map(
   Object.entries({
-    [TargetVersion.V15]: {},
+    [TargetVersion.V16]: {},
   })
 );
 
@@ -160,7 +160,6 @@ export class SecondaryEntryPointsMigration extends Migration<null, DevkitContext
         .sort()
         .map(([name, elements]) => {
           const newImport = ts.factory.createImportDeclaration(
-            undefined,
             undefined,
             ts.factory.createImportClause(
               false,
