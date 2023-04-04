@@ -24,11 +24,7 @@ sbb-how-to-update {
 
   h1 {
     margin-top: 1rem !important;
-    color: #eb0000;
-
-    :where(html.sbb-off-brand-colors) & {
-      color: #06348b;
-    }
+    color: var(--sbb-color-red);
   }
 
   p {
