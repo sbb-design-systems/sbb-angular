@@ -33,8 +33,8 @@ by addmin the css class `sbb-off-brand-colors` to your page's `<html>` element.
 ```
 
 For viewing this showcase in the `sbb-off-brand-colors` mode you can simply click
-[this link](/?mode=sbb-off-brand-colors) or add the `?mode=sbb-off-brand-colors` query parameter
-to any pageof this showcase.
+[this link](/?mode=sbb-off-brand-colors&variant=lean) or add the `?mode=sbb-off-brand-colors`
+query parameter to any page of this showcase.
 
 ## Global Settings
 
