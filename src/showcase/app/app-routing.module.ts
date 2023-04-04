@@ -7,7 +7,7 @@ import { IntroductionComponent } from './introduction/introduction.component';
 import { ModeNotificationToastComponent } from './shared/mode-notification-toast/mode-notification-toast.component';
 import { VariantSwitch } from './variant-switch';
 
-const modeLocalstorageKey = 'sbbAngularMode';
+const modeSessionStorageKey = 'sbbAngularMode';
 const offBrandColorMode = 'sbb-off-brand-colors';
 
 const routes: Routes = [
@@ -17,10 +17,10 @@ const routes: Routes = [
     canActivateChild: [
       (route) => {
         if (route.queryParams.mode === offBrandColorMode) {
-          localStorage.setItem(modeLocalstorageKey, offBrandColorMode);
+          sessionStorage.setItem(modeSessionStorageKey, offBrandColorMode);
         }
 
-        if (localStorage.getItem(modeLocalstorageKey) === offBrandColorMode) {
+        if (sessionStorage.getItem(modeSessionStorageKey) === offBrandColorMode) {
           document.documentElement.classList.add('sbb-off-brand-colors');
           inject(SbbNotificationToast).openFromComponent(ModeNotificationToastComponent, {
             type: 'info',

@@ -1,20 +1,21 @@
-import { Component } from '@angular/core';
+import { Component, ViewEncapsulation } from '@angular/core';
 import { Router } from '@angular/router';
 
-const modeLocalstorageKey = 'sbbAngularMode';
+const modeSessionStorageKey = 'sbbAngularMode';
 
 @Component({
   selector: 'sbb-mode-notification-toast',
   template: `The app is currenly shown in the "sbb-off-brand-colors" mode.
     <button sbb-ghost-button (click)="onDisableButtonClick()">Disable mode</button>`,
+  encapsulation: ViewEncapsulation.None,
   styles: [
     `
-      ::ng-deep .sbb-notification-toast {
+      .sbb-notification-toast {
         /* avoid flickering by disabling animations */
         transform: none !important;
         opacity: 1 !important;
       }
-      ::ng-deep .sbb-notification-toast-icon-wrapper {
+      .sbb-notification-toast-icon-wrapper {
         height: 100%;
       }
     `,
@@ -23,7 +24,7 @@ const modeLocalstorageKey = 'sbbAngularMode';
 export class ModeNotificationToastComponent {
   constructor(private _router: Router) {}
   onDisableButtonClick() {
-    localStorage.removeItem(modeLocalstorageKey);
+    sessionStorage.removeItem(modeSessionStorageKey);
     const urlTree = this._router.parseUrl(this._router.url);
     delete urlTree.queryParams.mode;
     this._router
