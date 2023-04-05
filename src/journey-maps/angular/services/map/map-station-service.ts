@@ -10,13 +10,11 @@ import {
 import { SBB_ROKAS_STATION_HOVER_SOURCE } from '../constants';
 
 import { toFeatureCollection } from './util/feature-collection-util';
+import { isV1Style } from './util/style-version-lookup';
 
 export const SBB_STATION_LAYER = 'rokas-station-hover';
-const MAP_ENDPOINT_LAYERS = [
-  'rokas-route-transfer-ending', // V2
-  'rokas-walk-from', // V1
-  'rokas-walk-to', // V1
-];
+const MAP_ENDPOINT_LAYERS_V1 = ['rokas-walk-from', 'rokas-walk-to'];
+const MAP_ENDPOINT_LAYERS_V2 = ['rokas-route-transfer-ending', 'rokas-route-stopover-circle'];
 const MAP_SOURCE_LAYER_OSM_POINTS = 'osm_points';
 const FEATURE_SBB_ID_FIELD_NAME = 'sbb_id';
 
@@ -60,7 +58,9 @@ export class SbbMapStationService {
 
   private _getRouteEndpoints(map: MaplibreMap): Feature[] {
     const endpoints = map
-      .queryRenderedFeatures(undefined, { layers: MAP_ENDPOINT_LAYERS })
+      .queryRenderedFeatures(undefined, {
+        layers: isV1Style(map) ? MAP_ENDPOINT_LAYERS_V1 : MAP_ENDPOINT_LAYERS_V2,
+      })
       .filter((f) => {
         return FEATURE_SBB_ID_FIELD_NAME in f.properties;
       })
