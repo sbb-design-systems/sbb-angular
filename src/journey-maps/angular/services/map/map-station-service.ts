@@ -12,11 +12,13 @@ import { SBB_ROKAS_STATION_HOVER_SOURCE } from '../constants';
 import { toFeatureCollection } from './util/feature-collection-util';
 
 export const SBB_STATION_LAYER = 'rokas-station-hover';
-const SBB_ROKAS_ENDPOINT_LAYERS = [
+const MAP_ENDPOINT_LAYERS = [
   'rokas-route-transfer-ending', // V2
   'rokas-walk-from', // V1
   'rokas-walk-to', // V1
 ];
+const MAP_SOURCE_LAYER_OSM_POINTS = 'osm_points';
+const FEATURE_SBB_ID_FIELD_NAME = 'sbb_id';
 
 @Injectable({ providedIn: 'root' })
 export class SbbMapStationService {
@@ -58,9 +60,9 @@ export class SbbMapStationService {
 
   private _getRouteEndpoints(map: MaplibreMap): Feature[] {
     const endpoints = map
-      .queryRenderedFeatures(undefined, { layers: SBB_ROKAS_ENDPOINT_LAYERS })
+      .queryRenderedFeatures(undefined, { layers: MAP_ENDPOINT_LAYERS })
       .filter((f) => {
-        return 'sbb_id' in f.properties;
+        return FEATURE_SBB_ID_FIELD_NAME in f.properties;
       })
       .map(this._mapToFeature);
 
@@ -73,8 +75,12 @@ export class SbbMapStationService {
         (p) =>
           map
             .querySourceFeatures('base', {
-              sourceLayer: 'osm_points',
-              filter: ['in', 'sbb_id', String(p.properties['sbb_id'])],
+              sourceLayer: MAP_SOURCE_LAYER_OSM_POINTS,
+              filter: [
+                'in',
+                FEATURE_SBB_ID_FIELD_NAME,
+                String(p.properties[FEATURE_SBB_ID_FIELD_NAME]),
+              ],
             })
             .map((sourceFeature) => ({
               ...this._mapToFeature(sourceFeature),
@@ -94,7 +100,7 @@ export class SbbMapStationService {
 
         return (
           sourceLayer &&
-          ((sourceLayer === 'osm_points' && id !== 'osm_points') ||
+          ((sourceLayer === MAP_SOURCE_LAYER_OSM_POINTS && id !== MAP_SOURCE_LAYER_OSM_POINTS) ||
             (sourceLayer === 'poi' && id.startsWith('station_ship')))
         );
       })
