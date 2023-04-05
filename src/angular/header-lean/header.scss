@@ -214,6 +214,10 @@
 
   > svg {
     width: calc(#{sbb.pxToRem(80)} * var(--sbb-scaling-factor));
+
+    :where(.sbb-off-brand-colors) & path:first-child {
+      fill: var(--sbb-color-black);
+    }
   }
 }
 
