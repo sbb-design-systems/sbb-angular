@@ -506,7 +506,6 @@ export class SbbDatepicker<D> implements OnDestroy {
       .withTransformOriginOn('.sbb-datepicker-content')
       .withFlexibleDimensions(false)
       .withViewportMargin(8)
-      .withPush(false)
       .withPositions([
         {
           originX: 'start',
@@ -531,6 +530,20 @@ export class SbbDatepicker<D> implements OnDestroy {
           originY: 'top',
           overlayX: 'end',
           overlayY: 'bottom',
+        },
+        {
+          originX: 'start',
+          originY: 'center',
+          overlayX: 'start',
+          overlayY: 'center',
+          panelClass: 'sbb-datepicker-panel-centered',
+        },
+        {
+          originX: 'end',
+          originY: 'center',
+          overlayX: 'end',
+          overlayY: 'center',
+          panelClass: 'sbb-datepicker-panel-centered',
         },
       ]);
 
