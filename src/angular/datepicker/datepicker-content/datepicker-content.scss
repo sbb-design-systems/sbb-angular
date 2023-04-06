@@ -4,6 +4,8 @@
   position: relative;
   top: var(--sbb-datepicker-content-offset);
   font-size: var(--sbb-font-size);
+  height: var(--sbb-datepicker-calendar-height);
+  width: var(--sbb-datepicker-calendar-width);
 
   .sbb-datepicker-panel-above & {
     top: auto;
@@ -44,6 +46,11 @@
       clip-path: var(--sbb-box-shadow-arrow-clip-path);
       box-shadow: var(--sbb-box-shadow-arrow-width) var(--sbb-box-shadow-arrow-width) 0
         var(--sbb-box-shadow-arrow-width) var(--sbb-box-shadow-color);
+    }
+
+    // Hide arrow if panel is vertically centered
+    .sbb-datepicker-panel-centered & {
+      display: none;
     }
   }
 
