@@ -47,11 +47,11 @@
       box-shadow: var(--sbb-box-shadow-arrow-width) var(--sbb-box-shadow-arrow-width) 0
         var(--sbb-box-shadow-arrow-width) var(--sbb-box-shadow-color);
     }
-  }
 
-  // Hide arrow if panel is vertically centered
-  .sbb-datepicker-panel-centered &::after {
-    display: none;
+    // Hide arrow if panel is vertically centered
+    .sbb-datepicker-panel-centered & {
+      display: none;
+    }
   }
 
   .sbb-calendar {
