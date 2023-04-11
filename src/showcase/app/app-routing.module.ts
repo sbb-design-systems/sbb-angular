@@ -20,15 +20,25 @@ const routes: Routes = [
           sessionStorage.setItem(modeSessionStorageKey, offBrandColorMode);
         }
 
+        let variantPrimaryColor;
         if (sessionStorage.getItem(modeSessionStorageKey) === offBrandColorMode) {
+          variantPrimaryColor = '#06348b';
           document.documentElement.classList.add('sbb-off-brand-colors');
           inject(SbbNotificationToast).openFromComponent(ModeNotificationToastComponent, {
             type: 'info',
             verticalPosition: 'top',
           });
         } else {
+          variantPrimaryColor = '#eb0000';
           document.documentElement.classList.remove(`sbb-off-brand-colors`);
         }
+        document
+          .querySelector('meta[name="theme-color"]')
+          .setAttribute('content', variantPrimaryColor);
+        document
+          .querySelector('meta[name="msapplication-TileColor"]')
+          .setAttribute('content', variantPrimaryColor);
+
         return true;
       },
     ],
