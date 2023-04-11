@@ -215,7 +215,7 @@
   > svg {
     width: calc(#{sbb.pxToRem(80)} * var(--sbb-scaling-factor));
 
-    :where(.sbb-off-brand-colors) & path:first-child {
+    :where(.sbb-off-brand-colors) &.sbb-header-lean-sbb-logo path:first-child {
       fill: var(--sbb-color-black);
     }
   }
