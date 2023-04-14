@@ -6,9 +6,9 @@
   aria-hidden="true"
 >
   <div class="attribution-text">
-    <span *ngFor="let attribution of attributions">
-      <span [innerHTML]="attribution" class="attribution-item"></span>
-    </span>
+    <ng-container *ngFor="let attribution of attributions">
+      <div [innerHTML]="attribution" class="attribution-item"></div>
+    </ng-container>
   </div>
   <div class="attribution-button">
     <div class="map-control-container">

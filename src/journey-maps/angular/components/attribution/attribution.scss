@@ -18,9 +18,14 @@ $attributionBackground: hsla(0, 0%, 100%, 0.75);
     flex-wrap: wrap;
     padding: 0 5px;
     font-size: 12px;
+    justify-content: flex-end;
     align-self: center;
     align-items: center;
     column-gap: 0.5em;
+
+    .attribution-item {
+      text-align: right;
+    }
   }
 
   .attribution-button {
