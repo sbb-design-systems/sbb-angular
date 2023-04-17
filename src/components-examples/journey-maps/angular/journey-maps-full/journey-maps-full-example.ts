@@ -17,8 +17,8 @@ import {
 } from '@sbb-esta/journey-maps';
 import { Feature, Polygon, Position } from 'geojson';
 import { LngLatBounds, LngLatBoundsLike, LngLatLike } from 'maplibre-gl';
-import { BehaviorSubject, filter, Subject, take } from 'rxjs';
-import { map, takeUntil } from 'rxjs/operators';
+import { BehaviorSubject, Subject } from 'rxjs';
+import { filter, map, take, takeUntil } from 'rxjs/operators';
 
 import { zhBeWyleregg } from './mock-response/journey/zh-be_wyleregg';
 import { zhShWaldfriedhof } from './mock-response/journey/zh-sh_waldfriedhof';
