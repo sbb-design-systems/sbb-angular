@@ -83,7 +83,7 @@ jobs:
           const payload = { owner: context.repo.owner, repo: context.repo.repo, environment };
           const { data: deployment } = await github.rest.repos.createDeployment({
             ...payload,
-            ref: context.event.workflow_run.head_sha,
+            ref: context.payload.workflow_run.head_sha,
             auto_merge: false,
           });
           await github.rest.repos.createDeploymentStatus({
