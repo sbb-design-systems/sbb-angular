@@ -10,6 +10,7 @@ import { SbbHeaderLeanModule } from '@sbb-esta/angular/header-lean';
 import { SbbIconModule } from '@sbb-esta/angular/icon';
 import { SbbInputModule } from '@sbb-esta/angular/input';
 import { SbbNotificationModule } from '@sbb-esta/angular/notification';
+import { SbbNotificationToastModule } from '@sbb-esta/angular/notification-toast';
 import { SbbRadioButtonModule } from '@sbb-esta/angular/radio-button';
 import { SbbSelectModule } from '@sbb-esta/angular/select';
 import { SbbSidebarModule } from '@sbb-esta/angular/sidebar';
@@ -34,6 +35,7 @@ import { IntroductionComponent } from './introduction/introduction.component';
     SbbIconModule,
     SbbRadioButtonModule,
     SbbNotificationModule,
+    SbbNotificationToastModule,
     SbbInputModule,
     SbbSelectModule,
     FormsModule,

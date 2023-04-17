@@ -16,6 +16,7 @@ ng_module(
     tsconfig = "//src/showcase:tsconfig.json",
     deps = [
         "//src/angular/accordion",
+        "//src/angular/button",
         "//src/angular/sidebar",
         "@npm//@angular/animations",
         "@npm//@angular/cdk",
