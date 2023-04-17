@@ -4,7 +4,6 @@ import { Component, FactoryProvider, Type, ValueProvider, ViewChild } from '@ang
 import { ComponentFixture, fakeAsync, flush, inject, TestBed, tick } from '@angular/core/testing';
 import { FormControl, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { By } from '@angular/platform-browser';
-import { BrowserDynamicTestingModule } from '@angular/platform-browser-dynamic/testing';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { SBB_DATEPICKER_PREVENT_OVERFLOW } from '@sbb-esta/angular/core';
 import {
@@ -29,8 +28,7 @@ describe('SbbDatepicker', () => {
   function createComponent(
     component: Type<any>,
     imports: Type<any>[] = [],
-    providers: (FactoryProvider | ValueProvider)[] = [],
-    entryComponents: Type<any>[] = []
+    providers: (FactoryProvider | ValueProvider)[] = []
   ): ComponentFixture<any> {
     TestBed.configureTestingModule({
       imports: [
@@ -44,14 +42,8 @@ describe('SbbDatepicker', () => {
         ...imports,
       ],
       providers,
-      declarations: [component, ...entryComponents],
+      declarations: [component],
     });
-
-    TestBed.overrideModule(BrowserDynamicTestingModule, {
-      set: {
-        entryComponents: [entryComponents],
-      },
-    }).compileComponents();
 
     return TestBed.createComponent(component);
   }
