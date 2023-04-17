@@ -17,7 +17,7 @@
     "noImplicitThis": true,
     "skipLibCheck": true,
     "strictBindCallApply": true,
-    "target": "ES2022",
+    "target": "es2022",
     "lib": ["es2020", "dom"],
     "types": ["@angular/localize/init", "arcgis-js-api", "grecaptcha", "jasmine"],
     "baseUrl": ".",

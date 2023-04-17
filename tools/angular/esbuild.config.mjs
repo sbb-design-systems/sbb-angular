@@ -17,7 +17,7 @@ export default {
     // the bundle output, but helps speeding up ESBuild when it visits other modules.
     await createEsbuildAngularOptimizePlugin({
       enableLinker: {
-        // Only run the linker on `fesm2020/` bundles. This should not have an effect on
+        // Only run the linker on `fesm2022/` bundles. This should not have an effect on
         // the bundle output, but helps speeding up ESBuild when it visits other modules.
         filterPaths: /fesm2022/,
         linkerOptions: {
