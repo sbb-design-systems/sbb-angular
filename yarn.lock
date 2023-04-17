@@ -8726,7 +8726,7 @@ esbuild@0.17.16:
     "@esbuild/win32-ia32" "0.17.16"
     "@esbuild/win32-x64" "0.17.16"
 
-esbuild@^0.17.5:
+esbuild@0.17.17, esbuild@^0.17.5:
   version "0.17.17"
   resolved "https://registry.yarnpkg.com/esbuild/-/esbuild-0.17.17.tgz#fa906ab11b11d2ed4700f494f4f764229b25c916"
   integrity sha512-/jUywtAymR8jR4qsa2RujlAF7Krpt5VWi72Q2yuLD4e/hvtNcFQ0I1j8m/bxq238pf3/0KO5yuXNpuLx8BE1KA==
