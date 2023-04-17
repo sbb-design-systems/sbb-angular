@@ -15,7 +15,8 @@ import {
   ViewEncapsulation,
 } from '@angular/core';
 import { SbbDialogConfig, _SbbDialogContainerBase } from '@sbb-esta/angular/dialog';
-import { startWith, Subject, takeUntil } from 'rxjs';
+import { Subject } from 'rxjs';
+import { startWith, takeUntil } from 'rxjs/operators';
 
 import { sbbLightboxAnimations } from './lightbox-animations';
 
