@@ -1,11 +1,22 @@
 import { Injectable } from '@angular/core';
-import { GeoJSONSource, LayerSpecification, Map as MaplibreMap } from 'maplibre-gl';
+import { Feature } from 'geojson';
+import {
+  GeoJSONSource,
+  LayerSpecification,
+  Map as MaplibreMap,
+  MapGeoJSONFeature,
+} from 'maplibre-gl';
 
 import { SBB_ROKAS_STATION_HOVER_SOURCE } from '../constants';
 
 import { toFeatureCollection } from './util/feature-collection-util';
+import { isV1Style } from './util/style-version-lookup';
 
 export const SBB_STATION_LAYER = 'rokas-station-hover';
+const MAP_ENDPOINT_LAYERS_V1 = ['rokas-walk-from', 'rokas-walk-to'];
+const MAP_ENDPOINT_LAYERS_V2 = ['rokas-route-transfer-ending', 'rokas-route-stopover-circle'];
+const MAP_SOURCE_LAYER_OSM_POINTS = 'osm_points';
+const FEATURE_SBB_ID_FIELD_NAME = 'sbb_id';
 
 @Injectable({ providedIn: 'root' })
 export class SbbMapStationService {
@@ -34,13 +45,50 @@ export class SbbMapStationService {
   }
 
   private _updateStationSource(map: MaplibreMap, stationLayers: string[]): void {
-    const features = map
+    const features: Feature[] = map
       .queryRenderedFeatures(undefined, { layers: stationLayers })
-      .map((f) => ({ type: f.type, properties: f.properties, geometry: f.geometry }));
+      .map(this._mapToFeature);
+
+    features.push(...this._getRouteEndpoints(map));
 
     map.removeFeatureState({ source: SBB_ROKAS_STATION_HOVER_SOURCE });
     const source = map.getSource(SBB_ROKAS_STATION_HOVER_SOURCE) as GeoJSONSource;
     source.setData(toFeatureCollection(features));
+  }
+
+  private _getRouteEndpoints(map: MaplibreMap): Feature[] {
+    const endpoints = map
+      .queryRenderedFeatures(undefined, {
+        layers: isV1Style(map) ? MAP_ENDPOINT_LAYERS_V1 : MAP_ENDPOINT_LAYERS_V2,
+      })
+      .filter((f) => {
+        return FEATURE_SBB_ID_FIELD_NAME in f.properties;
+      })
+      .map(this._mapToFeature);
+
+    if (!endpoints.length) {
+      return [];
+    }
+
+    return endpoints
+      .map(
+        (p) =>
+          map
+            .querySourceFeatures('base', {
+              sourceLayer: MAP_SOURCE_LAYER_OSM_POINTS,
+              filter: [
+                'in',
+                FEATURE_SBB_ID_FIELD_NAME,
+                String(p.properties[FEATURE_SBB_ID_FIELD_NAME]),
+              ],
+            })
+            .map((sourceFeature) => ({
+              ...this._mapToFeature(sourceFeature),
+              geometry: p.geometry, // get endpoint location not the tile source
+            }))
+            .pop() // There might be multiple stations in the tile source
+      )
+      .filter((s) => s!!) as Feature[];
   }
 
   private _extractStationLayers(map: MaplibreMap): string[] | undefined {
@@ -52,10 +100,14 @@ export class SbbMapStationService {
 
         return (
           sourceLayer &&
-          ((sourceLayer === 'osm_points' && id !== 'osm_points') ||
+          ((sourceLayer === MAP_SOURCE_LAYER_OSM_POINTS && id !== MAP_SOURCE_LAYER_OSM_POINTS) ||
             (sourceLayer === 'poi' && id.startsWith('station_ship')))
         );
       })
       .map((layer: LayerSpecification) => layer.id);
+  }
+
+  private _mapToFeature(f: MapGeoJSONFeature) {
+    return { type: f.type, properties: f.properties, geometry: f.geometry };
   }
 }
