@@ -2,6 +2,22 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [15.10.0](https://github.com/sbb-design-systems/sbb-angular/compare/15.9.0...15.10.0) (2023-04-17)
+
+
+### Features
+
+* add `sbb-off-brand-colors` style ([#1863](https://github.com/sbb-design-systems/sbb-angular/issues/1863)) ([044a6ae](https://github.com/sbb-design-systems/sbb-angular/commit/044a6ae3a78c47296d18ca94ce6d86e7cf23b95f))
+* **journey-maps:** journey start- and end-station clickable ([#1865](https://github.com/sbb-design-systems/sbb-angular/issues/1865)) ([031c985](https://github.com/sbb-design-systems/sbb-angular/commit/031c9859ee1c7ad02c25579e9b6988823163cf5f))
+
+
+### Bug Fixes
+
+* **angular/datepicker:** avoid calendar being cut off on small screens ([#1869](https://github.com/sbb-design-systems/sbb-angular/issues/1869)) ([f4a972b](https://github.com/sbb-design-systems/sbb-angular/commit/f4a972bc259a8ab5a92401450c5278b7592141d2)), closes [#1819](https://github.com/sbb-design-systems/sbb-angular/issues/1819)
+* **deps:** update angular to v15.2.6 ([67bdc91](https://github.com/sbb-design-systems/sbb-angular/commit/67bdc9114d12d5725f849729ee3ab5a6b3d9f27e))
+* **deps:** update dependency @stackblitz/sdk to v1.9.0 ([a178716](https://github.com/sbb-design-systems/sbb-angular/commit/a1787164fe9cf5ec8cb1fa226d348e1a48498de3))
+* make rxjs imports forward compatible ([#1874](https://github.com/sbb-design-systems/sbb-angular/issues/1874)) ([408aea6](https://github.com/sbb-design-systems/sbb-angular/commit/408aea65e8bf8655a459c9e37eb0da3990b2a3ee)), closes [#1872](https://github.com/sbb-design-systems/sbb-angular/issues/1872)
+
 ## [15.9.0](https://github.com/sbb-design-systems/sbb-angular/compare/15.8.0...15.9.0) (2023-04-04)
 
 
