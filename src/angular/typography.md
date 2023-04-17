@@ -19,6 +19,23 @@ To activate lean design, set the css class `sbb-lean` on your `<html class="sbb-
 
 If you are uncertain which library to use, we recommend you to start with lean design.
 
+**Style for security-critical applications**
+
+We also provide a styling for applications that are critical for security.
+For this kind of application the red color is only allowed for error messages.
+
+Therefore, the `sbb-off-brand-colors` style replaces red colors with blue colors for all elements
+except error messages. The style is based on the `sbb-lean` variant and can be activated
+by addmin the css class `sbb-off-brand-colors` to your page's `<html>` element.
+
+```html
+<html class="sbb-lean sbb-off-brand-colors"></html>
+```
+
+For viewing this showcase in the `sbb-off-brand-colors` mode you can simply click
+[this link](/?mode=sbb-off-brand-colors&variant=lean) or add the `?mode=sbb-off-brand-colors`
+query parameter to any page of this showcase.
+
 ## Global Settings
 
 SBB Angular library sets basic global typography, display and link styles.

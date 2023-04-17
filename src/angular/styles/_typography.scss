@@ -516,6 +516,13 @@
       --sbb-divider-medium: #{sbb.pxToRem(24)};
       --sbb-divider-big: #{sbb.pxToRem(32)};
     }
+
+    &:where(.sbb-off-brand-colors) {
+      --sbb-color-red: #{sbb.$sbbColorRoyal};
+      --sbb-color-red125: #{sbb.$sbbColorRoyal125};
+      --sbb-color-red150: #{sbb.$sbbColorRoyal150};
+      --sbb-color-red-alpha40: #{rgba(sbb.$sbbColorRoyal, 0.4)};
+    }
   }
 }
 

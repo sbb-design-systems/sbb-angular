@@ -28,8 +28,12 @@
   background-color: var(--sbb-color-granite);
 }
 
-:is(.sbb-notification-error, .sbb-notification-warn) {
+.sbb-notification-warn {
   background-color: var(--sbb-color-red);
+}
+
+.sbb-notification-error {
+  background-color: var(--sbb-color-error);
 }
 
 .sbb-notification-info-light {
