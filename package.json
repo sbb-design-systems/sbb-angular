@@ -82,6 +82,7 @@
     "@angular/localize": "16.0.0-rc.1",
     "@angular/ng-dev": "https://github.com/angular/dev-infra-private-ng-dev-builds.git#68a6d97028583799726bdad5ef3234d3ec3463e6",
     "@babel/core": "7.21.4",
+    "@babel/plugin-proposal-async-generator-functions": "^7.20.7",
     "@babel/traverse": "7.21.4",
     "@bazel/bazelisk": "1.12.1",
     "@bazel/buildifier": "6.0.1",
