@@ -91,7 +91,7 @@ jobs:
             ...payload,
             deployment_id: deployment.id,
             state: 'in_progress',
-            environment_url: `https://sbb-angular-${environment}.app.sbb.ch`,
+            environment_url: `https://${context.repo.repo}-${environment}.app.sbb.ch`,
           });
 
     - name: "Container: Login to GitHub Container Repository"
