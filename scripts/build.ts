@@ -124,7 +124,7 @@ function buildI18n(distPath: string, i18nDistPath: string) {
     const relativeDistPath = relative(projectDir, distPath);
     const outPath = join(i18nDistPath, format, 'messages.xlf');
     exec(
-      `"node_modules/.bin/localize-extract" -l en-CH -s "${relativeDistPath}/**/fesm2020/*.mjs" -f ${format} -o "${outPath}"`
+      `"node_modules/.bin/localize-extract" -l en-CH -s "${relativeDistPath}/**/fesm2022/*.mjs" -f ${format} -o "${outPath}"`
     );
     console.log(`Updated ${relative(projectDir, outPath)}`);
   }
