@@ -98,6 +98,8 @@ jobs:
       run: echo ${{ secrets.GITHUB_TOKEN }} | docker login ghcr.io --username ${{ github.actor }} --password-stdin
     - name: "Container: Build image"
       run: docker build -t $IMAGE_REPO:$IMAGE_TAG .
+      env:
+        DOCKER_BUILDKIT: 1
     - name: "Container: Re-tag image"
       if: env.PR_NUMBER != ''
       run: docker tag $IMAGE_REPO:$IMAGE_TAG $IMAGE_REPO:$IMAGE_PR_TAG
