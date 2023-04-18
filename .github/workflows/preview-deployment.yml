@@ -80,7 +80,7 @@ jobs:
       uses: actions/github-script@v6
       with:
         script: |
-          const environment = process.env.IMAGE_PR_TAG;
+          const environment = process.env.PR_NUMBER ? process.env.IMAGE_PR_TAG : 'preview-main';
           const payload = { owner: context.repo.owner, repo: context.repo.repo, environment };
           const { data: deployment } = await github.rest.repos.createDeployment({
             ...payload,
