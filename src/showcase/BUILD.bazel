@@ -98,8 +98,8 @@ html_insert_assets(
         "--scripts --module dev-bundles/main.dev.js",
     ],
     data = [
-        ":index.template.html",
         ":dev-bundles",
+        ":index.template.html",
     ] + _ASSETS,
 )
 
@@ -188,8 +188,8 @@ html_insert_assets(
 pkg_web(
     name = "prodapp",
     srcs = _ASSETS + [
-        ":prod-bundles",
         ":index_html_prod",
+        ":prod-bundles",
         "//src/showcase/assets",
     ],
     # In production mode we serve some polyfills with script tags that have hard-coded paths in the index.html
