@@ -36,8 +36,8 @@ html_insert_assets(
         "--scripts --module showcase.js",
     ],
     data = [
-        ":showcase.template.html",
         ":showcase.js",
+        ":showcase.template.html",
     ] + _DEV_SERVER_ASSETS,
 )
 
