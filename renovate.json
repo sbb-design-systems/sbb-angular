@@ -45,7 +45,7 @@
     },
     {
       "matchPackageNames": ["node"],
-      "allowedVersions": "<18"
+      "allowedVersions": "<=18"
     },
     {
       "groupName": "angular",
