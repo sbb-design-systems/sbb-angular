@@ -71,7 +71,7 @@ jobs:
       - uses: actions/setup-node@v3
         if: needs.cherry_pick.outputs.failed_branches
         with:
-          node-version: 16
+          node-version-file: '.nvmrc'
 
       - uses: ./.github/actions/yarn-install
         if: needs.cherry_pick.outputs.failed_branches
