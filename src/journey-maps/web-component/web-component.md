@@ -96,13 +96,25 @@ Then you pass the id of the template to the client:
 // Set the template
 client.markerDetailsTemplate = 'myTemplate';
 
-// Make markers clickable
+// Make markers, stations and pois clickable
 client.listenerOptions = {
-  MARKER: { watch: true },
+  MARKER: {
+    watch: true,
+  },
+  STATION: {
+    watch: true,
+    popup: true,
+    clickTemplate: 'myTemplate',
+  },
+  POI: {
+    watch: true,
+    popup: true,
+    clickTemplate: 'myTemplate',
+  },
 };
 ```
 
-Now you can click on a marker and your template will be displayed in the defined overlay. (teaser or popup)
+Now you can click on a marker, station or poi and your template will be displayed in the defined overlay. (teaser or popup)
 
 Normally you want the content of your template to differ depending on what has been selected.
 This can be achieved if you register to one of our output events (e.g. `featuresClick`) and update your template when an event occurs.
@@ -110,8 +122,28 @@ This can be achieved if you register to one of our output events (e.g. `features
 ```js
 client.addEventListener('featuresClick', (event) => {
   const feature = event.detail?.features?.[0];
-  if (feature?.featureDataType === 'MARKER') {
-    document.getElementById('myTemplate').innerHTML = `Hello this is ${feature.properties?.title}`;
+  switch (feature?.featureDataType) {
+    case 'MARKER':
+      document.getElementById(
+        'myTemplate'
+      ).innerHTML = `Hello this is ${feature.properties?.title}`;
+      break;
+    case 'STATION':
+      document.getElementById('myTemplate').innerHTML = `
+        <div>
+          <div>${feature.properties?.name}</div>
+          <div>${feature.properties?.uic_ref}</div>
+        </div>
+      `;
+      break;
+    case 'POI':
+      document.getElementById('myTemplate').innerHTML = `
+        <div>
+          <div>${feature.properties?.name}</div>
+          <div>${feature.properties?.sbbId}</div>
+        </div>
+      `;
+      break;
   }
 });
 ```
