@@ -2907,10 +2907,15 @@
   resolved "https://registry.yarnpkg.com/@bazel/buildifier/-/buildifier-6.1.0.tgz#0c0e395c8881040d42e7e28b700a3e64becdc31a"
   integrity sha512-LBfdMpGe9tmDJ6jOMaFWtrnKpNqKfUxIp1P+O3E2rb/jmSrP2ZTO9JRXqlghVhDy3fMDUkUVKkIZy9KAAfZJnQ==
 
-"@bazel/buildozer@6.1.0":
-  version "6.1.0"
-  resolved "https://registry.yarnpkg.com/@bazel/buildozer/-/buildozer-6.1.0.tgz#8cb0c740c8cd712a977f3694a6d6cab0cce3a493"
-  integrity sha512-8UBg9iRkO6yzl4zl2yjWTdK3fGSIaCz6Eqlq3mZ3c9LIkCG76bOqmnCGiXzCFdN/g4HjuQxCbF3oUSqmP2F0fA==
+"@bazel/buildifier@6.1.1":
+  version "6.1.1"
+  resolved "https://registry.yarnpkg.com/@bazel/buildifier/-/buildifier-6.1.1.tgz#2025d9e633b1e2adf4da4140fb1505883aaaf916"
+  integrity sha512-J70MYmR/yReRQRUvNsXRu+827ilyN7RaXvCslBZyZlhoLQwq3P9TJ4DGNjkfEwD8JUfA6mAoeCpFTvYDt90d0g==
+
+"@bazel/buildozer@6.1.1":
+  version "6.1.1"
+  resolved "https://registry.yarnpkg.com/@bazel/buildozer/-/buildozer-6.1.1.tgz#e44a26f8b90f14a841b6067c773ac8b9fcd71f40"
+  integrity sha512-wrJkTrIU79cmLI3PvAAr1eItb6VsaXq+d73/j1uCOseqDijxTBSpD/4TdKHoPURYpXH8ETX/WymrDFGmWSgYWw==
 
 "@bazel/concatjs@5.8.1":
   version "5.8.1"
