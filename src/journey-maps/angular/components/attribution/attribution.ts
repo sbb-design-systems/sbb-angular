@@ -4,8 +4,10 @@ import {
   Input,
   OnChanges,
   OnDestroy,
+  SecurityContext,
   SimpleChanges,
 } from '@angular/core';
+import { DomSanitizer } from '@angular/platform-browser';
 import { Map as MaplibreMap, MapDataEvent } from 'maplibre-gl';
 
 @Component({
@@ -28,7 +30,7 @@ export class SbbAttribution implements OnChanges, OnDestroy {
   private readonly _compactBreakpoint = 640;
   private readonly _linkRegex = /<a .+?<\/a>/gi;
 
-  constructor(private _cd: ChangeDetectorRef) {}
+  constructor(private _cd: ChangeDetectorRef, private _sanitizer: DomSanitizer) {}
 
   ngOnChanges(changes: SimpleChanges): void {
     const prev = changes.map?.previousValue;
@@ -72,18 +74,17 @@ export class SbbAttribution implements OnChanges, OnDestroy {
       return;
     }
 
-    const attributions = new Set<string>();
     const sourceCaches = this.map?.style?.sourceCaches ?? {};
 
-    for (const sourceCache of Object.values(sourceCaches)) {
-      if (sourceCache.used || sourceCache.usedForTerrain) {
-        const attribution = sourceCache.getSource().attribution;
-        this._splitAttribution(attribution).forEach((attr) => attributions.add(attr));
-      }
-    }
+    this.attributions = Object.values(sourceCaches)
+      .filter((sc) => sc.used || sc.usedForTerrain)
+      .map((sc) => sc.getSource().attribution)
+      .map((attr) => this._sanitizer.sanitize(SecurityContext.HTML, attr ?? null))
+      .filter((attr) => !!attr)
+      .flatMap((attr) => this._splitAttribution(attr!))
+      .filter((v, i, a) => a.indexOf(v) === i)
+      .sort(this._sortAttributionItems);
 
-    this.attributions = Array.from(attributions.values());
-    this.attributions.sort(this._sortAttributionItems);
     this._cd.detectChanges();
   }
 
@@ -92,7 +93,7 @@ export class SbbAttribution implements OnChanges, OnDestroy {
       return [];
     }
 
-    return attribution.match(this._linkRegex) ?? [attribution];
+    return attribution.match(this._linkRegex) ?? [`<span>${attribution}</span>`];
   }
 
   private _shouldUpdateAttribution(event?: MapDataEvent): boolean {

@@ -32,6 +32,7 @@ ng_module(
         "@npm//@angular/animations",
         "@npm//@angular/common",
         "@npm//@angular/core",
+        "@npm//@angular/platform-browser",
         "@npm//@types/geojson",
         "@npm//@types/mapbox__point-geometry",
         "@npm//maplibre-gl",
