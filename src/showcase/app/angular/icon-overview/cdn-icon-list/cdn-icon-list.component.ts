@@ -15,10 +15,11 @@ export class CdnIconListComponent implements AfterViewInit {
   @Input()
   set cdnIcons(newCdnIcons: CdnIcons) {
     this._cdnIcons = newCdnIcons;
-    this.namespaces = Array.from(
-      new Set(newCdnIcons.icons.map((cdnIcon) => cdnIcon.namespace))
-    ).sort();
-    this.filterForm.patchValue({ namespaces: this.namespaces });
+    this.filterForm.patchValue({
+      namespaces: this.namespaces.filter(
+        (namespace) => !this.deprecatedNamespaces.includes(namespace)
+      ),
+    });
   }
   get cdnIcons(): CdnIcons {
     return this._cdnIcons;
@@ -31,7 +32,8 @@ export class CdnIconListComponent implements AfterViewInit {
     fitIcons: [true],
   });
   filteredIcons: Observable<CdnIcon[]>;
-  namespaces: string[];
+  namespaces = ['icons', 'pictograms', 'kom', 'fpl'];
+  deprecatedNamespaces = ['kom', 'fpl'];
   pageSize = 50;
 
   @ViewChild(SbbPaginator) private _paginator: SbbPaginator;
@@ -50,10 +52,15 @@ export class CdnIconListComponent implements AfterViewInit {
 
         const filteredIcons = this._cdnIcons.icons.filter(
           (i) =>
-            namespaces.some((namespace) => i.namespace === namespace) &&
-            (i.namespace.toUpperCase().indexOf(fulltext) !== -1 ||
+            namespaces.some(
+              (namespace) =>
+                i.namespace === namespace ||
+                (!i.namespace && namespace === 'icons') ||
+                (i.namespace === 'picto' && namespace === 'pictograms')
+            ) &&
+            ((i.namespace && i.namespace.toUpperCase().indexOf(fulltext) !== -1) ||
               i.name.toUpperCase().indexOf(fulltext) !== -1 ||
-              i.tags.some((tag) => tag.toUpperCase().indexOf(fulltext) !== -1))
+              i.tags.some((tag) => !!tag && tag.toUpperCase().indexOf(fulltext) !== -1))
         );
 
         this._paginator.length = filteredIcons.length;

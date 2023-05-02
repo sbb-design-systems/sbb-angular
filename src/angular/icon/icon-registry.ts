@@ -143,7 +143,7 @@ export class SbbIconRegistry implements OnDestroy {
    * A list of internally supported namespaces, which can be served from the icon CDN.
    * (See https://icons.app.sbb.ch/)
    */
-  private _sbbCdnSupportedNamespaces = ['kom', 'fpl'];
+  private _sbbCdnSupportedNamespaces = ['kom', 'fpl', 'icons', 'pictograms'];
 
   constructor(
     @Optional() private _httpClient: HttpClient,
@@ -369,6 +369,15 @@ export class SbbIconRegistry implements OnDestroy {
 
     if (iconSetConfigs) {
       return this._getSvgFromIconSetConfigs(name, iconSetConfigs);
+    }
+
+    // Try fetching the icon from the default 'icons' namespace.
+    if (!namespace) {
+      config = this._getIconConfigFromResolvers('icons', name);
+      if (config) {
+        this._svgIconConfigs.set(key, config);
+        return this._getSvgFromConfig(config);
+      }
     }
 
     return observableThrow(getSbbIconNameNotFoundError(key));

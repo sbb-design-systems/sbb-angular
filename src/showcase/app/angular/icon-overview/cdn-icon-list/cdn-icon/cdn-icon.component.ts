@@ -13,7 +13,9 @@ export class CdnIconComponent {
   @Input() cdnIcon: CdnIcon;
 
   get cdnIconPath() {
-    return `${this.cdnIcon.namespace}:${this.cdnIcon.name}`;
+    return this.cdnIcon.namespace
+      ? `${this.cdnIcon.namespace}:${this.cdnIcon.name}`
+      : this.cdnIcon.name;
   }
 
   constructor(private _dialog: SbbDialog) {}

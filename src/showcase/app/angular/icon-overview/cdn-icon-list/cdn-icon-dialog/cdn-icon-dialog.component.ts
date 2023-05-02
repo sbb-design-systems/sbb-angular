@@ -20,6 +20,8 @@ export class CdnIconDialogComponent {
   }
 
   get cdnIconPath() {
-    return `${this.cdnIcon.namespace}:${this.cdnIcon.name}`;
+    return this.cdnIcon.namespace
+      ? `${this.cdnIcon.namespace}:${this.cdnIcon.name}`
+      : this.cdnIcon.name;
   }
 }
