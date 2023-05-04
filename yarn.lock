@@ -3503,7 +3503,7 @@
   resolved "https://registry.yarnpkg.com/@microsoft/tsdoc/-/tsdoc-0.14.2.tgz#c3ec604a0b54b9a9b87e9735dfc59e1a5da6a5fb"
   integrity sha512-9b8mPpKrfeGRuhFH5iO1iwCLeIIsV6+H1sRfxbkoGXIyQE2BTsPd9zqSqQJ+pv5sJ/hT5M1zvOFL02MnEezFug==
 
-"@nestjs/common@^9.2.0":
+"@nestjs/common@^9.4.0":
   version "9.4.0"
   resolved "https://registry.yarnpkg.com/@nestjs/common/-/common-9.4.0.tgz#3597e4f3a1278486fc2e015c94e58bcbbb4f72ca"
   integrity sha512-RUcVAQsEF4WPrmzFXEOUfZnPwrLTe1UVlzXTlSyfqfqbdWDPKDGlIPVelBLfc5/+RRUQ0I5iE4+CQvpCmkqldw==
@@ -3512,7 +3512,7 @@
     iterare "1.2.1"
     tslib "2.5.0"
 
-"@nestjs/core@^9.2.0":
+"@nestjs/core@^9.4.0":
   version "9.4.0"
   resolved "https://registry.yarnpkg.com/@nestjs/core/-/core-9.4.0.tgz#bca5128138fcf9b4668bc524b578f3805a325183"
   integrity sha512-yTLryCgFD0462wPe4HIzhyTcDgibt8Stfwb5YzcX7Ma0NM4m8uBIpcPG109KBubp8ZmV85e5mw4rl20qLQQVsQ==
@@ -3524,7 +3524,7 @@
     path-to-regexp "3.2.0"
     tslib "2.5.0"
 
-"@nestjs/platform-express@^9.2.0":
+"@nestjs/platform-express@^9.4.0":
   version "9.4.0"
   resolved "https://registry.yarnpkg.com/@nestjs/platform-express/-/platform-express-9.4.0.tgz#e1f9e6c60cdd8d7889abbc6a04ab95279976175b"
   integrity sha512-PpnfghpNq7mwG43z3+pacHulsabUCBMla4nUikntXT525ORpZSDvh/nLi1HLfE4w5+FcINc8/RBOyYTeRVmiRQ==
@@ -3535,7 +3535,7 @@
     multer "1.4.4-lts.1"
     tslib "2.5.0"
 
-"@nestjs/platform-ws@^9.2.0":
+"@nestjs/platform-ws@^9.4.0":
   version "9.4.0"
   resolved "https://registry.yarnpkg.com/@nestjs/platform-ws/-/platform-ws-9.4.0.tgz#ab7bbb7e47c54ff09c343823f2850a0db262e357"
   integrity sha512-rNaShI/YYwYAcO8hj1oy2oUlFCC7O3gIvaCIV1fpRGzFu2xBuxzBCeaC5CMmOWea5NoJiNTV3YbHRxbTRt2FOw==
@@ -3543,14 +3543,14 @@
     tslib "2.5.0"
     ws "8.13.0"
 
-"@nestjs/serve-static@^3.0.0":
+"@nestjs/serve-static@^3.0.1":
   version "3.0.1"
   resolved "https://registry.yarnpkg.com/@nestjs/serve-static/-/serve-static-3.0.1.tgz#d7d736b47171923d9e87262e19cc58ade8f4ba56"
   integrity sha512-i766UJPYOqvQ2BbRKh0/+Mmq5NkJnmKcShjWV1i5qpXyeM0KDZTn0n7g7ykWq/3LbQgjpMzrhYtGv35GX7GVQw==
   dependencies:
     path-to-regexp "0.2.5"
 
-"@nestjs/websockets@^9.2.0":
+"@nestjs/websockets@^9.4.0":
   version "9.4.0"
   resolved "https://registry.yarnpkg.com/@nestjs/websockets/-/websockets-9.4.0.tgz#26d4b506fe45ecdb2223f7031050ce67332880b0"
   integrity sha512-RATR9C0cKhXp3mTQAg75iItyUuRhVwU39Xe/kl0XLpvAhWzhnGrn6CxSTRRzBfp3F68DOKvs7/ODDY51f+rdXw==
@@ -5160,7 +5160,7 @@
     "@webassemblyjs/ast" "1.11.5"
     "@xtuc/long" "4.2.2"
 
-"@xmldom/xmldom@^0.8.5", "@xmldom/xmldom@^0.8.6":
+"@xmldom/xmldom@^0.8.5", "@xmldom/xmldom@^0.8.7":
   version "0.8.7"
   resolved "https://registry.yarnpkg.com/@xmldom/xmldom/-/xmldom-0.8.7.tgz#8b1e39c547013941974d83ad5e9cf5042071a9a0"
   integrity sha512-sI1Ly2cODlWStkINzqGrZ8K6n+MTSbAeQnAipGyL+KZCXuHaRlj2gyyy8B/9MvsFFqN7XHryQnB2QwhzvJXovg==
@@ -5455,23 +5455,23 @@ angular-server-side-configuration@15.1.0:
     glob "^9.3.1"
     tslib "^2.3.0"
 
-angular-t9n@15.0.2:
-  version "15.0.2"
-  resolved "https://registry.yarnpkg.com/angular-t9n/-/angular-t9n-15.0.2.tgz#2599bca3c7c3d4c9dfe481ebd2a38724cb79f6ca"
-  integrity sha512-8JpPehioJ3DyJahK5o3TZrb1SHs4PZ+sjH5sE5VezoFM9R3EkAkbBDRFG3H0heC9cttXgCtKPhbbQ5f+XitFOw==
+angular-t9n@16.0.0:
+  version "16.0.0"
+  resolved "https://registry.yarnpkg.com/angular-t9n/-/angular-t9n-16.0.0.tgz#42f4a667a4d3f991e5831b901d56d825394689fc"
+  integrity sha512-EefZO9wTshPvgSFBdEhXEr69jXhqCgkLOKFE0TMdQofGabOYc/7auXznUEQGJCT7+cuhg+fcilOfQ7iGM+vrCw==
   dependencies:
-    "@nestjs/common" "^9.2.0"
-    "@nestjs/core" "^9.2.0"
-    "@nestjs/platform-express" "^9.2.0"
-    "@nestjs/platform-ws" "^9.2.0"
-    "@nestjs/serve-static" "^3.0.0"
-    "@nestjs/websockets" "^9.2.0"
-    "@xmldom/xmldom" "^0.8.6"
+    "@nestjs/common" "^9.4.0"
+    "@nestjs/core" "^9.4.0"
+    "@nestjs/platform-express" "^9.4.0"
+    "@nestjs/platform-ws" "^9.4.0"
+    "@nestjs/serve-static" "^3.0.1"
+    "@nestjs/websockets" "^9.4.0"
+    "@xmldom/xmldom" "^0.8.7"
     class-transformer "^0.5.1"
     class-validator "^0.13.2"
     js-levenshtein "^1.1.6"
     reflect-metadata "^0.1.13"
-    rxjs "~7.5.5"
+    rxjs "~7.8.1"
 
 ansi-colors@4.1.3:
   version "4.1.3"
@@ -14668,7 +14668,7 @@ rxjs@6.6.7:
   dependencies:
     tslib "^1.9.0"
 
-rxjs@7.8.1, rxjs@^7.5.5, rxjs@^7.8.0:
+rxjs@7.8.1, rxjs@^7.5.5, rxjs@^7.8.0, rxjs@~7.8.1:
   version "7.8.1"
   resolved "https://registry.yarnpkg.com/rxjs/-/rxjs-7.8.1.tgz#6f6f3d99ea8044291efd92e7c7fcf562c4057543"
   integrity sha512-AA3TVj+0A2iuIoQkWEK/tqFjBq2j+6PO6Y0zJcvzLAFhEFIO3HL0vls9hWLncZbAAbK0mar7oZ4V079I/qPMxg==
@@ -14681,13 +14681,6 @@ rxjs@^5.5.6:
   integrity sha512-xx2itnL5sBbqeeiVgNPVuQQ1nC8Jp2WfNJhXWHmElW9YmrpS9UVnNzhP3EH3HFqexO5Tlp8GhYY+WEcqcVMvGw==
   dependencies:
     symbol-observable "1.0.1"
-
-rxjs@~7.5.5:
-  version "7.5.7"
-  resolved "https://registry.yarnpkg.com/rxjs/-/rxjs-7.5.7.tgz#2ec0d57fdc89ece220d2e702730ae8f1e49def39"
-  integrity sha512-z9MzKh/UcOqB3i20H6rtrlaE/CgjLOvheWK/9ILrbhROGTweAi1BaFsTT9FbwZi5Trr1qNRs+MXkhmR06awzQA==
-  dependencies:
-    tslib "^2.1.0"
 
 safe-buffer@5.1.2, safe-buffer@~5.1.0, safe-buffer@~5.1.1:
   version "5.1.2"
