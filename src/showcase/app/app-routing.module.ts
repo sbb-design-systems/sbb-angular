@@ -64,10 +64,6 @@ const routes: Routes = [
           ),
       },
       {
-        path: 'angular-maps',
-        loadChildren: () => import('./maps/maps.module').then((m) => m.MapsModule),
-      },
-      {
         path: 'journey-maps',
         loadChildren: () =>
           import('./journey-maps/journey-maps.module').then((m) => m.JourneyMapsModule),

@@ -2,11 +2,7 @@ import { getImportDeclaration } from '@angular/cdk/schematics';
 import * as ts from 'typescript';
 
 /** Name of the sbb-angular module specifiers. */
-export const sbbAngularModuleSpecifiers = [
-  '@sbb-esta/angular',
-  '@sbb-esta/angular-maps',
-  '@sbb-esta/journey-maps',
-];
+export const sbbAngularModuleSpecifiers = ['@sbb-esta/angular', '@sbb-esta/journey-maps'];
 
 /** Whether the specified node is part of an SBB Angular or CDK import declaration. */
 export function isSbbAngularImportDeclaration(node: ts.Node) {

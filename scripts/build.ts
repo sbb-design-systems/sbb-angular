@@ -81,7 +81,7 @@ function buildReleasePackages(distPath: string) {
     `${bazelCmd} query --output=label "attr('tags', '\\[.*${releaseTargetTag}.*\\]', //src/...) ` +
     `intersect kind('.*_package', //src/...)"`;
 
-  // List of targets to build. e.g. "src/angular:npm_package", or "src/angular-maps:npm_package".
+  // List of targets to build. e.g. "src/angular:npm_package"
   const targets = exec(queryPackagesCmd, true).split(/\r?\n/);
   const packageNames = getPackageNamesOfTargets(targets);
   const bazelBinPath = exec(`${bazelCmd} info bazel-bin`, true);

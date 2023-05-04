@@ -6,8 +6,6 @@
     "baseUrl": ".",
     "paths": {
       "@sbb-esta/angular/*": ["./*"],
-      "@sbb-esta/angular-maps": ["../angular-maps"],
-      "@sbb-esta/angular-maps/*": ["../angular-maps/*"],
       "@sbb-esta/journey-maps": ["../journey-maps"],
       "@sbb-esta/journey-maps/*": ["../journey-maps/*"]
     }

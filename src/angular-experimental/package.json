@@ -25,7 +25,6 @@
     "packageGroup": [
       "@sbb-esta/angular",
       "@sbb-esta/angular-experimental",
-      "@sbb-esta/angular-maps",
       "@sbb-esta/journey-maps"
     ],
     "packageGroupName": "@sbb-esta/angular"

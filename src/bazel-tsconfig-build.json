@@ -32,7 +32,7 @@
     "target": "es2022",
     "lib": ["es2020", "dom"],
     "skipLibCheck": true,
-    "types": ["arcgis-js-api", "grecaptcha", "tslib"]
+    "types": ["grecaptcha", "tslib"]
   },
   "angularCompilerOptions": {
     "extendedDiagnostics": {
