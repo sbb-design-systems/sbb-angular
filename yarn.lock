@@ -5551,10 +5551,10 @@ angular-server-side-configuration@15.1.0:
     glob "^9.3.1"
     tslib "^2.3.0"
 
-angular-t9n@15.0.1:
-  version "15.0.1"
-  resolved "https://registry.yarnpkg.com/angular-t9n/-/angular-t9n-15.0.1.tgz#b43f83b64ddd652b3cc35557907b16669899c435"
-  integrity sha512-u6SYceqD6xzT2FlDUOhHWAk2PugG8XO5CeXkAH+FJ9en09uIWsLnl2nLKODIhVvUf4DpN1XyUNxjEPHUCsek3Q==
+angular-t9n@15.0.2:
+  version "15.0.2"
+  resolved "https://registry.yarnpkg.com/angular-t9n/-/angular-t9n-15.0.2.tgz#2599bca3c7c3d4c9dfe481ebd2a38724cb79f6ca"
+  integrity sha512-8JpPehioJ3DyJahK5o3TZrb1SHs4PZ+sjH5sE5VezoFM9R3EkAkbBDRFG3H0heC9cttXgCtKPhbbQ5f+XitFOw==
   dependencies:
     "@nestjs/common" "^9.2.0"
     "@nestjs/core" "^9.2.0"
