@@ -504,17 +504,23 @@ export class SbbJourneyMaps implements OnInit, AfterViewInit, OnDestroy, OnChang
     if (changes.poiOptions) {
       this._executeWhenMapStyleLoaded(() => {
         const poiEnvironmentChanged =
-          !changes.poiOptions.firstChange &&
           changes.poiOptions.previousValue?.environment !==
-            changes.poiOptions.currentValue?.environment;
+          changes.poiOptions.currentValue?.environment;
+        const poiPreviewChanged =
+          changes.poiOptions.previousValue?.includePreview !==
+          changes.poiOptions.currentValue?.includePreview;
+        const poiStyleOptionsChanged =
+          !changes.poiOptions.firstChange && (poiEnvironmentChanged || poiPreviewChanged);
 
-        if (poiEnvironmentChanged) {
+        if (poiStyleOptionsChanged) {
           // Update POI-Source-URL
           const currentPoiSource = this._map.getSource(SBB_JOURNEY_POIS_SOURCE) as VectorTileSource;
-          const newPoiSourceUrl = this._urlService.getPoiSourceUrlByEnvironment(
-            currentPoiSource.url,
-            this.poiOptions?.environment
+          const newPoiSourceUrl = this._urlService.getPoiSourceUrlByOptions(
+            'https://ki-journey-maps-tiles-dev.sbb-cloud.net/data/journey_pois.json', // TODO: Replace when tileserver supports preview
+            this.poiOptions
           );
+          console.log(newPoiSourceUrl);
+
           currentPoiSource.setUrl(newPoiSourceUrl);
           this._map.once('styledata', () => {
             this._mapService.updatePoiVisibility(this._map, this.poiOptions);
@@ -578,7 +584,7 @@ export class SbbJourneyMaps implements OnInit, AfterViewInit, OnDestroy, OnChang
         this.viewportDimensions,
         this.viewportBounds,
         this.getMarkersBounds,
-        this.poiOptions?.environment
+        this.poiOptions
       )
       .subscribe((m) => {
         this._map = m;
@@ -751,9 +757,7 @@ export class SbbJourneyMaps implements OnInit, AfterViewInit, OnDestroy, OnChang
     this._mapStyleOptionsChanged
       .pipe(
         debounceTime(200),
-        switchMap(() =>
-          this._mapInitService.fetchStyle(this._getStyleUrl(), this.poiOptions?.environment)
-        ),
+        switchMap(() => this._mapInitService.fetchStyle(this._getStyleUrl(), this.poiOptions)),
         takeUntil(this._destroyed)
       )
       .subscribe((style) => {

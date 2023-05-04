@@ -12,7 +12,7 @@ import { map } from 'rxjs/operators';
 
 import {
   SbbInteractionOptions,
-  SbbPointsOfInterestEnvironmentType,
+  SbbPointsOfInterestOptions,
   SbbViewportBounds,
   SbbViewportDimensions,
 } from '../../journey-maps.interfaces';
@@ -56,9 +56,9 @@ export class SbbMapInitService {
     viewportDimensions?: SbbViewportDimensions,
     viewportBounds?: SbbViewportBounds,
     markerBounds?: LngLatBounds,
-    poiEnvironment?: SbbPointsOfInterestEnvironmentType
+    poiOptions?: SbbPointsOfInterestOptions
   ): Observable<MaplibreMap> {
-    return this.fetchStyle(styleUrl, poiEnvironment).pipe(
+    return this.fetchStyle(styleUrl, poiOptions).pipe(
       map((style) =>
         this._createMap(
           style,
@@ -152,7 +152,7 @@ export class SbbMapInitService {
 
   fetchStyle(
     styleUrl: string,
-    poiEnvironment?: SbbPointsOfInterestEnvironmentType
+    poiOptions?: SbbPointsOfInterestOptions
   ): Observable<StyleSpecification> {
     return this._http.get(styleUrl).pipe(
       map((fetchedStyle) => {
@@ -160,9 +160,9 @@ export class SbbMapInitService {
 
         // Set POI-Source-URL
         const poiSource = style.sources[SBB_JOURNEY_POIS_SOURCE] as VectorTileSource;
-        poiSource.url = this._urlService.getPoiSourceUrlByEnvironment(
-          poiSource.url,
-          poiEnvironment
+        poiSource.url = this._urlService.getPoiSourceUrlByOptions(
+          'https://ki-journey-maps-tiles-dev.sbb-cloud.net/data/journey_pois.json', // TODO: Replace when tileserver supports preview
+          poiOptions
         );
 
         return style;

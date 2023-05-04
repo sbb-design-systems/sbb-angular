@@ -1,21 +1,37 @@
 import { Injectable } from '@angular/core';
 
-import { SbbPointsOfInterestEnvironmentType } from '../../journey-maps.interfaces';
+import {
+  SbbPointsOfInterestEnvironmentType,
+  SbbPointsOfInterestOptions,
+} from '../../journey-maps.interfaces';
+
+const URL_SPLITTER = '.json';
 
 @Injectable({ providedIn: 'root' })
 export class SbbMapUrlService {
-  getPoiSourceUrlByEnvironment(
-    url: string,
-    poiEnvironment?: SbbPointsOfInterestEnvironmentType
-  ): string {
-    if (poiEnvironment === 'int') {
-      // Set poi source to integration if needed
-      return url.replace('journey_pois', 'journey_pois_integration');
-    } else if (poiEnvironment === 'prod') {
-      // Reset poi source to prod if needed
-      return url.replace('_integration', '');
-    }
+  getPoiSourceUrlByOptions(url: string, options?: SbbPointsOfInterestOptions): string {
+    const [urlStart, urlEnd] = url.split(URL_SPLITTER);
+    let newUrlStart = urlStart.replace('_integration', '').replace('_preview', '');
 
+    newUrlStart = this._setPreview(newUrlStart, options?.includePreview);
+    newUrlStart = this._setEnvironment(newUrlStart, options?.environment);
+
+    return newUrlStart + URL_SPLITTER + urlEnd;
+  }
+
+  private _setPreview(url: string, includePreview?: boolean): string {
+    if (includePreview) {
+      // Set poi source to integration if needed
+      return url + '_preview';
+    }
+    return url;
+  }
+
+  private _setEnvironment(url: string, environment?: SbbPointsOfInterestEnvironmentType): string {
+    if (environment === 'int') {
+      // Set poi source to integration if needed
+      return url + '_integration';
+    }
     return url;
   }
 }

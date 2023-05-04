@@ -69,6 +69,8 @@ export class SbbMapEventUtils {
     if (!mapFeature.source) {
       throw new Error('Missing source id in feature: ' + mapFeature);
     }
+    console.log(mapFeature);
+
     mapFeature.state = mapInstance.getFeatureState(mapFeature);
     mapFeature.state = Object.assign(mapFeature.state, state);
     mapInstance.setFeatureState(mapFeature, mapFeature.state);
