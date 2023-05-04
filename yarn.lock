@@ -5425,12 +5425,12 @@ amdefine@>=0.0.4:
   resolved "https://registry.yarnpkg.com/amdefine/-/amdefine-1.0.1.tgz#4a5282ac164729e93619bcfd3ad151f817ce91f5"
   integrity sha512-S2Hw0TtNkMJhIabBwIojKL9YHO5T0n5eNqWJ7Lrlel/zDbftQpxpapi8tZs3X1HWa+u+QeydGmzzNU0m09+Rcg==
 
-angular-server-side-configuration@15.1.0:
-  version "15.1.0"
-  resolved "https://registry.yarnpkg.com/angular-server-side-configuration/-/angular-server-side-configuration-15.1.0.tgz#0ddf9fab6273c84196cf888fb03b03f5275c8601"
-  integrity sha512-0735tY3jnNILVIil4fVI6JSzPq7s4KjczifXWDdkgQNrm3v1HiTIfOSvalCI8DaIsn9zeg6Jd8eHVHlS+Qsc7Q==
+angular-server-side-configuration@16.0.0:
+  version "16.0.0"
+  resolved "https://registry.yarnpkg.com/angular-server-side-configuration/-/angular-server-side-configuration-16.0.0.tgz#98a57c355b2c2cb67112f1465bdeaf0c175359a7"
+  integrity sha512-iMaC/ScvaYtyY1A1iR08iq+imSaj/tooWpixjG2DhAp2nBZPH1cRDzvr6cC05rG8Sa73w74kHnmAgNQPXk2Uiw==
   dependencies:
-    glob "^9.3.1"
+    glob "^10.0.0"
     tslib "^2.3.0"
 
 angular-t9n@16.0.0:
@@ -9363,7 +9363,7 @@ glob@8.1.0, glob@^8.0.1, glob@^8.0.3:
     minimatch "^5.0.1"
     once "^1.3.0"
 
-glob@^10.2.2:
+glob@^10.0.0, glob@^10.2.2:
   version "10.2.2"
   resolved "https://registry.yarnpkg.com/glob/-/glob-10.2.2.tgz#ce2468727de7e035e8ecf684669dc74d0526ab75"
   integrity sha512-Xsa0BcxIC6th9UwNjZkhrMtNo/MnyRL8jGCP+uEwhA5oFOCY1f2s1/oNKY47xQ0Bg5nkjsfAEIej1VeH62bDDQ==
