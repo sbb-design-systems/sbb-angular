@@ -72,7 +72,7 @@
     "@angular-devkit/build-angular": "16.0.0",
     "@angular-devkit/core": "16.0.0",
     "@angular-devkit/schematics": "16.0.0",
-    "@angular-devkit/schematics-cli": "15.2.8",
+    "@angular-devkit/schematics-cli": "16.0.0",
     "@angular/bazel": "https://github.com/angular/bazel-builds.git#bac9c1abe1e6ac1801fbbccb53353a1ed7126469",
     "@angular/build-tooling": "https://github.com/angular/dev-infra-private-build-tooling-builds.git#1cef0bfb4e697e82f9e709960a22f2b590121ec2",
     "@angular/cli": "16.0.0",
