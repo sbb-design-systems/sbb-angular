@@ -65,4 +65,19 @@ export const UPDATE_STEPS: UpdateStep[] = [
         <pre>ng update @sbb-esta/angular@15</pre>`,
     ],
   },
+  {
+    from: 1500,
+    to: 1600,
+    actions: [
+      `Update your Angular dependencies to version 16.x.x with "--force" flag (due to unmet peer ependencies).<br/>
+        See <a href='https://update.angular.io'>update.angular.io</a> for a step-by-step guide for updating Angular.<br/>
+        <pre>npx @angular/cli@16 update @angular/core@16 @angular/cli@16 --force</pre>`,
+
+      `Update Angular CDK in a separate step to avoid dependency version resolving problems.<br/>
+        <pre>npx @angular/cli@16 update @angular/cdk@16 --force</pre>`,
+
+      `Finally, update SBB Angular.
+        <pre>ng update @sbb-esta/angular@16</pre>`,
+    ],
+  },
 ];
