@@ -2,6 +2,10 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [16.0.0-rc.1](https://github.com/sbb-design-systems/sbb-angular/compare/16.0.0-rc.0...16.0.0-rc.1) (2023-05-08)
+
+This is the second pre-release of version 16 from our library.
+
 ## [16.0.0-rc.0](https://github.com/sbb-design-systems/sbb-angular/compare/15.0.0...16.0.0-rc.0) (2023-05-08)
 
 This is the first pre-release of version 16 from our library.
