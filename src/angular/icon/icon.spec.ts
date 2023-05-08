@@ -19,7 +19,6 @@ function sortedClassNames(element: Element): string[] {
 
 /** Verifies that an element contains a single `<svg>` child element, and returns that child. */
 function verifyAndGetSingleSvgChild(element: SVGElement): SVGElement {
-  expect(element.id).toBeFalsy();
   expect(element.childNodes.length).toBe(1);
   const svgChild = element.childNodes[0] as SVGElement;
   expect(svgChild.tagName.toLowerCase()).toBe('svg');
@@ -840,7 +839,15 @@ describe('SbbIcon', () => {
 
       // We use a regex to match here, rather than the exact value, because different browsers
       // return different quotes through `getAttribute`, while some even omit the quotes altogether.
-      expect(circle.getAttribute('filter')).toMatch(/^url\(['"]?\/\$fake-path#blur['"]?\)$/);
+      expect(circle.getAttribute('filter')).toMatch(
+        /^url\(['"]?\/\$fake-path#sbb-icon-\d*\s#blur['"]?\)$/
+      );
+
+      // ensure the selector matches the filter element
+      const selector = circle
+        .getAttribute('filter')
+        .match(/^url\(['"]?\/\$fake-path(#sbb-icon-\d*\s#blur)['"]?\)$/)[1];
+      expect(fixture.nativeElement.querySelector(selector)).toBeTruthy();
 
       tick();
     }));
@@ -864,7 +871,9 @@ describe('SbbIcon', () => {
       fixture.detectChanges();
       let circle = fixture.nativeElement.querySelector('sbb-icon svg circle');
 
-      expect(circle.getAttribute('filter')).toMatch(/^url\(['"]?\/\$fake-path#blur['"]?\)$/);
+      expect(circle.getAttribute('filter')).toMatch(
+        /^url\(['"]?\/\$fake-path#sbb-icon-\d*\s#blur['"]?\)$/
+      );
       tick();
       fixture.destroy();
 
@@ -875,7 +884,7 @@ describe('SbbIcon', () => {
       circle = fixture.nativeElement.querySelector('sbb-icon svg circle');
 
       expect(circle.getAttribute('filter')).toMatch(
-        /^url\(['"]?\/\$another-fake-path#blur['"]?\)$/
+        /^url\(['"]?\/\$another-fake-path#sbb-icon-\d*\s#blur['"]?\)$/
       );
       tick();
     }));
@@ -901,13 +910,43 @@ describe('SbbIcon', () => {
 
       // We use a regex to match here, rather than the exact value, because different browsers
       // return different quotes through `getAttribute`, while some even omit the quotes altogether.
-      expect(circle.getAttribute('filter')).toMatch(/^url\(['"]?\/\$fake-path#blur['"]?\)$/);
+      expect(circle.getAttribute('filter')).toMatch(
+        /^url\(['"]?\/\$fake-path#sbb-icon-\d*\s#blur['"]?\)$/
+      );
       tick();
 
       fakePath = '/$different-path';
       fixture.detectChanges();
 
-      expect(circle.getAttribute('filter')).toMatch(/^url\(['"]?\/\$different-path#blur['"]?\)$/);
+      expect(circle.getAttribute('filter')).toMatch(
+        /^url\(['"]?\/\$different-path#sbb-icon-\d*\s#blur['"]?\)$/
+      );
+    }));
+
+    it("should not prefix with the `url()` with the icon id if it's an external reference", fakeAsync(() => {
+      iconRegistry.addSvgIconLiteral(
+        'fido',
+        trustHtml(`
+        <svg>
+          <circle cx="170" cy="60" r="50" fill="green" clip-path="url('#a')" />
+        </svg>
+      `)
+      );
+
+      const fixture = TestBed.createComponent(IconFromSvgName);
+      fixture.componentInstance.iconName = 'fido';
+      fixture.detectChanges();
+      const circle = fixture.nativeElement.querySelector('sbb-icon svg circle');
+
+      // We use a regex to match here, rather than the exact value, because different browsers
+      // return different quotes through `getAttribute`, while some even omit the quotes altogether.
+      expect(circle.getAttribute('clip-path')).toMatch(/^url\(['"]?\/\$fake-path#a['"]?\)$/);
+      tick();
+
+      fakePath = '/$different-path';
+      fixture.detectChanges();
+
+      expect(circle.getAttribute('clip-path')).toMatch(/^url\(['"]?\/\$different-path#a['"]?\)$/);
     }));
   });
 
