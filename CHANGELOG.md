@@ -1,6 +1,86 @@
 # Changelog
 
+This is the first pre-release of version 16 from our library.
+
+
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
+
+## [16.0.0-rc.0](https://github.com/sbb-design-systems/sbb-angular/compare/15.0.0...16.0.0-rc.0) (2023-05-08)
+
+
+### ⚠ BREAKING CHANGES
+
+* This updates the repo to typescript 5 and prepares the 16 release. Codelyzer is removed because it uses deprecated APIs. The `lifecycle-hook-interface` is taken from `angular/components` and some other less useful rules were removed.
+
+### Features
+
+* add `sbb-off-brand-colors` style ([#1863](https://github.com/sbb-design-systems/sbb-angular/issues/1863)) ([5e0be1e](https://github.com/sbb-design-systems/sbb-angular/commit/5e0be1e8ce4e7f71b29d32f7198f16a9e5a9ea36))
+* **angular/datepicker:** add option to prevent entering overflowing dates ([#1787](https://github.com/sbb-design-systems/sbb-angular/issues/1787)) ([ceb69ce](https://github.com/sbb-design-systems/sbb-angular/commit/ceb69cee524c122265319030b55566336ca2262b)), closes [#1761](https://github.com/sbb-design-systems/sbb-angular/issues/1761)
+* **angular/datepicker:** expose calendar and make configurable ([#1762](https://github.com/sbb-design-systems/sbb-angular/issues/1762)) ([5494134](https://github.com/sbb-design-systems/sbb-angular/commit/5494134f39349a00cb08ef6aa3131a7388060541)), closes [#1671](https://github.com/sbb-design-systems/sbb-angular/issues/1671)
+* **journey-maps:** add dropdown for POI category selection ([#1835](https://github.com/sbb-design-systems/sbb-angular/issues/1835)) ([9b2ec99](https://github.com/sbb-design-systems/sbb-angular/commit/9b2ec99b1e4323c21c0519b90ee20092c9e04e89))
+* **journey-maps:** add new POIs subcategories ([#1765](https://github.com/sbb-design-systems/sbb-angular/issues/1765)) ([7bb0594](https://github.com/sbb-design-systems/sbb-angular/commit/7bb05948eeaa7fbf83b5365e5b899a63f43f92d1))
+* **journey-maps:** add new POIs subcategories for angular showcase as well ([#1766](https://github.com/sbb-design-systems/sbb-angular/issues/1766)) ([4bf6383](https://github.com/sbb-design-systems/sbb-angular/commit/4bf6383a4ad40b226dfbd6a129b3e9a699e59d80))
+* **journey-maps:** add SbbRailNetworkOptions ([#1837](https://github.com/sbb-design-systems/sbb-angular/issues/1837)) ([5cfa7fe](https://github.com/sbb-design-systems/sbb-angular/commit/5cfa7fe8c7568c832c81b2268d4fe3ae97923714))
+* **journey-maps:** custom map attribution component ([#1845](https://github.com/sbb-design-systems/sbb-angular/issues/1845)) ([fc666f5](https://github.com/sbb-design-systems/sbb-angular/commit/fc666f520ff60b507d6a994a10f2073d934e2613))
+* **journey-maps:** display bounding box info ([#1813](https://github.com/sbb-design-systems/sbb-angular/issues/1813)) ([f89ff21](https://github.com/sbb-design-systems/sbb-angular/commit/f89ff21fc321794cc05689663b7ec734bed7cb01))
+* **journey-maps:** improved route hover ([#1828](https://github.com/sbb-design-systems/sbb-angular/issues/1828)) ([08e77ea](https://github.com/sbb-design-systems/sbb-angular/commit/08e77eaa500fff26101c3444e2f0d0429ac28a23))
+* **journey-maps:** journey start- and end-station clickable ([#1865](https://github.com/sbb-design-systems/sbb-angular/issues/1865)) ([69f307d](https://github.com/sbb-design-systems/sbb-angular/commit/69f307d0199aae7a800c7da638d358e003b1dc11))
+* **journey-maps:** switch between 2D and 3D layers ([#1814](https://github.com/sbb-design-systems/sbb-angular/issues/1814)) ([b5c215b](https://github.com/sbb-design-systems/sbb-angular/commit/b5c215b7083c085fd3390dd3c16da2f6d78e3265))
+* **journey-maps:** switch to map style 'ki_v2' ([#1769](https://github.com/sbb-design-systems/sbb-angular/issues/1769)) ([0360a1c](https://github.com/sbb-design-systems/sbb-angular/commit/0360a1c37afb4106095c4eaa862a870cc7653d65))
+* **journey-maps:** use the new aerial style 'aerial_sbb_ki_v2' ([#1811](https://github.com/sbb-design-systems/sbb-angular/issues/1811)) ([0cbc546](https://github.com/sbb-design-systems/sbb-angular/commit/0cbc5461746ef7d31cd0f10b506910d7f06d2dae))
+* **journey-maps:** v1 route hover ([#1829](https://github.com/sbb-design-systems/sbb-angular/issues/1829)) ([001f4ed](https://github.com/sbb-design-systems/sbb-angular/commit/001f4edbfb95db8e3790c8edc33fa5f999a18066))
+* **journeyMaps:** implement bbox event emitter ([#1807](https://github.com/sbb-design-systems/sbb-angular/issues/1807)) ([00ae372](https://github.com/sbb-design-systems/sbb-angular/commit/00ae3722d592e2e5619d9b34296b0e9b5c15121c))
+
+
+### Bug Fixes
+
+* **angular/checkbox:** fix ARIA semantics and use native DOM properties ([#1850](https://github.com/sbb-design-systems/sbb-angular/issues/1850)) ([ac29d15](https://github.com/sbb-design-systems/sbb-angular/commit/ac29d15aa1a66ca058bc7b5f9da4a6e748827be2))
+* **angular/core:** sbb-option sets aria-selected="false" ([#1847](https://github.com/sbb-design-systems/sbb-angular/issues/1847)) ([170db04](https://github.com/sbb-design-systems/sbb-angular/commit/170db04a7405a15ef0cced0ce8d790545d0fcb2d))
+* **angular/datepicker:** avoid calendar being cut off on small screens ([#1869](https://github.com/sbb-design-systems/sbb-angular/issues/1869)) ([0414d11](https://github.com/sbb-design-systems/sbb-angular/commit/0414d112d210eb2e75741c19a317ae9a0d848a4b)), closes [#1819](https://github.com/sbb-design-systems/sbb-angular/issues/1819)
+* **angular/datepicker:** remove div as a child of button ([#1866](https://github.com/sbb-design-systems/sbb-angular/issues/1866)) ([559a544](https://github.com/sbb-design-systems/sbb-angular/commit/559a544ac236db019d9af9b83a17e1ea2c06dcb5))
+* **angular/datepicker:** update arrow keys of connected datepicker  ([#1858](https://github.com/sbb-design-systems/sbb-angular/issues/1858)) ([1336584](https://github.com/sbb-design-systems/sbb-angular/commit/1336584df894f44fdf565407ab7db424d79a9887)), closes [#1852](https://github.com/sbb-design-systems/sbb-angular/issues/1852)
+* **angular/dialog:** scrollable content if no dialog height is defined ([#1804](https://github.com/sbb-design-systems/sbb-angular/issues/1804)) ([f4b16b1](https://github.com/sbb-design-systems/sbb-angular/commit/f4b16b1afd01aa1cfc3826bd90ab31e40bd85734)), closes [#1803](https://github.com/sbb-design-systems/sbb-angular/issues/1803)
+* **angular/menu:** explicitly set aria-expanded to true/false ([#1752](https://github.com/sbb-design-systems/sbb-angular/issues/1752)) ([e8a400a](https://github.com/sbb-design-systems/sbb-angular/commit/e8a400a437c6e691f992e155c43223b529b17622))
+* **angular/select:** changed after checked error if option label changes ([#1753](https://github.com/sbb-design-systems/sbb-angular/issues/1753)) ([1b53276](https://github.com/sbb-design-systems/sbb-angular/commit/1b5327606d6c3759ca47765f9dd5419244d5e1a9))
+* **deps:** update angular ([07710a8](https://github.com/sbb-design-systems/sbb-angular/commit/07710a8bb248679e991cb23490fff2835186ef3a))
+* **deps:** update angular to v15.0.1 ([b4235c9](https://github.com/sbb-design-systems/sbb-angular/commit/b4235c916cc947f731401478b6608e69b13cbf42))
+* **deps:** update angular to v15.2.4 ([cec6d64](https://github.com/sbb-design-systems/sbb-angular/commit/cec6d64f2ffc68a54b5d3f4fccf2637794cf658b))
+* **deps:** update angular to v15.2.5 ([6165bc3](https://github.com/sbb-design-systems/sbb-angular/commit/6165bc327418f7049a62c2b1842e22ca1d7e2900))
+* **deps:** update angular to v16.0.0-rc.2 ([#1864](https://github.com/sbb-design-systems/sbb-angular/issues/1864)) ([d2873cd](https://github.com/sbb-design-systems/sbb-angular/commit/d2873cda78b2994464e276336f20793a1a1f5f9c))
+* **deps:** update dependency @angular/cdk to v15.1.5 ([c270d29](https://github.com/sbb-design-systems/sbb-angular/commit/c270d295d5073706654d3a47f32065d9dc62ec50))
+* **deps:** update dependency @angular/cdk to v15.2.4 ([e3e27e8](https://github.com/sbb-design-systems/sbb-angular/commit/e3e27e80a848fde0d7220c82b8c6017669718b31))
+* **deps:** update dependency @stackblitz/sdk to v1.8.2 ([8720f0a](https://github.com/sbb-design-systems/sbb-angular/commit/8720f0a2b2d213a58f912d6fcfa55453dad61ecd))
+* **deps:** update dependency @stackblitz/sdk to v1.9.0 ([9c2096e](https://github.com/sbb-design-systems/sbb-angular/commit/9c2096e224cb20255e8f62d85cd2315a9b17fc3f))
+* **deps:** update dependency rxjs to v7.6.0 ([6d8e798](https://github.com/sbb-design-systems/sbb-angular/commit/6d8e798ce995e0cf2f26c2536d39b507ff329b12))
+* **deps:** update dependency rxjs to v7.8.0 ([6751d57](https://github.com/sbb-design-systems/sbb-angular/commit/6751d570b8055b51de6963038594d0fc50c3374c))
+* **deps:** update dependency rxjs to v7.8.1 ([829107f](https://github.com/sbb-design-systems/sbb-angular/commit/829107fdcd7356ae66b66e3164ab911a55389f64))
+* **deps:** update dependency tslib to v2.5.0 ([a80e353](https://github.com/sbb-design-systems/sbb-angular/commit/a80e353eb8481dc22d080aae0ceb7df305948300))
+* ensure correct bundling of showcase ([#1823](https://github.com/sbb-design-systems/sbb-angular/issues/1823)) ([9fee0b7](https://github.com/sbb-design-systems/sbb-angular/commit/9fee0b7bb37bf3b0759ac671b798a2ca283a6197))
+* **journey-maps:** display focused controls ([#1839](https://github.com/sbb-design-systems/sbb-angular/issues/1839)) ([9ec4e6f](https://github.com/sbb-design-systems/sbb-angular/commit/9ec4e6f5cd4330446610b4771f3256e64eff47a2))
+* **journey-maps:** export web component CSS in package.json ([#1767](https://github.com/sbb-design-systems/sbb-angular/issues/1767)) ([e2696ec](https://github.com/sbb-design-systems/sbb-angular/commit/e2696ec5156e350d495175eaed9d0281c5d2b7ea))
+* **journey-maps:** fix multiline attribution style ([#1873](https://github.com/sbb-design-systems/sbb-angular/issues/1873)) ([977be10](https://github.com/sbb-design-systems/sbb-angular/commit/977be10346c2797b8af7d47d80c14cff1470c523))
+* **journey-maps:** keep button icon visible against black background ([#1840](https://github.com/sbb-design-systems/sbb-angular/issues/1840)) ([0556f05](https://github.com/sbb-design-systems/sbb-angular/commit/0556f055ae6296c5ccc5df2097e1657eee3be5e5))
+* make rxjs imports forward compatible ([#1874](https://github.com/sbb-design-systems/sbb-angular/issues/1874)) ([e75c172](https://github.com/sbb-design-systems/sbb-angular/commit/e75c172ad56a5352543d05cbbbd4a515cd63a697)), closes [#1872](https://github.com/sbb-design-systems/sbb-angular/issues/1872)
+* **oauth:** parse token correctly to be able to parse unicode characters ([#1848](https://github.com/sbb-design-systems/sbb-angular/issues/1848)) ([7966ac6](https://github.com/sbb-design-systems/sbb-angular/commit/7966ac6753cf9f8ff5096ea1b1d8e87afbbd026a))
+* remove engine entries in package.json ([#1795](https://github.com/sbb-design-systems/sbb-angular/issues/1795)) ([784b4d3](https://github.com/sbb-design-systems/sbb-angular/commit/784b4d34831240b2ebb902f4311d3b38a2d2d038))
+* **stackblitz:** update stackblitz assets to v15 ([#1751](https://github.com/sbb-design-systems/sbb-angular/issues/1751)) ([8cf9a81](https://github.com/sbb-design-systems/sbb-angular/commit/8cf9a810dc0f49ecdc643ecfc9b52fd739ba3a4b))
+
+
+### Documentation
+
+* add deprecation note to `angular-maps` ([#1824](https://github.com/sbb-design-systems/sbb-angular/issues/1824)) ([ada24c1](https://github.com/sbb-design-systems/sbb-angular/commit/ada24c133abcdcd6d92641d21ea21090647efadd))
+* added new GitHub issue templates ([#1833](https://github.com/sbb-design-systems/sbb-angular/issues/1833)) ([2bcb69a](https://github.com/sbb-design-systems/sbb-angular/commit/2bcb69ad8c33f53fbb46459914c3d59c7d5c9c3f))
+* **angular/tabs:** explain where to set 'selectedIndex' ([#1846](https://github.com/sbb-design-systems/sbb-angular/issues/1846)) ([eec721c](https://github.com/sbb-design-systems/sbb-angular/commit/eec721c1c03e7eebe81076e9555654b9f9d822c4))
+* explain how to start the app with the api key for journey-maps ([#1853](https://github.com/sbb-design-systems/sbb-angular/issues/1853)) ([5e5af7a](https://github.com/sbb-design-systems/sbb-angular/commit/5e5af7a4ff565120bb7ea72a554292dbbf6c9eee))
+* **journey-maps:** updated `journey-maps` maplibre css version to 2.4.0 ([#1836](https://github.com/sbb-design-systems/sbb-angular/issues/1836)) ([3a287e5](https://github.com/sbb-design-systems/sbb-angular/commit/3a287e5c9e1f09b856bdd84e1e971b5421af699e))
+* **loading-indicator:** add note about fullbox mode ([#1792](https://github.com/sbb-design-systems/sbb-angular/issues/1792)) ([d065ded](https://github.com/sbb-design-systems/sbb-angular/commit/d065ded4a477d3440cbeb19dda35ea6225f411ae)), closes [#1791](https://github.com/sbb-design-systems/sbb-angular/issues/1791)
+* make environment banner text configurable ([#1825](https://github.com/sbb-design-systems/sbb-angular/issues/1825)) ([08911c6](https://github.com/sbb-design-systems/sbb-angular/commit/08911c6ac3c9eb590d396a7904046533f35cbefc))
+* update changelog ([20632c5](https://github.com/sbb-design-systems/sbb-angular/commit/20632c506724f1d57ebdd872b0798dc91551ba10))
+* update changelog ([#1800](https://github.com/sbb-design-systems/sbb-angular/issues/1800)) ([b110b11](https://github.com/sbb-design-systems/sbb-angular/commit/b110b1120de913fa63384ce0e7024610c2dff6c2))
+* update CODEOWNERS for journey-maps ([fb01fd0](https://github.com/sbb-design-systems/sbb-angular/commit/fb01fd03d67a2f95b57e121370f5e793bae38a25))
+
+
+* update typescript to 5.0.2 ([#1856](https://github.com/sbb-design-systems/sbb-angular/issues/1856)) ([118ea18](https://github.com/sbb-design-systems/sbb-angular/commit/118ea18245995b66cc0c87f1dd62edb7d650183b))
 
 ## [15.10.0](https://github.com/sbb-design-systems/sbb-angular/compare/15.9.0...15.10.0) (2023-04-17)
 
