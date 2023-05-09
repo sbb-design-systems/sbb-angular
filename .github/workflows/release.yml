@@ -54,10 +54,6 @@ jobs:
       run: yarn publish dist/releases/angular --tag ${{ steps.npm_tag.outputs.npm_tag }}  || true
       env:
         NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
-    - name: "Publish: @sbb-esta/angular-maps"
-      run: yarn publish dist/releases/angular-maps --tag ${{ steps.npm_tag.outputs.npm_tag }} || true
-      env:
-        NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
     - name: "Publish: @sbb-esta/journey-maps"
       run: yarn publish dist/releases/journey-maps --tag ${{ steps.npm_tag.outputs.npm_tag }} || true
       env:

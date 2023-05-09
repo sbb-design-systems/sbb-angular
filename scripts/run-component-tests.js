@@ -28,11 +28,6 @@ const projectDir = path.join(__dirname, '../');
 // Path to the directory that contains all packages.
 const packagesDir = path.join(projectDir, 'src/');
 
-// List of packages where the specified component could be defined in. The script uses the
-// first package that contains the component (if no package is specified explicitly).
-// e.g. "button" will become "angular/button".
-const orderedGuessPackages = ['angular', 'angular-maps'].map((p) => `${p}`);
-
 // ShellJS should exit if any command fails.
 shelljs.set('-e');
 shelljs.cd(projectDir);
@@ -132,12 +127,11 @@ function getBazelPackageOfComponentName(name) {
   // If the name does not contain an explicit package name, we try guessing the
   // package name by walking through an ordered list of possible packages and checking
   // if a package contains a component with the given name. The first match will be used.
-  for (let guessPackage of orderedGuessPackages) {
-    const guessTargetName = convertPathToBazelLabel(path.join(packagesDir, guessPackage, name));
-    if (guessTargetName !== null) {
-      return guessTargetName;
-    }
+  const guessTargetName = convertPathToBazelLabel(path.join(packagesDir, 'angular', name));
+  if (guessTargetName !== null) {
+    return guessTargetName;
   }
+
   console.error(
     chalk.red(
       `Could not find test target for specified component: ` +

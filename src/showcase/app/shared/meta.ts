@@ -111,46 +111,6 @@ export const PACKAGES: { [key: string]: ShowcaseMetaPackage } = {
       },
     ],
   },
-  'angular-maps': {
-    name: '@sbb-esta/angular-maps',
-    svgIcon: 'kom:location-pin-map-small',
-    isDeprecated: true,
-    image: 'assets/maps.jpg',
-    description: 'Components to display 2D/3D maps and to provide map interaction..',
-    sections: [
-      {
-        name: 'Introduction',
-        entries: [
-          { label: 'Getting started', link: './introduction/getting-started' },
-          { label: 'Overview and usage', link: './introduction/overview-and-usage' },
-          { label: 'Mapping basics', link: './introduction/mapping-basics' },
-        ],
-      },
-      {
-        name: 'Maps',
-        entries: [
-          { label: 'WebMap', link: './components/esri-web-map' },
-          { label: 'WebScene', link: './components/esri-web-scene' },
-        ],
-      },
-      {
-        name: 'Map Utilities',
-        entries: [
-          { label: 'Basemap Gallery', link: './components/esri-basemap-gallery' },
-          { label: 'Layerlist', link: './components/esri-layer-list' },
-          { label: 'Legend', link: './components/esri-legend' },
-        ],
-      },
-      {
-        name: 'Advanced Usage',
-        entries: [
-          { label: 'Using ArcGIS types', link: './advanced/using-arcgis-types' },
-          { label: 'Layer filtering', link: './advanced/layer-filtering' },
-          { label: 'Accessing map data', link: './advanced/accessing-map-data' },
-        ],
-      },
-    ],
-  },
   'journey-maps': {
     name: '@sbb-esta/journey-maps',
     svgIcon: 'kom:switzerland-route-small',
@@ -161,7 +121,6 @@ export const PACKAGES: { [key: string]: ShowcaseMetaPackage } = {
         name: 'Introduction',
         entries: [
           { label: 'Getting started', link: './introduction/getting-started' },
-          { label: 'VS angular-maps', link: './introduction/comparison' },
           {
             label: 'Migrate from ROKAS',
             link: './introduction/migrate-from-rokas',
