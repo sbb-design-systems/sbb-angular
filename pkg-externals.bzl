@@ -3,7 +3,6 @@
 """
 
 load("//src/angular:config.bzl", "ANGULAR_ENTRYPOINTS")
-load("//src/angular-maps:config.bzl", "MAPS_ENTRYPOINTS")
 load("//src/journey-maps:config.bzl", "JOURNEY_MAPS_ENTRYPOINTS")
 
 # Base list of externals which should not be bundled into the APF package output.
@@ -47,24 +46,9 @@ PKG_EXTERNALS = [
 
     # Primary entry-points in the project.
     "@sbb-esta/angular",
-    "@sbb-esta/angular-maps",
     "@sbb-esta/journey-maps",
 
     # Third-party libraries.
-    "@arcgis/core/Camera",
-    "@arcgis/core/Graphic",
-    "@arcgis/core/WebMap",
-    "@arcgis/core/WebScene",
-    "@arcgis/core/config",
-    "@arcgis/core/geometry/Extent",
-    "@arcgis/core/geometry/Point",
-    "@arcgis/core/layers/FeatureLayer",
-    "@arcgis/core/symbols/SimpleMarkerSymbol",
-    "@arcgis/core/views/MapView",
-    "@arcgis/core/views/SceneView",
-    "@arcgis/core/widgets/BasemapGallery",
-    "@arcgis/core/widgets/LayerList",
-    "@arcgis/core/widgets/Legend",
     "protractor",
     "rxjs",
     "rxjs/operators",
@@ -77,11 +61,9 @@ def setup_entry_point_externals(packageName, entryPoints):
     PKG_EXTERNALS.extend(["@sbb-esta/%s/%s" % (packageName, ep) for ep in entryPoints])
 
 setup_entry_point_externals("angular", ANGULAR_ENTRYPOINTS)
-setup_entry_point_externals("angular-maps", MAPS_ENTRYPOINTS)
 setup_entry_point_externals("journey-maps", JOURNEY_MAPS_ENTRYPOINTS)
 
 # External module names in the examples package. Individual examples are grouped
 # by package and component, so we add configure such entry-points as external.
 setup_entry_point_externals("components-examples/angular", ANGULAR_ENTRYPOINTS)
-setup_entry_point_externals("components-examples/angular-maps", MAPS_ENTRYPOINTS)
 setup_entry_point_externals("components-examples/journey-maps", JOURNEY_MAPS_ENTRYPOINTS)

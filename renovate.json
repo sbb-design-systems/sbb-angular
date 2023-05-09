@@ -15,7 +15,6 @@
   "allowedPostUpgradeCommands": ["^yarn"],
   "ignoreDeps": [
     "@angular/bazel",
-    "@arcgis/core",
     "@types/marked",
     "@types/yargs",
     "rollup",
