@@ -73,7 +73,7 @@ const funcIriAttributeSelector = funcIriAttributes.map((attr) => `[${attr}]`).jo
 const funcIriPattern = /^url\(['"]?#(.*?)['"]?\)$/;
 
 /** The unique id of an icon. **/
-let uniqueIdCounter = 0;
+let nextId = 0;
 
 /**
  * Component to display an icon. It can be used in the following ways:
@@ -180,7 +180,7 @@ export class SbbIcon implements OnInit, AfterViewChecked, OnDestroy {
   }
   private _fontIcon: string;
 
-  @Input() id: string = `sbb-icon-${uniqueIdCounter++}`;
+  @Input() id: string = `sbb-icon-${nextId++}`;
 
   private _previousFontSetClass: string[] = [];
   private _previousFontIconClass: string;
