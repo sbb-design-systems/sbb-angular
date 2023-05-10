@@ -362,6 +362,7 @@ export class SbbIcon implements OnInit, AfterViewChecked, OnDestroy {
           // If the selector references an element inside the svg, we prepend the icon id for unambiguity.
           // This is necessary because mutliple SBB pictograms use `clip-path=url('#a')` together with
           // an internal `<defs><clipPath id="a">...</clipPath></defs>` definition.
+          // TODO(mhaertwig): Remove after pictograms have been updated to use a unique reference.
           if (svg?.querySelector(`#${attr.value}`)) {
             element.setAttribute(attr.name, `url('${path}#${this.id} #${attr.value}')`);
           } else {
