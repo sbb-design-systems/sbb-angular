@@ -16,7 +16,7 @@ interface CdnIconsResponse {
 
 interface CdnPictogramsResponse {
   version: string;
-  pictograms: CdnIcon[];
+  picto: CdnIcon[];
 }
 
 export interface CdnIcons {
@@ -42,10 +42,10 @@ export class CdnIconService {
 
   loadPictos(): Observable<CdnIconsResponse> {
     return this._httpClient
-      .get<CdnPictogramsResponse>('https://icons.app.sbb.ch/pictograms/index.json')
+      .get<CdnPictogramsResponse>('https://icons.app.sbb.ch/picto/index.json')
       .pipe(
         map((res) => ({
-          icons: res.pictograms.map((icon) => ({ namespace: 'pictograms', ...icon })),
+          icons: res.picto.map((icon) => ({ namespace: 'picto', ...icon })),
           version: res.version,
         }))
       );

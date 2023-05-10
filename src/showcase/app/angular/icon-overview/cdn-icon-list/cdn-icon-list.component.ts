@@ -32,7 +32,7 @@ export class CdnIconListComponent implements AfterViewInit {
     fitIcons: [true],
   });
   filteredIcons: Observable<CdnIcon[]>;
-  namespaces = ['icons', 'pictograms', 'kom', 'fpl'];
+  namespaces = ['icon', 'picto', 'kom', 'fpl'];
   deprecatedNamespaces = ['kom', 'fpl'];
   pageSize = 50;
 
@@ -53,10 +53,7 @@ export class CdnIconListComponent implements AfterViewInit {
         const filteredIcons = this._cdnIcons.icons.filter(
           (i) =>
             namespaces.some(
-              (namespace) =>
-                i.namespace === namespace ||
-                (!i.namespace && namespace === 'icons') ||
-                (i.namespace === 'picto' && namespace === 'pictograms')
+              (namespace) => i.namespace === namespace || (!i.namespace && namespace === 'icon')
             ) &&
             ((i.namespace && i.namespace.toUpperCase().indexOf(fulltext) !== -1) ||
               i.name.toUpperCase().indexOf(fulltext) !== -1 ||

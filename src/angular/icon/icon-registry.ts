@@ -143,7 +143,7 @@ export class SbbIconRegistry implements OnDestroy {
    * A list of internally supported namespaces, which can be served from the icon CDN.
    * (See https://icons.app.sbb.ch/)
    */
-  private _sbbCdnSupportedNamespaces = ['kom', 'fpl', 'icons', 'pictograms'];
+  private _sbbCdnSupportedNamespaces = ['kom', 'fpl', 'icons', 'picto'];
 
   constructor(
     @Optional() private _httpClient: HttpClient,
