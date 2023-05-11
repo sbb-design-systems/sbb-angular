@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
-import { Observable } from 'rxjs';
+import { forkJoin, Observable } from 'rxjs';
+import { map } from 'rxjs/operators';
 
 import { CdnIcons, CdnIconService } from './cdn-icon.service';
 
@@ -12,6 +13,17 @@ export class IconOverviewComponent {
   cdnIcons: Observable<CdnIcons>;
 
   constructor(private _iconCdnService: CdnIconService) {
-    this.cdnIcons = _iconCdnService.loadAll();
+    this.cdnIcons = forkJoin([
+      _iconCdnService.loadDeprecated(),
+      _iconCdnService.loadIcons(),
+      _iconCdnService.loadPictos(),
+    ]).pipe(
+      map(([deprecated, icons, pictos]) => ({
+        deprecatedVersion: deprecated.version,
+        iconVersion: icons.version,
+        pictoVersion: pictos.version,
+        icons: icons.icons.concat(deprecated.icons, pictos.icons),
+      }))
+    );
   }
 }
