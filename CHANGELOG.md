@@ -2,6 +2,25 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [16.0.0-rc.2](https://github.com/sbb-design-systems/sbb-angular/compare/16.0.0-rc.1...16.0.0-rc.2) (2023-05-11)
+
+
+### ⚠ BREAKING CHANGES
+
+* This removes the `angular-maps` package.
+
+### Features
+
+* **angular/icon:** update to new icons and pictograms ([#1889](https://github.com/sbb-design-systems/sbb-angular/issues/1889)) ([0130dd0](https://github.com/sbb-design-systems/sbb-angular/commit/0130dd03b287e4e809a765f61ef5991027957c9c)), closes [#1871](https://github.com/sbb-design-systems/sbb-angular/issues/1871)
+
+
+* remove deprecated `angular-maps` ([#1897](https://github.com/sbb-design-systems/sbb-angular/issues/1897)) ([a15886d](https://github.com/sbb-design-systems/sbb-angular/commit/a15886dc28f8908d26acc85835d6e72a7d51a614))
+
+
+### Documentation
+
+* **journey-maps:** document how to configure listenerOptions ([#1883](https://github.com/sbb-design-systems/sbb-angular/issues/1883)) ([d77af32](https://github.com/sbb-design-systems/sbb-angular/commit/d77af32a33f17cc652ccafa7e1b8f840b1febfae))
+
 ## [16.0.0-rc.1](https://github.com/sbb-design-systems/sbb-angular/compare/16.0.0-rc.0...16.0.0-rc.1) (2023-05-08)
 
 This is the second pre-release of version 16 from our library.
