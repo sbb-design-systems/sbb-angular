@@ -344,10 +344,10 @@
     uuid "^9.0.0"
     yargs "^17.0.0"
 
-"@angular/cdk@16.0.0":
-  version "16.0.0"
-  resolved "https://registry.yarnpkg.com/@angular/cdk/-/cdk-16.0.0.tgz#7e3b38ec17857433ae6cb6a7ad25f465f19be541"
-  integrity sha512-3hiNRB5kBOYv+MJRlpLX++KzY96mTivE7BXM/pNoR4Hiq7aBnoCtp0zbTc9J7gPn8POX6t/4WfAogslbkvQXSg==
+"@angular/cdk@16.0.1":
+  version "16.0.1"
+  resolved "https://registry.yarnpkg.com/@angular/cdk/-/cdk-16.0.1.tgz#3b81f7980bee04831fdcddedd6a833f26ef742ab"
+  integrity sha512-GupYss6x84RWEoy3JTYu4Igr2SxHuV6whVKMScQG2/Gm+winOsOn7YWm0IZQuFnjSWIF2Va5B0Tp0IjFHWxTvA==
   dependencies:
     tslib "^2.3.0"
   optionalDependencies:
