@@ -16,6 +16,10 @@
   &:is(:hover, :focus) {
     border-color: var(--sbb-color-iron);
   }
+
+  &:where(.sbb-svg-icon-wrapper-dark) {
+    background-color: var(--sbb-color-black);
+  }
 }
 
 .sbb-svg-icon-path {

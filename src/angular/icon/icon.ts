@@ -72,6 +72,9 @@ const funcIriAttributeSelector = funcIriAttributes.map((attr) => `[${attr}]`).jo
 /** Regex that can be used to extract the id out of a FuncIRI. */
 const funcIriPattern = /^url\(['"]?#(.*?)['"]?\)$/;
 
+/** The unique id of an icon. **/
+let nextId = 0;
+
 /**
  * Component to display an icon. It can be used in the following ways:
  *
@@ -107,6 +110,7 @@ const funcIriPattern = /^url\(['"]?#(.*?)['"]?\)$/;
   host: {
     role: 'img',
     class: 'sbb-icon notranslate',
+    '[id]': 'id',
     '[attr.data-sbb-icon-type]': '_usingFontIcon() ? "font" : "svg"',
     '[attr.data-sbb-icon-name]': '_svgName || fontIcon',
     '[attr.data-sbb-icon-namespace]': '_svgNamespace || fontSet',
@@ -175,6 +179,8 @@ export class SbbIcon implements OnInit, AfterViewChecked, OnDestroy {
     }
   }
   private _fontIcon: string;
+
+  @Input() id: string = `sbb-icon-${nextId++}`;
 
   private _previousFontSetClass: string[] = [];
   private _previousFontIconClass: string;
@@ -253,7 +259,10 @@ export class SbbIcon implements OnInit, AfterViewChecked, OnDestroy {
       // page and the SVG isn't re-rendered.
       if (newPath !== this._previousPath) {
         this._previousPath = newPath;
-        this._prependPathToReferences(newPath);
+        this._prependPathToReferences(
+          newPath,
+          this._elementRef.nativeElement.querySelector('svg') as SVGElement
+        );
       }
     }
   }
@@ -278,7 +287,7 @@ export class SbbIcon implements OnInit, AfterViewChecked, OnDestroy {
     const path = this._location.getPathname();
     this._previousPath = path;
     this._cacheChildrenWithExternalReferences(svg);
-    this._prependPathToReferences(path);
+    this._prependPathToReferences(path, svg);
     this._elementRef.nativeElement.appendChild(svg);
   }
 
@@ -344,13 +353,21 @@ export class SbbIcon implements OnInit, AfterViewChecked, OnDestroy {
    * reference. This is required because WebKit browsers require references to be prefixed with
    * the current path, if the page has a `base` tag.
    */
-  private _prependPathToReferences(path: string) {
+  private _prependPathToReferences(path: string, svg: SVGElement | null) {
     const elements = this._elementsWithExternalReferences;
 
     if (elements) {
       elements.forEach((attrs, element) => {
         attrs.forEach((attr) => {
-          element.setAttribute(attr.name, `url('${path}#${attr.value}')`);
+          // If the selector references an element inside the svg, we prepend the icon id for unambiguity.
+          // This is necessary because mutliple SBB pictograms use `clip-path=url('#a')` together with
+          // an internal `<defs><clipPath id="a">...</clipPath></defs>` definition.
+          // TODO(mhaertwig): Remove after pictograms have been updated to use a unique reference.
+          if (svg?.querySelector(`#${attr.value}`)) {
+            element.setAttribute(attr.name, `url('${path}#${this.id} #${attr.value}')`);
+          } else {
+            element.setAttribute(attr.name, `url('${path}#${attr.value}')`);
+          }
         });
       });
     }
