@@ -1,0 +1,65 @@
+name: Preview Image Cleanup
+
+on:
+  workflow_dispatch: {}
+  schedule:
+    - cron: '0 5 * * *'
+
+permissions:
+  packages: write
+
+jobs:
+  preview-image:
+    runs-on: ubuntu-latest
+    env:
+      CLOSED_PR_RETENTION_DAYS: 14
+      PACKAGE_NAME: showcase-preview
+      PR_TAG_PREFIX: preview-pr
+    steps:
+      - uses: actions/github-script@v6
+        with:
+          script: |
+            const { owner, repo } = context.repo;
+            const pullRequests = await github.paginate(
+              github.rest.pulls.list.endpoint.merge({ owner, repo, state: 'all' })
+            );
+            const twoWeeksAgo =
+              new Date(Date.now() - (+process.env.CLOSED_PR_RETENTION_DAYS * 24 * 60 * 60 * 1000));
+            const olderThanTwoWeeks = (date) => new Date(date) < twoWeeksAgo;
+            const isExpiredPrTag = (version) => {
+              const prNumber = +version.metadata?.container?.tags?
+                .find((t) => t.startsWith(process.env.PR_TAG_PREFIX))?.split(process.env.PR_TAG_PREFIX)[1];
+              const pr = pullRequests.find((p) => p.number === prNumber);
+              return !!prNumber && pr?.state === 'closed' && olderThanTwoWeeks(pr.closed_at);
+            };
+            const hasOnlyLegacyTag = (version) => {
+              const tags = version.metadata?.container?.tags ?? [];
+              return tags.length === 1 && tags[0].startsWith('rev-');
+            }
+
+            const params = {
+              package_type: 'container',
+              package_name: `${repo}/${process.env.PACKAGE_NAME}`,
+              username: owner
+            };
+            const { data: versions } = await github.rest.packages.getAllPackageVersionsForPackageOwnedByUser(params);
+            let packageDeletionFailed = false;
+            for (const version of versions.filter((v) => isExpiredPrTag(v) || hasOnlyLegacyTag(v))) {
+              try {
+                await github.rest.packages.deletePackageVersionForUser({ ...params, package_version_id: version.id });
+                console.log(`Deleted ${version.name} (${version.metadata.container.tags.join(', ')})`);
+              } catch(e) {
+                console.error(`Failed to delete ${version.name} (${version.metadata.container.tags.join(', ')})`);
+                console.error(e);
+                packageDeletionFailed = true;
+              }
+            }
+
+            if (packageDeletionFailed) {
+              throw new Error('A package deletion failed, please check the log.');
+            }
+      - uses: actions/delete-package-versions@v4
+        with:
+          package-name: 'lyne-components/storybook-preview'
+          package-type: 'container'
+          delete-only-untagged-versions: 'true'
