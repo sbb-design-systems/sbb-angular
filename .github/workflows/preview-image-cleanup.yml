@@ -19,10 +19,13 @@ jobs:
       - uses: actions/github-script@v6
         with:
           script: |
+            console.log('start');
             const { owner, repo } = context.repo;
+            console.log('line: ' + new Error().lineNumber);
             const pullRequests = await github.paginate(
               github.rest.pulls.list.endpoint.merge({ owner, repo, state: 'all' })
             );
+            console.log('line: ' + new Error().lineNumber);
             const twoWeeksAgo =
               new Date(Date.now() - (+process.env.CLOSED_PR_RETENTION_DAYS * 24 * 60 * 60 * 1000));
             const olderThanTwoWeeks = (date) => new Date(date) < twoWeeksAgo;
@@ -36,6 +39,7 @@ jobs:
               const tags = version.metadata?.container?.tags ?? [];
               return tags.length === 1 && tags[0].startsWith('rev-');
             }
+            console.log('line: ' + new Error().lineNumber);
 
             const params = {
               package_type: 'container',
@@ -44,8 +48,10 @@ jobs:
             };
             const { data: versions } = await github.rest.packages.getAllPackageVersionsForPackageOwnedByUser(params);
             let packageDeletionFailed = false;
+            console.log('line: ' + new Error().lineNumber);
             for (const version of versions.filter((v) => isExpiredPrTag(v) || hasOnlyLegacyTag(v))) {
               try {
+                console.log('line: ' + new Error().lineNumber);
                 await github.rest.packages.deletePackageVersionForUser({ ...params, package_version_id: version.id });
                 console.log(`Deleted ${version.name} (${version.metadata.container.tags.join(', ')})`);
               } catch(e) {
@@ -60,6 +66,6 @@ jobs:
             }
       - uses: actions/delete-package-versions@v4
         with:
-          package-name: 'lyne-components/storybook-preview'
+          package-name: 'sbb-angular/showcase-preview'
           package-type: 'container'
           delete-only-untagged-versions: 'true'
