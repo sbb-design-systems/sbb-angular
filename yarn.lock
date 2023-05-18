@@ -3693,9 +3693,9 @@
     node-fetch "^2.6.1"
 
 "@octokit/app@^13.1.1":
-  version "13.1.3"
-  resolved "https://registry.yarnpkg.com/@octokit/app/-/app-13.1.3.tgz#eefeefa90f608f01cd048f578dc46ecc58b4110f"
-  integrity sha512-qG3a3AddK/XLmtpQuB2eICbOUTwwdvqfdnyOzU6PlHhhhVapLfuutkbTOllHB/5OS/slUamIBD3zhOYpKsLFDQ==
+  version "13.1.4"
+  resolved "https://registry.yarnpkg.com/@octokit/app/-/app-13.1.4.tgz#6a8f9ce466d3051064f1adea8ba5a1faca48cb19"
+  integrity sha512-DOssIBopEpXemC1VgQ8hFAU5FP+Mo0CCRjg5Rc7mahwSvqUp0c/AFPpOuSVP9eX2bO03EOVkdmAVqLp77m8CzA==
   dependencies:
     "@octokit/auth-app" "^4.0.8"
     "@octokit/auth-unauthenticated" "^3.0.0"
@@ -8006,9 +8006,9 @@ ee-first@1.1.1:
   integrity sha512-WMwm9LhRUo+WUaRN+vRuETqG89IgZphVSNkdFgeb6sS/E4OrDIN7t48CAewSHXc6C8lefD8KKfr5vY61brQlow==
 
 electron-to-chromium@^1.4.284:
-  version "1.4.398"
-  resolved "https://registry.yarnpkg.com/electron-to-chromium/-/electron-to-chromium-1.4.398.tgz#b0fd3092b07d81c2ebf63f8395aa8a70c2c0892d"
-  integrity sha512-tT90Lmieb+Y4jX5Awub8BsvuFM/ICKr01oZFBR9Cy6pxCf+rAmwcpRl4xfXb66DzTXc4qSMPqlqLDoghm27utQ==
+  version "1.4.399"
+  resolved "https://registry.yarnpkg.com/electron-to-chromium/-/electron-to-chromium-1.4.399.tgz#df8a63d1f572124ad8b5d846e38b0532ad7d9d54"
+  integrity sha512-+V1aNvVgoWNWYIbMOiQ1n5fRIaY4SlQ/uRlrsCjLrUwr/3OvQgiX2f5vdav4oArVT9TnttJKcPCqjwPNyZqw/A==
 
 email-addresses@5.0.0:
   version "5.0.0"
