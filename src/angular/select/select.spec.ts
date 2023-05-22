@@ -20,6 +20,7 @@ import {
   ChangeDetectionStrategy,
   Component,
   DebugElement,
+  ElementRef,
   OnInit,
   Provider,
   QueryList,
@@ -878,6 +879,40 @@ class SelectInsideDynamicFormGroup {
 })
 class SelectReadonly {}
 
+@Component({
+  selector: 'select-inside-a-modal',
+  template: `
+    <button cdkOverlayOrigin #trigger="cdkOverlayOrigin">open dialog</button>
+    <ng-template
+      cdkConnectedOverlay
+      [cdkConnectedOverlayOpen]="true"
+      [cdkConnectedOverlayOrigin]="trigger"
+    >
+      <div role="dialog" [attr.aria-modal]="'true'" #modal>
+        <sbb-form-field>
+          <sbb-label>Select a food</sbb-label>
+          <sbb-select placeholder="Food" ngModel>
+            <sbb-option *ngFor="let food of foods" [value]="food.value"
+              >{{ food.viewValue }}
+            </sbb-option>
+          </sbb-select>
+        </sbb-form-field>
+      </div>
+    </ng-template>
+  `,
+})
+class SelectInsideAModal {
+  foods = [
+    { value: 'steak-0', viewValue: 'Steak' },
+    { value: 'pizza-1', viewValue: 'Pizza' },
+    { value: 'tacos-2', viewValue: 'Tacos' },
+  ];
+
+  @ViewChild(SbbSelect) select: SbbSelect;
+  @ViewChildren(SbbOption) options: QueryList<SbbOption>;
+  @ViewChild('modal') modal: ElementRef;
+}
+
 /** Default debounce interval when typing letters to select an option. */
 const DEFAULT_TYPEAHEAD_DEBOUNCE_INTERVAL = 200;
 
@@ -929,6 +964,7 @@ describe('SbbSelect', () => {
     beforeEach(waitForAsync(() => {
       configureSbbSelectTestingModule([
         BasicSelect,
+        SelectInsideAModal,
         MultiSelect,
         SelectWithGroups,
         SelectWithGroupsAndNgContainer,
@@ -965,17 +1001,6 @@ describe('SbbSelect', () => {
           const ariaControls = select.getAttribute('aria-controls');
           expect(ariaControls).toBeTruthy();
           expect(ariaControls).toBe(document.querySelector('.sbb-panel')!.id);
-        }));
-
-        it('should point the aria-owns attribute to the listbox on the trigger', fakeAsync(() => {
-          expect(select.hasAttribute('aria-owns')).toBe(false);
-          fixture.componentInstance.select.open();
-          fixture.detectChanges();
-          flush();
-
-          const ariaOwns = select.getAttribute('aria-owns');
-          expect(ariaOwns).toBeTruthy();
-          expect(ariaOwns).toBe(document.querySelector('.sbb-panel')!.id);
         }));
 
         it('should set aria-expanded based on the select open state', fakeAsync(() => {
@@ -2111,6 +2136,27 @@ describe('SbbSelect', () => {
                 'value has changed.'
             )
             .toEqual([options[7]]);
+        }));
+      });
+
+      describe('for select inside a modal', () => {
+        let fixture: ComponentFixture<SelectInsideAModal>;
+
+        beforeEach(fakeAsync(() => {
+          fixture = TestBed.createComponent(SelectInsideAModal);
+          fixture.detectChanges();
+        }));
+
+        it('should add the id of the select panel to the aria-owns of the modal', fakeAsync(() => {
+          fixture.componentInstance.select.open();
+          fixture.detectChanges();
+
+          const panelId = `${fixture.componentInstance.select.id}-panel`;
+          const modalElement = fixture.componentInstance.modal.nativeElement;
+
+          expect(modalElement.getAttribute('aria-owns')?.split(' '))
+            .withContext('expecting modal to own the select panel')
+            .toContain(panelId);
         }));
       });
 
