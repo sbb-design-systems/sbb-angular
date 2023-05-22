@@ -76,7 +76,7 @@ describe('SbbNotificationToast icons', () => {
       .toBe(1);
     const icons = overlayContainerElement.querySelectorAll('sbb-icon');
     expect(icons.length).toBe(2);
-    expect(icons[0].getAttribute('ng-reflect-svg-icon')).toMatch(/^kom:sign-exclamation-point-sma/);
+    expect(icons[0].getAttribute('ng-reflect-svg-icon')).toMatch(/^sign-exclamation-point-sma/);
   });
 
   it('should have tick icon when type is SUCCESS', () => {
@@ -90,7 +90,7 @@ describe('SbbNotificationToast icons', () => {
       .toBe(1);
     const icons = overlayContainerElement.querySelectorAll('sbb-icon');
     expect(icons.length).toBe(2);
-    expect(icons[0].getAttribute('ng-reflect-svg-icon')).toEqual('kom:tick-small');
+    expect(icons[0].getAttribute('ng-reflect-svg-icon')).toEqual('tick-small');
   });
 
   it('should have info icon when type is INFO', () => {
@@ -102,7 +102,7 @@ describe('SbbNotificationToast icons', () => {
       .toBe(1);
     const icons = overlayContainerElement.querySelectorAll('sbb-icon');
     expect(icons.length).toBe(2);
-    expect(icons[0].getAttribute('ng-reflect-svg-icon')).toEqual('kom:circle-information-small');
+    expect(icons[0].getAttribute('ng-reflect-svg-icon')).toEqual('circle-information-small');
   });
 
   it('should have warn icon when type is WARN', () => {
@@ -114,7 +114,7 @@ describe('SbbNotificationToast icons', () => {
       .toBe(1);
     const icons = overlayContainerElement.querySelectorAll('sbb-icon');
     expect(icons.length).toBe(2);
-    expect(icons[0].getAttribute('ng-reflect-svg-icon')).toMatch(/^kom:sign-exclamation-point-sma/);
+    expect(icons[0].getAttribute('ng-reflect-svg-icon')).toMatch(/^sign-exclamation-point-sma/);
   });
 });
 

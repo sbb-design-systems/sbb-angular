@@ -410,7 +410,7 @@ the error state).
 ```html
 <sbb-form-field>
   <example-tel-input placeholder="Phone number" required></example-tel-input>
-  <sbb-icon svgIcon="kom:telephone-receiver-small"></sbb-icon>
+  <sbb-icon svgIcon="telephone-receiver-small"></sbb-icon>
   <sbb-error>Phone number is required</sbb-error>
 </sbb-form-field>
 ```

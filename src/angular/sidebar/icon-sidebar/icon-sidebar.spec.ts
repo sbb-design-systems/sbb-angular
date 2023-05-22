@@ -555,7 +555,7 @@ class NestedSidebarContainersTestComponent {
     <sbb-icon-sidebar-container>
       <sbb-icon-sidebar (expandedChange)="expandedChange($event)">
         <a sbbIconSidebarItem [routerLink]="['/link1']" label="Link1">
-          <sbb-icon svgIcon="kom:station-small"></sbb-icon>
+          <sbb-icon svgIcon="station-small"></sbb-icon>
         </a>
         <hr />
         <a
@@ -564,11 +564,11 @@ class NestedSidebarContainersTestComponent {
           label="Link 2"
           routerLinkActive="sbb-active"
         >
-          <sbb-icon svgIcon="kom:station-small"></sbb-icon>
+          <sbb-icon svgIcon="station-small"></sbb-icon>
         </a>
         <a>SHOULD BE IGNORED</a>
         <a sbbIconSidebarItem [routerLink]="['/link3']" label="Link3">
-          <sbb-icon svgIcon="kom:station-small"></sbb-icon>
+          <sbb-icon svgIcon="station-small"></sbb-icon>
         </a>
       </sbb-icon-sidebar>
       <sbb-icon-sidebar-content> Content </sbb-icon-sidebar-content>

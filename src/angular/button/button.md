@@ -31,7 +31,7 @@ If a single `sbb-icon` is placed inside the button, the icon button style is app
 
 ```
 <button type="button" sbb-secondary-button>
-  <sbb-icon svgIcon="kom:pen-small"></sbb-icon>
+  <sbb-icon svgIcon="pen-small"></sbb-icon>
 </button>
 ```
 
@@ -55,8 +55,8 @@ Use the `.sbb-link-group` to display a list of `sbb-link` elements in a group.
 <div class="sbb-link-group">
   <a href="#" sbb-link>Navigation 1</a>
   <button type="button" sbb-link>Navigation 2</button>
-  <a href="#" sbb-link svgIcon="kom:download-small">Download 1</a>
-  <button type="button" sbb-link svgIcon="kom:download-small">Download 2</button>
+  <a href="#" sbb-link svgIcon="download-small">Download 1</a>
+  <button type="button" sbb-link svgIcon="download-small">Download 2</button>
 </div>
 ```
 

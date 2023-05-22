@@ -87,7 +87,7 @@ export class SbbToggleOption extends _SbbRadioButtonBase {
    * The indicator icon, which will be shown on the left-hand side of the toggle option.
    * Must be a valid svgIcon input for sbb-icon.
    *
-   * e.g. svgIcon="kom:plus-small"
+   * e.g. svgIcon="plus-small"
    */
   @Input() svgIcon: string;
 

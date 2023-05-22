@@ -56,7 +56,7 @@ class CheckboxPanelDirectivesTest {
     <sbb-checkbox-panel [formControl]="control">
       Test
       <sbb-checkbox-panel-note>
-        <sbb-icon svgIcon="kom:heart"></sbb-icon>
+        <sbb-icon svgIcon="heart"></sbb-icon>
       </sbb-checkbox-panel-note>
     </sbb-checkbox-panel>
   `,

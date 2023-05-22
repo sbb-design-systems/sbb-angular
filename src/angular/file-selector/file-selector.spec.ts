@@ -189,35 +189,31 @@ describe('SbbFileSelector using mock component', () => {
     const typeIconWrapper = fileComponent.queryAll(By.css('.sbb-file-selector-list-type-icon'));
 
     expect(
-      typeIconWrapper[0].query(By.css('sbb-icon[svgIcon="kom:document-sound-small"]'))
+      typeIconWrapper[0].query(By.css('sbb-icon[svgIcon="document-sound-small"]'))
     ).toBeTruthy();
     expect(
-      typeIconWrapper[1].query(By.css('sbb-icon[svgIcon="kom:document-text-small"]'))
+      typeIconWrapper[1].query(By.css('sbb-icon[svgIcon="document-text-small"]'))
     ).toBeTruthy();
     expect(
-      typeIconWrapper[2].query(By.css('sbb-icon[svgIcon="kom:document-standard-small"]'))
+      typeIconWrapper[2].query(By.css('sbb-icon[svgIcon="document-standard-small"]'))
     ).toBeTruthy();
     expect(
-      typeIconWrapper[3].query(By.css('sbb-icon[svgIcon="kom:document-image-small"]'))
+      typeIconWrapper[3].query(By.css('sbb-icon[svgIcon="document-image-small"]'))
+    ).toBeTruthy();
+    expect(typeIconWrapper[4].query(By.css('sbb-icon[svgIcon="document-pdf-small"]'))).toBeTruthy();
+    expect(
+      typeIconWrapper[5].query(By.css('sbb-icon[svgIcon="document-image-small"]'))
     ).toBeTruthy();
     expect(
-      typeIconWrapper[4].query(By.css('sbb-icon[svgIcon="kom:document-pdf-small"]'))
+      typeIconWrapper[6].query(By.css('sbb-icon[svgIcon="document-image-small"]'))
     ).toBeTruthy();
     expect(
-      typeIconWrapper[5].query(By.css('sbb-icon[svgIcon="kom:document-image-small"]'))
+      typeIconWrapper[7].query(By.css('sbb-icon[svgIcon="document-video-small"]'))
     ).toBeTruthy();
     expect(
-      typeIconWrapper[6].query(By.css('sbb-icon[svgIcon="kom:document-image-small"]'))
+      typeIconWrapper[8].query(By.css('sbb-icon[svgIcon="document-text-small"]'))
     ).toBeTruthy();
-    expect(
-      typeIconWrapper[7].query(By.css('sbb-icon[svgIcon="kom:document-video-small"]'))
-    ).toBeTruthy();
-    expect(
-      typeIconWrapper[8].query(By.css('sbb-icon[svgIcon="kom:document-text-small"]'))
-    ).toBeTruthy();
-    expect(
-      typeIconWrapper[9].query(By.css('sbb-icon[svgIcon="kom:document-zip-small"]'))
-    ).toBeTruthy();
+    expect(typeIconWrapper[9].query(By.css('sbb-icon[svgIcon="document-zip-small"]'))).toBeTruthy();
   });
 });
 

@@ -164,7 +164,7 @@ export class _SbbDialogTitleBase implements OnInit {
       class="sbb-dialog-title-close-button sbb-button-reset-frameless"
       [aria-label]="closeAriaLabel"
     >
-      <sbb-icon svgIcon="kom:cross-small"></sbb-icon>
+      <sbb-icon svgIcon="cross-small"></sbb-icon>
     </button>
   `,
   changeDetection: ChangeDetectionStrategy.OnPush,

@@ -8,7 +8,7 @@ The browser loads and caches the icons from the [SBB Icon CDN](https://icons.app
 Include `<sbb-icon>` in your template and add your icon name to the `svgIcon` attribute.
 
 ```html
-<sbb-icon svgIcon="kom:cloud-small"></sbb-icon>
+<sbb-icon svgIcon="cloud-small"></sbb-icon>
 ```
 
 See the Accessibility section below on how to provide meaningful context for screen readers.
@@ -19,7 +19,7 @@ The SBB icons have a predefined size. If you want the icons to expand to the par
 add the `sbb-icon-fit` css class to your `<sbb-icon>` tag.
 
 ```html
-<sbb-icon svgIcon="kom:cloud-small" class="sbb-icon-fit"></sbb-icon>
+<sbb-icon svgIcon="cloud-small" class="sbb-icon-fit"></sbb-icon>
 ```
 
 ### Accessibility

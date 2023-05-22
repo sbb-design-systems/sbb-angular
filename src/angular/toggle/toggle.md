@@ -33,11 +33,10 @@ Either use the `svgIcon` input or the `<sbb-toggle-icon>` element.
 
 ```html
 <sbb-toggle>
-  <sbb-toggle-option label="Option 1" value="dog" svgIcon="kom:arrow-right-small">
-  </sbb-toggle-option>
+  <sbb-toggle-option label="Option 1" value="dog" svgIcon="arrow-right-small"> </sbb-toggle-option>
   <sbb-toggle-option value="cat">
     <sbb-toggle-icon>
-      <sbb-icon svgIcon="kom:arrows-right-left-small"></sbb-icon>
+      <sbb-icon svgIcon="arrows-right-left-small"></sbb-icon>
     </sbb-toggle-icon>
     <sbb-toggle-label>Option 2</sbb-toggle-label>
   </sbb-toggle-option>

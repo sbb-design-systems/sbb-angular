@@ -2764,7 +2764,7 @@ describe('SbbMenu contextmenu trigger', () => {
       fixture.debugElement.nativeElement.querySelector(
         '.sbb-menu-trigger.sbb-menu-trigger-contextmenu sbb-icon'
       )!.outerHTML
-    ).toContain('kom:context-menu-small');
+    ).toContain('context-menu-small');
 
     fixture.componentInstance.trigger.openMenu();
     fixture.detectChanges();
@@ -2772,7 +2772,7 @@ describe('SbbMenu contextmenu trigger', () => {
     expect(document.querySelector('.sbb-menu-panel-type-contextmenu')).toBeTruthy();
     expect(
       document.querySelector('.sbb-menu-panel-type-contextmenu sbb-icon')!.outerHTML
-    ).toContain('kom:context-menu-small');
+    ).toContain('context-menu-small');
   });
 
   it('should allow custom icon', () => {
@@ -2783,14 +2783,14 @@ describe('SbbMenu contextmenu trigger', () => {
       fixture.debugElement.nativeElement.querySelector(
         '.sbb-menu-trigger.sbb-menu-trigger-contextmenu sbb-icon'
       )!.outerHTML
-    ).toContain('kom:other-icon');
+    ).toContain('other-icon');
 
     fixture.componentInstance.trigger.openMenu();
     fixture.detectChanges();
 
     expect(
       document.querySelector('.sbb-menu-panel-type-contextmenu sbb-icon')!.outerHTML
-    ).toContain('kom:other-icon');
+    ).toContain('other-icon');
   });
 });
 
@@ -3266,7 +3266,7 @@ class MenuWithRepeatedItems {
 
 @Component({
   template: `<button [sbbMenuTriggerFor]="animals" aria-label="Show animals">
-      <sbb-icon svgIcon="kom:context-menu-small"></sbb-icon>
+      <sbb-icon svgIcon="context-menu-small"></sbb-icon>
     </button>
     <sbb-menu #animals="sbbMenu">
       <button sbb-menu-item>Invertebrates</button>
@@ -3279,7 +3279,7 @@ class ContextmenuStaticTrigger {
 
 @Component({
   template: `<button [sbbMenuTriggerFor]="animals" aria-label="Show animals">
-      <sbb-icon *sbbMenuDynamicTrigger svgIcon="kom:context-menu-small"></sbb-icon>
+      <sbb-icon *sbbMenuDynamicTrigger svgIcon="context-menu-small"></sbb-icon>
     </button>
     <sbb-menu #animals="sbbMenu">
       <button sbb-menu-item>Invertebrates</button>
@@ -3305,7 +3305,7 @@ class ContextmenuOnlyTextTrigger {
 
 @Component({
   template: `<button [sbbMenuHeadlessTriggerFor]="animals" aria-label="Show animals">
-      <sbb-icon svgIcon="kom:context-menu-small"></sbb-icon>
+      <sbb-icon svgIcon="context-menu-small"></sbb-icon>
     </button>
     <sbb-menu #animals="sbbMenu">
       <button sbb-menu-item>Invertebrates</button>
@@ -3342,5 +3342,5 @@ class ContextmenuTrigger {
 })
 class ContextmenuCustomIconTrigger {
   @ViewChild(SbbMenuTrigger) trigger: SbbMenuTrigger;
-  svgIcon = 'kom:other-icon';
+  svgIcon = 'other-icon';
 }

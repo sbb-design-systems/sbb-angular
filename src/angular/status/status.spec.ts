@@ -54,7 +54,7 @@ describe('SbbStatus', () => {
 
     it('should have tick icon', () => {
       const element = fixture.debugElement.query(
-        By.css('sbb-icon[svgIcon="kom:tick-small"]')
+        By.css('sbb-icon[svgIcon="tick-small"]')
       ).nativeElement;
       expect(element).toBeTruthy();
     });
@@ -86,7 +86,7 @@ describe('SbbStatus', () => {
 
     it('should have exclamation point icon', () => {
       const element = fixture.debugElement.query(
-        By.css('sbb-icon[svgIcon="kom:sign-exclamation-point-small"]')
+        By.css('sbb-icon[svgIcon="sign-exclamation-point-small"]')
       ).nativeElement;
       expect(element).toBeTruthy();
     });
@@ -118,7 +118,7 @@ describe('SbbStatus', () => {
 
     it('should have cross icon', () => {
       const element = fixture.debugElement.query(
-        By.css('sbb-icon[svgIcon="kom:circle-cross-small"]')
+        By.css('sbb-icon[svgIcon="circle-cross-small"]')
       ).nativeElement;
       expect(element).toBeTruthy();
     });
