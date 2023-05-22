@@ -5,6 +5,7 @@ import { ScrollDispatcher } from '@angular/cdk/scrolling';
 import {
   ChangeDetectionStrategy,
   Component,
+  ElementRef,
   NgZone,
   OnDestroy,
   OnInit,
@@ -540,6 +541,44 @@ class AutocompleteHint {
   showOption: boolean;
   showHint: boolean;
   showHintIfNoOptions: boolean;
+}
+
+@Component({
+  selector: 'autocomplete-inside-a-modal',
+  template: `
+    <button cdkOverlayOrigin #trigger="cdkOverlayOrigin">open dialog</button>
+    <ng-template
+      cdkConnectedOverlay
+      [cdkConnectedOverlayOpen]="true"
+      [cdkConnectedOverlayOrigin]="trigger"
+    >
+      <div role="dialog" [attr.aria-modal]="'true'" #modal>
+        <sbb-form-field>
+          <sbb-label>Food</sbb-label>
+          <input sbbInput [sbbAutocomplete]="reactiveAuto" [formControl]="formControl" />
+        </sbb-form-field>
+        <sbb-autocomplete #reactiveAuto="sbbAutocomplete">
+          <sbb-option *ngFor="let food of foods; let index = index" [value]="food">
+            {{ food.viewValue }}
+          </sbb-option>
+        </sbb-autocomplete>
+      </div>
+    </ng-template>
+  `,
+})
+class AutocompleteInsideAModal {
+  foods = [
+    { value: 'steak-0', viewValue: 'Steak' },
+    { value: 'pizza-1', viewValue: 'Pizza' },
+    { value: 'tacos-2', viewValue: 'Tacos' },
+  ];
+
+  formControl = new FormControl();
+
+  @ViewChild(SbbAutocomplete) autocomplete: SbbAutocomplete;
+  @ViewChild(SbbAutocompleteTrigger) trigger: SbbAutocompleteTrigger;
+  @ViewChildren(SbbOption) options: QueryList<SbbOption>;
+  @ViewChild('modal') modal: ElementRef;
 }
 
 describe('SbbAutocomplete', () => {
@@ -2200,24 +2239,24 @@ describe('SbbAutocomplete', () => {
         .toBe('false');
     }));
 
-    it('should set aria-owns based on the attached autocomplete', () => {
+    it('should set aria-controls based on the attached autocomplete', () => {
       fixture.componentInstance.trigger.openPanel();
       fixture.detectChanges();
 
       const panel = fixture.debugElement.query(By.css('.sbb-autocomplete-panel')).nativeElement;
 
-      expect(input.getAttribute('aria-owns'))
-        .withContext('Expected aria-owns to match attached autocomplete.')
+      expect(input.getAttribute('aria-controls'))
+        .withContext('Expected aria-controls to match attached autocomplete.')
         .toBe(panel.getAttribute('id'));
     });
 
-    it('should not set aria-owns while the autocomplete is closed', () => {
-      expect(input.getAttribute('aria-owns')).toBeFalsy();
+    it('should not set aria-controls while the autocomplete is closed', () => {
+      expect(input.getAttribute('aria-controls')).toBeFalsy();
 
       fixture.componentInstance.trigger.openPanel();
       fixture.detectChanges();
 
-      expect(input.getAttribute('aria-owns')).toBeTruthy();
+      expect(input.getAttribute('aria-controls')).toBeTruthy();
     });
 
     it('should restore focus to the input when clicking to select a value', fakeAsync(() => {
@@ -3952,5 +3991,26 @@ describe('SbbAutocomplete', () => {
         fixture.detectChanges();
       });
     });
+  });
+
+  describe('when used inside a modal', () => {
+    let fixture: ComponentFixture<AutocompleteInsideAModal>;
+
+    beforeEach(fakeAsync(() => {
+      fixture = createComponent(AutocompleteInsideAModal);
+      fixture.detectChanges();
+    }));
+
+    it('should add the id of the autocomplete panel to the aria-owns of the modal', fakeAsync(() => {
+      fixture.componentInstance.trigger.openPanel();
+      fixture.detectChanges();
+
+      const panelId = fixture.componentInstance.autocomplete.id;
+      const modalElement = fixture.componentInstance.modal.nativeElement;
+
+      expect(modalElement.getAttribute('aria-owns')?.split(' '))
+        .withContext('expecting modal to own the autocommplete panel')
+        .toContain(panelId);
+    }));
   });
 });

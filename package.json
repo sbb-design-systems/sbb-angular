@@ -51,7 +51,7 @@
   "schematics": "./tools/schematics/collection.json",
   "dependencies": {
     "@angular/animations": "16.0.2",
-    "@angular/cdk": "16.0.1",
+    "@angular/cdk": "16.1.0-next.0",
     "@angular/common": "16.0.2",
     "@angular/core": "16.0.2",
     "@angular/elements": "16.0.2",
