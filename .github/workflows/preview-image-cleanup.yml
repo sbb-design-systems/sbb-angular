@@ -27,8 +27,8 @@ jobs:
               new Date(Date.now() - (+process.env.CLOSED_PR_RETENTION_DAYS * 24 * 60 * 60 * 1000));
             const olderThanTwoWeeks = (date) => new Date(date) < twoWeeksAgo;
             const isExpiredPrTag = (version) => {
-              const prNumber = +version.metadata?.container?.tags?
-                .find((t) => t.startsWith(process.env.PR_TAG_PREFIX))?.split(process.env.PR_TAG_PREFIX)[1];
+              const prNumber = +version.metadata?.container?.tags
+                ?.find((t) => t.startsWith(process.env.PR_TAG_PREFIX))?.split(process.env.PR_TAG_PREFIX)[1];
               const pr = pullRequests.find((p) => p.number === prNumber);
               return !!prNumber && pr?.state === 'closed' && olderThanTwoWeeks(pr.closed_at);
             };
@@ -60,6 +60,6 @@ jobs:
             }
       - uses: actions/delete-package-versions@v4
         with:
-          package-name: 'lyne-components/storybook-preview'
+          package-name: 'sbb-angular/showcase-preview'
           package-type: 'container'
           delete-only-untagged-versions: 'true'
