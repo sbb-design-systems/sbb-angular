@@ -69,6 +69,7 @@ export class SbbMapSelectionEvent {
     }
   }
 
+  // TODO cdi ROKAS-1438: document what does this function do?
   initSelectedState(
     mapInstance: MaplibreMap,
     features: Feature[],
@@ -104,14 +105,19 @@ export class SbbMapSelectionEvent {
     };
   }
 
+  // this method sets a SbbFeatureData as selected/unselected
   private _setFeatureSelection(data: SbbFeatureData, selected: boolean) {
     if (this._selectionModes.get(data.featureDataType) === 'single') {
+      // if this SbbFeatureDataType has selectionMode 'single',
+      // remove the 'featureState' for all MapGeoJSONFeature features containing this 'source' and 'sourceLayer'
       const sourceInfo = { source: data.source, sourceLayer: data.sourceLayer };
       this._mapInstance.removeFeatureState(sourceInfo);
     }
 
+    // also, update the state of this MapGeoJSONFeature inside the map instance
     this._mapEventUtils.setFeatureState(data, this._mapInstance, { selected });
 
+    // also, do the same state update for any 'related' route features (related because part of the same journey ??)
     this._routeUtilsService.setRelatedRouteFeaturesSelection(this._mapInstance, data, selected);
   }
 

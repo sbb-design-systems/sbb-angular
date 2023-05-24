@@ -22,6 +22,7 @@ import { SbbFeatureEventListener } from './components/feature-event-listener/fea
 import { SbbLevelSwitcher } from './components/level-switch/services/level-switcher';
 import { SbbMapLayerFilter } from './components/level-switch/services/map-layer-filter';
 import {
+  DeselectableSbbFeatureDataType,
   SbbFeatureData,
   SbbFeaturesClickEventData,
   SbbFeaturesHoverChangeEventData,
@@ -392,6 +393,17 @@ export class SbbJourneyMaps implements OnInit, AfterViewInit, OnDestroy, OnChang
   onTouchEnd(event: TouchEvent): void {
     this.touchOverlayStyleClass = '';
     this.touchEventCollector.next(event);
+  }
+
+  /**
+   * Unselects all elements on the map that are of one of the `SbbFeatureDataType`s passed in as a parameter.
+   * Currently, we only support 'MARKER' and 'POI'.
+   */
+  unselectAll(types: DeselectableSbbFeatureDataType[]): void {
+    // unselect markers
+    this.onMarkerUnselected();
+    // unselect pois
+    // TODO cdi ROKAS-1438
   }
 
   /**
