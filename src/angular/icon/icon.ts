@@ -84,7 +84,7 @@ let nextId = 0;
  *   "[namespace]:[name]", if not the value will be the name of an icon in the default namespace.
  *   Examples:
  *     `<sbb-icon svgIcon="example"></sbb-icon>
- *     <sbb-icon svgIcon="kom:cloud-ice-medium"></sbb-icon>`
+ *     <sbb-icon svgIcon="cloud-ice-medium"></sbb-icon>`
  *
  * - Use a font ligature as an icon by putting the ligature text in the content of the `<sbb-icon>`
  *   component. You can specify a font by setting the fontSet input to either the CSS class to

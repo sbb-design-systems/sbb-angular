@@ -17,7 +17,7 @@
   />
   {{ _labelUploadFile }}
   <span class="sbb-file-selector-upload-icon">
-    <sbb-icon class="sbb-icon-scaled" svgIcon="kom:upload-small"></sbb-icon>
+    <sbb-icon class="sbb-icon-scaled" svgIcon="upload-small"></sbb-icon>
   </span>
 </label>
 
@@ -28,13 +28,13 @@
       class="sbb-file-selector-list-type-icon"
       [ngSwitch]="_resolveFileTypeCategory(file)"
     >
-      <sbb-icon svgIcon="kom:document-text-small" *ngSwitchCase="'doc'"></sbb-icon>
-      <sbb-icon svgIcon="kom:document-image-small" *ngSwitchCase="'image'"></sbb-icon>
-      <sbb-icon svgIcon="kom:document-pdf-small" *ngSwitchCase="'pdf'"></sbb-icon>
-      <sbb-icon svgIcon="kom:document-sound-small" *ngSwitchCase="'audio'"></sbb-icon>
-      <sbb-icon svgIcon="kom:document-video-small" *ngSwitchCase="'video'"></sbb-icon>
-      <sbb-icon svgIcon="kom:document-zip-small" *ngSwitchCase="'zip'"></sbb-icon>
-      <sbb-icon svgIcon="kom:document-standard-small" *ngSwitchDefault></sbb-icon>
+      <sbb-icon svgIcon="document-text-small" *ngSwitchCase="'doc'"></sbb-icon>
+      <sbb-icon svgIcon="document-image-small" *ngSwitchCase="'image'"></sbb-icon>
+      <sbb-icon svgIcon="document-pdf-small" *ngSwitchCase="'pdf'"></sbb-icon>
+      <sbb-icon svgIcon="document-sound-small" *ngSwitchCase="'audio'"></sbb-icon>
+      <sbb-icon svgIcon="document-video-small" *ngSwitchCase="'video'"></sbb-icon>
+      <sbb-icon svgIcon="document-zip-small" *ngSwitchCase="'zip'"></sbb-icon>
+      <sbb-icon svgIcon="document-standard-small" *ngSwitchDefault></sbb-icon>
     </div>
     <span class="sbb-file-selector-list-desc"
       >{{ _fileNameNoExtension(file) }} (<span class="sbb-file-selector-list-file-ext"
@@ -47,7 +47,7 @@
       (click)="removeFile(file)"
     >
       <span class="cdk-visually-hidden">{{ _labelRemoveFile }}</span>
-      <sbb-icon svgIcon="kom:trash-small"></sbb-icon>
+      <sbb-icon svgIcon="trash-small"></sbb-icon>
     </button>
   </li>
 </ul>

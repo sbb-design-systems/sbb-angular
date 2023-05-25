@@ -498,14 +498,14 @@ so that screen readers can output a meaningful text.
       [routerLink]="['./edit', element.id]"
       attr.aria-label="Edit {{element.vehicle}}."
     >
-      <sbb-icon svgIcon="kom:pen-small"></sbb-icon>
+      <sbb-icon svgIcon="pen-small"></sbb-icon>
     </a>
     <button
       sbb-secondary-button
       attr.aria-label="Save {{element.vehicle}} as favorite."
       (click)="action()"
     >
-      <sbb-icon svgIcon="kom:star-small"></sbb-icon>
+      <sbb-icon svgIcon="star-small"></sbb-icon>
     </button>
   </div>
 </td>

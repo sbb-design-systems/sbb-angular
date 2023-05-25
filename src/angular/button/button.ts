@@ -49,10 +49,10 @@ const VALID_ICON_BUTTON_ATTRIBUTES = [
 ];
 
 const DEFAULT_INDICATOR_ICONS: { [attr: string]: string } = {
-  'sbb-button': 'kom:arrow-right-small',
-  'sbb-secondary-button': 'kom:arrow-right-small',
-  'sbb-frameless-button': 'kom:plus-small',
-  'sbb-link': 'kom:arrow-right-small',
+  'sbb-button': 'arrow-right-small',
+  'sbb-secondary-button': 'arrow-right-small',
+  'sbb-frameless-button': 'plus-small',
+  'sbb-link': 'arrow-right-small',
 };
 
 // Boilerplate for applying mixins to SbbButton.
@@ -102,7 +102,7 @@ export class SbbButton
    * in the standard variant or behind the sbb-link in lean variant.
    * Must be a valid svgIcon input for sbb-icon.
    *
-   * e.g. svgIcon="kom:plus-small"
+   * e.g. svgIcon="plus-small"
    */
   @Input() svgIcon: string;
 

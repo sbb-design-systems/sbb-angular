@@ -34,14 +34,14 @@ describe('SbbAlert', () => {
 
     it('should have the info default icon', () => {
       const icon = debugElement.query(By.css('.sbb-alert-icon sbb-icon'));
-      expect(icon.componentInstance.svgIcon).toEqual('fpl:info');
+      expect(icon.componentInstance.svgIcon).toEqual('info');
     });
 
     it('should display the given icon', () => {
-      component.icon = 'fpl:disruption';
+      component.icon = 'disruption';
       fixture.detectChanges();
       const icon = debugElement.query(By.css('.sbb-alert-icon sbb-icon'));
-      expect(icon.componentInstance.svgIcon).toEqual('fpl:disruption');
+      expect(icon.componentInstance.svgIcon).toEqual('disruption');
     });
 
     it('should have "TEST" as message', () => {
@@ -130,7 +130,7 @@ describe('SbbAlertOutlet', () => {
 
     it('should be able to add a simple alert', async () => {
       const message = 'simple message';
-      alertService.add(message, { svgIcon: 'fpl:replacementbus' });
+      alertService.add(message, { svgIcon: 'replacementbus' });
 
       fixture.detectChanges();
       await fixture.whenStable();
@@ -138,7 +138,7 @@ describe('SbbAlertOutlet', () => {
       const alerts = fixture.debugElement.queryAll(By.directive(SbbAlert));
       expect(alerts.length).toEqual(1);
       const icon = alerts[0].query(By.css('.sbb-alert-icon sbb-icon'));
-      expect(icon.componentInstance.svgIcon).toEqual('fpl:replacementbus');
+      expect(icon.componentInstance.svgIcon).toEqual('replacementbus');
       const content = alerts[0].query(By.css('.sbb-alert-content'));
       const contentElement: HTMLElement = content.nativeElement;
       expect(contentElement.textContent).toEqual(message);

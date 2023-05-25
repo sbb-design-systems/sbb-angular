@@ -35,7 +35,7 @@ For more complex labels, add a template with the `sbb-tab-label` directive insid
 <sbb-tab>
   <ng-template sbb-tab-label>
     User groups
-    <sbb-icon svgIcon="kom:user-group-small" class="example-tab-icon"></sbb-icon>
+    <sbb-icon svgIcon="user-group-small" class="example-tab-icon"></sbb-icon>
   </ng-template>
 </sbb-tab>
 ```

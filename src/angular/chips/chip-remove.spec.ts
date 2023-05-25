@@ -108,7 +108,7 @@ describe('Chip Remove', () => {
       const iconElement = chipNativeElement.querySelector('sbb-icon')!;
 
       expect(iconElement).toBeTruthy();
-      expect(iconElement.getAttribute('svgIcon')).toBe('kom:cross-small');
+      expect(iconElement.getAttribute('svgIcon')).toBe('cross-small');
       expect(iconElement.hasAttribute('sbbChipRemove')).toBeTrue();
     });
 

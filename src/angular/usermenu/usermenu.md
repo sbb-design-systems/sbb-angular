@@ -38,7 +38,7 @@ As an alternative, you can either provide a custom icon or image by applying the
 
 ```html
 <sbb-usermenu [userName]="userName">
-  <sbb-icon svgIcon="kom:avatar-train-staff-small" *sbbIcon></sbb-icon>
+  <sbb-icon svgIcon="avatar-train-staff-small" *sbbIcon></sbb-icon>
 </sbb-usermenu>
 ```
 
@@ -67,14 +67,14 @@ Please see the [Menu documentation](/angular/components/menu) for more details o
 ></sbb-usermenu>
 <sbb-menu #menu="sbbMenu">
   <a sbb-menu-item routerLink="." routerLinkActive="sbb-active">
-    <sbb-icon svgIcon="kom:user-small" class="sbb-icon-fit"></sbb-icon> Account
+    <sbb-icon svgIcon="user-small" class="sbb-icon-fit"></sbb-icon> Account
   </a>
   <a sbb-menu-item routerLink="." routerLinkActive="sbb-active">
-    <sbb-icon svgIcon="kom:tickets-class-small" class="sbb-icon-fit"></sbb-icon> Orders
+    <sbb-icon svgIcon="tickets-class-small" class="sbb-icon-fit"></sbb-icon> Orders
   </a>
   <hr />
   <button type="button" sbb-menu-item (click)="logout()">
-    <sbb-icon svgIcon="kom:exit-small" class="sbb-icon-fit"></sbb-icon> Logout
+    <sbb-icon svgIcon="exit-small" class="sbb-icon-fit"></sbb-icon> Logout
   </button>
 </sbb-menu>
 ```

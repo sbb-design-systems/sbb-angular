@@ -122,13 +122,13 @@ export class SbbNotification extends _SbbNotificationMixinBase implements OnChan
         if (icon) {
           return icon;
         } else if (this.type === 'success') {
-          return 'kom:tick-small';
+          return 'tick-small';
         } else if (this.type === 'error') {
-          return variant === 'standard' ? 'kom:sign-exclamation-point-small' : 'kom:sign-x-small';
+          return variant === 'standard' ? 'sign-exclamation-point-small' : 'sign-x-small';
         } else if (this.type === 'warn') {
-          return 'kom:sign-exclamation-point-small';
+          return 'sign-exclamation-point-small';
         } else {
-          return 'kom:circle-information-small';
+          return 'circle-information-small';
         }
       })
     );

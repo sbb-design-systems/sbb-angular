@@ -26,10 +26,10 @@ import { SbbToggleModule } from './toggle.module';
           [value]="option.value"
         >
           <sbb-toggle-icon *ngIf="i === 0">
-            <sbb-icon svgIcon="kom:arrow-right-small"></sbb-icon>
+            <sbb-icon svgIcon="arrow-right-small"></sbb-icon>
           </sbb-toggle-icon>
           <sbb-toggle-icon *ngIf="i === 1">
-            <sbb-icon svgIcon="kom:arrows-right-left-small"></sbb-icon>
+            <sbb-icon svgIcon="arrows-right-left-small"></sbb-icon>
           </sbb-toggle-icon>
           <sbb-toggle-details>
             <sbb-form-field class="sbb-form-field-long" *ngIf="i === 1">
@@ -74,10 +74,10 @@ class ToggleReactiveTestComponent {
           [value]="option.value"
         >
           <sbb-toggle-icon *ngIf="i === 0">
-            <sbb-icon svgIcon="kom:arrow-right-small"></sbb-icon>
+            <sbb-icon svgIcon="arrow-right-small"></sbb-icon>
           </sbb-toggle-icon>
           <sbb-toggle-icon *ngIf="i === 1">
-            <sbb-icon svgIcon="kom:arrows-right-left-small"></sbb-icon>
+            <sbb-icon svgIcon="arrows-right-left-small"></sbb-icon>
           </sbb-toggle-icon>
           <sbb-toggle-details>
             <sbb-form-field class="sbb-form-field-long" *ngIf="i === 1">
@@ -119,10 +119,10 @@ class ToggleReactiveDefaultValueTestComponent {
         [value]="option.value"
       >
         <sbb-toggle-icon *ngIf="i === 0">
-          <sbb-icon svgIcon="kom:arrow-right-small"></sbb-icon>
+          <sbb-icon svgIcon="arrow-right-small"></sbb-icon>
         </sbb-toggle-icon>
         <sbb-toggle-icon *ngIf="i === 1">
-          <sbb-icon svgIcon="kom:arrows-right-left-small"></sbb-icon>
+          <sbb-icon svgIcon="arrows-right-left-small"></sbb-icon>
         </sbb-toggle-icon>
         <sbb-toggle-details>
           <sbb-form-field class="sbb-form-field-long" *ngIf="i === 0">
@@ -180,12 +180,12 @@ class ToggleSimpleCaseTestComponent {
     <sbb-toggle aria-label="Choose journey" [formControl]="journey">
       <sbb-toggle-option subtitle="info text" label="Single Journey" value="SingleJourney">
         <sbb-toggle-icon>
-          <sbb-icon svgIcon="kom:arrow-right-small"></sbb-icon>
+          <sbb-icon svgIcon="arrow-right-small"></sbb-icon>
         </sbb-toggle-icon>
       </sbb-toggle-option>
       <sbb-toggle-option label="Single and return journey" value="ReturnJourney">
         <sbb-toggle-icon>
-          <sbb-icon svgIcon="kom:arrows-right-left-small"></sbb-icon>
+          <sbb-icon svgIcon="arrows-right-left-small"></sbb-icon>
         </sbb-toggle-icon>
         <sbb-toggle-details>
           <p class="content">Content</p>

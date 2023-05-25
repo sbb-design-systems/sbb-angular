@@ -1,13 +1,9 @@
 <button [sbbContextmenuTriggerFor]="menu" aria-label="Show actions" type="button"></button>
 <sbb-menu #menu="sbbMenu">
   <button sbb-menu-item type="button">
-    <sbb-icon svgIcon="kom:face-worker-small"></sbb-icon> Copy
+    <sbb-icon svgIcon="face-worker-small"></sbb-icon> Copy
   </button>
-  <button sbb-menu-item type="button">
-    <sbb-icon svgIcon="kom:trash-small"></sbb-icon> Delete
-  </button>
+  <button sbb-menu-item type="button"><sbb-icon svgIcon="trash-small"></sbb-icon> Delete</button>
   <hr />
-  <button sbb-menu-item type="button">
-    <sbb-icon svgIcon="kom:cross-small"></sbb-icon> Cancel
-  </button>
+  <button sbb-menu-item type="button"><sbb-icon svgIcon="cross-small"></sbb-icon> Cancel</button>
 </sbb-menu>

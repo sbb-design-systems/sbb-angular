@@ -113,7 +113,7 @@ describe('SbbHeaderLean', () => {
       const iconComponent = fixture.debugElement.query(
         By.css('.sbb-header-lean-open-menu sbb-icon')
       ).componentInstance as SbbIcon;
-      expect(iconComponent.svgIcon).toEqual('kom:nine-squares-small');
+      expect(iconComponent.svgIcon).toEqual('nine-squares-small');
     });
   });
 });

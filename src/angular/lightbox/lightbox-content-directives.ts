@@ -81,7 +81,7 @@ export class SbbLightboxClose extends SbbDialogClose implements OnInit, OnChange
       class="sbb-lightbox-title-close-button sbb-button-reset-frameless"
       [aria-label]="closeAriaLabel"
     >
-      <sbb-icon svgIcon="kom:circle-cross-small" class="sbb-icon-scaled"></sbb-icon>
+      <sbb-icon svgIcon="circle-cross-small" class="sbb-icon-scaled"></sbb-icon>
     </button>
   `,
   changeDetection: ChangeDetectionStrategy.OnPush,

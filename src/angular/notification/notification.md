@@ -25,11 +25,11 @@ It is also possible to provide a custom icon either via the `svgIcon` input or v
 the `<sbb-notification-icon>` element.
 
 ```html
-<sbb-notification svgIcon="kom:clock-small"> New timezone saved successfully. </sbb-notification>
+<sbb-notification svgIcon="clock-small"> New timezone saved successfully. </sbb-notification>
 
 <sbb-notification>
   <sbb-notification-icon>
-    <sbb-icon svgIcon="kom:clock-small"></sbb-icon>
+    <sbb-icon svgIcon="clock-small"></sbb-icon>
   </sbb-notification-icon>
   New timezone saved successfully.
 </sbb-notification>
