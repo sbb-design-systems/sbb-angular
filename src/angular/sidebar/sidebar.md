@@ -37,7 +37,7 @@ The following are examples of valid icon sidebar layouts:
 <!-- Creates a layout with an explicit content. -->
 <sbb-icon-sidebar-container>
   <sbb-icon-sidebar>
-    <a sbbIconSidebarItem label="Station"><sbb-icon svgIcon="kom:station-small"></sbb-icon></a>
+    <a sbbIconSidebarItem label="Station"><sbb-icon svgIcon="station-small"></sbb-icon></a>
   </sbb-icon-sidebar>
   <sbb-icon-sidebar-content>Main</sbb-icon-sidebar-content>
 </sbb-icon-sidebar-container>
@@ -47,7 +47,7 @@ The following are examples of valid icon sidebar layouts:
 <!-- Creates a layout with an implicit content. -->
 <sbb-icon-sidebar-container>
   <sbb-icon-sidebar>
-    <a sbbIconSidebarItem label="Station"><sbb-icon svgIcon="kom:station-small"></sbb-icon></a>
+    <a sbbIconSidebarItem label="Station"><sbb-icon svgIcon="station-small"></sbb-icon></a>
   </sbb-icon-sidebar>
   <section>Main</section>
 </sbb-icon-sidebar-container>
@@ -97,11 +97,11 @@ For example if using with a routerLink, write `routerLinkActive="sbb-active"`.
 <sbb-icon-sidebar-container>
   <sbb-icon-sidebar>
     <a sbbIconSidebarItem label="Station" routerLink="./link" routerLinkActive="sbb-active">
-      <sbb-icon svgIcon="kom:station-small"></sbb-icon>
+      <sbb-icon svgIcon="station-small"></sbb-icon>
     </a>
     <hr />
     <a sbbIconSidebarItem label="Other Station" routerLink="./link2" routerLinkActive="sbb-active">
-      <sbb-icon svgIcon="kom:station-small"></sbb-icon>
+      <sbb-icon svgIcon="station-small"></sbb-icon>
     </a>
   </sbb-icon-sidebar>
   <sbb-sidebar-content role="main">

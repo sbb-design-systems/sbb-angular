@@ -9,10 +9,10 @@
   <sbb-icon
     *ngSwitchCase="'lean'"
     [@indicatorRotate]="_getExpandedState()"
-    svgIcon="kom:chevron-right-small"
+    svgIcon="chevron-right-small"
   ></sbb-icon>
   <ng-container *ngSwitchCase="'standard'" [ngSwitch]="_isExpanded()">
-    <sbb-icon *ngSwitchCase="false" svgIcon="kom:plus-small"></sbb-icon>
-    <sbb-icon *ngSwitchCase="true" svgIcon="kom:minus-small"></sbb-icon>
+    <sbb-icon *ngSwitchCase="false" svgIcon="plus-small"></sbb-icon>
+    <sbb-icon *ngSwitchCase="true" svgIcon="minus-small"></sbb-icon>
   </ng-container>
 </span>

@@ -140,7 +140,7 @@ the generic `<sbb-checkbox-panel-note>` wrapper.
 
 ```html
 <sbb-checkbox-panel label="Example Label" subtitle="Subtitle">
-  <sbb-icon svgIcon="kom:heart-small" sbbIcon></sbb-icon>
+  <sbb-icon svgIcon="heart-small" sbbIcon></sbb-icon>
 </sbb-checkbox-panel>
 ```
 
@@ -151,7 +151,7 @@ the generic `<sbb-checkbox-panel-note>` wrapper.
   Example Label
   <sbb-checkbox-panel-subtitle>Subtitle</sbb-checkbox-panel-subtitle>
   <sbb-checkbox-panel-note
-    ><sbb-icon svgIcon="kom:heart-small" sbbIcon></sbb-icon
+    ><sbb-icon svgIcon="heart-small" sbbIcon></sbb-icon
   ></sbb-checkbox-panel-note>
 </sbb-checkbox-panel>
 ```
@@ -456,7 +456,7 @@ the generic `<sbb-radio-button-panel-note>` wrapper.
 
 ```html
 <sbb-radio-button-panel label="Example Label" subtitle="Subtitle">
-  <sbb-icon svgIcon="kom:heart-small" sbbIcon></sbb-icon>
+  <sbb-icon svgIcon="heart-small" sbbIcon></sbb-icon>
 </sbb-radio-button-panel>
 ```
 
@@ -467,7 +467,7 @@ the generic `<sbb-radio-button-panel-note>` wrapper.
   Example Label
   <sbb-radio-button-panel-subtitle>Subtitle</sbb-radio-button-panel-subtitle>
   <sbb-radio-button-panel-note
-    ><sbb-icon svgIcon="kom:heart-small" sbbIcon></sbb-icon
+    ><sbb-icon svgIcon="heart-small" sbbIcon></sbb-icon
   ></sbb-radio-button-panel-note>
 </sbb-radio-button-panel>
 ```
@@ -712,21 +712,21 @@ Alternatively the new element `<sbb-toggle-icon>` can be used to wrap an icon.
 
 ```html
 <sbb-toggle-option label="Option 1" value="dog">
-  <sbb-icon svgIcon="kom:arrows-right-left-small" *sbbIcon></sbb-icon>
+  <sbb-icon svgIcon="arrows-right-left-small" *sbbIcon></sbb-icon>
 </sbb-toggle-option>
 <sbb-toggle-option label="Option 2" value="cat">
-  <sbb-icon svgIcon="kom:arrows-right-left-small" *sbbIcon></sbb-icon>
+  <sbb-icon svgIcon="arrows-right-left-small" *sbbIcon></sbb-icon>
 </sbb-toggle-option>
 ```
 
 **New**
 
 ```html
-<sbb-toggle-option label="Option 1" value="cat" svgIcon="kom:arrows-right-left-small">
+<sbb-toggle-option label="Option 1" value="cat" svgIcon="arrows-right-left-small">
 </sbb-toggle-option>
 <sbb-toggle-option label="Option 2" value="cat">
   <sbb-toggle-icon>
-    <sbb-icon svgIcon="kom:arrows-right-left-small"></sbb-icon>
+    <sbb-icon svgIcon="arrows-right-left-small"></sbb-icon>
   </sbb-toggle-icon>
 </sbb-toggle-option>
 ```

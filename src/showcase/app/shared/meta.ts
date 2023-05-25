@@ -21,7 +21,7 @@ export interface ShowcaseMetaEntry {
 export const PACKAGES: { [key: string]: ShowcaseMetaPackage } = {
   angular: {
     name: '@sbb-esta/angular',
-    svgIcon: 'kom:browser-small',
+    svgIcon: 'browser-small',
     image: 'assets/websites.jpg',
     description: 'Components which can be used for websites and webapps.',
     sections: [
@@ -97,7 +97,7 @@ export const PACKAGES: { [key: string]: ShowcaseMetaPackage } = {
   },
   'angular-experimental': {
     name: '@sbb-esta/angular-experimental',
-    svgIcon: 'kom:cloud-lightning-small',
+    svgIcon: 'cloud-lightning-small',
     image: 'assets/websites.jpg',
     description: 'Experimental components which can be used for websites and webapps.',
     sections: [
@@ -113,7 +113,7 @@ export const PACKAGES: { [key: string]: ShowcaseMetaPackage } = {
   },
   'journey-maps': {
     name: '@sbb-esta/journey-maps',
-    svgIcon: 'kom:switzerland-route-small',
+    svgIcon: 'switzerland-route-small',
     image: 'assets/journey-maps.jpg',
     description: '',
     sections: [

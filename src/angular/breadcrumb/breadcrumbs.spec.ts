@@ -116,7 +116,7 @@ describe('SbbBreadcrumbs', () => {
 
       const breadrcrumbRoot = fixture.debugElement.query(By.css('.sbb-breadcrumb-root'));
       expect(breadrcrumbRoot).toBeTruthy();
-      expect(breadrcrumbRoot.query(By.css('.sbb-icon[svgicon="kom:house-small"]'))).toBeTruthy();
+      expect(breadrcrumbRoot.query(By.css('.sbb-icon[svgicon="house-small"]'))).toBeTruthy();
       expect(breadrcrumbRoot)
         .withContext('Expected breadcrumbRoot to be at position 1')
         .toBe(breadcrumbs[0]);

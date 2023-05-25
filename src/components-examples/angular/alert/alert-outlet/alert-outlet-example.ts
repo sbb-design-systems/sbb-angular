@@ -20,8 +20,8 @@ export class AlertOutletExample implements OnInit {
     this.add();
     this.add({ routerLink: { routerLink: '#' } });
     this.add({ link: 'https://sbb.ch' });
-    this.add({ svgIcon: 'fpl:disruption' });
-    this.add({ svgIcon: 'kom:eye-disabled-small' });
+    this.add({ svgIcon: 'disruption' });
+    this.add({ svgIcon: 'eye-disabled-small' });
   }
 
   add(config?: SbbAlertConfig) {

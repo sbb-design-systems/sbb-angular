@@ -54,7 +54,7 @@ class RadioButtonPanelDirectiveTest {
       <sbb-radio-button-panel>
         Test 1
         <sbb-radio-button-panel-note>
-          <sbb-icon svgIcon="kom:heart"></sbb-icon>
+          <sbb-icon svgIcon="heart"></sbb-icon>
         </sbb-radio-button-panel-note>
       </sbb-radio-button-panel>
     </sbb-radio-group>

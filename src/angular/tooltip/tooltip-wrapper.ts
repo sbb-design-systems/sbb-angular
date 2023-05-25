@@ -72,7 +72,7 @@ export class SbbTooltipWrapper
    * The indicator icon, which will be shown as the tooltip indicator.
    * Must be a valid svgIcon input for sbb-icon.
    *
-   * e.g. svgIcon="kom:circle-question-mark-small"
+   * e.g. svgIcon="circle-question-mark-small"
    */
   @Input() svgIcon: string;
 
@@ -85,9 +85,7 @@ export class SbbTooltipWrapper
       if (icon) {
         return icon;
       } else {
-        return variant === 'standard'
-          ? 'kom:circle-question-mark-small'
-          : 'kom:circle-information-small';
+        return variant === 'standard' ? 'circle-question-mark-small' : 'circle-information-small';
       }
     })
   );

@@ -54,12 +54,12 @@ export abstract class SbbNotificationToastContainerBase
   get _svgIcon() {
     switch (this.config.type) {
       case 'success':
-        return 'kom:tick-small';
+        return 'tick-small';
       case 'error':
       case 'warn':
-        return 'kom:sign-exclamation-point-small';
+        return 'sign-exclamation-point-small';
       default:
-        return 'kom:circle-information-small';
+        return 'circle-information-small';
     }
   }
 

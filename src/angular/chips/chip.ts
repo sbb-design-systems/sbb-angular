@@ -79,8 +79,7 @@ export class SbbChipTrailingIcon {}
   inputs: ['tabIndex'],
   exportAs: 'sbbChip',
   template: ` <ng-content></ng-content>
-    <sbb-icon sbbChipRemove svgIcon="kom:cross-small" *ngIf="removable && !removeIcon">
-    </sbb-icon>`,
+    <sbb-icon sbbChipRemove svgIcon="cross-small" *ngIf="removable && !removeIcon"> </sbb-icon>`,
   changeDetection: ChangeDetectionStrategy.OnPush,
   encapsulation: ViewEncapsulation.None,
   host: {

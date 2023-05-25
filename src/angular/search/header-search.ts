@@ -95,7 +95,7 @@ export class SbbHeaderSearch {
 
   /** The indicator icon from the contained sbb-search component. */
   get svgIcon(): string {
-    return this._search?.svgIcon || 'kom:magnifying-glass-small';
+    return this._search?.svgIcon || 'magnifying-glass-small';
   }
 
   /** Whether or not the overlay panel is open. */

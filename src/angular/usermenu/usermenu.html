@@ -4,7 +4,7 @@
   (click)="_emitLogin()"
   type="button"
 >
-  <sbb-icon svgIcon="kom:user-small" class="sbb-usermenu-logged-out-icon"></sbb-icon>
+  <sbb-icon svgIcon="user-small" class="sbb-usermenu-logged-out-icon"></sbb-icon>
   <span class="sbb-usermenu-logged-out-label">{{ _labelLogin }}</span>
 </button>
 
@@ -20,7 +20,7 @@
   <ng-template sbbMenuDynamicTrigger>
     <ng-container *ngTemplateOutlet="triggerContent"></ng-container>
     <sbb-icon
-      [svgIcon]="(variant | async) === 'standard' ? 'kom:chevron-small-down-small' : 'kom:chevron-right-small'"
+      [svgIcon]="(variant | async) === 'standard' ? 'chevron-small-down-small' : 'chevron-right-small'"
       class="sbb-usermenu-arrow"
     ></sbb-icon>
   </ng-template>

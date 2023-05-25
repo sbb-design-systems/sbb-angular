@@ -34,7 +34,7 @@ export class SbbContextmenuTrigger extends SbbMenuTrigger {
    * Custom trigger icon.
    * Must be a valid svgIcon input for sbb-icon.
    *
-   * e.g. svgIcon="kom:plus-small"
+   * e.g. svgIcon="plus-small"
    */
-  @Input() svgIcon: string = 'kom:context-menu-small';
+  @Input() svgIcon: string = 'context-menu-small';
 }

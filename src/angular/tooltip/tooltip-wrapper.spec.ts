@@ -214,7 +214,7 @@ describe('SbbTooltipWrapper', () => {
     it('should show the correct icon in standard variant', () => {
       const spy = jasmine.createSpy('icon subject spy');
       component.tooltip._svgIcon.subscribe(spy);
-      expect(spy).toHaveBeenCalledWith('kom:circle-question-mark-small');
+      expect(spy).toHaveBeenCalledWith('circle-question-mark-small');
     });
 
     describe('lean', () => {
@@ -222,7 +222,7 @@ describe('SbbTooltipWrapper', () => {
       it('should show the correct icon', () => {
         const spy = jasmine.createSpy('icon subject spy');
         component.tooltip._svgIcon.subscribe(spy);
-        expect(spy).toHaveBeenCalledWith('kom:circle-information-small');
+        expect(spy).toHaveBeenCalledWith('circle-information-small');
       });
     });
   });

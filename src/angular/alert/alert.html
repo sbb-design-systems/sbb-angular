@@ -1,11 +1,11 @@
 <div class="sbb-alert-icon sbb-icon-scaled">
-  <sbb-icon [svgIcon]="svgIcon || 'fpl:info'"></sbb-icon>
+  <sbb-icon [svgIcon]="svgIcon || 'info'"></sbb-icon>
 </div>
 <div class="sbb-alert-content">
   <ng-content></ng-content>
   <sbb-icon
     *ngIf="_isNativeLink"
-    svgIcon="kom:arrow-long-right-small"
+    svgIcon="arrow-long-right-small"
     class="sbb-alert-content-link-icon sbb-icon-scaled"
   ></sbb-icon>
 </div>
@@ -15,7 +15,7 @@
     class="sbb-alert-close-button sbb-button-reset-frameless sbb-icon-scaled"
     (click)="_handleDismiss($event)"
   >
-    <sbb-icon svgIcon="kom:cross-small" class="sbb-alert-close-button-icon"></sbb-icon>
+    <sbb-icon svgIcon="cross-small" class="sbb-alert-close-button-icon"></sbb-icon>
     <span class="cdk-visually-hidden">{{ _labelClose }}</span>
   </button>
 </div>
