@@ -15936,34 +15936,24 @@ style-search@^0.1.0:
   resolved "https://registry.yarnpkg.com/style-search/-/style-search-0.1.0.tgz#7958c793e47e32e07d2b5cafe5c0bf8e12e77902"
   integrity sha512-Dj1Okke1C3uKKwQcetra4jSuk0DqbzbYtXipzFlFMZtowbF1x7BKJwB9AayVMyFARvU8EDrZdcax4At/452cAg==
 
-stylelint-config-recommended-scss@11.0.0:
-  version "11.0.0"
-  resolved "https://registry.yarnpkg.com/stylelint-config-recommended-scss/-/stylelint-config-recommended-scss-11.0.0.tgz#7b933ecac99cd3b52d14d1746e3ecd36f421b4b6"
-  integrity sha512-EDghTDU7aOv2LTsRZvcT1w8mcjUaMhuy+t38iV5I/0Qiu6ixdkRwhLEMul3K/fnB2v9Nwqvb3xpvJfPH+HduDw==
+stylelint-config-recommended-scss@12.0.0:
+  version "12.0.0"
+  resolved "https://registry.yarnpkg.com/stylelint-config-recommended-scss/-/stylelint-config-recommended-scss-12.0.0.tgz#9d9e82c46012649f11bfebcbc788f58e61860f33"
+  integrity sha512-5Bb2mlGy6WLa30oNeKpZvavv2lowJUsUJO25+OA68GFTemlwd1zbFsL7q0bReKipOSU3sG47hKneZ6Nd+ctrFA==
   dependencies:
     postcss-scss "^4.0.6"
     stylelint-config-recommended "^12.0.0"
-    stylelint-scss "^4.6.0"
+    stylelint-scss "^5.0.0"
 
 stylelint-config-recommended@^12.0.0:
   version "12.0.0"
   resolved "https://registry.yarnpkg.com/stylelint-config-recommended/-/stylelint-config-recommended-12.0.0.tgz#d0993232fca017065fd5acfcb52dd8a188784ef4"
   integrity sha512-x6x8QNARrGO2sG6iURkzqL+Dp+4bJorPMMRNPScdvaUK8PsynriOcMW7AFDKqkWAS5wbue/u8fUT/4ynzcmqdQ==
 
-stylelint-scss@5.0.0:
+stylelint-scss@5.0.0, stylelint-scss@^5.0.0:
   version "5.0.0"
   resolved "https://registry.yarnpkg.com/stylelint-scss/-/stylelint-scss-5.0.0.tgz#2ec6323bac8003fa64871f3fbb75108270e99b83"
   integrity sha512-5Ee5kG3JIcP2jk2PMoFMiNmW/815V+wK5o37X5ke90ihWMpPXI9iyqeA6zEWipWSRXeQc0kqbd7hKqiR+wPKNA==
-  dependencies:
-    postcss-media-query-parser "^0.2.3"
-    postcss-resolve-nested-selector "^0.1.1"
-    postcss-selector-parser "^6.0.11"
-    postcss-value-parser "^4.2.0"
-
-stylelint-scss@^4.6.0:
-  version "4.7.0"
-  resolved "https://registry.yarnpkg.com/stylelint-scss/-/stylelint-scss-4.7.0.tgz#f986bf8c5a4b93eae2b67d3a3562eef822657908"
-  integrity sha512-TSUgIeS0H3jqDZnby1UO1Qv3poi1N8wUYIJY6D1tuUq2MN3lwp/rITVo0wD+1SWTmRm0tNmGO0b7nKInnqF6Hg==
   dependencies:
     postcss-media-query-parser "^0.2.3"
     postcss-resolve-nested-selector "^0.1.1"
