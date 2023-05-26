@@ -86,7 +86,7 @@ export class SbbFeatureEventListener implements OnChanges, OnDestroy, OnInit {
 
   ngOnInit(): void {
     this.onFeaturesUnselect.pipe(takeUntil(this._destroyed)).subscribe((types) => {
-      this._unselectFeaturesOfType(types);
+      this.unselectFeaturesOfType(types);
     });
   }
 
@@ -318,7 +318,7 @@ export class SbbFeatureEventListener implements OnChanges, OnDestroy, OnInit {
   }
 
   // only used for POI-features at the moment
-  private _unselectFeaturesOfType(types: DeselectableSbbFeatureDataType[]) {
+  unselectFeaturesOfType(types: DeselectableSbbFeatureDataType[]) {
     const selectedFeaturesOfTypes = this.overlayFeatures.filter((feature) =>
       types.some((type) => feature.featureDataType === type)
     );
