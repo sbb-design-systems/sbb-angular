@@ -75,6 +75,9 @@
           <sbb-checkbox formControlName="limitMaxBounds"> Limit max bounds to CH</sbb-checkbox>
         </div>
       </li>
+      <button sbb-ghost-button (click)="client.unselectAll(['MARKER', 'POI'])">
+        Close all Teasers / Pop-Ups
+      </button>
       <li formGroupName="styleOptions">
         <sbb-radio-group class="sbb-checkbox-group-horizontal" formControlName="mode">
           <sbb-radio-button value="bright">Bright Mode</sbb-radio-button>

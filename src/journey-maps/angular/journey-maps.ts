@@ -395,15 +395,21 @@ export class SbbJourneyMaps implements OnInit, AfterViewInit, OnDestroy, OnChang
     this.touchEventCollector.next(event);
   }
 
+  onFeaturesUnselectEvent: Subject<DeselectableSbbFeatureDataType[]> = new Subject();
+
   /**
    * Unselects all elements on the map that are of one of the `SbbFeatureDataType`s passed in as a parameter.
    * Currently, we only support 'MARKER' and 'POI'.
    */
   unselectAll(types: DeselectableSbbFeatureDataType[]): void {
     // unselect markers
-    this.onMarkerUnselected();
+    if (types.includes('MARKER')) {
+      this.onMarkerUnselected();
+    }
     // unselect pois
-    // TODO cdi ROKAS-1438
+    if (types.includes('POI')) {
+      this.onFeaturesUnselectEvent.next(['POI']);
+    }
   }
 
   /**

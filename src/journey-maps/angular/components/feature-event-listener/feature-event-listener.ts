@@ -6,6 +6,7 @@ import {
   Input,
   OnChanges,
   OnDestroy,
+  OnInit,
   Output,
   SimpleChanges,
 } from '@angular/core';
@@ -14,6 +15,7 @@ import { Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
 
 import {
+  DeselectableSbbFeatureDataType,
   SbbFeatureData,
   SbbFeatureDataType,
   SbbFeaturesClickEventData,
@@ -42,10 +44,11 @@ import { SBB_ZONE_LAYER } from '../../services/map/map-zone-service';
   providers: [SbbMapSelectionEvent],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class SbbFeatureEventListener implements OnChanges, OnDestroy {
+export class SbbFeatureEventListener implements OnChanges, OnDestroy, OnInit {
   @Input() listenerOptions: SbbListenerOptions;
   @Input() map: MapLibreMap | null;
   @Input() poiOptions?: SbbPointsOfInterestOptions;
+  @Input() onFeaturesUnselect: Subject<DeselectableSbbFeatureDataType[]>;
 
   @Output() featureSelectionsChange: EventEmitter<SbbFeaturesSelectEventData> =
     new EventEmitter<SbbFeaturesSelectEventData>();
@@ -80,6 +83,12 @@ export class SbbFeatureEventListener implements OnChanges, OnDestroy {
     private _cd: ChangeDetectorRef,
     readonly mapSelectionEventService: SbbMapSelectionEvent
   ) {}
+
+  ngOnInit(): void {
+    this.onFeaturesUnselect.pipe(takeUntil(this._destroyed)).subscribe((types) => {
+      this._unselectFeaturesOfType(types);
+    });
+  }
 
   ngOnDestroy(): void {
     this._destroyed.next();
@@ -305,5 +314,14 @@ export class SbbFeatureEventListener implements OnChanges, OnDestroy {
       this.mapSelectionEventService.toggleSelection(this.overlayFeatures);
       this.featureSelectionsChange.next(this.mapSelectionEventService.findSelectedFeatures());
     }
+  }
+
+  private _unselectFeaturesOfType(types: DeselectableSbbFeatureDataType[]) {
+    const selectedFeaturesOfTypes = this.mapSelectionEventService
+      .findSelectedFeatures()
+      .features.filter((feature) => types.some((type) => feature.featureDataType === type));
+    this.mapSelectionEventService.toggleSelection(selectedFeaturesOfTypes);
+    this.overlayVisible = false;
+    this._cd.detectChanges();
   }
 }
