@@ -23,9 +23,11 @@ describe('FeatureEventListener', () => {
     component.overlayFeatures = [
       {
         featureDataType: 'POI',
+        selected: true,
       } as any,
       {
         featureDataType: 'MARKER',
+        selected: true,
       } as any,
     ];
 
