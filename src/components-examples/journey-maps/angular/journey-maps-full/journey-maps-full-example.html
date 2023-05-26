@@ -75,15 +75,6 @@
           <sbb-checkbox formControlName="limitMaxBounds"> Limit max bounds to CH</sbb-checkbox>
         </div>
       </li>
-      <div class="unselect-buttons">
-        <button sbb-ghost-button (click)="client.unselectAll(['MARKER', 'POI'])">
-          Close all Teasers / Popups
-        </button>
-        <button sbb-ghost-button (click)="client.unselectAll(['POI'])">Close POI Teasers</button>
-        <button sbb-ghost-button (click)="client.unselectAll(['MARKER'])">
-          Close marker Teasers / Popups
-        </button>
-      </div>
       <li formGroupName="styleOptions">
         <sbb-radio-group class="sbb-checkbox-group-horizontal" formControlName="mode">
           <sbb-radio-button value="bright">Bright Mode</sbb-radio-button>
@@ -141,6 +132,18 @@
         <button sbb-ghost-button (click)="client.moveSouth()">South</button>
         <button sbb-ghost-button (click)="client.moveWest()">West</button>
       </li>
+
+      <li>
+        <span class="sbb-label">Teaser / Popup actions</span>
+        <button sbb-ghost-button (click)="client.unselectAll(['MARKER', 'POI'])">
+          Close all Teasers / Popups
+        </button>
+        <button sbb-ghost-button (click)="client.unselectAll(['POI'])">Close POI Teasers</button>
+        <button sbb-ghost-button (click)="client.unselectAll(['MARKER'])">
+          Close marker Teasers / Popups
+        </button>
+      </li>
+
       <li>
         <div formGroupName="listenerOptions">
           <span class="sbb-label">Map interaction configuration</span>

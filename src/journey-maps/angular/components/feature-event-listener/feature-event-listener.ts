@@ -197,7 +197,7 @@ export class SbbFeatureEventListener implements OnChanges, OnDestroy, OnInit {
     );
   }
 
-  // what does this method do ?
+  // return either all features or ordered by route (in case of multiple routes)
   private _filterOverlayFeatures(
     features: SbbFeatureData[],
     type: SbbFeatureDataType
@@ -261,6 +261,7 @@ export class SbbFeatureEventListener implements OnChanges, OnDestroy, OnInit {
         clickedFeatures,
         featureDataTypeOfTopMostClickedFeature
       );
+      console.log(this.overlayFeatures);
       this.overlayIsPopup = listenerTypeOptions.popup!;
 
       if (topMostClickedFeature.geometry.type === 'Point') {
@@ -275,7 +276,6 @@ export class SbbFeatureEventListener implements OnChanges, OnDestroy, OnInit {
 
   // this method seems to return true if any of the clicked features is selected and has the same
   // SbbFeatureDataType as the top-most clicked feature.
-  // (Why does our logic have to be so complicated ???)
   private _anySelectedClickedFeatureHasSameTypeAsTopClickedFeature(
     clickedFeatures: SbbFeatureData[],
     topClickedFeatureType: SbbFeatureDataType,
@@ -316,12 +316,23 @@ export class SbbFeatureEventListener implements OnChanges, OnDestroy, OnInit {
     }
   }
 
+  // only used for POI-features at the moment
   private _unselectFeaturesOfType(types: DeselectableSbbFeatureDataType[]) {
-    const selectedFeaturesOfTypes = this.mapSelectionEventService
-      .findSelectedFeatures()
-      .features.filter((feature) => types.some((type) => feature.featureDataType === type));
-    this.mapSelectionEventService.toggleSelection(selectedFeaturesOfTypes);
-    this.overlayVisible = false;
-    this._cd.detectChanges();
+    const selectedFeaturesOfTypes = this.overlayFeatures.filter((feature) =>
+      types.some((type) => feature.featureDataType === type)
+    );
+
+    if (selectedFeaturesOfTypes.length > 0) {
+      // unselect given features
+      this.overlayVisible = false;
+      this.mapSelectionEventService.toggleSelection(selectedFeaturesOfTypes);
+      this.featureSelectionsChange.next({ features: [] });
+
+      // remove unselected features from list
+      this.overlayFeatures = this.overlayFeatures.filter((feature) =>
+        types.some((type) => feature.featureDataType !== type)
+      );
+      this._cd.detectChanges();
+    }
   }
 }
