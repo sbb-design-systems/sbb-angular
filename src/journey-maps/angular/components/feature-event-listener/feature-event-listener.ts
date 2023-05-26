@@ -312,6 +312,7 @@ export class SbbFeatureEventListener implements OnChanges, OnDestroy, OnInit {
     if (this.overlayEventType === 'click') {
       // if a popup or teaser overlay was closed,
       this.mapSelectionEventService.toggleSelection(this.overlayFeatures);
+      this.overlayFeatures = [];
       this.featureSelectionsChange.next(this.mapSelectionEventService.findSelectedFeatures());
     }
   }
