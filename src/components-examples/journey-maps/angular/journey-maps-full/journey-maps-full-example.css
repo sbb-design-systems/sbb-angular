@@ -37,3 +37,10 @@ sbb-form-field {
 .rail-options .sbb-select {
   width: 305px;
 }
+
+.unselect-buttons {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  gap: 5px;
+}
