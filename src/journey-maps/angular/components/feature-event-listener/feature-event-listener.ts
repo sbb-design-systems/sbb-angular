@@ -261,7 +261,6 @@ export class SbbFeatureEventListener implements OnChanges, OnDestroy, OnInit {
         clickedFeatures,
         featureDataTypeOfTopMostClickedFeature
       );
-      console.log(this.overlayFeatures);
       this.overlayIsPopup = listenerTypeOptions.popup!;
 
       if (topMostClickedFeature.geometry.type === 'Point') {
