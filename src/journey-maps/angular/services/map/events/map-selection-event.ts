@@ -69,7 +69,6 @@ export class SbbMapSelectionEvent {
     }
   }
 
-  // TODO cdi ROKAS-1438: document what does this function do?
   initSelectedState(
     mapInstance: MaplibreMap,
     features: Feature[],
