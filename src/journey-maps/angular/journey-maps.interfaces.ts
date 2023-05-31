@@ -220,7 +220,7 @@ export interface SbbJourneyMetaInformation {
 
 export type SbbFeatureDataType = 'MARKER' | 'ROUTE' | 'STATION' | 'ZONE' | 'POI';
 
-export type DeselectableSbbFeatureDataType = Extract<SbbFeatureDataType, 'MARKER' | 'POI'>;
+export type SbbDeselectableFeatureDataType = Extract<SbbFeatureDataType, 'MARKER' | 'POI'>;
 
 /** Angular TemplateRef or an id of a HTML <template>. */
 export type SbbTemplateType = TemplateRef<any> | string;

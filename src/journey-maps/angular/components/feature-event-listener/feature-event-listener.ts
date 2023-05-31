@@ -15,7 +15,7 @@ import { Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
 
 import {
-  DeselectableSbbFeatureDataType,
+  SbbDeselectableFeatureDataType,
   SbbFeatureData,
   SbbFeatureDataType,
   SbbFeaturesClickEventData,
@@ -48,7 +48,7 @@ export class SbbFeatureEventListener implements OnChanges, OnDestroy, OnInit {
   @Input() listenerOptions: SbbListenerOptions;
   @Input() map: MapLibreMap | null;
   @Input() poiOptions?: SbbPointsOfInterestOptions;
-  @Input() onFeaturesUnselect: Subject<DeselectableSbbFeatureDataType[]>;
+  @Input() onFeaturesUnselect: Subject<SbbDeselectableFeatureDataType[]>;
 
   @Output() featureSelectionsChange: EventEmitter<SbbFeaturesSelectEventData> =
     new EventEmitter<SbbFeaturesSelectEventData>();
@@ -317,7 +317,7 @@ export class SbbFeatureEventListener implements OnChanges, OnDestroy, OnInit {
   }
 
   // only used for POI-features at the moment
-  unselectFeaturesOfType(types: DeselectableSbbFeatureDataType[]) {
+  unselectFeaturesOfType(types: SbbDeselectableFeatureDataType[]) {
     const selectedFeaturesOfTypes = this.overlayFeatures.filter((feature) =>
       types.some((type) => feature.featureDataType === type)
     );
