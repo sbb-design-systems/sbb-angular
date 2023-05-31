@@ -279,7 +279,7 @@ export class SbbFeatureEventListener implements OnChanges, OnDestroy, OnInit {
   private _anySelectedClickedFeatureHasSameTypeAsTopClickedFeature(
     clickedFeatures: SbbFeatureData[],
     topClickedFeatureType: SbbFeatureDataType,
-    selectedFeatures?: { features: SbbFeatureData[] | undefined } | undefined
+    selectedFeatures?: { features: SbbFeatureData[] | undefined }
   ): boolean {
     const selectedIdsOfSameFeatureTypeAsTopClicked = this._idsOfFeatureWithSameFeatureDataType(
       selectedFeatures?.features,
