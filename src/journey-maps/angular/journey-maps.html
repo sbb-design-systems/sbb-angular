@@ -17,6 +17,7 @@
       (featuresHoverChange)="featuresHoverChange.next($event)"
       (featuresClick)="featuresClick.next($event); handleMarkerOrClusterClick($event.features)"
       (featureSelectionsChange)="selectedFeaturesChange.next($event)"
+      [onFeaturesUnselect]="onFeaturesUnselectEvent"
     ></sbb-feature-event-listener>
     <sbb-marker-details
       [selectedMarker]="selectedMarker"

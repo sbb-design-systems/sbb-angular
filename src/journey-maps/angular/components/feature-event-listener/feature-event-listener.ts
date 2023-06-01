@@ -6,6 +6,7 @@ import {
   Input,
   OnChanges,
   OnDestroy,
+  OnInit,
   Output,
   SimpleChanges,
 } from '@angular/core';
@@ -14,6 +15,7 @@ import { Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
 
 import {
+  SbbDeselectableFeatureDataType,
   SbbFeatureData,
   SbbFeatureDataType,
   SbbFeaturesClickEventData,
@@ -42,10 +44,11 @@ import { SBB_ZONE_LAYER } from '../../services/map/map-zone-service';
   providers: [SbbMapSelectionEvent],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class SbbFeatureEventListener implements OnChanges, OnDestroy {
+export class SbbFeatureEventListener implements OnChanges, OnDestroy, OnInit {
   @Input() listenerOptions: SbbListenerOptions;
   @Input() map: MapLibreMap | null;
   @Input() poiOptions?: SbbPointsOfInterestOptions;
+  @Input() onFeaturesUnselect: Subject<SbbDeselectableFeatureDataType[]>;
 
   @Output() featureSelectionsChange: EventEmitter<SbbFeaturesSelectEventData> =
     new EventEmitter<SbbFeaturesSelectEventData>();
@@ -80,6 +83,12 @@ export class SbbFeatureEventListener implements OnChanges, OnDestroy {
     private _cd: ChangeDetectorRef,
     readonly mapSelectionEventService: SbbMapSelectionEvent
   ) {}
+
+  ngOnInit(): void {
+    this.onFeaturesUnselect.pipe(takeUntil(this._destroyed)).subscribe((types) => {
+      this.unselectFeaturesOfType(types);
+    });
+  }
 
   ngOnDestroy(): void {
     this._destroyed.next();
@@ -135,7 +144,7 @@ export class SbbFeatureEventListener implements OnChanges, OnDestroy {
         );
         this._featuresClickEvent
           .pipe(takeUntil(this._destroyed))
-          .subscribe((data) => this._featureClicked(data));
+          .subscribe((clickedFeatures) => this._featureClicked(clickedFeatures));
       }
 
       if (!this._featuresHoverEvent) {
@@ -175,14 +184,20 @@ export class SbbFeatureEventListener implements OnChanges, OnDestroy {
     return selectionModes;
   }
 
-  private _featureClicked(data: SbbFeaturesClickEventData) {
-    this.mapSelectionEventService.toggleSelection(data.features);
+  private _featureClicked(clickEventData: SbbFeaturesClickEventData) {
+    this.mapSelectionEventService.toggleSelection(clickEventData.features);
     const selectedFeatures = this.mapSelectionEventService.findSelectedFeatures();
     this.featureSelectionsChange.next(selectedFeatures);
-    this.featuresClick.next(data);
-    this._updateOverlay(data.features, 'click', data.clickLngLat, selectedFeatures);
+    this.featuresClick.next(clickEventData);
+    this._updateOverlay(
+      clickEventData.features,
+      'click',
+      clickEventData.clickLngLat,
+      selectedFeatures
+    );
   }
 
+  // return either all features or ordered by route (in case of multiple routes)
   private _filterOverlayFeatures(
     features: SbbFeatureData[],
     type: SbbFeatureDataType
@@ -216,37 +231,40 @@ export class SbbFeatureEventListener implements OnChanges, OnDestroy {
   }
 
   private _updateOverlay(
-    features: SbbFeatureData[],
+    clickedFeatures: SbbFeatureData[],
     event: 'click' | 'hover',
     pos: { lng: number; lat: number },
     selectedFeatures?: SbbFeaturesSelectEventData
   ) {
-    const topMostFeature = features[0];
-    const featureDataType = topMostFeature.featureDataType;
-    const listenerTypeOptions: SbbListenerTypeOptions = this.listenerOptions[featureDataType]!;
+    const topMostClickedFeature = clickedFeatures[0];
+    const featureDataTypeOfTopMostClickedFeature = topMostClickedFeature.featureDataType;
+    const listenerTypeOptions: SbbListenerTypeOptions =
+      this.listenerOptions[featureDataTypeOfTopMostClickedFeature]!;
     const isClick = event === 'click';
     const template = isClick
       ? listenerTypeOptions?.clickTemplate
       : listenerTypeOptions?.hoverTemplate;
-
-    const selectedIds = (selectedFeatures?.features ?? [])
-      .filter((f) => f.featureDataType === featureDataType)
-      .map((f) => f.id);
-
-    // If we have a click event then we have to decide if we want to show or hide the overlay.
     const showOverlay =
-      !isClick || features.map((f) => f.id).some((id) => selectedIds.includes(id));
+      !isClick ||
+      this._anySelectedClickedFeatureHasSameTypeAsTopClickedFeature(
+        clickedFeatures,
+        featureDataTypeOfTopMostClickedFeature,
+        selectedFeatures
+      );
 
     if (template && showOverlay) {
       clearTimeout(this.overlayTimeoutId);
       this.overlayVisible = true;
       this.overlayEventType = event;
       this.overlayTemplate = template;
-      this.overlayFeatures = this._filterOverlayFeatures(features, featureDataType);
+      this.overlayFeatures = this._filterOverlayFeatures(
+        clickedFeatures,
+        featureDataTypeOfTopMostClickedFeature
+      );
       this.overlayIsPopup = listenerTypeOptions.popup!;
 
-      if (topMostFeature.geometry.type === 'Point') {
-        this.overlayPosition = topMostFeature.geometry.coordinates as LngLatLike;
+      if (topMostClickedFeature.geometry.type === 'Point') {
+        this.overlayPosition = topMostClickedFeature.geometry.coordinates as LngLatLike;
       } else {
         this.overlayPosition = pos;
       }
@@ -255,11 +273,66 @@ export class SbbFeatureEventListener implements OnChanges, OnDestroy {
     }
   }
 
+  // this method seems to return true if any of the clicked features is selected and has the same
+  // SbbFeatureDataType as the top-most clicked feature.
+  private _anySelectedClickedFeatureHasSameTypeAsTopClickedFeature(
+    clickedFeatures: SbbFeatureData[],
+    topClickedFeatureType: SbbFeatureDataType,
+    selectedFeatures?: { features: SbbFeatureData[] | undefined }
+  ): boolean {
+    const selectedIdsOfSameFeatureTypeAsTopClicked = this._idsOfFeatureWithSameFeatureDataType(
+      selectedFeatures?.features,
+      topClickedFeatureType
+    );
+    return this._anyFeaturesWithSameId(clickedFeatures, selectedIdsOfSameFeatureTypeAsTopClicked);
+  }
+
+  private _idsOfFeatureWithSameFeatureDataType(
+    features: SbbFeatureData[] | undefined,
+    featureDataType: SbbFeatureDataType
+  ): (string | number | undefined)[] {
+    return this._featuresWithSameFeatureDataType(features, featureDataType).map(
+      (feature) => feature.id
+    );
+  }
+  private _featuresWithSameFeatureDataType(
+    features: SbbFeatureData[] | undefined,
+    featureDataType: SbbFeatureDataType
+  ) {
+    return (features ?? []).filter((feature) => feature.featureDataType === featureDataType);
+  }
+
+  private _anyFeaturesWithSameId(features: SbbFeatureData[], ids: (string | number | undefined)[]) {
+    return features.map((feature) => feature.id).some((id) => ids.includes(id));
+  }
+
   onOverlayClosed() {
     this.overlayVisible = false;
     if (this.overlayEventType === 'click') {
+      // if a popup or teaser overlay was closed,
       this.mapSelectionEventService.toggleSelection(this.overlayFeatures);
+      this.overlayFeatures = [];
       this.featureSelectionsChange.next(this.mapSelectionEventService.findSelectedFeatures());
+    }
+  }
+
+  // only used for POI-features at the moment
+  unselectFeaturesOfType(types: SbbDeselectableFeatureDataType[]) {
+    const selectedFeaturesOfTypes = this.overlayFeatures.filter((feature) =>
+      types.some((type) => feature.featureDataType === type)
+    );
+
+    if (selectedFeaturesOfTypes.length > 0) {
+      // unselect given features
+      this.overlayVisible = false;
+      this.mapSelectionEventService.toggleSelection(selectedFeaturesOfTypes);
+      this.featureSelectionsChange.next({ features: [] });
+
+      // remove unselected features from list
+      this.overlayFeatures = this.overlayFeatures.filter((feature) =>
+        types.some((type) => feature.featureDataType !== type)
+      );
+      this._cd.detectChanges();
     }
   }
 }

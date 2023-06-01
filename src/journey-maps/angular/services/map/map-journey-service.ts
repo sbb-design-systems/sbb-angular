@@ -56,13 +56,12 @@ export class SbbMapJourneyService {
         mapSelectionEventService,
         toFeatureCollection(routeFeatures)
       );
-
       this._mapTransferService.updateTransfer(map, toFeatureCollection(transferFeatures));
     } else {
-      // handle transfer and routes together, otherwise they can overwrite each other's transfer or route data
       this._mapRouteService.updateRoute(
         map,
         mapSelectionEventService,
+        // handle transfer and routes together, otherwise they can overwrite each other's transfer or route data
         toFeatureCollection(routeFeatures.concat(transferFeatures)),
         stopoverFeatures,
         selectedLegId
