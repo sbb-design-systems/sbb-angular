@@ -21,7 +21,6 @@ export class SbbMapUrlService {
 
   private _setPreview(url: string, includePreview?: boolean): string {
     if (includePreview) {
-      // Set poi source to integration if needed
       return url + '_preview';
     }
     return url;
@@ -29,7 +28,6 @@ export class SbbMapUrlService {
 
   private _setEnvironment(url: string, environment?: SbbPointsOfInterestEnvironmentType): string {
     if (environment === 'int') {
-      // Set poi source to integration if needed
       return url + '_integration';
     }
     return url;

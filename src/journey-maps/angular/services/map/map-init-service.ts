@@ -160,10 +160,7 @@ export class SbbMapInitService {
 
         // Set POI-Source-URL
         const poiSource = style.sources[SBB_JOURNEY_POIS_SOURCE] as VectorTileSource;
-        poiSource.url = this._urlService.getPoiSourceUrlByOptions(
-          poiSource.url, // TODO: Replace when tileserver supports preview
-          poiOptions
-        );
+        poiSource.url = this._urlService.getPoiSourceUrlByOptions(poiSource.url, poiOptions);
 
         return style;
       })
