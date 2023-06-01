@@ -161,7 +161,7 @@ export class SbbMapInitService {
         // Set POI-Source-URL
         const poiSource = style.sources[SBB_JOURNEY_POIS_SOURCE] as VectorTileSource;
         poiSource.url = this._urlService.getPoiSourceUrlByOptions(
-          'https://ki-journey-maps-tiles-dev.sbb-cloud.net/data/journey_pois.json', // TODO: Replace when tileserver supports preview
+          poiSource.url, // TODO: Replace when tileserver supports preview
           poiOptions
         );
 
