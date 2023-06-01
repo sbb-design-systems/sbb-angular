@@ -8165,9 +8165,9 @@ ee-first@1.1.1:
   integrity sha512-WMwm9LhRUo+WUaRN+vRuETqG89IgZphVSNkdFgeb6sS/E4OrDIN7t48CAewSHXc6C8lefD8KKfr5vY61brQlow==
 
 electron-to-chromium@^1.4.284, electron-to-chromium@^1.4.411:
-  version "1.4.415"
-  resolved "https://registry.yarnpkg.com/electron-to-chromium/-/electron-to-chromium-1.4.415.tgz#0e17f870c0e8a0265ed37842cca5d877a741d5ec"
-  integrity sha512-3meOxxvyUOJVwa7cem6O2/MRPZ+FTzblSPSpG7biZoF9yOVrhCaS2l9C4jjW6YTm8uuEpmApuP0xQJSmUglfdg==
+  version "1.4.416"
+  resolved "https://registry.yarnpkg.com/electron-to-chromium/-/electron-to-chromium-1.4.416.tgz#7291f704168d3842ae4da3ae9fdc7bfbeb97d116"
+  integrity sha512-AUYh0XDTb2vrj0rj82jb3P9hHSyzQNdTPYWZIhPdCOui7/vpme7+HTE07BE5jwuqg/34TZ8ktlRz6GImJ4IXjA==
 
 email-addresses@5.0.0:
   version "5.0.0"
@@ -9283,9 +9283,9 @@ fs-minipass@^3.0.0:
     minipass "^5.0.0"
 
 fs-monkey@^1.0.3:
-  version "1.0.3"
-  resolved "https://registry.yarnpkg.com/fs-monkey/-/fs-monkey-1.0.3.tgz#ae3ac92d53bb328efe0e9a1d9541f6ad8d48e2d3"
-  integrity sha512-cybjIfiiE+pTWicSCLFHSrXZ6EilF30oh91FDP9S2B051prEa7QWfrVTQm10/dDpswBDXZugPa1Ogu8Yh+HV0Q==
+  version "1.0.4"
+  resolved "https://registry.yarnpkg.com/fs-monkey/-/fs-monkey-1.0.4.tgz#ee8c1b53d3fe8bb7e5d2c5c5dfc0168afdd2f747"
+  integrity sha512-INM/fWAxMICjttnD0DX1rBvinKskj5G1w+oy/pnm9u/tSlnBrzFonJMcalKJ30P8RRsPzKcCG7Q8l0jx5Fh9YQ==
 
 fs.realpath@^1.0.0:
   version "1.0.0"
