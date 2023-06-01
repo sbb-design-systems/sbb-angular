@@ -7,7 +7,7 @@ This package is published as an [Angular Library](/journey-maps/components/angul
 
 ## Example Code
 
-You can inspect the code from our example application by clicking on the "<>" Button on the top right of the map.
+You can inspect the code from our [example application](journey-maps/components/angular/examples) by clicking on the "<>" Button on the top right of the map.
 
 ![source-code-button-hint.png](source-code-button-hint.png)
 
