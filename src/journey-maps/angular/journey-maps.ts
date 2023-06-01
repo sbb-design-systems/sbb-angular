@@ -516,11 +516,9 @@ export class SbbJourneyMaps implements OnInit, AfterViewInit, OnDestroy, OnChang
           // Update POI-Source-URL
           const currentPoiSource = this._map.getSource(SBB_JOURNEY_POIS_SOURCE) as VectorTileSource;
           const newPoiSourceUrl = this._urlService.getPoiSourceUrlByOptions(
-            'https://ki-journey-maps-tiles-dev.sbb-cloud.net/data/journey_pois.json', // TODO: Replace when tileserver supports preview
+            currentPoiSource.url,
             this.poiOptions
           );
-          console.log(newPoiSourceUrl);
-
           currentPoiSource.setUrl(newPoiSourceUrl);
           this._map.once('styledata', () => {
             this._mapService.updatePoiVisibility(this._map, this.poiOptions);
