@@ -14914,6 +14914,15 @@ sass@1.62.1:
     immutable "^4.0.0"
     source-map-js ">=0.6.2 <2.0.0"
 
+sass@1.63.0:
+  version "1.63.0"
+  resolved "https://registry.yarnpkg.com/sass/-/sass-1.63.0.tgz#76b2a27282836b3343a4a669dbafb71fd93b1927"
+  integrity sha512-YIkMh4jvWB0R43XxjEr+GG26G1X40y4tDRoBhbOD4KkfXrwJgD8elAqU4mUqC5kP2nTrf7v77ZgYPZVFebHmyw==
+  dependencies:
+    chokidar ">=3.0.0 <4.0.0"
+    immutable "^4.0.0"
+    source-map-js ">=0.6.2 <2.0.0"
+
 saucelabs@^1.5.0:
   version "1.5.0"
   resolved "https://registry.yarnpkg.com/saucelabs/-/saucelabs-1.5.0.tgz#9405a73c360d449b232839919a86c396d379fd9d"
