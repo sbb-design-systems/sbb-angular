@@ -136,6 +136,7 @@ export interface SbbZoomLevels {
 /**
  * Define for which feature types you want to be notified of events (click, hover)
  * and define templates to display in case of such an event.
+ * NB: We currently don't support having MARKERs and POIs be clickable on the same map.
  */
 export type SbbListenerOptions = {
   /** The feature type for which you want to receive events. */
