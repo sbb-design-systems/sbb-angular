@@ -5,6 +5,12 @@ framework.
 
 This package is published as an [Angular Library](/journey-maps/components/angular/overview) and as a Web Component (based on Angular Elements) which can be used in a non-Angular context.
 
+## Example Code
+
+You can inspect the code from our [example application](/journey-maps/components/angular/examples) by clicking on the "<>" Button on the top right of the map.
+
+![source-code-button-hint.png](assets/source-code-button-hint.png)
+
 ## About the map
 
 ### MapLibre
