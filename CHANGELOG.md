@@ -2,6 +2,28 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [16.1.0](https://github.com/sbb-design-systems/sbb-angular/compare/16.0.0...16.1.0) (2023-06-07)
+
+
+### Features
+
+* **journey-maps:** deselect pois ([#1910](https://github.com/sbb-design-systems/sbb-angular/issues/1910)) ([1a68b63](https://github.com/sbb-design-systems/sbb-angular/commit/1a68b63f89b7e99af1ca0f0d48e11cf43ace3ffc))
+* **multiple:** update components to use new icons ([#1905](https://github.com/sbb-design-systems/sbb-angular/issues/1905)) ([54b938b](https://github.com/sbb-design-systems/sbb-angular/commit/54b938b3aefaf7fe8fe3e61467a461aae9454395))
+
+
+### Bug Fixes
+
+* **deps:** update angular to v16.0.3 ([de13f32](https://github.com/sbb-design-systems/sbb-angular/commit/de13f32ed3712b77accf7e9b223ed2389cebf7d9))
+* **deps:** update dependency @angular/cdk to v16.0.1 ([#1902](https://github.com/sbb-design-systems/sbb-angular/issues/1902)) ([b685a16](https://github.com/sbb-design-systems/sbb-angular/commit/b685a1630831f1e7beb60e2c573594634d88c86e))
+* **deps:** update dependency tslib to v2.5.1 ([b734a48](https://github.com/sbb-design-systems/sbb-angular/commit/b734a48e02e38da85b9516276751d7ab4eaf9f2a))
+* **deps:** update dependency tslib to v2.5.2 ([b14944a](https://github.com/sbb-design-systems/sbb-angular/commit/b14944a1f1a792cce9720171bdd8289347d8797c))
+* **deps:** update dependency tslib to v2.5.3 ([c1f7f1b](https://github.com/sbb-design-systems/sbb-angular/commit/c1f7f1b9a1ab90925bb12eefb00ea4bbe256e0f4))
+
+
+### Documentation
+
+* **journey-maps:** help the user find the example source code ([#1911](https://github.com/sbb-design-systems/sbb-angular/issues/1911)) ([c4cdedd](https://github.com/sbb-design-systems/sbb-angular/commit/c4cdedd37757d6156968e458938b2d589ac37e8d))
+
 ## [16.0.0](https://github.com/sbb-design-systems/sbb-angular/compare/16.0.0-rc.2...16.0.0) (2023-05-11)
 
 
