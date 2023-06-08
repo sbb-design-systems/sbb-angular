@@ -231,6 +231,8 @@ export interface SbbPointsOfInterestOptions {
   categories: SbbPointsOfInterestCategoryType[];
   /** Configure the environment from which to get the POIs from ('prod' or 'int. default = 'prod'). */
   environment?: SbbPointsOfInterestEnvironmentType;
+  /** Configure whether to include preview-points-of-interest or not */
+  includePreview?: boolean;
 }
 
 /** points of interest category type */
