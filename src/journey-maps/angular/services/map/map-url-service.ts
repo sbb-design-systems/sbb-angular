@@ -13,8 +13,8 @@ export class SbbMapUrlService {
     const [urlStart, urlEnd] = url.split(URL_SPLITTER);
     let newUrlStart = urlStart.replace('_integration', '').replace('_preview', '');
 
-    newUrlStart = this._setPreview(newUrlStart, options?.includePreview);
     newUrlStart = this._setEnvironment(newUrlStart, options?.environment);
+    newUrlStart = this._setPreview(newUrlStart, options?.includePreview);
 
     return newUrlStart + URL_SPLITTER + urlEnd;
   }
