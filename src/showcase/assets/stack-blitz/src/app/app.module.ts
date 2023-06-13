@@ -10,8 +10,8 @@ import { DragDropModule } from '@angular/cdk/drag-drop';
 import { RouterModule } from '@angular/router';
 
 @NgModule({
-  declarations: [SbbAngularDocsExample],
   imports: [
+    SbbAngularDocsExample,
     BrowserAnimationsModule,
     BrowserModule,
     FormsModule,

@@ -1,4 +1,6 @@
 import { Component } from '@angular/core';
+import { SbbButtonModule } from '@sbb-esta/angular/button';
+import { SbbIconModule } from '@sbb-esta/angular/icon';
 
 /**
  * @title Button With Icon Example
@@ -8,5 +10,7 @@ import { Component } from '@angular/core';
   selector: 'sbb-button-with-icon-example',
   templateUrl: 'button-with-icon-example.html',
   styleUrls: ['button-with-icon-example.css'],
+  standalone: true,
+  imports: [SbbButtonModule, SbbIconModule],
 })
 export class ButtonWithIconExample {}

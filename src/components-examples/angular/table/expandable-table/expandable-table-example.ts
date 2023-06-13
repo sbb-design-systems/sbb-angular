@@ -1,4 +1,6 @@
 import { Component } from '@angular/core';
+import { SbbIconModule } from '@sbb-esta/angular/icon';
+import { SbbTableModule } from '@sbb-esta/angular/table';
 
 /**
  * @title Expandable table
@@ -8,6 +10,8 @@ import { Component } from '@angular/core';
   selector: 'sbb-expandable-table-example',
   templateUrl: 'expandable-table-example.html',
   styleUrls: ['expandable-table-example.css'],
+  standalone: true,
+  imports: [SbbTableModule, SbbIconModule],
 })
 export class ExpandableTableExample {
   displayedColumns: string[] = ['connection', 'time', 'duration'];

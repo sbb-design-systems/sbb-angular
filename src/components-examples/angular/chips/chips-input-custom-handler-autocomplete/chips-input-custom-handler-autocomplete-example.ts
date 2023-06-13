@@ -1,7 +1,12 @@
+import { JsonPipe, NgFor } from '@angular/common';
 import { Component, ViewChild } from '@angular/core';
-import { FormControl } from '@angular/forms';
+import { FormControl, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { SbbAutocompleteSelectedEvent } from '@sbb-esta/angular/autocomplete';
+import { SbbAutocompleteModule } from '@sbb-esta/angular/autocomplete';
 import { SbbChipEvent, SbbChipInput, SbbChipInputEvent } from '@sbb-esta/angular/chips';
+import { SbbChipsModule } from '@sbb-esta/angular/chips';
+import { SbbOptionModule } from '@sbb-esta/angular/core';
+import { SbbFormFieldModule } from '@sbb-esta/angular/form-field';
 
 export interface Fruit {
   name: string;
@@ -15,6 +20,17 @@ export interface Fruit {
 @Component({
   selector: 'sbb-chips-input-custom-handler-autocomplete-example',
   templateUrl: 'chips-input-custom-handler-autocomplete-example.html',
+  standalone: true,
+  imports: [
+    SbbFormFieldModule,
+    SbbChipsModule,
+    FormsModule,
+    ReactiveFormsModule,
+    NgFor,
+    SbbAutocompleteModule,
+    SbbOptionModule,
+    JsonPipe,
+  ],
 })
 export class ChipsInputCustomHandlerAutocompleteExample {
   @ViewChild(SbbChipInput) chipInput?: SbbChipInput;

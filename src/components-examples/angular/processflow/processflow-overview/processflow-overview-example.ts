@@ -1,5 +1,11 @@
+import { NgIf } from '@angular/common';
 import { Component } from '@angular/core';
-import { FormBuilder, Validators } from '@angular/forms';
+import { FormBuilder, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
+import { SbbButtonModule } from '@sbb-esta/angular/button';
+import { SbbCheckboxModule } from '@sbb-esta/angular/checkbox';
+import { SbbFormFieldModule } from '@sbb-esta/angular/form-field';
+import { SbbInputModule } from '@sbb-esta/angular/input';
+import { SbbProcessflowModule } from '@sbb-esta/angular/processflow';
 
 /**
  * @title Processflow overview
@@ -9,6 +15,17 @@ import { FormBuilder, Validators } from '@angular/forms';
   selector: 'sbb-processflow-overview-example',
   templateUrl: 'processflow-overview-example.html',
   styleUrls: ['processflow-overview-example.css'],
+  standalone: true,
+  imports: [
+    SbbProcessflowModule,
+    FormsModule,
+    ReactiveFormsModule,
+    SbbFormFieldModule,
+    SbbInputModule,
+    NgIf,
+    SbbButtonModule,
+    SbbCheckboxModule,
+  ],
 })
 export class ProcessflowOverviewExample {
   linear = true;

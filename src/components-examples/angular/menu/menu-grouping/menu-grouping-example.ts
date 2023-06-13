@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { SbbMenuModule } from '@sbb-esta/angular/menu';
 
 /**
  * @title Contextmenu with grouping
@@ -7,5 +8,7 @@ import { Component } from '@angular/core';
 @Component({
   selector: 'sbb-menu-grouping-example',
   templateUrl: 'menu-grouping-example.html',
+  standalone: true,
+  imports: [SbbMenuModule],
 })
 export class MenuGroupingExample {}

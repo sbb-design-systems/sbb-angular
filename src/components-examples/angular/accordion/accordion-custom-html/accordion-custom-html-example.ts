@@ -1,4 +1,6 @@
 import { Component } from '@angular/core';
+import { SbbAccordionModule } from '@sbb-esta/angular/accordion';
+import { SbbButtonModule } from '@sbb-esta/angular/button';
 
 /**
  * @title Custom HTML Panel
@@ -8,6 +10,8 @@ import { Component } from '@angular/core';
   selector: 'sbb-accordion-custom-html-example',
   templateUrl: 'accordion-custom-html-example.html',
   styleUrls: ['accordion-custom-html-example.css'],
+  standalone: true,
+  imports: [SbbAccordionModule, SbbButtonModule],
 })
 export class AccordionCustomHtmlExample {
   logAndPreventOpeningPanel(evt: any) {

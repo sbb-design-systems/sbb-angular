@@ -17,6 +17,7 @@ ng_module(
     ]),
     deps = [
         "//src/angular/checkbox",
+        "//src/angular/form-field",
         "//src/angular/input",
         "//src/angular/textarea",
         "@npm//@angular/common",

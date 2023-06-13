@@ -1,5 +1,7 @@
 import { SelectionModel } from '@angular/cdk/collections';
+import { NgFor } from '@angular/common';
 import { Component } from '@angular/core';
+import { SbbCheckboxModule } from '@sbb-esta/angular/checkbox';
 
 /**
  * @title Indeterminate State
@@ -8,6 +10,8 @@ import { Component } from '@angular/core';
 @Component({
   selector: 'sbb-checkbox-indeterminate-state-example',
   templateUrl: 'checkbox-indeterminate-state-example.html',
+  standalone: true,
+  imports: [SbbCheckboxModule, NgFor],
 })
 export class CheckboxIndeterminateStateExample {
   options = ['Waggon 1', 'Waggon 2', 'Waggon 3'];

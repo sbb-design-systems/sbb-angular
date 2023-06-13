@@ -1,5 +1,10 @@
 import { Component } from '@angular/core';
+import { FormsModule } from '@angular/forms';
+import { SbbButtonModule } from '@sbb-esta/angular/button';
+import { SbbFormFieldModule } from '@sbb-esta/angular/form-field';
+import { SbbInputModule } from '@sbb-esta/angular/input';
 import { SbbNavigationPageChangeEvent } from '@sbb-esta/angular/pagination';
+import { SbbPaginationModule } from '@sbb-esta/angular/pagination';
 
 /**
  * @title Navigation
@@ -9,6 +14,8 @@ import { SbbNavigationPageChangeEvent } from '@sbb-esta/angular/pagination';
   selector: 'sbb-navigation-example',
   templateUrl: 'navigation-example.html',
   styleUrls: ['navigation-example.css'],
+  standalone: true,
+  imports: [SbbPaginationModule, SbbFormFieldModule, SbbInputModule, FormsModule, SbbButtonModule],
 })
 export class NavigationExample {
   pages = ['Introduction', 'Chapter 1', 'Chapter 2', 'Chapter 3'].map((page, index) => {

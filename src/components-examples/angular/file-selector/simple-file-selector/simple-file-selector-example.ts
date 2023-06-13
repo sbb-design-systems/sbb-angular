@@ -1,4 +1,6 @@
+import { JsonPipe } from '@angular/common';
 import { Component } from '@angular/core';
+import { SbbFileSelectorModule } from '@sbb-esta/angular/file-selector';
 
 /**
  * @title Simple File Selector
@@ -7,6 +9,8 @@ import { Component } from '@angular/core';
 @Component({
   selector: 'sbb-simple-file-selector-example',
   templateUrl: 'simple-file-selector-example.html',
+  standalone: true,
+  imports: [SbbFileSelectorModule, JsonPipe],
 })
 export class SimpleFileSelectorExample {
   filesList: File[] = [];

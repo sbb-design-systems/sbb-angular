@@ -1,6 +1,9 @@
 import { FocusableOption, FocusKeyManager, FocusOrigin } from '@angular/cdk/a11y';
 import { AfterViewInit, Component, ElementRef, QueryList, ViewChildren } from '@angular/core';
+import { SbbButtonModule } from '@sbb-esta/angular/button';
+import { SbbIconModule } from '@sbb-esta/angular/icon';
 import { SbbRow, SbbTableDataSource } from '@sbb-esta/angular/table';
+import { SbbTableModule } from '@sbb-esta/angular/table';
 import { startWith } from 'rxjs/operators';
 
 interface FocusableRow extends FocusableOption {
@@ -14,6 +17,8 @@ interface FocusableRow extends FocusableOption {
 @Component({
   selector: 'sbb-cell-actions-table-example',
   templateUrl: 'cell-actions-table-example.html',
+  standalone: true,
+  imports: [SbbTableModule, SbbButtonModule, SbbIconModule],
 })
 export class CellActionsTableExample implements AfterViewInit {
   displayedColumns: string[] = ['vehicle', 'manufacturer', 'price'];

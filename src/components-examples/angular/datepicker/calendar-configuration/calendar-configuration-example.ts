@@ -1,6 +1,12 @@
+import { AsyncPipe } from '@angular/common';
 import { Component, OnDestroy, ViewEncapsulation } from '@angular/core';
-import { FormBuilder, FormControl } from '@angular/forms';
+import { FormBuilder, FormControl, FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { SbbButtonModule } from '@sbb-esta/angular/button';
+import { SbbCheckboxModule } from '@sbb-esta/angular/checkbox';
 import { SbbCalendarCellClassFunction } from '@sbb-esta/angular/datepicker';
+import { SbbDatepickerModule } from '@sbb-esta/angular/datepicker';
+import { SbbFormFieldModule } from '@sbb-esta/angular/form-field';
+import { SbbInputModule } from '@sbb-esta/angular/input';
 import { BehaviorSubject, Observable, Subject } from 'rxjs';
 import { filter, map, startWith, takeUntil } from 'rxjs/operators';
 
@@ -13,6 +19,17 @@ import { filter, map, startWith, takeUntil } from 'rxjs/operators';
   templateUrl: 'calendar-configuration-example.html',
   styleUrls: ['calendar-configuration-example.css'],
   encapsulation: ViewEncapsulation.None,
+  standalone: true,
+  imports: [
+    SbbDatepickerModule,
+    FormsModule,
+    ReactiveFormsModule,
+    SbbFormFieldModule,
+    SbbInputModule,
+    SbbCheckboxModule,
+    SbbButtonModule,
+    AsyncPipe,
+  ],
 })
 export class CalendarConfigurationExample implements OnDestroy {
   dateRange = new BehaviorSubject<{ start: Date; end: Date } | null>(null);

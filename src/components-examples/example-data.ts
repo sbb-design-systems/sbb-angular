@@ -34,10 +34,7 @@ export class ExampleData {
 
   static find(library: string, id: string): ExampleData[] {
     return Object.keys(EXAMPLE_COMPONENTS as { [id: string]: {} })
-      .filter(
-        (exampleId) =>
-          EXAMPLE_COMPONENTS[exampleId]['module']['importSpecifier'] === `${library}/${id}`
-      )
+      .filter((exampleId) => EXAMPLE_COMPONENTS[exampleId].importPath === `${library}/${id}`)
       .map((exampleId) => new ExampleData(exampleId));
   }
 

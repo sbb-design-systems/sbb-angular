@@ -1,4 +1,7 @@
+import { JsonPipe } from '@angular/common';
 import { Component } from '@angular/core';
+import { SbbButtonModule } from '@sbb-esta/angular/button';
+import { SbbCaptchaModule } from '@sbb-esta/angular/captcha';
 
 /**
  * @title Captcha Simple
@@ -8,6 +11,8 @@ import { Component } from '@angular/core';
   selector: 'sbb-captcha-simple-example',
   templateUrl: 'captcha-simple-example.html',
   styleUrls: ['captcha-simple-example.css'],
+  standalone: true,
+  imports: [SbbCaptchaModule, SbbButtonModule, JsonPipe],
 })
 export class CaptchaSimpleExample {
   basicCaptchaResponse: string;

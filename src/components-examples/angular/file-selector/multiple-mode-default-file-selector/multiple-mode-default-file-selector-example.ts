@@ -1,7 +1,10 @@
+import { JsonPipe } from '@angular/common';
 import { Component, OnDestroy, OnInit } from '@angular/core';
-import { FormControl } from '@angular/forms';
+import { FormControl, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { SbbCheckboxChange } from '@sbb-esta/angular/checkbox';
+import { SbbCheckboxModule } from '@sbb-esta/angular/checkbox';
 import { SbbFileSelectorTypesService } from '@sbb-esta/angular/file-selector';
+import { SbbFileSelectorModule } from '@sbb-esta/angular/file-selector';
 import { Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
 
@@ -12,6 +15,8 @@ import { takeUntil } from 'rxjs/operators';
 @Component({
   selector: 'sbb-multiple-mode-default-file-selector-example',
   templateUrl: 'multiple-mode-default-file-selector-example.html',
+  standalone: true,
+  imports: [SbbFileSelectorModule, FormsModule, ReactiveFormsModule, SbbCheckboxModule, JsonPipe],
 })
 export class MultipleModeDefaultFileSelectorExample implements OnInit, OnDestroy {
   filesList: File[] = [];

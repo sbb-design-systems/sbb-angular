@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { SbbAccordionModule } from '@sbb-esta/angular/accordion';
 
 /**
  * @title Simple Panel
@@ -7,5 +8,7 @@ import { Component } from '@angular/core';
 @Component({
   selector: 'sbb-accordion-simple-panel-example',
   templateUrl: 'accordion-simple-panel-example.html',
+  standalone: true,
+  imports: [SbbAccordionModule],
 })
 export class AccordionSimplePanelExample {}

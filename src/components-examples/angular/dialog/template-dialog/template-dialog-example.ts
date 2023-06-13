@@ -1,5 +1,7 @@
 import { Component, TemplateRef, ViewChild } from '@angular/core';
+import { SbbButtonModule } from '@sbb-esta/angular/button';
 import { SbbDialog } from '@sbb-esta/angular/dialog';
+import { SbbDialogModule } from '@sbb-esta/angular/dialog';
 
 /**
  * @title Template Dialog
@@ -8,6 +10,8 @@ import { SbbDialog } from '@sbb-esta/angular/dialog';
 @Component({
   selector: 'sbb-template-dialog-example',
   templateUrl: 'template-dialog-example.html',
+  standalone: true,
+  imports: [SbbButtonModule, SbbDialogModule],
 })
 export class TemplateDialogExample {
   @ViewChild('sampleDialogTemplate', { static: true }) sampleDialogTemplate: TemplateRef<any>;

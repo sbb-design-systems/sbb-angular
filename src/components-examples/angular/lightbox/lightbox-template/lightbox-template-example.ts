@@ -1,5 +1,7 @@
 import { Component, TemplateRef, ViewChild } from '@angular/core';
+import { SbbButtonModule } from '@sbb-esta/angular/button';
 import { SbbLightbox } from '@sbb-esta/angular/lightbox';
+import { SbbLightboxModule } from '@sbb-esta/angular/lightbox';
 
 /**
  * @title Lightbox with template
@@ -8,6 +10,8 @@ import { SbbLightbox } from '@sbb-esta/angular/lightbox';
 @Component({
   selector: 'sbb-lightbox-template-example',
   templateUrl: 'lightbox-template-example.html',
+  standalone: true,
+  imports: [SbbButtonModule, SbbLightboxModule],
 })
 export class LightboxTemplateExample {
   @ViewChild('sampleLightboxTemplate', { static: true }) sampleLightboxTemplate: TemplateRef<any>;

@@ -1,4 +1,6 @@
 import { Component } from '@angular/core';
+import { SbbIconModule } from '@sbb-esta/angular/icon';
+import { SbbMenuModule } from '@sbb-esta/angular/menu';
 
 /**
  * @title Contextmenu with icons
@@ -7,5 +9,7 @@ import { Component } from '@angular/core';
 @Component({
   selector: 'sbb-menu-icons-example',
   templateUrl: 'menu-icons-example.html',
+  standalone: true,
+  imports: [SbbMenuModule, SbbIconModule],
 })
 export class MenuIconsExample {}

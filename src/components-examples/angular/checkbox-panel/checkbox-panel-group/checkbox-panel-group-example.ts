@@ -1,5 +1,17 @@
+import { NgClass, NgFor } from '@angular/common';
 import { Component, OnDestroy } from '@angular/core';
-import { AbstractControl, FormArray, FormBuilder } from '@angular/forms';
+import {
+  AbstractControl,
+  FormArray,
+  FormBuilder,
+  FormsModule,
+  ReactiveFormsModule,
+} from '@angular/forms';
+import { SbbCheckboxPanelModule } from '@sbb-esta/angular/checkbox-panel';
+import { SbbOptionModule } from '@sbb-esta/angular/core';
+import { SbbFormFieldModule } from '@sbb-esta/angular/form-field';
+import { SbbInputModule } from '@sbb-esta/angular/input';
+import { SbbSelectModule } from '@sbb-esta/angular/select';
 import { Subject } from 'rxjs';
 import { startWith, takeUntil } from 'rxjs/operators';
 
@@ -11,6 +23,18 @@ import { startWith, takeUntil } from 'rxjs/operators';
   selector: 'sbb-checkbox-panel-group-example',
   templateUrl: 'checkbox-panel-group-example.html',
   styleUrls: ['checkbox-panel-group-example.css'],
+  standalone: true,
+  imports: [
+    FormsModule,
+    ReactiveFormsModule,
+    NgClass,
+    NgFor,
+    SbbCheckboxPanelModule,
+    SbbFormFieldModule,
+    SbbInputModule,
+    SbbSelectModule,
+    SbbOptionModule,
+  ],
 })
 export class CheckboxPanelGroupExample implements OnDestroy {
   readonly breakpoints = [

@@ -1,5 +1,10 @@
+import { JsonPipe, NgIf } from '@angular/common';
 import { Component } from '@angular/core';
-import { FormBuilder, Validators } from '@angular/forms';
+import { FormBuilder, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
+import { SbbButtonModule } from '@sbb-esta/angular/button';
+import { SbbDatepickerModule } from '@sbb-esta/angular/datepicker';
+import { SbbFormFieldModule } from '@sbb-esta/angular/form-field';
+import { SbbInputModule } from '@sbb-esta/angular/input';
 
 /**
  * @title Form Field Group Vertical
@@ -8,6 +13,17 @@ import { FormBuilder, Validators } from '@angular/forms';
 @Component({
   selector: 'sbb-form-field-group-vertical-example',
   templateUrl: 'form-field-group-vertical-example.html',
+  standalone: true,
+  imports: [
+    FormsModule,
+    ReactiveFormsModule,
+    SbbFormFieldModule,
+    SbbInputModule,
+    NgIf,
+    SbbDatepickerModule,
+    SbbButtonModule,
+    JsonPipe,
+  ],
 })
 export class FormFieldGroupVerticalExample {
   formGroup = this._formBuilder.group({

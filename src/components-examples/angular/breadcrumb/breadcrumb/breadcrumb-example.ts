@@ -1,4 +1,6 @@
 import { Component } from '@angular/core';
+import { RouterLink, RouterLinkActive } from '@angular/router';
+import { SbbBreadcrumbModule } from '@sbb-esta/angular/breadcrumb';
 
 /**
  * @title Breadcrumb
@@ -7,5 +9,7 @@ import { Component } from '@angular/core';
 @Component({
   selector: 'sbb-breadcrumb-example',
   templateUrl: 'breadcrumb-example.html',
+  standalone: true,
+  imports: [SbbBreadcrumbModule, RouterLink, RouterLinkActive],
 })
 export class BreadcrumbExample {}

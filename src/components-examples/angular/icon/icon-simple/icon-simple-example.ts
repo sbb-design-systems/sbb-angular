@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { SbbIconModule } from '@sbb-esta/angular/icon';
 
 /**
  * @title Icon
@@ -7,5 +8,7 @@ import { Component } from '@angular/core';
 @Component({
   selector: 'sbb-icon-simple-example',
   templateUrl: 'icon-simple-example.html',
+  standalone: true,
+  imports: [SbbIconModule],
 })
 export class IconSimpleExample {}

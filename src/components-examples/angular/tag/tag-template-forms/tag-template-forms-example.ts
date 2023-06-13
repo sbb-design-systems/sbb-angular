@@ -1,4 +1,6 @@
 import { Component } from '@angular/core';
+import { FormsModule } from '@angular/forms';
+import { SbbTagModule } from '@sbb-esta/angular/tag';
 
 /**
  * @title Tag Template Forms
@@ -7,6 +9,8 @@ import { Component } from '@angular/core';
 @Component({
   selector: 'sbb-tag-template-forms-example',
   templateUrl: 'tag-template-forms-example.html',
+  standalone: true,
+  imports: [SbbTagModule, FormsModule],
 })
 export class TagTemplateFormsExample {
   trains = false;

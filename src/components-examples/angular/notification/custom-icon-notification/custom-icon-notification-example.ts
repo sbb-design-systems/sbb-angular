@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { SbbNotificationModule } from '@sbb-esta/angular/notification';
 
 /**
  * @title Custom Icon Notification
@@ -7,5 +8,7 @@ import { Component } from '@angular/core';
 @Component({
   selector: 'sbb-custom-icon-notification-example',
   templateUrl: 'custom-icon-notification-example.html',
+  standalone: true,
+  imports: [SbbNotificationModule],
 })
 export class CustomIconNotificationExample {}

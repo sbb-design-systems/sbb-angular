@@ -1,4 +1,6 @@
 import { Component } from '@angular/core';
+import { SbbAccordionModule } from '@sbb-esta/angular/accordion';
+import { SbbButtonModule } from '@sbb-esta/angular/button';
 
 /**
  * @title Wizard Accordion
@@ -8,6 +10,8 @@ import { Component } from '@angular/core';
   selector: 'sbb-accordion-wizard-example',
   templateUrl: 'accordion-wizard-example.html',
   styleUrls: ['accordion-wizard-example.css'],
+  standalone: true,
+  imports: [SbbAccordionModule, SbbButtonModule],
 })
 export class AccordionWizardExample {
   step = 0;

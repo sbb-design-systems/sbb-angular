@@ -16,12 +16,8 @@ ng_module(
         "**/*.css",
     ]),
     deps = [
-        "//src/angular/icon",
-        "//src/angular/input",
         "//src/angular/notification",
-        "@npm//@angular/common",
         "@npm//@angular/core",
-        "@npm//@angular/forms",
     ],
 )
 

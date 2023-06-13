@@ -1,6 +1,11 @@
+import { JsonPipe, NgFor } from '@angular/common';
 import { Component, OnDestroy } from '@angular/core';
-import { FormControl } from '@angular/forms';
+import { FormControl, FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { SbbButtonModule } from '@sbb-esta/angular/button';
+import { SbbFormFieldModule } from '@sbb-esta/angular/form-field';
+import { SbbInputModule } from '@sbb-esta/angular/input';
 import { SbbTagChange } from '@sbb-esta/angular/tag';
+import { SbbTagModule } from '@sbb-esta/angular/tag';
 import { Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
 
@@ -37,6 +42,17 @@ const tagItems: Tag[] = [
 @Component({
   selector: 'sbb-tag-advanced-example',
   templateUrl: 'tag-advanced-example.html',
+  standalone: true,
+  imports: [
+    SbbTagModule,
+    NgFor,
+    SbbButtonModule,
+    SbbFormFieldModule,
+    FormsModule,
+    SbbInputModule,
+    ReactiveFormsModule,
+    JsonPipe,
+  ],
 })
 export class TagAdvancedExample implements OnDestroy {
   tags: Tag[];

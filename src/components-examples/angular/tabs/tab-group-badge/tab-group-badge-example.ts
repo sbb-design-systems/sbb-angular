@@ -1,4 +1,6 @@
 import { Component } from '@angular/core';
+import { SbbBadgeModule } from '@sbb-esta/angular/badge';
+import { SbbTabsModule } from '@sbb-esta/angular/tabs';
 
 /**
  * @title Tabs with badge
@@ -7,5 +9,7 @@ import { Component } from '@angular/core';
 @Component({
   selector: 'sbb-tab-group-badge-example',
   templateUrl: 'tab-group-badge-example.html',
+  standalone: true,
+  imports: [SbbTabsModule, SbbBadgeModule],
 })
 export class TabGroupBadgeExample {}

@@ -1,4 +1,6 @@
 import { Component } from '@angular/core';
+import { FormsModule } from '@angular/forms';
+import { SbbCheckboxModule } from '@sbb-esta/angular/checkbox';
 
 /**
  * @title Checkbox
@@ -7,6 +9,8 @@ import { Component } from '@angular/core';
 @Component({
   selector: 'sbb-checkbox-example',
   templateUrl: 'checkbox-example.html',
+  standalone: true,
+  imports: [SbbCheckboxModule, FormsModule],
 })
 export class CheckboxExample {
   disabled: boolean;

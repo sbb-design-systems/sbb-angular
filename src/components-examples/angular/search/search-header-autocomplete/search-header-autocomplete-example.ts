@@ -1,5 +1,10 @@
+import { JsonPipe, NgFor } from '@angular/common';
 import { Component } from '@angular/core';
-import { FormControl } from '@angular/forms';
+import { FormControl, FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { SbbAutocompleteModule } from '@sbb-esta/angular/autocomplete';
+import { SbbOptionModule } from '@sbb-esta/angular/core';
+import { SbbInputModule } from '@sbb-esta/angular/input';
+import { SbbSearchModule } from '@sbb-esta/angular/search';
 
 /**
  * @title Search Header Mode With Autocomplete
@@ -8,6 +13,17 @@ import { FormControl } from '@angular/forms';
 @Component({
   selector: 'sbb-search-header-autocomplete-example',
   templateUrl: 'search-header-autocomplete-example.html',
+  standalone: true,
+  imports: [
+    SbbSearchModule,
+    SbbInputModule,
+    FormsModule,
+    SbbAutocompleteModule,
+    ReactiveFormsModule,
+    NgFor,
+    SbbOptionModule,
+    JsonPipe,
+  ],
 })
 export class SearchHeaderAutocompleteExample {
   searchValues: string[] = [];
