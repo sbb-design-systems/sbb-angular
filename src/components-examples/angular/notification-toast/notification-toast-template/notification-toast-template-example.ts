@@ -1,4 +1,5 @@
 import { Component, TemplateRef, ViewChild } from '@angular/core';
+import { SbbButtonModule } from '@sbb-esta/angular/button';
 import { SbbNotificationToast } from '@sbb-esta/angular/notification-toast';
 
 /**
@@ -8,6 +9,8 @@ import { SbbNotificationToast } from '@sbb-esta/angular/notification-toast';
 @Component({
   selector: 'sbb-notification-toast-template-example',
   templateUrl: 'notification-toast-template-example.html',
+  standalone: true,
+  imports: [SbbButtonModule],
 })
 export class NotificationToastTemplateExample {
   @ViewChild('content') content: TemplateRef<any>;

@@ -1,4 +1,9 @@
+import { NgFor } from '@angular/common';
 import { Component } from '@angular/core';
+import { FormsModule } from '@angular/forms';
+import { SbbButtonModule } from '@sbb-esta/angular/button';
+import { SbbFormFieldModule } from '@sbb-esta/angular/form-field';
+import { SbbInputModule } from '@sbb-esta/angular/input';
 import {
   SbbNotificationToast,
   SbbNotificationToastVerticalPosition,
@@ -13,6 +18,8 @@ import {
   selector: 'sbb-simple-notification-toast-example',
   templateUrl: 'simple-notification-toast-example.html',
   styleUrls: ['simple-notification-toast-example.css'],
+  standalone: true,
+  imports: [SbbFormFieldModule, SbbInputModule, FormsModule, NgFor, SbbButtonModule],
 })
 export class SimpleNotificationToastExample {
   type: SbbNotificationType = 'success';

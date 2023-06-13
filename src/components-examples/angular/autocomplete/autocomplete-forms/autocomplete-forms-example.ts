@@ -1,4 +1,10 @@
+import { JsonPipe, NgFor } from '@angular/common';
 import { Component } from '@angular/core';
+import { FormsModule } from '@angular/forms';
+import { SbbAutocompleteModule } from '@sbb-esta/angular/autocomplete';
+import { SbbOptionModule } from '@sbb-esta/angular/core';
+import { SbbFormFieldModule } from '@sbb-esta/angular/form-field';
+import { SbbInputModule } from '@sbb-esta/angular/input';
 
 /**
  * @title Autocomplete Forms
@@ -7,6 +13,16 @@ import { Component } from '@angular/core';
 @Component({
   selector: 'sbb-autocomplete-forms-example',
   templateUrl: 'autocomplete-forms-example.html',
+  standalone: true,
+  imports: [
+    SbbFormFieldModule,
+    SbbInputModule,
+    FormsModule,
+    SbbAutocompleteModule,
+    NgFor,
+    SbbOptionModule,
+    JsonPipe,
+  ],
 })
 export class AutocompleteFormsExample {
   value: string;

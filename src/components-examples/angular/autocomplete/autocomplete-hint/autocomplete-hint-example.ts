@@ -1,5 +1,10 @@
+import { JsonPipe, NgFor, NgIf, SlicePipe } from '@angular/common';
 import { Component, OnDestroy, OnInit } from '@angular/core';
-import { FormControl } from '@angular/forms';
+import { FormControl, FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { SbbAutocompleteModule } from '@sbb-esta/angular/autocomplete';
+import { SbbOptionModule } from '@sbb-esta/angular/core';
+import { SbbFormFieldModule } from '@sbb-esta/angular/form-field';
+import { SbbInputModule } from '@sbb-esta/angular/input';
 import { Subject } from 'rxjs';
 import { distinctUntilChanged, takeUntil } from 'rxjs/operators';
 
@@ -10,6 +15,19 @@ import { distinctUntilChanged, takeUntil } from 'rxjs/operators';
 @Component({
   selector: 'sbb-autocomplete-hint-example',
   templateUrl: 'autocomplete-hint-example.html',
+  standalone: true,
+  imports: [
+    SbbFormFieldModule,
+    SbbInputModule,
+    FormsModule,
+    SbbAutocompleteModule,
+    ReactiveFormsModule,
+    NgFor,
+    SbbOptionModule,
+    NgIf,
+    JsonPipe,
+    SlicePipe,
+  ],
 })
 export class AutocompleteHintExample implements OnInit, OnDestroy {
   readonly maxOptionsListLength = 5;

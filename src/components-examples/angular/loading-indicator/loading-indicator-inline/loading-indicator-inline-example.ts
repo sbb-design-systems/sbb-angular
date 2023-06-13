@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { SbbLoadingIndicatorModule } from '@sbb-esta/angular/loading-indicator';
 
 /**
  * @title Inline Loading
@@ -7,5 +8,7 @@ import { Component } from '@angular/core';
 @Component({
   selector: 'sbb-loading-indicator-inline-example',
   templateUrl: 'loading-indicator-inline-example.html',
+  standalone: true,
+  imports: [SbbLoadingIndicatorModule],
 })
 export class LoadingIndicatorInlineExample {}

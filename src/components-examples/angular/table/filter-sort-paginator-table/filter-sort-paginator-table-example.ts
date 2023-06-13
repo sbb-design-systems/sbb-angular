@@ -1,7 +1,14 @@
 import { LiveAnnouncer } from '@angular/cdk/a11y';
+import { AsyncPipe, NgFor, NgIf } from '@angular/common';
 import { AfterViewInit, Component, OnDestroy, ViewChild } from '@angular/core';
-import { FormControl, FormGroup } from '@angular/forms';
+import { FormControl, FormGroup, FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { SbbAutocompleteModule } from '@sbb-esta/angular/autocomplete';
+import { SbbOptionModule } from '@sbb-esta/angular/core';
+import { SbbFormFieldModule } from '@sbb-esta/angular/form-field';
+import { SbbInputModule } from '@sbb-esta/angular/input';
 import { SbbPaginator } from '@sbb-esta/angular/pagination';
+import { SbbPaginationModule } from '@sbb-esta/angular/pagination';
+import { SbbSelectModule } from '@sbb-esta/angular/select';
 import {
   SbbSort,
   SbbSortState,
@@ -9,6 +16,7 @@ import {
   SbbTableDataSource,
   SbbTableFilter,
 } from '@sbb-esta/angular/table';
+import { SbbTableModule } from '@sbb-esta/angular/table';
 import { Observable, Subject } from 'rxjs';
 import { distinctUntilChanged, map, takeUntil } from 'rxjs/operators';
 
@@ -34,6 +42,21 @@ interface VehicleFilter extends SbbTableFilter {
   selector: 'sbb-filter-sort-paginator-table-example',
   styleUrls: ['filter-sort-paginator-table-example.css'],
   templateUrl: 'filter-sort-paginator-table-example.html',
+  standalone: true,
+  imports: [
+    FormsModule,
+    ReactiveFormsModule,
+    SbbFormFieldModule,
+    SbbInputModule,
+    SbbTableModule,
+    NgFor,
+    NgIf,
+    SbbAutocompleteModule,
+    SbbOptionModule,
+    SbbSelectModule,
+    SbbPaginationModule,
+    AsyncPipe,
+  ],
 })
 export class FilterSortPaginatorTableExample implements AfterViewInit, OnDestroy {
   @ViewChild(SbbPaginator) paginator: SbbPaginator;

@@ -1,6 +1,11 @@
 import { Component, OnDestroy, OnInit, ViewChild } from '@angular/core';
+import { FormsModule } from '@angular/forms';
+import { SbbFormFieldModule } from '@sbb-esta/angular/form-field';
+import { SbbInputModule } from '@sbb-esta/angular/input';
 import { SbbPageEvent, SbbPaginator } from '@sbb-esta/angular/pagination';
+import { SbbPaginationModule } from '@sbb-esta/angular/pagination';
 import { SbbTableDataSource } from '@sbb-esta/angular/table';
+import { SbbTableModule } from '@sbb-esta/angular/table';
 import { Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
 
@@ -19,6 +24,8 @@ interface VehicleExampleItem {
 @Component({
   selector: 'sbb-paginator-table-example',
   templateUrl: 'paginator-table-example.html',
+  standalone: true,
+  imports: [SbbTableModule, SbbPaginationModule, SbbFormFieldModule, SbbInputModule, FormsModule],
 })
 export class PaginatorTableExample implements OnInit, OnDestroy {
   @ViewChild('paginator', { static: true }) paginator: SbbPaginator;

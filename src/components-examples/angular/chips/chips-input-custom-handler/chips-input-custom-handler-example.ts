@@ -1,7 +1,10 @@
 import { COMMA, ENTER } from '@angular/cdk/keycodes';
+import { JsonPipe, NgFor } from '@angular/common';
 import { Component } from '@angular/core';
-import { FormControl } from '@angular/forms';
+import { FormControl, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { SbbChipEvent, SbbChipInputEvent } from '@sbb-esta/angular/chips';
+import { SbbChipsModule } from '@sbb-esta/angular/chips';
+import { SbbFormFieldModule } from '@sbb-esta/angular/form-field';
 
 export interface Fruit {
   name: string;
@@ -21,6 +24,8 @@ const availableFruits: Fruit[] = [
 @Component({
   selector: 'sbb-chips-input-custom-handler-example',
   templateUrl: 'chips-input-custom-handler-example.html',
+  standalone: true,
+  imports: [SbbFormFieldModule, SbbChipsModule, FormsModule, ReactiveFormsModule, NgFor, JsonPipe],
 })
 export class ChipsInputCustomHandlerExample {
   readonly separatorKeysCodes = [ENTER, COMMA];

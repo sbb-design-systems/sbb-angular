@@ -1,4 +1,8 @@
+import { NgFor } from '@angular/common';
 import { Component } from '@angular/core';
+import { RouterLink, RouterLinkActive } from '@angular/router';
+import { SbbBreadcrumbModule } from '@sbb-esta/angular/breadcrumb';
+import { SbbMenuModule } from '@sbb-esta/angular/menu';
 
 interface Group {
   items: GroupItem[];
@@ -17,6 +21,8 @@ interface GroupItem {
 @Component({
   selector: 'sbb-breadcrumb-dynamic-example',
   templateUrl: 'breadcrumb-dynamic-example.html',
+  standalone: true,
+  imports: [SbbBreadcrumbModule, RouterLink, NgFor, SbbMenuModule, RouterLinkActive],
 })
 export class BreadcrumbDynamicExample {
   // This example should not be used as is. Router Config should be

@@ -1,4 +1,4 @@
-import { createNgModuleRef, Injector, Type } from '@angular/core';
+import { Injector, Type } from '@angular/core';
 
 // @ts-ignore example-module.ts is generated automatically by bazel
 import { EXAMPLE_COMPONENTS, EXAMPLE_COMPONENTS_LOADER } from './example-module';
@@ -14,14 +14,12 @@ export async function loadExample(
   name: string,
   injector: Injector
 ): Promise<{ component: Type<any>; injector: Injector }> {
-  const { componentName, module } = EXAMPLE_COMPONENTS[name];
-  const moduleExports = await EXAMPLE_COMPONENTS_LOADER.get(module.importSpecifier)!();
-  const moduleType: Type<any> = moduleExports[module.name];
+  const { componentName, importPath } = EXAMPLE_COMPONENTS[name];
+  const moduleExports = await EXAMPLE_COMPONENTS_LOADER.get(importPath)!();
   const componentType: Type<any> = moduleExports[componentName];
-  const moduleRef = createNgModuleRef(moduleType, injector);
 
   return {
     component: componentType,
-    injector: moduleRef.injector,
+    injector: injector,
   };
 }

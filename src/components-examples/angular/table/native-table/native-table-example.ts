@@ -1,5 +1,9 @@
+import { NgFor } from '@angular/common';
 import { Component, OnDestroy, ViewEncapsulation } from '@angular/core';
-import { FormControl } from '@angular/forms';
+import { FormControl, FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { SbbFormFieldModule } from '@sbb-esta/angular/form-field';
+import { SbbInputModule } from '@sbb-esta/angular/input';
+import { SbbTableModule } from '@sbb-esta/angular/table';
 import { Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
 
@@ -20,6 +24,15 @@ interface RowEntry {
   selector: 'sbb-native-table-example',
   templateUrl: 'native-table-example.html',
   encapsulation: ViewEncapsulation.None,
+  standalone: true,
+  imports: [
+    SbbTableModule,
+    NgFor,
+    SbbFormFieldModule,
+    SbbInputModule,
+    FormsModule,
+    ReactiveFormsModule,
+  ],
 })
 export class NativeTableExample implements OnDestroy {
   filterControl: FormControl = new FormControl('');

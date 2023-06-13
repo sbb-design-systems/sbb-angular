@@ -1,5 +1,8 @@
+import { JsonPipe } from '@angular/common';
 import { Component } from '@angular/core';
-import { FormControl } from '@angular/forms';
+import { FormControl, FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { SbbInputModule } from '@sbb-esta/angular/input';
+import { SbbSearchModule } from '@sbb-esta/angular/search';
 
 /**
  * @title Search Simple Header Mode
@@ -8,6 +11,8 @@ import { FormControl } from '@angular/forms';
 @Component({
   selector: 'sbb-search-simple-header-mode-example',
   templateUrl: 'search-simple-header-mode-example.html',
+  standalone: true,
+  imports: [SbbSearchModule, SbbInputModule, FormsModule, ReactiveFormsModule, JsonPipe],
 })
 export class SearchSimpleHeaderModeExample {
   searchValues: string[] = [];

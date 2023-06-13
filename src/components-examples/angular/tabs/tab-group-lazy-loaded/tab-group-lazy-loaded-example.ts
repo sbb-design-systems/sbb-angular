@@ -1,4 +1,6 @@
+import { DatePipe } from '@angular/common';
 import { Component } from '@angular/core';
+import { SbbTabsModule } from '@sbb-esta/angular/tabs';
 
 /**
  * @title Tab group where the tab content is loaded lazily (when activated)
@@ -7,6 +9,8 @@ import { Component } from '@angular/core';
 @Component({
   selector: 'sbb-tab-group-lazy-loaded-example',
   templateUrl: 'tab-group-lazy-loaded-example.html',
+  standalone: true,
+  imports: [SbbTabsModule, DatePipe],
 })
 export class TabGroupLazyLoadedExample {
   tabLoadTimes: Date[] = [];

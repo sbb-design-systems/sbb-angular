@@ -1,5 +1,14 @@
+import { JsonPipe, NgIf } from '@angular/common';
 import { Component } from '@angular/core';
-import { FormControl, FormGroup, Validators } from '@angular/forms';
+import {
+  FormControl,
+  FormGroup,
+  FormsModule,
+  ReactiveFormsModule,
+  Validators,
+} from '@angular/forms';
+import { SbbFormFieldModule } from '@sbb-esta/angular/form-field';
+import { SbbTextareaModule } from '@sbb-esta/angular/textarea';
 
 /**
  * @title Textarea Reactive Forms With Sbb Form Field
@@ -9,6 +18,15 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
   selector: 'sbb-textarea-reactive-forms-with-sbb-form-field-example',
   templateUrl: 'textarea-reactive-forms-with-sbb-form-field-example.html',
   styleUrls: ['textarea-reactive-forms-with-sbb-form-field-example.css'],
+  standalone: true,
+  imports: [
+    FormsModule,
+    ReactiveFormsModule,
+    SbbFormFieldModule,
+    SbbTextareaModule,
+    NgIf,
+    JsonPipe,
+  ],
 })
 export class TextareaReactiveFormsWithSbbFormFieldExample {
   form: FormGroup = new FormGroup({

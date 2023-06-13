@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { SbbAlertConfig, SbbAlertRef, SbbAlertService } from '@sbb-esta/angular/alert';
+import { SbbAlertModule } from '@sbb-esta/angular/alert';
+import { SbbButtonModule } from '@sbb-esta/angular/button';
 
 let nextId = 1;
 
@@ -10,6 +12,8 @@ let nextId = 1;
 @Component({
   selector: 'sbb-alert-outlet-example',
   templateUrl: 'alert-outlet-example.html',
+  standalone: true,
+  imports: [SbbAlertModule, SbbButtonModule],
 })
 export class AlertOutletExample implements OnInit {
   private _refs: SbbAlertRef[] = [];

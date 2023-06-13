@@ -1,5 +1,7 @@
+import { JsonPipe } from '@angular/common';
 import { Component } from '@angular/core';
-import { FormControl, Validators } from '@angular/forms';
+import { FormControl, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
+import { SbbCaptchaModule } from '@sbb-esta/angular/captcha';
 
 /**
  * @title Captcha Reactive Forms
@@ -9,6 +11,8 @@ import { FormControl, Validators } from '@angular/forms';
   selector: 'sbb-captcha-reactive-forms-example',
   templateUrl: 'captcha-reactive-forms-example.html',
   styleUrls: ['captcha-reactive-forms-example.css'],
+  standalone: true,
+  imports: [SbbCaptchaModule, FormsModule, ReactiveFormsModule, JsonPipe],
 })
 export class CaptchaReactiveFormsExample {
   testSiteKey: string = '6LeIxAcTAAAAAJcZVRqyHh71UMIEGNQ_MXjiZKhI';

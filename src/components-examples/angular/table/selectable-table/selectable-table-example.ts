@@ -1,6 +1,9 @@
 import { SelectionModel } from '@angular/cdk/collections';
+import { JsonPipe, NgFor, NgIf } from '@angular/common';
 import { Component } from '@angular/core';
+import { SbbCheckboxModule } from '@sbb-esta/angular/checkbox';
 import { SbbTableDataSource } from '@sbb-esta/angular/table';
+import { SbbTableModule } from '@sbb-esta/angular/table';
 
 interface VehicleExampleItem {
   position: number;
@@ -17,6 +20,8 @@ interface VehicleExampleItem {
 @Component({
   selector: 'sbb-selectable-table-example',
   templateUrl: 'selectable-table-example.html',
+  standalone: true,
+  imports: [SbbTableModule, SbbCheckboxModule, NgFor, NgIf, JsonPipe],
 })
 export class SelectableTableExample {
   columns = [

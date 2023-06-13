@@ -19,7 +19,6 @@ ng_module(
         "//src/angular/button",
         "//src/angular/checkbox",
         "//src/angular/icon",
-        "@npm//@angular/common",
         "@npm//@angular/core",
         "@npm//@angular/forms",
     ],

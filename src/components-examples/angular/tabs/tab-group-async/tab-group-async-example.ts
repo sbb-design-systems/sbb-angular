@@ -1,4 +1,6 @@
+import { AsyncPipe, NgFor, NgIf } from '@angular/common';
 import { Component } from '@angular/core';
+import { SbbTabsModule } from '@sbb-esta/angular/tabs';
 import { Observable, Observer } from 'rxjs';
 
 export interface ExampleTab {
@@ -13,6 +15,8 @@ export interface ExampleTab {
 @Component({
   selector: 'sbb-tab-group-async-example',
   templateUrl: 'tab-group-async-example.html',
+  standalone: true,
+  imports: [NgIf, SbbTabsModule, NgFor, AsyncPipe],
 })
 export class TabGroupAsyncExample {
   asyncTabs: Observable<ExampleTab[]>;

@@ -1,6 +1,16 @@
+import { NgIf } from '@angular/common';
 import { Component } from '@angular/core';
-import { FormControl, FormGroupDirective, NgForm, Validators } from '@angular/forms';
+import {
+  FormControl,
+  FormGroupDirective,
+  FormsModule,
+  NgForm,
+  ReactiveFormsModule,
+  Validators,
+} from '@angular/forms';
 import { SbbErrorStateMatcher } from '@sbb-esta/angular/core';
+import { SbbFormFieldModule } from '@sbb-esta/angular/form-field';
+import { SbbInputModule } from '@sbb-esta/angular/input';
 
 /** Error when invalid control is dirty, touched, or submitted. */
 export class MyErrorStateMatcher implements SbbErrorStateMatcher {
@@ -18,6 +28,8 @@ export class MyErrorStateMatcher implements SbbErrorStateMatcher {
   selector: 'sbb-input-error-state-matcher-example',
   templateUrl: 'input-error-state-matcher-example.html',
   styleUrls: ['input-error-state-matcher-example.css'],
+  standalone: true,
+  imports: [FormsModule, SbbFormFieldModule, SbbInputModule, ReactiveFormsModule, NgIf],
 })
 export class InputErrorStateMatcherExample {
   emailFormControl = new FormControl('', [Validators.required, Validators.email]);

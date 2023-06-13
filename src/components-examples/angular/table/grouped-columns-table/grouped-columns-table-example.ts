@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { SbbTableDataSource } from '@sbb-esta/angular/table';
+import { SbbTableModule } from '@sbb-esta/angular/table';
 
 /**
  * @title Grouped Columns Table
@@ -8,6 +9,8 @@ import { SbbTableDataSource } from '@sbb-esta/angular/table';
 @Component({
   selector: 'sbb-grouped-columns-table-example',
   templateUrl: 'grouped-columns-table-example.html',
+  standalone: true,
+  imports: [SbbTableModule],
 })
 export class GroupedColumnsTableExample {
   displayedColumns: string[] = [

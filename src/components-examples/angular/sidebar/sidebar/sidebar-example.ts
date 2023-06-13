@@ -1,8 +1,12 @@
 import { BreakpointObserver, MediaMatcher } from '@angular/cdk/layout';
 import { AfterViewInit, Component, OnDestroy } from '@angular/core';
-import { FormControl } from '@angular/forms';
+import { FormControl, FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { SbbAccordionModule } from '@sbb-esta/angular/accordion';
+import { SbbButtonModule } from '@sbb-esta/angular/button';
+import { SbbCheckboxModule } from '@sbb-esta/angular/checkbox';
 import { Breakpoints } from '@sbb-esta/angular/core';
 import { FakeMediaMatcher } from '@sbb-esta/angular/core/testing';
+import { SbbSidebarModule } from '@sbb-esta/angular/sidebar';
 import { Subject } from 'rxjs';
 import { startWith, takeUntil } from 'rxjs/operators';
 
@@ -18,7 +22,16 @@ import { startWith, takeUntil } from 'rxjs/operators';
     FakeMediaMatcher,
     { provide: MediaMatcher, useExisting: FakeMediaMatcher },
     BreakpointObserver,
-  ], // The providers are only for demo purposes, don't use it in your code
+  ],
+  standalone: true,
+  imports: [
+    SbbSidebarModule,
+    SbbAccordionModule,
+    SbbButtonModule,
+    SbbCheckboxModule,
+    FormsModule,
+    ReactiveFormsModule,
+  ],
 })
 export class SidebarExample implements AfterViewInit, OnDestroy {
   simulateMobile = new FormControl(false, { initialValueIsDefault: true });

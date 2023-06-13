@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { SbbNotificationModule } from '@sbb-esta/angular/notification';
 
 /**
  * @title Simple Notification
@@ -8,5 +9,7 @@ import { Component } from '@angular/core';
   selector: 'sbb-simple-notification-example',
   templateUrl: 'simple-notification-example.html',
   styleUrls: ['simple-notification-example.css'],
+  standalone: true,
+  imports: [SbbNotificationModule],
 })
 export class SimpleNotificationExample {}

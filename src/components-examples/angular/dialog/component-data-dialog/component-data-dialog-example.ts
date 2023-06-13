@@ -1,5 +1,7 @@
 import { Component } from '@angular/core';
+import { SbbButtonModule } from '@sbb-esta/angular/button';
 import { SbbDialog } from '@sbb-esta/angular/dialog';
+import { SbbDialogModule } from '@sbb-esta/angular/dialog';
 
 /**
  * @title Component Data Dialog
@@ -8,6 +10,8 @@ import { SbbDialog } from '@sbb-esta/angular/dialog';
 @Component({
   selector: 'sbb-component-data-dialog-example',
   templateUrl: 'component-data-dialog-example.html',
+  standalone: true,
+  imports: [SbbButtonModule],
 })
 export class ComponentDataDialogExample {
   constructor(public dialog: SbbDialog) {}
@@ -116,5 +120,7 @@ export class ComponentDataDialogExample {
       <button sbb-secondary-button sbbDialogClose>Cancel</button>
     </div>
   `,
+  standalone: true,
+  imports: [SbbDialogModule, SbbButtonModule],
 })
 export class ComponentDataDialogComponent {}

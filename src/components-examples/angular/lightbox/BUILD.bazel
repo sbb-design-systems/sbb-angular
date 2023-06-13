@@ -17,10 +17,9 @@ ng_module(
     ]),
     deps = [
         "//src/angular/button",
-        "//src/angular/icon",
+        "//src/angular/form-field",
         "//src/angular/input",
         "//src/angular/lightbox",
-        "//src/angular/radio-button",
         "@npm//@angular/common",
         "@npm//@angular/core",
         "@npm//@angular/forms",
