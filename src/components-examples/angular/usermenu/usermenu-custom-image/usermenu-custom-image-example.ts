@@ -1,4 +1,6 @@
 import { Component } from '@angular/core';
+import { SbbMenuModule } from '@sbb-esta/angular/menu';
+import { SbbUsermenuModule } from '@sbb-esta/angular/usermenu';
 
 /**
  * @title Usermenu Custom Image
@@ -7,6 +9,8 @@ import { Component } from '@angular/core';
 @Component({
   selector: 'sbb-usermenu-custom-image-example',
   templateUrl: 'usermenu-custom-image-example.html',
+  standalone: true,
+  imports: [SbbUsermenuModule, SbbMenuModule],
 })
 export class UsermenuCustomImageExample {
   userName?: string;

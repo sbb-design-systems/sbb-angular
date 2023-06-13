@@ -24,7 +24,6 @@ ng_module(
         "//src/angular/icon",
         "//src/angular/sidebar",
         "@npm//@angular/cdk",
-        "@npm//@angular/common",
         "@npm//@angular/core",
         "@npm//@angular/forms",
         "@npm//rxjs",

@@ -1,4 +1,6 @@
 import { Component } from '@angular/core';
+import { RouterLink } from '@angular/router';
+import { SbbAlertModule } from '@sbb-esta/angular/alert';
 
 /**
  * @title Alert with Router link
@@ -7,5 +9,7 @@ import { Component } from '@angular/core';
 @Component({
   selector: 'sbb-alert-router-link-example',
   templateUrl: 'alert-router-link-example.html',
+  standalone: true,
+  imports: [SbbAlertModule, RouterLink],
 })
 export class AlertRouterLinkExample {}

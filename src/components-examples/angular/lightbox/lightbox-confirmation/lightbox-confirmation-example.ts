@@ -1,5 +1,8 @@
+import { NgIf } from '@angular/common';
 import { ChangeDetectionStrategy, ChangeDetectorRef, Component, OnInit } from '@angular/core';
+import { SbbButtonModule } from '@sbb-esta/angular/button';
 import { SbbLightbox, SbbLightboxRef } from '@sbb-esta/angular/lightbox';
+import { SbbLightboxModule } from '@sbb-esta/angular/lightbox';
 
 /**
  * @title Lightbox with confirmation
@@ -8,6 +11,8 @@ import { SbbLightbox, SbbLightboxRef } from '@sbb-esta/angular/lightbox';
 @Component({
   selector: 'sbb-lightbox-confirmation-example',
   templateUrl: 'lightbox-confirmation-example.html',
+  standalone: true,
+  imports: [SbbLightboxModule, SbbButtonModule],
 })
 export class LightboxConfirmationExample {
   constructor(public lightbox: SbbLightbox) {}
@@ -42,6 +47,8 @@ export class LightboxConfirmationExample {
     `,
   ],
   changeDetection: ChangeDetectionStrategy.OnPush,
+  standalone: true,
+  imports: [SbbLightboxModule, NgIf, SbbButtonModule],
 })
 export class LightboxWithConfirmationOnClose implements OnInit {
   confirmPanel = false;

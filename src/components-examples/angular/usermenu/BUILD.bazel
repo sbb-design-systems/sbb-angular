@@ -16,7 +16,6 @@ ng_module(
         "//src/angular/icon",
         "//src/angular/menu",
         "//src/angular/usermenu",
-        "@npm//@angular/common",
         "@npm//@angular/core",
         "@npm//@angular/router",
     ],

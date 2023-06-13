@@ -1,4 +1,10 @@
+import { JsonPipe, NgFor } from '@angular/common';
 import { Component } from '@angular/core';
+import { FormsModule } from '@angular/forms';
+import { SbbCheckboxModule } from '@sbb-esta/angular/checkbox';
+import { SbbOptionModule } from '@sbb-esta/angular/core';
+import { SbbFormFieldModule } from '@sbb-esta/angular/form-field';
+import { SbbSelectModule } from '@sbb-esta/angular/select';
 
 /**
  * @title Select Template Driven Forms
@@ -7,6 +13,16 @@ import { Component } from '@angular/core';
 @Component({
   selector: 'sbb-select-forms-example',
   templateUrl: 'select-forms-example.html',
+  standalone: true,
+  imports: [
+    SbbFormFieldModule,
+    SbbSelectModule,
+    FormsModule,
+    NgFor,
+    SbbOptionModule,
+    SbbCheckboxModule,
+    JsonPipe,
+  ],
 })
 export class SelectFormsExample {
   value: string;

@@ -1,5 +1,10 @@
+import { JsonPipe, NgFor } from '@angular/common';
 import { Component } from '@angular/core';
-import { FormBuilder } from '@angular/forms';
+import { FormBuilder, FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { SbbCheckboxModule } from '@sbb-esta/angular/checkbox';
+import { SbbOptionModule } from '@sbb-esta/angular/core';
+import { SbbFormFieldModule } from '@sbb-esta/angular/form-field';
+import { SbbSelectModule } from '@sbb-esta/angular/select';
 
 /**
  * @title Select Reactive Forms
@@ -8,6 +13,17 @@ import { FormBuilder } from '@angular/forms';
 @Component({
   selector: 'sbb-select-reactive-forms-example',
   templateUrl: 'select-reactive-forms-example.html',
+  standalone: true,
+  imports: [
+    FormsModule,
+    ReactiveFormsModule,
+    SbbFormFieldModule,
+    SbbSelectModule,
+    NgFor,
+    SbbOptionModule,
+    SbbCheckboxModule,
+    JsonPipe,
+  ],
 })
 export class SelectReactiveFormsExample {
   form = this._formBuilder.group({

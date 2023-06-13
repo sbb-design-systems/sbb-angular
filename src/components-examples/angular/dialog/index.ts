@@ -1,54 +1,13 @@
-import { CommonModule } from '@angular/common';
-import { NgModule } from '@angular/core';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { SbbButtonModule } from '@sbb-esta/angular/button';
-import { SbbDialogModule } from '@sbb-esta/angular/dialog';
-import { SbbInputModule } from '@sbb-esta/angular/input';
-
-import {
-  ComponentDataDialogComponent,
-  ComponentDataDialogExample,
-} from './component-data-dialog/component-data-dialog-example';
-import {
-  DialogAnimationsExample,
-  DialogAnimationsExampleDialog,
-} from './dialog-animations/dialog-animations-example';
-import {
-  SharedDataDialogComponent,
-  SharedDataDialogExample,
-} from './shared-data-dialog/shared-data-dialog-example';
-import { TemplateDialogExample } from './template-dialog/template-dialog-example';
-
 export {
   ComponentDataDialogComponent,
   ComponentDataDialogExample,
-  SharedDataDialogComponent,
-  SharedDataDialogExample,
-  TemplateDialogExample,
+} from './component-data-dialog/component-data-dialog-example';
+export {
   DialogAnimationsExample,
   DialogAnimationsExampleDialog,
-};
-
-const EXAMPLES = [
-  ComponentDataDialogComponent,
-  ComponentDataDialogExample,
+} from './dialog-animations/dialog-animations-example';
+export {
   SharedDataDialogComponent,
   SharedDataDialogExample,
-  TemplateDialogExample,
-  DialogAnimationsExample,
-  DialogAnimationsExampleDialog,
-];
-
-@NgModule({
-  imports: [
-    CommonModule,
-    FormsModule,
-    ReactiveFormsModule,
-    SbbButtonModule,
-    SbbDialogModule,
-    SbbInputModule,
-  ],
-  declarations: EXAMPLES,
-  exports: EXAMPLES,
-})
-export class DialogExamplesModule {}
+} from './shared-data-dialog/shared-data-dialog-example';
+export { TemplateDialogExample } from './template-dialog/template-dialog-example';

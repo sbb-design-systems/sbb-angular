@@ -1,5 +1,10 @@
 import { Component } from '@angular/core';
+import { FormsModule } from '@angular/forms';
+import { SbbCheckboxModule } from '@sbb-esta/angular/checkbox';
+import { SbbFormFieldModule } from '@sbb-esta/angular/form-field';
+import { SbbInputModule } from '@sbb-esta/angular/input';
 import { SbbPageEvent } from '@sbb-esta/angular/pagination';
+import { SbbPaginationModule } from '@sbb-esta/angular/pagination';
 
 /**
  * @title Paginator
@@ -9,6 +14,14 @@ import { SbbPageEvent } from '@sbb-esta/angular/pagination';
   selector: 'sbb-paginator-example',
   templateUrl: 'paginator-example.html',
   styleUrls: ['paginator-example.css'],
+  standalone: true,
+  imports: [
+    SbbPaginationModule,
+    SbbFormFieldModule,
+    SbbInputModule,
+    FormsModule,
+    SbbCheckboxModule,
+  ],
 })
 export class PaginatorExample {
   length = 70;

@@ -13,7 +13,6 @@ ng_module(
     ),
     assets = glob(["**/*.html"]),
     deps = [
-        "//src/angular/button",
         "//src/angular/icon",
         "//src/angular/menu",
         "@npm//@angular/core",

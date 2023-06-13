@@ -1,5 +1,12 @@
+import { NgClass, NgFor } from '@angular/common';
 import { Component, OnDestroy } from '@angular/core';
-import { FormBuilder } from '@angular/forms';
+import { FormBuilder, FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { SbbOptionModule } from '@sbb-esta/angular/core';
+import { SbbFormFieldModule } from '@sbb-esta/angular/form-field';
+import { SbbInputModule } from '@sbb-esta/angular/input';
+import { SbbRadioButtonModule } from '@sbb-esta/angular/radio-button';
+import { SbbRadioButtonPanelModule } from '@sbb-esta/angular/radio-button-panel';
+import { SbbSelectModule } from '@sbb-esta/angular/select';
 import { Subject } from 'rxjs';
 import { startWith, takeUntil } from 'rxjs/operators';
 
@@ -11,6 +18,19 @@ import { startWith, takeUntil } from 'rxjs/operators';
   selector: 'sbb-radio-button-panel-group-example',
   templateUrl: 'radio-button-panel-group-example.html',
   styleUrls: ['radio-button-panel-group-example.css'],
+  standalone: true,
+  imports: [
+    FormsModule,
+    ReactiveFormsModule,
+    SbbRadioButtonModule,
+    NgClass,
+    NgFor,
+    SbbRadioButtonPanelModule,
+    SbbFormFieldModule,
+    SbbInputModule,
+    SbbSelectModule,
+    SbbOptionModule,
+  ],
 })
 export class RadioButtonPanelGroupExample implements OnDestroy {
   readonly breakpoints = [

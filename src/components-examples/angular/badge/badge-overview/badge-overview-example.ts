@@ -1,4 +1,6 @@
 import { Component } from '@angular/core';
+import { SbbBadgeModule } from '@sbb-esta/angular/badge';
+import { SbbButtonModule } from '@sbb-esta/angular/button';
 
 /**
  * @title Badge overview
@@ -6,6 +8,8 @@ import { Component } from '@angular/core';
 @Component({
   selector: 'sbb-badge-overview-example',
   templateUrl: 'badge-overview-example.html',
+  standalone: true,
+  imports: [SbbBadgeModule, SbbButtonModule],
 })
 export class BadgeOverviewExample {
   hidden = false;

@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { SbbTooltipModule } from '@sbb-esta/angular/tooltip';
 
 /**
  * @title Tooltip Custom Icon
@@ -7,5 +8,7 @@ import { Component } from '@angular/core';
 @Component({
   selector: 'sbb-tooltip-custom-icon-example',
   templateUrl: 'tooltip-custom-icon-example.html',
+  standalone: true,
+  imports: [SbbTooltipModule],
 })
 export class TooltipCustomIconExample {}

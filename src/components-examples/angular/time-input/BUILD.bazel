@@ -14,9 +14,9 @@ ng_module(
     assets = glob(["**/*.html"]),
     deps = [
         "//src/angular/checkbox",
+        "//src/angular/form-field",
         "//src/angular/input",
         "//src/angular/time-input",
-        "@npm//@angular/common",
         "@npm//@angular/core",
         "@npm//@angular/forms",
     ],

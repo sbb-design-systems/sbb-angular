@@ -1,5 +1,10 @@
+import { AsyncPipe, JsonPipe, NgFor } from '@angular/common';
 import { Component } from '@angular/core';
-import { FormControl } from '@angular/forms';
+import { FormControl, FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { SbbAutocompleteModule } from '@sbb-esta/angular/autocomplete';
+import { SbbOptionModule } from '@sbb-esta/angular/core';
+import { SbbFormFieldModule } from '@sbb-esta/angular/form-field';
+import { SbbInputModule } from '@sbb-esta/angular/input';
 import { Observable } from 'rxjs';
 import { map, startWith } from 'rxjs/operators';
 
@@ -15,6 +20,18 @@ interface ExampleOption {
 @Component({
   selector: 'sbb-autocomplete-display-with-example',
   templateUrl: 'autocomplete-display-with-example.html',
+  standalone: true,
+  imports: [
+    SbbFormFieldModule,
+    SbbInputModule,
+    FormsModule,
+    SbbAutocompleteModule,
+    ReactiveFormsModule,
+    NgFor,
+    SbbOptionModule,
+    AsyncPipe,
+    JsonPipe,
+  ],
 })
 export class AutocompleteDisplayWithExample {
   myControl = new FormControl<string | ExampleOption>('');

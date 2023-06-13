@@ -1,5 +1,7 @@
+import { NgFor } from '@angular/common';
 import { Component } from '@angular/core';
-import { FormControl } from '@angular/forms';
+import { FormControl, FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { SbbRadioButtonModule } from '@sbb-esta/angular/radio-button';
 
 /**
  * @title Radio Button Group Reactive Forms Vertical
@@ -8,6 +10,8 @@ import { FormControl } from '@angular/forms';
 @Component({
   selector: 'sbb-radio-button-group-reactive-forms-vertical-example',
   templateUrl: 'radio-button-group-reactive-forms-vertical-example.html',
+  standalone: true,
+  imports: [SbbRadioButtonModule, FormsModule, ReactiveFormsModule, NgFor],
 })
 export class RadioButtonGroupReactiveFormsVerticalExample {
   radioOptions = [

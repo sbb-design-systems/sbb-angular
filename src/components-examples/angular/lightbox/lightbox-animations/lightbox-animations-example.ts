@@ -1,5 +1,7 @@
 import { Component } from '@angular/core';
+import { SbbButtonModule } from '@sbb-esta/angular/button';
 import { SbbLightbox } from '@sbb-esta/angular/lightbox';
+import { SbbLightboxModule } from '@sbb-esta/angular/lightbox';
 
 /**
  * @title Lightbox Animations
@@ -9,6 +11,8 @@ import { SbbLightbox } from '@sbb-esta/angular/lightbox';
   selector: 'sbb-lightbox-animations-example',
   styleUrls: ['lightbox-animations-example.css'],
   templateUrl: 'lightbox-animations-example.html',
+  standalone: true,
+  imports: [SbbLightboxModule, SbbButtonModule],
 })
 export class LightboxAnimationsExample {
   constructor(public lightbox: SbbLightbox) {}
@@ -33,5 +37,7 @@ export class LightboxAnimationsExample {
       <button sbb-secondary-button sbbLightboxClose>No</button>
     </sbb-lightbox-actions>
   `,
+  standalone: true,
+  imports: [SbbLightboxModule, SbbButtonModule],
 })
 export class LightboxAnimationsExampleContent {}

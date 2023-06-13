@@ -1,4 +1,8 @@
+import { JsonPipe } from '@angular/common';
 import { Component } from '@angular/core';
+import { FormsModule } from '@angular/forms';
+import { SbbFormFieldModule } from '@sbb-esta/angular/form-field';
+import { SbbInputModule } from '@sbb-esta/angular/input';
 
 /**
  * @title Textarea Native
@@ -7,6 +11,8 @@ import { Component } from '@angular/core';
 @Component({
   selector: 'sbb-textarea-native-example',
   templateUrl: 'textarea-native-example.html',
+  standalone: true,
+  imports: [SbbFormFieldModule, SbbInputModule, FormsModule, JsonPipe],
 })
 export class TextareaNativeExample {
   textarea: string = 'SBB';

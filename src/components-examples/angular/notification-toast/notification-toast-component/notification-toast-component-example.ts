@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { SbbButtonModule } from '@sbb-esta/angular/button';
 import { SbbNotificationToast } from '@sbb-esta/angular/notification-toast';
 
 /**
@@ -8,6 +9,8 @@ import { SbbNotificationToast } from '@sbb-esta/angular/notification-toast';
 @Component({
   selector: 'sbb-notification-toast-component-example',
   templateUrl: 'notification-toast-component-example.html',
+  standalone: true,
+  imports: [SbbButtonModule],
 })
 export class NotificationToastComponentExample {
   constructor(private _notification: SbbNotificationToast) {}
@@ -27,5 +30,6 @@ export class NotificationToastComponentExample {
       }
     `,
   ],
+  standalone: true,
 })
 export class ExampleToastComponent {}

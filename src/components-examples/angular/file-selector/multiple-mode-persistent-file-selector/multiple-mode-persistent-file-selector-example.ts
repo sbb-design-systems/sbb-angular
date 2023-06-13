@@ -1,4 +1,8 @@
+import { JsonPipe } from '@angular/common';
 import { Component } from '@angular/core';
+import { FormsModule } from '@angular/forms';
+import { SbbCheckboxModule } from '@sbb-esta/angular/checkbox';
+import { SbbFileSelectorModule } from '@sbb-esta/angular/file-selector';
 
 /**
  * @title Multiple Mode Persistent File Selector
@@ -7,6 +11,8 @@ import { Component } from '@angular/core';
 @Component({
   selector: 'sbb-multiple-mode-persistent-file-selector-example',
   templateUrl: 'multiple-mode-persistent-file-selector-example.html',
+  standalone: true,
+  imports: [SbbFileSelectorModule, FormsModule, SbbCheckboxModule, JsonPipe],
 })
 export class MultipleModePersistentFileSelectorExample {
   filesList: File[] = [];

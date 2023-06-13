@@ -1,5 +1,7 @@
+import { JsonPipe } from '@angular/common';
 import { Component } from '@angular/core';
-import { FormBuilder } from '@angular/forms';
+import { FormBuilder, FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { SbbTagModule } from '@sbb-esta/angular/tag';
 
 /**
  * @title Tag Reactive Forms
@@ -8,6 +10,8 @@ import { FormBuilder } from '@angular/forms';
 @Component({
   selector: 'sbb-tag-reactive-forms-example',
   templateUrl: 'tag-reactive-forms-example.html',
+  standalone: true,
+  imports: [SbbTagModule, FormsModule, ReactiveFormsModule, JsonPipe],
 })
 export class TagReactiveFormsExample {
   formGroup = this._formBuilder.group({

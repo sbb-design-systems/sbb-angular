@@ -9,8 +9,7 @@ export { BasicExample };
 const EXAMPLES = [BasicExample];
 
 @NgModule({
-  imports: [CommonModule, FormsModule, ReactiveFormsModule],
-  declarations: EXAMPLES,
+  imports: [CommonModule, FormsModule, ReactiveFormsModule, ...EXAMPLES],
   exports: EXAMPLES,
 })
 export class AccordionExamplesModule {}

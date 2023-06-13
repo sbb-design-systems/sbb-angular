@@ -1,6 +1,11 @@
 import { COMMA, ENTER } from '@angular/cdk/keycodes';
+import { AsyncPipe, NgFor } from '@angular/common';
 import { Component } from '@angular/core';
-import { FormControl } from '@angular/forms';
+import { FormControl, FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { SbbAutocompleteModule } from '@sbb-esta/angular/autocomplete';
+import { SbbChipsModule } from '@sbb-esta/angular/chips';
+import { SbbOptionModule } from '@sbb-esta/angular/core';
+import { SbbFormFieldModule } from '@sbb-esta/angular/form-field';
 import { Observable } from 'rxjs';
 import { map, startWith } from 'rxjs/operators';
 
@@ -11,6 +16,17 @@ import { map, startWith } from 'rxjs/operators';
 @Component({
   selector: 'sbb-chips-autocomplete-example',
   templateUrl: 'chips-autocomplete-example.html',
+  standalone: true,
+  imports: [
+    SbbFormFieldModule,
+    SbbChipsModule,
+    FormsModule,
+    ReactiveFormsModule,
+    NgFor,
+    SbbAutocompleteModule,
+    SbbOptionModule,
+    AsyncPipe,
+  ],
 })
 export class ChipsAutocompleteExample {
   separatorKeysCodes: number[] = [ENTER, COMMA];
