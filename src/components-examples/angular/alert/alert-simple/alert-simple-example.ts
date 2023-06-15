@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { SbbAlertModule } from '@sbb-esta/angular/alert';
 
 /**
  * @title Simple Alert
@@ -7,5 +8,7 @@ import { Component } from '@angular/core';
 @Component({
   selector: 'sbb-alert-simple-example',
   templateUrl: 'alert-simple-example.html',
+  standalone: true,
+  imports: [SbbAlertModule],
 })
 export class AlertSimpleExample {}

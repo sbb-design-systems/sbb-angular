@@ -1,6 +1,12 @@
+import { NgFor, NgIf } from '@angular/common';
 import { HttpClient } from '@angular/common/http';
 import { Component, OnDestroy, OnInit } from '@angular/core';
-import { FormControl } from '@angular/forms';
+import { FormControl, FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { SbbAutocompleteModule } from '@sbb-esta/angular/autocomplete';
+import { SbbOptionModule } from '@sbb-esta/angular/core';
+import { SbbInputModule } from '@sbb-esta/angular/input';
+import { SbbLoadingIndicatorModule } from '@sbb-esta/angular/loading-indicator';
+import { SbbSearchModule } from '@sbb-esta/angular/search';
 import { Subject } from 'rxjs';
 import { distinctUntilChanged, map, switchMap, takeUntil, tap } from 'rxjs/operators';
 
@@ -21,6 +27,18 @@ interface ImageRecord {
   selector: 'sbb-search-historic-railway-pictures-example',
   templateUrl: 'search-historic-railway-pictures-example.html',
   styleUrls: ['search-historic-railway-pictures-example.css'],
+  standalone: true,
+  imports: [
+    SbbSearchModule,
+    SbbInputModule,
+    FormsModule,
+    SbbAutocompleteModule,
+    ReactiveFormsModule,
+    NgFor,
+    SbbOptionModule,
+    NgIf,
+    SbbLoadingIndicatorModule,
+  ],
 })
 export class SearchHistoricRailwayPicturesExample implements OnInit, OnDestroy {
   searchControl = new FormControl('');

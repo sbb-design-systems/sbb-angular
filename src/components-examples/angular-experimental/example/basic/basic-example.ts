@@ -8,5 +8,6 @@ import { Component } from '@angular/core';
   selector: 'sbb-basic-example',
   templateUrl: 'basic-example.html',
   styleUrls: ['basic-example.css'],
+  standalone: true,
 })
 export class BasicExample {}

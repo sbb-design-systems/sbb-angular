@@ -1,8 +1,11 @@
 import { BreakpointObserver, MediaMatcher } from '@angular/cdk/layout';
 import { AfterViewInit, Component, OnDestroy } from '@angular/core';
-import { FormControl } from '@angular/forms';
+import { FormControl, FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { SbbCheckboxModule } from '@sbb-esta/angular/checkbox';
 import { Breakpoints } from '@sbb-esta/angular/core';
 import { FakeMediaMatcher } from '@sbb-esta/angular/core/testing';
+import { SbbIconModule } from '@sbb-esta/angular/icon';
+import { SbbSidebarModule } from '@sbb-esta/angular/sidebar';
 import { Subject } from 'rxjs';
 import { startWith, takeUntil } from 'rxjs/operators';
 
@@ -18,7 +21,9 @@ import { startWith, takeUntil } from 'rxjs/operators';
     FakeMediaMatcher,
     { provide: MediaMatcher, useExisting: FakeMediaMatcher },
     BreakpointObserver,
-  ], // The providers are only for demo purposes, don't use it in your code
+  ],
+  standalone: true,
+  imports: [SbbSidebarModule, SbbIconModule, SbbCheckboxModule, FormsModule, ReactiveFormsModule],
 })
 export class IconSidebarExample implements AfterViewInit, OnDestroy {
   expanded = false;

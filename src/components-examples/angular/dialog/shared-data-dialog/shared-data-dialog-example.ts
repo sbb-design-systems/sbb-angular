@@ -1,5 +1,11 @@
+import { NgIf } from '@angular/common';
 import { Component, Inject } from '@angular/core';
+import { FormsModule } from '@angular/forms';
+import { SbbButtonModule } from '@sbb-esta/angular/button';
 import { SbbDialog, SbbDialogRef, SBB_DIALOG_DATA } from '@sbb-esta/angular/dialog';
+import { SbbDialogModule } from '@sbb-esta/angular/dialog';
+import { SbbFormFieldModule } from '@sbb-esta/angular/form-field';
+import { SbbInputModule } from '@sbb-esta/angular/input';
 
 export interface DialogData {
   animal: string;
@@ -13,6 +19,8 @@ export interface DialogData {
 @Component({
   selector: 'sbb-shared-data-dialog-example',
   templateUrl: 'shared-data-dialog-example.html',
+  standalone: true,
+  imports: [FormsModule, SbbButtonModule, NgIf],
 })
 export class SharedDataDialogExample {
   animal: string;
@@ -49,6 +57,8 @@ export class SharedDataDialogExample {
       <button sbb-secondary-button (click)="noThanks()">No Thanks</button>
     </div>
   `,
+  standalone: true,
+  imports: [SbbDialogModule, SbbFormFieldModule, SbbInputModule, FormsModule, SbbButtonModule],
 })
 export class SharedDataDialogComponent {
   constructor(

@@ -15,8 +15,6 @@ ng_module(
     deps = [
         "//src/angular/alert",
         "//src/angular/button",
-        "//src/angular/icon",
-        "@npm//@angular/common",
         "@npm//@angular/core",
         "@npm//@angular/router",
     ],

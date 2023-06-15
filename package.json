@@ -150,7 +150,7 @@
     "rollup": "2.79.1",
     "rollup-plugin-sourcemaps": "0.6.3",
     "rxjs-tslint-rules": "4.34.8",
-    "sass": "1.63.3",
+    "sass": "1.63.4",
     "semver": "7.5.1",
     "send": "0.18.0",
     "shelljs": "0.8.5",

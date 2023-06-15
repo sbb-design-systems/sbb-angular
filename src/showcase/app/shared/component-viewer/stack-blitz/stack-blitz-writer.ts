@@ -125,7 +125,7 @@ export class StackBlitzWriter {
     const result: FileDictionary = {};
     const tasks: Promise<unknown>[] = [];
     const liveExample = EXAMPLE_COMPONENTS[exampleId];
-    const exampleBaseContentPath = `${DOCS_CONTENT_PATH}/${liveExample.module.importSpecifier}/${exampleId}/`;
+    const exampleBaseContentPath = `${DOCS_CONTENT_PATH}/${liveExample.importPath}/${exampleId}/`;
 
     for (const relativeFilePath of TEMPLATE_FILES) {
       tasks.push(
@@ -208,20 +208,6 @@ export class StackBlitzWriter {
         `{ ${joinedComponentNames} }`
       );
 
-      // Replace `declarations: [SbbAngularDocsExample]`
-      // will be replaced as `declarations: [ButtonDemo]`
-      fileContent = fileContent.replace(
-        /declarations: \[SbbAngularDocsExample]/g,
-        `declarations: [${joinedComponentNames}]`
-      );
-
-      // Replace `entryComponents: [SbbAngularDocsExample]`
-      // will be replaced as `entryComponents: [DialogContent]`
-      fileContent = fileContent.replace(
-        /entryComponents: \[SbbAngularDocsExample]/g,
-        `entryComponents: [${joinedComponentNames}]`
-      );
-
       // Replace `bootstrap: [SbbAngularDocsExample]`
       // will be replaced as `bootstrap: [ButtonDemo]`
       // This assumes the first component listed in the main component
@@ -229,6 +215,10 @@ export class StackBlitzWriter {
         /bootstrap: \[SbbAngularDocsExample]/g,
         `bootstrap: [${data.componentNames[0]}]`
       );
+
+      // Replace all other occurances of `SbbAngularDocsExample`
+      // will be replaced as `ButtonDemo`
+      fileContent = fileContent.replace('SbbAngularDocsExample', joinedComponentNames);
 
       const dotIndex = data.indexFilename.lastIndexOf('.');
       const importFileName = data.indexFilename.slice(0, dotIndex === -1 ? undefined : dotIndex);

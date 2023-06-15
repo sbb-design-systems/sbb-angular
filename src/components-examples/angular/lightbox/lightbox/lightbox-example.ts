@@ -1,5 +1,15 @@
+import { NgIf } from '@angular/common';
 import { Component, Inject } from '@angular/core';
-import { SbbLightbox, SbbLightboxRef, SBB_LIGHTBOX_DATA } from '@sbb-esta/angular/lightbox';
+import { FormsModule } from '@angular/forms';
+import { SbbButtonModule } from '@sbb-esta/angular/button';
+import { SbbFormFieldModule } from '@sbb-esta/angular/form-field';
+import { SbbInputModule } from '@sbb-esta/angular/input';
+import {
+  SbbLightbox,
+  SbbLightboxModule,
+  SbbLightboxRef,
+  SBB_LIGHTBOX_DATA,
+} from '@sbb-esta/angular/lightbox';
 
 export interface LightboxData {
   animal: string;
@@ -13,6 +23,15 @@ export interface LightboxData {
 @Component({
   selector: 'sbb-lightbox-example',
   templateUrl: 'lightbox-example.html',
+  standalone: true,
+  imports: [
+    SbbLightboxModule,
+    SbbFormFieldModule,
+    SbbInputModule,
+    FormsModule,
+    SbbButtonModule,
+    NgIf,
+  ],
 })
 export class LightboxExample {
   animal: string;
@@ -35,6 +54,8 @@ export class LightboxExample {
 @Component({
   selector: 'sbb-lightbox-example-content',
   templateUrl: 'lightbox-example-content.html',
+  standalone: true,
+  imports: [SbbLightboxModule, SbbFormFieldModule, SbbInputModule, FormsModule, SbbButtonModule],
 })
 export class LightboxExampleContent {
   constructor(

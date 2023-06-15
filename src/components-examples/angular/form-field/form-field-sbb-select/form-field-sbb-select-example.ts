@@ -1,5 +1,9 @@
+import { NgFor, NgIf } from '@angular/common';
 import { Component } from '@angular/core';
-import { FormControl, Validators } from '@angular/forms';
+import { FormControl, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
+import { SbbOptionModule } from '@sbb-esta/angular/core';
+import { SbbFormFieldModule } from '@sbb-esta/angular/form-field';
+import { SbbSelectModule } from '@sbb-esta/angular/select';
 
 /**
  * @title Form Field Sbb Select
@@ -8,6 +12,16 @@ import { FormControl, Validators } from '@angular/forms';
 @Component({
   selector: 'sbb-form-field-sbb-select-example',
   templateUrl: 'form-field-sbb-select-example.html',
+  standalone: true,
+  imports: [
+    SbbFormFieldModule,
+    SbbSelectModule,
+    FormsModule,
+    ReactiveFormsModule,
+    NgFor,
+    SbbOptionModule,
+    NgIf,
+  ],
 })
 export class FormFieldSbbSelectExample {
   select: FormControl = new FormControl('', [Validators.required]);

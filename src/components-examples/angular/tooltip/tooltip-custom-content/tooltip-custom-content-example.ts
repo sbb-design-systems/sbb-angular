@@ -1,4 +1,6 @@
 import { Component } from '@angular/core';
+import { SbbButtonModule } from '@sbb-esta/angular/button';
+import { SbbTooltipModule } from '@sbb-esta/angular/tooltip';
 
 /**
  * @title Tooltip Custom Content
@@ -7,5 +9,7 @@ import { Component } from '@angular/core';
 @Component({
   selector: 'sbb-tooltip-custom-content-example',
   templateUrl: 'tooltip-custom-content-example.html',
+  standalone: true,
+  imports: [SbbTooltipModule, SbbButtonModule],
 })
 export class TooltipCustomContentExample {}

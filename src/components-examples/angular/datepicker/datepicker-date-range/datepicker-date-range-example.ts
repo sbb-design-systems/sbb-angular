@@ -1,5 +1,9 @@
+import { DatePipe } from '@angular/common';
 import { Component } from '@angular/core';
-import { FormControl } from '@angular/forms';
+import { FormControl, FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { SbbDatepickerModule } from '@sbb-esta/angular/datepicker';
+import { SbbFormFieldModule } from '@sbb-esta/angular/form-field';
+import { SbbInputModule } from '@sbb-esta/angular/input';
 
 /**
  * @title Datepicker Date Range
@@ -8,6 +12,15 @@ import { FormControl } from '@angular/forms';
 @Component({
   selector: 'sbb-datepicker-date-range-example',
   templateUrl: 'datepicker-date-range-example.html',
+  standalone: true,
+  imports: [
+    SbbFormFieldModule,
+    SbbDatepickerModule,
+    SbbInputModule,
+    FormsModule,
+    ReactiveFormsModule,
+    DatePipe,
+  ],
 })
 export class DatepickerDateRangeExample {
   start = new FormControl<Date | null>(null);

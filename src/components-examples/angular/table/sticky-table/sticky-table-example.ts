@@ -1,7 +1,10 @@
 import { LiveAnnouncer } from '@angular/cdk/a11y';
+import { NgFor, NgIf } from '@angular/common';
 import { HttpClient } from '@angular/common/http';
 import { Component, ViewChild } from '@angular/core';
+import { SbbLoadingIndicatorModule } from '@sbb-esta/angular/loading-indicator';
 import { SbbSort, SbbSortState, SbbTableDataSource } from '@sbb-esta/angular/table';
+import { SbbTableModule } from '@sbb-esta/angular/table';
 
 /**
  * @title Sticky Table Example
@@ -11,6 +14,8 @@ import { SbbSort, SbbSortState, SbbTableDataSource } from '@sbb-esta/angular/tab
   selector: 'sbb-sticky-table-example',
   styleUrls: ['sticky-table-example.css'],
   templateUrl: 'sticky-table-example.html',
+  standalone: true,
+  imports: [NgIf, SbbTableModule, NgFor, SbbLoadingIndicatorModule],
 })
 export class StickyTableExample {
   displayedColumns: string[] = [

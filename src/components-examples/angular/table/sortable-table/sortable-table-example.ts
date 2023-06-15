@@ -1,6 +1,8 @@
 import { LiveAnnouncer } from '@angular/cdk/a11y';
+import { DatePipe } from '@angular/common';
 import { AfterViewInit, Component, ViewChild } from '@angular/core';
 import { SbbSort, SbbSortState, SbbTableDataSource } from '@sbb-esta/angular/table';
+import { SbbTableModule } from '@sbb-esta/angular/table';
 
 /**
  * @title Sortable Table
@@ -9,6 +11,8 @@ import { SbbSort, SbbSortState, SbbTableDataSource } from '@sbb-esta/angular/tab
 @Component({
   selector: 'sbb-sortable-table-example',
   templateUrl: 'sortable-table-example.html',
+  standalone: true,
+  imports: [SbbTableModule, DatePipe],
 })
 export class SortableTableExample implements AfterViewInit {
   displayedColumns: string[] = ['letter', 'number', 'word', 'date'];

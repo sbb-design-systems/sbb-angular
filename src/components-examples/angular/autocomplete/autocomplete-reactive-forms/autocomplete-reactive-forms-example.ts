@@ -1,5 +1,10 @@
+import { JsonPipe, NgFor } from '@angular/common';
 import { Component, OnDestroy, OnInit } from '@angular/core';
-import { FormControl } from '@angular/forms';
+import { FormControl, FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { SbbAutocompleteModule } from '@sbb-esta/angular/autocomplete';
+import { SbbOptionModule } from '@sbb-esta/angular/core';
+import { SbbFormFieldModule } from '@sbb-esta/angular/form-field';
+import { SbbInputModule } from '@sbb-esta/angular/input';
 import { Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
 
@@ -10,6 +15,17 @@ import { takeUntil } from 'rxjs/operators';
 @Component({
   selector: 'sbb-autocomplete-reactive-forms-example',
   templateUrl: 'autocomplete-reactive-forms-example.html',
+  standalone: true,
+  imports: [
+    SbbFormFieldModule,
+    SbbInputModule,
+    FormsModule,
+    SbbAutocompleteModule,
+    ReactiveFormsModule,
+    NgFor,
+    SbbOptionModule,
+    JsonPipe,
+  ],
 })
 export class AutocompleteReactiveFormsExample implements OnInit, OnDestroy {
   myControl = new FormControl('');

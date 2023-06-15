@@ -1,5 +1,11 @@
+import { NgFor } from '@angular/common';
 import { Component } from '@angular/core';
-import { FormControl } from '@angular/forms';
+import { FormControl, FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { SbbButtonModule } from '@sbb-esta/angular/button';
+import { SbbCheckboxModule } from '@sbb-esta/angular/checkbox';
+import { SbbFormFieldModule } from '@sbb-esta/angular/form-field';
+import { SbbInputModule } from '@sbb-esta/angular/input';
+import { SbbTabsModule } from '@sbb-esta/angular/tabs';
 
 /**
  * @title Tab group with dynamically changing tabs
@@ -9,6 +15,17 @@ import { FormControl } from '@angular/forms';
   selector: 'sbb-tab-group-dynamic-example',
   templateUrl: 'tab-group-dynamic-example.html',
   styleUrls: ['tab-group-dynamic-example.css'],
+  standalone: true,
+  imports: [
+    SbbTabsModule,
+    NgFor,
+    SbbButtonModule,
+    SbbFormFieldModule,
+    SbbInputModule,
+    FormsModule,
+    ReactiveFormsModule,
+    SbbCheckboxModule,
+  ],
 })
 export class TabGroupDynamicExample {
   tabs = ['First', 'Second', 'Third'];

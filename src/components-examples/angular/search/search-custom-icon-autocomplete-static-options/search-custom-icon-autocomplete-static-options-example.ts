@@ -1,5 +1,10 @@
+import { AsyncPipe, NgFor } from '@angular/common';
 import { Component, OnDestroy, OnInit } from '@angular/core';
-import { FormControl } from '@angular/forms';
+import { FormControl, FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { SbbAutocompleteModule } from '@sbb-esta/angular/autocomplete';
+import { SbbOptionModule } from '@sbb-esta/angular/core';
+import { SbbInputModule } from '@sbb-esta/angular/input';
+import { SbbSearchModule } from '@sbb-esta/angular/search';
 import { Subject } from 'rxjs';
 import { debounceTime, distinctUntilChanged, takeUntil } from 'rxjs/operators';
 
@@ -10,6 +15,17 @@ import { debounceTime, distinctUntilChanged, takeUntil } from 'rxjs/operators';
 @Component({
   selector: 'sbb-search-custom-icon-autocomplete-static-options-example',
   templateUrl: 'search-custom-icon-autocomplete-static-options-example.html',
+  standalone: true,
+  imports: [
+    SbbSearchModule,
+    SbbInputModule,
+    FormsModule,
+    SbbAutocompleteModule,
+    ReactiveFormsModule,
+    NgFor,
+    SbbOptionModule,
+    AsyncPipe,
+  ],
 })
 export class SearchCustomIconAutocompleteStaticOptionsExample implements OnInit, OnDestroy {
   searchControl = new FormControl('');

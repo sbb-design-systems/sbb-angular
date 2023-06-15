@@ -1,5 +1,10 @@
+import { AsyncPipe, JsonPipe, NgFor } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
-import { FormControl } from '@angular/forms';
+import { FormControl, FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { SbbAutocompleteModule } from '@sbb-esta/angular/autocomplete';
+import { SbbOptionModule } from '@sbb-esta/angular/core';
+import { SbbFormFieldModule } from '@sbb-esta/angular/form-field';
+import { SbbInputModule } from '@sbb-esta/angular/input';
 import { Observable } from 'rxjs';
 import { debounceTime, distinctUntilChanged, map, startWith } from 'rxjs/operators';
 
@@ -10,6 +15,18 @@ import { debounceTime, distinctUntilChanged, map, startWith } from 'rxjs/operato
 @Component({
   selector: 'sbb-autocomplete-option-group-example',
   templateUrl: 'autocomplete-option-group-example.html',
+  standalone: true,
+  imports: [
+    SbbFormFieldModule,
+    SbbInputModule,
+    FormsModule,
+    SbbAutocompleteModule,
+    ReactiveFormsModule,
+    NgFor,
+    SbbOptionModule,
+    AsyncPipe,
+    JsonPipe,
+  ],
 })
 export class AutocompleteOptionGroupExample implements OnInit {
   myControlStatic = new FormControl('one');

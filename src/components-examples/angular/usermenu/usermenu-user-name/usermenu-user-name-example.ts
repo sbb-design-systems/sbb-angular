@@ -1,4 +1,8 @@
 import { Component } from '@angular/core';
+import { RouterLink, RouterLinkActive } from '@angular/router';
+import { SbbIconModule } from '@sbb-esta/angular/icon';
+import { SbbMenuModule } from '@sbb-esta/angular/menu';
+import { SbbUsermenuModule } from '@sbb-esta/angular/usermenu';
 
 /**
  * @title Usermenu User Name
@@ -7,6 +11,8 @@ import { Component } from '@angular/core';
 @Component({
   selector: 'sbb-usermenu-user-name-example',
   templateUrl: 'usermenu-user-name-example.html',
+  standalone: true,
+  imports: [SbbUsermenuModule, SbbMenuModule, RouterLink, RouterLinkActive, SbbIconModule],
 })
 export class UsermenuUserNameExample {
   userName?: string;

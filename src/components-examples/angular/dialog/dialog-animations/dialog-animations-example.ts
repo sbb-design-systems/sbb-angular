@@ -1,5 +1,7 @@
 import { Component } from '@angular/core';
+import { SbbButtonModule } from '@sbb-esta/angular/button';
 import { SbbDialog } from '@sbb-esta/angular/dialog';
+import { SbbDialogModule } from '@sbb-esta/angular/dialog';
 
 /**
  * @title Dialog Animations
@@ -9,6 +11,8 @@ import { SbbDialog } from '@sbb-esta/angular/dialog';
   selector: 'sbb-dialog-animations-example',
   styleUrls: ['dialog-animations-example.css'],
   templateUrl: 'dialog-animations-example.html',
+  standalone: true,
+  imports: [SbbButtonModule],
 })
 export class DialogAnimationsExample {
   constructor(public dialog: SbbDialog) {}
@@ -32,5 +36,7 @@ export class DialogAnimationsExample {
       <button sbb-secondary-button sbbDialogClose>No</button>
     </div>
   `,
+  standalone: true,
+  imports: [SbbDialogModule, SbbButtonModule],
 })
 export class DialogAnimationsExampleDialog {}

@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { SbbTextexpandModule } from '@sbb-esta/angular/textexpand';
 
 /**
  * @title Textexpand
@@ -7,5 +8,7 @@ import { Component } from '@angular/core';
 @Component({
   selector: 'sbb-textexpand-example',
   templateUrl: 'textexpand-example.html',
+  standalone: true,
+  imports: [SbbTextexpandModule],
 })
 export class TextexpandExample {}

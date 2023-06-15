@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { SbbTimeInputModule } from '@sbb-esta/angular/time-input';
 
 /**
  * @title Simple Time Input
@@ -7,5 +8,7 @@ import { Component } from '@angular/core';
 @Component({
   selector: 'sbb-simple-time-input-example',
   templateUrl: 'simple-time-input-example.html',
+  standalone: true,
+  imports: [SbbTimeInputModule],
 })
 export class SimpleTimeInputExample {}
