@@ -129,7 +129,7 @@ function formatBazelFile(relativePath, content) {
 }
 
 // tools/schematics/bazel/ng-module.ts
-var NgModule = class {
+var NgModule = class _NgModule {
   constructor(_dir, _tree, _context) {
     this._dir = _dir;
     this._tree = _tree;
@@ -202,7 +202,7 @@ var NgModule = class {
     return this;
   }
   _createSubModule(dir) {
-    return new NgModule(dir, this._tree, this._context);
+    return new _NgModule(dir, this._tree, this._context);
   }
   _findFiles(dir, skipModuleCheck = true) {
     if (["schematics", "styles", "web-component"].some((d) => (0, import_core3.basename)(dir.path) === d)) {
@@ -364,14 +364,14 @@ var FlexibleSassDependencyResolver = class {
 var import_core6 = require("@angular-devkit/core");
 
 // tools/schematics/bazel/showcase-module.ts
-var ShowcaseModule = class extends NgModule {
+var ShowcaseModule = class _ShowcaseModule extends NgModule {
   constructor() {
     super(...arguments);
     this._templateUrl = "./files/showcaseModule";
     this.customTsConfig = "//src/showcase:tsconfig.json";
   }
   _createSubModule(dir) {
-    return new ShowcaseModule(dir, this._tree, this._context);
+    return new _ShowcaseModule(dir, this._tree, this._context);
   }
 };
 
