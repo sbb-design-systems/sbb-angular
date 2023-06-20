@@ -2,6 +2,26 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [16.2.0](https://github.com/sbb-design-systems/sbb-angular/compare/16.1.0...16.2.0) (2023-06-20)
+
+
+### Features
+
+* **journey-maps:** extend poi-url-generation with preview flag ([#1899](https://github.com/sbb-design-systems/sbb-angular/issues/1899)) ([19c8a51](https://github.com/sbb-design-systems/sbb-angular/commit/19c8a519573ec08748797678849be9cc7ce18507))
+
+
+### Bug Fixes
+
+* **deps:** update angular ([0a72fd2](https://github.com/sbb-design-systems/sbb-angular/commit/0a72fd243fc0f019edde8d4bdfd43e63aa256c9a))
+* **deps:** update dependency @angular/cdk to v16.1.1 ([#1921](https://github.com/sbb-design-systems/sbb-angular/issues/1921)) ([1da03c9](https://github.com/sbb-design-systems/sbb-angular/commit/1da03c9b8ca686ee339574ce6474f85ac8483692))
+* **stackblitz:** fix dependencies and registry ([#1916](https://github.com/sbb-design-systems/sbb-angular/issues/1916)) ([bf9ba4e](https://github.com/sbb-design-systems/sbb-angular/commit/bf9ba4e0c0b3c460eabba11de3c9af87a8536025))
+
+
+### Documentation
+
+* convert examples to standalone ([#1919](https://github.com/sbb-design-systems/sbb-angular/issues/1919)) ([592be21](https://github.com/sbb-design-systems/sbb-angular/commit/592be21c0f83c09b385d5162e1a119991a1cf047))
+* **journey-maps:** add more information for the web-component ([#1913](https://github.com/sbb-design-systems/sbb-angular/issues/1913)) ([2fa7fc8](https://github.com/sbb-design-systems/sbb-angular/commit/2fa7fc82aae8e5374b71bbbf357a29c2a3723e8f))
+
 ## [16.1.0](https://github.com/sbb-design-systems/sbb-angular/compare/16.0.0...16.1.0) (2023-06-07)
 
 
