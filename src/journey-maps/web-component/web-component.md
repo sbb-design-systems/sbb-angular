@@ -36,7 +36,7 @@ After importing the required files you can create an instance like this:
 <sbb-journey-maps-wc api-key="<API_KEY>" lang="en"></sbb-journey-maps-wc>
 ```
 
-Angular `@Input` properties are available as (dash-separated, lowercase) attributes of the component. (e.g. `@Input() apiKey` becomes `api-key`)
+Angular `@Input` properties are available as (dash-separated, lowercase) attributes of the component. (e.g. `@Input() apiKey` becomes `api-key`). You can find the full list of these properties in our [Angular API](/journey-maps/components/angular/api).
 
 You can get your API key on the [SBB API Platform](https://developer.sbb.ch/apis/journey-maps-tiles).
 
@@ -76,6 +76,8 @@ document.addEventListener('DOMContentLoaded', () =>
 );
 ```
 
+For a full list of all inputs and outputs, please check our [Angular API](/journey-maps/components/angular/api).
+
 ### Define templates for click or hover events
 
 The usage of templates (e.g. what to display in the popup when a marker is clicked) is a little bit different than with Angular.
@@ -93,10 +95,10 @@ The first step is to define the template and its id attribute:
 Then you pass the id of the template to the client:
 
 ```js
-// Set the template
+// Set the marker template directly on the client itself
 client.markerDetailsTemplate = 'myTemplate';
 
-// Make markers, stations and pois clickable
+// Make markers, stations and pois clickable and set the template for the STATIONs and POIs
 client.listenerOptions = {
   MARKER: {
     watch: true,
