@@ -226,6 +226,7 @@ export class SbbJourneyMaps implements OnInit, AfterViewInit, OnDestroy, OnChang
     this._host.nativeElement.moveWest = this.moveWest.bind(this);
     this._host.nativeElement.zoomIn = this.zoomIn.bind(this);
     this._host.nativeElement.zoomOut = this.zoomOut.bind(this);
+    this._host.nativeElement.unselectAll = this.unselectAll.bind(this);
   }
 
   private _styleOptions: SbbStyleOptions = this._defaultStyleOptions;
