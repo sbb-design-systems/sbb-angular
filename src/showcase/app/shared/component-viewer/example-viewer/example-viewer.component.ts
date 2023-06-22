@@ -50,7 +50,9 @@ export class ExampleViewerComponent implements OnInit {
   }
 
   stackBlitzEnabled() {
-    return moduleParams(this._route).pipe(map((params) => params.packageName === 'angular'));
+    return moduleParams(this._route).pipe(
+      map((params) => ['angular', 'journey-maps'].includes(params.packageName))
+    );
   }
 
   private _createLoader(exampleName: string, exampleFile: string) {
