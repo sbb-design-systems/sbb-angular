@@ -1,3 +1,4 @@
+import { CommonModule } from '@angular/common';
 import {
   ChangeDetectorRef,
   Component,
@@ -6,7 +7,20 @@ import {
   TemplateRef,
   ViewChild,
 } from '@angular/core';
-import { UntypedFormBuilder, UntypedFormGroup } from '@angular/forms';
+import {
+  FormsModule,
+  ReactiveFormsModule,
+  UntypedFormBuilder,
+  UntypedFormGroup,
+} from '@angular/forms';
+import { SbbButtonModule } from '@sbb-esta/angular/button';
+import { SbbCheckboxModule } from '@sbb-esta/angular/checkbox';
+import { SbbCommonModule, SbbOptionModule } from '@sbb-esta/angular/core';
+import { SbbFormFieldModule } from '@sbb-esta/angular/form-field';
+import { SbbInputModule } from '@sbb-esta/angular/input';
+import { SbbNotificationModule } from '@sbb-esta/angular/notification';
+import { SbbRadioButtonModule } from '@sbb-esta/angular/radio-button';
+import { SbbSelectModule } from '@sbb-esta/angular/select';
 import {
   SbbInteractionOptions,
   SbbJourneyMaps,
@@ -14,6 +28,7 @@ import {
   SbbViewportDimensions,
   SbbZoomLevels,
   SBB_BOUNDING_BOX,
+  SbbJourneyMapsModule,
 } from '@sbb-esta/journey-maps';
 import { Feature, Polygon, Position } from 'geojson';
 import { LngLatBounds, LngLatBoundsLike, LngLatLike } from 'maplibre-gl';
@@ -44,6 +59,23 @@ const CH_BOUNDS: LngLatBoundsLike = [
   selector: 'sbb-journey-maps-full-example',
   templateUrl: 'journey-maps-full-example.html',
   styleUrls: ['journey-maps-full-example.css'],
+  standalone: true,
+  imports: [
+    CommonModule,
+    SbbCommonModule,
+    SbbButtonModule,
+    SbbInputModule,
+    FormsModule,
+    ReactiveFormsModule,
+    SbbJourneyMapsModule,
+    SbbNotificationModule,
+    SbbCheckboxModule,
+    SbbRadioButtonModule,
+    SbbSelectModule,
+    SbbOptionModule,
+    SbbFormFieldModule,
+    ReactiveFormsModule,
+  ],
 })
 export class JourneyMapsFullExample implements OnInit, OnDestroy {
   @ViewChild('advancedMap')
