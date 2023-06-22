@@ -24,11 +24,11 @@ import { SbbSelectModule } from '@sbb-esta/angular/select';
 import {
   SbbInteractionOptions,
   SbbJourneyMaps,
+  SbbJourneyMapsModule,
   SbbJourneyMapsRoutingOptions,
   SbbViewportDimensions,
   SbbZoomLevels,
   SBB_BOUNDING_BOX,
-  SbbJourneyMapsModule,
 } from '@sbb-esta/journey-maps';
 import { Feature, Polygon, Position } from 'geojson';
 import { LngLatBounds, LngLatBoundsLike, LngLatLike } from 'maplibre-gl';
