@@ -2,6 +2,20 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [16.3.0](https://github.com/sbb-design-systems/sbb-angular/compare/16.2.0...16.3.0) (2023-06-29)
+
+
+### Features
+
+* **journeyMaps:** bind method for web component ([#1928](https://github.com/sbb-design-systems/sbb-angular/issues/1928)) ([23e810b](https://github.com/sbb-design-systems/sbb-angular/commit/23e810ba06eb0ec0626ee573774fadb545632033))
+
+
+### Bug Fixes
+
+* **deps:** update angular to v16.1.2 ([00fc588](https://github.com/sbb-design-systems/sbb-angular/commit/00fc588efe8c61693a406d944edf0b432adfbb90))
+* **deps:** update dependency @angular/cdk to v16.1.2 ([f3f5891](https://github.com/sbb-design-systems/sbb-angular/commit/f3f5891f915a25df8bf7cbd36f183be114d7e754))
+* **deps:** update dependency tslib to v2.6.0 ([bd98598](https://github.com/sbb-design-systems/sbb-angular/commit/bd98598c903418af38662fa40a47a3b65659d690))
+
 ## [16.2.0](https://github.com/sbb-design-systems/sbb-angular/compare/16.1.0...16.2.0) (2023-06-20)
 
 
