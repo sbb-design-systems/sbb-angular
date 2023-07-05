@@ -35,7 +35,7 @@ shelljs.cd(projectDir);
 // Extracts the supported command line options.
 const { components, debug, firefox, watch } = yargs(args)
   .command('* <components..>', 'Run tests for specified components', (args) =>
-    args.positional('components', { type: 'array' })
+    args.positional('components', { type: 'array' }),
   )
   .option('debug', {
     alias: 'local',
@@ -63,8 +63,8 @@ if (debug && (components.length > 1 || all)) {
   console.error(
     chalk.red(
       'Unable to run multiple components tests in debug mode. ' +
-        'Only one component at a time can be run with "--debug"'
-    )
+        'Only one component at a time can be run with "--debug"',
+    ),
   );
   process.exit(1);
 }
@@ -84,7 +84,7 @@ if (all) {
   }
   shelljs.exec(
     `yarn -s bazel test --test_tag_filters=-e2e,browser:${browserName} ` +
-      `--build_tag_filters=browser:${browserName} --build_tests_only //src/...`
+      `--build_tag_filters=browser:${browserName} --build_tests_only //src/...`,
   );
   return;
 }
@@ -94,8 +94,8 @@ if (!components.length) {
   console.error(
     chalk.red(
       'No component specified. Please either specify individual components, or pass "all" ' +
-        'in order to run tests for all components.'
-    )
+        'in order to run tests for all components.',
+    ),
   );
   console.info(chalk.yellow('Below are a few examples of how the script can be run:'));
   console.info(chalk.yellow(` - yarn test all`));
@@ -106,7 +106,7 @@ if (!components.length) {
 
 const bazelAction = debug ? 'run' : 'test';
 const testLabels = components.map(
-  (t) => `${getBazelPackageOfComponentName(t)}:${getTargetName(t)}`
+  (t) => `${getBazelPackageOfComponentName(t)}:${getTargetName(t)}`,
 );
 
 // Runs Bazel for the determined test labels.
@@ -135,8 +135,8 @@ function getBazelPackageOfComponentName(name) {
   console.error(
     chalk.red(
       `Could not find test target for specified component: ` +
-        `${chalk.yellow(name)}. Looked in packages: ${orderedGuessPackages.join(', ')}`
-    )
+        `${chalk.yellow(name)}. Looked in packages: ${orderedGuessPackages.join(', ')}`,
+    ),
   );
   process.exit(1);
 }

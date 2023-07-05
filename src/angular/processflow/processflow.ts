@@ -66,7 +66,7 @@ export class SbbStep extends CdkStep implements SbbErrorStateMatcher, AfterConte
     @Inject(forwardRef(() => SbbProcessflow)) processflow: SbbProcessflow,
     @SkipSelf() private _errorStateMatcher: SbbErrorStateMatcher,
     private _viewContainerRef: ViewContainerRef,
-    @Optional() @Inject(STEPPER_GLOBAL_OPTIONS) processflowOptions?: StepperOptions
+    @Optional() @Inject(STEPPER_GLOBAL_OPTIONS) processflowOptions?: StepperOptions,
   ) {
     super(processflow, processflowOptions);
   }
@@ -77,9 +77,9 @@ export class SbbStep extends CdkStep implements SbbErrorStateMatcher, AfterConte
         switchMap(() => {
           return this._stepper.selectionChange.pipe(
             map((event) => event.selectedStep === this),
-            startWith(this._stepper.selected === this)
+            startWith(this._stepper.selected === this),
           );
-        })
+        }),
       )
       .subscribe((isSelected) => {
         if (isSelected && this._lazyContent && !this._portal) {
@@ -141,7 +141,7 @@ export class SbbProcessflow extends CdkStepper implements AfterContentInit {
   constructor(
     @Optional() dir: Directionality,
     changeDetectorRef: ChangeDetectorRef,
-    elementRef: ElementRef<HTMLElement>
+    elementRef: ElementRef<HTMLElement>,
   ) {
     super(dir, changeDetectorRef, elementRef);
   }
@@ -164,7 +164,7 @@ export class SbbProcessflow extends CdkStepper implements AfterContentInit {
         // to a bug in animations where the `.done` callback gets invoked twice on some browsers.
         // See https://github.com/angular/angular/issues/24084
         distinctUntilChanged((x, y) => x.fromState === y.fromState && x.toState === y.toState),
-        takeUntil(this._destroyed)
+        takeUntil(this._destroyed),
       )
       .subscribe((event) => {
         if ((event.toState as StepContentPositionState) === 'current') {

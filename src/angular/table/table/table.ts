@@ -102,7 +102,7 @@ export class SbbTable<T> extends CdkTable<T> implements OnInit, OnDestroy {
     @SkipSelf()
     @Inject(STICKY_POSITIONING_LISTENER)
     stickyPositioningListener: StickyPositioningListener,
-    ngZone: NgZone
+    ngZone: NgZone,
   ) {
     super(
       differs,
@@ -116,7 +116,7 @@ export class SbbTable<T> extends CdkTable<T> implements OnInit, OnDestroy {
       coalescedStyleScheduler,
       _viewportRulerSbb,
       stickyPositioningListener,
-      ngZone
+      ngZone,
     );
   }
 

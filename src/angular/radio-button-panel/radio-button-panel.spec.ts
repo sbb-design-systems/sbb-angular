@@ -97,7 +97,7 @@ describe('SbbRadioButtonPanel', () => {
       expect(component).toBeTruthy();
 
       const optionSelectionComponents = fixture.debugElement.queryAll(
-        By.directive(SbbRadioButtonPanel)
+        By.directive(SbbRadioButtonPanel),
       );
       expect(optionSelectionComponents).toBeTruthy();
       expect(optionSelectionComponents.length).toBe(2);

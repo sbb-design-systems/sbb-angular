@@ -31,7 +31,7 @@ export class SbbMapRoutesService {
     map: MaplibreMap,
     mapSelectionEventService: SbbMapSelectionEvent,
     routes: SbbSelectableFeatureCollection[] = [SBB_EMPTY_FEATURE_COLLECTION],
-    routesMetaInformations: SbbRouteMetaInformation[] = []
+    routesMetaInformations: SbbRouteMetaInformation[] = [],
   ): void {
     routes.forEach((featureCollection, idx) => {
       const id = featureCollection.id ?? `jmc-generated-${idx + 1}`;
@@ -51,19 +51,18 @@ export class SbbMapRoutesService {
     this._mapRouteService.updateRoute(
       map,
       mapSelectionEventService,
-      toFeatureCollection(routes.flatMap((r) => r.features))
+      toFeatureCollection(routes.flatMap((r) => r.features)),
     );
   }
 
   getRouteMarkers(
     routes: SbbSelectableFeatureCollection[] | undefined,
-    routesOptions: SbbRouteMetaInformation[] | undefined
+    routesOptions: SbbRouteMetaInformation[] | undefined,
   ): SbbMarker[] | undefined {
     return routes
       ?.map<SbbMarker | undefined>((route) => {
-        const markerConfiguration = routesOptions?.find(
-          (ro) => ro.id === route.id && !!route.id
-        )?.midpointMarkerConfiguration;
+        const markerConfiguration = routesOptions?.find((ro) => ro.id === route.id && !!route.id)
+          ?.midpointMarkerConfiguration;
 
         const point = route.features.find((f) => f?.properties!['type'] === 'midpoint')
           ?.geometry as Point | undefined;

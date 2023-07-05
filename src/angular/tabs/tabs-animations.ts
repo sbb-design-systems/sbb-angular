@@ -21,7 +21,7 @@ export const sbbTabsAnimations: {
         // Normally this is redundant since we detach the content from the DOM, but if the user
         // opted into keeping the content in the DOM, we have to hide it so it isn't focusable.
         visibility: 'hidden',
-      })
+      }),
     ),
     transition('* => void, * => hidden', [
       style({ opacity: 1 }),

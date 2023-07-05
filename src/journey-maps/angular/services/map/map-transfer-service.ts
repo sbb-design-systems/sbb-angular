@@ -15,7 +15,7 @@ export class SbbMapTransferService {
   // calling this method only makes sense for clients using the v1 style.
   updateTransfer(
     map: MaplibreMap,
-    transfer: FeatureCollection = SBB_EMPTY_FEATURE_COLLECTION
+    transfer: FeatureCollection = SBB_EMPTY_FEATURE_COLLECTION,
   ): void {
     this._getSource(map).setData(transfer);
     this._data = transfer;
@@ -33,7 +33,7 @@ export class SbbMapTransferService {
 
   private _getSource(map: MaplibreMap): GeoJSONSource {
     return map.getSource(
-      isV1Style(map) ? SBB_ROKAS_WALK_SOURCE : SBB_ROKAS_ROUTE_SOURCE
+      isV1Style(map) ? SBB_ROKAS_WALK_SOURCE : SBB_ROKAS_ROUTE_SOURCE,
     ) as GeoJSONSource;
   }
 }

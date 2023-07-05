@@ -97,7 +97,10 @@ export class SbbColumnDef extends CdkColumnDef {
   },
 })
 export class SbbHeaderCell extends CdkHeaderCell {
-  constructor(public readonly _columnDef: SbbColumnDef, elementRef: ElementRef) {
+  constructor(
+    public readonly _columnDef: SbbColumnDef,
+    elementRef: ElementRef,
+  ) {
     super(_columnDef, elementRef);
   }
 }
@@ -112,7 +115,10 @@ export class SbbHeaderCell extends CdkHeaderCell {
   },
 })
 export class SbbFooterCell extends CdkFooterCell {
-  constructor(public readonly _columnDef: SbbColumnDef, elementRef: ElementRef) {
+  constructor(
+    public readonly _columnDef: SbbColumnDef,
+    elementRef: ElementRef,
+  ) {
     super(_columnDef, elementRef);
   }
 }
@@ -127,7 +133,10 @@ export class SbbFooterCell extends CdkFooterCell {
   },
 })
 export class SbbCell extends CdkCell {
-  constructor(public readonly _columnDef: SbbColumnDef, elementRef: ElementRef) {
+  constructor(
+    public readonly _columnDef: SbbColumnDef,
+    elementRef: ElementRef,
+  ) {
     super(_columnDef, elementRef);
   }
 }

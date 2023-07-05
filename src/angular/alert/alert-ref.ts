@@ -46,7 +46,10 @@ export class SbbAlertRef {
   instance: EmbeddedViewRef<any>;
 
   // noinspection JSUnusedGlobalSymbols
-  constructor(readonly instanceOutlet: SbbAlertOutlet, private _connector: SbbAlertRefConnector) {
+  constructor(
+    readonly instanceOutlet: SbbAlertOutlet,
+    private _connector: SbbAlertRefConnector,
+  ) {
     this.afterDismissed().subscribe(() => this.instance.destroy());
   }
 

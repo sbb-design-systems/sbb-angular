@@ -61,8 +61,8 @@ const _SbbButtonMixinBase = mixinDisabled(
   mixinVariant(
     class {
       constructor(public _elementRef: ElementRef) {}
-    }
-  )
+    },
+  ),
 );
 
 /**
@@ -113,7 +113,7 @@ export class SbbButton
     elementRef: ElementRef,
     private _focusMonitor: FocusMonitor,
     @Optional() @Inject(ANIMATION_MODULE_TYPE) public _animationMode: string,
-    private _contentObserver: ContentObserver
+    private _contentObserver: ContentObserver,
   ) {
     super(elementRef);
 
@@ -143,22 +143,22 @@ export class SbbButton
         () =>
           this._hasHostAttributes(...VALID_ICON_BUTTON_ATTRIBUTES) &&
           this._elementRef.nativeElement.textContent.trim() === '' &&
-          this._iconRefs.length === 1
-      )
+          this._iconRefs.length === 1,
+      ),
     );
 
     this._isIconButton.subscribe((isIconButton) => (this._hasIconButtonClass = isIconButton));
 
     this._leftIconVisible = combineLatest([this.variant, this._isIconButton]).pipe(
-      map(([v, isIconButton]) => !isIconButton && v === 'standard' && this._hasIconIndicator)
+      map(([v, isIconButton]) => !isIconButton && v === 'standard' && this._hasIconIndicator),
     );
     this._rightIconVisible = combineLatest([this.variant, this._isIconButton]).pipe(
       map(
         ([v, isIconButton]) =>
           !isIconButton &&
           ((v === 'standard' && this._hasIconIndicator) ||
-            (v === 'lean' && this._hasHostAttributes('sbb-link')))
-      )
+            (v === 'lean' && this._hasHostAttributes('sbb-link'))),
+      ),
     );
   }
 
@@ -220,7 +220,7 @@ export class SbbAnchor extends SbbButton implements AfterViewInit, OnDestroy {
     elementRef: ElementRef,
     @Optional() @Inject(ANIMATION_MODULE_TYPE) animationMode: string,
     private _ngZone: NgZone,
-    contentObserver: ContentObserver
+    contentObserver: ContentObserver,
   ) {
     super(elementRef, focusMonitor, animationMode, contentObserver);
   }

@@ -32,7 +32,7 @@ export function getSbbIconNoHttpProviderError(): Error {
   return Error(
     'Could not find HttpClient provider for use with Sbb Angular icons. ' +
       'Please include the HttpClientModule from @angular/common/http in your ' +
-      'app imports.'
+      'app imports.',
   );
 }
 
@@ -44,7 +44,7 @@ export function getSbbIconNoHttpProviderError(): Error {
 export function getSbbIconFailedToSanitizeUrlError(url: SafeResourceUrl): Error {
   return Error(
     `The URL provided to SbbIconRegistry was not trusted as a resource URL ` +
-      `via Angular's DomSanitizer. Attempted URL was "${url}".`
+      `via Angular's DomSanitizer. Attempted URL was "${url}".`,
   );
 }
 
@@ -56,7 +56,7 @@ export function getSbbIconFailedToSanitizeUrlError(url: SafeResourceUrl): Error 
 export function getSbbIconFailedToSanitizeLiteralError(literal: SafeHtml): Error {
   return Error(
     `The literal provided to SbbIconRegistry was not trusted as safe HTML by ` +
-      `Angular's DomSanitizer. Attempted literal was "${literal}".`
+      `Angular's DomSanitizer. Attempted literal was "${literal}".`,
   );
 }
 
@@ -75,7 +75,7 @@ export interface SbbIconOptions {
  */
 export type IconResolver = (
   name: string,
-  namespace: string
+  namespace: string,
 ) => SafeResourceUrl | SafeResourceUrlWithIconOptions | null;
 
 /** Object that specifies a URL from which to fetch an icon and the options to use for it. */
@@ -94,7 +94,7 @@ class SvgIconConfig {
   constructor(
     public url: SafeResourceUrl,
     public svgText: TrustedHTML | null,
-    public options?: SbbIconOptions
+    public options?: SbbIconOptions,
   ) {}
 }
 
@@ -149,7 +149,7 @@ export class SbbIconRegistry implements OnDestroy {
     @Optional() private _httpClient: HttpClient,
     private _sanitizer: DomSanitizer,
     @Optional() @Inject(DOCUMENT) document: any,
-    private readonly _errorHandler: ErrorHandler
+    private readonly _errorHandler: ErrorHandler,
   ) {
     this._document = document;
   }
@@ -180,7 +180,7 @@ export class SbbIconRegistry implements OnDestroy {
     namespace: string,
     iconName: string,
     url: SafeResourceUrl,
-    options?: SbbIconOptions
+    options?: SbbIconOptions,
   ): this {
     return this._addSvgIconConfig(namespace, iconName, new SvgIconConfig(url, null, options));
   }
@@ -208,7 +208,7 @@ export class SbbIconRegistry implements OnDestroy {
     namespace: string,
     iconName: string,
     literal: SafeHtml,
-    options?: SbbIconOptions
+    options?: SbbIconOptions,
   ): this {
     const cleanLiteral = this._sanitizer.sanitize(SecurityContext.HTML, literal);
 
@@ -222,7 +222,7 @@ export class SbbIconRegistry implements OnDestroy {
     return this._addSvgIconConfig(
       namespace,
       iconName,
-      new SvgIconConfig('', trustedLiteral, options)
+      new SvgIconConfig('', trustedLiteral, options),
     );
   }
 
@@ -248,7 +248,7 @@ export class SbbIconRegistry implements OnDestroy {
   addSvgIconSetInNamespace(
     namespace: string,
     url: SafeResourceUrl,
-    options?: SbbIconOptions
+    options?: SbbIconOptions,
   ): this {
     return this._addSvgIconSetConfig(namespace, new SvgIconConfig(url, null, options));
   }
@@ -261,7 +261,7 @@ export class SbbIconRegistry implements OnDestroy {
   addSvgIconSetLiteralInNamespace(
     namespace: string,
     literal: SafeHtml,
-    options?: SbbIconOptions
+    options?: SbbIconOptions,
   ): this {
     const cleanLiteral = this._sanitizer.sanitize(SecurityContext.HTML, literal);
 
@@ -335,7 +335,7 @@ export class SbbIconRegistry implements OnDestroy {
 
     return this._loadSvgIconFromConfig(new SvgIconConfig(safeUrl, null)).pipe(
       tap((svg) => this._cachedIconsByUrl.set(url!, svg)),
-      map((svg) => cloneSvg(svg))
+      map((svg) => cloneSvg(svg)),
     );
   }
 
@@ -413,7 +413,7 @@ export class SbbIconRegistry implements OnDestroy {
    */
   private _getSvgFromIconSetConfigs(
     name: string,
-    iconSetConfigs: SvgIconConfig[]
+    iconSetConfigs: SvgIconConfig[],
   ): Observable<SVGElement> {
     // For all the icon set SVG elements we've fetched, see if any contain an icon with the
     // requested name.
@@ -440,7 +440,7 @@ export class SbbIconRegistry implements OnDestroy {
             const errorMessage = `Loading icon set URL: ${url} failed: ${err.message}`;
             this._errorHandler.handleError(new Error(errorMessage));
             return observableOf(null);
-          })
+          }),
         );
       });
 
@@ -456,7 +456,7 @@ export class SbbIconRegistry implements OnDestroy {
         }
 
         return foundIcon;
-      })
+      }),
     );
   }
 
@@ -467,7 +467,7 @@ export class SbbIconRegistry implements OnDestroy {
    */
   private _extractIconWithNameFromAnySet(
     iconName: string,
-    iconSetConfigs: SvgIconConfig[]
+    iconSetConfigs: SvgIconConfig[],
   ): SVGElement | null {
     // Iterate backwards, so icon sets added later have precedence.
     for (let i = iconSetConfigs.length - 1; i >= 0; i--) {
@@ -495,7 +495,7 @@ export class SbbIconRegistry implements OnDestroy {
   private _loadSvgIconFromConfig(config: SvgIconConfig): Observable<SVGElement> {
     return this._fetchIcon(config).pipe(
       tap((svgText) => (config.svgText = svgText)),
-      map(() => this._svgElementFromConfig(config as LoadedSvgIconConfig))
+      map(() => this._svgElementFromConfig(config as LoadedSvgIconConfig)),
     );
   }
 
@@ -519,7 +519,7 @@ export class SbbIconRegistry implements OnDestroy {
   private _extractSvgIconFromSet(
     iconSet: SVGElement,
     iconName: string,
-    options?: SbbIconOptions
+    options?: SbbIconOptions,
   ): SVGElement | null {
     // Use the `id="iconName"` syntax in order to escape special
     // characters in the ID (versus using the #iconName syntax).
@@ -649,7 +649,7 @@ export class SbbIconRegistry implements OnDestroy {
         return trustedHTMLFromString(svg);
       }),
       finalize(() => this._inProgressUrlFetches.delete(url)),
-      share()
+      share(),
     );
 
     this._inProgressUrlFetches.set(url, req);
@@ -710,7 +710,7 @@ export class SbbIconRegistry implements OnDestroy {
     // If the namespace is one from our supported list, we return the CDN config.
     if (this._sbbCdnSupportedNamespaces.indexOf(namespace) !== -1) {
       const url = this._sanitizer.bypassSecurityTrustResourceUrl(
-        `https://icons.app.sbb.ch/${namespace}/${name}.svg`
+        `https://icons.app.sbb.ch/${namespace}/${name}.svg`,
       );
       return new SvgIconConfig(url, null);
     }

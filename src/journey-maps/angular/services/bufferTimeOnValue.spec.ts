@@ -97,7 +97,7 @@ describe('marbles testing', () => {
       const o$ = cold(actual);
       expectObservable(o$.pipe(buffer(o$.pipe(throttleTime(time), debounceTime(time))))).toBe(
         expected,
-        values
+        values,
       );
     });
   });
@@ -114,7 +114,7 @@ describe('marbles testing', () => {
       const o$ = cold(actual);
       expectObservable(o$.pipe(buffer(o$.pipe(throttleTime(time), debounceTime(time))))).toBe(
         expected,
-        values
+        values,
       );
     });
   });

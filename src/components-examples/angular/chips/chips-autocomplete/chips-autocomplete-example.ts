@@ -37,7 +37,7 @@ export class ChipsAutocompleteExample {
   fruitInputCtrl = new FormControl('');
   filteredFruits: Observable<string[]> = this.fruitInputCtrl.valueChanges.pipe(
     startWith(null),
-    map((fruit: string | null) => (fruit ? this._filter(fruit) : this.allFruits.slice()))
+    map((fruit: string | null) => (fruit ? this._filter(fruit) : this.allFruits.slice())),
   );
 
   private _filter(value: string): string[] {

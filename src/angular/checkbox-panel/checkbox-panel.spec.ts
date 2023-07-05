@@ -99,7 +99,7 @@ describe('SbbCheckboxPanel', () => {
       expect(component).toBeTruthy();
 
       const optionSelectionComponents = fixture.debugElement.queryAll(
-        By.directive(SbbCheckboxPanel)
+        By.directive(SbbCheckboxPanel),
       );
       expect(optionSelectionComponents).toBeTruthy();
       expect(optionSelectionComponents.length).toBe(2);

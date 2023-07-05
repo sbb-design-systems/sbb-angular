@@ -221,7 +221,7 @@ describe('AccordionDirective', () => {
     const event = dispatchKeyboardEvent(
       headerElements[headerElements.length - 1].nativeElement,
       'keydown',
-      HOME
+      HOME,
     );
     fixture.detectChanges();
 

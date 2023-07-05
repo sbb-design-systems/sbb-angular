@@ -87,7 +87,7 @@ export class SbbTooltipWrapper
       } else {
         return variant === 'standard' ? 'circle-question-mark-small' : 'circle-information-small';
       }
-    })
+    }),
   );
 
   /** Classes to be passed to the tooltip. Supports the same syntax as `ngClass`. */

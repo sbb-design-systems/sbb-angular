@@ -31,7 +31,7 @@ export class AutocompleteFormsExample {
 
   valueChanged(newValue: string) {
     this.filteredOptions = options.filter(
-      (option) => option.toLocaleUpperCase().indexOf(newValue.toLocaleUpperCase()) > -1
+      (option) => option.toLocaleUpperCase().indexOf(newValue.toLocaleUpperCase()) > -1,
     );
   }
 }

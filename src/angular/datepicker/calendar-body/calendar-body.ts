@@ -29,7 +29,7 @@ export class SbbCalendarCell {
     public ariaLabel: string,
     public enabled: boolean,
     public rangeBackground?: string | null,
-    public cssClasses: SbbCalendarCellCssClasses = {}
+    public cssClasses: SbbCalendarCellCssClasses = {},
   ) {}
 }
 
@@ -106,7 +106,7 @@ export class SbbCalendarBody implements AfterViewChecked {
   constructor(
     private _elementRef: ElementRef<HTMLElement>,
     private _ngZone: NgZone,
-    private _changeDetectorRef: ChangeDetectorRef
+    private _changeDetectorRef: ChangeDetectorRef,
   ) {}
 
   ngAfterViewChecked() {
@@ -181,7 +181,7 @@ export class SbbCalendarBody implements AfterViewChecked {
         .subscribe(() => {
           setTimeout(() => {
             const activeCell: HTMLElement | null = this._elementRef.nativeElement.querySelector(
-              '.sbb-calendar-body-active'
+              '.sbb-calendar-body-active',
             );
 
             if (activeCell) {

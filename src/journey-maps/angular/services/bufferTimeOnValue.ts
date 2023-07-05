@@ -14,7 +14,7 @@ export const sbbBufferTimeOnValue =
           // CHECKME ses: Does it also work for edge cases?
           //  (e.g. new value shortly after buffer released)
           throttleTime(dueTime),
-          debounceTime(dueTime)
-        )
-      )
+          debounceTime(dueTime),
+        ),
+      ),
     );

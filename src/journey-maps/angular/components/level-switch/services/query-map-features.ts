@@ -18,7 +18,7 @@ export class SbbQueryMapFeatures {
     const servicePoints = map.querySourceFeatures(SBB_SERVICE_POINT_SOURCE);
     // merge levels, when multiple stations found:
     const allLevels = servicePoints.map((servicePoint) =>
-      this._extractLevels(servicePoint.properties)
+      this._extractLevels(servicePoint.properties),
     );
 
     // Seems like a kind of bug in javascript. Even if it's a list of numbers,

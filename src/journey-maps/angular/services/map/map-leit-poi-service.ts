@@ -34,7 +34,7 @@ export class SbbMapLeitPoiService {
   processData(
     map: MaplibreMap,
     featureCollection: FeatureCollection = SBB_EMPTY_FEATURE_COLLECTION,
-    routeStartLevel?: number
+    routeStartLevel?: number,
   ): void {
     this._removeMapLeitPois();
     if (!featureCollection || !featureCollection.features?.length) {
@@ -44,7 +44,7 @@ export class SbbMapLeitPoiService {
     this._leitPoiFeatures = featureCollection.features
       .filter(
         (f) =>
-          !!f.properties?.step && f.properties?.pathType === SbbMapLeitPoiService._leitPoiPathType
+          !!f.properties?.step && f.properties?.pathType === SbbMapLeitPoiService._leitPoiPathType,
       )
       .map((f) => this._convertToLeitPoiFeature(f))
       .filter((lp) => !!lp) as SbbLeitPoiFeature[];
@@ -53,7 +53,7 @@ export class SbbMapLeitPoiService {
       this._registerMapZoomEvent(map);
       if (routeStartLevel == null) {
         const routeStartLevelFeature = featureCollection.features.find(
-          (f) => !!f.properties?.step && f.properties?.routeStartLevel
+          (f) => !!f.properties?.step && f.properties?.routeStartLevel,
         );
         routeStartLevel = routeStartLevelFeature
           ? Number(routeStartLevelFeature.properties!.routeStartLevel)
@@ -80,7 +80,7 @@ export class SbbMapLeitPoiService {
   private _registerMapZoomEvent(map: MaplibreMap): void {
     if (!this._mapZoomSubscription) {
       this._mapZoomSubscription = map.on('zoomend', () =>
-        this._toggleMapLeitPoisVisibility(map.getZoom())
+        this._toggleMapLeitPoisVisibility(map.getZoom()),
       );
     }
   }

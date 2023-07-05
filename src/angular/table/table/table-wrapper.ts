@@ -41,7 +41,7 @@ export class SbbTableWrapper implements AfterViewInit, OnDestroy {
   constructor(
     private _elementRef: ElementRef<HTMLElement>,
     private _ngZone: NgZone,
-    private _viewportRuler: ViewportRuler
+    private _viewportRuler: ViewportRuler,
   ) {}
 
   ngAfterViewInit(): void {
@@ -50,20 +50,20 @@ export class SbbTableWrapper implements AfterViewInit, OnDestroy {
     this._ngZone.runOutsideAngular(() => {
       merge(
         fromEvent(this._elementRef.nativeElement, 'scroll', passiveEventListenerOptions),
-        resize
+        resize,
       )
         .pipe(
           startWith(null! as any),
           map(() => this._calculateScrollOffset()),
           distinctUntilChanged(),
-          takeUntil(this._destroyed)
+          takeUntil(this._destroyed),
         )
         .subscribe((state) => {
           this._elementRef.nativeElement.classList.remove(
             `sbb-table-wrapper-offset-none`,
             `sbb-table-wrapper-offset-left`,
             `sbb-table-wrapper-offset-right`,
-            `sbb-table-wrapper-offset-both`
+            `sbb-table-wrapper-offset-both`,
           );
           this._elementRef.nativeElement.classList.add(`sbb-table-wrapper-offset-${state}`);
         });

@@ -81,7 +81,7 @@ export class SbbTag extends _SbbCheckboxBase implements OnDestroy {
     changeDetectorRef: ChangeDetectorRef,
     focusMonitor: FocusMonitor,
     elementRef: ElementRef<HTMLElement>,
-    @Attribute('tabindex') tabIndex: string
+    @Attribute('tabindex') tabIndex: string,
   ) {
     super(elementRef, changeDetectorRef, focusMonitor, tabIndex);
 

@@ -17,7 +17,7 @@ export type SbbVariant = 'standard' | 'lean';
 
 /** Mixin to augment a directive with a variant property. */
 export function mixinVariant<T extends AbstractConstructor<any>>(
-  base: T
+  base: T,
 ): AbstractConstructor<HasVariant> & T;
 export function mixinVariant<T extends Constructor<any>>(base: T): Constructor<HasVariant> & T {
   return class extends base {

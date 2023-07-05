@@ -81,7 +81,7 @@ export class SbbFeatureEventListener implements OnChanges, OnDestroy, OnInit {
     private _routeUtilsService: SbbRouteUtils,
     private _mapEventUtils: SbbMapEventUtils,
     private _cd: ChangeDetectorRef,
-    readonly mapSelectionEventService: SbbMapSelectionEvent
+    readonly mapSelectionEventService: SbbMapSelectionEvent,
   ) {}
 
   ngOnInit(): void {
@@ -140,7 +140,7 @@ export class SbbFeatureEventListener implements OnChanges, OnDestroy, OnInit {
         this._featuresClickEvent = new SbbFeaturesClickEvent(
           this.map,
           this._mapEventUtils,
-          this._watchOnLayers
+          this._watchOnLayers,
         );
         this._featuresClickEvent
           .pipe(takeUntil(this._destroyed))
@@ -152,7 +152,7 @@ export class SbbFeatureEventListener implements OnChanges, OnDestroy, OnInit {
           this.map,
           this._mapEventUtils,
           this._watchOnLayers,
-          this._routeUtilsService
+          this._routeUtilsService,
         );
         this._featuresHoverEvent
           .pipe(takeUntil(this._destroyed))
@@ -193,14 +193,14 @@ export class SbbFeatureEventListener implements OnChanges, OnDestroy, OnInit {
       clickEventData.features,
       'click',
       clickEventData.clickLngLat,
-      selectedFeatures
+      selectedFeatures,
     );
   }
 
   // return either all features or ordered by route (in case of multiple routes)
   private _filterOverlayFeatures(
     features: SbbFeatureData[],
-    type: SbbFeatureDataType
+    type: SbbFeatureDataType,
   ): SbbFeatureData[] {
     const filteredByType = features.filter((f) => f.featureDataType === type);
     if (type !== 'ROUTE') {
@@ -210,7 +210,7 @@ export class SbbFeatureEventListener implements OnChanges, OnDestroy, OnInit {
     // Only one feature per route id
     return [
       ...new Map(
-        filteredByType.map((route) => [route.properties![SBB_ROUTE_ID_PROPERTY_NAME], route])
+        filteredByType.map((route) => [route.properties![SBB_ROUTE_ID_PROPERTY_NAME], route]),
       ).values(),
     ];
   }
@@ -234,7 +234,7 @@ export class SbbFeatureEventListener implements OnChanges, OnDestroy, OnInit {
     clickedFeatures: SbbFeatureData[],
     event: 'click' | 'hover',
     pos: { lng: number; lat: number },
-    selectedFeatures?: SbbFeaturesSelectEventData
+    selectedFeatures?: SbbFeaturesSelectEventData,
   ) {
     const topMostClickedFeature = clickedFeatures[0];
     const featureDataTypeOfTopMostClickedFeature = topMostClickedFeature.featureDataType;
@@ -249,7 +249,7 @@ export class SbbFeatureEventListener implements OnChanges, OnDestroy, OnInit {
       this._anySelectedClickedFeatureHasSameTypeAsTopClickedFeature(
         clickedFeatures,
         featureDataTypeOfTopMostClickedFeature,
-        selectedFeatures
+        selectedFeatures,
       );
 
     if (template && showOverlay) {
@@ -259,7 +259,7 @@ export class SbbFeatureEventListener implements OnChanges, OnDestroy, OnInit {
       this.overlayTemplate = template;
       this.overlayFeatures = this._filterOverlayFeatures(
         clickedFeatures,
-        featureDataTypeOfTopMostClickedFeature
+        featureDataTypeOfTopMostClickedFeature,
       );
       this.overlayIsPopup = listenerTypeOptions.popup!;
 
@@ -278,26 +278,26 @@ export class SbbFeatureEventListener implements OnChanges, OnDestroy, OnInit {
   private _anySelectedClickedFeatureHasSameTypeAsTopClickedFeature(
     clickedFeatures: SbbFeatureData[],
     topClickedFeatureType: SbbFeatureDataType,
-    selectedFeatures?: { features: SbbFeatureData[] | undefined }
+    selectedFeatures?: { features: SbbFeatureData[] | undefined },
   ): boolean {
     const selectedIdsOfSameFeatureTypeAsTopClicked = this._idsOfFeatureWithSameFeatureDataType(
       selectedFeatures?.features,
-      topClickedFeatureType
+      topClickedFeatureType,
     );
     return this._anyFeaturesWithSameId(clickedFeatures, selectedIdsOfSameFeatureTypeAsTopClicked);
   }
 
   private _idsOfFeatureWithSameFeatureDataType(
     features: SbbFeatureData[] | undefined,
-    featureDataType: SbbFeatureDataType
+    featureDataType: SbbFeatureDataType,
   ): (string | number | undefined)[] {
     return this._featuresWithSameFeatureDataType(features, featureDataType).map(
-      (feature) => feature.id
+      (feature) => feature.id,
     );
   }
   private _featuresWithSameFeatureDataType(
     features: SbbFeatureData[] | undefined,
-    featureDataType: SbbFeatureDataType
+    featureDataType: SbbFeatureDataType,
   ) {
     return (features ?? []).filter((feature) => feature.featureDataType === featureDataType);
   }
@@ -319,7 +319,7 @@ export class SbbFeatureEventListener implements OnChanges, OnDestroy, OnInit {
   // only used for POI-features at the moment
   unselectFeaturesOfType(types: SbbDeselectableFeatureDataType[]) {
     const selectedFeaturesOfTypes = this.overlayFeatures.filter((feature) =>
-      types.some((type) => feature.featureDataType === type)
+      types.some((type) => feature.featureDataType === type),
     );
 
     if (selectedFeaturesOfTypes.length > 0) {
@@ -330,7 +330,7 @@ export class SbbFeatureEventListener implements OnChanges, OnDestroy, OnInit {
 
       // remove unselected features from list
       this.overlayFeatures = this.overlayFeatures.filter((feature) =>
-        types.some((type) => feature.featureDataType !== type)
+        types.some((type) => feature.featureDataType !== type),
       );
       this._cd.detectChanges();
     }

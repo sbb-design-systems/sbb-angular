@@ -44,7 +44,7 @@ export class SbbDateInputEvent<D> {
     /** Reference to the date input component that emitted the event. */
     public target: SbbDateInput<D>,
     /** Reference to the native input element associated with the date input. */
-    public targetElement: HTMLElement
+    public targetElement: HTMLElement,
   ) {
     this.value = this.target.value;
   }
@@ -255,7 +255,7 @@ export class SbbDateInput<D> implements ControlValueAccessor, Validator, OnInit,
     @Optional() public _dateAdapter: SbbDateAdapter<D>,
     @Optional() @Inject(SBB_DATE_FORMATS) private _dateFormats: SbbDateFormats,
     @Optional() public _datepicker: SbbDatepicker<D>,
-    @Optional() @Inject(SBB_FORM_FIELD) private _formField?: SbbFormField
+    @Optional() @Inject(SBB_FORM_FIELD) private _formField?: SbbFormField,
   ) {
     if (!this._dateAdapter) {
       throw createMissingDateImplError('DateAdapter');

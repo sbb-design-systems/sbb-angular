@@ -21,13 +21,16 @@ const prPath = {
 };
 
 class MaintenanceIssueUpdater {
-  constructor(private _octokit: Octokit, private _now: Date) {}
+  constructor(
+    private _octokit: Octokit,
+    private _now: Date,
+  ) {}
 
   async run() {
     if (!failedBranches && !failedReleaseVersion) {
       throw new Error(
         `Unable to update maintenance issue.
-        Please either specify FAILED_BRANCHES or FAILED_RELEASE`
+        Please either specify FAILED_BRANCHES or FAILED_RELEASE`,
       );
     }
 
@@ -76,7 +79,7 @@ if (module === require.main) {
     new Octokit({
       auth: githubToken,
     }),
-    new Date()
+    new Date(),
   );
   maintenanceIssueUpdater.run();
 }

@@ -43,7 +43,7 @@ export class AutocompleteLocaleNormalizerExample {
       (option) =>
         this.normalizer(option)
           .toLocaleUpperCase()
-          .indexOf(this.normalizer(newValue).toLocaleUpperCase()) > -1
+          .indexOf(this.normalizer(newValue).toLocaleUpperCase()) > -1,
     );
   }
 }

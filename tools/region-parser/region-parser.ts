@@ -20,7 +20,7 @@ export function regionParser(contents: string, fileType: string) {
  */
 function regionParserImpl(
   contents: string,
-  fileType: string
+  fileType: string,
 ): { contents: string; regions: { [regionName: string]: string } } {
   const regionMatchers: { [fileType: string]: { [region: string]: RegExp } } = {
     ts: inlineC,
@@ -53,7 +53,7 @@ function regionParserImpl(
           if (region) {
             if (region.open) {
               throw new Error(
-                `Tried to open a region, named "${regionName}", that is already open`
+                `Tried to open a region, named "${regionName}", that is already open`,
               );
             }
             region.open = true;
@@ -97,7 +97,7 @@ function regionParserImpl(
     return {
       contents: lines.join('\n'),
       regions: mapObject(regionMap, (regionName: string, region: Region) =>
-        leftAlign(region.lines).join('\n')
+        leftAlign(region.lines).join('\n'),
       ),
     };
   } else {

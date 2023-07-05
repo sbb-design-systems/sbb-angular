@@ -79,7 +79,7 @@ export function parseExampleFile(fileName: string, content: string): ParsedMetad
             // the styleUrls metadata property.
             if (propName === 'styleUrls' && ts.isArrayLiteralExpression(prop.initializer)) {
               meta[propName] = prop.initializer.elements.map(
-                (literal) => (literal as ts.StringLiteralLike).text
+                (literal) => (literal as ts.StringLiteralLike).text,
               );
             } else if (
               ts.isStringLiteralLike(prop.initializer) ||

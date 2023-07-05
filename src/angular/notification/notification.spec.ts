@@ -94,7 +94,7 @@ describe('SbbNotification', () => {
 
     it('should change height with jump marks', async () => {
       const componentStyles = getComputedStyle(
-        testFixture.debugElement.query(By.css('.sbb-notification')).nativeElement
+        testFixture.debugElement.query(By.css('.sbb-notification')).nativeElement,
       );
       expect(componentStyles.getPropertyValue('height')).toBe('68px');
 
@@ -104,7 +104,7 @@ describe('SbbNotification', () => {
       ];
       testFixture.detectChanges();
       const notifications = testFixture.debugElement.queryAll(
-        By.css('.sbb-notification-jump-mark')
+        By.css('.sbb-notification-jump-mark'),
       );
       expect(notifications.length).toBeGreaterThan(0);
       await testFixture.whenRenderingDone();
@@ -116,7 +116,7 @@ describe('SbbNotification', () => {
       testComponent.jumpMarks = [{ callback: callbackMock, title: 'Here' }];
       testFixture.detectChanges();
       const notificationLink = testFixture.debugElement.query(
-        By.css('.sbb-notification-jump-mark > a')
+        By.css('.sbb-notification-jump-mark > a'),
       );
       notificationLink.triggerEventHandler('click', {
         preventDefault: jasmine.createSpy('prevent-default-mock'),
@@ -141,7 +141,7 @@ describe('SbbNotification', () => {
         testComponent.type = 'success';
         testFixture.detectChanges();
         const notifications = testFixture.debugElement.queryAll(
-          By.css('.sbb-notification-success')
+          By.css('.sbb-notification-success'),
         );
         expect(notifications.length).toBeGreaterThan(0);
         await testFixture.whenRenderingDone();
@@ -173,13 +173,13 @@ describe('SbbNotification', () => {
         testComponent.type = 'info-light';
         testFixture.detectChanges();
         const notifications = testFixture.debugElement.queryAll(
-          By.css('.sbb-notification-info-light')
+          By.css('.sbb-notification-info-light'),
         );
         expect(notifications.length).toBeGreaterThan(0);
         await testFixture.whenRenderingDone();
         const styles = getComputedStyle(notifications[0].nativeElement);
         const iconStyles = getComputedStyle(
-          notifications[0].queryAll(By.css('.sbb-icon'))[0].nativeElement
+          notifications[0].queryAll(By.css('.sbb-icon'))[0].nativeElement,
         );
         expect(styles.getPropertyValue('background-color')).toBe('rgb(255, 255, 255)');
         expect(styles.getPropertyValue('color')).toBe('rgb(104, 104, 104)');
@@ -188,7 +188,7 @@ describe('SbbNotification', () => {
 
       it('should change height with jump marks', async () => {
         const componentStyles = getComputedStyle(
-          testFixture.debugElement.query(By.css('.sbb-notification')).nativeElement
+          testFixture.debugElement.query(By.css('.sbb-notification')).nativeElement,
         );
         expect(componentStyles.getPropertyValue('height')).toBe('48px');
 
@@ -198,7 +198,7 @@ describe('SbbNotification', () => {
         ];
         testFixture.detectChanges();
         const notifications = testFixture.debugElement.queryAll(
-          By.css('.sbb-notification-jump-mark')
+          By.css('.sbb-notification-jump-mark'),
         );
         expect(notifications.length).toBeGreaterThan(0);
         await testFixture.whenRenderingDone();
@@ -210,7 +210,7 @@ describe('SbbNotification', () => {
         testComponent.readonly = false;
         testFixture.detectChanges();
         const closeButton = testFixture.nativeElement.querySelector(
-          '.sbb-notification-dismiss-icon-button'
+          '.sbb-notification-dismiss-icon-button',
         ) as HTMLElement;
 
         expect(closeButton).toBeDefined();
@@ -220,7 +220,7 @@ describe('SbbNotification', () => {
         flush();
         testFixture.detectChanges();
         const notification: SbbNotification = testFixture.debugElement.query(
-          By.directive(SbbNotification)
+          By.directive(SbbNotification),
         ).componentInstance;
         expect(dismissedSpy).toHaveBeenCalledTimes(1);
         expect(dismissedSpy).toHaveBeenCalledWith({ notification });

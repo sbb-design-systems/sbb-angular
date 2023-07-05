@@ -8,5 +8,5 @@ export interface SbbChipsDefaultOptions {
 
 /** Injection token to be used to override the default options for the chips module. */
 export const SBB_CHIPS_DEFAULT_OPTIONS = new InjectionToken<SbbChipsDefaultOptions>(
-  'sbb-chips-default-options'
+  'sbb-chips-default-options',
 );

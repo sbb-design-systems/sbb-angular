@@ -54,24 +54,24 @@ describe('SbbStatus', () => {
 
     it('should have tick icon', () => {
       const element = fixture.debugElement.query(
-        By.css('sbb-icon[svgIcon="tick-small"]')
+        By.css('sbb-icon[svgIcon="tick-small"]'),
       ).nativeElement;
       expect(element).toBeTruthy();
     });
 
     it('should have the correct class on the wrapper div', () => {
       const element = fixture.debugElement.query(
-        By.css('.sbb-status-icon.sbb-status-icon-valid')
+        By.css('.sbb-status-icon.sbb-status-icon-valid'),
       ).nativeElement;
       expect(element).toBeTruthy();
     });
 
     it('should have green background', () => {
       const element: HTMLElement = fixture.debugElement.query(
-        By.css('.sbb-status-icon.sbb-status-icon-valid')
+        By.css('.sbb-status-icon.sbb-status-icon-valid'),
       ).nativeElement;
       expect(getComputedStyle(element).getPropertyValue('background-color')).toBe(
-        'rgb(0, 151, 59)'
+        'rgb(0, 151, 59)',
       );
     });
   });
@@ -86,24 +86,24 @@ describe('SbbStatus', () => {
 
     it('should have exclamation point icon', () => {
       const element = fixture.debugElement.query(
-        By.css('sbb-icon[svgIcon="sign-exclamation-point-small"]')
+        By.css('sbb-icon[svgIcon="sign-exclamation-point-small"]'),
       ).nativeElement;
       expect(element).toBeTruthy();
     });
 
     it('should have the correct class on the wrapper div', () => {
       const element = fixture.debugElement.query(
-        By.css('.sbb-status-icon.sbb-status-icon-warning')
+        By.css('.sbb-status-icon.sbb-status-icon-warning'),
       ).nativeElement;
       expect(element).toBeTruthy();
     });
 
     it('should have peach background', () => {
       const element: HTMLElement = fixture.debugElement.query(
-        By.css('.sbb-status-icon.sbb-status-icon-warning')
+        By.css('.sbb-status-icon.sbb-status-icon-warning'),
       ).nativeElement;
       expect(getComputedStyle(element).getPropertyValue('background-color')).toBe(
-        'rgb(252, 187, 0)'
+        'rgb(252, 187, 0)',
       );
     });
   });
@@ -118,21 +118,21 @@ describe('SbbStatus', () => {
 
     it('should have cross icon', () => {
       const element = fixture.debugElement.query(
-        By.css('sbb-icon[svgIcon="circle-cross-small"]')
+        By.css('sbb-icon[svgIcon="circle-cross-small"]'),
       ).nativeElement;
       expect(element).toBeTruthy();
     });
 
     it('should have the correct class on the wrapper div', () => {
       const element = fixture.debugElement.query(
-        By.css('.sbb-status-icon.sbb-status-icon-invalid')
+        By.css('.sbb-status-icon.sbb-status-icon-invalid'),
       ).nativeElement;
       expect(element).toBeTruthy();
     });
 
     it('should have green background', () => {
       const element: HTMLElement = fixture.debugElement.query(
-        By.css('.sbb-status-icon.sbb-status-icon-invalid')
+        By.css('.sbb-status-icon.sbb-status-icon-invalid'),
       ).nativeElement;
       expect(getComputedStyle(element).getPropertyValue('background-color')).toBe('rgb(235, 0, 0)');
     });
@@ -150,7 +150,7 @@ describe('SbbStatus', () => {
 
     it('should have the correct message', () => {
       const element: HTMLElement = fixture.debugElement.query(
-        By.css('.sbb-status-message')
+        By.css('.sbb-status-message'),
       ).nativeElement;
       expect(element.textContent).toEqual(component.message);
     });
@@ -166,11 +166,11 @@ describe('SbbStatus', () => {
 
     it('should move the aria-label', () => {
       const statusElement: HTMLElement = fixture.debugElement.query(
-        By.css('sbb-status')
+        By.css('sbb-status'),
       ).nativeElement;
       expect(statusElement.getAttribute('aria-label')).toBeNull();
       const iconWrapperElement: HTMLElement = fixture.debugElement.query(
-        By.css('.sbb-status-icon')
+        By.css('.sbb-status-icon'),
       ).nativeElement;
       expect(iconWrapperElement.getAttribute('aria-label')).toEqual('Test');
     });

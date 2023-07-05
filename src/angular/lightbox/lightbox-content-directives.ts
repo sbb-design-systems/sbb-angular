@@ -54,7 +54,7 @@ export class SbbLightboxClose extends SbbDialogClose implements OnInit, OnChange
     // tslint:disable-next-line: lightweight-tokens
     @Optional() lightboxRef: SbbLightboxRef<any>,
     elementRef: ElementRef<HTMLElement>,
-    lightbox: SbbLightbox
+    lightbox: SbbLightbox,
   ) {
     super(lightboxRef, elementRef, lightbox as unknown as SbbDialog);
   }
@@ -106,7 +106,7 @@ export class SbbLightboxTitle extends _SbbDialogTitleBase implements OnInit {
     @Optional() lightboxRef: SbbLightboxRef<any>,
     elementRef: ElementRef<HTMLElement>,
     lightbox: SbbLightbox,
-    changeDetectorRef: ChangeDetectorRef
+    changeDetectorRef: ChangeDetectorRef,
   ) {
     super(lightboxRef, elementRef, lightbox as unknown as SbbDialog, changeDetectorRef);
   }

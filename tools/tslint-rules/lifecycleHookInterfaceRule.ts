@@ -41,14 +41,14 @@ class Walker extends Lint.RuleWalker {
             (type) =>
               ts.isExpressionWithTypeArguments(type) &&
               ts.isIdentifier(type.expression) &&
-              type.expression.text === requiredInterface
-          )
+              type.expression.text === requiredInterface,
+          ),
       );
 
       if (!hasRequiredInterface) {
         this.addFailureAtNode(
           node.name || node,
-          `Class must implement interface ${requiredInterface}, because it uses Angular lifecycle hook ${member.name.text}`
+          `Class must implement interface ${requiredInterface}, because it uses Angular lifecycle hook ${member.name.text}`,
         );
       }
     }

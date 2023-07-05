@@ -43,7 +43,7 @@ module.exports = (config) => {
       .filter((r) => r !== 'progress' && r !== 'kjhtml')
       .concat('dots');
     config.coverageIstanbulReporter.reports = config.coverageIstanbulReporter.reports.filter(
-      (r) => r !== 'html'
+      (r) => r !== 'html',
     );
 
     // This defines how often a given browser should be launched in the same GitHub

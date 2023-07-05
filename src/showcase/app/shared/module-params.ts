@@ -14,7 +14,7 @@ export const moduleParams = (route: ActivatedRoute): Observable<ModuleParams> =>
   return combineLatest([route.parent.params, route.params, route.parent.data, route.data]).pipe(
     map(
       ([parentParams, params, parentData, data]) =>
-        ({ ...parentParams, ...params, ...parentData, ...data } as ModuleParams)
-    )
+        ({ ...parentParams, ...params, ...parentData, ...data }) as ModuleParams,
+    ),
   );
 };

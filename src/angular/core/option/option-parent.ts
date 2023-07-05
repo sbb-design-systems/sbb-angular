@@ -14,5 +14,5 @@ export interface SbbOptionParentComponent {
  * Injection token used to provide the parent component to options.
  */
 export const SBB_OPTION_PARENT_COMPONENT = new InjectionToken<SbbOptionParentComponent>(
-  'SBB_OPTION_PARENT_COMPONENT'
+  'SBB_OPTION_PARENT_COMPONENT',
 );

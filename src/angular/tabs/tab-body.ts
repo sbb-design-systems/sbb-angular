@@ -46,7 +46,7 @@ export class SbbTabBodyPortal extends CdkPortalOutlet implements OnInit, OnDestr
     viewContainerRef: ViewContainerRef,
     @Inject(forwardRef(() => SbbTabBody)) private _host: SbbTabBody,
     // tslint:disable-next-line:naming-convention
-    @Inject(DOCUMENT) _document: any
+    @Inject(DOCUMENT) _document: any,
   ) {
     super(componentFactoryResolver, viewContainerRef, _document);
   }
@@ -143,7 +143,7 @@ export abstract class _SbbTabBodyBase implements OnDestroy {
       .pipe(
         distinctUntilChanged((x, y) => {
           return x.fromState === y.fromState && x.toState === y.toState;
-        })
+        }),
       )
       .subscribe((event) => {
         // If the transition to the center is complete, emit an event.

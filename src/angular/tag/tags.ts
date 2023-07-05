@@ -72,7 +72,7 @@ export class SbbTags implements AfterContentInit, OnDestroy {
           ...tags.map((tag: SbbTag) => tag._valueChange),
         ]),
         mergeAll(),
-        takeUntil(this._destroyed)
+        takeUntil(this._destroyed),
       )
       .subscribe(() => this._setCheckedStateOfAllTag());
 
@@ -83,11 +83,11 @@ export class SbbTags implements AfterContentInit, OnDestroy {
         mergeMap((tags: SbbTag[]) =>
           tags.length === 0
             ? [of(null)]
-            : tags.map((tag) => tag._amountChange.pipe(startWith(null)))
+            : tags.map((tag) => tag._amountChange.pipe(startWith(null))),
         ),
         mergeAll(),
         filter(() => !this._totalAmountSetAsInput),
-        takeUntil(this._destroyed)
+        takeUntil(this._destroyed),
       )
       .subscribe(() => this._calculateTotalAmountOfTags());
   }

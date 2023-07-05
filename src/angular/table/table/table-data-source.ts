@@ -47,7 +47,7 @@ export interface SbbTableFilter {
 export class _SbbTableDataSource<
   T,
   TFilter extends SbbTableFilter | string = string,
-  P extends SbbTableDataSourcePaginator = SbbTableDataSourcePaginator
+  P extends SbbTableDataSourcePaginator = SbbTableDataSourcePaginator,
 > extends DataSource<T> {
   /** Stream that emits when a new data array is set on the data source. */
   private readonly _data: BehaviorSubject<T[]>;
@@ -148,7 +148,7 @@ export class _SbbTableDataSource<
    */
   sortingDataAccessor: (data: T, sortHeaderId: string) => string | number = (
     data: T,
-    sortHeaderId: string
+    sortHeaderId: string,
   ): string | number => {
     const value = (data as unknown as Record<string, any>)[sortHeaderId];
 
@@ -248,7 +248,7 @@ export class _SbbTableDataSource<
     }
 
     const { _: globalFilter, ...propertyFilters } = this._normalizeTableFilter(
-      filter as SbbTableFilter
+      filter as SbbTableFilter,
     );
 
     return (
@@ -282,26 +282,26 @@ export class _SbbTableDataSource<
       ? (merge(
           this._paginator.page,
           this._internalPageChanges,
-          this._paginator.initialized
+          this._paginator.initialized,
         ) as Observable<SbbPageEvent | void>)
       : observableOf(null);
     const dataStream = this._data;
     // Watch for base data or filter changes to provide a filtered set of data.
     const filteredData = combineLatest([dataStream, this._filter]).pipe(
-      map(([data]) => this._filterData(data))
+      map(([data]) => this._filterData(data)),
     );
     // Watch for filtered data or sort changes to provide an ordered set of data.
     const orderedData = combineLatest([filteredData, sortChange]).pipe(
-      map(([data]) => this._orderData(data))
+      map(([data]) => this._orderData(data)),
     );
     // Watch for ordered data or page changes to provide a paged set of data.
     const paginatedData = combineLatest([orderedData, pageChange]).pipe(
-      map(([data]) => this._pageData(data))
+      map(([data]) => this._pageData(data)),
     );
     // Watched for paged data changes and send the result to the table to render.
     this._renderChangesSubscription?.unsubscribe();
     this._renderChangesSubscription = paginatedData.subscribe((data) =>
-      this._renderData.next(data)
+      this._renderData.next(data),
     );
   }
 
@@ -433,15 +433,15 @@ export class _SbbTableDataSource<
   /** Filters properties against tableData and returns true if matching data was found. */
   _filterProperties(
     propertyFilters: { [key: string]: string[] },
-    tableData: { [p: string]: any }
+    tableData: { [p: string]: any },
   ): boolean {
     return Object.keys(propertyFilters).every((key) =>
       propertyFilters[key].some(
         (value) =>
           typeof tableData[key] !== 'undefined' &&
           tableData[key] !== null &&
-          this._matchesStringCaseInsensitive(`${tableData[key]}`, value)
-      )
+          this._matchesStringCaseInsensitive(`${tableData[key]}`, value),
+      ),
     );
   }
 
@@ -450,7 +450,7 @@ export class _SbbTableDataSource<
     return (
       filters.length === 0 ||
       filters.some((value) =>
-        this._matchesStringCaseInsensitive(this._reduceObjectToString(tableData), value)
+        this._matchesStringCaseInsensitive(this._reduceObjectToString(tableData), value),
       )
     );
   }
@@ -484,5 +484,5 @@ export class _SbbTableDataSource<
  */
 export class SbbTableDataSource<
   T,
-  TFilter extends SbbTableFilter | string = string
+  TFilter extends SbbTableFilter | string = string,
 > extends _SbbTableDataSource<T, TFilter, SbbPaginator> {}

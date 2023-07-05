@@ -86,7 +86,7 @@ export class SbbMapStationService {
               ...this._mapToFeature(sourceFeature),
               geometry: p.geometry, // get endpoint location not the tile source
             }))
-            .pop() // There might be multiple stations in the tile source
+            .pop(), // There might be multiple stations in the tile source
       )
       .filter((s) => s!!) as Feature[];
   }

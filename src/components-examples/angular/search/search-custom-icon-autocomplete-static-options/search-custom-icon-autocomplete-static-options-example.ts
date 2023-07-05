@@ -41,8 +41,8 @@ export class SearchCustomIconAutocompleteStaticOptionsExample implements OnInit,
         if (newValue && newValue.length >= 2) {
           this.options.next(
             options.filter(
-              (option) => option.toLocaleUpperCase().indexOf(newValue.toLocaleUpperCase()) > -1
-            )
+              (option) => option.toLocaleUpperCase().indexOf(newValue.toLocaleUpperCase()) > -1,
+            ),
           );
         } else {
           this.options.next([]);

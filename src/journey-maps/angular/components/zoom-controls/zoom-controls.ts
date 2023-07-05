@@ -32,7 +32,10 @@ export class SbbZoomControls implements OnInit, OnChanges, OnDestroy {
   zoomInLabel: string;
   zoomOutLabel: string;
 
-  constructor(private _ref: ChangeDetectorRef, private _i18n: SbbLocaleService) {}
+  constructor(
+    private _ref: ChangeDetectorRef,
+    private _i18n: SbbLocaleService,
+  ) {}
 
   ngOnInit(): void {
     this._zoomChanged.pipe(takeUntil(this._destroyed)).subscribe(() => {
@@ -40,10 +43,10 @@ export class SbbZoomControls implements OnInit, OnChanges, OnDestroy {
     });
 
     this.zoomInLabel = `${this._i18n.getText('a4a.visualFunction')} ${this._i18n.getText(
-      'a4a.zoomIn'
+      'a4a.zoomIn',
     )}`;
     this.zoomOutLabel = `${this._i18n.getText('a4a.visualFunction')} ${this._i18n.getText(
-      'a4a.zoomOut'
+      'a4a.zoomOut',
     )}`;
   }
 

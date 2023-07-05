@@ -31,7 +31,7 @@ export class SbbCaptchaLoaderService {
     @Inject(DOCUMENT) document: any,
     @Optional() @Inject(SBB_RECAPTCHA_LANGUAGE) language?: string,
     @Optional() @Inject(SBB_RECAPTCHA_BASE_URL) baseUrl?: string,
-    @Optional() @Inject(SBB_RECAPTCHA_NONCE) nonce?: string
+    @Optional() @Inject(SBB_RECAPTCHA_NONCE) nonce?: string,
   ) {
     this._language = language || null;
     this._baseUrl = baseUrl || null;
@@ -39,7 +39,7 @@ export class SbbCaptchaLoaderService {
     this._document = document;
     this._init();
     this.ready = SbbCaptchaLoaderService._ready!.pipe(
-      filter((e): e is ReCaptchaV2.ReCaptcha => !!e)
+      filter((e): e is ReCaptchaV2.ReCaptcha => !!e),
     );
   }
 

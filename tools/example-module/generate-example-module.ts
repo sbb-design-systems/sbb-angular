@@ -61,7 +61,7 @@ function inlineExampleModuleTemplate(parsedData: AnalyzedExamples): string {
   const exampleComponentsLoader = exampleMetadata
     .map(
       (data) => `
-  .set('${data.importPath}', () => import('./${data.importPath}'))`
+  .set('${data.importPath}', () => import('./${data.importPath}'))`,
     )
     .filter((v, i, a) => a.indexOf(v) === i)
     .join('')
@@ -124,7 +124,7 @@ function analyzeExamples(sourceFiles: string[], baseDir: string): AnalyzedExampl
       if (primaryComponent.selector !== expectedSelector) {
         throw Error(
           `Example ${exampleId} uses selector: ${primaryComponent.selector}, ` +
-            `but expected: ${expectedSelector}`
+            `but expected: ${expectedSelector}`,
         );
       }
 
@@ -157,7 +157,7 @@ function analyzeExamples(sourceFiles: string[], baseDir: string): AnalyzedExampl
     } else {
       throw Error(
         `Could not find a primary example component in ${sourceFile}. ` +
-          `Ensure that there's a component with an @title annotation.`
+          `Ensure that there's a component with an @title annotation.`,
       );
     }
   }
@@ -175,11 +175,11 @@ function analyzeExamples(sourceFiles: string[], baseDir: string): AnalyzedExampl
 function assertReferencedExampleFileExists(
   baseDir: string,
   examplePackagePath: string,
-  relativePath: string
+  relativePath: string,
 ) {
   if (!fs.existsSync(path.join(baseDir, examplePackagePath, relativePath))) {
     throw Error(
-      `Example "${examplePackagePath}" references "${relativePath}", but file does not exist.`
+      `Example "${examplePackagePath}" references "${relativePath}", but file does not exist.`,
     );
   }
 }
@@ -191,7 +191,7 @@ function assertReferencedExampleFileExists(
 export function generateExampleModule(
   sourceFiles: string[],
   outputFile: string,
-  baseDir: string = path.dirname(outputFile)
+  baseDir: string = path.dirname(outputFile),
 ) {
   const analysisData = analyzeExamples(sourceFiles, baseDir);
   const generatedModuleFile = inlineExampleModuleTemplate(analysisData);

@@ -295,26 +295,26 @@ describe('SbbSort', () => {
       'should throw an error if an SbbSortable is not contained within an SbbSort ' + 'directive',
       () => {
         expect(() =>
-          TestBed.createComponent(SbbSortHeaderMissingSbbSortApp).detectChanges()
+          TestBed.createComponent(SbbSortHeaderMissingSbbSortApp).detectChanges(),
         ).toThrowError(wrappedErrorMessage(getSortHeaderNotContainedWithinSortError()));
-      }
+      },
     );
 
     it('should throw an error if two SbbSortables have the same id', () => {
       expect(() =>
-        TestBed.createComponent(SbbSortDuplicateSbbSortableIdsApp).detectChanges()
+        TestBed.createComponent(SbbSortDuplicateSbbSortableIdsApp).detectChanges(),
       ).toThrowError(wrappedErrorMessage(getSortDuplicateSortableIdError('duplicateId')));
     });
 
     it('should throw an error if an SbbSortable is missing an id', () => {
       expect(() => TestBed.createComponent(SbbSortableMissingIdApp).detectChanges()).toThrowError(
-        wrappedErrorMessage(getSortHeaderMissingIdError())
+        wrappedErrorMessage(getSortHeaderMissingIdError()),
       );
     });
 
     it('should throw an error if the provided direction is invalid', () => {
       expect(() =>
-        TestBed.createComponent(SbbSortableInvalidDirection).detectChanges()
+        TestBed.createComponent(SbbSortableInvalidDirection).detectChanges(),
       ).toThrowError(wrappedErrorMessage(getSortInvalidDirectionError('ascending')));
     });
 
@@ -427,7 +427,7 @@ describe('SbbSort', () => {
 
     it('should add a custom aria description to sort buttons', () => {
       const sortButton = fixture.nativeElement.querySelector(
-        '#defaultB .sbb-sort-header-container'
+        '#defaultB .sbb-sort-header-container',
       );
       let descriptionId = sortButton.getAttribute('aria-describedby');
       expect(descriptionId).toBeDefined();
@@ -448,10 +448,10 @@ describe('SbbSort', () => {
       sbbSortWithArrowPositionFixture.detectChanges();
 
       const containerA = sbbSortWithArrowPositionFixture.nativeElement.querySelector(
-        '#defaultA .sbb-sort-header-container'
+        '#defaultA .sbb-sort-header-container',
       );
       const containerB = sbbSortWithArrowPositionFixture.nativeElement.querySelector(
-        '#defaultB .sbb-sort-header-container'
+        '#defaultB .sbb-sort-header-container',
       );
 
       expect(containerA.classList.contains('sbb-sort-header-position-before')).toBe(false);
@@ -466,10 +466,10 @@ describe('SbbSort', () => {
       sbbSortWithArrowPositionFixture.detectChanges();
 
       const containerA = sbbSortWithArrowPositionFixture.nativeElement.querySelector(
-        '#defaultA .sbb-sort-header-container'
+        '#defaultA .sbb-sort-header-container',
       );
       const containerB = sbbSortWithArrowPositionFixture.nativeElement.querySelector(
-        '#defaultB .sbb-sort-header-container'
+        '#defaultB .sbb-sort-header-container',
       );
 
       expect(containerA.classList.contains('sbb-sort-header-position-before')).toBe(true);
@@ -483,10 +483,10 @@ describe('SbbSort', () => {
       sbbSortWithArrowPositionFixture.detectChanges();
 
       const containerA = sbbSortWithArrowPositionFixture.nativeElement.querySelector(
-        '#defaultA .sbb-sort-header-container'
+        '#defaultA .sbb-sort-header-container',
       );
       const containerB = sbbSortWithArrowPositionFixture.nativeElement.querySelector(
-        '#defaultB .sbb-sort-header-container'
+        '#defaultB .sbb-sort-header-container',
       );
 
       expect(containerA.classList.contains('sbb-sort-header-position-before')).toBe(false);
@@ -562,10 +562,10 @@ describe('SbbSort', () => {
 
     it('should render arrows in proper position', () => {
       const containerA = fixture.nativeElement.querySelector(
-        '#defaultA .sbb-sort-header-container'
+        '#defaultA .sbb-sort-header-container',
       );
       const containerB = fixture.nativeElement.querySelector(
-        '#defaultB .sbb-sort-header-container'
+        '#defaultB .sbb-sort-header-container',
       );
 
       expect(containerA.classList.contains('sbb-sort-header-position-before')).toBe(true);
@@ -582,7 +582,7 @@ describe('SbbSort', () => {
 function testSingleColumnSortDirectionSequence(
   fixture: ComponentFixture<SimpleSbbSortApp | SbbSortWithoutExplicitInputs>,
   expectedSequence: SbbSortDirection[],
-  id: SimpleSbbSortAppColumnIds = 'defaultA'
+  id: SimpleSbbSortAppColumnIds = 'defaultA',
 ) {
   // Detect any changes that were made in preparation for this sort sequence
   fixture.detectChanges();
@@ -682,7 +682,7 @@ class SimpleSbbSortApp {
    * states.
    */
   expectViewAndDirectionStates(
-    viewStates: Map<string, { viewState: string; arrowDirection: string }>
+    viewStates: Map<string, { viewState: string; arrowDirection: string }>,
   ) {
     const sortHeaders = new Map([
       ['defaultA', this.defaultA],

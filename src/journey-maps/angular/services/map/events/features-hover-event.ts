@@ -36,7 +36,7 @@ export class SbbFeaturesHoverEvent extends ReplaySubject<SbbFeaturesHoverChangeE
     private _mapInstance: MaplibreMap,
     private _mapEventUtils: SbbMapEventUtils,
     private _layers: Map<string, SbbFeatureDataType>,
-    private _routeUtilsService: SbbRouteUtils
+    private _routeUtilsService: SbbRouteUtils,
   ) {
     super(SBB_REPEAT_EVENTS);
     if (!this._layers.size) {
@@ -82,7 +82,7 @@ export class SbbFeaturesHoverEvent extends ReplaySubject<SbbFeaturesHoverChangeE
     const allHoveredFeatures: SbbFeatureData[] = this._mapEventUtils.queryFeaturesByLayerIds(
       this._mapInstance,
       [eventPoint.x, eventPoint.y],
-      this._layers
+      this._layers,
     );
 
     // filtered by type/priority
@@ -93,7 +93,7 @@ export class SbbFeaturesHoverEvent extends ReplaySubject<SbbFeaturesHoverChangeE
     this._routeUtilsService
       .filterRouteFeatures(hoveredFeatures)
       .map((routeFeature) =>
-        this._routeUtilsService.findRelatedRoutes(routeFeature, this._mapInstance, 'visibleOnly')
+        this._routeUtilsService.findRelatedRoutes(routeFeature, this._mapInstance, 'visibleOnly'),
       )
       .forEach((relatedFeatures) => hoveredFeatures.push(...relatedFeatures));
 
@@ -107,7 +107,7 @@ export class SbbFeaturesHoverEvent extends ReplaySubject<SbbFeaturesHoverChangeE
     for (const current of state.hoveredFeatures) {
       if (
         hoveredFeatures.some((hovered) =>
-          SbbFeaturesHoverEvent._featureEventDataEquals(current, hovered)
+          SbbFeaturesHoverEvent._featureEventDataEquals(current, hovered),
         )
       ) {
         keepFeatures.push(current);
@@ -122,7 +122,7 @@ export class SbbFeaturesHoverEvent extends ReplaySubject<SbbFeaturesHoverChangeE
         eventPoint,
         eventLngLat,
         removeFeatures,
-        false
+        false,
       );
       this._setFeatureHoverState(data.features, false);
       this.next(data);
@@ -132,8 +132,10 @@ export class SbbFeaturesHoverEvent extends ReplaySubject<SbbFeaturesHoverChangeE
     newFeatures.push(
       ...hoveredFeatures.filter(
         (hovered) =>
-          !keepFeatures.some((keep) => SbbFeaturesHoverEvent._featureEventDataEquals(keep, hovered))
-      )
+          !keepFeatures.some((keep) =>
+            SbbFeaturesHoverEvent._featureEventDataEquals(keep, hovered),
+          ),
+      ),
     );
 
     this._setFeatureHoverState(newFeatures, true);
@@ -145,7 +147,7 @@ export class SbbFeaturesHoverEvent extends ReplaySubject<SbbFeaturesHoverChangeE
         eventPoint,
         eventLngLat,
         mergedFeatures,
-        true
+        true,
       );
 
       this.next(data);
@@ -156,7 +158,7 @@ export class SbbFeaturesHoverEvent extends ReplaySubject<SbbFeaturesHoverChangeE
 
   private _setFeatureHoverState(features: MapGeoJSONFeature[], hover: boolean) {
     features.forEach((feature) =>
-      this._mapEventUtils.setFeatureState(feature, this._mapInstance, { hover })
+      this._mapEventUtils.setFeatureState(feature, this._mapInstance, { hover }),
     );
   }
 
@@ -171,7 +173,7 @@ export class SbbFeaturesHoverEvent extends ReplaySubject<SbbFeaturesHoverChangeE
     eventPoint: { x: number; y: number },
     eventLngLat: { lng: number; lat: number },
     features: SbbFeatureData[],
-    hover: boolean
+    hover: boolean,
   ): SbbFeaturesHoverChangeEventData {
     const leave = !hover;
     return {
@@ -185,7 +187,7 @@ export class SbbFeaturesHoverEvent extends ReplaySubject<SbbFeaturesHoverChangeE
 
   private static _featureEventDataEquals(
     current: MapGeoJSONFeature,
-    added: MapGeoJSONFeature
+    added: MapGeoJSONFeature,
   ): boolean {
     return (
       current.layer.id === added.layer.id &&

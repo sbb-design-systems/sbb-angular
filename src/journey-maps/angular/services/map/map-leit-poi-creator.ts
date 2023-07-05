@@ -28,7 +28,7 @@ export class SbbMapLeitPoiCreator {
   constructor(
     private _componentFactoryResolver: ComponentFactoryResolver,
     private _appRef: ApplicationRef,
-    private _injector: Injector
+    private _injector: Injector,
   ) {
     this._componentFactory = this._componentFactoryResolver.resolveComponentFactory(SbbLeitPoi);
   }

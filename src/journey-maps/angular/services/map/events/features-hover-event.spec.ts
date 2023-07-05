@@ -42,7 +42,7 @@ describe('FeaturesHoverEvent', () => {
       mapMock.get(),
       mapEventUtilsMock,
       watchOnLayers,
-      routeUtilsMock
+      routeUtilsMock,
     );
   });
 

@@ -15,13 +15,13 @@ export function updateToV15(): Rule {
     TargetVersion.V16,
     [],
     sbbAngularUpgradeData,
-    onMigrationComplete
+    onMigrationComplete,
   );
 }
 
 function patchClassNamesMigration() {
   const indexOfClassNamesMigration = cdkMigrations.findIndex(
-    (m) => m.name === 'ClassNamesMigration'
+    (m) => m.name === 'ClassNamesMigration',
   );
   cdkMigrations[indexOfClassNamesMigration] = ClassNamesMigration;
 }
@@ -30,7 +30,7 @@ function patchClassNamesMigration() {
 function onMigrationComplete(
   context: SchematicContext,
   targetVersion: TargetVersion,
-  hasFailures: boolean
+  hasFailures: boolean,
 ) {
   context.logger.info('');
   context.logger.info(`  ✓  Updated Sbb Angular to ${targetVersion}`);
@@ -39,7 +39,7 @@ function onMigrationComplete(
   if (hasFailures) {
     context.logger.warn(
       '  ⚠  Some issues were detected but could not be fixed automatically. Please check the ' +
-        'output above and fix these issues manually.'
+        'output above and fix these issues manually.',
     );
   }
 }

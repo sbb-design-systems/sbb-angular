@@ -33,13 +33,13 @@ export class SbbMapSelectionEvent {
 
   constructor(
     private _routeUtilsService: SbbRouteUtils,
-    private _mapEventUtils: SbbMapEventUtils
+    private _mapEventUtils: SbbMapEventUtils,
   ) {}
 
   initialize(
     mapInstance: MaplibreMap,
     layersTypes: Map<string, SbbFeatureDataType>,
-    selectionModes: Map<SbbFeatureDataType, SbbSelectionMode>
+    selectionModes: Map<SbbFeatureDataType, SbbSelectionMode>,
   ) {
     this._mapInstance = mapInstance;
     this._layersTypes = layersTypes;
@@ -72,7 +72,7 @@ export class SbbMapSelectionEvent {
   initSelectedState(
     mapInstance: MaplibreMap,
     features: Feature[],
-    featureDataType: SbbFeatureDataType
+    featureDataType: SbbFeatureDataType,
   ): void {
     if (featureDataType === 'ROUTE') {
       const selectedFeatures = features.filter((f) => f.properties![SBB_SELECTED_PROPERTY_NAME]);
@@ -89,7 +89,7 @@ export class SbbMapSelectionEvent {
         true,
       ]);
       featureDatas.forEach((featureData) =>
-        this._mapEventUtils.setFeatureState(featureData, mapInstance, { selected: true })
+        this._mapEventUtils.setFeatureState(featureData, mapInstance, { selected: true }),
       );
     }
   }
@@ -99,7 +99,7 @@ export class SbbMapSelectionEvent {
       features: this._mapEventUtils.queryFeaturesByProperty(
         this._mapInstance,
         this._layersTypes,
-        (feature) => feature.state.selected
+        (feature) => feature.state.selected,
       ),
     };
   }
@@ -134,7 +134,7 @@ export class SbbMapSelectionEvent {
         ['!in', '$id', ...this._touchedZoneIds],
       ]);
       featureDatas.forEach((featureData) =>
-        this._mapEventUtils.setFeatureState(featureData, map, { selected: true })
+        this._mapEventUtils.setFeatureState(featureData, map, { selected: true }),
       );
     });
 

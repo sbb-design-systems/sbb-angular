@@ -61,7 +61,7 @@ export const SBB_MENU_DEFAULT_OPTIONS = new InjectionToken<SbbMenuDefaultOptions
   {
     providedIn: 'root',
     factory: SBB_MENU_DEFAULT_OPTIONS_FACTORY,
-  }
+  },
 );
 
 /** @docs-private */
@@ -256,7 +256,7 @@ export class SbbMenu implements AfterContentInit, SbbMenuPanel<SbbMenuItem>, OnI
     private _elementRef: ElementRef<HTMLElement>,
     private _ngZone: NgZone,
     @Inject(SBB_MENU_DEFAULT_OPTIONS) private _defaultOptions: SbbMenuDefaultOptions,
-    private _changeDetectorRef: ChangeDetectorRef
+    private _changeDetectorRef: ChangeDetectorRef,
   ) {}
 
   ngOnInit() {
@@ -277,7 +277,7 @@ export class SbbMenu implements AfterContentInit, SbbMenuPanel<SbbMenuItem>, OnI
     this._directDescendantItems.changes
       .pipe(
         startWith(this._directDescendantItems),
-        switchMap((items) => merge(...items.map((item: SbbMenuItem) => item._focused)))
+        switchMap((items) => merge(...items.map((item: SbbMenuItem) => item._focused))),
       )
       .subscribe((focusedItem) => this._keyManager.updateActiveItem(focusedItem as SbbMenuItem));
 
@@ -312,7 +312,7 @@ export class SbbMenu implements AfterContentInit, SbbMenuPanel<SbbMenuItem>, OnI
     const itemChanges = this._directDescendantItems.changes as Observable<QueryList<SbbMenuItem>>;
     return itemChanges.pipe(
       startWith(this._directDescendantItems),
-      switchMap((items) => merge(...items.map((item: SbbMenuItem) => item._hovered)))
+      switchMap((items) => merge(...items.map((item: SbbMenuItem) => item._hovered))),
     ) as Observable<SbbMenuItem>;
   }
 
@@ -401,7 +401,7 @@ export class SbbMenu implements AfterContentInit, SbbMenuPanel<SbbMenuItem>, OnI
     const elevation = this._baseElevation + depth;
     const newElevation = `${this._elevationPrefix}${elevation}`;
     const customElevation = Object.keys(this._classList).find((className) =>
-      className.startsWith(this._elevationPrefix)
+      className.startsWith(this._elevationPrefix),
     );
 
     if (!customElevation || customElevation === this._previousElevation) {
@@ -423,7 +423,7 @@ export class SbbMenu implements AfterContentInit, SbbMenuPanel<SbbMenuItem>, OnI
    */
   setPositionClasses(
     posX: SbbMenuPositionX = this.xPosition,
-    posY: SbbMenuPositionY = this.yPosition
+    posY: SbbMenuPositionY = this.yPosition,
   ) {
     const classes = this._classList;
     classes['sbb-menu-panel-before'] = posX === 'before';
@@ -464,7 +464,7 @@ export class SbbMenu implements AfterContentInit, SbbMenuPanel<SbbMenuItem>, OnI
     // from the `event` since we can't use a `ViewChild` to access the pane.
     const animationStartState =
       this._extractPlainAnimationState(
-        this.triggerContext.animationStartStateResolver?.(this.triggerContext)
+        this.triggerContext.animationStartStateResolver?.(this.triggerContext),
       ) ?? 'enter';
     if (event.toState === animationStartState && this._keyManager.activeItemIndex === 0) {
       event.element.scrollTop = 0;
@@ -478,7 +478,7 @@ export class SbbMenu implements AfterContentInit, SbbMenuPanel<SbbMenuItem>, OnI
   }
 
   private _extractPlainAnimationState(
-    state?: SbbMenuAnimationState
+    state?: SbbMenuAnimationState,
   ): SbbMenuPlainAnimationState | null {
     if (!state) {
       return null;

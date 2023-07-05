@@ -42,7 +42,7 @@ export class SbbMenuContent implements OnDestroy {
     private _injector: Injector,
     private _viewContainerRef: ViewContainerRef,
     @Inject(DOCUMENT) private _document: any,
-    private _changeDetectorRef: ChangeDetectorRef
+    private _changeDetectorRef: ChangeDetectorRef,
   ) {}
 
   /**
@@ -61,7 +61,7 @@ export class SbbMenuContent implements OnDestroy {
         this._document.createElement('div'),
         this._componentFactoryResolver,
         this._appRef,
-        this._injector
+        this._injector,
       );
     }
 

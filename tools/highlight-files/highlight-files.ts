@@ -31,7 +31,7 @@ function getBazelActionArguments() {
 function detectAndHighlightRegionBlocks(
   parsed: { contents: string; regions: { [p: string]: string } },
   basePath: string,
-  outDir: string
+  outDir: string,
 ) {
   const fileExtension = extname(basePath).substring(1);
   for (const [regionName, regionSnippet] of Object.entries(parsed.regions)) {
@@ -43,7 +43,7 @@ function detectAndHighlightRegionBlocks(
     // Convert "my-component-example.ts" into "my-component-example_region-ts.html"
     const regionBaseOutputPath = basePath.replace(
       `.${fileExtension}`,
-      `_${regionName}-${fileExtension}.html`
+      `_${regionName}-${fileExtension}.html`,
     );
     const regionOutputPath = join(outDir, regionBaseOutputPath);
     ensureDirSync(dirname(regionOutputPath));

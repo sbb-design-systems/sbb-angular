@@ -143,7 +143,7 @@ describe('SbbSidebar', () => {
       tick();
 
       const sidebar: SbbSidebar = fixture.debugElement.query(
-        By.directive(SbbSidebar)
+        By.directive(SbbSidebar),
       )!.componentInstance;
 
       sidebar.open().then((result) => expect(result).toBe('open'));
@@ -396,7 +396,7 @@ describe('SbbSidebar', () => {
       tick();
 
       const sidebar: SbbSidebar = fixture.debugElement.query(
-        By.directive(SbbSidebar)
+        By.directive(SbbSidebar),
       )!.componentInstance;
 
       const openButton = fixture.componentInstance.openButton.nativeElement;
@@ -501,7 +501,7 @@ describe('SbbSidebar', () => {
       // in order to test it correctly.
       setTimeout(() => {
         const sidebar: SbbSidebar = fixture.debugElement.query(
-          By.directive(SbbSidebar)
+          By.directive(SbbSidebar),
         ).componentInstance;
         sidebar.toggle();
         expect(() => fixture.detectChanges()).not.toThrow();
@@ -533,7 +533,7 @@ describe('SbbSidebar', () => {
       sidebar = fixture.debugElement.query(By.directive(SbbSidebar))!.componentInstance;
       lastFocusableElement = fixture.debugElement.query(By.css('.input2'))!.nativeElement;
       mobileCloseSidebarButton = fixture.debugElement.query(
-        By.css('.sbb-sidebar-mobile-menu-bar-close')
+        By.css('.sbb-sidebar-mobile-menu-bar-close'),
       )!.nativeElement;
       lastFocusableElement.focus();
     }));
@@ -566,7 +566,7 @@ describe('SbbSidebar', () => {
       fixture.destroy();
 
       const nonFocusableFixture = TestBed.createComponent(
-        SidebarWithoutFocusableElementsTestComponent
+        SidebarWithoutFocusableElementsTestComponent,
       );
       nonFocusableFixture.detectChanges();
       mediaMatcher.setMatchesQuery(Breakpoints.Mobile, true);
@@ -582,7 +582,7 @@ describe('SbbSidebar', () => {
 
       expect(document.activeElement).toBe(
         nonFocusableFixture.debugElement.query(By.css('.sbb-sidebar-mobile-menu-bar-close'))!
-          .nativeElement
+          .nativeElement,
       );
     }));
 
@@ -592,7 +592,7 @@ describe('SbbSidebar', () => {
       fixture.detectChanges();
 
       const anchors = Array.from<HTMLElement>(
-        fixture.nativeElement.querySelectorAll('.cdk-focus-trap-anchor')
+        fixture.nativeElement.querySelectorAll('.cdk-focus-trap-anchor'),
       );
 
       expect(anchors.every((anchor) => !anchor.hasAttribute('tabindex')))
@@ -629,7 +629,7 @@ describe('SbbSidebar', () => {
       const allNodes = getSidebarNodesArray(fixture);
       const sidebarIndex = allNodes.indexOf(fixture.nativeElement.querySelector('.sbb-sidebar'));
       const contentIndex = allNodes.indexOf(
-        fixture.nativeElement.querySelector('.sbb-sidebar-content')
+        fixture.nativeElement.querySelector('.sbb-sidebar-content'),
       );
 
       expect(sidebarIndex)
@@ -686,7 +686,7 @@ describe('SbbSidebarContainer', () => {
     const testComponent: SidebarContainerEmptyTestComponent =
       fixture.debugElement.componentInstance;
     const sidebar: SbbSidebar = fixture.debugElement.query(
-      By.directive(SbbSidebar)
+      By.directive(SbbSidebar),
     ).componentInstance;
 
     expect(sidebar.opened).toBe(false);
@@ -815,7 +815,7 @@ describe('SbbSidebarContainer', () => {
     fixture.detectChanges();
 
     expect(fixture.componentInstance.sidebarContainer.scrollable instanceof CdkScrollable).toBe(
-      true
+      true,
     );
   }));
 
@@ -825,7 +825,7 @@ describe('SbbSidebarContainer', () => {
     fixture.detectChanges();
 
     expect(fixture.componentInstance.sidebarContainer.scrollable instanceof CdkScrollable).toBe(
-      true
+      true,
     );
   }));
 
@@ -904,7 +904,7 @@ describe('SbbSidebar Usage', () => {
     expect(sidebar.componentInstance.opened).toBe(false);
 
     const mobileOpenSidebarButton = fixture.debugElement.query(
-      By.css('.sbb-sidebar-mobile-menu-bar-trigger')
+      By.css('.sbb-sidebar-mobile-menu-bar-trigger'),
     )!.nativeElement;
 
     mobileOpenSidebarButton.click();
@@ -912,7 +912,7 @@ describe('SbbSidebar Usage', () => {
     expect(sidebar.componentInstance.opened).toBe(true);
 
     const mobileCloseSidebarButton = fixture.debugElement.query(
-      By.css('.sbb-sidebar-mobile-menu-bar-close')
+      By.css('.sbb-sidebar-mobile-menu-bar-close'),
     )!.nativeElement;
 
     mobileCloseSidebarButton.click();

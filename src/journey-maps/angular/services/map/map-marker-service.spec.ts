@@ -36,12 +36,12 @@ describe('MapMarkerService#addMissingImages', () => {
     expect(mapServiceSpyObj.addMissingImage).toHaveBeenCalledWith(
       mapSpyObj,
       'sbb-marker_dark-inactive-black_train_train_selected_2033534440',
-      icon
+      icon,
     );
     expect(mapServiceSpyObj.addMissingImage).toHaveBeenCalledWith(
       mapSpyObj,
       'sbb-marker_dark-active-red_train_train_selected_2033534440',
-      iconSelected
+      iconSelected,
     );
   });
 
@@ -56,12 +56,12 @@ describe('MapMarkerService#addMissingImages', () => {
     expect(mapServiceSpyObj.addMissingImage).toHaveBeenCalledWith(
       mapSpyObj,
       'sbb-marker_bright-inactive-black_train_train_selected_2033534440',
-      icon
+      icon,
     );
     expect(mapServiceSpyObj.addMissingImage).toHaveBeenCalledWith(
       mapSpyObj,
       'sbb-marker_bright-active-red_train_train_selected_2033534440',
-      iconSelected
+      iconSelected,
     );
   });
 });

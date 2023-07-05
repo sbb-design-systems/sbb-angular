@@ -43,7 +43,7 @@ let datepickerUid = 0;
 
 /** Injection token that determines the scroll handling while the calendar is open. */
 export const SBB_DATEPICKER_SCROLL_STRATEGY = new InjectionToken<() => ScrollStrategy>(
-  'sbb-datepicker-scroll-strategy'
+  'sbb-datepicker-scroll-strategy',
 );
 
 /** @docs-private */
@@ -278,7 +278,7 @@ export class SbbDatepicker<D> implements OnDestroy {
     private _changeDetectorRef: ChangeDetectorRef,
     @Inject(SBB_DATEPICKER_SCROLL_STRATEGY) private _scrollStrategy: any,
     @Optional() private _dateAdapter: SbbDateAdapter<D>,
-    @Inject(LOCALE_ID) public readonly locale: string
+    @Inject(LOCALE_ID) public readonly locale: string,
   ) {
     if (!this._dateAdapter) {
       throw createMissingDateImplError('DateAdapter');
@@ -336,16 +336,16 @@ export class SbbDatepicker<D> implements OnDestroy {
     }
     this.datepickerInput = input;
     this._inputSubscription = this.datepickerInput.valueChange.subscribe(
-      (value: D | null) => (this.selected = value)
+      (value: D | null) => (this.selected = value),
     );
     this._inputChangeSubscription = merge(
       this.datepickerInput.disabledChange,
-      this.datepickerInput.readonlyChange
+      this.datepickerInput.readonlyChange,
     ).subscribe(() => this._changeDetectorRef.markForCheck());
 
     // If the main datepicker date changes, we need to do a `markForCheck` to update the arrow keys.
     this._mainDatepickerSubscription = this.main?.datepickerInput.valueChange.subscribe(() =>
-      this._changeDetectorRef.markForCheck()
+      this._changeDetectorRef.markForCheck(),
     );
 
     // The connected datepicker is only opened on the following conditions:
@@ -354,7 +354,7 @@ export class SbbDatepicker<D> implements OnDestroy {
     this._connectedDatepickerSubscription = merge(
       this.openedStream.pipe(mapTo('opened')),
       this.selectedChanged.pipe(mapTo('selected')),
-      this.closedStream.pipe(mapTo('closed'))
+      this.closedStream.pipe(mapTo('closed')),
     )
       .pipe(
         bufferCount(3, 1),
@@ -368,15 +368,15 @@ export class SbbDatepicker<D> implements OnDestroy {
             (!this.connected.datepickerInput.value ||
               this._dateAdapter.compareDate(
                 this.datepickerInput.value,
-                this.connected.datepickerInput.value
-              ) > 0)
+                this.connected.datepickerInput.value,
+              ) > 0),
         ),
         tap(() => {
           if (this.connected!.datepickerInput.value) {
             this.connected!.datepickerInput.value = null;
             this.connected!.datepickerInput._cvaOnChange(null);
           }
-        })
+        }),
       )
       .subscribe(() => this.connected!.open());
   }
@@ -446,7 +446,7 @@ export class SbbDatepicker<D> implements OnDestroy {
     if (!this._calendarPortal) {
       this._calendarPortal = new ComponentPortal<SbbDatepickerContent<D>>(
         SbbDatepickerContent,
-        this._viewContainerRef
+        this._viewContainerRef,
       );
     }
 
@@ -493,8 +493,8 @@ export class SbbDatepicker<D> implements OnDestroy {
             event.keyCode === ESCAPE ||
             (this.datepickerInput && event.altKey && event.keyCode === UP_ARROW)
           );
-        })
-      )
+        }),
+      ),
     ).subscribe(() => this.close());
   }
 

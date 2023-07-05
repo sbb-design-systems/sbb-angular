@@ -16,14 +16,14 @@ export const sbbHeaderAnimations: {
       'open',
       style({
         left: 0,
-      })
+      }),
     ),
     state(
       'void',
       style({
         left: -305,
         visibility: 'hidden',
-      })
+      }),
     ),
     transition('open => void, void => open', [animate('0.3s ease-in-out')]),
   ]),

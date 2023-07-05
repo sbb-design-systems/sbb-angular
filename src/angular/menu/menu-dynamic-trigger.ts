@@ -5,7 +5,10 @@ import { Directive, TemplateRef, ViewContainerRef } from '@angular/core';
   exportAs: 'sbbMenuDynamicTrigger',
 })
 export class SbbMenuDynamicTrigger {
-  constructor(readonly _templateRef: TemplateRef<any>, viewContainerRef: ViewContainerRef) {
+  constructor(
+    readonly _templateRef: TemplateRef<any>,
+    viewContainerRef: ViewContainerRef,
+  ) {
     viewContainerRef.createEmbeddedView(_templateRef);
   }
 }

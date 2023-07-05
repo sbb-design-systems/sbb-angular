@@ -34,7 +34,7 @@ export function bazel(options: { filter?: string }): Rule {
               ? new AppBazelModuleDetector(tree)
               : new LibraryBazelModuleDetector(tree);
             const npmDependencyResolver = new NpmDependencyResolver(
-              tree.read('package.json')!.toString()
+              tree.read('package.json')!.toString(),
             );
             const dependencyByOccurence = new Map<string, string>()
               .set('ngDevMode', '//src:dev_mode_types')
@@ -57,7 +57,7 @@ export function bazel(options: { filter?: string }): Rule {
               moduleDetector,
               npmDependencyResolver,
               context.logger,
-              styleReplaceMap
+              styleReplaceMap,
             );
             const bazelGenruleResolver = new BazelGenruleResolver();
             if (isShowcase) {
@@ -92,7 +92,7 @@ export function bazel(options: { filter?: string }): Rule {
               });
             }
           })
-          .reduce((current, next) => current.concat(next.render()), [] as Rule[])
+          .reduce((current, next) => current.concat(next.render()), [] as Rule[]),
       );
     }
   };

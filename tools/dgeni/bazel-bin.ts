@@ -44,7 +44,7 @@ if (require.main === module) {
     entryPointGrouper: EntryPointGrouper,
     templateFinder: any,
     writeFilesProcessor: any,
-    readFilesProcessor: any
+    readFilesProcessor: any,
   ) {
     // Set the base path for the "readFilesProcessor" to the execroot. This is necessary because
     // otherwise the "writeFilesProcessor" is not able to write to the specified output path.

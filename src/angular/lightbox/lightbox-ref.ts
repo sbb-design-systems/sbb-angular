@@ -18,14 +18,16 @@ export class SbbLightboxRef<T, R = any> extends SbbDialogRef<T, R> {
   constructor(
     ref: DialogRef<R, T>,
     config: SbbLightboxConfig,
-    containerInstance: _SbbDialogContainerBase
+    containerInstance: _SbbDialogContainerBase,
   ) {
     super(ref, config, containerInstance);
 
     ref.overlayRef
       .keydownEvents()
       .pipe(
-        filter((event) => event.keyCode === ESCAPE && !!this.disableClose && !hasModifierKey(event))
+        filter(
+          (event) => event.keyCode === ESCAPE && !!this.disableClose && !hasModifierKey(event),
+        ),
       )
       .subscribe(() => this.closeRequest.next(null!));
 

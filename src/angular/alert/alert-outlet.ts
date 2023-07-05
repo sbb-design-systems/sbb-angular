@@ -45,7 +45,7 @@ export class SbbAlertOutlet implements OnDestroy {
 
   constructor(
     private _alertService: SbbAlertService,
-    private _changeDetectorRef: ChangeDetectorRef
+    private _changeDetectorRef: ChangeDetectorRef,
   ) {
     this._alertService._register(this);
   }

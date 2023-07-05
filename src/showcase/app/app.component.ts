@@ -46,7 +46,7 @@ export class AppComponent implements AfterContentInit, OnDestroy {
     private _breakpointObserver: BreakpointObserver,
     private _variantSwitch: VariantSwitch,
     iconRegistry: SbbIconRegistry,
-    sanitizer: DomSanitizer
+    sanitizer: DomSanitizer,
   ) {
     iconRegistry.addSvgIconResolver((name, namespace) => {
       if (namespace === 'showcase') {
@@ -61,7 +61,7 @@ export class AppComponent implements AfterContentInit, OnDestroy {
       .pipe(
         map((r) => r.matches),
         distinctUntilChanged(),
-        takeUntil(this._destroyed)
+        takeUntil(this._destroyed),
       )
       .subscribe((shouldCollapse) => {
         this.expanded = !shouldCollapse;

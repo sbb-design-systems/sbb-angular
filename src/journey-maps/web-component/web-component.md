@@ -67,12 +67,12 @@ client.markerOptions = {
 
 // Register for event
 client.addEventListener('zoomLevelsChange', (event) =>
-  console.log('Current zoom: ', event.detail.currentZoom)
+  console.log('Current zoom: ', event.detail.currentZoom),
 );
 
 // Add to document
 document.addEventListener('DOMContentLoaded', () =>
-  document.getElementById('container').appendChild(client)
+  document.getElementById('container').appendChild(client),
 );
 ```
 
@@ -127,7 +127,7 @@ client.addEventListener('featuresClick', (event) => {
   switch (feature?.featureDataType) {
     case 'MARKER':
       document.getElementById(
-        'myTemplate'
+        'myTemplate',
       ).innerHTML = `Hello this is ${feature.properties?.title}`;
       break;
     case 'STATION':
