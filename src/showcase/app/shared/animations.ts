@@ -19,7 +19,7 @@ export const ROUTER_ANIMATION: AnimationTriggerMetadata = trigger('animRoutes', 
           animate(350, style({ opacity: 1 })),
           animateChild(),
         ],
-        { optional: true }
+        { optional: true },
       ),
       query(
         ':leave',
@@ -28,7 +28,7 @@ export const ROUTER_ANIMATION: AnimationTriggerMetadata = trigger('animRoutes', 
           animate(300, style({ opacity: 0 })),
           animateChild(),
         ],
-        { optional: true }
+        { optional: true },
       ),
     ]),
   ]),

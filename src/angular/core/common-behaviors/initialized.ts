@@ -23,7 +23,7 @@ export interface HasInitialized {
 
 /** Mixin to augment a directive with an initialized property that will emits when ngOnInit ends. */
 export function mixinInitialized<T extends Constructor<{}>>(
-  base: T
+  base: T,
 ): Constructor<HasInitialized> & T {
   return class extends base {
     /** Whether this directive has been marked as initialized. */
@@ -64,7 +64,7 @@ export function mixinInitialized<T extends Constructor<{}>>(
       if (this._isInitialized && (typeof ngDevMode === 'undefined' || ngDevMode)) {
         throw Error(
           'This directive has already been marked as initialized and ' +
-            'should not be called twice.'
+            'should not be called twice.',
         );
       }
 

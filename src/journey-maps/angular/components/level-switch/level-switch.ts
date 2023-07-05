@@ -37,7 +37,7 @@ export class SbbLevelSwitch implements OnDestroy {
   constructor(
     private _ref: ChangeDetectorRef,
     private _i18n: SbbLocaleService,
-    private _levelSwitchService: SbbLevelSwitcher
+    private _levelSwitchService: SbbLevelSwitcher,
   ) {
     this._levelSwitchService.changeDetectionEmitter
       .pipe(takeUntil(this._destroyed))

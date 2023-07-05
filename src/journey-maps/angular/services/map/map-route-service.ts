@@ -16,14 +16,14 @@ export class SbbMapRouteService {
     mapSelectionEventService: SbbMapSelectionEvent,
     routeFeatureCollection: FeatureCollection = SBB_EMPTY_FEATURE_COLLECTION,
     stopoverFeatures: Feature[] = [],
-    selectedLegId?: string
+    selectedLegId?: string,
   ): void {
     const source = map.getSource(SBB_ROKAS_ROUTE_SOURCE) as GeoJSONSource;
     source.setData(routeFeatureCollection);
     map.removeFeatureState({ source: SBB_ROKAS_ROUTE_SOURCE });
     if (routeFeatureCollection.features?.length) {
       map.once('idle', () =>
-        mapSelectionEventService.initSelectedState(map, routeFeatureCollection.features, 'ROUTE')
+        mapSelectionEventService.initSelectedState(map, routeFeatureCollection.features, 'ROUTE'),
       );
     }
     this.handleLegSelection(map, stopoverFeatures, selectedLegId);

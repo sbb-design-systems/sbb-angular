@@ -40,7 +40,7 @@ export class ExampleData {
 
   static findByVariant(library: string, id: string, variant: 'standard' | 'lean'): ExampleData[] {
     return ExampleData.find(library, id).filter(
-      (value) => !value.variant || value.variant === variant
+      (value) => !value.variant || value.variant === variant,
     );
   }
 

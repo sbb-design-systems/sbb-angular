@@ -134,7 +134,7 @@ export class SbbHeaderMenu implements AfterContentInit, OnDestroy {
 
   constructor(
     private _elementRef: ElementRef<HTMLElement>,
-    @Inject(SBB_HEADER) public _header: TypeRef<SbbHeaderLean>
+    @Inject(SBB_HEADER) public _header: TypeRef<SbbHeaderLean>,
   ) {
     this.closed.pipe(takeUntil(this._destroyed)).subscribe(() => {
       if (this._animationState !== 'closed') {
@@ -148,7 +148,7 @@ export class SbbHeaderMenu implements AfterContentInit, OnDestroy {
       .pipe(
         startWith(this._items.toArray()),
         map((i) => !!i.length),
-        takeUntil(this._destroyed)
+        takeUntil(this._destroyed),
       )
       .subscribe((s) => (this.showPanel = s));
     this._keyManager = new FocusKeyManager(this._items).withWrap().withTypeAhead();

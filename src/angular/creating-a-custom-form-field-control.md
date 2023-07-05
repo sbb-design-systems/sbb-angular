@@ -14,7 +14,11 @@ just a starting point for us to learn.)
 
 ```ts
 class MyTel {
-  constructor(public area: string, public exchange: string, public subscriber: string) {}
+  constructor(
+    public area: string,
+    public exchange: string,
+    public subscriber: string,
+  ) {}
 }
 
 @Component({

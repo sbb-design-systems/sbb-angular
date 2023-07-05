@@ -47,7 +47,7 @@ export function normalizeFunctionParameters(doc: DefaultFunctionDoc) {
       if (!parameterType) {
         console.warn(
           `Missing parameter type information (${parameterName}) in ` +
-            `${doc.fileInfo.relativePath}:${doc.startingLine}`
+            `${doc.fileInfo.relativePath}:${doc.startingLine}`,
         );
         return;
       }

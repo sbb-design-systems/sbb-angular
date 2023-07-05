@@ -40,7 +40,7 @@ export class SbbMapService {
 
   addMissingImage(map: MaplibreMap, name: string, icon: string): void {
     map.loadImage(icon, (error: any, image: any) =>
-      this._imageLoadedCallback(map, name, error, image)
+      this._imageLoadedCallback(map, name, error, image),
     );
   }
 
@@ -79,7 +79,7 @@ export class SbbMapService {
   private _centerMap(
     map: MaplibreMap,
     center: LngLatLike | undefined,
-    zoomLevel: number | undefined
+    zoomLevel: number | undefined,
   ): void {
     const options: FlyToOptions = {};
     if (zoomLevel && map.getZoom() !== zoomLevel) {

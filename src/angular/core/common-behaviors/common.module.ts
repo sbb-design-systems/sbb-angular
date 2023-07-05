@@ -48,12 +48,12 @@ export class SbbCommonModule {
   constructor(
     highContrastModeDetector: HighContrastModeDetector,
     @Optional() @Inject(SBB_SANITY_CHECKS) private _sanityChecks: SanityChecks,
-    @Inject(DOCUMENT) private _document: Document
+    @Inject(DOCUMENT) private _document: Document,
   ) {
     // Check variant configuration at the beginning, as this might cause components
     // to render differently.
     ɵvariant.next(
-      this._document.documentElement.classList.contains('sbb-lean') ? 'lean' : 'standard'
+      this._document.documentElement.classList.contains('sbb-lean') ? 'lean' : 'standard',
     );
 
     // While A11yModule also does this, we repeat it here to avoid importing A11yModule
@@ -101,7 +101,7 @@ function _checkDoctypeIsDefined(doc: Document): void {
   if (!doc.doctype) {
     console.warn(
       'Current document does not have a doctype. This may cause ' +
-        'some sbb-angular components not to behave as expected.'
+        'some sbb-angular components not to behave as expected.',
     );
   }
 }
@@ -118,13 +118,13 @@ function _checkTypographyIsPresent(doc: Document): void {
   // The --sbb-scaling-factor variable is available, if our typography is loaded as
   // a majority of variables and rules depend on this variable.
   const missingScalingFactorVariable = !getComputedStyle(doc.documentElement).getPropertyValue(
-    '--sbb-scaling-factor'
+    '--sbb-scaling-factor',
   );
 
   if (missingScalingFactorVariable) {
     console.warn(
       'Could not find @sbb-esta/angular typography. Most @sbb-esta/angular ' +
-        'components may not work as expected.'
+        'components may not work as expected.',
     );
   }
 }
@@ -135,7 +135,7 @@ function _checkCdkVersionMatch(): void {
   if (VERSION.major !== CDK_VERSION.major) {
     console.warn(
       `The @sbb-esta/angular version (${VERSION.full}) does not match the Angular CDK major version` +
-        ` (${CDK_VERSION.full}).\nPlease ensure the major versions of these two packages match.`
+        ` (${CDK_VERSION.full}).\nPlease ensure the major versions of these two packages match.`,
     );
   }
 }

@@ -17,7 +17,7 @@ const performLoginAndReturnUsermenuComponent = (fixtureTest: ComponentFixture<an
   const usermenuComponentInstance = usermenuComponent.componentInstance;
   spyOn(usermenuComponentInstance.loginRequest, 'emit').and.callThrough();
   const buttonLogin = usermenuComponent.query(
-    By.css('.sbb-usermenu-trigger-logged-out')
+    By.css('.sbb-usermenu-trigger-logged-out'),
   ).nativeElement;
   buttonLogin.click();
   fixtureTest.detectChanges();
@@ -89,7 +89,7 @@ describe('SbbUsermenu with userName and displayName without image', () => {
     const usermenuComponent = performLoginAndReturnUsermenuComponent(fixtureTest);
 
     const initialLettersReference = usermenuComponent.query(
-      By.css('.sbb-usermenu-initial-letters')
+      By.css('.sbb-usermenu-initial-letters'),
     );
     expect(initialLettersReference.nativeElement).toBeTruthy();
     expect(initialLettersReference.nativeElement.textContent).toContain('MM');
@@ -113,7 +113,7 @@ describe('SbbUsermenu with userName and displayName without image', () => {
       componentTest.displayName = param.name;
       fixtureTest.detectChanges();
       const initialLettersReference = usermenuComponent.query(
-        By.css('.sbb-usermenu-initial-letters')
+        By.css('.sbb-usermenu-initial-letters'),
       );
       expect(initialLettersReference.nativeElement.textContent).toContain(param.expected);
     });
@@ -145,7 +145,7 @@ describe('SbbUsermenu with userName and displayName without image', () => {
     await fixtureTest.whenStable();
 
     const panel = overlayContainerElement.querySelector(
-      '.sbb-menu-panel-type-usermenu'
+      '.sbb-menu-panel-type-usermenu',
     )! as HTMLElement;
     const displayName = panel.querySelector('.sbb-usermenu-user-info-display-name')! as HTMLElement;
     const userName = panel.querySelector('.sbb-usermenu-user-info-name')! as HTMLElement;
@@ -182,10 +182,10 @@ describe('SbbUsermenu with userName and displayName without image', () => {
     expect(usermenuComponent.panelOpen).toBeFalse();
 
     const displayName = fixtureTest.debugElement.query(
-      By.css('.sbb-usermenu-user-info-display-name')
+      By.css('.sbb-usermenu-user-info-display-name'),
     ).nativeElement;
     const userName = fixtureTest.debugElement.query(
-      By.css('.sbb-usermenu-user-info-name')
+      By.css('.sbb-usermenu-user-info-name'),
     ).nativeElement;
 
     // Assertions in collapsed state
@@ -199,10 +199,10 @@ describe('SbbUsermenu with userName and displayName without image', () => {
     fixtureTest.detectChanges();
 
     const userNameOpenedState = fixtureTest.debugElement.query(
-      By.css('.sbb-menu-panel-type-usermenu .sbb-usermenu-user-info-name')
+      By.css('.sbb-menu-panel-type-usermenu .sbb-usermenu-user-info-name'),
     ).nativeElement;
     const displayNameOpenedState = fixtureTest.debugElement.query(
-      By.css('.sbb-menu-panel-type-usermenu .sbb-usermenu-user-info-display-name')
+      By.css('.sbb-menu-panel-type-usermenu .sbb-usermenu-user-info-display-name'),
     ).nativeElement;
 
     // Assertions in opened state
@@ -250,7 +250,7 @@ describe('SbbUsermenu with userName and displayName without image', () => {
 
     // Then
     expect(triggerOpenButton.attributes['aria-label']).toBe(
-      'Logged in as Max Muster. Click or press enter to open user menu.'
+      'Logged in as Max Muster. Click or press enter to open user menu.',
     );
     expect(triggerOpenButton.attributes['aria-haspopup']).toBe('menu');
     expect(triggerOpenButton.attributes['aria-controls']).toBeUndefined();
@@ -259,13 +259,13 @@ describe('SbbUsermenu with userName and displayName without image', () => {
     usermenuComponent.toggle();
     fixtureTest.detectChanges();
     const identificationSection = fixtureTest.debugElement.query(
-      By.css('.sbb-usermenu-identification')
+      By.css('.sbb-usermenu-identification'),
     );
 
     // Then
     expect(triggerOpenButton.attributes['aria-expanded']).toBe('true');
     expect(triggerOpenButton.attributes['aria-controls']).toBe(
-      overlayContainerElement.querySelector('.sbb-menu-panel-type-usermenu')!.id
+      overlayContainerElement.querySelector('.sbb-menu-panel-type-usermenu')!.id,
     );
     expect(identificationSection.attributes['aria-hidden']).toBe('true');
   });

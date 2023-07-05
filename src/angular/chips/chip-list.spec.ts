@@ -291,7 +291,7 @@ describe('SbbChipList', () => {
             tick(500);
 
             expect(chipListInstance._keyManager.activeItemIndex).toBe(chips.length - 1);
-          })
+          }),
         );
       });
     });
@@ -510,7 +510,7 @@ describe('SbbChipList', () => {
 
         expect(list.disabled).toBe(true);
         expect(list.chips.toArray().every((chip) => chip.disabled)).toBe(true);
-      })
+      }),
     );
   });
 
@@ -564,7 +564,7 @@ describe('SbbChipList', () => {
     it('should keep focus on the input after adding the first chip', fakeAsync(() => {
       const nativeInput = fixture.nativeElement.querySelector('input');
       const chipEls = Array.from<HTMLElement>(
-        fixture.nativeElement.querySelectorAll('.sbb-chip')
+        fixture.nativeElement.querySelectorAll('.sbb-chip'),
       ).reverse();
 
       // Remove the chips via backspace to simulate the user removing them.
@@ -639,7 +639,7 @@ describe('SbbChipList', () => {
             // Only now should it focus the last element
             dispatchKeyboardEvent(nativeInput, 'keydown', BACKSPACE);
             expectLastItemFocused();
-          }
+          },
         );
 
         it('should focus last chip after pressing BACKSPACE after creating a chip', () => {
@@ -752,7 +752,7 @@ describe('SbbChipList', () => {
         fixture.whenStable().then(() => {
           expect(containerEl.classList).not.toContain(
             'sbb-form-field-invalid',
-            'Expected container not to have the invalid class when valid.'
+            'Expected container not to have the invalid class when valid.',
           );
           expect(containerEl.querySelectorAll('sbb-error').length)
             .withContext('Expected no error messages when the input is valid.')
@@ -1044,7 +1044,7 @@ describe('SbbChipList', () => {
     providers: Provider[] = [],
     animationsModule:
       | Type<NoopAnimationsModule>
-      | Type<BrowserAnimationsModule> = NoopAnimationsModule
+      | Type<BrowserAnimationsModule> = NoopAnimationsModule,
   ): ComponentFixture<T> {
     TestBed.configureTestingModule({
       imports: [

@@ -22,5 +22,5 @@ readdirSync(__dirname, { withFileTypes: true })
           },
         ],
       })
-      .catch(() => process.exit(1))
+      .catch(() => process.exit(1)),
   );

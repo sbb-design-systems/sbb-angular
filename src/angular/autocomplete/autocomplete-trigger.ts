@@ -71,7 +71,7 @@ import { SbbAutocompleteOrigin } from './autocomplete-origin';
 
 /** Injection token that determines the scroll handling while the autocomplete panel is open. */
 export const SBB_AUTOCOMPLETE_SCROLL_STRATEGY = new InjectionToken<() => ScrollStrategy>(
-  'sbb-autocomplete-scroll-strategy'
+  'sbb-autocomplete-scroll-strategy',
 );
 
 /** @docs-private */
@@ -93,7 +93,7 @@ export function getSbbAutocompleteMissingPanelError(): Error {
   return Error(
     'Attempting to open an undefined instance of `sbb-autocomplete`. ' +
       'Make sure that the id passed to the `sbbAutocomplete` is correct and that ' +
-      `you're attempting to open it after the ngAfterContentInit hook.`
+      `you're attempting to open it after the ngAfterContentInit hook.`,
   );
 }
 
@@ -217,27 +217,27 @@ export class SbbAutocompleteTrigger
           combineLatest([
             this._inputValue,
             (autocomplete.options.changes as Observable<SbbOption[]>).pipe(
-              startWith(autocomplete.options.toArray())
+              startWith(autocomplete.options.toArray()),
             ),
-          ])
+          ]),
         ),
-        filter((value) => !!value[1] && !!value[1].length)
+        filter((value) => !!value[1] && !!value[1].length),
       )
       .subscribe(([inputValue, options]) => {
         options.forEach((option) =>
-          option._highlight(inputValue, this.autocomplete.localeNormalizer)
+          option._highlight(inputValue, this.autocomplete.localeNormalizer),
         );
       });
 
     this._connectedElementClassSubscription = this.autocomplete._showPanel
       .pipe(
         distinctUntilChanged(),
-        filter((s) => !s)
+        filter((s) => !s),
       )
       .subscribe(() => {
         this._getConnectedElement().nativeElement.classList.remove('sbb-input-with-open-panel');
         this._getConnectedElement().nativeElement.classList.remove(
-          'sbb-input-with-open-panel-above'
+          'sbb-input-with-open-panel-above',
         );
       });
   }
@@ -288,7 +288,7 @@ export class SbbAutocompleteTrigger
     private _viewportRuler: ViewportRuler,
     @Optional()
     @Inject(SBB_AUTOCOMPLETE_DEFAULT_OPTIONS)
-    private _defaults?: SbbAutocompleteDefaultOptions | null
+    private _defaults?: SbbAutocompleteDefaultOptions | null,
   ) {
     this._scrollStrategy = scrollStrategy;
   }
@@ -401,10 +401,10 @@ export class SbbAutocompleteTrigger
       this._getOutsideClickStream(),
       this._overlayRef
         ? this._overlayRef.detachments().pipe(filter(() => this._overlayAttached))
-        : observableOf()
+        : observableOf(),
     ).pipe(
       // Normalize the output so we return a consistent type.
-      map((event) => (event instanceof SbbOptionSelectionChange ? event : null))
+      map((event) => (event instanceof SbbOptionSelectionChange ? event : null)),
     );
   }
 
@@ -415,14 +415,14 @@ export class SbbAutocompleteTrigger
     if (options) {
       return options.changes.pipe(
         startWith(options),
-        switchMap(() => merge(...options.map((option) => option.onSelectionChange)))
+        switchMap(() => merge(...options.map((option) => option.onSelectionChange))),
       );
     }
     // If there are any subscribers before `ngAfterViewInit`, the `autocomplete` will be undefined.
     // Return a stream that we'll replace with the real one once everything is in place.
     return this._zone.onStable.pipe(
       take(1),
-      switchMap(() => this.optionSelections)
+      switchMap(() => this.optionSelections),
     );
   }) as Observable<SbbOptionSelectionChange>;
 
@@ -440,7 +440,7 @@ export class SbbAutocompleteTrigger
     return merge(
       fromEvent(this._document, 'click') as Observable<MouseEvent>,
       fromEvent(this._document, 'auxclick') as Observable<MouseEvent>,
-      fromEvent(this._document, 'touchend') as Observable<TouchEvent>
+      fromEvent(this._document, 'touchend') as Observable<TouchEvent>,
     ).pipe(
       filter((event) => {
         // If we're in the Shadow DOM, the event target will be the shadow root, so we have to
@@ -462,7 +462,7 @@ export class SbbAutocompleteTrigger
           !!this._overlayRef &&
           !this._overlayRef.overlayElement.contains(clickTarget)
         );
-      })
+      }),
     );
   }
 
@@ -589,7 +589,7 @@ export class SbbAutocompleteTrigger
       tap(() => this._positionStrategy.reapplyLastPosition()),
       // Defer emitting to the stream until the next tick, because changing
       // bindings in here will cause "changed after checked" errors.
-      delay(0)
+      delay(0),
     );
 
     // When the zone is stable initially, and when the option list changes...
@@ -641,7 +641,7 @@ export class SbbAutocompleteTrigger
             return this.panelClosingActions;
           }),
           // when the first closing event occurs...
-          take(1)
+          take(1),
         )
         // set the value, close the panel, and complete.
         .subscribe((event) => this._setValueAndClose(event))
@@ -735,12 +735,12 @@ export class SbbAutocompleteTrigger
             if (position.connectionPair.originY === 'top') {
               this.autocomplete.panel.nativeElement.classList.add('sbb-panel-above');
               this._getConnectedElement().nativeElement.classList.add(
-                'sbb-input-with-open-panel-above'
+                'sbb-input-with-open-panel-above',
               );
             } else {
               this.autocomplete.panel.nativeElement.classList.remove('sbb-panel-above');
               this._getConnectedElement().nativeElement.classList.remove(
-                'sbb-input-with-open-panel-above'
+                'sbb-input-with-open-panel-above',
               );
             }
           }
@@ -887,7 +887,7 @@ export class SbbAutocompleteTrigger
     const labelCount = countGroupLabelsBeforeOption(
       index,
       autocomplete.options,
-      autocomplete.optionGroups
+      autocomplete.optionGroups,
     );
 
     if (index === 0 && labelCount === 1) {
@@ -904,7 +904,7 @@ export class SbbAutocompleteTrigger
           element.offsetTop,
           element.offsetHeight,
           autocomplete._getScrollTop(),
-          autocomplete.panel.nativeElement.offsetHeight
+          autocomplete.panel.nativeElement.offsetHeight,
         );
 
         autocomplete._setScrollTop(newScrollPosition);

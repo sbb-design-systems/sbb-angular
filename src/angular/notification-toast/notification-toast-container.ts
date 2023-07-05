@@ -67,7 +67,7 @@ export abstract class SbbNotificationToastContainerBase
     private _ngZone: NgZone,
     protected _elementRef: ElementRef<HTMLElement>,
     private _changeDetectorRef: ChangeDetectorRef,
-    public config: SbbNotificationToastConfig
+    public config: SbbNotificationToastConfig,
   ) {
     super();
 

@@ -35,7 +35,7 @@ export function dispatchKeyboardEvent(
   type: string,
   keyCode?: number,
   key?: string,
-  modifiers?: ModifierKeys
+  modifiers?: ModifierKeys,
 ): KeyboardEvent {
   return dispatchEvent(node, createKeyboardEvent(type, keyCode, key, modifiers));
 }
@@ -52,11 +52,11 @@ export function dispatchMouseEvent(
   offsetX?: number,
   offsetY?: number,
   button?: number,
-  modifiers?: ModifierKeys
+  modifiers?: ModifierKeys,
 ): MouseEvent {
   return dispatchEvent(
     node,
-    createMouseEvent(type, clientX, clientY, offsetX, offsetY, button, modifiers)
+    createMouseEvent(type, clientX, clientY, offsetX, offsetY, button, modifiers),
   );
 }
 
@@ -71,11 +71,11 @@ export function dispatchPointerEvent(
   clientY = 0,
   offsetX?: number,
   offsetY?: number,
-  options?: PointerEventInit
+  options?: PointerEventInit,
 ): PointerEvent {
   return dispatchEvent(
     node,
-    createPointerEvent(type, clientX, clientY, offsetX, offsetY, options)
+    createPointerEvent(type, clientX, clientY, offsetX, offsetY, options),
   ) as PointerEvent;
 }
 
@@ -89,7 +89,7 @@ export function dispatchTouchEvent(
   pageX = 0,
   pageY = 0,
   clientX = 0,
-  clientY = 0
+  clientY = 0,
 ) {
   return dispatchEvent(node, createTouchEvent(type, pageX, pageY, clientX, clientY));
 }

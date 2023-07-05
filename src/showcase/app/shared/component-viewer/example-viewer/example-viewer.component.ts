@@ -23,29 +23,32 @@ export class ExampleViewerComponent implements OnInit {
   showSource = false;
   private _defaultExtensionsOrder = ['html', 'ts', 'css'];
 
-  constructor(private _htmlLoader: HtmlLoader, private _route: ActivatedRoute) {}
+  constructor(
+    private _htmlLoader: HtmlLoader,
+    private _route: ActivatedRoute,
+  ) {}
 
   ngOnInit(): void {
     this.exampleCodes = combineLatest(
       this.exampleData.exampleFiles.map((exampleFile) =>
         this._createLoader(
           this._convertToExampleName(this.exampleData.selectorName),
-          exampleFile
+          exampleFile,
         ).pipe(
           map((code) => ({
             label: this._convertToFileLabel(exampleFile),
             code,
-          }))
-        )
-      )
+          })),
+        ),
+      ),
     ).pipe(
       map((exampleCodes: ExampleCode[]) =>
         exampleCodes.sort(
           (a, b) =>
             this._defaultExtensionsOrder.indexOf(a.label) -
-            this._defaultExtensionsOrder.indexOf(b.label)
-        )
-      )
+            this._defaultExtensionsOrder.indexOf(b.label),
+        ),
+      ),
     );
   }
 
@@ -57,8 +60,8 @@ export class ExampleViewerComponent implements OnInit {
     const exampleHtmlFile = this._convertToHtmlFilePath(exampleFile);
     return moduleParams(this._route).pipe(
       switchMap((params) =>
-        this._htmlLoader.withParams(params).fromExamples(exampleName, exampleHtmlFile).load()
-      )
+        this._htmlLoader.withParams(params).fromExamples(exampleName, exampleHtmlFile).load(),
+      ),
     );
   }
 
@@ -93,7 +96,10 @@ export class ExampleViewerComponent implements OnInit {
 export class ExampleOutletComponent implements OnInit {
   @Input() exampleData: ExampleData;
 
-  constructor(private _viewContainerRef: ViewContainerRef, private _injector: Injector) {}
+  constructor(
+    private _viewContainerRef: ViewContainerRef,
+    private _injector: Injector,
+  ) {}
 
   async ngOnInit() {
     const example = await loadExample(this.exampleData.id, this._injector);

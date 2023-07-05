@@ -122,10 +122,10 @@ describe('SbbInput without forms', () => {
     fixture.detectChanges();
 
     const inputElement: HTMLInputElement = fixture.debugElement.query(
-      By.css('input')
+      By.css('input'),
     )!.nativeElement;
     const labelElement: HTMLInputElement = fixture.debugElement.query(
-      By.css('label')
+      By.css('label'),
     )!.nativeElement;
 
     expect(inputElement.id).toBeTruthy();
@@ -137,10 +137,10 @@ describe('SbbInput without forms', () => {
     fixture.detectChanges();
 
     const inputElement: HTMLInputElement = fixture.debugElement.query(
-      By.css('input')
+      By.css('input'),
     )!.nativeElement;
     const labelElement: HTMLInputElement = fixture.debugElement.query(
-      By.css('label')
+      By.css('label'),
     )!.nativeElement;
 
     expect(labelElement.getAttribute('aria-owns')).toBe(inputElement.id);
@@ -151,7 +151,7 @@ describe('SbbInput without forms', () => {
     fixture.detectChanges();
 
     const inputElement: HTMLInputElement = fixture.debugElement.query(
-      By.css('input')
+      By.css('input'),
     )!.nativeElement;
 
     expect(inputElement.getAttribute('aria-required'))
@@ -171,10 +171,10 @@ describe('SbbInput without forms', () => {
     fixture.detectChanges();
 
     const inputElement: HTMLInputElement = fixture.debugElement.query(
-      By.css('input')
+      By.css('input'),
     )!.nativeElement;
     const labelElement: HTMLInputElement = fixture.debugElement.query(
-      By.css('label')
+      By.css('label'),
     )!.nativeElement;
 
     expect(inputElement.id).toBe('test-id');
@@ -185,7 +185,7 @@ describe('SbbInput without forms', () => {
     const fixture = createComponent(SbbInputMissingSbbInputTestController);
 
     expect(() => fixture.detectChanges()).toThrowError(
-      wrappedErrorMessage(getSbbFormFieldMissingControlError())
+      wrappedErrorMessage(getSbbFormFieldMissingControlError()),
     );
   }));
 
@@ -193,13 +193,13 @@ describe('SbbInput without forms', () => {
     const fixture = createComponent(SbbInputWithNgIf);
 
     expect(() => fixture.detectChanges()).not.toThrowError(
-      wrappedErrorMessage(getSbbFormFieldMissingControlError())
+      wrappedErrorMessage(getSbbFormFieldMissingControlError()),
     );
 
     fixture.componentInstance.renderInput = false;
 
     expect(() => fixture.detectChanges()).toThrowError(
-      wrappedErrorMessage(getSbbFormFieldMissingControlError())
+      wrappedErrorMessage(getSbbFormFieldMissingControlError()),
     );
   }));
 
@@ -485,7 +485,7 @@ describe('SbbInput without forms', () => {
       fixture.detectChanges();
 
       expect(label.classList).not.toContain('sbb-form-field-empty');
-    })
+    }),
   );
 
   it('should not throw when there is a default ngIf on the label element', fakeAsync(() => {
@@ -784,7 +784,7 @@ describe('SbbInput with forms', () => {
 
     expect(formFieldEl.classList).not.toContain(
       'sbb-form-field-disabled',
-      `Expected form field not to start out disabled.`
+      `Expected form field not to start out disabled.`,
     );
     expect(inputEl.disabled).toBe(false);
 
@@ -833,13 +833,13 @@ describe('SbbInput with forms', () => {
 
     it(`should show '-' if no date is set`, fakeAsync(() => {
       expect(
-        fixture.debugElement.nativeElement.querySelector('input').getAttribute('placeholder')
+        fixture.debugElement.nativeElement.querySelector('input').getAttribute('placeholder'),
       ).toBe('-');
     }));
 
     it(`should remove focusability if empty`, fakeAsync(() => {
       expect(
-        fixture.debugElement.nativeElement.querySelector('input').getAttribute('tabindex')
+        fixture.debugElement.nativeElement.querySelector('input').getAttribute('tabindex'),
       ).toBe('-1');
     }));
 
@@ -848,7 +848,7 @@ describe('SbbInput with forms', () => {
       fixture.detectChanges();
 
       expect(
-        fixture.debugElement.nativeElement.querySelector('input').getAttribute('tabindex')
+        fixture.debugElement.nativeElement.querySelector('input').getAttribute('tabindex'),
       ).toBeFalsy();
     }));
 
@@ -856,7 +856,7 @@ describe('SbbInput with forms', () => {
       let inputElementStyles: CSSStyleDeclaration;
       beforeEach(() => {
         inputElementStyles = getComputedStyle(
-          fixture.debugElement.nativeElement.querySelector('input')
+          fixture.debugElement.nativeElement.querySelector('input'),
         );
       });
 
@@ -886,7 +886,7 @@ function createComponent<T>(
   component: Type<T>,
   providers: Provider[] = [],
   imports: any[] = [],
-  declarations: any[] = []
+  declarations: any[] = [],
 ): ComponentFixture<T> {
   TestBed.configureTestingModule({
     imports: [

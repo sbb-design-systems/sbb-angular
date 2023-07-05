@@ -23,7 +23,7 @@ const ANGULAR_FILEPATH_REGEX = new RegExp(`(${ANGULAR_FILEPATH})/(.*?)`);
 const ENTRY_POINT_MAPPINGS = new Map(
   Object.entries({
     [TargetVersion.V16]: {},
-  })
+  }),
 );
 
 interface SecondaryEntryPointContext {
@@ -52,7 +52,7 @@ export class SecondaryEntryPointsMigration extends Migration<null, DevkitContext
   private _classNameRenames = classNames[this.targetVersion || '']?.reduce(
     (renames, entry) =>
       entry.changes.reduce((current, next) => current.set(next.replace, next.replaceWith), renames),
-    new Map<string, string>()
+    new Map<string, string>(),
   );
 
   visitNode(declaration: ts.Node): void {
@@ -132,7 +132,7 @@ export class SecondaryEntryPointsMigration extends Migration<null, DevkitContext
       if (!moduleName) {
         this.createFailureAtNode(
           element,
-          `"${element.getText()}" was not found in the @sbb-esta/angular library.`
+          `"${element.getText()}" was not found in the @sbb-esta/angular library.`,
         );
         return;
       }
@@ -164,9 +164,9 @@ export class SecondaryEntryPointsMigration extends Migration<null, DevkitContext
             ts.factory.createImportClause(
               false,
               undefined,
-              ts.factory.createNamedImports(this._applyRenames(elements))
+              ts.factory.createNamedImports(this._applyRenames(elements)),
             ),
-            ts.factory.createStringLiteral(name, singleQuoteImport)
+            ts.factory.createStringLiteral(name, singleQuoteImport),
           );
           return this.printer.printNode(ts.EmitHint.Unspecified, newImport, file);
         })
@@ -199,7 +199,7 @@ export class SecondaryEntryPointsMigration extends Migration<null, DevkitContext
           }
 
           const nameIdentifier = ts.factory.createIdentifier(
-            this._classNameRenames.get(elementName.text)!
+            this._classNameRenames.get(elementName.text)!,
           );
           return element.propertyName
             ? ts.factory.createImportSpecifier(false, nameIdentifier, element.name)
@@ -211,7 +211,7 @@ export class SecondaryEntryPointsMigration extends Migration<null, DevkitContext
         .filter(
           (e, i, a) =>
             e.propertyName ||
-            a.findIndex((v) => !v.propertyName && v.name.text === e.name.text) === i
+            a.findIndex((v) => !v.propertyName && v.name.text === e.name.text) === i,
         )
     );
   }

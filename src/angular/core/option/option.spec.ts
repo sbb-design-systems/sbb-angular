@@ -42,7 +42,7 @@ describe('SbbOption component', () => {
     fixture.detectChanges();
 
     const optionInstance: SbbOption = fixture.debugElement.query(
-      By.directive(SbbOption)
+      By.directive(SbbOption),
     )!.componentInstance;
     const completeSpy = jasmine.createSpy('complete spy');
     const subscription = optionInstance._stateChanges.subscribe({ complete: completeSpy });
@@ -57,7 +57,7 @@ describe('SbbOption component', () => {
     fixture.detectChanges();
 
     const optionInstance: SbbOption = fixture.debugElement.query(
-      By.directive(SbbOption)
+      By.directive(SbbOption),
     )!.componentInstance;
 
     optionInstance.select();
@@ -80,7 +80,7 @@ describe('SbbOption component', () => {
     fixture.detectChanges();
 
     const optionInstance: SbbOption = fixture.debugElement.query(
-      By.directive(SbbOption)
+      By.directive(SbbOption),
     )!.componentInstance;
 
     optionInstance.deselect();

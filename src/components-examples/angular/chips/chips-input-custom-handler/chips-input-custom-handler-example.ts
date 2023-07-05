@@ -41,7 +41,7 @@ export class ChipsInputCustomHandlerExample {
     }
 
     const foundFruit = availableFruits.find(
-      (fruit) => fruit.name.toUpperCase() === value.toUpperCase()
+      (fruit) => fruit.name.toUpperCase() === value.toUpperCase(),
     );
     if (!foundFruit) {
       alert('fruit not available');

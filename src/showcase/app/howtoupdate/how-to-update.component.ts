@@ -22,10 +22,10 @@ export class HowToUpdateComponent {
 
   steps = combineLatest([
     this.versionSelect.controls.from.valueChanges.pipe(
-      startWith(this.versionSelect.controls.from.value)
+      startWith(this.versionSelect.controls.from.value),
     ),
     this.versionSelect.controls.to.valueChanges.pipe(
-      startWith(this.versionSelect.controls.to.value)
+      startWith(this.versionSelect.controls.to.value),
     ),
   ]).pipe(map(([from, to]) => UPDATE_STEPS.filter((s) => from <= s.from && s.to <= to)));
 

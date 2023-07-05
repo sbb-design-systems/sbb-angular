@@ -185,7 +185,7 @@ export class SbbMonthView<D> implements AfterContentInit {
     @Inject(LOCALE_ID) public readonly locale: string,
     private _changeDetectorRef: ChangeDetectorRef,
     @Optional() @Inject(SBB_DATE_FORMATS) private _dateFormats: SbbDateFormats,
-    @Optional() @Inject(SBB_DATEPICKER) datepicker: TypeRef<SbbDatepicker<D>>
+    @Optional() @Inject(SBB_DATEPICKER) datepicker: TypeRef<SbbDatepicker<D>>,
   ) {
     if (!this._dateAdapter) {
       throw createMissingDateImplError('DateAdapter');
@@ -236,7 +236,7 @@ export class SbbMonthView<D> implements AfterContentInit {
       week,
       rangeInMonth: new SbbDateRange(
         this._getDateFromDayOfMonth(selectedWeek[0].value),
-        this._getDateFromDayOfMonth(selectedWeek[selectedWeek.length - 1].value)
+        this._getDateFromDayOfMonth(selectedWeek[selectedWeek.length - 1].value),
       ),
     });
   }
@@ -287,14 +287,14 @@ export class SbbMonthView<D> implements AfterContentInit {
       case HOME:
         this.activeDate = this._dateAdapter.addCalendarDays(
           this._activeDate,
-          1 - this._dateAdapter.getDate(this._activeDate)
+          1 - this._dateAdapter.getDate(this._activeDate),
         );
         break;
       case END:
         this.activeDate = this._dateAdapter.addCalendarDays(
           this._activeDate,
           this._dateAdapter.getNumDaysInMonth(this._activeDate) -
-            this._dateAdapter.getDate(this._activeDate)
+            this._dateAdapter.getDate(this._activeDate),
         );
         break;
       case PAGE_UP:
@@ -340,7 +340,7 @@ export class SbbMonthView<D> implements AfterContentInit {
     ) {
       this._dateRange = new SbbDateRange(
         datepicker.datepickerInput.value,
-        datepicker.connected.datepickerInput.value
+        datepicker.connected.datepickerInput.value,
       );
     } else if (
       datepicker &&
@@ -350,7 +350,7 @@ export class SbbMonthView<D> implements AfterContentInit {
     ) {
       this._dateRange = new SbbDateRange(
         datepicker.main.datepickerInput.value,
-        datepicker.datepickerInput.value
+        datepicker.datepickerInput.value,
       );
     }
 
@@ -363,7 +363,7 @@ export class SbbMonthView<D> implements AfterContentInit {
     const firstOfMonth = this._dateAdapter.createDate(
       this._dateAdapter.getYear(this.activeDate),
       this._dateAdapter.getMonth(this.activeDate),
-      1
+      1,
     );
     this.firstWeekOffset =
       (DAYS_PER_WEEK +
@@ -393,7 +393,7 @@ export class SbbMonthView<D> implements AfterContentInit {
     return this._dateAdapter.createDate(
       this._dateAdapter.getYear(this.activeDate),
       this._dateAdapter.getMonth(this.activeDate),
-      dayOfMonth
+      dayOfMonth,
     );
   }
 
@@ -435,7 +435,7 @@ export class SbbMonthView<D> implements AfterContentInit {
       const cellClasses = this._dateClass ? this._dateClass(date) : undefined;
 
       this.weeks[this.weeks.length - 1].push(
-        new SbbCalendarCell(i + 1, dateNames[i], ariaLabel, enabled, rangeBackground, cellClasses)
+        new SbbCalendarCell(i + 1, dateNames[i], ariaLabel, enabled, rangeBackground, cellClasses),
       );
     }
   }

@@ -179,7 +179,7 @@ export abstract class SbbPaginatedTabHeader
     private _viewportRuler: ViewportRuler,
     private _ngZone: NgZone,
     private _platform: Platform,
-    @Optional() @Inject(ANIMATION_MODULE_TYPE) public _animationMode?: string
+    @Optional() @Inject(ANIMATION_MODULE_TYPE) public _animationMode?: string,
   ) {
     super();
     // Bind the `mouseleave` event on the outside since it doesn't change anything in the view.
@@ -238,7 +238,7 @@ export abstract class SbbPaginatedTabHeader
             // Clamp the scroll distance, because it can change with the number of tabs.
             this._scrollDistance = Math.max(
               0,
-              Math.min(this._getMaxScrollDistance(), this._scrollDistance)
+              Math.min(this._getMaxScrollDistance(), this._scrollDistance),
             );
             realign();
           });
@@ -263,16 +263,16 @@ export abstract class SbbPaginatedTabHeader
               fromEvent(
                 this._tabListContainer.nativeElement,
                 'scroll',
-                passiveEventListenerOptions
+                passiveEventListenerOptions,
               ),
               this._scrollShadowTrigger,
-              resize
-            )
+              resize,
+            ),
           ),
           startWith(null! as any),
           map(() => this._calculateScrollState()),
           distinctUntilChanged(),
-          takeUntil(this._destroyed)
+          takeUntil(this._destroyed),
         )
         .subscribe((state) => this._applyScrollShadows(state));
     });

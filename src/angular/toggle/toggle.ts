@@ -59,7 +59,10 @@ export class SbbToggle
   _heightAnimationState: 'void' | 'initial' | 'fixed' | 'auto' = 'initial';
   _currentOptionContentWrapperHeight: number = 0;
 
-  constructor(private _zone: NgZone, changeDetectorRef: ChangeDetectorRef) {
+  constructor(
+    private _zone: NgZone,
+    changeDetectorRef: ChangeDetectorRef,
+  ) {
     super(changeDetectorRef);
   }
 
@@ -72,7 +75,7 @@ export class SbbToggle
         if (this._radios.toArray().every((r) => this.value !== r.value)) {
           this._radios.first._onInputChange();
         }
-      })
+      }),
     );
 
     this.change.pipe(startWith(null!), takeUntil(this._destroyed)).subscribe(() => {

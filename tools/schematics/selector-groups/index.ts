@@ -49,8 +49,8 @@ export function selectorGroups(options: { json: boolean }): Rule {
       console.log(
         `Amount of searchable selectors: ${Object.values(result).reduce(
           (current, next) => current + next.length,
-          0
-        )}`
+          0,
+        )}`,
       );
     }
   };

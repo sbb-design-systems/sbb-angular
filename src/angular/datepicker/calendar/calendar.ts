@@ -55,7 +55,7 @@ export class SbbCalendarHeader<D> {
     // tslint:disable-next-line:no-use-before-declare
     @Inject(forwardRef(() => SbbCalendar))
     calendar: any,
-    changeDetectorRef: ChangeDetectorRef
+    changeDetectorRef: ChangeDetectorRef,
   ) {
     this.calendar = calendar;
     this.calendar.stateChanges.subscribe(() => changeDetectorRef.markForCheck());
@@ -276,7 +276,7 @@ export class SbbCalendar<D> implements AfterContentInit, AfterViewChecked, OnDes
   constructor(
     @Optional() private _dateAdapter: SbbDateAdapter<D>,
     @Optional() @Inject(SBB_DATE_FORMATS) private _dateFormats: SbbDateFormats,
-    private _changeDetectorRef: ChangeDetectorRef
+    private _changeDetectorRef: ChangeDetectorRef,
   ) {
     if (!this._dateAdapter) {
       throw createMissingDateImplError('DateAdapter');
@@ -358,7 +358,7 @@ export class SbbCalendar<D> implements AfterContentInit, AfterViewChecked, OnDes
         week: week.week,
         start: week.rangeInMonth.start,
         end: week.rangeInMonth.end,
-      }
+      },
     );
   }
 

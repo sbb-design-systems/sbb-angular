@@ -8,6 +8,6 @@ if (require.main === module) {
     `/** THIS FILE IS AUTO-GENERATED! DO NOT MODIFY! */
 export const angularVersion = '${packageJson.dependencies['@angular/core'].replace(/[^\d.]/, '')}';
 export const libraryVersion = '${packageJson.version}';`,
-    'utf8'
+    'utf8',
   );
 }

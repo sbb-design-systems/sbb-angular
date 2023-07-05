@@ -59,7 +59,7 @@ export abstract class _SbbTabNavBase
     changeDetectorRef: ChangeDetectorRef,
     viewportRuler: ViewportRuler,
     platform: Platform,
-    @Optional() @Inject(ANIMATION_MODULE_TYPE) animationMode?: string
+    @Optional() @Inject(ANIMATION_MODULE_TYPE) animationMode?: string,
   ) {
     super(elementRef, changeDetectorRef, viewportRuler, ngZone, platform, animationMode);
   }
@@ -140,7 +140,7 @@ export class SbbTabNav extends _SbbTabNavBase {
     changeDetectorRef: ChangeDetectorRef,
     viewportRuler: ViewportRuler,
     platform: Platform,
-    @Optional() @Inject(ANIMATION_MODULE_TYPE) animationMode?: string
+    @Optional() @Inject(ANIMATION_MODULE_TYPE) animationMode?: string,
   ) {
     super(elementRef, ngZone, changeDetectorRef, viewportRuler, platform, animationMode);
   }
@@ -181,7 +181,7 @@ export class _SbbTabLinkBase
     private _tabNavBar: _SbbTabNavBase,
     /** @docs-private */ public elementRef: ElementRef,
     @Attribute('tabindex') tabIndex: string,
-    private _focusMonitor: FocusMonitor
+    private _focusMonitor: FocusMonitor,
   ) {
     super();
 
@@ -271,7 +271,7 @@ export class SbbTabLink extends _SbbTabLinkBase {
     tabNavBar: SbbTabNav,
     elementRef: ElementRef,
     @Attribute('tabindex') tabIndex: string,
-    focusMonitor: FocusMonitor
+    focusMonitor: FocusMonitor,
   ) {
     super(tabNavBar, elementRef, tabIndex, focusMonitor);
   }

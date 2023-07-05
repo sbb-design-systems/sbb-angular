@@ -31,7 +31,7 @@ const routes: Routes = [
         }
 
         const variantPrimaryColor = getComputedStyle(document.documentElement).getPropertyValue(
-          '--sbb-color-red'
+          '--sbb-color-red',
         );
         document
           .querySelector('meta[name="theme-color"]')
@@ -60,7 +60,7 @@ const routes: Routes = [
         path: 'angular-experimental',
         loadChildren: () =>
           import('./angular-experimental/angular-experimental.module').then(
-            (m) => m.AngularExperimentalModule
+            (m) => m.AngularExperimentalModule,
           ),
       },
       {

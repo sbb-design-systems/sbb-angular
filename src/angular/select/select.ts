@@ -104,12 +104,12 @@ let nextUniqueId = 0;
 
 /** Injection token that determines the scroll handling while a select is open. */
 export const SBB_SELECT_SCROLL_STRATEGY = new InjectionToken<() => ScrollStrategy>(
-  'sbb-select-scroll-strategy'
+  'sbb-select-scroll-strategy',
 );
 
 /** @docs-private */
 export function SBB_SELECT_SCROLL_STRATEGY_PROVIDER_FACTORY(
-  overlay: Overlay
+  overlay: Overlay,
 ): () => RepositionScrollStrategy {
   return () => overlay.scrollStrategies.reposition();
 }
@@ -139,7 +139,7 @@ export class SbbSelectChange {
     /** Reference to the select that emitted the change event. */
     public source: SbbSelect,
     /** Current value of the select that emitted the event. */
-    public value: any
+    public value: any,
   ) {}
 }
 
@@ -166,12 +166,12 @@ const _SbbSelectMixinBase = mixinTabIndex(
              * Implemented as part of `SbbFormFieldControl`.
              * @docs-private
              */
-            public ngControl: NgControl
+            public ngControl: NgControl,
           ) {}
-        }
-      )
-    )
-  )
+        },
+      ),
+    ),
+  ),
 );
 
 @Component({
@@ -472,13 +472,13 @@ export class SbbSelect
     if (options) {
       return options.changes.pipe(
         startWith(options),
-        switchMap(() => merge(...options.map((option) => option.onSelectionChange)))
+        switchMap(() => merge(...options.map((option) => option.onSelectionChange))),
       );
     }
 
     return this._ngZone.onStable.pipe(
       take(1),
-      switchMap(() => this.optionSelectionChanges)
+      switchMap(() => this.optionSelectionChanges),
     );
   }) as Observable<SbbOptionSelectionChange>;
 
@@ -488,13 +488,13 @@ export class SbbSelect
   /** Event emitted when the select has been opened. */
   @Output('opened') readonly _openedStream: Observable<void> = this.openedChange.pipe(
     filter((o) => o),
-    map(() => {})
+    map(() => {}),
   );
 
   /** Event emitted when the select has been closed. */
   @Output('closed') readonly _closedStream: Observable<void> = this.openedChange.pipe(
     filter((o) => !o),
-    map(() => {})
+    map(() => {}),
   );
 
   /** Event emitted when the selected value has been changed by the user. */
@@ -521,7 +521,7 @@ export class SbbSelect
     @Attribute('tabindex') tabIndex: string,
     @Inject(SBB_SELECT_SCROLL_STRATEGY) scrollStrategyFactory: any,
     private _liveAnnouncer: LiveAnnouncer,
-    @Optional() @Inject(SBB_SELECT_CONFIG) private _defaultOptions?: SbbSelectConfig
+    @Optional() @Inject(SBB_SELECT_CONFIG) private _defaultOptions?: SbbSelectConfig,
   ) {
     super(defaultErrorStateMatcher, parentForm, parentFormGroup, ngControl);
 
@@ -656,7 +656,7 @@ export class SbbSelect
       // `parseInt` ignores the trailing 'px' and converts this to a number.
       this._triggerFontSize = parseInt(
         getComputedStyle(this._elementRef.nativeElement).fontSize || '0',
-        10
+        10,
       );
 
       // Set the font size on the panel element once it exists.
@@ -1218,7 +1218,7 @@ export class SbbSelect
   _calculateOverlayScroll(
     selectedOption: SbbOption,
     scrollBuffer: number,
-    maxScroll: number
+    maxScroll: number,
   ): number {
     const itemHeight = selectedOption._getHostElement().offsetHeight;
     const optionOffsetFromScrollTop = selectedOption._getHostElement().offsetTop;
@@ -1245,7 +1245,7 @@ export class SbbSelect
           element.offsetTop,
           element.offsetHeight,
           this.panel.nativeElement.scrollTop,
-          this.panel.nativeElement.offsetHeight
+          this.panel.nativeElement.offsetHeight,
         );
       }
     }

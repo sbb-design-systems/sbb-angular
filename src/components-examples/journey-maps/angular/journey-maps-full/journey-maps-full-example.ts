@@ -125,7 +125,10 @@ export class JourneyMapsFullExample implements OnInit, OnDestroy {
   };
   private _destroyed = new Subject<void>();
 
-  constructor(private _cd: ChangeDetectorRef, private _fb: UntypedFormBuilder) {
+  constructor(
+    private _cd: ChangeDetectorRef,
+    private _fb: UntypedFormBuilder,
+  ) {
     // Pseudo validator to reset the selected marker id before the value changes
     const resetSelectedMarkerIdValidator = () => {
       this.selectedMarkerId = undefined;
@@ -218,7 +221,7 @@ export class JourneyMapsFullExample implements OnInit, OnDestroy {
       ?.valueChanges.pipe(
         takeUntil(this._destroyed),
         map((val: GeoJSON.FeatureCollection) => val?.bbox),
-        filter((bbox) => !!bbox)
+        filter((bbox) => !!bbox),
       )
       .subscribe((bbox) => this._setBbox(bbox!));
 
@@ -239,7 +242,7 @@ export class JourneyMapsFullExample implements OnInit, OnDestroy {
           this.journeyMapsRoutingOption = routingOption;
         }
         this.journeyMapsRoutingLegIds = this._distinct(
-          routingOption?.journey?.features.map((f) => f.properties?.legId) ?? []
+          routingOption?.journey?.features.map((f) => f.properties?.legId) ?? [],
         )
           .filter((x) => x)
           .sort();
@@ -267,10 +270,11 @@ export class JourneyMapsFullExample implements OnInit, OnDestroy {
     this.form
       .get('limitMaxBounds')
       ?.valueChanges.pipe(takeUntil(this._destroyed))
-      .subscribe((limitMaxBounds: boolean) =>
-        this.form
-          .get('viewportBounds.maxBounds')
-          ?.patchValue(limitMaxBounds ? CH_BOUNDS : undefined)
+      .subscribe(
+        (limitMaxBounds: boolean) =>
+          this.form
+            .get('viewportBounds.maxBounds')
+            ?.patchValue(limitMaxBounds ? CH_BOUNDS : undefined),
       );
 
     this.form
@@ -286,10 +290,10 @@ export class JourneyMapsFullExample implements OnInit, OnDestroy {
 
   private _getBboxForLegId(
     selectedLegId: string,
-    routingOptions?: SbbJourneyMapsRoutingOptions
+    routingOptions?: SbbJourneyMapsRoutingOptions,
   ): number[] | undefined {
     const legBbox: Feature | undefined = routingOptions?.journey?.features.find(
-      (f) => f.properties?.type === 'bbox' && f.properties?.legId === selectedLegId
+      (f) => f.properties?.type === 'bbox' && f.properties?.legId === selectedLegId,
     );
     if (legBbox) {
       const p: Position[] = (legBbox.geometry as Polygon).coordinates[0];

@@ -111,7 +111,7 @@ function getPackageNamesOfTargets(targets: string[]) {
     if (matches === null) {
       throw Error(
         `Found Bazel target with "${releaseTargetTag}" tag, but could not ` +
-          `determine release output name: ${targetName}`
+          `determine release output name: ${targetName}`,
       );
     }
     return matches[1];
@@ -124,7 +124,7 @@ function buildI18n(distPath: string, i18nDistPath: string) {
     const relativeDistPath = relative(projectDir, distPath);
     const outPath = join(i18nDistPath, format, 'messages.xlf');
     exec(
-      `"node_modules/.bin/localize-extract" -l en-CH -s "${relativeDistPath}/**/fesm2022/*.mjs" -f ${format} -o "${outPath}"`
+      `"node_modules/.bin/localize-extract" -l en-CH -s "${relativeDistPath}/**/fesm2022/*.mjs" -f ${format} -o "${outPath}"`,
     );
     console.log(`Updated ${relative(projectDir, outPath)}`);
   }
@@ -158,7 +158,7 @@ function buildShowcase(distPath: string) {
       version,
       publishConfig: { access: 'public' },
     }),
-    'utf8'
+    'utf8',
   );
 }
 

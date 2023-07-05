@@ -173,7 +173,7 @@ export class SbbSortHeader
     private _ariaDescriber: AriaDescriber,
     @Optional()
     @Inject(SBB_SORT_DEFAULT_OPTIONS)
-    defaultOptions?: SbbSortDefaultOptions
+    defaultOptions?: SbbSortDefaultOptions,
   ) {
     // Note that we use a string token for the `_columnDef`, because the value is provided both by
     // `angular/table` and `cdk/table` and we can't have the CDK depending on SBB Angular,
@@ -384,7 +384,7 @@ export class SbbSortHeader
         }
 
         this._changeDetectorRef.markForCheck();
-      }
+      },
     );
   }
 }

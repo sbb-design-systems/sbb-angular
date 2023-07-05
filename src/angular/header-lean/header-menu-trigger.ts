@@ -34,7 +34,7 @@ import { SBB_HEADER } from './header-token';
 
 /** Injection token that determines the scroll handling while the menu is open. */
 export const SBB_HEADER_MENU_SCROLL_STRATEGY = new InjectionToken<() => ScrollStrategy>(
-  'sbb-header-menu-scroll-strategy'
+  'sbb-header-menu-scroll-strategy',
 );
 
 /** @docs-private */
@@ -134,12 +134,12 @@ export class SbbHeaderMenuTrigger implements AfterContentInit, OnDestroy {
     private _focusMonitor: FocusMonitor,
     @Optional() private _router: Router,
     @Inject(SBB_HEADER_MENU_SCROLL_STRATEGY) scrollStrategy: any,
-    @Inject(SBB_HEADER) private _header: TypeRef<SbbHeaderLean>
+    @Inject(SBB_HEADER) private _header: TypeRef<SbbHeaderLean>,
   ) {
     _element.nativeElement.addEventListener(
       'touchstart',
       this._handleTouchStart,
-      passiveEventListenerOptions
+      passiveEventListenerOptions,
     );
     this._scrollStrategy = scrollStrategy;
   }
@@ -157,7 +157,7 @@ export class SbbHeaderMenuTrigger implements AfterContentInit, OnDestroy {
     this._element.nativeElement.removeEventListener(
       'touchstart',
       this._handleTouchStart,
-      passiveEventListenerOptions
+      passiveEventListenerOptions,
     );
 
     this._menuCloseSubscription.unsubscribe();

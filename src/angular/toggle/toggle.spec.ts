@@ -241,7 +241,7 @@ describe('SbbToggle', () => {
       await fixtureTest.whenStable();
 
       const toggleOptionsReference = fixtureTest.debugElement.queryAll(
-        By.directive(SbbToggleOption)
+        By.directive(SbbToggleOption),
       );
       const toggleOption1Element = toggleOptionsReference[0].nativeElement as HTMLElement;
 
@@ -250,11 +250,11 @@ describe('SbbToggle', () => {
 
     it('it verifies the click on the second toggle option selected ', () => {
       const toggleOptionsReference = fixtureTest.debugElement.queryAll(
-        By.css('.sbb-toggle-option')
+        By.css('.sbb-toggle-option'),
       );
 
       const toggleOptionsInputReference = fixtureTest.debugElement.queryAll(
-        By.css('.sbb-toggle-option input')
+        By.css('.sbb-toggle-option input'),
       );
 
       fixtureTest.detectChanges();
@@ -268,7 +268,7 @@ describe('SbbToggle', () => {
 
       expect(toggleOption2.value).toBe('Option_2');
       expect(toggleOption2Component.attributes['class'].value).toContain(
-        'sbb-toggle-option-selected'
+        'sbb-toggle-option-selected',
       );
     });
 
@@ -276,11 +276,11 @@ describe('SbbToggle', () => {
       fixtureTest.detectChanges();
 
       const toggleOptionsInputReference = fixtureTest.debugElement.queryAll(
-        By.css('.sbb-toggle-option input')
+        By.css('.sbb-toggle-option input'),
       );
 
       const toggleOptionsContentReference = fixtureTest.debugElement.queryAll(
-        By.css('.sbb-toggle-option-button-subtitle ')
+        By.css('.sbb-toggle-option-button-subtitle '),
       );
 
       fixtureTest.detectChanges();
@@ -378,13 +378,13 @@ describe('SbbToggle', () => {
       expect(toggleOption2.nativeElement.value).toBe('Option_2');
 
       const toggleOptionsComponent = fixtureTest.debugElement.queryAll(
-        By.css('.sbb-toggle-option')
+        By.css('.sbb-toggle-option'),
       );
 
       const toggleOptionsComponent2 = toggleOptionsComponent[1].nativeElement;
 
       expect(toggleOptionsComponent2.attributes['class'].value).toContain(
-        'sbb-toggle-option-selected'
+        'sbb-toggle-option-selected',
       );
     });
   });
@@ -406,11 +406,11 @@ describe('SbbToggle', () => {
 
     it('it verifies the text content in the first toggle button selected', () => {
       const toggleOptionsComponentReference = fixtureTest.debugElement.queryAll(
-        By.css('.sbb-toggle-option')
+        By.css('.sbb-toggle-option'),
       );
 
       const toggleOptions1Component = toggleOptionsComponentReference[0].query(
-        By.css('.sbb-toggle-option-button-subtitle')
+        By.css('.sbb-toggle-option-button-subtitle'),
       );
       expect(toggleOptions1Component.nativeElement.textContent.trim()).toBe('- CHF 5.60');
     });
@@ -426,12 +426,12 @@ describe('SbbToggle', () => {
       expect(toggleOption2.properties['checked']).toBeTruthy();
 
       const toggleOptionsComponent = fixtureTest.debugElement.queryAll(
-        By.css('.sbb-toggle-option')
+        By.css('.sbb-toggle-option'),
       );
       const toggleOptionsComponent2 = toggleOptionsComponent[1].nativeElement;
 
       expect(toggleOptionsComponent2.attributes['class'].value).toContain(
-        'sbb-toggle-option-selected'
+        'sbb-toggle-option-selected',
       );
     });
   });
@@ -462,12 +462,12 @@ describe('SbbToggle', () => {
       await fixtureTest.whenStable();
       fixtureTest.detectChanges();
       const secondToggleOption = fixtureTest.debugElement.queryAll(
-        By.directive(SbbToggleOption)
+        By.directive(SbbToggleOption),
       )[1];
 
       expect(fixtureTest.debugElement.query(By.css('.content'))).toBeTruthy();
       expect(secondToggleOption.nativeElement.attributes['class'].value).toContain(
-        'sbb-toggle-option-selected'
+        'sbb-toggle-option-selected',
       );
     });
 
@@ -484,7 +484,7 @@ describe('SbbToggle', () => {
 
       expect(fixtureTest.debugElement.query(By.css('.content'))).toBeFalsy();
       expect(firstToggleOption.nativeElement.attributes['class'].value).toContain(
-        'sbb-toggle-option-selected'
+        'sbb-toggle-option-selected',
       );
     }));
   });

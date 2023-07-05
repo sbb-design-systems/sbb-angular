@@ -64,7 +64,7 @@ describe('SbbButton', () => {
     primaryButtonInstance.focus('mouse');
 
     const secondaryButtonDebugEl = fixture.debugElement.query(
-      By.css('button[sbb-secondary-button]')
+      By.css('button[sbb-secondary-button]'),
     )!;
     const secondaryButtonInstance = secondaryButtonDebugEl.componentInstance as SbbButton;
 
@@ -124,7 +124,7 @@ describe('SbbButton', () => {
         const fixture = TestBed.createComponent(ButtonWithCustomSvgIconTest);
         fixture.detectChanges();
         const svgIconElements = fixture.debugElement.queryAll(
-          By.css('button[sbb-button] sbb-icon')
+          By.css('button[sbb-button] sbb-icon'),
         );
         const icons: SbbIcon[] = svgIconElements.map((i) => i.componentInstance);
         expect(fixture.nativeElement.classList.contains('sbb-icon-button')).toBeFalse();
@@ -176,7 +176,7 @@ describe('SbbButton', () => {
             buttonStyles.getPropertyValue('border-top-color') &&
               buttonStyles.getPropertyValue('border-right-color') &&
               buttonStyles.getPropertyValue('border-bottom-color') &&
-              buttonStyles.getPropertyValue('border-left-color')
+              buttonStyles.getPropertyValue('border-left-color'),
           ).toBe('rgb(168, 168, 168)');
         });
 
@@ -194,11 +194,11 @@ describe('SbbButton', () => {
           fixture.componentInstance.isDisabled = true;
           fixture.detectChanges();
           const [leftIcon, rightIcon] = fixture.debugElement.queryAll(
-            By.css('button[sbb-button] sbb-icon')
+            By.css('button[sbb-button] sbb-icon'),
           );
           expect(getComputedStyle(leftIcon.nativeElement).getPropertyValue('opacity')).toEqual('0');
           expect(getComputedStyle(rightIcon.nativeElement).getPropertyValue('opacity')).toEqual(
-            '0'
+            '0',
           );
         });
       });
@@ -378,7 +378,7 @@ describe('SbbButton', () => {
         const fixture = TestBed.createComponent(ButtonSecondaryTest);
         fixture.detectChanges();
         const svgIcons = fixture.debugElement.queryAll(
-          By.css('button[sbb-secondary-button] sbb-icon')
+          By.css('button[sbb-secondary-button] sbb-icon'),
         );
         expect(svgIcons.length).toEqual(2);
       });
@@ -407,7 +407,7 @@ describe('SbbButton', () => {
         const fixture = TestBed.createComponent(ButtonSecondaryTest);
         fixture.detectChanges();
         const svgIcons = fixture.debugElement.queryAll(
-          By.css('button[sbb-secondary-button] sbb-icon')
+          By.css('button[sbb-secondary-button] sbb-icon'),
         );
         expect(svgIcons.length).toEqual(0);
       });
@@ -448,7 +448,7 @@ describe('SbbButton', () => {
           buttonStyles.getPropertyValue('border-top-color') &&
             buttonStyles.getPropertyValue('border-right-color') &&
             buttonStyles.getPropertyValue('border-bottom-color') &&
-            buttonStyles.getPropertyValue('border-left-color')
+            buttonStyles.getPropertyValue('border-left-color'),
         ).toBe('rgb(168, 168, 168)');
       });
     });
@@ -482,10 +482,10 @@ describe('SbbButton', () => {
         const fixture = TestBed.createComponent(ButtonIconTestMultiple);
         fixture.detectChanges();
         const nonIconButtonElements = fixture.debugElement.queryAll(
-          By.css('p.non-icon-buttons > :is(a, button)')
+          By.css('p.non-icon-buttons > :is(a, button)'),
         )!;
         const iconButtonElements = fixture.debugElement.queryAll(
-          By.css('p.icon-buttons > :is(a, button)')
+          By.css('p.icon-buttons > :is(a, button)'),
         )!;
 
         expect(nonIconButtonElements.length).toEqual(10);
@@ -493,14 +493,16 @@ describe('SbbButton', () => {
 
         expect(
           nonIconButtonElements.every(
-            (btn) => !btn.nativeElement.classList.contains('sbb-icon-button')
-          )
+            (btn) => !btn.nativeElement.classList.contains('sbb-icon-button'),
+          ),
         )
           .withContext('Expected non-icon-buttons not to habe an sbb-icon-button class')
           .toBeTrue();
 
         expect(
-          iconButtonElements.every((btn) => btn.nativeElement.classList.contains('sbb-icon-button'))
+          iconButtonElements.every((btn) =>
+            btn.nativeElement.classList.contains('sbb-icon-button'),
+          ),
         )
           .withContext('Expected icon-buttons to have an sbb-icon-button class')
           .toBeTrue();
@@ -514,7 +516,7 @@ describe('SbbButton', () => {
         const fixture = TestBed.createComponent(ButtonFramelessTest);
         fixture.detectChanges();
         const svgIcons = fixture.debugElement.queryAll(
-          By.css('button[sbb-frameless-button] sbb-icon')
+          By.css('button[sbb-frameless-button] sbb-icon'),
         );
         expect(svgIcons.length).toEqual(2);
       });
@@ -552,7 +554,7 @@ describe('SbbButton', () => {
           buttonStyles.getPropertyValue('border-top-width') &&
             buttonStyles.getPropertyValue('border-right-width') &&
             buttonStyles.getPropertyValue('border-bottom-width') &&
-            buttonStyles.getPropertyValue('border-left-width')
+            buttonStyles.getPropertyValue('border-left-width'),
         ).toBe('0px');
       });
     });

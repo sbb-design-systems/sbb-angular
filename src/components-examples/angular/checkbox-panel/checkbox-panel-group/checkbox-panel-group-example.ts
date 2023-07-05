@@ -91,7 +91,7 @@ export class CheckboxPanelGroupExample implements OnDestroy {
           this._formBuilder.group({
             name: `Checkbox ${i + 1}`,
             selected: false,
-          })
+          }),
         );
       }
     } else if (this.checkboxes.length > amount) {

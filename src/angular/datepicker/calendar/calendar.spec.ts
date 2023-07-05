@@ -224,7 +224,7 @@ describe('SbbCalendar', () => {
       fixture.detectChanges();
 
       const prevButton = calendarElement.querySelector(
-        '.sbb-calendar-controls-button-previous'
+        '.sbb-calendar-controls-button-previous',
       ) as HTMLButtonElement;
 
       expect(prevButton.disabled).withContext('previous button should not be disabled').toBe(false);
@@ -247,7 +247,7 @@ describe('SbbCalendar', () => {
       fixture.detectChanges();
 
       const nextButton = calendarElement.querySelector(
-        '.sbb-calendar-controls-button-next'
+        '.sbb-calendar-controls-button-next',
       ) as HTMLButtonElement;
 
       expect(nextButton.disabled).withContext('next button should not be disabled').toBe(false);

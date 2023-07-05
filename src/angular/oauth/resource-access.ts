@@ -11,7 +11,7 @@ const base64Decode =
  * or by providing the OAuthService from angular-oauth2-oidc.
  */
 export function resourceAccess(
-  accessToken: string | { getAccessToken(): string }
+  accessToken: string | { getAccessToken(): string },
 ): null | { [resource: string]: { roles: string[] } } {
   accessToken =
     !accessToken || typeof accessToken === 'string' ? accessToken : accessToken.getAccessToken();

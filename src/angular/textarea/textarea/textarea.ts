@@ -49,9 +49,9 @@ const _SbbTextareaMixinBase = mixinErrorState(
        * Implemented as part of `SbbFormFieldControl`.
        * @docs-private
        */
-      public ngControl: NgControl
+      public ngControl: NgControl,
     ) {}
-  }
+  },
 );
 
 @Component({
@@ -223,7 +223,7 @@ export class SbbTextarea
     private _elementRef: ElementRef,
     defaultErrorStateMatcher: SbbErrorStateMatcher,
     @Optional() parentForm: NgForm,
-    @Optional() parentFormGroup: FormGroupDirective
+    @Optional() parentFormGroup: FormGroupDirective,
   ) {
     super(defaultErrorStateMatcher, parentForm, parentFormGroup, ngControl);
 

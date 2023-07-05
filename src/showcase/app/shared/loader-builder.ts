@@ -9,7 +9,10 @@ export class LoaderBuilder {
   private readonly _packageName: string;
   private readonly _id: string;
 
-  constructor(private _http: HttpClient, params: ModuleParams) {
+  constructor(
+    private _http: HttpClient,
+    params: ModuleParams,
+  ) {
     this._packageName = params.packageName;
     this._id = params.id;
   }

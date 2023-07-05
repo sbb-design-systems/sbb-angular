@@ -32,7 +32,7 @@ export class AlertOutletExample implements OnInit {
     const currentId = nextId++;
     const ref = this._alertService.add(
       `An important message to inform clients of a problem/incident ${currentId}`,
-      config
+      config,
     );
     ref.afterDismissed().subscribe(() => {
       console.log(`${currentId} has been dismissed`);

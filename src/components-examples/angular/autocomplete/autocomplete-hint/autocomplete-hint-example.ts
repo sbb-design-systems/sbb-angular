@@ -40,7 +40,7 @@ export class AutocompleteHintExample implements OnInit, OnDestroy {
       .pipe(distinctUntilChanged(), takeUntil(this._destroyed))
       .subscribe((newValue) => {
         this.filteredOptionsHint = options.filter(
-          (option) => option.toLocaleUpperCase().indexOf(newValue!.toLocaleUpperCase()) > -1
+          (option) => option.toLocaleUpperCase().indexOf(newValue!.toLocaleUpperCase()) > -1,
         );
       });
   }

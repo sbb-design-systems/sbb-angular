@@ -69,7 +69,10 @@ export class SbbAlert {
    */
   @Input() svgIcon: string = 'info';
 
-  constructor(private _changeDetector: ChangeDetectorRef, elementRef: ElementRef<HTMLElement>) {
+  constructor(
+    private _changeDetector: ChangeDetectorRef,
+    elementRef: ElementRef<HTMLElement>,
+  ) {
     if (elementRef.nativeElement.nodeName.toLowerCase() === 'a') {
       this._isNativeLink = true;
     }

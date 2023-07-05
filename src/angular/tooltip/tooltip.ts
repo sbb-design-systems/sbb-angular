@@ -85,7 +85,7 @@ export function getSbbTooltipInvalidPositionError(position: string) {
 
 /** Injection token that determines the scroll handling while a tooltip is visible. */
 export const SBB_TOOLTIP_SCROLL_STRATEGY = new InjectionToken<() => ScrollStrategy>(
-  'sbb-tooltip-scroll-strategy'
+  'sbb-tooltip-scroll-strategy',
 );
 
 /** @docs-private */
@@ -133,7 +133,7 @@ export const SBB_TOOLTIP_DEFAULT_OPTIONS = new InjectionToken<SbbTooltipDefaultO
   {
     providedIn: 'root',
     factory: SBB_TOOLTIP_DEFAULT_OPTIONS_FACTORY,
-  }
+  },
 );
 
 /** @docs-private */
@@ -151,7 +151,7 @@ export function SBB_TOOLTIP_DEFAULT_OPTIONS_FACTORY(): SbbTooltipDefaultOptions 
 export class SbbTooltipChangeEvent {
   constructor(
     /** Instance of tooltip component. */
-    public instance: _SbbTooltipBase<_TooltipComponentBase>
+    public instance: _SbbTooltipBase<_TooltipComponentBase>,
   ) {}
 }
 
@@ -246,7 +246,7 @@ export abstract class _SbbTooltipBase<T extends _TooltipComponentBase>
       this._ariaDescriber.removeDescription(
         this._elementRef.nativeElement,
         this._message,
-        'tooltip'
+        'tooltip',
       );
     }
 
@@ -271,7 +271,7 @@ export abstract class _SbbTooltipBase<T extends _TooltipComponentBase>
             this._ariaDescriber.describe(
               this._elementRef.nativeElement,
               this._message as string,
-              'tooltip'
+              'tooltip',
             );
           });
         });
@@ -328,7 +328,7 @@ export abstract class _SbbTooltipBase<T extends _TooltipComponentBase>
     private _focusMonitor: FocusMonitor,
     scrollStrategy: any,
     private _defaultOptions: SbbTooltipDefaultOptions,
-    @Inject(DOCUMENT) document: any
+    @Inject(DOCUMENT) document: any,
   ) {
     this._scrollStrategy = scrollStrategy;
     this._document = document;
@@ -357,7 +357,7 @@ export abstract class _SbbTooltipBase<T extends _TooltipComponentBase>
       .monitor(this._elementRef)
       .pipe(
         filter(() => this.trigger === 'hover'),
-        takeUntil(this._destroyed)
+        takeUntil(this._destroyed),
       )
       .subscribe((origin) => {
         // Note that the focus monitor runs outside the Angular zone.
@@ -415,7 +415,7 @@ export abstract class _SbbTooltipBase<T extends _TooltipComponentBase>
     if (this.message instanceof TemplateRef) {
       this._ariaDescriber.describe(
         this._elementRef.nativeElement,
-        this._tooltipInstance._elementRef.nativeElement
+        this._tooltipInstance._elementRef.nativeElement,
       );
     }
     this._tooltipInstance
@@ -478,7 +478,7 @@ export abstract class _SbbTooltipBase<T extends _TooltipComponentBase>
     }
 
     const scrollableAncestors = this._scrollDispatcher.getAncestorScrollContainers(
-      this._elementRef
+      this._elementRef,
     );
 
     const classPrefix = `${this._cssClassPrefix}-${PANEL_CLASS}-`;
@@ -559,7 +559,7 @@ export abstract class _SbbTooltipBase<T extends _TooltipComponentBase>
     this._overlayRef = this._overlay.create({
       positionStrategy: strategy,
       panelClass: coerceStringArray(this.tooltipPanelClass).concat(
-        `${this._cssClassPrefix}-${PANEL_CLASS}`
+        `${this._cssClassPrefix}-${PANEL_CLASS}`,
       ),
       scrollStrategy: this._scrollStrategy(),
     });
@@ -598,7 +598,7 @@ export abstract class _SbbTooltipBase<T extends _TooltipComponentBase>
       if (this.message instanceof TemplateRef && this._tooltipInstance) {
         this._ariaDescriber.removeDescription(
           this._elementRef.nativeElement,
-          this._tooltipInstance._elementRef.nativeElement
+          this._tooltipInstance._elementRef.nativeElement,
         );
       }
       this._overlayRef.detach();
@@ -721,7 +721,7 @@ export abstract class _SbbTooltipBase<T extends _TooltipComponentBase>
             }
           },
         ],
-        ['wheel', (event) => this._wheelListener(event as WheelEvent)]
+        ['wheel', (event) => this._wheelListener(event as WheelEvent)],
       );
     } else if (this.touchGestures !== 'off') {
       this._disableNativeGesturesIfNecessary();
@@ -819,7 +819,7 @@ export class SbbTooltip extends _SbbTooltipBase<TooltipComponent> {
     focusMonitor: FocusMonitor,
     @Inject(SBB_TOOLTIP_SCROLL_STRATEGY) scrollStrategy: any,
     @Optional() @Inject(SBB_TOOLTIP_DEFAULT_OPTIONS) defaultOptions: SbbTooltipDefaultOptions,
-    @Inject(DOCUMENT) document: any
+    @Inject(DOCUMENT) document: any,
   ) {
     super(
       overlay,
@@ -832,7 +832,7 @@ export class SbbTooltip extends _SbbTooltipBase<TooltipComponent> {
       focusMonitor,
       scrollStrategy,
       defaultOptions,
-      document
+      document,
     );
   }
 }
@@ -908,7 +908,7 @@ export abstract class _TooltipComponentBase implements OnDestroy {
     private _changeDetectorRef: ChangeDetectorRef,
     private _focusMonitor: FocusMonitor,
     @Optional() @Inject(DOCUMENT) document: any,
-    @Optional() @Inject(ANIMATION_MODULE_TYPE) animationMode?: string
+    @Optional() @Inject(ANIMATION_MODULE_TYPE) animationMode?: string,
   ) {
     this._animationsDisabled = animationMode === 'NoopAnimations';
     this._document = document;
@@ -1175,7 +1175,7 @@ export abstract class _TooltipComponentBase implements OnDestroy {
 export class TooltipComponent extends _TooltipComponentBase {
   /** Stream that emits whether the user has a handset-sized display.  */
   _isHandset: Observable<BreakpointState> = this._breakpointObserver.observe(
-    Breakpoints.MobileDevice
+    Breakpoints.MobileDevice,
   );
   _showAnimation: string = 'sbb-tooltip-container-show';
   _hideAnimation: string = 'sbb-tooltip-container-hide';
@@ -1198,7 +1198,7 @@ export class TooltipComponent extends _TooltipComponentBase {
     focusMonitor: FocusMonitor,
     @Optional() @Inject(DOCUMENT) document: any,
     private _breakpointObserver: BreakpointObserver,
-    @Optional() @Inject(ANIMATION_MODULE_TYPE) animationMode?: string
+    @Optional() @Inject(ANIMATION_MODULE_TYPE) animationMode?: string,
   ) {
     super(elementRef, focusTrapFactory, changeDetectorRef, focusMonitor, document, animationMode);
   }

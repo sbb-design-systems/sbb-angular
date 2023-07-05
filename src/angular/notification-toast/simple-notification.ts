@@ -25,7 +25,7 @@ export class SbbSimpleNotification implements SbbTextOnlyNotificationToast {
 
   constructor(
     public notificationToastRef: SbbNotificationToastRef<SbbSimpleNotification>,
-    @Inject(SBB_NOTIFICATION_TOAST_DATA) data: any
+    @Inject(SBB_NOTIFICATION_TOAST_DATA) data: any,
   ) {
     this.data = data;
   }

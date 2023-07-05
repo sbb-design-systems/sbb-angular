@@ -38,13 +38,13 @@ describe('LevelSwitchService', () => {
 
     levelSwitchService = TestBed.inject(SbbLevelSwitcher);
     mapLayerFilterServiceSpy = TestBed.inject(
-      SbbMapLayerFilter
+      SbbMapLayerFilter,
     ) as jasmine.SpyObj<SbbMapLayerFilter>;
     mapLeitPoiServiceSpy = TestBed.inject(
-      SbbMapLeitPoiService
+      SbbMapLeitPoiService,
     ) as jasmine.SpyObj<SbbMapLeitPoiService>;
     mapTransferService = TestBed.inject(
-      SbbMapTransferService
+      SbbMapTransferService,
     ) as jasmine.SpyObj<SbbMapTransferService>;
   });
 

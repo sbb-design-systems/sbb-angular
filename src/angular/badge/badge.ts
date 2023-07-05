@@ -86,7 +86,7 @@ export class SbbBadge extends _SbbBadgeBase implements OnInit, OnDestroy, CanDis
     private _elementRef: ElementRef<HTMLElement>,
     private _ariaDescriber: AriaDescriber,
     private _renderer: Renderer2,
-    @Optional() @Inject(ANIMATION_MODULE_TYPE) private _animationMode?: string
+    @Optional() @Inject(ANIMATION_MODULE_TYPE) private _animationMode?: string,
   ) {
     super();
 
@@ -194,7 +194,7 @@ export class SbbBadge extends _SbbBadgeBase implements OnInit, OnDestroy, CanDis
     // Only check direct children of this host element in order to avoid deleting
     // any badges that might exist in descendant elements.
     const badges = this._elementRef.nativeElement.querySelectorAll(
-      `:scope > .${BADGE_CONTENT_CLASS}`
+      `:scope > .${BADGE_CONTENT_CLASS}`,
     );
     for (const badgeElement of Array.from(badges)) {
       if (badgeElement !== this._badgeElement) {

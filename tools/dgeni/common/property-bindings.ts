@@ -13,7 +13,7 @@ export interface PropertyBinding {
  */
 export function getInputBindingData(
   doc: PropertyMemberDoc,
-  metadata: Map<string, any>
+  metadata: Map<string, any>,
 ): PropertyBinding | undefined {
   return getBindingPropertyData(doc, metadata, 'inputs', 'Input');
 }
@@ -24,7 +24,7 @@ export function getInputBindingData(
  */
 export function getOutputBindingData(
   doc: PropertyMemberDoc,
-  metadata: Map<string, any>
+  metadata: Map<string, any>,
 ): PropertyBinding | undefined {
   return getBindingPropertyData(doc, metadata, 'outputs', 'Output');
 }
@@ -37,7 +37,7 @@ function getBindingPropertyData(
   doc: PropertyMemberDoc,
   metadata: Map<string, any>,
   propertyName: string,
-  decoratorName: string
+  decoratorName: string,
 ) {
   if (metadata) {
     const metadataValues: string[] = metadata.get(propertyName) || [];

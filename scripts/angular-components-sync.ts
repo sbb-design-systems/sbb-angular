@@ -24,22 +24,25 @@ const commitsInIssueStart = '**Commits**';
 const commitsInIssueEnd = '**Commits';
 const commitsInIssueRegex = new RegExp(
   `${escapeRegex(commitsInIssueStart)}(.*)${escapeRegex(commitsInIssueEnd)}`,
-  's'
+  's',
 );
 const lastSynchronizationTitle = `Last synchronization:`;
 const lastSynchronizationInIssueRegex = new RegExp(
   escapeRegex(lastSynchronizationTitle) + '\r\n' + '`(.*)`\r\n',
-  's'
+  's',
 );
 const lastCheckedShaTitle = `Last checked sha:`;
 const lastCheckedShaInIssueRegex = new RegExp(
   escapeRegex(lastCheckedShaTitle) + '\r\n' + '`(.*)`',
-  's'
+  's',
 );
 const emptyListInIssueMessage = 'No unchecked commits';
 
 export class AngularComponentsSync {
-  constructor(private _octokit: Octokit, private _now: Date) {}
+  constructor(
+    private _octokit: Octokit,
+    private _now: Date,
+  ) {}
 
   async run() {
     const issue = await this._loadIssue();
@@ -61,12 +64,12 @@ export class AngularComponentsSync {
       .data as GithubCommit[];
 
     const commitsEndIndex = latestAngularComponentsCommits.findIndex(
-      (commit) => commit.sha === referenceSha
+      (commit) => commit.sha === referenceSha,
     );
 
     if (commitsEndIndex === -1) {
       throw new Error(
-        `Could not find commit with sha ${referenceSha}. This can happen because we only check the last 100 commits.`
+        `Could not find commit with sha ${referenceSha}. This can happen because we only check the last 100 commits.`,
       );
     }
 
@@ -77,14 +80,14 @@ export class AngularComponentsSync {
       issueBody = this._createIssueBody(
         latestAngularComponentsCommits.slice(0, commitsEndIndex),
         parsedIssue,
-        referenceSha
+        referenceSha,
       );
     } else {
       const commitsInRange = latestAngularComponentsCommits.slice(0, commitsEndIndex + 1);
 
       const lastCheckedCommitBeforeNotCheckedIndex =
         latestAngularComponentsCommits.findIndex(
-          (commit) => commit.sha === firstUncheckedCommit.sha
+          (commit) => commit.sha === firstUncheckedCommit.sha,
         ) + 1;
 
       const newReferenceSha =
@@ -136,7 +139,7 @@ export class AngularComponentsSync {
   private _createIssueBody(
     commitsInRange: GithubCommit[],
     issueBody: IssueBody,
-    newReferenceSha: string
+    newReferenceSha: string,
   ) {
     const commitsInIssueBlock = `${commitsInIssueStart}\r\n${
       commitsInRange.length
@@ -159,11 +162,11 @@ export class AngularComponentsSync {
       .map((commit) =>
         this._createIssueCommitLine(
           issueBody.commits.some(
-            (existentCommit) => existentCommit.sha === commit.sha && existentCommit.checked
+            (existentCommit) => existentCommit.sha === commit.sha && existentCommit.checked,
           ),
           this._extractCommitSubject(commit.commit.message),
-          commit.sha
-        )
+          commit.sha,
+        ),
       )
       .join('\r\n');
   }
@@ -188,7 +191,7 @@ if (module === require.main) {
     new Octokit({
       auth: githubToken,
     }),
-    new Date()
+    new Date(),
   );
   angularComponentsSync.run();
 }

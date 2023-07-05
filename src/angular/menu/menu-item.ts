@@ -67,7 +67,7 @@ export class SbbMenuItem
     @Inject(DOCUMENT) private _document: any,
     private _focusMonitor: FocusMonitor,
     private _changeDetectorRef: ChangeDetectorRef,
-    @Inject(SBB_MENU_PANEL) @Optional() public _parentMenu?: SbbMenuPanel<SbbMenuItem>
+    @Inject(SBB_MENU_PANEL) @Optional() public _parentMenu?: SbbMenuPanel<SbbMenuItem>,
   ) {
     super();
   }

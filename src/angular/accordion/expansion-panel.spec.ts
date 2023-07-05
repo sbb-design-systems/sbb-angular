@@ -66,7 +66,7 @@ describe('SbbExpansionPanel', () => {
   it('should be able to render panel content lazily', fakeAsync(() => {
     const fixture = TestBed.createComponent(LazyPanelWithContent);
     const content = fixture.debugElement.query(
-      By.css('.sbb-expansion-panel-content')
+      By.css('.sbb-expansion-panel-content'),
     )!.nativeElement;
     fixture.detectChanges();
 
@@ -85,7 +85,7 @@ describe('SbbExpansionPanel', () => {
   it('should render the content for a lazy-loaded panel that is opened on init', fakeAsync(() => {
     const fixture = TestBed.createComponent(LazyPanelOpenOnLoad);
     const content = fixture.debugElement.query(
-      By.css('.sbb-expansion-panel-content')
+      By.css('.sbb-expansion-panel-content'),
     )!.nativeElement;
     fixture.detectChanges();
 
@@ -100,19 +100,19 @@ describe('SbbExpansionPanel', () => {
     fixture.detectChanges();
 
     const parentContent: HTMLElement = fixture.nativeElement.querySelector(
-      '.parent-panel .sbb-expansion-panel-content'
+      '.parent-panel .sbb-expansion-panel-content',
     );
     const childContent: HTMLElement = fixture.nativeElement.querySelector(
-      '.child-panel .sbb-expansion-panel-content'
+      '.child-panel .sbb-expansion-panel-content',
     );
 
     expect(parentContent.textContent!.trim()).toBe(
       'Parent content',
-      'Expected only parent content to be rendered.'
+      'Expected only parent content to be rendered.',
     );
     expect(childContent.textContent!.trim()).toBe(
       '',
-      'Expected child content element to be empty.'
+      'Expected child content element to be empty.',
     );
 
     fixture.componentInstance.childExpanded = true;
@@ -120,7 +120,7 @@ describe('SbbExpansionPanel', () => {
 
     expect(childContent.textContent!.trim()).toBe(
       'Child content',
-      'Expected child content element to be rendered.'
+      'Expected child content element to be rendered.',
     );
   }));
 
@@ -325,7 +325,7 @@ describe('SbbExpansionPanel', () => {
       tick(250);
 
       const arrow = fixture.debugElement.query(
-        By.css('.sbb-expansion-panel-header-indicator > sbb-icon')
+        By.css('.sbb-expansion-panel-header-indicator > sbb-icon'),
       )!.nativeElement;
 
       expect(arrow.style.transform)

@@ -15,6 +15,6 @@ const sonarPropertiesFile = join(__dirname, '../sonar-project.properties');
 const sonarConfig = readFileSync(sonarPropertiesFile, 'utf8');
 const adaptedSonarConfig = Object.entries(sonarParams).reduce(
   (current, [key, value]) => `${current}\n${key}=${value}`,
-  sonarConfig
+  sonarConfig,
 );
 writeFileSync(sonarPropertiesFile, adaptedSonarConfig, 'utf8');

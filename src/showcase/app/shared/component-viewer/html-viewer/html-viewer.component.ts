@@ -21,12 +21,12 @@ export class HtmlViewerComponent implements OnDestroy {
   constructor(
     private _htmlLoader: HtmlLoader,
     private _route: ActivatedRoute,
-    private _domSanitizer: DomSanitizer
+    private _domSanitizer: DomSanitizer,
   ) {
     moduleParams(this._route)
       .pipe(
         switchMap((params) =>
-          params.loaderBuilderInterceptor(this._htmlLoader.withParams(params)).load()
+          params.loaderBuilderInterceptor(this._htmlLoader.withParams(params)).load(),
         ),
         map((content) => {
           // Replace all relative fragment URLs with absolute fragment URLs. e.g. "#my-section" becomes
@@ -37,7 +37,7 @@ export class HtmlViewerComponent implements OnDestroy {
             return `href="${this._domSanitizer.sanitize(SecurityContext.URL, absoluteUrl)}"`;
           });
         }),
-        takeUntil(this._destroyed)
+        takeUntil(this._destroyed),
       )
       .subscribe((content) => (this.content = this._domSanitizer.bypassSecurityTrustHtml(content)));
   }

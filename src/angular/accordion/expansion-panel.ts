@@ -120,7 +120,7 @@ export class SbbExpansionPanel
     @Optional() @SkipSelf() @Inject(SBB_ACCORDION) accordion: TypeRef<SbbAccordion>,
     changeDetectorRef: ChangeDetectorRef,
     uniqueSelectionDispatcher: UniqueSelectionDispatcher,
-    @Inject(DOCUMENT) document: any
+    @Inject(DOCUMENT) document: any,
   ) {
     super(accordion, changeDetectorRef, uniqueSelectionDispatcher);
     this.accordion = accordion;
@@ -132,7 +132,7 @@ export class SbbExpansionPanel
       .pipe(
         distinctUntilChanged((x, y) => {
           return x.fromState === y.fromState && x.toState === y.toState;
-        })
+        }),
       )
       .subscribe((event) => {
         if (event.fromState !== 'void') {
@@ -172,7 +172,7 @@ export class SbbExpansionPanel
         .pipe(
           startWith(null),
           filter(() => this.expanded && !this._portal),
-          take(1)
+          take(1),
         )
         .subscribe(() => {
           this._portal = new TemplatePortal(this._lazyContent._template, this._viewContainerRef);

@@ -12,6 +12,6 @@ import { SbbExpansionPanelBase, SBB_EXPANSION_PANEL } from './expansion-panel-ba
 export class SbbExpansionPanelContent {
   constructor(
     public _template: TemplateRef<any>,
-    @Inject(SBB_EXPANSION_PANEL) @Optional() public _expansionPanel?: SbbExpansionPanelBase
+    @Inject(SBB_EXPANSION_PANEL) @Optional() public _expansionPanel?: SbbExpansionPanelBase,
   ) {}
 }

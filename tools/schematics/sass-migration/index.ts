@@ -28,7 +28,7 @@ export function sassMigration(): Rule {
         content = content.replace(/@import '([^']+)';/g, (...m: string[]) => {
           const importPath = join(
             dirname(path),
-            `${m[1].replace(/[\w\-\_]+$/, (im) => `_${im}`)}.scss`
+            `${m[1].replace(/[\w\-\_]+$/, (im) => `_${im}`)}.scss`,
           );
           localSymbols.push(...createSymbolsFor(importPath));
           return `@use '${m[1]}';`;
@@ -43,7 +43,7 @@ export function sassMigration(): Rule {
 
     function createSymbolsFor(
       file: Path,
-      name: string = basename(file).replace(/(^_|.scss$)/g, '')
+      name: string = basename(file).replace(/(^_|.scss$)/g, ''),
     ) {
       const fileSymbols: ((content: string) => string)[] = [];
       const lines = tree.read(file)!.toString().split('\n');
@@ -59,20 +59,20 @@ export function sassMigration(): Rule {
         if (sassVariable || sassFunction) {
           const escapedValue = (sassVariable ?? sassFunction).replace(
             /[.*+?^${}()|[\]\\]/g,
-            '\\$&'
+            '\\$&',
           );
           fileSymbols.push((content) =>
             content.replace(
               new RegExp(`(\\W)(${escapedValue}\\W)`, 'g'),
-              (...m) => `${m[1]}${name}.${m[2]}`
-            )
+              (...m) => `${m[1]}${name}.${m[2]}`,
+            ),
           );
         } else if (sassMixin) {
           fileSymbols.push((content) =>
             content.replace(
               new RegExp(`include (${sassMixin}\\W)`, 'g'),
-              (...m) => `include ${name}.${m[1]}`
-            )
+              (...m) => `include ${name}.${m[1]}`,
+            ),
           );
         }
       }
