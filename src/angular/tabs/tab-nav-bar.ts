@@ -1,6 +1,6 @@
 import { FocusableOption, FocusMonitor } from '@angular/cdk/a11y';
 import { BooleanInput, coerceBooleanProperty } from '@angular/cdk/coercion';
-import { SPACE } from '@angular/cdk/keycodes';
+import { ENTER, SPACE } from '@angular/cdk/keycodes';
 import { Platform } from '@angular/cdk/platform';
 import { ViewportRuler } from '@angular/cdk/scrolling';
 import {
@@ -208,7 +208,9 @@ export class _SbbTabLinkBase
   }
 
   _handleKeydown(event: KeyboardEvent) {
-    if (this._tabNavBar.tabPanel && event.keyCode === SPACE) {
+    if (this.disabled && (event.keyCode === SPACE || event.keyCode === ENTER)) {
+      event.preventDefault();
+    } else if (this._tabNavBar.tabPanel && event.keyCode === SPACE) {
       this.elementRef.nativeElement.click();
     }
   }
