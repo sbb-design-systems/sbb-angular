@@ -14,7 +14,7 @@ export function createMouseEvent(
   offsetX = 1,
   offsetY = 1,
   button = 0,
-  modifiers: ModifierKeys = {}
+  modifiers: ModifierKeys = {},
 ) {
   // Note: We cannot determine the position of the mouse event based on the screen
   // because the dimensions and position of the browser window are not available
@@ -71,7 +71,7 @@ export function createPointerEvent(
   clientY = 0,
   offsetX?: number,
   offsetY?: number,
-  options: PointerEventInit = { isPrimary: true }
+  options: PointerEventInit = { isPrimary: true },
 ) {
   const event = new PointerEvent(type, {
     bubbles: true,
@@ -124,7 +124,7 @@ export function createKeyboardEvent(
   type: string,
   keyCode: number = 0,
   key: string = '',
-  modifiers: ModifierKeys = {}
+  modifiers: ModifierKeys = {},
 ) {
   return new KeyboardEvent(type, {
     bubbles: true,

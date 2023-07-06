@@ -20,7 +20,7 @@ describe('DocsMarkdownRenderer', () => {
           <span header-link="link-id"></span>
           heading text
         </h3>
-      `
+      `,
     );
     const heading4 = renderer.heading('heading text', 4, 'second-link-id');
     expectEqualIgnoreLeadingWhitespace(
@@ -30,7 +30,7 @@ describe('DocsMarkdownRenderer', () => {
           <span header-link="second-link-id"></span>
           heading text
         </h4>
-      `
+      `,
     );
   });
 
@@ -41,16 +41,16 @@ describe('DocsMarkdownRenderer', () => {
 
   it('generates links', () => {
     expect(renderer.link('something', 'some title', 'some text')).toEqual(
-      '<a href="guide/something" title="some title">some text</a>'
+      '<a href="guide/something" title="some title">some text</a>',
     );
     expect(renderer.link('guide/something', 'some title', 'some text')).toEqual(
-      '<a href="guide/something" title="some title">some text</a>'
+      '<a href="guide/something" title="some title">some text</a>',
     );
     expect(renderer.link('#some-hash', 'some title', 'some text')).toEqual(
-      '<a href="#some-hash" title="some title">some text</a>'
+      '<a href="#some-hash" title="some title">some text</a>',
     );
     expect(renderer.link('http://google.com', 'some title', 'some text')).toEqual(
-      '<a href="http://google.com" title="some title">some text</a>'
+      '<a href="http://google.com" title="some title">some text</a>',
     );
   });
 
@@ -66,7 +66,7 @@ describe('DocsMarkdownRenderer', () => {
       result,
       `<div material-docs-example="exampleName"
           file="example-html.html"
-          region="some-region"></div>`
+          region="some-region"></div>`,
     );
   });
 
@@ -80,7 +80,7 @@ describe('DocsMarkdownRenderer', () => {
     expectEqualIgnoreLeadingWhitespace(
       result,
       `<div material-docs-example="exampleName"
-          file="example-html.html"></div>`
+          file="example-html.html"></div>`,
     );
   });
 
@@ -95,7 +95,7 @@ describe('DocsMarkdownRenderer', () => {
 
   it('generates html using old API', () => {
     expect(renderer.html('<!-- example(name) -->')).toEqual(
-      '<div material-docs-example="name"></div>'
+      '<div material-docs-example="name"></div>',
     );
   });
 

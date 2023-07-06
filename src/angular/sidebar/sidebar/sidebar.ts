@@ -86,7 +86,7 @@ export class SbbSidebarContent extends SbbSidebarContentBase implements AfterCon
     @Inject(forwardRef(() => SbbSidebarContainer)) public _container: SbbSidebarContainer,
     elementRef: ElementRef<HTMLElement>,
     scrollDispatcher: ScrollDispatcher,
-    ngZone: NgZone
+    ngZone: NgZone,
   ) {
     super(elementRef, scrollDispatcher, ngZone);
   }
@@ -147,7 +147,7 @@ export class SbbSidebar
   get openedStart(): Observable<void> {
     return this._animationStarted.pipe(
       filter((e) => e.fromState !== e.toState && e.toState.indexOf('open') === 0),
-      map(() => {})
+      map(() => {}),
     );
   }
 
@@ -156,7 +156,7 @@ export class SbbSidebar
   get closedStart(): Observable<void> {
     return this._animationStarted.pipe(
       filter((e) => e.fromState !== e.toState && e.toState === 'void'),
-      map(() => {})
+      map(() => {}),
     );
   }
 
@@ -192,7 +192,7 @@ export class SbbSidebar
   @Output('opened')
   readonly _openedStream: Observable<void> = this.openedChange.pipe(
     filter((o) => o),
-    mapTo(undefined)
+    mapTo(undefined),
   );
 
   /** Event emitted when the sidebar has been closed. */
@@ -200,7 +200,7 @@ export class SbbSidebar
   @Output('closed')
   readonly _closedStream: Observable<void> = this.openedChange.pipe(
     filter((o) => !o),
-    mapTo(undefined)
+    mapTo(undefined),
   );
 
   /** Emits when the component is destroyed. */
@@ -220,7 +220,7 @@ export class SbbSidebar
     private _ngZone: NgZone,
     @Optional() @Inject(DOCUMENT) private _doc: any,
     @Inject(SBB_SIDEBAR_CONTAINER) public override _container: SbbSidebarContainer,
-    @Optional() private _router: Router
+    @Optional() private _router: Router,
   ) {
     super(_container);
 
@@ -246,14 +246,14 @@ export class SbbSidebar
         (fromEvent(this._elementRef.nativeElement, 'keydown') as Observable<KeyboardEvent>).pipe(
           filter((event) => {
             return event.keyCode === ESCAPE && !hasModifierKey(event);
-          })
+          }),
         ),
         this._router
           ? this._router.events.pipe(
               filter((e) => e instanceof NavigationStart),
-              mapTo(null)
+              mapTo(null),
             )
-          : NEVER
+          : NEVER,
       )
         .pipe(takeUntil(this._destroyed))
         .subscribe((event: KeyboardEvent | null) =>
@@ -267,7 +267,7 @@ export class SbbSidebar
             }
             event.stopPropagation();
             event.preventDefault();
-          })
+          }),
         );
     });
 
@@ -277,7 +277,7 @@ export class SbbSidebar
       .pipe(
         distinctUntilChanged((x, y) => {
           return x.fromState === y.fromState && x.toState === y.toState;
-        })
+        }),
       )
       .subscribe((event: AnimationEvent) => {
         const { fromState, toState } = event;
@@ -398,7 +398,7 @@ export class SbbSidebar
     const result = this._setOpen(
       isOpen,
       /* restoreFocus */ !isOpen && this._isFocusWithinSidebar(),
-      this._openedVia || 'program'
+      this._openedVia || 'program',
     );
 
     if (!isOpen) {
@@ -417,7 +417,7 @@ export class SbbSidebar
   private _setOpen(
     isOpen: boolean,
     restoreFocus: boolean,
-    focusOrigin: Exclude<FocusOrigin, null>
+    focusOrigin: Exclude<FocusOrigin, null>,
   ): Promise<SbbSidebarToggleResult> {
     this._opened = isOpen;
 
@@ -527,7 +527,7 @@ export class SbbSidebarContainer
     changeDetectorRef: ChangeDetectorRef,
     viewportRuler: ViewportRuler,
     breakPointObserver: BreakpointObserver,
-    @Optional() @Inject(ANIMATION_MODULE_TYPE) private _animationMode?: string
+    @Optional() @Inject(ANIMATION_MODULE_TYPE) private _animationMode?: string,
   ) {
     super(ngZone, changeDetectorRef, breakPointObserver);
 
@@ -635,7 +635,7 @@ export class SbbSidebarContainer
     sidebar._animationStarted
       .pipe(
         filter((event: AnimationEvent) => event.fromState !== event.toState),
-        takeUntil(this._sidebars.changes)
+        takeUntil(this._sidebars.changes),
       )
       .subscribe((event: AnimationEvent) => {
         // Set the transition class on the container so that the animations occur. This should not

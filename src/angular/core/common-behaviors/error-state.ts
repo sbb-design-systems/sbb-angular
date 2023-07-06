@@ -36,10 +36,10 @@ export interface HasErrorState {
  * For component with `errorState` and need to update `errorState`.
  */
 export function mixinErrorState<T extends AbstractConstructor<HasErrorState>>(
-  base: T
+  base: T,
 ): CanUpdateErrorStateCtor & T;
 export function mixinErrorState<T extends Constructor<HasErrorState>>(
-  base: T
+  base: T,
 ): CanUpdateErrorStateCtor & T {
   return class extends base {
     /** Whether the component is in an error state. */

@@ -269,7 +269,7 @@ describe('SbbTabHeader', () => {
         appComponent.tabHeader.focusIndex = appComponent.tabs.length - 1;
         fixture.detectChanges();
         expect(appComponent.tabHeader.scrollDistance).toBe(
-          appComponent.tabHeader._getMaxScrollDistance()
+          appComponent.tabHeader._getMaxScrollDistance(),
         );
 
         // Focus on the first tab, expect this to be the maximum scroll distance.
@@ -287,7 +287,7 @@ describe('SbbTabHeader', () => {
         appComponent.tabHeader.focusIndex = appComponent.tabs.length - 1;
         fixture.detectChanges();
         expect(appComponent.tabHeader.scrollDistance).toBe(
-          appComponent.tabHeader._getMaxScrollDistance()
+          appComponent.tabHeader._getMaxScrollDistance(),
         );
 
         // Remove the first two tabs which includes the selected tab.
@@ -296,7 +296,7 @@ describe('SbbTabHeader', () => {
         tick();
 
         expect(appComponent.tabHeader.scrollDistance).toBe(
-          appComponent.tabHeader._getMaxScrollDistance()
+          appComponent.tabHeader._getMaxScrollDistance(),
         );
       }));
     });
@@ -436,7 +436,7 @@ describe('SbbTabHeader', () => {
 
         dispatchEvent(
           nextButton,
-          createMouseEvent('mousedown', undefined, undefined, undefined, undefined, 2)
+          createMouseEvent('mousedown', undefined, undefined, undefined, undefined, 2),
         );
         fixture.detectChanges();
         tick(3000);
@@ -584,7 +584,7 @@ describe('SbbTabHeader', () => {
 
       const tabHeaderElement: HTMLElement = fixture.nativeElement.querySelector('.sbb-tab-header');
       const labels = Array.from<HTMLElement>(
-        fixture.nativeElement.querySelectorAll('.label-content')
+        fixture.nativeElement.querySelectorAll('.label-content'),
       );
       const extraText = new Array(100).fill('w').join();
       const enabledClass = 'sbb-tab-header-pagination-controls-enabled';

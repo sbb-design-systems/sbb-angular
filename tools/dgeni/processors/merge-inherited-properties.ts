@@ -11,7 +11,7 @@ import { getInheritedDocsOfClass } from '../common/class-inheritance';
  * dgeni package.
  */
 export function mergeInheritedProperties(
-  exportSymbolsToDocsMap: Map<ts.Symbol, ClassLikeExportDoc>
+  exportSymbolsToDocsMap: Map<ts.Symbol, ClassLikeExportDoc>,
 ) {
   return new MergeInheritedProperties(exportSymbolsToDocsMap);
 }
@@ -25,7 +25,7 @@ export class MergeInheritedProperties implements Processor {
 
   constructor(
     /** Shared map that can be used to resolve docs through symbols. */
-    private _exportSymbolsToDocsMap: Map<ts.Symbol, ClassLikeExportDoc>
+    private _exportSymbolsToDocsMap: Map<ts.Symbol, ClassLikeExportDoc>,
   ) {}
 
   $process(docs: DocCollection) {

@@ -592,10 +592,10 @@ describe('SbbTable', () => {
     expect(allHtml.querySelector('th.sbb-column-column_a.sbb-table-group-with-next')).toBeTruthy();
     expect(allHtml.querySelector('th.sbb-column-column_b.sbb-table-group-with-next')).toBeTruthy();
     expect(
-      allHtml.querySelectorAll('td.sbb-column-column_a.sbb-table-group-with-next').length
+      allHtml.querySelectorAll('td.sbb-column-column_a.sbb-table-group-with-next').length,
     ).toBe(4);
     expect(
-      allHtml.querySelectorAll('td.sbb-column-column_b.sbb-table-group-with-next').length
+      allHtml.querySelectorAll('td.sbb-column-column_b.sbb-table-group-with-next').length,
     ).toBe(4);
   });
 
@@ -609,18 +609,18 @@ describe('SbbTable', () => {
     // Then sticky left and right classes should be applied
     expect(
       allHtml.querySelector(
-        '.sbb-column-column_a.sbb-table-sticky.sbb-table-sticky-border-elem-left'
-      )
+        '.sbb-column-column_a.sbb-table-sticky.sbb-table-sticky-border-elem-left',
+      ),
     ).toBeTruthy();
     expect(
       allHtml.querySelector(
-        '.sbb-column-column_c.sbb-table-sticky.sbb-table-sticky-border-elem-right'
-      )
+        '.sbb-column-column_c.sbb-table-sticky.sbb-table-sticky-border-elem-right',
+      ),
     ).toBeTruthy();
 
     // Then it should have offset right
     expect(
-      tableWrapper.nativeElement.classList.contains('sbb-table-wrapper-offset-right')
+      tableWrapper.nativeElement.classList.contains('sbb-table-wrapper-offset-right'),
     ).toBeTrue();
     expect(tableWrapper.nativeElement.classList.length).toBe(3); // Ensure old state classes were removed
 
@@ -630,7 +630,7 @@ describe('SbbTable', () => {
 
     // Then it should have offset right and left
     expect(
-      tableWrapper.nativeElement.classList.contains('sbb-table-wrapper-offset-both')
+      tableWrapper.nativeElement.classList.contains('sbb-table-wrapper-offset-both'),
     ).toBeTrue();
     expect(tableWrapper.nativeElement.classList.length).toBe(3); // Ensure old state classes were removed
 
@@ -641,7 +641,7 @@ describe('SbbTable', () => {
 
     // Then it should have offset left
     expect(
-      tableWrapper.nativeElement.classList.contains('sbb-table-wrapper-offset-left')
+      tableWrapper.nativeElement.classList.contains('sbb-table-wrapper-offset-left'),
     ).toBeTrue();
     expect(tableWrapper.nativeElement.classList.length).toBe(3); // Ensure old state classes were removed
 
@@ -652,7 +652,7 @@ describe('SbbTable', () => {
 
     // Then it should have offset 'none'
     expect(
-      tableWrapper.nativeElement.classList.contains('sbb-table-wrapper-offset-none')
+      tableWrapper.nativeElement.classList.contains('sbb-table-wrapper-offset-none'),
     ).toBeTrue();
     expect(tableWrapper.nativeElement.classList.length).toBe(3); // Ensure old state classes were removed
   }));
@@ -663,7 +663,7 @@ describe('SbbTable', () => {
     fixture.detectChanges(); // Second change detection needed
 
     const columnAComputedStyles = getComputedStyle(
-      fixture.nativeElement.querySelector('.sbb-column-column_a')
+      fixture.nativeElement.querySelector('.sbb-column-column_a'),
     );
     const columnBLeftOffset =
       fixture.debugElement.nativeElement.querySelector('.sbb-column-column_b')!.style.left;
@@ -680,7 +680,7 @@ describe('SbbTable', () => {
 
     // Then left offset should be updated
     let columnAComputedStyles = getComputedStyle(
-      fixture.nativeElement.querySelector('.sbb-column-column_a')
+      fixture.nativeElement.querySelector('.sbb-column-column_a'),
     );
     let columnBLeftOffset =
       fixture.debugElement.nativeElement.querySelector('.sbb-column-column_b')!.style.left;
@@ -694,7 +694,7 @@ describe('SbbTable', () => {
 
     // Then the left offset should be updated
     columnAComputedStyles = getComputedStyle(
-      fixture.nativeElement.querySelector('.sbb-column-column_a')
+      fixture.nativeElement.querySelector('.sbb-column-column_a'),
     );
     columnBLeftOffset =
       fixture.debugElement.nativeElement.querySelector('.sbb-column-column_b')!.style.left;

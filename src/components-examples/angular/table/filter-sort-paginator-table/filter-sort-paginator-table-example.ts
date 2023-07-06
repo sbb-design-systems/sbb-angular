@@ -76,7 +76,7 @@ export class FilterSortPaginatorTableExample implements AfterViewInit, OnDestroy
   }
   dataSource = new SbbTableDataSource<VehicleExampleItem, VehicleFilter>(VEHICLE_EXAMPLE_DATA);
   categories = new Set(
-    VEHICLE_EXAMPLE_DATA.map((vehicleExampleItem) => vehicleExampleItem.category)
+    VEHICLE_EXAMPLE_DATA.map((vehicleExampleItem) => vehicleExampleItem.category),
   );
 
   vehicleFilterForm = new FormGroup({
@@ -107,8 +107,8 @@ export class FilterSortPaginatorTableExample implements AfterViewInit, OnDestroy
       map((newValue) =>
         newValue?.length === 0
           ? []
-          : [...new Set(this.dataSource.filteredData.map((vehicle) => vehicle.description))].sort()
-      )
+          : [...new Set(this.dataSource.filteredData.map((vehicle) => vehicle.description))].sort(),
+      ),
     );
   }
 

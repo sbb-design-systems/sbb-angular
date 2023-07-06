@@ -31,7 +31,7 @@ if (require.main === module) {
     const outputPath = join(bazelBinPath, inputPath.replace(markdownExtension, '.html'));
     const htmlOutput = markdownRenderer.finalizeOutput(
       marked(readFileSync(inputPath, 'utf8')),
-      inputPath
+      inputPath,
     );
 
     writeFileSync(outputPath, htmlOutput);

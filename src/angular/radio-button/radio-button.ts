@@ -48,7 +48,7 @@ export class SbbRadioChange {
     /** The SbbRadioButton that emits the change event. */
     public source: _SbbRadioButtonBase,
     /** The value of the SbbRadioButton. */
-    public value: any
+    public value: any,
   ) {}
 }
 
@@ -58,7 +58,7 @@ export class SbbRadioChange {
  * retention of the class and its component metadata.
  */
 export const SBB_RADIO_GROUP = new InjectionToken<_SbbRadioGroupBase<_SbbRadioButtonBase>>(
-  'SbbRadioGroup'
+  'SbbRadioGroup',
 );
 
 /**
@@ -291,7 +291,7 @@ export abstract class _SbbRadioGroupBase<TRadio extends _SbbRadioButtonBase>
   },
 })
 export class SbbRadioGroup<
-  TRadio extends _SbbRadioButtonBase = SbbRadioButton
+  TRadio extends _SbbRadioButtonBase = SbbRadioButton,
 > extends _SbbRadioGroupBase<TRadio> {
   @ContentChildren(forwardRef(() => SBB_RADIO_BUTTON), { descendants: true })
   override _radios: QueryList<TRadio>;
@@ -438,7 +438,7 @@ export class _SbbRadioButtonBase
     protected readonly _changeDetector: ChangeDetectorRef,
     private _focusMonitor: FocusMonitor,
     private _radioDispatcher: UniqueSelectionDispatcher,
-    tabIndex?: string
+    tabIndex?: string,
   ) {
     super();
 
@@ -617,7 +617,7 @@ export class SbbRadioButton extends _SbbRadioButtonBase {
     changeDetector: ChangeDetectorRef,
     focusMonitor: FocusMonitor,
     radioDispatcher: UniqueSelectionDispatcher,
-    @Attribute('tabindex') tabIndex?: string
+    @Attribute('tabindex') tabIndex?: string,
   ) {
     super(radioGroup, elementRef, changeDetector, focusMonitor, radioDispatcher, tabIndex);
   }

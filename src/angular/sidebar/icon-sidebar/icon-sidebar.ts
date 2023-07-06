@@ -50,7 +50,7 @@ export class SbbIconSidebarContent extends SbbSidebarContentBase {
   constructor(
     elementRef: ElementRef<HTMLElement>,
     scrollDispatcher: ScrollDispatcher,
-    ngZone: NgZone
+    ngZone: NgZone,
   ) {
     super(elementRef, scrollDispatcher, ngZone);
   }
@@ -95,7 +95,7 @@ export class SbbIconSidebar extends SbbSidebarBase {
   constructor(
     @Inject(SBB_SIDEBAR_CONTAINER) container: SbbIconSidebarContainer,
     private _changeDetectorRef: ChangeDetectorRef,
-    private _elementRef: ElementRef<HTMLElement>
+    private _elementRef: ElementRef<HTMLElement>,
   ) {
     super(container);
   }
@@ -107,7 +107,7 @@ export class SbbIconSidebar extends SbbSidebarBase {
 
   _mobileChanged(mobile: boolean): void {
     this._elementRef.nativeElement.querySelector(
-      '.sbb-icon-sidebar-inner-container'
+      '.sbb-icon-sidebar-inner-container',
     )!.scrollLeft = 0;
 
     this._changeDetectorRef.markForCheck();
@@ -150,7 +150,7 @@ export class SbbIconSidebarContainer
   constructor(
     ngZone: NgZone,
     changeDetectorRef: ChangeDetectorRef,
-    breakpointObserver: BreakpointObserver
+    breakpointObserver: BreakpointObserver,
   ) {
     super(ngZone, changeDetectorRef, breakpointObserver);
   }

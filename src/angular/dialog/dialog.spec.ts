@@ -92,7 +92,7 @@ describe('SbbDialog', () => {
       overlayContainer = oc;
       overlayContainerElement = oc.getContainerElement();
       focusMonitor = fm;
-    }
+    },
   ));
 
   afterEach(() => {
@@ -173,7 +173,7 @@ describe('SbbDialog', () => {
     expect(dialogRef.componentInstance.dialogRef).toBe(dialogRef);
     expect(dialogInjector.get<DirectiveWithViewContainer>(DirectiveWithViewContainer))
       .withContext(
-        'Expected the dialog component to be created with the injector from the viewContainerRef.'
+        'Expected the dialog component to be created with the injector from the viewContainerRef.',
       )
       .toBeTruthy();
   });
@@ -238,7 +238,7 @@ describe('SbbDialog', () => {
       });
 
       expect(afterCloseCallback).toHaveBeenCalledWith(true);
-    })
+    }),
   ));
 
   it('should dispose of dialog if view container is destroyed while animating', fakeAsync(() => {
@@ -273,8 +273,8 @@ describe('SbbDialog', () => {
 
         expect(beforeClosedCallback).toHaveBeenCalledTimes(1);
         expect(afterCloseCallback).toHaveBeenCalledTimes(1);
-      })
-    )
+      }),
+    ),
   );
 
   it('should close a dialog and get back a result before it is closed', fakeAsync(() => {
@@ -286,7 +286,7 @@ describe('SbbDialog', () => {
     // beforeClose should emit before dialog container is destroyed
     const beforeCloseHandler = jasmine.createSpy('beforeClose callback').and.callFake(() => {
       expect(overlayContainerElement.querySelector('sbb-dialog-container')).not.toBeNull(
-        'dialog container exists when beforeClose is called'
+        'dialog container exists when beforeClose is called',
       );
     });
 
@@ -414,7 +414,7 @@ describe('SbbDialog', () => {
       expect(
         dialog.open(PizzaMsg, {
           viewContainerRef: testViewContainerRef,
-        })
+        }),
       ).toBe(ref);
     });
   });
@@ -683,7 +683,7 @@ describe('SbbDialog', () => {
   it('should set the proper animation states', () => {
     const dialogRef = dialog.open(PizzaMsg, { viewContainerRef: testViewContainerRef });
     const dialogContainer: SbbDialogContainer = viewContainerFixture.debugElement.query(
-      By.directive(SbbDialogContainer)
+      By.directive(SbbDialogContainer),
     )!.componentInstance;
 
     expect(dialogContainer._state).toBe('enter');
@@ -811,7 +811,7 @@ describe('SbbDialog', () => {
       viewContainerFixture.detectChanges();
 
       expect(resolver.resolveComponentFactory).toHaveBeenCalled();
-    }
+    },
   ));
 
   describe('passing in data', () => {
@@ -949,7 +949,7 @@ describe('SbbDialog', () => {
     const pane = overlayContainerElement.querySelector('.cdk-overlay-pane') as HTMLElement;
     expect(pane.classList).not.toContain(
       'custom-class-one',
-      'Expected class to be initially missing'
+      'Expected class to be initially missing',
     );
 
     dialogRef.addPanelClass('custom-class-one');
@@ -969,7 +969,7 @@ describe('SbbDialog', () => {
       viewContainerFixture.detectChanges();
 
       const backdrop = overlayContainerElement.querySelector(
-        '.cdk-overlay-backdrop'
+        '.cdk-overlay-backdrop',
       ) as HTMLElement;
       backdrop.click();
       viewContainerFixture.detectChanges();
@@ -1001,7 +1001,7 @@ describe('SbbDialog', () => {
       viewContainerFixture.detectChanges();
 
       const backdrop = overlayContainerElement.querySelector(
-        '.cdk-overlay-backdrop'
+        '.cdk-overlay-backdrop',
       ) as HTMLElement;
       backdrop.click();
 
@@ -1025,7 +1025,7 @@ describe('SbbDialog', () => {
       flushMicrotasks();
 
       const backdrop = overlayContainerElement.querySelector(
-        '.cdk-overlay-backdrop'
+        '.cdk-overlay-backdrop',
       ) as HTMLElement;
       const input = overlayContainerElement.querySelector('input') as HTMLInputElement;
 
@@ -1057,10 +1057,10 @@ describe('SbbDialog', () => {
         flushMicrotasks();
 
         const backdrop = overlayContainerElement.querySelector(
-          '.cdk-overlay-backdrop'
+          '.cdk-overlay-backdrop',
         ) as HTMLElement;
         const container = overlayContainerElement.querySelector(
-          '.sbb-dialog-container'
+          '.sbb-dialog-container',
         ) as HTMLInputElement;
 
         expect(document.activeElement)
@@ -1075,7 +1075,7 @@ describe('SbbDialog', () => {
         expect(document.activeElement)
           .withContext('Expected container to stay focused after click')
           .toBe(container);
-      })
+      }),
     );
   });
 
@@ -1180,7 +1180,7 @@ describe('SbbDialog', () => {
       flushMicrotasks();
 
       expect(
-        overlayContainerElement.querySelectorAll('.cdk-focus-trap-anchor').length
+        overlayContainerElement.querySelectorAll('.cdk-focus-trap-anchor').length,
       ).toBeGreaterThan(0);
     }));
 
@@ -1199,13 +1199,13 @@ describe('SbbDialog', () => {
 
       expect(document.activeElement!.id).not.toBe(
         'dialog-trigger',
-        'Expected the focus to change when dialog was opened.'
+        'Expected the focus to change when dialog was opened.',
       );
 
       dialogRef.close();
       expect(document.activeElement!.id).not.toBe(
         'dialog-trigger',
-        'Expcted the focus not to have changed before the animation finishes.'
+        'Expcted the focus not to have changed before the animation finishes.',
       );
 
       flushMicrotasks();
@@ -1302,7 +1302,7 @@ describe('SbbDialog', () => {
       expect(lastFocusOrigin!).withContext('Expected the trigger button to be blurred').toBeNull();
 
       const backdrop = overlayContainerElement.querySelector(
-        '.cdk-overlay-backdrop'
+        '.cdk-overlay-backdrop',
       ) as HTMLElement;
 
       backdrop.click();
@@ -1339,7 +1339,7 @@ describe('SbbDialog', () => {
       expect(lastFocusOrigin!).withContext('Expected the trigger button to be blurred').toBeNull();
 
       const closeButton = overlayContainerElement.querySelector(
-        'button[sbb-dialog-close]'
+        'button[sbb-dialog-close]',
       ) as HTMLElement;
 
       // Fake the behavior of pressing the SPACE key on a button element. Browsers fire a `click`
@@ -1379,7 +1379,7 @@ describe('SbbDialog', () => {
       expect(lastFocusOrigin!).withContext('Expected the trigger button to be blurred').toBeNull();
 
       const closeButton = overlayContainerElement.querySelector(
-        'button[sbb-dialog-close]'
+        'button[sbb-dialog-close]',
       ) as HTMLElement;
 
       // The dialog close button detects the focus origin by inspecting the click event. If
@@ -1460,7 +1460,7 @@ describe('SbbDialog', () => {
 
       expect(document.activeElement!.id).not.toBe(
         'dialog-trigger',
-        'Expected the focus to change when dialog was opened.'
+        'Expected the focus to change when dialog was opened.',
       );
 
       dialogRef.close();
@@ -1470,7 +1470,7 @@ describe('SbbDialog', () => {
 
       expect(document.activeElement!.id).not.toBe(
         'dialog-trigger',
-        'Expected focus not to have been restored.'
+        'Expected focus not to have been restored.',
       );
 
       document.body.removeChild(button);
@@ -1495,7 +1495,7 @@ describe('SbbDialog', () => {
 
       expect(document.activeElement!.id).not.toBe(
         'dialog-trigger',
-        'Expected the focus to change when dialog was opened.'
+        'Expected the focus to change when dialog was opened.',
       );
 
       // Start the closing sequence and move focus out of dialog.
@@ -1650,7 +1650,7 @@ describe('SbbDialog', () => {
 
         const container = overlayContainerElement.querySelector('sbb-dialog-container')!;
         expect(container.hasAttribute('aria-labelledby')).toBe(false);
-      })
+      }),
     );
 
     it(
@@ -1670,7 +1670,7 @@ describe('SbbDialog', () => {
 
         expect(title.id).withContext('Expected title element to have an id.').toBeTruthy();
         expect(container.getAttribute('aria-labelledby')).toBe('Labelled By');
-      })
+      }),
     );
   });
 
@@ -1982,7 +1982,7 @@ describe('SbbDialog with explicit injector provided', () => {
     fixture.detectChanges();
 
     expect(
-      overlayContainerElement.querySelector('module-bound-dialog-child-component')!.innerHTML
+      overlayContainerElement.querySelector('module-bound-dialog-child-component')!.innerHTML,
     ).toEqual('<p>Pasta</p>');
   }));
 });
@@ -2020,7 +2020,7 @@ describe('SbbDialog with close button', () => {
     fixtureContentElementDialog.detectChanges();
 
     const closeButton = fixtureContentElementDialog.nativeElement.querySelector(
-      '.sbb-dialog-title-close-button'
+      '.sbb-dialog-title-close-button',
     );
     expect(closeButton).toBeTruthy();
     expect(closeButton.getAttribute('aria-label')).toBe('Close dialog');
@@ -2097,7 +2097,7 @@ class PizzaMsg {
   constructor(
     public dialogRef: SbbDialogRef<PizzaMsg>,
     public dialogInjector: Injector,
-    public directionality: Directionality
+    public directionality: Directionality,
   ) {}
 }
 
@@ -2202,12 +2202,15 @@ class DialogTestModule {}
 
 @Component({ template: '' })
 class ModuleBoundDialogParentComponent {
-  constructor(private _injector: Injector, private _dialog: SbbDialog) {}
+  constructor(
+    private _injector: Injector,
+    private _dialog: SbbDialog,
+  ) {}
 
   openDialog(): void {
     const ngModuleRef = createNgModuleRef(
       ModuleBoundDialogModule,
-      /* parentInjector */ this._injector
+      /* parentInjector */ this._injector,
     );
 
     this._dialog.open(ModuleBoundDialogComponent, { injector: ngModuleRef.injector });

@@ -44,7 +44,7 @@ export class CalendarConfigurationExample implements OnDestroy {
   dateClass: Observable<SbbCalendarCellClassFunction<Date>> =
     this.dateForm.controls.selectedWeekDay.valueChanges.pipe(
       startWith(this.dateForm.controls.selectedWeekDay.value),
-      map((value) => (date: Date) => date.getDay() === value ? 'example-custom-date-class' : '')
+      map((value) => (date: Date) => (date.getDay() === value ? 'example-custom-date-class' : '')),
     );
 
   filterStartDate = (date: Date | null): boolean =>
@@ -61,7 +61,7 @@ export class CalendarConfigurationExample implements OnDestroy {
     this.dateForm.valueChanges
       .pipe(
         takeUntil(this._destroyed),
-        filter(({ startDate, endDate }) => !!startDate && !!endDate)
+        filter(({ startDate, endDate }) => !!startDate && !!endDate),
       )
       .subscribe(({ startDate, endDate }) => {
         if (startDate!.getTime() === endDate!.getTime()) {

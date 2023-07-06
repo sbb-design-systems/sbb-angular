@@ -85,7 +85,7 @@ describe('SbbTooltip', () => {
         overlayContainerElement = oc.getContainerElement();
         focusMonitor = fm;
         platform = pl;
-      }
+      },
     )();
   }));
 
@@ -124,7 +124,7 @@ describe('SbbTooltip', () => {
 
       // Make sure tooltip is shown to the user and animation has finished.
       const tooltipElement = overlayContainerElement.querySelector(
-        '.sbb-tooltip-container'
+        '.sbb-tooltip-container',
       ) as HTMLElement;
       expect(tooltipElement instanceof HTMLElement).toBe(true);
       expect(tooltipElement.classList).toContain('sbb-tooltip-container-show');
@@ -242,7 +242,7 @@ describe('SbbTooltip', () => {
       tick();
 
       expect(tooltipDirective._overlayRef?.overlayElement.classList).toContain(
-        'sbb-tooltip-panel-non-interactive'
+        'sbb-tooltip-panel-non-interactive',
       );
     }));
 
@@ -387,11 +387,11 @@ describe('SbbTooltip', () => {
       let tooltipElement = overlayContainerElement.querySelector('.sbb-tooltip') as HTMLElement;
       expect(tooltipElement.classList).not.toContain(
         'custom-one',
-        'Expected to not have the class before enabling sbbTooltipClass'
+        'Expected to not have the class before enabling sbbTooltipClass',
       );
       expect(tooltipElement.classList).not.toContain(
         'custom-two',
-        'Expected to not have the class before enabling sbbTooltipClass'
+        'Expected to not have the class before enabling sbbTooltipClass',
       );
 
       // Enable the classes via ngClass syntax
@@ -417,7 +417,7 @@ describe('SbbTooltip', () => {
 
       // Make sure classes are correctly added
       const tooltipElement = overlayContainerElement.querySelector(
-        '.sbb-tooltip-panel'
+        '.sbb-tooltip-panel',
       ) as HTMLElement;
       expect(tooltipElement.classList).toContain('custom-panel-one');
       expect(tooltipElement.classList).toContain('custom-panel-two');
@@ -459,7 +459,7 @@ describe('SbbTooltip', () => {
 
         const button = ariaLabelFixture.nativeElement.querySelector('button');
         expect(button.getAttribute('aria-describedby')).toBeFalsy();
-      })
+      }),
     );
 
     it('should not try to dispose the tooltip when destroyed and done hiding', fakeAsync(() => {
@@ -501,7 +501,7 @@ describe('SbbTooltip', () => {
       fixture.detectChanges();
 
       const tooltipWrapper = overlayContainerElement.querySelector(
-        '.cdk-overlay-connected-position-bounding-box'
+        '.cdk-overlay-connected-position-bounding-box',
       )!;
 
       expect(tooltipWrapper).withContext('Expected tooltip to be shown.').toBeTruthy();
@@ -911,7 +911,7 @@ describe('SbbTooltip', () => {
 
       // Make sure tooltip is shown to the user and animation has finished
       const tooltipContainer = overlayContainerElement.querySelector(
-        '.sbb-tooltip-container'
+        '.sbb-tooltip-container',
       ) as HTMLElement;
       expect(tooltipContainer instanceof HTMLElement).toBe(true);
       expect(tooltipContainer.classList).toContain('sbb-tooltip-container-show');
@@ -1227,7 +1227,7 @@ describe('SbbTooltip', () => {
       finishCurrentTooltipAnimation(overlayContainerElement, false); // Finish the animation.
 
       expect(document.querySelector('.sbb-tooltip')!.classList).toContain(
-        'sbb-tooltip-has-close-button'
+        'sbb-tooltip-has-close-button',
       );
       expect(document.querySelector('.sbb-tooltip-close-button')).toBeTruthy();
     }));
@@ -1245,7 +1245,7 @@ describe('SbbTooltip', () => {
       finishCurrentTooltipAnimation(overlayContainerElement, false); // Finish the animation.
 
       expect(document.querySelector('.sbb-tooltip')!.classList).not.toContain(
-        'sbb-tooltip-has-close-button'
+        'sbb-tooltip-has-close-button',
       );
       expect(document.querySelector('.sbb-tooltip-close-button')).toBeFalsy();
     }));

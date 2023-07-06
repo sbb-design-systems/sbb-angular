@@ -8,7 +8,11 @@ export class ShowcasePackage {
   protected _appModule: ShowcaseModule;
   protected _appDir: DirEntry;
 
-  constructor(protected _dir: DirEntry, protected _tree: Tree, context: BazelSchematicContext) {
+  constructor(
+    protected _dir: DirEntry,
+    protected _tree: Tree,
+    context: BazelSchematicContext,
+  ) {
     this._appDir = this._dir.dir(fragment('app'));
     this._appModule = new ShowcaseModule(this._appDir, this._tree, context);
   }
@@ -32,7 +36,7 @@ export class ShowcasePackage {
       buildFile.path,
       buildFile.content
         .toString()
-        .replace(/ALL_EXAMPLES = \[[^\]]+\]/m, `ALL_EXAMPLES = [\n${exampleModules}\n]`)
+        .replace(/ALL_EXAMPLES = \[[^\]]+\]/m, `ALL_EXAMPLES = [\n${exampleModules}\n]`),
     );
     return this._appModule.render();
   }

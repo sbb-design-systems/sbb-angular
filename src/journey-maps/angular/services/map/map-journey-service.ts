@@ -16,14 +16,14 @@ import { isV1Style } from './util/style-version-lookup';
 export class SbbMapJourneyService {
   constructor(
     private _mapRouteService: SbbMapRouteService,
-    private _mapTransferService: SbbMapTransferService
+    private _mapTransferService: SbbMapTransferService,
   ) {}
 
   updateJourney(
     map: MaplibreMap,
     mapSelectionEventService: SbbMapSelectionEvent,
     journey: FeatureCollection = SBB_EMPTY_FEATURE_COLLECTION,
-    selectedLegId?: string
+    selectedLegId?: string,
   ): void {
     const routeFeatures: Feature[] = [];
     const stopoverFeatures: Feature[] = [];
@@ -54,7 +54,7 @@ export class SbbMapJourneyService {
       this._mapRouteService.updateRoute(
         map,
         mapSelectionEventService,
-        toFeatureCollection(routeFeatures)
+        toFeatureCollection(routeFeatures),
       );
       this._mapTransferService.updateTransfer(map, toFeatureCollection(transferFeatures));
     } else {
@@ -64,7 +64,7 @@ export class SbbMapJourneyService {
         // handle transfer and routes together, otherwise they can overwrite each other's transfer or route data
         toFeatureCollection(routeFeatures.concat(transferFeatures)),
         stopoverFeatures,
-        selectedLegId
+        selectedLegId,
       );
     }
   }

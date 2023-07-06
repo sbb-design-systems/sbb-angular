@@ -27,7 +27,7 @@ export class SbbTemplateOutlet implements OnChanges {
 
   constructor(
     private _viewContainerRef: ViewContainerRef,
-    @Inject(DOCUMENT) private _document: Document
+    @Inject(DOCUMENT) private _document: Document,
   ) {}
 
   ngOnChanges(changes: SimpleChanges) {
@@ -51,7 +51,7 @@ export class SbbTemplateOutlet implements OnChanges {
   private _setupNgTemplate(template: TemplateRef<any>) {
     this._viewRef = this._viewContainerRef.createEmbeddedView(
       template,
-      this.sbbTemplateOutletContext
+      this.sbbTemplateOutletContext,
     );
   }
 

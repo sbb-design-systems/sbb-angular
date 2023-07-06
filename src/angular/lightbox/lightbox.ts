@@ -20,12 +20,12 @@ export const SBB_LIGHTBOX_DATA = new InjectionToken<any>('SbbLightboxData');
 
 /** Injection token that can be used to specify default dialog options. */
 export const SBB_LIGHTBOX_DEFAULT_OPTIONS = new InjectionToken<SbbLightboxConfig>(
-  'sbb-lightbox-default-options'
+  'sbb-lightbox-default-options',
 );
 
 /** Injection token that determines the scroll handling while the dialog is open. */
 export const SBB_LIGHTBOX_SCROLL_STRATEGY = new InjectionToken<() => ScrollStrategy>(
-  'sbb-lightbox-scroll-strategy'
+  'sbb-lightbox-scroll-strategy',
 );
 
 /** @docs-private */
@@ -35,7 +35,7 @@ export function SBB_LIGHTBOX_SCROLL_STRATEGY_FACTORY(overlay: Overlay): () => Sc
 
 /** @docs-private */
 export function SBB_LIGHTBOX_SCROLL_STRATEGY_PROVIDER_FACTORY(
-  overlay: Overlay
+  overlay: Overlay,
 ): () => ScrollStrategy {
   return () => overlay.scrollStrategies.block();
 }
@@ -67,7 +67,7 @@ export class SbbLightbox extends _SbbDialogBase<SbbLightboxContainer, SbbLightbo
     injector: Injector,
     @Optional() @Inject(SBB_LIGHTBOX_DEFAULT_OPTIONS) defaultOptions: SbbLightboxConfig,
     @Inject(SBB_LIGHTBOX_SCROLL_STRATEGY) scrollStrategy: any,
-    @Optional() @SkipSelf() parentDialog: SbbLightbox
+    @Optional() @SkipSelf() parentDialog: SbbLightbox,
   ) {
     super(
       overlay,
@@ -77,7 +77,7 @@ export class SbbLightbox extends _SbbDialogBase<SbbLightboxContainer, SbbLightbo
       scrollStrategy,
       SbbLightboxRef,
       SbbLightboxContainer,
-      SBB_LIGHTBOX_DATA
+      SBB_LIGHTBOX_DATA,
     );
   }
 
@@ -89,7 +89,7 @@ export class SbbLightbox extends _SbbDialogBase<SbbLightboxContainer, SbbLightbo
    */
   override open<T, D = any, R = any>(
     componentOrTemplateRef: ComponentType<T> | TemplateRef<T>,
-    config?: SbbLightboxConfig<D>
+    config?: SbbLightboxConfig<D>,
   ): SbbLightboxRef<T, R> {
     const dialogConfig: SbbDialogConfig<D> = {
       ...config,

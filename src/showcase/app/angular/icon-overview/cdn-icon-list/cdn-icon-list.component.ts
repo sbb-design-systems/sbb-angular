@@ -17,7 +17,7 @@ export class CdnIconListComponent implements AfterViewInit {
     this._cdnIcons = newCdnIcons;
     this.filterForm.patchValue({
       namespaces: this.namespaces.filter(
-        (namespace) => !this.deprecatedNamespaces.includes(namespace)
+        (namespace) => !this.deprecatedNamespaces.includes(namespace),
       ),
     });
   }
@@ -44,7 +44,7 @@ export class CdnIconListComponent implements AfterViewInit {
     this.filteredIcons = merge(
       this.filterForm.controls.namespaces.valueChanges,
       this.filterForm.controls.fulltext.valueChanges.pipe(startWith(''), debounceTime(200)),
-      this._paginator.page
+      this._paginator.page,
     ).pipe(
       map(() => {
         const fulltext = this.filterForm.get('fulltext').value.toUpperCase();
@@ -53,20 +53,20 @@ export class CdnIconListComponent implements AfterViewInit {
         const filteredIcons = this._cdnIcons.icons.filter(
           (i) =>
             namespaces.some(
-              (namespace) => i.namespace === namespace || (!i.namespace && namespace === 'icon')
+              (namespace) => i.namespace === namespace || (!i.namespace && namespace === 'icon'),
             ) &&
             ((i.namespace && i.namespace.toUpperCase().indexOf(fulltext) !== -1) ||
               i.name.toUpperCase().indexOf(fulltext) !== -1 ||
-              i.tags.some((tag) => !!tag && tag.toUpperCase().indexOf(fulltext) !== -1))
+              i.tags.some((tag) => !!tag && tag.toUpperCase().indexOf(fulltext) !== -1)),
         );
 
         this._paginator.length = filteredIcons.length;
 
         return filteredIcons.slice(
           this._paginator.pageIndex * this.pageSize,
-          this._paginator.pageIndex * this.pageSize + this.pageSize
+          this._paginator.pageIndex * this.pageSize + this.pageSize,
         );
-      })
+      }),
     );
   }
 }

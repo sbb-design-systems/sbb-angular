@@ -48,7 +48,7 @@ export class SbbRadioButtonPanel extends _SbbRadioButtonBase {
     changeDetector: ChangeDetectorRef,
     focusMonitor: FocusMonitor,
     radioDispatcher: UniqueSelectionDispatcher,
-    @Attribute('tabindex') tabIndex?: string
+    @Attribute('tabindex') tabIndex?: string,
   ) {
     super(radioGroup, elementRef, changeDetector, focusMonitor, radioDispatcher, tabIndex);
   }

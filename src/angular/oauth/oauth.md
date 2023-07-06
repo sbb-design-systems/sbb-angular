@@ -86,7 +86,10 @@ export class AppComponent {
     return this.oauthService.getGrantedScopes();
   }
 
-  constructor(private oauthService: OAuthService, private router: Router) {
+  constructor(
+    private oauthService: OAuthService,
+    private router: Router,
+  ) {
     this.oauthService.configure(environment.authConfig);
     // If login is required, use loadDiscoveryDocumentAndLogin(this.router.url) instead.
     this.oauthService.loadDiscoveryDocumentAndTryLogin();

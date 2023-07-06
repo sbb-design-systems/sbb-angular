@@ -137,11 +137,11 @@ describe('SbbBreadcrumbs', () => {
       expect(breadcrumbs.attributes['aria-label']).toBe('breadcrumbs');
       expect(breadcrumbWrapper.attributes['role']).toBe('list');
       breadcrumbList.forEach((breadcrumb) =>
-        expect(breadcrumb.attributes['role']).toBe('listitem')
+        expect(breadcrumb.attributes['role']).toBe('listitem'),
       );
 
       expect(breadcrumbDots.nativeElement.querySelector('button')!.getAttribute('aria-label')).toBe(
-        'Show entire path'
+        'Show entire path',
       );
     });
 
@@ -181,12 +181,12 @@ describe('SbbBreadcrumbs', () => {
 
     it('should place panel trigger text at same position as trigger text', () => {
       const menuTrigger = fixture.debugElement.query(
-        By.css('.sbb-menu-trigger-breadcrumb')
+        By.css('.sbb-menu-trigger-breadcrumb'),
       ).nativeElement;
       dispatchMouseEvent(menuTrigger, 'click');
       fixture.detectChanges();
       const menuTriggerPanel = fixture.debugElement.query(
-        By.css('.sbb-menu-panel-trigger')
+        By.css('.sbb-menu-panel-trigger'),
       ).nativeElement;
 
       // Trigger text has to be at the exact same position on the screen
@@ -197,21 +197,21 @@ describe('SbbBreadcrumbs', () => {
       menuTriggerPanelText.selectNode(menuTriggerPanel.childNodes[0]);
 
       expect(menuTriggerText.getBoundingClientRect().left).toBe(
-        menuTriggerPanelText.getBoundingClientRect().left
+        menuTriggerPanelText.getBoundingClientRect().left,
       );
       expect(menuTriggerText.getBoundingClientRect().top).toBe(
-        menuTriggerPanelText.getBoundingClientRect().top
+        menuTriggerPanelText.getBoundingClientRect().top,
       );
     });
 
     it('should grow panel to the right side and stretch trigger width too', () => {
       const menuTrigger = fixture.debugElement.query(
-        By.css('.sbb-menu-trigger-breadcrumb')
+        By.css('.sbb-menu-trigger-breadcrumb'),
       ).nativeElement;
       dispatchMouseEvent(menuTrigger, 'click');
       fixture.detectChanges();
       const menuTriggerPanel = fixture.debugElement.query(
-        By.css('.sbb-menu-panel-trigger')
+        By.css('.sbb-menu-panel-trigger'),
       ).nativeElement;
       const menuPanel = fixture.debugElement.query(By.css('.sbb-menu-panel')).nativeElement;
 
@@ -225,10 +225,10 @@ describe('SbbBreadcrumbs', () => {
 
       // Panel trigger should be as wide as panel and aligned with panel
       expect(menuTriggerPanel.getBoundingClientRect().right).toBe(
-        menuPanel.getBoundingClientRect().right
+        menuPanel.getBoundingClientRect().right,
       );
       expect(menuTriggerPanel.getBoundingClientRect().left).toBe(
-        menuPanel.getBoundingClientRect().left
+        menuPanel.getBoundingClientRect().left,
       );
     });
   });

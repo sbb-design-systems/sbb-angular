@@ -42,7 +42,7 @@ export class SbbHeaderMenuItem extends _HeaderMenuItemBase implements FocusableO
   constructor(
     private _elementRef: ElementRef<HTMLElement>,
     private _focusMonitor?: FocusMonitor,
-    @Inject(DOCUMENT) document?: any
+    @Inject(DOCUMENT) document?: any,
   ) {
     super();
     if (_focusMonitor) {

@@ -59,7 +59,7 @@ export async function createFileSystemTestApp(runner: SchematicTestRunner) {
 export async function createTestCaseSetup(
   migrationName: string | string[],
   collectionPath: string,
-  inputFiles: string[]
+  inputFiles: string[],
 ) {
   const runner = new SchematicTestRunner('schematics', collectionPath);
 
@@ -136,7 +136,7 @@ export function findBazelVersionTestCases(basePath: string) {
 
       testCasesMap.set(
         targetVersion,
-        (testCasesMap.get(targetVersion) || []).concat(resolvedInputPath)
+        (testCasesMap.get(targetVersion) || []).concat(resolvedInputPath),
       );
     });
 
@@ -174,7 +174,7 @@ export function findBazelVersionTestCases(basePath: string) {
 export function defineJasmineTestCases(
   versionName: string | string[],
   collectionFile: string,
-  inputFiles: string[] | undefined
+  inputFiles: string[] | undefined,
 ) {
   // No test cases for the given version are available. Skip setting up tests for that
   // version.
@@ -193,7 +193,7 @@ export function defineJasmineTestCases(
     const { appTree: _tree, runFixers } = await createTestCaseSetup(
       versionName,
       collectionFile,
-      inputFiles
+      inputFiles,
     );
 
     await runFixers();
@@ -209,7 +209,7 @@ export function defineJasmineTestCases(
 
     it(`should apply update schematics to test case: ${inputTestName}`, () => {
       expect(appTree.readContent(join(testCasesOutputPath, `${inputTestName}.ts`))).toBe(
-        readFileContent(inputFile.replace(TEST_CASE_INPUT_SUFFIX, TEST_CASE_OUTPUT_SUFFIX))
+        readFileContent(inputFile.replace(TEST_CASE_INPUT_SUFFIX, TEST_CASE_OUTPUT_SUFFIX)),
       );
     });
   });

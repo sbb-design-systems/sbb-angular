@@ -1,7 +1,7 @@
 import { InjectionToken } from '@angular/core';
 
 export const SBB_FILE_SELECTOR_OPTIONS = new InjectionToken<SbbFileSelectorOptions>(
-  'FILE_SELECTOR_OPTIONS'
+  'FILE_SELECTOR_OPTIONS',
 );
 
 export interface SbbFileSelectorOptions {

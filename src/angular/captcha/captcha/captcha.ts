@@ -99,7 +99,7 @@ export class SbbCaptcha implements AfterViewInit, OnDestroy, ControlValueAccesso
     private _elementRef: ElementRef,
     private _loader: SbbCaptchaLoaderService,
     private _zone: NgZone,
-    @Optional() @Inject(SBB_RECAPTCHA_SETTINGS) settings?: SbbRecaptchaSettings
+    @Optional() @Inject(SBB_RECAPTCHA_SETTINGS) settings?: SbbRecaptchaSettings,
   ) {
     if (settings) {
       this.siteKey = settings.siteKey;

@@ -47,7 +47,7 @@ export class CdnIconService {
         map((res) => ({
           icons: res.picto.map((icon) => ({ namespace: 'picto', ...icon })),
           version: res.version,
-        }))
+        })),
       );
   }
 }

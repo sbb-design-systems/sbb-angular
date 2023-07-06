@@ -90,7 +90,7 @@ const SIMPLE_AUTOCOMPLETE_TEMPLATE = `
 })
 class SimpleAutocomplete implements OnDestroy {
   numberCtrl = new FormControl<{ name: string; code: string; height: number } | string | null>(
-    null
+    null,
   );
   filteredNumbers: any[];
   valueSub: Subscription;
@@ -176,7 +176,7 @@ class NgIfAutocomplete {
         return val
           ? this.options.filter((option) => new RegExp(val, 'gi').test(option))
           : this.options.slice();
-      })
+      }),
     );
   }
 }
@@ -313,7 +313,7 @@ class AutocompleteWithNativeInput {
         return val
           ? this.options.filter((option) => new RegExp(val, 'gi').test(option))
           : this.options.slice();
-      })
+      }),
     );
   }
 }
@@ -742,7 +742,7 @@ describe('SbbAutocomplete', () => {
       tick();
 
       let options = overlayContainerElement.querySelectorAll(
-        'sbb-option'
+        'sbb-option',
       ) as NodeListOf<HTMLElement>;
       options[0].click();
 
@@ -1130,7 +1130,7 @@ describe('SbbAutocomplete', () => {
       zone.simulateZoneExit();
 
       const options = overlayContainerElement.querySelectorAll(
-        'sbb-option'
+        'sbb-option',
       ) as NodeListOf<HTMLElement>;
       options[1].click();
       fixture.detectChanges();
@@ -1146,7 +1146,7 @@ describe('SbbAutocomplete', () => {
       zone.simulateZoneExit();
 
       const options = overlayContainerElement.querySelectorAll(
-        'sbb-option'
+        'sbb-option',
       ) as NodeListOf<HTMLElement>;
       options[1].click();
       fixture.detectChanges();
@@ -1167,7 +1167,7 @@ describe('SbbAutocomplete', () => {
       zone.simulateZoneExit();
 
       const options = overlayContainerElement.querySelectorAll(
-        'sbb-option'
+        'sbb-option',
       ) as NodeListOf<HTMLElement>;
       options[1].click();
       fixture.detectChanges();
@@ -1187,7 +1187,7 @@ describe('SbbAutocomplete', () => {
       fixture.detectChanges();
 
       const options = overlayContainerElement.querySelectorAll(
-        'sbb-option'
+        'sbb-option',
       ) as NodeListOf<HTMLElement>;
       options[1].click();
 
@@ -1270,7 +1270,7 @@ describe('SbbAutocomplete', () => {
       zone.simulateZoneExit();
 
       const options = overlayContainerElement.querySelectorAll(
-        'sbb-option'
+        'sbb-option',
       ) as NodeListOf<HTMLElement>;
       options[1].click();
       fixture.detectChanges();
@@ -1371,7 +1371,7 @@ describe('SbbAutocomplete', () => {
     it('should set the active item to the first option when DOWN key is pressed', () => {
       const componentInstance = fixture.componentInstance;
       const optionEls = overlayContainerElement.querySelectorAll(
-        'sbb-option'
+        'sbb-option',
       ) as NodeListOf<HTMLElement>;
 
       expect(componentInstance.trigger.panelOpen)
@@ -1391,7 +1391,7 @@ describe('SbbAutocomplete', () => {
       fixture.detectChanges();
 
       expect(
-        componentInstance.trigger.activeOption === componentInstance.options.toArray()[1]
+        componentInstance.trigger.activeOption === componentInstance.options.toArray()[1],
       ).toBe(true, 'Expected second option to be active.');
       expect(optionEls[0].classList).not.toContain('sbb-focused');
       expect(optionEls[1].classList).toContain('sbb-focused');
@@ -1400,7 +1400,7 @@ describe('SbbAutocomplete', () => {
     it('should set the active item to the last option when UP key is pressed', () => {
       const componentInstance = fixture.componentInstance;
       const optionEls = overlayContainerElement.querySelectorAll(
-        'sbb-option'
+        'sbb-option',
       ) as NodeListOf<HTMLElement>;
 
       expect(componentInstance.trigger.panelOpen)
@@ -1443,7 +1443,7 @@ describe('SbbAutocomplete', () => {
       fixture.detectChanges();
 
       const optionEls = overlayContainerElement.querySelectorAll(
-        'sbb-option'
+        'sbb-option',
       ) as NodeListOf<HTMLElement>;
 
       expect(componentInstance.trigger.activeOption === componentInstance.options.first)
@@ -1593,7 +1593,7 @@ describe('SbbAutocomplete', () => {
     it('should scroll to active options below the fold', () => {
       const trigger = fixture.componentInstance.trigger;
       const scrollContainer: HTMLElement = document.querySelector(
-        '.cdk-overlay-pane .sbb-autocomplete-panel'
+        '.cdk-overlay-pane .sbb-autocomplete-panel',
       )! as HTMLElement;
       scrollContainer.style.height = '256px'; // set panel height to a small height to enable scrolling
 
@@ -1621,7 +1621,7 @@ describe('SbbAutocomplete', () => {
 
       const trigger = fixture.componentInstance.trigger;
       const scrollContainer: HTMLElement = document.querySelector(
-        '.cdk-overlay-pane .sbb-autocomplete-panel'
+        '.cdk-overlay-pane .sbb-autocomplete-panel',
       )! as HTMLElement;
       scrollContainer.style.height = '256px'; // set panel height to a small height to enable scrolling
 
@@ -1640,7 +1640,7 @@ describe('SbbAutocomplete', () => {
 
     it('should scroll to active options on UP arrow', () => {
       const scrollContainer: HTMLElement = document.querySelector(
-        '.cdk-overlay-pane .sbb-autocomplete-panel'
+        '.cdk-overlay-pane .sbb-autocomplete-panel',
       )! as HTMLElement;
       scrollContainer.style.height = '256px'; // set panel height to a small height to enable scrolling
 
@@ -1656,7 +1656,7 @@ describe('SbbAutocomplete', () => {
     it('should not scroll to active options that are fully in the panel', () => {
       const trigger = fixture.componentInstance.trigger;
       const scrollContainer: HTMLElement = document.querySelector(
-        '.cdk-overlay-pane .sbb-autocomplete-panel'
+        '.cdk-overlay-pane .sbb-autocomplete-panel',
       )! as HTMLElement;
       scrollContainer.style.height = '256px'; // set panel height to a small height to enable scrolling
       fixture.detectChanges();
@@ -1686,7 +1686,7 @@ describe('SbbAutocomplete', () => {
     it('should scroll to active options that are above the panel', () => {
       const trigger = fixture.componentInstance.trigger;
       const scrollContainer: HTMLElement = document.querySelector(
-        '.cdk-overlay-pane .sbb-autocomplete-panel'
+        '.cdk-overlay-pane .sbb-autocomplete-panel',
       )! as HTMLElement;
       scrollContainer.style.height = '256px'; // set panel height to a small height to enable scrolling
 
@@ -2253,7 +2253,7 @@ describe('SbbAutocomplete', () => {
       const fixture = createComponent(SimpleAutocomplete);
       fixture.detectChanges();
       const inputReference = fixture.debugElement.query(
-        By.css('.sbb-form-field input')
+        By.css('.sbb-form-field input'),
       )!.nativeElement;
 
       fixture.componentInstance.trigger.openPanel();
@@ -2284,7 +2284,7 @@ describe('SbbAutocomplete', () => {
       fixture.detectChanges();
 
       const inputReference = fixture.debugElement.query(
-        By.css('.sbb-form-field input')
+        By.css('.sbb-form-field input'),
       )!.nativeElement;
       spacer.style.height = '1000px';
       document.body.appendChild(spacer);
@@ -2312,7 +2312,7 @@ describe('SbbAutocomplete', () => {
       const fixture = createComponent(SimpleAutocomplete);
       fixture.detectChanges();
       const inputReference = fixture.debugElement.query(
-        By.css('.sbb-form-field-input-wrapper')
+        By.css('.sbb-form-field-input-wrapper'),
       )!.nativeElement;
 
       // Push the autocomplete trigger down so it won't have room to open "below"
@@ -2382,7 +2382,7 @@ describe('SbbAutocomplete', () => {
 
       const input = fixture.debugElement.query(By.css('input'))!.nativeElement;
       const inputReference = fixture.debugElement.query(
-        By.css('.sbb-form-field-input-wrapper')
+        By.css('.sbb-form-field-input-wrapper'),
       )!.nativeElement;
 
       // Push the autocomplete trigger down so it won't have room to open "below"
@@ -2562,7 +2562,7 @@ describe('SbbAutocomplete', () => {
       fixture.detectChanges();
       const inputReference = fixture.debugElement.query(By.css('.sbb-form-field'))!.nativeElement;
       const inputWrapper = fixture.debugElement.query(
-        By.css('.sbb-form-field-input-wrapper')
+        By.css('.sbb-form-field-input-wrapper'),
       )!.nativeElement;
 
       // Push the autocomplete trigger up so it won't have room to open below.
@@ -2594,7 +2594,7 @@ describe('SbbAutocomplete', () => {
       fixture.detectChanges();
 
       const inputWrapper = fixture.debugElement.query(
-        By.css('.sbb-form-field-input-wrapper')
+        By.css('.sbb-form-field-input-wrapper'),
       )!.nativeElement;
 
       fixture.componentInstance.trigger.openPanel();
@@ -2634,7 +2634,7 @@ describe('SbbAutocomplete', () => {
       fixture.detectChanges();
 
       let options = overlayContainerElement.querySelectorAll(
-        'sbb-option'
+        'sbb-option',
       ) as NodeListOf<HTMLElement>;
       options[0].click();
       fixture.detectChanges();
@@ -2663,7 +2663,7 @@ describe('SbbAutocomplete', () => {
       fixture.detectChanges();
 
       let options = overlayContainerElement.querySelectorAll(
-        'sbb-option'
+        'sbb-option',
       ) as NodeListOf<HTMLElement>;
       options[0].click();
       fixture.detectChanges();
@@ -2713,7 +2713,7 @@ describe('SbbAutocomplete', () => {
         expect(overlayContainerElement.querySelectorAll('sbb-option')[2].classList)
           .withContext('Expected third option to be highlighted.')
           .toContain('sbb-focused');
-      })
+      }),
     );
 
     it('should remove aria-activedescendant when panel is closed with autoActiveFirstOption', fakeAsync(() => {
@@ -2986,7 +2986,7 @@ describe('SbbAutocomplete', () => {
         fixture.detectChanges();
 
         const options = overlayContainerElement.querySelectorAll(
-          'sbb-option'
+          'sbb-option',
         ) as NodeListOf<HTMLElement>;
         expect(options.length).toBe(1);
       }).not.toThrowError();
@@ -3154,7 +3154,7 @@ describe('SbbAutocomplete', () => {
       zone.simulateZoneExit();
 
       const scrollbar = overlayContainerElement.querySelector(
-        '.sbb-autocomplete-panel'
+        '.sbb-autocomplete-panel',
       )! as HTMLElement;
       scrollbar.style.height = '100px';
       scrollbar.scrollTop = 10;
@@ -3302,7 +3302,7 @@ describe('SbbAutocomplete', () => {
 
         expect(numberCtrl.value).toBeFalsy();
         expect(input.value).toBeFalsy();
-      })
+      }),
     );
 
     it('should propagate the auto-selected value if the user clicks away', fakeAsync(() => {
@@ -3399,7 +3399,7 @@ describe('SbbAutocomplete', () => {
       expect(input.value).toBe('Eins');
 
       const options = overlayContainerElement.querySelectorAll(
-        'sbb-option'
+        'sbb-option',
       ) as NodeListOf<HTMLElement>;
       options[2].click();
       fixture.detectChanges();
@@ -3569,7 +3569,7 @@ describe('SbbAutocomplete', () => {
 
       Promise.resolve().then(() => {
         const panel = overlayContainerElement.querySelector(
-          '.sbb-autocomplete-panel'
+          '.sbb-autocomplete-panel',
         ) as HTMLElement;
         const visibleClass = 'sbb-autocomplete-visible';
 
@@ -3578,7 +3578,7 @@ describe('SbbAutocomplete', () => {
           .withContext(`Expected panel to be visible.`)
           .toContain(visibleClass);
       });
-    })
+    }),
   );
 
   it('should emit an event when an option is selected', fakeAsync(() => {
@@ -3590,7 +3590,7 @@ describe('SbbAutocomplete', () => {
     fixture.detectChanges();
 
     const options = overlayContainerElement.querySelectorAll(
-      'sbb-option'
+      'sbb-option',
     ) as NodeListOf<HTMLElement>;
     const spy = fixture.componentInstance.optionSelected;
 
@@ -3617,7 +3617,7 @@ describe('SbbAutocomplete', () => {
     fixture.detectChanges();
 
     const options = overlayContainerElement.querySelectorAll(
-      'sbb-option'
+      'sbb-option',
     ) as NodeListOf<HTMLElement>;
     spyOn(input, 'focus').and.callFake(() => events.push('focus'));
     fixture.componentInstance.optionSelected.and.callFake(() => events.push('select'));
@@ -3643,7 +3643,7 @@ describe('SbbAutocomplete', () => {
     fixture.detectChanges();
 
     const options = overlayContainerElement.querySelectorAll(
-      'sbb-option'
+      'sbb-option',
     ) as NodeListOf<HTMLElement>;
     const spy = fixture.componentInstance.optionSelected;
 
@@ -3819,7 +3819,7 @@ describe('SbbAutocomplete', () => {
     flush();
 
     const subscription = fixture.componentInstance.trigger.autocomplete.closed.subscribe(() =>
-      inZoneSpy(NgZone.isInAngularZone())
+      inZoneSpy(NgZone.isInAngularZone()),
     );
     ngZone.onStable.emit(null);
 
@@ -3946,7 +3946,7 @@ describe('SbbAutocomplete', () => {
         const panel = overlayContainerElement.querySelector('.sbb-autocomplete-panel');
         expect(panel!.classList.contains('sbb-autocomplete-visible')).toBe(
           param.expectedVisible,
-          JSON.stringify(param)
+          JSON.stringify(param),
         );
         fixture.componentInstance.trigger.closePanel();
         fixture.detectChanges();

@@ -26,6 +26,6 @@ export function throwSbbMenuInvalidPositionY() {
 export function throwSbbMenuRecursiveError() {
   throw Error(
     `sbbMenuTriggerFor: menu cannot contain its own trigger. Assign a menu that is ` +
-      `not a parent of the trigger or move the trigger outside of the menu.`
+      `not a parent of the trigger or move the trigger outside of the menu.`,
   );
 }

@@ -48,7 +48,7 @@ export class NativeTableExample implements OnDestroy {
         return;
       }
       this.rows = ROW_DATA.filter((row) =>
-        searchInProps.some((prop) => row[prop].toUpperCase().includes(value.toUpperCase()))
+        searchInProps.some((prop) => row[prop].toUpperCase().includes(value.toUpperCase())),
       );
     });
   }

@@ -40,7 +40,7 @@ export class NgModule {
   constructor(
     private _dir: DirEntry,
     protected _tree: Tree,
-    protected _context: BazelSchematicContext
+    protected _context: BazelSchematicContext,
   ) {
     this.path = this._dir.path;
     this._findFiles(this._dir);
@@ -49,7 +49,7 @@ export class NgModule {
     this.moduleName = `${this._context.organization}/${moduleName}`;
     this.hasMarkdown = this._dir.subfiles.includes(fragment(`${basename(this.path)}.md`));
     const tsDependencies = this._context.typeScriptDependencyResolver.resolveDependencies(
-      this._fileRegistry.tsFiles
+      this._fileRegistry.tsFiles,
     );
     this.dependencies = tsDependencies.dependencies;
     this.genFiles = tsDependencies.files;
@@ -57,12 +57,12 @@ export class NgModule {
     this.hasTests = !!this._fileRegistry.specFiles.length;
     const testDependencies = this._context.typeScriptDependencyResolver.resolveDependencies(
       this._fileRegistry.specFiles,
-      ['@npm//@angular/core']
+      ['@npm//@angular/core'],
     );
     this.testDependencies = testDependencies.dependencies;
     this.hasSassLibrary = !!this._fileRegistry.scssLibaryFiles.length;
     this.sassBinaries = this._context.sassDependencyResolver.resolveDependencies(
-      this._fileRegistry.scssFiles
+      this._fileRegistry.scssFiles,
     );
     this.stylesheets = this.sassBinaries.map((s) => s.path.replace('.scss', '.css'));
     this.hasHtml = !!this._fileRegistry.htmlFiles.length;
@@ -86,7 +86,7 @@ export class NgModule {
             forEach((fileEntry) => {
               const content = formatBazelFile(
                 relative(this._tree.root.path, fileEntry.path),
-                fileEntry.content.toString()
+                fileEntry.content.toString(),
               );
               fileEntry = {
                 path: fileEntry.path,
@@ -101,9 +101,9 @@ export class NgModule {
               }
               return null;
             }),
-          ])
+          ]),
         ),
-      ]
+      ],
     );
   }
 

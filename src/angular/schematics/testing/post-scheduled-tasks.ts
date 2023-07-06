@@ -13,7 +13,7 @@ import { concatMap, filter, last } from 'rxjs/operators';
  */
 export function runPostScheduledTasks(
   runner: SchematicTestRunner,
-  taskName: string
+  taskName: string,
 ): Observable<any> {
   // Workaround until there is a public API to run scheduled tasks in the @angular-devkit.
   // See: https://github.com/angular/angular-cli/issues/11739
@@ -27,11 +27,11 @@ export function runPostScheduledTasks(
     filter((task) => task.configuration.name === taskName),
     concatMap((task) => {
       return createTaskExecutor(task.configuration.name).pipe(
-        concatMap((executor) => executor(task.configuration.options, task.context))
+        concatMap((executor) => executor(task.configuration.options, task.context)),
       );
     }),
     // Only emit the last emitted value because there can be multiple tasks with the same name.
     // The observable should only emit a value if all tasks completed.
-    last()
+    last(),
   );
 }

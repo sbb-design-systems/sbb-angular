@@ -21,12 +21,12 @@ export class MarkdownViewerComponent implements OnDestroy {
   constructor(
     private _htmlLoader: HtmlLoader,
     private _route: ActivatedRoute,
-    private _domSanitizer: DomSanitizer
+    private _domSanitizer: DomSanitizer,
   ) {
     moduleParams(this._route)
       .pipe(
         switchMap((params) => this._htmlLoader.withParams(params).fromDocumentation().load()),
-        takeUntil(this._destroyed)
+        takeUntil(this._destroyed),
       )
       .subscribe((content) => (this.content = this._domSanitizer.bypassSecurityTrustHtml(content)));
   }

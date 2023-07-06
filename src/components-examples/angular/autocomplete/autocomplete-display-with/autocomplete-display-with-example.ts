@@ -44,10 +44,10 @@ export class AutocompleteDisplayWithExample {
           option.label
             .toLocaleUpperCase()
             .indexOf(
-              (typeof newValue === 'object' ? newValue!.label : newValue).toLocaleUpperCase()
-            ) > -1
-      )
-    )
+              (typeof newValue === 'object' ? newValue!.label : newValue).toLocaleUpperCase(),
+            ) > -1,
+      ),
+    ),
   );
 
   formatOption = (value: ExampleOption) => value.label;

@@ -115,7 +115,7 @@ export class SbbTab extends _SbbTabMixinBase implements OnInit, CanDisable, OnCh
 
   constructor(
     private _viewContainerRef: ViewContainerRef,
-    @Inject(SBB_TAB_GROUP) public _closestTabGroup: any
+    @Inject(SBB_TAB_GROUP) public _closestTabGroup: any,
   ) {
     super();
   }
@@ -133,7 +133,7 @@ export class SbbTab extends _SbbTabMixinBase implements OnInit, CanDisable, OnCh
   ngOnInit(): void {
     this._contentPortal = new TemplatePortal(
       this._explicitContent || this._implicitContent,
-      this._viewContainerRef
+      this._viewContainerRef,
     );
   }
 

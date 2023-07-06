@@ -11,7 +11,7 @@ export const SBB_CHECKBOX_DEFAULT_OPTIONS = new InjectionToken<SbbCheckboxDefaul
   {
     providedIn: 'root',
     factory: SBB_CHECKBOX_DEFAULT_OPTIONS_FACTORY,
-  }
+  },
 );
 
 /** @docs-private */

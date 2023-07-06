@@ -79,7 +79,7 @@ export const SBB_MENU_INHERITED_TRIGGER_CONTEXT =
 
 /** Injection token that determines the scroll handling while the menu is open. */
 export const SBB_MENU_SCROLL_STRATEGY = new InjectionToken<() => ScrollStrategy>(
-  'sbb-menu-scroll-strategy'
+  'sbb-menu-scroll-strategy',
 );
 
 /** @docs-private */
@@ -237,7 +237,7 @@ export class SbbMenuTrigger
     private _sanitizer: DomSanitizer,
     private _breakpointObserver: BreakpointObserver,
     private _changeDetectorRef: ChangeDetectorRef,
-    private _ngZone: NgZone
+    private _ngZone: NgZone,
   ) {
     super();
 
@@ -247,7 +247,7 @@ export class SbbMenuTrigger
     _element.nativeElement.addEventListener(
       'touchstart',
       this._handleTouchStart,
-      passiveEventListenerOptions
+      passiveEventListenerOptions,
     );
 
     if (_menuItemInstance) {
@@ -287,7 +287,7 @@ export class SbbMenuTrigger
     this._element.nativeElement.removeEventListener(
       'touchstart',
       this._handleTouchStart,
-      passiveEventListenerOptions
+      passiveEventListenerOptions,
     );
 
     this._menuCloseSubscription.unsubscribe();
@@ -400,7 +400,7 @@ export class SbbMenuTrigger
             filter((event) => event.toState === 'void'),
             take(1),
             // Interrupt if the content got re-attached.
-            takeUntil(menu.lazyContent._attached)
+            takeUntil(menu.lazyContent._attached),
           )
           .subscribe({
             next: () => menu.lazyContent!.detach(),
@@ -481,7 +481,7 @@ export class SbbMenuTrigger
       const config = this._getOverlayConfig(menu);
       this._subscribeToPositions(
         menu,
-        config.positionStrategy as FlexibleConnectedPositionStrategy
+        config.positionStrategy as FlexibleConnectedPositionStrategy,
       );
       this._overlayRef = this._overlay.create(config);
 
@@ -626,7 +626,7 @@ export class SbbMenuTrigger
     const hover = this._parentSbbMenu
       ? this._parentSbbMenu._hovered().pipe(
           filter((active) => active !== this._menuItemInstance),
-          filter(() => this._menuOpen)
+          filter(() => this._menuOpen),
         )
       : observableOf();
 
@@ -689,7 +689,7 @@ export class SbbMenuTrigger
       // it won't be closed immediately after it is opened.
       .pipe(
         filter((active) => active === this._menuItemInstance && !active.disabled),
-        delay(0, asapScheduler)
+        delay(0, asapScheduler),
       )
       .subscribe(() => {
         this._openedBy = 'mouse';

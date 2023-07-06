@@ -38,7 +38,7 @@ export class StackBlitzButton {
   constructor(
     private _stackBlitzWriter: StackBlitzWriter,
     private _ngZone: NgZone,
-    private _notificationToast: SbbNotificationToast
+    private _notificationToast: SbbNotificationToast,
   ) {}
 
   openStackBlitz(): void {
@@ -47,7 +47,7 @@ export class StackBlitzButton {
     } else {
       this._notificationToast.open(
         'StackBlitz is not ready yet. Please try again in a few seconds.',
-        undefined
+        undefined,
       );
     }
   }
@@ -58,7 +58,7 @@ export class StackBlitzButton {
       this._openStackBlitzFn = await this._stackBlitzWriter.createStackBlitzForExample(
         exampleId,
         data,
-        isTest
+        isTest,
       );
     });
   }

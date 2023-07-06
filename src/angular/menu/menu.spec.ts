@@ -80,7 +80,7 @@ describe('SbbMenu', () => {
   function createComponent<T>(
     component: Type<T>,
     providers: Provider[] = [],
-    declarations: any[] = []
+    declarations: any[] = [],
   ): ComponentFixture<T> {
     TestBed.configureTestingModule({
       imports: [SbbMenuModule, NoopAnimationsModule, SbbIconModule, SbbIconTestingModule],
@@ -103,7 +103,7 @@ describe('SbbMenu', () => {
     fixture.detectChanges();
     tick(500);
     expect(fixture.componentInstance.triggerEl.nativeElement.getAttribute('aria-controls')).toBe(
-      fixture.componentInstance.menu.panelId
+      fixture.componentInstance.menu.panelId,
     );
   }));
 
@@ -655,7 +655,7 @@ describe('SbbMenu', () => {
     tick(500);
 
     const [firstMenuItemDebugEl, secondMenuItemDebugEl] = fixture.debugElement.queryAll(
-      By.css('.sbb-menu-item')
+      By.css('.sbb-menu-item'),
     )!;
 
     const firstMenuItemInstance = firstMenuItemDebugEl.componentInstance as SbbMenuItem;
@@ -738,7 +738,7 @@ describe('SbbMenu', () => {
           useFactory: (overlay: Overlay) => () => overlay.scrollStrategies.close(),
         },
       ],
-      [FakeIcon]
+      [FakeIcon],
     );
     fixture.detectChanges();
     const trigger = fixture.componentInstance.trigger;
@@ -763,7 +763,7 @@ describe('SbbMenu', () => {
 
     const panel = document.querySelector('.sbb-menu-panel-wrapper')! as HTMLElement;
     const items: HTMLElement[] = Array.from(
-      panel.querySelectorAll('.sbb-menu-panel-wrapper [sbb-menu-item]')
+      panel.querySelectorAll('.sbb-menu-panel-wrapper [sbb-menu-item]'),
     );
 
     items.forEach((item) => patchElementFocus(item));
@@ -795,7 +795,7 @@ describe('SbbMenu', () => {
     fixture.detectChanges();
 
     const items = Array.from<HTMLElement>(
-      document.querySelectorAll('.sbb-menu-panel-wrapper [sbb-menu-item]')
+      document.querySelectorAll('.sbb-menu-panel-wrapper [sbb-menu-item]'),
     );
 
     items.forEach((item) => patchElementFocus(item));
@@ -1017,7 +1017,7 @@ describe('SbbMenu', () => {
         .withContext('Expected second item to be focused')
         .toBe(items[1]);
       flush();
-    })
+    }),
   );
 
   it('should sync the focus order when an item is focused programmatically', fakeAsync(() => {
@@ -1082,7 +1082,7 @@ describe('SbbMenu', () => {
     tick(500);
 
     expect(document.activeElement).toBe(
-      overlayContainerElement.querySelector('.sbb-menu-panel-wrapper')
+      overlayContainerElement.querySelector('.sbb-menu-panel-wrapper'),
     );
   }));
 
@@ -1095,7 +1095,7 @@ describe('SbbMenu', () => {
     tick(500);
 
     expect(document.activeElement).toBe(
-      overlayContainerElement.querySelector('.sbb-menu-panel-wrapper')
+      overlayContainerElement.querySelector('.sbb-menu-panel-wrapper'),
     );
   }));
 
@@ -1109,7 +1109,7 @@ describe('SbbMenu', () => {
     const fixture = createComponent(StaticAriaLabelledByMenu);
     fixture.detectChanges();
     expect(fixture.nativeElement.querySelector('sbb-menu').hasAttribute('aria-labelledby')).toBe(
-      false
+      false,
     );
   }));
 
@@ -1117,7 +1117,7 @@ describe('SbbMenu', () => {
     const fixture = createComponent(StaticAriaDescribedbyMenu);
     fixture.detectChanges();
     expect(fixture.nativeElement.querySelector('sbb-menu').hasAttribute('aria-describedby')).toBe(
-      false
+      false,
     );
   }));
 
@@ -1362,7 +1362,7 @@ describe('SbbMenu', () => {
       await fixture.whenStable();
 
       const panelBelow = overlayContainerElement.querySelector(
-        '.sbb-menu-panel-wrapper'
+        '.sbb-menu-panel-wrapper',
       ) as HTMLElement;
 
       expect(panelBelow.classList).not.toContain('sbb-menu-panel-above');
@@ -1457,7 +1457,7 @@ describe('SbbMenu', () => {
       const expectedLeft = triggerRect.right - overlayRect.width;
       expect(Math.floor(overlayRect.left))
         .withContext(
-          `Expected menu to open in "before" position if "after" position ` + `wouldn't fit.`
+          `Expected menu to open in "before" position if "after" position ` + `wouldn't fit.`,
         )
         .toBe(Math.floor(expectedLeft));
 
@@ -1572,7 +1572,7 @@ describe('SbbMenu', () => {
       constructor(ctor: new () => T, inputs: { [key: string]: any } = {}) {
         this.fixture = createComponent(ctor);
         Object.keys(inputs).forEach(
-          (key) => ((this.fixture.componentInstance as any)[key] = inputs[key])
+          (key) => ((this.fixture.componentInstance as any)[key] = inputs[key]),
         );
         this.fixture.detectChanges();
         this.trigger = this.fixture.componentInstance.triggerEl.nativeElement;
@@ -1641,7 +1641,7 @@ describe('SbbMenu', () => {
         // Since the menu is above the trigger, the overlay bottom should be the trigger top.
         expect(Math.floor(subject.overlayRect.bottom))
           .withContext(
-            `Expected menu to open in "above" position if "below" position ` + `wouldn't fit.`
+            `Expected menu to open in "above" position if "below" position ` + `wouldn't fit.`,
           )
           .toBe(Math.floor(subject.triggerRect.top));
       }));
@@ -1680,7 +1680,7 @@ describe('SbbMenu', () => {
 
     it('should emit a close event when the backdrop is clicked', fakeAsync(() => {
       const backdrop = overlayContainerElement.querySelector(
-        '.cdk-overlay-backdrop'
+        '.cdk-overlay-backdrop',
       ) as HTMLElement;
 
       backdrop.click();
@@ -1811,7 +1811,7 @@ describe('SbbMenu', () => {
         .toBe(1);
       expect(levelOneTrigger.classList).not.toContain(
         'sbb-active',
-        'Expected the trigger to not be highlighted'
+        'Expected the trigger to not be highlighted',
       );
     }));
 
@@ -1991,7 +1991,7 @@ describe('SbbMenu', () => {
         .withContext('Expected one backdrop element')
         .toBe(1);
       expect(
-        overlay.querySelectorAll('.sbb-menu-panel-wrapper, .cdk-overlay-backdrop')[0].classList
+        overlay.querySelectorAll('.sbb-menu-panel-wrapper, .cdk-overlay-backdrop')[0].classList,
       )
         .withContext('Expected backdrop to be beneath all of the menus')
         .toContain('cdk-overlay-backdrop');
@@ -2020,7 +2020,7 @@ describe('SbbMenu', () => {
       tick(500);
 
       expect(
-        overlay.querySelectorAll('.sbb-menu-panel-wrapper')[1].contains(document.activeElement)
+        overlay.querySelectorAll('.sbb-menu-panel-wrapper')[1].contains(document.activeElement),
       )
         .withContext('Expected focus to be inside the first nested menu')
         .toBe(true);
@@ -2030,7 +2030,7 @@ describe('SbbMenu', () => {
       tick(500);
 
       expect(
-        overlay.querySelectorAll('.sbb-menu-panel-wrapper')[2].contains(document.activeElement)
+        overlay.querySelectorAll('.sbb-menu-panel-wrapper')[2].contains(document.activeElement),
       )
         .withContext('Expected focus to be inside the second nested menu')
         .toBe(true);
@@ -2040,7 +2040,7 @@ describe('SbbMenu', () => {
       tick(500);
 
       expect(
-        overlay.querySelectorAll('.sbb-menu-panel-wrapper')[1].contains(document.activeElement)
+        overlay.querySelectorAll('.sbb-menu-panel-wrapper')[1].contains(document.activeElement),
       )
         .withContext('Expected focus to be back inside the first nested menu')
         .toBe(true);
@@ -2067,7 +2067,7 @@ describe('SbbMenu', () => {
       dispatchKeyboardEvent(
         overlay.querySelectorAll('.sbb-menu-panel-wrapper')[1],
         'keydown',
-        LEFT_ARROW
+        LEFT_ARROW,
       );
       fixture.detectChanges();
       tick(500);
@@ -2452,7 +2452,7 @@ describe('SbbMenu', () => {
         expect(overlay.querySelectorAll('.sbb-menu-panel-wrapper').length)
           .withContext('Expected two open menus')
           .toBe(2);
-      })
+      }),
     );
 
     it(
@@ -2485,7 +2485,7 @@ describe('SbbMenu', () => {
         expect(overlay.querySelectorAll('.sbb-menu-panel-wrapper').length)
           .withContext('Expected two open menus to remain')
           .toBe(2);
-      })
+      }),
     );
 
     it('should not re-focus a child menu trigger when hovering another trigger', fakeAsync(() => {
@@ -2511,7 +2511,7 @@ describe('SbbMenu', () => {
 
       expect(document.activeElement).not.toBe(
         levelOneTrigger,
-        'Expected focus not to be returned to the initial trigger.'
+        'Expected focus not to be returned to the initial trigger.',
       );
     }));
 
@@ -2528,7 +2528,7 @@ describe('SbbMenu', () => {
       expect(panels.length).withContext('Expected to have 2 panels open').toBe(2);
 
       expect(
-        fixture.debugElement.queryAll(By.css('.sbb-menu-panel.sbb-menu-panel-root')).length
+        fixture.debugElement.queryAll(By.css('.sbb-menu-panel.sbb-menu-panel-root')).length,
       ).toBe(1, 'Expected to to find sbb-menu-panel-root class only once');
 
       expect(panels[0].nativeElement.classList.contains('sbb-menu-panel-root')).toBeTrue();
@@ -2546,10 +2546,10 @@ describe('SbbMenu', () => {
       const triggers = fixture.debugElement.queryAll(By.css('.sbb-menu-trigger'));
       expect(triggers.length).withContext('Expected to have 4 triggers found').toBe(4);
       expect(
-        fixture.debugElement.queryAll(By.css('.sbb-menu-trigger.sbb-menu-trigger-root')).length
+        fixture.debugElement.queryAll(By.css('.sbb-menu-trigger.sbb-menu-trigger-root')).length,
       ).toBe(
         2,
-        'Expected to to find sbb-menu-trigger-root class twice (root trigger and alternative root trigger)'
+        'Expected to to find sbb-menu-trigger-root class twice (root trigger and alternative root trigger)',
       );
 
       expect(triggers[0].nativeElement.classList.contains('sbb-menu-trigger-root')).toBeTrue();
@@ -2608,7 +2608,7 @@ describe('SbbMenu contextmenu', () => {
     fixture.detectChanges();
 
     const panelWrapper = fixture.debugElement.query(
-      By.css('.sbb-menu-panel-wrapper')
+      By.css('.sbb-menu-panel-wrapper'),
     ).nativeElement;
 
     const copiedTriggerButton = panelWrapper.querySelector('button');
@@ -2635,7 +2635,7 @@ describe('SbbMenu contextmenu', () => {
     fixture.detectChanges();
 
     const panelWrapper = fixture.debugElement.query(
-      By.css('.sbb-menu-panel-wrapper')
+      By.css('.sbb-menu-panel-wrapper'),
     ).nativeElement;
 
     const copiedTriggerButton = panelWrapper.querySelector('button')!;
@@ -2659,7 +2659,9 @@ describe('SbbMenu contextmenu', () => {
     const fixture = TestBed.createComponent(ContextmenuDynamicTrigger);
     fixture.detectChanges();
     expect(
-      fixture.debugElement.nativeElement.querySelector('.sbb-menu-trigger.sbb-menu-trigger-default')
+      fixture.debugElement.nativeElement.querySelector(
+        '.sbb-menu-trigger.sbb-menu-trigger-default',
+      ),
     ).toBeTruthy();
   });
 });
@@ -2677,8 +2679,8 @@ describe('SbbMenu headless trigger', () => {
     fixture.detectChanges();
     expect(
       fixture.debugElement.nativeElement.querySelector(
-        '.sbb-menu-trigger.sbb-menu-trigger-headless'
-      )
+        '.sbb-menu-trigger.sbb-menu-trigger-headless',
+      ),
     ).toBeTruthy();
   });
 });
@@ -2762,8 +2764,8 @@ describe('SbbMenu contextmenu trigger', () => {
 
     expect(
       fixture.debugElement.nativeElement.querySelector(
-        '.sbb-menu-trigger.sbb-menu-trigger-contextmenu sbb-icon'
-      )!.outerHTML
+        '.sbb-menu-trigger.sbb-menu-trigger-contextmenu sbb-icon',
+      )!.outerHTML,
     ).toContain('context-menu-small');
 
     fixture.componentInstance.trigger.openMenu();
@@ -2771,7 +2773,7 @@ describe('SbbMenu contextmenu trigger', () => {
 
     expect(document.querySelector('.sbb-menu-panel-type-contextmenu')).toBeTruthy();
     expect(
-      document.querySelector('.sbb-menu-panel-type-contextmenu sbb-icon')!.outerHTML
+      document.querySelector('.sbb-menu-panel-type-contextmenu sbb-icon')!.outerHTML,
     ).toContain('context-menu-small');
   });
 
@@ -2781,15 +2783,15 @@ describe('SbbMenu contextmenu trigger', () => {
 
     expect(
       fixture.debugElement.nativeElement.querySelector(
-        '.sbb-menu-trigger.sbb-menu-trigger-contextmenu sbb-icon'
-      )!.outerHTML
+        '.sbb-menu-trigger.sbb-menu-trigger-contextmenu sbb-icon',
+      )!.outerHTML,
     ).toContain('other-icon');
 
     fixture.componentInstance.trigger.openMenu();
     fixture.detectChanges();
 
     expect(
-      document.querySelector('.sbb-menu-panel-type-contextmenu sbb-icon')!.outerHTML
+      document.querySelector('.sbb-menu-panel-type-contextmenu sbb-icon')!.outerHTML,
     ).toContain('other-icon');
   });
 });

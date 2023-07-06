@@ -37,7 +37,7 @@ export class SbbOptionSelectionChange<T = any> {
     /** Reference to the option that emitted the event. */
     public source: SbbOption<T>,
     /** Whether the change in the option's value was a result of a user action. */
-    public isUserInput = false
+    public isUserInput = false,
   ) {}
 }
 
@@ -112,7 +112,7 @@ export class SbbOption<T = any>
     @Optional()
     @Inject(SBB_OPTION_PARENT_COMPONENT)
     private _parent: SbbOptionParentComponent,
-    @Optional() @Inject(SBB_OPTGROUP) readonly group: SbbOptgroup
+    @Optional() @Inject(SBB_OPTGROUP) readonly group: SbbOptgroup,
   ) {}
 
   /**
@@ -279,7 +279,7 @@ export class SbbOption<T = any>
   private _findAllTextNodesWithMatch(
     matcher: RegExp,
     localeNormalizer: (value: string) => string,
-    node: Node = this._element.nativeElement
+    node: Node = this._element.nativeElement,
   ): ChildNode[] {
     const nodes: ChildNode[] = [];
     const childNodes = node.childNodes;
@@ -306,7 +306,7 @@ export class SbbOption<T = any>
   private _highlightNode(
     node: ChildNode,
     matcher: RegExp,
-    localeNormalizer: (value: string) => string
+    localeNormalizer: (value: string) => string,
   ) {
     const nodes: Node[] = [];
     const doc: Document = this._document;
@@ -350,7 +350,7 @@ export class SbbOption<T = any>
 export function countGroupLabelsBeforeOption(
   optionIndex: number,
   options: QueryList<SbbOption>,
-  optionGroups: QueryList<SbbOptgroup>
+  optionGroups: QueryList<SbbOptgroup>,
 ): number {
   if (optionGroups.length) {
     const optionsArray = options.toArray();
@@ -381,7 +381,7 @@ export function getOptionScrollPosition(
   optionOffset: number,
   optionHeight: number,
   currentScrollPosition: number,
-  panelHeight: number
+  panelHeight: number,
 ): number {
   if (optionOffset < currentScrollPosition) {
     return optionOffset;

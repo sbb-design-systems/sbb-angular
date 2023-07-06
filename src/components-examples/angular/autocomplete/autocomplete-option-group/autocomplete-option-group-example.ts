@@ -44,9 +44,9 @@ export class AutocompleteOptionGroupExample implements OnInit {
         !newValue || newValue.length < 2
           ? []
           : options.filter(
-              (option) => option.toLocaleUpperCase().indexOf(newValue.toLocaleUpperCase()) > -1
-            )
-      )
+              (option) => option.toLocaleUpperCase().indexOf(newValue.toLocaleUpperCase()) > -1,
+            ),
+      ),
     );
   }
 }

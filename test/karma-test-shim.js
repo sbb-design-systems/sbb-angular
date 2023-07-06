@@ -27,7 +27,7 @@ function runSbbAngularSpecs() {
   return Promise.all(
     specFiles.map(function (fileName) {
       return System.import(fileName);
-    })
+    }),
   );
 }
 
@@ -51,7 +51,7 @@ function configureTestBed() {
 
     var testBed = testing.TestBed.initTestEnvironment(
       testingBrowser.BrowserDynamicTestingModule,
-      testingBrowser.platformBrowserDynamicTesting()
+      testingBrowser.platformBrowserDynamicTesting(),
     );
 
     patchTestBedToDestroyFixturesAfterEveryTest(testBed);

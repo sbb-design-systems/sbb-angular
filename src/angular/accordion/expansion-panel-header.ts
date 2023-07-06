@@ -63,7 +63,7 @@ export class SbbExpansionPanelHeader
     private _focusMonitor: FocusMonitor,
     private _changeDetectorRef: ChangeDetectorRef,
     @Inject(DOCUMENT) private _document?: TypeRef<Document>,
-    @Attribute('tabindex') tabIndex?: string
+    @Attribute('tabindex') tabIndex?: string,
   ) {
     super();
     const accordionHideToggleChange = panel.accordion
@@ -77,7 +77,7 @@ export class SbbExpansionPanelHeader
       panel.opened,
       panel.closed,
       accordionHideToggleChange,
-      panel._inputChanges.pipe(filter((changes) => !!(changes.hideToggle || changes.disabled)))
+      panel._inputChanges.pipe(filter((changes) => !!(changes.hideToggle || changes.disabled))),
     ).subscribe(() => this._changeDetectorRef.markForCheck());
 
     // Avoids focus being lost if the panel contained the focused element and was closed.

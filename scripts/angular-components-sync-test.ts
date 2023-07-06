@@ -445,7 +445,7 @@ function testNoChecked() {
         { checked: false, sha: 'f63d669977282c4490f88a093580618a81b5bb9d' },
         { checked: false, sha: '667a555edff9422b879dd401ac53ce2d279ee1a4' },
       ],
-      'f10d245cca22930e6d88aad03ede12f50f96746f'
+      'f10d245cca22930e6d88aad03ede12f50f96746f',
     ),
     createIssueBody(
       [
@@ -454,8 +454,8 @@ function testNoChecked() {
         { checked: false, sha: 'f63d669977282c4490f88a093580618a81b5bb9d' },
         { checked: false, sha: '667a555edff9422b879dd401ac53ce2d279ee1a4' },
       ],
-      'f10d245cca22930e6d88aad03ede12f50f96746f'
-    )
+      'f10d245cca22930e6d88aad03ede12f50f96746f',
+    ),
   );
 }
 function testSomeChecked() {
@@ -467,15 +467,15 @@ function testSomeChecked() {
         { checked: false, sha: 'f63d669977282c4490f88a093580618a81b5bb9d' },
         { checked: false, sha: '667a555edff9422b879dd401ac53ce2d279ee1a4' },
       ],
-      'f10d245cca22930e6d88aad03ede12f50f96746f'
+      'f10d245cca22930e6d88aad03ede12f50f96746f',
     ),
     createIssueBody(
       [
         { checked: false, sha: 'f63d669977282c4490f88a093580618a81b5bb9d' },
         { checked: false, sha: '667a555edff9422b879dd401ac53ce2d279ee1a4' },
       ],
-      '99c611219181b8014a6ed4c585939eda9a97f7f5'
-    )
+      '99c611219181b8014a6ed4c585939eda9a97f7f5',
+    ),
   );
 }
 function testSomeCheckedWithGap() {
@@ -487,15 +487,15 @@ function testSomeCheckedWithGap() {
         { checked: false, sha: 'f63d669977282c4490f88a093580618a81b5bb9d' },
         { checked: true, sha: '667a555edff9422b879dd401ac53ce2d279ee1a4' },
       ],
-      'f10d245cca22930e6d88aad03ede12f50f96746f'
+      'f10d245cca22930e6d88aad03ede12f50f96746f',
     ),
     createIssueBody(
       [
         { checked: false, sha: 'f63d669977282c4490f88a093580618a81b5bb9d' },
         { checked: true, sha: '667a555edff9422b879dd401ac53ce2d279ee1a4' },
       ],
-      '99c611219181b8014a6ed4c585939eda9a97f7f5'
-    )
+      '99c611219181b8014a6ed4c585939eda9a97f7f5',
+    ),
   );
 }
 function testSomeCheckedNotAtStart() {
@@ -506,7 +506,7 @@ function testSomeCheckedNotAtStart() {
         { checked: true, sha: '99c611219181b8014a6ed4c585939eda9a97f7f5' },
         { checked: true, sha: 'f63d669977282c4490f88a093580618a81b5bb9d' },
       ],
-      'f10d245cca22930e6d88aad03ede12f50f96746f'
+      'f10d245cca22930e6d88aad03ede12f50f96746f',
     ),
     createIssueBody(
       [
@@ -515,8 +515,8 @@ function testSomeCheckedNotAtStart() {
         { checked: true, sha: 'f63d669977282c4490f88a093580618a81b5bb9d' },
         { checked: false, sha: '667a555edff9422b879dd401ac53ce2d279ee1a4' },
       ],
-      'f10d245cca22930e6d88aad03ede12f50f96746f'
-    )
+      'f10d245cca22930e6d88aad03ede12f50f96746f',
+    ),
   );
 }
 function testNoContent() {
@@ -529,8 +529,8 @@ function testNoContent() {
         { checked: false, sha: 'f63d669977282c4490f88a093580618a81b5bb9d' },
         { checked: false, sha: '667a555edff9422b879dd401ac53ce2d279ee1a4' },
       ],
-      'f10d245cca22930e6d88aad03ede12f50f96746f'
-    )
+      'f10d245cca22930e6d88aad03ede12f50f96746f',
+    ),
   );
 }
 function testNoOutputContent() {
@@ -542,9 +542,9 @@ function testNoOutputContent() {
         { checked: true, sha: 'f63d669977282c4490f88a093580618a81b5bb9d' },
         { checked: true, sha: '667a555edff9422b879dd401ac53ce2d279ee1a4' },
       ],
-      'f10d245cca22930e6d88aad03ede12f50f96746f'
+      'f10d245cca22930e6d88aad03ede12f50f96746f',
     ),
-    createIssueBody('none', '667a555edff9422b879dd401ac53ce2d279ee1a4')
+    createIssueBody('none', '667a555edff9422b879dd401ac53ce2d279ee1a4'),
   );
 }
 
@@ -556,7 +556,7 @@ async function test(input: string, expectedOutput: string) {
       result = body;
       done = true;
     }),
-    new Date(0)
+    new Date(0),
   );
   await angularComponentsSync.run();
   const expected = result === expectedOutput;
@@ -583,7 +583,7 @@ ${
               commitList
                 .find((origCommit) => origCommit.sha === commit.sha)!
                 .commit.message.match(/^(.*)$/m)![0]
-            }](https://github.com/angular/components/commit/${commit.sha})`
+            }](https://github.com/angular/components/commit/${commit.sha})`,
         )
         .join('\r\n')
 }\r

@@ -35,7 +35,7 @@ export function ngAdd(options: Schema): Rule {
       (cdkVersionTag != null && getMajorVersion(cdkVersionTag) < 14)
     ) {
       context.logger.error(
-        `Please update Angular dependencies first (See https://update.angular.io/?l=3&v=13.0-14.0): `
+        `Please update Angular dependencies first (See https://update.angular.io/?l=3&v=13.0-14.0): `,
       );
       context.logger.error('');
       context.logger.error(`  ng update @angular/core@14 @angular/cli@14 @angular/cdk@14 --force`);
@@ -77,8 +77,8 @@ export function ngAdd(options: Schema): Rule {
     if (legacyVersions.length) {
       context.logger.warn(
         `Your repository includes the deprecated packages ${legacyVersions.join(
-          ', '
-        )}. If you like to automatically migrate from the legacy packages to @sbb-esta/angular, please add version 13 first and see our how-to-update guide.`
+          ', ',
+        )}. If you like to automatically migrate from the legacy packages to @sbb-esta/angular, please add version 13 first and see our how-to-update guide.`,
       );
     }
   };

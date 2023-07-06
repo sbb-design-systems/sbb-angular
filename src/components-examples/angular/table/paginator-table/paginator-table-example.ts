@@ -49,7 +49,7 @@ export class PaginatorTableExample implements OnInit, OnDestroy {
 
   rowCount(rowCount: number) {
     this.dataSource = new SbbTableDataSource<VehicleExampleItem>(
-      VEHICLE_EXAMPLE_DATA.slice(0, rowCount)
+      VEHICLE_EXAMPLE_DATA.slice(0, rowCount),
     );
     this.dataSource.paginator = this.paginator;
   }
