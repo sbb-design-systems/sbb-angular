@@ -10,7 +10,10 @@ export class SbbMapCursorStyleEvent {
   private _subscription: Subscription;
   private _mouseEventListener: (event: MapMouseEvent) => void;
 
-  constructor(private _mapInstance: MaplibreMap, private _layerIds: string[]) {
+  constructor(
+    private _mapInstance: MaplibreMap,
+    private _layerIds: string[],
+  ) {
     if (!this._layerIds.length) {
       return;
     }

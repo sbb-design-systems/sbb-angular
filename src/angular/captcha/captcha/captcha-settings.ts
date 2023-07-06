@@ -4,7 +4,7 @@
 import { InjectionToken } from '@angular/core';
 
 export const SBB_RECAPTCHA_SETTINGS = new InjectionToken<SbbRecaptchaSettings>(
-  'recaptcha-settings'
+  'recaptcha-settings',
 );
 
 export interface SbbRecaptchaSettings {

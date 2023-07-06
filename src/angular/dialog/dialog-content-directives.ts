@@ -57,7 +57,7 @@ export class SbbDialogClose implements OnInit, OnChanges {
     // tslint:disable-next-line: lightweight-tokens
     @Optional() private _dialogRef: SbbDialogRef<any>,
     private _elementRef: ElementRef<HTMLElement>,
-    private _dialog: SbbDialog
+    private _dialog: SbbDialog,
   ) {}
 
   ngOnInit() {
@@ -91,7 +91,7 @@ export class SbbDialogClose implements OnInit, OnChanges {
     _closeDialogVia(
       this._dialogRef,
       event.screenX === 0 && event.screenY === 0 ? 'keyboard' : 'mouse',
-      this.dialogResult
+      this.dialogResult,
     );
   }
 }
@@ -118,7 +118,7 @@ export class _SbbDialogTitleBase implements OnInit {
     @Optional() protected _dialogRef: SbbDialogRef<any>,
     private _elementRef: ElementRef<HTMLElement>,
     private _dialog: SbbDialog,
-    private _changeDetectorRef: ChangeDetectorRef
+    private _changeDetectorRef: ChangeDetectorRef,
   ) {}
 
   ngOnInit() {

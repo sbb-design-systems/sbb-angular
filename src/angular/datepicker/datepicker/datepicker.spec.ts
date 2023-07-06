@@ -28,7 +28,7 @@ describe('SbbDatepicker', () => {
   function createComponent(
     component: Type<any>,
     imports: Type<any>[] = [],
-    providers: (FactoryProvider | ValueProvider)[] = []
+    providers: (FactoryProvider | ValueProvider)[] = [],
   ): ComponentFixture<any> {
     TestBed.configureTestingModule({
       imports: [
@@ -164,7 +164,7 @@ describe('SbbDatepicker', () => {
         flush();
 
         const popup = document.querySelector(
-          '.cdk-overlay-pane .sbb-datepicker-content-container'
+          '.cdk-overlay-pane .sbb-datepicker-content-container',
         )!;
         expect(popup).toBeTruthy();
         expect(popup.getAttribute('aria-labelledby')).toBe('test-label');
@@ -176,7 +176,7 @@ describe('SbbDatepicker', () => {
         fakeAsync(() => {
           const selectedChangedSpy = spyOn(
             testComponent.datepicker.selectedChanged,
-            'next'
+            'next',
           ).and.callThrough();
 
           for (let changeCount = 1; changeCount < 3; changeCount++) {
@@ -196,7 +196,7 @@ describe('SbbDatepicker', () => {
           expect(selectedChangedSpy.calls.count()).toEqual(1);
           expect(document.querySelector('sbb-dialog-container')).toBeNull();
           expect(testComponent.datepickerInput.value).toEqual(new Date(2020, JAN, 2));
-        })
+        }),
       );
 
       it(
@@ -205,7 +205,7 @@ describe('SbbDatepicker', () => {
         fakeAsync(() => {
           const selectedChangedSpy = spyOn(
             testComponent.datepicker.selectedChanged,
-            'next'
+            'next',
           ).and.callThrough();
 
           for (let changeCount = 1; changeCount <= 3; changeCount++) {
@@ -224,7 +224,7 @@ describe('SbbDatepicker', () => {
           expect(selectedChangedSpy.calls.count()).toEqual(1);
           expect(document.querySelector('sbb-dialog-container')).toBeNull();
           expect(testComponent.datepickerInput.value).toEqual(new Date(2020, JAN, 1));
-        })
+        }),
       );
 
       it('startAt should fallback to input value', () => {
@@ -311,7 +311,7 @@ describe('SbbDatepicker', () => {
           'keydown',
           DOWN_ARROW,
           undefined,
-          { alt: true }
+          { alt: true },
         );
 
         fixture.detectChanges();
@@ -580,7 +580,7 @@ describe('SbbDatepicker', () => {
         flush();
 
         const popup = document.querySelector(
-          '.cdk-overlay-pane .sbb-datepicker-content-container'
+          '.cdk-overlay-pane .sbb-datepicker-content-container',
         )!;
         expect(popup).toBeTruthy();
         expect(popup.getAttribute('aria-labelledby')).toBe(label.getAttribute('id'));
@@ -767,13 +767,13 @@ describe('SbbDatepicker', () => {
         testComponent.secondDatepicker.setValue(new Date(2023, JAN, 15));
         fixture.detectChanges();
         expect(
-          fixture.nativeElement.querySelectorAll('.sbb-datepicker-arrow-button-left').length
+          fixture.nativeElement.querySelectorAll('.sbb-datepicker-arrow-button-left').length,
         ).toBe(1);
         testComponent.firstDatepicker.setValue(new Date(2023, JAN, 13));
         fixture.detectChanges();
 
         expect(
-          fixture.nativeElement.querySelectorAll('.sbb-datepicker-arrow-button-left').length
+          fixture.nativeElement.querySelectorAll('.sbb-datepicker-arrow-button-left').length,
         ).toBe(2);
       });
     });
@@ -820,7 +820,7 @@ describe('SbbDatepicker', () => {
 
         // Then '-' should be shown as placeholder
         expect(
-          fixture.debugElement.nativeElement.querySelector('input').getAttribute('placeholder')
+          fixture.debugElement.nativeElement.querySelector('input').getAttribute('placeholder'),
         ).toBe('-');
       }));
     });
@@ -845,10 +845,10 @@ describe('SbbDatepicker', () => {
 
     it('should display default aria-labels for arrows', () => {
       const nextButton = document.querySelector(
-        '.default-arrow-labels button.sbb-datepicker-arrow-button-right'
+        '.default-arrow-labels button.sbb-datepicker-arrow-button-right',
       );
       const prevButton = document.querySelector(
-        '.default-arrow-labels button.sbb-datepicker-arrow-button-left'
+        '.default-arrow-labels button.sbb-datepicker-arrow-button-left',
       );
       expect(nextButton!.getAttribute('aria-label')).toEqual('Next day');
       expect(prevButton!.getAttribute('aria-label')).toEqual('Previous day');
@@ -856,10 +856,10 @@ describe('SbbDatepicker', () => {
 
     it('should display custom aria-labels for arrows', () => {
       const nextButton = document.querySelector(
-        '.custom-arrow-labels button.sbb-datepicker-arrow-button-right'
+        '.custom-arrow-labels button.sbb-datepicker-arrow-button-right',
       );
       const prevButton = document.querySelector(
-        '.custom-arrow-labels button.sbb-datepicker-arrow-button-left'
+        '.custom-arrow-labels button.sbb-datepicker-arrow-button-left',
       );
       expect(nextButton!.getAttribute('aria-label')).toEqual('Select next day');
       expect(prevButton!.getAttribute('aria-label')).toEqual('Select previous day');
@@ -930,7 +930,7 @@ describe('SbbDatepicker', () => {
       fixture = createComponent(
         StandaloneDateInputWithoutOverflowComponent,
         [],
-        [{ provide: SBB_DATEPICKER_PREVENT_OVERFLOW, useValue: true }]
+        [{ provide: SBB_DATEPICKER_PREVENT_OVERFLOW, useValue: true }],
       );
 
       fixture.detectChanges();

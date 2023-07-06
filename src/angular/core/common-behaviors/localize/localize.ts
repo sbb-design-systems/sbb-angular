@@ -43,10 +43,10 @@ export interface LocalizeFn {
 
 /** @nodoc */
 export interface TranslateFn {
-  (messageParts: TemplateStringsArray, expressions: readonly any[]): [
-    TemplateStringsArray,
-    readonly any[]
-  ];
+  (
+    messageParts: TemplateStringsArray,
+    expressions: readonly any[],
+  ): [TemplateStringsArray, readonly any[]];
 }
 
 /**

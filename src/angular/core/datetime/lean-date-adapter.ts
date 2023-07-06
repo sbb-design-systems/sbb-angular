@@ -11,7 +11,7 @@ export class SbbLeanDateAdapter extends SbbNativeDateAdapter {
   constructor(
     @Inject(LOCALE_ID) protected override _locale: string,
     @Optional() @Inject(SBB_DATEPICKER_2DIGIT_YEAR_PIVOT) yearPivot: number,
-    @Optional() @Inject(SBB_DATEPICKER_PREVENT_OVERFLOW) preventOverflow?: boolean
+    @Optional() @Inject(SBB_DATEPICKER_PREVENT_OVERFLOW) preventOverflow?: boolean,
   ) {
     super(_locale, yearPivot, preventOverflow);
   }

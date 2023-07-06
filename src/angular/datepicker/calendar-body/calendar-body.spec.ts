@@ -64,7 +64,7 @@ class CalendarBodyWithDisabledCellsComponent {
       const cell = createCell(d);
       cell.enabled = d % 2 === 0;
       return cell;
-    })
+    }),
   );
   allowDisabledSelection = false;
   selected: number;
@@ -125,7 +125,7 @@ describe('SbbCalendarBody', () => {
     it('highlights today', () => {
       // tslint:disable-next-line:no-non-null-assertion
       const todayCell = calendarBodyNativeElement.querySelector(
-        '.sbb-calendar-body-today .sbb-calendar-body-cell-content'
+        '.sbb-calendar-body-today .sbb-calendar-body-cell-content',
       )!;
       expect(todayCell).not.toBeNull();
       expect(todayCell.innerHTML.trim()).toBe('3');
@@ -134,7 +134,7 @@ describe('SbbCalendarBody', () => {
     it('highlights selected', () => {
       // tslint:disable-next-line:no-non-null-assertion
       const selectedCell = calendarBodyNativeElement.querySelector(
-        '.sbb-calendar-body-selected .sbb-calendar-body-cell-content'
+        '.sbb-calendar-body-selected .sbb-calendar-body-cell-content',
       )!;
       expect(selectedCell).not.toBeNull();
       expect(selectedCell.innerHTML.trim()).toBe('4');
@@ -168,7 +168,7 @@ describe('SbbCalendarBody', () => {
 
     it('cell should be selected on click', () => {
       const todayElement = calendarBodyNativeElement.querySelector(
-        '.sbb-calendar-body-today'
+        '.sbb-calendar-body-today',
       ) as HTMLElement;
       todayElement.click();
       fixture.detectChanges();

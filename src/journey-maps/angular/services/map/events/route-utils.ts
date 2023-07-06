@@ -14,7 +14,7 @@ export const SBB_ROUTE_LINE_COLOR_PROPERTY_NAME = 'lineColor';
 export class SbbRouteUtils {
   constructor(
     private _mapEventUtils: SbbMapEventUtils,
-    private _mapRoutesService: SbbMapRoutesService
+    private _mapRoutesService: SbbMapRoutesService,
   ) {}
 
   filterRouteFeatures(currentFeatures: SbbFeatureData[]): SbbFeatureData[] {
@@ -28,7 +28,7 @@ export class SbbRouteUtils {
   findRelatedRoutes(
     routeFeature: Feature,
     mapInstance: MaplibreMap,
-    find: 'all' | 'visibleOnly'
+    find: 'all' | 'visibleOnly',
   ): SbbFeatureData[] {
     const filter = this._createRelatedRoutesFilter(routeFeature);
     if (find === 'visibleOnly') {

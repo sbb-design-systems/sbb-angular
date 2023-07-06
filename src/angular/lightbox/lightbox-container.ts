@@ -88,7 +88,7 @@ export class SbbLightboxContainer extends _SbbDialogContainerBase implements OnD
     overlayRef: OverlayRef,
     private _changeDetectorRef: ChangeDetectorRef,
     focusMonitor?: FocusMonitor,
-    private _viewportRuler?: ViewportRuler
+    private _viewportRuler?: ViewportRuler,
   ) {
     super(
       elementRef,
@@ -98,7 +98,7 @@ export class SbbLightboxContainer extends _SbbDialogContainerBase implements OnD
       checker,
       ngZone,
       overlayRef,
-      focusMonitor
+      focusMonitor,
     );
 
     // Manually calculate the height of the Lightbox. This is necessary because on mobile Chrome and
@@ -110,7 +110,7 @@ export class SbbLightboxContainer extends _SbbDialogContainerBase implements OnD
       .subscribe(() =>
         overlayRef.updateSize({
           height: this._viewportRuler!.getViewportSize().height,
-        })
+        }),
       );
   }
 

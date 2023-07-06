@@ -202,7 +202,7 @@ export class SbbIcon implements OnInit, AfterViewChecked, OnDestroy {
     private _iconRegistry: SbbIconRegistry,
     @Attribute('aria-hidden') ariaHidden: string,
     @Inject(SBB_ICON_LOCATION) private _location: SbbIconLocation,
-    private readonly _errorHandler: ErrorHandler
+    private readonly _errorHandler: ErrorHandler,
   ) {
     // If the user has not explicitly set aria-hidden, mark the icon as hidden, as this is
     // the right thing to do for the majority of icon use-cases.
@@ -261,7 +261,7 @@ export class SbbIcon implements OnInit, AfterViewChecked, OnDestroy {
         this._previousPath = newPath;
         this._prependPathToReferences(
           newPath,
-          this._elementRef.nativeElement.querySelector('svg') as SVGElement
+          this._elementRef.nativeElement.querySelector('svg') as SVGElement,
         );
       }
     }
@@ -427,7 +427,7 @@ export class SbbIcon implements OnInit, AfterViewChecked, OnDestroy {
           (err: Error) => {
             const errorMessage = `Error retrieving icon ${namespace}:${iconName}! ${err.message}`;
             this._errorHandler.handleError(new Error(errorMessage));
-          }
+          },
         );
     }
   }

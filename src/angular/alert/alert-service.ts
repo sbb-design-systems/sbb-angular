@@ -21,7 +21,7 @@ export class SbbAlertService {
     this.outletReady = this._outletReady.pipe(
       filter((r) => !!r),
       take(1),
-      mapTo(undefined)
+      mapTo(undefined),
     );
   }
 
@@ -30,7 +30,7 @@ export class SbbAlertService {
   add(message: string, config?: SbbAlertConfig): SbbAlertRef;
   add(
     messageOrConfig: string | (SbbAlertConfig & { message: string }),
-    config?: SbbAlertConfig
+    config?: SbbAlertConfig,
   ): SbbAlertRef {
     this._assertOutlet();
     if (typeof messageOrConfig === 'string') {
@@ -58,7 +58,7 @@ export class SbbAlertService {
   _unregister(outletInstance: SbbAlertOutlet) {
     if (!this._outletInstance) {
       throw new Error(
-        'Trying to remove a <sbb-alert-outlet> that has not been registered previously!'
+        'Trying to remove a <sbb-alert-outlet> that has not been registered previously!',
       );
     } else if (this._outletInstance !== outletInstance) {
       throw new Error('Trying to remove an unregistered <sbb-alert-outlet>!');
@@ -70,7 +70,7 @@ export class SbbAlertService {
   private _assertOutlet() {
     if (!this._outletInstance) {
       throw new Error(
-        'No <sbb-alert-outlet> has been registered! Have you added a <sbb-alert-outlet> element in your DOM?'
+        'No <sbb-alert-outlet> has been registered! Have you added a <sbb-alert-outlet> element in your DOM?',
       );
     }
   }

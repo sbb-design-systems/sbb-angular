@@ -41,7 +41,7 @@ export abstract class _SbbTabHeaderBase
     viewportRuler: ViewportRuler,
     ngZone: NgZone,
     platform: Platform,
-    @Optional() @Inject(ANIMATION_MODULE_TYPE) animationMode?: string
+    @Optional() @Inject(ANIMATION_MODULE_TYPE) animationMode?: string,
   ) {
     super(elementRef, changeDetectorRef, viewportRuler, ngZone, platform, animationMode);
   }
@@ -89,7 +89,7 @@ export class SbbTabHeader extends _SbbTabHeaderBase {
     viewportRuler: ViewportRuler,
     ngZone: NgZone,
     platform: Platform,
-    @Optional() @Inject(ANIMATION_MODULE_TYPE) animationMode?: string
+    @Optional() @Inject(ANIMATION_MODULE_TYPE) animationMode?: string,
   ) {
     super(elementRef, changeDetectorRef, viewportRuler, ngZone, platform, animationMode);
   }

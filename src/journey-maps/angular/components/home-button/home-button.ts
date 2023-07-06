@@ -20,7 +20,7 @@ export class SbbHomeButton implements OnInit {
 
   ngOnInit(): void {
     this.homeButtonLabel = `${this._i18n.getText('a4a.visualFunction')} ${this._i18n.getText(
-      'a4a.homeButton'
+      'a4a.homeButton',
     )}`;
   }
 

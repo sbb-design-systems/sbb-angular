@@ -133,7 +133,7 @@ describe('SbbTabGroup', () => {
     it('should update tab positions when selected index is changed', () => {
       fixture.detectChanges();
       const component: SbbTabGroup = fixture.debugElement.query(
-        By.css('sbb-tab-group')
+        By.css('sbb-tab-group'),
       )!.componentInstance;
       const tabs: SbbTab[] = component._tabs.toArray();
 
@@ -159,7 +159,7 @@ describe('SbbTabGroup', () => {
     it('should clamp the selected index to the size of the number of tabs', () => {
       fixture.detectChanges();
       const component: SbbTabGroup = fixture.debugElement.query(
-        By.css('sbb-tab-group')
+        By.css('sbb-tab-group'),
       )!.componentInstance;
 
       // Set the index to be negative, expect first tab selected
@@ -235,7 +235,7 @@ describe('SbbTabGroup', () => {
 
       expect(fixture.componentInstance.handleFocus).toHaveBeenCalledTimes(1);
       expect(fixture.componentInstance.handleFocus).toHaveBeenCalledWith(
-        jasmine.objectContaining({ index: 2 })
+        jasmine.objectContaining({ index: 2 }),
       );
     });
 
@@ -260,13 +260,13 @@ describe('SbbTabGroup', () => {
 
       expect(fixture.componentInstance.handleFocus).toHaveBeenCalledTimes(2);
       expect(fixture.componentInstance.handleFocus).toHaveBeenCalledWith(
-        jasmine.objectContaining({ index: 1 })
+        jasmine.objectContaining({ index: 1 }),
       );
     });
 
     it('should clean up the tabs QueryList on destroy', () => {
       const component: SbbTabGroup = fixture.debugElement.query(
-        By.css('sbb-tab-group')
+        By.css('sbb-tab-group'),
       )!.componentInstance;
       const spy = jasmine.createSpy('complete spy');
       const subscription = component._tabs.changes.subscribe({ complete: spy });
@@ -294,17 +294,17 @@ describe('SbbTabGroup', () => {
 
       expect(fixture.componentInstance.handleFocus).toHaveBeenCalledTimes(1);
       expect(fixture.componentInstance.handleFocus).toHaveBeenCalledWith(
-        jasmine.objectContaining({ index: 2 })
+        jasmine.objectContaining({ index: 2 }),
       );
     }));
 
     it('should be able to programmatically focus a particular tab', () => {
       fixture.detectChanges();
       const tabGroup: SbbTabGroup = fixture.debugElement.query(
-        By.css('sbb-tab-group')
+        By.css('sbb-tab-group'),
       ).componentInstance;
       const tabHeader: SbbTabHeader = fixture.debugElement.query(
-        By.css('sbb-tab-header')
+        By.css('sbb-tab-header'),
       ).componentInstance;
 
       expect(tabHeader.focusIndex).not.toBe(3);
@@ -407,7 +407,7 @@ describe('SbbTabGroup', () => {
       labels = fixture.debugElement.queryAll(By.css('.sbb-tab-disabled'));
       expect(labels.length).toBe(2);
       expect(
-        labels.every((label) => label.nativeElement.getAttribute('aria-disabled') === 'true')
+        labels.every((label) => label.nativeElement.getAttribute('aria-disabled') === 'true'),
       ).toBe(true);
     });
   });
@@ -424,7 +424,7 @@ describe('SbbTabGroup', () => {
 
     it('should be able to add a new tab, select it, and have correct origin position', fakeAsync(() => {
       const component: SbbTabGroup = fixture.debugElement.query(
-        By.css('sbb-tab-group')
+        By.css('sbb-tab-group'),
       )!.componentInstance;
 
       let tabs: SbbTab[] = component._tabs.toArray();
@@ -456,7 +456,7 @@ describe('SbbTabGroup', () => {
 
     it('should update selected index if the last tab removed while selected', fakeAsync(() => {
       const component: SbbTabGroup = fixture.debugElement.query(
-        By.css('sbb-tab-group')
+        By.css('sbb-tab-group'),
       )!.componentInstance;
 
       const numberOfTabs = component._tabs.length;
@@ -475,7 +475,7 @@ describe('SbbTabGroup', () => {
     it('should maintain the selected tab if a new tab is added', () => {
       fixture.detectChanges();
       const component: SbbTabGroup = fixture.debugElement.query(
-        By.css('sbb-tab-group')
+        By.css('sbb-tab-group'),
       )!.componentInstance;
 
       fixture.componentInstance.selectedIndex = 1;
@@ -495,7 +495,7 @@ describe('SbbTabGroup', () => {
       fixture.detectChanges();
 
       const component: SbbTabGroup = fixture.debugElement.query(
-        By.css('sbb-tab-group')
+        By.css('sbb-tab-group'),
       )!.componentInstance;
 
       // Remove the first tab that is right before the selected one.
@@ -511,7 +511,7 @@ describe('SbbTabGroup', () => {
     it('should be able to select a new tab after creation', fakeAsync(() => {
       fixture.detectChanges();
       const component: SbbTabGroup = fixture.debugElement.query(
-        By.css('sbb-tab-group')
+        By.css('sbb-tab-group'),
       )!.componentInstance;
 
       fixture.componentInstance.tabs.push({ label: 'Last tab', content: 'at the end' });
@@ -541,7 +541,7 @@ describe('SbbTabGroup', () => {
 
     it('should update the newly-selected tab if the previously-selected tab is replaced', fakeAsync(() => {
       const component: SbbTabGroup = fixture.debugElement.query(
-        By.css('sbb-tab-group')
+        By.css('sbb-tab-group'),
       )!.componentInstance;
 
       spyOn(fixture.componentInstance, 'handleSelection');
@@ -555,7 +555,7 @@ describe('SbbTabGroup', () => {
 
       expect(component._tabs.get(1)?.isActive).toBe(true);
       expect(fixture.componentInstance.handleSelection).toHaveBeenCalledWith(
-        jasmine.objectContaining({ index: 1 })
+        jasmine.objectContaining({ index: 1 }),
       );
     }));
   });
@@ -642,7 +642,7 @@ describe('SbbTabGroup', () => {
 
     it('should visibly hide the content of inactive tabs', fakeAsync(() => {
       const contentElements: HTMLElement[] = Array.from(
-        fixture.nativeElement.querySelectorAll('.sbb-tab-body-content')
+        fixture.nativeElement.querySelectorAll('.sbb-tab-body-content'),
       );
 
       expect(contentElements.map((element) => element.style.visibility)).toEqual([
@@ -858,17 +858,17 @@ describe('SbbTabGroup', () => {
     fixture.detectChanges();
 
     const tabComponent: SbbTabGroup = fixture.debugElement.query(
-      By.css('sbb-tab-group')
+      By.css('sbb-tab-group'),
     )!.componentInstance;
     expect(tabComponent.selectedIndex).toBe(expectedIndex);
 
     const tabLabelElement = fixture.debugElement.query(
-      By.css(`.sbb-tab-label:nth-of-type(${expectedIndex + 1})`)
+      By.css(`.sbb-tab-label:nth-of-type(${expectedIndex + 1})`),
     )!.nativeElement;
     expect(tabLabelElement.classList.contains('sbb-tab-label-active')).toBe(true);
 
     const tabContentElement = fixture.debugElement.query(
-      By.css(`sbb-tab-body:nth-of-type(${expectedIndex + 1})`)
+      By.css(`sbb-tab-body:nth-of-type(${expectedIndex + 1})`),
     )!.nativeElement;
     expect(tabContentElement.classList.contains('sbb-tab-body-active')).toBe(true);
   }

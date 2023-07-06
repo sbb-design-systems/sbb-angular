@@ -53,7 +53,7 @@ export class SbbDialogRef<T, R = any> {
   constructor(
     public ref: DialogRef<R, T>,
     config: SbbDialogConfig,
-    public _containerInstance: _SbbDialogContainerBase
+    public _containerInstance: _SbbDialogContainerBase,
   ) {
     this.disableClose = config.disableClose;
     this.id = ref.id;
@@ -62,7 +62,7 @@ export class SbbDialogRef<T, R = any> {
     _containerInstance._animationStateChanged
       .pipe(
         filter((event) => event.state === 'opened'),
-        take(1)
+        take(1),
       )
       .subscribe(() => {
         this._afterOpened.next();
@@ -73,7 +73,7 @@ export class SbbDialogRef<T, R = any> {
     _containerInstance._animationStateChanged
       .pipe(
         filter((event) => event.state === 'closed'),
-        take(1)
+        take(1),
       )
       .subscribe(() => {
         clearTimeout(this._closeFallbackTimeout);
@@ -89,8 +89,8 @@ export class SbbDialogRef<T, R = any> {
     merge(
       this.backdropClick(),
       this.keydownEvents().pipe(
-        filter((event) => event.keyCode === ESCAPE && !this.disableClose && !hasModifierKey(event))
-      )
+        filter((event) => event.keyCode === ESCAPE && !this.disableClose && !hasModifierKey(event)),
+      ),
     ).subscribe((event) => {
       if (!this.disableClose) {
         event.preventDefault();
@@ -110,7 +110,7 @@ export class SbbDialogRef<T, R = any> {
     this._containerInstance._animationStateChanged
       .pipe(
         filter((event) => event.state === 'closing'),
-        take(1)
+        take(1),
       )
       .subscribe((event) => {
         this._beforeClosed.next(dialogResult);
@@ -124,7 +124,7 @@ export class SbbDialogRef<T, R = any> {
         // vast majority of cases the timeout will have been cleared before it has the chance to fire.
         this._closeFallbackTimeout = setTimeout(
           () => this._finishDialogClose(),
-          event.totalTime + 100
+          event.totalTime + 100,
         );
       });
 

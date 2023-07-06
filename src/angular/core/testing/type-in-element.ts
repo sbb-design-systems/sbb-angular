@@ -72,7 +72,7 @@ export function typeInElement(element: HTMLElement, ...modifiersAndKeys: any[]) 
     .map((k) =>
       typeof k === 'string'
         ? k.split('').map((c) => ({ keyCode: c.toUpperCase().charCodeAt(0), key: c }))
-        : [k]
+        : [k],
     )
     .reduce((arr, k) => arr.concat(k), []);
 

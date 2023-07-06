@@ -39,7 +39,7 @@ export class SbbHeaderEnvironment implements OnDestroy {
 
           return null;
         }),
-        takeUntil(this._destroyed)
+        takeUntil(this._destroyed),
       )
       .subscribe((selector) => {
         const classes = elementRef.nativeElement.classList;

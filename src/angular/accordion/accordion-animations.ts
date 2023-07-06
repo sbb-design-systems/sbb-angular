@@ -43,7 +43,7 @@ export const sbbExpansionAnimations: {
     state('expanded', style({ transform: 'rotate(-90deg)' })),
     transition(
       'expanded <=> collapsed, void => collapsed',
-      animate(SBB_EXPANSION_PANEL_ANIMATION_TIMING)
+      animate(SBB_EXPANSION_PANEL_ANIMATION_TIMING),
     ),
   ]),
   /** Animation that expands and collapses the panel content. */
@@ -52,7 +52,7 @@ export const sbbExpansionAnimations: {
     state('expanded', style({ height: '*', visibility: 'visible' })),
     transition(
       'expanded <=> collapsed, void => collapsed',
-      animate(SBB_EXPANSION_PANEL_ANIMATION_TIMING)
+      animate(SBB_EXPANSION_PANEL_ANIMATION_TIMING),
     ),
   ]),
 };

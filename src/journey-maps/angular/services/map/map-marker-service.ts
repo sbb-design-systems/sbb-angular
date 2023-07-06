@@ -39,7 +39,7 @@ export class SbbMapMarkerService {
   constructor(
     private _markerConverter: SbbMarkerConverter,
     private _mapService: SbbMapService,
-    private _mapConfigService: SbbMapConfig
+    private _mapConfigService: SbbMapConfig,
   ) {}
 
   initStyleData(map: MaplibreMap): void {
@@ -71,7 +71,7 @@ export class SbbMapMarkerService {
     map: MaplibreMap,
     markers: SbbMarker[] | undefined,
     selectedMarker: SbbMarker | undefined,
-    styleMode: SbbStyleMode | undefined
+    styleMode: SbbStyleMode | undefined,
   ): void {
     this._verifyMarkers(markers);
     if (!selectedMarker) {
@@ -106,7 +106,7 @@ export class SbbMapMarkerService {
     this._zoomToCluster(
       map,
       cluster.properties?.cluster_id,
-      this._mapService.convertToLngLatLike(cluster.geometry)
+      this._mapService.convertToLngLatLike(cluster.geometry),
     );
   }
 
@@ -114,7 +114,7 @@ export class SbbMapMarkerService {
     map: MaplibreMap,
     clusterId: any,
     center: LngLatLike,
-    offset: PointLike = [0, 0]
+    offset: PointLike = [0, 0],
   ): void {
     this._getPrimaryMarkerSource(map).getClusterExpansionZoom(clusterId, (err, zoom) => {
       if (zoom) {
@@ -126,7 +126,7 @@ export class SbbMapMarkerService {
   onMarkerClicked(
     map: MaplibreMap,
     feature: SbbFeatureData,
-    oldSelectedFeatureId: string | undefined
+    oldSelectedFeatureId: string | undefined,
   ): string | undefined {
     const selectedFeatureId = feature.properties?.id;
     if (!selectedFeatureId || selectedFeatureId === oldSelectedFeatureId) {
@@ -196,7 +196,7 @@ export class SbbMapMarkerService {
 
   private _queryClusterAtPosition(
     map: MaplibreMap,
-    position: Position
+    position: Position,
   ): MapGeoJSONFeature | undefined {
     const point = map.project(position as LngLatLike);
     const range = SBB_CLUSTER_RADIUS / 2;
@@ -208,7 +208,7 @@ export class SbbMapMarkerService {
       ],
       {
         layers: [SBB_CLUSTER_LAYER],
-      }
+      },
     );
 
     return clusters?.length ? clusters[0] : undefined;
@@ -218,7 +218,7 @@ export class SbbMapMarkerService {
     map: MaplibreMap,
     cluster: Feature,
     marker: SbbMarker,
-    found: boolean[] = []
+    found: boolean[] = [],
   ): void {
     const clusterId = cluster.properties?.cluster_id;
     this._getPrimaryMarkerSource(map).getClusterChildren(clusterId, (e1, children) => {
@@ -231,7 +231,7 @@ export class SbbMapMarkerService {
               map,
               clusterId,
               marker.position as LngLatLike,
-              this._getSelectedMarkerOffset(map)
+              this._getSelectedMarkerOffset(map),
             );
           } else if (child.properties?.cluster === true) {
             this._zoomUntilMarkerVisible(map, child, marker, found);
@@ -290,7 +290,7 @@ export class SbbMapMarkerService {
   private _buildImageName(marker: SbbMarker): string {
     const simpleHash = this._simpleHash(`${marker.icon}${marker.iconSelected}`);
     return `${this._convertToImageName(marker.icon!)}_${this._convertToImageName(
-      marker.iconSelected!
+      marker.iconSelected!,
     )}_${simpleHash}`;
   }
 
@@ -303,7 +303,7 @@ export class SbbMapMarkerService {
       // https://stackoverflow.com/a/34842797/349169
       // eslint-disable-next-line no-bitwise
       // tslint:disable-next-line:no-bitwise
-      value.split('').reduce((a, b) => ((a << 5) - a + b.charCodeAt(0)) | 0, 0)
+      value.split('').reduce((a, b) => ((a << 5) - a + b.charCodeAt(0)) | 0, 0),
     );
   }
 
@@ -314,7 +314,7 @@ export class SbbMapMarkerService {
 
     if (invalidMarker) {
       throw new Error(
-        `Marker with id ${invalidMarker.id} and category CUSTOM is missing the required 'icon' or 'iconSelected' definition.`
+        `Marker with id ${invalidMarker.id} and category CUSTOM is missing the required 'icon' or 'iconSelected' definition.`,
       );
     }
   }

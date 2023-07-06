@@ -57,9 +57,9 @@ const _SbbInputBase = mixinErrorState(
        * Implemented as part of `SbbFormFieldControl`.
        * @docs-private
        */
-      public ngControl: NgControl
+      public ngControl: NgControl,
     ) {}
-  }
+  },
 );
 
 /** Directive that allows a native input to work inside a `SbbFormField`. */
@@ -264,7 +264,7 @@ export class SbbInput
     @Inject(SBB_INPUT_VALUE_ACCESSOR)
     inputValueAccessor: any,
     private _autofillMonitor: AutofillMonitor,
-    ngZone: NgZone
+    ngZone: NgZone,
   ) {
     super(defaultErrorStateMatcher, parentForm, parentFormGroup, ngControl);
     const element = this._elementRef.nativeElement;

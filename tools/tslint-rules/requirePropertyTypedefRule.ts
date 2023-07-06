@@ -52,7 +52,7 @@ class Walker extends Lint.RuleWalker {
       this.addFailureAtNode(
         node.name,
         'Explicit Typedef (e.g. disabled: boolean = false) is required!',
-        fix
+        fix,
       );
     }
   }
@@ -100,7 +100,7 @@ class Walker extends Lint.RuleWalker {
   /** Checks if a node has a specific modifier. */
   private _hasModifier(
     node: ts.ClassElement | ts.ParameterDeclaration,
-    targetKind: ts.SyntaxKind
+    targetKind: ts.SyntaxKind,
   ): boolean {
     return ts.canHaveModifiers(node) && !!node.modifiers?.some(({ kind }) => kind === targetKind);
   }

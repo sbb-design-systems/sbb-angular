@@ -14,7 +14,7 @@ export function extractSymbols(): Rule {
 
     tree.overwrite(
       '/src/angular/schematics/ng-update/migrations/sbb-angular-symbols.json',
-      JSON.stringify(symbols, null, 2)
+      JSON.stringify(symbols, null, 2),
     );
 
     function extractExportsForModule(rootPath: string) {
@@ -29,7 +29,7 @@ export function extractSymbols(): Rule {
         const tsFile = ts.createSourceFile(
           filePath,
           moduleDirEntry.content.toString(),
-          ts.ScriptTarget.Latest
+          ts.ScriptTarget.Latest,
         );
 
         tsFile.statements.filter(hasExportModifier).forEach((statement) => {
@@ -104,7 +104,7 @@ export function extractSymbols(): Rule {
     function addToSymbols(name: string, modulePath: string) {
       if (symbols[name] && symbols[name] !== modulePath) {
         console.warn(
-          `symbol ${name} is already in list with value ${symbols[name]}. Tried to add ${modulePath}.`
+          `symbol ${name} is already in list with value ${symbols[name]}. Tried to add ${modulePath}.`,
         );
       }
       symbols[name] = modulePath;

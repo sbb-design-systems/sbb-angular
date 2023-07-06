@@ -135,7 +135,7 @@ describe('SbbTooltipWrapper', () => {
 
       dispatchMouseEvent(
         overlayContainer.getContainerElement().querySelector('.sbb-tooltip')!,
-        'mousedown'
+        'mousedown',
       );
       dispatchEvent(document.body, createMouseEvent('mouseup'));
 

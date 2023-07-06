@@ -51,7 +51,7 @@ export default function (options: Schema): Rule {
       '@sbb-esta/angular has been set up in your workspace. There is no additional setup ' +
         'required for consuming @sbb-esta/angular in your library project.\n\n' +
         'If you intended to run the schematic on a different project, pass the `--project` ' +
-        'option.'
+        'option.',
     );
     return noop();
   };
@@ -84,7 +84,7 @@ function addAnimationsModuleToStandaloneApp(
   host: Tree,
   project: ProjectDefinition,
   context: SchematicContext,
-  options: Schema
+  options: Schema,
 ) {
   const mainFile = getProjectMainFile(project);
 
@@ -96,7 +96,7 @@ function addAnimationsModuleToStandaloneApp(
     if (importsProvidersFrom(host, mainFile, NOOP_ANIMATIONS_MODULE_NAME)) {
       context.logger.error(
         `Could not set up "${BROWSER_ANIMATIONS_MODULE_NAME}" ` +
-          `because "${NOOP_ANIMATIONS_MODULE_NAME}" is already imported.`
+          `because "${NOOP_ANIMATIONS_MODULE_NAME}" is already imported.`,
       );
       context.logger.info(`Please manually set up browser animations.`);
     } else {
@@ -104,7 +104,7 @@ function addAnimationsModuleToStandaloneApp(
         host,
         mainFile,
         BROWSER_ANIMATIONS_MODULE_NAME,
-        '@angular/platform-browser/animations'
+        '@angular/platform-browser/animations',
       );
     }
   } else if (
@@ -117,7 +117,7 @@ function addAnimationsModuleToStandaloneApp(
       host,
       mainFile,
       NOOP_ANIMATIONS_MODULE_NAME,
-      '@angular/platform-browser/animations'
+      '@angular/platform-browser/animations',
     );
   }
 }
@@ -130,7 +130,7 @@ function addAnimationsModuleToNonStandaloneApp(
   host: Tree,
   project: ProjectDefinition,
   context: SchematicContext,
-  options: Schema
+  options: Schema,
 ) {
   const appModulePath = getAppModulePath(host, getProjectMainFile(project));
 
@@ -142,7 +142,7 @@ function addAnimationsModuleToNonStandaloneApp(
     if (hasNgModuleImport(host, appModulePath, NOOP_ANIMATIONS_MODULE_NAME)) {
       context.logger.error(
         `Could not set up "${BROWSER_ANIMATIONS_MODULE_NAME}" ` +
-          `because "${NOOP_ANIMATIONS_MODULE_NAME}" is already imported.`
+          `because "${NOOP_ANIMATIONS_MODULE_NAME}" is already imported.`,
       );
       context.logger.info(`Please manually set up browser animations.`);
     } else {
@@ -150,7 +150,7 @@ function addAnimationsModuleToNonStandaloneApp(
         host,
         BROWSER_ANIMATIONS_MODULE_NAME,
         '@angular/platform-browser/animations',
-        project
+        project,
       );
     }
   } else if (
@@ -163,7 +163,7 @@ function addAnimationsModuleToNonStandaloneApp(
       host,
       NOOP_ANIMATIONS_MODULE_NAME,
       '@angular/platform-browser/animations',
-      project
+      project,
     );
   }
 }
@@ -177,19 +177,19 @@ function addAndConfigureTypography(options: Schema): Rule {
       addTypographyToStylesNodeOfAngularJson(
         getProjectName(options, workspace),
         'build',
-        context.logger
+        context.logger,
       ),
       addTypographyToStylesNodeOfAngularJson(
         getProjectName(options, workspace),
         'test',
-        context.logger
+        context.logger,
       ),
       setTypographyVariant(options),
 
       addLeanTestPolyfillToAngularJson(
         getProjectName(options, workspace),
         shouldBeLeanVariant,
-        context.logger
+        context.logger,
       ),
     ]);
   };
@@ -198,7 +198,7 @@ function addAndConfigureTypography(options: Schema): Rule {
 function addTypographyToStylesNodeOfAngularJson(
   projectName: string,
   targetName: 'build' | 'test',
-  logger: logging.LoggerApi
+  logger: logging.LoggerApi,
 ): Rule {
   return updateWorkspace((workspace) => {
     const project = getProjectFromWorkspace(workspace, projectName);
@@ -231,7 +231,7 @@ function addTypographyToStylesNodeOfAngularJson(
 function addLeanTestPolyfillToAngularJson(
   projectName: string,
   shouldBeLeanVariant: boolean,
-  logger: logging.LoggerApi
+  logger: logging.LoggerApi,
 ): Rule {
   return updateWorkspace((workspace) => {
     const project = getProjectFromWorkspace(workspace, projectName);
@@ -248,7 +248,7 @@ function addLeanTestPolyfillToAngularJson(
     if (polyfills && typeof polyfills !== 'string' && !Array.isArray(polyfills)) {
       logger.error(
         `Could not configure testing environment.` +
-          `The 'polyfills' section in 'angular.json' has an unknown format.`
+          `The 'polyfills' section in 'angular.json' has an unknown format.`,
       );
       return;
     }
@@ -273,7 +273,7 @@ function addLeanTestPolyfillToAngularJson(
         delete targetOptions.polyfills;
       } else if (Array.isArray(polyfills)) {
         targetOptions.polyfills = polyfills.filter(
-          (polyfill) => polyfill !== LEAN_TEST_POLYFILL_PATH
+          (polyfill) => polyfill !== LEAN_TEST_POLYFILL_PATH,
         );
       }
     }
@@ -281,7 +281,7 @@ function addLeanTestPolyfillToAngularJson(
     logger.info(
       `✔️ Configured testing environment with ${
         shouldBeLeanVariant ? 'lean' : 'standard'
-      } design variant.`
+      } design variant.`,
     );
   });
 }
@@ -294,7 +294,7 @@ function addLeanTestPolyfillToAngularJson(
 function validateDefaultTargetBuilder(
   project: ProjectDefinition,
   targetName: 'build' | 'test',
-  logger: logging.LoggerApi
+  logger: logging.LoggerApi,
 ) {
   const defaultBuilder = defaultTargetBuilders[targetName];
   const targetConfig = project.targets && project.targets.get(targetName);
@@ -310,14 +310,14 @@ function validateDefaultTargetBuilder(
     throw new SchematicsException(
       `Your project is not using the default builders for ` +
         `"${targetName}". The SBB Angular schematics cannot add a theme to the workspace ` +
-        `configuration if the builder has been changed.`
+        `configuration if the builder has been changed.`,
     );
   } else if (!isDefaultBuilder) {
     // for non-build targets we gracefully report the error without actually aborting the
     // setup schematic. This is because a theme is not mandatory for running tests.
     logger.warn(
       `Your project is not using the default builders for "${targetName}". This ` +
-        `means that we cannot add the configured theme to the "${targetName}" target.`
+        `means that we cannot add the configured theme to the "${targetName}" target.`,
     );
   }
 
@@ -338,7 +338,7 @@ function handleIndexHtml(
   tree: Tree,
   project: ProjectDefinition,
   shouldBeLeanVariant: boolean,
-  context: SchematicContext
+  context: SchematicContext,
 ) {
   // Do not update the builder options in case the target does not use the default CLI builder.
   if (!validateDefaultTargetBuilder(project, 'build', context.logger)) {
@@ -350,11 +350,11 @@ function handleIndexHtml(
   if (!targetOptions?.index) {
     if (shouldBeLeanVariant) {
       context.logger.error(
-        `Could not find index.html to configure design variant. If you like to use the lean design variant, please add 'sbb-lean' class to the <html> tag.`
+        `Could not find index.html to configure design variant. If you like to use the lean design variant, please add 'sbb-lean' class to the <html> tag.`,
       );
     } else {
       context.logger.error(
-        `Could not find index.html to configure design variant. Please check your <html> tag if the design variant is correctly configured.`
+        `Could not find index.html to configure design variant. Please check your <html> tag if the design variant is correctly configured.`,
       );
     }
     return;
@@ -365,23 +365,23 @@ function handleIndexHtml(
   if (!indexHtml) {
     if (shouldBeLeanVariant) {
       context.logger.error(
-        `Could not read index.html to configure design variant. If you like to use the lean design variant, please add 'sbb-lean' class to the <html> tag.`
+        `Could not read index.html to configure design variant. If you like to use the lean design variant, please add 'sbb-lean' class to the <html> tag.`,
       );
     } else {
       context.logger.error(
-        `Could not read index.html to configure design variant. Please check your <html> tag if the design variant is correctly configured.`
+        `Could not read index.html to configure design variant. Please check your <html> tag if the design variant is correctly configured.`,
       );
     }
     return;
   }
 
   const htmlTag = indexHtml.match(
-    /<html(?=\s)(?!(?:[^>"\']|"[^"]*"|\'[^\']*\')*?(?<=\s)(?:term|range)\s*=)(?!\s*\/?>)\s+(?:".*?"|\'.*?\'|[^>]*?)+>/g
+    /<html(?=\s)(?!(?:[^>"\']|"[^"]*"|\'[^\']*\')*?(?<=\s)(?:term|range)\s*=)(?!\s*\/?>)\s+(?:".*?"|\'.*?\'|[^>]*?)+>/g,
   )?.[0];
 
   if (!htmlTag) {
     context.logger.error(
-      `Could not find <html> tag. Please check your <html> tag if the design variant is correctly configured.`
+      `Could not find <html> tag. Please check your <html> tag if the design variant is correctly configured.`,
     );
     return;
   }
@@ -399,7 +399,7 @@ function handleIndexHtml(
 
     tree.overwrite(
       targetOptions.index as string,
-      indexHtml.replace(htmlTag, htmlTagWithoutLeanClass)
+      indexHtml.replace(htmlTag, htmlTagWithoutLeanClass),
     );
   } else if (!hasSbbLeanClass && shouldBeLeanVariant) {
     // Add sbb-lean class
@@ -410,6 +410,6 @@ function handleIndexHtml(
   }
 
   context.logger.info(
-    `✔️ Configured typography with ${hasSbbLeanClass ? 'lean' : 'standard'} design variant.`
+    `✔️ Configured typography with ${hasSbbLeanClass ? 'lean' : 'standard'} design variant.`,
   );
 }

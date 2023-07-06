@@ -3,7 +3,7 @@ import { CategorizedMethodMemberDoc, CategorizedPropertyMemberDoc } from './dgen
 /** Sorts method members by deprecated status, member decorator, and name. */
 export function sortCategorizedMethodMembers(
   docA: CategorizedMethodMemberDoc,
-  docB: CategorizedMethodMemberDoc
+  docB: CategorizedMethodMemberDoc,
 ) {
   // Sort deprecated docs to the end
   if (!docA.isDeprecated && docB.isDeprecated) {
@@ -29,7 +29,7 @@ export function sortCategorizedMethodMembers(
 /** Sorts property members by deprecated status, member decorator, and name. */
 export function sortCategorizedPropertyMembers(
   docA: CategorizedPropertyMemberDoc,
-  docB: CategorizedPropertyMemberDoc
+  docB: CategorizedPropertyMemberDoc,
 ) {
   // Sort deprecated docs to the end
   if (!docA.isDeprecated && docB.isDeprecated) {

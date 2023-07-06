@@ -130,7 +130,7 @@ export class SbbNotification extends _SbbNotificationMixinBase implements OnChan
         } else {
           return 'circle-information-small';
         }
-      })
+      }),
     );
   }
 

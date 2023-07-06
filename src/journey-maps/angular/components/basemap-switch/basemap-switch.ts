@@ -20,7 +20,7 @@ export class SbbBasemapSwitch implements OnInit {
 
   ngOnInit(): void {
     this.basemapSwitchLabel = `${this._i18n.getText('a4a.visualFunction')} ${this._i18n.getText(
-      'a4a.basemapSwitch'
+      'a4a.basemapSwitch',
     )}`;
   }
 

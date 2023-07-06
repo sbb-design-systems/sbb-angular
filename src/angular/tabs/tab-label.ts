@@ -30,7 +30,7 @@ export class SbbTabLabel extends CdkPortal {
   constructor(
     templateRef: TemplateRef<any>,
     viewContainerRef: ViewContainerRef,
-    @Inject(SBB_TAB) @Optional() public _closestTab: any
+    @Inject(SBB_TAB) @Optional() public _closestTab: any,
   ) {
     super(templateRef, viewContainerRef);
   }

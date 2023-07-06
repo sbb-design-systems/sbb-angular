@@ -14,7 +14,7 @@ export class SbbFileSelectorTypesService {
   getFileTypeCategoryByMimeType(mimeType: string): FileTypeCategory {
     return (
       Array.from(SBB_CATEGORY_MIME_TYPES).find(
-        ([_f, mimeTypes]) => mimeTypes.indexOf(mimeType) >= 0
+        ([_f, mimeTypes]) => mimeTypes.indexOf(mimeType) >= 0,
       )?.[0] ?? 'generic'
     );
   }
@@ -74,7 +74,7 @@ export class SbbFileSelectorTypesService {
       case 'doc':
         return SBB_FILE_TYPES.MS_WORD_DOC.concat(
           SBB_FILE_TYPES.MS_EXCEL,
-          SBB_FILE_TYPES.MS_POWERPOINT
+          SBB_FILE_TYPES.MS_POWERPOINT,
         ).join(',');
       case 'image':
         return SBB_FILE_TYPES.IMAGE.join(',');

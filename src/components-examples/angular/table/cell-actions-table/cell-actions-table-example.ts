@@ -43,7 +43,7 @@ export class CellActionsTableExample implements AfterViewInit {
                 this._resetRowFocus(row);
                 row.nativeElement.focus();
               },
-            } as FocusableRow)
+            }) as FocusableRow,
         );
         this._focusableRows.reset(updatedRows);
         this._focusableRows.notifyOnChanges();

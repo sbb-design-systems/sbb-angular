@@ -1052,7 +1052,7 @@ describe('SbbSelect', () => {
         it('should set the sbb-select-required class for required selects', fakeAsync(() => {
           expect(select.classList).not.toContain(
             'sbb-select-required',
-            `Expected the sbb-select-required class not to be set.`
+            `Expected the sbb-select-required class not to be set.`,
           );
 
           fixture.componentInstance.isRequired = true;
@@ -1187,7 +1187,7 @@ describe('SbbSelect', () => {
             expect(formControl.value)
               .withContext('Expected value from first option to have been set on the model again.')
               .toBe(options[0].value);
-          })
+          }),
         );
 
         it('should select first/last options via the HOME/END keys on a closed select', fakeAsync(() => {
@@ -1323,7 +1323,7 @@ describe('SbbSelect', () => {
             expect(liveAnnouncer.announce).toHaveBeenCalledWith('Steak', jasmine.any(Number));
 
             flush();
-          })
+          }),
         ));
 
         it('should not throw when reaching a reset option using the arrow keys on a closed select', fakeAsync(() => {
@@ -1620,7 +1620,7 @@ describe('SbbSelect', () => {
             multiFixture.detectChanges();
 
             const options = overlayContainerElement.querySelectorAll(
-              'sbb-option'
+              'sbb-option',
             ) as NodeListOf<HTMLElement>;
 
             options[3].focus();
@@ -1634,7 +1634,7 @@ describe('SbbSelect', () => {
             expect(document.activeElement)
               .withContext('Expected fourth option to remain focused.')
               .toBe(options[3]);
-          })
+          }),
         );
 
         it('should not cycle through the options if the control is disabled', fakeAsync(() => {
@@ -1987,7 +1987,7 @@ describe('SbbSelect', () => {
         it('should set aria-selected on each option for single select', fakeAsync(() => {
           expect(options.every((option) => option.getAttribute('aria-selected') === 'false'))
             .withContext(
-              'Expected all unselected single-select options to have aria-selected="false".'
+              'Expected all unselected single-select options to have aria-selected="false".',
             )
             .toBe(true);
 
@@ -2004,7 +2004,7 @@ describe('SbbSelect', () => {
           options.splice(1, 1);
           expect(options.every((option) => option.getAttribute('aria-selected') === 'false'))
             .withContext(
-              'Expected all unselected single-select options to have aria-selected="false".'
+              'Expected all unselected single-select options to have aria-selected="false".',
             )
             .toBe(true);
         }));
@@ -2025,11 +2025,11 @@ describe('SbbSelect', () => {
             options.every(
               (option) =>
                 option.hasAttribute('aria-selected') &&
-                option.getAttribute('aria-selected') === 'false'
-            )
+                option.getAttribute('aria-selected') === 'false',
+            ),
           )
             .withContext(
-              'Expected all unselected multi-select options to have ' + 'aria-selected="false".'
+              'Expected all unselected multi-select options to have ' + 'aria-selected="false".',
             )
             .toBe(true);
 
@@ -2048,11 +2048,11 @@ describe('SbbSelect', () => {
             options.every(
               (option) =>
                 option.hasAttribute('aria-selected') &&
-                option.getAttribute('aria-selected') === 'false'
-            )
+                option.getAttribute('aria-selected') === 'false',
+            ),
           )
             .withContext(
-              'Expected all unselected multi-select options to have ' + 'aria-selected="false".'
+              'Expected all unselected multi-select options to have ' + 'aria-selected="false".',
             )
             .toBe(true);
         }));
@@ -2091,7 +2091,7 @@ describe('SbbSelect', () => {
           activeOptions = options.filter((option) => option.classList.contains('sbb-focused'));
           expect(activeOptions)
             .withContext(
-              'Expected only selected option to be marked as active after ' + 'it is clicked.'
+              'Expected only selected option to be marked as active after ' + 'it is clicked.',
             )
             .toEqual([options[1]]);
 
@@ -2108,7 +2108,7 @@ describe('SbbSelect', () => {
           expect(activeOptions)
             .withContext(
               'Expected only selected option to be marked as active after the ' +
-                'value has changed.'
+                'value has changed.',
             )
             .toEqual([options[7]]);
         }));
@@ -2126,7 +2126,7 @@ describe('SbbSelect', () => {
           select.click();
           fixture.detectChanges();
           groups = overlayContainerElement.querySelectorAll(
-            'sbb-optgroup'
+            'sbb-optgroup',
           ) as NodeListOf<HTMLElement>;
         }));
 
@@ -2199,7 +2199,7 @@ describe('SbbSelect', () => {
         flush();
 
         const backdrop = overlayContainerElement.querySelector(
-          '.cdk-overlay-backdrop'
+          '.cdk-overlay-backdrop',
         ) as HTMLElement;
 
         backdrop.click();
@@ -2225,7 +2225,7 @@ describe('SbbSelect', () => {
         expect(scrollContainerWidth).toBeCloseTo(
           200,
           0,
-          'Expected select panel width to be 100% of the select field trigger'
+          'Expected select panel width to be 100% of the select field trigger',
         );
       });
 
@@ -2245,7 +2245,7 @@ describe('SbbSelect', () => {
         expect(scrollContainerWidth).toBeCloseTo(
           320,
           0,
-          'Expected select panel width to be 100% of the select field trigger'
+          'Expected select panel width to be 100% of the select field trigger',
         );
       });
 
@@ -2456,7 +2456,7 @@ describe('SbbSelect', () => {
           expect(selectInstance.focused)
             .withContext('Expected select element to remain focused.')
             .toBe(true);
-        })
+        }),
       );
     });
 
@@ -2497,7 +2497,7 @@ describe('SbbSelect', () => {
         expect(option.classList).toContain('sbb-selected');
         expect(fixture.componentInstance.options.first.selected).toBe(true);
         expect(fixture.componentInstance.select.selected).toBe(
-          fixture.componentInstance.options.first
+          fixture.componentInstance.options.first,
         );
       }));
 
@@ -2524,7 +2524,7 @@ describe('SbbSelect', () => {
         flush();
 
         let options = overlayContainerElement.querySelectorAll(
-          'sbb-option'
+          'sbb-option',
         ) as NodeListOf<HTMLElement>;
 
         options[0].click();
@@ -2553,7 +2553,7 @@ describe('SbbSelect', () => {
         flush();
 
         let options = overlayContainerElement.querySelectorAll(
-          'sbb-option'
+          'sbb-option',
         ) as NodeListOf<HTMLElement>;
 
         options[0].click();
@@ -2571,7 +2571,7 @@ describe('SbbSelect', () => {
 
         expect(options[0].classList).not.toContain(
           'sbb-selected',
-          'Expected first option to no longer be selected'
+          'Expected first option to no longer be selected',
         );
         expect(options[1].classList)
           .withContext('Expected second option to be selected')
@@ -2595,7 +2595,7 @@ describe('SbbSelect', () => {
         flush();
 
         const firstOption = overlayContainerElement.querySelectorAll(
-          'sbb-option'
+          'sbb-option',
         )[0] as HTMLElement;
 
         firstOption.click();
@@ -2655,7 +2655,7 @@ describe('SbbSelect', () => {
         flush();
 
         const options = overlayContainerElement.querySelectorAll(
-          'sbb-option'
+          'sbb-option',
         ) as NodeListOf<HTMLElement>;
         options[8].click();
         fixture.detectChanges();
@@ -2663,7 +2663,7 @@ describe('SbbSelect', () => {
 
         expect(select.textContent).toContain('Potatoes');
         expect(fixture.componentInstance.select.selected).toBe(
-          fixture.componentInstance.options.last
+          fixture.componentInstance.options.last,
         );
       }));
 
@@ -2700,7 +2700,7 @@ describe('SbbSelect', () => {
         flush();
 
         const options = overlayContainerElement.querySelectorAll(
-          'sbb-option'
+          'sbb-option',
         ) as NodeListOf<HTMLElement>;
         options[2].click();
         fixture.detectChanges();
@@ -2813,7 +2813,7 @@ describe('SbbSelect', () => {
       it('should not indicate programmatic value changes as user interactions', () => {
         const events: SbbOptionSelectionChange[] = [];
         const subscription = fixture.componentInstance.select.optionSelectionChanges.subscribe(
-          (event: SbbOptionSelectionChange) => events.push(event)
+          (event: SbbOptionSelectionChange) => events.push(event),
         );
 
         fixture.componentInstance.control.setValue('eggs-5');
@@ -2849,7 +2849,7 @@ describe('SbbSelect', () => {
         flush();
 
         const options = overlayContainerElement.querySelectorAll(
-          'sbb-option'
+          'sbb-option',
         ) as NodeListOf<HTMLElement>;
         expect(options[1].classList)
           .withContext(`Expected option with the control's initial value to be selected.`)
@@ -2873,7 +2873,7 @@ describe('SbbSelect', () => {
         flush();
 
         const options = overlayContainerElement.querySelectorAll(
-          'sbb-option'
+          'sbb-option',
         ) as NodeListOf<HTMLElement>;
         expect(options[1].classList)
           .withContext(`Expected option with the control's new value to be selected.`)
@@ -2919,11 +2919,11 @@ describe('SbbSelect', () => {
         flush();
 
         const options = overlayContainerElement.querySelectorAll(
-          'sbb-option'
+          'sbb-option',
         ) as NodeListOf<HTMLElement>;
         expect(options[1].classList).not.toContain(
           'sbb-selected',
-          `Expected option w/ the old value not to be selected.`
+          `Expected option w/ the old value not to be selected.`,
         );
       }));
 
@@ -2942,7 +2942,7 @@ describe('SbbSelect', () => {
           .toBe('Food');
         expect(select.textContent).not.toContain(
           'Pizza',
-          `Expected trigger is cleared when option value is not found.`
+          `Expected trigger is cleared when option value is not found.`,
         );
 
         select.click();
@@ -2950,11 +2950,11 @@ describe('SbbSelect', () => {
         flush();
 
         const options = overlayContainerElement.querySelectorAll(
-          'sbb-option'
+          'sbb-option',
         ) as NodeListOf<HTMLElement>;
         expect(options[1].classList).not.toContain(
           'sbb-selected',
-          `Expected option w/ the old value not to be selected.`
+          `Expected option w/ the old value not to be selected.`,
         );
       }));
 
@@ -2973,7 +2973,7 @@ describe('SbbSelect', () => {
           .toEqual(false);
 
         const backdrop = overlayContainerElement.querySelector(
-          '.cdk-overlay-backdrop'
+          '.cdk-overlay-backdrop',
         ) as HTMLElement;
         backdrop.click();
         dispatchFakeEvent(select, 'blur');
@@ -3118,7 +3118,7 @@ describe('SbbSelect', () => {
           fixture.detectChanges();
 
           expect(instance.select.disabled).toBe(true);
-        })
+        }),
       );
     });
 
@@ -3493,7 +3493,7 @@ describe('SbbSelect', () => {
       expect(options[0].id).not.toEqual(options[1].id, `Expected option IDs to be unique.`);
 
       const backdrop = overlayContainerElement.querySelector(
-        '.cdk-overlay-backdrop'
+        '.cdk-overlay-backdrop',
       ) as HTMLElement;
       backdrop.click();
       fixture.detectChanges();
@@ -3740,7 +3740,7 @@ describe('SbbSelect', () => {
         .toBe(true);
       expect(select.classList).not.toContain(
         'sbb-select-invalid',
-        'Expected select not to appear invalid.'
+        'Expected select not to appear invalid.',
       );
       expect(select.getAttribute('aria-invalid'))
         .withContext('Expected aria-invalid to be set to false.')
@@ -3750,7 +3750,7 @@ describe('SbbSelect', () => {
     it('should appear as invalid if it becomes touched', fakeAsync(() => {
       expect(select.classList).not.toContain(
         'sbb-select-invalid',
-        'Expected select not to appear invalid.'
+        'Expected select not to appear invalid.',
       );
       expect(select.getAttribute('aria-invalid'))
         .withContext('Expected aria-invalid to be set to false.')
@@ -3783,7 +3783,7 @@ describe('SbbSelect', () => {
 
       expect(select.classList).not.toContain(
         'sbb-select-invalid',
-        'Expected select not to appear invalid.'
+        'Expected select not to appear invalid.',
       );
       expect(select.getAttribute('aria-invalid'))
         .withContext('Expected aria-invalid to be set to false.')
@@ -3793,7 +3793,7 @@ describe('SbbSelect', () => {
     it('should appear as invalid when the parent form group is submitted', fakeAsync(() => {
       expect(select.classList).not.toContain(
         'sbb-select-invalid',
-        'Expected select not to appear invalid.'
+        'Expected select not to appear invalid.',
       );
       expect(select.getAttribute('aria-invalid'))
         .withContext('Expected aria-invalid to be set to false.')
@@ -4235,7 +4235,7 @@ describe('SbbSelect', () => {
       fixture.detectChanges();
 
       const options = overlayContainerElement.querySelectorAll(
-        'sbb-option'
+        'sbb-option',
       ) as NodeListOf<HTMLElement>;
 
       options[0].click();
@@ -4472,7 +4472,7 @@ describe('SbbSelect', () => {
       fixture.detectChanges();
 
       const options = overlayContainerElement.querySelectorAll(
-        'sbb-option'
+        'sbb-option',
       ) as NodeListOf<HTMLElement>;
 
       options[0].click();
@@ -4506,7 +4506,7 @@ describe('SbbSelect', () => {
       flush();
 
       const options = overlayContainerElement.querySelectorAll(
-        'sbb-option'
+        'sbb-option',
       ) as NodeListOf<HTMLElement>;
 
       options[0].click();
@@ -4528,7 +4528,7 @@ describe('SbbSelect', () => {
       fixture.detectChanges();
       flush();
       const optionNodes = overlayContainerElement.querySelectorAll(
-        'sbb-option'
+        'sbb-option',
       ) as NodeListOf<HTMLElement>;
 
       const optionInstances = testInstance.options.toArray();
@@ -4545,7 +4545,7 @@ describe('SbbSelect', () => {
       fixture.detectChanges();
       flush();
       const options = overlayContainerElement.querySelectorAll(
-        'sbb-option'
+        'sbb-option',
       ) as NodeListOf<HTMLElement>;
 
       options[0].click();
@@ -4567,7 +4567,7 @@ describe('SbbSelect', () => {
       expect(testInstance.select.panelOpen).toBe(true);
 
       const options = overlayContainerElement.querySelectorAll(
-        'sbb-option'
+        'sbb-option',
       ) as NodeListOf<HTMLElement>;
 
       options[0].click();
@@ -4583,7 +4583,7 @@ describe('SbbSelect', () => {
       flush();
 
       const options = overlayContainerElement.querySelectorAll(
-        'sbb-option'
+        'sbb-option',
       ) as NodeListOf<HTMLElement>;
 
       options[2].click();
@@ -4606,7 +4606,7 @@ describe('SbbSelect', () => {
       flush();
 
       const options = overlayContainerElement.querySelectorAll(
-        'sbb-option'
+        'sbb-option',
       ) as NodeListOf<HTMLElement>;
 
       for (let i = 0; i < 3; i++) {
@@ -4666,7 +4666,7 @@ describe('SbbSelect', () => {
       expect(fixture.componentInstance.select._keyManager.activeItemIndex).toBe(0);
 
       const options = overlayContainerElement.querySelectorAll(
-        'sbb-option'
+        'sbb-option',
       ) as NodeListOf<HTMLElement>;
 
       options[2].click();
@@ -4687,7 +4687,7 @@ describe('SbbSelect', () => {
       fixture.detectChanges();
 
       const options = overlayContainerElement.querySelectorAll(
-        'sbb-option'
+        'sbb-option',
       ) as NodeListOf<HTMLElement>;
 
       options[0].click();
@@ -4868,7 +4868,7 @@ describe('SbbSelect', () => {
       fixture.detectChanges();
 
       const optionNodes = Array.from<HTMLElement>(
-        overlayContainerElement.querySelectorAll('sbb-option')
+        overlayContainerElement.querySelectorAll('sbb-option'),
       );
       const optionInstances = testInstance.options.toArray();
 
@@ -4895,7 +4895,7 @@ describe('SbbSelect', () => {
             overlayPanelClass: 'test-panel-class',
           } as SbbSelectConfig,
         },
-      ]
+      ],
     );
     const fixture = TestBed.createComponent(NgModelSelect);
     fixture.detectChanges();
@@ -5011,7 +5011,7 @@ describe('SbbSelect', () => {
 
     it(`should hide arrow`, fakeAsync(() => {
       expect(getComputedStyle(select.querySelector('.sbb-select-arrow-icon')!).display).toBe(
-        'none'
+        'none',
       );
     }));
 

@@ -12,7 +12,7 @@ import { EXAMPLE_COMPONENTS, EXAMPLE_COMPONENTS_LOADER } from './example-module'
  */
 export async function loadExample(
   name: string,
-  injector: Injector
+  injector: Injector,
 ): Promise<{ component: Type<any>; injector: Injector }> {
   const { componentName, importPath } = EXAMPLE_COMPONENTS[name];
   const moduleExports = await EXAMPLE_COMPONENTS_LOADER.get(importPath)!();

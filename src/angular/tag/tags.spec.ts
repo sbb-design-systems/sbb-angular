@@ -398,7 +398,7 @@ describe('SbbTags', () => {
 
     it('should have default badge description for first tag', () => {
       expect(extractBadgeDescription(fixture.debugElement.queryAll(By.directive(SbbTag))[1])).toBe(
-        '8 results available'
+        '8 results available',
       );
     });
 
@@ -407,7 +407,7 @@ describe('SbbTags', () => {
       fixture.detectChanges();
 
       expect(extractBadgeDescription(fixture.debugElement.queryAll(By.directive(SbbTag))[1])).toBe(
-        'description'
+        'description',
       );
     });
   });
@@ -579,7 +579,7 @@ describe('SBB Tag Link', () => {
 
 function expectTotalAmount(expectedTotalAmount: number, fixture: any) {
   const tagsComponent: SbbTags = fixture.debugElement.query(
-    By.directive(SbbTags)
+    By.directive(SbbTags),
   ).componentInstance;
   expect(tagsComponent.totalAmount).toBe(expectedTotalAmount);
 

@@ -77,7 +77,7 @@ describe('SbbTextexpand', () => {
   it('should throw if component is not used like specified', () => {
     const fixture = TestBed.createComponent(InvalidTextexpand);
     expect(() => fixture.detectChanges()).toThrowError(
-      wrappedErrorMessage(getSbbTextexpandInvalidError())
+      wrappedErrorMessage(getSbbTextexpandInvalidError()),
     );
   });
 });

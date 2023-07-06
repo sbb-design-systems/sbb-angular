@@ -52,7 +52,7 @@ export class Categorizer implements Processor {
 
   constructor(
     /** Shared map that can be used to resolve docs through symbols. */
-    private _exportSymbolsToDocsMap: Map<ts.Symbol, ClassLikeExportDoc>
+    private _exportSymbolsToDocsMap: Map<ts.Symbol, ClassLikeExportDoc>,
   ) {}
 
   $process(docs: DocCollection) {
@@ -121,13 +121,13 @@ export class Categorizer implements Processor {
     classDoc.methods.push(
       ...(classDoc.statics
         .filter(isMethod)
-        .filter(filterDuplicateMembers) as CategorizedMethodMemberDoc[])
+        .filter(filterDuplicateMembers) as CategorizedMethodMemberDoc[]),
     );
 
     classDoc.properties.push(
       ...(classDoc.statics
         .filter(isProperty)
-        .filter(filterDuplicateMembers) as CategorizedPropertyMemberDoc[])
+        .filter(filterDuplicateMembers) as CategorizedPropertyMemberDoc[]),
     );
 
     // In case the extended document is not public, we don't want to print it in the

@@ -63,7 +63,7 @@ export class SharedDataDialogExample {
 export class SharedDataDialogComponent {
   constructor(
     public dialogRef: SbbDialogRef<SharedDataDialogComponent>,
-    @Inject(SBB_DIALOG_DATA) public data: DialogData
+    @Inject(SBB_DIALOG_DATA) public data: DialogData,
   ) {}
 
   noThanks(): void {

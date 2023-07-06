@@ -476,12 +476,12 @@ describe('SbbSearch', () => {
           flush();
           await fixture.whenStable();
           const searchOverlay = overlayContainerElement.querySelector(
-            '.sbb-header-search-overlay'
+            '.sbb-header-search-overlay',
           )!;
           const autocompleteOverlay =
             overlayContainerElement.querySelector('.sbb-autocomplete-panel')!;
           expect(searchOverlay.getBoundingClientRect().width).toEqual(
-            autocompleteOverlay.getBoundingClientRect().width
+            autocompleteOverlay.getBoundingClientRect().width,
           );
         }));
       });

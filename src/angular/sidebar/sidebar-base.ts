@@ -38,7 +38,7 @@ export abstract class SbbSidebarContentBase extends CdkScrollable {
   protected constructor(
     elementRef: ElementRef<HTMLElement>,
     scrollDispatcher: ScrollDispatcher,
-    ngZone: NgZone
+    ngZone: NgZone,
   ) {
     super(elementRef, scrollDispatcher, ngZone);
   }
@@ -75,7 +75,7 @@ export abstract class SbbSidebarContainerBase<T extends SbbSidebarBase>
   protected constructor(
     protected _ngZone: NgZone,
     protected _changeDetectorRef: ChangeDetectorRef,
-    protected _breakpointObserver: BreakpointObserver
+    protected _breakpointObserver: BreakpointObserver,
   ) {}
 
   /** All sidebars, also nested sidebars included **/
@@ -108,7 +108,7 @@ export abstract class SbbSidebarContainerBase<T extends SbbSidebarBase>
       .pipe(
         map((r) => r.matches),
         distinctUntilChanged(),
-        takeUntil(this._destroyed)
+        takeUntil(this._destroyed),
       )
       .subscribe((newMobile) => this._updateMobileState(newMobile));
   }

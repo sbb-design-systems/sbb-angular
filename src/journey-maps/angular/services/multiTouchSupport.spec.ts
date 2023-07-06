@@ -22,7 +22,7 @@ describe('MultiTouchSupport', () => {
   const expectPanByToHaveBeenCalledWithNearly = (
     [expectedX, expectedY]: number[],
     precision: number,
-    options = {}
+    options = {},
   ) => {
     const panByArgs = map.panBy.calls.mostRecent().args;
     const coordinates = panByArgs[0];
@@ -36,7 +36,7 @@ describe('MultiTouchSupport', () => {
 
   const expectSetZoomToHaveBeenCalledWithNearly = (
     expectedZoomLevel: number,
-    precision: number
+    precision: number,
   ) => {
     expect(map.setZoom.calls.mostRecent().args[0]).toBeCloseTo(expectedZoomLevel, precision);
   };

@@ -7,5 +7,5 @@ import { InjectionToken } from '@angular/core';
  * value to them.
  */
 export const SBB_INPUT_VALUE_ACCESSOR = new InjectionToken<{ value: any }>(
-  'SBB_INPUT_VALUE_ACCESSOR'
+  'SBB_INPUT_VALUE_ACCESSOR',
 );

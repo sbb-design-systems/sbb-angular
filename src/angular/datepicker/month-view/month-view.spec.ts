@@ -170,7 +170,7 @@ describe('SbbMonthView', () => {
 
     it('should emit the clicked weekday', () => {
       const weekButtons = monthViewNativeElement.querySelectorAll(
-        'button.sbb-calendar-body-weekday'
+        'button.sbb-calendar-body-weekday',
       );
       (weekButtons[0] as HTMLElement).click(); // Monday
       expect(testComponent.weekday).toEqual(1);
@@ -187,7 +187,7 @@ describe('SbbMonthView', () => {
         beforeEach(() => {
           calendarInstance = fixture.componentInstance;
           calendarBodyEl = fixture.debugElement.nativeElement.querySelector(
-            '.sbb-calendar-body'
+            '.sbb-calendar-body',
           ) as HTMLElement;
           expect(calendarBodyEl).not.toBeNull();
           fixture.componentInstance.date = new Date(2017, JAN, 5);
@@ -312,7 +312,7 @@ describe('SbbMonthView', () => {
 
         it('should go to month that is focused', () => {
           const jan11Cell = fixture.debugElement.nativeElement.querySelector(
-            '[data-sbb-row="2"][data-sbb-col="2"] button'
+            '[data-sbb-row="2"][data-sbb-col="2"] button',
           ) as HTMLElement;
 
           dispatchFakeEvent(jan11Cell, 'focus');
@@ -323,7 +323,7 @@ describe('SbbMonthView', () => {
 
         it('should not call `.focus()` when the active date is focused', () => {
           const jan5Cell = fixture.debugElement.nativeElement.querySelector(
-            '[data-sbb-row="1"][data-sbb-col="3"] button'
+            '[data-sbb-row="1"][data-sbb-col="3"] button',
           ) as HTMLElement;
           const focusSpy = (jan5Cell.focus = jasmine.createSpy('cellFocused'));
 
@@ -358,7 +358,7 @@ describe('SbbMonthView', () => {
     it('should update the date range', () => {
       fixture.componentInstance.dateRange = new SbbDateRange(
         new Date(2022, NOV, 15),
-        new Date(2022, NOV, 20)
+        new Date(2022, NOV, 20),
       );
       fixture.detectChanges();
 

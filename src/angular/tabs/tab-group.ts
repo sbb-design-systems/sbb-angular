@@ -162,7 +162,7 @@ export abstract class SbbTabGroupBase implements AfterContentInit, AfterContentC
   /** Event emitted when the tab selection has changed. */
   @Output()
   readonly selectedTabChange: EventEmitter<SbbTabChangeEvent> = new EventEmitter<SbbTabChangeEvent>(
-    true
+    true,
   );
 
   private _groupId: number;
@@ -170,7 +170,7 @@ export abstract class SbbTabGroupBase implements AfterContentInit, AfterContentC
   constructor(
     protected _changeDetectorRef: ChangeDetectorRef,
     @Inject(SBB_TABS_CONFIG) @Optional() defaultConfig?: SbbTabsConfig,
-    @Optional() @Inject(ANIMATION_MODULE_TYPE) public _animationMode?: string
+    @Optional() @Inject(ANIMATION_MODULE_TYPE) public _animationMode?: string,
   ) {
     this._groupId = nextId++;
     this.animationDuration =
@@ -288,7 +288,7 @@ export abstract class SbbTabGroupBase implements AfterContentInit, AfterContentC
     // the closest group to the tab is the current one.
     this._allTabs.changes.pipe(startWith(this._allTabs)).subscribe((tabs: QueryList<SbbTab>) => {
       this._tabs.reset(
-        tabs.filter((tab) => tab._closestTabGroup === this || !tab._closestTabGroup)
+        tabs.filter((tab) => tab._closestTabGroup === this || !tab._closestTabGroup),
       );
       this._tabs.notifyOnChanges();
     });
@@ -351,7 +351,7 @@ export abstract class SbbTabGroupBase implements AfterContentInit, AfterContentC
     }
 
     this._tabLabelSubscription = merge(...this._tabs.map((tab) => tab._stateChanges)).subscribe(
-      () => this._changeDetectorRef.markForCheck()
+      () => this._changeDetectorRef.markForCheck(),
     );
   }
 
@@ -460,7 +460,7 @@ export class SbbTabGroup extends SbbTabGroupBase {
   constructor(
     changeDetectorRef: ChangeDetectorRef,
     @Inject(SBB_TABS_CONFIG) @Optional() defaultConfig?: SbbTabsConfig,
-    @Optional() @Inject(ANIMATION_MODULE_TYPE) animationMode?: string
+    @Optional() @Inject(ANIMATION_MODULE_TYPE) animationMode?: string,
   ) {
     super(changeDetectorRef, defaultConfig, animationMode);
   }

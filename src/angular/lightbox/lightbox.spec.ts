@@ -101,7 +101,7 @@ describe('SbbLightbox', () => {
       overlayContainer = oc;
       overlayContainerElement = oc.getContainerElement();
       focusMonitor = fm;
-    }
+    },
   ));
 
   afterEach(() => {
@@ -184,7 +184,7 @@ describe('SbbLightbox', () => {
     expect(lightboxRef.componentInstance.lightboxRef).toBe(lightboxRef);
     expect(lightboxInjector.get<DirectiveWithViewContainer>(DirectiveWithViewContainer))
       .withContext(
-        'Expected the lightbox component to be created with the injector from the viewContainerRef.'
+        'Expected the lightbox component to be created with the injector from the viewContainerRef.',
       )
       .toBeTruthy();
   });
@@ -252,7 +252,7 @@ describe('SbbLightbox', () => {
       });
 
       expect(afterCloseCallback).toHaveBeenCalledWith(true);
-    })
+    }),
   ));
 
   it('should dispose of lightbox if view container is destroyed while animating', fakeAsync(() => {
@@ -287,8 +287,8 @@ describe('SbbLightbox', () => {
 
         expect(beforeClosedCallback).toHaveBeenCalledTimes(1);
         expect(afterCloseCallback).toHaveBeenCalledTimes(1);
-      })
-    )
+      }),
+    ),
   );
 
   it('should close a lightbox and get back a result before it is closed', fakeAsync(() => {
@@ -300,7 +300,7 @@ describe('SbbLightbox', () => {
     // beforeClose should emit before lightbox container is destroyed
     const beforeCloseHandler = jasmine.createSpy('beforeClose callback').and.callFake(() => {
       expect(overlayContainerElement.querySelector('sbb-lightbox-container')).not.toBeNull(
-        'lightbox container exists when beforeClose is called'
+        'lightbox container exists when beforeClose is called',
       );
     });
 
@@ -416,7 +416,7 @@ describe('SbbLightbox', () => {
 
     const backdrop = overlayContainerElement.querySelector('.cdk-overlay-backdrop') as HTMLElement;
     const container = overlayContainerElement.querySelector(
-      'sbb-lightbox-container'
+      'sbb-lightbox-container',
     ) as HTMLElement;
     dispatchKeyboardEvent(document.body, 'keydown', A);
     dispatchKeyboardEvent(backdrop, 'keydown', A);
@@ -430,7 +430,7 @@ describe('SbbLightbox', () => {
       expect(
         lightbox.open(PizzaMsg, {
           viewContainerRef: testViewContainerRef,
-        })
+        }),
       ).toBe(ref);
     });
   });
@@ -502,7 +502,7 @@ describe('SbbLightbox', () => {
   it('should set the proper animation states', () => {
     const lightboxRef = lightbox.open(PizzaMsg, { viewContainerRef: testViewContainerRef });
     const lightboxContainer: SbbLightboxContainer = viewContainerFixture.debugElement.query(
-      By.directive(SbbLightboxContainer)
+      By.directive(SbbLightboxContainer),
     )!.componentInstance;
 
     expect(lightboxContainer._state).toBe('enter');
@@ -630,7 +630,7 @@ describe('SbbLightbox', () => {
       viewContainerFixture.detectChanges();
 
       expect(resolver.resolveComponentFactory).toHaveBeenCalled();
-    }
+    },
   ));
 
   it('should update height on window resize', fakeAsync(() => {
@@ -785,7 +785,7 @@ describe('SbbLightbox', () => {
     const pane = overlayContainerElement.querySelector('.cdk-overlay-pane') as HTMLElement;
     expect(pane.classList).not.toContain(
       'custom-class-one',
-      'Expected class to be initially missing'
+      'Expected class to be initially missing',
     );
 
     lightboxRef.addPanelClass('custom-class-one');
@@ -805,7 +805,7 @@ describe('SbbLightbox', () => {
       viewContainerFixture.detectChanges();
 
       const backdrop = overlayContainerElement.querySelector(
-        '.cdk-overlay-backdrop'
+        '.cdk-overlay-backdrop',
       ) as HTMLElement;
       backdrop.click();
       viewContainerFixture.detectChanges();
@@ -837,7 +837,7 @@ describe('SbbLightbox', () => {
       viewContainerFixture.detectChanges();
 
       const backdrop = overlayContainerElement.querySelector(
-        '.cdk-overlay-backdrop'
+        '.cdk-overlay-backdrop',
       ) as HTMLElement;
       backdrop.click();
 
@@ -861,7 +861,7 @@ describe('SbbLightbox', () => {
       flushMicrotasks();
 
       const backdrop = overlayContainerElement.querySelector(
-        '.cdk-overlay-backdrop'
+        '.cdk-overlay-backdrop',
       ) as HTMLElement;
       const input = overlayContainerElement.querySelector('input') as HTMLInputElement;
 
@@ -893,10 +893,10 @@ describe('SbbLightbox', () => {
         flushMicrotasks();
 
         const backdrop = overlayContainerElement.querySelector(
-          '.cdk-overlay-backdrop'
+          '.cdk-overlay-backdrop',
         ) as HTMLElement;
         const container = overlayContainerElement.querySelector(
-          '.sbb-lightbox-container'
+          '.sbb-lightbox-container',
         ) as HTMLInputElement;
 
         expect(document.activeElement)
@@ -911,7 +911,7 @@ describe('SbbLightbox', () => {
         expect(document.activeElement)
           .withContext('Expected container to stay focused after click')
           .toBe(container);
-      })
+      }),
     );
   });
 
@@ -968,7 +968,7 @@ describe('SbbLightbox', () => {
       flushMicrotasks();
 
       expect(
-        overlayContainerElement.querySelectorAll('.cdk-focus-trap-anchor').length
+        overlayContainerElement.querySelectorAll('.cdk-focus-trap-anchor').length,
       ).toBeGreaterThan(0);
     }));
 
@@ -987,13 +987,13 @@ describe('SbbLightbox', () => {
 
       expect(document.activeElement!.id).not.toBe(
         'dialog-trigger',
-        'Expected the focus to change when lightbox was opened.'
+        'Expected the focus to change when lightbox was opened.',
       );
 
       lightboxRef.close();
       expect(document.activeElement!.id).not.toBe(
         'dialog-trigger',
-        'Expcted the focus not to have changed before the animation finishes.'
+        'Expcted the focus not to have changed before the animation finishes.',
       );
 
       flushMicrotasks();
@@ -1090,7 +1090,7 @@ describe('SbbLightbox', () => {
       expect(lastFocusOrigin!).withContext('Expected the trigger button to be blurred').toBeNull();
 
       const backdrop = overlayContainerElement.querySelector(
-        '.cdk-overlay-backdrop'
+        '.cdk-overlay-backdrop',
       ) as HTMLElement;
 
       backdrop.click();
@@ -1127,7 +1127,7 @@ describe('SbbLightbox', () => {
       expect(lastFocusOrigin!).withContext('Expected the trigger button to be blurred').toBeNull();
 
       const closeButton = overlayContainerElement.querySelector(
-        'button[sbb-lightbox-close]'
+        'button[sbb-lightbox-close]',
       ) as HTMLElement;
 
       // Fake the behavior of pressing the SPACE key on a button element. Browsers fire a `click`
@@ -1167,7 +1167,7 @@ describe('SbbLightbox', () => {
       expect(lastFocusOrigin!).withContext('Expected the trigger button to be blurred').toBeNull();
 
       const closeButton = overlayContainerElement.querySelector(
-        'button[sbb-lightbox-close]'
+        'button[sbb-lightbox-close]',
       ) as HTMLElement;
 
       // The lightbox close button detects the focus origin by inspecting the click event. If
@@ -1248,7 +1248,7 @@ describe('SbbLightbox', () => {
 
       expect(document.activeElement!.id).not.toBe(
         'dialog-trigger',
-        'Expected the focus to change when lightbox was opened.'
+        'Expected the focus to change when lightbox was opened.',
       );
 
       lightboxRef.close();
@@ -1258,7 +1258,7 @@ describe('SbbLightbox', () => {
 
       expect(document.activeElement!.id).not.toBe(
         'dialog-trigger',
-        'Expected focus not to have been restored.'
+        'Expected focus not to have been restored.',
       );
 
       document.body.removeChild(button);
@@ -1283,7 +1283,7 @@ describe('SbbLightbox', () => {
 
       expect(document.activeElement!.id).not.toBe(
         'dialog-trigger',
-        'Expected the focus to change when lightbox was opened.'
+        'Expected the focus to change when lightbox was opened.',
       );
 
       // Start the closing sequence and move focus out of lightbox.
@@ -1430,7 +1430,7 @@ describe('SbbLightbox', () => {
 
         const container = overlayContainerElement.querySelector('sbb-lightbox-container')!;
         expect(container.hasAttribute('aria-labelledby')).toBe(false);
-      })
+      }),
     );
 
     it(
@@ -1450,7 +1450,7 @@ describe('SbbLightbox', () => {
 
         expect(title.id).withContext('Expected title element to have an id.').toBeTruthy();
         expect(container.getAttribute('aria-labelledby')).toBe('Labelled By');
-      })
+      }),
     );
   });
 
@@ -1759,7 +1759,7 @@ describe('SbbDialog with explicit injector provided', () => {
     fixture.detectChanges();
 
     expect(
-      overlayContainerElement.querySelector('module-bound-lightbox-child-component')!.innerHTML
+      overlayContainerElement.querySelector('module-bound-lightbox-child-component')!.innerHTML,
     ).toEqual('<p>Pasta</p>');
   }));
 });
@@ -1797,7 +1797,7 @@ describe('SbbLightbox with close button', () => {
     fixtureContentElementDialog.detectChanges();
 
     const closeButton = fixtureContentElementDialog.nativeElement.querySelector(
-      '.sbb-lightbox-title-close-button'
+      '.sbb-lightbox-title-close-button',
     );
     expect(closeButton).toBeTruthy();
     expect(closeButton.getAttribute('aria-label')).toBe('Close lightbox');
@@ -1874,7 +1874,7 @@ class PizzaMsg {
   constructor(
     public lightboxRef: SbbLightboxRef<PizzaMsg>,
     public lightboxInjector: Injector,
-    public directionality: Directionality
+    public directionality: Directionality,
   ) {}
 }
 
@@ -1979,12 +1979,15 @@ class DialogTestModule {}
 
 @Component({ template: '' })
 class ModuleBoundLightboxParentComponent {
-  constructor(private _injector: Injector, private _lightbox: SbbLightbox) {}
+  constructor(
+    private _injector: Injector,
+    private _lightbox: SbbLightbox,
+  ) {}
 
   openLightbox(): void {
     const ngModuleRef = createNgModuleRef(
       ModuleBoundLightboxModule,
-      /* parentInjector */ this._injector
+      /* parentInjector */ this._injector,
     );
 
     this._lightbox.open(ModuleBoundLightboxComponent, { injector: ngModuleRef.injector });

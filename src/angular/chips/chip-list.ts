@@ -49,9 +49,9 @@ const _SbbChipListBase = mixinErrorState(
        * Implemented as part of `SbbFormFieldControl`.
        * @docs-private
        */
-      public ngControl: NgControl
+      public ngControl: NgControl,
     ) {}
-  }
+  },
 );
 
 // Increasing integer for generating unique ids for chip-list components.
@@ -298,7 +298,7 @@ export class SbbChipList
     @Optional() parentFormGroup: FormGroupDirective,
     defaultErrorStateMatcher: SbbErrorStateMatcher,
     /** @docs-private */
-    @Optional() @Self() public override ngControl: NgControl
+    @Optional() @Self() public override ngControl: NgControl,
   ) {
     super(defaultErrorStateMatcher, parentForm, parentFormGroup, ngControl);
     if (this.ngControl) {

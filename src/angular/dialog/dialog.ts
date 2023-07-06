@@ -24,12 +24,12 @@ export const SBB_DIALOG_DATA = new InjectionToken<any>('SbbDialogData');
 
 /** Injection token that can be used to specify default dialog options. */
 export const SBB_DIALOG_DEFAULT_OPTIONS = new InjectionToken<SbbDialogConfig>(
-  'sbb-dialog-default-options'
+  'sbb-dialog-default-options',
 );
 
 /** Injection token that determines the scroll handling while the dialog is open. */
 export const SBB_DIALOG_SCROLL_STRATEGY = new InjectionToken<() => ScrollStrategy>(
-  'sbb-dialog-scroll-strategy'
+  'sbb-dialog-scroll-strategy',
 );
 
 /** @docs-private */
@@ -39,7 +39,7 @@ export function SBB_DIALOG_SCROLL_STRATEGY_FACTORY(overlay: Overlay): () => Scro
 
 /** @docs-private */
 export function SBB_DIALOG_SCROLL_STRATEGY_PROVIDER_FACTORY(
-  overlay: Overlay
+  overlay: Overlay,
 ): () => ScrollStrategy {
   return () => overlay.scrollStrategies.block();
 }
@@ -62,7 +62,7 @@ let uniqueId = 0;
 // tslint:disable-next-line: class-name naming-convention
 export abstract class _SbbDialogBase<
   C extends _SbbDialogContainerBase,
-  F extends SbbDialogRef<any> = SbbDialogRef<any>
+  F extends SbbDialogRef<any> = SbbDialogRef<any>,
 > implements OnDestroy
 {
   private readonly _openDialogsAtThisLevel: F[] = [];
@@ -94,7 +94,7 @@ export abstract class _SbbDialogBase<
   readonly afterAllClosed: Observable<void> = defer(() =>
     this.openDialogs.length
       ? this._getAfterAllClosed()
-      : this._getAfterAllClosed().pipe(startWith(undefined))
+      : this._getAfterAllClosed().pipe(startWith(undefined)),
   ) as Observable<any>;
 
   constructor(
@@ -105,7 +105,7 @@ export abstract class _SbbDialogBase<
     scrollStrategy: any,
     private _dialogRefConstructor: Type<F>,
     private _dialogContainerType: Type<C>,
-    private _dialogDataToken: InjectionToken<any>
+    private _dialogDataToken: InjectionToken<any>,
   ) {
     this._scrollStrategy = scrollStrategy;
     this._dialog = injector.get(Dialog);
@@ -119,7 +119,7 @@ export abstract class _SbbDialogBase<
    */
   open<T, D = any, R = any>(
     componentOrTemplateRef: ComponentType<T> | TemplateRef<T>,
-    config?: SbbDialogConfig<D>
+    config?: SbbDialogConfig<D>,
   ): SbbDialogRef<T, R> {
     let dialogRef: F;
     config = { ...(this._defaultOptions || new SbbDialogConfig()), ...config };
@@ -225,7 +225,7 @@ export class SbbDialog extends _SbbDialogBase<SbbDialogContainer> {
     injector: Injector,
     @Optional() @Inject(SBB_DIALOG_DEFAULT_OPTIONS) defaultOptions: SbbDialogConfig,
     @Inject(SBB_DIALOG_SCROLL_STRATEGY) scrollStrategy: any,
-    @Optional() @SkipSelf() parentDialog: SbbDialog
+    @Optional() @SkipSelf() parentDialog: SbbDialog,
   ) {
     super(
       overlay,
@@ -235,7 +235,7 @@ export class SbbDialog extends _SbbDialogBase<SbbDialogContainer> {
       scrollStrategy,
       SbbDialogRef,
       SbbDialogContainer,
-      SBB_DIALOG_DATA
+      SBB_DIALOG_DATA,
     );
   }
 }

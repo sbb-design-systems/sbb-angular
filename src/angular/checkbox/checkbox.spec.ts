@@ -710,7 +710,7 @@ describe('SbbCheckbox', () => {
 
     it('should not change focus origin if origin not specified', () => {
       const [firstCheckboxDebugEl, secondCheckboxDebugEl] = fixture.debugElement.queryAll(
-        By.directive(SbbCheckbox)
+        By.directive(SbbCheckbox),
       );
       fixture.detectChanges();
 

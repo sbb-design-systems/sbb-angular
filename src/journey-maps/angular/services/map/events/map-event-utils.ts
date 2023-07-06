@@ -13,7 +13,7 @@ export class SbbMapEventUtils {
   queryFeaturesByLayerIds(
     mapInstance: MaplibreMap,
     screenPoint: [number, number],
-    layers: Map<string, SbbFeatureDataType>
+    layers: Map<string, SbbFeatureDataType>,
   ): SbbFeatureData[] {
     return mapInstance
       .queryRenderedFeatures(screenPoint, {
@@ -29,7 +29,7 @@ export class SbbMapEventUtils {
     mapInstance: MaplibreMap,
     featureDataType: SbbFeatureDataType,
     layers: string[],
-    filter?: any[]
+    filter?: any[],
   ): SbbFeatureData[] {
     return mapInstance
       .queryRenderedFeatures(undefined, { layers, filter })
@@ -43,7 +43,7 @@ export class SbbMapEventUtils {
   queryFeatureSourceByFilter(
     mapInstance: MaplibreMap,
     featureDataType: SbbFeatureDataType,
-    filter?: any[]
+    filter?: any[],
   ): SbbFeatureData[] {
     const sourceId = SbbMapEventUtils._getSourceMapping(featureDataType);
     if (!sourceId) {
@@ -81,7 +81,7 @@ export class SbbMapEventUtils {
   queryFeaturesByProperty(
     mapInstance: MaplibreMap,
     layers: Map<string, SbbFeatureDataType>,
-    propertyFilter: (value: MapGeoJSONFeature) => boolean
+    propertyFilter: (value: MapGeoJSONFeature) => boolean,
   ): SbbFeatureData[] {
     return mapInstance
       .queryRenderedFeatures(undefined, {
@@ -111,7 +111,7 @@ export class SbbMapEventUtils {
   /* private functions */
   private static _toFeatureEventData(
     feature: MapGeoJSONFeature,
-    featureDataType: SbbFeatureDataType
+    featureDataType: SbbFeatureDataType,
   ): SbbFeatureData {
     return {
       featureDataType,

@@ -166,7 +166,7 @@ export class SbbHeaderLean implements OnChanges, AfterViewInit, OnDestroy {
   get _openedStream(): Observable<void> {
     return this.openedChange.pipe(
       filter((o) => o),
-      map(() => {})
+      map(() => {}),
     );
   }
 
@@ -175,7 +175,7 @@ export class SbbHeaderLean implements OnChanges, AfterViewInit, OnDestroy {
   get openedStart(): Observable<void> {
     return this._animationStarted.pipe(
       filter((e) => e.fromState !== e.toState && e.toState.indexOf('open') === 0),
-      map(() => {})
+      map(() => {}),
     );
   }
 
@@ -184,7 +184,7 @@ export class SbbHeaderLean implements OnChanges, AfterViewInit, OnDestroy {
   get _closedStream(): Observable<void> {
     return this.openedChange.pipe(
       filter((o) => !o),
-      map(() => {})
+      map(() => {}),
     );
   }
 
@@ -193,7 +193,7 @@ export class SbbHeaderLean implements OnChanges, AfterViewInit, OnDestroy {
   get closedStart(): Observable<void> {
     return this._animationStarted.pipe(
       filter((e) => e.fromState !== e.toState && e.toState === 'void'),
-      map(() => {})
+      map(() => {}),
     );
   }
 
@@ -219,7 +219,7 @@ export class SbbHeaderLean implements OnChanges, AfterViewInit, OnDestroy {
   private readonly _destroyed = new Subject<void>();
 
   private readonly _collapseBreakpoint = new BehaviorSubject<SbbHeaderCollapseBreakpoint>(
-    this.collapseBreakpoint
+    this.collapseBreakpoint,
   );
 
   private _focusTrap: FocusTrap;
@@ -233,7 +233,7 @@ export class SbbHeaderLean implements OnChanges, AfterViewInit, OnDestroy {
     private _breakpointObserver: BreakpointObserver,
     private _changeDetectorRef: ChangeDetectorRef,
     @Optional() private _router: Router,
-    @Optional() @Inject(DOCUMENT) private _doc: any
+    @Optional() @Inject(DOCUMENT) private _doc: any,
   ) {
     this.openedChange.subscribe((opened: boolean) => {
       if (opened) {
@@ -252,11 +252,11 @@ export class SbbHeaderLean implements OnChanges, AfterViewInit, OnDestroy {
           this._ngZone.runOutsideAngular(() => {
             merge(
               fromEvent<KeyboardEvent>(this._menuElement.nativeElement, 'keydown').pipe(
-                filter((event) => event.keyCode === ESCAPE && !hasModifierKey(event))
+                filter((event) => event.keyCode === ESCAPE && !hasModifierKey(event)),
               ),
               this._router
                 ? this._router.events.pipe(filter((e) => e instanceof NavigationStart))
-                : NEVER
+                : NEVER,
             )
               .pipe(takeUntil(this.openedChange))
               .subscribe(() => this._ngZone.run(() => this.closeMenu()));
@@ -273,7 +273,7 @@ export class SbbHeaderLean implements OnChanges, AfterViewInit, OnDestroy {
       .pipe(
         distinctUntilChanged((x, y) => {
           return x.fromState === y.fromState && x.toState === y.toState;
-        })
+        }),
       )
       .subscribe((event: AnimationEvent) => {
         const { fromState, toState } = event;
@@ -294,7 +294,7 @@ export class SbbHeaderLean implements OnChanges, AfterViewInit, OnDestroy {
       map((r) => r.matches),
       distinctUntilChanged(),
       shareReplay(),
-      takeUntil(this._destroyed)
+      takeUntil(this._destroyed),
     );
 
     // Close menus on collapsing/uncollapsing the header menus.
@@ -385,7 +385,7 @@ export class SbbHeaderLean implements OnChanges, AfterViewInit, OnDestroy {
    */
   toggleMenu(
     isOpen: boolean = !this.opened,
-    openedVia: FocusOrigin = 'program'
+    openedVia: FocusOrigin = 'program',
   ): Promise<SbbHeaderMenuToggleResult> {
     this._opened = isOpen;
 

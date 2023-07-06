@@ -90,7 +90,7 @@ describe('SbbPaginator', () => {
         jasmine.objectContaining({
           previousPageIndex: 0,
           pageIndex: 1,
-        })
+        }),
       );
     });
 
@@ -109,7 +109,7 @@ describe('SbbPaginator', () => {
         jasmine.objectContaining({
           previousPageIndex: 1,
           pageIndex: 0,
-        })
+        }),
       );
     });
   });
@@ -224,7 +224,7 @@ describe('SbbPaginator', () => {
       jasmine.objectContaining({
         pageIndex: 1,
         pageSize: 25,
-      })
+      }),
     );
 
     // The first item on the page is still 25. Change the page size to 8 so that we should now be
@@ -240,7 +240,7 @@ describe('SbbPaginator', () => {
       jasmine.objectContaining({
         pageIndex: 3,
         pageSize: 8,
-      })
+      }),
     );
 
     // The first item on the page is 24. Change the page size to 16 so that we should now be
@@ -256,7 +256,7 @@ describe('SbbPaginator', () => {
       jasmine.objectContaining({
         pageIndex: 0,
         pageSize: 25,
-      })
+      }),
     );
   });
 
@@ -293,7 +293,7 @@ describe('SbbPaginator', () => {
       jasmine.objectContaining({
         pageIndex: 0,
         pageSize: 11,
-      })
+      }),
     );
   });
 

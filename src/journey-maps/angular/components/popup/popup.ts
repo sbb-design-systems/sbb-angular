@@ -58,7 +58,10 @@ export class SbbPopup implements OnChanges, OnDestroy {
     }
   }
 
-  constructor(private _i18n: SbbLocaleService, private _cd: ChangeDetectorRef) {}
+  constructor(
+    private _i18n: SbbLocaleService,
+    private _cd: ChangeDetectorRef,
+  ) {}
 
   ngOnChanges(changes: SimpleChanges): void {
     if (changes.templateContext?.currentValue) {

@@ -42,7 +42,7 @@ export function getDirectiveMetadata(classDoc: CategorizedClassDoc): Map<string,
     .find(
       (callExpression) =>
         callExpression.expression.getText() === 'Component' ||
-        callExpression.expression.getText() === 'Directive'
+        callExpression.expression.getText() === 'Directive',
     );
 
   if (!expression) {
@@ -62,7 +62,7 @@ export function getDirectiveMetadata(classDoc: CategorizedClassDoc): Map<string,
     // Support ArrayLiteralExpression assignments in the directive metadata.
     if (prop.initializer.kind === SyntaxKind.ArrayLiteralExpression) {
       const arrayData = (prop.initializer as ArrayLiteralExpression).elements.map(
-        (literal) => (literal as StringLiteral).text
+        (literal) => (literal as StringLiteral).text,
       );
 
       resultMetadata.set(prop.name.getText(), arrayData);

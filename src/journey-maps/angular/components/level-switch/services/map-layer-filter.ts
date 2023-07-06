@@ -33,7 +33,7 @@ export class SbbMapLayerFilter {
 
   private _calculateLayerFilter(
     oldFilter: FilterSpecification | undefined,
-    level: number
+    level: number,
   ): FilterSpecification | null {
     if (!Array.isArray(oldFilter) || oldFilter.length < 1) {
       return null;

@@ -60,7 +60,7 @@ export class LightboxExample {
 export class LightboxExampleContent {
   constructor(
     public lightboxRef: SbbLightboxRef<LightboxExampleContent>,
-    @Inject(SBB_LIGHTBOX_DATA) public data: LightboxData
+    @Inject(SBB_LIGHTBOX_DATA) public data: LightboxData,
   ) {}
 
   noThanks(): void {

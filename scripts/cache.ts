@@ -79,7 +79,7 @@ class LRUCache {
           d.isFile()
             ? files.concat(new FileEntry(join(path, d.name)))
             : files.concat(this._walkDirectory(join(path, d.name))),
-        [] as FileEntry[]
+        [] as FileEntry[],
       );
   }
 
@@ -132,13 +132,13 @@ function removeByIndividualMaxSize(cache: LRUCache, maxSize: string) {
   const result = cache.removeLargerThan(maxSizeInBytes);
   if (result.removedAmount === 0) {
     console.log(
-      `No file in ${cache.path} exceeds max file size of ${maxSize}. Nothing was removed...`
+      `No file in ${cache.path} exceeds max file size of ${maxSize}. Nothing was removed...`,
     );
   } else {
     console.log(
       `Reduced size of ${cache.path} from ${formatBytes(result.totalSize)} to ${formatBytes(
-        result.reducedSize
-      )}. Removed ${result.removedAmount} files exceeding ${maxSize}...`
+        result.reducedSize,
+      )}. Removed ${result.removedAmount} files exceeding ${maxSize}...`,
     );
     result.entries.forEach((e) => console.log(`  - ${e.path}`));
   }
@@ -150,14 +150,14 @@ function removeByMaxSize(cache: LRUCache, maxSize: string) {
   if (result.removedAmount === 0) {
     console.log(
       `Total size of ${cache.path} ${formatBytes(
-        result.totalSize
-      )} smaller than ${maxSize}. Nothing was removed...`
+        result.totalSize,
+      )} smaller than ${maxSize}. Nothing was removed...`,
     );
   } else {
     console.log(
       `Reduced size of ${cache.path} from ${formatBytes(result.totalSize)} to ${formatBytes(
-        result.reducedSize
-      )}. Removed ${result.removedAmount} files...`
+        result.reducedSize,
+      )}. Removed ${result.removedAmount} files...`,
     );
   }
 }

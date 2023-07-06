@@ -6,7 +6,7 @@ export async function createTestProject(
   runner: SchematicTestRunner,
   projectType: 'application' | 'library',
   appOptions = {},
-  tree?: Tree
+  tree?: Tree,
 ): Promise<UnitTestTree> {
   const workspaceTree = (await runner
     .runExternalSchematicAsync(
@@ -17,7 +17,7 @@ export async function createTestProject(
         version: '6.0.0',
         newProjectRoot: 'projects',
       },
-      tree
+      tree,
     )
     .toPromise())!;
 
@@ -26,7 +26,7 @@ export async function createTestProject(
       '@schematics/angular',
       projectType,
       { name: 'sbb-angular', ...appOptions },
-      workspaceTree
+      workspaceTree,
     )
     .toPromise())!;
 }

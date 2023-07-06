@@ -47,7 +47,7 @@ export abstract class _SbbDialogContainerBase extends CdkDialogContainer<SbbDial
     interactivityChecker: InteractivityChecker,
     ngZone: NgZone,
     overlayRef: OverlayRef,
-    focusMonitor?: FocusMonitor
+    focusMonitor?: FocusMonitor,
   ) {
     super(
       elementRef,
@@ -57,7 +57,7 @@ export abstract class _SbbDialogContainerBase extends CdkDialogContainer<SbbDial
       interactivityChecker,
       ngZone,
       overlayRef,
-      focusMonitor
+      focusMonitor,
     );
   }
 
@@ -161,7 +161,7 @@ export class SbbDialogContainer extends _SbbDialogContainerBase {
     ngZone: NgZone,
     overlayRef: OverlayRef,
     private _changeDetectorRef: ChangeDetectorRef,
-    focusMonitor?: FocusMonitor
+    focusMonitor?: FocusMonitor,
   ) {
     super(
       elementRef,
@@ -171,7 +171,7 @@ export class SbbDialogContainer extends _SbbDialogContainerBase {
       checker,
       ngZone,
       overlayRef,
-      focusMonitor
+      focusMonitor,
     );
   }
 }

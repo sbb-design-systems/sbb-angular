@@ -83,7 +83,7 @@ describe('SbbNotificationToast icons', () => {
     testComponent.showNotification({ type: 'success' });
     testFixture.detectChanges();
     const notifications = overlayContainerElement.querySelectorAll(
-      '.sbb-notification-toast-success'
+      '.sbb-notification-toast-success',
     );
     expect(notifications.length)
       .withContext('Expected class .sbb-notification-toast-success to be assigned')
@@ -147,7 +147,7 @@ describe('SbbNotificationToast', () => {
       liveAnnouncer = la;
       overlayContainer = oc;
       overlayContainerElement = oc.getContainerElement();
-    }
+    },
   ));
 
   afterEach(() => {
@@ -174,12 +174,12 @@ describe('SbbNotificationToast', () => {
       viewContainerFixture.detectChanges();
 
       const containerElement = overlayContainerElement.querySelector(
-        'sbb-notification-toast-container'
+        'sbb-notification-toast-container',
       )!;
       expect(containerElement.getAttribute('role'))
         .withContext('Expected notification toast container to have role="alert"')
         .toBe('alert');
-    }
+    },
   );
 
   it(
@@ -193,12 +193,12 @@ describe('SbbNotificationToast', () => {
       viewContainerFixture.detectChanges();
 
       const containerElement = overlayContainerElement.querySelector(
-        'sbb-notification-toast-container'
+        'sbb-notification-toast-container',
       )!;
       expect(containerElement.getAttribute('role'))
         .withContext('Expected notification toast container to have role="status"')
         .toBe('status');
-    }
+    },
   );
 
   it('should have the role of `status` with a `polite` politeness', () => {
@@ -206,7 +206,7 @@ describe('SbbNotificationToast', () => {
     viewContainerFixture.detectChanges();
 
     const containerElement = overlayContainerElement.querySelector(
-      'sbb-notification-toast-container'
+      'sbb-notification-toast-container',
     )!;
     expect(containerElement.getAttribute('role'))
       .withContext('Expected notification toast container to have role="status"')
@@ -218,7 +218,7 @@ describe('SbbNotificationToast', () => {
     viewContainerFixture.detectChanges();
 
     const containerElement = overlayContainerElement.querySelector(
-      'sbb-notification-toast-container'
+      'sbb-notification-toast-container',
     )!;
     expect(containerElement.getAttribute('role'))
       .withContext('Expected role to be removed')
@@ -230,7 +230,7 @@ describe('SbbNotificationToast', () => {
     viewContainerFixture.detectChanges();
 
     const messageElement = overlayContainerElement.querySelector(
-      'sbb-notification-toast-container'
+      'sbb-notification-toast-container',
     )!;
     expect(messageElement.textContent)
       .withContext('Expected notification toast to show a message without a ViewContainerRef')
@@ -253,17 +253,17 @@ describe('SbbNotificationToast', () => {
 
     expect(notificationToastRef.instance instanceof SbbSimpleNotification)
       .withContext(
-        'Expected the notification toast content component to be SimpleNotificationComponent'
+        'Expected the notification toast content component to be SimpleNotificationComponent',
       )
       .toBe(true);
     expect(notificationToastRef.instance.notificationToastRef)
       .withContext(
-        'Expected the notification toast reference to be placed in the component instance'
+        'Expected the notification toast reference to be placed in the component instance',
       )
       .toBe(notificationToastRef);
 
     const messageElement = overlayContainerElement.querySelector(
-      'sbb-notification-toast-container'
+      'sbb-notification-toast-container',
     )!;
     expect(messageElement.textContent)
       .withContext(`Expected the notification toast message to be '${simpleMessage}'`)
@@ -284,11 +284,11 @@ describe('SbbNotificationToast', () => {
 
     notificationToastRef.dismiss();
     const messageElement = overlayContainerElement.querySelector(
-      'sbb-notification-toast-container'
+      'sbb-notification-toast-container',
     )!;
     expect(messageElement.hasAttribute('sbb-exit'))
       .withContext(
-        'Expected the notification toast container to have the "exit" attribute upon dismiss'
+        'Expected the notification toast container to have the "exit" attribute upon dismiss',
       )
       .toBe(true);
 
@@ -353,7 +353,7 @@ describe('SbbNotificationToast', () => {
 
     expect(overlayContainerElement.childElementCount)
       .withContext(
-        'Expected notification toast to be removed after the view container was destroyed'
+        'Expected notification toast to be removed after the view container was destroyed',
       )
       .toBe(0);
   }));
@@ -503,7 +503,7 @@ describe('SbbNotificationToast', () => {
     viewContainerFixture.detectChanges();
 
     const containerClasses = overlayContainerElement.querySelector(
-      'sbb-notification-toast-container'
+      'sbb-notification-toast-container',
     )!.classList;
 
     expect(containerClasses).toContain('one');
@@ -530,14 +530,14 @@ describe('SbbNotificationToast', () => {
         notificationToast = sb;
         overlayContainer = oc;
         overlayContainerElement = oc.getContainerElement();
-      }
+      },
     )();
 
     notificationToast.open(simpleMessage);
     flush();
 
     expect(
-      overlayContainerElement.querySelector('sbb-notification-toast-container')!.classList
+      overlayContainerElement.querySelector('sbb-notification-toast-container')!.classList,
     ).toContain('custom-class', 'Expected class applied through the defaults to be applied.');
   }));
 
@@ -574,7 +574,7 @@ describe('SbbNotificationToast', () => {
 
     flush();
     expect(
-      overlayContainerElement.querySelectorAll('sbb-notification-toast-container').length
+      overlayContainerElement.querySelectorAll('sbb-notification-toast-container').length,
     ).toBe(1);
   }));
 
@@ -628,7 +628,7 @@ describe('SbbNotificationToast', () => {
       templateFixture.detectChanges();
 
       const containerElement = overlayContainerElement.querySelector(
-        'sbb-notification-toast-container'
+        'sbb-notification-toast-container',
       )!;
 
       expect(containerElement.textContent).toContain('Fries');
@@ -646,7 +646,7 @@ describe('SbbNotificationToast', () => {
       });
 
       const containerElement = overlayContainerElement.querySelector(
-        'sbb-notification-toast-container'
+        'sbb-notification-toast-container',
       )!;
 
       expect(containerElement.textContent).toContain('Oranges');
@@ -685,7 +685,7 @@ describe('SbbNotificationToast with parent SbbNotificationToast', () => {
       fixture = TestBed.createComponent(ComponentThatProvidesSbbNotificationToast);
       childNotificationToast = fixture.componentInstance.notificationToast;
       fixture.detectChanges();
-    }
+    },
   ));
 
   afterEach(() => {
@@ -770,7 +770,7 @@ describe('SbbNotificationToast Positioning', () => {
       liveAnnouncer = la;
       overlayContainer = oc;
       overlayContainerEl = oc.getContainerElement();
-    }
+    },
   ));
 
   afterEach(() => {
@@ -790,7 +790,7 @@ describe('SbbNotificationToast Positioning', () => {
     flush();
 
     const containerEl = overlayContainerEl.querySelector(
-      'sbb-notification-toast-container'
+      'sbb-notification-toast-container',
     ) as HTMLElement;
     const overlayPaneEl = overlayContainerEl.querySelector('.cdk-overlay-pane') as HTMLElement;
 
@@ -814,7 +814,7 @@ describe('SbbNotificationToast Positioning', () => {
     flush();
 
     const containerEl = overlayContainerEl.querySelector(
-      'sbb-notification-toast-container'
+      'sbb-notification-toast-container',
     ) as HTMLElement;
     const overlayPaneEl = overlayContainerEl.querySelector('.cdk-overlay-pane') as HTMLElement;
 
@@ -837,7 +837,7 @@ describe('SbbNotificationToast Positioning', () => {
     flush();
 
     const containerEl = overlayContainerEl.querySelector(
-      'sbb-notification-toast-container'
+      'sbb-notification-toast-container',
     ) as HTMLElement;
     const overlayPaneEl = overlayContainerEl.querySelector('.cdk-overlay-pane') as HTMLElement;
 
@@ -908,7 +908,7 @@ class ComponentWithTemplateRef {
 class BurritosNotification {
   constructor(
     public notificationToastRef: SbbNotificationToastRef<BurritosNotification>,
-    @Inject(SBB_NOTIFICATION_TOAST_DATA) public data: any
+    @Inject(SBB_NOTIFICATION_TOAST_DATA) public data: any,
   ) {}
 }
 

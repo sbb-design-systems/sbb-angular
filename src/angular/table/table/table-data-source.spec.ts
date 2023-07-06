@@ -120,7 +120,7 @@ describe('SbbTableDataSource', () => {
       params.forEach((param) =>
         expect(dataTableSource.filterPredicate(testRow, param.filter))
           .withContext(param.toString())
-          .toBe(param.expected)
+          .toBe(param.expected),
       );
     });
 
@@ -162,7 +162,7 @@ describe('SbbTableDataSource', () => {
       params.forEach((param) =>
         expect(dataTableSource.filterPredicate(testRowAdvanced, param.filter))
           .withContext(param.toString())
-          .toBe(param.expected)
+          .toBe(param.expected),
       );
     });
 
@@ -192,7 +192,7 @@ describe('SbbTableDataSource', () => {
       params.forEach((param) =>
         expect(dataTableSource.filterPredicate(testRowAdvanced, param.filter))
           .withContext(param.toString())
-          .toBe(param.expected)
+          .toBe(param.expected),
       );
     });
 
@@ -218,7 +218,7 @@ describe('SbbTableDataSource', () => {
       params.forEach((param) =>
         expect(dataTableSource.filterPredicate(dataRowWith0, param.filter))
           .withContext(param.toString())
-          .toBe(param.expected)
+          .toBe(param.expected),
       );
     });
 
@@ -267,7 +267,7 @@ describe('SbbTableDataSource', () => {
       params.forEach((param) =>
         expect(dataTableSource.filterPredicate(testRowAdvanced, param.filter))
           .withContext(param.toString())
-          .toBe(param.expected)
+          .toBe(param.expected),
       );
     });
   });
