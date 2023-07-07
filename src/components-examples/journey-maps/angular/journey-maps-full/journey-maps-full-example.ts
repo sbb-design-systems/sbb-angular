@@ -35,8 +35,17 @@ import { LngLatBounds, LngLatBoundsLike, LngLatLike } from 'maplibre-gl';
 import { BehaviorSubject, Subject } from 'rxjs';
 import { filter, map, take, takeUntil } from 'rxjs/operators';
 
+import { zhBeWyleregg } from './mock-response/journey/zh-be_wyleregg';
+import { zhShWaldfriedhof } from './mock-response/journey/zh-sh_waldfriedhof';
 import { markers } from './mock-response/markers';
-import { MockResponseService } from './mock-response/mock-response.service';
+import { bielLyssRoutes, bielLyssRoutesOptions } from './mock-response/routes/biel-lyss';
+import { bnLsRoutes, bnLsRoutesOptions } from './mock-response/routes/bn-ls';
+import { bernIndoor } from './mock-response/transfer/bern-indoor';
+import { geneveIndoor } from './mock-response/transfer/geneve-indoor';
+import { luzern4j } from './mock-response/transfer/luzern4-j';
+import { zurichIndoor } from './mock-response/transfer/zurich-indoor';
+import { bernBurgdorfZones } from './mock-response/zone/bern-burgdorf';
+import { baselBielZones } from './mock-response/zone/bs-bl';
 
 const CH_BOUNDS: LngLatBoundsLike = [
   [5.7349, 45.6755],
@@ -51,7 +60,6 @@ const CH_BOUNDS: LngLatBoundsLike = [
   templateUrl: 'journey-maps-full-example.html',
   styleUrls: ['journey-maps-full-example.css'],
   standalone: true,
-  providers: [MockResponseService],
   imports: [
     CommonModule,
     SbbCommonModule,
@@ -91,8 +99,8 @@ export class JourneyMapsFullExample implements OnInit, OnDestroy {
 
   journeyMapsZoneOptions = [
     { label: '(none)', value: undefined },
-    { label: 'Berne / Burgdorf', value: this._mockResponse.data.bernBurgdorfZones },
-    { label: 'Basel / Biel', value: this._mockResponse.data.baselBielZones },
+    { label: 'Berne / Burgdorf', value: bernBurgdorfZones },
+    { label: 'Basel / Biel', value: baselBielZones },
   ];
   journeyMapsRoutingOption?: SbbJourneyMapsRoutingOptions;
   journeyMapsRoutingOptions: { label: string; value: SbbJourneyMapsRoutingOptions | undefined }[] =
@@ -100,30 +108,30 @@ export class JourneyMapsFullExample implements OnInit, OnDestroy {
       { label: '(none)', value: undefined },
       {
         label: 'Zürich - Bern, Wyleregg',
-        value: { journey: this._mockResponse.data.zhBeWyleregg },
+        value: { journey: zhBeWyleregg },
       },
       {
         label: 'Zürich - Schaffhausen, Waldfriedhof',
-        value: { journey: this._mockResponse.data.zhShWaldfriedhof },
+        value: { journey: zhShWaldfriedhof },
       },
       {
         label: 'Bern - Lausanne',
         value: {
-          routes: this._mockResponse.data.bnLsRoutes,
-          routesMetaInformations: this._mockResponse.data.bnLsRoutesOptions,
+          routes: bnLsRoutes,
+          routesMetaInformations: bnLsRoutesOptions,
         },
       },
       {
         label: 'Biel - Lyss',
         value: {
-          routes: this._mockResponse.data.bielLyssRoutes,
-          routesMetaInformations: this._mockResponse.data.bielLyssRoutesOptions,
+          routes: bielLyssRoutes,
+          routesMetaInformations: bielLyssRoutesOptions,
         },
       },
-      { label: 'Transfer Bern', value: { transfer: this._mockResponse.data.bernIndoor } },
-      { label: 'Transfer Genf', value: { transfer: this._mockResponse.data.geneveIndoor } },
-      { label: 'Transfer Luzern', value: { transfer: this._mockResponse.data.luzern4j } },
-      { label: 'Transfer Zürich', value: { transfer: this._mockResponse.data.zurichIndoor } },
+      { label: 'Transfer Bern', value: { transfer: bernIndoor } },
+      { label: 'Transfer Genf', value: { transfer: geneveIndoor } },
+      { label: 'Transfer Luzern', value: { transfer: luzern4j } },
+      { label: 'Transfer Zürich', value: { transfer: zurichIndoor } },
     ];
   journeyMapsRoutingLegIds: string[] = [];
   homeButtonOptions: SbbViewportDimensions = { boundingBox: SBB_BOUNDING_BOX };
@@ -157,7 +165,6 @@ export class JourneyMapsFullExample implements OnInit, OnDestroy {
   constructor(
     private _cd: ChangeDetectorRef,
     private _fb: UntypedFormBuilder,
-    private _mockResponse: MockResponseService,
   ) {
     // Pseudo validator to reset the selected marker id before the value changes
     const resetSelectedMarkerIdValidator = () => {

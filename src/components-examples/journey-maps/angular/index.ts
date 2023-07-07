@@ -12,9 +12,8 @@ import { SbbJourneyMapsModule } from '@sbb-esta/journey-maps';
 
 import { JourneyMapsBasicExample } from './journey-maps-basic/journey-maps-basic-example';
 import { JourneyMapsFullExample } from './journey-maps-full/journey-maps-full-example';
-import { MockResponseService } from './journey-maps-full/mock-response/mock-response.service';
 
-export { JourneyMapsBasicExample, JourneyMapsFullExample, MockResponseService };
+export { JourneyMapsBasicExample, JourneyMapsFullExample };
 const EXAMPLES = [JourneyMapsBasicExample, JourneyMapsFullExample];
 
 @NgModule({
