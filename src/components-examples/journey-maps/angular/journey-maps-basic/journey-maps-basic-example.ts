@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { SbbNotificationModule } from '@sbb-esta/angular/notification';
-import { SbbJourneyMapsModule } from '@sbb-esta/journey-maps/angular/journey-maps.module';
+import { SbbJourneyMapsModule } from '@sbb-esta/journey-maps';
 
 declare global {
   interface Window {
