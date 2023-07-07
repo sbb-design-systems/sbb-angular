@@ -169,7 +169,7 @@ describe('SbbIconSidebar', () => {
       fixture.detectChanges();
 
       const sidebar: SbbIconSidebar = fixture.debugElement.query(
-        By.directive(SbbIconSidebar)
+        By.directive(SbbIconSidebar),
       )!.componentInstance;
 
       sidebar.expanded = false;
@@ -237,7 +237,7 @@ describe('SbbIconSidebar', () => {
 
     it('should display link label properly', () => {
       expect(
-        sidebar.queryAll(By.css('a[sbbIconSidebarItem]'))[0].nativeElement.textContent
+        sidebar.queryAll(By.css('a[sbbIconSidebarItem]'))[0].nativeElement.textContent,
       ).toContain('Link1');
     });
 
@@ -252,12 +252,12 @@ describe('SbbIconSidebar', () => {
       expect(
         collapseButton.nativeElement
           .querySelectorAll('.sbb-icon-sidebar-item-label')[0]
-          .getAttribute('aria-hidden')
+          .getAttribute('aria-hidden'),
       ).toEqual('true');
       expect(
         collapseButton.nativeElement
           .querySelectorAll('.sbb-icon-sidebar-item-label')[1]
-          .getAttribute('aria-hidden')
+          .getAttribute('aria-hidden'),
       ).toEqual('false');
 
       collapseButton.nativeElement.click();
@@ -272,12 +272,12 @@ describe('SbbIconSidebar', () => {
       expect(
         collapseButton.nativeElement
           .querySelectorAll('.sbb-icon-sidebar-item-label')[0]
-          .getAttribute('aria-hidden')
+          .getAttribute('aria-hidden'),
       ).toEqual('false');
       expect(
         collapseButton.nativeElement
           .querySelectorAll('.sbb-icon-sidebar-item-label')[1]
-          .getAttribute('aria-hidden')
+          .getAttribute('aria-hidden'),
       ).toEqual('true');
 
       collapseButton.nativeElement.click();
@@ -292,12 +292,12 @@ describe('SbbIconSidebar', () => {
       expect(
         collapseButton.nativeElement
           .querySelectorAll('.sbb-icon-sidebar-item-label')[0]
-          .getAttribute('aria-hidden')
+          .getAttribute('aria-hidden'),
       ).toEqual('true');
       expect(
         collapseButton.nativeElement
           .querySelectorAll('.sbb-icon-sidebar-item-label')[1]
-          .getAttribute('aria-hidden')
+          .getAttribute('aria-hidden'),
       ).toEqual('false');
     }));
 
@@ -307,7 +307,7 @@ describe('SbbIconSidebar', () => {
 
       const sbbIcon = fixture.debugElement.query(By.css('sbb-icon'));
       const scrollContainer = fixture.nativeElement.querySelector(
-        '.sbb-icon-sidebar-inner-container'
+        '.sbb-icon-sidebar-inner-container',
       );
 
       sbbIcon.nativeElement.style.width = '10000px';
@@ -341,10 +341,10 @@ describe('SbbIconSidebar', () => {
 
       const allNodes = getSidebarNodesArray(fixture);
       const sidebarIndex = allNodes.indexOf(
-        fixture.nativeElement.querySelector('.sbb-icon-sidebar')
+        fixture.nativeElement.querySelector('.sbb-icon-sidebar'),
       );
       const contentIndex = allNodes.indexOf(
-        fixture.nativeElement.querySelector('.sbb-icon-sidebar-content')
+        fixture.nativeElement.querySelector('.sbb-icon-sidebar-content'),
       );
 
       expect(sidebarIndex)
@@ -360,7 +360,7 @@ describe('SbbIconSidebar', () => {
 
     function getSidebarNodesArray(fixture: ComponentFixture<any>): HTMLElement[] {
       return Array.from(
-        fixture.nativeElement.querySelector('.sbb-icon-sidebar-container').childNodes
+        fixture.nativeElement.querySelector('.sbb-icon-sidebar-container').childNodes,
       );
     }
   });
@@ -403,7 +403,7 @@ describe('SbbIconSidebarContainer', () => {
     fixture.detectChanges();
 
     expect(fixture.componentInstance.sidebarContainer.scrollable instanceof CdkScrollable).toBe(
-      true
+      true,
     );
   }));
 
@@ -413,7 +413,7 @@ describe('SbbIconSidebarContainer', () => {
     fixture.detectChanges();
 
     expect(fixture.componentInstance.sidebarContainer.scrollable instanceof CdkScrollable).toBe(
-      true
+      true,
     );
   }));
 

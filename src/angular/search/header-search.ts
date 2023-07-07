@@ -31,12 +31,12 @@ import { sbbSearchAnimations } from './search-animation';
 
 /** Injection token that determines the scroll handling while a select is open. */
 export const SBB_SEARCH_SCROLL_STRATEGY = new InjectionToken<() => ScrollStrategy>(
-  'sbb-select-scroll-strategy'
+  'sbb-select-scroll-strategy',
 );
 
 /** @docs-private */
 export function SBB_SEARCH_SCROLL_STRATEGY_PROVIDER_FACTORY(
-  overlay: Overlay
+  overlay: Overlay,
 ): () => RepositionScrollStrategy {
   return () => overlay.scrollStrategies.reposition();
 }
@@ -137,7 +137,7 @@ export class SbbHeaderSearch {
     elementRef: ElementRef<HTMLElement>,
     private _breakpointObserver: BreakpointObserver,
     private _changeDetectorRef: ChangeDetectorRef,
-    @Inject(SBB_SEARCH_SCROLL_STRATEGY) scrollStrategyFactory: any
+    @Inject(SBB_SEARCH_SCROLL_STRATEGY) scrollStrategyFactory: any,
   ) {
     this._scrollStrategyFactory = scrollStrategyFactory;
     this._scrollStrategy = this._scrollStrategyFactory();
@@ -161,7 +161,7 @@ export class SbbHeaderSearch {
           } else {
             return `${overlayBaseWidth}px`;
           }
-        })
+        }),
       );
   }
 

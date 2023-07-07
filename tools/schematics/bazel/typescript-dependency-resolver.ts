@@ -9,7 +9,7 @@ import { NpmDependencyResolver } from './npm-dependency-resolver';
 export interface TypeScriptDependencyResolver {
   resolveDependencies(
     files: FileEntry[],
-    dependencyBlocklist?: string[]
+    dependencyBlocklist?: string[],
   ): TypeScriptDependencyResult;
 }
 
@@ -36,12 +36,12 @@ export abstract class TypeScriptDependencyResolverBase implements TypeScriptDepe
       moduleDetector: BazelModuleDetector;
       npmDependencyResolver: NpmDependencyResolver;
       dependencyByOccurence?: Map<string, string>;
-    }
+    },
   ) {}
 
   resolveDependencies(
     files: FileEntry[],
-    dependencyBlocklist: string[] = []
+    dependencyBlocklist: string[] = [],
   ): TypeScriptDependencyResult {
     const result: TypeScriptDependencyResult = { dependencies: [], files: [] };
     for (const file of files) {
@@ -65,7 +65,7 @@ export abstract class TypeScriptDependencyResolverBase implements TypeScriptDepe
     files: FileEntry[];
   }): Partial<TypeScriptDependencyResult>[] {
     return this._findStaticDependencies(details).concat(
-      this._findDependencyByOccurrence(details.file)
+      this._findDependencyByOccurrence(details.file),
     );
   }
 
@@ -74,7 +74,7 @@ export abstract class TypeScriptDependencyResolverBase implements TypeScriptDepe
       basename(details.file.path),
       details.file.content.toString(),
       schematicsTs.ScriptTarget.ESNext,
-      true
+      true,
     );
     return this._findImportsAndReexports(sourceFile)
       .concat(this._findDynamicImports(sourceFile))
@@ -89,7 +89,7 @@ export abstract class TypeScriptDependencyResolverBase implements TypeScriptDepe
       ...findNodes(sourceFile, schematicsTs.SyntaxKind.ExportDeclaration, undefined, true),
     ].map(
       (n: schematicsTs.ImportDeclaration | schematicsTs.ExportDeclaration) =>
-        n.moduleSpecifier?.getText().replace(/['"]/g, '') ?? ''
+        n.moduleSpecifier?.getText().replace(/['"]/g, '') ?? '',
     );
   }
 
@@ -99,10 +99,10 @@ export abstract class TypeScriptDependencyResolverBase implements TypeScriptDepe
         (n) =>
           n.getFullText().match(/ import/) &&
           schematicsTs.isCallExpression(n.parent) &&
-          schematicsTs.isStringLiteral(n.parent.arguments[0])
+          schematicsTs.isStringLiteral(n.parent.arguments[0]),
       )
       .map((n) =>
-        (n.parent as schematicsTs.CallExpression).arguments[0].getText().replace(/['"]/g, '')
+        (n.parent as schematicsTs.CallExpression).arguments[0].getText().replace(/['"]/g, ''),
       );
   }
 
@@ -163,7 +163,7 @@ export abstract class TypeScriptDependencyResolverBase implements TypeScriptDepe
   }
 
   protected abstract _resolveRelativeImport(
-    details: TypeScriptDependencyImportCheck
+    details: TypeScriptDependencyImportCheck,
   ): Partial<TypeScriptDependencyResult>;
 }
 
@@ -180,7 +180,7 @@ export class StrictModuleTypeScriptDependencyResolver extends TypeScriptDependen
       console.log(importFileModuleBaseDir.path);
       console.log(moduleBaseDir.path);
       throw new SchematicsException(
-        `Import ${importPath} in ${file.path} escapes Bazel module boundary!`
+        `Import ${importPath} in ${file.path} escapes Bazel module boundary!`,
       );
     } else if (files.every((f) => f.path !== importFilePath)) {
       return { files: [relative(moduleBaseDir.path, importFilePath)] };

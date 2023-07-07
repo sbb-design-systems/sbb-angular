@@ -60,7 +60,7 @@ export interface SbbSortDefaultOptions {
 
 /** Injection token to be used to override the default options for `sbb-sort`. */
 export const SBB_SORT_DEFAULT_OPTIONS = new InjectionToken<SbbSortDefaultOptions>(
-  'SBB_SORT_DEFAULT_OPTIONS'
+  'SBB_SORT_DEFAULT_OPTIONS',
 );
 
 // Boilerplate for applying mixins to SbbSort.
@@ -132,7 +132,7 @@ export class SbbSort
   constructor(
     @Optional()
     @Inject(SBB_SORT_DEFAULT_OPTIONS)
-    private _defaultOptions?: SbbSortDefaultOptions
+    private _defaultOptions?: SbbSortDefaultOptions,
   ) {
     super();
   }

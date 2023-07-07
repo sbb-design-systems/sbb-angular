@@ -233,10 +233,10 @@ describe('RadioButton', () => {
       radioInstances = radioDebugElements.map((debugEl) => debugEl.componentInstance);
 
       radioLabelElements = radioDebugElements.map(
-        (debugEl) => debugEl.query(By.css('label'))!.nativeElement
+        (debugEl) => debugEl.query(By.css('label'))!.nativeElement,
       );
       radioInputElements = radioDebugElements.map(
-        (debugEl) => debugEl.query(By.css('input'))!.nativeElement
+        (debugEl) => debugEl.query(By.css('input'))!.nativeElement,
       );
     }));
 
@@ -329,7 +329,7 @@ describe('RadioButton', () => {
       expect(radioInstances[0].checked).toBe(false);
 
       const spies = radioInstances.map((radio, index) =>
-        jasmine.createSpy(`onChangeSpy ${index} for ${radio.name}`)
+        jasmine.createSpy(`onChangeSpy ${index} for ${radio.name}`),
       );
 
       spies.forEach((spy, index) => radioInstances[index].change.subscribe(spy));
@@ -473,7 +473,7 @@ describe('RadioButton', () => {
     it('should set the input tabindex based on the selected radio button', () => {
       const getTabIndexes = () => {
         return radioInputElements.map((element) =>
-          parseInt(element.getAttribute('tabindex') || '', 10)
+          parseInt(element.getAttribute('tabindex') || '', 10),
         );
       };
 
@@ -505,7 +505,7 @@ describe('RadioButton', () => {
       expect(
         Array.from(radios).map((radio) => {
           return radio.getAttribute('tabindex');
-        })
+        }),
       ).toEqual(['-1', '-1', '0']);
     });
   });
@@ -536,7 +536,7 @@ describe('RadioButton', () => {
       innerRadios = fixture.debugElement.queryAll(By.css('input[type="radio"]'));
 
       radioLabelElements = radioDebugElements.map(
-        (debugEl) => debugEl.query(By.css('label'))!.nativeElement
+        (debugEl) => debugEl.query(By.css('label'))!.nativeElement,
       );
     });
 
@@ -892,7 +892,7 @@ describe('RadioButton', () => {
       predefinedFixture.detectChanges();
 
       const radioButtonEl = predefinedFixture.debugElement.query(
-        By.css('.sbb-radio-button')
+        By.css('.sbb-radio-button'),
       )!.nativeElement;
 
       expect(radioButtonEl.hasAttribute('tabindex')).toBe(false);
@@ -903,7 +903,7 @@ describe('RadioButton', () => {
       predefinedFixture.detectChanges();
 
       const radioButtonEl = predefinedFixture.debugElement.query(
-        By.css('.sbb-radio-button')
+        By.css('.sbb-radio-button'),
       )!.nativeElement;
 
       expect(radioButtonEl.hasAttribute('aria-label')).toBe(false);

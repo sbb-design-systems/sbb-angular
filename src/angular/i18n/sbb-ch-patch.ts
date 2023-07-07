@@ -27,5 +27,5 @@ export {};
 })(
   (typeof globalThis !== 'undefined' && globalThis) ||
     (typeof global !== 'undefined' && global) ||
-    (typeof window !== 'undefined' && window)
+    (typeof window !== 'undefined' && window),
 );

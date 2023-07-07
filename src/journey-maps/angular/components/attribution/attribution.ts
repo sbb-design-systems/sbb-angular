@@ -30,7 +30,10 @@ export class SbbAttribution implements OnChanges, OnDestroy {
   private readonly _compactBreakpoint = 640;
   private readonly _linkRegex = /<a .+?<\/a>/gi;
 
-  constructor(private _cd: ChangeDetectorRef, private _sanitizer: DomSanitizer) {}
+  constructor(
+    private _cd: ChangeDetectorRef,
+    private _sanitizer: DomSanitizer,
+  ) {}
 
   ngOnChanges(changes: SimpleChanges): void {
     const prev = changes.map?.previousValue;

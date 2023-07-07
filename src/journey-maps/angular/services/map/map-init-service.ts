@@ -46,7 +46,10 @@ export class SbbMapInitService {
     },
   };
 
-  constructor(private _http: HttpClient, private _urlService: SbbMapUrlService) {}
+  constructor(
+    private _http: HttpClient,
+    private _urlService: SbbMapUrlService,
+  ) {}
 
   initializeMap(
     mapNativeElement: HTMLElement,
@@ -56,7 +59,7 @@ export class SbbMapInitService {
     viewportDimensions?: SbbViewportDimensions,
     viewportBounds?: SbbViewportBounds,
     markerBounds?: LngLatBounds,
-    poiOptions?: SbbPointsOfInterestOptions
+    poiOptions?: SbbPointsOfInterestOptions,
   ): Observable<MaplibreMap> {
     return this.fetchStyle(styleUrl, poiOptions).pipe(
       map((style) =>
@@ -67,9 +70,9 @@ export class SbbMapInitService {
           language,
           viewportDimensions,
           viewportBounds,
-          markerBounds
-        )
-      )
+          markerBounds,
+        ),
+      ),
     );
   }
 
@@ -80,7 +83,7 @@ export class SbbMapInitService {
     language: string,
     viewportDimensions?: SbbViewportDimensions,
     viewportBounds?: SbbViewportBounds,
-    markerBounds?: LngLatBounds
+    markerBounds?: LngLatBounds,
   ): MaplibreMap {
     const maplibreMap = new MaplibreMap(
       this._createOptions(
@@ -89,8 +92,8 @@ export class SbbMapInitService {
         interactionOptions,
         viewportDimensions,
         viewportBounds,
-        markerBounds
-      )
+        markerBounds,
+      ),
     );
 
     this._translateControlLabels(maplibreMap, language);
@@ -109,7 +112,7 @@ export class SbbMapInitService {
     interactionOptions: SbbInteractionOptions,
     viewportDimensions?: SbbViewportDimensions,
     viewportBounds?: SbbViewportBounds,
-    markerBounds?: LngLatBounds
+    markerBounds?: LngLatBounds,
   ): MapOptions {
     const options: MapOptions = {
       style,
@@ -152,7 +155,7 @@ export class SbbMapInitService {
 
   fetchStyle(
     styleUrl: string,
-    poiOptions?: SbbPointsOfInterestOptions
+    poiOptions?: SbbPointsOfInterestOptions,
   ): Observable<StyleSpecification> {
     return this._http.get(styleUrl).pipe(
       map((fetchedStyle) => {
@@ -163,7 +166,7 @@ export class SbbMapInitService {
         poiSource.url = this._urlService.getPoiSourceUrlByOptions(poiSource.url, poiOptions);
 
         return style;
-      })
+      }),
     );
   }
 
@@ -171,7 +174,7 @@ export class SbbMapInitService {
     (maplibreMap as any)._locale = Object.assign(
       {},
       (maplibreMap as any)._locale,
-      this._controlLabels[language]
+      this._controlLabels[language],
     );
   }
 

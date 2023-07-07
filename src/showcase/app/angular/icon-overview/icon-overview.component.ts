@@ -23,7 +23,7 @@ export class IconOverviewComponent {
         iconVersion: icons.version,
         pictoVersion: pictos.version,
         icons: icons.icons.concat(deprecated.icons, pictos.icons),
-      }))
+      })),
     );
   }
 }

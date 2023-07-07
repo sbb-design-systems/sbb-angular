@@ -102,11 +102,11 @@ describe('SbbTextarea behaviour', () => {
     textarea.nativeElement.blur();
     fixture.detectChanges();
     expect(
-      innerComponent.classes['ng-invalid'] && innerComponent.classes['ng-touched']
+      innerComponent.classes['ng-invalid'] && innerComponent.classes['ng-touched'],
     ).toBeTruthy();
     expect(
       getComputedStyle(fixture.debugElement.nativeElement.querySelector('.ng-invalid'))
-        .borderTopColor
+        .borderTopColor,
     ).toBe('rgb(235, 0, 0)');
   });
 
@@ -116,7 +116,7 @@ describe('SbbTextarea behaviour', () => {
     expect(innerComponent.attributes['ng-reflect-readonly']).toBeTruthy();
     expect(fixture.debugElement.nativeElement.querySelector('[readonly]')).toBeTruthy();
     expect(
-      fixture.debugElement.nativeElement.querySelector('textarea').getAttribute('placeholder')
+      fixture.debugElement.nativeElement.querySelector('textarea').getAttribute('placeholder'),
     ).toBe('-');
   });
 
@@ -127,14 +127,14 @@ describe('SbbTextarea behaviour', () => {
     expect(fixture.debugElement.nativeElement.querySelector('.sbb-disabled')).toBeTruthy();
     expect(
       getComputedStyle(fixture.debugElement.nativeElement.querySelector('.sbb-disabled'))
-        .borderTopColor
+        .borderTopColor,
     ).toBe('rgb(210, 210, 210)');
   });
 
   it('should have a min length attribute', () => {
     component.minlength = 20;
     const textarea = innerComponent.query(
-      (e) => e.nativeElement.nodeName.toLowerCase() === 'textarea'
+      (e) => e.nativeElement.nodeName.toLowerCase() === 'textarea',
     );
     textarea.nativeElement.focus();
     typeInElement(textarea.nativeElement, 'SBB');
@@ -144,7 +144,7 @@ describe('SbbTextarea behaviour', () => {
     expect(fixture.debugElement.nativeElement.querySelector('.ng-invalid')).toBeTruthy();
     expect(
       getComputedStyle(fixture.debugElement.nativeElement.querySelector('.ng-invalid'))
-        .borderTopColor
+        .borderTopColor,
     ).toBe('rgb(235, 0, 0)');
   });
 
@@ -361,7 +361,7 @@ describe('SbbTextarea reactive forms in sbb-form-field behaviour', () => {
     expect(fixture.debugElement.nativeElement.querySelector('.sbb-disabled')).toBeTruthy();
     expect(
       getComputedStyle(fixture.debugElement.nativeElement.querySelector('.sbb-disabled'))
-        .borderTopColor
+        .borderTopColor,
     ).toBe('rgb(210, 210, 210)');
   });
 

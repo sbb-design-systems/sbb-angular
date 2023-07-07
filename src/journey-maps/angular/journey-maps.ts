@@ -216,7 +216,7 @@ export class SbbJourneyMaps implements OnInit, AfterViewInit, OnDestroy, OnChang
     private _mapOverflowingLabelService: SbbMapOverflowingLabelService,
     private _cd: ChangeDetectorRef,
     private _i18n: SbbLocaleService,
-    private _host: ElementRef
+    private _host: ElementRef,
   ) {
     // binding of 'this' is needed for elements/webcomponent
     // https://github.com/angular/angular/issues/22114#issuecomment-569311422
@@ -226,6 +226,7 @@ export class SbbJourneyMaps implements OnInit, AfterViewInit, OnDestroy, OnChang
     this._host.nativeElement.moveWest = this.moveWest.bind(this);
     this._host.nativeElement.zoomIn = this.zoomIn.bind(this);
     this._host.nativeElement.zoomOut = this.zoomOut.bind(this);
+    this._host.nativeElement.unselectAll = this.unselectAll.bind(this);
   }
 
   private _styleOptions: SbbStyleOptions = this._defaultStyleOptions;
@@ -474,12 +475,12 @@ export class SbbJourneyMaps implements OnInit, AfterViewInit, OnDestroy, OnChang
     // handle journey, transfer, and routes together, otherwise they can overwrite each other's transfer or route data
     if (changes.journeyMapsRoutingOption) {
       const invalidKeyCombination = getInvalidRoutingOptionCombination(
-        this.journeyMapsRoutingOption ?? {}
+        this.journeyMapsRoutingOption ?? {},
       );
       if (invalidKeyCombination.length) {
         console.error(
           `journeyMapsRoutingOption: Use only one of the following: 'transfer', 'journey', 'routes'. Received: ` +
-            invalidKeyCombination.map((key) => `'${key}'`).join(', ')
+            invalidKeyCombination.map((key) => `'${key}'`).join(', '),
         );
       } else {
         if (this._haveRoutesMetaInformationsChanged(changes)) {
@@ -535,7 +536,7 @@ export class SbbJourneyMaps implements OnInit, AfterViewInit, OnDestroy, OnChang
           const currentPoiSource = this._map.getSource(SBB_JOURNEY_POIS_SOURCE) as VectorTileSource;
           const newPoiSourceUrl = this._urlService.getPoiSourceUrlByOptions(
             currentPoiSource.url,
-            this.poiOptions
+            this.poiOptions,
           );
           currentPoiSource.setUrl(newPoiSourceUrl);
           this._map.once('styledata', () => {
@@ -600,7 +601,7 @@ export class SbbJourneyMaps implements OnInit, AfterViewInit, OnDestroy, OnChang
         this.viewportDimensions,
         this.viewportBounds,
         this.getMarkersBounds,
-        this.poiOptions
+        this.poiOptions,
       )
       .subscribe((m) => {
         this._map = m;
@@ -617,7 +618,7 @@ export class SbbJourneyMaps implements OnInit, AfterViewInit, OnDestroy, OnChang
       .pipe(sbbBufferTimeOnValue(200), takeUntil(this._destroyed))
       .subscribe((touchEvents) => {
         const containsTwoFingerTouch = touchEvents.some(
-          (touchEvent) => touchEvent.touches.length === 2
+          (touchEvent) => touchEvent.touches.length === 2,
         );
         const containsTouchEnd = touchEvents.some((touchEvent) => touchEvent.type === 'touchend');
 
@@ -683,7 +684,7 @@ export class SbbJourneyMaps implements OnInit, AfterViewInit, OnDestroy, OnChang
   /** @docs-private */
   handleMarkerOrClusterClick(features: SbbFeatureData[]) {
     const featureEventDataList = features.filter((feature) =>
-      this._mapMarkerService.allMarkerAndClusterLayers.includes(feature.layer.id)
+      this._mapMarkerService.allMarkerAndClusterLayers.includes(feature.layer.id),
     );
 
     if (!featureEventDataList.length) {
@@ -706,10 +707,10 @@ export class SbbJourneyMaps implements OnInit, AfterViewInit, OnDestroy, OnChang
       const selectedMarkerId = this._mapMarkerService.onMarkerClicked(
         this._map,
         target,
-        this.selectedMarkerId
+        this.selectedMarkerId,
       );
       this.selectedMarker = this.markerOptions.markers?.find(
-        (marker) => marker.id === selectedMarkerId && !!selectedMarkerId
+        (marker) => marker.id === selectedMarkerId && !!selectedMarkerId,
       );
       this._cd.detectChanges();
     }
@@ -722,14 +723,14 @@ export class SbbJourneyMaps implements OnInit, AfterViewInit, OnDestroy, OnChang
 
   private _updateMarkers(): void {
     this.selectedMarker = this.markerOptions.markers?.find(
-      (marker) => this.selectedMarkerId === marker.id
+      (marker) => this.selectedMarkerId === marker.id,
     );
     this._executeWhenMapStyleLoaded(() => {
       this._mapMarkerService.updateMarkers(
         this._map,
         this._getMarkers(),
         this.selectedMarker,
-        this.styleOptions.mode
+        this.styleOptions.mode,
       );
       this._cd.detectChanges();
     });
@@ -774,7 +775,7 @@ export class SbbJourneyMaps implements OnInit, AfterViewInit, OnDestroy, OnChang
       .pipe(
         debounceTime(200),
         switchMap(() => this._mapInitService.fetchStyle(this._getStyleUrl(), this.poiOptions)),
-        takeUntil(this._destroyed)
+        takeUntil(this._destroyed),
       )
       .subscribe((style) => {
         this._map.setStyle(style, { diff: false });
@@ -785,7 +786,7 @@ export class SbbJourneyMaps implements OnInit, AfterViewInit, OnDestroy, OnChang
             this._map,
             this._getMarkers(),
             this.selectedMarker,
-            this.styleOptions.mode
+            this.styleOptions.mode,
           );
           this._mapLayerFilterService.collectLvlLayers();
           this._levelSwitchService.switchLevel(this._levelSwitchService.selectedLevel);
@@ -802,7 +803,7 @@ export class SbbJourneyMaps implements OnInit, AfterViewInit, OnDestroy, OnChang
           if (this.styleOptions.railNetwork) {
             this._mapRailNetworkLayerService.updateOptions(
               this._map,
-              this.styleOptions.railNetwork
+              this.styleOptions.railNetwork,
             );
           }
         });
@@ -879,7 +880,7 @@ export class SbbJourneyMaps implements OnInit, AfterViewInit, OnDestroy, OnChang
     const routeMidpointMarkers =
       this._mapRoutesService.getRouteMarkers(
         this.journeyMapsRoutingOption?.routes,
-        this.journeyMapsRoutingOption?.routesMetaInformations
+        this.journeyMapsRoutingOption?.routesMetaInformations,
       ) ?? [];
     return [...normalMarkers, ...routeMidpointMarkers];
   }
@@ -898,7 +899,7 @@ export class SbbJourneyMaps implements OnInit, AfterViewInit, OnDestroy, OnChang
       this._map,
       this._featureEventListenerComponent.mapSelectionEventService,
       this.journeyMapsRoutingOption!.journey,
-      this.journeyMapsRoutingOption!.journeyMetaInformation?.selectedLegId
+      this.journeyMapsRoutingOption!.journeyMetaInformation?.selectedLegId,
     );
     this._mapLeitPoiService.processData(this._map, this.journeyMapsRoutingOption!.journey, 0);
   }
@@ -913,7 +914,7 @@ export class SbbJourneyMaps implements OnInit, AfterViewInit, OnDestroy, OnChang
       this._map,
       this._featureEventListenerComponent.mapSelectionEventService,
       this.journeyMapsRoutingOption!.routes,
-      this.journeyMapsRoutingOption!.routesMetaInformations
+      this.journeyMapsRoutingOption!.routesMetaInformations,
     );
   }
 
@@ -921,7 +922,7 @@ export class SbbJourneyMaps implements OnInit, AfterViewInit, OnDestroy, OnChang
     this._mapZoneService.updateZones(
       this._map,
       this._featureEventListenerComponent.mapSelectionEventService,
-      this.journeyMapsZones
+      this.journeyMapsZones,
     );
   }
 

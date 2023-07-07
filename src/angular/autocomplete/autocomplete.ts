@@ -39,7 +39,7 @@ export class SbbAutocompleteSelectedEvent {
     /** Reference to the autocomplete panel that emitted the event. */
     public source: SbbAutocomplete,
     /** Option that was selected. */
-    public option: SbbOption
+    public option: SbbOption,
   ) {}
 }
 
@@ -69,7 +69,7 @@ export const SBB_AUTOCOMPLETE_DEFAULT_OPTIONS = new InjectionToken<SbbAutocomple
   {
     providedIn: 'root',
     factory: SBB_AUTOCOMPLETE_DEFAULT_OPTIONS_FACTORY,
-  }
+  },
 );
 
 /** @docs-private */
@@ -208,10 +208,13 @@ export class SbbAutocomplete implements AfterContentInit, OnDestroy {
   @Input('class')
   set classList(value: string | string[]) {
     if (value && value.length) {
-      this._classList = coerceStringArray(value).reduce((classList, className) => {
-        classList[className] = true;
-        return classList;
-      }, {} as { [key: string]: boolean });
+      this._classList = coerceStringArray(value).reduce(
+        (classList, className) => {
+          classList[className] = true;
+          return classList;
+        },
+        {} as { [key: string]: boolean },
+      );
     } else {
       this._classList = {};
     }
@@ -244,7 +247,7 @@ export class SbbAutocomplete implements AfterContentInit, OnDestroy {
     private _changeDetectorRef: ChangeDetectorRef,
     private _elementRef: ElementRef<HTMLElement>,
     @Inject(SBB_AUTOCOMPLETE_DEFAULT_OPTIONS) defaults: SbbAutocompleteDefaultOptions,
-    platform?: Platform
+    platform?: Platform,
   ) {
     // TODO(crisbeto): the problem that the `inertGroups` option resolves is only present on
     // Safari using VoiceOver. We should occasionally check back to see whether the bug
@@ -294,7 +297,7 @@ export class SbbAutocomplete implements AfterContentInit, OnDestroy {
    */
   _setVisibility() {
     this._showPanel.next(
-      !!this.options.length || (!!this.hints.length && this.showHintIfNoOptions)
+      !!this.options.length || (!!this.hints.length && this.showHintIfNoOptions),
     );
     this._setVisibilityClasses(this._classList);
     this._changeDetectorRef.markForCheck();

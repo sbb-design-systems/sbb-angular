@@ -10,7 +10,7 @@ export interface CanDisable {
 
 /** Mixin to augment a directive with a `disabled` property. */
 export function mixinDisabled<T extends AbstractConstructor<{}>>(
-  base: T
+  base: T,
 ): AbstractConstructor<CanDisable> & T;
 export function mixinDisabled<T extends Constructor<{}>>(base: T): Constructor<CanDisable> & T {
   return class extends base {

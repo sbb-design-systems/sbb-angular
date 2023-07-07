@@ -33,14 +33,14 @@ export const sbbLightboxAnimations: {
       '* => enter',
       animate(
         '{{enterAnimationDuration}} cubic-bezier(0, 0, 0.2, 1)',
-        style({ transform: 'none', opacity: 1 })
+        style({ transform: 'none', opacity: 1 }),
       ),
-      sbbLightboxAnimationsDefaultParams
+      sbbLightboxAnimationsDefaultParams,
     ),
     transition(
       '* => void, * => exit',
       animate('{{exitAnimationDuration}} cubic-bezier(0.4, 0.0, 0.2, 1)', style({ opacity: 0 })),
-      sbbLightboxAnimationsDefaultParams
+      sbbLightboxAnimationsDefaultParams,
     ),
   ]),
 };

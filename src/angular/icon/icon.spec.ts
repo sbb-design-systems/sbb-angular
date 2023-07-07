@@ -86,7 +86,7 @@ describe('SbbIcon', () => {
       iconRegistry = mir;
       http = h;
       sanitizer = ds;
-    }
+    },
   ));
 
   it('should include notranslate class by default', () => {
@@ -288,11 +288,11 @@ describe('SbbIcon', () => {
       expect(errorHandler.handleError).toHaveBeenCalledTimes(2);
       expect(errorHandler.handleError.calls.argsFor(0)[0].message).toEqual(
         'Loading icon set URL: farm-set-1.svg failed: Http failure response ' +
-          'for farm-set-1.svg: 0 '
+          'for farm-set-1.svg: 0 ',
       );
       expect(errorHandler.handleError.calls.argsFor(1)[0].message).toEqual(
         `Error retrieving icon ${testComponent.iconName}! ` +
-          'Unable to find icon with the name "pig"'
+          'Unable to find icon with the name "pig"',
       );
     });
 
@@ -311,7 +311,7 @@ describe('SbbIcon', () => {
       expect(errorHandler.handleError).toHaveBeenCalledTimes(1);
       expect(errorHandler.handleError.calls.argsFor(0)[0].message).toEqual(
         `Error retrieving icon ${testComponent.iconName}! ` +
-          'Unable to find icon with the name "DNE"'
+          'Unable to find icon with the name "DNE"',
       );
     });
 
@@ -829,7 +829,7 @@ describe('SbbIcon', () => {
 
           <circle cx="170" cy="60" r="50" fill="green" filter="url('#blur')" />
         </svg>
-      `)
+      `),
       );
 
       const fixture = TestBed.createComponent(IconFromSvgName);
@@ -840,7 +840,7 @@ describe('SbbIcon', () => {
       // We use a regex to match here, rather than the exact value, because different browsers
       // return different quotes through `getAttribute`, while some even omit the quotes altogether.
       expect(circle.getAttribute('filter')).toMatch(
-        /^url\(['"]?\/\$fake-path#sbb-icon-\d*\s#blur['"]?\)$/
+        /^url\(['"]?\/\$fake-path#sbb-icon-\d*\s#blur['"]?\)$/,
       );
 
       // ensure the selector matches the filter element
@@ -863,7 +863,7 @@ describe('SbbIcon', () => {
 
           <circle cx="170" cy="60" r="50" fill="green" filter="url('#blur')" />
         </svg>
-      `)
+      `),
       );
 
       let fixture = TestBed.createComponent(IconFromSvgName);
@@ -872,7 +872,7 @@ describe('SbbIcon', () => {
       let circle = fixture.nativeElement.querySelector('sbb-icon svg circle');
 
       expect(circle.getAttribute('filter')).toMatch(
-        /^url\(['"]?\/\$fake-path#sbb-icon-\d*\s#blur['"]?\)$/
+        /^url\(['"]?\/\$fake-path#sbb-icon-\d*\s#blur['"]?\)$/,
       );
       tick();
       fixture.destroy();
@@ -884,7 +884,7 @@ describe('SbbIcon', () => {
       circle = fixture.nativeElement.querySelector('sbb-icon svg circle');
 
       expect(circle.getAttribute('filter')).toMatch(
-        /^url\(['"]?\/\$another-fake-path#sbb-icon-\d*\s#blur['"]?\)$/
+        /^url\(['"]?\/\$another-fake-path#sbb-icon-\d*\s#blur['"]?\)$/,
       );
       tick();
     }));
@@ -900,7 +900,7 @@ describe('SbbIcon', () => {
 
           <circle cx="170" cy="60" r="50" fill="green" filter="url('#blur')" />
         </svg>
-      `)
+      `),
       );
 
       const fixture = TestBed.createComponent(IconFromSvgName);
@@ -911,7 +911,7 @@ describe('SbbIcon', () => {
       // We use a regex to match here, rather than the exact value, because different browsers
       // return different quotes through `getAttribute`, while some even omit the quotes altogether.
       expect(circle.getAttribute('filter')).toMatch(
-        /^url\(['"]?\/\$fake-path#sbb-icon-\d*\s#blur['"]?\)$/
+        /^url\(['"]?\/\$fake-path#sbb-icon-\d*\s#blur['"]?\)$/,
       );
       tick();
 
@@ -919,7 +919,7 @@ describe('SbbIcon', () => {
       fixture.detectChanges();
 
       expect(circle.getAttribute('filter')).toMatch(
-        /^url\(['"]?\/\$different-path#sbb-icon-\d*\s#blur['"]?\)$/
+        /^url\(['"]?\/\$different-path#sbb-icon-\d*\s#blur['"]?\)$/,
       );
     }));
 
@@ -930,7 +930,7 @@ describe('SbbIcon', () => {
         <svg>
           <circle cx="170" cy="60" r="50" fill="green" clip-path="url('#a')" />
         </svg>
-      `)
+      `),
       );
 
       const fixture = TestBed.createComponent(IconFromSvgName);

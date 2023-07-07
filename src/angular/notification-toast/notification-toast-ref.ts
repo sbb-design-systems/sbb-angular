@@ -32,7 +32,7 @@ export class SbbNotificationToastRef<T> {
 
   constructor(
     containerInstance: TypeRef<SbbNotificationToastContainerBase>,
-    private _overlayRef: OverlayRef
+    private _overlayRef: OverlayRef,
   ) {
     this.containerInstance = containerInstance;
     containerInstance._onExit.subscribe(() => this._finishDismiss());

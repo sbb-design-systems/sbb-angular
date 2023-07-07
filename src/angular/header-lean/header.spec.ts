@@ -44,18 +44,18 @@ describe('SbbHeaderLean', () => {
 
     it('should display label and subtitle', () => {
       const labelElement = fixture.debugElement.nativeElement.querySelector(
-        '.sbb-header-lean-label'
+        '.sbb-header-lean-label',
       ) as HTMLElement;
       expect(labelElement.textContent).toEqual(component.label);
       const subtitleElement = fixture.debugElement.nativeElement.querySelector(
-        '.sbb-header-lean-subtitle'
+        '.sbb-header-lean-subtitle',
       ) as HTMLElement;
       expect(subtitleElement.textContent).toEqual(component.subtitle);
     });
 
     it('should hide the menu toggle per default', () => {
       const labelElement = fixture.debugElement.nativeElement.querySelector(
-        '.sbb-header-lean-open-menu'
+        '.sbb-header-lean-open-menu',
       ) as HTMLElement;
       expect(getComputedStyle(labelElement).visibility).toEqual('hidden');
     });
@@ -66,18 +66,18 @@ describe('SbbHeaderLean', () => {
       fixture.detectChanges();
 
       const labelElement = fixture.debugElement.nativeElement.querySelector(
-        '.sbb-header-lean-open-menu'
+        '.sbb-header-lean-open-menu',
       ) as HTMLElement;
       expect(getComputedStyle(labelElement).visibility).toEqual('visible');
     }));
 
     it('should display the link in the appropriate position with collapsed/not collapsed', fakeAsync(() => {
       let homeElementInMain = fixture.debugElement.nativeElement.querySelector(
-        '.sbb-header-lean-main-menu .home-link'
+        '.sbb-header-lean-main-menu .home-link',
       ) as HTMLElement;
       expect(homeElementInMain).toBeDefined();
       let homeElementInSide = fixture.debugElement.nativeElement.querySelector(
-        '.sbb-header-lean-side-menu .home-link'
+        '.sbb-header-lean-side-menu .home-link',
       ) as HTMLElement;
       expect(homeElementInSide).toBeNull();
 
@@ -86,11 +86,11 @@ describe('SbbHeaderLean', () => {
       fixture.detectChanges();
 
       homeElementInMain = fixture.debugElement.nativeElement.querySelector(
-        '.sbb-header-lean-main-menu .home-link'
+        '.sbb-header-lean-main-menu .home-link',
       ) as HTMLElement;
       expect(homeElementInMain).toBeNull();
       homeElementInSide = fixture.debugElement.nativeElement.querySelector(
-        '.sbb-header-lean-side-menu .home-link'
+        '.sbb-header-lean-side-menu .home-link',
       ) as HTMLElement;
       expect(homeElementInSide).toBeDefined();
     }));
@@ -106,12 +106,12 @@ describe('SbbHeaderLean', () => {
 
     it('should display app chooser button', () => {
       const labelElement = fixture.debugElement.nativeElement.querySelector(
-        '.sbb-header-lean-open-menu'
+        '.sbb-header-lean-open-menu',
       ) as HTMLElement;
       expect(labelElement.classList.contains('sbb-header-lean-app-chooser-available')).toBeTrue();
 
       const iconComponent = fixture.debugElement.query(
-        By.css('.sbb-header-lean-open-menu sbb-icon')
+        By.css('.sbb-header-lean-open-menu sbb-icon'),
       ).componentInstance as SbbIcon;
       expect(iconComponent.svgIcon).toEqual('nine-squares-small');
     });

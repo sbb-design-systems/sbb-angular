@@ -11,18 +11,18 @@ declare let $localize: any;
   selector: 'sbb-date-format',
   template: `
     <span>{{ now | date }}</span>
-    <span>{{ now | date : 'short' }}</span>
-    <span>{{ now | date : 'medium' }}</span>
-    <span>{{ now | date : 'long' }}</span>
-    <span>{{ now | date : 'full' }}</span>
-    <span>{{ now | date : 'shortDate' }}</span>
-    <span>{{ now | date : 'mediumDate' }}</span>
-    <span>{{ now | date : 'longDate' }}</span>
-    <span>{{ now | date : 'fullDate' }}</span>
-    <span>{{ now | date : 'shortTime' }}</span>
-    <span>{{ now | date : 'mediumTime' }}</span>
-    <span>{{ now | date : 'longTime' }}</span>
-    <span>{{ now | date : 'fullTime' }}</span>
+    <span>{{ now | date: 'short' }}</span>
+    <span>{{ now | date: 'medium' }}</span>
+    <span>{{ now | date: 'long' }}</span>
+    <span>{{ now | date: 'full' }}</span>
+    <span>{{ now | date: 'shortDate' }}</span>
+    <span>{{ now | date: 'mediumDate' }}</span>
+    <span>{{ now | date: 'longDate' }}</span>
+    <span>{{ now | date: 'fullDate' }}</span>
+    <span>{{ now | date: 'shortTime' }}</span>
+    <span>{{ now | date: 'mediumTime' }}</span>
+    <span>{{ now | date: 'longTime' }}</span>
+    <span>{{ now | date: 'fullTime' }}</span>
   `,
 })
 class DateFormat {

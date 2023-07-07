@@ -68,10 +68,10 @@ export class SearchHistoricRailwayPicturesExample implements OnInit, OnDestroy {
         map((newValue) =>
           this.cities.filter(
             (option) =>
-              newValue && option.toLocaleUpperCase().indexOf(newValue.toLocaleUpperCase()) > -1
-          )
+              newValue && option.toLocaleUpperCase().indexOf(newValue.toLocaleUpperCase()) > -1,
+          ),
         ),
-        takeUntil(this._destroyed)
+        takeUntil(this._destroyed),
       )
       .subscribe((filteredCities) => (this.filteredCities = filteredCities));
 
@@ -84,8 +84,8 @@ export class SearchHistoricRailwayPicturesExample implements OnInit, OnDestroy {
             'https://data.sbb.ch/api/records/1.0/search/' +
               `?dataset=historische-bahnhofbilder&facet=ort&facet=datum_foto_1&q=${searchTerm
                 .trim()
-                .toLowerCase()}`
-          )
+                .toLowerCase()}`,
+          ),
         ),
         map((result) =>
           result.records.map(
@@ -93,10 +93,10 @@ export class SearchHistoricRailwayPicturesExample implements OnInit, OnDestroy {
               ({
                 id: record.fields.filename.id,
                 station: record.fields.bahnhof,
-              } as ImageRecord)
-          )
+              }) as ImageRecord,
+          ),
         ),
-        takeUntil(this._destroyed)
+        takeUntil(this._destroyed),
       )
       .subscribe({
         next: (searchResults) => {

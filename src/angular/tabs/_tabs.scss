@@ -14,7 +14,8 @@
 
   :where(html:not(.sbb-lean)) & {
     &::after {
-      transition: width var(--sbb-transition-duration-default),
+      transition:
+        width var(--sbb-transition-duration-default),
         left var(--sbb-transition-duration-default);
       left: 0;
       right: 0;
@@ -176,8 +177,10 @@
     color: var(--sbb-color-granite);
 
     // Copied shadow from components
-    box-shadow: 0 sbb.pxToRem(2) sbb.pxToRem(4) sbb.pxToRem(-1) #0003,
-      0 sbb.pxToRem(4) sbb.pxToRem(5) #00000024, 0 sbb.pxToRem(1) sbb.pxToRem(10) #0000001f;
+    box-shadow:
+      0 sbb.pxToRem(2) sbb.pxToRem(4) sbb.pxToRem(-1) #0003,
+      0 sbb.pxToRem(4) sbb.pxToRem(5) #00000024,
+      0 sbb.pxToRem(1) sbb.pxToRem(10) #0000001f;
 
     @include tab-line-bottom;
 

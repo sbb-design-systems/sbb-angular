@@ -15,7 +15,7 @@ export class SbbFeaturesClickEvent extends ReplaySubject<SbbFeaturesClickEventDa
   constructor(
     private _mapInstance: MaplibreMap,
     private _mapEventUtils: SbbMapEventUtils,
-    private _layers: Map<string, SbbFeatureDataType>
+    private _layers: Map<string, SbbFeatureDataType>,
   ) {
     super(SBB_REPEAT_EVENTS);
     this._attachEvent();
@@ -34,7 +34,7 @@ export class SbbFeaturesClickEvent extends ReplaySubject<SbbFeaturesClickEventDa
         let features = this._mapEventUtils.queryFeaturesByLayerIds(
           this._mapInstance,
           [e.point.x, e.point.y],
-          this._layers
+          this._layers,
         );
         if (!features.length) {
           return;

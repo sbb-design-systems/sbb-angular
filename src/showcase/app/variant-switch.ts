@@ -17,19 +17,22 @@ const variantLocalstorageKey = 'sbbAngularVariant';
 @Injectable({ providedIn: 'root' })
 export class VariantSwitch implements CanActivate, OnDestroy {
   sbbVariant: FormControl = new FormControl(
-    localStorage.getItem(variantLocalstorageKey) || 'standard'
+    localStorage.getItem(variantLocalstorageKey) || 'standard',
   );
   private _destroyed = new Subject<void>();
 
-  constructor(private _router: Router, @Inject(DOCUMENT) document: Document) {
+  constructor(
+    private _router: Router,
+    @Inject(DOCUMENT) document: Document,
+  ) {
     // listen to ctrl + shift + V to toggle variant
     fromEvent<KeyboardEvent>(document, 'keyup')
       .pipe(
         filter((value) => value.ctrlKey && value.shiftKey && value.key === 'V'),
-        takeUntil(this._destroyed)
+        takeUntil(this._destroyed),
       )
       .subscribe(() =>
-        this.sbbVariant.setValue(this.sbbVariant.value === 'standard' ? 'lean' : 'standard')
+        this.sbbVariant.setValue(this.sbbVariant.value === 'standard' ? 'lean' : 'standard'),
       );
 
     this.sbbVariant.valueChanges
@@ -56,7 +59,7 @@ export class VariantSwitch implements CanActivate, OnDestroy {
    */
   canActivate(
     route: ActivatedRouteSnapshot,
-    state: RouterStateSnapshot
+    state: RouterStateSnapshot,
   ): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
     if (!route.queryParamMap.has('variant')) {
       return true;

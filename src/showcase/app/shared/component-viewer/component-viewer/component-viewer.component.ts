@@ -19,7 +19,7 @@ export class ComponentViewerComponent implements OnInit {
 
   ngOnInit() {
     this.showcaseMetaEntry = moduleParams(this._route).pipe(
-      map((params) => findPackageEntry(params.packageName, params.id))
+      map((params) => findPackageEntry(params.packageName, params.id)),
     );
   }
 }

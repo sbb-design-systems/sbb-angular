@@ -25,7 +25,7 @@ export const sbbSidebarAnimations: {
       style({
         transform: 'none',
         visibility: 'visible',
-      })
+      }),
     ),
     state(
       'void',
@@ -33,12 +33,12 @@ export const sbbSidebarAnimations: {
         // Avoids the shadow showing up when closed in SSR.
         'box-shadow': 'none',
         visibility: 'hidden',
-      })
+      }),
     ),
     transition('void => open-instant', animate('0ms')),
     transition(
       'void <=> open, open-instant => void',
-      animate('300ms cubic-bezier(0.785, 0.135, 0.15, 0.86)')
+      animate('300ms cubic-bezier(0.785, 0.135, 0.15, 0.86)'),
     ),
   ]),
 };

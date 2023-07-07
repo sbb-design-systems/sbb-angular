@@ -84,7 +84,7 @@ export class SbbFormField implements AfterContentInit, AfterContentChecked, OnDe
 
   constructor(
     public _elementRef: ElementRef<HTMLElement>,
-    private _changeDetectorRef: ChangeDetectorRef
+    private _changeDetectorRef: ChangeDetectorRef,
   ) {}
 
   /**

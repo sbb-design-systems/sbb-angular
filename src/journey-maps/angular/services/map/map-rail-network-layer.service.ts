@@ -34,14 +34,14 @@ export class SbbMapRailNetworkLayerService {
   private _updateLayerOptions(
     map: MaplibreMap,
     railLineLayer: LineLayerSpecification,
-    options: SbbRailNetworkOptions
+    options: SbbRailNetworkOptions,
   ): void {
     this._backupLayerOptions(railLineLayer);
     if (options.railNetworkColor) {
       map.setPaintProperty(
         railLineLayer.id,
         RAIL_NETWORK_LAYER_CONST.colorPropName,
-        options.railNetworkColor
+        options.railNetworkColor,
       );
     }
   }
@@ -65,7 +65,7 @@ export class SbbMapRailNetworkLayerService {
     map.setPaintProperty(
       railLineLayer.id,
       RAIL_NETWORK_LAYER_CONST.colorPropName,
-      layerMetadata.railNetworkDefaultLineColor
+      layerMetadata.railNetworkDefaultLineColor,
     );
     delete layerMetadata.railNetworkDefaultLineColor;
   }

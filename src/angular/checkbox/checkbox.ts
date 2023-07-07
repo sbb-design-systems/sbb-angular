@@ -137,7 +137,7 @@ export class _SbbCheckboxBase
     @Attribute('tabindex') tabIndex: string,
     @Optional()
     @Inject(SBB_CHECKBOX_DEFAULT_OPTIONS)
-    private _options?: SbbCheckboxDefaultOptions
+    private _options?: SbbCheckboxDefaultOptions,
   ) {
     super();
     this._options = this._options || defaults;

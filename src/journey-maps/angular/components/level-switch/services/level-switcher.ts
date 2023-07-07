@@ -68,7 +68,7 @@ export class SbbLevelSwitcher {
     private _i18n: SbbLocaleService,
     private _queryMapFeaturesService: SbbQueryMapFeatures,
     private _mapLeitPoiService: SbbMapLeitPoiService,
-    private _mapTransferService: SbbMapTransferService
+    private _mapTransferService: SbbMapTransferService,
   ) {}
 
   private _isVisibleInCurrentMapZoomLevel(): boolean {

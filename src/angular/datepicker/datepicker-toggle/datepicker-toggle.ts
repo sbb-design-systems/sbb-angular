@@ -52,7 +52,7 @@ export class SbbDatepickerToggle<D> implements OnDestroy, OnChanges, AfterConten
   constructor(
     private _changeDetectorRef: ChangeDetectorRef,
     @Inject(SBB_DATEPICKER) public _datepicker: SbbDatepicker<D>,
-    @Attribute('tabindex') defaultTabIndex: string
+    @Attribute('tabindex') defaultTabIndex: string,
   ) {
     const parsedTabIndex = Number(defaultTabIndex);
     this.tabIndex = parsedTabIndex || parsedTabIndex === 0 ? parsedTabIndex : null;
@@ -94,7 +94,7 @@ export class SbbDatepickerToggle<D> implements OnDestroy, OnChanges, AfterConten
     this._stateChanges = merge(
       datepickerDisabled as Observable<void>,
       inputDisabled as Observable<void>,
-      datepickerToggled
+      datepickerToggled,
     ).subscribe(() => this._changeDetectorRef.markForCheck());
   }
 }

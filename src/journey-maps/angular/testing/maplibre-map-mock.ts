@@ -51,7 +51,7 @@ export class SbbMaplibreMapMock {
     if (args.length > 1) {
       // layerId and
       idx = callbackList.findIndex(
-        (item) => item._layerId === args[0] && item.callbackFn === args[1]
+        (item) => item._layerId === args[0] && item.callbackFn === args[1],
       );
     } else {
       idx = callbackList.findIndex((item) => item === args[0]);
@@ -70,7 +70,7 @@ export class SbbMaplibreMapMock {
 
   queryRenderedFeatures(
     point: PointLike,
-    options?: { layers?: string[] }
+    options?: { layers?: string[] },
   ): MapGeoJSONFeature[] | null {
     const data = this._featureData.get(SbbMaplibreMapMock._stringify(point));
     if (

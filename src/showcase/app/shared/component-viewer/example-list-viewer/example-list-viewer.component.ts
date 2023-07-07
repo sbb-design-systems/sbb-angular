@@ -20,10 +20,10 @@ export class ExampleListViewerComponent implements OnInit {
     this.examples = moduleParams(this._route).pipe(
       map((params) => {
         const examples = ExampleData.find(params.packageName, params.id).filter(
-          (example) => isDevMode() || !example.devOnly
+          (example) => isDevMode() || !example.devOnly,
         );
         return examples.length === 0 ? null : examples;
-      })
+      }),
     );
   }
 }

@@ -55,7 +55,7 @@ export class LightboxWithConfirmationOnClose implements OnInit {
 
   constructor(
     private _lightBoxRef: SbbLightboxRef<LightboxWithConfirmationOnClose>,
-    private _changeDetectorRef: ChangeDetectorRef
+    private _changeDetectorRef: ChangeDetectorRef,
   ) {}
 
   ngOnInit() {

@@ -12,7 +12,10 @@ export class SbbMapLeitPoi {
 
   private _destroySub = new Subject<void>();
 
-  constructor(private _componentRef: ComponentRef<SbbLeitPoi>, private _popup: Popup) {}
+  constructor(
+    private _componentRef: ComponentRef<SbbLeitPoi>,
+    private _popup: Popup,
+  ) {}
 
   get destroyed(): Subject<void> {
     return this._destroySub;

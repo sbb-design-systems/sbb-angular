@@ -29,7 +29,7 @@ export function isInheritanceCreatedDoc(doc: ApiDoc): doc is ClassLikeExportDoc 
 /** Gets all class like export documents which the given doc inherits from. */
 export function getInheritedDocsOfClass(
   doc: ClassLikeExportDoc,
-  exportSymbolsToDocsMap: Map<ts.Symbol, ClassLikeExportDoc>
+  exportSymbolsToDocsMap: Map<ts.Symbol, ClassLikeExportDoc>,
 ): ClassLikeExportDoc[] {
   const result: ClassLikeExportDoc[] = [];
   const typeChecker = doc.typeChecker;
@@ -60,7 +60,7 @@ export function getInheritedDocsOfClass(
 function getClassLikeDocsFromType(
   type: ts.Type,
   baseDoc: ClassLikeExportDoc,
-  exportSymbolsToDocsMap: Map<ts.Symbol, ClassLikeExportDoc>
+  exportSymbolsToDocsMap: Map<ts.Symbol, ClassLikeExportDoc>,
 ): ClassLikeExportDoc[] {
   let aliasSymbol: ts.Symbol | undefined = undefined;
   let symbol: ts.Symbol = type.symbol;
@@ -78,7 +78,7 @@ function getClassLikeDocsFromType(
   if (type.isIntersection()) {
     return type.types.reduce(
       (res, t) => [...res, ...getClassLikeDocsFromType(t, baseDoc, exportSymbolsToDocsMap)],
-      [] as ClassLikeExportDoc[]
+      [] as ClassLikeExportDoc[],
     );
   } else if (symbol) {
     // If the given symbol has already been registered within Dgeni, we use the

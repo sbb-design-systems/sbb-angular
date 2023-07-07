@@ -167,7 +167,7 @@ describe('SbbFileSelector using mock component', () => {
     fixture.detectChanges();
 
     const firstRemoveButton = fileComponent.queryAll(
-      By.css('.sbb-file-selector-list-remove-icon')
+      By.css('.sbb-file-selector-list-remove-icon'),
     )[0];
 
     firstRemoveButton.nativeElement.click();
@@ -189,29 +189,29 @@ describe('SbbFileSelector using mock component', () => {
     const typeIconWrapper = fileComponent.queryAll(By.css('.sbb-file-selector-list-type-icon'));
 
     expect(
-      typeIconWrapper[0].query(By.css('sbb-icon[svgIcon="document-sound-small"]'))
+      typeIconWrapper[0].query(By.css('sbb-icon[svgIcon="document-sound-small"]')),
     ).toBeTruthy();
     expect(
-      typeIconWrapper[1].query(By.css('sbb-icon[svgIcon="document-text-small"]'))
+      typeIconWrapper[1].query(By.css('sbb-icon[svgIcon="document-text-small"]')),
     ).toBeTruthy();
     expect(
-      typeIconWrapper[2].query(By.css('sbb-icon[svgIcon="document-standard-small"]'))
+      typeIconWrapper[2].query(By.css('sbb-icon[svgIcon="document-standard-small"]')),
     ).toBeTruthy();
     expect(
-      typeIconWrapper[3].query(By.css('sbb-icon[svgIcon="document-image-small"]'))
+      typeIconWrapper[3].query(By.css('sbb-icon[svgIcon="document-image-small"]')),
     ).toBeTruthy();
     expect(typeIconWrapper[4].query(By.css('sbb-icon[svgIcon="document-pdf-small"]'))).toBeTruthy();
     expect(
-      typeIconWrapper[5].query(By.css('sbb-icon[svgIcon="document-image-small"]'))
+      typeIconWrapper[5].query(By.css('sbb-icon[svgIcon="document-image-small"]')),
     ).toBeTruthy();
     expect(
-      typeIconWrapper[6].query(By.css('sbb-icon[svgIcon="document-image-small"]'))
+      typeIconWrapper[6].query(By.css('sbb-icon[svgIcon="document-image-small"]')),
     ).toBeTruthy();
     expect(
-      typeIconWrapper[7].query(By.css('sbb-icon[svgIcon="document-video-small"]'))
+      typeIconWrapper[7].query(By.css('sbb-icon[svgIcon="document-video-small"]')),
     ).toBeTruthy();
     expect(
-      typeIconWrapper[8].query(By.css('sbb-icon[svgIcon="document-text-small"]'))
+      typeIconWrapper[8].query(By.css('sbb-icon[svgIcon="document-text-small"]')),
     ).toBeTruthy();
     expect(typeIconWrapper[9].query(By.css('sbb-icon[svgIcon="document-zip-small"]'))).toBeTruthy();
   });
@@ -258,7 +258,7 @@ describe('SbbFileSelector using mock component and limited behaviour ', () => {
   it('should call onFileChanged event and have length of li elements equals to 0', () => {
     const oneElement = testFileList.slice(0, 1);
     const fileComponent = fixtureFileSelectorTest2.debugElement.query(
-      By.directive(SbbFileSelector)
+      By.directive(SbbFileSelector),
     );
     const cd: ChangeDetectorRef = fileComponent.componentInstance._changeDetector;
     spyOn(cd, 'detectChanges');

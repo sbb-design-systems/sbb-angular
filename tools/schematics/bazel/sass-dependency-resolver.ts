@@ -19,7 +19,7 @@ export class FlexibleSassDependencyResolver implements SassDependencyResolver {
     private _moduleDetector: BazelModuleDetector,
     private _npmDependencyResolver: NpmDependencyResolver,
     private _logger: logging.LoggerApi,
-    private _dependencyByOccurence = new Map<string, string>()
+    private _dependencyByOccurence = new Map<string, string>(),
   ) {}
 
   resolveDependencies(files: FileEntry[], dependencyBlocklist: string[] = []): SassBinary[] {
@@ -44,17 +44,17 @@ export class FlexibleSassDependencyResolver implements SassDependencyResolver {
     return matches
       .filter((s) => !s.match(/@use ['"]sass:/))
       .map((s) =>
-        s.substring(s.trim().startsWith('@use') ? 6 : 9, s.length - 2).replace(/['"][ \w]*/, '')
+        s.substring(s.trim().startsWith('@use') ? 6 : 9, s.length - 2).replace(/['"][ \w]*/, ''),
       )
       .map((importPath) => {
         const occurence = Array.from(this._dependencyByOccurence.keys()).find((o) =>
-          importPath.includes(o)
+          importPath.includes(o),
         );
         if (occurence) {
           return this._dependencyByOccurence.get(occurence)!;
         } else if (importPath.includes('/node_modules/')) {
           return this._npmDependencyResolver.toBazelNodeDependency(
-            importPath.split('/node_modules/')[1]
+            importPath.split('/node_modules/')[1],
           );
         } else if (importPath.includes('~')) {
           return this._npmDependencyResolver.toBazelNodeDependency(importPath.split('~')[1]);

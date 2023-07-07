@@ -44,7 +44,7 @@ export class SbbPageEvent {
     public pageIndex: number,
     public previousPageIndex: number,
     public pageSize: number,
-    public length: number
+    public length: number,
   ) {}
 }
 
@@ -56,7 +56,7 @@ export interface SbbPaginatorDefaultOptions {
 
 /** Injection token that can be used to provide the default options for the paginator module. */
 export const SBB_PAGINATOR_DEFAULT_OPTIONS = new InjectionToken<SbbPaginatorDefaultOptions>(
-  'SBB_PAGINATOR_DEFAULT_OPTIONS'
+  'SBB_PAGINATOR_DEFAULT_OPTIONS',
 );
 
 // Boilerplate for applying mixins to _SbbPaginatorBase.
@@ -131,7 +131,7 @@ export class SbbPaginator extends _SbbPaginatorBase implements OnInit, CanDisabl
     private _changeDetectorRef: ChangeDetectorRef,
     @Optional()
     @Inject(SBB_PAGINATOR_DEFAULT_OPTIONS)
-    defaults?: SbbPaginatorDefaultOptions
+    defaults?: SbbPaginatorDefaultOptions,
   ) {
     super();
 

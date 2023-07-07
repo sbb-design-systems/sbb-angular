@@ -94,7 +94,7 @@ describe('SbbTabNavBar', () => {
         .map((tabLinkDebugEl) => tabLinkDebugEl.nativeElement);
 
       expect(
-        tabLinkElements.every((tabLinkEl) => !tabLinkEl.classList.contains('sbb-tab-disabled'))
+        tabLinkElements.every((tabLinkEl) => !tabLinkEl.classList.contains('sbb-tab-disabled')),
       )
         .withContext('Expected every tab link to not have the disabled class initially')
         .toBe(true);

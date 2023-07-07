@@ -34,7 +34,7 @@ let nextId = 0;
 const _SbbFileSelectorMixinBase = mixinDisabled(
   class {
     constructor(public _elementRef: ElementRef) {}
-  }
+  },
 );
 
 @Component({
@@ -112,7 +112,7 @@ export class SbbFileSelector
     private _fileTypeService: SbbFileSelectorTypesService,
     private _renderer: Renderer2,
     private _changeDetector: ChangeDetectorRef,
-    @Optional() @Inject(SBB_FILE_SELECTOR_OPTIONS) options: SbbFileSelectorOptions
+    @Optional() @Inject(SBB_FILE_SELECTOR_OPTIONS) options: SbbFileSelectorOptions,
   ) {
     super(elementRef);
     if (options) {
@@ -211,7 +211,7 @@ export class SbbFileSelector
     if (this.multiple && this.multipleMode === 'persistent') {
       return incomingFiles
         .filter(
-          (f) => this.filesList.findIndex((flItem) => this._checkFileEquality(f, flItem)) === -1
+          (f) => this.filesList.findIndex((flItem) => this._checkFileEquality(f, flItem)) === -1,
         )
         .concat(this.filesList);
     }

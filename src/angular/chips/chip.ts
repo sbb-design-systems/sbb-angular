@@ -47,7 +47,7 @@ export const SBB_CHIP_REMOVE = new InjectionToken<SbbChipRemove>('SbbChipRemove'
  * retention of the class and its directive metadata.
  */
 export const SBB_CHIP_TRAILING_ICON = new InjectionToken<SbbChipTrailingIcon>(
-  'SbbChipTrailingIcon'
+  'SbbChipTrailingIcon',
 );
 
 // Boilerplate for applying mixins to SbbChip.
@@ -176,7 +176,7 @@ export class SbbChip
     private _changeDetectorRef: ChangeDetectorRef,
     @Optional() @Host() @Inject(SBB_CHIP_LIST) private _chipList?: TypeRef<SbbChipList>,
     @Optional() @Inject(ANIMATION_MODULE_TYPE) animationMode?: string,
-    @Attribute('tabindex') tabIndex?: string
+    @Attribute('tabindex') tabIndex?: string,
   ) {
     super(_elementRef);
 
@@ -312,7 +312,10 @@ export class SbbChip
   providers: [{ provide: SBB_CHIP_REMOVE, useExisting: SbbChipRemove }],
 })
 export class SbbChipRemove {
-  constructor(protected _parentChip: SbbChip, elementRef: ElementRef<HTMLElement>) {
+  constructor(
+    protected _parentChip: SbbChip,
+    elementRef: ElementRef<HTMLElement>,
+  ) {
     if (elementRef.nativeElement.nodeName === 'BUTTON') {
       elementRef.nativeElement.setAttribute('type', 'button');
     }

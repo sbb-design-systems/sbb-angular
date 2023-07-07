@@ -26,7 +26,7 @@ export function hasNgModuleProvider(tree: Tree, modulePath: string, providerName
     modulePath,
     moduleFileContent.toString(),
     ts.ScriptTarget.Latest,
-    true
+    true,
   );
   const ngModuleMetadata = findNgModuleMetadata(parsedFile);
 
@@ -116,7 +116,7 @@ export function addModuleImportToModule(
   modulePath: string,
   moduleName: string,
   src: string,
-  recorder: UpdateRecorder
+  recorder: UpdateRecorder,
 ) {
   const moduleSource = parseSourceFile(host, modulePath);
 
@@ -138,7 +138,7 @@ export function addModuleImportToModule(
  */
 export function iterateNodes(
   contentOrRoot: string | Element,
-  nodeAction: (node: Element) => void
+  nodeAction: (node: Element) => void,
 ): void {
   const root =
     typeof contentOrRoot === 'string'
@@ -215,7 +215,7 @@ export class MigrationElement {
     readonly element: Element,
     readonly resource: ResolvedResource,
     readonly recorder: UpdateRecorder,
-    readonly location = element.sourceCodeLocation!
+    readonly location = element.sourceCodeLocation!,
   ) {}
 
   /** Checks whether this element matches the given tag name. */
@@ -227,7 +227,7 @@ export class MigrationElement {
   remove() {
     this.recorder.remove(
       this.resource.start + this.location.startOffset,
-      this.location.endOffset - this.location.startOffset
+      this.location.endOffset - this.location.startOffset,
     );
   }
 
@@ -235,21 +235,21 @@ export class MigrationElement {
   removeContent() {
     this.recorder.remove(
       this.resource.start + this.location.startTag!.endOffset,
-      this.location.endTag!.startOffset - this.location.startTag!.endOffset
+      this.location.endTag!.startOffset - this.location.startTag!.endOffset,
     );
   }
 
   removeEndTag() {
     this.recorder.remove(
       this.resource.start + this.location.endTag!.startOffset,
-      this.location.endTag!.endOffset - this.location.endTag!.startOffset
+      this.location.endTag!.endOffset - this.location.endTag!.startOffset,
     );
   }
 
   removeStartTag() {
     this.recorder.remove(
       this.resource.start + this.location.startTag!.startOffset,
-      this.location.startTag!.endOffset - this.location.startTag!.startOffset
+      this.location.startTag!.endOffset - this.location.startTag!.startOffset,
     );
   }
 
@@ -259,7 +259,7 @@ export class MigrationElement {
     this.recorder.remove(startTagPosition, tagLength);
     this.recorder.insertRight(
       startTagPosition,
-      attributeSelector ? `${tagName} ${attributeSelector}` : tagName
+      attributeSelector ? `${tagName} ${attributeSelector}` : tagName,
     );
 
     const endTagPosition = this.resource.start + this.location.endTag!.startOffset + 2;
@@ -299,7 +299,7 @@ export class MigrationElement {
 
   properties() {
     return this.element.attrs.map(
-      (a) => this._properties.get(a.name) ?? this._createMigrationElementProperty(a)
+      (a) => this._properties.get(a.name) ?? this._createMigrationElementProperty(a),
     );
   }
 
@@ -331,7 +331,7 @@ export class MigrationElement {
 
   findPropertyByValue(value: string): MigrationElementProperty | undefined {
     const cachedProperty = Array.from(this._properties).find(
-      ([_, propertyEntry]) => propertyEntry!.nativeValue === value
+      ([_, propertyEntry]) => propertyEntry!.nativeValue === value,
     )?.[1];
     if (cachedProperty) {
       return cachedProperty;
@@ -371,7 +371,7 @@ export class MigrationElement {
   innerHtml() {
     return this.resource.content.substring(
       this.location.startTag!.endOffset,
-      this.location.endTag!.startOffset
+      this.location.endTag!.startOffset,
     );
   }
 
@@ -399,7 +399,7 @@ export class MigrationElementProperty {
     readonly attribute: parse5.Token.Attribute,
     readonly location: parse5.Token.Location,
     readonly value: string | undefined,
-    private _element: MigrationElement
+    private _element: MigrationElement,
   ) {
     this.name = this._element.resource.content
       .substring(this.location.startOffset, this.location.endOffset)
@@ -410,7 +410,7 @@ export class MigrationElementProperty {
   remove() {
     this._element.recorder.remove(
       this._element.resource.start + this.location.startOffset - 1,
-      this.location.endOffset - this.location.startOffset + 1
+      this.location.endOffset - this.location.startOffset + 1,
     );
   }
 
@@ -418,11 +418,11 @@ export class MigrationElementProperty {
   replace(newAttribute: string) {
     this._element.recorder.remove(
       this._element.resource.start + this.location.startOffset,
-      this.location.endOffset - this.location.startOffset
+      this.location.endOffset - this.location.startOffset,
     );
     this._element.recorder.insertRight(
       this._element.resource.start + this.location.startOffset,
-      newAttribute
+      newAttribute,
     );
   }
 
@@ -430,30 +430,30 @@ export class MigrationElementProperty {
     newName = this.isProperty ? `[${newName}]` : newName;
     this._element.recorder.remove(
       this._element.resource.start + this.location.startOffset,
-      this.name.length
+      this.name.length,
     );
     this._element.recorder.insertRight(
       this._element.resource.start + this.location.startOffset,
-      newName
+      newName,
     );
   }
 
   replaceValue(newValue: string) {
     this._element.recorder.remove(
       this._element.resource.start + this.location.startOffset + this.name.length,
-      this.location.endOffset - this.location.startOffset - this.name.length
+      this.location.endOffset - this.location.startOffset - this.name.length,
     );
 
     this._element.recorder.insertRight(
       this._element.resource.start + this.location.startOffset + this.name.length,
-      `="${newValue}"`
+      `="${newValue}"`,
     );
   }
 
   appendValue(value: string) {
     this._element.recorder.insertRight(
       this._element.resource.start + this.location.endOffset - 1,
-      value
+      value,
     );
   }
 

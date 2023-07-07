@@ -50,7 +50,7 @@ export class SbbTimeInput {
     private _renderer: Renderer2,
     @Self() @Optional() private _control: NgControl,
     @Inject(DOCUMENT) document: any,
-    @Optional() private _input: SbbInput
+    @Optional() private _input: SbbInput,
   ) {
     this._document = document;
     this.placeholder = PLACEHOLDER_DEFAULT;

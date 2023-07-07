@@ -24,8 +24,8 @@ describe('LeanDateAdapter', () => {
 
     params.forEach((param) =>
       expect(leanDateAdapter.parse(param.input)!.getTime()).toBe(
-        new Date(param.expectedYear, param.expectedMonth - 1, param.expectedDay).getTime()
-      )
+        new Date(param.expectedYear, param.expectedMonth - 1, param.expectedDay).getTime(),
+      ),
     );
   });
 
@@ -44,7 +44,7 @@ describe('LeanDateAdapter', () => {
     params.forEach((param) =>
       expect(leanDateAdapter.parse(param.input))
         .withContext('Expected date parsing to fail')
-        .toBeNull()
+        .toBeNull(),
     );
   });
 

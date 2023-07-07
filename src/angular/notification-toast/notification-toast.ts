@@ -84,7 +84,7 @@ export class SbbNotificationToast implements OnDestroy {
     private _breakpointObserver: BreakpointObserver,
     @Optional() @SkipSelf() private _parentNotification: SbbNotificationToast,
     @Inject(SBB_NOTIFICATION_TOAST_DEFAULT_OPTIONS)
-    private _defaultConfig: SbbNotificationToastConfig
+    private _defaultConfig: SbbNotificationToastConfig,
   ) {}
 
   /**
@@ -96,7 +96,7 @@ export class SbbNotificationToast implements OnDestroy {
    */
   openFromComponent<T, D = any>(
     component: ComponentType<T>,
-    config?: SbbNotificationToastConfig<D>
+    config?: SbbNotificationToastConfig<D>,
   ): SbbNotificationToastRef<T> {
     return this._attach(component, config) as SbbNotificationToastRef<T>;
   }
@@ -110,7 +110,7 @@ export class SbbNotificationToast implements OnDestroy {
    */
   openFromTemplate(
     template: TemplateRef<any>,
-    config?: SbbNotificationToastConfig
+    config?: SbbNotificationToastConfig,
   ): SbbNotificationToastRef<EmbeddedViewRef<any>> {
     return this._attach(template, config);
   }
@@ -123,7 +123,7 @@ export class SbbNotificationToast implements OnDestroy {
    */
   open(
     message: string,
-    config?: SbbNotificationToastConfig
+    config?: SbbNotificationToastConfig,
   ): SbbNotificationToastRef<SbbTextOnlyNotificationToast> {
     const mergedConfig = { ...this._defaultConfig, ...config };
 
@@ -157,18 +157,18 @@ export class SbbNotificationToast implements OnDestroy {
   /** Attaches the notification toast container component to the overlay. */
   private _attachNotificationToastContainer(
     overlayRef: OverlayRef,
-    config: SbbNotificationToastConfig
+    config: SbbNotificationToastConfig,
   ): SbbNotificationToastContainerBase {
     const userInjector = config?.viewContainerRef?.injector;
     const injector = new PortalInjector(
       userInjector || this._injector,
-      new WeakMap([[SbbNotificationToastConfig, config]])
+      new WeakMap([[SbbNotificationToastConfig, config]]),
     );
 
     const containerPortal = new ComponentPortal(
       this._notificationToastContainerComponent,
       config.viewContainerRef,
-      injector
+      injector,
     );
     const containerRef: ComponentRef<SbbNotificationToastContainerBase> =
       overlayRef.attach(containerPortal);
@@ -179,14 +179,14 @@ export class SbbNotificationToast implements OnDestroy {
   /** Places a new component or a template as the content of the notification toast container. */
   private _attach<T>(
     content: ComponentType<T> | TemplateRef<T>,
-    userConfig?: SbbNotificationToastConfig
+    userConfig?: SbbNotificationToastConfig,
   ): SbbNotificationToastRef<T | EmbeddedViewRef<any>> {
     const config = { ...new SbbNotificationToastConfig(), ...this._defaultConfig, ...userConfig };
     const overlayRef = this._createOverlay(config);
     const container = this._attachNotificationToastContainer(overlayRef, config);
     const notificationRef = new SbbNotificationToastRef<T | EmbeddedViewRef<any>>(
       container,
-      overlayRef
+      overlayRef,
     );
 
     if (content instanceof TemplateRef) {
@@ -226,7 +226,7 @@ export class SbbNotificationToast implements OnDestroy {
   /** Animates the old notification toast out and the new one in. */
   private _animateNotification(
     notificationRef: SbbNotificationToastRef<any>,
-    config: SbbNotificationToastConfig
+    config: SbbNotificationToastConfig,
   ) {
     // When the notification toast is dismissed, clear the reference to it.
     notificationRef.afterDismissed().subscribe(() => {
@@ -293,7 +293,7 @@ export class SbbNotificationToast implements OnDestroy {
    */
   private _createInjector<T>(
     config: SbbNotificationToastConfig,
-    notificationRef: SbbNotificationToastRef<T>
+    notificationRef: SbbNotificationToastRef<T>,
   ): PortalInjector {
     const userInjector = config?.viewContainerRef?.injector;
 
@@ -302,7 +302,7 @@ export class SbbNotificationToast implements OnDestroy {
       new WeakMap<any, any>([
         [SbbNotificationToastRef, notificationRef],
         [SBB_NOTIFICATION_TOAST_DATA, config.data],
-      ])
+      ]),
     );
   }
 }

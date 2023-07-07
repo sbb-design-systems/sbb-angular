@@ -7,7 +7,7 @@ import { createTestProject } from './test-project';
 export async function createTestApp(
   runner: SchematicTestRunner,
   appOptions = {},
-  tree?: Tree
+  tree?: Tree,
 ): Promise<UnitTestTree> {
   return createTestProject(runner, 'application', appOptions, tree);
 }

@@ -36,10 +36,13 @@ export class StickyTableExample {
     this.dataSource.sort = sort;
   }
 
-  constructor(private _liveAnnouncer: LiveAnnouncer, httpClient: HttpClient) {
+  constructor(
+    private _liveAnnouncer: LiveAnnouncer,
+    httpClient: HttpClient,
+  ) {
     httpClient
       .get(
-        'https://data.sbb.ch/api/records/1.0/search/?dataset=zugzahlen&q=isb%3DSBB&rows=80&facet=isb&facet=strecke_bezeichnung&facet=strecke_art&facet=bp_von_abschnitt&facet=bp_bis_abschnitt&facet=jahr'
+        'https://data.sbb.ch/api/records/1.0/search/?dataset=zugzahlen&q=isb%3DSBB&rows=80&facet=isb&facet=strecke_bezeichnung&facet=strecke_art&facet=bp_von_abschnitt&facet=bp_bis_abschnitt&facet=jahr',
       )
       .subscribe((data: any) => {
         this.dataSource.data = data.records.map((record: any) => ({
