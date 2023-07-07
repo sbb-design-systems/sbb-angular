@@ -35,17 +35,21 @@ import { LngLatBounds, LngLatBoundsLike, LngLatLike } from 'maplibre-gl';
 import { BehaviorSubject, Subject } from 'rxjs';
 import { filter, map, take, takeUntil } from 'rxjs/operators';
 
-import { zhBeWyleregg } from './mock-response/journey/zh-be_wyleregg';
-import { zhShWaldfriedhof } from './mock-response/journey/zh-sh_waldfriedhof';
-import { markers } from './mock-response/markers';
-import { bielLyssRoutes, bielLyssRoutesOptions } from './mock-response/routes/biel-lyss';
-import { bnLsRoutes, bnLsRoutesOptions } from './mock-response/routes/bn-ls';
-import { bernIndoor } from './mock-response/transfer/bern-indoor';
-import { geneveIndoor } from './mock-response/transfer/geneve-indoor';
-import { luzern4j } from './mock-response/transfer/luzern4-j';
-import { zurichIndoor } from './mock-response/transfer/zurich-indoor';
-import { bernBurgdorfZones } from './mock-response/zone/bern-burgdorf';
-import { baselBielZones } from './mock-response/zone/bs-bl';
+import {
+  baselBielZones,
+  bernBurgdorfZones,
+  bernIndoor,
+  bielLyssRoutes,
+  bielLyssRoutesOptions,
+  bnLsRoutes,
+  bnLsRoutesOptions,
+  geneveIndoor,
+  luzern4j,
+  markers,
+  zhBeWyleregg,
+  zhShWaldfriedhof,
+  zurichIndoor,
+} from './mock-response/';
 
 const CH_BOUNDS: LngLatBoundsLike = [
   [5.7349, 45.6755],

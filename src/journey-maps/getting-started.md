@@ -7,7 +7,8 @@ This package is published as an [Angular Library](/journey-maps/components/angul
 
 ## Example Code
 
-You can inspect the source code from our [example application](/journey-maps/components/angular/examples): 
+You can inspect the source code from our [example application](/journey-maps/components/angular/examples):
+
 - by clicking on the "<>" Button on the top right of the map to view code,
 - or by clicking on the "□^" Button to edit in StackBlitz.
 
