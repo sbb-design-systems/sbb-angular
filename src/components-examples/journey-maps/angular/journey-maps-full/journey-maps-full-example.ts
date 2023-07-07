@@ -35,17 +35,8 @@ import { LngLatBounds, LngLatBoundsLike, LngLatLike } from 'maplibre-gl';
 import { BehaviorSubject, Subject } from 'rxjs';
 import { filter, map, take, takeUntil } from 'rxjs/operators';
 
-import { zhBeWyleregg } from './mock-response/journey/zh-be_wyleregg';
-import { zhShWaldfriedhof } from './mock-response/journey/zh-sh_waldfriedhof';
 import { markers } from './mock-response/markers';
-import { bielLyssRoutes, bielLyssRoutesOptions } from './mock-response/routes/biel-lyss';
-import { bnLsRoutes, bnLsRoutesOptions } from './mock-response/routes/bn-ls';
-import { bernIndoor } from './mock-response/transfer/bern-indoor';
-import { geneveIndoor } from './mock-response/transfer/geneve-indoor';
-import { luzern4j } from './mock-response/transfer/luzern4-j';
-import { zurichIndoor } from './mock-response/transfer/zurich-indoor';
-import { bernBurgdorfZones } from './mock-response/zone/bern-burgdorf';
-import { baselBielZones } from './mock-response/zone/bs-bl';
+import { MockResponseService } from './mock-response/mock-response.service';
 
 const CH_BOUNDS: LngLatBoundsLike = [
   [5.7349, 45.6755],
@@ -60,6 +51,7 @@ const CH_BOUNDS: LngLatBoundsLike = [
   templateUrl: 'journey-maps-full-example.html',
   styleUrls: ['journey-maps-full-example.css'],
   standalone: true,
+  providers: [MockResponseService],
   imports: [
     CommonModule,
     SbbCommonModule,
@@ -74,7 +66,6 @@ const CH_BOUNDS: LngLatBoundsLike = [
     SbbSelectModule,
     SbbOptionModule,
     SbbFormFieldModule,
-    ReactiveFormsModule,
   ],
 })
 export class JourneyMapsFullExample implements OnInit, OnDestroy {
@@ -100,33 +91,39 @@ export class JourneyMapsFullExample implements OnInit, OnDestroy {
 
   journeyMapsZoneOptions = [
     { label: '(none)', value: undefined },
-    { label: 'Berne / Burgdorf', value: bernBurgdorfZones },
-    { label: 'Basel / Biel', value: baselBielZones },
+    { label: 'Berne / Burgdorf', value: this._mockResponse.data.bernBurgdorfZones },
+    { label: 'Basel / Biel', value: this._mockResponse.data.baselBielZones },
   ];
   journeyMapsRoutingOption?: SbbJourneyMapsRoutingOptions;
   journeyMapsRoutingOptions: { label: string; value: SbbJourneyMapsRoutingOptions | undefined }[] =
     [
       { label: '(none)', value: undefined },
-      { label: 'Zürich - Bern, Wyleregg', value: { journey: zhBeWyleregg } },
-      { label: 'Zürich - Schaffhausen, Waldfriedhof', value: { journey: zhShWaldfriedhof } },
+      {
+        label: 'Zürich - Bern, Wyleregg',
+        value: { journey: this._mockResponse.data.zhBeWyleregg },
+      },
+      {
+        label: 'Zürich - Schaffhausen, Waldfriedhof',
+        value: { journey: this._mockResponse.data.zhShWaldfriedhof },
+      },
       {
         label: 'Bern - Lausanne',
         value: {
-          routes: bnLsRoutes,
-          routesMetaInformations: bnLsRoutesOptions,
+          routes: this._mockResponse.data.bnLsRoutes,
+          routesMetaInformations: this._mockResponse.data.bnLsRoutesOptions,
         },
       },
       {
         label: 'Biel - Lyss',
         value: {
-          routes: bielLyssRoutes,
-          routesMetaInformations: bielLyssRoutesOptions,
+          routes: this._mockResponse.data.bielLyssRoutes,
+          routesMetaInformations: this._mockResponse.data.bielLyssRoutesOptions,
         },
       },
-      { label: 'Transfer Bern', value: { transfer: bernIndoor } },
-      { label: 'Transfer Genf', value: { transfer: geneveIndoor } },
-      { label: 'Transfer Luzern', value: { transfer: luzern4j } },
-      { label: 'Transfer Zürich', value: { transfer: zurichIndoor } },
+      { label: 'Transfer Bern', value: { transfer: this._mockResponse.data.bernIndoor } },
+      { label: 'Transfer Genf', value: { transfer: this._mockResponse.data.geneveIndoor } },
+      { label: 'Transfer Luzern', value: { transfer: this._mockResponse.data.luzern4j } },
+      { label: 'Transfer Zürich', value: { transfer: this._mockResponse.data.zurichIndoor } },
     ];
   journeyMapsRoutingLegIds: string[] = [];
   homeButtonOptions: SbbViewportDimensions = { boundingBox: SBB_BOUNDING_BOX };
@@ -160,6 +157,7 @@ export class JourneyMapsFullExample implements OnInit, OnDestroy {
   constructor(
     private _cd: ChangeDetectorRef,
     private _fb: UntypedFormBuilder,
+    private _mockResponse: MockResponseService,
   ) {
     // Pseudo validator to reset the selected marker id before the value changes
     const resetSelectedMarkerIdValidator = () => {
