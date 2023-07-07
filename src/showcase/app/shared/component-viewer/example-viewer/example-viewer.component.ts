@@ -54,7 +54,7 @@ export class ExampleViewerComponent implements OnInit {
 
   stackBlitzEnabled() {
     return moduleParams(this._route).pipe(
-      map((params) => ['angular', 'journey-maps'].includes(params.packageName))
+      map((params) => ['angular', 'journey-maps'].includes(params.packageName)),
     );
   }
 
