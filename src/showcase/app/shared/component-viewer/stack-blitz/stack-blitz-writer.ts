@@ -82,13 +82,10 @@ export class StackBlitzWriter {
           isSbbLean ? ' class="sbb-lean"' : '',
         );
 
-        if (
-          files['src/app/journey-maps-basic-example.html'] ||
-          files['src/app/journey-maps-full-example.html']
-        ) {
+        if (Object.keys(files).some((f) => f.includes('journey-maps'))) {
           files['src/index.html'] = files['src/index.html'].replace(
             '</head>',
-            "<script>window.JM_API_KEY='" + window['JM_API_KEY'] + "'</script></head>",
+            `<script>window.JM_API_KEY='${window['JM_API_KEY']}'</script></head>`,
           );
         }
 
