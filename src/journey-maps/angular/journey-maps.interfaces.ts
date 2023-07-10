@@ -295,6 +295,7 @@ export type SbbPointsOfInterestCategoryType =
   | 'musical_instrument'
   | 'nightclub'
   | 'nursing_home'
+  | 'on_demand'
   | 'optician'
   | 'outdoor'
   | 'park_rail'
