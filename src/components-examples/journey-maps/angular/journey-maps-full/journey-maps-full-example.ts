@@ -47,6 +47,12 @@ import { zurichIndoor } from './mock-response/transfer/zurich-indoor';
 import { bernBurgdorfZones } from './mock-response/zone/bern-burgdorf';
 import { baselBielZones } from './mock-response/zone/bs-bl';
 
+declare global {
+  interface Window {
+    JM_API_KEY: string;
+  }
+}
+
 const CH_BOUNDS: LngLatBoundsLike = [
   [5.7349, 45.6755],
   [10.6677, 47.9163],
@@ -54,6 +60,7 @@ const CH_BOUNDS: LngLatBoundsLike = [
 
 /**
  * @title Journey Maps Full Example
+ * @includeExtraFiles ./mock-response/journey/zh-be_wyleregg.ts,./mock-response/journey/zh-sh_waldfriedhof.ts,./mock-response/markers.ts,./mock-response/routes/biel-lyss.ts,./mock-response/routes/bn-ls.ts,./mock-response/transfer/bern-indoor.ts,./mock-response/transfer/geneve-indoor.ts,./mock-response/transfer/luzern4-j.ts,./mock-response/transfer/zurich-indoor.ts,./mock-response/zone/bern-burgdorf.ts,./mock-response/zone/bs-bl.ts
  */
 @Component({
   selector: 'sbb-journey-maps-full-example',
