@@ -18,6 +18,8 @@ ng_module(
     deps = [
         "//src/angular/button",
         "//src/angular/checkbox",
+        "//src/angular/core",
+        "//src/angular/form-field",
         "//src/angular/input",
         "//src/angular/notification",
         "//src/angular/radio-button",

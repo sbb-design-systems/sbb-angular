@@ -10,6 +10,7 @@ interface ParsedMetadata {
   selector: string;
   templateUrl: string;
   styleUrls: string[];
+  includeExtraFiles: string[];
 }
 
 interface ParsedMetadataResults {
@@ -48,6 +49,9 @@ export function parseExampleFile(fileName: string, content: string): ParsedMetad
               }
               if (tagName === 'devOnly') {
                 meta.devOnly = true;
+              }
+              if (tagName === 'includeExtraFiles') {
+                meta.includeExtraFiles = tagValue.split(',');
               }
             }
           }

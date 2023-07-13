@@ -82,6 +82,13 @@ export class StackBlitzWriter {
           isSbbLean ? ' class="sbb-lean"' : '',
         );
 
+        if (data.id.includes('journey-maps')) {
+          files['src/index.html'] = files['src/index.html'].replace(
+            '</head>',
+            `<script>window.JM_API_KEY='${window['JM_API_KEY']}'</script></head>`,
+          );
+        }
+
         this._openStackBlitz({
           files,
           title: `Sbb Angular Library - ${data.description}`,

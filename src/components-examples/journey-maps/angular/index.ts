@@ -29,8 +29,8 @@ const EXAMPLES = [JourneyMapsBasicExample, JourneyMapsFullExample];
     SbbTabsModule,
     ReactiveFormsModule,
     SbbSelectModule,
+    EXAMPLES,
   ],
-  declarations: EXAMPLES,
   exports: EXAMPLES,
 })
 export class JourneyMapsClientExamplesModule {}
