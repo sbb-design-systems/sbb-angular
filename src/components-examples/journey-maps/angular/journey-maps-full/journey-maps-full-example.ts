@@ -1,3 +1,4 @@
+import { CommonModule } from '@angular/common';
 import {
   ChangeDetectorRef,
   Component,
@@ -6,10 +7,24 @@ import {
   TemplateRef,
   ViewChild,
 } from '@angular/core';
-import { UntypedFormBuilder, UntypedFormGroup } from '@angular/forms';
+import {
+  FormsModule,
+  ReactiveFormsModule,
+  UntypedFormBuilder,
+  UntypedFormGroup,
+} from '@angular/forms';
+import { SbbButtonModule } from '@sbb-esta/angular/button';
+import { SbbCheckboxModule } from '@sbb-esta/angular/checkbox';
+import { SbbCommonModule, SbbOptionModule } from '@sbb-esta/angular/core';
+import { SbbFormFieldModule } from '@sbb-esta/angular/form-field';
+import { SbbInputModule } from '@sbb-esta/angular/input';
+import { SbbNotificationModule } from '@sbb-esta/angular/notification';
+import { SbbRadioButtonModule } from '@sbb-esta/angular/radio-button';
+import { SbbSelectModule } from '@sbb-esta/angular/select';
 import {
   SbbInteractionOptions,
   SbbJourneyMaps,
+  SbbJourneyMapsModule,
   SbbJourneyMapsRoutingOptions,
   SbbViewportDimensions,
   SbbZoomLevels,
@@ -32,6 +47,12 @@ import { zurichIndoor } from './mock-response/transfer/zurich-indoor';
 import { bernBurgdorfZones } from './mock-response/zone/bern-burgdorf';
 import { baselBielZones } from './mock-response/zone/bs-bl';
 
+declare global {
+  interface Window {
+    JM_API_KEY: string;
+  }
+}
+
 const CH_BOUNDS: LngLatBoundsLike = [
   [5.7349, 45.6755],
   [10.6677, 47.9163],
@@ -39,11 +60,28 @@ const CH_BOUNDS: LngLatBoundsLike = [
 
 /**
  * @title Journey Maps Full Example
+ * @includeExtraFiles ./mock-response/journey/zh-be_wyleregg.ts,./mock-response/journey/zh-sh_waldfriedhof.ts,./mock-response/markers.ts,./mock-response/routes/biel-lyss.ts,./mock-response/routes/bn-ls.ts,./mock-response/transfer/bern-indoor.ts,./mock-response/transfer/geneve-indoor.ts,./mock-response/transfer/luzern4-j.ts,./mock-response/transfer/zurich-indoor.ts,./mock-response/zone/bern-burgdorf.ts,./mock-response/zone/bs-bl.ts
  */
 @Component({
   selector: 'sbb-journey-maps-full-example',
   templateUrl: 'journey-maps-full-example.html',
   styleUrls: ['journey-maps-full-example.css'],
+  standalone: true,
+  imports: [
+    CommonModule,
+    SbbCommonModule,
+    SbbButtonModule,
+    SbbInputModule,
+    FormsModule,
+    ReactiveFormsModule,
+    SbbJourneyMapsModule,
+    SbbNotificationModule,
+    SbbCheckboxModule,
+    SbbRadioButtonModule,
+    SbbSelectModule,
+    SbbOptionModule,
+    SbbFormFieldModule,
+  ],
 })
 export class JourneyMapsFullExample implements OnInit, OnDestroy {
   @ViewChild('advancedMap')
@@ -75,8 +113,14 @@ export class JourneyMapsFullExample implements OnInit, OnDestroy {
   journeyMapsRoutingOptions: { label: string; value: SbbJourneyMapsRoutingOptions | undefined }[] =
     [
       { label: '(none)', value: undefined },
-      { label: 'Zürich - Bern, Wyleregg', value: { journey: zhBeWyleregg } },
-      { label: 'Zürich - Schaffhausen, Waldfriedhof', value: { journey: zhShWaldfriedhof } },
+      {
+        label: 'Zürich - Bern, Wyleregg',
+        value: { journey: zhBeWyleregg },
+      },
+      {
+        label: 'Zürich - Schaffhausen, Waldfriedhof',
+        value: { journey: zhShWaldfriedhof },
+      },
       {
         label: 'Bern - Lausanne',
         value: {
