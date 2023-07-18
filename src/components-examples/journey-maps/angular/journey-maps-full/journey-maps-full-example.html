@@ -168,14 +168,14 @@
           <sbb-radio-button [value]="false">Teaser</sbb-radio-button>
         </sbb-radio-group>
       </li>
-      <li formGroupName="unselectPoi">
+      <li formGroupName="selectedPoi">
         <span class="sbb-label"
           >POIs<span *ngIf="selectedPoiSbbId"> (selected: {{selectedPoiSbbId}})</span></span
         >
         <sbb-form-field>
           <input sbbInput formControlName="poiId" placeholder="Enter SBB-ID" />
         </sbb-form-field>
-        <button sbb-ghost-button (click)="selectedPoiSbbId=form.get('unselectPoi.poiId')?.value">
+        <button sbb-ghost-button (click)="selectedPoiSbbId=form.get('selectedPoi.poiId')?.value">
           Select POI
         </button>
         <button sbb-ghost-button (click)="selectedPoiSbbId=undefined">Unselect all POIs</button>

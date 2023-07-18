@@ -228,7 +228,7 @@ export class JourneyMapsFullExample implements OnInit, OnDestroy {
           clickTemplate: [],
         }),
       }),
-      unselectPoi: _fb.group({
+      selectedPoi: _fb.group({
         poiId: [undefined],
       }),
       markerOptions: _fb.group({
@@ -411,11 +411,6 @@ export class JourneyMapsFullExample implements OnInit, OnDestroy {
   listenerOptionTypes() {
     const listenerOptions: UntypedFormGroup = this.form.get('listenerOptions') as UntypedFormGroup;
     return Object.keys(listenerOptions.controls);
-  }
-
-  unselectPoi(poiId: string) {
-    // Do something with the UUID
-    console.log(poiId);
   }
 
   private _formatCoodinate(value: number): string {
