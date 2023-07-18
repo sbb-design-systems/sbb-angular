@@ -13,6 +13,8 @@ import {
   SimpleChanges,
   ViewChild,
 } from '@angular/core';
+import { SbbMapEventUtils } from '@sbb-esta/journey-maps/angular/services/map/events/map-event-utils';
+import { SbbMapSelectionEvent } from '@sbb-esta/journey-maps/angular/services/map/events/map-selection-event';
 import { FeatureCollection } from 'geojson';
 import { LngLatBounds, LngLatLike, Map as MaplibreMap, VectorTileSource } from 'maplibre-gl';
 import { ReplaySubject, Subject } from 'rxjs';
@@ -70,7 +72,7 @@ import { getInvalidRoutingOptionCombination } from './util/input-validation';
   selector: 'sbb-journey-maps',
   templateUrl: './journey-maps.html',
   styleUrls: ['./journey-maps.css'],
-  providers: [SbbLevelSwitcher, SbbMapLayerFilter, SbbMapLeitPoiService],
+  providers: [SbbLevelSwitcher, SbbMapLayerFilter, SbbMapLeitPoiService, SbbMapSelectionEvent],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class SbbJourneyMaps implements OnInit, AfterViewInit, OnDestroy, OnChanges {
@@ -211,10 +213,12 @@ export class SbbJourneyMaps implements OnInit, AfterViewInit, OnDestroy, OnChang
     private _mapRailNetworkLayerService: SbbMapRailNetworkLayerService,
     private _mapZoneService: SbbMapZoneService,
     private _mapLeitPoiService: SbbMapLeitPoiService,
-    private _urlService: SbbMapUrlService,
-    private _levelSwitchService: SbbLevelSwitcher,
     private _mapLayerFilterService: SbbMapLayerFilter,
     private _mapOverflowingLabelService: SbbMapOverflowingLabelService,
+    private _mapEventUtils: SbbMapEventUtils,
+    // private _mapSelectionEventService: SbbMapSelectionEvent,
+    private _urlService: SbbMapUrlService,
+    private _levelSwitchService: SbbLevelSwitcher,
     private _cd: ChangeDetectorRef,
     private _i18n: SbbLocaleService,
     private _host: ElementRef,
@@ -395,11 +399,14 @@ export class SbbJourneyMaps implements OnInit, AfterViewInit, OnDestroy, OnChang
 
   set selectedPoiSbbId(poiSbbId: string | undefined) {
     if (!!poiSbbId) {
-      console.log('Received request to select POI SBB-ID: ', poiSbbId);
-      // const selectedMarker = this.markerOptions.markers?.find((marker) => marker.id === poiSbbId);
-      // this.onMarkerSelected(selectedMarker!);
+      // const poiFeatures = this._mapEventUtils.queryVisibleFeaturesByFilter(
+      //   this._map,
+      //   'POI',
+      //   [SBB_POI_LAYER],
+      //   undefined
+      // );
+      // this._mapSelectionEventService.toggleSelection(poiFeatures);
     } else {
-      console.log('Received request to unselect all POI SBB-IDs');
       this.unselectAll(['POI']);
     }
   }
