@@ -95,6 +95,7 @@ export class JourneyMapsFullExample implements OnInit, OnDestroy {
 
   apiKey = window.JM_API_KEY;
   selectedMarkerId?: string;
+  selectedPoiSbbId?: string;
   mapCenter?: LngLatLike;
   mapCenterChange = new Subject<LngLatLike>();
   interactionOptions: SbbInteractionOptions = {
@@ -226,6 +227,9 @@ export class JourneyMapsFullExample implements OnInit, OnDestroy {
           selectionMode: ['single'],
           clickTemplate: [],
         }),
+      }),
+      unselectPoi: _fb.group({
+        poiId: [undefined],
       }),
       markerOptions: _fb.group({
         zoomToMarkers: [true],
@@ -404,13 +408,18 @@ export class JourneyMapsFullExample implements OnInit, OnDestroy {
     return `Map bounding-box (lng / lat, SW then NE): ${lngSW}, ${latSW} | ${lngNE}, ${latNE}`;
   }
 
-  private _formatCoodinate(value: number): string {
-    return value.toFixed(6);
-  }
-
   listenerOptionTypes() {
     const listenerOptions: UntypedFormGroup = this.form.get('listenerOptions') as UntypedFormGroup;
     return Object.keys(listenerOptions.controls);
+  }
+
+  unselectPoi(poiId: string) {
+    // Do something with the UUID
+    console.log(poiId);
+  }
+
+  private _formatCoodinate(value: number): string {
+    return value.toFixed(6);
   }
 
   private _setBbox(bbox: number[] | LngLatBounds): void {

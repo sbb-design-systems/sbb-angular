@@ -108,6 +108,7 @@ export class SbbJourneyMaps implements OnInit, AfterViewInit, OnDestroy, OnChang
    * This event is emitted whenever a marker, with property triggerEvent, is selected or unselected.
    */
   @Output() selectedMarkerIdChange: EventEmitter<string> = new EventEmitter<string>();
+  @Output() selectedPoiSbbIdChange: EventEmitter<string> = new EventEmitter<string>();
   /**
    * This event is emitted whenever the selected (floor-) level changes.
    */
@@ -379,6 +380,28 @@ export class SbbJourneyMaps implements OnInit, AfterViewInit, OnDestroy, OnChang
     return this.markerOptions.zoomToMarkers
       ? this.computeMarkersBounds(this.markerOptions.markers)
       : undefined;
+  }
+
+  /**
+   * Select one of the visible POIs in the viewport
+   *
+   * Allowed values are either the SBB-ID of a POI to select or <code>undefined</code> to unselect.
+   */
+  @Input()
+  get selectedPoiSbbId(): string | undefined {
+    // without this getter, the setter is never called when passing 'undefined' (via the 'elements' web component)
+    return this.selectedMarker?.id;
+  }
+
+  set selectedPoiSbbId(poiSbbId: string | undefined) {
+    if (!!poiSbbId) {
+      console.log('Received request to select POI SBB-ID: ', poiSbbId);
+      // const selectedMarker = this.markerOptions.markers?.find((marker) => marker.id === poiSbbId);
+      // this.onMarkerSelected(selectedMarker!);
+    } else {
+      console.log('Received request to unselect all POI SBB-IDs');
+      this.unselectAll(['POI']);
+    }
   }
 
   /** @docs-private */

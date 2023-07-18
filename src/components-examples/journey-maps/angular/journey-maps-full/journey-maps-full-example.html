@@ -20,6 +20,7 @@
     [journeyMapsZones]="form.get('zoneGeoJson')?.value"
     [poiOptions]="form.get('pointsOfInterestOptions')?.value"
     [(selectedMarkerId)]="selectedMarkerId"
+    [(selectedPoiSbbId)]="selectedPoiSbbId"
     [selectedLevel]="this.form.get('level')?.value ?? 0"
     (selectedLevelChange)="this.form.patchValue({level: $event})"
     (mapCenterChange)="mapCenterChange.next($event)"
@@ -40,6 +41,7 @@
   </ng-template>
   <ng-template #poiTemplate let-poi>
     <div>{{poi.properties.name}}</div>
+    <div>SBB-ID: {{poi.properties.sbbId}}</div>
   </ng-template>
 </div>
 <div>
@@ -132,18 +134,6 @@
         <button sbb-ghost-button (click)="client.moveSouth()">South</button>
         <button sbb-ghost-button (click)="client.moveWest()">West</button>
       </li>
-
-      <li>
-        <span class="sbb-label">Teaser / Popup actions</span>
-        <button sbb-ghost-button (click)="client.unselectAll(['MARKER', 'POI'])">
-          Close all Teasers / Popups
-        </button>
-        <button sbb-ghost-button (click)="client.unselectAll(['POI'])">Close POI Teasers</button>
-        <button sbb-ghost-button (click)="client.unselectAll(['MARKER'])">
-          Close marker Teasers / Popups
-        </button>
-      </li>
-
       <li>
         <div formGroupName="listenerOptions">
           <span class="sbb-label">Map interaction configuration</span>
@@ -155,8 +145,18 @@
         </div>
       </li>
       <li>
-        <span class="sbb-label">
-          Map markers<span *ngIf="selectedMarkerId"> (selected: {{selectedMarkerId}})</span></span
+        <span class="sbb-label">Teaser / Popup actions</span>
+        <button sbb-ghost-button (click)="client.unselectAll(['MARKER', 'POI'])">
+          Close all Teasers / Popups
+        </button>
+        <button sbb-ghost-button (click)="client.unselectAll(['POI'])">Close POI Teasers</button>
+        <button sbb-ghost-button (click)="client.unselectAll(['MARKER'])">
+          Close marker Teasers / Popups
+        </button>
+      </li>
+      <li>
+        <span class="sbb-label"
+          >Map markers<span *ngIf="selectedMarkerId"> (selected: {{selectedMarkerId}})</span></span
         >
         <button sbb-ghost-button (click)="selectedMarkerId='velo'">Basel</button>
         <button sbb-ghost-button (click)="selectedMarkerId=undefined">Unselect all</button>
@@ -167,6 +167,18 @@
           <sbb-radio-button [value]="true">Popup</sbb-radio-button>
           <sbb-radio-button [value]="false">Teaser</sbb-radio-button>
         </sbb-radio-group>
+      </li>
+      <li formGroupName="unselectPoi">
+        <span class="sbb-label"
+          >POIs<span *ngIf="selectedPoiSbbId"> (selected: {{selectedPoiSbbId}})</span></span
+        >
+        <sbb-form-field>
+          <input sbbInput formControlName="poiId" placeholder="Enter SBB-ID" />
+        </sbb-form-field>
+        <button sbb-ghost-button (click)="selectedPoiSbbId=form.get('unselectPoi.poiId')?.value">
+          Select POI
+        </button>
+        <button sbb-ghost-button (click)="selectedPoiSbbId=undefined">Unselect all POIs</button>
       </li>
       <li formGroupName="pointsOfInterestOptions">
         <sbb-form-field label="POI Environment">
