@@ -91,6 +91,9 @@ uses the `active` property to determine which tab is currently active. The corre
 `<router-outlet>` must be wrapped in an `<sbb-tab-nav-panel>` component and should typically be
 placed relatively close to the `sbb-tab-nav-bar` (see [Accessibility](#accessibility)).
 
+Note: If the link is not wrapped in an `ngFor` directive, the `routerLinkActive` reference (`#rla`)
+needs to be unique for each link (e.g. `rla1`, `rla2` etc.).
+
 ### Lazy Loading
 
 By default, the tab contents are eagerly loaded. Eagerly loaded tabs
