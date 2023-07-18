@@ -144,7 +144,7 @@ export class SbbFeatureEventListener implements OnChanges, OnDestroy, OnInit {
         );
         this._featuresClickEvent
           .pipe(takeUntil(this._destroyed))
-          .subscribe((clickedFeatures) => this._featureClicked(clickedFeatures));
+          .subscribe((clickedFeatures) => this.featureClicked(clickedFeatures));
       }
 
       if (!this._featuresHoverEvent) {
@@ -184,7 +184,7 @@ export class SbbFeatureEventListener implements OnChanges, OnDestroy, OnInit {
     return selectionModes;
   }
 
-  private _featureClicked(clickEventData: SbbFeaturesClickEventData) {
+  public featureClicked(clickEventData: SbbFeaturesClickEventData) {
     this.mapSelectionEventService.toggleSelection(clickEventData.features);
     const selectedFeatures = this.mapSelectionEventService.findSelectedFeatures();
     this.featureSelectionsChange.next(selectedFeatures);

@@ -14,8 +14,7 @@ import {
   ViewChild,
 } from '@angular/core';
 import { SbbMapEventUtils } from '@sbb-esta/journey-maps/angular/services/map/events/map-event-utils';
-import { SbbMapSelectionEvent } from '@sbb-esta/journey-maps/angular/services/map/events/map-selection-event';
-import { FeatureCollection } from 'geojson';
+import { FeatureCollection, Point } from 'geojson';
 import { LngLatBounds, LngLatLike, Map as MaplibreMap, VectorTileSource } from 'maplibre-gl';
 import { ReplaySubject, Subject } from 'rxjs';
 import { debounceTime, delay, switchMap, take, takeUntil } from 'rxjs/operators';
@@ -48,6 +47,8 @@ import {
   SBB_JOURNEY_POIS_SOURCE,
   SBB_MAX_ZOOM,
   SBB_MIN_ZOOM,
+  SBB_POI_ID_PROPERTY,
+  SBB_POI_LAYER,
   SBB_ROKAS_ROUTE_SOURCE,
 } from './services/constants';
 import { SbbLocaleService } from './services/locale-service';
@@ -72,7 +73,7 @@ import { getInvalidRoutingOptionCombination } from './util/input-validation';
   selector: 'sbb-journey-maps',
   templateUrl: './journey-maps.html',
   styleUrls: ['./journey-maps.css'],
-  providers: [SbbLevelSwitcher, SbbMapLayerFilter, SbbMapLeitPoiService, SbbMapSelectionEvent],
+  providers: [SbbLevelSwitcher, SbbMapLayerFilter, SbbMapLeitPoiService],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class SbbJourneyMaps implements OnInit, AfterViewInit, OnDestroy, OnChanges {
@@ -216,7 +217,6 @@ export class SbbJourneyMaps implements OnInit, AfterViewInit, OnDestroy, OnChang
     private _mapLayerFilterService: SbbMapLayerFilter,
     private _mapOverflowingLabelService: SbbMapOverflowingLabelService,
     private _mapEventUtils: SbbMapEventUtils,
-    // private _mapSelectionEventService: SbbMapSelectionEvent,
     private _urlService: SbbMapUrlService,
     private _levelSwitchService: SbbLevelSwitcher,
     private _cd: ChangeDetectorRef,
@@ -399,13 +399,20 @@ export class SbbJourneyMaps implements OnInit, AfterViewInit, OnDestroy, OnChang
 
   set selectedPoiSbbId(poiSbbId: string | undefined) {
     if (!!poiSbbId) {
-      // const poiFeatures = this._mapEventUtils.queryVisibleFeaturesByFilter(
-      //   this._map,
-      //   'POI',
-      //   [SBB_POI_LAYER],
-      //   undefined
-      // );
-      // this._mapSelectionEventService.toggleSelection(poiFeatures);
+      const poiFeatures = this._mapEventUtils.queryVisibleFeaturesByFilter(
+        this._map,
+        'POI',
+        [SBB_POI_LAYER],
+        ['==', SBB_POI_ID_PROPERTY, poiSbbId],
+      );
+      if (poiFeatures.length) {
+        const coordinates = (poiFeatures[0].geometry as Point).coordinates;
+        this._featureEventListenerComponent.featureClicked({
+          clickPoint: { x: 0, y: 0 }, // dummy values
+          clickLngLat: { lng: coordinates[0], lat: coordinates[1] },
+          features: poiFeatures,
+        });
+      }
     } else {
       this.unselectAll(['POI']);
     }
