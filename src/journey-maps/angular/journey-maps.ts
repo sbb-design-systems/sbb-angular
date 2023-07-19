@@ -13,7 +13,6 @@ import {
   SimpleChanges,
   ViewChild,
 } from '@angular/core';
-import { SbbMapEventUtils } from '@sbb-esta/journey-maps/angular/services/map/events/map-event-utils';
 import { FeatureCollection, Point } from 'geojson';
 import { LngLatBounds, LngLatLike, Map as MaplibreMap, VectorTileSource } from 'maplibre-gl';
 import { ReplaySubject, Subject } from 'rxjs';
@@ -52,6 +51,7 @@ import {
   SBB_ROKAS_ROUTE_SOURCE,
 } from './services/constants';
 import { SbbLocaleService } from './services/locale-service';
+import { SbbMapEventUtils } from './services/map/events/map-event-utils';
 import { SbbMapConfig } from './services/map/map-config';
 import { SbbMapInitService } from './services/map/map-init-service';
 import { SbbMapJourneyService } from './services/map/map-journey-service';
