@@ -474,7 +474,7 @@ export class SbbJourneyMaps implements OnInit, AfterViewInit, OnDestroy, OnChang
       if (poiFeatures.length) {
         // we have a visible POI in the viewport -> select it
         const coordinates = (poiFeatures[0].geometry as Point).coordinates;
-        this._featureEventListenerComponent.featureClicked({
+        this._featureEventListenerComponent.selectProgrammatically({
           clickPoint: { x: 0, y: 0 }, // dummy values
           clickLngLat: { lng: coordinates[0], lat: coordinates[1] },
           features: poiFeatures,

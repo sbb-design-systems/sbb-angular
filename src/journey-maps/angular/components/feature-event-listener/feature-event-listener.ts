@@ -144,7 +144,7 @@ export class SbbFeatureEventListener implements OnChanges, OnDestroy, OnInit {
         );
         this._featuresClickEvent
           .pipe(takeUntil(this._destroyed))
-          .subscribe((clickedFeatures) => this.featureClicked(clickedFeatures));
+          .subscribe((clickedFeatures) => this._featureClicked(clickedFeatures));
       }
 
       if (!this._featuresHoverEvent) {
@@ -184,7 +184,22 @@ export class SbbFeatureEventListener implements OnChanges, OnDestroy, OnInit {
     return selectionModes;
   }
 
-  public featureClicked(clickEventData: SbbFeaturesClickEventData) {
+  public selectProgrammatically({ features, ...rest }: SbbFeaturesClickEventData) {
+    const currentlySelectedFeatures = this.mapSelectionEventService.findSelectedFeatures();
+    const unselectedFeatures = features.filter(
+      (f) => !currentlySelectedFeatures.features.some((f2) => f2.id === f.id),
+    );
+    if (unselectedFeatures.length === 0) {
+      // the features were already selected
+      return;
+    }
+    this._featureClicked({
+      ...rest,
+      features: unselectedFeatures,
+    });
+  }
+
+  private _featureClicked(clickEventData: SbbFeaturesClickEventData) {
     this.mapSelectionEventService.toggleSelection(clickEventData.features);
     const selectedFeatures = this.mapSelectionEventService.findSelectedFeatures();
     this.featureSelectionsChange.next(selectedFeatures);
@@ -295,6 +310,7 @@ export class SbbFeatureEventListener implements OnChanges, OnDestroy, OnInit {
       (feature) => feature.id,
     );
   }
+
   private _featuresWithSameFeatureDataType(
     features: SbbFeatureData[] | undefined,
     featureDataType: SbbFeatureDataType,
