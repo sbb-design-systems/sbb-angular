@@ -460,23 +460,20 @@ export class SbbJourneyMaps implements OnInit, AfterViewInit, OnDestroy, OnChang
     }
   }
 
-  setSelectedPoi(sbbId: string | undefined) {
-    if (!sbbId) {
-      this.unselectAll(['POI']);
-    } else {
-      const poiFeatures = this._mapEventUtils.queryVisibleFeaturesByFilter(
+  setSelectedPoi(sbbId: string) {
+    if (!!sbbId) {
+      const visiblePoiFeatures = this._mapEventUtils.queryVisibleFeaturesByFilter(
         this._map,
         'POI',
         [SBB_POI_LAYER],
         ['==', SBB_POI_ID_PROPERTY, sbbId],
       );
-      if (poiFeatures.length) {
-        // we have a visible POI in the viewport -> select it
-        const coordinates = (poiFeatures[0].geometry as Point).coordinates;
+      if (visiblePoiFeatures.length) {
+        const coordinates = (visiblePoiFeatures[0].geometry as Point).coordinates;
         this._featureEventListenerComponent.selectProgrammatically({
           clickPoint: { x: 0, y: 0 }, // dummy values
           clickLngLat: { lng: coordinates[0], lat: coordinates[1] },
-          features: poiFeatures,
+          features: visiblePoiFeatures,
         });
       }
     }

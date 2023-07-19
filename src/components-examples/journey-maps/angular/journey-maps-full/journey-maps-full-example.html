@@ -40,7 +40,7 @@
   </ng-template>
   <ng-template #poiTemplate let-poi>
     <div>{{poi.properties.name}}</div>
-    <div>SBB-ID: {{poi.properties.sbbId}}</div>
+    <div>{{poi.properties.sbbId}}</div>
   </ng-template>
 </div>
 <div>
@@ -153,6 +153,18 @@
           Close marker Teasers / Popups
         </button>
       </li>
+      <li formGroupName="selectedPoi">
+        <span class="sbb-label">POIs</span>
+        <sbb-form-field [style.width.px]="400">
+          <input sbbInput formControlName="poiId" placeholder="Enter SBB-ID" />
+        </sbb-form-field>
+        <button
+          sbb-ghost-button
+          (click)="client.setSelectedPoi(form.get('selectedPoi.poiId')?.value)"
+        >
+          Select POI
+        </button>
+      </li>
       <li>
         <span class="sbb-label"
           >Map markers<span *ngIf="selectedMarkerId"> (selected: {{selectedMarkerId}})</span></span
@@ -166,21 +178,6 @@
           <sbb-radio-button [value]="true">Popup</sbb-radio-button>
           <sbb-radio-button [value]="false">Teaser</sbb-radio-button>
         </sbb-radio-group>
-      </li>
-      <li formGroupName="selectedPoi">
-        <span class="sbb-label">POIs</span>
-        <sbb-form-field>
-          <input sbbInput formControlName="poiId" placeholder="Enter SBB-ID" />
-        </sbb-form-field>
-        <button
-          sbb-ghost-button
-          (click)="client.setSelectedPoi(form.get('selectedPoi.poiId')?.value)"
-        >
-          Select POI
-        </button>
-        <button sbb-ghost-button (click)="client.setSelectedPoi(undefined)">
-          Unselect all POIs
-        </button>
       </li>
       <li formGroupName="pointsOfInterestOptions">
         <sbb-form-field label="POI Environment">
