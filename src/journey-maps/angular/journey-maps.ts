@@ -111,7 +111,6 @@ export class SbbJourneyMaps implements OnInit, AfterViewInit, OnDestroy, OnChang
    * This event is emitted whenever a marker, with property triggerEvent, is selected or unselected.
    */
   @Output() selectedMarkerIdChange: EventEmitter<string> = new EventEmitter<string>();
-  @Output() selectedPoiSbbIdChange: EventEmitter<string> = new EventEmitter<string>();
   /**
    * This event is emitted whenever the selected (floor-) level changes.
    */
