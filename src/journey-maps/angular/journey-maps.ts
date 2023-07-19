@@ -232,6 +232,7 @@ export class SbbJourneyMaps implements OnInit, AfterViewInit, OnDestroy, OnChang
     this._host.nativeElement.zoomIn = this.zoomIn.bind(this);
     this._host.nativeElement.zoomOut = this.zoomOut.bind(this);
     this._host.nativeElement.unselectAll = this.unselectAll.bind(this);
+    this._host.nativeElement.setSelectedPoi = this.setSelectedPoi.bind(this);
   }
 
   private _styleOptions: SbbStyleOptions = this._defaultStyleOptions;
@@ -386,38 +387,6 @@ export class SbbJourneyMaps implements OnInit, AfterViewInit, OnDestroy, OnChang
       : undefined;
   }
 
-  /**
-   * Select one of the visible POIs in the viewport
-   *
-   * Allowed values are either the SBB-ID of a POI to select or <code>undefined</code> to unselect.
-   */
-  @Input()
-  get selectedPoiSbbId(): string | undefined {
-    // without this getter, the setter is never called when passing 'undefined' (via the 'elements' web component)
-    return this.selectedMarker?.id;
-  }
-
-  set selectedPoiSbbId(poiSbbId: string | undefined) {
-    if (!!poiSbbId) {
-      const poiFeatures = this._mapEventUtils.queryVisibleFeaturesByFilter(
-        this._map,
-        'POI',
-        [SBB_POI_LAYER],
-        ['==', SBB_POI_ID_PROPERTY, poiSbbId],
-      );
-      if (poiFeatures.length) {
-        const coordinates = (poiFeatures[0].geometry as Point).coordinates;
-        this._featureEventListenerComponent.featureClicked({
-          clickPoint: { x: 0, y: 0 }, // dummy values
-          clickLngLat: { lng: coordinates[0], lat: coordinates[1] },
-          features: poiFeatures,
-        });
-      }
-    } else {
-      this.unselectAll(['POI']);
-    }
-  }
-
   /** @docs-private */
   onTouchStart(event: TouchEvent): void {
     // https://docs.mapbox.com/mapbox-gl-js/example/toggle-interaction-handlers/
@@ -431,23 +400,6 @@ export class SbbJourneyMaps implements OnInit, AfterViewInit, OnDestroy, OnChang
   onTouchEnd(event: TouchEvent): void {
     this.touchOverlayStyleClass = '';
     this.touchEventCollector.next(event);
-  }
-
-  onFeaturesUnselectEvent: Subject<SbbDeselectableFeatureDataType[]> = new Subject();
-
-  /**
-   * Unselects all elements on the map that are of one of the `SbbFeatureDataType`s passed in as a parameter.
-   * Currently, we only support 'MARKER' and 'POI'.
-   */
-  unselectAll(types: SbbDeselectableFeatureDataType[]): void {
-    // unselect markers
-    if (types.includes('MARKER')) {
-      this.onMarkerUnselected();
-    }
-    // unselect pois
-    if (types.includes('POI')) {
-      this.onFeaturesUnselectEvent.next(['POI']);
-    }
   }
 
   /**
@@ -490,6 +442,45 @@ export class SbbJourneyMaps implements OnInit, AfterViewInit, OnDestroy, OnChang
    */
   zoomOut(): void {
     this._map?.zoomOut();
+  }
+
+  onFeaturesUnselectEvent: Subject<SbbDeselectableFeatureDataType[]> = new Subject();
+
+  /**
+   * Unselects all elements on the map that are of one of the `SbbFeatureDataType`s passed in as a parameter.
+   * Currently, we only support 'MARKER' and 'POI'.
+   */
+  unselectAll(types: SbbDeselectableFeatureDataType[]): void {
+    // unselect markers
+    if (types.includes('MARKER')) {
+      this.onMarkerUnselected();
+    }
+    // unselect pois
+    if (types.includes('POI')) {
+      this.onFeaturesUnselectEvent.next(['POI']);
+    }
+  }
+
+  setSelectedPoi(sbbId: string | undefined) {
+    if (!sbbId) {
+      this.unselectAll(['POI']);
+    } else {
+      const poiFeatures = this._mapEventUtils.queryVisibleFeaturesByFilter(
+        this._map,
+        'POI',
+        [SBB_POI_LAYER],
+        ['==', SBB_POI_ID_PROPERTY, sbbId],
+      );
+      if (poiFeatures.length) {
+        // we have a visible POI in the viewport -> select it
+        const coordinates = (poiFeatures[0].geometry as Point).coordinates;
+        this._featureEventListenerComponent.featureClicked({
+          clickPoint: { x: 0, y: 0 }, // dummy values
+          clickLngLat: { lng: coordinates[0], lat: coordinates[1] },
+          features: poiFeatures,
+        });
+      }
+    }
   }
 
   ngOnInit(): void {

@@ -95,7 +95,6 @@ export class JourneyMapsFullExample implements OnInit, OnDestroy {
 
   apiKey = window.JM_API_KEY;
   selectedMarkerId?: string;
-  selectedPoiSbbId?: string;
   mapCenter?: LngLatLike;
   mapCenterChange = new Subject<LngLatLike>();
   interactionOptions: SbbInteractionOptions = {

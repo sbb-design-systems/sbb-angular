@@ -20,7 +20,6 @@
     [journeyMapsZones]="form.get('zoneGeoJson')?.value"
     [poiOptions]="form.get('pointsOfInterestOptions')?.value"
     [(selectedMarkerId)]="selectedMarkerId"
-    [(selectedPoiSbbId)]="selectedPoiSbbId"
     [selectedLevel]="this.form.get('level')?.value ?? 0"
     (selectedLevelChange)="this.form.patchValue({level: $event})"
     (mapCenterChange)="mapCenterChange.next($event)"
@@ -169,16 +168,19 @@
         </sbb-radio-group>
       </li>
       <li formGroupName="selectedPoi">
-        <span class="sbb-label"
-          >POIs<span *ngIf="selectedPoiSbbId"> (selected: {{selectedPoiSbbId}})</span></span
-        >
+        <span class="sbb-label">POIs</span>
         <sbb-form-field>
           <input sbbInput formControlName="poiId" placeholder="Enter SBB-ID" />
         </sbb-form-field>
-        <button sbb-ghost-button (click)="selectedPoiSbbId=form.get('selectedPoi.poiId')?.value">
+        <button
+          sbb-ghost-button
+          (click)="client.setSelectedPoi(form.get('selectedPoi.poiId')?.value)"
+        >
           Select POI
         </button>
-        <button sbb-ghost-button (click)="selectedPoiSbbId=undefined">Unselect all POIs</button>
+        <button sbb-ghost-button (click)="client.setSelectedPoi(undefined)">
+          Unselect all POIs
+        </button>
       </li>
       <li formGroupName="pointsOfInterestOptions">
         <sbb-form-field label="POI Environment">
