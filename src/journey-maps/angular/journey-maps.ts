@@ -460,6 +460,10 @@ export class SbbJourneyMaps implements OnInit, AfterViewInit, OnDestroy, OnChang
     }
   }
 
+  /**
+   * Programmatically select a POI by providing the SBB-ID of the POI.
+   * Only works for POIs that are currently visible in the map's viewport.
+   */
   setSelectedPoi(sbbId: string) {
     if (!!sbbId) {
       const visiblePoiFeatures = this._mapEventUtils.queryVisibleFeaturesByFilter(
