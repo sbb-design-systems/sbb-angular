@@ -42,7 +42,7 @@ You can get your API key on the [SBB API Platform](https://developer.sbb.ch/apis
 
 #### With JS
 
-If you want to register for output events or pass object-type input parameters you can create the component in JavaScript.
+If you want to register for output events or pass object-type input parameters, you can create the component in JavaScript.
 
 Component outputs are dispatched as HTML [Custom Events](https://developer.mozilla.org/en-US/docs/Web/API/CustomEvent).
 The emitted data is stored on the event’s detail property.

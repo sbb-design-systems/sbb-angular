@@ -184,13 +184,17 @@ export class SbbFeatureEventListener implements OnChanges, OnDestroy, OnInit {
     return selectionModes;
   }
 
-  public selectProgrammatically({ features, ...rest }: SbbFeaturesClickEventData) {
+  public selectProgrammatically({
+    features,
+    ...rest
+  }: Omit<SbbFeaturesClickEventData, 'clickPoint'>) {
     const nonSelectedFeatures = features.filter((f) => !f.state.selected);
     if (nonSelectedFeatures.length) {
       // only simulate clicking on this feature if it wasn't previously selected.
       this._featureClicked({
-        ...rest,
         features: nonSelectedFeatures,
+        clickPoint: { x: 0, y: 0 }, // dummy values
+        ...rest,
       });
     }
   }
