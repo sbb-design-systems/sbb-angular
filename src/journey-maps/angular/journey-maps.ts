@@ -13,7 +13,7 @@ import {
   SimpleChanges,
   ViewChild,
 } from '@angular/core';
-import { FeatureCollection } from 'geojson';
+import { FeatureCollection, Point } from 'geojson';
 import { LngLatBounds, LngLatLike, Map as MaplibreMap, VectorTileSource } from 'maplibre-gl';
 import { ReplaySubject, Subject } from 'rxjs';
 import { debounceTime, delay, switchMap, take, takeUntil } from 'rxjs/operators';
@@ -46,9 +46,12 @@ import {
   SBB_JOURNEY_POIS_SOURCE,
   SBB_MAX_ZOOM,
   SBB_MIN_ZOOM,
+  SBB_POI_ID_PROPERTY,
+  SBB_POI_LAYER,
   SBB_ROKAS_ROUTE_SOURCE,
 } from './services/constants';
 import { SbbLocaleService } from './services/locale-service';
+import { SbbMapEventUtils } from './services/map/events/map-event-utils';
 import { SbbMapConfig } from './services/map/map-config';
 import { SbbMapInitService } from './services/map/map-init-service';
 import { SbbMapJourneyService } from './services/map/map-journey-service';
@@ -210,10 +213,11 @@ export class SbbJourneyMaps implements OnInit, AfterViewInit, OnDestroy, OnChang
     private _mapRailNetworkLayerService: SbbMapRailNetworkLayerService,
     private _mapZoneService: SbbMapZoneService,
     private _mapLeitPoiService: SbbMapLeitPoiService,
-    private _urlService: SbbMapUrlService,
-    private _levelSwitchService: SbbLevelSwitcher,
     private _mapLayerFilterService: SbbMapLayerFilter,
     private _mapOverflowingLabelService: SbbMapOverflowingLabelService,
+    private _mapEventUtils: SbbMapEventUtils,
+    private _urlService: SbbMapUrlService,
+    private _levelSwitchService: SbbLevelSwitcher,
     private _cd: ChangeDetectorRef,
     private _i18n: SbbLocaleService,
     private _host: ElementRef,
@@ -227,6 +231,7 @@ export class SbbJourneyMaps implements OnInit, AfterViewInit, OnDestroy, OnChang
     this._host.nativeElement.zoomIn = this.zoomIn.bind(this);
     this._host.nativeElement.zoomOut = this.zoomOut.bind(this);
     this._host.nativeElement.unselectAll = this.unselectAll.bind(this);
+    this._host.nativeElement.setSelectedPoi = this.setSelectedPoi.bind(this);
   }
 
   private _styleOptions: SbbStyleOptions = this._defaultStyleOptions;
@@ -396,23 +401,6 @@ export class SbbJourneyMaps implements OnInit, AfterViewInit, OnDestroy, OnChang
     this.touchEventCollector.next(event);
   }
 
-  onFeaturesUnselectEvent: Subject<SbbDeselectableFeatureDataType[]> = new Subject();
-
-  /**
-   * Unselects all elements on the map that are of one of the `SbbFeatureDataType`s passed in as a parameter.
-   * Currently, we only support 'MARKER' and 'POI'.
-   */
-  unselectAll(types: SbbDeselectableFeatureDataType[]): void {
-    // unselect markers
-    if (types.includes('MARKER')) {
-      this.onMarkerUnselected();
-    }
-    // unselect pois
-    if (types.includes('POI')) {
-      this.onFeaturesUnselectEvent.next(['POI']);
-    }
-  }
-
   /**
    * Move the map North as if pressing the up arrow key on the keyboard
    */
@@ -453,6 +441,45 @@ export class SbbJourneyMaps implements OnInit, AfterViewInit, OnDestroy, OnChang
    */
   zoomOut(): void {
     this._map?.zoomOut();
+  }
+
+  onFeaturesUnselectEvent: Subject<SbbDeselectableFeatureDataType[]> = new Subject();
+
+  /**
+   * Unselects all elements on the map that are of one of the `SbbFeatureDataType`s passed in as a parameter.
+   * Currently, we only support 'MARKER' and 'POI'.
+   */
+  unselectAll(types: SbbDeselectableFeatureDataType[]): void {
+    // unselect markers
+    if (types.includes('MARKER')) {
+      this.onMarkerUnselected();
+    }
+    // unselect pois
+    if (types.includes('POI')) {
+      this.onFeaturesUnselectEvent.next(['POI']);
+    }
+  }
+
+  /**
+   * Programmatically select a POI by providing the SBB-ID of the POI.
+   * Only works for POIs that are currently visible in the map's viewport.
+   */
+  setSelectedPoi(sbbId: string) {
+    if (!!sbbId) {
+      const visiblePoiFeatures = this._mapEventUtils.queryVisibleFeaturesByFilter(
+        this._map,
+        'POI',
+        [SBB_POI_LAYER],
+        ['==', SBB_POI_ID_PROPERTY, sbbId],
+      );
+      if (visiblePoiFeatures.length) {
+        const coordinates = (visiblePoiFeatures[0].geometry as Point).coordinates;
+        this._featureEventListenerComponent.selectProgrammatically({
+          clickLngLat: { lng: coordinates[0], lat: coordinates[1] },
+          features: visiblePoiFeatures,
+        });
+      }
+    }
   }
 
   ngOnInit(): void {
