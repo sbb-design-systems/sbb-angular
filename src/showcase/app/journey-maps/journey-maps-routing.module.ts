@@ -30,7 +30,7 @@ const routes: Routes = [
         children: [
           {
             path: 'examples',
-            data: { id: 'web-component-examples' },
+            data: { id: 'web-component/web-component-examples' },
             component: MarkdownViewerComponent,
           },
           ...componentViewerSubnavigation.filter((child) => child.path !== 'examples'),
