@@ -2851,6 +2851,36 @@ describe('SbbAutocomplete', () => {
         .withContext(`Expected panel switch to the above position if the options no longer fit.`)
         .toBe(Math.floor(panelBottom - 1));
     }));
+
+    it('should clear the selected option when the input value is cleared', fakeAsync(() => {
+      fixture.componentInstance.trigger.openPanel();
+      fixture.detectChanges();
+      zone.simulateZoneExit();
+
+      const input = fixture.nativeElement.querySelector('input');
+      const option = overlayContainerElement.querySelector('sbb-option') as HTMLElement;
+      const optionInstance = fixture.componentInstance.options.first;
+      const spy = jasmine.createSpy('selectionChange spy');
+
+      option.click();
+      fixture.detectChanges();
+      tick();
+
+      expect(input.value).toBe('Eins');
+      expect(optionInstance.selected).toBe(true);
+
+      const subscription = optionInstance.onSelectionChange.subscribe(spy);
+
+      clearElement(input);
+      fixture.detectChanges();
+      tick();
+
+      expect(input.value).toBe('');
+      expect(optionInstance.selected).toBe(false);
+      expect(spy).not.toHaveBeenCalled();
+
+      subscription.unsubscribe();
+    }));
   });
 
   describe('panel closing', () => {
