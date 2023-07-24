@@ -21,6 +21,7 @@ export const SBB_ROKAS_ZONE_SOURCE = 'rokas-zone-source';
 export const SBB_SERVICE_POINT_SOURCE = 'service_points';
 
 export const SBB_POI_LAYER = 'journey-pois';
+export const SBB_POI_ID_PROPERTY = 'sbbId';
 export const SBB_CLUSTER_LAYER = 'rokas-marker-cluster';
 export const SBB_MARKER_LAYER = 'sbb-marker';
 export const SBB_MARKER_LAYER_SELECTED = 'sbb-marker-selected';

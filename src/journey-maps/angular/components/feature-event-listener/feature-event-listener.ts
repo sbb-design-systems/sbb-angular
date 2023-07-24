@@ -184,6 +184,21 @@ export class SbbFeatureEventListener implements OnChanges, OnDestroy, OnInit {
     return selectionModes;
   }
 
+  public selectProgrammatically({
+    features,
+    ...rest
+  }: Omit<SbbFeaturesClickEventData, 'clickPoint'>) {
+    const nonSelectedFeatures = features.filter((f) => !f.state.selected);
+    if (nonSelectedFeatures.length) {
+      // only simulate clicking on this feature if it wasn't previously selected.
+      this._featureClicked({
+        features: nonSelectedFeatures,
+        clickPoint: { x: 0, y: 0 }, // dummy values
+        ...rest,
+      });
+    }
+  }
+
   private _featureClicked(clickEventData: SbbFeaturesClickEventData) {
     this.mapSelectionEventService.toggleSelection(clickEventData.features);
     const selectedFeatures = this.mapSelectionEventService.findSelectedFeatures();
@@ -295,6 +310,7 @@ export class SbbFeatureEventListener implements OnChanges, OnDestroy, OnInit {
       (feature) => feature.id,
     );
   }
+
   private _featuresWithSameFeatureDataType(
     features: SbbFeatureData[] | undefined,
     featureDataType: SbbFeatureDataType,
