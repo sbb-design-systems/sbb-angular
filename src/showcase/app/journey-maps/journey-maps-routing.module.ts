@@ -3,8 +3,6 @@ import { RouterModule, Routes } from '@angular/router';
 
 import { componentViewerSubnavigation } from '../shared/component-viewer/component-viewer/component-viewer-subnavigation';
 import { ComponentViewerComponent } from '../shared/component-viewer/component-viewer/component-viewer.component';
-import { HtmlViewerComponent } from '../shared/component-viewer/html-viewer/html-viewer.component';
-import { LoaderBuilder } from '../shared/loader-builder';
 import { MarkdownViewerComponent } from '../shared/markdown-viewer/markdown-viewer.component';
 import { PACKAGES } from '../shared/meta';
 import { PackageViewerComponent } from '../shared/package-viewer/package-viewer.component';
@@ -31,30 +29,11 @@ const routes: Routes = [
         data: { packageName: 'journey-maps', id: 'web-component' },
         children: [
           {
-            path: 'overview',
-            component: HtmlViewerComponent,
-            data: {
-              loaderBuilderInterceptor: (loaderBuilder: LoaderBuilder) =>
-                loaderBuilder.fromModuleDocumentation(),
-            },
-          },
-          {
-            path: 'api',
-            component: HtmlViewerComponent,
-            data: {
-              loaderBuilderInterceptor: (loaderBuilder: LoaderBuilder) =>
-                loaderBuilder.fromApiDocumentation(),
-            },
-          },
-          {
             path: 'examples',
             data: { id: 'web-component-examples' },
             component: MarkdownViewerComponent,
           },
-          {
-            path: '**',
-            redirectTo: 'overview',
-          },
+          ...componentViewerSubnavigation.filter((child) => child.path !== 'examples'),
         ],
       },
       {
