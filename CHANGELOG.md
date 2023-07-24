@@ -2,6 +2,29 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [16.4.0](https://github.com/sbb-design-systems/sbb-angular/compare/16.3.0...16.4.0) (2023-07-24)
+
+
+### Features
+
+* **journey-maps:** add on_demand pois ([#1945](https://github.com/sbb-design-systems/sbb-angular/issues/1945)) ([036aa90](https://github.com/sbb-design-systems/sbb-angular/commit/036aa905802884b9a6409b2ef30041839acdefb4))
+* **journey-maps:** allow programmatically selecting and deselecting a POI ([#1943](https://github.com/sbb-design-systems/sbb-angular/issues/1943)) ([154c07b](https://github.com/sbb-design-systems/sbb-angular/commit/154c07bd3c3dd378bf9c6b19ddb91702dd0d57e5))
+* **journey-maps:** show stack-blitz example link ([#1927](https://github.com/sbb-design-systems/sbb-angular/issues/1927)) ([4dbb6d8](https://github.com/sbb-design-systems/sbb-angular/commit/4dbb6d88b8d2e4d8eb596bb9535e7392561d4485))
+* **journey-maps:** added on-demand pois to interface ([#1938](https://github.com/sbb-design-systems/sbb-angular/issues/1938)) ([db5cd49](https://github.com/sbb-design-systems/sbb-angular/commit/db5cd4970a374c8f5ab256ec599f4f6b2dccaff3))
+
+
+### Bug Fixes
+
+* **deps:** update angular to v16.1.4 ([e089754](https://github.com/sbb-design-systems/sbb-angular/commit/e0897542b5657cd3659203871ed378994c5e36cf))
+* **deps:** update angular to v16.1.5 ([309e747](https://github.com/sbb-design-systems/sbb-angular/commit/309e7474f7aeba73be7b8376b51df797d636f682))
+* **deps:** update angular to v16.1.6 ([19970c6](https://github.com/sbb-design-systems/sbb-angular/commit/19970c61a6dbc6a292a7998c7d6aa72fb77559e8))
+* **deps:** update dependency @angular/cdk to v16.1.5 ([6065b00](https://github.com/sbb-design-systems/sbb-angular/commit/6065b00c8b32cb48f6679b06000b71bdd0f448ef))
+
+
+### Documentation
+
+* **angular/tabs:** add note when using together with `routerLink` ([#1942](https://github.com/sbb-design-systems/sbb-angular/issues/1942)) ([4f6cabc](https://github.com/sbb-design-systems/sbb-angular/commit/4f6cabc538e23042db424417430182afeddb3fac)), closes [#1941](https://github.com/sbb-design-systems/sbb-angular/issues/1941)
+
 ## [16.3.0](https://github.com/sbb-design-systems/sbb-angular/compare/16.2.0...16.3.0) (2023-06-29)
 
 
