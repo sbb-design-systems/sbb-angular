@@ -74,7 +74,9 @@ function createPoiTemplate(client: SbbJourneyMapsElement) {
   const template = document.createElement('template');
   template.id = 'poiTemplate';
 
-  client.poiOptions = { categories: ['park_rail', 'car_sharing', 'bike_parking', 'bike_sharing'] };
+  client.poiOptions = {
+    categories: ['park_rail', 'car_sharing', 'bike_parking', 'bike_sharing', 'on_demand'],
+  };
   client.listenerOptions = {
     ...client.listenerOptions,
     POI: { watch: true, popup: true, clickTemplate: template.id, selectionMode: 'single' },
