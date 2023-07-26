@@ -1,0 +1,24 @@
+<form class="example-form">
+  <sbb-form-field class="example-full-width">
+    <sbb-label>Number</sbb-label>
+    <input
+      type="text"
+      placeholder="Pick one"
+      aria-label="Number"
+      sbbInput
+      [formControl]="myControl"
+      [sbbAutocomplete]="auto"
+    />
+    <sbb-autocomplete requireSelection #auto="sbbAutocomplete">
+      <sbb-option *ngFor="let option of filteredOptions | async" [value]="option">
+        {{option}}
+      </sbb-option>
+    </sbb-autocomplete>
+  </sbb-form-field>
+</form>
+
+<pre>{{ myControl.value | json }}</pre>
+<p>
+  Enter something in the autocomplete (e.g. "B") and leave the field without selecting a value. With
+  `requiredSelection = true` the value will be reset to `null` (otherwise it would be "B").
+</p>
