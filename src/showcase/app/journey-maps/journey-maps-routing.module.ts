@@ -29,6 +29,11 @@ const routes: Routes = [
         data: { packageName: 'journey-maps', id: 'web-component' },
         children: [
           {
+            path: 'api',
+            data: { id: 'web-component/web-component-api' },
+            component: MarkdownViewerComponent,
+          },
+          {
             path: 'examples',
             data: { id: 'web-component/web-component-examples' },
             component: MarkdownViewerComponent,
