@@ -138,6 +138,9 @@ export class SbbAutocompleteTrigger
   /** Old value of the native input. Used to work around issues with the `input` event on IE. */
   private _previousValue: string | number | null;
 
+  /** Value of the input element when the panel was opened. */
+  private _valueOnOpen: string | number | null;
+
   /** Strategy that is used to position the panel. */
   private _positionStrategy: FlexibleConnectedPositionStrategy;
 
@@ -635,7 +638,7 @@ export class SbbAutocompleteTrigger
                 //   of the available options,
                 // - if a valid string is entered after an invalid one.
                 if (this.panelOpen) {
-                  this.autocomplete.opened.emit();
+                  this._emitOpened();
                 } else {
                   this.autocomplete.closed.emit();
                 }
@@ -650,6 +653,15 @@ export class SbbAutocompleteTrigger
         // set the value, close the panel, and complete.
         .subscribe((event) => this._setValueAndClose(event))
     );
+  }
+
+  /**
+   * Emits the opened event once it's known that the panel will be shown and stores
+   * the state of the trigger right before the opening sequence was finished.
+   */
+  private _emitOpened() {
+    this._valueOnOpen = this._element.nativeElement.value;
+    this.autocomplete.opened.emit();
   }
 
   /** Destroys the autocomplete suggestion panel. */
@@ -691,28 +703,35 @@ export class SbbAutocompleteTrigger
    * stemmed from the user.
    */
   private _setValueAndClose(event: SbbOptionSelectionChange | null): void {
+    const panel = this.autocomplete;
     const toSelect = event ? event.source : this._pendingAutoselectedOption;
 
     if (toSelect) {
       this._clearPreviousSelectedOption(toSelect);
       this._assignOptionValue(toSelect.value);
       this._onChange(toSelect.value);
-      this.autocomplete._emitSelectEvent(toSelect);
+      panel._emitSelectEvent(toSelect);
       this._element.nativeElement.focus();
+    } else if (panel.requireSelection && this._element.nativeElement.value !== this._valueOnOpen) {
+      this._clearPreviousSelectedOption(null);
+      this._assignOptionValue(null);
+      this._onChange(null);
     }
 
     this.closePanel();
   }
 
-  /** Clear any previous selected option and emit a selection change event for this option */
+  /**
+   * Clear any previous selected option and emit a selection change event for this option.
+   */
   private _clearPreviousSelectedOption(skip: SbbOption | null, emitEvent?: boolean) {
-    if (this.autocomplete && this.autocomplete.options) {
-      this.autocomplete.options.forEach((option) => {
-        if (option !== skip && option.selected) {
-          option.deselect(emitEvent);
-        }
-      });
-    }
+    // Null checks are necessary here, because the autocomplete
+    // or its options may not have been assigned yet.
+    this.autocomplete?.options?.forEach((option) => {
+      if (option !== skip && option.selected) {
+        option.deselect(emitEvent);
+      }
+    });
   }
 
   private _attachOverlay(): void {
@@ -779,7 +798,7 @@ export class SbbAutocompleteTrigger
     // We need to do an extra `panelOpen` check in here, because the
     // autocomplete won't be shown if there are no options.
     if (this.panelOpen && wasOpen !== this.panelOpen) {
-      this.autocomplete.opened.emit();
+      this._emitOpened();
     }
   }
 

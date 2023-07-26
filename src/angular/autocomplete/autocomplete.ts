@@ -59,6 +59,9 @@ export interface SbbAutocompleteDefaultOptions {
   /** Whether the active option should be selected as the user is navigating. */
   autoSelectActiveOption?: boolean;
 
+  /** Whether the user is required to make a selection when they're interacting with the autocomplete. */
+  requireSelection?: boolean;
+
   /** Class or list of classes to be applied to the autocomplete's overlay panel. */
   overlayPanelClass?: string | string[];
 }
@@ -74,7 +77,7 @@ export const SBB_AUTOCOMPLETE_DEFAULT_OPTIONS = new InjectionToken<SbbAutocomple
 
 /** @docs-private */
 export function SBB_AUTOCOMPLETE_DEFAULT_OPTIONS_FACTORY(): SbbAutocompleteDefaultOptions {
-  return { autoActiveFirstOption: false, autoSelectActiveOption: false };
+  return { autoActiveFirstOption: false, autoSelectActiveOption: false, requireSelection: false };
 }
 
 @Component({
@@ -180,6 +183,21 @@ export class SbbAutocomplete implements AfterContentInit, OnDestroy {
   private _autoSelectActiveOption: boolean;
 
   /**
+   * Whether the user is required to make a selection when they're interacting with the
+   * autocomplete. If the user moves away from the autcomplete without selecting an option from
+   * the list, the value will be reset. If the user opens the panel and closes it without
+   * interacting or selecting a value, the initial value will be kept.
+   */
+  @Input()
+  get requireSelection(): boolean {
+    return this._requireSelection;
+  }
+  set requireSelection(value: BooleanInput) {
+    this._requireSelection = coerceBooleanProperty(value);
+  }
+  private _requireSelection: boolean;
+
+  /**
    * Specify the width of the autocomplete panel.  Can be any CSS sizing value, otherwise it will
    * match the width of its host.
    */
@@ -256,6 +274,7 @@ export class SbbAutocomplete implements AfterContentInit, OnDestroy {
     this.inertGroups = platform?.SAFARI || false;
     this._autoActiveFirstOption = !!defaults.autoActiveFirstOption;
     this._autoSelectActiveOption = !!defaults.autoSelectActiveOption;
+    this._requireSelection = !!defaults.requireSelection;
   }
 
   ngAfterContentInit() {

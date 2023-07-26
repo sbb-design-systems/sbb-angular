@@ -71,6 +71,7 @@ const SIMPLE_AUTOCOMPLETE_TEMPLATE = `
     [class]="panelClass"
     #auto="sbbAutocomplete"
     [displayWith]="displayFn"
+    [requireSelection]="requireSelection"
     [aria-label]="ariaLabel"
     [aria-labelledby]="ariaLabelledby"
     (opened)="openedSpy()"
@@ -89,7 +90,7 @@ const SIMPLE_AUTOCOMPLETE_TEMPLATE = `
   template: SIMPLE_AUTOCOMPLETE_TEMPLATE,
 })
 class SimpleAutocomplete implements OnDestroy {
-  numberCtrl = new FormControl<{ name: string; code: string; height: number } | string | null>(
+  numberCtrl = new FormControl<{ name: string; code: string; height?: number } | string | null>(
     null,
   );
   filteredNumbers: any[];
@@ -98,6 +99,7 @@ class SimpleAutocomplete implements OnDestroy {
   width: number;
   autocompleteDisabled = false;
   hasLabel = true;
+  requireSelection = false;
   ariaLabel: string;
   ariaLabelledby: string;
   panelClass = 'class-one class-two';
@@ -2879,6 +2881,165 @@ describe('SbbAutocomplete', () => {
       expect(optionInstance.selected).toBe(false);
       expect(spy).not.toHaveBeenCalled();
 
+      subscription.unsubscribe();
+    }));
+
+    it('should accept the user selection if they click on an option while selection is required', fakeAsync(() => {
+      const input = fixture.nativeElement.querySelector('input');
+      const { numberCtrl, trigger, numbers } = fixture.componentInstance;
+      fixture.componentInstance.requireSelection = true;
+      numberCtrl.setValue(numbers[1]);
+      fixture.detectChanges();
+      tick();
+
+      expect(input.value).toBe('Zwei');
+      expect(numberCtrl.value).toEqual({ code: '2', name: 'Zwei', height: 48 });
+
+      trigger.openPanel();
+      fixture.detectChanges();
+      zone.simulateZoneExit();
+
+      const options = overlayContainerElement.querySelectorAll(
+        'sbb-option',
+      ) as NodeListOf<HTMLElement>;
+      const spy = jasmine.createSpy('optionSelected spy');
+      const subscription = trigger.optionSelections.subscribe(spy);
+
+      options[5].click();
+      fixture.detectChanges();
+      tick();
+
+      expect(input.value).toBe('Sieben');
+      expect(numberCtrl.value).toEqual({ code: '7', name: 'Sieben', height: 48 });
+      expect(spy).toHaveBeenCalledTimes(1);
+
+      subscription.unsubscribe();
+    }));
+
+    it('should accept the user selection if they press enter on an option while selection is required', fakeAsync(() => {
+      const input = fixture.nativeElement.querySelector('input');
+      const { numberCtrl, trigger, numbers } = fixture.componentInstance;
+      fixture.componentInstance.requireSelection = true;
+      numberCtrl.setValue(numbers[1]);
+      fixture.detectChanges();
+      tick();
+
+      expect(input.value).toBe('Zwei');
+      expect(numberCtrl.value).toEqual({ code: '2', name: 'Zwei', height: 48 });
+
+      trigger.openPanel();
+      fixture.detectChanges();
+      zone.simulateZoneExit();
+
+      const options = overlayContainerElement.querySelectorAll(
+        'sbb-option',
+      ) as NodeListOf<HTMLElement>;
+      const spy = jasmine.createSpy('optionSelected spy');
+      const subscription = trigger.optionSelections.subscribe(spy);
+
+      dispatchKeyboardEvent(options[5], 'keydown', ENTER);
+      fixture.detectChanges();
+      tick();
+
+      expect(input.value).toBe('Sieben');
+      expect(numberCtrl.value).toEqual({ code: '7', name: 'Sieben', height: 48 });
+      expect(spy).toHaveBeenCalledTimes(1);
+
+      subscription.unsubscribe();
+    }));
+
+    it('should accept the user selection if autoSelectActiveOption is enabled', fakeAsync(() => {
+      const input = fixture.nativeElement.querySelector('input');
+      const { numberCtrl, trigger, numbers } = fixture.componentInstance;
+      fixture.componentInstance.requireSelection = true;
+      trigger.autocomplete.autoSelectActiveOption = true;
+      numberCtrl.setValue(numbers[1]);
+      fixture.detectChanges();
+      tick();
+
+      expect(input.value).toBe('Zwei');
+      expect(numberCtrl.value).toEqual({ code: '2', name: 'Zwei', height: 48 });
+
+      trigger.openPanel();
+      fixture.detectChanges();
+      zone.simulateZoneExit();
+
+      for (let i = 0; i < 5; i++) {
+        dispatchKeyboardEvent(input, 'keydown', DOWN_ARROW);
+        fixture.detectChanges();
+      }
+
+      dispatchFakeEvent(document, 'click');
+      fixture.detectChanges();
+      tick();
+
+      expect(input.value).toBe('Sechs');
+      expect(numberCtrl.value).toEqual({ code: '6', name: 'Sechs', height: 48 });
+    }));
+
+    it('should clear the value if selection is required and the user interacted with the panel without selecting anything', fakeAsync(() => {
+      const input = fixture.nativeElement.querySelector('input');
+      const { numberCtrl, trigger, numbers } = fixture.componentInstance;
+      fixture.componentInstance.requireSelection = true;
+      numberCtrl.setValue(numbers[1]);
+      fixture.detectChanges();
+      tick();
+
+      expect(input.value).toBe('Zwei');
+      expect(numberCtrl.value).toEqual({ code: '2', name: 'Zwei', height: 48 });
+
+      trigger.openPanel();
+      fixture.detectChanges();
+      zone.simulateZoneExit();
+
+      const spy = jasmine.createSpy('optionSelected spy');
+      const subscription = trigger.optionSelections.subscribe(spy);
+
+      input.value = 'Zw';
+      dispatchKeyboardEvent(input, 'input');
+      fixture.detectChanges();
+      tick();
+
+      expect(input.value).toBe('Zw');
+      expect(numberCtrl.value).toBe('Zw');
+      expect(spy).not.toHaveBeenCalled();
+
+      dispatchFakeEvent(document, 'click');
+      fixture.detectChanges();
+      tick();
+
+      expect(input.value).toBe('');
+      expect(numberCtrl.value).toBe(null);
+      expect(spy).not.toHaveBeenCalled();
+
+      subscription.unsubscribe();
+    }));
+
+    it('should preserve the value if a selection is required, but the user opened and closed the panel without interacting with it', fakeAsync(() => {
+      const input = fixture.nativeElement.querySelector('input');
+      const { numberCtrl, trigger, numbers } = fixture.componentInstance;
+      fixture.componentInstance.requireSelection = true;
+      numberCtrl.setValue(numbers[1]);
+      fixture.detectChanges();
+      tick();
+
+      expect(input.value).toBe('Zwei');
+      expect(numberCtrl.value).toEqual({ code: '2', name: 'Zwei', height: 48 });
+
+      trigger.openPanel();
+      fixture.detectChanges();
+      zone.simulateZoneExit();
+
+      const spy = jasmine.createSpy('optionSelected spy');
+      const subscription = trigger.optionSelections.subscribe(spy);
+
+      dispatchFakeEvent(document, 'click');
+      fixture.detectChanges();
+      tick();
+
+      expect(input.value).toBe('Zwei');
+      expect(numberCtrl.value).toEqual({ code: '2', name: 'Zwei', height: 48 });
+      expect(spy).not.toHaveBeenCalled();
       subscription.unsubscribe();
     }));
   });
