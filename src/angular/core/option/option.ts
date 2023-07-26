@@ -144,11 +144,14 @@ export class SbbOption<T = any>
   }
 
   /** Deselects the option. */
-  deselect(): void {
+  deselect(emitEvent = true): void {
     if (this._selected) {
       this._selected = false;
       this._changeDetectorRef.markForCheck();
-      this._emitSelectionChangeEvent();
+
+      if (emitEvent) {
+        this._emitSelectionChangeEvent();
+      }
     }
   }
 

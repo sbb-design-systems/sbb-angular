@@ -547,6 +547,10 @@ export class SbbAutocompleteTrigger
       this._onChange(value);
       this._inputValue.next(target.value);
 
+      if (!value) {
+        this._clearPreviousSelectedOption(null, false);
+      }
+
       if (this._canOpen() && this._document.activeElement === event.target) {
         this.openPanel();
       }
@@ -701,12 +705,14 @@ export class SbbAutocompleteTrigger
   }
 
   /** Clear any previous selected option and emit a selection change event for this option */
-  private _clearPreviousSelectedOption(skip: SbbOption) {
-    this.autocomplete.options.forEach((option) => {
-      if (option !== skip && option.selected) {
-        option.deselect();
-      }
-    });
+  private _clearPreviousSelectedOption(skip: SbbOption | null, emitEvent?: boolean) {
+    if (this.autocomplete && this.autocomplete.options) {
+      this.autocomplete.options.forEach((option) => {
+        if (option !== skip && option.selected) {
+          option.deselect(emitEvent);
+        }
+      });
+    }
   }
 
   private _attachOverlay(): void {
