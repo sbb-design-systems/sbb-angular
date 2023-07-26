@@ -4,3 +4,4 @@ export { AutocompleteHintExample } from './autocomplete-hint/autocomplete-hint-e
 export { AutocompleteLocaleNormalizerExample } from './autocomplete-locale-normalizer/autocomplete-locale-normalizer-example';
 export { AutocompleteOptionGroupExample } from './autocomplete-option-group/autocomplete-option-group-example';
 export { AutocompleteReactiveFormsExample } from './autocomplete-reactive-forms/autocomplete-reactive-forms-example';
+export { AutocompleteRequireSelectionExample } from './autocomplete-require-selection/autocomplete-require-selection-example';
