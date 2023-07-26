@@ -28,6 +28,7 @@ import {
 } from '@angular/core';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 import { HasTabIndex, mixinTabIndex, TypeRef } from '@sbb-esta/angular/core';
+import { Subscription } from 'rxjs';
 
 let nextUniqueId = 0;
 
@@ -75,7 +76,7 @@ export const SBB_RADIO_BUTTON = new InjectionToken<_SbbRadioButtonBase>('SbbRadi
 })
 // tslint:disable-next-line: naming-convention class-name
 export abstract class _SbbRadioGroupBase<TRadio extends _SbbRadioButtonBase>
-  implements AfterContentInit, ControlValueAccessor
+  implements AfterContentInit, OnDestroy, ControlValueAccessor
 {
   /** Name of the radio button group. All radio buttons inside this group will use this name. */
   @Input()
@@ -170,6 +171,9 @@ export abstract class _SbbRadioGroupBase<TRadio extends _SbbRadioButtonBase>
   /** Whether the radio group is required. */
   private _required = false;
 
+  /** Subscription to changes in amount of radio buttons. */
+  private _buttonChanges: Subscription;
+
   /** `View -> model callback called when value changes` */
   _controlValueAccessorChangeFn: (value: any) => void = () => {};
 
@@ -193,6 +197,20 @@ export abstract class _SbbRadioGroupBase<TRadio extends _SbbRadioButtonBase>
     // possibly be set by NgModel on RadioGroup, and it is possible that the OnInit of the
     // NgModel occurs *after* the OnInit of the RadioGroup.
     this._isInitialized = true;
+
+    // Clear the `selected` button when it's destroyed since the tabindex of the rest of the
+    // buttons depends on it. Note that we don't clear the `value`, because the radio button
+    // may be swapped out with a similar one and there are some internal apps that depend on
+    // that behavior.
+    this._buttonChanges = this._radios.changes.subscribe(() => {
+      if (this.selected && !this._radios.find((radio) => radio === this.selected)) {
+        this._selected = null;
+      }
+    });
+  }
+
+  ngOnDestroy() {
+    this._buttonChanges?.unsubscribe();
   }
 
   /**

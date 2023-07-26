@@ -91,7 +91,8 @@ export class SbbToggle
     });
   }
 
-  ngOnDestroy(): void {
+  override ngOnDestroy(): void {
+    super.ngOnDestroy();
     this._destroyed.next();
     this._destroyed.complete();
   }
