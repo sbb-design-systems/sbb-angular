@@ -5,7 +5,7 @@ import { By } from '@angular/platform-browser';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { Breakpoints } from '@sbb-esta/angular/core';
 import { FakeMediaMatcher } from '@sbb-esta/angular/core/testing';
-import { SbbIcon } from '@sbb-esta/angular/icon';
+import { SbbIcon, SbbIconModule } from '@sbb-esta/angular/icon';
 import { SbbIconTestingModule } from '@sbb-esta/angular/icon/testing';
 
 import { SbbHeaderLeanModule } from './index';
@@ -15,7 +15,7 @@ describe('SbbHeaderLean', () => {
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-      imports: [NoopAnimationsModule, SbbHeaderLeanModule, SbbIconTestingModule],
+      imports: [NoopAnimationsModule, SbbHeaderLeanModule, SbbIconModule, SbbIconTestingModule],
       declarations: [SimpleHeaderLean, HeaderLeanWithAppChooser],
       providers: [
         {
@@ -94,6 +94,11 @@ describe('SbbHeaderLean', () => {
       ) as HTMLElement;
       expect(homeElementInSide).toBeDefined();
     }));
+
+    it('should display `<sbb-header-icon-actions />`', () => {
+      const button = fixture.debugElement.nativeElement.querySelectorAll('.sbb-frameless-button');
+      expect(button).toBeDefined();
+    });
   });
 
   describe('with app chooser', () => {
@@ -122,6 +127,9 @@ describe('SbbHeaderLean', () => {
   template: `
     <sbb-header-lean [label]="label" [subtitle]="subtitle">
       <sbb-header-environment>dev</sbb-header-environment>
+      <sbb-header-icon-actions>
+        <button sbb-frameless-button><sbb-icon svgIcon="magnifying-glass-small"></sbb-icon></button>
+      </sbb-header-icon-actions>
       <a routerLink="/" class="home-link">Home</a>
     </sbb-header-lean>
   `,

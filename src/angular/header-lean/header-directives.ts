@@ -58,3 +58,23 @@ export class SbbHeaderEnvironment implements OnDestroy {
     this._destroyed.complete();
   }
 }
+
+/**
+ * Optional component to display icon buttons next to the `<sbb-usermenu>` or the `[brand]`.
+ *
+ * e.g.:
+ * ```
+ * <sbb-header-icon-actions>
+ *   <button sbb-frameless-button><sbb-icon svgIcon="magnifying-glass-small"></sbb-icon></button>
+ *   <button sbb-frameless-button><sbb-icon svgIcon="bell-small"></sbb-icon></button>
+ * </sbb-header-icon-actions>
+ * ```
+ */
+@Directive({
+  selector: 'sbb-header-icon-actions',
+  exportAs: 'sbbHeaderIconActions',
+  host: {
+    class: 'sbb-header-icon-actions',
+  },
+})
+export class SbbHeaderIconActions {}

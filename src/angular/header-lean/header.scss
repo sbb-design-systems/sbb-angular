@@ -32,6 +32,14 @@
   }
 }
 
+.sbb-header-icon-actions {
+  white-space: nowrap;
+
+  .sbb-frameless-button:not(:last-child) {
+    margin-right: calc(#{sbb.pxToRem(15)} * var(--sbb-scaling-factor));
+  }
+}
+
 /** Header environment styles. */
 .sbb-header-environment {
   z-index: 1;
