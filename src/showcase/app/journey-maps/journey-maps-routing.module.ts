@@ -38,7 +38,7 @@ const routes: Routes = [
             data: { id: 'web-component/web-component-examples' },
             component: MarkdownViewerComponent,
           },
-          ...componentViewerSubnavigation.filter((child) => child.path !== 'examples'),
+          ...componentViewerSubnavigation, // paths already specified above will be ignored
         ],
       },
       {
