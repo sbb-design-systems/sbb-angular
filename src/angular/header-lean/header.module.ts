@@ -8,7 +8,7 @@ import { SbbIconModule } from '@sbb-esta/angular/icon';
 
 import { SbbAppChooserSection } from './app-chooser-section';
 import { SbbHeaderLean } from './header';
-import { SbbHeaderEnvironment } from './header-directives';
+import { SbbHeaderEnvironment, SbbHeaderIconActions } from './header-directives';
 import { SbbHeaderMenu } from './header-menu';
 import { SbbHeaderMenuItem } from './header-menu-item';
 import {
@@ -29,6 +29,7 @@ import {
     SbbHeaderLean,
     SbbAppChooserSection,
     SbbHeaderEnvironment,
+    SbbHeaderIconActions,
     SbbHeaderMenuItem,
     SbbHeaderMenuTrigger,
     SbbHeaderMenu,
@@ -37,6 +38,7 @@ import {
     SbbHeaderLean,
     SbbAppChooserSection,
     SbbHeaderEnvironment,
+    SbbHeaderIconActions,
     SbbHeaderMenuItem,
     SbbHeaderMenuTrigger,
     SbbHeaderMenu,
