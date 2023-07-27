@@ -243,6 +243,7 @@
   "sbbHeaderAnimations": "header-lean",
   "SbbHeaderCollapseBreakpoint": "header-lean",
   "SbbHeaderEnvironment": "header-lean",
+  "SbbHeaderIconActions": "header-lean",
   "SbbHeaderLean": "header-lean",
   "SbbHeaderLeanModule": "header-lean",
   "SbbHeaderMenu": "header-lean",
