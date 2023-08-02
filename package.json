@@ -146,7 +146,7 @@
     "patch-package": "^8.0.0",
     "prettier": "3.0.0",
     "protractor": "7.0.0",
-    "renovate": "35.159.7",
+    "renovate": "36.27.1",
     "requirejs": "2.3.6",
     "rollup": "2.79.1",
     "rollup-plugin-sourcemaps": "0.6.3",
