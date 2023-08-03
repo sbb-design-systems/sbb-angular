@@ -1,6 +1,8 @@
 import { Injectable } from '@angular/core';
-import { SbbMarker } from '@sbb-esta/journey-maps/angular';
-import { PoiDetails } from '@sbb-esta/journey-maps/angular/services/map/util/poi-details';
+
+import { SbbMarker } from '../../model/marker';
+
+import { PoiDetails } from './util/poi-details';
 
 @Injectable({
   providedIn: 'root',
