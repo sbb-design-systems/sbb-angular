@@ -11,7 +11,7 @@ import {
   SbbFeaturesSelectEventData,
   SbbSelectionMode,
 } from '../../../journey-maps.interfaces';
-import { MarkerOrPoiSelectionStateService } from '../marker-or-poi-selection.service';
+import { MarkerOrPoiSelectionStateService } from '../marker-or-poi-selection-state.service';
 
 import { SbbMapEventUtils } from './map-event-utils';
 import { SbbRouteUtils } from './route-utils';

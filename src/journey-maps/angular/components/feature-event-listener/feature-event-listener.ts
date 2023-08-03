@@ -199,6 +199,21 @@ export class SbbFeatureEventListener implements OnChanges, OnDestroy, OnInit {
     }
   }
 
+  public deselectProgrammatically({
+    features,
+    ...rest
+  }: Omit<SbbFeaturesClickEventData, 'clickPoint'>) {
+    const selectedFeatures = features.filter((f) => f.state.selected);
+    if (selectedFeatures.length) {
+      // only simulate clicking on this feature if it was previously selected.
+      this._featureClicked({
+        features: selectedFeatures,
+        clickPoint: { x: 0, y: 0 }, // dummy values
+        ...rest,
+      });
+    }
+  }
+
   private _featureClicked(clickEventData: SbbFeaturesClickEventData) {
     this.mapSelectionEventService.toggleSelection(clickEventData.features);
     const selectedFeatures = this.mapSelectionEventService.findSelectedFeatures();

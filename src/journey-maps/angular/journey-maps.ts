@@ -13,7 +13,6 @@ import {
   SimpleChanges,
   ViewChild,
 } from '@angular/core';
-import { MarkerOrPoiSelectionStateService } from '@sbb-esta/journey-maps/angular/services/map/marker-or-poi-selection.service';
 import { FeatureCollection, Point } from 'geojson';
 import { LngLatBounds, LngLatLike, Map as MaplibreMap, VectorTileSource } from 'maplibre-gl';
 import { ReplaySubject, Subject } from 'rxjs';
@@ -65,6 +64,7 @@ import { SbbMapService } from './services/map/map-service';
 import { SbbMapTransferService } from './services/map/map-transfer-service';
 import { SbbMapUrlService } from './services/map/map-url-service';
 import { SbbMapZoneService } from './services/map/map-zone-service';
+import { MarkerOrPoiSelectionStateService } from './services/map/marker-or-poi-selection-state.service';
 import { getInvalidRoutingOptionCombination } from './util/input-validation';
 
 /**
@@ -378,6 +378,10 @@ export class SbbJourneyMaps implements OnInit, AfterViewInit, OnDestroy, OnChang
     } else if (value && value.markerUrl) {
       open(value.markerUrl, '_self');
     } else {
+      const selectedPoi = this._markerOrPoiSelectionStateService.getSelectedPoi();
+      if (selectedPoi) {
+        this._deselectPoi(selectedPoi?.id);
+      }
       this._markerOrPoiSelectionStateService.selectSbbMarker(value);
     }
   }
@@ -478,6 +482,24 @@ export class SbbJourneyMaps implements OnInit, AfterViewInit, OnDestroy, OnChang
       if (visiblePoiFeatures.length) {
         const coordinates = (visiblePoiFeatures[0].geometry as Point).coordinates;
         this._featureEventListenerComponent.selectProgrammatically({
+          clickLngLat: { lng: coordinates[0], lat: coordinates[1] },
+          features: visiblePoiFeatures,
+        });
+      }
+    }
+  }
+
+  private _deselectPoi(sbbId: string) {
+    if (!!sbbId) {
+      const visiblePoiFeatures = this._mapEventUtils.queryVisibleFeaturesByFilter(
+        this._map,
+        'POI',
+        [SBB_POI_LAYER],
+        ['==', SBB_POI_ID_PROPERTY, sbbId],
+      );
+      if (visiblePoiFeatures.length) {
+        const coordinates = (visiblePoiFeatures[0].geometry as Point).coordinates;
+        this._featureEventListenerComponent.deselectProgrammatically({
           clickLngLat: { lng: coordinates[0], lat: coordinates[1] },
           features: visiblePoiFeatures,
         });

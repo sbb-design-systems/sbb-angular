@@ -16,9 +16,9 @@ export class MarkerOrPoiSelectionStateService {
     return this._selectedSbbMarker;
   }
 
-  // getSelectedPoi() {
-  //   return this._selectedPoi;
-  // }
+  getSelectedPoi() {
+    return this._selectedPoi;
+  }
 
   selectSbbMarker(sbbMarker: SbbMarker) {
     this._selectedPoi = undefined;
