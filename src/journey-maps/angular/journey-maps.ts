@@ -13,6 +13,7 @@ import {
   SimpleChanges,
   ViewChild,
 } from '@angular/core';
+import { MarkerOrPoiSelectionStateService } from '@sbb-esta/journey-maps/angular/services/map/marker-or-poi-selection.service';
 import { FeatureCollection, Point } from 'geojson';
 import { LngLatBounds, LngLatLike, Map as MaplibreMap, VectorTileSource } from 'maplibre-gl';
 import { ReplaySubject, Subject } from 'rxjs';
@@ -218,6 +219,7 @@ export class SbbJourneyMaps implements OnInit, AfterViewInit, OnDestroy, OnChang
     private _mapEventUtils: SbbMapEventUtils,
     private _urlService: SbbMapUrlService,
     private _levelSwitchService: SbbLevelSwitcher,
+    private _markerOrPoiSelectionStateService: MarkerOrPoiSelectionStateService,
     private _cd: ChangeDetectorRef,
     private _i18n: SbbLocaleService,
     private _host: ElementRef,
@@ -347,7 +349,7 @@ export class SbbJourneyMaps implements OnInit, AfterViewInit, OnDestroy, OnChang
   @Input()
   get selectedMarkerId(): string | undefined {
     // without this getter, the setter is never called when passing 'undefined' (via the 'elements' web component)
-    return this.selectedMarker?.id;
+    return this._markerOrPoiSelectionStateService.getSelectedSbbMarker()?.id;
   }
 
   set selectedMarkerId(markerId: string | undefined) {
@@ -359,23 +361,24 @@ export class SbbJourneyMaps implements OnInit, AfterViewInit, OnDestroy, OnChang
     }
   }
 
-  private _selectedMarker: SbbMarker | undefined;
-
   /** The currently selected map marker or undefined if none is selected. */
   get selectedMarker(): SbbMarker | undefined {
-    return this._selectedMarker;
+    return this._markerOrPoiSelectionStateService.getSelectedSbbMarker();
   }
 
   set selectedMarker(value: SbbMarker | undefined) {
     if (value && (value.triggerEvent || value.triggerEvent === undefined)) {
       this.selectedMarkerIdChange.emit(value.id);
     } else {
+      // in which case can this happen ???
       this.selectedMarkerIdChange.emit(undefined);
     }
-    if (value && value.markerUrl) {
-      open(value.markerUrl, '_self'); // Do we need to make target configurable ?
+    if (!value) {
+      this._markerOrPoiSelectionStateService.deselectSbbMarker();
+    } else if (value && value.markerUrl) {
+      open(value.markerUrl, '_self');
     } else {
-      this._selectedMarker = value;
+      this._markerOrPoiSelectionStateService.selectSbbMarker(value);
     }
   }
 

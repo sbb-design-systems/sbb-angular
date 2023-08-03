@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import { SBB_POI_ID_PROPERTY } from '@sbb-esta/journey-maps/angular';
 import { Feature } from 'geojson';
 import { Map as MaplibreMap } from 'maplibre-gl';
 import { Subject, Subscription } from 'rxjs';
@@ -10,6 +11,7 @@ import {
   SbbFeaturesSelectEventData,
   SbbSelectionMode,
 } from '../../../journey-maps.interfaces';
+import { MarkerOrPoiSelectionStateService } from '../marker-or-poi-selection.service';
 
 import { SbbMapEventUtils } from './map-event-utils';
 import { SbbRouteUtils } from './route-utils';
@@ -34,6 +36,7 @@ export class SbbMapSelectionEvent {
   constructor(
     private _routeUtilsService: SbbRouteUtils,
     private _mapEventUtils: SbbMapEventUtils,
+    private _markerOrPoiSelectionStateService: MarkerOrPoiSelectionStateService,
   ) {}
 
   initialize(
@@ -56,16 +59,27 @@ export class SbbMapSelectionEvent {
     for (const feature of features) {
       const selected = !feature.state.selected;
       this._setFeatureSelection(feature, selected);
-
       if (feature.featureDataType === 'ZONE') {
         this._touchedZoneIds.add(Number(feature.id));
       } else if (feature.featureDataType === 'ROUTE') {
         lastRouteEventDataCandidate.set(feature, feature.state.selected);
+      } else if (feature.featureDataType === 'POI') {
+        this._selectPoi(selected, feature);
       }
     }
 
     if (lastRouteEventDataCandidate.size) {
       this._lastRouteEventData = lastRouteEventDataCandidate;
+    }
+  }
+
+  private _selectPoi(selected: boolean, feature: SbbFeatureData) {
+    if (selected) {
+      this._markerOrPoiSelectionStateService.selectPoi({
+        id: feature.properties[SBB_POI_ID_PROPERTY],
+      });
+    } else {
+      this._markerOrPoiSelectionStateService.deselectPoi();
     }
   }
 
