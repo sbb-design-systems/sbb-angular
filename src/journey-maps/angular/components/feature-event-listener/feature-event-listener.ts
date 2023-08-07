@@ -188,10 +188,10 @@ export class SbbFeatureEventListener implements OnChanges, OnDestroy, OnInit {
     { features, ...rest }: Omit<SbbFeaturesClickEventData, 'clickPoint'>,
     makeSelected: boolean,
   ) {
-    // depending on whether we want this feature to be selected or unselected,
-    // we apply the toggle logic only to the features which previously had the opposite selection status
+    // depending on whether we want these features to be selected or unselected,
+    // we toggle the selection state only for those features which previously had the opposite selection status
     const featuresWithOppositeSelectionStatus = features.filter(
-      this._getPreviouslySelectedPredicate(!makeSelected),
+      this._getIsSelectedPredicate(!makeSelected),
     );
     if (featuresWithOppositeSelectionStatus.length) {
       this._featureClicked({
@@ -202,7 +202,7 @@ export class SbbFeatureEventListener implements OnChanges, OnDestroy, OnInit {
     }
   }
 
-  private _getPreviouslySelectedPredicate(isCurrentlySelected: boolean) {
+  private _getIsSelectedPredicate(isCurrentlySelected: boolean) {
     return (f: SbbFeatureData) => (isCurrentlySelected ? f.state.selected : !f.state.selected);
   }
 
