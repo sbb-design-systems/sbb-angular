@@ -250,11 +250,9 @@ export class SbbMapMarkerService {
 
   private _selectFeature(map: MaplibreMap, selectedFeatureId: string | undefined): void {
     const id = selectedFeatureId ?? '';
-    const nonSelectedFilter = this._createMarkerFilter(id, false);
-    const selectedFilter = this._createMarkerFilter(id, true);
     for (let i = 0; i < this.markerLayers.length; i++) {
-      map.setFilter(this.markerLayers[i], nonSelectedFilter);
-      map.setFilter(this.markerLayersSelected[i], selectedFilter);
+      map.setFilter(this.markerLayers[i], this._createMarkerFilter(id, false));
+      map.setFilter(this.markerLayersSelected[i], this._createMarkerFilter(id, true));
     }
   }
 
