@@ -10,6 +10,7 @@ import {
   SbbFeaturesSelectEventData,
   SbbSelectionMode,
 } from '../../../journey-maps.interfaces';
+import { SBB_POI_ID_PROPERTY } from '../../constants';
 import { MarkerOrPoiSelectionStateService } from '../marker-or-poi-selection-state.service';
 
 import { SbbMapEventUtils } from './map-event-utils';
@@ -75,7 +76,7 @@ export class SbbMapSelectionEvent {
   private _selectPoi(selected: boolean, feature: SbbFeatureData) {
     if (selected) {
       this._markerOrPoiSelectionStateService.selectPoi({
-        id: feature.properties['sbbId'],
+        id: feature.properties[SBB_POI_ID_PROPERTY],
       });
     } else {
       this._markerOrPoiSelectionStateService.deselectPoi();
