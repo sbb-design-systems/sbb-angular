@@ -1,10 +1,10 @@
 import { Injectable } from '@angular/core';
-import { SBB_POI_ID_PROPERTY } from '@sbb-esta/journey-maps/angular';
 import { Feature } from 'geojson';
 import { Map as MaplibreMap } from 'maplibre-gl';
 import { Subject, Subscription } from 'rxjs';
 import { sampleTime } from 'rxjs/operators';
 
+import { SBB_POI_ID_PROPERTY } from '../../..';
 import {
   SbbFeatureData,
   SbbFeatureDataType,
