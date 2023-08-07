@@ -74,7 +74,12 @@ import { getInvalidRoutingOptionCombination } from './util/input-validation';
   selector: 'sbb-journey-maps',
   templateUrl: './journey-maps.html',
   styleUrls: ['./journey-maps.css'],
-  providers: [SbbLevelSwitcher, SbbMapLayerFilter, SbbMapLeitPoiService],
+  providers: [
+    SbbLevelSwitcher,
+    SbbMapLayerFilter,
+    SbbMapLeitPoiService,
+    MarkerOrPoiSelectionStateService,
+  ],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class SbbJourneyMaps implements OnInit, AfterViewInit, OnDestroy, OnChanges {

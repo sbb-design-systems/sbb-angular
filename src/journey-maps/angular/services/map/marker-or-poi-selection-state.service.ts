@@ -4,9 +4,7 @@ import { SbbMarker } from '../../model/marker';
 
 import { PoiDetails } from './util/poi-details';
 
-@Injectable({
-  providedIn: 'root',
-})
+@Injectable()
 export class MarkerOrPoiSelectionStateService {
   // make sure that at least one of these is 'undefined' at all times
   private _selectedSbbMarker: SbbMarker | undefined;
