@@ -380,7 +380,7 @@ export class SbbJourneyMaps implements OnInit, AfterViewInit, OnDestroy, OnChang
     } else {
       const selectedPoi = this._markerOrPoiSelectionStateService.getSelectedPoi();
       if (selectedPoi) {
-        this._deselectPoi(selectedPoi?.id);
+        this._selectOrDeselectPoi(selectedPoi?.id, false);
       }
       this._markerOrPoiSelectionStateService.selectSbbMarker(value);
     }
@@ -472,24 +472,10 @@ export class SbbJourneyMaps implements OnInit, AfterViewInit, OnDestroy, OnChang
    * Only works for POIs that are currently visible in the map's viewport.
    */
   setSelectedPoi(sbbId: string) {
-    if (!!sbbId) {
-      const visiblePoiFeatures = this._mapEventUtils.queryVisibleFeaturesByFilter(
-        this._map,
-        'POI',
-        [SBB_POI_LAYER],
-        ['==', SBB_POI_ID_PROPERTY, sbbId],
-      );
-      if (visiblePoiFeatures.length) {
-        const coordinates = (visiblePoiFeatures[0].geometry as Point).coordinates;
-        this._featureEventListenerComponent.selectProgrammatically({
-          clickLngLat: { lng: coordinates[0], lat: coordinates[1] },
-          features: visiblePoiFeatures,
-        });
-      }
-    }
+    this._selectOrDeselectPoi(sbbId, true);
   }
 
-  private _deselectPoi(sbbId: string) {
+  private _selectOrDeselectPoi(sbbId: string, makeSelected: boolean) {
     if (!!sbbId) {
       const visiblePoiFeatures = this._mapEventUtils.queryVisibleFeaturesByFilter(
         this._map,
@@ -499,10 +485,13 @@ export class SbbJourneyMaps implements OnInit, AfterViewInit, OnDestroy, OnChang
       );
       if (visiblePoiFeatures.length) {
         const coordinates = (visiblePoiFeatures[0].geometry as Point).coordinates;
-        this._featureEventListenerComponent.deselectProgrammatically({
-          clickLngLat: { lng: coordinates[0], lat: coordinates[1] },
-          features: visiblePoiFeatures,
-        });
+        this._featureEventListenerComponent.selectOrDeselectProgrammatically(
+          {
+            clickLngLat: { lng: coordinates[0], lat: coordinates[1] },
+            features: visiblePoiFeatures,
+          },
+          makeSelected,
+        );
       }
     }
   }

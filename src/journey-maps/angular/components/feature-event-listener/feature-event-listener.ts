@@ -184,34 +184,26 @@ export class SbbFeatureEventListener implements OnChanges, OnDestroy, OnInit {
     return selectionModes;
   }
 
-  public selectProgrammatically({
-    features,
-    ...rest
-  }: Omit<SbbFeaturesClickEventData, 'clickPoint'>) {
-    const nonSelectedFeatures = features.filter((f) => !f.state.selected);
-    if (nonSelectedFeatures.length) {
-      // only simulate clicking on this feature if it wasn't previously selected.
+  public selectOrDeselectProgrammatically(
+    { features, ...rest }: Omit<SbbFeaturesClickEventData, 'clickPoint'>,
+    makeSelected: boolean,
+  ) {
+    // depending on whether we want this feature to be selected or unselected,
+    // we apply the toggle logic only to the features which previously had the opposite selection status
+    const featuresWithOppositeSelectionStatus = features.filter(
+      this._getPreviouslySelectedPredicate(!makeSelected),
+    );
+    if (featuresWithOppositeSelectionStatus.length) {
       this._featureClicked({
-        features: nonSelectedFeatures,
+        features: featuresWithOppositeSelectionStatus,
         clickPoint: { x: 0, y: 0 }, // dummy values
         ...rest,
       });
     }
   }
 
-  public deselectProgrammatically({
-    features,
-    ...rest
-  }: Omit<SbbFeaturesClickEventData, 'clickPoint'>) {
-    const selectedFeatures = features.filter((f) => f.state.selected);
-    if (selectedFeatures.length) {
-      // only simulate clicking on this feature if it was previously selected.
-      this._featureClicked({
-        features: selectedFeatures,
-        clickPoint: { x: 0, y: 0 }, // dummy values
-        ...rest,
-      });
-    }
+  private _getPreviouslySelectedPredicate(isCurrentlySelected: boolean) {
+    return (f: SbbFeatureData) => (isCurrentlySelected ? f.state.selected : !f.state.selected);
   }
 
   private _featureClicked(clickEventData: SbbFeaturesClickEventData) {
