@@ -370,7 +370,6 @@ export class SbbJourneyMaps implements OnInit, AfterViewInit, OnDestroy, OnChang
     if (value && (value.triggerEvent || value.triggerEvent === undefined)) {
       this.selectedMarkerIdChange.emit(value.id);
     } else {
-      // in which case can this happen ???
       this.selectedMarkerIdChange.emit(undefined);
     }
     if (!value) {
