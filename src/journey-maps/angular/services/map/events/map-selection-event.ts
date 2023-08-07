@@ -4,7 +4,6 @@ import { Map as MaplibreMap } from 'maplibre-gl';
 import { Subject, Subscription } from 'rxjs';
 import { sampleTime } from 'rxjs/operators';
 
-import { SBB_POI_ID_PROPERTY } from '../../..';
 import {
   SbbFeatureData,
   SbbFeatureDataType,
@@ -76,7 +75,7 @@ export class SbbMapSelectionEvent {
   private _selectPoi(selected: boolean, feature: SbbFeatureData) {
     if (selected) {
       this._markerOrPoiSelectionStateService.selectPoi({
-        id: feature.properties[SBB_POI_ID_PROPERTY],
+        id: feature.properties['sbbId'],
       });
     } else {
       this._markerOrPoiSelectionStateService.deselectPoi();
