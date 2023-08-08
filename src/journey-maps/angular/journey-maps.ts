@@ -375,7 +375,8 @@ export class SbbJourneyMaps implements OnInit, AfterViewInit, OnDestroy, OnChang
     if (value && (value.triggerEvent || value.triggerEvent === undefined)) {
       this.selectedMarkerIdChange.emit(value.id);
     } else {
-      this.selectedMarkerIdChange.emit(undefined);
+      // Promise: workaround to prevent ExpressionChangedAfterItHasBeenCheckedError in client after POI was selected
+      Promise.resolve().then(() => this.selectedMarkerIdChange.emit(undefined));
     }
     if (!value) {
       this._markerOrPoiSelectionStateService.deselectSbbMarker();
