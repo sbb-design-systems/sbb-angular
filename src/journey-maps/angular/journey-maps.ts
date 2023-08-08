@@ -383,10 +383,7 @@ export class SbbJourneyMaps implements OnInit, AfterViewInit, OnDestroy, OnChang
     } else if (value && value.markerUrl) {
       open(value.markerUrl, '_self');
     } else {
-      const selectedPoi = this._markerOrPoiSelectionStateService.getSelectedPoi();
-      if (selectedPoi) {
-        this._selectOrDeselectPoi(selectedPoi?.id, false);
-      }
+      this._unselectPoi();
       this._markerOrPoiSelectionStateService.selectSbbMarker(value);
     }
   }
@@ -477,7 +474,18 @@ export class SbbJourneyMaps implements OnInit, AfterViewInit, OnDestroy, OnChang
    * Only works for POIs that are currently visible in the map's viewport.
    */
   setSelectedPoi(sbbId: string) {
-    this._selectOrDeselectPoi(sbbId, true);
+    if (!!sbbId) {
+      this._selectOrDeselectPoi(sbbId, true);
+    } else {
+      this._unselectPoi();
+    }
+  }
+
+  private _unselectPoi() {
+    const selectedPoi = this._markerOrPoiSelectionStateService.getSelectedPoi();
+    if (selectedPoi) {
+      this._selectOrDeselectPoi(selectedPoi?.id, false);
+    }
   }
 
   private _selectOrDeselectPoi(sbbId: string, makeSelected: boolean) {
