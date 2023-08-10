@@ -119,5 +119,5 @@ sass_binary(
 
 markdown_to_html(
     name = "overview",
-    srcs = [":web-component.md"],
+    srcs = glob(["*.md"]),
 )

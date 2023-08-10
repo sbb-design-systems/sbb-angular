@@ -24,6 +24,24 @@ const routes: Routes = [
         data: { packageName: 'journey-maps' },
       },
       {
+        path: 'components/web-component',
+        component: ComponentViewerComponent,
+        data: { packageName: 'journey-maps', id: 'web-component' },
+        children: [
+          {
+            path: 'api',
+            data: { id: 'web-component/web-component-api' },
+            component: MarkdownViewerComponent,
+          },
+          {
+            path: 'examples',
+            data: { id: 'web-component/web-component-examples' },
+            component: MarkdownViewerComponent,
+          },
+          ...componentViewerSubnavigation, // paths already specified above will be ignored
+        ],
+      },
+      {
         path: 'components/:id',
         component: ComponentViewerComponent,
         data: { packageName: 'journey-maps' },
