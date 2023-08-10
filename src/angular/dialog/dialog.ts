@@ -2,6 +2,7 @@ import { Dialog, DialogConfig } from '@angular/cdk/dialog';
 import { Overlay, ScrollStrategy } from '@angular/cdk/overlay';
 import { ComponentType } from '@angular/cdk/portal';
 import {
+  ComponentRef,
   Inject,
   Injectable,
   InjectionToken,
@@ -162,6 +163,7 @@ export abstract class _SbbDialogBase<
 
     // This can't be assigned in the `providers` callback, because
     // the instance hasn't been assigned to the CDK ref yet.
+    (dialogRef! as { componentRef: ComponentRef<T> }).componentRef = cdkRef.componentRef!;
     dialogRef!.componentInstance = cdkRef.componentInstance!;
 
     this.openDialogs.push(dialogRef!);

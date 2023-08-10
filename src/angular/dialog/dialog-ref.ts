@@ -2,6 +2,7 @@ import { FocusOrigin } from '@angular/cdk/a11y';
 import { DialogRef } from '@angular/cdk/dialog';
 import { ESCAPE, hasModifierKey } from '@angular/cdk/keycodes';
 import { GlobalPositionStrategy } from '@angular/cdk/overlay';
+import { ComponentRef } from '@angular/core';
 import { merge, Observable, Subject } from 'rxjs';
 import { filter, take } from 'rxjs/operators';
 
@@ -21,6 +22,12 @@ export const enum SbbDialogState {
 export class SbbDialogRef<T, R = any> {
   /** The instance of component opened into the dialog. */
   componentInstance: T;
+
+  /**
+   * `ComponentRef` of the component opened into the dialog. Will be
+   * null when the dialog is opened using a `TemplateRef`.
+   */
+  readonly componentRef: ComponentRef<T> | null;
 
   /** Whether the user is allowed to close the dialog. */
   disableClose: boolean | undefined;
