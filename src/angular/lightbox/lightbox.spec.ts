@@ -10,6 +10,7 @@ import {
   ChangeDetectionStrategy,
   Component,
   ComponentFactoryResolver,
+  ComponentRef,
   createNgModuleRef,
   Directive,
   Inject,
@@ -124,6 +125,7 @@ describe('SbbLightbox', () => {
 
     expect(overlayContainerElement.textContent).toContain('Pizza');
     expect(lightboxRef.componentInstance instanceof PizzaMsg).toBe(true);
+    expect(lightboxRef.componentRef instanceof ComponentRef).toBe(true);
     expect(lightboxRef.componentInstance.lightboxRef).toBe(lightboxRef);
 
     viewContainerFixture.detectChanges();
