@@ -184,19 +184,26 @@ export class SbbFeatureEventListener implements OnChanges, OnDestroy, OnInit {
     return selectionModes;
   }
 
-  public selectProgrammatically({
-    features,
-    ...rest
-  }: Omit<SbbFeaturesClickEventData, 'clickPoint'>) {
-    const nonSelectedFeatures = features.filter((f) => !f.state.selected);
-    if (nonSelectedFeatures.length) {
-      // only simulate clicking on this feature if it wasn't previously selected.
+  public selectOrDeselectProgrammatically(
+    { features, ...rest }: Omit<SbbFeaturesClickEventData, 'clickPoint'>,
+    makeSelected: boolean,
+  ) {
+    // depending on whether we want these features to be selected or unselected,
+    // we toggle the selection state only for those features which previously had the opposite selection status
+    const featuresWithOppositeSelectionStatus = features.filter(
+      this._getIsSelectedPredicate(!makeSelected),
+    );
+    if (featuresWithOppositeSelectionStatus.length) {
       this._featureClicked({
-        features: nonSelectedFeatures,
+        features: featuresWithOppositeSelectionStatus,
         clickPoint: { x: 0, y: 0 }, // dummy values
         ...rest,
       });
     }
+  }
+
+  private _getIsSelectedPredicate(isCurrentlySelected: boolean) {
+    return (f: SbbFeatureData) => (isCurrentlySelected ? f.state.selected : !f.state.selected);
   }
 
   private _featureClicked(clickEventData: SbbFeaturesClickEventData) {
