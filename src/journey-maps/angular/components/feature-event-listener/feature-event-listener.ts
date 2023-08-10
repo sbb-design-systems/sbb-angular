@@ -60,7 +60,7 @@ export class SbbFeatureEventListener implements OnChanges, OnDestroy, OnInit {
 
   overlayVisible: boolean = false;
   overlayEventType: 'click' | 'hover';
-  overlayFeatures: SbbFeatureData[];
+  overlayFeatures: SbbFeatureData[] = [];
   overlayPosition: LngLatLike;
   overlayTemplate: any;
   overlayIsPopup: boolean;
