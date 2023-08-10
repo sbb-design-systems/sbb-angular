@@ -2,6 +2,31 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [16.5.0](https://github.com/sbb-design-systems/sbb-angular/compare/16.4.0...16.5.0) (2023-08-10)
+
+
+### Features
+
+* **angular/autocomplete:** add input to require selection from the panel ([#1952](https://github.com/sbb-design-systems/sbb-angular/issues/1952)) ([a324b31](https://github.com/sbb-design-systems/sbb-angular/commit/a324b31cf74b6c363c19ba93d8445ff1a3a9a005))
+* **angular/autocomplete:** don't assign to model value while typing … ([#1965](https://github.com/sbb-design-systems/sbb-angular/issues/1965)) ([20d369c](https://github.com/sbb-design-systems/sbb-angular/commit/20d369cb794015ce743f5483b69ed205bcb76502)), closes [#1952](https://github.com/sbb-design-systems/sbb-angular/issues/1952)
+* **angular/dialog:** expose rendered ComponentRef ([#1964](https://github.com/sbb-design-systems/sbb-angular/issues/1964)) ([0f4b55f](https://github.com/sbb-design-systems/sbb-angular/commit/0f4b55f218086331284d31ffde5d4674ab3d5896))
+* **angular/header-lean:** add directive to display icon buttons in header ([#1953](https://github.com/sbb-design-systems/sbb-angular/issues/1953)) ([df858e3](https://github.com/sbb-design-systems/sbb-angular/commit/df858e3e39948ed0ca78cf59709e9fb6b8c10365)), closes [#902](https://github.com/sbb-design-systems/sbb-angular/issues/902)
+* **journey-maps:** add web-component examples page ([#1948](https://github.com/sbb-design-systems/sbb-angular/issues/1948)) ([8f9fc9e](https://github.com/sbb-design-systems/sbb-angular/commit/8f9fc9eec16025fa6ca78217f12f9a1dc9251861))
+* **journey-maps:** prohibit simultaneous selection of sbb marker and poi ([#1959](https://github.com/sbb-design-systems/sbb-angular/issues/1959)) ([f966427](https://github.com/sbb-design-systems/sbb-angular/commit/f9664270e876dc3ffbaad740613194ea6968c096))
+* **journey-maps:** provide mock data with indoor transfer ([#1951](https://github.com/sbb-design-systems/sbb-angular/issues/1951)) ([da5ef6c](https://github.com/sbb-design-systems/sbb-angular/commit/da5ef6c9e570b9a798e7c00f07a686aacaac3d84))
+* **journey-maps:** removed indoor pois in examples ([#1960](https://github.com/sbb-design-systems/sbb-angular/issues/1960)) ([fd8f0ad](https://github.com/sbb-design-systems/sbb-angular/commit/fd8f0adfcf14d9d0e9dab041116cb5c380961c20))
+
+
+### Bug Fixes
+
+* **angular/accordion:** content visible when placed inside a hidden parent ([#1949](https://github.com/sbb-design-systems/sbb-angular/issues/1949)) ([8449cd4](https://github.com/sbb-design-systems/sbb-angular/commit/8449cd405ba173635e35c754b80a517366facc91))
+* **angular/autocomplete:** blocking events to other overlays when there are no results ([#1947](https://github.com/sbb-design-systems/sbb-angular/issues/1947)) ([f5a16f4](https://github.com/sbb-design-systems/sbb-angular/commit/f5a16f4a0d681ddb5542acf329318c067ea802c1))
+* **angular/autocomplete:** clear selected option if input is cleared ([#1946](https://github.com/sbb-design-systems/sbb-angular/issues/1946)) ([c5fe856](https://github.com/sbb-design-systems/sbb-angular/commit/c5fe8569e07e2f33abcfef4690b0515fbb01555b))
+* **angular/radio:** clear selected radio button from group ([#1950](https://github.com/sbb-design-systems/sbb-angular/issues/1950)) ([8f707be](https://github.com/sbb-design-systems/sbb-angular/commit/8f707be86515d7df3e4bc3a2cce9d00cdee9df21))
+* **deps:** update dependency tslib to v2.6.1 ([a8a2b04](https://github.com/sbb-design-systems/sbb-angular/commit/a8a2b04bec8af0882f7398bfd14bb707f547bb23))
+* **journey-maps:** allow deselecting pois even without popups ([5986080](https://github.com/sbb-design-systems/sbb-angular/commit/5986080475b3a527ee78c942d6fa2a8abcae5555))
+* **journey-maps:** prevent error when unselecting POIs without previously selecting any ([#1963](https://github.com/sbb-design-systems/sbb-angular/issues/1963)) ([a22ed03](https://github.com/sbb-design-systems/sbb-angular/commit/a22ed03122dd4952abc047d73ec835e99f4153cc))
+
 ## [16.4.0](https://github.com/sbb-design-systems/sbb-angular/compare/16.3.0...16.4.0) (2023-07-24)
 
 
