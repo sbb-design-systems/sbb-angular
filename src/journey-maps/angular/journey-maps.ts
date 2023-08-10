@@ -463,7 +463,7 @@ export class SbbJourneyMaps implements OnInit, AfterViewInit, OnDestroy, OnChang
     }
     // unselect pois
     if (types.includes('POI')) {
-      this.setSelectedPoi(undefined);
+      this._unselectPoi();
     }
   }
 
