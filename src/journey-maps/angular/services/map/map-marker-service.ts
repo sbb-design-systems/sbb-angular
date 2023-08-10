@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Feature, Position } from 'geojson';
+import { Feature, Geometry, Position } from 'geojson';
 import {
   FilterSpecification,
   GeoJSONSource,
@@ -129,18 +129,21 @@ export class SbbMapMarkerService {
     oldSelectedFeatureId: string | undefined,
   ): string | undefined {
     const selectedFeatureId = feature.properties?.id;
+
     if (!selectedFeatureId || selectedFeatureId === oldSelectedFeatureId) {
       this.unselectFeature(map);
       return undefined;
     }
 
     this._selectFeature(map, selectedFeatureId);
-    const geometry = feature.geometry;
+    this._flyToMarker(feature.geometry, map);
+    return selectedFeatureId;
+  }
+
+  private _flyToMarker(geometry: Geometry, map: MaplibreMap) {
     if (geometry?.type === 'Point') {
       this._easeTo(map, this._mapService.convertToLngLatLike(geometry));
     }
-
-    return selectedFeatureId;
   }
 
   // When a marker has been selected from outside the map.
@@ -249,7 +252,7 @@ export class SbbMapMarkerService {
     const id = selectedFeatureId ?? '';
     for (let i = 0; i < this.markerLayers.length; i++) {
       map.setFilter(this.markerLayers[i], this._createMarkerFilter(id, false));
-      map.setFilter(this.markerLayersSelected[i], this._createMarkerFilter(id));
+      map.setFilter(this.markerLayersSelected[i], this._createMarkerFilter(id, true));
     }
   }
 

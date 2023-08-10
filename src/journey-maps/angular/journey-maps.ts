@@ -64,6 +64,7 @@ import { SbbMapService } from './services/map/map-service';
 import { SbbMapTransferService } from './services/map/map-transfer-service';
 import { SbbMapUrlService } from './services/map/map-url-service';
 import { SbbMapZoneService } from './services/map/map-zone-service';
+import { MarkerOrPoiSelectionStateService } from './services/map/marker-or-poi-selection-state.service';
 import { getInvalidRoutingOptionCombination } from './util/input-validation';
 
 /**
@@ -73,7 +74,12 @@ import { getInvalidRoutingOptionCombination } from './util/input-validation';
   selector: 'sbb-journey-maps',
   templateUrl: './journey-maps.html',
   styleUrls: ['./journey-maps.css'],
-  providers: [SbbLevelSwitcher, SbbMapLayerFilter, SbbMapLeitPoiService],
+  providers: [
+    SbbLevelSwitcher,
+    SbbMapLayerFilter,
+    SbbMapLeitPoiService,
+    MarkerOrPoiSelectionStateService,
+  ],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class SbbJourneyMaps implements OnInit, AfterViewInit, OnDestroy, OnChanges {
@@ -218,6 +224,7 @@ export class SbbJourneyMaps implements OnInit, AfterViewInit, OnDestroy, OnChang
     private _mapEventUtils: SbbMapEventUtils,
     private _urlService: SbbMapUrlService,
     private _levelSwitchService: SbbLevelSwitcher,
+    private _markerOrPoiSelectionStateService: MarkerOrPoiSelectionStateService,
     private _cd: ChangeDetectorRef,
     private _i18n: SbbLocaleService,
     private _host: ElementRef,
@@ -347,7 +354,7 @@ export class SbbJourneyMaps implements OnInit, AfterViewInit, OnDestroy, OnChang
   @Input()
   get selectedMarkerId(): string | undefined {
     // without this getter, the setter is never called when passing 'undefined' (via the 'elements' web component)
-    return this.selectedMarker?.id;
+    return this._markerOrPoiSelectionStateService.getSelectedSbbMarker()?.id;
   }
 
   set selectedMarkerId(markerId: string | undefined) {
@@ -359,23 +366,25 @@ export class SbbJourneyMaps implements OnInit, AfterViewInit, OnDestroy, OnChang
     }
   }
 
-  private _selectedMarker: SbbMarker | undefined;
-
   /** The currently selected map marker or undefined if none is selected. */
   get selectedMarker(): SbbMarker | undefined {
-    return this._selectedMarker;
+    return this._markerOrPoiSelectionStateService.getSelectedSbbMarker();
   }
 
   set selectedMarker(value: SbbMarker | undefined) {
     if (value && (value.triggerEvent || value.triggerEvent === undefined)) {
       this.selectedMarkerIdChange.emit(value.id);
     } else {
-      this.selectedMarkerIdChange.emit(undefined);
+      // Promise: workaround to prevent ExpressionChangedAfterItHasBeenCheckedError in client after POI was selected
+      Promise.resolve().then(() => this.selectedMarkerIdChange.emit(undefined));
     }
-    if (value && value.markerUrl) {
-      open(value.markerUrl, '_self'); // Do we need to make target configurable ?
+    if (!value) {
+      this._markerOrPoiSelectionStateService.deselectSbbMarker();
+    } else if (value && value.markerUrl) {
+      open(value.markerUrl, '_self');
     } else {
-      this._selectedMarker = value;
+      this._unselectPoi();
+      this._markerOrPoiSelectionStateService.selectSbbMarker(value);
     }
   }
 
@@ -466,6 +475,21 @@ export class SbbJourneyMaps implements OnInit, AfterViewInit, OnDestroy, OnChang
    */
   setSelectedPoi(sbbId: string) {
     if (!!sbbId) {
+      this._selectOrDeselectPoi(sbbId, true);
+    } else {
+      this._unselectPoi();
+    }
+  }
+
+  private _unselectPoi() {
+    const selectedPoi = this._markerOrPoiSelectionStateService.getSelectedPoi();
+    if (selectedPoi) {
+      this._selectOrDeselectPoi(selectedPoi?.id, false);
+    }
+  }
+
+  private _selectOrDeselectPoi(sbbId: string, makeSelected: boolean) {
+    if (!!sbbId) {
       const visiblePoiFeatures = this._mapEventUtils.queryVisibleFeaturesByFilter(
         this._map,
         'POI',
@@ -474,10 +498,13 @@ export class SbbJourneyMaps implements OnInit, AfterViewInit, OnDestroy, OnChang
       );
       if (visiblePoiFeatures.length) {
         const coordinates = (visiblePoiFeatures[0].geometry as Point).coordinates;
-        this._featureEventListenerComponent.selectProgrammatically({
-          clickLngLat: { lng: coordinates[0], lat: coordinates[1] },
-          features: visiblePoiFeatures,
-        });
+        this._featureEventListenerComponent.selectOrDeselectProgrammatically(
+          {
+            clickLngLat: { lng: coordinates[0], lat: coordinates[1] },
+            features: visiblePoiFeatures,
+          },
+          makeSelected,
+        );
       }
     }
   }
