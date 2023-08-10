@@ -1,11 +1,9 @@
 import { AsyncPipe, JsonPipe, NgFor } from '@angular/common';
-import { Component, OnInit } from '@angular/core';
+import { Component, ElementRef, ViewChild } from '@angular/core';
 import { FormControl, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { SbbAutocompleteModule } from '@sbb-esta/angular/autocomplete';
 import { SbbFormFieldModule } from '@sbb-esta/angular/form-field';
 import { SbbInputModule } from '@sbb-esta/angular/input';
-import { Observable } from 'rxjs';
-import { map, startWith } from 'rxjs/operators';
 
 /**
  * @title Require an autocomplete option to be selected
@@ -26,7 +24,8 @@ import { map, startWith } from 'rxjs/operators';
     JsonPipe,
   ],
 })
-export class AutocompleteRequireSelectionExample implements OnInit {
+export class AutocompleteRequireSelectionExample {
+  @ViewChild('input') input: ElementRef<HTMLInputElement>;
   myControl = new FormControl('');
   options: string[] = [
     'Zürich',
@@ -39,18 +38,14 @@ export class AutocompleteRequireSelectionExample implements OnInit {
     'Lausanne',
     'Winterthur',
   ];
-  filteredOptions: Observable<string[]>;
+  filteredOptions: string[];
 
-  ngOnInit() {
-    this.filteredOptions = this.myControl.valueChanges.pipe(
-      startWith(''),
-      map((value) => this._filter(value || '')),
-    );
+  constructor() {
+    this.filteredOptions = this.options.slice();
   }
 
-  private _filter(value: string): string[] {
-    const filterValue = value.toLowerCase();
-
-    return this.options.filter((option) => option.toLowerCase().includes(filterValue));
+  filter(): void {
+    const filterValue = this.input.nativeElement.value.toLowerCase();
+    this.filteredOptions = this.options.filter((o) => o.toLowerCase().includes(filterValue));
   }
 }

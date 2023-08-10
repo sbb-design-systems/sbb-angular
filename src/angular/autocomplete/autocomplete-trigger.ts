@@ -551,7 +551,13 @@ export class SbbAutocompleteTrigger
     if (this._previousValue !== value) {
       this._previousValue = value;
       this._pendingAutoselectedOption = null;
-      this._onChange(value);
+
+      // If selection is required we don't write to the CVA while the user is typing.
+      // At the end of the selection either the user will have picked something
+      // or we'll reset the value back to null.
+      if (!this.autocomplete || !this.autocomplete.requireSelection) {
+        this._onChange(value);
+      }
       this._inputValue.next(target.value);
 
       if (!value) {
