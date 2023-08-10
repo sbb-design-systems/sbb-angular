@@ -32,6 +32,11 @@
   }
 }
 
+.sbb-header-icon-actions {
+  display: flex;
+  gap: calc(#{sbb.pxToRem(15)} * var(--sbb-scaling-factor));
+}
+
 /** Header environment styles. */
 .sbb-header-environment {
   z-index: 1;

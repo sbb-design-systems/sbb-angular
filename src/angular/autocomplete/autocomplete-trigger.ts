@@ -134,9 +134,14 @@ export class SbbAutocompleteTrigger
   private _componentDestroyed = false;
   private _autocompleteDisabled = false;
   private _scrollStrategy: () => ScrollStrategy;
+  private _keydownSubscription: Subscription | null;
+  private _outsideClickSubscription: Subscription | null;
 
   /** Old value of the native input. Used to work around issues with the `input` event on IE. */
   private _previousValue: string | number | null;
+
+  /** Value of the input element when the panel was opened. */
+  private _valueOnOpen: string | number | null;
 
   /** Strategy that is used to position the panel. */
   private _positionStrategy: FlexibleConnectedPositionStrategy;
@@ -365,6 +370,8 @@ export class SbbAutocompleteTrigger
       this._closingActionsSubscription.unsubscribe();
     }
 
+    this._updatePanelState();
+
     this._getConnectedElement().nativeElement.classList.remove('sbb-input-with-open-panel');
     this._getConnectedElement().nativeElement.classList.remove('sbb-input-with-open-panel-above');
 
@@ -547,6 +554,10 @@ export class SbbAutocompleteTrigger
       this._onChange(value);
       this._inputValue.next(target.value);
 
+      if (!value) {
+        this._clearPreviousSelectedOption(null, false);
+      }
+
       if (this._canOpen() && this._document.activeElement === event.target) {
         this.openPanel();
       }
@@ -605,7 +616,7 @@ export class SbbAutocompleteTrigger
             this._zone.run(() => {
               const wasOpen = this.panelOpen;
               this._resetActiveItem();
-              this.autocomplete._setVisibility();
+              this._updatePanelState();
               this._changeDetectorRef.detectChanges();
 
               if (this.panelOpen) {
@@ -631,7 +642,7 @@ export class SbbAutocompleteTrigger
                 //   of the available options,
                 // - if a valid string is entered after an invalid one.
                 if (this.panelOpen) {
-                  this.autocomplete.opened.emit();
+                  this._emitOpened();
                 } else {
                   this.autocomplete.closed.emit();
                 }
@@ -646,6 +657,15 @@ export class SbbAutocompleteTrigger
         // set the value, close the panel, and complete.
         .subscribe((event) => this._setValueAndClose(event))
     );
+  }
+
+  /**
+   * Emits the opened event once it's known that the panel will be shown and stores
+   * the state of the trigger right before the opening sequence was finished.
+   */
+  private _emitOpened() {
+    this._valueOnOpen = this._element.nativeElement.value;
+    this.autocomplete.opened.emit();
   }
 
   /** Destroys the autocomplete suggestion panel. */
@@ -687,24 +707,33 @@ export class SbbAutocompleteTrigger
    * stemmed from the user.
    */
   private _setValueAndClose(event: SbbOptionSelectionChange | null): void {
+    const panel = this.autocomplete;
     const toSelect = event ? event.source : this._pendingAutoselectedOption;
 
     if (toSelect) {
       this._clearPreviousSelectedOption(toSelect);
       this._assignOptionValue(toSelect.value);
       this._onChange(toSelect.value);
-      this.autocomplete._emitSelectEvent(toSelect);
+      panel._emitSelectEvent(toSelect);
       this._element.nativeElement.focus();
+    } else if (panel.requireSelection && this._element.nativeElement.value !== this._valueOnOpen) {
+      this._clearPreviousSelectedOption(null);
+      this._assignOptionValue(null);
+      this._onChange(null);
     }
 
     this.closePanel();
   }
 
-  /** Clear any previous selected option and emit a selection change event for this option */
-  private _clearPreviousSelectedOption(skip: SbbOption) {
-    this.autocomplete.options.forEach((option) => {
+  /**
+   * Clear any previous selected option and emit a selection change event for this option.
+   */
+  private _clearPreviousSelectedOption(skip: SbbOption | null, emitEvent?: boolean) {
+    // Null checks are necessary here, because the autocomplete
+    // or its options may not have been assigned yet.
+    this.autocomplete?.options?.forEach((option) => {
       if (option !== skip && option.selected) {
-        option.deselect();
+        option.deselect(emitEvent);
       }
     });
   }
@@ -747,8 +776,6 @@ export class SbbAutocompleteTrigger
         });
       }
 
-      this._handleOverlayEvents(overlayRef);
-
       this._viewportSubscription = this._viewportRuler.change().subscribe(() => {
         if (this.panelOpen && overlayRef) {
           overlayRef.updateSize({ width: this._getPanelWidth() });
@@ -767,13 +794,65 @@ export class SbbAutocompleteTrigger
 
     const wasOpen = this.panelOpen;
 
-    this.autocomplete._setVisibility();
     this.autocomplete._isOpen = this._overlayAttached = true;
+    this._updatePanelState();
 
     // We need to do an extra `panelOpen` check in here, because the
     // autocomplete won't be shown if there are no options.
     if (this.panelOpen && wasOpen !== this.panelOpen) {
-      this.autocomplete.opened.emit();
+      this._emitOpened();
+    }
+  }
+
+  /** Handles keyboard events coming from the overlay panel. */
+  private _handlePanelKeydown = (event: KeyboardEvent) => {
+    // Close when pressing ESCAPE or ALT + UP_ARROW, based on the a11y guidelines.
+    // See: https://www.w3.org/TR/wai-aria-practices-1.1/#textbox-keyboard-interaction
+    if (
+      (event.keyCode === ESCAPE && !hasModifierKey(event)) ||
+      (event.keyCode === UP_ARROW && hasModifierKey(event, 'altKey'))
+    ) {
+      // If the user had typed something in before we autoselected an option, and they decided
+      // to cancel the selection, restore the input value to the one they had typed in.
+      if (this._pendingAutoselectedOption) {
+        this._updateNativeInputValue(this._valueBeforeAutoSelection ?? '');
+        this._pendingAutoselectedOption = null;
+      }
+      this._closeKeyEventStream.next();
+      this._resetActiveItem();
+      // We need to stop propagation, otherwise the event will eventually
+      // reach the input itself and cause the overlay to be reopened.
+      event.stopPropagation();
+      event.preventDefault();
+    }
+  };
+
+  /** Updates the panel's visibility state and any trigger state tied to id. */
+  private _updatePanelState() {
+    this.autocomplete._setVisibility();
+
+    // Note that here we subscribe and unsubscribe based on the panel's visiblity state,
+    // because the act of subscribing will prevent events from reaching other overlays and
+    // we don't want to block the events if there are no options.
+    if (this.panelOpen) {
+      const overlayRef = this._overlayRef!;
+
+      if (!this._keydownSubscription) {
+        // Use the `keydownEvents` in order to take advantage of
+        // the overlay event targeting provided by the CDK overlay.
+        this._keydownSubscription = overlayRef.keydownEvents().subscribe(this._handlePanelKeydown);
+      }
+
+      if (!this._outsideClickSubscription) {
+        // Subscribe to the pointer events stream so that it doesn't get picked up by other overlays.
+        // TODO(crisbeto): we should switch `_getOutsideClickStream` eventually to use this stream,
+        // but the behvior isn't exactly the same and it ends up breaking some internal tests.
+        this._outsideClickSubscription = overlayRef.outsidePointerEvents().subscribe();
+      }
+    } else {
+      this._keydownSubscription?.unsubscribe();
+      this._outsideClickSubscription?.unsubscribe();
+      this._keydownSubscription = this._outsideClickSubscription = null;
     }
   }
 
@@ -910,39 +989,5 @@ export class SbbAutocompleteTrigger
         autocomplete._setScrollTop(newScrollPosition);
       }
     }
-  }
-
-  /** Handles keyboard events coming from the overlay panel. */
-  private _handleOverlayEvents(overlayRef: OverlayRef) {
-    // Use the `keydownEvents` in order to take advantage of
-    // the overlay event targeting provided by the CDK overlay.
-    overlayRef.keydownEvents().subscribe((event) => {
-      // Close when pressing ESCAPE or ALT + UP_ARROW, based on the a11y guidelines.
-      // See: https://www.w3.org/TR/wai-aria-practices-1.1/#textbox-keyboard-interaction
-      if (
-        (event.keyCode === ESCAPE && !hasModifierKey(event)) ||
-        (event.keyCode === UP_ARROW && hasModifierKey(event, 'altKey'))
-      ) {
-        // If the user had typed something in before we autoselected an option, and they decided
-        // to cancel the selection, restore the input value to the one they had typed in.
-        if (this._pendingAutoselectedOption) {
-          this._updateNativeInputValue(this._valueBeforeAutoSelection ?? '');
-          this._pendingAutoselectedOption = null;
-        }
-
-        this._closeKeyEventStream.next();
-        this._resetActiveItem();
-
-        // We need to stop propagation, otherwise the event will eventually
-        // reach the input itself and cause the overlay to be reopened.
-        event.stopPropagation();
-        event.preventDefault();
-      }
-    });
-
-    // Subscribe to the pointer events stream so that it doesn't get picked up by other overlays.
-    // TODO(crisbeto): we should switch `_getOutsideClickStream` eventually to use this stream,
-    // but the behvior isn't exactly the same and it ends up breaking some internal tests.
-    overlayRef.outsidePointerEvents().subscribe();
   }
 }

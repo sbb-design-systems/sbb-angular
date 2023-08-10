@@ -1,8 +1,8 @@
 The header will appear at the top of the screen in a fixed position, and provide a container
 for navigation, usermenu and the logo.
-It supports `<a>` and `<button>` tags for navigation. Optionally a `<sbb-usermenu>` can be
-provided, as well as any element with a `[brand]` attribute or `.brand` class, for replacing
-the standard logo.
+It supports `<a>` and `<button>` tags for navigation. Optionally a `<sbb-header-icon-actions>`
+element and a `<sbb-usermenu>` can be provided, as well as any element with a `[brand]` attribute or
+`.brand` class, for replacing the standard logo.
 
 ```html
 <sbb-header-lean [label]="Title" [subtitle]="Subtitle">
@@ -15,7 +15,12 @@ the standard logo.
     <a sbbHeaderMenuItem routerLink="/nav1/section1" routerLinkActive="sbb-active">Section 1</a>
     <a sbbHeaderMenuItem routerLink="/nav1/section2" routerLinkActive="sbb-active">Section 2</a>
   </sbb-header-menu>
+  <!-- Optional icon buttons to be displayed on the right side of the header -->
+  <sbb-header-icon-actions>
+    <button sbb-frameless-button><sbb-icon svgIcon="magnifying-glass-small"></sbb-icon></button>
+  </sbb-header-icon-actions>
   <sbb-usermenu ...><!-- Optional --></sbb-usermenu>
+
   <svg brand><!-- Optional --></svg>
 </sbb-header-lean>
 ```

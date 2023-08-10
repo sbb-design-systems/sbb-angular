@@ -227,6 +227,9 @@ export class JourneyMapsFullExample implements OnInit, OnDestroy {
           clickTemplate: [],
         }),
       }),
+      selectedPoi: _fb.group({
+        poiId: [undefined],
+      }),
       markerOptions: _fb.group({
         zoomToMarkers: [true],
         popup: [true, resetSelectedMarkerIdValidator],
@@ -238,7 +241,7 @@ export class JourneyMapsFullExample implements OnInit, OnDestroy {
         maxBounds: [],
       }),
       pointsOfInterestOptions: _fb.group({
-        categories: [['park_rail', 'car_sharing', 'bike_parking', 'bike_sharing']],
+        categories: [['park_rail', 'car_sharing', 'bike_parking', 'bike_sharing', 'on_demand']],
         environment: ['prod'], // Can also be left empty
         includePreview: [false], // Can also be left empty
       }),
@@ -404,13 +407,13 @@ export class JourneyMapsFullExample implements OnInit, OnDestroy {
     return `Map bounding-box (lng / lat, SW then NE): ${lngSW}, ${latSW} | ${lngNE}, ${latNE}`;
   }
 
-  private _formatCoodinate(value: number): string {
-    return value.toFixed(6);
-  }
-
   listenerOptionTypes() {
     const listenerOptions: UntypedFormGroup = this.form.get('listenerOptions') as UntypedFormGroup;
     return Object.keys(listenerOptions.controls);
+  }
+
+  private _formatCoodinate(value: number): string {
+    return value.toFixed(6);
   }
 
   private _setBbox(bbox: number[] | LngLatBounds): void {

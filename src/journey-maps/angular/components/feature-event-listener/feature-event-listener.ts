@@ -60,7 +60,7 @@ export class SbbFeatureEventListener implements OnChanges, OnDestroy, OnInit {
 
   overlayVisible: boolean = false;
   overlayEventType: 'click' | 'hover';
-  overlayFeatures: SbbFeatureData[];
+  overlayFeatures: SbbFeatureData[] = [];
   overlayPosition: LngLatLike;
   overlayTemplate: any;
   overlayIsPopup: boolean;
@@ -184,6 +184,28 @@ export class SbbFeatureEventListener implements OnChanges, OnDestroy, OnInit {
     return selectionModes;
   }
 
+  public selectOrDeselectProgrammatically(
+    { features, ...rest }: Omit<SbbFeaturesClickEventData, 'clickPoint'>,
+    makeSelected: boolean,
+  ) {
+    // depending on whether we want these features to be selected or unselected,
+    // we toggle the selection state only for those features which previously had the opposite selection status
+    const featuresWithOppositeSelectionStatus = features.filter(
+      this._getIsSelectedPredicate(!makeSelected),
+    );
+    if (featuresWithOppositeSelectionStatus.length) {
+      this._featureClicked({
+        features: featuresWithOppositeSelectionStatus,
+        clickPoint: { x: 0, y: 0 }, // dummy values
+        ...rest,
+      });
+    }
+  }
+
+  private _getIsSelectedPredicate(isCurrentlySelected: boolean) {
+    return (f: SbbFeatureData) => (isCurrentlySelected ? f.state.selected : !f.state.selected);
+  }
+
   private _featureClicked(clickEventData: SbbFeaturesClickEventData) {
     this.mapSelectionEventService.toggleSelection(clickEventData.features);
     const selectedFeatures = this.mapSelectionEventService.findSelectedFeatures();
@@ -295,6 +317,7 @@ export class SbbFeatureEventListener implements OnChanges, OnDestroy, OnInit {
       (feature) => feature.id,
     );
   }
+
   private _featuresWithSameFeatureDataType(
     features: SbbFeatureData[] | undefined,
     featureDataType: SbbFeatureDataType,

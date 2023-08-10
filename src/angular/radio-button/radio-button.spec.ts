@@ -16,7 +16,9 @@ import { SbbRadioButtonModule } from './radio-button.module';
       [value]="groupValue"
       name="test-name"
     >
-      <sbb-radio-button value="fire" [disabled]="isFirstDisabled"> Charmander </sbb-radio-button>
+      <sbb-radio-button value="fire" [disabled]="isFirstDisabled" *ngIf="isFirstShown">
+        Charmander
+      </sbb-radio-button>
       <sbb-radio-button value="water"> Squirtle </sbb-radio-button>
       <sbb-radio-button value="leaf"> Bulbasaur </sbb-radio-button>
     </sbb-radio-group>
@@ -27,6 +29,7 @@ class RadiosInsideRadioGroup {
   isGroupDisabled = false;
   isGroupRequired = false;
   groupValue: string | null = null;
+  isFirstShown = true;
 }
 
 @Component({
@@ -507,6 +510,19 @@ describe('RadioButton', () => {
           return radio.getAttribute('tabindex');
         }),
       ).toEqual(['-1', '-1', '0']);
+    });
+
+    it('should clear the selected radio button but preserve the value on destroy', () => {
+      radioLabelElements[0].click();
+      fixture.detectChanges();
+      expect(groupInstance.selected).toBe(radioInstances[0]);
+      expect(groupInstance.value).toBe('fire');
+
+      fixture.componentInstance.isFirstShown = false;
+      fixture.detectChanges();
+
+      expect(groupInstance.selected).toBe(null);
+      expect(groupInstance.value).toBe('fire');
     });
   });
 

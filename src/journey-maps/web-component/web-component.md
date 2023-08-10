@@ -42,7 +42,7 @@ You can get your API key on the [SBB API Platform](https://developer.sbb.ch/apis
 
 #### With JS
 
-If you want to register for output events or pass object-type input parameters you can create the component in JavaScript.
+If you want to register for output events or pass object-type input parameters, you can create the component in JavaScript.
 
 Component outputs are dispatched as HTML [Custom Events](https://developer.mozilla.org/en-US/docs/Web/API/CustomEvent).
 The emitted data is stored on the event’s detail property.
@@ -153,3 +153,15 @@ client.addEventListener('featuresClick', (event) => {
 **NOTE** \
 Don't replace the whole template node. Just update its content.
 Because internally we are using an [MutationObserver](https://developer.mozilla.org/de/docs/Web/API/MutationObserver) to watch for changes.
+
+### Run a showcase app using the Web Component on your local machine
+
+If you check out this project from GitHub, You can get a simple example of the Web Component up and running on your local machine by running `JM_API_KEY=<YOUR-API-KEY> yarn start:journey-maps-wc`.
+
+You can interact with the map through the browser console using the same JavaScript syntax as above, e.g.:
+
+```javascript
+const client = document.querySelector('sbb-journey-maps-wc');
+client.moveEast();
+client.selectedMarkerId = 'velo';
+```
