@@ -3001,7 +3001,7 @@ describe('SbbAutocomplete', () => {
       tick();
 
       expect(input.value).toBe('Zw');
-      expect(numberCtrl.value).toBe('Zw');
+      expect(numberCtrl.value).toEqual({ code: '2', name: 'Zwei', height: 48 });
       expect(spy).not.toHaveBeenCalled();
 
       dispatchFakeEvent(document, 'click');
