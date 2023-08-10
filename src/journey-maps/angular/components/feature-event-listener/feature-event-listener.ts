@@ -6,7 +6,6 @@ import {
   Input,
   OnChanges,
   OnDestroy,
-  OnInit,
   Output,
   SimpleChanges,
 } from '@angular/core';
@@ -15,7 +14,6 @@ import { Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
 
 import {
-  SbbDeselectableFeatureDataType,
   SbbFeatureData,
   SbbFeatureDataType,
   SbbFeaturesClickEventData,
@@ -44,11 +42,10 @@ import { SBB_ZONE_LAYER } from '../../services/map/map-zone-service';
   providers: [SbbMapSelectionEvent],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class SbbFeatureEventListener implements OnChanges, OnDestroy, OnInit {
+export class SbbFeatureEventListener implements OnChanges, OnDestroy {
   @Input() listenerOptions: SbbListenerOptions;
   @Input() map: MapLibreMap | null;
   @Input() poiOptions?: SbbPointsOfInterestOptions;
-  @Input() onFeaturesUnselect: Subject<SbbDeselectableFeatureDataType[]>;
 
   @Output() featureSelectionsChange: EventEmitter<SbbFeaturesSelectEventData> =
     new EventEmitter<SbbFeaturesSelectEventData>();
@@ -83,12 +80,6 @@ export class SbbFeatureEventListener implements OnChanges, OnDestroy, OnInit {
     private _cd: ChangeDetectorRef,
     readonly mapSelectionEventService: SbbMapSelectionEvent,
   ) {}
-
-  ngOnInit(): void {
-    this.onFeaturesUnselect.pipe(takeUntil(this._destroyed)).subscribe((types) => {
-      this.unselectFeaturesOfType(types);
-    });
-  }
 
   ngOnDestroy(): void {
     this._destroyed.next();
@@ -336,26 +327,6 @@ export class SbbFeatureEventListener implements OnChanges, OnDestroy, OnInit {
       this.mapSelectionEventService.toggleSelection(this.overlayFeatures);
       this.overlayFeatures = [];
       this.featureSelectionsChange.next(this.mapSelectionEventService.findSelectedFeatures());
-    }
-  }
-
-  // only used for POI-features at the moment
-  unselectFeaturesOfType(types: SbbDeselectableFeatureDataType[]) {
-    const selectedFeaturesOfTypes = this.overlayFeatures.filter((feature) =>
-      types.some((type) => feature.featureDataType === type),
-    );
-
-    if (selectedFeaturesOfTypes.length > 0) {
-      // unselect given features
-      this.overlayVisible = false;
-      this.mapSelectionEventService.toggleSelection(selectedFeaturesOfTypes);
-      this.featureSelectionsChange.next({ features: [] });
-
-      // remove unselected features from list
-      this.overlayFeatures = this.overlayFeatures.filter((feature) =>
-        types.some((type) => feature.featureDataType !== type),
-      );
-      this._cd.detectChanges();
     }
   }
 }

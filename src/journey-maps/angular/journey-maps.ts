@@ -452,8 +452,6 @@ export class SbbJourneyMaps implements OnInit, AfterViewInit, OnDestroy, OnChang
     this._map?.zoomOut();
   }
 
-  onFeaturesUnselectEvent: Subject<SbbDeselectableFeatureDataType[]> = new Subject();
-
   /**
    * Unselects all elements on the map that are of one of the `SbbFeatureDataType`s passed in as a parameter.
    * Currently, we only support 'MARKER' and 'POI'.
@@ -465,7 +463,7 @@ export class SbbJourneyMaps implements OnInit, AfterViewInit, OnDestroy, OnChang
     }
     // unselect pois
     if (types.includes('POI')) {
-      this.onFeaturesUnselectEvent.next(['POI']);
+      this.setSelectedPoi(undefined);
     }
   }
 
@@ -473,7 +471,7 @@ export class SbbJourneyMaps implements OnInit, AfterViewInit, OnDestroy, OnChang
    * Programmatically select a POI by providing the SBB-ID of the POI.
    * Only works for POIs that are currently visible in the map's viewport.
    */
-  setSelectedPoi(sbbId: string) {
+  setSelectedPoi(sbbId: string | undefined) {
     if (!!sbbId) {
       this._selectOrDeselectPoi(sbbId, true);
     } else {
