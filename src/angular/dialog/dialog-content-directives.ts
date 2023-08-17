@@ -10,6 +10,7 @@ import {
   HostListener,
   Input,
   OnChanges,
+  OnDestroy,
   OnInit,
   Optional,
   SimpleChanges,
@@ -101,7 +102,7 @@ export class SbbDialogClose implements OnInit, OnChanges {
  */
 @Directive()
 // tslint:disable-next-line: class-name naming-convention
-export class _SbbDialogTitleBase implements OnInit {
+export class _SbbDialogTitleBase implements OnInit, OnDestroy {
   /** Unique id for the dialog title. If none is supplied, it will be auto-generated. */
   @Input() id: string = `sbb-dialog-title-${dialogElementUid++}`;
 
@@ -142,8 +143,24 @@ export class _SbbDialogTitleBase implements OnInit {
           this._closeEnabled = false;
           this._changeDetectorRef.markForCheck();
         }
-        if (!container._ariaLabelledBy) {
-          container._ariaLabelledBy = this.id;
+        // Note: we null check the queue, because there are some internal
+        // tests that are mocking out `SbbDialogRef` incorrectly.
+        container._ariaLabelledByQueue?.push(this.id);
+      });
+    }
+  }
+
+  ngOnDestroy() {
+    // Note: we null check the queue, because there are some internal
+    // tests that are mocking out `MatDialogRef` incorrectly.
+    const queue = this._dialogRef?._containerInstance?._ariaLabelledByQueue;
+
+    if (queue) {
+      Promise.resolve().then(() => {
+        const index = queue.indexOf(this.id);
+
+        if (index > -1) {
+          queue.splice(index, 1);
         }
       });
     }

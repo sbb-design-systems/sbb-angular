@@ -1523,12 +1523,14 @@ describe('SbbDialog', () => {
 
   describe('dialog content elements', () => {
     let dialogRef: SbbDialogRef<any>;
+    let hostInstance: ContentElementDialog | ComponentWithContentElementTemplateRef;
 
     describe('inside component dialog', () => {
       beforeEach(fakeAsync(() => {
         dialogRef = dialog.open(ContentElementDialog, { viewContainerRef: testViewContainerRef });
         viewContainerFixture.detectChanges();
         flush();
+        hostInstance = dialogRef.componentInstance;
       }));
 
       runContentElementTests();
@@ -1545,6 +1547,7 @@ describe('SbbDialog', () => {
 
         viewContainerFixture.detectChanges();
         flush();
+        hostInstance = fixture.componentInstance;
       }));
 
       runContentElementTests();
@@ -1609,6 +1612,49 @@ describe('SbbDialog', () => {
         expect(container.getAttribute('aria-labelledby'))
           .withContext('Expected the aria-labelledby to match the title id.')
           .toBe(title.id);
+      }));
+
+      it('should update the aria-labelledby attribute if two titles are swapped', fakeAsync(() => {
+        const container = overlayContainerElement.querySelector('sbb-dialog-container')!;
+        let title = overlayContainerElement.querySelector('[sbb-dialog-title]')!;
+
+        flush();
+        viewContainerFixture.detectChanges();
+
+        const previousId = title.id;
+        expect(title.id).toBeTruthy();
+        expect(container.getAttribute('aria-labelledby')).toBe(title.id);
+
+        hostInstance.shownTitle = 'second';
+        viewContainerFixture.detectChanges();
+        flush();
+        viewContainerFixture.detectChanges();
+        title = overlayContainerElement.querySelector('[sbb-dialog-title]')!;
+
+        expect(title.id).toBeTruthy();
+        expect(title.id).not.toBe(previousId);
+        expect(container.getAttribute('aria-labelledby')).toBe(title.id);
+      }));
+
+      it('should update the aria-labelledby attribute if multiple titles are present and one is removed', fakeAsync(() => {
+        const container = overlayContainerElement.querySelector('sbb-dialog-container')!;
+
+        hostInstance.shownTitle = 'all';
+        viewContainerFixture.detectChanges();
+        flush();
+        viewContainerFixture.detectChanges();
+
+        const titles = overlayContainerElement.querySelectorAll('[sbb-dialog-title]');
+
+        expect(titles.length).toBe(3);
+        expect(container.getAttribute('aria-labelledby')).toBe(titles[0].id);
+
+        hostInstance.shownTitle = 'second';
+        viewContainerFixture.detectChanges();
+        flush();
+        viewContainerFixture.detectChanges();
+
+        expect(container.getAttribute('aria-labelledby')).toBe(titles[1].id);
       }));
 
       it('should add correct css class according to given [align] input in [sbb-dialog-actions]', () => {
@@ -2105,7 +2151,9 @@ class PizzaMsg {
 
 @Component({
   template: `
-    <h1 sbb-dialog-title>This is the title</h1>
+    <h1 sbb-dialog-title *ngIf="shouldShowTitle('first')">This is the first title</h1>
+    <h1 sbb-dialog-title *ngIf="shouldShowTitle('second')">This is the second title</h1>
+    <h1 sbb-dialog-title *ngIf="shouldShowTitle('third')">This is the third title</h1>
     <sbb-dialog-content>Lorem ipsum dolor sit amet.</sbb-dialog-content>
     <sbb-dialog-actions>
       <button sbb-dialog-close>Close</button>
@@ -2120,12 +2168,20 @@ class PizzaMsg {
     </sbb-dialog-actions>
   `,
 })
-class ContentElementDialog {}
+class ContentElementDialog {
+  shownTitle: 'first' | 'second' | 'third' | 'all' = 'first';
+
+  shouldShowTitle(name: string) {
+    return this.shownTitle === 'all' || this.shownTitle === name;
+  }
+}
 
 @Component({
   template: `
     <ng-template>
-      <h1 sbb-dialog-title>This is the title</h1>
+      <h1 sbb-dialog-title *ngIf="shouldShowTitle('first')">This is the first title</h1>
+      <h1 sbb-dialog-title *ngIf="shouldShowTitle('second')">This is the second title</h1>
+      <h1 sbb-dialog-title *ngIf="shouldShowTitle('third')">This is the third title</h1>
       <sbb-dialog-content>Lorem ipsum dolor sit amet.</sbb-dialog-content>
       <sbb-dialog-actions>
         <button sbb-dialog-close>Close</button>
@@ -2143,6 +2199,11 @@ class ContentElementDialog {}
 })
 class ComponentWithContentElementTemplateRef {
   @ViewChild(TemplateRef) templateRef: TemplateRef<any>;
+  shownTitle: 'first' | 'second' | 'third' | 'all' = 'first';
+
+  shouldShowTitle(name: string) {
+    return this.shownTitle === 'all' || this.shownTitle === name;
+  }
 }
 
 @Component({
