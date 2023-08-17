@@ -5,9 +5,11 @@ import {
   CdkHeaderRowDef,
   CdkRow,
   CdkRowDef,
-  CDK_ROW_TEMPLATE,
 } from '@angular/cdk/table';
 import { ChangeDetectionStrategy, Component, Directive, ViewEncapsulation } from '@angular/core';
+
+// We can't reuse `CDK_ROW_TEMPLATE` because it's incompatible with local compilation mode.
+const ROW_TEMPLATE = `<ng-container cdkCellOutlet></ng-container>`;
 
 /**
  * Header row definition for the sbb-table.
@@ -46,7 +48,7 @@ export class SbbRowDef<T> extends CdkRowDef<T> {}
 /** Header template container that contains the cell outlet. Adds the right class and role. */
 @Component({
   selector: 'sbb-header-row, tr[sbb-header-row]',
-  template: CDK_ROW_TEMPLATE,
+  template: ROW_TEMPLATE,
   host: {
     class: 'sbb-header-row',
     role: 'row',
@@ -63,7 +65,7 @@ export class SbbHeaderRow extends CdkHeaderRow {}
 /** Footer template container that contains the cell outlet. Adds the right class and role. */
 @Component({
   selector: 'sbb-footer-row, tr[sbb-footer-row]',
-  template: CDK_ROW_TEMPLATE,
+  template: ROW_TEMPLATE,
   host: {
     class: 'sbb-footer-row',
     role: 'row',
@@ -80,7 +82,7 @@ export class SbbFooterRow extends CdkFooterRow {}
 /** Data row template container that contains the cell outlet. Adds the right class and role. */
 @Component({
   selector: 'sbb-row, tr[sbb-row]',
-  template: CDK_ROW_TEMPLATE,
+  template: ROW_TEMPLATE,
   host: {
     class: 'sbb-row',
     role: 'row',

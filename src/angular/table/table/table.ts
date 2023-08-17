@@ -10,7 +10,6 @@ import { ViewportRuler } from '@angular/cdk/scrolling';
 import {
   CdkTable,
   CDK_TABLE,
-  CDK_TABLE_TEMPLATE,
   RenderRow,
   RowContext,
   StickyPositioningListener,
@@ -54,7 +53,17 @@ export class SbbRecycleRows {}
 @Component({
   selector: 'sbb-table, table[sbb-table]',
   exportAs: 'sbbTable',
-  template: CDK_TABLE_TEMPLATE,
+  // Note that according to MDN, the `caption` element has to be projected as the **first**
+  // element in the table. See https://developer.mozilla.org/en-US/docs/Web/HTML/Element/caption
+  // We can't reuse `CDK_TABLE_TEMPLATE` because it's incompatible with local compilation mode.
+  template: `
+    <ng-content select="caption"></ng-content>
+    <ng-content select="colgroup, col"></ng-content>
+    <ng-container headerRowOutlet></ng-container>
+    <ng-container rowOutlet></ng-container>
+    <ng-container noDataRowOutlet></ng-container>
+    <ng-container footerRowOutlet></ng-container>
+  `,
   host: {
     class: 'sbb-table',
     '[class.sbb-table-fixed-layout]': 'fixedLayout',
