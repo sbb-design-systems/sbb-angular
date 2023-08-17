@@ -84,8 +84,8 @@
     </unit>
     <unit id="sbbDialogCloseDialog">
       <notes>
-        <note category="location">../../../../../../src/angular/dialog/dialog-content-directives.ts:38</note>
-        <note category="location">../../../../../../src/angular/dialog/dialog-content-directives.ts:110</note>
+        <note category="location">../../../../../../src/angular/dialog/dialog-content-directives.ts:39</note>
+        <note category="location">../../../../../../src/angular/dialog/dialog-content-directives.ts:111</note>
         <note category="description">Aria label to close a dialog</note>
       </notes>
       <segment>
