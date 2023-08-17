@@ -39,7 +39,7 @@ import { sbbLightboxAnimations } from './lightbox-animations';
     '[id]': '_config.id',
     '[attr.role]': '_config.role',
     '[attr.aria-modal]': '_config.ariaModal',
-    '[attr.aria-labelledby]': '_config.ariaLabel ? null : _ariaLabelledBy',
+    '[attr.aria-labelledby]': '_config.ariaLabel ? null : _ariaLabelledByQueue[0]',
     '[attr.aria-label]': '_config.ariaLabel',
     '[attr.aria-describedby]': '_config.ariaDescribedBy || null',
     '[@lightboxContainer]': `_getAnimationState()`,
