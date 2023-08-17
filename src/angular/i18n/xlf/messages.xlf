@@ -78,11 +78,11 @@
         <source>Close dialog</source>
         <context-group purpose="location">
           <context context-type="sourcefile">../../../../../../src/angular/dialog/dialog-content-directives.ts</context>
-          <context context-type="linenumber">38</context>
+          <context context-type="linenumber">39</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">../../../../../../src/angular/dialog/dialog-content-directives.ts</context>
-          <context context-type="linenumber">110</context>
+          <context context-type="linenumber">111</context>
         </context-group>
         <note priority="1" from="description">Aria label to close a dialog</note>
       </trans-unit>
