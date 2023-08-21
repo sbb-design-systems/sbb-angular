@@ -83,7 +83,7 @@
     "@babel/core": "7.22.10",
     "@babel/plugin-proposal-async-generator-functions": "^7.20.7",
     "@babel/traverse": "7.22.10",
-    "@bazel/bazelisk": "1.12.1",
+    "@bazel/bazelisk": "1.18.0",
     "@bazel/buildifier": "6.3.2",
     "@bazel/buildozer": "6.3.2",
     "@bazel/concatjs": "5.8.1",
