@@ -13,7 +13,7 @@ export interface HasVariant {
 }
 
 /** Possible variant values. */
-export type SbbVariant = 'standard' | 'lean';
+export type SbbVariant = 'standard' | 'lean' | 'lean_dark';
 
 /** Mixin to augment a directive with a variant property. */
 export function mixinVariant<T extends AbstractConstructor<any>>(
