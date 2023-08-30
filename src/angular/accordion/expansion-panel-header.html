@@ -6,13 +6,13 @@
   [ngSwitch]="panel.variant | async"
   *ngIf="_showToggle()"
 >
-  <sbb-icon
-    *ngSwitchCase="'lean'"
-    [@indicatorRotate]="_getExpandedState()"
-    svgIcon="chevron-right-small"
-  ></sbb-icon>
   <ng-container *ngSwitchCase="'standard'" [ngSwitch]="_isExpanded()">
     <sbb-icon *ngSwitchCase="false" svgIcon="plus-small"></sbb-icon>
     <sbb-icon *ngSwitchCase="true" svgIcon="minus-small"></sbb-icon>
   </ng-container>
+  <sbb-icon
+    *ngSwitchDefault
+    [@indicatorRotate]="_getExpandedState()"
+    svgIcon="chevron-right-small"
+  ></sbb-icon>
 </span>
