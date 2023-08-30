@@ -112,6 +112,9 @@
   --sbb-color-text: var(--sbb-color-black);
   --sbb-color-weak-accent: var(--sbb-color-granite);
 
+  // Dark mode colors
+  --sbb-dark-mode-color-red: #{sbb.$sbbDarkModeColorRed};
+
   // Scaling
   --sbb-scaling-factor: 1;
 
@@ -249,10 +252,18 @@
   // Sidebar
   --sbb-sidebar-mobile-menu-bar-height: calc(2 * var(--sbb-icon-size-default));
   --sbb-icon-sidebar-item-dimension: calc(2 * var(--sbb-icon-size-default));
+  --sbb-sidebar-background-color: var(--sbb-color-background);
+  --sbb-icon-sidebar-background-color: var(--sbb-color-milk);
+  --sbb-icon-sidebar-background-color-active: var(--sbb-color-background);
+  --sbb-icon-sidebar-collapse-button-background-color: var(--sbb-color-milk);
 
   // Menu
   // (36 (Desired width) - 24 (icon width)) / 2
   --sbb-menu-trigger-padding: calc(#{sbb.pxToRem(6)} * var(--sbb-scaling-factor));
+  --sbb-menu-item-label: var(--sbb-color-iron);
+  --sbb-menu-item-label-active: var(--sbb-color-black);
+  --sbb-menu-item-background-color-hover: var(--sbb-color-milk);
+  --sbb-menu-item-background-color-active: var(--sbb-color-cloud);
 
   // Table
   --sbb-table-background-color: var(--sbb-color-background);
@@ -527,6 +538,26 @@
       --sbb-color-red125: #{sbb.$sbbColorRoyal125};
       --sbb-color-red150: #{sbb.$sbbColorRoyal150};
       --sbb-color-red-alpha40: #{rgba(sbb.$sbbColorRoyal, 0.4)};
+    }
+
+    &:where(.sbb-lean.sbb-dark) {
+      // Context colors
+      --sbb-color-background: var(--sbb-color-black);
+      --sbb-color-text: var(--sbb-color-white);
+      --sbb-color-call-to-action: var(--sbb-dark-mode-color-red);
+      --sbb-color-call-to-action-hover: var(--sbb-dark-mode-color-red);
+
+      // Sidebar
+      --sbb-sidebar-background-color: var(--sbb-color-midnight);
+      --sbb-icon-sidebar-background-color: var(--sbb-color-black);
+      --sbb-icon-sidebar-background-color-active: var(--sbb-color-charcoal);
+      --sbb-icon-sidebar-collapse-button-background-color: var(--sbb-color-background);
+
+      // Menu
+      --sbb-menu-item-label: var(--sbb-color-milk);
+      --sbb-menu-item-label-active: var(--sbb-color-white);
+      --sbb-menu-item-background-color-hover: transparent;
+      --sbb-menu-item-background-color-active: var(--sbb-color-charcoal);
     }
   }
 }

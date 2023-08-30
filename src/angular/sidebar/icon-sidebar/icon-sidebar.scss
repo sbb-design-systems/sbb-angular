@@ -27,7 +27,7 @@
 .sbb-icon-sidebar {
   @include sidebar.sbb-sidebar;
   position: relative;
-  background-color: var(--sbb-color-milk);
+  background-color: var(--sbb-icon-sidebar-background-color);
   transition: width var(--sbb-transition-duration-default) var(--sbb-transition-timing-default);
 
   hr {
@@ -98,7 +98,7 @@
 .sbb-icon-sidebar-item {
   position: relative;
   text-decoration: none;
-  color: var(--sbb-color-iron);
+  color: var(--sbb-menu-item-label);
   font-size: var(--sbb-font-size);
   line-height: sbb.pxToRem(23);
   display: inline-flex;
@@ -112,7 +112,7 @@
 
   &.sbb-active {
     @include sbb.sbbMenuItemBlackLean(calc(var(--sbb-border-width-thin) * 2));
-    background-color: var(--sbb-color-background);
+    background-color: var(--sbb-icon-sidebar-background-color-active);
     cursor: default;
     pointer-events: none;
 
@@ -182,7 +182,7 @@
   position: absolute;
   bottom: 0;
   width: 100%;
-  background-color: var(--sbb-color-milk);
+  background-color: var(--sbb-icon-sidebar-collapse-button-background-color);
   cursor: pointer;
   outline: 0;
   overflow: hidden;
