@@ -6,7 +6,7 @@ export const ɵvariant = new BehaviorSubject<SbbVariant>('standard');
 
 /** @docs-private */
 export interface HasVariant {
-  /** Observable holding current variant (`lean` or `standard`) which emits by change */
+  /** Observable holding current variant (`lean`, `lean_dark` or `standard`) which emits by change */
   readonly variant: Observable<SbbVariant>;
   /** Returns current active variant as a snapshot */
   readonly variantSnapshot: SbbVariant;
