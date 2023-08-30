@@ -552,11 +552,12 @@
       --sbb-color-call-to-action: var(--sbb-dark-mode-color-red);
       --sbb-color-call-to-action-hover: var(--sbb-dark-mode-color-red);
 
-      // Sidebar
-      --sbb-sidebar-background-color: var(--sbb-color-midnight);
-      --sbb-icon-sidebar-background-color: var(--sbb-color-black);
-      --sbb-icon-sidebar-background-color-active: var(--sbb-color-charcoal);
-      --sbb-icon-sidebar-collapse-button-background-color: var(--sbb-color-background);
+      // Expansion Panel
+      --sbb-expansion-panel-background-color-open: var(--sbb-color-charcoal);
+      --sbb-expansion-panel-background-color-closed: var(--sbb-color-midnight);
+      --sbb-expansion-panel-border-color-open: var(--sbb-color-iron);
+      --sbb-expansion-panel-border-color-closed: var(--sbb-color-midnight);
+      --sbb-expansion-panel-header-indicator-color: var(--sbb-color-white);
 
       // Menu
       --sbb-menu-item-label: var(--sbb-color-milk);
@@ -564,12 +565,11 @@
       --sbb-menu-item-background-color-hover: transparent;
       --sbb-menu-item-background-color-active: var(--sbb-color-charcoal);
 
-      // Expansion Panel
-      --sbb-expansion-panel-background-color-open: var(--sbb-color-charcoal);
-      --sbb-expansion-panel-background-color-closed: var(--sbb-color-midnight);
-      --sbb-expansion-panel-border-color-open: var(--sbb-color-iron);
-      --sbb-expansion-panel-border-color-closed: var(--sbb-color-midnight);
-      --sbb-expansion-panel-header-indicator-color: var(--sbb-color-white);
+      // Sidebar
+      --sbb-sidebar-background-color: var(--sbb-color-midnight);
+      --sbb-icon-sidebar-background-color: var(--sbb-color-black);
+      --sbb-icon-sidebar-background-color-active: var(--sbb-color-charcoal);
+      --sbb-icon-sidebar-collapse-button-background-color: var(--sbb-color-background);
     }
   }
 }
