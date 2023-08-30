@@ -547,17 +547,17 @@
       --sbb-color-call-to-action: var(--sbb-dark-mode-color-red);
       --sbb-color-call-to-action-hover: var(--sbb-dark-mode-color-red);
 
-      // Sidebar
-      --sbb-sidebar-background-color: var(--sbb-color-midnight);
-      --sbb-icon-sidebar-background-color: var(--sbb-color-black);
-      --sbb-icon-sidebar-background-color-active: var(--sbb-color-charcoal);
-      --sbb-icon-sidebar-collapse-button-background-color: var(--sbb-color-background);
-
       // Menu
       --sbb-menu-item-label: var(--sbb-color-milk);
       --sbb-menu-item-label-active: var(--sbb-color-white);
       --sbb-menu-item-background-color-hover: transparent;
       --sbb-menu-item-background-color-active: var(--sbb-color-charcoal);
+
+      // Sidebar
+      --sbb-sidebar-background-color: var(--sbb-color-midnight);
+      --sbb-icon-sidebar-background-color: var(--sbb-color-black);
+      --sbb-icon-sidebar-background-color-active: var(--sbb-color-charcoal);
+      --sbb-icon-sidebar-collapse-button-background-color: var(--sbb-color-background);
     }
   }
 }
