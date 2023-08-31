@@ -5,14 +5,14 @@
   display: block;
   margin: 0;
   transition: border-color var(--sbb-transition-fast-start);
-  border: var(--sbb-border-width-thin) solid var(--sbb-color-milk);
+  border: var(--sbb-border-width-thin) solid var(--sbb-expansion-panel-border-color-closed);
 
   & + & {
     margin-top: calc(var(--sbb-border-width-thin) * 2);
   }
 
   &.sbb-expanded {
-    border-color: var(--sbb-color-cloud);
+    border-color: var(--sbb-expansion-panel-border-color-open);
 
     &.sbb-expansion-panel-full-width {
       // Setting border color to transparent is necessary because of border-color animation
@@ -37,7 +37,7 @@
   display: flex;
   align-items: center;
   position: relative;
-  background-color: var(--sbb-color-milk);
+  background-color: var(--sbb-expansion-panel-background-color-closed);
   outline: none;
   padding-top: var(--sbb-expansion-panel-header-padding-top);
   padding-bottom: var(--sbb-expansion-panel-header-padding-bottom);
@@ -56,11 +56,11 @@
       100% - var(--sbb-expansion-panel-padding-horizontal) * 2 + var(--sbb-border-width-thin) * 2
     );
     left: calc(var(--sbb-expansion-panel-padding-horizontal) - var(--sbb-border-width-thin));
-    border-bottom: var(--sbb-border-width-thin) solid var(--sbb-color-cloud);
+    border-bottom: var(--sbb-border-width-thin) solid var(--sbb-expansion-panel-border-color-open);
   }
 
   &:is(.sbb-expanded, .sbb-expanded:is(:focus, :hover)) {
-    background: inherit;
+    background: var(--sbb-expansion-panel-background-color-open);
   }
 
   &.sbb-disabled {
@@ -75,7 +75,7 @@
   height: var(--sbb-icon-size-default);
   width: var(--sbb-icon-size-default);
   margin-left: sbb.pxToRem(24);
-  color: var(--sbb-color-black);
+  color: var(--sbb-expansion-panel-header-indicator-color);
 
   // Workaround to ensure calculated height of icon is not greater than line-height
   margin-top: -0.5em;
@@ -140,6 +140,7 @@
   line-height: var(--sbb-line-height);
   padding-top: var(--sbb-divider-medium);
   padding-bottom: var(--sbb-divider-medium);
+  background-color: var(--sbb-expansion-panel-background-color-open);
 
   // Remove the top margin from the first element inside the body.
   > *:first-child {

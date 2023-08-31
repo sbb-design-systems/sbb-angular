@@ -8,16 +8,16 @@ import {
   RouterStateSnapshot,
   UrlTree,
 } from '@angular/router';
-import { ɵvariant } from '@sbb-esta/angular/core';
+import { SbbVariant, ɵvariant } from '@sbb-esta/angular/core';
 import { fromEvent, Observable, Subject } from 'rxjs';
-import { filter, startWith, takeUntil } from 'rxjs/operators';
+import { filter, map, startWith, takeUntil } from 'rxjs/operators';
 
 const variantLocalstorageKey = 'sbbAngularVariant';
 
 @Injectable({ providedIn: 'root' })
 export class VariantSwitch implements CanActivate, OnDestroy {
-  sbbVariant: FormControl = new FormControl(
-    localStorage.getItem(variantLocalstorageKey) || 'standard',
+  sbbVariant: FormControl<SbbVariant> = new FormControl(
+    (localStorage.getItem(variantLocalstorageKey) as SbbVariant) || 'standard',
   );
   private _destroyed = new Subject<void>();
 
@@ -30,18 +30,28 @@ export class VariantSwitch implements CanActivate, OnDestroy {
       .pipe(
         filter((value) => value.ctrlKey && value.shiftKey && value.key === 'V'),
         takeUntil(this._destroyed),
+        map(
+          () =>
+            ({
+              standard: 'lean',
+              lean: 'lean_dark',
+              lean_dark: 'standard',
+            })[this.sbbVariant.value] as SbbVariant,
+        ),
       )
-      .subscribe(() =>
-        this.sbbVariant.setValue(this.sbbVariant.value === 'standard' ? 'lean' : 'standard'),
-      );
+      .subscribe((newVariant) => this.sbbVariant.setValue(newVariant));
 
     this.sbbVariant.valueChanges
       .pipe(startWith(this.sbbVariant.value), takeUntil(this._destroyed))
       .subscribe((value) => {
+        document.documentElement.classList.remove('sbb-dark');
         if (value === 'standard') {
           document.documentElement.classList.remove('sbb-lean');
         } else {
           document.documentElement.classList.add(`sbb-lean`);
+          if (value === 'lean_dark') {
+            document.documentElement.classList.add(`sbb-dark`);
+          }
         }
         ɵvariant.next(value);
         localStorage.setItem(variantLocalstorageKey, value);
@@ -65,7 +75,7 @@ export class VariantSwitch implements CanActivate, OnDestroy {
       return true;
     }
 
-    const variant = route.queryParamMap.get('variant');
+    const variant = route.queryParamMap.get('variant') as SbbVariant;
     if (this.sbbVariant.value !== variant) {
       this.sbbVariant.setValue(variant);
     }
