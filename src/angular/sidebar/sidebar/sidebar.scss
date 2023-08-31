@@ -156,7 +156,7 @@
 
   > :is(.sbb-expansion-panel, fieldset) {
     border: none;
-    border-bottom: var(--sbb-border-width-thin) solid var(--sbb-color-cloud);
+    border-bottom: var(--sbb-border-width-thin) solid var(--sbb-expansion-panel-border-color-open);
 
     + :is(.sbb-expansion-panel, fieldset) {
       margin-top: calc(
