@@ -152,6 +152,11 @@
   --sbb-transition-default: var(--sbb-transition-duration-default)
     var(--sbb-transition-timing-default);
 
+  // Badge
+  --sbb-badge-background-color: var(--sbb-color-red);
+  --sbb-badge-background-color-disabled: var(--sbb-color-metal);
+  --sbb-badge-color: var(--sbb-color-white);
+
   // Breadcrumb
   --sbb-breadcrumb-trigger-padding-horizontal: calc(#{sbb.pxToRem(30)} * var(--sbb-scaling-factor));
   --sbb-breadcrumb-trigger-padding-vertical: calc(#{sbb.pxToRem(14)} * var(--sbb-scaling-factor));
@@ -461,6 +466,10 @@
     --sbb-line-height-medium: #{sbb.pxToRem(20)};
     --sbb-font-size-large: #{sbb.pxToRem(21)};
 
+    // Badge
+    --sbb-badge-background-color: var(--sbb-color-black);
+    --sbb-badge-background-color-disabled: var(--sbb-color-granite);
+
     // Button
     --sbb-button-height: #{sbb.pxToRem(36)};
 
@@ -551,6 +560,11 @@
       --sbb-color-text: var(--sbb-color-white);
       --sbb-color-call-to-action: var(--sbb-color-red_dark-mode);
       --sbb-color-call-to-action-hover: var(--sbb-color-red_dark-mode);
+
+      // Badge
+      --sbb-badge-background-color: var(--sbb-color-white);
+      --sbb-badge-background-color-disabled: var(--sbb-color-anthracite);
+      --sbb-badge-color: var(--sbb-color-black);
 
       // Expansion Panel
       --sbb-expansion-panel-background-color-open: var(--sbb-color-charcoal);
@@ -1268,8 +1282,8 @@ textarea {
   padding: calc(#{sbb.pxToRem(4)} * var(--sbb-scaling-factor))
     calc(#{sbb.pxToRem(5)} * var(--sbb-scaling-factor));
   margin-left: calc(#{sbb.pxToRem(2)} * var(--sbb-scaling-factor));
-  background-color: var(--sbb-color-red);
-  color: var(--sbb-color-white);
+  background-color: var(--sbb-badge-background-color);
+  color: var(--sbb-badge-color);
   font-family: var(--sbb-font-bold);
   line-height: 1;
   height: calc(#{sbb.pxToRem(18)} * var(--sbb-scaling-factor));
@@ -1282,9 +1296,6 @@ textarea {
     @include sbb.mq($from: desktop5k) {
       font-size: sbb.pxToRem(22);
     }
-  }
-  :where(html.sbb-lean) & {
-    background-color: var(--sbb-color-black);
   }
 
   .sbb-badge-above & {
@@ -1300,12 +1311,8 @@ textarea {
   }
 
   :is(.sbb-badge-disabled, .sbb-tab-disabled) & {
-    background-color: var(--sbb-color-metal);
+    background-color: var(--sbb-badge-background-color-disabled);
     color: var(--sbb-color-white);
-
-    :where(html.sbb-lean) & {
-      background-color: var(--sbb-color-granite);
-    }
   }
 
   .ng-animate-disabled &,
