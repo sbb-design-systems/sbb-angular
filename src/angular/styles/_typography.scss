@@ -113,7 +113,7 @@
   --sbb-color-weak-accent: var(--sbb-color-granite);
 
   // Dark mode colors
-  --sbb-dark-mode-color-red: #{sbb.$sbbDarkModeColorRed};
+  --sbb-color-red_dark-mode: #{sbb.$sbbColorRedDarkMode};
 
   // Scaling
   --sbb-scaling-factor: 1;
@@ -544,8 +544,8 @@
       // Context colors
       --sbb-color-background: var(--sbb-color-black);
       --sbb-color-text: var(--sbb-color-white);
-      --sbb-color-call-to-action: var(--sbb-dark-mode-color-red);
-      --sbb-color-call-to-action-hover: var(--sbb-dark-mode-color-red);
+      --sbb-color-call-to-action: var(--sbb-color-red_dark-mode);
+      --sbb-color-call-to-action-hover: var(--sbb-color-red_dark-mode);
 
       // Menu
       --sbb-menu-item-label: var(--sbb-color-milk);
