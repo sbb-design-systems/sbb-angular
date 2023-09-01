@@ -165,6 +165,21 @@
   --sbb-button-height: calc(#{sbb.pxToRem(48)} * var(--sbb-scaling-factor));
   --sbb-button-icon-top-margin: calc(#{sbb.pxToRem(-12.5)} * var(--sbb-scaling-factor));
 
+  // Checkbox
+  --sbb-checkbox-background-color-default: var(--sbb-color-background);
+  --sbb-checkbox-background-color-disabled: var(--sbb-color-milk);
+
+  --sbb-checkbox-border-color-default: var(--sbb-color-graphite);
+  --sbb-checkbox-border-color-disabled: var(--sbb-color-aluminum);
+
+  --sbb-checkbox-icon-color-default: var(--sbb-color-red);
+  --sbb-checkbox-icon-color-disabled: var(--sbb-color-granite);
+  --sbb-checkbox-border-color-focused: var(--sbb-color-weak-accent);
+
+  --sbb-checkbox-label-color-checked: var(--sbb-color-iron);
+  --sbb-checkbox-label-color-unchecked: var(--sbb-color-granite);
+  --sbb-checkbox-label-color-disabled: var(--sbb-color-granite);
+
   // Chips
   --sbb-chips-list-height: var(--sbb-form-input-min-height);
   --sbb-chips-chip-margin-vertical: calc(2 * var(--sbb-border-width));
@@ -489,6 +504,20 @@
     // Button
     --sbb-button-height: #{sbb.pxToRem(36)};
 
+    // Checkbox
+    --sbb-checkbox-background-color-default: var(--sbb-color-white);
+    --sbb-checkbox-background-color-disabled: var(--sbb-color-milk);
+
+    --sbb-checkbox-border-color-default: var(--sbb-color-smoke);
+    --sbb-checkbox-border-color-disabled: var(--sbb-color-smoke);
+
+    --sbb-checkbox-icon-color-default: var(--sbb-color-iron);
+    --sbb-checkbox-icon-color-disabled: var(--sbb-color-iron);
+
+    --sbb-checkbox-label-color-checked: var(--sbb-color-iron);
+    --sbb-checkbox-label-color-unchecked: var(--sbb-color-granite);
+    --sbb-checkbox-label-color-disabled: var(--sbb-color-granite);
+
     // Datepicker
     --sbb-datepicker-toggle-or-arrows-padding: calc(#{sbb.pxToRem(38)} - var(--sbb-border-width));
     --sbb-datepicker-toggle-and-arrows-padding: calc(#{sbb.pxToRem(62)} - var(--sbb-border-width));
@@ -587,6 +616,21 @@
     }
 
     &:where(.sbb-lean.sbb-dark) {
+      // Checkbox
+      --sbb-checkbox-background-color-default: var(--sbb-color-background);
+      --sbb-checkbox-background-color-disabled: var(--sbb-color-charcoal);
+
+      --sbb-checkbox-border-color-default: var(--sbb-color-graphite);
+      --sbb-checkbox-border-color-disabled: var(--sbb-color-smoke);
+      --sbb-checkbox-border-color-focused: var(--sbb-color-text);
+
+      --sbb-checkbox-icon-color-default: var(--sbb-color-text);
+      --sbb-checkbox-icon-color-disabled: var(--sbb-color-smoke);
+
+      --sbb-checkbox-label-color-checked: var(--sbb-color-text);
+      --sbb-checkbox-label-color-unchecked: var(--sbb-color-graphite);
+      --sbb-checkbox-label-color-disabled: var(--sbb-color-smoke);
+
       // Context colors
       --sbb-color-background: var(--sbb-color-black);
       --sbb-color-text: var(--sbb-color-white);
@@ -1784,14 +1828,14 @@ textarea {
 
 .sbb-selection-container {
   display: inline-block;
-  background-color: var(--sbb-color-background);
+  background-color: var(--sbb-checkbox-background-color-default);
   margin-top: calc(#{sbb.pxToRem(3)} * var(--sbb-scaling-factor));
 
   width: calc(#{sbb.pxToRem(20)} * var(--sbb-scaling-factor));
   min-width: calc(#{sbb.pxToRem(20)} * var(--sbb-scaling-factor));
   height: calc(#{sbb.pxToRem(20)} * var(--sbb-scaling-factor));
   min-height: calc(#{sbb.pxToRem(20)} * var(--sbb-scaling-factor));
-  border: var(--sbb-border-width) solid var(--sbb-color-graphite);
+  border: var(--sbb-border-width) solid var(--sbb-checkbox-border-color-default);
   margin-right: calc(#{sbb.pxToRem(8)} * var(--sbb-scaling-factor));
 
   :where(html.sbb-lean) & {
@@ -1801,7 +1845,7 @@ textarea {
   .sbb-selection-input:focus + &,
   // Applies focus highlight for pseudo-checkbox
   .sbb-menu-item.sbb-active .sbb-pseudo-checkbox & {
-    border-color: var(--sbb-color-weak-accent);
+    border-color: var(--sbb-checkbox-label-color-focused);
   }
 
   :is(.sbb-checkbox, .sbb-pseudo-checkbox) & {
@@ -1817,8 +1861,8 @@ textarea {
   }
 
   .sbb-selection-disabled & {
-    border-color: var(--sbb-color-aluminum);
-    background-color: var(--sbb-color-milk);
+    border-color: var(--sbb-checkbox-border-color-disabled);
+    background-color: var(--sbb-checkbox-background-color-disabled);
   }
 
   .sbb-selection-indeterminate &::before {
@@ -1828,32 +1872,21 @@ textarea {
     width: sbb.pxToRem(10);
     left: calc(50% - #{sbb.pxToRem(5)});
     top: calc(50% - #{sbb.pxToRem(0.5)});
-    border: sbb.pxToRem(1) solid var(--sbb-color-red);
+    border: sbb.pxToRem(1) solid var(--sbb-checkbox-icon-color-default);
     display: block;
     background-color: var(
-      --sbb-color-red
+      --sbb-checkbox-icon-color-default
     ); // Used to fill line when user has activated browser zoom
-
-    :where(html.sbb-lean) & {
-      border-color: var(--sbb-color-granite);
-      background-color: var(
-        --sbb-color-granite
-      ); // Used to fill line when user has activated browser zoom
-    }
   }
 }
 
 .sbb-selection-container-checked {
-  color: var(--sbb-color-red);
+  color: var(--sbb-checkbox-icon-color-default);
   line-height: 0;
   height: 100%;
   width: 100%;
   transition: opacity var(--sbb-transition-default);
   position: relative;
-
-  :where(html.sbb-lean) & {
-    color: var(--sbb-color-iron);
-  }
 
   :is(.sbb-checkbox, .sbb-pseudo-checkbox) & {
     display: none;
@@ -1891,7 +1924,7 @@ textarea {
   }
 
   .sbb-selection-disabled & {
-    color: var(--sbb-color-granite);
+    color: var(--sbb-checkbox-icon-color-disabled);
   }
 
   .sbb-selection-checked & {
@@ -1905,7 +1938,7 @@ textarea {
 
 .sbb-selection-content {
   @include sbb.user-select(auto);
-  color: var(--sbb-color-granite);
+  color: var(--sbb-checkbox-label-color-unchecked);
   transition: color var(--sbb-transition-default);
 
   :where(html.sbb-lean) & {
@@ -1913,19 +1946,11 @@ textarea {
   }
 
   :is(.sbb-selection-checked, .sbb-selection-indeterminate) & {
-    color: var(--sbb-color-text);
-
-    :where(html.sbb-lean) & {
-      color: var(--sbb-color-iron);
-    }
+    color: var(--sbb-checkbox-label-color-checked);
   }
 
   .sbb-selection-disabled & {
-    color: var(--sbb-color-granite);
-
-    :where(html.sbb-lean) & {
-      color: var(--sbb-color-storm);
-    }
+    color: var(--sbb-checkbox-label-color-disabled);
   }
 }
 
