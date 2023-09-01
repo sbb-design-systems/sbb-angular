@@ -259,6 +259,22 @@
   --sbb-pagination-paginator-size: calc(#{sbb.pxToRem(40)} * var(--sbb-scaling-factor));
   --sbb-pagination-navigation-item-margin: calc(#{sbb.pxToRem(4)} * var(--sbb-scaling-factor));
 
+  // Radiobutton
+  --sbb-radiobutton-background-color-default: var(--sbb-color-background);
+  --sbb-radiobutton-background-color-disabled: var(--sbb-color-milk);
+
+  --sbb-radiobutton-border-color-default: var(--sbb-color-graphite);
+  --sbb-radiobutton-border-color-focused: var(--sbb-color-weak-accent);
+  --sbb-radiobutton-border-color-disabled: var(--sbb-color-aluminum);
+  --sbb-radiobutton-border-color-error: var(--sbb-color-red);
+
+  --sbb-radiobutton-selector-color-default: var(--sbb-color-red);
+  --sbb-radiobutton-selector-color-error: var(--sbb-color-red);
+
+  --sbb-radiobutton-label-color-checked: var(--sbb-color-text);
+  --sbb-radiobutton-label-color-unchecked: var(--sbb-color-granite);
+  --sbb-radiobutton-label-color-disabled: var(--sbb-color-granite);
+
   // Sidebar
   --sbb-sidebar-mobile-menu-bar-height: calc(2 * var(--sbb-icon-size-default));
   --sbb-icon-sidebar-item-dimension: calc(2 * var(--sbb-icon-size-default));
@@ -519,6 +535,22 @@
     --sbb-pagination-disabled-color: var(--sbb-color-storm);
     --sbb-pagination-paginator-size: #{sbb.pxToRem(30)};
 
+    // Radiobutton
+    --sbb-radiobutton-background-color-default: var(--sbb-color-background);
+    --sbb-radiobutton-background-color-disabled: var(--sbb-color-milk);
+
+    --sbb-radiobutton-border-color-default: var(--sbb-color-smoke);
+    --sbb-radiobutton-border-color-focused: var(--sbb-color-iron);
+    --sbb-radiobutton-border-color-error: var(--sbb-color-red);
+
+    --sbb-radiobutton-selector-color-default: var(--sbb-color-iron);
+    --sbb-radiobutton-selector-color-disabled: var(--sbb-color-iron);
+    --sbb-radiobutton-selector-color-error: var(--sbb-color-red);
+
+    --sbb-radiobutton-label-color-checked: var(--sbb-color-iron);
+    --sbb-radiobutton-label-color-unchecked: var(--sbb-color-granite);
+    --sbb-radiobutton-label-color-disabled: var(--sbb-color-granite);
+
     // Table
     --sbb-table-cell-padding-vertical: #{sbb.pxToRem(6)};
 
@@ -578,6 +610,22 @@
       --sbb-menu-item-label-active: var(--sbb-color-white);
       --sbb-menu-item-background-color-hover: transparent;
       --sbb-menu-item-background-color-active: var(--sbb-color-charcoal);
+
+      // Radiobutton
+      --sbb-radiobutton-background-color-default: var(--sbb-color-background);
+      --sbb-radiobutton-background-color-disabled: var(--sbb-color-charcoal);
+
+      --sbb-radiobutton-border-color-default: var(--sbb-color-graphite);
+      --sbb-radiobutton-border-color-focused: var(--sbb-color-text);
+      --sbb-radiobutton-border-color-error: var(--sbb-color-red_dark-mode);
+
+      --sbb-radiobutton-selector-color-default: var(--sbb-color-text);
+      --sbb-radiobutton-selector-color-disabled: var(--sbb-color-smoke);
+      --sbb-radiobutton-selector-color-error: var(--sbb-color-red_dark-mode);
+
+      --sbb-radiobutton-label-color-checked: var(--sbb-color-text);
+      --sbb-radiobutton-label-color-unchecked: var(--sbb-color-graphite);
+      --sbb-radiobutton-label-color-disabled: var(--sbb-color-smoke);
 
       // Sidebar
       --sbb-sidebar-background-color: var(--sbb-color-midnight);
