@@ -307,9 +307,9 @@
     "@angular/core" "^13.0.0 || ^14.0.0-0"
     reflect-metadata "^0.1.13"
 
-"@angular/build-tooling@https://github.com/angular/dev-infra-private-build-tooling-builds.git#3fbfc37998c3407d3cde226ba9af828dea1169a0":
-  version "0.0.0-480911a3506374c76aa9a79ca0b4a690a2855d39"
-  resolved "https://github.com/angular/dev-infra-private-build-tooling-builds.git#3fbfc37998c3407d3cde226ba9af828dea1169a0"
+"@angular/build-tooling@https://github.com/angular/dev-infra-private-build-tooling-builds.git#148a2664e8323239f6535aa3d4cf5ef765891a7d":
+  version "0.0.0-9a54ceecfcd399051e18cd2dbdd6c9fc893f5dc4"
+  resolved "https://github.com/angular/dev-infra-private-build-tooling-builds.git#148a2664e8323239f6535aa3d4cf5ef765891a7d"
   dependencies:
     "@angular-devkit/build-angular" "16.2.0-rc.1"
     "@angular/benchpress" "0.3.0"
@@ -334,9 +334,9 @@
     "@types/yargs" "^17.0.0"
     browser-sync "^2.27.7"
     clang-format "1.8.0"
-    prettier "3.0.2"
+    prettier "3.0.3"
     protractor "^7.0.0"
-    selenium-webdriver "4.11.1"
+    selenium-webdriver "4.12.0"
     send "^0.18.0"
     source-map "^0.7.4"
     tmp "^0.2.1"
@@ -449,9 +449,9 @@
     fast-glob "3.3.0"
     yargs "^17.2.1"
 
-"@angular/ng-dev@https://github.com/angular/dev-infra-private-ng-dev-builds.git#d54edeb93ce47c8ed8961c219950bd380ed9ea99":
-  version "0.0.0-480911a3506374c76aa9a79ca0b4a690a2855d39"
-  resolved "https://github.com/angular/dev-infra-private-ng-dev-builds.git#d54edeb93ce47c8ed8961c219950bd380ed9ea99"
+"@angular/ng-dev@https://github.com/angular/dev-infra-private-ng-dev-builds.git#7a8480bb03fff8c139db4586286c439cd7366493":
+  version "0.0.0-9a54ceecfcd399051e18cd2dbdd6c9fc893f5dc4"
+  resolved "https://github.com/angular/dev-infra-private-ng-dev-builds.git#7a8480bb03fff8c139db4586286c439cd7366493"
   dependencies:
     "@yarnpkg/lockfile" "^1.1.0"
     typescript "~4.9.0"
@@ -14333,11 +14333,6 @@ prettier@2.8.8:
   resolved "https://registry.yarnpkg.com/prettier/-/prettier-2.8.8.tgz#e8c5d7e98a4305ffe3de2e1fc4aca1a71c28b1da"
   integrity sha512-tdN8qQGvNjw4CHbY+XXk0JgCXn9QiF21a55rBe5LJAU+kDyC4WQn4+awm2Xfk2lQMk5fKup9XgzTZtGkjBdP9Q==
 
-prettier@3.0.2:
-  version "3.0.2"
-  resolved "https://registry.yarnpkg.com/prettier/-/prettier-3.0.2.tgz#78fcecd6d870551aa5547437cdae39d4701dca5b"
-  integrity sha512-o2YR9qtniXvwEZlOKbveKfDQVyqxbEIWn48Z8m3ZJjBjcCmUy3xZGIv+7AkaeuaTr6yPXJjwv07ZWlsWbEy1rQ==
-
 prettier@3.0.3:
   version "3.0.3"
   resolved "https://registry.yarnpkg.com/prettier/-/prettier-3.0.3.tgz#432a51f7ba422d1469096c0fdc28e235db8f9643"
@@ -15549,10 +15544,10 @@ selenium-webdriver@3.6.0, selenium-webdriver@^3.0.1:
     tmp "0.0.30"
     xml2js "^0.4.17"
 
-selenium-webdriver@4.11.1:
-  version "4.11.1"
-  resolved "https://registry.yarnpkg.com/selenium-webdriver/-/selenium-webdriver-4.11.1.tgz#6a84f68d06199d075e6c2a5448bf08f4249b98c8"
-  integrity sha512-bvrnr3UZlLScErOmn8gV6cqc+1PYDHn0575CxUR2U14fMWt7OKxSy0lAThhZq4sq4d1HqP8ebz11oiHSlAQ2WA==
+selenium-webdriver@4.12.0:
+  version "4.12.0"
+  resolved "https://registry.yarnpkg.com/selenium-webdriver/-/selenium-webdriver-4.12.0.tgz#a8dc8ecf129a2414c2ace6e429aba84722a950a5"
+  integrity sha512-zvPzmTsky6WfO6+BGMj2mCJsw7qKnfQONur2b+pGn8jeTiC+WAUOthZOnaK+HkX5wiU6L4uoMF+JIcOVstp25A==
   dependencies:
     jszip "^3.10.1"
     tmp "^0.2.1"
