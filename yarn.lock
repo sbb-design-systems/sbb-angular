@@ -307,9 +307,9 @@
     "@angular/core" "^13.0.0 || ^14.0.0-0"
     reflect-metadata "^0.1.13"
 
-"@angular/build-tooling@https://github.com/angular/dev-infra-private-build-tooling-builds.git#28f712f3d842010771ce93e6c7bdb229b6e91fba":
-  version "0.0.0-ea2b3189ab827df22fcb394c7b8212801ade8837"
-  resolved "https://github.com/angular/dev-infra-private-build-tooling-builds.git#28f712f3d842010771ce93e6c7bdb229b6e91fba"
+"@angular/build-tooling@https://github.com/angular/dev-infra-private-build-tooling-builds.git#148a2664e8323239f6535aa3d4cf5ef765891a7d":
+  version "0.0.0-9a54ceecfcd399051e18cd2dbdd6c9fc893f5dc4"
+  resolved "https://github.com/angular/dev-infra-private-build-tooling-builds.git#148a2664e8323239f6535aa3d4cf5ef765891a7d"
   dependencies:
     "@angular-devkit/build-angular" "16.2.0-rc.1"
     "@angular/benchpress" "0.3.0"
@@ -336,7 +336,7 @@
     clang-format "1.8.0"
     prettier "3.0.3"
     protractor "^7.0.0"
-    selenium-webdriver "4.11.1"
+    selenium-webdriver "4.12.0"
     send "^0.18.0"
     source-map "^0.7.4"
     tmp "^0.2.1"
@@ -449,9 +449,9 @@
     fast-glob "3.3.0"
     yargs "^17.2.1"
 
-"@angular/ng-dev@https://github.com/angular/dev-infra-private-ng-dev-builds.git#74ccf239ab5dd9615a30d6e1336244bc7f512839":
-  version "0.0.0-ea2b3189ab827df22fcb394c7b8212801ade8837"
-  resolved "https://github.com/angular/dev-infra-private-ng-dev-builds.git#74ccf239ab5dd9615a30d6e1336244bc7f512839"
+"@angular/ng-dev@https://github.com/angular/dev-infra-private-ng-dev-builds.git#7a8480bb03fff8c139db4586286c439cd7366493":
+  version "0.0.0-9a54ceecfcd399051e18cd2dbdd6c9fc893f5dc4"
+  resolved "https://github.com/angular/dev-infra-private-ng-dev-builds.git#7a8480bb03fff8c139db4586286c439cd7366493"
   dependencies:
     "@yarnpkg/lockfile" "^1.1.0"
     typescript "~4.9.0"
@@ -15544,10 +15544,10 @@ selenium-webdriver@3.6.0, selenium-webdriver@^3.0.1:
     tmp "0.0.30"
     xml2js "^0.4.17"
 
-selenium-webdriver@4.11.1:
-  version "4.11.1"
-  resolved "https://registry.yarnpkg.com/selenium-webdriver/-/selenium-webdriver-4.11.1.tgz#6a84f68d06199d075e6c2a5448bf08f4249b98c8"
-  integrity sha512-bvrnr3UZlLScErOmn8gV6cqc+1PYDHn0575CxUR2U14fMWt7OKxSy0lAThhZq4sq4d1HqP8ebz11oiHSlAQ2WA==
+selenium-webdriver@4.12.0:
+  version "4.12.0"
+  resolved "https://registry.yarnpkg.com/selenium-webdriver/-/selenium-webdriver-4.12.0.tgz#a8dc8ecf129a2414c2ace6e429aba84722a950a5"
+  integrity sha512-zvPzmTsky6WfO6+BGMj2mCJsw7qKnfQONur2b+pGn8jeTiC+WAUOthZOnaK+HkX5wiU6L4uoMF+JIcOVstp25A==
   dependencies:
     jszip "^3.10.1"
     tmp "^0.2.1"
