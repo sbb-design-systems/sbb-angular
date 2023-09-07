@@ -267,6 +267,10 @@
   --sbb-icon-sidebar-background-color-active: var(--sbb-color-background);
   --sbb-icon-sidebar-collapse-button-background-color: var(--sbb-color-milk);
 
+  // Status
+  --sbb-status-message-background-color: var(--sbb-color-milk);
+  --sbb-status-message-color: var(--sbb-color-granite);
+
   // Menu
   // (36 (Desired width) - 24 (icon width)) / 2
   --sbb-menu-trigger-padding: calc(#{sbb.pxToRem(6)} * var(--sbb-scaling-factor));
@@ -584,6 +588,10 @@
       --sbb-icon-sidebar-background-color: var(--sbb-color-black);
       --sbb-icon-sidebar-background-color-active: var(--sbb-color-charcoal);
       --sbb-icon-sidebar-collapse-button-background-color: var(--sbb-color-background);
+
+      // Status
+      --sbb-status-message-background-color: var(--sbb-color-iron);
+      --sbb-status-message-color: var(--sbb-color-white);
     }
   }
 }
