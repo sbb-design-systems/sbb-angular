@@ -175,7 +175,9 @@
   --sbb-chips-chip-padding-horizontal: calc(#{sbb.pxToRem(8)} * var(--sbb-scaling-factor));
   --sbb-chips-input-width: calc(#{sbb.pxToRem(150)} * var(--sbb-scaling-factor));
   --sbb-chips-background-color-active: var(--sbb-color-cloud);
-  --sbb-chips-background-color-hover-and-focused: var(--sbb-color-aluminum);
+  --sbb-chips-background-color-focused: var(--sbb-color-aluminum);
+  --sbb-chips-background-color-hover: var(--sbb-color-aluminum);
+  --sbb-chips-background-color-disabled: var(--sbb-color-cloud);
   --sbb-chips-color: var(--sbb-color-weak-accent);
 
   // Dialog
@@ -571,7 +573,8 @@
 
       //Chips
       --sbb-chips-background-color-active: var(--sbb-color-smoke);
-      --sbb-chips-background-color-hover-and-focused: var(--sbb-color-iron);
+      --sbb-chips-background-color-focused: var(--sbb-color-iron);
+      --sbb-chips-background-color-hover: var(--sbb-color-metal);
       --sbb-chips-color: var(--sbb-color-milk);
 
       // Expansion Panel

@@ -60,7 +60,15 @@
     calc(#{sbb.pxToRem(14)} * var(--sbb-scaling-factor));
 
   &:not(.sbb-chip-disabled):is(:hover, :focus) {
-    background-color: var(--sbb-chips-background-color-hover-and-focused);
+    background-color: var(--sbb-chips-background-color-hover);
+  }
+
+  &:not(.sbb-chip-disabled):is(:focus) {
+    background-color: var(--sbb-chips-background-color-focused);
+  }
+
+  :where(.sbb-lean.sbb-dark) &.sbb-chip-disabled {
+    opacity: 0.9;
   }
 
   &.sbb-chip-disabled {
