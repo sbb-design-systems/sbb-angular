@@ -8,35 +8,40 @@
 
 @font-face {
   font-family: 'SBBWeb Bold';
-  src: url('https://cdn.app.sbb.ch/fonts/v1_6_subset/SBBWeb-Bold.woff2') format('woff2'),
+  src:
+    url('https://cdn.app.sbb.ch/fonts/v1_6_subset/SBBWeb-Bold.woff2') format('woff2'),
     url('https://cdn.app.sbb.ch/fonts/v1_6_subset/SBBWeb-Bold.woff') format('woff');
   font-display: swap;
 }
 
 @font-face {
   font-family: 'SBBWeb Light';
-  src: url('https://cdn.app.sbb.ch/fonts/v1_6_subset/SBBWeb-Light.woff2') format('woff2'),
+  src:
+    url('https://cdn.app.sbb.ch/fonts/v1_6_subset/SBBWeb-Light.woff2') format('woff2'),
     url('https://cdn.app.sbb.ch/fonts/v1_6_subset/SBBWeb-Light.woff') format('woff');
   font-display: swap;
 }
 
 @font-face {
   font-family: 'SBBWeb Roman';
-  src: url('https://cdn.app.sbb.ch/fonts/v1_6_subset/SBBWeb-Roman.woff2') format('woff2'),
+  src:
+    url('https://cdn.app.sbb.ch/fonts/v1_6_subset/SBBWeb-Roman.woff2') format('woff2'),
     url('https://cdn.app.sbb.ch/fonts/v1_6_subset/SBBWeb-Roman.woff') format('woff');
   font-display: fallback;
 }
 
 @font-face {
   font-family: 'SBBWeb Thin';
-  src: url('https://cdn.app.sbb.ch/fonts/v1_6_subset/SBBWeb-Thin.woff2') format('woff2'),
+  src:
+    url('https://cdn.app.sbb.ch/fonts/v1_6_subset/SBBWeb-Thin.woff2') format('woff2'),
     url('https://cdn.app.sbb.ch/fonts/v1_6_subset/SBBWeb-Thin.woff') format('woff');
   font-display: swap;
 }
 
 @font-face {
   font-family: 'SBBWeb Ultralight';
-  src: url('https://cdn.app.sbb.ch/fonts/v1_6_subset/SBBWeb-UltraLight.woff2') format('woff2'),
+  src:
+    url('https://cdn.app.sbb.ch/fonts/v1_6_subset/SBBWeb-UltraLight.woff2') format('woff2'),
     url('https://cdn.app.sbb.ch/fonts/v1_6_subset/SBBWeb-UltraLight.woff') format('woff');
   font-display: swap;
 }
@@ -110,6 +115,12 @@
   // Dark mode colors
   --sbb-color-red_dark-mode: #{sbb.$sbbColorRedDarkMode};
 
+  // Dark Mode with Alpha
+  --sbb-color-red_dark-mode-alpha40: #{rgba(sbb.$sbbColorRedDarkMode, 0.4)};
+  --sbb-color-milk-alpha40: #{rgba(sbb.$sbbColorMilk, 0.4)};
+  --sbb-color-black-alpha50: #{rgba(sbb.$sbbColorBlack, 0.5)};
+  --sbb-color-cement-alpha40: #{rgba(sbb.$sbbColorCement, 0.4)};
+
   // Scaling
   --sbb-scaling-factor: 1;
 
@@ -159,6 +170,37 @@
   // Button
   --sbb-button-height: calc(#{sbb.pxToRem(48)} * var(--sbb-scaling-factor));
   --sbb-button-icon-top-margin: calc(#{sbb.pxToRem(-12.5)} * var(--sbb-scaling-factor));
+
+  // Button Primary
+  --sbb-button-primary-background-color-default: var(--sbb-color-call-to-action);
+  --sbb-button-primary-background-color-hover: var(--sbb-color-call-to-action-hover);
+  --sbb-button-primary-background-color-disabled: var(--sbb-color-red-alpha40);
+  --sbb-button-primary-color: var(--sbb-color-white);
+  --sbb-button-primary-color-disabled: var(--sbb-color-white-alpha50);
+
+  // Button Primary-Alternative
+  --sbb-button-primary-alternative-background-color-default: var(--sbb-color-granite);
+  --sbb-button-primary-alternative-background-color-hover: var(--sbb-color-iron);
+  --sbb-button-primary-alternative-background-color-disabled: var(--sbb-color-granite-alpha40);
+  --sbb-button-primary-alternative-color: var(--sbb-color-white);
+  --sbb-button-primary-alternative-color-disabled: var(--sbb-color-white-alpha50);
+
+  // Button Secondary
+  --sbb-button-secondary-background-color-default: var(--sbb-color-silver);
+  --sbb-button-secondary-background-color-hover: var(--sbb-color-platinum);
+  --sbb-button-secondary-background-color-disabled: var(--sbb-color-silver-alpha40);
+  --sbb-button-secondary-color: var(--sbb-color-iron);
+  --sbb-button-secondary-color-disabled: var(--sbb-color-iron-alpha50);
+
+  // Button Ghost
+  --sbb-button-ghost-background-color-default: var(--sbb-color-white);
+  --sbb-button-ghost-border-color-default: var(--sbb-color-cement);
+  --sbb-button-ghost-background-color-hover: var(--sbb-color-white);
+  --sbb-button-ghost-border-color-hover: var(--sbb-color-iron);
+  --sbb-button-ghost-background-color-disabled: var(--sbb-color-white);
+  --sbb-button-ghost-border-color-disabled: var(--sbb-color-cement);
+  --sbb-button-ghost-label-color: var(--sbb-color-iron);
+  --sbb-button-ghost-label-color-disabled: var(--sbb-color-iron-alpha40);
 
   // Checkbox
   --sbb-checkbox-background-color-default: var(--sbb-color-background);
@@ -483,6 +525,16 @@
     // Button
     --sbb-button-height: #{sbb.pxToRem(36)};
 
+    // Button Primary
+    --sbb-button-primary-background-color-default: var(--sbb-color-red);
+    --sbb-button-primary-background-color-hover: var(--sbb-color-red125);
+
+    // Button Primary-Alternative
+    --sbb-button-primary-alternative-background-color-disabled: var(--sbb-color-granite);
+
+    // Button Secondary
+    --sbb-button-secondary-background-color-hover: var(--sbb-color-cement);
+
     // Checkbox
     --sbb-checkbox-background-color-default: var(--sbb-color-white);
     --sbb-checkbox-background-color-disabled: var(--sbb-color-milk);
@@ -625,6 +677,35 @@
       --sbb-icon-sidebar-background-color: var(--sbb-color-black);
       --sbb-icon-sidebar-background-color-active: var(--sbb-color-charcoal);
       --sbb-icon-sidebar-collapse-button-background-color: var(--sbb-color-background);
+
+      // Button Primary
+      --sbb-button-primary-background-color-default: var(--sbb-color-red_dark-mode);
+      --sbb-button-primary-background-color-hover: var(--sbb-color-red125);
+      --sbb-button-primary-background-color-disabled: var(--sbb-color-red_dark-mode-alpha40);
+
+      // Button Primary-Alternative
+      --sbb-button-primary-alternative-background-color-default: var(--sbb-color-milk);
+      --sbb-button-primary-alternative-background-color-hover: var(--sbb-color-silver);
+      --sbb-button-primary-alternative-background-color-disabled: var(--sbb-color-milk-alpha40);
+      --sbb-button-primary-alternative-color: var(--sbb-color-black);
+      --sbb-button-primary-alternative-color-disabled: var(--sbb-color-black-alpha50);
+
+      // Button Secondary
+      --sbb-button-secondary-background-color-default: var(--sbb-color-granite);
+      --sbb-button-secondary-background-color-hover: var(--sbb-color-iron);
+      --sbb-button-secondary-background-color-disabled: var(--sbb-color-iron-alpha40);
+      --sbb-button-secondary-color: var(--sbb-color-white);
+      --sbb-button-secondary-color-disabled: var(--sbb-color-white-alpha50);
+
+      // Button Ghost
+      --sbb-button-ghost-background-color-default: var(--sbb-color-white, 0%);
+      --sbb-button-ghost-border-color-default: var(--sbb-color-iron);
+      --sbb-button-ghost-background-color-hover: var(--sbb-color-white, 0%);
+      --sbb-button-ghost-border-color-hover: var(--sbb-color-milk);
+      --sbb-button-ghost-background-color-disabled: var(--sbb-color-white, 0%);
+      --sbb-button-ghost-border-color-disabled: var(--sbb-color-iron);
+      --sbb-button-ghost-label-color: var(--sbb-color-white);
+      --sbb-button-ghost-label-color-disabled: var(--sbb-color-white-alpha50);
     }
   }
 }
@@ -1444,49 +1525,50 @@ textarea {
 }
 
 .sbb-button {
-  background-color: var(--sbb-color-call-to-action);
-  color: var(--sbb-color-white);
+  background-color: var(--sbb-button-primary-background-color-default);
+
+  color: var(--sbb-button-primary-color);
 
   &:not(:disabled):not(.sbb-disabled):is(:hover, :focus) {
-    background-color: var(--sbb-color-call-to-action-hover);
+    background-color: var(--sbb-button-primary-background-color-hover);
   }
 
   &:is(:disabled, .sbb-disabled) {
     :where(html.sbb-lean) & {
-      background-color: var(--sbb-color-red-alpha40);
-      color: var(--sbb-color-white-alpha50);
+      background-color: var(--sbb-button-primary-background-color-disabled);
+      color: var(--sbb-button-primary-color-disabled);
     }
   }
 }
 
 .sbb-alt-button {
-  background-color: var(--sbb-color-granite);
-  color: var(--sbb-color-white);
+  background-color: var(--sbb-button-primary-alternative-background-color-default);
+  color: var(--sbb-button-primary-alternative-color);
 
   &:not(:disabled):not(.sbb-disabled):is(:hover, :focus) {
-    background-color: var(--sbb-color-iron);
+    background-color: var(--sbb-button-primary-alternative-background-color-hover);
   }
 
   &:is(:disabled, .sbb-disabled) {
     :where(html.sbb-lean) & {
-      background-color: var(--sbb-color-granite-alpha40);
-      color: var(--sbb-color-white-alpha50);
+      background-color: var(--sbb-button-primary-alternative-background-color-disabled);
+      color: var(--sbb-button-primary-alternative-color-disabled);
     }
   }
 }
 
 .sbb-secondary-button {
-  background-color: var(--sbb-color-silver);
-  color: var(--sbb-color-iron);
+  background-color: var(--sbb-button-secondary-background-color-default);
+  color: var(--sbb-button-secondary-color);
 
   &:not(:disabled):not(.sbb-disabled):is(:hover, :focus) {
-    background-color: var(--sbb-color-platinum);
+    background-color: var(--sbb-button-secondary-background-color-hover);
   }
 
   &:is(:disabled, .sbb-disabled) {
     :where(html.sbb-lean) & {
-      background-color: var(--sbb-color-silver-alpha40);
-      color: var(--sbb-color-iron-alpha50);
+      background-color: var(--sbb-button-secondary-background-color-disabled);
+      color: var(--sbb-button-secondary-color-disabled);
     }
   }
 }
@@ -1521,11 +1603,11 @@ textarea {
 
 .sbb-ghost-button {
   background-color: transparent;
-  color: var(--sbb-color-granite);
-  border-color: var(--sbb-color-storm);
+  color: var(--sbb-button-ghost-label-color);
+  border-color: var(--sbb-button-ghost-border-color-default);
 
   &:not(:disabled):not(.sbb-disabled):is(:hover, :focus) {
-    border-color: var(--sbb-color-iron);
+    border-color: var(--sbb-button-ghost-border-color-hover);
   }
 
   &:is(:disabled, .sbb-disabled) {
@@ -1533,8 +1615,8 @@ textarea {
       display: none;
     }
     :where(html.sbb-lean) & {
-      color: var(--sbb-color-iron-alpha40);
-      border-color: var(--sbb-color-storm-alpha40);
+      color: var(--sbb-button-ghost-label-color-disabled);
+      border-color: var(--sbb-button-ghost-border-color-disabled);
     }
   }
 }
@@ -2517,7 +2599,9 @@ $panelBorderRadius: 2;
   border: var(--sbb-border-width) solid var(--sbb-color-weak-accent);
   border-radius: 0 0 var(--sbb-border-radius) var(--sbb-border-radius);
   border-top: none;
-  transition: height var(--sbb-transition-fast-start), opacity var(--sbb-transition-fast-start);
+  transition:
+    height var(--sbb-transition-fast-start),
+    opacity var(--sbb-transition-fast-start);
   color: var(--sbb-color-weak-accent);
   position: relative;
   top: var(--sbb-box-shadow-horizontal-border-offset-top-below);
