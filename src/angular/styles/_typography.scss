@@ -503,7 +503,7 @@
   }
   &:where(.sbb-lean) {
     // Context Colors
-    --sbb-color-weak-accent: var(--sbb-color-iron);
+    --sbb-color-weak-accent: var(--sbb-color-granite);
 
     // Dividers
     --sbb-divider-thin: #{sbb.pxToRem(4)};
@@ -631,7 +631,7 @@
     }
 
     &:where(.sbb-lean.sbb-dark) {
-      --sbb-color-weak-accent: var(--sbb-color-milk);
+      --sbb-color-weak-accent: var(--sbb-color-smoke);
 
       // Checkbox
       --sbb-checkbox-background-color-default: var(--sbb-color-background);
