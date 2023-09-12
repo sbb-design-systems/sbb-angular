@@ -113,7 +113,7 @@ sbb-menu {
   position: relative;
   z-index: 1;
   padding: calc(var(--sbb-menu-trigger-padding) - var(--sbb-border-width));
-  border: var(--sbb-border-width) solid var(--sbb-color-weak-accent);
+  border: var(--sbb-border-width) solid var(--sbb-menu-border-color);
   border-radius: var(--sbb-border-radius);
   width: 100%;
 
