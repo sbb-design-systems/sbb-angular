@@ -8,35 +8,40 @@
 
 @font-face {
   font-family: 'SBBWeb Bold';
-  src: url('https://cdn.app.sbb.ch/fonts/v1_6_subset/SBBWeb-Bold.woff2') format('woff2'),
+  src:
+    url('https://cdn.app.sbb.ch/fonts/v1_6_subset/SBBWeb-Bold.woff2') format('woff2'),
     url('https://cdn.app.sbb.ch/fonts/v1_6_subset/SBBWeb-Bold.woff') format('woff');
   font-display: swap;
 }
 
 @font-face {
   font-family: 'SBBWeb Light';
-  src: url('https://cdn.app.sbb.ch/fonts/v1_6_subset/SBBWeb-Light.woff2') format('woff2'),
+  src:
+    url('https://cdn.app.sbb.ch/fonts/v1_6_subset/SBBWeb-Light.woff2') format('woff2'),
     url('https://cdn.app.sbb.ch/fonts/v1_6_subset/SBBWeb-Light.woff') format('woff');
   font-display: swap;
 }
 
 @font-face {
   font-family: 'SBBWeb Roman';
-  src: url('https://cdn.app.sbb.ch/fonts/v1_6_subset/SBBWeb-Roman.woff2') format('woff2'),
+  src:
+    url('https://cdn.app.sbb.ch/fonts/v1_6_subset/SBBWeb-Roman.woff2') format('woff2'),
     url('https://cdn.app.sbb.ch/fonts/v1_6_subset/SBBWeb-Roman.woff') format('woff');
   font-display: fallback;
 }
 
 @font-face {
   font-family: 'SBBWeb Thin';
-  src: url('https://cdn.app.sbb.ch/fonts/v1_6_subset/SBBWeb-Thin.woff2') format('woff2'),
+  src:
+    url('https://cdn.app.sbb.ch/fonts/v1_6_subset/SBBWeb-Thin.woff2') format('woff2'),
     url('https://cdn.app.sbb.ch/fonts/v1_6_subset/SBBWeb-Thin.woff') format('woff');
   font-display: swap;
 }
 
 @font-face {
   font-family: 'SBBWeb Ultralight';
-  src: url('https://cdn.app.sbb.ch/fonts/v1_6_subset/SBBWeb-UltraLight.woff2') format('woff2'),
+  src:
+    url('https://cdn.app.sbb.ch/fonts/v1_6_subset/SBBWeb-UltraLight.woff2') format('woff2'),
     url('https://cdn.app.sbb.ch/fonts/v1_6_subset/SBBWeb-UltraLight.woff') format('woff');
   font-display: swap;
 }
@@ -540,7 +545,7 @@
     --sbb-expansion-panel-line-height: #{sbb.pxToRem(25)};
 
     // Pagination
-    --sbb-pagination-disabled-color: var(--sbb-color-storm);
+    --sbb-pagination-disabled-color: var(--sbb-color-cement);
     --sbb-pagination-paginator-size: #{sbb.pxToRem(30)};
 
     // Table
@@ -625,6 +630,10 @@
       --sbb-icon-sidebar-background-color: var(--sbb-color-black);
       --sbb-icon-sidebar-background-color-active: var(--sbb-color-charcoal);
       --sbb-icon-sidebar-collapse-button-background-color: var(--sbb-color-background);
+
+      // Pagination
+      --sbb-pagination-base-color: var(--sbb-color-silver);
+      --sbb-pagination-disabled-color: var(--sbb-color-metal);
     }
   }
 }
@@ -2517,7 +2526,9 @@ $panelBorderRadius: 2;
   border: var(--sbb-border-width) solid var(--sbb-color-weak-accent);
   border-radius: 0 0 var(--sbb-border-radius) var(--sbb-border-radius);
   border-top: none;
-  transition: height var(--sbb-transition-fast-start), opacity var(--sbb-transition-fast-start);
+  transition:
+    height var(--sbb-transition-fast-start),
+    opacity var(--sbb-transition-fast-start);
   color: var(--sbb-color-weak-accent);
   position: relative;
   top: var(--sbb-box-shadow-horizontal-border-offset-top-below);
