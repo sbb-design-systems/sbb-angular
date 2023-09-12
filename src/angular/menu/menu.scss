@@ -89,7 +89,7 @@ sbb-menu {
   padding: var(--sbb-menu-trigger-padding);
   outline: 0;
   cursor: pointer;
-  color: var(--sbb-color-black);
+  color: var(--sbb-menu-item-label);
 
   &:is(:hover, :active, :focus) {
     color: var(--sbb-color-call-to-action-hover);
@@ -133,7 +133,7 @@ sbb-menu {
   }
 
   &:is(:hover, :active, :focus) {
-    color: var(--sbb-color-black);
+    color: var(--sbb-menu-item-label-active);
   }
 }
 
