@@ -14,7 +14,13 @@ import {
   ViewChild,
 } from '@angular/core';
 import { FeatureCollection, Point } from 'geojson';
-import { LngLatBounds, LngLatLike, Map as MaplibreMap, VectorTileSource } from 'maplibre-gl';
+import {
+  GeolocateControl,
+  LngLatBounds,
+  LngLatLike,
+  Map as MaplibreMap,
+  VectorTileSource,
+} from 'maplibre-gl';
 import { ReplaySubject, Subject } from 'rxjs';
 import { debounceTime, delay, switchMap, take, takeUntil } from 'rxjs/operators';
 
@@ -187,6 +193,7 @@ export class SbbJourneyMaps implements OnInit, AfterViewInit, OnDestroy, OnChang
     zoomControls: true,
     basemapSwitch: true,
     homeButton: false,
+    geoLocation: false,
   };
   private _defaultHomeButtonOptions: SbbViewportDimensions = {
     boundingBox: SBB_BOUNDING_BOX,
@@ -207,6 +214,12 @@ export class SbbJourneyMaps implements OnInit, AfterViewInit, OnDestroy, OnChang
   private _isStyleLoaded = false;
   private _isAerialSelected = false;
   private _observer: ResizeObserver;
+  private _geolocateControl = new GeolocateControl({
+    positionOptions: {
+      enableHighAccuracy: true,
+    },
+    trackUserLocation: true,
+  });
 
   constructor(
     private _mapInitService: SbbMapInitService,
@@ -638,6 +651,12 @@ export class SbbJourneyMaps implements OnInit, AfterViewInit, OnDestroy, OnChang
     ) {
       this._show2Dor3D();
     }
+
+    if (
+      changes.uiOptions?.currentValue.geoLocation !== changes.uiOptions?.previousValue.geoLocation
+    ) {
+      this._toggleGeoLocationButton();
+    }
   }
 
   ngAfterViewInit(): void {
@@ -903,6 +922,10 @@ export class SbbJourneyMaps implements OnInit, AfterViewInit, OnDestroy, OnChang
       this._mapRailNetworkLayerService.updateOptions(this._map, this.styleOptions.railNetwork);
     }
 
+    if (this.uiOptions.geoLocation) {
+      this._addGeoLocationControl();
+    }
+
     this._isStyleLoaded = true;
     this._styleLoaded.next();
     this.mapReady.next(this._map);
@@ -993,5 +1016,17 @@ export class SbbJourneyMaps implements OnInit, AfterViewInit, OnDestroy, OnChang
       .getStyle()
       .layers?.filter((layer) => layer.id.endsWith(layerIdSuffix))
       .forEach((layer) => map.setLayoutProperty(layer.id, 'visibility', visibility));
+  }
+
+  private _toggleGeoLocationButton() {
+    if (!this._map.hasControl(this._geolocateControl)) {
+      this._addGeoLocationControl();
+    } else {
+      this._map.removeControl(this._geolocateControl);
+    }
+  }
+
+  private _addGeoLocationControl() {
+    this._map.addControl(this._geolocateControl, 'top-left');
   }
 }
