@@ -8,35 +8,40 @@
 
 @font-face {
   font-family: 'SBBWeb Bold';
-  src: url('https://cdn.app.sbb.ch/fonts/v1_6_subset/SBBWeb-Bold.woff2') format('woff2'),
+  src:
+    url('https://cdn.app.sbb.ch/fonts/v1_6_subset/SBBWeb-Bold.woff2') format('woff2'),
     url('https://cdn.app.sbb.ch/fonts/v1_6_subset/SBBWeb-Bold.woff') format('woff');
   font-display: swap;
 }
 
 @font-face {
   font-family: 'SBBWeb Light';
-  src: url('https://cdn.app.sbb.ch/fonts/v1_6_subset/SBBWeb-Light.woff2') format('woff2'),
+  src:
+    url('https://cdn.app.sbb.ch/fonts/v1_6_subset/SBBWeb-Light.woff2') format('woff2'),
     url('https://cdn.app.sbb.ch/fonts/v1_6_subset/SBBWeb-Light.woff') format('woff');
   font-display: swap;
 }
 
 @font-face {
   font-family: 'SBBWeb Roman';
-  src: url('https://cdn.app.sbb.ch/fonts/v1_6_subset/SBBWeb-Roman.woff2') format('woff2'),
+  src:
+    url('https://cdn.app.sbb.ch/fonts/v1_6_subset/SBBWeb-Roman.woff2') format('woff2'),
     url('https://cdn.app.sbb.ch/fonts/v1_6_subset/SBBWeb-Roman.woff') format('woff');
   font-display: fallback;
 }
 
 @font-face {
   font-family: 'SBBWeb Thin';
-  src: url('https://cdn.app.sbb.ch/fonts/v1_6_subset/SBBWeb-Thin.woff2') format('woff2'),
+  src:
+    url('https://cdn.app.sbb.ch/fonts/v1_6_subset/SBBWeb-Thin.woff2') format('woff2'),
     url('https://cdn.app.sbb.ch/fonts/v1_6_subset/SBBWeb-Thin.woff') format('woff');
   font-display: swap;
 }
 
 @font-face {
   font-family: 'SBBWeb Ultralight';
-  src: url('https://cdn.app.sbb.ch/fonts/v1_6_subset/SBBWeb-UltraLight.woff2') format('woff2'),
+  src:
+    url('https://cdn.app.sbb.ch/fonts/v1_6_subset/SBBWeb-UltraLight.woff2') format('woff2'),
     url('https://cdn.app.sbb.ch/fonts/v1_6_subset/SBBWeb-UltraLight.woff') format('woff');
   font-display: swap;
 }
@@ -84,6 +89,7 @@
   --sbb-color-iron-alpha50: #{rgba(sbb.$sbbColorIron, 0.5)};
   --sbb-color-white-alpha50: #{rgba(sbb.$sbbColorWhite, 0.5)};
   --sbb-color-white-alpha70: #{rgba(sbb.$sbbColorWhite, 0.7)};
+  --sbb-color-white-alpha0: #{rgba(sbb.$sbbColorWhite, 0)};
 
   // Extended Colors
   --sbb-color-sky: #{sbb.$sbbColorSky};
@@ -299,6 +305,33 @@
   --sbb-table-sticky-shadow-width: #{sbb.pxToRem(8)};
   --sbb-table-sticky-shadow-offset: #{sbb.pxToRem(-9)};
   --sbb-table-sort-header-arrow-margin: calc(#{sbb.pxToRem(8)} * var(--sbb-scaling-factor));
+
+  // Tag
+  --sbb-tag-filter-label-active-color: var(--sbb-color-black);
+  --sbb-tag-filter-border-active-color: var(--sbb-color-black);
+  --sbb-tag-badge-background-default-color: var(--sbb-color-red);
+  --sbb-tag-badge-label-default-color: var(--sbb-color-white);
+  --sbb-tag-filter-background-active-color: var(--sbb-color-white);
+
+  --sbb-tag-link-label-color: var(--sbb-color-black);
+  --sbb-tag-link-border-color: var(--sbb-color-black);
+
+  --sbb-tag-filter-label-active-hover-color: var(--sbb-color-granite);
+  --sbb-tag-filter-border-active-hover-color: var(--sbb-color-graphite);
+
+  --sbb-tag-badge-background-focused-color: var(--sbb-color-black);
+  --sbb-tag-link-label-hover-color: var(--sbb-color-red125);
+  --sbb-tag-link-border-hover-color: var(--sbb-color-red125);
+  --sbb-tag-badge-label-focused-color: var(--sbb-color-white);
+  --sbb-tag-link-background-color: var(--sbb-color-white);
+
+  --sbb-tag-filter-background-inactive-color: var(--sbb-color-milk);
+  --sbb-tag-filter-label-inactive-color: var(--sbb-color-granite);
+  --sbb-tag-badge-background-disabled-color: var(--sbb-color-storm);
+  --sbb-tag-badge-label-disabled-color: var(--sbb-color-white);
+
+  --sbb-tag-filter-background-inactive-hover-color: var(--sbb-color-cloud);
+  --sbb-tag-filter-label-inactive-hover-color: var(--sbb-color-black);
 
   // Tooltip
   --sbb-tooltip-padding: calc(#{sbb.pxToRem(23)} * var(--sbb-scaling-factor));
@@ -604,7 +637,7 @@
 
       // Badge
       --sbb-badge-background-color: var(--sbb-color-white);
-      --sbb-badge-background-color-disabled: var(--sbb-color-anthracite);
+      --sbb-badge-background-color-disabled: var(--sbb-color-green);
       --sbb-badge-color: var(--sbb-color-black);
 
       // Expansion Panel
@@ -625,6 +658,33 @@
       --sbb-icon-sidebar-background-color: var(--sbb-color-black);
       --sbb-icon-sidebar-background-color-active: var(--sbb-color-charcoal);
       --sbb-icon-sidebar-collapse-button-background-color: var(--sbb-color-background);
+
+      // Tag
+      --sbb-tag-filter-label-active-color: var(--sbb-color-white);
+      --sbb-tag-filter-border-active-color: var(--sbb-color-white);
+      --sbb-tag-badge-background-default-color: var(--sbb-color-red_dark-mode);
+      --sbb-tag-badge-label-default-color: var(--sbb-color-white);
+      --sbb-tag-filter-background-active-color: var(--sbb-color-white-alpha0);
+
+      --sbb-tag-link-label-color: var(--sbb-color-white);
+      --sbb-tag-link-border-color: var(--sbb-color-white);
+
+      --sbb-tag-filter-label-active-hover-color: var(--sbb-color-white);
+      --sbb-tag-filter-border-active-hover-color: var(--sbb-color-smoke);
+
+      --sbb-tag-badge-background-focused-color: var(--sbb-color-white);
+      --sbb-tag-link-label-hover-color: var(--sbb-color-red);
+      --sbb-tag-link-border-hover-color: var(--sbb-color-red_dark-mode);
+      --sbb-tag-badge-label-focused-color: var(--sbb-color-black);
+      --sbb-tag-link-background-color: var(--sbb-color-white);
+
+      --sbb-tag-filter-background-inactive-color: var(--sbb-color-iron);
+      --sbb-tag-filter-label-inactive-color: var(--sbb-color-white);
+      --sbb-tag-badge-background-disabled-color: var(--sbb-color-anthracite);
+      --sbb-tag-badge-label-disabled-color: var(--sbb-color-white);
+
+      --sbb-tag-filter-background-inactive-hover-color: var(--sbb-color-charcoal);
+      --sbb-tag-filter-label-inactive-hover-color: var(--sbb-color-white);
     }
   }
 }
@@ -2517,7 +2577,9 @@ $panelBorderRadius: 2;
   border: var(--sbb-border-width) solid var(--sbb-color-weak-accent);
   border-radius: 0 0 var(--sbb-border-radius) var(--sbb-border-radius);
   border-top: none;
-  transition: height var(--sbb-transition-fast-start), opacity var(--sbb-transition-fast-start);
+  transition:
+    height var(--sbb-transition-fast-start),
+    opacity var(--sbb-transition-fast-start);
   color: var(--sbb-color-weak-accent);
   position: relative;
   top: var(--sbb-box-shadow-horizontal-border-offset-top-below);
