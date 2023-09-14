@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import {
+  GeolocateControl,
   LngLatBounds,
   Map as MaplibreMap,
   MapOptions,
@@ -182,5 +183,15 @@ export class SbbMapInitService {
     if (!oneFingerPan) {
       maplibreMap.addControl(new SbbMultiTouchSupport());
     }
+    maplibreMap.addControl(
+      new GeolocateControl({
+        positionOptions: {
+          enableHighAccuracy: true,
+        },
+        // trackUserLocation: true,
+        showUserLocation: true,
+      }),
+      'top-left',
+    );
   }
 }
