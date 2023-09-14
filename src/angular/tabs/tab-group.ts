@@ -403,16 +403,15 @@ export abstract class SbbTabGroupBase implements AfterContentInit, AfterContentC
 
   /** Handle click events, setting new selected index if appropriate. */
   _handleClick(tab: SbbTab, tabHeader: SbbTabGroupBaseHeader, index: number) {
+    tabHeader.focusIndex = index;
+
     if (!tab.disabled) {
-      this.selectedIndex = tabHeader.focusIndex = index;
+      this.selectedIndex = index;
     }
   }
 
   /** Retrieves the tabindex for the tab. */
-  _getTabIndex(tab: SbbTab, index: number): number | null {
-    if (tab.disabled) {
-      return null;
-    }
+  _getTabIndex(index: number): number | null {
     const targetIndex = this._lastFocusedTabIndex ?? this.selectedIndex;
     return index === targetIndex ? 0 : -1;
   }

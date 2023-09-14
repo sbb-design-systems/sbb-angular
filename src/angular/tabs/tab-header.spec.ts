@@ -77,7 +77,7 @@ describe('SbbTabHeader', () => {
       expect(appComponent.tabHeader.focusIndex).toBe(2);
     });
 
-    it('should not set focus a disabled tab', () => {
+    it('should be able to focus a disabled tab', () => {
       appComponent.tabHeader.focusIndex = 0;
       fixture.detectChanges();
       expect(appComponent.tabHeader.focusIndex).toBe(0);
@@ -85,10 +85,11 @@ describe('SbbTabHeader', () => {
       // Set focus on the disabled tab, but focus should remain 0
       appComponent.tabHeader.focusIndex = appComponent.disabledTabIndex;
       fixture.detectChanges();
-      expect(appComponent.tabHeader.focusIndex).toBe(0);
+
+      expect(appComponent.tabHeader.focusIndex).toBe(appComponent.disabledTabIndex);
     });
 
-    it('should move focus right and skip disabled tabs', () => {
+    it('should move focus right including over disabled tabs', () => {
       appComponent.tabHeader.focusIndex = 0;
       fixture.detectChanges();
       expect(appComponent.tabHeader.focusIndex).toBe(0);
@@ -97,12 +98,11 @@ describe('SbbTabHeader', () => {
       expect(appComponent.disabledTabIndex).toBe(1);
       dispatchKeyboardEvent(tabListContainer, 'keydown', RIGHT_ARROW);
       fixture.detectChanges();
-      expect(appComponent.tabHeader.focusIndex).toBe(2);
+      expect(appComponent.tabHeader.focusIndex).toBe(1);
 
-      // Move focus right to index 3
       dispatchKeyboardEvent(tabListContainer, 'keydown', RIGHT_ARROW);
       fixture.detectChanges();
-      expect(appComponent.tabHeader.focusIndex).toBe(3);
+      expect(appComponent.tabHeader.focusIndex).toBe(2);
     });
 
     it('should move focus left and skip disabled tabs', () => {
@@ -115,11 +115,10 @@ describe('SbbTabHeader', () => {
       fixture.detectChanges();
       expect(appComponent.tabHeader.focusIndex).toBe(2);
 
-      // Move focus left, verify that the disabled tab is 1 and should be skipped
       expect(appComponent.disabledTabIndex).toBe(1);
       dispatchKeyboardEvent(tabListContainer, 'keydown', LEFT_ARROW);
       fixture.detectChanges();
-      expect(appComponent.tabHeader.focusIndex).toBe(0);
+      expect(appComponent.tabHeader.focusIndex).toBe(1);
     });
 
     it('should support key down events to move and select focus', () => {
@@ -127,19 +126,36 @@ describe('SbbTabHeader', () => {
       fixture.detectChanges();
       expect(appComponent.tabHeader.focusIndex).toBe(0);
 
+      // Move focus right to 1
+      dispatchKeyboardEvent(tabListContainer, 'keydown', RIGHT_ARROW);
+      fixture.detectChanges();
+      expect(appComponent.tabHeader.focusIndex).toBe(1);
+
+      // Try to select 1. Should not work since it's disabled.
+      expect(appComponent.selectedIndex).toBe(0);
+      const firstEnterEvent = dispatchKeyboardEvent(tabListContainer, 'keydown', ENTER);
+      fixture.detectChanges();
+      expect(appComponent.selectedIndex).toBe(0);
+      expect(firstEnterEvent.defaultPrevented).toBe(false);
+
       // Move focus right to 2
       dispatchKeyboardEvent(tabListContainer, 'keydown', RIGHT_ARROW);
       fixture.detectChanges();
       expect(appComponent.tabHeader.focusIndex).toBe(2);
 
-      // Select the focused index 2
+      // Select 2 which is enabled.
       expect(appComponent.selectedIndex).toBe(0);
-      const enterEvent = dispatchKeyboardEvent(tabListContainer, 'keydown', ENTER);
+      const secondEnterEvent = dispatchKeyboardEvent(tabListContainer, 'keydown', ENTER);
       fixture.detectChanges();
       expect(appComponent.selectedIndex).toBe(2);
-      expect(enterEvent.defaultPrevented).toBe(true);
+      expect(secondEnterEvent.defaultPrevented).toBe(true);
 
-      // Move focus right to 0
+      // Move focus left to 1
+      dispatchKeyboardEvent(tabListContainer, 'keydown', LEFT_ARROW);
+      fixture.detectChanges();
+      expect(appComponent.tabHeader.focusIndex).toBe(1);
+
+      // Move again to 0
       dispatchKeyboardEvent(tabListContainer, 'keydown', LEFT_ARROW);
       fixture.detectChanges();
       expect(appComponent.tabHeader.focusIndex).toBe(0);
@@ -177,7 +193,7 @@ describe('SbbTabHeader', () => {
       expect(event.defaultPrevented).toBe(true);
     });
 
-    it('should skip disabled items when moving focus using HOME', () => {
+    it('should focus disabled items when moving focus using HOME', () => {
       appComponent.tabHeader.focusIndex = 3;
       appComponent.tabs[0].disabled = true;
       fixture.detectChanges();
@@ -186,8 +202,7 @@ describe('SbbTabHeader', () => {
       dispatchKeyboardEvent(tabListContainer, 'keydown', HOME);
       fixture.detectChanges();
 
-      // Note that the second tab is disabled by default already.
-      expect(appComponent.tabHeader.focusIndex).toBe(2);
+      expect(appComponent.tabHeader.focusIndex).toBe(0);
     });
 
     it('should move focus to the last tab when pressing END', () => {
@@ -202,7 +217,7 @@ describe('SbbTabHeader', () => {
       expect(event.defaultPrevented).toBe(true);
     });
 
-    it('should skip disabled items when moving focus using END', () => {
+    it('should focus disabled items when moving focus using END', () => {
       appComponent.tabHeader.focusIndex = 0;
       appComponent.tabs[3].disabled = true;
       fixture.detectChanges();
@@ -211,7 +226,7 @@ describe('SbbTabHeader', () => {
       dispatchKeyboardEvent(tabListContainer, 'keydown', END);
       fixture.detectChanges();
 
-      expect(appComponent.tabHeader.focusIndex).toBe(2);
+      expect(appComponent.tabHeader.focusIndex).toBe(3);
     });
 
     it('should not do anything if a modifier key is pressed', () => {
