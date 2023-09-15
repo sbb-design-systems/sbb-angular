@@ -194,12 +194,12 @@
 
   // Button Ghost
   --sbb-button-ghost-background-color-default: var(--sbb-color-white);
-  --sbb-button-ghost-border-color-default: var(--sbb-color-cement);
+  --sbb-button-ghost-border-color-default: var(--sbb-color-storm);
   --sbb-button-ghost-background-color-hover: var(--sbb-color-white);
   --sbb-button-ghost-border-color-hover: var(--sbb-color-iron);
   --sbb-button-ghost-background-color-disabled: var(--sbb-color-white);
-  --sbb-button-ghost-border-color-disabled: var(--sbb-color-cement);
-  --sbb-button-ghost-label-color: var(--sbb-color-iron);
+  --sbb-button-ghost-border-color-disabled: var(--sbb-color-storm-alpha40);
+  --sbb-button-ghost-label-color: var(--sbb-color-granite);
   --sbb-button-ghost-label-color-disabled: var(--sbb-color-iron-alpha40);
 
   // Checkbox
@@ -530,7 +530,7 @@
     --sbb-button-primary-background-color-hover: var(--sbb-color-red125);
 
     // Button Primary-Alternative
-    --sbb-button-primary-alternative-background-color-disabled: var(--sbb-color-granite);
+    --sbb-button-primary-alternative-background-color-disabled: var(--sbb-color-granite-alpha40);
 
     // Button Secondary
     --sbb-button-secondary-background-color-hover: var(--sbb-color-cement);
@@ -1550,10 +1550,8 @@ textarea {
   }
 
   &:is(:disabled, .sbb-disabled) {
-    :where(html.sbb-lean) & {
-      background-color: var(--sbb-button-primary-alternative-background-color-disabled);
-      color: var(--sbb-button-primary-alternative-color-disabled);
-    }
+    background-color: var(--sbb-button-primary-alternative-background-color-disabled);
+    color: var(--sbb-button-primary-alternative-color-disabled);
   }
 }
 
