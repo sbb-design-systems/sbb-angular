@@ -290,23 +290,19 @@
   --sbb-menu-item-background-color-hover: var(--sbb-color-milk);
   --sbb-menu-item-background-color-active: var(--sbb-color-cloud);
 
-  // Notification Toastr
+  // Notification Toast
   // Success
-  --sbb-notification-toastr-label-positive-default-success-color: var(--sbb-color-black);
-  --sbb-notification-toastr-label-success-color: var(--sbb-color-green);
-  --sbb-notification-toastr-background-success-color: var(--sbb-color-white);
+  --sbb-notification-toast-label-color-success: var(--sbb-color-green);
+  --sbb-notification-toast-background-color-success: var(--sbb-color-white);
   // Information
-  --sbb-notification-toastr-label-positive-default-information-color: var(--sbb-color-black);
-  --sbb-notification-toastr-label-information-color: var(--sbb-color-granite);
-  --sbb-notification-toastr-background-information-color: var(--sbb-color-white);
+  --sbb-notification-toast-label-color-information: var(--sbb-color-granite);
+  --sbb-notification-toast-background-color-information: var(--sbb-color-white);
   // Error
-  --sbb-notification-toastr-label-positive-default-error-color: var(--sbb-color-white);
-  --sbb-notification-toastr-label-error-color: var(--sbb-color-white);
-  --sbb-notification-toastr-background-error-color: var(--sbb-color-error);
+  --sbb-notification-toast-label-color-error: var(--sbb-color-white);
+  --sbb-notification-toast-background-color-error: var(--sbb-color-error);
   // Warn
-  --sbb-notification-toastr-label-positive-default-warn-color: var(--sbb-color-black);
-  --sbb-notification-toastr-label-warn-color: var(--sbb-color-white);
-  --sbb-notification-toastr-background-warn-color: var(--sbb-color-orange);
+  --sbb-notification-toast-label-color-warn: var(--sbb-color-white);
+  --sbb-notification-toast-background-color-warn: var(--sbb-color-orange);
 
   // Table
   --sbb-table-background-color: var(--sbb-color-background);
@@ -483,12 +479,12 @@
     }
   }
   &:where(.sbb-lean) {
-    // Notification Toastr
+    // Notification Toast
     // Error
-    --sbb-notification-toastr-background-error-color: var(--sbb-color-red);
+    --sbb-notification-toast-background-color-error: var(--sbb-color-red);
     // Warn
-    --sbb-notification-toastr-label-warn-color: var(--sbb-color-black);
-    --sbb-notification-toastr-background-warn-color: var(--sbb-color-peach);
+    --sbb-notification-toast-label-color-warn: var(--sbb-color-black);
+    --sbb-notification-toast-background-color-warn: var(--sbb-color-peach);
 
     // Context Colors
     --sbb-color-weak-accent: var(--sbb-color-iron);
@@ -611,23 +607,19 @@
     &:where(.sbb-lean.sbb-dark) {
       --sbb-color-weak-accent: var(--sbb-color-milk);
 
-      // Notification Toastr
+      // Notification Toast
       // Success
-      --sbb-notification-toastr-label-positive-default-success-color: var(--sbb-color-white);
-      --sbb-notification-toastr-label-success-color: var(--sbb-color-white);
-      --sbb-notification-toastr-background-success-color: var(--sbb-color-green);
+      --sbb-notification-toast-label-color-success: var(--sbb-color-white);
+      --sbb-notification-toast-background-color-success: var(--sbb-color-green);
       // Information
-      --sbb-notification-toastr-label-positive-default-information-color: var(--sbb-color-black);
-      --sbb-notification-toastr-label-information-color: var(--sbb-color-cloud);
-      --sbb-notification-toastr-background-information-color: var(--sbb-color-black);
+      --sbb-notification-toast-label-color-information: var(--sbb-color-cloud);
+      --sbb-notification-toast-background-color-information: var(--sbb-color-black);
       // Error
-      --sbb-notification-toastr-label-positive-default-error-color: var(--sbb-color-white);
-      --sbb-notification-toastr-label-error-color: var(--sbb-color-white);
-      --sbb-notification-toastr-background-error-color: var(--sbb-color-red);
+      --sbb-notification-toast-label-color-error: var(--sbb-color-white);
+      --sbb-notification-toast-background-color-error: var(--sbb-color-red);
       // Warn
-      --sbb-notification-toastr-label-positive-default-warn-color: var(--sbb-color-black);
-      --sbb-notification-toastr-label-warn-color: var(--sbb-color-black);
-      --sbb-notification-toastr-background-warn-color: var(--sbb-color-peach);
+      --sbb-notification-toast-label-color-warn: var(--sbb-color-black);
+      --sbb-notification-toast-background-color-warn: var(--sbb-color-peach);
 
       // Checkbox
       --sbb-checkbox-background-color-default: var(--sbb-color-background);
