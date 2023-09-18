@@ -36,9 +36,9 @@ export interface SbbInteractionOptions {
 export interface SbbUIOptions {
   /** Whether the map should show large (default) or small control buttons. */
   showSmallButtons?: boolean;
-  /** Whether the map should show the zoom level control or not. */
-  levelSwitch?: boolean;
   /** Whether the map should show the level switch control or not. */
+  levelSwitch?: boolean;
+  /** Whether the map should show the zoom level control or not. */
   zoomControls?: boolean;
   /** Whether the map should show the basemap switch control or not. */
   basemapSwitch?: boolean;
