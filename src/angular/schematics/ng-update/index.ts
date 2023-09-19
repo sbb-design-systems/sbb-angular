@@ -12,7 +12,7 @@ import { sbbAngularUpgradeData } from './upgrade-data';
 export function updateToV15(): Rule {
   patchClassNamesMigration();
   return createMigrationSchematicRule(
-    TargetVersion.V16,
+    TargetVersion.V17,
     [],
     sbbAngularUpgradeData,
     onMigrationComplete,

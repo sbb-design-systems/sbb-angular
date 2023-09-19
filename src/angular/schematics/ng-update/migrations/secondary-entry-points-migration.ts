@@ -22,7 +22,7 @@ const ANGULAR_FILEPATH_REGEX = new RegExp(`(${ANGULAR_FILEPATH})/(.*?)`);
 // Map of all moved symbols
 const ENTRY_POINT_MAPPINGS = new Map(
   Object.entries({
-    [TargetVersion.V16]: {},
+    [TargetVersion.V17]: {},
   }),
 );
 

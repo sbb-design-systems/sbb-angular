@@ -47,13 +47,11 @@ describe('ngAdd', () => {
       variant === 'standard'
         ? 'standard (previously known as public)'
         : 'lean (previously known as business)';
-    return testRunner
-      .runSchematicAsync(
-        'ng-add-setup-project',
-        { variant: variantFull, ...baseOptions } as Schema,
-        testTree,
-      )
-      .toPromise();
+    return testRunner.runSchematic(
+      'ng-add-setup-project',
+      { variant: variantFull, ...baseOptions } as Schema,
+      testTree,
+    );
   }
 
   /** Assert that file exists and parse json file to object */
@@ -74,12 +72,13 @@ describe('ngAdd', () => {
 
   beforeEach(async () => {
     runner = new SchematicTestRunner('collection', COLLECTION_PATH);
-    tree = (await runner
-      .runExternalSchematicAsync('@schematics/angular', 'workspace', workspaceOptions)
-      .toPromise())!;
-    tree = (await runner
-      .runExternalSchematicAsync('@schematics/angular', 'application', appOptions, tree)
-      .toPromise())!;
+    tree = await runner.runExternalSchematic('@schematics/angular', 'workspace', workspaceOptions);
+    tree = await runner.runExternalSchematic(
+      '@schematics/angular',
+      'application',
+      appOptions,
+      tree,
+    );
 
     errorOutput = [];
     runner.logger.subscribe((e) => {
@@ -98,7 +97,7 @@ describe('ngAdd', () => {
       ),
     );
 
-    await runner.runSchematicAsync('ng-add', baseOptions, tree).toPromise();
+    await runner.runSchematic('ng-add', baseOptions, tree);
 
     expect(runner.tasks.some((task) => (task.options as any)!.name === 'ng-add-setup-project'))
       .withContext('Expected the ng-add-setup-project schematic not to be scheduled.')
@@ -108,7 +107,7 @@ describe('ngAdd', () => {
   it('should abort ng-add if @angular/cdk major version is below 13', async () => {
     addPackageToPackageJson(tree, '@angular/cdk', '13.0.0');
 
-    await runner.runSchematicAsync('ng-add', baseOptions, tree).toPromise();
+    await runner.runSchematic('ng-add', baseOptions, tree);
 
     expect(runner.tasks.some((task) => (task.options as any)!.name === 'ng-add-setup-project'))
       .withContext('Expected the ng-add-setup-project schematic not to be scheduled.')
@@ -118,7 +117,7 @@ describe('ngAdd', () => {
   it('should add @angular/cdk, @angular/animations and @angular/forms to "package.json" file', async () => {
     expect(readJsonFile(tree, '/package.json').dependencies['@angular/cdk']).toBeUndefined();
 
-    await runner.runSchematicAsync('ng-add', baseOptions, tree).toPromise();
+    await runner.runSchematic('ng-add', baseOptions, tree);
 
     expect(readJsonFile(tree, '/package.json').dependencies['@angular/cdk']).toBe(`0.0.0-CDK`);
     expect(readJsonFile(tree, '/package.json').dependencies['@angular/animations']).toBeDefined();
@@ -137,7 +136,7 @@ describe('ngAdd', () => {
 
     expect(readJsonFile(tree, '/package.json').dependencies['@angular/cdk']).toBe('14.0.0');
 
-    await runner.runSchematicAsync('ng-add', baseOptions, tree).toPromise();
+    await runner.runSchematic('ng-add', baseOptions, tree);
 
     expect(readJsonFile(tree, '/package.json').dependencies['@angular/cdk']).toBe('14.0.0');
 
@@ -150,14 +149,14 @@ describe('ngAdd', () => {
   });
 
   it('should not abort when running ng add two times', async () => {
-    await runner.runSchematicAsync('ng-add', baseOptions, tree).toPromise();
-    await runner.runSchematicAsync('ng-add-setup-project', baseOptions, tree).toPromise();
-    await runner.runSchematicAsync('ng-add', baseOptions, tree).toPromise();
-    await runner.runSchematicAsync('ng-add-setup-project', baseOptions, tree).toPromise();
+    await runner.runSchematic('ng-add', baseOptions, tree);
+    await runner.runSchematic('ng-add-setup-project', baseOptions, tree);
+    await runner.runSchematic('ng-add', baseOptions, tree);
+    await runner.runSchematic('ng-add-setup-project', baseOptions, tree);
   });
 
   it('should add typography to angular.json and configure animationsModule', async () => {
-    await runner.runSchematicAsync('ng-add-setup-project', baseOptions, tree).toPromise();
+    await runner.runSchematic('ng-add-setup-project', baseOptions, tree);
 
     expect(
       readJsonFile(tree, '/angular.json').projects.dummy.architect.build.options.styles,
@@ -173,8 +172,8 @@ describe('ngAdd', () => {
   });
 
   it('should not add typography a second time if entry already exists', async () => {
-    await runner.runSchematicAsync('ng-add-setup-project', baseOptions, tree).toPromise();
-    await runner.runSchematicAsync('ng-add-setup-project', baseOptions, tree).toPromise();
+    await runner.runSchematic('ng-add-setup-project', baseOptions, tree);
+    await runner.runSchematic('ng-add-setup-project', baseOptions, tree);
 
     expect(
       readJsonFile(tree, '/angular.json').projects.dummy.architect.build.options.styles,
@@ -186,7 +185,7 @@ describe('ngAdd', () => {
     delete angularJson.projects.dummy.architect.build.options.styles;
     tree.overwrite('/angular.json', JSON.stringify(angularJson, null, 2));
 
-    await runner.runSchematicAsync('ng-add-setup-project', baseOptions, tree).toPromise();
+    await runner.runSchematic('ng-add-setup-project', baseOptions, tree);
 
     expect(
       readJsonFile(tree, '/angular.json').projects.dummy.architect.build.options.styles,
@@ -195,7 +194,7 @@ describe('ngAdd', () => {
 
   describe('animations enabled', () => {
     it('should add the BrowserAnimationsModule to the project module', async () => {
-      await runner.runSchematicAsync('ng-add-setup-project', baseOptions, tree).toPromise();
+      await runner.runSchematic('ng-add-setup-project', baseOptions, tree);
       const fileContent = readStringFile(tree, '/projects/dummy/src/app/app.module.ts');
       expect(fileContent)
         .withContext('Expected the project app module to import the "BrowserAnimationsModule".')
@@ -217,7 +216,7 @@ describe('ngAdd', () => {
         '@angular/platform-browser/animations',
         project,
       );
-      await runner.runSchematicAsync('ng-add-setup-project', baseOptions, tree).toPromise();
+      await runner.runSchematic('ng-add-setup-project', baseOptions, tree);
       expect(errorOutput.length).toBe(1);
       expect(errorOutput[0]).toMatch(/Could not set up "BrowserAnimationsModule"/);
     });
@@ -236,7 +235,7 @@ describe('ngAdd', () => {
         `,
       );
 
-      await runner.runSchematicAsync('ng-add-setup-project', baseOptions, tree).toPromise();
+      await runner.runSchematic('ng-add-setup-project', baseOptions, tree);
       const fileContent = readStringFile(tree, '/projects/dummy/src/main.ts');
       expect(fileContent).toContain('importProvidersFrom(BrowserModule, BrowserAnimationsModule)');
     });
@@ -257,7 +256,7 @@ describe('ngAdd', () => {
         `,
       );
 
-      await runner.runSchematicAsync('ng-add-setup-project', baseOptions, tree).toPromise();
+      await runner.runSchematic('ng-add-setup-project', baseOptions, tree);
 
       expect(errorOutput.length).toBe(1);
       expect(errorOutput[0]).toMatch(
@@ -268,13 +267,11 @@ describe('ngAdd', () => {
 
   describe('animations disabled', () => {
     it('should add NoopAnimationsModule', async () => {
-      await runner
-        .runSchematicAsync(
-          'ng-add-setup-project',
-          { animations: 'disabled', ...baseOptions } as Schema,
-          tree,
-        )
-        .toPromise();
+      await runner.runSchematic(
+        'ng-add-setup-project',
+        { animations: 'disabled', ...baseOptions } as Schema,
+        tree,
+      );
 
       expect(readStringFile(tree, '/projects/dummy/src/app/app.module.ts'))
         .withContext('Expected the project app module to import the "NoopAnimationsModule".')
@@ -307,9 +304,11 @@ describe('ngAdd', () => {
 
   describe('animations excluded', () => {
     it('should not add any animations code if animations are excluded', async () => {
-      const localTree = await runner
-        .runSchematicAsync('ng-add-setup-project', { animations: 'excluded', ...baseOptions }, tree)
-        .toPromise();
+      const localTree = await runner.runSchematic(
+        'ng-add-setup-project',
+        { animations: 'excluded', ...baseOptions },
+        tree,
+      );
       const fileContent = readStringFile(localTree!, '/projects/dummy/src/app/app.module.ts');
 
       expect(fileContent).not.toContain('NoopAnimationsModule');
@@ -405,7 +404,7 @@ describe('ngAdd', () => {
       angularJson.projects.dummy.architect.test.options.polyfills = 'dummy-polyfill.js';
       tree.overwrite('/angular.json', JSON.stringify(angularJson, null, 2));
 
-      await runner.runSchematicAsync('ng-add-setup-project', leanOptions, tree).toPromise();
+      await runner.runSchematic('ng-add-setup-project', leanOptions, tree);
 
       expect(
         readJsonFile(tree, '/angular.json').projects.dummy.architect.test.options.polyfills,
@@ -419,7 +418,7 @@ describe('ngAdd', () => {
 
       expect(errorOutput.length).toBe(0);
 
-      await runner.runSchematicAsync('ng-add-setup-project', leanOptions, tree).toPromise();
+      await runner.runSchematic('ng-add-setup-project', leanOptions, tree);
 
       expect(errorOutput.length).toBe(1);
     });
@@ -449,7 +448,7 @@ describe('ngAdd', () => {
       angularJson.projects.dummy.architect.test.options.polyfills = LEAN_TEST_POLYFILL_PATH;
       tree.overwrite('/angular.json', JSON.stringify(angularJson, null, 2));
 
-      await runner.runSchematicAsync('ng-add-setup-project', baseOptions, tree).toPromise();
+      await runner.runSchematic('ng-add-setup-project', baseOptions, tree);
 
       expect(
         readJsonFile(tree, '/angular.json').projects.dummy.architect.test.options.polyfills,
