@@ -13,14 +13,9 @@ import {
   SimpleChanges,
   ViewChild,
 } from '@angular/core';
+import { SbbGeolocateControl } from '@sbb-esta/journey-maps/angular/controls/sbbGeolocateControl';
 import { FeatureCollection, Point } from 'geojson';
-import {
-  GeolocateControl,
-  LngLatBounds,
-  LngLatLike,
-  Map as MaplibreMap,
-  VectorTileSource,
-} from 'maplibre-gl';
+import { LngLatBounds, LngLatLike, Map as MaplibreMap, VectorTileSource } from 'maplibre-gl';
 import { ReplaySubject, Subject } from 'rxjs';
 import { debounceTime, delay, switchMap, take, takeUntil } from 'rxjs/operators';
 
@@ -214,7 +209,7 @@ export class SbbJourneyMaps implements OnInit, AfterViewInit, OnDestroy, OnChang
   private _isStyleLoaded = false;
   private _isAerialSelected = false;
   private _observer: ResizeObserver;
-  private _geolocateControl = new GeolocateControl({
+  private _sbbGeolocateControl = new SbbGeolocateControl({
     positionOptions: {
       enableHighAccuracy: true,
     },
@@ -750,6 +745,7 @@ export class SbbJourneyMaps implements OnInit, AfterViewInit, OnDestroy, OnChang
   onToggleBasemap() {
     this._isAerialSelected = !this._isAerialSelected;
     this._mapStyleOptionsChanged.next();
+    // this._sbbGeolocateControl.trigger();
   }
 
   /** @docs-private */
@@ -1019,14 +1015,14 @@ export class SbbJourneyMaps implements OnInit, AfterViewInit, OnDestroy, OnChang
   }
 
   private _toggleGeoLocationButton() {
-    if (!this._map.hasControl(this._geolocateControl)) {
+    if (!this._map.hasControl(this._sbbGeolocateControl)) {
       this._addGeoLocationControl();
     } else {
-      this._map.removeControl(this._geolocateControl);
+      this._map.removeControl(this._sbbGeolocateControl);
     }
   }
 
   private _addGeoLocationControl() {
-    this._map.addControl(this._geolocateControl, 'top-left');
+    this._map.addControl(this._sbbGeolocateControl);
   }
 }
