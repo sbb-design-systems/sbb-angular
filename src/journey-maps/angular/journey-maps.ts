@@ -646,12 +646,6 @@ export class SbbJourneyMaps implements OnInit, AfterViewInit, OnDestroy, OnChang
     ) {
       this._show2Dor3D();
     }
-
-    if (
-      changes.uiOptions?.currentValue.geoLocation !== changes.uiOptions?.previousValue.geoLocation
-    ) {
-      this._toggleGeoLocationButton();
-    }
   }
 
   ngAfterViewInit(): void {
@@ -745,7 +739,6 @@ export class SbbJourneyMaps implements OnInit, AfterViewInit, OnDestroy, OnChang
   onToggleBasemap() {
     this._isAerialSelected = !this._isAerialSelected;
     this._mapStyleOptionsChanged.next();
-    // this._sbbGeolocateControl.trigger();
   }
 
   /** @docs-private */
@@ -786,6 +779,11 @@ export class SbbJourneyMaps implements OnInit, AfterViewInit, OnDestroy, OnChang
   /** @docs-private */
   onHomeButtonClicked() {
     this._mapService.moveMap(this._map, this._homeButtonOptions);
+  }
+
+  /** @docs-private */
+  onGeolocateButtonClicked() {
+    this._sbbGeolocateControl.trigger();
   }
 
   private _updateMarkers(): void {
@@ -918,9 +916,7 @@ export class SbbJourneyMaps implements OnInit, AfterViewInit, OnDestroy, OnChang
       this._mapRailNetworkLayerService.updateOptions(this._map, this.styleOptions.railNetwork);
     }
 
-    if (this.uiOptions.geoLocation) {
-      this._addGeoLocationControl();
-    }
+    this._map.addControl(this._sbbGeolocateControl); // other controls are added in map-init-service.ts
 
     this._isStyleLoaded = true;
     this._styleLoaded.next();
@@ -1012,17 +1008,5 @@ export class SbbJourneyMaps implements OnInit, AfterViewInit, OnDestroy, OnChang
       .getStyle()
       .layers?.filter((layer) => layer.id.endsWith(layerIdSuffix))
       .forEach((layer) => map.setLayoutProperty(layer.id, 'visibility', visibility));
-  }
-
-  private _toggleGeoLocationButton() {
-    if (!this._map.hasControl(this._sbbGeolocateControl)) {
-      this._addGeoLocationControl();
-    } else {
-      this._map.removeControl(this._sbbGeolocateControl);
-    }
-  }
-
-  private _addGeoLocationControl() {
-    this._map.addControl(this._sbbGeolocateControl);
   }
 }

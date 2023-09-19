@@ -1,5 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
+import { SbbGeolocateButton } from '@sbb-esta/journey-maps/angular/components/geolocate-button/geolocate-button';
 
 import { SbbAttribution } from './components/attribution/attribution';
 import { SbbBasemapSwitch } from './components/basemap-switch/basemap-switch';
@@ -28,6 +29,7 @@ import { SbbJourneyMaps } from './journey-maps';
     SbbFeatureEventListener,
     SbbLeitPoi,
     SbbHomeButton,
+    SbbGeolocateButton,
     SbbOverlayPaginator,
     SbbTemplateOutlet,
   ],
