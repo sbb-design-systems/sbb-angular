@@ -1,0 +1,10 @@
+<div class="map-control-container" [class.small-buttons]="showSmallButtons" *ngIf="map">
+  <div class="map-control-button-wrapper">
+    <button
+      type="button"
+      (click)="onGeolocateButtonClicked()"
+      class="map-control-button"
+      [attr.aria-label]="geolocateButtonLabel"
+    ></button>
+  </div>
+</div>

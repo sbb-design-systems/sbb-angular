@@ -10,6 +10,7 @@ import {
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 
+import { SbbMultiTouchSupport } from '../../controls/multiTouchSupport';
 import {
   SbbInteractionOptions,
   SbbPointsOfInterestOptions,
@@ -19,7 +20,6 @@ import {
 import { isSbbBoundingBoxOptions, isSbbMapCenterOptions } from '../../util/typeguard';
 import { SBB_BOUNDING_BOX, SBB_JOURNEY_POIS_SOURCE } from '../constants';
 import { SBB_MARKER_BOUNDS_PADDING, SBB_MAX_ZOOM, SBB_MIN_ZOOM } from '../constants';
-import { SbbMultiTouchSupport } from '../multiTouchSupport';
 
 import { SbbMapUrlService } from './map-url-service';
 
