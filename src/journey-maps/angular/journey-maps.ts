@@ -13,7 +13,6 @@ import {
   SimpleChanges,
   ViewChild,
 } from '@angular/core';
-import { SbbGeolocateControl } from '@sbb-esta/journey-maps/angular/controls/sbbGeolocateControl';
 import { FeatureCollection, Point } from 'geojson';
 import { LngLatBounds, LngLatLike, Map as MaplibreMap, VectorTileSource } from 'maplibre-gl';
 import { ReplaySubject, Subject } from 'rxjs';
@@ -22,6 +21,7 @@ import { debounceTime, delay, switchMap, take, takeUntil } from 'rxjs/operators'
 import { SbbFeatureEventListener } from './components/feature-event-listener/feature-event-listener';
 import { SbbLevelSwitcher } from './components/level-switch/services/level-switcher';
 import { SbbMapLayerFilter } from './components/level-switch/services/map-layer-filter';
+import { SbbGeolocateControl } from './controls/sbbGeolocateControl';
 import {
   SbbDeselectableFeatureDataType,
   SbbFeatureData,
