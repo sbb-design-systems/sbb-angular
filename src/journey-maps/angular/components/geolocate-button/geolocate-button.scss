@@ -1,0 +1,5 @@
+@use './../../style/functions' as f;
+
+@include f.map-controls-shared;
+@include f.map-control-icon;
+@include f.map-control-icon-button('gps');
