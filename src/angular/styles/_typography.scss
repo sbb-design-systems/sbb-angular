@@ -561,7 +561,7 @@
     --sbb-expansion-panel-line-height: #{sbb.pxToRem(25)};
 
     // Pagination
-    --sbb-pagination-disabled-color: var(--sbb-color-storm);
+    --sbb-pagination-disabled-color: var(--sbb-color-cement);
     --sbb-pagination-paginator-size: #{sbb.pxToRem(30)};
 
     // Table
@@ -640,6 +640,10 @@
       --sbb-menu-item-label-active: var(--sbb-color-white);
       --sbb-menu-item-background-color-hover: transparent;
       --sbb-menu-item-background-color-active: var(--sbb-color-charcoal);
+
+      // Pagination
+      --sbb-pagination-base-color: var(--sbb-color-silver);
+      --sbb-pagination-disabled-color: var(--sbb-color-metal);
 
       // Sidebar
       --sbb-sidebar-background-color: var(--sbb-color-midnight);
