@@ -54,6 +54,7 @@ let noTimeout = false;
 
 /**
  * This class is a copy of the official maplibre GeolocateControl class, minus the default button
+ * I opened a ticket asking to provide a simpler solution: https://github.com/maplibre/maplibre-gl-js/issues/3103
  */
 export class SbbGeolocateControl extends Evented implements IControl {
   _map?: MaplibreMap;
