@@ -8,35 +8,40 @@
 
 @font-face {
   font-family: 'SBBWeb Bold';
-  src: url('https://cdn.app.sbb.ch/fonts/v1_6_subset/SBBWeb-Bold.woff2') format('woff2'),
+  src:
+    url('https://cdn.app.sbb.ch/fonts/v1_6_subset/SBBWeb-Bold.woff2') format('woff2'),
     url('https://cdn.app.sbb.ch/fonts/v1_6_subset/SBBWeb-Bold.woff') format('woff');
   font-display: swap;
 }
 
 @font-face {
   font-family: 'SBBWeb Light';
-  src: url('https://cdn.app.sbb.ch/fonts/v1_6_subset/SBBWeb-Light.woff2') format('woff2'),
+  src:
+    url('https://cdn.app.sbb.ch/fonts/v1_6_subset/SBBWeb-Light.woff2') format('woff2'),
     url('https://cdn.app.sbb.ch/fonts/v1_6_subset/SBBWeb-Light.woff') format('woff');
   font-display: swap;
 }
 
 @font-face {
   font-family: 'SBBWeb Roman';
-  src: url('https://cdn.app.sbb.ch/fonts/v1_6_subset/SBBWeb-Roman.woff2') format('woff2'),
+  src:
+    url('https://cdn.app.sbb.ch/fonts/v1_6_subset/SBBWeb-Roman.woff2') format('woff2'),
     url('https://cdn.app.sbb.ch/fonts/v1_6_subset/SBBWeb-Roman.woff') format('woff');
   font-display: fallback;
 }
 
 @font-face {
   font-family: 'SBBWeb Thin';
-  src: url('https://cdn.app.sbb.ch/fonts/v1_6_subset/SBBWeb-Thin.woff2') format('woff2'),
+  src:
+    url('https://cdn.app.sbb.ch/fonts/v1_6_subset/SBBWeb-Thin.woff2') format('woff2'),
     url('https://cdn.app.sbb.ch/fonts/v1_6_subset/SBBWeb-Thin.woff') format('woff');
   font-display: swap;
 }
 
 @font-face {
   font-family: 'SBBWeb Ultralight';
-  src: url('https://cdn.app.sbb.ch/fonts/v1_6_subset/SBBWeb-UltraLight.woff2') format('woff2'),
+  src:
+    url('https://cdn.app.sbb.ch/fonts/v1_6_subset/SBBWeb-UltraLight.woff2') format('woff2'),
     url('https://cdn.app.sbb.ch/fonts/v1_6_subset/SBBWeb-UltraLight.woff') format('woff');
   font-display: swap;
 }
@@ -311,6 +316,15 @@
   );
   --sbb-tooltip-shadow-arrow-size: calc(#{sbb.pxToRem(12)} * var(--sbb-scaling-factor));
   --sbb-tooltip-background-color: var(--sbb-color-background);
+
+  // Toggle
+  --sbb-toggle-border-active: var(--sbb-color-black);
+  --sbb-toggle-icon: var(--sbb-color-black);
+  --sbb-toggle-label-inactive: var(--sbb-color-granite);
+  --sbb-toggle-border-inactive: var(--sbb-color-aluminum);
+  --sbb-toggle-background-active: var(--sbb-color-white);
+  --sbb-toggle-label-active: var(--sbb-color-black);
+  --sbb-toggle-background-inactive: var(--sbb-color-milk);
 
   // Usermenu
   --sbb-usermenu-panel-width: calc(#{sbb.pxToRem(288)} * var(--sbb-scaling-factor));
@@ -625,6 +639,15 @@
       --sbb-icon-sidebar-background-color: var(--sbb-color-black);
       --sbb-icon-sidebar-background-color-active: var(--sbb-color-charcoal);
       --sbb-icon-sidebar-collapse-button-background-color: var(--sbb-color-background);
+
+      // Toggle
+      --sbb-toggle-border-active: var(--sbb-color-white);
+      --sbb-toggle-icon: var(--sbb-color-white);
+      --sbb-toggle-label-inactive: var(--sbb-color-milk);
+      --sbb-toggle-border-inactive: var(--sbb-color-iron);
+      --sbb-toggle-background-active: var(--sbb-color-charcoal);
+      --sbb-toggle-label-active: var(--sbb-color-white);
+      --sbb-toggle-background-inactive: var(--sbb-color-midnight);
     }
   }
 }
@@ -2517,7 +2540,9 @@ $panelBorderRadius: 2;
   border: var(--sbb-border-width) solid var(--sbb-color-weak-accent);
   border-radius: 0 0 var(--sbb-border-radius) var(--sbb-border-radius);
   border-top: none;
-  transition: height var(--sbb-transition-fast-start), opacity var(--sbb-transition-fast-start);
+  transition:
+    height var(--sbb-transition-fast-start),
+    opacity var(--sbb-transition-fast-start);
   color: var(--sbb-color-weak-accent);
   position: relative;
   top: var(--sbb-box-shadow-horizontal-border-offset-top-below);
