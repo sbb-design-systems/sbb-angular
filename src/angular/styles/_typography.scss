@@ -316,6 +316,10 @@
   --sbb-icon-sidebar-background-color-active: var(--sbb-color-background);
   --sbb-icon-sidebar-collapse-button-background-color: var(--sbb-color-milk);
 
+  // Status
+  --sbb-status-message-background-color: var(--sbb-color-milk);
+  --sbb-status-message-color: var(--sbb-color-granite);
+
   // Menu
   // (36 (Desired width) - 24 (icon width)) / 2
   --sbb-menu-trigger-padding: calc(#{sbb.pxToRem(6)} * var(--sbb-scaling-factor));
@@ -594,7 +598,7 @@
     --sbb-expansion-panel-line-height: #{sbb.pxToRem(25)};
 
     // Pagination
-    --sbb-pagination-disabled-color: var(--sbb-color-storm);
+    --sbb-pagination-disabled-color: var(--sbb-color-cement);
     --sbb-pagination-paginator-size: #{sbb.pxToRem(30)};
 
     // Table
@@ -674,11 +678,19 @@
       --sbb-menu-item-background-color-hover: transparent;
       --sbb-menu-item-background-color-active: var(--sbb-color-charcoal);
 
+      // Pagination
+      --sbb-pagination-base-color: var(--sbb-color-silver);
+      --sbb-pagination-disabled-color: var(--sbb-color-metal);
+
       // Sidebar
       --sbb-sidebar-background-color: var(--sbb-color-midnight);
       --sbb-icon-sidebar-background-color: var(--sbb-color-black);
       --sbb-icon-sidebar-background-color-active: var(--sbb-color-charcoal);
       --sbb-icon-sidebar-collapse-button-background-color: var(--sbb-color-background);
+
+      // Status
+      --sbb-status-message-background-color: var(--sbb-color-iron);
+      --sbb-status-message-color: var(--sbb-color-white);
 
       // Button Primary
       --sbb-primary-button-background-color-default: var(--sbb-color-red_dark-mode);
