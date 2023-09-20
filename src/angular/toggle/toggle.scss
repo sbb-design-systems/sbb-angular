@@ -158,7 +158,7 @@
     height: 0;
     top: var(--sbb-border-width-thin-negative);
     width: calc(50% - var(--sbb-border-width-thin));
-    border-bottom: var(--sbb-border-width-thin) solid var(--sbb-color-silver);
+    border-bottom: var(--sbb-border-width-thin) solid var(--sbb-toggle-background-active);
 
     .sbb-toggle-triple & {
       width: calc(33.33333% - var(--sbb-border-width-thin));
