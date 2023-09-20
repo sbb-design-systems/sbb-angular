@@ -356,13 +356,13 @@
   --sbb-tooltip-background-color: var(--sbb-color-background);
 
   // Toggle
-  --sbb-toggle-border-active: var(--sbb-color-black);
-  --sbb-toggle-icon: var(--sbb-color-black);
-  --sbb-toggle-label-inactive: var(--sbb-color-granite);
-  --sbb-toggle-border-inactive: var(--sbb-color-aluminum);
-  --sbb-toggle-background-active: var(--sbb-color-white);
-  --sbb-toggle-label-active: var(--sbb-color-black);
-  --sbb-toggle-background-inactive: var(--sbb-color-milk);
+  --sbb-toggle-border-color-active: var(--sbb-color-black);
+  --sbb-toggle-color-icon: var(--sbb-color-black);
+  --sbb-toggle-label-color-inactive: var(--sbb-color-granite);
+  --sbb-toggle-border-color-inactive: var(--sbb-color-aluminum);
+  --sbb-toggle-background-color-active: var(--sbb-color-white);
+  --sbb-toggle-label-color-active: var(--sbb-color-black);
+  --sbb-toggle-background-color-inactive: var(--sbb-color-milk);
 
   // Usermenu
   --sbb-usermenu-panel-width: calc(#{sbb.pxToRem(288)} * var(--sbb-scaling-factor));
@@ -702,13 +702,13 @@
       --sbb-status-message-color: var(--sbb-color-white);
 
       // Toggle
-      --sbb-toggle-border-active: var(--sbb-color-white);
-      --sbb-toggle-icon: var(--sbb-color-white);
-      --sbb-toggle-label-inactive: var(--sbb-color-milk);
-      --sbb-toggle-border-inactive: var(--sbb-color-iron);
-      --sbb-toggle-background-active: var(--sbb-color-charcoal);
-      --sbb-toggle-label-active: var(--sbb-color-white);
-      --sbb-toggle-background-inactive: var(--sbb-color-midnight);
+      --sbb-toggle-border-color-active: var(--sbb-color-white);
+      --sbb-toggle-color-icon: var(--sbb-color-white);
+      --sbb-toggle-label-color-inactive: var(--sbb-color-milk);
+      --sbb-toggle-border-color-inactive: var(--sbb-color-iron);
+      --sbb-toggle-background-color-active: var(--sbb-color-charcoal);
+      --sbb-toggle-label-color-active: var(--sbb-color-white);
+      --sbb-toggle-background-color-inactive: var(--sbb-color-midnight);
 
       // Button Primary
       --sbb-primary-button-background-color-default: var(--sbb-color-red_dark-mode);
