@@ -46,7 +46,7 @@
   height: var(--sbb-chips-chip-height);
   border-radius: var(--sbb-chips-chip-height);
   color: var(--sbb-color-weak-accent);
-  background-color: var(--sbb-color-cloud);
+  background-color: var(--sbb-chips-background-color-active);
   max-width: 100%;
   margin: var(--sbb-chips-chip-margin-vertical);
 
@@ -60,7 +60,15 @@
     calc(#{sbb.pxToRem(14)} * var(--sbb-scaling-factor));
 
   &:not(.sbb-chip-disabled):is(:hover, :focus) {
-    background-color: var(--sbb-color-aluminum);
+    background-color: var(--sbb-chips-background-color-hover);
+  }
+
+  &:not(.sbb-chip-disabled):is(:focus) {
+    background-color: var(--sbb-chips-background-color-focused);
+  }
+
+  :where(.sbb-lean.sbb-dark) &.sbb-chip-disabled {
+    opacity: 0.9;
   }
 
   &.sbb-chip-disabled {
