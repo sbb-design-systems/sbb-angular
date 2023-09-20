@@ -174,21 +174,21 @@
   // Button Primary
   --sbb-primary-button-background-color-default: var(--sbb-color-call-to-action);
   --sbb-primary-button-background-color-hover: var(--sbb-color-call-to-action-hover);
-  --sbb-primary-button-background-color-disabled: var(--sbb-color-white);
+  --sbb-primary-button-background-color-disabled: transpparent;
   --sbb-primary-button-color: var(--sbb-color-white);
   --sbb-primary-button-color-disabled: var(--sbb-color-granite);
 
   // Button Primary-Alternative
   --sbb-primary-alternative-button-background-color-default: var(--sbb-color-granite);
   --sbb-primary-alternative-button-background-color-hover: var(--sbb-color-iron);
-  --sbb-primary-alternative-button-background-color-disabled: var(--sbb-color-white);
+  --sbb-primary-alternative-button-background-color-disabled: transpparent;
   --sbb-primary-alternative-button-color: var(--sbb-color-white);
   --sbb-primary-alternative-button-color-disabled: var(--sbb-color-granite);
 
   // Button Secondary
   --sbb-secondary-button-background-color-default: var(--sbb-color-silver);
   --sbb-secondary-button-background-color-hover: var(--sbb-color-platinum);
-  --sbb-secondary-button-background-color-disabled: var(--sbb-color-white);
+  --sbb-secondary-button-background-color-disabled: transpparent;
   --sbb-secondary-button-color: var(--sbb-color-iron);
   --sbb-secondary-button-color-disabled: var(--sbb-color-granite);
 
@@ -1511,8 +1511,6 @@ textarea {
 
   &:is(:disabled, .sbb-disabled) {
     :where(html:not(.sbb-lean)) & {
-      background-color: transparent;
-      color: var(--sbb-color-granite);
       border-color: var(--sbb-color-storm);
 
       &,
