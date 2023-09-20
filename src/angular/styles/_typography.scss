@@ -356,6 +356,14 @@
   --sbb-tooltip-shadow-arrow-size: calc(#{sbb.pxToRem(12)} * var(--sbb-scaling-factor));
   --sbb-tooltip-background-color: var(--sbb-color-background);
 
+  // Toggle
+  --sbb-toggle-border-color-active: var(--sbb-color-black);
+  --sbb-toggle-label-color-inactive: var(--sbb-color-granite);
+  --sbb-toggle-border-color-inactive: var(--sbb-color-aluminum);
+  --sbb-toggle-background-color-active: var(--sbb-color-white);
+  --sbb-toggle-label-color-active: var(--sbb-color-black);
+  --sbb-toggle-background-color-inactive: var(--sbb-color-milk);
+
   // Usermenu
   --sbb-usermenu-panel-width: calc(#{sbb.pxToRem(288)} * var(--sbb-scaling-factor));
   --sbb-usermenu-trigger-height: calc(#{sbb.pxToRem(48)} * var(--sbb-scaling-factor));
@@ -706,6 +714,14 @@
       --sbb-tag-label-color-inactive: var(--sbb-color-white);
       --sbb-tag-badge-background-color-disabled: var(--sbb-color-anthracite);
       --sbb-tag-badge-background-color-focused: var(--sbb-color-white);
+
+      // Toggle
+      --sbb-toggle-border-color-active: var(--sbb-color-white);
+      --sbb-toggle-label-color-inactive: var(--sbb-color-milk);
+      --sbb-toggle-border-color-inactive: var(--sbb-color-iron);
+      --sbb-toggle-background-color-active: var(--sbb-color-charcoal);
+      --sbb-toggle-label-color-active: var(--sbb-color-white);
+      --sbb-toggle-background-color-inactive: var(--sbb-color-midnight);
 
       // Button Primary
       --sbb-primary-button-background-color-default: var(--sbb-color-red_dark-mode);
@@ -1552,7 +1568,6 @@ textarea {
 
 .sbb-button {
   background-color: var(--sbb-primary-button-background-color-default);
-
   color: var(--sbb-primary-button-color);
 
   &:not(:disabled):not(.sbb-disabled):is(:hover, :focus) {
