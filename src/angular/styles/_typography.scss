@@ -223,6 +223,10 @@
   );
   --sbb-chips-chip-padding-horizontal: calc(#{sbb.pxToRem(8)} * var(--sbb-scaling-factor));
   --sbb-chips-input-width: calc(#{sbb.pxToRem(150)} * var(--sbb-scaling-factor));
+  --sbb-chips-background-color-active: var(--sbb-color-cloud);
+  --sbb-chips-background-color-hover: var(--sbb-color-aluminum);
+  --sbb-chips-background-color-disabled: var(--sbb-color-cloud);
+  --sbb-chips-opacity: 0.6;
 
   // Dialog
   --sbb-dialog-padding: calc(#{sbb.pxToRem(16)} * var(--sbb-scaling-factor));
@@ -667,6 +671,12 @@
       --sbb-color-text: var(--sbb-color-white);
       --sbb-color-call-to-action: var(--sbb-color-red_dark-mode);
       --sbb-color-call-to-action-hover: var(--sbb-color-red_dark-mode);
+
+      // Chips
+      --sbb-chips-background-color-active: var(--sbb-color-smoke);
+      --sbb-chips-background-color-hover: var(--sbb-color-metal);
+      --sbb-chips-background-color-disabled: var(--sbb-color-cloud);
+      --sbb-chips-opacity: 0.9;
 
       // Badge
       --sbb-badge-background-color: var(--sbb-color-white);
