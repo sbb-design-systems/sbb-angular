@@ -192,6 +192,7 @@
   --sbb-chips-background-color-active: var(--sbb-color-cloud);
   --sbb-chips-background-color-hover: var(--sbb-color-aluminum);
   --sbb-chips-background-color-disabled: var(--sbb-color-cloud);
+  --sbb-chips-opacity: 0.6;
 
   // Dialog
   --sbb-dialog-padding: calc(#{sbb.pxToRem(16)} * var(--sbb-scaling-factor));
@@ -618,6 +619,7 @@
       --sbb-chips-background-color-active: var(--sbb-color-smoke);
       --sbb-chips-background-color-hover: var(--sbb-color-metal);
       --sbb-chips-background-color-disabled: var(--sbb-color-cloud);
+      --sbb-chips-opacity: 0.9;
 
       // Badge
       --sbb-badge-background-color: var(--sbb-color-white);

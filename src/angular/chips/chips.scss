@@ -66,11 +66,7 @@
 
   &.sbb-chip-disabled {
     background-color: var(--sbb-chips-background-color-disabled);
-    opacity: 0.6;
-
-    :where(html.sbb-lean.sbb-dark) & {
-      opacity: 0.9;
-    }
+    opacity: var(--sbb-chips-opacity);
 
     :is(.sbb-chip-remove, .sbb-chip-trailing-icon) {
       cursor: default;
