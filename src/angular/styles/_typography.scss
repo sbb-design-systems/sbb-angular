@@ -115,6 +115,12 @@
   // Dark mode colors
   --sbb-color-red_dark-mode: #{sbb.$sbbColorRedDarkMode};
 
+  // Dark Mode with Alpha
+  --sbb-color-red_dark-mode-alpha40: #{rgba(sbb.$sbbColorRedDarkMode, 0.4)};
+  --sbb-color-milk-alpha40: #{rgba(sbb.$sbbColorMilk, 0.4)};
+  --sbb-color-black-alpha50: #{rgba(sbb.$sbbColorBlack, 0.5)};
+  --sbb-color-cement-alpha40: #{rgba(sbb.$sbbColorCement, 0.4)};
+
   // Scaling
   --sbb-scaling-factor: 1;
 
@@ -165,6 +171,49 @@
   --sbb-button-height: calc(#{sbb.pxToRem(48)} * var(--sbb-scaling-factor));
   --sbb-button-icon-top-margin: calc(#{sbb.pxToRem(-12.5)} * var(--sbb-scaling-factor));
 
+  // Button Primary
+  --sbb-primary-button-background-color-default: var(--sbb-color-call-to-action);
+  --sbb-primary-button-background-color-hover: var(--sbb-color-call-to-action-hover);
+  --sbb-primary-button-background-color-disabled: transpparent;
+  --sbb-primary-button-color: var(--sbb-color-white);
+  --sbb-primary-button-color-disabled: var(--sbb-color-granite);
+
+  // Button Primary-Alternative
+  --sbb-primary-alternative-button-background-color-default: var(--sbb-color-granite);
+  --sbb-primary-alternative-button-background-color-hover: var(--sbb-color-iron);
+  --sbb-primary-alternative-button-background-color-disabled: transpparent;
+  --sbb-primary-alternative-button-color: var(--sbb-color-white);
+  --sbb-primary-alternative-button-color-disabled: var(--sbb-color-granite);
+
+  // Button Secondary
+  --sbb-secondary-button-background-color-default: var(--sbb-color-silver);
+  --sbb-secondary-button-background-color-hover: var(--sbb-color-platinum);
+  --sbb-secondary-button-background-color-disabled: transpparent;
+  --sbb-secondary-button-color: var(--sbb-color-iron);
+  --sbb-secondary-button-color-disabled: var(--sbb-color-granite);
+
+  // Button Ghost
+  --sbb-ghost-button-border-color-default: var(--sbb-color-storm);
+  --sbb-ghost-button-border-color-hover: var(--sbb-color-iron);
+  --sbb-ghost-button-border-color-disabled: var(--sbb-color-storm-alpha40);
+  --sbb-ghost-button-label-color: var(--sbb-color-granite);
+  --sbb-ghost-button-label-color-disabled: var(--sbb-color-iron-alpha40);
+
+  // Checkbox
+  --sbb-checkbox-background-color-default: var(--sbb-color-background);
+  --sbb-checkbox-background-color-disabled: var(--sbb-color-milk);
+
+  --sbb-checkbox-border-color-default: var(--sbb-color-graphite);
+  --sbb-checkbox-border-color-disabled: var(--sbb-color-aluminum);
+
+  --sbb-checkbox-icon-color-default: var(--sbb-color-red);
+  --sbb-checkbox-icon-color-disabled: var(--sbb-color-granite);
+  --sbb-checkbox-border-color-focused: var(--sbb-color-weak-accent);
+
+  --sbb-checkbox-label-color-checked: var(--sbb-color-iron);
+  --sbb-checkbox-label-color-unchecked: var(--sbb-color-granite);
+  --sbb-checkbox-label-color-disabled: var(--sbb-color-granite);
+
   // Checkbox
   --sbb-checkbox-background-color-default: var(--sbb-color-background);
   --sbb-checkbox-background-color-disabled: var(--sbb-color-milk);
@@ -189,6 +238,10 @@
   );
   --sbb-chips-chip-padding-horizontal: calc(#{sbb.pxToRem(8)} * var(--sbb-scaling-factor));
   --sbb-chips-input-width: calc(#{sbb.pxToRem(150)} * var(--sbb-scaling-factor));
+  --sbb-chips-background-color-active: var(--sbb-color-cloud);
+  --sbb-chips-background-color-hover: var(--sbb-color-aluminum);
+  --sbb-chips-background-color-disabled: var(--sbb-color-cloud);
+  --sbb-chips-opacity: 0.6;
 
   // Dialog
   --sbb-dialog-padding: calc(#{sbb.pxToRem(16)} * var(--sbb-scaling-factor));
@@ -298,6 +351,10 @@
   --sbb-icon-sidebar-background-color-active: var(--sbb-color-background);
   --sbb-icon-sidebar-collapse-button-background-color: var(--sbb-color-milk);
 
+  // Status
+  --sbb-status-message-background-color: var(--sbb-color-milk);
+  --sbb-status-message-color: var(--sbb-color-granite);
+
   // Menu
   // (36 (Desired width) - 24 (icon width)) / 2
   --sbb-menu-trigger-padding: calc(#{sbb.pxToRem(6)} * var(--sbb-scaling-factor));
@@ -332,6 +389,14 @@
   );
   --sbb-tooltip-shadow-arrow-size: calc(#{sbb.pxToRem(12)} * var(--sbb-scaling-factor));
   --sbb-tooltip-background-color: var(--sbb-color-background);
+
+  // Toggle
+  --sbb-toggle-border-color-active: var(--sbb-color-black);
+  --sbb-toggle-label-color-inactive: var(--sbb-color-granite);
+  --sbb-toggle-border-color-inactive: var(--sbb-color-aluminum);
+  --sbb-toggle-background-color-active: var(--sbb-color-white);
+  --sbb-toggle-label-color-active: var(--sbb-color-black);
+  --sbb-toggle-background-color-inactive: var(--sbb-color-milk);
 
   // Usermenu
   --sbb-usermenu-panel-width: calc(#{sbb.pxToRem(288)} * var(--sbb-scaling-factor));
@@ -504,6 +569,35 @@
     // Button
     --sbb-button-height: #{sbb.pxToRem(36)};
 
+    // Button Primary
+    --sbb-primary-button-background-color-default: var(--sbb-color-red);
+    --sbb-primary-button-background-color-hover: var(--sbb-color-red125);
+    --sbb-primary-button-background-color-disabled: var(--sbb-color-red-alpha40);
+    --sbb-primary-button-color-disabled: var(--sbb-color-white-alpha50);
+
+    // Button Primary-Alternative
+    --sbb-primary-alternative-button-color-disabled: var(--sbb-color-white-alpha50);
+    --sbb-primary-alternative-button-background-color-disabled: var(--sbb-color-granite-alpha40);
+
+    // Button Secondary
+    --sbb-secondary-button-background-color-hover: var(--sbb-color-cement);
+    --sbb-secondary-button-background-color-disabled: var(--sbb-color-silver-alpha40);
+    --sbb-secondary-button-color-disabled: var(--sbb-color-iron-alpha50);
+
+    // Checkbox
+    --sbb-checkbox-background-color-default: var(--sbb-color-white);
+    --sbb-checkbox-background-color-disabled: var(--sbb-color-milk);
+
+    --sbb-checkbox-border-color-default: var(--sbb-color-smoke);
+    --sbb-checkbox-border-color-disabled: var(--sbb-color-smoke);
+
+    --sbb-checkbox-icon-color-default: var(--sbb-color-iron);
+    --sbb-checkbox-icon-color-disabled: var(--sbb-color-iron);
+
+    --sbb-checkbox-label-color-checked: var(--sbb-color-iron);
+    --sbb-checkbox-label-color-unchecked: var(--sbb-color-granite);
+    --sbb-checkbox-label-color-disabled: var(--sbb-color-granite);
+
     // Checkbox
     --sbb-checkbox-background-color-default: var(--sbb-color-white);
     --sbb-checkbox-background-color-disabled: var(--sbb-color-milk);
@@ -561,7 +655,7 @@
     --sbb-expansion-panel-line-height: #{sbb.pxToRem(25)};
 
     // Pagination
-    --sbb-pagination-disabled-color: var(--sbb-color-storm);
+    --sbb-pagination-disabled-color: var(--sbb-color-cement);
     --sbb-pagination-paginator-size: #{sbb.pxToRem(30)};
 
     // Radiobutton
@@ -616,6 +710,8 @@
     }
 
     &:where(.sbb-lean.sbb-dark) {
+      --sbb-color-weak-accent: var(--sbb-color-milk);
+
       // Checkbox
       --sbb-checkbox-background-color-default: var(--sbb-color-background);
       --sbb-checkbox-background-color-disabled: var(--sbb-color-charcoal);
@@ -636,6 +732,12 @@
       --sbb-color-text: var(--sbb-color-white);
       --sbb-color-call-to-action: var(--sbb-color-red_dark-mode);
       --sbb-color-call-to-action-hover: var(--sbb-color-red_dark-mode);
+
+      // Chips
+      --sbb-chips-background-color-active: var(--sbb-color-smoke);
+      --sbb-chips-background-color-hover: var(--sbb-color-metal);
+      --sbb-chips-background-color-disabled: var(--sbb-color-cloud);
+      --sbb-chips-opacity: 0.9;
 
       // Badge
       --sbb-badge-background-color: var(--sbb-color-white);
@@ -671,11 +773,53 @@
       --sbb-radiobutton-label-color-unchecked: var(--sbb-color-graphite);
       --sbb-radiobutton-label-color-disabled: var(--sbb-color-smoke);
 
+      // Pagination
+      --sbb-pagination-base-color: var(--sbb-color-silver);
+      --sbb-pagination-disabled-color: var(--sbb-color-metal);
+
       // Sidebar
       --sbb-sidebar-background-color: var(--sbb-color-midnight);
       --sbb-icon-sidebar-background-color: var(--sbb-color-black);
       --sbb-icon-sidebar-background-color-active: var(--sbb-color-charcoal);
       --sbb-icon-sidebar-collapse-button-background-color: var(--sbb-color-background);
+
+      // Status
+      --sbb-status-message-background-color: var(--sbb-color-iron);
+      --sbb-status-message-color: var(--sbb-color-white);
+
+      // Toggle
+      --sbb-toggle-border-color-active: var(--sbb-color-white);
+      --sbb-toggle-label-color-inactive: var(--sbb-color-milk);
+      --sbb-toggle-border-color-inactive: var(--sbb-color-iron);
+      --sbb-toggle-background-color-active: var(--sbb-color-charcoal);
+      --sbb-toggle-label-color-active: var(--sbb-color-white);
+      --sbb-toggle-background-color-inactive: var(--sbb-color-midnight);
+
+      // Button Primary
+      --sbb-primary-button-background-color-default: var(--sbb-color-red_dark-mode);
+      --sbb-primary-button-background-color-hover: var(--sbb-color-red125);
+      --sbb-primary-button-background-color-disabled: var(--sbb-color-red_dark-mode-alpha40);
+
+      // Button Primary-Alternative
+      --sbb-primary-alternative-button-background-color-default: var(--sbb-color-milk);
+      --sbb-primary-alternative-button-background-color-hover: var(--sbb-color-silver);
+      --sbb-primary-alternative-button-background-color-disabled: var(--sbb-color-milk-alpha40);
+      --sbb-primary-alternative-button-color: var(--sbb-color-black);
+      --sbb-primary-alternative-button-color-disabled: var(--sbb-color-black-alpha50);
+
+      // Button Secondary
+      --sbb-secondary-button-background-color-default: var(--sbb-color-granite);
+      --sbb-secondary-button-background-color-hover: var(--sbb-color-iron);
+      --sbb-secondary-button-background-color-disabled: var(--sbb-color-iron-alpha40);
+      --sbb-secondary-button-color: var(--sbb-color-white);
+      --sbb-secondary-button-color-disabled: var(--sbb-color-white-alpha50);
+
+      // Button Ghost
+      --sbb-ghost-button-border-color-default: var(--sbb-color-iron);
+      --sbb-ghost-button-border-color-hover: var(--sbb-color-milk);
+      --sbb-ghost-button-border-color-disabled: var(--sbb-color-iron);
+      --sbb-ghost-button-label-color: var(--sbb-color-white);
+      --sbb-ghost-button-label-color-disabled: var(--sbb-color-white-alpha50);
     }
   }
 }
@@ -1482,8 +1626,6 @@ textarea {
 
   &:is(:disabled, .sbb-disabled) {
     :where(html:not(.sbb-lean)) & {
-      background-color: transparent;
-      color: var(--sbb-color-granite);
       border-color: var(--sbb-color-storm);
 
       &,
@@ -1495,50 +1637,44 @@ textarea {
 }
 
 .sbb-button {
-  background-color: var(--sbb-color-call-to-action);
-  color: var(--sbb-color-white);
+  background-color: var(--sbb-primary-button-background-color-default);
+  color: var(--sbb-primary-button-color);
 
   &:not(:disabled):not(.sbb-disabled):is(:hover, :focus) {
-    background-color: var(--sbb-color-call-to-action-hover);
+    background-color: var(--sbb-primary-button-background-color-hover);
   }
 
   &:is(:disabled, .sbb-disabled) {
-    :where(html.sbb-lean) & {
-      background-color: var(--sbb-color-red-alpha40);
-      color: var(--sbb-color-white-alpha50);
-    }
+    background-color: var(--sbb-primary-button-background-color-disabled);
+    color: var(--sbb-primary-button-color-disabled);
   }
 }
 
 .sbb-alt-button {
-  background-color: var(--sbb-color-granite);
-  color: var(--sbb-color-white);
+  background-color: var(--sbb-primary-alternative-button-background-color-default);
+  color: var(--sbb-primary-alternative-button-color);
 
   &:not(:disabled):not(.sbb-disabled):is(:hover, :focus) {
-    background-color: var(--sbb-color-iron);
+    background-color: var(--sbb-primary-alternative-button-background-color-hover);
   }
 
   &:is(:disabled, .sbb-disabled) {
-    :where(html.sbb-lean) & {
-      background-color: var(--sbb-color-granite-alpha40);
-      color: var(--sbb-color-white-alpha50);
-    }
+    background-color: var(--sbb-primary-alternative-button-background-color-disabled);
+    color: var(--sbb-primary-alternative-button-color-disabled);
   }
 }
 
 .sbb-secondary-button {
-  background-color: var(--sbb-color-silver);
-  color: var(--sbb-color-iron);
+  background-color: var(--sbb-secondary-button-background-color-default);
+  color: var(--sbb-secondary-button-color);
 
   &:not(:disabled):not(.sbb-disabled):is(:hover, :focus) {
-    background-color: var(--sbb-color-platinum);
+    background-color: var(--sbb-secondary-button-background-color-hover);
   }
 
   &:is(:disabled, .sbb-disabled) {
-    :where(html.sbb-lean) & {
-      background-color: var(--sbb-color-silver-alpha40);
-      color: var(--sbb-color-iron-alpha50);
-    }
+    background-color: var(--sbb-secondary-button-background-color-disabled);
+    color: var(--sbb-secondary-button-color-disabled);
   }
 }
 
@@ -1572,21 +1708,19 @@ textarea {
 
 .sbb-ghost-button {
   background-color: transparent;
-  color: var(--sbb-color-granite);
-  border-color: var(--sbb-color-storm);
+  color: var(--sbb-ghost-button-label-color);
+  border-color: var(--sbb-ghost-button-border-color-default);
 
   &:not(:disabled):not(.sbb-disabled):is(:hover, :focus) {
-    border-color: var(--sbb-color-iron);
+    border-color: var(--sbb-ghost-button-border-color-hover);
   }
 
   &:is(:disabled, .sbb-disabled) {
     :where(html:not(.sbb-lean)) & {
       display: none;
     }
-    :where(html.sbb-lean) & {
-      color: var(--sbb-color-iron-alpha40);
-      border-color: var(--sbb-color-storm-alpha40);
-    }
+    color: var(--sbb-ghost-button-label-color-disabled);
+    border-color: var(--sbb-ghost-button-border-color-disabled);
   }
 }
 

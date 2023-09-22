@@ -22,8 +22,8 @@
   justify-content: center;
   position: relative;
   height: 100%;
-  background-color: var(--sbb-color-milk);
-  color: var(--sbb-color-granite);
+  background-color: var(--sbb-toggle-background-color-inactive);
+  color: var(--sbb-toggle-label-color-inactive);
   border-radius: var(--sbb-border-radius);
   padding: calc(#{sbb.pxToRem(8)} * var(--sbb-scaling-factor))
     calc(#{sbb.pxToRem(15)} * var(--sbb-scaling-factor))
@@ -44,7 +44,7 @@
     padding: calc(#{sbb.pxToRem(5)} * var(--sbb-scaling-factor))
       calc(#{sbb.pxToRem(15)} * var(--sbb-scaling-factor))
       calc(#{sbb.pxToRem(6)} * var(--sbb-scaling-factor));
-    border-color: var(--sbb-color-aluminum);
+    border-color: var(--sbb-toggle-border-color-inactive);
   }
 
   &:hover {
@@ -86,9 +86,9 @@
   }
 
   .sbb-toggle-option-selected & {
-    background-color: var(--sbb-color-white);
-    border-color: var(--sbb-color-black);
-    color: var(--sbb-color-black);
+    background-color: var(--sbb-toggle-background-color-active);
+    border-color: var(--sbb-toggle-border-color-active);
+    color: var(--sbb-toggle-label-color-active);
   }
 }
 
@@ -142,10 +142,10 @@
 
 .sbb-toggle-option-content {
   display: flex;
-  background-color: var(--sbb-color-white);
+  background-color: var(--sbb-toggle-background-color-active);
   margin-top: calc(#{sbb.pxToRem(-2)} * var(--sbb-scaling-factor));
   position: relative;
-  border: var(--sbb-border-width-thin) solid var(--sbb-color-black);
+  border: var(--sbb-border-width-thin) solid var(--sbb-toggle-border-color-active);
   border-radius: var(--sbb-border-radius);
 
   &:empty {
@@ -158,7 +158,7 @@
     height: 0;
     top: var(--sbb-border-width-thin-negative);
     width: calc(50% - var(--sbb-border-width-thin));
-    border-bottom: var(--sbb-border-width-thin) solid var(--sbb-color-silver);
+    border-bottom: var(--sbb-border-width-thin) solid var(--sbb-toggle-background-color-active);
 
     .sbb-toggle-triple & {
       width: calc(33.33333% - var(--sbb-border-width-thin));
