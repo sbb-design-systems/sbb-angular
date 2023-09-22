@@ -369,7 +369,7 @@
   --sbb-usermenu-trigger-padding: calc(#{sbb.pxToRem(12)} * var(--sbb-scaling-factor));
 
   --sbb-usermenu-text-color: var(--sbb-color-granite);
-  --sbb-usermenu-fallback-text: var(--sbb-color-metal);
+  --sbb-usermenu-initial-letters-text-color: var(--sbb-color-metal);
   --sbb-usermenu-divider: var(--sbb-color-cloud);
   --sbb-usermenu-initial-letters-background-color: var(--sbb-color-cloud);
 
