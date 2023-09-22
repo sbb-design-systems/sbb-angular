@@ -307,31 +307,19 @@
   --sbb-table-sort-header-arrow-margin: calc(#{sbb.pxToRem(8)} * var(--sbb-scaling-factor));
 
   // Tag
-  --sbb-tag-filter-label-active-color: var(--sbb-color-black);
-  --sbb-tag-filter-border-active-color: var(--sbb-color-black);
-  --sbb-tag-badge-background-default-color: var(--sbb-color-red);
-  --sbb-tag-badge-label-default-color: var(--sbb-color-white);
-  --sbb-tag-filter-background-active-color: var(--sbb-color-white);
-
-  --sbb-tag-link-label-color: var(--sbb-color-black);
-  --sbb-tag-link-border-color: var(--sbb-color-black);
-
-  --sbb-tag-filter-label-active-hover-color: var(--sbb-color-granite);
-  --sbb-tag-filter-border-active-hover-color: var(--sbb-color-graphite);
-
-  --sbb-tag-badge-background-focused-color: var(--sbb-color-black);
-  --sbb-tag-link-label-hover-color: var(--sbb-color-red125);
-  --sbb-tag-link-border-hover-color: var(--sbb-color-red125);
-  --sbb-tag-badge-label-focused-color: var(--sbb-color-white);
-  --sbb-tag-link-background-color: var(--sbb-color-white);
-
-  --sbb-tag-filter-background-inactive-color: var(--sbb-color-milk);
-  --sbb-tag-filter-label-inactive-color: var(--sbb-color-granite);
-  --sbb-tag-badge-background-disabled-color: var(--sbb-color-storm);
-  --sbb-tag-badge-label-disabled-color: var(--sbb-color-white);
-
-  --sbb-tag-filter-background-inactive-hover-color: var(--sbb-color-cloud);
-  --sbb-tag-filter-label-inactive-hover-color: var(--sbb-color-black);
+  --sbb-tag-label-color-active: var(--sbb-color-black);
+  --sbb-tag-border-color-active: var(--sbb-color-black);
+  --sbb-tag-badge-background-color-default: var(--sbb-color-black);
+  --sbb-tag-badge-label-color-default: var(--sbb-color-white);
+  --sbb-tag-background-color-inactive-hover: var(--sbb-color-cloud);
+  --sbb-tag-label-color-inactive-hover: var(--sbb-color-black);
+  --sbb-tag-label-color-active-hover: var(--sbb-color-granite);
+  --sbb-tag-border-color-active-hover: var(--sbb-color-graphite);
+  --sbb-tag-background-color-inactive: var(--sbb-color-milk);
+  --sbb-tag-label-color-inactive: var(--sbb-color-granite);
+  --sbb-tag-badge-background-color-disabled: var(--sbb-color-storm);
+  --sbb-tag-badge-label-color-disabled: var(--sbb-color-white);
+  --sbb-tag-badge-background-color-focused: var(--sbb-color-black);
 
   // Tooltip
   --sbb-tooltip-padding: calc(#{sbb.pxToRem(23)} * var(--sbb-scaling-factor));
@@ -660,31 +648,18 @@
       --sbb-icon-sidebar-collapse-button-background-color: var(--sbb-color-background);
 
       // Tag
-      --sbb-tag-filter-label-active-color: var(--sbb-color-white);
-      --sbb-tag-filter-border-active-color: var(--sbb-color-white);
-      --sbb-tag-badge-background-default-color: var(--sbb-color-red_dark-mode);
-      --sbb-tag-badge-label-default-color: var(--sbb-color-white);
-      --sbb-tag-filter-background-active-color: var(--sbb-color-white-alpha0);
-
-      --sbb-tag-link-label-color: var(--sbb-color-white);
-      --sbb-tag-link-border-color: var(--sbb-color-white);
-
-      --sbb-tag-filter-label-active-hover-color: var(--sbb-color-white);
-      --sbb-tag-filter-border-active-hover-color: var(--sbb-color-smoke);
-
-      --sbb-tag-badge-background-focused-color: var(--sbb-color-white);
-      --sbb-tag-link-label-hover-color: var(--sbb-color-red);
-      --sbb-tag-link-border-hover-color: var(--sbb-color-red_dark-mode);
-      --sbb-tag-badge-label-focused-color: var(--sbb-color-black);
-      --sbb-tag-link-background-color: var(--sbb-color-white);
-
-      --sbb-tag-filter-background-inactive-color: var(--sbb-color-iron);
-      --sbb-tag-filter-label-inactive-color: var(--sbb-color-white);
-      --sbb-tag-badge-background-disabled-color: var(--sbb-color-anthracite);
-      --sbb-tag-badge-label-disabled-color: var(--sbb-color-white);
-
-      --sbb-tag-filter-background-inactive-hover-color: var(--sbb-color-charcoal);
-      --sbb-tag-filter-label-inactive-hover-color: var(--sbb-color-white);
+      --sbb-tag-label-color-active: var(--sbb-color-white);
+      --sbb-tag-border-color-active: var(--sbb-color-white);
+      --sbb-tag-badge-background-color-default: var(--sbb-color-white);
+      --sbb-tag-badge-label-color-default: var(--sbb-color-black);
+      --sbb-tag-background-color-inactive-hover: var(--sbb-color-charcoal);
+      --sbb-tag-label-color-inactive-hover: var(--sbb-color-white);
+      --sbb-tag-label-color-active-hover: var(--sbb-color-white);
+      --sbb-tag-border-color-active-hover: var(--sbb-color-smoke);
+      --sbb-tag-background-color-inactive: var(--sbb-color-iron);
+      --sbb-tag-label-color-inactive: var(--sbb-color-white);
+      --sbb-tag-badge-background-color-disabled: var(--sbb-color-anthracite);
+      --sbb-tag-badge-background-color-focused: var(--sbb-color-white);
     }
   }
 }

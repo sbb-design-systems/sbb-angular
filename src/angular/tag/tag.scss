@@ -12,7 +12,7 @@
     position: relative;
     display: block;
     transition: background-color var(--sbb-transition-fast-start);
-    background-color: var(--sbb-tag-badge-background-disabled-color);
+    background-color: var(--sbb-tag-badge-background-color-disabled);
   }
 }
 
@@ -34,10 +34,10 @@
     property: border-color, background-color, color;
   }
   cursor: pointer;
-  background-color: var(--sbb-tag-filter-background-inactive-color);
+  background-color: var(--sbb-tag-background-color-inactive);
   border: var(--sbb-border-width-thin) solid transparent;
   border-radius: 1.2em;
-  color: var(--sbb-tag-filter-label-inactive-color);
+  color: var(--sbb-tag-label-color-inactive);
 
   font-size: var(--sbb-font-size);
   line-height: var(--sbb-line-height-medium);
@@ -62,41 +62,38 @@
   position: relative;
 
   .sbb-badge-content {
-    color: var(--sbb-tag-badge-label-default-color);
+    color: var(--sbb-tag-badge-label-color-disabled);
   }
 
   .sbb-tag:not(.sbb-tag-disabled):is(:hover, :focus, .cdk-focused) & {
-    background-color: var(--sbb-tag-filter-background-inactive-hover-color);
-    color: var(--sbb-tag-filter-label-inactive-hover-color);
+    background-color: var(--sbb-tag-background-color-inactive-hover);
+    color: var(--sbb-tag-label-color-inactive-hover);
 
     .sbb-badge-content {
-      background-color: var(--sbb-tag-badge-background-default-color);
+      background-color: var(--sbb-tag-badge-background-color-default);
+      color: var(--sbb-tag-badge-label-color-default);
     }
   }
 
   .sbb-tag-active & {
     background-color: var(--sbb-color-background);
-    border-color: var(--sbb-tag-filter-border-active-color);
-    color: var(--sbb-tag-filter-label-active-color);
+    border-color: var(--sbb-tag-border-color-active);
+    color: var(--sbb-tag-label-color-active);
 
     .sbb-badge-content {
-      background-color: var(--sbb-tag-badge-background-default-color);
+      background-color: var(--sbb-tag-badge-background-color-default);
+      color: var(--sbb-tag-badge-label-color-default);
     }
   }
 
   .sbb-tag-active:not(.sbb-tag-disabled):is(:hover, :focus, .cdk-focused) & {
     background-color: transparent;
-    border-color: var(--sbb-tag-filter-border-active-hover-color);
-    color: var(--sbb-tag-filter-label-active-hover-color);
+    border-color: var(--sbb-tag-border-color-active-hover);
+    color: var(--sbb-tag-label-color-active-hover);
 
     .sbb-badge-content {
-      background-color: var(--sbb-tag-badge-background-default-color);
+      background-color: var(--sbb-tag-badge-background-color-default);
     }
-  }
-
-  .sbb-tag-disabled & {
-    cursor: default;
-    background-color: var(--sbb-tag-filter-background-inactive-color);
   }
 }
 
@@ -109,7 +106,7 @@
   text-decoration: none;
 
   .sbb-badge-content {
-    background-color: var(--sbb-tag-badge-background-default-color);
+    background-color: var(--sbb-tag-badge-background-color-default);
   }
 
   &:is(:hover, :focus, :active, .sbb-active) {
@@ -118,7 +115,7 @@
 
     .sbb-badge-content {
       :where(html.sbb-lean) & {
-        background-color: var(--sbb-tag-badge-background-focused-color);
+        background-color: var(--sbb-tag-badge-background-color-focused);
       }
     }
   }
