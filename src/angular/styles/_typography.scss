@@ -369,8 +369,6 @@
   --sbb-usermenu-trigger-padding: calc(#{sbb.pxToRem(12)} * var(--sbb-scaling-factor));
 
   --sbb-usermenu-text-color: var(--sbb-color-granite);
-  --sbb-usermenu-border-color: var(--sbb-color-granite);
-  --sbb-usermenu-background-color: var(--sbb-color-white);
   --sbb-usermenu-fallback-text: var(--sbb-color-metal);
   --sbb-usermenu-divider: var(--sbb-color-cloud);
   --sbb-usermenu-fallback-background: var(--sbb-color-cloud);
@@ -743,8 +741,6 @@
 
       // Usermenu
       --sbb-usermenu-text-color: var(--sbb-color-cloud);
-      --sbb-usermenu-border-color: var(--sbb-color-smoke);
-      --sbb-usermenu-background-color: var(--sbb-color-black);
       --sbb-usermenu-fallback-text: var(--sbb-color-aluminum);
       --sbb-usermenu-divider: var(--sbb-color-anthracite);
       --sbb-usermenu-fallback-background: var(--sbb-color-iron);
