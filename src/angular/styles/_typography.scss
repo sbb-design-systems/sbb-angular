@@ -371,7 +371,7 @@
   --sbb-usermenu-text-color: var(--sbb-color-granite);
   --sbb-usermenu-fallback-text: var(--sbb-color-metal);
   --sbb-usermenu-divider: var(--sbb-color-cloud);
-  --sbb-usermenu-fallback-background: var(--sbb-color-cloud);
+  --sbb-usermenu-initial-letters-background-color: var(--sbb-color-cloud);
 
   // Icons
   --sbb-icon-size-default: calc(#{sbb.pxToRem(24)} * var(--sbb-scaling-factor));
