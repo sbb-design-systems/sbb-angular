@@ -271,8 +271,13 @@
   --sbb-form-field-width: #{sbb.pxToRem(320)};
   --sbb-form-input-color: var(--sbb-color-charcoal);
   --sbb-form-input-color-disabled: var(--sbb-color-granite);
+  --sbb-form-input-color-placeholder: var(--sbb-color-metal);
+  --sbb-form-input-border-color: var(--sbb-color-graphite);
+  --sbb-form-input-border-color-disabled: var(--sbb-color-aluminum);
+  --sbb-form-input-background-color-disabled: var(--sbb-color-milk);
   --sbb-form-input-min-height: calc(#{sbb.pxToRem(48)} * var(--sbb-scaling-factor));
   --sbb-form-label-line-height: calc(#{sbb.pxToRem(16)} * var(--sbb-scaling-factor));
+  --sbb-form-label-color: var(--sbb-color-granite);
   --sbb-form-label-wrapper-margin-bottom: calc(#{sbb.pxToRem(5)} * var(--sbb-scaling-factor));
   --sbb-form-label-wrapper-padding-left: calc(#{sbb.pxToRem(10)} * var(--sbb-scaling-factor));
 
@@ -675,6 +680,7 @@
 
     &:where(.sbb-lean.sbb-dark) {
       --sbb-color-weak-accent: var(--sbb-color-milk);
+      --sbb-color-error: var(--sbb-color-red_dark-mode);
 
       // Notification Toast
       // Success
@@ -735,6 +741,15 @@
       --sbb-expansion-panel-border-color-open: var(--sbb-color-iron);
       --sbb-expansion-panel-border-color-closed: var(--sbb-color-midnight);
       --sbb-expansion-panel-header-indicator-color: var(--sbb-color-white);
+
+      // Forms
+      --sbb-form-input-color: var(--sbb-color-text);
+      --sbb-form-input-color-disabled: var(--sbb-color-smoke);
+      --sbb-form-input-color-placeholder: var(--sbb-color-smoke);
+      --sbb-form-input-border-color: var(--sbb-color-smoke);
+      --sbb-form-input-border-color-disabled: var(--sbb-color-smoke);
+      --sbb-form-input-background-color-disabled: var(--sbb-color-iron);
+      --sbb-form-label-color: var(--sbb-color-smoke);
 
       // Menu
       --sbb-menu-item-label: var(--sbb-color-milk);
@@ -1147,7 +1162,7 @@ textarea {
   outline: none;
   background-color: var(--sbb-color-background);
   padding: sbb.pxToRem(10) sbb.pxToRem(14) sbb.pxToRem(11);
-  border: var(--sbb-border-width) solid var(--sbb-color-graphite);
+  border: var(--sbb-border-width) solid var(--sbb-form-input-border-color);
   border-radius: var(--sbb-border-radius);
   color: var(--sbb-form-input-color);
   font-size: var(--sbb-font-size);
@@ -1171,7 +1186,7 @@ textarea {
   }
 
   &::placeholder {
-    color: var(--sbb-color-metal);
+    color: var(--sbb-form-input-color-placeholder);
     opacity: 1; // Needed for Firefox
   }
 
@@ -1233,8 +1248,8 @@ textarea {
   }
 
   &:is(:disabled, [disabled], .sbb-disabled) {
-    background-color: var(--sbb-color-milk);
-    border-color: var(--sbb-color-aluminum);
+    background-color: var(--sbb-form-input-background-color-disabled);
+    border-color: var(--sbb-form-input-border-color-disabled);
     color: var(--sbb-form-input-color-disabled);
     -webkit-text-fill-color: var(--sbb-form-input-color-disabled);
     opacity: 1;
@@ -2235,7 +2250,7 @@ textarea {
   font-family: var(--sbb-font-roman);
   font-size: var(--sbb-font-size-small);
   line-height: var(--sbb-form-label-line-height);
-  color: var(--sbb-color-granite);
+  color: var(--sbb-form-label-color);
   display: block;
 }
 
