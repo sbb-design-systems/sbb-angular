@@ -312,6 +312,10 @@
   --sbb-pagination-paginator-size: calc(#{sbb.pxToRem(40)} * var(--sbb-scaling-factor));
   --sbb-pagination-navigation-item-margin: calc(#{sbb.pxToRem(4)} * var(--sbb-scaling-factor));
 
+  // Panel
+  --sbb-panel-divider-color: var(--sbb-color-cloud);
+  --sbb-panel-border-color: var(--sbb-color-weak-accent);
+
   // Sidebar
   --sbb-sidebar-mobile-menu-bar-height: calc(2 * var(--sbb-icon-size-default));
   --sbb-icon-sidebar-item-dimension: calc(2 * var(--sbb-icon-size-default));
@@ -389,6 +393,10 @@
   --sbb-usermenu-panel-width: calc(#{sbb.pxToRem(288)} * var(--sbb-scaling-factor));
   --sbb-usermenu-trigger-height: calc(#{sbb.pxToRem(48)} * var(--sbb-scaling-factor));
   --sbb-usermenu-trigger-padding: calc(#{sbb.pxToRem(12)} * var(--sbb-scaling-factor));
+
+  --sbb-usermenu-text-color: var(--sbb-color-granite);
+  --sbb-usermenu-initial-letters-text-color: var(--sbb-color-metal);
+  --sbb-usermenu-initial-letters-background-color: var(--sbb-color-cloud);
 
   // Icons
   --sbb-icon-size-default: calc(#{sbb.pxToRem(24)} * var(--sbb-scaling-factor));
@@ -746,6 +754,10 @@
       --sbb-pagination-base-color: var(--sbb-color-silver);
       --sbb-pagination-disabled-color: var(--sbb-color-metal);
 
+      // Panel
+      --sbb-panel-divider-color: var(--sbb-color-anthracite);
+      --sbb-panel-border-color: var(--sbb-color-smoke);
+
       // Sidebar
       --sbb-sidebar-background-color: var(--sbb-color-midnight);
       --sbb-icon-sidebar-background-color: var(--sbb-color-black);
@@ -789,6 +801,11 @@
       --sbb-ghost-button-border-color-disabled: var(--sbb-color-iron);
       --sbb-ghost-button-label-color: var(--sbb-color-white);
       --sbb-ghost-button-label-color-disabled: var(--sbb-color-white-alpha50);
+
+      // Usermenu
+      --sbb-usermenu-text-color: var(--sbb-color-cloud);
+      --sbb-usermenu-initial-letters-text-color: var(--sbb-color-aluminum);
+      --sbb-usermenu-initial-letters-background-color: var(--sbb-color-iron);
     }
   }
 }
@@ -2668,7 +2685,7 @@ $panelBorderRadius: 2;
   overflow-x: hidden;
   overflow-y: auto;
   background-color: var(--sbb-color-background);
-  border: var(--sbb-border-width) solid var(--sbb-color-weak-accent);
+  border: var(--sbb-border-width) solid var(--sbb-panel-border-color);
   border-radius: 0 0 var(--sbb-border-radius) var(--sbb-border-radius);
   border-top: none;
   transition:
@@ -2683,7 +2700,7 @@ $panelBorderRadius: 2;
     margin: sbb.pxToRem(10) 0;
     padding: 0;
     border: none;
-    border-top: var(--sbb-border-width-thin) solid var(--sbb-color-cloud);
+    border-top: var(--sbb-border-width-thin) solid var(--sbb-panel-divider-color);
 
     :where(html.sbb-lean) & {
       margin: sbb.pxToRem(4) 0;
