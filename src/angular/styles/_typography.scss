@@ -1547,6 +1547,17 @@ textarea {
   &:not(:disabled):not(.sbb-disabled) {
     cursor: pointer;
   }
+
+  &:is(:disabled, .sbb-disabled) {
+    :where(html:not(.sbb-lean)) & {
+      border-color: var(--sbb-color-storm);
+
+      &,
+      & * {
+        text-decoration: line-through;
+      }
+    }
+  }
 }
 
 .sbb-button {
