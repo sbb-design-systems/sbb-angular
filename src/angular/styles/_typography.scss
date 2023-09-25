@@ -2638,7 +2638,7 @@ $panelBorderRadius: 2;
     margin: sbb.pxToRem(10) 0;
     padding: 0;
     border: none;
-    border-top: var(--sbb-border-width-thin) solid var(--sbb-color-cloud);
+    border-top: var(--sbb-border-width-thin) solid var(--sbb-usermenu-divider-color);
 
     :where(html.sbb-lean) & {
       margin: sbb.pxToRem(4) 0;
