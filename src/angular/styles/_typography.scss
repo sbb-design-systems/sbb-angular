@@ -310,6 +310,7 @@
 
   // Panel
   --sbb-panel-divider-color: var(--sbb-color-cloud);
+  --sbb-panel-border-color: var(--sbb-color-weak-accent);
 
   // Sidebar
   --sbb-sidebar-mobile-menu-bar-height: calc(2 * var(--sbb-icon-size-default));
@@ -652,7 +653,7 @@
     }
 
     &:where(.sbb-lean.sbb-dark) {
-      --sbb-color-weak-accent: var(--sbb-color-smoke);
+      --sbb-color-weak-accent: var(--sbb-color-milk);
 
       // Checkbox
       --sbb-checkbox-background-color-default: var(--sbb-color-background);
@@ -699,6 +700,7 @@
 
       // Panel
       --sbb-panel-divider-color: var(--sbb-color-anthracite);
+      --sbb-panel-border-color: var(--sbb-color-smoke);
 
       // Sidebar
       --sbb-sidebar-background-color: var(--sbb-color-midnight);
@@ -2627,7 +2629,7 @@ $panelBorderRadius: 2;
   overflow-x: hidden;
   overflow-y: auto;
   background-color: var(--sbb-color-background);
-  border: var(--sbb-border-width) solid var(--sbb-color-weak-accent);
+  border: var(--sbb-border-width) solid var(--sbb-panel-border-color);
   border-radius: 0 0 var(--sbb-border-radius) var(--sbb-border-radius);
   border-top: none;
   transition:
