@@ -308,6 +308,9 @@
   --sbb-pagination-paginator-size: calc(#{sbb.pxToRem(40)} * var(--sbb-scaling-factor));
   --sbb-pagination-navigation-item-margin: calc(#{sbb.pxToRem(4)} * var(--sbb-scaling-factor));
 
+  // Panel
+  --sbb-panel-divider-color: var(--sbb-color-cloud);
+
   // Sidebar
   --sbb-sidebar-mobile-menu-bar-height: calc(2 * var(--sbb-icon-size-default));
   --sbb-icon-sidebar-item-dimension: calc(2 * var(--sbb-icon-size-default));
@@ -370,7 +373,6 @@
 
   --sbb-usermenu-text-color: var(--sbb-color-granite);
   --sbb-usermenu-initial-letters-text-color: var(--sbb-color-metal);
-  --sbb-usermenu-divider-color: var(--sbb-color-cloud);
   --sbb-usermenu-initial-letters-background-color: var(--sbb-color-cloud);
 
   // Icons
@@ -650,7 +652,7 @@
     }
 
     &:where(.sbb-lean.sbb-dark) {
-      --sbb-color-weak-accent: var(--sbb-color-milk);
+      --sbb-color-weak-accent: var(--sbb-color-smoke);
 
       // Checkbox
       --sbb-checkbox-background-color-default: var(--sbb-color-background);
@@ -694,6 +696,9 @@
       // Pagination
       --sbb-pagination-base-color: var(--sbb-color-silver);
       --sbb-pagination-disabled-color: var(--sbb-color-metal);
+
+      // Panel
+      --sbb-panel-divider-color: var(--sbb-color-anthracite);
 
       // Sidebar
       --sbb-sidebar-background-color: var(--sbb-color-midnight);
@@ -742,7 +747,6 @@
       // Usermenu
       --sbb-usermenu-text-color: var(--sbb-color-cloud);
       --sbb-usermenu-initial-letters-text-color: var(--sbb-color-aluminum);
-      --sbb-usermenu-divider-color: var(--sbb-color-anthracite);
       --sbb-usermenu-initial-letters-background-color: var(--sbb-color-iron);
     }
   }
@@ -2638,7 +2642,7 @@ $panelBorderRadius: 2;
     margin: sbb.pxToRem(10) 0;
     padding: 0;
     border: none;
-    border-top: var(--sbb-border-width-thin) solid var(--sbb-usermenu-divider-color);
+    border-top: var(--sbb-border-width-thin) solid var(--sbb-panel-divider-color);
 
     :where(html.sbb-lean) & {
       margin: sbb.pxToRem(4) 0;
