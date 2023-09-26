@@ -114,9 +114,7 @@
     color: var(--sbb-color-call-to-action-hover);
 
     .sbb-badge-content {
-      :where(html.sbb-lean) & {
-        background-color: var(--sbb-tag-badge-link-background-color-focused);
-      }
+      background-color: var(--sbb-tag-badge-link-background-color-focused);
     }
   }
 }
