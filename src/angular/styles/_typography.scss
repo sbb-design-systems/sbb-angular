@@ -342,7 +342,6 @@
   --sbb-menu-item-label-active: var(--sbb-color-black);
   --sbb-menu-item-background-color-hover: var(--sbb-color-milk);
   --sbb-menu-item-background-color-active: var(--sbb-color-cloud);
-  --sbb-menu-panel-divider-color: var(--sbb-color-cloud);
   --sbb-menu-title-color: var(--sbb-color-granite);
 
   // Notification Toast
@@ -802,7 +801,6 @@
       --sbb-menu-item-label-active: var(--sbb-color-white);
       --sbb-menu-item-background-color-hover: transparent;
       --sbb-menu-item-background-color-active: var(--sbb-color-charcoal);
-      --sbb-menu-panel-divider-color: var(--sbb-color-graphite);
       --sbb-menu-title-color: var(--sbb-color-smoke);
 
       // Pagination
@@ -810,7 +808,7 @@
       --sbb-pagination-disabled-color: var(--sbb-color-metal);
 
       // Panel
-      --sbb-panel-divider-color: var(--sbb-color-anthracite);
+      --sbb-panel-divider-color: var(--sbb-color-graphite);
       --sbb-panel-border-color: var(--sbb-color-smoke);
 
       // Sidebar
@@ -2771,7 +2769,7 @@ $panelBorderRadius: 2;
     margin: sbb.pxToRem(10) 0;
     padding: 0;
     border: none;
-    border-top: var(--sbb-border-width-thin) solid var(--sbb-menu-panel-divider-color);
+    border-top: var(--sbb-border-width-thin) solid var(--sbb-panel-divider-color);
 
     :where(html.sbb-lean) & {
       margin: sbb.pxToRem(4) 0;
