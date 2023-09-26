@@ -2007,6 +2007,12 @@ textarea {
   transition: opacity var(--sbb-transition-default);
   position: relative;
 
+  .sbb-radio-button.sbb-selection-disabled & {
+    :where(html.sbb-lean) & {
+      background-color: var(--sbb-selection-icon-color-disabled);
+    }
+  }
+
   :is(.sbb-checkbox, .sbb-pseudo-checkbox) & {
     display: none;
     border-radius: var(--sbb-border-radius);
