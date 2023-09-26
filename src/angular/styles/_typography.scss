@@ -376,6 +376,23 @@
   --sbb-table-sticky-shadow-offset: #{sbb.pxToRem(-9)};
   --sbb-table-sort-header-arrow-margin: calc(#{sbb.pxToRem(8)} * var(--sbb-scaling-factor));
 
+  // Tag
+  --sbb-tag-label-color-active: var(--sbb-color-black);
+  --sbb-tag-border-color-active: var(--sbb-color-black);
+  --sbb-tag-badge-background-color-default: var(--sbb-color-red);
+  --sbb-tag-badge-label-color-default: var(--sbb-color-white);
+  --sbb-tag-background-color-inactive-hover: var(--sbb-color-cloud);
+  --sbb-tag-label-color-inactive-hover: var(--sbb-color-black);
+  --sbb-tag-label-color-active-hover: var(--sbb-color-granite);
+  --sbb-tag-border-color-active-hover: var(--sbb-color-smoke);
+  --sbb-tag-background-color-inactive: var(--sbb-color-milk);
+  --sbb-tag-label-color-inactive: var(--sbb-color-granite);
+  --sbb-tag-badge-background-color-disabled: var(--sbb-color-metal);
+  --sbb-tag-badge-background-color-focused: var(--sbb-color-white);
+  --sbb-tag-badge-label-color-disabled: var(--sbb-color-white);
+  --sbb-tag-badge-background-color-disabled-hover: var(--sbb-color-cement);
+  --sbb-tag-badge-link-background-color-focused: var(--sbb-color-red125);
+
   // Tooltip
   --sbb-tooltip-padding: calc(#{sbb.pxToRem(23)} * var(--sbb-scaling-factor));
   --sbb-tooltip-arrow-offset: calc(#{sbb.pxToRem(7.2)} * var(--sbb-scaling-factor));
@@ -656,6 +673,20 @@
     // Table
     --sbb-table-cell-padding-vertical: #{sbb.pxToRem(6)};
 
+    // Tag
+    --sbb-tag-label-color-active: var(--sbb-color-black);
+    --sbb-tag-border-color-active: var(--sbb-color-black);
+    --sbb-tag-badge-background-color-default: var(--sbb-color-black);
+    --sbb-tag-badge-label-color-default: var(--sbb-color-white);
+    --sbb-tag-background-color-inactive-hover: var(--sbb-color-cloud);
+    --sbb-tag-label-color-inactive-hover: var(--sbb-color-black);
+    --sbb-tag-label-color-active-hover: var(--sbb-color-granite);
+    --sbb-tag-background-color-inactive: var(--sbb-color-milk);
+    --sbb-tag-label-color-inactive: var(--sbb-color-granite);
+    --sbb-tag-badge-background-color-disabled: var(--sbb-color-granite);
+    --sbb-tag-badge-background-color-disabled-hover: var(--sbb-color-cement);
+    --sbb-tag-badge-link-background-color-focused: var(--sbb-color-red125);
+
     // Tooltip
     --sbb-tooltip-padding: #{sbb.pxToRem(8)};
 
@@ -788,6 +819,20 @@
       // Status
       --sbb-status-message-background-color: var(--sbb-color-iron);
       --sbb-status-message-color: var(--sbb-color-white);
+
+      // Tag
+      --sbb-tag-label-color-active: var(--sbb-color-white);
+      --sbb-tag-border-color-active: var(--sbb-color-white);
+      --sbb-tag-badge-background-color-default: var(--sbb-color-white);
+      --sbb-tag-badge-label-color-default: var(--sbb-color-black);
+      --sbb-tag-background-color-inactive-hover: var(--sbb-color-charcoal);
+      --sbb-tag-label-color-inactive-hover: var(--sbb-color-white);
+      --sbb-tag-label-color-active-hover: var(--sbb-color-white);
+      --sbb-tag-background-color-inactive: var(--sbb-color-iron);
+      --sbb-tag-label-color-inactive: var(--sbb-color-white);
+      --sbb-tag-badge-background-color-disabled: var(--sbb-color-anthracite);
+      --sbb-tag-badge-background-color-disabled-hover: var(--sbb-color-white);
+      --sbb-tag-badge-link-background-color-focused: var(--sbb-color-white);
 
       // Toggle
       --sbb-toggle-border-color-active: var(--sbb-color-white);
