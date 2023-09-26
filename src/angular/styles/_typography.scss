@@ -224,6 +224,10 @@
   );
   --sbb-chips-chip-padding-horizontal: calc(#{sbb.pxToRem(8)} * var(--sbb-scaling-factor));
   --sbb-chips-input-width: calc(#{sbb.pxToRem(150)} * var(--sbb-scaling-factor));
+  --sbb-chips-background-color-active: var(--sbb-color-cloud);
+  --sbb-chips-background-color-hover: var(--sbb-color-aluminum);
+  --sbb-chips-background-color-disabled: var(--sbb-color-cloud);
+  --sbb-chips-opacity: 0.6;
 
   // Dialog
   --sbb-dialog-padding: calc(#{sbb.pxToRem(16)} * var(--sbb-scaling-factor));
@@ -328,6 +332,24 @@
   --sbb-menu-item-label-active: var(--sbb-color-black);
   --sbb-menu-item-background-color-hover: var(--sbb-color-milk);
   --sbb-menu-item-background-color-active: var(--sbb-color-cloud);
+
+  // Notification Toast
+  // Success
+  --sbb-notification-toast-label-color-success: var(--sbb-color-green);
+  --sbb-notification-toast-background-color-success: var(--sbb-color-white);
+  --sbb-notification-toast-border-color-success: var(--sbb-color-green);
+  // Information
+  --sbb-notification-toast-label-color-information: var(--sbb-color-granite);
+  --sbb-notification-toast-background-color-information: var(--sbb-color-white);
+  --sbb-notification-toast-border-color-information: var(--sbb-color-granite);
+  // Error
+  --sbb-notification-toast-label-color-error: var(--sbb-color-white);
+  --sbb-notification-toast-background-color-error: var(--sbb-color-error);
+  --sbb-notification-toast-border-color-error: var(--sbb-color-error);
+  // Warn
+  --sbb-notification-toast-label-color-warn: var(--sbb-color-white);
+  --sbb-notification-toast-background-color-warn: var(--sbb-color-peach);
+  --sbb-notification-toast-border-color-warn: var(--sbb-color-peach);
 
   // Table
   --sbb-table-background-color: var(--sbb-color-background);
@@ -529,6 +551,13 @@
     }
   }
   &:where(.sbb-lean) {
+    // Notification Toast
+    // Error
+    --sbb-notification-toast-background-color-error: var(--sbb-color-red);
+    // Warn
+    --sbb-notification-toast-label-color-warn: var(--sbb-color-black);
+    --sbb-notification-toast-background-color-warn: var(--sbb-color-peach);
+
     // Context Colors
     --sbb-color-weak-accent: var(--sbb-color-iron);
 
@@ -682,6 +711,27 @@
     &:where(.sbb-lean.sbb-dark) {
       --sbb-color-weak-accent: var(--sbb-color-milk);
 
+      // Notification Toast
+      // Success
+      --sbb-notification-toast-label-color-success: var(--sbb-color-white);
+      --sbb-notification-toast-background-color-success: var(--sbb-color-green);
+      --sbb-notification-toast-border-color-success: var(--sbb-color-green);
+
+      // Information
+      --sbb-notification-toast-label-color-information: var(--sbb-color-cloud);
+      --sbb-notification-toast-background-color-information: var(--sbb-color-black);
+      --sbb-notification-toast-border-color-information: var(--sbb-color-cloud);
+
+      // Error
+      --sbb-notification-toast-label-color-error: var(--sbb-color-white);
+      --sbb-notification-toast-background-color-error: var(--sbb-color-red);
+      --sbb-notification-toast-border-color-error: var(--sbb-color-red);
+
+      // Warn
+      --sbb-notification-toast-label-color-warn: var(--sbb-color-black);
+      --sbb-notification-toast-background-color-warn: var(--sbb-color-peach);
+      --sbb-notification-toast-border-color-warn: var(--sbb-color-peach);
+
       // Checkbox
       --sbb-checkbox-background-color-default: var(--sbb-color-background);
       --sbb-checkbox-background-color-disabled: var(--sbb-color-charcoal);
@@ -702,6 +752,12 @@
       --sbb-color-text: var(--sbb-color-white);
       --sbb-color-call-to-action: var(--sbb-color-red_dark-mode);
       --sbb-color-call-to-action-hover: var(--sbb-color-red_dark-mode);
+
+      // Chips
+      --sbb-chips-background-color-active: var(--sbb-color-smoke);
+      --sbb-chips-background-color-hover: var(--sbb-color-metal);
+      --sbb-chips-background-color-disabled: var(--sbb-color-cloud);
+      --sbb-chips-opacity: 0.9;
 
       // Badge
       --sbb-badge-background-color: var(--sbb-color-white);
@@ -1591,8 +1647,6 @@ textarea {
 
   &:is(:disabled, .sbb-disabled) {
     :where(html:not(.sbb-lean)) & {
-      background-color: transparent;
-      color: var(--sbb-color-granite);
       border-color: var(--sbb-color-storm);
 
       &,

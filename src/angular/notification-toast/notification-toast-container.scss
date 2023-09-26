@@ -35,34 +35,37 @@
 }
 
 .sbb-notification-toast-error {
-  background-color: var(--sbb-color-error);
+  border: var(--sbb-border-width-thin) solid var(--sbb-notification-toast-border-color-error);
+  background-color: var(--sbb-notification-toast-background-color-error);
 
   :is(&, & :is(a, button)) {
-    color: var(--sbb-color-white);
+    color: var(--sbb-notification-toast-label-color-error);
   }
 }
 
 .sbb-notification-toast-success {
-  border: var(--sbb-border-width-thin) solid var(--sbb-color-green);
-
+  border: var(--sbb-border-width-thin) solid var(--sbb-notification-toast-border-color-success);
+  background-color: var(--sbb-notification-toast-background-color-success);
   :is(&, & :is(a, button)) {
-    color: var(--sbb-color-green);
+    color: var(--sbb-notification-toast-label-color-success);
   }
 }
 
 .sbb-notification-toast-info {
-  border: var(--sbb-border-width-thin) solid var(--sbb-color-granite);
+  border: var(--sbb-border-width-thin) solid var(--sbb-notification-toast-border-color-information);
+  background-color: var(--sbb-notification-toast-background-color-information);
 
   :is(&, & :is(a, button)) {
-    color: var(--sbb-color-granite);
+    color: var(--sbb-notification-toast-label-color-information);
   }
 }
 
 .sbb-notification-toast-warn {
-  background-color: var(--sbb-color-orange);
+  border: var(--sbb-border-width-thin) solid var(--sbb-notification-toast-border-color-warn);
+  background-color: var(--sbb-notification-toast-background-color-warn);
 
   :is(&, & :is(a, button)) {
-    color: var(--sbb-color-white);
+    color: var(--sbb-notification-toast-label-color-warn);
   }
 }
 
