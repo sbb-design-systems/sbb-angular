@@ -199,20 +199,20 @@
   --sbb-ghost-button-label-color: var(--sbb-color-granite);
   --sbb-ghost-button-label-color-disabled: var(--sbb-color-iron-alpha40);
 
-  // Checkbox
-  --sbb-checkbox-background-color-default: var(--sbb-color-background);
-  --sbb-checkbox-background-color-disabled: var(--sbb-color-milk);
+  // Selection Container
+  --sbb-selection-background-color-default: var(--sbb-color-background);
+  --sbb-selection-background-color-disabled: var(--sbb-color-milk);
 
-  --sbb-checkbox-border-color-default: var(--sbb-color-graphite);
-  --sbb-checkbox-border-color-disabled: var(--sbb-color-aluminum);
+  --sbb-selection-border-color-default: var(--sbb-color-graphite);
+  --sbb-selection-border-color-disabled: var(--sbb-color-aluminum);
 
-  --sbb-checkbox-icon-color-default: var(--sbb-color-red);
-  --sbb-checkbox-icon-color-disabled: var(--sbb-color-granite);
-  --sbb-checkbox-border-color-focused: var(--sbb-color-weak-accent);
+  --sbb-selection-icon-color-default: var(--sbb-color-red);
+  --sbb-selection-icon-color-disabled: var(--sbb-color-granite);
+  --sbb-selection-border-color-focused: var(--sbb-color-weak-accent);
 
-  --sbb-checkbox-label-color-checked: var(--sbb-color-iron);
-  --sbb-checkbox-label-color-unchecked: var(--sbb-color-granite);
-  --sbb-checkbox-label-color-disabled: var(--sbb-color-granite);
+  --sbb-selection-label-color-checked: var(--sbb-color-iron);
+  --sbb-selection-label-color-unchecked: var(--sbb-color-granite);
+  --sbb-selection-label-color-disabled: var(--sbb-color-granite);
 
   // Chips
   --sbb-chips-list-height: var(--sbb-form-input-min-height);
@@ -587,18 +587,18 @@
     --sbb-secondary-button-color-disabled: var(--sbb-color-iron-alpha50);
 
     // Checkbox
-    --sbb-checkbox-background-color-default: var(--sbb-color-white);
-    --sbb-checkbox-background-color-disabled: var(--sbb-color-milk);
+    --sbb-selection-background-color-default: var(--sbb-color-white);
+    --sbb-selection-background-color-disabled: var(--sbb-color-milk);
 
-    --sbb-checkbox-border-color-default: var(--sbb-color-smoke);
-    --sbb-checkbox-border-color-disabled: var(--sbb-color-smoke);
+    --sbb-selection-border-color-default: var(--sbb-color-smoke);
+    --sbb-selection-border-color-disabled: var(--sbb-color-smoke);
 
-    --sbb-checkbox-icon-color-default: var(--sbb-color-iron);
-    --sbb-checkbox-icon-color-disabled: var(--sbb-color-iron);
+    --sbb-selection-icon-color-default: var(--sbb-color-iron);
+    --sbb-selection-icon-color-disabled: var(--sbb-color-iron);
 
-    --sbb-checkbox-label-color-checked: var(--sbb-color-iron);
-    --sbb-checkbox-label-color-unchecked: var(--sbb-color-granite);
-    --sbb-checkbox-label-color-disabled: var(--sbb-color-granite);
+    --sbb-selection-label-color-checked: var(--sbb-color-iron);
+    --sbb-selection-label-color-unchecked: var(--sbb-color-granite);
+    --sbb-selection-label-color-disabled: var(--sbb-color-granite);
 
     // Datepicker
     --sbb-datepicker-toggle-or-arrows-padding: calc(#{sbb.pxToRem(38)} - var(--sbb-border-width));
@@ -682,6 +682,11 @@
     }
 
     &:where(.sbb-lean.sbb-dark) {
+      // Context colors
+      --sbb-color-text: var(--sbb-color-white);
+      --sbb-color-background: var(--sbb-color-black);
+      --sbb-color-call-to-action: var(--sbb-color-red_dark-mode);
+      --sbb-color-call-to-action-hover: var(--sbb-color-red_dark-mode);
       --sbb-color-weak-accent: var(--sbb-color-milk);
 
       // Notification Toast
@@ -706,25 +711,19 @@
       --sbb-notification-toast-border-color-warn: var(--sbb-color-peach);
 
       // Checkbox
-      --sbb-checkbox-background-color-default: var(--sbb-color-background);
-      --sbb-checkbox-background-color-disabled: var(--sbb-color-charcoal);
+      --sbb-selection-background-color-default: var(--sbb-color-background);
+      --sbb-selection-background-color-disabled: var(--sbb-color-charcoal);
 
-      --sbb-checkbox-border-color-default: var(--sbb-color-graphite);
-      --sbb-checkbox-border-color-disabled: var(--sbb-color-smoke);
-      --sbb-checkbox-border-color-focused: var(--sbb-color-text);
+      --sbb-selection-border-color-default: var(--sbb-color-graphite);
+      --sbb-selection-border-color-disabled: var(--sbb-color-smoke);
+      --sbb-selection-border-color-focused: var(--sbb-color-text);
 
-      --sbb-checkbox-icon-color-default: var(--sbb-color-text);
-      --sbb-checkbox-icon-color-disabled: var(--sbb-color-smoke);
+      --sbb-selection-icon-color-default: var(--sbb-color-text);
+      --sbb-selection-icon-color-disabled: var(--sbb-color-smoke);
 
-      --sbb-checkbox-label-color-checked: var(--sbb-color-text);
-      --sbb-checkbox-label-color-unchecked: var(--sbb-color-graphite);
-      --sbb-checkbox-label-color-disabled: var(--sbb-color-smoke);
-
-      // Context colors
-      --sbb-color-background: var(--sbb-color-black);
-      --sbb-color-text: var(--sbb-color-white);
-      --sbb-color-call-to-action: var(--sbb-color-red_dark-mode);
-      --sbb-color-call-to-action-hover: var(--sbb-color-red_dark-mode);
+      --sbb-selection-label-color-checked: var(--sbb-color-text);
+      --sbb-selection-label-color-unchecked: var(--sbb-color-graphite);
+      --sbb-selection-label-color-disabled: var(--sbb-color-smoke);
 
       // Chips
       --sbb-chips-background-color-active: var(--sbb-color-smoke);
@@ -1948,14 +1947,14 @@ textarea {
 
 .sbb-selection-container {
   display: inline-block;
-  background-color: var(--sbb-checkbox-background-color-default);
+  background-color: var(--sbb-selection-background-color-default);
   margin-top: calc(#{sbb.pxToRem(3)} * var(--sbb-scaling-factor));
 
   width: calc(#{sbb.pxToRem(20)} * var(--sbb-scaling-factor));
   min-width: calc(#{sbb.pxToRem(20)} * var(--sbb-scaling-factor));
   height: calc(#{sbb.pxToRem(20)} * var(--sbb-scaling-factor));
   min-height: calc(#{sbb.pxToRem(20)} * var(--sbb-scaling-factor));
-  border: var(--sbb-border-width) solid var(--sbb-checkbox-border-color-default);
+  border: var(--sbb-border-width) solid var(--sbb-selection-border-color-default);
   margin-right: calc(#{sbb.pxToRem(8)} * var(--sbb-scaling-factor));
 
   :where(html.sbb-lean) & {
@@ -1965,7 +1964,7 @@ textarea {
   .sbb-selection-input:focus + &,
   // Applies focus highlight for pseudo-checkbox
   .sbb-menu-item.sbb-active .sbb-pseudo-checkbox & {
-    border-color: var(--sbb-checkbox-label-color-focused);
+    border-color: var(--sbb-selection-label-color-focused);
   }
 
   :is(.sbb-checkbox, .sbb-pseudo-checkbox) & {
@@ -1981,8 +1980,8 @@ textarea {
   }
 
   .sbb-selection-disabled & {
-    border-color: var(--sbb-checkbox-border-color-disabled);
-    background-color: var(--sbb-checkbox-background-color-disabled);
+    border-color: var(--sbb-selection-border-color-disabled);
+    background-color: var(--sbb-selection-background-color-disabled);
   }
 
   .sbb-selection-indeterminate &::before {
@@ -1992,16 +1991,16 @@ textarea {
     width: sbb.pxToRem(10);
     left: calc(50% - #{sbb.pxToRem(5)});
     top: calc(50% - #{sbb.pxToRem(0.5)});
-    border: sbb.pxToRem(1) solid var(--sbb-checkbox-icon-color-default);
+    border: sbb.pxToRem(1) solid var(--sbb-selection-icon-color-default);
     display: block;
     background-color: var(
-      --sbb-checkbox-icon-color-default
+      --sbb-selection-icon-color-default
     ); // Used to fill line when user has activated browser zoom
   }
 }
 
 .sbb-selection-container-checked {
-  color: var(--sbb-checkbox-icon-color-default);
+  color: var(--sbb-selection-icon-color-default);
   line-height: 0;
   height: 100%;
   width: 100%;
@@ -2032,11 +2031,7 @@ textarea {
     display: none;
     border-radius: 50%;
     transform: scale(0.65);
-    background-color: var(--sbb-color-red);
-
-    :where(html.sbb-lean) & {
-      background-color: var(--sbb-color-iron);
-    }
+    background-color: var(--sbb-selection-icon-color-default);
 
     @include cdk.high-contrast(active, off) {
       background-color: CanvasText;
@@ -2044,7 +2039,7 @@ textarea {
   }
 
   .sbb-selection-disabled & {
-    color: var(--sbb-checkbox-icon-color-disabled);
+    color: var(--sbb-selection-icon-color-disabled);
   }
 
   .sbb-selection-checked & {
@@ -2058,7 +2053,7 @@ textarea {
 
 .sbb-selection-content {
   @include sbb.user-select(auto);
-  color: var(--sbb-checkbox-label-color-unchecked);
+  color: var(--sbb-selection-label-color-unchecked);
   transition: color var(--sbb-transition-default);
 
   :where(html.sbb-lean) & {
@@ -2066,11 +2061,11 @@ textarea {
   }
 
   :is(.sbb-selection-checked, .sbb-selection-indeterminate) & {
-    color: var(--sbb-checkbox-label-color-checked);
+    color: var(--sbb-selection-label-color-checked);
   }
 
   .sbb-selection-disabled & {
-    color: var(--sbb-checkbox-label-color-disabled);
+    color: var(--sbb-selection-label-color-disabled);
   }
 }
 
