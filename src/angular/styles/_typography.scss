@@ -323,6 +323,14 @@
   --sbb-panel-divider-color: var(--sbb-color-cloud);
   --sbb-panel-border-color: var(--sbb-color-weak-accent);
 
+  // SBB Checkbox Panel & Radio Button Panel
+  --sbb-selection-panel-item-background-color: var(--sbb-color-milk);
+  --sbb-selection-panel-item-color: var(--sbb-color-granite);
+  --sbb-selection-checked-border-color: var(--sbb-color-black);
+  --sbb-selection-disabled-border-color: var(--sbb-color-aluminum);
+  --sbb-selection-panel-subtitle-color: var(--sbb-color-granite);
+  --sbb-selection-panel-warning-color: var(--sbb-color-granite);
+
   // Sidebar
   --sbb-sidebar-mobile-menu-bar-height: calc(2 * var(--sbb-icon-size-default));
   --sbb-icon-sidebar-item-dimension: calc(2 * var(--sbb-icon-size-default));
@@ -808,6 +816,14 @@
       // Panel
       --sbb-panel-divider-color: var(--sbb-color-anthracite);
       --sbb-panel-border-color: var(--sbb-color-smoke);
+
+      // SBB Checkbox Panel & Radio Button Panel
+      --sbb-selection-panel-item-background-color: var(--sbb-color-iron);
+      --sbb-selection-panel-item-color: var(--sbb-color-graphite);
+      --sbb-selection-checked-border-color: var(--sbb-color-white);
+      --sbb-selection-disabled-border-color: var(--sbb-color-metal);
+      --sbb-selection-panel-subtitle-color: var(--sbb-color-graphite);
+      --sbb-selection-panel-warning-color: var(--sbb-color-graphite);
 
       // Sidebar
       --sbb-sidebar-background-color: var(--sbb-color-midnight);
@@ -2178,19 +2194,19 @@ textarea {
 
 .sbb-selection-panel-item {
   display: inline-block;
-  background-color: var(--sbb-color-milk);
+  background-color: var(--sbb-selection-panel-item-background-color);
   border: var(--sbb-border-width-thin) solid transparent;
   border-radius: var(--sbb-border-radius);
   font-size: var(--sbb-font-size);
   line-height: var(--sbb-line-height);
-  color: var(--sbb-color-granite);
+  color: var(--sbb-selection-panel-item-color);
   width: 100%;
   transition: border-color 0.15s ease-in-out;
   position: relative;
 
   &.sbb-selection-checked {
     background-color: var(--sbb-color-background);
-    border-color: var(--sbb-color-black);
+    border-color: var(--sbb-selection-checked-border-color);
     color: var(--sbb-color-text);
   }
 
@@ -2205,7 +2221,7 @@ textarea {
 
   &.sbb-selection-disabled {
     background-color: var(--sbb-color-background);
-    border-color: var(--sbb-color-aluminum);
+    border-color: var(--sbb-selection-disabled-border-color);
   }
 
   :is(.sbb-selection-container, .sbb-selection-panel-icon) {
@@ -2249,13 +2265,13 @@ textarea {
 .sbb-selection-panel-subtitle {
   font-size: var(--sbb-font-size-small);
   line-height: var(--sbb-line-height-small);
-  color: var(--sbb-color-granite);
+  color: var(--sbb-selection-panel-subtitle-color);
 }
 
 .sbb-selection-panel-warning {
   flex: 1 100%;
   order: 3;
-  color: var(--sbb-color-granite);
+  color: var(--sbb-selection-panel-warning-color);
 
   @include sbb.mq($from: tablet) {
     flex-basis: 0;
