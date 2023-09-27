@@ -2775,12 +2775,11 @@ $panelBorderRadius: 2;
   }
 
   .sbb-label {
-    color: var(--sbb-color-metal);
+    color: var(--sbb-menu-title-color);
     padding: calc(#{sbb.pxToRem(5)} * var(--sbb-scaling-factor))
       calc(#{sbb.pxToRem(14)} * var(--sbb-scaling-factor));
 
     :where(html.sbb-lean) & {
-      color: var(--sbb-menu-title-color);
       padding: sbb.pxToRem(4) sbb.pxToRem(8);
     }
   }
