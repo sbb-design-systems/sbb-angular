@@ -321,7 +321,6 @@
 
   // Panel
   --sbb-panel-divider-color: var(--sbb-color-cloud);
-  --sbb-panel-border-color: var(--sbb-color-weak-accent);
 
   // Sidebar
   --sbb-sidebar-mobile-menu-bar-height: calc(2 * var(--sbb-icon-size-default));
@@ -809,7 +808,6 @@
 
       // Panel
       --sbb-panel-divider-color: var(--sbb-color-graphite);
-      --sbb-panel-border-color: var(--sbb-color-smoke);
 
       // Sidebar
       --sbb-sidebar-background-color: var(--sbb-color-midnight);
@@ -2754,7 +2752,7 @@ $panelBorderRadius: 2;
   overflow-x: hidden;
   overflow-y: auto;
   background-color: var(--sbb-color-background);
-  border: var(--sbb-border-width) solid var(--sbb-panel-border-color);
+  border: var(--sbb-border-width) solid var(--sbb-color-weak-accent);
   border-radius: 0 0 var(--sbb-border-radius) var(--sbb-border-radius);
   border-top: none;
   transition:
@@ -2764,7 +2762,6 @@ $panelBorderRadius: 2;
   position: relative;
   top: var(--sbb-box-shadow-horizontal-border-offset-top-below);
   box-shadow: var(--sbb-box-shadow-below), var(--sbb-box-shadow-horizontal-border-bottom);
-  border-color: var(--sbb-color-weak-accent);
 
   hr {
     margin: sbb.pxToRem(10) 0;
