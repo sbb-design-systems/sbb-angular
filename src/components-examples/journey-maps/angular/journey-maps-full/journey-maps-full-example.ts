@@ -189,6 +189,7 @@ export class JourneyMapsFullExample implements OnInit, OnDestroy {
         zoomControls: [true],
         basemapSwitch: [true],
         homeButton: [true],
+        geoLocation: [true],
       }),
       styleOptions: _fb.group({
         mode: ['bright', resetSelectedMarkerIdValidator],

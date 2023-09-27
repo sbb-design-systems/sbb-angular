@@ -377,6 +377,25 @@ describe('SbbTabGroup', () => {
     });
   });
 
+  describe('aria labelling of tab panels', () => {
+    let fixture: ComponentFixture<BindedTabsTestApp>;
+    let tabPanels: HTMLElement[];
+
+    beforeEach(fakeAsync(() => {
+      fixture = TestBed.createComponent(BindedTabsTestApp);
+      fixture.detectChanges();
+      tick();
+      tabPanels = Array.from(fixture.nativeElement.querySelectorAll('.sbb-tab-body'));
+    }));
+
+    it('should set `aria-hidden="true"` on inactive tab panels', () => {
+      fixture.detectChanges();
+
+      expect(tabPanels[0].getAttribute('aria-hidden')).not.toBe('true');
+      expect(tabPanels[1].getAttribute('aria-hidden')).toBe('true');
+    });
+  });
+
   describe('disable tabs', () => {
     let fixture: ComponentFixture<DisabledTabsTestApp>;
 

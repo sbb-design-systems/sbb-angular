@@ -19,6 +19,7 @@ export class SbbLocaleService {
         selectFloor: 'Stockwerk [0] anzeigen.',
         basemapSwitch: 'Kartentyp ändern.',
         homeButton: 'Default Zoom',
+        geolocateButton: 'Meinen Standort anzeigen',
       },
     },
     fr: {
@@ -33,6 +34,7 @@ export class SbbLocaleService {
         selectFloor: "Afficher l'étage [0].",
         basemapSwitch: 'Changer le type de la carte.',
         homeButton: 'Zoom par défaut',
+        geolocateButton: 'Afficher ma position',
       },
     },
     it: {
@@ -47,6 +49,7 @@ export class SbbLocaleService {
         selectFloor: 'Mostra il piano [0].',
         basemapSwitch: 'Cambiare il tipo di mappa',
         homeButton: 'Zoom di default',
+        geolocateButton: 'Mostra la mia posizione',
       },
     },
     en: {
@@ -61,6 +64,7 @@ export class SbbLocaleService {
         selectFloor: 'Select floor [0].',
         basemapSwitch: 'Change the map type',
         homeButton: 'Default Zoom',
+        geolocateButton: 'Show my location',
       },
     },
   };

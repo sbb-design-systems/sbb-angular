@@ -21,6 +21,7 @@ import { debounceTime, delay, switchMap, take, takeUntil } from 'rxjs/operators'
 import { SbbFeatureEventListener } from './components/feature-event-listener/feature-event-listener';
 import { SbbLevelSwitcher } from './components/level-switch/services/level-switcher';
 import { SbbMapLayerFilter } from './components/level-switch/services/map-layer-filter';
+import { SbbGeolocateControl } from './controls/sbbGeolocateControl';
 import {
   SbbDeselectableFeatureDataType,
   SbbFeatureData,
@@ -187,6 +188,7 @@ export class SbbJourneyMaps implements OnInit, AfterViewInit, OnDestroy, OnChang
     zoomControls: true,
     basemapSwitch: true,
     homeButton: false,
+    geoLocation: false,
   };
   private _defaultHomeButtonOptions: SbbViewportDimensions = {
     boundingBox: SBB_BOUNDING_BOX,
@@ -207,6 +209,12 @@ export class SbbJourneyMaps implements OnInit, AfterViewInit, OnDestroy, OnChang
   private _isStyleLoaded = false;
   private _isAerialSelected = false;
   private _observer: ResizeObserver;
+  private _sbbGeolocateControl = new SbbGeolocateControl({
+    positionOptions: {
+      enableHighAccuracy: true,
+    },
+    trackUserLocation: true,
+  });
 
   constructor(
     private _mapInitService: SbbMapInitService,
@@ -773,6 +781,11 @@ export class SbbJourneyMaps implements OnInit, AfterViewInit, OnDestroy, OnChang
     this._mapService.moveMap(this._map, this._homeButtonOptions);
   }
 
+  /** @docs-private */
+  onGeolocateButtonClicked() {
+    this._sbbGeolocateControl.trigger();
+  }
+
   private _updateMarkers(): void {
     this.selectedMarker = this.markerOptions.markers?.find(
       (marker) => this.selectedMarkerId === marker.id,
@@ -902,6 +915,8 @@ export class SbbJourneyMaps implements OnInit, AfterViewInit, OnDestroy, OnChang
     if (this.styleOptions.railNetwork) {
       this._mapRailNetworkLayerService.updateOptions(this._map, this.styleOptions.railNetwork);
     }
+
+    this._map.addControl(this._sbbGeolocateControl); // other controls are added in map-init-service.ts
 
     this._isStyleLoaded = true;
     this._styleLoaded.next();

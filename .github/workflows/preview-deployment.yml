@@ -29,7 +29,7 @@ jobs:
       IMAGE_PR_TAG: preview-pr${{ github.event.workflow_run.pull_requests[0] != null && github.event.workflow_run.pull_requests[0].number || '' }}
       ALLOWED_EXTENSIONS: css, gitignore, gitkeep, html, ico, jpg, js, json, png, scss, stackblitzrc, svg, ts
     steps:
-    - uses: actions/checkout@3df4ab11eba7bda6032a0b82a6bb43b11571feac # v4
+    - uses: actions/checkout@8ade135a41bc03ea155e62e844d188df1ea18608 # v4
     - run: rm package.json yarn.lock
     - uses: actions/setup-node@v3
       with:
