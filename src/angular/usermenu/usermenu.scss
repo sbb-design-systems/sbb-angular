@@ -38,7 +38,7 @@
     position: absolute;
     width: 100%;
     left: 0;
-    background-color: var(--sbb-color-cloud);
+    background-color: var(--sbb-panel-divider-color);
     height: sbb.pxToRem(1);
     bottom: sbb.pxToRem(-1);
   }
@@ -93,8 +93,8 @@
   flex-grow: 0;
   flex-shrink: 0;
   border-radius: 50%;
-  background-color: var(--sbb-color-cloud);
-  color: var(--sbb-color-metal);
+  background-color: var(--sbb-usermenu-initial-letters-background-color);
+  color: var(--sbb-usermenu-initial-letters-text-color);
   font-family: var(--sbb-font-bold);
   font-weight: 700;
   text-align: center;
@@ -149,13 +149,9 @@
     display: inline-block;
   }
 
-  color: var(--sbb-color-metal);
+  color: var(--sbb-usermenu-text-color);
   font-size: var(--sbb-font-size-small);
   line-height: calc(#{sbb.pxToRem(14)} * var(--sbb-scaling-factor));
-
-  :where(html.sbb-lean) & {
-    color: var(--sbb-color-iron);
-  }
 }
 
 .sbb-usermenu-arrow.sbb-icon {
