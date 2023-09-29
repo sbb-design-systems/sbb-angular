@@ -2,14 +2,14 @@
 @use '@sbb-esta/angular' as sbb;
 
 .sbb-overlay-background {
-  background-color: var(--sbb-color-white-alpha70);
+  background-color: var(--sbb-dialog-overlay-backgroud-color);
   align-items: center;
 }
 
 .sbb-dialog-container {
   display: flex;
   flex-direction: column;
-  border: var(--sbb-border-width) solid var(--sbb-color-weak-accent);
+  border: var(--sbb-border-width) solid var(--sbb-dialog-container-border-color); // TODO: Is Black (LM) and Silver (DM) in Figma, but Weak-Accent (Iron (LM)) currently on angular.sbb, needs checkup
   box-sizing: border-box;
   overflow: hidden;
   outline: 0;
