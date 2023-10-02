@@ -351,23 +351,23 @@
   --sbb-menu-item-background-color-active: var(--sbb-color-cloud);
   --sbb-menu-title-color: var(--sbb-color-granite);
 
-  // Notification Toast
+  // Notification
   // Success
-  --sbb-notification-toast-label-color-success: var(--sbb-color-green);
-  --sbb-notification-toast-background-color-success: var(--sbb-color-white);
-  --sbb-notification-toast-border-color-success: var(--sbb-color-green);
+  --sbb-notification-label-color-success: var(--sbb-color-white);
+  --sbb-notification-background-color-success: var(--sbb-color-granite);
+  --sbb-notification-border-color-success: var(--sbb-color-granite);
   // Information
-  --sbb-notification-toast-label-color-information: var(--sbb-color-granite);
-  --sbb-notification-toast-background-color-information: var(--sbb-color-white);
-  --sbb-notification-toast-border-color-information: var(--sbb-color-granite);
+  --sbb-notification-label-color-information: var(--sbb-color-white);
+  --sbb-notification-background-color-information: var(--sbb-color-granite);
+  --sbb-notification-border-color-information: var(--sbb-color-granite);
   // Error
-  --sbb-notification-toast-label-color-error: var(--sbb-color-white);
-  --sbb-notification-toast-background-color-error: var(--sbb-color-error);
-  --sbb-notification-toast-border-color-error: var(--sbb-color-error);
+  --sbb-notification-label-color-error: var(--sbb-color-white);
+  --sbb-notification-background-color-error: var(--sbb-color-error);
+  --sbb-notification-border-color-error: var(--sbb-color-error);
   // Warn
-  --sbb-notification-toast-label-color-warn: var(--sbb-color-white);
-  --sbb-notification-toast-background-color-warn: var(--sbb-color-peach);
-  --sbb-notification-toast-border-color-warn: var(--sbb-color-peach);
+  --sbb-notification-label-color-warn: var(--sbb-color-white);
+  --sbb-notification-background-color-warn: var(--sbb-color-error);
+  --sbb-notification-border-color-warn: var(--sbb-color-error);
 
   // Table
   --sbb-table-background-color: var(--sbb-color-background);
@@ -573,13 +573,6 @@
     }
   }
   &:where(.sbb-lean) {
-    // Notification Toast
-    // Error
-    --sbb-notification-toast-background-color-error: var(--sbb-color-red);
-    // Warn
-    --sbb-notification-toast-label-color-warn: var(--sbb-color-black);
-    --sbb-notification-toast-background-color-warn: var(--sbb-color-peach);
-
     // Context Colors
     --sbb-color-weak-accent: var(--sbb-color-iron);
 
@@ -666,6 +659,19 @@
     --sbb-notification-message-padding: #{sbb.pxToRem(11)};
     --sbb-notification-message-padding-horizontal: #{sbb.pxToRem(15)};
 
+    // Notification
+    // Success
+    --sbb-notification-label-color-success: var(--sbb-color-green);
+    --sbb-notification-background-color-success: var(--sbb-color-white);
+    --sbb-notification-border-color-success: var(--sbb-color-green);
+    // Information
+    --sbb-notification-label-color-information: var(--sbb-color-granite);
+    --sbb-notification-background-color-information: var(--sbb-color-white);
+    // Warn
+    --sbb-notification-background-color-warn: var(--sbb-color-peach);
+    --sbb-notification-border-color-warn: var(--sbb-color-peach);
+    --sbb-notification-label-color-warn: var(--sbb-color-black);
+
     // Expansion Panel
     --sbb-expansion-panel-padding-horizontal: #{sbb.pxToRem(16)};
     --sbb-expansion-panel-header-padding-top: calc(
@@ -738,24 +744,22 @@
 
       // Notification Toast
       // Success
-      --sbb-notification-toast-label-color-success: var(--sbb-color-white);
-      --sbb-notification-toast-background-color-success: var(--sbb-color-green);
-      --sbb-notification-toast-border-color-success: var(--sbb-color-green);
+      --sbb-notification-label-color-success: var(--sbb-color-white);
+      --sbb-notification-background-color-success: var(--sbb-color-green);
+      --sbb-notification-border-color-success: var(--sbb-color-green);
 
       // Information
-      --sbb-notification-toast-label-color-information: var(--sbb-color-cloud);
-      --sbb-notification-toast-background-color-information: var(--sbb-color-black);
-      --sbb-notification-toast-border-color-information: var(--sbb-color-cloud);
+      --sbb-notification-label-color-information: var(--sbb-color-cloud);
+      --sbb-notification-background-color-information: var(--sbb-color-black);
+      --sbb-notification-border-color-information: var(--sbb-color-cloud);
 
       // Error
-      --sbb-notification-toast-label-color-error: var(--sbb-color-white);
-      --sbb-notification-toast-background-color-error: var(--sbb-color-red);
-      --sbb-notification-toast-border-color-error: var(--sbb-color-red);
+      --sbb-notification-background-color-error: var(--sbb-color-red);
+      --sbb-notification-border-color-error: var(--sbb-color-red);
 
       // Warn
-      --sbb-notification-toast-label-color-warn: var(--sbb-color-black);
-      --sbb-notification-toast-background-color-warn: var(--sbb-color-peach);
-      --sbb-notification-toast-border-color-warn: var(--sbb-color-peach);
+      --sbb-notification-background-color-warn: var(--sbb-color-peach);
+      --sbb-notification-border-color-warn: var(--sbb-color-peach);
 
       // Checkbox
       --sbb-selection-background-color-default: var(--sbb-color-background);
