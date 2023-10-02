@@ -210,7 +210,7 @@
   --sbb-selection-icon-color-disabled: var(--sbb-color-granite);
   --sbb-selection-border-color-focused: var(--sbb-color-weak-accent);
 
-  --sbb-selection-label-color-checked: var(--sbb-color-iron);
+  --sbb-selection-label-color-checked: var(--sbb-color-text);
   --sbb-selection-label-color-unchecked: var(--sbb-color-granite);
   --sbb-selection-label-color-disabled: var(--sbb-color-granite);
 
@@ -321,6 +321,14 @@
 
   // Panel
   --sbb-panel-divider-color: var(--sbb-color-cloud);
+
+  // SBB Checkbox Panel & Radio Button Panel
+  --sbb-selection-panel-item-background-color: var(--sbb-color-milk);
+  --sbb-selection-panel-item-color: var(--sbb-color-granite);
+  --sbb-selection-panel-border-color-checked: var(--sbb-color-black);
+  --sbb-selection-panel-border-color-disabled: var(--sbb-color-aluminum);
+  --sbb-selection-panel-subtitle-color: var(--sbb-color-granite);
+  --sbb-selection-panel-warning-color: var(--sbb-color-granite);
 
   // SBB Checkbox Panel & Radio Button Panel
   --sbb-selection-panel-item-background-color: var(--sbb-color-milk);
@@ -820,6 +828,14 @@
 
       // Panel
       --sbb-panel-divider-color: var(--sbb-color-graphite);
+
+      // SBB Checkbox Panel & Radio Button Panel
+      --sbb-selection-panel-item-background-color: var(--sbb-color-iron);
+      --sbb-selection-panel-item-color: var(--sbb-color-graphite);
+      --sbb-selection-panel-border-color-checked: var(--sbb-color-white);
+      --sbb-selection-panel-border-color-disabled: var(--sbb-color-metal);
+      --sbb-selection-panel-subtitle-color: var(--sbb-color-graphite);
+      --sbb-selection-panel-warning-color: var(--sbb-color-graphite);
 
       // SBB Checkbox Panel & Radio Button Panel
       --sbb-selection-panel-item-background-color: var(--sbb-color-iron);
