@@ -200,15 +200,15 @@
   --sbb-ghost-button-label-color-disabled: var(--sbb-color-iron-alpha40);
 
   // Checkbox & Radiobutton
-  --sbb-selection-box-background-color-default: var(--sbb-color-background);
-  --sbb-selection-box-background-color-disabled: var(--sbb-color-milk);
+  --sbb-selection-container-background-color-default: var(--sbb-color-background);
+  --sbb-selection-container-background-color-disabled: var(--sbb-color-milk);
 
-  --sbb-selection-box-border-color-default: var(--sbb-color-graphite);
-  --sbb-selection-box-border-color-disabled: var(--sbb-color-aluminum);
+  --sbb-selection-container-border-color-default: var(--sbb-color-graphite);
+  --sbb-selection-container-border-color-disabled: var(--sbb-color-aluminum);
 
-  --sbb-selection-box-icon-color-default: var(--sbb-color-red);
-  --sbb-selection-box-icon-color-disabled: var(--sbb-color-granite);
-  --sbb-selection-box-border-color-focused: var(--sbb-color-weak-accent);
+  --sbb-selection-container-icon-color-default: var(--sbb-color-red);
+  --sbb-selection-container-icon-color-disabled: var(--sbb-color-granite);
+  --sbb-selection-container-border-color-focused: var(--sbb-color-weak-accent);
 
   --sbb-selection-label-color-checked: var(--sbb-color-text);
   --sbb-selection-label-color-unchecked: var(--sbb-color-granite);
@@ -554,14 +554,14 @@
     --sbb-secondary-button-color-disabled: var(--sbb-color-iron-alpha50);
 
     // Checkbox & Radiobutton
-    --sbb-selection-box-background-color-default: var(--sbb-color-white);
-    --sbb-selection-box-background-color-disabled: var(--sbb-color-milk);
+    --sbb-selection-container-background-color-default: var(--sbb-color-white);
+    --sbb-selection-container-background-color-disabled: var(--sbb-color-milk);
 
-    --sbb-selection-box-border-color-default: var(--sbb-color-smoke);
-    --sbb-selection-box-border-color-disabled: var(--sbb-color-smoke);
+    --sbb-selection-container-border-color-default: var(--sbb-color-smoke);
+    --sbb-selection-container-border-color-disabled: var(--sbb-color-smoke);
 
-    --sbb-selection-box-icon-color-default: var(--sbb-color-iron);
-    --sbb-selection-box-icon-color-disabled: var(--sbb-color-iron);
+    --sbb-selection-container-icon-color-default: var(--sbb-color-iron);
+    --sbb-selection-container-icon-color-disabled: var(--sbb-color-iron);
 
     --sbb-selection-label-color-checked: var(--sbb-color-iron);
     --sbb-selection-label-color-unchecked: var(--sbb-color-granite);
@@ -652,15 +652,15 @@
       --sbb-color-weak-accent: var(--sbb-color-milk);
 
       // Checkbox & Radiobutton
-      --sbb-selection-box-background-color-default: var(--sbb-color-background);
-      --sbb-selection-box-background-color-disabled: var(--sbb-color-charcoal);
+      --sbb-selection-container-background-color-default: var(--sbb-color-background);
+      --sbb-selection-container-background-color-disabled: var(--sbb-color-charcoal);
 
-      --sbb-selection-box-border-color-default: var(--sbb-color-graphite);
-      --sbb-selection-box-border-color-disabled: var(--sbb-color-smoke);
-      --sbb-selection-box-border-color-focused: var(--sbb-color-text);
+      --sbb-selection-container-border-color-default: var(--sbb-color-graphite);
+      --sbb-selection-container-border-color-disabled: var(--sbb-color-smoke);
+      --sbb-selection-container-border-color-focused: var(--sbb-color-text);
 
-      --sbb-selection-box-icon-color-default: var(--sbb-color-text);
-      --sbb-selection-box-icon-color-disabled: var(--sbb-color-smoke);
+      --sbb-selection-container-icon-color-default: var(--sbb-color-text);
+      --sbb-selection-container-icon-color-disabled: var(--sbb-color-smoke);
 
       --sbb-selection-label-color-checked: var(--sbb-color-text);
       --sbb-selection-label-color-unchecked: var(--sbb-color-graphite);
@@ -1885,14 +1885,14 @@ textarea {
 
 .sbb-selection-container {
   display: inline-block;
-  background-color: var(--sbb-selection-box-background-color-default);
+  background-color: var(--sbb-selection-container-background-color-default);
   margin-top: calc(#{sbb.pxToRem(3)} * var(--sbb-scaling-factor));
 
   width: calc(#{sbb.pxToRem(20)} * var(--sbb-scaling-factor));
   min-width: calc(#{sbb.pxToRem(20)} * var(--sbb-scaling-factor));
   height: calc(#{sbb.pxToRem(20)} * var(--sbb-scaling-factor));
   min-height: calc(#{sbb.pxToRem(20)} * var(--sbb-scaling-factor));
-  border: var(--sbb-border-width) solid var(--sbb-selection-box-border-color-default);
+  border: var(--sbb-border-width) solid var(--sbb-selection-container-border-color-default);
   margin-right: calc(#{sbb.pxToRem(8)} * var(--sbb-scaling-factor));
 
   :where(html.sbb-lean) & {
@@ -1918,8 +1918,8 @@ textarea {
   }
 
   .sbb-selection-disabled & {
-    border-color: var(--sbb-selection-box-border-color-disabled);
-    background-color: var(--sbb-selection-box-background-color-disabled);
+    border-color: var(--sbb-selection-container-border-color-disabled);
+    background-color: var(--sbb-selection-container-background-color-disabled);
   }
 
   .sbb-selection-indeterminate &::before {
@@ -1929,16 +1929,16 @@ textarea {
     width: sbb.pxToRem(10);
     left: calc(50% - #{sbb.pxToRem(5)});
     top: calc(50% - #{sbb.pxToRem(0.5)});
-    border: sbb.pxToRem(1) solid var(--sbb-selection-box-icon-color-default);
+    border: sbb.pxToRem(1) solid var(--sbb-selection-container-icon-color-default);
     display: block;
     background-color: var(
-      --sbb-selection-box-icon-color-default
+      --sbb-selection-container-icon-color-default
     ); // Used to fill line when user has activated browser zoom
   }
 }
 
 .sbb-selection-container-checked {
-  color: var(--sbb-selection-box-icon-color-default);
+  color: var(--sbb-selection-container-icon-color-default);
   line-height: 0;
   height: 100%;
   width: 100%;
@@ -1969,7 +1969,7 @@ textarea {
     display: none;
     border-radius: 50%;
     transform: scale(0.65);
-    background-color: var(--sbb-selection-box-icon-color-default);
+    background-color: var(--sbb-selection-container-icon-color-default);
 
     @include cdk.high-contrast(active, off) {
       background-color: CanvasText;
@@ -1977,13 +1977,7 @@ textarea {
   }
 
   .sbb-selection-disabled & {
-    color: var(--sbb-selection-box-icon-color-disabled);
-  }
-
-  .sbb-radio-button.sbb-selection-disabled & {
-    :where(html.sbb-lean) & {
-      background-color: var(--sbb-selection-box-icon-color-disabled);
-    }
+    color: var(--sbb-selection-container-icon-color-disabled);
   }
 
   .sbb-selection-checked & {
