@@ -657,6 +657,7 @@
 
       --sbb-selection-container-border-color-default: var(--sbb-color-graphite);
       --sbb-selection-container-border-color-disabled: var(--sbb-color-smoke);
+      --sbb-selection-container-border-color-focused: var(--sbb-color-text);
 
       --sbb-selection-container-icon-color-default: var(--sbb-color-text);
       --sbb-selection-container-icon-color-disabled: var(--sbb-color-smoke);
@@ -1901,7 +1902,7 @@ textarea {
   .sbb-selection-input:focus + &,
   // Applies focus highlight for pseudo-checkbox
   .sbb-menu-item.sbb-active .sbb-pseudo-checkbox & {
-    border-color: var(--sbb-checkbox-label-color-focused);
+    border-color: var(--sbb-selection-container-border-color-focused);
   }
 
   :is(.sbb-checkbox, .sbb-pseudo-checkbox) & {
