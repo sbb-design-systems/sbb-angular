@@ -1,29 +1,17 @@
 import { Rule, SchematicContext } from '@angular-devkit/schematics';
-import {
-  cdkMigrations,
-  createMigrationSchematicRule,
-  TargetVersion,
-} from '@angular/cdk/schematics';
+import { createMigrationSchematicRule, TargetVersion } from '@angular/cdk/schematics';
 
-import { ClassNamesMigration } from './migrations/class-names';
+import { IconMigration } from './migrations/icon-names';
 import { sbbAngularUpgradeData } from './upgrade-data';
 
 /** Entry point for the migration schematics with target of Angular 15 */
-export function updateToV15(): Rule {
-  patchClassNamesMigration();
+export function updateToV17(): Rule {
   return createMigrationSchematicRule(
     TargetVersion.V17,
-    [],
+    [IconMigration],
     sbbAngularUpgradeData,
     onMigrationComplete,
   );
-}
-
-function patchClassNamesMigration() {
-  const indexOfClassNamesMigration = cdkMigrations.findIndex(
-    (m) => m.name === 'ClassNamesMigration',
-  );
-  cdkMigrations[indexOfClassNamesMigration] = ClassNamesMigration;
 }
 
 /** Function that will be called when the migration completed. */
