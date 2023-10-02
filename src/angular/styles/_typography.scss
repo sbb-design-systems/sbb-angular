@@ -670,6 +670,7 @@
     // Warn
     --sbb-notification-background-color-warn: var(--sbb-color-peach);
     --sbb-notification-border-color-warn: var(--sbb-color-peach);
+    --sbb-notification-label-color-warn: var(--sbb-color-black);
 
     // Expansion Panel
     --sbb-expansion-panel-padding-horizontal: #{sbb.pxToRem(16)};
@@ -757,7 +758,6 @@
       --sbb-notification-border-color-error: var(--sbb-color-red);
 
       // Warn
-      --sbb-notification-label-color-warn: var(--sbb-color-black);
       --sbb-notification-background-color-warn: var(--sbb-color-peach);
       --sbb-notification-border-color-warn: var(--sbb-color-peach);
 
