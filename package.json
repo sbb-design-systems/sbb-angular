@@ -111,7 +111,7 @@
     "@types/jasminewd2": "2.0.11",
     "@types/mapbox__point-geometry": "0.1.2",
     "@types/marked": "^2.0.2",
-    "@types/node": "18.18.1",
+    "@types/node": "18.18.3",
     "@types/sass": "1.43.1",
     "@types/send": "0.17.2",
     "@types/yargs": "17.0.13",
