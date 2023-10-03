@@ -41,7 +41,7 @@ describe('ngAdd', () => {
 
   beforeEach(async () => {
     runner = new SchematicTestRunner('collection', COLLECTION_PATH);
-    appTree = await createTestApp(runner);
+    appTree = await createTestApp(runner, { standalone: false });
 
     errorOutput = [];
     runner.logger.subscribe((e) => {
