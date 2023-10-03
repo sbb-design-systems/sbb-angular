@@ -2,6 +2,14 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [16.6.1](https://github.com/sbb-design-systems/sbb-angular/compare/16.6.0...16.6.1) (2023-10-02)
+
+
+### Bug Fixes
+
+* **angular/table:** resolve local compilation issues ([#1972](https://github.com/sbb-design-systems/sbb-angular/issues/1972)) ([ff76206](https://github.com/sbb-design-systems/sbb-angular/commit/ff762062dafa97398384124a67c880713ff06cac))
+* **journey-maps:** hide geolocate button by default ([#2019](https://github.com/sbb-design-systems/sbb-angular/issues/2019)) ([2b251c1](https://github.com/sbb-design-systems/sbb-angular/commit/2b251c18ba91d5a57cfe374f94ccb30917eb531f))
+
 ## [16.6.0](https://github.com/sbb-design-systems/sbb-angular/compare/16.5.0...16.6.0) (2023-09-25)
 
 
