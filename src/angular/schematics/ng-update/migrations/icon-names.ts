@@ -1,17 +1,9 @@
-/**
- * @license
- * Copyright Google LLC All Rights Reserved.
- *
- * Use of this source code is governed by an MIT-style license that can be
- * found in the LICENSE file at https://angular.io/license
- */
-
 import { Migration, ResolvedResource, UpgradeData, WorkspacePath } from '@angular/cdk/schematics';
 import * as ts from 'typescript';
 
 /**
- * Migration that walks through every string literal, template and stylesheet in
- * order to migrate outdated CSS selectors to the new selector.
+ * Migration that walks through every string literal and template and stylesheet in
+ * order to migrate deprecated icon names and replace them with the new ones.
  */
 export class IconMigration extends Migration<UpgradeData> {
   // Only enable the migration rule if there is upgrade data.
@@ -37,7 +29,9 @@ export class IconMigration extends Migration<UpgradeData> {
     'lcar-power-plug-large': 'car-power-plug-large',
   };
 
+  // List of all icon names from the SBB Icon CDN.
   _iconNames: string[] = [];
+
   override visitNode(node: ts.Node): void {
     const textContent = node.getText();
     if (!ts.isStringLiteralLike(node)) {
