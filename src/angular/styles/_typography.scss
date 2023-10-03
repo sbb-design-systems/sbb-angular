@@ -271,8 +271,13 @@
   --sbb-form-field-width: #{sbb.pxToRem(320)};
   --sbb-form-input-color: var(--sbb-color-charcoal);
   --sbb-form-input-color-disabled: var(--sbb-color-granite);
+  --sbb-form-input-color-placeholder: var(--sbb-color-metal);
+  --sbb-form-input-border-color: var(--sbb-color-graphite);
+  --sbb-form-input-border-color-disabled: var(--sbb-color-aluminum);
+  --sbb-form-input-background-color-disabled: var(--sbb-color-milk);
   --sbb-form-input-min-height: calc(#{sbb.pxToRem(48)} * var(--sbb-scaling-factor));
   --sbb-form-label-line-height: calc(#{sbb.pxToRem(16)} * var(--sbb-scaling-factor));
+  --sbb-form-label-color: var(--sbb-color-granite);
   --sbb-form-label-wrapper-margin-bottom: calc(#{sbb.pxToRem(5)} * var(--sbb-scaling-factor));
   --sbb-form-label-wrapper-padding-left: calc(#{sbb.pxToRem(10)} * var(--sbb-scaling-factor));
 
@@ -295,6 +300,8 @@
   --sbb-header-lean-menu-tablet-z-index: 700;
   --sbb-header-lean-menu-width: calc(#{sbb.pxToRem(300)} * var(--sbb-scaling-factor));
   --sbb-header-lean-label-line-height: calc(#{sbb.pxToRem(25)} * var(--sbb-scaling-factor));
+  --sbb-header-lean-subtitle-color: var(--sbb-color-anthracite);
+  --sbb-header-lean-border-bottom-color: var(--sbb-color-silver);
 
   // Lightbox
   --sbb-lightbox-padding-horizontal: #{sbb.pxToRem(24)};
@@ -311,6 +318,25 @@
   --sbb-pagination-disabled-color: var(--sbb-color-silver);
   --sbb-pagination-paginator-size: calc(#{sbb.pxToRem(40)} * var(--sbb-scaling-factor));
   --sbb-pagination-navigation-item-margin: calc(#{sbb.pxToRem(4)} * var(--sbb-scaling-factor));
+
+  // Panel
+  --sbb-panel-divider-color: var(--sbb-color-cloud);
+
+  // SBB Checkbox Panel & Radio Button Panel
+  --sbb-selection-panel-item-background-color: var(--sbb-color-milk);
+  --sbb-selection-panel-item-color: var(--sbb-color-granite);
+  --sbb-selection-panel-border-color-checked: var(--sbb-color-black);
+  --sbb-selection-panel-border-color-disabled: var(--sbb-color-aluminum);
+  --sbb-selection-panel-subtitle-color: var(--sbb-color-granite);
+  --sbb-selection-panel-warning-color: var(--sbb-color-granite);
+
+  // SBB Checkbox Panel & Radio Button Panel
+  --sbb-selection-panel-item-background-color: var(--sbb-color-milk);
+  --sbb-selection-panel-item-color: var(--sbb-color-granite);
+  --sbb-selection-panel-border-color-checked: var(--sbb-color-black);
+  --sbb-selection-panel-border-color-disabled: var(--sbb-color-aluminum);
+  --sbb-selection-panel-subtitle-color: var(--sbb-color-granite);
+  --sbb-selection-panel-warning-color: var(--sbb-color-granite);
 
   // Sidebar
   --sbb-sidebar-mobile-menu-bar-height: calc(2 * var(--sbb-icon-size-default));
@@ -331,6 +357,25 @@
   --sbb-menu-item-label-active: var(--sbb-color-black);
   --sbb-menu-item-background-color-hover: var(--sbb-color-milk);
   --sbb-menu-item-background-color-active: var(--sbb-color-cloud);
+  --sbb-menu-title-color: var(--sbb-color-granite);
+
+  // Notification
+  // Success
+  --sbb-notification-label-color-success: var(--sbb-color-white);
+  --sbb-notification-background-color-success: var(--sbb-color-granite);
+  --sbb-notification-border-color-success: var(--sbb-color-granite);
+  // Information
+  --sbb-notification-label-color-information: var(--sbb-color-white);
+  --sbb-notification-background-color-information: var(--sbb-color-granite);
+  --sbb-notification-border-color-information: var(--sbb-color-granite);
+  // Error
+  --sbb-notification-label-color-error: var(--sbb-color-white);
+  --sbb-notification-background-color-error: var(--sbb-color-error);
+  --sbb-notification-border-color-error: var(--sbb-color-error);
+  // Warn
+  --sbb-notification-label-color-warn: var(--sbb-color-white);
+  --sbb-notification-background-color-warn: var(--sbb-color-error);
+  --sbb-notification-border-color-warn: var(--sbb-color-error);
 
   // Table
   --sbb-table-background-color: var(--sbb-color-background);
@@ -346,6 +391,23 @@
   --sbb-table-sticky-shadow-width: #{sbb.pxToRem(8)};
   --sbb-table-sticky-shadow-offset: #{sbb.pxToRem(-9)};
   --sbb-table-sort-header-arrow-margin: calc(#{sbb.pxToRem(8)} * var(--sbb-scaling-factor));
+
+  // Tag
+  --sbb-tag-label-color-active: var(--sbb-color-black);
+  --sbb-tag-border-color-active: var(--sbb-color-black);
+  --sbb-tag-badge-background-color-default: var(--sbb-color-red);
+  --sbb-tag-badge-label-color-default: var(--sbb-color-white);
+  --sbb-tag-background-color-inactive-hover: var(--sbb-color-cloud);
+  --sbb-tag-label-color-inactive-hover: var(--sbb-color-black);
+  --sbb-tag-label-color-active-hover: var(--sbb-color-granite);
+  --sbb-tag-border-color-active-hover: var(--sbb-color-smoke);
+  --sbb-tag-background-color-inactive: var(--sbb-color-milk);
+  --sbb-tag-label-color-inactive: var(--sbb-color-granite);
+  --sbb-tag-badge-background-color-disabled: var(--sbb-color-metal);
+  --sbb-tag-badge-background-color-focused: var(--sbb-color-white);
+  --sbb-tag-badge-label-color-disabled: var(--sbb-color-white);
+  --sbb-tag-badge-background-color-disabled-hover: var(--sbb-color-cement);
+  --sbb-tag-badge-link-background-color-focused: var(--sbb-color-red125);
 
   // Tooltip
   --sbb-tooltip-padding: calc(#{sbb.pxToRem(23)} * var(--sbb-scaling-factor));
@@ -371,6 +433,10 @@
   --sbb-usermenu-panel-width: calc(#{sbb.pxToRem(288)} * var(--sbb-scaling-factor));
   --sbb-usermenu-trigger-height: calc(#{sbb.pxToRem(48)} * var(--sbb-scaling-factor));
   --sbb-usermenu-trigger-padding: calc(#{sbb.pxToRem(12)} * var(--sbb-scaling-factor));
+
+  --sbb-usermenu-text-color: var(--sbb-color-granite);
+  --sbb-usermenu-initial-letters-text-color: var(--sbb-color-metal);
+  --sbb-usermenu-initial-letters-background-color: var(--sbb-color-cloud);
 
   // Icons
   --sbb-icon-size-default: calc(#{sbb.pxToRem(24)} * var(--sbb-scaling-factor));
@@ -601,6 +667,19 @@
     --sbb-notification-message-padding: #{sbb.pxToRem(11)};
     --sbb-notification-message-padding-horizontal: #{sbb.pxToRem(15)};
 
+    // Notification
+    // Success
+    --sbb-notification-label-color-success: var(--sbb-color-green);
+    --sbb-notification-background-color-success: var(--sbb-color-white);
+    --sbb-notification-border-color-success: var(--sbb-color-green);
+    // Information
+    --sbb-notification-label-color-information: var(--sbb-color-granite);
+    --sbb-notification-background-color-information: var(--sbb-color-white);
+    // Warn
+    --sbb-notification-background-color-warn: var(--sbb-color-peach);
+    --sbb-notification-border-color-warn: var(--sbb-color-peach);
+    --sbb-notification-label-color-warn: var(--sbb-color-black);
+
     // Expansion Panel
     --sbb-expansion-panel-padding-horizontal: #{sbb.pxToRem(16)};
     --sbb-expansion-panel-header-padding-top: calc(
@@ -615,6 +694,20 @@
 
     // Table
     --sbb-table-cell-padding-vertical: #{sbb.pxToRem(6)};
+
+    // Tag
+    --sbb-tag-label-color-active: var(--sbb-color-black);
+    --sbb-tag-border-color-active: var(--sbb-color-black);
+    --sbb-tag-badge-background-color-default: var(--sbb-color-black);
+    --sbb-tag-badge-label-color-default: var(--sbb-color-white);
+    --sbb-tag-background-color-inactive-hover: var(--sbb-color-cloud);
+    --sbb-tag-label-color-inactive-hover: var(--sbb-color-black);
+    --sbb-tag-label-color-active-hover: var(--sbb-color-granite);
+    --sbb-tag-background-color-inactive: var(--sbb-color-milk);
+    --sbb-tag-label-color-inactive: var(--sbb-color-granite);
+    --sbb-tag-badge-background-color-disabled: var(--sbb-color-granite);
+    --sbb-tag-badge-background-color-disabled-hover: var(--sbb-color-cement);
+    --sbb-tag-badge-link-background-color-focused: var(--sbb-color-red125);
 
     // Tooltip
     --sbb-tooltip-padding: #{sbb.pxToRem(8)};
@@ -649,7 +742,13 @@
     }
 
     &:where(.sbb-lean.sbb-dark) {
+      // Context colors
+      --sbb-color-text: var(--sbb-color-white);
+      --sbb-color-background: var(--sbb-color-black);
+      --sbb-color-call-to-action: var(--sbb-color-red_dark-mode);
+      --sbb-color-call-to-action-hover: var(--sbb-color-red_dark-mode);
       --sbb-color-weak-accent: var(--sbb-color-milk);
+      --sbb-color-error: var(--sbb-color-red_dark-mode);
 
       // Checkbox & Radiobutton
       --sbb-selection-container-background-color-default: var(--sbb-color-background);
@@ -672,6 +771,25 @@
       --sbb-color-call-to-action: var(--sbb-color-red_dark-mode);
       --sbb-color-call-to-action-hover: var(--sbb-color-red_dark-mode);
 
+      // Notification Toast
+      // Success
+      --sbb-notification-label-color-success: var(--sbb-color-white);
+      --sbb-notification-background-color-success: var(--sbb-color-green);
+      --sbb-notification-border-color-success: var(--sbb-color-green);
+
+      // Information
+      --sbb-notification-label-color-information: var(--sbb-color-cloud);
+      --sbb-notification-background-color-information: var(--sbb-color-black);
+      --sbb-notification-border-color-information: var(--sbb-color-cloud);
+
+      // Error
+      --sbb-notification-background-color-error: var(--sbb-color-red);
+      --sbb-notification-border-color-error: var(--sbb-color-red);
+
+      // Warn
+      --sbb-notification-background-color-warn: var(--sbb-color-peach);
+      --sbb-notification-border-color-warn: var(--sbb-color-peach);
+
       // Chips
       --sbb-chips-background-color-active: var(--sbb-color-smoke);
       --sbb-chips-background-color-hover: var(--sbb-color-metal);
@@ -690,15 +808,48 @@
       --sbb-expansion-panel-border-color-closed: var(--sbb-color-midnight);
       --sbb-expansion-panel-header-indicator-color: var(--sbb-color-white);
 
+      // Forms
+      --sbb-form-input-color: var(--sbb-color-text);
+      --sbb-form-input-color-disabled: var(--sbb-color-smoke);
+      --sbb-form-input-color-placeholder: var(--sbb-color-smoke);
+      --sbb-form-input-border-color: var(--sbb-color-smoke);
+      --sbb-form-input-border-color-disabled: var(--sbb-color-smoke);
+      --sbb-form-input-background-color-disabled: var(--sbb-color-iron);
+      --sbb-form-label-color: var(--sbb-color-smoke);
+
+      // Header
+      --sbb-header-lean-subtitle-color: var(--sbb-color-graphite);
+      --sbb-header-lean-border-bottom-color: var(--sbb-color-graphite);
+
       // Menu
       --sbb-menu-item-label: var(--sbb-color-milk);
       --sbb-menu-item-label-active: var(--sbb-color-white);
       --sbb-menu-item-background-color-hover: transparent;
       --sbb-menu-item-background-color-active: var(--sbb-color-charcoal);
+      --sbb-menu-title-color: var(--sbb-color-smoke);
 
       // Pagination
       --sbb-pagination-base-color: var(--sbb-color-silver);
       --sbb-pagination-disabled-color: var(--sbb-color-metal);
+
+      // Panel
+      --sbb-panel-divider-color: var(--sbb-color-graphite);
+
+      // SBB Checkbox Panel & Radio Button Panel
+      --sbb-selection-panel-item-background-color: var(--sbb-color-iron);
+      --sbb-selection-panel-item-color: var(--sbb-color-graphite);
+      --sbb-selection-panel-border-color-checked: var(--sbb-color-white);
+      --sbb-selection-panel-border-color-disabled: var(--sbb-color-metal);
+      --sbb-selection-panel-subtitle-color: var(--sbb-color-graphite);
+      --sbb-selection-panel-warning-color: var(--sbb-color-graphite);
+
+      // SBB Checkbox Panel & Radio Button Panel
+      --sbb-selection-panel-item-background-color: var(--sbb-color-iron);
+      --sbb-selection-panel-item-color: var(--sbb-color-graphite);
+      --sbb-selection-panel-border-color-checked: var(--sbb-color-white);
+      --sbb-selection-panel-border-color-disabled: var(--sbb-color-metal);
+      --sbb-selection-panel-subtitle-color: var(--sbb-color-graphite);
+      --sbb-selection-panel-warning-color: var(--sbb-color-graphite);
 
       // Sidebar
       --sbb-sidebar-background-color: var(--sbb-color-midnight);
@@ -709,6 +860,20 @@
       // Status
       --sbb-status-message-background-color: var(--sbb-color-iron);
       --sbb-status-message-color: var(--sbb-color-white);
+
+      // Tag
+      --sbb-tag-label-color-active: var(--sbb-color-white);
+      --sbb-tag-border-color-active: var(--sbb-color-white);
+      --sbb-tag-badge-background-color-default: var(--sbb-color-white);
+      --sbb-tag-badge-label-color-default: var(--sbb-color-black);
+      --sbb-tag-background-color-inactive-hover: var(--sbb-color-charcoal);
+      --sbb-tag-label-color-inactive-hover: var(--sbb-color-white);
+      --sbb-tag-label-color-active-hover: var(--sbb-color-white);
+      --sbb-tag-background-color-inactive: var(--sbb-color-iron);
+      --sbb-tag-label-color-inactive: var(--sbb-color-white);
+      --sbb-tag-badge-background-color-disabled: var(--sbb-color-anthracite);
+      --sbb-tag-badge-background-color-disabled-hover: var(--sbb-color-white);
+      --sbb-tag-badge-link-background-color-focused: var(--sbb-color-white);
 
       // Toggle
       --sbb-toggle-border-color-active: var(--sbb-color-white);
@@ -743,6 +908,11 @@
       --sbb-ghost-button-border-color-disabled: var(--sbb-color-iron);
       --sbb-ghost-button-label-color: var(--sbb-color-white);
       --sbb-ghost-button-label-color-disabled: var(--sbb-color-white-alpha50);
+
+      // Usermenu
+      --sbb-usermenu-text-color: var(--sbb-color-cloud);
+      --sbb-usermenu-initial-letters-text-color: var(--sbb-color-aluminum);
+      --sbb-usermenu-initial-letters-background-color: var(--sbb-color-iron);
     }
   }
 }
@@ -1101,7 +1271,7 @@ textarea {
   outline: none;
   background-color: var(--sbb-color-background);
   padding: sbb.pxToRem(10) sbb.pxToRem(14) sbb.pxToRem(11);
-  border: var(--sbb-border-width) solid var(--sbb-color-graphite);
+  border: var(--sbb-border-width) solid var(--sbb-form-input-border-color);
   border-radius: var(--sbb-border-radius);
   color: var(--sbb-form-input-color);
   font-size: var(--sbb-font-size);
@@ -1125,7 +1295,7 @@ textarea {
   }
 
   &::placeholder {
-    color: var(--sbb-color-metal);
+    color: var(--sbb-form-input-color-placeholder);
     opacity: 1; // Needed for Firefox
   }
 
@@ -1187,8 +1357,8 @@ textarea {
   }
 
   &:is(:disabled, [disabled], .sbb-disabled) {
-    background-color: var(--sbb-color-milk);
-    border-color: var(--sbb-color-aluminum);
+    background-color: var(--sbb-form-input-background-color-disabled);
+    border-color: var(--sbb-form-input-border-color-disabled);
     color: var(--sbb-form-input-color-disabled);
     -webkit-text-fill-color: var(--sbb-form-input-color-disabled);
     opacity: 1;
