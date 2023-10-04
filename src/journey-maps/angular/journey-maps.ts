@@ -622,8 +622,9 @@ export class SbbJourneyMaps implements OnInit, AfterViewInit, OnDestroy, OnChang
     }
 
     if (
-      JSON.stringify(changes.viewportDimensions?.currentValue) !==
-      JSON.stringify(changes.viewportDimensions?.previousValue)
+      // with a pure `stringify`, we get microscopic differences in coordinate decimals
+      this._stringifyWithPrecision(changes.viewportDimensions?.currentValue) !==
+      this._stringifyWithPrecision(changes.viewportDimensions?.previousValue)
     ) {
       this._viewportDimensionsChanged.next();
     }
@@ -905,15 +906,16 @@ export class SbbJourneyMaps implements OnInit, AfterViewInit, OnDestroy, OnChang
 
   private _emitViewportDimensionsChange() {
     if (isSbbMapCenterOptions(this.viewportDimensions)) {
-      this.viewportDimensionsChange.emit({
+      this.viewportDimensions = {
         mapCenter: this._map.getCenter(),
         zoomLevel: this._map.getZoom(),
-      });
+      };
     } else if (isSbbBoundingBoxOptions(this.viewportDimensions)) {
-      this.viewportDimensionsChange.emit({
+      this.viewportDimensions = {
         boundingBox: this._map.getBounds(),
-      });
+      };
     }
+    this.viewportDimensionsChange.emit(this.viewportDimensions);
   }
 
   private _onStyleLoaded(): void {
@@ -1033,5 +1035,14 @@ export class SbbJourneyMaps implements OnInit, AfterViewInit, OnDestroy, OnChang
       .getStyle()
       .layers?.filter((layer) => layer.id.endsWith(layerIdSuffix))
       .forEach((layer) => map.setLayoutProperty(layer.id, 'visibility', visibility));
+  }
+
+  private _stringifyWithPrecision(object: any, precision: number = 8): string {
+    return JSON.stringify(object, (key, value) => {
+      if (typeof value === 'number') {
+        return parseFloat(value.toFixed(precision));
+      }
+      return value;
+    });
   }
 }
