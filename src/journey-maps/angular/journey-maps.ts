@@ -143,18 +143,11 @@ export class SbbJourneyMaps implements OnInit, AfterViewInit, OnDestroy, OnChang
    */
   @Output() visibleLevelsChange: EventEmitter<number[]> = new EventEmitter<number[]>();
   /**
-   * This event is emitted whenever any of the {@link SbbViewportDimensions} changes
-   */
-  @Output() viewportDimensionsChange: EventEmitter<SbbViewportDimensions> =
-    new EventEmitter<SbbViewportDimensions>();
-  /**
    * This event is emitted whenever one of the {@link SbbZoomLevels} of the map has changed.
-   * @deprecated use viewportDimensionsChange instead
    */
   @Output() zoomLevelsChange: EventEmitter<SbbZoomLevels> = new EventEmitter<SbbZoomLevels>();
   /**
    * This event is emitted whenever the center of the map has changed. (Whenever the map has been moved)
-   * @deprecated use viewportDimensionsChange instead
    */
   @Output() mapCenterChange: EventEmitter<LngLatLike> = new EventEmitter<LngLatLike>();
   /**
@@ -163,7 +156,6 @@ export class SbbJourneyMaps implements OnInit, AfterViewInit, OnDestroy, OnChang
   @Output() mapReady: ReplaySubject<MaplibreMap> = new ReplaySubject<MaplibreMap>(1);
   /**
    * This event is emitted whenever the bounds of the map have changed. (Whenever the map has been moved)
-   * @deprecated use viewportDimensionsChange instead
    */
   @Output() mapBoundsChange: EventEmitter<number[][]> = new EventEmitter<number[][]>();
 
@@ -201,6 +193,7 @@ export class SbbJourneyMaps implements OnInit, AfterViewInit, OnDestroy, OnChang
   };
   private _defaultHomeButtonOptions: SbbViewportDimensions = {
     boundingBox: SBB_BOUNDING_BOX,
+    padding: 0,
   };
   private _defaultMarkerOptions: SbbMarkerOptions = {
     popup: false,
@@ -622,9 +615,8 @@ export class SbbJourneyMaps implements OnInit, AfterViewInit, OnDestroy, OnChang
     }
 
     if (
-      // with a pure `stringify`, we get microscopic differences in coordinate decimals
-      this._stringifyWithPrecision(changes.viewportDimensions?.currentValue) !==
-      this._stringifyWithPrecision(changes.viewportDimensions?.previousValue)
+      JSON.stringify(changes.viewportDimensions?.currentValue) !==
+      JSON.stringify(changes.viewportDimensions?.previousValue)
     ) {
       this._viewportDimensionsChanged.next();
     }
@@ -883,9 +875,9 @@ export class SbbJourneyMaps implements OnInit, AfterViewInit, OnDestroy, OnChang
         });
       });
 
-    this._zoomLevelDebouncer.pipe(debounceTime(200), takeUntil(this._destroyed)).subscribe(() => {
-      this.zoomLevelsChange.emit(this._getZooomLevels());
-    });
+    this._zoomLevelDebouncer
+      .pipe(debounceTime(200), takeUntil(this._destroyed))
+      .subscribe(() => this.zoomLevelsChange.emit(this._getZooomLevels()));
 
     this._mapMovementDebouncer.pipe(debounceTime(200), takeUntil(this._destroyed)).subscribe(() => {
       this.mapCenterChange.emit(this._map.getCenter());
@@ -894,7 +886,19 @@ export class SbbJourneyMaps implements OnInit, AfterViewInit, OnDestroy, OnChang
 
     merge(this._zoomLevelDebouncer, this._mapMovementDebouncer)
       .pipe(debounceTime(200), takeUntil(this._destroyed))
-      .subscribe(() => this._emitViewportDimensionsChange());
+      .subscribe(() => {
+        // we need to update viewportDimensions in order for its change detection to continue working
+        if (isSbbMapCenterOptions(this.viewportDimensions)) {
+          this.viewportDimensions = {
+            mapCenter: this._map.getCenter(),
+            zoomLevel: this._map.getZoom(),
+          };
+        } else if (isSbbBoundingBoxOptions(this.viewportDimensions)) {
+          this.viewportDimensions = {
+            boundingBox: this._map.getBounds(),
+          };
+        }
+      });
 
     this._levelSwitchService.selectedLevel$
       .pipe(takeUntil(this._destroyed))
@@ -902,20 +906,6 @@ export class SbbJourneyMaps implements OnInit, AfterViewInit, OnDestroy, OnChang
     this._levelSwitchService.visibleLevels$
       .pipe(takeUntil(this._destroyed))
       .subscribe((levels) => this.visibleLevelsChange.emit(levels));
-  }
-
-  private _emitViewportDimensionsChange() {
-    if (isSbbMapCenterOptions(this.viewportDimensions)) {
-      this.viewportDimensions = {
-        mapCenter: this._map.getCenter(),
-        zoomLevel: this._map.getZoom(),
-      };
-    } else if (isSbbBoundingBoxOptions(this.viewportDimensions)) {
-      this.viewportDimensions = {
-        boundingBox: this._map.getBounds(),
-      };
-    }
-    this.viewportDimensionsChange.emit(this.viewportDimensions);
   }
 
   private _onStyleLoaded(): void {
@@ -1035,14 +1025,5 @@ export class SbbJourneyMaps implements OnInit, AfterViewInit, OnDestroy, OnChang
       .getStyle()
       .layers?.filter((layer) => layer.id.endsWith(layerIdSuffix))
       .forEach((layer) => map.setLayoutProperty(layer.id, 'visibility', visibility));
-  }
-
-  private _stringifyWithPrecision(object: any, precision: number = 8): string {
-    return JSON.stringify(object, (key, value) => {
-      if (typeof value === 'number') {
-        return parseFloat(value.toFixed(precision));
-      }
-      return value;
-    });
   }
 }

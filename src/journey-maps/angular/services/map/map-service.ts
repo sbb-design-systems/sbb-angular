@@ -16,7 +16,7 @@ export class SbbMapService {
     if (isSbbMapCenterOptions(viewportDimensions)) {
       this._centerMap(map, viewportDimensions.mapCenter, viewportDimensions.zoomLevel);
     } else {
-      map.fitBounds(viewportDimensions.boundingBox);
+      map.fitBounds(viewportDimensions.boundingBox, { padding: viewportDimensions.padding });
     }
   }
 
