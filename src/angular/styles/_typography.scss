@@ -327,14 +327,6 @@
   --sbb-selection-panel-subtitle-color: var(--sbb-color-granite);
   --sbb-selection-panel-warning-color: var(--sbb-color-granite);
 
-  // SBB Checkbox Panel & Radio Button Panel
-  --sbb-selection-panel-item-background-color: var(--sbb-color-milk);
-  --sbb-selection-panel-item-color: var(--sbb-color-granite);
-  --sbb-selection-panel-border-color-checked: var(--sbb-color-black);
-  --sbb-selection-panel-border-color-disabled: var(--sbb-color-aluminum);
-  --sbb-selection-panel-subtitle-color: var(--sbb-color-granite);
-  --sbb-selection-panel-warning-color: var(--sbb-color-granite);
-
   // Sidebar
   --sbb-sidebar-mobile-menu-bar-height: calc(2 * var(--sbb-icon-size-default));
   --sbb-icon-sidebar-item-dimension: calc(2 * var(--sbb-icon-size-default));
@@ -619,13 +611,12 @@
     // Checkbox & Radiobutton
     --sbb-selection-container-background-color-default: var(--sbb-color-white);
     --sbb-selection-container-background-color-disabled: var(--sbb-color-milk);
-    --sbb-selection-container-border-color-default: var(--sbb-color-smoke);
-    --sbb-selection-container-border-color-disabled: var(--sbb-color-smoke);
+    --sbb-selection-container-border-color-default: var(--sbb-color-graphite);
+    --sbb-selection-container-border-color-disabled: var(--sbb-color-aluminum);
     --sbb-selection-container-icon-color-default: var(--sbb-color-iron);
     --sbb-selection-container-icon-color-disabled: var(--sbb-color-iron);
     --sbb-selection-label-color-checked: var(--sbb-color-iron);
-    --sbb-selection-label-color-unchecked: var(--sbb-color-granite);
-    --sbb-selection-label-color-disabled: var(--sbb-color-granite);
+    --sbb-selection-label-color-disabled: var(--sbb-color-storm);
 
     // Datepicker
     --sbb-datepicker-toggle-or-arrows-padding: calc(#{sbb.pxToRem(38)} - var(--sbb-border-width));
@@ -747,7 +738,6 @@
       // Checkbox & Radiobutton
       --sbb-selection-container-background-color-default: var(--sbb-color-background);
       --sbb-selection-container-background-color-disabled: var(--sbb-color-charcoal);
-      --sbb-selection-container-border-color-default: var(--sbb-color-graphite);
       --sbb-selection-container-border-color-disabled: var(--sbb-color-smoke);
       --sbb-selection-container-border-color-focused: var(--sbb-color-text);
       --sbb-selection-container-icon-color-default: var(--sbb-color-text);
@@ -825,14 +815,6 @@
 
       // Panel
       --sbb-panel-divider-color: var(--sbb-color-graphite);
-
-      // SBB Checkbox Panel & Radio Button Panel
-      --sbb-selection-panel-item-background-color: var(--sbb-color-iron);
-      --sbb-selection-panel-item-color: var(--sbb-color-graphite);
-      --sbb-selection-panel-border-color-checked: var(--sbb-color-white);
-      --sbb-selection-panel-border-color-disabled: var(--sbb-color-metal);
-      --sbb-selection-panel-subtitle-color: var(--sbb-color-graphite);
-      --sbb-selection-panel-warning-color: var(--sbb-color-graphite);
 
       // SBB Checkbox Panel & Radio Button Panel
       --sbb-selection-panel-item-background-color: var(--sbb-color-iron);
@@ -2052,7 +2034,7 @@ textarea {
   min-width: calc(#{sbb.pxToRem(20)} * var(--sbb-scaling-factor));
   height: calc(#{sbb.pxToRem(20)} * var(--sbb-scaling-factor));
   min-height: calc(#{sbb.pxToRem(20)} * var(--sbb-scaling-factor));
-  border: var(--sbb-border-width) solid var(--sbb-selection-border-color-default);
+  border: var(--sbb-border-width) solid var(--sbb-selection-container-border-color-default);
   margin-right: calc(#{sbb.pxToRem(8)} * var(--sbb-scaling-factor));
 
   :where(html.sbb-lean) & {
