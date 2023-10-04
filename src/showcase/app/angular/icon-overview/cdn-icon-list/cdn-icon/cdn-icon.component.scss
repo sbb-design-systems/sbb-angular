@@ -9,12 +9,12 @@
   justify-content: center;
   background-color: transparent;
   cursor: pointer;
-  color: var(--sbb-color-granite);
-  border: var(--sbb-border-width) solid var(--sbb-color-storm);
+  color: var(--sbb-ghost-button-label-color);
+  border: var(--sbb-border-width) solid var(--sbb-ghost-button-border-color-default);
   outline: 0;
 
   &:is(:hover, :focus) {
-    border-color: var(--sbb-color-iron);
+    border-color: var(--sbb-ghost-button-border-color-hover);
   }
 
   &:where(.sbb-svg-icon-wrapper-dark) {
