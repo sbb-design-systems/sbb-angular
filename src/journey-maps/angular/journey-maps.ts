@@ -13,10 +13,6 @@ import {
   SimpleChanges,
   ViewChild,
 } from '@angular/core';
-import {
-  isSbbBoundingBoxOptions,
-  isSbbMapCenterOptions,
-} from '@sbb-esta/journey-maps/angular/util/typeguard';
 import { FeatureCollection, Point } from 'geojson';
 import { LngLatBounds, LngLatLike, Map as MaplibreMap, VectorTileSource } from 'maplibre-gl';
 import { merge, ReplaySubject, Subject } from 'rxjs';
@@ -71,6 +67,7 @@ import { SbbMapUrlService } from './services/map/map-url-service';
 import { SbbMapZoneService } from './services/map/map-zone-service';
 import { MarkerOrPoiSelectionStateService } from './services/map/marker-or-poi-selection-state.service';
 import { getInvalidRoutingOptionCombination } from './util/input-validation';
+import { isSbbBoundingBoxOptions, isSbbMapCenterOptions } from './util/typeguard';
 
 /**
  * This component uses the Maplibre GL JS api to render a map and display the given data on the map.
