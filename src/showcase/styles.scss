@@ -5,7 +5,7 @@
   --highlight-color: #efefef;
 
   &:where(.sbb-lean.sbb-dark) {
-    @import 'highlight.js/styles/kimbie.dark';
+    @import 'highlight.js/styles/github-dark';
     --highlight-color: var(--sbb-color-charcoal);
   }
 }
