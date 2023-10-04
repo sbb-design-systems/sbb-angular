@@ -683,6 +683,10 @@
     --sbb-pagination-disabled-color: var(--sbb-color-cement);
     --sbb-pagination-paginator-size: #{sbb.pxToRem(30)};
 
+    // SBB Scrollbar
+    --sbb-scrollbar-thumb-color-visible: var(--sbb-color-platinum);
+    --sbb-scrollbar-track-color-visible: var(--sbb-color-milk);
+
     // Table
     --sbb-table-cell-padding-vertical: #{sbb.pxToRem(6)};
 
@@ -836,6 +840,10 @@
       --sbb-selection-panel-border-color-disabled: var(--sbb-color-metal);
       --sbb-selection-panel-subtitle-color: var(--sbb-color-graphite);
       --sbb-selection-panel-warning-color: var(--sbb-color-graphite);
+
+      // SBB Scrollbar
+      --sbb-scrollbar-thumb-color-visible: var(--sbb-color-metal);
+      --sbb-scrollbar-track-color-visible: var(--sbb-color-charcoal);
 
       // Sidebar
       --sbb-sidebar-background-color: var(--sbb-color-midnight);
@@ -2711,8 +2719,8 @@ input.sbb-input-element.sbb-time-input {
   --sbb-scrollbar-track-color: transparent;
 
   &:is(:hover, .sbb-scrollbar-opaque) {
-    --sbb-scrollbar-thumb-color: var(--sbb-color-platinum);
-    --sbb-scrollbar-track-color: var(--sbb-color-milk);
+    --sbb-scrollbar-thumb-color: var(--sbb-scrollbar-thumb-color-visible);
+    --sbb-scrollbar-track-color: var(--sbb-scrollbar-track-color-visible);
   }
 
   scrollbar-width: thin;
