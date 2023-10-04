@@ -896,13 +896,7 @@ export class SbbJourneyMaps implements OnInit, AfterViewInit, OnDestroy, OnChang
 
     merge(this._zoomLevelDebouncer, this._mapMovementDebouncer)
       .pipe(debounceTime(200), takeUntil(this._destroyed))
-      .subscribe(() => {
-        if (isSbbMapCenterOptions(this.viewportDimensions)) {
-          this._emitMapCenterOptionsChanged();
-        } else if (isSbbBoundingBoxOptions(this.viewportDimensions)) {
-          this._emitBoundingBoxOptionsChanged();
-        }
-      });
+      .subscribe(() => this._emitViewportDimensionsChange());
 
     this._levelSwitchService.selectedLevel$
       .pipe(takeUntil(this._destroyed))
@@ -912,17 +906,17 @@ export class SbbJourneyMaps implements OnInit, AfterViewInit, OnDestroy, OnChang
       .subscribe((levels) => this.visibleLevelsChange.emit(levels));
   }
 
-  private _emitMapCenterOptionsChanged() {
-    this.viewportDimensionsChange.emit({
-      mapCenter: this._map.getCenter(),
-      zoomLevel: this._map.getZoom(),
-    });
-  }
-
-  private _emitBoundingBoxOptionsChanged() {
-    this.viewportDimensionsChange.emit({
-      boundingBox: this._map.getBounds(),
-    });
+  private _emitViewportDimensionsChange() {
+    if (isSbbMapCenterOptions(this.viewportDimensions)) {
+      this.viewportDimensionsChange.emit({
+        mapCenter: this._map.getCenter(),
+        zoomLevel: this._map.getZoom(),
+      });
+    } else if (isSbbBoundingBoxOptions(this.viewportDimensions)) {
+      this.viewportDimensionsChange.emit({
+        boundingBox: this._map.getBounds(),
+      });
+    }
   }
 
   private _onStyleLoaded(): void {
