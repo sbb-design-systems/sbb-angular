@@ -14,6 +14,7 @@
     "build:i18n": "ts-node-script ./scripts/build.ts i18n",
     "generate:bazel": "ng g .:bazel",
     "generate:symbols": "ng g .:extractSymbols",
+    "generate:icon-list": "ts-node-script ./scripts/update-icon-names.ts",
     "bazel": "bazelisk",
     "bazel:buildifier": "find . -type f \\( -name \"*.bzl\" -or -name WORKSPACE -or -name BUILD -or -name BUILD.bazel \\) ! -path \"*/node_modules/*\" ! -path \"*/.git/*\" | xargs buildifier -v",
     "bazel:format-lint": "yarn -s bazel:buildifier --lint=warn --mode=check",
@@ -37,7 +38,7 @@
     "_shortcuts": "Below are shortcuts for common commands",
     "baz": "yarn -s generate:bazel",
     "sym": "yarn -s generate:symbols",
-    "integrity": "npm-run-all --sequential baz build:schematics sym format build:i18n"
+    "integrity": "npm-run-all --sequential baz build:schematics sym format build:i18n generate:icon-list"
   },
   "repository": {
     "type": "git",
