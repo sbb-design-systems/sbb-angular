@@ -136,7 +136,7 @@ export class SbbMapInitService {
       let bounds, padding;
       if (isSbbBoundingBoxOptions(viewportDimensions)) {
         bounds = viewportDimensions.boundingBox;
-        padding = viewportDimensions.padding;
+        padding = 0;
       } else if (markerBounds) {
         bounds = markerBounds;
         padding = SBB_MARKER_BOUNDS_PADDING;

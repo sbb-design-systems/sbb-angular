@@ -13,9 +13,13 @@ import {
   SimpleChanges,
   ViewChild,
 } from '@angular/core';
+import {
+  isSbbBoundingBoxOptions,
+  isSbbMapCenterOptions,
+} from '@sbb-esta/journey-maps/angular/util/typeguard';
 import { FeatureCollection, Point } from 'geojson';
 import { LngLatBounds, LngLatLike, Map as MaplibreMap, VectorTileSource } from 'maplibre-gl';
-import { ReplaySubject, Subject } from 'rxjs';
+import { merge, ReplaySubject, Subject } from 'rxjs';
 import { debounceTime, delay, switchMap, take, takeUntil } from 'rxjs/operators';
 
 import { SbbFeatureEventListener } from './components/feature-event-listener/feature-event-listener';
@@ -142,11 +146,18 @@ export class SbbJourneyMaps implements OnInit, AfterViewInit, OnDestroy, OnChang
    */
   @Output() visibleLevelsChange: EventEmitter<number[]> = new EventEmitter<number[]>();
   /**
+   * This event is emitted whenever any of the {@link SbbViewportDimensions} changes
+   */
+  @Output() viewportDimensionsChange: EventEmitter<SbbViewportDimensions> =
+    new EventEmitter<SbbViewportDimensions>();
+  /**
    * This event is emitted whenever one of the {@link SbbZoomLevels} of the map has changed.
+   * @deprecated use viewportDimensionsChange instead
    */
   @Output() zoomLevelsChange: EventEmitter<SbbZoomLevels> = new EventEmitter<SbbZoomLevels>();
   /**
    * This event is emitted whenever the center of the map has changed. (Whenever the map has been moved)
+   * @deprecated use viewportDimensionsChange instead
    */
   @Output() mapCenterChange: EventEmitter<LngLatLike> = new EventEmitter<LngLatLike>();
   /**
@@ -155,6 +166,7 @@ export class SbbJourneyMaps implements OnInit, AfterViewInit, OnDestroy, OnChang
   @Output() mapReady: ReplaySubject<MaplibreMap> = new ReplaySubject<MaplibreMap>(1);
   /**
    * This event is emitted whenever the bounds of the map have changed. (Whenever the map has been moved)
+   * @deprecated use viewportDimensionsChange instead
    */
   @Output() mapBoundsChange: EventEmitter<number[][]> = new EventEmitter<number[][]>();
 
@@ -192,7 +204,6 @@ export class SbbJourneyMaps implements OnInit, AfterViewInit, OnDestroy, OnChang
   };
   private _defaultHomeButtonOptions: SbbViewportDimensions = {
     boundingBox: SBB_BOUNDING_BOX,
-    padding: 0,
   };
   private _defaultMarkerOptions: SbbMarkerOptions = {
     popup: false,
@@ -874,14 +885,24 @@ export class SbbJourneyMaps implements OnInit, AfterViewInit, OnDestroy, OnChang
         });
       });
 
-    this._zoomLevelDebouncer
-      .pipe(debounceTime(200), takeUntil(this._destroyed))
-      .subscribe(() => this.zoomLevelsChange.emit(this._getZooomLevels()));
+    this._zoomLevelDebouncer.pipe(debounceTime(200), takeUntil(this._destroyed)).subscribe(() => {
+      this.zoomLevelsChange.emit(this._getZooomLevels());
+    });
 
     this._mapMovementDebouncer.pipe(debounceTime(200), takeUntil(this._destroyed)).subscribe(() => {
       this.mapCenterChange.emit(this._map.getCenter());
       this.mapBoundsChange.emit(this._map.getBounds().toArray());
     });
+
+    merge(this._zoomLevelDebouncer, this._mapMovementDebouncer)
+      .pipe(debounceTime(200), takeUntil(this._destroyed))
+      .subscribe(() => {
+        if (isSbbMapCenterOptions(this.viewportDimensions)) {
+          this._emitMapCenterOptionsChanged();
+        } else if (isSbbBoundingBoxOptions(this.viewportDimensions)) {
+          this._emitBoundingBoxOptionsChanged();
+        }
+      });
 
     this._levelSwitchService.selectedLevel$
       .pipe(takeUntil(this._destroyed))
@@ -889,6 +910,19 @@ export class SbbJourneyMaps implements OnInit, AfterViewInit, OnDestroy, OnChang
     this._levelSwitchService.visibleLevels$
       .pipe(takeUntil(this._destroyed))
       .subscribe((levels) => this.visibleLevelsChange.emit(levels));
+  }
+
+  private _emitMapCenterOptionsChanged() {
+    this.viewportDimensionsChange.emit({
+      mapCenter: this._map.getCenter(),
+      zoomLevel: this._map.getZoom(),
+    });
+  }
+
+  private _emitBoundingBoxOptionsChanged() {
+    this.viewportDimensionsChange.emit({
+      boundingBox: this._map.getBounds(),
+    });
   }
 
   private _onStyleLoaded(): void {

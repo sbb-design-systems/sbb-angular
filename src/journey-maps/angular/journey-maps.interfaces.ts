@@ -69,8 +69,6 @@ export interface SbbMapCenterOptions {
 export interface SbbBoundingBoxOptions {
   /** The desired bounding box of the map. */
   boundingBox: LngLatBoundsLike;
-  /** The amount of padding in pixels to add to the given bounding box. */
-  padding?: number;
 }
 
 /**
