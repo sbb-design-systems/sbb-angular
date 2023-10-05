@@ -15,7 +15,7 @@ import {
 } from '@angular/core';
 import { FeatureCollection, Point } from 'geojson';
 import { LngLatBounds, LngLatLike, Map as MaplibreMap, VectorTileSource } from 'maplibre-gl';
-import { merge, ReplaySubject, Subject } from 'rxjs';
+import { ReplaySubject, Subject } from 'rxjs';
 import { debounceTime, delay, switchMap, take, takeUntil } from 'rxjs/operators';
 
 import { SbbFeatureEventListener } from './components/feature-event-listener/feature-event-listener';
@@ -67,7 +67,6 @@ import { SbbMapUrlService } from './services/map/map-url-service';
 import { SbbMapZoneService } from './services/map/map-zone-service';
 import { MarkerOrPoiSelectionStateService } from './services/map/marker-or-poi-selection-state.service';
 import { getInvalidRoutingOptionCombination } from './util/input-validation';
-import { isSbbBoundingBoxOptions, isSbbMapCenterOptions } from './util/typeguard';
 
 /**
  * This component uses the Maplibre GL JS api to render a map and display the given data on the map.
@@ -614,10 +613,10 @@ export class SbbJourneyMaps implements OnInit, AfterViewInit, OnDestroy, OnChang
       return;
     }
 
-    if (
-      JSON.stringify(changes.viewportDimensions?.currentValue) !==
-      JSON.stringify(changes.viewportDimensions?.previousValue)
-    ) {
+    if (changes.viewportDimensions && !changes.viewportDimensions.isFirstChange()) {
+      // We update the viewport any time angular's change detection gets triggered for changes.viewportDimensions
+      // whether angular detects a difference between changes.viewportDimensions?.currentValue and
+      // changes.viewportDimensions?.previousValue or not.
       this._viewportDimensionsChanged.next();
     }
 
@@ -883,22 +882,6 @@ export class SbbJourneyMaps implements OnInit, AfterViewInit, OnDestroy, OnChang
       this.mapCenterChange.emit(this._map.getCenter());
       this.mapBoundsChange.emit(this._map.getBounds().toArray());
     });
-
-    merge(this._zoomLevelDebouncer, this._mapMovementDebouncer)
-      .pipe(debounceTime(200), takeUntil(this._destroyed))
-      .subscribe(() => {
-        // we need to update viewportDimensions in order for its change detection to continue working
-        if (isSbbMapCenterOptions(this.viewportDimensions)) {
-          this.viewportDimensions = {
-            mapCenter: this._map.getCenter(),
-            zoomLevel: this._map.getZoom(),
-          };
-        } else if (isSbbBoundingBoxOptions(this.viewportDimensions)) {
-          this.viewportDimensions = {
-            boundingBox: this._map.getBounds(),
-          };
-        }
-      });
 
     this._levelSwitchService.selectedLevel$
       .pipe(takeUntil(this._destroyed))
