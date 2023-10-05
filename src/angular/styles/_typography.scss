@@ -114,8 +114,6 @@
 
   // Dark mode colors
   --sbb-color-red_dark-mode: #{sbb.$sbbColorRedDarkMode};
-
-  // Dark Mode with Alpha
   --sbb-color-red_dark-mode-alpha40: #{rgba(sbb.$sbbColorRedDarkMode, 0.4)};
   --sbb-color-milk-alpha40: #{rgba(sbb.$sbbColorMilk, 0.4)};
   --sbb-color-black-alpha50: #{rgba(sbb.$sbbColorBlack, 0.5)};
@@ -211,6 +209,14 @@
   --sbb-selection-label-color-unchecked: var(--sbb-color-granite);
   --sbb-selection-label-color-disabled: var(--sbb-color-granite);
 
+  // Checkbox Panel & Radio Button Panel
+  --sbb-selection-panel-item-background-color: var(--sbb-color-milk);
+  --sbb-selection-panel-item-color: var(--sbb-color-granite);
+  --sbb-selection-panel-border-color-checked: var(--sbb-color-black);
+  --sbb-selection-panel-border-color-disabled: var(--sbb-color-aluminum);
+  --sbb-selection-panel-subtitle-color: var(--sbb-color-granite);
+  --sbb-selection-panel-warning-color: var(--sbb-color-granite);
+
   // Chips
   --sbb-chips-list-height: var(--sbb-form-input-min-height);
   --sbb-chips-chip-margin-vertical: calc(2 * var(--sbb-border-width));
@@ -224,9 +230,6 @@
   --sbb-chips-background-color-hover: var(--sbb-color-aluminum);
   --sbb-chips-background-color-disabled: var(--sbb-color-cloud);
   --sbb-chips-opacity: 0.6;
-
-  // Dialog
-  --sbb-dialog-padding: calc(#{sbb.pxToRem(16)} * var(--sbb-scaling-factor));
 
   // Datepicker
   --sbb-datepicker-toggle-or-arrows-padding: calc(
@@ -258,6 +261,20 @@
   --sbb-datepicker-calendar-body-cell-disabled-offset: #{sbb.pxToRem(12)};
   --sbb-datepicker-calendar-body-cell-size: calc(#{sbb.pxToRem(40)} * var(--sbb-scaling-factor));
 
+  // Dialog
+  --sbb-dialog-padding: calc(#{sbb.pxToRem(16)} * var(--sbb-scaling-factor));
+
+  // Expansion Panel
+  --sbb-expansion-panel-padding-horizontal: #{sbb.pxToRem(24)};
+  --sbb-expansion-panel-header-padding-top: #{sbb.pxToRem(23)};
+  --sbb-expansion-panel-header-padding-bottom: #{sbb.pxToRem(26)};
+  --sbb-expansion-panel-line-height: #{sbb.pxToRem(28)};
+  --sbb-expansion-panel-background-color-open: inherit;
+  --sbb-expansion-panel-background-color-closed: var(--sbb-color-milk);
+  --sbb-expansion-panel-border-color-open: var(--sbb-color-cloud);
+  --sbb-expansion-panel-border-color-closed: var(--sbb-color-milk);
+  --sbb-expansion-panel-header-indicator-color: var(--sbb-color-black);
+
   // Fieldset
   --sbb-fieldset-legend-font-size: #{sbb.pxToRem(24)};
   --sbb-fieldset-legend-nested-font-size: #{sbb.pxToRem(20)};
@@ -278,17 +295,6 @@
   --sbb-form-label-wrapper-margin-bottom: calc(#{sbb.pxToRem(5)} * var(--sbb-scaling-factor));
   --sbb-form-label-wrapper-padding-left: calc(#{sbb.pxToRem(10)} * var(--sbb-scaling-factor));
 
-  // Expansion Panel
-  --sbb-expansion-panel-padding-horizontal: #{sbb.pxToRem(24)};
-  --sbb-expansion-panel-header-padding-top: #{sbb.pxToRem(23)};
-  --sbb-expansion-panel-header-padding-bottom: #{sbb.pxToRem(26)};
-  --sbb-expansion-panel-line-height: #{sbb.pxToRem(28)};
-  --sbb-expansion-panel-background-color-open: inherit;
-  --sbb-expansion-panel-background-color-closed: var(--sbb-color-milk);
-  --sbb-expansion-panel-border-color-open: var(--sbb-color-cloud);
-  --sbb-expansion-panel-border-color-closed: var(--sbb-color-milk);
-  --sbb-expansion-panel-header-indicator-color: var(--sbb-color-black);
-
   // Header
   --sbb-header-lean-height: calc(#{sbb.pxToRem(54)} * var(--sbb-scaling-factor));
   --sbb-header-lean-base-z-index: 1000;
@@ -304,7 +310,28 @@
   --sbb-lightbox-padding-horizontal: #{sbb.pxToRem(24)};
   --sbb-lightbox-actions-padding-vertical: calc(#{sbb.pxToRem(24)} * var(--sbb-scaling-factor));
 
+  // Menu
+  // (36 (Desired width) - 24 (icon width)) / 2
+  --sbb-menu-trigger-padding: calc(#{sbb.pxToRem(6)} * var(--sbb-scaling-factor));
+  --sbb-menu-item-label: var(--sbb-color-iron);
+  --sbb-menu-item-label-active: var(--sbb-color-black);
+  --sbb-menu-item-background-color-hover: var(--sbb-color-milk);
+  --sbb-menu-item-background-color-active: var(--sbb-color-cloud);
+  --sbb-menu-title-color: var(--sbb-color-granite);
+
   // Notification
+  --sbb-notification-label-color-success: var(--sbb-color-white);
+  --sbb-notification-background-color-success: var(--sbb-color-granite);
+  --sbb-notification-border-color-success: var(--sbb-color-granite);
+  --sbb-notification-label-color-information: var(--sbb-color-white);
+  --sbb-notification-background-color-information: var(--sbb-color-granite);
+  --sbb-notification-border-color-information: var(--sbb-color-granite);
+  --sbb-notification-label-color-error: var(--sbb-color-white);
+  --sbb-notification-background-color-error: var(--sbb-color-error);
+  --sbb-notification-border-color-error: var(--sbb-color-error);
+  --sbb-notification-label-color-warn: var(--sbb-color-white);
+  --sbb-notification-background-color-warn: var(--sbb-color-error);
+  --sbb-notification-border-color-warn: var(--sbb-color-error);
   --sbb-notification-message-padding: calc(#{sbb.pxToRem(16)} * var(--sbb-scaling-factor));
   --sbb-notification-message-padding-horizontal: calc(
     #{sbb.pxToRem(24)} * var(--sbb-scaling-factor)
@@ -319,13 +346,34 @@
   // Panel
   --sbb-panel-divider-color: var(--sbb-color-cloud);
 
-  // SBB Checkbox Panel & Radio Button Panel
-  --sbb-selection-panel-item-background-color: var(--sbb-color-milk);
-  --sbb-selection-panel-item-color: var(--sbb-color-granite);
-  --sbb-selection-panel-border-color-checked: var(--sbb-color-black);
-  --sbb-selection-panel-border-color-disabled: var(--sbb-color-aluminum);
-  --sbb-selection-panel-subtitle-color: var(--sbb-color-granite);
-  --sbb-selection-panel-warning-color: var(--sbb-color-granite);
+  // Shadow
+  --sbb-box-shadow-width: calc(var(--sbb-border-width) * 4);
+  --sbb-box-shadow-arrow-width: calc(var(--sbb-border-width) * 2);
+  // Cut out obsolete triangle and also overlapping shadow so it does not collide with calendar content
+  // `-0.4px` fixes calculation issue in Firefox
+  --sbb-box-shadow-arrow-clip-path: polygon(
+    -0.4px 100%,
+    100% -0.4px,
+    100% 71%,
+    150% 21%,
+    150% 150%,
+    21% 150%,
+    71% 100%
+  );
+  --sbb-box-shadow-color: rgba(0, 0, 0, 0.15);
+  --sbb-box-shadow-below: 0 var(--sbb-box-shadow-width) 0 var(--sbb-box-shadow-color);
+  --sbb-box-shadow-horizontal-border-top: 0
+    calc(var(--sbb-border-width) + calc(#{sbb.pxToRem(1)} * var(--sbb-scaling-factor))) 0
+    calc(var(--sbb-border-width) * -1) var(--sbb-color-cloud);
+  --sbb-box-shadow-horizontal-border-bottom: 0
+    calc(var(--sbb-border-width) * -1 - calc(#{sbb.pxToRem(1)} * var(--sbb-scaling-factor))) 0
+    calc(var(--sbb-border-width) * -1) var(--sbb-color-cloud);
+  --sbb-box-shadow-horizontal-border-offset-top-above: calc(
+    calc(var(--sbb-border-width) - #{sbb.pxToRem(1)}) * var(--sbb-scaling-factor)
+  );
+  --sbb-box-shadow-horizontal-border-offset-top-below: calc(
+    var(--sbb-box-shadow-horizontal-border-offset-top-above) * -1
+  );
 
   // Sidebar
   --sbb-sidebar-mobile-menu-bar-height: calc(2 * var(--sbb-icon-size-default));
@@ -338,33 +386,6 @@
   // Status
   --sbb-status-message-background-color: var(--sbb-color-milk);
   --sbb-status-message-color: var(--sbb-color-granite);
-
-  // Menu
-  // (36 (Desired width) - 24 (icon width)) / 2
-  --sbb-menu-trigger-padding: calc(#{sbb.pxToRem(6)} * var(--sbb-scaling-factor));
-  --sbb-menu-item-label: var(--sbb-color-iron);
-  --sbb-menu-item-label-active: var(--sbb-color-black);
-  --sbb-menu-item-background-color-hover: var(--sbb-color-milk);
-  --sbb-menu-item-background-color-active: var(--sbb-color-cloud);
-  --sbb-menu-title-color: var(--sbb-color-granite);
-
-  // Notification
-  // Success
-  --sbb-notification-label-color-success: var(--sbb-color-white);
-  --sbb-notification-background-color-success: var(--sbb-color-granite);
-  --sbb-notification-border-color-success: var(--sbb-color-granite);
-  // Information
-  --sbb-notification-label-color-information: var(--sbb-color-white);
-  --sbb-notification-background-color-information: var(--sbb-color-granite);
-  --sbb-notification-border-color-information: var(--sbb-color-granite);
-  // Error
-  --sbb-notification-label-color-error: var(--sbb-color-white);
-  --sbb-notification-background-color-error: var(--sbb-color-error);
-  --sbb-notification-border-color-error: var(--sbb-color-error);
-  // Warn
-  --sbb-notification-label-color-warn: var(--sbb-color-white);
-  --sbb-notification-background-color-warn: var(--sbb-color-error);
-  --sbb-notification-border-color-warn: var(--sbb-color-error);
 
   // Table
   --sbb-table-background-color: var(--sbb-color-background);
@@ -450,35 +471,6 @@
   --sbb-url-icon-chevron-small-right-small-granite: url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyNCIgaGVpZ2h0PSIyNCIgdmlld0JveD0iMCAwIDI0IDI0Ij4KICA8cG9seWxpbmUgZmlsbD0ibm9uZSIgc3Ryb2tlPSIjNjg2ODY4IiBwb2ludHM9IjEwLjMyNSAxNS45MDQgMTQuMjc1IDEyIDEwLjMyNiA4LjA5NiIvPgo8L3N2Zz4K');
   // Chevron-small-right-small color #cdcdcd (platinum) applied
   --sbb-url-icon-chevron-small-right-small-platinum: url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyNCIgaGVpZ2h0PSIyNCIgdmlld0JveD0iMCAwIDI0IDI0Ij4KICA8cG9seWxpbmUgZmlsbD0ibm9uZSIgc3Ryb2tlPSIjY2RjZGNkIiBwb2ludHM9IjEwLjMyNSAxNS45MDQgMTQuMjc1IDEyIDEwLjMyNiA4LjA5NiIvPgo8L3N2Zz4=');
-
-  // Shadow
-  --sbb-box-shadow-width: calc(var(--sbb-border-width) * 4);
-  --sbb-box-shadow-arrow-width: calc(var(--sbb-border-width) * 2);
-  // Cut out obsolete triangle and also overlapping shadow so it does not collide with calendar content
-  // `-0.4px` fixes calculation issue in Firefox
-  --sbb-box-shadow-arrow-clip-path: polygon(
-    -0.4px 100%,
-    100% -0.4px,
-    100% 71%,
-    150% 21%,
-    150% 150%,
-    21% 150%,
-    71% 100%
-  );
-  --sbb-box-shadow-color: rgba(0, 0, 0, 0.15);
-  --sbb-box-shadow-below: 0 var(--sbb-box-shadow-width) 0 var(--sbb-box-shadow-color);
-  --sbb-box-shadow-horizontal-border-top: 0
-    calc(var(--sbb-border-width) + calc(#{sbb.pxToRem(1)} * var(--sbb-scaling-factor))) 0
-    calc(var(--sbb-border-width) * -1) var(--sbb-color-cloud);
-  --sbb-box-shadow-horizontal-border-bottom: 0
-    calc(var(--sbb-border-width) * -1 - calc(#{sbb.pxToRem(1)} * var(--sbb-scaling-factor))) 0
-    calc(var(--sbb-border-width) * -1) var(--sbb-color-cloud);
-  --sbb-box-shadow-horizontal-border-offset-top-above: calc(
-    calc(var(--sbb-border-width) - #{sbb.pxToRem(1)}) * var(--sbb-scaling-factor)
-  );
-  --sbb-box-shadow-horizontal-border-offset-top-below: calc(
-    var(--sbb-box-shadow-horizontal-border-offset-top-above) * -1
-  );
 
   &:where(:not(.sbb-lean)) {
     @include sbb.mq($from: tablet) {
@@ -632,6 +624,14 @@
     --sbb-datepicker-calendar-body-cell-padding: #{sbb.pxToRem(16.5)};
     --sbb-datepicker-calendar-body-cell-size: #{sbb.pxToRem(30)};
 
+    // Expansion Panel
+    --sbb-expansion-panel-padding-horizontal: #{sbb.pxToRem(16)};
+    --sbb-expansion-panel-header-padding-top: calc(
+      #{sbb.pxToRem(12)} - var(--sbb-border-width-thin)
+    );
+    --sbb-expansion-panel-header-padding-bottom: var(--sbb-expansion-panel-header-padding-top);
+    --sbb-expansion-panel-line-height: #{sbb.pxToRem(25)};
+
     // Fieldset
     --sbb-fieldset-legend-font-size: #{sbb.pxToRem(21)};
     --sbb-fieldset-legend-nested-font-size: #{sbb.pxToRem(16)};
@@ -645,33 +645,31 @@
     --sbb-form-label-wrapper-padding-left: 0rem;
 
     // Notification
-    --sbb-notification-message-padding: #{sbb.pxToRem(11)};
-    --sbb-notification-message-padding-horizontal: #{sbb.pxToRem(15)};
-
-    // Notification
-    // Success
     --sbb-notification-label-color-success: var(--sbb-color-green);
     --sbb-notification-background-color-success: var(--sbb-color-white);
     --sbb-notification-border-color-success: var(--sbb-color-green);
-    // Information
     --sbb-notification-label-color-information: var(--sbb-color-granite);
     --sbb-notification-background-color-information: var(--sbb-color-white);
-    // Warn
     --sbb-notification-background-color-warn: var(--sbb-color-peach);
     --sbb-notification-border-color-warn: var(--sbb-color-peach);
     --sbb-notification-label-color-warn: var(--sbb-color-black);
-
-    // Expansion Panel
-    --sbb-expansion-panel-padding-horizontal: #{sbb.pxToRem(16)};
-    --sbb-expansion-panel-header-padding-top: calc(
-      #{sbb.pxToRem(12)} - var(--sbb-border-width-thin)
-    );
-    --sbb-expansion-panel-header-padding-bottom: var(--sbb-expansion-panel-header-padding-top);
-    --sbb-expansion-panel-line-height: #{sbb.pxToRem(25)};
+    --sbb-notification-message-padding: #{sbb.pxToRem(11)};
+    --sbb-notification-message-padding-horizontal: #{sbb.pxToRem(15)};
 
     // Pagination
     --sbb-pagination-disabled-color: var(--sbb-color-cement);
     --sbb-pagination-paginator-size: #{sbb.pxToRem(30)};
+
+    // Shadow
+    --sbb-box-shadow-arrow-clip-path: polygon(
+      -0.4px 100%,
+      100% -0.4px,
+      100% 35%,
+      150% -15%,
+      150% 150%,
+      -15% 150%,
+      35% 100%
+    );
 
     // Table
     --sbb-table-cell-padding-vertical: #{sbb.pxToRem(6)};
@@ -695,17 +693,6 @@
 
     // Usermenu
     --sbb-usermenu-trigger-padding: #{sbb.pxToRem(8)};
-
-    // Shadow
-    --sbb-box-shadow-arrow-clip-path: polygon(
-      -0.4px 100%,
-      100% -0.4px,
-      100% 35%,
-      150% -15%,
-      150% 150%,
-      -15% 150%,
-      35% 100%
-    );
 
     @include sbb.mq($from: desktop) {
       // Dividers
@@ -731,6 +718,37 @@
       --sbb-color-weak-accent: var(--sbb-color-milk);
       --sbb-color-error: var(--sbb-color-red_dark-mode);
 
+      // Badge
+      --sbb-badge-background-color: var(--sbb-color-white);
+      --sbb-badge-background-color-disabled: var(--sbb-color-anthracite);
+      --sbb-badge-color: var(--sbb-color-black);
+
+      // Button Primary
+      --sbb-primary-button-background-color-default: var(--sbb-color-red_dark-mode);
+      --sbb-primary-button-background-color-hover: var(--sbb-color-red125);
+      --sbb-primary-button-background-color-disabled: var(--sbb-color-red_dark-mode-alpha40);
+
+      // Button Primary-Alternative
+      --sbb-primary-alternative-button-background-color-default: var(--sbb-color-milk);
+      --sbb-primary-alternative-button-background-color-hover: var(--sbb-color-silver);
+      --sbb-primary-alternative-button-background-color-disabled: var(--sbb-color-milk-alpha40);
+      --sbb-primary-alternative-button-color: var(--sbb-color-black);
+      --sbb-primary-alternative-button-color-disabled: var(--sbb-color-black-alpha50);
+
+      // Button Secondary
+      --sbb-secondary-button-background-color-default: var(--sbb-color-granite);
+      --sbb-secondary-button-background-color-hover: var(--sbb-color-iron);
+      --sbb-secondary-button-background-color-disabled: var(--sbb-color-iron-alpha40);
+      --sbb-secondary-button-color: var(--sbb-color-white);
+      --sbb-secondary-button-color-disabled: var(--sbb-color-white-alpha50);
+
+      // Button Ghost
+      --sbb-ghost-button-border-color-default: var(--sbb-color-iron);
+      --sbb-ghost-button-border-color-hover: var(--sbb-color-milk);
+      --sbb-ghost-button-border-color-disabled: var(--sbb-color-iron);
+      --sbb-ghost-button-label-color: var(--sbb-color-white);
+      --sbb-ghost-button-label-color-disabled: var(--sbb-color-white-alpha50);
+
       // Checkbox & Radiobutton
       --sbb-selection-container-background-color-default: var(--sbb-color-background);
       --sbb-selection-container-background-color-disabled: var(--sbb-color-charcoal);
@@ -742,35 +760,19 @@
       --sbb-selection-label-color-unchecked: var(--sbb-color-graphite);
       --sbb-selection-label-color-disabled: var(--sbb-color-smoke);
 
-      // Notification Toast
-      // Success
-      --sbb-notification-label-color-success: var(--sbb-color-white);
-      --sbb-notification-background-color-success: var(--sbb-color-green);
-      --sbb-notification-border-color-success: var(--sbb-color-green);
-
-      // Information
-      --sbb-notification-label-color-information: var(--sbb-color-cloud);
-      --sbb-notification-background-color-information: var(--sbb-color-black);
-      --sbb-notification-border-color-information: var(--sbb-color-cloud);
-
-      // Error
-      --sbb-notification-background-color-error: var(--sbb-color-red);
-      --sbb-notification-border-color-error: var(--sbb-color-red);
-
-      // Warn
-      --sbb-notification-background-color-warn: var(--sbb-color-peach);
-      --sbb-notification-border-color-warn: var(--sbb-color-peach);
+      // Checkbox Panel & Radio Button Panel
+      --sbb-selection-panel-item-background-color: var(--sbb-color-iron);
+      --sbb-selection-panel-item-color: var(--sbb-color-graphite);
+      --sbb-selection-panel-border-color-checked: var(--sbb-color-white);
+      --sbb-selection-panel-border-color-disabled: var(--sbb-color-metal);
+      --sbb-selection-panel-subtitle-color: var(--sbb-color-graphite);
+      --sbb-selection-panel-warning-color: var(--sbb-color-graphite);
 
       // Chips
       --sbb-chips-background-color-active: var(--sbb-color-smoke);
       --sbb-chips-background-color-hover: var(--sbb-color-metal);
       --sbb-chips-background-color-disabled: var(--sbb-color-cloud);
       --sbb-chips-opacity: 0.9;
-
-      // Badge
-      --sbb-badge-background-color: var(--sbb-color-white);
-      --sbb-badge-background-color-disabled: var(--sbb-color-anthracite);
-      --sbb-badge-color: var(--sbb-color-black);
 
       // Expansion Panel
       --sbb-expansion-panel-background-color-open: var(--sbb-color-midnight);
@@ -799,20 +801,24 @@
       --sbb-menu-item-background-color-active: var(--sbb-color-charcoal);
       --sbb-menu-title-color: var(--sbb-color-smoke);
 
+      // Notification
+      --sbb-notification-label-color-success: var(--sbb-color-white);
+      --sbb-notification-background-color-success: var(--sbb-color-green);
+      --sbb-notification-border-color-success: var(--sbb-color-green);
+      --sbb-notification-label-color-information: var(--sbb-color-cloud);
+      --sbb-notification-background-color-information: var(--sbb-color-black);
+      --sbb-notification-border-color-information: var(--sbb-color-cloud);
+      --sbb-notification-background-color-error: var(--sbb-color-red);
+      --sbb-notification-border-color-error: var(--sbb-color-red);
+      --sbb-notification-background-color-warn: var(--sbb-color-peach);
+      --sbb-notification-border-color-warn: var(--sbb-color-peach);
+
       // Pagination
       --sbb-pagination-base-color: var(--sbb-color-silver);
       --sbb-pagination-disabled-color: var(--sbb-color-metal);
 
       // Panel
       --sbb-panel-divider-color: var(--sbb-color-graphite);
-
-      // SBB Checkbox Panel & Radio Button Panel
-      --sbb-selection-panel-item-background-color: var(--sbb-color-iron);
-      --sbb-selection-panel-item-color: var(--sbb-color-graphite);
-      --sbb-selection-panel-border-color-checked: var(--sbb-color-white);
-      --sbb-selection-panel-border-color-disabled: var(--sbb-color-metal);
-      --sbb-selection-panel-subtitle-color: var(--sbb-color-graphite);
-      --sbb-selection-panel-warning-color: var(--sbb-color-graphite);
 
       // Sidebar
       --sbb-sidebar-background-color: var(--sbb-color-midnight);
@@ -845,32 +851,6 @@
       --sbb-toggle-background-color-active: var(--sbb-color-charcoal);
       --sbb-toggle-label-color-active: var(--sbb-color-white);
       --sbb-toggle-background-color-inactive: var(--sbb-color-midnight);
-
-      // Button Primary
-      --sbb-primary-button-background-color-default: var(--sbb-color-red_dark-mode);
-      --sbb-primary-button-background-color-hover: var(--sbb-color-red125);
-      --sbb-primary-button-background-color-disabled: var(--sbb-color-red_dark-mode-alpha40);
-
-      // Button Primary-Alternative
-      --sbb-primary-alternative-button-background-color-default: var(--sbb-color-milk);
-      --sbb-primary-alternative-button-background-color-hover: var(--sbb-color-silver);
-      --sbb-primary-alternative-button-background-color-disabled: var(--sbb-color-milk-alpha40);
-      --sbb-primary-alternative-button-color: var(--sbb-color-black);
-      --sbb-primary-alternative-button-color-disabled: var(--sbb-color-black-alpha50);
-
-      // Button Secondary
-      --sbb-secondary-button-background-color-default: var(--sbb-color-granite);
-      --sbb-secondary-button-background-color-hover: var(--sbb-color-iron);
-      --sbb-secondary-button-background-color-disabled: var(--sbb-color-iron-alpha40);
-      --sbb-secondary-button-color: var(--sbb-color-white);
-      --sbb-secondary-button-color-disabled: var(--sbb-color-white-alpha50);
-
-      // Button Ghost
-      --sbb-ghost-button-border-color-default: var(--sbb-color-iron);
-      --sbb-ghost-button-border-color-hover: var(--sbb-color-milk);
-      --sbb-ghost-button-border-color-disabled: var(--sbb-color-iron);
-      --sbb-ghost-button-label-color: var(--sbb-color-white);
-      --sbb-ghost-button-label-color-disabled: var(--sbb-color-white-alpha50);
 
       // Usermenu
       --sbb-usermenu-text-color: var(--sbb-color-cloud);
