@@ -108,7 +108,7 @@
     "@types/glob": "8.1.0",
     "@types/grecaptcha": "2.0.36",
     "@types/highlight.js": "10.1.0",
-    "@types/jasmine": "4.6.0",
+    "@types/jasmine": "5.1.0",
     "@types/jasminewd2": "2.0.11",
     "@types/mapbox__point-geometry": "0.1.2",
     "@types/marked": "^2.0.2",
