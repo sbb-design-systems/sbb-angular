@@ -199,17 +199,14 @@
   --sbb-ghost-button-label-color: var(--sbb-color-granite);
   --sbb-ghost-button-label-color-disabled: var(--sbb-color-iron-alpha40);
 
-  // Selection Container
-  --sbb-selection-background-color-default: var(--sbb-color-background);
-  --sbb-selection-background-color-disabled: var(--sbb-color-milk);
-
-  --sbb-selection-border-color-default: var(--sbb-color-graphite);
-  --sbb-selection-border-color-disabled: var(--sbb-color-aluminum);
-
-  --sbb-selection-icon-color-default: var(--sbb-color-red);
-  --sbb-selection-icon-color-disabled: var(--sbb-color-granite);
-  --sbb-selection-border-color-focused: var(--sbb-color-weak-accent);
-
+  // Checkbox & Radiobutton
+  --sbb-selection-container-background-color-default: var(--sbb-color-background);
+  --sbb-selection-container-background-color-disabled: var(--sbb-color-milk);
+  --sbb-selection-container-border-color-default: var(--sbb-color-graphite);
+  --sbb-selection-container-border-color-disabled: var(--sbb-color-aluminum);
+  --sbb-selection-container-icon-color-default: var(--sbb-color-red);
+  --sbb-selection-container-icon-color-disabled: var(--sbb-color-granite);
+  --sbb-selection-container-border-color-focused: var(--sbb-color-weak-accent);
   --sbb-selection-label-color-checked: var(--sbb-color-text);
   --sbb-selection-label-color-unchecked: var(--sbb-color-granite);
   --sbb-selection-label-color-disabled: var(--sbb-color-granite);
@@ -321,14 +318,6 @@
 
   // Panel
   --sbb-panel-divider-color: var(--sbb-color-cloud);
-
-  // SBB Checkbox Panel & Radio Button Panel
-  --sbb-selection-panel-item-background-color: var(--sbb-color-milk);
-  --sbb-selection-panel-item-color: var(--sbb-color-granite);
-  --sbb-selection-panel-border-color-checked: var(--sbb-color-black);
-  --sbb-selection-panel-border-color-disabled: var(--sbb-color-aluminum);
-  --sbb-selection-panel-subtitle-color: var(--sbb-color-granite);
-  --sbb-selection-panel-warning-color: var(--sbb-color-granite);
 
   // SBB Checkbox Panel & Radio Button Panel
   --sbb-selection-panel-item-background-color: var(--sbb-color-milk);
@@ -619,19 +608,12 @@
     --sbb-secondary-button-background-color-disabled: var(--sbb-color-silver-alpha40);
     --sbb-secondary-button-color-disabled: var(--sbb-color-iron-alpha50);
 
-    // Checkbox
-    --sbb-selection-background-color-default: var(--sbb-color-white);
-    --sbb-selection-background-color-disabled: var(--sbb-color-milk);
-
-    --sbb-selection-border-color-default: var(--sbb-color-smoke);
-    --sbb-selection-border-color-disabled: var(--sbb-color-smoke);
-
-    --sbb-selection-icon-color-default: var(--sbb-color-iron);
-    --sbb-selection-icon-color-disabled: var(--sbb-color-iron);
-
+    // Checkbox & Radiobutton
+    --sbb-selection-container-background-color-default: var(--sbb-color-white);
+    --sbb-selection-container-icon-color-default: var(--sbb-color-iron);
+    --sbb-selection-container-icon-color-disabled: var(--sbb-color-iron);
     --sbb-selection-label-color-checked: var(--sbb-color-iron);
-    --sbb-selection-label-color-unchecked: var(--sbb-color-granite);
-    --sbb-selection-label-color-disabled: var(--sbb-color-granite);
+    --sbb-selection-label-color-disabled: var(--sbb-color-storm);
 
     // Datepicker
     --sbb-datepicker-toggle-or-arrows-padding: calc(#{sbb.pxToRem(38)} - var(--sbb-border-width));
@@ -750,6 +732,17 @@
       --sbb-color-weak-accent: var(--sbb-color-milk);
       --sbb-color-error: var(--sbb-color-red_dark-mode);
 
+      // Checkbox & Radiobutton
+      --sbb-selection-container-background-color-default: var(--sbb-color-background);
+      --sbb-selection-container-background-color-disabled: var(--sbb-color-charcoal);
+      --sbb-selection-container-border-color-disabled: var(--sbb-color-smoke);
+      --sbb-selection-container-border-color-focused: var(--sbb-color-text);
+      --sbb-selection-container-icon-color-default: var(--sbb-color-text);
+      --sbb-selection-container-icon-color-disabled: var(--sbb-color-smoke);
+      --sbb-selection-label-color-checked: var(--sbb-color-text);
+      --sbb-selection-label-color-unchecked: var(--sbb-color-graphite);
+      --sbb-selection-label-color-disabled: var(--sbb-color-smoke);
+
       // Notification Toast
       // Success
       --sbb-notification-label-color-success: var(--sbb-color-white);
@@ -768,21 +761,6 @@
       // Warn
       --sbb-notification-background-color-warn: var(--sbb-color-peach);
       --sbb-notification-border-color-warn: var(--sbb-color-peach);
-
-      // Checkbox
-      --sbb-selection-background-color-default: var(--sbb-color-background);
-      --sbb-selection-background-color-disabled: var(--sbb-color-charcoal);
-
-      --sbb-selection-border-color-default: var(--sbb-color-graphite);
-      --sbb-selection-border-color-disabled: var(--sbb-color-smoke);
-      --sbb-selection-border-color-focused: var(--sbb-color-text);
-
-      --sbb-selection-icon-color-default: var(--sbb-color-text);
-      --sbb-selection-icon-color-disabled: var(--sbb-color-smoke);
-
-      --sbb-selection-label-color-checked: var(--sbb-color-text);
-      --sbb-selection-label-color-unchecked: var(--sbb-color-graphite);
-      --sbb-selection-label-color-disabled: var(--sbb-color-smoke);
 
       // Chips
       --sbb-chips-background-color-active: var(--sbb-color-smoke);
@@ -828,14 +806,6 @@
 
       // Panel
       --sbb-panel-divider-color: var(--sbb-color-graphite);
-
-      // SBB Checkbox Panel & Radio Button Panel
-      --sbb-selection-panel-item-background-color: var(--sbb-color-iron);
-      --sbb-selection-panel-item-color: var(--sbb-color-graphite);
-      --sbb-selection-panel-border-color-checked: var(--sbb-color-white);
-      --sbb-selection-panel-border-color-disabled: var(--sbb-color-metal);
-      --sbb-selection-panel-subtitle-color: var(--sbb-color-graphite);
-      --sbb-selection-panel-warning-color: var(--sbb-color-graphite);
 
       // SBB Checkbox Panel & Radio Button Panel
       --sbb-selection-panel-item-background-color: var(--sbb-color-iron);
@@ -2049,14 +2019,13 @@ textarea {
 
 .sbb-selection-container {
   display: inline-block;
-  background-color: var(--sbb-selection-background-color-default);
+  background-color: var(--sbb-selection-container-background-color-default);
   margin-top: calc(#{sbb.pxToRem(3)} * var(--sbb-scaling-factor));
-
   width: calc(#{sbb.pxToRem(20)} * var(--sbb-scaling-factor));
   min-width: calc(#{sbb.pxToRem(20)} * var(--sbb-scaling-factor));
   height: calc(#{sbb.pxToRem(20)} * var(--sbb-scaling-factor));
   min-height: calc(#{sbb.pxToRem(20)} * var(--sbb-scaling-factor));
-  border: var(--sbb-border-width) solid var(--sbb-selection-border-color-default);
+  border: var(--sbb-border-width) solid var(--sbb-selection-container-border-color-default);
   margin-right: calc(#{sbb.pxToRem(8)} * var(--sbb-scaling-factor));
 
   :where(html.sbb-lean) & {
@@ -2066,7 +2035,7 @@ textarea {
   .sbb-selection-input:focus + &,
   // Applies focus highlight for pseudo-checkbox
   .sbb-menu-item.sbb-active .sbb-pseudo-checkbox & {
-    border-color: var(--sbb-selection-label-color-focused);
+    border-color: var(--sbb-selection-container-border-color-focused);
   }
 
   :is(.sbb-checkbox, .sbb-pseudo-checkbox) & {
@@ -2082,8 +2051,8 @@ textarea {
   }
 
   .sbb-selection-disabled & {
-    border-color: var(--sbb-selection-border-color-disabled);
-    background-color: var(--sbb-selection-background-color-disabled);
+    border-color: var(--sbb-selection-container-border-color-disabled);
+    background-color: var(--sbb-selection-container-background-color-disabled);
   }
 
   .sbb-selection-indeterminate &::before {
@@ -2093,27 +2062,21 @@ textarea {
     width: sbb.pxToRem(10);
     left: calc(50% - #{sbb.pxToRem(5)});
     top: calc(50% - #{sbb.pxToRem(0.5)});
-    border: sbb.pxToRem(1) solid var(--sbb-selection-icon-color-default);
+    border: sbb.pxToRem(1) solid var(--sbb-selection-container-icon-color-default);
     display: block;
     background-color: var(
-      --sbb-selection-icon-color-default
+      --sbb-selection-container-icon-color-default
     ); // Used to fill line when user has activated browser zoom
   }
 }
 
 .sbb-selection-container-checked {
-  color: var(--sbb-selection-icon-color-default);
+  color: var(--sbb-selection-container-icon-color-default);
   line-height: 0;
   height: 100%;
   width: 100%;
   transition: opacity var(--sbb-transition-default);
   position: relative;
-
-  .sbb-radio-button.sbb-selection-disabled & {
-    :where(html.sbb-lean) & {
-      background-color: var(--sbb-selection-icon-color-disabled);
-    }
-  }
 
   :is(.sbb-checkbox, .sbb-pseudo-checkbox) & {
     display: none;
@@ -2139,7 +2102,7 @@ textarea {
     display: none;
     border-radius: 50%;
     transform: scale(0.65);
-    background-color: var(--sbb-selection-icon-color-default);
+    background-color: var(--sbb-selection-container-icon-color-default);
 
     @include cdk.high-contrast(active, off) {
       background-color: CanvasText;
@@ -2147,7 +2110,7 @@ textarea {
   }
 
   .sbb-selection-disabled & {
-    color: var(--sbb-selection-icon-color-disabled);
+    color: var(--sbb-selection-container-icon-color-disabled);
   }
 
   .sbb-selection-checked & {
