@@ -614,9 +614,9 @@ export class SbbJourneyMaps implements OnInit, AfterViewInit, OnDestroy, OnChang
     }
 
     if (changes.viewportDimensions && !changes.viewportDimensions.isFirstChange()) {
-      // We update the viewport any time angular's change detection gets triggered for changes.viewportDimensions
-      // whether angular detects a difference between changes.viewportDimensions?.currentValue and
-      // changes.viewportDimensions?.previousValue or not.
+      // We update the viewport any time angular's change detection gets triggered for
+      // changes.viewportDimensions, whether angular detects a difference between
+      // changes.viewportDimensions?.currentValue and changes.viewportDimensions?.previousValue or not.
       this._viewportDimensionsChanged.next();
     }
 
