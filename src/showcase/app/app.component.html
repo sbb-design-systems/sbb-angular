@@ -20,14 +20,15 @@
   </sbb-app-chooser-section>
   <a routerLink="/">Introduction</a>
   <a routerLink="/howtoupdate">How to update</a>
-  <sbb-radio-group
+  <sbb-select
     [formControl]="sbbVariant"
-    class="additional-header-content sbb-radio-group-horizontal"
+    class="additional-header-content"
+    placeholder="Design variant"
   >
-    <sbb-radio-button value="standard">Standard</sbb-radio-button>
-    <sbb-radio-button value="lean">Lean</sbb-radio-button>
-    <sbb-radio-button value="lean_dark">Lean Dark</sbb-radio-button>
-  </sbb-radio-group>
+    <sbb-option [value]="'standard'">Standard</sbb-option>
+    <sbb-option [value]="'lean'">Lean</sbb-option>
+    <sbb-option [value]="'lean_dark'">Lean Dark</sbb-option>
+  </sbb-select>
 </sbb-header-lean>
 
 <sbb-icon-sidebar-container>
