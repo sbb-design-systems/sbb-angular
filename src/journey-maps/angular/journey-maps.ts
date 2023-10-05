@@ -110,8 +110,6 @@ export class SbbJourneyMaps implements OnInit, AfterViewInit, OnDestroy, OnChang
    * Specify which points of interest categories should be visible in map.
    */
   @Input() poiOptions?: SbbPointsOfInterestOptions;
-  /** Define the currently visible part of the map. */
-  @Input() viewportDimensions?: SbbViewportDimensions;
   /** Restrict the visible part and possible zoom levels of the map. */
   @Input() viewportBounds?: SbbViewportBounds;
   /**
@@ -247,6 +245,19 @@ export class SbbJourneyMaps implements OnInit, AfterViewInit, OnDestroy, OnChang
     this._host.nativeElement.zoomOut = this.zoomOut.bind(this);
     this._host.nativeElement.unselectAll = this.unselectAll.bind(this);
     this._host.nativeElement.setSelectedPoi = this.setSelectedPoi.bind(this);
+  }
+
+  private _viewportDimensions?: SbbViewportDimensions;
+
+  /** Define the currently visible part of the map. */
+  @Input()
+  set viewportDimensions(viewportDimensions: SbbViewportDimensions | undefined) {
+    this._viewportDimensions = viewportDimensions;
+    this._viewportDimensionsChanged.next();
+  }
+
+  get viewportDimensions(): SbbViewportDimensions | undefined {
+    return this._viewportDimensions;
   }
 
   private _styleOptions: SbbStyleOptions = this._defaultStyleOptions;
@@ -611,15 +622,6 @@ export class SbbJourneyMaps implements OnInit, AfterViewInit, OnDestroy, OnChang
 
     if (!this._isStyleLoaded) {
       return;
-    }
-
-    if (changes.viewportDimensions && !changes.viewportDimensions.isFirstChange()) {
-      // We update the viewport any time angular's change detection gets triggered for
-      // changes.viewportDimensions, whether angular detects a difference between
-      // changes.viewportDimensions?.currentValue and changes.viewportDimensions?.previousValue or not.
-      // The reason for this is that angular's change detection doesn't receive updated values of viewportDimensions
-      // when it is changed by manual or programmatic interactions with the map.
-      this._viewportDimensionsChanged.next();
     }
 
     if (changes.viewportBounds) {
