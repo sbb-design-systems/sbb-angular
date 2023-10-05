@@ -23,7 +23,7 @@ export class SbbMapTransferService {
 
   // If we enter the station on another floor than '0' then the outdoor route should be displayed
   // on two floors. (Floor 0 and 'entrance' floor)
-  updateOutdoorWalkFloor(map: MaplibreMap, level: number): void {
+  updateOutdoorWalkFloor(map: MaplibreMap, level: number | undefined): void {
     const features: Feature[] = this._data?.features ?? [];
     if (needsFloorChange(features, level)) {
       this._data.features = updateWalkFloor(features, level);

@@ -1,4 +1,4 @@
-import { EventEmitter, Injectable } from '@angular/core';
+import { ChangeDetectorRef, EventEmitter, Injectable, NgZone } from '@angular/core';
 import { Map as MaplibreMap } from 'maplibre-gl';
 import { BehaviorSubject, Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
@@ -21,10 +21,10 @@ export class SbbLevelSwitcher {
   private _lastZoom: number; // needed to detect when we cross zoom threshold to show or hide the level switcher component
 
   private readonly _destroyed = new Subject<void>();
-  private readonly _defaultLevel = 0;
+  readonly _defaultLevel = undefined;
   // same minZoom as in Android and iOS map
   private readonly _levelButtonMinMapZoom = 15;
-  private readonly _selectedLevel = new BehaviorSubject<number>(0);
+  private readonly _selectedLevel = new BehaviorSubject<number | undefined>(this._defaultLevel);
   // availableLevels: levels available in the visible area of the map
   private readonly _availableLevels = new BehaviorSubject<number[]>([]);
   // visibleLevels: same as availableLevels IF at correct zoom level, otherwise empty
@@ -39,13 +39,17 @@ export class SbbLevelSwitcher {
   // changeDetectionEmitter inspired by https://stackoverflow.com/a/48736591/349169
   readonly changeDetectionEmitter = new EventEmitter<void>();
 
-  get selectedLevel(): number {
+  get selectedLevel(): number | undefined {
     return this._selectedLevel.getValue();
   }
 
   // in most instances you should call switchLevel() instead
-  private _setSelectedLevel(selectedLevel: number): void {
-    if (this.availableLevels.includes(selectedLevel) || selectedLevel === this._defaultLevel) {
+  private _setSelectedLevel(selectedLevel: number | undefined): void {
+    if (
+      selectedLevel === this._defaultLevel ||
+      !selectedLevel ||
+      this.availableLevels.includes(selectedLevel)
+    ) {
       this._selectedLevel.next(selectedLevel);
     }
   }
@@ -69,6 +73,8 @@ export class SbbLevelSwitcher {
     private _queryMapFeaturesService: SbbQueryMapFeatures,
     private _mapLeitPoiService: SbbMapLeitPoiService,
     private _mapTransferService: SbbMapTransferService,
+    private _ngZone: NgZone,
+    private _ref: ChangeDetectorRef,
   ) {}
 
   private _isVisibleInCurrentMapZoomLevel(): boolean {
@@ -125,7 +131,7 @@ export class SbbLevelSwitcher {
     this._setSelectedLevel(this._defaultLevel);
   }
 
-  switchLevel(level: number): void {
+  switchLevel(level: number | undefined): void {
     this._setSelectedLevel(level);
     this._mapLeitPoiService.setCurrentLevel(this._map, level);
   }
@@ -182,7 +188,7 @@ export class SbbLevelSwitcher {
     if (JSON.stringify(this.availableLevels) !== JSON.stringify(levels)) {
       this.setAvailableLevels(levels);
       // if selected level not in new levels list:
-      if (this.availableLevels.indexOf(this.selectedLevel) === -1) {
+      if (!this.selectedLevel || this.availableLevels.indexOf(this.selectedLevel) === -1) {
         this.switchLevel(this._defaultLevel);
       }
       // call outside component-zone, trigger detect changes manually

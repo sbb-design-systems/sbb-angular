@@ -44,7 +44,7 @@ export class SbbLevelSwitch implements OnDestroy {
       .subscribe(() => this._ref.detectChanges());
   }
 
-  get selectedLevel(): number {
+  get selectedLevel(): number | undefined {
     return this._levelSwitchService.selectedLevel;
   }
 
@@ -52,8 +52,11 @@ export class SbbLevelSwitch implements OnDestroy {
     return this._levelSwitchService.visibleLevels;
   }
 
+  /**
+   * Switches the level to the provided level. If it's already selected, it becomes deselected by setting it to null.
+   */
   switchLevel(level: number): void {
-    this._levelSwitchService.switchLevel(level);
+    this._levelSwitchService.switchLevel(this.selectedLevel === level ? undefined : level);
   }
 
   getLevelLabel(level: number): string {

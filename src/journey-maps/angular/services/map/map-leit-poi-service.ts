@@ -73,7 +73,7 @@ export class SbbMapLeitPoiService {
     }
   }
 
-  setCurrentLevel(map: MaplibreMap, currentLevel: number): void {
+  setCurrentLevel(map: MaplibreMap, currentLevel: number | undefined): void {
     this._showLeitPoiByLevel(map, currentLevel);
   }
 
@@ -109,7 +109,7 @@ export class SbbMapLeitPoiService {
       });
   }
 
-  private _showLeitPoiByLevel(map: MaplibreMap, currentLevel: number): void {
+  private _showLeitPoiByLevel(map: MaplibreMap, currentLevel: number | undefined): void {
     this._removeMapLeitPois();
     this._getFeaturesByLevel(currentLevel).forEach((f) => this._showLeitPoi(map, f));
     this._toggleMapLeitPoisVisibility(map.getZoom());
@@ -143,7 +143,7 @@ export class SbbMapLeitPoiService {
     return;
   }
 
-  private _getFeaturesByLevel(currentLevel: number): SbbLeitPoiFeature[] {
+  private _getFeaturesByLevel(currentLevel: number | undefined): SbbLeitPoiFeature[] {
     return this._leitPoiFeatures.filter((f) => f.sourceLevel === currentLevel);
   }
 

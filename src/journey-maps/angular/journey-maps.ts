@@ -6,6 +6,7 @@ import {
   ElementRef,
   EventEmitter,
   Input,
+  NgZone,
   OnChanges,
   OnDestroy,
   OnInit,
@@ -104,7 +105,7 @@ export class SbbJourneyMaps implements OnInit, AfterViewInit, OnDestroy, OnChang
    */
   @Input() markerDetailsTemplate?: SbbTemplateType;
   /** Which (floor-)level should be shown */
-  @Input() selectedLevel: number;
+  @Input() selectedLevel: number | undefined;
   @Input() listenerOptions: SbbListenerOptions;
   /**
    * Specify which points of interest categories should be visible in map.
@@ -121,7 +122,9 @@ export class SbbJourneyMaps implements OnInit, AfterViewInit, OnDestroy, OnChang
   /**
    * This event is emitted whenever the selected (floor-) level changes.
    */
-  @Output() selectedLevelChange: EventEmitter<number> = new EventEmitter<number>();
+  @Output() selectedLevelChange: EventEmitter<number | undefined> = new EventEmitter<
+    number | undefined
+  >();
   /**
    * This event is emitted whenever the selected features changes.
    */
@@ -236,6 +239,7 @@ export class SbbJourneyMaps implements OnInit, AfterViewInit, OnDestroy, OnChang
     private _cd: ChangeDetectorRef,
     private _i18n: SbbLocaleService,
     private _host: ElementRef,
+    private _ngZone: NgZone,
   ) {
     // binding of 'this' is needed for elements/webcomponent
     // https://github.com/angular/angular/issues/22114#issuecomment-569311422
@@ -637,14 +641,21 @@ export class SbbJourneyMaps implements OnInit, AfterViewInit, OnDestroy, OnChang
       this._mapStyleOptionsChanged.next();
     }
 
-    if (changes.selectedLevel?.currentValue !== undefined) {
-      this._levelSwitchService.switchLevel(this.selectedLevel);
-    }
-
+    // TODO: console.logs entfernen
+    console.log(
+      `${changes.uiOptions?.currentValue.levelSwitch} !== ${changes.uiOptions?.previousValue.levelSwitch}`,
+    );
     if (
       changes.uiOptions?.currentValue.levelSwitch !== changes.uiOptions?.previousValue.levelSwitch
     ) {
       this._show2Dor3D();
+    }
+
+    // TODO: Level Switch sendet keine changes. ngOnChanges wird nicht ausgeführt.
+    console.log(`${changes.selectedLevel?.currentValue}`);
+    if (changes.selectedLevel?.currentValue !== null) {
+      this._show2Dor3D();
+      this._levelSwitchService.switchLevel(this.selectedLevel);
     }
   }
 
@@ -883,9 +894,12 @@ export class SbbJourneyMaps implements OnInit, AfterViewInit, OnDestroy, OnChang
       this.mapBoundsChange.emit(this._map.getBounds().toArray());
     });
 
-    this._levelSwitchService.selectedLevel$
-      .pipe(takeUntil(this._destroyed))
-      .subscribe((level) => this.selectedLevelChange.emit(level));
+    this._levelSwitchService.selectedLevel$.pipe(takeUntil(this._destroyed)).subscribe((level) => {
+      this.selectedLevelChange.emit(level);
+      this.selectedLevel = level;
+      this._cd.detectChanges();
+    });
+
     this._levelSwitchService.visibleLevels$
       .pipe(takeUntil(this._destroyed))
       .subscribe((levels) => this.visibleLevelsChange.emit(levels));
@@ -998,7 +1012,13 @@ export class SbbJourneyMaps implements OnInit, AfterViewInit, OnDestroy, OnChang
    * If the level-switch feature is disabled by the client, then show only 2d layers (-2d)
    */
   private _show2Dor3D() {
-    const show3D = !!this.uiOptions.levelSwitch;
+    // TODO: Remove const if working - adjust javadoc
+    // const show3D = !!this.uiOptions.levelSwitch;
+    const show3D =
+      this._levelSwitchService.selectedLevel !== undefined && this.uiOptions.levelSwitch;
+    console.log(
+      `show3D: ${show3D} - selectedLevel: ${this._levelSwitchService.selectedLevel} !== null && levelswitch: ${this.uiOptions.levelSwitch}`,
+    );
     this._setVisibility(this._map, '-2d', show3D ? 'none' : 'visible');
     this._setVisibility(this._map, '-lvl', show3D ? 'visible' : 'none');
   }
