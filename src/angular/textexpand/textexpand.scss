@@ -4,12 +4,11 @@
   font-size: var(--sbb-font-size-small);
   line-height: 1.5;
   letter-spacing: 0;
-  color: var(--sbb-color-metal);
+  color: var(--sbb-textexpand-color);
 
   :where(html.sbb-lean) & {
     font-size: var(--sbb-font-size);
     line-height: var(--sbb-line-height);
-    color: var(--sbb-color-text);
   }
 }
 

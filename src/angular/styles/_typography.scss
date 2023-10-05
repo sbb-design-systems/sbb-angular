@@ -418,6 +418,12 @@
   --sbb-tag-badge-background-color-disabled-hover: var(--sbb-color-cement);
   --sbb-tag-badge-link-background-color-focused: var(--sbb-color-red125);
 
+  // Textarea
+  --sbb-textarea-remaining-chars-color: var(--sbb-color-text);
+
+  // Textexpand
+  --sbb-textexpand-color: var(--sbb-color-metal);
+
   // Tooltip
   --sbb-tooltip-padding: calc(#{sbb.pxToRem(23)} * var(--sbb-scaling-factor));
   --sbb-tooltip-arrow-offset: calc(#{sbb.pxToRem(7.2)} * var(--sbb-scaling-factor));
@@ -429,6 +435,7 @@
   );
   --sbb-tooltip-shadow-arrow-size: calc(#{sbb.pxToRem(12)} * var(--sbb-scaling-factor));
   --sbb-tooltip-background-color: var(--sbb-color-background);
+  --sbb-tooltip-color: var(--sbb-color-granite);
 
   // Toggle
   --sbb-toggle-border-color-active: var(--sbb-color-black);
@@ -688,8 +695,15 @@
     --sbb-tag-badge-background-color-disabled-hover: var(--sbb-color-cement);
     --sbb-tag-badge-link-background-color-focused: var(--sbb-color-red125);
 
+    // Textarea
+    --sbb-textarea-remaining-chars-color: var(--sbb-color-metal);
+
+    // Textexpand
+    --sbb-textexpand-color: var(--sbb-color-text);
+
     // Tooltip
     --sbb-tooltip-padding: #{sbb.pxToRem(8)};
+    --sbb-tooltip-color: var(--sbb-color-text);
 
     // Usermenu
     --sbb-usermenu-trigger-padding: #{sbb.pxToRem(8)};
@@ -843,6 +857,9 @@
       --sbb-tag-badge-background-color-disabled: var(--sbb-color-anthracite);
       --sbb-tag-badge-background-color-disabled-hover: var(--sbb-color-white);
       --sbb-tag-badge-link-background-color-focused: var(--sbb-color-white);
+
+      // Textarea
+      --sbb-textarea-remaining-chars-color: var(--sbb-color-smoke);
 
       // Toggle
       --sbb-toggle-border-color-active: var(--sbb-color-white);
