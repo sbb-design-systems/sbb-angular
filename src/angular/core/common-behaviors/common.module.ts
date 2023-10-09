@@ -53,7 +53,12 @@ export class SbbCommonModule {
     // Check variant configuration at the beginning, as this might cause components
     // to render differently.
     ɵvariant.next(
-      this._document.documentElement.classList.contains('sbb-lean') ? 'lean' : 'standard',
+      this._document.documentElement.classList.contains('sbb-lean') &&
+        this._document.documentElement.classList.contains('sbb-dark')
+        ? 'lean_dark'
+        : this._document.documentElement.classList.contains('sbb-lean')
+        ? 'lean'
+        : 'standard',
     );
 
     // While A11yModule also does this, we repeat it here to avoid importing A11yModule
