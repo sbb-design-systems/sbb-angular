@@ -375,6 +375,9 @@
     var(--sbb-box-shadow-horizontal-border-offset-top-above) * -1
   );
 
+  // Select
+  --sbb-select-arrow-icon-color: var(--sbb-color-granite);
+
   // Sidebar
   --sbb-sidebar-mobile-menu-bar-height: calc(2 * var(--sbb-icon-size-default));
   --sbb-icon-sidebar-item-dimension: calc(2 * var(--sbb-icon-size-default));
@@ -833,6 +836,9 @@
 
       // Panel
       --sbb-panel-divider-color: var(--sbb-color-graphite);
+
+      // Select
+      --sbb-select-arrow-icon-color: var(--sbb-color-white);
 
       // Sidebar
       --sbb-sidebar-background-color: var(--sbb-color-midnight);

@@ -37,7 +37,7 @@
 .sbb-select-arrow-icon {
   @include sbb.absoluteCenterY();
   right: calc(#{sbb.pxToRem(9)} * var(--sbb-scaling-factor));
-  color: var(--sbb-color-granite);
+  color: var(--sbb-select-arrow-icon-color);
 
   :where(html.sbb-lean) & {
     right: sbb.pxToRem(6);
