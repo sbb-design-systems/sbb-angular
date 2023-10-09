@@ -35,13 +35,9 @@
   position: relative;
   float: right;
   background: transparent;
-  color: var(--sbb-color-text);
+  color: var(--sbb-textarea-remaining-chars-color);
   letter-spacing: 0;
   font-size: var(--sbb-font-size-small);
   line-height: 1;
   font-family: var(--sbb-font-roman);
-
-  :where(html.sbb-lean) & {
-    color: var(--sbb-color-metal);
-  }
 }

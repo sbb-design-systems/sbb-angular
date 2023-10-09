@@ -109,7 +109,7 @@
   padding: var(--sbb-tooltip-padding);
   position: relative;
   overflow: hidden;
-  color: var(--sbb-color-granite);
+  color: var(--sbb-tooltip-color);
   text-overflow: ellipsis;
   background-color: var(--sbb-tooltip-background-color);
   border: var(--sbb-border-width) solid var(--sbb-color-weak-accent);
@@ -122,10 +122,6 @@
 
   .sbb-tooltip-panel-below & {
     margin-top: var(--sbb-tooltip-arrow-offset);
-  }
-
-  :where(html.sbb-lean) & {
-    color: var(--sbb-color-text);
   }
 }
 
