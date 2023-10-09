@@ -346,6 +346,10 @@
   // Panel
   --sbb-panel-divider-color: var(--sbb-color-cloud);
 
+  // Processflow
+  --sbb-processflow-step-label-color: var(--sbb-color-metal);
+  --sbb-porcessflow-separator-inactive-color: var(--sbb-color-granite);
+
   // Shadow
   --sbb-box-shadow-width: calc(var(--sbb-border-width) * 4);
   --sbb-box-shadow-arrow-width: calc(var(--sbb-border-width) * 2);
@@ -670,6 +674,9 @@
     --sbb-pagination-disabled-color: var(--sbb-color-cement);
     --sbb-pagination-paginator-size: #{sbb.pxToRem(30)};
 
+    // Processflow
+    --sbb-porcessflow-separator-inactive-color: var(--sbb-color-text);
+
     // Shadow
     --sbb-box-shadow-arrow-clip-path: polygon(
       -0.4px 100%,
@@ -836,6 +843,9 @@
 
       // Panel
       --sbb-panel-divider-color: var(--sbb-color-graphite);
+
+      // Processflow
+      --sbb-processflow-step-label-color: var(--sbb-color-graphite);
 
       // Select
       --sbb-select-arrow-icon-color: var(--sbb-color-white);
