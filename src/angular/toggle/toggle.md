@@ -10,6 +10,9 @@ The `<sbb-toggle>` component offers the user a choice of exactly two options
 </sbb-toggle>
 ```
 
+The specification states that if no previous selection has been defined the first option is selected automatically.
+In this case a change event is fired to notify about the automatic selection.
+
 ### Subtitle
 
 A `<sbb-toggle-option>` can have an optional subtitle, which will be shown below the label.
