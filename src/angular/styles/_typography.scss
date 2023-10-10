@@ -118,6 +118,7 @@
   --sbb-color-milk-alpha40: #{rgba(sbb.$sbbColorMilk, 0.4)};
   --sbb-color-black-alpha50: #{rgba(sbb.$sbbColorBlack, 0.5)};
   --sbb-color-cement-alpha40: #{rgba(sbb.$sbbColorCement, 0.4)};
+  --sbb-color-black-alpha70: #{rgba(sbb.$sbbColorBlack, 0.7)};
 
   // Scaling
   --sbb-scaling-factor: 1;
@@ -263,6 +264,8 @@
 
   // Dialog
   --sbb-dialog-padding: calc(#{sbb.pxToRem(16)} * var(--sbb-scaling-factor));
+  --sbb-dialog-overlay-backgroud-color: var(--sbb-color-white-alpha70);
+  --sbb-dialog-container-border-color: var(--sbb-color-weak-accent);
 
   // Expansion Panel
   --sbb-expansion-panel-padding-horizontal: #{sbb.pxToRem(24)};
@@ -365,13 +368,14 @@
     71% 100%
   );
   --sbb-box-shadow-color: rgba(0, 0, 0, 0.15);
+  --sbb-box-shadow-border-color: var(--sbb-color-cloud);
   --sbb-box-shadow-below: 0 var(--sbb-box-shadow-width) 0 var(--sbb-box-shadow-color);
   --sbb-box-shadow-horizontal-border-top: 0
     calc(var(--sbb-border-width) + calc(#{sbb.pxToRem(1)} * var(--sbb-scaling-factor))) 0
-    calc(var(--sbb-border-width) * -1) var(--sbb-color-cloud);
+    calc(var(--sbb-border-width) * -1) var(--sbb-box-shadow-border-color);
   --sbb-box-shadow-horizontal-border-bottom: 0
     calc(var(--sbb-border-width) * -1 - calc(#{sbb.pxToRem(1)} * var(--sbb-scaling-factor))) 0
-    calc(var(--sbb-border-width) * -1) var(--sbb-color-cloud);
+    calc(var(--sbb-border-width) * -1) var(--sbb-box-shadow-border-color);
   --sbb-box-shadow-horizontal-border-offset-top-above: calc(
     calc(var(--sbb-border-width) - #{sbb.pxToRem(1)}) * var(--sbb-scaling-factor)
   );
@@ -638,6 +642,10 @@
     --sbb-datepicker-calendar-body-cell-padding: #{sbb.pxToRem(16.5)};
     --sbb-datepicker-calendar-body-cell-size: #{sbb.pxToRem(30)};
 
+    // Dialog
+    --sbb-dialog-overlay-backgroud-color: var(--sbb-color-white-alpha70);
+    --sbb-dialog-container-border-color: var(--sbb-color-black);
+
     // Expansion Panel
     --sbb-expansion-panel-padding-horizontal: #{sbb.pxToRem(16)};
     --sbb-expansion-panel-header-padding-top: calc(
@@ -676,6 +684,10 @@
 
     // Processflow
     --sbb-porcessflow-separator-inactive-color: var(--sbb-color-text);
+
+    // Scrollbar
+    --sbb-scrollbar-thumb-color-visible: var(--sbb-color-platinum);
+    --sbb-scrollbar-track-color-visible: var(--sbb-color-milk);
 
     // Shadow
     --sbb-box-shadow-arrow-clip-path: polygon(
@@ -742,6 +754,9 @@
       --sbb-color-weak-accent: var(--sbb-color-milk);
       --sbb-color-error: var(--sbb-color-red_dark-mode);
 
+      // Shadow-Color
+      --sbb-box-shadow-border-color: var(--sbb-color-iron);
+
       // Badge
       --sbb-badge-background-color: var(--sbb-color-white);
       --sbb-badge-background-color-disabled: var(--sbb-color-anthracite);
@@ -798,6 +813,10 @@
       --sbb-chips-background-color-disabled: var(--sbb-color-cloud);
       --sbb-chips-opacity: 0.9;
 
+      // Dialog
+      --sbb-dialog-overlay-backgroud-color: var(--sbb-color-black-alpha70);
+      --sbb-dialog-container-border-color: var(--sbb-color-weak-accent);
+
       // Expansion Panel
       --sbb-expansion-panel-background-color-open: var(--sbb-color-midnight);
       --sbb-expansion-panel-background-color-closed: var(--sbb-color-midnight);
@@ -846,6 +865,10 @@
 
       // Processflow
       --sbb-processflow-step-label-color: var(--sbb-color-graphite);
+
+      // Scrollbar
+      --sbb-scrollbar-thumb-color-visible: var(--sbb-color-metal);
+      --sbb-scrollbar-track-color-visible: var(--sbb-color-charcoal);
 
       // Select
       --sbb-select-arrow-icon-color: var(--sbb-color-white);
@@ -2694,8 +2717,8 @@ input.sbb-input-element.sbb-time-input {
   --sbb-scrollbar-track-color: transparent;
 
   &:is(:hover, .sbb-scrollbar-opaque) {
-    --sbb-scrollbar-thumb-color: var(--sbb-color-platinum);
-    --sbb-scrollbar-track-color: var(--sbb-color-milk);
+    --sbb-scrollbar-thumb-color: var(--sbb-scrollbar-thumb-color-visible);
+    --sbb-scrollbar-track-color: var(--sbb-scrollbar-track-color-visible);
   }
 
   scrollbar-width: thin;
