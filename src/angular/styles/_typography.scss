@@ -368,13 +368,14 @@
     71% 100%
   );
   --sbb-box-shadow-color: rgba(0, 0, 0, 0.15);
+  --sbb-box-shadow-border-color: var(--sbb-color-cloud);
   --sbb-box-shadow-below: 0 var(--sbb-box-shadow-width) 0 var(--sbb-box-shadow-color);
   --sbb-box-shadow-horizontal-border-top: 0
     calc(var(--sbb-border-width) + calc(#{sbb.pxToRem(1)} * var(--sbb-scaling-factor))) 0
-    calc(var(--sbb-border-width) * -1) var(--sbb-color-cloud);
+    calc(var(--sbb-border-width) * -1) var(--sbb-box-shadow-border-color);
   --sbb-box-shadow-horizontal-border-bottom: 0
     calc(var(--sbb-border-width) * -1 - calc(#{sbb.pxToRem(1)} * var(--sbb-scaling-factor))) 0
-    calc(var(--sbb-border-width) * -1) var(--sbb-color-cloud);
+    calc(var(--sbb-border-width) * -1) var(--sbb-box-shadow-border-color);
   --sbb-box-shadow-horizontal-border-offset-top-above: calc(
     calc(var(--sbb-border-width) - #{sbb.pxToRem(1)}) * var(--sbb-scaling-factor)
   );
