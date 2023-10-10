@@ -9,7 +9,7 @@
 .sbb-dialog-container {
   display: flex;
   flex-direction: column;
-  border: var(--sbb-border-width) solid var(--sbb-dialog-container-border-color); // TODO: Is Black (LM) and Silver (DM) in Figma, but Weak-Accent (Iron (LM)) currently on angular.sbb, needs checkup
+  border: var(--sbb-border-width) solid var(--sbb-dialog-container-border-color);
   box-sizing: border-box;
   overflow: hidden;
   outline: 0;

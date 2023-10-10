@@ -120,6 +120,7 @@
   --sbb-color-milk-alpha40: #{rgba(sbb.$sbbColorMilk, 0.4)};
   --sbb-color-black-alpha50: #{rgba(sbb.$sbbColorBlack, 0.5)};
   --sbb-color-cement-alpha40: #{rgba(sbb.$sbbColorCement, 0.4)};
+  --sbb-color-black-alpha70: #{rgba(sbb.$sbbColorBlack, 0.7)};
 
   // Scaling
   --sbb-scaling-factor: 1;
@@ -230,6 +231,8 @@
 
   // Dialog
   --sbb-dialog-padding: calc(#{sbb.pxToRem(16)} * var(--sbb-scaling-factor));
+  --sbb-dialog-overlay-backgroud-color: var(--sbb-color-white-alpha70);
+  --sbb-dialog-container-border-color: var(--sbb-color-black);
 
   // Datepicker
   --sbb-datepicker-toggle-or-arrows-padding: calc(
@@ -791,8 +794,8 @@
       --sbb-chips-opacity: 0.9;
 
       // Dialog
-      --sbb-dialog-overlay-backgroud-color: #{rgba(sbb.$sbbColorBlack, 0.7)};
-      --sbb-dialog-container-border-color: var(--sbb-color-silver);
+      --sbb-dialog-overlay-backgroud-color: var(--sbb-color-black-alpha70);
+      --sbb-dialog-container-border-color: var(--sbb-color-weak-accent);
 
       // Badge
       --sbb-badge-background-color: var(--sbb-color-white);
