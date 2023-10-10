@@ -9,10 +9,11 @@ import {
 } from '@angular-devkit/schematics';
 import {
   addModuleImportToRootModule,
-  defaultTargetBuilders,
+  getProjectBuildTargets,
   getProjectFromWorkspace,
   getProjectMainFile,
   getProjectTargetOptions,
+  getProjectTestTargets,
   hasNgModuleImport,
 } from '@angular/cdk/schematics';
 import {
@@ -296,9 +297,9 @@ function validateDefaultTargetBuilder(
   targetName: 'build' | 'test',
   logger: logging.LoggerApi,
 ) {
-  const defaultBuilder = defaultTargetBuilders[targetName];
-  const targetConfig = project.targets && project.targets.get(targetName);
-  const isDefaultBuilder = targetConfig && targetConfig['builder'] === defaultBuilder;
+  const targets =
+    targetName === 'test' ? getProjectTestTargets(project) : getProjectBuildTargets(project);
+  const isDefaultBuilder = targets.length > 0;
 
   // Because the build setup for the Angular CLI can be customized by developers, we can't know
   // where to put the theme file in the workspace configuration if custom builders are being
