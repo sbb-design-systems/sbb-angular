@@ -1,6 +1,15 @@
 @import '../angular/styles/typography';
 @import 'highlight.js/styles/github';
 
+:root {
+  --highlight-color: #efefef;
+
+  &:where(.sbb-lean.sbb-dark) {
+    @import 'highlight.js/styles/github-dark';
+    --highlight-color: var(--sbb-color-charcoal);
+  }
+}
+
 html,
 body {
   height: 100%;
@@ -11,7 +20,7 @@ sbb-markdown-viewer,
 sbb-component-viewer,
 sbb-how-to-update {
   pre {
-    background-color: #efefef;
+    background-color: var(--highlight-color);
     padding: 1rem 1.5rem;
     white-space: pre-wrap;
   }
@@ -32,7 +41,7 @@ sbb-how-to-update {
 }
 
 code {
-  background-color: #efefef;
+  background-color: var(--highlight-color);
   padding: 3px;
 }
 
@@ -68,7 +77,7 @@ pre code {
   .docs-api-type-alias-deprecated-marker {
     padding: 10px;
     margin: 5px 0;
-    background-color: #efefef;
+    background-color: var(--highlight-color);
 
     &:before {
       content: '\26A0';
@@ -76,7 +85,7 @@ pre code {
   }
 
   .docs-api-class-selector-name {
-    background-color: #efefef;
+    background-color: var(--highlight-color);
     padding: 3px;
   }
 

@@ -35,37 +35,37 @@
 }
 
 .sbb-notification-toast-error {
-  border: var(--sbb-border-width-thin) solid var(--sbb-notification-toast-border-color-error);
-  background-color: var(--sbb-notification-toast-background-color-error);
+  border: var(--sbb-border-width-thin) solid var(--sbb-notification-border-color-error);
+  background-color: var(--sbb-notification-background-color-error);
 
   :is(&, & :is(a, button)) {
-    color: var(--sbb-notification-toast-label-color-error);
+    color: var(--sbb-notification-label-color-error);
   }
 }
 
 .sbb-notification-toast-success {
-  border: var(--sbb-border-width-thin) solid var(--sbb-notification-toast-border-color-success);
-  background-color: var(--sbb-notification-toast-background-color-success);
+  border: var(--sbb-border-width-thin) solid var(--sbb-notification-border-color-success);
+  background-color: var(--sbb-notification-background-color-success);
   :is(&, & :is(a, button)) {
-    color: var(--sbb-notification-toast-label-color-success);
+    color: var(--sbb-notification-label-color-success);
   }
 }
 
 .sbb-notification-toast-info {
-  border: var(--sbb-border-width-thin) solid var(--sbb-notification-toast-border-color-information);
-  background-color: var(--sbb-notification-toast-background-color-information);
+  border: var(--sbb-border-width-thin) solid var(--sbb-notification-border-color-information);
+  background-color: var(--sbb-notification-background-color-information);
 
   :is(&, & :is(a, button)) {
-    color: var(--sbb-notification-toast-label-color-information);
+    color: var(--sbb-notification-label-color-information);
   }
 }
 
 .sbb-notification-toast-warn {
-  border: var(--sbb-border-width-thin) solid var(--sbb-notification-toast-border-color-warn);
-  background-color: var(--sbb-notification-toast-background-color-warn);
+  border: var(--sbb-border-width-thin) solid var(--sbb-notification-border-color-warn);
+  background-color: var(--sbb-notification-background-color-warn);
 
   :is(&, & :is(a, button)) {
-    color: var(--sbb-notification-toast-label-color-warn);
+    color: var(--sbb-notification-label-color-warn);
   }
 }
 
