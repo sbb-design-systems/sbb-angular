@@ -265,7 +265,7 @@
   // Dialog
   --sbb-dialog-padding: calc(#{sbb.pxToRem(16)} * var(--sbb-scaling-factor));
   --sbb-dialog-overlay-backgroud-color: var(--sbb-color-white-alpha70);
-  --sbb-dialog-container-border-color: var(--sbb-color-black);
+  --sbb-dialog-container-border-color: var(--sbb-color-weak-accent);
 
   // Expansion Panel
   --sbb-expansion-panel-padding-horizontal: #{sbb.pxToRem(24)};
