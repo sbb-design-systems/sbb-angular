@@ -3,7 +3,6 @@ import { HighContrastModeDetector } from '@angular/cdk/a11y';
 import { _isTestEnvironment } from '@angular/cdk/platform';
 import { DOCUMENT } from '@angular/common';
 import { Inject, InjectionToken, NgModule, Optional } from '@angular/core';
-import { ɵvariant } from '@sbb-esta/angular/core';
 import { fromEvent, Observable } from 'rxjs';
 import { map, startWith } from 'rxjs/operators';
 
@@ -11,6 +10,7 @@ import { VERSION } from '../version';
 
 import { _global } from './localize/global';
 import { _$localize } from './localize/localize';
+import { ɵvariant } from './variant';
 
 /** @docs-private */
 export function SBB_SANITY_CHECKS_FACTORY(): SanityChecks {
