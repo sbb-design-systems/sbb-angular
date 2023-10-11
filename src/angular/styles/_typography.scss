@@ -745,7 +745,7 @@
       --sbb-color-red-alpha40: #{rgba(sbb.$sbbColorRoyal, 0.4)};
     }
 
-    &:where(.sbb-lean.sbb-dark) {
+    &:where(.sbb-lean.sbb-dark, .sbb-lean.sbb-preferred-color-scheme-dark):not(.sbb-light) {
       // Context colors
       --sbb-color-text: var(--sbb-color-white);
       --sbb-color-background: var(--sbb-color-black);
