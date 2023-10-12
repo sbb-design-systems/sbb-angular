@@ -1,5 +1,4 @@
 // tslint:disable:ordered-imports
-import 'zone.js/dist/zone';
 import { enableProdMode } from '@angular/core';
 import { platformBrowser } from '@angular/platform-browser';
 
@@ -8,5 +7,5 @@ import { SbbJourneyMapsCustomElementModule } from './journey-maps-web-component.
 enableProdMode();
 
 platformBrowser()
-  .bootstrapModule(SbbJourneyMapsCustomElementModule)
+  .bootstrapModule(SbbJourneyMapsCustomElementModule, { ngZone: 'noop' })
   .catch((err) => console.error(err));
