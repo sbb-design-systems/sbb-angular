@@ -644,7 +644,7 @@ export class SbbJourneyMaps implements OnInit, AfterViewInit, OnDestroy, OnChang
     }
 
     if (
-      changes.uiOptions?.currentValue.levelSwitch !== changes.uiOptions?.previousValue.levelSwitch
+      changes.uiOptions?.currentValue.levelSwitch !== changes.uiOptions?.previousValue?.levelSwitch
     ) {
       this._show2Dor3D();
     }

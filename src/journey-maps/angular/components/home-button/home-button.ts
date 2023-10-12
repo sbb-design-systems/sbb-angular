@@ -1,4 +1,11 @@
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  Component,
+  EventEmitter,
+  Input,
+  OnInit,
+  Output,
+} from '@angular/core';
 import { Map as MaplibreMap } from 'maplibre-gl';
 
 import { SbbLocaleService } from '../../services/locale-service';
@@ -7,6 +14,7 @@ import { SbbLocaleService } from '../../services/locale-service';
   selector: 'sbb-home-button',
   templateUrl: './home-button.html',
   styleUrls: ['./home-button.css'],
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class SbbHomeButton implements OnInit {
   @Input() map: MaplibreMap | null;
