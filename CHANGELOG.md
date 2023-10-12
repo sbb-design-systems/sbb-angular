@@ -2,6 +2,23 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [16.7.0](https://github.com/sbb-design-systems/sbb-angular/compare/16.6.1...16.7.0) (2023-10-12)
+
+
+### Features
+
+* **sbb-journey-maps:** remove zone.js for web components ([#2045](https://github.com/sbb-design-systems/sbb-angular/issues/2045)) ([98cd710](https://github.com/sbb-design-systems/sbb-angular/commit/98cd710cf102d522156d92ca43a81f104fea3663))
+
+
+### Bug Fixes
+
+* **journey-maps:** allow updating viewport dimensions multiple times ([#2039](https://github.com/sbb-design-systems/sbb-angular/issues/2039)) ([87321d2](https://github.com/sbb-design-systems/sbb-angular/commit/87321d2588a627d62209a58b83dfb879cd6089c9))
+
+
+### Documentation
+
+* **angular/toggle:** clarify that first option will be selected by default ([#2042](https://github.com/sbb-design-systems/sbb-angular/issues/2042)) ([9753822](https://github.com/sbb-design-systems/sbb-angular/commit/9753822aba6132000edc775e1d70726ef1b7184e)), closes [#2041](https://github.com/sbb-design-systems/sbb-angular/issues/2041)
+
 ### [16.6.1](https://github.com/sbb-design-systems/sbb-angular/compare/16.6.0...16.6.1) (2023-10-02)
 
 
