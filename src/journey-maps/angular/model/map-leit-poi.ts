@@ -5,7 +5,7 @@ import { Subject } from 'rxjs';
 import { SbbLeitPoi } from '../components/leit-poi/leit-poi';
 
 /**
- * MapLeitPoi groups the LeitPoi and the Popup container and helps to clenaup both instances on destroy.
+ * MapLeitPoi groups the LeitPoi and the Popup container and helps to clean up both instances on destroy.
  */
 export class SbbMapLeitPoi {
   private static readonly _hiddenClassName = 'leit-poi-popup-hidden';

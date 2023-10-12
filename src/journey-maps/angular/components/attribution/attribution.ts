@@ -1,4 +1,5 @@
 import {
+  ChangeDetectionStrategy,
   ChangeDetectorRef,
   Component,
   Input,
@@ -14,6 +15,7 @@ import { Map as MaplibreMap, MapDataEvent } from 'maplibre-gl';
   selector: 'sbb-attribution',
   templateUrl: './attribution.html',
   styleUrls: ['./attribution.css'],
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class SbbAttribution implements OnChanges, OnDestroy {
   @Input() map: MaplibreMap | null;
@@ -62,6 +64,7 @@ export class SbbAttribution implements OnChanges, OnDestroy {
 
   toggleOpen() {
     this.open = !this.open;
+    this._cd.detectChanges();
   }
 
   _setIsCompact(): void {
