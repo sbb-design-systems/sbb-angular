@@ -55,7 +55,7 @@ export class SbbMapLeitPoiService {
         (f) =>
           !!f.properties?.step &&
           f.properties?.routeStartLevel &&
-          (!f.properties?.legId || f.properties?.legId === legId),
+          (!legId || f.properties?.legId === legId),
       );
       const routeStartLevel = routeStartLevelFeature
         ? Number(routeStartLevelFeature.properties!.routeStartLevel)
