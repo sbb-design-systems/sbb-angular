@@ -34,7 +34,7 @@ export class SbbMapLeitPoiService {
   processData(
     map: MaplibreMap,
     featureCollection: FeatureCollection = SBB_EMPTY_FEATURE_COLLECTION,
-    routeStartLevel?: number,
+    legId?: string,
   ): void {
     this._removeMapLeitPois();
     if (!featureCollection || !featureCollection.features?.length) {
@@ -51,18 +51,19 @@ export class SbbMapLeitPoiService {
 
     if (this._leitPoiFeatures.length) {
       this._registerMapZoomEvent(map);
-      if (routeStartLevel == null) {
-        const routeStartLevelFeature = featureCollection.features.find(
-          (f) => !!f.properties?.step && f.properties?.routeStartLevel,
-        );
-        routeStartLevel = routeStartLevelFeature
-          ? Number(routeStartLevelFeature.properties!.routeStartLevel)
-          : SbbMapLeitPoiService._defaultLevel;
-      }
+      const routeStartLevelFeature = featureCollection.features.find(
+        (f) =>
+          !!f.properties?.step &&
+          f.properties?.routeStartLevel &&
+          (!f.properties?.legId || f.properties?.legId === legId),
+      );
+      const routeStartLevel = routeStartLevelFeature
+        ? Number(routeStartLevelFeature.properties!.routeStartLevel)
+        : SbbMapLeitPoiService._defaultLevel;
 
       const switchIt = () => {
         this.setCurrentLevel(map, routeStartLevel!);
-        this.levelSwitched.next(routeStartLevel!);
+        this.levelSwitched.next(routeStartLevel!); // this triggers the actual visible level switch in the map
       };
 
       if (map.loaded()) {
