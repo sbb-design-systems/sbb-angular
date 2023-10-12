@@ -199,7 +199,7 @@
   --sbb-ghost-button-label-color-disabled: var(--sbb-color-iron-alpha40);
 
   // Button Frameless
-  --sbb-frameless-button-color: var(--sbb-color-iron);
+  --sbb-frameless-button-label-color: var(--sbb-color-iron);
 
   // Checkbox & Radiobutton
   --sbb-selection-container-background-color-default: var(--sbb-color-background);
@@ -792,7 +792,7 @@
       --sbb-ghost-button-label-color-disabled: var(--sbb-color-white-alpha50);
 
       // Button Frameless
-      --sbb-frameless-button-color: var(--sbb-color-silver);
+      --sbb-frameless-button-label-color: var(--sbb-color-silver);
 
       // Checkbox & Radiobutton
       --sbb-selection-container-background-color-default: var(--sbb-color-background);
@@ -1904,7 +1904,7 @@ textarea {
 }
 
 .sbb-frameless-button {
-  color: var(--sbb-frameless-button-color);
+  color: var(--sbb-frameless-button-label-color);
 
   &:is(:disabled, .sbb-disabled) {
     display: none;
