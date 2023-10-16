@@ -2,6 +2,14 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [16.7.1](https://github.com/sbb-design-systems/sbb-angular/compare/16.7.0...16.7.1) (2023-10-16)
+
+
+### Bug Fixes
+
+* **angular/tabs:** nav bar not navigating on enter presses ([#2033](https://github.com/sbb-design-systems/sbb-angular/issues/2033)) ([47fa565](https://github.com/sbb-design-systems/sbb-angular/commit/47fa56527cf38942d38f94262addb048ce944af3))
+* **journey-maps:** automatically set the correct floor level for journey transfers ([#2047](https://github.com/sbb-design-systems/sbb-angular/issues/2047)) ([486639d](https://github.com/sbb-design-systems/sbb-angular/commit/486639d6c6249d1be5d6317bbbf73f62c2c80daf))
+
 ## [16.7.0](https://github.com/sbb-design-systems/sbb-angular/compare/16.6.1...16.7.0) (2023-10-12)
 
 
