@@ -34,7 +34,7 @@ export class SbbMapLeitPoiService {
   processData(
     map: MaplibreMap,
     featureCollection: FeatureCollection = SBB_EMPTY_FEATURE_COLLECTION,
-    legId?: string,
+    selectedLegId?: string,
   ): void {
     this._removeMapLeitPois();
     if (!featureCollection || !featureCollection.features?.length) {
@@ -51,11 +51,13 @@ export class SbbMapLeitPoiService {
 
     if (this._leitPoiFeatures.length) {
       this._registerMapZoomEvent(map);
+      const isJourney = featureCollection.features.some((f) => f.properties?.legId !== undefined);
       const routeStartLevelFeature = featureCollection.features.find(
         (f) =>
           !!f.properties?.step &&
           f.properties?.routeStartLevel &&
-          (!legId || f.properties?.legId === legId),
+          // a /journey feature with `routeStartLevel` should always have a defined `legId` -> checking for `legId !== undefined` is not necessary
+          (!isJourney || f.properties?.legId === selectedLegId),
       );
       const routeStartLevel = routeStartLevelFeature
         ? Number(routeStartLevelFeature.properties!.routeStartLevel)
