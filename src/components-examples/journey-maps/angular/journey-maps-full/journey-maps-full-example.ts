@@ -319,7 +319,6 @@ export class JourneyMapsFullExample implements OnInit, OnDestroy {
           }
           this.mapCenterChange.pipe(take(1)).subscribe(() => {
             // Wait until map is idle. So that the correct starting level will be displayed.
-            console.log('MapCenterChange event.');
             this.journeyMapsRoutingOption = {
               ...this.journeyMapsRoutingOption,
               journeyMetaInformation: { selectedLegId },
