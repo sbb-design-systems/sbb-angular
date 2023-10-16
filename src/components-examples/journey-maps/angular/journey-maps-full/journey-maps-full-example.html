@@ -21,7 +21,7 @@
     [poiOptions]="form.get('pointsOfInterestOptions')?.value"
     [(selectedMarkerId)]="selectedMarkerId"
     [selectedLevel]="this.form.get('level')?.value ?? 0"
-    (selectedLevelChange)="this.form.patchValue({level: $event})"
+    (selectedLevelChange)="this.changeSelectedLevel($event)"
     (mapCenterChange)="mapCenterChange.next($event)"
     (mapBoundsChange)="mapBoundingBoxChange.next($event)"
     (zoomLevelsChange)="zoomLevels=$event"
