@@ -5239,10 +5239,10 @@
   dependencies:
     "@types/node" "*"
 
-"@types/browser-sync@2.27.2":
-  version "2.27.2"
-  resolved "https://registry.yarnpkg.com/@types/browser-sync/-/browser-sync-2.27.2.tgz#1e4e771e7ec9faef6e0d95dedf27bf642c8d0a6b"
-  integrity sha512-V/8sLEbxK4yykVnuuGeBBpxrjGqKj3rsDtm6sln5+FHo+nzWfk8k0oH+Fbsss+9gWReKc2cbjeTxO0GezfaWFQ==
+"@types/browser-sync@2.27.3":
+  version "2.27.3"
+  resolved "https://registry.yarnpkg.com/@types/browser-sync/-/browser-sync-2.27.3.tgz#bfd0eb70f49d71b80048ee3929a3a85959c19f6a"
+  integrity sha512-AG4+p6Wfg99BtiGTBIWN4u6JHm0nEG74krPU06pWoCFnMhNcpLfurfg5zcPUe8tNqhxJ3ZppZ6D5vxq+CCqbGQ==
   dependencies:
     "@types/micromatch" "^2"
     "@types/node" "*"
