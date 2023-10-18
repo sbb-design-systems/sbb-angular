@@ -102,7 +102,7 @@
     "@schematics/angular": "16.2.6",
     "@types/browser-sync": "2.27.3",
     "@types/events": "3.0.2",
-    "@types/fs-extra": "11.0.2",
+    "@types/fs-extra": "11.0.3",
     "@types/geojson": "7946.0.12",
     "@types/glob": "8.1.0",
     "@types/grecaptcha": "2.0.36",
