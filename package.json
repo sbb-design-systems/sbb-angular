@@ -104,7 +104,7 @@
     "@types/browser-sync": "2.27.3",
     "@types/events": "3.0.2",
     "@types/fs-extra": "11.0.2",
-    "@types/geojson": "7946.0.11",
+    "@types/geojson": "7946.0.12",
     "@types/glob": "8.1.0",
     "@types/grecaptcha": "2.0.36",
     "@types/highlight.js": "10.1.0",
