@@ -5466,15 +5466,15 @@
   resolved "https://registry.yarnpkg.com/@types/jasmine/-/jasmine-4.3.6.tgz#d9855fa9f808138488784610f888046bb9a59aff"
   integrity sha512-3N0FpQTeiWjm+Oo1WUYWguUS7E6JLceiGTriFrG8k5PU7zRLJCzLcWURU3wjMbZGS//a2/LgjsnO3QxIlwxt9g==
 
-"@types/jasmine@5.1.0":
-  version "5.1.0"
-  resolved "https://registry.yarnpkg.com/@types/jasmine/-/jasmine-5.1.0.tgz#581b2f7393942a56acd3542fe168c803d7d588d6"
-  integrity sha512-XOV0KsqXNX2gUSqk05RWeolIMgaAQ7+l/ozOBoQ8NGwLg+E7J9vgagODtNgfim4jCzEUP0oJ3gnXeC+Zv+Xi1A==
+"@types/jasmine@5.1.1":
+  version "5.1.1"
+  resolved "https://registry.yarnpkg.com/@types/jasmine/-/jasmine-5.1.1.tgz#7d2a2a983e1e822858ea9e30d90e11a3fe408fc0"
+  integrity sha512-qL4GoZHHJl1JQ0vK31OtXMfkfGxYJnysmYz9kk0E8j5W96ThKykBF90uD3PcVmQUAzulbsaus2eFiBhCH5itfw==
 
-"@types/jasminewd2@2.0.11":
-  version "2.0.11"
-  resolved "https://registry.yarnpkg.com/@types/jasminewd2/-/jasminewd2-2.0.11.tgz#53239ff1d169fef041ba9c7a2c171bce5dcee4e5"
-  integrity sha512-J3ggNCbxnHPsd15lzNZtOdPovtErcIl2vD11VSRq2s+ktQr43ZfqO4ws6YDFNRvUoXWCxD5uXTWuwyXPyT5eqg==
+"@types/jasminewd2@2.0.12":
+  version "2.0.12"
+  resolved "https://registry.yarnpkg.com/@types/jasminewd2/-/jasminewd2-2.0.12.tgz#6482ae25eccfbb5c3b41e9a2759089b20d336d2a"
+  integrity sha512-C4rXKMnGqLqTw4mgfiT0fL91g5oFAUhreR8jeeYk4xYcgh1/CImqgn5pWcErnpJJS43XFUfHGit0sSPQ39G1Pg==
   dependencies:
     "@types/jasmine" "*"
 
