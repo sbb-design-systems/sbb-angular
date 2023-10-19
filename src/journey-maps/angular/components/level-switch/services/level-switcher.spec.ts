@@ -26,7 +26,7 @@ describe('LevelSwitchService', () => {
         {
           provide: SbbMapLeitPoiService,
           useValue: jasmine.createSpyObj('MapLeitPoiService', ['setCurrentLevel'], {
-            levelSwitched: new Subject<number>(),
+            levelSwitched: new Subject<number | undefined>(),
           }),
         },
         {
@@ -48,16 +48,16 @@ describe('LevelSwitchService', () => {
     ) as jasmine.SpyObj<SbbMapTransferService>;
   });
 
-  it('should create with default level == 0', () => {
-    let selectedLevel: number;
+  it('should create with default level == undefined', () => {
+    let selectedLevel: number | undefined;
     levelSwitchService.selectedLevel$.subscribe((levelUpdate) => (selectedLevel = levelUpdate));
 
-    expect(levelSwitchService.selectedLevel).toEqual(0);
-    expect(selectedLevel!).toEqual(0);
+    expect(levelSwitchService.selectedLevel).toEqual(undefined);
+    expect(selectedLevel).toEqual(undefined);
   });
 
   it('should set new level on switchLevel', () => {
-    let selectedLevel: number;
+    let selectedLevel: number | undefined;
     levelSwitchService.selectedLevel$.subscribe((levelUpdate) => (selectedLevel = levelUpdate));
 
     levelSwitchService.setAvailableLevels([0, -4]);
@@ -70,7 +70,7 @@ describe('LevelSwitchService', () => {
   });
 
   it('should not allow setting new level to unavailable level', () => {
-    let selectedLevel: number;
+    let selectedLevel: number | undefined;
     levelSwitchService.selectedLevel$.subscribe((levelUpdate) => (selectedLevel = levelUpdate));
 
     levelSwitchService.setAvailableLevels([0, -4]);
@@ -78,8 +78,8 @@ describe('LevelSwitchService', () => {
     const newLevel = -3;
     levelSwitchService.switchLevel(newLevel);
 
-    expect(levelSwitchService.selectedLevel).toEqual(0);
-    expect(selectedLevel!).toEqual(0);
+    expect(levelSwitchService.selectedLevel).toEqual(undefined);
+    expect(selectedLevel).toEqual(undefined);
   });
 
   it('should call injected services with new level value on switchLevel', () => {
@@ -145,7 +145,7 @@ describe('LevelSwitchService', () => {
 
     // check visibility and selected level
     expect(levelSwitchService.isVisible()).toEqual(false);
-    expect(levelSwitchService.selectedLevel).toEqual(0);
+    expect(levelSwitchService.selectedLevel).toEqual(undefined);
   });
 
   it('should show visibleLevels', () => {
