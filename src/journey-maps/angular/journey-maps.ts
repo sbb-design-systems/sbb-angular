@@ -999,14 +999,16 @@ export class SbbJourneyMaps implements OnInit, AfterViewInit, OnDestroy, OnChang
   }
 
   /**
-   * If the level-switch feature is enabled by the client and a levle is selected, then show only 3d layers (-lvl)
+   * If the level-switch feature is enabled by the client and a level is selected, then show only 3d layers (-lvl)
    * If the level-switch feature is disabled by the client or the selectedLevel is undefined, then show only 2d layers (-2d)
    */
   private _show2Dor3D() {
-    const show3D =
-      this._levelSwitchService.selectedLevel !== undefined && this.uiOptions.levelSwitch;
-    this._setVisibility(this._map, '-2d', show3D ? 'none' : 'visible');
-    this._setVisibility(this._map, '-lvl', show3D ? 'visible' : 'none');
+    if (this._isStyleLoaded) {
+      const show3D =
+        this._levelSwitchService.selectedLevel !== undefined && this.uiOptions.levelSwitch;
+      this._setVisibility(this._map, '-2d', show3D ? 'none' : 'visible');
+      this._setVisibility(this._map, '-lvl', show3D ? 'visible' : 'none');
+    }
   }
 
   private _setVisibility(map: MaplibreMap, layerIdSuffix: string, visibility: 'visible' | 'none') {
