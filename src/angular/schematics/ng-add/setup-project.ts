@@ -2,7 +2,6 @@ import { logging } from '@angular-devkit/core';
 import { ProjectDefinition } from '@angular-devkit/core/src/workspace';
 import {
   chain,
-  noop,
   Rule,
   SchematicContext,
   SchematicsException,
@@ -10,10 +9,11 @@ import {
 } from '@angular-devkit/schematics';
 import {
   addModuleImportToRootModule,
-  defaultTargetBuilders,
+  getProjectBuildTargets,
   getProjectFromWorkspace,
   getProjectMainFile,
   getProjectTargetOptions,
+  getProjectTestTargets,
   hasNgModuleImport,
 } from '@angular/cdk/schematics';
 import {
@@ -42,7 +42,7 @@ export const NOOP_ANIMATIONS_MODULE_NAME = 'NoopAnimationsModule';
 export default function (options: Schema): Rule {
   return async (host: Tree, context: SchematicContext) => {
     const workspace = await getWorkspace(host);
-    const project = getProjectFromWorkspace(workspace, getProjectName(options, workspace));
+    const project = getProjectFromWorkspace(workspace, options.project);
 
     if (project.extensions.projectType === ProjectType.Application) {
       return chain([addAnimationsModule(options), addAndConfigureTypography(options)]);
@@ -53,7 +53,7 @@ export default function (options: Schema): Rule {
         'If you intended to run the schematic on a different project, pass the `--project` ' +
         'option.',
     );
-    return noop();
+    return;
   };
 }
 
@@ -65,13 +65,14 @@ export default function (options: Schema): Rule {
 function addAnimationsModule(options: Schema) {
   return async (host: Tree, context: SchematicContext) => {
     const workspace = await getWorkspace(host);
-    const project = getProjectFromWorkspace(workspace, getProjectName(options, workspace));
+    const project = getProjectFromWorkspace(workspace, options.project);
+    const mainFilePath = getProjectMainFile(project);
 
     try {
-      addAnimationsModuleToNonStandaloneApp(host, project, context, options);
+      addAnimationsModuleToNonStandaloneApp(host, project, mainFilePath, context, options);
     } catch (e) {
       if ((e as { message?: string }).message?.includes('Bootstrap call not found')) {
-        addAnimationsModuleToStandaloneApp(host, project, context, options);
+        addAnimationsModuleToStandaloneApp(host, project, mainFilePath, context, options);
       } else {
         throw e;
       }
@@ -83,17 +84,16 @@ function addAnimationsModule(options: Schema) {
 function addAnimationsModuleToStandaloneApp(
   host: Tree,
   project: ProjectDefinition,
+  mainFilePath: string,
   context: SchematicContext,
   options: Schema,
 ) {
-  const mainFile = getProjectMainFile(project);
-
   if (options.animations === 'enabled') {
     // In case the project explicitly uses the NoopAnimationsModule, we should print a warning
     // message that makes the user aware of the fact that we won't automatically set up
     // animations. If we would add the BrowserAnimationsModule while the NoopAnimationsModule
     // is already configured, we would cause unexpected behavior and runtime exceptions.
-    if (importsProvidersFrom(host, mainFile, NOOP_ANIMATIONS_MODULE_NAME)) {
+    if (importsProvidersFrom(host, mainFilePath, NOOP_ANIMATIONS_MODULE_NAME)) {
       context.logger.error(
         `Could not set up "${BROWSER_ANIMATIONS_MODULE_NAME}" ` +
           `because "${NOOP_ANIMATIONS_MODULE_NAME}" is already imported.`,
@@ -102,20 +102,20 @@ function addAnimationsModuleToStandaloneApp(
     } else {
       addModuleImportToStandaloneBootstrap(
         host,
-        mainFile,
+        mainFilePath,
         BROWSER_ANIMATIONS_MODULE_NAME,
         '@angular/platform-browser/animations',
       );
     }
   } else if (
     options.animations === 'disabled' &&
-    !importsProvidersFrom(host, mainFile, BROWSER_ANIMATIONS_MODULE_NAME)
+    !importsProvidersFrom(host, mainFilePath, BROWSER_ANIMATIONS_MODULE_NAME)
   ) {
     // Do not add the NoopAnimationsModule module if the project already explicitly uses
     // the BrowserAnimationsModule.
     addModuleImportToStandaloneBootstrap(
       host,
-      mainFile,
+      mainFilePath,
       NOOP_ANIMATIONS_MODULE_NAME,
       '@angular/platform-browser/animations',
     );
@@ -129,10 +129,11 @@ function addAnimationsModuleToStandaloneApp(
 function addAnimationsModuleToNonStandaloneApp(
   host: Tree,
   project: ProjectDefinition,
+  mainFile: string,
   context: SchematicContext,
   options: Schema,
 ) {
-  const appModulePath = getAppModulePath(host, getProjectMainFile(project));
+  const appModulePath = getAppModulePath(host, mainFile);
 
   if (options.animations === 'enabled') {
     // In case the project explicitly uses the NoopAnimationsModule, we should print a warning
@@ -296,9 +297,9 @@ function validateDefaultTargetBuilder(
   targetName: 'build' | 'test',
   logger: logging.LoggerApi,
 ) {
-  const defaultBuilder = defaultTargetBuilders[targetName];
-  const targetConfig = project.targets && project.targets.get(targetName);
-  const isDefaultBuilder = targetConfig && targetConfig['builder'] === defaultBuilder;
+  const targets =
+    targetName === 'test' ? getProjectTestTargets(project) : getProjectBuildTargets(project);
+  const isDefaultBuilder = targets.length > 0;
 
   // Because the build setup for the Angular CLI can be customized by developers, we can't know
   // where to put the theme file in the workspace configuration if custom builders are being

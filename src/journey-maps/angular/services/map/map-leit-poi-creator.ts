@@ -38,6 +38,7 @@ export class SbbMapLeitPoiCreator {
     this._appRef.attachView(componentRef.hostView);
     const component = componentRef.instance;
     component.feature = feature;
+    componentRef.changeDetectorRef.detectChanges();
 
     const popup = new Popup(SbbMapLeitPoiCreator._popupOptions)
       .setDOMContent(this._getNativeElement(componentRef))

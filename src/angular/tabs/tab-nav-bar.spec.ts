@@ -1,5 +1,5 @@
 import { Direction, Directionality } from '@angular/cdk/bidi';
-import { SPACE } from '@angular/cdk/keycodes';
+import { ENTER, SPACE } from '@angular/cdk/keycodes';
 import { Component, QueryList, ViewChild, ViewChildren } from '@angular/core';
 import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
@@ -319,6 +319,18 @@ describe('SbbTabNavBar', () => {
       expect(tabLinks[1].classList.contains('sbb-tab-label-active')).toBe(false);
 
       dispatchKeyboardEvent(tabLinks[1], 'keydown', SPACE);
+      fixture.detectChanges();
+
+      expect(tabLinks[1].classList.contains('sbb-tab-label-active')).toBe(true);
+    });
+
+    it('should activate a link when enter is pressed', () => {
+      fixture.detectChanges();
+
+      const tabLinks = fixture.nativeElement.querySelectorAll('.sbb-tab-link');
+      expect(tabLinks[1].classList.contains('sbb-tab-label-active')).toBe(false);
+
+      dispatchKeyboardEvent(tabLinks[1], 'keydown', ENTER);
       fixture.detectChanges();
 
       expect(tabLinks[1].classList.contains('sbb-tab-label-active')).toBe(true);

@@ -21,7 +21,7 @@
     [poiOptions]="form.get('pointsOfInterestOptions')?.value"
     [(selectedMarkerId)]="selectedMarkerId"
     [selectedLevel]="this.form.get('level')?.value ?? undefined"
-    (selectedLevelChange)="this.form.patchValue({level: $event})"
+    (selectedLevelChange)="this.changeSelectedLevel($event)"
     (mapCenterChange)="mapCenterChange.next($event)"
     (mapBoundsChange)="mapBoundingBoxChange.next($event)"
     (zoomLevelsChange)="zoomLevels=$event"
@@ -78,6 +78,7 @@
             <sbb-checkbox formControlName="showSmallButtons">Small map controls</sbb-checkbox>
             <sbb-checkbox formControlName="basemapSwitch">Basemap Switch</sbb-checkbox>
             <sbb-checkbox formControlName="levelSwitch">Level Switcher</sbb-checkbox>
+            <sbb-checkbox formControlName="homeButton">Home Button</sbb-checkbox>
             <sbb-checkbox formControlName="geoLocation">Show GeoLocation</sbb-checkbox>
           </ng-container>
           <sbb-checkbox formControlName="limitMaxBounds"> Limit max bounds to CH</sbb-checkbox>

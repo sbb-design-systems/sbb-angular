@@ -417,6 +417,7 @@ export class SbbJourneyMaps implements OnInit, AfterViewInit, OnDestroy, OnChang
   /** @docs-private */
   onTouchEnd(event: TouchEvent): void {
     this.touchOverlayStyleClass = '';
+    this._cd.detectChanges();
     this.touchEventCollector.next(event);
   }
 
@@ -646,7 +647,7 @@ export class SbbJourneyMaps implements OnInit, AfterViewInit, OnDestroy, OnChang
     }
 
     if (
-      changes.uiOptions?.currentValue.levelSwitch !== changes.uiOptions?.previousValue.levelSwitch
+      changes.uiOptions?.currentValue.levelSwitch !== changes.uiOptions?.previousValue?.levelSwitch
     ) {
       this._show2Dor3D();
     }
@@ -973,7 +974,11 @@ export class SbbJourneyMaps implements OnInit, AfterViewInit, OnDestroy, OnChang
       this.journeyMapsRoutingOption!.journey,
       this.journeyMapsRoutingOption!.journeyMetaInformation?.selectedLegId,
     );
-    this._mapLeitPoiService.processData(this._map, this.journeyMapsRoutingOption!.journey, 0);
+    this._mapLeitPoiService.processData(
+      this._map,
+      this.journeyMapsRoutingOption!.journey,
+      this.journeyMapsRoutingOption!.journeyMetaInformation?.selectedLegId,
+    );
   }
 
   private _updateTransfer() {
