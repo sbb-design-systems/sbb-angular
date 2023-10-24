@@ -20,7 +20,7 @@
     [journeyMapsZones]="form.get('zoneGeoJson')?.value"
     [poiOptions]="form.get('pointsOfInterestOptions')?.value"
     [(selectedMarkerId)]="selectedMarkerId"
-    [selectedLevel]="this.form.get('level')?.value ?? undefined"
+    [selectedLevel]="this.form.get('level')?.value"
     (selectedLevelChange)="this.changeSelectedLevel($event)"
     (mapCenterChange)="mapCenterChange.next($event)"
     (mapBoundsChange)="mapBoundingBoxChange.next($event)"
