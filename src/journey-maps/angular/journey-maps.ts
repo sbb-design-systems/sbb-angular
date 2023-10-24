@@ -415,6 +415,7 @@ export class SbbJourneyMaps implements OnInit, AfterViewInit, OnDestroy, OnChang
   /** @docs-private */
   onTouchEnd(event: TouchEvent): void {
     this.touchOverlayStyleClass = '';
+    this._cd.detectChanges();
     this.touchEventCollector.next(event);
   }
 
