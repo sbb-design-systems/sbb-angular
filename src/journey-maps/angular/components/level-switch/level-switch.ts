@@ -44,7 +44,7 @@ export class SbbLevelSwitch implements OnDestroy {
       .subscribe(() => this._ref.detectChanges());
   }
 
-  get selectedLevel(): number {
+  get selectedLevel(): number | undefined {
     return this._levelSwitchService.selectedLevel;
   }
 
@@ -52,13 +52,16 @@ export class SbbLevelSwitch implements OnDestroy {
     return this._levelSwitchService.visibleLevels;
   }
 
-  switchLevel(level: number): void {
-    this._levelSwitchService.switchLevel(level);
+  switchLevel(level: number | undefined): void {
+    this._levelSwitchService.switchLevel(this.selectedLevel === level ? undefined : level);
   }
 
-  getLevelLabel(level: number): string {
+  getLevelLabel(level: number, selectedLevel: number | undefined): string {
     const txt1 = this._i18n.getText('a4a.visualFunction');
-    const txt2 = this._i18n.getTextWithParams('a4a.selectFloor', level);
+    const txt2 =
+      level === selectedLevel
+        ? this._i18n.getTextWithParams('a4a.unselectFloor', level)
+        : this._i18n.getTextWithParams('a4a.selectFloor', level);
     return `${txt1} ${txt2}`;
   }
 

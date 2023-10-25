@@ -166,7 +166,7 @@ export class JourneyMapsFullExample implements OnInit, OnDestroy {
     },
   ];
 
-  public changeSelectedLevel(level: number) {
+  public changeSelectedLevel(level: number | undefined) {
     this.form.patchValue({ level });
   }
 
