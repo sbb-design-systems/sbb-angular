@@ -17,7 +17,7 @@ export class SbbMapLayerFilter {
   ["==", "floor", 0]
   ["!=", "floor", 0] (It's a compound predicate because of NOT)
    */
-  setLevelFilter(level: number): void {
+  setLevelFilter(level: number | undefined): void {
     this._knownLvlLayerIds.forEach((layerId) => {
       try {
         const oldFilter = this._map.getFilter(layerId) ?? undefined;
@@ -28,12 +28,12 @@ export class SbbMapLayerFilter {
       }
     });
 
-    this._setLayerVisibility('rokas_background_mask', level < 0);
+    this._setLayerVisibility('rokas_background_mask', level !== undefined && level < 0);
   }
 
   private _calculateLayerFilter(
     oldFilter: FilterSpecification | undefined,
-    level: number,
+    level: number | undefined,
   ): FilterSpecification | null {
     if (!Array.isArray(oldFilter) || oldFilter.length < 1) {
       return null;
