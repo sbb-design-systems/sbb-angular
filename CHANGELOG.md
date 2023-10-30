@@ -2,6 +2,19 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [16.8.0](https://github.com/sbb-design-systems/sbb-angular/compare/16.7.1...16.8.0) (2023-10-30)
+
+
+### Features
+
+* **journey-maps:** 2d toggle ([#2051](https://github.com/sbb-design-systems/sbb-angular/issues/2051)) ([6c621b1](https://github.com/sbb-design-systems/sbb-angular/commit/6c621b113c645c835ba340b7ce20db4eb4eb4498))
+
+
+### Bug Fixes
+
+* **deps:** update angular ([396ba6b](https://github.com/sbb-design-systems/sbb-angular/commit/396ba6b841db4e2c30b5abc59fccfdd7e0551868))
+* **journey-maps:** let finger tip on mobile be dismissible ([#2056](https://github.com/sbb-design-systems/sbb-angular/issues/2056)) ([e00e21f](https://github.com/sbb-design-systems/sbb-angular/commit/e00e21f45b0c988874d697c3ef7a81a29568dfa9))
+
 ### [16.7.1](https://github.com/sbb-design-systems/sbb-angular/compare/16.7.0...16.7.1) (2023-10-16)
 
 
