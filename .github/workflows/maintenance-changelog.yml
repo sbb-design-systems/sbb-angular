@@ -48,7 +48,7 @@ jobs:
     steps:
       - run: echo ${{ needs.cherry_pick.outputs.failed_release_version }}
       - uses: actions/checkout@b4ffde65f46336ab88eb53be808477a3936bae11 # v4
-      - uses: actions/setup-node@v3
+      - uses: actions/setup-node@v4
         if: needs.cherry_pick.outputs.failed_release_version
         with:
           node-version-file: '.nvmrc'
