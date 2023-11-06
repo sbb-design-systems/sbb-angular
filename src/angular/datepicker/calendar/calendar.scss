@@ -68,7 +68,7 @@
   padding-right: var(--sbb-datepicker-calendar-controls-padding);
   height: var(--sbb-datepicker-calendar-header-height);
   cursor: pointer;
-  color: var(--sbb-datepicker-calendar-header-color);
+  color: var(--sbb-datepicker-calendar-header-controls-color);
 
   &:is(:hover, :focus, :active) {
     color: var(--sbb-color-call-to-action-hover);
@@ -257,12 +257,8 @@
 
 // Use .sbb-calendar-body-cell selector to be specific enough
 .sbb-calendar-body-cell.sbb-calendar-body-disabled {
-  color: var(--sbb-color-cement);
+  color: var(--sbb-datepicker-calendar-body-cell-disabled-color);
   cursor: default;
-
-  :where(html.sbb-lean) & {
-    color: var(--sbb-color-storm);
-  }
 
   &::after {
     content: '';
@@ -270,13 +266,12 @@
     height: calc(#{sbb.pxToRem(1)} * var(--sbb-scaling-factor));
     top: calc(#{sbb.pxToRem(25)} * var(--sbb-scaling-factor));
     left: calc(50% - var(--sbb-datepicker-calendar-body-cell-disabled-offset));
-    background-color: var(--sbb-color-cement);
+    background-color: var(--sbb-datepicker-calendar-body-cell-disabled-color);
     display: block;
     position: absolute;
     transform: rotate(-45deg);
 
     :where(html.sbb-lean) & {
-      background-color: var(--sbb-color-storm);
       width: sbb.pxToRem(24);
       top: sbb.pxToRem(18);
     }
@@ -285,7 +280,7 @@
 
 .sbb-calendar-body-today {
   font-family: var(--sbb-font-bold);
-  color: var(--sbb-color-black);
+  color: var(--sbb-color-text);
 }
 
 .sbb-calendar-body-week {

@@ -251,6 +251,7 @@
   --sbb-datepicker-content-offset: calc(#{sbb.pxToRem(17)} * var(--sbb-scaling-factor));
   --sbb-datepicker-calendar-header-height: calc(#{sbb.pxToRem(68)} * var(--sbb-scaling-factor));
   --sbb-datepicker-calendar-header-color: var(--sbb-color-metal);
+  --sbb-datepicker-calendar-header-controls-color: var(--sbb-color-iron);
   --sbb-datepicker-calendar-line-color: var(--sbb-color-platinum);
   --sbb-datepicker-calendar-table-range-bg-color: var(--sbb-color-milk);
   --sbb-datepicker-calendar-table-content-padding-width: #{sbb.pxToRem(11)};
@@ -262,6 +263,7 @@
   --sbb-datepicker-calendar-height: calc(#{sbb.pxToRem(428)} * var(--sbb-scaling-factor));
   --sbb-datepicker-calendar-controls-padding: #{sbb.pxToRem(6)};
   --sbb-datepicker-calendar-body-cell-padding: calc(#{sbb.pxToRem(24)} * var(--sbb-scaling-factor));
+  --sbb-datepicker-calendar-body-cell-disabled-color: var(--sbb-color-cement);
   --sbb-datepicker-calendar-body-cell-disabled-offset: #{sbb.pxToRem(12)};
   --sbb-datepicker-calendar-body-cell-size: calc(#{sbb.pxToRem(40)} * var(--sbb-scaling-factor));
 
@@ -510,6 +512,7 @@
       --sbb-datepicker-calendar-controls-padding: calc(
         #{sbb.pxToRem(8)} * var(--sbb-scaling-factor)
       );
+      --sbb-datepicker-calendar-body-cell-disabled-color: var(--sbb-color-storm);
       --sbb-datepicker-calendar-body-cell-disabled-offset: calc(
         #{sbb.pxToRem(17)} * var(--sbb-scaling-factor)
       );
@@ -637,6 +640,7 @@
     --sbb-datepicker-content-offset: #{sbb.pxToRem(8)};
     --sbb-datepicker-calendar-header-height: #{sbb.pxToRem(36)};
     --sbb-datepicker-calendar-header-color: var(--sbb-color-iron);
+    --sbb-datepicker-calendar-header-controls-color: var(--sbb-color-text);
     --sbb-datepicker-calendar-line-color: var(--sbb-color-cloud);
     --sbb-datepicker-calendar-table-content-padding-width: #{sbb.pxToRem(8)};
     --sbb-datepicker-calendar-width: #{sbb.pxToRem(303)};
@@ -819,6 +823,10 @@
       --sbb-chips-background-color-disabled: var(--sbb-color-cloud);
       --sbb-chips-opacity: 0.9;
 
+      // Datepicker
+      --sbb-datepicker-calendar-header-color: var(--sbb-color-smoke);
+      --sbb-datepicker-calendar-line-color: var(--sbb-color-smoke);
+
       // Dialog
       --sbb-dialog-overlay-backgroud-color: var(--sbb-color-black-alpha70);
       --sbb-dialog-container-border-color: var(--sbb-color-weak-accent);
@@ -838,6 +846,7 @@
       --sbb-form-input-border-color-disabled: var(--sbb-color-smoke);
       --sbb-form-input-background-color-disabled: var(--sbb-color-iron);
       --sbb-form-label-color: var(--sbb-color-smoke);
+      --sbb-form-background-color-readonly: var(--sbb-color-iron);
 
       // Header
       --sbb-header-lean-subtitle-color: var(--sbb-color-graphite);
