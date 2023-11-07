@@ -928,6 +928,17 @@
       // Select
       --sbb-select-arrow-icon-color: var(--sbb-color-white);
 
+      // Shadow
+      --sbb-box-shadow-color: rgba(255, 255, 255, 0.15);
+      --sbb-box-shadow-border-color: var(--sbb-color-charcoal);
+      --sbb-box-shadow-below: 0 var(--sbb-box-shadow-width) 0 var(--sbb-box-shadow-color);
+      --sbb-box-shadow-horizontal-border-top: 0
+        calc(var(--sbb-border-width) + calc(#{sbb.pxToRem(1)} * var(--sbb-scaling-factor))) 0
+        calc(var(--sbb-border-width) * -1) var(--sbb-box-shadow-border-color);
+      --sbb-box-shadow-horizontal-border-bottom: 0
+        calc(var(--sbb-border-width) * -1 - calc(#{sbb.pxToRem(1)} * var(--sbb-scaling-factor))) 0
+        calc(var(--sbb-border-width) * -1) var(--sbb-box-shadow-border-color);
+
       // Sidebar
       --sbb-sidebar-background-color: var(--sbb-color-midnight);
       --sbb-icon-sidebar-background-color: var(--sbb-color-black);
