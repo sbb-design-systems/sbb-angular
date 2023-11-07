@@ -214,12 +214,12 @@
   --sbb-selection-label-color-disabled: var(--sbb-color-granite);
 
   // Checkbox Panel & Radio Button Panel
-  --sbb-selection-panel-item-background-color: var(--sbb-color-milk);
-  --sbb-selection-panel-item-color: var(--sbb-color-granite);
-  --sbb-selection-panel-border-color-checked: var(--sbb-color-black);
+  --sbb-selection-panel-background-color: var(--sbb-color-milk);
+  --sbb-selection-panel-color: var(--sbb-color-granite);
+  --sbb-selection-panel-border-color: transparent;
+  --sbb-selection-panel-border-color-active: var(--sbb-color-black);
   --sbb-selection-panel-border-color-disabled: var(--sbb-color-aluminum);
   --sbb-selection-panel-subtitle-color: var(--sbb-color-granite);
-  --sbb-selection-panel-warning-color: var(--sbb-color-granite);
 
   // Chips
   --sbb-chips-list-height: var(--sbb-form-input-min-height);
@@ -810,12 +810,12 @@
       --sbb-selection-label-color-disabled: var(--sbb-color-smoke);
 
       // Checkbox Panel & Radio Button Panel
-      --sbb-selection-panel-item-background-color: var(--sbb-color-iron);
-      --sbb-selection-panel-item-color: var(--sbb-color-graphite);
-      --sbb-selection-panel-border-color-checked: var(--sbb-color-white);
+      --sbb-selection-panel-background-color: var(--sbb-color-charcoal);
+      --sbb-selection-panel-color: var(--sbb-color-graphite);
+      --sbb-selection-panel-border-color: var(--sbb-color-iron);
+      --sbb-selection-panel-border-color-active: var(--sbb-color-white);
       --sbb-selection-panel-border-color-disabled: var(--sbb-color-metal);
-      --sbb-selection-panel-subtitle-color: var(--sbb-color-graphite);
-      --sbb-selection-panel-warning-color: var(--sbb-color-graphite);
+      --sbb-selection-panel-subtitle-color: var(--sbb-color-smoke);
 
       // Chips
       --sbb-chips-background-color-active: var(--sbb-color-smoke);
@@ -2227,19 +2227,19 @@ textarea {
 
 .sbb-selection-panel-item {
   display: inline-block;
-  background-color: var(--sbb-selection-panel-item-background-color);
-  border: var(--sbb-border-width-thin) solid transparent;
+  background-color: var(--sbb-selection-panel-background-color);
+  border: var(--sbb-border-width-thin) solid var(--sbb-selection-panel-border-color);
   border-radius: var(--sbb-border-radius);
   font-size: var(--sbb-font-size);
   line-height: var(--sbb-line-height);
-  color: var(--sbb-selection-panel-item-color);
+  color: var(--sbb-selection-panel-color);
   width: 100%;
   transition: border-color 0.15s ease-in-out;
   position: relative;
 
   &.sbb-selection-checked {
     background-color: var(--sbb-color-background);
-    border-color: var(--sbb-selection-panel-border-color-checked);
+    border-color: var(--sbb-selection-panel-border-color-active);
     color: var(--sbb-color-text);
   }
 
@@ -2304,7 +2304,7 @@ textarea {
 .sbb-selection-panel-warning {
   flex: 1 100%;
   order: 3;
-  color: var(--sbb-selection-panel-warning-color);
+  color: var(--sbb-selection-panel-subtitle-color);
 
   @include sbb.mq($from: tablet) {
     flex-basis: 0;
