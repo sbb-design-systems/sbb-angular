@@ -2,6 +2,76 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [16.8.0](https://github.com/sbb-design-systems/sbb-angular/compare/16.7.1...16.8.0) (2023-10-30)
+
+
+### Features
+
+* **journey-maps:** 2d toggle ([#2051](https://github.com/sbb-design-systems/sbb-angular/issues/2051)) ([6c621b1](https://github.com/sbb-design-systems/sbb-angular/commit/6c621b113c645c835ba340b7ce20db4eb4eb4498))
+
+
+### Bug Fixes
+
+* **deps:** update angular ([396ba6b](https://github.com/sbb-design-systems/sbb-angular/commit/396ba6b841db4e2c30b5abc59fccfdd7e0551868))
+* **journey-maps:** let finger tip on mobile be dismissible ([#2056](https://github.com/sbb-design-systems/sbb-angular/issues/2056)) ([e00e21f](https://github.com/sbb-design-systems/sbb-angular/commit/e00e21f45b0c988874d697c3ef7a81a29568dfa9))
+
+### [16.7.1](https://github.com/sbb-design-systems/sbb-angular/compare/16.7.0...16.7.1) (2023-10-16)
+
+
+### Bug Fixes
+
+* **angular/tabs:** nav bar not navigating on enter presses ([#2033](https://github.com/sbb-design-systems/sbb-angular/issues/2033)) ([47fa565](https://github.com/sbb-design-systems/sbb-angular/commit/47fa56527cf38942d38f94262addb048ce944af3))
+* **journey-maps:** automatically set the correct floor level for journey transfers ([#2047](https://github.com/sbb-design-systems/sbb-angular/issues/2047)) ([486639d](https://github.com/sbb-design-systems/sbb-angular/commit/486639d6c6249d1be5d6317bbbf73f62c2c80daf))
+
+## [16.7.0](https://github.com/sbb-design-systems/sbb-angular/compare/16.6.1...16.7.0) (2023-10-12)
+
+
+### Features
+
+* **sbb-journey-maps:** remove zone.js for web components ([#2045](https://github.com/sbb-design-systems/sbb-angular/issues/2045)) ([98cd710](https://github.com/sbb-design-systems/sbb-angular/commit/98cd710cf102d522156d92ca43a81f104fea3663))
+
+
+### Bug Fixes
+
+* **journey-maps:** allow updating viewport dimensions multiple times ([#2039](https://github.com/sbb-design-systems/sbb-angular/issues/2039)) ([87321d2](https://github.com/sbb-design-systems/sbb-angular/commit/87321d2588a627d62209a58b83dfb879cd6089c9))
+
+
+### Documentation
+
+* **angular/toggle:** clarify that first option will be selected by default ([#2042](https://github.com/sbb-design-systems/sbb-angular/issues/2042)) ([9753822](https://github.com/sbb-design-systems/sbb-angular/commit/9753822aba6132000edc775e1d70726ef1b7184e)), closes [#2041](https://github.com/sbb-design-systems/sbb-angular/issues/2041)
+
+### [16.6.1](https://github.com/sbb-design-systems/sbb-angular/compare/16.6.0...16.6.1) (2023-10-02)
+
+
+### Bug Fixes
+
+* **angular/table:** resolve local compilation issues ([#1972](https://github.com/sbb-design-systems/sbb-angular/issues/1972)) ([ff76206](https://github.com/sbb-design-systems/sbb-angular/commit/ff762062dafa97398384124a67c880713ff06cac))
+* **journey-maps:** hide geolocate button by default ([#2019](https://github.com/sbb-design-systems/sbb-angular/issues/2019)) ([2b251c1](https://github.com/sbb-design-systems/sbb-angular/commit/2b251c18ba91d5a57cfe374f94ccb30917eb531f))
+
+## [16.6.0](https://github.com/sbb-design-systems/sbb-angular/compare/16.5.0...16.6.0) (2023-09-25)
+
+
+### Features
+
+* **journey-maps:** show geolocation with custom control ([#2011](https://github.com/sbb-design-systems/sbb-angular/issues/2011)) ([c5745c7](https://github.com/sbb-design-systems/sbb-angular/commit/c5745c7ac489bc61b6421a7d77664699d5e77026))
+
+
+### Bug Fixes
+
+* **angular/autocomplete:**  requireSelection incorrectly resetting value when there are no options ([#2010](https://github.com/sbb-design-systems/sbb-angular/issues/2010)) ([ad87bd7](https://github.com/sbb-design-systems/sbb-angular/commit/ad87bd73f018b7929737c3b6a3b71a5363162ae9))
+* **angular/dialog:** update aria-labelledby if title is swapped ([#1973](https://github.com/sbb-design-systems/sbb-angular/issues/1973)) ([91069e6](https://github.com/sbb-design-systems/sbb-angular/commit/91069e617727789b18070a3a65ed2d0f02a335bd))
+* **angular/tabs:**  add aria-hidden to inactive tabs ([#2009](https://github.com/sbb-design-systems/sbb-angular/issues/2009)) ([2fba36f](https://github.com/sbb-design-systems/sbb-angular/commit/2fba36f5a66d814fc1f7095c23a06f3327f36a71))
+* **deps:** update angular to v16.2.1 ([#1971](https://github.com/sbb-design-systems/sbb-angular/issues/1971)) ([e36f343](https://github.com/sbb-design-systems/sbb-angular/commit/e36f3437cec8ca2121da228bcfccc4546827bc98))
+* **deps:** update angular to v16.2.2 ([9cf27f0](https://github.com/sbb-design-systems/sbb-angular/commit/9cf27f054f993474f06b64be8ff9e550b518f383))
+* **deps:** update angular to v16.2.4 ([f1c3b4c](https://github.com/sbb-design-systems/sbb-angular/commit/f1c3b4cb23e038ac6fbc26537c292ac8692d328c))
+* **deps:** update dependency @angular/cdk to v16.2.3 ([645d108](https://github.com/sbb-design-systems/sbb-angular/commit/645d1082b27eecc19e74047792b5c991d0135c55))
+* **deps:** update dependency tslib to v2.6.2 ([290d117](https://github.com/sbb-design-systems/sbb-angular/commit/290d11769fbe17f2d5438563fea48a700aac492e))
+
+
+### Documentation
+
+* **journey-maps:** fix api docs ([#2008](https://github.com/sbb-design-systems/sbb-angular/issues/2008)) ([2e9cf56](https://github.com/sbb-design-systems/sbb-angular/commit/2e9cf56f7921d91553d483d2be7618745668e241))
+
 ## [16.5.0](https://github.com/sbb-design-systems/sbb-angular/compare/16.4.0...16.5.0) (2023-08-10)
 
 

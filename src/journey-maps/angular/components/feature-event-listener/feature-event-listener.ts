@@ -284,6 +284,7 @@ export class SbbFeatureEventListener implements OnChanges, OnDestroy {
     } else if (isClick) {
       this.overlayVisible = false;
     }
+    this._cd.detectChanges();
   }
 
   // this method seems to return true if any of the clicked features is selected and has the same
@@ -328,5 +329,6 @@ export class SbbFeatureEventListener implements OnChanges, OnDestroy {
       this.overlayFeatures = [];
       this.featureSelectionsChange.next(this.mapSelectionEventService.findSelectedFeatures());
     }
+    this._cd.detectChanges();
   }
 }

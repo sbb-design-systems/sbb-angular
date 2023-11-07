@@ -17,8 +17,10 @@ export class SbbLocaleService {
         zoomIn: 'Kartenausschnitt vergrössern.',
         zoomOut: 'Kartenausschnitt verkleinern.',
         selectFloor: 'Stockwerk [0] anzeigen.',
+        unselectFloor: 'Stockwerk [0] abwählen.',
         basemapSwitch: 'Kartentyp ändern.',
         homeButton: 'Default Zoom',
+        geolocateButton: 'Meinen Standort anzeigen',
       },
     },
     fr: {
@@ -31,8 +33,10 @@ export class SbbLocaleService {
         zoomIn: 'Zoomer.',
         zoomOut: 'Dézoomer.',
         selectFloor: "Afficher l'étage [0].",
+        unselectFloor: "Désélectionner l'étage [0].",
         basemapSwitch: 'Changer le type de la carte.',
         homeButton: 'Zoom par défaut',
+        geolocateButton: 'Afficher ma position',
       },
     },
     it: {
@@ -45,8 +49,10 @@ export class SbbLocaleService {
         zoomIn: 'Ingrandire la sezione della mappa.',
         zoomOut: 'Ridurre la sezione della mappa.',
         selectFloor: 'Mostra il piano [0].',
+        unselectFloor: 'Deselezionare il piano [0].',
         basemapSwitch: 'Cambiare il tipo di mappa',
         homeButton: 'Zoom di default',
+        geolocateButton: 'Mostra la mia posizione',
       },
     },
     en: {
@@ -59,8 +65,10 @@ export class SbbLocaleService {
         zoomIn: 'Zoom in on map.',
         zoomOut: 'Zoom out on map.',
         selectFloor: 'Select floor [0].',
+        unselectFloor: 'Unselect floor [0].',
         basemapSwitch: 'Change the map type',
         homeButton: 'Default Zoom',
+        geolocateButton: 'Show my location',
       },
     },
   };

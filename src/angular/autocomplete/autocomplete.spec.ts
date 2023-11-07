@@ -3042,6 +3042,37 @@ describe('SbbAutocomplete', () => {
       expect(spy).not.toHaveBeenCalled();
       subscription.unsubscribe();
     }));
+
+    it('should preserve the value if a selection is required, and there are no options', fakeAsync(() => {
+      const input = fixture.nativeElement.querySelector('input');
+      const { numberCtrl, trigger, numbers } = fixture.componentInstance;
+      fixture.componentInstance.requireSelection = true;
+      numberCtrl.setValue(numbers[1]);
+      fixture.detectChanges();
+      tick();
+
+      expect(input.value).toBe('Zwei');
+      expect(numberCtrl.value).toEqual({ code: '2', name: 'Zwei', height: 48 });
+
+      fixture.componentInstance.numbers = fixture.componentInstance.filteredNumbers = [];
+      fixture.detectChanges();
+
+      trigger.openPanel();
+      fixture.detectChanges();
+      zone.simulateZoneExit();
+
+      const spy = jasmine.createSpy('optionSelected spy');
+      const subscription = trigger.optionSelections.subscribe(spy);
+
+      dispatchFakeEvent(document, 'click');
+      fixture.detectChanges();
+      tick();
+
+      expect(input.value).toBe('Zwei');
+      expect(numberCtrl.value).toEqual({ code: '2', name: 'Zwei', height: 48 });
+      expect(spy).not.toHaveBeenCalled();
+      subscription.unsubscribe();
+    }));
   });
 
   describe('panel closing', () => {

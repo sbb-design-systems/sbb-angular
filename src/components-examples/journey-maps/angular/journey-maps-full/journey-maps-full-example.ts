@@ -30,11 +30,12 @@ import {
   SbbZoomLevels,
   SBB_BOUNDING_BOX,
 } from '@sbb-esta/journey-maps';
-import { Feature, Polygon, Position } from 'geojson';
+import { Feature, FeatureCollection, Polygon, Position } from 'geojson';
 import { LngLatBounds, LngLatBoundsLike, LngLatLike } from 'maplibre-gl';
 import { BehaviorSubject, Subject } from 'rxjs';
 import { filter, map, take, takeUntil } from 'rxjs/operators';
 
+import { beSh } from './mock-response/journey/be-sh';
 import { zhBeWyleregg } from './mock-response/journey/zh-be_wyleregg';
 import { zhShWaldfriedhof } from './mock-response/journey/zh-sh_waldfriedhof';
 import { markers } from './mock-response/markers';
@@ -122,6 +123,10 @@ export class JourneyMapsFullExample implements OnInit, OnDestroy {
         value: { journey: zhShWaldfriedhof },
       },
       {
+        label: 'Bern - Schaffhausen',
+        value: { journey: beSh },
+      },
+      {
         label: 'Bern - Lausanne',
         value: {
           routes: bnLsRoutes,
@@ -161,6 +166,10 @@ export class JourneyMapsFullExample implements OnInit, OnDestroy {
     },
   ];
 
+  public changeSelectedLevel(level: number | undefined) {
+    this.form.patchValue({ level });
+  }
+
   form: UntypedFormGroup;
 
   private _styleIds = {
@@ -189,6 +198,7 @@ export class JourneyMapsFullExample implements OnInit, OnDestroy {
         zoomControls: [true],
         basemapSwitch: [true],
         homeButton: [true],
+        geoLocation: [false],
       }),
       styleOptions: _fb.group({
         mode: ['bright', resetSelectedMarkerIdValidator],
@@ -302,15 +312,19 @@ export class JourneyMapsFullExample implements OnInit, OnDestroy {
         // 'journeyMapsRoutingOption' can be null on .reset() of its dropdown form data
         if (this.journeyMapsRoutingOption?.journey) {
           const bbox = selectedLegId
-            ? this._getBboxForLegId(selectedLegId, this.journeyMapsRoutingOption)
+            ? this._getBboxForLegId(selectedLegId, this.journeyMapsRoutingOption.journey)
             : this._getBbox(this.journeyMapsRoutingOption);
           if (bbox) {
             this._setBbox(bbox!);
           }
-          this.journeyMapsRoutingOption = {
-            ...this.journeyMapsRoutingOption,
-            journeyMetaInformation: { selectedLegId },
-          };
+          this.mapCenterChange.pipe(take(1)).subscribe(() => {
+            // Wait until map is idle. So that the correct starting level will be displayed.
+            this.journeyMapsRoutingOption = {
+              ...this.journeyMapsRoutingOption,
+              journeyMetaInformation: { selectedLegId },
+            };
+            this._cd.detectChanges();
+          });
         }
       });
 
@@ -337,9 +351,9 @@ export class JourneyMapsFullExample implements OnInit, OnDestroy {
 
   private _getBboxForLegId(
     selectedLegId: string,
-    routingOptions?: SbbJourneyMapsRoutingOptions,
+    journey: FeatureCollection,
   ): number[] | undefined {
-    const legBbox: Feature | undefined = routingOptions?.journey?.features.find(
+    const legBbox: Feature | undefined = journey.features.find(
       (f) => f.properties?.type === 'bbox' && f.properties?.legId === selectedLegId,
     );
     if (legBbox) {

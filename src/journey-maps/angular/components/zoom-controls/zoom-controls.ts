@@ -33,7 +33,7 @@ export class SbbZoomControls implements OnInit, OnChanges, OnDestroy {
   zoomOutLabel: string;
 
   constructor(
-    private _ref: ChangeDetectorRef,
+    private _cd: ChangeDetectorRef,
     private _i18n: SbbLocaleService,
   ) {}
 
@@ -56,7 +56,7 @@ export class SbbZoomControls implements OnInit, OnChanges, OnDestroy {
         this._zoomChanged.next();
         // call outside component-zone, trigger detect changes manually
         // when using the mouse wheel to zoom, automatic change detection doesn't work
-        this._ref.detectChanges();
+        this._cd.detectChanges();
       });
 
       if (!changes.map.previousValue) {

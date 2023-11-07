@@ -47,6 +47,7 @@
     *ngFor="let tab of _tabs; let i = index"
     [id]="_getTabContentId(i)"
     [attr.aria-labelledby]="_getTabLabelId(i)"
+    [attr.aria-hidden]="selectedIndex !== i"
     [class.sbb-tab-body-active]="selectedIndex == i"
     [ngClass]="tab.bodyClass"
     [content]="tab.content!"

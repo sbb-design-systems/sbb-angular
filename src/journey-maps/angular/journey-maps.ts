@@ -21,6 +21,7 @@ import { debounceTime, delay, switchMap, take, takeUntil } from 'rxjs/operators'
 import { SbbFeatureEventListener } from './components/feature-event-listener/feature-event-listener';
 import { SbbLevelSwitcher } from './components/level-switch/services/level-switcher';
 import { SbbMapLayerFilter } from './components/level-switch/services/map-layer-filter';
+import { SbbGeolocateControl } from './controls/sbbGeolocateControl';
 import {
   SbbDeselectableFeatureDataType,
   SbbFeatureData,
@@ -103,7 +104,7 @@ export class SbbJourneyMaps implements OnInit, AfterViewInit, OnDestroy, OnChang
    */
   @Input() markerDetailsTemplate?: SbbTemplateType;
   /** Which (floor-)level should be shown */
-  @Input() selectedLevel: number;
+  @Input() selectedLevel: number | undefined;
   @Input() listenerOptions: SbbListenerOptions;
   /**
    * Specify which points of interest categories should be visible in map.
@@ -120,7 +121,9 @@ export class SbbJourneyMaps implements OnInit, AfterViewInit, OnDestroy, OnChang
   /**
    * This event is emitted whenever the selected (floor-) level changes.
    */
-  @Output() selectedLevelChange: EventEmitter<number> = new EventEmitter<number>();
+  @Output() selectedLevelChange: EventEmitter<number | undefined> = new EventEmitter<
+    number | undefined
+  >();
   /**
    * This event is emitted whenever the selected features changes.
    */
@@ -187,6 +190,7 @@ export class SbbJourneyMaps implements OnInit, AfterViewInit, OnDestroy, OnChang
     zoomControls: true,
     basemapSwitch: true,
     homeButton: false,
+    geoLocation: false,
   };
   private _defaultHomeButtonOptions: SbbViewportDimensions = {
     boundingBox: SBB_BOUNDING_BOX,
@@ -207,6 +211,12 @@ export class SbbJourneyMaps implements OnInit, AfterViewInit, OnDestroy, OnChang
   private _isStyleLoaded = false;
   private _isAerialSelected = false;
   private _observer: ResizeObserver;
+  private _sbbGeolocateControl = new SbbGeolocateControl({
+    positionOptions: {
+      enableHighAccuracy: true,
+    },
+    trackUserLocation: true,
+  });
 
   constructor(
     private _mapInitService: SbbMapInitService,
@@ -407,6 +417,7 @@ export class SbbJourneyMaps implements OnInit, AfterViewInit, OnDestroy, OnChang
   /** @docs-private */
   onTouchEnd(event: TouchEvent): void {
     this.touchOverlayStyleClass = '';
+    this._cd.detectChanges();
     this.touchEventCollector.next(event);
   }
 
@@ -605,10 +616,12 @@ export class SbbJourneyMaps implements OnInit, AfterViewInit, OnDestroy, OnChang
       return;
     }
 
-    if (
-      JSON.stringify(changes.viewportDimensions?.currentValue) !==
-      JSON.stringify(changes.viewportDimensions?.previousValue)
-    ) {
+    if (changes.viewportDimensions && !changes.viewportDimensions.isFirstChange()) {
+      // We update the viewport any time angular's change detection gets triggered for
+      // changes.viewportDimensions, whether angular detects a difference between
+      // changes.viewportDimensions?.currentValue and changes.viewportDimensions?.previousValue or not.
+      // The reason for this is that angular's change detection doesn't receive updated values of viewportDimensions
+      // when it is changed by manual or programmatic interactions with the map.
       this._viewportDimensionsChanged.next();
     }
 
@@ -634,7 +647,7 @@ export class SbbJourneyMaps implements OnInit, AfterViewInit, OnDestroy, OnChang
     }
 
     if (
-      changes.uiOptions?.currentValue.levelSwitch !== changes.uiOptions?.previousValue.levelSwitch
+      changes.uiOptions?.currentValue.levelSwitch !== changes.uiOptions?.previousValue?.levelSwitch
     ) {
       this._show2Dor3D();
     }
@@ -773,6 +786,11 @@ export class SbbJourneyMaps implements OnInit, AfterViewInit, OnDestroy, OnChang
     this._mapService.moveMap(this._map, this._homeButtonOptions);
   }
 
+  /** @docs-private */
+  onGeolocateButtonClicked() {
+    this._sbbGeolocateControl.trigger();
+  }
+
   private _updateMarkers(): void {
     this.selectedMarker = this.markerOptions.markers?.find(
       (marker) => this.selectedMarkerId === marker.id,
@@ -870,9 +888,10 @@ export class SbbJourneyMaps implements OnInit, AfterViewInit, OnDestroy, OnChang
       this.mapBoundsChange.emit(this._map.getBounds().toArray());
     });
 
-    this._levelSwitchService.selectedLevel$
-      .pipe(takeUntil(this._destroyed))
-      .subscribe((level) => this.selectedLevelChange.emit(level));
+    this._levelSwitchService.selectedLevel$.pipe(takeUntil(this._destroyed)).subscribe((level) => {
+      this.selectedLevelChange.emit(level);
+      this._show2Dor3D();
+    });
     this._levelSwitchService.visibleLevels$
       .pipe(takeUntil(this._destroyed))
       .subscribe((levels) => this.visibleLevelsChange.emit(levels));
@@ -902,6 +921,8 @@ export class SbbJourneyMaps implements OnInit, AfterViewInit, OnDestroy, OnChang
     if (this.styleOptions.railNetwork) {
       this._mapRailNetworkLayerService.updateOptions(this._map, this.styleOptions.railNetwork);
     }
+
+    this._map.addControl(this._sbbGeolocateControl); // other controls are added in map-init-service.ts
 
     this._isStyleLoaded = true;
     this._styleLoaded.next();
@@ -953,7 +974,11 @@ export class SbbJourneyMaps implements OnInit, AfterViewInit, OnDestroy, OnChang
       this.journeyMapsRoutingOption!.journey,
       this.journeyMapsRoutingOption!.journeyMetaInformation?.selectedLegId,
     );
-    this._mapLeitPoiService.processData(this._map, this.journeyMapsRoutingOption!.journey, 0);
+    this._mapLeitPoiService.processData(
+      this._map,
+      this.journeyMapsRoutingOption!.journey,
+      this.journeyMapsRoutingOption!.journeyMetaInformation?.selectedLegId,
+    );
   }
 
   private _updateTransfer() {
@@ -979,13 +1004,16 @@ export class SbbJourneyMaps implements OnInit, AfterViewInit, OnDestroy, OnChang
   }
 
   /**
-   * If the level-switch feature is enabled by the client, then show only 3d layers (-lvl)
-   * If the level-switch feature is disabled by the client, then show only 2d layers (-2d)
+   * If the level-switch feature is enabled by the client and a level is selected, then show only 3d layers (-lvl)
+   * If the level-switch feature is disabled by the client or the selectedLevel is undefined, then show only 2d layers (-2d)
    */
   private _show2Dor3D() {
-    const show3D = !!this.uiOptions.levelSwitch;
-    this._setVisibility(this._map, '-2d', show3D ? 'none' : 'visible');
-    this._setVisibility(this._map, '-lvl', show3D ? 'visible' : 'none');
+    if (this._isStyleLoaded) {
+      const show3D =
+        this._levelSwitchService.selectedLevel !== undefined && this.uiOptions.levelSwitch;
+      this._setVisibility(this._map, '-2d', show3D ? 'none' : 'visible');
+      this._setVisibility(this._map, '-lvl', show3D ? 'visible' : 'none');
+    }
   }
 
   private _setVisibility(map: MaplibreMap, layerIdSuffix: string, visibility: 'visible' | 'none') {

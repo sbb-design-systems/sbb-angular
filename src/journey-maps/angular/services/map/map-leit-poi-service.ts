@@ -34,7 +34,7 @@ export class SbbMapLeitPoiService {
   processData(
     map: MaplibreMap,
     featureCollection: FeatureCollection = SBB_EMPTY_FEATURE_COLLECTION,
-    routeStartLevel?: number,
+    selectedLegId?: string,
   ): void {
     this._removeMapLeitPois();
     if (!featureCollection || !featureCollection.features?.length) {
@@ -51,18 +51,21 @@ export class SbbMapLeitPoiService {
 
     if (this._leitPoiFeatures.length) {
       this._registerMapZoomEvent(map);
-      if (routeStartLevel == null) {
-        const routeStartLevelFeature = featureCollection.features.find(
-          (f) => !!f.properties?.step && f.properties?.routeStartLevel,
-        );
-        routeStartLevel = routeStartLevelFeature
-          ? Number(routeStartLevelFeature.properties!.routeStartLevel)
-          : SbbMapLeitPoiService._defaultLevel;
-      }
+      const isJourney = featureCollection.features.some((f) => f.properties?.legId !== undefined);
+      const routeStartLevelFeature = featureCollection.features.find(
+        (f) =>
+          !!f.properties?.step &&
+          f.properties?.routeStartLevel &&
+          // a /journey feature with `routeStartLevel` should always have a defined `legId` -> checking for `legId !== undefined` is not necessary
+          (!isJourney || f.properties?.legId === selectedLegId),
+      );
+      const routeStartLevel = routeStartLevelFeature
+        ? Number(routeStartLevelFeature.properties!.routeStartLevel)
+        : SbbMapLeitPoiService._defaultLevel;
 
       const switchIt = () => {
         this.setCurrentLevel(map, routeStartLevel!);
-        this.levelSwitched.next(routeStartLevel!);
+        this.levelSwitched.next(routeStartLevel!); // this triggers the actual visible level switch in the map
       };
 
       if (map.loaded()) {
@@ -73,7 +76,7 @@ export class SbbMapLeitPoiService {
     }
   }
 
-  setCurrentLevel(map: MaplibreMap, currentLevel: number): void {
+  setCurrentLevel(map: MaplibreMap, currentLevel: number | undefined): void {
     this._showLeitPoiByLevel(map, currentLevel);
   }
 
@@ -109,7 +112,7 @@ export class SbbMapLeitPoiService {
       });
   }
 
-  private _showLeitPoiByLevel(map: MaplibreMap, currentLevel: number): void {
+  private _showLeitPoiByLevel(map: MaplibreMap, currentLevel: number | undefined): void {
     this._removeMapLeitPois();
     this._getFeaturesByLevel(currentLevel).forEach((f) => this._showLeitPoi(map, f));
     this._toggleMapLeitPoisVisibility(map.getZoom());
@@ -143,7 +146,7 @@ export class SbbMapLeitPoiService {
     return;
   }
 
-  private _getFeaturesByLevel(currentLevel: number): SbbLeitPoiFeature[] {
+  private _getFeaturesByLevel(currentLevel: number | undefined): SbbLeitPoiFeature[] {
     return this._leitPoiFeatures.filter((f) => f.sourceLevel === currentLevel);
   }
 

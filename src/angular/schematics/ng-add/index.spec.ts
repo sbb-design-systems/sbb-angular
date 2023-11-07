@@ -1,9 +1,8 @@
 import { SchematicsException, Tree } from '@angular-devkit/schematics';
-import { SchematicTestRunner, UnitTestTree } from '@angular-devkit/schematics/testing';
+import { SchematicTestRunner } from '@angular-devkit/schematics/testing';
 import { addModuleImportToRootModule } from '@angular/cdk/schematics';
-import { Schema as ApplicationOptions, Style } from '@schematics/angular/application/schema';
+import { createTestApp } from '@sbb-esta/angular/schematics/testing';
 import { getWorkspace } from '@schematics/angular/utility/workspace';
-import { Schema as WorkspaceOptions } from '@schematics/angular/workspace/schema';
 
 import { COLLECTION_PATH } from '../paths';
 
@@ -16,45 +15,13 @@ import {
   TYPOGRAPHY_CSS_PATH,
 } from './setup-project';
 
-const workspaceOptions: WorkspaceOptions = {
-  name: 'workspace',
-  newProjectRoot: 'projects',
-  version: '14.0.0',
-};
-
-const appOptions: ApplicationOptions = {
-  inlineStyle: false,
-  inlineTemplate: false,
-  name: 'dummy',
-  routing: false,
-  skipPackageJson: false,
-  skipTests: false,
-  style: Style.Css,
-};
-
 describe('ngAdd', () => {
-  const baseOptions = { project: appOptions.name };
-  let runner: SchematicTestRunner;
-  let tree: UnitTestTree;
-  let errorOutput: string[];
+  const baseOptions = { project: 'sbb-angular' };
+  const leanBaseOptions = { ...baseOptions, variant: 'lean (previously known as business)' };
 
-  function runNgAddSetupProject(
-    testRunner: SchematicTestRunner,
-    testTree: UnitTestTree,
-    variant: 'standard' | 'lean',
-  ) {
-    const variantFull =
-      variant === 'standard'
-        ? 'standard (previously known as public)'
-        : 'lean (previously known as business)';
-    return testRunner
-      .runSchematicAsync(
-        'ng-add-setup-project',
-        { variant: variantFull, ...baseOptions } as Schema,
-        testTree,
-      )
-      .toPromise();
-  }
+  let runner: SchematicTestRunner;
+  let appTree: Tree;
+  let errorOutput: string[];
 
   /** Assert that file exists and parse json file to object */
   function readJsonFile(host: Tree, path: string) {
@@ -74,12 +41,7 @@ describe('ngAdd', () => {
 
   beforeEach(async () => {
     runner = new SchematicTestRunner('collection', COLLECTION_PATH);
-    tree = (await runner
-      .runExternalSchematicAsync('@schematics/angular', 'workspace', workspaceOptions)
-      .toPromise())!;
-    tree = (await runner
-      .runExternalSchematicAsync('@schematics/angular', 'application', appOptions, tree)
-      .toPromise())!;
+    appTree = await createTestApp(runner, { standalone: false });
 
     errorOutput = [];
     runner.logger.subscribe((e) => {
@@ -90,15 +52,15 @@ describe('ngAdd', () => {
   });
 
   it('should abort ng-add if @angular/core major version is below 14', async () => {
-    tree.overwrite(
+    appTree.overwrite(
       '/package.json',
-      readStringFile(tree, '/package.json').replace(
+      readStringFile(appTree, '/package.json').replace(
         /"@angular\/core": "(.*)",/g,
         '"@angular/core": "~13.0.0",',
       ),
     );
 
-    await runner.runSchematicAsync('ng-add', baseOptions, tree).toPromise();
+    await runner.runSchematic('ng-add', baseOptions, appTree);
 
     expect(runner.tasks.some((task) => (task.options as any)!.name === 'ng-add-setup-project'))
       .withContext('Expected the ng-add-setup-project schematic not to be scheduled.')
@@ -106,9 +68,9 @@ describe('ngAdd', () => {
   });
 
   it('should abort ng-add if @angular/cdk major version is below 13', async () => {
-    addPackageToPackageJson(tree, '@angular/cdk', '13.0.0');
+    addPackageToPackageJson(appTree, '@angular/cdk', '13.0.0');
 
-    await runner.runSchematicAsync('ng-add', baseOptions, tree).toPromise();
+    await runner.runSchematic('ng-add', baseOptions, appTree);
 
     expect(runner.tasks.some((task) => (task.options as any)!.name === 'ng-add-setup-project'))
       .withContext('Expected the ng-add-setup-project schematic not to be scheduled.')
@@ -116,9 +78,9 @@ describe('ngAdd', () => {
   });
 
   it('should add @angular/cdk, @angular/animations and @angular/forms to "package.json" file', async () => {
-    expect(readJsonFile(tree, '/package.json').dependencies['@angular/cdk']).toBeUndefined();
+    expect(readJsonFile(appTree, '/package.json').dependencies['@angular/cdk']).toBeUndefined();
 
-    await runner.runSchematicAsync('ng-add', baseOptions, tree).toPromise();
+    const tree = await runner.runSchematic('ng-add', baseOptions, appTree);
 
     expect(readJsonFile(tree, '/package.json').dependencies['@angular/cdk']).toBe(`0.0.0-CDK`);
     expect(readJsonFile(tree, '/package.json').dependencies['@angular/animations']).toBeDefined();
@@ -133,11 +95,11 @@ describe('ngAdd', () => {
   });
 
   it('should do nothing if @angular/cdk is in "package.json" file already', async () => {
-    addPackageToPackageJson(tree, '@angular/cdk', '14.0.0');
+    addPackageToPackageJson(appTree, '@angular/cdk', '14.0.0');
 
-    expect(readJsonFile(tree, '/package.json').dependencies['@angular/cdk']).toBe('14.0.0');
+    expect(readJsonFile(appTree, '/package.json').dependencies['@angular/cdk']).toBe('14.0.0');
 
-    await runner.runSchematicAsync('ng-add', baseOptions, tree).toPromise();
+    const tree = await runner.runSchematic('ng-add', baseOptions, appTree);
 
     expect(readJsonFile(tree, '/package.json').dependencies['@angular/cdk']).toBe('14.0.0');
 
@@ -150,60 +112,60 @@ describe('ngAdd', () => {
   });
 
   it('should not abort when running ng add two times', async () => {
-    await runner.runSchematicAsync('ng-add', baseOptions, tree).toPromise();
-    await runner.runSchematicAsync('ng-add-setup-project', baseOptions, tree).toPromise();
-    await runner.runSchematicAsync('ng-add', baseOptions, tree).toPromise();
-    await runner.runSchematicAsync('ng-add-setup-project', baseOptions, tree).toPromise();
+    await runner.runSchematic('ng-add', baseOptions, appTree);
+    await runner.runSchematic('ng-add-setup-project', baseOptions, appTree);
+    await runner.runSchematic('ng-add', baseOptions, appTree);
+    await runner.runSchematic('ng-add-setup-project', baseOptions, appTree);
   });
 
   it('should add typography to angular.json and configure animationsModule', async () => {
-    await runner.runSchematicAsync('ng-add-setup-project', baseOptions, tree).toPromise();
+    const tree = await runner.runSchematic('ng-add-setup-project', baseOptions, appTree);
 
     expect(
-      readJsonFile(tree, '/angular.json').projects.dummy.architect.build.options.styles,
-    ).toEqual([TYPOGRAPHY_CSS_PATH, 'projects/dummy/src/styles.css']);
+      readJsonFile(tree, '/angular.json').projects['sbb-angular'].architect.build.options.styles,
+    ).toEqual([TYPOGRAPHY_CSS_PATH, 'projects/sbb-angular/src/styles.css']);
 
     expect(
-      readJsonFile(tree, '/angular.json').projects.dummy.architect.test.options.styles,
-    ).toEqual([TYPOGRAPHY_CSS_PATH, 'projects/dummy/src/styles.css']);
+      readJsonFile(tree, '/angular.json').projects['sbb-angular'].architect.test.options.styles,
+    ).toEqual([TYPOGRAPHY_CSS_PATH, 'projects/sbb-angular/src/styles.css']);
 
-    expect(readStringFile(tree, '/projects/dummy/src/app/app.module.ts')).toContain(
+    expect(readStringFile(tree, '/projects/sbb-angular/src/app/app.module.ts')).toContain(
       BROWSER_ANIMATIONS_MODULE_NAME,
     );
   });
 
   it('should not add typography a second time if entry already exists', async () => {
-    await runner.runSchematicAsync('ng-add-setup-project', baseOptions, tree).toPromise();
-    await runner.runSchematicAsync('ng-add-setup-project', baseOptions, tree).toPromise();
+    await runner.runSchematic('ng-add-setup-project', baseOptions, appTree);
+    await runner.runSchematic('ng-add-setup-project', baseOptions, appTree);
 
     expect(
-      readJsonFile(tree, '/angular.json').projects.dummy.architect.build.options.styles,
-    ).toEqual([TYPOGRAPHY_CSS_PATH, 'projects/dummy/src/styles.css']);
+      readJsonFile(appTree, '/angular.json').projects['sbb-angular'].architect.build.options.styles,
+    ).toEqual([TYPOGRAPHY_CSS_PATH, 'projects/sbb-angular/src/styles.css']);
   });
 
   it('should add styles node in angular.json if no styles node exists', async () => {
-    const angularJson = readJsonFile(tree, '/angular.json');
-    delete angularJson.projects.dummy.architect.build.options.styles;
-    tree.overwrite('/angular.json', JSON.stringify(angularJson, null, 2));
+    const angularJson = readJsonFile(appTree, '/angular.json');
+    delete angularJson.projects['sbb-angular'].architect.build.options.styles;
+    appTree.overwrite('/angular.json', JSON.stringify(angularJson, null, 2));
 
-    await runner.runSchematicAsync('ng-add-setup-project', baseOptions, tree).toPromise();
+    const tree = await runner.runSchematic('ng-add-setup-project', baseOptions, appTree);
 
     expect(
-      readJsonFile(tree, '/angular.json').projects.dummy.architect.build.options.styles,
+      readJsonFile(tree, '/angular.json').projects['sbb-angular'].architect.build.options.styles,
     ).toEqual([TYPOGRAPHY_CSS_PATH]);
   });
 
   describe('animations enabled', () => {
     it('should add the BrowserAnimationsModule to the project module', async () => {
-      await runner.runSchematicAsync('ng-add-setup-project', baseOptions, tree).toPromise();
-      const fileContent = readStringFile(tree, '/projects/dummy/src/app/app.module.ts');
+      const tree = await runner.runSchematic('ng-add-setup-project', baseOptions, appTree);
+      const fileContent = readStringFile(tree, '/projects/sbb-angular/src/app/app.module.ts');
       expect(fileContent)
         .withContext('Expected the project app module to import the "BrowserAnimationsModule".')
         .toContain('BrowserAnimationsModule');
     });
 
     it('should not add BrowserAnimationsModule if NoopAnimationsModule is set up', async () => {
-      const workspace = await getWorkspace(tree);
+      const workspace = await getWorkspace(appTree);
       const projects = Array.from(workspace.projects.values());
       expect(projects.length).toBe(1);
       const [project] = projects;
@@ -212,20 +174,20 @@ describe('ngAdd', () => {
       // animations without knowing what other components would be affected. In this case, we
       // just print a warning message.
       addModuleImportToRootModule(
-        tree,
+        appTree,
         'NoopAnimationsModule',
         '@angular/platform-browser/animations',
         project,
       );
-      await runner.runSchematicAsync('ng-add-setup-project', baseOptions, tree).toPromise();
+      await runner.runSchematic('ng-add-setup-project', baseOptions, appTree);
       expect(errorOutput.length).toBe(1);
       expect(errorOutput[0]).toMatch(/Could not set up "BrowserAnimationsModule"/);
     });
 
     it('should add the BrowserAnimationsModule to a bootstrapApplication call', async () => {
-      tree.delete('/projects/dummy/src/app/app.module.ts');
-      tree.overwrite(
-        '/projects/dummy/src/main.ts',
+      appTree.delete('/projects/sbb-angular/src/app/app.module.ts');
+      appTree.overwrite(
+        '/projects/sbb-angular/src/main.ts',
         `
           import { importProvidersFrom } from '@angular/core';
           import { BrowserModule, bootstrapApplication } from '@angular/platform-browser';
@@ -236,15 +198,15 @@ describe('ngAdd', () => {
         `,
       );
 
-      await runner.runSchematicAsync('ng-add-setup-project', baseOptions, tree).toPromise();
-      const fileContent = readStringFile(tree, '/projects/dummy/src/main.ts');
+      const tree = await runner.runSchematic('ng-add-setup-project', baseOptions, appTree);
+      const fileContent = readStringFile(tree, '/projects/sbb-angular/src/main.ts');
       expect(fileContent).toContain('importProvidersFrom(BrowserModule, BrowserAnimationsModule)');
     });
 
     it('should not add BrowserAnimationsModule if NoopAnimationsModule is set up in a bootstrapApplication call', async () => {
-      tree.delete('/projects/dummy/src/app/app.module.ts');
-      tree.overwrite(
-        '/projects/dummy/src/main.ts',
+      appTree.delete('/projects/sbb-angular/src/app/app.module.ts');
+      appTree.overwrite(
+        '/projects/sbb-angular/src/main.ts',
         `
           import { importProvidersFrom } from '@angular/core';
           import { bootstrapApplication } from '@angular/platform-browser';
@@ -257,7 +219,7 @@ describe('ngAdd', () => {
         `,
       );
 
-      await runner.runSchematicAsync('ng-add-setup-project', baseOptions, tree).toPromise();
+      await runner.runSchematic('ng-add-setup-project', baseOptions, appTree);
 
       expect(errorOutput.length).toBe(1);
       expect(errorOutput[0]).toMatch(
@@ -268,21 +230,19 @@ describe('ngAdd', () => {
 
   describe('animations disabled', () => {
     it('should add NoopAnimationsModule', async () => {
-      await runner
-        .runSchematicAsync(
-          'ng-add-setup-project',
-          { animations: 'disabled', ...baseOptions } as Schema,
-          tree,
-        )
-        .toPromise();
+      const tree = await runner.runSchematic(
+        'ng-add-setup-project',
+        { animations: 'disabled', ...baseOptions } as Schema,
+        appTree,
+      );
 
-      expect(readStringFile(tree, '/projects/dummy/src/app/app.module.ts'))
+      expect(readStringFile(tree, '/projects/sbb-angular/src/app/app.module.ts'))
         .withContext('Expected the project app module to import the "NoopAnimationsModule".')
         .toContain(NOOP_ANIMATIONS_MODULE_NAME);
     });
 
     it('should not add NoopAnimationsModule if BrowserAnimationsModule is set up', async () => {
-      const workspace = await getWorkspace(tree);
+      const workspace = await getWorkspace(appTree);
       const projects = Array.from(workspace.projects.values());
       expect(projects.length).toBe(1);
       const project = projects[0];
@@ -290,13 +250,13 @@ describe('ngAdd', () => {
       // explicitly uses the `BrowserAnimationsModule`. It would be wrong to forcibly change
       // to noop animations.
       addModuleImportToRootModule(
-        tree,
+        appTree,
         'BrowserAnimationsModule',
         '@angular/platform-browser/animations',
         project,
       );
 
-      const fileContent = readStringFile(tree, '/projects/dummy/src/app/app.module.ts');
+      const fileContent = readStringFile(appTree, '/projects/sbb-angular/src/app/app.module.ts');
 
       expect(fileContent).not.toContain(
         'NoopAnimationsModule',
@@ -307,10 +267,12 @@ describe('ngAdd', () => {
 
   describe('animations excluded', () => {
     it('should not add any animations code if animations are excluded', async () => {
-      const localTree = await runner
-        .runSchematicAsync('ng-add-setup-project', { animations: 'excluded', ...baseOptions }, tree)
-        .toPromise();
-      const fileContent = readStringFile(localTree!, '/projects/dummy/src/app/app.module.ts');
+      const localTree = await runner.runSchematic(
+        'ng-add-setup-project',
+        { animations: 'excluded', ...baseOptions },
+        appTree,
+      );
+      const fileContent = readStringFile(localTree!, '/projects/sbb-angular/src/app/app.module.ts');
 
       expect(fileContent).not.toContain('NoopAnimationsModule');
       expect(fileContent).not.toContain('BrowserAnimationsModule');
@@ -321,62 +283,66 @@ describe('ngAdd', () => {
 
   describe('index.html manipulation', () => {
     it('should add sbb-lean class to index.html', async () => {
-      await runNgAddSetupProject(runner, tree, 'lean');
+      let tree = await runner.runSchematic('ng-add-setup-project', leanBaseOptions, appTree);
 
-      expect(readStringFile(tree, '/projects/dummy/src/index.html')).toContain(
+      expect(readStringFile(tree, '/projects/sbb-angular/src/index.html')).toContain(
         '<html class="sbb-lean" lang="en">',
       );
 
       // run migration a second time
-      await runNgAddSetupProject(runner, tree, 'lean');
+      tree = await runner.runSchematic('ng-add-setup-project', leanBaseOptions, tree);
 
       // Lean-tag should still be there only once
-      expect(readStringFile(tree, '/projects/dummy/src/index.html')).toContain(
+      expect(readStringFile(tree, '/projects/sbb-angular/src/index.html')).toContain(
         '<html class="sbb-lean" lang="en">',
       );
     });
 
     it('should add sbb-lean class to index.html with other existing classes', async () => {
-      tree.overwrite(
-        'projects/dummy/src/index.html',
+      appTree.overwrite(
+        'projects/sbb-angular/src/index.html',
         `<html class='app-class' lang="en"><head></head><body></body></html>`,
       );
 
-      await runNgAddSetupProject(runner, tree, 'lean');
+      const tree = await runner.runSchematic('ng-add-setup-project', leanBaseOptions, appTree);
 
-      expect(readStringFile(tree, '/projects/dummy/src/index.html')).toContain(
+      expect(readStringFile(tree, '/projects/sbb-angular/src/index.html')).toContain(
         `<html class='sbb-lean app-class' lang="en">`,
       );
     });
 
     it('should not add sbb-lean class if standard variant was chosen', async () => {
-      await runNgAddSetupProject(runner, tree, 'standard');
+      const tree = await runner.runSchematic('ng-add-setup-project', baseOptions, appTree);
 
-      expect(readStringFile(tree, '/projects/dummy/src/index.html')).toContain('<html lang="en">');
+      expect(readStringFile(tree, '/projects/sbb-angular/src/index.html')).toContain(
+        '<html lang="en">',
+      );
     });
 
     it('should remove sbb-lean class if standard variant was chosen but lean was set before', async () => {
-      tree.overwrite(
-        'projects/dummy/src/index.html',
+      appTree.overwrite(
+        'projects/sbb-angular/src/index.html',
         `<html class="sbb-lean app-class" lang="en"><head></head><body></body></html>`,
       );
 
-      await runNgAddSetupProject(runner, tree, 'standard');
+      const tree = await runner.runSchematic('ng-add-setup-project', baseOptions, appTree);
 
-      expect(readStringFile(tree, '/projects/dummy/src/index.html')).toContain(
+      expect(readStringFile(tree, '/projects/sbb-angular/src/index.html')).toContain(
         '<html class="app-class" lang="en">',
       );
     });
 
     it('should completely remove class attribute if no css classes are present anymore', async () => {
-      tree.overwrite(
-        'projects/dummy/src/index.html',
+      appTree.overwrite(
+        'projects/sbb-angular/src/index.html',
         `<html class="sbb-lean" lang="en"><head></head><body></body></html>`,
       );
 
-      await runNgAddSetupProject(runner, tree, 'standard');
+      const tree = await runner.runSchematic('ng-add-setup-project', baseOptions, appTree);
 
-      expect(readStringFile(tree, '/projects/dummy/src/index.html')).toContain('<html lang="en">');
+      expect(readStringFile(tree, '/projects/sbb-angular/src/index.html')).toContain(
+        '<html lang="en">',
+      );
     });
   });
 
@@ -384,75 +350,86 @@ describe('ngAdd', () => {
     const leanOptions = { ...baseOptions, variant: 'lean (previously known as business)' };
 
     it('should be added to polyfills array in angular.json', async () => {
-      await runNgAddSetupProject(runner, tree, 'lean');
+      const tree = await runner.runSchematic('ng-add-setup-project', leanOptions, appTree);
 
       expect(
-        readJsonFile(tree, '/angular.json').projects.dummy.architect.test.options.polyfills,
+        readJsonFile(tree, '/angular.json').projects['sbb-angular'].architect.test.options
+          .polyfills,
       ).toEqual(['zone.js', 'zone.js/testing', LEAN_TEST_POLYFILL_PATH]);
     });
 
     it('should not be added twice to polyfills array in angular.json', async () => {
-      await runNgAddSetupProject(runner, tree, 'lean');
-      await runNgAddSetupProject(runner, tree, 'lean');
+      await runner.runSchematic('ng-add-setup-project', leanOptions, appTree);
+      await runner.runSchematic('ng-add-setup-project', leanOptions, appTree);
 
       expect(
-        readJsonFile(tree, '/angular.json').projects.dummy.architect.test.options.polyfills,
+        readJsonFile(appTree, '/angular.json').projects['sbb-angular'].architect.test.options
+          .polyfills,
       ).toEqual(['zone.js', 'zone.js/testing', LEAN_TEST_POLYFILL_PATH]);
     });
 
     it('should be added to polyfills string in angular.json', async () => {
-      const angularJson = readJsonFile(tree, '/angular.json');
-      angularJson.projects.dummy.architect.test.options.polyfills = 'dummy-polyfill.js';
-      tree.overwrite('/angular.json', JSON.stringify(angularJson, null, 2));
+      const angularJson = readJsonFile(appTree, '/angular.json');
+      angularJson.projects['sbb-angular'].architect.test.options.polyfills = 'dummy-polyfill.js';
+      appTree.overwrite('/angular.json', JSON.stringify(angularJson, null, 2));
 
-      await runner.runSchematicAsync('ng-add-setup-project', leanOptions, tree).toPromise();
+      const tree = await runner.runSchematic('ng-add-setup-project', leanOptions, appTree);
 
       expect(
-        readJsonFile(tree, '/angular.json').projects.dummy.architect.test.options.polyfills,
+        readJsonFile(tree, '/angular.json').projects['sbb-angular'].architect.test.options
+          .polyfills,
       ).toEqual(['dummy-polyfill.js', LEAN_TEST_POLYFILL_PATH]);
     });
 
     it('should throw an error if polyfill cannot be added', async () => {
-      const angularJson = readJsonFile(tree, '/angular.json');
-      angularJson.projects.dummy.architect.test.options.polyfills = { that: 'is not valid' };
-      tree.overwrite('/angular.json', JSON.stringify(angularJson, null, 2));
+      const angularJson = readJsonFile(appTree, '/angular.json');
+      angularJson.projects['sbb-angular'].architect.test.options.polyfills = {
+        that: 'is not valid',
+      };
+      appTree.overwrite('/angular.json', JSON.stringify(angularJson, null, 2));
 
       expect(errorOutput.length).toBe(0);
 
-      await runner.runSchematicAsync('ng-add-setup-project', leanOptions, tree).toPromise();
+      await runner.runSchematic('ng-add-setup-project', leanOptions, appTree);
 
       expect(errorOutput.length).toBe(1);
     });
 
     it('should not be added in standard variant', async () => {
-      await runNgAddSetupProject(runner, tree, 'standard');
+      const tree = await runner.runSchematic('ng-add-setup-project', baseOptions, appTree);
 
       expect(
-        readJsonFile(tree, '/angular.json').projects.dummy.architect.test.options.polyfills,
+        readJsonFile(tree, '/angular.json').projects['sbb-angular'].architect.test.options
+          .polyfills,
       ).toEqual(['zone.js', 'zone.js/testing']);
     });
 
     it('should be removed from polyfills array in standard variant', async () => {
-      await runNgAddSetupProject(runner, tree, 'lean');
+      let tree = await runner.runSchematic('ng-add-setup-project', leanOptions, appTree);
       expect(
-        readJsonFile(tree, '/angular.json').projects.dummy.architect.test.options.polyfills,
+        readJsonFile(appTree, '/angular.json').projects['sbb-angular'].architect.test.options
+          .polyfills,
       ).toContain(LEAN_TEST_POLYFILL_PATH);
 
-      await runNgAddSetupProject(runner, tree, 'standard');
+      tree = await runner.runSchematic('ng-add-setup-project', baseOptions, appTree);
+
       expect(
-        readJsonFile(tree, '/angular.json').projects.dummy.architect.test.options.polyfills,
+        readJsonFile(tree, '/angular.json').projects['sbb-angular'].architect.test.options
+          .polyfills,
       ).not.toContain(LEAN_TEST_POLYFILL_PATH);
     });
 
     it('should be removed from polyfills string in standard variant', async () => {
-      const angularJson = readJsonFile(tree, '/angular.json');
-      angularJson.projects.dummy.architect.test.options.polyfills = LEAN_TEST_POLYFILL_PATH;
-      tree.overwrite('/angular.json', JSON.stringify(angularJson, null, 2));
+      const angularJson = readJsonFile(appTree, '/angular.json');
+      angularJson.projects['sbb-angular'].architect.test.options.polyfills =
+        LEAN_TEST_POLYFILL_PATH;
+      appTree.overwrite('/angular.json', JSON.stringify(angularJson, null, 2));
 
-      await runner.runSchematicAsync('ng-add-setup-project', baseOptions, tree).toPromise();
+      await runner.runSchematic('ng-add-setup-project', baseOptions, appTree);
 
       expect(
-        readJsonFile(tree, '/angular.json').projects.dummy.architect.test.options.polyfills,
+        readJsonFile(appTree, '/angular.json').projects['sbb-angular'].architect.test.options
+          .polyfills,
       ).toBeUndefined();
     });
   });

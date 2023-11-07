@@ -36,14 +36,16 @@ export interface SbbInteractionOptions {
 export interface SbbUIOptions {
   /** Whether the map should show large (default) or small control buttons. */
   showSmallButtons?: boolean;
-  /** Whether the map should show the zoom level control or not. */
-  levelSwitch?: boolean;
   /** Whether the map should show the level switch control or not. */
+  levelSwitch?: boolean;
+  /** Whether the map should show the zoom level control or not. */
   zoomControls?: boolean;
   /** Whether the map should show the basemap switch control or not. */
   basemapSwitch?: boolean;
   /** Whether the map should show the home button control or not. Clicking this button zooms out to show all of Switzerland. */
   homeButton?: boolean;
+  /** Whether the map should show the geolocation button or not. Clicking this button shows the current browser location on the map */
+  geoLocation?: boolean;
 }
 
 export interface SbbViewportBounds {

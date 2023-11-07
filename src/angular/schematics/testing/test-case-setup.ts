@@ -101,7 +101,7 @@ export async function createTestCaseSetup(
     runner.engine.executePostTasks = () => EMPTY as any;
 
     for (const migration of migrationNames) {
-      await runner.runSchematicAsync(migration, {}, appTree).toPromise();
+      await runner.runSchematic(migration, {}, appTree);
     }
 
     return { logOutput };

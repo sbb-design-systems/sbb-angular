@@ -20,7 +20,7 @@ jobs:
         with:
           APP_ID: ${{ secrets.MAINTENANCE_APP_ID }}
           APP_PEM: ${{ secrets.MAINTENANCE_APP_PEM }}
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@b4ffde65f46336ab88eb53be808477a3936bae11 # v4
         with:
           token: ${{ steps.get_token.outputs.app_token }}
           fetch-depth: 0
@@ -47,8 +47,8 @@ jobs:
     if: always() && needs.cherry_pick.result == 'failure'
     steps:
       - run: echo ${{ needs.cherry_pick.outputs.failed_release_version }}
-      - uses: actions/checkout@v3
-      - uses: actions/setup-node@v3
+      - uses: actions/checkout@b4ffde65f46336ab88eb53be808477a3936bae11 # v4
+      - uses: actions/setup-node@v4
         if: needs.cherry_pick.outputs.failed_release_version
         with:
           node-version-file: '.nvmrc'

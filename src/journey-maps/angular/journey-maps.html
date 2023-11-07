@@ -33,6 +33,12 @@
         [map]="mapReady | async"
         [showSmallButtons]="uiOptions.showSmallButtons"
       ></sbb-zoom-controls>
+      <sbb-geolocate-button
+        *ngIf="uiOptions.geoLocation"
+        [map]="mapReady | async"
+        [showSmallButtons]="uiOptions.showSmallButtons"
+        (geolocateButtonClicked)="onGeolocateButtonClicked()"
+      ></sbb-geolocate-button>
       <sbb-basemap-switch
         *ngIf="uiOptions.basemapSwitch"
         [map]="mapReady | async"
