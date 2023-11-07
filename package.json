@@ -110,7 +110,7 @@
     "@types/highlight.js": "10.1.0",
     "@types/jasmine": "5.1.1",
     "@types/jasminewd2": "2.0.12",
-    "@types/mapbox__point-geometry": "0.1.3",
+    "@types/mapbox__point-geometry": "0.1.4",
     "@types/marked": "^2.0.2",
     "@types/node": "18.18.8",
     "@types/sass": "1.43.1",
