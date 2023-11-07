@@ -102,7 +102,7 @@
     "@rollup/plugin-typescript": "11.1.5",
     "@schematics/angular": "17.0.0-rc.3",
     "@types/browser-sync": "2.27.4",
-    "@types/events": "3.0.2",
+    "@types/events": "3.0.3",
     "@types/fs-extra": "11.0.3",
     "@types/geojson": "7946.0.12",
     "@types/glob": "8.1.0",
