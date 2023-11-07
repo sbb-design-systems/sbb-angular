@@ -407,6 +407,7 @@
   --sbb-table-background-color: var(--sbb-color-background);
   --sbb-table-thead-background-color: var(--sbb-color-cloud);
   --sbb-table-tbody-stripe-background-color: var(--sbb-color-milk);
+  --sbb-table-thead-color: unset;
   --sbb-table-thead-padding: calc(#{sbb.pxToRem(16)} * var(--sbb-scaling-factor));
   --sbb-table-thead-padding-vertical-top: calc(#{sbb.pxToRem(29)} * var(--sbb-scaling-factor));
   --sbb-table-thead-padding-vertical-bottom: calc(#{sbb.pxToRem(30)} * var(--sbb-scaling-factor));
@@ -709,6 +710,12 @@
 
     // Table
     --sbb-table-cell-padding-vertical: #{sbb.pxToRem(6)};
+    --sbb-table-cell-background-color-hover: var(--sbb-color-milk);
+    --sbb-table-thead-color: var(--sbb-color-granite);
+    --sbb-table-row-selected-background-color: var(--sbb-color-cloud);
+    --sbb-table-row-selected-border-bottom-color: var(--sbb-color-text);
+    --sbb-table-border-color: var(--sbb-color-aluminum);
+    --sbb-table-thead-border-color: var(--sbb-color-graphite);
 
     // Tag
     --sbb-tag-label-color-active: var(--sbb-color-black);
@@ -897,6 +904,14 @@
       // Status
       --sbb-status-message-background-color: var(--sbb-color-iron);
       --sbb-status-message-color: var(--sbb-color-white);
+
+      // Table
+      --sbb-table-cell-background-color-hover: var(--sbb-color-midnight);
+      --sbb-table-thead-color: var(--sbb-color-smoke);
+      --sbb-table-row-selected-background-color: var(--sbb-color-charcoal);
+      --sbb-table-row-selected-border-bottom-color: var(--sbb-color-text);
+      --sbb-table-border-color: var(--sbb-color-anthracite);
+      --sbb-table-thead-border-color: var(--sbb-color-anthracite);
 
       // Tag
       --sbb-tag-label-color-active: var(--sbb-color-white);
@@ -2407,6 +2422,7 @@ textarea {
   th {
     font-family: var(--sbb-font-bold);
     font-weight: 400;
+    color: var(--sbb-table-thead-color);
 
     .sbb-table-header-subtitle {
       font-family: var(--sbb-font-roman);
@@ -2422,10 +2438,6 @@ textarea {
         width: 100%;
       }
     }
-
-    :where(html.sbb-lean) & {
-      color: var(--sbb-color-granite);
-    }
   }
 
   thead {
@@ -2433,15 +2445,15 @@ textarea {
 
     :where(html.sbb-lean) & {
       > tr:last-child :is(th, td) {
-        border-bottom: var(--sbb-border-width-thin) solid var(--sbb-color-graphite);
+        border-bottom: var(--sbb-border-width-thin) solid var(--sbb-table-thead-border-color);
       }
 
       > tr :is(th, td) {
-        border-right: var(--sbb-border-width-thin) solid var(--sbb-color-graphite);
+        border-right: var(--sbb-border-width-thin) solid var(--sbb-table-thead-border-color);
 
         :is(.sbb-table-wrapper-offset-right, .sbb-table-wrapper-offset-both)
           &.sbb-table-sticky-border-elem-right {
-          border-left: var(--sbb-border-width-thin) solid var(--sbb-color-graphite);
+          border-left: var(--sbb-border-width-thin) solid var(--sbb-table-thead-border-color);
         }
       }
     }
@@ -2467,7 +2479,7 @@ textarea {
 
   :is(& tbody, & tfoot, &) > tr :is(th, td) {
     :where(html.sbb-lean) & {
-      border-right: var(--sbb-border-width-thin) solid var(--sbb-color-aluminum);
+      border-right: var(--sbb-border-width-thin) solid var(--sbb-table-border-color);
     }
   }
 
@@ -2509,7 +2521,7 @@ textarea {
       }
 
       :where(html.sbb-lean) & {
-        border-bottom: var(--sbb-border-width-thin) solid var(--sbb-color-aluminum);
+        border-bottom: var(--sbb-border-width-thin) solid var(--sbb-table-border-color);
       }
     }
 
@@ -2521,12 +2533,13 @@ textarea {
 
     :where(html.sbb-lean) & {
       &.sbb-table-row-selected :is(td, th) {
-        background-color: var(--sbb-color-cloud);
-        border-bottom: var(--sbb-border-width-thin) solid var(--sbb-color-black);
+        background-color: var(--sbb-table-row-selected-background-color);
+        border-bottom: var(--sbb-border-width-thin) solid
+          var(--sbb-table-row-selected-border-bottom-color);
       }
 
       &:is(:hover, :focus, :focus-within) :is(td, th) {
-        background-color: var(--sbb-color-milk);
+        background-color: var(--sbb-table-cell-background-color-hover);
         border-bottom: var(--sbb-border-width-thin) solid var(--sbb-color-call-to-action-hover);
       }
     }
