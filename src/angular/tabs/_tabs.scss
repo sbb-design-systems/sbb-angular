@@ -27,7 +27,7 @@
     &::after {
       left: var(--sbb-border-width-negative);
       right: var(--sbb-border-width-negative);
-      border-color: var(--sbb-color-graphite);
+      border-color: var(--sbb-tabs-border-color);
     }
   }
 }
@@ -80,7 +80,7 @@
       }
     }
     :where(html.sbb-lean) & {
-      border-color: var(--sbb-color-graphite);
+      border-color: var(--sbb-tabs-border-color);
       &::after {
         display: none;
       }
@@ -108,13 +108,13 @@
 
   &.sbb-tab-label-active:focus-visible {
     :where(html.sbb-lean) & {
-      outline: var(--sbb-border-width) solid var(--sbb-color-black);
+      outline: var(--sbb-border-width) solid var(--sbb-tabs-outline-color);
       outline-offset: calc(-1 * var(--sbb-border-width));
     }
   }
 
   &.sbb-tab-disabled {
-    color: var(--sbb-color-storm);
+    color: var(--sbb-tabs-color-disabled);
 
     &:is(:hover, :focus) {
       cursor: default;
@@ -174,7 +174,7 @@
     z-index: 2;
     -webkit-tap-highlight-color: transparent;
     touch-action: none;
-    color: var(--sbb-color-granite);
+    color: var(--sbb-tabs-border-color);
 
     // Copied shadow from components
     box-shadow:
@@ -283,7 +283,7 @@
       width: 100%;
       flex-grow: 1;
       flex-shrink: 1;
-      border-bottom: var(--sbb-border-width) solid var(--sbb-color-graphite);
+      border-bottom: var(--sbb-border-width) solid var(--sbb-tabs-border-color);
     }
   }
 }
@@ -309,7 +309,7 @@
   transition: height var(--sbb-transition-duration-slow);
 
   :where(html.sbb-lean) & {
-    border: var(--sbb-border-width) solid var(--sbb-color-graphite);
+    border: var(--sbb-border-width) solid var(--sbb-tabs-border-color);
     border-top: none;
     background-color: var(--sbb-color-background);
   }
