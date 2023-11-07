@@ -57,8 +57,7 @@ export class VariantSwitch implements CanActivate, OnDestroy {
         localStorage.setItem(variantLocalstorageKey, value);
 
         // switch between light and dark mode
-        document.documentElement.classList.remove('sbb-dark');
-        document.documentElement.classList.remove('sbb-light');
+        document.documentElement.classList.remove(...['sbb-dark', 'sbb-light']);
         if (value === 'light') {
           document.documentElement.classList.add('sbb-light');
         } else if (value === 'dark') {
