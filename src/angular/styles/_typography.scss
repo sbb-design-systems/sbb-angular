@@ -163,6 +163,16 @@
   --sbb-badge-color: var(--sbb-color-white);
 
   // Breadcrumb
+  --sbb-breadcrumb-color-default: var(--sbb-color-granite);
+  --sbb-breadcrumb-url-icon-chevron-small-down-circle: var(
+    --sbb-url-icon-chevron-small-down-circle-small-granite
+  );
+  --sbb-breadcrumb-url-icon-chevron-small-down-circle-focused: var(
+    --sbb-url-icon-chevron-small-down-circle-small-red125
+  );
+  --sbb-breadcrumb-url-icon-chevron-small-right: var(
+    --sbb-url-icon-chevron-small-right-small-platinum
+  );
   --sbb-breadcrumb-trigger-padding-horizontal: calc(#{sbb.pxToRem(30)} * var(--sbb-scaling-factor));
   --sbb-breadcrumb-trigger-padding-vertical: calc(#{sbb.pxToRem(14)} * var(--sbb-scaling-factor));
 
@@ -483,8 +493,12 @@
   --sbb-url-icon-chevron-down-small-granite: url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyNCIgaGVpZ2h0PSIyNCIgdmVyc2lvbj0iMS4xIiB2aWV3Qm94PSIwIDAgMjQgMjQiPgogICAgPHBvbHlsaW5lIGZpbGw9Im5vbmUiIGZpbGwtcnVsZT0iZXZlbm9kZCIgc3Ryb2tlPSIjNjg2ODY4IiBzdHJva2Utd2lkdGg9IjEiIHBvaW50cz0iMjAgNy45OTkgMTIgMTUuOTk5IDQgNy45OTkiLz4KPC9zdmc+');
   // Chevron-small-down-circle-small color #686868 (granite) applied
   --sbb-url-icon-chevron-small-down-circle-small-granite: url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyNCIgaGVpZ2h0PSIyNCIgdmlld0JveD0iMCAwIDI0IDI0Ij4KICA8cGF0aCBmaWxsPSJub25lIiBzdHJva2U9IiM2ODY4NjgiIGQ9Ik0xMiw0LjQ5OTcgQzE2LjE0Myw0LjQ5OTcgMTkuNSw3Ljg1NzcgMTkuNSwxMS45OTk3IEMxOS41LDE2LjE0MjcgMTYuMTQzLDE5LjQ5OTcgMTIsMTkuNDk5NyBDNy44NTgsMTkuNDk5NyA0LjUsMTYuMTQyNyA0LjUsMTEuOTk5NyBDNC41LDcuODU3NyA3Ljg1OCw0LjQ5OTcgMTIsNC40OTk3IFogTTguMDkyMywxMC4zNDk4IEwxMS45OTYzLDE0LjI5OTggTDE1LjkwMDMsMTAuMzUxOCIvPgo8L3N2Zz4K');
+  // Chevron-small-down-circle-small color #d2d2d2 (aluminium) applied
+  --sbb-url-icon-chevron-small-down-circle-small-aluminium: url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyNCIgaGVpZ2h0PSIyNCIgdmlld0JveD0iMCAwIDI0IDI0Ij4KICA8cGF0aCBmaWxsPSJub25lIiBzdHJva2U9IiNEMkQyRDIiIGQ9Ik0xMiw0LjQ5OTcgQzE2LjE0Myw0LjQ5OTcgMTkuNSw3Ljg1NzcgMTkuNSwxMS45OTk3IEMxOS41LDE2LjE0MjcgMTYuMTQzLDE5LjQ5OTcgMTIsMTkuNDk5NyBDNy44NTgsMTkuNDk5NyA0LjUsMTYuMTQyNyA0LjUsMTEuOTk5NyBDNC41LDcuODU3NyA3Ljg1OCw0LjQ5OTcgMTIsNC40OTk3IFogTTguMDkyMywxMC4zNDk4IEwxMS45OTYzLDE0LjI5OTggTDE1LjkwMDMsMTAuMzUxOCIvPgo8L3N2Zz4K');
   // Chevron-small-down-circle-small color #c60018 (red 125) applied
   --sbb-url-icon-chevron-small-down-circle-small-red125: url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyNCIgaGVpZ2h0PSIyNCIgdmlld0JveD0iMCAwIDI0IDI0Ij4KICA8cGF0aCBmaWxsPSJub25lIiBzdHJva2U9IiNjNjAwMTgiIGQ9Ik0xMiw0LjQ5OTcgQzE2LjE0Myw0LjQ5OTcgMTkuNSw3Ljg1NzcgMTkuNSwxMS45OTk3IEMxOS41LDE2LjE0MjcgMTYuMTQzLDE5LjQ5OTcgMTIsMTkuNDk5NyBDNy44NTgsMTkuNDk5NyA0LjUsMTYuMTQyNyA0LjUsMTEuOTk5NyBDNC41LDcuODU3NyA3Ljg1OCw0LjQ5OTcgMTIsNC40OTk3IFogTTguMDkyMywxMC4zNDk4IEwxMS45OTYzLDE0LjI5OTggTDE1LjkwMDMsMTAuMzUxOCIvPgo8L3N2Zz4K');
+  // Chevron-small-down-circle-small color #ff3838 (red dark mode) applied
+  --sbb-url-icon-chevron-small-down-circle-small-red_dark-mode: url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyNCIgaGVpZ2h0PSIyNCIgdmlld0JveD0iMCAwIDI0IDI0Ij4KICA8cGF0aCBmaWxsPSJub25lIiBzdHJva2U9IiNmZjM4MzgiIGQ9Ik0xMiw0LjQ5OTcgQzE2LjE0Myw0LjQ5OTcgMTkuNSw3Ljg1NzcgMTkuNSwxMS45OTk3IEMxOS41LDE2LjE0MjcgMTYuMTQzLDE5LjQ5OTcgMTIsMTkuNDk5NyBDNy44NTgsMTkuNDk5NyA0LjUsMTYuMTQyNyA0LjUsMTEuOTk5NyBDNC41LDcuODU3NyA3Ljg1OCw0LjQ5OTcgMTIsNC40OTk3IFogTTguMDkyMywxMC4zNDk4IEwxMS45OTYzLDE0LjI5OTggTDE1LjkwMDMsMTAuMzUxOCIvPgo8L3N2Zz4=');
   // Chevron-small-down-small color black applied
   --sbb-url-icon-chevron-small-down-small-black: url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNCAyNCI+PHBvbHlsaW5lIGZpbGw9Im5vbmUiIHN0cm9rZT0iIzAwMCIgcG9pbnRzPSI4LjA5MiAxMC4zNSAxMS45OTYgMTQuMyAxNS45IDEwLjM1MiIvPjwvc3ZnPg==');
   // Chevron-small-down-small color #666 (grey) applied
@@ -493,6 +507,8 @@
   --sbb-url-icon-chevron-small-down-small-red125: url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNCAyNCI+PHBvbHlsaW5lIGZpbGw9Im5vbmUiIHN0cm9rZT0iI2M2MDAxOCIgcG9pbnRzPSI4LjA5MiAxMC4zNSAxMS45OTYgMTQuMyAxNS45IDEwLjM1MiIvPjwvc3ZnPg==');
   // Chevron-small-right-small color #686868 (granite) applied
   --sbb-url-icon-chevron-small-right-small-granite: url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyNCIgaGVpZ2h0PSIyNCIgdmlld0JveD0iMCAwIDI0IDI0Ij4KICA8cG9seWxpbmUgZmlsbD0ibm9uZSIgc3Ryb2tlPSIjNjg2ODY4IiBwb2ludHM9IjEwLjMyNSAxNS45MDQgMTQuMjc1IDEyIDEwLjMyNiA4LjA5NiIvPgo8L3N2Zz4K');
+  // Chevron-small-right-small color #d2d2d2 (aluminium) applied
+  --sbb-url-icon-chevron-small-right-small-aluminium: url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyNCIgaGVpZ2h0PSIyNCIgdmlld0JveD0iMCAwIDI0IDI0Ij4KICA8cG9seWxpbmUgZmlsbD0ibm9uZSIgc3Ryb2tlPSIjZDJkMmQyIiBwb2ludHM9IjEwLjMyNSAxNS45MDQgMTQuMjc1IDEyIDEwLjMyNiA4LjA5NiIvPgo8L3N2Zz4K');
   // Chevron-small-right-small color #cdcdcd (platinum) applied
   --sbb-url-icon-chevron-small-right-small-platinum: url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyNCIgaGVpZ2h0PSIyNCIgdmlld0JveD0iMCAwIDI0IDI0Ij4KICA8cG9seWxpbmUgZmlsbD0ibm9uZSIgc3Ryb2tlPSIjY2RjZGNkIiBwb2ludHM9IjEwLjMyNSAxNS45MDQgMTQuMjc1IDEyIDEwLjMyNiA4LjA5NiIvPgo8L3N2Zz4=');
 
@@ -605,6 +621,11 @@
     // Badge
     --sbb-badge-background-color: var(--sbb-color-black);
     --sbb-badge-background-color-disabled: var(--sbb-color-granite);
+
+    // Breadcumb
+    --sbb-breadcrumb-url-icon-chevron-small-right: var(
+      --sbb-url-icon-chevron-small-right-small-granite
+    );
 
     // Button
     --sbb-button-height: #{sbb.pxToRem(36)};
@@ -775,6 +796,18 @@
       --sbb-badge-background-color: var(--sbb-color-white);
       --sbb-badge-background-color-disabled: var(--sbb-color-anthracite);
       --sbb-badge-color: var(--sbb-color-black);
+
+      // Breadcrumb
+      --sbb-breadcrumb-color-default: var(--sbb-color-aluminum);
+      --sbb-breadcrumb-url-icon-chevron-small-down-circle: var(
+        --sbb-url-icon-chevron-small-down-circle-small-aluminium
+      );
+      --sbb-breadcrumb-url-icon-chevron-small-right: var(
+        --sbb-url-icon-chevron-small-right-small-aluminium
+      );
+      --sbb-breadcrumb-url-icon-chevron-small-down-circle-focused: var(
+        --sbb-url-icon-chevron-small-down-circle-small-red_dark-mode
+      );
 
       // Button Primary
       --sbb-primary-button-background-color-default: var(--sbb-color-red_dark-mode);
