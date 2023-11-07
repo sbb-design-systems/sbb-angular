@@ -14,10 +14,12 @@ import { filter, map, startWith, takeUntil } from 'rxjs/operators';
 
 const variantLocalstorageKey = 'sbbAngularVariant';
 
+type SbbVariantLightDark = SbbVariant | 'light' | 'dark';
+
 @Injectable({ providedIn: 'root' })
 export class VariantSwitch implements CanActivate, OnDestroy {
-  sbbVariant: FormControl<SbbVariant> = new FormControl(
-    (localStorage.getItem(variantLocalstorageKey) as SbbVariant) || 'standard',
+  sbbVariant: FormControl<SbbVariantLightDark> = new FormControl(
+    (localStorage.getItem(variantLocalstorageKey) as SbbVariantLightDark) || 'standard',
   );
   private _destroyed = new Subject<void>();
 
@@ -34,9 +36,10 @@ export class VariantSwitch implements CanActivate, OnDestroy {
           () =>
             ({
               standard: 'lean',
-              lean: 'lean_dark',
-              lean_dark: 'standard',
-            })[this.sbbVariant.value] as SbbVariant,
+              lean: 'light',
+              light: 'dark',
+              dark: 'standard',
+            })[this.sbbVariant.value] as SbbVariantLightDark,
         ),
       )
       .subscribe((newVariant) => this.sbbVariant.setValue(newVariant));
@@ -44,17 +47,22 @@ export class VariantSwitch implements CanActivate, OnDestroy {
     this.sbbVariant.valueChanges
       .pipe(startWith(this.sbbVariant.value), takeUntil(this._destroyed))
       .subscribe((value) => {
-        document.documentElement.classList.remove('sbb-dark');
+        // switch between lean and standard variant
         if (value === 'standard') {
           document.documentElement.classList.remove('sbb-lean');
         } else {
           document.documentElement.classList.add(`sbb-lean`);
-          if (value === 'lean_dark') {
-            document.documentElement.classList.add(`sbb-dark`);
-          }
         }
-        ɵvariant.next(value);
+        ɵvariant.next(value === 'standard' ? 'lean' : 'standard');
         localStorage.setItem(variantLocalstorageKey, value);
+
+        // switch between light and dark mode
+        document.documentElement.classList.remove(...['sbb-dark', 'sbb-light']);
+        if (value === 'light') {
+          document.documentElement.classList.add('sbb-light');
+        } else if (value === 'dark') {
+          document.documentElement.classList.add('sbb-dark');
+        }
       });
   }
 

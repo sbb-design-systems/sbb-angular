@@ -4,7 +4,7 @@
 :root {
   --highlight-color: #efefef;
 
-  &:where(.sbb-lean.sbb-dark) {
+  &:where(.sbb-lean.sbb-dark, .sbb-lean.sbb-preferred-color-scheme-dark):not(.sbb-light) {
     @import 'highlight.js/styles/github-dark';
     --highlight-color: var(--sbb-color-charcoal);
   }
