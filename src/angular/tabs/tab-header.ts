@@ -8,7 +8,6 @@ import {
   ChangeDetectorRef,
   Component,
   ContentChildren,
-  Directive,
   ElementRef,
   EventEmitter,
   Inject,
@@ -24,32 +23,6 @@ import { ANIMATION_MODULE_TYPE } from '@angular/platform-browser/animations';
 
 import { SbbPaginatedTabHeader } from './paginated-tab-header';
 import { SbbTabLabelWrapper } from './tab-label-wrapper';
-
-/**
- * Base class with all of the `SbbTabHeader` functionality.
- * @docs-private
- */
-@Directive()
-// tslint:disable-next-line:class-name naming-convention
-export abstract class _SbbTabHeaderBase
-  extends SbbPaginatedTabHeader
-  implements AfterContentChecked, AfterContentInit, AfterViewInit, OnDestroy
-{
-  constructor(
-    elementRef: ElementRef,
-    changeDetectorRef: ChangeDetectorRef,
-    viewportRuler: ViewportRuler,
-    ngZone: NgZone,
-    platform: Platform,
-    @Optional() @Inject(ANIMATION_MODULE_TYPE) animationMode?: string,
-  ) {
-    super(elementRef, changeDetectorRef, viewportRuler, ngZone, platform, animationMode);
-  }
-
-  protected _itemSelected(event: KeyboardEvent) {
-    event.preventDefault();
-  }
-}
 
 /**
  * The header of the tab group which displays a list of all the tabs in the tab group. Includes
@@ -71,7 +44,10 @@ export abstract class _SbbTabHeaderBase
     '[class.sbb-tab-header-pagination-controls-enabled]': `_showPaginationControls && this.variantSnapshot === 'lean'`,
   },
 })
-export class SbbTabHeader extends _SbbTabHeaderBase {
+export class SbbTabHeader
+  extends SbbPaginatedTabHeader
+  implements AfterContentChecked, AfterContentInit, AfterViewInit, OnDestroy
+{
   @ContentChildren(SbbTabLabelWrapper, { descendants: false })
   _items: QueryList<SbbTabLabelWrapper>;
   @ViewChild('tabListContainer', { static: true }) _tabListContainer: ElementRef;
@@ -92,5 +68,9 @@ export class SbbTabHeader extends _SbbTabHeaderBase {
     @Optional() @Inject(ANIMATION_MODULE_TYPE) animationMode?: string,
   ) {
     super(elementRef, changeDetectorRef, viewportRuler, ngZone, platform, animationMode);
+  }
+
+  protected _itemSelected(event: KeyboardEvent) {
+    event.preventDefault();
   }
 }
