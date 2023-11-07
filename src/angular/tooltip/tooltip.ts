@@ -20,7 +20,7 @@ import {
   Platform,
   _getFocusedElementPierceShadowDom,
 } from '@angular/cdk/platform';
-import { ComponentPortal, ComponentType } from '@angular/cdk/portal';
+import { ComponentPortal } from '@angular/cdk/portal';
 import { ScrollDispatcher } from '@angular/cdk/scrolling';
 import { DOCUMENT } from '@angular/common';
 import {
@@ -151,28 +151,36 @@ export function SBB_TOOLTIP_DEFAULT_OPTIONS_FACTORY(): SbbTooltipDefaultOptions 
 export class SbbTooltipChangeEvent {
   constructor(
     /** Instance of tooltip component. */
-    public instance: _SbbTooltipBase<_TooltipComponentBase>,
+    public instance: SbbTooltip,
   ) {}
 }
 
-@Directive()
-// tslint:disable-next-line: class-name naming-convention
-export abstract class _SbbTooltipBase<T extends _TooltipComponentBase>
-  implements OnDestroy, AfterViewInit
-{
+/**
+ * Directive that attaches a sbb design tooltip to the host element. Animates the showing and
+ * hiding of a tooltip provided position (defaults to below the element).
+ */
+@Directive({
+  selector: '[sbbTooltip]',
+  exportAs: 'sbbTooltip',
+  host: {
+    '[class.sbb-tooltip-trigger]': 'trigger === "click"',
+    '[attr.aria-expanded]': 'trigger === "click" ? _isTooltipVisible() : null',
+  },
+})
+export class SbbTooltip implements OnDestroy, AfterViewInit {
   _overlayRef: OverlayRef | null;
-  _tooltipInstance: T | null;
+  _tooltipInstance: TooltipComponent | null;
 
-  private _portal: ComponentPortal<T>;
+  private _portal: ComponentPortal<TooltipComponent>;
   private _disabled: boolean = false;
   private _tooltipClass: string | string[] | Set<string> | { [key: string]: any };
   private _scrollStrategy: () => ScrollStrategy;
   private _viewInitialized = false;
   private _pointerExitEventsInitialized = false;
-  protected abstract readonly _tooltipComponent: ComponentType<T>;
-  protected _viewportMargin: number = 8;
+  private readonly _tooltipComponent = TooltipComponent;
+  private _viewportMargin: number = 8;
   private _currentPosition: TooltipPosition;
-  protected readonly _cssClassPrefix: string = 'sbb';
+  private readonly _cssClassPrefix: string = 'sbb';
 
   /**
    * The trigger event, on which the tooltip opens.
@@ -326,7 +334,9 @@ export abstract class _SbbTooltipBase<T extends _TooltipComponentBase>
     private _platform: Platform,
     private _ariaDescriber: AriaDescriber,
     private _focusMonitor: FocusMonitor,
-    scrollStrategy: any,
+    @Inject(SBB_TOOLTIP_SCROLL_STRATEGY) scrollStrategy: any,
+    @Optional()
+    @Inject(SBB_TOOLTIP_DEFAULT_OPTIONS)
     private _defaultOptions: SbbTooltipDefaultOptions,
     @Inject(DOCUMENT) document: any,
   ) {
@@ -794,52 +804,30 @@ export abstract class _SbbTooltipBase<T extends _TooltipComponentBase>
 }
 
 /**
- * Directive that attaches a sbb design tooltip to the host element. Animates the showing and
- * hiding of a tooltip provided position (defaults to below the element).
+ * Internal component that wraps the tooltip's content.
+ * @docs-private
  */
-@Directive({
-  selector: '[sbbTooltip]',
-  exportAs: 'sbbTooltip',
+@Component({
+  selector: 'sbb-tooltip-component',
+  templateUrl: 'tooltip.html',
+  styleUrls: ['tooltip.css'],
+  encapsulation: ViewEncapsulation.None,
+  changeDetection: ChangeDetectionStrategy.OnPush,
   host: {
-    '[class.sbb-tooltip-trigger]': 'trigger === "click"',
-    '[attr.aria-expanded]': 'trigger === "click" ? _isTooltipVisible() : null',
+    class: 'sbb-tooltip-component',
+    // Forces the element to have a layout in IE and Edge. This fixes issues where the element
+    // won't be rendered if the animations are disabled or there is no web animations polyfill.
+    '[style.zoom]': 'isVisible() ? 1 : null',
+    '(mouseleave)': '_handleMouseLeave($event)',
+    'aria-hidden': 'true',
   },
 })
-export class SbbTooltip extends _SbbTooltipBase<TooltipComponent> {
-  protected readonly _tooltipComponent: ComponentType<TooltipComponent> = TooltipComponent;
+export class TooltipComponent implements OnDestroy {
+  /** Stream that emits whether the user has a handset-sized display.  */
+  _isHandset: Observable<BreakpointState> = this._breakpointObserver.observe(
+    Breakpoints.MobileDevice,
+  );
 
-  constructor(
-    overlay: Overlay,
-    elementRef: ElementRef<HTMLElement>,
-    scrollDispatcher: ScrollDispatcher,
-    viewContainerRef: ViewContainerRef,
-    ngZone: NgZone,
-    platform: Platform,
-    ariaDescriber: AriaDescriber,
-    focusMonitor: FocusMonitor,
-    @Inject(SBB_TOOLTIP_SCROLL_STRATEGY) scrollStrategy: any,
-    @Optional() @Inject(SBB_TOOLTIP_DEFAULT_OPTIONS) defaultOptions: SbbTooltipDefaultOptions,
-    @Inject(DOCUMENT) document: any,
-  ) {
-    super(
-      overlay,
-      elementRef,
-      scrollDispatcher,
-      viewContainerRef,
-      ngZone,
-      platform,
-      ariaDescriber,
-      focusMonitor,
-      scrollStrategy,
-      defaultOptions,
-      document,
-    );
-  }
-}
-
-@Directive()
-// tslint:disable-next-line: class-name naming-convention
-export abstract class _TooltipComponentBase implements OnDestroy {
   /** Message to display in the tooltip */
   message: string | TemplateRef<any>;
 
@@ -858,11 +846,17 @@ export abstract class _TooltipComponentBase implements OnDestroy {
   /** Amount of milliseconds to delay the closing sequence. */
   _mouseLeaveHideDelay: number;
 
-  /** Whether animations are currently disabled. */
-  private _animationsDisabled: boolean;
-
   /** Reference to the internal tooltip element. */
-  abstract _tooltip: ElementRef<HTMLElement>;
+  @ViewChild('tooltip', {
+    // Use a static query here since we interact directly with
+    // the DOM which can happen before `ngAfterViewInit`.
+    static: true,
+  })
+  _tooltip: ElementRef<HTMLElement>;
+
+  get _templateRef(): TemplateRef<any> | null {
+    return this.message instanceof TemplateRef ? this.message : null;
+  }
 
   /**
    * Type of interaction that led to the tooltip being closed. This is used to determine
@@ -874,6 +868,9 @@ export abstract class _TooltipComponentBase implements OnDestroy {
   _config?: Pick<SbbTooltipDefaultOptions, 'autoFocus' | 'restoreFocus'> = {};
 
   protected _document: Document;
+
+  /** Whether animations are currently disabled. */
+  private _animationsDisabled: boolean;
 
   /** Whether interactions on the page should close the tooltip */
   private _closeOnInteraction = false;
@@ -897,16 +894,17 @@ export abstract class _TooltipComponentBase implements OnDestroy {
   _triggeredByClick: boolean = false;
 
   /** Name of the show animation and the class that toggles it. */
-  protected abstract readonly _showAnimation: string;
+  private readonly _showAnimation: string = 'sbb-tooltip-container-show';
 
   /** Name of the hide animation and the class that toggles it. */
-  protected abstract readonly _hideAnimation: string;
+  private readonly _hideAnimation: string = 'sbb-tooltip-container-hide';
 
   constructor(
     public _elementRef: ElementRef<HTMLElement>,
     protected _focusTrapFactory: ConfigurableFocusTrapFactory,
     private _changeDetectorRef: ChangeDetectorRef,
     private _focusMonitor: FocusMonitor,
+    private _breakpointObserver: BreakpointObserver,
     @Optional() @Inject(DOCUMENT) document: any,
     @Optional() @Inject(ANIMATION_MODULE_TYPE) animationMode?: string,
   ) {
@@ -1150,56 +1148,5 @@ export abstract class _TooltipComponentBase implements OnDestroy {
     const element = this._elementRef.nativeElement;
     const activeElement = _getFocusedElementPierceShadowDom();
     return element === activeElement || element.contains(activeElement);
-  }
-}
-
-/**
- * Internal component that wraps the tooltip's content.
- * @docs-private
- */
-@Component({
-  selector: 'sbb-tooltip-component',
-  templateUrl: 'tooltip.html',
-  styleUrls: ['tooltip.css'],
-  encapsulation: ViewEncapsulation.None,
-  changeDetection: ChangeDetectionStrategy.OnPush,
-  host: {
-    class: 'sbb-tooltip-component',
-    // Forces the element to have a layout in IE and Edge. This fixes issues where the element
-    // won't be rendered if the animations are disabled or there is no web animations polyfill.
-    '[style.zoom]': 'isVisible() ? 1 : null',
-    '(mouseleave)': '_handleMouseLeave($event)',
-    'aria-hidden': 'true',
-  },
-})
-export class TooltipComponent extends _TooltipComponentBase {
-  /** Stream that emits whether the user has a handset-sized display.  */
-  _isHandset: Observable<BreakpointState> = this._breakpointObserver.observe(
-    Breakpoints.MobileDevice,
-  );
-  _showAnimation: string = 'sbb-tooltip-container-show';
-  _hideAnimation: string = 'sbb-tooltip-container-hide';
-
-  @ViewChild('tooltip', {
-    // Use a static query here since we interact directly with
-    // the DOM which can happen before `ngAfterViewInit`.
-    static: true,
-  })
-  _tooltip: ElementRef<HTMLElement>;
-
-  get _templateRef(): TemplateRef<any> | null {
-    return this.message instanceof TemplateRef ? this.message : null;
-  }
-
-  constructor(
-    elementRef: ElementRef<HTMLElement>,
-    focusTrapFactory: ConfigurableFocusTrapFactory,
-    changeDetectorRef: ChangeDetectorRef,
-    focusMonitor: FocusMonitor,
-    @Optional() @Inject(DOCUMENT) document: any,
-    private _breakpointObserver: BreakpointObserver,
-    @Optional() @Inject(ANIMATION_MODULE_TYPE) animationMode?: string,
-  ) {
-    super(elementRef, focusTrapFactory, changeDetectorRef, focusMonitor, document, animationMode);
   }
 }

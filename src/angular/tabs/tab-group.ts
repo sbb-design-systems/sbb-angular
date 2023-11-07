@@ -12,7 +12,6 @@ import {
   ChangeDetectorRef,
   Component,
   ContentChildren,
-  Directive,
   ElementRef,
   EventEmitter,
   Inject,
@@ -47,19 +46,33 @@ interface SbbTabGroupBaseHeader {
   focusIndex: number;
 }
 
-/**
- * Base class with all of the `SbbTabGroupBase` functionality.
- * @docs-private
- */
-@Directive()
-export abstract class SbbTabGroupBase implements AfterContentInit, AfterContentChecked, OnDestroy {
+@Component({
+  selector: 'sbb-tab-group',
+  exportAs: 'sbbTabGroup',
+  templateUrl: 'tab-group.html',
+  styleUrls: ['tab-group.css'],
+  encapsulation: ViewEncapsulation.None,
+  // tslint:disable-next-line:validate-decorators
+  changeDetection: ChangeDetectionStrategy.Default,
+  providers: [
+    {
+      provide: SBB_TAB_GROUP,
+      useExisting: SbbTabGroup,
+    },
+  ],
+  host: {
+    class: 'sbb-tab-group',
+    '[class.sbb-tab-group-dynamic-height]': 'dynamicHeight',
+  },
+})
+export class SbbTabGroup implements AfterContentInit, AfterContentChecked, OnDestroy {
   /**
    * All tabs inside the tab group. This includes tabs that belong to groups that are nested
    * inside the current one. We filter out only the tabs that belong to this group in `_tabs`.
    */
-  abstract _allTabs: QueryList<SbbTab>;
-  abstract _tabBodyWrapper: ElementRef;
-  abstract _tabHeader: SbbTabGroupBaseHeader;
+  @ContentChildren(SbbTab, { descendants: true }) _allTabs: QueryList<SbbTab>;
+  @ViewChild('tabBodyWrapper') _tabBodyWrapper: ElementRef;
+  @ViewChild('tabHeader') _tabHeader: SbbTabGroupBaseHeader;
 
   /** All of the tabs that belong to the group. */
   _tabs: QueryList<SbbTab> = new QueryList<SbbTab>();
@@ -426,42 +439,5 @@ export abstract class SbbTabGroupBase implements AfterContentInit, AfterContentC
     if (focusOrigin && focusOrigin !== 'mouse' && focusOrigin !== 'touch') {
       this._tabHeader.focusIndex = index;
     }
-  }
-}
-
-/**
- * SBB design tab-group component. Supports basic tab pairs (label + content) and
- * includes keyboard navigation and screen reader.
- */
-@Component({
-  selector: 'sbb-tab-group',
-  exportAs: 'sbbTabGroup',
-  templateUrl: 'tab-group.html',
-  styleUrls: ['tab-group.css'],
-  encapsulation: ViewEncapsulation.None,
-  // tslint:disable-next-line:validate-decorators
-  changeDetection: ChangeDetectionStrategy.Default,
-  providers: [
-    {
-      provide: SBB_TAB_GROUP,
-      useExisting: SbbTabGroup,
-    },
-  ],
-  host: {
-    class: 'sbb-tab-group',
-    '[class.sbb-tab-group-dynamic-height]': 'dynamicHeight',
-  },
-})
-export class SbbTabGroup extends SbbTabGroupBase {
-  @ContentChildren(SbbTab, { descendants: true }) _allTabs: QueryList<SbbTab>;
-  @ViewChild('tabBodyWrapper') _tabBodyWrapper: ElementRef;
-  @ViewChild('tabHeader') _tabHeader: SbbTabGroupBaseHeader;
-
-  constructor(
-    changeDetectorRef: ChangeDetectorRef,
-    @Inject(SBB_TABS_CONFIG) @Optional() defaultConfig?: SbbTabsConfig,
-    @Optional() @Inject(ANIMATION_MODULE_TYPE) animationMode?: string,
-  ) {
-    super(changeDetectorRef, defaultConfig, animationMode);
   }
 }

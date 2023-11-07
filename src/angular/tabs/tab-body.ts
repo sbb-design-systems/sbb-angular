@@ -79,12 +79,22 @@ export class SbbTabBodyPortal extends CdkPortalOutlet implements OnInit, OnDestr
 }
 
 /**
- * Base class with all of the `SbbTabBody` functionality.
+ * Wrapper for the contents of a tab.
  * @docs-private
  */
-@Directive()
-// tslint:disable-next-line:class-name naming-convention
-export abstract class _SbbTabBodyBase implements OnDestroy {
+@Component({
+  selector: 'sbb-tab-body',
+  templateUrl: 'tab-body.html',
+  styleUrls: ['tab-body.css'],
+  encapsulation: ViewEncapsulation.None,
+  // tslint:disable-next-line:validate-decorators
+  changeDetection: ChangeDetectionStrategy.Default,
+  animations: [sbbTabsAnimations.translateTab],
+  host: {
+    class: 'sbb-tab-body',
+  },
+})
+export class SbbTabBody implements OnDestroy {
   /** Current position of the tab-body in the tab-group. Zero means that the tab is visible. */
   private _positionIndex: number;
 
@@ -110,7 +120,7 @@ export abstract class _SbbTabBodyBase implements OnDestroy {
   @Output() readonly _onCentered: EventEmitter<void> = new EventEmitter<void>(true);
 
   /** The portal host inside of this container into which the tab body content will be loaded. */
-  abstract _portalHost: CdkPortalOutlet;
+  @ViewChild(CdkPortalOutlet) _portalHost: CdkPortalOutlet;
 
   /** The tab body content to display. */
   @Input('content') _content: TemplatePortal;
@@ -178,29 +188,5 @@ export abstract class _SbbTabBodyBase implements OnDestroy {
   /** Computes the position state that will be used for the tab-body animation trigger. */
   private _computePositionAnimationState() {
     this._position = this._positionIndex === 0 ? 'show' : 'hidden';
-  }
-}
-
-/**
- * Wrapper for the contents of a tab.
- * @docs-private
- */
-@Component({
-  selector: 'sbb-tab-body',
-  templateUrl: 'tab-body.html',
-  styleUrls: ['tab-body.css'],
-  encapsulation: ViewEncapsulation.None,
-  // tslint:disable-next-line:validate-decorators
-  changeDetection: ChangeDetectionStrategy.Default,
-  animations: [sbbTabsAnimations.translateTab],
-  host: {
-    class: 'sbb-tab-body',
-  },
-})
-export class SbbTabBody extends _SbbTabBodyBase {
-  @ViewChild(CdkPortalOutlet) _portalHost: CdkPortalOutlet;
-
-  constructor(elementRef: ElementRef<HTMLElement>) {
-    super(elementRef);
   }
 }
