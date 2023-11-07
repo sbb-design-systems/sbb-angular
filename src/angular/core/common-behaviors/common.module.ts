@@ -53,11 +53,7 @@ export class SbbCommonModule {
     @Inject(DOCUMENT) private _document: Document,
   ) {
     this._isDarkMode().subscribe((isDark) => {
-      if (isDark) {
-        document.documentElement.classList.add('sbb-preferred-color-scheme-dark');
-      } else {
-        document.documentElement.classList.remove('sbb-preferred-color-scheme-dark');
-      }
+      document.documentElement.classList.toggle('sbb-preferred-color-scheme-dark', isDark);
     });
     // Check variant configuration at the beginning, as this might cause components
     // to render differently.
