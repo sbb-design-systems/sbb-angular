@@ -11,8 +11,8 @@ export function createMouseEvent(
   type: string,
   clientX = 0,
   clientY = 0,
-  offsetX = 1,
-  offsetY = 1,
+  offsetX = 0,
+  offsetY = 0,
   button = 0,
   modifiers: ModifierKeys = {},
 ) {
@@ -28,7 +28,7 @@ export function createMouseEvent(
     cancelable: true,
     composed: true, // Required for shadow DOM events.
     view: window,
-    detail: 0,
+    detail: 1,
     relatedTarget: null,
     screenX,
     screenY,
