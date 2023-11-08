@@ -24,7 +24,7 @@
       width: sbb.pxToEm(300);
       margin: 0 sbb.pxToEm(20) sbb.pxToEm(20) 0;
       border-radius: sbb.pxToEm(6);
-      background: #fff;
+      background: var(--sbb-color-background);
       border: solid sbb.pxToEm(1) #cccccc;
       color: #1b1b1b;
       cursor: pointer;
@@ -45,7 +45,7 @@
         width: 100%;
 
         &:hover {
-          color: #000000;
+          color: var(--sbb-color-text);
         }
 
         .hero {

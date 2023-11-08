@@ -122,14 +122,14 @@
 }
 
 @mixin sbbMenuItemBlackLean($width: var(--sbb-border-width-thin)) {
-  color: var(--sbb-color-black);
-  background-color: var(--sbb-color-cloud);
-  @include borderLeftAsBefore(var(--sbb-color-black), $width);
+  color: var(--sbb-menu-item-label-active);
+  background-color: var(--sbb-menu-item-background-color-active);
+  @include borderLeftAsBefore(var(--sbb-menu-item-label-active), $width);
 }
 
 @mixin sbbMenuItemRedLean($width: var(--sbb-border-width-thin)) {
   color: var(--sbb-color-call-to-action-hover);
-  background-color: var(--sbb-color-milk);
+  background-color: var(--sbb-menu-item-background-color-hover);
   @include borderLeftAsBefore(var(--sbb-color-call-to-action-hover), $width);
 }
 

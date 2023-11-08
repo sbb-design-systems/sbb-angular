@@ -62,7 +62,7 @@
     flex-shrink: 0;
 
     :where(html.sbb-lean) & {
-      background-image: var(--sbb-url-icon-chevron-small-right-small-granite);
+      background-image: var(--sbb-breadcrumb-url-icon-chevron-small-right);
       margin-right: sbb.pxToRem(4);
     }
   }
@@ -109,7 +109,7 @@
   font-family: var(--sbb-font-roman);
   font-size: var(--sbb-font-size-small);
   line-height: var(--sbb-line-height-small);
-  color: var(--sbb-color-granite);
+  color: var(--sbb-breadcrumb-color-default);
   text-align: left;
   text-decoration: none;
 
@@ -138,7 +138,7 @@
     content: '';
     display: inline-block;
     @include sbb.absoluteCenterY;
-    background: var(--sbb-url-icon-chevron-small-down-circle-small-granite) no-repeat center;
+    background: var(--sbb-breadcrumb-url-icon-chevron-small-down-circle) no-repeat center;
     background-size: var(--sbb-icon-size-default) var(--sbb-icon-size-default);
     width: var(--sbb-icon-size-default);
     height: var(--sbb-icon-size-default);
@@ -147,7 +147,7 @@
   }
 
   &:is(:focus, :hover)::after {
-    background-image: var(--sbb-url-icon-chevron-small-down-circle-small-red125);
+    background-image: var(--sbb-breadcrumb-url-icon-chevron-small-down-circle-focused);
   }
 }
 

@@ -74,7 +74,7 @@
   width: calc(#{sbb.pxToRem(300)} * var(--sbb-scaling-factor));
   transform: translate3d(-100%, 0, 0);
   border-right: var(--sbb-border-width-thin) solid var(--sbb-color-cloud);
-  background-color: var(--sbb-color-background);
+  background-color: var(--sbb-sidebar-background-color);
 
   // Usually the `visibility: hidden` added by the animation is enough to prevent focus from
   // entering the hidden sidebar content, but children with their own `visibility` can override it.
@@ -156,7 +156,7 @@
 
   > :is(.sbb-expansion-panel, fieldset) {
     border: none;
-    border-bottom: var(--sbb-border-width-thin) solid var(--sbb-color-cloud);
+    border-bottom: var(--sbb-border-width-thin) solid var(--sbb-expansion-panel-border-color-open);
 
     + :is(.sbb-expansion-panel, fieldset) {
       margin-top: calc(
@@ -181,7 +181,7 @@
 .sbb-sidebar-link {
   position: relative;
   text-decoration: none;
-  color: var(--sbb-color-iron);
+  color: var(--sbb-menu-item-label);
   display: flex;
   justify-content: flex-start;
   align-items: center;

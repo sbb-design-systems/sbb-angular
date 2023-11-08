@@ -8,16 +8,18 @@ import {
   RouterStateSnapshot,
   UrlTree,
 } from '@angular/router';
-import { ɵvariant } from '@sbb-esta/angular/core';
+import { SbbVariant, ɵvariant } from '@sbb-esta/angular/core';
 import { fromEvent, Observable, Subject } from 'rxjs';
-import { filter, startWith, takeUntil } from 'rxjs/operators';
+import { filter, map, startWith, takeUntil } from 'rxjs/operators';
 
 const variantLocalstorageKey = 'sbbAngularVariant';
 
+type SbbVariantLightDark = SbbVariant | 'light' | 'dark';
+
 @Injectable({ providedIn: 'root' })
 export class VariantSwitch implements CanActivate, OnDestroy {
-  sbbVariant: FormControl = new FormControl(
-    localStorage.getItem(variantLocalstorageKey) || 'standard',
+  sbbVariant: FormControl<SbbVariantLightDark> = new FormControl(
+    (localStorage.getItem(variantLocalstorageKey) as SbbVariantLightDark) || 'standard',
   );
   private _destroyed = new Subject<void>();
 
@@ -30,21 +32,37 @@ export class VariantSwitch implements CanActivate, OnDestroy {
       .pipe(
         filter((value) => value.ctrlKey && value.shiftKey && value.key === 'V'),
         takeUntil(this._destroyed),
+        map(
+          () =>
+            ({
+              standard: 'lean',
+              lean: 'light',
+              light: 'dark',
+              dark: 'standard',
+            })[this.sbbVariant.value] as SbbVariantLightDark,
+        ),
       )
-      .subscribe(() =>
-        this.sbbVariant.setValue(this.sbbVariant.value === 'standard' ? 'lean' : 'standard'),
-      );
+      .subscribe((newVariant) => this.sbbVariant.setValue(newVariant));
 
     this.sbbVariant.valueChanges
       .pipe(startWith(this.sbbVariant.value), takeUntil(this._destroyed))
       .subscribe((value) => {
+        // switch between lean and standard variant
         if (value === 'standard') {
           document.documentElement.classList.remove('sbb-lean');
         } else {
           document.documentElement.classList.add(`sbb-lean`);
         }
-        ɵvariant.next(value);
+        ɵvariant.next(value === 'standard' ? 'lean' : 'standard');
         localStorage.setItem(variantLocalstorageKey, value);
+
+        // switch between light and dark mode
+        document.documentElement.classList.remove(...['sbb-dark', 'sbb-light']);
+        if (value === 'light') {
+          document.documentElement.classList.add('sbb-light');
+        } else if (value === 'dark') {
+          document.documentElement.classList.add('sbb-dark');
+        }
       });
   }
 
@@ -65,7 +83,7 @@ export class VariantSwitch implements CanActivate, OnDestroy {
       return true;
     }
 
-    const variant = route.queryParamMap.get('variant');
+    const variant = route.queryParamMap.get('variant') as SbbVariant;
     if (this.sbbVariant.value !== variant) {
       this.sbbVariant.setValue(variant);
     }

@@ -14,7 +14,7 @@
   display: inline-block;
   @include sbb.ellipsis;
   vertical-align: middle;
-  color: var(--sbb-color-metal);
+  color: var(--sbb-processflow-step-label-color);
   cursor: default;
   padding-bottom: 0.5em;
   font-size: var(--sbb-font-size-large);

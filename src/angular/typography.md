@@ -19,6 +19,10 @@ To activate lean design, set the css class `sbb-lean` on your `<html class="sbb-
 
 If you are uncertain which library to use, we recommend you to start with lean design.
 
+**Dark mode (lean only)**
+
+The lean design variant is available in a light and a dark mode. The mode chosen is based on the system settings. To enforce a specific mode, you can add the `sbb-light` or `sbb-dark` class to your `<html>` element.
+
 **Style for security-critical applications**
 
 We also provide a styling for applications that are critical for security.

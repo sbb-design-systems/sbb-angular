@@ -46,7 +46,8 @@
   height: var(--sbb-chips-chip-height);
   border-radius: var(--sbb-chips-chip-height);
   color: var(--sbb-color-weak-accent);
-  background-color: var(--sbb-color-cloud);
+  -webkit-text-fill-color: var(--sbb-color-weak-accent);
+  background-color: var(--sbb-chips-background-color-active);
   max-width: 100%;
   margin: var(--sbb-chips-chip-margin-vertical);
 
@@ -60,11 +61,12 @@
     calc(#{sbb.pxToRem(14)} * var(--sbb-scaling-factor));
 
   &:not(.sbb-chip-disabled):is(:hover, :focus) {
-    background-color: var(--sbb-color-aluminum);
+    background-color: var(--sbb-chips-background-color-hover);
   }
 
   &.sbb-chip-disabled {
-    opacity: 0.6;
+    background-color: var(--sbb-chips-background-color-disabled);
+    opacity: var(--sbb-chips-opacity);
 
     :is(.sbb-chip-remove, .sbb-chip-trailing-icon) {
       cursor: default;

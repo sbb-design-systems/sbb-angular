@@ -3,6 +3,8 @@ import { HighContrastModeDetector } from '@angular/cdk/a11y';
 import { _isTestEnvironment } from '@angular/cdk/platform';
 import { DOCUMENT } from '@angular/common';
 import { Inject, InjectionToken, NgModule, Optional } from '@angular/core';
+import { fromEvent, Observable } from 'rxjs';
+import { map, startWith } from 'rxjs/operators';
 
 import { VERSION } from '../version';
 
@@ -50,6 +52,9 @@ export class SbbCommonModule {
     @Optional() @Inject(SBB_SANITY_CHECKS) private _sanityChecks: SanityChecks,
     @Inject(DOCUMENT) private _document: Document,
   ) {
+    this._isDarkMode().subscribe((isDark) => {
+      document.documentElement.classList.toggle('sbb-preferred-color-scheme-dark', isDark);
+    });
     // Check variant configuration at the beginning, as this might cause components
     // to render differently.
     ɵvariant.next(
@@ -92,6 +97,14 @@ export class SbbCommonModule {
     }
 
     return !!this._sanityChecks[name];
+  }
+
+  private _isDarkMode(): Observable<boolean> {
+    const query = window.matchMedia('(prefers-color-scheme: dark)');
+    return fromEvent<MediaQueryList>(query, 'change').pipe(
+      startWith(query),
+      map((event) => !!event.matches),
+    );
   }
 }
 

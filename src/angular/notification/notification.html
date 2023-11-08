@@ -18,7 +18,7 @@
 </div>
 
 <button
-  *ngIf="(variant | async) === 'lean' && !readonly"
+  *ngIf="(variant | async) !== 'standard' && !readonly"
   class="sbb-notification-dismiss-icon-button sbb-button-reset-frameless sbb-icon-scaled"
   type="button"
   (click)="dismiss()"
