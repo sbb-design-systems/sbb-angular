@@ -9,7 +9,7 @@ export const UPDATE_STEPS: UpdateStep[] = [
     from: 1200,
     to: 1300,
     actions: [
-      `Update your Angular dependencies to version 13.x.x with "--force" flag (due to unmet peer ependencies).<br/>
+      `Update your Angular dependencies to version 13.x.x with "--force" flag (due to unmet peer dependencies).<br/>
         See <a href='https://update.angular.io'>update.angular.io</a> for a step-by-step guide for updating Angular.<br/>
         <pre>npx @angular/cli@13 update @angular/core@13 @angular/cli@13 --force</pre>`,
 
@@ -34,7 +34,7 @@ export const UPDATE_STEPS: UpdateStep[] = [
     from: 1300,
     to: 1400,
     actions: [
-      `Update your Angular dependencies to version 14.x.x with "--force" flag (due to unmet peer ependencies).<br/>
+      `Update your Angular dependencies to version 14.x.x with "--force" flag (due to unmet peer dependencies).<br/>
         See <a href='https://update.angular.io'>update.angular.io</a> for a step-by-step guide for updating Angular.<br/>
         <pre>npx @angular/cli@14 update @angular/core@14 @angular/cli@14 --force</pre>`,
 
@@ -54,7 +54,7 @@ export const UPDATE_STEPS: UpdateStep[] = [
     from: 1400,
     to: 1500,
     actions: [
-      `Update your Angular dependencies to version 15.x.x with "--force" flag (due to unmet peer ependencies).<br/>
+      `Update your Angular dependencies to version 15.x.x with "--force" flag (due to unmet peer dependencies).<br/>
         See <a href='https://update.angular.io'>update.angular.io</a> for a step-by-step guide for updating Angular.<br/>
         <pre>npx @angular/cli@15 update @angular/core@15 @angular/cli@15 --force</pre>`,
 
@@ -69,7 +69,7 @@ export const UPDATE_STEPS: UpdateStep[] = [
     from: 1500,
     to: 1600,
     actions: [
-      `Update your Angular dependencies to version 16.x.x with "--force" flag (due to unmet peer ependencies).<br/>
+      `Update your Angular dependencies to version 16.x.x with "--force" flag (due to unmet peer dependencies).<br/>
         See <a href='https://update.angular.io'>update.angular.io</a> for a step-by-step guide for updating Angular.<br/>
         <pre>npx @angular/cli@16 update @angular/core@16 @angular/cli@16 --force</pre>`,
 
@@ -78,6 +78,21 @@ export const UPDATE_STEPS: UpdateStep[] = [
 
       `Finally, update SBB Angular.
         <pre>ng update @sbb-esta/angular@16</pre>`,
+    ],
+  },
+  {
+    from: 1600,
+    to: 1700,
+    actions: [
+      `Update your Angular dependencies to version 17.x.x with "--force" flag (due to unmet peer dependencies).<br/>
+        See <a href='https://update.angular.io'>update.angular.io</a> for a step-by-step guide for updating Angular.<br/>
+        <pre>npx @angular/cli@17 update @angular/core@17 @angular/cli@17 --force</pre>`,
+
+      `Update Angular CDK in a separate step to avoid dependency version resolving problems.<br/>
+        <pre>npx @angular/cli@17 update @angular/cdk@17 --force</pre>`,
+
+      `Finally, update SBB Angular.
+        <pre>ng update @sbb-esta/angular@17</pre>`,
     ],
   },
 ];
