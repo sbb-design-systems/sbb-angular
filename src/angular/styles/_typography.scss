@@ -419,6 +419,7 @@
   --sbb-sidebar-mobile-menu-bar-height: calc(2 * var(--sbb-icon-size-default));
   --sbb-icon-sidebar-item-dimension: calc(2 * var(--sbb-icon-size-default));
   --sbb-sidebar-background-color: var(--sbb-color-background);
+  --sbb-sidebar-border-right-color: var(--sbb-color-cloud);
   --sbb-icon-sidebar-background-color: var(--sbb-color-milk);
   --sbb-icon-sidebar-background-color-active: var(--sbb-color-background);
 
@@ -979,6 +980,7 @@
       // Sidebar
       --sbb-sidebar-background-color: var(--sbb-color-midnight);
       --sbb-icon-sidebar-background-color: var(--sbb-color-black);
+      --sbb-sidebar-border-right-color: var(--sbb-color-iron);
       --sbb-icon-sidebar-background-color-active: var(--sbb-color-charcoal);
 
       // Status

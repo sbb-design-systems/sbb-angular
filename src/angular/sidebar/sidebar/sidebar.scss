@@ -73,7 +73,7 @@
   bottom: 0;
   width: calc(#{sbb.pxToRem(300)} * var(--sbb-scaling-factor));
   transform: translate3d(-100%, 0, 0);
-  border-right: var(--sbb-border-width-thin) solid var(--sbb-color-cloud);
+  border-right: var(--sbb-border-width-thin) solid var(--sbb-sidebar-border-right-color);
   background-color: var(--sbb-sidebar-background-color);
 
   // Usually the `visibility: hidden` added by the animation is enough to prevent focus from
