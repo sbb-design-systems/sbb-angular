@@ -65,7 +65,7 @@
   flex: 0 0 auto;
   display: block;
   position: relative;
-  box-shadow: var(--sbb-box-shadow-horizontal-border-top);
+  box-shadow: var(--sbb-dialog-title-box-shadow);
   @include sbb.ellipsis;
   min-height: calc(#{sbb.pxToRem(53)} * var(--sbb-scaling-factor)); // Supports empty title
 }
@@ -93,7 +93,7 @@
   // Explicitly set a box-sizing since people commonly set `border-box`
   // on all elements which will break the height of the dialog actions.
   box-sizing: content-box;
-  box-shadow: var(--sbb-box-shadow-horizontal-border-bottom);
+  box-shadow: var(--sbb-dialog-actions-box-shadow);
 
   // .sbb-dialog-actions-align-{start|center|end} are set by directive input "align"
   // [align='start'], [align='center'], [align='right'] are kept for backwards compatibility

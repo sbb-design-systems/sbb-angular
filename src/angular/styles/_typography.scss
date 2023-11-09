@@ -81,6 +81,7 @@
   --sbb-color-blue: #{sbb.$sbbColorBlue};
 
   // With Alpha
+  --sbb-color-cloud-alpha10: #{rgba(sbb.$sbbColorCloud, 0.1)};
   --sbb-color-granite-alpha40: #{rgba(sbb.$sbbColorGranite, 0.4)};
   --sbb-color-red-alpha40: #{rgba(sbb.$sbbColorRed, 0.4)};
   --sbb-color-silver-alpha40: #{rgba(sbb.$sbbColorSilver, 0.4)};
@@ -285,6 +286,8 @@
   --sbb-dialog-overlay-backgroud-color: var(--sbb-color-white-alpha70);
   --sbb-dialog-container-border-color: var(--sbb-color-weak-accent);
   --sbb-dialog-container-background-color: var(--sbb-color-background);
+  --sbb-dialog-title-box-shadow: var(--sbb-box-shadow-horizontal-border-top);
+  --sbb-dialog-actions-box-shadow: var(--sbb-box-shadow-horizontal-border-bottom);
 
   // Expansion Panel
   --sbb-expansion-panel-padding-horizontal: #{sbb.pxToRem(24)};
@@ -874,8 +877,8 @@
       // Chips
       --sbb-chips-background-color-active: var(--sbb-color-smoke);
       --sbb-chips-background-color-hover: var(--sbb-color-metal);
-      --sbb-chips-background-color-disabled: var(--sbb-color-cloud);
-      --sbb-chips-opacity: 0.9;
+      --sbb-chips-background-color-disabled: var(--sbb-color-cloud-alpha10);
+      --sbb-chips-opacity: 1;
 
       // Datepicker
       --sbb-datepicker-calendar-header-color: var(--sbb-color-smoke);
@@ -884,8 +887,14 @@
 
       // Dialog
       --sbb-dialog-overlay-backgroud-color: var(--sbb-color-black-alpha70);
-      --sbb-dialog-container-border-color: var(--sbb-color-weak-accent);
+      --sbb-dialog-container-border-color: var(--sbb-color-silver);
       --sbb-dialog-container-background-color: var(--sbb-color-charcoal);
+      --sbb-dialog-title-box-shadow: 0
+        calc(var(--sbb-border-width) + calc(#{sbb.pxToRem(1)} * var(--sbb-scaling-factor))) 0
+        calc(var(--sbb-border-width) * -1) var(--sbb-color-iron);
+      --sbb-dialog-actions-box-shadow: 0
+        calc(var(--sbb-border-width) * -1 - calc(#{sbb.pxToRem(1)} * var(--sbb-scaling-factor))) 0
+        calc(var(--sbb-border-width) * -1) var(--sbb-color-iron);
 
       // Expansion Panel
       --sbb-expansion-panel-background-color-open: var(--sbb-color-midnight);
@@ -913,7 +922,7 @@
       // Menu
       --sbb-menu-item-label: var(--sbb-color-milk);
       --sbb-menu-item-label-active: var(--sbb-color-white);
-      --sbb-menu-item-background-color-hover: transparent;
+      --sbb-menu-item-background-color-hover: var(--sbb-color-charcoal);
       --sbb-menu-item-background-color-active: var(--sbb-color-charcoal);
       --sbb-menu-title-color: var(--sbb-color-smoke);
 
