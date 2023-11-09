@@ -260,6 +260,7 @@
       var(--sbb-datepicker-button-gap)
   );
   --sbb-datepicker-content-offset: calc(#{sbb.pxToRem(17)} * var(--sbb-scaling-factor));
+  --sbb-datepicker-calendar-background-color: var(--sbb-color-background);
   --sbb-datepicker-calendar-header-height: calc(#{sbb.pxToRem(68)} * var(--sbb-scaling-factor));
   --sbb-datepicker-calendar-header-color: var(--sbb-color-metal);
   --sbb-datepicker-calendar-header-controls-color: var(--sbb-color-iron);
@@ -874,6 +875,7 @@
       // Datepicker
       --sbb-datepicker-calendar-header-color: var(--sbb-color-smoke);
       --sbb-datepicker-calendar-line-color: var(--sbb-color-smoke);
+      --sbb-datepicker-calendar-background-color: var(--sbb-color-black);
 
       // Dialog
       --sbb-dialog-overlay-backgroud-color: var(--sbb-color-black-alpha70);
