@@ -224,7 +224,8 @@
   --sbb-selection-label-color-disabled: var(--sbb-color-granite);
 
   // Checkbox Panel & Radio Button Panel
-  --sbb-selection-panel-background-color: var(--sbb-color-milk);
+  --sbb-selection-panel-background-color-default: var(--sbb-color-milk);
+  --sbb-selection-panel-background-color-checked: var(--sbb-color-background);
   --sbb-selection-panel-color: var(--sbb-color-granite);
   --sbb-selection-panel-border-color: transparent;
   --sbb-selection-panel-border-color-active: var(--sbb-color-black);
@@ -281,6 +282,7 @@
   --sbb-dialog-padding: calc(#{sbb.pxToRem(16)} * var(--sbb-scaling-factor));
   --sbb-dialog-overlay-backgroud-color: var(--sbb-color-white-alpha70);
   --sbb-dialog-container-border-color: var(--sbb-color-weak-accent);
+  --sbb-dialog-container-background-color: var(--sbb-color-background);
 
   // Expansion Panel
   --sbb-expansion-panel-padding-horizontal: #{sbb.pxToRem(24)};
@@ -788,7 +790,7 @@
     &:where(.sbb-lean.sbb-dark, .sbb-lean.sbb-preferred-color-scheme-dark):not(.sbb-light) {
       // Context colors
       --sbb-color-text: var(--sbb-color-white);
-      --sbb-color-background: var(--sbb-color-black);
+      --sbb-color-background: var(--sbb-color-midnight);
       --sbb-color-call-to-action: var(--sbb-color-red_dark-mode);
       --sbb-color-call-to-action-hover: var(--sbb-color-red_dark-mode);
       --sbb-color-weak-accent: var(--sbb-color-milk);
@@ -844,7 +846,7 @@
       --sbb-frameless-button-label-color: var(--sbb-color-silver);
 
       // Checkbox & Radiobutton
-      --sbb-selection-container-background-color-default: var(--sbb-color-background);
+      --sbb-selection-container-background-color-default: var(--sbb-color-black);
       --sbb-selection-container-background-color-disabled: var(--sbb-color-charcoal);
       --sbb-selection-container-border-color-disabled: var(--sbb-color-smoke);
       --sbb-selection-container-border-color-focused: var(--sbb-color-text);
@@ -855,7 +857,8 @@
       --sbb-selection-label-color-disabled: var(--sbb-color-smoke);
 
       // Checkbox Panel & Radio Button Panel
-      --sbb-selection-panel-background-color: var(--sbb-color-charcoal);
+      --sbb-selection-panel-background-color-default: var(--sbb-color-charcoal);
+      --sbb-selection-panel-background-color-checked: var(--sbb-color-black);
       --sbb-selection-panel-color: var(--sbb-color-graphite);
       --sbb-selection-panel-border-color: var(--sbb-color-iron);
       --sbb-selection-panel-border-color-active: var(--sbb-color-white);
@@ -875,6 +878,7 @@
       // Dialog
       --sbb-dialog-overlay-backgroud-color: var(--sbb-color-black-alpha70);
       --sbb-dialog-container-border-color: var(--sbb-color-weak-accent);
+      --sbb-dialog-container-background-color: var(--sbb-color-charcoal);
 
       // Expansion Panel
       --sbb-expansion-panel-background-color-open: var(--sbb-color-midnight);
@@ -2295,7 +2299,7 @@ textarea {
 
 .sbb-selection-panel-item {
   display: inline-block;
-  background-color: var(--sbb-selection-panel-background-color);
+  background-color: var(--sbb-selection-panel-background-color-default);
   border: var(--sbb-border-width-thin) solid var(--sbb-selection-panel-border-color);
   border-radius: var(--sbb-border-radius);
   font-size: var(--sbb-font-size);
@@ -2306,7 +2310,7 @@ textarea {
   position: relative;
 
   &.sbb-selection-checked {
-    background-color: var(--sbb-color-background);
+    background-color: var(--sbb-selection-panel-background-color-checked);
     border-color: var(--sbb-selection-panel-border-color-active);
     color: var(--sbb-color-text);
   }
