@@ -304,6 +304,9 @@
   --sbb-fieldset-legend-font-size: #{sbb.pxToRem(24)};
   --sbb-fieldset-legend-nested-font-size: #{sbb.pxToRem(20)};
 
+  // File selector
+  --sbb-file-selector-list-remove-icon-color: var(--sbb-color-storm);
+
   // Forms
   --sbb-form-background-color-readonly: var(--sbb-color-milk);
   --sbb-form-border-color-readonly: var(--sbb-color-aluminum);
@@ -702,6 +705,9 @@
     --sbb-fieldset-legend-font-size: #{sbb.pxToRem(21)};
     --sbb-fieldset-legend-nested-font-size: #{sbb.pxToRem(16)};
 
+    // File selector
+    --sbb-file-selector-list-remove-icon-color: var(--sbb-color-black);
+
     // Forms
     --sbb-form-background-color-readonly: transparent;
     --sbb-form-border-color-readonly: transparent;
@@ -902,6 +908,9 @@
       --sbb-expansion-panel-border-color-open: var(--sbb-color-iron);
       --sbb-expansion-panel-border-color-closed: var(--sbb-color-midnight);
       --sbb-expansion-panel-header-indicator-color: var(--sbb-color-white);
+
+      // File selector
+      --sbb-file-selector-list-remove-icon-color: var(--sbb-color-white);
 
       // Forms
       --sbb-form-input-color: var(--sbb-color-text);
