@@ -8,7 +8,7 @@
   height: var(--sbb-header-lean-height);
   width: 100%;
   z-index: var(--sbb-header-lean-base-z-index);
-  background-color: var(--sbb-color-background);
+  background-color: var(--sbb-header-lean-background-color);
   border-bottom: var(--sbb-border-width-thin) solid var(--sbb-header-lean-border-bottom-color);
 }
 
@@ -247,7 +247,7 @@
   width: var(--sbb-header-lean-menu-width);
   height: 100vh;
   top: 0;
-  background-color: var(--sbb-color-background);
+  background-color: var(--sbb-header-lean-background-color);
   border-right: var(--sbb-border-width-thin) solid var(--sbb-color-granite);
   box-shadow: var(--sbb-box-shadow-width) 0 0 0 var(--sbb-box-shadow-color);
   z-index: var(--sbb-header-lean-side-menu-z-index);

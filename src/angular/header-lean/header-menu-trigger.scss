@@ -20,7 +20,7 @@
   border: var(--sbb-border-width-thin) solid transparent;
   display: block;
   padding-right: calc(#{sbb.pxToRem(24)} * var(--sbb-scaling-factor));
-  background-color: var(--sbb-color-background);
+  background-color: var(--sbb-header-lean-background-color);
 
   .sbb-header-lean-main-menu & {
     display: inline-block;
