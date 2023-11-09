@@ -226,6 +226,7 @@
   // Checkbox Panel & Radio Button Panel
   --sbb-selection-panel-background-color-default: var(--sbb-color-milk);
   --sbb-selection-panel-background-color-checked: var(--sbb-color-background);
+  --sbb-selection-panel-background-color-disabled: var(--sbb-color-background);
   --sbb-selection-panel-color: var(--sbb-color-granite);
   --sbb-selection-panel-border-color: transparent;
   --sbb-selection-panel-border-color-active: var(--sbb-color-black);
@@ -309,6 +310,7 @@
   --sbb-form-input-color-placeholder: var(--sbb-color-metal);
   --sbb-form-input-border-color: var(--sbb-color-graphite);
   --sbb-form-input-border-color-disabled: var(--sbb-color-aluminum);
+  --sbb-form-input-background-color: var(--sbb-color-background);
   --sbb-form-input-background-color-disabled: var(--sbb-color-milk);
   --sbb-form-input-min-height: calc(#{sbb.pxToRem(48)} * var(--sbb-scaling-factor));
   --sbb-form-label-line-height: calc(#{sbb.pxToRem(16)} * var(--sbb-scaling-factor));
@@ -413,7 +415,6 @@
   --sbb-sidebar-background-color: var(--sbb-color-background);
   --sbb-icon-sidebar-background-color: var(--sbb-color-milk);
   --sbb-icon-sidebar-background-color-active: var(--sbb-color-background);
-  --sbb-icon-sidebar-collapse-button-background-color: var(--sbb-color-milk);
 
   // Status
   --sbb-status-message-background-color: var(--sbb-color-milk);
@@ -863,6 +864,7 @@
       // Checkbox Panel & Radio Button Panel
       --sbb-selection-panel-background-color-default: var(--sbb-color-charcoal);
       --sbb-selection-panel-background-color-checked: var(--sbb-color-black);
+      --sbb-selection-panel-background-color-disabled: var(--sbb-color-black);
       --sbb-selection-panel-color: var(--sbb-color-graphite);
       --sbb-selection-panel-border-color: var(--sbb-color-iron);
       --sbb-selection-panel-border-color-active: var(--sbb-color-white);
@@ -898,6 +900,7 @@
       --sbb-form-input-color-placeholder: var(--sbb-color-smoke);
       --sbb-form-input-border-color: var(--sbb-color-smoke);
       --sbb-form-input-border-color-disabled: var(--sbb-color-smoke);
+      --sbb-form-input-background-color: var(--sbb-color-black);
       --sbb-form-input-background-color-disabled: var(--sbb-color-iron);
       --sbb-form-label-color: var(--sbb-color-smoke);
       --sbb-form-background-color-readonly: var(--sbb-color-iron);
@@ -959,7 +962,6 @@
       --sbb-sidebar-background-color: var(--sbb-color-midnight);
       --sbb-icon-sidebar-background-color: var(--sbb-color-black);
       --sbb-icon-sidebar-background-color-active: var(--sbb-color-charcoal);
-      --sbb-icon-sidebar-collapse-button-background-color: var(--sbb-color-background);
 
       // Status
       --sbb-status-message-background-color: var(--sbb-color-iron);
@@ -1362,7 +1364,7 @@ textarea {
       )
   ) {
   outline: none;
-  background-color: var(--sbb-color-background);
+  background-color: var(--sbb-form-input-background-color);
   padding: sbb.pxToRem(10) sbb.pxToRem(14) sbb.pxToRem(11);
   border: var(--sbb-border-width) solid var(--sbb-form-input-border-color);
   border-radius: var(--sbb-border-radius);
@@ -2332,7 +2334,7 @@ textarea {
   }
 
   &.sbb-selection-disabled {
-    background-color: var(--sbb-color-background);
+    background-color: var(--sbb-selection-panel-background-color-disabled);
     border-color: var(--sbb-selection-panel-border-color-disabled);
   }
 
