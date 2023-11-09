@@ -365,6 +365,7 @@
   --sbb-pagination-navigation-item-margin: calc(#{sbb.pxToRem(4)} * var(--sbb-scaling-factor));
 
   // Panel
+  --sbb-panel-background-color: var(--sbb-color-background);
   --sbb-panel-divider-color: var(--sbb-color-cloud);
 
   // Processflow
@@ -927,6 +928,7 @@
       --sbb-pagination-disabled-color: var(--sbb-color-metal);
 
       // Panel
+      --sbb-panel-background-color: var(--sbb-color-black);
       --sbb-panel-divider-color: var(--sbb-color-graphite);
 
       // Processflow
@@ -2872,7 +2874,7 @@ $panelBorderRadius: 2;
   width: 100%;
   overflow-x: hidden;
   overflow-y: auto;
-  background-color: var(--sbb-color-background);
+  background-color: var(--sbb-panel-background-color);
   border: var(--sbb-border-width) solid var(--sbb-color-weak-accent);
   border-radius: 0 0 var(--sbb-border-radius) var(--sbb-border-radius);
   border-top: none;
