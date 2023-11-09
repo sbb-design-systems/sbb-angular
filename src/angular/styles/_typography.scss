@@ -329,6 +329,7 @@
   --sbb-header-lean-border-bottom-color: var(--sbb-color-silver);
 
   // Lightbox
+  --sbb-lightbox-background-color: var(--sbb-color-background);
   --sbb-lightbox-padding-horizontal: #{sbb.pxToRem(24)};
   --sbb-lightbox-actions-padding-vertical: calc(#{sbb.pxToRem(24)} * var(--sbb-scaling-factor));
 
