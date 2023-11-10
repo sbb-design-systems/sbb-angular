@@ -481,6 +481,8 @@
   --sbb-tooltip-shadow-arrow-size: calc(#{sbb.pxToRem(12)} * var(--sbb-scaling-factor));
   --sbb-tooltip-background-color: var(--sbb-color-background);
   --sbb-tooltip-color: var(--sbb-color-granite);
+  --sbb-tooltip-border-color: var(--sbb-color-weak-accent);
+  --sbb-tooltip-close-button-color: var(--sbb-color-weak-accent);
 
   // Toggle
   --sbb-toggle-border-color-active: var(--sbb-color-black);
@@ -950,7 +952,7 @@
 
       // Panel
       --sbb-panel-background-color: var(--sbb-color-black);
-      --sbb-panel-divider-color: var(--sbb-color-graphite);
+      --sbb-panel-divider-color: var(--sbb-color-smoke);
 
       // Processflow
       --sbb-processflow-step-label-color: var(--sbb-color-graphite);
@@ -1009,6 +1011,10 @@
       --sbb-toggle-background-color-active: var(--sbb-color-charcoal);
       --sbb-toggle-label-color-active: var(--sbb-color-white);
       --sbb-toggle-background-color-inactive: var(--sbb-color-midnight);
+
+      // Tooltip
+      --sbb-tooltip-border-color: var(--sbb-color-smoke);
+      --sbb-tooltip-close-button-color: var(--sbb-color-white);
 
       // Usermenu
       --sbb-usermenu-text-color: var(--sbb-color-cloud);
