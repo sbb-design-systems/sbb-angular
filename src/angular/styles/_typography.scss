@@ -3044,14 +3044,6 @@ $menuItemPaddingTopBottom: 4;
 .sbb-menu-group {
   display: block;
 
-  .sbb-menu-item {
-    padding-left: calc(#{sbb.pxToRem(22)} * var(--sbb-scaling-factor));
-
-    :where(html.sbb-lean) & {
-      padding-left: sbb.pxToRem(16);
-    }
-  }
-
   &:first-child > .sbb-label:first-child {
     padding-top: calc(#{sbb.pxToRem(16)} * var(--sbb-scaling-factor));
 
