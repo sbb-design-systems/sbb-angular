@@ -117,6 +117,7 @@
   --sbb-color-red_dark-mode: #{sbb.$sbbColorRedDarkMode};
   --sbb-color-red_dark-mode-alpha40: #{rgba(sbb.$sbbColorRedDarkMode, 0.4)};
   --sbb-color-milk-alpha40: #{rgba(sbb.$sbbColorMilk, 0.4)};
+  --sbb-color-white-alpha15: #{rgba(sbb.$sbbColorWhite, 0.15)};
   --sbb-color-black-alpha50: #{rgba(sbb.$sbbColorBlack, 0.5)};
   --sbb-color-cement-alpha40: #{rgba(sbb.$sbbColorCement, 0.4)};
   --sbb-color-black-alpha70: #{rgba(sbb.$sbbColorBlack, 0.7)};
@@ -286,8 +287,6 @@
   --sbb-dialog-overlay-backgroud-color: var(--sbb-color-white-alpha70);
   --sbb-dialog-container-border-color: var(--sbb-color-weak-accent);
   --sbb-dialog-container-background-color: var(--sbb-color-background);
-  --sbb-dialog-title-box-shadow: var(--sbb-box-shadow-horizontal-border-top);
-  --sbb-dialog-actions-box-shadow: var(--sbb-box-shadow-horizontal-border-bottom);
 
   // Expansion Panel
   --sbb-expansion-panel-padding-horizontal: #{sbb.pxToRem(24)};
@@ -811,8 +810,10 @@
       --sbb-color-weak-accent: var(--sbb-color-milk);
       --sbb-color-error: var(--sbb-color-red_dark-mode);
 
-      // Shadow-Color
-      --sbb-box-shadow-border-color: var(--sbb-color-iron);
+      // Shadow
+      --sbb-box-shadow-color: var(--sbb-color-white-alpha15);
+      --sbb-box-shadow-below: 0 var(--sbb-box-shadow-width) 0 var(--sbb-box-shadow-color);
+      --sbb-box-shadow-border-color: var(--sbb-color-metal);
 
       // Badge
       --sbb-badge-background-color: var(--sbb-color-white);
@@ -896,12 +897,6 @@
       --sbb-dialog-overlay-backgroud-color: var(--sbb-color-black-alpha70);
       --sbb-dialog-container-border-color: var(--sbb-color-silver);
       --sbb-dialog-container-background-color: var(--sbb-color-charcoal);
-      --sbb-dialog-title-box-shadow: 0
-        calc(var(--sbb-border-width) + calc(#{sbb.pxToRem(1)} * var(--sbb-scaling-factor))) 0
-        calc(var(--sbb-border-width) * -1) var(--sbb-color-iron);
-      --sbb-dialog-actions-box-shadow: 0
-        calc(var(--sbb-border-width) * -1 - calc(#{sbb.pxToRem(1)} * var(--sbb-scaling-factor))) 0
-        calc(var(--sbb-border-width) * -1) var(--sbb-color-iron);
 
       // Expansion Panel
       --sbb-expansion-panel-background-color-open: var(--sbb-color-midnight);
@@ -965,17 +960,6 @@
 
       // Select
       --sbb-select-arrow-icon-color: var(--sbb-color-white);
-
-      // Shadow
-      --sbb-box-shadow-color: rgba(255, 255, 255, 0.15);
-      --sbb-box-shadow-border-color: var(--sbb-color-charcoal);
-      --sbb-box-shadow-below: 0 var(--sbb-box-shadow-width) 0 var(--sbb-box-shadow-color);
-      --sbb-box-shadow-horizontal-border-top: 0
-        calc(var(--sbb-border-width) + calc(#{sbb.pxToRem(1)} * var(--sbb-scaling-factor))) 0
-        calc(var(--sbb-border-width) * -1) var(--sbb-box-shadow-border-color);
-      --sbb-box-shadow-horizontal-border-bottom: 0
-        calc(var(--sbb-border-width) * -1 - calc(#{sbb.pxToRem(1)} * var(--sbb-scaling-factor))) 0
-        calc(var(--sbb-border-width) * -1) var(--sbb-box-shadow-border-color);
 
       // Sidebar
       --sbb-sidebar-background-color: var(--sbb-color-midnight);
