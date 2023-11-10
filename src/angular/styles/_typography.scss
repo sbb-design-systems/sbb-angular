@@ -753,6 +753,7 @@
     // Table
     --sbb-table-cell-padding-vertical: #{sbb.pxToRem(6)};
     --sbb-table-cell-background-color-hover: var(--sbb-color-milk);
+    --sbb-table-cell-actions-background-color-lean: var(--sbb-color-milk);
     --sbb-table-thead-color: var(--sbb-color-granite);
     --sbb-table-row-selected-background-color: var(--sbb-color-cloud);
     --sbb-table-row-selected-border-bottom-color: var(--sbb-color-text);
@@ -973,6 +974,7 @@
 
       // Table
       --sbb-table-cell-background-color-hover: var(--sbb-color-midnight);
+      --sbb-table-cell-actions-background-color-lean: var(--sbb-color-background);
       --sbb-table-thead-color: var(--sbb-color-smoke);
       --sbb-table-row-selected-background-color: var(--sbb-color-charcoal);
       --sbb-table-row-selected-border-bottom-color: var(--sbb-color-text);
@@ -2764,7 +2766,7 @@ textarea {
   }
 
   :where(html.sbb-lean) & {
-    --sbb-table-cell-actions-background-color: var(--sbb-color-milk);
+    --sbb-table-cell-actions-background-color: var(--sbb-table-cell-actions-background-color-lean);
     padding: sbb.pxToRem(5) sbb.pxToRem(5) sbb.pxToRem(0) sbb.pxToRem(2);
     box-shadow: 0 0 sbb.pxToRem(4) sbb.pxToRem(4) var(--sbb-table-cell-actions-background-color);
   }
