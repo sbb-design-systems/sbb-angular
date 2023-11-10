@@ -118,9 +118,15 @@
     --sbb-divider-medium: var(--sbb-divider-small);
   }
 
-  .sbb-expansion-panel-header {
+  :is(
+      .sbb-expansion-panel-header,
+      .sbb-expansion-panel-header:is(.sbb-expanded, .sbb-expanded:is(:focus, :hover)),
+      .sbb-expansion-panel-body
+    ) {
     background-color: inherit;
+  }
 
+  .sbb-expansion-panel-header {
     /**
      Animate line below legend when collapsing.
      Base styles are copied from .sbb-expansion-panel-header
