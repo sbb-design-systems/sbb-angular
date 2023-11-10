@@ -4,7 +4,7 @@
   "username": "sbb-angular-renovate[bot]",
   "gitAuthor": "sbb-angular-renovate<52953647+sbb-angular-renovate[bot]@users.noreply.github.com>",
   "repositories": ["sbb-design-systems/sbb-angular"],
-  "baseBranches": ["main", "16.x"],
+  "baseBranches": ["main", "17.x"],
   "includePaths": ["package.json", ".github/**"],
   "schedule": ["after 10pm every weekday", "before 5am every weekday", "every weekend"],
   "lockFileMaintenance": {
