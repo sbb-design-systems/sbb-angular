@@ -63,7 +63,7 @@
   margin-left: calc(#{sbb.pxToRem(8)} * var(--sbb-scaling-factor));
   cursor: pointer;
   outline: 0;
-  color: var(--sbb-color-granite);
+  color: var(--sbb-file-selector-list-remove-icon-color);
   border: var(--sbb-border-width-thin) solid var(--sbb-color-storm);
   border-radius: 50%;
   padding: calc(#{sbb.pxToRem(3)} * var(--sbb-scaling-factor));
@@ -76,7 +76,6 @@
   :where(html.sbb-lean) & {
     width: var(--sbb-icon-size-default);
     height: var(--sbb-icon-size-default);
-    color: var(--sbb-color-black);
     vertical-align: top;
     border: none;
     padding: 0;

@@ -81,6 +81,7 @@
   --sbb-color-blue: #{sbb.$sbbColorBlue};
 
   // With Alpha
+  --sbb-color-cloud-alpha10: #{rgba(sbb.$sbbColorCloud, 0.1)};
   --sbb-color-granite-alpha40: #{rgba(sbb.$sbbColorGranite, 0.4)};
   --sbb-color-red-alpha40: #{rgba(sbb.$sbbColorRed, 0.4)};
   --sbb-color-silver-alpha40: #{rgba(sbb.$sbbColorSilver, 0.4)};
@@ -116,6 +117,7 @@
   --sbb-color-red_dark-mode: #{sbb.$sbbColorRedDarkMode};
   --sbb-color-red_dark-mode-alpha40: #{rgba(sbb.$sbbColorRedDarkMode, 0.4)};
   --sbb-color-milk-alpha40: #{rgba(sbb.$sbbColorMilk, 0.4)};
+  --sbb-color-white-alpha15: #{rgba(sbb.$sbbColorWhite, 0.15)};
   --sbb-color-black-alpha50: #{rgba(sbb.$sbbColorBlack, 0.5)};
   --sbb-color-cement-alpha40: #{rgba(sbb.$sbbColorCement, 0.4)};
   --sbb-color-black-alpha70: #{rgba(sbb.$sbbColorBlack, 0.7)};
@@ -224,7 +226,9 @@
   --sbb-selection-label-color-disabled: var(--sbb-color-granite);
 
   // Checkbox Panel & Radio Button Panel
-  --sbb-selection-panel-background-color: var(--sbb-color-milk);
+  --sbb-selection-panel-background-color-default: var(--sbb-color-milk);
+  --sbb-selection-panel-background-color-checked: var(--sbb-color-background);
+  --sbb-selection-panel-background-color-disabled: var(--sbb-color-background);
   --sbb-selection-panel-color: var(--sbb-color-granite);
   --sbb-selection-panel-border-color: transparent;
   --sbb-selection-panel-border-color-active: var(--sbb-color-black);
@@ -259,6 +263,7 @@
       var(--sbb-datepicker-button-gap)
   );
   --sbb-datepicker-content-offset: calc(#{sbb.pxToRem(17)} * var(--sbb-scaling-factor));
+  --sbb-datepicker-calendar-background-color: var(--sbb-color-background);
   --sbb-datepicker-calendar-header-height: calc(#{sbb.pxToRem(68)} * var(--sbb-scaling-factor));
   --sbb-datepicker-calendar-header-color: var(--sbb-color-metal);
   --sbb-datepicker-calendar-header-controls-color: var(--sbb-color-iron);
@@ -281,6 +286,7 @@
   --sbb-dialog-padding: calc(#{sbb.pxToRem(16)} * var(--sbb-scaling-factor));
   --sbb-dialog-overlay-backgroud-color: var(--sbb-color-white-alpha70);
   --sbb-dialog-container-border-color: var(--sbb-color-weak-accent);
+  --sbb-dialog-container-background-color: var(--sbb-color-background);
 
   // Expansion Panel
   --sbb-expansion-panel-padding-horizontal: #{sbb.pxToRem(24)};
@@ -297,6 +303,9 @@
   --sbb-fieldset-legend-font-size: #{sbb.pxToRem(24)};
   --sbb-fieldset-legend-nested-font-size: #{sbb.pxToRem(20)};
 
+  // File selector
+  --sbb-file-selector-list-remove-icon-color: var(--sbb-color-granite);
+
   // Forms
   --sbb-form-background-color-readonly: var(--sbb-color-milk);
   --sbb-form-border-color-readonly: var(--sbb-color-aluminum);
@@ -306,6 +315,7 @@
   --sbb-form-input-color-placeholder: var(--sbb-color-metal);
   --sbb-form-input-border-color: var(--sbb-color-graphite);
   --sbb-form-input-border-color-disabled: var(--sbb-color-aluminum);
+  --sbb-form-input-background-color: var(--sbb-color-background);
   --sbb-form-input-background-color-disabled: var(--sbb-color-milk);
   --sbb-form-input-min-height: calc(#{sbb.pxToRem(48)} * var(--sbb-scaling-factor));
   --sbb-form-label-line-height: calc(#{sbb.pxToRem(16)} * var(--sbb-scaling-factor));
@@ -317,6 +327,7 @@
   --sbb-header-lean-height: calc(#{sbb.pxToRem(54)} * var(--sbb-scaling-factor));
   --sbb-header-lean-base-z-index: 1000;
   --sbb-header-lean-side-menu-z-index: 800;
+  --sbb-header-lean-background-color: var(--sbb-color-background);
   --sbb-header-lean-menu-mobile-z-index: 1100;
   --sbb-header-lean-menu-tablet-z-index: 700;
   --sbb-header-lean-menu-width: calc(#{sbb.pxToRem(300)} * var(--sbb-scaling-factor));
@@ -325,6 +336,7 @@
   --sbb-header-lean-border-bottom-color: var(--sbb-color-silver);
 
   // Lightbox
+  --sbb-lightbox-background-color: var(--sbb-color-background);
   --sbb-lightbox-padding-horizontal: #{sbb.pxToRem(24)};
   --sbb-lightbox-actions-padding-vertical: calc(#{sbb.pxToRem(24)} * var(--sbb-scaling-factor));
 
@@ -362,6 +374,7 @@
   --sbb-pagination-navigation-item-margin: calc(#{sbb.pxToRem(4)} * var(--sbb-scaling-factor));
 
   // Panel
+  --sbb-panel-background-color: var(--sbb-color-background);
   --sbb-panel-divider-color: var(--sbb-color-cloud);
 
   // Processflow
@@ -405,9 +418,9 @@
   --sbb-sidebar-mobile-menu-bar-height: calc(2 * var(--sbb-icon-size-default));
   --sbb-icon-sidebar-item-dimension: calc(2 * var(--sbb-icon-size-default));
   --sbb-sidebar-background-color: var(--sbb-color-background);
+  --sbb-sidebar-border-right-color: var(--sbb-color-cloud);
   --sbb-icon-sidebar-background-color: var(--sbb-color-milk);
   --sbb-icon-sidebar-background-color-active: var(--sbb-color-background);
-  --sbb-icon-sidebar-collapse-button-background-color: var(--sbb-color-milk);
 
   // Status
   --sbb-status-message-background-color: var(--sbb-color-milk);
@@ -468,6 +481,8 @@
   --sbb-tooltip-shadow-arrow-size: calc(#{sbb.pxToRem(12)} * var(--sbb-scaling-factor));
   --sbb-tooltip-background-color: var(--sbb-color-background);
   --sbb-tooltip-color: var(--sbb-color-granite);
+  --sbb-tooltip-border-color: var(--sbb-color-weak-accent);
+  --sbb-tooltip-close-button-color: var(--sbb-color-weak-accent);
 
   // Toggle
   --sbb-toggle-border-color-active: var(--sbb-color-black);
@@ -692,6 +707,9 @@
     --sbb-fieldset-legend-font-size: #{sbb.pxToRem(21)};
     --sbb-fieldset-legend-nested-font-size: #{sbb.pxToRem(16)};
 
+    // File selector
+    --sbb-file-selector-list-remove-icon-color: var(--sbb-color-black);
+
     // Forms
     --sbb-form-background-color-readonly: transparent;
     --sbb-form-border-color-readonly: transparent;
@@ -737,6 +755,7 @@
     // Table
     --sbb-table-cell-padding-vertical: #{sbb.pxToRem(6)};
     --sbb-table-cell-background-color-hover: var(--sbb-color-milk);
+    --sbb-table-cell-actions-background-color-lean: var(--sbb-color-milk);
     --sbb-table-thead-color: var(--sbb-color-granite);
     --sbb-table-row-selected-background-color: var(--sbb-color-cloud);
     --sbb-table-row-selected-border-bottom-color: var(--sbb-color-text);
@@ -788,14 +807,16 @@
     &:where(.sbb-lean.sbb-dark, .sbb-lean.sbb-preferred-color-scheme-dark):not(.sbb-light) {
       // Context colors
       --sbb-color-text: var(--sbb-color-white);
-      --sbb-color-background: var(--sbb-color-black);
+      --sbb-color-background: var(--sbb-color-midnight);
       --sbb-color-call-to-action: var(--sbb-color-red_dark-mode);
       --sbb-color-call-to-action-hover: var(--sbb-color-red_dark-mode);
       --sbb-color-weak-accent: var(--sbb-color-milk);
       --sbb-color-error: var(--sbb-color-red_dark-mode);
 
-      // Shadow-Color
-      --sbb-box-shadow-border-color: var(--sbb-color-iron);
+      // Shadow
+      --sbb-box-shadow-color: var(--sbb-color-white-alpha15);
+      --sbb-box-shadow-below: 0 var(--sbb-box-shadow-width) 0 var(--sbb-box-shadow-color);
+      --sbb-box-shadow-border-color: var(--sbb-color-metal);
 
       // Badge
       --sbb-badge-background-color: var(--sbb-color-white);
@@ -844,7 +865,7 @@
       --sbb-frameless-button-label-color: var(--sbb-color-silver);
 
       // Checkbox & Radiobutton
-      --sbb-selection-container-background-color-default: var(--sbb-color-background);
+      --sbb-selection-container-background-color-default: var(--sbb-color-black);
       --sbb-selection-container-background-color-disabled: var(--sbb-color-charcoal);
       --sbb-selection-container-border-color-disabled: var(--sbb-color-smoke);
       --sbb-selection-container-border-color-focused: var(--sbb-color-text);
@@ -855,7 +876,9 @@
       --sbb-selection-label-color-disabled: var(--sbb-color-smoke);
 
       // Checkbox Panel & Radio Button Panel
-      --sbb-selection-panel-background-color: var(--sbb-color-charcoal);
+      --sbb-selection-panel-background-color-default: var(--sbb-color-charcoal);
+      --sbb-selection-panel-background-color-checked: var(--sbb-color-black);
+      --sbb-selection-panel-background-color-disabled: var(--sbb-color-black);
       --sbb-selection-panel-color: var(--sbb-color-graphite);
       --sbb-selection-panel-border-color: var(--sbb-color-iron);
       --sbb-selection-panel-border-color-active: var(--sbb-color-white);
@@ -865,23 +888,28 @@
       // Chips
       --sbb-chips-background-color-active: var(--sbb-color-smoke);
       --sbb-chips-background-color-hover: var(--sbb-color-metal);
-      --sbb-chips-background-color-disabled: var(--sbb-color-cloud);
-      --sbb-chips-opacity: 0.9;
+      --sbb-chips-background-color-disabled: var(--sbb-color-cloud-alpha10);
+      --sbb-chips-opacity: 1;
 
       // Datepicker
       --sbb-datepicker-calendar-header-color: var(--sbb-color-smoke);
       --sbb-datepicker-calendar-line-color: var(--sbb-color-smoke);
+      --sbb-datepicker-calendar-background-color: var(--sbb-color-black);
 
       // Dialog
       --sbb-dialog-overlay-backgroud-color: var(--sbb-color-black-alpha70);
-      --sbb-dialog-container-border-color: var(--sbb-color-weak-accent);
+      --sbb-dialog-container-border-color: var(--sbb-color-silver);
+      --sbb-dialog-container-background-color: var(--sbb-color-charcoal);
 
       // Expansion Panel
-      --sbb-expansion-panel-background-color-open: var(--sbb-color-midnight);
-      --sbb-expansion-panel-background-color-closed: var(--sbb-color-midnight);
+      --sbb-expansion-panel-background-color-open: var(--sbb-color-charcoal);
+      --sbb-expansion-panel-background-color-closed: var(--sbb-color-charcoal);
       --sbb-expansion-panel-border-color-open: var(--sbb-color-iron);
-      --sbb-expansion-panel-border-color-closed: var(--sbb-color-midnight);
+      --sbb-expansion-panel-border-color-closed: var(--sbb-color-charcoal);
       --sbb-expansion-panel-header-indicator-color: var(--sbb-color-white);
+
+      // File selector
+      --sbb-file-selector-list-remove-icon-color: var(--sbb-color-white);
 
       // Forms
       --sbb-form-input-color: var(--sbb-color-text);
@@ -889,18 +917,20 @@
       --sbb-form-input-color-placeholder: var(--sbb-color-smoke);
       --sbb-form-input-border-color: var(--sbb-color-smoke);
       --sbb-form-input-border-color-disabled: var(--sbb-color-smoke);
+      --sbb-form-input-background-color: var(--sbb-color-black);
       --sbb-form-input-background-color-disabled: var(--sbb-color-iron);
       --sbb-form-label-color: var(--sbb-color-smoke);
       --sbb-form-background-color-readonly: var(--sbb-color-iron);
 
       // Header
       --sbb-header-lean-subtitle-color: var(--sbb-color-graphite);
-      --sbb-header-lean-border-bottom-color: var(--sbb-color-graphite);
+      --sbb-header-lean-border-bottom-color: var(--sbb-color-iron);
+      --sbb-header-lean-background-color: var(--sbb-color-black);
 
       // Menu
       --sbb-menu-item-label: var(--sbb-color-milk);
       --sbb-menu-item-label-active: var(--sbb-color-white);
-      --sbb-menu-item-background-color-hover: transparent;
+      --sbb-menu-item-background-color-hover: var(--sbb-color-charcoal);
       --sbb-menu-item-background-color-active: var(--sbb-color-charcoal);
       --sbb-menu-title-color: var(--sbb-color-smoke);
 
@@ -921,7 +951,8 @@
       --sbb-pagination-disabled-color: var(--sbb-color-metal);
 
       // Panel
-      --sbb-panel-divider-color: var(--sbb-color-graphite);
+      --sbb-panel-background-color: var(--sbb-color-black);
+      --sbb-panel-divider-color: var(--sbb-color-smoke);
 
       // Processflow
       --sbb-processflow-step-label-color: var(--sbb-color-graphite);
@@ -933,22 +964,11 @@
       // Select
       --sbb-select-arrow-icon-color: var(--sbb-color-white);
 
-      // Shadow
-      --sbb-box-shadow-color: rgba(255, 255, 255, 0.15);
-      --sbb-box-shadow-border-color: var(--sbb-color-charcoal);
-      --sbb-box-shadow-below: 0 var(--sbb-box-shadow-width) 0 var(--sbb-box-shadow-color);
-      --sbb-box-shadow-horizontal-border-top: 0
-        calc(var(--sbb-border-width) + calc(#{sbb.pxToRem(1)} * var(--sbb-scaling-factor))) 0
-        calc(var(--sbb-border-width) * -1) var(--sbb-box-shadow-border-color);
-      --sbb-box-shadow-horizontal-border-bottom: 0
-        calc(var(--sbb-border-width) * -1 - calc(#{sbb.pxToRem(1)} * var(--sbb-scaling-factor))) 0
-        calc(var(--sbb-border-width) * -1) var(--sbb-box-shadow-border-color);
-
       // Sidebar
       --sbb-sidebar-background-color: var(--sbb-color-midnight);
       --sbb-icon-sidebar-background-color: var(--sbb-color-black);
+      --sbb-sidebar-border-right-color: var(--sbb-color-iron);
       --sbb-icon-sidebar-background-color-active: var(--sbb-color-charcoal);
-      --sbb-icon-sidebar-collapse-button-background-color: var(--sbb-color-background);
 
       // Status
       --sbb-status-message-background-color: var(--sbb-color-iron);
@@ -956,6 +976,7 @@
 
       // Table
       --sbb-table-cell-background-color-hover: var(--sbb-color-midnight);
+      --sbb-table-cell-actions-background-color-lean: var(--sbb-color-background);
       --sbb-table-thead-color: var(--sbb-color-smoke);
       --sbb-table-row-selected-background-color: var(--sbb-color-charcoal);
       --sbb-table-row-selected-border-bottom-color: var(--sbb-color-text);
@@ -990,6 +1011,10 @@
       --sbb-toggle-background-color-active: var(--sbb-color-charcoal);
       --sbb-toggle-label-color-active: var(--sbb-color-white);
       --sbb-toggle-background-color-inactive: var(--sbb-color-midnight);
+
+      // Tooltip
+      --sbb-tooltip-border-color: var(--sbb-color-smoke);
+      --sbb-tooltip-close-button-color: var(--sbb-color-white);
 
       // Usermenu
       --sbb-usermenu-text-color: var(--sbb-color-cloud);
@@ -1351,7 +1376,7 @@ textarea {
       )
   ) {
   outline: none;
-  background-color: var(--sbb-color-background);
+  background-color: var(--sbb-form-input-background-color);
   padding: sbb.pxToRem(10) sbb.pxToRem(14) sbb.pxToRem(11);
   border: var(--sbb-border-width) solid var(--sbb-form-input-border-color);
   border-radius: var(--sbb-border-radius);
@@ -2228,7 +2253,7 @@ textarea {
   }
 
   .sbb-selection-disabled & {
-    color: var(--sbb-selection-container-icon-color-disabled);
+    background-color: var(--sbb-selection-container-icon-color-disabled);
   }
 
   .sbb-selection-checked & {
@@ -2295,7 +2320,7 @@ textarea {
 
 .sbb-selection-panel-item {
   display: inline-block;
-  background-color: var(--sbb-selection-panel-background-color);
+  background-color: var(--sbb-selection-panel-background-color-default);
   border: var(--sbb-border-width-thin) solid var(--sbb-selection-panel-border-color);
   border-radius: var(--sbb-border-radius);
   font-size: var(--sbb-font-size);
@@ -2306,7 +2331,7 @@ textarea {
   position: relative;
 
   &.sbb-selection-checked {
-    background-color: var(--sbb-color-background);
+    background-color: var(--sbb-selection-panel-background-color-checked);
     border-color: var(--sbb-selection-panel-border-color-active);
     color: var(--sbb-color-text);
   }
@@ -2321,7 +2346,7 @@ textarea {
   }
 
   &.sbb-selection-disabled {
-    background-color: var(--sbb-color-background);
+    background-color: var(--sbb-selection-panel-background-color-disabled);
     border-color: var(--sbb-selection-panel-border-color-disabled);
   }
 
@@ -2747,7 +2772,7 @@ textarea {
   }
 
   :where(html.sbb-lean) & {
-    --sbb-table-cell-actions-background-color: var(--sbb-color-milk);
+    --sbb-table-cell-actions-background-color: var(--sbb-table-cell-actions-background-color-lean);
     padding: sbb.pxToRem(5) sbb.pxToRem(5) sbb.pxToRem(0) sbb.pxToRem(2);
     box-shadow: 0 0 sbb.pxToRem(4) sbb.pxToRem(4) var(--sbb-table-cell-actions-background-color);
   }
@@ -2866,7 +2891,7 @@ $panelBorderRadius: 2;
   width: 100%;
   overflow-x: hidden;
   overflow-y: auto;
-  background-color: var(--sbb-color-background);
+  background-color: var(--sbb-panel-background-color);
   border: var(--sbb-border-width) solid var(--sbb-color-weak-accent);
   border-radius: 0 0 var(--sbb-border-radius) var(--sbb-border-radius);
   border-top: none;
@@ -3026,14 +3051,6 @@ $menuItemPaddingTopBottom: 4;
 
 .sbb-menu-group {
   display: block;
-
-  .sbb-menu-item {
-    padding-left: calc(#{sbb.pxToRem(22)} * var(--sbb-scaling-factor));
-
-    :where(html.sbb-lean) & {
-      padding-left: sbb.pxToRem(16);
-    }
-  }
 
   &:first-child > .sbb-label:first-child {
     padding-top: calc(#{sbb.pxToRem(16)} * var(--sbb-scaling-factor));
