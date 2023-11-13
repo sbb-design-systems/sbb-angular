@@ -2253,6 +2253,10 @@ textarea {
   }
 
   .sbb-selection-disabled & {
+    color: var(--sbb-selection-container-icon-color-disabled);
+  }
+
+  .sbb-radio-button:is(.sbb-selection-disabled) & {
     background-color: var(--sbb-selection-container-icon-color-disabled);
   }
 
