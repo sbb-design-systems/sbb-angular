@@ -109,7 +109,7 @@ sbb-menu {
 
 // Trigger styles for opened (copied) state
 .sbb-menu-panel-trigger {
-  background-color: var(--sbb-color-background);
+  background-color: var(--sbb-panel-background-color);
   position: relative;
   z-index: 1;
   padding: calc(var(--sbb-menu-trigger-padding) - var(--sbb-border-width));

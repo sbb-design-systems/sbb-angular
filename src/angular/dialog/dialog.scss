@@ -13,7 +13,7 @@
   box-sizing: border-box;
   overflow: hidden;
   outline: 0;
-  background-color: var(--sbb-color-background);
+  background-color: var(--sbb-dialog-container-background-color);
   box-shadow: var(--sbb-box-shadow-below);
 
   // The dialog container should completely fill its parent overlay element.

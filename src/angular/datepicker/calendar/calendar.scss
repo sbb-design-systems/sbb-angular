@@ -19,7 +19,7 @@
   max-width: 100%;
   width: var(--sbb-datepicker-calendar-width);
   height: var(--sbb-datepicker-calendar-height);
-  background-color: var(--sbb-color-background);
+  background-color: var(--sbb-datepicker-calendar-background-color);
   border: var(--sbb-border-width) solid var(--sbb-color-weak-accent);
   border-radius: var(--sbb-border-radius);
 }
@@ -307,7 +307,7 @@ button:is(.sbb-calendar-body-weekday, .sbb-calendar-body-week):is(:hover, :focus
       :focus
     )
     & {
-    background-color: var(--sbb-color-background);
+    background-color: var(--sbb-datepicker-calendar-background-color);
     color: var(--sbb-color-call-to-action-hover);
     border-color: var(--sbb-color-call-to-action-hover);
   }
@@ -318,7 +318,7 @@ button:is(.sbb-calendar-body-weekday, .sbb-calendar-body-week):is(:hover, :focus
       .sbb-calendar-body-selected-end
     )
     & {
-    background-color: var(--sbb-color-background);
+    background-color: var(--sbb-datepicker-calendar-background-color);
     color: var(--sbb-color-weak-accent);
     border-color: var(--sbb-color-weak-accent);
   }

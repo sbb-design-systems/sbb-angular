@@ -53,7 +53,7 @@ export class VariantSwitch implements CanActivate, OnDestroy {
         } else {
           document.documentElement.classList.add(`sbb-lean`);
         }
-        ɵvariant.next(value === 'standard' ? 'lean' : 'standard');
+        ɵvariant.next(value === 'standard' ? 'standard' : 'lean');
         localStorage.setItem(variantLocalstorageKey, value);
 
         // switch between light and dark mode
