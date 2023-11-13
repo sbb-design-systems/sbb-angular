@@ -192,7 +192,7 @@ jobs:
       with:
         node-version-file: '.nvmrc'
 
-    - uses: actions/github-script@v6
+    - uses: actions/github-script@v7
       with:
         # Since we don't want to install the full package dependencies, we remove all dependencies that we don't need.
         # We do this in order to reduce the time needed for this job.
