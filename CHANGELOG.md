@@ -2,6 +2,14 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [17.0.0](https://github.com/sbb-design-systems/sbb-angular/compare/17.0.0-rc.0...17.0.0) (2023-11-13)
+
+
+### Bug Fixes
+
+* **deps:** update angular to v17.0.2 ([9ee3d86](https://github.com/sbb-design-systems/sbb-angular/commit/9ee3d86aecf1d629d5bba05f2d62070afefa1bc7))
+* **multiple:** change dark mode background to midnight and fix some styles ([#2081](https://github.com/sbb-design-systems/sbb-angular/issues/2081)) ([21b5a31](https://github.com/sbb-design-systems/sbb-angular/commit/21b5a31308c4a4e4c2a6079d302e3e6786219f21))
+
 ## [17.0.0-rc.0](https://github.com/sbb-design-systems/sbb-angular/compare/15.0.0...17.0.0-rc.0) (2023-11-08)
 
 
