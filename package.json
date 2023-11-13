@@ -117,7 +117,7 @@
     "@types/send": "0.17.4",
     "@types/yargs": "17.0.13",
     "angular-server-side-configuration": "16.0.0",
-    "angular-t9n": "16.0.0",
+    "angular-t9n": "17.0.0",
     "browser-sync": "2.23.6",
     "dgeni": "^0.4.14",
     "dgeni-packages": "^0.29.3",
