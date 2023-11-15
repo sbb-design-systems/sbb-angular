@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Feature } from 'geojson';
-import { Map as MaplibreMap } from 'maplibre-gl';
+import { FilterSpecification, Map as MaplibreMap } from 'maplibre-gl';
 
 import { SbbFeatureData } from '../../../journey-maps.interfaces';
 import { SbbMapRoutesService } from '../map-routes.service';
@@ -52,7 +52,7 @@ export class SbbRouteUtils {
     }
   }
 
-  private _createRelatedRoutesFilter(routeFeature: Feature): any[] {
+  private _createRelatedRoutesFilter(routeFeature: Feature): FilterSpecification {
     const routeId = routeFeature.properties![SBB_ROUTE_ID_PROPERTY_NAME];
     return [
       'all',

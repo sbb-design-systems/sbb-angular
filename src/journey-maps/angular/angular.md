@@ -20,7 +20,7 @@ npm install --save-dev @types/geojson
 ```
 
 **NOTE** \
-The `maplibre-gl` version compatible with this version of `journey-maps` is `2.x.y`.
+The `maplibre-gl` version compatible with this version of `journey-maps` is `3.x.y`.
 
 ### Reference the CSS
 
