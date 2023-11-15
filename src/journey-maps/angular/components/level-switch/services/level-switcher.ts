@@ -119,7 +119,7 @@ export class SbbLevelSwitcher {
       });
 
     this._selectedLevel.pipe(takeUntil(this._destroyed)).subscribe((selectedLevel) => {
-      this._mapLayerFilterService.setLevelFilter(selectedLevel);
+      this._mapLayerFilterService.setLevelFilter(selectedLevel ?? 0);
       this._mapTransferService.updateOutdoorWalkFloor(this._map, selectedLevel);
       // call outside component-zone, trigger detect changes manually
       this.changeDetectionEmitter.emit();
