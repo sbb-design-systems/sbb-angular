@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Map as MaplibreMap, MapGeoJSONFeature } from 'maplibre-gl';
+import { FilterSpecification, Map as MaplibreMap, MapGeoJSONFeature } from 'maplibre-gl';
 
 import { SbbFeatureData, SbbFeatureDataType } from '../../../journey-maps.interfaces';
 import {
@@ -29,7 +29,7 @@ export class SbbMapEventUtils {
     mapInstance: MaplibreMap,
     featureDataType: SbbFeatureDataType,
     layers: string[],
-    filter?: any[],
+    filter?: FilterSpecification,
   ): SbbFeatureData[] {
     return mapInstance
       .queryRenderedFeatures(undefined, { layers, filter })
@@ -43,7 +43,7 @@ export class SbbMapEventUtils {
   queryFeatureSourceByFilter(
     mapInstance: MaplibreMap,
     featureDataType: SbbFeatureDataType,
-    filter?: any[],
+    filter?: FilterSpecification,
   ): SbbFeatureData[] {
     const sourceId = SbbMapEventUtils._getSourceMapping(featureDataType);
     if (!sourceId) {
