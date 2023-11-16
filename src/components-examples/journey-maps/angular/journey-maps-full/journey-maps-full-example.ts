@@ -191,7 +191,7 @@ export class JourneyMapsFullExample implements OnInit, OnDestroy {
     this.form = _fb.group({
       mapVisible: [true],
       limitMaxBounds: [false],
-      level: [0],
+      level: [undefined],
       uiOptions: _fb.group({
         showSmallButtons: [false],
         levelSwitch: [true],
