@@ -3,6 +3,7 @@ import {
   FitBoundsOptions,
   IControl,
   LngLat,
+  LngLatBounds,
   Map as MaplibreMap,
   Marker,
 } from 'maplibre-gl';
@@ -240,7 +241,7 @@ export class SbbGeolocateControl extends Evented implements IControl {
     const bearing = this._map!.getBearing();
     const options = extend({ bearing }, this.options.fitBoundsOptions);
 
-    this._map!.fitBounds(center.toBounds(radius), options, {
+    this._map!.fitBounds(LngLatBounds.fromLngLat(center, radius), options, {
       geolocateSource: true, // tag this camera change so it won't cause the control to change to background state
     });
   }
