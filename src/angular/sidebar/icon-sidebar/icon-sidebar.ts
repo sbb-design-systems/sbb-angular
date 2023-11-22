@@ -106,9 +106,8 @@ export class SbbIconSidebar extends SbbSidebarBase {
   }
 
   _mobileChanged(mobile: boolean): void {
-    this._elementRef.nativeElement.querySelector(
-      '.sbb-icon-sidebar-inner-container',
-    )!.scrollLeft = 0;
+    this._elementRef.nativeElement.querySelector('.sbb-icon-sidebar-inner-container')!.scrollLeft =
+      0;
 
     this._changeDetectorRef.markForCheck();
   }

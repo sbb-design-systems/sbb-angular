@@ -824,8 +824,8 @@ export class SbbJourneyMaps implements OnInit, AfterViewInit, OnDestroy, OnChang
     return this._isAerialSelected
       ? this.styleOptions.aerialId
       : this.styleOptions.mode === 'dark'
-      ? this.styleOptions.darkId
-      : this.styleOptions.brightId;
+        ? this.styleOptions.darkId
+        : this.styleOptions.brightId;
   }
 
   private _setupSubjects(): void {
