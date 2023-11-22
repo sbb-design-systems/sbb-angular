@@ -432,8 +432,8 @@ export class SbbMenuTrigger
             elementContent: this._triggerContent
               ? undefined
               : this._element.nativeElement.childElementCount === 0
-              ? this._element.nativeElement.innerText
-              : this._sanitizer.bypassSecurityTrustHtml(this._element.nativeElement.innerHTML),
+                ? this._element.nativeElement.innerText
+                : this._sanitizer.bypassSecurityTrustHtml(this._element.nativeElement.innerHTML),
             type: this._type,
             scalingFactor: this._scalingFactor,
           };
