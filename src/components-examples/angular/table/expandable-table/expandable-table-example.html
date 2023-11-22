@@ -37,7 +37,7 @@
     <tr
       sbb-row
       *sbbRowDef="let row; columns: ['expandedDetail']; when: isExpansionDetailRow"
-      [style.visibility]="row.id == selectedId ? 'visible' : 'collapse'"
+      [style.display]="row.id == selectedId ? 'table-row' : 'none'"
     ></tr>
   </table>
 </sbb-table-wrapper>
