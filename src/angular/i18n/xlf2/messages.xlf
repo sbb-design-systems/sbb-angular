@@ -66,7 +66,7 @@
     </unit>
     <unit id="sbbDatePickerNextDayAriaLabel">
       <notes>
-        <note category="location">../../../../../../src/angular/datepicker/datepicker/datepicker.ts:236</note>
+        <note category="location">../../../../../../src/angular/datepicker/datepicker/datepicker.ts:237</note>
         <note category="description">Next day button&apos;s aria-label</note>
       </notes>
       <segment>
@@ -75,7 +75,7 @@
     </unit>
     <unit id="sbbDatePickerPrevDayAriaLabel">
       <notes>
-        <note category="location">../../../../../../src/angular/datepicker/datepicker/datepicker.ts:240</note>
+        <note category="location">../../../../../../src/angular/datepicker/datepicker/datepicker.ts:242</note>
         <note category="description">Previous day button&apos;s aria-label</note>
       </notes>
       <segment>
@@ -85,7 +85,7 @@
     <unit id="sbbDialogCloseDialog">
       <notes>
         <note category="location">../../../../../../src/angular/dialog/dialog-content-directives.ts:39</note>
-        <note category="location">../../../../../../src/angular/dialog/dialog-content-directives.ts:111</note>
+        <note category="location">../../../../../../src/angular/dialog/dialog-content-directives.ts:112</note>
         <note category="description">Aria label to close a dialog</note>
       </notes>
       <segment>
@@ -139,8 +139,8 @@
     </unit>
     <unit id="sbbLightboxCloseLightbox">
       <notes>
-        <note category="location">../../../../../../src/angular/lightbox/lightbox-content-directives.ts:39</note>
-        <note category="location">../../../../../../src/angular/lightbox/lightbox-content-directives.ts:101</note>
+        <note category="location">../../../../../../src/angular/lightbox/lightbox-content-directives.ts:40</note>
+        <note category="location">../../../../../../src/angular/lightbox/lightbox-content-directives.ts:103</note>
         <note category="description">Aria label to close a dialog</note>
       </notes>
       <segment>
