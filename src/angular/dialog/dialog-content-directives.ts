@@ -108,7 +108,8 @@ export class _SbbDialogTitleBase implements OnInit, OnDestroy {
 
   /** Arial label for the close button. */
   @Input()
-  closeAriaLabel: string = $localize`:Aria label to close a dialog@@sbbDialogCloseDialog:Close dialog`;
+  closeAriaLabel: string =
+    $localize`:Aria label to close a dialog@@sbbDialogCloseDialog:Close dialog`;
 
   /** Whether the close button is enabled for the dialog. */
   _closeEnabled: boolean = true;

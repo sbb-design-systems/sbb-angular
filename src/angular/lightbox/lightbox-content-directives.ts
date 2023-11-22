@@ -36,7 +36,8 @@ let dialogElementUid = 0;
 export class SbbLightboxClose extends SbbDialogClose implements OnInit, OnChanges {
   /** Aria label for the close button. */
   @Input('aria-label')
-  override ariaLabel: string = $localize`:Aria label to close a dialog@@sbbLightboxCloseLightbox:Close lightbox`;
+  override ariaLabel: string =
+    $localize`:Aria label to close a dialog@@sbbLightboxCloseLightbox:Close lightbox`;
 
   /** Lightbox close input. */
   @Input('sbb-lightbox-close')
@@ -98,7 +99,8 @@ export class SbbLightboxTitle extends _SbbDialogTitleBase implements OnInit {
 
   /** Arial label for the close button. */
   @Input()
-  override closeAriaLabel: string = $localize`:Aria label to close a dialog@@sbbLightboxCloseLightbox:Close lightbox`;
+  override closeAriaLabel: string =
+    $localize`:Aria label to close a dialog@@sbbLightboxCloseLightbox:Close lightbox`;
 
   constructor(
     // The lightbox title directive is always used in combination with a `SbbDialogRef`.

@@ -126,9 +126,8 @@ client.addEventListener('featuresClick', (event) => {
   const feature = event.detail?.features?.[0];
   switch (feature?.featureDataType) {
     case 'MARKER':
-      document.getElementById(
-        'myTemplate',
-      ).innerHTML = `Hello this is ${feature.properties?.title}`;
+      document.getElementById('myTemplate').innerHTML =
+        `Hello this is ${feature.properties?.title}`;
       break;
     case 'STATION':
       document.getElementById('myTemplate').innerHTML = `
