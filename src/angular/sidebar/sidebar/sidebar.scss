@@ -200,12 +200,16 @@
 
   &:is(:hover, :focus) {
     @include sbb.sbbMenuItemRedLean();
+    // Override the background color because the sidebar is lighter than the menu item in dark mode.
+    background-color: var(--sbb-sidebar-background-color-hover);
   }
 
   &.sbb-active {
     @include sbb.sbbMenuItemBlackLean();
     pointer-events: none;
     cursor: default;
+    // Override the background color because the sidebar is lighter than the menu item in dark mode.
+    background-color: var(--sbb-sidebar-background-color-active);
 
     &:focus-visible {
       @include sbb.sbbFocusOutline();
