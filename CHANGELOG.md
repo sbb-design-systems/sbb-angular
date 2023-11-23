@@ -2,6 +2,25 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [17.1.0](https://github.com/sbb-design-systems/sbb-angular/compare/17.0.0...17.1.0) (2023-11-23)
+
+
+### Features
+
+* **journey-maps:** migrate to maplibre 3.6.1 ([#2095](https://github.com/sbb-design-systems/sbb-angular/issues/2095)) ([c4e5d58](https://github.com/sbb-design-systems/sbb-angular/commit/c4e5d58851e675161027ad924eb815bb98d96b00))
+
+
+### Bug Fixes
+
+* **angular/input:** change border color to smoke ([#2099](https://github.com/sbb-design-systems/sbb-angular/issues/2099)) ([7549ef9](https://github.com/sbb-design-systems/sbb-angular/commit/7549ef977fef6b5971ab8ee42a829188c53fcf99))
+* **angular/sidebar:** change dark mode background to charcoal ([#2097](https://github.com/sbb-design-systems/sbb-angular/issues/2097)) ([b138fd5](https://github.com/sbb-design-systems/sbb-angular/commit/b138fd528554a0bdb3bad34adbe18debadc5fa27))
+* **angular/sidebar:** darker hover color for sidebar items in dark mode ([#2103](https://github.com/sbb-design-systems/sbb-angular/issues/2103)) ([f2fd00b](https://github.com/sbb-design-systems/sbb-angular/commit/f2fd00b431202086053e2d6430e4f997aedec364))
+* **angular/table:** change dark mode hover and active colors ([#2098](https://github.com/sbb-design-systems/sbb-angular/issues/2098)) ([accbcd0](https://github.com/sbb-design-systems/sbb-angular/commit/accbcd061a787b7a0a2a963b102268c16fd5d218))
+* **deps:** update dependency @angular/cdk to v17.0.1 ([65b99d8](https://github.com/sbb-design-systems/sbb-angular/commit/65b99d817fcddd7c88449200d8b2c937eb9dcc3b))
+* **deps:** update dependency maplibre-gl to v3.6.2 ([#2086](https://github.com/sbb-design-systems/sbb-angular/issues/2086)) ([67cfd76](https://github.com/sbb-design-systems/sbb-angular/commit/67cfd7626c386ce136853d20cb3e3c20894c0250))
+* **journey-maps:** prevent console errors ([#2093](https://github.com/sbb-design-systems/sbb-angular/issues/2093)) ([60c35ae](https://github.com/sbb-design-systems/sbb-angular/commit/60c35aee93cfc871e2a23e5105d37e88d47441a9))
+* **showcase:** make expandable table example working on all browsers ([#2101](https://github.com/sbb-design-systems/sbb-angular/issues/2101)) ([19c6f67](https://github.com/sbb-design-systems/sbb-angular/commit/19c6f6774cbb293c635f27e46f7faf5d6cf38392)), closes [#2100](https://github.com/sbb-design-systems/sbb-angular/issues/2100)
+
 ## [17.0.0](https://github.com/sbb-design-systems/sbb-angular/compare/17.0.0-rc.0...17.0.0) (2023-11-13)
 
 
