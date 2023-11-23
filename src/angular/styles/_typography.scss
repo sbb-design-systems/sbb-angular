@@ -418,6 +418,8 @@
   --sbb-sidebar-mobile-menu-bar-height: calc(2 * var(--sbb-icon-size-default));
   --sbb-icon-sidebar-item-dimension: calc(2 * var(--sbb-icon-size-default));
   --sbb-sidebar-background-color: var(--sbb-color-background);
+  --sbb-sidebar-background-color-hover: var(--sbb-menu-item-background-color-hover);
+  --sbb-sidebar-background-color-active: var(--sbb-menu-item-background-color-active);
   --sbb-sidebar-border-right-color: var(--sbb-color-cloud);
   --sbb-icon-sidebar-background-color: var(--sbb-color-milk);
   --sbb-icon-sidebar-background-color-active: var(--sbb-color-background);
@@ -969,6 +971,8 @@
       --sbb-icon-sidebar-background-color: var(--sbb-color-black);
       --sbb-sidebar-border-right-color: var(--sbb-color-iron);
       --sbb-icon-sidebar-background-color-active: var(--sbb-color-charcoal);
+      --sbb-sidebar-background-color-hover: var(--sbb-color-midnight);
+      --sbb-sidebar-background-color-active: var(--sbb-color-midnight);
 
       // Status
       --sbb-status-message-background-color: var(--sbb-color-iron);
