@@ -61,7 +61,7 @@ const CH_BOUNDS: LngLatBoundsLike = [
 
 /**
  * @title Journey Maps Full Example
- * @includeExtraFiles ./mock-response/journey/zh-be_wyleregg.ts,./mock-response/journey/zh-sh_waldfriedhof.ts,./mock-response/markers.ts,./mock-response/routes/biel-lyss.ts,./mock-response/routes/bn-ls.ts,./mock-response/transfer/bern-indoor.ts,./mock-response/transfer/geneve-indoor.ts,./mock-response/transfer/luzern4-j.ts,./mock-response/transfer/zurich-indoor.ts,./mock-response/zone/bern-burgdorf.ts,./mock-response/zone/bs-bl.ts
+ * @includeExtraFiles ./mock-response/journey/be-sh.ts,./mock-response/journey/zh-be_wyleregg.ts,./mock-response/journey/zh-sh_waldfriedhof.ts,./mock-response/markers.ts,./mock-response/routes/biel-lyss.ts,./mock-response/routes/bn-ls.ts,./mock-response/transfer/bern-indoor.ts,./mock-response/transfer/geneve-indoor.ts,./mock-response/transfer/luzern4-j.ts,./mock-response/transfer/zurich-indoor.ts,./mock-response/zone/bern-burgdorf.ts,./mock-response/zone/bs-bl.ts
  */
 @Component({
   selector: 'sbb-journey-maps-full-example',
