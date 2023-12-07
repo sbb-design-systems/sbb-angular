@@ -4846,7 +4846,17 @@
   dependencies:
     "@types/node" "*"
 
-"@types/browser-sync@2.27.5", "@types/browser-sync@^2.26.3":
+"@types/browser-sync@2.29.0":
+  version "2.29.0"
+  resolved "https://registry.yarnpkg.com/@types/browser-sync/-/browser-sync-2.29.0.tgz#dfd1b8abe25d823f25fc67496e31fdf9a0546d66"
+  integrity sha512-d2V8FDX/LbDCSm343N2VChzDxvll0h76I8oSigYpdLgPDmcdcR6fywTggKBkUiDM3qAbHOq7NZvepj/HJM5e2g==
+  dependencies:
+    "@types/micromatch" "^2"
+    "@types/node" "*"
+    "@types/serve-static" "*"
+    chokidar "^3.0.0"
+
+"@types/browser-sync@^2.26.3":
   version "2.27.5"
   resolved "https://registry.yarnpkg.com/@types/browser-sync/-/browser-sync-2.27.5.tgz#9cbbcacb419c827af54c7ca7b0f56484fcc074c4"
   integrity sha512-hhg2hzXFolA58lpAeR7KKvRMf917TRJFU2IXmod3uTdkk+/9sKXWoCu1hEoNm2m0QenseigwoHc+631UlZG7dg==
