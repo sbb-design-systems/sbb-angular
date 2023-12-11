@@ -300,6 +300,7 @@ export type SbbPointsOfInterestCategoryType =
   | 'on_demand'
   | 'optician'
   | 'outdoor'
+  | 'p2p_car_sharing'
   | 'park_rail'
   | 'perfumery'
   | 'photo'
