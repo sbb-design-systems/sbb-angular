@@ -255,10 +255,10 @@ export class JourneyMapsFullExample implements OnInit, OnDestroy {
           [
             'park_rail',
             'car_sharing',
+            'p2p_car_sharing',
             'bike_parking',
             'bike_sharing',
             'on_demand',
-            'p2p_car_sharing',
           ],
         ],
         environment: ['prod'], // Can also be left empty

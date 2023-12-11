@@ -208,7 +208,7 @@
         <sbb-form-field label="POI Subcategories">
           <sbb-select multiple formControlName="categories">
             <sbb-option
-              *ngFor="let category of ['park_rail', 'car_sharing', 'bike_parking', 'bike_sharing', 'on_demand', 'p2p_car_sharing']"
+              *ngFor="let category of ['park_rail', 'car_sharing', 'p2p_car_sharing', 'bike_parking', 'bike_sharing', 'on_demand']"
               [value]="category"
               >{{category}}</sbb-option
             >

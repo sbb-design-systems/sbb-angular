@@ -78,10 +78,10 @@ function createPoiTemplate(client: SbbJourneyMapsElement) {
     categories: [
       'park_rail',
       'car_sharing',
+      'p2p_car_sharing',
       'bike_parking',
       'bike_sharing',
       'on_demand',
-      'p2p_car_sharing',
     ],
   };
   client.listenerOptions = {
