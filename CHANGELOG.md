@@ -2,6 +2,20 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [17.2.0](https://github.com/sbb-design-systems/sbb-angular/compare/17.1.1...17.2.0) (2023-12-18)
+
+
+### Features
+
+* **journey-maps:** new POIs category p2p_car_sharing ([#2108](https://github.com/sbb-design-systems/sbb-angular/issues/2108)) ([96d1309](https://github.com/sbb-design-systems/sbb-angular/commit/96d1309423bf00f34ea13a5f0405edd4b5845567))
+
+
+### Bug Fixes
+
+* **deps:** update angular to v17.0.7 ([8a1b1b8](https://github.com/sbb-design-systems/sbb-angular/commit/8a1b1b89e0249cd9cc59414dbfa95462ab53f193))
+* **deps:** update dependency @angular/cdk to v17.0.2 ([e441f7e](https://github.com/sbb-design-systems/sbb-angular/commit/e441f7eb2dd5a2784955d55838c3745083310693))
+* **deps:** update dependency @angular/cdk to v17.0.3 ([833ed73](https://github.com/sbb-design-systems/sbb-angular/commit/833ed731eaef4c16b66b38c7113d46f6d372d746))
+
 ### [17.1.1](https://github.com/sbb-design-systems/sbb-angular/compare/17.1.0...17.1.1) (2023-11-27)
 
 ## [17.1.0](https://github.com/sbb-design-systems/sbb-angular/compare/17.0.0...17.1.0) (2023-11-23)
