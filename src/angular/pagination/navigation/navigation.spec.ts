@@ -65,7 +65,7 @@ describe('SbbNavigation', () => {
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-      imports: [SbbIconModule, SbbIconTestingModule, CommonModule, RouterTestingModule],
+      imports: [SbbIconModule, SbbIconTestingModule, RouterTestingModule],
       declarations: [SbbNavigation],
     }).compileComponents();
   }));

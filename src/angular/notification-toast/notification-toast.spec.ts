@@ -934,7 +934,7 @@ const TEST_DIRECTIVES = [
   ComponentWithTemplateRef,
 ];
 @NgModule({
-  imports: [CommonModule, SbbNotificationToastModule],
+  imports: [SbbNotificationToastModule],
   exports: TEST_DIRECTIVES,
   declarations: TEST_DIRECTIVES,
 })

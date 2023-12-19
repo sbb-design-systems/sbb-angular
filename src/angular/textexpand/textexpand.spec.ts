@@ -31,7 +31,7 @@ describe('SbbTextexpand', () => {
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
       declarations: [BasicTextexpand, InvalidTextexpand],
-      imports: [CommonModule, SbbTextexpandModule],
+      imports: [SbbTextexpandModule],
     }).compileComponents();
   }));
 

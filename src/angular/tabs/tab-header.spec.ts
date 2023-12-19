@@ -33,7 +33,6 @@ describe('SbbTabHeader', () => {
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
       imports: [
-        CommonModule,
         PortalModule,
         ScrollingModule,
         ObserversModule,

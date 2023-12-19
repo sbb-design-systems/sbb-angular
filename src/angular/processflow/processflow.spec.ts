@@ -1613,11 +1613,11 @@ class StepperWithAriaInputs {
 @Component({
   template: `
     <sbb-processflow>
-      <ng-container [ngSwitch]="true">
+      @if (true) {
         <sbb-step label="Step 1">Content 1</sbb-step>
         <sbb-step label="Step 2">Content 2</sbb-step>
         <sbb-step label="Step 3">Content 3</sbb-step>
-      </ng-container>
+      }
     </sbb-processflow>
   `,
 })

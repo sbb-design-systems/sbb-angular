@@ -21,7 +21,7 @@
   </span>
 </label>
 
-@if (filesList?.length) {
+@if (filesList && filesList.length) {
 <ul class="sbb-file-selector-list sbb-clean-list sbb-icon-scaled">
   @for (file of filesList; track file) {
   <li>

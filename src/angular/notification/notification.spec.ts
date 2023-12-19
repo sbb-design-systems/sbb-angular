@@ -16,13 +16,7 @@ describe('SbbNotification', () => {
 
     beforeEach(waitForAsync(() => {
       TestBed.configureTestingModule({
-        imports: [
-          CommonModule,
-          NoopAnimationsModule,
-          SbbNotificationModule,
-          SbbIconModule,
-          SbbIconTestingModule,
-        ],
+        imports: [NoopAnimationsModule, SbbNotificationModule, SbbIconModule, SbbIconTestingModule],
       }).compileComponents();
     }));
 
@@ -44,7 +38,6 @@ describe('SbbNotification', () => {
     beforeEach(waitForAsync(() => {
       TestBed.configureTestingModule({
         imports: [
-          CommonModule,
           FormsModule,
           NoopAnimationsModule,
           SbbNotificationModule,

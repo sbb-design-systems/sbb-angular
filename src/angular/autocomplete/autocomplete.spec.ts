@@ -387,13 +387,17 @@ class AutocompleteWithGroups {
     </sbb-form-field>
 
     <sbb-autocomplete #auto="sbbAutocomplete">
-      <ng-container [ngSwitch]="true">
-        <sbb-optgroup *ngFor="let group of stateGroups" [label]="group.label">
-          <sbb-option *ngFor="let state of group.states" [value]="state">
-            <span>{{ state }}</span>
-          </sbb-option>
-        </sbb-optgroup>
-      </ng-container>
+      @if (true) {
+        @for (group of stateGroups; track group) {
+          <sbb-optgroup [label]="group.label">
+            @for (state of group.states; track state) {
+              <sbb-option [value]="state">
+                <span>{{ state }}</span>
+              </sbb-option>
+            }
+          </sbb-optgroup>
+        }
+      }
     </sbb-autocomplete>
   `,
 })

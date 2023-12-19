@@ -198,7 +198,7 @@ class PreselectedRadioWithStaticValueAndNgIf {
 describe('RadioButton', () => {
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-      imports: [CommonModule, FormsModule, ReactiveFormsModule, SbbRadioButtonModule],
+      imports: [FormsModule, ReactiveFormsModule, SbbRadioButtonModule],
       declarations: [
         DisableableSbbRadioButton,
         FocusableSbbRadioButton,

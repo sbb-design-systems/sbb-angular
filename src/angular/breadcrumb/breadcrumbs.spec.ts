@@ -73,7 +73,7 @@ describe('SbbBreadcrumbs', () => {
     beforeEach(waitForAsync(() => {
       TestBed.configureTestingModule({
         declarations: [SbbBreadcrumbs, SbbBreadcrumb],
-        imports: [CommonModule, SbbMenuModule, SbbIconModule, SbbIconTestingModule],
+        imports: [SbbMenuModule, SbbIconModule, SbbIconTestingModule],
       }).compileComponents();
     }));
 
@@ -94,13 +94,7 @@ describe('SbbBreadcrumbs', () => {
     beforeEach(waitForAsync(() => {
       TestBed.configureTestingModule({
         declarations: [BreadcrumbsSimpleTest],
-        imports: [
-          CommonModule,
-          SbbBreadcrumbModule,
-          SbbMenuModule,
-          SbbIconModule,
-          SbbIconTestingModule,
-        ],
+        imports: [SbbBreadcrumbModule, SbbMenuModule, SbbIconModule, SbbIconTestingModule],
       }).compileComponents();
     }));
 
@@ -163,7 +157,6 @@ describe('SbbBreadcrumbs', () => {
       TestBed.configureTestingModule({
         declarations: [BreadcrumbsMenuTest],
         imports: [
-          CommonModule,
           SbbBreadcrumbModule,
           SbbMenuModule,
           SbbIconModule,

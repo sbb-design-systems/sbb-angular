@@ -54,13 +54,7 @@ const registerClearMediaMatcher = () => {
 describe('SbbSidebar', () => {
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-      imports: [
-        SbbSidebarModule,
-        A11yModule,
-        NoopAnimationsModule,
-        CommonModule,
-        SbbIconTestingModule,
-      ],
+      imports: [SbbSidebarModule, A11yModule, NoopAnimationsModule, SbbIconTestingModule],
       declarations: [
         BasicTestComponent,
         SidebarSetToOpenedTrueTestComponent,
@@ -651,13 +645,7 @@ describe('SbbSidebar', () => {
 describe('SbbSidebarContainer', () => {
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-      imports: [
-        SbbSidebarModule,
-        A11yModule,
-        NoopAnimationsModule,
-        CommonModule,
-        SbbIconTestingModule,
-      ],
+      imports: [SbbSidebarModule, A11yModule, NoopAnimationsModule, SbbIconTestingModule],
       declarations: [
         SidebarContainerEmptyTestComponent,
         SidebarDelayedTestComponent,
@@ -1099,9 +1087,9 @@ class SidebarContainerWithContentTestComponent {
   // Note that we need the `ng-container` with the `ngSwitch` so that
   // there's a directive between the container and the sidebar.
   template: ` <sbb-sidebar-container #container>
-    <ng-container [ngSwitch]="true">
+    @if (true) {
       <sbb-sidebar #sidebar><fieldset>Sidebar</fieldset></sbb-sidebar>
-    </ng-container>
+    }
   </sbb-sidebar-container>`,
 })
 class IndirectDescendantSidebarTestComponent {

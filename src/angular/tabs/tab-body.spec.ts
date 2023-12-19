@@ -24,13 +24,7 @@ describe('SbbTabBody', () => {
   beforeEach(waitForAsync(() => {
     dir = 'ltr';
     TestBed.configureTestingModule({
-      imports: [
-        CommonModule,
-        PortalModule,
-        NoopAnimationsModule,
-        SbbIconTestingModule,
-        SbbIconModule,
-      ],
+      imports: [PortalModule, NoopAnimationsModule, SbbIconTestingModule, SbbIconModule],
       declarations: [SbbTabBody, SbbTabBodyPortal, SimpleTabBodyApp],
       providers: [
         { provide: Directionality, useFactory: () => ({ value: dir, change: dirChange }) },
@@ -145,7 +139,6 @@ describe('SbbTabBody', () => {
     TestBed.resetTestingModule()
       .configureTestingModule({
         imports: [
-          CommonModule,
           PortalModule,
           NoopAnimationsModule,
           ScrollingModule,

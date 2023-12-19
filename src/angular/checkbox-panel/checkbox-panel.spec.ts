@@ -68,7 +68,6 @@ describe('SbbCheckboxPanel', () => {
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
       imports: [
-        CommonModule,
         FormsModule,
         ReactiveFormsModule,
         SbbCheckboxPanelModule,

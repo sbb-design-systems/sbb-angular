@@ -22,7 +22,7 @@ import { SbbTab, SbbTabGroup, SbbTabHeader, SbbTabsModule, SBB_TABS_CONFIG } fro
 describe('SbbTabGroup', () => {
   beforeEach(fakeAsync(() => {
     TestBed.configureTestingModule({
-      imports: [SbbTabsModule, CommonModule, NoopAnimationsModule, SbbIconTestingModule],
+      imports: [SbbTabsModule, NoopAnimationsModule, SbbIconTestingModule],
       declarations: [
         SimpleTabsTestApp,
         SimpleDynamicTabsTestApp,
@@ -1212,10 +1212,10 @@ class TabsWithCustomAnimationDuration {
 @Component({
   template: `
     <sbb-tab-group>
-      <ng-container [ngSwitch]="true">
+      @if (true) {
         <sbb-tab label="One">Tab one content</sbb-tab>
         <sbb-tab label="Two">Tab two content</sbb-tab>
-      </ng-container>
+      }
     </sbb-tab-group>
   `,
 })

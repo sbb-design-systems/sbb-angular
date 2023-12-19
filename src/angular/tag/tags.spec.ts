@@ -133,7 +133,7 @@ describe('SbbTags', () => {
 
     beforeEach(waitForAsync(() => {
       TestBed.configureTestingModule({
-        imports: [CommonModule, FormsModule, SbbBadgeModule, SbbTagModule],
+        imports: [FormsModule, SbbBadgeModule, SbbTagModule],
         declarations: [TagsTestFixtureComponent],
       }).compileComponents();
     }));
@@ -417,7 +417,7 @@ describe('SbbTags', () => {
 
     beforeEach(waitForAsync(() => {
       TestBed.configureTestingModule({
-        imports: [CommonModule, ReactiveFormsModule, SbbBadgeModule, SbbTagModule],
+        imports: [ReactiveFormsModule, SbbBadgeModule, SbbTagModule],
         declarations: [TagsTestFixtureReactiveComponent],
       }).compileComponents();
     }));

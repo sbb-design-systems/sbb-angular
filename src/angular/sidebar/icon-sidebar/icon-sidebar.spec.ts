@@ -43,7 +43,6 @@ describe('SbbIconSidebar', () => {
         SbbSidebarModule,
         A11yModule,
         NoopAnimationsModule,
-        CommonModule,
         SbbIconModule,
         SbbIconTestingModule,
         RouterTestingModule,
@@ -522,9 +521,9 @@ class SidebarContainerWithContentTestComponent {
   // Note that we need the `ng-container` with the `ngSwitch` so that
   // there's a directive between the container and the sidebar.
   template: ` <sbb-icon-sidebar-container #container>
-    <ng-container [ngSwitch]="true">
+    @if (true) {
       <sbb-icon-sidebar #sidebar>Sidebar</sbb-icon-sidebar>
-    </ng-container>
+    }
   </sbb-icon-sidebar-container>`,
 })
 class IndirectDescendantSidebarTestComponent {
