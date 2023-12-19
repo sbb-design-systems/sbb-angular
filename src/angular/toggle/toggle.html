@@ -3,13 +3,14 @@
 </div>
 
 <section class="sbb-toggle-option-content" [id]="_contentId">
+  @if (selected?._details) {
   <div
     class="sbb-toggle-option-content-wrapper sbb-scrollbar"
-    *ngIf="selected?._details"
     #toggleOptionContentWrapper
     [@translateHeight]="{ value: _heightAnimationState, params: { currentHeight: _currentOptionContentWrapperHeight }}"
     (@translateHeight.done)="_onHeightAnimationDone($event)"
   >
     <ng-template [cdkPortalOutlet]="selected?._details ? selected?._content : null"></ng-template>
   </div>
+  }
 </section>

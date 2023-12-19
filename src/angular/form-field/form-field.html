@@ -1,26 +1,27 @@
 <div class="sbb-form-field-wrapper">
   <div class="sbb-form-field-label-wrapper" (click)="_control.onContainerClick($event)">
     <!-- We add aria-owns as a workaround for an issue in JAWS & NVDA where the label isn't
-       read if it comes before the control in the DOM. -->
+    read if it comes before the control in the DOM. -->
     <label
       class="sbb-label sbb-form-field-label"
       [id]="_labelId"
       [attr.for]="_control.id"
       [attr.aria-owns]="_control.id"
       [class.sbb-form-field-empty]="_control.empty"
-      [ngSwitch]="_hasLabel()"
     >
-      <ng-container *ngSwitchCase="false">
-        <span>{{ label }}</span>
-      </ng-container>
-
-      <ng-content select="sbb-label" *ngSwitchCase="true"></ng-content>
+      @switch (_hasLabel()) { @case (false) {
+      <span>{{ label }}</span>
+      } @case (true) {
+      <ng-content select="sbb-label"></ng-content>
+      } }
     </label>
   </div>
   <div class="sbb-form-field-input-wrapper" #connectionContainer>
     <ng-content></ng-content>
   </div>
   <div class="sbb-form-field-error-wrapper">
-    <ng-content *ngIf="_hasErrors()" select="sbb-error,[sbbError]"></ng-content>
+    @if (_hasErrors()) {
+    <ng-content select="sbb-error,[sbbError]"></ng-content>
+    }
   </div>
 </div>

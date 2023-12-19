@@ -1,7 +1,6 @@
 import { A11yModule } from '@angular/cdk/a11y';
 import { MediaMatcher } from '@angular/cdk/layout';
 import { CdkScrollable } from '@angular/cdk/scrolling';
-import { CommonModule } from '@angular/common';
 import { Component, DebugElement, ElementRef, ViewChild } from '@angular/core';
 import {
   ComponentFixture,
@@ -496,7 +495,9 @@ class TwoSidebarsTestComponent {}
 @Component({
   template: `
     <sbb-icon-sidebar-container>
-      <sbb-icon-sidebar *ngIf="showSidebar" #sidebar expanded>Sidebar</sbb-icon-sidebar>
+      @if (showSidebar) {
+        <sbb-icon-sidebar #sidebar expanded>Sidebar</sbb-icon-sidebar>
+      }
     </sbb-icon-sidebar-container>
   `,
 })

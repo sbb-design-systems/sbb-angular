@@ -6,9 +6,13 @@
   [class.sbb-step-label-error]="state == 'error'"
 >
   <!-- If there is a label template, use it. -->
-  <div class="sbb-step-text-label" *ngIf="_templateLabel()">
+  @if (_templateLabel()) {
+  <div class="sbb-step-text-label">
     <ng-container [ngTemplateOutlet]="_templateLabel()!.template"></ng-container>
   </div>
+  }
   <!-- If there is no label template, fall back to the text label. -->
-  <div class="sbb-step-text-label" *ngIf="_stringLabel()">{{label}}</div>
+  @if (_stringLabel()) {
+  <div class="sbb-step-text-label">{{label}}</div>
+  }
 </div>

@@ -3,7 +3,6 @@ import { Direction } from '@angular/cdk/bidi';
 import { ESCAPE } from '@angular/cdk/keycodes';
 import { MediaMatcher } from '@angular/cdk/layout';
 import { CdkScrollable } from '@angular/cdk/scrolling';
-import { CommonModule } from '@angular/common';
 import { Component, DebugElement, ElementRef, ViewChild } from '@angular/core';
 import {
   ComponentFixture,
@@ -1046,7 +1045,9 @@ class SidebarWithoutFocusableElementsTestComponent {}
 @Component({
   template: `
     <sbb-sidebar-container>
-      <sbb-sidebar *ngIf="showSidebar" #sidebar><fieldset>Sidebar</fieldset></sbb-sidebar>
+      @if (showSidebar) {
+        <sbb-sidebar #sidebar><fieldset>Sidebar</fieldset></sbb-sidebar>
+      }
     </sbb-sidebar-container>
   `,
 })
@@ -1057,7 +1058,9 @@ class SidebarDelayedTestComponent {
 
 @Component({
   template: ` <sbb-sidebar-container [dir]="direction">
-    <sbb-sidebar *ngIf="renderSidebar" style="width:100px"></sbb-sidebar>
+    @if (renderSidebar) {
+      <sbb-sidebar style="width:100px"></sbb-sidebar>
+    }
   </sbb-sidebar-container>`,
 })
 class SidebarContainerStateChangesTestAppTestComponent {

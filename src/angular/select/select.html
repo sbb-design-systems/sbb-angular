@@ -1,30 +1,29 @@
 <div
   [attr.id]="_valueId"
-  [ngSwitch]="empty"
   class="sbb-select-value"
   aria-hidden="true"
   [class.sbb-select-value-empty]="empty"
 >
-  <span *ngSwitchCase="true" class="sbb-select-placeholder"
-    >{{ !readonly ? (placeholder || '\u00A0') : '-' }}</span
-  >
-  <span *ngSwitchCase="false" class="sbb-select-value-text">
+  @switch (empty) { @case (true) {
+  <span class="sbb-select-placeholder">{{ !readonly ? (placeholder || '\u00A0') : '-' }}</span>
+  } @case (false) {
+  <span class="sbb-select-value-text">
     <span>{{ triggerValue || '\u00A0' }}</span>
   </span>
+  } }
 </div>
 
-<ng-container [ngSwitch]="variant | async">
-  <sbb-icon
-    *ngSwitchCase="'standard'"
-    class="sbb-icon-scaled sbb-select-arrow-icon"
-    svgIcon="chevron-small-down-small"
-  ></sbb-icon>
-  <sbb-icon
-    *ngSwitchDefault
-    class="sbb-icon-scaled sbb-select-arrow-icon sbb-select-arrow-icon-lean"
-    svgIcon="chevron-right-small"
-  ></sbb-icon>
-</ng-container>
+@switch (variant | async) { @case ('standard') {
+<sbb-icon
+  class="sbb-icon-scaled sbb-select-arrow-icon"
+  svgIcon="chevron-small-down-small"
+></sbb-icon>
+} @default {
+<sbb-icon
+  class="sbb-icon-scaled sbb-select-arrow-icon sbb-select-arrow-icon-lean"
+  svgIcon="chevron-right-small"
+></sbb-icon>
+} }
 
 <ng-template
   cdk-connected-overlay

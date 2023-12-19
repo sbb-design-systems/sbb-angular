@@ -11,6 +11,6 @@
   (blur)="_onBlur()"
   (input)="_onInput($event)"
 ></textarea>
-<div *ngIf="maxlength && !disabled" class="sbb-textarea-remaining-chars">
-  {{ _labelCharactersRemaining }}
-</div>
+@if (maxlength && !disabled) {
+<div class="sbb-textarea-remaining-chars">{{ _labelCharactersRemaining }}</div>
+}

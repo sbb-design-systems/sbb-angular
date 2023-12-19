@@ -1,6 +1,5 @@
 import { LiveAnnouncer } from '@angular/cdk/a11y';
 import { OverlayContainer } from '@angular/cdk/overlay';
-import { CommonModule } from '@angular/common';
 import {
   Component,
   Directive,
@@ -882,7 +881,9 @@ class DirectiveWithViewContainer {
 
 @Component({
   selector: 'arbitrary-component',
-  template: `<dir-with-view-container *ngIf="childComponentExists"></dir-with-view-container>`,
+  template: `@if (childComponentExists) {
+    <dir-with-view-container></dir-with-view-container>
+  }`,
 })
 class ComponentWithChildViewContainer {
   @ViewChild(DirectiveWithViewContainer) childWithViewContainer: DirectiveWithViewContainer;

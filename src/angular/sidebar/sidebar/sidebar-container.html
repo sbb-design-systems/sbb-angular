@@ -9,16 +9,19 @@
   </button>
 </div>
 
+@if (hasBackdrop) {
 <div
   class="sbb-sidebar-backdrop"
   (click)="_onBackdropClicked()"
-  *ngIf="hasBackdrop"
   [class.sbb-sidebar-shown]="_isShowingBackdrop()"
 ></div>
+}
 
 <ng-content select="sbb-sidebar"></ng-content>
 
 <ng-content select="sbb-sidebar-content"> </ng-content>
-<sbb-sidebar-content *ngIf="!_content">
+@if (!_content) {
+<sbb-sidebar-content>
   <ng-content></ng-content>
 </sbb-sidebar-content>
+}

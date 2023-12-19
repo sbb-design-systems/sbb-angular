@@ -1,7 +1,7 @@
 <ul class="sbb-navigation sbb-clean-list">
+  @if (previousPage) {
   <li
     class="sbb-navigation-item sbb-navigation-item-left"
-    *ngIf="previousPage"
     [class.sbb-navigation-item-single]="!nextPage"
   >
     <button
@@ -17,9 +17,9 @@
       </span>
     </button>
   </li>
+  } @if (nextPage) {
   <li
     class="sbb-navigation-item sbb-navigation-item-right"
-    *ngIf="nextPage"
     [class.sbb-navigation-item-single]="!previousPage"
   >
     <button
@@ -35,4 +35,5 @@
       </span>
     </button>
   </li>
+  }
 </ul>

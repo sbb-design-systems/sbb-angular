@@ -1,7 +1,6 @@
 import { Direction, Directionality } from '@angular/cdk/bidi';
 import { PortalModule, TemplatePortal } from '@angular/cdk/portal';
 import { CdkScrollable, ScrollingModule } from '@angular/cdk/scrolling';
-import { CommonModule } from '@angular/common';
 import {
   AfterContentInit,
   Component,

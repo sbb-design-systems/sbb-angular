@@ -1,5 +1,4 @@
 import { OverlayContainer, OverlayModule } from '@angular/cdk/overlay';
-import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
 import { ComponentFixture, inject, TestBed, waitForAsync } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';

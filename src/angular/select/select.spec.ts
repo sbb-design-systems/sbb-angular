@@ -86,9 +86,11 @@ import { SbbSelectModule } from './select.module';
         [panelClass]="panelClass"
         [typeaheadDebounceInterval]="typeaheadDebounceInterval"
       >
-        <sbb-option *ngFor="let food of foods" [value]="food.value" [disabled]="food.disabled">
-          {{ capitalize ? food.viewValue.toUpperCase() : food.viewValue }}
-        </sbb-option>
+        @for (food of foods; track food) {
+          <sbb-option [value]="food.value" [disabled]="food.disabled">
+            {{ capitalize ? food.viewValue.toUpperCase() : food.viewValue }}
+          </sbb-option>
+        }
       </sbb-select>
     </sbb-form-field>
     <div [style.height.px]="heightBelow"></div>
@@ -127,9 +129,9 @@ class BasicSelect {
   template: `
     <sbb-form-field>
       <sbb-select placeholder="Food" ngModel [disabled]="isDisabled">
-        <sbb-option *ngFor="let food of foods" [value]="food.value"
-          >{{ food.viewValue }}
-        </sbb-option>
+        @for (food of foods; track food) {
+          <sbb-option [value]="food.value">{{ food.viewValue }} </sbb-option>
+        }
       </sbb-select>
     </sbb-form-field>
   `,
@@ -168,15 +170,19 @@ class ManySelects {}
 @Component({
   selector: 'sbb-ng-if-select',
   template: `
-    <div *ngIf="isShowing">
-      <sbb-form-field>
-        <sbb-select placeholder="Food I want to eat right now" [formControl]="control">
-          <sbb-option *ngFor="let food of foods" [value]="food.value">
-            {{ food.viewValue }}
-          </sbb-option>
-        </sbb-select>
-      </sbb-form-field>
-    </div>
+    @if (isShowing) {
+      <div>
+        <sbb-form-field>
+          <sbb-select placeholder="Food I want to eat right now" [formControl]="control">
+            @for (food of foods; track food) {
+              <sbb-option [value]="food.value">
+                {{ food.viewValue }}
+              </sbb-option>
+            }
+          </sbb-select>
+        </sbb-form-field>
+      </div>
+    }
   `,
 })
 class NgIfSelect {
@@ -196,7 +202,9 @@ class NgIfSelect {
   template: `
     <sbb-form-field>
       <sbb-select (selectionChange)="changeListener($event)">
-        <sbb-option *ngFor="let food of foods" [value]="food">{{ food }}</sbb-option>
+        @for (food of foods; track food) {
+          <sbb-option [value]="food">{{ food }}</sbb-option>
+        }
       </sbb-select>
     </sbb-form-field>
   `,
@@ -221,9 +229,11 @@ class SelectWithChangeEvent {
   template: `
     <sbb-form-field>
       <sbb-select placeholder="Food I want to eat right now" [formControl]="control">
-        <sbb-option *ngFor="let food of foods" [value]="food.value">
-          {{ food.viewValue }}
-        </sbb-option>
+        @for (food of foods; track food) {
+          <sbb-option [value]="food.value">
+            {{ food.viewValue }}
+          </sbb-option>
+        }
       </sbb-select>
     </sbb-form-field>
   `,
@@ -308,9 +318,11 @@ class ThrowsErrorOnInit implements OnInit {
   template: `
     <sbb-form-field>
       <sbb-select placeholder="Food" [formControl]="control">
-        <sbb-option *ngFor="let food of foods" [value]="food.value">
-          {{ food.viewValue }}
-        </sbb-option>
+        @for (food of foods; track food) {
+          <sbb-option [value]="food.value">
+            {{ food.viewValue }}
+          </sbb-option>
+        }
       </sbb-select>
     </sbb-form-field>
   `,
@@ -330,9 +342,11 @@ class BasicSelectOnPush {
   template: `
     <sbb-form-field>
       <sbb-select placeholder="Food" [formControl]="control">
-        <sbb-option *ngFor="let food of foods" [value]="food.value">
-          {{ food.viewValue }}
-        </sbb-option>
+        @for (food of foods; track food) {
+          <sbb-option [value]="food.value">
+            {{ food.viewValue }}
+          </sbb-option>
+        }
       </sbb-select>
     </sbb-form-field>
   `,
@@ -357,9 +371,9 @@ class BasicSelectOnPushPreselected {
         [formControl]="control"
         [sortComparator]="sortComparator"
       >
-        <sbb-option *ngFor="let food of foods" [value]="food.value"
-          >{{ food.viewValue }}
-        </sbb-option>
+        @for (food of foods; track food) {
+          <sbb-option [value]="food.value">{{ food.viewValue }} </sbb-option>
+        }
       </sbb-select>
     </sbb-form-field>
   `,
@@ -394,7 +408,9 @@ class SelectWithPlainTabindex {}
     <sbb-form-field>
       <sbb-select #select="sbbSelect"></sbb-select>
     </sbb-form-field>
-    <div *ngIf="select.selected"></div>
+    @if (select.selected) {
+      <div></div>
+    }
   `,
 })
 class SelectEarlyAccessSibling {}
@@ -430,9 +446,11 @@ class BasicSelectNoPlaceholder {}
   template: `
     <sbb-form-field>
       <sbb-select placeholder="Food" [formControl]="control">
-        <sbb-option *ngFor="let food of foods" [value]="food.value">
-          {{ food.viewValue }}
-        </sbb-option>
+        @for (food of foods; track food) {
+          <sbb-option [value]="food.value">
+            {{ food.viewValue }}
+          </sbb-option>
+        }
         <sbb-option>None</sbb-option>
       </sbb-select>
     </sbb-form-field>
@@ -456,9 +474,9 @@ class ResetValuesSelect {
   template: `
     <sbb-form-field>
       <sbb-select [formControl]="control">
-        <sbb-option *ngFor="let food of foods" [value]="food.value"
-          >{{ food.viewValue }}
-        </sbb-option>
+        @for (food of foods; track food) {
+          <sbb-option [value]="food.value">{{ food.viewValue }} </sbb-option>
+        }
       </sbb-select>
     </sbb-form-field>
   `,
@@ -477,15 +495,15 @@ class FalsyValueSelect {
   template: `
     <sbb-form-field>
       <sbb-select placeholder="Pokemon" [formControl]="control">
-        <sbb-optgroup
-          *ngFor="let group of pokemonTypes"
-          [label]="group.name"
-          [disabled]="group.disabled"
-        >
-          <sbb-option *ngFor="let pokemon of group.pokemon" [value]="pokemon.value">
-            {{ pokemon.viewValue }}
-          </sbb-option>
-        </sbb-optgroup>
+        @for (group of pokemonTypes; track group) {
+          <sbb-optgroup [label]="group.name" [disabled]="group.disabled">
+            @for (pokemon of group.pokemon; track pokemon) {
+              <sbb-option [value]="pokemon.value">
+                {{ pokemon.viewValue }}
+              </sbb-option>
+            }
+          </sbb-optgroup>
+        }
         <sbb-option value="mime-11">Mr. Mime</sbb-option>
       </sbb-select>
     </sbb-form-field>
@@ -537,11 +555,13 @@ class SelectWithGroups {
   template: `
     <sbb-form-field>
       <sbb-select placeholder="Pokemon" [formControl]="control">
-        <sbb-optgroup *ngFor="let group of pokemonTypes" [label]="group.name">
-          <ng-container *ngFor="let pokemon of group.pokemon">
-            <sbb-option [value]="pokemon.value">{{ pokemon.viewValue }}</sbb-option>
-          </ng-container>
-        </sbb-optgroup>
+        @for (group of pokemonTypes; track group) {
+          <sbb-optgroup [label]="group.name">
+            @for (pokemon of group.pokemon; track pokemon) {
+              <sbb-option [value]="pokemon.value">{{ pokemon.viewValue }}</sbb-option>
+            }
+          </sbb-optgroup>
+        }
       </sbb-select>
     </sbb-form-field>
   `,
@@ -574,9 +594,11 @@ class InvalidSelectInForm {
     <form [formGroup]="formGroup">
       <sbb-form-field>
         <sbb-select placeholder="Food" formControlName="food">
-          <sbb-option *ngFor="let option of options" [value]="option.value">
-            {{ option.viewValue }}
-          </sbb-option>
+          @for (option of options; track option) {
+            <sbb-option [value]="option.value">
+              {{ option.viewValue }}
+            </sbb-option>
+          }
         </sbb-select>
 
         <sbb-error>This field is required</sbb-error>
@@ -601,9 +623,11 @@ class SelectInsideFormGroup {
   template: `
     <sbb-form-field>
       <sbb-select placeholder="Food" [(value)]="selectedFood">
-        <sbb-option *ngFor="let food of foods" [value]="food.value">
-          {{ food.viewValue }}
-        </sbb-option>
+        @for (food of foods; track food) {
+          <sbb-option [value]="food.value">
+            {{ food.viewValue }}
+          </sbb-option>
+        }
       </sbb-select>
     </sbb-form-field>
   `,
@@ -623,9 +647,11 @@ class BasicSelectWithoutForms {
   template: `
     <sbb-form-field>
       <sbb-select placeholder="Food" [(value)]="selectedFood">
-        <sbb-option *ngFor="let food of foods" [value]="food.value">
-          {{ food.viewValue }}
-        </sbb-option>
+        @for (food of foods; track food) {
+          <sbb-option [value]="food.value">
+            {{ food.viewValue }}
+          </sbb-option>
+        }
       </sbb-select>
     </sbb-form-field>
   `,
@@ -644,9 +670,11 @@ class BasicSelectWithoutFormsPreselected {
   template: `
     <sbb-form-field>
       <sbb-select placeholder="Food" [(value)]="selectedFoods" multiple>
-        <sbb-option *ngFor="let food of foods" [value]="food.value">
-          {{ food.viewValue }}
-        </sbb-option>
+        @for (food of foods; track food) {
+          <sbb-option [value]="food.value">
+            {{ food.viewValue }}
+          </sbb-option>
+        }
       </sbb-select>
     </sbb-form-field>
   `,
@@ -671,7 +699,9 @@ class BasicSelectWithoutFormsMultiple {
         (ngModelChange)="setFoodByCopy($event)"
         [compareWith]="comparator"
       >
-        <sbb-option *ngFor="let food of foods" [value]="food">{{ food.viewValue }}</sbb-option>
+        @for (food of foods; track food) {
+          <sbb-option [value]="food">{{ food.viewValue }}</sbb-option>
+        }
       </sbb-select>
     </sbb-form-field>
   `,
@@ -715,9 +745,11 @@ class NgModelCompareWithSelect {
 @Component({
   template: `
     <sbb-select placeholder="Food" [formControl]="control" [errorStateMatcher]="errorStateMatcher">
-      <sbb-option *ngFor="let food of foods" [value]="food.value">
-        {{ food.viewValue }}
-      </sbb-option>
+      @for (food of foods; track food) {
+        <sbb-option [value]="food.value">
+          {{ food.viewValue }}
+        </sbb-option>
+      }
     </sbb-select>
   `,
 })
@@ -735,9 +767,9 @@ class CustomErrorBehaviorSelect {
   template: `
     <sbb-form-field>
       <sbb-select placeholder="Food" [(ngModel)]="selectedFoods">
-        <sbb-option *ngFor="let food of foods" [value]="food.value"
-          >{{ food.viewValue }}
-        </sbb-option>
+        @for (food of foods; track food) {
+          <sbb-option [value]="food.value">{{ food.viewValue }} </sbb-option>
+        }
       </sbb-select>
     </sbb-form-field>
   `,
@@ -774,9 +806,11 @@ class SelectWithFormFieldLabel {
   template: `
     <sbb-form-field>
       <sbb-label>Select something</sbb-label>
-      <sbb-select *ngIf="showSelect">
-        <sbb-option value="1">One</sbb-option>
-      </sbb-select>
+      @if (showSelect) {
+        <sbb-select>
+          <sbb-option value="1">One</sbb-option>
+        </sbb-select>
+      }
     </sbb-form-field>
   `,
 })
@@ -788,7 +822,9 @@ class SelectWithNgIfAndLabel {
   template: `
     <sbb-form-field>
       <sbb-select multiple [ngModel]="value">
-        <sbb-option *ngFor="let item of items" [value]="item">{{ item }}</sbb-option>
+        @for (item of items; track item) {
+          <sbb-option [value]="item">{{ item }}</sbb-option>
+        }
       </sbb-select>
     </sbb-form-field>
   `,
@@ -829,13 +865,13 @@ class SelectWithResetOptionAndFormControl {
   selector: 'sbb-select-with-placeholder-in-ngcontainer-with-ngIf',
   template: `
     <sbb-form-field>
-      <ng-container *ngIf="true">
+      @if (true) {
         <sbb-select placeholder="Product Area">
           <sbb-option value="a">A</sbb-option>
           <sbb-option value="b">B</sbb-option>
           <sbb-option value="c">C</sbb-option>
         </sbb-select>
-      </ng-container>
+      }
     </sbb-form-field>
   `,
 })
@@ -5047,7 +5083,9 @@ describe('SbbSelect', () => {
   template: `
     <div [style.height.px]="heightAbove"></div>
     <sbb-form-field>
-      <sbb-label *ngIf="hasLabel">Select a food</sbb-label>
+      @if (hasLabel) {
+        <sbb-label>Select a food</sbb-label>
+      }
       <sbb-select
         placeholder="Food"
         [formControl]="control"
@@ -5059,11 +5097,15 @@ describe('SbbSelect', () => {
         [panelClass]="panelClass"
         [typeaheadDebounceInterval]="typeaheadDebounceInterval"
       >
-        <sbb-option *ngFor="let food of foods" [value]="food.value" [disabled]="food.disabled">
-          {{ food.viewValue }}
-        </sbb-option>
+        @for (food of foods; track food) {
+          <sbb-option [value]="food.value" [disabled]="food.disabled">
+            {{ food.viewValue }}
+          </sbb-option>
+        }
       </sbb-select>
-      <sbb-hint *ngIf="hint">{{ hint }}</sbb-hint>
+      @if (hint) {
+        <sbb-hint>{{ hint }}</sbb-hint>
+      }
     </sbb-form-field>
     <div [style.height.px]="heightBelow"></div>
   `,

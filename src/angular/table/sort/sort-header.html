@@ -1,12 +1,12 @@
 <!--
-  We set the `tabindex` on an element inside the table header, rather than the header itself,
-  because of a bug in NVDA where having a `tabindex` on a `th` breaks keyboard navigation in the
-  table (see https://github.com/nvaccess/nvda/issues/7718). This allows for the header to both
-  be focusable, and have screen readers read out its `aria-sort` state. We prefer this approach
-  over having a button with an `aria-label` inside the header, because the button's `aria-label`
-  will be read out as the user is navigating the table's cell (see #13012).
+We set the `tabindex` on an element inside the table header, rather than the header itself,
+because of a bug in NVDA where having a `tabindex` on a `th` breaks keyboard navigation in the
+table (see https://github.com/nvaccess/nvda/issues/7718). This allows for the header to both
+be focusable, and have screen readers read out its `aria-sort` state. We prefer this approach
+over having a button with an `aria-label` inside the header, because the button's `aria-label`
+will be read out as the user is navigating the table's cell (see #13012).
 
-  The approach is based off of: https://dequeuniversity.com/library/aria/tables/sf-sortable-grid
+The approach is based off of: https://dequeuniversity.com/library/aria/tables/sf-sortable-grid
 -->
 <div
   class="sbb-sort-header-container"
@@ -20,9 +20,9 @@
   </div>
 
   <!-- Disable animations while a current animation is running -->
+  @if (_renderArrow()) {
   <div
     class="sbb-sort-header-arrow"
-    *ngIf="_renderArrow()"
     [@arrowOpacity]="_getArrowViewState()"
     [@arrowPosition]="_getArrowViewState()"
     [@allowChildren]="_getArrowDirectionState()"
@@ -56,4 +56,5 @@
       ></path>
     </svg>
   </div>
+  }
 </div>

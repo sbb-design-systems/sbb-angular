@@ -1,4 +1,3 @@
-import { CommonModule } from '@angular/common';
 import { Component, DebugElement, ViewChild } from '@angular/core';
 import { ComponentFixture, fakeAsync, TestBed, tick, waitForAsync } from '@angular/core/testing';
 import { FormControl, FormsModule, NgModel, ReactiveFormsModule } from '@angular/forms';
@@ -16,9 +15,9 @@ import { SbbRadioButtonModule } from './radio-button.module';
       [value]="groupValue"
       name="test-name"
     >
-      <sbb-radio-button value="fire" [disabled]="isFirstDisabled" *ngIf="isFirstShown">
-        Charmander
-      </sbb-radio-button>
+      @if (isFirstShown) {
+        <sbb-radio-button value="fire" [disabled]="isFirstDisabled"> Charmander </sbb-radio-button>
+      }
       <sbb-radio-button value="water"> Squirtle </sbb-radio-button>
       <sbb-radio-button value="leaf"> Bulbasaur </sbb-radio-button>
     </sbb-radio-group>
@@ -76,9 +75,11 @@ class RadiosInsidePreCheckedRadioGroup {}
 @Component({
   template: `
     <sbb-radio-group [name]="groupName" [(ngModel)]="modelValue" (change)="lastEvent = $event">
-      <sbb-radio-button *ngFor="let option of options" [value]="option.value">
-        {{ option.label }}
-      </sbb-radio-button>
+      @for (option of options; track option) {
+        <sbb-radio-button [value]="option.value">
+          {{ option.label }}
+        </sbb-radio-button>
+      }
     </sbb-radio-group>
   `,
 })
@@ -127,9 +128,11 @@ class FocusableSbbRadioButton {
 @Component({
   template: `
     <sbb-radio-group name="group" [(ngModel)]="modelValue">
-      <transcluding-wrapper *ngFor="let option of options">
-        <sbb-radio-button [value]="option.value">{{ option.label }}</sbb-radio-button>
-      </transcluding-wrapper>
+      @for (option of options; track option) {
+        <transcluding-wrapper>
+          <sbb-radio-button [value]="option.value">{{ option.label }}</sbb-radio-button>
+        </transcluding-wrapper>
+      }
     </sbb-radio-group>
   `,
 })
@@ -168,14 +171,16 @@ class RadioButtonWithPredefinedAriaAttributes {}
   // Note that this is somewhat of a contrived template, but it is required to
   // reproduce the issue. It was taken for a specific user report at #25831.
   template: `
-    <ng-container *ngIf="true">
+    @if (true) {
       <sbb-radio-group [formControl]="controls.predecessor">
         <sbb-radio-button value="predecessor"></sbb-radio-button>
       </sbb-radio-group>
-    </ng-container>
+    }
     <sbb-radio-group [formControl]="controls.target" #preselectedGroup>
       <sbb-radio-button value="a"></sbb-radio-button>
-      <sbb-radio-button *ngIf="true" value="b" #preselectedRadio></sbb-radio-button>
+      @if (true) {
+        <sbb-radio-button value="b" #preselectedRadio></sbb-radio-button>
+      }
     </sbb-radio-group>
   `,
 })

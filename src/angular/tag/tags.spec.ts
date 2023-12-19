@@ -1,4 +1,3 @@
-import { CommonModule } from '@angular/common';
 import { Component, DebugElement } from '@angular/core';
 import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 import { FormControl, FormGroup, FormsModule, ReactiveFormsModule } from '@angular/forms';
@@ -24,7 +23,7 @@ interface Tag {
 @Component({
   template: `
     <sbb-tags>
-      <ng-container *ngFor="let tag of tagItems">
+      @for (tag of tagItems; track tag) {
         <sbb-tag
           [(ngModel)]="tag.selected"
           (change)="change($event)"
@@ -33,7 +32,7 @@ interface Tag {
           [sbbBadgeDescription]="description"
           >{{ tag.label }}</sbb-tag
         >
-      </ng-container>
+      }
     </sbb-tags>
   `,
 })
@@ -60,7 +59,7 @@ class TagsTestFixtureComponent {
   template: `
     <ng-container [formGroup]="formGroup">
       <sbb-tags [totalAmount]="totalAmount">
-        <ng-container *ngFor="let tag of tagItems">
+        @for (tag of tagItems; track tag) {
           <sbb-tag
             [formControlName]="tag.id"
             (change)="change($event)"
@@ -68,7 +67,7 @@ class TagsTestFixtureComponent {
             [amount]="tag.amount"
             >{{ tag.label }}</sbb-tag
           >
-        </ng-container>
+        }
       </sbb-tags>
     </ng-container>
   `,

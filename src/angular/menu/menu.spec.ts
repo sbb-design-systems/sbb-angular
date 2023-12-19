@@ -2947,16 +2947,17 @@ class CustomMenu {
         One
       </button>
       <button sbb-menu-item type="button">Two</button>
-      <button
-        sbb-menu-item
-        *ngIf="showLazy"
-        id="lazy-trigger"
-        [sbbMenuTriggerFor]="lazy"
-        #lazyTrigger="sbbMenuTrigger"
-        type="button"
-      >
-        Three
-      </button>
+      @if (showLazy) {
+        <button
+          sbb-menu-item
+          id="lazy-trigger"
+          [sbbMenuTriggerFor]="lazy"
+          #lazyTrigger="sbbMenuTrigger"
+          type="button"
+        >
+          Three
+        </button>
+      }
     </sbb-menu>
 
     <sbb-menu #levelOne="sbbMenu" (closed)="levelOneCloseCallback($event)">
@@ -3037,14 +3038,11 @@ class NestedMenuCustomElevation {
   template: `
     <button [sbbMenuTriggerFor]="root" #rootTriggerEl>Toggle menu</button>
     <sbb-menu #root="sbbMenu">
-      <button
-        sbb-menu-item
-        class="level-one-trigger"
-        *ngFor="let item of items"
-        [sbbMenuTriggerFor]="levelOne"
-      >
-        {{ item }}
-      </button>
+      @for (item of items; track item) {
+        <button sbb-menu-item class="level-one-trigger" [sbbMenuTriggerFor]="levelOne">
+          {{ item }}
+        </button>
+      }
     </sbb-menu>
 
     <sbb-menu #levelOne="sbbMenu">
@@ -3167,9 +3165,11 @@ class MenuWithCheckboxItems {
   template: `
     <button [sbbMenuTriggerFor]="menu">Toggle menu</button>
     <sbb-menu #menu="sbbMenu">
-      <button *ngFor="let item of items" [disabled]="item.disabled" sbb-menu-item>
-        {{ item.label }}
-      </button>
+      @for (item of items; track item) {
+        <button [disabled]="item.disabled" sbb-menu-item>
+          {{ item.label }}
+        </button>
+      }
     </sbb-menu>
   `,
 })
@@ -3188,9 +3188,11 @@ class SimpleMenuWithRepeater {
     <button [sbbMenuTriggerFor]="menu">Toggle menu</button>
     <sbb-menu #menu="sbbMenu">
       <ng-template sbbMenuContent>
-        <button *ngFor="let item of items" [disabled]="item.disabled" sbb-menu-item>
-          {{ item.label }}
-        </button>
+        @for (item of items; track item) {
+          <button [disabled]="item.disabled" sbb-menu-item>
+            {{ item.label }}
+          </button>
+        }
       </ng-template>
     </sbb-menu>
   `,
@@ -3255,7 +3257,9 @@ class StaticAriaDescribedbyMenu {}
   template: `
     <button [sbbMenuTriggerFor]="menu" #triggerEl>Toggle menu</button>
     <sbb-menu #menu="sbbMenu">
-      <button *ngFor="let item of items" sbb-menu-item>{{ item }}</button>
+      @for (item of items; track item) {
+        <button sbb-menu-item>{{ item }}</button>
+      }
     </sbb-menu>
   `,
 })

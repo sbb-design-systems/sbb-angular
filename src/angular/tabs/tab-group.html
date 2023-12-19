@@ -5,12 +5,12 @@
   (indexFocused)="_focusChanged($event)"
   (selectFocusedIndex)="selectedIndex = $event"
 >
+  @for (tab of _tabs; track tab; let i = $index) {
   <div
     class="sbb-tab-label"
     role="tab"
     sbbTabLabelWrapper
     cdkMonitorElementFocus
-    *ngFor="let tab of _tabs; let i = index"
     [id]="_getTabLabelId(i)"
     [attr.tabIndex]="_getTabIndex(tab, i)"
     [attr.aria-posinset]="i + 1"
@@ -27,14 +27,13 @@
   >
     <div class="sbb-tab-label-content">
       <!-- If there is a label template, use it. -->
-      <ng-template [ngIf]="tab.templateLabel" [ngIfElse]="tabTextLabel">
-        <ng-template [cdkPortalOutlet]="tab.templateLabel"></ng-template>
-      </ng-template>
-
+      @if (tab.templateLabel) {
+      <ng-template [cdkPortalOutlet]="tab.templateLabel"></ng-template>
+      } @else { {{tab.textLabel}} }
       <!-- If there is not a label template, fall back to the text label. -->
-      <ng-template #tabTextLabel>{{tab.textLabel}}</ng-template>
     </div>
   </div>
+  }
 </sbb-tab-header>
 
 <div
@@ -42,9 +41,9 @@
   [class._sbb-animation-noopable]="_animationMode === 'NoopAnimations'"
   #tabBodyWrapper
 >
+  @for (tab of _tabs; track tab; let i = $index) {
   <sbb-tab-body
     role="tabpanel"
-    *ngFor="let tab of _tabs; let i = index"
     [id]="_getTabContentId(i)"
     [attr.aria-labelledby]="_getTabLabelId(i)"
     [attr.aria-hidden]="selectedIndex !== i"
@@ -60,4 +59,5 @@
     (_onCentering)="_setTabBodyWrapperHeight($event)"
   >
   </sbb-tab-body>
+  }
 </div>
