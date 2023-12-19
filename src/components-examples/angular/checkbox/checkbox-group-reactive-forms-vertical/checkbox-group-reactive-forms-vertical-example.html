@@ -1,9 +1,7 @@
 <div class="sbb-checkbox-group-vertical" [formGroup]="form">
-  <sbb-checkbox
-    *ngFor="let formControl of form.controls | keyvalue"
-    [formControlName]="formControl.key"
-    >{{ formControl.key }}</sbb-checkbox
-  >
+  @for (formControl of form.controls | keyvalue; track formControl) {
+  <sbb-checkbox [formControlName]="formControl.key">{{ formControl.key }}</sbb-checkbox>
+  }
 </div>
 
 <h4>Model</h4>

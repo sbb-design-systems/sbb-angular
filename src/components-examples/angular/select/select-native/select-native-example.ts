@@ -1,4 +1,4 @@
-import { JsonPipe, NgFor } from '@angular/common';
+import { JsonPipe } from '@angular/common';
 import { Component } from '@angular/core';
 import { FormBuilder, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { SbbCheckboxModule } from '@sbb-esta/angular/checkbox';
@@ -19,7 +19,6 @@ import { SbbTooltipModule } from '@sbb-esta/angular/tooltip';
     ReactiveFormsModule,
     SbbFormFieldModule,
     SbbInputModule,
-    NgFor,
     SbbCheckboxModule,
     SbbTooltipModule,
     JsonPipe,

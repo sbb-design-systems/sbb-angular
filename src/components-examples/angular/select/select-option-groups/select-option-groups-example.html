@@ -2,11 +2,13 @@
   <sbb-form-field>
     <sbb-label>International food</sbb-label>
     <sbb-select formControlName="value" placeholder="International food">
-      <sbb-optgroup *ngFor="let foodNation of foodFromTheWorld" [label]="foodNation.nation">
-        <sbb-option *ngFor="let food of foodNation.food" [value]="food.value"
-          >{{ food.viewValue }}</sbb-option
-        >
+      @for (foodNation of foodFromTheWorld; track foodNation) {
+      <sbb-optgroup [label]="foodNation.nation">
+        @for (food of foodNation.food; track food) {
+        <sbb-option [value]="food.value">{{ food.viewValue }}</sbb-option>
+        }
       </sbb-optgroup>
+      }
     </sbb-select>
   </sbb-form-field>
 

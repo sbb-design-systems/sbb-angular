@@ -9,8 +9,9 @@
     [errorStateMatcher]="errorStateMatcher"
     placeholder="Name"
   />
-  <sbb-error *ngIf="name.errors?.required">Name is required!</sbb-error>
-  <sbb-error *ngIf="name.errors?.minlength"
-    >Min length is {{ name.errors?.minlength?.requiredLength }}!</sbb-error
-  >
+  @if (name.errors?.required) {
+  <sbb-error>Name is required!</sbb-error>
+  } @if (name.errors?.minlength) {
+  <sbb-error>Min length is {{ name.errors?.minlength?.requiredLength }}!</sbb-error>
+  }
 </sbb-form-field>

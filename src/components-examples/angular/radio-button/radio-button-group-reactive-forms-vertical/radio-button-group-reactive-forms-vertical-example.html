@@ -1,7 +1,7 @@
 <sbb-radio-group [formControl]="radioGroup" class="sbb-radio-group-vertical">
-  <sbb-radio-button *ngFor="let option of radioOptions" [value]="option.value">
-    {{ option.name }}
-  </sbb-radio-button>
+  @for (option of radioOptions; track option) {
+  <sbb-radio-button [value]="option.value"> {{ option.name }} </sbb-radio-button>
+  }
 </sbb-radio-group>
 
 <h4>Model</h4>

@@ -6,10 +6,11 @@
       [minlength]="20"
       placeholder="Placeholder Text"
     ></sbb-textarea>
-    <sbb-error *ngIf="form.get('textarea')?.errors?.minlength"
-      >A length of 20 chars is required!</sbb-error
-    >
-    <sbb-error *ngIf="form.get('textarea')?.errors?.required">Content is required!</sbb-error>
+    @if (form.get('textarea')?.errors?.minlength) {
+    <sbb-error>A length of 20 chars is required!</sbb-error>
+    } @if (form.get('textarea')?.errors?.required) {
+    <sbb-error>Content is required!</sbb-error>
+    }
   </sbb-form-field>
 
   <h4>Properties</h4>

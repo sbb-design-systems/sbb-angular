@@ -6,11 +6,12 @@
   >
     All Waggons
   </sbb-checkbox>
+  @for (option of options; track option) {
   <sbb-checkbox
-    *ngFor="let option of options"
     (change)="$event ? selection.toggle(option) : null"
     [checked]="selection.isSelected(option)"
   >
     {{ option }}
   </sbb-checkbox>
+  }
 </div>

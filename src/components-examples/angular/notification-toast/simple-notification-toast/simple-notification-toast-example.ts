@@ -1,4 +1,3 @@
-import { NgFor } from '@angular/common';
 import { Component } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { SbbButtonModule } from '@sbb-esta/angular/button';
@@ -19,7 +18,7 @@ import {
   templateUrl: 'simple-notification-toast-example.html',
   styleUrls: ['simple-notification-toast-example.css'],
   standalone: true,
-  imports: [SbbFormFieldModule, SbbInputModule, FormsModule, NgFor, SbbButtonModule],
+  imports: [SbbFormFieldModule, SbbInputModule, FormsModule, SbbButtonModule],
 })
 export class SimpleNotificationToastExample {
   type: SbbNotificationType = 'success';

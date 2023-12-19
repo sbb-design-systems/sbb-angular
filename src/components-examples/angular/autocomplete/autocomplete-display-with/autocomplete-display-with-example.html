@@ -2,8 +2,8 @@
   <input [formControl]="myControl" [sbbAutocomplete]="auto" sbbInput type="text" />
 </sbb-form-field>
 <sbb-autocomplete #auto="sbbAutocomplete" [displayWith]="formatOption">
-  <sbb-option *ngFor="let option of filteredOptions | async" [value]="option"
-    >{{ option.label }}</sbb-option
-  >
+  @for (option of filteredOptions | async; track option) {
+  <sbb-option [value]="option">{{ option.label }}</sbb-option>
+  }
 </sbb-autocomplete>
 <pre>{{ myControl.value | json }}</pre>

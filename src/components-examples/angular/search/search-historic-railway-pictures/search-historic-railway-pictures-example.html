@@ -2,17 +2,21 @@
   <input sbbInput placeholder="Search" [formControl]="searchControl" [sbbAutocomplete]="auto" />
 </sbb-search>
 <sbb-autocomplete #auto="sbbAutocomplete">
-  <sbb-option *ngFor="let option of filteredCities" [value]="option">{{ option }}</sbb-option>
+  @for (option of filteredCities; track option) {
+  <sbb-option [value]="option">{{ option }}</sbb-option>
+  }
 </sbb-autocomplete>
 
 <h4>Search results (only first 10 are shown)</h4>
-<ng-container *ngIf="!searchResults.length">No results</ng-container>
-<sbb-loading-indicator *ngIf="showSpinner" mode="fullbox"></sbb-loading-indicator>
-<span [title]="image.station" *ngFor="let image of searchResults">
+@if (!searchResults.length) { No results } @if (showSpinner) {
+<sbb-loading-indicator mode="fullbox"></sbb-loading-indicator>
+} @for (image of searchResults; track image) {
+<span [title]="image.station">
   <img
     width="300"
     [attr.src]="
       'https://data.sbb.ch/explore/dataset/historische-bahnhofbilder/files/' + image.id + '/300/'
-    "
+      "
   />
 </span>
+}

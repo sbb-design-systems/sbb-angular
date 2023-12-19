@@ -5,7 +5,7 @@
   cdkDropListOrientation="horizontal"
   (cdkDropListDropped)="drop($event)"
 >
-  <sbb-chip class="example-chip" cdkDrag *ngFor="let fruit of fruits" removable="false">
-    {{fruit.name}}
-  </sbb-chip>
+  @for (fruit of fruits; track fruit) {
+  <sbb-chip class="example-chip" cdkDrag removable="false"> {{fruit.name}} </sbb-chip>
+  }
 </sbb-chip-list>

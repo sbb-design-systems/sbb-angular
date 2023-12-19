@@ -1,6 +1,10 @@
 <sbb-form-field label="Variant">
   <sbb-select placeholder="Select a number" [formControl]="select">
-    <sbb-option *ngFor="let value of [1, 2, 3]" [value]="value">Variant {{ value }}</sbb-option>
+    @for (value of [1, 2, 3]; track value) {
+    <sbb-option [value]="value">Variant {{ value }}</sbb-option>
+    }
   </sbb-select>
-  <sbb-error *ngIf="select.touched && select.errors?.required"> Variant is required! </sbb-error>
+  @if (select.touched && select.errors?.required) {
+  <sbb-error> Variant is required! </sbb-error>
+  }
 </sbb-form-field>

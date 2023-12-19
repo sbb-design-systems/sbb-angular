@@ -8,12 +8,11 @@
       [errorStateMatcher]="matcher"
       placeholder="Ex. pat@example.com"
     />
-    <sbb-error *ngIf="emailFormControl.hasError('email') && !emailFormControl.hasError('required')">
-      Please enter a valid email address
-    </sbb-error>
-    <sbb-error *ngIf="emailFormControl.hasError('required')">
-      Email is <strong>required</strong>
-    </sbb-error>
+    @if (emailFormControl.hasError('email') && !emailFormControl.hasError('required')) {
+    <sbb-error> Please enter a valid email address </sbb-error>
+    } @if (emailFormControl.hasError('required')) {
+    <sbb-error> Email is <strong>required</strong> </sbb-error>
+    }
   </sbb-form-field>
 
   <p>Errors appear instantly!</p>

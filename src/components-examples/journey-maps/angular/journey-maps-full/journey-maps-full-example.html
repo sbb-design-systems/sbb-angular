@@ -2,9 +2,9 @@
   >This example uses a test API key, that might be disabled at any time.
 </sbb-notification>
 <div class="web-map">
+  @if (form.get("mapVisible")?.value) {
   <sbb-journey-maps
     #advancedMap
-    *ngIf='form.get("mapVisible")?.value'
     language="en"
     [styleOptions]="form.get('styleOptions')?.value"
     [interactionOptions]="interactionOptions"
@@ -27,6 +27,7 @@
     (zoomLevelsChange)="zoomLevels=$event"
     (visibleLevelsChange)="visibleLevels.next($event)"
   ></sbb-journey-maps>
+  }
   <ng-template #markerDetailsTemplate let-marker>
     <div class="markerdetails-title">{{marker.title}}</div>
     <div class="markerdetails-subtitle">{{marker.subtitle}}</div>
@@ -93,9 +94,9 @@
         <div class="rail-options" formGroupName="railNetwork">
           <span class="sbb-label">Rail network color (v2 style only)</span>
           <sbb-select formControlName="railNetworkColor">
-            <sbb-option *ngFor="let color of railColors" [value]="color.value"
-              >{{color.label}}</sbb-option
-            >
+            @for (color of railColors; track color) {
+            <sbb-option [value]="color.value">{{color.label}}</sbb-option>
+            }
           </sbb-select>
         </div>
       </li>
@@ -151,9 +152,11 @@
         <div formGroupName="listenerOptions">
           <span class="sbb-label">Map interaction configuration</span>
           <div class="sbb-checkbox-group-horizontal">
-            <ng-container *ngFor="let type of listenerOptionTypes()" [formGroupName]="type">
+            @for (type of listenerOptionTypes(); track type) {
+            <ng-container [formGroupName]="type">
               <sbb-checkbox formControlName="watch">{{type | titlecase}}</sbb-checkbox>
             </ng-container>
+            }
           </div>
         </div>
       </li>
@@ -183,7 +186,9 @@
 
       <li>
         <span class="sbb-label">
-          Map markers<span *ngIf="selectedMarkerId"> (selected: {{selectedMarkerId}})</span></span
+          Map markers@if (selectedMarkerId) {
+          <span> (selected: {{selectedMarkerId}})</span>
+          }</span
         >
         <button sbb-ghost-button (click)="selectedMarkerId='velo'">Basel</button>
         <button sbb-ghost-button (click)="selectedMarkerId=undefined">Unselect all</button>
@@ -200,18 +205,17 @@
       <li formGroupName="pointsOfInterestOptions">
         <sbb-form-field label="POI Environment">
           <sbb-select formControlName="environment">
-            <sbb-option *ngFor="let environment of ['prod', 'int']" [value]="environment"
-              >{{environment}}</sbb-option
-            >
+            @for (environment of ['prod', 'int']; track environment) {
+            <sbb-option [value]="environment">{{environment}}</sbb-option>
+            }
           </sbb-select>
         </sbb-form-field>
         <sbb-form-field label="POI Subcategories">
           <sbb-select multiple formControlName="categories">
-            <sbb-option
-              *ngFor="let category of ['park_rail', 'car_sharing', 'p2p_car_sharing', 'bike_parking', 'bike_sharing', 'on_demand']"
-              [value]="category"
-              >{{category}}</sbb-option
-            >
+            @for (category of ['park_rail', 'car_sharing', 'p2p_car_sharing', 'bike_parking',
+            'bike_sharing', 'on_demand']; track category) {
+            <sbb-option [value]="category">{{category}}</sbb-option>
+            }
           </sbb-select>
         </sbb-form-field>
         <sbb-checkbox formControlName="includePreview">Include preview-POIs?</sbb-checkbox>
@@ -220,40 +224,45 @@
       <li>
         <sbb-form-field label="Select zones">
           <sbb-select formControlName="zoneGeoJson" placeholder="(none)">
-            <sbb-option *ngFor="let input of journeyMapsZoneOptions" [value]="input.value"
-              >{{input.label}}</sbb-option
-            >
+            @for (input of journeyMapsZoneOptions; track input) {
+            <sbb-option [value]="input.value">{{input.label}}</sbb-option>
+            }
           </sbb-select>
         </sbb-form-field>
         <sbb-form-field label="Select route">
           <sbb-select formControlName="routingGeoJson" placeholder="(none)">
-            <sbb-option *ngFor="let input of journeyMapsRoutingOptions" [value]="input.value">
-              {{input.label}}
-            </sbb-option>
+            @for (input of journeyMapsRoutingOptions; track input) {
+            <sbb-option [value]="input.value"> {{input.label}} </sbb-option>
+            }
           </sbb-select>
         </sbb-form-field>
-        <sbb-form-field label="Select leg" *ngIf="journeyMapsRoutingLegIds.length">
+        @if (journeyMapsRoutingLegIds.length) {
+        <sbb-form-field label="Select leg">
           <sbb-select formControlName="routingLegId" placeholder="(none)">
             <sbb-option [value]="">(none)</sbb-option>
-            <sbb-option *ngFor="let legId of journeyMapsRoutingLegIds" [value]="legId">
-              {{legId || '(none)'}}
-            </sbb-option>
+            @for (legId of journeyMapsRoutingLegIds; track legId) {
+            <sbb-option [value]="legId"> {{legId || '(none)'}} </sbb-option>
+            }
           </sbb-select>
         </sbb-form-field>
+        }
       </li>
-      <li *ngIf="visibleLevels | async as visibleLevels">
-        <sbb-notification *ngIf="!visibleLevels.length" type="info"
-          >No indoor data visible in map
-        </sbb-notification>
-        <div *ngIf="visibleLevels.length">
+      @if (visibleLevels | async; as visibleLevels) {
+      <li>
+        @if (!visibleLevels.length) {
+        <sbb-notification type="info">No indoor data visible in map </sbb-notification>
+        } @if (visibleLevels.length) {
+        <div>
           <span class="sbb-label">Select indoor level</span>
           <sbb-radio-group class="sbb-checkbox-group-horizontal" formControlName="level">
-            <sbb-radio-button [value]="level" *ngFor="let level of visibleLevels"
-              >Level {{level}}</sbb-radio-button
-            >
+            @for (level of visibleLevels; track level) {
+            <sbb-radio-button [value]="level">Level {{level}}</sbb-radio-button>
+            }
           </sbb-radio-group>
         </div>
+        }
       </li>
+      }
     </ul>
   </form>
 </div>

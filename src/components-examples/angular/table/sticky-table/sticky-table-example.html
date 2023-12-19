@@ -1,6 +1,7 @@
 <h4>Trains per section of line</h4>
 
-<sbb-table-wrapper class="table-wrapper" *ngIf="!loading; else: loadingIndicator">
+@if (!loading) {
+<sbb-table-wrapper class="table-wrapper">
   <table sbb-table sbbSort [dataSource]="dataSource" (sbbSortChange)="announceSortChange($event)">
     <ng-container sbbColumnDef="line" sticky>
       <th
@@ -14,9 +15,9 @@
       <td sbb-cell *sbbCellDef="let element">{{ element.line }}</td>
       <td sbb-footer-cell *sbbFooterCellDef>line</td>
     </ng-container>
-
     <!-- Iterate over all non sticky columns -->
-    <ng-container *ngFor="let column of displayedColumns.slice(1, -1)" [sbbColumnDef]="column">
+    @for (column of displayedColumns.slice(1, -1); track column) {
+    <ng-container [sbbColumnDef]="column">
       <th
         sbb-header-cell
         *sbbHeaderCellDef
@@ -28,7 +29,7 @@
       <td sbb-cell *sbbCellDef="let element">{{ element[column] }}</td>
       <td sbb-footer-cell *sbbFooterCellDef>{{column}}</td>
     </ng-container>
-
+    }
     <ng-container sbbColumnDef="recordId" stickyEnd>
       <th
         sbb-header-cell
@@ -41,16 +42,14 @@
       <td sbb-cell *sbbCellDef="let element">{{ element.recordId }}</td>
       <td sbb-footer-cell *sbbFooterCellDef>recordId</td>
     </ng-container>
-
     <tr sbb-header-row *sbbHeaderRowDef="displayedColumns; sticky: true"></tr>
     <tr sbb-row *sbbRowDef="let row; columns: displayedColumns"></tr>
     <tr sbb-footer-row *sbbFooterRowDef="displayedColumns; sticky: true"></tr>
   </table>
 </sbb-table-wrapper>
-
-<ng-template #loadingIndicator>
-  <sbb-loading-indicator mode="small"></sbb-loading-indicator>
-</ng-template>
+} @else {
+<sbb-loading-indicator mode="small"></sbb-loading-indicator>
+}
 
 <p>
   <small>

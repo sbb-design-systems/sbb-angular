@@ -1,4 +1,3 @@
-import { NgIf } from '@angular/common';
 import { Component, Inject } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { SbbButtonModule } from '@sbb-esta/angular/button';
@@ -24,14 +23,7 @@ export interface LightboxData {
   selector: 'sbb-lightbox-example',
   templateUrl: 'lightbox-example.html',
   standalone: true,
-  imports: [
-    SbbLightboxModule,
-    SbbFormFieldModule,
-    SbbInputModule,
-    FormsModule,
-    SbbButtonModule,
-    NgIf,
-  ],
+  imports: [SbbLightboxModule, SbbFormFieldModule, SbbInputModule, FormsModule, SbbButtonModule],
 })
 export class LightboxExample {
   animal: string;

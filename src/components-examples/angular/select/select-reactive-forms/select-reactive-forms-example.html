@@ -6,12 +6,11 @@
       placeholder="Favorite meal"
       [readonly]="form.get('readonly')!.value"
     >
-      <sbb-option
-        *ngFor="let food of ['Beefsteak', 'Pizza', 'Pasta']; first as isFirst"
-        [disabled]="isFirst && form.get('optionDisabled')?.value"
-        [value]="food"
+      @for (food of ['Beefsteak', 'Pizza', 'Pasta']; track food; let isFirst = $first) {
+      <sbb-option [disabled]="isFirst && form.get('optionDisabled')?.value" [value]="food"
         >{{ food }}</sbb-option
       >
+      }
     </sbb-select>
   </sbb-form-field>
 

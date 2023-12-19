@@ -8,23 +8,26 @@
       placeholder="Name"
       spellcheck="false"
     />
-    <sbb-error *ngIf="formGroup.get('name')!.errors?.required">Name is required!</sbb-error>
-    <sbb-error *ngIf="formGroup.get('name')!.errors?.minlength"
+    @if (formGroup.get('name')!.errors?.required) {
+    <sbb-error>Name is required!</sbb-error>
+    } @if (formGroup.get('name')!.errors?.minlength) {
+    <sbb-error
       >Min length is {{ formGroup.get('name')!.errors?.minlength?.requiredLength }}!</sbb-error
     >
+    }
   </sbb-form-field>
   <sbb-form-field label="Date">
     <sbb-datepicker arrows>
       <input sbbInput sbbDateInput formControlName="date" />
     </sbb-datepicker>
-    <sbb-error *ngIf="formGroup.get('date')!.touched && formGroup.get('date')!.errors?.required">
-      Date is required!
-    </sbb-error>
+    @if (formGroup.get('date')!.touched && formGroup.get('date')!.errors?.required) {
+    <sbb-error> Date is required! </sbb-error>
+    }
   </sbb-form-field>
   <button sbb-button>Submit</button>
 </form>
 
-<ng-container *ngIf="lastSubmission">
-  <h3>Last Submission</h3>
-  <pre>{{ lastSubmission | json }}</pre>
-</ng-container>
+@if (lastSubmission) {
+<h3>Last Submission</h3>
+<pre>{{ lastSubmission | json }}</pre>
+}

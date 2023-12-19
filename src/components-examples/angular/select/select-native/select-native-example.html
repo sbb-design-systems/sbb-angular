@@ -6,13 +6,11 @@
       sbbInput
       [attr.readonly]="form.get('readonly')!.value ? true : null"
     >
-      <option
-        *ngFor="let food of ['Beefsteak', 'Pizza', 'Pasta']; first as isFirst"
-        [disabled]="isFirst && form.get('optionDisabled')?.value"
-        [value]="food"
-      >
+      @for (food of ['Beefsteak', 'Pizza', 'Pasta']; track food; let isFirst = $first) {
+      <option [disabled]="isFirst && form.get('optionDisabled')?.value" [value]="food">
         {{ food }}
       </option>
+      }
     </select>
   </sbb-form-field>
 

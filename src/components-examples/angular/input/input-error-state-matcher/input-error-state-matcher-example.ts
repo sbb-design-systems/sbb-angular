@@ -1,4 +1,3 @@
-import { NgIf } from '@angular/common';
 import { Component } from '@angular/core';
 import {
   FormControl,
@@ -29,7 +28,7 @@ export class MyErrorStateMatcher implements SbbErrorStateMatcher {
   templateUrl: 'input-error-state-matcher-example.html',
   styleUrls: ['input-error-state-matcher-example.css'],
   standalone: true,
-  imports: [FormsModule, SbbFormFieldModule, SbbInputModule, ReactiveFormsModule, NgIf],
+  imports: [FormsModule, SbbFormFieldModule, SbbInputModule, ReactiveFormsModule],
 })
 export class InputErrorStateMatcherExample {
   emailFormControl = new FormControl('', [Validators.required, Validators.email]);

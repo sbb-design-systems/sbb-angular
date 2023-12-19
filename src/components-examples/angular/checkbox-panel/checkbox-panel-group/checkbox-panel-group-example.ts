@@ -1,4 +1,4 @@
-import { NgClass, NgFor } from '@angular/common';
+import { NgClass } from '@angular/common';
 import { Component, OnDestroy } from '@angular/core';
 import {
   AbstractControl,
@@ -28,7 +28,6 @@ import { startWith, takeUntil } from 'rxjs/operators';
     FormsModule,
     ReactiveFormsModule,
     NgClass,
-    NgFor,
     SbbCheckboxPanelModule,
     SbbFormFieldModule,
     SbbInputModule,
