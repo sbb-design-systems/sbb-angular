@@ -68,16 +68,17 @@ provides a tab-like UI for navigating between routes.
 
 ```html
 <nav sbb-tab-nav-bar [tabPanel]="tabPanel">
+  @for (link of links; track link) {
   <a
     sbb-tab-link
-    *ngFor="let link of links"
     [routerLink]="link.routerLink"
     routerLinkActive
     #rla="routerLinkActive"
     [active]="rla.isActive"
   >
-    {{link.label}}
+    {{ link.label }}
   </a>
+  }
   <a sbb-tab-link disabled>Disabled Link</a>
 </nav>
 

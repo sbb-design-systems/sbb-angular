@@ -2823,7 +2823,9 @@ const SIMPLE_MENU_TEMPLATE = `
       <button sbb-menu-item type="button">
         <span>Item with text inside span</span>
       </button>
-      <button *ngFor="let item of extraItems" sbb-menu-item type="button">{{ item }}</button>
+      @for (item of extraItems; track item) {
+        <button sbb-menu-item type="button">{{ item }}</button>
+      }
     </sbb-menu>
   `;
 @Component({

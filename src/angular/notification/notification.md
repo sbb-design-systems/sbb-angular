@@ -74,7 +74,7 @@ For having the value of the notification announced by screen readers, we recomme
 and the `aria-atomic` value to `true`.
 
 ```html
-<sbb-notification *ngIf="isNotificationVisible" type="error" role="alert">
-  Please fix the form errors.
-</sbb-notification>
+@if (isNotificationVisible) {
+<sbb-notification type="error" role="alert"> Please fix the form errors. </sbb-notification>
+}
 ```

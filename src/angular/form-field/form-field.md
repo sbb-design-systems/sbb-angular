@@ -20,7 +20,9 @@ With sbb-label:
 <sbb-form-field>
   <sbb-label>Name</sbb-label>
   <input type="text" sbbInput formControlName="name" placeholder="Name" />
-  <sbb-error *ngIf="form.get('name').errors?.required">This field is required.</sbb-error>
+  @if (form.get('name').errors?.required) {
+  <sbb-error>This field is required.</sbb-error>
+  }
 </sbb-form-field>
 ```
 
@@ -29,7 +31,9 @@ With label attribute:
 ```html
 <sbb-form-field label="Name">
   <input type="text" sbbInput formControlName="name" placeholder="Name" />
-  <sbb-error *ngIf="form.get('name').errors?.required">This field is required.</sbb-error>
+  @if (form.get('name').errors?.required) {
+  <sbb-error>This field is required.</sbb-error>
+  }
 </sbb-form-field>
 ```
 
@@ -85,11 +89,9 @@ able to detect and automatically assign `<sbb-error>` instances inside of itself
     [aria-describedby]="form.get('name').touched && form.get('name').errors?.required ? 'name-required-error' : null"
   />
 </sbb-form-field>
-<sbb-error
-  id="name-required-error"
-  *ngIf="form.get('name').touched && form.get('name').errors?.required"
-  >This field is required.</sbb-error
->
+@if (form.get('name').touched && form.get('name').errors?.required) {
+<sbb-error id="name-required-error">This field is required.</sbb-error>
+}
 ```
 
 #### Multiple error messages
@@ -103,12 +105,9 @@ if the messages are contained in one sbb-error element.
   <sbb-label>Name</sbb-label>
   <input type="text" formControlName="name" [placeholder]="placeholder" />
   <sbb-error>
-    <ng-container *ngIf="form.get('name').errors.required">
-      This field is required!<br />
-    </ng-container>
-    <ng-container *ngIf="form.get('name').errors.minlength">
-      This field needs more chars!<br />
-    </ng-container>
+    @if (form.get('name').errors.required) { This field is required!<br />
+    } @if (form.get('name').errors.minlength) { This field needs more chars!<br />
+    }
   </sbb-error>
 </sbb-form-field>
 ```
@@ -150,10 +149,11 @@ providers: [...SbbShowOnDirtyErrorStateMatcher];
     placeholder="Name"
     [errorStateMatcher]="errorStateMatcher"
   />
-  <sbb-error *ngIf="form.get('name').errors?.required">This field is required.</sbb-error>
-  <sbb-error *ngIf="form.get('name').errors?.minlength"
-    >Min length is {{ name.errors?.minlength?.requiredLength }}!</sbb-error
-  >
+  @if (form.get('name').errors?.required) {
+  <sbb-error>This field is required.</sbb-error>
+  } @if (form.get('name').errors?.minlength) {
+  <sbb-error>Min length is {{ name.errors?.minlength?.requiredLength }}!</sbb-error>
+  }
 </sbb-form-field>
 ```
 

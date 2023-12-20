@@ -18,7 +18,8 @@ element with `aria-live` and add an `aria-label` attribute to the loading indica
 
 ```html
 <div aria-live="polite">
-  <sbb-loading-indicator *ngIf="isLoading" mode="medium" aria-label="Loading, please wait">
-  </sbb-loading-indicator>
+  @if (isLoading) {
+  <sbb-loading-indicator mode="medium" aria-label="Loading, please wait" />
+  }
 </div>
 ```

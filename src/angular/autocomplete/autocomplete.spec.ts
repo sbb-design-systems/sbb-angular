@@ -57,7 +57,9 @@ import { SbbAutocompleteModule } from './autocomplete.module';
 
 const SIMPLE_AUTOCOMPLETE_TEMPLATE = `
   <sbb-form-field [style.width.px]="width">
-  <sbb-label *ngIf="hasLabel">State</sbb-label>
+    @if (hasLabel) {
+      <sbb-label>State</sbb-label>
+    }
    <input
       sbbInput
       placeholder="Number"
@@ -77,12 +79,11 @@ const SIMPLE_AUTOCOMPLETE_TEMPLATE = `
     (opened)="openedSpy()"
     (closed)="closedSpy()"
   >
-    <sbb-option *ngFor="let num of filteredNumbers"
-      [value]="num"
-      [style.height.px]="num.height"
-      [disabled]="num.disabled">
-      <span>{{ num.code }}: {{ num.name }}</span>
-    </sbb-option>
+    @for (num of filteredNumbers; track num) {
+      <sbb-option [value]="num" [style.height.px]="num.height" [disabled]="num.disabled">
+        <span>{{ num.code }}: {{ num.name }}</span>
+      </sbb-option>
+     }
   </sbb-autocomplete>
 `;
 

@@ -27,7 +27,9 @@ _my-comp.html_
 
 ```html
 <sbb-autocomplete>
-  <sbb-option *ngFor="let option of options" [value]="option"> {{ option }} </sbb-option>
+  @for (option of options; track option) {
+  <sbb-option [value]="option"> {{ option }} </sbb-option>
+  }
 </sbb-autocomplete>
 ```
 
@@ -43,7 +45,9 @@ _my-comp.html_
 </sbb-form-field>
 
 <sbb-autocomplete #auto="sbbAutocomplete">
-  <sbb-option *ngFor="let option of options" [value]="option">{{option}}</sbb-option>
+  @for (option of options; track option) {
+  <sbb-option [value]="option">{{ option }}</sbb-option>
+  }
 </sbb-autocomplete>
 ```
 
@@ -109,7 +113,9 @@ autocomplete is attached to using the `sbbAutocompleteOrigin` directive together
 </div>
 
 <sbb-autocomplete #auto="sbbAutocomplete">
-  <sbb-option *ngFor="let option of options" [value]="option">{{option}}</sbb-option>
+  @for (option of options; track option) {
+  <sbb-option [value]="option">{{ option }}</sbb-option>
+  }
 </sbb-autocomplete>
 ```
 
@@ -132,9 +138,13 @@ autocomplete is attached to using the `sbbAutocompleteOrigin` directive together
 
 ```html
 <sbb-autocomplete #auto="sbbAutocomplete">
-  <sbb-optgroup *ngFor="let group of filteredGroups | async" [label]="group.name">
-    <sbb-option *ngFor="let option of group.options" [value]="option"> {{option.name}} </sbb-option>
+  @for (group of filteredGroups | async; track group) {
+  <sbb-optgroup [label]="group.name">
+    @for (option of group.options; track option) {
+    <sbb-option [value]="option">{{ option.name }}</sbb-option>
+    }
   </sbb-optgroup>
+  }
 </sbb-autocomplete>
 ```
 
@@ -146,10 +156,10 @@ autocomplete is attached to using the `sbbAutocompleteOrigin` directive together
 
 ```html
 <sbb-autocomplete #autoHint="sbbAutocomplete">
-  <sbb-option *ngFor="let option of filteredOptions" [value]="option">
-    {{ option.name }}
-  </sbb-option>
-  <sbb-option-hint> {{ remainingOptionsCount }} further results found </sbb-option-hint>
+  @for (option of filteredOptions | async; track option) {
+  <sbb-option [value]="option">{{ option.name }}</sbb-option>
+  }
+  <sbb-option-hint>{{ remainingOptionsCount }} further results found</sbb-option-hint>
 </sbb-autocomplete>
 ```
 

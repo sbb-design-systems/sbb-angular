@@ -10,7 +10,9 @@ You can use select component with sbb style using `<sbb-select>` and `<sbb-optio
 <sbb-form-field>
   <sbb-label>Lieblingsessen</sbb-label>
   <sbb-select placeholder="Lieblingsessen" [formControl]="basicExampleFormControl">
-    <sbb-option *ngFor="let food of foods" [value]="food.value">{{food.viewValue}}</sbb-option>
+    @for (food of foods; track food) {
+    <sbb-option [value]="food.value">{{ food.viewValue }}</sbb-option>
+    }
   </sbb-select>
 </sbb-form-field>
 ```
@@ -20,7 +22,9 @@ You can also use the native `<select>` which is styled with the SBB style guide.
 ```html
 <sbb-form-field label="Lieblingsessen">
   <select [formControl]="nativeExampleFormControl" sbbInput>
-    <option *ngFor="let food of foods" [value]="food.value">{{food.viewValue}}</option>
+    @for (food of foods; track food) {
+    <option [value]="food.value">{{ food.viewValue }}</option>
+    }
   </select>
 </sbb-form-field>
 ```
@@ -40,7 +44,9 @@ multiple values at once.
     multiple
     [formControl]="multipleExampleFormControl"
   >
-    <sbb-option *ngFor="let food of foods" [value]="food.value">{{food.viewValue}}</sbb-option>
+    @for (food of foods; track food) {
+    <sbb-option [value]="food.value">{{ food.viewValue }}</sbb-option>
+    }
   </sbb-select>
 </sbb-form-field>
 ```
@@ -58,11 +64,13 @@ The name of the group can be set using the label property of `<sbb-optgroup>`.
     placeholder="Lebensmittel aus der ganzen Welt"
     [formControl]="withOptionGroupsExampleFormControl"
   >
-    <sbb-optgroup *ngFor="let foodNation of foodFromTheWorld" [label]="foodNation.nation">
-      <sbb-option *ngFor="let food of foodNation.food" [value]="food.value"
-        >{{food.viewValue}}</sbb-option
-      >
+    @for (foodNation of foodFromTheWorld; track foodNation) {
+    <sbb-optgroup [label]="foodNation.nation">
+      @for (food of foodNation.food; track food) {
+      <sbb-option [value]="food.value">{{ food.viewValue }}</sbb-option>
+      }
     </sbb-optgroup>
+    }
   </sbb-select>
 </sbb-form-field>
 ```
@@ -81,12 +89,15 @@ of `<sbb-optgroup>`.
     multiple
     [formControl]="multipleWithOptionGroupsExampleFormControl"
   >
-    <sbb-option *ngFor="let food of foods" [value]="food.value">{{food.viewValue}}</sbb-option>
-    <sbb-optgroup *ngFor="let foodNation of foodFromTheWorld" [label]="foodNation.nation">
-      <sbb-option *ngFor="let food of foodNation.food" [value]="food.value"
-        >{{food.viewValue}}</sbb-option
-      >
+    @for (food of foods; track food) {
+    <sbb-option [value]="food.value">{{ food.viewValue }}</sbb-option>
+    @for (foodNation of foodFromTheWorld; track foodNation) {
+    <sbb-optgroup [label]="foodNation.nation">
+      @for (food of foodNation.food; track food) {
+      <sbb-option [value]="food.value">{{ food.viewValue }}</sbb-option>
+      }
     </sbb-optgroup>
+    } }
   </sbb-select>
 </sbb-form-field>
 ```
