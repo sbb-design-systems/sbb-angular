@@ -25,10 +25,10 @@ of the text input to be upon that option's selection.
 
 _my-comp.html_
 
-```html
+```angular
 <sbb-autocomplete>
   @for (option of options; track option) {
-  <sbb-option [value]="option"> {{ option }} </sbb-option>
+    <sbb-option [value]="option"> {{ option }} </sbb-option>
   }
 </sbb-autocomplete>
 ```
@@ -39,14 +39,14 @@ to the input's `sbbAutocomplete` property.
 
 _my-comp.html_
 
-```html
+```angular
 <sbb-form-field label="Mylabel">
   <input type="text" [formControl]="myControl" [sbbAutocomplete]="auto" />
 </sbb-form-field>
 
 <sbb-autocomplete #auto="sbbAutocomplete">
   @for (option of options; track option) {
-  <sbb-option [value]="option">{{ option }}</sbb-option>
+    <sbb-option [value]="option">{{ option }}</sbb-option>
   }
 </sbb-autocomplete>
 ```
@@ -102,7 +102,7 @@ may want it to attach to a different container element. You can change the eleme
 autocomplete is attached to using the `sbbAutocompleteOrigin` directive together with the
 `sbbAutocompleteConnectedTo` input:
 
-```html
+```angular
 <div class="custom-wrapper-example" sbbAutocompleteOrigin #origin="sbbAutocompleteOrigin">
   <input
     sbbInput
@@ -114,7 +114,7 @@ autocomplete is attached to using the `sbbAutocompleteOrigin` directive together
 
 <sbb-autocomplete #auto="sbbAutocomplete">
   @for (option of options; track option) {
-  <sbb-option [value]="option">{{ option }}</sbb-option>
+    <sbb-option [value]="option">{{ option }}</sbb-option>
   }
 </sbb-autocomplete>
 ```
@@ -136,14 +136,14 @@ autocomplete is attached to using the `sbbAutocompleteOrigin` directive together
 
 <!-- example(autocomplete-optgroup) -->
 
-```html
+```angular
 <sbb-autocomplete #auto="sbbAutocomplete">
   @for (group of filteredGroups | async; track group) {
-  <sbb-optgroup [label]="group.name">
-    @for (option of group.options; track option) {
-    <sbb-option [value]="option">{{ option.name }}</sbb-option>
-    }
-  </sbb-optgroup>
+    <sbb-optgroup [label]="group.name">
+      @for (option of group.options; track option) {
+        <sbb-option [value]="option">{{ option.name }}</sbb-option>
+      }
+    </sbb-optgroup>
   }
 </sbb-autocomplete>
 ```
@@ -154,10 +154,10 @@ autocomplete is attached to using the `sbbAutocompleteOrigin` directive together
 
 <!-- example(option-hint) -->
 
-```html
+```angular
 <sbb-autocomplete #autoHint="sbbAutocomplete">
   @for (option of filteredOptions | async; track option) {
-  <sbb-option [value]="option">{{ option.name }}</sbb-option>
+    <sbb-option [value]="option">{{ option.name }}</sbb-option>
   }
   <sbb-option-hint>{{ remainingOptionsCount }} further results found</sbb-option-hint>
 </sbb-autocomplete>

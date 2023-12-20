@@ -16,23 +16,23 @@ The following components are designed to work inside a `<sbb-form-field>`:
 
 With sbb-label:
 
-```html
+```angular
 <sbb-form-field>
   <sbb-label>Name</sbb-label>
   <input type="text" sbbInput formControlName="name" placeholder="Name" />
   @if (form.get('name').errors?.required) {
-  <sbb-error>This field is required.</sbb-error>
+    <sbb-error>This field is required.</sbb-error>
   }
 </sbb-form-field>
 ```
 
 With label attribute:
 
-```html
+```angular
 <sbb-form-field label="Name">
   <input type="text" sbbInput formControlName="name" placeholder="Name" />
   @if (form.get('name').errors?.required) {
-  <sbb-error>This field is required.</sbb-error>
+    <sbb-error>This field is required.</sbb-error>
   }
 </sbb-form-field>
 ```
@@ -79,18 +79,20 @@ the `<sbb-error>` element can be placed outside the `<sbb-form-field>`. Apply th
 error space. You will also manually need to assign the aria-describedby, as `<sbb-form-field>` is only
 able to detect and automatically assign `<sbb-error>` instances inside of itself.
 
-```html
+```angular
 <sbb-form-field label="Name" class="sbb-form-field-flexible-errors">
   <input
     type="text"
     sbbInput
     formControlName="name"
     placeholder="Name"
-    [aria-describedby]="form.get('name').touched && form.get('name').errors?.required ? 'name-required-error' : null"
+    [aria-describedby]="
+      form.get('name').touched && form.get('name').errors?.required ? 'name-required-error' : null
+    "
   />
 </sbb-form-field>
 @if (form.get('name').touched && form.get('name').errors?.required) {
-<sbb-error id="name-required-error">This field is required.</sbb-error>
+  <sbb-error id="name-required-error">This field is required.</sbb-error>
 }
 ```
 
@@ -100,13 +102,16 @@ Ideally you should only show one error message at a time.
 If you need to display multiple error messages at the same time, it is better for accessibility
 if the messages are contained in one sbb-error element.
 
-```html
+```angular
 <sbb-form-field>
   <sbb-label>Name</sbb-label>
   <input type="text" formControlName="name" [placeholder]="placeholder" />
   <sbb-error>
-    @if (form.get('name').errors.required) { This field is required!<br />
-    } @if (form.get('name').errors.minlength) { This field needs more chars!<br />
+    @if (form.get('name').errors.required) {
+      This field is required!<br />
+    }
+    @if (form.get('name').errors.minlength) {
+      This field needs more chars!<br />
     }
   </sbb-error>
 </sbb-form-field>
@@ -139,7 +144,7 @@ providers: [...SbbShowOnDirtyErrorStateMatcher];
   constructor(readonly errorStateMatcher: SbbShowOnDirtyErrorStateMatcher) {}
 ```
 
-```html
+```angular
 <sbb-form-field>
   <sbb-label>Name</sbb-label>
   <input
@@ -150,9 +155,10 @@ providers: [...SbbShowOnDirtyErrorStateMatcher];
     [errorStateMatcher]="errorStateMatcher"
   />
   @if (form.get('name').errors?.required) {
-  <sbb-error>This field is required.</sbb-error>
-  } @if (form.get('name').errors?.minlength) {
-  <sbb-error>Min length is {{ name.errors?.minlength?.requiredLength }}!</sbb-error>
+    <sbb-error>This field is required.</sbb-error>
+  }
+  @if (form.get('name').errors?.minlength) {
+    <sbb-error>Min length is {{ name.errors?.minlength?.requiredLength }}!</sbb-error>
   }
 </sbb-form-field>
 ```

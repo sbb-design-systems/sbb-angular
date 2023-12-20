@@ -73,8 +73,8 @@ For having the value of the notification announced by screen readers, we recomme
 `role="alert"` to the element. This implicitly sets the `aria-live` value to `assertive`
 and the `aria-atomic` value to `true`.
 
-```html
+```angular
 @if (isNotificationVisible) {
-<sbb-notification type="error" role="alert"> Please fix the form errors. </sbb-notification>
+  <sbb-notification type="error" role="alert"> Please fix the form errors. </sbb-notification>
 }
 ```

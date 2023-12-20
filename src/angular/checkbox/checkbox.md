@@ -39,20 +39,20 @@ By creating a wrapper around `<sbb-checkbox>`-elements and adding the correspond
 
 #### Vertical
 
-```html
+```angular
 <div class="sbb-checkbox-group-vertical">
   @for (control of controls; track control) {
-  <sbb-checkbox [formControl]="control"></sbb-checkbox>
+    <sbb-checkbox [formControl]="control"></sbb-checkbox>
   }
 </div>
 ```
 
 #### Horizontal
 
-```html
+```angular
 <div class="sbb-checkbox-group-horizontal">
   @for (control of controls; track control) {
-  <sbb-checkbox [formControl]="control"></sbb-checkbox>
+    <sbb-checkbox [formControl]="control"></sbb-checkbox>
   }
 </div>
 ```

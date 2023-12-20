@@ -26,11 +26,11 @@ input will automatically be added, respectively removed, from the FormControl. T
 to be a Set or an Array to let this work properly. To let automatic removal work, it's important
 to define `[value]` property on `sbb-chip`.
 
-```html
+```angular
 <sbb-form-field label="Video keywords">
   <sbb-chip-list aria-label="Video keywords" [formControl]="formControl">
     @for (keyword of formControl.value; track keyword) {
-    <sbb-chip [value]="keyword">{{ keyword }}</sbb-chip>
+      <sbb-chip [value]="keyword">{{ keyword }}</sbb-chip>
     }
     <input placeholder="New keyword..." sbbChipInput />
   </sbb-chip-list>
@@ -90,11 +90,11 @@ export class ChipsInputExample {
 }
 ```
 
-```html
+```angular
 <sbb-form-field class="sbb-form-field-long" label="Favorite Fruits">
   <sbb-chip-list aria-label="Fruit selection" [(ngModel)]="fruits">
     @for (fruit of fruits; track fruit) {
-    <sbb-chip (removed)="remove(fruit)"> {{ fruit.name }} ({{ fruit.color }}) </sbb-chip>
+      <sbb-chip (removed)="remove(fruit)"> {{ fruit.name }} ({{ fruit.color }}) </sbb-chip>
     }
     <input
       placeholder="Type name of an available fruit..."
@@ -112,11 +112,11 @@ A chip input can easily be connected with an autocomplete.
 As long as there is no subscriber on `<sbb-autocomplete (optionSelected)>`,
 a selected autocomplete entry will automatically be added to the FormControl of `<sbb-chip-list>`.
 
-```html
+```angular
 <sbb-form-field label="Favorite Fruits">
   <sbb-chip-list aria-label="Fruit selection" [formControl]="selectedFruits">
     @for (fruit of selectedFruits.value; track fruit) {
-    <sbb-chip [value]="fruit">{{ fruit }}</sbb-chip>
+      <sbb-chip [value]="fruit">{{ fruit }}</sbb-chip>
     }
     <input
       placeholder="New fruit..."
@@ -127,7 +127,7 @@ a selected autocomplete entry will automatically be added to the FormControl of 
   </sbb-chip-list>
   <sbb-autocomplete #auto="sbbAutocomplete">
     @for (fruit of filteredFruits | async; track fruit) {
-    <sbb-option [value]="fruit">{{ fruit }}</sbb-option>
+      <sbb-option [value]="fruit">{{ fruit }}</sbb-option>
     }
   </sbb-autocomplete>
 </sbb-form-field>

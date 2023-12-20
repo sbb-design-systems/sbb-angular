@@ -6,12 +6,12 @@ user.
 
 You can use select component with sbb style using `<sbb-select>` and `<sbb-option>` as seen below
 
-```html
+```angular
 <sbb-form-field>
   <sbb-label>Lieblingsessen</sbb-label>
   <sbb-select placeholder="Lieblingsessen" [formControl]="basicExampleFormControl">
     @for (food of foods; track food) {
-    <sbb-option [value]="food.value">{{ food.viewValue }}</sbb-option>
+      <sbb-option [value]="food.value">{{ food.viewValue }}</sbb-option>
     }
   </sbb-select>
 </sbb-form-field>
@@ -19,11 +19,11 @@ You can use select component with sbb style using `<sbb-select>` and `<sbb-optio
 
 You can also use the native `<select>` which is styled with the SBB style guide.
 
-```html
+```angular
 <sbb-form-field label="Lieblingsessen">
   <select [formControl]="nativeExampleFormControl" sbbInput>
     @for (food of foods; track food) {
-    <option [value]="food.value">{{ food.viewValue }}</option>
+      <option [value]="food.value">{{ food.viewValue }}</option>
     }
   </select>
 </sbb-form-field>
@@ -35,7 +35,7 @@ The default `<sbb-select>` allows to single-selection mode, but can be configure
 multiple selection by setting the `multiple` property. This will allow the user to select
 multiple values at once.
 
-```html
+```angular
 <h4>Multiple Example</h4>
 <sbb-form-field>
   <sbb-label>Viele Lieblingsgerichte</sbb-label>
@@ -45,7 +45,7 @@ multiple values at once.
     [formControl]="multipleExampleFormControl"
   >
     @for (food of foods; track food) {
-    <sbb-option [value]="food.value">{{ food.viewValue }}</sbb-option>
+      <sbb-option [value]="food.value">{{ food.viewValue }}</sbb-option>
     }
   </sbb-select>
 </sbb-form-field>
@@ -56,7 +56,7 @@ multiple values at once.
 The `<sbb-optgroup>` element can be used to group common options under a subheading.
 The name of the group can be set using the label property of `<sbb-optgroup>`.
 
-```html
+```angular
 <h4>With option groups</h4>
 <sbb-form-field>
   <sbb-label>Lebensmittel aus der ganzen Welt</sbb-label>
@@ -65,11 +65,11 @@ The name of the group can be set using the label property of `<sbb-optgroup>`.
     [formControl]="withOptionGroupsExampleFormControl"
   >
     @for (foodNation of foodFromTheWorld; track foodNation) {
-    <sbb-optgroup [label]="foodNation.nation">
-      @for (food of foodNation.food; track food) {
-      <sbb-option [value]="food.value">{{ food.viewValue }}</sbb-option>
-      }
-    </sbb-optgroup>
+      <sbb-optgroup [label]="foodNation.nation">
+        @for (food of foodNation.food; track food) {
+          <sbb-option [value]="food.value">{{ food.viewValue }}</sbb-option>
+        }
+      </sbb-optgroup>
     }
   </sbb-select>
 </sbb-form-field>
@@ -80,7 +80,7 @@ choose multiple selection by setting the `multiple` property. This will allow th
 select multiple values at once. The name of each group can be set using the label property
 of `<sbb-optgroup>`.
 
-```html
+```angular
 <h4>Multiple with option groups</h4>
 <sbb-form-field>
   <sbb-label>Lebensmittel aus der ganzen Welt</sbb-label>
@@ -90,14 +90,15 @@ of `<sbb-optgroup>`.
     [formControl]="multipleWithOptionGroupsExampleFormControl"
   >
     @for (food of foods; track food) {
-    <sbb-option [value]="food.value">{{ food.viewValue }}</sbb-option>
-    @for (foodNation of foodFromTheWorld; track foodNation) {
-    <sbb-optgroup [label]="foodNation.nation">
-      @for (food of foodNation.food; track food) {
       <sbb-option [value]="food.value">{{ food.viewValue }}</sbb-option>
+      @for (foodNation of foodFromTheWorld; track foodNation) {
+        <sbb-optgroup [label]="foodNation.nation">
+          @for (food of foodNation.food; track food) {
+            <sbb-option [value]="food.value">{{ food.viewValue }}</sbb-option>
+          }
+        </sbb-optgroup>
       }
-    </sbb-optgroup>
-    } }
+    }
   </sbb-select>
 </sbb-form-field>
 ```
