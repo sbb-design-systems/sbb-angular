@@ -20,7 +20,6 @@ ng_module(
         "//src/angular/core",
         "//src/angular/icon",
         "//src/angular/menu",
-        "@npm//@angular/common",
         "@npm//@angular/core",
         "@npm//@angular/localize",
     ],
@@ -46,7 +45,6 @@ ng_test_library(
         "//src/angular/icon",
         "//src/angular/icon/testing",
         "//src/angular/menu",
-        "@npm//@angular/common",
         "@npm//@angular/platform-browser",
     ],
 )

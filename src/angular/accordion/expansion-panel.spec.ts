@@ -537,11 +537,9 @@ class PanelWithContent {
 @Component({
   template: `
     @if (expansionShown) {
-      <div>
-        <sbb-expansion-panel>
-          <sbb-expansion-panel-header>Panel Title</sbb-expansion-panel-header>
-        </sbb-expansion-panel>
-      </div>
+      <sbb-expansion-panel>
+        <sbb-expansion-panel-header>Panel Title</sbb-expansion-panel-header>
+      </sbb-expansion-panel>
     }
   `,
 })

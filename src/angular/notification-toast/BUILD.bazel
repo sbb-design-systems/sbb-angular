@@ -22,7 +22,6 @@ ng_module(
         "//src/angular/notification",
         "@npm//@angular/animations",
         "@npm//@angular/cdk",
-        "@npm//@angular/common",
         "@npm//@angular/core",
         "@npm//rxjs",
     ],
@@ -46,7 +45,6 @@ ng_test_library(
         ":notification-toast",
         "//src/angular/icon/testing",
         "@npm//@angular/cdk",
-        "@npm//@angular/common",
         "@npm//@angular/platform-browser",
     ],
 )
