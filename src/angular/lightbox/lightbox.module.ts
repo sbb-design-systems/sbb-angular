@@ -1,7 +1,6 @@
 import { DialogModule } from '@angular/cdk/dialog';
 import { OverlayModule } from '@angular/cdk/overlay';
 import { PortalModule } from '@angular/cdk/portal';
-import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { SbbCommonModule } from '@sbb-esta/angular/core';
 import { SbbDialogModule } from '@sbb-esta/angular/dialog';
@@ -18,7 +17,6 @@ import {
 
 @NgModule({
   imports: [
-    CommonModule,
     DialogModule,
     // To avoid injector problems of CDK Dialog. TODO: Check if it is still necessary (has to be done in a consumer project).
     SbbDialogModule,

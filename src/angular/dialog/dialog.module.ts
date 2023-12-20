@@ -1,7 +1,6 @@
 import { DialogModule } from '@angular/cdk/dialog';
 import { OverlayModule } from '@angular/cdk/overlay';
 import { PortalModule } from '@angular/cdk/portal';
-import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { SbbCommonModule } from '@sbb-esta/angular/core';
 import { SbbIconModule } from '@sbb-esta/angular/icon';
@@ -16,14 +15,7 @@ import {
 } from './dialog-content-directives';
 
 @NgModule({
-  imports: [
-    CommonModule,
-    DialogModule,
-    OverlayModule,
-    PortalModule,
-    SbbCommonModule,
-    SbbIconModule,
-  ],
+  imports: [DialogModule, OverlayModule, PortalModule, SbbCommonModule, SbbIconModule],
   exports: [SbbDialogContainer, SbbDialogClose, SbbDialogTitle, SbbDialogContent, SbbDialogActions],
   declarations: [
     SbbDialogContainer,
