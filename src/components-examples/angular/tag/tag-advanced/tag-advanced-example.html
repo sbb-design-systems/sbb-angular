@@ -1,6 +1,6 @@
 <sbb-tags>
   @for (tag of tags; track tag; let i = $index) {
-  <sbb-tag (change)="change($event)" [amount]="tag.amount">{{tag.label}}</sbb-tag>
+  <sbb-tag (change)="change($event)" [amount]="tag.amount">{{ tag.label }}</sbb-tag>
   }
 </sbb-tags>
 

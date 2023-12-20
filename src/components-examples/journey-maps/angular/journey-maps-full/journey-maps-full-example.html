@@ -2,7 +2,7 @@
   >This example uses a test API key, that might be disabled at any time.
 </sbb-notification>
 <div class="web-map">
-  @if (form.get("mapVisible")?.value) {
+  @if (form.get('mapVisible')?.value) {
   <sbb-journey-maps
     #advancedMap
     language="en"
@@ -24,48 +24,48 @@
     (selectedLevelChange)="this.changeSelectedLevel($event)"
     (mapCenterChange)="mapCenterChange.next($event)"
     (mapBoundsChange)="mapBoundingBoxChange.next($event)"
-    (zoomLevelsChange)="zoomLevels=$event"
+    (zoomLevelsChange)="zoomLevels = $event"
     (visibleLevelsChange)="visibleLevels.next($event)"
   ></sbb-journey-maps>
   }
   <ng-template #markerDetailsTemplate let-marker>
-    <div class="markerdetails-title">{{marker.title}}</div>
-    <div class="markerdetails-subtitle">{{marker.subtitle}}</div>
+    <div class="markerdetails-title">{{ marker.title }}</div>
+    <div class="markerdetails-subtitle">{{ marker.subtitle }}</div>
   </ng-template>
   <ng-template #stationTemplate let-station>
-    <div class="station-title">{{station.properties.name}}</div>
-    <div class="station-subtitle">{{station.properties.sbb_id}}</div>
+    <div class="station-title">{{ station.properties.name }}</div>
+    <div class="station-subtitle">{{ station.properties.sbb_id }}</div>
   </ng-template>
   <ng-template #routeTemplate let-route>
-    <div class="route-title">{{route.properties.routeId}}</div>
+    <div class="route-title">{{ route.properties.routeId }}</div>
   </ng-template>
   <ng-template #poiTemplate let-poi>
-    <div>{{poi.properties.name}}</div>
-    <div>{{poi.properties.sbbId}}</div>
+    <div>{{ poi.properties.name }}</div>
+    <div>{{ poi.properties.sbbId }}</div>
   </ng-template>
 </div>
 <div>
   <form [formGroup]="form">
     <ul>
       <li class="sbb-label">
-        Map move / pan with one finger: {{(interactionOptions.oneFingerPan ?? false) ? 'on' :
-        'off'}}
+        Map move / pan with one finger: {{ interactionOptions.oneFingerPan ?? false ? 'on' : 'off'
+        }}
       </li>
 
       <li class="sbb-label">
-        Map zoom with scroll wheel: {{(interactionOptions.scrollZoom ?? false) ? 'on' : 'off'}}
+        Map zoom with scroll wheel: {{ interactionOptions.scrollZoom ?? false ? 'on' : 'off' }}
       </li>
 
       <li class="sbb-label">
-        Map center (lng / lat): {{mapCenterInfo()?.lng | number: '1.1-6'}}, {{mapCenterInfo()?.lat |
-        number:'1.1-6'}}
+        Map center (lng / lat): {{ mapCenterInfo()?.lng | number: '1.1-6' }}, {{
+        mapCenterInfo()?.lat | number: '1.1-6' }}
       </li>
 
-      <li class="sbb-label">{{mapBoundingBoxInfo()}}</li>
+      <li class="sbb-label">{{ mapBoundingBoxInfo() }}</li>
 
       <li class="sbb-label">
-        Map zoom (within range {{zoomLevels?.minZoom}}..{{zoomLevels?.maxZoom}} ):
-        {{zoomLevels?.currentZoom | number: '1.1-2'}}
+        Map zoom (within range {{ zoomLevels?.minZoom }}..{{ zoomLevels?.maxZoom }} ): {{
+        zoomLevels?.currentZoom | number: '1.1-2' }}
       </li>
 
       <li>
@@ -95,7 +95,7 @@
           <span class="sbb-label">Rail network color (v2 style only)</span>
           <sbb-select formControlName="railNetworkColor">
             @for (color of railColors; track color) {
-            <sbb-option [value]="color.value">{{color.label}}</sbb-option>
+            <sbb-option [value]="color.value">{{ color.label }}</sbb-option>
             }
           </sbb-select>
         </div>
@@ -154,7 +154,7 @@
           <div class="sbb-checkbox-group-horizontal">
             @for (type of listenerOptionTypes(); track type) {
             <ng-container [formGroupName]="type">
-              <sbb-checkbox formControlName="watch">{{type | titlecase}}</sbb-checkbox>
+              <sbb-checkbox formControlName="watch">{{ type | titlecase }}</sbb-checkbox>
             </ng-container>
             }
           </div>
@@ -186,12 +186,12 @@
 
       <li>
         <span class="sbb-label">
-          Map markers@if (selectedMarkerId) {
-          <span> (selected: {{selectedMarkerId}})</span>
-          }</span
-        >
-        <button sbb-ghost-button (click)="selectedMarkerId='velo'">Basel</button>
-        <button sbb-ghost-button (click)="selectedMarkerId=undefined">Unselect all</button>
+          Map markers @if (selectedMarkerId) {
+          <span> (selected: {{ selectedMarkerId }})</span>
+          }
+        </span>
+        <button sbb-ghost-button (click)="selectedMarkerId = 'velo'">Basel</button>
+        <button sbb-ghost-button (click)="selectedMarkerId = undefined">Unselect all</button>
       </li>
 
       <li formGroupName="markerOptions">
@@ -206,15 +206,15 @@
         <sbb-form-field label="POI Environment">
           <sbb-select formControlName="environment">
             @for (environment of ['prod', 'int']; track environment) {
-            <sbb-option [value]="environment">{{environment}}</sbb-option>
+            <sbb-option [value]="environment">{{ environment }}</sbb-option>
             }
           </sbb-select>
         </sbb-form-field>
         <sbb-form-field label="POI Subcategories">
           <sbb-select multiple formControlName="categories">
-            @for (category of ['park_rail', 'car_sharing', 'p2p_car_sharing', 'bike_parking',
-            'bike_sharing', 'on_demand']; track category) {
-            <sbb-option [value]="category">{{category}}</sbb-option>
+            @for ( category of [ 'park_rail', 'car_sharing', 'p2p_car_sharing', 'bike_parking',
+            'bike_sharing', 'on_demand' ]; track category ) {
+            <sbb-option [value]="category">{{ category }}</sbb-option>
             }
           </sbb-select>
         </sbb-form-field>
@@ -225,14 +225,14 @@
         <sbb-form-field label="Select zones">
           <sbb-select formControlName="zoneGeoJson" placeholder="(none)">
             @for (input of journeyMapsZoneOptions; track input) {
-            <sbb-option [value]="input.value">{{input.label}}</sbb-option>
+            <sbb-option [value]="input.value">{{ input.label }}</sbb-option>
             }
           </sbb-select>
         </sbb-form-field>
         <sbb-form-field label="Select route">
           <sbb-select formControlName="routingGeoJson" placeholder="(none)">
             @for (input of journeyMapsRoutingOptions; track input) {
-            <sbb-option [value]="input.value"> {{input.label}} </sbb-option>
+            <sbb-option [value]="input.value"> {{ input.label }} </sbb-option>
             }
           </sbb-select>
         </sbb-form-field>
@@ -241,7 +241,7 @@
           <sbb-select formControlName="routingLegId" placeholder="(none)">
             <sbb-option [value]="">(none)</sbb-option>
             @for (legId of journeyMapsRoutingLegIds; track legId) {
-            <sbb-option [value]="legId"> {{legId || '(none)'}} </sbb-option>
+            <sbb-option [value]="legId"> {{ legId || '(none)' }} </sbb-option>
             }
           </sbb-select>
         </sbb-form-field>
@@ -256,7 +256,7 @@
           <span class="sbb-label">Select indoor level</span>
           <sbb-radio-group class="sbb-checkbox-group-horizontal" formControlName="level">
             @for (level of visibleLevels; track level) {
-            <sbb-radio-button [value]="level">Level {{level}}</sbb-radio-button>
+            <sbb-radio-button [value]="level">Level {{ level }}</sbb-radio-button>
             }
           </sbb-radio-group>
         </div>

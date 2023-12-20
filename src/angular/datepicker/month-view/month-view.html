@@ -13,11 +13,11 @@
           [attr.aria-label]="day.long"
           (click)="weekdaySelected(day.index)"
         >
-          {{day.narrow}}
+          {{ day.narrow }}
         </button>
         } @case (false) {
-        <span class="cdk-visually-hidden">{{day.long}}</span>
-        <span aria-hidden="true">{{day.narrow}}</span>
+        <span class="cdk-visually-hidden">{{ day.long }}</span>
+        <span aria-hidden="true">{{ day.narrow }}</span>
         } }
       </th>
       }

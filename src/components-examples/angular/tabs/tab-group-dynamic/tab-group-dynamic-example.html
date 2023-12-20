@@ -1,7 +1,7 @@
 <sbb-tab-group [selectedIndex]="selected.value" (selectedIndexChange)="selected.setValue($event)">
   @for (tab of tabs; track tab; let index = $index) {
   <sbb-tab [label]="tab">
-    Contents for {{tab}} tab
+    Contents for {{ tab }} tab
     <button
       sbb-secondary-button
       class="example-delete-tab-button"

@@ -15,7 +15,7 @@
           style="width: 20%"
         >
           {{ column.title }} @if (column.subtitle) {
-          <div class="sbb-table-header-subtitle">{{column.subtitle}}</div>
+          <div class="sbb-table-header-subtitle">{{ column.subtitle }}</div>
           }
         </th>
         <td sbb-cell *sbbCellDef="let element">{{ element[column.title] }}</td>
@@ -58,7 +58,13 @@
       <tr sbb-header-row *sbbHeaderRowDef="displayedColumns"></tr>
       <tr
         sbb-header-row
-        *sbbHeaderRowDef="['empty', 'filter-name', 'empty', 'filter-description', 'filter-category']"
+        *sbbHeaderRowDef="[
+          'empty',
+          'filter-name',
+          'empty',
+          'filter-description',
+          'filter-category'
+        ]"
       ></tr>
       <tr sbb-row *sbbRowDef="let row; columns: displayedColumns"></tr>
     </table>

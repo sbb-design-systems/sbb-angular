@@ -3,7 +3,7 @@
   [id]="inputId"
   [disabled]="disabled"
   [readonly]="readonly"
-  [placeholder]="!readonly ? placeholder: '-'"
+  [placeholder]="!readonly ? placeholder : '-'"
   [attr.maxlength]="maxlength !== 0 ? maxlength : null"
   [attr.minlength]="minlength"
   [cdkTextareaAutosize]="!autosizeDisabled"

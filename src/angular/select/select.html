@@ -5,7 +5,7 @@
   [class.sbb-select-value-empty]="empty"
 >
   @switch (empty) { @case (true) {
-  <span class="sbb-select-placeholder">{{ !readonly ? (placeholder || '\u00A0') : '-' }}</span>
+  <span class="sbb-select-placeholder">{{ !readonly ? placeholder || '\u00A0' : '-' }}</span>
   } @case (false) {
   <span class="sbb-select-value-text">
     <span>{{ triggerValue || '\u00A0' }}</span>

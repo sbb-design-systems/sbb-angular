@@ -1,7 +1,7 @@
 <sbb-form-field class="sbb-form-field-long" label="Favorite Fruits">
   <sbb-chip-list aria-label="Fruit selection" [formControl]="selectedFruits">
     @for (fruit of selectedFruits.value; track fruit) {
-    <sbb-chip [value]="fruit"> {{fruit}} </sbb-chip>
+    <sbb-chip [value]="fruit"> {{ fruit }} </sbb-chip>
     }
     <input
       placeholder="New fruit..."
@@ -13,7 +13,7 @@
   </sbb-chip-list>
   <sbb-autocomplete #auto="sbbAutocomplete">
     @for (fruit of filteredFruits | async; track fruit) {
-    <sbb-option [value]="fruit">{{fruit}}</sbb-option>
+    <sbb-option [value]="fruit">{{ fruit }}</sbb-option>
     }
   </sbb-autocomplete>
 </sbb-form-field>

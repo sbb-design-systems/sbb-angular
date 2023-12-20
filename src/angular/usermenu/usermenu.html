@@ -19,7 +19,9 @@
   <ng-template sbbMenuDynamicTrigger>
     <ng-container *ngTemplateOutlet="triggerContent"></ng-container>
     <sbb-icon
-      [svgIcon]="(variant | async) === 'standard' ? 'chevron-small-down-small' : 'chevron-right-small'"
+      [svgIcon]="
+          (variant | async) === 'standard' ? 'chevron-small-down-small' : 'chevron-right-small'
+        "
       class="sbb-usermenu-arrow"
     ></sbb-icon>
   </ng-template>

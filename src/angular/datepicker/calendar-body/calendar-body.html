@@ -49,7 +49,9 @@
       [class.sbb-calendar-body-disabled]="!item.enabled"
       [class.sbb-calendar-body-active]="isActiveCell(rowIndex, colIndex)"
       [class.sbb-calendar-body-range-background]="item.rangeBackground === 'range'"
-      [class.sbb-calendar-body-range-background-offset-start]="item.rangeBackground !== null && rowIndex === 0 && firstRowOffset && colIndex === 0"
+      [class.sbb-calendar-body-range-background-offset-start]="
+            item.rangeBackground !== null && rowIndex === 0 && firstRowOffset && colIndex === 0
+          "
       [class.sbb-calendar-body-selected-begin]="item.rangeBackground === 'begin'"
       [class.sbb-calendar-body-selected-end]="item.rangeBackground === 'end'"
       [class.sbb-calendar-body-selected]="selectedValue === item.value"

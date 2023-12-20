@@ -2,7 +2,7 @@
   <input [formControl]="myControlHint" [sbbAutocomplete]="autoHint" sbbInput type="text" />
 </sbb-form-field>
 <sbb-autocomplete #autoHint="sbbAutocomplete">
-  @for (option of filteredOptionsHint | slice: 0:maxOptionsListLength; track option) {
+  @for (option of filteredOptionsHint | slice: 0 : maxOptionsListLength; track option) {
   <sbb-option [value]="option">{{ option }}</sbb-option>
   } @if (filteredOptionsHint.length > maxOptionsListLength) {
   <sbb-option-hint>

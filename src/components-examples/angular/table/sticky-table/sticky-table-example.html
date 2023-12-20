@@ -24,10 +24,10 @@
         [sbb-sort-header]="column"
         [sortActionDescription]="'Sort by ' + column"
       >
-        {{column}}
+        {{ column }}
       </th>
       <td sbb-cell *sbbCellDef="let element">{{ element[column] }}</td>
-      <td sbb-footer-cell *sbbFooterCellDef>{{column}}</td>
+      <td sbb-footer-cell *sbbFooterCellDef>{{ column }}</td>
     </ng-container>
     }
     <ng-container sbbColumnDef="recordId" stickyEnd>

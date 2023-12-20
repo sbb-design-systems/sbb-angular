@@ -3,8 +3,8 @@
 <sbb-tab-group>
   @for (tab of asyncTabs | async; track tab) {
   <sbb-tab>
-    <ng-template sbb-tab-label>{{tab.label}}</ng-template>
-    {{tab.content}}
+    <ng-template sbb-tab-label>{{ tab.label }}</ng-template>
+    {{ tab.content }}
   </sbb-tab>
   }
 </sbb-tab-group>

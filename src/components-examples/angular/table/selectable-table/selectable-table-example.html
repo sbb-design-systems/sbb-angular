@@ -26,7 +26,7 @@
     <ng-container [sbbColumnDef]="column.title">
       <th sbb-header-cell *sbbHeaderCellDef>
         {{ column.title }} @if (column.subtitle) {
-        <div class="sbb-table-header-subtitle">{{ column.subtitle}}</div>
+        <div class="sbb-table-header-subtitle">{{ column.subtitle }}</div>
         }
       </th>
       <td sbb-cell *sbbCellDef="let element">{{ element[column.title] }}</td>
