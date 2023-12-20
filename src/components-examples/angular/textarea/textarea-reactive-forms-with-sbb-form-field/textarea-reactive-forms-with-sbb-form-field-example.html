@@ -7,9 +7,10 @@
       placeholder="Placeholder Text"
     ></sbb-textarea>
     @if (form.get('textarea')?.errors?.minlength) {
-    <sbb-error>A length of 20 chars is required!</sbb-error>
-    } @if (form.get('textarea')?.errors?.required) {
-    <sbb-error>Content is required!</sbb-error>
+      <sbb-error>A length of 20 chars is required!</sbb-error>
+    }
+    @if (form.get('textarea')?.errors?.required) {
+      <sbb-error>Content is required!</sbb-error>
     }
   </sbb-form-field>
 

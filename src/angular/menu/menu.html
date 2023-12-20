@@ -16,18 +16,21 @@
     [attr.aria-labelledby]="ariaLabelledby || null"
     [attr.aria-describedby]="ariaDescribedby || null"
   >
-    @if (_hasHeader()) { @if (!triggerContext.templateContent) {
-    <button
-      type="button"
-      class="sbb-menu-panel-trigger"
-      [innerHTML]="triggerContext.elementContent"
-      aria-hidden="true"
-    ></button>
-    } @if (triggerContext.templateContent) {
-    <button type="button" class="sbb-menu-panel-trigger" aria-hidden="true">
-      <ng-template [ngTemplateOutlet]="triggerContext.templateContent"></ng-template>
-    </button>
-    } }
+    @if (_hasHeader()) {
+      @if (!triggerContext.templateContent) {
+        <button
+          type="button"
+          class="sbb-menu-panel-trigger"
+          [innerHTML]="triggerContext.elementContent"
+          aria-hidden="true"
+        ></button>
+      }
+      @if (triggerContext.templateContent) {
+        <button type="button" class="sbb-menu-panel-trigger" aria-hidden="true">
+          <ng-template [ngTemplateOutlet]="triggerContext.templateContent"></ng-template>
+        </button>
+      }
+    }
     <div
       class="sbb-panel sbb-panel-padded sbb-menu-panel sbb-menu-content sbb-scrollbar"
       [class.sbb-menu-panel-root]="!parentMenu"

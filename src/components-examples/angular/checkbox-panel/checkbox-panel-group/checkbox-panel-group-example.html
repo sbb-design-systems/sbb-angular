@@ -3,9 +3,9 @@
 <form [formGroup]="form">
   <div class="sbb-checkbox-panel-group" [ngClass]="groupClasses">
     @for (control of checkboxes.controls; track control) {
-    <sbb-checkbox-panel [formControl]="$any(control.get('selected'))"
-      >{{ control.get('name')!.value }}</sbb-checkbox-panel
-    >
+      <sbb-checkbox-panel [formControl]="$any(control.get('selected'))">{{
+        control.get('name')!.value
+      }}</sbb-checkbox-panel>
     }
   </div>
 
@@ -15,14 +15,14 @@
       <input sbbInput formControlName="amount" />
     </sbb-form-field>
     @for (breakpoint of breakpoints; track breakpoint) {
-    <sbb-form-field>
-      <sbb-label>{{ breakpoint }} columns</sbb-label>
-      <sbb-select [formControlName]="breakpoint">
-        @for (i of breakpointRange(breakpoint); track i) {
-        <sbb-option [value]="i">{{ i === 1 ? '-' : i }}</sbb-option>
-        }
-      </sbb-select>
-    </sbb-form-field>
+      <sbb-form-field>
+        <sbb-label>{{ breakpoint }} columns</sbb-label>
+        <sbb-select [formControlName]="breakpoint">
+          @for (i of breakpointRange(breakpoint); track i) {
+            <sbb-option [value]="i">{{ i === 1 ? '-' : i }}</sbb-option>
+          }
+        </sbb-select>
+      </sbb-form-field>
     }
   </div>
 </form>

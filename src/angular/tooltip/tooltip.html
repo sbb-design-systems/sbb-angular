@@ -11,17 +11,19 @@
   >
     <div class="sbb-tooltip-content">
       @if (_templateRef; as templateRef) {
-      <ng-container *ngTemplateOutlet="templateRef"></ng-container>
-      } @else { {{ message }} }
+        <ng-container *ngTemplateOutlet="templateRef"></ng-container>
+      } @else {
+        {{ message }}
+      }
     </div>
     @if (_triggeredByClick) {
-    <button
-      type="button"
-      class="sbb-tooltip-icon sbb-tooltip-close-button sbb-icon-fit sbb-button-reset-frameless"
-      (click)="hide(0)"
-    >
-      <sbb-icon svgIcon="cross-small"></sbb-icon>
-    </button>
+      <button
+        type="button"
+        class="sbb-tooltip-icon sbb-tooltip-close-button sbb-icon-fit sbb-button-reset-frameless"
+        (click)="hide(0)"
+      >
+        <sbb-icon svgIcon="cross-small"></sbb-icon>
+      </button>
     }
   </div>
 </div>

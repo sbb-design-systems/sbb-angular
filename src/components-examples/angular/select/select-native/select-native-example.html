@@ -7,9 +7,9 @@
       [attr.readonly]="form.get('readonly')!.value ? true : null"
     >
       @for (food of ['Beefsteak', 'Pizza', 'Pasta']; track food; let isFirst = $first) {
-      <option [disabled]="isFirst && form.get('optionDisabled')?.value" [value]="food">
-        {{ food }}
-      </option>
+        <option [disabled]="isFirst && form.get('optionDisabled')?.value" [value]="food">
+          {{ food }}
+        </option>
       }
     </select>
   </sbb-form-field>

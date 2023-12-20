@@ -1,6 +1,6 @@
 <sbb-radio-group [(ngModel)]="modelValue" class="sbb-checkbox-group-horizontal">
   @for (option of radioOptions; track option) {
-  <sbb-radio-button [value]="option.value"> {{ option.name }} </sbb-radio-button>
+    <sbb-radio-button [value]="option.value"> {{ option.name }} </sbb-radio-button>
   }
 </sbb-radio-group>
 

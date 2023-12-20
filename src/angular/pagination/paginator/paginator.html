@@ -13,28 +13,29 @@
   </li>
 
   @for (page of _pageRange(); track page) {
-  <li class="sbb-paginator-item">
-    @if (page === null) {
-    <span
-      class="sbb-paginator-item-ellipsis"
-      [class.sbb-paginator-item-ellipsis-disabled]="disabled"
-      >...</span
-    >
-    } @if (page !== null) {
-    <button
-      type="button"
-      class="sbb-button-reset-frameless sbb-paginator-item-button"
-      [attr.tabindex]="page === pageIndex ? '-1' : null"
-      [class.sbb-paginator-item-selected]="page === pageIndex"
-      [attr.aria-current]="page === pageIndex"
-      [disabled]="disabled"
-      [class.sbb-paginator-item-disabled]="disabled"
-      (click)="selectPage(page)"
-    >
-      <ng-container>{{ page + 1 }}</ng-container>
-    </button>
-    }
-  </li>
+    <li class="sbb-paginator-item">
+      @if (page === null) {
+        <span
+          class="sbb-paginator-item-ellipsis"
+          [class.sbb-paginator-item-ellipsis-disabled]="disabled"
+          >...</span
+        >
+      }
+      @if (page !== null) {
+        <button
+          type="button"
+          class="sbb-button-reset-frameless sbb-paginator-item-button"
+          [attr.tabindex]="page === pageIndex ? '-1' : null"
+          [class.sbb-paginator-item-selected]="page === pageIndex"
+          [attr.aria-current]="page === pageIndex"
+          [disabled]="disabled"
+          [class.sbb-paginator-item-disabled]="disabled"
+          (click)="selectPage(page)"
+        >
+          <ng-container>{{ page + 1 }}</ng-container>
+        </button>
+      }
+    </li>
   }
   <li class="sbb-paginator-item">
     <button

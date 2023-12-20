@@ -3,6 +3,6 @@
     <input sbbInput sbbDateInput [formControl]="date" />
   </sbb-datepicker>
   @if (date.touched && date.errors?.required) {
-  <sbb-error> Date is required! </sbb-error>
+    <sbb-error> Date is required! </sbb-error>
   }
 </sbb-form-field>

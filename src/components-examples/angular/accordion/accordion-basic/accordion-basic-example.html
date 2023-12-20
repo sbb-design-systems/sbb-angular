@@ -102,9 +102,10 @@
       Toggle first panel
     </button>
     @if (multi.value) {
-    <button type="button" sbb-ghost-button (click)="accordion.openAll()">Open all</button>
-    } @if (multi.value) {
-    <button type="button" sbb-ghost-button (click)="accordion.closeAll()">Close all</button>
+      <button type="button" sbb-ghost-button (click)="accordion.openAll()">Open all</button>
+    }
+    @if (multi.value) {
+      <button type="button" sbb-ghost-button (click)="accordion.closeAll()">Close all</button>
     }
   </div>
 </div>

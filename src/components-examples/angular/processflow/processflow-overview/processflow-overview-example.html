@@ -10,7 +10,7 @@
         <sbb-label>Name</sbb-label>
         <input sbbInput placeholder="Last name, First name" formControlName="firstCtrl" required />
         @if (firstFormGroup.get('firstCtrl')!.errors?.required) {
-        <sbb-error>Name is required!</sbb-error>
+          <sbb-error>Name is required!</sbb-error>
         }
       </sbb-form-field>
       <div>
@@ -33,7 +33,7 @@
           required
         />
         @if (secondFormGroup.get('secondCtrl')!.errors?.required) {
-        <sbb-error>Name is required!</sbb-error>
+          <sbb-error>Name is required!</sbb-error>
         }
       </sbb-form-field>
       <div>

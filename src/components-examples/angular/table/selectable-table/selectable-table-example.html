@@ -23,14 +23,15 @@
     </ng-container>
 
     @for (column of columns.slice(1); track column) {
-    <ng-container [sbbColumnDef]="column.title">
-      <th sbb-header-cell *sbbHeaderCellDef>
-        {{ column.title }} @if (column.subtitle) {
-        <div class="sbb-table-header-subtitle">{{ column.subtitle }}</div>
-        }
-      </th>
-      <td sbb-cell *sbbCellDef="let element">{{ element[column.title] }}</td>
-    </ng-container>
+      <ng-container [sbbColumnDef]="column.title">
+        <th sbb-header-cell *sbbHeaderCellDef>
+          {{ column.title }}
+          @if (column.subtitle) {
+            <div class="sbb-table-header-subtitle">{{ column.subtitle }}</div>
+          }
+        </th>
+        <td sbb-cell *sbbCellDef="let element">{{ element[column.title] }}</td>
+      </ng-container>
     }
 
     <tr sbb-header-row *sbbHeaderRowDef="displayedColumns"></tr>

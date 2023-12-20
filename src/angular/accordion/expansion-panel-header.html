@@ -2,13 +2,21 @@
   <ng-content></ng-content>
 </span>
 @if (_showToggle()) {
-<span class="sbb-expansion-panel-header-indicator sbb-icon-fit">
-  @switch (panel.variant | async) { @case ('standard') { @switch (_isExpanded()) { @case (false) {
-  <sbb-icon svgIcon="plus-small"></sbb-icon>
-  } @case (true) {
-  <sbb-icon svgIcon="minus-small"></sbb-icon>
-  } } } @default {
-  <sbb-icon [@indicatorRotate]="_getExpandedState()" svgIcon="chevron-right-small"></sbb-icon>
-  } }
-</span>
+  <span class="sbb-expansion-panel-header-indicator sbb-icon-fit">
+    @switch (panel.variant | async) {
+      @case ('standard') {
+        @switch (_isExpanded()) {
+          @case (false) {
+            <sbb-icon svgIcon="plus-small"></sbb-icon>
+          }
+          @case (true) {
+            <sbb-icon svgIcon="minus-small"></sbb-icon>
+          }
+        }
+      }
+      @default {
+        <sbb-icon [@indicatorRotate]="_getExpandedState()" svgIcon="chevron-right-small"></sbb-icon>
+      }
+    }
+  </span>
 }

@@ -1,44 +1,45 @@
 <div #stepListContainer class="sbb-processflow-header-container sbb-scrollbar">
   @for (step of steps; track step; let i = $index; let isLast = $last) {
-  <sbb-step-header
-    class="sbb-processflow-header"
-    (click)="step.select()"
-    (keydown)="_onKeydown($event)"
-    [tabIndex]="_getFocusIndex() === i ? 0 : -1"
-    [id]="_getStepLabelId(i)"
-    [attr.aria-posinset]="i + 1"
-    [attr.aria-setsize]="steps.length"
-    [attr.aria-controls]="_getStepContentId(i)"
-    [attr.aria-selected]="selectedIndex == i"
-    [attr.aria-label]="step.ariaLabel || null"
-    [attr.aria-labelledby]="!step.ariaLabel && step.ariaLabelledby ? step.ariaLabelledby : null"
-    [index]="i"
-    [state]="_getIndicatorType(i, step.state)"
-    [label]="step.stepLabel || step.label"
-    [selected]="selectedIndex === i"
-    [active]="step.completed || selectedIndex === i || !linear"
-    [optional]="step.optional"
-    [locked]="!step.editable && i < selectedIndex"
-  ></sbb-step-header>
-  @if (!isLast) {
-  <div class="sbb-processflow-separator">
-    <sbb-icon svgIcon="chevron-right-small" class="sbb-icon-fit"></sbb-icon>
-  </div>
-  } }
+    <sbb-step-header
+      class="sbb-processflow-header"
+      (click)="step.select()"
+      (keydown)="_onKeydown($event)"
+      [tabIndex]="_getFocusIndex() === i ? 0 : -1"
+      [id]="_getStepLabelId(i)"
+      [attr.aria-posinset]="i + 1"
+      [attr.aria-setsize]="steps.length"
+      [attr.aria-controls]="_getStepContentId(i)"
+      [attr.aria-selected]="selectedIndex == i"
+      [attr.aria-label]="step.ariaLabel || null"
+      [attr.aria-labelledby]="!step.ariaLabel && step.ariaLabelledby ? step.ariaLabelledby : null"
+      [index]="i"
+      [state]="_getIndicatorType(i, step.state)"
+      [label]="step.stepLabel || step.label"
+      [selected]="selectedIndex === i"
+      [active]="step.completed || selectedIndex === i || !linear"
+      [optional]="step.optional"
+      [locked]="!step.editable && i < selectedIndex"
+    ></sbb-step-header>
+    @if (!isLast) {
+      <div class="sbb-processflow-separator">
+        <sbb-icon svgIcon="chevron-right-small" class="sbb-icon-fit"></sbb-icon>
+      </div>
+    }
+  }
 </div>
 
 <div class="sbb-processflow-content-container">
   @for (step of steps; track step; let i = $index) {
-  <div
-    class="sbb-processflow-content"
-    [class.sbb-processflow-content-hidden]="selectedIndex !== i"
-    role="tabpanel"
-    [@stepTransition]="_getAnimationDirection(i)"
-    (@stepTransition.done)="_animationDone.next($event)"
-    [id]="_getStepContentId(i)"
-    [attr.aria-labelledby]="_getStepLabelId(i)"
-  >
-    <ng-container [ngTemplateOutlet]="step.content"></ng-container>
-  </div>
+    <div
+      class="sbb-processflow-content"
+      [class.sbb-processflow-content-hidden]="selectedIndex !== i"
+      role="tabpanel"
+      [@stepTransition]="_getAnimationDirection(i)"
+      (@stepTransition.done)="_animationDone.next($event)"
+      [id]="_getStepContentId(i)"
+      [attr.aria-labelledby]="_getStepLabelId(i)"
+    >
+      <ng-container [ngTemplateOutlet]="step.content"></ng-container>
+    </div>
   }
 </div>

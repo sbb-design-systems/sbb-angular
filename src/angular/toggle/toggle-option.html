@@ -19,30 +19,41 @@
   />
   <span class="sbb-toggle-option-button-label-wrapper">
     @if (_hasIcon()) {
-    <span role="presentation" class="sbb-toggle-option-button-icon sbb-icon-scaled">
-      @switch (!!_icon) { @case (true) {
-      <ng-content select="sbb-toggle-icon"></ng-content>
-      } @default {
-      <span>
-        <sbb-icon [svgIcon]="svgIcon"></sbb-icon>
+      <span role="presentation" class="sbb-toggle-option-button-icon sbb-icon-scaled">
+        @switch (!!_icon) {
+          @case (true) {
+            <ng-content select="sbb-toggle-icon"></ng-content>
+          }
+          @default {
+            <span>
+              <sbb-icon [svgIcon]="svgIcon"></sbb-icon>
+            </span>
+          }
+        }
       </span>
-      } }
-    </span>
     }
     <span class="sbb-toggle-option-button-label">
-      @switch (!!_label) { @case (true) {
-      <ng-content select="sbb-toggle-label"></ng-content>
-      } @default {
-      <ng-container>{{ label }}</ng-container>
-      } }
+      @switch (!!_label) {
+        @case (true) {
+          <ng-content select="sbb-toggle-label"></ng-content>
+        }
+        @default {
+          <ng-container>{{ label }}</ng-container>
+        }
+      }
     </span>
     @if (subtitle || _subtitle) {
-    <span class="sbb-toggle-option-button-subtitle">
-      <span class="cdk-visually-hidden">&nbsp;</span>
-      @switch (!!_subtitle) { @case (true) {
-      <ng-content select="sbb-toggle-subtitle"></ng-content>
-      } @default { {{ subtitle }} } }
-    </span>
+      <span class="sbb-toggle-option-button-subtitle">
+        <span class="cdk-visually-hidden">&nbsp;</span>
+        @switch (!!_subtitle) {
+          @case (true) {
+            <ng-content select="sbb-toggle-subtitle"></ng-content>
+          }
+          @default {
+            {{ subtitle }}
+          }
+        }
+      </span>
     }
   </span>
 </label>

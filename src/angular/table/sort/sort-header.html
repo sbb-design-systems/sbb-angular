@@ -21,40 +21,40 @@ The approach is based off of: https://dequeuniversity.com/library/aria/tables/sf
 
   <!-- Disable animations while a current animation is running -->
   @if (_renderArrow()) {
-  <div
-    class="sbb-sort-header-arrow"
-    [@arrowOpacity]="_getArrowViewState()"
-    [@arrowPosition]="_getArrowViewState()"
-    [@allowChildren]="_getArrowDirectionState()"
-    (@arrowPosition.start)="_disableViewStateAnimation = true"
-    (@arrowPosition.done)="_disableViewStateAnimation = false"
-  >
-    <!-- This is a modified version of the sbb arrow-down-small icon to support the animation -->
-    <svg
-      xmlns="http://www.w3.org/2000/svg"
-      width="24"
-      height="24"
-      viewBox="0 0 24 24"
-      preserveAspectRatio="xMidYMid meet"
-      focusable="false"
+    <div
+      class="sbb-sort-header-arrow"
+      [@arrowOpacity]="_getArrowViewState()"
+      [@arrowPosition]="_getArrowViewState()"
+      [@allowChildren]="_getArrowDirectionState()"
+      (@arrowPosition.start)="_disableViewStateAnimation = true"
+      (@arrowPosition.done)="_disableViewStateAnimation = false"
     >
-      <path
-        fill="none"
-        fill-rule="evenodd"
-        stroke="currentColor"
-        stroke-width="1"
-        d="M11.5,5.75 L11.5,18.25"
-      ></path>
-      <path
-        fill="none"
-        fill-rule="evenodd"
-        stroke="currentColor"
-        stroke-width="1"
-        d="M7.5,14.25 L11.5,18.25 L15.5,14.25"
-        style="transform-origin: center"
-        [@indicator]="_getArrowDirectionState()"
-      ></path>
-    </svg>
-  </div>
+      <!-- This is a modified version of the sbb arrow-down-small icon to support the animation -->
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        width="24"
+        height="24"
+        viewBox="0 0 24 24"
+        preserveAspectRatio="xMidYMid meet"
+        focusable="false"
+      >
+        <path
+          fill="none"
+          fill-rule="evenodd"
+          stroke="currentColor"
+          stroke-width="1"
+          d="M11.5,5.75 L11.5,18.25"
+        ></path>
+        <path
+          fill="none"
+          fill-rule="evenodd"
+          stroke="currentColor"
+          stroke-width="1"
+          d="M7.5,14.25 L11.5,18.25 L15.5,14.25"
+          style="transform-origin: center"
+          [@indicator]="_getArrowDirectionState()"
+        ></path>
+      </svg>
+    </div>
   }
 </div>

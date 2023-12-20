@@ -3,11 +3,11 @@
     <sbb-label>International food</sbb-label>
     <sbb-select formControlName="value" multiple placeholder="International food">
       @for (foodNation of foodFromTheWorld; track foodNation) {
-      <sbb-optgroup [label]="foodNation.nation">
-        @for (food of foodNation.food; track food) {
-        <sbb-option [value]="food.value">{{ food.viewValue }}</sbb-option>
-        }
-      </sbb-optgroup>
+        <sbb-optgroup [label]="foodNation.nation">
+          @for (food of foodNation.food; track food) {
+            <sbb-option [value]="food.value">{{ food.viewValue }}</sbb-option>
+          }
+        </sbb-optgroup>
       }
     </sbb-select>
   </sbb-form-field>

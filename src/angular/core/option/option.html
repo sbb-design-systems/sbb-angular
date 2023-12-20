@@ -1,12 +1,12 @@
 @if (multiple) {
-<sbb-pseudo-checkbox
-  [disabled]="disabled"
-  [state]="selected ? 'checked' : 'unchecked'"
-></sbb-pseudo-checkbox>
+  <sbb-pseudo-checkbox
+    [disabled]="disabled"
+    [state]="selected ? 'checked' : 'unchecked'"
+  ></sbb-pseudo-checkbox>
 }
 <ng-content></ng-content>
 
 <!-- See a11y notes inside optgroup.ts for context behind this element. -->
 @if (group && group._inert) {
-<span class="cdk-visually-hidden">({{ group.label }})</span>
+  <span class="cdk-visually-hidden">({{ group.label }})</span>
 }

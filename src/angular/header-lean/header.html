@@ -16,13 +16,13 @@
 <div class="sbb-header-lean-titlebox">
   <span class="sbb-header-lean-label">{{ label }}</span>
   @if (subtitle) {
-  <span class="sbb-header-lean-subtitle">{{ subtitle }}</span>
+    <span class="sbb-header-lean-subtitle">{{ subtitle }}</span>
   }
 </div>
 
 <nav class="sbb-header-lean-main-menu">
   @if (!(_headerMenusCollapsed | async)) {
-  <ng-template [cdkPortalOutlet]="menuActions"></ng-template>
+    <ng-template [cdkPortalOutlet]="menuActions"></ng-template>
   }
 </nav>
 
@@ -41,15 +41,15 @@
     <ng-content select="[brand],.brand"></ng-content>
   </div>
   @if (!iconContent.childElementCount) {
-  <div class="sbb-header-lean-logo">
-    <svg class="sbb-header-lean-sbb-logo" viewBox="0 0 80 21" xmlns="http://www.w3.org/2000/svg">
-      <path d="M0 0h59.233v20.603H0V0z" fill="#EC0000"></path>
-      <path
-        d="M35.186 17.02h3.75l-5.047-5.163h6.265v5.163h2.96v-5.163h6.267l-5.05 5.163h3.752l6.427-6.708-6.426-6.73h-3.752l5.05 5.185h-6.266V3.583h-2.96v5.184h-6.267l5.047-5.184h-3.75l-6.43 6.73 6.43 6.707"
-        fill="#FFF"
-      ></path>
-    </svg>
-  </div>
+    <div class="sbb-header-lean-logo">
+      <svg class="sbb-header-lean-sbb-logo" viewBox="0 0 80 21" xmlns="http://www.w3.org/2000/svg">
+        <path d="M0 0h59.233v20.603H0V0z" fill="#EC0000"></path>
+        <path
+          d="M35.186 17.02h3.75l-5.047-5.163h6.265v5.163h2.96v-5.163h6.267l-5.05 5.163h3.752l6.427-6.708-6.426-6.73h-3.752l5.05 5.185h-6.266V3.583h-2.96v5.184h-6.267l5.047-5.184h-3.75l-6.43 6.73 6.43 6.707"
+          fill="#FFF"
+        ></path>
+      </svg>
+    </div>
   }
 </div>
 
@@ -75,14 +75,14 @@
     <div class="sbb-header-lean-titlebox">
       <span class="sbb-header-lean-label">{{ label }}</span>
       @if (subtitle) {
-      <span class="sbb-header-lean-subtitle">{{ subtitle }}</span>
+        <span class="sbb-header-lean-subtitle">{{ subtitle }}</span>
       }
     </div>
   </div>
 
   <nav class="sbb-header-lean-side-menu">
     @if (_headerMenusCollapsed | async) {
-    <ng-template [cdkPortalOutlet]="menuActions"></ng-template>
+      <ng-template [cdkPortalOutlet]="menuActions"></ng-template>
     }
   </nav>
 

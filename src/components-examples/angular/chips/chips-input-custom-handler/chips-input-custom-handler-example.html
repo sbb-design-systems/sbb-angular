@@ -1,9 +1,9 @@
 <sbb-form-field class="sbb-form-field-long" label="Favorite Fruits">
   <sbb-chip-list aria-label="Fruit selection" [formControl]="favoriteFruits">
     @for (fruit of favoriteFruits.value; track fruit) {
-    <sbb-chip [value]="fruit" (removed)="remove($event)">
-      {{ fruit.name }} ({{ fruit.color }})
-    </sbb-chip>
+      <sbb-chip [value]="fruit" (removed)="remove($event)">
+        {{ fruit.name }} ({{ fruit.color }})
+      </sbb-chip>
     }
     <input
       placeholder="Type the name of an available fruit..."

@@ -9,7 +9,7 @@
 </sbb-form-field>
 <sbb-autocomplete #auto="sbbAutocomplete" [localeNormalizer]="normalizer">
   @for (option of filteredOptions; track option) {
-  <sbb-option [value]="option">{{ option }}</sbb-option>
+    <sbb-option [value]="option">{{ option }}</sbb-option>
   }
 </sbb-autocomplete>
 <pre>{{ value | json }}</pre>

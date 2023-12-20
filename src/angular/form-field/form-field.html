@@ -9,11 +9,14 @@
       [attr.aria-owns]="_control.id"
       [class.sbb-form-field-empty]="_control.empty"
     >
-      @switch (_hasLabel()) { @case (false) {
-      <span>{{ label }}</span>
-      } @case (true) {
-      <ng-content select="sbb-label"></ng-content>
-      } }
+      @switch (_hasLabel()) {
+        @case (false) {
+          <span>{{ label }}</span>
+        }
+        @case (true) {
+          <ng-content select="sbb-label"></ng-content>
+        }
+      }
     </label>
   </div>
   <div class="sbb-form-field-input-wrapper" #connectionContainer>
@@ -21,7 +24,7 @@
   </div>
   <div class="sbb-form-field-error-wrapper">
     @if (_hasErrors()) {
-    <ng-content select="sbb-error,[sbbError]"></ng-content>
+      <ng-content select="sbb-error,[sbbError]"></ng-content>
     }
   </div>
 </div>

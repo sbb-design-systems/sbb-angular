@@ -3,11 +3,11 @@
 </sbb-form-field>
 <sbb-autocomplete #autoStatic="sbbAutocomplete">
   @for (option of options | async; track option) {
-  <sbb-option [value]="option">{{ option }}</sbb-option>
+    <sbb-option [value]="option">{{ option }}</sbb-option>
   }
   <sbb-optgroup label="Oft gesucht">
     @for (option of staticOptions; track option) {
-    <sbb-option [value]="option">{{ option }}</sbb-option>
+      <sbb-option [value]="option">{{ option }}</sbb-option>
     }
     <sbb-option-hint>Hint for "Oft gesucht"</sbb-option-hint>
   </sbb-optgroup>

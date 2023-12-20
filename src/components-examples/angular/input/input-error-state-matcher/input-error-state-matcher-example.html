@@ -9,9 +9,10 @@
       placeholder="Ex. pat@example.com"
     />
     @if (emailFormControl.hasError('email') && !emailFormControl.hasError('required')) {
-    <sbb-error> Please enter a valid email address </sbb-error>
-    } @if (emailFormControl.hasError('required')) {
-    <sbb-error> Email is <strong>required</strong> </sbb-error>
+      <sbb-error> Please enter a valid email address </sbb-error>
+    }
+    @if (emailFormControl.hasError('required')) {
+      <sbb-error> Email is <strong>required</strong> </sbb-error>
     }
   </sbb-form-field>
 

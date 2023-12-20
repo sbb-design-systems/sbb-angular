@@ -4,20 +4,20 @@
   </div>
 
   @if (!_container._mobile) {
-  <button
-    class="sbb-icon-sidebar-item sbb-button-reset-frameless sbb-icon-sidebar-collapse-expand-button"
-    (click)="toggleExpanded()"
-    type="button"
-  >
-    <span class="sbb-icon-sidebar-item-icon sbb-icon-scaled">
-      <sbb-icon svgIcon="chevron-small-left-circle-small"></sbb-icon>
-    </span>
-    <span [attr.aria-hidden]="!expanded" class="sbb-icon-sidebar-item-label"
-      >{{ _labelCollapse }}</span
+    <button
+      class="sbb-icon-sidebar-item sbb-button-reset-frameless sbb-icon-sidebar-collapse-expand-button"
+      (click)="toggleExpanded()"
+      type="button"
     >
-    <span [attr.aria-hidden]="expanded" class="sbb-icon-sidebar-item-label cdk-visually-hidden"
-      >{{ _labelExpand }}</span
-    >
-  </button>
+      <span class="sbb-icon-sidebar-item-icon sbb-icon-scaled">
+        <sbb-icon svgIcon="chevron-small-left-circle-small"></sbb-icon>
+      </span>
+      <span [attr.aria-hidden]="!expanded" class="sbb-icon-sidebar-item-label">{{
+        _labelCollapse
+      }}</span>
+      <span [attr.aria-hidden]="expanded" class="sbb-icon-sidebar-item-label cdk-visually-hidden">{{
+        _labelExpand
+      }}</span>
+    </button>
   }
 </div>

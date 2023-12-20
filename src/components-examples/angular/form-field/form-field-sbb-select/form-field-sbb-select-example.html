@@ -1,10 +1,10 @@
 <sbb-form-field label="Variant">
   <sbb-select placeholder="Select a number" [formControl]="select">
     @for (value of [1, 2, 3]; track value) {
-    <sbb-option [value]="value">Variant {{ value }}</sbb-option>
+      <sbb-option [value]="value">Variant {{ value }}</sbb-option>
     }
   </sbb-select>
   @if (select.touched && select.errors?.required) {
-  <sbb-error> Variant is required! </sbb-error>
+    <sbb-error> Variant is required! </sbb-error>
   }
 </sbb-form-field>

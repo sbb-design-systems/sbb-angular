@@ -1,9 +1,12 @@
 <span class="sbb-notification-icon-wrapper sbb-icon-fit">
-  @switch (!!_notificationIcon) { @case (false) {
-  <sbb-icon [svgIcon]="(_svgIcon | async)!"></sbb-icon>
-  } @case (true) {
-  <ng-content select="sbb-notification-icon"></ng-content>
-  } }
+  @switch (!!_notificationIcon) {
+    @case (false) {
+      <sbb-icon [svgIcon]="(_svgIcon | async)!"></sbb-icon>
+    }
+    @case (true) {
+      <ng-content select="sbb-notification-icon"></ng-content>
+    }
+  }
 </span>
 
 <div class="sbb-notification-content">
@@ -11,23 +14,25 @@
     <ng-content></ng-content>
   </div>
   @if (jumpMarks) {
-  <div>
-    @for (jumpMark of jumpMarks; track jumpMark; let isLast = $last) {
-    <span class="sbb-notification-jump-mark">
-      <a (click)="_scrollTo($event, jumpMark)">{{ jumpMark.title }}</a>
-      @if (!isLast) { / }
-    </span>
-    }
-  </div>
+    <div>
+      @for (jumpMark of jumpMarks; track jumpMark; let isLast = $last) {
+        <span class="sbb-notification-jump-mark">
+          <a (click)="_scrollTo($event, jumpMark)">{{ jumpMark.title }}</a>
+          @if (!isLast) {
+            /
+          }
+        </span>
+      }
+    </div>
   }
 </div>
 
 @if ((variant | async) !== 'standard' && !readonly) {
-<button
-  class="sbb-notification-dismiss-icon-button sbb-button-reset-frameless sbb-icon-scaled"
-  type="button"
-  (click)="dismiss()"
->
-  <sbb-icon svgIcon="cross-small"></sbb-icon>
-</button>
+  <button
+    class="sbb-notification-dismiss-icon-button sbb-button-reset-frameless sbb-icon-scaled"
+    type="button"
+    (click)="dismiss()"
+  >
+    <sbb-icon svgIcon="cross-small"></sbb-icon>
+  </button>
 }

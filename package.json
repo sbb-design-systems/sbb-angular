@@ -259,8 +259,11 @@
     }
   },
   "lint-staged": {
-    "*.{js,ts,css,scss,json,md,html}": [
+    "*.{js,ts,css,scss,json,md}": [
       "prettier --write"
+    ],
+    "*.html": [
+      "prettier --write --parser angular"
     ],
     "*.ts": [
       "tslint -c tslint.json --project ./tsconfig.json --fix"

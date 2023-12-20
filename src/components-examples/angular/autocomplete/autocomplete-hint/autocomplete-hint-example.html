@@ -3,11 +3,12 @@
 </sbb-form-field>
 <sbb-autocomplete #autoHint="sbbAutocomplete">
   @for (option of filteredOptionsHint | slice: 0 : maxOptionsListLength; track option) {
-  <sbb-option [value]="option">{{ option }}</sbb-option>
-  } @if (filteredOptionsHint.length > maxOptionsListLength) {
-  <sbb-option-hint>
-    {{ filteredOptionsHint.length - maxOptionsListLength }} further hits found
-  </sbb-option-hint>
+    <sbb-option [value]="option">{{ option }}</sbb-option>
+  }
+  @if (filteredOptionsHint.length > maxOptionsListLength) {
+    <sbb-option-hint>
+      {{ filteredOptionsHint.length - maxOptionsListLength }} further hits found
+    </sbb-option-hint>
   }
 </sbb-autocomplete>
 <pre>{{ myControlHint.value | json }}</pre>

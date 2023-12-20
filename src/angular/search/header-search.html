@@ -1,5 +1,10 @@
 <sbb-icon [svgIcon]="svgIcon" class="sbb-icon-scaled"></sbb-icon>
-<span class="sbb-header-search-label"> @if (!label) { {{ _labelSearch }} } {{ label }} </span>
+<span class="sbb-header-search-label">
+  @if (!label) {
+    {{ _labelSearch }}
+  }
+  {{ label }}
+</span>
 
 <ng-template
   cdk-connected-overlay

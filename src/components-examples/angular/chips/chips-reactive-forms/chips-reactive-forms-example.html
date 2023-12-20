@@ -1,7 +1,7 @@
 <sbb-form-field class="sbb-form-field-long" label="Locomotives">
   <sbb-chip-list aria-label="Locomotives" [formControl]="formControl">
     @for (locomotiveName of formControl.value; track locomotiveName) {
-    <sbb-chip [value]="locomotiveName"> {{ locomotiveName }} </sbb-chip>
+      <sbb-chip [value]="locomotiveName"> {{ locomotiveName }} </sbb-chip>
     }
     <input placeholder="New locomotive..." sbbChipInput />
   </sbb-chip-list>

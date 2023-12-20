@@ -1,6 +1,6 @@
 <div class="sbb-checkbox-group-vertical" [formGroup]="form">
   @for (formControl of form.controls | keyvalue; track formControl) {
-  <sbb-checkbox [formControlName]="formControl.key">{{ formControl.key }}</sbb-checkbox>
+    <sbb-checkbox [formControlName]="formControl.key">{{ formControl.key }}</sbb-checkbox>
   }
 </div>
 

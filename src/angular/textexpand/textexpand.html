@@ -8,8 +8,9 @@
   (click)="toggleExpanded()"
 >
   @if (isExpanded) {
-  <span class="sbb-textexpand-button-label">{{ _labelShowLess }}</span>
-  } @if (!isExpanded) {
-  <span class="sbb-textexpand-button-label">{{ _labelShowMore }}</span>
+    <span class="sbb-textexpand-button-label">{{ _labelShowLess }}</span>
+  }
+  @if (!isExpanded) {
+    <span class="sbb-textexpand-button-label">{{ _labelShowMore }}</span>
   }
 </button>

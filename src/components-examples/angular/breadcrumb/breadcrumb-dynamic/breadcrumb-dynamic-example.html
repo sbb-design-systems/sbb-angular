@@ -1,22 +1,22 @@
 <sbb-breadcrumbs class="sbb-divider-small-vertical">
   <a sbb-breadcrumb-root routerLink="/" aria-label="Back to the homepage"></a>
   @for (group of groups; track group; let isLast = $last) {
-  <sbb-breadcrumb>
-    <button [sbbMenuTriggerFor]="menu">{{ groupTitle(group) }}</button>
-    <sbb-menu #menu="sbbMenu">
-      @for (item of group.items; track item) {
-      <a
-        sbb-menu-item
-        [routerLink]="composeHref(group, item.path)"
-        routerLinkActive="sbb-active"
-        #rla="routerLinkActive"
-        [attr.aria-current]="isLast && (rla.isActive || item.active) ? 'location' : null"
-      >
-        {{ item.title }}
-      </a>
-      }
-    </sbb-menu>
-  </sbb-breadcrumb>
+    <sbb-breadcrumb>
+      <button [sbbMenuTriggerFor]="menu">{{ groupTitle(group) }}</button>
+      <sbb-menu #menu="sbbMenu">
+        @for (item of group.items; track item) {
+          <a
+            sbb-menu-item
+            [routerLink]="composeHref(group, item.path)"
+            routerLinkActive="sbb-active"
+            #rla="routerLinkActive"
+            [attr.aria-current]="isLast && (rla.isActive || item.active) ? 'location' : null"
+          >
+            {{ item.title }}
+          </a>
+        }
+      </sbb-menu>
+    </sbb-breadcrumb>
   }
 </sbb-breadcrumbs>
 

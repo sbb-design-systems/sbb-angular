@@ -3,9 +3,9 @@
     <sbb-label>Favorite meal</sbb-label>
     <sbb-select formControlName="value" multiple placeholder="Favorite meal">
       @for (food of ['Beefsteak', 'Pizza', 'Pasta']; track food; let isFirst = $first) {
-      <sbb-option [disabled]="isFirst && form.get('optionDisabled')?.value" [value]="food">
-        {{ food }}
-      </sbb-option>
+        <sbb-option [disabled]="isFirst && form.get('optionDisabled')?.value" [value]="food">
+          {{ food }}
+        </sbb-option>
       }
     </sbb-select>
   </sbb-form-field>

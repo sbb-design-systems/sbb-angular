@@ -5,15 +5,19 @@
   [attr.aria-labelledby]="ariaLabelledby"
   [attr.aria-describedby]="ariaDescribedby"
 >
-  @switch (type) { @case ('valid') {
-  <sbb-icon svgIcon="tick-small"></sbb-icon>
-  } @case ('warning') {
-  <sbb-icon svgIcon="sign-exclamation-point-small"></sbb-icon>
-  } @case ('invalid') {
-  <sbb-icon svgIcon="circle-cross-small"></sbb-icon>
-  } }
+  @switch (type) {
+    @case ('valid') {
+      <sbb-icon svgIcon="tick-small"></sbb-icon>
+    }
+    @case ('warning') {
+      <sbb-icon svgIcon="sign-exclamation-point-small"></sbb-icon>
+    }
+    @case ('invalid') {
+      <sbb-icon svgIcon="circle-cross-small"></sbb-icon>
+    }
+  }
 </div>
 
 @if (message) {
-<div class="sbb-status-message">{{ message }}</div>
+  <div class="sbb-status-message">{{ message }}</div>
 }

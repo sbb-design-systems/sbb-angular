@@ -3,7 +3,7 @@
 </sbb-form-field>
 <sbb-autocomplete #auto="sbbAutocomplete" [displayWith]="formatOption">
   @for (option of filteredOptions | async; track option) {
-  <sbb-option [value]="option">{{ option.label }}</sbb-option>
+    <sbb-option [value]="option">{{ option.label }}</sbb-option>
   }
 </sbb-autocomplete>
 <pre>{{ myControl.value | json }}</pre>

@@ -7,11 +7,11 @@
     All Waggons
   </sbb-checkbox>
   @for (option of options; track option) {
-  <sbb-checkbox
-    (change)="$event ? selection.toggle(option) : null"
-    [checked]="selection.isSelected(option)"
-  >
-    {{ option }}
-  </sbb-checkbox>
+    <sbb-checkbox
+      (change)="$event ? selection.toggle(option) : null"
+      [checked]="selection.isSelected(option)"
+    >
+      {{ option }}
+    </sbb-checkbox>
   }
 </div>

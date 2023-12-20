@@ -6,20 +6,21 @@
   <sbb-table-wrapper>
     <table sbb-table sbbSort (sbbSortChange)="announceSortChange($event)">
       @for (column of columns; track column) {
-      <ng-container [sbbColumnDef]="column.title">
-        <th
-          sbb-header-cell
-          [sbb-sort-header]="column.title"
-          *sbbHeaderCellDef
-          [sortActionDescription]="'Sort by ' + column.title"
-          style="width: 20%"
-        >
-          {{ column.title }} @if (column.subtitle) {
-          <div class="sbb-table-header-subtitle">{{ column.subtitle }}</div>
-          }
-        </th>
-        <td sbb-cell *sbbCellDef="let element">{{ element[column.title] }}</td>
-      </ng-container>
+        <ng-container [sbbColumnDef]="column.title">
+          <th
+            sbb-header-cell
+            [sbb-sort-header]="column.title"
+            *sbbHeaderCellDef
+            [sortActionDescription]="'Sort by ' + column.title"
+            style="width: 20%"
+          >
+            {{ column.title }}
+            @if (column.subtitle) {
+              <div class="sbb-table-header-subtitle">{{ column.subtitle }}</div>
+            }
+          </th>
+          <td sbb-cell *sbbCellDef="let element">{{ element[column.title] }}</td>
+        </ng-container>
       }
 
       <ng-container sbbColumnDef="filter-name">
@@ -36,7 +37,7 @@
           />
           <sbb-autocomplete #descriptionsAuto="sbbAutocomplete">
             @for (option of descriptions | async; track option) {
-            <sbb-option [value]="option">{{ option }}</sbb-option>
+              <sbb-option [value]="option">{{ option }}</sbb-option>
             }
           </sbb-autocomplete>
         </th>
@@ -45,7 +46,7 @@
         <th sbb-header-cell *sbbHeaderCellDef class="sbb-table-filter">
           <sbb-select formControlName="category" multiple placeholder="Select category...">
             @for (category of categories; track category) {
-            <sbb-option [value]="category">{{ category }}</sbb-option>
+              <sbb-option [value]="category">{{ category }}</sbb-option>
             }
           </sbb-select>
         </th>
@@ -71,7 +72,7 @@
   </sbb-table-wrapper>
 
   @if (dataSource.filteredData.length === 0) {
-  <p>No keywords match your filters.</p>
+    <p>No keywords match your filters.</p>
   }
 
   <sbb-paginator class="sbb-divider-small-top" [pageSize]="5"></sbb-paginator>

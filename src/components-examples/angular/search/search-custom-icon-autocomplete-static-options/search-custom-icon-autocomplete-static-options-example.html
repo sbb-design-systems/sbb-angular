@@ -3,11 +3,11 @@
 </sbb-search>
 <sbb-autocomplete #auto="sbbAutocomplete">
   @for (option of options | async; track option) {
-  <sbb-option [value]="option">{{ option }}</sbb-option>
+    <sbb-option [value]="option">{{ option }}</sbb-option>
   }
   <sbb-optgroup label="Frequent searches">
     @for (option of staticOptions; track option) {
-    <sbb-option [value]="option">{{ option }}</sbb-option>
+      <sbb-option [value]="option">{{ option }}</sbb-option>
     }
   </sbb-optgroup>
 </sbb-autocomplete>
