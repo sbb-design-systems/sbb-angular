@@ -65,7 +65,7 @@
     color: var(--sbb-tag-badge-label-color-disabled);
   }
 
-  .sbb-tag:not(.sbb-tag-disabled):is(:hover, :focus, .cdk-focused) & {
+  .sbb-tag:not(.sbb-tag-disabled):is(:hover, :focus, .cdk-keyboard-focused) & {
     background-color: var(--sbb-tag-background-color-inactive-hover);
     color: var(--sbb-tag-label-color-inactive-hover);
 
@@ -86,7 +86,7 @@
     }
   }
 
-  .sbb-tag-active:not(.sbb-tag-disabled):is(:hover, :focus, .cdk-focused) & {
+  .sbb-tag-active:not(.sbb-tag-disabled):is(:hover, :focus, .cdk-keyboard-focused) & {
     background-color: transparent;
     border-color: var(--sbb-tag-border-color-active-hover);
     color: var(--sbb-tag-label-color-active-hover);
