@@ -5,6 +5,7 @@
 entry_points = [
     # do not sort
     "angular",
+    "esri-plugin",
 ]
 
 # List of all non-testing entry-points of the Journey-maps package.
@@ -31,4 +32,5 @@ JOURNEY_MAPS_TESTING_TARGETS = ["//src/journey-maps/%s" % ep for ep in JOURNEY_M
 JOURNEY_MAPS_MARKDOWN_TARGETS = [
     "angular",
     "web-component",
+    "esri-plugin",
 ]

@@ -1,0 +1,45 @@
+load(
+    "//tools:defaults.bzl",
+    "ng_module",
+)
+
+package(default_visibility = ["//visibility:public"])
+
+ng_module(
+    name = "esri-plugin",
+    srcs = glob(
+        ["**/*.ts"],
+        exclude = ["**/*.spec.ts"],
+    ),
+    assets = glob([
+        "**/*.html",
+        "**/*.css",
+    ]),
+    deps = [
+        "//src/angular/button",
+        "//src/angular/checkbox",
+        "//src/angular/core",
+        "//src/angular/form-field",
+        "//src/angular/input",
+        "//src/angular/notification",
+        "//src/angular/radio-button",
+        "//src/angular/select",
+        "//src/angular/tabs",
+        "//src/journey-maps",
+        "@npm//@angular/common",
+        "@npm//@angular/core",
+        "@npm//@angular/forms",
+        "@npm//@types/geojson",
+        "@npm//maplibre-gl",
+        "@npm//rxjs",
+    ],
+)
+
+filegroup(
+    name = "source-files",
+    srcs = glob([
+        "**/*.html",
+        "**/*.css",
+        "**/*.ts",
+    ]),
+)

@@ -33,6 +33,12 @@ export class ExampleData {
   devOnly: boolean;
 
   static find(library: string, id: string): ExampleData[] {
+    console.log(
+      Object.keys(EXAMPLE_COMPONENTS as { [id: string]: {} }).filter((exampleId) =>
+        EXAMPLE_COMPONENTS[exampleId].importPath.startsWith(`${library}`),
+      ),
+    );
+
     return Object.keys(EXAMPLE_COMPONENTS as { [id: string]: {} })
       .filter((exampleId) => EXAMPLE_COMPONENTS[exampleId].importPath === `${library}/${id}`)
       .map((exampleId) => new ExampleData(exampleId));

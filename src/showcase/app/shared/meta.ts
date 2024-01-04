@@ -132,6 +132,7 @@ export const PACKAGES: { [key: string]: ShowcaseMetaPackage } = {
         entries: [
           { label: 'JourneyMaps', link: './components/angular' },
           { label: 'JourneyMaps Web Component', link: './components/web-component' },
+          { label: 'JourneyMaps Esri Plugin', link: './components/esri-plugin' },
         ],
       },
     ],
