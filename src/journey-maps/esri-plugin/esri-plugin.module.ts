@@ -8,4 +8,4 @@ import { EsriPluginComponent } from './esri-plugin';
   imports: [CommonModule],
   exports: [EsriPluginComponent],
 })
-export class EsriPluginModule {}
+export class SbbEsriPluginModule {}

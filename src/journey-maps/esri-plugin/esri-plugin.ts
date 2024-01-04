@@ -1,7 +1,7 @@
 import { Component, Input, OnChanges, SimpleChanges } from '@angular/core';
 import { Map as MaplibreMap } from 'maplibre-gl';
 
-import { FeatureLayer } from './esri-plugin.interface';
+import { SbbEsriFeatureLayer } from './esri-plugin.interface';
 
 @Component({
   selector: 'sbb-esri-plugin',
@@ -18,7 +18,7 @@ export class EsriPluginComponent implements OnChanges {
    * The map (maplibre-gl) instance to be used.
    */
   @Input()
-  public featureLayers: FeatureLayer[] = [];
+  public featureLayers: SbbEsriFeatureLayer[] = [];
 
   ngOnChanges(changes: SimpleChanges): void {
     if (changes.map?.currentValue && !changes.map?.previousValue) {
@@ -27,6 +27,8 @@ export class EsriPluginComponent implements OnChanges {
   }
 
   private initialize(): void {
-    throw new Error('Method not implemented.');
+    if (!this.featureLayers) {
+      throw new Error('There must be at least one feature-layer');
+    }
   }
 }

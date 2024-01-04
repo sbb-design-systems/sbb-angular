@@ -22,7 +22,6 @@ export class ExampleListViewerComponent implements OnInit {
         const examples = ExampleData.find(params.packageName, params.id).filter(
           (example) => isDevMode() || !example.devOnly,
         );
-        console.log(params.packageName, params.id);
         return examples.length === 0 ? null : examples;
       }),
     );
