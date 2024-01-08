@@ -10,9 +10,7 @@ import {
 import { Map as MaplibreMap } from 'maplibre-gl';
 import { Subject } from 'rxjs';
 
-import {
-  SbbEsriFeatureLayer,
-} from './esri-plugin.interface';
+import { SbbEsriFeatureLayer } from './esri-plugin.interface';
 import { ConfigService } from './services/config.service';
 
 @Component({
