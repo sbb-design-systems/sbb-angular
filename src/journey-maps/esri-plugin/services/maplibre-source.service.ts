@@ -17,10 +17,11 @@ export class MaplibreSourceService {
     layer: SbbEsriFeatureLayer,
     mapSourceAdded: EventEmitter<string>,
   ): void {
-    map.addSource(this._maplibreUtilService.getSourceId(layer), {
+    const sourceId = this._maplibreUtilService.getSourceId(layer);
+    map.addSource(sourceId, {
       type: 'geojson',
       data: { type: 'FeatureCollection', features },
     });
-    mapSourceAdded.next(this._maplibreUtilService.getSourceId(layer));
+    mapSourceAdded.next(sourceId);
   }
 }

@@ -29,12 +29,14 @@ export class MaplibreLayerService {
     const addLayerBeforeExists =
       configAndLayer.layerDefinition.layerBefore &&
       !!map.getLayer(configAndLayer.layerDefinition.layerBefore);
-
-    const layerDefinition = this._getMapLayerDefinition(configAndLayer);
-    console.log(layerDefinition);
+    const maplibreLayerDefinition = this._getMapLayerDefinition(configAndLayer);
+    console.log(
+      maplibreLayerDefinition,
+      map.getSource(this._maplibreUtilService.getSourceId(configAndLayer.layerDefinition)),
+    );
 
     map.addLayer(
-      layerDefinition,
+      maplibreLayerDefinition,
       addLayerBeforeExists ? configAndLayer.layerDefinition.layerBefore : undefined,
     );
     mapLayerAdded.next(this._maplibreUtilService.getLayerId(configAndLayer.layerDefinition));
@@ -44,11 +46,11 @@ export class MaplibreLayerService {
     const layerPaintStyle =
       configAndLayer.layerDefinition.style ?? this._parseArcgisDrawingInfo(configAndLayer);
     return {
+      minzoom: this._esriColorService.convertScaleToLevel(configAndLayer.config.minScale),
+      maxzoom: this._esriColorService.convertScaleToLevel(configAndLayer.config.maxScale),
       ...layerPaintStyle,
       id: this._maplibreUtilService.getLayerId(configAndLayer.layerDefinition),
       source: this._maplibreUtilService.getSourceId(configAndLayer.layerDefinition),
-      minzoom: this._esriColorService.convertScaleToLevel(configAndLayer.config.minScale),
-      maxzoom: this._esriColorService.convertScaleToLevel(configAndLayer.config.maxScale),
     } as AddLayerObject;
   }
 

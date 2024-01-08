@@ -72,7 +72,7 @@ export class EsriFeatureService {
     formData.append('returnExceededLimitFeatures', 'true');
     formData.append('outSR', this.WGS84_WKID);
     formData.append('returnGeometry', 'true');
-
+    formData.append('outfields', '*');
     return this._httpClient.post<SbbEsriFeatureResponse>(
       requestUrl,
       formData,

@@ -43,11 +43,17 @@ export class EsriPluginComponent implements OnChanges, OnDestroy {
 
   private _destroyed: Subject<void> = new Subject();
 
+  private _latestStyleUrl: string;
+
   constructor(private _configService: ConfigService) {}
 
   ngOnChanges(changes: SimpleChanges): void {
     if (changes.map?.currentValue && !changes.map?.previousValue) {
       this._initialize();
+      this.map.once('idle', () => {
+        this._latestStyleUrl = this.map.getStyle().sprite as string;
+        this.map.on('styledata', () => this.map.once('idle', () => this._checkStyleChange()));
+      });
     }
   }
 
@@ -66,5 +72,14 @@ export class EsriPluginComponent implements OnChanges, OnDestroy {
       this.mapSourceAdded,
       this.mapLayerAdded,
     );
+  }
+
+  private _checkStyleChange(): void {
+    const newUrl = this.map.getStyle().sprite as string;
+    if (newUrl === this._latestStyleUrl) {
+      return;
+    }
+    this._latestStyleUrl = newUrl;
+    this._initialize();
   }
 }

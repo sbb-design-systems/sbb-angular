@@ -46,13 +46,20 @@ export class ConfigService {
         }),
       )
       .subscribe((configsAndLayers) => {
+        console.log(configsAndLayers);
         configsAndLayers.forEach((configAndLayer) =>
-          this._loadDataForConfig(map, configAndLayer, destroyed, mapSourceAdded, mapLayerAdded),
+          this._loadFeaturesForConfig(
+            map,
+            configAndLayer,
+            destroyed,
+            mapSourceAdded,
+            mapLayerAdded,
+          ),
         );
       });
   }
 
-  private _loadDataForConfig(
+  private _loadFeaturesForConfig(
     map: MaplibreMap,
     configAndLayer: SbbEsriFeatureLayerAndConfig,
     destroyed: Subject<void>,
@@ -66,27 +73,17 @@ export class ConfigService {
       );
       return;
     }
-    this._loadFeaturesForConfig(map, configAndLayer, destroyed, mapSourceAdded, mapLayerAdded);
-  }
-
-  private _loadFeaturesForConfig(
-    map: MaplibreMap,
-    featureLayerConfig: SbbEsriFeatureLayerAndConfig,
-    destroyed: Subject<void>,
-    mapSourceAdded: EventEmitter<string>,
-    mapLayerAdded: EventEmitter<string>,
-  ): void {
     this._esriFeatureService
-      .getFeatures(featureLayerConfig.layerDefinition)
+      .getFeatures(configAndLayer.layerDefinition)
       .pipe(takeUntil(destroyed))
       .subscribe((features) => {
         // this.ref.detectChanges();
         try {
-          this._addFeaturesToMap(map, features, featureLayerConfig, mapSourceAdded, mapLayerAdded);
+          this._addFeaturesToMap(map, features, configAndLayer, mapSourceAdded, mapLayerAdded);
         } catch (error) {
           console.error(
             `Failed to initialize layer ${this._maplibreUtilService.getLayerId(
-              featureLayerConfig.layerDefinition,
+              configAndLayer.layerDefinition,
             )} | ${error}`,
           );
         }
@@ -100,6 +97,15 @@ export class ConfigService {
     mapSourceAdded: EventEmitter<string>,
     mapLayerAdded: EventEmitter<string>,
   ): void {
+    const layerId = this._maplibreUtilService.getLayerId(configAndLayer.layerDefinition);
+    if (map.getLayer(layerId)) {
+      map.removeLayer(layerId);
+    }
+    const sourceId = this._maplibreUtilService.getSourceId(configAndLayer.layerDefinition);
+    if (map.getSource(sourceId)) {
+      map.removeSource(sourceId);
+    }
+
     this._maplibreSourceService.addFeaturesAsMapSource(
       map,
       features,
