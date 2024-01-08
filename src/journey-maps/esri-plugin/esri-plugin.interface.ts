@@ -1,18 +1,22 @@
-import { LayerSpecification as MaplibreLayerSpecification } from 'maplibre-gl';
+import {
+  CircleLayerSpecification,
+  ExpressionInputType,
+  FillLayerSpecification,
+  HeatmapLayerSpecification,
+  LayerSpecification,
+  LineLayerSpecification,
+} from 'maplibre-gl';
 
 /**
  * Specification of the maplibre layer acording to `LayerSpecification` from `maplibre-gl`.
  * The fields `id` and `source` are set automatically and cannot be set therefore.
  */
-type LayerSpecification = Omit<MaplibreLayerSpecification, 'id' | 'source'>;
+export type WithoutIdAndSource<T> = Omit<T, 'id' | 'source'>;
 
-/**
- *
- */
 export interface SbbEsriFeatureLayer {
   url: string;
   accessToken?: string;
-  style?: LayerSpecification;
+  style?: WithoutIdAndSource<LayerSpecification>;
   layerBefore?: string;
   filter?: string;
 }
@@ -95,3 +99,15 @@ export interface SbbEsriArcgisSymbolDefinition {
   xoffset?: number;
   yoffset?: number;
 }
+
+export type AtLeastTwoInputValues = [
+  ExpressionInputType,
+  ExpressionInputType,
+  ...ExpressionInputType[],
+];
+
+export type SupportedEsriLayerTypes =
+  | CircleLayerSpecification
+  | LineLayerSpecification
+  | FillLayerSpecification
+  | HeatmapLayerSpecification;

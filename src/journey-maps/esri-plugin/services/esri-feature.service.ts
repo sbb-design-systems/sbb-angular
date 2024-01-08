@@ -12,13 +12,13 @@ import {
 @Injectable({
   providedIn: 'root',
 })
-export class FeatureLayerService {
+export class EsriFeatureService {
   private readonly WGS84_WKID = '4326';
   private readonly ARC_GIS_REQUEST_LIMIT = 1000;
 
   constructor(private _httpClient: HttpClient) {}
 
-  getFeatureLayerConfig(featureLayer: SbbEsriFeatureLayer): Observable<SbbEsriConfig> {
+  public getLayerConfig(featureLayer: SbbEsriFeatureLayer): Observable<SbbEsriConfig> {
     const formData = new FormData();
     formData.append('f', 'json');
 
@@ -38,7 +38,9 @@ export class FeatureLayerService {
       );
   }
 
-  getFeatures(featurelayer: SbbEsriFeatureLayer): Observable<GeoJSON.Feature<GeoJSON.Geometry>[]> {
+  public getFeatures(
+    featurelayer: SbbEsriFeatureLayer,
+  ): Observable<GeoJSON.Feature<GeoJSON.Geometry>[]> {
     let resultOffset = 0;
     return this._loadFeatures(featurelayer, resultOffset).pipe(
       expand((response: any) => {
@@ -55,17 +57,6 @@ export class FeatureLayerService {
         return all.concat(latest);
       }, [] as GeoJSON.Feature<GeoJSON.Geometry>[]),
     );
-  }
-
-  private _getAuthHeaders(accessToken?: string) {
-    if (!accessToken) {
-      return;
-    }
-    return {
-      headers: {
-        'X-Esri-Authorization': `Bearer ${accessToken}`,
-      },
-    };
   }
 
   private _loadFeatures(
@@ -87,5 +78,16 @@ export class FeatureLayerService {
       formData,
       this._getAuthHeaders(featureLayer.accessToken),
     );
+  }
+
+  private _getAuthHeaders(accessToken?: string) {
+    if (!accessToken) {
+      return;
+    }
+    return {
+      headers: {
+        'X-Esri-Authorization': `Bearer ${accessToken}`,
+      },
+    };
   }
 }

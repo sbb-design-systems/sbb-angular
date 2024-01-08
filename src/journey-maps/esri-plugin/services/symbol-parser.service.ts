@@ -3,53 +3,51 @@ import {
   CircleLayerSpecification,
   FillLayerSpecification,
   HeatmapLayerSpecification,
-  LayerSpecification,
   LineLayerSpecification,
 } from 'maplibre-gl';
 
 import {
   SbbEsriAnyFeatureLayerRendererInfo,
   SbbEsriArcgisSymbolDefinition,
+  SupportedEsriLayerTypes,
+  WithoutIdAndSource,
 } from '../esri-plugin.interface';
 
-import { UtilService } from './util.service';
+import { EsriColorService } from './esri-color.service';
 
 @Injectable({
   providedIn: 'root',
 })
 export class SymbolParserService {
-  constructor(private _utilService: UtilService) {}
+  constructor(private _esriColorService: EsriColorService) {}
 
   public parseFeatureLayerRenderer(
     renderer: SbbEsriAnyFeatureLayerRendererInfo,
-  ): LayerSpecification {
+  ): WithoutIdAndSource<SupportedEsriLayerTypes> {
     if (renderer.uniqueValueInfos) {
-      const layer = this.createSimpleSymbolLayer(renderer.uniqueValueInfos[0].symbol);
-      this.createUniqueColors(layer, renderer);
+      const layer = this._createSimpleSymbolLayer(renderer.uniqueValueInfos[0].symbol);
+      this._createUniqueColors(layer, renderer);
       return layer;
     }
     if (renderer.colorStops) {
-      return this.createHeatmapLayer(
-        renderer.colorStops,
-        renderer.blurRadius,
-        renderer.maxPixelIntensity,
-      );
+      return this._createHeatmapLayer(renderer.colorStops, renderer.blurRadius);
     }
-
-    return this.createSimpleSymbolLayer(renderer.symbol);
+    return this._createSimpleSymbolLayer(renderer.symbol);
   }
 
-  private createSimpleSymbolLayer(symbol: SbbEsriArcgisSymbolDefinition) {
+  private _createSimpleSymbolLayer(
+    symbol: SbbEsriArcgisSymbolDefinition,
+  ): WithoutIdAndSource<SupportedEsriLayerTypes> {
     switch (symbol.type) {
       case 'esriSMS':
         // https://developers.arcgis.com/web-map-specification/objects/esriSMS_symbol/
-        return this.createCircleLayer(symbol);
+        return this._createCircleLayer(symbol);
       case 'esriSLS':
         // https://developers.arcgis.com/web-map-specification/objects/esriSLS_symbol/
-        return this.createLineLayer(symbol);
+        return this._createLineLayer(symbol);
       case 'esriSFS':
         // https://developers.arcgis.com/web-map-specification/objects/esriSFS_symbol/
-        return this.createFillLayer(symbol);
+        return this._createFillLayer(symbol);
       case 'esriPMS':
       // https://developers.arcgis.com/web-map-specification/objects/esriPMS_symbol/
       case 'esriPFS':
@@ -61,13 +59,11 @@ export class SymbolParserService {
     }
   }
 
-  private createLineLayer(symbol: SbbEsriArcgisSymbolDefinition): LineLayerSpecification {
-    const lineLayer: LineLayerSpecification = {
-      id: '',
+  private _createLineLayer(symbol: SbbEsriArcgisSymbolDefinition): LineLayerSpecification {
+    const lineLayer: WithoutIdAndSource<LineLayerSpecification> = {
       type: 'line',
-      source: '',
       paint: {
-        'line-color': this._utilService.convertColorToRgba(symbol.color),
+        'line-color': this._esriColorService.convertColorToRgba(symbol.color),
         'line-width': symbol.width,
       },
     };
@@ -83,25 +79,25 @@ export class SymbolParserService {
     return lineLayer as LineLayerSpecification;
   }
 
-  private createCircleLayer(symbol: SbbEsriArcgisSymbolDefinition): CircleLayerSpecification {
+  private _createCircleLayer(
+    symbol: SbbEsriArcgisSymbolDefinition,
+  ): WithoutIdAndSource<CircleLayerSpecification> {
     return {
-      id: '',
       type: 'circle',
       paint: {
-        'circle-color': this._utilService.convertColorToRgba(symbol.color),
+        'circle-color': this._esriColorService.convertColorToRgba(symbol.color),
         'circle-radius': symbol.size,
-        'circle-stroke-color': this._utilService.convertColorToRgba(symbol.outline!.color),
+        'circle-stroke-color': this._esriColorService.convertColorToRgba(symbol.outline!.color),
         'circle-stroke-width': symbol.outline!.width,
         'circle-translate': [symbol['xoffset'], symbol['yoffset']],
       },
-    } as CircleLayerSpecification;
+    } as WithoutIdAndSource<CircleLayerSpecification>;
   }
 
-  private createHeatmapLayer(
+  private _createHeatmapLayer(
     colorStops: { ratio: number; color: number[] }[],
     heatmapRadius: number,
-    heatmapIntensity: number,
-  ): HeatmapLayerSpecification {
+  ): WithoutIdAndSource<HeatmapLayerSpecification> {
     const heatmapStops: any[] = ['interpolate', ['linear'], ['heatmap-density']];
     let duplicates = 0;
     colorStops.forEach((colorStop) => {
@@ -109,58 +105,60 @@ export class SymbolParserService {
         colorStop.ratio += ++duplicates * 0.00000000000000001;
       }
       heatmapStops.push(colorStop.ratio);
-      heatmapStops.push(this._utilService.convertColorToRgba(colorStop.color));
+      heatmapStops.push(this._esriColorService.convertColorToRgba(colorStop.color));
     });
 
     return {
-      id: '',
       type: 'heatmap',
       paint: {
         'heatmap-color': heatmapStops,
         'heatmap-radius': heatmapRadius + 20, // looks like in arcgis
-        // 'heatmap-intensity': heatmapIntensity, looks not good - leave default
       },
-    } as HeatmapLayerSpecification;
+    } as WithoutIdAndSource<HeatmapLayerSpecification>;
   }
 
-  private createFillLayer(symbol: SbbEsriArcgisSymbolDefinition): FillLayerSpecification {
+  private _createFillLayer(
+    symbol: SbbEsriArcgisSymbolDefinition,
+  ): WithoutIdAndSource<FillLayerSpecification> {
     return {
-      id: '',
       type: 'fill',
       paint: {
-        'fill-color': this._utilService.convertColorToRgba(symbol.color),
-        'fill-outline-color': this._utilService.convertColorToRgba(symbol.outline!.color),
+        'fill-color': this._esriColorService.convertColorToRgba(symbol.color),
+        'fill-outline-color': this._esriColorService.convertColorToRgba(symbol.outline!.color),
       },
-    } as FillLayerSpecification;
+    } as WithoutIdAndSource<FillLayerSpecification>;
   }
 
-  private createUniqueColors(
-    layer: LayerSpecification,
+  private _createUniqueColors(
+    layer: WithoutIdAndSource<SupportedEsriLayerTypes>,
     renderer: SbbEsriAnyFeatureLayerRendererInfo,
   ): void {
-    const paintColorDef = this._utilService.convertUniqueValueInfosToPaintColor(renderer);
+    const paintColorDef = this._esriColorService.convertUniqueValueInfosToPaintColor(renderer);
     if (!layer.paint) {
-      throw new Error(`No layer.paint for layer ${layer.id}`);
+      throw new Error(`No layer.paint for layer ${layer}`);
     }
     switch (layer.type) {
       case 'line':
-        layer.paint['line-color'] = paintColorDef;
+        (layer as WithoutIdAndSource<LineLayerSpecification>).paint!['line-color'] = paintColorDef;
         break;
       case 'circle':
-        layer.paint['circle-color'] = paintColorDef;
-        const circleOutlineColorDef = this._utilService.convertUniqueValueInfosToPaintColor(
+        (layer as WithoutIdAndSource<CircleLayerSpecification>).paint!['circle-color'] =
+          paintColorDef;
+        const circleOutlineColorDef = this._esriColorService.convertUniqueValueInfosToPaintColor(
           renderer,
           true,
         );
-        layer.paint['circle-stroke-color'] = circleOutlineColorDef;
+        (layer as WithoutIdAndSource<CircleLayerSpecification>).paint!['circle-stroke-color'] =
+          circleOutlineColorDef;
         break;
       case 'fill':
-        layer.paint['fill-color'] = paintColorDef;
-        const fillOutlineColorDef = this._utilService.convertUniqueValueInfosToPaintColor(
+        (layer as WithoutIdAndSource<FillLayerSpecification>).paint!['fill-color'] = paintColorDef;
+        const fillOutlineColorDef = this._esriColorService.convertUniqueValueInfosToPaintColor(
           renderer,
           true,
         );
-        layer.paint['fill-outline-color'] = fillOutlineColorDef;
+        (layer as WithoutIdAndSource<FillLayerSpecification>).paint!['fill-outline-color'] =
+          fillOutlineColorDef;
         break;
       default:
         throw new Error(`Unique colors for layer type '${layer.type}' are not supported!`);
