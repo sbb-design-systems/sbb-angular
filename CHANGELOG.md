@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [17.2.1](https://github.com/sbb-design-systems/sbb-angular/compare/17.2.0...17.2.1) (2024-01-08)
+
+
+### Bug Fixes
+
+* **angular/tags:** remove tag focus on mouse blur ([#2123](https://github.com/sbb-design-systems/sbb-angular/issues/2123)) ([b578e2b](https://github.com/sbb-design-systems/sbb-angular/commit/b578e2bd69b71d9dc6515d0113e298b9d7f55683)), closes [#2119](https://github.com/sbb-design-systems/sbb-angular/issues/2119)
+
 ## [17.2.0](https://github.com/sbb-design-systems/sbb-angular/compare/17.1.1...17.2.0) (2023-12-18)
 
 
