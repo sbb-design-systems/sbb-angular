@@ -1,6 +1,14 @@
-import { LayerSpecification } from 'maplibre-gl';
+import { LayerSpecification as MaplibreLayerSpecification } from 'maplibre-gl';
 
-// post not get
+/**
+ * Specification of the maplibre layer acording to `LayerSpecification` from `maplibre-gl`.
+ * The fields `id` and `source` are set automatically and cannot be set therefore.
+ */
+type LayerSpecification = Omit<MaplibreLayerSpecification, 'id' | 'source'>;
+
+/**
+ *
+ */
 export interface SbbEsriFeatureLayer {
   url: string;
   accessToken?: string;
@@ -9,9 +17,12 @@ export interface SbbEsriFeatureLayer {
   filter?: string;
 }
 
-export type SbbEsriFeatureLayerInfoResponse = SbbEsriFeatureLayerConfig | SbbEsriFeatureLayerError;
+export interface SbbEsriFeatureLayerAndConfig {
+  layerDefinition: SbbEsriFeatureLayer;
+  config: SbbEsriConfig;
+}
 
-export interface SbbEsriFeatureLayerConfig {
+export class SbbEsriConfig {
   minScale: number;
   maxScale: number;
   maxRecordCount: number;
@@ -20,8 +31,13 @@ export interface SbbEsriFeatureLayerConfig {
   transparency: number;
 }
 
-export interface SbbEsriFeatureLayerError {
+export class SbbEsriError {
   error: { code: number; message: string };
+}
+
+export interface SbbEsriFeatureResponse {
+  exceededTransferLimit: boolean;
+  features: GeoJSON.Feature<GeoJSON.Geometry>[];
 }
 
 export type SbbEsriAnyFeatureLayerRendererInfo =
@@ -34,11 +50,16 @@ export interface SbbEsriFeatureLayerUniqueValueRendererInfo {
 
   /*uniqueValue*/
   defaultSymbol?: SbbEsriArcgisSymbolDefinition;
-  uniqueValueInfos?: { symbol: SbbEsriArcgisSymbolDefinition; value: any }[];
+  uniqueValueInfos?: SbbEsriUniqueValueInfo[];
   field1?: string;
 
   /**/
   [key: string]: any;
+}
+
+export interface SbbEsriUniqueValueInfo {
+  symbol: SbbEsriArcgisSymbolDefinition;
+  value: any;
 }
 
 export interface SbbEsriFeatureLayerSimpleRendererInfo {
@@ -71,4 +92,6 @@ export interface SbbEsriArcgisSymbolDefinition {
   size?: number;
   style?: 'esriSLSSolid' | 'esriSLSDash' | 'esriSLSDot';
   outline?: { color: number[]; width?: number };
+  xoffset?: number;
+  yoffset?: number;
 }

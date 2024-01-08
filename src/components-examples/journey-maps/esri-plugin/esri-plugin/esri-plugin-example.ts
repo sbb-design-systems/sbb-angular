@@ -28,10 +28,18 @@ export class EsriPluginExample {
 
   public esriLayerDefinition: SbbEsriFeatureLayer[] = [
     {
-      url: 'https://services7.arcgis.com/RZYPa9cXL4L1fYTj/ArcGIS/rest/services/J-M-C-ArcGIS-TEST/FeatureServer/0',
+      url: 'https://services7.arcgis.com/RZYPa9cXL4L1fYTj/ArcGIS/rest/services/J-M-C-ArcGIS-TEST/FeatureServer/1',
     },
     {
-      url: 'https://services7.arcgis.com/RZYPa9cXL4L1fYTj/ArcGIS/rest/services/J-M-C-ArcGIS-TEST/FeatureServer/1',
+      url: 'https://services7.arcgis.com/RZYPa9cXL4L1fYTj/ArcGIS/rest/services/J-M-C-ArcGIS-TEST/FeatureServer/2',
+      layerBefore:
+        'https___services7_arcgis_com_RZYPa9cXL4L1fYTj_ArcGIS_rest_services_J_M_C_ArcGIS_TEST_FeatureServer_0',
+      style: {
+        type: 'fill',
+        paint: {
+          'fill-color': '#FF0000',
+        },
+      },
     },
   ];
 
