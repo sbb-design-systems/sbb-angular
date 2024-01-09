@@ -18,6 +18,8 @@ ng_module(
     deps = [
         "//src/angular/notification",
         "//src/journey-maps",
+        "@npm//@angular/common",
+        "@npm//@angular/core",
         "@npm//maplibre-gl",
     ],
 )
