@@ -79,16 +79,20 @@ export type SbbEsriAnyFeatureLayerRendererInfo =
   | SbbEsriFeatureLayerHeatmapRendererInfo;
 
 /** @docs-private */
-export interface SbbEsriFeatureLayerUniqueValueRendererInfo {
+interface SbbEsriFeatureLayerBase {
+  type: string;
+  [key: string]: any;
+}
+
+/** @docs-private */
+export interface SbbEsriFeatureLayerUniqueValueRendererInfo extends SbbEsriFeatureLayerBase {
   type: 'uniqueValue';
 
   /*uniqueValue*/
   defaultSymbol?: SbbEsriArcgisSymbolDefinition;
   uniqueValueInfos?: SbbEsriUniqueValueInfo[];
   field1?: string;
-
   /**/
-  [key: string]: any;
 }
 
 /** @docs-private */
@@ -98,18 +102,16 @@ export interface SbbEsriUniqueValueInfo {
 }
 
 /** @docs-private */
-export interface SbbEsriFeatureLayerSimpleRendererInfo {
+export interface SbbEsriFeatureLayerSimpleRendererInfo extends SbbEsriFeatureLayerBase {
   type: 'simple';
 
   /*simple*/
   symbol: SbbEsriArcgisSymbolDefinition;
-
   /**/
-  [key: string]: any;
 }
 
 /** @docs-private */
-export interface SbbEsriFeatureLayerHeatmapRendererInfo {
+export interface SbbEsriFeatureLayerHeatmapRendererInfo extends SbbEsriFeatureLayerBase {
   type: 'heatmap';
 
   /*heatmap*/
@@ -117,9 +119,7 @@ export interface SbbEsriFeatureLayerHeatmapRendererInfo {
   maxPixelIntensity?: number;
   minPixelIntensity?: number;
   colorStops?: { ratio: number; color: number[] }[];
-
   /**/
-  [key: string]: any;
 }
 
 /** @docs-private */
