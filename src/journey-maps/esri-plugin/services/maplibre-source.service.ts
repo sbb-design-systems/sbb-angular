@@ -1,7 +1,6 @@
 import { EventEmitter, Injectable } from '@angular/core';
-import { Map as MaplibreMap } from 'maplibre-gl';
 
-import { SbbEsriFeatureLayer } from '../esri-plugin.interface';
+import { MaplibreMap, SbbEsriFeatureLayer } from '../esri-plugin.interface';
 
 import { MaplibreUtilService } from './maplibre-util.service';
 
@@ -11,7 +10,7 @@ import { MaplibreUtilService } from './maplibre-util.service';
 export class MaplibreSourceService {
   constructor(private _maplibreUtilService: MaplibreUtilService) {}
 
-  public addFeaturesAsMapSource(
+  addFeaturesAsMapSource(
     map: MaplibreMap,
     features: GeoJSON.Feature<GeoJSON.Geometry>[],
     layer: SbbEsriFeatureLayer,

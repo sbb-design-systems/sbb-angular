@@ -5,28 +5,53 @@ import {
   HeatmapLayerSpecification,
   LayerSpecification,
   LineLayerSpecification,
+  Map,
 } from 'maplibre-gl';
 
 /**
- * Specification of the maplibre layer acording to `LayerSpecification` from `maplibre-gl`.
- * The fields `id` and `source` are set automatically and cannot be set therefore.
+ * Contains all necessary information to represent the Esri feature-layer onto a MapLibre map.
  */
-export type WithoutIdAndSource<T> = Omit<T, 'id' | 'source'>;
-
 export interface SbbEsriFeatureLayer {
+  /** The url of the Esri feature-layer. */
   url: string;
+  /** The Esri access-token, if the Esri feature-layer requires authentication (optional). */
   accessToken?: string;
+  /**
+   * A style according to the MapLibre layer-specification (optional).
+   * If not given, the style of the Esri feature-layer will be translated to the corresponding MapLibre style.
+   *
+   * {@link https://maplibre.org/maplibre-style-spec/layers/}
+   */
   style?: WithoutIdAndSource<LayerSpecification>;
-  layerBefore?: string;
+  /** The ID of the layer, that is after this layer (optional). */
+  layerAfter?: string;
+  /**
+   *  A where-clause according to the Esri feature-service (optional).
+   *
+   * {@link https://developers.arcgis.com/rest/services-reference/enterprise/query-feature-service-layer-.htm}
+   */
   filter?: string;
 }
 
+/**
+ * Specification of the maplibre layer acording to `LayerSpecification` from `maplibre-gl`.
+ * The fields `id` and `source` are set automatically by the plugin and cannot be manually set therefore.
+ */
+export type WithoutIdAndSource<T> = Omit<T, 'id' | 'source'>;
+
+/**
+ * Alias for the class `map` of the MapLibre library.
+ */
+export type MaplibreMap = Map;
+
+/** @docs-private */
 export interface SbbEsriViewInformations {
   layerDefinition: SbbEsriFeatureLayer;
   config: SbbEsriConfig;
   features: GeoJSON.Feature<GeoJSON.Geometry>[];
 }
 
+/** @docs-private */
 export class SbbEsriConfig {
   minScale: number;
   maxScale: number;
@@ -36,20 +61,24 @@ export class SbbEsriConfig {
   transparency: number;
 }
 
+/** @docs-private */
 export class SbbEsriError {
   error: { code: number; message: string };
 }
 
+/** @docs-private */
 export interface SbbEsriFeatureResponse {
   exceededTransferLimit: boolean;
   features: GeoJSON.Feature<GeoJSON.Geometry>[];
 }
 
+/** @docs-private */
 export type SbbEsriAnyFeatureLayerRendererInfo =
   | SbbEsriFeatureLayerSimpleRendererInfo
   | SbbEsriFeatureLayerUniqueValueRendererInfo
   | SbbEsriFeatureLayerHeatmapRendererInfo;
 
+/** @docs-private */
 export interface SbbEsriFeatureLayerUniqueValueRendererInfo {
   type: 'uniqueValue';
 
@@ -62,11 +91,13 @@ export interface SbbEsriFeatureLayerUniqueValueRendererInfo {
   [key: string]: any;
 }
 
+/** @docs-private */
 export interface SbbEsriUniqueValueInfo {
   symbol: SbbEsriArcgisSymbolDefinition;
   value: any;
 }
 
+/** @docs-private */
 export interface SbbEsriFeatureLayerSimpleRendererInfo {
   type: 'simple';
 
@@ -77,6 +108,7 @@ export interface SbbEsriFeatureLayerSimpleRendererInfo {
   [key: string]: any;
 }
 
+/** @docs-private */
 export interface SbbEsriFeatureLayerHeatmapRendererInfo {
   type: 'heatmap';
 
@@ -90,6 +122,7 @@ export interface SbbEsriFeatureLayerHeatmapRendererInfo {
   [key: string]: any;
 }
 
+/** @docs-private */
 export interface SbbEsriArcgisSymbolDefinition {
   type: 'esriSMS' | 'esriSLS' | 'esriSFS' | 'esriPMS' | 'esriPFS' | 'esriTS';
   color: number[];
@@ -101,12 +134,14 @@ export interface SbbEsriArcgisSymbolDefinition {
   yoffset?: number;
 }
 
+/** @docs-private */
 export type AtLeastTwoInputValues = [
   ExpressionInputType,
   ExpressionInputType,
   ...ExpressionInputType[],
 ];
 
+/** @docs-private */
 export type SupportedEsriLayerTypes =
   | CircleLayerSpecification
   | LineLayerSpecification

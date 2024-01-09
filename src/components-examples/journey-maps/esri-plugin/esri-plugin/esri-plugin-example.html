@@ -3,5 +3,10 @@
 </sbb-notification>
 <div class="web-map">
   <sbb-journey-maps [apiKey]="apiKey" language="en" (mapReady)="map = $event"></sbb-journey-maps>
-  <sbb-esri-plugin [map]="map" [featureLayers]="esriLayerDefinition" />
+  <sbb-esri-plugin
+    [map]="map"
+    [featureLayers]="esriLayerDefinition"
+    (mapLayerAdded)="layerAdded($event)"
+    (mapSourceAdded)="sourceAdded($event)"
+  />
 </div>

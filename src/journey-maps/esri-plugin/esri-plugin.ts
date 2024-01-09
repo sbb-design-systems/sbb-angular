@@ -7,10 +7,9 @@ import {
   Output,
   SimpleChanges,
 } from '@angular/core';
-import { Map as MaplibreMap } from 'maplibre-gl';
 import { Subject } from 'rxjs';
 
-import { SbbEsriFeatureLayer } from './esri-plugin.interface';
+import { MaplibreMap, SbbEsriFeatureLayer } from './esri-plugin.interface';
 import { ConfigService } from './services/config.service';
 
 @Component({
@@ -22,24 +21,24 @@ export class EsriPluginComponent implements OnChanges, OnDestroy {
    * The map (maplibre-gl) instance to be used.
    */
   @Input()
-  public map: MaplibreMap;
+  map: MaplibreMap;
 
   /**
    * The definition of the feature-layers.
    */
   @Input()
-  public featureLayers: SbbEsriFeatureLayer[] = [];
+  featureLayers: SbbEsriFeatureLayer[] = [];
 
   /**
    * Event that occurs, when the feature layer geojson map source was created and added to the map. Returns the map source id.
    */
   @Output()
-  public mapSourceAdded: EventEmitter<string> = new EventEmitter();
+  mapSourceAdded: EventEmitter<string> = new EventEmitter();
   /**
    * Event that occurs, when the feature layer map layer was created and added to the map (inc. layer data). Returns the map layer id.
    */
   @Output()
-  public mapLayerAdded: EventEmitter<string> = new EventEmitter();
+  mapLayerAdded: EventEmitter<string> = new EventEmitter();
 
   private _destroyed: Subject<void> = new Subject();
 
@@ -49,6 +48,10 @@ export class EsriPluginComponent implements OnChanges, OnDestroy {
 
   ngOnChanges(changes: SimpleChanges): void {
     if (changes.map?.currentValue && !changes.map?.previousValue) {
+      if (!this.featureLayers.length) {
+        console.error('There must be at least one feature-layer');
+        return;
+      }
       this._initialize();
       this.map.once('idle', () => {
         this._latestStyleUrl = this.map.getStyle().sprite as string;
@@ -62,9 +65,6 @@ export class EsriPluginComponent implements OnChanges, OnDestroy {
   }
 
   private _initialize(): void {
-    if (!this.featureLayers) {
-      throw new Error('There must be at least one feature-layer');
-    }
     this._configService.loadConfigs(
       this.map,
       this.featureLayers,

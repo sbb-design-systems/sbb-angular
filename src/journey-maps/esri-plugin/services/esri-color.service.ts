@@ -18,7 +18,7 @@ import {
   providedIn: 'root',
 })
 export class EsriColorService {
-  public convertUniqueValueInfosToPaintColor(
+  convertUniqueValueInfosToPaintColor(
     renderer: SbbEsriAnyFeatureLayerRendererInfo,
     byOutlineColor?: boolean,
   ): DataDrivenPropertyValueSpecification<ColorSpecification> {
@@ -69,7 +69,7 @@ export class EsriColorService {
     return uniqueValueColorMapping;
   }
 
-  public convertColorToRgba(color: number[]): string | undefined {
+  convertColorToRgba(color: number[]): string | undefined {
     if (!color || !color.length) {
       return;
     }
@@ -78,7 +78,7 @@ export class EsriColorService {
     return `rgba(${rgb},${alpha})`;
   }
 
-  public convertScaleToLevel(scale: number): number {
+  convertScaleToLevel(scale: number): number {
     if (scale === 0) {
       return 0;
     }

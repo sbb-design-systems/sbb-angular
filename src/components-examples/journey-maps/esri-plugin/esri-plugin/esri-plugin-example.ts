@@ -26,7 +26,9 @@ declare global {
 export class EsriPluginExample {
   apiKey = window.JM_API_KEY;
 
-  public esriLayerDefinition: SbbEsriFeatureLayer[] = [
+  map: MaplibreMap;
+
+  esriLayerDefinition: SbbEsriFeatureLayer[] = [
     {
       url: 'https://services7.arcgis.com/RZYPa9cXL4L1fYTj/ArcGIS/rest/services/J-M-C-ArcGIS-TEST/FeatureServer/1',
     },
@@ -50,11 +52,11 @@ export class EsriPluginExample {
     },
   ];
 
-  private _map: MaplibreMap;
-  public get map(): MaplibreMap {
-    return this._map;
+  sourceAdded(message: string) {
+    console.log(`Source added: ${message}`);
   }
-  public set map(v: MaplibreMap) {
-    this._map = v;
+
+  layerAdded(message: string) {
+    console.log(`Layer added: ${message}`);
   }
 }

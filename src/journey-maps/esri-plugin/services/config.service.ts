@@ -1,8 +1,11 @@
 import { EventEmitter, Injectable } from '@angular/core';
-import { Map as MaplibreMap } from 'maplibre-gl';
-import { forkJoin, map as rxjsMap, mergeMap, Observable, Subject, takeUntil } from 'rxjs';
+import { forkJoin, map, mergeMap, Observable, Subject, takeUntil } from 'rxjs';
 
-import { SbbEsriFeatureLayer, SbbEsriViewInformations } from '../esri-plugin.interface';
+import {
+  MaplibreMap,
+  SbbEsriFeatureLayer,
+  SbbEsriViewInformations,
+} from '../esri-plugin.interface';
 
 import { EsriFeatureService } from './esri-feature.service';
 import { MaplibreLayerService } from './maplibre-layer.service';
@@ -20,8 +23,8 @@ export class ConfigService {
     private _maplibreLayerService: MaplibreLayerService,
   ) {}
 
-  public loadConfigs(
-    map: MaplibreMap,
+  loadConfigs(
+    maplibreMap: MaplibreMap,
     featureLayers: SbbEsriFeatureLayer[],
     destroyed: Subject<void>,
     mapSourceAdded: EventEmitter<string>,
@@ -30,7 +33,7 @@ export class ConfigService {
     forkJoin(featureLayers.map((layer) => this._esriFeatureService.getLayerConfig(layer)))
       .pipe(
         takeUntil(destroyed),
-        rxjsMap((configs) => {
+        map((configs) => {
           return featureLayers
             .filter((_, index) => !!configs[index])
             .map<SbbEsriViewInformations>((layer, index) => ({
@@ -39,7 +42,7 @@ export class ConfigService {
               features: [],
             }));
         }),
-        rxjsMap((viewInformations) => {
+        map((viewInformations) => {
           return forkJoin(
             viewInformations.map((configAndLayer) =>
               this._loadFeaturesForConfig(configAndLayer, destroyed),
@@ -53,7 +56,7 @@ export class ConfigService {
       .subscribe((viewInformations) => {
         viewInformations.forEach((viewInformation) => {
           try {
-            this._addFeaturesToMap(map, viewInformation, mapSourceAdded, mapLayerAdded);
+            this._addFeaturesToMap(maplibreMap, viewInformation, mapSourceAdded, mapLayerAdded);
           } catch (error) {
             console.error(
               `Failed to initialize layer ${this._maplibreUtilService.getLayerId(
@@ -71,7 +74,7 @@ export class ConfigService {
   ): Observable<SbbEsriViewInformations> {
     return this._esriFeatureService.getFeatures(layer.layerDefinition).pipe(
       takeUntil(destroyed),
-      rxjsMap((features) => ({
+      map((features) => ({
         ...layer,
         features,
       })),

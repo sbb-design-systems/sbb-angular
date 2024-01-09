@@ -1,7 +1,8 @@
 import { EventEmitter, Injectable } from '@angular/core';
-import { AddLayerObject, Map as MaplibreMap } from 'maplibre-gl';
+import { AddLayerObject } from 'maplibre-gl';
 
 import {
+  MaplibreMap,
   SbbEsriViewInformations,
   SupportedEsriLayerTypes,
   WithoutIdAndSource,
@@ -21,18 +22,18 @@ export class MaplibreLayerService {
     private _esriSymbolParserService: EsriSymbolParserService,
   ) {}
 
-  public addFeaturesAsMapLayer(
+  addFeaturesAsMapLayer(
     map: MaplibreMap,
     configAndLayer: SbbEsriViewInformations,
     mapLayerAdded: EventEmitter<string>,
   ): void {
     const addLayerBeforeExists =
-      configAndLayer.layerDefinition.layerBefore &&
-      !!map.getLayer(configAndLayer.layerDefinition.layerBefore);
+      configAndLayer.layerDefinition.layerAfter &&
+      !!map.getLayer(configAndLayer.layerDefinition.layerAfter);
     const maplibreLayerDefinition = this._getMapLayerDefinition(configAndLayer);
     map.addLayer(
       maplibreLayerDefinition,
-      addLayerBeforeExists ? configAndLayer.layerDefinition.layerBefore : undefined,
+      addLayerBeforeExists ? configAndLayer.layerDefinition.layerAfter : undefined,
     );
     mapLayerAdded.next(this._maplibreUtilService.getLayerId(configAndLayer.layerDefinition));
   }

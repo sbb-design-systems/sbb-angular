@@ -21,7 +21,7 @@ import { EsriColorService } from './esri-color.service';
 export class EsriSymbolParserService {
   constructor(private _esriColorService: EsriColorService) {}
 
-  public parseFeatureLayerRenderer(
+  parseFeatureLayerRenderer(
     renderer: SbbEsriAnyFeatureLayerRendererInfo,
   ): WithoutIdAndSource<SupportedEsriLayerTypes> {
     if (renderer.uniqueValueInfos) {

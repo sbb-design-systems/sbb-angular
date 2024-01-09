@@ -18,7 +18,7 @@ export class EsriFeatureService {
 
   constructor(private _httpClient: HttpClient) {}
 
-  public getLayerConfig(featureLayer: SbbEsriFeatureLayer): Observable<SbbEsriConfig | undefined> {
+  getLayerConfig(featureLayer: SbbEsriFeatureLayer): Observable<SbbEsriConfig | undefined> {
     const formData = new FormData();
     formData.append('f', 'json');
 
@@ -41,9 +41,7 @@ export class EsriFeatureService {
       );
   }
 
-  public getFeatures(
-    featurelayer: SbbEsriFeatureLayer,
-  ): Observable<GeoJSON.Feature<GeoJSON.Geometry>[]> {
+  getFeatures(featurelayer: SbbEsriFeatureLayer): Observable<GeoJSON.Feature<GeoJSON.Geometry>[]> {
     let resultOffset = 0;
     return this._loadFeatures(featurelayer, resultOffset).pipe(
       expand((response: any) => {

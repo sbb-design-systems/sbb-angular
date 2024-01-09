@@ -16,22 +16,9 @@ ng_module(
         "**/*.css",
     ]),
     deps = [
-        "//src/angular/button",
-        "//src/angular/checkbox",
-        "//src/angular/core",
-        "//src/angular/form-field",
-        "//src/angular/input",
         "//src/angular/notification",
-        "//src/angular/radio-button",
-        "//src/angular/select",
-        "//src/angular/tabs",
         "//src/journey-maps",
-        "@npm//@angular/common",
-        "@npm//@angular/core",
-        "@npm//@angular/forms",
-        "@npm//@types/geojson",
         "@npm//maplibre-gl",
-        "@npm//rxjs",
     ],
 )
 
