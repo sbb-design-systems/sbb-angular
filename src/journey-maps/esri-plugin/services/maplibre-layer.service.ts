@@ -2,14 +2,14 @@ import { EventEmitter, Injectable } from '@angular/core';
 import { AddLayerObject, Map as MaplibreMap } from 'maplibre-gl';
 
 import {
-  SbbEsriFeatureLayerAndConfig,
+  SbbEsriViewInformations,
   SupportedEsriLayerTypes,
   WithoutIdAndSource,
 } from '../esri-plugin.interface';
 
 import { EsriColorService } from './esri-color.service';
+import { EsriSymbolParserService } from './esri-symbol-parser.service';
 import { MaplibreUtilService } from './maplibre-util.service';
-import { SymbolParserService } from './symbol-parser.service';
 
 @Injectable({
   providedIn: 'root',
@@ -18,23 +18,18 @@ export class MaplibreLayerService {
   constructor(
     private _maplibreUtilService: MaplibreUtilService,
     private _esriColorService: EsriColorService,
-    private _symbolParserService: SymbolParserService,
+    private _esriSymbolParserService: EsriSymbolParserService,
   ) {}
 
   public addFeaturesAsMapLayer(
     map: MaplibreMap,
-    configAndLayer: SbbEsriFeatureLayerAndConfig,
+    configAndLayer: SbbEsriViewInformations,
     mapLayerAdded: EventEmitter<string>,
   ): void {
     const addLayerBeforeExists =
       configAndLayer.layerDefinition.layerBefore &&
       !!map.getLayer(configAndLayer.layerDefinition.layerBefore);
     const maplibreLayerDefinition = this._getMapLayerDefinition(configAndLayer);
-    console.log(
-      maplibreLayerDefinition,
-      map.getSource(this._maplibreUtilService.getSourceId(configAndLayer.layerDefinition)),
-    );
-
     map.addLayer(
       maplibreLayerDefinition,
       addLayerBeforeExists ? configAndLayer.layerDefinition.layerBefore : undefined,
@@ -42,7 +37,7 @@ export class MaplibreLayerService {
     mapLayerAdded.next(this._maplibreUtilService.getLayerId(configAndLayer.layerDefinition));
   }
 
-  private _getMapLayerDefinition(configAndLayer: SbbEsriFeatureLayerAndConfig): AddLayerObject {
+  private _getMapLayerDefinition(configAndLayer: SbbEsriViewInformations): AddLayerObject {
     const layerPaintStyle =
       configAndLayer.layerDefinition.style ?? this._parseArcgisDrawingInfo(configAndLayer);
     return {
@@ -55,14 +50,14 @@ export class MaplibreLayerService {
   }
 
   private _parseArcgisDrawingInfo(
-    configAndLayer: SbbEsriFeatureLayerAndConfig,
+    configAndLayer: SbbEsriViewInformations,
   ): WithoutIdAndSource<SupportedEsriLayerTypes> {
     const renderer = configAndLayer.config.drawingInfo.renderer;
     switch (renderer.type) {
       case 'simple':
       case 'uniqueValue':
       case 'heatmap':
-        return this._symbolParserService.parseFeatureLayerRenderer(renderer);
+        return this._esriSymbolParserService.parseFeatureLayerRenderer(renderer);
       default:
         throw new Error(
           `Renderer type not supported in service ${configAndLayer.layerDefinition.url}`,

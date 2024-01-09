@@ -18,7 +18,7 @@ export class EsriFeatureService {
 
   constructor(private _httpClient: HttpClient) {}
 
-  public getLayerConfig(featureLayer: SbbEsriFeatureLayer): Observable<SbbEsriConfig> {
+  public getLayerConfig(featureLayer: SbbEsriFeatureLayer): Observable<SbbEsriConfig | undefined> {
     const formData = new FormData();
     formData.append('f', 'json');
 
@@ -26,12 +26,15 @@ export class EsriFeatureService {
       .post<SbbEsriConfig | SbbEsriError>(
         featureLayer.url,
         formData,
-        this._getAuthHeaders(featureLayer.accessToken),
+        this._getAuthParams(featureLayer.accessToken),
       )
       .pipe(
         map((config) => {
-          if (config instanceof SbbEsriError) {
-            throw new Error(`Failed to call service ${featureLayer.url} (error: ${config}))`);
+          if (this._isEsriError(config)) {
+            console.error(
+              `Failed to call service ${featureLayer.url} (error: ${JSON.stringify(config)}))`,
+            );
+            return undefined;
           }
           return config as SbbEsriConfig;
         }),
@@ -76,18 +79,26 @@ export class EsriFeatureService {
     return this._httpClient.post<SbbEsriFeatureResponse>(
       requestUrl,
       formData,
-      this._getAuthHeaders(featureLayer.accessToken),
+      this._getAuthParams(featureLayer.accessToken),
     );
   }
 
-  private _getAuthHeaders(accessToken?: string) {
+  private _getAuthParams(accessToken?: string) {
     if (!accessToken) {
       return;
     }
     return {
-      headers: {
-        'X-Esri-Authorization': `Bearer ${accessToken}`,
+      params: {
+        token: `${accessToken}`,
       },
     };
+  }
+
+  private _isEsriError(value: any): boolean {
+    if (!('error' in value)) {
+      return false;
+    }
+    const error = value.error;
+    return 'code' in error && 'message' in error;
   }
 }

@@ -18,7 +18,7 @@ import { EsriColorService } from './esri-color.service';
 @Injectable({
   providedIn: 'root',
 })
-export class SymbolParserService {
+export class EsriSymbolParserService {
   constructor(private _esriColorService: EsriColorService) {}
 
   public parseFeatureLayerRenderer(

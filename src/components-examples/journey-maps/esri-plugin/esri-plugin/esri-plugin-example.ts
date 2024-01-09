@@ -43,6 +43,10 @@ export class EsriPluginExample {
         minzoom: 0,
         maxzoom: 11,
       },
+      filter: "category = 'b'",
+    },
+    {
+      url: 'https://services7.arcgis.com/RZYPa9cXL4L1fYTj/ArcGIS/rest/services/DEV_JMC_multipunkte/FeatureServer/0',
     },
   ];
 

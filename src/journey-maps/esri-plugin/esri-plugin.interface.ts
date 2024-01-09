@@ -21,9 +21,10 @@ export interface SbbEsriFeatureLayer {
   filter?: string;
 }
 
-export interface SbbEsriFeatureLayerAndConfig {
+export interface SbbEsriViewInformations {
   layerDefinition: SbbEsriFeatureLayer;
   config: SbbEsriConfig;
+  features: GeoJSON.Feature<GeoJSON.Geometry>[];
 }
 
 export class SbbEsriConfig {
