@@ -1,14 +1,9 @@
-### Add the node dependencies in your Angular project
+### Use Case
 
-```sh
-npm install --save @sbb-esta/journey-maps
-```
+Utilize this component when you need to depict Esri Feature Layers on a MapLibre Layer.
 
-```sh
-npm install --save maplibre-gl
-```
+### Compatibility
 
-**NOTE** \
 The `maplibre-gl` version compatible with this version of `journey-maps` is `3.x.y`.
 
 You can even use our [Journey-Maps-Client](https://angular.app.sbb.ch/journey-maps/components/angular/overview) as well.
