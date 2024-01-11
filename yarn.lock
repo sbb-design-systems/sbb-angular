@@ -2,10 +2,10 @@
 # yarn lockfile v1
 
 
-"@actions/cache@3.2.2":
-  version "3.2.2"
-  resolved "https://registry.yarnpkg.com/@actions/cache/-/cache-3.2.2.tgz#e7bbb5f9b67c613f96f98f91506c69424c9aa288"
-  integrity sha512-6D0Jq5JrLZRQ3VApeQwQkkV20ZZXjXsHNYXd9VjNUdi9E0h93wESpxfMJ2JWLCUCgHNLcfY0v3GjNM+2FdRMlg==
+"@actions/cache@3.2.3":
+  version "3.2.3"
+  resolved "https://registry.yarnpkg.com/@actions/cache/-/cache-3.2.3.tgz#37baec9f88b7c00cf142493a1201ca86ccb36599"
+  integrity sha512-m8KvmcD+JxSLOfNUXuBF2jL0Lp+co/Fhbf0NTt0M9lz61WnXRdqpIGrOvTRZmKIl+7HaHil6kGE3fkEfrKQCQA==
   dependencies:
     "@actions/core" "^1.10.0"
     "@actions/exec" "^1.0.1"
@@ -15,7 +15,7 @@
     "@azure/abort-controller" "^1.1.0"
     "@azure/ms-rest-js" "^2.6.0"
     "@azure/storage-blob" "^12.13.0"
-    semver "^6.1.0"
+    semver "^6.3.1"
     uuid "^3.3.3"
 
 "@actions/core@^1.10.0", "@actions/core@^1.2.6":
@@ -15848,7 +15848,7 @@ semver@7.5.4, semver@^7.0.0, semver@^7.1.1, semver@^7.1.2, semver@^7.3.2, semver
   dependencies:
     lru-cache "^6.0.0"
 
-semver@^6.0.0, semver@^6.1.0, semver@^6.3.0, semver@^6.3.1:
+semver@^6.0.0, semver@^6.3.0, semver@^6.3.1:
   version "6.3.1"
   resolved "https://registry.yarnpkg.com/semver/-/semver-6.3.1.tgz#556d2ef8689146e46dcea4bfdd095f3434dffcb4"
   integrity sha512-BR7VvDCVHO+q2xBEWskxS6DJE1qRnb7DxzUrogb71CWoSficBxYsiAGd+Kl0mmq/MprG9yArRkyrQxTO6XjMzA==
