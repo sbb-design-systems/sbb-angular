@@ -1,0 +1,32 @@
+load(
+    "//tools:defaults.bzl",
+    "markdown_to_html",
+    "ng_module",
+)
+
+package(default_visibility = ["//visibility:public"])
+
+ng_module(
+    name = "esri-plugin",
+    srcs = glob(
+        ["**/*.ts"],
+        exclude = ["**/*.spec.ts"],
+    ),
+    assets = glob(["**/*.html"]),
+    deps = [
+        "@npm//@angular/common",
+        "@npm//@angular/core",
+        "@npm//maplibre-gl",
+        "@npm//rxjs",
+    ],
+)
+
+markdown_to_html(
+    name = "overview",
+    srcs = [":esri-plugin.md"],
+)
+
+filegroup(
+    name = "source-files",
+    srcs = glob(["**/*.ts"]),
+)
