@@ -1,0 +1,12 @@
+<sbb-notification type="info" class="api-key-info"
+  >This example uses a test API key, that might be disabled at any time.
+</sbb-notification>
+<div class="web-map">
+  <sbb-journey-maps [apiKey]="apiKey" language="en" (mapReady)="map = $event"></sbb-journey-maps>
+  <sbb-esri-plugin
+    [map]="map"
+    [featureLayers]="esriLayerDefinition"
+    (mapLayerAdded)="layerAdded($event)"
+    (mapSourceAdded)="sourceAdded($event)"
+  />
+</div>

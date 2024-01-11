@@ -46,4 +46,5 @@ ALL_EXAMPLES = [
     "//src/components-examples/angular/usermenu",
     "//src/components-examples/angular-experimental/example",
     "//src/components-examples/journey-maps/angular",
+    "//src/components-examples/journey-maps/esri-plugin",
 ]
