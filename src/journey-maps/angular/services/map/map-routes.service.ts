@@ -61,8 +61,9 @@ export class SbbMapRoutesService {
   ): SbbMarker[] | undefined {
     return routes
       ?.map<SbbMarker | undefined>((route) => {
-        const markerConfiguration = routesOptions?.find((ro) => ro.id === route.id && !!route.id)
-          ?.midpointMarkerConfiguration;
+        const markerConfiguration = routesOptions?.find(
+          (ro) => ro.id === route.id && !!route.id,
+        )?.midpointMarkerConfiguration;
 
         const point = route.features.find((f) => f?.properties!['type'] === 'midpoint')
           ?.geometry as Point | undefined;

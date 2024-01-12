@@ -23,11 +23,9 @@ export class EsriFeatureService {
     formData.append('f', 'json');
 
     return this._httpClient
-      .post<SbbEsriConfig | SbbEsriError>(
-        featureLayer.url,
-        formData,
-        this._getAuthParams(featureLayer.accessToken),
-      )
+      .post<
+        SbbEsriConfig | SbbEsriError
+      >(featureLayer.url, formData, this._getAuthParams(featureLayer.accessToken))
       .pipe(
         map((config) => {
           if (this._isEsriError(config)) {

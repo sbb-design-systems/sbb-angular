@@ -340,11 +340,10 @@ export class JourneyMapsFullExample implements OnInit, OnDestroy {
     this.form
       .get('limitMaxBounds')
       ?.valueChanges.pipe(takeUntil(this._destroyed))
-      .subscribe(
-        (limitMaxBounds: boolean) =>
-          this.form
-            .get('viewportBounds.maxBounds')
-            ?.patchValue(limitMaxBounds ? CH_BOUNDS : undefined),
+      .subscribe((limitMaxBounds: boolean) =>
+        this.form
+          .get('viewportBounds.maxBounds')
+          ?.patchValue(limitMaxBounds ? CH_BOUNDS : undefined),
       );
 
     this.form
