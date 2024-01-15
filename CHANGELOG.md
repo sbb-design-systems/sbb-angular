@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [17.3.0](https://github.com/sbb-design-systems/sbb-angular/compare/17.2.1...17.3.0) (2024-01-15)
+
+
+### Features
+
+* **journey-maps:** implement esri-plugin ([#2134](https://github.com/sbb-design-systems/sbb-angular/issues/2134)) ([b91ca81](https://github.com/sbb-design-systems/sbb-angular/commit/b91ca81ae40017e583c83dc2328d44a00bcbadde))
+
 ### [17.2.1](https://github.com/sbb-design-systems/sbb-angular/compare/17.2.0...17.2.1) (2024-01-08)
 
 
