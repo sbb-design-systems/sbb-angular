@@ -51,6 +51,11 @@
         [showSmallButtons]="uiOptions.showSmallButtons"
         (homeButtonClicked)="onHomeButtonClicked()"
       ></sbb-home-button>
+      <sbb-level-switch-horizontal
+        *ngIf="uiOptions.levelSwitch"
+        [map]="mapReady | async"
+        [showSmallButtons]="uiOptions.showSmallButtons"
+      ></sbb-level-switch-horizontal>
       <sbb-level-switch
         *ngIf="uiOptions.levelSwitch"
         [map]="mapReady | async"

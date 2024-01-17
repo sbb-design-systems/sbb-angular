@@ -1,0 +1,22 @@
+<div
+  class="map-control-container"
+  [class.small-buttons]="showSmallButtons"
+  *ngIf="map && visibleLevels.length"
+  @fade
+>
+  <ng-container *ngFor="let level of visibleLevels">
+    <div class="map-control-button-wrapper">
+      <button
+        type="button"
+        (click)="switchLevel(level)"
+        [ngClass]="{
+          'map-control-button-selected': level === selectedLevel,
+          'map-control-button': level !== selectedLevel
+        }"
+        [attr.aria-label]="getLevelLabel(level, selectedLevel)"
+      >
+        {{ level }}
+      </button>
+    </div>
+  </ng-container>
+</div>
