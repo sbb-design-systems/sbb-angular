@@ -7,8 +7,8 @@
     "paths": {
       "@sbb-esta/angular": ["../angular"],
       "@sbb-esta/angular/*": ["../angular/*"],
-      "@sbb-esta/journey-maps/*": ["./*"]
-    }
+      "@sbb-esta/journey-maps/*": ["./*"],
+    },
   },
-  "include": ["./**/*.ts"]
+  "include": ["./**/*.ts"],
 }
