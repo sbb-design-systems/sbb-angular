@@ -18,11 +18,11 @@
       "@sbb-esta/components-examples": ["../components-examples"],
       "@sbb-esta/components-examples/*": ["../components-examples/*"],
       "@sbb-esta/journey-maps": ["../journey-maps"],
-      "@sbb-esta/journey-maps/*": ["../journey-maps/*"]
-    }
+      "@sbb-esta/journey-maps/*": ["../journey-maps/*"],
+    },
   },
   "bazelOptions": {
     // See https://github.com/angular/angular/issues/29107
-    "devmodeTargetOverride": "es5"
-  }
+    "devmodeTargetOverride": "es5",
+  },
 }
