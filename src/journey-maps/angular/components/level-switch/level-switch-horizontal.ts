@@ -77,7 +77,10 @@ export class SbbLevelSwitchHorizontal implements OnDestroy {
 
   private startCountdown(): void {
     clearTimeout(this.countdownTimer);
-    this.countdownTimer = setTimeout(() => this.toggleSideButtons(), this.autoCollapseTimeout);
+    this.countdownTimer = setTimeout(() => {
+      this.toggleSideButtons();
+      this._ref.detectChanges();
+    }, this.autoCollapseTimeout);
   }
 
   get selectedLevel(): number | undefined {
