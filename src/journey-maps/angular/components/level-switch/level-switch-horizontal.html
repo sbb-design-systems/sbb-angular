@@ -4,19 +4,33 @@
   *ngIf="map && visibleLevels.length"
   @fade
 >
-  <ng-container *ngFor="let level of visibleLevels">
-    <div class="map-control-button-wrapper">
-      <button
-        type="button"
-        (click)="switchLevel(level)"
-        [ngClass]="{
+  <div class="button-container">
+    <div class="side-buttons-container" [class.show]="showSideButtons">
+      <ng-container *ngFor="let level of visibleLevels">
+        <div class="map-control-button-wrapper">
+          <button
+            #sideButton
+            class="side-button"
+            (click)="onSideButtonClick(level)"
+            (keydown.enter)="onSideButtonClick(level)"
+            [ngClass]="{
           'map-control-button-selected': level === selectedLevel,
           'map-control-button': level !== selectedLevel
-        }"
-        [attr.aria-label]="getLevelLabel(level, selectedLevel)"
-      >
-        {{ level }}
-      </button>
+          }"
+            [attr.aria-label]="getLevelLabel(level, selectedLevel)"
+          >
+            {{ level }}
+          </button>
+        </div>
+      </ng-container>
     </div>
-  </ng-container>
+    <button
+      #mainButton
+      class="main-button"
+      (click)="toggleSideButtons()"
+      (keydown.enter)="toggleSideButtons()"
+    >
+      {{ selectedLevel ?? 'N/A' }}
+    </button>
+  </div>
 </div>

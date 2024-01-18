@@ -67,3 +67,43 @@
     }
   }
 }
+
+.button-container {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  width: 100%;
+}
+
+.side-buttons-container {
+  display: flex; /* Make the container a flexbox */
+  overflow: hidden; /* Hide the overflow content */
+  max-width: 0; /* Initial max-width set to 0 */
+  transition:
+    max-width 0.5s ease,
+    visibility 0s linear 0.5s; /* Transition for max-width and visibility */
+  visibility: hidden; /* Initially not visible */
+}
+
+/* Adjusted to ensure the buttons are visible when the container is displayed */
+.side-buttons-container.show {
+  max-width: 300px; /* Set a max-width large enough to contain all buttons */
+  transition: max-width 0.5s ease;
+  visibility: visible; /* Make visible when expanded */
+}
+
+.side-button,
+.main-button {
+  margin-left: 10px; /* Space between buttons */
+}
+
+.vertical-buttons {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end; /* Aligns items to the right */
+}
+
+button {
+  /* Your styles for the main button */
+  margin: 5px 0; /* Space above and below the main button */
+}

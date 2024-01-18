@@ -3,8 +3,12 @@ import {
   ChangeDetectionStrategy,
   ChangeDetectorRef,
   Component,
+  ElementRef,
   Input,
   OnDestroy,
+  QueryList,
+  ViewChild,
+  ViewChildren,
 } from '@angular/core';
 import { Map as MaplibreMap } from 'maplibre-gl';
 import { Subject } from 'rxjs';
@@ -32,6 +36,12 @@ export class SbbLevelSwitchHorizontal implements OnDestroy {
   @Input() map: MaplibreMap | null;
   @Input() showSmallButtons: boolean | undefined;
 
+  @ViewChild('mainButton', { static: true }) mainButton: ElementRef<HTMLButtonElement>;
+  @ViewChildren('sideButton') sideButtons: QueryList<ElementRef<HTMLButtonElement>>;
+  showSideButtons: boolean = false;
+  private countdownTimer: any;
+  private autoCollapseTimeout = 2000; // 5 seconds
+
   private _destroyed = new Subject<void>();
 
   constructor(
@@ -44,6 +54,29 @@ export class SbbLevelSwitchHorizontal implements OnDestroy {
       .subscribe(() => this._ref.detectChanges());
   }
 
+  toggleSideButtons(): void {
+    this.showSideButtons = !this.showSideButtons;
+    if (this.showSideButtons) {
+      this.startCountdown();
+      this.focusMatchingButton();
+    } else {
+      clearTimeout(this.countdownTimer);
+    }
+  }
+
+  private focusMatchingButton(): void {
+    const mainButtonText = this.mainButton.nativeElement.textContent;
+    const matchingButton = this.sideButtons.find(
+      (button) => button.nativeElement.textContent === mainButtonText,
+    );
+    matchingButton?.nativeElement.focus();
+  }
+
+  private startCountdown(): void {
+    clearTimeout(this.countdownTimer);
+    this.countdownTimer = setTimeout(() => this.toggleSideButtons(), this.autoCollapseTimeout);
+  }
+
   get selectedLevel(): number | undefined {
     return this._levelSwitchService.selectedLevel;
   }
@@ -52,8 +85,10 @@ export class SbbLevelSwitchHorizontal implements OnDestroy {
     return this._levelSwitchService.visibleLevels;
   }
 
-  switchLevel(level: number | undefined): void {
+  onSideButtonClick(level: number | undefined): void {
     this._levelSwitchService.switchLevel(this.selectedLevel === level ? undefined : level);
+    this.toggleSideButtons();
+    this.mainButton.nativeElement.focus();
   }
 
   getLevelLabel(level: number, selectedLevel: number | undefined): string {
