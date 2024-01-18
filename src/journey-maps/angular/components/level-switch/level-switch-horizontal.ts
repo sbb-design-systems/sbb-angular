@@ -18,6 +18,7 @@ import { SbbLocaleService } from '../../services/locale-service';
 
 import { SbbLevelSwitcher } from './services/level-switcher';
 
+// stackblitz: https://stackblitz.com/edit/web-platform-dt3pcc
 @Component({
   selector: 'sbb-level-switch-horizontal',
   templateUrl: './level-switch-horizontal.html',
@@ -39,7 +40,7 @@ export class SbbLevelSwitchHorizontal implements OnDestroy {
   @ViewChild('mainButton', { static: true }) mainButton: ElementRef<HTMLButtonElement>;
   @ViewChildren('sideButton') sideButtons: QueryList<ElementRef<HTMLButtonElement>>;
   showSideButtons: boolean = false;
-  private countdownTimer: any;
+  private countdownTimer: ReturnType<typeof setTimeout>;
   private autoCollapseTimeout = 2000; // 5 seconds
 
   private _destroyed = new Subject<void>();

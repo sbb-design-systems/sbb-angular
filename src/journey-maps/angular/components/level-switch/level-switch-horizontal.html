@@ -24,13 +24,15 @@
         </div>
       </ng-container>
     </div>
-    <button
-      #mainButton
-      class="main-button"
-      (click)="toggleSideButtons()"
-      (keydown.enter)="toggleSideButtons()"
-    >
-      {{ selectedLevel ?? 'N/A' }}
-    </button>
+    <div class="map-control-button-wrapper">
+      <button
+        #mainButton
+        class="main-button map-control-button"
+        (click)="toggleSideButtons()"
+        (keydown.enter)="toggleSideButtons()"
+      >
+        {{ selectedLevel ?? 'N/A' }}
+      </button>
+    </div>
   </div>
 </div>
