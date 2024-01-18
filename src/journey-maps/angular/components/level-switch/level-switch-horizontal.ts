@@ -37,7 +37,7 @@ export class SbbLevelSwitchHorizontal implements OnDestroy {
   @Input() map: MaplibreMap | null;
   @Input() showSmallButtons: boolean | undefined;
 
-  @ViewChild('mainButton', { static: true }) mainButton: ElementRef<HTMLButtonElement>;
+  @ViewChild('mainButton') mainButton: ElementRef<HTMLButtonElement>;
   @ViewChildren('sideButton') sideButtons: QueryList<ElementRef<HTMLButtonElement>>;
   showSideButtons: boolean = false;
   private countdownTimer: ReturnType<typeof setTimeout>;
