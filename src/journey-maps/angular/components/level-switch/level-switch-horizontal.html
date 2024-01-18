@@ -13,6 +13,7 @@
             class="side-button"
             (click)="onSideButtonClick(level)"
             (keydown.enter)="onSideButtonEnter(level, $event)"
+            (focus)="startCountdown()"
             [ngClass]="{
           'map-control-button-selected': level === selectedLevel,
           'map-control-button': level !== selectedLevel

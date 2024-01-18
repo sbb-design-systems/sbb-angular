@@ -75,7 +75,7 @@ export class SbbLevelSwitchHorizontal implements OnDestroy {
     matchingButton?.nativeElement.focus();
   }
 
-  private startCountdown(): void {
+  startCountdown(): void {
     clearTimeout(this.countdownTimer);
     this.countdownTimer = setTimeout(() => {
       this.toggleSideButtons();
