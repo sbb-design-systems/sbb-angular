@@ -59,7 +59,9 @@ export class SbbLevelSwitchHorizontal implements OnDestroy {
     this.showSideButtons = !this.showSideButtons;
     if (this.showSideButtons) {
       this.startCountdown();
-      this.focusMatchingButton();
+      setTimeout(() => {
+        this.focusMatchingButton();
+      }, 0); // make sure side buttons are visible first
     } else {
       clearTimeout(this.countdownTimer);
     }
@@ -104,5 +106,15 @@ export class SbbLevelSwitchHorizontal implements OnDestroy {
   ngOnDestroy(): void {
     this._destroyed.next();
     this._destroyed.complete();
+  }
+
+  onMainButtonEnter(event: Event): void {
+    event.preventDefault();
+    this.toggleSideButtons();
+  }
+
+  onSideButtonEnter(level: number, event: any) {
+    event.preventDefault();
+    this.onSideButtonClick(level);
   }
 }
