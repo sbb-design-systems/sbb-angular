@@ -89,9 +89,9 @@ export class SbbLevelSwitchHorizontal implements OnDestroy {
   }
 
   onSideButtonClick(level: number | undefined): void {
-    this._levelSwitchService.switchLevel(this.selectedLevel === level ? undefined : level);
     this.toggleSideButtons();
     this.mainButton.nativeElement.focus();
+    this._levelSwitchService.switchLevel(this.selectedLevel === level ? undefined : level);
   }
 
   getLevelLabel(level: number, selectedLevel: number | undefined): string {
