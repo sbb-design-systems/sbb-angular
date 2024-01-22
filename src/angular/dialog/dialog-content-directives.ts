@@ -176,14 +176,15 @@ export class _SbbDialogTitleBase implements OnInit, OnDestroy {
   exportAs: 'sbbDialogTitle',
   template: `
     <ng-content></ng-content>
-    <button
-      *ngIf="_closeEnabled"
-      sbb-dialog-close
-      class="sbb-dialog-title-close-button sbb-button-reset-frameless"
-      [aria-label]="closeAriaLabel"
-    >
-      <sbb-icon svgIcon="cross-small"></sbb-icon>
-    </button>
+    @if (_closeEnabled) {
+      <button
+        sbb-dialog-close
+        class="sbb-dialog-title-close-button sbb-button-reset-frameless"
+        [aria-label]="closeAriaLabel"
+      >
+        <sbb-icon svgIcon="cross-small"></sbb-icon>
+      </button>
+    }
   `,
   changeDetection: ChangeDetectionStrategy.OnPush,
   host: {

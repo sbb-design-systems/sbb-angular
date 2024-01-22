@@ -22,7 +22,6 @@ ng_module(
         "//src/angular/radio-button",
         "@npm//@angular/animations",
         "@npm//@angular/cdk",
-        "@npm//@angular/common",
         "@npm//@angular/core",
         "@npm//@angular/forms",
         "@npm//rxjs",

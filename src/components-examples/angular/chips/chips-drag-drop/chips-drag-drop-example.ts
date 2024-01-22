@@ -1,5 +1,4 @@
 import { CdkDrag, CdkDragDrop, CdkDropList, moveItemInArray } from '@angular/cdk/drag-drop';
-import { NgFor } from '@angular/common';
 import { Component } from '@angular/core';
 import { SbbChipsModule } from '@sbb-esta/angular/chips';
 
@@ -16,7 +15,7 @@ export interface Fruit {
   templateUrl: 'chips-drag-drop-example.html',
   styleUrls: ['chips-drag-drop-example.css'],
   standalone: true,
-  imports: [SbbChipsModule, CdkDropList, NgFor, CdkDrag],
+  imports: [SbbChipsModule, CdkDropList, CdkDrag],
 })
 export class ChipsDragDropExample {
   fruits: Fruit[] = [

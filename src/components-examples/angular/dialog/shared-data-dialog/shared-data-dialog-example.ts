@@ -1,4 +1,3 @@
-import { NgIf } from '@angular/common';
 import { Component, Inject } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { SbbButtonModule } from '@sbb-esta/angular/button';
@@ -20,7 +19,7 @@ export interface DialogData {
   selector: 'sbb-shared-data-dialog-example',
   templateUrl: 'shared-data-dialog-example.html',
   standalone: true,
-  imports: [FormsModule, SbbButtonModule, NgIf],
+  imports: [FormsModule, SbbButtonModule],
 })
 export class SharedDataDialogExample {
   animal: string;

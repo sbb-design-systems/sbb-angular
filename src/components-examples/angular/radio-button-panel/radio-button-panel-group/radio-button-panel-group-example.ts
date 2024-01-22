@@ -1,4 +1,4 @@
-import { NgClass, NgFor } from '@angular/common';
+import { NgClass } from '@angular/common';
 import { Component, OnDestroy } from '@angular/core';
 import { FormBuilder, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { SbbOptionModule } from '@sbb-esta/angular/core';
@@ -24,7 +24,6 @@ import { startWith, takeUntil } from 'rxjs/operators';
     ReactiveFormsModule,
     SbbRadioButtonModule,
     NgClass,
-    NgFor,
     SbbRadioButtonPanelModule,
     SbbFormFieldModule,
     SbbInputModule,

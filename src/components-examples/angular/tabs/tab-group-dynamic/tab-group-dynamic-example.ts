@@ -1,4 +1,3 @@
-import { NgFor } from '@angular/common';
 import { Component } from '@angular/core';
 import { FormControl, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { SbbButtonModule } from '@sbb-esta/angular/button';
@@ -18,7 +17,6 @@ import { SbbTabsModule } from '@sbb-esta/angular/tabs';
   standalone: true,
   imports: [
     SbbTabsModule,
-    NgFor,
     SbbButtonModule,
     SbbFormFieldModule,
     SbbInputModule,

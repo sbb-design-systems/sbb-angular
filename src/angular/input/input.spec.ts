@@ -944,7 +944,9 @@ class SbbInputWithFormControl {
 @Component({
   template: ` <sbb-form-field [label]="label">
     <input sbbInput [formControl]="formControl" [aria-describedby]="userDescribedByValue" />
-    <sbb-error *ngIf="showError">Some error</sbb-error>
+    @if (showError) {
+      <sbb-error>Some error</sbb-error>
+    }
   </sbb-form-field>`,
 })
 class SbbInputWithSubscriptAndAriaDescribedBy {
@@ -1026,7 +1028,9 @@ class SbbInputMissingSbbInputTestController {}
     <form #form="ngForm" novalidate>
       <sbb-form-field>
         <input sbbInput [formControl]="formControl" />
-        <sbb-error *ngIf="renderError">This field is required</sbb-error>
+        @if (renderError) {
+          <sbb-error>This field is required</sbb-error>
+        }
       </sbb-form-field>
     </form>
   `,
@@ -1079,7 +1083,9 @@ class SbbInputWithFormGroupErrorMessages {
 @Component({
   template: `
     <sbb-form-field>
-      <input sbbInput *ngIf="renderInput" />
+      @if (renderInput) {
+        <input sbbInput />
+      }
     </sbb-form-field>
   `,
 })
@@ -1162,10 +1168,12 @@ class CustomSbbInputAccessor {
 @Component({
   template: `
     <sbb-form-field>
-      <sbb-label *ngIf="true">My Label</sbb-label>
-      <ng-container *ngIf="true">
+      @if (true) {
+        <sbb-label>My Label</sbb-label>
+      }
+      @if (true) {
         <input sbbInput />
-      </ng-container>
+      }
     </sbb-form-field>
   `,
 })
@@ -1177,7 +1185,9 @@ class SbbInputWithDefaultNgIf {}
   template: `
     <sbb-form-field>
       <sbb-label>App name</sbb-label>
-      <input sbbInput *ngIf="true" placeholder="My placeholder" [value]="inputValue" />
+      @if (true) {
+        <input sbbInput placeholder="My placeholder" [value]="inputValue" />
+      }
     </sbb-form-field>
   `,
 })

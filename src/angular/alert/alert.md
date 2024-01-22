@@ -27,9 +27,9 @@ To provide a custom icon, use the `svgIcon` input.
 You can subscribe to the `dismissed` event to get notified when the alert is being dismissed/closed.
 
 ```html
-<sbb-alert (dismissed)="handleDismissed($event)"
-  >A major incident is currently happening.</sbb-alert
->
+<sbb-alert (dismissed)="handleDismissed($event)">
+  A major incident is currently happening.
+</sbb-alert>
 ```
 
 ### Alert service

@@ -1,49 +1,55 @@
-<button
-  *ngIf="!_loggedIn"
-  class="sbb-button-reset-frameless sbb-usermenu-trigger sbb-usermenu-trigger-logged-out"
-  (click)="_emitLogin()"
-  type="button"
->
-  <sbb-icon svgIcon="user-small" class="sbb-usermenu-logged-out-icon"></sbb-icon>
-  <span class="sbb-usermenu-logged-out-label">{{ _labelLogin }}</span>
-</button>
-
-<button
-  *ngIf="_loggedIn && menu"
-  [sbbMenuTriggerFor]="menu"
-  (menuOpened)="_emitMenuOpened()"
-  (menuClosed)="_emitMenuClosed()"
-  class="sbb-button-reset-frameless sbb-usermenu-trigger sbb-usermenu-trigger-logged-in"
-  [attr.aria-label]="_labelOpenPanel"
-  type="button"
->
-  <ng-template sbbMenuDynamicTrigger>
-    <ng-container *ngTemplateOutlet="triggerContent"></ng-container>
-    <sbb-icon
-      [svgIcon]="(variant | async) === 'standard' ? 'chevron-small-down-small' : 'chevron-right-small'"
-      class="sbb-usermenu-arrow"
-    ></sbb-icon>
-  </ng-template>
-</button>
-
-<div *ngIf="_loggedIn && !menu" class="sbb-usermenu-trigger sbb-usermenu-trigger-logged-in">
-  <ng-template sbbMenuDynamicTrigger>
-    <ng-container *ngTemplateOutlet="triggerContent"></ng-container>
-  </ng-template>
-</div>
+@if (!_loggedIn) {
+  <button
+    class="sbb-button-reset-frameless sbb-usermenu-trigger sbb-usermenu-trigger-logged-out"
+    (click)="_emitLogin()"
+    type="button"
+  >
+    <sbb-icon svgIcon="user-small" class="sbb-usermenu-logged-out-icon"></sbb-icon>
+    <span class="sbb-usermenu-logged-out-label">{{ _labelLogin }}</span>
+  </button>
+}
+@if (_loggedIn && menu) {
+  <button
+    [sbbMenuTriggerFor]="menu"
+    (menuOpened)="_emitMenuOpened()"
+    (menuClosed)="_emitMenuClosed()"
+    class="sbb-button-reset-frameless sbb-usermenu-trigger sbb-usermenu-trigger-logged-in"
+    [attr.aria-label]="_labelOpenPanel"
+    type="button"
+  >
+    <ng-template sbbMenuDynamicTrigger>
+      <ng-container *ngTemplateOutlet="triggerContent"></ng-container>
+      <sbb-icon
+        [svgIcon]="
+          (variant | async) === 'standard' ? 'chevron-small-down-small' : 'chevron-right-small'
+        "
+        class="sbb-usermenu-arrow"
+      ></sbb-icon>
+    </ng-template>
+  </button>
+}
+@if (_loggedIn && !menu) {
+  <div class="sbb-usermenu-trigger sbb-usermenu-trigger-logged-in">
+    <ng-template sbbMenuDynamicTrigger>
+      <ng-container *ngTemplateOutlet="triggerContent"></ng-container>
+    </ng-template>
+  </div>
+}
 
 <ng-template #triggerContent>
   <span class="sbb-usermenu-identification" aria-hidden="true">
-    <ng-container *ngIf="_icon">
+    @if (_icon) {
       <ng-container *ngTemplateOutlet="_icon"></ng-container>
-    </ng-container>
-    <span *ngIf="!_icon" class="sbb-usermenu-initial-letters"> {{ _initialLetters }} </span>
+    }
+    @if (!_icon) {
+      <span class="sbb-usermenu-initial-letters"> {{ _initialLetters }} </span>
+    }
   </span>
 
   <span class="sbb-usermenu-user-info">
     <span class="sbb-usermenu-user-info-display-name"> {{ displayName || userName }} </span>
-    <span class="sbb-usermenu-user-info-name" *ngIf="displayName && userName">
-      {{ userName }}
-    </span>
+    @if (displayName && userName) {
+      <span class="sbb-usermenu-user-info-name"> {{ userName }} </span>
+    }
   </span>
 </ng-template>

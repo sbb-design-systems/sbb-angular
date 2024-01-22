@@ -1,4 +1,3 @@
-import { NgFor } from '@angular/common';
 import { Component } from '@angular/core';
 import { SbbButtonModule } from '@sbb-esta/angular/button';
 import { SbbTabsModule } from '@sbb-esta/angular/tabs';
@@ -12,7 +11,7 @@ import { SbbTabsModule } from '@sbb-esta/angular/tabs';
   templateUrl: 'tab-nav-bar-basic-example.html',
   styleUrls: ['tab-nav-bar-basic-example.css'],
   standalone: true,
-  imports: [SbbTabsModule, NgFor, SbbButtonModule],
+  imports: [SbbTabsModule, SbbButtonModule],
 })
 export class TabNavBarBasicExample {
   links = ['First', 'Second', 'Third'];

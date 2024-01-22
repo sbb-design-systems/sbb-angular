@@ -1,5 +1,4 @@
 import { OverlayContainer, OverlayModule } from '@angular/cdk/overlay';
-import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
 import { ComponentFixture, inject, TestBed, waitForAsync } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
@@ -35,7 +34,6 @@ describe('SbbUsermenu', () => {
     TestBed.configureTestingModule({
       declarations: [SbbUsermenu],
       imports: [
-        CommonModule,
         SbbIconModule,
         SbbIconTestingModule,
         OverlayModule,
@@ -64,7 +62,6 @@ describe('SbbUsermenu with userName and displayName without image', () => {
     TestBed.configureTestingModule({
       imports: [
         SbbUsermenuModule,
-        CommonModule,
         SbbIconModule,
         SbbIconTestingModule,
         RouterTestingModule,
@@ -299,7 +296,6 @@ describe('SbbUsermenu with only displayName', () => {
     TestBed.configureTestingModule({
       imports: [
         SbbUsermenuModule,
-        CommonModule,
         SbbIconModule,
         SbbIconTestingModule,
         NoopAnimationsModule,
@@ -338,7 +334,6 @@ describe('SbbUsermenu with only userName', () => {
     TestBed.configureTestingModule({
       imports: [
         SbbUsermenuModule,
-        CommonModule,
         SbbIconModule,
         SbbIconTestingModule,
         NoopAnimationsModule,
@@ -377,7 +372,6 @@ describe('SbbUsermenu with custom image', () => {
     TestBed.configureTestingModule({
       imports: [
         SbbUsermenuModule,
-        CommonModule,
         SbbIconModule,
         SbbIconTestingModule,
         NoopAnimationsModule,
@@ -409,7 +403,7 @@ describe('SbbUsermenu with no connected menu', () => {
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-      imports: [SbbUsermenuModule, CommonModule, SbbIconTestingModule, NoopAnimationsModule],
+      imports: [SbbUsermenuModule, SbbIconTestingModule, NoopAnimationsModule],
       declarations: [UsermenuNoMenuTestComponent],
     }).compileComponents();
   }));

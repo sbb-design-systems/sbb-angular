@@ -1,6 +1,8 @@
 <ng-content select="sbb-icon-sidebar"></ng-content>
 
 <ng-content select="sbb-icon-sidebar-content"> </ng-content>
-<sbb-icon-sidebar-content *ngIf="!_content">
-  <ng-content></ng-content>
-</sbb-icon-sidebar-content>
+@if (!_content) {
+  <sbb-icon-sidebar-content>
+    <ng-content></ng-content>
+  </sbb-icon-sidebar-content>
+}

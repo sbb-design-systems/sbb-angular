@@ -3,7 +3,7 @@
   [id]="inputId"
   [disabled]="disabled"
   [readonly]="readonly"
-  [placeholder]="!readonly ? placeholder: '-'"
+  [placeholder]="!readonly ? placeholder : '-'"
   [attr.maxlength]="maxlength !== 0 ? maxlength : null"
   [attr.minlength]="minlength"
   [cdkTextareaAutosize]="!autosizeDisabled"
@@ -11,6 +11,6 @@
   (blur)="_onBlur()"
   (input)="_onInput($event)"
 ></textarea>
-<div *ngIf="maxlength && !disabled" class="sbb-textarea-remaining-chars">
-  {{ _labelCharactersRemaining }}
-</div>
+@if (maxlength && !disabled) {
+  <div class="sbb-textarea-remaining-chars">{{ _labelCharactersRemaining }}</div>
+}

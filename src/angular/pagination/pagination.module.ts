@@ -1,4 +1,3 @@
-import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { SbbCommonModule } from '@sbb-esta/angular/core';
@@ -9,7 +8,7 @@ import { SbbPaginator } from './paginator/paginator';
 
 @NgModule({
   declarations: [SbbNavigation, SbbPaginator],
-  imports: [CommonModule, RouterModule, SbbCommonModule, SbbIconModule],
+  imports: [RouterModule, SbbCommonModule, SbbIconModule],
   exports: [SbbNavigation, SbbPaginator],
 })
 export class SbbPaginationModule {}

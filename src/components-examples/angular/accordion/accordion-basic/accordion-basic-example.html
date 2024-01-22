@@ -101,11 +101,11 @@
     <button type="button" sbb-ghost-button (click)="firstPanelExpanded = !firstPanelExpanded">
       Toggle first panel
     </button>
-    <button type="button" *ngIf="multi.value" sbb-ghost-button (click)="accordion.openAll()">
-      Open all
-    </button>
-    <button type="button" *ngIf="multi.value" sbb-ghost-button (click)="accordion.closeAll()">
-      Close all
-    </button>
+    @if (multi.value) {
+      <button type="button" sbb-ghost-button (click)="accordion.openAll()">Open all</button>
+    }
+    @if (multi.value) {
+      <button type="button" sbb-ghost-button (click)="accordion.closeAll()">Close all</button>
+    }
   </div>
 </div>

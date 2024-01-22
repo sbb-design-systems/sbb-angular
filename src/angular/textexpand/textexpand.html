@@ -7,6 +7,10 @@
   [attr.aria-expanded]="isExpanded"
   (click)="toggleExpanded()"
 >
-  <span class="sbb-textexpand-button-label" *ngIf="isExpanded">{{ _labelShowLess }}</span>
-  <span class="sbb-textexpand-button-label" *ngIf="!isExpanded">{{ _labelShowMore }}</span>
+  @if (isExpanded) {
+    <span class="sbb-textexpand-button-label">{{ _labelShowLess }}</span>
+  }
+  @if (!isExpanded) {
+    <span class="sbb-textexpand-button-label">{{ _labelShowMore }}</span>
+  }
 </button>

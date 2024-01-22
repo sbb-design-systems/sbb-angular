@@ -1,4 +1,3 @@
-import { NgIf } from '@angular/common';
 import { Component } from '@angular/core';
 import { SbbButtonModule } from '@sbb-esta/angular/button';
 import { SbbLoadingIndicatorModule } from '@sbb-esta/angular/loading-indicator';
@@ -11,7 +10,7 @@ import { SbbLoadingIndicatorModule } from '@sbb-esta/angular/loading-indicator';
   selector: 'sbb-loading-indicator-fullbox-example',
   templateUrl: 'loading-indicator-fullbox-example.html',
   standalone: true,
-  imports: [NgIf, SbbLoadingIndicatorModule, SbbButtonModule],
+  imports: [SbbLoadingIndicatorModule, SbbButtonModule],
 })
 export class LoadingIndicatorFullboxExample {
   showSpinner: boolean;

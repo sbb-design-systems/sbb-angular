@@ -1,4 +1,4 @@
-import { JsonPipe, NgFor } from '@angular/common';
+import { JsonPipe } from '@angular/common';
 import { Component, ViewChild } from '@angular/core';
 import { FormControl, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { SbbAutocompleteSelectedEvent } from '@sbb-esta/angular/autocomplete';
@@ -26,7 +26,6 @@ export interface Fruit {
     SbbChipsModule,
     FormsModule,
     ReactiveFormsModule,
-    NgFor,
     SbbAutocompleteModule,
     SbbOptionModule,
     JsonPipe,

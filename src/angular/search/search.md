@@ -15,12 +15,14 @@ in the autocomplete is selected. The `search` event is a simple string.
 
 You can use `<sbb-search>` along with `<sbb-autocomplete>` as below:
 
-```html
+```angular
 <sbb-search (search)="handleSearch($event)">
   <input sbbInput placeholder="Search" [sbbAutocomplete]="auto" />
 </sbb-search>
 <sbb-autocomplete #auto="sbbAutocomplete">
-  <sbb-option *ngFor="let option of filteredOptions" [value]="option"> {{ option }} </sbb-option>
+  @for (option of filteredOptions; track option) {
+    <sbb-option [value]="option">{{ option }}</sbb-option>
+  }
 </sbb-autocomplete>
 ```
 

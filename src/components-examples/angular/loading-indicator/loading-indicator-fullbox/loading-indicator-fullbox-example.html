@@ -1,9 +1,7 @@
 <div aria-live="polite">
-  <sbb-loading-indicator
-    *ngIf="showSpinner"
-    mode="fullbox"
-    aria-label="Loading, please wait"
-  ></sbb-loading-indicator>
+  @if (showSpinner) {
+    <sbb-loading-indicator mode="fullbox" aria-label="Loading, please wait"></sbb-loading-indicator>
+  }
 </div>
 <p>Covers the parent element.</p>
 <button type="button" sbb-button (click)="activateSpinner()">Activate Fullbox Spinner</button>

@@ -1,4 +1,3 @@
-import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
 import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
@@ -74,7 +73,7 @@ describe('SbbBreadcrumbs', () => {
     beforeEach(waitForAsync(() => {
       TestBed.configureTestingModule({
         declarations: [SbbBreadcrumbs, SbbBreadcrumb],
-        imports: [CommonModule, SbbMenuModule, SbbIconModule, SbbIconTestingModule],
+        imports: [SbbMenuModule, SbbIconModule, SbbIconTestingModule],
       }).compileComponents();
     }));
 
@@ -95,13 +94,7 @@ describe('SbbBreadcrumbs', () => {
     beforeEach(waitForAsync(() => {
       TestBed.configureTestingModule({
         declarations: [BreadcrumbsSimpleTest],
-        imports: [
-          CommonModule,
-          SbbBreadcrumbModule,
-          SbbMenuModule,
-          SbbIconModule,
-          SbbIconTestingModule,
-        ],
+        imports: [SbbBreadcrumbModule, SbbMenuModule, SbbIconModule, SbbIconTestingModule],
       }).compileComponents();
     }));
 
@@ -164,7 +157,6 @@ describe('SbbBreadcrumbs', () => {
       TestBed.configureTestingModule({
         declarations: [BreadcrumbsMenuTest],
         imports: [
-          CommonModule,
           SbbBreadcrumbModule,
           SbbMenuModule,
           SbbIconModule,
