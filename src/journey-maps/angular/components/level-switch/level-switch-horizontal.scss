@@ -25,10 +25,6 @@
   color: white;
 }
 
-.map-control-button-wrapper {
-  border-bottom: 1px solid #e5e5e5;
-}
-
 .button-container {
   display: flex;
   align-items: center;
@@ -37,18 +33,23 @@
 }
 
 .side-buttons-container {
-  display: flex; /* Make the container a flexbox */
-  overflow: hidden; /* Hide the overflow content */
-  max-width: 0; /* Initial max-width set to 0 */
+  position: absolute; /* prevents expanding the other controls */
+  display: flex;
+  overflow: hidden; /* hides the side buttons to the right of the side button while collapsing/expanding */
+  max-width: 0; /* initial value */
   transition:
     max-width 0.5s ease,
-    visibility 0s linear 0.5s; /* Transition for max-width and visibility */
+    visibility 0s linear 0.5s;
   visibility: hidden; /* Initially not visible */
+  right: 40px; // 16 + 24 // TODO cdi ROKAS-1723 fix for small buttons as well
+  border-top-left-radius: 24px; // TODO cdi ROKAS-1723 fix for small buttons as well
+  border-bottom-left-radius: 24px; // TODO cdi ROKAS-1723 fix for small buttons as well
+  background-color: esta.$sbbColorWhite;
 }
 
 /* Adjusted to ensure the buttons are visible when the container is displayed */
 .side-buttons-container.show {
-  max-width: 300px; /* Set a max-width large enough to contain all buttons */
+  max-width: 360px; /* 360px is large enough for St. Gallen */ // TODO cdi ROKAS-1723 fix for small buttons as well
   transition: max-width 0.5s ease;
   visibility: visible; /* Make visible when expanded */
 }
@@ -57,4 +58,20 @@
   display: flex;
   flex-direction: column;
   align-items: flex-end; /* Aligns items to the right */
+}
+
+.main-button-wrapper {
+  z-index: 3;
+}
+
+.main-button {
+  background-color: esta.$sbbColorWhite; /* prevent showing the side buttons behind the main button as they expand/collapse */
+}
+
+.map-control-button-wrapper {
+  user-select: none; /* prevent visually selecting the text of the buttons */
+}
+
+.map-control-button-wrapper.half-width {
+  width: 24px; // TODO cdi ROKAS-1723 fix for small buttons as well
 }

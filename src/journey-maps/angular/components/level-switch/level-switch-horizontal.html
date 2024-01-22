@@ -24,11 +24,15 @@
           </button>
         </div>
       </ng-container>
+      <div class="map-control-button-wrapper half-width">
+        <!-- placeholder for styling, can't be tabbed -->
+        <button class="side-button map-control-button" tabindex="-1"></button>
+      </div>
     </div>
-    <div class="map-control-button-wrapper">
+    <div class="map-control-button-wrapper main-button-wrapper">
       <button
         #mainButton
-        class="main-button map-control-button"
+        class="map-control-button main-button"
         (click)="toggleSideButtons()"
         (keydown.enter)="onMainButtonEnter($event)"
       >
