@@ -5,10 +5,10 @@
     "target": "es2020",
     "esModuleInterop": true,
     "sourceMap": true,
-    "types": ["jasmine", "node"]
+    "types": ["jasmine", "node"],
   },
   "exclude": ["*.spec.ts"],
   "bazelOptions": {
-    "suppressTsconfigOverrideWarnings": true
-  }
+    "suppressTsconfigOverrideWarnings": true,
+  },
 }

@@ -5,9 +5,9 @@
     "target": "es2020",
     "esModuleInterop": true,
     "sourceMap": true,
-    "types": ["node"]
+    "types": ["node"],
   },
   "bazelOptions": {
-    "suppressTsconfigOverrideWarnings": true
-  }
+    "suppressTsconfigOverrideWarnings": true,
+  },
 }
