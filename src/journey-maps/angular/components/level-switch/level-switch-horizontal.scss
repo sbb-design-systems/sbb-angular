@@ -1,5 +1,6 @@
 @use '@sbb-esta/angular' as esta;
 @use './../../style/functions' as f;
+@use './../../style/variables' as v;
 
 @include f.map-controls-shared;
 
@@ -41,17 +42,31 @@
     max-width 0.5s ease,
     visibility 0s linear 0.5s;
   visibility: hidden; /* Initially not visible */
-  right: 40px; // 16 + 24 // TODO cdi ROKAS-1723 fix for small buttons as well
-  border-top-left-radius: 24px; // TODO cdi ROKAS-1723 fix for small buttons as well
-  border-bottom-left-radius: 24px; // TODO cdi ROKAS-1723 fix for small buttons as well
+  right: v.$controlsMargin + (v.$controlsWidth / 2);
+  border-top-left-radius: (v.$controlsWidth / 2);
+  border-bottom-left-radius: (v.$controlsWidth / 2);
   background-color: esta.$sbbColorWhite;
+
+  @include esta.mq($from: tabletPortrait) {
+    @at-root .map-control-container.small-buttons #{&} {
+      right: v.$controlsMarginSmall + (v.$controlsWidthSmall / 2);
+      border-top-left-radius: (v.$controlsWidthSmall / 2);
+      border-bottom-left-radius: (v.$controlsWidthSmall / 2);
+    }
+  }
 }
 
 /* Adjusted to ensure the buttons are visible when the container is displayed */
 .side-buttons-container.show {
-  max-width: 360px; /* 360px is large enough for St. Gallen */ // TODO cdi ROKAS-1723 fix for small buttons as well
+  max-width: 6.5 * v.$controlsWidth; /* Just large enough for St. Gallen, which has 6 levels, plus half for the extra half-width div */
   transition: max-width 0.5s ease;
   visibility: visible; /* Make visible when expanded */
+
+  @include esta.mq($from: tabletPortrait) {
+    @at-root .map-control-container.small-buttons #{&} {
+      max-width: 6.5 * v.$controlsWidthSmall; /* Just large enough for St. Gallen, which has 6 levels, plus half for the extra half-width div */
+    }
+  }
 }
 
 .vertical-buttons {
@@ -73,5 +88,11 @@
 }
 
 .map-control-button-wrapper.half-width {
-  width: 24px; // TODO cdi ROKAS-1723 fix for small buttons as well
+  width: v.$controlsWidth / 2;
+
+  @include esta.mq($from: tabletPortrait) {
+    @at-root .map-control-container.small-buttons #{&} {
+      width: v.$controlsWidthSmall / 2;
+    }
+  }
 }
