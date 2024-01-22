@@ -73,7 +73,7 @@ export class SbbLightboxContainer extends _SbbDialogContainerBase implements OnD
 
     // Mark the container for check so it can react if the
     // view container is using OnPush change detection.
-    this._changeDetectorRef.markForCheck();
+    this._changeDetectorReference.markForCheck();
   }
 
   private _destroyed = new Subject<void>();
@@ -86,7 +86,8 @@ export class SbbLightboxContainer extends _SbbDialogContainerBase implements OnD
     checker: InteractivityChecker,
     ngZone: NgZone,
     overlayRef: OverlayRef,
-    private _changeDetectorRef: ChangeDetectorRef,
+    // @breaking-change: 18.0.0 Use base class _changeDetectorRef
+    private _changeDetectorReference: ChangeDetectorRef,
     focusMonitor?: FocusMonitor,
     private _viewportRuler?: ViewportRuler,
   ) {
