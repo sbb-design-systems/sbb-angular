@@ -1,4 +1,3 @@
-import { NgFor } from '@angular/common';
 import { Component, OnDestroy, ViewEncapsulation } from '@angular/core';
 import { FormControl, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { SbbFormFieldModule } from '@sbb-esta/angular/form-field';
@@ -25,14 +24,7 @@ interface RowEntry {
   templateUrl: 'native-table-example.html',
   encapsulation: ViewEncapsulation.None,
   standalone: true,
-  imports: [
-    SbbTableModule,
-    NgFor,
-    SbbFormFieldModule,
-    SbbInputModule,
-    FormsModule,
-    ReactiveFormsModule,
-  ],
+  imports: [SbbTableModule, SbbFormFieldModule, SbbInputModule, FormsModule, ReactiveFormsModule],
 })
 export class NativeTableExample implements OnDestroy {
   filterControl: FormControl = new FormControl('');

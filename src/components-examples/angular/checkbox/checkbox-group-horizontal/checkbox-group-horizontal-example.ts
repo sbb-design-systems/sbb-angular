@@ -1,4 +1,4 @@
-import { JsonPipe, NgFor } from '@angular/common';
+import { JsonPipe } from '@angular/common';
 import { Component } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { SbbCheckboxModule } from '@sbb-esta/angular/checkbox';
@@ -11,7 +11,7 @@ import { SbbCheckboxModule } from '@sbb-esta/angular/checkbox';
   selector: 'sbb-checkbox-group-horizontal-example',
   templateUrl: 'checkbox-group-horizontal-example.html',
   standalone: true,
-  imports: [NgFor, SbbCheckboxModule, FormsModule, JsonPipe],
+  imports: [SbbCheckboxModule, FormsModule, JsonPipe],
 })
 export class CheckboxGroupHorizontalExample {
   checkboxOptions = [

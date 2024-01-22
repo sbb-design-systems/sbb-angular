@@ -342,15 +342,16 @@ describe('SbbTabNavBar', () => {
   selector: 'test-app',
   template: `
     <nav sbb-tab-nav-bar>
-      <a
-        sbb-tab-link
-        *ngFor="let tab of tabs; let index = index"
-        [active]="activeIndex === index"
-        [disabled]="disabled"
-        (click)="activeIndex = index"
-      >
-        Tab link {{ label }}
-      </a>
+      @for (tab of tabs; track tab; let index = $index) {
+        <a
+          sbb-tab-link
+          [active]="activeIndex === index"
+          [disabled]="disabled"
+          (click)="activeIndex = index"
+        >
+          Tab link {{ label }}
+        </a>
+      }
     </nav>
   `,
 })
@@ -368,7 +369,9 @@ class SimpleTabNavBarTestApp {
 @Component({
   template: `
     <nav sbb-tab-nav-bar>
-      <a sbb-tab-link *ngIf="!isDestroyed">Link</a>
+      @if (!isDestroyed) {
+        <a sbb-tab-link>Link</a>
+      }
     </nav>
   `,
 })
@@ -399,7 +402,9 @@ class TabLinkWithNativeTabindexAttr {}
 @Component({
   template: `
     <nav sbb-tab-nav-bar>
-      <a sbb-tab-link *ngFor="let tab of tabs" [active]="false">Tab link {{ label }}</a>
+      @for (tab of tabs; track tab) {
+        <a sbb-tab-link [active]="false">Tab link {{ label }}</a>
+      }
     </nav>
   `,
 })
@@ -410,14 +415,11 @@ class TabBarWithInactiveTabsOnInit {
 @Component({
   template: `
     <nav sbb-tab-nav-bar [tabPanel]="tabPanel">
-      <a
-        sbb-tab-link
-        *ngFor="let tab of tabs; let index = index"
-        [active]="index === activeIndex"
-        (click)="activeIndex = index"
-      >
-        Tab link
-      </a>
+      @for (tab of tabs; track tab; let index = $index) {
+        <a sbb-tab-link [active]="index === activeIndex" (click)="activeIndex = index">
+          Tab link
+        </a>
+      }
     </nav>
     <sbb-tab-nav-panel #tabPanel id="tab-panel">Tab panel</sbb-tab-nav-panel>
   `,

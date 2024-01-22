@@ -5,19 +5,23 @@
 
   <sbb-table-wrapper>
     <table sbb-table sbbSort (sbbSortChange)="announceSortChange($event)">
-      <ng-container *ngFor="let column of columns" [sbbColumnDef]="column.title">
-        <th
-          sbb-header-cell
-          [sbb-sort-header]="column.title"
-          *sbbHeaderCellDef
-          [sortActionDescription]="'Sort by ' + column.title"
-          style="width: 20%"
-        >
-          {{ column.title }}
-          <div *ngIf="column.subtitle" class="sbb-table-header-subtitle">{{column.subtitle}}</div>
-        </th>
-        <td sbb-cell *sbbCellDef="let element">{{ element[column.title] }}</td>
-      </ng-container>
+      @for (column of columns; track column) {
+        <ng-container [sbbColumnDef]="column.title">
+          <th
+            sbb-header-cell
+            [sbb-sort-header]="column.title"
+            *sbbHeaderCellDef
+            [sortActionDescription]="'Sort by ' + column.title"
+            style="width: 20%"
+          >
+            {{ column.title }}
+            @if (column.subtitle) {
+              <div class="sbb-table-header-subtitle">{{ column.subtitle }}</div>
+            }
+          </th>
+          <td sbb-cell *sbbCellDef="let element">{{ element[column.title] }}</td>
+        </ng-container>
+      }
 
       <ng-container sbbColumnDef="filter-name">
         <th sbb-header-cell *sbbHeaderCellDef class="sbb-table-filter">
@@ -32,18 +36,18 @@
             [sbbAutocomplete]="descriptionsAuto"
           />
           <sbb-autocomplete #descriptionsAuto="sbbAutocomplete">
-            <sbb-option *ngFor="let option of descriptions | async" [value]="option"
-              >{{ option }}</sbb-option
-            >
+            @for (option of descriptions | async; track option) {
+              <sbb-option [value]="option">{{ option }}</sbb-option>
+            }
           </sbb-autocomplete>
         </th>
       </ng-container>
       <ng-container sbbColumnDef="filter-category">
         <th sbb-header-cell *sbbHeaderCellDef class="sbb-table-filter">
           <sbb-select formControlName="category" multiple placeholder="Select category...">
-            <sbb-option *ngFor="let category of categories" [value]="category"
-              >{{ category }}</sbb-option
-            >
+            @for (category of categories; track category) {
+              <sbb-option [value]="category">{{ category }}</sbb-option>
+            }
           </sbb-select>
         </th>
       </ng-container>
@@ -55,13 +59,21 @@
       <tr sbb-header-row *sbbHeaderRowDef="displayedColumns"></tr>
       <tr
         sbb-header-row
-        *sbbHeaderRowDef="['empty', 'filter-name', 'empty', 'filter-description', 'filter-category']"
+        *sbbHeaderRowDef="[
+          'empty',
+          'filter-name',
+          'empty',
+          'filter-description',
+          'filter-category'
+        ]"
       ></tr>
       <tr sbb-row *sbbRowDef="let row; columns: displayedColumns"></tr>
     </table>
   </sbb-table-wrapper>
 
-  <p *ngIf="dataSource.filteredData.length === 0">No keywords match your filters.</p>
+  @if (dataSource.filteredData.length === 0) {
+    <p>No keywords match your filters.</p>
+  }
 
   <sbb-paginator class="sbb-divider-small-top" [pageSize]="5"></sbb-paginator>
 </ng-container>

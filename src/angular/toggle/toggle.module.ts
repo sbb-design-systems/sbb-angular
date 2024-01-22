@@ -1,5 +1,4 @@
 import { PortalModule } from '@angular/cdk/portal';
-import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { SbbCommonModule } from '@sbb-esta/angular/core';
 import { SbbIconModule } from '@sbb-esta/angular/icon';
@@ -22,7 +21,7 @@ import { SbbToggleOption } from './toggle-option';
     SbbToggleSubtitle,
     SbbToggleDetails,
   ],
-  imports: [CommonModule, PortalModule, SbbCommonModule, SbbIconModule],
+  imports: [PortalModule, SbbCommonModule, SbbIconModule],
   exports: [
     SbbToggle,
     SbbToggleOption,

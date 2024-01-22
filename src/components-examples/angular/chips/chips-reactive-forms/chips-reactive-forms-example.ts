@@ -1,4 +1,4 @@
-import { JsonPipe, NgFor } from '@angular/common';
+import { JsonPipe } from '@angular/common';
 import { Component } from '@angular/core';
 import { FormControl, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { SbbButtonModule } from '@sbb-esta/angular/button';
@@ -18,7 +18,6 @@ import { SbbFormFieldModule } from '@sbb-esta/angular/form-field';
     SbbChipsModule,
     FormsModule,
     ReactiveFormsModule,
-    NgFor,
     SbbButtonModule,
     JsonPipe,
   ],

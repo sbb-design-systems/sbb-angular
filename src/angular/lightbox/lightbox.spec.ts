@@ -1840,7 +1840,9 @@ class ComponentWithOnPushViewContainer {
 
 @Component({
   selector: 'arbitrary-component',
-  template: `<dir-with-view-container *ngIf="showChildView"></dir-with-view-container>`,
+  template: `@if (showChildView) {
+    <dir-with-view-container></dir-with-view-container>
+  }`,
 })
 class ComponentWithChildViewContainer {
   showChildView = true;

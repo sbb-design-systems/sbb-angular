@@ -19,7 +19,6 @@ ng_module(
         "//src/angular/core",
         "//src/angular/form-field",
         "//src/angular/input",
-        "@npm//@angular/common",
         "@npm//@angular/core",
         "@npm//@angular/forms",
     ],

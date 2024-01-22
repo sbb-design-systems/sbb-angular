@@ -1,4 +1,3 @@
-import { NgIf } from '@angular/common';
 import { Component } from '@angular/core';
 import { FormControl, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
 import { SbbShowOnDirtyErrorStateMatcher } from '@sbb-esta/angular/core';
@@ -14,7 +13,7 @@ import { SbbInputModule } from '@sbb-esta/angular/input';
   templateUrl: 'form-field-dirty-error-state-example.html',
   standalone: true,
   providers: [SbbShowOnDirtyErrorStateMatcher],
-  imports: [SbbFormFieldModule, SbbInputModule, FormsModule, ReactiveFormsModule, NgIf],
+  imports: [SbbFormFieldModule, SbbInputModule, FormsModule, ReactiveFormsModule],
 })
 export class FormFieldDirtyErrorStateExample {
   name: FormControl = new FormControl('', [Validators.required, Validators.minLength(5)]);

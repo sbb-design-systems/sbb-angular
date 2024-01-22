@@ -19,7 +19,6 @@ ng_module(
         "//src/angular/core",
         "//src/angular/radio-button",
         "@npm//@angular/cdk",
-        "@npm//@angular/common",
         "@npm//@angular/core",
     ],
 )

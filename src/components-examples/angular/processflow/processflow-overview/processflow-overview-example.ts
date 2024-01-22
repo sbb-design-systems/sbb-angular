@@ -1,4 +1,3 @@
-import { NgIf } from '@angular/common';
 import { Component } from '@angular/core';
 import { FormBuilder, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
 import { SbbButtonModule } from '@sbb-esta/angular/button';
@@ -22,7 +21,6 @@ import { SbbProcessflowModule } from '@sbb-esta/angular/processflow';
     ReactiveFormsModule,
     SbbFormFieldModule,
     SbbInputModule,
-    NgIf,
     SbbButtonModule,
     SbbCheckboxModule,
   ],

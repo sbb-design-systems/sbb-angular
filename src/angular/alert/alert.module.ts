@@ -1,4 +1,3 @@
-import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { SbbCommonModule } from '@sbb-esta/angular/core';
@@ -9,7 +8,7 @@ import { SbbAlertOutlet } from './alert-outlet';
 
 @NgModule({
   declarations: [SbbAlert, SbbAlertOutlet],
-  imports: [CommonModule, RouterModule, SbbCommonModule, SbbIconModule],
+  imports: [RouterModule, SbbCommonModule, SbbIconModule],
   exports: [SbbAlert, SbbAlertOutlet],
 })
 export class SbbAlertModule {}

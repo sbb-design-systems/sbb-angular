@@ -31,8 +31,8 @@
     <tr sbb-header-row *sbbHeaderRowDef="displayedColumns"></tr>
     <tr
       sbb-row
-      *sbbRowDef="let row; columns: displayedColumns;"
-      (click)="selectedId === row.id ? selectedId = undefined : selectedId = row.id"
+      *sbbRowDef="let row; columns: displayedColumns"
+      (click)="selectedId === row.id ? (selectedId = undefined) : (selectedId = row.id)"
     ></tr>
     <tr
       sbb-row

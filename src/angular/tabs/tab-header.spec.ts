@@ -3,7 +3,6 @@ import { END, ENTER, HOME, LEFT_ARROW, RIGHT_ARROW, SPACE } from '@angular/cdk/k
 import { MutationObserverFactory, ObserversModule } from '@angular/cdk/observers';
 import { PortalModule } from '@angular/cdk/portal';
 import { ScrollingModule, ViewportRuler } from '@angular/cdk/scrolling';
-import { CommonModule } from '@angular/common';
 import { Component, ViewChild } from '@angular/core';
 import {
   ComponentFixture,
@@ -34,7 +33,6 @@ describe('SbbTabHeader', () => {
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
       imports: [
-        CommonModule,
         PortalModule,
         ScrollingModule,
         ObserversModule,
@@ -618,16 +616,17 @@ interface Tab {
         (selectFocusedIndex)="selectedIndex = $event"
         [disablePagination]="disablePagination"
       >
-        <div
-          sbbTabLabelWrapper
-          class="label-content"
-          style="min-width: 30px; width: 30px"
-          *ngFor="let tab of tabs; let i = index"
-          [disabled]="!!tab.disabled"
-          (click)="selectedIndex = i"
-        >
-          {{ tab.label }}
-        </div>
+        @for (tab of tabs; track tab; let i = $index) {
+          <div
+            sbbTabLabelWrapper
+            class="label-content"
+            style="min-width: 30px; width: 30px"
+            [disabled]="!!tab.disabled"
+            (click)="selectedIndex = i"
+          >
+            {{ tab.label }}
+          </div>
+        }
       </sbb-tab-header>
     </div>
   `,

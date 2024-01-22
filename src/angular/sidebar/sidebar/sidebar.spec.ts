@@ -3,7 +3,6 @@ import { Direction } from '@angular/cdk/bidi';
 import { ESCAPE } from '@angular/cdk/keycodes';
 import { MediaMatcher } from '@angular/cdk/layout';
 import { CdkScrollable } from '@angular/cdk/scrolling';
-import { CommonModule } from '@angular/common';
 import { Component, DebugElement, ElementRef, ViewChild } from '@angular/core';
 import {
   ComponentFixture,
@@ -55,13 +54,7 @@ const registerClearMediaMatcher = () => {
 describe('SbbSidebar', () => {
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-      imports: [
-        SbbSidebarModule,
-        A11yModule,
-        NoopAnimationsModule,
-        CommonModule,
-        SbbIconTestingModule,
-      ],
+      imports: [SbbSidebarModule, A11yModule, NoopAnimationsModule, SbbIconTestingModule],
       declarations: [
         BasicTestComponent,
         SidebarSetToOpenedTrueTestComponent,
@@ -652,13 +645,7 @@ describe('SbbSidebar', () => {
 describe('SbbSidebarContainer', () => {
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-      imports: [
-        SbbSidebarModule,
-        A11yModule,
-        NoopAnimationsModule,
-        CommonModule,
-        SbbIconTestingModule,
-      ],
+      imports: [SbbSidebarModule, A11yModule, NoopAnimationsModule, SbbIconTestingModule],
       declarations: [
         SidebarContainerEmptyTestComponent,
         SidebarDelayedTestComponent,
@@ -1046,7 +1033,9 @@ class SidebarWithoutFocusableElementsTestComponent {}
 @Component({
   template: `
     <sbb-sidebar-container>
-      <sbb-sidebar *ngIf="showSidebar" #sidebar><fieldset>Sidebar</fieldset></sbb-sidebar>
+      @if (showSidebar) {
+        <sbb-sidebar #sidebar><fieldset>Sidebar</fieldset></sbb-sidebar>
+      }
     </sbb-sidebar-container>
   `,
 })
@@ -1057,7 +1046,9 @@ class SidebarDelayedTestComponent {
 
 @Component({
   template: ` <sbb-sidebar-container [dir]="direction">
-    <sbb-sidebar *ngIf="renderSidebar" style="width:100px"></sbb-sidebar>
+    @if (renderSidebar) {
+      <sbb-sidebar style="width:100px"></sbb-sidebar>
+    }
   </sbb-sidebar-container>`,
 })
 class SidebarContainerStateChangesTestAppTestComponent {
@@ -1096,9 +1087,9 @@ class SidebarContainerWithContentTestComponent {
   // Note that we need the `ng-container` with the `ngSwitch` so that
   // there's a directive between the container and the sidebar.
   template: ` <sbb-sidebar-container #container>
-    <ng-container [ngSwitch]="true">
+    @if (true) {
       <sbb-sidebar #sidebar><fieldset>Sidebar</fieldset></sbb-sidebar>
-    </ng-container>
+    }
   </sbb-sidebar-container>`,
 })
 class IndirectDescendantSidebarTestComponent {

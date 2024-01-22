@@ -42,9 +42,9 @@ class TextareaTestComponent {
     <form [formGroup]="form">
       <sbb-form-field label="Textarea">
         <sbb-textarea formControlName="textarea" [maxlength]="200" [minlength]="20"></sbb-textarea>
-        <sbb-error *ngIf="form.get('textarea').errors?.minlength"
-          >A length of 20 chars is required!</sbb-error
-        >
+        @if (form.get('textarea').errors?.minlength) {
+          <sbb-error>A length of 20 chars is required!</sbb-error>
+        }
       </sbb-form-field>
     </form>
   `,

@@ -1,4 +1,3 @@
-import { NgIf } from '@angular/common';
 import { ChangeDetectionStrategy, ChangeDetectorRef, Component, OnInit } from '@angular/core';
 import { SbbButtonModule } from '@sbb-esta/angular/button';
 import { SbbLightbox, SbbLightboxRef } from '@sbb-esta/angular/lightbox';
@@ -48,7 +47,7 @@ export class LightboxConfirmationExample {
   ],
   changeDetection: ChangeDetectionStrategy.OnPush,
   standalone: true,
-  imports: [SbbLightboxModule, NgIf, SbbButtonModule],
+  imports: [SbbLightboxModule, SbbButtonModule],
 })
 export class LightboxWithConfirmationOnClose implements OnInit {
   confirmPanel = false;

@@ -22,7 +22,6 @@ ng_module(
         "//src/angular/form-field",
         "//src/angular/icon",
         "@npm//@angular/cdk",
-        "@npm//@angular/common",
         "@npm//@angular/core",
         "@npm//@angular/forms",
         "@npm//@angular/platform-browser",

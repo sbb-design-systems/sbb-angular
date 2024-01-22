@@ -1,4 +1,3 @@
-import { CommonModule } from '@angular/common';
 import { Component, ViewChild } from '@angular/core';
 import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 import { FormsModule } from '@angular/forms';
@@ -66,7 +65,7 @@ describe('SbbNavigation', () => {
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-      imports: [SbbIconModule, SbbIconTestingModule, CommonModule, RouterTestingModule],
+      imports: [SbbIconModule, SbbIconTestingModule, RouterTestingModule],
       declarations: [SbbNavigation],
     }).compileComponents();
   }));

@@ -1,25 +1,30 @@
 <table class="sbb-calendar-table">
   <thead class="sbb-calendar-table-header">
     <tr>
-      <th *ngIf="showWeekNumbers">#</th>
-      <th *ngFor="let day of weekdays">
-        <ng-container [ngSwitch]="isWeekdaySelectable">
-          <button
-            *ngSwitchCase="true"
-            type="button"
-            tabindex="0"
-            class="sbb-button-reset-frameless sbb-calendar-body-weekday"
-            [attr.aria-label]="day.long"
-            (click)="weekdaySelected(day.index)"
-          >
-            {{day.narrow}}
-          </button>
-          <ng-container *ngSwitchCase="false">
-            <span class="cdk-visually-hidden">{{day.long}}</span>
-            <span aria-hidden="true">{{day.narrow}}</span>
-          </ng-container>
-        </ng-container>
-      </th>
+      @if (showWeekNumbers) {
+        <th>#</th>
+      }
+      @for (day of weekdays; track day) {
+        <th>
+          @switch (isWeekdaySelectable) {
+            @case (true) {
+              <button
+                type="button"
+                tabindex="0"
+                class="sbb-button-reset-frameless sbb-calendar-body-weekday"
+                [attr.aria-label]="day.long"
+                (click)="weekdaySelected(day.index)"
+              >
+                {{ day.narrow }}
+              </button>
+            }
+            @case (false) {
+              <span class="cdk-visually-hidden">{{ day.long }}</span>
+              <span aria-hidden="true">{{ day.narrow }}</span>
+            }
+          }
+        </th>
+      }
     </tr>
     <tr>
       <th class="sbb-calendar-table-header-divider" colspan="7" aria-hidden="true"></th>

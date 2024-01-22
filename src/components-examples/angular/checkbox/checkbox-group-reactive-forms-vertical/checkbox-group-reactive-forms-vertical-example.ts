@@ -1,4 +1,4 @@
-import { JsonPipe, KeyValuePipe, NgFor } from '@angular/common';
+import { JsonPipe, KeyValuePipe } from '@angular/common';
 import { Component } from '@angular/core';
 import { FormBuilder, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { SbbCheckboxModule } from '@sbb-esta/angular/checkbox';
@@ -11,7 +11,7 @@ import { SbbCheckboxModule } from '@sbb-esta/angular/checkbox';
   selector: 'sbb-checkbox-group-reactive-forms-vertical-example',
   templateUrl: 'checkbox-group-reactive-forms-vertical-example.html',
   standalone: true,
-  imports: [FormsModule, ReactiveFormsModule, NgFor, SbbCheckboxModule, JsonPipe, KeyValuePipe],
+  imports: [FormsModule, ReactiveFormsModule, SbbCheckboxModule, JsonPipe, KeyValuePipe],
 })
 export class CheckboxGroupReactiveFormsVerticalExample {
   form = this._formBuilder.group({

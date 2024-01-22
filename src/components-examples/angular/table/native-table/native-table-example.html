@@ -15,13 +15,15 @@
     </thead>
 
     <tbody>
-      <tr *ngFor="let row of rows">
-        <th scope="row" [attr.aria-describedby]="row.describedby">{{ row.col1 }}</th>
-        <td>{{ row.col2 }}</td>
-        <td>{{ row.col3 }}</td>
-        <td>{{ row.col4 }}</td>
-        <td class="sbb-table-align-right">{{ row.col5 }}</td>
-      </tr>
+      @for (row of rows; track row) {
+        <tr>
+          <th scope="row" [attr.aria-describedby]="row.describedby">{{ row.col1 }}</th>
+          <td>{{ row.col2 }}</td>
+          <td>{{ row.col3 }}</td>
+          <td>{{ row.col4 }}</td>
+          <td class="sbb-table-align-right">{{ row.col5 }}</td>
+        </tr>
+      }
     </tbody>
   </table>
 </sbb-table-wrapper>

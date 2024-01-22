@@ -57,7 +57,9 @@ import { SbbAutocompleteModule } from './autocomplete.module';
 
 const SIMPLE_AUTOCOMPLETE_TEMPLATE = `
   <sbb-form-field [style.width.px]="width">
-  <sbb-label *ngIf="hasLabel">State</sbb-label>
+    @if (hasLabel) {
+      <sbb-label>State</sbb-label>
+    }
    <input
       sbbInput
       placeholder="Number"
@@ -77,12 +79,11 @@ const SIMPLE_AUTOCOMPLETE_TEMPLATE = `
     (opened)="openedSpy()"
     (closed)="closedSpy()"
   >
-    <sbb-option *ngFor="let num of filteredNumbers"
-      [value]="num"
-      [style.height.px]="num.height"
-      [disabled]="num.disabled">
-      <span>{{ num.code }}: {{ num.name }}</span>
-    </sbb-option>
+    @for (num of filteredNumbers; track num) {
+      <sbb-option [value]="num" [style.height.px]="num.height" [disabled]="num.disabled">
+        <span>{{ num.code }}: {{ num.name }}</span>
+      </sbb-option>
+     }
   </sbb-autocomplete>
 `;
 
@@ -150,14 +151,18 @@ class SimpleAutocompleteShadowDom extends SimpleAutocomplete {}
 
 @Component({
   template: `
-    <sbb-form-field *ngIf="isVisible">
-      <input sbbInput placeholder="Choose" [sbbAutocomplete]="auto" [formControl]="optionCtrl" />
-    </sbb-form-field>
+    @if (isVisible) {
+      <sbb-form-field>
+        <input sbbInput placeholder="Choose" [sbbAutocomplete]="auto" [formControl]="optionCtrl" />
+      </sbb-form-field>
+    }
 
     <sbb-autocomplete #auto="sbbAutocomplete">
-      <sbb-option *ngFor="let option of filteredOptions | async" [value]="option">
-        {{ option }}
-      </sbb-option>
+      @for (option of filteredOptions | async; track option) {
+        <sbb-option [value]="option">
+          {{ option }}
+        </sbb-option>
+      }
     </sbb-autocomplete>
   `,
 })
@@ -195,9 +200,11 @@ class NgIfAutocomplete {
     </sbb-form-field>
 
     <sbb-autocomplete #auto="sbbAutocomplete">
-      <sbb-option *ngFor="let num of filteredNumbers" [value]="num">
-        <span> {{ num }} </span>
-      </sbb-option>
+      @for (num of filteredNumbers; track num) {
+        <sbb-option [value]="num">
+          <span> {{ num }} </span>
+        </sbb-option>
+      }
     </sbb-autocomplete>
   `,
 })
@@ -227,9 +234,11 @@ class AutocompleteWithoutForms {
     </sbb-form-field>
 
     <sbb-autocomplete #auto="sbbAutocomplete">
-      <sbb-option *ngFor="let num of filteredNumbers" [value]="num">
-        <span>{{ num }}</span>
-      </sbb-option>
+      @for (num of filteredNumbers; track num) {
+        <sbb-option [value]="num">
+          <span>{{ num }}</span>
+        </sbb-option>
+      }
     </sbb-autocomplete>
   `,
 })
@@ -254,9 +263,11 @@ class AutocompleteWithNgModel {
     </sbb-form-field>
 
     <sbb-autocomplete #auto="sbbAutocomplete">
-      <sbb-option *ngFor="let number of numbers" [value]="number">
-        <span>{{ number }}</span>
-      </sbb-option>
+      @for (number of numbers; track number) {
+        <sbb-option [value]="number">
+          <span>{{ number }}</span>
+        </sbb-option>
+      }
     </sbb-autocomplete>
   `,
 })
@@ -273,7 +284,9 @@ class AutocompleteWithNumbers {
     </sbb-form-field>
 
     <sbb-autocomplete #auto="sbbAutocomplete">
-      <sbb-option *ngFor="let option of options" [value]="option">{{ option }}</sbb-option>
+      @for (option of options; track option) {
+        <sbb-option [value]="option">{{ option }}</sbb-option>
+      }
     </sbb-autocomplete>
   `,
 })
@@ -294,9 +307,11 @@ class AutocompleteWithOnPushDelay implements OnInit {
     <input placeholder="Choose" [sbbAutocomplete]="auto" [formControl]="optionCtrl" />
 
     <sbb-autocomplete #auto="sbbAutocomplete">
-      <sbb-option *ngFor="let option of filteredOptions | async" [value]="option">
-        {{ option }}
-      </sbb-option>
+      @for (option of filteredOptions | async; track option) {
+        <sbb-option [value]="option">
+          {{ option }}
+        </sbb-option>
+      }
     </sbb-autocomplete>
   `,
 })
@@ -335,11 +350,15 @@ class AutocompleteWithoutPanel {
     </sbb-form-field>
 
     <sbb-autocomplete #auto="sbbAutocomplete">
-      <sbb-optgroup *ngFor="let group of stateGroups" [label]="group.label">
-        <sbb-option *ngFor="let state of group.states" [value]="state" style="height: 48px">
-          <span>{{ state }}</span>
-        </sbb-option>
-      </sbb-optgroup>
+      @for (group of stateGroups; track group) {
+        <sbb-optgroup [label]="group.label">
+          @for (state of group.states; track state) {
+            <sbb-option [value]="state" style="height: 48px">
+              <span>{{ state }}</span>
+            </sbb-option>
+          }
+        </sbb-optgroup>
+      }
     </sbb-autocomplete>
   `,
 })
@@ -369,13 +388,17 @@ class AutocompleteWithGroups {
     </sbb-form-field>
 
     <sbb-autocomplete #auto="sbbAutocomplete">
-      <ng-container [ngSwitch]="true">
-        <sbb-optgroup *ngFor="let group of stateGroups" [label]="group.label">
-          <sbb-option *ngFor="let state of group.states" [value]="state">
-            <span>{{ state }}</span>
-          </sbb-option>
-        </sbb-optgroup>
-      </ng-container>
+      @if (true) {
+        @for (group of stateGroups; track group) {
+          <sbb-optgroup [label]="group.label">
+            @for (state of group.states; track state) {
+              <sbb-option [value]="state">
+                <span>{{ state }}</span>
+              </sbb-option>
+            }
+          </sbb-optgroup>
+        }
+      }
     </sbb-autocomplete>
   `,
 })
@@ -388,9 +411,11 @@ class AutocompleteWithIndirectGroups extends AutocompleteWithGroups {}
     </sbb-form-field>
 
     <sbb-autocomplete #auto="sbbAutocomplete" (optionSelected)="optionSelected($event)">
-      <sbb-option *ngFor="let num of numbers" [value]="num">
-        <span>{{ num }}</span>
-      </sbb-option>
+      @for (num of numbers; track num) {
+        <sbb-option [value]="num">
+          <span>{{ num }}</span>
+        </sbb-option>
+      }
     </sbb-autocomplete>
   `,
 })
@@ -422,7 +447,9 @@ class PlainAutocompleteInputWithFormControl {
     </sbb-form-field>
 
     <sbb-autocomplete #auto="sbbAutocomplete">
-      <sbb-option *ngFor="let value of values" [value]="value">{{ value }}</sbb-option>
+      @for (value of values; track value) {
+        <sbb-option [value]="value">{{ value }}</sbb-option>
+      }
     </sbb-autocomplete>
   `,
 })
@@ -454,7 +481,9 @@ class AutocompleteWithNumberInputAndNgModel {
     </div>
 
     <sbb-autocomplete #auto="sbbAutocomplete">
-      <sbb-option *ngFor="let value of values" [value]="value">{{ value }}</sbb-option>
+      @for (value of values; track value) {
+        <sbb-option [value]="value">{{ value }}</sbb-option>
+      }
     </sbb-autocomplete>
   `,
 })
@@ -488,7 +517,9 @@ class InputWithoutAutocompleteAndDisabled {}
     </sbb-form-field>
 
     <sbb-autocomplete #auto="sbbAutocomplete" (optionActivated)="optionActivated($event)">
-      <sbb-option *ngFor="let state of states" [value]="state">{{ state }}</sbb-option>
+      @for (state of states; track state) {
+        <sbb-option [value]="state">{{ state }}</sbb-option>
+      }
     </sbb-autocomplete>
   `,
 })
@@ -506,9 +537,11 @@ class AutocompleteWithActivatedEvent {
       <input type="text" sbbInput [(ngModel)]="value" [sbbAutocomplete]="auto" />
     </sbb-form-field>
     <sbb-autocomplete #auto="sbbAutocomplete" [localeNormalizer]="normalizer">
-      <sbb-option *ngFor="let option of options" [value]="option">
-        {{ option }}
-      </sbb-option>
+      @for (option of options; track option) {
+        <sbb-option [value]="option">
+          {{ option }}
+        </sbb-option>
+      }
     </sbb-autocomplete>`,
 })
 class AutocompleteLocaleNormalizer {
@@ -533,8 +566,12 @@ class AutocompleteLocaleNormalizer {
 @Component({
   template: `<input type="text" [sbbAutocomplete]="auto" />
     <sbb-autocomplete #auto="sbbAutocomplete" [showHintIfNoOptions]="showHintIfNoOptions">
-      <sbb-option *ngIf="showOption">option</sbb-option>
-      <sbb-option-hint *ngIf="showHint">hint</sbb-option-hint>
+      @if (showOption) {
+        <sbb-option>option</sbb-option>
+      }
+      @if (showHint) {
+        <sbb-option-hint>hint</sbb-option-hint>
+      }
     </sbb-autocomplete>`,
 })
 class AutocompleteHint {

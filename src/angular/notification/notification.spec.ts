@@ -1,4 +1,3 @@
-import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
 import { ComponentFixture, fakeAsync, flush, TestBed, waitForAsync } from '@angular/core/testing';
 import { FormsModule } from '@angular/forms';
@@ -17,13 +16,7 @@ describe('SbbNotification', () => {
 
     beforeEach(waitForAsync(() => {
       TestBed.configureTestingModule({
-        imports: [
-          CommonModule,
-          NoopAnimationsModule,
-          SbbNotificationModule,
-          SbbIconModule,
-          SbbIconTestingModule,
-        ],
+        imports: [NoopAnimationsModule, SbbNotificationModule, SbbIconModule, SbbIconTestingModule],
       }).compileComponents();
     }));
 
@@ -45,7 +38,6 @@ describe('SbbNotification', () => {
     beforeEach(waitForAsync(() => {
       TestBed.configureTestingModule({
         imports: [
-          CommonModule,
           FormsModule,
           NoopAnimationsModule,
           SbbNotificationModule,

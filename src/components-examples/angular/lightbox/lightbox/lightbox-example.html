@@ -5,7 +5,11 @@
 <p>
   <button sbb-secondary-button (click)="open()">Pick one</button>
 </p>
-<span *ngIf="animal">You chose: <i>{{ animal }}</i></span>
+@if (animal) {
+  <span
+    >You chose: <i>{{ animal }}</i></span
+  >
+}
 
 <h4>Description</h4>
 <p>This implementation shows how to share data between parent and the lightbox.</p>

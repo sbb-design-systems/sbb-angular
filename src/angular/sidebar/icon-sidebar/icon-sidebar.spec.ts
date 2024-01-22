@@ -1,7 +1,6 @@
 import { A11yModule } from '@angular/cdk/a11y';
 import { MediaMatcher } from '@angular/cdk/layout';
 import { CdkScrollable } from '@angular/cdk/scrolling';
-import { CommonModule } from '@angular/common';
 import { Component, DebugElement, ElementRef, ViewChild } from '@angular/core';
 import {
   ComponentFixture,
@@ -44,7 +43,6 @@ describe('SbbIconSidebar', () => {
         SbbSidebarModule,
         A11yModule,
         NoopAnimationsModule,
-        CommonModule,
         SbbIconModule,
         SbbIconTestingModule,
         RouterTestingModule,
@@ -496,7 +494,9 @@ class TwoSidebarsTestComponent {}
 @Component({
   template: `
     <sbb-icon-sidebar-container>
-      <sbb-icon-sidebar *ngIf="showSidebar" #sidebar expanded>Sidebar</sbb-icon-sidebar>
+      @if (showSidebar) {
+        <sbb-icon-sidebar #sidebar expanded>Sidebar</sbb-icon-sidebar>
+      }
     </sbb-icon-sidebar-container>
   `,
 })
@@ -521,9 +521,9 @@ class SidebarContainerWithContentTestComponent {
   // Note that we need the `ng-container` with the `ngSwitch` so that
   // there's a directive between the container and the sidebar.
   template: ` <sbb-icon-sidebar-container #container>
-    <ng-container [ngSwitch]="true">
+    @if (true) {
       <sbb-icon-sidebar #sidebar>Sidebar</sbb-icon-sidebar>
-    </ng-container>
+    }
   </sbb-icon-sidebar-container>`,
 })
 class IndirectDescendantSidebarTestComponent {

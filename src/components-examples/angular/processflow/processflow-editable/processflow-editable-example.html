@@ -32,7 +32,9 @@
         />
       </sbb-form-field>
       <div>
-        <button *ngIf="!disableEditable" sbb-secondary-button sbbProcessflowPrevious>Back</button>
+        @if (!disableEditable) {
+          <button sbb-secondary-button sbbProcessflowPrevious>Back</button>
+        }
         <button sbb-button sbbProcessflowNext>Next</button>
       </div>
     </form>
@@ -41,7 +43,9 @@
     <ng-template sbbStepLabel>Done</ng-template>
     <p>You are now done.</p>
     <div>
-      <button *ngIf="!disableEditable" sbb-secondary-button sbbProcessflowPrevious>Back</button>
+      @if (!disableEditable) {
+        <button sbb-secondary-button sbbProcessflowPrevious>Back</button>
+      }
       <button sbb-button (click)="processflow.reset()">Reset</button>
     </div>
   </sbb-step>
