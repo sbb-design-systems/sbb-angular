@@ -1,6 +1,8 @@
 <sbb-form-field class="sbb-form-field-long" label="Train names">
   <sbb-chip-list aria-label="Train names" [(ngModel)]="model" [disabled]="disabled">
-    <sbb-chip *ngFor="let trainName of model" [value]="trainName"> {{trainName}} </sbb-chip>
+    @for (trainName of model; track trainName) {
+      <sbb-chip [value]="trainName"> {{ trainName }} </sbb-chip>
+    }
     <input placeholder="New train name..." sbbChipInput />
   </sbb-chip-list>
 </sbb-form-field>
@@ -14,4 +16,4 @@
 </p>
 
 <h4>Model</h4>
-<pre>{{valuesArray | json}}</pre>
+<pre>{{ valuesArray | json }}</pre>

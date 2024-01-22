@@ -4,11 +4,20 @@
   [attr.aria-label]="ariaLabel"
   [attr.aria-labelledby]="ariaLabelledby"
   [attr.aria-describedby]="ariaDescribedby"
-  [ngSwitch]="type"
 >
-  <sbb-icon svgIcon="tick-small" *ngSwitchCase="'valid'"></sbb-icon>
-  <sbb-icon svgIcon="sign-exclamation-point-small" *ngSwitchCase="'warning'"></sbb-icon>
-  <sbb-icon svgIcon="circle-cross-small" *ngSwitchCase="'invalid'"></sbb-icon>
+  @switch (type) {
+    @case ('valid') {
+      <sbb-icon svgIcon="tick-small"></sbb-icon>
+    }
+    @case ('warning') {
+      <sbb-icon svgIcon="sign-exclamation-point-small"></sbb-icon>
+    }
+    @case ('invalid') {
+      <sbb-icon svgIcon="circle-cross-small"></sbb-icon>
+    }
+  }
 </div>
 
-<div *ngIf="message" class="sbb-status-message">{{ message }}</div>
+@if (message) {
+  <div class="sbb-status-message">{{ message }}</div>
+}

@@ -1,4 +1,4 @@
-import { JsonPipe, NgFor } from '@angular/common';
+import { JsonPipe } from '@angular/common';
 import { Component } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { SbbButtonModule } from '@sbb-esta/angular/button';
@@ -13,7 +13,7 @@ import { SbbFormFieldModule } from '@sbb-esta/angular/form-field';
   selector: 'sbb-chips-template-driven-forms-example',
   templateUrl: 'chips-template-driven-forms-example.html',
   standalone: true,
-  imports: [SbbFormFieldModule, SbbChipsModule, FormsModule, NgFor, SbbButtonModule, JsonPipe],
+  imports: [SbbFormFieldModule, SbbChipsModule, FormsModule, SbbButtonModule, JsonPipe],
 })
 export class ChipsTemplateDrivenFormsExample {
   model = new Set(['ICN', 'FLIRT', 'KISS']);

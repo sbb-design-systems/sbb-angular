@@ -1,5 +1,5 @@
 import { COMMA, ENTER } from '@angular/cdk/keycodes';
-import { AsyncPipe, NgFor } from '@angular/common';
+import { AsyncPipe } from '@angular/common';
 import { Component } from '@angular/core';
 import { FormControl, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { SbbAutocompleteModule } from '@sbb-esta/angular/autocomplete';
@@ -22,7 +22,6 @@ import { map, startWith } from 'rxjs/operators';
     SbbChipsModule,
     FormsModule,
     ReactiveFormsModule,
-    NgFor,
     SbbAutocompleteModule,
     SbbOptionModule,
     AsyncPipe,

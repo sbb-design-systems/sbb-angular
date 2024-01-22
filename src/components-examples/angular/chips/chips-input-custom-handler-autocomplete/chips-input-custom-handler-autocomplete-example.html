@@ -1,8 +1,8 @@
 <sbb-form-field class="sbb-form-field-long" label="Favorite Fruits">
   <sbb-chip-list aria-label="Fruit selection" [formControl]="favoriteFruits">
-    <sbb-chip *ngFor="let fruit of favoriteFruits.value" (removed)="remove($event)" [value]="fruit"
-      >{{ formatFruit(fruit) }}</sbb-chip
-    >
+    @for (fruit of favoriteFruits.value; track fruit) {
+      <sbb-chip (removed)="remove($event)" [value]="fruit">{{ formatFruit(fruit) }}</sbb-chip>
+    }
     <input
       placeholder="Type the name of an available fruit..."
       sbbChipInput
@@ -17,9 +17,9 @@
   [displayWith]="formatFruit"
   (optionSelected)="addFromAutocomplete($event)"
 >
-  <sbb-option *ngFor="let fruit of remainingFruits" [value]="fruit"
-    >{{ formatFruit(fruit) }}</sbb-option
-  >
+  @for (fruit of remainingFruits; track fruit) {
+    <sbb-option [value]="fruit">{{ formatFruit(fruit) }}</sbb-option>
+  }
 </sbb-autocomplete>
 
 <p>Available Fruits: Apple, Lemon, Lime</p>

@@ -1219,7 +1219,9 @@ class IconFromSvgName {
 class IconWithAriaHiddenFalse {}
 
 @Component({
-  template: `<sbb-icon [svgIcon]="iconName" *ngIf="showIcon">{{ iconName }}</sbb-icon>`,
+  template: `@if (showIcon) {
+    <sbb-icon [svgIcon]="iconName">{{ iconName }}</sbb-icon>
+  }`,
 })
 class IconWithBindingAndNgIf {
   iconName = 'fluffy';

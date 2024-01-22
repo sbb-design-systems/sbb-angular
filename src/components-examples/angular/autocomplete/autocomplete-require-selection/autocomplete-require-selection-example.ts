@@ -1,4 +1,4 @@
-import { AsyncPipe, JsonPipe, NgFor } from '@angular/common';
+import { AsyncPipe, JsonPipe } from '@angular/common';
 import { Component, ElementRef, ViewChild } from '@angular/core';
 import { FormControl, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { SbbAutocompleteModule } from '@sbb-esta/angular/autocomplete';
@@ -19,7 +19,6 @@ import { SbbInputModule } from '@sbb-esta/angular/input';
     SbbInputModule,
     SbbAutocompleteModule,
     ReactiveFormsModule,
-    NgFor,
     AsyncPipe,
     JsonPipe,
   ],

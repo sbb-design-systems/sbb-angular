@@ -21,33 +21,50 @@
   </span>
 </label>
 
-<ul *ngIf="filesList?.length" class="sbb-file-selector-list sbb-clean-list sbb-icon-scaled">
-  <li *ngFor="let file of filesList">
-    <div
-      role="presentation"
-      class="sbb-file-selector-list-type-icon"
-      [ngSwitch]="_resolveFileTypeCategory(file)"
-    >
-      <sbb-icon svgIcon="document-text-small" *ngSwitchCase="'doc'"></sbb-icon>
-      <sbb-icon svgIcon="document-image-small" *ngSwitchCase="'image'"></sbb-icon>
-      <sbb-icon svgIcon="document-pdf-small" *ngSwitchCase="'pdf'"></sbb-icon>
-      <sbb-icon svgIcon="document-sound-small" *ngSwitchCase="'audio'"></sbb-icon>
-      <sbb-icon svgIcon="document-video-small" *ngSwitchCase="'video'"></sbb-icon>
-      <sbb-icon svgIcon="document-zip-small" *ngSwitchCase="'zip'"></sbb-icon>
-      <sbb-icon svgIcon="document-standard-small" *ngSwitchDefault></sbb-icon>
-    </div>
-    <span class="sbb-file-selector-list-desc"
-      >{{ _fileNameNoExtension(file) }} (<span class="sbb-file-selector-list-file-ext"
-        >{{ _fileExtension(file) }}</span
-      >, {{ _fileSizeFormatted(file) }})</span
-    >
-    <button
-      type="button"
-      class="sbb-file-selector-list-remove-icon sbb-button-reset-frameless"
-      (click)="removeFile(file)"
-    >
-      <span class="cdk-visually-hidden">{{ _labelRemoveFile }}</span>
-      <sbb-icon svgIcon="trash-small"></sbb-icon>
-    </button>
-  </li>
-</ul>
+@if (filesList && filesList.length) {
+  <ul class="sbb-file-selector-list sbb-clean-list sbb-icon-scaled">
+    @for (file of filesList; track file) {
+      <li>
+        <div role="presentation" class="sbb-file-selector-list-type-icon">
+          @switch (_resolveFileTypeCategory(file)) {
+            @case ('doc') {
+              <sbb-icon svgIcon="document-text-small"></sbb-icon>
+            }
+            @case ('image') {
+              <sbb-icon svgIcon="document-image-small"></sbb-icon>
+            }
+            @case ('pdf') {
+              <sbb-icon svgIcon="document-pdf-small"></sbb-icon>
+            }
+            @case ('audio') {
+              <sbb-icon svgIcon="document-sound-small"></sbb-icon>
+            }
+            @case ('video') {
+              <sbb-icon svgIcon="document-video-small"></sbb-icon>
+            }
+            @case ('zip') {
+              <sbb-icon svgIcon="document-zip-small"></sbb-icon>
+            }
+            @default {
+              <sbb-icon svgIcon="document-standard-small"></sbb-icon>
+            }
+          }
+        </div>
+        <span class="sbb-file-selector-list-desc"
+          >{{ _fileNameNoExtension(file) }} (<span class="sbb-file-selector-list-file-ext">{{
+            _fileExtension(file)
+          }}</span
+          >, {{ _fileSizeFormatted(file) }})</span
+        >
+        <button
+          type="button"
+          class="sbb-file-selector-list-remove-icon sbb-button-reset-frameless"
+          (click)="removeFile(file)"
+        >
+          <span class="cdk-visually-hidden">{{ _labelRemoveFile }}</span>
+          <sbb-icon svgIcon="trash-small"></sbb-icon>
+        </button>
+      </li>
+    }
+  </ul>
+}

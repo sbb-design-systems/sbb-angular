@@ -1,11 +1,15 @@
 <sbb-form-field label="Notification type">
   <select [(ngModel)]="type" sbbInput>
-    <option *ngFor="let type of types" [value]="type">{{ type }}</option>
+    @for (type of types; track type) {
+      <option [value]="type">{{ type }}</option>
+    }
   </select>
 </sbb-form-field>
 <sbb-form-field label="Notification position">
   <select [(ngModel)]="position" sbbInput>
-    <option *ngFor="let position of positions" [value]="position">{{ position }}</option>
+    @for (position of positions; track position) {
+      <option [value]="position">{{ position }}</option>
+    }
   </select>
 </sbb-form-field>
 <button type="button" sbb-button (click)="showNotification()">Show notification</button>

@@ -2,9 +2,9 @@
 
 <form [formGroup]="form">
   <sbb-radio-group formControlName="value" class="sbb-radio-panel-group" [ngClass]="groupClasses">
-    <sbb-radio-button-panel *ngFor="let option of radios" [value]="option.value"
-      >{{ option.label }}</sbb-radio-button-panel
-    >
+    @for (option of radios; track option) {
+      <sbb-radio-button-panel [value]="option.value">{{ option.label }}</sbb-radio-button-panel>
+    }
   </sbb-radio-group>
 
   <div class="configuration">
@@ -12,14 +12,16 @@
       <sbb-label>Amount</sbb-label>
       <input sbbInput formControlName="amount" />
     </sbb-form-field>
-    <sbb-form-field *ngFor="let breakpoint of breakpoints">
-      <sbb-label>{{ breakpoint }} columns</sbb-label>
-      <sbb-select [formControlName]="breakpoint">
-        <sbb-option *ngFor="let i of breakpointRange(breakpoint)" [value]="i"
-          >{{ i === 1 ? '-' : i }}</sbb-option
-        >
-      </sbb-select>
-    </sbb-form-field>
+    @for (breakpoint of breakpoints; track breakpoint) {
+      <sbb-form-field>
+        <sbb-label>{{ breakpoint }} columns</sbb-label>
+        <sbb-select [formControlName]="breakpoint">
+          @for (i of breakpointRange(breakpoint); track i) {
+            <sbb-option [value]="i">{{ i === 1 ? '-' : i }}</sbb-option>
+          }
+        </sbb-select>
+      </sbb-form-field>
+    }
   </div>
 </form>
 

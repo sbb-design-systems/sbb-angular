@@ -1,4 +1,4 @@
-import { AsyncPipe, JsonPipe, NgFor } from '@angular/common';
+import { AsyncPipe, JsonPipe } from '@angular/common';
 import { Component } from '@angular/core';
 import { FormControl, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { SbbAutocompleteModule } from '@sbb-esta/angular/autocomplete';
@@ -27,7 +27,6 @@ interface ExampleOption {
     FormsModule,
     SbbAutocompleteModule,
     ReactiveFormsModule,
-    NgFor,
     SbbOptionModule,
     AsyncPipe,
     JsonPipe,

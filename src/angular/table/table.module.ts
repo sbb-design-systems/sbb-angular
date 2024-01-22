@@ -1,5 +1,4 @@
 import { CdkTableModule } from '@angular/cdk/table';
-import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { SbbCommonModule } from '@sbb-esta/angular/core';
 
@@ -59,7 +58,7 @@ const EXPORTED_DECLARATIONS = [
 ];
 
 @NgModule({
-  imports: [CdkTableModule, CommonModule, SbbCommonModule],
+  imports: [CdkTableModule, SbbCommonModule],
   declarations: EXPORTED_DECLARATIONS,
   exports: EXPORTED_DECLARATIONS,
 })

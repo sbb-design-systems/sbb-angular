@@ -1,4 +1,4 @@
-import { AsyncPipe, NgFor } from '@angular/common';
+import { AsyncPipe } from '@angular/common';
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { FormControl, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { SbbAutocompleteModule } from '@sbb-esta/angular/autocomplete';
@@ -22,7 +22,6 @@ import { debounceTime, distinctUntilChanged, takeUntil } from 'rxjs/operators';
     FormsModule,
     SbbAutocompleteModule,
     ReactiveFormsModule,
-    NgFor,
     SbbOptionModule,
     AsyncPipe,
   ],

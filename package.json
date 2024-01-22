@@ -27,7 +27,8 @@
     "test-firefox": "yarn -s test --firefox",
     "tslint": "tslint -c tslint.json --project ./tsconfig.json",
     "lint": "yarn -s tslint && yarn -s bazel:format-lint",
-    "format:prettier": "prettier --write \"**/*.{js,ts,css,scss,json,md,html}\"",
+    "format:prettier": "prettier --write \"**/*.{js,ts,css,scss,json,md}\" && yarn -s format:prettier:html",
+    "format:prettier:html": "prettier --write \"./src/**/*.html\" --parser angular",
     "format:tslint": "yarn -s tslint --fix",
     "format:bazel": "yarn -s bazel:buildifier --lint=fix --mode=fix",
     "format": "npm-run-all --parallel format:prettier format:bazel format:tslint",
@@ -258,8 +259,11 @@
     }
   },
   "lint-staged": {
-    "*.{js,ts,css,scss,json,md,html}": [
+    "*.{js,ts,css,scss,json,md}": [
       "prettier --write"
+    ],
+    "*.html": [
+      "prettier --write --parser angular"
     ],
     "*.ts": [
       "tslint -c tslint.json --project ./tsconfig.json --fix"

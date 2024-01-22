@@ -1,4 +1,4 @@
-import { JsonPipe, NgFor } from '@angular/common';
+import { JsonPipe } from '@angular/common';
 import { Component } from '@angular/core';
 import { FormControl, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { SbbAutocompleteModule } from '@sbb-esta/angular/autocomplete';
@@ -20,7 +20,6 @@ import { SbbSearchModule } from '@sbb-esta/angular/search';
     FormsModule,
     SbbAutocompleteModule,
     ReactiveFormsModule,
-    NgFor,
     SbbOptionModule,
     JsonPipe,
   ],

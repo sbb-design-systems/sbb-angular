@@ -1,4 +1,3 @@
-import { NgIf } from '@angular/common';
 import { Component } from '@angular/core';
 import { FormControl, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
 import { SbbDatepickerModule } from '@sbb-esta/angular/datepicker';
@@ -19,7 +18,6 @@ import { SbbInputModule } from '@sbb-esta/angular/input';
     SbbInputModule,
     FormsModule,
     ReactiveFormsModule,
-    NgIf,
   ],
 })
 export class FormFieldDatepickerExample {

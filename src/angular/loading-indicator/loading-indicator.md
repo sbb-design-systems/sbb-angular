@@ -16,9 +16,10 @@ required to add the `position: relative;` CSS rule to the parent.
 If the loading state should be announced by screen readers, wrap the `sbb-loading-indicator` in an
 element with `aria-live` and add an `aria-label` attribute to the loading indicator.
 
-```html
+```angular
 <div aria-live="polite">
-  <sbb-loading-indicator *ngIf="isLoading" mode="medium" aria-label="Loading, please wait">
-  </sbb-loading-indicator>
+  @if (isLoading) {
+    <sbb-loading-indicator mode="medium" aria-label="Loading, please wait" />
+  }
 </div>
 ```

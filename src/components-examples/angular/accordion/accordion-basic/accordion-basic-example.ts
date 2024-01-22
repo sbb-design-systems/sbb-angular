@@ -1,4 +1,3 @@
-import { NgIf } from '@angular/common';
 import { Component } from '@angular/core';
 import { FormControl, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { SbbAccordionModule } from '@sbb-esta/angular/accordion';
@@ -20,7 +19,6 @@ import { SbbCheckboxModule } from '@sbb-esta/angular/checkbox';
     FormsModule,
     ReactiveFormsModule,
     SbbButtonModule,
-    NgIf,
   ],
 })
 export class AccordionBasicExample {
