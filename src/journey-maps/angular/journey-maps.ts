@@ -938,8 +938,7 @@ export class SbbJourneyMaps implements OnInit, AfterViewInit, OnDestroy, OnChang
   onWindowResize() {
     const height = this._mapElementRef.nativeElement.offsetHeight;
     const width = this._mapElementRef.nativeElement.offsetWidth;
-    const aspectRatio = height / width;
-    const isLandscapeMode = aspectRatio < 1;
+    const isLandscapeMode = height < width;
     this.isLevelSwitchHorizontal =
       isLandscapeMode && height < this.isLevelSwitchHorizontalThreshold;
   }
