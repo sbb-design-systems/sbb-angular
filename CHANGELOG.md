@@ -2,6 +2,18 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [17.4.0](https://github.com/sbb-design-systems/sbb-angular/compare/17.3.0...17.4.0) (2024-01-23)
+
+
+### Features
+
+* **multiple:** switch to angular's new built-in control-flow ([#2120](https://github.com/sbb-design-systems/sbb-angular/issues/2120)) ([bd8b6f4](https://github.com/sbb-design-systems/sbb-angular/commit/bd8b6f462a7bd7c797a7f1d29df1a77afd9a6259))
+
+
+### Bug Fixes
+
+* **deps:** update to angular 17.1.0 ([#2143](https://github.com/sbb-design-systems/sbb-angular/issues/2143)) ([1514a56](https://github.com/sbb-design-systems/sbb-angular/commit/1514a56893e11ec005a874addedcc7b644cdd28f)), closes [#2142](https://github.com/sbb-design-systems/sbb-angular/issues/2142)
+
 ## [17.3.0](https://github.com/sbb-design-systems/sbb-angular/compare/17.2.1...17.3.0) (2024-01-15)
 
 
