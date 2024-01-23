@@ -70,7 +70,7 @@ export class SbbRecycleRows {}
       <thead role="rowgroup">
         <ng-container headerRowOutlet />
       </thead>
-      <tbody class="mdc-data-table__content" role="rowgroup">
+      <tbody role="rowgroup">
         <ng-container rowOutlet />
         <ng-container noDataRowOutlet />
       </tbody>
