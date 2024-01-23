@@ -8,11 +8,18 @@
   border-radius: 8px;
   text-align: center;
   vertical-align: middle;
+  background-color: esta.$sbbColorWhite;
+  color: esta.$sbbColorBlack;
 
   @include esta.mq($from: tabletPortrait) {
     @at-root .map-control-container.small-buttons #{&} {
       border-radius: 6px;
     }
+  }
+
+  @at-root .map-control-container.dark #{&} {
+    background-color: esta.$sbbColorBlack;
+    color: esta.$sbbColorWhite;
   }
 }
 
@@ -20,11 +27,23 @@
 .map-control-button-selected {
   @extend .map-control-button;
   background-color: esta.$sbbColorCharcoal;
-  color: white;
+  color: esta.$sbbColorWhite;
+}
+
+@at-root .map-control-container.dark #{&} {
+  .map-control-button:hover,
+  .map-control-button-selected {
+    background-color: esta.$sbbColorSmoke;
+    color: esta.$sbbColorBlack;
+  }
 }
 
 .map-control-button-wrapper {
-  border-bottom: 1px solid #e5e5e5;
+  border-bottom: 1px solid esta.$sbbColorCloud;
+
+  @at-root .map-control-container.dark #{&} {
+    border-bottom: 1px solid esta.$sbbColorMetal;
+  }
 }
 
 .map-control-button-wrapper:first-child {

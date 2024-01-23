@@ -12,8 +12,8 @@ import { Map as MaplibreMap } from 'maplibre-gl';
 import { Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
 
-import { SbbStyleMode } from '../../journey-maps.interfaces';
 import { SbbLocaleService } from '../../services/locale-service';
+import { SbbDarkModeAware } from '../dark-mode-aware/dark-mode-aware';
 
 @Component({
   selector: 'sbb-zoom-controls',
@@ -21,14 +21,9 @@ import { SbbLocaleService } from '../../services/locale-service';
   styleUrls: ['./zoom-controls.css'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class SbbZoomControls implements OnInit, OnChanges, OnDestroy {
+export class SbbZoomControls extends SbbDarkModeAware implements OnInit, OnChanges, OnDestroy {
   @Input() map: MaplibreMap | null;
   @Input() showSmallButtons: boolean | undefined;
-  @Input() styleMode: SbbStyleMode | undefined = 'bright';
-
-  get isDarkMode(): boolean {
-    return !!this.styleMode && this.styleMode === 'dark';
-  }
 
   private _zoomChanged = new Subject<void>();
   private _destroyed = new Subject<void>();
@@ -41,7 +36,9 @@ export class SbbZoomControls implements OnInit, OnChanges, OnDestroy {
   constructor(
     private _cd: ChangeDetectorRef,
     private _i18n: SbbLocaleService,
-  ) {}
+  ) {
+    super();
+  }
 
   ngOnInit(): void {
     this._zoomChanged.pipe(takeUntil(this._destroyed)).subscribe(() => {

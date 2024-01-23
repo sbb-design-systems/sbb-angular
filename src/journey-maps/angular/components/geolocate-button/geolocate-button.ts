@@ -8,6 +8,7 @@ import {
 } from '@angular/core';
 import { Map as MaplibreMap } from 'maplibre-gl';
 
+import { SbbStyleMode } from '../../journey-maps.interfaces';
 import { SbbLocaleService } from '../../services/locale-service';
 
 @Component({
@@ -19,8 +20,13 @@ import { SbbLocaleService } from '../../services/locale-service';
 export class SbbGeolocateButton implements OnInit {
   @Input() map: MaplibreMap | null;
   @Input() showSmallButtons: boolean | undefined;
+  @Input() styleMode: SbbStyleMode | undefined = 'bright';
 
   @Output() geolocateButtonClicked: EventEmitter<void> = new EventEmitter<void>();
+
+  get isDarkMode(): boolean {
+    return !!this.styleMode && this.styleMode === 'dark';
+  }
 
   geolocateButtonLabel: string;
 

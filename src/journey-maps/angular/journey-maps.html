@@ -39,23 +39,27 @@
         [map]="mapReady | async"
         [showSmallButtons]="uiOptions.showSmallButtons"
         (geolocateButtonClicked)="onGeolocateButtonClicked()"
+        [styleMode]="styleOptions.mode"
       ></sbb-geolocate-button>
       <sbb-basemap-switch
         *ngIf="uiOptions.basemapSwitch"
         [map]="mapReady | async"
         [showSmallButtons]="uiOptions.showSmallButtons"
         (toggleBasemap)="onToggleBasemap()"
+        [styleMode]="styleOptions.mode"
       ></sbb-basemap-switch>
       <sbb-home-button
         *ngIf="uiOptions.homeButton"
         [map]="mapReady | async"
         [showSmallButtons]="uiOptions.showSmallButtons"
         (homeButtonClicked)="onHomeButtonClicked()"
+        [styleMode]="styleOptions.mode"
       ></sbb-home-button>
       <sbb-level-switch
         *ngIf="uiOptions.levelSwitch"
         [map]="mapReady | async"
         [showSmallButtons]="uiOptions.showSmallButtons"
+        [styleMode]="styleOptions.mode"
       ></sbb-level-switch>
     </div>
     <div class="map-attribution">

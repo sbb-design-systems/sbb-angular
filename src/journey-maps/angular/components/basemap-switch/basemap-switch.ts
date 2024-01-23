@@ -9,6 +9,7 @@ import {
 import { Map as MaplibreMap } from 'maplibre-gl';
 
 import { SbbLocaleService } from '../../services/locale-service';
+import { SbbDarkModeAware } from '../dark-mode-aware/dark-mode-aware';
 
 @Component({
   selector: 'sbb-basemap-switch',
@@ -16,7 +17,7 @@ import { SbbLocaleService } from '../../services/locale-service';
   styleUrls: ['./basemap-switch.css'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class SbbBasemapSwitch implements OnInit {
+export class SbbBasemapSwitch extends SbbDarkModeAware implements OnInit {
   @Input() map: MaplibreMap | null;
   @Input() showSmallButtons: boolean | undefined;
 
@@ -24,7 +25,9 @@ export class SbbBasemapSwitch implements OnInit {
 
   basemapSwitchLabel: string;
 
-  constructor(private _i18n: SbbLocaleService) {}
+  constructor(private _i18n: SbbLocaleService) {
+    super();
+  }
 
   ngOnInit(): void {
     this.basemapSwitchLabel = `${this._i18n.getText('a4a.visualFunction')} ${this._i18n.getText(

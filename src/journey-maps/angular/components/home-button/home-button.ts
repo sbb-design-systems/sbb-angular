@@ -9,6 +9,7 @@ import {
 import { Map as MaplibreMap } from 'maplibre-gl';
 
 import { SbbLocaleService } from '../../services/locale-service';
+import { SbbDarkModeAware } from '../dark-mode-aware/dark-mode-aware';
 
 @Component({
   selector: 'sbb-home-button',
@@ -16,7 +17,7 @@ import { SbbLocaleService } from '../../services/locale-service';
   styleUrls: ['./home-button.css'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class SbbHomeButton implements OnInit {
+export class SbbHomeButton extends SbbDarkModeAware implements OnInit {
   @Input() map: MaplibreMap | null;
   @Input() showSmallButtons: boolean | undefined;
 
@@ -24,7 +25,9 @@ export class SbbHomeButton implements OnInit {
 
   homeButtonLabel: string;
 
-  constructor(private _i18n: SbbLocaleService) {}
+  constructor(private _i18n: SbbLocaleService) {
+    super();
+  }
 
   ngOnInit(): void {
     this.homeButtonLabel = `${this._i18n.getText('a4a.visualFunction')} ${this._i18n.getText(
