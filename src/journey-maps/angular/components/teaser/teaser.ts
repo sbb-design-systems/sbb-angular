@@ -14,6 +14,7 @@ import {
 
 import { SbbTemplateType } from '../../journey-maps.interfaces';
 import { SbbLocaleService } from '../../services/locale-service';
+import { SbbDarkModeAware } from '../dark-mode-aware/dark-mode-aware';
 
 @Component({
   selector: 'sbb-teaser',
@@ -30,7 +31,7 @@ import { SbbLocaleService } from '../../services/locale-service';
     ]),
   ],
 })
-export class SbbTeaser implements OnInit, OnChanges {
+export class SbbTeaser extends SbbDarkModeAware implements OnInit, OnChanges {
   @Input() rendered: boolean;
   @Input() templateContext: any;
   @Input() template: SbbTemplateType;
@@ -56,7 +57,9 @@ export class SbbTeaser implements OnInit, OnChanges {
     }
   }
 
-  constructor(private _i18n: SbbLocaleService) {}
+  constructor(private _i18n: SbbLocaleService) {
+    super();
+  }
 
   ngOnInit(): void {
     this.closeLabel = this._i18n.getText('close');

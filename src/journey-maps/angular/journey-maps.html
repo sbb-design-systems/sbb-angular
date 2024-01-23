@@ -17,6 +17,7 @@
       (featuresHoverChange)="featuresHoverChange.next($event)"
       (featuresClick)="featuresClick.next($event); handleMarkerOrClusterClick($event.features)"
       (featureSelectionsChange)="selectedFeaturesChange.next($event)"
+      [styleMode]="styleOptions.mode"
     ></sbb-feature-event-listener>
     <sbb-marker-details
       [selectedMarker]="selectedMarker"
@@ -24,6 +25,7 @@
       [map]="mapReady | async"
       [popup]="markerOptions.popup"
       (closeClicked)="onMarkerUnselected()"
+      [styleMode]="styleOptions.mode"
     >
     </sbb-marker-details>
 

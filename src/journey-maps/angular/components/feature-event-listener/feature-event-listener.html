@@ -16,6 +16,7 @@
   [template]="overlayTemplate"
   [templateContext]="overlayFeatures"
   [withPaginator]="true"
+  [styleMode]="styleMode"
   (closeClicked)="onOverlayClosed()"
   (mouseEvent)="onOverlayMouseEvent($event)"
   *ngIf="!overlayIsPopup"

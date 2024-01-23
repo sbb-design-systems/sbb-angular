@@ -35,6 +35,7 @@ import { SbbMapMarkerService } from '../../services/map/map-marker-service';
 import { SbbMapRoutesService } from '../../services/map/map-routes.service';
 import { SbbMapStationService, SBB_STATION_LAYER } from '../../services/map/map-station-service';
 import { SBB_ZONE_LAYER } from '../../services/map/map-zone-service';
+import { SbbDarkModeAware } from '../dark-mode-aware/dark-mode-aware';
 
 @Component({
   selector: 'sbb-feature-event-listener',
@@ -42,7 +43,7 @@ import { SBB_ZONE_LAYER } from '../../services/map/map-zone-service';
   providers: [SbbMapSelectionEvent],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class SbbFeatureEventListener implements OnChanges, OnDestroy {
+export class SbbFeatureEventListener extends SbbDarkModeAware implements OnChanges, OnDestroy {
   @Input() listenerOptions: SbbListenerOptions;
   @Input() map: MapLibreMap | null;
   @Input() poiOptions?: SbbPointsOfInterestOptions;
@@ -79,7 +80,9 @@ export class SbbFeatureEventListener implements OnChanges, OnDestroy {
     private _mapEventUtils: SbbMapEventUtils,
     private _cd: ChangeDetectorRef,
     readonly mapSelectionEventService: SbbMapSelectionEvent,
-  ) {}
+  ) {
+    super();
+  }
 
   ngOnDestroy(): void {
     this._destroyed.next();

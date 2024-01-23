@@ -14,13 +14,14 @@ import { LngLatLike, Map as MaplibreMap, Offset } from 'maplibre-gl';
 import { SbbTemplateType } from '../../journey-maps.interfaces';
 import { SbbMarker } from '../../model/marker';
 import { SbbMapMarkerService } from '../../services/map/map-marker-service';
+import { SbbDarkModeAware } from '../dark-mode-aware/dark-mode-aware';
 
 @Component({
   selector: 'sbb-marker-details',
   templateUrl: './marker-details.html',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class SbbMarkerDetails implements OnChanges {
+export class SbbMarkerDetails extends SbbDarkModeAware implements OnChanges {
   @Input() selectedMarker: SbbMarker | undefined;
   @Input() template?: SbbTemplateType;
   @Input() popup: boolean | undefined;
@@ -41,7 +42,9 @@ export class SbbMarkerDetails implements OnChanges {
     'top-right': [0, -10],
   };
 
-  constructor(private _mapMarkerService: SbbMapMarkerService) {}
+  constructor(private _mapMarkerService: SbbMapMarkerService) {
+    super();
+  }
 
   ngOnChanges(changes: SimpleChanges | undefined): void {
     this.shouldRender = !!this.selectedMarker && !!this.template;
