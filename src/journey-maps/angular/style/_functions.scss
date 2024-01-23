@@ -21,6 +21,11 @@
         margin: 6px;
       }
     }
+
+    &.dark {
+      background: esta.$sbbColorBlack;
+      outline: 1px solid esta.$sbbColorMetal;
+    }
   }
 
   .map-control-button-wrapper {
@@ -52,14 +57,27 @@
       }
     }
 
-    &:not([data-disabled='true']):active,
-    &:not([data-disabled='true']):has(:focus-visible) {
+    &:not([disabled]):active,
+    &:not([disabled]):has(:focus-visible) {
       @include _map-control-button-wrapper-active;
     }
 
     @media (hover: hover) {
-      &:not([data-disabled='true']):hover {
+      &:not([disabled]):hover {
         @include _map-control-button-wrapper-active;
+      }
+    }
+
+    @at-root .map-control-container.dark #{&} {
+      &:not([disabled]):active,
+      &:not([disabled]):has(:focus-visible) {
+        @include _map-control-button-wrapper-active-dark;
+      }
+
+      @media (hover: hover) {
+        &:not([disabled]):hover {
+          @include _map-control-button-wrapper-active-dark;
+        }
       }
     }
   }
@@ -78,6 +96,16 @@
 
   .map-control-button {
     background-color: esta.$sbbColorWhite;
+  }
+}
+
+@mixin _map-control-button-wrapper-active-dark {
+  @include _map-control-button-wrapper-active;
+
+  background-color: esta.$sbbColorSmoke;
+
+  .map-control-button {
+    background-color: esta.$sbbColorBlack;
   }
 }
 
@@ -108,6 +136,20 @@
     @include esta.mq($from: tabletPortrait) {
       @at-root .map-control-container.small-buttons #{&} {
         height: 26px;
+      }
+    }
+
+    @at-root .map-control-container.dark #{&} {
+      background-color: esta.$sbbColorWhite;
+
+      &:not([disabled]):focus-visible {
+        background-color: esta.$sbbColorBlack;
+      }
+
+      @media (hover: hover) {
+        &:not([disabled]):hover {
+          background-color: esta.$sbbColorBlack;
+        }
       }
     }
   }

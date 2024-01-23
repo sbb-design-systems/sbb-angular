@@ -32,6 +32,7 @@
         *ngIf="uiOptions.zoomControls"
         [map]="mapReady | async"
         [showSmallButtons]="uiOptions.showSmallButtons"
+        [styleMode]="styleOptions.mode"
       ></sbb-zoom-controls>
       <sbb-geolocate-button
         *ngIf="uiOptions.geoLocation"

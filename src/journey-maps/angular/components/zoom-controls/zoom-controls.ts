@@ -12,6 +12,7 @@ import { Map as MaplibreMap } from 'maplibre-gl';
 import { Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
 
+import { SbbStyleMode } from '../../journey-maps.interfaces';
 import { SbbLocaleService } from '../../services/locale-service';
 
 @Component({
@@ -23,6 +24,11 @@ import { SbbLocaleService } from '../../services/locale-service';
 export class SbbZoomControls implements OnInit, OnChanges, OnDestroy {
   @Input() map: MaplibreMap | null;
   @Input() showSmallButtons: boolean | undefined;
+  @Input() styleMode: SbbStyleMode | undefined = 'bright';
+
+  get isDarkMode(): boolean {
+    return !!this.styleMode && this.styleMode === 'dark';
+  }
 
   private _zoomChanged = new Subject<void>();
   private _destroyed = new Subject<void>();
