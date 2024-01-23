@@ -45,7 +45,7 @@
     // (i.e. NOT when the mouse is hovering over the outer edges of the button)
     pointer-events: none;
 
-    border-radius: 24px;
+    border-radius: v.$controlsWidth / 2;
 
     @include esta.mq($from: tabletPortrait) {
       @at-root .map-control-container.small-buttons #{&} {

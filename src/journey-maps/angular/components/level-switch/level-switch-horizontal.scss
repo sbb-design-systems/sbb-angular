@@ -57,7 +57,7 @@
 }
 
 /* Adjusted to ensure the buttons are visible when the container is displayed */
-.side-buttons-container.show {
+.side-buttons-container.expanded {
   max-width: 6.5 * v.$controlsWidth; /* Just large enough for St. Gallen, which has 6 levels, plus half for the extra half-width div */
   transition: max-width 0.5s ease;
   visibility: visible; /* Make visible when expanded */
@@ -76,7 +76,12 @@
 }
 
 .main-button-wrapper {
+  border-radius: 50%;
   z-index: 3;
+}
+
+.main-button-wrapper.expanded {
+  box-shadow: -4px 0 4px 0 rgba(0, 0, 0, 0.03); /* Shadow to the left */
 }
 
 .main-button {
