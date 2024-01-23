@@ -169,8 +169,8 @@ export class SbbJourneyMaps implements OnInit, AfterViewInit, OnDestroy, OnChang
   /** @docs-private */
   touchOverlayStyleClass: string = '';
 
-  isLevelSwitchCollapsed: boolean = false;
-  isLevelSwitchCollapsedThreshold: number = 580; // 580px
+  isLevelSwitchHorizontal: boolean = false;
+  isLevelSwitchHorizontalThreshold: number = 580; // 580px
   private _map: MaplibreMap;
   @ViewChild('map') private _mapElementRef: ElementRef<HTMLElement>;
   @ViewChild(SbbFeatureEventListener)
@@ -940,7 +940,8 @@ export class SbbJourneyMaps implements OnInit, AfterViewInit, OnDestroy, OnChang
     const width = this._mapElementRef.nativeElement.offsetWidth;
     const aspectRatio = height / width;
     const isLandscapeMode = aspectRatio < 1;
-    this.isLevelSwitchCollapsed = isLandscapeMode && height < this.isLevelSwitchCollapsedThreshold;
+    this.isLevelSwitchHorizontal =
+      isLandscapeMode && height < this.isLevelSwitchHorizontalThreshold;
   }
 
   private _getZooomLevels(): SbbZoomLevels {

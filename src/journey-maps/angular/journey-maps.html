@@ -53,12 +53,12 @@
           (homeButtonClicked)="onHomeButtonClicked()"
         ></sbb-home-button>
         <sbb-level-switch-horizontal
-          *ngIf="uiOptions.levelSwitch && isLevelSwitchCollapsed"
+          *ngIf="uiOptions.levelSwitch && isLevelSwitchHorizontal"
           [map]="mapReady | async"
           [showSmallButtons]="uiOptions.showSmallButtons"
         ></sbb-level-switch-horizontal>
         <sbb-level-switch
-          *ngIf="uiOptions.levelSwitch && !isLevelSwitchCollapsed"
+          *ngIf="uiOptions.levelSwitch && !isLevelSwitchHorizontal"
           [map]="mapReady | async"
           [showSmallButtons]="uiOptions.showSmallButtons"
         ></sbb-level-switch>
