@@ -233,7 +233,7 @@ export class SbbSelect
   private _scrollTop = 0;
 
   /** The last measured value for the trigger's client bounding rect. */
-  private _triggerRect: ClientRect;
+  private _triggerRect: DOMRect;
 
   /** The cached font-size of the trigger element. */
   _triggerFontSize: number = 0;
