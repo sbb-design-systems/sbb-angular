@@ -14,6 +14,7 @@ export * from './datetime/datepicker-token';
 export * from './datetime/lean-date-adapter';
 export * from './datetime/lean-date-adapter-provider';
 export * from './datetime/native-date-adapter';
+export * from './datetime/native-date-adapter-provider';
 export * from './error/error-options';
 export * from './option/option.module';
 export * from './option/option';
