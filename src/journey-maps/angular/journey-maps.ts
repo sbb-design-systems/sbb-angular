@@ -936,8 +936,11 @@ export class SbbJourneyMaps implements OnInit, AfterViewInit, OnDestroy, OnChang
 
   @HostListener('window:resize')
   onWindowResize() {
-    const newHeight = this._mapElementRef.nativeElement.offsetHeight;
-    this.isLevelSwitchCollapsed = newHeight < this.isLevelSwitchCollapsedThreshold;
+    const height = this._mapElementRef.nativeElement.offsetHeight;
+    const width = this._mapElementRef.nativeElement.offsetWidth;
+    const aspectRatio = height / width;
+    const isLandscapeMode = aspectRatio < 1;
+    this.isLevelSwitchCollapsed = isLandscapeMode && height < this.isLevelSwitchCollapsedThreshold;
   }
 
   private _getZooomLevels(): SbbZoomLevels {
