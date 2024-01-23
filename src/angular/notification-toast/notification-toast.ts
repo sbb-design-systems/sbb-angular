@@ -1,7 +1,7 @@
 import { LiveAnnouncer } from '@angular/cdk/a11y';
 import { BreakpointObserver } from '@angular/cdk/layout';
 import { ComponentType, Overlay, OverlayConfig, OverlayRef } from '@angular/cdk/overlay';
-import { ComponentPortal, PortalInjector, TemplatePortal } from '@angular/cdk/portal';
+import { ComponentPortal, TemplatePortal } from '@angular/cdk/portal';
 import {
   ComponentRef,
   EmbeddedViewRef,
@@ -160,10 +160,15 @@ export class SbbNotificationToast implements OnDestroy {
     config: SbbNotificationToastConfig,
   ): SbbNotificationToastContainerBase {
     const userInjector = config?.viewContainerRef?.injector;
-    const injector = new PortalInjector(
-      userInjector || this._injector,
-      new WeakMap([[SbbNotificationToastConfig, config]]),
-    );
+    const injector = Injector.create({
+      parent: userInjector || this._injector,
+      providers: [
+        {
+          provide: SbbNotificationToastConfig,
+          useValue: config,
+        },
+      ],
+    });
 
     const containerPortal = new ComponentPortal(
       this._notificationToastContainerComponent,
@@ -289,20 +294,20 @@ export class SbbNotificationToast implements OnDestroy {
   /**
    * Creates an injector to be used inside of a notification toast component.
    * @param config Config that was used to create the notification toast.
-   * @param notification toastRef Reference to the notification toast.
+   * @param notificationRef toastRef Reference to the notification toast.
    */
   private _createInjector<T>(
     config: SbbNotificationToastConfig,
     notificationRef: SbbNotificationToastRef<T>,
-  ): PortalInjector {
+  ) {
     const userInjector = config?.viewContainerRef?.injector;
 
-    return new PortalInjector(
-      userInjector || this._injector,
-      new WeakMap<any, any>([
-        [SbbNotificationToastRef, notificationRef],
-        [SBB_NOTIFICATION_TOAST_DATA, config.data],
-      ]),
-    );
+    return Injector.create({
+      parent: userInjector || this._injector,
+      providers: [
+        { provide: SbbNotificationToastRef, useValue: notificationRef },
+        { provide: SBB_NOTIFICATION_TOAST_DATA, useValue: config.data },
+      ],
+    });
   }
 }
