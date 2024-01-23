@@ -45,13 +45,7 @@
     // (i.e. NOT when the mouse is hovering over the outer edges of the button)
     pointer-events: none;
 
-    border-radius: v.$controlsWidth / 2;
-
-    @include esta.mq($from: tabletPortrait) {
-      @at-root .map-control-container.small-buttons #{&} {
-        border-radius: v.$controlsWidthSmall / 2;
-      }
-    }
+    border-radius: 50%;
 
     &:not([data-disabled='true']):active,
     &:not([data-disabled='true']):has(:focus-visible) {
