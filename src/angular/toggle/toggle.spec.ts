@@ -19,27 +19,34 @@ import { SbbToggleModule } from './toggle.module';
   template: `
     <form [formGroup]="form" novalidate>
       <sbb-toggle aria-labelledby="group_label_2" formControlName="test">
-        <sbb-toggle-option
-          *ngFor="let option of toggleOptions | async; let i = index"
-          [subtitle]="i === 0 ? 'info text' : undefined"
-          [label]="option.label"
-          [value]="option.value"
-        >
-          <sbb-toggle-icon *ngIf="i === 0">
-            <sbb-icon svgIcon="arrow-right-small"></sbb-icon>
-          </sbb-toggle-icon>
-          <sbb-toggle-icon *ngIf="i === 1">
-            <sbb-icon svgIcon="arrows-right-left-small"></sbb-icon>
-          </sbb-toggle-icon>
-          <sbb-toggle-details>
-            <sbb-form-field class="sbb-form-field-long" *ngIf="i === 1">
-              <sbb-label>Select date</sbb-label>
-              <sbb-datepicker>
-                <input sbbDateInput sbbInput type="text" />
-              </sbb-datepicker>
-            </sbb-form-field>
-          </sbb-toggle-details>
-        </sbb-toggle-option>
+        @for (option of toggleOptions | async; track option; let i = $index) {
+          <sbb-toggle-option
+            [subtitle]="i === 0 ? 'info text' : undefined"
+            [label]="option.label"
+            [value]="option.value"
+          >
+            @if (i === 0) {
+              <sbb-toggle-icon>
+                <sbb-icon svgIcon="arrow-right-small"></sbb-icon>
+              </sbb-toggle-icon>
+            }
+            @if (i === 1) {
+              <sbb-toggle-icon>
+                <sbb-icon svgIcon="arrows-right-left-small"></sbb-icon>
+              </sbb-toggle-icon>
+            }
+            <sbb-toggle-details>
+              @if (i === 1) {
+                <sbb-form-field class="sbb-form-field-long">
+                  <sbb-label>Select date</sbb-label>
+                  <sbb-datepicker>
+                    <input sbbDateInput sbbInput type="text" />
+                  </sbb-datepicker>
+                </sbb-form-field>
+              }
+            </sbb-toggle-details>
+          </sbb-toggle-option>
+        }
       </sbb-toggle>
     </form>
   `,
@@ -67,27 +74,34 @@ class ToggleReactiveTestComponent {
   template: `
     <form [formGroup]="form" novalidate>
       <sbb-toggle aria-labelledby="group_label_2" formControlName="test">
-        <sbb-toggle-option
-          *ngFor="let option of toggleOptions | async; let i = index"
-          [subtitle]="i === 0 ? 'info text' : undefined"
-          [label]="option.label"
-          [value]="option.value"
-        >
-          <sbb-toggle-icon *ngIf="i === 0">
-            <sbb-icon svgIcon="arrow-right-small"></sbb-icon>
-          </sbb-toggle-icon>
-          <sbb-toggle-icon *ngIf="i === 1">
-            <sbb-icon svgIcon="arrows-right-left-small"></sbb-icon>
-          </sbb-toggle-icon>
-          <sbb-toggle-details>
-            <sbb-form-field class="sbb-form-field-long" *ngIf="i === 1">
-              <sbb-label>Select date</sbb-label>
-              <sbb-datepicker>
-                <input sbbDateInput sbbInput type="text" />
-              </sbb-datepicker>
-            </sbb-form-field>
-          </sbb-toggle-details>
-        </sbb-toggle-option>
+        @for (option of toggleOptions | async; track option; let i = $index) {
+          <sbb-toggle-option
+            [subtitle]="i === 0 ? 'info text' : undefined"
+            [label]="option.label"
+            [value]="option.value"
+          >
+            @if (i === 0) {
+              <sbb-toggle-icon>
+                <sbb-icon svgIcon="arrow-right-small"></sbb-icon>
+              </sbb-toggle-icon>
+            }
+            @if (i === 1) {
+              <sbb-toggle-icon>
+                <sbb-icon svgIcon="arrows-right-left-small"></sbb-icon>
+              </sbb-toggle-icon>
+            }
+            <sbb-toggle-details>
+              @if (i === 1) {
+                <sbb-form-field class="sbb-form-field-long">
+                  <sbb-label>Select date</sbb-label>
+                  <sbb-datepicker>
+                    <input sbbDateInput sbbInput type="text" />
+                  </sbb-datepicker>
+                </sbb-form-field>
+              }
+            </sbb-toggle-details>
+          </sbb-toggle-option>
+        }
       </sbb-toggle>
     </form>
   `,
@@ -113,27 +127,33 @@ class ToggleReactiveDefaultValueTestComponent {
   selector: 'sbb-toggle-test-template-driven',
   template: `
     <sbb-toggle aria-labelledby="group_label_1" [(ngModel)]="modelValue" name="test-toggle-2">
-      <sbb-toggle-option
-        *ngFor="let option of toggleOptions | async; let i = index"
-        [label]="option.label"
-        [value]="option.value"
-      >
-        <sbb-toggle-icon *ngIf="i === 0">
-          <sbb-icon svgIcon="arrow-right-small"></sbb-icon>
-        </sbb-toggle-icon>
-        <sbb-toggle-icon *ngIf="i === 1">
-          <sbb-icon svgIcon="arrows-right-left-small"></sbb-icon>
-        </sbb-toggle-icon>
-        <sbb-toggle-details>
-          <sbb-form-field class="sbb-form-field-long" *ngIf="i === 0">
-            <sbb-label>Select date</sbb-label>
-            <sbb-datepicker>
-              <input sbbDateInput sbbInput type="text" />
-            </sbb-datepicker>
-          </sbb-form-field>
-          <p *ngIf="i === 1">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-        </sbb-toggle-details>
-      </sbb-toggle-option>
+      @for (option of toggleOptions | async; track option; let i = $index) {
+        <sbb-toggle-option [label]="option.label" [value]="option.value">
+          @if (i === 0) {
+            <sbb-toggle-icon>
+              <sbb-icon svgIcon="arrow-right-small"></sbb-icon>
+            </sbb-toggle-icon>
+          }
+          @if (i === 1) {
+            <sbb-toggle-icon>
+              <sbb-icon svgIcon="arrows-right-left-small"></sbb-icon>
+            </sbb-toggle-icon>
+          }
+          <sbb-toggle-details>
+            @if (i === 0) {
+              <sbb-form-field class="sbb-form-field-long">
+                <sbb-label>Select date</sbb-label>
+                <sbb-datepicker>
+                  <input sbbDateInput sbbInput type="text" />
+                </sbb-datepicker>
+              </sbb-form-field>
+            }
+            @if (i === 1) {
+              <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+            }
+          </sbb-toggle-details>
+        </sbb-toggle-option>
+      }
     </sbb-toggle>
   `,
 })

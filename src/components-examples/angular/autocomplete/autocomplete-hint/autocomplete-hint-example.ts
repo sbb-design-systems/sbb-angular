@@ -1,4 +1,4 @@
-import { JsonPipe, NgFor, NgIf, SlicePipe } from '@angular/common';
+import { JsonPipe, SlicePipe } from '@angular/common';
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { FormControl, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { SbbAutocompleteModule } from '@sbb-esta/angular/autocomplete';
@@ -22,9 +22,7 @@ import { distinctUntilChanged, takeUntil } from 'rxjs/operators';
     FormsModule,
     SbbAutocompleteModule,
     ReactiveFormsModule,
-    NgFor,
     SbbOptionModule,
-    NgIf,
     JsonPipe,
     SlicePipe,
   ],

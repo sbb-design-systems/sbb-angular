@@ -1,5 +1,4 @@
 import { ENTER } from '@angular/cdk/keycodes';
-import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { SbbCommonModule } from '@sbb-esta/angular/core';
 import { SbbIconModule } from '@sbb-esta/angular/icon';
@@ -12,7 +11,7 @@ import { SbbChipList } from './chip-list';
 const CHIP_DECLARATIONS = [SbbChipList, SbbChip, SbbChipInput, SbbChipRemove, SbbChipTrailingIcon];
 
 @NgModule({
-  imports: [CommonModule, SbbCommonModule, SbbIconModule],
+  imports: [SbbCommonModule, SbbIconModule],
   exports: CHIP_DECLARATIONS,
   declarations: CHIP_DECLARATIONS,
   providers: [

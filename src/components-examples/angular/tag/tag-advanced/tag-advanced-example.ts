@@ -1,4 +1,4 @@
-import { JsonPipe, NgFor } from '@angular/common';
+import { JsonPipe } from '@angular/common';
 import { Component, OnDestroy } from '@angular/core';
 import { FormControl, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { SbbButtonModule } from '@sbb-esta/angular/button';
@@ -45,7 +45,6 @@ const tagItems: Tag[] = [
   standalone: true,
   imports: [
     SbbTagModule,
-    NgFor,
     SbbButtonModule,
     SbbFormFieldModule,
     FormsModule,

@@ -1,38 +1,40 @@
 <ul class="sbb-navigation sbb-clean-list">
-  <li
-    class="sbb-navigation-item sbb-navigation-item-left"
-    *ngIf="previousPage"
-    [class.sbb-navigation-item-single]="!nextPage"
-  >
-    <button
-      type="button"
-      class="sbb-button-reset-frameless sbb-navigation-item-button"
-      (click)="pageChange.emit('previous')"
+  @if (previousPage) {
+    <li
+      class="sbb-navigation-item sbb-navigation-item-left"
+      [class.sbb-navigation-item-single]="!nextPage"
     >
-      <span class="sbb-navigation-item-boundary sbb-navigation-item-boundary-left">
-        <span class="sbb-navigation-item-boundary-arrow">
-          <sbb-icon svgIcon="chevron-small-left-circle-small" class="sbb-icon-scaled"></sbb-icon>
+      <button
+        type="button"
+        class="sbb-button-reset-frameless sbb-navigation-item-button"
+        (click)="pageChange.emit('previous')"
+      >
+        <span class="sbb-navigation-item-boundary sbb-navigation-item-boundary-left">
+          <span class="sbb-navigation-item-boundary-arrow">
+            <sbb-icon svgIcon="chevron-small-left-circle-small" class="sbb-icon-scaled"></sbb-icon>
+          </span>
+          <span class="sbb-navigation-item-boundary-text">{{ previousPage }}</span>
         </span>
-        <span class="sbb-navigation-item-boundary-text">{{ previousPage }}</span>
-      </span>
-    </button>
-  </li>
-  <li
-    class="sbb-navigation-item sbb-navigation-item-right"
-    *ngIf="nextPage"
-    [class.sbb-navigation-item-single]="!previousPage"
-  >
-    <button
-      type="button"
-      class="sbb-button-reset-frameless sbb-navigation-item-button"
-      (click)="pageChange.emit('next')"
+      </button>
+    </li>
+  }
+  @if (nextPage) {
+    <li
+      class="sbb-navigation-item sbb-navigation-item-right"
+      [class.sbb-navigation-item-single]="!previousPage"
     >
-      <span class="sbb-navigation-item-boundary sbb-navigation-item-boundary-right">
-        <span class="sbb-navigation-item-boundary-text">{{ nextPage }}</span>
-        <span class="sbb-navigation-item-boundary-arrow">
-          <sbb-icon svgIcon="chevron-small-right-circle-small" class="sbb-icon-scaled"></sbb-icon>
+      <button
+        type="button"
+        class="sbb-button-reset-frameless sbb-navigation-item-button"
+        (click)="pageChange.emit('next')"
+      >
+        <span class="sbb-navigation-item-boundary sbb-navigation-item-boundary-right">
+          <span class="sbb-navigation-item-boundary-text">{{ nextPage }}</span>
+          <span class="sbb-navigation-item-boundary-arrow">
+            <sbb-icon svgIcon="chevron-small-right-circle-small" class="sbb-icon-scaled"></sbb-icon>
+          </span>
         </span>
-      </span>
-    </button>
-  </li>
+      </button>
+    </li>
+  }
 </ul>

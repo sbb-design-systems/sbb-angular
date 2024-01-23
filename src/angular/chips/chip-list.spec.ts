@@ -1089,7 +1089,9 @@ describe('SbbChipList', () => {
 
 @Component({
   template: ` <sbb-chip-list [tabIndex]="tabIndex">
-    <sbb-chip *ngFor="let i of chips"> {{ name }} {{ i + 1 }} </sbb-chip>
+    @for (i of chips; track i) {
+      <sbb-chip> {{ name }} {{ i + 1 }} </sbb-chip>
+    }
   </sbb-chip-list>`,
 })
 class StandardChipList {
@@ -1104,7 +1106,9 @@ class StandardChipList {
     <sbb-form-field>
       <sbb-label>Add a chip</sbb-label>
       <sbb-chip-list #chipList>
-        <sbb-chip *ngFor="let chip of chips" (removed)="remove(chip)">{{ chip }}</sbb-chip>
+        @for (chip of chips; track chip) {
+          <sbb-chip (removed)="remove(chip)">{{ chip }}</sbb-chip>
+        }
       </sbb-chip-list>
       <input name="test" [sbbChipInputFor]="chipList" />
     </sbb-form-field>
@@ -1127,9 +1131,11 @@ class FormFieldChipList {
   template: `
     <sbb-form-field>
       <sbb-chip-list placeholder="Food" [formControl]="control" [required]="isRequired" #chipList1>
-        <sbb-chip *ngFor="let food of foods" [value]="food.value" (removed)="remove(food)">
-          {{ food.viewValue }}
-        </sbb-chip>
+        @for (food of foods; track food) {
+          <sbb-chip [value]="food.value" (removed)="remove(food)">
+            {{ food.viewValue }}
+          </sbb-chip>
+        }
       </sbb-chip-list>
 
       <input
@@ -1191,9 +1197,11 @@ class InputChipList {
     <form #form="ngForm" novalidate>
       <sbb-form-field>
         <sbb-chip-list [formControl]="formControl">
-          <sbb-chip *ngFor="let food of foods" [value]="food.value">
-            {{ food.viewValue }}
-          </sbb-chip>
+          @for (food of foods; track food) {
+            <sbb-chip [value]="food.value">
+              {{ food.viewValue }}
+            </sbb-chip>
+          }
         </sbb-chip-list>
         <sbb-error>Should have value</sbb-error>
       </sbb-form-field>
@@ -1214,7 +1222,9 @@ class ChipListWithFormErrorMessages {
 
 @Component({
   template: ` <sbb-chip-list>
-    <sbb-chip *ngFor="let i of numbers" (removed)="remove(i)">{{ i }}</sbb-chip>
+    @for (i of numbers; track i) {
+      <sbb-chip (removed)="remove(i)">{{ i }}</sbb-chip>
+    }
   </sbb-chip-list>`,
   animations: [
     // For the case we're testing this animation doesn't
@@ -1240,10 +1250,12 @@ class StandardChipListWithAnimations {
   template: `
     <sbb-form-field>
       <sbb-chip-list>
-        <sbb-chip [value]="i" (removed)="removeChip($event)" *ngFor="let i of chips">
-          Chip {{ i + 1 }}
-          <span sbbChipRemove>Remove</span>
-        </sbb-chip>
+        @for (i of chips; track i) {
+          <sbb-chip [value]="i" (removed)="removeChip($event)">
+            Chip {{ i + 1 }}
+            <span sbbChipRemove>Remove</span>
+          </sbb-chip>
+        }
       </sbb-chip-list>
     </sbb-form-field>
   `,
@@ -1287,9 +1299,11 @@ class ChipListInsideDynamicFormGroup {
   template: `
     <sbb-form-field label="Favorite Fruits">
       <sbb-chip-list aria-label="Fruit selection" [formControl]="selectedFruits">
-        <sbb-chip *ngFor="let fruit of selectedFruits.value" [value]="fruit">
-          {{ fruit }}
-        </sbb-chip>
+        @for (fruit of selectedFruits.value; track fruit) {
+          <sbb-chip [value]="fruit">
+            {{ fruit }}
+          </sbb-chip>
+        }
         <input
           placeholder="New fruit..."
           sbbChipInput
@@ -1299,9 +1313,11 @@ class ChipListInsideDynamicFormGroup {
         />
       </sbb-chip-list>
       <sbb-autocomplete #auto="sbbAutocomplete">
-        <sbb-option *ngFor="let fruit of allFruits" [value]="fruit">
-          {{ fruit }}
-        </sbb-option>
+        @for (fruit of allFruits; track fruit) {
+          <sbb-option [value]="fruit">
+            {{ fruit }}
+          </sbb-option>
+        }
       </sbb-autocomplete>
     </sbb-form-field>
   `,
@@ -1317,13 +1333,11 @@ class ChipsAutocomplete {
   template: `
     <sbb-form-field label="Favorite Fruits">
       <sbb-chip-list aria-label="Fruit selection" [formControl]="selectedFruits">
-        <sbb-chip
-          *ngFor="let fruit of selectedFruits.value"
-          [value]="fruit"
-          (removed)="remove($event)"
-        >
-          {{ fruit }}
-        </sbb-chip>
+        @for (fruit of selectedFruits.value; track fruit) {
+          <sbb-chip [value]="fruit" (removed)="remove($event)">
+            {{ fruit }}
+          </sbb-chip>
+        }
         <input
           placeholder="New fruit..."
           sbbChipInput
@@ -1332,9 +1346,11 @@ class ChipsAutocomplete {
         />
       </sbb-chip-list>
       <sbb-autocomplete #auto="sbbAutocomplete" (optionSelected)="optionSelected($event)">
-        <sbb-option *ngFor="let fruit of allFruits" [value]="fruit">
-          {{ fruit }}
-        </sbb-option>
+        @for (fruit of allFruits; track fruit) {
+          <sbb-option [value]="fruit">
+            {{ fruit }}
+          </sbb-option>
+        }
       </sbb-autocomplete>
     </sbb-form-field>
   `,

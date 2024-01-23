@@ -49,9 +49,11 @@ export class SimpleSearchComponent {
       <input sbbInput placeholder="Search" [sbbAutocomplete]="auto1" />
     </sbb-search>
     <sbb-autocomplete #auto1="sbbAutocomplete">
-      <sbb-option *ngFor="let option of filteredOptions" [value]="option">
-        {{ option }}
-      </sbb-option>
+      @for (option of filteredOptions; track option) {
+        <sbb-option [value]="option">
+          {{ option }}
+        </sbb-option>
+      }
     </sbb-autocomplete>
   `,
 })
@@ -107,9 +109,11 @@ export class SimpleSearchHeaderComponent {
       </sbb-search>
     </button>
     <sbb-autocomplete #auto1="sbbAutocomplete">
-      <sbb-option *ngFor="let option of filteredOptions" [value]="option">
-        {{ option }}
-      </sbb-option>
+      @for (option of filteredOptions; track option) {
+        <sbb-option [value]="option">
+          {{ option }}
+        </sbb-option>
+      }
     </sbb-autocomplete>
   `,
 })

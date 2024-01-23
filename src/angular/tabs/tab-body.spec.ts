@@ -1,7 +1,6 @@
 import { Direction, Directionality } from '@angular/cdk/bidi';
 import { PortalModule, TemplatePortal } from '@angular/cdk/portal';
 import { CdkScrollable, ScrollingModule } from '@angular/cdk/scrolling';
-import { CommonModule } from '@angular/common';
 import {
   AfterContentInit,
   Component,
@@ -25,13 +24,7 @@ describe('SbbTabBody', () => {
   beforeEach(waitForAsync(() => {
     dir = 'ltr';
     TestBed.configureTestingModule({
-      imports: [
-        CommonModule,
-        PortalModule,
-        NoopAnimationsModule,
-        SbbIconTestingModule,
-        SbbIconModule,
-      ],
+      imports: [PortalModule, NoopAnimationsModule, SbbIconTestingModule, SbbIconModule],
       declarations: [SbbTabBody, SbbTabBodyPortal, SimpleTabBodyApp],
       providers: [
         { provide: Directionality, useFactory: () => ({ value: dir, change: dirChange }) },
@@ -146,7 +139,6 @@ describe('SbbTabBody', () => {
     TestBed.resetTestingModule()
       .configureTestingModule({
         imports: [
-          CommonModule,
           PortalModule,
           NoopAnimationsModule,
           ScrollingModule,

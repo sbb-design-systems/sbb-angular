@@ -536,11 +536,11 @@ class PanelWithContent {
 
 @Component({
   template: `
-    <div *ngIf="expansionShown">
+    @if (expansionShown) {
       <sbb-expansion-panel>
         <sbb-expansion-panel-header>Panel Title</sbb-expansion-panel-header>
       </sbb-expansion-panel>
-    </div>
+    }
   `,
 })
 class PanelWithContentInNgIf {

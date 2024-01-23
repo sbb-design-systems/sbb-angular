@@ -1,66 +1,74 @@
 <!-- Create the first row separately so we can include a special spacer cell. -->
-<tr *ngFor="let row of rows; let rowIndex = index" role="row">
-  <td *ngIf="weeksInMonth.length" role="gridcell" [style.width.%]="100 / (numCols + 1)">
-    <ng-container [ngSwitch]="isWeekSelectable">
-      <button
-        *ngSwitchCase="true"
-        type="button"
-        class="sbb-calendar-body-cell sbb-button-reset-frameless sbb-calendar-body-week"
-        (click)="onWeekClicked(weeksInMonth[rowIndex])"
-      >
-        <span class="sbb-calendar-body-cell-content">{{ weeksInMonth[rowIndex] }}</span>
-      </button>
-      <div *ngSwitchCase="false" class="sbb-calendar-body-cell sbb-calendar-body-week">
-        <span class="sbb-calendar-body-cell-content">{{ weeksInMonth[rowIndex] }}</span>
-      </div>
-    </ng-container>
-  </td>
-  <!--
+@for (row of rows; track row; let rowIndex = $index) {
+  <tr role="row">
+    @if (weeksInMonth.length) {
+      <td role="gridcell" [style.width.%]="100 / (numCols + 1)">
+        @switch (isWeekSelectable) {
+          @case (true) {
+            <button
+              type="button"
+              class="sbb-calendar-body-cell sbb-button-reset-frameless sbb-calendar-body-week"
+              (click)="onWeekClicked(weeksInMonth[rowIndex])"
+            >
+              <span class="sbb-calendar-body-cell-content">{{ weeksInMonth[rowIndex] }}</span>
+            </button>
+          }
+          @case (false) {
+            <div class="sbb-calendar-body-cell sbb-calendar-body-week">
+              <span class="sbb-calendar-body-cell-content">{{ weeksInMonth[rowIndex] }}</span>
+            </div>
+          }
+        }
+      </td>
+    }
+    <!--
     This cell is purely decorative, but we can't put `aria-hidden` or `role="presentation"` on it,
     because it throws off the week days for the rest of the row on NVDA. The aspect ratio of the
     table cells is maintained by setting the top and bottom padding as a percentage of the width
     (a variant of the trick described here: https://www.w3schools.com/howto/howto_css_aspect_ratio.asp).
-  -->
-  <td
-    *ngIf="rowIndex === 0 && firstRowOffset"
-    class="sbb-calendar-body-label"
-    [attr.colspan]="firstRowOffset"
-  ></td>
-  <!--
+    -->
+    @if (rowIndex === 0 && firstRowOffset) {
+      <td class="sbb-calendar-body-label" [attr.colspan]="firstRowOffset"></td>
+    }
+    <!--
     Each gridcell in the calendar contains a button, which signals to assistive technology that the
     cell is interactable, as well as the selection state via `aria-pressed`. See angular/components#23476 for
     background.
-  -->
-  <td
-    *ngFor="let item of row; let colIndex = index"
-    role="gridcell"
-    class="sbb-calendar-body-cell-container"
-    [class.sbb-first-cell]="colIndex === 0"
-    [style.width.%]="100 / (numCols + (weeksInMonth.length ? 1 : 0))"
-    [attr.data-sbb-row]="rowIndex"
-    [attr.data-sbb-col]="colIndex"
-  >
-    <button
-      type="button"
-      class="sbb-calendar-body-cell sbb-button-reset-frameless"
-      [ngClass]="item.cssClasses"
-      [tabindex]="isActiveCell(rowIndex, colIndex) ? 0 : -1"
-      [class.sbb-calendar-body-disabled]="!item.enabled"
-      [class.sbb-calendar-body-active]="isActiveCell(rowIndex, colIndex)"
-      [class.sbb-calendar-body-range-background]="item.rangeBackground === 'range'"
-      [class.sbb-calendar-body-range-background-offset-start]="item.rangeBackground !== null && rowIndex === 0 && firstRowOffset && colIndex === 0"
-      [class.sbb-calendar-body-selected-begin]="item.rangeBackground === 'begin'"
-      [class.sbb-calendar-body-selected-end]="item.rangeBackground === 'end'"
-      [class.sbb-calendar-body-selected]="selectedValue === item.value"
-      [class.sbb-calendar-body-today]="todayValue === item.value"
-      [attr.aria-label]="item.ariaLabel"
-      [attr.aria-disabled]="!item.enabled || null"
-      [attr.aria-pressed]="selectedValue === item.value"
-      [attr.aria-current]="todayValue === item.value ? 'date' : null"
-      (click)="cellClicked(item)"
-      (focus)="_emitActiveDateChange(item, $event)"
-    >
-      <span class="sbb-calendar-body-cell-content">{{ item.displayValue }}</span>
-    </button>
-  </td>
-</tr>
+    -->
+    @for (item of row; track item; let colIndex = $index) {
+      <td
+        role="gridcell"
+        class="sbb-calendar-body-cell-container"
+        [class.sbb-first-cell]="colIndex === 0"
+        [style.width.%]="100 / (numCols + (weeksInMonth.length ? 1 : 0))"
+        [attr.data-sbb-row]="rowIndex"
+        [attr.data-sbb-col]="colIndex"
+      >
+        <button
+          type="button"
+          class="sbb-calendar-body-cell sbb-button-reset-frameless"
+          [ngClass]="item.cssClasses"
+          [tabindex]="isActiveCell(rowIndex, colIndex) ? 0 : -1"
+          [class.sbb-calendar-body-disabled]="!item.enabled"
+          [class.sbb-calendar-body-active]="isActiveCell(rowIndex, colIndex)"
+          [class.sbb-calendar-body-range-background]="item.rangeBackground === 'range'"
+          [class.sbb-calendar-body-range-background-offset-start]="
+            item.rangeBackground !== null && rowIndex === 0 && firstRowOffset && colIndex === 0
+          "
+          [class.sbb-calendar-body-selected-begin]="item.rangeBackground === 'begin'"
+          [class.sbb-calendar-body-selected-end]="item.rangeBackground === 'end'"
+          [class.sbb-calendar-body-selected]="selectedValue === item.value"
+          [class.sbb-calendar-body-today]="todayValue === item.value"
+          [attr.aria-label]="item.ariaLabel"
+          [attr.aria-disabled]="!item.enabled || null"
+          [attr.aria-pressed]="selectedValue === item.value"
+          [attr.aria-current]="todayValue === item.value ? 'date' : null"
+          (click)="cellClicked(item)"
+          (focus)="_emitActiveDateChange(item, $event)"
+        >
+          <span class="sbb-calendar-body-cell-content">{{ item.displayValue }}</span>
+        </button>
+      </td>
+    }
+  </tr>
+}

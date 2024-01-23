@@ -260,18 +260,20 @@ describe('SbbChip', () => {
 
 @Component({
   template: ` <sbb-chip-list>
-    <div *ngIf="shouldShow">
-      <sbb-chip
-        [removable]="removable"
-        [disabled]="disabled"
-        (focus)="chipFocus($event)"
-        (destroyed)="chipDestroy($event)"
-        (removed)="chipRemove($event)"
-        [value]="value"
-      >
-        {{ name }}
-      </sbb-chip>
-    </div>
+    @if (shouldShow) {
+      <div>
+        <sbb-chip
+          [removable]="removable"
+          [disabled]="disabled"
+          (focus)="chipFocus($event)"
+          (destroyed)="chipDestroy($event)"
+          (removed)="chipRemove($event)"
+          [value]="value"
+        >
+          {{ name }}
+        </sbb-chip>
+      </div>
+    }
   </sbb-chip-list>`,
 })
 class SingleChip {

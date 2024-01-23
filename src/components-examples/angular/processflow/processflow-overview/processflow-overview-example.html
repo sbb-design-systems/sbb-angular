@@ -9,9 +9,9 @@
       <sbb-form-field>
         <sbb-label>Name</sbb-label>
         <input sbbInput placeholder="Last name, First name" formControlName="firstCtrl" required />
-        <sbb-error *ngIf="firstFormGroup.get('firstCtrl')!.errors?.required"
-          >Name is required!</sbb-error
-        >
+        @if (firstFormGroup.get('firstCtrl')!.errors?.required) {
+          <sbb-error>Name is required!</sbb-error>
+        }
       </sbb-form-field>
       <div>
         <button sbb-button sbbProcessflowNext>Next</button>
@@ -32,9 +32,9 @@
           placeholder="Ex. Hilfikerstrasse 1, 3000 Bern"
           required
         />
-        <sbb-error *ngIf="secondFormGroup.get('secondCtrl')!.errors?.required"
-          >Name is required!</sbb-error
-        >
+        @if (secondFormGroup.get('secondCtrl')!.errors?.required) {
+          <sbb-error>Name is required!</sbb-error>
+        }
       </sbb-form-field>
       <div>
         <button sbb-secondary-button sbbProcessflowPrevious>Back</button>

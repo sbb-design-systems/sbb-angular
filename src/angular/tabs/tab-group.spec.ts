@@ -1,5 +1,4 @@
 import { LEFT_ARROW, RIGHT_ARROW } from '@angular/cdk/keycodes';
-import { CommonModule } from '@angular/common';
 import { Component, DebugElement, OnInit, QueryList, ViewChild, ViewChildren } from '@angular/core';
 import {
   ComponentFixture,
@@ -23,7 +22,7 @@ import { SbbTab, SbbTabGroup, SbbTabHeader, SbbTabsModule, SBB_TABS_CONFIG } fro
 describe('SbbTabGroup', () => {
   beforeEach(fakeAsync(() => {
     TestBed.configureTestingModule({
-      imports: [SbbTabsModule, CommonModule, NoopAnimationsModule, SbbIconTestingModule],
+      imports: [SbbTabsModule, NoopAnimationsModule, SbbIconTestingModule],
       declarations: [
         SimpleTabsTestApp,
         SimpleDynamicTabsTestApp,
@@ -1019,10 +1018,12 @@ class SimpleTabsTestApp {
       (focusChange)="handleFocus($event)"
       (selectedTabChange)="handleSelection($event)"
     >
-      <sbb-tab *ngFor="let tab of tabs">
-        <ng-template sbb-tab-label>{{ tab.label }}</ng-template>
-        {{ tab.content }}
-      </sbb-tab>
+      @for (tab of tabs; track tab) {
+        <sbb-tab>
+          <ng-template sbb-tab-label>{{ tab.label }}</ng-template>
+          {{ tab.content }}
+        </sbb-tab>
+      }
     </sbb-tab-group>
   `,
 })
@@ -1046,9 +1047,11 @@ class SimpleDynamicTabsTestApp {
 @Component({
   template: `
     <sbb-tab-group class="tab-group" [(selectedIndex)]="selectedIndex">
-      <sbb-tab *ngFor="let tab of tabs" label="{{ tab.label }}">
-        {{ tab.content }}
-      </sbb-tab>
+      @for (tab of tabs; track tab) {
+        <sbb-tab label="{{ tab.label }}">
+          {{ tab.content }}
+        </sbb-tab>
+      }
     </sbb-tab-group>
   `,
 })
@@ -1094,10 +1097,12 @@ class DisabledTabsTestApp {
 @Component({
   template: `
     <sbb-tab-group class="tab-group">
-      <sbb-tab *ngFor="let tab of tabs | async">
-        <ng-template sbb-tab-label>{{ tab.label }}</ng-template>
-        {{ tab.content }}
-      </sbb-tab>
+      @for (tab of tabs | async; track tab) {
+        <sbb-tab>
+          <ng-template sbb-tab-label>{{ tab.label }}</ng-template>
+          {{ tab.content }}
+        </sbb-tab>
+      }
     </sbb-tab-group>
   `,
 })
@@ -1185,7 +1190,9 @@ class TabGroupWithAriaInputs {
       <sbb-tab label="Vegetables"> Broccoli, spinach </sbb-tab>
     </sbb-tab-group>
 
-    <div *ngIf="pizza.isActive">pizza is active</div>
+    @if (pizza.isActive) {
+      <div>pizza is active</div>
+    }
   `,
 })
 class TabGroupWithIsActiveBinding {}
@@ -1205,10 +1212,10 @@ class TabsWithCustomAnimationDuration {
 @Component({
   template: `
     <sbb-tab-group>
-      <ng-container [ngSwitch]="true">
+      @if (true) {
         <sbb-tab label="One">Tab one content</sbb-tab>
         <sbb-tab label="Two">Tab two content</sbb-tab>
-      </ng-container>
+      }
     </sbb-tab-group>
   `,
 })

@@ -2,9 +2,9 @@
 <ng-template #outlet></ng-template>
 
 <ng-template #standard let-connector="connector">
-  <sbb-alert #alert [svgIcon]="connector.svgIcon" (dismissed)="connector._handleDismissed()"
-    >{{ connector.message }}</sbb-alert
-  >
+  <sbb-alert #alert [svgIcon]="connector.svgIcon" (dismissed)="connector._handleDismissed()">{{
+    connector.message
+  }}</sbb-alert>
 </ng-template>
 <ng-template #routerLink let-connector="connector">
   <a

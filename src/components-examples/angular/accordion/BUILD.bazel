@@ -19,7 +19,6 @@ ng_module(
         "//src/angular/accordion",
         "//src/angular/button",
         "//src/angular/checkbox",
-        "@npm//@angular/common",
         "@npm//@angular/core",
         "@npm//@angular/forms",
     ],

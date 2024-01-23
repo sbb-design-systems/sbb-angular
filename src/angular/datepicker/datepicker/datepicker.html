@@ -1,22 +1,26 @@
-<button
-  *ngIf="prevDayActive"
-  type="button"
-  class="sbb-datepicker-arrow-button sbb-datepicker-arrow-button-left sbb-icon-scaled"
-  [attr.aria-label]="prevDayAriaLabel"
-  [disabled]="disabled"
-  (click)="prevDay()"
->
-  <sbb-icon svgIcon="chevron-small-left-small"></sbb-icon>
-</button>
-<sbb-datepicker-toggle *ngIf="toggleVisible"></sbb-datepicker-toggle>
+@if (prevDayActive) {
+  <button
+    type="button"
+    class="sbb-datepicker-arrow-button sbb-datepicker-arrow-button-left sbb-icon-scaled"
+    [attr.aria-label]="prevDayAriaLabel"
+    [disabled]="disabled"
+    (click)="prevDay()"
+  >
+    <sbb-icon svgIcon="chevron-small-left-small"></sbb-icon>
+  </button>
+}
+@if (toggleVisible) {
+  <sbb-datepicker-toggle></sbb-datepicker-toggle>
+}
 <ng-content></ng-content>
-<button
-  *ngIf="nextDayActive"
-  type="button"
-  class="sbb-datepicker-arrow-button sbb-datepicker-arrow-button-right sbb-icon-scaled"
-  [attr.aria-label]="nextDayAriaLabel"
-  [disabled]="disabled"
-  (click)="nextDay()"
->
-  <sbb-icon svgIcon="chevron-small-right-small"></sbb-icon>
-</button>
+@if (nextDayActive) {
+  <button
+    type="button"
+    class="sbb-datepicker-arrow-button sbb-datepicker-arrow-button-right sbb-icon-scaled"
+    [attr.aria-label]="nextDayAriaLabel"
+    [disabled]="disabled"
+    (click)="nextDay()"
+  >
+    <sbb-icon svgIcon="chevron-small-right-small"></sbb-icon>
+  </button>
+}

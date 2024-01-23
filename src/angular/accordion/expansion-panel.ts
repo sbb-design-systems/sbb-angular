@@ -6,6 +6,7 @@ import { TemplatePortal } from '@angular/cdk/portal';
 import { DOCUMENT } from '@angular/common';
 import {
   AfterContentInit,
+  booleanAttribute,
   ChangeDetectionStrategy,
   ChangeDetectorRef,
   Component,
@@ -56,7 +57,10 @@ let uniqueId = 0;
   styleUrls: ['./expansion-panel.css'],
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush,
-  inputs: ['disabled', 'expanded'],
+  inputs: [
+    { name: 'expanded', transform: booleanAttribute },
+    { name: 'disabled', transform: booleanAttribute },
+  ],
   animations: [sbbExpansionAnimations.bodyExpansion],
   // Provide SbbAccordion as undefined to prevent nested expansion panels from registering
   // to the same accordion.

@@ -20,7 +20,6 @@ ng_module(
         "//src/angular/core",
         "//src/angular/icon",
         "@npm//@angular/cdk",
-        "@npm//@angular/common",
         "@npm//@angular/core",
         "@npm//@angular/forms",
         "@npm//@angular/localize",

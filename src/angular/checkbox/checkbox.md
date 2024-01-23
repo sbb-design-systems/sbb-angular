@@ -7,8 +7,9 @@ enhanced with the SBB Design.
   [disabled]="disabled"
   [required]="required"
   [checked]="checked"
-  >Example</sbb-checkbox
 >
+  Example
+</sbb-checkbox>
 ```
 
 ### Checkbox label
@@ -38,17 +39,21 @@ By creating a wrapper around `<sbb-checkbox>`-elements and adding the correspond
 
 #### Vertical
 
-```html
+```angular
 <div class="sbb-checkbox-group-vertical">
-  <sbb-checkbox *ngFor="let control of controls" [formControl]="control"></sbb-checkbox>
+  @for (control of controls; track control) {
+    <sbb-checkbox [formControl]="control"></sbb-checkbox>
+  }
 </div>
 ```
 
 #### Horizontal
 
-```html
+```angular
 <div class="sbb-checkbox-group-horizontal">
-  <sbb-checkbox *ngFor="let control of controls" [formControl]="control"></sbb-checkbox>
+  @for (control of controls; track control) {
+    <sbb-checkbox [formControl]="control"></sbb-checkbox>
+  }
 </div>
 ```
 

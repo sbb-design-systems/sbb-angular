@@ -1,6 +1,7 @@
 <ng-content></ng-content>
-<sbb-icon
-  svgIcon="chevron-small-right-small"
-  *ngIf="_triggersSubmenu"
-  class="sbb-menu-item-submenu-trigger-icon"
-></sbb-icon>
+@if (_triggersSubmenu) {
+  <sbb-icon
+    svgIcon="chevron-small-right-small"
+    class="sbb-menu-item-submenu-trigger-icon"
+  ></sbb-icon>
+}
