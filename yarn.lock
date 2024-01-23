@@ -18432,10 +18432,10 @@ zod@3.22.4:
   resolved "https://registry.yarnpkg.com/zod/-/zod-3.22.4.tgz#f31c3a9386f61b1f228af56faa9255e845cf3fff"
   integrity sha512-iC+8Io04lddc+mVqQ9AZ7OQ2MrUKGN+oIQyq1vemgt46jwCwLfhq7/pwnBnNXXXZb8VTVLKwp9EDkx+ryxIWmg==
 
-zone.js@0.14.1:
-  version "0.14.1"
-  resolved "https://registry.yarnpkg.com/zone.js/-/zone.js-0.14.1.tgz#56dfba6052fc66539c1117919f4045fdf56c8819"
-  integrity sha512-R3t9Nwl/LJnnpmwx0+Q7YcHtE6xUObnowwNskWCiqEMQXYYlkZiOOhF+N2R18PMILv8+fbzCLKAJvpvyxzafpQ==
+zone.js@0.14.3:
+  version "0.14.3"
+  resolved "https://registry.yarnpkg.com/zone.js/-/zone.js-0.14.3.tgz#ac01000f4eaeec5c06526f6c112ef7d36f426f78"
+  integrity sha512-jYoNqF046Q+JfcZSItRSt+oXFcpXL88yq7XAZjb/NKTS7w2hHpKjRJ3VlFD1k75wMaRRXNUt5vrZVlygiMyHbA==
   dependencies:
     tslib "^2.3.0"
 
