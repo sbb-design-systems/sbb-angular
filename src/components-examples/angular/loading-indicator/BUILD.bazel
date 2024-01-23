@@ -18,7 +18,6 @@ ng_module(
     deps = [
         "//src/angular/button",
         "//src/angular/loading-indicator",
-        "@npm//@angular/common",
         "@npm//@angular/core",
     ],
 )

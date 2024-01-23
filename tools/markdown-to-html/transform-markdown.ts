@@ -28,12 +28,12 @@ if (require.main === module) {
   // Walk through each input file and write transformed markdown output to the specified
   // Bazel bin directory.
   inputFiles.forEach((inputPath) => {
+    let inputFileString = readFileSync(inputPath, 'utf8');
+    // We use ```angular code blocks to enable correct syntax formatting with prettier. Since markedjs/marked does
+    // not support custom code block languages, we replace all ```angular code blocks with ```html code blocks.
+    inputFileString = inputFileString.replace(/```angular/g, '```html');
     const outputPath = join(bazelBinPath, inputPath.replace(markdownExtension, '.html'));
-    const htmlOutput = markdownRenderer.finalizeOutput(
-      marked(readFileSync(inputPath, 'utf8')),
-      inputPath,
-    );
-
+    const htmlOutput = markdownRenderer.finalizeOutput(marked(inputFileString), inputPath);
     writeFileSync(outputPath, htmlOutput);
   });
 }

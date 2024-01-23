@@ -1,4 +1,3 @@
-import { NgFor } from '@angular/common';
 import { Component } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { SbbRadioButtonModule } from '@sbb-esta/angular/radio-button';
@@ -11,7 +10,7 @@ import { SbbRadioButtonModule } from '@sbb-esta/angular/radio-button';
   selector: 'sbb-radio-button-group-horizontal-example',
   templateUrl: 'radio-button-group-horizontal-example.html',
   standalone: true,
-  imports: [SbbRadioButtonModule, FormsModule, NgFor],
+  imports: [SbbRadioButtonModule, FormsModule],
 })
 export class RadioButtonGroupHorizontalExample {
   modelValue: string = 'value1';

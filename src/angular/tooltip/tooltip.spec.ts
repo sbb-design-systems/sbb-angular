@@ -1293,16 +1293,17 @@ describe('SbbTooltip', () => {
 
 @Component({
   selector: 'app',
-  template: ` <button
-    #button
-    *ngIf="showButton"
-    [sbbTooltip]="message"
-    [sbbTooltipClass]="{ 'custom-one': showTooltipClass, 'custom-two': showTooltipClass }"
-    sbbTooltipPanelClass="custom-panel-one custom-panel-two"
-    [sbbTooltipTouchGestures]="touchGestures"
-  >
-    Button
-  </button>`,
+  template: ` @if (showButton) {
+    <button
+      #button
+      [sbbTooltip]="message"
+      [sbbTooltipClass]="{ 'custom-one': showTooltipClass, 'custom-two': showTooltipClass }"
+      sbbTooltipPanelClass="custom-panel-one custom-panel-two"
+      [sbbTooltipTouchGestures]="touchGestures"
+    >
+      Button
+    </button>
+  }`,
 })
 class BasicTooltipDemo {
   message: any = initialTooltipMessage;
@@ -1318,9 +1319,11 @@ class BasicTooltipDemo {
   template: ` <div
     cdkScrollable
     style="padding: 100px; margin: 300px;
-                               height: 200px; width: 200px; overflow: auto;"
+      height: 200px; width: 200px; overflow: auto;"
   >
-    <button *ngIf="showButton" style="margin-bottom: 600px" [sbbTooltip]="message">Button</button>
+    @if (showButton) {
+      <button style="margin-bottom: 600px" [sbbTooltip]="message">Button</button>
+    }
   </div>`,
 })
 class ScrollableTooltipDemo {
@@ -1352,9 +1355,9 @@ class OnPushTooltipDemo {
 
 @Component({
   selector: 'app',
-  template: ` <button *ngFor="let tooltip of tooltips" [sbbTooltip]="tooltip">
-    Button {{ tooltip }}
-  </button>`,
+  template: ` @for (tooltip of tooltips; track tooltip) {
+    <button [sbbTooltip]="tooltip">Button {{ tooltip }}</button>
+  }`,
 })
 class DynamicTooltipsDemo {
   tooltips: string[] = [];

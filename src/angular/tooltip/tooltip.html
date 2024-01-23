@@ -10,18 +10,20 @@
     [class.sbb-tooltip-has-close-button]="_triggeredByClick"
   >
     <div class="sbb-tooltip-content">
-      <ng-container *ngIf="_templateRef as templateRef; else stringMessage">
+      @if (_templateRef; as templateRef) {
         <ng-container *ngTemplateOutlet="templateRef"></ng-container>
-      </ng-container>
-      <ng-template #stringMessage>{{ message }}</ng-template>
+      } @else {
+        {{ message }}
+      }
     </div>
-    <button
-      *ngIf="_triggeredByClick"
-      type="button"
-      class="sbb-tooltip-icon sbb-tooltip-close-button sbb-icon-fit sbb-button-reset-frameless"
-      (click)="hide(0)"
-    >
-      <sbb-icon svgIcon="cross-small"></sbb-icon>
-    </button>
+    @if (_triggeredByClick) {
+      <button
+        type="button"
+        class="sbb-tooltip-icon sbb-tooltip-close-button sbb-icon-fit sbb-button-reset-frameless"
+        (click)="hide(0)"
+      >
+        <sbb-icon svgIcon="cross-small"></sbb-icon>
+      </button>
+    }
   </div>
 </div>

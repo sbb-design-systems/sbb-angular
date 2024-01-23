@@ -1,5 +1,5 @@
 import { SelectionModel } from '@angular/cdk/collections';
-import { JsonPipe, NgFor, NgIf } from '@angular/common';
+import { JsonPipe } from '@angular/common';
 import { Component } from '@angular/core';
 import { SbbCheckboxModule } from '@sbb-esta/angular/checkbox';
 import { SbbTableDataSource } from '@sbb-esta/angular/table';
@@ -21,7 +21,7 @@ interface VehicleExampleItem {
   selector: 'sbb-selectable-table-example',
   templateUrl: 'selectable-table-example.html',
   standalone: true,
-  imports: [SbbTableModule, SbbCheckboxModule, NgFor, NgIf, JsonPipe],
+  imports: [SbbTableModule, SbbCheckboxModule, JsonPipe],
 })
 export class SelectableTableExample {
   columns = [

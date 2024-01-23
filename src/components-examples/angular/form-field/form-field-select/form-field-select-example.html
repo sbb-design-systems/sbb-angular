@@ -5,5 +5,7 @@
     <option>Two</option>
     <option>Three</option>
   </select>
-  <sbb-error *ngIf="select.errors?.required">Number is required!</sbb-error>
+  @if (select.errors?.required) {
+    <sbb-error>Number is required!</sbb-error>
+  }
 </sbb-form-field>

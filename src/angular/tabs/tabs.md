@@ -66,18 +66,19 @@ to the height of the active tab.
 While `<sbb-tab-group>` is used to switch between views within a single route, `<nav sbb-tab-nav-bar>`
 provides a tab-like UI for navigating between routes.
 
-```html
+```angular
 <nav sbb-tab-nav-bar [tabPanel]="tabPanel">
-  <a
-    sbb-tab-link
-    *ngFor="let link of links"
-    [routerLink]="link.routerLink"
-    routerLinkActive
-    #rla="routerLinkActive"
-    [active]="rla.isActive"
-  >
-    {{link.label}}
-  </a>
+  @for (link of links; track link) {
+    <a
+      sbb-tab-link
+      [routerLink]="link.routerLink"
+      routerLinkActive
+      #rla="routerLinkActive"
+      [active]="rla.isActive"
+    >
+      {{ link.label }}
+    </a>
+  }
   <a sbb-tab-link disabled>Disabled Link</a>
 </nav>
 

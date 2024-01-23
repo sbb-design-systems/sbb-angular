@@ -1,5 +1,5 @@
 import { LiveAnnouncer } from '@angular/cdk/a11y';
-import { AsyncPipe, NgFor, NgIf } from '@angular/common';
+import { AsyncPipe } from '@angular/common';
 import { AfterViewInit, Component, OnDestroy, ViewChild } from '@angular/core';
 import { FormControl, FormGroup, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { SbbAutocompleteModule } from '@sbb-esta/angular/autocomplete';
@@ -49,8 +49,6 @@ interface VehicleFilter extends SbbTableFilter {
     SbbFormFieldModule,
     SbbInputModule,
     SbbTableModule,
-    NgFor,
-    NgIf,
     SbbAutocompleteModule,
     SbbOptionModule,
     SbbSelectModule,

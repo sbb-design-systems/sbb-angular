@@ -83,7 +83,6 @@ ng_test_library(
         "//src/angular/icon",
         "//src/angular/icon/testing",
         "@npm//@angular/cdk",
-        "@npm//@angular/common",
         "@npm//@angular/platform-browser",
         "@npm//rxjs",
     ],

@@ -19,7 +19,6 @@ ng_module(
     deps = [
         "//src:dev_mode_types",
         "//src/angular/core",
-        "@npm//@angular/common",
         "@npm//@angular/core",
         "@npm//@angular/localize",
     ],
@@ -42,7 +41,6 @@ ng_test_library(
     deps = [
         ":textexpand",
         "//src/angular/core/testing",
-        "@npm//@angular/common",
         "@npm//@angular/platform-browser",
     ],
 )

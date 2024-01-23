@@ -1,4 +1,4 @@
-import { NgClass, NgIf } from '@angular/common';
+import { NgClass } from '@angular/common';
 import { Component } from '@angular/core';
 import { FormControl, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
 import { SbbCheckboxChange } from '@sbb-esta/angular/checkbox';
@@ -20,7 +20,6 @@ import { SbbInputModule } from '@sbb-esta/angular/input';
     SbbInputModule,
     FormsModule,
     ReactiveFormsModule,
-    NgIf,
     SbbCheckboxModule,
   ],
 })

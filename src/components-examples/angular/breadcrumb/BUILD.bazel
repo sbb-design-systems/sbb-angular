@@ -15,7 +15,6 @@ ng_module(
     deps = [
         "//src/angular/breadcrumb",
         "//src/angular/menu",
-        "@npm//@angular/common",
         "@npm//@angular/core",
         "@npm//@angular/router",
     ],

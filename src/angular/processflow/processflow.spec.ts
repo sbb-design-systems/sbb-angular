@@ -1451,14 +1451,16 @@ class SimpleSbbHorizontalStepperApp {
           <button sbb-button sbbProcessflowNext>Next</button>
         </div>
       </sbb-step>
-      <sbb-step *ngIf="showStepTwo">
-        <ng-template sbbStepLabel>Step 2</ng-template>
-        Content 2
-        <div>
-          <button sbb-button sbbProcessflowPrevious>Back</button>
-          <button sbb-button sbbProcessflowNext>Next</button>
-        </div>
-      </sbb-step>
+      @if (showStepTwo) {
+        <sbb-step>
+          <ng-template sbbStepLabel>Step 2</ng-template>
+          Content 2
+          <div>
+            <button sbb-button sbbProcessflowPrevious>Back</button>
+            <button sbb-button sbbProcessflowNext>Next</button>
+          </div>
+        </sbb-step>
+      }
       <sbb-step [label]="inputLabel">
         Content 3
         <div>
@@ -1547,11 +1549,9 @@ class SimplePreselectedSbbHorizontalStepperApp {
 @Component({
   template: `
     <sbb-processflow linear>
-      <sbb-step
-        *ngFor="let step of steps"
-        [label]="step.label"
-        [completed]="step.completed"
-      ></sbb-step>
+      @for (step of steps; track step) {
+        <sbb-step [label]="step.label" [completed]="step.completed"></sbb-step>
+      }
     </sbb-processflow>
   `,
 })
@@ -1566,12 +1566,13 @@ class SimpleStepperWithoutStepControl {
 @Component({
   template: `
     <sbb-processflow linear>
-      <sbb-step
-        *ngFor="let step of steps"
-        [label]="step.label"
-        [stepControl]="step.control"
-        [completed]="step.completed"
-      ></sbb-step>
+      @for (step of steps; track step) {
+        <sbb-step
+          [label]="step.label"
+          [stepControl]="step.control"
+          [completed]="step.completed"
+        ></sbb-step>
+      }
     </sbb-processflow>
   `,
 })
@@ -1612,11 +1613,11 @@ class StepperWithAriaInputs {
 @Component({
   template: `
     <sbb-processflow>
-      <ng-container [ngSwitch]="true">
+      @if (true) {
         <sbb-step label="Step 1">Content 1</sbb-step>
         <sbb-step label="Step 2">Content 2</sbb-step>
         <sbb-step label="Step 3">Content 3</sbb-step>
-      </ng-container>
+      }
     </sbb-processflow>
   `,
 })
@@ -1629,9 +1630,11 @@ class StepperWithIndirectDescendantSteps {}
         <ng-template sbbStepLabel>Step 1</ng-template>
       </sbb-step>
 
-      <sbb-step *ngIf="showStep2">
-        <ng-template sbbStepLabel>Step 2</ng-template>
-      </sbb-step>
+      @if (showStep2) {
+        <sbb-step>
+          <ng-template sbbStepLabel>Step 2</ng-template>
+        </sbb-step>
+      }
     </sbb-processflow>
   `,
 })

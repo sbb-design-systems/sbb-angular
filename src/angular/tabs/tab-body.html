@@ -2,9 +2,9 @@
   class="sbb-tab-body-content"
   #content
   [@translateTab]="{
-        value: _position,
-        params: {animationDuration: animationDuration, animationDurationHide: animationDurationHide}
-     }"
+    value: _position,
+    params: { animationDuration: animationDuration, animationDurationHide: animationDurationHide }
+  }"
   (@translateTab.start)="_onTranslateTabStarted($event)"
   (@translateTab.done)="_translateTabComplete.next($event)"
   cdkScrollable

@@ -1,4 +1,3 @@
-import { CommonModule } from '@angular/common';
 import { Component, ViewChild } from '@angular/core';
 import { TestBed, waitForAsync } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
@@ -32,7 +31,7 @@ describe('SbbTextexpand', () => {
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
       declarations: [BasicTextexpand, InvalidTextexpand],
-      imports: [CommonModule, SbbTextexpandModule],
+      imports: [SbbTextexpandModule],
     }).compileComponents();
   }));
 

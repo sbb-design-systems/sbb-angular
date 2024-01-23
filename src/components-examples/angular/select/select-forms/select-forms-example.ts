@@ -1,4 +1,4 @@
-import { JsonPipe, NgFor } from '@angular/common';
+import { JsonPipe } from '@angular/common';
 import { Component } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { SbbCheckboxModule } from '@sbb-esta/angular/checkbox';
@@ -18,7 +18,6 @@ import { SbbSelectModule } from '@sbb-esta/angular/select';
     SbbFormFieldModule,
     SbbSelectModule,
     FormsModule,
-    NgFor,
     SbbOptionModule,
     SbbCheckboxModule,
     JsonPipe,

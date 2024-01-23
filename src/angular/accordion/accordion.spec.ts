@@ -285,10 +285,12 @@ describe('AccordionDirective', () => {
 @Component({
   template: `
     <sbb-accordion [multi]="multi">
-      <sbb-expansion-panel *ngFor="let i of [0, 1, 2, 3]">
-        <sbb-expansion-panel-header>Summary {{ i }}</sbb-expansion-panel-header>
-        <p>Content</p>
-      </sbb-expansion-panel>
+      @for (i of [0, 1, 2, 3]; track i) {
+        <sbb-expansion-panel>
+          <sbb-expansion-panel-header>Summary {{ i }}</sbb-expansion-panel-header>
+          <p>Content</p>
+        </sbb-expansion-panel>
+      }
     </sbb-accordion>
   `,
 })

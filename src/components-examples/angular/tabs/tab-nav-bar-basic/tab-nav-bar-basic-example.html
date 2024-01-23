@@ -1,29 +1,24 @@
 <nav sbb-tab-nav-bar [tabPanel]="tabPanel">
   <!--
-    [routerLink] would be used in a real application, e.g.:
+  [routerLink] would be used in a real application, e.g.:
 
-    <a sbb-tab-link
-      [routerLink]="link-to-your-content"
-      routerLinkActive
-      #rla="routerLinkActive"
-      [active]="rla.isActive">{{section}}</a>
+  <a sbb-tab-link
+    [routerLink]="link-to-your-content"
+    routerLinkActive
+    #rla="routerLinkActive"
+  [active]="rla.isActive">{{section}}</a>
   -->
-  <a
-    sbb-tab-link
-    *ngFor="let link of links"
-    (click)="activeLink = link"
-    [active]="activeLink == link"
-  >
-    {{link}}
-  </a>
+  @for (link of links; track link) {
+    <a sbb-tab-link (click)="activeLink = link" [active]="activeLink == link"> {{ link }} </a>
+  }
   <a sbb-tab-link disabled>Disabled Link</a>
 </nav>
 
 <sbb-tab-nav-panel #tabPanel>
   <!--
-    Use <router-outlet> in a real application:
+  Use <router-outlet> in a real application:
 
-    <router-outlet></router-outlet>
+  <router-outlet></router-outlet>
   -->
 
   <button sbb-button class="example-action-button" (click)="addLink()">Add link</button>

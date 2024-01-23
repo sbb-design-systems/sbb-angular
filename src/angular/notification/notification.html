@@ -1,27 +1,38 @@
-<span class="sbb-notification-icon-wrapper sbb-icon-fit" [ngSwitch]="!!_notificationIcon">
-  <ng-container *ngSwitchCase="false">
-    <sbb-icon [svgIcon]="(_svgIcon | async)!"></sbb-icon>
-  </ng-container>
-  <ng-content select="sbb-notification-icon" *ngSwitchCase="true"></ng-content>
+<span class="sbb-notification-icon-wrapper sbb-icon-fit">
+  @switch (!!_notificationIcon) {
+    @case (false) {
+      <sbb-icon [svgIcon]="(_svgIcon | async)!"></sbb-icon>
+    }
+    @case (true) {
+      <ng-content select="sbb-notification-icon"></ng-content>
+    }
+  }
 </span>
 
 <div class="sbb-notification-content">
   <div class="sbb-notification-content-message" [class.sbb-notification-content-title]="jumpMarks">
     <ng-content></ng-content>
   </div>
-  <div *ngIf="jumpMarks">
-    <span *ngFor="let jumpMark of jumpMarks; let isLast = last" class="sbb-notification-jump-mark">
-      <a (click)="_scrollTo($event, jumpMark)">{{ jumpMark.title }}</a>
-      <ng-container *ngIf="!isLast"> / </ng-container>
-    </span>
-  </div>
+  @if (jumpMarks) {
+    <div>
+      @for (jumpMark of jumpMarks; track jumpMark; let isLast = $last) {
+        <span class="sbb-notification-jump-mark">
+          <a (click)="_scrollTo($event, jumpMark)">{{ jumpMark.title }}</a>
+          @if (!isLast) {
+            /
+          }
+        </span>
+      }
+    </div>
+  }
 </div>
 
-<button
-  *ngIf="(variant | async) !== 'standard' && !readonly"
-  class="sbb-notification-dismiss-icon-button sbb-button-reset-frameless sbb-icon-scaled"
-  type="button"
-  (click)="dismiss()"
->
-  <sbb-icon svgIcon="cross-small"></sbb-icon>
-</button>
+@if ((variant | async) !== 'standard' && !readonly) {
+  <button
+    class="sbb-notification-dismiss-icon-button sbb-button-reset-frameless sbb-icon-scaled"
+    type="button"
+    (click)="dismiss()"
+  >
+    <sbb-icon svgIcon="cross-small"></sbb-icon>
+  </button>
+}

@@ -1,4 +1,4 @@
-import { JsonPipe, NgIf } from '@angular/common';
+import { JsonPipe } from '@angular/common';
 import { Component } from '@angular/core';
 import { FormBuilder, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
 import { SbbButtonModule } from '@sbb-esta/angular/button';
@@ -19,7 +19,6 @@ import { SbbInputModule } from '@sbb-esta/angular/input';
     ReactiveFormsModule,
     SbbFormFieldModule,
     SbbInputModule,
-    NgIf,
     SbbDatepickerModule,
     SbbButtonModule,
     JsonPipe,

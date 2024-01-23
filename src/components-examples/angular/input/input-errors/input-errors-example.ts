@@ -1,4 +1,3 @@
-import { NgIf } from '@angular/common';
 import { Component } from '@angular/core';
 import { FormControl, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
 import { SbbFormFieldModule } from '@sbb-esta/angular/form-field';
@@ -13,7 +12,7 @@ import { SbbInputModule } from '@sbb-esta/angular/input';
   templateUrl: 'input-errors-example.html',
   styleUrls: ['input-errors-example.css'],
   standalone: true,
-  imports: [FormsModule, SbbFormFieldModule, SbbInputModule, ReactiveFormsModule, NgIf],
+  imports: [FormsModule, SbbFormFieldModule, SbbInputModule, ReactiveFormsModule],
 })
 export class InputErrorsExample {
   emailFormControl = new FormControl('', [Validators.required, Validators.email]);

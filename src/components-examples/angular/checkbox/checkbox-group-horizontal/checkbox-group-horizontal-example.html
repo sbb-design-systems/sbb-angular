@@ -1,7 +1,7 @@
 <div class="sbb-checkbox-group-horizontal">
-  <sbb-checkbox [(ngModel)]="option.selected" *ngFor="let option of checkboxOptions"
-    >{{ option.name }}</sbb-checkbox
-  >
+  @for (option of checkboxOptions; track option) {
+    <sbb-checkbox [(ngModel)]="option.selected">{{ option.name }}</sbb-checkbox>
+  }
 </div>
 <h4>Model</h4>
 <pre>{{ checkboxOptions | json }}</pre>
