@@ -24,6 +24,11 @@ import {
     PortalModule,
     SbbCommonModule,
     SbbIconModule,
+    SbbLightboxContainer,
+    SbbLightboxClose,
+    SbbLightboxTitle,
+    SbbLightboxActions,
+    SbbLightboxContent,
   ],
   exports: [
     SbbLightboxContainer,
@@ -31,13 +36,6 @@ import {
     SbbLightboxTitle,
     SbbLightboxContent,
     SbbLightboxActions,
-  ],
-  declarations: [
-    SbbLightboxContainer,
-    SbbLightboxClose,
-    SbbLightboxTitle,
-    SbbLightboxActions,
-    SbbLightboxContent,
   ],
   providers: [SbbLightbox, SBB_LIGHTBOX_SCROLL_STRATEGY_PROVIDER],
 })

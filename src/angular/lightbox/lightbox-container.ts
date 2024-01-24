@@ -1,6 +1,7 @@
 import { AnimationEvent } from '@angular/animations';
 import { FocusMonitor, FocusTrapFactory, InteractivityChecker } from '@angular/cdk/a11y';
 import { OverlayRef, ViewportRuler } from '@angular/cdk/overlay';
+import { CdkPortalOutlet } from '@angular/cdk/portal';
 import { DOCUMENT } from '@angular/common';
 import {
   ChangeDetectionStrategy,
@@ -44,6 +45,8 @@ import { sbbLightboxAnimations } from './lightbox-animations';
     '[attr.aria-describedby]': '_config.ariaDescribedBy || null',
     '[@lightboxContainer]': `_getAnimationState()`,
   },
+  standalone: true,
+  imports: [CdkPortalOutlet],
 })
 export class SbbLightboxContainer extends _SbbDialogContainerBase implements OnDestroy {
   /** Callback, invoked whenever an animation on the host completes. */
