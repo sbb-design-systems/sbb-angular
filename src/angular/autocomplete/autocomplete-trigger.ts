@@ -20,6 +20,7 @@ import {
   ElementRef,
   forwardRef,
   Host,
+  inject,
   Inject,
   InjectionToken,
   Input,
@@ -72,6 +73,13 @@ import { SbbAutocompleteOrigin } from './autocomplete-origin';
 /** Injection token that determines the scroll handling while the autocomplete panel is open. */
 export const SBB_AUTOCOMPLETE_SCROLL_STRATEGY = new InjectionToken<() => ScrollStrategy>(
   'sbb-autocomplete-scroll-strategy',
+  {
+    providedIn: 'root',
+    factory: () => {
+      const overlay = inject(Overlay);
+      return () => overlay.scrollStrategies.reposition();
+    },
+  },
 );
 
 /** @docs-private */
@@ -125,6 +133,7 @@ export function getSbbAutocompleteMissingPanelError(): Error {
     '(keydown)': '_handleKeydown($event)',
     '(click)': '_handleClick()',
   },
+  standalone: true,
 })
 export class SbbAutocompleteTrigger
   implements ControlValueAccessor, AfterViewInit, OnChanges, OnDestroy
