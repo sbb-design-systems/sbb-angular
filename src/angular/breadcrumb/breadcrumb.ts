@@ -7,5 +7,6 @@ import { Directive } from '@angular/core';
     class: 'sbb-breadcrumb sbb-icon-fit',
     role: 'listitem',
   },
+  standalone: true,
 })
 export class SbbBreadcrumb {}

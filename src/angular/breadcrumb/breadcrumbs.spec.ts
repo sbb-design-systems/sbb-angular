@@ -30,6 +30,8 @@ import { SbbBreadcrumbs } from './breadcrumbs';
       </sbb-breadcrumb>
     </sbb-breadcrumbs>
   `,
+  standalone: true,
+  imports: [SbbBreadcrumbModule, SbbMenuModule, SbbIconModule, SbbIconTestingModule],
 })
 export class BreadcrumbsSimpleTest {}
 
@@ -62,6 +64,8 @@ export class BreadcrumbsSimpleTest {}
       </sbb-breadcrumb>
     </sbb-breadcrumbs>
   `,
+  standalone: true,
+  imports: [SbbBreadcrumbModule, SbbMenuModule, SbbIconModule, SbbIconTestingModule],
 })
 export class BreadcrumbsMenuTest {}
 
@@ -72,8 +76,13 @@ describe('SbbBreadcrumbs', () => {
 
     beforeEach(waitForAsync(() => {
       TestBed.configureTestingModule({
-        declarations: [SbbBreadcrumbs, SbbBreadcrumb],
-        imports: [SbbMenuModule, SbbIconModule, SbbIconTestingModule],
+        imports: [
+          SbbMenuModule,
+          SbbIconModule,
+          SbbIconTestingModule,
+          SbbBreadcrumbs,
+          SbbBreadcrumb,
+        ],
       }).compileComponents();
     }));
 
@@ -93,8 +102,13 @@ describe('SbbBreadcrumbs', () => {
 
     beforeEach(waitForAsync(() => {
       TestBed.configureTestingModule({
-        declarations: [BreadcrumbsSimpleTest],
-        imports: [SbbBreadcrumbModule, SbbMenuModule, SbbIconModule, SbbIconTestingModule],
+        imports: [
+          SbbBreadcrumbModule,
+          SbbMenuModule,
+          SbbIconModule,
+          SbbIconTestingModule,
+          BreadcrumbsSimpleTest,
+        ],
       }).compileComponents();
     }));
 
@@ -155,13 +169,13 @@ describe('SbbBreadcrumbs', () => {
 
     beforeEach(waitForAsync(() => {
       TestBed.configureTestingModule({
-        declarations: [BreadcrumbsMenuTest],
         imports: [
           SbbBreadcrumbModule,
           SbbMenuModule,
           SbbIconModule,
           SbbIconTestingModule,
           NoopAnimationsModule,
+          BreadcrumbsMenuTest,
         ],
       }).compileComponents();
     }));
