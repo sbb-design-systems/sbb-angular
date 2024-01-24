@@ -40,9 +40,8 @@ export class SbbLevelSwitchHorizontal implements OnDestroy {
   @ViewChild('mainButton') mainButton: ElementRef<HTMLButtonElement>;
   @ViewChildren('sideButton') sideButtons: QueryList<ElementRef<HTMLButtonElement>>;
   showSideButtons: boolean = false;
-  private countdownTimer: ReturnType<typeof setTimeout>;
-  private autoCollapseTimeout = 5000; // 5000 ms
-
+  private _countdownTimer: ReturnType<typeof setTimeout>;
+  private _autoCollapseTimeout = 500000; // 5000 ms
   private _destroyed = new Subject<void>();
 
   constructor(
@@ -60,14 +59,14 @@ export class SbbLevelSwitchHorizontal implements OnDestroy {
     if (this.showSideButtons) {
       this.startCountdown();
       setTimeout(() => {
-        this.focusMatchingButton();
+        this._focusMatchingButton();
       }, 0); // make sure side buttons are visible first
     } else {
-      clearTimeout(this.countdownTimer);
+      clearTimeout(this._countdownTimer);
     }
   }
 
-  private focusMatchingButton(): void {
+  private _focusMatchingButton(): void {
     const mainButtonText = this.mainButton.nativeElement.textContent;
     const matchingButton = this.sideButtons.find(
       (button) => button.nativeElement.textContent === mainButtonText,
@@ -76,11 +75,11 @@ export class SbbLevelSwitchHorizontal implements OnDestroy {
   }
 
   startCountdown(): void {
-    clearTimeout(this.countdownTimer);
-    this.countdownTimer = setTimeout(() => {
+    clearTimeout(this._countdownTimer);
+    this._countdownTimer = setTimeout(() => {
       this.toggleSideButtons();
       this._ref.detectChanges();
-    }, this.autoCollapseTimeout);
+    }, this._autoCollapseTimeout);
   }
 
   get selectedLevel(): number | undefined {

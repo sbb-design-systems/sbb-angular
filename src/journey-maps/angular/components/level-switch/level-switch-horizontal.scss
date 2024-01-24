@@ -6,7 +6,7 @@
 
 .map-control-button {
   cursor: pointer;
-  border-radius: 18px;
+  border-radius: 50%;
   text-align: center;
   vertical-align: middle;
   width: 36px;
@@ -78,6 +78,7 @@
 .main-button-wrapper {
   border-radius: 50%;
   z-index: 3;
+  background-color: esta.$sbbColorWhite;
 }
 
 .main-button-wrapper.expanded {
