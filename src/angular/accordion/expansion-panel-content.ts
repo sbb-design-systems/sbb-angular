@@ -8,6 +8,7 @@ import { SbbExpansionPanelBase, SBB_EXPANSION_PANEL } from './expansion-panel-ba
  */
 @Directive({
   selector: 'ng-template[sbbExpansionPanelContent]',
+  standalone: true,
 })
 export class SbbExpansionPanelContent {
   constructor(

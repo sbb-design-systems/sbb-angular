@@ -1,6 +1,6 @@
 import { FocusableOption, FocusMonitor, FocusOrigin } from '@angular/cdk/a11y';
 import { ENTER, hasModifierKey, SPACE } from '@angular/cdk/keycodes';
-import { DOCUMENT } from '@angular/common';
+import { AsyncPipe, DOCUMENT } from '@angular/common';
 import {
   AfterViewInit,
   Attribute,
@@ -17,6 +17,8 @@ import {
 import { HasTabIndex, mixinTabIndex, TypeRef } from '@sbb-esta/angular/core';
 import { EMPTY, merge, Subscription } from 'rxjs';
 import { filter } from 'rxjs/operators';
+
+import { SbbIconModule } from '../icon/icon.module';
 
 import { sbbExpansionAnimations } from './accordion-animations';
 import { SbbExpansionPanel } from './expansion-panel';
@@ -50,6 +52,8 @@ const _SbbExpansionPanelHeaderMixinBase = mixinTabIndex(SbbExpansionPanelHeaderB
     '[class.sbb-expanded]': '_isExpanded()',
     '[class.sbb-disabled]': 'disabled',
   },
+  standalone: true,
+  imports: [SbbIconModule, AsyncPipe],
 })
 export class SbbExpansionPanelHeader
   extends _SbbExpansionPanelHeaderMixinBase
