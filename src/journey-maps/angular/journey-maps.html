@@ -30,39 +30,47 @@
     </sbb-marker-details>
 
     <div class="map-widgets">
-      <sbb-zoom-controls
-        *ngIf="uiOptions.zoomControls"
-        [map]="mapReady | async"
-        [showSmallButtons]="uiOptions.showSmallButtons"
-        [isDarkMode]="isDarkMode"
-      ></sbb-zoom-controls>
-      <sbb-geolocate-button
-        *ngIf="uiOptions.geoLocation"
-        [map]="mapReady | async"
-        [showSmallButtons]="uiOptions.showSmallButtons"
-        (geolocateButtonClicked)="onGeolocateButtonClicked()"
-        [isDarkMode]="isDarkMode"
-      ></sbb-geolocate-button>
-      <sbb-basemap-switch
-        *ngIf="uiOptions.basemapSwitch"
-        [map]="mapReady | async"
-        [showSmallButtons]="uiOptions.showSmallButtons"
-        (toggleBasemap)="onToggleBasemap()"
-        [isDarkMode]="isDarkMode"
-      ></sbb-basemap-switch>
-      <sbb-home-button
-        *ngIf="uiOptions.homeButton"
-        [map]="mapReady | async"
-        [showSmallButtons]="uiOptions.showSmallButtons"
-        (homeButtonClicked)="onHomeButtonClicked()"
-        [isDarkMode]="isDarkMode"
-      ></sbb-home-button>
-      <sbb-level-switch
-        *ngIf="uiOptions.levelSwitch"
-        [map]="mapReady | async"
-        [showSmallButtons]="uiOptions.showSmallButtons"
-        [isDarkMode]="isDarkMode"
-      ></sbb-level-switch>
+      <div class="map-widgets-expanding-container">
+        <sbb-zoom-controls
+          *ngIf="uiOptions.zoomControls"
+          [map]="mapReady | async"
+          [isDarkMode]="isDarkMode"
+          [showSmallButtons]="uiOptions.showSmallButtons"
+        ></sbb-zoom-controls>
+        <sbb-geolocate-button
+          *ngIf="uiOptions.geoLocation"
+          [map]="mapReady | async"
+          [isDarkMode]="isDarkMode"
+          [showSmallButtons]="uiOptions.showSmallButtons"
+          (geolocateButtonClicked)="onGeolocateButtonClicked()"
+        ></sbb-geolocate-button>
+        <sbb-basemap-switch
+          *ngIf="uiOptions.basemapSwitch"
+          [map]="mapReady | async"
+          [isDarkMode]="isDarkMode"
+          [showSmallButtons]="uiOptions.showSmallButtons"
+          (toggleBasemap)="onToggleBasemap()"
+        ></sbb-basemap-switch>
+        <sbb-home-button
+          *ngIf="uiOptions.homeButton"
+          [map]="mapReady | async"
+          [isDarkMode]="isDarkMode"
+          [showSmallButtons]="uiOptions.showSmallButtons"
+          (homeButtonClicked)="onHomeButtonClicked()"
+        ></sbb-home-button>
+        <sbb-level-switch-horizontal
+          *ngIf="uiOptions.levelSwitch && isLevelSwitchHorizontal"
+          [map]="mapReady | async"
+          [isDarkMode]="isDarkMode"
+          [showSmallButtons]="uiOptions.showSmallButtons"
+        ></sbb-level-switch-horizontal>
+        <sbb-level-switch
+          *ngIf="uiOptions.levelSwitch && !isLevelSwitchHorizontal"
+          [map]="mapReady | async"
+          [isDarkMode]="isDarkMode"
+          [showSmallButtons]="uiOptions.showSmallButtons"
+        ></sbb-level-switch>
+      </div>
     </div>
     <div class="map-attribution">
       <sbb-attribution [map]="mapReady | async"></sbb-attribution>

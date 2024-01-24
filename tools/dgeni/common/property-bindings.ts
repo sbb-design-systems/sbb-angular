@@ -41,7 +41,7 @@ function getBindingPropertyData(
 ) {
   if (metadata) {
     const metadataValues: string[] = metadata.get(propertyName) || [];
-    const foundValue = metadataValues.find((value) => value.split(':')[0] === doc.name);
+    const foundValue = metadataValues.find((value) => value?.split(':')[0] === doc.name);
 
     if (foundValue) {
       return {
