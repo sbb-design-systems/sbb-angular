@@ -18,6 +18,7 @@ export const SBB_ERROR = new InjectionToken<SbbError>('SbbError');
     'aria-atomic': 'true',
   },
   providers: [{ provide: SBB_ERROR, useExisting: SbbError }],
+  standalone: true,
 })
 export class SbbError {
   @Input() id: string = `sbb-error-${nextId++}`;
