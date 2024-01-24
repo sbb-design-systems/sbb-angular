@@ -43,6 +43,8 @@ const DAYS_PER_WEEK = 7;
   exportAs: 'sbbMonthView',
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush,
+  standalone: true,
+  imports: [SbbCalendarBody],
 })
 export class SbbMonthView<D> implements AfterContentInit {
   /** The date to display in this month view (everything other than the month and year is ignored). */

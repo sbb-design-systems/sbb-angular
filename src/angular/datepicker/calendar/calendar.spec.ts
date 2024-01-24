@@ -29,6 +29,8 @@ import { SbbDatepickerModule } from '../datepicker.module';
     >
     </sbb-calendar>
   `,
+  standalone: true,
+  imports: [SbbDatepickerModule, SbbIconModule, SbbIconTestingModule],
 })
 class StandardCalendarComponent {
   selected: Date;
@@ -41,6 +43,8 @@ class StandardCalendarComponent {
   template: `
     <sbb-calendar [startAt]="startAt" [minDate]="minDate" [maxDate]="maxDate"></sbb-calendar>
   `,
+  standalone: true,
+  imports: [SbbDatepickerModule, SbbIconModule, SbbIconTestingModule],
 })
 class CalendarWithMinMaxComponent {
   startAt: Date;
@@ -53,6 +57,8 @@ class CalendarWithMinMaxComponent {
     <sbb-calendar [startAt]="startDate" [(selected)]="selected" [dateFilter]="dateFilter">
     </sbb-calendar>
   `,
+  standalone: true,
+  imports: [SbbDatepickerModule, SbbIconModule, SbbIconTestingModule],
 })
 class CalendarWithDateFilterComponent {
   selected: Date;
@@ -73,6 +79,8 @@ class CalendarWithDateFilterComponent {
     >
     </sbb-calendar>
   `,
+  standalone: true,
+  imports: [SbbDatepickerModule, SbbIconModule, SbbIconTestingModule],
 })
 class CalendarWithSelectableMinDateComponent {
   startAt = new Date(2018, JUL, 0);
@@ -90,6 +98,8 @@ class CalendarWithSelectableMinDateComponent {
 
 @Component({
   template: ` <sbb-calendar [dateClass]="dateClass"> </sbb-calendar> `,
+  standalone: true,
+  imports: [SbbDatepickerModule, SbbIconModule, SbbIconTestingModule],
 })
 class CalendarWithDateClassComponent {
   dateClass: SbbCalendarCellClassFunction<Date>;
@@ -100,8 +110,10 @@ describe('SbbCalendar', () => {
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-      imports: [SbbDatepickerModule, SbbIconModule, SbbIconTestingModule],
-      declarations: [
+      imports: [
+        SbbDatepickerModule,
+        SbbIconModule,
+        SbbIconTestingModule,
         // Test components.
         StandardCalendarComponent,
         CalendarWithDateClassComponent,
