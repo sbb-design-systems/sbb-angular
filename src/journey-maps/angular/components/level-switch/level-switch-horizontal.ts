@@ -41,7 +41,7 @@ export class SbbLevelSwitchHorizontal implements OnDestroy {
   @ViewChildren('sideButton') sideButtons: QueryList<ElementRef<HTMLButtonElement>>;
   showSideButtons: boolean = false;
   private _countdownTimer: ReturnType<typeof setTimeout>;
-  private _autoCollapseTimeout = 500000; // 5000 ms
+  private _autoCollapseTimeout = 5000; // 5000 ms
   private _destroyed = new Subject<void>();
 
   constructor(
