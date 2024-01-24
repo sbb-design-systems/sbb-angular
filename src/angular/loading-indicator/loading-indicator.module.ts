@@ -4,8 +4,7 @@ import { SbbCommonModule } from '@sbb-esta/angular/core';
 import { SbbLoadingIndicator } from './loading-indicator';
 
 @NgModule({
-  imports: [SbbCommonModule],
-  declarations: [SbbLoadingIndicator],
+  imports: [SbbCommonModule, SbbLoadingIndicator],
   exports: [SbbLoadingIndicator],
 })
 export class SbbLoadingIndicatorModule {}

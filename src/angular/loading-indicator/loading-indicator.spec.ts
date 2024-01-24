@@ -8,7 +8,7 @@ describe('SbbLoadingIndicator', () => {
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-      declarations: [SbbLoadingIndicator],
+      imports: [SbbLoadingIndicator],
     }).compileComponents();
   }));
 
