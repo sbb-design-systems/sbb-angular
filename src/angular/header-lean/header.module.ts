@@ -24,8 +24,6 @@ import {
     PortalModule,
     SbbCommonModule,
     SbbIconModule,
-  ],
-  declarations: [
     SbbHeaderLean,
     SbbAppChooserSection,
     SbbHeaderEnvironment,

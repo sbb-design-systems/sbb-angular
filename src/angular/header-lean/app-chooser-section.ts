@@ -20,6 +20,7 @@ import { SBB_HEADER } from './header-token';
   host: {
     class: 'sbb-app-chooser',
   },
+  standalone: true,
 })
 export class SbbAppChooserSection {
   @Input() label: string;

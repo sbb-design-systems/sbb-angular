@@ -6,6 +6,7 @@ import { animate, state, style, transition, trigger } from '@angular/animations'
 import { FocusKeyManager, FocusOrigin } from '@angular/cdk/a11y';
 import { DOWN_ARROW, END, ESCAPE, hasModifierKey, HOME, UP_ARROW } from '@angular/cdk/keycodes';
 import { CdkPortal, CdkPortalOutlet } from '@angular/cdk/portal';
+import { NgClass } from '@angular/common';
 import {
   AfterContentInit,
   ChangeDetectionStrategy,
@@ -25,6 +26,8 @@ import {
 import { TypeRef } from '@sbb-esta/angular/core';
 import { Observable, Subject } from 'rxjs';
 import { map, startWith, takeUntil } from 'rxjs/operators';
+
+import { SbbIconModule } from '../icon/icon.module';
 
 import type { SbbHeaderLean } from './header';
 import { SbbHeaderMenuItem } from './header-menu-item';
@@ -52,6 +55,8 @@ let nextId = 0;
     '[@open]': 'this._animationState',
     '[class.sbb-header-menus-collapsed]': 'this._header._menusCollapsed',
   },
+  standalone: true,
+  imports: [SbbIconModule, CdkPortal, CdkPortalOutlet, NgClass],
 })
 export class SbbHeaderMenu implements AfterContentInit, OnDestroy {
   _backButton: string = $localize`:Go back to the app chooser navigation@@sbbHeaderMenuBack:Back`;

@@ -11,7 +11,8 @@ import {
 import { BooleanInput, coerceBooleanProperty } from '@angular/cdk/coercion';
 import { ENTER, ESCAPE, hasModifierKey, SPACE } from '@angular/cdk/keycodes';
 import { BreakpointObserver } from '@angular/cdk/layout';
-import { DOCUMENT } from '@angular/common';
+import { CdkPortal, CdkPortalOutlet } from '@angular/cdk/portal';
+import { AsyncPipe, DOCUMENT } from '@angular/common';
 import {
   AfterViewInit,
   ChangeDetectionStrategy,
@@ -34,6 +35,7 @@ import {
 } from '@angular/core';
 import { NavigationStart, Router } from '@angular/router';
 import { Breakpoints } from '@sbb-esta/angular/core';
+import { SbbIconModule } from '@sbb-esta/angular/icon';
 import { BehaviorSubject, fromEvent, merge, NEVER, Observable, Subject } from 'rxjs';
 import {
   distinctUntilChanged,
@@ -112,6 +114,8 @@ const breakpointMapping = {
     '[class.sbb-header-lean-opened]': 'opened',
     '[class.sbb-header-lean-app-chooser-available]': '_appChooserSections.length',
   },
+  standalone: true,
+  imports: [SbbIconModule, CdkPortalOutlet, CdkPortal, AsyncPipe],
 })
 export class SbbHeaderLean implements OnChanges, AfterViewInit, OnDestroy {
   _labelOpenMenu: string = $localize`:Button label to open the sidebar of the header@@sbbHeaderOpenMenu:Open Menu`;
