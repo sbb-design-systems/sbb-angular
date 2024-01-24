@@ -2,6 +2,7 @@ import { AnimationEvent } from '@angular/animations';
 import { FocusKeyManager, FocusOrigin } from '@angular/cdk/a11y';
 import { BooleanInput, coerceBooleanProperty } from '@angular/cdk/coercion';
 import { DOWN_ARROW, ESCAPE, hasModifierKey, LEFT_ARROW, UP_ARROW } from '@angular/cdk/keycodes';
+import { NgClass, NgTemplateOutlet } from '@angular/common';
 import {
   AfterContentInit,
   ChangeDetectionStrategy,
@@ -102,6 +103,8 @@ export type SbbMenuCloseReason = void | 'click' | 'keydown' | 'tab';
   },
   animations: [sbbMenuAnimations.transformMenu],
   providers: [{ provide: SBB_MENU_PANEL, useExisting: SbbMenu }],
+  standalone: true,
+  imports: [NgClass, NgTemplateOutlet],
 })
 export class SbbMenu implements AfterContentInit, SbbMenuPanel<SbbMenuItem>, OnInit, OnDestroy {
   private _keyManager: FocusKeyManager<SbbMenuItem>;

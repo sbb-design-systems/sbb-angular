@@ -119,6 +119,7 @@ const _SbbMenuTriggerMixinBase = mixinVariant(class {});
     '(keydown)': '_handleKeydown($event)',
   },
   exportAs: 'sbbMenuTrigger',
+  standalone: true,
 })
 export class SbbMenuTrigger
   extends _SbbMenuTriggerMixinBase
