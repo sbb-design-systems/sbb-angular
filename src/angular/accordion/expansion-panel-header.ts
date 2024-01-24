@@ -15,10 +15,9 @@ import {
   ViewEncapsulation,
 } from '@angular/core';
 import { HasTabIndex, mixinTabIndex, TypeRef } from '@sbb-esta/angular/core';
+import { SbbIconModule } from '@sbb-esta/angular/icon';
 import { EMPTY, merge, Subscription } from 'rxjs';
 import { filter } from 'rxjs/operators';
-
-import { SbbIconModule } from '../icon/icon.module';
 
 import { sbbExpansionAnimations } from './accordion-animations';
 import { SbbExpansionPanel } from './expansion-panel';
