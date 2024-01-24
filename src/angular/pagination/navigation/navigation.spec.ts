@@ -23,6 +23,14 @@ import { SbbNavigation, SbbNavigationPageChangeEvent } from './navigation';
     <input type="text" name="newPage" [(ngModel)]="newPage.title" />
     <button id="new-page-button" sbb-button (click)="addPage()">Add new page</button>
   `,
+  standalone: true,
+  imports: [
+    SbbPaginationModule,
+    SbbIconTestingModule,
+    RouterTestingModule,
+    SbbButtonModule,
+    FormsModule,
+  ],
 })
 export class NavigationTestComponent {
   @ViewChild('navigation', { static: true }) navigation: SbbNavigation;
@@ -65,8 +73,7 @@ describe('SbbNavigation', () => {
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-      imports: [SbbIconModule, SbbIconTestingModule, RouterTestingModule],
-      declarations: [SbbNavigation],
+      imports: [SbbIconModule, SbbIconTestingModule, RouterTestingModule, SbbNavigation],
     }).compileComponents();
   }));
 
@@ -93,8 +100,8 @@ describe('SbbNavigation behaviour', () => {
         RouterTestingModule,
         SbbButtonModule,
         FormsModule,
+        NavigationTestComponent,
       ],
-      declarations: [NavigationTestComponent],
     }).compileComponents();
   }));
 
