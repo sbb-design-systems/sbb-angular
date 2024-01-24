@@ -19,10 +19,9 @@ import {
 import { ANIMATION_MODULE_TYPE } from '@angular/platform-browser/animations';
 import { CanDisable, mixinDisabled, mixinVariant } from '@sbb-esta/angular/core';
 import { SbbIcon } from '@sbb-esta/angular/icon';
+import { SbbIconModule } from '@sbb-esta/angular/icon';
 import { combineLatest, Observable } from 'rxjs';
 import { map, startWith } from 'rxjs/operators';
-
-import { SbbIconModule } from '../icon/icon.module';
 
 /**
  * List of classes to add to SbbButton instances based on host attributes to
