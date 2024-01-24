@@ -84,6 +84,8 @@ const testFileList: Partial<File>[] = [
 @Component({
   selector: 'sbb-file-test',
   template: ` <sbb-file-selector (fileChanged)="fileChanged($event)"></sbb-file-selector> `,
+  standalone: true,
+  imports: [SbbFileSelectorModule, SbbIconModule, SbbIconTestingModule],
 })
 class FileSelectorTestComponent {
   filesList1: File[] = [];
@@ -99,8 +101,12 @@ describe('SbbFileSelector using mock component', () => {
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-      imports: [SbbFileSelectorModule, SbbIconModule, SbbIconTestingModule],
-      declarations: [FileSelectorTestComponent],
+      imports: [
+        SbbFileSelectorModule,
+        SbbIconModule,
+        SbbIconTestingModule,
+        FileSelectorTestComponent,
+      ],
     }).compileComponents();
   }));
 
@@ -222,6 +228,8 @@ describe('SbbFileSelector using mock component', () => {
   template: `
     <sbb-file-selector (fileChanged)="onFileChange($event)" [(ngModel)]="files"></sbb-file-selector>
   `,
+  standalone: true,
+  imports: [SbbFileSelectorModule, SbbIconTestingModule, FormsModule],
 })
 class FileSelectorTest2Component {
   files: File[] = [];
@@ -240,8 +248,12 @@ describe('SbbFileSelector using mock component and limited behaviour ', () => {
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-      imports: [SbbFileSelectorModule, SbbIconTestingModule, FormsModule],
-      declarations: [FileSelectorTest2Component],
+      imports: [
+        SbbFileSelectorModule,
+        SbbIconTestingModule,
+        FormsModule,
+        FileSelectorTest2Component,
+      ],
     }).compileComponents();
   }));
 
