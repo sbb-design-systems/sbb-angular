@@ -6,8 +6,7 @@ import { SbbFormFieldModule } from '@sbb-esta/angular/form-field';
 import { SbbInput } from './input';
 
 @NgModule({
-  declarations: [SbbInput],
-  imports: [TextFieldModule, SbbCommonModule, SbbFormFieldModule],
+  imports: [TextFieldModule, SbbCommonModule, SbbFormFieldModule, SbbInput],
   exports: [
     TextFieldModule,
     // We re-export the `SbbFormFieldModule` since `SbbInput` will almost always

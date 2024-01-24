@@ -24,10 +24,9 @@ import {
   ViewEncapsulation,
 } from '@angular/core';
 import { TypeRef } from '@sbb-esta/angular/core';
+import { SbbIconModule } from '@sbb-esta/angular/icon';
 import { Observable, Subject } from 'rxjs';
 import { map, startWith, takeUntil } from 'rxjs/operators';
-
-import { SbbIconModule } from '../icon/icon.module';
 
 import type { SbbHeaderLean } from './header';
 import { SbbHeaderMenuItem } from './header-menu-item';
