@@ -19,6 +19,7 @@ import {
   ViewChild,
   ViewEncapsulation,
 } from '@angular/core';
+import { SbbIcon } from '@sbb-esta/angular/icon';
 import { Observable, Subject } from 'rxjs';
 import { take } from 'rxjs/operators';
 
@@ -220,6 +221,8 @@ export abstract class SbbNotificationToastContainerBase
     '[@state]': '_animationState',
     '(@state.done)': 'onAnimationEnd($event)',
   },
+  standalone: true,
+  imports: [SbbIcon, CdkPortalOutlet],
 })
 export class SbbNotificationToastContainer extends SbbNotificationToastContainerBase {
   protected override _afterPortalAttached() {

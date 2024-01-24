@@ -43,8 +43,8 @@ describe('SbbNotification', () => {
           SbbNotificationModule,
           SbbIconModule,
           SbbIconTestingModule,
+          NotificationMockComponent,
         ],
-        declarations: [NotificationMockComponent],
       }).compileComponents();
     }));
 
@@ -225,6 +225,8 @@ describe('SbbNotification', () => {
   selector: 'sbb-notification-mock',
   template:
     '<sbb-notification [type]="type" [jumpMarks]="jumpMarks" (dismissed)="dismissed($event)" [readonly]="readonly">{{message}}</sbb-notification>',
+  standalone: true,
+  imports: [FormsModule, SbbNotificationModule, SbbIconModule, SbbIconTestingModule],
 })
 export class NotificationMockComponent {
   message = 'Search';
