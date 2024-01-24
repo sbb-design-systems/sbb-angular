@@ -23,20 +23,7 @@
   }
 }
 
-.map-control-button:hover,
-.map-control-button-selected {
-  @extend .map-control-button;
-  background-color: esta.$sbbColorCharcoal;
-  color: esta.$sbbColorWhite;
-}
-
-@at-root .map-control-container.dark #{&} {
-  .map-control-button:hover,
-  .map-control-button-selected {
-    background-color: esta.$sbbColorSmoke;
-    color: esta.$sbbColorBlack;
-  }
-}
+@include f.map-control-button-hover;
 
 .map-control-button-wrapper {
   border-bottom: 1px solid esta.$sbbColorCloud;

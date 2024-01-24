@@ -36,6 +36,7 @@ import { SbbLevelSwitcher } from './services/level-switcher';
 export class SbbLevelSwitchHorizontal implements OnDestroy {
   @Input() map: MaplibreMap | null;
   @Input() showSmallButtons: boolean | undefined;
+  @Input() isDarkMode: boolean;
 
   @ViewChild('mainButton') mainButton: ElementRef<HTMLButtonElement>;
   @ViewChildren('sideButton') sideButtons: QueryList<ElementRef<HTMLButtonElement>>;
