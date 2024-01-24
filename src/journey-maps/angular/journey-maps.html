@@ -1,4 +1,8 @@
-<div class="jmc-container" lang="{{ language }}">
+<div
+  class="jmc-container"
+  lang="{{ language }}"
+  [class.dark]="!!styleOptions.mode && styleOptions.mode === 'dark'"
+>
   <div class="map-container" (touchstart)="onTouchStart($event)" (touchend)="onTouchEnd($event)">
     <div
       class="mod_map_container_mobile_overlay"
