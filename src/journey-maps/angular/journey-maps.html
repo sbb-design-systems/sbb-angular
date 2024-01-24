@@ -1,8 +1,4 @@
-<div
-  class="jmc-container"
-  lang="{{ language }}"
-  [class.dark]="!!styleOptions.mode && styleOptions.mode === 'dark'"
->
+<div class="jmc-container" lang="{{ language }}" [class.dark]="isDarkMode">
   <div class="map-container" (touchstart)="onTouchStart($event)" (touchend)="onTouchEnd($event)">
     <div
       class="mod_map_container_mobile_overlay"
@@ -21,7 +17,7 @@
       (featuresHoverChange)="featuresHoverChange.next($event)"
       (featuresClick)="featuresClick.next($event); handleMarkerOrClusterClick($event.features)"
       (featureSelectionsChange)="selectedFeaturesChange.next($event)"
-      [styleMode]="styleOptions.mode"
+      [isDarkMode]="isDarkMode"
     ></sbb-feature-event-listener>
     <sbb-marker-details
       [selectedMarker]="selectedMarker"
@@ -29,7 +25,7 @@
       [map]="mapReady | async"
       [popup]="markerOptions.popup"
       (closeClicked)="onMarkerUnselected()"
-      [styleMode]="styleOptions.mode"
+      [isDarkMode]="isDarkMode"
     >
     </sbb-marker-details>
 
@@ -38,34 +34,34 @@
         *ngIf="uiOptions.zoomControls"
         [map]="mapReady | async"
         [showSmallButtons]="uiOptions.showSmallButtons"
-        [styleMode]="styleOptions.mode"
+        [isDarkMode]="isDarkMode"
       ></sbb-zoom-controls>
       <sbb-geolocate-button
         *ngIf="uiOptions.geoLocation"
         [map]="mapReady | async"
         [showSmallButtons]="uiOptions.showSmallButtons"
         (geolocateButtonClicked)="onGeolocateButtonClicked()"
-        [styleMode]="styleOptions.mode"
+        [isDarkMode]="isDarkMode"
       ></sbb-geolocate-button>
       <sbb-basemap-switch
         *ngIf="uiOptions.basemapSwitch"
         [map]="mapReady | async"
         [showSmallButtons]="uiOptions.showSmallButtons"
         (toggleBasemap)="onToggleBasemap()"
-        [styleMode]="styleOptions.mode"
+        [isDarkMode]="isDarkMode"
       ></sbb-basemap-switch>
       <sbb-home-button
         *ngIf="uiOptions.homeButton"
         [map]="mapReady | async"
         [showSmallButtons]="uiOptions.showSmallButtons"
         (homeButtonClicked)="onHomeButtonClicked()"
-        [styleMode]="styleOptions.mode"
+        [isDarkMode]="isDarkMode"
       ></sbb-home-button>
       <sbb-level-switch
         *ngIf="uiOptions.levelSwitch"
         [map]="mapReady | async"
         [showSmallButtons]="uiOptions.showSmallButtons"
-        [styleMode]="styleOptions.mode"
+        [isDarkMode]="isDarkMode"
       ></sbb-level-switch>
     </div>
     <div class="map-attribution">

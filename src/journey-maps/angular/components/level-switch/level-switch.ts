@@ -11,7 +11,6 @@ import { Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
 
 import { SbbLocaleService } from '../../services/locale-service';
-import { SbbDarkModeAware } from '../dark-mode-aware/dark-mode-aware';
 
 import { SbbLevelSwitcher } from './services/level-switcher';
 
@@ -29,9 +28,10 @@ import { SbbLevelSwitcher } from './services/level-switcher';
   ],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class SbbLevelSwitch extends SbbDarkModeAware implements OnDestroy {
+export class SbbLevelSwitch implements OnDestroy {
   @Input() map: MaplibreMap | null;
   @Input() showSmallButtons: boolean | undefined;
+  @Input() isDarkMode: boolean;
 
   private _destroyed = new Subject<void>();
 
@@ -40,7 +40,6 @@ export class SbbLevelSwitch extends SbbDarkModeAware implements OnDestroy {
     private _i18n: SbbLocaleService,
     private _levelSwitchService: SbbLevelSwitcher,
   ) {
-    super();
     this._levelSwitchService.changeDetectionEmitter
       .pipe(takeUntil(this._destroyed))
       .subscribe(() => this._ref.detectChanges());

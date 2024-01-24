@@ -13,7 +13,6 @@ import { Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
 
 import { SbbLocaleService } from '../../services/locale-service';
-import { SbbDarkModeAware } from '../dark-mode-aware/dark-mode-aware';
 
 @Component({
   selector: 'sbb-zoom-controls',
@@ -21,9 +20,10 @@ import { SbbDarkModeAware } from '../dark-mode-aware/dark-mode-aware';
   styleUrls: ['./zoom-controls.css'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class SbbZoomControls extends SbbDarkModeAware implements OnInit, OnChanges, OnDestroy {
+export class SbbZoomControls implements OnInit, OnChanges, OnDestroy {
   @Input() map: MaplibreMap | null;
   @Input() showSmallButtons: boolean | undefined;
+  @Input() isDarkMode: boolean;
 
   private _zoomChanged = new Subject<void>();
   private _destroyed = new Subject<void>();
@@ -36,9 +36,7 @@ export class SbbZoomControls extends SbbDarkModeAware implements OnInit, OnChang
   constructor(
     private _cd: ChangeDetectorRef,
     private _i18n: SbbLocaleService,
-  ) {
-    super();
-  }
+  ) {}
 
   ngOnInit(): void {
     this._zoomChanged.pipe(takeUntil(this._destroyed)).subscribe(() => {

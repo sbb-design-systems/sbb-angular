@@ -57,25 +57,25 @@
       }
     }
 
-    &:not([disabled]):active,
-    &:not([disabled]):has(:focus-visible) {
+    &:not([data-disabled='true']):active,
+    &:not([data-disabled='true']):has(:focus-visible) {
       @include _map-control-button-wrapper-active;
     }
 
     @media (hover: hover) {
-      &:not([disabled]):hover {
+      &:not([data-disabled='true']):hover {
         @include _map-control-button-wrapper-active;
       }
     }
 
     @at-root .map-control-container.dark #{&} {
-      &:not([disabled]):active,
-      &:not([disabled]):has(:focus-visible) {
+      &:not([data-disabled='true']):active,
+      &:not([data-disabled='true']):has(:focus-visible) {
         @include _map-control-button-wrapper-active-dark;
       }
 
       @media (hover: hover) {
-        &:not([disabled]):hover {
+        &:not([data-disabled='true']):hover {
           @include _map-control-button-wrapper-active-dark;
         }
       }
@@ -150,6 +150,11 @@
         &:not([disabled]):hover {
           background-color: esta.$sbbColorBlack;
         }
+      }
+
+      &:disabled {
+        cursor: default;
+        background-color: esta.$sbbColorAnthracite;
       }
     }
   }

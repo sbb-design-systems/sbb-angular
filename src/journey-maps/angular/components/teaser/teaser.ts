@@ -14,7 +14,6 @@ import {
 
 import { SbbTemplateType } from '../../journey-maps.interfaces';
 import { SbbLocaleService } from '../../services/locale-service';
-import { SbbDarkModeAware } from '../dark-mode-aware/dark-mode-aware';
 
 @Component({
   selector: 'sbb-teaser',
@@ -31,11 +30,13 @@ import { SbbDarkModeAware } from '../dark-mode-aware/dark-mode-aware';
     ]),
   ],
 })
-export class SbbTeaser extends SbbDarkModeAware implements OnInit, OnChanges {
+export class SbbTeaser implements OnInit, OnChanges {
   @Input() rendered: boolean;
   @Input() templateContext: any;
   @Input() template: SbbTemplateType;
   @Input() withPaginator: boolean = false;
+  @Input() isDarkMode: boolean;
+
   @Output() closeClicked: EventEmitter<void> = new EventEmitter<void>();
   @Output() mouseEvent: EventEmitter<'enter' | 'leave'> = new EventEmitter<'enter' | 'leave'>();
 
@@ -57,9 +58,7 @@ export class SbbTeaser extends SbbDarkModeAware implements OnInit, OnChanges {
     }
   }
 
-  constructor(private _i18n: SbbLocaleService) {
-    super();
-  }
+  constructor(private _i18n: SbbLocaleService) {}
 
   ngOnInit(): void {
     this.closeLabel = this._i18n.getText('close');
