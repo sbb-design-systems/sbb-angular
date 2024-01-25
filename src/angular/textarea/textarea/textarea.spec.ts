@@ -26,6 +26,8 @@ import { SbbTextarea } from './textarea';
       [disabled]="disabled"
     ></sbb-textarea>
   `,
+  standalone: true,
+  imports: [SbbTextareaModule, FormsModule],
 })
 class TextareaTestComponent {
   required: boolean;
@@ -48,6 +50,8 @@ class TextareaTestComponent {
       </sbb-form-field>
     </form>
   `,
+  standalone: true,
+  imports: [SbbTextareaModule, ReactiveFormsModule, FormsModule, SbbFormFieldModule],
 })
 class TextareaSbbFieldTestComponent {
   form: FormGroup = new FormGroup({
@@ -83,8 +87,7 @@ describe('SbbTextarea behaviour', () => {
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-      imports: [SbbTextareaModule, FormsModule],
-      declarations: [TextareaTestComponent],
+      imports: [SbbTextareaModule, FormsModule, TextareaTestComponent],
     }).compileComponents();
   }));
 
@@ -317,8 +320,13 @@ describe('SbbTextarea reactive forms in sbb-form-field behaviour', () => {
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-      imports: [SbbTextareaModule, ReactiveFormsModule, FormsModule, SbbFormFieldModule],
-      declarations: [TextareaSbbFieldTestComponent],
+      imports: [
+        SbbTextareaModule,
+        ReactiveFormsModule,
+        FormsModule,
+        SbbFormFieldModule,
+        TextareaSbbFieldTestComponent,
+      ],
     }).compileComponents();
   }));
 

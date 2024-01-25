@@ -5,8 +5,7 @@ import { SbbCommonModule } from '@sbb-esta/angular/core';
 import { SbbTextarea } from './textarea/textarea';
 
 @NgModule({
-  imports: [TextFieldModule, SbbCommonModule],
-  declarations: [SbbTextarea],
+  imports: [TextFieldModule, SbbCommonModule, SbbTextarea],
   exports: [SbbTextarea],
 })
 export class SbbTextareaModule {}
