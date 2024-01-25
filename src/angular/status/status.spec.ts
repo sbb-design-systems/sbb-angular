@@ -7,19 +7,27 @@ import { SbbStatusModule } from './status.module';
 
 @Component({
   template: '<sbb-status type="valid"></sbb-status>',
+  standalone: true,
+  imports: [SbbStatusModule, SbbIconTestingModule],
 })
 class ValidStatusComponent {}
 @Component({
   template: '<sbb-status type="warning"></sbb-status>',
+  standalone: true,
+  imports: [SbbStatusModule, SbbIconTestingModule],
 })
 class WarningStatusComponent {}
 @Component({
   template: '<sbb-status type="invalid"></sbb-status>',
+  standalone: true,
+  imports: [SbbStatusModule, SbbIconTestingModule],
 })
 class InvalidStatusComponent {}
 
 @Component({
   template: '<sbb-status type="valid" [message]="message"></sbb-status>',
+  standalone: true,
+  imports: [SbbStatusModule, SbbIconTestingModule],
 })
 class StatusWithMessageComponent {
   message = 'test message';
@@ -27,20 +35,23 @@ class StatusWithMessageComponent {
 
 @Component({
   template: '<sbb-status type="valid" aria-label="Test"></sbb-status>',
+  standalone: true,
+  imports: [SbbStatusModule, SbbIconTestingModule],
 })
 class StatusWithAriaLabelComponent {}
 
 describe('SbbStatus', () => {
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-      declarations: [
+      imports: [
+        SbbStatusModule,
+        SbbIconTestingModule,
         ValidStatusComponent,
         WarningStatusComponent,
         InvalidStatusComponent,
         StatusWithMessageComponent,
         StatusWithAriaLabelComponent,
       ],
-      imports: [SbbStatusModule, SbbIconTestingModule],
     }).compileComponents();
   }));
 
