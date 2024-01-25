@@ -83,12 +83,23 @@
 }
 
 .main-button-wrapper {
+  &.empty {
+    @include f.map-control-icon;
+    @include f.map-control-icon-button('layers-with-arrows');
+  }
+
   border-radius: 50%;
   z-index: 3;
   background-color: esta.$sbbColorWhite;
 
   @at-root .map-control-container.dark #{&} {
+    background-color: esta.$sbbColorBlack;
     outline: 1px solid esta.$sbbColorMetal;
+  }
+
+  .map-control-button-wrapper {
+    /* needed if :not(.empty) */
+    border-radius: 50%;
   }
 }
 
