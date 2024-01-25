@@ -23,6 +23,7 @@ ng_module(
         ":components/geolocate-button/geolocate-button.css",
         ":components/home-button/home-button.css",
         ":components/leit-poi/leit-poi.css",
+        ":components/level-switch/level-switch-horizontal.css",
         ":components/level-switch/level-switch.css",
         ":components/overlay-paginator/overlay-paginator.css",
         ":components/popup/popup.css",
@@ -91,6 +92,15 @@ sass_binary(
 sass_binary(
     name = "components_leit_poi_leit_poi_scss",
     src = "components/leit-poi/leit-poi.scss",
+    deps = [
+        ":angular_scss_lib",
+        "//src/angular:scss_lib",
+    ],
+)
+
+sass_binary(
+    name = "components_level_switch_level_switch_horizontal_scss",
+    src = "components/level-switch/level-switch-horizontal.scss",
     deps = [
         ":angular_scss_lib",
         "//src/angular:scss_lib",

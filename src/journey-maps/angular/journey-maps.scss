@@ -92,6 +92,10 @@ div.mod_map_container_mobile_overlay_icon {
   z-index: 2;
 }
 
+.map-widgets-expanding-container {
+  position: relative; /* Establish a positioning context for the absolute element */
+}
+
 .map-attribution {
   position: absolute;
   right: 0;

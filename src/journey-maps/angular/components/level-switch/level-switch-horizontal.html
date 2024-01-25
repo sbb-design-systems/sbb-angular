@@ -1,0 +1,43 @@
+<div
+  class="map-control-container"
+  [class.small-buttons]="showSmallButtons"
+  *ngIf="map && visibleLevels.length"
+  @fade
+>
+  <div class="button-container">
+    <div class="side-buttons-container" [class.expanded]="showSideButtons">
+      <ng-container *ngFor="let level of visibleLevels">
+        <div class="map-control-button-wrapper">
+          <button
+            #sideButton
+            class="side-button"
+            (focus)="startCountdown()"
+            (click)="onSideButtonClick(level)"
+            (keydown.enter)="onSideButtonEnter(level, $event)"
+            [ngClass]="{
+              'map-control-button-selected': level === selectedLevel,
+              'map-control-button': level !== selectedLevel
+            }"
+            [attr.aria-label]="getLevelLabel(level, selectedLevel)"
+          >
+            {{ level }}
+          </button>
+        </div>
+      </ng-container>
+      <div class="map-control-button-wrapper half-width">
+        <!-- placeholder for styling, can't be tabbed -->
+        <button class="side-button map-control-button" tabindex="-1"></button>
+      </div>
+    </div>
+    <div class="map-control-button-wrapper main-button-wrapper" [class.expanded]="showSideButtons">
+      <button
+        #mainButton
+        class="map-control-button main-button"
+        (click)="toggleSideButtons()"
+        (keydown.enter)="onMainButtonEnter($event)"
+      >
+        {{ selectedLevel ?? '-' }}
+      </button>
+    </div>
+  </div>
+</div>
