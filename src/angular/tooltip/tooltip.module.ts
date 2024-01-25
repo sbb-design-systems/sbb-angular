@@ -15,9 +15,18 @@ import {
 import { SbbTooltipWrapper } from './tooltip-wrapper';
 
 @NgModule({
-  imports: [A11yModule, CommonModule, OverlayModule, PortalModule, SbbCommonModule, SbbIconModule],
+  imports: [
+    A11yModule,
+    CommonModule,
+    OverlayModule,
+    PortalModule,
+    SbbCommonModule,
+    SbbIconModule,
+    SbbTooltip,
+    TooltipComponent,
+    SbbTooltipWrapper,
+  ],
   exports: [SbbTooltip, TooltipComponent, SbbTooltipWrapper, CdkScrollableModule],
-  declarations: [SbbTooltip, TooltipComponent, SbbTooltipWrapper],
   providers: [SBB_TOOLTIP_SCROLL_STRATEGY_FACTORY_PROVIDER],
 })
 export class SbbTooltipModule {}

@@ -54,8 +54,10 @@ describe('SbbTooltip', () => {
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-      imports: [SbbTooltipModule, OverlayModule, SbbIconTestingModule],
-      declarations: [
+      imports: [
+        SbbTooltipModule,
+        OverlayModule,
+        SbbIconTestingModule,
         BasicTooltipDemo,
         ScrollableTooltipDemo,
         OnPushTooltipDemo,
@@ -183,8 +185,7 @@ describe('SbbTooltip', () => {
     it('should be able to override the default show and hide delays', fakeAsync(() => {
       TestBed.resetTestingModule()
         .configureTestingModule({
-          imports: [SbbTooltipModule, OverlayModule],
-          declarations: [BasicTooltipDemo],
+          imports: [SbbTooltipModule, OverlayModule, BasicTooltipDemo],
           providers: [
             {
               provide: SBB_TOOLTIP_DEFAULT_OPTIONS,
@@ -1304,6 +1305,8 @@ describe('SbbTooltip', () => {
       Button
     </button>
   }`,
+  standalone: true,
+  imports: [SbbTooltipModule, OverlayModule, SbbIconTestingModule],
 })
 class BasicTooltipDemo {
   message: any = initialTooltipMessage;
@@ -1325,6 +1328,8 @@ class BasicTooltipDemo {
       <button style="margin-bottom: 600px" [sbbTooltip]="message">Button</button>
     }
   </div>`,
+  standalone: true,
+  imports: [SbbTooltipModule, OverlayModule, SbbIconTestingModule],
 })
 class ScrollableTooltipDemo {
   message: string = initialTooltipMessage;
@@ -1347,6 +1352,8 @@ class ScrollableTooltipDemo {
   selector: 'app',
   template: ` <button [sbbTooltip]="message">Button</button>`,
   changeDetection: ChangeDetectionStrategy.OnPush,
+  standalone: true,
+  imports: [SbbTooltipModule, OverlayModule, SbbIconTestingModule],
 })
 class OnPushTooltipDemo {
   position: string = 'below';
@@ -1358,6 +1365,8 @@ class OnPushTooltipDemo {
   template: ` @for (tooltip of tooltips; track tooltip) {
     <button [sbbTooltip]="tooltip">Button {{ tooltip }}</button>
   }`,
+  standalone: true,
+  imports: [SbbTooltipModule, OverlayModule, SbbIconTestingModule],
 })
 class DynamicTooltipsDemo {
   tooltips: string[] = [];
@@ -1365,6 +1374,8 @@ class DynamicTooltipsDemo {
 
 @Component({
   template: `<button [sbbTooltip]="message" [attr.aria-label]="message">Click me</button>`,
+  standalone: true,
+  imports: [SbbTooltipModule, OverlayModule, SbbIconTestingModule],
 })
 class DataBoundAriaLabelTooltip {
   message = 'Hello there';
@@ -1380,6 +1391,8 @@ class DataBoundAriaLabelTooltip {
       [sbbTooltipTouchGestures]="touchGestures"
     ></textarea>
   `,
+  standalone: true,
+  imports: [SbbTooltipModule, OverlayModule, SbbIconTestingModule],
 })
 class TooltipOnTextFields {
   @ViewChild('input') input: ElementRef<HTMLInputElement>;
@@ -1396,6 +1409,8 @@ class TooltipOnTextFields {
       [sbbTooltipTouchGestures]="touchGestures"
     ></button>
   `,
+  standalone: true,
+  imports: [SbbTooltipModule, OverlayModule, SbbIconTestingModule],
 })
 class TooltipOnDraggableElement {
   @ViewChild('button') button: ElementRef;
@@ -1406,6 +1421,8 @@ class TooltipOnDraggableElement {
   template: `
     <button [sbbTooltip]="'content'" [sbbTooltipTrigger]="trigger">Show tooltip</button>
   `,
+  standalone: true,
+  imports: [SbbTooltipModule, OverlayModule, SbbIconTestingModule],
 })
 class TriggerConfigurableTooltip {
   @ViewChild(SbbTooltip) tooltip: SbbTooltip;
@@ -1434,6 +1451,8 @@ class TooltipDemoWithoutPositionBinding {
       </button>
     </div>
   `,
+  standalone: true,
+  imports: [SbbTooltipModule, OverlayModule, SbbIconTestingModule],
 })
 class TooltipTriggerBubble {
   disabled = false;

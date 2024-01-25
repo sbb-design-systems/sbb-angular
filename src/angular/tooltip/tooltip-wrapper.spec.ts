@@ -32,8 +32,13 @@ describe('SbbTooltipWrapper', () => {
 
     beforeEach(waitForAsync(() => {
       TestBed.configureTestingModule({
-        imports: [SbbTooltipModule, SbbButtonModule, SbbIconTestingModule, NoopAnimationsModule],
-        declarations: [TooltipTestComponent],
+        imports: [
+          SbbTooltipModule,
+          SbbButtonModule,
+          SbbIconTestingModule,
+          NoopAnimationsModule,
+          TooltipTestComponent,
+        ],
       }).compileComponents();
 
       inject([OverlayContainer], (oc: OverlayContainer) => {
@@ -233,8 +238,12 @@ describe('SbbTooltipWrapper', () => {
 
     beforeEach(waitForAsync(() => {
       TestBed.configureTestingModule({
-        imports: [SbbTooltipModule, SbbIconTestingModule, NoopAnimationsModule],
-        declarations: [DoubleTooltipTestComponent],
+        imports: [
+          SbbTooltipModule,
+          SbbIconTestingModule,
+          NoopAnimationsModule,
+          DoubleTooltipTestComponent,
+        ],
       }).compileComponents();
     }));
 
@@ -277,6 +286,8 @@ describe('SbbTooltipWrapper', () => {
       <button sbb-secondary-button (click)="t1.hide()">Close tooltip</button>
     </sbb-tooltip>
   `,
+  standalone: true,
+  imports: [SbbTooltipModule, SbbButtonModule, SbbIconTestingModule],
 })
 class TooltipTestComponent {
   @ViewChild('t1', { static: true }) tooltip: SbbTooltipWrapper;
@@ -294,6 +305,8 @@ class TooltipTestComponent {
       <a href="#" sbb-link>I am a link</a>
     </sbb-tooltip>
   `,
+  standalone: true,
+  imports: [SbbTooltipModule, SbbIconTestingModule],
 })
 class DoubleTooltipTestComponent {
   @ViewChild('t1', { static: true }) t1: SbbTooltipWrapper;

@@ -16,11 +16,10 @@ import {
   ViewEncapsulation,
 } from '@angular/core';
 import { NG_VALUE_ACCESSOR } from '@angular/forms';
+import { SbbBadge } from '@sbb-esta/angular/badge';
 import { _SbbCheckboxBase } from '@sbb-esta/angular/checkbox';
 import { Subject } from 'rxjs';
 import { take } from 'rxjs/operators';
-
-import { SbbBadge } from '../badge/badge';
 
 @Component({
   selector: 'sbb-tag',
