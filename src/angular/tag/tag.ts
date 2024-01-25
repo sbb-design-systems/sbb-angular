@@ -20,6 +20,8 @@ import { _SbbCheckboxBase } from '@sbb-esta/angular/checkbox';
 import { Subject } from 'rxjs';
 import { take } from 'rxjs/operators';
 
+import { SbbBadge } from '../badge/badge';
+
 @Component({
   selector: 'sbb-tag',
   exportAs: 'sbbTag',
@@ -40,6 +42,8 @@ import { take } from 'rxjs/operators';
     '[class.sbb-tag-disabled]': 'disabled',
     '[class.sbb-tag-active]': 'active',
   },
+  standalone: true,
+  imports: [SbbBadge],
 })
 export class SbbTag extends _SbbCheckboxBase implements OnDestroy {
   /** Amount displayed in badge */

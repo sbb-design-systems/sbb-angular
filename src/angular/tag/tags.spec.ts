@@ -35,6 +35,8 @@ interface Tag {
       }
     </sbb-tags>
   `,
+  standalone: true,
+  imports: [FormsModule, SbbBadgeModule, SbbTagModule],
 })
 class TagsTestFixtureComponent {
   tagItems: Tag[] = [
@@ -71,6 +73,8 @@ class TagsTestFixtureComponent {
       </sbb-tags>
     </ng-container>
   `,
+  standalone: true,
+  imports: [ReactiveFormsModule, SbbBadgeModule, SbbTagModule],
 })
 class TagsTestFixtureReactiveComponent {
   formGroup = new FormGroup({
@@ -97,6 +101,8 @@ class TagsTestFixtureReactiveComponent {
 
 @Component({
   template: ` <a sbb-tag-link href="#" amount="5" [sbbBadgeDescription]="description">Trains</a> `,
+  standalone: true,
+  imports: [SbbBadgeModule, SbbTagModule],
 })
 class TagLinkTestFixtureComponent {
   description?: string;
@@ -133,8 +139,7 @@ describe('SbbTags', () => {
 
     beforeEach(waitForAsync(() => {
       TestBed.configureTestingModule({
-        imports: [FormsModule, SbbBadgeModule, SbbTagModule],
-        declarations: [TagsTestFixtureComponent],
+        imports: [FormsModule, SbbBadgeModule, SbbTagModule, TagsTestFixtureComponent],
       }).compileComponents();
     }));
 
@@ -417,8 +422,12 @@ describe('SbbTags', () => {
 
     beforeEach(waitForAsync(() => {
       TestBed.configureTestingModule({
-        imports: [ReactiveFormsModule, SbbBadgeModule, SbbTagModule],
-        declarations: [TagsTestFixtureReactiveComponent],
+        imports: [
+          ReactiveFormsModule,
+          SbbBadgeModule,
+          SbbTagModule,
+          TagsTestFixtureReactiveComponent,
+        ],
       }).compileComponents();
     }));
 
@@ -552,8 +561,7 @@ describe('SBB Tag Link', () => {
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-      imports: [SbbBadgeModule, SbbTagModule],
-      declarations: [TagLinkTestFixtureComponent],
+      imports: [SbbBadgeModule, SbbTagModule, TagLinkTestFixtureComponent],
     }).compileComponents();
   }));
 
