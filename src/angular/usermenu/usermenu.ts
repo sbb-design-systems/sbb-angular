@@ -23,8 +23,6 @@ import {
 } from '@sbb-esta/angular/menu';
 import { SbbMenuDynamicTrigger } from '@sbb-esta/angular/menu';
 
-import { SbbMenuTrigger as SbbMenuTrigger_1 } from '../menu/menu-trigger';
-
 import { SbbUsermenuIcon } from './usermenu-icon';
 
 let counter = 0;
@@ -64,7 +62,7 @@ export const _sbbUsermenuMenuInheritedTriggerContext: SbbMenuInheritedTriggerCon
     },
   ],
   standalone: true,
-  imports: [SbbIcon, SbbMenuTrigger_1, SbbMenuDynamicTrigger, NgTemplateOutlet, AsyncPipe],
+  imports: [SbbIcon, SbbMenuTrigger, SbbMenuDynamicTrigger, NgTemplateOutlet, AsyncPipe],
 })
 export class SbbUsermenu extends _SbbUsermenuMixinBase {
   _labelLogin: string = $localize`:Button label for login@@sbbUsermenuLogin:Login`;
