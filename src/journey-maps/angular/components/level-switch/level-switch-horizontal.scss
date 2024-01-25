@@ -42,9 +42,9 @@
     max-width 0.5s ease,
     visibility 0s linear 0.5s;
   visibility: hidden; /* Initially not visible */
-  right: v.$controlsMargin + (v.$controlsWidth / 2);
-  border-top-left-radius: (v.$controlsWidth / 2);
-  border-bottom-left-radius: (v.$controlsWidth / 2);
+  right: v.$controlsMargin + calc(v.$controlsWidth / 2);
+  border-top-left-radius: calc(v.$controlsWidth / 2);
+  border-bottom-left-radius: calc(v.$controlsWidth / 2);
   background-color: esta.$sbbColorWhite;
 
   @include esta.mq($from: tabletPortrait) {
@@ -94,7 +94,7 @@
 }
 
 .map-control-button-wrapper.half-width {
-  width: v.$controlsWidth / 2;
+  width: calc(v.$controlsWidth / 2);
 
   @include esta.mq($from: tabletPortrait) {
     @at-root .map-control-container.small-buttons #{&} {
