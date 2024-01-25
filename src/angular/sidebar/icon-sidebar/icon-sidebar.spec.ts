@@ -475,22 +475,6 @@ class TwoSidebarsTestComponent {}
 @Component({
   template: `
     <sbb-icon-sidebar-container>
-      @if (showSidebar) {
-        <sbb-icon-sidebar #sidebar expanded>Sidebar</sbb-icon-sidebar>
-      }
-    </sbb-icon-sidebar-container>
-  `,
-  standalone: true,
-  imports: [SbbSidebarModule],
-})
-class SidebarDelayedTestComponent {
-  @ViewChild(SbbIconSidebar) sidebar: SbbIconSidebar;
-  showSidebar = false;
-}
-
-@Component({
-  template: `
-    <sbb-icon-sidebar-container>
       <sbb-icon-sidebar>Sidebar</sbb-icon-sidebar>
       <sbb-icon-sidebar-content>Content</sbb-icon-sidebar-content>
     </sbb-icon-sidebar-container>

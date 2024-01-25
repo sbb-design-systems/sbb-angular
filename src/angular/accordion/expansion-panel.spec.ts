@@ -544,27 +544,6 @@ class PanelWithContentInNgIf {
 }
 
 @Component({
-  styles: [
-    `
-      sbb-expansion-panel {
-        margin: 13px 37px;
-      }
-    `,
-  ],
-  template: `
-    <sbb-expansion-panel [expanded]="expanded">
-      Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolores officia, aliquam dicta
-      corrupti maxime voluptate accusamus impedit atque incidunt pariatur.
-    </sbb-expansion-panel>
-  `,
-  standalone: true,
-  imports: [SbbAccordionModule, SbbIconTestingModule],
-})
-class PanelWithCustomMargin {
-  expanded = false;
-}
-
-@Component({
   template: `
     <sbb-expansion-panel [expanded]="expanded">
       <sbb-expansion-panel-header>Panel Title</sbb-expansion-panel-header>

@@ -363,21 +363,6 @@ class SimpleTabNavBarTestApp {
 @Component({
   template: `
     <nav sbb-tab-nav-bar>
-      @if (!isDestroyed) {
-        <a sbb-tab-link>Link</a>
-      }
-    </nav>
-  `,
-  standalone: true,
-  imports: [SbbTabsModule],
-})
-class TabLinkWithNgIf {
-  isDestroyed = false;
-}
-
-@Component({
-  template: `
-    <nav sbb-tab-nav-bar>
       <a sbb-tab-link [tabIndex]="tabIndex">TabIndex Link</a>
     </nav>
   `,
@@ -398,21 +383,6 @@ class TabLinkWithTabIndexBinding {
   imports: [SbbTabsModule],
 })
 class TabLinkWithNativeTabindexAttr {}
-
-@Component({
-  template: `
-    <nav sbb-tab-nav-bar>
-      @for (tab of tabs; track tab) {
-        <a sbb-tab-link [active]="false">Tab link {{ label }}</a>
-      }
-    </nav>
-  `,
-  standalone: true,
-  imports: [SbbTabsModule],
-})
-class TabBarWithInactiveTabsOnInit {
-  tabs = [0, 1, 2];
-}
 
 @Component({
   template: `

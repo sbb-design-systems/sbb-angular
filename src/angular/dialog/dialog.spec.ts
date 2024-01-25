@@ -48,11 +48,7 @@ import {
 import { SbbIconTestingModule } from '@sbb-esta/angular/icon/testing';
 import { Subject } from 'rxjs';
 
-import {
-  SbbDialogActions,
-  SbbDialogContent,
-  SbbDialogTitle,
-} from './dialog-content-directives';
+import { SbbDialogActions, SbbDialogContent, SbbDialogTitle } from './dialog-content-directives';
 import {
   SbbDialog,
   SbbDialogContainer,
