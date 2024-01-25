@@ -32,13 +32,13 @@ describe('SbbUsermenu', () => {
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-      declarations: [SbbUsermenu],
       imports: [
         SbbIconModule,
         SbbIconTestingModule,
         OverlayModule,
         NoopAnimationsModule,
         SbbMenuModule,
+        SbbUsermenu,
       ],
     }).compileComponents();
   }));
@@ -67,8 +67,8 @@ describe('SbbUsermenu with userName and displayName without image', () => {
         RouterTestingModule,
         NoopAnimationsModule,
         SbbMenuModule,
+        UsermenuWithDisplayNameAndUserNameTestComponent,
       ],
-      declarations: [UsermenuWithDisplayNameAndUserNameTestComponent],
     }).compileComponents();
   }));
 
@@ -300,8 +300,8 @@ describe('SbbUsermenu with only displayName', () => {
         SbbIconTestingModule,
         NoopAnimationsModule,
         SbbMenuModule,
+        UsermenuWithOnlyDisplayNameTestComponent,
       ],
-      declarations: [UsermenuWithOnlyDisplayNameTestComponent],
     }).compileComponents();
   }));
 
@@ -338,8 +338,8 @@ describe('SbbUsermenu with only userName', () => {
         SbbIconTestingModule,
         NoopAnimationsModule,
         SbbMenuModule,
+        UsermenuWithOnlyUsernameTestComponent,
       ],
-      declarations: [UsermenuWithOnlyUsernameTestComponent],
     }).compileComponents();
   }));
 
@@ -376,8 +376,8 @@ describe('SbbUsermenu with custom image', () => {
         SbbIconTestingModule,
         NoopAnimationsModule,
         SbbMenuModule,
+        UsermenuWithCustomImageTestComponent,
       ],
-      declarations: [UsermenuWithCustomImageTestComponent],
     }).compileComponents();
   }));
 
@@ -403,8 +403,12 @@ describe('SbbUsermenu with no connected menu', () => {
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-      imports: [SbbUsermenuModule, SbbIconTestingModule, NoopAnimationsModule],
-      declarations: [UsermenuNoMenuTestComponent],
+      imports: [
+        SbbUsermenuModule,
+        SbbIconTestingModule,
+        NoopAnimationsModule,
+        UsermenuNoMenuTestComponent,
+      ],
     }).compileComponents();
   }));
 
@@ -444,6 +448,14 @@ describe('SbbUsermenu with no connected menu', () => {
       <button sbb-menu-item type="button" (click)="logout()">Logout</button>
     </sbb-menu>
   `,
+  standalone: true,
+  imports: [
+    SbbUsermenuModule,
+    SbbIconModule,
+    SbbIconTestingModule,
+    RouterTestingModule,
+    SbbMenuModule,
+  ],
 })
 class UsermenuWithDisplayNameAndUserNameTestComponent {
   userName: string;
@@ -474,6 +486,8 @@ class UsermenuWithDisplayNameAndUserNameTestComponent {
       <button sbb-menu-item type="button">Logout</button>
     </sbb-menu>
   `,
+  standalone: true,
+  imports: [SbbUsermenuModule, SbbIconModule, SbbIconTestingModule, SbbMenuModule],
 })
 class UsermenuWithOnlyDisplayNameTestComponent {
   displayName: string;
@@ -493,6 +507,8 @@ class UsermenuWithOnlyDisplayNameTestComponent {
       <button sbb-menu-item type="button">Logout</button>
     </sbb-menu>
   `,
+  standalone: true,
+  imports: [SbbUsermenuModule, SbbIconModule, SbbIconTestingModule, SbbMenuModule],
 })
 class UsermenuWithOnlyUsernameTestComponent {
   userName: string;
@@ -524,6 +540,8 @@ class UsermenuWithOnlyUsernameTestComponent {
       <button sbb-menu-item type="button">Logout</button>
     </sbb-menu>
   `,
+  standalone: true,
+  imports: [SbbUsermenuModule, SbbIconModule, SbbIconTestingModule, SbbMenuModule],
 })
 class UsermenuWithCustomImageTestComponent {
   userName: string;
@@ -537,6 +555,8 @@ class UsermenuWithCustomImageTestComponent {
 
 @Component({
   template: ` <sbb-usermenu [displayName]="displayName" (loginRequest)="login()"></sbb-usermenu> `,
+  standalone: true,
+  imports: [SbbUsermenuModule, SbbIconTestingModule],
 })
 class UsermenuNoMenuTestComponent {
   displayName: string;
