@@ -21,6 +21,14 @@ import {
       <sbb-radio-button-panel value="2"> Test option selection 2 </sbb-radio-button-panel>
     </sbb-radio-group>
   `,
+  standalone: true,
+  imports: [
+    FormsModule,
+    ReactiveFormsModule,
+    SbbRadioButtonPanelModule,
+    SbbIconModule,
+    SbbIconTestingModule,
+  ],
 })
 class ModelOptionSelectionTest {
   testValue = '2';
@@ -39,6 +47,14 @@ class ModelOptionSelectionTest {
       </sbb-radio-button-panel>
     </sbb-radio-group>
   `,
+  standalone: true,
+  imports: [
+    FormsModule,
+    ReactiveFormsModule,
+    SbbRadioButtonPanelModule,
+    SbbIconModule,
+    SbbIconTestingModule,
+  ],
 })
 class RadioButtonPanelDirectiveTest {
   control = new FormControl(false);
@@ -59,6 +75,14 @@ class RadioButtonPanelDirectiveTest {
       </sbb-radio-button-panel>
     </sbb-radio-group>
   `,
+  standalone: true,
+  imports: [
+    FormsModule,
+    ReactiveFormsModule,
+    SbbRadioButtonPanelModule,
+    SbbIconModule,
+    SbbIconTestingModule,
+  ],
 })
 class RadioButtonPanelIconTest {
   control = new FormControl(false);
@@ -73,8 +97,6 @@ describe('SbbRadioButtonPanel', () => {
         SbbRadioButtonPanelModule,
         SbbIconModule,
         SbbIconTestingModule,
-      ],
-      declarations: [
         ModelOptionSelectionTest,
         RadioButtonPanelDirectiveTest,
         RadioButtonPanelIconTest,

@@ -22,6 +22,8 @@ import { SbbRadioButtonModule } from './radio-button.module';
       <sbb-radio-button value="leaf"> Bulbasaur </sbb-radio-button>
     </sbb-radio-group>
   `,
+  standalone: true,
+  imports: [FormsModule, ReactiveFormsModule, SbbRadioButtonModule],
 })
 class RadiosInsideRadioGroup {
   isFirstDisabled = false;
@@ -54,6 +56,8 @@ class RadiosInsideRadioGroup {
     <sbb-radio-button name="fruit" value="raspberry">Raspberry</sbb-radio-button>
     <sbb-radio-button id="nameless" value="no-name">No name</sbb-radio-button>
   `,
+  standalone: true,
+  imports: [FormsModule, ReactiveFormsModule, SbbRadioButtonModule],
 })
 class StandaloneRadioButtons {
   ariaLabel = 'Banana';
@@ -69,6 +73,8 @@ class StandaloneRadioButtons {
       <sbb-radio-button value="leaf" checked>Bulbasaur</sbb-radio-button>
     </sbb-radio-group>
   `,
+  standalone: true,
+  imports: [FormsModule, ReactiveFormsModule, SbbRadioButtonModule],
 })
 class RadiosInsidePreCheckedRadioGroup {}
 
@@ -82,6 +88,8 @@ class RadiosInsidePreCheckedRadioGroup {}
       }
     </sbb-radio-group>
   `,
+  standalone: true,
+  imports: [FormsModule, ReactiveFormsModule, SbbRadioButtonModule],
 })
 class RadioGroupWithNgModel {
   modelValue: string;
@@ -96,6 +104,8 @@ class RadioGroupWithNgModel {
 
 @Component({
   template: ` <sbb-radio-button>One</sbb-radio-button> `,
+  standalone: true,
+  imports: [FormsModule, ReactiveFormsModule, SbbRadioButtonModule],
 })
 class DisableableSbbRadioButton {
   @ViewChild(SbbRadioButton) radioButton: SbbRadioButton;
@@ -112,6 +122,8 @@ class DisableableSbbRadioButton {
       <sbb-radio-button value="2">Two</sbb-radio-button>
     </sbb-radio-group>
   `,
+  standalone: true,
+  imports: [FormsModule, ReactiveFormsModule, SbbRadioButtonModule],
 })
 class RadioGroupWithFormControl {
   @ViewChild(SbbRadioGroup) group: SbbRadioGroup;
@@ -120,10 +132,20 @@ class RadioGroupWithFormControl {
 
 @Component({
   template: ` <sbb-radio-button [tabIndex]="tabIndex"></sbb-radio-button> `,
+  standalone: true,
+  imports: [FormsModule, ReactiveFormsModule, SbbRadioButtonModule],
 })
 class FocusableSbbRadioButton {
   tabIndex: number;
 }
+
+@Component({
+  selector: 'transcluding-wrapper',
+  template: ` <div><ng-content></ng-content></div> `,
+  standalone: true,
+  imports: [FormsModule, ReactiveFormsModule, SbbRadioButtonModule],
+})
+class TranscludingWrapper {}
 
 @Component({
   template: `
@@ -135,6 +157,8 @@ class FocusableSbbRadioButton {
       }
     </sbb-radio-group>
   `,
+  standalone: true,
+  imports: [FormsModule, ReactiveFormsModule, SbbRadioButtonModule, TranscludingWrapper],
 })
 class InterleavedRadioGroup {
   modelValue = 'strawberry';
@@ -146,13 +170,9 @@ class InterleavedRadioGroup {
 }
 
 @Component({
-  selector: 'transcluding-wrapper',
-  template: ` <div><ng-content></ng-content></div> `,
-})
-class TranscludingWrapper {}
-
-@Component({
   template: ` <sbb-radio-button tabindex="5"></sbb-radio-button> `,
+  standalone: true,
+  imports: [FormsModule, ReactiveFormsModule, SbbRadioButtonModule],
 })
 class RadioButtonWithPredefinedTabindex {}
 
@@ -164,6 +184,8 @@ class RadioButtonWithPredefinedTabindex {}
       aria-labelledby="something-else"
     ></sbb-radio-button>
   `,
+  standalone: true,
+  imports: [FormsModule, ReactiveFormsModule, SbbRadioButtonModule],
 })
 class RadioButtonWithPredefinedAriaAttributes {}
 
@@ -183,6 +205,8 @@ class RadioButtonWithPredefinedAriaAttributes {}
       }
     </sbb-radio-group>
   `,
+  standalone: true,
+  imports: [FormsModule, ReactiveFormsModule, SbbRadioButtonModule],
 })
 class PreselectedRadioWithStaticValueAndNgIf {
   @ViewChild('preselectedGroup', { read: SbbRadioGroup }) preselectedGroup: SbbRadioGroup;
@@ -198,8 +222,10 @@ class PreselectedRadioWithStaticValueAndNgIf {
 describe('RadioButton', () => {
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-      imports: [FormsModule, ReactiveFormsModule, SbbRadioButtonModule],
-      declarations: [
+      imports: [
+        FormsModule,
+        ReactiveFormsModule,
+        SbbRadioButtonModule,
         DisableableSbbRadioButton,
         FocusableSbbRadioButton,
         RadiosInsideRadioGroup,
