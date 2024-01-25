@@ -32,13 +32,7 @@ describe('SbbTooltipWrapper', () => {
 
     beforeEach(waitForAsync(() => {
       TestBed.configureTestingModule({
-        imports: [
-          SbbTooltipModule,
-          SbbButtonModule,
-          SbbIconTestingModule,
-          NoopAnimationsModule,
-          TooltipTestComponent,
-        ],
+        imports: [SbbIconTestingModule, NoopAnimationsModule],
       }).compileComponents();
 
       inject([OverlayContainer], (oc: OverlayContainer) => {
@@ -238,12 +232,7 @@ describe('SbbTooltipWrapper', () => {
 
     beforeEach(waitForAsync(() => {
       TestBed.configureTestingModule({
-        imports: [
-          SbbTooltipModule,
-          SbbIconTestingModule,
-          NoopAnimationsModule,
-          DoubleTooltipTestComponent,
-        ],
+        imports: [SbbIconTestingModule, NoopAnimationsModule],
       }).compileComponents();
     }));
 
@@ -287,7 +276,7 @@ describe('SbbTooltipWrapper', () => {
     </sbb-tooltip>
   `,
   standalone: true,
-  imports: [SbbTooltipModule, SbbButtonModule, SbbIconTestingModule],
+  imports: [SbbTooltipModule, SbbButtonModule],
 })
 class TooltipTestComponent {
   @ViewChild('t1', { static: true }) tooltip: SbbTooltipWrapper;
@@ -306,7 +295,7 @@ class TooltipTestComponent {
     </sbb-tooltip>
   `,
   standalone: true,
-  imports: [SbbTooltipModule, SbbIconTestingModule],
+  imports: [SbbTooltipModule],
 })
 class DoubleTooltipTestComponent {
   @ViewChild('t1', { static: true }) t1: SbbTooltipWrapper;

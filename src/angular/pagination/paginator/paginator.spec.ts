@@ -3,7 +3,6 @@ import { ComponentFixture, fakeAsync, TestBed, tick } from '@angular/core/testin
 import { By } from '@angular/platform-browser';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { dispatchMouseEvent } from '@sbb-esta/angular/core/testing';
-import { SbbIconModule } from '@sbb-esta/angular/icon';
 import { SbbIconTestingModule } from '@sbb-esta/angular/icon/testing';
 
 import { SbbPaginationModule } from '../pagination.module';
@@ -74,13 +73,7 @@ class SbbPaginatorWithStringValuesTestComponent {
 describe('SbbPaginator', () => {
   function createComponent<T>(type: Type<T>, providers: Provider[] = []): ComponentFixture<T> {
     TestBed.configureTestingModule({
-      imports: [
-        SbbPaginationModule,
-        NoopAnimationsModule,
-        SbbIconModule,
-        SbbIconTestingModule,
-        type,
-      ],
+      imports: [NoopAnimationsModule, SbbIconTestingModule, type],
       providers: [...providers],
     }).compileComponents();
 

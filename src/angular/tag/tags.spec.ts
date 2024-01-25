@@ -112,12 +112,6 @@ describe('SbbTags', () => {
     let component: SbbTags;
     let fixture: ComponentFixture<SbbTags>;
 
-    beforeEach(waitForAsync(() => {
-      TestBed.configureTestingModule({
-        imports: [SbbBadgeModule, SbbTagModule],
-      }).compileComponents();
-    }));
-
     beforeEach(() => {
       fixture = TestBed.createComponent(SbbTags);
       component = fixture.componentInstance;
@@ -139,7 +133,7 @@ describe('SbbTags', () => {
 
     beforeEach(waitForAsync(() => {
       TestBed.configureTestingModule({
-        imports: [FormsModule, SbbBadgeModule, SbbTagModule, TagsTestFixtureComponent],
+        imports: [TagsTestFixtureComponent],
       }).compileComponents();
     }));
 
@@ -422,12 +416,7 @@ describe('SbbTags', () => {
 
     beforeEach(waitForAsync(() => {
       TestBed.configureTestingModule({
-        imports: [
-          ReactiveFormsModule,
-          SbbBadgeModule,
-          SbbTagModule,
-          TagsTestFixtureReactiveComponent,
-        ],
+        imports: [TagsTestFixtureReactiveComponent],
       }).compileComponents();
     }));
 
@@ -561,7 +550,7 @@ describe('SBB Tag Link', () => {
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-      imports: [SbbBadgeModule, SbbTagModule, TagLinkTestFixtureComponent],
+      imports: [TagLinkTestFixtureComponent],
     }).compileComponents();
   }));
 

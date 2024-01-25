@@ -51,7 +51,6 @@ describe('SbbIcon', () => {
     TestBed.configureTestingModule({
       imports: [
         HttpClientTestingModule,
-        SbbIconModule,
         IconWithLigature,
         IconWithCustomFontCss,
         IconFromSvgName,
@@ -1210,7 +1209,7 @@ describe('SbbIcon without HttpClientModule', () => {
 @Component({
   template: ` <sbb-icon>{{ iconName }}</sbb-icon>`,
   standalone: true,
-  imports: [HttpClientTestingModule, SbbIconModule],
+  imports: [SbbIconModule],
 })
 class IconWithLigature {
   iconName = '';
@@ -1219,7 +1218,7 @@ class IconWithLigature {
 @Component({
   template: ` <sbb-icon [fontSet]="fontSet" [fontIcon]="fontIcon"></sbb-icon>`,
   standalone: true,
-  imports: [HttpClientTestingModule, SbbIconModule],
+  imports: [SbbIconModule],
 })
 class IconWithCustomFontCss {
   fontSet = '';
@@ -1229,7 +1228,7 @@ class IconWithCustomFontCss {
 @Component({
   template: ` <sbb-icon [svgIcon]="iconName"></sbb-icon>`,
   standalone: true,
-  imports: [HttpClientTestingModule, SbbIconModule],
+  imports: [SbbIconModule],
 })
 class IconFromSvgName {
   iconName: string | undefined = '';
@@ -1238,7 +1237,7 @@ class IconFromSvgName {
 @Component({
   template: '<sbb-icon aria-hidden="false">face</sbb-icon>',
   standalone: true,
-  imports: [HttpClientTestingModule, SbbIconModule],
+  imports: [SbbIconModule],
 })
 class IconWithAriaHiddenFalse {}
 
@@ -1247,7 +1246,7 @@ class IconWithAriaHiddenFalse {}
     <sbb-icon [svgIcon]="iconName">{{ iconName }}</sbb-icon>
   }`,
   standalone: true,
-  imports: [HttpClientTestingModule, SbbIconModule],
+  imports: [SbbIconModule],
 })
 class IconWithBindingAndNgIf {
   iconName = 'fluffy';
@@ -1257,7 +1256,7 @@ class IconWithBindingAndNgIf {
 @Component({
   template: `<sbb-icon [inline]="inline">{{ iconName }}</sbb-icon>`,
   standalone: true,
-  imports: [HttpClientTestingModule, SbbIconModule],
+  imports: [SbbIconModule],
 })
 class InlineIcon {
   inline = false;
@@ -1269,7 +1268,7 @@ class InlineIcon {
     <div>Hello</div>
   </sbb-icon>`,
   standalone: true,
-  imports: [HttpClientTestingModule, SbbIconModule],
+  imports: [SbbIconModule],
 })
 class SvgIconWithUserContent {
   iconName: string | undefined = '';
@@ -1278,7 +1277,7 @@ class SvgIconWithUserContent {
 @Component({
   template: '<sbb-icon [svgIcon]="iconName">house</sbb-icon>',
   standalone: true,
-  imports: [HttpClientTestingModule, SbbIconModule],
+  imports: [SbbIconModule],
 })
 class IconWithLigatureAndSvgBinding {
   iconName: string | undefined;
@@ -1287,7 +1286,7 @@ class IconWithLigatureAndSvgBinding {
 @Component({
   template: `<sbb-icon></sbb-icon>`,
   standalone: true,
-  imports: [HttpClientTestingModule, SbbIconModule],
+  imports: [SbbIconModule],
 })
 class BlankIcon {
   @ViewChild(SbbIcon) icon: SbbIcon;

@@ -1,5 +1,5 @@
 import { Direction, Directionality } from '@angular/cdk/bidi';
-import { PortalModule, TemplatePortal } from '@angular/cdk/portal';
+import { TemplatePortal } from '@angular/cdk/portal';
 import { CdkScrollable, ScrollingModule } from '@angular/cdk/scrolling';
 import {
   AfterContentInit,
@@ -11,11 +11,10 @@ import {
 import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
-import { SbbIconModule } from '@sbb-esta/angular/icon';
 import { SbbIconTestingModule } from '@sbb-esta/angular/icon/testing';
 import { Subject } from 'rxjs';
 
-import { SbbTabBody, SbbTabBodyPortal } from './tab-body';
+import { SbbTabBody } from './tab-body';
 
 describe('SbbTabBody', () => {
   let dir: Direction = 'ltr';
@@ -24,15 +23,7 @@ describe('SbbTabBody', () => {
   beforeEach(waitForAsync(() => {
     dir = 'ltr';
     TestBed.configureTestingModule({
-      imports: [
-        PortalModule,
-        NoopAnimationsModule,
-        SbbIconTestingModule,
-        SbbIconModule,
-        SbbTabBody,
-        SbbTabBodyPortal,
-        SimpleTabBodyApp,
-      ],
+      imports: [NoopAnimationsModule, SbbIconTestingModule, SimpleTabBodyApp],
       providers: [
         { provide: Directionality, useFactory: () => ({ value: dir, change: dirChange }) },
       ],
@@ -145,16 +136,7 @@ describe('SbbTabBody', () => {
   it('should mark the tab body content as a scrollable container', () => {
     TestBed.resetTestingModule()
       .configureTestingModule({
-        imports: [
-          PortalModule,
-          NoopAnimationsModule,
-          ScrollingModule,
-          SbbIconModule,
-          SbbIconTestingModule,
-          SbbTabBody,
-          SbbTabBodyPortal,
-          SimpleTabBodyApp,
-        ],
+        imports: [NoopAnimationsModule, ScrollingModule, SbbIconTestingModule, SimpleTabBodyApp],
       })
       .compileComponents();
 
@@ -173,7 +155,7 @@ describe('SbbTabBody', () => {
     <sbb-tab-body [content]="content" [position]="position" [origin]="origin"></sbb-tab-body>
   `,
   standalone: true,
-  imports: [PortalModule, SbbIconTestingModule, SbbIconModule, SbbTabBody],
+  imports: [SbbTabBody],
 })
 class SimpleTabBodyApp implements AfterContentInit {
   content: TemplatePortal;

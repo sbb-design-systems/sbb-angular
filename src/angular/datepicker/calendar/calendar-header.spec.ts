@@ -11,7 +11,7 @@ import { SbbCalendar } from './calendar';
 @Component({
   template: ` <sbb-calendar [startAt]="startDate" [(selected)]="selected"> </sbb-calendar> `,
   standalone: true,
-  imports: [SbbDatepickerModule, SbbIconTestingModule],
+  imports: [SbbDatepickerModule],
 })
 class StandardCalendarComponent {
   selected: Date;
@@ -22,7 +22,6 @@ describe('SbbCalendarHeader', () => {
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
       imports: [
-        SbbDatepickerModule,
         SbbIconTestingModule,
         // Test components.
         StandardCalendarComponent,

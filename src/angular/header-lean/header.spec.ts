@@ -17,8 +17,6 @@ describe('SbbHeaderLean', () => {
     TestBed.configureTestingModule({
       imports: [
         NoopAnimationsModule,
-        SbbHeaderLeanModule,
-        SbbIconModule,
         SbbIconTestingModule,
         SimpleHeaderLean,
         HeaderLeanWithAppChooser,
@@ -140,7 +138,7 @@ describe('SbbHeaderLean', () => {
     </sbb-header-lean>
   `,
   standalone: true,
-  imports: [SbbHeaderLeanModule, SbbIconModule, SbbIconTestingModule],
+  imports: [SbbHeaderLeanModule, SbbIconModule],
 })
 class SimpleHeaderLean {
   label = 'Simple Label';
@@ -162,6 +160,6 @@ class SimpleHeaderLean {
     </sbb-header-lean>
   `,
   standalone: true,
-  imports: [SbbHeaderLeanModule, SbbIconModule, SbbIconTestingModule],
+  imports: [SbbHeaderLeanModule],
 })
 class HeaderLeanWithAppChooser {}

@@ -114,13 +114,7 @@ describe('SbbAlertOutlet', () => {
 
     beforeEach(waitForAsync(() => {
       TestBed.configureTestingModule({
-        imports: [
-          RouterTestingModule,
-          NoopAnimationsModule,
-          SbbIconTestingModule,
-          SbbAlertModule,
-          AlertOutletSimple,
-        ],
+        imports: [SbbAlertModule, AlertOutletSimple, NoopAnimationsModule],
       }).compileComponents();
     }));
 
@@ -239,13 +233,7 @@ describe('SbbAlertOutlet', () => {
 
     beforeEach(waitForAsync(() => {
       TestBed.configureTestingModule({
-        imports: [
-          RouterTestingModule,
-          NoopAnimationsModule,
-          SbbIconTestingModule,
-          SbbAlertModule,
-          AlertOutletWithInnerAlert,
-        ],
+        imports: [AlertOutletWithInnerAlert, NoopAnimationsModule],
       }).compileComponents();
     }));
 
@@ -283,13 +271,7 @@ describe('SbbAlertOutlet', () => {
   describe('with two outlets', () => {
     beforeEach(waitForAsync(() => {
       TestBed.configureTestingModule({
-        imports: [
-          RouterTestingModule,
-          NoopAnimationsModule,
-          SbbIconTestingModule,
-          SbbAlertModule,
-          AlertOutletError,
-        ],
+        imports: [SbbAlertModule, AlertOutletError, NoopAnimationsModule],
       }).compileComponents();
     }));
 
@@ -304,13 +286,7 @@ describe('SbbAlertOutlet', () => {
 
     beforeEach(waitForAsync(() => {
       TestBed.configureTestingModule({
-        imports: [
-          RouterTestingModule,
-          NoopAnimationsModule,
-          SbbIconTestingModule,
-          SbbAlertModule,
-          AlertOutletWithoutOutlet,
-        ],
+        imports: [SbbAlertModule, AlertOutletWithoutOutlet, NoopAnimationsModule],
       }).compileComponents();
     }));
 

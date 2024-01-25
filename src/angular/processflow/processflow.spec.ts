@@ -1351,15 +1351,7 @@ function createComponent<T>(
   imports: any[] = [],
 ): ComponentFixture<T> {
   TestBed.configureTestingModule({
-    imports: [
-      SbbProcessflowModule,
-      SbbButtonModule,
-      SbbIconTestingModule,
-      NoopAnimationsModule,
-      ReactiveFormsModule,
-      ...imports,
-      component,
-    ],
+    imports: [SbbIconTestingModule, NoopAnimationsModule, ...imports, component],
     providers: [{ provide: Directionality, useFactory: () => dir }, ...providers],
   }).compileComponents();
 
@@ -1518,7 +1510,7 @@ class SimpleSbbVerticalStepperApp {
       <sbb-step> Done </sbb-step>
     </sbb-processflow>
   `,
-  imports: [SbbProcessflowModule, SbbButtonModule, SbbInputModule, ReactiveFormsModule],
+  imports: [SbbProcessflowModule, SbbButtonModule, ReactiveFormsModule],
   standalone: true,
 })
 class LinearSbbVerticalStepperApp implements OnInit {
@@ -1587,7 +1579,7 @@ class SimpleStepperWithoutStepControl {
       }
     </sbb-processflow>
   `,
-  imports: [SbbProcessflowModule, SbbInputModule, ReactiveFormsModule],
+  imports: [SbbProcessflowModule, ReactiveFormsModule],
   standalone: true,
 })
 class SimpleStepperWithStepControlAndCompletedBinding {
@@ -1606,7 +1598,7 @@ class SimpleStepperWithStepControlAndCompletedBinding {
       <sbb-step label="Step 3" [stepControl]="controls[2]"></sbb-step>
     </sbb-processflow>
   `,
-  imports: [SbbProcessflowModule, SbbButtonModule, SbbInputModule, ReactiveFormsModule],
+  imports: [SbbProcessflowModule],
   standalone: true,
 })
 class LinearStepperWithValidOptionalStep {

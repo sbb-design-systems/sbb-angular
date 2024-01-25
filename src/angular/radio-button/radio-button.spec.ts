@@ -105,7 +105,7 @@ class RadioGroupWithNgModel {
 @Component({
   template: ` <sbb-radio-button>One</sbb-radio-button> `,
   standalone: true,
-  imports: [FormsModule, ReactiveFormsModule, SbbRadioButtonModule],
+  imports: [SbbRadioButtonModule],
 })
 class DisableableSbbRadioButton {
   @ViewChild(SbbRadioButton) radioButton: SbbRadioButton;
@@ -123,7 +123,7 @@ class DisableableSbbRadioButton {
     </sbb-radio-group>
   `,
   standalone: true,
-  imports: [FormsModule, ReactiveFormsModule, SbbRadioButtonModule],
+  imports: [ReactiveFormsModule, SbbRadioButtonModule],
 })
 class RadioGroupWithFormControl {
   @ViewChild(SbbRadioGroup) group: SbbRadioGroup;
@@ -133,7 +133,7 @@ class RadioGroupWithFormControl {
 @Component({
   template: ` <sbb-radio-button [tabIndex]="tabIndex"></sbb-radio-button> `,
   standalone: true,
-  imports: [FormsModule, ReactiveFormsModule, SbbRadioButtonModule],
+  imports: [SbbRadioButtonModule],
 })
 class FocusableSbbRadioButton {
   tabIndex: number;
@@ -143,7 +143,6 @@ class FocusableSbbRadioButton {
   selector: 'transcluding-wrapper',
   template: ` <div><ng-content></ng-content></div> `,
   standalone: true,
-  imports: [FormsModule, ReactiveFormsModule, SbbRadioButtonModule],
 })
 class TranscludingWrapper {}
 
@@ -158,7 +157,7 @@ class TranscludingWrapper {}
     </sbb-radio-group>
   `,
   standalone: true,
-  imports: [FormsModule, ReactiveFormsModule, SbbRadioButtonModule, TranscludingWrapper],
+  imports: [FormsModule, SbbRadioButtonModule, TranscludingWrapper],
 })
 class InterleavedRadioGroup {
   modelValue = 'strawberry';
@@ -172,7 +171,7 @@ class InterleavedRadioGroup {
 @Component({
   template: ` <sbb-radio-button tabindex="5"></sbb-radio-button> `,
   standalone: true,
-  imports: [FormsModule, ReactiveFormsModule, SbbRadioButtonModule],
+  imports: [SbbRadioButtonModule],
 })
 class RadioButtonWithPredefinedTabindex {}
 
@@ -185,7 +184,7 @@ class RadioButtonWithPredefinedTabindex {}
     ></sbb-radio-button>
   `,
   standalone: true,
-  imports: [FormsModule, ReactiveFormsModule, SbbRadioButtonModule],
+  imports: [SbbRadioButtonModule],
 })
 class RadioButtonWithPredefinedAriaAttributes {}
 
@@ -206,7 +205,7 @@ class RadioButtonWithPredefinedAriaAttributes {}
     </sbb-radio-group>
   `,
   standalone: true,
-  imports: [FormsModule, ReactiveFormsModule, SbbRadioButtonModule],
+  imports: [ReactiveFormsModule, SbbRadioButtonModule],
 })
 class PreselectedRadioWithStaticValueAndNgIf {
   @ViewChild('preselectedGroup', { read: SbbRadioGroup }) preselectedGroup: SbbRadioGroup;
@@ -223,9 +222,6 @@ describe('RadioButton', () => {
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
       imports: [
-        FormsModule,
-        ReactiveFormsModule,
-        SbbRadioButtonModule,
         DisableableSbbRadioButton,
         FocusableSbbRadioButton,
         RadiosInsideRadioGroup,

@@ -1049,8 +1049,6 @@ describe('SbbChipList', () => {
   ): ComponentFixture<T> {
     TestBed.configureTestingModule({
       imports: [
-        FormsModule,
-        ReactiveFormsModule,
         SbbChipsModule,
         SbbInputModule,
         animationsModule,
@@ -1292,7 +1290,7 @@ class ChipListWithRemove {
       </sbb-form-field>
     </form>
   `,
-  imports: [SbbChipsModule, SbbFormFieldModule, SbbInputModule, ReactiveFormsModule],
+  imports: [SbbChipsModule, SbbFormFieldModule, ReactiveFormsModule],
   standalone: true,
 })
 class ChipListInsideDynamicFormGroup {

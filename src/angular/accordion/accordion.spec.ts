@@ -25,7 +25,6 @@ describe('AccordionDirective', () => {
     TestBed.configureTestingModule({
       imports: [
         BrowserAnimationsModule,
-        SbbAccordionModule,
         SbbIconTestingModule,
         AccordionWithHideToggle,
         NestedPanel,
@@ -301,7 +300,7 @@ describe('AccordionDirective', () => {
     </sbb-accordion>
   `,
   standalone: true,
-  imports: [SbbAccordionModule, SbbIconTestingModule],
+  imports: [SbbAccordionModule],
 })
 class SetOfItems {
   @ViewChild(SbbAccordion) accordion: SbbAccordion;
@@ -329,7 +328,7 @@ class SetOfItems {
     </sbb-expansion-panel>
   </sbb-accordion>`,
   standalone: true,
-  imports: [SbbAccordionModule, SbbIconTestingModule],
+  imports: [SbbAccordionModule],
 })
 class NestedAccordions {
   @ViewChildren(SbbExpansionPanelHeader) headers: QueryList<SbbExpansionPanelHeader>;
@@ -350,7 +349,7 @@ class NestedAccordions {
     </sbb-accordion>
   `,
   standalone: true,
-  imports: [SbbAccordionModule, SbbIconTestingModule],
+  imports: [SbbAccordionModule],
 })
 class NestedPanel {
   @ViewChild('outerPanel') outerPanel: SbbExpansionPanel;
@@ -367,7 +366,7 @@ class NestedPanel {
     </sbb-accordion>
   `,
   standalone: true,
-  imports: [SbbAccordionModule, SbbIconTestingModule],
+  imports: [SbbAccordionModule],
 })
 class AccordionWithHideToggle {
   hideToggle = false;

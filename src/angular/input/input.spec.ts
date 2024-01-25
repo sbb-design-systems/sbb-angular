@@ -909,16 +909,7 @@ function createComponent<T>(
   declarations: any[] = [],
 ): ComponentFixture<T> {
   TestBed.configureTestingModule({
-    imports: [
-      FormsModule,
-      SbbFormFieldModule,
-      SbbInputModule,
-      BrowserAnimationsModule,
-      ReactiveFormsModule,
-      ...imports,
-      component,
-      ...declarations,
-    ],
+    imports: [BrowserAnimationsModule, ...imports, component, ...declarations],
     providers,
   }).compileComponents();
 

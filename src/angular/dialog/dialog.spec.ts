@@ -50,7 +50,6 @@ import { Subject } from 'rxjs';
 
 import {
   SbbDialogActions,
-  SbbDialogClose,
   SbbDialogContent,
   SbbDialogTitle,
 } from './dialog-content-directives';
@@ -77,7 +76,7 @@ describe('SbbDialog', () => {
 
   beforeEach(fakeAsync(() => {
     TestBed.configureTestingModule({
-      imports: [SbbDialogModule, DialogTestModule],
+      imports: [DialogTestModule],
       providers: [
         { provide: Location, useClass: SpyLocation },
         {
@@ -1779,7 +1778,7 @@ describe('SbbDialog with a parent SbbDialog', () => {
 
   beforeEach(fakeAsync(() => {
     TestBed.configureTestingModule({
-      imports: [SbbDialogModule, DialogTestModule],
+      imports: [DialogTestModule],
       declarations: [ComponentThatProvidesSbbDialog],
       providers: [
         {
@@ -1894,7 +1893,7 @@ describe('SbbDialog with default options', () => {
     };
 
     TestBed.configureTestingModule({
-      imports: [SbbDialogModule, DialogTestModule],
+      imports: [DialogTestModule],
       providers: [{ provide: SBB_DIALOG_DEFAULT_OPTIONS, useValue: defaultConfig }],
     });
 
@@ -1967,7 +1966,7 @@ describe('SbbDialog with animations enabled', () => {
 
   beforeEach(fakeAsync(() => {
     TestBed.configureTestingModule({
-      imports: [SbbDialogModule, DialogTestModule, BrowserAnimationsModule],
+      imports: [DialogTestModule, BrowserAnimationsModule],
     });
 
     TestBed.compileComponents();
@@ -2017,7 +2016,7 @@ describe('SbbDialog with explicit injector provided', () => {
 
   beforeEach(fakeAsync(() => {
     TestBed.configureTestingModule({
-      imports: [SbbDialogModule, BrowserAnimationsModule, ModuleBoundDialogParentComponent],
+      imports: [BrowserAnimationsModule, ModuleBoundDialogParentComponent],
     });
 
     TestBed.compileComponents();
@@ -2046,7 +2045,7 @@ describe('SbbDialog with template only', () => {
 
   beforeEach(fakeAsync(() => {
     TestBed.configureTestingModule({
-      imports: [SbbDialogModule, DialogTestModule, BrowserAnimationsModule],
+      imports: [DialogTestModule, BrowserAnimationsModule],
     });
     TestBed.compileComponents();
   }));
@@ -2064,7 +2063,7 @@ describe('SbbDialog with close button', () => {
 
   beforeEach(fakeAsync(() => {
     TestBed.configureTestingModule({
-      imports: [SbbDialogModule, DialogTestModule, BrowserAnimationsModule],
+      imports: [DialogTestModule, BrowserAnimationsModule],
     });
     TestBed.compileComponents();
   }));
@@ -2192,7 +2191,7 @@ class PizzaMsg {
     </sbb-dialog-actions>
   `,
   standalone: true,
-  imports: [SbbDialogTitle, SbbDialogContent, SbbDialogActions, SbbDialogClose],
+  imports: [SbbDialogModule],
 })
 class ContentElementDialog {
   shownTitle: 'first' | 'second' | 'third' | 'all' = 'first';
@@ -2229,7 +2228,7 @@ class ContentElementDialog {
     </ng-template>
   `,
   standalone: true,
-  imports: [SbbDialogTitle, SbbDialogContent, SbbDialogActions, SbbDialogClose],
+  imports: [SbbDialogModule],
 })
 class ComponentWithContentElementTemplateRef {
   @ViewChild(TemplateRef) templateRef: TemplateRef<any>;

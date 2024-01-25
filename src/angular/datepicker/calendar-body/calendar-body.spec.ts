@@ -82,8 +82,6 @@ describe('SbbCalendarBody', () => {
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
       imports: [
-        SbbCalendarBody,
-
         // Test components.
         StandardCalendarBodyComponent,
         CalendarBodyWithDisabledCellsComponent,

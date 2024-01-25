@@ -1,5 +1,5 @@
 import { DOWN_ARROW, ENTER } from '@angular/cdk/keycodes';
-import { OverlayContainer, OverlayModule } from '@angular/cdk/overlay';
+import { OverlayContainer } from '@angular/cdk/overlay';
 import { Component, DebugElement, ViewChild } from '@angular/core';
 import {
   ComponentFixture,
@@ -32,7 +32,7 @@ import { SbbSearch, SbbSearchModule } from './index';
     </sbb-search>
   `,
   standalone: true,
-  imports: [SbbIconTestingModule, SbbInputModule, SbbSearchModule],
+  imports: [SbbInputModule, SbbSearchModule],
 })
 export class SimpleSearchComponent {
   searchResults: string[] = [];
@@ -59,13 +59,7 @@ export class SimpleSearchComponent {
     </sbb-autocomplete>
   `,
   standalone: true,
-  imports: [
-    OverlayModule,
-    SbbAutocompleteModule,
-    SbbIconTestingModule,
-    SbbInputModule,
-    SbbSearchModule,
-  ],
+  imports: [SbbAutocompleteModule, SbbInputModule, SbbSearchModule],
 })
 export class SimpleSearchAutocompleteComponent {
   lastSearch = '';
@@ -100,13 +94,7 @@ export class SimpleSearchAutocompleteComponent {
     </button>
   `,
   standalone: true,
-  imports: [
-    OverlayModule,
-    SbbAutocompleteModule,
-    SbbIconTestingModule,
-    SbbInputModule,
-    SbbSearchModule,
-  ],
+  imports: [SbbInputModule, SbbSearchModule],
 })
 export class SimpleSearchHeaderComponent {
   label = 'Suche';
@@ -135,13 +123,7 @@ export class SimpleSearchHeaderComponent {
     </sbb-autocomplete>
   `,
   standalone: true,
-  imports: [
-    OverlayModule,
-    SbbAutocompleteModule,
-    SbbIconTestingModule,
-    SbbInputModule,
-    SbbSearchModule,
-  ],
+  imports: [SbbInputModule, SbbAutocompleteModule, SbbSearchModule],
 })
 export class SimpleSearchAutocompleteHeaderComponent {
   lastSearch = '';
@@ -234,15 +216,7 @@ describe('SbbSearch', () => {
 
     beforeEach(waitForAsync(() => {
       TestBed.configureTestingModule({
-        imports: [
-          NoopAnimationsModule,
-          OverlayModule,
-          SbbAutocompleteModule,
-          SbbIconTestingModule,
-          SbbInputModule,
-          SbbSearchModule,
-          SimpleSearchAutocompleteComponent,
-        ],
+        imports: [NoopAnimationsModule, SbbIconTestingModule, SimpleSearchAutocompleteComponent],
       }).compileComponents();
     }));
 
@@ -376,15 +350,7 @@ describe('SbbSearch', () => {
 
       beforeEach(waitForAsync(() => {
         TestBed.configureTestingModule({
-          imports: [
-            NoopAnimationsModule,
-            OverlayModule,
-            SbbAutocompleteModule,
-            SbbIconTestingModule,
-            SbbInputModule,
-            SbbSearchModule,
-            SimpleSearchHeaderComponent,
-          ],
+          imports: [NoopAnimationsModule, SbbIconTestingModule, SimpleSearchHeaderComponent],
         }).compileComponents();
 
         inject([OverlayContainer], (oc: OverlayContainer) => {
@@ -465,11 +431,7 @@ describe('SbbSearch', () => {
         TestBed.configureTestingModule({
           imports: [
             NoopAnimationsModule,
-            OverlayModule,
-            SbbAutocompleteModule,
             SbbIconTestingModule,
-            SbbInputModule,
-            SbbSearchModule,
             SimpleSearchAutocompleteHeaderComponent,
           ],
         }).compileComponents();

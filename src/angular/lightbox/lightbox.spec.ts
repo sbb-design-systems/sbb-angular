@@ -85,7 +85,7 @@ describe('SbbLightbox', () => {
 
   beforeEach(fakeAsync(() => {
     TestBed.configureTestingModule({
-      imports: [SbbLightboxModule, DialogTestModule],
+      imports: [DialogTestModule],
       providers: [
         { provide: Location, useClass: SpyLocation },
         { provide: ViewportRuler, useValue: viewportRulerMock },
@@ -1513,7 +1513,7 @@ describe('SbbLightbox with a parent SbbLightbox', () => {
 
   beforeEach(fakeAsync(() => {
     TestBed.configureTestingModule({
-      imports: [SbbLightboxModule, DialogTestModule, ComponentThatProvidesSbbLightbox],
+      imports: [DialogTestModule, ComponentThatProvidesSbbLightbox],
       providers: [
         {
           provide: OverlayContainer,
@@ -1627,7 +1627,7 @@ describe('SbbLightbox with default options', () => {
     };
 
     TestBed.configureTestingModule({
-      imports: [SbbLightboxModule, DialogTestModule],
+      imports: [DialogTestModule],
       providers: [{ provide: SBB_LIGHTBOX_DEFAULT_OPTIONS, useValue: defaultConfig }],
     });
 
@@ -1697,7 +1697,7 @@ describe('SbbLightbox with animations enabled', () => {
 
   beforeEach(fakeAsync(() => {
     TestBed.configureTestingModule({
-      imports: [SbbLightboxModule, DialogTestModule, BrowserAnimationsModule],
+      imports: [DialogTestModule, BrowserAnimationsModule],
     });
 
     TestBed.compileComponents();
@@ -1747,7 +1747,7 @@ describe('SbbDialog with explicit injector provided', () => {
 
   beforeEach(fakeAsync(() => {
     TestBed.configureTestingModule({
-      imports: [SbbLightboxModule, BrowserAnimationsModule, ModuleBoundLightboxParentComponent],
+      imports: [BrowserAnimationsModule, ModuleBoundLightboxParentComponent],
     });
 
     TestBed.compileComponents();
@@ -1776,7 +1776,7 @@ describe('SbbLightbox with template only', () => {
 
   beforeEach(fakeAsync(() => {
     TestBed.configureTestingModule({
-      imports: [SbbLightboxModule, DialogTestModule, BrowserAnimationsModule],
+      imports: [DialogTestModule, BrowserAnimationsModule],
     });
     TestBed.compileComponents();
   }));
@@ -1794,7 +1794,7 @@ describe('SbbLightbox with close button', () => {
 
   beforeEach(fakeAsync(() => {
     TestBed.configureTestingModule({
-      imports: [SbbLightboxModule, DialogTestModule, BrowserAnimationsModule],
+      imports: [DialogTestModule, BrowserAnimationsModule],
     });
     TestBed.compileComponents();
   }));
@@ -1914,7 +1914,7 @@ class PizzaMsg {
     </sbb-lightbox-actions>
   `,
   standalone: true,
-  imports: [SbbLightboxTitle, SbbLightboxContent, SbbLightboxActions, SbbLightboxClose],
+  imports: [SbbLightboxModule],
 })
 class ContentElementDialog {}
 

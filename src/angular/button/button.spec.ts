@@ -11,8 +11,6 @@ describe('SbbButton', () => {
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
       imports: [
-        SbbButtonModule,
-        SbbIconModule,
         SbbIconTestingModule,
         ButtonTest,
         ButtonWithCustomSvgIconTest,
@@ -621,7 +619,7 @@ class ButtonTestBase {
     </button>
   `,
   standalone: true,
-  imports: [SbbButtonModule, SbbIconModule, SbbIconTestingModule],
+  imports: [SbbButtonModule],
 })
 class ButtonTest extends ButtonTestBase {}
 
@@ -640,7 +638,7 @@ class ButtonTest extends ButtonTestBase {}
     </button>
   `,
   standalone: true,
-  imports: [SbbButtonModule, SbbIconModule, SbbIconTestingModule],
+  imports: [SbbButtonModule],
 })
 class ButtonWithCustomSvgIconTest extends ButtonTestBase {
   svgIcon = 'example';
@@ -652,7 +650,7 @@ class ButtonWithCustomSvgIconTest extends ButtonTestBase {
     <button sbb-alt-button type="button" (click)="increment()" [disabled]="isDisabled">Go</button>
   `,
   standalone: true,
-  imports: [SbbButtonModule, SbbIconModule, SbbIconTestingModule],
+  imports: [SbbButtonModule],
 })
 class ButtonAltTest extends ButtonTestBase {}
 
@@ -664,7 +662,7 @@ class ButtonAltTest extends ButtonTestBase {}
     </button>
   `,
   standalone: true,
-  imports: [SbbButtonModule, SbbIconModule, SbbIconTestingModule],
+  imports: [SbbButtonModule],
 })
 class ButtonSecondaryTest extends ButtonTestBase {}
 
@@ -674,7 +672,7 @@ class ButtonSecondaryTest extends ButtonTestBase {}
     <button sbb-ghost-button type="button" (click)="increment()" [disabled]="isDisabled">Go</button>
   `,
   standalone: true,
-  imports: [SbbButtonModule, SbbIconModule, SbbIconTestingModule],
+  imports: [SbbButtonModule],
 })
 class ButtonGhostTest extends ButtonTestBase {}
 
@@ -686,7 +684,7 @@ class ButtonGhostTest extends ButtonTestBase {}
     </button>
   `,
   standalone: true,
-  imports: [SbbButtonModule, SbbIconModule, SbbIconTestingModule],
+  imports: [SbbButtonModule, SbbIconModule],
 })
 class ButtonIconTest extends ButtonTestBase {}
 
@@ -726,7 +724,7 @@ class ButtonIconTest extends ButtonTestBase {}
     </p>
   `,
   standalone: true,
-  imports: [SbbButtonModule, SbbIconModule, SbbIconTestingModule],
+  imports: [SbbButtonModule, SbbIconModule],
 })
 class ButtonIconTestMultiple extends ButtonTestBase {}
 
@@ -738,7 +736,7 @@ class ButtonIconTestMultiple extends ButtonTestBase {}
     </button>
   `,
   standalone: true,
-  imports: [SbbButtonModule, SbbIconModule, SbbIconTestingModule],
+  imports: [SbbButtonModule],
 })
 class ButtonFramelessTest extends ButtonTestBase {}
 
@@ -749,6 +747,6 @@ class ButtonFramelessTest extends ButtonTestBase {}
     <a href="http://www.google.com" sbb-link [disabled]="isDisabled"> Link </a>
   `,
   standalone: true,
-  imports: [SbbButtonModule, SbbIconModule, SbbIconTestingModule],
+  imports: [SbbButtonModule],
 })
 class LinkTest extends ButtonTestBase {}

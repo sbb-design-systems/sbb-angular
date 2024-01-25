@@ -14,7 +14,6 @@ import {
   JAN,
 } from '@sbb-esta/angular/core/testing';
 import { SbbFormField, SbbFormFieldModule } from '@sbb-esta/angular/form-field';
-import { SbbIconModule } from '@sbb-esta/angular/icon';
 import { SbbIconTestingModule } from '@sbb-esta/angular/icon/testing';
 import { SbbInputModule } from '@sbb-esta/angular/input';
 
@@ -31,17 +30,7 @@ describe('SbbDatepicker', () => {
     providers: (FactoryProvider | ValueProvider)[] = [],
   ): ComponentFixture<any> {
     TestBed.configureTestingModule({
-      imports: [
-        FormsModule,
-        SbbDatepickerModule,
-        NoopAnimationsModule,
-        ReactiveFormsModule,
-        SbbIconModule,
-        SbbIconTestingModule,
-        SbbInputModule,
-        ...imports,
-        component,
-      ],
+      imports: [NoopAnimationsModule, SbbIconTestingModule, ...imports, component],
       providers,
     });
 

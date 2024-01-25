@@ -63,12 +63,6 @@ describe('SbbTextarea', () => {
   let component: SbbTextarea;
   let fixture: ComponentFixture<SbbTextarea>;
 
-  beforeEach(waitForAsync(() => {
-    TestBed.configureTestingModule({
-      imports: [SbbTextareaModule],
-    }).compileComponents();
-  }));
-
   beforeEach(() => {
     fixture = TestBed.createComponent(SbbTextarea);
     component = fixture.componentInstance;
@@ -278,12 +272,6 @@ describe('SbbTextarea behaviour', () => {
 describe('SbbTextarea digits counter', () => {
   let component: SbbTextarea;
   let fixture: ComponentFixture<SbbTextarea>;
-
-  beforeEach(waitForAsync(() => {
-    TestBed.configureTestingModule({
-      imports: [SbbTextareaModule],
-    }).compileComponents();
-  }));
 
   beforeEach(() => {
     fixture = TestBed.createComponent(SbbTextarea);

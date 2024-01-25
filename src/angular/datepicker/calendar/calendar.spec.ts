@@ -12,7 +12,6 @@ import {
   MockNgZone,
   NOV,
 } from '@sbb-esta/angular/core/testing';
-import { SbbIconModule } from '@sbb-esta/angular/icon';
 import { SbbIconTestingModule } from '@sbb-esta/angular/icon/testing';
 
 import { SbbCalendarCellClassFunction } from '../calendar-body/calendar-body';
@@ -30,7 +29,7 @@ import { SbbDatepickerModule } from '../datepicker.module';
     </sbb-calendar>
   `,
   standalone: true,
-  imports: [SbbDatepickerModule, SbbIconModule, SbbIconTestingModule],
+  imports: [SbbDatepickerModule],
 })
 class StandardCalendarComponent {
   selected: Date;
@@ -44,7 +43,7 @@ class StandardCalendarComponent {
     <sbb-calendar [startAt]="startAt" [minDate]="minDate" [maxDate]="maxDate"></sbb-calendar>
   `,
   standalone: true,
-  imports: [SbbDatepickerModule, SbbIconModule, SbbIconTestingModule],
+  imports: [SbbDatepickerModule],
 })
 class CalendarWithMinMaxComponent {
   startAt: Date;
@@ -58,7 +57,7 @@ class CalendarWithMinMaxComponent {
     </sbb-calendar>
   `,
   standalone: true,
-  imports: [SbbDatepickerModule, SbbIconModule, SbbIconTestingModule],
+  imports: [SbbDatepickerModule],
 })
 class CalendarWithDateFilterComponent {
   selected: Date;
@@ -80,7 +79,7 @@ class CalendarWithDateFilterComponent {
     </sbb-calendar>
   `,
   standalone: true,
-  imports: [SbbDatepickerModule, SbbIconModule, SbbIconTestingModule],
+  imports: [SbbDatepickerModule],
 })
 class CalendarWithSelectableMinDateComponent {
   startAt = new Date(2018, JUL, 0);
@@ -99,7 +98,7 @@ class CalendarWithSelectableMinDateComponent {
 @Component({
   template: ` <sbb-calendar [dateClass]="dateClass"> </sbb-calendar> `,
   standalone: true,
-  imports: [SbbDatepickerModule, SbbIconModule, SbbIconTestingModule],
+  imports: [SbbDatepickerModule],
 })
 class CalendarWithDateClassComponent {
   dateClass: SbbCalendarCellClassFunction<Date>;
@@ -112,7 +111,6 @@ describe('SbbCalendar', () => {
     TestBed.configureTestingModule({
       imports: [
         SbbDatepickerModule,
-        SbbIconModule,
         SbbIconTestingModule,
         // Test components.
         StandardCalendarComponent,

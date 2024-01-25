@@ -1,6 +1,5 @@
 import { Component } from '@angular/core';
 import { ComponentFixture, fakeAsync, flush, TestBed, waitForAsync } from '@angular/core/testing';
-import { FormsModule } from '@angular/forms';
 import { By } from '@angular/platform-browser';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { switchToLean } from '@sbb-esta/angular/core/testing';
@@ -16,7 +15,7 @@ describe('SbbNotification', () => {
 
     beforeEach(waitForAsync(() => {
       TestBed.configureTestingModule({
-        imports: [NoopAnimationsModule, SbbNotificationModule, SbbIconModule, SbbIconTestingModule],
+        imports: [NoopAnimationsModule, SbbIconTestingModule],
       }).compileComponents();
     }));
 
@@ -37,14 +36,7 @@ describe('SbbNotification', () => {
 
     beforeEach(waitForAsync(() => {
       TestBed.configureTestingModule({
-        imports: [
-          FormsModule,
-          NoopAnimationsModule,
-          SbbNotificationModule,
-          SbbIconModule,
-          SbbIconTestingModule,
-          NotificationMockComponent,
-        ],
+        imports: [NoopAnimationsModule, SbbIconTestingModule, NotificationMockComponent],
       }).compileComponents();
     }));
 
@@ -226,7 +218,7 @@ describe('SbbNotification', () => {
   template:
     '<sbb-notification [type]="type" [jumpMarks]="jumpMarks" (dismissed)="dismissed($event)" [readonly]="readonly">{{message}}</sbb-notification>',
   standalone: true,
-  imports: [FormsModule, SbbNotificationModule, SbbIconModule, SbbIconTestingModule],
+  imports: [SbbNotificationModule, SbbIconModule],
 })
 export class NotificationMockComponent {
   message = 'Search';

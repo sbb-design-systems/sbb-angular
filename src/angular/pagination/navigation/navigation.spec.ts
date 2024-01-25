@@ -4,7 +4,6 @@ import { FormsModule } from '@angular/forms';
 import { By } from '@angular/platform-browser';
 import { RouterTestingModule } from '@angular/router/testing';
 import { SbbButtonModule } from '@sbb-esta/angular/button';
-import { SbbIconModule } from '@sbb-esta/angular/icon';
 import { SbbIconTestingModule } from '@sbb-esta/angular/icon/testing';
 
 import { SbbPaginationModule } from '../pagination.module';
@@ -24,13 +23,7 @@ import { SbbNavigation, SbbNavigationPageChangeEvent } from './navigation';
     <button id="new-page-button" sbb-button (click)="addPage()">Add new page</button>
   `,
   standalone: true,
-  imports: [
-    SbbPaginationModule,
-    SbbIconTestingModule,
-    RouterTestingModule,
-    SbbButtonModule,
-    FormsModule,
-  ],
+  imports: [SbbPaginationModule, SbbButtonModule, FormsModule],
 })
 export class NavigationTestComponent {
   @ViewChild('navigation', { static: true }) navigation: SbbNavigation;
@@ -73,7 +66,7 @@ describe('SbbNavigation', () => {
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-      imports: [SbbIconModule, SbbIconTestingModule, RouterTestingModule, SbbNavigation],
+      imports: [SbbIconTestingModule, RouterTestingModule],
     }).compileComponents();
   }));
 
@@ -94,14 +87,7 @@ describe('SbbNavigation behaviour', () => {
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-      imports: [
-        SbbPaginationModule,
-        SbbIconTestingModule,
-        RouterTestingModule,
-        SbbButtonModule,
-        FormsModule,
-        NavigationTestComponent,
-      ],
+      imports: [SbbIconTestingModule, RouterTestingModule, NavigationTestComponent],
     }).compileComponents();
   }));
 

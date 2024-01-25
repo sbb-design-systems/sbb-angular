@@ -1,5 +1,5 @@
 import { Component, ViewChild } from '@angular/core';
-import { TestBed, waitForAsync } from '@angular/core/testing';
+import { TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 import { wrappedErrorMessage } from '@sbb-esta/angular/core/testing';
 
@@ -32,12 +32,6 @@ class BasicTextexpand {
 class InvalidTextexpand {}
 
 describe('SbbTextexpand', () => {
-  beforeEach(waitForAsync(() => {
-    TestBed.configureTestingModule({
-      imports: [SbbTextexpandModule, BasicTextexpand, InvalidTextexpand],
-    }).compileComponents();
-  }));
-
   it('should expand and collapse text', () => {
     const fixture = TestBed.createComponent(BasicTextexpand);
     fixture.detectChanges();

@@ -111,8 +111,6 @@ describe('SbbMonthView', () => {
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
       imports: [
-        SbbCalendarBody,
-        SbbMonthView,
         // Test components.
         StandardMonthViewComponent,
         MonthViewWithDateFilterComponent,

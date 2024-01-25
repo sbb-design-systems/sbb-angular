@@ -20,15 +20,9 @@ import {
 describe('SbbCheckbox', () => {
   let fixture: ComponentFixture<any>;
 
-  function createComponent<T>(componentType: Type<T>, extraDeclarations: Type<any>[] = []) {
+  function createComponent<T>(componentType: Type<T>) {
     TestBed.configureTestingModule({
-      imports: [
-        SbbCheckboxModule,
-        FormsModule,
-        ReactiveFormsModule,
-        componentType,
-        ...extraDeclarations,
-      ],
+      imports: [componentType],
     }).compileComponents();
 
     return TestBed.createComponent<T>(componentType);
@@ -377,7 +371,7 @@ describe('SbbCheckbox', () => {
       beforeEach(() => {
         TestBed.resetTestingModule();
         TestBed.configureTestingModule({
-          imports: [SbbCheckboxModule, FormsModule, ReactiveFormsModule, SingleCheckbox],
+          imports: [SingleCheckbox],
           providers: [
             { provide: SBB_CHECKBOX_DEFAULT_OPTIONS, useValue: { clickAction: 'check' } },
           ],
@@ -413,7 +407,7 @@ describe('SbbCheckbox', () => {
       beforeEach(() => {
         TestBed.resetTestingModule();
         TestBed.configureTestingModule({
-          imports: [SbbCheckboxModule, FormsModule, ReactiveFormsModule, SingleCheckbox],
+          imports: [SingleCheckbox],
           providers: [{ provide: SBB_CHECKBOX_DEFAULT_OPTIONS, useValue: { clickAction: 'noop' } }],
         });
 
@@ -922,7 +916,7 @@ describe('SbbCheckbox', () => {
     </sbb-checkbox>
   </div>`,
   standalone: true,
-  imports: [SbbCheckboxModule, FormsModule, ReactiveFormsModule],
+  imports: [SbbCheckboxModule],
 })
 class SingleCheckbox {
   isChecked: boolean = false;

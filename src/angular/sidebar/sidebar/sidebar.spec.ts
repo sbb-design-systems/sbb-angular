@@ -56,7 +56,6 @@ describe('SbbSidebar', () => {
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
       imports: [
-        SbbSidebarModule,
         NoopAnimationsModule,
         SbbIconTestingModule,
         BasicTestComponent,
@@ -481,12 +480,7 @@ describe('SbbSidebar', () => {
     it('should not throw when a two-way binding is toggled quickly while animating', fakeAsync(() => {
       TestBed.resetTestingModule()
         .configureTestingModule({
-          imports: [
-            SbbSidebarModule,
-            BrowserAnimationsModule,
-            SbbIconTestingModule,
-            SidebarOpenBindingTestComponent,
-          ],
+          imports: [BrowserAnimationsModule, SbbIconTestingModule, SidebarOpenBindingTestComponent],
           providers: [PROVIDE_FAKE_MEDIA_MATCHER],
         })
         .compileComponents();
@@ -653,7 +647,6 @@ describe('SbbSidebarContainer', () => {
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
       imports: [
-        SbbSidebarModule,
         NoopAnimationsModule,
         SbbIconTestingModule,
         SidebarContainerEmptyTestComponent,
@@ -762,7 +755,6 @@ describe('SbbSidebarContainer', () => {
     TestBed.resetTestingModule()
       .configureTestingModule({
         imports: [
-          SbbSidebarModule,
           BrowserAnimationsModule,
           SbbIconTestingModule,
           SidebarSetToOpenedTrueTestComponent,
@@ -927,7 +919,7 @@ describe('SbbSidebar Usage', () => {
     <sbb-sidebar></sbb-sidebar>
   </sbb-sidebar-container>`,
   standalone: true,
-  imports: [SbbSidebarModule, SbbIconTestingModule],
+  imports: [SbbSidebarModule],
 })
 class SidebarContainerEmptyTestComponent {
   @ViewChild(SbbSidebarContainer) sidebarContainer: SbbSidebarContainer;
@@ -960,7 +952,7 @@ class SidebarContainerEmptyTestComponent {
     </svg>
   </sbb-sidebar-container>`,
   standalone: true,
-  imports: [SbbSidebarModule, SbbIconTestingModule],
+  imports: [SbbSidebarModule],
 })
 class BasicTestComponent {
   openCount = 0;
@@ -1003,7 +995,7 @@ class BasicTestComponent {
     </sbb-sidebar>
   </sbb-sidebar-container>`,
   standalone: true,
-  imports: [SbbSidebarModule, SbbIconTestingModule],
+  imports: [SbbSidebarModule],
 })
 class SidebarSetToOpenedTrueTestComponent {
   openCallback = jasmine.createSpy('open callback');
@@ -1016,7 +1008,7 @@ class SidebarSetToOpenedTrueTestComponent {
     </sbb-sidebar>
   </sbb-sidebar-container>`,
   standalone: true,
-  imports: [SbbSidebarModule, SbbIconTestingModule],
+  imports: [SbbSidebarModule],
 })
 class SidebarOpenBindingTestComponent {}
 
@@ -1026,7 +1018,7 @@ class SidebarOpenBindingTestComponent {}
     <sbb-sidebar #sidebar2></sbb-sidebar>
   </sbb-sidebar-container>`,
   standalone: true,
-  imports: [SbbSidebarModule, SbbIconTestingModule],
+  imports: [SbbSidebarModule],
 })
 class TwoSidebarsTestComponent {}
 
@@ -1042,7 +1034,7 @@ class TwoSidebarsTestComponent {}
     <input type="text" class="input2" />
   </sbb-sidebar-container>`,
   standalone: true,
-  imports: [SbbSidebarModule, SbbIconTestingModule],
+  imports: [SbbSidebarModule],
 })
 class SidebarWithFocusableElementsTestComponent {}
 
@@ -1053,7 +1045,7 @@ class SidebarWithFocusableElementsTestComponent {}
     </sbb-sidebar>
   </sbb-sidebar-container>`,
   standalone: true,
-  imports: [SbbSidebarModule, SbbIconTestingModule],
+  imports: [SbbSidebarModule],
 })
 class SidebarWithoutFocusableElementsTestComponent {}
 
@@ -1066,7 +1058,7 @@ class SidebarWithoutFocusableElementsTestComponent {}
     </sbb-sidebar-container>
   `,
   standalone: true,
-  imports: [SbbSidebarModule, SbbIconTestingModule],
+  imports: [SbbSidebarModule],
 })
 class SidebarDelayedTestComponent {
   @ViewChild(SbbSidebar) sidebar: SbbSidebar;
@@ -1080,7 +1072,7 @@ class SidebarDelayedTestComponent {
     }
   </sbb-sidebar-container>`,
   standalone: true,
-  imports: [SbbSidebarModule, SbbIconTestingModule],
+  imports: [SbbSidebarModule],
 })
 class SidebarContainerStateChangesTestAppTestComponent {
   @ViewChild(SbbSidebar) sidebar: SbbSidebar;
@@ -1097,7 +1089,7 @@ class SidebarContainerStateChangesTestAppTestComponent {
     </sbb-sidebar>
   </sbb-sidebar-container>`,
   standalone: true,
-  imports: [SbbSidebarModule, SbbIconTestingModule],
+  imports: [SbbSidebarModule],
 })
 class ZeroWithSidebarTestComponent {
   @ViewChild(SbbSidebar) sidebar: SbbSidebar;
@@ -1112,7 +1104,7 @@ class ZeroWithSidebarTestComponent {
     </sbb-sidebar-container>
   `,
   standalone: true,
-  imports: [SbbSidebarModule, SbbIconTestingModule],
+  imports: [SbbSidebarModule],
 })
 class SidebarContainerWithContentTestComponent {
   @ViewChild(SbbSidebarContainer) sidebarContainer: SbbSidebarContainer;
@@ -1127,7 +1119,7 @@ class SidebarContainerWithContentTestComponent {
     }
   </sbb-sidebar-container>`,
   standalone: true,
-  imports: [SbbSidebarModule, SbbIconTestingModule],
+  imports: [SbbSidebarModule],
 })
 class IndirectDescendantSidebarTestComponent {
   @ViewChild('container') container: SbbSidebarContainer;
@@ -1146,7 +1138,7 @@ class IndirectDescendantSidebarTestComponent {
     </sbb-sidebar-container>
   `,
   standalone: true,
-  imports: [SbbSidebarModule, SbbIconTestingModule],
+  imports: [SbbSidebarModule],
 })
 class NestedSidebarContainersTestComponent {
   @ViewChild('outerContainer') outerContainer: SbbSidebarContainer;

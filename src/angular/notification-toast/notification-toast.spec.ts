@@ -40,12 +40,7 @@ describe('SbbNotificationToast icons', () => {
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-      imports: [
-        SbbNotificationToastModule,
-        NotificationToastTestModule,
-        NoopAnimationsModule,
-        SbbIconTestingModule,
-      ],
+      imports: [NotificationToastTestModule, NoopAnimationsModule, SbbIconTestingModule],
       providers: [
         SbbNotificationToast,
         { provide: SBB_NOTIFICATION_TOAST_DATA, useValue: SbbNotificationToastConfig },
@@ -130,12 +125,7 @@ describe('SbbNotificationToast', () => {
 
   beforeEach(fakeAsync(() => {
     TestBed.configureTestingModule({
-      imports: [
-        SbbNotificationToastModule,
-        NotificationToastTestModule,
-        NoopAnimationsModule,
-        SbbIconTestingModule,
-      ],
+      imports: [NotificationToastTestModule, NoopAnimationsModule, SbbIconTestingModule],
     }).compileComponents();
   }));
 
@@ -663,12 +653,7 @@ describe('SbbNotificationToast with parent SbbNotificationToast', () => {
 
   beforeEach(fakeAsync(() => {
     TestBed.configureTestingModule({
-      imports: [
-        SbbNotificationToastModule,
-        NotificationToastTestModule,
-        NoopAnimationsModule,
-        SbbIconTestingModule,
-      ],
+      imports: [NotificationToastTestModule, NoopAnimationsModule, SbbIconTestingModule],
       declarations: [ComponentThatProvidesSbbNotificationToast],
     }).compileComponents();
   }));
@@ -753,12 +738,7 @@ describe('SbbNotificationToast Positioning', () => {
 
   beforeEach(fakeAsync(() => {
     TestBed.configureTestingModule({
-      imports: [
-        SbbNotificationToastModule,
-        NotificationToastTestModule,
-        NoopAnimationsModule,
-        SbbIconTestingModule,
-      ],
+      imports: [NotificationToastTestModule, NoopAnimationsModule, SbbIconTestingModule],
     }).compileComponents();
   }));
 

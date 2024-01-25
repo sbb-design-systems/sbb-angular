@@ -1,7 +1,6 @@
 import { Direction } from '@angular/cdk/bidi';
 import { END, ENTER, HOME, LEFT_ARROW, RIGHT_ARROW, SPACE } from '@angular/cdk/keycodes';
-import { MutationObserverFactory, ObserversModule } from '@angular/cdk/observers';
-import { PortalModule } from '@angular/cdk/portal';
+import { MutationObserverFactory } from '@angular/cdk/observers';
 import { ScrollingModule, ViewportRuler } from '@angular/cdk/scrolling';
 import { Component, ViewChild } from '@angular/core';
 import {
@@ -20,7 +19,6 @@ import {
   dispatchKeyboardEvent,
   switchToLean,
 } from '@sbb-esta/angular/core/testing';
-import { SbbIconModule } from '@sbb-esta/angular/icon';
 import { SbbIconTestingModule } from '@sbb-esta/angular/icon/testing';
 
 import { SbbTabHeader } from './tab-header';
@@ -32,16 +30,7 @@ describe('SbbTabHeader', () => {
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-      imports: [
-        PortalModule,
-        ScrollingModule,
-        ObserversModule,
-        SbbIconTestingModule,
-        SbbIconModule,
-        SbbTabHeader,
-        SbbTabLabelWrapper,
-        SimpleTabHeaderApp,
-      ],
+      imports: [ScrollingModule, SbbIconTestingModule, SimpleTabHeaderApp],
       providers: [ViewportRuler],
     });
 
@@ -640,15 +629,7 @@ interface Tab {
     `,
   ],
   standalone: true,
-  imports: [
-    PortalModule,
-    ScrollingModule,
-    SbbTabHeader,
-    SbbTabLabelWrapper,
-    ObserversModule,
-    SbbIconTestingModule,
-    SbbIconModule,
-  ],
+  imports: [SbbTabHeader, SbbTabLabelWrapper],
 })
 class SimpleTabHeaderApp {
   selectedIndex: number = 0;

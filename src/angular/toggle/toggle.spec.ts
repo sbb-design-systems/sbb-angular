@@ -1,4 +1,4 @@
-import { CommonModule } from '@angular/common';
+import { AsyncPipe, CommonModule } from '@angular/common';
 import { Component, ContentChildren, QueryList } from '@angular/core';
 import { ComponentFixture, fakeAsync, flush, TestBed, waitForAsync } from '@angular/core/testing';
 import { FormControl, FormGroup, FormsModule, ReactiveFormsModule } from '@angular/forms';
@@ -118,12 +118,11 @@ class ToggleReactiveTestComponent {
   standalone: true,
   imports: [
     SbbToggleModule,
-    CommonModule,
+    AsyncPipe,
     SbbIconModule,
     SbbDatepickerModule,
     SbbInputModule,
     ReactiveFormsModule,
-    SbbIconTestingModule,
   ],
 })
 class ToggleReactiveDefaultValueTestComponent {
@@ -184,7 +183,6 @@ class ToggleReactiveDefaultValueTestComponent {
     SbbDatepickerModule,
     SbbInputModule,
     FormsModule,
-    SbbIconTestingModule,
   ],
 })
 class ToggleTemplateDrivenTestComponent {
@@ -219,7 +217,7 @@ class ToggleTemplateDrivenTestComponent {
     </sbb-toggle>
   `,
   standalone: true,
-  imports: [SbbToggleModule, CommonModule, SbbIconTestingModule],
+  imports: [SbbToggleModule],
 })
 class ToggleSimpleCaseTestComponent {
   @ContentChildren('options') options: QueryList<SbbToggleOption>;
@@ -246,13 +244,7 @@ class ToggleSimpleCaseTestComponent {
     </sbb-toggle>
   `,
   standalone: true,
-  imports: [
-    SbbToggleModule,
-    CommonModule,
-    ReactiveFormsModule,
-    SbbIconModule,
-    SbbIconTestingModule,
-  ],
+  imports: [SbbToggleModule, ReactiveFormsModule, SbbIconModule],
 })
 class ToggleOnlySecondWithContentTestComponent {
   journey = new FormControl('ReturnJourney');
@@ -264,17 +256,7 @@ describe('SbbToggle', () => {
 
     beforeEach(waitForAsync(() => {
       TestBed.configureTestingModule({
-        imports: [
-          SbbToggleModule,
-          CommonModule,
-          NoopAnimationsModule,
-          SbbIconModule,
-          SbbDatepickerModule,
-          SbbInputModule,
-          ReactiveFormsModule,
-          SbbIconTestingModule,
-          ToggleReactiveTestComponent,
-        ],
+        imports: [NoopAnimationsModule, SbbIconTestingModule],
       }).compileComponents();
     }));
 

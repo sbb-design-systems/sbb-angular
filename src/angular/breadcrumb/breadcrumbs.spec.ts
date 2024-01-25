@@ -2,12 +2,11 @@ import { Component } from '@angular/core';
 import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
+import { RouterTestingModule } from '@angular/router/testing';
 import { dispatchMouseEvent } from '@sbb-esta/angular/core/testing';
-import { SbbIconModule } from '@sbb-esta/angular/icon';
 import { SbbIconTestingModule } from '@sbb-esta/angular/icon/testing';
 import { SbbMenuModule } from '@sbb-esta/angular/menu';
 
-import { SbbBreadcrumb } from './breadcrumb';
 import { SbbBreadcrumbModule } from './breadcrumb.module';
 import { SbbBreadcrumbs } from './breadcrumbs';
 
@@ -31,7 +30,7 @@ import { SbbBreadcrumbs } from './breadcrumbs';
     </sbb-breadcrumbs>
   `,
   standalone: true,
-  imports: [SbbBreadcrumbModule, SbbMenuModule, SbbIconModule, SbbIconTestingModule],
+  imports: [SbbBreadcrumbModule, RouterTestingModule, SbbMenuModule],
 })
 export class BreadcrumbsSimpleTest {}
 
@@ -65,7 +64,7 @@ export class BreadcrumbsSimpleTest {}
     </sbb-breadcrumbs>
   `,
   standalone: true,
-  imports: [SbbBreadcrumbModule, SbbMenuModule, SbbIconModule, SbbIconTestingModule],
+  imports: [SbbBreadcrumbModule, SbbMenuModule],
 })
 export class BreadcrumbsMenuTest {}
 
@@ -76,13 +75,7 @@ describe('SbbBreadcrumbs', () => {
 
     beforeEach(waitForAsync(() => {
       TestBed.configureTestingModule({
-        imports: [
-          SbbMenuModule,
-          SbbIconModule,
-          SbbIconTestingModule,
-          SbbBreadcrumbs,
-          SbbBreadcrumb,
-        ],
+        imports: [SbbIconTestingModule, NoopAnimationsModule],
       }).compileComponents();
     }));
 
@@ -102,13 +95,7 @@ describe('SbbBreadcrumbs', () => {
 
     beforeEach(waitForAsync(() => {
       TestBed.configureTestingModule({
-        imports: [
-          SbbBreadcrumbModule,
-          SbbMenuModule,
-          SbbIconModule,
-          SbbIconTestingModule,
-          BreadcrumbsSimpleTest,
-        ],
+        imports: [SbbBreadcrumbModule, BreadcrumbsSimpleTest, SbbIconTestingModule],
       }).compileComponents();
     }));
 
@@ -169,14 +156,7 @@ describe('SbbBreadcrumbs', () => {
 
     beforeEach(waitForAsync(() => {
       TestBed.configureTestingModule({
-        imports: [
-          SbbBreadcrumbModule,
-          SbbMenuModule,
-          SbbIconModule,
-          SbbIconTestingModule,
-          NoopAnimationsModule,
-          BreadcrumbsMenuTest,
-        ],
+        imports: [BreadcrumbsMenuTest, SbbIconTestingModule, NoopAnimationsModule],
       }).compileComponents();
     }));
 

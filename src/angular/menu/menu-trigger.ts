@@ -24,6 +24,7 @@ import {
   Directive,
   ElementRef,
   EventEmitter,
+  inject,
   Inject,
   InjectionToken,
   Input,
@@ -80,6 +81,13 @@ export const SBB_MENU_INHERITED_TRIGGER_CONTEXT =
 /** Injection token that determines the scroll handling while the menu is open. */
 export const SBB_MENU_SCROLL_STRATEGY = new InjectionToken<() => ScrollStrategy>(
   'sbb-menu-scroll-strategy',
+  {
+    providedIn: 'root',
+    factory: () => {
+      const overlay = inject(Overlay);
+      return () => overlay.scrollStrategies.reposition();
+    },
+  },
 );
 
 /** @docs-private */
