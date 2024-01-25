@@ -15,8 +15,7 @@ import {
   ViewChild,
 } from '@angular/core';
 import { SbbDialog, SbbDialogClose, _SbbDialogTitleBase } from '@sbb-esta/angular/dialog';
-
-import { SbbIcon } from '../icon/icon';
+import { SbbIcon } from '@sbb-esta/angular/icon';
 
 import { SbbLightbox } from './lightbox';
 import { SbbLightboxRef } from './lightbox-ref';

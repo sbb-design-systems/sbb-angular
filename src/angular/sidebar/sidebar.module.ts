@@ -13,13 +13,14 @@ import { SbbSidebar, SbbSidebarContainer, SbbSidebarContent } from './sidebar/si
 import { SbbSidebarLink } from './sidebar/sidebar-link';
 
 @NgModule({
-  imports: [CdkScrollableModule, SbbCommonModule, SbbIconModule],
-  declarations: [
+  imports: [
+    CdkScrollableModule,
+    SbbCommonModule,
+    SbbIconModule,
     SbbSidebar,
     SbbSidebarContainer,
     SbbSidebarContent,
     SbbSidebarLink,
-
     SbbIconSidebar,
     SbbIconSidebarContainer,
     SbbIconSidebarContent,
@@ -27,12 +28,10 @@ import { SbbSidebarLink } from './sidebar/sidebar-link';
   ],
   exports: [
     CdkScrollableModule,
-
     SbbSidebar,
     SbbSidebarContainer,
     SbbSidebarContent,
     SbbSidebarLink,
-
     SbbIconSidebar,
     SbbIconSidebarContainer,
     SbbIconSidebarContent,
