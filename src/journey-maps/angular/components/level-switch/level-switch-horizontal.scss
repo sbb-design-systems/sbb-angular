@@ -96,6 +96,11 @@
     background-color: esta.$sbbColorBlack;
     outline: 1px solid esta.$sbbColorMetal;
   }
+
+  .map-control-button-wrapper {
+    /* needed if :not(.empty) */
+    border-radius: 50%;
+  }
 }
 
 .main-button-wrapper.expanded {
