@@ -23,6 +23,7 @@ import { SbbLocaleService } from '../../services/locale-service';
 export class SbbZoomControls implements OnInit, OnChanges, OnDestroy {
   @Input() map: MaplibreMap | null;
   @Input() showSmallButtons: boolean | undefined;
+  @Input() isDarkMode: boolean;
 
   private _zoomChanged = new Subject<void>();
   private _destroyed = new Subject<void>();

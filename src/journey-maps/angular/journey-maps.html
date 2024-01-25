@@ -1,4 +1,4 @@
-<div class="jmc-container" lang="{{ language }}">
+<div class="jmc-container" lang="{{ language }}" [class.dark]="isDarkMode">
   <div class="map-container" (touchstart)="onTouchStart($event)" (touchend)="onTouchEnd($event)">
     <div
       class="mod_map_container_mobile_overlay"
@@ -17,6 +17,7 @@
       (featuresHoverChange)="featuresHoverChange.next($event)"
       (featuresClick)="featuresClick.next($event); handleMarkerOrClusterClick($event.features)"
       (featureSelectionsChange)="selectedFeaturesChange.next($event)"
+      [isDarkMode]="isDarkMode"
     ></sbb-feature-event-listener>
     <sbb-marker-details
       [selectedMarker]="selectedMarker"
@@ -24,6 +25,7 @@
       [map]="mapReady | async"
       [popup]="markerOptions.popup"
       (closeClicked)="onMarkerUnselected()"
+      [isDarkMode]="isDarkMode"
     >
     </sbb-marker-details>
 
@@ -32,40 +34,46 @@
         <sbb-zoom-controls
           *ngIf="uiOptions.zoomControls"
           [map]="mapReady | async"
+          [isDarkMode]="isDarkMode"
           [showSmallButtons]="uiOptions.showSmallButtons"
         ></sbb-zoom-controls>
         <sbb-geolocate-button
           *ngIf="uiOptions.geoLocation"
           [map]="mapReady | async"
+          [isDarkMode]="isDarkMode"
           [showSmallButtons]="uiOptions.showSmallButtons"
           (geolocateButtonClicked)="onGeolocateButtonClicked()"
         ></sbb-geolocate-button>
         <sbb-basemap-switch
           *ngIf="uiOptions.basemapSwitch"
           [map]="mapReady | async"
+          [isDarkMode]="isDarkMode"
           [showSmallButtons]="uiOptions.showSmallButtons"
           (toggleBasemap)="onToggleBasemap()"
         ></sbb-basemap-switch>
         <sbb-home-button
           *ngIf="uiOptions.homeButton"
           [map]="mapReady | async"
+          [isDarkMode]="isDarkMode"
           [showSmallButtons]="uiOptions.showSmallButtons"
           (homeButtonClicked)="onHomeButtonClicked()"
         ></sbb-home-button>
         <sbb-level-switch-horizontal
           *ngIf="uiOptions.levelSwitch && isLevelSwitchHorizontal"
           [map]="mapReady | async"
+          [isDarkMode]="isDarkMode"
           [showSmallButtons]="uiOptions.showSmallButtons"
         ></sbb-level-switch-horizontal>
         <sbb-level-switch
           *ngIf="uiOptions.levelSwitch && !isLevelSwitchHorizontal"
           [map]="mapReady | async"
+          [isDarkMode]="isDarkMode"
           [showSmallButtons]="uiOptions.showSmallButtons"
         ></sbb-level-switch>
       </div>
     </div>
     <div class="map-attribution">
-      <sbb-attribution [map]="mapReady | async"></sbb-attribution>
+      <sbb-attribution [map]="mapReady | async" [isDarkMode]="isDarkMode"></sbb-attribution>
     </div>
     <div class="map" #map></div>
   </div>

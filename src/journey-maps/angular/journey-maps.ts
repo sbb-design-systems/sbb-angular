@@ -271,6 +271,10 @@ export class SbbJourneyMaps implements OnInit, AfterViewInit, OnDestroy, OnChang
     };
   }
 
+  get isDarkMode(): boolean {
+    return !!this._styleOptions.mode && this._styleOptions.mode === 'dark';
+  }
+
   /**
    * The language used for localized labels.
    * Allowed values are <code>de</code>, <code>fr</code>, <code>it</code>, <code>en</code>.

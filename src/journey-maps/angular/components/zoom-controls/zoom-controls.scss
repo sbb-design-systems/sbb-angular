@@ -25,6 +25,10 @@
     width: 100%;
     left: 0;
     bottom: -1px;
+
+    @at-root .map-control-container.dark #{&} {
+      background: esta.$sbbColorMetal;
+    }
   }
 }
 

@@ -22,6 +22,11 @@
         margin: v.$controlsMarginSmall;
       }
     }
+
+    &.dark {
+      background: esta.$sbbColorBlack;
+      outline: 1px solid esta.$sbbColorMetal;
+    }
   }
 
   .map-control-button-wrapper {
@@ -57,6 +62,19 @@
         @include _map-control-button-wrapper-active;
       }
     }
+
+    @at-root .map-control-container.dark #{&} {
+      &:not([data-disabled='true']):active,
+      &:not([data-disabled='true']):has(:focus-visible) {
+        @include _map-control-button-wrapper-active-dark;
+      }
+
+      @media (hover: hover) {
+        &:not([data-disabled='true']):hover {
+          @include _map-control-button-wrapper-active-dark;
+        }
+      }
+    }
   }
 
   @media (forced-colors: active) {
@@ -73,6 +91,16 @@
 
   .map-control-button {
     background-color: esta.$sbbColorWhite;
+  }
+}
+
+@mixin _map-control-button-wrapper-active-dark {
+  @include _map-control-button-wrapper-active;
+
+  background-color: esta.$sbbColorSmoke;
+
+  .map-control-button {
+    background-color: esta.$sbbColorBlack;
   }
 }
 
@@ -104,6 +132,42 @@
       @at-root .map-control-container.small-buttons #{&} {
         height: 26px;
       }
+    }
+
+    @at-root .map-control-container.dark #{&} {
+      background-color: esta.$sbbColorWhite;
+
+      &:not([disabled]):focus-visible {
+        background-color: esta.$sbbColorBlack;
+      }
+
+      @media (hover: hover) {
+        &:not([disabled]):hover {
+          background-color: esta.$sbbColorBlack;
+        }
+      }
+
+      &:disabled {
+        cursor: default;
+        background-color: esta.$sbbColorAnthracite;
+      }
+    }
+  }
+}
+
+@mixin map-control-button-hover {
+  .map-control-button:hover,
+  .map-control-button-selected {
+    @extend .map-control-button;
+    background-color: esta.$sbbColorCharcoal;
+    color: esta.$sbbColorWhite;
+  }
+
+  @at-root .map-control-container.dark #{&} {
+    .map-control-button:hover,
+    .map-control-button-selected {
+      background-color: esta.$sbbColorSmoke;
+      color: esta.$sbbColorBlack;
     }
   }
 }
