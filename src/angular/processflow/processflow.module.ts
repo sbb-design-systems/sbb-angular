@@ -12,8 +12,12 @@ import { SbbStepHeader } from './step-header';
 import { SbbStepLabel } from './step-label';
 
 @NgModule({
-  imports: [CommonModule, PortalModule, CdkStepperModule, SbbCommonModule, SbbIconModule],
-  exports: [
+  imports: [
+    CommonModule,
+    PortalModule,
+    CdkStepperModule,
+    SbbCommonModule,
+    SbbIconModule,
     SbbStep,
     SbbStepLabel,
     SbbProcessflow,
@@ -22,7 +26,7 @@ import { SbbStepLabel } from './step-label';
     SbbStepHeader,
     SbbStepContent,
   ],
-  declarations: [
+  exports: [
     SbbStep,
     SbbStepLabel,
     SbbProcessflow,
