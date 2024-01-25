@@ -131,12 +131,6 @@ describe('SbbTags', () => {
     let component: TagsTestFixtureComponent;
     let fixture: ComponentFixture<TagsTestFixtureComponent>;
 
-    beforeEach(waitForAsync(() => {
-      TestBed.configureTestingModule({
-        imports: [TagsTestFixtureComponent],
-      }).compileComponents();
-    }));
-
     beforeEach(() => {
       fixture = TestBed.createComponent(TagsTestFixtureComponent);
       component = fixture.componentInstance;
@@ -413,12 +407,6 @@ describe('SbbTags', () => {
   describe('SbbTags with Reactive Forms and total amount set as input', () => {
     let component: TagsTestFixtureReactiveComponent;
     let fixture: ComponentFixture<TagsTestFixtureReactiveComponent>;
-
-    beforeEach(waitForAsync(() => {
-      TestBed.configureTestingModule({
-        imports: [TagsTestFixtureReactiveComponent],
-      }).compileComponents();
-    }));
 
     beforeEach(() => {
       fixture = TestBed.createComponent(TagsTestFixtureReactiveComponent);

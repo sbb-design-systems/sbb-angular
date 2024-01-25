@@ -109,16 +109,7 @@ describe('SbbCalendar', () => {
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-      imports: [
-        SbbDatepickerModule,
-        SbbIconTestingModule,
-        // Test components.
-        StandardCalendarComponent,
-        CalendarWithDateClassComponent,
-        CalendarWithMinMaxComponent,
-        CalendarWithDateFilterComponent,
-        CalendarWithSelectableMinDateComponent,
-      ],
+      imports: [SbbIconTestingModule],
       providers: [{ provide: NgZone, useFactory: () => (zone = new MockNgZone()) }],
     }).compileComponents();
   }));

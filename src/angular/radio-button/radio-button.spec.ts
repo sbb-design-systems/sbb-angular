@@ -219,27 +219,6 @@ class PreselectedRadioWithStaticValueAndNgIf {
 }
 
 describe('RadioButton', () => {
-  beforeEach(waitForAsync(() => {
-    TestBed.configureTestingModule({
-      imports: [
-        DisableableSbbRadioButton,
-        FocusableSbbRadioButton,
-        RadiosInsideRadioGroup,
-        RadioGroupWithNgModel,
-        RadioGroupWithFormControl,
-        StandaloneRadioButtons,
-        InterleavedRadioGroup,
-        TranscludingWrapper,
-        RadioButtonWithPredefinedTabindex,
-        RadioButtonWithPredefinedAriaAttributes,
-        RadiosInsidePreCheckedRadioGroup,
-        PreselectedRadioWithStaticValueAndNgIf,
-      ],
-    });
-
-    TestBed.compileComponents();
-  }));
-
   describe('inside of a group', () => {
     let fixture: ComponentFixture<RadiosInsideRadioGroup>;
     let groupDebugElement: DebugElement;

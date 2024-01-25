@@ -21,11 +21,7 @@ class StandardCalendarComponent {
 describe('SbbCalendarHeader', () => {
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-      imports: [
-        SbbIconTestingModule,
-        // Test components.
-        StandardCalendarComponent,
-      ],
+      imports: [SbbIconTestingModule],
     }).compileComponents();
   }));
 

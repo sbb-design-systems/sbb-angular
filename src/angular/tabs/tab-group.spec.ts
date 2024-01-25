@@ -23,24 +23,7 @@ import { SbbTab, SbbTabGroup, SbbTabHeader, SbbTabsModule, SBB_TABS_CONFIG } fro
 describe('SbbTabGroup', () => {
   beforeEach(fakeAsync(() => {
     TestBed.configureTestingModule({
-      imports: [
-        NoopAnimationsModule,
-        SbbIconTestingModule,
-        SimpleTabsTestApp,
-        SimpleDynamicTabsTestApp,
-        BindedTabsTestApp,
-        AsyncTabsTestApp,
-        DisabledTabsTestApp,
-        TabGroupWithSimpleApi,
-        TemplateTabs,
-        TabGroupWithAriaInputs,
-        TabGroupWithIsActiveBinding,
-        NestedTabs,
-        TabGroupWithIndirectDescendantTabs,
-        TabGroupWithSpaceAbove,
-        NestedTabGroupWithLabel,
-        TabsWithClassesTestApp,
-      ],
+      imports: [NoopAnimationsModule, SbbIconTestingModule],
     });
 
     TestBed.compileComponents();
@@ -907,7 +890,7 @@ describe('SbbTabNavBar with a default config', () => {
 
   beforeEach(fakeAsync(() => {
     TestBed.configureTestingModule({
-      imports: [BrowserAnimationsModule, SbbIconTestingModule, SimpleTabsTestApp],
+      imports: [BrowserAnimationsModule, SbbIconTestingModule],
       providers: [{ provide: SBB_TABS_CONFIG, useValue: { dynamicHeight: true } }],
     });
 
@@ -927,12 +910,7 @@ describe('SbbTabNavBar with a default config', () => {
 describe('nested SbbTabGroup with enabled animations', () => {
   beforeEach(fakeAsync(() => {
     TestBed.configureTestingModule({
-      imports: [
-        BrowserAnimationsModule,
-        SbbIconTestingModule,
-        NestedTabs,
-        TabsWithCustomAnimationDuration,
-      ],
+      imports: [BrowserAnimationsModule, SbbIconTestingModule],
     });
 
     TestBed.compileComponents();

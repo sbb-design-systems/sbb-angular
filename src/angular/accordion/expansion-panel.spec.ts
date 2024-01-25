@@ -34,19 +34,7 @@ describe('SbbExpansionPanel', () => {
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-      imports: [
-        NoopAnimationsModule,
-        SbbAccordionModule,
-        SbbIconTestingModule,
-        PanelWithContent,
-        PanelWithContentInNgIf,
-        PanelWithCustomMargin,
-        LazyPanelWithContent,
-        LazyPanelOpenOnLoad,
-        PanelWithTwoWayBinding,
-        PanelWithHeaderTabindex,
-        NestedLazyPanelWithContent,
-      ],
+      imports: [NoopAnimationsModule, SbbIconTestingModule],
     });
     TestBed.compileComponents();
   }));

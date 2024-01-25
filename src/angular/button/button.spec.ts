@@ -10,18 +10,7 @@ import { SbbButton, SbbButtonModule } from './index';
 describe('SbbButton', () => {
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-      imports: [
-        SbbIconTestingModule,
-        ButtonTest,
-        ButtonWithCustomSvgIconTest,
-        ButtonAltTest,
-        ButtonSecondaryTest,
-        ButtonGhostTest,
-        ButtonIconTest,
-        ButtonFramelessTest,
-        ButtonIconTestMultiple,
-        LinkTest,
-      ],
+      imports: [SbbIconTestingModule],
     });
 
     TestBed.compileComponents();

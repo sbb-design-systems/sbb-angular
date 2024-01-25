@@ -31,16 +31,7 @@ describe('SbbSort', () => {
 
     beforeEach(waitForAsync(() => {
       TestBed.configureTestingModule({
-        imports: [
-          NoopAnimationsModule,
-          SimpleSbbSortApp,
-          SbbTableSbbSortApp,
-          SbbSortHeaderMissingSbbSortApp,
-          SbbSortDuplicateSbbSortableIdsApp,
-          SbbSortableMissingIdApp,
-          SbbSortableInvalidDirection,
-          SbbSortWithArrowPosition,
-        ],
+        imports: [NoopAnimationsModule],
       }).compileComponents();
     }));
 
@@ -506,7 +497,7 @@ describe('SbbSort', () => {
 
     beforeEach(waitForAsync(() => {
       TestBed.configureTestingModule({
-        imports: [NoopAnimationsModule, SbbSortWithoutExplicitInputs],
+        imports: [NoopAnimationsModule],
         providers: [
           {
             provide: SBB_SORT_DEFAULT_OPTIONS,
@@ -539,7 +530,7 @@ describe('SbbSort', () => {
 
     beforeEach(waitForAsync(() => {
       TestBed.configureTestingModule({
-        imports: [SbbTableModule, CdkTableModule, NoopAnimationsModule, SbbSortWithoutInputs],
+        imports: [NoopAnimationsModule],
         providers: [
           {
             provide: SBB_SORT_DEFAULT_OPTIONS,

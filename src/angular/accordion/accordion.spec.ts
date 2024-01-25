@@ -23,14 +23,7 @@ describe('AccordionDirective', () => {
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-      imports: [
-        BrowserAnimationsModule,
-        SbbIconTestingModule,
-        AccordionWithHideToggle,
-        NestedPanel,
-        SetOfItems,
-        NestedAccordions,
-      ],
+      imports: [BrowserAnimationsModule, SbbIconTestingModule],
     });
     TestBed.compileComponents();
 

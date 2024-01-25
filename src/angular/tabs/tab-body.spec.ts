@@ -23,7 +23,7 @@ describe('SbbTabBody', () => {
   beforeEach(waitForAsync(() => {
     dir = 'ltr';
     TestBed.configureTestingModule({
-      imports: [NoopAnimationsModule, SbbIconTestingModule, SimpleTabBodyApp],
+      imports: [NoopAnimationsModule, SbbIconTestingModule],
       providers: [
         { provide: Directionality, useFactory: () => ({ value: dir, change: dirChange }) },
       ],
@@ -136,7 +136,7 @@ describe('SbbTabBody', () => {
   it('should mark the tab body content as a scrollable container', () => {
     TestBed.resetTestingModule()
       .configureTestingModule({
-        imports: [NoopAnimationsModule, ScrollingModule, SbbIconTestingModule, SimpleTabBodyApp],
+        imports: [NoopAnimationsModule, ScrollingModule, SbbIconTestingModule],
       })
       .compileComponents();
 

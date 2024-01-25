@@ -1,6 +1,6 @@
 import { BACKSPACE, DELETE } from '@angular/cdk/keycodes';
 import { Component, DebugElement, ViewChild } from '@angular/core';
-import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
+import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 import { createKeyboardEvent, dispatchFakeEvent } from '@sbb-esta/angular/core/testing';
 import { SbbIconModule } from '@sbb-esta/angular/icon';
@@ -15,22 +15,6 @@ describe('SbbChip', () => {
   let chipDebugElement: DebugElement;
   let chipNativeElement: HTMLElement;
   let chipInstance: SbbChip;
-
-  beforeEach(waitForAsync(() => {
-    TestBed.configureTestingModule({
-      imports: [
-        SbbChipsModule,
-        SbbIconModule,
-        SbbIconTestingModule,
-        BasicChip,
-        SingleChip,
-        BasicChipWithStaticTabindex,
-        BasicChipWithBoundTabindex,
-      ],
-    });
-
-    TestBed.compileComponents();
-  }));
 
   describe('SbbBasicChip', () => {
     it('adds a class to indicate that it is a basic chip', () => {

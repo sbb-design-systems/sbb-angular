@@ -73,12 +73,7 @@ class RadioButtonPanelIconTest {
 describe('SbbRadioButtonPanel', () => {
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-      imports: [
-        SbbIconTestingModule,
-        ModelOptionSelectionTest,
-        RadioButtonPanelDirectiveTest,
-        RadioButtonPanelIconTest,
-      ],
+      imports: [SbbIconTestingModule],
     }).compileComponents();
   }));
 

@@ -343,17 +343,7 @@ describe('SbbToggle', () => {
 
     beforeEach(waitForAsync(() => {
       TestBed.configureTestingModule({
-        imports: [
-          SbbToggleModule,
-          CommonModule,
-          NoopAnimationsModule,
-          SbbIconModule,
-          SbbDatepickerModule,
-          SbbInputModule,
-          ReactiveFormsModule,
-          SbbIconTestingModule,
-          ToggleReactiveDefaultValueTestComponent,
-        ],
+        imports: [NoopAnimationsModule, SbbIconTestingModule],
       }).compileComponents();
     }));
 
@@ -379,17 +369,7 @@ describe('SbbToggle', () => {
 
     beforeEach(waitForAsync(() => {
       TestBed.configureTestingModule({
-        imports: [
-          SbbToggleModule,
-          CommonModule,
-          NoopAnimationsModule,
-          SbbIconModule,
-          SbbDatepickerModule,
-          SbbInputModule,
-          FormsModule,
-          SbbIconTestingModule,
-          ToggleTemplateDrivenTestComponent,
-        ],
+        imports: [NoopAnimationsModule, SbbIconTestingModule],
       }).compileComponents();
     }));
 
@@ -436,13 +416,7 @@ describe('SbbToggle', () => {
 
     beforeEach(waitForAsync(() => {
       TestBed.configureTestingModule({
-        imports: [
-          SbbToggleModule,
-          CommonModule,
-          NoopAnimationsModule,
-          SbbIconTestingModule,
-          ToggleSimpleCaseTestComponent,
-        ],
+        imports: [NoopAnimationsModule, SbbIconTestingModule],
       }).compileComponents();
     }));
 
@@ -488,15 +462,7 @@ describe('SbbToggle', () => {
 
     beforeEach(waitForAsync(() => {
       TestBed.configureTestingModule({
-        imports: [
-          SbbToggleModule,
-          CommonModule,
-          NoopAnimationsModule,
-          ReactiveFormsModule,
-          SbbIconModule,
-          SbbIconTestingModule,
-          ToggleOnlySecondWithContentTestComponent,
-        ],
+        imports: [NoopAnimationsModule, SbbIconTestingModule],
       }).compileComponents();
     }));
 

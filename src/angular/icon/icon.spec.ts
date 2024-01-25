@@ -49,18 +49,7 @@ describe('SbbIcon', () => {
     errorHandler = jasmine.createSpyObj('errorHandler', ['handleError']);
 
     TestBed.configureTestingModule({
-      imports: [
-        HttpClientTestingModule,
-        IconWithLigature,
-        IconWithCustomFontCss,
-        IconFromSvgName,
-        IconWithAriaHiddenFalse,
-        IconWithBindingAndNgIf,
-        InlineIcon,
-        SvgIconWithUserContent,
-        IconWithLigatureAndSvgBinding,
-        BlankIcon,
-      ],
+      imports: [HttpClientTestingModule],
       providers: [
         {
           provide: SBB_ICON_LOCATION,

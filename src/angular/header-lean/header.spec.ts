@@ -15,12 +15,7 @@ describe('SbbHeaderLean', () => {
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-      imports: [
-        NoopAnimationsModule,
-        SbbIconTestingModule,
-        SimpleHeaderLean,
-        HeaderLeanWithAppChooser,
-      ],
+      imports: [NoopAnimationsModule, SbbIconTestingModule],
       providers: [
         {
           provide: MediaMatcher,

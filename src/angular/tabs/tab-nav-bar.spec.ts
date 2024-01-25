@@ -15,15 +15,7 @@ describe('SbbTabNavBar', () => {
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-      imports: [
-        SbbIconTestingModule,
-        SimpleTabNavBarTestApp,
-        TabLinkWithNgIf,
-        TabLinkWithTabIndexBinding,
-        TabLinkWithNativeTabindexAttr,
-        TabBarWithInactiveTabsOnInit,
-        TabBarWithPanel,
-      ],
+      imports: [SbbIconTestingModule],
       providers: [
         { provide: Directionality, useFactory: () => ({ value: dir, change: dirChange }) },
       ],

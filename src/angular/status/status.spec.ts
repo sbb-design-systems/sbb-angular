@@ -43,14 +43,7 @@ class StatusWithAriaLabelComponent {}
 describe('SbbStatus', () => {
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-      imports: [
-        SbbIconTestingModule,
-        ValidStatusComponent,
-        WarningStatusComponent,
-        InvalidStatusComponent,
-        StatusWithMessageComponent,
-        StatusWithAriaLabelComponent,
-      ],
+      imports: [SbbIconTestingModule],
     }).compileComponents();
   }));
 

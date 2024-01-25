@@ -73,12 +73,7 @@ class CheckboxPanelIconTest {
 describe('SbbCheckboxPanel', () => {
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-      imports: [
-        SbbIconTestingModule,
-        ModelOptionSelectionMultipleTest,
-        CheckboxPanelDirectivesTest,
-        CheckboxPanelIconTest,
-      ],
+      imports: [SbbIconTestingModule],
     }).compileComponents();
   }));
 

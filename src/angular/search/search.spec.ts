@@ -216,7 +216,7 @@ describe('SbbSearch', () => {
 
     beforeEach(waitForAsync(() => {
       TestBed.configureTestingModule({
-        imports: [NoopAnimationsModule, SbbIconTestingModule, SimpleSearchAutocompleteComponent],
+        imports: [NoopAnimationsModule, SbbIconTestingModule],
       }).compileComponents();
     }));
 

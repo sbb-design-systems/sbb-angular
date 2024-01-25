@@ -95,7 +95,7 @@ describe('SbbBreadcrumbs', () => {
 
     beforeEach(waitForAsync(() => {
       TestBed.configureTestingModule({
-        imports: [SbbBreadcrumbModule, BreadcrumbsSimpleTest, SbbIconTestingModule],
+        imports: [BreadcrumbsSimpleTest, SbbIconTestingModule],
       }).compileComponents();
     }));
 
@@ -156,7 +156,7 @@ describe('SbbBreadcrumbs', () => {
 
     beforeEach(waitForAsync(() => {
       TestBed.configureTestingModule({
-        imports: [BreadcrumbsMenuTest, SbbIconTestingModule, NoopAnimationsModule],
+        imports: [SbbIconTestingModule, NoopAnimationsModule],
       }).compileComponents();
     }));
 

@@ -55,18 +55,7 @@ const registerClearMediaMatcher = () => {
 describe('SbbSidebar', () => {
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-      imports: [
-        NoopAnimationsModule,
-        SbbIconTestingModule,
-        BasicTestComponent,
-        SidebarSetToOpenedTrueTestComponent,
-        TwoSidebarsTestComponent,
-        SidebarWithFocusableElementsTestComponent,
-        SidebarOpenBindingTestComponent,
-        SidebarWithoutFocusableElementsTestComponent,
-        IndirectDescendantSidebarTestComponent,
-        NestedSidebarContainersTestComponent,
-      ],
+      imports: [NoopAnimationsModule, SbbIconTestingModule],
       providers: [PROVIDE_FAKE_MEDIA_MATCHER],
     });
 
@@ -480,7 +469,7 @@ describe('SbbSidebar', () => {
     it('should not throw when a two-way binding is toggled quickly while animating', fakeAsync(() => {
       TestBed.resetTestingModule()
         .configureTestingModule({
-          imports: [BrowserAnimationsModule, SbbIconTestingModule, SidebarOpenBindingTestComponent],
+          imports: [BrowserAnimationsModule, SbbIconTestingModule],
           providers: [PROVIDE_FAKE_MEDIA_MATCHER],
         })
         .compileComponents();
@@ -646,17 +635,7 @@ describe('SbbSidebar', () => {
 describe('SbbSidebarContainer', () => {
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-      imports: [
-        NoopAnimationsModule,
-        SbbIconTestingModule,
-        SidebarContainerEmptyTestComponent,
-        SidebarDelayedTestComponent,
-        SidebarSetToOpenedTrueTestComponent,
-        SidebarContainerStateChangesTestAppTestComponent,
-        ZeroWithSidebarTestComponent,
-        BasicTestComponent,
-        SidebarContainerWithContentTestComponent,
-      ],
+      imports: [NoopAnimationsModule, SbbIconTestingModule],
       providers: [PROVIDE_FAKE_MEDIA_MATCHER],
     });
 
@@ -754,11 +733,7 @@ describe('SbbSidebarContainer', () => {
   it('should not animate when the sidebar is open on load', fakeAsync(() => {
     TestBed.resetTestingModule()
       .configureTestingModule({
-        imports: [
-          BrowserAnimationsModule,
-          SbbIconTestingModule,
-          SidebarSetToOpenedTrueTestComponent,
-        ],
+        imports: [BrowserAnimationsModule, SbbIconTestingModule],
         providers: [PROVIDE_FAKE_MEDIA_MATCHER],
       })
       .compileComponents();
@@ -843,15 +818,11 @@ describe('SbbSidebar Usage', () => {
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
       imports: [
-        SbbSidebarModule,
         NoopAnimationsModule,
-        SbbAccordionModule,
         RouterTestingModule.withRoutes([
           { path: 'link', pathMatch: 'full', component: SimpleRouteComponent },
         ]),
         SbbIconTestingModule,
-        SbbSidebarTestComponent,
-        SimpleRouteComponent,
       ],
       providers: [PROVIDE_FAKE_MEDIA_MATCHER],
     });

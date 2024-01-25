@@ -10,15 +10,7 @@ import { SbbAlert, SbbAlertModule, SbbAlertOutlet, SbbAlertService } from './ind
 describe('SbbAlert', () => {
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-      imports: [
-        RouterTestingModule,
-        NoopAnimationsModule,
-        SbbIconTestingModule,
-        SbbAlertModule,
-        AlertSimple,
-        AlertRouterLink,
-        AlertExternalLink,
-      ],
+      imports: [RouterTestingModule, NoopAnimationsModule, SbbIconTestingModule],
     }).compileComponents();
   }));
 
@@ -114,7 +106,7 @@ describe('SbbAlertOutlet', () => {
 
     beforeEach(waitForAsync(() => {
       TestBed.configureTestingModule({
-        imports: [SbbAlertModule, AlertOutletSimple, NoopAnimationsModule],
+        imports: [NoopAnimationsModule],
       }).compileComponents();
     }));
 
@@ -271,7 +263,7 @@ describe('SbbAlertOutlet', () => {
   describe('with two outlets', () => {
     beforeEach(waitForAsync(() => {
       TestBed.configureTestingModule({
-        imports: [SbbAlertModule, AlertOutletError, NoopAnimationsModule],
+        imports: [NoopAnimationsModule],
       }).compileComponents();
     }));
 
@@ -286,7 +278,7 @@ describe('SbbAlertOutlet', () => {
 
     beforeEach(waitForAsync(() => {
       TestBed.configureTestingModule({
-        imports: [SbbAlertModule, AlertOutletWithoutOutlet, NoopAnimationsModule],
+        imports: [NoopAnimationsModule],
       }).compileComponents();
     }));
 

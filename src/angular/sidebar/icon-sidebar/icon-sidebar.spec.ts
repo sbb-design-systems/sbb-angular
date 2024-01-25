@@ -39,19 +39,7 @@ describe('SbbIconSidebar', () => {
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-      imports: [
-        A11yModule,
-        NoopAnimationsModule,
-        SbbIconTestingModule,
-        BasicTestComponent,
-        SidebarSetToExpandedFalseTestComponent,
-        SidebarSetToExpandedTrueTestComponent,
-        TwoSidebarsTestComponent,
-        SidebarExpandedBindingTestComponent,
-        IndirectDescendantSidebarTestComponent,
-        NestedSidebarContainersTestComponent,
-        IconSidebarWithLinksTestComponent,
-      ],
+      imports: [A11yModule, NoopAnimationsModule, SbbIconTestingModule],
       providers: [PROVIDE_FAKE_MEDIA_MATCHER],
     });
 
@@ -175,11 +163,7 @@ describe('SbbIconSidebar', () => {
     it('should not throw when a two-way binding is toggled quickly while animating', fakeAsync(() => {
       TestBed.resetTestingModule()
         .configureTestingModule({
-          imports: [
-            BrowserAnimationsModule,
-            SbbIconTestingModule,
-            SidebarExpandedBindingTestComponent,
-          ],
+          imports: [BrowserAnimationsModule, SbbIconTestingModule],
         })
         .compileComponents();
 
@@ -367,16 +351,7 @@ describe('SbbIconSidebarContainer', () => {
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-      imports: [
-        A11yModule,
-        NoopAnimationsModule,
-        SbbIconTestingModule,
-        SidebarContainerEmptyTestComponent,
-        SidebarDelayedTestComponent,
-        SidebarSetToExpandedTrueTestComponent,
-        BasicTestComponent,
-        SidebarContainerWithContentTestComponent,
-      ],
+      imports: [NoopAnimationsModule, SbbIconTestingModule],
       providers: [PROVIDE_FAKE_MEDIA_MATCHER],
     });
 

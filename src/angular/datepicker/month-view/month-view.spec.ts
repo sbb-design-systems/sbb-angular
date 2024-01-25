@@ -110,14 +110,6 @@ class MonthViewComponentWithWeekNumbers {
 describe('SbbMonthView', () => {
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-      imports: [
-        // Test components.
-        StandardMonthViewComponent,
-        MonthViewWithDateFilterComponent,
-        MonthViewWithDateClassComponent,
-        MonthViewWithDateRangeComponent,
-        MonthViewComponentWithWeekNumbers,
-      ],
       providers: [
         { provide: SbbDateAdapter, useClass: SbbNativeDateAdapter },
         { provide: SBB_DATE_FORMATS, useValue: SBB_DATE_PIPE_DATE_FORMATS },

@@ -1,16 +1,10 @@
-import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
+import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { SbbLoadingIndicator } from './loading-indicator';
 
 describe('SbbLoadingIndicator', () => {
   let component: SbbLoadingIndicator;
   let fixture: ComponentFixture<SbbLoadingIndicator>;
-
-  beforeEach(waitForAsync(() => {
-    TestBed.configureTestingModule({
-      imports: [SbbLoadingIndicator],
-    }).compileComponents();
-  }));
 
   beforeEach(() => {
     fixture = TestBed.createComponent(SbbLoadingIndicator);

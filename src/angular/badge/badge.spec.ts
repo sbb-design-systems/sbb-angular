@@ -11,10 +11,6 @@ describe('SbbBadge', () => {
   let badgeHostDebugElement: DebugElement;
 
   beforeEach(fakeAsync(() => {
-    TestBed.configureTestingModule({
-      imports: [SbbBadgeModule, BadgeTestApp, PreExistingBadge, NestedBadge, BadgeOnTemplate],
-    }).compileComponents();
-
     fixture = TestBed.createComponent(BadgeTestApp);
     testComponent = fixture.debugElement.componentInstance;
     fixture.detectChanges();

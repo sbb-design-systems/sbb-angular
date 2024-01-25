@@ -30,23 +30,7 @@ describe('SbbTable', () => {
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-      imports: [
-        NoopAnimationsModule,
-        SbbIconTestingModule,
-        SbbTableTestComponent,
-        SbbTableWithWhenRowTestComponent,
-        ArrayDataSourceSbbTableTestComponent,
-        NativeHtmlTableTestComponent,
-        SbbTableWithSortTestComponent,
-        SbbTableWithPaginatorTestComponent,
-        StickyTableTestComponent,
-        TableWithNgContainerRowTestComponent,
-        NestedHtmlTableTestComponent,
-        TableWithColumnGroupingTestComponent,
-        TableWithWrapper,
-        TableWithWrapperAndStickyColumnsTestComponent,
-        TableWithTwoStickyColumnsTestComponent,
-      ],
+      imports: [NoopAnimationsModule, SbbIconTestingModule],
       providers: [ViewportRuler, { provide: ViewportRuler, useValue: viewportRulerMock }],
     }).compileComponents();
   }));

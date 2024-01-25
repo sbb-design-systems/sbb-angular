@@ -1,5 +1,5 @@
 import { Component, DebugElement } from '@angular/core';
-import { ComponentFixture, fakeAsync, flush, TestBed, waitForAsync } from '@angular/core/testing';
+import { ComponentFixture, fakeAsync, flush, TestBed } from '@angular/core/testing';
 import { FormControl, FormGroup, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { By } from '@angular/platform-browser';
 import {
@@ -78,12 +78,6 @@ describe('SbbTextarea behaviour', () => {
   let component: TextareaTestComponent;
   let fixture: ComponentFixture<TextareaTestComponent>;
   let innerComponent: DebugElement;
-
-  beforeEach(waitForAsync(() => {
-    TestBed.configureTestingModule({
-      imports: [SbbTextareaModule, FormsModule, TextareaTestComponent],
-    }).compileComponents();
-  }));
 
   beforeEach(() => {
     fixture = TestBed.createComponent(TextareaTestComponent);
@@ -305,18 +299,6 @@ describe('SbbTextarea reactive forms in sbb-form-field behaviour', () => {
   let component: TextareaSbbFieldTestComponent;
   let fixture: ComponentFixture<TextareaSbbFieldTestComponent>;
   let textarea: HTMLTextAreaElement;
-
-  beforeEach(waitForAsync(() => {
-    TestBed.configureTestingModule({
-      imports: [
-        SbbTextareaModule,
-        ReactiveFormsModule,
-        FormsModule,
-        SbbFormFieldModule,
-        TextareaSbbFieldTestComponent,
-      ],
-    }).compileComponents();
-  }));
 
   beforeEach(() => {
     fixture = TestBed.createComponent(TextareaSbbFieldTestComponent);

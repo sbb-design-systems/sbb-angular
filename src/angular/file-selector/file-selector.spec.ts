@@ -100,7 +100,7 @@ describe('SbbFileSelector using mock component', () => {
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-      imports: [SbbIconTestingModule, FileSelectorTestComponent],
+      imports: [SbbIconTestingModule],
     }).compileComponents();
   }));
 
@@ -242,7 +242,7 @@ describe('SbbFileSelector using mock component and limited behaviour ', () => {
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-      imports: [SbbIconTestingModule, FileSelectorTest2Component],
+      imports: [SbbIconTestingModule],
     }).compileComponents();
   }));
 

@@ -30,7 +30,7 @@ describe('SbbTabHeader', () => {
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-      imports: [ScrollingModule, SbbIconTestingModule, SimpleTabHeaderApp],
+      imports: [ScrollingModule, SbbIconTestingModule],
       providers: [ViewportRuler],
     });
 
