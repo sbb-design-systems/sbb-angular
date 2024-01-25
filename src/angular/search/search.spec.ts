@@ -31,6 +31,8 @@ import { SbbSearch, SbbSearchModule } from './index';
       <input sbbInput placeholder="Search" />
     </sbb-search>
   `,
+  standalone: true,
+  imports: [SbbIconTestingModule, SbbInputModule, SbbSearchModule],
 })
 export class SimpleSearchComponent {
   searchResults: string[] = [];
@@ -56,6 +58,14 @@ export class SimpleSearchComponent {
       }
     </sbb-autocomplete>
   `,
+  standalone: true,
+  imports: [
+    OverlayModule,
+    SbbAutocompleteModule,
+    SbbIconTestingModule,
+    SbbInputModule,
+    SbbSearchModule,
+  ],
 })
 export class SimpleSearchAutocompleteComponent {
   lastSearch = '';
@@ -89,6 +99,14 @@ export class SimpleSearchAutocompleteComponent {
       </sbb-search>
     </button>
   `,
+  standalone: true,
+  imports: [
+    OverlayModule,
+    SbbAutocompleteModule,
+    SbbIconTestingModule,
+    SbbInputModule,
+    SbbSearchModule,
+  ],
 })
 export class SimpleSearchHeaderComponent {
   label = 'Suche';
@@ -116,6 +134,14 @@ export class SimpleSearchHeaderComponent {
       }
     </sbb-autocomplete>
   `,
+  standalone: true,
+  imports: [
+    OverlayModule,
+    SbbAutocompleteModule,
+    SbbIconTestingModule,
+    SbbInputModule,
+    SbbSearchModule,
+  ],
 })
 export class SimpleSearchAutocompleteHeaderComponent {
   lastSearch = '';
@@ -147,8 +173,13 @@ describe('SbbSearch', () => {
 
     beforeEach(waitForAsync(() => {
       TestBed.configureTestingModule({
-        imports: [NoopAnimationsModule, SbbIconTestingModule, SbbInputModule, SbbSearchModule],
-        declarations: [SimpleSearchComponent],
+        imports: [
+          NoopAnimationsModule,
+          SbbIconTestingModule,
+          SbbInputModule,
+          SbbSearchModule,
+          SimpleSearchComponent,
+        ],
       }).compileComponents();
     }));
 
@@ -210,8 +241,8 @@ describe('SbbSearch', () => {
           SbbIconTestingModule,
           SbbInputModule,
           SbbSearchModule,
+          SimpleSearchAutocompleteComponent,
         ],
-        declarations: [SimpleSearchAutocompleteComponent],
       }).compileComponents();
     }));
 
@@ -352,8 +383,8 @@ describe('SbbSearch', () => {
             SbbIconTestingModule,
             SbbInputModule,
             SbbSearchModule,
+            SimpleSearchHeaderComponent,
           ],
-          declarations: [SimpleSearchHeaderComponent],
         }).compileComponents();
 
         inject([OverlayContainer], (oc: OverlayContainer) => {
@@ -439,8 +470,8 @@ describe('SbbSearch', () => {
             SbbIconTestingModule,
             SbbInputModule,
             SbbSearchModule,
+            SimpleSearchAutocompleteHeaderComponent,
           ],
-          declarations: [SimpleSearchAutocompleteHeaderComponent],
         }).compileComponents();
 
         inject([OverlayContainer], (oc: OverlayContainer) => {
