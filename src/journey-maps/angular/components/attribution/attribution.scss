@@ -1,11 +1,13 @@
 @use './../../style/functions' as f;
 @use './../../style/icons' as i;
+@use '@sbb-esta/angular' as esta;
 
 @include f.map-controls-shared;
 @include f.map-control-icon;
 @include f.map-control-icon-button('copyright');
 
 $attributionBackground: hsla(0, 0%, 100%, 0.75);
+$attributionBackgroundDark: hsla(0, 0%, 0%, 0.75);
 
 .attribution-wrapper {
   display: flex;
@@ -25,6 +27,11 @@ $attributionBackground: hsla(0, 0%, 100%, 0.75);
 
     .attribution-item {
       text-align: right;
+      color: esta.$sbbColorBlack;
+
+      ::ng-deep & > a {
+        color: esta.$sbbColorBlack;
+      }
     }
   }
 
@@ -77,6 +84,26 @@ $attributionBackground: hsla(0, 0%, 100%, 0.75);
       }
       .map-control-button {
         @include i.icon-mask('close');
+      }
+    }
+  }
+
+  &.dark {
+    background-color: $attributionBackgroundDark;
+
+    .attribution-text {
+      .attribution-item {
+        ::ng-deep & > a {
+          color: esta.$sbbColorWhite;
+        }
+      }
+    }
+
+    &.var-compact {
+      background: none;
+
+      &.var-open {
+        background: $attributionBackgroundDark;
       }
     }
   }
