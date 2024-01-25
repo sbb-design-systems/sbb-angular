@@ -38,8 +38,10 @@ describe('SbbTabHeader', () => {
         ObserversModule,
         SbbIconTestingModule,
         SbbIconModule,
+        SbbTabHeader,
+        SbbTabLabelWrapper,
+        SimpleTabHeaderApp,
       ],
-      declarations: [SbbTabHeader, SbbTabLabelWrapper, SimpleTabHeaderApp],
       providers: [ViewportRuler],
     });
 
@@ -636,6 +638,16 @@ interface Tab {
         width: 130px;
       }
     `,
+  ],
+  standalone: true,
+  imports: [
+    PortalModule,
+    ScrollingModule,
+    SbbTabHeader,
+    SbbTabLabelWrapper,
+    ObserversModule,
+    SbbIconTestingModule,
+    SbbIconModule,
   ],
 })
 class SimpleTabHeaderApp {

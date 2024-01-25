@@ -24,8 +24,15 @@ describe('SbbTabBody', () => {
   beforeEach(waitForAsync(() => {
     dir = 'ltr';
     TestBed.configureTestingModule({
-      imports: [PortalModule, NoopAnimationsModule, SbbIconTestingModule, SbbIconModule],
-      declarations: [SbbTabBody, SbbTabBodyPortal, SimpleTabBodyApp],
+      imports: [
+        PortalModule,
+        NoopAnimationsModule,
+        SbbIconTestingModule,
+        SbbIconModule,
+        SbbTabBody,
+        SbbTabBodyPortal,
+        SimpleTabBodyApp,
+      ],
       providers: [
         { provide: Directionality, useFactory: () => ({ value: dir, change: dirChange }) },
       ],
@@ -144,8 +151,10 @@ describe('SbbTabBody', () => {
           ScrollingModule,
           SbbIconModule,
           SbbIconTestingModule,
+          SbbTabBody,
+          SbbTabBodyPortal,
+          SimpleTabBodyApp,
         ],
-        declarations: [SbbTabBody, SbbTabBodyPortal, SimpleTabBodyApp],
       })
       .compileComponents();
 
@@ -163,6 +172,8 @@ describe('SbbTabBody', () => {
     <ng-template>Tab Body Content</ng-template>
     <sbb-tab-body [content]="content" [position]="position" [origin]="origin"></sbb-tab-body>
   `,
+  standalone: true,
+  imports: [PortalModule, SbbIconTestingModule, SbbIconModule, SbbTabBody],
 })
 class SimpleTabBodyApp implements AfterContentInit {
   content: TemplatePortal;

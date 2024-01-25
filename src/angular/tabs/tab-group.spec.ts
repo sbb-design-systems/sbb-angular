@@ -1,4 +1,5 @@
 import { LEFT_ARROW, RIGHT_ARROW } from '@angular/cdk/keycodes';
+import { AsyncPipe } from '@angular/common';
 import { Component, DebugElement, OnInit, QueryList, ViewChild, ViewChildren } from '@angular/core';
 import {
   ComponentFixture,
@@ -22,8 +23,10 @@ import { SbbTab, SbbTabGroup, SbbTabHeader, SbbTabsModule, SBB_TABS_CONFIG } fro
 describe('SbbTabGroup', () => {
   beforeEach(fakeAsync(() => {
     TestBed.configureTestingModule({
-      imports: [SbbTabsModule, NoopAnimationsModule, SbbIconTestingModule],
-      declarations: [
+      imports: [
+        SbbTabsModule,
+        NoopAnimationsModule,
+        SbbIconTestingModule,
         SimpleTabsTestApp,
         SimpleDynamicTabsTestApp,
         BindedTabsTestApp,
@@ -905,8 +908,7 @@ describe('SbbTabNavBar with a default config', () => {
 
   beforeEach(fakeAsync(() => {
     TestBed.configureTestingModule({
-      imports: [SbbTabsModule, BrowserAnimationsModule, SbbIconTestingModule],
-      declarations: [SimpleTabsTestApp],
+      imports: [SbbTabsModule, BrowserAnimationsModule, SbbIconTestingModule, SimpleTabsTestApp],
       providers: [{ provide: SBB_TABS_CONFIG, useValue: { dynamicHeight: true } }],
     });
 
@@ -926,8 +928,13 @@ describe('SbbTabNavBar with a default config', () => {
 describe('nested SbbTabGroup with enabled animations', () => {
   beforeEach(fakeAsync(() => {
     TestBed.configureTestingModule({
-      imports: [SbbTabsModule, BrowserAnimationsModule, SbbIconTestingModule],
-      declarations: [NestedTabs, TabsWithCustomAnimationDuration],
+      imports: [
+        SbbTabsModule,
+        BrowserAnimationsModule,
+        SbbIconTestingModule,
+        NestedTabs,
+        TabsWithCustomAnimationDuration,
+      ],
     });
 
     TestBed.compileComponents();
@@ -994,6 +1001,8 @@ describe('nested SbbTabGroup with enabled animations', () => {
       </sbb-tab>
     </sbb-tab-group>
   `,
+  standalone: true,
+  imports: [SbbTabsModule, SbbIconTestingModule],
 })
 class SimpleTabsTestApp {
   @ViewChild(SbbTabGroup) tabGroup: SbbTabGroup;
@@ -1026,6 +1035,8 @@ class SimpleTabsTestApp {
       }
     </sbb-tab-group>
   `,
+  standalone: true,
+  imports: [SbbTabsModule, SbbIconTestingModule],
 })
 class SimpleDynamicTabsTestApp {
   tabs = [
@@ -1054,6 +1065,8 @@ class SimpleDynamicTabsTestApp {
       }
     </sbb-tab-group>
   `,
+  standalone: true,
+  imports: [SbbTabsModule, SbbIconTestingModule],
 })
 class BindedTabsTestApp {
   tabs = [
@@ -1088,6 +1101,8 @@ class BindedTabsTestApp {
       </sbb-tab>
     </sbb-tab-group>
   `,
+  standalone: true,
+  imports: [SbbTabsModule, SbbIconTestingModule],
 })
 class DisabledTabsTestApp {
   @ViewChildren(SbbTab) tabs: QueryList<SbbTab>;
@@ -1105,6 +1120,8 @@ class DisabledTabsTestApp {
       }
     </sbb-tab-group>
   `,
+  standalone: true,
+  imports: [SbbTabsModule, AsyncPipe, SbbIconTestingModule],
 })
 class AsyncTabsTestApp implements OnInit {
   private _tabs = [
@@ -1131,6 +1148,8 @@ class AsyncTabsTestApp implements OnInit {
       <sbb-tab label="Legumes"> <p #legumes>Peanuts</p> </sbb-tab>
     </sbb-tab-group>
   `,
+  standalone: true,
+  imports: [SbbTabsModule, SbbIconTestingModule],
 })
 class TabGroupWithSimpleApi {
   preserveContent = false;
@@ -1152,6 +1171,8 @@ class TabGroupWithSimpleApi {
       </sbb-tab>
     </sbb-tab-group>
   `,
+  standalone: true,
+  imports: [SbbTabsModule, SbbIconTestingModule],
 })
 class NestedTabs {
   @ViewChildren(SbbTabGroup) groups: QueryList<SbbTabGroup>;
@@ -1168,6 +1189,8 @@ class NestedTabs {
       </sbb-tab>
     </sbb-tab-group>
   `,
+  standalone: true,
+  imports: [SbbTabsModule, SbbIconTestingModule],
 })
 class TemplateTabs {}
 
@@ -1177,6 +1200,8 @@ class TemplateTabs {}
       <sbb-tab [aria-label]="ariaLabel" [aria-labelledby]="ariaLabelledby"></sbb-tab>
     </sbb-tab-group>
   `,
+  standalone: true,
+  imports: [SbbTabsModule, SbbIconTestingModule],
 })
 class TabGroupWithAriaInputs {
   ariaLabel: string;
@@ -1194,6 +1219,8 @@ class TabGroupWithAriaInputs {
       <div>pizza is active</div>
     }
   `,
+  standalone: true,
+  imports: [SbbTabsModule, SbbIconTestingModule],
 })
 class TabGroupWithIsActiveBinding {}
 
@@ -1204,6 +1231,8 @@ class TabGroupWithIsActiveBinding {}
       <sbb-tab label="Two">Tab two content</sbb-tab>
     </sbb-tab-group>
   `,
+  standalone: true,
+  imports: [SbbTabsModule, SbbIconTestingModule],
 })
 class TabsWithCustomAnimationDuration {
   @ViewChild(SbbTabGroup) sbbTabGroup: SbbTabGroup;
@@ -1218,6 +1247,8 @@ class TabsWithCustomAnimationDuration {
       }
     </sbb-tab-group>
   `,
+  standalone: true,
+  imports: [SbbTabsModule, SbbIconTestingModule],
 })
 class TabGroupWithIndirectDescendantTabs {
   @ViewChild(SbbTabGroup) tabGroup: SbbTabGroup;
@@ -1237,6 +1268,8 @@ class TabGroupWithIndirectDescendantTabs {
       </ng-container>
     </sbb-tab-group>
   `,
+  standalone: true,
+  imports: [SbbTabsModule, SbbIconTestingModule],
 })
 class TabGroupWithSpaceAbove {
   @ViewChild(SbbTabGroup) tabGroup: SbbTabGroup;
@@ -1259,6 +1292,8 @@ class TabGroupWithSpaceAbove {
       <sbb-tab label="Parent 3">Parent 3</sbb-tab>
     </sbb-tab-group>
   `,
+  standalone: true,
+  imports: [SbbTabsModule, SbbIconTestingModule],
 })
 class NestedTabGroupWithLabel {}
 
@@ -1273,6 +1308,8 @@ class NestedTabGroupWithLabel {}
       </sbb-tab>
     </sbb-tab-group>
   `,
+  standalone: true,
+  imports: [SbbTabsModule, SbbIconTestingModule],
 })
 class TabsWithClassesTestApp {
   labelClassList?: string | string[];

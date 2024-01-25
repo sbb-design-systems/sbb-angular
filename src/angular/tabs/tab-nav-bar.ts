@@ -1,6 +1,7 @@
 import { FocusableOption, FocusMonitor } from '@angular/cdk/a11y';
 import { BooleanInput, coerceBooleanProperty } from '@angular/cdk/coercion';
 import { ENTER, SPACE } from '@angular/cdk/keycodes';
+import { CdkObserveContent } from '@angular/cdk/observers';
 import { Platform } from '@angular/cdk/platform';
 import { ViewportRuler } from '@angular/cdk/scrolling';
 import {
@@ -26,6 +27,7 @@ import {
 } from '@angular/core';
 import { ANIMATION_MODULE_TYPE } from '@angular/platform-browser/animations';
 import { CanDisable, HasTabIndex, mixinDisabled, mixinTabIndex } from '@sbb-esta/angular/core';
+import { SbbIcon } from '@sbb-esta/angular/icon';
 import { startWith, takeUntil } from 'rxjs/operators';
 
 import { SbbPaginatedTabHeader, SbbPaginatedTabHeaderItem } from './paginated-tab-header';
@@ -124,6 +126,8 @@ export abstract class _SbbTabNavBase
   encapsulation: ViewEncapsulation.None,
   // tslint:disable-next-line:validate-decorators
   changeDetection: ChangeDetectionStrategy.Default,
+  standalone: true,
+  imports: [SbbIcon, CdkObserveContent],
 })
 export class SbbTabNav extends _SbbTabNavBase {
   @ContentChildren(forwardRef(() => SbbTabLink), { descendants: true })
@@ -265,6 +269,7 @@ export class _SbbTabLinkBase
     '(focus)': '_handleFocus()',
     '(keydown)': '_handleKeydown($event)',
   },
+  standalone: true,
 })
 export class SbbTabLink extends _SbbTabLinkBase {
   constructor(
@@ -292,6 +297,7 @@ export class SbbTabLink extends _SbbTabLinkBase {
   },
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush,
+  standalone: true,
 })
 export class SbbTabNavPanel {
   /** Unique id for the tab panel. */

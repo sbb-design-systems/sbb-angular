@@ -1,5 +1,6 @@
 import { AnimationEvent } from '@angular/animations';
 import { CdkPortalOutlet, TemplatePortal } from '@angular/cdk/portal';
+import { CdkScrollable } from '@angular/cdk/scrolling';
 import { DOCUMENT } from '@angular/common';
 import {
   ChangeDetectionStrategy,
@@ -34,6 +35,7 @@ export type SbbTabBodyPositionState = 'hidden' | 'show';
  */
 @Directive({
   selector: '[sbbTabBodyHost]',
+  standalone: true,
 })
 export class SbbTabBodyPortal extends CdkPortalOutlet implements OnInit, OnDestroy {
   /** Subscription to events for when the tab body begins centering. */
@@ -93,6 +95,8 @@ export class SbbTabBodyPortal extends CdkPortalOutlet implements OnInit, OnDestr
   host: {
     class: 'sbb-tab-body',
   },
+  standalone: true,
+  imports: [CdkScrollable, SbbTabBodyPortal],
 })
 export class SbbTabBody implements OnDestroy {
   /** Current position of the tab-body in the tab-group. Zero means that the tab is visible. */
