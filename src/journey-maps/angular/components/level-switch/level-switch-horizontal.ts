@@ -6,6 +6,7 @@ import {
   ElementRef,
   Input,
   OnDestroy,
+  OnInit,
   QueryList,
   ViewChild,
   ViewChildren,
@@ -33,14 +34,17 @@ import { SbbLevelSwitcher } from './services/level-switcher';
   ],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class SbbLevelSwitchHorizontal implements OnDestroy {
+export class SbbLevelSwitchHorizontal implements OnInit, OnDestroy {
   @Input() map: MaplibreMap | null;
   @Input() showSmallButtons: boolean | undefined;
   @Input() isDarkMode: boolean;
 
   @ViewChild('mainButton') mainButton: ElementRef<HTMLButtonElement>;
   @ViewChildren('sideButton') sideButtons: QueryList<ElementRef<HTMLButtonElement>>;
+
   showSideButtons: boolean = false;
+  levelSwitchLabel: string;
+
   private _countdownTimer: ReturnType<typeof setTimeout>;
   private _autoCollapseTimeout = 5000; // 5000 ms
   private _destroyed = new Subject<void>();
@@ -53,6 +57,17 @@ export class SbbLevelSwitchHorizontal implements OnDestroy {
     this._levelSwitchService.changeDetectionEmitter
       .pipe(takeUntil(this._destroyed))
       .subscribe(() => this._ref.detectChanges());
+  }
+
+  ngOnInit(): void {
+    this.levelSwitchLabel = `${this._i18n.getText('a4a.visualFunction')} ${this._i18n.getText(
+      'a4a.levelSwitch',
+    )}`;
+  }
+
+  ngOnDestroy(): void {
+    this._destroyed.next();
+    this._destroyed.complete();
   }
 
   toggleSideButtons(): void {
@@ -70,7 +85,7 @@ export class SbbLevelSwitchHorizontal implements OnDestroy {
   private _focusMatchingButton(): void {
     const mainButtonText = this.mainButton.nativeElement.textContent;
     const matchingButton = this.sideButtons.find(
-      (button) => button.nativeElement.textContent === mainButtonText,
+      (button) => button.nativeElement.textContent?.trim() === mainButtonText,
     );
     matchingButton?.nativeElement.focus();
   }
@@ -104,11 +119,6 @@ export class SbbLevelSwitchHorizontal implements OnDestroy {
         ? this._i18n.getTextWithParams('a4a.unselectFloor', level)
         : this._i18n.getTextWithParams('a4a.selectFloor', level);
     return `${txt1} ${txt2}`;
-  }
-
-  ngOnDestroy(): void {
-    this._destroyed.next();
-    this._destroyed.complete();
   }
 
   onMainButtonEnter(event: Event): void {

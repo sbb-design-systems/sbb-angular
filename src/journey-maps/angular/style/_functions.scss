@@ -15,7 +15,7 @@
     margin: v.$controlsMargin;
     background: esta.$sbbColorWhite;
     box-shadow: 0 0 8px rgba(0, 0, 0, 0.1);
-    border-radius: v.$controlsWidth / 2;
+    border-radius: calc(v.$controlsWidth / 2);
 
     @include esta.mq($from: tabletPortrait) {
       &.small-buttons {

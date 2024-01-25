@@ -30,15 +30,18 @@
         <button class="side-button map-control-button" tabindex="-1"></button>
       </div>
     </div>
-    <div class="map-control-button-wrapper main-button-wrapper" [class.expanded]="showSideButtons">
-      <button
-        #mainButton
-        class="map-control-button main-button"
-        (click)="toggleSideButtons()"
-        (keydown.enter)="onMainButtonEnter($event)"
-      >
-        {{ selectedLevel ?? '-' }}
-      </button>
+    <div class="main-button-wrapper" [class.empty]="(selectedLevel ?? false) === false">
+      <div class="map-control-button-wrapper" [class.expanded]="showSideButtons">
+        <button
+          #mainButton
+          class="map-control-button main-button"
+          (click)="toggleSideButtons()"
+          (keydown.enter)="onMainButtonEnter($event)"
+          [attr.aria-label]="levelSwitchLabel"
+        >
+          {{ selectedLevel }}
+        </button>
+      </div>
     </div>
   </div>
 </div>
