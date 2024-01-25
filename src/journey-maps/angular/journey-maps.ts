@@ -879,6 +879,7 @@ export class SbbJourneyMaps implements OnInit, AfterViewInit, OnDestroy, OnChang
               this.styleOptions.railNetwork,
             );
           }
+          this._mapService.updatePoiVisibility(this._map, this.poiOptions);
         });
       });
 
