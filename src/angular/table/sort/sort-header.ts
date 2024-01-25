@@ -91,6 +91,7 @@ interface SbbSortHeaderColumnDef {
     sbbSortAnimations.allowChildren,
     sbbSortAnimations.indicator,
   ],
+  standalone: true,
 })
 export class SbbSortHeader
   extends _SbbSortHeaderBase

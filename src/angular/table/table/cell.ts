@@ -17,6 +17,7 @@ import { Directive, ElementRef, Input } from '@angular/core';
 @Directive({
   selector: '[sbbCellDef]',
   providers: [{ provide: CdkCellDef, useExisting: SbbCellDef }],
+  standalone: true,
 })
 export class SbbCellDef extends CdkCellDef {}
 
@@ -27,6 +28,7 @@ export class SbbCellDef extends CdkCellDef {}
 @Directive({
   selector: '[sbbHeaderCellDef]',
   providers: [{ provide: CdkHeaderCellDef, useExisting: SbbHeaderCellDef }],
+  standalone: true,
 })
 export class SbbHeaderCellDef extends CdkHeaderCellDef {}
 
@@ -37,6 +39,7 @@ export class SbbHeaderCellDef extends CdkHeaderCellDef {}
 @Directive({
   selector: '[sbbFooterCellDef]',
   providers: [{ provide: CdkFooterCellDef, useExisting: SbbFooterCellDef }],
+  standalone: true,
 })
 export class SbbFooterCellDef extends CdkFooterCellDef {}
 
@@ -51,6 +54,7 @@ export class SbbFooterCellDef extends CdkFooterCellDef {}
     { provide: CdkColumnDef, useExisting: SbbColumnDef },
     { provide: 'SBB_SORT_HEADER_COLUMN_DEF', useExisting: SbbColumnDef },
   ],
+  standalone: true,
 })
 export class SbbColumnDef extends CdkColumnDef {
   /** Unique name for this column. */
@@ -95,6 +99,7 @@ export class SbbColumnDef extends CdkColumnDef {
     role: 'columnheader',
     '[class.sbb-table-group-with-next]': '_columnDef.groupWithNext',
   },
+  standalone: true,
 })
 export class SbbHeaderCell extends CdkHeaderCell {
   constructor(
@@ -113,6 +118,7 @@ export class SbbHeaderCell extends CdkHeaderCell {
     role: 'gridcell',
     '[class.sbb-table-group-with-next]': '_columnDef.groupWithNext',
   },
+  standalone: true,
 })
 export class SbbFooterCell extends CdkFooterCell {
   constructor(
@@ -131,6 +137,7 @@ export class SbbFooterCell extends CdkFooterCell {
     role: 'gridcell',
     '[class.sbb-table-group-with-next]': '_columnDef.groupWithNext',
   },
+  standalone: true,
 })
 export class SbbCell extends CdkCell {
   constructor(

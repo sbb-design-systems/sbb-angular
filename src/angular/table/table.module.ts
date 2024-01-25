@@ -58,8 +58,7 @@ const EXPORTED_DECLARATIONS = [
 ];
 
 @NgModule({
-  imports: [CdkTableModule, SbbCommonModule],
-  declarations: EXPORTED_DECLARATIONS,
+  imports: [CdkTableModule, SbbCommonModule, ...EXPORTED_DECLARATIONS],
   exports: EXPORTED_DECLARATIONS,
 })
 export class SbbTableModule {}
