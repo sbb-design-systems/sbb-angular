@@ -1,4 +1,9 @@
-<div class="map-control-container" [class.small-buttons]="showSmallButtons" *ngIf="map">
+<div
+  class="map-control-container"
+  [class.small-buttons]="showSmallButtons"
+  [class.dark]="isDarkMode"
+  *ngIf="map"
+>
   <div class="map-control-button-wrapper">
     <button
       type="button"

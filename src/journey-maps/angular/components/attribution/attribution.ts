@@ -7,6 +7,7 @@ import {
   OnDestroy,
   SecurityContext,
   SimpleChanges,
+  ViewEncapsulation,
 } from '@angular/core';
 import { DomSanitizer } from '@angular/platform-browser';
 import { Map as MaplibreMap, MapDataEvent } from 'maplibre-gl';
@@ -16,9 +17,11 @@ import { Map as MaplibreMap, MapDataEvent } from 'maplibre-gl';
   templateUrl: './attribution.html',
   styleUrls: ['./attribution.css'],
   changeDetection: ChangeDetectionStrategy.OnPush,
+  encapsulation: ViewEncapsulation.Emulated,
 })
 export class SbbAttribution implements OnChanges, OnDestroy {
   @Input() map: MaplibreMap | null;
+  @Input() isDarkMode: boolean;
 
   open: boolean;
   compact: boolean;

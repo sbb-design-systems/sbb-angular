@@ -10,6 +10,8 @@
   text-align: center;
   vertical-align: middle;
   width: 36px;
+  background-color: esta.$sbbColorWhite;
+  color: esta.$sbbColorBlack;
 
   @include esta.mq($from: tabletPortrait) {
     @at-root .map-control-container.small-buttons #{&} {
@@ -17,14 +19,14 @@
       width: 26px;
     }
   }
+
+  @at-root .map-control-container.dark #{&} {
+    background-color: esta.$sbbColorBlack;
+    color: esta.$sbbColorWhite;
+  }
 }
 
-.map-control-button:hover,
-.map-control-button-selected {
-  @extend .map-control-button;
-  background-color: esta.$sbbColorCharcoal;
-  color: white;
-}
+@include f.map-control-button-hover;
 
 .button-container {
   display: flex;
@@ -46,13 +48,18 @@
   border-top-left-radius: calc(v.$controlsWidth / 2);
   border-bottom-left-radius: calc(v.$controlsWidth / 2);
   background-color: esta.$sbbColorWhite;
+  box-shadow: 0 0 8px rgba(0, 0, 0, 0.1);
 
   @include esta.mq($from: tabletPortrait) {
     @at-root .map-control-container.small-buttons #{&} {
-      right: v.$controlsMarginSmall + (v.$controlsWidthSmall / 2);
-      border-top-left-radius: (v.$controlsWidthSmall / 2);
-      border-bottom-left-radius: (v.$controlsWidthSmall / 2);
+      right: v.$controlsMarginSmall + calc(v.$controlsWidthSmall / 2);
+      border-top-left-radius: calc(v.$controlsWidthSmall / 2);
+      border-bottom-left-radius: calc(v.$controlsWidthSmall / 2);
     }
+  }
+
+  @at-root .map-control-container.dark #{&} {
+    outline: 1px solid esta.$sbbColorMetal;
   }
 }
 
@@ -76,9 +83,24 @@
 }
 
 .main-button-wrapper {
+  &.empty {
+    @include f.map-control-icon;
+    @include f.map-control-icon-button('layers-with-arrows');
+  }
+
   border-radius: 50%;
   z-index: 3;
   background-color: esta.$sbbColorWhite;
+
+  @at-root .map-control-container.dark #{&} {
+    background-color: esta.$sbbColorBlack;
+    outline: 1px solid esta.$sbbColorMetal;
+  }
+
+  .map-control-button-wrapper {
+    /* needed if :not(.empty) */
+    border-radius: 50%;
+  }
 }
 
 .main-button-wrapper.expanded {
@@ -91,6 +113,10 @@
 
 .map-control-button-wrapper {
   user-select: none; /* prevent visually selecting the text of the buttons */
+
+  @at-root .map-control-container.dark #{&} {
+    background-color: esta.$sbbColorBlack;
+  }
 }
 
 .map-control-button-wrapper.half-width {
@@ -98,7 +124,7 @@
 
   @include esta.mq($from: tabletPortrait) {
     @at-root .map-control-container.small-buttons #{&} {
-      width: v.$controlsWidthSmall / 2;
+      width: calc(v.$controlsWidthSmall / 2);
     }
   }
 }

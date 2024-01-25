@@ -35,6 +35,8 @@ export class SbbTeaser implements OnInit, OnChanges {
   @Input() templateContext: any;
   @Input() template: SbbTemplateType;
   @Input() withPaginator: boolean = false;
+  @Input() isDarkMode: boolean;
+
   @Output() closeClicked: EventEmitter<void> = new EventEmitter<void>();
   @Output() mouseEvent: EventEmitter<'enter' | 'leave'> = new EventEmitter<'enter' | 'leave'>();
 

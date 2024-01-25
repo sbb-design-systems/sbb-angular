@@ -19,6 +19,7 @@ import { SbbLocaleService } from '../../services/locale-service';
 export class SbbHomeButton implements OnInit {
   @Input() map: MaplibreMap | null;
   @Input() showSmallButtons: boolean | undefined;
+  @Input() isDarkMode: boolean;
 
   @Output() homeButtonClicked: EventEmitter<void> = new EventEmitter<void>();
 
