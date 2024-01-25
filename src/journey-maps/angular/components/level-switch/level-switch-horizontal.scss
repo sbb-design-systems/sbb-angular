@@ -1,0 +1,104 @@
+@use '@sbb-esta/angular' as esta;
+@use './../../style/functions' as f;
+@use './../../style/variables' as v;
+
+@include f.map-controls-shared;
+
+.map-control-button {
+  cursor: pointer;
+  border-radius: 50%;
+  text-align: center;
+  vertical-align: middle;
+  width: 36px;
+
+  @include esta.mq($from: tabletPortrait) {
+    @at-root .map-control-container.small-buttons #{&} {
+      border-radius: 13px;
+      width: 26px;
+    }
+  }
+}
+
+.map-control-button:hover,
+.map-control-button-selected {
+  @extend .map-control-button;
+  background-color: esta.$sbbColorCharcoal;
+  color: white;
+}
+
+.button-container {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  width: 100%;
+}
+
+.side-buttons-container {
+  position: absolute; /* prevents expanding the other controls */
+  display: flex;
+  overflow: hidden; /* hides the side buttons to the right of the side button while collapsing/expanding */
+  max-width: 0; /* initial value */
+  transition:
+    max-width 0.5s ease,
+    visibility 0s linear 0.5s;
+  visibility: hidden; /* Initially not visible */
+  right: v.$controlsMargin + (v.$controlsWidth / 2);
+  border-top-left-radius: (v.$controlsWidth / 2);
+  border-bottom-left-radius: (v.$controlsWidth / 2);
+  background-color: esta.$sbbColorWhite;
+
+  @include esta.mq($from: tabletPortrait) {
+    @at-root .map-control-container.small-buttons #{&} {
+      right: v.$controlsMarginSmall + (v.$controlsWidthSmall / 2);
+      border-top-left-radius: (v.$controlsWidthSmall / 2);
+      border-bottom-left-radius: (v.$controlsWidthSmall / 2);
+    }
+  }
+}
+
+/* Adjusted to ensure the buttons are visible when the container is displayed */
+.side-buttons-container.expanded {
+  max-width: 6.5 * v.$controlsWidth; /* Just large enough for St. Gallen, which has 6 levels, plus half for the extra half-width div */
+  transition: max-width 0.5s ease;
+  visibility: visible; /* Make visible when expanded */
+
+  @include esta.mq($from: tabletPortrait) {
+    @at-root .map-control-container.small-buttons #{&} {
+      max-width: 6.5 * v.$controlsWidthSmall; /* Just large enough for St. Gallen, which has 6 levels, plus half for the extra half-width div */
+    }
+  }
+}
+
+.vertical-buttons {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end; /* Aligns items to the right */
+}
+
+.main-button-wrapper {
+  border-radius: 50%;
+  z-index: 3;
+  background-color: esta.$sbbColorWhite;
+}
+
+.main-button-wrapper.expanded {
+  box-shadow: -4px 0 4px 0 rgba(0, 0, 0, 0.03); /* Shadow to the left */
+}
+
+.main-button {
+  background-color: esta.$sbbColorWhite; /* prevent showing the side buttons behind the main button as they expand/collapse */
+}
+
+.map-control-button-wrapper {
+  user-select: none; /* prevent visually selecting the text of the buttons */
+}
+
+.map-control-button-wrapper.half-width {
+  width: v.$controlsWidth / 2;
+
+  @include esta.mq($from: tabletPortrait) {
+    @at-root .map-control-container.small-buttons #{&} {
+      width: v.$controlsWidthSmall / 2;
+    }
+  }
+}
