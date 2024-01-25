@@ -27,6 +27,7 @@ const PLACEHOLDER_DEFAULT = 'HH:MM';
     inputmode: 'numeric',
     '[attr.placeholder]': 'placeholder',
   },
+  standalone: true,
 })
 export class SbbTimeInput {
   /** The placeholder value display in the input field (defaults to HH:MM) */

@@ -9,11 +9,15 @@ import { SbbTimeInputModule } from './time-input.module';
 
 @Component({
   template: `<input sbbTimeInput />`,
+  standalone: true,
+  imports: [FormsModule, ReactiveFormsModule, SbbTimeInputModule, SbbInputModule],
 })
 class BasicTimeInput {}
 
 @Component({
   template: `<input sbbTimeInput [placeholder]="placeholder" />`,
+  standalone: true,
+  imports: [FormsModule, ReactiveFormsModule, SbbTimeInputModule, SbbInputModule],
 })
 class PlaceholderTimeInput {
   placeholder?: string | null = 'Time';
@@ -23,6 +27,8 @@ class PlaceholderTimeInput {
   template: `<sbb-form-field label="Time Input">
     <input [formControl]="formControl" sbbInput sbbTimeInput />
   </sbb-form-field>`,
+  standalone: true,
+  imports: [FormsModule, ReactiveFormsModule, SbbTimeInputModule, SbbInputModule],
 })
 class FormControlTimeInput {
   formControl = new FormControl('');
@@ -31,8 +37,15 @@ class FormControlTimeInput {
 describe('SbbTimeInput', () => {
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-      imports: [FormsModule, ReactiveFormsModule, SbbTimeInputModule, SbbInputModule],
-      declarations: [BasicTimeInput, FormControlTimeInput, PlaceholderTimeInput],
+      imports: [
+        FormsModule,
+        ReactiveFormsModule,
+        SbbTimeInputModule,
+        SbbInputModule,
+        BasicTimeInput,
+        FormControlTimeInput,
+        PlaceholderTimeInput,
+      ],
     }).compileComponents();
   }));
 

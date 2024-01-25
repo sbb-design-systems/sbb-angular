@@ -4,8 +4,7 @@ import { SbbCommonModule } from '@sbb-esta/angular/core';
 import { SbbTimeInput } from './time-input';
 
 @NgModule({
-  imports: [SbbCommonModule],
-  declarations: [SbbTimeInput],
+  imports: [SbbCommonModule, SbbTimeInput],
   exports: [SbbTimeInput],
 })
 export class SbbTimeInputModule {}
