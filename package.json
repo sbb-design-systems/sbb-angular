@@ -66,7 +66,7 @@
     "maplibre-gl": "3.6.2",
     "rxjs": "7.8.1",
     "tslib": "2.6.2",
-    "zone.js": "0.13.1"
+    "zone.js": "0.14.3"
   },
   "devDependencies": {
     "@actions/cache": "3.2.3",
@@ -168,14 +168,14 @@
     "tslint-config-prettier": "1.18.0",
     "tslint-consistent-codestyle": "1.16.0",
     "tslint-plugin-prettier": "2.3.0",
-    "typescript": "5.2.2",
+    "typescript": "5.3.2",
     "yargs": "17.7.2"
   },
   "resolutions": {
-    "@angular/build-tooling/typescript": "5.2.2",
-    "@angular/ng-dev/typescript": "5.2.2",
+    "@angular/build-tooling/typescript": "5.3.2",
+    "@angular/ng-dev/typescript": "5.3.2",
     "browser-sync-client": "2.26.13",
-    "dgeni-packages/typescript": "5.2.2"
+    "dgeni-packages/typescript": "5.3.2"
   },
   "standard-version": {
     "types": [
