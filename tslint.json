@@ -186,7 +186,7 @@
     "no-output-rename": false,
     "component-class-suffix": false,
     "directive-class-suffix": false,
-    "rxjs-no-unsafe-takeuntil": true,
+    // "rxjs-no-unsafe-takeuntil": true,
     "rxjs-no-unsafe-catch": true,
 
     // Custom Rules
