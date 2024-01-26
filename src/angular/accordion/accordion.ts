@@ -26,6 +26,7 @@ import { SbbExpansionPanelHeader } from './expansion-panel-header';
   host: {
     class: 'sbb-accordion',
   },
+  standalone: true,
 })
 export class SbbAccordion extends CdkAccordion implements AfterContentInit, OnDestroy {
   private _keyManager: FocusKeyManager<SbbExpansionPanelHeader>;

@@ -62,6 +62,7 @@ let nextUniqueId = 0;
     '[attr.aria-invalid]': '_chipList && _chipList.ngControl ? _chipList.ngControl.invalid : null',
     '[attr.aria-required]': '_chipList && _chipList.required || null',
   },
+  standalone: true,
 })
 export class SbbChipInput implements SbbChipTextControl, OnChanges, OnDestroy, AfterContentInit {
   /** Used to prevent focus moving to chips while user is holding backspace */

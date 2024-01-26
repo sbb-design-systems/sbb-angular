@@ -21,6 +21,8 @@ import {
       <sbb-radio-button-panel value="2"> Test option selection 2 </sbb-radio-button-panel>
     </sbb-radio-group>
   `,
+  standalone: true,
+  imports: [FormsModule, SbbRadioButtonPanelModule],
 })
 class ModelOptionSelectionTest {
   testValue = '2';
@@ -39,6 +41,8 @@ class ModelOptionSelectionTest {
       </sbb-radio-button-panel>
     </sbb-radio-group>
   `,
+  standalone: true,
+  imports: [ReactiveFormsModule, SbbRadioButtonPanelModule],
 })
 class RadioButtonPanelDirectiveTest {
   control = new FormControl(false);
@@ -59,6 +63,8 @@ class RadioButtonPanelDirectiveTest {
       </sbb-radio-button-panel>
     </sbb-radio-group>
   `,
+  standalone: true,
+  imports: [ReactiveFormsModule, SbbRadioButtonPanelModule, SbbIconModule],
 })
 class RadioButtonPanelIconTest {
   control = new FormControl(false);
@@ -67,18 +73,7 @@ class RadioButtonPanelIconTest {
 describe('SbbRadioButtonPanel', () => {
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-      imports: [
-        FormsModule,
-        ReactiveFormsModule,
-        SbbRadioButtonPanelModule,
-        SbbIconModule,
-        SbbIconTestingModule,
-      ],
-      declarations: [
-        ModelOptionSelectionTest,
-        RadioButtonPanelDirectiveTest,
-        RadioButtonPanelIconTest,
-      ],
+      imports: [SbbIconTestingModule],
     }).compileComponents();
   }));
 

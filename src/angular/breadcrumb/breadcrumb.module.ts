@@ -8,8 +8,14 @@ import { SbbBreadcrumbRoot } from './breadcrumb-root';
 import { SbbBreadcrumbs } from './breadcrumbs';
 
 @NgModule({
-  declarations: [SbbBreadcrumbs, SbbBreadcrumb, SbbBreadcrumbRoot],
-  imports: [SbbCommonModule, SbbMenuModule, SbbIconModule],
+  imports: [
+    SbbCommonModule,
+    SbbMenuModule,
+    SbbIconModule,
+    SbbBreadcrumbs,
+    SbbBreadcrumb,
+    SbbBreadcrumbRoot,
+  ],
   exports: [SbbBreadcrumbs, SbbBreadcrumb, SbbBreadcrumbRoot],
 })
 export class SbbBreadcrumbModule {}

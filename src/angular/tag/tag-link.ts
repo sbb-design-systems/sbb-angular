@@ -3,6 +3,7 @@
 
 import { coerceNumberProperty, NumberInput } from '@angular/cdk/coercion';
 import { ChangeDetectionStrategy, Component, Input, ViewEncapsulation } from '@angular/core';
+import { SbbBadge } from '@sbb-esta/angular/badge';
 
 @Component({
   selector: 'a[sbb-tag-link]',
@@ -14,6 +15,8 @@ import { ChangeDetectionStrategy, Component, Input, ViewEncapsulation } from '@a
   host: {
     class: 'sbb-tag-base sbb-link-reset sbb-tag-link',
   },
+  standalone: true,
+  imports: [SbbBadge],
 })
 export class SbbTagLink {
   /** Amount displayed in badge */

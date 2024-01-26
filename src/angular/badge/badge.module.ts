@@ -5,8 +5,7 @@ import { SbbCommonModule } from '@sbb-esta/angular/core';
 import { SbbBadge } from './badge';
 
 @NgModule({
-  imports: [A11yModule, SbbCommonModule],
+  imports: [A11yModule, SbbCommonModule, SbbBadge],
   exports: [SbbBadge],
-  declarations: [SbbBadge],
 })
 export class SbbBadgeModule {}

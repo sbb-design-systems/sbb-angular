@@ -23,8 +23,7 @@ describe('AccordionDirective', () => {
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-      imports: [BrowserAnimationsModule, SbbAccordionModule, SbbIconTestingModule],
-      declarations: [AccordionWithHideToggle, NestedPanel, SetOfItems, NestedAccordions],
+      imports: [BrowserAnimationsModule, SbbIconTestingModule],
     });
     TestBed.compileComponents();
 
@@ -293,6 +292,8 @@ describe('AccordionDirective', () => {
       }
     </sbb-accordion>
   `,
+  standalone: true,
+  imports: [SbbAccordionModule],
 })
 class SetOfItems {
   @ViewChild(SbbAccordion) accordion: SbbAccordion;
@@ -319,6 +320,8 @@ class SetOfItems {
       Content 1
     </sbb-expansion-panel>
   </sbb-accordion>`,
+  standalone: true,
+  imports: [SbbAccordionModule],
 })
 class NestedAccordions {
   @ViewChildren(SbbExpansionPanelHeader) headers: QueryList<SbbExpansionPanelHeader>;
@@ -338,6 +341,8 @@ class NestedAccordions {
       </sbb-expansion-panel>
     </sbb-accordion>
   `,
+  standalone: true,
+  imports: [SbbAccordionModule],
 })
 class NestedPanel {
   @ViewChild('outerPanel') outerPanel: SbbExpansionPanel;
@@ -353,6 +358,8 @@ class NestedPanel {
       </sbb-expansion-panel>
     </sbb-accordion>
   `,
+  standalone: true,
+  imports: [SbbAccordionModule],
 })
 class AccordionWithHideToggle {
   hideToggle = false;

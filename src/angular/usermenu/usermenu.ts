@@ -1,6 +1,7 @@
 // Workaround for: https://github.com/bazelbuild/rules_nodejs/issues/1265
 /// <reference types="@angular/localize/init" />
 
+import { AsyncPipe, NgTemplateOutlet } from '@angular/common';
 import {
   ChangeDetectionStrategy,
   Component,
@@ -13,12 +14,14 @@ import {
   ViewEncapsulation,
 } from '@angular/core';
 import { mixinVariant } from '@sbb-esta/angular/core';
+import { SbbIcon } from '@sbb-esta/angular/icon';
 import {
   SbbMenu,
   SbbMenuInheritedTriggerContext,
   SbbMenuTrigger,
   SBB_MENU_INHERITED_TRIGGER_CONTEXT,
 } from '@sbb-esta/angular/menu';
+import { SbbMenuDynamicTrigger } from '@sbb-esta/angular/menu';
 
 import { SbbUsermenuIcon } from './usermenu-icon';
 
@@ -58,6 +61,8 @@ export const _sbbUsermenuMenuInheritedTriggerContext: SbbMenuInheritedTriggerCon
       useValue: _sbbUsermenuMenuInheritedTriggerContext,
     },
   ],
+  standalone: true,
+  imports: [SbbIcon, SbbMenuTrigger, SbbMenuDynamicTrigger, NgTemplateOutlet, AsyncPipe],
 })
 export class SbbUsermenu extends _SbbUsermenuMixinBase {
   _labelLogin: string = $localize`:Button label for login@@sbbUsermenuLogin:Login`;

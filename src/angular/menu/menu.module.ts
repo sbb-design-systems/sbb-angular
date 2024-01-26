@@ -14,9 +14,12 @@ import { SbbMenuItem } from './menu-item';
 import { SbbMenuTrigger, SBB_MENU_SCROLL_STRATEGY_FACTORY_PROVIDER } from './menu-trigger';
 
 @NgModule({
-  imports: [CommonModule, OverlayModule, PortalModule, SbbCommonModule, SbbIconModule],
-  exports: [
-    CdkScrollableModule,
+  imports: [
+    CommonModule,
+    OverlayModule,
+    PortalModule,
+    SbbCommonModule,
+    SbbIconModule,
     SbbMenu,
     SbbMenuItem,
     SbbMenuTrigger,
@@ -24,7 +27,8 @@ import { SbbMenuTrigger, SBB_MENU_SCROLL_STRATEGY_FACTORY_PROVIDER } from './men
     SbbMenuDynamicTrigger,
     SbbMenuContent,
   ],
-  declarations: [
+  exports: [
+    CdkScrollableModule,
     SbbMenu,
     SbbMenuItem,
     SbbMenuTrigger,

@@ -1,4 +1,6 @@
+import { NgClass } from '@angular/common';
 import { ChangeDetectionStrategy, Component, Input, ViewEncapsulation } from '@angular/core';
+import { SbbIcon } from '@sbb-esta/angular/icon';
 
 @Component({
   selector: 'sbb-status',
@@ -12,6 +14,8 @@ import { ChangeDetectionStrategy, Component, Input, ViewEncapsulation } from '@a
     '[attr.aria-labelledby]': 'null',
     '[attr.aria-describedby]': 'null',
   },
+  standalone: true,
+  imports: [NgClass, SbbIcon],
 })
 export class SbbStatus {
   /** The optional icon type, which can be valid, warning or invalid. */

@@ -1,4 +1,5 @@
 import { AnimationEvent } from '@angular/animations';
+import { CdkPortalOutlet } from '@angular/cdk/portal';
 import {
   AfterContentInit,
   ChangeDetectionStrategy,
@@ -45,6 +46,8 @@ let nextId = 0;
     '[class.sbb-toggle-option-has-content]': '!!selected?._details',
   },
   animations: [sbbToggleAnimations.translateHeight],
+  standalone: true,
+  imports: [CdkPortalOutlet],
 })
 export class SbbToggle
   extends SbbRadioGroup<SbbToggleOption>

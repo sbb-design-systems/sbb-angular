@@ -1,6 +1,6 @@
 import { AnimationEvent } from '@angular/animations';
 import { Directionality } from '@angular/cdk/bidi';
-import { TemplatePortal } from '@angular/cdk/portal';
+import { CdkPortalOutlet, TemplatePortal } from '@angular/cdk/portal';
 import {
   CdkStep,
   CdkStepper,
@@ -8,6 +8,7 @@ import {
   StepperOptions,
   STEPPER_GLOBAL_OPTIONS,
 } from '@angular/cdk/stepper';
+import { NgTemplateOutlet } from '@angular/common';
 import {
   AfterContentInit,
   ChangeDetectionStrategy,
@@ -31,6 +32,7 @@ import {
 } from '@angular/core';
 import { AbstractControl, FormGroupDirective, NgForm } from '@angular/forms';
 import { SbbErrorStateMatcher } from '@sbb-esta/angular/core';
+import { SbbIcon } from '@sbb-esta/angular/icon';
 import { Subject, Subscription } from 'rxjs';
 import { distinctUntilChanged, map, startWith, switchMap, takeUntil } from 'rxjs/operators';
 
@@ -49,6 +51,8 @@ import { SbbStepLabel } from './step-label';
   encapsulation: ViewEncapsulation.None,
   exportAs: 'sbbStep',
   changeDetection: ChangeDetectionStrategy.OnPush,
+  standalone: true,
+  imports: [CdkPortalOutlet],
 })
 export class SbbStep extends CdkStep implements SbbErrorStateMatcher, AfterContentInit, OnDestroy {
   private _isSelected = Subscription.EMPTY;
@@ -120,6 +124,8 @@ export class SbbStep extends CdkStep implements SbbErrorStateMatcher, AfterConte
   providers: [{ provide: CdkStepper, useExisting: SbbProcessflow }],
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush,
+  standalone: true,
+  imports: [SbbStepHeader, SbbIcon, NgTemplateOutlet],
 })
 export class SbbProcessflow extends CdkStepper implements AfterContentInit {
   /** The list of step headers of the steps in the processflow. */

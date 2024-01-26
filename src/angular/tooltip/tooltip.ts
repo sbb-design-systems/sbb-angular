@@ -22,7 +22,7 @@ import {
 } from '@angular/cdk/platform';
 import { ComponentPortal } from '@angular/cdk/portal';
 import { ScrollDispatcher } from '@angular/cdk/scrolling';
-import { DOCUMENT } from '@angular/common';
+import { AsyncPipe, DOCUMENT, NgClass, NgTemplateOutlet } from '@angular/common';
 import {
   AfterViewInit,
   ChangeDetectionStrategy,
@@ -46,6 +46,7 @@ import {
 } from '@angular/core';
 import { ANIMATION_MODULE_TYPE } from '@angular/platform-browser/animations';
 import { Breakpoints } from '@sbb-esta/angular/core';
+import { SbbIcon } from '@sbb-esta/angular/icon';
 import { Observable, Subject } from 'rxjs';
 import { filter, take, takeUntil } from 'rxjs/operators';
 
@@ -166,6 +167,7 @@ export class SbbTooltipChangeEvent {
     '[class.sbb-tooltip-trigger]': 'trigger === "click"',
     '[attr.aria-expanded]': 'trigger === "click" ? _isTooltipVisible() : null',
   },
+  standalone: true,
 })
 export class SbbTooltip implements OnDestroy, AfterViewInit {
   _overlayRef: OverlayRef | null;
@@ -821,6 +823,8 @@ export class SbbTooltip implements OnDestroy, AfterViewInit {
     '(mouseleave)': '_handleMouseLeave($event)',
     'aria-hidden': 'true',
   },
+  standalone: true,
+  imports: [NgClass, NgTemplateOutlet, SbbIcon, AsyncPipe],
 })
 export class TooltipComponent implements OnDestroy {
   /** Stream that emits whether the user has a handset-sized display.  */

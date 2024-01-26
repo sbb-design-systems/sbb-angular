@@ -27,6 +27,8 @@ import { SbbCalendarBody, SbbCalendarCell } from './calendar-body';
       (selectedWeekChange)="onWeekSelect($event)"
     ></table>
   `,
+  imports: [SbbCalendarBody],
+  standalone: true,
 })
 class StandardCalendarBodyComponent {
   label = 'Jan 2017';
@@ -57,6 +59,8 @@ class StandardCalendarBodyComponent {
       (selectedValueChange)="selected = $event"
     ></table>
   `,
+  imports: [SbbCalendarBody],
+  standalone: true,
 })
 class CalendarBodyWithDisabledCellsComponent {
   rows = [[1, 2, 3, 4]].map((r) =>
@@ -77,13 +81,6 @@ function createCell(value: number) {
 describe('SbbCalendarBody', () => {
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-      declarations: [
-        SbbCalendarBody,
-
-        // Test components.
-        StandardCalendarBodyComponent,
-        CalendarBodyWithDisabledCellsComponent,
-      ],
       providers: [
         { provide: SbbDateAdapter, useClass: SbbNativeDateAdapter },
         { provide: SBB_DATE_FORMATS, useValue: SBB_DATE_PIPE_DATE_FORMATS },

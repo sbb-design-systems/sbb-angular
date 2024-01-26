@@ -10,6 +10,7 @@ import {
   Directive,
   ElementRef,
   EventEmitter,
+  forwardRef,
   Host,
   Inject,
   InjectionToken,
@@ -22,6 +23,7 @@ import {
 } from '@angular/core';
 import { ANIMATION_MODULE_TYPE } from '@angular/platform-browser/animations';
 import { CanDisable, HasTabIndex, mixinTabIndex, TypeRef } from '@sbb-esta/angular/core';
+import { SbbIconModule } from '@sbb-esta/angular/icon';
 import { Subject } from 'rxjs';
 import { take } from 'rxjs/operators';
 
@@ -68,6 +70,7 @@ const _SbbChipMixinBase = mixinTabIndex(SbbChipBase, -1);
   selector: 'sbb-chip-trailing-icon, [sbbChipTrailingIcon]',
   host: { class: 'sbb-chip-trailing-icon' },
   providers: [{ provide: SBB_CHIP_TRAILING_ICON, useExisting: SbbChipTrailingIcon }],
+  standalone: true,
 })
 export class SbbChipTrailingIcon {}
 
@@ -98,6 +101,8 @@ export class SbbChipTrailingIcon {}
     '(blur)': '_blur()',
   },
   providers: [{ provide: SBB_CHIP, useExisting: SbbChip }],
+  standalone: true,
+  imports: [SbbIconModule, forwardRef(() => SbbChipRemove)],
 })
 export class SbbChip
   extends _SbbChipMixinBase
@@ -312,6 +317,7 @@ export class SbbChip
     '(click)': '_handleClick($event)',
   },
   providers: [{ provide: SBB_CHIP_REMOVE, useExisting: SbbChipRemove }],
+  standalone: true,
 })
 export class SbbChipRemove {
   constructor(

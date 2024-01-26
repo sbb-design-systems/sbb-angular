@@ -13,6 +13,7 @@ import {
   ViewEncapsulation,
 } from '@angular/core';
 import { CanDisable, mixinDisabled } from '@sbb-esta/angular/core';
+import { SbbIcon } from '@sbb-esta/angular/icon';
 import { Subject } from 'rxjs';
 
 import { SbbMenuPanel, SBB_MENU_PANEL } from './menu-panel';
@@ -42,6 +43,8 @@ const _SbbMenuItemMixinBase = mixinDisabled(class {});
   changeDetection: ChangeDetectionStrategy.OnPush,
   encapsulation: ViewEncapsulation.None,
   templateUrl: 'menu-item.html',
+  standalone: true,
+  imports: [SbbIcon],
 })
 export class SbbMenuItem
   extends _SbbMenuItemMixinBase

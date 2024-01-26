@@ -307,6 +307,7 @@ export abstract class _SbbRadioGroupBase<TRadio extends _SbbRadioButtonBase>
     class: 'sbb-radio-group',
     role: 'radiogroup',
   },
+  standalone: true,
 })
 export class SbbRadioGroup<
   TRadio extends _SbbRadioButtonBase = SbbRadioButton,
@@ -627,6 +628,7 @@ export class _SbbRadioButtonBase
   },
   changeDetection: ChangeDetectionStrategy.OnPush,
   providers: [{ provide: SBB_RADIO_BUTTON, useExisting: SbbRadioButton }],
+  standalone: true,
 })
 export class SbbRadioButton extends _SbbRadioButtonBase {
   constructor(

@@ -12,7 +12,6 @@ import {
   MockNgZone,
   NOV,
 } from '@sbb-esta/angular/core/testing';
-import { SbbIconModule } from '@sbb-esta/angular/icon';
 import { SbbIconTestingModule } from '@sbb-esta/angular/icon/testing';
 
 import { SbbCalendarCellClassFunction } from '../calendar-body/calendar-body';
@@ -29,6 +28,8 @@ import { SbbDatepickerModule } from '../datepicker.module';
     >
     </sbb-calendar>
   `,
+  standalone: true,
+  imports: [SbbDatepickerModule],
 })
 class StandardCalendarComponent {
   selected: Date;
@@ -41,6 +42,8 @@ class StandardCalendarComponent {
   template: `
     <sbb-calendar [startAt]="startAt" [minDate]="minDate" [maxDate]="maxDate"></sbb-calendar>
   `,
+  standalone: true,
+  imports: [SbbDatepickerModule],
 })
 class CalendarWithMinMaxComponent {
   startAt: Date;
@@ -53,6 +56,8 @@ class CalendarWithMinMaxComponent {
     <sbb-calendar [startAt]="startDate" [(selected)]="selected" [dateFilter]="dateFilter">
     </sbb-calendar>
   `,
+  standalone: true,
+  imports: [SbbDatepickerModule],
 })
 class CalendarWithDateFilterComponent {
   selected: Date;
@@ -73,6 +78,8 @@ class CalendarWithDateFilterComponent {
     >
     </sbb-calendar>
   `,
+  standalone: true,
+  imports: [SbbDatepickerModule],
 })
 class CalendarWithSelectableMinDateComponent {
   startAt = new Date(2018, JUL, 0);
@@ -90,6 +97,8 @@ class CalendarWithSelectableMinDateComponent {
 
 @Component({
   template: ` <sbb-calendar [dateClass]="dateClass"> </sbb-calendar> `,
+  standalone: true,
+  imports: [SbbDatepickerModule],
 })
 class CalendarWithDateClassComponent {
   dateClass: SbbCalendarCellClassFunction<Date>;
@@ -100,15 +109,7 @@ describe('SbbCalendar', () => {
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-      imports: [SbbDatepickerModule, SbbIconModule, SbbIconTestingModule],
-      declarations: [
-        // Test components.
-        StandardCalendarComponent,
-        CalendarWithDateClassComponent,
-        CalendarWithMinMaxComponent,
-        CalendarWithDateFilterComponent,
-        CalendarWithSelectableMinDateComponent,
-      ],
+      imports: [SbbIconTestingModule],
       providers: [{ provide: NgZone, useFactory: () => (zone = new MockNgZone()) }],
     }).compileComponents();
   }));

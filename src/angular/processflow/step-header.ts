@@ -1,5 +1,6 @@
 import { FocusMonitor, FocusOrigin } from '@angular/cdk/a11y';
 import { CdkStepHeader, StepState } from '@angular/cdk/stepper';
+import { NgTemplateOutlet } from '@angular/common';
 import {
   AfterViewInit,
   ChangeDetectionStrategy,
@@ -22,6 +23,8 @@ import { SbbStepLabel } from './step-label';
   },
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush,
+  standalone: true,
+  imports: [NgTemplateOutlet],
 })
 export class SbbStepHeader extends CdkStepHeader implements AfterViewInit, OnDestroy {
   /** State of the given step. */

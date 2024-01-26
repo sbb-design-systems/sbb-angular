@@ -8,6 +8,7 @@ import {
   SimpleChanges,
   ViewEncapsulation,
 } from '@angular/core';
+import { SbbIcon } from '@sbb-esta/angular/icon';
 
 export type SbbNavigationPageChangeEvent = 'next' | 'previous';
 
@@ -20,6 +21,8 @@ export type SbbNavigationPageChangeEvent = 'next' | 'previous';
   host: {
     role: 'navigation',
   },
+  standalone: true,
+  imports: [SbbIcon],
 })
 export class SbbNavigation implements OnChanges {
   /** The next page descriptor. */

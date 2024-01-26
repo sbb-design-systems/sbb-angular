@@ -6,6 +6,7 @@ import { Directive } from '@angular/core';
     class: 'sbb-textexpand-collapsed',
     '[attr.hidden]': '_hidden ? true : null',
   },
+  standalone: true,
 })
 export class SbbTextexpandCollapsed {
   /** Describes if textexpand-collapsed is hidden or not. Initially it isn't hidden. */

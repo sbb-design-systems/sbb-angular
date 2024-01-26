@@ -10,8 +10,7 @@ import { SbbAlert, SbbAlertModule, SbbAlertOutlet, SbbAlertService } from './ind
 describe('SbbAlert', () => {
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-      imports: [RouterTestingModule, NoopAnimationsModule, SbbIconTestingModule, SbbAlertModule],
-      declarations: [AlertSimple, AlertRouterLink, AlertExternalLink],
+      imports: [RouterTestingModule, NoopAnimationsModule, SbbIconTestingModule],
     }).compileComponents();
   }));
 
@@ -107,8 +106,7 @@ describe('SbbAlertOutlet', () => {
 
     beforeEach(waitForAsync(() => {
       TestBed.configureTestingModule({
-        imports: [RouterTestingModule, NoopAnimationsModule, SbbIconTestingModule, SbbAlertModule],
-        declarations: [AlertOutletSimple],
+        imports: [NoopAnimationsModule],
       }).compileComponents();
     }));
 
@@ -227,8 +225,7 @@ describe('SbbAlertOutlet', () => {
 
     beforeEach(waitForAsync(() => {
       TestBed.configureTestingModule({
-        imports: [RouterTestingModule, NoopAnimationsModule, SbbIconTestingModule, SbbAlertModule],
-        declarations: [AlertOutletWithInnerAlert],
+        imports: [AlertOutletWithInnerAlert, NoopAnimationsModule],
       }).compileComponents();
     }));
 
@@ -266,8 +263,7 @@ describe('SbbAlertOutlet', () => {
   describe('with two outlets', () => {
     beforeEach(waitForAsync(() => {
       TestBed.configureTestingModule({
-        imports: [RouterTestingModule, NoopAnimationsModule, SbbIconTestingModule, SbbAlertModule],
-        declarations: [AlertOutletError],
+        imports: [NoopAnimationsModule],
       }).compileComponents();
     }));
 
@@ -282,8 +278,7 @@ describe('SbbAlertOutlet', () => {
 
     beforeEach(waitForAsync(() => {
       TestBed.configureTestingModule({
-        imports: [RouterTestingModule, NoopAnimationsModule, SbbIconTestingModule, SbbAlertModule],
-        declarations: [AlertOutletWithoutOutlet],
+        imports: [NoopAnimationsModule],
       }).compileComponents();
     }));
 
@@ -303,6 +298,8 @@ describe('SbbAlertOutlet', () => {
 @Component({
   selector: 'sbb-alert-simple',
   template: `<sbb-alert [svgIcon]="icon" (dismissed)="dismissed()">TEST</sbb-alert>`,
+  standalone: true,
+  imports: [RouterTestingModule, SbbIconTestingModule, SbbAlertModule],
 })
 export class AlertSimple {
   icon: string;
@@ -319,6 +316,8 @@ export class AlertSimple {
     (dismissed)="dismissed()"
     >router link</a
   >`,
+  standalone: true,
+  imports: [RouterTestingModule, SbbIconTestingModule, SbbAlertModule],
 })
 export class AlertRouterLink {
   dismissed() {}
@@ -327,6 +326,8 @@ export class AlertRouterLink {
 @Component({
   selector: 'sbb-alert-external-link',
   template: `<a sbbAlert href="https://sbb.ch" (dismissed)="dismissed()">router link</a>`,
+  standalone: true,
+  imports: [RouterTestingModule, SbbIconTestingModule, SbbAlertModule],
 })
 export class AlertExternalLink {
   dismissed() {}
@@ -335,6 +336,8 @@ export class AlertExternalLink {
 @Component({
   selector: 'sbb-alert-outlet-simple',
   template: `<sbb-alert-outlet></sbb-alert-outlet>`,
+  standalone: true,
+  imports: [RouterTestingModule, SbbIconTestingModule, SbbAlertModule],
 })
 export class AlertOutletSimple {
   constructor(public alertService: SbbAlertService) {}
@@ -347,6 +350,8 @@ export class AlertOutletSimple {
       <sbb-alert>This is an initial alert inside an outlet.</sbb-alert>
     </sbb-alert-outlet>
   `,
+  standalone: true,
+  imports: [RouterTestingModule, SbbIconTestingModule, SbbAlertModule],
 })
 export class AlertOutletWithInnerAlert {}
 
@@ -356,12 +361,16 @@ export class AlertOutletWithInnerAlert {}
     <sbb-alert-outlet></sbb-alert-outlet>
     <sbb-alert-outlet></sbb-alert-outlet>
   `,
+  standalone: true,
+  imports: [RouterTestingModule, SbbIconTestingModule, SbbAlertModule],
 })
 export class AlertOutletError {}
 
 @Component({
   selector: 'sbb-alert-outlet-without-outlet',
   template: ``,
+  standalone: true,
+  imports: [RouterTestingModule, SbbIconTestingModule, SbbAlertModule],
 })
 export class AlertOutletWithoutOutlet {
   constructor(public alertService: SbbAlertService) {}

@@ -13,6 +13,7 @@ import {
   Output,
   ViewEncapsulation,
 } from '@angular/core';
+import { SbbIconModule } from '@sbb-esta/angular/icon';
 
 import { sbbAlertAnimations } from './alert-animations';
 
@@ -42,6 +43,8 @@ let nextId = 0;
     '[class.sbb-alert-link]': '_isNativeLink',
     '[@showDismiss]': '_animationState',
   },
+  standalone: true,
+  imports: [SbbIconModule],
 })
 export class SbbAlert {
   _labelClose: string = $localize`:Hidden button label to close the alert@@sbbAlertCloseAlert:Close message`;

@@ -6,8 +6,7 @@ import { SbbCheckbox } from './checkbox';
 import { SbbCheckboxRequiredValidator } from './checkbox-required-validator';
 
 @NgModule({
-  imports: [ObserversModule, SbbCommonModule],
-  declarations: [SbbCheckbox, SbbCheckboxRequiredValidator],
+  imports: [ObserversModule, SbbCommonModule, SbbCheckbox, SbbCheckboxRequiredValidator],
   exports: [SbbCheckbox, SbbCheckboxRequiredValidator],
 })
 export class SbbCheckboxModule {}

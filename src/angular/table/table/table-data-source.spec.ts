@@ -10,8 +10,7 @@ import { SbbTableDataSource, SbbTableFilter } from './table-data-source';
 describe('SbbTableDataSource', () => {
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-      imports: [SbbTableModule, NoopAnimationsModule],
-      declarations: [SbbSortApp],
+      imports: [NoopAnimationsModule, SbbSortApp],
     }).compileComponents();
   }));
 
@@ -275,6 +274,8 @@ describe('SbbTableDataSource', () => {
 
 @Component({
   template: `<div sbbSort sbbSortDirection="asc"></div>`,
+  standalone: true,
+  imports: [SbbTableModule],
 })
 class SbbSortApp {
   @ViewChild(SbbSort) sort: SbbSort;

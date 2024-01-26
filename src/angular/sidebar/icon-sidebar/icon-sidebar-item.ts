@@ -8,6 +8,7 @@ import { ChangeDetectionStrategy, Component, Input, ViewEncapsulation } from '@a
   host: {
     class: 'sbb-icon-sidebar-item sbb-icon-scaled',
   },
+  standalone: true,
 })
 export class SbbIconSidebarItem {
   /** Label of the icon */

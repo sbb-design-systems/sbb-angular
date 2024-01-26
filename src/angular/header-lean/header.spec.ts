@@ -15,8 +15,7 @@ describe('SbbHeaderLean', () => {
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-      imports: [NoopAnimationsModule, SbbHeaderLeanModule, SbbIconModule, SbbIconTestingModule],
-      declarations: [SimpleHeaderLean, HeaderLeanWithAppChooser],
+      imports: [NoopAnimationsModule, SbbIconTestingModule],
       providers: [
         {
           provide: MediaMatcher,
@@ -133,6 +132,8 @@ describe('SbbHeaderLean', () => {
       <a routerLink="/" class="home-link">Home</a>
     </sbb-header-lean>
   `,
+  standalone: true,
+  imports: [SbbHeaderLeanModule, SbbIconModule],
 })
 class SimpleHeaderLean {
   label = 'Simple Label';
@@ -153,5 +154,7 @@ class SimpleHeaderLean {
       </sbb-app-chooser-section>
     </sbb-header-lean>
   `,
+  standalone: true,
+  imports: [SbbHeaderLeanModule],
 })
 class HeaderLeanWithAppChooser {}
