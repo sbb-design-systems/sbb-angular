@@ -23,6 +23,7 @@ const _HeaderMenuItemBase = mixinDisabled(class {});
     '[attr.role]': 'this.role',
     class: 'sbb-header-menu-item sbb-menu-item',
   },
+  standalone: true,
 })
 export class SbbHeaderMenuItem extends _HeaderMenuItemBase implements FocusableOption, OnDestroy {
   /** ARIA role for the menu item. */

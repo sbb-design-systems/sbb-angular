@@ -8,8 +8,7 @@ import { SbbTagLink } from './tag-link';
 import { SbbTags } from './tags';
 
 @NgModule({
-  imports: [CommonModule, SbbCommonModule, SbbBadgeModule],
-  declarations: [SbbTag, SbbTags, SbbTagLink],
+  imports: [CommonModule, SbbCommonModule, SbbBadgeModule, SbbTag, SbbTags, SbbTagLink],
   exports: [SbbTag, SbbTags, SbbTagLink],
 })
 export class SbbTagModule {}

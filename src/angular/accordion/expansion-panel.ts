@@ -2,7 +2,7 @@ import { AnimationEvent } from '@angular/animations';
 import { CdkAccordionItem } from '@angular/cdk/accordion';
 import { BooleanInput, coerceBooleanProperty } from '@angular/cdk/coercion';
 import { UniqueSelectionDispatcher } from '@angular/cdk/collections';
-import { TemplatePortal } from '@angular/cdk/portal';
+import { CdkPortalOutlet, TemplatePortal } from '@angular/cdk/portal';
 import { DOCUMENT } from '@angular/common';
 import {
   AfterContentInit,
@@ -75,6 +75,8 @@ let uniqueId = 0;
     class: 'sbb-expansion-panel',
     '[class.sbb-expanded]': 'expanded',
   },
+  standalone: true,
+  imports: [CdkPortalOutlet],
 })
 export class SbbExpansionPanel
   extends _SbbExpansionPanelBase

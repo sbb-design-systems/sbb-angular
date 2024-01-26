@@ -1,4 +1,5 @@
 import { coerceNumberProperty, NumberInput } from '@angular/cdk/coercion';
+import { AsyncPipe } from '@angular/common';
 import {
   ChangeDetectionStrategy,
   Component,
@@ -13,6 +14,7 @@ import {
   ViewEncapsulation,
 } from '@angular/core';
 import { mixinDisabled, mixinVariant } from '@sbb-esta/angular/core';
+import { SbbIcon } from '@sbb-esta/angular/icon';
 import { BehaviorSubject, combineLatest, Observable, Subject } from 'rxjs';
 import { map, takeUntil } from 'rxjs/operators';
 
@@ -35,6 +37,8 @@ let nextId = 1;
     '[attr.id]': 'this.id',
     '[attr.aria-expanded]': '_tooltip._isTooltipVisible()',
   },
+  standalone: true,
+  imports: [SbbTooltip, SbbIcon, AsyncPipe],
 })
 export class SbbTooltipWrapper
   extends _SbbTooltipWrapperMixinBase

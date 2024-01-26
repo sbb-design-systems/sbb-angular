@@ -1,6 +1,7 @@
 import { ActiveDescendantKeyManager } from '@angular/cdk/a11y';
 import { BooleanInput, coerceBooleanProperty, coerceStringArray } from '@angular/cdk/coercion';
 import { Platform } from '@angular/cdk/platform';
+import { NgClass } from '@angular/common';
 import {
   AfterContentInit,
   ChangeDetectionStrategy,
@@ -96,6 +97,8 @@ export function SBB_AUTOCOMPLETE_DEFAULT_OPTIONS_FACTORY(): SbbAutocompleteDefau
   host: {
     class: 'sbb-autocomplete',
   },
+  standalone: true,
+  imports: [NgClass],
 })
 export class SbbAutocomplete implements AfterContentInit, OnDestroy {
   private _activeOptionChanges = Subscription.EMPTY;

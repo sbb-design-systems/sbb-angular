@@ -1,5 +1,6 @@
 import { FocusableOption, FocusMonitor, FocusOrigin } from '@angular/cdk/a11y';
 import { BooleanInput, coerceBooleanProperty } from '@angular/cdk/coercion';
+import { CdkObserveContent } from '@angular/cdk/observers';
 import {
   AfterViewInit,
   Attribute,
@@ -368,5 +369,7 @@ export class _SbbCheckboxBase
   inputs: ['tabIndex'],
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush,
+  standalone: true,
+  imports: [CdkObserveContent],
 })
 export class SbbCheckbox extends _SbbCheckboxBase {}

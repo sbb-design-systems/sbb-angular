@@ -4,12 +4,14 @@
 import { AnimationEvent } from '@angular/animations';
 import { BreakpointObserver } from '@angular/cdk/layout';
 import {
+  CdkConnectedOverlay,
   CdkOverlayOrigin,
   ConnectedPosition,
   Overlay,
   RepositionScrollStrategy,
   ScrollStrategy,
 } from '@angular/cdk/overlay';
+import { AsyncPipe } from '@angular/common';
 import {
   ChangeDetectionStrategy,
   ChangeDetectorRef,
@@ -23,6 +25,7 @@ import {
   ViewEncapsulation,
 } from '@angular/core';
 import { Breakpoints, SCALING_FACTOR_4K, SCALING_FACTOR_5K, TypeRef } from '@sbb-esta/angular/core';
+import { SbbIcon } from '@sbb-esta/angular/icon';
 import { animationFrameScheduler, interval, Observable, Subscription } from 'rxjs';
 import { map } from 'rxjs/operators';
 
@@ -77,6 +80,8 @@ let nextId = 1;
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush,
   animations: [sbbSearchAnimations.growShrink],
+  standalone: true,
+  imports: [SbbIcon, CdkConnectedOverlay, AsyncPipe],
 })
 export class SbbHeaderSearch {
   _labelSearch: string = $localize`:Button label for the header search@@sbbSearchHeaderButtonLabel:Search`;

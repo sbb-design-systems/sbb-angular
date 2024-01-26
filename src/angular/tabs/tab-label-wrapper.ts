@@ -16,6 +16,7 @@ const _SbbTabLabelWrapperMixinBase = mixinDisabled(class {});
     '[class.sbb-tab-disabled]': 'disabled',
     '[attr.aria-disabled]': '!!disabled',
   },
+  standalone: true,
 })
 export class SbbTabLabelWrapper extends _SbbTabLabelWrapperMixinBase implements CanDisable {
   constructor(public elementRef: ElementRef) {

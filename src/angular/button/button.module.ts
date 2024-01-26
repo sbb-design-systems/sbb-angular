@@ -6,8 +6,7 @@ import { SbbIconModule } from '@sbb-esta/angular/icon';
 import { SbbAnchor, SbbButton } from './button';
 
 @NgModule({
-  imports: [CommonModule, SbbCommonModule, SbbIconModule],
-  declarations: [SbbButton, SbbAnchor],
+  imports: [CommonModule, SbbCommonModule, SbbIconModule, SbbButton, SbbAnchor],
   exports: [SbbButton, SbbAnchor],
 })
 export class SbbButtonModule {}

@@ -5,5 +5,6 @@ import { Directive } from '@angular/core';
   host: {
     class: 'sbb-label',
   },
+  standalone: true,
 })
 export class SbbLabel {}

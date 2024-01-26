@@ -39,24 +39,7 @@ describe('SbbIconSidebar', () => {
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-      imports: [
-        SbbSidebarModule,
-        A11yModule,
-        NoopAnimationsModule,
-        SbbIconModule,
-        SbbIconTestingModule,
-        RouterTestingModule,
-      ],
-      declarations: [
-        BasicTestComponent,
-        SidebarSetToExpandedFalseTestComponent,
-        SidebarSetToExpandedTrueTestComponent,
-        TwoSidebarsTestComponent,
-        SidebarExpandedBindingTestComponent,
-        IndirectDescendantSidebarTestComponent,
-        NestedSidebarContainersTestComponent,
-        IconSidebarWithLinksTestComponent,
-      ],
+      imports: [A11yModule, NoopAnimationsModule, SbbIconTestingModule],
       providers: [PROVIDE_FAKE_MEDIA_MATCHER],
     });
 
@@ -180,8 +163,7 @@ describe('SbbIconSidebar', () => {
     it('should not throw when a two-way binding is toggled quickly while animating', fakeAsync(() => {
       TestBed.resetTestingModule()
         .configureTestingModule({
-          imports: [SbbSidebarModule, BrowserAnimationsModule, SbbIconModule, SbbIconTestingModule],
-          declarations: [SidebarExpandedBindingTestComponent],
+          imports: [BrowserAnimationsModule, SbbIconTestingModule],
         })
         .compileComponents();
 
@@ -369,20 +351,7 @@ describe('SbbIconSidebarContainer', () => {
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-      imports: [
-        SbbSidebarModule,
-        A11yModule,
-        NoopAnimationsModule,
-        SbbIconModule,
-        SbbIconTestingModule,
-      ],
-      declarations: [
-        SidebarContainerEmptyTestComponent,
-        SidebarDelayedTestComponent,
-        SidebarSetToExpandedTrueTestComponent,
-        BasicTestComponent,
-        SidebarContainerWithContentTestComponent,
-      ],
+      imports: [NoopAnimationsModule, SbbIconTestingModule],
       providers: [PROVIDE_FAKE_MEDIA_MATCHER],
     });
 
@@ -436,6 +405,8 @@ describe('SbbIconSidebarContainer', () => {
   template: ` <sbb-icon-sidebar-container>
     <sbb-icon-sidebar></sbb-icon-sidebar>
   </sbb-icon-sidebar-container>`,
+  standalone: true,
+  imports: [SbbSidebarModule, SbbIconModule],
 })
 class SidebarContainerEmptyTestComponent {
   @ViewChild(SbbIconSidebarContainer) sidebarContainer: SbbIconSidebarContainer;
@@ -448,6 +419,8 @@ class SidebarContainerEmptyTestComponent {
       <button #sidebarButton>Content</button>
     </sbb-icon-sidebar>
   </sbb-icon-sidebar-container>`,
+  standalone: true,
+  imports: [SbbSidebarModule],
 })
 class BasicTestComponent {
   @ViewChild('sidebar') sidebar: SbbIconSidebar;
@@ -460,6 +433,8 @@ class BasicTestComponent {
   template: ` <sbb-icon-sidebar-container>
     <sbb-icon-sidebar #sidebar expanded="false"> collapsed Sidebar. </sbb-icon-sidebar>
   </sbb-icon-sidebar-container>`,
+  standalone: true,
+  imports: [SbbSidebarModule],
 })
 class SidebarSetToExpandedFalseTestComponent {}
 
@@ -469,6 +444,8 @@ class SidebarSetToExpandedFalseTestComponent {}
       Collapsed Sidebar.
     </sbb-icon-sidebar>
   </sbb-icon-sidebar-container>`,
+  standalone: true,
+  imports: [SbbSidebarModule],
 })
 class SidebarSetToExpandedTrueTestComponent {
   expandedCallback = jasmine.createSpy('expanded callback');
@@ -478,6 +455,8 @@ class SidebarSetToExpandedTrueTestComponent {
   template: ` <sbb-icon-sidebar-container>
     <sbb-icon-sidebar #sidebar [(expanded)]="isExpanded"> Collapsed Sidebar. </sbb-icon-sidebar>
   </sbb-icon-sidebar-container>`,
+  standalone: true,
+  imports: [SbbSidebarModule],
 })
 class SidebarExpandedBindingTestComponent {
   isExpanded = false;
@@ -488,22 +467,10 @@ class SidebarExpandedBindingTestComponent {
     <sbb-icon-sidebar #sidebar1></sbb-icon-sidebar>
     <sbb-icon-sidebar #sidebar2></sbb-icon-sidebar>
   </sbb-icon-sidebar-container>`,
+  standalone: true,
+  imports: [SbbSidebarModule],
 })
 class TwoSidebarsTestComponent {}
-
-@Component({
-  template: `
-    <sbb-icon-sidebar-container>
-      @if (showSidebar) {
-        <sbb-icon-sidebar #sidebar expanded>Sidebar</sbb-icon-sidebar>
-      }
-    </sbb-icon-sidebar-container>
-  `,
-})
-class SidebarDelayedTestComponent {
-  @ViewChild(SbbIconSidebar) sidebar: SbbIconSidebar;
-  showSidebar = false;
-}
 
 @Component({
   template: `
@@ -512,6 +479,8 @@ class SidebarDelayedTestComponent {
       <sbb-icon-sidebar-content>Content</sbb-icon-sidebar-content>
     </sbb-icon-sidebar-container>
   `,
+  standalone: true,
+  imports: [SbbSidebarModule],
 })
 class SidebarContainerWithContentTestComponent {
   @ViewChild(SbbIconSidebarContainer) sidebarContainer: SbbIconSidebarContainer;
@@ -525,6 +494,8 @@ class SidebarContainerWithContentTestComponent {
       <sbb-icon-sidebar #sidebar>Sidebar</sbb-icon-sidebar>
     }
   </sbb-icon-sidebar-container>`,
+  standalone: true,
+  imports: [SbbSidebarModule],
 })
 class IndirectDescendantSidebarTestComponent {
   @ViewChild('container') container: SbbIconSidebarContainer;
@@ -542,6 +513,8 @@ class IndirectDescendantSidebarTestComponent {
       </sbb-icon-sidebar-content>
     </sbb-icon-sidebar-container>
   `,
+  standalone: true,
+  imports: [SbbSidebarModule],
 })
 class NestedSidebarContainersTestComponent {
   @ViewChild('outerContainer') outerContainer: SbbIconSidebarContainer;
@@ -574,6 +547,8 @@ class NestedSidebarContainersTestComponent {
       <sbb-icon-sidebar-content> Content </sbb-icon-sidebar-content>
     </sbb-icon-sidebar-container>
   `,
+  standalone: true,
+  imports: [SbbSidebarModule, SbbIconModule, RouterTestingModule],
 })
 class IconSidebarWithLinksTestComponent {
   expandedCount = 0;

@@ -2,6 +2,7 @@
 /// <reference types="@angular/localize/init" />
 
 import { coerceNumberProperty, NumberInput } from '@angular/cdk/coercion';
+import { AsyncPipe } from '@angular/common';
 import {
   AfterContentInit,
   ChangeDetectionStrategy,
@@ -28,6 +29,8 @@ import { SbbTag } from './tag';
   host: {
     class: 'sbb-tags',
   },
+  standalone: true,
+  imports: [SbbTag, AsyncPipe],
 })
 export class SbbTags implements AfterContentInit, OnDestroy {
   _labelAllTag: string = $localize`:Label for the 'All' tag@@sbbTagsAll:All`;

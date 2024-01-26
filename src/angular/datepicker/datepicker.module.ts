@@ -24,8 +24,13 @@ import {
 import { SbbMonthView } from './month-view/month-view';
 
 @NgModule({
-  imports: [CommonModule, PortalModule, A11yModule, OverlayModule, SbbCommonModule, SbbIconModule],
-  declarations: [
+  imports: [
+    CommonModule,
+    PortalModule,
+    A11yModule,
+    OverlayModule,
+    SbbCommonModule,
+    SbbIconModule,
     SbbDatepicker,
     SbbDatepickerToggle,
     SbbDatepickerContent,

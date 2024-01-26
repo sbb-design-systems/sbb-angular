@@ -15,15 +15,19 @@ import {
 } from './dialog-content-directives';
 
 @NgModule({
-  imports: [DialogModule, OverlayModule, PortalModule, SbbCommonModule, SbbIconModule],
-  exports: [SbbDialogContainer, SbbDialogClose, SbbDialogTitle, SbbDialogContent, SbbDialogActions],
-  declarations: [
+  imports: [
+    DialogModule,
+    OverlayModule,
+    PortalModule,
+    SbbCommonModule,
+    SbbIconModule,
     SbbDialogContainer,
     SbbDialogClose,
     SbbDialogTitle,
     SbbDialogActions,
     SbbDialogContent,
   ],
+  exports: [SbbDialogContainer, SbbDialogClose, SbbDialogTitle, SbbDialogContent, SbbDialogActions],
   providers: [SbbDialog, SBB_DIALOG_SCROLL_STRATEGY_PROVIDER],
 })
 export class SbbDialogModule {}

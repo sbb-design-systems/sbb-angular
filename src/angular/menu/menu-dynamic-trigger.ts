@@ -3,6 +3,7 @@ import { Directive, TemplateRef, ViewContainerRef } from '@angular/core';
 @Directive({
   selector: `[sbbMenuDynamicTrigger]`,
   exportAs: 'sbbMenuDynamicTrigger',
+  standalone: true,
 })
 export class SbbMenuDynamicTrigger {
   constructor(

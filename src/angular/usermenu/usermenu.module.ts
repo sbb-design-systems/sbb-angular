@@ -8,8 +8,14 @@ import { SbbUsermenu } from './usermenu';
 import { SbbUsermenuIcon } from './usermenu-icon';
 
 @NgModule({
-  declarations: [SbbUsermenu, SbbUsermenuIcon],
-  imports: [CommonModule, SbbCommonModule, SbbIconModule, SbbMenuModule],
+  imports: [
+    CommonModule,
+    SbbCommonModule,
+    SbbIconModule,
+    SbbMenuModule,
+    SbbUsermenu,
+    SbbUsermenuIcon,
+  ],
   exports: [SbbUsermenu, SbbUsermenuIcon],
 })
 export class SbbUsermenuModule {}

@@ -1,7 +1,7 @@
 import { FocusMonitor } from '@angular/cdk/a11y';
 import { Direction, Directionality } from '@angular/cdk/bidi';
 import { ESCAPE } from '@angular/cdk/keycodes';
-import { CdkScrollable, OverlayContainer, OverlayModule } from '@angular/cdk/overlay';
+import { CdkScrollable, OverlayContainer } from '@angular/cdk/overlay';
 import { Platform } from '@angular/cdk/platform';
 import {
   ChangeDetectionStrategy,
@@ -54,18 +54,7 @@ describe('SbbTooltip', () => {
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-      imports: [SbbTooltipModule, OverlayModule, SbbIconTestingModule],
-      declarations: [
-        BasicTooltipDemo,
-        ScrollableTooltipDemo,
-        OnPushTooltipDemo,
-        DynamicTooltipsDemo,
-        TooltipOnTextFields,
-        TooltipOnDraggableElement,
-        DataBoundAriaLabelTooltip,
-        TriggerConfigurableTooltip,
-        TooltipTriggerBubble,
-      ],
+      imports: [SbbIconTestingModule],
       providers: [
         {
           provide: Directionality,
@@ -183,8 +172,6 @@ describe('SbbTooltip', () => {
     it('should be able to override the default show and hide delays', fakeAsync(() => {
       TestBed.resetTestingModule()
         .configureTestingModule({
-          imports: [SbbTooltipModule, OverlayModule],
-          declarations: [BasicTooltipDemo],
           providers: [
             {
               provide: SBB_TOOLTIP_DEFAULT_OPTIONS,
@@ -220,7 +207,7 @@ describe('SbbTooltip', () => {
     it('should be able to disable tooltip interactivity', fakeAsync(() => {
       TestBed.resetTestingModule()
         .configureTestingModule({
-          imports: [SbbTooltipModule, OverlayModule],
+          imports: [SbbTooltipModule],
           declarations: [TooltipDemoWithoutPositionBinding],
           providers: [
             {
@@ -1304,6 +1291,8 @@ describe('SbbTooltip', () => {
       Button
     </button>
   }`,
+  standalone: true,
+  imports: [SbbTooltipModule],
 })
 class BasicTooltipDemo {
   message: any = initialTooltipMessage;
@@ -1325,6 +1314,8 @@ class BasicTooltipDemo {
       <button style="margin-bottom: 600px" [sbbTooltip]="message">Button</button>
     }
   </div>`,
+  standalone: true,
+  imports: [SbbTooltipModule],
 })
 class ScrollableTooltipDemo {
   message: string = initialTooltipMessage;
@@ -1347,6 +1338,8 @@ class ScrollableTooltipDemo {
   selector: 'app',
   template: ` <button [sbbTooltip]="message">Button</button>`,
   changeDetection: ChangeDetectionStrategy.OnPush,
+  standalone: true,
+  imports: [SbbTooltipModule],
 })
 class OnPushTooltipDemo {
   position: string = 'below';
@@ -1358,6 +1351,8 @@ class OnPushTooltipDemo {
   template: ` @for (tooltip of tooltips; track tooltip) {
     <button [sbbTooltip]="tooltip">Button {{ tooltip }}</button>
   }`,
+  standalone: true,
+  imports: [SbbTooltipModule],
 })
 class DynamicTooltipsDemo {
   tooltips: string[] = [];
@@ -1365,6 +1360,8 @@ class DynamicTooltipsDemo {
 
 @Component({
   template: `<button [sbbTooltip]="message" [attr.aria-label]="message">Click me</button>`,
+  standalone: true,
+  imports: [SbbTooltipModule],
 })
 class DataBoundAriaLabelTooltip {
   message = 'Hello there';
@@ -1380,6 +1377,8 @@ class DataBoundAriaLabelTooltip {
       [sbbTooltipTouchGestures]="touchGestures"
     ></textarea>
   `,
+  standalone: true,
+  imports: [SbbTooltipModule],
 })
 class TooltipOnTextFields {
   @ViewChild('input') input: ElementRef<HTMLInputElement>;
@@ -1396,6 +1395,8 @@ class TooltipOnTextFields {
       [sbbTooltipTouchGestures]="touchGestures"
     ></button>
   `,
+  standalone: true,
+  imports: [SbbTooltipModule],
 })
 class TooltipOnDraggableElement {
   @ViewChild('button') button: ElementRef;
@@ -1406,6 +1407,8 @@ class TooltipOnDraggableElement {
   template: `
     <button [sbbTooltip]="'content'" [sbbTooltipTrigger]="trigger">Show tooltip</button>
   `,
+  standalone: true,
+  imports: [SbbTooltipModule],
 })
 class TriggerConfigurableTooltip {
   @ViewChild(SbbTooltip) tooltip: SbbTooltip;
@@ -1434,6 +1437,8 @@ class TooltipDemoWithoutPositionBinding {
       </button>
     </div>
   `,
+  standalone: true,
+  imports: [SbbTooltipModule],
 })
 class TooltipTriggerBubble {
   disabled = false;

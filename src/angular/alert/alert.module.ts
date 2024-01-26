@@ -7,8 +7,7 @@ import { SbbAlert } from './alert';
 import { SbbAlertOutlet } from './alert-outlet';
 
 @NgModule({
-  declarations: [SbbAlert, SbbAlertOutlet],
-  imports: [RouterModule, SbbCommonModule, SbbIconModule],
+  imports: [RouterModule, SbbCommonModule, SbbIconModule, SbbAlert, SbbAlertOutlet],
   exports: [SbbAlert, SbbAlertOutlet],
 })
 export class SbbAlertModule {}

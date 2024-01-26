@@ -1,4 +1,4 @@
-import { CommonModule } from '@angular/common';
+import { AsyncPipe, CommonModule } from '@angular/common';
 import { Component, ContentChildren, QueryList } from '@angular/core';
 import { ComponentFixture, fakeAsync, flush, TestBed, waitForAsync } from '@angular/core/testing';
 import { FormControl, FormGroup, FormsModule, ReactiveFormsModule } from '@angular/forms';
@@ -50,6 +50,16 @@ import { SbbToggleModule } from './toggle.module';
       </sbb-toggle>
     </form>
   `,
+  standalone: true,
+  imports: [
+    SbbToggleModule,
+    CommonModule,
+    SbbIconModule,
+    SbbDatepickerModule,
+    SbbInputModule,
+    ReactiveFormsModule,
+    SbbIconTestingModule,
+  ],
 })
 class ToggleReactiveTestComponent {
   rawOptions = [
@@ -105,6 +115,15 @@ class ToggleReactiveTestComponent {
       </sbb-toggle>
     </form>
   `,
+  standalone: true,
+  imports: [
+    SbbToggleModule,
+    AsyncPipe,
+    SbbIconModule,
+    SbbDatepickerModule,
+    SbbInputModule,
+    ReactiveFormsModule,
+  ],
 })
 class ToggleReactiveDefaultValueTestComponent {
   form = new FormGroup({
@@ -156,6 +175,15 @@ class ToggleReactiveDefaultValueTestComponent {
       }
     </sbb-toggle>
   `,
+  standalone: true,
+  imports: [
+    SbbToggleModule,
+    CommonModule,
+    SbbIconModule,
+    SbbDatepickerModule,
+    SbbInputModule,
+    FormsModule,
+  ],
 })
 class ToggleTemplateDrivenTestComponent {
   modelValue: any;
@@ -188,6 +216,8 @@ class ToggleTemplateDrivenTestComponent {
       </sbb-toggle-option>
     </sbb-toggle>
   `,
+  standalone: true,
+  imports: [SbbToggleModule],
 })
 class ToggleSimpleCaseTestComponent {
   @ContentChildren('options') options: QueryList<SbbToggleOption>;
@@ -213,6 +243,8 @@ class ToggleSimpleCaseTestComponent {
       </sbb-toggle-option>
     </sbb-toggle>
   `,
+  standalone: true,
+  imports: [SbbToggleModule, ReactiveFormsModule, SbbIconModule],
 })
 class ToggleOnlySecondWithContentTestComponent {
   journey = new FormControl('ReturnJourney');
@@ -224,17 +256,7 @@ describe('SbbToggle', () => {
 
     beforeEach(waitForAsync(() => {
       TestBed.configureTestingModule({
-        imports: [
-          SbbToggleModule,
-          CommonModule,
-          NoopAnimationsModule,
-          SbbIconModule,
-          SbbDatepickerModule,
-          SbbInputModule,
-          ReactiveFormsModule,
-          SbbIconTestingModule,
-        ],
-        declarations: [ToggleReactiveTestComponent],
+        imports: [NoopAnimationsModule, SbbIconTestingModule],
       }).compileComponents();
     }));
 
@@ -321,17 +343,7 @@ describe('SbbToggle', () => {
 
     beforeEach(waitForAsync(() => {
       TestBed.configureTestingModule({
-        imports: [
-          SbbToggleModule,
-          CommonModule,
-          NoopAnimationsModule,
-          SbbIconModule,
-          SbbDatepickerModule,
-          SbbInputModule,
-          ReactiveFormsModule,
-          SbbIconTestingModule,
-        ],
-        declarations: [ToggleReactiveDefaultValueTestComponent],
+        imports: [NoopAnimationsModule, SbbIconTestingModule],
       }).compileComponents();
     }));
 
@@ -357,17 +369,7 @@ describe('SbbToggle', () => {
 
     beforeEach(waitForAsync(() => {
       TestBed.configureTestingModule({
-        imports: [
-          SbbToggleModule,
-          CommonModule,
-          NoopAnimationsModule,
-          SbbIconModule,
-          SbbDatepickerModule,
-          SbbInputModule,
-          FormsModule,
-          SbbIconTestingModule,
-        ],
-        declarations: [ToggleTemplateDrivenTestComponent],
+        imports: [NoopAnimationsModule, SbbIconTestingModule],
       }).compileComponents();
     }));
 
@@ -414,8 +416,7 @@ describe('SbbToggle', () => {
 
     beforeEach(waitForAsync(() => {
       TestBed.configureTestingModule({
-        imports: [SbbToggleModule, CommonModule, NoopAnimationsModule, SbbIconTestingModule],
-        declarations: [ToggleSimpleCaseTestComponent],
+        imports: [NoopAnimationsModule, SbbIconTestingModule],
       }).compileComponents();
     }));
 
@@ -461,15 +462,7 @@ describe('SbbToggle', () => {
 
     beforeEach(waitForAsync(() => {
       TestBed.configureTestingModule({
-        imports: [
-          SbbToggleModule,
-          CommonModule,
-          NoopAnimationsModule,
-          ReactiveFormsModule,
-          SbbIconModule,
-          SbbIconTestingModule,
-        ],
-        declarations: [ToggleOnlySecondWithContentTestComponent],
+        imports: [NoopAnimationsModule, SbbIconTestingModule],
       }).compileComponents();
     }));
 

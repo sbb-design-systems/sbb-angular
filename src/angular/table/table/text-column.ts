@@ -8,7 +8,7 @@ import {
   ViewEncapsulation,
 } from '@angular/core';
 
-import { SbbColumnDef } from './cell';
+import { SbbCell, SbbCellDef, SbbColumnDef, SbbHeaderCell, SbbHeaderCellDef } from './cell';
 
 /**
  * Column that simply shows text content for the header and row cells. Assumes that the table
@@ -39,6 +39,8 @@ import { SbbColumnDef } from './cell';
   // an ExpressionChangedAfterItHasBeenCheckedError).
   // tslint:disable-next-line:validate-decorators
   changeDetection: ChangeDetectionStrategy.Default,
+  standalone: true,
+  imports: [SbbColumnDef, SbbHeaderCellDef, SbbHeaderCell, SbbCellDef, SbbCell],
 })
 export class SbbTextColumn<T> extends CdkTextColumn<T> implements OnInit {
   /**

@@ -31,6 +31,7 @@ let nextId = 0;
     '[attr.id]': 'id',
     'aria-live': 'polite',
   },
+  standalone: true,
 })
 export class SbbTextexpand implements AfterContentInit {
   _labelShowLess: string = $localize`:Button label for showing less@@sbbTextexpandShowLess:Show less`;

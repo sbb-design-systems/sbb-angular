@@ -37,6 +37,7 @@ import {
 } from '@angular/core';
 import { ANIMATION_MODULE_TYPE } from '@angular/platform-browser/animations';
 import { NavigationStart, Router } from '@angular/router';
+import { SbbIcon } from '@sbb-esta/angular/icon';
 import { fromEvent, merge, NEVER, Observable, Subject } from 'rxjs';
 import {
   distinctUntilChanged,
@@ -79,6 +80,7 @@ export type SbbSidebarMode = 'over' | 'side';
       useExisting: SbbSidebarContent,
     },
   ],
+  standalone: true,
 })
 export class SbbSidebarContent extends SbbSidebarContentBase implements AfterContentInit {
   constructor(
@@ -114,6 +116,8 @@ export class SbbSidebarContent extends SbbSidebarContentBase implements AfterCon
   },
   changeDetection: ChangeDetectionStrategy.OnPush,
   encapsulation: ViewEncapsulation.None,
+  standalone: true,
+  imports: [CdkScrollable, SbbIcon],
 })
 export class SbbSidebar
   extends SbbSidebarBase
@@ -504,6 +508,8 @@ export class SbbSidebar
       useExisting: SbbSidebarContainer,
     },
   ],
+  standalone: true,
+  imports: [SbbIcon, SbbSidebarContent],
 })
 export class SbbSidebarContainer
   extends SbbSidebarContainerBase<SbbSidebar>

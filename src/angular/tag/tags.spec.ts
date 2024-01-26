@@ -35,6 +35,8 @@ interface Tag {
       }
     </sbb-tags>
   `,
+  standalone: true,
+  imports: [FormsModule, SbbBadgeModule, SbbTagModule],
 })
 class TagsTestFixtureComponent {
   tagItems: Tag[] = [
@@ -71,6 +73,8 @@ class TagsTestFixtureComponent {
       </sbb-tags>
     </ng-container>
   `,
+  standalone: true,
+  imports: [ReactiveFormsModule, SbbBadgeModule, SbbTagModule],
 })
 class TagsTestFixtureReactiveComponent {
   formGroup = new FormGroup({
@@ -97,6 +101,8 @@ class TagsTestFixtureReactiveComponent {
 
 @Component({
   template: ` <a sbb-tag-link href="#" amount="5" [sbbBadgeDescription]="description">Trains</a> `,
+  standalone: true,
+  imports: [SbbBadgeModule, SbbTagModule],
 })
 class TagLinkTestFixtureComponent {
   description?: string;
@@ -105,12 +111,6 @@ describe('SbbTags', () => {
   describe('SbbTags plain', () => {
     let component: SbbTags;
     let fixture: ComponentFixture<SbbTags>;
-
-    beforeEach(waitForAsync(() => {
-      TestBed.configureTestingModule({
-        imports: [SbbBadgeModule, SbbTagModule],
-      }).compileComponents();
-    }));
 
     beforeEach(() => {
       fixture = TestBed.createComponent(SbbTags);
@@ -130,13 +130,6 @@ describe('SbbTags', () => {
   describe('SbbTags with Model attached', () => {
     let component: TagsTestFixtureComponent;
     let fixture: ComponentFixture<TagsTestFixtureComponent>;
-
-    beforeEach(waitForAsync(() => {
-      TestBed.configureTestingModule({
-        imports: [FormsModule, SbbBadgeModule, SbbTagModule],
-        declarations: [TagsTestFixtureComponent],
-      }).compileComponents();
-    }));
 
     beforeEach(() => {
       fixture = TestBed.createComponent(TagsTestFixtureComponent);
@@ -415,13 +408,6 @@ describe('SbbTags', () => {
     let component: TagsTestFixtureReactiveComponent;
     let fixture: ComponentFixture<TagsTestFixtureReactiveComponent>;
 
-    beforeEach(waitForAsync(() => {
-      TestBed.configureTestingModule({
-        imports: [ReactiveFormsModule, SbbBadgeModule, SbbTagModule],
-        declarations: [TagsTestFixtureReactiveComponent],
-      }).compileComponents();
-    }));
-
     beforeEach(() => {
       fixture = TestBed.createComponent(TagsTestFixtureReactiveComponent);
       component = fixture.componentInstance;
@@ -552,8 +538,7 @@ describe('SBB Tag Link', () => {
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-      imports: [SbbBadgeModule, SbbTagModule],
-      declarations: [TagLinkTestFixtureComponent],
+      imports: [TagLinkTestFixtureComponent],
     }).compileComponents();
   }));
 

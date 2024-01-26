@@ -24,6 +24,8 @@ import {
       Test option selection 2
     </sbb-checkbox-panel>
   `,
+  standalone: true,
+  imports: [SbbCheckboxPanelModule, FormsModule],
 })
 class ModelOptionSelectionMultipleTest {
   checkValue1 = false;
@@ -41,6 +43,8 @@ class ModelOptionSelectionMultipleTest {
       <sbb-checkbox-panel-note>{{ note }}</sbb-checkbox-panel-note>
     </sbb-checkbox-panel>
   `,
+  standalone: true,
+  imports: [ReactiveFormsModule, SbbCheckboxPanelModule],
 })
 class CheckboxPanelDirectivesTest {
   control = new FormControl(false);
@@ -59,6 +63,8 @@ class CheckboxPanelDirectivesTest {
       </sbb-checkbox-panel-note>
     </sbb-checkbox-panel>
   `,
+  standalone: true,
+  imports: [ReactiveFormsModule, SbbCheckboxPanelModule, SbbIconModule],
 })
 class CheckboxPanelIconTest {
   control = new FormControl(false);
@@ -67,18 +73,7 @@ class CheckboxPanelIconTest {
 describe('SbbCheckboxPanel', () => {
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-      imports: [
-        FormsModule,
-        ReactiveFormsModule,
-        SbbCheckboxPanelModule,
-        SbbIconModule,
-        SbbIconTestingModule,
-      ],
-      declarations: [
-        ModelOptionSelectionMultipleTest,
-        CheckboxPanelDirectivesTest,
-        CheckboxPanelIconTest,
-      ],
+      imports: [SbbIconTestingModule],
     }).compileComponents();
   }));
 

@@ -1,6 +1,6 @@
 import { BACKSPACE, DELETE } from '@angular/cdk/keycodes';
 import { Component, DebugElement, ViewChild } from '@angular/core';
-import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
+import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 import { createKeyboardEvent, dispatchFakeEvent } from '@sbb-esta/angular/core/testing';
 import { SbbIconModule } from '@sbb-esta/angular/icon';
@@ -15,20 +15,6 @@ describe('SbbChip', () => {
   let chipDebugElement: DebugElement;
   let chipNativeElement: HTMLElement;
   let chipInstance: SbbChip;
-
-  beforeEach(waitForAsync(() => {
-    TestBed.configureTestingModule({
-      imports: [SbbChipsModule, SbbIconModule, SbbIconTestingModule],
-      declarations: [
-        BasicChip,
-        SingleChip,
-        BasicChipWithStaticTabindex,
-        BasicChipWithBoundTabindex,
-      ],
-    });
-
-    TestBed.compileComponents();
-  }));
 
   describe('SbbBasicChip', () => {
     it('adds a class to indicate that it is a basic chip', () => {
@@ -275,6 +261,8 @@ describe('SbbChip', () => {
       </div>
     }
   </sbb-chip-list>`,
+  standalone: true,
+  imports: [SbbChipsModule, SbbIconModule, SbbIconTestingModule],
 })
 class SingleChip {
   @ViewChild(SbbChipList) chipList: SbbChipList;
@@ -291,16 +279,22 @@ class SingleChip {
 
 @Component({
   template: `<sbb-basic-chip>Hello</sbb-basic-chip>`,
+  standalone: true,
+  imports: [SbbChipsModule, SbbIconModule, SbbIconTestingModule],
 })
 class BasicChip {}
 
 @Component({
   template: `<sbb-basic-chip tabindex="3">Hello</sbb-basic-chip>`,
+  standalone: true,
+  imports: [SbbChipsModule, SbbIconModule, SbbIconTestingModule],
 })
 class BasicChipWithStaticTabindex {}
 
 @Component({
   template: `<sbb-basic-chip [tabIndex]="tabindex">Hello</sbb-basic-chip>`,
+  standalone: true,
+  imports: [SbbChipsModule, SbbIconModule, SbbIconTestingModule],
 })
 class BasicChipWithBoundTabindex {
   tabindex = 12;

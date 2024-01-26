@@ -40,6 +40,7 @@ export const SBB_TAB_GROUP = new InjectionToken<any>('SBB_TAB_GROUP');
   encapsulation: ViewEncapsulation.None,
   exportAs: 'sbbTab',
   providers: [{ provide: SBB_TAB, useExisting: SbbTab }],
+  standalone: true,
 })
 export class SbbTab extends _SbbTabMixinBase implements OnInit, CanDisable, OnChanges, OnDestroy {
   /** Content for the tab label given by `<ng-template sbb-tab-label>`. */

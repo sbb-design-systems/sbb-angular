@@ -49,18 +49,7 @@ describe('SbbIcon', () => {
     errorHandler = jasmine.createSpyObj('errorHandler', ['handleError']);
 
     TestBed.configureTestingModule({
-      imports: [HttpClientTestingModule, SbbIconModule],
-      declarations: [
-        IconWithLigature,
-        IconWithCustomFontCss,
-        IconFromSvgName,
-        IconWithAriaHiddenFalse,
-        IconWithBindingAndNgIf,
-        InlineIcon,
-        SvgIconWithUserContent,
-        IconWithLigatureAndSvgBinding,
-        BlankIcon,
-      ],
+      imports: [HttpClientTestingModule],
       providers: [
         {
           provide: SBB_ICON_LOCATION,
@@ -1171,6 +1160,13 @@ describe('SbbIcon without HttpClientModule', () => {
   let iconRegistry: SbbIconRegistry;
   let sanitizer: DomSanitizer;
 
+  @Component({
+    template: `<sbb-icon [svgIcon]="iconName"></sbb-icon>`,
+  })
+  class IconFromSvgName {
+    iconName: string | undefined = '';
+  }
+
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
       imports: [SbbIconModule],
@@ -1199,36 +1195,58 @@ describe('SbbIcon without HttpClientModule', () => {
   });
 });
 
-@Component({ template: ` <sbb-icon>{{ iconName }}</sbb-icon>` })
+@Component({
+  template: ` <sbb-icon>{{ iconName }}</sbb-icon>`,
+  standalone: true,
+  imports: [SbbIconModule],
+})
 class IconWithLigature {
   iconName = '';
 }
 
-@Component({ template: ` <sbb-icon [fontSet]="fontSet" [fontIcon]="fontIcon"></sbb-icon>` })
+@Component({
+  template: ` <sbb-icon [fontSet]="fontSet" [fontIcon]="fontIcon"></sbb-icon>`,
+  standalone: true,
+  imports: [SbbIconModule],
+})
 class IconWithCustomFontCss {
   fontSet = '';
   fontIcon = '';
 }
 
-@Component({ template: ` <sbb-icon [svgIcon]="iconName"></sbb-icon>` })
+@Component({
+  template: ` <sbb-icon [svgIcon]="iconName"></sbb-icon>`,
+  standalone: true,
+  imports: [SbbIconModule],
+})
 class IconFromSvgName {
   iconName: string | undefined = '';
 }
 
-@Component({ template: '<sbb-icon aria-hidden="false">face</sbb-icon>' })
+@Component({
+  template: '<sbb-icon aria-hidden="false">face</sbb-icon>',
+  standalone: true,
+  imports: [SbbIconModule],
+})
 class IconWithAriaHiddenFalse {}
 
 @Component({
   template: `@if (showIcon) {
     <sbb-icon [svgIcon]="iconName">{{ iconName }}</sbb-icon>
   }`,
+  standalone: true,
+  imports: [SbbIconModule],
 })
 class IconWithBindingAndNgIf {
   iconName = 'fluffy';
   showIcon = true;
 }
 
-@Component({ template: `<sbb-icon [inline]="inline">{{ iconName }}</sbb-icon>` })
+@Component({
+  template: `<sbb-icon [inline]="inline">{{ iconName }}</sbb-icon>`,
+  standalone: true,
+  imports: [SbbIconModule],
+})
 class InlineIcon {
   inline = false;
   iconName: string;
@@ -1238,17 +1256,27 @@ class InlineIcon {
   template: `<sbb-icon [svgIcon]="iconName">
     <div>Hello</div>
   </sbb-icon>`,
+  standalone: true,
+  imports: [SbbIconModule],
 })
 class SvgIconWithUserContent {
   iconName: string | undefined = '';
 }
 
-@Component({ template: '<sbb-icon [svgIcon]="iconName">house</sbb-icon>' })
+@Component({
+  template: '<sbb-icon [svgIcon]="iconName">house</sbb-icon>',
+  standalone: true,
+  imports: [SbbIconModule],
+})
 class IconWithLigatureAndSvgBinding {
   iconName: string | undefined;
 }
 
-@Component({ template: `<sbb-icon></sbb-icon>` })
+@Component({
+  template: `<sbb-icon></sbb-icon>`,
+  standalone: true,
+  imports: [SbbIconModule],
+})
 class BlankIcon {
   @ViewChild(SbbIcon) icon: SbbIcon;
 }

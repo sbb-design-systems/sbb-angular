@@ -1,3 +1,4 @@
+import { CdkObserveContent } from '@angular/cdk/observers';
 import { Platform } from '@angular/cdk/platform';
 import { ViewportRuler } from '@angular/cdk/scrolling';
 import {
@@ -20,6 +21,7 @@ import {
   ViewEncapsulation,
 } from '@angular/core';
 import { ANIMATION_MODULE_TYPE } from '@angular/platform-browser/animations';
+import { SbbIcon } from '@sbb-esta/angular/icon';
 
 import { SbbPaginatedTabHeader } from './paginated-tab-header';
 import { SbbTabLabelWrapper } from './tab-label-wrapper';
@@ -43,6 +45,8 @@ import { SbbTabLabelWrapper } from './tab-label-wrapper';
     class: 'sbb-tab-header',
     '[class.sbb-tab-header-pagination-controls-enabled]': `_showPaginationControls && this.variantSnapshot === 'lean'`,
   },
+  standalone: true,
+  imports: [SbbIcon, CdkObserveContent],
 })
 export class SbbTabHeader
   extends SbbPaginatedTabHeader
