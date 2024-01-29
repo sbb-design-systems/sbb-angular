@@ -3,6 +3,7 @@
   *ngIf="map"
   [class.var-compact]="compact"
   [class.var-open]="open"
+  [class.dark]="isDarkMode"
   aria-hidden="true"
 >
   <div class="attribution-text">
@@ -11,7 +12,7 @@
     </ng-container>
   </div>
   <div class="attribution-button">
-    <div class="map-control-container">
+    <div class="map-control-container" [class.dark]="isDarkMode">
       <div class="map-control-button-wrapper">
         <button type="button" class="map-control-button" (click)="toggleOpen()"></button>
       </div>

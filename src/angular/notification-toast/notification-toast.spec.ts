@@ -40,12 +40,7 @@ describe('SbbNotificationToast icons', () => {
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-      imports: [
-        SbbNotificationToastModule,
-        NotificationToastTestModule,
-        NoopAnimationsModule,
-        SbbIconTestingModule,
-      ],
+      imports: [NotificationToastTestModule, NoopAnimationsModule, SbbIconTestingModule],
       providers: [
         SbbNotificationToast,
         { provide: SBB_NOTIFICATION_TOAST_DATA, useValue: SbbNotificationToastConfig },
@@ -130,12 +125,7 @@ describe('SbbNotificationToast', () => {
 
   beforeEach(fakeAsync(() => {
     TestBed.configureTestingModule({
-      imports: [
-        SbbNotificationToastModule,
-        NotificationToastTestModule,
-        NoopAnimationsModule,
-        SbbIconTestingModule,
-      ],
+      imports: [NotificationToastTestModule, NoopAnimationsModule, SbbIconTestingModule],
     }).compileComponents();
   }));
 
@@ -663,12 +653,7 @@ describe('SbbNotificationToast with parent SbbNotificationToast', () => {
 
   beforeEach(fakeAsync(() => {
     TestBed.configureTestingModule({
-      imports: [
-        SbbNotificationToastModule,
-        NotificationToastTestModule,
-        NoopAnimationsModule,
-        SbbIconTestingModule,
-      ],
+      imports: [NotificationToastTestModule, NoopAnimationsModule, SbbIconTestingModule],
       declarations: [ComponentThatProvidesSbbNotificationToast],
     }).compileComponents();
   }));
@@ -753,12 +738,7 @@ describe('SbbNotificationToast Positioning', () => {
 
   beforeEach(fakeAsync(() => {
     TestBed.configureTestingModule({
-      imports: [
-        SbbNotificationToastModule,
-        NotificationToastTestModule,
-        NoopAnimationsModule,
-        SbbIconTestingModule,
-      ],
+      imports: [NotificationToastTestModule, NoopAnimationsModule, SbbIconTestingModule],
     }).compileComponents();
   }));
 
@@ -856,6 +836,7 @@ describe('SbbNotificationToast Positioning', () => {
 @Component({
   selector: 'sbb-notification-mock',
   template: '',
+  standalone: true,
 })
 export class NotificationMockComponent {
   dismissed: EventEmitter<void> = new EventEmitter<void>();
@@ -874,7 +855,10 @@ export class NotificationMockComponent {
   }
 }
 
-@Directive({ selector: 'dir-with-view-container' })
+@Directive({
+  selector: 'dir-with-view-container',
+  standalone: true,
+})
 class DirectiveWithViewContainer {
   constructor(public viewContainerRef: ViewContainerRef) {}
 }
@@ -884,6 +868,8 @@ class DirectiveWithViewContainer {
   template: `@if (childComponentExists) {
     <dir-with-view-container></dir-with-view-container>
   }`,
+  standalone: true,
+  imports: [DirectiveWithViewContainer],
 })
 class ComponentWithChildViewContainer {
   @ViewChild(DirectiveWithViewContainer) childWithViewContainer: DirectiveWithViewContainer;
@@ -898,6 +884,7 @@ class ComponentWithChildViewContainer {
 @Component({
   selector: 'arbitrary-component-with-template-ref',
   template: ` <ng-template let-data> Fries {{ localValue }} {{ data?.value }} </ng-template> `,
+  standalone: true,
 })
 class ComponentWithTemplateRef {
   @ViewChild(TemplateRef) templateRef: TemplateRef<any>;
@@ -905,7 +892,10 @@ class ComponentWithTemplateRef {
 }
 
 /** Simple component for testing ComponentPortal. */
-@Component({ template: '<p>Burritos are on the way.</p>' })
+@Component({
+  template: '<p>Burritos are on the way.</p>',
+  standalone: true,
+})
 class BurritosNotification {
   constructor(
     public notificationToastRef: SbbNotificationToastRef<BurritosNotification>,
@@ -934,8 +924,7 @@ const TEST_DIRECTIVES = [
   ComponentWithTemplateRef,
 ];
 @NgModule({
-  imports: [SbbNotificationToastModule],
+  imports: [SbbNotificationToastModule, ...TEST_DIRECTIVES],
   exports: TEST_DIRECTIVES,
-  declarations: TEST_DIRECTIVES,
 })
 class NotificationToastTestModule {}

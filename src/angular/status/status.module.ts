@@ -6,8 +6,7 @@ import { SbbIconModule } from '@sbb-esta/angular/icon';
 import { SbbStatus } from './status';
 
 @NgModule({
-  imports: [CommonModule, SbbCommonModule, SbbIconModule],
-  declarations: [SbbStatus],
+  imports: [CommonModule, SbbCommonModule, SbbIconModule, SbbStatus],
   exports: [SbbStatus],
 })
 export class SbbStatusModule {}

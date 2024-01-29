@@ -6,8 +6,7 @@ import { SbbTextexpandCollapsed } from './textexpand-collapsed';
 import { SbbTextexpandExpanded } from './textexpand-expanded';
 
 @NgModule({
-  imports: [SbbCommonModule],
-  declarations: [SbbTextexpand, SbbTextexpandCollapsed, SbbTextexpandExpanded],
+  imports: [SbbCommonModule, SbbTextexpand, SbbTextexpandCollapsed, SbbTextexpandExpanded],
   exports: [SbbTextexpand, SbbTextexpandCollapsed, SbbTextexpandExpanded],
 })
 export class SbbTextexpandModule {}

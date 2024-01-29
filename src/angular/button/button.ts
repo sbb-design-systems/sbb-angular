@@ -1,5 +1,6 @@
 import { FocusableOption, FocusMonitor, FocusOrigin } from '@angular/cdk/a11y';
 import { ContentObserver } from '@angular/cdk/observers';
+import { AsyncPipe } from '@angular/common';
 import {
   AfterContentInit,
   AfterViewInit,
@@ -18,6 +19,7 @@ import {
 import { ANIMATION_MODULE_TYPE } from '@angular/platform-browser/animations';
 import { CanDisable, mixinDisabled, mixinVariant } from '@sbb-esta/angular/core';
 import { SbbIcon } from '@sbb-esta/angular/icon';
+import { SbbIconModule } from '@sbb-esta/angular/icon';
 import { combineLatest, Observable } from 'rxjs';
 import { map, startWith } from 'rxjs/operators';
 
@@ -82,6 +84,8 @@ const _SbbButtonMixinBase = mixinDisabled(
   inputs: ['disabled'],
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush,
+  standalone: true,
+  imports: [SbbIconModule, AsyncPipe],
 })
 export class SbbButton
   extends _SbbButtonMixinBase
@@ -210,6 +214,8 @@ export class SbbButton
   templateUrl: 'button.html',
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush,
+  standalone: true,
+  imports: [SbbIconModule, AsyncPipe],
 })
 export class SbbAnchor extends SbbButton implements AfterViewInit, OnDestroy {
   /** Tabindex of the button. */

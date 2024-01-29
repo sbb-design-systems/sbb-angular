@@ -82,7 +82,7 @@ export class StackBlitzWriter {
           isSbbLean ? ' class="sbb-lean"' : '',
         );
 
-        if (data.id.includes('journey-maps')) {
+        if (data.id.includes('journey-maps') || data.id.includes('esri-plugin')) {
           files['src/index.html'] = files['src/index.html'].replace(
             '</head>',
             `<script>window.JM_API_KEY='${window['JM_API_KEY']}'</script></head>`,

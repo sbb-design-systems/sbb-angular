@@ -2,6 +2,7 @@ import { AnimationEvent } from '@angular/animations';
 import { FocusMonitor, FocusTrapFactory, InteractivityChecker } from '@angular/cdk/a11y';
 import { CdkDialogContainer } from '@angular/cdk/dialog';
 import { OverlayRef } from '@angular/cdk/overlay';
+import { CdkPortalOutlet } from '@angular/cdk/portal';
 import { DOCUMENT } from '@angular/common';
 import {
   ChangeDetectionStrategy,
@@ -121,6 +122,8 @@ export abstract class _SbbDialogContainerBase extends CdkDialogContainer<SbbDial
     '[attr.aria-describedby]': '_config.ariaDescribedBy || null',
     '[@dialogContainer]': `_getAnimationState()`,
   },
+  standalone: true,
+  imports: [CdkPortalOutlet],
 })
 export class SbbDialogContainer extends _SbbDialogContainerBase {
   /** Callback, invoked whenever an animation on the host completes. */

@@ -69,7 +69,6 @@ ng_test_library(
         "//src/angular/core",
         "//src/angular/core/testing",
         "//src/angular/form-field",
-        "//src/angular/icon",
         "//src/angular/icon/testing",
         "//src/angular/input",
         "@npm//@angular/cdk",

@@ -30,12 +30,14 @@ import {
   ViewEncapsulation,
 } from '@angular/core';
 import { SbbDateAdapter } from '@sbb-esta/angular/core';
+import { SbbIconModule } from '@sbb-esta/angular/icon';
 import { merge, Subject, Subscription } from 'rxjs';
 import { bufferCount, filter, mapTo, take, tap } from 'rxjs/operators';
 
 import { SbbDateInput } from '../date-input/date-input.directive';
 import { SbbDatepickerContent } from '../datepicker-content/datepicker-content';
 import { createMissingDateImplError } from '../datepicker-errors';
+import { SbbDatepickerToggle } from '../datepicker-toggle/datepicker-toggle';
 import { SBB_DATEPICKER } from '../datepicker-token';
 
 /** Used to generate a unique ID for each datepicker instance. */
@@ -72,6 +74,8 @@ export const SBB_DATEPICKER_SCROLL_STRATEGY_FACTORY_PROVIDER = {
     '[class.sbb-datepicker-toggle-enabled]': 'toggleVisible',
     '[class.sbb-datepicker-disabled]': 'disabled',
   },
+  standalone: true,
+  imports: [SbbIconModule, SbbDatepickerToggle],
 })
 export class SbbDatepicker<D> implements OnDestroy {
   /** An input indicating the type of the custom header component for the calendar, if set. */

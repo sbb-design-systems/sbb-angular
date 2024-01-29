@@ -7,8 +7,7 @@ import { SbbNavigation } from './navigation/navigation';
 import { SbbPaginator } from './paginator/paginator';
 
 @NgModule({
-  declarations: [SbbNavigation, SbbPaginator],
-  imports: [RouterModule, SbbCommonModule, SbbIconModule],
+  imports: [RouterModule, SbbCommonModule, SbbIconModule, SbbNavigation, SbbPaginator],
   exports: [SbbNavigation, SbbPaginator],
 })
 export class SbbPaginationModule {}

@@ -53,6 +53,7 @@ export const SBB_FORM_FIELD = new InjectionToken<SbbFormField>('SBB_FORM_FIELD')
     '[class.ng-invalid]': '_shouldForward("invalid")',
     '[class.ng-pending]': '_shouldForward("pending")',
   },
+  standalone: true,
 })
 export class SbbFormField implements AfterContentInit, AfterContentChecked, OnDestroy {
   /** The label text for the input. */

@@ -34,17 +34,7 @@ describe('SbbExpansionPanel', () => {
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-      imports: [NoopAnimationsModule, SbbAccordionModule, SbbIconTestingModule],
-      declarations: [
-        PanelWithContent,
-        PanelWithContentInNgIf,
-        PanelWithCustomMargin,
-        LazyPanelWithContent,
-        LazyPanelOpenOnLoad,
-        PanelWithTwoWayBinding,
-        PanelWithHeaderTabindex,
-        NestedLazyPanelWithContent,
-      ],
+      imports: [NoopAnimationsModule, SbbIconTestingModule],
     });
     TestBed.compileComponents();
   }));
@@ -524,6 +514,8 @@ describe('SbbExpansionPanel', () => {
       <button>I am a button</button>
     </sbb-expansion-panel>
   `,
+  standalone: true,
+  imports: [SbbAccordionModule, SbbIconTestingModule],
 })
 class PanelWithContent {
   expanded = false;
@@ -542,30 +534,13 @@ class PanelWithContent {
       </sbb-expansion-panel>
     }
   `,
+  standalone: true,
+  imports: [SbbAccordionModule, SbbIconTestingModule],
 })
 class PanelWithContentInNgIf {
   expansionShown = true;
   @ViewChild(SbbExpansionPanel)
   panel: SbbExpansionPanel;
-}
-
-@Component({
-  styles: [
-    `
-      sbb-expansion-panel {
-        margin: 13px 37px;
-      }
-    `,
-  ],
-  template: `
-    <sbb-expansion-panel [expanded]="expanded">
-      Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolores officia, aliquam dicta
-      corrupti maxime voluptate accusamus impedit atque incidunt pariatur.
-    </sbb-expansion-panel>
-  `,
-})
-class PanelWithCustomMargin {
-  expanded = false;
 }
 
 @Component({
@@ -579,6 +554,8 @@ class PanelWithCustomMargin {
       </ng-template>
     </sbb-expansion-panel>
   `,
+  standalone: true,
+  imports: [SbbAccordionModule, SbbIconTestingModule],
 })
 class LazyPanelWithContent {
   expanded = false;
@@ -594,6 +571,8 @@ class LazyPanelWithContent {
       </ng-template>
     </sbb-expansion-panel>
   `,
+  standalone: true,
+  imports: [SbbAccordionModule, SbbIconTestingModule],
 })
 class LazyPanelOpenOnLoad {}
 
@@ -603,6 +582,8 @@ class LazyPanelOpenOnLoad {}
       <sbb-expansion-panel-header>Panel Title</sbb-expansion-panel-header>
     </sbb-expansion-panel>
   `,
+  standalone: true,
+  imports: [SbbAccordionModule, SbbIconTestingModule],
 })
 class PanelWithTwoWayBinding {
   expanded = false;
@@ -612,6 +593,8 @@ class PanelWithTwoWayBinding {
   template: `<sbb-expansion-panel>
     <sbb-expansion-panel-header tabindex="7">Panel Title</sbb-expansion-panel-header>
   </sbb-expansion-panel>`,
+  standalone: true,
+  imports: [SbbAccordionModule, SbbIconTestingModule],
 })
 class PanelWithHeaderTabindex {}
 
@@ -624,6 +607,8 @@ class PanelWithHeaderTabindex {}
       </sbb-expansion-panel>
     </sbb-expansion-panel>
   `,
+  standalone: true,
+  imports: [SbbAccordionModule, SbbIconTestingModule],
 })
 class NestedLazyPanelWithContent {
   parentExpanded = false;

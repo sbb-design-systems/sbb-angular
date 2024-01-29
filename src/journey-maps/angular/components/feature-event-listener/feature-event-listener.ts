@@ -46,6 +46,7 @@ export class SbbFeatureEventListener implements OnChanges, OnDestroy {
   @Input() listenerOptions: SbbListenerOptions;
   @Input() map: MapLibreMap | null;
   @Input() poiOptions?: SbbPointsOfInterestOptions;
+  @Input() isDarkMode: boolean;
 
   @Output() featureSelectionsChange: EventEmitter<SbbFeaturesSelectEventData> =
     new EventEmitter<SbbFeaturesSelectEventData>();

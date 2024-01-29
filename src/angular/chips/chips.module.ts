@@ -11,9 +11,8 @@ import { SbbChipList } from './chip-list';
 const CHIP_DECLARATIONS = [SbbChipList, SbbChip, SbbChipInput, SbbChipRemove, SbbChipTrailingIcon];
 
 @NgModule({
-  imports: [SbbCommonModule, SbbIconModule],
+  imports: [SbbCommonModule, SbbIconModule, ...CHIP_DECLARATIONS],
   exports: CHIP_DECLARATIONS,
-  declarations: CHIP_DECLARATIONS,
   providers: [
     {
       provide: SBB_CHIPS_DEFAULT_OPTIONS,

@@ -91,6 +91,7 @@ let nextUniqueId = 0;
   styleUrls: ['./chips.css'],
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush,
+  standalone: true,
 })
 export class SbbChipList
   extends _SbbChipListBase

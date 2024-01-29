@@ -31,6 +31,7 @@ import { SbbLevelSwitcher } from './services/level-switcher';
 export class SbbLevelSwitch implements OnDestroy {
   @Input() map: MaplibreMap | null;
   @Input() showSmallButtons: boolean | undefined;
+  @Input() isDarkMode: boolean;
 
   private _destroyed = new Subject<void>();
 

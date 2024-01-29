@@ -1,6 +1,7 @@
 <div
   class="map-control-container"
   [class.small-buttons]="showSmallButtons"
+  [class.dark]="isDarkMode"
   *ngIf="map && visibleLevels.length"
   @fade
 >

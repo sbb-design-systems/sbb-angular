@@ -11,13 +11,17 @@ import { SbbExpansionPanelContent } from './expansion-panel-content';
 import { SbbExpansionPanelHeader } from './expansion-panel-header';
 
 @NgModule({
-  imports: [CommonModule, CdkAccordionModule, PortalModule, SbbCommonModule, SbbIconModule],
-  exports: [SbbAccordion, SbbExpansionPanel, SbbExpansionPanelHeader, SbbExpansionPanelContent],
-  declarations: [
+  imports: [
+    CommonModule,
+    CdkAccordionModule,
+    PortalModule,
+    SbbCommonModule,
+    SbbIconModule,
     SbbAccordion,
     SbbExpansionPanel,
     SbbExpansionPanelHeader,
     SbbExpansionPanelContent,
   ],
+  exports: [SbbAccordion, SbbExpansionPanel, SbbExpansionPanelHeader, SbbExpansionPanelContent],
 })
 export class SbbAccordionModule {}

@@ -8,8 +8,14 @@ import { SbbNotificationToastContainer } from './notification-toast-container';
 import { SbbSimpleNotification } from './simple-notification';
 
 @NgModule({
-  imports: [PortalModule, OverlayModule, SbbCommonModule, SbbIconModule],
-  declarations: [SbbNotificationToastContainer, SbbSimpleNotification],
+  imports: [
+    PortalModule,
+    OverlayModule,
+    SbbCommonModule,
+    SbbIconModule,
+    SbbNotificationToastContainer,
+    SbbSimpleNotification,
+  ],
   exports: [SbbNotificationToastContainer, SbbSimpleNotification],
 })
 export class SbbNotificationToastModule {}

@@ -62,6 +62,7 @@ sass_binary(
     src = "components/attribution/attribution.scss",
     deps = [
         ":angular_scss_lib",
+        "//src/angular:scss_lib",
     ],
 )
 

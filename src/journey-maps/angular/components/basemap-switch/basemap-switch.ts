@@ -19,6 +19,7 @@ import { SbbLocaleService } from '../../services/locale-service';
 export class SbbBasemapSwitch implements OnInit {
   @Input() map: MaplibreMap | null;
   @Input() showSmallButtons: boolean | undefined;
+  @Input() isDarkMode: boolean;
 
   @Output() toggleBasemap: EventEmitter<void> = new EventEmitter<void>();
 

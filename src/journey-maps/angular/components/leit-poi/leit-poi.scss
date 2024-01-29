@@ -1,11 +1,7 @@
 @use './../../style/icons' as i;
 @use '@sbb-esta/angular' as esta;
 
-$fontColor: esta.$sbbColorBlack;
-$backgroundColor: esta.$sbbColorWhite;
 $fontSize: 1.1em;
-$travelTypeSize: 90% 100%;
-$travelDirectionSize: 40% 100%;
 
 /* end of constants */
 
@@ -15,16 +11,25 @@ $travelDirectionSize: 40% 100%;
   height: 23px;
   text-align: center;
   vertical-align: middle;
-  background-color: $backgroundColor;
+  background-color: esta.$sbbColorWhite;
+
+  @at-root .jmc-container.dark #{&} {
+    background-color: esta.$sbbColorBlack;
+  }
 }
 
 .poi_icon {
-  background-color: white;
+  background-color: esta.$sbbColorWhite;
   background-position: center;
   background-repeat: no-repeat;
-  color: $fontColor;
+  color: esta.$sbbColorBlack;
   font-size: $fontSize;
   width: 33%;
+
+  @at-root .jmc-container.dark #{&} {
+    background-color: esta.$sbbColorBlack;
+    color: esta.$sbbColorWhite;
+  }
 }
 
 .travel_destination_level {
@@ -33,42 +38,61 @@ $travelDirectionSize: 40% 100%;
 }
 
 .stroke {
-  background-color: #d8d8d8;
+  background-color: esta.$sbbColorCloud;
   height: 28px;
   margin-top: -2px;
   width: 1px;
+
+  @at-root .jmc-container.dark #{&} {
+    background-color: esta.$sbbColorMetal;
+  }
+}
+
+@mixin base_icon($icon) {
+  @include i.icon-mask($icon);
+  background-color: esta.$sbbColorBlack;
+  mask-size: 90% 100%;
+
+  @at-root .jmc-container.dark #{&} {
+    background-color: esta.$sbbColorWhite;
+  }
+}
+
+@mixin base_direction($icon) {
+  @include base_icon($icon);
+  mask-size: 40% 100%;
 }
 
 .travel_type_lift {
-  background-image: i.icon('leit-poi-lift');
-  background-size: $travelTypeSize;
+  @include base_icon('leit-poi-lift');
 }
 
 .travel_type_ramp {
-  background-image: i.icon('leit-poi-rampe');
-  background-size: $travelTypeSize;
+  @include base_icon('leit-poi-rampe');
 }
 
 .travel_type_stairs {
-  background-image: i.icon('leit-poi-treppe');
-  background-size: $travelTypeSize;
+  @include base_icon('leit-poi-treppe');
 }
 
-.travel_type_default,
+.travel_type_default {
+  @include base_icon('leit-poi-rolltreppe');
+}
+
 .travel_type_escalator {
-  background-image: i.icon('leit-poi-rolltreppe');
-  background-size: $travelTypeSize;
+  @include base_icon('leit-poi-rolltreppe');
 }
 
 .travel_direction_downstairs {
-  background-image: i.icon('leit-poi-down');
-  background-size: $travelDirectionSize;
+  @include base_direction('leit-poi-down');
 }
 
-.travel_direction_default,
+.travel_direction_default {
+  @include base_direction('leit-poi-up');
+}
+
 .travel_direction_upstairs {
-  background-image: i.icon('leit-poi-up');
-  background-size: $travelDirectionSize;
+  @include base_direction('leit-poi-up');
 }
 
 /* global styling for leit-poi-popup styling ROKAS-1018 */
@@ -85,6 +109,11 @@ $travelDirectionSize: 40% 100%;
       padding: 6px;
       border: 1px solid esta.$sbbColorBlack;
       cursor: pointer;
+
+      @at-root .jmc-container.dark #{&} {
+        background-color: esta.$sbbColorBlack;
+        outline: 1px solid esta.$sbbColorMetal;
+      }
     }
   }
 

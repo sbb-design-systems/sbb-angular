@@ -11,7 +11,6 @@ import {
 } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
-import { SbbIconModule } from '@sbb-esta/angular/icon';
 import { SbbIconTestingModule } from '@sbb-esta/angular/icon/testing';
 import { SbbPaginationModule, SbbPaginator } from '@sbb-esta/angular/pagination';
 import { BehaviorSubject, Observable, Subject } from 'rxjs';
@@ -31,28 +30,7 @@ describe('SbbTable', () => {
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-      imports: [
-        SbbTableModule,
-        SbbPaginationModule,
-        NoopAnimationsModule,
-        SbbIconModule,
-        SbbIconTestingModule,
-      ],
-      declarations: [
-        SbbTableTestComponent,
-        SbbTableWithWhenRowTestComponent,
-        ArrayDataSourceSbbTableTestComponent,
-        NativeHtmlTableTestComponent,
-        SbbTableWithSortTestComponent,
-        SbbTableWithPaginatorTestComponent,
-        StickyTableTestComponent,
-        TableWithNgContainerRowTestComponent,
-        NestedHtmlTableTestComponent,
-        TableWithColumnGroupingTestComponent,
-        TableWithWrapper,
-        TableWithWrapperAndStickyColumnsTestComponent,
-        TableWithTwoStickyColumnsTestComponent,
-      ],
+      imports: [NoopAnimationsModule, SbbIconTestingModule],
       providers: [ViewportRuler, { provide: ViewportRuler, useValue: viewportRulerMock }],
     }).compileComponents();
   }));
@@ -796,6 +774,8 @@ class FakeDataSource extends DataSource<TestData> {
       <sbb-footer-row *sbbFooterRowDef="columnsToRender"></sbb-footer-row>
     </sbb-table>
   `,
+  standalone: true,
+  imports: [SbbTableModule],
 })
 class SbbTableTestComponent {
   dataSource: FakeDataSource | null = new FakeDataSource();
@@ -827,6 +807,8 @@ class SbbTableTestComponent {
       <tr sbb-row *sbbRowDef="let row; columns: columnsToRender"></tr>
     </table>
   `,
+  standalone: true,
+  imports: [SbbTableModule],
 })
 class NativeHtmlTableTestComponent {
   dataSource: FakeDataSource | null = new FakeDataSource();
@@ -877,6 +859,8 @@ class NativeHtmlTableTestComponent {
       <tr sbb-row *sbbRowDef="let row; columns: columnsToRender"></tr>
     </table>
   `,
+  standalone: true,
+  imports: [SbbTableModule],
 })
 class NestedHtmlTableTestComponent {
   dataSource: FakeDataSource | null = new FakeDataSource();
@@ -895,6 +879,8 @@ class NestedHtmlTableTestComponent {
       <tr sbb-row *sbbRowDef="let row; columns: columnsToRender"></tr>
     </table>
   `,
+  standalone: true,
+  imports: [SbbTableModule],
 })
 class StickyTableTestComponent {
   dataSource = new FakeDataSource();
@@ -922,6 +908,8 @@ class StickyTableTestComponent {
       <sbb-footer-row *sbbFooterRowDef="['column_a']"></sbb-footer-row>
     </sbb-table>
   `,
+  standalone: true,
+  imports: [SbbTableModule],
 })
 class SbbTableWithWhenRowTestComponent {
   multiTemplateDataRows: boolean = false;
@@ -959,6 +947,8 @@ class SbbTableWithWhenRowTestComponent {
 
     <sbb-paginator [pageSize]="5"></sbb-paginator>
   `,
+  standalone: true,
+  imports: [SbbTableModule, SbbPaginationModule],
 })
 class ArrayDataSourceSbbTableTestComponent implements AfterViewInit {
   underlyingDataSource = new FakeDataSource();
@@ -1011,6 +1001,8 @@ class ArrayDataSourceSbbTableTestComponent implements AfterViewInit {
       <sbb-row *sbbRowDef="let row; columns: columnsToRender"></sbb-row>
     </sbb-table>
   `,
+  standalone: true,
+  imports: [SbbTableModule],
 })
 class SbbTableWithSortTestComponent implements OnInit {
   underlyingDataSource = new FakeDataSource();
@@ -1062,6 +1054,8 @@ class SbbTableWithSortTestComponent implements OnInit {
 
     <sbb-paginator [pageSize]="5"></sbb-paginator>
   `,
+  standalone: true,
+  imports: [SbbTableModule, SbbPaginationModule],
 })
 class SbbTableWithPaginatorTestComponent implements OnInit {
   underlyingDataSource = new FakeDataSource();
@@ -1103,6 +1097,8 @@ class SbbTableWithPaginatorTestComponent implements OnInit {
       </ng-container>
     </sbb-table>
   `,
+  standalone: true,
+  imports: [SbbTableModule],
 })
 class TableWithNgContainerRowTestComponent {
   dataSource: FakeDataSource | null = new FakeDataSource();
@@ -1123,6 +1119,8 @@ class TableWithNgContainerRowTestComponent {
       <tr sbb-row *sbbRowDef="let row; columns: columnsToRender"></tr>
     </table>
   `,
+  standalone: true,
+  imports: [SbbTableModule],
 })
 class TableWithColumnGroupingTestComponent {
   dataSource: FakeDataSource | null = new FakeDataSource();
@@ -1139,6 +1137,8 @@ class TableWithColumnGroupingTestComponent {
       </table>
     </sbb-table-wrapper>
   `,
+  standalone: true,
+  imports: [SbbTableModule],
 })
 class TableWithWrapper {
   focusable: boolean = true;
@@ -1165,6 +1165,8 @@ class TableWithWrapper {
       </table>
     </sbb-table-wrapper>
   `,
+  standalone: true,
+  imports: [SbbTableModule],
 })
 class TableWithWrapperAndStickyColumnsTestComponent {
   dataSource: FakeDataSource | null = new FakeDataSource();
@@ -1192,6 +1194,8 @@ class TableWithWrapperAndStickyColumnsTestComponent {
       <tr sbb-row *sbbRowDef="let row; columns: columnsToRender"></tr>
     </table>
   `,
+  standalone: true,
+  imports: [SbbTableModule],
 })
 class TableWithTwoStickyColumnsTestComponent {
   dataSource: FakeDataSource | null = new FakeDataSource();

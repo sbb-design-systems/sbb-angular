@@ -9,8 +9,8 @@ import {
 } from './checkbox-panel-directives';
 
 @NgModule({
-  imports: [SbbCommonModule],
-  declarations: [
+  imports: [
+    SbbCommonModule,
     SbbCheckboxPanel,
     SbbCheckboxPanelSubtitle,
     SbbCheckboxPanelWarning,

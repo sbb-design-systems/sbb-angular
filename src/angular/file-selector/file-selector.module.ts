@@ -5,8 +5,7 @@ import { SbbIconModule } from '@sbb-esta/angular/icon';
 import { SbbFileSelector } from './file-selector';
 
 @NgModule({
-  declarations: [SbbFileSelector],
-  imports: [SbbCommonModule, SbbIconModule],
+  imports: [SbbCommonModule, SbbIconModule, SbbFileSelector],
   exports: [SbbFileSelector],
 })
 export class SbbFileSelectorModule {}

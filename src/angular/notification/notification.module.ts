@@ -7,8 +7,7 @@ import { SbbNotification } from './notification';
 import { SbbNotificationIcon } from './notification-directives';
 
 @NgModule({
-  imports: [CommonModule, SbbCommonModule, SbbIconModule],
-  declarations: [SbbNotification, SbbNotificationIcon],
+  imports: [CommonModule, SbbCommonModule, SbbIconModule, SbbNotification, SbbNotificationIcon],
   exports: [SbbNotification, SbbNotificationIcon],
 })
 export class SbbNotificationModule {}

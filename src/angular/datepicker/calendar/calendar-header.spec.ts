@@ -9,31 +9,19 @@ import { SbbDatepickerModule } from '../datepicker.module';
 import { SbbCalendar } from './calendar';
 
 @Component({
-  template: `
-    <sbb-calendar
-      [startAt]="startDate"
-      [(selected)]="selected"
-      (yearSelected)="selectedYear = $event"
-      (monthSelected)="selectedMonth = $event"
-    >
-    </sbb-calendar>
-  `,
+  template: ` <sbb-calendar [startAt]="startDate" [(selected)]="selected"> </sbb-calendar> `,
+  standalone: true,
+  imports: [SbbDatepickerModule],
 })
 class StandardCalendarComponent {
   selected: Date;
-  selectedYear: Date;
-  selectedMonth: Date;
   startDate = new Date(2017, JAN, 31);
 }
 
 describe('SbbCalendarHeader', () => {
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-      imports: [SbbDatepickerModule, SbbIconTestingModule],
-      declarations: [
-        // Test components.
-        StandardCalendarComponent,
-      ],
+      imports: [SbbIconTestingModule],
     }).compileComponents();
   }));
 

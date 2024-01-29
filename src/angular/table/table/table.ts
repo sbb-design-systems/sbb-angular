@@ -10,6 +10,10 @@ import { ViewportRuler } from '@angular/cdk/scrolling';
 import {
   CdkTable,
   CDK_TABLE,
+  DataRowOutlet,
+  FooterRowOutlet,
+  HeaderRowOutlet,
+  NoDataRowOutlet,
   RenderRow,
   RowContext,
   StickyPositioningListener,
@@ -44,6 +48,7 @@ import { takeUntil } from 'rxjs/operators';
 @Directive({
   selector: 'sbb-table[recycleRows], table[sbb-table][recycleRows]',
   providers: [{ provide: _VIEW_REPEATER_STRATEGY, useClass: _RecycleViewRepeaterStrategy }],
+  standalone: true,
 })
 export class SbbRecycleRows {}
 
@@ -102,6 +107,8 @@ export class SbbRecycleRows {}
   // See note on CdkTable for explanation on why this uses the default change detection strategy.
   // tslint:disable-next-line:validate-decorators
   changeDetection: ChangeDetectionStrategy.Default,
+  standalone: true,
+  imports: [HeaderRowOutlet, DataRowOutlet, NoDataRowOutlet, FooterRowOutlet],
 })
 export class SbbTable<T> extends CdkTable<T> implements OnInit, OnDestroy {
   /** Overrides the sticky CSS class set by the `CdkTable`. */

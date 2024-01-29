@@ -14,6 +14,14 @@
   border-radius: 8px;
   width: calc(100% - 32px);
 
+  &.dark {
+    color: esta.$sbbColorWhite;
+    background-color: esta.$sbbColorBlack;
+    .close {
+      background: esta.$sbbColorWhite none;
+    }
+  }
+
   @include esta.mq($from: tablet) {
     width: 20rem;
     max-width: calc(100% - 96px);

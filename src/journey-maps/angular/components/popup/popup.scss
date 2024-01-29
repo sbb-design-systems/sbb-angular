@@ -26,6 +26,11 @@
       border-radius: 8px;
       overflow-y: auto;
 
+      @at-root .jmc-container.dark #{&} {
+        background-color: esta.$sbbColorBlack;
+        color: esta.$sbbColorWhite;
+      }
+
       > div {
         padding: $closeIconSize;
       }
@@ -48,13 +53,17 @@
     }
 
     .maplibregl-popup-close-button {
-      background-image: i.icon('close');
-      background-color: white;
+      @include i.icon-mask('close');
+      background-color: esta.$sbbColorBlack;
       font-size: 0;
       height: $closeIconSize;
       width: $closeIconSize;
       margin-top: 10px;
       margin-right: 10px;
+
+      @at-root .jmc-container.dark #{&} {
+        background-color: esta.$sbbColorWhite;
+      }
     }
 
     &.maplibregl-popup-anchor- {

@@ -25,6 +25,8 @@ export class SbbMarkerDetails implements OnChanges {
   @Input() template?: SbbTemplateType;
   @Input() popup: boolean | undefined;
   @Input() map: MaplibreMap | null;
+  @Input() isDarkMode: boolean;
+
   @Output() closeClicked: EventEmitter<void> = new EventEmitter<void>();
 
   shouldRender: boolean = false;

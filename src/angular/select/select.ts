@@ -25,6 +25,7 @@ import {
   ScrollStrategy,
   ViewportRuler,
 } from '@angular/cdk/overlay';
+import { AsyncPipe, NgClass } from '@angular/common';
 import {
   AfterContentInit,
   Attribute,
@@ -76,6 +77,7 @@ import {
   TypeRef,
 } from '@sbb-esta/angular/core';
 import { SbbFormField, SbbFormFieldControl, SBB_FORM_FIELD } from '@sbb-esta/angular/form-field';
+import { SbbIcon } from '@sbb-esta/angular/icon';
 import { defer, merge, Observable, Subject } from 'rxjs';
 import {
   distinctUntilChanged,
@@ -214,6 +216,8 @@ const _SbbSelectMixinBase = mixinTabIndex(
     { provide: SbbFormFieldControl, useExisting: SbbSelect },
     { provide: SBB_OPTION_PARENT_COMPONENT, useExisting: SbbSelect },
   ],
+  standalone: true,
+  imports: [SbbIcon, CdkConnectedOverlay, NgClass, AsyncPipe],
 })
 export class SbbSelect
   extends _SbbSelectMixinBase
@@ -233,7 +237,7 @@ export class SbbSelect
   private _scrollTop = 0;
 
   /** The last measured value for the trigger's client bounding rect. */
-  private _triggerRect: ClientRect;
+  private _triggerRect: DOMRect;
 
   /** The cached font-size of the trigger element. */
   _triggerFontSize: number = 0;

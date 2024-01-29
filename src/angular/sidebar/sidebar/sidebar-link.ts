@@ -1,4 +1,5 @@
 import { ChangeDetectionStrategy, Component, ViewEncapsulation } from '@angular/core';
+import { SbbIcon } from '@sbb-esta/angular/icon';
 
 @Component({
   selector: 'a[sbbSidebarLink]',
@@ -8,5 +9,7 @@ import { ChangeDetectionStrategy, Component, ViewEncapsulation } from '@angular/
   host: {
     class: 'sbb-sidebar-link',
   },
+  standalone: true,
+  imports: [SbbIcon],
 })
 export class SbbSidebarLink {}

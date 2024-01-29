@@ -31,17 +31,7 @@ describe('SbbSort', () => {
 
     beforeEach(waitForAsync(() => {
       TestBed.configureTestingModule({
-        imports: [SbbTableModule, CdkTableModule, NoopAnimationsModule],
-        declarations: [
-          SimpleSbbSortApp,
-          CdkTableSbbSortApp,
-          SbbTableSbbSortApp,
-          SbbSortHeaderMissingSbbSortApp,
-          SbbSortDuplicateSbbSortableIdsApp,
-          SbbSortableMissingIdApp,
-          SbbSortableInvalidDirection,
-          SbbSortWithArrowPosition,
-        ],
+        imports: [NoopAnimationsModule],
       }).compileComponents();
     }));
 
@@ -507,8 +497,7 @@ describe('SbbSort', () => {
 
     beforeEach(waitForAsync(() => {
       TestBed.configureTestingModule({
-        imports: [SbbTableModule, CdkTableModule, NoopAnimationsModule],
-        declarations: [SbbSortWithoutExplicitInputs],
+        imports: [NoopAnimationsModule],
         providers: [
           {
             provide: SBB_SORT_DEFAULT_OPTIONS,
@@ -541,8 +530,7 @@ describe('SbbSort', () => {
 
     beforeEach(waitForAsync(() => {
       TestBed.configureTestingModule({
-        imports: [SbbTableModule, CdkTableModule, NoopAnimationsModule],
-        declarations: [SbbSortWithoutInputs],
+        imports: [NoopAnimationsModule],
         providers: [
           {
             provide: SBB_SORT_DEFAULT_OPTIONS,
@@ -647,6 +635,8 @@ type SimpleSbbSortAppColumnIds = 'defaultA' | 'defaultB' | 'overrideStart' | 'ov
       </div>
     </div>
   `,
+  standalone: true,
+  imports: [SbbTableModule],
 })
 class SimpleSbbSortApp {
   latestSortEvent: SbbSortState;
@@ -727,6 +717,8 @@ class FakeDataSource extends DataSource<any> {
       <cdk-row *cdkRowDef="let row; columns: columnsToRender"></cdk-row>
     </cdk-table>
   `,
+  standalone: true,
+  imports: [SbbTableModule, CdkTableModule],
 })
 class CdkTableSbbSortApp {
   @ViewChild(SbbSort) sbbSort: SbbSort;
@@ -757,6 +749,8 @@ class CdkTableSbbSortApp {
       <sbb-row *sbbRowDef="let row; columns: columnsToRender"></sbb-row>
     </sbb-table>
   `,
+  standalone: true,
+  imports: [SbbTableModule],
 })
 class SbbTableSbbSortApp {
   @ViewChild(SbbSort) sbbSort: SbbSort;
@@ -767,6 +761,8 @@ class SbbTableSbbSortApp {
 
 @Component({
   template: `<div sbb-sort-header="a">A</div>`,
+  standalone: true,
+  imports: [SbbTableModule],
 })
 class SbbSortHeaderMissingSbbSortApp {}
 
@@ -777,6 +773,8 @@ class SbbSortHeaderMissingSbbSortApp {}
       <div sbb-sort-header="duplicateId">A</div>
     </div>
   `,
+  standalone: true,
+  imports: [SbbTableModule],
 })
 class SbbSortDuplicateSbbSortableIdsApp {}
 
@@ -786,6 +784,8 @@ class SbbSortDuplicateSbbSortableIdsApp {}
       <div sbb-sort-header>A</div>
     </div>
   `,
+  standalone: true,
+  imports: [SbbTableModule],
 })
 class SbbSortableMissingIdApp {}
 
@@ -795,6 +795,8 @@ class SbbSortableMissingIdApp {}
       <div sbb-sort-header="a">A</div>
     </div>
   `,
+  standalone: true,
+  imports: [SbbTableModule],
 })
 class SbbSortableInvalidDirection {}
 
@@ -809,6 +811,8 @@ class SbbSortableInvalidDirection {}
       <div id="defaultA" #defaultA sbb-sort-header="defaultA">A</div>
     </div>
   `,
+  standalone: true,
+  imports: [SbbTableModule],
 })
 class SbbSortWithoutExplicitInputs {
   latestSortEvent: SbbSortState;
@@ -842,6 +846,8 @@ class SbbSortWithoutExplicitInputs {
       </div>
     </div>
   `,
+  standalone: true,
+  imports: [SbbTableModule],
 })
 class SbbSortWithArrowPosition {
   arrowPosition?: 'before' | 'after';
@@ -857,6 +863,8 @@ class SbbSortWithArrowPosition {
       <div id="defaultB" #defaultB sbb-sort-header="defaultB">B</div>
     </div>
   `,
+  standalone: true,
+  imports: [SbbTableModule],
 })
 class SbbSortWithoutInputs {
   @ViewChild(SbbSort) sbbSort: SbbSort;

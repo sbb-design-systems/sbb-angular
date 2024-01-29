@@ -12,8 +12,16 @@ import {
 } from './autocomplete-trigger';
 
 @NgModule({
-  imports: [CommonModule, A11yModule, OverlayModule, SbbCommonModule, SbbOptionModule],
-  declarations: [SbbAutocomplete, SbbAutocompleteOrigin, SbbAutocompleteTrigger],
+  imports: [
+    CommonModule,
+    A11yModule,
+    OverlayModule,
+    SbbCommonModule,
+    SbbOptionModule,
+    SbbAutocomplete,
+    SbbAutocompleteOrigin,
+    SbbAutocompleteTrigger,
+  ],
   exports: [
     SbbOptionModule,
     OverlayModule,

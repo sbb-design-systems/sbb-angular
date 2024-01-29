@@ -13,6 +13,7 @@ import {
   ViewChild,
   ViewEncapsulation,
 } from '@angular/core';
+import { SbbIcon } from '@sbb-esta/angular/icon';
 import {
   SbbRadioButton,
   SBB_RADIO_BUTTON,
@@ -53,6 +54,8 @@ import {
     // the focus to the native element.
     '(focus)': '_inputElement.nativeElement.focus()',
   },
+  standalone: true,
+  imports: [SbbIcon, CdkPortal],
 })
 export class SbbToggleOption extends _SbbRadioButtonBase {
   /** Label of a sbb-toggle-option. */

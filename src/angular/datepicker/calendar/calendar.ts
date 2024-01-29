@@ -1,7 +1,9 @@
 // Workaround for: https://github.com/bazelbuild/rules_nodejs/issues/1265
 /// <reference types="@angular/localize/init" />
 
-import { ComponentPortal, ComponentType, Portal } from '@angular/cdk/portal';
+import { CdkMonitorFocus } from '@angular/cdk/a11y';
+import { CdkPortalOutlet, ComponentPortal, ComponentType, Portal } from '@angular/cdk/portal';
+import { AsyncPipe } from '@angular/common';
 import {
   AfterContentInit,
   AfterViewChecked,
@@ -22,6 +24,7 @@ import {
   ViewEncapsulation,
 } from '@angular/core';
 import { SbbDateAdapter, SbbDateFormats, SBB_DATE_FORMATS } from '@sbb-esta/angular/core';
+import { SbbIconModule } from '@sbb-esta/angular/icon';
 import { isObservable, Observable, of, Subject } from 'rxjs';
 
 import { SbbCalendarCellClassFunction } from '../calendar-body/calendar-body';
@@ -38,6 +41,8 @@ import { SbbMonthView } from '../month-view/month-view';
   host: {
     class: 'sbb-calendar-header sbb-icon-scaled',
   },
+  standalone: true,
+  imports: [SbbIconModule],
 })
 export class SbbCalendarHeader<D> {
   _labelSwitchToPreviousMonth: string = $localize`:Button label to switch to the previous month@@sbbDatepickerSwitchToPreviousMonth:Change to the previous month`;
@@ -167,6 +172,8 @@ export class SbbCalendarHeader<D> {
   host: {
     class: 'sbb-calendar',
   },
+  standalone: true,
+  imports: [CdkPortalOutlet, CdkMonitorFocus, SbbMonthView, AsyncPipe],
 })
 export class SbbCalendar<D> implements AfterContentInit, AfterViewChecked, OnDestroy, OnChanges {
   /** An input indicating the type of the header component, if set. */

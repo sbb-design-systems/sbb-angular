@@ -11,11 +11,6 @@ describe('SbbBadge', () => {
   let badgeHostDebugElement: DebugElement;
 
   beforeEach(fakeAsync(() => {
-    TestBed.configureTestingModule({
-      imports: [SbbBadgeModule],
-      declarations: [BadgeTestApp, PreExistingBadge, NestedBadge, BadgeOnTemplate],
-    }).compileComponents();
-
     fixture = TestBed.createComponent(BadgeTestApp);
     testComponent = fixture.debugElement.componentInstance;
     fixture.detectChanges();
@@ -182,6 +177,8 @@ describe('SbbBadge', () => {
       home
     </span>
   `,
+  standalone: true,
+  imports: [SbbBadgeModule],
 })
 class BadgeTestApp {
   @ViewChild(SbbBadge) badgeInstance: SbbBadge;
@@ -199,6 +196,8 @@ class BadgeTestApp {
       <div class="sbb-badge-content">Pre-existing badge</div>
     </span>
   `,
+  standalone: true,
+  imports: [SbbBadgeModule],
 })
 class PreExistingBadge {}
 
@@ -209,10 +208,14 @@ class PreExistingBadge {}
       <span sbbBadge="Hi">Something</span>
     </span>
   `,
+  standalone: true,
+  imports: [SbbBadgeModule],
 })
 class NestedBadge {}
 
 @Component({
   template: ` <ng-template sbbBadge="1">Notifications</ng-template> `,
+  standalone: true,
+  imports: [SbbBadgeModule],
 })
 class BadgeOnTemplate {}

@@ -1,5 +1,7 @@
 import { Component, Input } from '@angular/core';
+import { SbbIcon } from '@sbb-esta/angular/icon';
 
+import { SbbMenuDynamicTrigger } from './menu-dynamic-trigger';
 import {
   SbbMenuInheritedTriggerContext,
   SbbMenuTrigger,
@@ -28,6 +30,8 @@ export const _sbbContextmenuInheritedTriggerContext: SbbMenuInheritedTriggerCont
       useExisting: SbbContextmenuTrigger,
     },
   ],
+  standalone: true,
+  imports: [SbbMenuDynamicTrigger, SbbIcon],
 })
 export class SbbContextmenuTrigger extends SbbMenuTrigger {
   /**

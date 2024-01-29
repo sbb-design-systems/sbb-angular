@@ -1,5 +1,5 @@
 import { Component, ViewChild } from '@angular/core';
-import { TestBed, waitForAsync } from '@angular/core/testing';
+import { TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 import { wrappedErrorMessage } from '@sbb-esta/angular/core/testing';
 
@@ -12,6 +12,8 @@ import { SbbTextexpandModule } from './textexpand.module';
     <sbb-textexpand-collapsed>I am a</sbb-textexpand-collapsed>
     <sbb-textexpand-expanded>I am a long text</sbb-textexpand-expanded>
   </sbb-textexpand> `,
+  standalone: true,
+  imports: [SbbTextexpandModule],
 })
 class BasicTextexpand {
   expandEvent = jasmine.createSpy('expandEvent');
@@ -24,17 +26,12 @@ class BasicTextexpand {
   template: `<sbb-textexpand>
     <sbb-textexpand-collapsed>Lorem ipsum dolor</sbb-textexpand-collapsed></sbb-textexpand
   >`,
+  standalone: true,
+  imports: [SbbTextexpandModule],
 })
 class InvalidTextexpand {}
 
 describe('SbbTextexpand', () => {
-  beforeEach(waitForAsync(() => {
-    TestBed.configureTestingModule({
-      declarations: [BasicTextexpand, InvalidTextexpand],
-      imports: [SbbTextexpandModule],
-    }).compileComponents();
-  }));
-
   it('should expand and collapse text', () => {
     const fixture = TestBed.createComponent(BasicTextexpand);
     fixture.detectChanges();

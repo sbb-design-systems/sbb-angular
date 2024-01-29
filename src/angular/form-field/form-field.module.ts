@@ -6,8 +6,7 @@ import { SbbFormField } from './form-field';
 import { SbbLabel } from './label';
 
 @NgModule({
-  imports: [SbbCommonModule],
-  declarations: [SbbFormField, SbbError, SbbLabel],
+  imports: [SbbCommonModule, SbbFormField, SbbError, SbbLabel],
   exports: [SbbFormField, SbbError, SbbLabel],
 })
 export class SbbFormFieldModule {}

@@ -42,7 +42,7 @@ import {
   SbbAutocompleteSelectedEvent,
   SbbAutocompleteTrigger,
 } from '@sbb-esta/angular/autocomplete';
-import { SbbOption } from '@sbb-esta/angular/core';
+import { SbbOption, SbbOptionModule } from '@sbb-esta/angular/core';
 import {
   createKeyboardEvent,
   dispatchEvent,
@@ -52,6 +52,7 @@ import {
   MockNgZone,
   typeInElement,
 } from '@sbb-esta/angular/core/testing';
+import { SbbFormFieldModule } from '@sbb-esta/angular/form-field';
 import { SbbIconModule } from '@sbb-esta/angular/icon';
 import { SbbIconTestingModule } from '@sbb-esta/angular/icon/testing';
 import { SbbInputModule } from '@sbb-esta/angular/input';
@@ -1048,16 +1049,14 @@ describe('SbbChipList', () => {
   ): ComponentFixture<T> {
     TestBed.configureTestingModule({
       imports: [
-        FormsModule,
-        ReactiveFormsModule,
         SbbChipsModule,
         SbbInputModule,
         animationsModule,
         SbbIconModule,
         SbbIconTestingModule,
         SbbAutocompleteModule,
+        component,
       ],
-      declarations: [component],
       providers: [{ provide: NgZone, useFactory: () => (zone = new MockNgZone()) }, ...providers],
     }).compileComponents();
 
@@ -1093,6 +1092,8 @@ describe('SbbChipList', () => {
       <sbb-chip> {{ name }} {{ i + 1 }} </sbb-chip>
     }
   </sbb-chip-list>`,
+  imports: [SbbChipsModule],
+  standalone: true,
 })
 class StandardChipList {
   name: string = 'Test';
@@ -1113,6 +1114,8 @@ class StandardChipList {
       <input name="test" [sbbChipInputFor]="chipList" />
     </sbb-form-field>
   `,
+  imports: [SbbChipsModule, SbbFormFieldModule, SbbInputModule],
+  standalone: true,
 })
 class FormFieldChipList {
   chips = ['Chip 0', 'Chip 1', 'Chip 2'];
@@ -1147,6 +1150,8 @@ class FormFieldChipList {
       />
     </sbb-form-field>
   `,
+  imports: [ReactiveFormsModule, SbbChipsModule, SbbFormFieldModule, SbbInputModule],
+  standalone: true,
 })
 class InputChipList {
   foods: any[] = [
@@ -1207,6 +1212,8 @@ class InputChipList {
       </sbb-form-field>
     </form>
   `,
+  imports: [SbbChipsModule, SbbFormFieldModule, SbbInputModule, ReactiveFormsModule, FormsModule],
+  standalone: true,
 })
 class ChipListWithFormErrorMessages {
   foods: any[] = [
@@ -1233,6 +1240,8 @@ class ChipListWithFormErrorMessages {
       transition(':leave', [style({ opacity: 0 }), animate('500ms', style({ opacity: 1 }))]),
     ]),
   ],
+  imports: [SbbChipsModule],
+  standalone: true,
 })
 class StandardChipListWithAnimations {
   numbers = [0, 1, 2, 3, 4];
@@ -1259,6 +1268,8 @@ class StandardChipListWithAnimations {
       </sbb-chip-list>
     </sbb-form-field>
   `,
+  imports: [SbbChipsModule, SbbFormFieldModule, SbbInputModule],
+  standalone: true,
 })
 class ChipListWithRemove {
   chips = [0, 1, 2, 3, 4];
@@ -1279,6 +1290,8 @@ class ChipListWithRemove {
       </sbb-form-field>
     </form>
   `,
+  imports: [SbbChipsModule, SbbFormFieldModule, ReactiveFormsModule],
+  standalone: true,
 })
 class ChipListInsideDynamicFormGroup {
   @ViewChild(SbbChipList) chipList: SbbChipList;
@@ -1321,6 +1334,15 @@ class ChipListInsideDynamicFormGroup {
       </sbb-autocomplete>
     </sbb-form-field>
   `,
+  imports: [
+    SbbAutocompleteModule,
+    SbbChipsModule,
+    SbbOptionModule,
+    SbbFormFieldModule,
+    SbbInputModule,
+    ReactiveFormsModule,
+  ],
+  standalone: true,
 })
 class ChipsAutocomplete {
   fruitInput = new FormControl('');
@@ -1354,6 +1376,15 @@ class ChipsAutocomplete {
       </sbb-autocomplete>
     </sbb-form-field>
   `,
+  imports: [
+    SbbAutocompleteModule,
+    SbbChipsModule,
+    SbbOptionModule,
+    SbbFormFieldModule,
+    SbbInputModule,
+    ReactiveFormsModule,
+  ],
+  standalone: true,
 })
 class ChipsAutocompleteCustomHandlers {
   selectedFruits = new FormControl(['Lemon']);

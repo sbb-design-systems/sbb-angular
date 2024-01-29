@@ -15,15 +15,7 @@ describe('SbbTabNavBar', () => {
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-      imports: [SbbTabsModule, SbbIconTestingModule],
-      declarations: [
-        SimpleTabNavBarTestApp,
-        TabLinkWithNgIf,
-        TabLinkWithTabIndexBinding,
-        TabLinkWithNativeTabindexAttr,
-        TabBarWithInactiveTabsOnInit,
-        TabBarWithPanel,
-      ],
+      imports: [SbbIconTestingModule],
       providers: [
         { provide: Directionality, useFactory: () => ({ value: dir, change: dirChange }) },
       ],
@@ -354,6 +346,8 @@ describe('SbbTabNavBar', () => {
       }
     </nav>
   `,
+  standalone: true,
+  imports: [SbbTabsModule],
 })
 class SimpleTabNavBarTestApp {
   @ViewChild(SbbTabNav) tabNavBar: SbbTabNav;
@@ -369,22 +363,11 @@ class SimpleTabNavBarTestApp {
 @Component({
   template: `
     <nav sbb-tab-nav-bar>
-      @if (!isDestroyed) {
-        <a sbb-tab-link>Link</a>
-      }
-    </nav>
-  `,
-})
-class TabLinkWithNgIf {
-  isDestroyed = false;
-}
-
-@Component({
-  template: `
-    <nav sbb-tab-nav-bar>
       <a sbb-tab-link [tabIndex]="tabIndex">TabIndex Link</a>
     </nav>
   `,
+  standalone: true,
+  imports: [SbbTabsModule],
 })
 class TabLinkWithTabIndexBinding {
   tabIndex = 0;
@@ -396,21 +379,10 @@ class TabLinkWithTabIndexBinding {
       <a sbb-tab-link tabindex="5">Link</a>
     </nav>
   `,
+  standalone: true,
+  imports: [SbbTabsModule],
 })
 class TabLinkWithNativeTabindexAttr {}
-
-@Component({
-  template: `
-    <nav sbb-tab-nav-bar>
-      @for (tab of tabs; track tab) {
-        <a sbb-tab-link [active]="false">Tab link {{ label }}</a>
-      }
-    </nav>
-  `,
-})
-class TabBarWithInactiveTabsOnInit {
-  tabs = [0, 1, 2];
-}
 
 @Component({
   template: `
@@ -423,6 +395,8 @@ class TabBarWithInactiveTabsOnInit {
     </nav>
     <sbb-tab-nav-panel #tabPanel id="tab-panel">Tab panel</sbb-tab-nav-panel>
   `,
+  standalone: true,
+  imports: [SbbTabsModule],
 })
 class TabBarWithPanel {
   tabs = [0, 1, 2];

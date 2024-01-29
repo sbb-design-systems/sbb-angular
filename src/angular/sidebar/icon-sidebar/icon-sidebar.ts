@@ -21,6 +21,7 @@ import {
   ViewChild,
   ViewEncapsulation,
 } from '@angular/core';
+import { SbbIcon } from '@sbb-esta/angular/icon';
 import { startWith } from 'rxjs/operators';
 
 import {
@@ -45,6 +46,7 @@ import {
       useExisting: SbbIconSidebarContent,
     },
   ],
+  standalone: true,
 })
 export class SbbIconSidebarContent extends SbbSidebarContentBase {
   constructor(
@@ -71,6 +73,8 @@ export class SbbIconSidebarContent extends SbbSidebarContentBase {
   },
   changeDetection: ChangeDetectionStrategy.OnPush,
   encapsulation: ViewEncapsulation.None,
+  standalone: true,
+  imports: [CdkScrollable, SbbIcon],
 })
 export class SbbIconSidebar extends SbbSidebarBase {
   _labelCollapse: string = $localize`:Label to 'collapse' icon sidebar@@sbbSidebarCollapse:Collapse`;
@@ -130,6 +134,8 @@ export class SbbIconSidebar extends SbbSidebarBase {
       useExisting: SbbIconSidebarContainer,
     },
   ],
+  standalone: true,
+  imports: [SbbIconSidebarContent],
 })
 export class SbbIconSidebarContainer
   extends SbbSidebarContainerBase<SbbIconSidebar>
