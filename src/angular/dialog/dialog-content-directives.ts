@@ -148,23 +148,19 @@ export class _SbbDialogTitleBase implements OnInit, OnDestroy {
         }
         // Note: we null check the queue, because there are some internal
         // tests that are mocking out `SbbDialogRef` incorrectly.
-        container._ariaLabelledByQueue?.push(this.id);
+        this._dialogRef._containerInstance?._addAriaLabelledBy?.(this.id);
       });
     }
   }
 
   ngOnDestroy() {
-    // Note: we null check the queue, because there are some internal
+    // Note: we null check because there are some internal
     // tests that are mocking out `MatDialogRef` incorrectly.
-    const queue = this._dialogRef?._containerInstance?._ariaLabelledByQueue;
+    const instance = this._dialogRef?._containerInstance;
 
-    if (queue) {
+    if (instance) {
       Promise.resolve().then(() => {
-        const index = queue.indexOf(this.id);
-
-        if (index > -1) {
-          queue.splice(index, 1);
-        }
+        instance._removeAriaLabelledBy?.(this.id);
       });
     }
   }

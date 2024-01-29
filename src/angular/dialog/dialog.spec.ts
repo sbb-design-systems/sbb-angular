@@ -19,6 +19,7 @@ import {
   Injector,
   NgModule,
   NgZone,
+  signal,
   TemplateRef,
   ViewChild,
   ViewContainerRef,
@@ -1554,6 +1555,67 @@ describe('SbbDialog', () => {
 
       runContentElementTests();
     });
+
+    it('should set the aria-labelledby attribute to the id of the title under OnPush host', fakeAsync(() => {
+      @Component({
+        standalone: true,
+        imports: [SbbDialogTitle],
+        template: `@if (showTitle()) {
+          <h1 sbb-dialog-title>This is the first title</h1>
+        }`,
+      })
+      class DialogCmp {
+        showTitle = signal(true);
+      }
+
+      @Component({
+        template: '',
+        selector: 'child',
+        standalone: true,
+      })
+      class Child {
+        dialogRef?: SbbDialogRef<DialogCmp>;
+
+        constructor(
+          readonly viewContainerRef: ViewContainerRef,
+          readonly dialog: SbbDialog,
+        ) {}
+
+        open() {
+          this.dialogRef = this.dialog.open(DialogCmp, { viewContainerRef: this.viewContainerRef });
+        }
+      }
+
+      @Component({
+        standalone: true,
+        imports: [Child],
+        template: `<child></child>`,
+        changeDetection: ChangeDetectionStrategy.OnPush,
+      })
+      class OnPushHost {
+        @ViewChild(Child, { static: true }) child: Child;
+      }
+
+      const hostFixture = TestBed.createComponent(OnPushHost);
+      hostFixture.componentInstance.child.open();
+      hostFixture.autoDetectChanges();
+      flush();
+
+      const overlayContainer = TestBed.inject(OverlayContainer);
+      const title = overlayContainer.getContainerElement().querySelector('[sbb-dialog-title]')!;
+
+      const container = overlayContainerElement.querySelector('sbb-dialog-container')!;
+
+      expect(title.id).withContext('Expected title element to have an id.').toBeTruthy();
+      expect(container.getAttribute('aria-labelledby'))
+        .withContext('Expected the aria-labelledby to match the title id.')
+        .toBe(title.id);
+
+      hostFixture.componentInstance.child.dialogRef?.componentInstance.showTitle.set(false);
+      hostFixture.detectChanges();
+      flush();
+      expect(container.getAttribute('aria-labelledby')).toBe(null);
+    }));
 
     function runContentElementTests() {
       it('should close the dialog when clicking on the close button', fakeAsync(() => {
