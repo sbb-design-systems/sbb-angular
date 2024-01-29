@@ -1,6 +1,6 @@
 import { AriaDescriber } from '@angular/cdk/a11y';
-import { BooleanInput, coerceBooleanProperty } from '@angular/cdk/coercion';
 import {
+  booleanAttribute,
   Directive,
   ElementRef,
   Inject,
@@ -12,14 +12,8 @@ import {
   Renderer2,
 } from '@angular/core';
 import { ANIMATION_MODULE_TYPE } from '@angular/platform-browser/animations';
-import { CanDisable, mixinDisabled } from '@sbb-esta/angular/core';
 
 let nextId = 0;
-
-// Boilerplate for applying mixins to SbbBadge.
-/** @docs-private */
-// tslint:disable-next-line: naming-convention
-const _SbbBadgeBase = mixinDisabled(class {});
 
 /** Allowed position options for sbbBadgePosition */
 export type SbbBadgePosition = 'after' | 'above';
@@ -29,7 +23,6 @@ const BADGE_CONTENT_CLASS = 'sbb-badge-content';
 /** Directive to display a text badge. */
 @Directive({
   selector: '[sbbBadge]',
-  inputs: ['disabled: sbbBadgeDisabled'],
   host: {
     class: 'sbb-badge',
     '[class.sbb-badge-above]': 'position !== "after"',
@@ -39,7 +32,7 @@ const BADGE_CONTENT_CLASS = 'sbb-badge-content';
   },
   standalone: true,
 })
-export class SbbBadge extends _SbbBadgeBase implements OnInit, OnDestroy, CanDisable {
+export class SbbBadge implements OnInit, OnDestroy {
   /** Position the badge should reside. */
   @Input('sbbBadgePosition') position: SbbBadgePosition = 'above';
 
@@ -64,14 +57,10 @@ export class SbbBadge extends _SbbBadgeBase implements OnInit, OnDestroy, CanDis
   private _description: string;
 
   /** Whether the badge is hidden. */
-  @Input('sbbBadgeHidden')
-  get hidden(): boolean {
-    return this._hidden;
-  }
-  set hidden(val: BooleanInput) {
-    this._hidden = coerceBooleanProperty(val);
-  }
-  private _hidden: boolean;
+  @Input({ alias: 'sbbBadgeHidden', transform: booleanAttribute }) hidden: boolean;
+
+  /** Whether the badge is disabled. */
+  @Input({ alias: 'sbbBadgeDisabled', transform: booleanAttribute }) disabled: boolean;
 
   /** Unique id for the badge */
   _id: number = nextId++;
@@ -89,8 +78,6 @@ export class SbbBadge extends _SbbBadgeBase implements OnInit, OnDestroy, CanDis
     private _renderer: Renderer2,
     @Optional() @Inject(ANIMATION_MODULE_TYPE) private _animationMode?: string,
   ) {
-    super();
-
     if (typeof ngDevMode === 'undefined' || ngDevMode) {
       const nativeElement = _elementRef.nativeElement;
       if (nativeElement.nodeType !== nativeElement.ELEMENT_NODE) {
