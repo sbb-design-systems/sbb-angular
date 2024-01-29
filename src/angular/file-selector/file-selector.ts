@@ -1,8 +1,8 @@
 // Workaround for: https://github.com/bazelbuild/rules_nodejs/issues/1265
 /// <reference types="@angular/localize/init" />
 
-import { BooleanInput, coerceBooleanProperty } from '@angular/cdk/coercion';
 import {
+  booleanAttribute,
   ChangeDetectionStrategy,
   ChangeDetectorRef,
   Component,
@@ -84,14 +84,8 @@ export class SbbFileSelector
   @Input() capture?: 'user' | 'environment';
 
   /** Mode on file selector component to chose more files to upload. */
-  @Input()
-  get multiple(): boolean {
-    return this._multiple;
-  }
-  set multiple(value: BooleanInput) {
-    this._multiple = coerceBooleanProperty(value);
-  }
-  private _multiple = false;
+  @Input({ transform: booleanAttribute })
+  multiple: boolean = false;
 
   /** Set if the component should add files on top of the already selected ones or keep default input file behaviour. */
   @Input() multipleMode: 'default' | 'persistent' = 'default';
