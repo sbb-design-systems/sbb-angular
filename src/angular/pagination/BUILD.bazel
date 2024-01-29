@@ -22,7 +22,6 @@ ng_module(
     deps = [
         "//src/angular/core",
         "//src/angular/icon",
-        "@npm//@angular/cdk",
         "@npm//@angular/core",
         "@npm//@angular/localize",
         "@npm//@angular/router",
