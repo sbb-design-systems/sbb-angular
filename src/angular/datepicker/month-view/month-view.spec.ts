@@ -12,12 +12,7 @@ import {
 import { Component, ViewChild } from '@angular/core';
 import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
-import {
-  SbbDateAdapter,
-  SbbNativeDateAdapter,
-  SBB_DATE_FORMATS,
-  SBB_DATE_PIPE_DATE_FORMATS,
-} from '@sbb-esta/angular/core';
+import { provideNativeDateAdapter } from '@sbb-esta/angular/core';
 import {
   DEC,
   dispatchFakeEvent,
@@ -110,10 +105,7 @@ class MonthViewComponentWithWeekNumbers {
 describe('SbbMonthView', () => {
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-      providers: [
-        { provide: SbbDateAdapter, useClass: SbbNativeDateAdapter },
-        { provide: SBB_DATE_FORMATS, useValue: SBB_DATE_PIPE_DATE_FORMATS },
-      ],
+      providers: [provideNativeDateAdapter()],
     }).compileComponents();
   }));
 

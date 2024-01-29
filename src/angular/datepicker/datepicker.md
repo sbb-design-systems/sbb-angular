@@ -209,15 +209,27 @@ A Date Adapter defines how to deal with dates and converts user inputs in to dat
 The `SbbDatepicker` uses the `SbbDateAdapter` internally, respectively the `SbbNativeDateAdapter`,
 which uses the JavaScript `Date` object.
 
+For providing the `SbbDateAdapter` globally, you either can use the `SBB_DATE_ADAPTER` injection token or the
+`provideNativeDateAdapter` function. This is e.g. necessary if you want to use the `SbbDatePicker` or `SbbCalendar`
+inside an `SbbDialog` having an isolated scope.
+
+```ts
+import { provideNativeDateAdapter } from '@sbb-esta/angular/core';
+
+bootstrapApplication(MyApp, {
+  providers: [provideNativeDateAdapter()],
+});
+```
+
 ##### LeanDateAdapter
 
 For lean applications you have the ability to use `LeanDateAdapter` which extends `NativeDateAdapter`
 and additionally allows parsing dates like '01012020'.
 
 ```ts
-import { SBB_LEAN_DATE_ADAPTER } from '@sbb-esta/angular/core';
+import { provideLeanDateAdapter } from '@sbb-esta/angular/core';
 @NgModule({
-  providers: [SBB_LEAN_DATE_ADAPTER],
+  providers: [provideLeanDateAdapter()],
 })
 export class AppModule {}
 ```
