@@ -317,14 +317,6 @@ export class SbbRadioGroup<
   override _radios: QueryList<TRadio>;
 }
 
-/** @docs-private */
-abstract class RadioButtonBase {
-  // Since the disabled property is manually defined for the SbbRadioButton and isn't set up in
-  // the mixin base class. To be able to use the tabindex mixin, a disabled property must be
-  // defined to properly work.
-  abstract disabled: boolean;
-}
-
 let nextId = 0;
 
 @Directive()
