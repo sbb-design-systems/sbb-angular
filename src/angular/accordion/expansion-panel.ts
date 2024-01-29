@@ -1,6 +1,5 @@
 import { AnimationEvent } from '@angular/animations';
 import { CdkAccordionItem } from '@angular/cdk/accordion';
-import { BooleanInput, coerceBooleanProperty } from '@angular/cdk/coercion';
 import { UniqueSelectionDispatcher } from '@angular/cdk/collections';
 import { CdkPortalOutlet, TemplatePortal } from '@angular/cdk/portal';
 import { DOCUMENT } from '@angular/common';
@@ -85,12 +84,12 @@ export class SbbExpansionPanel
   private _document: Document;
 
   /** Whether the toggle indicator should be hidden. */
-  @Input()
+  @Input({ transform: booleanAttribute })
   get hideToggle(): boolean {
     return this._hideToggle || (this.accordion && this.accordion.hideToggle);
   }
-  set hideToggle(value: BooleanInput) {
-    this._hideToggle = coerceBooleanProperty(value);
+  set hideToggle(value: boolean) {
+    this._hideToggle = value;
   }
   private _hideToggle = false;
 
