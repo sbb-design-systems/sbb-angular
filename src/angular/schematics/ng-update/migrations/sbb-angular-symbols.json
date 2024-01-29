@@ -110,6 +110,8 @@
   "mixinTabIndex": "core",
   "mixinVariant": "core",
   "ɵvariant": "core",
+  "provideLeanDateAdapter": "core",
+  "provideNativeDateAdapter": "core",
   "SanityChecks": "core",
   "SBB_DATE_FORMATS": "core",
   "SBB_DATE_PIPE_DATE_FORMATS": "core",
