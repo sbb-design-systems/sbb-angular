@@ -8,6 +8,7 @@ import { SbbGeolocateButton } from './components/geolocate-button/geolocate-butt
 import { SbbHomeButton } from './components/home-button/home-button';
 import { SbbLeitPoi } from './components/leit-poi/leit-poi';
 import { SbbLevelSwitch } from './components/level-switch/level-switch';
+import { SbbLevelSwitchHorizontal } from './components/level-switch/level-switch-horizontal';
 import { SbbMarkerDetails } from './components/marker-details/marker-details';
 import { SbbOverlayPaginator } from './components/overlay-paginator/overlay-paginator';
 import { SbbPopup } from './components/popup/popup';
@@ -22,6 +23,7 @@ import { SbbJourneyMaps } from './journey-maps';
     SbbTeaser,
     SbbAttribution,
     SbbLevelSwitch,
+    SbbLevelSwitchHorizontal,
     SbbZoomControls,
     SbbBasemapSwitch,
     SbbPopup,

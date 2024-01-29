@@ -1,5 +1,6 @@
 @use 'icons' as i;
 @use '@sbb-esta/angular' as esta;
+@use './variables' as v;
 
 @mixin map-controls-shared {
   button {
@@ -11,14 +12,14 @@
   }
 
   .map-control-container {
-    margin: 16px;
+    margin: v.$controlsMargin;
     background: esta.$sbbColorWhite;
     box-shadow: 0 0 8px rgba(0, 0, 0, 0.1);
-    border-radius: 24px;
+    border-radius: calc(v.$controlsWidth / 2);
 
     @include esta.mq($from: tabletPortrait) {
       &.small-buttons {
-        margin: 6px;
+        margin: v.$controlsMarginSmall;
       }
     }
   }
@@ -26,13 +27,13 @@
   .map-control-button-wrapper {
     line-height: 36px;
     padding: 6px;
-    width: 48px;
+    width: v.$controlsWidth;
 
     @include esta.mq($from: tabletPortrait) {
       @at-root .map-control-container.small-buttons #{&} {
         line-height: 26px;
         padding: 3px;
-        width: 32px;
+        width: v.$controlsWidthSmall;
       }
     }
   }
@@ -44,13 +45,7 @@
     // (i.e. NOT when the mouse is hovering over the outer edges of the button)
     pointer-events: none;
 
-    border-radius: 24px;
-
-    @include esta.mq($from: tabletPortrait) {
-      @at-root .map-control-container.small-buttons #{&} {
-        border-radius: 16px;
-      }
-    }
+    border-radius: 50%;
 
     &:not([data-disabled='true']):active,
     &:not([data-disabled='true']):has(:focus-visible) {
