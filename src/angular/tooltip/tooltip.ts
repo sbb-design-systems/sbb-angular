@@ -25,6 +25,7 @@ import { ScrollDispatcher } from '@angular/cdk/scrolling';
 import { AsyncPipe, DOCUMENT, NgClass, NgTemplateOutlet } from '@angular/common';
 import {
   AfterViewInit,
+  ANIMATION_MODULE_TYPE,
   ChangeDetectionStrategy,
   ChangeDetectorRef,
   Component,
@@ -44,7 +45,6 @@ import {
   ViewContainerRef,
   ViewEncapsulation,
 } from '@angular/core';
-import { ANIMATION_MODULE_TYPE } from '@angular/platform-browser/animations';
 import { Breakpoints } from '@sbb-esta/angular/core';
 import { SbbIcon } from '@sbb-esta/angular/icon';
 import { Observable, Subject } from 'rxjs';

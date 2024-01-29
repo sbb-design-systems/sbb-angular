@@ -1,6 +1,7 @@
 import { AriaDescriber } from '@angular/cdk/a11y';
 import { BooleanInput, coerceBooleanProperty } from '@angular/cdk/coercion';
 import {
+  ANIMATION_MODULE_TYPE,
   Directive,
   ElementRef,
   Inject,
@@ -11,7 +12,6 @@ import {
   Optional,
   Renderer2,
 } from '@angular/core';
-import { ANIMATION_MODULE_TYPE } from '@angular/platform-browser/animations';
 import { CanDisable, mixinDisabled } from '@sbb-esta/angular/core';
 
 let nextId = 0;
