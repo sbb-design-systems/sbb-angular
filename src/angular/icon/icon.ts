@@ -1,4 +1,3 @@
-import { BooleanInput, coerceBooleanProperty } from '@angular/cdk/coercion';
 import { DOCUMENT } from '@angular/common';
 import {
   AfterViewChecked,
@@ -126,13 +125,7 @@ export class SbbIcon implements OnInit, AfterViewChecked, OnDestroy {
    * the element the icon is contained in.
    */
   @Input()
-  get inline(): boolean {
-    return this._inline;
-  }
-  set inline(inline: BooleanInput) {
-    this._inline = coerceBooleanProperty(inline);
-  }
-  private _inline: boolean = false;
+  inline: boolean = false;
 
   /** Name of the icon in the SVG icon set. */
   @Input()
