@@ -85,7 +85,7 @@ export class SbbLevelSwitchHorizontal implements OnInit, OnDestroy {
   private _focusMatchingButton(): void {
     const mainButtonText = this.mainButton.nativeElement.textContent;
     const matchingButton = this.sideButtons.find(
-      (button) => button.nativeElement.textContent?.trim() === mainButtonText,
+      (button) => button.nativeElement.textContent?.trim() === mainButtonText?.trim(),
     );
     matchingButton?.nativeElement.focus();
   }
