@@ -1,8 +1,8 @@
 import { FocusableOption } from '@angular/cdk/a11y';
-import { BooleanInput, coerceBooleanProperty } from '@angular/cdk/coercion';
 import { BACKSPACE, DELETE } from '@angular/cdk/keycodes';
 import {
   Attribute,
+  booleanAttribute,
   ChangeDetectionStrategy,
   ChangeDetectorRef,
   Component,
@@ -16,13 +16,14 @@ import {
   InjectionToken,
   Input,
   NgZone,
+  numberAttribute,
   OnDestroy,
   Optional,
   Output,
   ViewEncapsulation,
 } from '@angular/core';
 import { ANIMATION_MODULE_TYPE } from '@angular/platform-browser/animations';
-import { CanDisable, HasTabIndex, mixinTabIndex, TypeRef } from '@sbb-esta/angular/core';
+import { TypeRef } from '@sbb-esta/angular/core';
 import { SbbIconModule } from '@sbb-esta/angular/icon';
 import { Subject } from 'rxjs';
 import { take } from 'rxjs/operators';
@@ -52,16 +53,6 @@ export const SBB_CHIP_TRAILING_ICON = new InjectionToken<SbbChipTrailingIcon>(
   'SbbChipTrailingIcon',
 );
 
-// Boilerplate for applying mixins to SbbChip.
-/** @docs-private */
-abstract class SbbChipBase {
-  abstract disabled: boolean;
-  constructor(public _elementRef: ElementRef) {}
-}
-
-// tslint:disable-next-line:naming-convention
-const _SbbChipMixinBase = mixinTabIndex(SbbChipBase, -1);
-
 /**
  * Dummy directive to add CSS class to chip trailing icon.
  * @docs-private
@@ -79,7 +70,6 @@ export class SbbChipTrailingIcon {}
  */
 @Component({
   selector: `sbb-basic-chip, [sbb-basic-chip], sbb-chip, [sbb-chip]`,
-  inputs: ['tabIndex'],
   exportAs: 'sbbChip',
   template: ` <ng-content></ng-content>
     @if (removable && !removeIcon) {
@@ -104,10 +94,7 @@ export class SbbChipTrailingIcon {}
   standalone: true,
   imports: [SbbIconModule, forwardRef(() => SbbChipRemove)],
 })
-export class SbbChip
-  extends _SbbChipMixinBase
-  implements FocusableOption, OnDestroy, HasTabIndex, CanDisable
-{
+export class SbbChip implements FocusableOption, OnDestroy {
   /** Whether the chip has focus. */
   _hasFocus: boolean = false;
 
@@ -137,26 +124,25 @@ export class SbbChip
   protected _value: any;
 
   /** Whether the chip is disabled. */
-  @Input()
+  @Input({ transform: booleanAttribute })
   get disabled(): boolean {
     return this._chipListDisabled || this._disabled;
   }
-  set disabled(value: BooleanInput) {
-    this._disabled = coerceBooleanProperty(value);
+  set disabled(value: boolean) {
+    this._disabled = value;
   }
   protected _disabled: boolean = false;
 
   /**
    * Determines whether the chip displays the remove styling and emits (removed) events.
    */
-  @Input()
-  get removable(): boolean {
-    return this._removable;
-  }
-  set removable(value: BooleanInput) {
-    this._removable = coerceBooleanProperty(value);
-  }
-  protected _removable: boolean = true;
+  @Input({ transform: booleanAttribute }) removable: boolean = true;
+
+  /** Tab index of the chip. */
+  @Input({
+    transform: (value: unknown) => (value == null ? undefined : numberAttribute(value)),
+  })
+  tabIndex: number = -1;
 
   /** Emits when the chip is focused. */
   readonly _onFocus = new Subject<SbbChipEvent>();
@@ -177,7 +163,7 @@ export class SbbChip
   @Output() readonly removed: EventEmitter<SbbChipEvent> = new EventEmitter<SbbChipEvent>();
 
   constructor(
-    public override _elementRef: ElementRef<HTMLElement>,
+    public _elementRef: ElementRef<HTMLElement>,
     private _ngZone: NgZone,
     @Optional()
     private _changeDetectorRef: ChangeDetectorRef,
@@ -185,8 +171,6 @@ export class SbbChip
     @Optional() @Inject(ANIMATION_MODULE_TYPE) animationMode?: string,
     @Attribute('tabindex') tabIndex?: string,
   ) {
-    super(_elementRef);
-
     this._addHostClassName();
 
     this._animationsDisabled = animationMode === 'NoopAnimations';

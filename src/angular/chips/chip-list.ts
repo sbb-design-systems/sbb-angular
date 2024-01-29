@@ -1,7 +1,7 @@
 import { FocusKeyManager } from '@angular/cdk/a11y';
-import { BooleanInput, coerceBooleanProperty } from '@angular/cdk/coercion';
 import {
   AfterContentInit,
+  booleanAttribute,
   ChangeDetectionStrategy,
   ChangeDetectorRef,
   Component,
@@ -202,15 +202,7 @@ export class SbbChipList
    * Implemented as part of SbbFormFieldControl.
    * @docs-private
    */
-  @Input()
-  get required(): boolean {
-    return this._required;
-  }
-  set required(value: BooleanInput) {
-    this._required = coerceBooleanProperty(value);
-    this.stateChanges.next();
-  }
-  protected _required: boolean = false;
+  @Input({ transform: booleanAttribute }) required: boolean = false;
 
   /**
    * Implemented as part of SbbFormFieldControl.
@@ -243,12 +235,12 @@ export class SbbChipList
    * Implemented as part of SbbFormFieldControl.
    * @docs-private
    */
-  @Input()
+  @Input({ transform: booleanAttribute })
   get disabled(): boolean {
     return this.ngControl ? !!this.ngControl.disabled : this._disabled;
   }
-  set disabled(value: BooleanInput) {
-    this._disabled = coerceBooleanProperty(value);
+  set disabled(value: boolean) {
+    this._disabled = value;
     this._syncChipsState();
   }
   protected _disabled: boolean = false;
