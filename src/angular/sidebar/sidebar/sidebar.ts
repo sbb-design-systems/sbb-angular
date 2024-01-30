@@ -16,6 +16,7 @@ import { DOCUMENT } from '@angular/common';
 import {
   AfterContentChecked,
   AfterContentInit,
+  ANIMATION_MODULE_TYPE,
   ChangeDetectionStrategy,
   ChangeDetectorRef,
   Component,
@@ -35,7 +36,6 @@ import {
   ViewChild,
   ViewEncapsulation,
 } from '@angular/core';
-import { ANIMATION_MODULE_TYPE } from '@angular/platform-browser/animations';
 import { NavigationStart, Router } from '@angular/router';
 import { SbbIcon } from '@sbb-esta/angular/icon';
 import { fromEvent, merge, NEVER, Observable, Subject } from 'rxjs';

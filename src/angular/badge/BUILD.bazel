@@ -19,7 +19,6 @@ ng_module(
         "//src/angular/core",
         "@npm//@angular/cdk",
         "@npm//@angular/core",
-        "@npm//@angular/platform-browser",
     ],
 )
 
