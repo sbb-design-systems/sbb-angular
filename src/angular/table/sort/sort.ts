@@ -1,5 +1,5 @@
-import { BooleanInput, coerceBooleanProperty } from '@angular/cdk/coercion';
 import {
+  booleanAttribute,
   Directive,
   EventEmitter,
   Inject,
@@ -11,12 +11,7 @@ import {
   Optional,
   Output,
 } from '@angular/core';
-import {
-  CanDisable,
-  HasInitialized,
-  mixinDisabled,
-  mixinInitialized,
-} from '@sbb-esta/angular/core';
+import { HasInitialized, mixinInitialized } from '@sbb-esta/angular/core';
 import { Subject } from 'rxjs';
 
 import { SbbSortDirection } from './sort-direction';
@@ -66,20 +61,16 @@ export const SBB_SORT_DEFAULT_OPTIONS = new InjectionToken<SbbSortDefaultOptions
 // Boilerplate for applying mixins to SbbSort.
 /** @docs-private */
 // tslint:disable-next-line:naming-convention
-const _SbbSortBase = mixinInitialized(mixinDisabled(class {}));
+const _SbbSortBase = mixinInitialized(class {});
 
 /** Container for SbbSortables to manage the sort state and provide default sort parameters. */
 @Directive({
   selector: '[sbbSort]',
   exportAs: 'sbbSort',
   host: { class: 'sbb-sort' },
-  inputs: ['disabled: sbbSortDisabled'],
   standalone: true,
 })
-export class SbbSort
-  extends _SbbSortBase
-  implements CanDisable, HasInitialized, OnInit, OnChanges, OnDestroy
-{
+export class SbbSort extends _SbbSortBase implements HasInitialized, OnInit, OnChanges, OnDestroy {
   /** Collection of all registered sortables that this directive manages. */
   sortables: Map<string, SbbSortable> = new Map<string, SbbSortable>();
 
@@ -88,6 +79,9 @@ export class SbbSort
 
   /** The id of the most recently sorted SbbSortable. */
   @Input('sbbSortActive') active: string;
+
+  /** Whether the sort is disabled. */
+  @Input({ alias: 'sbbSortDisabled', transform: booleanAttribute }) disabled: boolean = false;
 
   /**
    * The direction to set when an SbbSortable is initially sorted.
@@ -117,14 +111,8 @@ export class SbbSort
    * Whether to disable the user from clearing the sort by finishing the sort direction cycle.
    * May be overriden by the SbbSortable's disable clear input.
    */
-  @Input('sbbSortDisableClear')
-  get disableClear(): boolean {
-    return this._disableClear;
-  }
-  set disableClear(v: BooleanInput) {
-    this._disableClear = coerceBooleanProperty(v);
-  }
-  private _disableClear: boolean;
+  @Input({ alias: 'sbbSortDisableClear', transform: booleanAttribute })
+  disableClear: boolean;
 
   /** Event emitted when the user changes either the active sort or sort direction. */
   @Output('sbbSortChange') readonly sortChange: EventEmitter<SbbSortState> =
