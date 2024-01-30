@@ -94,7 +94,7 @@
     </unit>
     <unit id="sbbFileSelectorUploadFile">
       <notes>
-        <note category="location">../../../../../../src/angular/file-selector/file-selector.ts:67</note>
+        <note category="location">../../../../../../src/angular/file-selector/file-selector.ts:55</note>
         <note category="description">Button label to select files for upload</note>
       </notes>
       <segment>
@@ -103,7 +103,7 @@
     </unit>
     <unit id="sbbFileSelectorRemoveFile">
       <notes>
-        <note category="location">../../../../../../src/angular/file-selector/file-selector.ts:69</note>
+        <note category="location">../../../../../../src/angular/file-selector/file-selector.ts:57</note>
         <note category="description">Hidden button label to remove a file from the selection list</note>
       </notes>
       <segment>
