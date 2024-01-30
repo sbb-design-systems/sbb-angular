@@ -113,12 +113,9 @@ export class SbbLevelSwitchHorizontal implements OnInit, OnDestroy {
   }
 
   getLevelLabel(level: number, selectedLevel: number | undefined): string {
-    const txt1 = this._i18n.getText('a4a.visualFunction');
-    const txt2 =
-      level === selectedLevel
-        ? this._i18n.getTextWithParams('a4a.unselectFloor', level)
-        : this._i18n.getTextWithParams('a4a.selectFloor', level);
-    return `${txt1} ${txt2}`;
+    return level === selectedLevel
+      ? this._i18n.getTextWithParams('a4a.unselectFloor', level)
+      : this._i18n.getTextWithParams('a4a.selectFloor', level);
   }
 
   onMainButtonEnter(event: Event): void {
