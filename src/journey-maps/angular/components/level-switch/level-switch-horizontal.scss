@@ -103,16 +103,16 @@
   }
 }
 
-.main-button-wrapper.expanded {
-  box-shadow: -4px 0 4px 0 rgba(0, 0, 0, 0.03); /* Shadow to the left */
-}
-
 .main-button {
   background-color: esta.$sbbColorWhite; /* prevent showing the side buttons behind the main button as they expand/collapse */
 }
 
 .map-control-button-wrapper {
   user-select: none; /* prevent visually selecting the text of the buttons */
+
+  &.expanded {
+    box-shadow: -4px 0 4px 0 rgba(0, 0, 0, 0.03); /* Shadow to the left */
+  }
 
   @at-root .map-control-container.dark #{&} {
     background-color: esta.$sbbColorBlack;
