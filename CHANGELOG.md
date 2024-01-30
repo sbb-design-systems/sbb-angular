@@ -2,6 +2,14 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [17.5.1](https://github.com/sbb-design-systems/sbb-angular/compare/17.5.0...17.5.1) (2024-01-30)
+
+
+### Bug Fixes
+
+* **journey-maps:** acceptance test fixes ([#2160](https://github.com/sbb-design-systems/sbb-angular/issues/2160)) ([83a7a3c](https://github.com/sbb-design-systems/sbb-angular/commit/83a7a3c4fa9b70944efff3cd82998f81f9268269))
+* **journey-maps:** adapt dark-mode for span in attribution ([#2162](https://github.com/sbb-design-systems/sbb-angular/issues/2162)) ([4ff92fc](https://github.com/sbb-design-systems/sbb-angular/commit/4ff92fc8d7a7be5c9d7abe6dad57fca66c88bd58))
+
 ## [17.5.0](https://github.com/sbb-design-systems/sbb-angular/compare/17.4.1...17.5.0) (2024-01-29)
 
 
