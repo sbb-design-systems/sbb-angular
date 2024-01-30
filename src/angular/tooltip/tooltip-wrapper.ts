@@ -1,10 +1,10 @@
-import { coerceNumberProperty, NumberInput } from '@angular/cdk/coercion';
 import { AsyncPipe } from '@angular/common';
 import {
   ChangeDetectionStrategy,
   Component,
   EventEmitter,
   Input,
+  numberAttribute,
   OnChanges,
   OnDestroy,
   OnInit,
@@ -13,7 +13,7 @@ import {
   ViewChild,
   ViewEncapsulation,
 } from '@angular/core';
-import { mixinDisabled, mixinVariant } from '@sbb-esta/angular/core';
+import { mixinVariant } from '@sbb-esta/angular/core';
 import { SbbIcon } from '@sbb-esta/angular/icon';
 import { BehaviorSubject, combineLatest, Observable, Subject } from 'rxjs';
 import { map, takeUntil } from 'rxjs/operators';
@@ -22,7 +22,7 @@ import { SbbTooltip, SbbTooltipChangeEvent } from './tooltip';
 
 // Boilerplate for applying mixins to SbbTooltipWrapper.
 // tslint:disable-next-line: naming-convention
-const _SbbTooltipWrapperMixinBase = mixinDisabled(mixinVariant(class {}));
+const _SbbTooltipWrapperMixinBase = mixinVariant(class {});
 
 let nextId = 1;
 
@@ -31,7 +31,6 @@ let nextId = 1;
   templateUrl: './tooltip-wrapper.html',
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush,
-  inputs: ['disabled'],
   host: {
     class: 'sbb-tooltip-wrapper',
     '[attr.id]': 'this.id',
@@ -51,24 +50,10 @@ export class SbbTooltipWrapper
   @Input() trigger: 'click' | 'hover' = 'click';
 
   /** Customizations for show delay */
-  @Input()
-  get hoverShowDelay(): number {
-    return this._hoverShowDelay;
-  }
-  set hoverShowDelay(value: NumberInput) {
-    this._hoverShowDelay = coerceNumberProperty(value, 0);
-  }
-  private _hoverShowDelay: number;
+  @Input({ transform: numberAttribute }) hoverShowDelay: number;
 
   /** Customizations for hide delay */
-  @Input()
-  get hoverHideDelay(): number {
-    return this._hoverHideDelay;
-  }
-  set hoverHideDelay(value: NumberInput) {
-    this._hoverHideDelay = coerceNumberProperty(value, 0);
-  }
-  private _hoverHideDelay: number;
+  @Input({ transform: numberAttribute }) hoverHideDelay: number;
 
   private _destroyed = new Subject<void>();
 
