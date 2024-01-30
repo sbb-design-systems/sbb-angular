@@ -4,6 +4,7 @@ import { AsyncPipe } from '@angular/common';
 import {
   AfterContentInit,
   AfterViewInit,
+  booleanAttribute,
   ChangeDetectionStrategy,
   Component,
   ContentChildren,
@@ -17,7 +18,7 @@ import {
   ViewEncapsulation,
 } from '@angular/core';
 import { ANIMATION_MODULE_TYPE } from '@angular/platform-browser/animations';
-import { CanDisable, mixinDisabled, mixinVariant } from '@sbb-esta/angular/core';
+import { mixinVariant } from '@sbb-esta/angular/core';
 import { SbbIcon } from '@sbb-esta/angular/icon';
 import { SbbIconModule } from '@sbb-esta/angular/icon';
 import { combineLatest, Observable } from 'rxjs';
@@ -59,12 +60,10 @@ const DEFAULT_INDICATOR_ICONS: { [attr: string]: string } = {
 
 // Boilerplate for applying mixins to SbbButton.
 // tslint:disable-next-line: naming-convention
-const _SbbButtonMixinBase = mixinDisabled(
-  mixinVariant(
-    class {
-      constructor(public _elementRef: ElementRef) {}
-    },
-  ),
+const _SbbButtonMixinBase = mixinVariant(
+  class {
+    constructor(public _elementRef: ElementRef) {}
+  },
 );
 
 /**
@@ -89,7 +88,7 @@ const _SbbButtonMixinBase = mixinDisabled(
 })
 export class SbbButton
   extends _SbbButtonMixinBase
-  implements AfterViewInit, AfterContentInit, OnDestroy, CanDisable, FocusableOption
+  implements AfterViewInit, AfterContentInit, OnDestroy, FocusableOption
 {
   /** Whether this button has an icon indicator. */
   _hasIconIndicator: boolean = this._hasHostAttributes(...INDICATOR_ATTRIBUTES);
@@ -109,6 +108,9 @@ export class SbbButton
    * e.g. svgIcon="plus-small"
    */
   @Input() svgIcon: string;
+
+  /** Whether the button is disabled. */
+  @Input({ transform: booleanAttribute }) disabled: boolean = false;
 
   @ContentChildren(SbbIcon, { read: ElementRef }) _iconRefs: QueryList<ElementRef> =
     new QueryList<ElementRef>();
