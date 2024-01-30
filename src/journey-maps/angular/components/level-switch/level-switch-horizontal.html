@@ -13,6 +13,7 @@
             #sideButton
             class="side-button"
             (focus)="startCountdown()"
+            (mouseover)="startCountdown()"
             (click)="onSideButtonClick(level)"
             (keydown.enter)="onSideButtonEnter(level, $event)"
             [ngClass]="{
