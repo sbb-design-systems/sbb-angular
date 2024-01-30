@@ -12,6 +12,7 @@ import {
   AfterContentChecked,
   AfterContentInit,
   AfterViewInit,
+  ANIMATION_MODULE_TYPE,
   ChangeDetectorRef,
   Directive,
   ElementRef,
@@ -23,7 +24,6 @@ import {
   Optional,
   QueryList,
 } from '@angular/core';
-import { ANIMATION_MODULE_TYPE } from '@angular/platform-browser/animations';
 import { mixinVariant } from '@sbb-esta/angular/core';
 import { fromEvent, merge, Subject, timer } from 'rxjs';
 import {

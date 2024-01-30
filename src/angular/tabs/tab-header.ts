@@ -5,6 +5,7 @@ import {
   AfterContentChecked,
   AfterContentInit,
   AfterViewInit,
+  ANIMATION_MODULE_TYPE,
   ChangeDetectionStrategy,
   ChangeDetectorRef,
   Component,
@@ -20,7 +21,6 @@ import {
   ViewChild,
   ViewEncapsulation,
 } from '@angular/core';
-import { ANIMATION_MODULE_TYPE } from '@angular/platform-browser/animations';
 import { SbbIcon } from '@sbb-esta/angular/icon';
 
 import { SbbPaginatedTabHeader } from './paginated-tab-header';

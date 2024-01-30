@@ -8,6 +8,7 @@ import {
   AfterContentChecked,
   AfterContentInit,
   AfterViewInit,
+  ANIMATION_MODULE_TYPE,
   Attribute,
   ChangeDetectionStrategy,
   ChangeDetectorRef,
@@ -25,7 +26,6 @@ import {
   ViewChild,
   ViewEncapsulation,
 } from '@angular/core';
-import { ANIMATION_MODULE_TYPE } from '@angular/platform-browser/animations';
 import { CanDisable, HasTabIndex, mixinDisabled, mixinTabIndex } from '@sbb-esta/angular/core';
 import { SbbIcon } from '@sbb-esta/angular/icon';
 import { startWith, takeUntil } from 'rxjs/operators';
