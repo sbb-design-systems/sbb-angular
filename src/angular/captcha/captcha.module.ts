@@ -6,8 +6,7 @@ import { SbbCaptchaLoaderService } from './captcha/captcha-loader.service';
 import { SbbWindowRef } from './captcha/windowref.service';
 
 @NgModule({
-  declarations: [SbbCaptcha],
-  imports: [SbbCommonModule],
+  imports: [SbbCommonModule, SbbCaptcha],
   exports: [SbbCaptcha],
   providers: [SbbCaptchaLoaderService, SbbWindowRef],
 })

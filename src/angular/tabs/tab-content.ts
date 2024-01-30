@@ -11,6 +11,7 @@ export const SBB_TAB_CONTENT = new InjectionToken<SbbTabContent>('SbbTabContent'
 @Directive({
   selector: '[sbbTabContent]',
   providers: [{ provide: SBB_TAB_CONTENT, useExisting: SbbTabContent }],
+  standalone: true,
 })
 export class SbbTabContent {
   constructor(/** Content for the tab. */ public template: TemplateRef<any>) {}

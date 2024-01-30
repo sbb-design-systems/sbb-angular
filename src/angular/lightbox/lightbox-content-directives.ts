@@ -15,6 +15,7 @@ import {
   ViewChild,
 } from '@angular/core';
 import { SbbDialog, SbbDialogClose, _SbbDialogTitleBase } from '@sbb-esta/angular/dialog';
+import { SbbIcon } from '@sbb-esta/angular/icon';
 
 import { SbbLightbox } from './lightbox';
 import { SbbLightboxRef } from './lightbox-ref';
@@ -32,6 +33,7 @@ let dialogElementUid = 0;
     '[attr.aria-label]': 'ariaLabel || null',
     '[attr.type]': 'type',
   },
+  standalone: true,
 })
 export class SbbLightboxClose extends SbbDialogClose implements OnInit, OnChanges {
   /** Aria label for the close button. */
@@ -90,6 +92,8 @@ export class SbbLightboxClose extends SbbDialogClose implements OnInit, OnChange
     class: 'sbb-lightbox-title',
     '[id]': 'id',
   },
+  standalone: true,
+  imports: [SbbLightboxClose, SbbIcon],
 })
 export class SbbLightboxTitle extends _SbbDialogTitleBase implements OnInit {
   /** Unique id for the lightbox title. If none is supplied, it will be auto-generated. */
@@ -131,6 +135,7 @@ export class SbbLightboxTitle extends _SbbDialogTitleBase implements OnInit {
 @Directive({
   selector: `[sbb-lightbox-content], sbb-lightbox-content, [sbbLightboxContent]`,
   host: { class: 'sbb-lightbox-content sbb-scrollbar' },
+  standalone: true,
 })
 export class SbbLightboxContent {}
 
@@ -141,5 +146,6 @@ export class SbbLightboxContent {}
 @Directive({
   selector: `[sbb-lightbox-actions], sbb-lightbox-actions, [sbbLightboxActions]`,
   host: { class: 'sbb-lightbox-actions' },
+  standalone: true,
 })
 export class SbbLightboxActions {}

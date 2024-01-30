@@ -13,6 +13,7 @@ import {
   ComponentRef,
   createNgModuleRef,
   Directive,
+  forwardRef,
   Inject,
   Injectable,
   Injector,
@@ -47,6 +48,7 @@ import {
 import { SbbIconTestingModule } from '@sbb-esta/angular/icon/testing';
 import { Subject } from 'rxjs';
 
+import { SbbDialogActions, SbbDialogContent, SbbDialogTitle } from './dialog-content-directives';
 import {
   SbbDialog,
   SbbDialogContainer,
@@ -70,7 +72,7 @@ describe('SbbDialog', () => {
 
   beforeEach(fakeAsync(() => {
     TestBed.configureTestingModule({
-      imports: [SbbDialogModule, DialogTestModule],
+      imports: [DialogTestModule],
       providers: [
         { provide: Location, useClass: SpyLocation },
         {
@@ -1772,7 +1774,7 @@ describe('SbbDialog with a parent SbbDialog', () => {
 
   beforeEach(fakeAsync(() => {
     TestBed.configureTestingModule({
-      imports: [SbbDialogModule, DialogTestModule],
+      imports: [DialogTestModule],
       declarations: [ComponentThatProvidesSbbDialog],
       providers: [
         {
@@ -1887,7 +1889,7 @@ describe('SbbDialog with default options', () => {
     };
 
     TestBed.configureTestingModule({
-      imports: [SbbDialogModule, DialogTestModule],
+      imports: [DialogTestModule],
       providers: [{ provide: SBB_DIALOG_DEFAULT_OPTIONS, useValue: defaultConfig }],
     });
 
@@ -1960,7 +1962,7 @@ describe('SbbDialog with animations enabled', () => {
 
   beforeEach(fakeAsync(() => {
     TestBed.configureTestingModule({
-      imports: [SbbDialogModule, DialogTestModule, BrowserAnimationsModule],
+      imports: [DialogTestModule, BrowserAnimationsModule],
     });
 
     TestBed.compileComponents();
@@ -2010,8 +2012,7 @@ describe('SbbDialog with explicit injector provided', () => {
 
   beforeEach(fakeAsync(() => {
     TestBed.configureTestingModule({
-      imports: [SbbDialogModule, BrowserAnimationsModule],
-      declarations: [ModuleBoundDialogParentComponent],
+      imports: [BrowserAnimationsModule, ModuleBoundDialogParentComponent],
     });
 
     TestBed.compileComponents();
@@ -2040,7 +2041,7 @@ describe('SbbDialog with template only', () => {
 
   beforeEach(fakeAsync(() => {
     TestBed.configureTestingModule({
-      imports: [SbbDialogModule, DialogTestModule, BrowserAnimationsModule],
+      imports: [DialogTestModule, BrowserAnimationsModule],
     });
     TestBed.compileComponents();
   }));
@@ -2058,7 +2059,7 @@ describe('SbbDialog with close button', () => {
 
   beforeEach(fakeAsync(() => {
     TestBed.configureTestingModule({
-      imports: [SbbDialogModule, DialogTestModule, BrowserAnimationsModule],
+      imports: [DialogTestModule, BrowserAnimationsModule],
     });
     TestBed.compileComponents();
   }));
@@ -2094,7 +2095,10 @@ describe('SbbDialog with close button', () => {
   }));
 });
 
-@Directive({ selector: 'dir-with-view-container' })
+@Directive({
+  selector: 'dir-with-view-container',
+  standalone: true,
+})
 class DirectiveWithViewContainer {
   constructor(public viewContainerRef: ViewContainerRef) {}
 }
@@ -2102,6 +2106,7 @@ class DirectiveWithViewContainer {
 @Component({
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: 'hello',
+  standalone: true,
 })
 class ComponentWithOnPushViewContainer {
   constructor(public viewContainerRef: ViewContainerRef) {}
@@ -2112,6 +2117,8 @@ class ComponentWithOnPushViewContainer {
   template: `@if (showChildView) {
     <dir-with-view-container></dir-with-view-container>
   }`,
+  standalone: true,
+  imports: [DirectiveWithViewContainer],
 })
 class ComponentWithChildViewContainer {
   showChildView = true;
@@ -2128,6 +2135,7 @@ class ComponentWithChildViewContainer {
   template: `<ng-template let-data let-dialogRef="dialogRef">
     Cheese {{ localValue }} {{ data?.value }}{{ setDialogRef(dialogRef) }}</ng-template
   >`,
+  standalone: true,
 })
 class ComponentWithTemplateRef {
   localValue: string;
@@ -2142,7 +2150,10 @@ class ComponentWithTemplateRef {
 }
 
 /** Simple component for testing ComponentPortal. */
-@Component({ template: '<p>Pizza</p> <input> <button>Close</button>' })
+@Component({
+  template: '<p>Pizza</p> <input> <button>Close</button>',
+  standalone: true,
+})
 class PizzaMsg {
   constructor(
     public dialogRef: SbbDialogRef<PizzaMsg>,
@@ -2175,6 +2186,8 @@ class PizzaMsg {
       <button class="with-submit" type="submit" sbb-dialog-close>Should have submit</button>
     </sbb-dialog-actions>
   `,
+  standalone: true,
+  imports: [SbbDialogModule],
 })
 class ContentElementDialog {
   shownTitle: 'first' | 'second' | 'third' | 'all' = 'first';
@@ -2210,6 +2223,8 @@ class ContentElementDialog {
       </sbb-dialog-actions>
     </ng-template>
   `,
+  standalone: true,
+  imports: [SbbDialogModule],
 })
 class ComponentWithContentElementTemplateRef {
   @ViewChild(TemplateRef) templateRef: TemplateRef<any>;
@@ -2229,17 +2244,24 @@ class ComponentThatProvidesSbbDialog {
 }
 
 /** Simple component for testing ComponentPortal. */
-@Component({ template: '' })
+@Component({
+  template: '',
+  standalone: true,
+})
 class DialogWithInjectedData {
   constructor(@Inject(SBB_DIALOG_DATA) public data: any) {}
 }
 
-@Component({ template: '<p>Pasta</p>' })
+@Component({
+  template: '<p>Pasta</p>',
+  standalone: true,
+})
 class DialogWithoutFocusableElements {}
 
 @Component({
   template: `<button>I'm a button</button>`,
   encapsulation: ViewEncapsulation.ShadowDom,
+  standalone: true,
 })
 class ShadowDomComponent {}
 
@@ -2249,6 +2271,8 @@ class ShadowDomComponent {}
     <sbb-dialog-content>Lorem ipsum dolor sit amet.</sbb-dialog-content>
     <sbb-dialog-actions> Actions </sbb-dialog-actions>
   `,
+  standalone: true,
+  imports: [SbbDialogTitle, SbbDialogContent, SbbDialogActions],
 })
 class ContentCloseAriaLabelDialog {
   closeAriaLabel: string = 'Close this overlay';
@@ -2271,13 +2295,16 @@ const TEST_DIRECTIVES = [
 ];
 
 @NgModule({
-  imports: [SbbDialogModule, SbbIconTestingModule, NoopAnimationsModule],
+  imports: [SbbDialogModule, SbbIconTestingModule, NoopAnimationsModule, ...TEST_DIRECTIVES],
   exports: TEST_DIRECTIVES,
-  declarations: TEST_DIRECTIVES,
 })
 class DialogTestModule {}
 
-@Component({ template: '' })
+@Component({
+  template: '',
+  standalone: true,
+  imports: [SbbDialogModule],
+})
 class ModuleBoundDialogParentComponent {
   constructor(
     private _injector: Injector,
@@ -2301,16 +2328,22 @@ class ModuleBoundDialogService {
 
 @Component({
   template: '<module-bound-dialog-child-component></module-bound-dialog-child-component>',
+  standalone: true,
+  imports: [forwardRef(() => ModuleBoundDialogChildComponent)],
 })
 class ModuleBoundDialogComponent {}
 
-@Component({ selector: 'module-bound-dialog-child-component', template: '<p>{{service.name}}</p>' })
+@Component({
+  selector: 'module-bound-dialog-child-component',
+  template: '<p>{{service.name}}</p>',
+  standalone: true,
+})
 class ModuleBoundDialogChildComponent {
   constructor(public service: ModuleBoundDialogService) {}
 }
 
 @NgModule({
-  declarations: [ModuleBoundDialogComponent, ModuleBoundDialogChildComponent],
+  imports: [ModuleBoundDialogComponent, ModuleBoundDialogChildComponent],
   providers: [ModuleBoundDialogService],
 })
 class ModuleBoundDialogModule {}

@@ -8,8 +8,14 @@ import { SbbIconModule } from '@sbb-esta/angular/icon';
 import { SbbSelect, SBB_SELECT_SCROLL_STRATEGY_PROVIDER } from './select';
 
 @NgModule({
-  imports: [CommonModule, OverlayModule, SbbCommonModule, SbbIconModule, SbbOptionModule],
-  declarations: [SbbSelect],
+  imports: [
+    CommonModule,
+    OverlayModule,
+    SbbCommonModule,
+    SbbIconModule,
+    SbbOptionModule,
+    SbbSelect,
+  ],
   exports: [SbbOptionModule, OverlayModule, SbbSelect],
   providers: [SBB_SELECT_SCROLL_STRATEGY_PROVIDER],
 })

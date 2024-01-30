@@ -21,6 +21,7 @@ import {
   mixinDisabled,
   mixinInitialized,
 } from '@sbb-esta/angular/core';
+import { SbbIcon } from '@sbb-esta/angular/icon';
 
 /** The default page size if there is no page size and there are no provided page size options. */
 const DEFAULT_PAGE_SIZE = 50;
@@ -81,6 +82,8 @@ const _SbbPaginatorBase = mixinDisabled(mixinInitialized(class {}));
     role: 'group',
     class: 'sbb-paginator sbb-icon-fit',
   },
+  standalone: true,
+  imports: [SbbIcon],
 })
 export class SbbPaginator extends _SbbPaginatorBase implements OnInit, CanDisable, HasInitialized {
   _labelPreviousPage: string = $localize`:Button label to navigate to the previous page@@sbbPaginationPreviousPage:Previous Page`;

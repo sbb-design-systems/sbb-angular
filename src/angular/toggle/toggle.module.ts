@@ -13,7 +13,10 @@ import {
 import { SbbToggleOption } from './toggle-option';
 
 @NgModule({
-  declarations: [
+  imports: [
+    PortalModule,
+    SbbCommonModule,
+    SbbIconModule,
     SbbToggle,
     SbbToggleOption,
     SbbToggleIcon,
@@ -21,7 +24,6 @@ import { SbbToggleOption } from './toggle-option';
     SbbToggleSubtitle,
     SbbToggleDetails,
   ],
-  imports: [PortalModule, SbbCommonModule, SbbIconModule],
   exports: [
     SbbToggle,
     SbbToggleOption,

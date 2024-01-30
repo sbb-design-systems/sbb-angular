@@ -10,8 +10,8 @@ import {
 } from './radio-button-panel-directives';
 
 @NgModule({
-  imports: [SbbCommonModule],
-  declarations: [
+  imports: [
+    SbbCommonModule,
     SbbRadioButtonPanel,
     SbbRadioButtonPanelSubtitle,
     SbbRadioButtonPanelWarning,

@@ -4,8 +4,7 @@ import { SbbCommonModule } from '@sbb-esta/angular/core';
 import { SbbIcon } from './icon';
 
 @NgModule({
-  imports: [SbbCommonModule],
-  declarations: [SbbIcon],
+  imports: [SbbCommonModule, SbbIcon],
   exports: [SbbIcon],
 })
 export class SbbIconModule {}

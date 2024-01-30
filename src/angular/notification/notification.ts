@@ -1,5 +1,6 @@
 import { AnimationEvent } from '@angular/animations';
 import { BooleanInput, coerceBooleanProperty } from '@angular/cdk/coercion';
+import { AsyncPipe } from '@angular/common';
 import {
   ChangeDetectionStrategy,
   ChangeDetectorRef,
@@ -14,6 +15,7 @@ import {
   ViewEncapsulation,
 } from '@angular/core';
 import { mixinVariant } from '@sbb-esta/angular/core';
+import { SbbIcon } from '@sbb-esta/angular/icon';
 import { BehaviorSubject, combineLatest, Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 
@@ -63,6 +65,8 @@ let nextId = 0;
     '[attr.aria-hidden]': '_closed ? true : null',
     '[@showDismiss]': '_animationState',
   },
+  standalone: true,
+  imports: [SbbIcon, AsyncPipe],
 })
 export class SbbNotification extends _SbbNotificationMixinBase implements OnChanges {
   /** Whether this notification is closed. */

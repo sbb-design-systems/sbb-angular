@@ -25,6 +25,7 @@ import {
 } from '@angular/core';
 import { NavigationStart, Router } from '@angular/router';
 import { TypeRef } from '@sbb-esta/angular/core';
+import { SbbIconModule } from '@sbb-esta/angular/icon';
 import { merge, NEVER, Subject, Subscription } from 'rxjs';
 import { filter } from 'rxjs/operators';
 
@@ -68,6 +69,8 @@ const passiveEventListenerOptions = normalizePassiveListenerOptions({ passive: t
     'aria-haspopup': 'menu',
     '[attr.aria-expanded]': 'this.menuOpen || null',
   },
+  standalone: true,
+  imports: [SbbIconModule],
 })
 export class SbbHeaderMenuTrigger implements AfterContentInit, OnDestroy {
   // Tracking input type is necessary so it's possible to only auto-focus

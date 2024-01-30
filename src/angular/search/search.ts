@@ -14,6 +14,7 @@ import {
 } from '@angular/core';
 import { SbbAutocompleteOrigin, SbbAutocompleteTrigger } from '@sbb-esta/angular/autocomplete';
 import { TypeRef } from '@sbb-esta/angular/core';
+import { SbbIcon } from '@sbb-esta/angular/icon';
 import { SbbInput } from '@sbb-esta/angular/input';
 import { Subject } from 'rxjs';
 import { take, takeUntil } from 'rxjs/operators';
@@ -38,6 +39,8 @@ let nextId = 1;
   },
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush,
+  standalone: true,
+  imports: [SbbIcon],
 })
 export class SbbSearch implements AfterContentInit, OnDestroy {
   /** The autocomplete trigger optionally contained in the search element. */

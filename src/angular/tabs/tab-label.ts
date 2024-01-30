@@ -25,6 +25,7 @@ export const SBB_TAB = new InjectionToken<any>('SBB_TAB');
 @Directive({
   selector: '[sbb-tab-label], [sbbTabLabel]',
   providers: [{ provide: SBB_TAB_LABEL, useExisting: SbbTabLabel }],
+  standalone: true,
 })
 export class SbbTabLabel extends CdkPortal {
   constructor(

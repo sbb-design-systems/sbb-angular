@@ -10,7 +10,6 @@ import { SbbHeaderSearch, SBB_SEARCH_SCROLL_STRATEGY_PROVIDER } from './header-s
 import { SbbSearch } from './search';
 
 @NgModule({
-  declarations: [SbbSearch, SbbHeaderSearch],
   imports: [
     CommonModule,
     PortalModule,
@@ -18,6 +17,8 @@ import { SbbSearch } from './search';
     SbbCommonModule,
     SbbButtonModule,
     SbbIconModule,
+    SbbSearch,
+    SbbHeaderSearch,
   ],
   exports: [SbbSearch, SbbHeaderSearch],
   providers: [SBB_SEARCH_SCROLL_STRATEGY_PROVIDER],

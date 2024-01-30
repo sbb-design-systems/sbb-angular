@@ -9,7 +9,9 @@ import {
   ViewContainerRef,
   ViewEncapsulation,
 } from '@angular/core';
+import { RouterLink } from '@angular/router';
 
+import { SbbAlert } from './alert';
 import { SbbAlertConfig } from './alert-config';
 import { SbbAlertRef, SbbAlertRefConnector } from './alert-ref';
 import { SbbAlertService } from './alert-service';
@@ -32,6 +34,8 @@ let nextId = 0;
     'aria-relevant': 'all',
     tabindex: '-1',
   },
+  standalone: true,
+  imports: [SbbAlert, RouterLink],
 })
 export class SbbAlertOutlet implements OnDestroy {
   @Input() id: string = `sbb-alert-outlet-${nextId++}`;

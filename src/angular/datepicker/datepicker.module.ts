@@ -3,12 +3,7 @@ import { OverlayModule } from '@angular/cdk/overlay';
 import { PortalModule } from '@angular/cdk/portal';
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
-import {
-  SbbDateAdapter,
-  SbbNativeDateAdapter,
-  SBB_DATE_FORMATS,
-  SBB_DATE_PIPE_DATE_FORMATS,
-} from '@sbb-esta/angular/core';
+import { provideNativeDateAdapter } from '@sbb-esta/angular/core';
 import { SbbCommonModule } from '@sbb-esta/angular/core';
 import { SbbIconModule } from '@sbb-esta/angular/icon';
 
@@ -24,8 +19,13 @@ import {
 import { SbbMonthView } from './month-view/month-view';
 
 @NgModule({
-  imports: [CommonModule, PortalModule, A11yModule, OverlayModule, SbbCommonModule, SbbIconModule],
-  declarations: [
+  imports: [
+    CommonModule,
+    PortalModule,
+    A11yModule,
+    OverlayModule,
+    SbbCommonModule,
+    SbbIconModule,
     SbbDatepicker,
     SbbDatepickerToggle,
     SbbDatepickerContent,
@@ -45,10 +45,6 @@ import { SbbMonthView } from './month-view/month-view';
     SbbCalendarBody,
     SbbDateInput,
   ],
-  providers: [
-    SBB_DATEPICKER_SCROLL_STRATEGY_FACTORY_PROVIDER,
-    { provide: SbbDateAdapter, useClass: SbbNativeDateAdapter },
-    { provide: SBB_DATE_FORMATS, useValue: SBB_DATE_PIPE_DATE_FORMATS },
-  ],
+  providers: [SBB_DATEPICKER_SCROLL_STRATEGY_FACTORY_PROVIDER, provideNativeDateAdapter()],
 })
 export class SbbDatepickerModule {}

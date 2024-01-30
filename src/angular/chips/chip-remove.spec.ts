@@ -11,8 +11,13 @@ import { SbbChipsModule } from './chips.module';
 describe('Chip Remove', () => {
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-      imports: [SbbChipsModule, SbbIconModule, SbbIconTestingModule],
-      declarations: [TestChip, ChipWithoutRemoveIcon],
+      imports: [
+        SbbChipsModule,
+        SbbIconModule,
+        SbbIconTestingModule,
+        TestChip,
+        ChipWithoutRemoveIcon,
+      ],
     });
 
     TestBed.compileComponents();
@@ -129,6 +134,8 @@ describe('Chip Remove', () => {
       <span sbbChipRemove></span>
     </sbb-chip>
   `,
+  standalone: true,
+  imports: [SbbChipsModule, SbbIconModule, SbbIconTestingModule],
 })
 class TestChip {
   removable: boolean;
@@ -139,6 +146,8 @@ class TestChip {
 
 @Component({
   template: ` <sbb-chip [removable]="removable"> </sbb-chip> `,
+  standalone: true,
+  imports: [SbbChipsModule, SbbIconModule, SbbIconTestingModule],
 })
 class ChipWithoutRemoveIcon {
   removable = true;

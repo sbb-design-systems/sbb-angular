@@ -5,6 +5,7 @@ import { Directive, TemplateRef } from '@angular/core';
  */
 @Directive({
   selector: 'ng-template[sbbStepContent]',
+  standalone: true,
 })
 export class SbbStepContent {
   constructor(public _template: TemplateRef<any>) {}

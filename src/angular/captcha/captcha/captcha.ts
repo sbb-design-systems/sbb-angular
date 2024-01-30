@@ -42,6 +42,7 @@ let nextId = 0;
     class: 'sbb-captcha',
     '[attr.id]': 'id',
   },
+  standalone: true,
 })
 export class SbbCaptcha implements AfterViewInit, OnDestroy, ControlValueAccessor {
   /** Identifier of sbb-captcha. */

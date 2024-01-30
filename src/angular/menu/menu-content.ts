@@ -27,6 +27,7 @@ export const SBB_MENU_CONTENT = new InjectionToken<SbbMenuContent>('SbbMenuConte
 @Directive({
   selector: 'ng-template[sbbMenuContent]',
   providers: [{ provide: SBB_MENU_CONTENT, useExisting: SbbMenuContent }],
+  standalone: true,
 })
 export class SbbMenuContent implements OnDestroy {
   private _portal: TemplatePortal;

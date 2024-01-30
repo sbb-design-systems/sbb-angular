@@ -13,6 +13,7 @@ import {
   ComponentRef,
   createNgModuleRef,
   Directive,
+  forwardRef,
   Inject,
   Injectable,
   Injector,
@@ -56,6 +57,12 @@ import {
   SBB_LIGHTBOX_DATA,
   SBB_LIGHTBOX_DEFAULT_OPTIONS,
 } from './index';
+import {
+  SbbLightboxActions,
+  SbbLightboxClose,
+  SbbLightboxContent,
+  SbbLightboxTitle,
+} from './lightbox-content-directives';
 
 describe('SbbLightbox', () => {
   let lightbox: SbbLightbox;
@@ -78,7 +85,7 @@ describe('SbbLightbox', () => {
 
   beforeEach(fakeAsync(() => {
     TestBed.configureTestingModule({
-      imports: [SbbLightboxModule, DialogTestModule],
+      imports: [DialogTestModule],
       providers: [
         { provide: Location, useClass: SpyLocation },
         { provide: ViewportRuler, useValue: viewportRulerMock },
@@ -1506,8 +1513,7 @@ describe('SbbLightbox with a parent SbbLightbox', () => {
 
   beforeEach(fakeAsync(() => {
     TestBed.configureTestingModule({
-      imports: [SbbLightboxModule, DialogTestModule],
-      declarations: [ComponentThatProvidesSbbLightbox],
+      imports: [DialogTestModule, ComponentThatProvidesSbbLightbox],
       providers: [
         {
           provide: OverlayContainer,
@@ -1621,7 +1627,7 @@ describe('SbbLightbox with default options', () => {
     };
 
     TestBed.configureTestingModule({
-      imports: [SbbLightboxModule, DialogTestModule],
+      imports: [DialogTestModule],
       providers: [{ provide: SBB_LIGHTBOX_DEFAULT_OPTIONS, useValue: defaultConfig }],
     });
 
@@ -1691,7 +1697,7 @@ describe('SbbLightbox with animations enabled', () => {
 
   beforeEach(fakeAsync(() => {
     TestBed.configureTestingModule({
-      imports: [SbbLightboxModule, DialogTestModule, BrowserAnimationsModule],
+      imports: [DialogTestModule, BrowserAnimationsModule],
     });
 
     TestBed.compileComponents();
@@ -1741,8 +1747,7 @@ describe('SbbDialog with explicit injector provided', () => {
 
   beforeEach(fakeAsync(() => {
     TestBed.configureTestingModule({
-      imports: [SbbLightboxModule, BrowserAnimationsModule],
-      declarations: [ModuleBoundLightboxParentComponent],
+      imports: [BrowserAnimationsModule, ModuleBoundLightboxParentComponent],
     });
 
     TestBed.compileComponents();
@@ -1771,7 +1776,7 @@ describe('SbbLightbox with template only', () => {
 
   beforeEach(fakeAsync(() => {
     TestBed.configureTestingModule({
-      imports: [SbbLightboxModule, DialogTestModule, BrowserAnimationsModule],
+      imports: [DialogTestModule, BrowserAnimationsModule],
     });
     TestBed.compileComponents();
   }));
@@ -1789,7 +1794,7 @@ describe('SbbLightbox with close button', () => {
 
   beforeEach(fakeAsync(() => {
     TestBed.configureTestingModule({
-      imports: [SbbLightboxModule, DialogTestModule, BrowserAnimationsModule],
+      imports: [DialogTestModule, BrowserAnimationsModule],
     });
     TestBed.compileComponents();
   }));
@@ -1825,7 +1830,10 @@ describe('SbbLightbox with close button', () => {
   }));
 });
 
-@Directive({ selector: 'dir-with-view-container' })
+@Directive({
+  selector: 'dir-with-view-container',
+  standalone: true,
+})
 class DirectiveWithViewContainer {
   constructor(public viewContainerRef: ViewContainerRef) {}
 }
@@ -1833,6 +1841,7 @@ class DirectiveWithViewContainer {
 @Component({
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: 'hello',
+  standalone: true,
 })
 class ComponentWithOnPushViewContainer {
   constructor(public viewContainerRef: ViewContainerRef) {}
@@ -1843,6 +1852,8 @@ class ComponentWithOnPushViewContainer {
   template: `@if (showChildView) {
     <dir-with-view-container></dir-with-view-container>
   }`,
+  standalone: true,
+  imports: [DirectiveWithViewContainer],
 })
 class ComponentWithChildViewContainer {
   showChildView = true;
@@ -1859,6 +1870,7 @@ class ComponentWithChildViewContainer {
   template: `<ng-template let-data let-lightboxRef="lightboxRef">
     Cheese {{ localValue }} {{ data?.value }}{{ setDialogRef(lightboxRef) }}</ng-template
   >`,
+  standalone: true,
 })
 class ComponentWithTemplateRef {
   localValue: string;
@@ -1873,7 +1885,10 @@ class ComponentWithTemplateRef {
 }
 
 /** Simple component for testing ComponentPortal. */
-@Component({ template: '<p>Pizza</p> <input> <button>Close</button>' })
+@Component({
+  template: '<p>Pizza</p> <input> <button>Close</button>',
+  standalone: true,
+})
 class PizzaMsg {
   constructor(
     public lightboxRef: SbbLightboxRef<PizzaMsg>,
@@ -1898,6 +1913,8 @@ class PizzaMsg {
       <button class="with-submit" type="submit" sbb-lightbox-close>Should have submit</button>
     </sbb-lightbox-actions>
   `,
+  standalone: true,
+  imports: [SbbLightboxModule],
 })
 class ContentElementDialog {}
 
@@ -1919,31 +1936,42 @@ class ContentElementDialog {}
       </sbb-lightbox-actions>
     </ng-template>
   `,
+  standalone: true,
+  imports: [SbbLightboxTitle, SbbLightboxContent, SbbLightboxActions, SbbLightboxClose],
 })
 class ComponentWithContentElementTemplateRef {
   @ViewChild(TemplateRef) templateRef: TemplateRef<any>;
 }
 
 @Component({
-  template: '',
+  imports: [SbbLightboxModule],
   providers: [SbbLightbox],
+  standalone: true,
+  template: '',
 })
 class ComponentThatProvidesSbbLightbox {
   constructor(public lightbox: SbbLightbox) {}
 }
 
 /** Simple component for testing ComponentPortal. */
-@Component({ template: '' })
+@Component({
+  template: '',
+  standalone: true,
+})
 class DialogWithInjectedData {
   constructor(@Inject(SBB_LIGHTBOX_DATA) public data: any) {}
 }
 
-@Component({ template: '<p>Pasta</p>' })
+@Component({
+  template: '<p>Pasta</p>',
+  standalone: true,
+})
 class DialogWithoutFocusableElements {}
 
 @Component({
   template: `<button>I'm a button</button>`,
   encapsulation: ViewEncapsulation.ShadowDom,
+  standalone: true,
 })
 class ShadowDomComponent {}
 
@@ -1953,6 +1981,8 @@ class ShadowDomComponent {}
     <sbb-lightbox-content>Lorem ipsum dolor sit amet.</sbb-lightbox-content>
     <sbb-lightbox-actions> Actions </sbb-lightbox-actions>
   `,
+  standalone: true,
+  imports: [SbbLightboxTitle, SbbLightboxContent, SbbLightboxActions],
 })
 class ContentCloseAriaLabelDialog {
   closeAriaLabel: string = 'Close this overlay';
@@ -1975,13 +2005,16 @@ const TEST_DIRECTIVES = [
 ];
 
 @NgModule({
-  imports: [SbbLightboxModule, SbbIconTestingModule, NoopAnimationsModule],
+  imports: [SbbLightboxModule, SbbIconTestingModule, NoopAnimationsModule, ...TEST_DIRECTIVES],
   exports: TEST_DIRECTIVES,
-  declarations: TEST_DIRECTIVES,
 })
 class DialogTestModule {}
 
-@Component({ template: '' })
+@Component({
+  template: '',
+  standalone: true,
+  imports: [SbbLightboxModule],
+})
 class ModuleBoundLightboxParentComponent {
   constructor(
     private _injector: Injector,
@@ -2005,19 +2038,22 @@ class ModuleBoundLightboxService {
 
 @Component({
   template: '<module-bound-lightbox-child-component></module-bound-lightbox-child-component>',
+  standalone: true,
+  imports: [forwardRef(() => ModuleBoundLightboxChildComponent)],
 })
 class ModuleBoundLightboxComponent {}
 
 @Component({
   selector: 'module-bound-lightbox-child-component',
   template: '<p>{{service.name}}</p>',
+  standalone: true,
 })
 class ModuleBoundLightboxChildComponent {
   constructor(public service: ModuleBoundLightboxService) {}
 }
 
 @NgModule({
-  declarations: [ModuleBoundLightboxComponent, ModuleBoundLightboxChildComponent],
+  imports: [ModuleBoundLightboxComponent, ModuleBoundLightboxChildComponent],
   providers: [ModuleBoundLightboxService],
 })
 class ModuleBoundLightboxModule {}

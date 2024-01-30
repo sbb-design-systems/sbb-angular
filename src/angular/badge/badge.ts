@@ -37,6 +37,7 @@ const BADGE_CONTENT_CLASS = 'sbb-badge-content';
     '[class.sbb-badge-hidden]': 'hidden || !content',
     '[class.sbb-badge-disabled]': 'disabled',
   },
+  standalone: true,
 })
 export class SbbBadge extends _SbbBadgeBase implements OnInit, OnDestroy, CanDisable {
   /** Position the badge should reside. */

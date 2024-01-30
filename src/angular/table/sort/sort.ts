@@ -74,6 +74,7 @@ const _SbbSortBase = mixinInitialized(mixinDisabled(class {}));
   exportAs: 'sbbSort',
   host: { class: 'sbb-sort' },
   inputs: ['disabled: sbbSortDisabled'],
+  standalone: true,
 })
 export class SbbSort
   extends _SbbSortBase

@@ -19,6 +19,7 @@ import {
 } from '@angular/core';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 import { mixinDisabled } from '@sbb-esta/angular/core';
+import { SbbIconModule } from '@sbb-esta/angular/icon';
 
 import {
   FileTypeCategory,
@@ -56,6 +57,8 @@ const _SbbFileSelectorMixinBase = mixinDisabled(
       multi: true,
     },
   ],
+  standalone: true,
+  imports: [SbbIconModule],
 })
 export class SbbFileSelector
   extends _SbbFileSelectorMixinBase

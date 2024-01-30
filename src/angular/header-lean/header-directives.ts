@@ -18,6 +18,7 @@ import { map, takeUntil } from 'rxjs/operators';
   host: {
     class: 'sbb-header-environment',
   },
+  standalone: true,
 })
 export class SbbHeaderEnvironment implements OnDestroy {
   private _destroyed = new Subject<void>();
@@ -76,5 +77,6 @@ export class SbbHeaderEnvironment implements OnDestroy {
   host: {
     class: 'sbb-header-icon-actions',
   },
+  standalone: true,
 })
 export class SbbHeaderIconActions {}

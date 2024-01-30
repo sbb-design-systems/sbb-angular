@@ -83,6 +83,7 @@ const _SbbInputBase = mixinErrorState(
     '[attr.tabindex]': `empty && readonly ? -1  : null`,
   },
   providers: [{ provide: SbbFormFieldControl, useExisting: SbbInput }],
+  standalone: true,
 })
 export class SbbInput
   extends _SbbInputBase

@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
-import { TestBed, waitForAsync } from '@angular/core/testing';
-import { FormControl, FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { TestBed } from '@angular/core/testing';
+import { FormControl, ReactiveFormsModule } from '@angular/forms';
 import { By } from '@angular/platform-browser';
 import { typeInElement } from '@sbb-esta/angular/core/testing';
 import { SbbInputModule } from '@sbb-esta/angular/input';
@@ -9,11 +9,15 @@ import { SbbTimeInputModule } from './time-input.module';
 
 @Component({
   template: `<input sbbTimeInput />`,
+  standalone: true,
+  imports: [SbbTimeInputModule],
 })
 class BasicTimeInput {}
 
 @Component({
   template: `<input sbbTimeInput [placeholder]="placeholder" />`,
+  standalone: true,
+  imports: [SbbTimeInputModule],
 })
 class PlaceholderTimeInput {
   placeholder?: string | null = 'Time';
@@ -23,19 +27,14 @@ class PlaceholderTimeInput {
   template: `<sbb-form-field label="Time Input">
     <input [formControl]="formControl" sbbInput sbbTimeInput />
   </sbb-form-field>`,
+  standalone: true,
+  imports: [SbbInputModule, ReactiveFormsModule, SbbTimeInputModule],
 })
 class FormControlTimeInput {
   formControl = new FormControl('');
 }
 
 describe('SbbTimeInput', () => {
-  beforeEach(waitForAsync(() => {
-    TestBed.configureTestingModule({
-      imports: [FormsModule, ReactiveFormsModule, SbbTimeInputModule, SbbInputModule],
-      declarations: [BasicTimeInput, FormControlTimeInput, PlaceholderTimeInput],
-    }).compileComponents();
-  }));
-
   const values = [
     { input: '16:30', expectedOutput: '16:30' },
     { input: '1', expectedOutput: '01:00' },

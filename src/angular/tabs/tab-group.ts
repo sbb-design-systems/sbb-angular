@@ -1,10 +1,12 @@
-import { FocusOrigin } from '@angular/cdk/a11y';
+import { CdkMonitorFocus, FocusOrigin } from '@angular/cdk/a11y';
 import {
   BooleanInput,
   coerceBooleanProperty,
   coerceNumberProperty,
   NumberInput,
 } from '@angular/cdk/coercion';
+import { CdkPortalOutlet } from '@angular/cdk/portal';
+import { NgClass } from '@angular/common';
 import {
   AfterContentChecked,
   AfterContentInit,
@@ -28,7 +30,10 @@ import { merge, Subscription } from 'rxjs';
 import { startWith } from 'rxjs/operators';
 
 import { SbbTab, SBB_TAB_GROUP } from './tab';
+import { SbbTabBody } from './tab-body';
 import { SbbTabsConfig, SBB_TABS_CONFIG } from './tab-config';
+import { SbbTabHeader } from './tab-header';
+import { SbbTabLabelWrapper } from './tab-label-wrapper';
 
 /** Used to generate unique ID's for each tab component */
 let nextId = 0;
@@ -64,6 +69,15 @@ interface SbbTabGroupBaseHeader {
     class: 'sbb-tab-group',
     '[class.sbb-tab-group-dynamic-height]': 'dynamicHeight',
   },
+  standalone: true,
+  imports: [
+    SbbTabHeader,
+    SbbTabLabelWrapper,
+    CdkMonitorFocus,
+    NgClass,
+    CdkPortalOutlet,
+    SbbTabBody,
+  ],
 })
 export class SbbTabGroup implements AfterContentInit, AfterContentChecked, OnDestroy {
   /**
