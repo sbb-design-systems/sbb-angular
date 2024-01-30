@@ -2,6 +2,7 @@ import { DOCUMENT } from '@angular/common';
 import {
   AfterViewChecked,
   Attribute,
+  booleanAttribute,
   ChangeDetectionStrategy,
   Component,
   ElementRef,
@@ -124,7 +125,7 @@ export class SbbIcon implements OnInit, AfterViewChecked, OnDestroy {
    * Whether the icon should be inlined, automatically sizing the icon to match the font size of
    * the element the icon is contained in.
    */
-  @Input()
+  @Input({ transform: booleanAttribute })
   inline: boolean = false;
 
   /** Name of the icon in the SVG icon set. */
