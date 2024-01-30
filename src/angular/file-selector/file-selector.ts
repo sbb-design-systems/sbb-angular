@@ -18,7 +18,6 @@ import {
   ViewEncapsulation,
 } from '@angular/core';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
-import { mixinDisabled } from '@sbb-esta/angular/core';
 import { SbbIconModule } from '@sbb-esta/angular/icon';
 
 import {
@@ -29,14 +28,6 @@ import {
 import { SbbFileSelectorTypesService } from './file-selector-types.service';
 
 let nextId = 0;
-
-// Boilerplate for applying mixins to SbbFileSelector.
-// tslint:disable-next-line: naming-convention
-const _SbbFileSelectorMixinBase = mixinDisabled(
-  class {
-    constructor(public _elementRef: ElementRef) {}
-  },
-);
 
 @Component({
   selector: 'sbb-file-selector',
@@ -60,15 +51,15 @@ const _SbbFileSelectorMixinBase = mixinDisabled(
   standalone: true,
   imports: [SbbIconModule],
 })
-export class SbbFileSelector
-  extends _SbbFileSelectorMixinBase
-  implements ControlValueAccessor, SbbFileSelectorOptions
-{
+export class SbbFileSelector implements ControlValueAccessor, SbbFileSelectorOptions {
   _labelUploadFile: string = $localize`:Button label to select files for upload@@sbbFileSelectorUploadFile:Upload file`;
 
   _labelRemoveFile: string = $localize`:Hidden button label to remove a file from the selection list@@sbbFileSelectorRemoveFile:Remove file`;
 
   private _uniqueId = `sbb-file-selector-${++nextId}`;
+
+  /** Whether the file selector is disabled. */
+  @Input({ transform: booleanAttribute }) disabled: boolean = false;
 
   /** Unique id of the element. */
   @Input() id: string = this._uniqueId;
@@ -111,7 +102,6 @@ export class SbbFileSelector
     private _changeDetector: ChangeDetectorRef,
     @Optional() @Inject(SBB_FILE_SELECTOR_OPTIONS) options: SbbFileSelectorOptions,
   ) {
-    super(elementRef);
     if (options) {
       this.accept = options.accept;
       this.capture = options.capture;

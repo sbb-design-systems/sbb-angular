@@ -169,7 +169,7 @@ export class _SbbCheckboxBase
 
   /**
    * Whether the checkbox is disabled. This fully overrides the implementation provided by
-   * mixinDisabled, but the mixin is still required because mixinTabIndex requires it.
+   * the input, but the mixin is still required because mixinTabIndex requires it.
    */
   @Input({ transform: booleanAttribute })
   get disabled(): boolean {

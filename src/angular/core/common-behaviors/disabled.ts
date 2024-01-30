@@ -8,7 +8,11 @@ export interface CanDisable {
   disabled: boolean;
 }
 
-/** Mixin to augment a directive with a `disabled` property. */
+/**
+ * Mixin to augment a directive with a `disabled` property.
+ * @deprecated To be removed.
+ * @breaking-change 18.0.0
+ */
 export function mixinDisabled<T extends AbstractConstructor<{}>>(
   base: T,
 ): AbstractConstructor<CanDisable> & T;
