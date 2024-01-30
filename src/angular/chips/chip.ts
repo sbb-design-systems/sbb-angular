@@ -1,6 +1,7 @@
 import { FocusableOption } from '@angular/cdk/a11y';
 import { BACKSPACE, DELETE } from '@angular/cdk/keycodes';
 import {
+  ANIMATION_MODULE_TYPE,
   Attribute,
   booleanAttribute,
   ChangeDetectionStrategy,
@@ -22,7 +23,6 @@ import {
   Output,
   ViewEncapsulation,
 } from '@angular/core';
-import { ANIMATION_MODULE_TYPE } from '@angular/platform-browser/animations';
 import { TypeRef } from '@sbb-esta/angular/core';
 import { SbbIconModule } from '@sbb-esta/angular/icon';
 import { Subject } from 'rxjs';

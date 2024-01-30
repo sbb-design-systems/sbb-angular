@@ -29,7 +29,6 @@ ng_module(
         "@npm//@angular/cdk",
         "@npm//@angular/common",
         "@npm//@angular/core",
-        "@npm//@angular/platform-browser",
         "@npm//rxjs",
     ],
 )

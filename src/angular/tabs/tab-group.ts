@@ -10,6 +10,7 @@ import { NgClass } from '@angular/common';
 import {
   AfterContentChecked,
   AfterContentInit,
+  ANIMATION_MODULE_TYPE,
   ChangeDetectionStrategy,
   ChangeDetectorRef,
   Component,
@@ -25,7 +26,6 @@ import {
   ViewChild,
   ViewEncapsulation,
 } from '@angular/core';
-import { ANIMATION_MODULE_TYPE } from '@angular/platform-browser/animations';
 import { merge, Subscription } from 'rxjs';
 import { startWith } from 'rxjs/operators';
 

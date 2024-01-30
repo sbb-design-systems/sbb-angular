@@ -1,5 +1,6 @@
 import { AriaDescriber } from '@angular/cdk/a11y';
 import {
+  ANIMATION_MODULE_TYPE,
   booleanAttribute,
   Directive,
   ElementRef,
@@ -11,7 +12,6 @@ import {
   Optional,
   Renderer2,
 } from '@angular/core';
-import { ANIMATION_MODULE_TYPE } from '@angular/platform-browser/animations';
 
 let nextId = 0;
 

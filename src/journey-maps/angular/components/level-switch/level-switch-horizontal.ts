@@ -85,9 +85,13 @@ export class SbbLevelSwitchHorizontal implements OnInit, OnDestroy {
   private _focusMatchingButton(): void {
     const mainButtonText = this.mainButton.nativeElement.textContent;
     const matchingButton = this.sideButtons.find(
-      (button) => button.nativeElement.textContent?.trim() === mainButtonText,
+      (button) => button.nativeElement.textContent?.trim() === mainButtonText?.trim(),
     );
     matchingButton?.nativeElement.focus();
+  }
+
+  cancelCountdown(): void {
+    clearTimeout(this._countdownTimer);
   }
 
   startCountdown(): void {
@@ -113,12 +117,9 @@ export class SbbLevelSwitchHorizontal implements OnInit, OnDestroy {
   }
 
   getLevelLabel(level: number, selectedLevel: number | undefined): string {
-    const txt1 = this._i18n.getText('a4a.visualFunction');
-    const txt2 =
-      level === selectedLevel
-        ? this._i18n.getTextWithParams('a4a.unselectFloor', level)
-        : this._i18n.getTextWithParams('a4a.selectFloor', level);
-    return `${txt1} ${txt2}`;
+    return level === selectedLevel
+      ? this._i18n.getTextWithParams('a4a.unselectFloor', level)
+      : this._i18n.getTextWithParams('a4a.selectFloor', level);
   }
 
   onMainButtonEnter(event: Event): void {

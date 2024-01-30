@@ -29,7 +29,8 @@ $attributionBackgroundDark: hsla(0, 0%, 0%, 0.75);
       text-align: right;
       color: esta.$sbbColorBlack;
 
-      ::ng-deep & > a {
+      ::ng-deep & > a,
+      ::ng-deep & > span {
         color: esta.$sbbColorBlack;
       }
     }
@@ -93,7 +94,8 @@ $attributionBackgroundDark: hsla(0, 0%, 0%, 0.75);
 
     .attribution-text {
       .attribution-item {
-        ::ng-deep & > a {
+        ::ng-deep & > a,
+        ::ng-deep & > span {
           color: esta.$sbbColorWhite;
         }
       }

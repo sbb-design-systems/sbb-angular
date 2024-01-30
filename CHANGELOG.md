@@ -2,6 +2,31 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [17.5.1](https://github.com/sbb-design-systems/sbb-angular/compare/17.5.0...17.5.1) (2024-01-30)
+
+
+### Bug Fixes
+
+* **journey-maps:** acceptance test fixes ([#2160](https://github.com/sbb-design-systems/sbb-angular/issues/2160)) ([83a7a3c](https://github.com/sbb-design-systems/sbb-angular/commit/83a7a3c4fa9b70944efff3cd82998f81f9268269))
+* **journey-maps:** adapt dark-mode for span in attribution ([#2162](https://github.com/sbb-design-systems/sbb-angular/issues/2162)) ([4ff92fc](https://github.com/sbb-design-systems/sbb-angular/commit/4ff92fc8d7a7be5c9d7abe6dad57fca66c88bd58))
+
+## [17.5.0](https://github.com/sbb-design-systems/sbb-angular/compare/17.4.1...17.5.0) (2024-01-29)
+
+
+### Features
+
+* **core:** provide standalone-friendly APIs for date adapters ([#2146](https://github.com/sbb-design-systems/sbb-angular/issues/2146)) ([34b9aa6](https://github.com/sbb-design-systems/sbb-angular/commit/34b9aa615d0a6bc256e2c7ee86402813683483d2)), closes [#2066](https://github.com/sbb-design-systems/sbb-angular/issues/2066)
+* **journey-maps:** dark mode for UI-elements ([#2150](https://github.com/sbb-design-systems/sbb-angular/issues/2150)) ([5a6708d](https://github.com/sbb-design-systems/sbb-angular/commit/5a6708d56cc81a03b52040e0aaa57f4020c1704e))
+* **journey-maps:** horizontal level switch ([#2145](https://github.com/sbb-design-systems/sbb-angular/issues/2145)) ([e516d34](https://github.com/sbb-design-systems/sbb-angular/commit/e516d340ee5554082bcb8c61b3ca333022fc24b9))
+
+
+### Bug Fixes
+
+* **deps:** update angular to v17.1.1 ([98fb3ad](https://github.com/sbb-design-systems/sbb-angular/commit/98fb3ad337b0ea343ed4e7a796b2fa04d1e9ef9e))
+* **deps:** update dependency @angular/cdk to v17.1.1 ([64868e4](https://github.com/sbb-design-systems/sbb-angular/commit/64868e498922acb809c8a4507bd0ced04140c13b))
+* **journey-maps:** refresh pois after style change ([#2151](https://github.com/sbb-design-systems/sbb-angular/issues/2151)) ([c2ac5ba](https://github.com/sbb-design-systems/sbb-angular/commit/c2ac5ba2a754202ed10941013505703240e17d8e))
+* **stackblitz:** update stackblitz assets ([#2155](https://github.com/sbb-design-systems/sbb-angular/issues/2155)) ([665574e](https://github.com/sbb-design-systems/sbb-angular/commit/665574e8fe5cc72386f4c03ef38ac00dcf414d60))
+
 ### [17.4.1](https://github.com/sbb-design-systems/sbb-angular/compare/17.4.0...17.4.1) (2024-01-23)
 
 

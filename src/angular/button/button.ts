@@ -4,6 +4,7 @@ import { AsyncPipe } from '@angular/common';
 import {
   AfterContentInit,
   AfterViewInit,
+  ANIMATION_MODULE_TYPE,
   booleanAttribute,
   ChangeDetectionStrategy,
   Component,
@@ -17,7 +18,6 @@ import {
   QueryList,
   ViewEncapsulation,
 } from '@angular/core';
-import { ANIMATION_MODULE_TYPE } from '@angular/platform-browser/animations';
 import { mixinVariant } from '@sbb-esta/angular/core';
 import { SbbIcon } from '@sbb-esta/angular/icon';
 import { SbbIconModule } from '@sbb-esta/angular/icon';
