@@ -1,7 +1,6 @@
 // Workaround for: https://github.com/bazelbuild/rules_nodejs/issues/1265
 /// <reference types="@angular/localize/init" />
 
-import { BooleanInput, coerceBooleanProperty } from '@angular/cdk/coercion';
 import { ESCAPE, UP_ARROW } from '@angular/cdk/keycodes';
 import {
   Overlay,
@@ -13,6 +12,7 @@ import {
 import { _getFocusedElementPierceShadowDom } from '@angular/cdk/platform';
 import { ComponentPortal, ComponentType } from '@angular/cdk/portal';
 import {
+  booleanAttribute,
   ChangeDetectionStrategy,
   ChangeDetectorRef,
   Component,
@@ -94,18 +94,16 @@ export class SbbDatepicker<D> implements OnDestroy {
   private _startAt: D | null;
 
   /** Whether the datepicker pop-up should be disabled. */
-  @Input()
+  @Input({ transform: booleanAttribute })
   get disabled(): boolean {
     return this._disabled === undefined && this.datepickerInput
       ? this.datepickerInput.disabled
       : !!this._disabled;
   }
-  set disabled(value: BooleanInput) {
-    const newValue = coerceBooleanProperty(value);
-
-    if (newValue !== this._disabled) {
-      this._disabled = newValue;
-      this.disabledChange.next(newValue);
+  set disabled(value: boolean) {
+    if (value !== this._disabled) {
+      this._disabled = value;
+      this.disabledChange.next(value);
     }
   }
   private _disabled?: boolean;
@@ -136,14 +134,7 @@ export class SbbDatepicker<D> implements OnDestroy {
    * They also support min and max date limits.
    * Defaults to false.
    */
-  @Input()
-  get arrows(): boolean {
-    return this._arrows;
-  }
-  set arrows(value: BooleanInput) {
-    this._arrows = coerceBooleanProperty(value);
-  }
-  private _arrows = false;
+  @Input({ transform: booleanAttribute }) arrows: boolean;
 
   /** Whether arrows should be shown. */
   get arrowsVisible() {
@@ -151,19 +142,12 @@ export class SbbDatepicker<D> implements OnDestroy {
   }
 
   /** Whether the datepicker toggle is enabled. Defaults to true. */
-  @Input()
-  get toggle(): boolean {
-    return this._toggle;
-  }
-  set toggle(value: BooleanInput) {
-    this._toggle = coerceBooleanProperty(value);
-  }
-  private _toggle = true;
+  @Input({ transform: booleanAttribute }) toggle: boolean = true;
 
   /** Whether the datepicker toggle should be hidden. Defaults to false. */
-  @Input()
-  set notoggle(value: BooleanInput) {
-    this._toggle = !coerceBooleanProperty(value);
+  @Input({ transform: booleanAttribute })
+  set notoggle(value: boolean) {
+    this.toggle = !value;
   }
 
   /** Whether the toggle should be shown. */
@@ -178,12 +162,16 @@ export class SbbDatepicker<D> implements OnDestroy {
   @Output('closed') closedStream: EventEmitter<void> = new EventEmitter<void>();
 
   /** Whether the calendar is open. */
-  @Input()
+  @Input({ transform: booleanAttribute })
   get opened(): boolean {
     return this._opened;
   }
-  set opened(value: BooleanInput) {
-    coerceBooleanProperty(value) ? this.open() : this.close();
+  set opened(value: boolean) {
+    if (value) {
+      this.open();
+    } else {
+      this.close();
+    }
   }
   private _opened = false;
 

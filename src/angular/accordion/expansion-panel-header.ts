@@ -11,24 +11,18 @@ import {
   Host,
   HostListener,
   Inject,
+  Input,
+  numberAttribute,
   OnDestroy,
   ViewEncapsulation,
 } from '@angular/core';
-import { HasTabIndex, mixinTabIndex, TypeRef } from '@sbb-esta/angular/core';
+import { TypeRef } from '@sbb-esta/angular/core';
 import { SbbIconModule } from '@sbb-esta/angular/icon';
 import { EMPTY, merge, Subscription } from 'rxjs';
 import { filter } from 'rxjs/operators';
 
 import { sbbExpansionAnimations } from './accordion-animations';
 import { SbbExpansionPanel } from './expansion-panel';
-
-// Boilerplate for applying mixins to SbbExpansionPanelHeader.
-/** @docs-private */
-abstract class SbbExpansionPanelHeaderBase {
-  abstract readonly disabled: boolean;
-}
-// tslint:disable-next-line: naming-convention
-const _SbbExpansionPanelHeaderMixinBase = mixinTabIndex(SbbExpansionPanelHeaderBase);
 
 /**
  * This component corresponds to the header element of an `<sbb-expansion-panel>`.
@@ -44,7 +38,7 @@ const _SbbExpansionPanelHeaderMixinBase = mixinTabIndex(SbbExpansionPanelHeaderB
     class: 'sbb-expansion-panel-header sbb-expansion-panel-horizontal-padding',
     role: 'button',
     '[attr.id]': 'panel._headerId',
-    '[attr.tabindex]': 'tabIndex',
+    '[attr.tabindex]': 'disabled ? -1 : tabIndex',
     '[attr.aria-controls]': '_getPanelId()',
     '[attr.aria-expanded]': '_isExpanded()',
     '[attr.aria-disabled]': 'disabled',
@@ -54,10 +48,10 @@ const _SbbExpansionPanelHeaderMixinBase = mixinTabIndex(SbbExpansionPanelHeaderB
   standalone: true,
   imports: [SbbIconModule, AsyncPipe],
 })
-export class SbbExpansionPanelHeader
-  extends _SbbExpansionPanelHeaderMixinBase
-  implements AfterViewInit, OnDestroy, FocusableOption, HasTabIndex
-{
+export class SbbExpansionPanelHeader implements AfterViewInit, OnDestroy, FocusableOption {
+  @Input({ transform: (value: unknown) => (value == null ? 0 : numberAttribute(value)) })
+  tabIndex: number = 0;
+
   private _parentChangeSubscription = Subscription.EMPTY;
 
   constructor(
@@ -68,7 +62,6 @@ export class SbbExpansionPanelHeader
     @Inject(DOCUMENT) private _document?: TypeRef<Document>,
     @Attribute('tabindex') tabIndex?: string,
   ) {
-    super();
     const accordionHideToggleChange = panel.accordion
       ? panel.accordion._stateChanges.pipe(filter((changes) => !!changes.hideToggle))
       : EMPTY;

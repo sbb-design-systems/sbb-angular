@@ -1,9 +1,9 @@
 import { FocusableOption, FocusMonitor, FocusOrigin } from '@angular/cdk/a11y';
-import { BooleanInput, coerceBooleanProperty } from '@angular/cdk/coercion';
 import { CdkObserveContent } from '@angular/cdk/observers';
 import {
   AfterViewInit,
   Attribute,
+  booleanAttribute,
   ChangeDetectionStrategy,
   ChangeDetectorRef,
   Component,
@@ -13,6 +13,7 @@ import {
   forwardRef,
   Inject,
   Input,
+  numberAttribute,
   OnDestroy,
   Optional,
   Output,
@@ -20,7 +21,6 @@ import {
   ViewEncapsulation,
 } from '@angular/core';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
-import { CanDisable, HasTabIndex, mixinDisabled, mixinTabIndex } from '@sbb-esta/angular/core';
 
 import {
   SbbCheckboxDefaultOptions,
@@ -53,22 +53,11 @@ export class SbbCheckboxChange {
   checked: boolean;
 }
 
-// Boilerplate for applying mixins to SbbCheckbox.
-// tslint:disable-next-line: naming-convention
-const _SbbCheckboxMixinBase = mixinTabIndex(mixinDisabled(class {}));
-
 /** Base class with all of the `SbbCheckbox` functionality. */
 @Directive()
 // tslint:disable-next-line: naming-convention class-name
 export class _SbbCheckboxBase
-  extends _SbbCheckboxMixinBase
-  implements
-    ControlValueAccessor,
-    AfterViewInit,
-    OnDestroy,
-    CanDisable,
-    HasTabIndex,
-    FocusableOption
+  implements ControlValueAccessor, AfterViewInit, OnDestroy, FocusableOption
 {
   /**
    * Attached to the aria-label attribute of the host element. In most cases, aria-labelledby will
@@ -95,20 +84,17 @@ export class _SbbCheckboxBase
   }
 
   /** Whether the checkbox is required. */
-  @Input()
-  get required(): boolean {
-    return this._required;
-  }
-  set required(value: BooleanInput) {
-    this._required = coerceBooleanProperty(value);
-  }
-  private _required: boolean;
+  @Input({ transform: booleanAttribute }) required: boolean;
 
   /** Whether the label should appear after or before the checkbox. Defaults to 'after' */
   @Input() labelPosition: 'before' | 'after' = 'after';
 
   /** Name value will be applied to the input element if present */
   @Input() name: string | null = null;
+
+  /** Tabindex for the checkbox. */
+  @Input({ transform: (value: unknown) => (value == null ? undefined : numberAttribute(value)) })
+  tabIndex: number;
 
   /** Event emitted when the checkbox's `checked` value changes. */
   @Output()
@@ -140,7 +126,6 @@ export class _SbbCheckboxBase
     @Inject(SBB_CHECKBOX_DEFAULT_OPTIONS)
     private _options?: SbbCheckboxDefaultOptions,
   ) {
-    super();
     this._options = this._options || defaults;
     this.tabIndex = parseInt(tabIndex, 10) || 0;
   }
@@ -170,33 +155,28 @@ export class _SbbCheckboxBase
   /**
    * Whether the checkbox is checked.
    */
-  @Input()
+  @Input({ transform: booleanAttribute })
   get checked(): boolean {
     return this._checked;
   }
-  set checked(value: BooleanInput) {
-    const checked = coerceBooleanProperty(value);
-
-    if (checked !== this.checked) {
-      this._checked = checked;
+  set checked(value: boolean) {
+    if (value !== this.checked) {
+      this._checked = value;
       this._changeDetectorRef.markForCheck();
     }
   }
   private _checked: boolean = false;
 
   /**
-   * Whether the checkbox is disabled. This fully overrides the implementation provided by
-   * mixinDisabled, but the mixin is still required because mixinTabIndex requires it.
+   * Whether the checkbox is disabled. This fully overrides the implementation provided by the input.
    */
-  @Input()
-  override get disabled(): boolean {
+  @Input({ transform: booleanAttribute })
+  get disabled(): boolean {
     return this._disabled;
   }
-  override set disabled(value: BooleanInput) {
-    const newValue = coerceBooleanProperty(value);
-
-    if (newValue !== this.disabled) {
-      this._disabled = newValue;
+  set disabled(value: boolean) {
+    if (value !== this.disabled) {
+      this._disabled = value;
       this._changeDetectorRef.markForCheck();
     }
   }
@@ -208,13 +188,13 @@ export class _SbbCheckboxBase
    * checkable items. Note that whenever checkbox is manually clicked, indeterminate is immediately
    * set to false.
    */
-  @Input()
+  @Input({ transform: booleanAttribute })
   get indeterminate(): boolean {
     return this._indeterminate;
   }
-  set indeterminate(value: BooleanInput) {
+  set indeterminate(value: boolean) {
     const changed = value !== this._indeterminate;
-    this._indeterminate = coerceBooleanProperty(value);
+    this._indeterminate = value;
 
     if (changed) {
       this.indeterminateChange.emit(this._indeterminate);

@@ -1,10 +1,10 @@
 import { AnimationEvent } from '@angular/animations';
 import { FocusKeyManager, FocusOrigin } from '@angular/cdk/a11y';
-import { BooleanInput, coerceBooleanProperty } from '@angular/cdk/coercion';
 import { DOWN_ARROW, ESCAPE, hasModifierKey, LEFT_ARROW, UP_ARROW } from '@angular/cdk/keycodes';
 import { NgClass, NgTemplateOutlet } from '@angular/common';
 import {
   AfterContentInit,
+  booleanAttribute,
   ChangeDetectionStrategy,
   ChangeDetectorRef,
   Component,
@@ -190,24 +190,12 @@ export class SbbMenu implements AfterContentInit, SbbMenuPanel<SbbMenuItem>, OnI
   @ContentChild(SBB_MENU_CONTENT) lazyContent: SbbMenuContent;
 
   /** Whether the menu should overlap its trigger. */
-  @Input()
-  get overlapTrigger(): boolean {
-    return this._overlapTrigger;
-  }
-  set overlapTrigger(value: BooleanInput) {
-    this._overlapTrigger = coerceBooleanProperty(value);
-  }
-  private _overlapTrigger: boolean = this._defaultOptions.overlapTrigger;
+  @Input({ transform: booleanAttribute })
+  overlapTrigger: boolean = this._defaultOptions.overlapTrigger;
 
   /** Whether the menu has a backdrop. */
-  @Input()
-  get hasBackdrop(): boolean | undefined {
-    return this._hasBackdrop;
-  }
-  set hasBackdrop(value: BooleanInput) {
-    this._hasBackdrop = coerceBooleanProperty(value);
-  }
-  private _hasBackdrop: boolean | undefined = this._defaultOptions.hasBackdrop;
+  @Input({ transform: booleanAttribute })
+  hasBackdrop: boolean | undefined = this._defaultOptions.hasBackdrop;
 
   /**
    * This method takes classes set on the host sbb-menu element and applies them on the

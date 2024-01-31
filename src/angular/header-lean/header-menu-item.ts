@@ -1,6 +1,7 @@
 import { FocusableOption, FocusMonitor, FocusOrigin } from '@angular/cdk/a11y';
 import { DOCUMENT } from '@angular/common';
 import {
+  booleanAttribute,
   Directive,
   ElementRef,
   EventEmitter,
@@ -10,12 +11,7 @@ import {
   OnDestroy,
   Output,
 } from '@angular/core';
-import { mixinDisabled, TypeRef } from '@sbb-esta/angular/core';
-
-// Boilerplate for applying mixins to SbbHeaderMenuItem.
-/** @docs-private */
-// tslint:disable-next-line: naming-convention
-const _HeaderMenuItemBase = mixinDisabled(class {});
+import { TypeRef } from '@sbb-esta/angular/core';
 
 @Directive({
   selector: '[sbbHeaderMenuItem]',
@@ -25,9 +21,12 @@ const _HeaderMenuItemBase = mixinDisabled(class {});
   },
   standalone: true,
 })
-export class SbbHeaderMenuItem extends _HeaderMenuItemBase implements FocusableOption, OnDestroy {
+export class SbbHeaderMenuItem implements FocusableOption, OnDestroy {
   /** ARIA role for the menu item. */
   @Input() role: 'menuitem' | 'menuitemradio' | 'menuitemcheckbox' = 'menuitem';
+
+  /** Whether the menu item is disabled. */
+  @Input({ transform: booleanAttribute }) disabled: boolean = false;
 
   private _document: Document;
 
@@ -45,7 +44,6 @@ export class SbbHeaderMenuItem extends _HeaderMenuItemBase implements FocusableO
     private _focusMonitor?: FocusMonitor,
     @Inject(DOCUMENT) document?: any,
   ) {
-    super();
     if (_focusMonitor) {
       // Start monitoring the element so it gets the appropriate focused classes. We want
       // to show the focus style for menu items only when the focus was not caused by a

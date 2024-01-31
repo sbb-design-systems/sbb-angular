@@ -1,7 +1,7 @@
 import { AnimationEvent } from '@angular/animations';
-import { BooleanInput, coerceBooleanProperty } from '@angular/cdk/coercion';
 import { AsyncPipe } from '@angular/common';
 import {
+  booleanAttribute,
   ChangeDetectionStrategy,
   ChangeDetectorRef,
   Component,
@@ -88,12 +88,12 @@ export class SbbNotification extends _SbbNotificationMixinBase implements OnChan
    * Whether the notification is closable.
    * This only work for lean design, as with standard it is always readonly.
    */
-  @Input()
+  @Input({ transform: booleanAttribute })
   get readonly() {
     return this._readonly;
   }
-  set readonly(value: BooleanInput) {
-    this._readonly = coerceBooleanProperty(value);
+  set readonly(value: boolean) {
+    this._readonly = value;
     this._changeDetectorRef.markForCheck();
   }
   private _readonly = false;

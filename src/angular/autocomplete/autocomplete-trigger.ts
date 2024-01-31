@@ -1,4 +1,4 @@
-import { BooleanInput, coerceBooleanProperty, coerceStringArray } from '@angular/cdk/coercion';
+import { coerceStringArray } from '@angular/cdk/coercion';
 import { DOWN_ARROW, ENTER, ESCAPE, hasModifierKey, TAB, UP_ARROW } from '@angular/cdk/keycodes';
 import {
   ConnectedPosition,
@@ -15,6 +15,7 @@ import { ViewportRuler } from '@angular/cdk/scrolling';
 import { DOCUMENT } from '@angular/common';
 import {
   AfterViewInit,
+  booleanAttribute,
   ChangeDetectorRef,
   Directive,
   ElementRef,
@@ -141,7 +142,6 @@ export class SbbAutocompleteTrigger
   private _overlayRef: OverlayRef | null;
   private _portal: TemplatePortal;
   private _componentDestroyed = false;
-  private _autocompleteDisabled = false;
   private _scrollStrategy: () => ScrollStrategy;
   private _keydownSubscription: Subscription | null;
   private _outsideClickSubscription: Subscription | null;
@@ -282,13 +282,8 @@ export class SbbAutocompleteTrigger
    * Whether the autocomplete is disabled. When disabled, the element will
    * act as a regular input and the user won't be able to open the panel.
    */
-  @Input('sbbAutocompleteDisabled')
-  get autocompleteDisabled(): boolean {
-    return this._autocompleteDisabled;
-  }
-  set autocompleteDisabled(value: BooleanInput) {
-    this._autocompleteDisabled = coerceBooleanProperty(value);
-  }
+  @Input({ alias: 'sbbAutocompleteDisabled', transform: booleanAttribute })
+  autocompleteDisabled: boolean = false;
 
   constructor(
     private _element: ElementRef<HTMLInputElement>,

@@ -1,10 +1,4 @@
 import { ActiveDescendantKeyManager, LiveAnnouncer } from '@angular/cdk/a11y';
-import {
-  BooleanInput,
-  coerceBooleanProperty,
-  coerceNumberProperty,
-  NumberInput,
-} from '@angular/cdk/coercion';
 import { SelectionModel } from '@angular/cdk/collections';
 import {
   A,
@@ -29,6 +23,7 @@ import { AsyncPipe, NgClass } from '@angular/common';
 import {
   AfterContentInit,
   Attribute,
+  booleanAttribute,
   ChangeDetectionStrategy,
   ChangeDetectorRef,
   Component,
@@ -41,6 +36,7 @@ import {
   InjectionToken,
   Input,
   NgZone,
+  numberAttribute,
   OnChanges,
   OnDestroy,
   OnInit,
@@ -61,13 +57,9 @@ import {
   Validators,
 } from '@angular/forms';
 import {
-  CanDisable,
   CanUpdateErrorState,
   getOptionScrollPosition,
-  HasTabIndex,
-  mixinDisabled,
   mixinErrorState,
-  mixinTabIndex,
   mixinVariant,
   SbbErrorStateMatcher,
   SbbOptgroup,
@@ -147,32 +139,28 @@ export class SbbSelectChange {
 
 // Boilerplate for applying mixins to SbbSelect.
 // tslint:disable-next-line:naming-convention
-const _SbbSelectMixinBase = mixinTabIndex(
-  mixinDisabled(
-    mixinErrorState(
-      mixinVariant(
-        class {
-          /**
-           * Emits whenever the component state changes and should cause the parent
-           * form-field to update. Implemented as part of `SbbFormFieldControl`.
-           * @docs-private
-           */
-          readonly stateChanges = new Subject<void>();
+const _SbbSelectMixinBase = mixinErrorState(
+  mixinVariant(
+    class {
+      /**
+       * Emits whenever the component state changes and should cause the parent
+       * form-field to update. Implemented as part of `SbbFormFieldControl`.
+       * @docs-private
+       */
+      readonly stateChanges = new Subject<void>();
 
-          constructor(
-            public _defaultErrorStateMatcher: SbbErrorStateMatcher,
-            public _parentForm: NgForm,
-            public _parentFormGroup: FormGroupDirective,
-            /**
-             * Form control bound to the component.
-             * Implemented as part of `SbbFormFieldControl`.
-             * @docs-private
-             */
-            public ngControl: NgControl,
-          ) {}
-        },
-      ),
-    ),
+      constructor(
+        public _defaultErrorStateMatcher: SbbErrorStateMatcher,
+        public _parentForm: NgForm,
+        public _parentFormGroup: FormGroupDirective,
+        /**
+         * Form control bound to the component.
+         * Implemented as part of `SbbFormFieldControl`.
+         * @docs-private
+         */
+        public ngControl: NgControl,
+      ) {}
+    },
   ),
 );
 
@@ -193,7 +181,7 @@ const _SbbSelectMixinBase = mixinTabIndex(
     'aria-haspopup': 'true',
     class: 'sbb-select sbb-input-element',
     '[attr.id]': 'id',
-    '[attr.tabindex]': 'readonly ? -1 : tabIndex',
+    '[attr.tabindex]': 'readonly || disabled ? -1 : tabIndex',
     '[attr.aria-controls]': 'panelOpen ? id + "-panel" : null',
     '[attr.aria-owns]': "panelOpen ? id + '-panel' : null",
     '[attr.aria-expanded]': 'panelOpen',
@@ -228,8 +216,6 @@ export class SbbSelect
     OnInit,
     DoCheck,
     ControlValueAccessor,
-    CanDisable,
-    HasTabIndex,
     SbbFormFieldControl<any>,
     CanUpdateErrorState
 {
@@ -353,7 +339,14 @@ export class SbbSelect
   /** Classes to be passed to the select panel. Supports the same syntax as `ngClass`. */
   @Input() panelClass: string | string[] | Set<string> | { [key: string]: any };
 
-  /** Placeholder to be shown if no value has been selected. */
+  /** Whether the select is disabled. */
+  @Input({ transform: booleanAttribute })
+  disabled: boolean = false; /** Placeholder to be shown if no value has been selected. */
+
+  /** Tab index of the select. */
+  @Input({ transform: (value: unknown) => (value == null ? 0 : numberAttribute(value)) })
+  tabIndex: number = 0;
+
   @Input()
   get placeholder(): string {
     return this._placeholder;
@@ -365,37 +358,37 @@ export class SbbSelect
   private _placeholder: string;
 
   /** Whether the component is required. */
-  @Input()
+  @Input({ transform: booleanAttribute })
   get required(): boolean {
     return this._required ?? this.ngControl?.control?.hasValidator(Validators.required) ?? false;
   }
-  set required(value: BooleanInput) {
-    this._required = coerceBooleanProperty(value);
+  set required(value: boolean) {
+    this._required = value;
     this.stateChanges.next();
   }
   private _required: boolean | undefined;
 
   /** Whether the user should be allowed to select multiple options. */
-  @Input()
+  @Input({ transform: booleanAttribute })
   get multiple(): boolean {
     return this._multiple;
   }
-  set multiple(value: BooleanInput) {
+  set multiple(value: boolean) {
     if (this._selectionModel && (typeof ngDevMode === 'undefined' || ngDevMode)) {
       throw getSbbSelectDynamicMultipleError();
     }
 
-    this._multiple = coerceBooleanProperty(value);
+    this._multiple = value;
   }
   private _multiple: boolean = false;
 
   /** Whether the element is readonly. */
-  @Input()
+  @Input({ transform: booleanAttribute })
   get readonly(): boolean {
     return this._readonly;
   }
-  set readonly(value: BooleanInput) {
-    this._readonly = coerceBooleanProperty(value);
+  set readonly(value: boolean) {
+    this._readonly = value;
     this.stateChanges.next();
   }
   private _readonly: boolean = false;
@@ -443,14 +436,8 @@ export class SbbSelect
   @Input() override errorStateMatcher: SbbErrorStateMatcher;
 
   /** Time to wait in milliseconds after the last keystroke before moving focus to an item. */
-  @Input()
-  get typeaheadDebounceInterval(): number {
-    return this._typeaheadDebounceInterval;
-  }
-  set typeaheadDebounceInterval(value: NumberInput) {
-    this._typeaheadDebounceInterval = coerceNumberProperty(value);
-  }
-  private _typeaheadDebounceInterval: number;
+  @Input({ transform: numberAttribute })
+  typeaheadDebounceInterval: number;
 
   /**
    * Function used to sort the values in a select in multiple mode.
@@ -538,7 +525,7 @@ export class SbbSelect
     // Note that we only want to set this when the defaults pass it in, otherwise it should
     // stay as `undefined` so that it falls back to the default in the key manager.
     if (_defaultOptions?.typeaheadDebounceInterval != null) {
-      this._typeaheadDebounceInterval = _defaultOptions.typeaheadDebounceInterval;
+      this.typeaheadDebounceInterval = _defaultOptions.typeaheadDebounceInterval;
     }
 
     this._scrollStrategyFactory = scrollStrategyFactory;
@@ -623,14 +610,14 @@ export class SbbSelect
   }
 
   ngOnChanges(changes: SimpleChanges) {
-    // Updating the disabled state is handled by `mixinDisabled`, but we need to additionally let
+    // Updating the disabled state is handled by the input, but we need to additionally let
     // the parent form field know to run change detection when the disabled state changes.
     if (changes['disabled'] || changes['userAriaDescribedBy']) {
       this.stateChanges.next();
     }
 
     if (changes['typeaheadDebounceInterval'] && this._keyManager) {
-      this._keyManager.withTypeAhead(this._typeaheadDebounceInterval);
+      this._keyManager.withTypeAhead(this.typeaheadDebounceInterval);
     }
   }
 
@@ -980,7 +967,7 @@ export class SbbSelect
   /** Sets up a key manager to listen to keyboard events on the overlay panel. */
   private _initKeyManager() {
     this._keyManager = new ActiveDescendantKeyManager<SbbOption>(this.options)
-      .withTypeAhead(this._typeaheadDebounceInterval)
+      .withTypeAhead(this.typeaheadDebounceInterval)
       .withVerticalOrientation()
       .withHorizontalOrientation('ltr')
       .withHomeAndEnd()

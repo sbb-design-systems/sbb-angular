@@ -1,9 +1,10 @@
 import { ActiveDescendantKeyManager } from '@angular/cdk/a11y';
-import { BooleanInput, coerceBooleanProperty, coerceStringArray } from '@angular/cdk/coercion';
+import { coerceStringArray } from '@angular/cdk/coercion';
 import { Platform } from '@angular/cdk/platform';
 import { NgClass } from '@angular/common';
 import {
   AfterContentInit,
+  booleanAttribute,
   ChangeDetectionStrategy,
   ChangeDetectorRef,
   Component,
@@ -166,24 +167,10 @@ export class SbbAutocomplete implements AfterContentInit, OnDestroy {
    * Whether the first option should be highlighted when the autocomplete panel is opened.
    * Can be configured globally through the `SBB_AUTOCOMPLETE_DEFAULT_OPTIONS` token.
    */
-  @Input()
-  get autoActiveFirstOption(): boolean {
-    return this._autoActiveFirstOption;
-  }
-  set autoActiveFirstOption(value: BooleanInput) {
-    this._autoActiveFirstOption = coerceBooleanProperty(value);
-  }
-  private _autoActiveFirstOption: boolean;
+  @Input({ transform: booleanAttribute }) autoActiveFirstOption: boolean;
 
   /** Whether the active option should be selected as the user is navigating. */
-  @Input()
-  get autoSelectActiveOption(): boolean {
-    return this._autoSelectActiveOption;
-  }
-  set autoSelectActiveOption(value: BooleanInput) {
-    this._autoSelectActiveOption = coerceBooleanProperty(value);
-  }
-  private _autoSelectActiveOption: boolean;
+  @Input({ transform: booleanAttribute }) autoSelectActiveOption: boolean;
 
   /**
    * Whether the user is required to make a selection when they're interacting with the
@@ -191,14 +178,7 @@ export class SbbAutocomplete implements AfterContentInit, OnDestroy {
    * the list, the value will be reset. If the user opens the panel and closes it without
    * interacting or selecting a value, the initial value will be kept.
    */
-  @Input()
-  get requireSelection(): boolean {
-    return this._requireSelection;
-  }
-  set requireSelection(value: BooleanInput) {
-    this._requireSelection = coerceBooleanProperty(value);
-  }
-  private _requireSelection: boolean;
+  @Input({ transform: booleanAttribute }) requireSelection: boolean;
 
   /**
    * Specify the width of the autocomplete panel.  Can be any CSS sizing value, otherwise it will
@@ -246,14 +226,7 @@ export class SbbAutocomplete implements AfterContentInit, OnDestroy {
   _classList: { [key: string]: boolean } = {};
 
   /** If set to true, the panel is also displayed if there are no options but hints. */
-  @Input()
-  get showHintIfNoOptions(): boolean {
-    return this._showHintIfNoOptions;
-  }
-  set showHintIfNoOptions(value: BooleanInput) {
-    this._showHintIfNoOptions = coerceBooleanProperty(value);
-  }
-  private _showHintIfNoOptions: boolean = false;
+  @Input({ transform: booleanAttribute }) showHintIfNoOptions: boolean = false;
 
   /** Unique ID to be used by autocomplete trigger's "aria-owns" property. */
   id: string = `sbb-autocomplete-${nextId++}`;
@@ -275,9 +248,9 @@ export class SbbAutocomplete implements AfterContentInit, OnDestroy {
     // wasn't resolved in VoiceOver, and if it has, we can remove this and the `inertGroups`
     // option altogether.
     this.inertGroups = platform?.SAFARI || false;
-    this._autoActiveFirstOption = !!defaults.autoActiveFirstOption;
-    this._autoSelectActiveOption = !!defaults.autoSelectActiveOption;
-    this._requireSelection = !!defaults.requireSelection;
+    this.autoActiveFirstOption = !!defaults.autoActiveFirstOption;
+    this.autoSelectActiveOption = !!defaults.autoSelectActiveOption;
+    this.requireSelection = !!defaults.requireSelection;
   }
 
   ngAfterContentInit() {

@@ -1,11 +1,11 @@
 // Workaround for: https://github.com/bazelbuild/rules_nodejs/issues/1265
 /// <reference types="@angular/localize/init" />
 
-import { BooleanInput, coerceBooleanProperty } from '@angular/cdk/coercion';
 import { BreakpointObserver } from '@angular/cdk/layout';
 import { CdkScrollable, ScrollDispatcher } from '@angular/cdk/scrolling';
 import {
   AfterContentInit,
+  booleanAttribute,
   ChangeDetectionStrategy,
   ChangeDetectorRef,
   Component,
@@ -82,12 +82,12 @@ export class SbbIconSidebar extends SbbSidebarBase {
   _labelExpand: string = $localize`:Label to 'expand' icon sidebar@@sbbSidebarExpand:Expand`;
 
   /** Whether the sidebar is expanded. */
-  @Input()
+  @Input({ transform: booleanAttribute })
   get expanded(): boolean {
     return this._expanded;
   }
-  set expanded(value: BooleanInput) {
-    this.toggleExpanded(coerceBooleanProperty(value));
+  set expanded(value: boolean) {
+    this.toggleExpanded(value);
   }
   private _expanded = false;
 

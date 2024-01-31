@@ -1,9 +1,4 @@
-import { Directive, ElementRef } from '@angular/core';
-import { CanDisable, mixinDisabled } from '@sbb-esta/angular/core';
-
-// Boilerplate for applying mixins to SbbTabLabelWrapper.
-// tslint:disable-next-line:naming-convention
-const _SbbTabLabelWrapperMixinBase = mixinDisabled(class {});
+import { booleanAttribute, Directive, ElementRef, Input } from '@angular/core';
 
 /**
  * Used in the `sbb-tab-group` view to display tab labels.
@@ -11,17 +6,17 @@ const _SbbTabLabelWrapperMixinBase = mixinDisabled(class {});
  */
 @Directive({
   selector: '[sbbTabLabelWrapper]',
-  inputs: ['disabled'],
   host: {
     '[class.sbb-tab-disabled]': 'disabled',
     '[attr.aria-disabled]': '!!disabled',
   },
   standalone: true,
 })
-export class SbbTabLabelWrapper extends _SbbTabLabelWrapperMixinBase implements CanDisable {
-  constructor(public elementRef: ElementRef) {
-    super();
-  }
+export class SbbTabLabelWrapper {
+  /** Whether the tab is disabled. */
+  @Input({ transform: booleanAttribute }) disabled: boolean = false;
+
+  constructor(public elementRef: ElementRef) {}
 
   /** Sets focus on the wrapper element */
   focus(): void {
