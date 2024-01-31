@@ -129,13 +129,6 @@
   }
 }
 
-.map-control-button-selected,
-.map-control-button:focus-within {
-  @extend .map-control-button;
-  background-color: esta.$sbbColorCharcoal;
-  color: white;
-}
-
 @media (forced-colors: active) {
   .main-button-wrapper {
     /* Tell Windows not to change styles for this component */
