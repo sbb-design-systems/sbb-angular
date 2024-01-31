@@ -1,4 +1,5 @@
 import {
+  booleanAttribute,
   ChangeDetectionStrategy,
   Component,
   Inject,
@@ -7,8 +8,6 @@ import {
   Optional,
   ViewEncapsulation,
 } from '@angular/core';
-
-import { CanDisable, mixinDisabled } from '../common-behaviors/disabled';
 
 import { SbbOptionParentComponent, SBB_OPTION_PARENT_COMPONENT } from './option-parent';
 
@@ -31,10 +30,6 @@ import { SbbOptionParentComponent, SBB_OPTION_PARENT_COMPONENT } from './option-
 //    won't read out the description at all.
 // 3. `<sbb-option aria-labelledby="optionLabel groupLabel"` - This works on Chrome, but Safari
 //     doesn't read out the text at all. Furthermore, on
-
-// Boilerplate for applying mixins to SbbOptgroup.
-// tslint:disable-next-line: naming-convention
-const _SbbOptgroupMixinBase = mixinDisabled(class {});
 
 // Counter for unique group ids.
 let uniqueOptgroupIdCounter = 0;
@@ -62,9 +57,12 @@ export const SBB_OPTGROUP = new InjectionToken<SbbOptgroup>('SbbOptgroup');
   },
   providers: [{ provide: SBB_OPTGROUP, useExisting: SbbOptgroup }],
 })
-export class SbbOptgroup extends _SbbOptgroupMixinBase implements CanDisable {
+export class SbbOptgroup {
   /** Label for the option group. */
   @Input() label: string;
+
+  /** Whether the group is disabled. */
+  @Input({ transform: booleanAttribute }) disabled: boolean = false;
 
   /** Unique id for the underlying label. */
   _labelId: string = `sbb-optgroup-label-${uniqueOptgroupIdCounter++}`;
@@ -73,7 +71,6 @@ export class SbbOptgroup extends _SbbOptgroupMixinBase implements CanDisable {
   _inert: boolean;
 
   constructor(@Inject(SBB_OPTION_PARENT_COMPONENT) @Optional() parent?: SbbOptionParentComponent) {
-    super();
     this._inert = parent?.inertGroups ?? false;
   }
 }

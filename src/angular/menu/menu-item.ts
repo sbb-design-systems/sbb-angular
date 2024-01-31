@@ -2,6 +2,7 @@ import { FocusableOption, FocusMonitor, FocusOrigin } from '@angular/cdk/a11y';
 import { DOCUMENT } from '@angular/common';
 import {
   AfterViewInit,
+  booleanAttribute,
   ChangeDetectionStrategy,
   ChangeDetectorRef,
   Component,
@@ -12,15 +13,10 @@ import {
   Optional,
   ViewEncapsulation,
 } from '@angular/core';
-import { CanDisable, mixinDisabled } from '@sbb-esta/angular/core';
 import { SbbIcon } from '@sbb-esta/angular/icon';
 import { Subject } from 'rxjs';
 
 import { SbbMenuPanel, SBB_MENU_PANEL } from './menu-panel';
-
-// Boilerplate for applying mixins to SbbMenuItem.
-// tslint:disable-next-line:naming-convention
-const _SbbMenuItemMixinBase = mixinDisabled(class {});
 
 /**
  * Single item inside a `sbb-menu`. Provides the menu item styling and accessibility treatment.
@@ -28,7 +24,6 @@ const _SbbMenuItemMixinBase = mixinDisabled(class {});
 @Component({
   selector: '[sbb-menu-item]',
   exportAs: 'sbbMenuItem',
-  inputs: ['disabled'],
   host: {
     '[attr.role]': 'role',
     '[class.sbb-active]': '_highlighted',
@@ -46,10 +41,10 @@ const _SbbMenuItemMixinBase = mixinDisabled(class {});
   standalone: true,
   imports: [SbbIcon],
 })
-export class SbbMenuItem
-  extends _SbbMenuItemMixinBase
-  implements FocusableOption, CanDisable, AfterViewInit, OnDestroy
-{
+export class SbbMenuItem implements FocusableOption, AfterViewInit, OnDestroy {
+  /** Whether the menu item is disabled. */
+  @Input({ transform: booleanAttribute }) disabled: boolean = false;
+
   /** ARIA role for the menu item. */
   @Input() role: 'menuitem' | 'menuitemradio' | 'menuitemcheckbox' = 'menuitem';
 
@@ -71,9 +66,7 @@ export class SbbMenuItem
     private _focusMonitor: FocusMonitor,
     private _changeDetectorRef: ChangeDetectorRef,
     @Inject(SBB_MENU_PANEL) @Optional() public _parentMenu?: SbbMenuPanel<SbbMenuItem>,
-  ) {
-    super();
-  }
+  ) {}
 
   /** Focuses the menu item. */
   focus(origin?: FocusOrigin, options?: FocusOptions): void {

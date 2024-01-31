@@ -1,8 +1,8 @@
 import { FocusKeyManager } from '@angular/cdk/a11y';
 import { CdkAccordion } from '@angular/cdk/accordion';
-import { BooleanInput, coerceBooleanProperty } from '@angular/cdk/coercion';
 import {
   AfterContentInit,
+  booleanAttribute,
   ContentChildren,
   Directive,
   Input,
@@ -39,14 +39,8 @@ export class SbbAccordion extends CdkAccordion implements AfterContentInit, OnDe
   _headers: QueryList<SbbExpansionPanelHeader>;
 
   /** Whether the expansion indicator should be hidden. */
-  @Input()
-  get hideToggle(): boolean {
-    return this._hideToggle;
-  }
-  set hideToggle(show: BooleanInput) {
-    this._hideToggle = coerceBooleanProperty(show);
-  }
-  private _hideToggle: boolean = false;
+  @Input({ transform: booleanAttribute })
+  hideToggle: boolean = false;
 
   ngAfterContentInit() {
     this._headers.changes

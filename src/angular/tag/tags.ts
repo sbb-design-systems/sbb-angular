@@ -1,7 +1,6 @@
 // Workaround for: https://github.com/bazelbuild/rules_nodejs/issues/1265
 /// <reference types="@angular/localize/init" />
 
-import { coerceNumberProperty, NumberInput } from '@angular/cdk/coercion';
 import { AsyncPipe } from '@angular/common';
 import {
   AfterContentInit,
@@ -10,6 +9,7 @@ import {
   ContentChildren,
   forwardRef,
   Input,
+  numberAttribute,
   OnDestroy,
   QueryList,
   ViewChild,
@@ -43,13 +43,13 @@ export class SbbTags implements AfterContentInit, OnDestroy {
    * Total amount visible on the "All" tag badge.
    * If not provided, the total amount is calculated by the sum of all amounts of all tags.
    */
-  @Input()
+  @Input({ transform: numberAttribute })
   get totalAmount(): number {
     return this._totalAmount.value;
   }
-  set totalAmount(totalAmount: NumberInput) {
+  set totalAmount(totalAmount: number) {
     this._totalAmountSetAsInput = true;
-    this._totalAmount.next(coerceNumberProperty(totalAmount));
+    this._totalAmount.next(totalAmount);
   }
   _totalAmount: BehaviorSubject<number> = new BehaviorSubject<number>(0);
 

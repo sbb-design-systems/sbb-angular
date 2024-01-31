@@ -10,7 +10,7 @@
     [attr.value]="value"
     [disabled]="disabled"
     [attr.name]="name"
-    [tabIndex]="tabIndex"
+    [tabIndex]="disabled ? -1 : tabIndex"
     [attr.aria-label]="ariaLabel || null"
     [attr.aria-labelledby]="ariaLabelledby"
     [attr.aria-describedby]="ariaDescribedby"

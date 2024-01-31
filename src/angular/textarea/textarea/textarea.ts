@@ -1,14 +1,9 @@
 // Workaround for: https://github.com/bazelbuild/rules_nodejs/issues/1265
 /// <reference types="@angular/localize/init" />
 
-import {
-  BooleanInput,
-  coerceBooleanProperty,
-  coerceNumberProperty,
-  NumberInput,
-} from '@angular/cdk/coercion';
 import { CdkTextareaAutosize } from '@angular/cdk/text-field';
 import {
+  booleanAttribute,
   ChangeDetectionStrategy,
   ChangeDetectorRef,
   Component,
@@ -16,6 +11,7 @@ import {
   ElementRef,
   HostListener,
   Input,
+  numberAttribute,
   OnDestroy,
   Optional,
   Self,
@@ -125,69 +121,69 @@ export class SbbTextarea
   }
 
   /** Class property that disables the textarea status. */
-  @Input()
+  @Input({ transform: booleanAttribute })
   get disabled(): boolean {
     return this._disabled;
   }
-  set disabled(value: BooleanInput) {
-    this._disabled = coerceBooleanProperty(value);
+  set disabled(value: boolean) {
+    this._disabled = value;
     this._changeDetectorRef.markForCheck();
     this.stateChanges.next();
   }
   private _disabled = false;
 
   /** Class property that sets readonly the textarea content. */
-  @Input()
+  @Input({ transform: booleanAttribute })
   get readonly(): boolean {
     return this._readonly;
   }
-  set readonly(value: BooleanInput) {
-    this._readonly = coerceBooleanProperty(value);
+  set readonly(value: boolean) {
+    this._readonly = value;
     this.stateChanges.next();
   }
   private _readonly = false;
 
   /** Class property that sets the maxlength of the textarea content. */
-  @Input()
+  @Input({ transform: numberAttribute })
   get maxlength(): number {
     return this._maxlength;
   }
-  set maxlength(value: NumberInput) {
-    this._maxlength = coerceNumberProperty(value);
+  set maxlength(value: number) {
+    this._maxlength = value;
     this._updateDigitsCounter(this.value);
     this.stateChanges.next();
   }
   private _maxlength: number;
 
   /** Class property that sets the minlength of the textarea content. */
-  @Input()
+  @Input({ transform: numberAttribute })
   get minlength(): number {
     return this._minlength;
   }
-  set minlength(value: NumberInput) {
-    this._minlength = coerceNumberProperty(value);
+  set minlength(value: number) {
+    this._minlength = value;
     this.stateChanges.next();
   }
   private _minlength: number;
 
   /** Class property that sets required the textarea. */
-  @Input()
+  @Input({ transform: booleanAttribute })
   get required(): boolean {
     return this._required;
   }
-  set required(value: BooleanInput) {
-    this._required = coerceBooleanProperty(value);
+  set required(value: boolean) {
+    this._required = value;
     this.stateChanges.next();
   }
   private _required = false;
 
   /** Whether the autosizing is disabled or not. Autosizing is based on the CDK Autosize. */
-  @Input()
+  @Input({ transform: booleanAttribute })
   get autosizeDisabled(): boolean {
     return this._autosizeDisabled;
   }
-  set autosizeDisabled(value: BooleanInput) {
-    this._autosizeDisabled = coerceBooleanProperty(value);
+  set autosizeDisabled(value: boolean) {
+    this._autosizeDisabled = value;
   }
   private _autosizeDisabled = false;
 

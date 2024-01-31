@@ -1,10 +1,10 @@
 import { FocusMonitor, FocusOrigin } from '@angular/cdk/a11y';
-import { BooleanInput, coerceBooleanProperty, coerceNumberProperty } from '@angular/cdk/coercion';
 import { UniqueSelectionDispatcher } from '@angular/cdk/collections';
 import {
   AfterContentInit,
   AfterViewInit,
   Attribute,
+  booleanAttribute,
   ChangeDetectionStrategy,
   ChangeDetectorRef,
   Component,
@@ -18,6 +18,7 @@ import {
   Inject,
   InjectionToken,
   Input,
+  numberAttribute,
   OnDestroy,
   OnInit,
   Optional,
@@ -27,7 +28,7 @@ import {
   ViewEncapsulation,
 } from '@angular/core';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
-import { HasTabIndex, mixinTabIndex, TypeRef } from '@sbb-esta/angular/core';
+import { TypeRef } from '@sbb-esta/angular/core';
 import { Subscription } from 'rxjs';
 
 let nextUniqueId = 0;
@@ -123,22 +124,22 @@ export abstract class _SbbRadioGroupBase<TRadio extends _SbbRadioButtonBase>
   }
 
   /** Whether the radio group is disabled */
-  @Input()
+  @Input({ transform: booleanAttribute })
   get disabled(): boolean {
     return this._disabled;
   }
   set disabled(value) {
-    this._disabled = coerceBooleanProperty(value);
+    this._disabled = value;
     this._markRadiosForCheck();
   }
 
   /** Whether the radio group is required */
-  @Input()
+  @Input({ transform: booleanAttribute })
   get required(): boolean {
     return this._required;
   }
-  set required(value: BooleanInput) {
-    this._required = coerceBooleanProperty(value);
+  set required(value: boolean) {
+    this._required = value;
     this._markRadiosForCheck();
   }
 
@@ -316,25 +317,11 @@ export class SbbRadioGroup<
   override _radios: QueryList<TRadio>;
 }
 
-/** @docs-private */
-abstract class RadioButtonBase {
-  // Since the disabled property is manually defined for the SbbRadioButton and isn't set up in
-  // the mixin base class. To be able to use the tabindex mixin, a disabled property must be
-  // defined to properly work.
-  abstract disabled: boolean;
-}
-
-// tslint:disable-next-line: naming-convention
-const _RadioButtonMixinBase = mixinTabIndex(RadioButtonBase);
-
 let nextId = 0;
 
 @Directive()
 // tslint:disable-next-line: naming-convention class-name
-export class _SbbRadioButtonBase
-  extends _RadioButtonMixinBase
-  implements OnInit, AfterViewInit, DoCheck, OnDestroy, HasTabIndex
-{
+export class _SbbRadioButtonBase implements OnInit, AfterViewInit, DoCheck, OnDestroy {
   private _uniqueId = `sbb-radio-button-${++nextId}`;
 
   /** The id of this component. */
@@ -352,24 +339,27 @@ export class _SbbRadioButtonBase
   /** The 'aria-describedby' attribute is read after the element's label and field type. */
   @Input('aria-describedby') ariaDescribedby: string;
 
+  /** Tabindex of the radio button. */
+  @Input({ transform: (value: unknown) => (value == null ? 0 : numberAttribute(value)) })
+  tabIndex: number = 0;
+
   /** Whether this radio button is checked. */
-  @Input()
+  @Input({ transform: booleanAttribute })
   get checked(): boolean {
     return this._checked;
   }
-  set checked(value: BooleanInput) {
-    const newCheckedState = coerceBooleanProperty(value);
-    if (this._checked !== newCheckedState) {
-      this._checked = newCheckedState;
-      if (newCheckedState && this.radioGroup && this.radioGroup.value !== this.value) {
+  set checked(value: boolean) {
+    if (this._checked !== value) {
+      this._checked = value;
+      if (value && this.radioGroup && this.radioGroup.value !== this.value) {
         this.radioGroup.selected = this;
-      } else if (!newCheckedState && this.radioGroup && this.radioGroup.value === this.value) {
+      } else if (!value && this.radioGroup && this.radioGroup.value === this.value) {
         // When unchecking the selected radio button, update the selected radio
         // property on the group.
         this.radioGroup.selected = null;
       }
 
-      if (newCheckedState) {
+      if (value) {
         // Notify all radio buttons with the same name to un-check.
         this._radioDispatcher.notify(this.id, this.name);
       }
@@ -398,21 +388,21 @@ export class _SbbRadioButtonBase
   }
 
   /** Whether the radio button is disabled. */
-  @Input()
+  @Input({ transform: booleanAttribute })
   get disabled(): boolean {
     return this._disabled || (this.radioGroup !== null && this.radioGroup.disabled);
   }
-  set disabled(value: BooleanInput) {
-    this._setDisabled(coerceBooleanProperty(value));
+  set disabled(value: boolean) {
+    this._setDisabled(value);
   }
 
   /** Whether the radio button is required. */
-  @Input()
+  @Input({ transform: booleanAttribute })
   get required(): boolean {
     return this._required || (this.radioGroup && this.radioGroup.required);
   }
-  set required(value: BooleanInput) {
-    this._required = coerceBooleanProperty(value);
+  set required(value: boolean) {
+    this._required = value;
   }
 
   /**
@@ -459,14 +449,12 @@ export class _SbbRadioButtonBase
     private _radioDispatcher: UniqueSelectionDispatcher,
     tabIndex?: string,
   ) {
-    super();
-
     // Assertions. Ideally these should be stripped out by the compiler.
     // TODO(jelbourn): Assert that there's no name binding AND a parent radio group.
     this.radioGroup = radioGroup;
 
     if (tabIndex) {
-      this.tabIndex = coerceNumberProperty(tabIndex, 0);
+      this.tabIndex = numberAttribute(tabIndex, 0);
     }
   }
 

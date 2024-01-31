@@ -1,8 +1,8 @@
 // Workaround for: https://github.com/bazelbuild/rules_nodejs/issues/1265
 /// <reference types="@angular/localize/init" />
 
-import { BooleanInput, coerceBooleanProperty } from '@angular/cdk/coercion';
 import {
+  booleanAttribute,
   ChangeDetectionStrategy,
   ChangeDetectorRef,
   Component,
@@ -18,7 +18,6 @@ import {
   ViewEncapsulation,
 } from '@angular/core';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
-import { mixinDisabled } from '@sbb-esta/angular/core';
 import { SbbIconModule } from '@sbb-esta/angular/icon';
 
 import {
@@ -29,14 +28,6 @@ import {
 import { SbbFileSelectorTypesService } from './file-selector-types.service';
 
 let nextId = 0;
-
-// Boilerplate for applying mixins to SbbFileSelector.
-// tslint:disable-next-line: naming-convention
-const _SbbFileSelectorMixinBase = mixinDisabled(
-  class {
-    constructor(public _elementRef: ElementRef) {}
-  },
-);
 
 @Component({
   selector: 'sbb-file-selector',
@@ -60,15 +51,15 @@ const _SbbFileSelectorMixinBase = mixinDisabled(
   standalone: true,
   imports: [SbbIconModule],
 })
-export class SbbFileSelector
-  extends _SbbFileSelectorMixinBase
-  implements ControlValueAccessor, SbbFileSelectorOptions
-{
+export class SbbFileSelector implements ControlValueAccessor, SbbFileSelectorOptions {
   _labelUploadFile: string = $localize`:Button label to select files for upload@@sbbFileSelectorUploadFile:Upload file`;
 
   _labelRemoveFile: string = $localize`:Hidden button label to remove a file from the selection list@@sbbFileSelectorRemoveFile:Remove file`;
 
   private _uniqueId = `sbb-file-selector-${++nextId}`;
+
+  /** Whether the file selector is disabled. */
+  @Input({ transform: booleanAttribute }) disabled: boolean = false;
 
   /** Unique id of the element. */
   @Input() id: string = this._uniqueId;
@@ -84,14 +75,8 @@ export class SbbFileSelector
   @Input() capture?: 'user' | 'environment';
 
   /** Mode on file selector component to chose more files to upload. */
-  @Input()
-  get multiple(): boolean {
-    return this._multiple;
-  }
-  set multiple(value: BooleanInput) {
-    this._multiple = coerceBooleanProperty(value);
-  }
-  private _multiple = false;
+  @Input({ transform: booleanAttribute })
+  multiple: boolean = false;
 
   /** Set if the component should add files on top of the already selected ones or keep default input file behaviour. */
   @Input() multipleMode: 'default' | 'persistent' = 'default';
@@ -117,7 +102,6 @@ export class SbbFileSelector
     private _changeDetector: ChangeDetectorRef,
     @Optional() @Inject(SBB_FILE_SELECTOR_OPTIONS) options: SbbFileSelectorOptions,
   ) {
-    super(elementRef);
     if (options) {
       this.accept = options.accept;
       this.capture = options.capture;

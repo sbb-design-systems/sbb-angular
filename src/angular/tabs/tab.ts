@@ -1,5 +1,6 @@
 import { TemplatePortal } from '@angular/cdk/portal';
 import {
+  booleanAttribute,
   ChangeDetectionStrategy,
   Component,
   ContentChild,
@@ -15,15 +16,10 @@ import {
   ViewContainerRef,
   ViewEncapsulation,
 } from '@angular/core';
-import { CanDisable, mixinDisabled } from '@sbb-esta/angular/core';
 import { Subject } from 'rxjs';
 
 import { SBB_TAB_CONTENT } from './tab-content';
 import { SbbTabLabel, SBB_TAB, SBB_TAB_LABEL } from './tab-label';
-
-// Boilerplate for applying mixins to SbbTab.
-// tslint:disable-next-line:naming-convention
-const _SbbTabMixinBase = mixinDisabled(class {});
 
 /**
  * Used to provide a tab group to a tab without causing a circular dependency.
@@ -42,7 +38,7 @@ export const SBB_TAB_GROUP = new InjectionToken<any>('SBB_TAB_GROUP');
   providers: [{ provide: SBB_TAB, useExisting: SbbTab }],
   standalone: true,
 })
-export class SbbTab extends _SbbTabMixinBase implements OnInit, CanDisable, OnChanges, OnDestroy {
+export class SbbTab implements OnInit, OnChanges, OnDestroy {
   /** Content for the tab label given by `<ng-template sbb-tab-label>`. */
   @ContentChild(SBB_TAB_LABEL)
   get templateLabel(): SbbTabLabel {
@@ -86,6 +82,9 @@ export class SbbTab extends _SbbTabMixinBase implements OnInit, CanDisable, OnCh
    */
   @Input() bodyClass: string | string[];
 
+  /** Whether the tab is disabled */
+  @Input({ transform: booleanAttribute }) disabled: boolean = false;
+
   /** Portal that will be the hosted content of the tab */
   private _contentPortal: TemplatePortal | null = null;
 
@@ -117,9 +116,7 @@ export class SbbTab extends _SbbTabMixinBase implements OnInit, CanDisable, OnCh
   constructor(
     private _viewContainerRef: ViewContainerRef,
     @Inject(SBB_TAB_GROUP) public _closestTabGroup: any,
-  ) {
-    super();
-  }
+  ) {}
 
   ngOnChanges(changes: SimpleChanges): void {
     if (changes.hasOwnProperty('textLabel') || changes.hasOwnProperty('disabled')) {

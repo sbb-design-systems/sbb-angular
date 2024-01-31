@@ -1,7 +1,7 @@
-import { BooleanInput, coerceBooleanProperty } from '@angular/cdk/coercion';
 import { BACKSPACE, hasModifierKey, TAB } from '@angular/cdk/keycodes';
 import {
   AfterContentInit,
+  booleanAttribute,
   Directive,
   ElementRef,
   EventEmitter,
@@ -86,14 +86,8 @@ export class SbbChipInput implements SbbChipTextControl, OnChanges, OnDestroy, A
   /**
    * Whether the chipEnd event will be emitted when the input is blurred.
    */
-  @Input('sbbChipInputAddOnBlur')
-  get addOnBlur(): boolean {
-    return this._addOnBlur;
-  }
-  set addOnBlur(value: BooleanInput) {
-    this._addOnBlur = coerceBooleanProperty(value);
-  }
-  _addOnBlur: boolean = false;
+  @Input({ alias: 'sbbChipInputAddOnBlur', transform: booleanAttribute })
+  addOnBlur: boolean = false;
 
   /**
    * The list of key codes that will trigger a chipEnd event.
@@ -120,12 +114,12 @@ export class SbbChipInput implements SbbChipTextControl, OnChanges, OnDestroy, A
   @Input() id: string = `sbb-chip-list-input-${nextUniqueId++}`;
 
   /** Whether the input is disabled. */
-  @Input()
+  @Input({ transform: booleanAttribute })
   get disabled(): boolean {
     return this._disabled || (this._chipList && this._chipList.disabled);
   }
-  set disabled(value: BooleanInput) {
-    this._disabled = coerceBooleanProperty(value);
+  set disabled(value: boolean) {
+    this._disabled = value;
   }
   private _disabled: boolean = false;
 

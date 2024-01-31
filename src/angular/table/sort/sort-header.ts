@@ -1,9 +1,9 @@
 import { AriaDescriber, FocusMonitor } from '@angular/cdk/a11y';
-import { BooleanInput, coerceBooleanProperty } from '@angular/cdk/coercion';
 import { ENTER, SPACE } from '@angular/cdk/keycodes';
 import { CdkColumnDef } from '@angular/cdk/table';
 import {
   AfterViewInit,
+  booleanAttribute,
   ChangeDetectionStrategy,
   ChangeDetectorRef,
   Component,
@@ -15,7 +15,6 @@ import {
   Optional,
   ViewEncapsulation,
 } from '@angular/core';
-import { CanDisable, mixinDisabled } from '@sbb-esta/angular/core';
 import { merge, Subscription } from 'rxjs';
 
 import {
@@ -28,11 +27,6 @@ import {
 import { sbbSortAnimations } from './sort-animations';
 import { SbbSortDirection } from './sort-direction';
 import { getSortHeaderNotContainedWithinSortError } from './sort-errors';
-
-// Boilerplate for applying mixins to the sort header.
-/** @docs-private */
-// tslint:disable-next-line:naming-convention
-const _SbbSortHeaderBase = mixinDisabled(class {});
 
 /**
  * Valid positions for the arrow to be in for its opacity and translation. If the state is a
@@ -84,7 +78,6 @@ interface SbbSortHeaderColumnDef {
   },
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush,
-  inputs: ['disabled'],
   animations: [
     sbbSortAnimations.arrowOpacity,
     sbbSortAnimations.arrowPosition,
@@ -93,10 +86,7 @@ interface SbbSortHeaderColumnDef {
   ],
   standalone: true,
 })
-export class SbbSortHeader
-  extends _SbbSortHeaderBase
-  implements CanDisable, SbbSortable, OnDestroy, OnInit, AfterViewInit
-{
+export class SbbSortHeader implements SbbSortable, OnDestroy, OnInit, AfterViewInit {
   private _rerenderSubscription: Subscription;
 
   /**
@@ -133,6 +123,8 @@ export class SbbSortHeader
   /** Sets the position of the arrow that displays when sorted. */
   @Input() arrowPosition: SbbSortHeaderArrowPosition = 'after';
 
+  @Input({ transform: booleanAttribute }) disabled: boolean = false;
+
   /** Overrides the sort start value of the containing SbbSort for this SbbSortable. */
   @Input() start: SbbSortDirection;
 
@@ -153,14 +145,8 @@ export class SbbSortHeader
   private _sortActionDescription: string = 'Sort';
 
   /** Overrides the disable clear value of the containing MatSort for this MatSortable. */
-  @Input()
-  get disableClear(): boolean {
-    return this._disableClear;
-  }
-  set disableClear(v: BooleanInput) {
-    this._disableClear = coerceBooleanProperty(v);
-  }
-  private _disableClear: boolean;
+  @Input({ transform: booleanAttribute })
+  disableClear: boolean;
 
   constructor(
     private _changeDetectorRef: ChangeDetectorRef,
@@ -180,8 +166,6 @@ export class SbbSortHeader
     // `angular/table` and `cdk/table` and we can't have the CDK depending on SBB Angular,
     // and we want to avoid having the sort header depending on the CDK table because
     // of this single reference.
-    super();
-
     if (!_sort && (typeof ngDevMode === 'undefined' || ngDevMode)) {
       throw getSortHeaderNotContainedWithinSortError();
     }

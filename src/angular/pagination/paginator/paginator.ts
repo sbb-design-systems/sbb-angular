@@ -1,8 +1,8 @@
 // Workaround for: https://github.com/bazelbuild/rules_nodejs/issues/1265
 /// <reference types="@angular/localize/init" />
 
-import { coerceNumberProperty, NumberInput } from '@angular/cdk/coercion';
 import {
+  booleanAttribute,
   ChangeDetectionStrategy,
   ChangeDetectorRef,
   Component,
@@ -10,17 +10,13 @@ import {
   Inject,
   InjectionToken,
   Input,
+  numberAttribute,
   OnInit,
   Optional,
   Output,
   ViewEncapsulation,
 } from '@angular/core';
-import {
-  CanDisable,
-  HasInitialized,
-  mixinDisabled,
-  mixinInitialized,
-} from '@sbb-esta/angular/core';
+import { HasInitialized, mixinInitialized } from '@sbb-esta/angular/core';
 import { SbbIcon } from '@sbb-esta/angular/icon';
 
 /** The default page size if there is no page size and there are no provided page size options. */
@@ -63,7 +59,7 @@ export const SBB_PAGINATOR_DEFAULT_OPTIONS = new InjectionToken<SbbPaginatorDefa
 // Boilerplate for applying mixins to _SbbPaginatorBase.
 /** @docs-private */
 // tslint:disable-next-line:naming-convention
-const _SbbPaginatorBase = mixinDisabled(mixinInitialized(class {}));
+const _SbbPaginatorBase = mixinInitialized(class {});
 
 /**
  * Component to provide navigation between paged information. Displays the size of the current
@@ -85,7 +81,7 @@ const _SbbPaginatorBase = mixinDisabled(mixinInitialized(class {}));
   standalone: true,
   imports: [SbbIcon],
 })
-export class SbbPaginator extends _SbbPaginatorBase implements OnInit, CanDisable, HasInitialized {
+export class SbbPaginator extends _SbbPaginatorBase implements OnInit, HasInitialized {
   _labelPreviousPage: string = $localize`:Button label to navigate to the previous page@@sbbPaginationPreviousPage:Previous Page`;
 
   _labelNextPage: string = $localize`:Button label to navigate to the next page@@sbbPaginationNextPage:Next Page`;
@@ -94,38 +90,42 @@ export class SbbPaginator extends _SbbPaginatorBase implements OnInit, CanDisabl
   private _previousPageSize: number;
 
   /** The zero-based page index of the displayed list of items. Defaulted to 0. */
-  @Input()
+  @Input({ transform: numberAttribute })
   get pageIndex(): number {
     return this._pageIndex;
   }
-  set pageIndex(value: NumberInput) {
+  set pageIndex(value: number) {
     const previousPageIndex = this._pageIndex;
-    this._pageIndex = this._coercePageIndexInRange(coerceNumberProperty(value));
+    this._pageIndex = this._coercePageIndexInRange(value);
     this._emitPageEvent(previousPageIndex);
     this._changeDetectorRef.markForCheck();
   }
   private _pageIndex = 0;
 
   /** The length of the total number of items that are being paginated. Defaulted to 0. */
-  @Input()
+  @Input({ transform: numberAttribute })
   get length(): number {
     return this._length;
   }
-  set length(value: NumberInput) {
-    this._length = Math.max(coerceNumberProperty(value), 0);
+  set length(value: number) {
+    this._length = Math.max(value, 0);
     this.pageIndex = this.pageIndex; // ensure index recalculating
   }
   private _length = 0;
 
   /** Number of items to display on a page. By default set to 50. */
-  @Input()
+  @Input({ transform: numberAttribute })
   get pageSize(): number {
     return this._pageSize;
   }
-  set pageSize(value: NumberInput) {
-    this._changePageSize(coerceNumberProperty(value));
+  set pageSize(value: number) {
+    this._changePageSize(value);
   }
   private _pageSize: number = DEFAULT_PAGE_SIZE;
+
+  /** Whether the paginator is disabled. */
+  @Input({ transform: booleanAttribute })
+  disabled: boolean = false;
 
   /** Event emitted when the paginator changes the page size or page index. */
   @Output() readonly page: EventEmitter<SbbPageEvent> = new EventEmitter<SbbPageEvent>();

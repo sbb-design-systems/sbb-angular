@@ -1,8 +1,13 @@
 // Workaround for: https://github.com/bazelbuild/rules_nodejs/issues/1265
 /// <reference types="@angular/localize/init" />
 
-import { coerceNumberProperty, NumberInput } from '@angular/cdk/coercion';
-import { ChangeDetectionStrategy, Component, Input, ViewEncapsulation } from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  Component,
+  Input,
+  numberAttribute,
+  ViewEncapsulation,
+} from '@angular/core';
 import { SbbBadge } from '@sbb-esta/angular/badge';
 
 @Component({
@@ -20,12 +25,12 @@ import { SbbBadge } from '@sbb-esta/angular/badge';
 })
 export class SbbTagLink {
   /** Amount displayed in badge */
-  @Input()
+  @Input({ transform: numberAttribute })
   get amount(): number {
     return this._amount;
   }
-  set amount(value: NumberInput) {
-    this._amount = coerceNumberProperty(value);
+  set amount(value: number) {
+    this._amount = value;
     this._badgeDescriptionFallback = $localize`:Aria label for amount of results displayed in badge pill@@sbbTagBadgePillAmountOfResults:${this.amount} results available`;
   }
   private _amount: number;

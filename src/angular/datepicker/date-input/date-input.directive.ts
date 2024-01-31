@@ -1,6 +1,6 @@
-import { BooleanInput, coerceBooleanProperty } from '@angular/cdk/coercion';
 import { DOWN_ARROW } from '@angular/cdk/keycodes';
 import {
+  booleanAttribute,
   Directive,
   ElementRef,
   EventEmitter,
@@ -142,12 +142,12 @@ export class SbbDateInput<D> implements ControlValueAccessor, Validator, OnInit,
   private _max: D | null;
 
   /** Whether the datepicker-input is disabled. */
-  @Input()
+  @Input({ transform: booleanAttribute })
   get disabled(): boolean {
     return this._disabled;
   }
-  set disabled(value: BooleanInput) {
-    const newValue = coerceBooleanProperty(value);
+  set disabled(value: boolean) {
+    const newValue = value;
     const element = this._elementRef.nativeElement;
 
     if (this._disabled !== newValue) {
@@ -166,12 +166,12 @@ export class SbbDateInput<D> implements ControlValueAccessor, Validator, OnInit,
   private _disabled = false;
 
   /** Whether the element is readonly. */
-  @Input()
+  @Input({ transform: booleanAttribute })
   get readonly(): boolean {
     return this._readonly;
   }
-  set readonly(value: BooleanInput) {
-    this._readonly = coerceBooleanProperty(value);
+  set readonly(value: boolean) {
+    this._readonly = value;
     this.readonlyChange.next(this._readonly);
   }
   private _readonly = false;

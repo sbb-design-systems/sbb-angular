@@ -1,5 +1,4 @@
 import { FocusableOption, FocusMonitor } from '@angular/cdk/a11y';
-import { BooleanInput, coerceBooleanProperty } from '@angular/cdk/coercion';
 import { ENTER, SPACE } from '@angular/cdk/keycodes';
 import { CdkObserveContent } from '@angular/cdk/observers';
 import { Platform } from '@angular/cdk/platform';
@@ -10,6 +9,7 @@ import {
   AfterViewInit,
   ANIMATION_MODULE_TYPE,
   Attribute,
+  booleanAttribute,
   ChangeDetectionStrategy,
   ChangeDetectorRef,
   Component,
@@ -20,13 +20,13 @@ import {
   Inject,
   Input,
   NgZone,
+  numberAttribute,
   OnDestroy,
   Optional,
   QueryList,
   ViewChild,
   ViewEncapsulation,
 } from '@angular/core';
-import { CanDisable, HasTabIndex, mixinDisabled, mixinTabIndex } from '@sbb-esta/angular/core';
 import { SbbIcon } from '@sbb-esta/angular/icon';
 import { startWith, takeUntil } from 'rxjs/operators';
 
@@ -150,33 +150,29 @@ export class SbbTabNav extends _SbbTabNavBase {
   }
 }
 
-// Boilerplate for applying mixins to SbbTabLink.
-// tslint:disable-next-line:naming-convention
-const _SbbTabLinkMixinBase = mixinTabIndex(mixinDisabled(class {}));
-
 /** Base class with all of the `SbbTabLink` functionality. */
 @Directive()
 // tslint:disable-next-line:class-name naming-convention
-export class _SbbTabLinkBase
-  extends _SbbTabLinkMixinBase
-  implements AfterViewInit, OnDestroy, CanDisable, HasTabIndex, FocusableOption
-{
-  /** Whether the tab link is active or not. */
-  protected _isActive: boolean = false;
+export class _SbbTabLinkBase implements AfterViewInit, OnDestroy, FocusableOption {
+  /** Whether the tab link is disabled. */
+  @Input({ transform: booleanAttribute }) disabled: boolean = false;
+
+  /** Tab index for the tab link. */
+  @Input({ transform: (value: unknown) => (value == null ? 0 : numberAttribute(value)) })
+  tabIndex: number = 0;
 
   /** Whether the link is active. */
-  @Input()
+  @Input({ transform: booleanAttribute })
   get active(): boolean {
     return this._isActive;
   }
-  set active(value: BooleanInput) {
-    const newValue = coerceBooleanProperty(value);
-
-    if (newValue !== this._isActive) {
-      this._isActive = newValue;
+  set active(value: boolean) {
+    if (value !== this._isActive) {
+      this._isActive = value;
       this._tabNavBar.updateActiveLink();
     }
   }
+  protected _isActive: boolean = false;
 
   /** Unique id for the tab. */
   @Input() id: string = `sbb-tab-link-${nextUniqueId++}`;
@@ -187,8 +183,6 @@ export class _SbbTabLinkBase
     @Attribute('tabindex') tabIndex: string,
     private _focusMonitor: FocusMonitor,
   ) {
-    super();
-
     this.tabIndex = parseInt(tabIndex, 10) || 0;
   }
 
@@ -243,7 +237,7 @@ export class _SbbTabLinkBase
     if (this._tabNavBar.tabPanel) {
       return this._isActive ? 0 : -1;
     } else {
-      return this.tabIndex;
+      return this.disabled ? -1 : this.tabIndex;
     }
   }
 }
@@ -254,7 +248,6 @@ export class _SbbTabLinkBase
 @Directive({
   selector: '[sbb-tab-link], [sbbTabLink]',
   exportAs: 'sbbTabLink',
-  inputs: ['disabled', 'tabIndex'],
   host: {
     class: 'sbb-tab-link sbb-link-reset',
     '[attr.aria-controls]': '_getAriaControls()',

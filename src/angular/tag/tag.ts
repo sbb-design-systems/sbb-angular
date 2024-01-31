@@ -2,7 +2,6 @@
 /// <reference types="@angular/localize/init" />
 
 import { FocusMonitor } from '@angular/cdk/a11y';
-import { coerceNumberProperty, NumberInput } from '@angular/cdk/coercion';
 import {
   Attribute,
   ChangeDetectionStrategy,
@@ -12,6 +11,7 @@ import {
   forwardRef,
   Input,
   NgZone,
+  numberAttribute,
   OnDestroy,
   ViewEncapsulation,
 } from '@angular/core';
@@ -46,12 +46,12 @@ import { take } from 'rxjs/operators';
 })
 export class SbbTag extends _SbbCheckboxBase implements OnDestroy {
   /** Amount displayed in badge */
-  @Input()
+  @Input({ transform: numberAttribute })
   get amount(): number {
     return this._amount;
   }
-  set amount(value: NumberInput) {
-    this._amount = coerceNumberProperty(value);
+  set amount(value: number) {
+    this._amount = value;
     this._badgeDescriptionFallback = $localize`:Aria label for amount of results displayed in badge pill@@sbbTagBadgePillAmountOfResults:${this.amount} results available`;
 
     this._amountChange.next(this._amount);

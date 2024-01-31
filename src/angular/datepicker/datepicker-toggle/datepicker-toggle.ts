@@ -1,10 +1,10 @@
 // Workaround for: https://github.com/bazelbuild/rules_nodejs/issues/1265
 /// <reference types="@angular/localize/init" />
 
-import { BooleanInput, coerceBooleanProperty } from '@angular/cdk/coercion';
 import {
   AfterContentInit,
   Attribute,
+  booleanAttribute,
   ChangeDetectionStrategy,
   ChangeDetectorRef,
   Component,
@@ -43,12 +43,12 @@ export class SbbDatepickerToggle<D> implements OnDestroy, OnChanges, AfterConten
   @Input() tabIndex: number | null;
 
   /** Whether the toggle button is disabled. */
-  @Input()
+  @Input({ transform: booleanAttribute })
   get disabled(): boolean {
     return this._disabled === undefined ? this._datepicker.disabled : this._disabled;
   }
-  set disabled(value: BooleanInput) {
-    this._disabled = coerceBooleanProperty(value);
+  set disabled(value: boolean) {
+    this._disabled = value;
   }
   private _disabled?: boolean;
 
