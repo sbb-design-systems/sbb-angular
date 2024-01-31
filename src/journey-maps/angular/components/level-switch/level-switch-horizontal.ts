@@ -72,18 +72,18 @@ export class SbbLevelSwitchHorizontal implements OnInit, OnDestroy {
 
   toggleSideButtons(): void {
     if (!this.showSideButtons) {
-      this.openSideButton();
+      this._openSideButton();
     } else {
-      this.closeSideButton();
+      this._closeSideButton();
     }
   }
 
-  private closeSideButton(): void {
+  private _closeSideButton(): void {
     this.showSideButtons = false;
     clearTimeout(this._countdownTimer);
   }
 
-  private openSideButton(): void {
+  private _openSideButton(): void {
     this.showSideButtons = true;
     this.startCountdown();
     setTimeout(() => {
@@ -116,7 +116,7 @@ export class SbbLevelSwitchHorizontal implements OnInit, OnDestroy {
   startCountdown(): void {
     clearTimeout(this._countdownTimer);
     this._countdownTimer = setTimeout(() => {
-      this.closeSideButton(); // when the countdown finishes, we always want to close
+      this._closeSideButton(); // when the countdown finishes, we always want to close
       this._ref.detectChanges();
     }, this._autoCollapseTimeout);
   }
@@ -130,7 +130,7 @@ export class SbbLevelSwitchHorizontal implements OnInit, OnDestroy {
   }
 
   onSideButtonClick(level: number | undefined): void {
-    this.closeSideButton(); // when the side button is clicked, we always want to close
+    this._closeSideButton(); // when the side button is clicked, we always want to close
     this.mainButton.nativeElement.focus();
     this._levelSwitchService.switchLevel(this.selectedLevel === level ? undefined : level);
   }
