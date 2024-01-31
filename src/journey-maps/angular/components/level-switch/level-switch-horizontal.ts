@@ -45,6 +45,7 @@ export class SbbLevelSwitchHorizontal implements OnInit, OnDestroy {
   showSideButtons: boolean = false;
   levelSwitchLabel: string;
 
+  private _switchWasOpened = false;
   private _countdownTimer: ReturnType<typeof setTimeout>;
   private _autoCollapseTimeout = 5000; // 5000 ms
   private _destroyed = new Subject<void>();
@@ -96,6 +97,7 @@ export class SbbLevelSwitchHorizontal implements OnInit, OnDestroy {
     const matchingButton = this.sideButtons.find(
       (button) => button.nativeElement.textContent?.trim() === mainButtonText?.trim(),
     );
+    this._switchWasOpened = true;
     matchingButton?.nativeElement.focus();
   }
 
@@ -149,5 +151,12 @@ export class SbbLevelSwitchHorizontal implements OnInit, OnDestroy {
   onSideButtonEnter(level: number, event: any) {
     event.preventDefault();
     this.onSideButtonClick(level);
+  }
+
+  onSideButtonFocus() {
+    if (!this._switchWasOpened) {
+      this.cancelCountdown();
+    }
+    this._switchWasOpened = false;
   }
 }
