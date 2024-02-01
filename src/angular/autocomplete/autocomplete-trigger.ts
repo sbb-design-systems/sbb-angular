@@ -714,6 +714,12 @@ export class SbbAutocompleteTrigger
   }
 
   private _updateNativeInputValue(value: string): void {
+    // We want to clear the previous selection if our new value is falsy. e.g: reactive form field
+    // being reset.
+    if (!value) {
+      this._clearPreviousSelectedOption(null, false);
+    }
+
     // If it's used within a `SbbFormField`, we should set it through the property so it can go
     // through change detection.
     if (this._formField && this._formField._control) {
