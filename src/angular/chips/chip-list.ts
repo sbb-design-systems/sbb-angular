@@ -19,7 +19,7 @@ import {
   ViewEncapsulation,
 } from '@angular/core';
 import { ControlValueAccessor, FormGroupDirective, NgControl, NgForm } from '@angular/forms';
-import { CanUpdateErrorState, mixinErrorState, SbbErrorStateMatcher } from '@sbb-esta/angular/core';
+import { SbbErrorStateMatcher, _ErrorStateTracker } from '@sbb-esta/angular/core';
 import { SbbFormFieldControl } from '@sbb-esta/angular/form-field';
 import { merge, Observable, Subject, Subscription } from 'rxjs';
 import { startWith, takeUntil } from 'rxjs/operators';
@@ -27,32 +27,6 @@ import { startWith, takeUntil } from 'rxjs/operators';
 import type { SbbChip, SbbChipEvent } from './chip';
 import { SbbChipTextControl } from './chip-text-control';
 import { SBB_CHIP, SBB_CHIP_LIST } from './chip-tokens';
-
-// Boilerplate for applying mixins to SbbChipList.
-/** @docs-private */
-// tslint:disable-next-line:naming-convention
-const _SbbChipListBase = mixinErrorState(
-  class {
-    /**
-     * Emits whenever the component state changes and should cause the parent
-     * form-field to update. Implemented as part of `SbbFormFieldControl`.
-     * @docs-private
-     */
-    readonly stateChanges = new Subject<void>();
-
-    constructor(
-      public _defaultErrorStateMatcher: SbbErrorStateMatcher,
-      public _parentForm: NgForm,
-      public _parentFormGroup: FormGroupDirective,
-      /**
-       * Form control bound to the component.
-       * Implemented as part of `SbbFormFieldControl`.
-       * @docs-private
-       */
-      public ngControl: NgControl,
-    ) {}
-  },
-);
 
 // Increasing integer for generating unique ids for chip-list components.
 let nextUniqueId = 0;
@@ -94,15 +68,13 @@ let nextUniqueId = 0;
   standalone: true,
 })
 export class SbbChipList
-  extends _SbbChipListBase
   implements
     SbbFormFieldControl<any>,
     ControlValueAccessor,
     AfterContentInit,
     DoCheck,
     OnInit,
-    OnDestroy,
-    CanUpdateErrorState
+    OnDestroy
 {
   /**
    * Implemented as part of SbbFormFieldControl.
@@ -128,6 +100,8 @@ export class SbbChipList
 
   /** Subscription to remove changes in chips. */
   private _chipRemoveSubscription: Subscription | null;
+
+  private _errorStateTracker: _ErrorStateTracker;
 
   /** The chip input to add more chips */
   _chipInput: SbbChipTextControl;
@@ -174,7 +148,13 @@ export class SbbChipList
   @Input('aria-describedby') userAriaDescribedBy: string;
 
   /** An object used to control when error messages are shown. */
-  @Input() override errorStateMatcher: SbbErrorStateMatcher;
+  @Input()
+  get errorStateMatcher() {
+    return this._errorStateTracker.matcher;
+  }
+  set errorStateMatcher(value: SbbErrorStateMatcher) {
+    this._errorStateTracker.matcher = value;
+  }
 
   /**
    * Implemented as part of SbbFormFieldControl.
@@ -284,6 +264,21 @@ export class SbbChipList
   })
   chips: QueryList<SbbChip>;
 
+  /**
+   * Emits whenever the component state changes and should cause the parent
+   * form-field to update. Implemented as part of `SbbFormFieldControl`.
+   * @docs-private
+   */
+  readonly stateChanges = new Subject<void>();
+
+  /** Whether the chip grid is in an error state. */
+  get errorState() {
+    return this._errorStateTracker.errorState;
+  }
+  set errorState(value: boolean) {
+    this._errorStateTracker.errorState = value;
+  }
+
   constructor(
     protected _elementRef: ElementRef<HTMLElement>,
     private _changeDetectorRef: ChangeDetectorRef,
@@ -291,12 +286,19 @@ export class SbbChipList
     @Optional() parentFormGroup: FormGroupDirective,
     defaultErrorStateMatcher: SbbErrorStateMatcher,
     /** @docs-private */
-    @Optional() @Self() public override ngControl: NgControl,
+    @Optional() @Self() public ngControl: NgControl,
   ) {
-    super(defaultErrorStateMatcher, parentForm, parentFormGroup, ngControl);
     if (this.ngControl) {
       this.ngControl.valueAccessor = this;
     }
+
+    this._errorStateTracker = new _ErrorStateTracker(
+      defaultErrorStateMatcher,
+      ngControl,
+      parentFormGroup,
+      parentForm,
+      this.stateChanges,
+    );
   }
 
   ngAfterContentInit() {
@@ -487,6 +489,11 @@ export class SbbChipList
    */
   private _isValidIndex(index: number): boolean {
     return index >= 0 && index < this.chips.length;
+  }
+
+  /** Refreshes the error state of the chip grid. */
+  updateErrorState() {
+    this._errorStateTracker.updateErrorState();
   }
 
   /** When blurred, mark the field as touched when focus moved outside the chip list. */
