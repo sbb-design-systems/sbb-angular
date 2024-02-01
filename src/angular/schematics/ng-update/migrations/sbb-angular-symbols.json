@@ -90,6 +90,7 @@
   "SbbChipTextControl": "chips",
   "SbbChipTrailingIcon": "chips",
   "_$localize": "core",
+  "_ErrorStateTracker": "core",
   "_global": "core",
   "AbstractConstructor": "core",
   "Breakpoints": "core",
