@@ -1265,6 +1265,37 @@ describe('SbbAutocomplete', () => {
       expect(input.value).withContext(`Expected input value to be empty after reset.`).toEqual('');
     }));
 
+    it('should clear the previous selection when reactive form field is reset programmatically', fakeAsync(() => {
+      fixture.componentInstance.trigger.openPanel();
+      fixture.detectChanges();
+      zone.simulateZoneExit();
+
+      const options = overlayContainerElement.querySelectorAll(
+        'sbb-option',
+      ) as NodeListOf<HTMLElement>;
+      const clickedOption = options[0];
+      const option = fixture.componentInstance.options.first;
+
+      clickedOption.click();
+      fixture.detectChanges();
+
+      expect(fixture.componentInstance.numberCtrl.value).toEqual({
+        code: '1',
+        name: 'Eins',
+        height: 48,
+      });
+      expect(option.selected).toBe(true);
+
+      fixture.componentInstance.numberCtrl.reset();
+      tick();
+
+      fixture.detectChanges();
+      tick();
+
+      expect(fixture.componentInstance.numberCtrl.value).toEqual(null);
+      expect(option.selected).toBe(false);
+    }));
+
     it('should disable input in view when disabled programmatically', () => {
       const formFieldElement = fixture.debugElement.query(By.css('.sbb-form-field'))!.nativeElement;
 
