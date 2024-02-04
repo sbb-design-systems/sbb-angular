@@ -9,8 +9,8 @@
       "@sbb-esta/angular/*": ["../angular/*"],
       "@sbb-esta/journey-maps": ["../journey-maps"],
       "@sbb-esta/journey-maps/*": ["../journey-maps/*"],
-      "@sbb-esta/components-examples/*": ["./*"],
-    },
+      "@sbb-esta/components-examples/*": ["./*"]
+    }
   },
-  "include": ["./**/*.ts"],
+  "include": ["./**/*.ts"]
 }

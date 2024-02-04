@@ -9,8 +9,8 @@
       "@sbb-esta/angular/*": ["../angular/*"],
       "@sbb-esta/angular-experimental/*": ["./*"],
       "@sbb-esta/journey-maps": ["../journey-maps"],
-      "@sbb-esta/journey-maps/*": ["../journey-maps/*"],
-    },
+      "@sbb-esta/journey-maps/*": ["../journey-maps/*"]
+    }
   },
-  "include": ["./**/*.ts", "../dev-mode-types.d.ts"],
+  "include": ["./**/*.ts", "../dev-mode-types.d.ts"]
 }
