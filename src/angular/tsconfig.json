@@ -7,8 +7,8 @@
     "paths": {
       "@sbb-esta/angular/*": ["./*"],
       "@sbb-esta/journey-maps": ["../journey-maps"],
-      "@sbb-esta/journey-maps/*": ["../journey-maps/*"],
-    },
+      "@sbb-esta/journey-maps/*": ["../journey-maps/*"]
+    }
   },
-  "include": ["./**/*.ts", "../dev-mode-types.d.ts"],
+  "include": ["./**/*.ts", "../dev-mode-types.d.ts"]
 }
