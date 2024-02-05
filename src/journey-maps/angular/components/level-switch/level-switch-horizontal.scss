@@ -128,3 +128,15 @@
     }
   }
 }
+
+@media (forced-colors: active) {
+  .main-button-wrapper {
+    /* Tell Windows not to change styles for this component */
+    forced-color-adjust: none;
+  }
+
+  .side-buttons-container {
+    /* Tell Windows not to change styles for this component */
+    forced-color-adjust: none;
+  }
+}
