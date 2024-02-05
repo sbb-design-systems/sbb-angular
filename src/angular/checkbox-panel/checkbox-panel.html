@@ -4,8 +4,8 @@
     type="checkbox"
     class="cdk-visually-hidden sbb-selection-input sbb-checkbox-input sbb-transparent-parent-overlay"
     [id]="inputId"
-    [required]="required"
     [indeterminate]="indeterminate"
+    [required]="required"
     [checked]="checked"
     [attr.value]="value"
     [disabled]="disabled"
@@ -14,6 +14,7 @@
     [attr.aria-label]="ariaLabel || null"
     [attr.aria-labelledby]="ariaLabelledby"
     [attr.aria-describedby]="ariaDescribedby"
+    [attr.aria-checked]="indeterminate ? 'mixed' : null"
     (change)="_onInteractionEvent($event)"
     (click)="_onInputClick($event)"
   />
