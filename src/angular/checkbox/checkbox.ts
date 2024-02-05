@@ -14,13 +14,22 @@ import {
   Inject,
   Input,
   numberAttribute,
+  OnChanges,
   OnDestroy,
   Optional,
   Output,
+  SimpleChanges,
   ViewChild,
   ViewEncapsulation,
 } from '@angular/core';
-import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
+import {
+  AbstractControl,
+  ControlValueAccessor,
+  NG_VALIDATORS,
+  NG_VALUE_ACCESSOR,
+  ValidationErrors,
+  Validator,
+} from '@angular/forms';
 
 import {
   SbbCheckboxDefaultOptions,
@@ -38,6 +47,9 @@ const defaults = SBB_CHECKBOX_DEFAULT_OPTIONS_FACTORY();
  * Provider Expression that allows sbb-checkbox to register as a ControlValueAccessor.
  * This allows it to support [(ngModel)].
  * @docs-private
+ * @deprecated Will stop being exported.
+ * @breaking-change 19.0.0
+ *
  */
 export const SBB_CHECKBOX_CONTROL_VALUE_ACCESSOR: any = {
   provide: NG_VALUE_ACCESSOR,
@@ -57,7 +69,7 @@ export class SbbCheckboxChange {
 @Directive()
 // tslint:disable-next-line: naming-convention class-name
 export class _SbbCheckboxBase
-  implements ControlValueAccessor, AfterViewInit, OnDestroy, FocusableOption
+  implements ControlValueAccessor, AfterViewInit, OnDestroy, OnChanges, Validator, FocusableOption
 {
   /**
    * Attached to the aria-label attribute of the host element. In most cases, aria-labelledby will
@@ -116,6 +128,7 @@ export class _SbbCheckboxBase
   _onTouched: () => any = () => {};
 
   private _controlValueAccessorChangeFn: (value: any) => void = () => {};
+  private _validatorChangeFn = () => {};
 
   constructor(
     private _elementRef: ElementRef<HTMLElement>,
@@ -128,6 +141,12 @@ export class _SbbCheckboxBase
   ) {
     this._options = this._options || defaults;
     this.tabIndex = parseInt(tabIndex, 10) || 0;
+  }
+
+  ngOnChanges(changes: SimpleChanges) {
+    if (changes['required']) {
+      this._validatorChangeFn();
+    }
   }
 
   ngAfterViewInit() {
@@ -232,6 +251,16 @@ export class _SbbCheckboxBase
   // Implemented as part of ControlValueAccessor.
   setDisabledState(isDisabled: boolean) {
     this.disabled = isDisabled;
+  }
+
+  // Implemented as a part of Validator.
+  validate(control: AbstractControl<boolean>): ValidationErrors | null {
+    return this.required && control.value !== true ? { required: true } : null;
+  }
+
+  // Implemented as a part of Validator.
+  registerOnValidatorChange(fn: () => void): void {
+    this._validatorChangeFn = fn;
   }
 
   protected _emitChangeEvent() {
@@ -345,7 +374,14 @@ export class _SbbCheckboxBase
     '[class.sbb-selection-checked]': 'checked',
     '[class.sbb-selection-disabled]': 'disabled',
   },
-  providers: [SBB_CHECKBOX_CONTROL_VALUE_ACCESSOR],
+  providers: [
+    SBB_CHECKBOX_CONTROL_VALUE_ACCESSOR,
+    {
+      provide: NG_VALIDATORS,
+      useExisting: SbbCheckbox,
+      multi: true,
+    },
+  ],
   inputs: ['tabIndex'],
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush,
