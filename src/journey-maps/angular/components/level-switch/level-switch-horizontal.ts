@@ -71,15 +71,24 @@ export class SbbLevelSwitchHorizontal implements OnInit, OnDestroy {
   }
 
   toggleSideButtons(): void {
-    this.showSideButtons = !this.showSideButtons;
-    if (this.showSideButtons) {
-      this.startCountdown();
-      setTimeout(() => {
-        this._focusMatchingButton();
-      }, 0); // make sure side buttons are visible first
+    if (!this.showSideButtons) {
+      this._openSideButton();
     } else {
-      clearTimeout(this._countdownTimer);
+      this._closeSideButton();
     }
+  }
+
+  private _closeSideButton(): void {
+    this.showSideButtons = false;
+    clearTimeout(this._countdownTimer);
+  }
+
+  private _openSideButton(): void {
+    this.showSideButtons = true;
+    this.startCountdown();
+    setTimeout(() => {
+      this._focusMatchingButton();
+    }, 0); // make sure side buttons are visible first
   }
 
   private _focusMatchingButton(): void {
@@ -94,10 +103,20 @@ export class SbbLevelSwitchHorizontal implements OnInit, OnDestroy {
     clearTimeout(this._countdownTimer);
   }
 
+  onSideButtonsLeave(): void {
+    // blur / mouseout can happen while side buttons remain open
+    // or because they were closed by clicking on one of them
+    if (this.showSideButtons) {
+      this.startCountdown(); // if side buttons remain open
+    } else {
+      this.cancelCountdown(); // if side buttons are closed
+    }
+  }
+
   startCountdown(): void {
     clearTimeout(this._countdownTimer);
     this._countdownTimer = setTimeout(() => {
-      this.toggleSideButtons();
+      this._closeSideButton(); // when the countdown finishes, we always want to close
       this._ref.detectChanges();
     }, this._autoCollapseTimeout);
   }
@@ -111,7 +130,7 @@ export class SbbLevelSwitchHorizontal implements OnInit, OnDestroy {
   }
 
   onSideButtonClick(level: number | undefined): void {
-    this.toggleSideButtons();
+    this._closeSideButton(); // when the side button is clicked, we always want to close
     this.mainButton.nativeElement.focus();
     this._levelSwitchService.switchLevel(this.selectedLevel === level ? undefined : level);
   }
