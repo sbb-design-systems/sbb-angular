@@ -2680,25 +2680,25 @@
     "@babel/helper-validator-identifier" "^7.22.20"
     to-fast-properties "^2.0.0"
 
-"@bazel/bazelisk@1.18.0":
-  version "1.18.0"
-  resolved "https://registry.yarnpkg.com/@bazel/bazelisk/-/bazelisk-1.18.0.tgz#90ea8fc432ac6a7c83020e47a4bf59cfa2c81020"
-  integrity sha512-WqlTatsGKypeHYidqe3/6W8dkqkgJ13sMCEers/vH7dNwxojHrMQcuaH26sOnQG1eVn8UfHo78fy34yGAF3zsw==
-
-"@bazel/buildifier@6.3.2":
-  version "6.3.2"
-  resolved "https://registry.yarnpkg.com/@bazel/buildifier/-/buildifier-6.3.2.tgz#ec46866760f5d90e795fedcc743bc81cd38a2e51"
-  integrity sha512-UgHwLye6ppeWoe7LGkC7Ojv7Magmr1JiN8lBaI/DkMJWdpSJ8YK6BSGOVpwQGbPiXg91Nw39bgf9lir85W0qtg==
+"@bazel/bazelisk@1.19.0":
+  version "1.19.0"
+  resolved "https://registry.yarnpkg.com/@bazel/bazelisk/-/bazelisk-1.19.0.tgz#de12b6920b2c5505a776fadc0c9e75daae930c32"
+  integrity sha512-8PyRGRj/CN286IFHVILgYZ2lQ/JvgQ25ZEgoUAkpSnGmbPdQnKyHtTGEG+Sf0AISFqP5+PPzN162DcizZ/bR9w==
 
 "@bazel/buildifier@6.3.3":
   version "6.3.3"
   resolved "https://registry.yarnpkg.com/@bazel/buildifier/-/buildifier-6.3.3.tgz#ff21352ac9f72df6a53cc8ad9b862eb68918c1e9"
   integrity sha512-0f5eNWhylZQbiTddfVkIXKkugQadzZdonLw4ur58oK4X+gIHOZ42Xv94sepu8Di9UWKFXNc4zxuuTiWM22hGvw==
 
-"@bazel/buildozer@6.3.2":
-  version "6.3.2"
-  resolved "https://registry.yarnpkg.com/@bazel/buildozer/-/buildozer-6.3.2.tgz#6ea761921b64ad7f4731d44b454bdc68dc12a4c9"
-  integrity sha512-vdRgcopVt41BZLbC09/2QozmJO/tzUui0aoOPitaufhuJTn5K+iswOYKuKRdo1K6EFB7pupSeaZiJn1mMg1HAw==
+"@bazel/buildifier@6.4.0":
+  version "6.4.0"
+  resolved "https://registry.yarnpkg.com/@bazel/buildifier/-/buildifier-6.4.0.tgz#5d5e56fa1ba74aa2e55e0e84bd17ead95e3f0c02"
+  integrity sha512-upvdCVlXYOatvank2Ch5lfNe9Msgny1Fozdz4fIm8diVju4Kd2JmA9DVS/Tg8UlFX/ItAL1PdSyefWK8Ashwdg==
+
+"@bazel/buildozer@6.4.0":
+  version "6.4.0"
+  resolved "https://registry.yarnpkg.com/@bazel/buildozer/-/buildozer-6.4.0.tgz#71bf91bbdcdc619af4394cace2cdcc2adbcfd2a8"
+  integrity sha512-v4/R4JXSsQs9DGJfdqfXdVVv9t+fPfkpUmwEYZhoWfb9v69l7tyWRfXU1F5eWjHL6BMZ3phPEHjzrGOIhfe7gg==
 
 "@bazel/concatjs@5.8.1":
   version "5.8.1"
@@ -2714,10 +2714,10 @@
   resolved "https://registry.yarnpkg.com/@bazel/esbuild/-/esbuild-5.8.1.tgz#74668d33bfb29652cbe8e2852aa8dca5e0839e73"
   integrity sha512-8k4LL8P3ivCnFeBOcjiFxL8U+M5VtEGuOyIqm2hfEiP8xDWsZLS7YQ7KhshKJy7Elh2dlK9oGgMtl0D/x9kxxg==
 
-"@bazel/ibazel@0.23.7":
-  version "0.23.7"
-  resolved "https://registry.yarnpkg.com/@bazel/ibazel/-/ibazel-0.23.7.tgz#c994c25a5036d2555794f94b8a8aad30a7bfbd18"
-  integrity sha512-yXoEXfRXrrnr+3xz0nrL9N90A+SVInZzvReQqCwWxbFhRuEWawf1Nm5NCpOw+STwzH/N1Rbc+7McXIGaAVRi8g==
+"@bazel/ibazel@0.24.0":
+  version "0.24.0"
+  resolved "https://registry.yarnpkg.com/@bazel/ibazel/-/ibazel-0.24.0.tgz#050bc0158c0c63a4432d7adec74f5d637a5dbdea"
+  integrity sha512-lA0Ey6iorssDTJDwBQW0bCmzQyBTAtOj7L4mqmmlFT6LhIzTc3r0iFOuzxFBsDq8NbxVs/W9PRNIsC/LfpI1nA==
 
 "@bazel/jasmine@5.8.1":
   version "5.8.1"
