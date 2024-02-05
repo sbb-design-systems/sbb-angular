@@ -59,7 +59,6 @@ import {
 import {
   CanUpdateErrorState,
   getOptionScrollPosition,
-  mixinErrorState,
   mixinVariant,
   SbbErrorStateMatcher,
   SbbOptgroup,
@@ -67,6 +66,7 @@ import {
   SbbOptionSelectionChange,
   SBB_OPTION_PARENT_COMPONENT,
   TypeRef,
+  _ErrorStateTracker,
 } from '@sbb-esta/angular/core';
 import { SbbFormField, SbbFormFieldControl, SBB_FORM_FIELD } from '@sbb-esta/angular/form-field';
 import { SbbIcon } from '@sbb-esta/angular/icon';
@@ -137,31 +137,10 @@ export class SbbSelectChange {
   ) {}
 }
 
-// Boilerplate for applying mixins to SbbSelect.
-// tslint:disable-next-line:naming-convention
-const _SbbSelectMixinBase = mixinErrorState(
-  mixinVariant(
-    class {
-      /**
-       * Emits whenever the component state changes and should cause the parent
-       * form-field to update. Implemented as part of `SbbFormFieldControl`.
-       * @docs-private
-       */
-      readonly stateChanges = new Subject<void>();
-
-      constructor(
-        public _defaultErrorStateMatcher: SbbErrorStateMatcher,
-        public _parentForm: NgForm,
-        public _parentFormGroup: FormGroupDirective,
-        /**
-         * Form control bound to the component.
-         * Implemented as part of `SbbFormFieldControl`.
-         * @docs-private
-         */
-        public ngControl: NgControl,
-      ) {}
-    },
-  ),
+const _SbbSelectMixinBase = mixinVariant(
+  class {
+    constructor(public _elementRef: ElementRef) {}
+  },
 );
 
 @Component({
@@ -290,6 +269,16 @@ export class SbbSelect
 
   /** Emits whenever the component is destroyed. */
   private readonly _destroy = new Subject<void>();
+
+  /** Tracks the error state of the select. */
+  private _errorStateTracker: _ErrorStateTracker;
+
+  /**
+   * Emits whenever the component state changes and should cause the parent
+   * form-field to update. Implemented as part of `SbbFormFieldControl`.
+   * @docs-private
+   */
+  readonly stateChanges = new Subject<void>();
 
   /**
    * Implemented as part of MatFormFieldControl.
@@ -433,7 +422,13 @@ export class SbbSelect
   @Input('aria-labelledby') ariaLabelledby: string;
 
   /** Object used to control when error messages are shown. */
-  @Input() override errorStateMatcher: SbbErrorStateMatcher;
+  @Input()
+  get errorStateMatcher() {
+    return this._errorStateTracker.matcher;
+  }
+  set errorStateMatcher(value: SbbErrorStateMatcher) {
+    this._errorStateTracker.matcher = value;
+  }
 
   /** Time to wait in milliseconds after the last keystroke before moving focus to an item. */
   @Input({ transform: numberAttribute })
@@ -455,6 +450,14 @@ export class SbbSelect
     this.stateChanges.next();
   }
   private _id: string;
+
+  /** Whether the select is in an error state. */
+  get errorState() {
+    return this._errorStateTracker.errorState;
+  }
+  set errorState(value: boolean) {
+    this._errorStateTracker.errorState = value;
+  }
 
   /** Combined stream of all of the child options' change events. */
   readonly optionSelectionChanges: Observable<SbbOptionSelectionChange> = defer(() => {
@@ -504,17 +507,17 @@ export class SbbSelect
     private _changeDetectorRef: ChangeDetectorRef,
     private _ngZone: NgZone,
     defaultErrorStateMatcher: SbbErrorStateMatcher,
-    private _elementRef: ElementRef,
+    elementRef: ElementRef,
     @Optional() parentForm: NgForm,
     @Optional() parentFormGroup: FormGroupDirective,
     @Optional() @Inject(SBB_FORM_FIELD) private _parentFormField: SbbFormField,
-    @Self() @Optional() public override ngControl: NgControl,
+    @Self() @Optional() public ngControl: NgControl,
     @Attribute('tabindex') tabIndex: string,
     @Inject(SBB_SELECT_SCROLL_STRATEGY) scrollStrategyFactory: any,
     private _liveAnnouncer: LiveAnnouncer,
     @Optional() @Inject(SBB_SELECT_CONFIG) private _defaultOptions?: SbbSelectConfig,
   ) {
-    super(defaultErrorStateMatcher, parentForm, parentFormGroup, ngControl);
+    super(elementRef);
 
     if (this.ngControl) {
       // Note: we provide the value accessor through here, instead of
@@ -528,6 +531,13 @@ export class SbbSelect
       this.typeaheadDebounceInterval = _defaultOptions.typeaheadDebounceInterval;
     }
 
+    this._errorStateTracker = new _ErrorStateTracker(
+      defaultErrorStateMatcher,
+      ngControl,
+      parentFormGroup,
+      parentForm,
+      this.stateChanges,
+    );
     this._scrollStrategyFactory = scrollStrategyFactory;
     this._scrollStrategy = this._scrollStrategyFactory();
     this.tabIndex = parseInt(tabIndex, 10) || 0;
@@ -535,7 +545,7 @@ export class SbbSelect
     // Force setter to be called in case id was not specified.
     this.id = this.id;
 
-    this._overlayOrigin = new CdkOverlayOrigin(_elementRef);
+    this._overlayOrigin = new CdkOverlayOrigin(elementRef);
   }
 
   ngOnInit() {
@@ -741,6 +751,11 @@ export class SbbSelect
     }
 
     return this._selectionModel.selected[0].viewValue;
+  }
+
+  /** Refreshes the error state of the select. */
+  updateErrorState() {
+    this._errorStateTracker.updateErrorState();
   }
 
   /** Handles all keydown events on the select. */
