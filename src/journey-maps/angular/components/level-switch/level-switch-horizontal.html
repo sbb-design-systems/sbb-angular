@@ -13,9 +13,9 @@
             #sideButton
             class="side-button"
             (focus)="cancelCountdown()"
-            (blur)="startCountdown()"
+            (blur)="onSideButtonsLeave()"
             (mouseover)="cancelCountdown()"
-            (mouseout)="startCountdown()"
+            (mouseout)="onSideButtonsLeave()"
             (click)="onSideButtonClick(level)"
             (keydown.enter)="onSideButtonEnter(level, $event)"
             [ngClass]="{
