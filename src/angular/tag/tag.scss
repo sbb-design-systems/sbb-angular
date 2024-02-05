@@ -14,6 +14,13 @@
     transition: background-color var(--sbb-transition-fast-start);
     background-color: var(--sbb-tag-badge-background-color-disabled);
   }
+
+  .sbb-tag-icon:not(:empty) {
+    display: flex;
+    align-items: center;
+    height: var(--sbb-icon-size-default);
+    width: var(--sbb-icon-size-default);
+  }
 }
 
 .sbb-tag {
