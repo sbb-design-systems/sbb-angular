@@ -16,7 +16,7 @@ import {
   Self,
 } from '@angular/core';
 import { FormGroupDirective, NgControl, NgForm } from '@angular/forms';
-import { CanUpdateErrorState, mixinErrorState, SbbErrorStateMatcher } from '@sbb-esta/angular/core';
+import { SbbErrorStateMatcher, _ErrorStateTracker } from '@sbb-esta/angular/core';
 import { SbbFormFieldControl } from '@sbb-esta/angular/form-field';
 import { Subject } from 'rxjs';
 
@@ -36,31 +36,6 @@ const SBB_INPUT_INVALID_TYPES = [
   'reset',
   'submit',
 ];
-
-/** @docs-private */
-// tslint:disable-next-line:naming-convention
-const _SbbInputBase = mixinErrorState(
-  class {
-    /**
-     * Emits whenever the component state changes and should cause the parent
-     * form-field to update. Implemented as part of `SbbFormFieldControl`.
-     * @docs-private
-     */
-    readonly stateChanges = new Subject<void>();
-
-    constructor(
-      public _defaultErrorStateMatcher: SbbErrorStateMatcher,
-      public _parentForm: NgForm,
-      public _parentFormGroup: FormGroupDirective,
-      /**
-       * Form control bound to the component.
-       * Implemented as part of `SbbFormFieldControl`.
-       * @docs-private
-       */
-      public ngControl: NgControl,
-    ) {}
-  },
-);
 
 /** Directive that allows a native input to work inside a `SbbFormField`. */
 @Directive({
@@ -86,17 +61,11 @@ const _SbbInputBase = mixinErrorState(
   standalone: true,
 })
 export class SbbInput
-  extends _SbbInputBase
-  implements
-    SbbFormFieldControl<any>,
-    AfterViewInit,
-    OnChanges,
-    DoCheck,
-    OnDestroy,
-    CanUpdateErrorState
+  implements SbbFormFieldControl<any>, AfterViewInit, OnChanges, DoCheck, OnDestroy
 {
   private _previousNativeValue: any;
   private _inputValueAccessor: { value: any };
+  private _errorStateTracker: _ErrorStateTracker;
 
   /** Whether the component is a native html select. */
   readonly _isNativeSelect: boolean;
@@ -121,6 +90,12 @@ export class SbbInput
    * @docs-private
    */
   autofilled: boolean = false;
+
+  /**
+   * Implemented as part of SbbFormFieldControl.
+   * @docs-private
+   */
+  stateChanges: Subject<void> = new Subject<void>();
 
   /**
    * Implemented as part of SbbFormFieldControl.
@@ -195,7 +170,13 @@ export class SbbInput
   private _type = 'text';
 
   /** An object used to control when error messages are shown. */
-  @Input() override errorStateMatcher: SbbErrorStateMatcher;
+  @Input()
+  get errorStateMatcher() {
+    return this._errorStateTracker.matcher;
+  }
+  set errorStateMatcher(value: SbbErrorStateMatcher) {
+    this._errorStateTracker.matcher = value;
+  }
 
   /**
    * Implemented as part of SbbFormFieldControl.
@@ -230,6 +211,14 @@ export class SbbInput
   }
   private _readonly = false;
 
+  /** Whether the input is in an error state. */
+  get errorState() {
+    return this._errorStateTracker.errorState;
+  }
+  set errorState(value: boolean) {
+    this._errorStateTracker.errorState = value;
+  }
+
   /**
    * Implemented as part of SbbFormFieldControl.
    * @docs-private
@@ -256,7 +245,7 @@ export class SbbInput
     private _elementRef: ElementRef<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>,
     private _platform: Platform,
     /** @docs-private */
-    @Optional() @Self() public override ngControl: NgControl,
+    @Optional() @Self() public ngControl: NgControl,
     @Optional() parentForm: NgForm,
     @Optional() parentFormGroup: FormGroupDirective,
     defaultErrorStateMatcher: SbbErrorStateMatcher,
@@ -267,7 +256,6 @@ export class SbbInput
     private _autofillMonitor: AutofillMonitor,
     ngZone: NgZone,
   ) {
-    super(defaultErrorStateMatcher, parentForm, parentFormGroup, ngControl);
     const element = this._elementRef.nativeElement;
     const nodeName = element.nodeName.toLowerCase();
 
@@ -285,7 +273,13 @@ export class SbbInput
         _elementRef.nativeElement.addEventListener('keyup', this._iOSKeyupListener);
       });
     }
-
+    this._errorStateTracker = new _ErrorStateTracker(
+      defaultErrorStateMatcher,
+      ngControl,
+      parentFormGroup,
+      parentForm,
+      this.stateChanges,
+    );
     this._isNativeSelect = nodeName === 'select';
     this._isTextarea = nodeName === 'textarea';
 
@@ -338,6 +332,11 @@ export class SbbInput
   /** Focuses the input. */
   focus(options?: FocusOptions): void {
     this._elementRef.nativeElement.focus(options);
+  }
+
+  /** Refreshes the error state of the input. */
+  updateErrorState() {
+    this._errorStateTracker.updateErrorState();
   }
 
   /** Callback for the cases where the focused state of the input changes. */

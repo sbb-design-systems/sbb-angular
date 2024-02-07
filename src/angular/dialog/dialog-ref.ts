@@ -10,7 +10,7 @@ import { SbbDialogConfig, SbbDialogPosition } from './dialog-config';
 import { _SbbDialogContainerBase } from './dialog-container';
 
 /** Possible states of the lifecycle of a dialog. */
-export const enum SbbDialogState {
+export enum SbbDialogState {
   OPEN,
   CLOSING,
   CLOSED,

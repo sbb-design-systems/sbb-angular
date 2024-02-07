@@ -240,7 +240,7 @@
     </unit>
     <unit id="sbbTextareaCounterText">
       <notes>
-        <note category="location">../../../../../../src/angular/textarea/textarea/textarea.ts:83</note>
+        <note category="location">../../../../../../src/angular/textarea/textarea/textarea.ts:52</note>
         <note category="description">Counter text for textarea</note>
       </notes>
       <segment>

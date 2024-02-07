@@ -2,6 +2,20 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [17.5.2](https://github.com/sbb-design-systems/sbb-angular/compare/17.5.1...17.5.2) (2024-02-05)
+
+
+### Bug Fixes
+
+* **angular/autocomplete:** clear selected option if it is removed while typing ([#2176](https://github.com/sbb-design-systems/sbb-angular/issues/2176)) ([1149923](https://github.com/sbb-design-systems/sbb-angular/commit/1149923b15a56eeab7a606489ce4816341fc9c12)), closes [#2010](https://github.com/sbb-design-systems/sbb-angular/issues/2010)
+* **angular/checkbox:** move required validation into component ([#2168](https://github.com/sbb-design-systems/sbb-angular/issues/2168)) ([fe8a48a](https://github.com/sbb-design-systems/sbb-angular/commit/fe8a48a3b4740d62ce3363aa62d8799564009eea))
+* **angular/dialog:** sbb-dialog-title should work under OnPush `viewContainerRef` ([#2158](https://github.com/sbb-design-systems/sbb-angular/issues/2158)) ([9efa4db](https://github.com/sbb-design-systems/sbb-angular/commit/9efa4db8d99b605c874d617b86faaba69d02628c))
+* **angular/dialog:** use enum instead of const enum ([#2174](https://github.com/sbb-design-systems/sbb-angular/issues/2174)) ([a01c8ea](https://github.com/sbb-design-systems/sbb-angular/commit/a01c8eaac5020df2047f0a2655a1fd76f3d9b49f))
+* **journey-maps:** added high-contrast-mode controls to horizontal level switch ([#2167](https://github.com/sbb-design-systems/sbb-angular/issues/2167)) ([e89b7e8](https://github.com/sbb-design-systems/sbb-angular/commit/e89b7e804bc9ebdca2a3c2b9487b0b6f5b80c640))
+* **journey-maps:** prevent opening side buttons on timeout ([#2166](https://github.com/sbb-design-systems/sbb-angular/issues/2166)) ([38ee508](https://github.com/sbb-design-systems/sbb-angular/commit/38ee5088e471eb30a76cffdf1ef81a410b2b33e4))
+* **journey-maps:** use right color for disabled in dark-mode ([#2163](https://github.com/sbb-design-systems/sbb-angular/issues/2163)) ([01b7b78](https://github.com/sbb-design-systems/sbb-angular/commit/01b7b7809f6c01f3074c41d238cbf0b1b2583f19))
+* **multiple:** import ANIMATION_MODULE_TYPE from core ([#2161](https://github.com/sbb-design-systems/sbb-angular/issues/2161)) ([9baee4b](https://github.com/sbb-design-systems/sbb-angular/commit/9baee4ba2985f9227db0f3488b7e4c9ed79253d0))
+
 ### [17.5.1](https://github.com/sbb-design-systems/sbb-angular/compare/17.5.0...17.5.1) (2024-01-30)
 
 

@@ -19,8 +19,8 @@
     "sourceMap": false,
     "strictNullChecks": true,
     "target": "es2020",
-    "types": ["jasmine", "node"],
+    "types": ["jasmine", "node"]
   },
   "include": ["**/*"],
-  "exclude": ["*/files/**/*", "**/index.d.ts"],
+  "exclude": ["*/files/**/*", "**/index.d.ts"]
 }

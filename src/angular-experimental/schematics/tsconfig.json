@@ -16,10 +16,10 @@
     "declaration": true,
     "target": "es6",
     "types": ["jasmine", "node"],
-    "baseUrl": ".",
+    "baseUrl": "."
   },
   "exclude": ["**/files/**/*", "**/*.spec.ts", "ng-add/test-cases/**/*", "testing/**/*.ts"],
   "bazelOptions": {
-    "suppressTsconfigOverrideWarnings": true,
-  },
+    "suppressTsconfigOverrideWarnings": true
+  }
 }
