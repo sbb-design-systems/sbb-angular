@@ -375,10 +375,10 @@ export class SbbJourneyMaps implements OnInit, AfterViewInit, OnDestroy, OnChang
   }
 
   set selectedMarkerId(markerId: string | undefined) {
-    if (!!markerId) {
+    if (markerId) {
       const selectedMarker = this.markerOptions.markers?.find((marker) => marker.id === markerId);
       this.onMarkerSelected(selectedMarker!);
-    } else if (!!this.selectedMarker) {
+    } else if (this.selectedMarker) {
       this.onMarkerUnselected();
     }
   }
@@ -397,7 +397,7 @@ export class SbbJourneyMaps implements OnInit, AfterViewInit, OnDestroy, OnChang
     }
     if (!value) {
       this._markerOrPoiSelectionStateService.deselectSbbMarker();
-    } else if (value && value.markerUrl) {
+    } else if (value?.markerUrl) {
       open(value.markerUrl, '_self');
     } else {
       this._unselectPoi();
@@ -490,7 +490,7 @@ export class SbbJourneyMaps implements OnInit, AfterViewInit, OnDestroy, OnChang
    * Only works for POIs that are currently visible in the map's viewport.
    */
   setSelectedPoi(sbbId: string | undefined) {
-    if (!!sbbId) {
+    if (sbbId) {
       this._selectOrDeselectPoi(sbbId, true);
     } else {
       this._unselectPoi();
@@ -505,7 +505,7 @@ export class SbbJourneyMaps implements OnInit, AfterViewInit, OnDestroy, OnChang
   }
 
   private _selectOrDeselectPoi(sbbId: string, makeSelected: boolean) {
-    if (!!sbbId) {
+    if (sbbId) {
       const visiblePoiFeatures = this._mapEventUtils.queryVisibleFeaturesByFilter(
         this._map,
         'POI',
