@@ -58,7 +58,7 @@ jobs:
             if (packageDeletionFailed) {
               throw new Error('A package deletion failed, please check the log.');
             }
-      - uses: actions/delete-package-versions@v4
+      - uses: actions/delete-package-versions@v5
         with:
           package-name: 'sbb-angular/showcase-preview'
           package-type: 'container'
