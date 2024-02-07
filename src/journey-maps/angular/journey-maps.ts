@@ -169,8 +169,8 @@ export class SbbJourneyMaps implements OnInit, AfterViewInit, OnDestroy, OnChang
   /** @docs-private */
   touchOverlayStyleClass: string = '';
 
-  /** in landscape mode, when the map height is below {@link SbbJourneyMaps#levelSwitchHorizontalThreshold},
-   * the level switch control collapses to a horizontal accordion */
+  /** In landscape mode, when the map height is below {@link SbbJourneyMaps#levelSwitchHorizontalThreshold},
+   * the level switch control collapses into a horizontal accordion */
   isLevelSwitchHorizontal: boolean = false;
   /** @docs-private */
   levelSwitchHorizontalThreshold: number = 580; // 580px
