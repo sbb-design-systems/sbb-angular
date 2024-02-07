@@ -169,8 +169,11 @@ export class SbbJourneyMaps implements OnInit, AfterViewInit, OnDestroy, OnChang
   /** @docs-private */
   touchOverlayStyleClass: string = '';
 
+  /** in landscape mode, when the map height is below {@link SbbJourneyMaps#levelSwitchHorizontalThreshold},
+   * the level switch control collapses to a horizontal accordion */
   isLevelSwitchHorizontal: boolean = false;
-  isLevelSwitchHorizontalThreshold: number = 580; // 580px
+  /** @docs-private */
+  levelSwitchHorizontalThreshold: number = 580; // 580px
   private _map: MaplibreMap;
   @ViewChild('map') private _mapElementRef: ElementRef<HTMLElement>;
   @ViewChild(SbbFeatureEventListener)
@@ -271,6 +274,7 @@ export class SbbJourneyMaps implements OnInit, AfterViewInit, OnDestroy, OnChang
     };
   }
 
+  /** @docs-private */
   get isDarkMode(): boolean {
     return !!this._styleOptions.mode && this._styleOptions.mode === 'dark';
   }
@@ -384,6 +388,7 @@ export class SbbJourneyMaps implements OnInit, AfterViewInit, OnDestroy, OnChang
   }
 
   /** The currently selected map marker or undefined if none is selected. */
+  /** @docs-private */
   get selectedMarker(): SbbMarker | undefined {
     return this._markerOrPoiSelectionStateService.getSelectedSbbMarker();
   }
@@ -944,8 +949,7 @@ export class SbbJourneyMaps implements OnInit, AfterViewInit, OnDestroy, OnChang
     const height = this._mapElementRef.nativeElement.offsetHeight;
     const width = this._mapElementRef.nativeElement.offsetWidth;
     const isLandscapeMode = height < width;
-    this.isLevelSwitchHorizontal =
-      isLandscapeMode && height < this.isLevelSwitchHorizontalThreshold;
+    this.isLevelSwitchHorizontal = isLandscapeMode && height < this.levelSwitchHorizontalThreshold;
   }
 
   private _getZooomLevels(): SbbZoomLevels {
