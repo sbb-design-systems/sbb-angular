@@ -272,7 +272,9 @@ export class SbbJourneyMaps implements OnInit, AfterViewInit, OnDestroy, OnChang
   }
 
   get isDarkMode(): boolean {
-    return !!this._styleOptions.mode && this._styleOptions.mode === 'dark';
+    return (
+      !this._isAerialSelected && !!this._styleOptions.mode && this._styleOptions.mode === 'dark'
+    );
   }
 
   /**
