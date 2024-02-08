@@ -26,6 +26,9 @@
       border-radius: 8px;
       overflow-y: auto;
 
+      background-color: esta.$sbbColorWhite;
+      color: esta.$sbbColorBlack;
+
       @at-root .jmc-container.dark #{&} {
         background-color: esta.$sbbColorBlack;
         color: esta.$sbbColorWhite;
@@ -47,6 +50,14 @@
     }
 
     .maplibregl-popup-tip {
+      border-top-color: esta.$sbbColorWhite;
+      border-bottom-color: esta.$sbbColorWhite;
+
+      @at-root .jmc-container.dark #{&} {
+        border-top-color: esta.$sbbColorBlack;
+        border-bottom-color: esta.$sbbColorBlack;
+      }
+
       @include esta.mq($to: tabletPortrait) {
         display: none;
       }
