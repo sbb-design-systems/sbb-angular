@@ -2,6 +2,14 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [17.5.3](https://github.com/sbb-design-systems/sbb-angular/compare/17.5.2...17.5.3) (2024-02-12)
+
+
+### Bug Fixes
+
+* **angular/menu:** don't visually focus first item if menu is opened ([#2187](https://github.com/sbb-design-systems/sbb-angular/issues/2187)) ([dced919](https://github.com/sbb-design-systems/sbb-angular/commit/dced919c2514475f294e95dcec0c7f32ff2c5db6)), closes [#2105](https://github.com/sbb-design-systems/sbb-angular/issues/2105)
+* **journey-maps:** fix popup triangle and aerial dark problems ([#2184](https://github.com/sbb-design-systems/sbb-angular/issues/2184)) ([b6cda4f](https://github.com/sbb-design-systems/sbb-angular/commit/b6cda4f4f45e6a7df62c59fd208cc3d181b18ece))
+
 ### [17.5.2](https://github.com/sbb-design-systems/sbb-angular/compare/17.5.1...17.5.2) (2024-02-05)
 
 
