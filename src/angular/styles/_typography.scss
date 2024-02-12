@@ -3013,7 +3013,10 @@ $menuItemPaddingTopBottom: 4;
     @include sbb.user-select(none);
   }
 
-  &:is(:not(:disabled):not([disabled]):not(.sbb-disabled):is(:hover, :focus), .sbb-focused) {
+  &:is(
+      :not(:disabled):not([disabled]):not(.sbb-disabled):is(:hover, .cdk-keyboard-focused),
+      .sbb-focused
+    ) {
     :is(&, & strong) {
       color: var(--sbb-color-red);
 
