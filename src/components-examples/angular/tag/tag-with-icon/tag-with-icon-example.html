@@ -1,0 +1,24 @@
+<sbb-tags>
+  <sbb-tag svgIcon="train-small" [amount]="7">Trains</sbb-tag>
+  <sbb-tag aria-label="Cars" [amount]="1" svgIcon="car-small"></sbb-tag>
+  <sbb-tag aria-label="Bicycles" [amount]="10" svgIcon="bicycle-small"></sbb-tag>
+</sbb-tags>
+
+<p>Tag Link with Icon</p>
+<a
+  sbb-tag-link
+  href="https://www.sbb.ch"
+  target="_blank"
+  svgIcon="paper-aeroplane-small"
+  [amount]="1"
+  >Link one</a
+>
+&nbsp;
+<a
+  sbb-tag-link
+  href="https://www.sbb.ch"
+  target="_blank"
+  svgIcon="airplane-small"
+  [amount]="2"
+  aria-label="Link to airplanes"
+></a>
