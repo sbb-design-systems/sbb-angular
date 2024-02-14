@@ -17,9 +17,14 @@
 
   .sbb-tag-icon:not(:empty) {
     display: flex;
-    align-items: center;
+    align-self: center;
     height: var(--sbb-icon-size-default);
     width: var(--sbb-icon-size-default);
+    margin-right: calc(#{sbb.pxToRem(4)} * var(--sbb-scaling-factor));
+  }
+
+  .sbb-tag-content:not(:empty) {
+    margin-right: calc(#{sbb.pxToRem(4)} * var(--sbb-scaling-factor));
   }
 }
 

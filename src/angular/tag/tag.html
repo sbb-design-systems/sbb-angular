@@ -20,12 +20,10 @@
 
   @if (svgIcon) {
     <sbb-icon [svgIcon]="svgIcon" class="sbb-tag-icon"></sbb-icon>
-    <span>&nbsp;</span>
   }
   <!-- Add an invisible span so JAWS can read the label -->
   <span style="display: none">&nbsp;</span>
   <span class="sbb-tag-content"><ng-content></ng-content></span>
-  <span>&nbsp;</span>
   <span
     [sbbBadge]="amount"
     [sbbBadgeDisabled]="this.disabled || !this.checked"

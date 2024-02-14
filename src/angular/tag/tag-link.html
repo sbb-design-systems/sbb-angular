@@ -1,9 +1,7 @@
 @if (svgIcon) {
   <sbb-icon [svgIcon]="svgIcon" class="sbb-tag-icon"></sbb-icon>
-  <span>&nbsp;</span>
 }
-<ng-content></ng-content>
-<span>&nbsp;</span>
+<span class="sbb-tag-content"><ng-content></ng-content></span>
 <span
   [sbbBadge]="amount"
   sbbBadgePosition="after"
