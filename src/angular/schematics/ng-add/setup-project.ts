@@ -2,25 +2,19 @@ import { logging } from '@angular-devkit/core';
 import { ProjectDefinition } from '@angular-devkit/core/src/workspace';
 import {
   chain,
+  noop,
   Rule,
   SchematicContext,
   SchematicsException,
   Tree,
 } from '@angular-devkit/schematics';
 import {
-  addModuleImportToRootModule,
   getProjectBuildTargets,
   getProjectFromWorkspace,
-  getProjectMainFile,
   getProjectTargetOptions,
   getProjectTestTargets,
-  hasNgModuleImport,
 } from '@angular/cdk/schematics';
-import {
-  addModuleImportToStandaloneBootstrap,
-  importsProvidersFrom,
-} from '@schematics/angular/private/components';
-import { getAppModulePath } from '@schematics/angular/utility/ng-ast-utils';
+import { addRootProvider } from '@schematics/angular/utility';
 import { getWorkspace, updateWorkspace } from '@schematics/angular/utility/workspace';
 import { ProjectType } from '@schematics/angular/utility/workspace-models';
 
@@ -45,7 +39,17 @@ export default function (options: Schema): Rule {
     const project = getProjectFromWorkspace(workspace, options.project);
 
     if (project.extensions.projectType === ProjectType.Application) {
-      return chain([addAnimationsModule(options), addAndConfigureTypography(options)]);
+      return chain([
+        options.animations === 'excluded'
+          ? noop()
+          : addRootProvider(options.project, ({ code, external }) => {
+              return code`${external(
+                'provideAnimationsAsync',
+                '@angular/platform-browser/animations/async',
+              )}(${options.animations === 'disabled' ? `'noop'` : ''})`;
+            }),
+        addAndConfigureTypography(options),
+      ]);
     }
     context.logger.warn(
       '@sbb-esta/angular has been set up in your workspace. There is no additional setup ' +
@@ -55,118 +59,6 @@ export default function (options: Schema): Rule {
     );
     return;
   };
-}
-
-/**
- * Adds an animation module to the root module of the specified project. In case the "animations"
- * option is set to false, we still add the `NoopAnimationsModule` because otherwise various
- * components of Sbb Angular will throw an exception.
- */
-function addAnimationsModule(options: Schema) {
-  return async (host: Tree, context: SchematicContext) => {
-    const workspace = await getWorkspace(host);
-    const project = getProjectFromWorkspace(workspace, options.project);
-    const mainFilePath = getProjectMainFile(project);
-
-    try {
-      addAnimationsModuleToNonStandaloneApp(host, project, mainFilePath, context, options);
-    } catch (e) {
-      if ((e as { message?: string }).message?.includes('Bootstrap call not found')) {
-        addAnimationsModuleToStandaloneApp(host, project, mainFilePath, context, options);
-      } else {
-        throw e;
-      }
-    }
-  };
-}
-
-/** Adds the animations module to an app that is bootstrapped using the standalone component APIs. */
-function addAnimationsModuleToStandaloneApp(
-  host: Tree,
-  project: ProjectDefinition,
-  mainFilePath: string,
-  context: SchematicContext,
-  options: Schema,
-) {
-  if (options.animations === 'enabled') {
-    // In case the project explicitly uses the NoopAnimationsModule, we should print a warning
-    // message that makes the user aware of the fact that we won't automatically set up
-    // animations. If we would add the BrowserAnimationsModule while the NoopAnimationsModule
-    // is already configured, we would cause unexpected behavior and runtime exceptions.
-    if (importsProvidersFrom(host, mainFilePath, NOOP_ANIMATIONS_MODULE_NAME)) {
-      context.logger.error(
-        `Could not set up "${BROWSER_ANIMATIONS_MODULE_NAME}" ` +
-          `because "${NOOP_ANIMATIONS_MODULE_NAME}" is already imported.`,
-      );
-      context.logger.info(`Please manually set up browser animations.`);
-    } else {
-      addModuleImportToStandaloneBootstrap(
-        host,
-        mainFilePath,
-        BROWSER_ANIMATIONS_MODULE_NAME,
-        '@angular/platform-browser/animations',
-      );
-    }
-  } else if (
-    options.animations === 'disabled' &&
-    !importsProvidersFrom(host, mainFilePath, BROWSER_ANIMATIONS_MODULE_NAME)
-  ) {
-    // Do not add the NoopAnimationsModule module if the project already explicitly uses
-    // the BrowserAnimationsModule.
-    addModuleImportToStandaloneBootstrap(
-      host,
-      mainFilePath,
-      NOOP_ANIMATIONS_MODULE_NAME,
-      '@angular/platform-browser/animations',
-    );
-  }
-}
-
-/**
- * Adds the animations module to an app that is bootstrap
- * using the non-standalone component APIs.
- */
-function addAnimationsModuleToNonStandaloneApp(
-  host: Tree,
-  project: ProjectDefinition,
-  mainFile: string,
-  context: SchematicContext,
-  options: Schema,
-) {
-  const appModulePath = getAppModulePath(host, mainFile);
-
-  if (options.animations === 'enabled') {
-    // In case the project explicitly uses the NoopAnimationsModule, we should print a warning
-    // message that makes the user aware of the fact that we won't automatically set up
-    // animations. If we would add the BrowserAnimationsModule while the NoopAnimationsModule
-    // is already configured, we would cause unexpected behavior and runtime exceptions.
-    if (hasNgModuleImport(host, appModulePath, NOOP_ANIMATIONS_MODULE_NAME)) {
-      context.logger.error(
-        `Could not set up "${BROWSER_ANIMATIONS_MODULE_NAME}" ` +
-          `because "${NOOP_ANIMATIONS_MODULE_NAME}" is already imported.`,
-      );
-      context.logger.info(`Please manually set up browser animations.`);
-    } else {
-      addModuleImportToRootModule(
-        host,
-        BROWSER_ANIMATIONS_MODULE_NAME,
-        '@angular/platform-browser/animations',
-        project,
-      );
-    }
-  } else if (
-    options.animations === 'disabled' &&
-    !hasNgModuleImport(host, appModulePath, BROWSER_ANIMATIONS_MODULE_NAME)
-  ) {
-    // Do not add the NoopAnimationsModule module if the project already explicitly uses
-    // the BrowserAnimationsModule.
-    addModuleImportToRootModule(
-      host,
-      NOOP_ANIMATIONS_MODULE_NAME,
-      '@angular/platform-browser/animations',
-      project,
-    );
-  }
 }
 
 function addAndConfigureTypography(options: Schema): Rule {
