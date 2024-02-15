@@ -577,7 +577,7 @@ describe('SBB Tag Link', () => {
     fixture.detectChanges();
 
     const linkTag = fixture.debugElement.query(By.css('.sbb-tag-link'));
-    expect(linkTag.nativeElement.textContent).toEqual('Trains 5');
+    expect(linkTag.nativeElement.textContent).toEqual('Trains5');
     expect(extractBadgeDescription(fixture.debugElement)).toEqual('amount');
   });
 });
