@@ -1,19 +1,11 @@
 import { SchematicsException, Tree } from '@angular-devkit/schematics';
 import { SchematicTestRunner } from '@angular-devkit/schematics/testing';
-import { addModuleImportToRootModule } from '@angular/cdk/schematics';
-import { createTestApp } from '@sbb-esta/angular/schematics/testing';
-import { getWorkspace } from '@schematics/angular/utility/workspace';
+import { createTestApp, getFileContent } from '@sbb-esta/angular/schematics/testing';
 
 import { COLLECTION_PATH } from '../paths';
 
 import { addPackageToPackageJson } from './package-config';
-import { Schema } from './schema';
-import {
-  BROWSER_ANIMATIONS_MODULE_NAME,
-  LEAN_TEST_POLYFILL_PATH,
-  NOOP_ANIMATIONS_MODULE_NAME,
-  TYPOGRAPHY_CSS_PATH,
-} from './setup-project';
+import { LEAN_TEST_POLYFILL_PATH, TYPOGRAPHY_CSS_PATH } from './setup-project';
 
 describe('ngAdd', () => {
   const baseOptions = { project: 'sbb-angular' };
@@ -129,9 +121,12 @@ describe('ngAdd', () => {
       readJsonFile(tree, '/angular.json').projects['sbb-angular'].architect.test.options.styles,
     ).toEqual([TYPOGRAPHY_CSS_PATH, 'projects/sbb-angular/src/styles.css']);
 
-    expect(readStringFile(tree, '/projects/sbb-angular/src/app/app.module.ts')).toContain(
-      BROWSER_ANIMATIONS_MODULE_NAME,
+    const fileContent = getFileContent(tree, '/projects/sbb-angular/src/app/app.module.ts');
+
+    expect(fileContent).toContain(
+      `import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';`,
     );
+    expect(fileContent).toContain(`provideAnimationsAsync()`);
   });
 
   it('should not add typography a second time if entry already exists', async () => {
@@ -155,130 +150,71 @@ describe('ngAdd', () => {
     ).toEqual([TYPOGRAPHY_CSS_PATH]);
   });
 
-  describe('animations enabled', () => {
-    it('should add the BrowserAnimationsModule to the project module', async () => {
-      const tree = await runner.runSchematic('ng-add-setup-project', baseOptions, appTree);
-      const fileContent = readStringFile(tree, '/projects/sbb-angular/src/app/app.module.ts');
-      expect(fileContent)
-        .withContext('Expected the project app module to import the "BrowserAnimationsModule".')
-        .toContain('BrowserAnimationsModule');
-    });
+  it('should add provideAnimationsAsync to the project module', async () => {
+    const tree = await runner.runSchematic('ng-add-setup-project', baseOptions, appTree);
+    const fileContent = getFileContent(tree, '/projects/sbb-angular/src/app/app.module.ts');
 
-    it('should not add BrowserAnimationsModule if NoopAnimationsModule is set up', async () => {
-      const workspace = await getWorkspace(appTree);
-      const projects = Array.from(workspace.projects.values());
-      expect(projects.length).toBe(1);
-      const [project] = projects;
-      // Simulate the case where a developer uses `ng-add` on an Angular CLI project which already
-      // explicitly uses the `NoopAnimationsModule`. It would be wrong to forcibly enable browser
-      // animations without knowing what other components would be affected. In this case, we
-      // just print a warning message.
-      addModuleImportToRootModule(
-        appTree,
-        'NoopAnimationsModule',
-        '@angular/platform-browser/animations',
-        project,
-      );
-      await runner.runSchematic('ng-add-setup-project', baseOptions, appTree);
-      expect(errorOutput.length).toBe(1);
-      expect(errorOutput[0]).toMatch(/Could not set up "BrowserAnimationsModule"/);
-    });
-
-    it('should add the BrowserAnimationsModule to a bootstrapApplication call', async () => {
-      appTree.delete('/projects/sbb-angular/src/app/app.module.ts');
-      appTree.overwrite(
-        '/projects/sbb-angular/src/main.ts',
-        `
-          import { importProvidersFrom } from '@angular/core';
-          import { BrowserModule, bootstrapApplication } from '@angular/platform-browser';
-          import { AppComponent } from './app/app.component';
-          bootstrapApplication(AppComponent, {
-            providers: [{provide: 'foo', useValue: 1}, importProvidersFrom(BrowserModule)]
-          });
-        `,
-      );
-
-      const tree = await runner.runSchematic('ng-add-setup-project', baseOptions, appTree);
-      const fileContent = readStringFile(tree, '/projects/sbb-angular/src/main.ts');
-      expect(fileContent).toContain('importProvidersFrom(BrowserModule, BrowserAnimationsModule)');
-    });
-
-    it('should not add BrowserAnimationsModule if NoopAnimationsModule is set up in a bootstrapApplication call', async () => {
-      appTree.delete('/projects/sbb-angular/src/app/app.module.ts');
-      appTree.overwrite(
-        '/projects/sbb-angular/src/main.ts',
-        `
-          import { importProvidersFrom } from '@angular/core';
-          import { bootstrapApplication } from '@angular/platform-browser';
-          import { NoopAnimationsModule } from '@angular/platform-browser/animations';
-          import { AppComponent } from './app/app.component';
-
-          bootstrapApplication(AppComponent, {
-            providers: [{provide: 'foo', useValue: 1}, importProvidersFrom(NoopAnimationsModule)]
-          });
-        `,
-      );
-
-      await runner.runSchematic('ng-add-setup-project', baseOptions, appTree);
-
-      expect(errorOutput.length).toBe(1);
-      expect(errorOutput[0]).toMatch(
-        /Could not set up "BrowserAnimationsModule" because "NoopAnimationsModule" is already imported/,
-      );
-    });
+    expect(fileContent).toContain('provideAnimationsAsync()');
+    expect(fileContent).toContain(
+      `import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';`,
+    );
   });
 
-  describe('animations disabled', () => {
-    it('should add NoopAnimationsModule', async () => {
-      const tree = await runner.runSchematic(
-        'ng-add-setup-project',
-        { animations: 'disabled', ...baseOptions } as Schema,
-        appTree,
-      );
+  it('should add the provideAnimationsAsync to a bootstrapApplication call', async () => {
+    appTree.delete('/projects/sbb-angular/src/app/app.module.ts');
+    appTree.create(
+      '/projects/sbb-angular/src/app/app.config.ts',
+      `
+      export const appConfig = {
+        providers: [{ provide: 'foo', useValue: 1 }]
+      };
+    `,
+    );
+    appTree.overwrite(
+      '/projects/sbb-angular/src/main.ts',
+      `
+        import { bootstrapApplication } from '@angular/platform-browser';
+        import { AppComponent } from './app/app.component';
+        import { appConfig } from './app/app.config';
 
-      expect(readStringFile(tree, '/projects/sbb-angular/src/app/app.module.ts'))
-        .withContext('Expected the project app module to import the "NoopAnimationsModule".')
-        .toContain(NOOP_ANIMATIONS_MODULE_NAME);
-    });
+        bootstrapApplication(AppComponent, appConfig);
+      `,
+    );
 
-    it('should not add NoopAnimationsModule if BrowserAnimationsModule is set up', async () => {
-      const workspace = await getWorkspace(appTree);
-      const projects = Array.from(workspace.projects.values());
-      expect(projects.length).toBe(1);
-      const project = projects[0];
-      // Simulate the case where a developer uses `ng-add` on an Angular CLI project which already
-      // explicitly uses the `BrowserAnimationsModule`. It would be wrong to forcibly change
-      // to noop animations.
-      addModuleImportToRootModule(
-        appTree,
-        'BrowserAnimationsModule',
-        '@angular/platform-browser/animations',
-        project,
-      );
+    const tree = await runner.runSchematic('ng-add-setup-project', baseOptions, appTree);
+    const fileContent = getFileContent(tree, '/projects/sbb-angular/src/app/app.config.ts');
 
-      const fileContent = readStringFile(appTree, '/projects/sbb-angular/src/app/app.module.ts');
-
-      expect(fileContent).not.toContain(
-        'NoopAnimationsModule',
-        'Expected the project app module to not import the "NoopAnimationsModule".',
-      );
-    });
+    expect(fileContent).toContain(
+      `import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';`,
+    );
+    expect(fileContent).toContain(`[{ provide: 'foo', useValue: 1 }, provideAnimationsAsync()]`);
   });
 
-  describe('animations excluded', () => {
-    it('should not add any animations code if animations are excluded', async () => {
-      const localTree = await runner.runSchematic(
-        'ng-add-setup-project',
-        { animations: 'excluded', ...baseOptions },
-        appTree,
-      );
-      const fileContent = readStringFile(localTree!, '/projects/sbb-angular/src/app/app.module.ts');
+  it("should add the provideAnimationAsync('noop') to the project module if animations are disabled", async () => {
+    const tree = await runner.runSchematic(
+      'ng-add-setup-project',
+      { ...baseOptions, animations: 'disabled' },
+      appTree,
+    );
+    const fileContent = getFileContent(tree, '/projects/sbb-angular/src/app/app.module.ts');
 
-      expect(fileContent).not.toContain('NoopAnimationsModule');
-      expect(fileContent).not.toContain('BrowserAnimationsModule');
-      expect(fileContent).not.toContain('@angular/platform-browser/animations');
-      expect(fileContent).not.toContain('@angular/animations');
-    });
+    expect(fileContent).toContain(`provideAnimationsAsync('noop')`);
+    expect(fileContent).toContain(
+      `import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';`,
+    );
+  });
+
+  it('should not add any animations code if animations are excluded', async () => {
+    const tree = await runner.runSchematic(
+      'ng-add-setup-project',
+      { ...baseOptions, animations: 'excluded' },
+      appTree,
+    );
+    const fileContent = getFileContent(tree, '/projects/sbb-angular/src/app/app.module.ts');
+
+    expect(fileContent).not.toContain('provideAnimationsAsync');
+    expect(fileContent).not.toContain('@angular/platform-browser/animations');
+    expect(fileContent).not.toContain('@angular/animations');
   });
 
   describe('index.html manipulation', () => {
