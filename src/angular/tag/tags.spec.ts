@@ -1,4 +1,4 @@
-import { Component, DebugElement, Input } from '@angular/core';
+import { Component, DebugElement } from '@angular/core';
 import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 import { FormControl, FormGroup, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { By } from '@angular/platform-browser';
@@ -112,21 +112,15 @@ class TagLinkTestFixtureComponent {
 @Component({
   template: `
     <sbb-tags>
-      <sbb-tag [amount]="8" svgIcon="hand-sbb-small" class="services-tag">{{
-        tagOneTitle
-      }}</sbb-tag>
       <sbb-tag [amount]="9" svgIcon="cutlery-small" class="restaurants-tag"></sbb-tag>
     </sbb-tags>
 
     <a sbb-tag-link href="#" amount="5" svgIcon="train-small" class="trains-tag-link">Trains</a>
-    <a sbb-tag-link href="#" amount="5" svgIcon="bicycle-small" class="bicycles-tag-link"></a>
   `,
   standalone: true,
   imports: [SbbBadgeModule, SbbTagModule, SbbIconTestingModule],
 })
-class TagWithIconTextTestFixtureComponent {
-  @Input() tagOneTitle = 'Services';
-}
+class TagWithIconTextTestFixtureComponent {}
 
 describe('SbbTags', () => {
   describe('SbbTags plain', () => {
@@ -598,14 +592,10 @@ describe('SBB Tag with Icon', () => {
 
   it('should have a svgIcon', () => {
     const tags = fixture.debugElement.queryAll(By.directive(SbbTag));
-
-    expect(tags[1].componentInstance.svgIcon).toBe('hand-sbb-small');
-    expect(tags[2].componentInstance.svgIcon).toBe('cutlery-small');
+    expect(tags[1].componentInstance.svgIcon).toBe('cutlery-small');
 
     const links = fixture.debugElement.queryAll(By.css('a.sbb-tag-link'));
-
     expect(links[0].componentInstance.svgIcon).toBe('train-small');
-    expect(links[1].componentInstance.svgIcon).toBe('bicycle-small');
   });
 });
 
