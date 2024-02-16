@@ -62,12 +62,8 @@ jobs:
   showcase:
     runs-on: ubuntu-latest
     steps:
-    - name: Login to GitHub Docker Repository
-      uses: azure/docker-login@v1
-      with:
-        login-server: ghcr.io
-        username: ${{ github.actor }}
-        password: ${{ secrets.GITHUB_TOKEN }}
+    - name: 'Container: Login to GitHub Container Repository'
+      run: echo ${{ secrets.GITHUB_TOKEN }} | docker login ghcr.io --username ${{ github.actor }} --password-stdin
     - uses: actions/checkout@b4ffde65f46336ab88eb53be808477a3936bae11 # v4
     - name: "Bazel: Copy .bazelrc to user home"
       run: cp ./.github/.bazelrc ~/
@@ -96,6 +92,8 @@ jobs:
         -t ghcr.io/sbb-design-systems/sbb-angular/showcase:${{ steps.docker_release_version.outputs.docker_release_version }} \
         -t ghcr.io/sbb-design-systems/sbb-angular/showcase:latest \
         .
+      env:
+        DOCKER_BUILDKIT: 1
     - name: "Docker: Publish image"
       run: docker push ghcr.io/sbb-design-systems/sbb-angular/showcase:${{ steps.docker_release_version.outputs.docker_release_version }}
     - name: "Docker: Publish image as latest"
