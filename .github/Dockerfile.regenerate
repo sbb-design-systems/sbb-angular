@@ -1,0 +1,22 @@
+ARG BASE=ghcr.io/sbb-design-systems/sbb-angular/showcase:latest
+FROM $BASE as base
+
+# For version 11 + 12
+FROM nginxinc/nginx-unprivileged:stable as initless
+
+# Copy config from base image
+COPY --from=base /etc/nginx/conf.d/default.conf /etc/nginx/conf.d/default.conf
+# Copy showcase from base image
+COPY --from=base /usr/share/nginx/html /usr/share/nginx/html
+
+# For versions 13+
+FROM nginxinc/nginx-unprivileged:stable as init
+
+# Copy config from base image
+COPY --from=base /etc/nginx/conf.d/default.conf /etc/nginx/conf.d/default.conf
+# Copy showcase from base image
+COPY --from=base /usr/share/nginx/html /usr/share/nginx/html
+# Copy ngssc from base image if it exists
+COPY --from=base /usr/sbin/ngssc /usr/sbin/ngssc
+# Copy ngssc.sh from base image if it exists
+COPY --from=base /docker-entrypoint.d/ngssc.sh /docker-entrypoint.d/ngssc.sh
