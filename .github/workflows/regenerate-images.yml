@@ -22,6 +22,8 @@ jobs:
       - name: Regenerate latest container images to keep them up to date
         run: |
           majorVersion=$START_VERSION
+          echo "Starting image regeneration with version $majorVersion"
+
           while : ; do
             version=$(git tag --sort=v:refname -l "$majorVersion.*.*" | tail -1)
             [[ "$version" != "" ]] || break
