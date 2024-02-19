@@ -24,6 +24,9 @@ jobs:
           majorVersion=$START_VERSION
           echo "Starting image regeneration with version $majorVersion"
 
+          echo $PWD
+          ls -llR
+
           git tag
 
           while : ; do
