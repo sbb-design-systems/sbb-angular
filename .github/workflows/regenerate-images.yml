@@ -24,6 +24,8 @@ jobs:
           majorVersion=$START_VERSION
           echo "Starting image regeneration with version $majorVersion"
 
+          git tag
+
           while : ; do
             version=$(git tag --sort=v:refname -l "$majorVersion.*.*" | tail -1)
             [[ "$version" != "" ]] || break
