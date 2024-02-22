@@ -353,6 +353,7 @@ export class SbbSidebar
   }
 
   override ngOnDestroy() {
+    super.ngOnDestroy();
     if (this._focusTrap) {
       this._focusTrap.destroy();
     }
@@ -362,7 +363,6 @@ export class SbbSidebar
     this._modeChanged.complete();
     this._destroyed.next();
     this._destroyed.complete();
-    super.ngOnDestroy();
   }
 
   /**

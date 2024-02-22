@@ -630,6 +630,143 @@ describe('SbbSidebar', () => {
       return Array.from(fixture.nativeElement.querySelector('.sbb-sidebar-container').childNodes);
     }
   });
+
+  describe('DOM position', () => {
+    it('should project start sidebar before the content', () => {
+      const fixture = TestBed.createComponent(BasicTestComponent);
+      fixture.componentInstance.position = 'start';
+      fixture.detectChanges();
+
+      const allNodes = getSidebarNodesArray(fixture);
+      const sidebarIndex = allNodes.indexOf(fixture.nativeElement.querySelector('.sbb-sidebar'));
+      const contentIndex = allNodes.indexOf(
+        fixture.nativeElement.querySelector('.sbb-sidebar-content'),
+      );
+
+      expect(sidebarIndex)
+        .withContext('Expected sidebar to be inside the container')
+        .toBeGreaterThan(-1);
+      expect(contentIndex)
+        .withContext('Expected content to be inside the container')
+        .toBeGreaterThan(-1);
+      expect(sidebarIndex)
+        .withContext('Expected sidebar to be before the content')
+        .toBeLessThan(contentIndex);
+    });
+
+    it('should project end sidebar after the content', () => {
+      const fixture = TestBed.createComponent(BasicTestComponent);
+      fixture.componentInstance.position = 'end';
+      fixture.detectChanges();
+
+      const allNodes = getSidebarNodesArray(fixture);
+      const sidebarIndex = allNodes.indexOf(fixture.nativeElement.querySelector('.sbb-sidebar'));
+      const contentIndex = allNodes.indexOf(
+        fixture.nativeElement.querySelector('.sbb-sidebar-content'),
+      );
+
+      expect(sidebarIndex)
+        .withContext('Expected sidebar to be inside the container')
+        .toBeGreaterThan(-1);
+      expect(contentIndex)
+        .withContext('Expected content to be inside the container')
+        .toBeGreaterThan(-1);
+      expect(sidebarIndex)
+        .withContext('Expected sidebar to be after the content')
+        .toBeGreaterThan(contentIndex);
+    });
+
+    it('should move the sidebar before/after the content when its position changes after being initialized at `start`', () => {
+      const fixture = TestBed.createComponent(BasicTestComponent);
+      fixture.componentInstance.position = 'start';
+      fixture.detectChanges();
+
+      const sidebar = fixture.nativeElement.querySelector('.sbb-sidebar');
+      const content = fixture.nativeElement.querySelector('.sbb-sidebar-content');
+
+      let allNodes = getSidebarNodesArray(fixture);
+      const startSidebarIndex = allNodes.indexOf(sidebar);
+      const startContentIndex = allNodes.indexOf(content);
+
+      expect(startSidebarIndex)
+        .withContext('Expected sidebar to be inside the container')
+        .toBeGreaterThan(-1);
+      expect(startContentIndex)
+        .withContext('Expected content to be inside the container')
+        .toBeGreaterThan(-1);
+      expect(startSidebarIndex)
+        .withContext('Expected sidebar to be before the content on init')
+        .toBeLessThan(startContentIndex);
+
+      fixture.componentInstance.position = 'end';
+      fixture.detectChanges();
+      allNodes = getSidebarNodesArray(fixture);
+
+      expect(allNodes.indexOf(sidebar))
+        .withContext('Expected sidebar to be after content when position changes to `end`')
+        .toBeGreaterThan(allNodes.indexOf(content));
+
+      fixture.componentInstance.position = 'start';
+      fixture.detectChanges();
+      allNodes = getSidebarNodesArray(fixture);
+
+      expect(allNodes.indexOf(sidebar))
+        .withContext('Expected sidebar to be before content when position changes back to `start`')
+        .toBeLessThan(allNodes.indexOf(content));
+    });
+
+    it(
+      'should move the sidebar before/after the content when its position changes after being ' +
+        'initialized at `end`',
+      () => {
+        const fixture = TestBed.createComponent(BasicTestComponent);
+        fixture.componentInstance.position = 'end';
+        fixture.detectChanges();
+
+        const sidebar = fixture.nativeElement.querySelector('.sbb-sidebar');
+        const content = fixture.nativeElement.querySelector('.sbb-sidebar-content');
+
+        let allNodes = getSidebarNodesArray(fixture);
+        const startSidebarIndex = allNodes.indexOf(sidebar);
+        const startContentIndex = allNodes.indexOf(content);
+
+        expect(startSidebarIndex).toBeGreaterThan(
+          -1,
+          'Expected sidebar to be inside the container',
+        );
+        expect(startContentIndex).toBeGreaterThan(
+          -1,
+          'Expected content to be inside the container',
+        );
+        expect(startSidebarIndex).toBeGreaterThan(
+          startContentIndex,
+          'Expected sidebar after the content on init',
+        );
+
+        fixture.componentInstance.position = 'start';
+        fixture.detectChanges();
+        allNodes = getSidebarNodesArray(fixture);
+
+        expect(allNodes.indexOf(sidebar)).toBeLessThan(
+          allNodes.indexOf(content),
+          'Expected sidebar before content when position changes to `start`',
+        );
+
+        fixture.componentInstance.position = 'end';
+        fixture.detectChanges();
+        allNodes = getSidebarNodesArray(fixture);
+
+        expect(allNodes.indexOf(sidebar)).toBeGreaterThan(
+          allNodes.indexOf(content),
+          'Expected sidebar after content when position changes back to `end`',
+        );
+      },
+    );
+
+    function getSidebarNodesArray(fixture: ComponentFixture<any>): HTMLElement[] {
+      return Array.from(fixture.nativeElement.querySelector('.sbb-sidebar-container').childNodes);
+    }
+  });
 });
 
 describe('SbbSidebarContainer', () => {
@@ -901,6 +1038,7 @@ class SidebarContainerEmptyTestComponent {
   template: ` <sbb-sidebar-container (backdropClick)="backdropClicked()">
     <sbb-sidebar
       #sidebar="sbbSidebar"
+      [position]="position"
       (opened)="open()"
       (openedStart)="openStart()"
       (closed)="close()"
@@ -931,6 +1069,7 @@ class BasicTestComponent {
   closeCount = 0;
   closeStartCount = 0;
   backdropClickedCount = 0;
+  position = 'start';
 
   @ViewChild('sidebar') sidebar: SbbSidebar;
   @ViewChild('sidebarButton') sidebarButton: ElementRef<HTMLButtonElement>;
