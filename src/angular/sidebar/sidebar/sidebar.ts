@@ -217,16 +217,16 @@ export class SbbSidebar
   readonly _modeChanged = new Subject<void>();
 
   constructor(
-    private _elementRef: ElementRef<HTMLElement>,
+    elementRef: ElementRef<HTMLElement>,
     private _focusTrapFactory: ConfigurableFocusTrapFactory,
     private _focusMonitor: FocusMonitor,
     private _platform: Platform,
     private _ngZone: NgZone,
-    @Optional() @Inject(DOCUMENT) private _doc: any,
+    @Optional() @Inject(DOCUMENT) _doc: any,
     @Inject(SBB_SIDEBAR_CONTAINER) public override _container: SbbSidebarContainer,
     @Optional() private _router: Router,
   ) {
-    super(_container);
+    super(_container, elementRef, _doc);
 
     this.openedChange.subscribe((opened: boolean) => {
       if (opened) {
@@ -352,7 +352,7 @@ export class SbbSidebar
     }
   }
 
-  ngOnDestroy() {
+  override ngOnDestroy() {
     if (this._focusTrap) {
       this._focusTrap.destroy();
     }
@@ -362,6 +362,7 @@ export class SbbSidebar
     this._modeChanged.complete();
     this._destroyed.next();
     this._destroyed.complete();
+    super.ngOnDestroy();
   }
 
   /**

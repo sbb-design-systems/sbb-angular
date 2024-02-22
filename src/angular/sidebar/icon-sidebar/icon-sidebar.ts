@@ -3,6 +3,7 @@
 
 import { BreakpointObserver } from '@angular/cdk/layout';
 import { CdkScrollable, ScrollDispatcher } from '@angular/cdk/scrolling';
+import { DOCUMENT } from '@angular/common';
 import {
   AfterContentInit,
   booleanAttribute,
@@ -99,9 +100,10 @@ export class SbbIconSidebar extends SbbSidebarBase {
   constructor(
     @Inject(SBB_SIDEBAR_CONTAINER) container: SbbIconSidebarContainer,
     private _changeDetectorRef: ChangeDetectorRef,
-    private _elementRef: ElementRef<HTMLElement>,
+    elementRef: ElementRef<HTMLElement>,
+    @Inject(DOCUMENT) _doc: any,
   ) {
-    super(container);
+    super(container, elementRef, _doc);
   }
 
   toggleExpanded(expanded: boolean = !this._expanded) {

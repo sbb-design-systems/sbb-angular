@@ -1,13 +1,19 @@
 import { BreakpointObserver } from '@angular/cdk/layout';
 import { CdkScrollable, ScrollDispatcher } from '@angular/cdk/scrolling';
+import { DOCUMENT } from '@angular/common';
 import {
   AfterContentInit,
+  AfterViewInit,
   ChangeDetectorRef,
   Directive,
   ElementRef,
+  EventEmitter,
+  Inject,
   InjectionToken,
+  Input,
   NgZone,
   OnDestroy,
+  Output,
   QueryList,
 } from '@angular/core';
 import { Breakpoints } from '@sbb-esta/angular/core';
@@ -36,20 +42,94 @@ export interface SbbSidebarMobileCapableContainer {
 @Directive()
 export abstract class SbbSidebarContentBase extends CdkScrollable {
   protected constructor(
-    elementRef: ElementRef<HTMLElement>,
+    public _elementRef: ElementRef<HTMLElement>,
     scrollDispatcher: ScrollDispatcher,
     ngZone: NgZone,
   ) {
-    super(elementRef, scrollDispatcher, ngZone);
+    super(_elementRef, scrollDispatcher, ngZone);
   }
 }
 
 /** This component corresponds to a sidebar. */
-@Directive()
-export abstract class SbbSidebarBase {
+@Directive({
+  host: {
+    '[class.sbb-sidebar-end]': 'position === "end"',
+  },
+})
+export abstract class SbbSidebarBase implements AfterViewInit, OnDestroy {
   abstract _mobileChanged(mobile: boolean): void;
 
-  protected constructor(public _container: SbbSidebarMobileCapableContainer) {}
+  /** Whether the view of the component has been attached. */
+  private _isAttached: boolean;
+
+  /** Event emitted when the drawer's position changes. */
+  @Output('positionChanged') readonly onPositionChanged = new EventEmitter<void>();
+
+  @Input()
+  set position(value: 'start' | 'end') {
+    // Make sure we have a valid value.
+    value = value === 'end' ? 'end' : 'start';
+    if (value !== this._position) {
+      // Static inputs in Ivy are set before the element is in the DOM.
+      if (this._isAttached) {
+        this._updatePositionInParent(value);
+      }
+
+      this._position = value;
+      this.onPositionChanged.emit();
+    }
+  }
+  get position() {
+    return this._position;
+  }
+  _position: 'start' | 'end';
+
+  /** Anchor node used to restore the drawer to its initial position. */
+  private _anchor: Comment | null;
+
+  protected constructor(
+    public _container: SbbSidebarMobileCapableContainer,
+    protected _elementRef: ElementRef<HTMLElement>,
+    @Inject(DOCUMENT) protected _doc: any,
+  ) {}
+
+  /*
+   * Updates the position of the sidebar in the DOM. We need to move the element around ourselves
+   * when it's in the `end` position so that it comes after the content and the visual order
+   * matches the tab order. We also need to be able to move it back to `start` if the sidebar
+   * started off as `end` and was changed to `start`.
+   */
+  private _updatePositionInParent(newPosition: 'start' | 'end'): void {
+    // Don't move the DOM node around on the server, because it can throw off hydration.
+    const element = this._elementRef.nativeElement;
+    const parent = element.parentNode!;
+
+    if (newPosition === 'end') {
+      if (!this._anchor) {
+        this._anchor = this._doc.createComment('sbb-sidebar-anchor')!;
+        parent.insertBefore(this._anchor!, element);
+      }
+
+      parent.appendChild(element);
+    } else if (this._anchor) {
+      this._anchor.parentNode!.insertBefore(element, this._anchor);
+    }
+  }
+
+  ngAfterViewInit() {
+    this._isAttached = true;
+
+    // Only update the DOM position when the sidenav is positioned at
+    // the end since we project the sidenav before the content by default.
+    if (this._position === 'end') {
+      this._updatePositionInParent('end');
+    }
+  }
+
+  ngOnDestroy() {
+    this._anchor?.remove();
+    this._anchor = null;
+  }
 }
 
 /**

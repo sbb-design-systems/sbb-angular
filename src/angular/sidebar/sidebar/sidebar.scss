@@ -76,6 +76,10 @@
   border-right: var(--sbb-border-width-thin) solid var(--sbb-sidebar-border-right-color);
   background-color: var(--sbb-sidebar-background-color);
 
+  &:where(.sbb-sidebar-end) {
+    right: 0;
+  }
+
   // Usually the `visibility: hidden` added by the animation is enough to prevent focus from
   // entering the hidden sidebar content, but children with their own `visibility` can override it.
   // This is a fallback that completely hides the content when the element becomes hidden.
