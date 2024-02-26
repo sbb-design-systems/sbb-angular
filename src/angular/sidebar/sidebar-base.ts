@@ -24,8 +24,8 @@ import { distinctUntilChanged, map, startWith, takeUntil } from 'rxjs/operators'
  * Throws an exception if more than one SbbSidebarBase is provided.
  * @docs-private
  */
-export function throwSbbDuplicatedSidebarError() {
-  throw Error(`Only one sidebar as direct descendant of sidebar container at once is allowed'`);
+export function throwSbbDuplicatedSidebarError(position: string) {
+  throw Error(`A sidebar was already declared for 'position="${position}"'`);
 }
 
 /**
@@ -142,9 +142,14 @@ export abstract class SbbSidebarContainerBase<T extends SbbSidebarBase>
 {
   _mobile: boolean;
 
-  /** The sidebar child */
-  get sidebar(): T | null {
-    return this._sidebar;
+  /** The sidebar child with the `start` position. */
+  get start(): T | null {
+    return this._start;
+  }
+
+  /** The sidebar child with the `end` position. */
+  get end(): T | null {
+    return this._end;
   }
 
   /** Reference to the CdkScrollable instance that wraps the scrollable content. */
@@ -167,8 +172,9 @@ export abstract class SbbSidebarContainerBase<T extends SbbSidebarBase>
   _content: SbbSidebarContentBase;
   _userContent: SbbSidebarContentBase;
 
-  /** The sidebar */
-  protected _sidebar: T | null;
+  /** The sidebar at the start/end position. */
+  protected _start: T | null;
+  protected _end: T | null;
 
   /** Emits when the component is destroyed. */
   protected readonly _destroyed: Subject<void> = new Subject<void>();
@@ -197,11 +203,12 @@ export abstract class SbbSidebarContainerBase<T extends SbbSidebarBase>
     const currentMobile = this._mobile;
     this._mobile = newMobile;
 
-    if (!this.sidebar || currentMobile === newMobile) {
+    if ((!this._start && !this._end) || currentMobile === newMobile) {
       return;
     }
 
-    this.sidebar._mobileChanged(newMobile);
+    this._start?._mobileChanged(newMobile);
+    this._end?._mobileChanged(newMobile);
     this._changeDetectorRef.markForCheck();
   }
 
@@ -213,12 +220,21 @@ export abstract class SbbSidebarContainerBase<T extends SbbSidebarBase>
 
   /** Validate the state of the sidebar children components. */
   protected _validateSidebars() {
-    this._sidebar = null;
+    this._start = this._end = null;
 
-    // Ensure that we have at most one sidebar.
-    if (this._sidebars.length > 1 && (typeof ngDevMode === 'undefined' || ngDevMode)) {
-      throwSbbDuplicatedSidebarError();
-    }
-    this._sidebar = this._sidebars.first;
+    // Ensure that we have at most one start and one end drawer.
+    this._sidebars.forEach((sidebar) => {
+      if (sidebar.position === 'end') {
+        if (this._end != null && (typeof ngDevMode === 'undefined' || ngDevMode)) {
+          throwSbbDuplicatedSidebarError('end');
+        }
+        this._end = sidebar;
+      } else {
+        if (this._start != null && (typeof ngDevMode === 'undefined' || ngDevMode)) {
+          throwSbbDuplicatedSidebarError('start');
+        }
+        this._start = sidebar;
+      }
+    });
   }
 }

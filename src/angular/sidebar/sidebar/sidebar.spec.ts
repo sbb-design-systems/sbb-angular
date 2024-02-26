@@ -782,7 +782,7 @@ describe('SbbSidebarContainer', () => {
   registerClearMediaMatcher();
 
   it('should be able to open and close all sidebars', fakeAsync(() => {
-    const fixture = TestBed.createComponent(SidebarContainerEmptyTestComponent);
+    const fixture = TestBed.createComponent(SidebarContainerTwoSidebarsTestComponent);
 
     fixture.detectChanges();
     mediaMatcher.setMatchesQuery(Breakpoints.Mobile, true);
@@ -790,23 +790,21 @@ describe('SbbSidebarContainer', () => {
 
     const testComponent: SidebarContainerEmptyTestComponent =
       fixture.debugElement.componentInstance;
-    const sidebar: SbbSidebar = fixture.debugElement.query(
-      By.directive(SbbSidebar),
-    ).componentInstance;
+    const sidebars = fixture.debugElement.queryAll(By.directive(SbbSidebar));
 
-    expect(sidebar.opened).toBe(false);
+    expect(sidebars.every((sidebar) => sidebar.componentInstance.opened)).toBe(false);
 
     testComponent.sidebarContainer.open();
     fixture.detectChanges();
     tick();
 
-    expect(sidebar.opened).toBe(true);
+    expect(sidebars.every((sidebar) => sidebar.componentInstance.opened)).toBe(true);
 
     testComponent.sidebarContainer.close();
     fixture.detectChanges();
     flush();
 
-    expect(sidebar.opened).toBe(false);
+    expect(sidebars.every((sidebar) => sidebar.componentInstance.opened)).toBe(false);
   }));
 
   it('should animate the content when a sidebar is added at a later point', fakeAsync(() => {
@@ -1030,6 +1028,19 @@ describe('SbbSidebar Usage', () => {
   imports: [SbbSidebarModule],
 })
 class SidebarContainerEmptyTestComponent {
+  @ViewChild(SbbSidebarContainer) sidebarContainer: SbbSidebarContainer;
+}
+
+/** Test component that contains an MatDrawerContainer and 2 MatDrawer in the same position. */
+@Component({
+  template: `<sbb-sidebar-container>
+    <sbb-sidebar position="start"></sbb-sidebar>
+    <sbb-sidebar position="end"></sbb-sidebar>
+  </sbb-sidebar-container>`,
+  standalone: true,
+  imports: [SbbSidebarModule],
+})
+class SidebarContainerTwoSidebarsTestComponent {
   @ViewChild(SbbSidebarContainer) sidebarContainer: SbbSidebarContainer;
 }
 
