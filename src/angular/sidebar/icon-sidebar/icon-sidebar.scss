@@ -158,7 +158,12 @@
     display: block;
   }
 
-  .sbb-icon-sidebar-collapsed .sbb-icon-sidebar-collapse-expand-button & {
+  :where(
+      .sbb-icon-sidebar-collapsed:not(.sbb-sidebar-end),
+      .sbb-sidebar-end:not(.sbb-icon-sidebar-collapsed)
+    )
+    .sbb-icon-sidebar-collapse-expand-button
+    & {
     transform: rotate(180deg);
   }
 
