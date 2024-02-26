@@ -7,11 +7,13 @@ import {
   ChangeDetectorRef,
   Directive,
   ElementRef,
+  EventEmitter,
   Inject,
   InjectionToken,
   Input,
   NgZone,
   OnDestroy,
+  Output,
   QueryList,
 } from '@angular/core';
 import { Breakpoints } from '@sbb-esta/angular/core';
@@ -74,12 +76,16 @@ export abstract class SbbSidebarBase implements AfterViewInit, OnDestroy {
       }
 
       this._position = value;
+      this.onPositionChanged.emit();
     }
   }
   get position() {
     return this._position;
   }
   _position: 'start' | 'end' = 'start';
+
+  /** Event emitted when the drawer's position changes. */
+  @Output('positionChanged') readonly onPositionChanged = new EventEmitter<void>();
 
   protected constructor(
     public _container: SbbSidebarMobileCapableContainer,

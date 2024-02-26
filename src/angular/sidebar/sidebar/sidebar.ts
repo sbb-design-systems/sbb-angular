@@ -71,6 +71,7 @@ export type SbbSidebarMode = 'over' | 'side';
   host: {
     class: 'sbb-sidebar-content sbb-scrollbar',
     '[style.margin-left.px]': '_container._contentMargins.left',
+    '[style.margin-right.px]': '_container._contentMargins.right',
   },
   changeDetection: ChangeDetectionStrategy.OnPush,
   encapsulation: ViewEncapsulation.None,
@@ -568,7 +569,7 @@ export class SbbSidebarContainer
    * sidebar is open. We use margin rather than transform because transform breaks
    * fixed position elements inside of the transformed element.
    */
-  _contentMargins: { left: number | null } = { left: null };
+  _contentMargins: { left: number | null; right: number | null } = { left: null, right: null };
 
   readonly _contentMarginChanges = new Subject<{ left: number | null }>();
 
@@ -581,6 +582,7 @@ export class SbbSidebarContainer
       this._sidebars.forEach((sidebar: SbbSidebar) => {
         this._watchSidebarToggle(sidebar);
         this._watchSidebarMode(sidebar);
+        this._watchSidebarPosition(sidebar);
       });
 
       if (!this._sidebars.length || this._isSidebarOpen(this._sidebar)) {
@@ -613,9 +615,16 @@ export class SbbSidebarContainer
     // 2. For sidebars in `side` mode they should shrink the content. We do this by adding to the
     //    left margin (for left sidebar).
     let left = 0;
+    let right = 0;
 
     if (this._sidebar && this._sidebar.opened && this._sidebar.mode === 'side') {
-      left += this._sidebar._getWidth();
+      if (this._sidebar.position === 'start') {
+        const width = this._sidebar._getWidth();
+        left += width;
+      } else {
+        const width = this._sidebar._getWidth();
+        right += width;
+      }
     }
 
     // If `left` is zero, don't set a style to the element. This
@@ -623,9 +632,10 @@ export class SbbSidebarContainer
     // measured widths will always be zero. Note that we reset to `null` here, rather
     // than below, in order to ensure that the types in the `if` below are consistent.
     left = left || null!;
+    right = right || null!;
 
     if (left !== this._contentMargins.left) {
-      this._contentMargins = { left };
+      this._contentMargins = { left, right };
 
       // Pull back into the NgZone since in some cases we could be outside. We need to be careful
       // to do it only when something changed, otherwise we can end up hitting the zone too often.
@@ -670,6 +680,20 @@ export class SbbSidebarContainer
           this._changeDetectorRef.markForCheck();
         });
     }
+  }
+
+  /**
+   * Subscribes to drawer onPositionChanged event in order to
+   * update the content margins.
+   */
+  private _watchSidebarPosition(sidebar: SbbSidebar) {
+    if (!sidebar) {
+      return;
+    }
+
+    sidebar.onPositionChanged
+      .pipe(takeUntil(this._destroyed))
+      .subscribe(() => this.updateContentMargins());
   }
 
   /** Toggles the 'sbb-sidebar-opened' class on the main 'sbb-sidebar-container' element. */

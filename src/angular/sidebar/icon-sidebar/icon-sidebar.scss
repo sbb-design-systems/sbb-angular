@@ -116,6 +116,11 @@
     cursor: default;
     pointer-events: none;
 
+    :where(.sbb-sidebar-end) & {
+      @include sbb.sbbMenuItemBlackLean(calc(var(--sbb-border-width-thin) * 2), false);
+      background-color: var(--sbb-icon-sidebar-background-color-active);
+    }
+
     &:focus-visible {
       @include sbb.sbbFocusOutline();
     }
