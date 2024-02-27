@@ -1031,7 +1031,7 @@ class SidebarContainerEmptyTestComponent {
   @ViewChild(SbbSidebarContainer) sidebarContainer: SbbSidebarContainer;
 }
 
-/** Test component that contains an MatDrawerContainer and 2 MatDrawer in the same position. */
+/** Test component that contains an SbbSidebarContainer and 2 SbbSidebar. */
 @Component({
   template: `<sbb-sidebar-container>
     <sbb-sidebar position="start"></sbb-sidebar>

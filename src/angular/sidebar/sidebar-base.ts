@@ -62,7 +62,7 @@ export abstract class SbbSidebarBase implements AfterViewInit, OnDestroy {
   /** Whether the view of the component has been attached. */
   private _isAttached: boolean;
 
-  /** Anchor node used to restore the drawer to its initial position. */
+  /** Anchor node used to restore the sidebar to its initial position. */
   private _anchor: Comment | null;
 
   @Input()
@@ -84,7 +84,7 @@ export abstract class SbbSidebarBase implements AfterViewInit, OnDestroy {
   }
   _position: 'start' | 'end' = 'start';
 
-  /** Event emitted when the drawer's position changes. */
+  /** Event emitted when the sidebar's position changes. */
   @Output('positionChanged') readonly onPositionChanged = new EventEmitter<void>();
 
   protected constructor(
@@ -222,7 +222,7 @@ export abstract class SbbSidebarContainerBase<T extends SbbSidebarBase>
   protected _validateSidebars() {
     this._start = this._end = null;
 
-    // Ensure that we have at most one start and one end drawer.
+    // Ensure that we have at most one start and one end sidebar.
     this._sidebars.forEach((sidebar) => {
       if (sidebar.position === 'end') {
         if (this._end != null && (typeof ngDevMode === 'undefined' || ngDevMode)) {

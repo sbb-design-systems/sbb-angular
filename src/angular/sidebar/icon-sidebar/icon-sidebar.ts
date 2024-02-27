@@ -33,6 +33,12 @@ import {
   SBB_SIDEBAR_CONTAINER,
 } from '../sidebar-base';
 
+export function throwSbbDuplicatedIconSidebarError() {
+  throw Error(
+    `Only one icon-sidebar as direct descendant of sidebar container at once is allowed'`,
+  );
+}
+
 @Component({
   selector: 'sbb-icon-sidebar-content',
   template: '<ng-content></ng-content>',
@@ -171,5 +177,14 @@ export class SbbIconSidebarContainer
 
     // Has to be called at last (needs sidebar to be set)
     this._watchBreakpointObserver();
+  }
+
+  /** Validate the state of the icon sidebar children components. */
+  override _validateSidebars() {
+    super._validateSidebars();
+
+    if (this._sidebars.length > 1 && (typeof ngDevMode === 'undefined' || ngDevMode)) {
+      throwSbbDuplicatedIconSidebarError();
+    }
   }
 }
