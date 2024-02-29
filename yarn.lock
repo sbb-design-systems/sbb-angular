@@ -8745,9 +8745,9 @@ ee-first@1.1.1:
   integrity sha512-WMwm9LhRUo+WUaRN+vRuETqG89IgZphVSNkdFgeb6sS/E4OrDIN7t48CAewSHXc6C8lefD8KKfr5vY61brQlow==
 
 electron-to-chromium@^1.4.668:
-  version "1.4.686"
-  resolved "https://registry.yarnpkg.com/electron-to-chromium/-/electron-to-chromium-1.4.686.tgz#54105e8d48aec0315951d0a45f2104907b2d1807"
-  integrity sha512-3avY1B+vUzNxEgkBDpKOP8WarvUAEwpRaiCL0He5OKWEFxzaOFiq4WoZEZe7qh0ReS7DiWoHMnYoQCKxNZNzSg==
+  version "1.4.687"
+  resolved "https://registry.yarnpkg.com/electron-to-chromium/-/electron-to-chromium-1.4.687.tgz#8b80da91848c13a90802f840c7de96c8558fef52"
+  integrity sha512-Ic85cOuXSP6h7KM0AIJ2hpJ98Bo4hyTUjc4yjMbkvD+8yTxEhfK9+8exT2KKYsSjnCn2tGsKVSZwE7ZgTORQCw==
 
 email-addresses@5.0.0:
   version "5.0.0"
