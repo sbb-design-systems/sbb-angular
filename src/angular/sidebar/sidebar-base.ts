@@ -99,7 +99,7 @@ export abstract class SbbSidebarBase implements AfterViewInit, OnDestroy {
    * matches the tab order. We also need to be able to move it back to `start` if the sidebar
    * started off as `end` and was changed to `start`.
    */
-  private _updatePositionInParent(newPosition: 'start' | 'end'): void {
+  protected _updatePositionInParent(newPosition: 'start' | 'end'): void {
     // Don't move the DOM node around on the server, because it can throw off hydration.
     const element = this._elementRef.nativeElement;
     const parent = element.parentNode!;

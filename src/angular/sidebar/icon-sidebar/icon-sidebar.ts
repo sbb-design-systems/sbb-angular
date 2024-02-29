@@ -121,7 +121,20 @@ export class SbbIconSidebar extends SbbSidebarBase {
     this._elementRef.nativeElement.querySelector('.sbb-icon-sidebar-inner-container')!.scrollLeft =
       0;
 
+    this._updatePositionInParent(this.position);
     this._changeDetectorRef.markForCheck();
+  }
+
+  /**
+   * On mobile devices, the position of the sidebar is always 'start'.
+   * @docs-private
+   */
+  override _updatePositionInParent(position: 'start' | 'end') {
+    if (this._container._mobile) {
+      super._updatePositionInParent('start');
+    } else {
+      super._updatePositionInParent(position);
+    }
   }
 }
 
