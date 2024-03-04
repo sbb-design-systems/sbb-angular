@@ -34,7 +34,7 @@ jobs:
     - name: "Bazel: Build packages"
       run: yarn -s build packages
 
-    - uses: actions/upload-artifact@v3
+    - uses: actions/upload-artifact@v4
       with:
         name: packages
         path: dist/releases
