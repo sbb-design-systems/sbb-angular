@@ -872,6 +872,18 @@ describe('SbbInput with forms', () => {
       ).toBeFalsy();
     }));
 
+    it('should update the tabIndex of the input', fakeAsync(() => {
+      fixture.componentInstance.tabIndex = 3;
+      fixture.detectChanges();
+
+      const input = fixture.debugElement.query(By.css('input'))!.nativeElement;
+      expect(input.tabIndex).toBe(-1);
+
+      fixture.componentInstance.readonly = false;
+      fixture.detectChanges();
+      expect(input.tabIndex).toBe(3);
+    }));
+
     describe(`styles`, () => {
       let inputElementStyles: CSSStyleDeclaration;
       beforeEach(() => {
@@ -1263,7 +1275,7 @@ class SbbInputWithVariablePlaceholder {
 
 @Component({
   template: `<sbb-form-field>
-    <input sbbInput [readonly]="readonly" [formControl]="formControl" />
+    <input sbbInput [readonly]="readonly" [formControl]="formControl" [tabIndex]="tabIndex" />
   </sbb-form-field>`,
   imports: [SbbFormFieldModule, SbbInputModule, ReactiveFormsModule],
   standalone: true,
@@ -1271,4 +1283,5 @@ class SbbInputWithVariablePlaceholder {
 class SbbInputReadonly {
   readonly = true;
   formControl = new FormControl('');
+  tabIndex: number;
 }

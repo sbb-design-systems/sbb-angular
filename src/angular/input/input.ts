@@ -10,6 +10,7 @@ import {
   Inject,
   Input,
   NgZone,
+  numberAttribute,
   OnChanges,
   OnDestroy,
   Optional,
@@ -55,7 +56,7 @@ const SBB_INPUT_INVALID_TYPES = [
     '[attr.aria-invalid]': '(empty && required) ? null : errorState',
     '[attr.aria-required]': 'required',
     '[attr.placeholder]': `!readonly ? (placeholder || null) : '-'`,
-    '[attr.tabindex]': `empty && readonly ? -1  : null`,
+    '[attr.tabindex]': `empty && readonly ? -1  : tabIndex`,
   },
   providers: [{ provide: SbbFormFieldControl, useExisting: SbbInput }],
   standalone: true,
@@ -210,6 +211,11 @@ export class SbbInput
     this._readonly = coerceBooleanProperty(value);
   }
   private _readonly = false;
+  /** Tab index of the input. */
+  @Input({
+    transform: (value: unknown) => (value == null ? undefined : numberAttribute(value)),
+  })
+  tabIndex: number;
 
   /** Whether the input is in an error state. */
   get errorState() {
