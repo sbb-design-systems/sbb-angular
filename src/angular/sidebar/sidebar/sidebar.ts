@@ -12,7 +12,7 @@ import { ESCAPE, hasModifierKey } from '@angular/cdk/keycodes';
 import { BreakpointObserver } from '@angular/cdk/layout';
 import { Platform } from '@angular/cdk/platform';
 import { CdkScrollable, ScrollDispatcher, ViewportRuler } from '@angular/cdk/scrolling';
-import { DOCUMENT } from '@angular/common';
+import { AsyncPipe, DOCUMENT } from '@angular/common';
 import {
   AfterContentChecked,
   AfterContentInit,
@@ -28,6 +28,7 @@ import {
   HostBinding,
   HostListener,
   Inject,
+  Input,
   NgZone,
   OnDestroy,
   Optional,
@@ -38,7 +39,7 @@ import {
 } from '@angular/core';
 import { NavigationStart, Router } from '@angular/router';
 import { SbbIcon } from '@sbb-esta/angular/icon';
-import { fromEvent, merge, NEVER, Observable, Subject } from 'rxjs';
+import { BehaviorSubject, combineLatest, fromEvent, merge, NEVER, Observable, Subject } from 'rxjs';
 import {
   distinctUntilChanged,
   filter,
@@ -147,6 +148,17 @@ export class SbbSidebar
     return this._opened;
   }
 
+  /**
+   * Name of the svg icon for the trigger on mobile devices.
+   */
+  @Input() set triggerSvgIcon(value: string) {
+    this._triggerSvgIconSubject.next(value);
+  }
+  get triggerSvgIcon(): string | null {
+    return this._triggerSvgIconSubject.value;
+  }
+  private _triggerSvgIconSubject = new BehaviorSubject<string | null>(null);
+
   /** Event emitted when the sidebar has started opening. */
   @Output()
   get openedStart(): Observable<void> {
@@ -217,6 +229,16 @@ export class SbbSidebar
    */
   readonly _modeChanged = new Subject<void>();
 
+  readonly _svgIcon: Observable<string> = combineLatest([
+    this._triggerSvgIconSubject,
+    this.onPositionChanged.pipe(startWith(null)),
+  ]).pipe(
+    takeUntil(this._destroyed),
+    map(([icon]) =>
+      icon ? icon : this._position === 'start' ? 'hamburger-menu-small' : 'controls-small',
+    ),
+  );
+
   constructor(
     elementRef: ElementRef<HTMLElement>,
     private _focusTrapFactory: ConfigurableFocusTrapFactory,
@@ -240,6 +262,8 @@ export class SbbSidebar
         this._restoreFocus(this._openedVia || 'program');
       }
     });
+
+    this.onPositionChanged.pipe(takeUntil(this._destroyed));
 
     /**
      * Listen to `keydown` events outside the zone so that change detection is not run every
@@ -511,7 +535,7 @@ export class SbbSidebar
     },
   ],
   standalone: true,
-  imports: [SbbIcon, SbbSidebarContent],
+  imports: [SbbIcon, SbbSidebarContent, AsyncPipe],
 })
 export class SbbSidebarContainer
   extends SbbSidebarContainerBase<SbbSidebar>
@@ -739,9 +763,12 @@ export class SbbSidebarContainer
     return sidebar != null && sidebar.opened;
   }
 
-  toggleSidebar() {
-    this._start?.toggle();
-    this._end?.toggle();
+  toggleSidebar(position: 'start' | 'end') {
+    if (position === 'start') {
+      this._start?.toggle();
+    } else {
+      this._end?.toggle();
+    }
   }
 
   override ngOnDestroy() {

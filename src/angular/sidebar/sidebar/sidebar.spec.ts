@@ -29,6 +29,7 @@ import {
   dispatchKeyboardEvent,
   FakeMediaMatcher,
 } from '@sbb-esta/angular/core/testing';
+import { SbbIcon } from '@sbb-esta/angular/icon';
 import { SbbIconTestingModule } from '@sbb-esta/angular/icon/testing';
 
 import { SbbSidebarModule } from '../sidebar.module';
@@ -607,33 +608,6 @@ describe('SbbSidebar', () => {
   describe('DOM position', () => {
     it('should project start sidebar before the content', () => {
       const fixture = TestBed.createComponent(BasicTestComponent);
-      fixture.detectChanges();
-
-      const allNodes = getSidebarNodesArray(fixture);
-      const sidebarIndex = allNodes.indexOf(fixture.nativeElement.querySelector('.sbb-sidebar'));
-      const contentIndex = allNodes.indexOf(
-        fixture.nativeElement.querySelector('.sbb-sidebar-content'),
-      );
-
-      expect(sidebarIndex)
-        .withContext('Expected sidebar to be inside the container')
-        .toBeGreaterThan(-1);
-      expect(contentIndex)
-        .withContext('Expected content to be inside the container')
-        .toBeGreaterThan(-1);
-      expect(sidebarIndex)
-        .withContext('Expected sidebar to be before the content')
-        .toBeLessThan(contentIndex);
-    });
-
-    function getSidebarNodesArray(fixture: ComponentFixture<any>): HTMLElement[] {
-      return Array.from(fixture.nativeElement.querySelector('.sbb-sidebar-container').childNodes);
-    }
-  });
-
-  describe('DOM position', () => {
-    it('should project start sidebar before the content', () => {
-      const fixture = TestBed.createComponent(BasicTestComponent);
       fixture.componentInstance.position = 'start';
       fixture.detectChanges();
 
@@ -762,6 +736,33 @@ describe('SbbSidebar', () => {
         );
       },
     );
+
+    it('should change the icon based on the position', () => {
+      const fixture = TestBed.createComponent(BasicTestComponent);
+      fixture.detectChanges();
+
+      let icon = fixture.debugElement.query(By.directive(SbbIcon));
+      expect(icon.componentInstance.svgIcon).toBe('hamburger-menu-small');
+
+      fixture.componentInstance.position = 'end';
+      fixture.detectChanges();
+      icon = fixture.debugElement.query(By.directive(SbbIcon));
+      expect(icon.componentInstance.svgIcon).toBe('controls-small');
+    });
+
+    it('should allow overriding the trigger icon', () => {
+      const fixture = TestBed.createComponent(BasicTestComponent);
+      fixture.componentInstance.triggerIcon = 'bell-small';
+      fixture.detectChanges();
+
+      let icon = fixture.debugElement.query(By.directive(SbbIcon));
+      expect(icon.componentInstance.svgIcon).toBe('bell-small');
+
+      fixture.componentInstance.position = 'end';
+      fixture.detectChanges();
+      icon = fixture.debugElement.query(By.directive(SbbIcon));
+      expect(icon.componentInstance.svgIcon).toBe('bell-small');
+    });
 
     function getSidebarNodesArray(fixture: ComponentFixture<any>): HTMLElement[] {
       return Array.from(fixture.nativeElement.querySelector('.sbb-sidebar-container').childNodes);
@@ -1050,6 +1051,7 @@ class SidebarContainerTwoSidebarsTestComponent {
     <sbb-sidebar
       #sidebar="sbbSidebar"
       [position]="position"
+      [triggerSvgIcon]="triggerIcon"
       (opened)="open()"
       (openedStart)="openStart()"
       (closed)="close()"
@@ -1081,6 +1083,7 @@ class BasicTestComponent {
   closeStartCount = 0;
   backdropClickedCount = 0;
   position = 'start';
+  triggerIcon: string;
 
   @ViewChild('sidebar') sidebar: SbbSidebar;
   @ViewChild('sidebarButton') sidebarButton: ElementRef<HTMLButtonElement>;

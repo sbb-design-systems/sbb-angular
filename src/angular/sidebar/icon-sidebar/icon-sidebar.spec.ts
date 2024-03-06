@@ -415,7 +415,7 @@ class SidebarContainerEmptyTestComponent {
 /** Test component that contains an SbbIconSidebarContainer and a SbbIconSidebar. */
 @Component({
   template: ` <sbb-icon-sidebar-container>
-    <sbb-icon-sidebar #sidebar="sbbIconSidebar">
+    <sbb-icon-sidebar #sidebar="sbbIconSidebar" [position]="position">
       <button #sidebarButton>Content</button>
     </sbb-icon-sidebar>
   </sbb-icon-sidebar-container>`,
@@ -427,6 +427,7 @@ class BasicTestComponent {
   @ViewChild('sidebarButton') sidebarButton: ElementRef<HTMLButtonElement>;
   @ViewChild('expandedButton') expandedButton: ElementRef<HTMLButtonElement>;
   @ViewChild('collapseButton') collapseButton: ElementRef<HTMLButtonElement>;
+  position = 'start';
 }
 
 @Component({
