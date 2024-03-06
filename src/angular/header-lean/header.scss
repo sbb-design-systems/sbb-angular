@@ -49,7 +49,7 @@
   line-height: calc(#{sbb.pxToRem(12)} * var(--sbb-scaling-factor));
   letter-spacing: 0;
   font-size: calc(#{sbb.pxToRem(10)} * var(--sbb-scaling-factor));
-  color: var(--sbb-color-white);
+  color: var(--sbb-color-background);
   transform: rotate(-45deg);
 }
 
