@@ -21,7 +21,11 @@ export interface HasInitialized {
   _markInitialized: () => void;
 }
 
-/** Mixin to augment a directive with an initialized property that will emits when ngOnInit ends. */
+/**
+ * Mixin to augment a directive with an initialized property that will emits when ngOnInit ends.
+ * @deprecated To be removed.
+ * @breaking-change 18.0.0
+ */
 export function mixinInitialized<T extends Constructor<{}>>(
   base: T,
 ): Constructor<HasInitialized> & T {

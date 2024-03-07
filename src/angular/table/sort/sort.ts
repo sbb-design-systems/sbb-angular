@@ -11,8 +11,7 @@ import {
   Optional,
   Output,
 } from '@angular/core';
-import { HasInitialized, mixinInitialized } from '@sbb-esta/angular/core';
-import { Subject } from 'rxjs';
+import { Observable, ReplaySubject, Subject } from 'rxjs';
 
 import { SbbSortDirection } from './sort-direction';
 import {
@@ -58,11 +57,6 @@ export const SBB_SORT_DEFAULT_OPTIONS = new InjectionToken<SbbSortDefaultOptions
   'SBB_SORT_DEFAULT_OPTIONS',
 );
 
-// Boilerplate for applying mixins to SbbSort.
-/** @docs-private */
-// tslint:disable-next-line:naming-convention
-const _SbbSortBase = mixinInitialized(class {});
-
 /** Container for SbbSortables to manage the sort state and provide default sort parameters. */
 @Directive({
   selector: '[sbbSort]',
@@ -70,7 +64,9 @@ const _SbbSortBase = mixinInitialized(class {});
   host: { class: 'sbb-sort' },
   standalone: true,
 })
-export class SbbSort extends _SbbSortBase implements HasInitialized, OnInit, OnChanges, OnDestroy {
+export class SbbSort implements OnInit, OnChanges, OnDestroy {
+  private _initializedStream = new ReplaySubject<void>(1);
+
   /** Collection of all registered sortables that this directive manages. */
   sortables: Map<string, SbbSortable> = new Map<string, SbbSortable>();
 
@@ -118,13 +114,14 @@ export class SbbSort extends _SbbSortBase implements HasInitialized, OnInit, OnC
   @Output('sbbSortChange') readonly sortChange: EventEmitter<SbbSortState> =
     new EventEmitter<SbbSortState>();
 
+  /** Emits when the paginator is initialized. */
+  initialized: Observable<void> = this._initializedStream;
+
   constructor(
     @Optional()
     @Inject(SBB_SORT_DEFAULT_OPTIONS)
     private _defaultOptions?: SbbSortDefaultOptions,
-  ) {
-    super();
-  }
+  ) {}
 
   /**
    * Register function to be used by the contained SbbSortables. Adds the SbbSortable to the
@@ -184,7 +181,7 @@ export class SbbSort extends _SbbSortBase implements HasInitialized, OnInit, OnC
   }
 
   ngOnInit() {
-    this._markInitialized();
+    this._initializedStream.next();
   }
 
   ngOnChanges() {
@@ -193,6 +190,7 @@ export class SbbSort extends _SbbSortBase implements HasInitialized, OnInit, OnC
 
   ngOnDestroy() {
     this._stateChanges.complete();
+    this._initializedStream.complete();
   }
 }
 
