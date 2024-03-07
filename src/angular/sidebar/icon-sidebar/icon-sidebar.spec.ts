@@ -338,6 +338,56 @@ describe('SbbIconSidebar', () => {
         .toBeLessThan(contentIndex);
     });
 
+    it('should project end icon sidebar after the content', () => {
+      const fixture = TestBed.createComponent(BasicTestComponent);
+      fixture.componentInstance.position = 'end';
+      fixture.detectChanges();
+
+      const allNodes = getSidebarNodesArray(fixture);
+      const sidebarIndex = allNodes.indexOf(
+        fixture.nativeElement.querySelector('.sbb-icon-sidebar'),
+      );
+      const contentIndex = allNodes.indexOf(
+        fixture.nativeElement.querySelector('.sbb-icon-sidebar-content'),
+      );
+
+      expect(sidebarIndex)
+        .withContext('Expected sidebar to be inside the container')
+        .toBeGreaterThan(-1);
+      expect(contentIndex)
+        .withContext('Expected content to be inside the container')
+        .toBeGreaterThan(-1);
+      expect(sidebarIndex)
+        .withContext('Expected sidebar to be after the content')
+        .toBeGreaterThan(contentIndex);
+    });
+
+    it('should display the mobile icon sidebar on the bottom of the screen', fakeAsync(() => {
+      const fixture = TestBed.createComponent(BasicTestComponent);
+      fixture.detectChanges();
+
+      mediaMatcher.setMatchesQuery(Breakpoints.Mobile, true);
+      tick();
+      fixture.detectChanges();
+
+      let sidebarTop = fixture.nativeElement.querySelector('.sbb-icon-sidebar').offsetTop;
+      let contentTop = fixture.nativeElement.querySelector('.sbb-icon-sidebar-content').offsetTop;
+
+      expect(sidebarTop)
+        .withContext('Expected start sidebar to be below the content')
+        .toBeGreaterThan(contentTop);
+
+      fixture.componentInstance.position = 'end';
+      fixture.detectChanges();
+
+      sidebarTop = fixture.nativeElement.querySelector('.sbb-icon-sidebar').offsetTop;
+      contentTop = fixture.nativeElement.querySelector('.sbb-icon-sidebar-content').offsetTop;
+
+      expect(sidebarTop)
+        .withContext('Expected end sidebar to be below the content')
+        .toBeGreaterThan(contentTop);
+    }));
+
     function getSidebarNodesArray(fixture: ComponentFixture<any>): HTMLElement[] {
       return Array.from(
         fixture.nativeElement.querySelector('.sbb-icon-sidebar-container').childNodes,
