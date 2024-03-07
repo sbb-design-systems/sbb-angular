@@ -65,6 +65,7 @@ export abstract class SbbSidebarBase implements AfterViewInit, OnDestroy {
   /** Anchor node used to restore the sidebar to its initial position. */
   private _anchor: Comment | null;
 
+  /** The side that the sidebar is attached to. */
   @Input()
   set position(value: 'start' | 'end') {
     // Make sure we have a valid value.
