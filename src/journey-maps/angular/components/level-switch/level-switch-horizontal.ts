@@ -88,7 +88,7 @@ export class SbbLevelSwitchHorizontal implements OnInit, OnDestroy {
     this.startCountdown();
     setTimeout(() => {
       this._focusMatchingButton();
-    }, 0); // make sure side buttons are visible first
+    }, 250); // make sure side buttons are visible first
   }
 
   private _focusMatchingButton(): void {
