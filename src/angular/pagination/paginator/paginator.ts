@@ -11,13 +11,14 @@ import {
   InjectionToken,
   Input,
   numberAttribute,
+  OnDestroy,
   OnInit,
   Optional,
   Output,
   ViewEncapsulation,
 } from '@angular/core';
-import { HasInitialized, mixinInitialized } from '@sbb-esta/angular/core';
 import { SbbIcon } from '@sbb-esta/angular/icon';
+import { Observable, ReplaySubject } from 'rxjs';
 
 /** The default page size if there is no page size and there are no provided page size options. */
 const DEFAULT_PAGE_SIZE = 50;
@@ -56,11 +57,6 @@ export const SBB_PAGINATOR_DEFAULT_OPTIONS = new InjectionToken<SbbPaginatorDefa
   'SBB_PAGINATOR_DEFAULT_OPTIONS',
 );
 
-// Boilerplate for applying mixins to _SbbPaginatorBase.
-/** @docs-private */
-// tslint:disable-next-line:naming-convention
-const _SbbPaginatorBase = mixinInitialized(class {});
-
 /**
  * Component to provide navigation between paged information. Displays the size of the current
  * page, user-selectable options to change that size, what items are being shown, and
@@ -81,13 +77,14 @@ const _SbbPaginatorBase = mixinInitialized(class {});
   standalone: true,
   imports: [SbbIcon],
 })
-export class SbbPaginator extends _SbbPaginatorBase implements OnInit, HasInitialized {
+export class SbbPaginator implements OnInit, OnDestroy {
   _labelPreviousPage: string = $localize`:Button label to navigate to the previous page@@sbbPaginationPreviousPage:Previous Page`;
 
   _labelNextPage: string = $localize`:Button label to navigate to the next page@@sbbPaginationNextPage:Next Page`;
 
-  private _initialized: boolean;
   private _previousPageSize: number;
+  private _isInitialized = false;
+  private _initializedStream = new ReplaySubject<void>(1);
 
   /** The zero-based page index of the displayed list of items. Defaulted to 0. */
   @Input({ transform: numberAttribute })
@@ -130,14 +127,15 @@ export class SbbPaginator extends _SbbPaginatorBase implements OnInit, HasInitia
   /** Event emitted when the paginator changes the page size or page index. */
   @Output() readonly page: EventEmitter<SbbPageEvent> = new EventEmitter<SbbPageEvent>();
 
+  /** Emits when the paginator is initialized. */
+  initialized: Observable<void> = this._initializedStream;
+
   constructor(
     private _changeDetectorRef: ChangeDetectorRef,
     @Optional()
     @Inject(SBB_PAGINATOR_DEFAULT_OPTIONS)
     defaults?: SbbPaginatorDefaultOptions,
   ) {
-    super();
-
     if (defaults) {
       const { pageSize } = defaults;
 
@@ -149,8 +147,12 @@ export class SbbPaginator extends _SbbPaginatorBase implements OnInit, HasInitia
 
   ngOnInit() {
     this._previousPageSize = this._pageSize;
-    this._initialized = true;
-    this._markInitialized();
+    this._isInitialized = true;
+    this._initializedStream.next();
+  }
+
+  ngOnDestroy() {
+    this._initializedStream.complete();
   }
 
   /** @docs-private */
@@ -238,7 +240,7 @@ export class SbbPaginator extends _SbbPaginatorBase implements OnInit, HasInitia
   /** Emits an event notifying that a change of the paginator's properties has been triggered. */
   private _emitPageEvent(previousPageIndex: number) {
     if (
-      !this._initialized ||
+      !this._isInitialized ||
       (this.pageIndex === previousPageIndex && this._previousPageSize === this.pageSize)
     ) {
       return;
