@@ -149,7 +149,7 @@
     </unit>
     <unit id="sbbPaginationPreviousPage">
       <notes>
-        <note category="location">../../../../../../src/angular/pagination/paginator/paginator.ts:85</note>
+        <note category="location">../../../../../../src/angular/pagination/paginator/paginator.ts:81</note>
         <note category="description">Button label to navigate to the previous page</note>
       </notes>
       <segment>
@@ -158,7 +158,7 @@
     </unit>
     <unit id="sbbPaginationNextPage">
       <notes>
-        <note category="location">../../../../../../src/angular/pagination/paginator/paginator.ts:87</note>
+        <note category="location">../../../../../../src/angular/pagination/paginator/paginator.ts:83</note>
         <note category="description">Button label to navigate to the next page</note>
       </notes>
       <segment>
