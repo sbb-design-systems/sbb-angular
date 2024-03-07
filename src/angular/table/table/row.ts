@@ -7,7 +7,13 @@ import {
   CdkRow,
   CdkRowDef,
 } from '@angular/cdk/table';
-import { ChangeDetectionStrategy, Component, Directive, ViewEncapsulation } from '@angular/core';
+import {
+  booleanAttribute,
+  ChangeDetectionStrategy,
+  Component,
+  Directive,
+  ViewEncapsulation,
+} from '@angular/core';
 
 // We can't reuse `CDK_ROW_TEMPLATE` because it's incompatible with local compilation mode.
 const ROW_TEMPLATE = `<ng-container cdkCellOutlet></ng-container>`;
@@ -19,7 +25,10 @@ const ROW_TEMPLATE = `<ng-container cdkCellOutlet></ng-container>`;
 @Directive({
   selector: '[sbbHeaderRowDef]',
   providers: [{ provide: CdkHeaderRowDef, useExisting: SbbHeaderRowDef }],
-  inputs: ['columns: sbbHeaderRowDef', 'sticky: sbbHeaderRowDefSticky'],
+  inputs: [
+    { name: 'columns', alias: 'sbbHeaderRowDef' },
+    { name: 'sticky', alias: 'sbbHeaderRowDefSticky', transform: booleanAttribute },
+  ],
   standalone: true,
 })
 export class SbbHeaderRowDef extends CdkHeaderRowDef {}
@@ -31,7 +40,10 @@ export class SbbHeaderRowDef extends CdkHeaderRowDef {}
 @Directive({
   selector: '[sbbFooterRowDef]',
   providers: [{ provide: CdkFooterRowDef, useExisting: SbbFooterRowDef }],
-  inputs: ['columns: sbbFooterRowDef', 'sticky: sbbFooterRowDefSticky'],
+  inputs: [
+    { name: 'columns', alias: 'sbbFooterRowDef' },
+    { name: 'sticky', alias: 'sbbFooterRowDefSticky', transform: booleanAttribute },
+  ],
   standalone: true,
 })
 export class SbbFooterRowDef extends CdkFooterRowDef {}
@@ -44,7 +56,10 @@ export class SbbFooterRowDef extends CdkFooterRowDef {}
 @Directive({
   selector: '[sbbRowDef]',
   providers: [{ provide: CdkRowDef, useExisting: SbbRowDef }],
-  inputs: ['columns: sbbRowDefColumns', 'when: sbbRowDefWhen'],
+  inputs: [
+    { name: 'columns', alias: 'sbbRowDefColumns' },
+    { name: 'when', alias: 'sbbRowDefWhen' },
+  ],
   standalone: true,
 })
 export class SbbRowDef<T> extends CdkRowDef<T> {}

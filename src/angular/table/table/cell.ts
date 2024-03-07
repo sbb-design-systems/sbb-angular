@@ -49,7 +49,6 @@ export class SbbFooterCellDef extends CdkFooterCellDef {}
  */
 @Directive({
   selector: '[sbbColumnDef]',
-  inputs: ['sticky'],
   providers: [
     { provide: CdkColumnDef, useExisting: SbbColumnDef },
     { provide: 'SBB_SORT_HEADER_COLUMN_DEF', useExisting: SbbColumnDef },
