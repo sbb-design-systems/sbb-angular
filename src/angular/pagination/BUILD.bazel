@@ -25,6 +25,7 @@ ng_module(
         "@npm//@angular/core",
         "@npm//@angular/localize",
         "@npm//@angular/router",
+        "@npm//rxjs",
     ],
 )
 
