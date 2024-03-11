@@ -3,6 +3,7 @@
 
 import { BreakpointObserver } from '@angular/cdk/layout';
 import { CdkScrollable, ScrollDispatcher } from '@angular/cdk/scrolling';
+import { DOCUMENT } from '@angular/common';
 import {
   AfterContentInit,
   booleanAttribute,
@@ -31,6 +32,12 @@ import {
   SbbSidebarMobileCapableContainer,
   SBB_SIDEBAR_CONTAINER,
 } from '../sidebar-base';
+
+export function throwSbbDuplicatedIconSidebarError() {
+  throw Error(
+    `Only one icon-sidebar as direct descendant of sidebar container at once is allowed'`,
+  );
+}
 
 @Component({
   selector: 'sbb-icon-sidebar-content',
@@ -99,9 +106,10 @@ export class SbbIconSidebar extends SbbSidebarBase {
   constructor(
     @Inject(SBB_SIDEBAR_CONTAINER) container: SbbIconSidebarContainer,
     private _changeDetectorRef: ChangeDetectorRef,
-    private _elementRef: ElementRef<HTMLElement>,
+    elementRef: ElementRef<HTMLElement>,
+    @Inject(DOCUMENT) _doc: any,
   ) {
-    super(container);
+    super(container, elementRef, _doc);
   }
 
   toggleExpanded(expanded: boolean = !this._expanded) {
@@ -113,7 +121,20 @@ export class SbbIconSidebar extends SbbSidebarBase {
     this._elementRef.nativeElement.querySelector('.sbb-icon-sidebar-inner-container')!.scrollLeft =
       0;
 
+    this._updatePositionInParent(this.position);
     this._changeDetectorRef.markForCheck();
+  }
+
+  /**
+   * On mobile devices, the position of the sidebar is always 'start'.
+   * @docs-private
+   */
+  override _updatePositionInParent(position: 'start' | 'end') {
+    if (this._container._mobile) {
+      super._updatePositionInParent('start');
+    } else {
+      super._updatePositionInParent(position);
+    }
   }
 }
 
@@ -169,5 +190,14 @@ export class SbbIconSidebarContainer
 
     // Has to be called at last (needs sidebar to be set)
     this._watchBreakpointObserver();
+  }
+
+  /** Validate the state of the icon sidebar children components. */
+  override _validateSidebars() {
+    super._validateSidebars();
+
+    if (this._sidebars.length > 1 && (typeof ngDevMode === 'undefined' || ngDevMode)) {
+      throwSbbDuplicatedIconSidebarError();
+    }
   }
 }

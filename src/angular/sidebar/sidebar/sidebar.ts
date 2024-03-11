@@ -12,7 +12,7 @@ import { ESCAPE, hasModifierKey } from '@angular/cdk/keycodes';
 import { BreakpointObserver } from '@angular/cdk/layout';
 import { Platform } from '@angular/cdk/platform';
 import { CdkScrollable, ScrollDispatcher, ViewportRuler } from '@angular/cdk/scrolling';
-import { DOCUMENT } from '@angular/common';
+import { AsyncPipe, DOCUMENT } from '@angular/common';
 import {
   AfterContentChecked,
   AfterContentInit,
@@ -28,6 +28,7 @@ import {
   HostBinding,
   HostListener,
   Inject,
+  Input,
   NgZone,
   OnDestroy,
   Optional,
@@ -38,7 +39,7 @@ import {
 } from '@angular/core';
 import { NavigationStart, Router } from '@angular/router';
 import { SbbIcon } from '@sbb-esta/angular/icon';
-import { fromEvent, merge, NEVER, Observable, Subject } from 'rxjs';
+import { BehaviorSubject, combineLatest, fromEvent, merge, NEVER, Observable, Subject } from 'rxjs';
 import {
   distinctUntilChanged,
   filter,
@@ -71,6 +72,7 @@ export type SbbSidebarMode = 'over' | 'side';
   host: {
     class: 'sbb-sidebar-content sbb-scrollbar',
     '[style.margin-left.px]': '_container._contentMargins.left',
+    '[style.margin-right.px]': '_container._contentMargins.right',
   },
   changeDetection: ChangeDetectionStrategy.OnPush,
   encapsulation: ViewEncapsulation.None,
@@ -146,6 +148,17 @@ export class SbbSidebar
     return this._opened;
   }
 
+  /**
+   * Name of the svg icon for the trigger on mobile devices.
+   */
+  @Input() set triggerSvgIcon(value: string) {
+    this._triggerSvgIconSubject.next(value);
+  }
+  get triggerSvgIcon(): string | null {
+    return this._triggerSvgIconSubject.value;
+  }
+  private _triggerSvgIconSubject = new BehaviorSubject<string | null>(null);
+
   /** Event emitted when the sidebar has started opening. */
   @Output()
   get openedStart(): Observable<void> {
@@ -216,17 +229,27 @@ export class SbbSidebar
    */
   readonly _modeChanged = new Subject<void>();
 
+  readonly _svgIcon: Observable<string> = combineLatest([
+    this._triggerSvgIconSubject,
+    this.onPositionChanged.pipe(startWith(null)),
+  ]).pipe(
+    takeUntil(this._destroyed),
+    map(([icon]) =>
+      icon ? icon : this._position === 'start' ? 'hamburger-menu-small' : 'controls-small',
+    ),
+  );
+
   constructor(
-    private _elementRef: ElementRef<HTMLElement>,
+    elementRef: ElementRef<HTMLElement>,
     private _focusTrapFactory: ConfigurableFocusTrapFactory,
     private _focusMonitor: FocusMonitor,
     private _platform: Platform,
     private _ngZone: NgZone,
-    @Optional() @Inject(DOCUMENT) private _doc: any,
+    @Optional() @Inject(DOCUMENT) _doc: any,
     @Inject(SBB_SIDEBAR_CONTAINER) public override _container: SbbSidebarContainer,
     @Optional() private _router: Router,
   ) {
-    super(_container);
+    super(_container, elementRef, _doc);
 
     this.openedChange.subscribe((opened: boolean) => {
       if (opened) {
@@ -239,6 +262,8 @@ export class SbbSidebar
         this._restoreFocus(this._openedVia || 'program');
       }
     });
+
+    this.onPositionChanged.pipe(takeUntil(this._destroyed));
 
     /**
      * Listen to `keydown` events outside the zone so that change detection is not run every
@@ -352,7 +377,8 @@ export class SbbSidebar
     }
   }
 
-  ngOnDestroy() {
+  override ngOnDestroy() {
+    super.ngOnDestroy();
     if (this._focusTrap) {
       this._focusTrap.destroy();
     }
@@ -509,7 +535,7 @@ export class SbbSidebar
     },
   ],
   standalone: true,
-  imports: [SbbIcon, SbbSidebarContent],
+  imports: [SbbIcon, SbbSidebarContent, AsyncPipe],
 })
 export class SbbSidebarContainer
   extends SbbSidebarContainerBase<SbbSidebar>
@@ -517,14 +543,17 @@ export class SbbSidebarContainer
 {
   _labelOpenSidebar: string = $localize`:Button label to open the sidebar@@sbbSidebarOpenSidebar:Open Sidebar`;
 
-  /** The sidebar child */
-  override get sidebar(): SbbSidebar | null {
-    return this._sidebar;
+  /** The sidebar child at the start/end position. */
+  override get start(): SbbSidebar | null {
+    return this._start;
+  }
+  override get end(): SbbSidebar | null {
+    return this._start;
   }
 
   /** Whether the sidebar container should have a backdrop while one of the sidebars is open. */
   get hasBackdrop() {
-    return !this.sidebar || this.sidebar.mode !== 'side';
+    return !this.start || this.start.mode !== 'side' || !this.end || this.end.mode !== 'side';
   }
 
   constructor(
@@ -559,15 +588,12 @@ export class SbbSidebarContainer
   /** Event emitted when the sidebar backdrop is clicked. */
   @Output() readonly backdropClick: EventEmitter<void> = new EventEmitter<void>();
 
-  /** The sidebar */
-  protected override _sidebar: SbbSidebar | null;
-
   /**
    * Margins to be applied to the content. These are used to shrink the sidebar content when a
    * sidebar is open. We use margin rather than transform because transform breaks
    * fixed position elements inside of the transformed element.
    */
-  _contentMargins: { left: number | null } = { left: null };
+  _contentMargins: { left: number | null; right: number | null } = { left: null, right: null };
 
   readonly _contentMarginChanges = new Subject<{ left: number | null }>();
 
@@ -580,9 +606,14 @@ export class SbbSidebarContainer
       this._sidebars.forEach((sidebar: SbbSidebar) => {
         this._watchSidebarToggle(sidebar);
         this._watchSidebarMode(sidebar);
+        this._watchSidebarPosition(sidebar);
       });
 
-      if (!this._sidebars.length || this._isSidebarOpen(this._sidebar)) {
+      if (
+        !this._sidebars.length ||
+        this._isSidebarOpen(this._start) ||
+        this._isSidebarOpen(this._end)
+      ) {
         this.updateContentMargins();
       }
 
@@ -593,14 +624,14 @@ export class SbbSidebarContainer
     this._watchBreakpointObserver();
   }
 
-  /** Calls `open` of the sidebar */
+  /** Calls `open` of both start and end sidebars */
   open(): void {
-    this.sidebar?.open();
+    this._sidebars.forEach((sidebar) => sidebar.open());
   }
 
-  /** Calls `close` of the sidebar */
+  /** Calls `close` of both start and end sidebars */
   close(): void {
-    this.sidebar?.close();
+    this._sidebars.forEach((sidebar) => sidebar.close());
   }
 
   /**
@@ -612,9 +643,14 @@ export class SbbSidebarContainer
     // 2. For sidebars in `side` mode they should shrink the content. We do this by adding to the
     //    left margin (for left sidebar).
     let left = 0;
+    let right = 0;
 
-    if (this._sidebar && this._sidebar.opened && this._sidebar.mode === 'side') {
-      left += this._sidebar._getWidth();
+    if (this._start && this._start.opened && this._start.mode === 'side') {
+      left += this._start._getWidth();
+    }
+
+    if (this._end && this._end.opened && this._end.mode === 'side') {
+      right += this._end._getWidth();
     }
 
     // If `left` is zero, don't set a style to the element. This
@@ -622,9 +658,10 @@ export class SbbSidebarContainer
     // measured widths will always be zero. Note that we reset to `null` here, rather
     // than below, in order to ensure that the types in the `if` below are consistent.
     left = left || null!;
+    right = right || null!;
 
     if (left !== this._contentMargins.left) {
-      this._contentMargins = { left };
+      this._contentMargins = { left, right };
 
       // Pull back into the NgZone since in some cases we could be outside. We need to be careful
       // to do it only when something changed, otherwise we can end up hitting the zone too often.
@@ -671,12 +708,28 @@ export class SbbSidebarContainer
     }
   }
 
+  /**
+   * Subscribes to sidebar onPositionChanged event in order to
+   * re-validate sidebars when the position changes.
+   */
+  private _watchSidebarPosition(sidebar: SbbSidebar) {
+    if (!sidebar) {
+      return;
+    }
+
+    sidebar.onPositionChanged.pipe(takeUntil(this._sidebars.changes)).subscribe(() => {
+      this._validateSidebars();
+      this.updateContentMargins();
+      this._changeDetectorRef.markForCheck();
+    });
+  }
+
   /** Toggles the 'sbb-sidebar-opened' class on the main 'sbb-sidebar-container' element. */
   private _setContainerClass(isAdd: boolean): void {
     const classList = this._element.nativeElement.classList;
     const className = 'sbb-sidebar-container-has-open';
 
-    if (isAdd && this.sidebar?.mode !== 'side') {
+    if (isAdd) {
       classList.add(className);
     } else {
       classList.remove(className);
@@ -690,13 +743,16 @@ export class SbbSidebarContainer
 
   _closeModalSidebarsViaBackdrop() {
     // Close open sidebar where closing is not disabled and the mode is not `side`.
-    if (this._sidebar && this._canHaveBackdrop(this._sidebar)) {
-      this._sidebar!._closeViaBackdropClick();
-    }
+    [this._start, this._end]
+      .filter((sidebar) => sidebar && this._canHaveBackdrop(sidebar))
+      .forEach((sidebar) => sidebar!._closeViaBackdropClick());
   }
 
   _isShowingBackdrop(): boolean {
-    return this._isSidebarOpen(this._sidebar) && this._canHaveBackdrop(this._sidebar);
+    return (
+      (this._isSidebarOpen(this._start) && this._canHaveBackdrop(this._start)) ||
+      (this._isSidebarOpen(this._end) && this._canHaveBackdrop(this._end))
+    );
   }
 
   private _canHaveBackdrop(sidebar: SbbSidebar): boolean {
@@ -707,8 +763,12 @@ export class SbbSidebarContainer
     return sidebar != null && sidebar.opened;
   }
 
-  toggleSidebar() {
-    this._sidebar?.toggle();
+  toggleSidebar(position: 'start' | 'end') {
+    if (position === 'start') {
+      this._start?.toggle();
+    } else {
+      this._end?.toggle();
+    }
   }
 
   override ngOnDestroy() {
