@@ -1,6 +1,6 @@
 {
   "name": "sbb-angular",
-  "version": "17.5.3",
+  "version": "17.6.0",
   "private": true,
   "engines": {
     "node": ">=14.0.0 <19.0.0",

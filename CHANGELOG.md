@@ -2,6 +2,28 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [17.6.0](https://github.com/sbb-design-systems/sbb-angular/compare/17.5.3...17.6.0) (2024-03-11)
+
+
+### Features
+
+* **angular/sidebar:** allow positioning on the right side of the screen ([#2197](https://github.com/sbb-design-systems/sbb-angular/issues/2197)) ([657fd57](https://github.com/sbb-design-systems/sbb-angular/commit/657fd5702d487f446d4ce951ba0819d1c5832b18)), closes [#2130](https://github.com/sbb-design-systems/sbb-angular/issues/2130)
+* **angular/tag:** display icons inside tags ([#2192](https://github.com/sbb-design-systems/sbb-angular/issues/2192)) ([41f2eb6](https://github.com/sbb-design-systems/sbb-angular/commit/41f2eb69f65bc99257b990bad7c6ac5f34e26625)), closes [#2072](https://github.com/sbb-design-systems/sbb-angular/issues/2072)
+
+
+### Bug Fixes
+
+* **angular/autocomplete:** requireSelection sometimes not clearing value ([#2213](https://github.com/sbb-design-systems/sbb-angular/issues/2213)) ([65ed8d1](https://github.com/sbb-design-systems/sbb-angular/commit/65ed8d12d78e9d4fac18a02d02d78e3906a5b738))
+* **angular/header-environment:** fix text color in dark mode ([#2205](https://github.com/sbb-design-systems/sbb-angular/issues/2205)) ([37a85f8](https://github.com/sbb-design-systems/sbb-angular/commit/37a85f850e879b22e1a6d333b557e42ef29a2d58)), closes [#2202](https://github.com/sbb-design-systems/sbb-angular/issues/2202)
+* **angular/input:** don't swallow the tabIndex ([#2204](https://github.com/sbb-design-systems/sbb-angular/issues/2204)) ([b326f45](https://github.com/sbb-design-systems/sbb-angular/commit/b326f450122c6ff85a898fe33999826858d993a6)), closes [#2203](https://github.com/sbb-design-systems/sbb-angular/issues/2203)
+* **angular/schematics:** import async animations and remove deprecated functions ([#2194](https://github.com/sbb-design-systems/sbb-angular/issues/2194)) ([bd76fab](https://github.com/sbb-design-systems/sbb-angular/commit/bd76fabd6ccf7e50fc1117e0ba0d29f3bbd5762c))
+* **angular/table:** fix input transforms and adjust to latest @angular/cdk ([#2211](https://github.com/sbb-design-systems/sbb-angular/issues/2211)) ([6ec5d2a](https://github.com/sbb-design-systems/sbb-angular/commit/6ec5d2ac873f6c226c8e37be337628b0212e87c4))
+* **angular/tabs:** prevent scrolling and disable interaction if disabled ([#2193](https://github.com/sbb-design-systems/sbb-angular/issues/2193)) ([0384d0a](https://github.com/sbb-design-systems/sbb-angular/commit/0384d0a0e250a9ab95f69c5c97e5025fa1e7cdb1))
+* **deps:** update angular to v17.2.2 ([db4d12d](https://github.com/sbb-design-systems/sbb-angular/commit/db4d12df3028ebed4f6b2901d5783b0b45955af4))
+* **deps:** update angular to v17.2.3 ([3ea14cd](https://github.com/sbb-design-systems/sbb-angular/commit/3ea14cd93eb249314aace0d94228a271c16924cc))
+* **journey-maps:** fix horizontal level switch animation ([#2210](https://github.com/sbb-design-systems/sbb-angular/issues/2210)) ([a200cdc](https://github.com/sbb-design-systems/sbb-angular/commit/a200cdcc784dc2e10fd0501770bf0a4e820f88a7))
+* **journey-maps:** fix sonarlint issues ([#2183](https://github.com/sbb-design-systems/sbb-angular/issues/2183)) ([62e0f8c](https://github.com/sbb-design-systems/sbb-angular/commit/62e0f8c351c1e1bba13fd56b1e4a1f46c3b981db))
+
 ### [17.5.3](https://github.com/sbb-design-systems/sbb-angular/compare/17.5.2...17.5.3) (2024-02-12)
 
 
