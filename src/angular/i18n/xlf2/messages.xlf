@@ -212,8 +212,8 @@
     </unit>
     <unit id="sbbTagBadgePillAmountOfResults">
       <notes>
-        <note category="location">../../../../../../src/angular/tag/tag-link.ts:34</note>
-        <note category="location">../../../../../../src/angular/tag/tag.ts:55</note>
+        <note category="location">../../../../../../src/angular/tag/tag-link.ts:35</note>
+        <note category="location">../../../../../../src/angular/tag/tag.ts:56</note>
         <note category="description">Aria label for amount of results displayed in badge pill</note>
       </notes>
       <segment>

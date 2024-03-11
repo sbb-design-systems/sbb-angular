@@ -18,6 +18,7 @@ import {
 import { NG_VALUE_ACCESSOR } from '@angular/forms';
 import { SbbBadge } from '@sbb-esta/angular/badge';
 import { _SbbCheckboxBase } from '@sbb-esta/angular/checkbox';
+import { SbbIcon } from '@sbb-esta/angular/icon';
 import { Subject } from 'rxjs';
 import { take } from 'rxjs/operators';
 
@@ -42,7 +43,7 @@ import { take } from 'rxjs/operators';
     '[class.sbb-tag-active]': 'active',
   },
   standalone: true,
-  imports: [SbbBadge],
+  imports: [SbbBadge, SbbIcon],
 })
 export class SbbTag extends _SbbCheckboxBase implements OnDestroy {
   /** Amount displayed in badge */
@@ -62,6 +63,14 @@ export class SbbTag extends _SbbCheckboxBase implements OnDestroy {
   @Input('sbbBadgeDescription')
   badgeDescription: string;
   _badgeDescriptionFallback: string;
+
+  /**
+   * The indicator icon, which will be shown before the text.
+   * Must be a valid svgIcon input for sbb-icon.
+   *
+   * e.g. svgIcon="circle-information-small"
+   */
+  @Input() svgIcon: string;
 
   /** Emits the current amount when the amount changes */
   readonly _amountChange = new Subject<number>();
