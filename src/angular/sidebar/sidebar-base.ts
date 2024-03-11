@@ -143,6 +143,15 @@ export abstract class SbbSidebarContainerBase<T extends SbbSidebarBase>
 {
   _mobile: boolean;
 
+  /**
+   * The sidebar child at the start or end position.
+   * @deprecated Use `start` or `end` instead.
+   * @breaking-change 18.0.0
+   */
+  get sidebar(): T | null {
+    return this._start || this._end;
+  }
+
   /** The sidebar child with the `start` position. */
   get start(): T | null {
     return this._start;
