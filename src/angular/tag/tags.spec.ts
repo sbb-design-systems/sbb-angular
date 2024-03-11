@@ -4,6 +4,7 @@ import { FormControl, FormGroup, FormsModule, ReactiveFormsModule } from '@angul
 import { By } from '@angular/platform-browser';
 import { SbbBadge, SbbBadgeModule } from '@sbb-esta/angular/badge';
 import { SbbCheckboxChange as SbbTagChange } from '@sbb-esta/angular/checkbox';
+import { SbbIconTestingModule } from '@sbb-esta/angular/icon/testing';
 
 import { SbbTag } from './tag';
 import { SbbTagModule } from './tag.module';
@@ -107,6 +108,20 @@ class TagsTestFixtureReactiveComponent {
 class TagLinkTestFixtureComponent {
   description?: string;
 }
+
+@Component({
+  template: `
+    <sbb-tags>
+      <sbb-tag [amount]="9" svgIcon="cutlery-small" class="restaurants-tag"></sbb-tag>
+    </sbb-tags>
+
+    <a sbb-tag-link href="#" amount="5" svgIcon="train-small" class="trains-tag-link">Trains</a>
+  `,
+  standalone: true,
+  imports: [SbbBadgeModule, SbbTagModule, SbbIconTestingModule],
+})
+class TagWithIconTextTestFixtureComponent {}
+
 describe('SbbTags', () => {
   describe('SbbTags plain', () => {
     let component: SbbTags;
@@ -556,8 +571,31 @@ describe('SBB Tag Link', () => {
     fixture.detectChanges();
 
     const linkTag = fixture.debugElement.query(By.css('.sbb-tag-link'));
-    expect(linkTag.nativeElement.textContent).toEqual('Trains 5');
+    expect(linkTag.nativeElement.textContent).toEqual('Trains5');
     expect(extractBadgeDescription(fixture.debugElement)).toEqual('amount');
+  });
+});
+
+describe('SBB Tag with Icon', () => {
+  let fixture: ComponentFixture<TagWithIconTextTestFixtureComponent>;
+
+  beforeEach(waitForAsync(() => {
+    TestBed.configureTestingModule({
+      imports: [TagWithIconTextTestFixtureComponent],
+    }).compileComponents();
+  }));
+
+  beforeEach(() => {
+    fixture = TestBed.createComponent(TagWithIconTextTestFixtureComponent);
+    fixture.detectChanges();
+  });
+
+  it('should have a svgIcon', () => {
+    const tags = fixture.debugElement.queryAll(By.directive(SbbTag));
+    expect(tags[1].componentInstance.svgIcon).toBe('cutlery-small');
+
+    const links = fixture.debugElement.queryAll(By.css('a.sbb-tag-link'));
+    expect(links[0].componentInstance.svgIcon).toBe('train-small');
   });
 });
 

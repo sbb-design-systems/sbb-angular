@@ -41,6 +41,13 @@ Tag links are always active.
 
 ### Accessibility
 
+When using a tag with an icon but without a label, it's important to provide an `aria-label` so that screen readers can
+announce the purpose of the tag.
+
+```html
+<sbb-tag svgIcon="trains-small" [amount]="3" aria-label="Trains">Trains</sbb-tag>
+```
+
 To provide more precise aria descriptions for the badge label,
 it's possible to set the `sbbBadgeDescription` property on `<sbb-tag>` or `tag-link`.
 
