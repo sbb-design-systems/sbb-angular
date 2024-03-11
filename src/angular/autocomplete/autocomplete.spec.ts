@@ -3200,6 +3200,48 @@ describe('SbbAutocomplete', () => {
       expect(spy).not.toHaveBeenCalled();
       subscription.unsubscribe();
     }));
+
+    it('should clear the value if requireSelection is enabled and the user edits the input before clicking away', fakeAsync(() => {
+      const input = fixture.nativeElement.querySelector('input');
+      const { numberCtrl, trigger } = fixture.componentInstance;
+      fixture.componentInstance.requireSelection = true;
+      fixture.detectChanges();
+      tick();
+
+      // Simulate opening the input and clicking the first option.
+      trigger.openPanel();
+      fixture.detectChanges();
+      zone.simulateZoneExit();
+      (overlayContainerElement.querySelector('sbb-option') as HTMLElement).click();
+      tick();
+      fixture.detectChanges();
+
+      expect(trigger.panelOpen).toBe(false);
+      expect(input.value).toBe('Eins');
+      expect(numberCtrl.value).toEqual({ code: '1', name: 'Eins', height: 48 });
+
+      // Simulate pressing backspace while focus is still on the input.
+      dispatchFakeEvent(input, 'keydown');
+      input.value = 'Ei';
+      fixture.detectChanges();
+      dispatchFakeEvent(input, 'input');
+      fixture.detectChanges();
+      zone.simulateZoneExit();
+
+      expect(trigger.panelOpen).toBe(true);
+      expect(input.value).toBe('Ei');
+      expect(numberCtrl.value).toEqual({ code: '1', name: 'Eins', height: 48 });
+
+      // Simulate clicking away.
+      input.blur();
+      dispatchFakeEvent(document, 'click');
+      fixture.detectChanges();
+      tick();
+
+      expect(trigger.panelOpen).toBe(false);
+      expect(input.value).toBe('');
+      expect(numberCtrl.value).toBe(null);
+    }));
   });
 
   describe('panel closing', () => {
