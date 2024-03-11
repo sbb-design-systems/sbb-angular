@@ -152,6 +152,9 @@ export class SbbAutocompleteTrigger
   /** Value of the input element when the panel was attached (even if there are no options). */
   private _valueOnAttach: string | number | null;
 
+  /** Value on the previous keydown event. */
+  private _valueOnLastKeydown: string | null;
+
   /** Strategy that is used to position the panel. */
   private _positionStrategy: FlexibleConnectedPositionStrategy;
 
@@ -347,7 +350,7 @@ export class SbbAutocompleteTrigger
 
   /** Opens the autocomplete suggestion panel. */
   openPanel(): void {
-    this._attachOverlay();
+    this._openPanelInternal();
   }
 
   /** Closes the autocomplete suggestion panel. */
@@ -509,6 +512,8 @@ export class SbbAutocompleteTrigger
       event.preventDefault();
     }
 
+    this._valueOnLastKeydown = this._element.nativeElement.value;
+
     if (this.activeOption && keyCode === ENTER && this.panelOpen && !hasModifier) {
       this.activeOption._selectViaInteraction();
       this._resetActiveItem();
@@ -520,7 +525,7 @@ export class SbbAutocompleteTrigger
       if (keyCode === TAB || (isArrowKey && !hasModifier && this.panelOpen)) {
         this.autocomplete._keyManager.onKeydown(event);
       } else if (isArrowKey && this._canOpen()) {
-        this.openPanel();
+        this._openPanelInternal(this._valueOnLastKeydown);
       }
 
       if (isArrowKey || this.autocomplete._keyManager.activeItem !== prevActiveItem) {
@@ -528,7 +533,7 @@ export class SbbAutocompleteTrigger
 
         if (this.autocomplete.autoSelectActiveOption && this.activeOption) {
           if (!this._pendingAutoselectedOption) {
-            this._valueBeforeAutoSelection = this._element.nativeElement.value;
+            this._valueBeforeAutoSelection = this._valueOnLastKeydown;
           }
 
           this._pendingAutoselectedOption = this.activeOption;
@@ -572,7 +577,7 @@ export class SbbAutocompleteTrigger
         const selectedOption = this.autocomplete.options?.find((option) => option.selected);
 
         if (selectedOption) {
-          const display = this.autocomplete.displayWith?.(selectedOption) ?? selectedOption.value;
+          const display = this._getDisplayValue(selectedOption.value);
 
           if (value !== display) {
             selectedOption.deselect(false);
@@ -581,7 +586,14 @@ export class SbbAutocompleteTrigger
       }
 
       if (this._canOpen() && this._document.activeElement === event.target) {
-        this.openPanel();
+        // When the `input` event fires, the input's value will have already changed. This means
+        // that if we take the `this._element.nativeElement.value` directly, it'll be one keystroke
+        // behind. This can be a problem when the user selects a value, changes a character while
+        // the input still has focus and then clicks away (see #28432). To work around it, we
+        // capture the value in `keydown` so we can use it here.
+        const valueOnAttach = this._valueOnLastKeydown ?? this._element.nativeElement.value;
+        this._valueOnLastKeydown = null;
+        this._openPanelInternal(valueOnAttach);
       }
     }
   }
@@ -595,13 +607,13 @@ export class SbbAutocompleteTrigger
       this._canOpenOnNextFocus = true;
     } else if (this._canOpen()) {
       this._previousValue = this._element.nativeElement.value;
-      this._attachOverlay();
+      this._attachOverlay(this._previousValue);
     }
   }
 
   _handleClick(): void {
     if (this._canOpen() && !this.panelOpen) {
-      this.openPanel();
+      this._openPanelInternal();
     }
   }
 
@@ -698,11 +710,14 @@ export class SbbAutocompleteTrigger
     }
   }
 
+  /** Given a value, returns the string that should be shown within the input. */
+  private _getDisplayValue<T>(value: T): T | string {
+    const autocomplete = this.autocomplete;
+    return autocomplete && autocomplete.displayWith ? autocomplete.displayWith(value) : value;
+  }
+
   private _assignOptionValue(value: any): void {
-    const toDisplay =
-      this.autocomplete && this.autocomplete.displayWith
-        ? this.autocomplete.displayWith(value)
-        : value;
+    const toDisplay = this._getDisplayValue(value);
 
     if (value == null) {
       this._clearPreviousSelectedOption(null, false);
@@ -772,7 +787,11 @@ export class SbbAutocompleteTrigger
     });
   }
 
-  private _attachOverlay(): void {
+  private _openPanelInternal(valueOnAttach = this._element.nativeElement.value) {
+    this._attachOverlay(valueOnAttach);
+  }
+
+  private _attachOverlay(valueOnAttach: string): void {
     if (!this.autocomplete && (typeof ngDevMode === 'undefined' || ngDevMode)) {
       throw getSbbAutocompleteMissingPanelError();
     }
@@ -823,7 +842,8 @@ export class SbbAutocompleteTrigger
 
     if (overlayRef && !overlayRef.hasAttached()) {
       overlayRef.attach(this._portal);
-      this._valueOnAttach = this._element.nativeElement.value;
+      this._valueOnAttach = valueOnAttach;
+      this._valueOnLastKeydown = null;
       this._closingActionsSubscription = this._subscribeToClosingActions();
     }
 
