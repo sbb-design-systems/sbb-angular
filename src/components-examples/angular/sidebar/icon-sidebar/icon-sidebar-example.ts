@@ -2,9 +2,11 @@ import { BreakpointObserver, MediaMatcher } from '@angular/cdk/layout';
 import { AfterViewInit, Component, OnDestroy } from '@angular/core';
 import { FormControl, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { SbbCheckboxModule } from '@sbb-esta/angular/checkbox';
-import { Breakpoints } from '@sbb-esta/angular/core';
+import { Breakpoints, SbbOptionModule } from '@sbb-esta/angular/core';
 import { FakeMediaMatcher } from '@sbb-esta/angular/core/testing';
+import { SbbFormField } from '@sbb-esta/angular/form-field';
 import { SbbIconModule } from '@sbb-esta/angular/icon';
+import { SbbSelect } from '@sbb-esta/angular/select';
 import { SbbSidebarModule } from '@sbb-esta/angular/sidebar';
 import { Subject } from 'rxjs';
 import { startWith, takeUntil } from 'rxjs/operators';
@@ -23,10 +25,20 @@ import { startWith, takeUntil } from 'rxjs/operators';
     BreakpointObserver,
   ],
   standalone: true,
-  imports: [SbbSidebarModule, SbbIconModule, SbbCheckboxModule, FormsModule, ReactiveFormsModule],
+  imports: [
+    SbbSidebarModule,
+    SbbIconModule,
+    SbbCheckboxModule,
+    FormsModule,
+    ReactiveFormsModule,
+    SbbOptionModule,
+    SbbSelect,
+    SbbFormField,
+  ],
 })
 export class IconSidebarExample implements AfterViewInit, OnDestroy {
   expanded = false;
+  position = new FormControl<'start' | 'end'>('start', { nonNullable: true });
   simulateMobile = new FormControl(false, { initialValueIsDefault: true });
   private _destroyed = new Subject<void>();
 

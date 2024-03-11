@@ -4,10 +4,22 @@ icon sidebar components.
 
 ### Utilisation of sidebars
 
-It is intended that in addition to the `<sbb-header-lean>`, the two sidebars are only used once on each view,
+#### General usage
+
+It is recommended that in addition to the `<sbb-header-lean>`, the two sidebars are only used once on each view,
 so that a maximum of three navigation hierarchy levels occur.
 For example: `<sbb-header-lean>` > `<sbb-icon-sidebar>` > `<sbb-sidebar>` (as it is in showcase).
 All sidebar components can be technically nested in any form, or they can be used individually.
+
+#### Positioning
+
+Both sidebars can be positioned on the left or the right side of the screen by setting the `position` attribute to
+`start` or `end`. It is possible to position one `<sbb-sidebar>` on the left and another on the right side of the
+screen. Only one `<sbb-icon-sidebar>` can be used at a time and may be positioned on the left _or_ right side of the
+screen.
+
+On mobile devices, the `<sbb-icon-sidebar>` is always displayed at the bottom of the screen, independent of the
+`position` attribute.
 
 ## Icon Sidebar
 

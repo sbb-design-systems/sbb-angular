@@ -1,0 +1,11 @@
+.sidebar-frame {
+  display: block;
+  height: 400px;
+  width: 800px;
+  position: relative;
+  border: 1px solid #b7b7b7;
+}
+
+sbb-sidebar-content {
+  padding: 15px;
+}
