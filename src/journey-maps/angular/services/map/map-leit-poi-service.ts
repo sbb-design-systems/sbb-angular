@@ -63,22 +63,22 @@ export class SbbMapLeitPoiService {
         ? Number(routeStartLevelFeature.properties!.routeStartLevel)
         : SbbMapLeitPoiService._defaultLevel;
 
-      this.switchLevelMapAware(map, routeStartLevel);
+      this._switchLevelMapAware(map, routeStartLevel);
     } else {
-      this.switchLevelMapAware(map, undefined);
+      this._switchLevelMapAware(map, undefined);
     }
   }
 
-  private switchLevelMapAware(map: MaplibreMap, routeStartLevel?: number) {
+  private _switchLevelMapAware(map: MaplibreMap, routeStartLevel?: number) {
     this._registerMapZoomEvent(map);
     if (map.loaded()) {
-      this.switchLevel(map, routeStartLevel); // this triggers the actual visible level switch in the map
+      this._switchLevel(map, routeStartLevel); // this triggers the actual visible level switch in the map
     } else {
-      map.once('idle', () => this.switchLevel(map, routeStartLevel));
+      map.once('idle', () => this._switchLevel(map, routeStartLevel));
     }
   }
 
-  private switchLevel(map: MaplibreMap, routeStartLevel?: number) {
+  private _switchLevel(map: MaplibreMap, routeStartLevel?: number) {
     this.setCurrentLevel(map, routeStartLevel);
     this.levelSwitched.next(routeStartLevel);
   }
