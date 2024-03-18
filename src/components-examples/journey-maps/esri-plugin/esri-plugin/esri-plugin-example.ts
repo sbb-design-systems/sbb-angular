@@ -19,7 +19,7 @@ declare global {
 @Component({
   selector: 'sbb-esri-plugin-example',
   templateUrl: 'esri-plugin-example.html',
-  styleUrl: 'esri-plugin-example.css',
+  styleUrls: ['esri-plugin-example.css'],
   standalone: true,
   imports: [SbbJourneyMapsModule, SbbNotificationModule, SbbEsriPluginModule],
 })
