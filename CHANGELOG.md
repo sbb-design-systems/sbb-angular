@@ -15,15 +15,6 @@ All notable changes to this project will be documented in this file. See [standa
 * **deps:** update dependency @angular/cdk to v17.3.0 ([42868cf](https://github.com/sbb-design-systems/sbb-angular/commit/42868cfe948b27dee6832082a269fd3896bcd92d))
 * **esri-plugin:** fix stackblitz css detection ([#2216](https://github.com/sbb-design-systems/sbb-angular/issues/2216)) ([cd4befe](https://github.com/sbb-design-systems/sbb-angular/commit/cd4befea111c7b4c9b069e617edaf3760601f3fe))
 
-## [17.6.1](https://github.com/sbb-design-systems/sbb-angular/compare/17.6.0...17.7.0) (2024-03-18)
-
-
-### Bug Fixes
-
-* **deps:** update dependency @angular/cdk to v17.3.0 ([42868cf](https://github.com/sbb-design-systems/sbb-angular/commit/42868cfe948b27dee6832082a269fd3896bcd92d))
-* **esri-plugin:** fix stackblitz css detection ([#2216](https://github.com/sbb-design-systems/sbb-angular/issues/2216)) ([cd4befe](https://github.com/sbb-design-systems/sbb-angular/commit/cd4befea111c7b4c9b069e617edaf3760601f3fe))
-* **journey-maps:** enable start level even without leit-pois ([#2214](https://github.com/sbb-design-systems/sbb-angular/issues/2214)) ([43eeae6](https://github.com/sbb-design-systems/sbb-angular/commit/43eeae6d8e93c7908ebd33d0696eb0cf04196e94))
-
 ## [17.6.0](https://github.com/sbb-design-systems/sbb-angular/compare/17.5.3...17.6.0) (2024-03-11)
 
 
