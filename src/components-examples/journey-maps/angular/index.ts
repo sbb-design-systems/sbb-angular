@@ -8,14 +8,14 @@ import { SbbNotificationModule } from '@sbb-esta/angular/notification';
 import { SbbRadioButtonModule } from '@sbb-esta/angular/radio-button';
 import { SbbSelectModule } from '@sbb-esta/angular/select';
 import { SbbTabsModule } from '@sbb-esta/angular/tabs';
-import { JourneyMapsMapNavigationExample } from '@sbb-esta/components-examples/journey-maps/angular/journey-maps-map-navigation/journey-maps-map-navigation-example';
-import { JourneyMapsPoisMarkersExample } from '@sbb-esta/components-examples/journey-maps/angular/journey-maps-pois-markers/journey-maps-pois-markers-example';
-import { JourneyMapsRoutesZonesExample } from '@sbb-esta/components-examples/journey-maps/angular/journey-maps-routes-zones/journey-maps-routes-zones-example';
-import { JourneyMapsStyleOptionsExample } from '@sbb-esta/components-examples/journey-maps/angular/journey-maps-style-options/journey-maps-style-options-example';
-import { JourneyMapsUiOptionsExample } from '@sbb-esta/components-examples/journey-maps/angular/journey-maps-ui-options/journey-maps-ui-options-example';
 import { SbbJourneyMapsModule } from '@sbb-esta/journey-maps';
 
 import { JourneyMapsBasicExample } from './journey-maps-basic/journey-maps-basic-example';
+import { JourneyMapsMapNavigationExample } from './journey-maps-map-navigation/journey-maps-map-navigation-example';
+import { JourneyMapsPoisMarkersExample } from './journey-maps-pois-markers/journey-maps-pois-markers-example';
+import { JourneyMapsRoutesZonesExample } from './journey-maps-routes-zones/journey-maps-routes-zones-example';
+import { JourneyMapsStyleOptionsExample } from './journey-maps-style-options/journey-maps-style-options-example';
+import { JourneyMapsUiOptionsExample } from './journey-maps-ui-options/journey-maps-ui-options-example';
 
 export {
   JourneyMapsUiOptionsExample,
