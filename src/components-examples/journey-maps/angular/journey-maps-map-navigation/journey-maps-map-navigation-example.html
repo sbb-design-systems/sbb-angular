@@ -1,0 +1,63 @@
+<sbb-notification type="info" class="api-key-info">
+  This example uses a test API key, that might be disabled at any time.
+</sbb-notification>
+<div class="web-map">
+  <sbb-journey-maps
+    [apiKey]="apiKey"
+    #advancedMap
+    language="en"
+    (mapCenterChange)="mapCenterChange.next($event)"
+    (mapBoundsChange)="mapBoundingBoxChange.next($event)"
+    (zoomLevelsChange)="zoomLevels = $event"
+  ></sbb-journey-maps>
+</div>
+<div class="sbb-navigation">
+  <div class="row-1">
+    <li class="sbb-label">
+      Map center (lng / lat):
+      <b
+        >{{ mapCenterInfo()?.lng | number: '1.1-6' }},
+        {{ mapCenterInfo()?.lat | number: '1.1-6' }}</b
+      >
+    </li>
+
+    <li class="sbb-label">
+      Map bounding-box (lng / lat, SW then NE): <b>{{ mapBoundingBoxInfo() }}</b>
+    </li>
+
+    <li class="sbb-label">
+      Map zoom (within range {{ zoomLevels?.minZoom }}..{{ zoomLevels?.maxZoom }} ):
+      <b>{{ zoomLevels?.currentZoom | number: '1.1-2' }}</b>
+    </li>
+  </div>
+
+  <div class="row-2">
+    <li>
+      <span class="sbb-label">Zoom / Pan Map</span>
+      <button sbb-ghost-button (click)="client.zoomOut()">
+        <sbb-icon svgIcon="minus-small"></sbb-icon>
+      </button>
+      <button sbb-ghost-button (click)="client.zoomIn()">
+        <sbb-icon svgIcon="plus-small"></sbb-icon>
+      </button>
+    </li>
+
+    <li class="map-controls">
+      <button sbb-ghost-button (click)="client.moveNorth()">
+        <sbb-icon svgIcon="arrow-up-small"></sbb-icon>
+      </button>
+      <div class="icon-container">
+        <sbb-icon svgIcon="arrows-left-right-down-up-small"></sbb-icon>
+      </div>
+      <button sbb-ghost-button (click)="client.moveEast()">
+        <sbb-icon svgIcon="arrow-right-small"></sbb-icon>
+      </button>
+      <button sbb-ghost-button (click)="client.moveSouth()">
+        <sbb-icon svgIcon="arrow-down-small"></sbb-icon>
+      </button>
+      <button sbb-ghost-button (click)="client.moveWest()">
+        <sbb-icon svgIcon="arrow-left-small"></sbb-icon>
+      </button>
+    </li>
+  </div>
+</div>

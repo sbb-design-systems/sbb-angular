@@ -1,0 +1,116 @@
+<sbb-notification type="info" class="api-key-info">
+  This example uses a test API key, that might be disabled at any time.
+</sbb-notification>
+<div class="web-map">
+  <sbb-journey-maps
+    [apiKey]="apiKey"
+    #advancedMap
+    language="en"
+    [viewportBounds]="form.get('viewportBounds')?.value"
+    [poiOptions]="form.get('pointsOfInterestOptions')?.value"
+    [listenerOptions]="form.get('listenerOptions')?.value"
+    [markerOptions]="form.get('markerOptions')?.value"
+    [markerDetailsTemplate]="markerDetailsTemplate"
+    (mapCenterChange)="mapCenterChange.next($event)"
+    (mapBoundsChange)="mapBoundingBoxChange.next($event)"
+    (zoomLevelsChange)="zoomLevels = $event"
+    (visibleLevelsChange)="visibleLevels.next($event)"
+    [(selectedMarkerId)]="selectedMarkerId"
+  ></sbb-journey-maps>
+
+  <ng-template #markerDetailsTemplate let-marker>
+    <div class="markerdetails-title">{{ marker.title }}</div>
+    <div class="markerdetails-subtitle">{{ marker.subtitle }}</div>
+  </ng-template>
+  <ng-template #poiTemplate let-poi>
+    <div>{{ poi.properties.name }}</div>
+    <div>{{ poi.properties.sbbId }}</div>
+  </ng-template>
+</div>
+
+<div class="poi-controls">
+  <form [formGroup]="form">
+    <div class="row-1">
+      <li formGroupName="selectedPoi">
+        <span class="sbb-label">POIs</span>
+        <sbb-form-field [style.width.px]="400">
+          <input sbbInput formControlName="poiId" placeholder="Enter SBB-ID" />
+        </sbb-form-field>
+        <button
+          class="select-poi-button"
+          sbb-button
+          [disabled]="form.invalid"
+          (click)="client.setSelectedPoi(form.get('selectedPoi.poiId')?.value)"
+        >
+          Select POI
+        </button>
+      </li>
+
+      <div formGroupName="pointsOfInterestOptions">
+        <sbb-form-field label="POI Environment">
+          <sbb-select formControlName="environment">
+            @for (environment of ['prod', 'int']; track environment) {
+              <sbb-option [value]="environment">{{ environment }}</sbb-option>
+            }
+          </sbb-select>
+        </sbb-form-field>
+
+        <sbb-form-field label="POI Subcategories">
+          <sbb-select multiple formControlName="categories">
+            @for (category of POI_CATEGORIES; track category) {
+              <sbb-option [value]="category">{{ category }}</sbb-option>
+            }
+          </sbb-select>
+        </sbb-form-field>
+
+        <sbb-checkbox formControlName="includePreview">Preview-POIs</sbb-checkbox>
+      </div>
+    </div>
+    <div class="row-2">
+      <li>
+        <span class="sbb-label">
+          Map markers
+          @if (selectedMarkerId) {
+            <span> (selected: {{ selectedMarkerId }})</span>
+          }
+        </span>
+        <button
+          sbb-button
+          (click)="selectedMarkerId = 'velo'"
+          [disabled]="selectedMarkerId === 'velo'"
+        >
+          Basel
+        </button>
+        <button
+          class="unselect-all-button"
+          sbb-ghost-button
+          (click)="selectedMarkerId = undefined"
+          [disabled]="selectedMarkerId == undefined"
+        >
+          Unselect all
+        </button>
+      </li>
+
+      <li formGroupName="markerOptions">
+        <span class="sbb-label">Map marker info style</span>
+        <sbb-radio-group class="sbb-checkbox-group-horizontal" formControlName="popup">
+          <sbb-radio-button [value]="true">Popup</sbb-radio-button>
+          <sbb-radio-button [value]="false">Teaser</sbb-radio-button>
+        </sbb-radio-group>
+      </li>
+
+      <li>
+        <div formGroupName="listenerOptions">
+          <span class="sbb-label">Map interaction configuration</span>
+          <div class="sbb-checkbox-group-horizontal">
+            @for (type of listenerOptionTypes(); track type) {
+              <ng-container [formGroupName]="type">
+                <sbb-checkbox formControlName="watch">{{ type | titlecase }}</sbb-checkbox>
+              </ng-container>
+            }
+          </div>
+        </div>
+      </li>
+    </div>
+  </form>
+</div>

@@ -9,7 +9,7 @@ declare global {
 }
 
 /**
- * @title Journey Maps Basic Example
+ * @title Journey Maps - Basic Example
  */
 @Component({
   selector: 'sbb-journey-maps-basic-example',
