@@ -23,6 +23,7 @@ declare global {
 
 /**
  * @title Journey Maps - SBB Map Navigation
+ * @order 4
  * @includeExtraFiles ../shared/config.ts
  */
 @Component({

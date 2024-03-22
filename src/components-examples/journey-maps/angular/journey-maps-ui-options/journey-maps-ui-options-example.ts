@@ -24,7 +24,7 @@ declare global {
 /**
  * @title Journey Maps - SBB UI Options
  * @includeExtraFiles ../shared/config.ts
- * @oder 2
+ * @order 2
  *  */
 @Component({
   selector: 'sbb-journey-maps-ui-options-example',

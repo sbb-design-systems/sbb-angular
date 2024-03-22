@@ -21,7 +21,7 @@ declare global {
 /**
  * @title Journey Maps - SBB Style Options
  * @includeExtraFiles ../shared/config.ts
- * @oder 3
+ * @order 3
  *  */
 @Component({
   selector: 'sbb-journey-maps-style-options-example',

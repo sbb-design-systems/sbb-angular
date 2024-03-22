@@ -27,7 +27,7 @@ declare global {
 /**
  * @title Journey Maps - SBB Map POIs & Markers
  * @includeExtraFiles ../shared/config.ts,../shared/markers.ts
- * @oder 4
+ * @order 5
  */
 
 @Component({

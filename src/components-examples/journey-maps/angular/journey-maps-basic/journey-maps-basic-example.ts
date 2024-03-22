@@ -10,7 +10,7 @@ declare global {
 
 /**
  * @title Journey Maps - Basic Example
- * @oder 1
+ * @order 1
  */
 @Component({
   selector: 'sbb-journey-maps-basic-example',
