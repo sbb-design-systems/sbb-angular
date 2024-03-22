@@ -52,7 +52,7 @@ li[formGroupName='selectedPoi'] .class-of-first-element {
   display: flex;
   justify-content: start;
   gap: 3.5rem;
-  flex-wrap: nowrap;
+  flex-wrap: wrap;
 }
 .select-poi-button {
   margin-left: 1rem;

@@ -24,6 +24,7 @@ sbb-notification.api-key-info {
   margin-top: 1rem;
   display: flex;
   justify-content: space-around;
+  flex-wrap: wrap;
 }
 
 .sbb-navigation .row-2 {

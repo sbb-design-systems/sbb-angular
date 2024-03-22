@@ -22,10 +22,17 @@ import { LngLatBounds, LngLatBoundsLike, LngLatLike } from 'maplibre-gl';
 import { BehaviorSubject, Subject } from 'rxjs';
 import { filter, map, take, takeUntil } from 'rxjs/operators';
 
-import {
-  JOURNEY_MAPS_DEFAULT_ROUTING_OPTIONS,
-  JOURNEY_MAPS_DEFAULT_ZONE_OPTIONS,
-} from '../shared/config';
+import { beSh } from '../shared/journey/be-sh';
+import { zhBeWyleregg } from '../shared/journey/zh-be_wyleregg';
+import { zhShWaldfriedhof } from '../shared/journey/zh-sh_waldfriedhof';
+import { bielLyssRoutes, bielLyssRoutesOptions } from '../shared/routes/biel-lyss';
+import { bnLsRoutes, bnLsRoutesOptions } from '../shared/routes/bn-ls';
+import { bernIndoor } from '../shared/transfer/bern-indoor';
+import { geneveIndoor } from '../shared/transfer/geneve-indoor';
+import { luzern4j } from '../shared/transfer/luzern4-j';
+import { zurichIndoor } from '../shared/transfer/zurich-indoor';
+import { bernBurgdorfZones } from '../shared/zone/bern-burgdorf';
+import { baselBielZones } from '../shared/zone/bs-bl';
 
 declare global {
   interface Window {
@@ -36,7 +43,9 @@ declare global {
 /**
  * @title Journey Maps - SBB Map Routes & Zones
  * @includeExtraFiles ../shared/config.ts,../shared/markers.ts,../shared/journey/be-sh.ts,../shared/journey/zh-be_wyleregg.ts,../shared/journey/zh-sh_waldfriedhof.ts,../shared/routes/biel-lyss.ts,../shared/routes/bn-ls.ts,../shared/transfer/bern-indoor.ts,../shared/transfer/geneve-indoor.ts,../shared/transfer/luzern4-j.ts,../shared/transfer/zurich-indoor.ts,../shared/zone/bern-burgdorf.ts,../shared/zone/bs-bl.ts
+ * @oder 5
  *  */
+
 @Component({
   selector: 'sbb-journey-maps-routes-zones-example',
   templateUrl: 'journey-maps-routes-zones-example.html',
@@ -245,3 +254,45 @@ export class JourneyMapsRoutesZonesExample implements OnInit {
   protected readonly JOURNEY_MAPS_DEFAULT_ZONE_OPTIONS = JOURNEY_MAPS_DEFAULT_ZONE_OPTIONS;
   protected readonly JOURNEY_MAPS_DEFAULT_ROUTING_OPTIONS = JOURNEY_MAPS_DEFAULT_ROUTING_OPTIONS;
 }
+
+const JOURNEY_MAPS_DEFAULT_ZONE_OPTIONS = [
+  { label: '(none)', value: undefined },
+  { label: 'Berne / Burgdorf', value: bernBurgdorfZones },
+  { label: 'Basel / Biel', value: baselBielZones },
+];
+const JOURNEY_MAPS_DEFAULT_ROUTING_OPTIONS: {
+  label: string;
+  value: SbbJourneyMapsRoutingOptions | undefined;
+}[] = [
+  { label: '(none)', value: undefined },
+  {
+    label: 'Zürich - Bern, Wyleregg',
+    value: { journey: zhBeWyleregg },
+  },
+  {
+    label: 'Zürich - Schaffhausen, Waldfriedhof',
+    value: { journey: zhShWaldfriedhof },
+  },
+  {
+    label: 'Bern - Schaffhausen',
+    value: { journey: beSh },
+  },
+  {
+    label: 'Bern - Lausanne',
+    value: {
+      routes: bnLsRoutes,
+      routesMetaInformations: bnLsRoutesOptions,
+    },
+  },
+  {
+    label: 'Biel - Lyss',
+    value: {
+      routes: bielLyssRoutes,
+      routesMetaInformations: bielLyssRoutesOptions,
+    },
+  },
+  { label: 'Transfer Bern', value: { transfer: bernIndoor } },
+  { label: 'Transfer Genf', value: { transfer: geneveIndoor } },
+  { label: 'Transfer Luzern', value: { transfer: luzern4j } },
+  { label: 'Transfer Zürich', value: { transfer: zurichIndoor } },
+];

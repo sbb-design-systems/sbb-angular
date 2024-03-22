@@ -20,7 +20,8 @@ declare global {
 
 /**
  * @title Journey Maps - SBB Style Options
- * @includeExtraFiles ../shared/config.ts,../shared/markers.ts,../shared/journey/be-sh.ts,../shared/journey/zh-be_wyleregg.ts,../shared/journey/zh-sh_waldfriedhof.ts,../shared/routes/biel-lyss.ts,../shared/routes/bn-ls.ts,../shared/transfer/bern-indoor.ts,../shared/transfer/geneve-indoor.ts,../shared/transfer/luzern4-j.ts,../shared/transfer/zurich-indoor.ts,../shared/zone/bern-burgdorf.ts,../shared/zone/bs-bl.ts
+ * @includeExtraFiles ../shared/config.ts
+ * @oder 3
  *  */
 @Component({
   selector: 'sbb-journey-maps-style-options-example',
