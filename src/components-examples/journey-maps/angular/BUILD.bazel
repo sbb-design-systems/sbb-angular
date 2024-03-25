@@ -20,6 +20,7 @@ ng_module(
         "//src/angular/checkbox",
         "//src/angular/core",
         "//src/angular/form-field",
+        "//src/angular/icon",
         "//src/angular/input",
         "//src/angular/notification",
         "//src/angular/radio-button",

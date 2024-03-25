@@ -1,0 +1,45 @@
+<sbb-notification type="info" class="api-key-info"
+  >This example uses a test API key, that might be disabled at any time.
+</sbb-notification>
+<div class="web-map">
+  <sbb-journey-maps
+    [apiKey]="apiKey"
+    language="en"
+    [styleOptions]="form.get('styleOptions')?.value"
+    [(selectedMarkerId)]="selectedMarkerId"
+  ></sbb-journey-maps>
+</div>
+<div>
+  <form [formGroup]="form">
+    <div formGroupName="styleOptions">
+      <div>
+        <p class="sbb-label">Light / Dark Mode</p>
+        <sbb-radio-group class="sbb-checkbox-group-vertical" formControlName="mode">
+          <sbb-radio-button value="bright">Bright Mode</sbb-radio-button>
+          <sbb-radio-button value="dark">Dark Mode</sbb-radio-button>
+        </sbb-radio-group>
+      </div>
+
+      <div formGroupName="railNetwork">
+        <sbb-form-field>
+          <p class="sbb-label">Rail network color (v2 style only)</p>
+          <sbb-select formControlName="railNetworkColor" placeholder="Choose color">
+            @for (color of RAIL_COLORS; track color) {
+              <sbb-option [value]="color.value">{{ color.label }}</sbb-option>
+            }
+          </sbb-select>
+        </sbb-form-field>
+      </div>
+    </div>
+
+    <div formGroupName="styleVersion">
+      <div>
+        <span class="sbb-label">Style</span>
+        <sbb-radio-group class="sbb-checkbox-group-horizontal" formControlName="versionNumber">
+          <sbb-radio-button value="v1">v1 (legacy)</sbb-radio-button>
+          <sbb-radio-button value="v2">v2</sbb-radio-button>
+        </sbb-radio-group>
+      </div>
+    </div>
+  </form>
+</div>

@@ -1,0 +1,23 @@
+<sbb-notification type="info" class="api-key-info"
+  >This example uses a test API key, that might be disabled at any time.
+</sbb-notification>
+<div class="web-map">
+  <sbb-journey-maps
+    [apiKey]="apiKey"
+    language="en"
+    [uiOptions]="form.get('uiOptions')?.value"
+    [viewportBounds]="form.get('viewportBounds')?.value"
+  ></sbb-journey-maps>
+</div>
+<div>
+  <form [formGroup]="form">
+    <ng-container formGroupName="uiOptions">
+      <sbb-checkbox formControlName="showSmallButtons">Small Map Controls</sbb-checkbox>
+      <sbb-checkbox formControlName="basemapSwitch">Basemap Switch</sbb-checkbox>
+      <sbb-checkbox formControlName="levelSwitch">Level Switcher</sbb-checkbox>
+      <sbb-checkbox formControlName="homeButton">Home Button</sbb-checkbox>
+      <sbb-checkbox formControlName="geoLocation">Show Geo Location</sbb-checkbox>
+    </ng-container>
+    <sbb-checkbox formControlName="limitMaxBounds"> Limit max bounds to CH</sbb-checkbox>
+  </form>
+</div>
