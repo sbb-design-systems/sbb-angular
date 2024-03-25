@@ -1,0 +1,29 @@
+@import 'https://unpkg.com/maplibre-gl@3.6.1/dist/maplibre-gl.css';
+
+sbb-notification.api-key-info {
+  margin-bottom: 30px;
+}
+
+.web-map {
+  width: 100%;
+  height: 500px;
+  min-height: 500px;
+  box-shadow: 0 5px 5px -5px rgba(0, 0, 0, 0.15);
+}
+
+form {
+  display: flex;
+  flex-direction: row; /* Display children side by side */
+  align-items: flex-start; /* Align items at the beginning of the line */
+  justify-content: flex-start; /* Start the items at the beginning of the container */
+  padding: 20px 0; /* Add some padding on the top and bottom */
+  gap: 30px; /* Adds space between the direct children */
+}
+
+div[formGroupName='styleOptions'] {
+  display: flex;
+  flex-direction: row; /* This will make children side by side */
+  align-items: flex-start; /* Align items at the beginning of the line */
+  justify-content: flex-start; /* Start the items at the beginning */
+  gap: 30px; /* Space between the two div elements */
+}

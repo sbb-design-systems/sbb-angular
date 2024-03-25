@@ -1,0 +1,81 @@
+<sbb-notification type="info" class="api-key-info">
+  This example uses a test API key, that might be disabled at any time.
+</sbb-notification>
+<div class="web-map">
+  <sbb-journey-maps
+    [apiKey]="apiKey"
+    language="en"
+    #advancedMap
+    [journeyMapsRoutingOption]="journeyMapsRoutingOption"
+    [journeyMapsZones]="form.get('zoneGeoJson')?.value"
+    [viewportBounds]="form.get('viewportBounds')?.value"
+    [listenerOptions]="form.get('listenerOptions')?.value"
+    [viewportDimensions]="viewportDimensions"
+    [markerDetailsTemplate]="markerDetailsTemplate"
+    [selectedLevel]="this.form.get('level')?.value"
+    (selectedLevelChange)="this.changeSelectedLevel($event)"
+    (mapCenterChange)="mapCenterChange.next($event)"
+    (mapBoundsChange)="mapBoundingBoxChange.next($event)"
+    (zoomLevelsChange)="zoomLevels = $event"
+    (visibleLevelsChange)="visibleLevels.next($event)"
+  ></sbb-journey-maps>
+  <ng-template #markerDetailsTemplate let-marker>
+    <div class="markerdetails-title">{{ marker.title }}</div>
+    <div class="markerdetails-subtitle">{{ marker.subtitle }}</div>
+  </ng-template>
+  <ng-template #stationTemplate let-station>
+    <div class="station-title">{{ station.properties.name }}</div>
+    <div class="station-subtitle">{{ station.properties.sbb_id }}</div>
+  </ng-template>
+  <ng-template #routeTemplate let-route>
+    <div class="route-title">{{ route.properties.routeId }}</div>
+  </ng-template>
+</div>
+<div class="poi-controls">
+  <form [formGroup]="form">
+    <div>
+      <sbb-form-field label="Select zones">
+        <sbb-select formControlName="zoneGeoJson" placeholder="(none)">
+          @for (input of JOURNEY_MAPS_DEFAULT_ZONE_OPTIONS; track input) {
+            <sbb-option [value]="input.value">{{ input.label }}</sbb-option>
+          }
+        </sbb-select>
+      </sbb-form-field>
+      <sbb-form-field label="Select route">
+        <sbb-select formControlName="routingGeoJson" placeholder="(none)">
+          @for (input of JOURNEY_MAPS_DEFAULT_ROUTING_OPTIONS; track input) {
+            <sbb-option [value]="input.value"> {{ input.label }} </sbb-option>
+          }
+        </sbb-select>
+      </sbb-form-field>
+      @if (journeyMapsRoutingLegIds.length) {
+        <sbb-form-field label="Select leg">
+          <sbb-select formControlName="routingLegId" placeholder="(none)">
+            <sbb-option [value]="">(none)</sbb-option>
+            @for (legId of journeyMapsRoutingLegIds; track legId) {
+              <sbb-option [value]="legId"> {{ legId || '(none)' }} </sbb-option>
+            }
+          </sbb-select>
+        </sbb-form-field>
+      }
+    </div>
+
+    @if (visibleLevels | async; as visibleLevels) {
+      <div>
+        @if (!visibleLevels.length) {
+          <sbb-notification type="info">No indoor data visible in map </sbb-notification>
+        }
+        @if (visibleLevels.length) {
+          <div>
+            <span class="sbb-label">Select indoor level</span>
+            <sbb-radio-group class="sbb-checkbox-group-horizontal" formControlName="level">
+              @for (level of visibleLevels; track level) {
+                <sbb-radio-button [value]="level">Level {{ level }}</sbb-radio-button>
+              }
+            </sbb-radio-group>
+          </div>
+        }
+      </div>
+    }
+  </form>
+</div>
