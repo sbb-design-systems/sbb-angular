@@ -2,6 +2,18 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [17.7.2](https://github.com/sbb-design-systems/sbb-angular/compare/17.7.1...17.7.2) (2024-03-25)
+
+
+### Bug Fixes
+
+* **deps:** update angular to v17.3.1 ([87a22d9](https://github.com/sbb-design-systems/sbb-angular/commit/87a22d96764e6c736b5176b58cf71213978e8165))
+
+
+### Documentation
+
+* **journey-maps:** add several new examples for journey maps client ([#2217](https://github.com/sbb-design-systems/sbb-angular/issues/2217)) ([d9244e9](https://github.com/sbb-design-systems/sbb-angular/commit/d9244e9d14b188d71fb77dc48c038af33a77d22d))
+
 ### [17.7.1](https://github.com/sbb-design-systems/sbb-angular/compare/17.6.0...17.7.1) (2024-03-18)
 
 
