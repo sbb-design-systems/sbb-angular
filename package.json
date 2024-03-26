@@ -63,7 +63,7 @@
     "@angular/platform-server": "17.3.1",
     "@angular/router": "17.3.1",
     "@stackblitz/sdk": "1.9.0",
-    "maplibre-gl": "3.6.2",
+    "maplibre-gl": "4.1.2",
     "rxjs": "7.8.1",
     "tslib": "2.6.2",
     "zone.js": "0.14.3"
