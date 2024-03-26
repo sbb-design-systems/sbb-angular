@@ -12,14 +12,17 @@ import {
 import { _getFocusedElementPierceShadowDom } from '@angular/cdk/platform';
 import { ComponentPortal, ComponentType } from '@angular/cdk/portal';
 import {
+  afterNextRender,
   booleanAttribute,
   ChangeDetectionStrategy,
   ChangeDetectorRef,
   Component,
   ComponentRef,
   EventEmitter,
+  inject,
   Inject,
   InjectionToken,
+  Injector,
   Input,
   LOCALE_ID,
   NgZone,
@@ -32,7 +35,7 @@ import {
 import { SbbDateAdapter } from '@sbb-esta/angular/core';
 import { SbbIconModule } from '@sbb-esta/angular/icon';
 import { merge, Subject, Subscription } from 'rxjs';
-import { bufferCount, filter, mapTo, take, tap } from 'rxjs/operators';
+import { bufferCount, filter, mapTo, tap } from 'rxjs/operators';
 
 import { SbbDateInput } from '../date-input/date-input.directive';
 import { SbbDatepickerContent } from '../datepicker-content/datepicker-content';
@@ -265,9 +268,15 @@ export class SbbDatepicker<D> implements OnDestroy {
   /** Emits new selected date when selected date changes. */
   readonly selectedChanged = new Subject<D>();
 
+  private _injector = inject(Injector);
+
   constructor(
     private _overlay: Overlay,
-    private _ngZone: NgZone,
+    /**
+     * @deprecated parameter is unused and will be removed
+     * @breaking-change 19.0.0
+     */
+    private _unusedNgZone: NgZone,
     private _viewContainerRef: ViewContainerRef,
     private _changeDetectorRef: ChangeDetectorRef,
     @Inject(SBB_DATEPICKER_SCROLL_STRATEGY) private _scrollStrategy: any,
@@ -456,12 +465,14 @@ export class SbbDatepicker<D> implements OnDestroy {
       this._popupComponentRef.instance._dialogLabelId = this.datepickerInput.getOverlayLabelId();
 
       // Update the position once the calendar has rendered.
-      this._ngZone.onStable
-        .asObservable()
-        .pipe(take(1))
-        .subscribe(() => {
+      afterNextRender(
+        () => {
           this.popupRef.updatePosition();
-        });
+        },
+        {
+          injector: this._injector,
+        },
+      );
     }
   }
 
