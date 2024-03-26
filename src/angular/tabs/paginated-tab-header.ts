@@ -6,13 +6,16 @@ import { ViewportRuler } from '@angular/cdk/scrolling';
 import {
   AfterContentChecked,
   AfterContentInit,
+  afterNextRender,
   AfterViewInit,
   ANIMATION_MODULE_TYPE,
   ChangeDetectorRef,
   Directive,
   ElementRef,
   EventEmitter,
+  inject,
   Inject,
+  Injector,
   Input,
   NgZone,
   numberAttribute,
@@ -22,15 +25,7 @@ import {
 } from '@angular/core';
 import { mixinVariant } from '@sbb-esta/angular/core';
 import { fromEvent, merge, Subject, timer } from 'rxjs';
-import {
-  distinctUntilChanged,
-  filter,
-  map,
-  startWith,
-  switchMap,
-  take,
-  takeUntil,
-} from 'rxjs/operators';
+import { distinctUntilChanged, filter, map, startWith, switchMap, takeUntil } from 'rxjs/operators';
 
 /** Config used to bind passive event listeners */
 const passiveEventListenerOptions = normalizePassiveListenerOptions({
@@ -170,6 +165,8 @@ export abstract class SbbPaginatedTabHeader
   /** Event emitted when a label is focused. */
   readonly indexFocused: EventEmitter<number> = new EventEmitter<number>();
 
+  private _injector = inject(Injector);
+
   constructor(
     protected _elementRef: ElementRef<HTMLElement>,
     protected _changeDetectorRef: ChangeDetectorRef,
@@ -219,9 +216,9 @@ export abstract class SbbPaginatedTabHeader
 
     // Defer the first call in order to allow for slower browsers to lay out the elements.
     // This helps in cases where the user lands directly on a page with paginated tabs.
-    // Note that we use `onStable` instead of `requestAnimationFrame`, because the latter
-    // can hold up tests that are in a background tab.
-    this._ngZone.onStable.pipe(take(1)).subscribe(realign);
+    // TODO(mmalerba): Consider breaking this into multiple `afterNextRender` calls with explicit
+    //  phase.
+    afterNextRender(realign, { injector: this._injector });
 
     // On window resize, items change or variant change, realign
     merge(resize, this._items.changes, this.variant)
