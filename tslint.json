@@ -192,6 +192,24 @@
     // Custom Rules
     "ts-loader": true,
     "require-property-typedef": true,
-    "lifecycle-hook-interface": true
+    "lifecycle-hook-interface": true,
+    "no-zone-dependencies": [
+      true,
+      [
+        // Tests may need to verify behavior with zones.
+        "**/*.spec.ts",
+        // TODO (mhaertwig): The following files to be cleaned up and removed from this list:
+        "**/angular/menu/menu.ts",
+        "**/angular/autocomplete/autocomplete-trigger.ts",
+        "**/angular/chips/chip.ts",
+        "**/angular/datepicker/**/*.ts",
+        "**/angular/tabs/paginated-tab-header.ts",
+        "**/angular/notification-toast/notification-toast-container.ts",
+        "**/angular/tag/tag.ts",
+        "**/angular/select/select.ts",
+        "**/angular/toggle/toggle.ts",
+        "**/angular/tooltip/tooltip.ts"
+      ]
+    ]
   }
 }
