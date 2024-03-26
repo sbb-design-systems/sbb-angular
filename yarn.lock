@@ -2573,15 +2573,15 @@
   resolved "https://registry.yarnpkg.com/@bazel/buildifier/-/buildifier-6.3.3.tgz#ff21352ac9f72df6a53cc8ad9b862eb68918c1e9"
   integrity sha512-0f5eNWhylZQbiTddfVkIXKkugQadzZdonLw4ur58oK4X+gIHOZ42Xv94sepu8Di9UWKFXNc4zxuuTiWM22hGvw==
 
-"@bazel/buildifier@6.4.0":
-  version "6.4.0"
-  resolved "https://registry.yarnpkg.com/@bazel/buildifier/-/buildifier-6.4.0.tgz#5d5e56fa1ba74aa2e55e0e84bd17ead95e3f0c02"
-  integrity sha512-upvdCVlXYOatvank2Ch5lfNe9Msgny1Fozdz4fIm8diVju4Kd2JmA9DVS/Tg8UlFX/ItAL1PdSyefWK8Ashwdg==
+"@bazel/buildifier@7.1.0":
+  version "7.1.0"
+  resolved "https://registry.yarnpkg.com/@bazel/buildifier/-/buildifier-7.1.0.tgz#68e505647394da28350881a6a46eca10bba5fe42"
+  integrity sha512-FgjztMqd+6OMJzvgUHDWo/qdMxiRaIy8hWth6fA0RWvhnqds2019xWXVOdCjyDWYXqj/Wb5hKGblLS3lzD3ryQ==
 
-"@bazel/buildozer@6.4.0":
-  version "6.4.0"
-  resolved "https://registry.yarnpkg.com/@bazel/buildozer/-/buildozer-6.4.0.tgz#71bf91bbdcdc619af4394cace2cdcc2adbcfd2a8"
-  integrity sha512-v4/R4JXSsQs9DGJfdqfXdVVv9t+fPfkpUmwEYZhoWfb9v69l7tyWRfXU1F5eWjHL6BMZ3phPEHjzrGOIhfe7gg==
+"@bazel/buildozer@7.1.0":
+  version "7.1.0"
+  resolved "https://registry.yarnpkg.com/@bazel/buildozer/-/buildozer-7.1.0.tgz#494b24e63564f017fec666687547b386f13d4bee"
+  integrity sha512-H6se4pHP28/XgfWMQZMzuVmajVAsS1OVaKhtog5W01Ue72AzC9/ZTRbQ+DpOhDgAJ73+UhMod8Cby+alpY/+Hg==
 
 "@bazel/concatjs@5.8.1":
   version "5.8.1"
