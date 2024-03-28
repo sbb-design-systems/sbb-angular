@@ -352,10 +352,10 @@
     uuid "^9.0.0"
     yargs "^17.0.0"
 
-"@angular/cdk@17.3.1":
-  version "17.3.1"
-  resolved "https://registry.yarnpkg.com/@angular/cdk/-/cdk-17.3.1.tgz#ad2d468058d9111a670a26a340a7dc392bb208b1"
-  integrity sha512-pHSN+KlCmdo2u9jY7Yxsry/ZK+EcjOYGzdwxXxcKragMzm7etY3BJiTl4N+qZRuV6cJlMj2PRkij8ABi/HQdEA==
+"@angular/cdk@17.3.2":
+  version "17.3.2"
+  resolved "https://registry.yarnpkg.com/@angular/cdk/-/cdk-17.3.2.tgz#b438da913cdc482216a7b4a856c7c106c5baa2cd"
+  integrity sha512-mC2U7aoIf7RSpGgIwVyfQEbaPDDX59plQt88KeTz15wjF8vosLt2DG0rZEoV8Mq14YS47J+jI76q/LJfd6/GCw==
   dependencies:
     tslib "^2.3.0"
   optionalDependencies:
