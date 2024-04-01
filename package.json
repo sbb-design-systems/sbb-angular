@@ -114,7 +114,7 @@
     "@types/mapbox__point-geometry": "0.1.4",
     "@types/marked": "^2.0.2",
     "@types/node": "18.19.28",
-    "@types/sass": "1.43.1",
+    "@types/sass": "1.45.0",
     "@types/send": "0.17.4",
     "@types/yargs": "17.0.13",
     "angular-server-side-configuration": "17.0.2",
