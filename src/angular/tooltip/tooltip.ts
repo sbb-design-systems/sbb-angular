@@ -349,74 +349,81 @@ export class SbbTooltip implements OnDestroy, AfterViewInit {
   private readonly _destroyed = new Subject<void>();
 
   /** Predefined tooltip positions. */
-  private readonly _tooltipPositions: { [key: string]: ConnectedPosition } = {
-    above: {
-      originX: 'center',
-      originY: 'top',
-      overlayX: 'center',
-      overlayY: 'bottom',
-      offsetY: -2,
-    },
-    'above-right': {
-      originX: 'end',
-      originY: 'top',
-      overlayX: 'end',
-      overlayY: 'bottom',
-      offsetX: 5,
-      offsetY: -2,
-      panelClass: `${this._cssClassPrefix}-${PANEL_CLASS}-left`,
-    },
-    'above-left': {
-      originX: 'start',
-      originY: 'top',
-      overlayX: 'start',
-      overlayY: 'bottom',
-      offsetX: -5,
-      offsetY: -2,
-      panelClass: `${this._cssClassPrefix}-${PANEL_CLASS}-right`,
-    },
-    below: {
-      originX: 'center',
-      originY: 'bottom',
-      overlayX: 'center',
-      overlayY: 'top',
-      offsetY: 2,
-    },
-    'below-right': {
-      originX: 'end',
-      originY: 'bottom',
-      overlayX: 'end',
-      overlayY: 'top',
-      offsetX: 5,
-      offsetY: 2,
-      panelClass: `${this._cssClassPrefix}-${PANEL_CLASS}-left`,
-    },
-    'below-left': {
-      originX: 'start',
-      originY: 'bottom',
-      overlayX: 'start',
-      overlayY: 'top',
-      offsetX: -5,
-      offsetY: 2,
-      panelClass: `${this._cssClassPrefix}-${PANEL_CLASS}-right`,
-    },
-    before: {
-      originX: 'start',
-      originY: 'center',
-      overlayX: 'end',
-      overlayY: 'center',
-      offsetX: 2,
-      panelClass: `${this._cssClassPrefix}-${PANEL_CLASS}-before`,
-    },
-
-    after: {
-      originX: 'end',
-      originY: 'center',
-      overlayX: 'start',
-      overlayY: 'center',
-      offsetX: -2,
-      panelClass: `${this._cssClassPrefix}-${PANEL_CLASS}-after`,
-    },
+  private readonly _tooltipPositions: Record<TooltipPosition, ConnectedPosition[]> = {
+    above: [
+      {
+        originX: 'center',
+        originY: 'top',
+        overlayX: 'center',
+        overlayY: 'bottom',
+        offsetY: -2,
+      },
+      {
+        originX: 'end',
+        originY: 'top',
+        overlayX: 'end',
+        overlayY: 'bottom',
+        offsetX: 5,
+        offsetY: -2,
+        panelClass: `${this._cssClassPrefix}-${PANEL_CLASS}-left`,
+      },
+      {
+        originX: 'start',
+        originY: 'top',
+        overlayX: 'start',
+        overlayY: 'bottom',
+        offsetX: -5,
+        offsetY: -2,
+        panelClass: `${this._cssClassPrefix}-${PANEL_CLASS}-right`,
+      },
+    ],
+    below: [
+      {
+        originX: 'center',
+        originY: 'bottom',
+        overlayX: 'center',
+        overlayY: 'top',
+        offsetY: 2,
+      },
+      {
+        originX: 'end',
+        originY: 'bottom',
+        overlayX: 'end',
+        overlayY: 'top',
+        offsetX: 5,
+        offsetY: 2,
+        panelClass: `${this._cssClassPrefix}-${PANEL_CLASS}-left`,
+      },
+      {
+        originX: 'start',
+        originY: 'bottom',
+        overlayX: 'start',
+        overlayY: 'top',
+        offsetX: -5,
+        offsetY: 2,
+        panelClass: `${this._cssClassPrefix}-${PANEL_CLASS}-right`,
+      },
+    ],
+    before: [
+      {
+        originX: 'start',
+        originY: 'center',
+        overlayX: 'end',
+        overlayY: 'center',
+        offsetX: 2,
+        panelClass: `${this._cssClassPrefix}-${PANEL_CLASS}-before`,
+      },
+    ],
+    after: [
+      {
+        originX: 'end',
+        originY: 'center',
+        overlayX: 'start',
+        overlayY: 'center',
+        offsetX: -2,
+        panelClass: `${this._cssClassPrefix}-${PANEL_CLASS}-after`,
+      },
+    ],
   };
 
   /** Event emitted when the tooltip is opened. */
@@ -684,27 +691,13 @@ export class SbbTooltip implements OnDestroy, AfterViewInit {
     let overlayPositions: ConnectedPosition[] = [];
 
     if (position === 'above') {
-      overlayPositions = [
-        this._tooltipPositions.above,
-        this._tooltipPositions['above-left'],
-        this._tooltipPositions['above-right'],
-        this._tooltipPositions.below,
-        this._tooltipPositions['below-left'],
-        this._tooltipPositions['below-right'],
-      ];
+      overlayPositions = [...this._tooltipPositions.above, ...this._tooltipPositions.below];
     } else if (position === 'below') {
-      overlayPositions = [
-        this._tooltipPositions.below,
-        this._tooltipPositions['below-left'],
-        this._tooltipPositions['below-right'],
-        this._tooltipPositions.above,
-        this._tooltipPositions['above-left'],
-        this._tooltipPositions['above-right'],
-      ];
+      overlayPositions = [...this._tooltipPositions.below, ...this._tooltipPositions.above];
     } else if (position === 'before') {
-      overlayPositions = [this._tooltipPositions.before, this._tooltipPositions.after];
+      overlayPositions = [...this._tooltipPositions.before, ...this._tooltipPositions.after];
     } else if (position === 'after') {
-      overlayPositions = [this._tooltipPositions.after, this._tooltipPositions.before];
+      overlayPositions = [...this._tooltipPositions.after, ...this._tooltipPositions.before];
     } else if (typeof ngDevMode === 'undefined' || ngDevMode) {
       throw getSbbTooltipInvalidPositionError(position);
     }
