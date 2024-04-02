@@ -1,6 +1,9 @@
 <button
   class="sbb-tooltip-icon sbb-tooltip-trigger sbb-icon-scaled sbb-button-reset-frameless"
   [class.sbb-tooltip-trigger-active]="tooltip._isTooltipVisible()"
+  [sbbTooltipDisabled]="disabled"
+  [class.sbb-disabled]="disabled"
+  [disabled]="disabled"
   type="button"
   [sbbTooltip]="tooltipTemplate"
   [sbbTooltipTrigger]="trigger"

@@ -224,6 +224,33 @@ describe('SbbTooltipWrapper', () => {
         expect(spy).toHaveBeenCalledWith('circle-information-small');
       });
     });
+
+    describe('disabled', () => {
+      it('should have a disabled attribute and a `sbb-disabled` class', () => {
+        component.tooltipDisabled = true;
+        fixture.detectChanges();
+        const buttonElement = fixture.debugElement.query(By.css('button'))
+          .nativeElement as HTMLElement;
+        expect(buttonElement.hasAttribute('disabled')).toBeTrue();
+        expect(buttonElement.classList.contains('sbb-disabled')).toBeTrue();
+      });
+
+      it('should not show the tooltip when disabled', fakeAsync(() => {
+        const buttonElement = fixture.debugElement.query(By.css('button'))
+          .nativeElement as HTMLElement;
+        buttonElement.click();
+        tick(0);
+        expect(component.tooltip._tooltip._isTooltipVisible()).toBeTrue();
+
+        component.tooltipDisabled = true;
+        fixture.detectChanges();
+        buttonElement.click();
+        tick(0);
+        fixture.detectChanges();
+        flush();
+        expect(component.tooltip._tooltip._isTooltipVisible()).toBeFalse();
+      }));
+    });
   });
 
   describe('using two tooltips', () => {
@@ -268,6 +295,7 @@ describe('SbbTooltipWrapper', () => {
   template: `
     <sbb-tooltip
       #t1
+      [disabled]="tooltipDisabled"
       [sbbTooltipClass]="['custom-one', 'custom-two']"
       [sbbTooltipPanelClass]="['custom-panel-one', 'custom-panel-two']"
     >
@@ -280,6 +308,7 @@ describe('SbbTooltipWrapper', () => {
 })
 class TooltipTestComponent {
   @ViewChild('t1', { static: true }) tooltip: SbbTooltipWrapper;
+  tooltipDisabled = false;
 }
 
 @Component({

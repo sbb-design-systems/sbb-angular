@@ -1,5 +1,8 @@
-<sbb-tooltip>{{ tooltipContent }}</sbb-tooltip>
+<sbb-tooltip [disabled]="tooltipDisabled">{{ tooltipContent }}</sbb-tooltip>
 <h4>Properties</h4>
+<p>
+  <sbb-checkbox [(ngModel)]="tooltipDisabled">Tooltip disabled</sbb-checkbox>
+</p>
 <sbb-form-field label="Tooltip text content">
   <input type="text" [(ngModel)]="tooltipContent" sbbInput />
 </sbb-form-field>

@@ -3118,9 +3118,21 @@ $menuItemPaddingTopBottom: 4;
     vertical-align: text-bottom;
     margin-bottom: calc(sbb.pxToRem(-3.5) * var(--sbb-scaling-factor));
   }
+
+  &:is(:disabled, .sbb-disabled) {
+    :where(html:not(.sbb-lean)) & {
+      display: none;
+    }
+    cursor: default;
+    color: var(--sbb-ghost-button-label-color-disabled);
+    border-color: var(--sbb-ghost-button-border-color-disabled);
+  }
 }
 
-:is(.sbb-tooltip-icon, .sbb-tooltip-trigger):is(:active, :hover, :focus),
+:is(.sbb-tooltip-icon, .sbb-tooltip-trigger):is(:active, :hover, :focus):not(
+    :disabled,
+    .sbb-disabled
+  ),
 .sbb-tooltip-trigger-active {
   outline: none;
   color: var(--sbb-color-call-to-action-hover);

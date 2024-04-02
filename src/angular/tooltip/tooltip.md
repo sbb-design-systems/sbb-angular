@@ -53,6 +53,8 @@ To add a delay before showing or hiding the tooltip, you can use the inputs `hov
 To completely disable a tooltip, set `disabled` on `sbb-tooltip` or `sbbTooltipDisabled` on
 `sbbTooltip`. While disabled, a tooltip will never be shown.
 
+Setting `disabled` to `true` on a `sbb-tooltip` element in the standard design variant will hide the trigger element.
+
 #### Zero panel padding
 
 To gain more control over the tooltip content styling, you can add the panel class `sbb-tooltip-zero-padding` to remove any padding.
