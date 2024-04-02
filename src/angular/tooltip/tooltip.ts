@@ -14,7 +14,14 @@ import {
 } from '@angular/cdk/coercion';
 import { ESCAPE, hasModifierKey } from '@angular/cdk/keycodes';
 import { BreakpointObserver, BreakpointState } from '@angular/cdk/layout';
-import { ConnectionPositionPair, Overlay, OverlayRef, ScrollStrategy } from '@angular/cdk/overlay';
+import {
+  ConnectedPosition,
+  ConnectionPositionPair,
+  FlexibleConnectedPositionStrategy,
+  Overlay,
+  OverlayRef,
+  ScrollStrategy,
+} from '@angular/cdk/overlay';
 import {
   normalizePassiveListenerOptions,
   Platform,
@@ -51,7 +58,7 @@ import { Observable, Subject } from 'rxjs';
 import { filter, take, takeUntil } from 'rxjs/operators';
 
 /** Possible positions for a tooltip. */
-export type TooltipPosition = 'left' | 'right' | 'above' | 'below';
+export type TooltipPosition = 'before' | 'after' | 'above' | 'below';
 
 /**
  * Options for how the tooltip trigger should handle touch gestures.
@@ -124,6 +131,9 @@ export interface SbbTooltipDefaultOptions {
    */
   restoreFocus?: boolean;
 
+  /** Default position for tooltips. */
+  position?: TooltipPosition;
+
   /** Disables the ability for the user to interact with the tooltip element. */
   disableTooltipInteractivity?: boolean;
 }
@@ -174,15 +184,34 @@ export class SbbTooltip implements OnDestroy, AfterViewInit {
   _tooltipInstance: TooltipComponent | null;
 
   private _portal: ComponentPortal<TooltipComponent>;
+  private _position: TooltipPosition = 'below';
   private _disabled: boolean = false;
   private _tooltipClass: string | string[] | Set<string> | { [key: string]: any };
   private _scrollStrategy: () => ScrollStrategy;
   private _viewInitialized = false;
   private _pointerExitEventsInitialized = false;
   private readonly _tooltipComponent = TooltipComponent;
-  private _viewportMargin: number = 8;
+  private _viewportMargin = 8;
   private _currentPosition: TooltipPosition;
   private readonly _cssClassPrefix: string = 'sbb';
+
+  /** Allows the user to define the position of the tooltip relative to the parent element */
+  @Input('sbbTooltipPosition')
+  get position(): TooltipPosition {
+    return this._position;
+  }
+
+  set position(value: TooltipPosition) {
+    if (value !== this._position) {
+      this._position = value;
+
+      if (this._overlayRef) {
+        this._updatePosition(this._overlayRef);
+        this._tooltipInstance?.show(0);
+        this._overlayRef.updatePosition();
+      }
+    }
+  }
 
   /**
    * The trigger event, on which the tooltip opens.
@@ -314,10 +343,81 @@ export class SbbTooltip implements OnDestroy, AfterViewInit {
   private _document: Document;
 
   /** Timer started at the last `touchstart` event. */
-  private _touchstartTimeout: any;
+  private _touchstartTimeout: ReturnType<typeof setTimeout>;
 
   /** Emits when the component is destroyed. */
   private readonly _destroyed = new Subject<void>();
+
+  /** Predefined tooltip positions. */
+  private readonly _tooltipPositions: { [key: string]: ConnectedPosition } = {
+    above: {
+      originX: 'center',
+      originY: 'top',
+      overlayX: 'center',
+      overlayY: 'bottom',
+      offsetY: -2,
+    },
+    'above-right': {
+      originX: 'end',
+      originY: 'top',
+      overlayX: 'end',
+      overlayY: 'bottom',
+      offsetX: 5,
+      offsetY: -2,
+      panelClass: `${this._cssClassPrefix}-${PANEL_CLASS}-left`,
+    },
+    'above-left': {
+      originX: 'start',
+      originY: 'top',
+      overlayX: 'start',
+      overlayY: 'bottom',
+      offsetX: -5,
+      offsetY: -2,
+      panelClass: `${this._cssClassPrefix}-${PANEL_CLASS}-right`,
+    },
+    below: {
+      originX: 'center',
+      originY: 'bottom',
+      overlayX: 'center',
+      overlayY: 'top',
+      offsetY: 2,
+    },
+    'below-right': {
+      originX: 'end',
+      originY: 'bottom',
+      overlayX: 'end',
+      overlayY: 'top',
+      offsetX: 5,
+      offsetY: 2,
+      panelClass: `${this._cssClassPrefix}-${PANEL_CLASS}-left`,
+    },
+    'below-left': {
+      originX: 'start',
+      originY: 'bottom',
+      overlayX: 'start',
+      overlayY: 'top',
+      offsetX: -5,
+      offsetY: 2,
+      panelClass: `${this._cssClassPrefix}-${PANEL_CLASS}-right`,
+    },
+    before: {
+      originX: 'start',
+      originY: 'center',
+      overlayX: 'end',
+      overlayY: 'center',
+      offsetX: 2,
+      panelClass: `${this._cssClassPrefix}-${PANEL_CLASS}-before`,
+    },
+
+    after: {
+      originX: 'end',
+      originY: 'center',
+      overlayX: 'start',
+      overlayY: 'center',
+      offsetX: -2,
+      panelClass: `${this._cssClassPrefix}-${PANEL_CLASS}-after`,
+    },
+  };
 
   /** Event emitted when the tooltip is opened. */
   @Output() readonly opened: EventEmitter<SbbTooltipChangeEvent> =
@@ -345,6 +445,9 @@ export class SbbTooltip implements OnDestroy, AfterViewInit {
     this._scrollStrategy = scrollStrategy;
     this._document = document;
 
+    if (_defaultOptions?.position) {
+      this.position = _defaultOptions.position;
+    }
     if (_defaultOptions?.touchGestures) {
       this.touchGestures = _defaultOptions.touchGestures;
     }
@@ -493,7 +596,6 @@ export class SbbTooltip implements OnDestroy, AfterViewInit {
       this._elementRef,
     );
 
-    const classPrefix = `${this._cssClassPrefix}-${PANEL_CLASS}-`;
     // Create connected position strategy that listens for scroll events to reposition.
     const strategy = this._overlay
       .position()
@@ -501,59 +603,7 @@ export class SbbTooltip implements OnDestroy, AfterViewInit {
       .withTransformOriginOn(`.${this._cssClassPrefix}-tooltip`)
       .withFlexibleDimensions(false)
       .withViewportMargin(this._viewportMargin)
-      .withScrollableContainers(scrollableAncestors)
-      .withPositions([
-        {
-          originX: 'center',
-          originY: 'bottom',
-          overlayX: 'center',
-          overlayY: 'top',
-          offsetY: 2,
-        },
-        {
-          originX: 'end',
-          originY: 'bottom',
-          overlayX: 'end',
-          overlayY: 'top',
-          offsetX: 5,
-          offsetY: 2,
-          panelClass: `${classPrefix}left`,
-        },
-        {
-          originX: 'start',
-          originY: 'bottom',
-          overlayX: 'start',
-          overlayY: 'top',
-          offsetX: -5,
-          offsetY: 2,
-          panelClass: `${classPrefix}right`,
-        },
-        {
-          originX: 'center',
-          originY: 'top',
-          overlayX: 'center',
-          overlayY: 'bottom',
-          offsetY: -2,
-        },
-        {
-          originX: 'end',
-          originY: 'top',
-          overlayX: 'end',
-          overlayY: 'bottom',
-          offsetX: 5,
-          offsetY: -2,
-          panelClass: `${classPrefix}left`,
-        },
-        {
-          originX: 'start',
-          originY: 'top',
-          overlayX: 'start',
-          overlayY: 'bottom',
-          offsetX: -5,
-          offsetY: -2,
-          panelClass: `${classPrefix}right`,
-        },
-      ]);
+      .withScrollableContainers(scrollableAncestors);
 
     strategy.positionChanges.pipe(takeUntil(this._destroyed)).subscribe((change) => {
       this._updateCurrentPositionClass(change.connectionPair);
@@ -575,6 +625,8 @@ export class SbbTooltip implements OnDestroy, AfterViewInit {
       ),
       scrollStrategy: this._scrollStrategy(),
     });
+
+    this._updatePosition(this._overlayRef);
 
     this._overlayRef
       .detachments()
@@ -619,6 +671,47 @@ export class SbbTooltip implements OnDestroy, AfterViewInit {
     this._tooltipInstance = null;
   }
 
+  /** Updates the position of the current tooltip. */
+  private _updatePosition(overlayRef: OverlayRef) {
+    const position = overlayRef.getConfig().positionStrategy as FlexibleConnectedPositionStrategy;
+    const overlayPositions = this._getOverlayPositions();
+    position.withPositions([...overlayPositions]);
+  }
+
+  /** Returns the overlay position and all fallback positions based on the user's preference. */
+  _getOverlayPositions(): ConnectedPosition[] {
+    const position = this.position;
+    let overlayPositions: ConnectedPosition[] = [];
+
+    if (position === 'above') {
+      overlayPositions = [
+        this._tooltipPositions.above,
+        this._tooltipPositions['above-left'],
+        this._tooltipPositions['above-right'],
+        this._tooltipPositions.below,
+        this._tooltipPositions['below-left'],
+        this._tooltipPositions['below-right'],
+      ];
+    } else if (position === 'below') {
+      overlayPositions = [
+        this._tooltipPositions.below,
+        this._tooltipPositions['below-left'],
+        this._tooltipPositions['below-right'],
+        this._tooltipPositions.above,
+        this._tooltipPositions['above-left'],
+        this._tooltipPositions['above-right'],
+      ];
+    } else if (position === 'before') {
+      overlayPositions = [this._tooltipPositions.before, this._tooltipPositions.after];
+    } else if (position === 'after') {
+      overlayPositions = [this._tooltipPositions.after, this._tooltipPositions.before];
+    } else if (typeof ngDevMode === 'undefined' || ngDevMode) {
+      throw getSbbTooltipInvalidPositionError(position);
+    }
+
+    return overlayPositions;
+  }
+
   /** Updates the tooltip message and repositions the overlay according to the new message length */
   private _updateTooltipMessage() {
     // Must wait for the message to be painted to the tooltip so that the overlay can properly
@@ -654,7 +747,7 @@ export class SbbTooltip implements OnDestroy, AfterViewInit {
       // Note that since this information is used for styling, we want to
       // resolve `start` and `end` to their real values, otherwise consumers
       // would have to remember to do it themselves on each consumption.
-      newPosition = originX === 'start' ? 'left' : 'right';
+      newPosition = originX === 'start' ? 'before' : 'after';
     } else {
       newPosition = overlayY === 'bottom' && originY === 'top' ? 'above' : 'below';
     }
