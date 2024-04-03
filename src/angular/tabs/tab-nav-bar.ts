@@ -206,8 +206,17 @@ export class _SbbTabLinkBase implements AfterViewInit, OnDestroy, FocusableOptio
   }
 
   _handleKeydown(event: KeyboardEvent) {
-    if (this._tabNavBar.tabPanel && (event.keyCode === SPACE || event.keyCode === ENTER)) {
-      this.elementRef.nativeElement.click();
+    if (event.keyCode === SPACE || event.keyCode === ENTER) {
+      if (this.disabled) {
+        event.preventDefault();
+      } else if (this._tabNavBar.tabPanel) {
+        // Only prevent the default action on space since it can scroll the page.
+        // Don't prevent enter since it can break link navigation.
+        if (event.keyCode === SPACE) {
+          event.preventDefault();
+        }
+        this.elementRef.nativeElement.click();
+      }
     }
   }
 

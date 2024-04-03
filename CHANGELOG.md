@@ -2,6 +2,84 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [17.7.2](https://github.com/sbb-design-systems/sbb-angular/compare/17.7.1...17.7.2) (2024-03-25)
+
+
+### Bug Fixes
+
+* **deps:** update angular to v17.3.1 ([87a22d9](https://github.com/sbb-design-systems/sbb-angular/commit/87a22d96764e6c736b5176b58cf71213978e8165))
+
+
+### Documentation
+
+* **journey-maps:** add several new examples for journey maps client ([#2217](https://github.com/sbb-design-systems/sbb-angular/issues/2217)) ([d9244e9](https://github.com/sbb-design-systems/sbb-angular/commit/d9244e9d14b188d71fb77dc48c038af33a77d22d))
+
+### [17.7.1](https://github.com/sbb-design-systems/sbb-angular/compare/17.6.0...17.7.1) (2024-03-18)
+
+
+### Features
+
+* **journey-maps:** enable start level even without leit-pois ([#2214](https://github.com/sbb-design-systems/sbb-angular/issues/2214)) ([43eeae6](https://github.com/sbb-design-systems/sbb-angular/commit/43eeae6d8e93c7908ebd33d0696eb0cf04196e94))
+
+
+### Bug Fixes
+
+* **deps:** update dependency @angular/cdk to v17.3.0 ([42868cf](https://github.com/sbb-design-systems/sbb-angular/commit/42868cfe948b27dee6832082a269fd3896bcd92d))
+* **esri-plugin:** fix stackblitz css detection ([#2216](https://github.com/sbb-design-systems/sbb-angular/issues/2216)) ([cd4befe](https://github.com/sbb-design-systems/sbb-angular/commit/cd4befea111c7b4c9b069e617edaf3760601f3fe))
+
+## [17.6.1](https://github.com/sbb-design-systems/sbb-angular/compare/17.6.0...17.7.0) (2024-03-18)
+
+
+### Bug Fixes
+
+* **deps:** update dependency @angular/cdk to v17.3.0 ([42868cf](https://github.com/sbb-design-systems/sbb-angular/commit/42868cfe948b27dee6832082a269fd3896bcd92d))
+* **esri-plugin:** fix stackblitz css detection ([#2216](https://github.com/sbb-design-systems/sbb-angular/issues/2216)) ([cd4befe](https://github.com/sbb-design-systems/sbb-angular/commit/cd4befea111c7b4c9b069e617edaf3760601f3fe))
+* **journey-maps:** enable start level even without leit-pois ([#2214](https://github.com/sbb-design-systems/sbb-angular/issues/2214)) ([43eeae6](https://github.com/sbb-design-systems/sbb-angular/commit/43eeae6d8e93c7908ebd33d0696eb0cf04196e94))
+
+## [17.6.0](https://github.com/sbb-design-systems/sbb-angular/compare/17.5.3...17.6.0) (2024-03-11)
+
+
+### Features
+
+* **angular/sidebar:** allow positioning on the right side of the screen ([#2197](https://github.com/sbb-design-systems/sbb-angular/issues/2197)) ([657fd57](https://github.com/sbb-design-systems/sbb-angular/commit/657fd5702d487f446d4ce951ba0819d1c5832b18)), closes [#2130](https://github.com/sbb-design-systems/sbb-angular/issues/2130)
+* **angular/tag:** display icons inside tags ([#2192](https://github.com/sbb-design-systems/sbb-angular/issues/2192)) ([41f2eb6](https://github.com/sbb-design-systems/sbb-angular/commit/41f2eb69f65bc99257b990bad7c6ac5f34e26625)), closes [#2072](https://github.com/sbb-design-systems/sbb-angular/issues/2072)
+
+
+### Bug Fixes
+
+* **angular/autocomplete:** requireSelection sometimes not clearing value ([#2213](https://github.com/sbb-design-systems/sbb-angular/issues/2213)) ([65ed8d1](https://github.com/sbb-design-systems/sbb-angular/commit/65ed8d12d78e9d4fac18a02d02d78e3906a5b738))
+* **angular/header-environment:** fix text color in dark mode ([#2205](https://github.com/sbb-design-systems/sbb-angular/issues/2205)) ([37a85f8](https://github.com/sbb-design-systems/sbb-angular/commit/37a85f850e879b22e1a6d333b557e42ef29a2d58)), closes [#2202](https://github.com/sbb-design-systems/sbb-angular/issues/2202)
+* **angular/input:** don't swallow the tabIndex ([#2204](https://github.com/sbb-design-systems/sbb-angular/issues/2204)) ([b326f45](https://github.com/sbb-design-systems/sbb-angular/commit/b326f450122c6ff85a898fe33999826858d993a6)), closes [#2203](https://github.com/sbb-design-systems/sbb-angular/issues/2203)
+* **angular/schematics:** import async animations and remove deprecated functions ([#2194](https://github.com/sbb-design-systems/sbb-angular/issues/2194)) ([bd76fab](https://github.com/sbb-design-systems/sbb-angular/commit/bd76fabd6ccf7e50fc1117e0ba0d29f3bbd5762c))
+* **angular/table:** fix input transforms and adjust to latest @angular/cdk ([#2211](https://github.com/sbb-design-systems/sbb-angular/issues/2211)) ([6ec5d2a](https://github.com/sbb-design-systems/sbb-angular/commit/6ec5d2ac873f6c226c8e37be337628b0212e87c4))
+* **angular/tabs:** prevent scrolling and disable interaction if disabled ([#2193](https://github.com/sbb-design-systems/sbb-angular/issues/2193)) ([0384d0a](https://github.com/sbb-design-systems/sbb-angular/commit/0384d0a0e250a9ab95f69c5c97e5025fa1e7cdb1))
+* **deps:** update angular to v17.2.2 ([db4d12d](https://github.com/sbb-design-systems/sbb-angular/commit/db4d12df3028ebed4f6b2901d5783b0b45955af4))
+* **deps:** update angular to v17.2.3 ([3ea14cd](https://github.com/sbb-design-systems/sbb-angular/commit/3ea14cd93eb249314aace0d94228a271c16924cc))
+* **journey-maps:** fix horizontal level switch animation ([#2210](https://github.com/sbb-design-systems/sbb-angular/issues/2210)) ([a200cdc](https://github.com/sbb-design-systems/sbb-angular/commit/a200cdcc784dc2e10fd0501770bf0a4e820f88a7))
+* **journey-maps:** fix sonarlint issues ([#2183](https://github.com/sbb-design-systems/sbb-angular/issues/2183)) ([62e0f8c](https://github.com/sbb-design-systems/sbb-angular/commit/62e0f8c351c1e1bba13fd56b1e4a1f46c3b981db))
+
+### [17.5.3](https://github.com/sbb-design-systems/sbb-angular/compare/17.5.2...17.5.3) (2024-02-12)
+
+
+### Bug Fixes
+
+* **angular/menu:** don't visually focus first item if menu is opened ([#2187](https://github.com/sbb-design-systems/sbb-angular/issues/2187)) ([dced919](https://github.com/sbb-design-systems/sbb-angular/commit/dced919c2514475f294e95dcec0c7f32ff2c5db6)), closes [#2105](https://github.com/sbb-design-systems/sbb-angular/issues/2105)
+* **journey-maps:** fix popup triangle and aerial dark problems ([#2184](https://github.com/sbb-design-systems/sbb-angular/issues/2184)) ([b6cda4f](https://github.com/sbb-design-systems/sbb-angular/commit/b6cda4f4f45e6a7df62c59fd208cc3d181b18ece))
+
+### [17.5.2](https://github.com/sbb-design-systems/sbb-angular/compare/17.5.1...17.5.2) (2024-02-05)
+
+
+### Bug Fixes
+
+* **angular/autocomplete:** clear selected option if it is removed while typing ([#2176](https://github.com/sbb-design-systems/sbb-angular/issues/2176)) ([1149923](https://github.com/sbb-design-systems/sbb-angular/commit/1149923b15a56eeab7a606489ce4816341fc9c12)), closes [#2010](https://github.com/sbb-design-systems/sbb-angular/issues/2010)
+* **angular/checkbox:** move required validation into component ([#2168](https://github.com/sbb-design-systems/sbb-angular/issues/2168)) ([fe8a48a](https://github.com/sbb-design-systems/sbb-angular/commit/fe8a48a3b4740d62ce3363aa62d8799564009eea))
+* **angular/dialog:** sbb-dialog-title should work under OnPush `viewContainerRef` ([#2158](https://github.com/sbb-design-systems/sbb-angular/issues/2158)) ([9efa4db](https://github.com/sbb-design-systems/sbb-angular/commit/9efa4db8d99b605c874d617b86faaba69d02628c))
+* **angular/dialog:** use enum instead of const enum ([#2174](https://github.com/sbb-design-systems/sbb-angular/issues/2174)) ([a01c8ea](https://github.com/sbb-design-systems/sbb-angular/commit/a01c8eaac5020df2047f0a2655a1fd76f3d9b49f))
+* **journey-maps:** added high-contrast-mode controls to horizontal level switch ([#2167](https://github.com/sbb-design-systems/sbb-angular/issues/2167)) ([e89b7e8](https://github.com/sbb-design-systems/sbb-angular/commit/e89b7e804bc9ebdca2a3c2b9487b0b6f5b80c640))
+* **journey-maps:** prevent opening side buttons on timeout ([#2166](https://github.com/sbb-design-systems/sbb-angular/issues/2166)) ([38ee508](https://github.com/sbb-design-systems/sbb-angular/commit/38ee5088e471eb30a76cffdf1ef81a410b2b33e4))
+* **journey-maps:** use right color for disabled in dark-mode ([#2163](https://github.com/sbb-design-systems/sbb-angular/issues/2163)) ([01b7b78](https://github.com/sbb-design-systems/sbb-angular/commit/01b7b7809f6c01f3074c41d238cbf0b1b2583f19))
+* **multiple:** import ANIMATION_MODULE_TYPE from core ([#2161](https://github.com/sbb-design-systems/sbb-angular/issues/2161)) ([9baee4b](https://github.com/sbb-design-systems/sbb-angular/commit/9baee4ba2985f9227db0f3488b7e4c9ed79253d0))
+
 ### [17.5.1](https://github.com/sbb-design-systems/sbb-angular/compare/17.5.0...17.5.1) (2024-01-30)
 
 

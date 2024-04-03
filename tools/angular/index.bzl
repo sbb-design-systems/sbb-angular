@@ -8,10 +8,10 @@
   is more idiomatic as it allows caching of the Angular framework packages.
 """
 
-load("//:packages.bzl", "ANGULAR_PACKAGES")
-load("@npm//@angular/build-tooling/bazel/esbuild:index.bzl", "esbuild")
-load("@build_bazel_rules_nodejs//internal/linker:link_node_modules.bzl", "LinkerPackageMappingInfo")
 load("@build_bazel_rules_nodejs//:providers.bzl", "ExternalNpmPackageInfo", "JSModuleInfo")
+load("@build_bazel_rules_nodejs//internal/linker:link_node_modules.bzl", "LinkerPackageMappingInfo")
+load("@npm//@angular/build-tooling/bazel/esbuild:index.bzl", "esbuild")
+load("//:packages.bzl", "ANGULAR_PACKAGES")
 
 def _linker_mapping_impl(ctx):
     return [

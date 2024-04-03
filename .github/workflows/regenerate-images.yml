@@ -1,0 +1,56 @@
+name: Regenerate Images
+
+on:
+  workflow_dispatch: {}
+  schedule:
+    # Once per week on sunday
+    - cron: '0 0 * * 0'
+
+permissions:
+  packages: write
+
+jobs:
+  preview-image:
+    runs-on: ubuntu-latest
+    env:
+      START_VERSION: 11
+      IMAGE_URL: ghcr.io/sbb-design-systems/sbb-angular/showcase
+    steps:
+      - uses: actions/checkout@b4ffde65f46336ab88eb53be808477a3936bae11 # v4
+        with:
+          fetch-depth: 0
+          fetch-tags: true
+      - name: 'Container: Login to GitHub Container Repository'
+        run: echo ${{ secrets.GITHUB_TOKEN }} | docker login ghcr.io --username ${{ github.actor }} --password-stdin
+      - name: Regenerate latest container images to keep them up to date
+        run: |
+          majorVersion=$START_VERSION
+          echo "Starting image regeneration with version $majorVersion"
+
+          while : ; do
+            version=$(git tag --sort=v:refname -l "$majorVersion.*.*" | tail -1)
+            [[ "$version" != "" ]] || break
+          
+            image="$IMAGE_URL:$version"
+            echo ""
+            echo "Regenerating $image"
+            echo ""
+          
+            (( $majorVersion < 13 )) && target=initless || target=init  
+            docker build \
+              --tag tmp \
+              --build-arg BASE="$image" \
+              --file .github/Dockerfile.regenerate \
+              --target $target \
+              .
+            docker tag tmp "$image"
+            docker push "$image"
+          
+            echo ""
+            echo "Finished regenerating $image"
+            echo ""
+          
+            majorVersion=$((majorVersion+1))
+          done
+        env:
+          DOCKER_BUILDKIT: 1

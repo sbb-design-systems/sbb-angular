@@ -420,7 +420,7 @@
   --sbb-sidebar-background-color: var(--sbb-color-background);
   --sbb-sidebar-background-color-hover: var(--sbb-menu-item-background-color-hover);
   --sbb-sidebar-background-color-active: var(--sbb-menu-item-background-color-active);
-  --sbb-sidebar-border-right-color: var(--sbb-color-cloud);
+  --sbb-sidebar-border-color: var(--sbb-color-cloud);
   --sbb-icon-sidebar-background-color: var(--sbb-color-milk);
   --sbb-icon-sidebar-background-color-active: var(--sbb-color-background);
 
@@ -969,7 +969,7 @@
       // Sidebar
       --sbb-sidebar-background-color: var(--sbb-color-charcoal);
       --sbb-icon-sidebar-background-color: var(--sbb-color-black);
-      --sbb-sidebar-border-right-color: var(--sbb-color-iron);
+      --sbb-sidebar-border-color: var(--sbb-color-iron);
       --sbb-icon-sidebar-background-color-active: var(--sbb-color-charcoal);
       --sbb-sidebar-background-color-hover: var(--sbb-color-midnight);
       --sbb-sidebar-background-color-active: var(--sbb-color-midnight);
@@ -3013,7 +3013,10 @@ $menuItemPaddingTopBottom: 4;
     @include sbb.user-select(none);
   }
 
-  &:is(:not(:disabled):not([disabled]):not(.sbb-disabled):is(:hover, :focus), .sbb-focused) {
+  &:is(
+      :not(:disabled):not([disabled]):not(.sbb-disabled):is(:hover, .cdk-keyboard-focused),
+      .sbb-focused
+    ) {
     :is(&, & strong) {
       color: var(--sbb-color-red);
 

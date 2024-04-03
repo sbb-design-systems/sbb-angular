@@ -9,6 +9,7 @@ import {
   ViewEncapsulation,
 } from '@angular/core';
 import { SbbBadge } from '@sbb-esta/angular/badge';
+import { SbbIcon } from '@sbb-esta/angular/icon';
 
 @Component({
   selector: 'a[sbb-tag-link]',
@@ -21,7 +22,7 @@ import { SbbBadge } from '@sbb-esta/angular/badge';
     class: 'sbb-tag-base sbb-link-reset sbb-tag-link',
   },
   standalone: true,
-  imports: [SbbBadge],
+  imports: [SbbBadge, SbbIcon],
 })
 export class SbbTagLink {
   /** Amount displayed in badge */
@@ -34,6 +35,14 @@ export class SbbTagLink {
     this._badgeDescriptionFallback = $localize`:Aria label for amount of results displayed in badge pill@@sbbTagBadgePillAmountOfResults:${this.amount} results available`;
   }
   private _amount: number;
+
+  /**
+   * The indicator icon, which will be shown before the text.
+   * Must be a valid svgIcon input for sbb-icon.
+   *
+   * e.g. svgIcon="circle-information-small"
+   */
+  @Input() svgIcon: string;
 
   /** Description of the badge (amount) */
   @Input('sbbBadgeDescription')

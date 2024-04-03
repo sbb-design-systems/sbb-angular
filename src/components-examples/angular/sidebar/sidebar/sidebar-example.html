@@ -1,6 +1,6 @@
 <div class="sidebar-frame">
   <sbb-sidebar-container>
-    <sbb-sidebar role="navigation">
+    <sbb-sidebar role="navigation" [position]="position.value">
       <sbb-expansion-panel expanded>
         <sbb-expansion-panel-header>Introduction</sbb-expansion-panel-header>
         <a sbbSidebarLink class="sbb-active">Getting Started</a>
@@ -21,6 +21,12 @@
 </div>
 
 <h4>Properties</h4>
+<sbb-form-field label="Sidebar position">
+  <sbb-select [formControl]="position" placeholder="Position" labe>
+    <sbb-option value="start">Start</sbb-option>
+    <sbb-option value="end">End</sbb-option>
+  </sbb-select>
+</sbb-form-field>
 <div class="sbb-checkbox-group-vertical">
   <sbb-checkbox [formControl]="simulateMobile">Simulate Mobile View</sbb-checkbox>
 </div>

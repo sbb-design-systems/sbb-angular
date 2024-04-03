@@ -19,36 +19,11 @@ import {
   ViewEncapsulation,
 } from '@angular/core';
 import { ControlValueAccessor, FormGroupDirective, NgControl, NgForm } from '@angular/forms';
-import { CanUpdateErrorState, mixinErrorState, SbbErrorStateMatcher } from '@sbb-esta/angular/core';
+import { SbbErrorStateMatcher, _ErrorStateTracker } from '@sbb-esta/angular/core';
 import { SbbFormFieldControl } from '@sbb-esta/angular/form-field';
 import { BehaviorSubject, Subject } from 'rxjs';
 
 let nextId = 0;
-
-// Boilerplate for applying mixins to SbbTextarea.
-// tslint:disable-next-line: naming-convention
-const _SbbTextareaMixinBase = mixinErrorState(
-  class {
-    /**
-     * Emits whenever the component state changes and should cause the parent
-     * form-field to update. Implemented as part of `SbbFormFieldControl`.
-     * @docs-private
-     */
-    readonly stateChanges = new Subject<void>();
-
-    constructor(
-      public _defaultErrorStateMatcher: SbbErrorStateMatcher,
-      public _parentForm: NgForm,
-      public _parentFormGroup: FormGroupDirective,
-      /**
-       * Form control bound to the component.
-       * Implemented as part of `SbbFormFieldControl`.
-       * @docs-private
-       */
-      public ngControl: NgControl,
-    ) {}
-  },
-);
 
 @Component({
   selector: 'sbb-textarea',
@@ -71,13 +46,7 @@ const _SbbTextareaMixinBase = mixinErrorState(
   imports: [CdkTextareaAutosize],
 })
 export class SbbTextarea
-  extends _SbbTextareaMixinBase
-  implements
-    SbbFormFieldControl<string>,
-    CanUpdateErrorState,
-    ControlValueAccessor,
-    DoCheck,
-    OnDestroy
+  implements SbbFormFieldControl<string>, ControlValueAccessor, DoCheck, OnDestroy
 {
   get _labelCharactersRemaining(): string {
     return $localize`:Counter text for textarea@@sbbTextareaCounterText:${this._counter.value} characters remaining`;
@@ -102,9 +71,10 @@ export class SbbTextarea
   }
 
   /** Emits when the state of the option changes and any parents have to be notified. */
-  override readonly stateChanges = new Subject<void>();
+  readonly stateChanges = new Subject<void>();
 
   private _destroyed = new Subject<void>();
+  private _errorStateTracker: _ErrorStateTracker;
 
   /** The value of the textarea. */
   @Input()
@@ -143,6 +113,14 @@ export class SbbTextarea
   }
   private _readonly = false;
 
+  /** Whether the input is in an error state. */
+  get errorState() {
+    return this._errorStateTracker.errorState;
+  }
+  set errorState(value: boolean) {
+    this._errorStateTracker.errorState = value;
+  }
+
   /** Class property that sets the maxlength of the textarea content. */
   @Input({ transform: numberAttribute })
   get maxlength(): number {
@@ -178,14 +156,15 @@ export class SbbTextarea
   private _required = false;
 
   /** Whether the autosizing is disabled or not. Autosizing is based on the CDK Autosize. */
-  @Input({ transform: booleanAttribute })
-  get autosizeDisabled(): boolean {
-    return this._autosizeDisabled;
+  @Input({ transform: booleanAttribute }) autosizeDisabled: boolean = false;
+
+  @Input()
+  get errorStateMatcher() {
+    return this._errorStateTracker.matcher;
   }
-  set autosizeDisabled(value: boolean) {
-    this._autosizeDisabled = value;
+  set errorStateMatcher(value: SbbErrorStateMatcher) {
+    this._errorStateTracker.matcher = value;
   }
-  private _autosizeDisabled = false;
 
   /** Whether the textarea is focused. */
   get focused(): boolean {
@@ -216,20 +195,26 @@ export class SbbTextarea
   _onTouched: () => void = () => {};
 
   constructor(
-    @Self() @Optional() public override ngControl: NgControl,
+    @Self() @Optional() public ngControl: NgControl,
     private _changeDetectorRef: ChangeDetectorRef,
     private _elementRef: ElementRef,
     defaultErrorStateMatcher: SbbErrorStateMatcher,
     @Optional() parentForm: NgForm,
     @Optional() parentFormGroup: FormGroupDirective,
   ) {
-    super(defaultErrorStateMatcher, parentForm, parentFormGroup, ngControl);
-
     if (this.ngControl) {
       // Note: we provide the value accessor through here, instead of
       // the `providers` to avoid running into a circular import.
       this.ngControl.valueAccessor = this;
     }
+
+    this._errorStateTracker = new _ErrorStateTracker(
+      defaultErrorStateMatcher,
+      ngControl,
+      parentFormGroup,
+      parentForm,
+      this.stateChanges,
+    );
   }
 
   /**
@@ -299,6 +284,11 @@ export class SbbTextarea
     this._onChange(event.target.value);
     this._updateDigitsCounter(event.target.value);
     this.stateChanges.next();
+  }
+
+  /** Refreshes the error state of the input. */
+  updateErrorState() {
+    this._errorStateTracker.updateErrorState();
   }
 
   writeValue(newValue: any) {

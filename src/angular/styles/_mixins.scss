@@ -121,10 +121,22 @@
   }
 }
 
-@mixin sbbMenuItemBlackLean($width: var(--sbb-border-width-thin)) {
+@mixin borderRightAsBefore($color, $width) {
+  @include borderLeftAsBefore($color, $width);
+  &::before {
+    left: unset;
+    right: 0;
+  }
+}
+
+@mixin sbbMenuItemBlackLean($width: var(--sbb-border-width-thin), $left: true) {
   color: var(--sbb-menu-item-label-active);
   background-color: var(--sbb-menu-item-background-color-active);
-  @include borderLeftAsBefore(var(--sbb-menu-item-label-active), $width);
+  @if $left {
+    @include borderLeftAsBefore(var(--sbb-menu-item-label-active), $width);
+  } @else {
+    @include borderRightAsBefore(var(--sbb-menu-item-label-active), $width);
+  }
 }
 
 @mixin sbbMenuItemRedLean($width: var(--sbb-border-width-thin)) {

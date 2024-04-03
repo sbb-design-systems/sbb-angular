@@ -73,8 +73,15 @@
   bottom: 0;
   width: calc(#{sbb.pxToRem(300)} * var(--sbb-scaling-factor));
   transform: translate3d(-100%, 0, 0);
-  border-right: var(--sbb-border-width-thin) solid var(--sbb-sidebar-border-right-color);
+  border-right: var(--sbb-border-width-thin) solid var(--sbb-sidebar-border-color);
   background-color: var(--sbb-sidebar-background-color);
+
+  &:where(.sbb-sidebar-end) {
+    right: 0;
+    border-right: 0;
+    border-left: var(--sbb-border-width-thin) solid var(--sbb-sidebar-border-color);
+    transform: translate3d(100%, 0, 0);
+  }
 
   // Usually the `visibility: hidden` added by the animation is enough to prevent focus from
   // entering the hidden sidebar content, but children with their own `visibility` can override it.
@@ -96,6 +103,12 @@
   z-index: 4;
   box-shadow: var(--sbb-box-shadow-width) 0 0 0 var(--sbb-box-shadow-color);
   border-right: var(--sbb-border-width-thin) solid var(--sbb-color-granite);
+
+  &:where(.sbb-sidebar-end) {
+    border-right: 0;
+    border-left: var(--sbb-border-width-thin) solid var(--sbb-color-granite);
+    box-shadow: calc(var(--sbb-box-shadow-width) * -1) 0 0 0 var(--sbb-box-shadow-color);
+  }
 }
 
 .sbb-sidebar-inner-container {
@@ -237,6 +250,7 @@
 
   .sbb-sidebar-container-mobile & {
     display: flex;
+    justify-content: space-between;
   }
 }
 

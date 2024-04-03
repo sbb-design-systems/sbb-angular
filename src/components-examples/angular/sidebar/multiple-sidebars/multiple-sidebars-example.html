@@ -1,0 +1,29 @@
+<div class="sidebar-frame">
+  <sbb-sidebar-container>
+    <sbb-sidebar role="navigation" position="start">
+      <sbb-expansion-panel expanded>
+        <sbb-expansion-panel-header>Introduction</sbb-expansion-panel-header>
+        <a sbbSidebarLink class="sbb-active">Getting Started</a>
+        <a sbbSidebarLink href="">Typography</a>
+      </sbb-expansion-panel>
+      <sbb-expansion-panel>
+        <sbb-expansion-panel-header>Form Components</sbb-expansion-panel-header>
+        <a sbbSidebarLink href="">Autocomplete</a>
+        <a sbbSidebarLink href="">Checkbox</a>
+      </sbb-expansion-panel>
+      <fieldset>
+        <legend>Fieldset Example</legend>
+        <button type="button" sbb-button>Important Button</button>
+      </fieldset>
+    </sbb-sidebar>
+    <sbb-sidebar position="end">
+      <fieldset>Second Sidebar</fieldset>
+    </sbb-sidebar>
+    <sbb-sidebar-content role="main"> Content </sbb-sidebar-content>
+  </sbb-sidebar-container>
+</div>
+
+<h4>Properties</h4>
+<div class="sbb-checkbox-group-vertical">
+  <sbb-checkbox [formControl]="simulateMobile">Simulate Mobile View</sbb-checkbox>
+</div>
