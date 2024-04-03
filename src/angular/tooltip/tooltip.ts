@@ -58,7 +58,7 @@ import { Observable, Subject } from 'rxjs';
 import { filter, take, takeUntil } from 'rxjs/operators';
 
 /** Possible positions for a tooltip. */
-export type TooltipPosition = 'before' | 'after' | 'above' | 'below';
+export type TooltipPosition = 'left' | 'right' | 'above' | 'below';
 
 /**
  * Options for how the tooltip trigger should handle touch gestures.
@@ -365,7 +365,7 @@ export class SbbTooltip implements OnDestroy, AfterViewInit {
         overlayY: 'bottom',
         offsetX: 5,
         offsetY: -2,
-        panelClass: `${this._cssClassPrefix}-${PANEL_CLASS}-left`,
+        panelClass: `${this._cssClassPrefix}-${PANEL_CLASS}-start`,
       },
       {
         originX: 'start',
@@ -374,7 +374,7 @@ export class SbbTooltip implements OnDestroy, AfterViewInit {
         overlayY: 'bottom',
         offsetX: -5,
         offsetY: -2,
-        panelClass: `${this._cssClassPrefix}-${PANEL_CLASS}-right`,
+        panelClass: `${this._cssClassPrefix}-${PANEL_CLASS}-end`,
       },
     ],
     below: [
@@ -392,7 +392,7 @@ export class SbbTooltip implements OnDestroy, AfterViewInit {
         overlayY: 'top',
         offsetX: 5,
         offsetY: 2,
-        panelClass: `${this._cssClassPrefix}-${PANEL_CLASS}-left`,
+        panelClass: `${this._cssClassPrefix}-${PANEL_CLASS}-start`,
       },
       {
         originX: 'start',
@@ -401,27 +401,27 @@ export class SbbTooltip implements OnDestroy, AfterViewInit {
         overlayY: 'top',
         offsetX: -5,
         offsetY: 2,
-        panelClass: `${this._cssClassPrefix}-${PANEL_CLASS}-right`,
+        panelClass: `${this._cssClassPrefix}-${PANEL_CLASS}-end`,
       },
     ],
-    before: [
+    left: [
       {
         originX: 'start',
         originY: 'center',
         overlayX: 'end',
         overlayY: 'center',
         offsetX: 2,
-        panelClass: `${this._cssClassPrefix}-${PANEL_CLASS}-before`,
+        panelClass: `${this._cssClassPrefix}-${PANEL_CLASS}-left`,
       },
     ],
-    after: [
+    right: [
       {
         originX: 'end',
         originY: 'center',
         overlayX: 'start',
         overlayY: 'center',
         offsetX: -2,
-        panelClass: `${this._cssClassPrefix}-${PANEL_CLASS}-after`,
+        panelClass: `${this._cssClassPrefix}-${PANEL_CLASS}-right`,
       },
     ],
   };
@@ -694,10 +694,10 @@ export class SbbTooltip implements OnDestroy, AfterViewInit {
       overlayPositions = [...this._tooltipPositions.above, ...this._tooltipPositions.below];
     } else if (position === 'below') {
       overlayPositions = [...this._tooltipPositions.below, ...this._tooltipPositions.above];
-    } else if (position === 'before') {
-      overlayPositions = [...this._tooltipPositions.before, ...this._tooltipPositions.after];
-    } else if (position === 'after') {
-      overlayPositions = [...this._tooltipPositions.after, ...this._tooltipPositions.before];
+    } else if (position === 'left') {
+      overlayPositions = [...this._tooltipPositions.left, ...this._tooltipPositions.right];
+    } else if (position === 'right') {
+      overlayPositions = [...this._tooltipPositions.right, ...this._tooltipPositions.left];
     } else if (typeof ngDevMode === 'undefined' || ngDevMode) {
       throw getSbbTooltipInvalidPositionError(position);
     }
@@ -740,7 +740,7 @@ export class SbbTooltip implements OnDestroy, AfterViewInit {
       // Note that since this information is used for styling, we want to
       // resolve `start` and `end` to their real values, otherwise consumers
       // would have to remember to do it themselves on each consumption.
-      newPosition = originX === 'start' ? 'before' : 'after';
+      newPosition = originX === 'start' ? 'left' : 'right';
     } else {
       newPosition = overlayY === 'bottom' && originY === 'top' ? 'above' : 'below';
     }
