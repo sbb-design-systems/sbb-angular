@@ -1,7 +1,7 @@
 import { FocusMonitor } from '@angular/cdk/a11y';
 import { Direction, Directionality } from '@angular/cdk/bidi';
 import { ESCAPE } from '@angular/cdk/keycodes';
-import { CdkScrollable, OverlayContainer } from '@angular/cdk/overlay';
+import { CdkScrollable, OverlayContainer, OverlayModule } from '@angular/cdk/overlay';
 import { Platform } from '@angular/cdk/platform';
 import {
   ChangeDetectionStrategy,
@@ -40,6 +40,7 @@ import {
   SbbTooltipModule,
   SBB_TOOLTIP_DEFAULT_OPTIONS,
   SCROLL_THROTTLE_MS,
+  TooltipPosition,
   TooltipTouchGestures,
 } from './index';
 
@@ -204,6 +205,35 @@ describe('SbbTooltip', () => {
       expect(tooltipDirective._isTooltipVisible()).toBe(false);
     }));
 
+    it('should be able to override the default position', fakeAsync(() => {
+      TestBed.resetTestingModule()
+        .configureTestingModule({
+          imports: [SbbTooltipModule, OverlayModule],
+          declarations: [TooltipDemoWithoutPositionBinding],
+          providers: [
+            {
+              provide: SBB_TOOLTIP_DEFAULT_OPTIONS,
+              useValue: { position: 'right' },
+            },
+          ],
+        })
+        .compileComponents();
+
+      const newFixture = TestBed.createComponent(TooltipDemoWithoutPositionBinding);
+      newFixture.detectChanges();
+      tooltipDirective = newFixture.debugElement
+        .query(By.css('button'))!
+        .injector.get<SbbTooltip>(SbbTooltip);
+
+      tooltipDirective.show();
+      newFixture.detectChanges();
+      tick();
+
+      expect(tooltipDirective.position).toBe('right');
+      expect(tooltipDirective._getOverlayPositions()[0].overlayX).toBe('start');
+      expect(tooltipDirective._getOverlayPositions()[0].overlayY).toBe('center');
+    }));
+
     it('should be able to disable tooltip interactivity', fakeAsync(() => {
       TestBed.resetTestingModule()
         .configureTestingModule({
@@ -344,6 +374,40 @@ describe('SbbTooltip', () => {
       tooltipDirective.show();
       tick(tooltipDelay);
       expect(tooltipDirective._isTooltipVisible()).toBe(true);
+    }));
+
+    it('should be able to update the tooltip position while open', fakeAsync(() => {
+      tooltipDirective.position = 'below';
+      tooltipDirective.show();
+      tick();
+
+      assertTooltipInstance(tooltipDirective, true);
+
+      tooltipDirective.position = 'above';
+      spyOn(tooltipDirective._overlayRef!, 'updatePosition').and.callThrough();
+      fixture.detectChanges();
+      tick();
+
+      assertTooltipInstance(tooltipDirective, true);
+      expect(tooltipDirective._overlayRef!.updatePosition).toHaveBeenCalled();
+    }));
+
+    it('should not throw when updating the position for a closed tooltip', fakeAsync(() => {
+      tooltipDirective.position = 'left';
+      tooltipDirective.show(0);
+      fixture.detectChanges();
+      tick();
+
+      tooltipDirective.hide(0);
+      fixture.detectChanges();
+      tick();
+      finishCurrentTooltipAnimation(overlayContainerElement, false);
+
+      expect(() => {
+        tooltipDirective.position = 'right';
+        fixture.detectChanges();
+        tick();
+      }).not.toThrow();
     }));
 
     it('should be able to modify the tooltip message', fakeAsync(() => {
@@ -496,6 +560,14 @@ describe('SbbTooltip', () => {
         .withContext('Expected tooltip to be in RTL mode.')
         .toBe('rtl');
     }));
+
+    it('should throw when trying to assign an invalid position', () => {
+      expect(() => {
+        fixture.componentInstance.position = 'everywhere';
+        fixture.detectChanges();
+        tooltipDirective.show();
+      }).toThrowError('Tooltip position "everywhere" is invalid.');
+    });
 
     it('should be able to set the tooltip message as a number', fakeAsync(() => {
       fixture.componentInstance.message = 100;
@@ -664,6 +736,43 @@ describe('SbbTooltip', () => {
       finishCurrentTooltipAnimation(overlayContainerElement, true);
 
       expect(overlayRef.detach).not.toHaveBeenCalled();
+    }));
+
+    it('should set a class on the overlay panel that reflects the position', fakeAsync(() => {
+      // Move the element so that the primary position is always used.
+      buttonElement.style.position = 'fixed';
+      buttonElement.style.top = buttonElement.style.left = '200px';
+
+      fixture.componentInstance.message = 'hi';
+      fixture.detectChanges();
+      setPositionAndShow('below');
+
+      const classList = tooltipDirective._overlayRef!.overlayElement.classList;
+      expect(classList).toContain('sbb-tooltip-panel-below');
+
+      setPositionAndShow('above');
+      expect(classList).not.toContain('sbb-tooltip-panel-below');
+      expect(classList).toContain('sbb-tooltip-panel-above');
+
+      setPositionAndShow('left');
+      expect(classList).not.toContain('sbb-tooltip-panel-above');
+      expect(classList).toContain('sbb-tooltip-panel-left');
+
+      setPositionAndShow('right');
+      expect(classList).not.toContain('sbb-tooltip-panel-left');
+      expect(classList).toContain('sbb-tooltip-panel-right');
+
+      function setPositionAndShow(position: TooltipPosition) {
+        tooltipDirective.hide(0);
+        fixture.detectChanges();
+        tick(0);
+        tooltipDirective.position = position;
+        tooltipDirective.show(0);
+        fixture.detectChanges();
+        tick(0);
+        fixture.detectChanges();
+        tick(500);
+      }
     }));
 
     it('should clear the show timeout on destroy', fakeAsync(() => {
@@ -1285,6 +1394,7 @@ describe('SbbTooltip', () => {
       #button
       [sbbTooltip]="message"
       [sbbTooltipClass]="{ 'custom-one': showTooltipClass, 'custom-two': showTooltipClass }"
+      [sbbTooltipPosition]="position"
       sbbTooltipPanelClass="custom-panel-one custom-panel-two"
       [sbbTooltipTouchGestures]="touchGestures"
     >
@@ -1295,6 +1405,7 @@ describe('SbbTooltip', () => {
   imports: [SbbTooltipModule],
 })
 class BasicTooltipDemo {
+  position: any = 'below';
   message: any = initialTooltipMessage;
   showButton: boolean = true;
   showTooltipClass = false;
