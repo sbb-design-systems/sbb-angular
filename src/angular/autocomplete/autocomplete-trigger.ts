@@ -232,10 +232,8 @@ export class SbbAutocompleteTrigger
     const renderCallback = new Observable((subscriber) => {
       afterNextRender(() => subscriber.next(), { injector: this._injector });
     });
+    const onReady = autocomplete.options ? observableOf(null) : renderCallback;
 
-    console.log('onReady');
-    const onReady = autocomplete.options ? observableOf(null) : renderCallback.pipe(take(1));
-    // const onReady = autocomplete.options ? observableOf(null) : this._zone.onStable.pipe(take(1));
     this._highlightSubscription = onReady
       .pipe(
         switchMap(() =>
@@ -296,7 +294,7 @@ export class SbbAutocompleteTrigger
   @Input({ alias: 'sbbAutocompleteDisabled', transform: booleanAttribute })
   autocompleteDisabled: boolean = false;
 
-  private _initialized = new Subject<null>();
+  private _initialized = new Subject<void>();
 
   private _injector = inject(Injector);
 
@@ -321,7 +319,7 @@ export class SbbAutocompleteTrigger
   private _aboveClass: string = 'sbb-autocomplete-panel-above';
 
   ngAfterViewInit() {
-    this._initialized.next(null);
+    this._initialized.next();
     this._initialized.complete();
 
     const window = this._getWindow();

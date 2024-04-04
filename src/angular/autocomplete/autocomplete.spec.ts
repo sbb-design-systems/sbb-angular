@@ -26,6 +26,7 @@ import {
 } from '@angular/core/testing';
 import { FormControl, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { By } from '@angular/platform-browser';
+import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { SbbOption, SbbOptionModule, SbbOptionSelectionChange } from '@sbb-esta/angular/core';
 import {
   clearElement,
@@ -592,6 +593,7 @@ describe('SbbAutocomplete', () => {
         SbbInputModule,
         FormsModule,
         ReactiveFormsModule,
+        NoopAnimationsModule,
         SbbOptionModule,
       ],
       declarations: [component],
@@ -3977,12 +3979,10 @@ describe('SbbAutocomplete', () => {
     expect(Math.ceil(parseFloat(overlayPane.style.width as string))).toBe(400);
   });
 
-  // TODO mario
-  fit(
+  it(
     'should show the panel when the options are initialized later within a component with ' +
       'OnPush change detection',
     fakeAsync(() => {
-      debugger;
       const fixture = createComponent(AutocompleteWithOnPushDelay);
 
       fixture.detectChanges();
