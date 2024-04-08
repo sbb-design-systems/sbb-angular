@@ -1,24 +1,33 @@
-<sbb-tooltip [position]="tooltipPreferredPosition">{{ tooltipContent }}</sbb-tooltip>
+<sbb-tooltip [position]="tooltipPreferredPosition" [disabled]="tooltipDisabled">
+  {{ tooltipContent }}
+</sbb-tooltip>
 <h4>Properties</h4>
-<sbb-form-field label="Tooltip preferred position">
-  <sbb-select [(ngModel)]="tooltipPreferredPosition">
-    <sbb-option value="above">above</sbb-option>
-    <sbb-option value="below">below</sbb-option>
-    <sbb-option value="left">left</sbb-option>
-    <sbb-option value="right">right</sbb-option>
-  </sbb-select>
+<p>
+  <sbb-checkbox [(ngModel)]="tooltipDisabled">Tooltip disabled</sbb-checkbox>
+</p>
+<p>
   <sbb-form-field label="Tooltip text content">
     <input type="text" [(ngModel)]="tooltipContent" sbbInput />
   </sbb-form-field>
-  <p>
-    <small class="font-italic">
-      * to open a tooltip you can use the ENTER key while focusing the question mark or you can
-      click on it.
-    </small>
-    <br />
-    <small class="font-italic">
-      ** to close a tooltip you can use the ESCAPE key, click on the question mark, on the close
-      button or click outside the tooltip content box.
-    </small>
-  </p>
-</sbb-form-field>
+</p>
+<p>
+  <sbb-form-field label="Tooltip preferred position">
+    <sbb-select [(ngModel)]="tooltipPreferredPosition">
+      <sbb-option value="above">above</sbb-option>
+      <sbb-option value="below">below</sbb-option>
+      <sbb-option value="left">left</sbb-option>
+      <sbb-option value="right">right</sbb-option>
+    </sbb-select>
+  </sbb-form-field>
+</p>
+<p>
+  <small class="font-italic">
+    * to open a tooltip you can use the ENTER key while focusing the question mark or you can click
+    on it.
+  </small>
+  <br />
+  <small class="font-italic">
+    ** to close a tooltip you can use the ESCAPE key, click on the question mark, on the close
+    button or click outside the tooltip content box.
+  </small>
+</p>
