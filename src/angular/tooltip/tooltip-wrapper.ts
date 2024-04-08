@@ -1,5 +1,6 @@
 import { AsyncPipe } from '@angular/common';
 import {
+  booleanAttribute,
   ChangeDetectionStrategy,
   Component,
   EventEmitter,
@@ -66,6 +67,9 @@ export class SbbTooltipWrapper
    * e.g. svgIcon="circle-question-mark-small"
    */
   @Input() svgIcon: string;
+
+  /** Whether the tooltip is disabled. */
+  @Input({ transform: booleanAttribute }) disabled: boolean = false;
 
   /** Subject for the current icon. */
   private _svgIconSubject = new BehaviorSubject<string | null>(null);
