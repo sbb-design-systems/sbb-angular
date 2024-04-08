@@ -2,6 +2,20 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [17.8.0](https://github.com/sbb-design-systems/sbb-angular/compare/17.7.2...17.8.0) (2024-04-08)
+
+
+### Features
+
+* **angular/tooltip:** allow specifying the preferred position ([#2228](https://github.com/sbb-design-systems/sbb-angular/issues/2228)) ([a8c6283](https://github.com/sbb-design-systems/sbb-angular/commit/a8c6283557b178a3da8575b4edd1a65511d9330c)), closes [#889](https://github.com/sbb-design-systems/sbb-angular/issues/889)
+
+
+### Bug Fixes
+
+* **angular/tooltip:** allow disabling tooltips ([#2227](https://github.com/sbb-design-systems/sbb-angular/issues/2227)) ([38bb312](https://github.com/sbb-design-systems/sbb-angular/commit/38bb312becfe6e8e4c7231f7bb0c57d96073bccc)), closes [#1855](https://github.com/sbb-design-systems/sbb-angular/issues/1855)
+* **deps:** update angular to v17.3.2 ([2f8ccfb](https://github.com/sbb-design-systems/sbb-angular/commit/2f8ccfb5d08df43a04dc83453fcbf9e4a652086b))
+* **deps:** update dependency @angular/cdk to v17.3.2 ([844b1c6](https://github.com/sbb-design-systems/sbb-angular/commit/844b1c6051d1a3730a596b600a9500054c2ecac0))
+
 ### [17.7.2](https://github.com/sbb-design-systems/sbb-angular/compare/17.7.1...17.7.2) (2024-03-25)
 
 
