@@ -19,7 +19,7 @@ import { SbbIcon } from '@sbb-esta/angular/icon';
 import { BehaviorSubject, combineLatest, Observable, Subject } from 'rxjs';
 import { map, takeUntil } from 'rxjs/operators';
 
-import { SbbTooltip, SbbTooltipChangeEvent } from './tooltip';
+import { SbbTooltip, SbbTooltipChangeEvent, TooltipPosition } from './tooltip';
 
 // Boilerplate for applying mixins to SbbTooltipWrapper.
 // tslint:disable-next-line: naming-convention
@@ -55,6 +55,8 @@ export class SbbTooltipWrapper
 
   /** Customizations for hide delay */
   @Input({ transform: numberAttribute }) hoverHideDelay: number;
+
+  @Input() position: TooltipPosition = 'below';
 
   private _destroyed = new Subject<void>();
 
