@@ -17,6 +17,7 @@ ng_module(
     ),
     assets = [":tooltip.css"] + glob(["**/*.html"]),
     deps = [
+        "//src:dev_mode_types",
         "//src/angular/core",
         "//src/angular/icon",
         "@npm//@angular/cdk",
