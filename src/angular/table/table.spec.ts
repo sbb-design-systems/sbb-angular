@@ -635,10 +635,11 @@ describe('SbbTable', () => {
     expect(tableWrapper.nativeElement.classList.length).toBe(3); // Ensure old state classes were removed
   }));
 
-  it('should update sticky left offset on data change (initially here)', fakeAsync(() => {
+  it('should update sticky left offset on data change (initially here)', waitForAsync(async () => {
     const fixture = TestBed.createComponent(TableWithTwoStickyColumnsTestComponent);
     fixture.detectChanges();
     fixture.detectChanges(); // Second change detection needed
+    await new Promise((r) => setTimeout(r));
 
     const columnAComputedStyles = getComputedStyle(
       fixture.nativeElement.querySelector('.sbb-column-column_a'),
@@ -649,10 +650,11 @@ describe('SbbTable', () => {
     expect(parseInt(columnBLeftOffset, 10)).toBeCloseTo(parseInt(columnAComputedStyles.width, 10));
   }));
 
-  it('should update sticky left offset on viewport change', fakeAsync(() => {
+  it('should update sticky left offset on viewport change', waitForAsync(async () => {
     const fixture = TestBed.createComponent(TableWithTwoStickyColumnsTestComponent);
     fixture.detectChanges();
     fixture.detectChanges(); // Second change detection needed
+    await new Promise((r) => setTimeout(r));
 
     const tableElement = fixture.nativeElement.querySelector('.sbb-table');
 
@@ -668,7 +670,7 @@ describe('SbbTable', () => {
     tableElement.style.width = '200px';
     fixture.detectChanges();
     viewPortRulerMockChangeTrigger.next(); // Manually trigger viewportRulerChange
-    flushMicrotasks();
+    await new Promise((r) => setTimeout(r));
 
     // Then the left offset should be updated
     columnAComputedStyles = getComputedStyle(
