@@ -7,7 +7,7 @@ import { sbbAngularUpgradeData } from './upgrade-data';
 /** Entry point for the migration schematics with target of Angular 15 */
 export function updateToV17(): Rule {
   return createMigrationSchematicRule(
-    TargetVersion.V17,
+    TargetVersion.V18,
     [IconMigration],
     sbbAngularUpgradeData,
     onMigrationComplete,
