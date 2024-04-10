@@ -1,6 +1,7 @@
 import { FocusableOption } from '@angular/cdk/a11y';
 import { BACKSPACE, DELETE } from '@angular/cdk/keycodes';
 import {
+  afterNextRender,
   ANIMATION_MODULE_TYPE,
   Attribute,
   booleanAttribute,
@@ -13,8 +14,10 @@ import {
   EventEmitter,
   forwardRef,
   Host,
+  inject,
   Inject,
   InjectionToken,
+  Injector,
   Input,
   NgZone,
   numberAttribute,
@@ -26,7 +29,6 @@ import {
 import { TypeRef } from '@sbb-esta/angular/core';
 import { SbbIconModule } from '@sbb-esta/angular/icon';
 import { Subject } from 'rxjs';
-import { take } from 'rxjs/operators';
 
 import type { SbbChipList } from './chip-list';
 import { SBB_CHIP, SBB_CHIP_LIST } from './chip-tokens';
@@ -162,6 +164,8 @@ export class SbbChip implements FocusableOption, OnDestroy {
    */
   @Output() readonly removed: EventEmitter<SbbChipEvent> = new EventEmitter<SbbChipEvent>();
 
+  private _injector = inject(Injector);
+
   constructor(
     public _elementRef: ElementRef<HTMLElement>,
     private _ngZone: NgZone,
@@ -278,13 +282,15 @@ export class SbbChip implements FocusableOption, OnDestroy {
     // When animations are enabled, Angular may end up removing the chip from the DOM a little
     // earlier than usual, causing it to be blurred and throwing off the logic in the chip list
     // that moves focus not the next item. To work around the issue, we defer marking the chip
-    // as not focused until the next time the zone stabilizes.
-    this._ngZone.onStable.pipe(take(1)).subscribe(() => {
-      this._ngZone.run(() => {
-        this._hasFocus = false;
-        this._onBlur.next({ chip: this });
-      });
-    });
+    // as not focused until after the next render.
+    afterNextRender(
+      () =>
+        this._ngZone.run(() => {
+          this._hasFocus = false;
+          this._onBlur.next({ chip: this });
+        }),
+      { injector: this._injector },
+    );
   }
 }
 
