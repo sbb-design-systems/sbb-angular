@@ -5,7 +5,7 @@ import { IconMigration } from './migrations/icon-names';
 import { sbbAngularUpgradeData } from './upgrade-data';
 
 /** Entry point for the migration schematics with target of Angular 18 */
-export function updateToV17(): Rule {
+export function updateToV18(): Rule {
   return createMigrationSchematicRule(
     TargetVersion.V18,
     [IconMigration],
