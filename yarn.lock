@@ -62,14 +62,6 @@
     "@jridgewell/gen-mapping" "^0.3.5"
     "@jridgewell/trace-mapping" "^0.3.24"
 
-"@angular-devkit/architect@0.1703.0-rc.0":
-  version "0.1703.0-rc.0"
-  resolved "https://registry.yarnpkg.com/@angular-devkit/architect/-/architect-0.1703.0-rc.0.tgz#264d9020d4db87116a4550dc3b5016353495cdc2"
-  integrity sha512-nqX49OMchgz7BFFzk92yxlRPaiqLTKexnKz8rsB2Pm+GjFIJj6s5GmAP2S6T7r1W/TXmI3P60hLzomIWMFgbUQ==
-  dependencies:
-    "@angular-devkit/core" "17.3.0-rc.0"
-    rxjs "7.8.1"
-
 "@angular-devkit/architect@0.1703.3":
   version "0.1703.3"
   resolved "https://registry.yarnpkg.com/@angular-devkit/architect/-/architect-0.1703.3.tgz#d60cdc2d2ad3b204d8b353124a8defa92c40db69"
@@ -77,77 +69,6 @@
   dependencies:
     "@angular-devkit/core" "17.3.3"
     rxjs "7.8.1"
-
-"@angular-devkit/build-angular@17.3.0-rc.0":
-  version "17.3.0-rc.0"
-  resolved "https://registry.yarnpkg.com/@angular-devkit/build-angular/-/build-angular-17.3.0-rc.0.tgz#ec51f67cf37eab1df470ca177eda9e1ee193c986"
-  integrity sha512-fspoWqxOXCJWFIuJ93q3KzPGKkGbXCPq5+qNJsMlyI1TfBnm7feY6ocsqRi/Zje9Veno1di5p2/wozpd/3ykvA==
-  dependencies:
-    "@ampproject/remapping" "2.3.0"
-    "@angular-devkit/architect" "0.1703.0-rc.0"
-    "@angular-devkit/build-webpack" "0.1703.0-rc.0"
-    "@angular-devkit/core" "17.3.0-rc.0"
-    "@babel/core" "7.24.0"
-    "@babel/generator" "7.23.6"
-    "@babel/helper-annotate-as-pure" "7.22.5"
-    "@babel/helper-split-export-declaration" "7.22.6"
-    "@babel/plugin-transform-async-generator-functions" "7.23.9"
-    "@babel/plugin-transform-async-to-generator" "7.23.3"
-    "@babel/plugin-transform-runtime" "7.24.0"
-    "@babel/preset-env" "7.24.0"
-    "@babel/runtime" "7.24.0"
-    "@discoveryjs/json-ext" "0.5.7"
-    "@ngtools/webpack" "17.3.0-rc.0"
-    "@vitejs/plugin-basic-ssl" "1.1.0"
-    ansi-colors "4.1.3"
-    autoprefixer "10.4.18"
-    babel-loader "9.1.3"
-    babel-plugin-istanbul "6.1.1"
-    browserslist "^4.21.5"
-    copy-webpack-plugin "11.0.0"
-    critters "0.0.20"
-    css-loader "6.10.0"
-    esbuild-wasm "0.20.1"
-    fast-glob "3.3.2"
-    http-proxy-middleware "2.0.6"
-    https-proxy-agent "7.0.4"
-    inquirer "9.2.15"
-    jsonc-parser "3.2.1"
-    karma-source-map-support "1.4.0"
-    less "4.2.0"
-    less-loader "11.1.0"
-    license-webpack-plugin "4.0.2"
-    loader-utils "3.2.1"
-    magic-string "0.30.8"
-    mini-css-extract-plugin "2.8.1"
-    mrmime "2.0.0"
-    open "8.4.2"
-    ora "5.4.1"
-    parse5-html-rewriting-stream "7.0.0"
-    picomatch "4.0.1"
-    piscina "4.4.0"
-    postcss "8.4.35"
-    postcss-loader "8.1.1"
-    resolve-url-loader "5.0.0"
-    rxjs "7.8.1"
-    sass "1.71.1"
-    sass-loader "14.1.1"
-    semver "7.6.0"
-    source-map-loader "5.0.0"
-    source-map-support "0.5.21"
-    terser "5.28.1"
-    tree-kill "1.2.2"
-    tslib "2.6.2"
-    undici "6.7.0"
-    vite "5.1.5"
-    watchpack "2.4.0"
-    webpack "5.90.3"
-    webpack-dev-middleware "6.1.1"
-    webpack-dev-server "4.15.1"
-    webpack-merge "5.10.0"
-    webpack-subresource-integrity "5.1.0"
-  optionalDependencies:
-    esbuild "0.20.1"
 
 "@angular-devkit/build-angular@17.3.3":
   version "17.3.3"
@@ -220,14 +141,6 @@
   optionalDependencies:
     esbuild "0.20.1"
 
-"@angular-devkit/build-webpack@0.1703.0-rc.0":
-  version "0.1703.0-rc.0"
-  resolved "https://registry.yarnpkg.com/@angular-devkit/build-webpack/-/build-webpack-0.1703.0-rc.0.tgz#8f0fe892d8da826c112ff304c2be108b58565b9a"
-  integrity sha512-NVn7ZjyC8uW73sn1/ufAYE6kpqKd2c/h7T4dxazVt9gQGqSsfXu+oPwKSC1jl0Sxo9/UVUX9DcHNCoOn+tmHTg==
-  dependencies:
-    "@angular-devkit/architect" "0.1703.0-rc.0"
-    rxjs "7.8.1"
-
 "@angular-devkit/build-webpack@0.1703.3":
   version "0.1703.3"
   resolved "https://registry.yarnpkg.com/@angular-devkit/build-webpack/-/build-webpack-0.1703.3.tgz#b7fcc2fa2c0c6ba4cc1dcdd8d108c8f536d03a60"
@@ -235,18 +148,6 @@
   dependencies:
     "@angular-devkit/architect" "0.1703.3"
     rxjs "7.8.1"
-
-"@angular-devkit/core@17.3.0-rc.0":
-  version "17.3.0-rc.0"
-  resolved "https://registry.yarnpkg.com/@angular-devkit/core/-/core-17.3.0-rc.0.tgz#49eccc471087289b4a627adc1ce01b941143bd3d"
-  integrity sha512-A+l8MDxiQYE/MaayHUxqn8K0gfK6oNIWm4i5xAnFCzhCE8d5bXXUHzznyq5wn8AOxliGlR2Js1CmMk01TxgGaw==
-  dependencies:
-    ajv "8.12.0"
-    ajv-formats "2.1.1"
-    jsonc-parser "3.2.1"
-    picomatch "4.0.1"
-    rxjs "7.8.1"
-    source-map "0.7.4"
 
 "@angular-devkit/core@17.3.3":
   version "17.3.3"
@@ -307,11 +208,11 @@
     "@angular/core" "^13.0.0 || ^14.0.0-0"
     reflect-metadata "^0.1.13"
 
-"@angular/build-tooling@https://github.com/angular/dev-infra-private-build-tooling-builds.git#9831b1aa2e40b8fdf1ebd44650797b5fd4ba08c3":
-  version "0.0.0-4b433074a806bbbd4d319264430740cd46e62f27"
-  resolved "https://github.com/angular/dev-infra-private-build-tooling-builds.git#9831b1aa2e40b8fdf1ebd44650797b5fd4ba08c3"
+"@angular/build-tooling@https://github.com/angular/dev-infra-private-build-tooling-builds.git#09c8533fafa946c91494a10d55cedc7bc0d5c47d":
+  version "0.0.0-728a45d033528f866a2e7b2f64024929d382e98c"
+  resolved "https://github.com/angular/dev-infra-private-build-tooling-builds.git#09c8533fafa946c91494a10d55cedc7bc0d5c47d"
   dependencies:
-    "@angular-devkit/build-angular" "17.3.0-rc.0"
+    "@angular-devkit/build-angular" "17.3.3"
     "@angular/benchpress" "0.3.0"
     "@babel/core" "^7.16.0"
     "@babel/helper-annotate-as-pure" "^7.18.6"
@@ -456,9 +357,9 @@
     fast-glob "3.3.2"
     yargs "^17.2.1"
 
-"@angular/ng-dev@https://github.com/angular/dev-infra-private-ng-dev-builds.git#a8690b0870728efc1aea5eb6644e605e7d37eabc":
-  version "0.0.0-4b433074a806bbbd4d319264430740cd46e62f27"
-  resolved "https://github.com/angular/dev-infra-private-ng-dev-builds.git#a8690b0870728efc1aea5eb6644e605e7d37eabc"
+"@angular/ng-dev@https://github.com/angular/dev-infra-private-ng-dev-builds.git#43bb346fc88b7840149b6416ffdb1a5bb9a66b6e":
+  version "0.0.0-728a45d033528f866a2e7b2f64024929d382e98c"
+  resolved "https://github.com/angular/dev-infra-private-ng-dev-builds.git#43bb346fc88b7840149b6416ffdb1a5bb9a66b6e"
   dependencies:
     "@yarnpkg/lockfile" "^1.1.0"
     typescript "~4.9.0"
@@ -3543,11 +3444,6 @@
     iterare "1.2.1"
     object-hash "3.0.0"
     tslib "2.6.2"
-
-"@ngtools/webpack@17.3.0-rc.0":
-  version "17.3.0-rc.0"
-  resolved "https://registry.yarnpkg.com/@ngtools/webpack/-/webpack-17.3.0-rc.0.tgz#9b9290c1c1bd866089c3d80caf1fd07e12aa38f1"
-  integrity sha512-8xWpr56Ul7mMLwB4m5CatzN9Be+uC9vQB4bHt9/8iNC1p2ATqTYX7yTjkeww4U/huiChkbfEOKabPjNh0e1wfw==
 
 "@ngtools/webpack@17.3.3":
   version "17.3.3"
@@ -7844,19 +7740,6 @@ create-require@^1.1.0:
   version "1.1.1"
   resolved "https://registry.yarnpkg.com/create-require/-/create-require-1.1.1.tgz#c1d7e8f1e5f6cfc9ff65f9cd352d37348756c333"
   integrity sha512-dcKFX3jn0MpIaXjisoRvexIJVEKzaq7z2rZKxf+MSr9TkdmHmsU4m2lcLojrj/FHl8mk5VxMmYA+ftRkP/3oKQ==
-
-critters@0.0.20:
-  version "0.0.20"
-  resolved "https://registry.yarnpkg.com/critters/-/critters-0.0.20.tgz#08ddb961550ab7b3a59370537e4f01df208f7646"
-  integrity sha512-CImNRorKOl5d8TWcnAz5n5izQ6HFsvz29k327/ELy6UFcmbiZNOsinaKvzv16WZR0P6etfSWYzE47C4/56B3Uw==
-  dependencies:
-    chalk "^4.1.0"
-    css-select "^5.1.0"
-    dom-serializer "^2.0.0"
-    domhandler "^5.0.2"
-    htmlparser2 "^8.0.2"
-    postcss "^8.4.23"
-    pretty-bytes "^5.3.0"
 
 critters@0.0.22:
   version "0.0.22"
@@ -14010,11 +13893,6 @@ prettier@3.2.5:
   resolved "https://registry.yarnpkg.com/prettier/-/prettier-3.2.5.tgz#e52bc3090586e824964a8813b09aba6233b28368"
   integrity sha512-3/GWa9aOC0YeD7LUfvOG2NiDyhOWRvt1k+rcKhOuYnMY24iiCphgneUfJDyFXd6rZCAnuLBv6UeAULtrhT/F4A==
 
-pretty-bytes@^5.3.0:
-  version "5.6.0"
-  resolved "https://registry.yarnpkg.com/pretty-bytes/-/pretty-bytes-5.6.0.tgz#356256f643804773c82f64723fe78c92c62beaeb"
-  integrity sha512-FFw039TmrBqFK8ma/7OL3sDz/VytdtJr044/QUJtH0wK9lb9jLq9tJyIxUwtQJHwar2BqtiA4iCWSwo9JLkzFg==
-
 pretty-format@^3.8.0:
   version "3.8.0"
   resolved "https://registry.yarnpkg.com/pretty-format/-/pretty-format-3.8.0.tgz#bfbed56d5e9a776645f4b1ff7aa1a3ac4fa3c385"
@@ -16386,16 +16264,6 @@ terser-webpack-plugin@^5.3.10:
     serialize-javascript "^6.0.1"
     terser "^5.26.0"
 
-terser@5.28.1:
-  version "5.28.1"
-  resolved "https://registry.yarnpkg.com/terser/-/terser-5.28.1.tgz#bf00f7537fd3a798c352c2d67d67d65c915d1b28"
-  integrity sha512-wM+bZp54v/E9eRRGXb5ZFDvinrJIOaTapx3WUokyVGZu5ucVCK55zEgGd5Dl2fSr3jUo5sDiERErUWLY6QPFyA==
-  dependencies:
-    "@jridgewell/source-map" "^0.3.3"
-    acorn "^8.8.2"
-    commander "^2.20.0"
-    source-map-support "~0.5.20"
-
 terser@5.29.1:
   version "5.29.1"
   resolved "https://registry.yarnpkg.com/terser/-/terser-5.29.1.tgz#44e58045b70c09792ba14bfb7b4e14ca8755b9fa"
@@ -16901,13 +16769,6 @@ undici-types@~5.26.4:
   resolved "https://registry.yarnpkg.com/undici-types/-/undici-types-5.26.5.tgz#bcd539893d00b56e964fd2657a4866b221a65617"
   integrity sha512-JlCMO+ehdEIKqlFxk6IfVoAUVmgz7cU7zD/h9XZ0qzeosSHmUJVOzSQvvYSYWXkFXC+IfLKSIffhv0sVZup6pA==
 
-undici@6.7.0:
-  version "6.7.0"
-  resolved "https://registry.yarnpkg.com/undici/-/undici-6.7.0.tgz#ab7eccb292c8e831c93564ac59f8323c0e8aa842"
-  integrity sha512-IcWssIyDN1gk6Mcae44q04oRoWTKrW8OKz0effVK1xdWwAgMPnfpxhn9RXUSL5JlwSikO18R7Ibk7Nukz6kxWA==
-  dependencies:
-    "@fastify/busboy" "^2.0.0"
-
 undici@6.7.1:
   version "6.7.1"
   resolved "https://registry.yarnpkg.com/undici/-/undici-6.7.1.tgz#3cb27222fd5d72c1b2058f4e18bf9b53dd933af8"
@@ -17370,17 +17231,6 @@ webidl-conversions@^3.0.0:
   version "3.0.1"
   resolved "https://registry.yarnpkg.com/webidl-conversions/-/webidl-conversions-3.0.1.tgz#24534275e2a7bc6be7bc86611cc16ae0a5654871"
   integrity sha512-2JAn3z8AR6rjK8Sm8orRC0h/bcl/DqL7tRPdGZ4I1CjdF+EaMLmYxBHyXuKL849eucPFhvBoxMsflfOb8kxaeQ==
-
-webpack-dev-middleware@6.1.1:
-  version "6.1.1"
-  resolved "https://registry.yarnpkg.com/webpack-dev-middleware/-/webpack-dev-middleware-6.1.1.tgz#6bbc257ec83ae15522de7a62f995630efde7cc3d"
-  integrity sha512-y51HrHaFeeWir0YO4f0g+9GwZawuigzcAdRNon6jErXy/SqV/+O6eaVAzDqE6t3e3NpGeR5CS+cCDaTC+V3yEQ==
-  dependencies:
-    colorette "^2.0.10"
-    memfs "^3.4.12"
-    mime-types "^2.1.31"
-    range-parser "^1.2.1"
-    schema-utils "^4.0.0"
 
 webpack-dev-middleware@6.1.2:
   version "6.1.2"
