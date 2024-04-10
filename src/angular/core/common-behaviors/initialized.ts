@@ -24,7 +24,7 @@ export interface HasInitialized {
 /**
  * Mixin to augment a directive with an initialized property that will emits when ngOnInit ends.
  * @deprecated To be removed.
- * @breaking-change 18.0.0
+ * @breaking-change 19.0.0
  */
 export function mixinInitialized<T extends Constructor<{}>>(
   base: T,
