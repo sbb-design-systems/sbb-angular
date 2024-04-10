@@ -73,7 +73,7 @@
     "@angular-devkit/build-angular": "18.0.0-next.2",
     "@angular-devkit/core": "18.0.0-next.2",
     "@angular-devkit/schematics": "18.0.0-next.2",
-    "@angular-devkit/schematics-cli": "17.3.3",
+    "@angular-devkit/schematics-cli": "18.0.0-next.2",
     "@angular/bazel": "https://github.com/angular/bazel-builds.git#bac9c1abe1e6ac1801fbbccb53353a1ed7126469",
     "@angular/build-tooling": "https://github.com/angular/dev-infra-private-build-tooling-builds.git#09c8533fafa946c91494a10d55cedc7bc0d5c47d",
     "@angular/cli": "18.0.0-next.2",
