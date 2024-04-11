@@ -53,7 +53,7 @@
   "schematics": "./tools/schematics/collection.json",
   "dependencies": {
     "@angular/animations": "18.0.0-next.4",
-    "@angular/cdk": "18.0.0-next.3",
+    "@angular/cdk": "18.0.0-next.4",
     "@angular/common": "18.0.0-next.4",
     "@angular/core": "18.0.0-next.4",
     "@angular/elements": "18.0.0-next.4",
@@ -101,7 +101,7 @@
     "@rollup/plugin-commonjs": "23.0.4",
     "@rollup/plugin-node-resolve": "13.3.0",
     "@rollup/plugin-typescript": "11.1.6",
-    "@schematics/angular": "17.3.3",
+    "@schematics/angular": "17.3.4",
     "@types/browser-sync": "2.29.0",
     "@types/events": "3.0.3",
     "@types/fs-extra": "11.0.4",
