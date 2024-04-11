@@ -15,14 +15,13 @@ import {
 import {
   Component,
   DebugElement,
-  NgZone,
   Provider,
   QueryList,
   Type,
   ViewChild,
   ViewChildren,
 } from '@angular/core';
-import { ComponentFixture, fakeAsync, TestBed, tick } from '@angular/core/testing';
+import { ComponentFixture, fakeAsync, TestBed, tick, waitForAsync } from '@angular/core/testing';
 import {
   FormBuilder,
   FormControl,
@@ -49,7 +48,6 @@ import {
   dispatchFakeEvent,
   dispatchKeyboardEvent,
   dispatchMouseEvent,
-  MockNgZone,
   typeInElement,
 } from '@sbb-esta/angular/core/testing';
 import { SbbFormFieldModule } from '@sbb-esta/angular/form-field';
@@ -70,7 +68,6 @@ describe('SbbChipList', () => {
   let testComponent: StandardChipList;
   let chips: QueryList<SbbChip>;
   let manager: FocusKeyManager<SbbChip>;
-  let zone: MockNgZone;
 
   describe('StandardChipList', () => {
     describe('basic behaviors', () => {
@@ -238,22 +235,23 @@ describe('SbbChipList', () => {
           expect(manager.activeItemIndex).toEqual(lastIndex - 1);
         });
 
-        it('should not focus if chip list is not focused', () => {
+        it('should not focus if chip list is not focused', fakeAsync(() => {
           const array = chips.toArray();
           const midItem = array[2];
 
           // Focus and blur the middle item
           midItem.focus();
-          midItem._blur();
-          zone.simulateZoneExit();
+          (document.activeElement as HTMLElement).blur();
+          tick();
 
           // Destroy the middle item
           testComponent.chips.splice(2, 1);
           fixture.detectChanges();
+          tick();
 
           // Should not have focus
           expect(chipListInstance._keyManager.activeItemIndex).toEqual(-1);
-        });
+        }));
 
         it('should focus the list if the last focused item is removed', () => {
           testComponent.chips = [0];
@@ -799,7 +797,7 @@ describe('SbbChipList', () => {
       const input = fixture.nativeElement.querySelector('input');
 
       input.focus();
-      zone.simulateZoneExit();
+      await new Promise((r) => setTimeout(r));
       fixture.detectChanges();
 
       (testChipsAutocomplete!.selectedFruits!.value! as string[]).push('Pineapple');
@@ -953,11 +951,11 @@ describe('SbbChipList', () => {
         expect(testChipsAutocomplete.selectedFruits.value).toEqual(['Lemon']);
       });
 
-      it('should add value to form control from autocomplete by click', async () => {
+      it('should add value to form control from autocomplete by click', waitForAsync(async () => {
         input.focus();
         typeInElement(input, 'L');
 
-        zone.simulateZoneExit();
+        await new Promise((r) => setTimeout(r));
         fixture.detectChanges();
         await fixture.whenStable();
 
@@ -968,12 +966,12 @@ describe('SbbChipList', () => {
 
         expect(testChipsAutocomplete.selectedFruits.value).toEqual(['Lemon', 'Lime']);
         expect(input.value).toEqual('');
-      });
+      }));
 
       it('should add value to form control from autocomplete by hitting Enter', async () => {
         input.focus();
         typeInElement(input, 'A');
-        zone.simulateZoneExit();
+        await new Promise((r) => setTimeout(r));
         fixture.detectChanges();
         await fixture.whenStable();
         const componentInstance: ChipsAutocomplete = fixture.componentInstance;
@@ -1025,7 +1023,7 @@ describe('SbbChipList', () => {
       it('should not add value to form control from autocomplete', async () => {
         input.focus();
         typeInElement(input, 'L');
-        zone.simulateZoneExit();
+        await new Promise((r) => setTimeout(r));
         fixture.detectChanges();
         await fixture.whenStable();
 
@@ -1057,7 +1055,7 @@ describe('SbbChipList', () => {
         SbbAutocompleteModule,
         component,
       ],
-      providers: [{ provide: NgZone, useFactory: () => (zone = new MockNgZone()) }, ...providers],
+      providers: [...providers],
     }).compileComponents();
 
     return TestBed.createComponent<T>(component);
