@@ -1310,16 +1310,16 @@
     tslib "^2.2.0"
 
 "@azure/abort-controller@^2.0.0":
-  version "2.1.1"
-  resolved "https://registry.yarnpkg.com/@azure/abort-controller/-/abort-controller-2.1.1.tgz#ad4a964ce50a1eaed70ed2d2ef77c8de5708d10b"
-  integrity sha512-NhzeNm5zu2fPlwGXPUjzsRCRuPx5demaZyNcyNYJDqpa/Sbxzvo/RYt9IwUaAOnDW5+r7J9UOE6f22TQnb9nhQ==
+  version "2.1.2"
+  resolved "https://registry.yarnpkg.com/@azure/abort-controller/-/abort-controller-2.1.2.tgz#42fe0ccab23841d9905812c58f1082d27784566d"
+  integrity sha512-nBrLsEWm4J2u5LpAPjxADTlq3trDgVZZXHNKabeXZtpq3d3AbN/KGO82R87rdDz5/lYB024rtEf10/q0urNgsA==
   dependencies:
     tslib "^2.6.2"
 
 "@azure/core-auth@^1.1.4", "@azure/core-auth@^1.3.0":
-  version "1.7.1"
-  resolved "https://registry.yarnpkg.com/@azure/core-auth/-/core-auth-1.7.1.tgz#ca75bc663b6463602fb10471db60f09368a1a3d2"
-  integrity sha512-dyeQwvgthqs/SlPVQbZQetpslXceHd4i5a7M/7z/lGEAVwnSluabnQOjF2/dk/hhWgMISusv1Ytp4mQ8JNy62A==
+  version "1.7.2"
+  resolved "https://registry.yarnpkg.com/@azure/core-auth/-/core-auth-1.7.2.tgz#558b7cb7dd12b00beec07ae5df5907d74df1ebd9"
+  integrity sha512-Igm/S3fDYmnMq1uKS38Ae1/m37B3zigdlZw+kocwEhh5GjyKjPrXKO2J6rzpC1wAxrNil/jX9BJRqBshyjnF3g==
   dependencies:
     "@azure/abort-controller" "^2.0.0"
     "@azure/core-util" "^1.1.0"
@@ -1346,9 +1346,9 @@
     xml2js "^0.5.0"
 
 "@azure/core-lro@^2.2.0":
-  version "2.7.1"
-  resolved "https://registry.yarnpkg.com/@azure/core-lro/-/core-lro-2.7.1.tgz#a110ba4a57094de4b2fa37283de5f2c7f487e1f9"
-  integrity sha512-kXSlrNHOCTVZMxpXNRqzgh9/j4cnNXU5Hf2YjMyjddRhCXFiFRzmNaqwN+XO9rGTsCOIaaG7M67zZdyliXZG9g==
+  version "2.7.2"
+  resolved "https://registry.yarnpkg.com/@azure/core-lro/-/core-lro-2.7.2.tgz#787105027a20e45c77651a98b01a4d3b01b75a08"
+  integrity sha512-0YIpccoX8m/k00O7mDDMdJpbr6mf1yWo2dfmxt5A8XVZVVMz2SSKaEbMCeJRvgQ0IaSlqhjT47p4hVIRRy90xw==
   dependencies:
     "@azure/abort-controller" "^2.0.0"
     "@azure/core-util" "^1.2.0"
@@ -1356,9 +1356,9 @@
     tslib "^2.6.2"
 
 "@azure/core-paging@^1.1.1":
-  version "1.6.1"
-  resolved "https://registry.yarnpkg.com/@azure/core-paging/-/core-paging-1.6.1.tgz#7aba429374effc95b8801de3e0eef4a4ba0a2457"
-  integrity sha512-3tKIQXSU3mlN+ITz0m2pXLnKK3oQ6/EVcW8ud011Iq+M0rx6Wnm7NUEpoMeOAEedeKlPtemrQzO6YWoDR71O5w==
+  version "1.6.2"
+  resolved "https://registry.yarnpkg.com/@azure/core-paging/-/core-paging-1.6.2.tgz#40d3860dc2df7f291d66350b2cfd9171526433e7"
+  integrity sha512-YKWi9YuCU04B55h25cnOYZHxXYtEvQEbKST5vqRga7hWY9ydd3FZHdeQF8pyh+acWZvppw13M/LMGx0LABUVMA==
   dependencies:
     tslib "^2.6.2"
 
@@ -1371,17 +1371,17 @@
     tslib "^2.2.0"
 
 "@azure/core-util@^1.1.0", "@azure/core-util@^1.1.1", "@azure/core-util@^1.2.0":
-  version "1.8.1"
-  resolved "https://registry.yarnpkg.com/@azure/core-util/-/core-util-1.8.1.tgz#4a14ddb338dc1acf2ea7628b5b1cccdb5b6fbfbf"
-  integrity sha512-L3voj0StUdJ+YKomvwnTv7gHzguJO+a6h30pmmZdRprJCM+RJlGMPxzuh4R7lhQu1jNmEtaHX5wvTgWLDAmbGQ==
+  version "1.9.0"
+  resolved "https://registry.yarnpkg.com/@azure/core-util/-/core-util-1.9.0.tgz#469afd7e6452d5388b189f90d33f7756b0b210d1"
+  integrity sha512-AfalUQ1ZppaKuxPPMsFEUdX6GZPB3d9paR9d/TTL7Ow2De8cJaC7ibi7kWVlFAVPCYo31OcnGymc0R89DX8Oaw==
   dependencies:
     "@azure/abort-controller" "^2.0.0"
     tslib "^2.6.2"
 
 "@azure/logger@^1.0.0":
-  version "1.1.1"
-  resolved "https://registry.yarnpkg.com/@azure/logger/-/logger-1.1.1.tgz#5daa10d3b6ace11a1291d4edec0f70f6c9e3dcda"
-  integrity sha512-/+4TtokaGgC+MnThdf6HyIH9Wrjp+CnCn3Nx3ggevN7FFjjNyjqg0yLlc2i9S+Z2uAzI8GYOo35Nzb1MhQ89MA==
+  version "1.1.2"
+  resolved "https://registry.yarnpkg.com/@azure/logger/-/logger-1.1.2.tgz#3f4b876cefad328dc14aff8b850d63b611e249dc"
+  integrity sha512-l170uE7bsKpIU6B/giRc9i4NI0Mj+tANMMMxf7Zi/5cKzEqPayP7+X1WPrG7e+91JgY8N+7K7nF2WOi7iVhXvg==
   dependencies:
     tslib "^2.6.2"
 
