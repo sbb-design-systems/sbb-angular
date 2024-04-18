@@ -2,6 +2,14 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [17.8.1](https://github.com/sbb-design-systems/sbb-angular/compare/17.8.0...17.8.1) (2024-04-18)
+
+
+### Bug Fixes
+
+* **deps:** update angular to v17.3.4 ([6400f17](https://github.com/sbb-design-systems/sbb-angular/commit/6400f1784c5fd3ac5b31839ccbc132bdf2037d36))
+* remove aria-owns to prevent Chrome crash ([#2242](https://github.com/sbb-design-systems/sbb-angular/issues/2242)) ([f5c7608](https://github.com/sbb-design-systems/sbb-angular/commit/f5c7608f441964ab49cfb193a360df55d2ab1851))
+
 ## [17.8.0](https://github.com/sbb-design-systems/sbb-angular/compare/17.7.2...17.8.0) (2024-04-08)
 
 
