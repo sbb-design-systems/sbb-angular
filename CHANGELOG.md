@@ -10,6 +10,32 @@ All notable changes to this project will be documented in this file. See [standa
 * **deps:** update angular to v17.3.4 ([6400f17](https://github.com/sbb-design-systems/sbb-angular/commit/6400f1784c5fd3ac5b31839ccbc132bdf2037d36))
 * remove aria-owns to prevent Chrome crash ([#2242](https://github.com/sbb-design-systems/sbb-angular/issues/2242)) ([f5c7608](https://github.com/sbb-design-systems/sbb-angular/commit/f5c7608f441964ab49cfb193a360df55d2ab1851))
 
+### [16.8.1](https://github.com/sbb-design-systems/sbb-angular/compare/16.8.0...16.8.1) (2024-04-18)
+
+
+### Bug Fixes
+
+* **angular/checkbox:** add aria-checked ([#2069](https://github.com/sbb-design-systems/sbb-angular/issues/2069)) ([bd3688a](https://github.com/sbb-design-systems/sbb-angular/commit/bd3688abc2d11154321195ed3f530324f4d15425))
+* **deps:** update angular to v16.2.12 ([fa4e4a5](https://github.com/sbb-design-systems/sbb-angular/commit/fa4e4a5c1b2dc76cb1899561f114df26d0cb2451))
+* **multiple:** remove obsolete base classes ([#2004](https://github.com/sbb-design-systems/sbb-angular/issues/2004)) ([36ab5fd](https://github.com/sbb-design-systems/sbb-angular/commit/36ab5fd7b9b47f1d34ed4cd0746c2187f89d0146))
+* remove aria-owns to prevent Chrome crash ([#2242](https://github.com/sbb-design-systems/sbb-angular/issues/2242)) ([fab3024](https://github.com/sbb-design-systems/sbb-angular/commit/fab30242047cefe4a308f1b590041ddd407001d9))
+
+## [15.11.0](https://github.com/sbb-design-systems/sbb-angular/compare/15.10.0...15.11.0) (2024-04-18)
+
+
+### Features
+
+* **journey-maps:** extend poi-url-generation with preview flag ([#1899](https://github.com/sbb-design-systems/sbb-angular/issues/1899)) ([4978a76](https://github.com/sbb-design-systems/sbb-angular/commit/4978a76d6222cb8b197ba9b5df772fb357fc9311))
+
+
+### Bug Fixes
+
+* **angular/datepicker:** remove div as a child of button ([#1866](https://github.com/sbb-design-systems/sbb-angular/issues/1866)) ([5398e02](https://github.com/sbb-design-systems/sbb-angular/commit/5398e020911a3b8fd7772e77463f60051d40033f))
+* **deps:** update angular to v15.2.8 ([fdd486b](https://github.com/sbb-design-systems/sbb-angular/commit/fdd486be5e855443f49fecf558981c11995235ba))
+* **deps:** update dependency rxjs to v7.8.1 ([ba29756](https://github.com/sbb-design-systems/sbb-angular/commit/ba29756040d07057994562456e44d8517b2c67c7))
+* **journey-maps:** fix multiline attribution style ([#1873](https://github.com/sbb-design-systems/sbb-angular/issues/1873)) ([edda5aa](https://github.com/sbb-design-systems/sbb-angular/commit/edda5aab327300c6b0afc94f124bc9c42bc67b66))
+* remove aria-owns to prevent Chrome crash ([#2242](https://github.com/sbb-design-systems/sbb-angular/issues/2242)) ([9f1f19c](https://github.com/sbb-design-systems/sbb-angular/commit/9f1f19c13850685712ffc0d7e947234cd43ad7fa))
+
 ## [17.8.0](https://github.com/sbb-design-systems/sbb-angular/compare/17.7.2...17.8.0) (2024-04-08)
 
 
