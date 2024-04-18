@@ -132,20 +132,6 @@ describe('SbbInput without forms', () => {
     expect(inputElement.id).toEqual(labelElement.getAttribute('for')!);
   }));
 
-  it('should add aria-owns to the label for the associated control', fakeAsync(() => {
-    const fixture = createComponent(SbbInputTextTestController);
-    fixture.detectChanges();
-
-    const inputElement: HTMLInputElement = fixture.debugElement.query(
-      By.css('input')
-    )!.nativeElement;
-    const labelElement: HTMLInputElement = fixture.debugElement.query(
-      By.css('label')
-    )!.nativeElement;
-
-    expect(labelElement.getAttribute('aria-owns')).toBe(inputElement.id);
-  }));
-
   it('should add aria-required reflecting the required state', fakeAsync(() => {
     const fixture = createComponent(SbbInputWithRequired);
     fixture.detectChanges();

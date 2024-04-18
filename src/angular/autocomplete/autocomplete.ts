@@ -231,7 +231,7 @@ export class SbbAutocomplete implements AfterContentInit, OnDestroy {
   }
   private _showHintIfNoOptions: boolean = false;
 
-  /** Unique ID to be used by autocomplete trigger's "aria-owns" property. */
+  /** Unique ID to be used by autocomplete trigger's "aria-controls" property. */
   id: string = `sbb-autocomplete-${nextId++}`;
 
   /**
