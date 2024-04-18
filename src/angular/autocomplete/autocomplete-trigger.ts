@@ -123,7 +123,7 @@ export function getSbbAutocompleteMissingPanelError(): Error {
     '[attr.aria-autocomplete]': 'autocompleteDisabled ? null : "list"',
     '[attr.aria-activedescendant]': '(panelOpen && activeOption) ? activeOption.id : null',
     '[attr.aria-expanded]': 'autocompleteDisabled ? null : panelOpen.toString()',
-    '[attr.aria-owns]': '(autocompleteDisabled || !panelOpen) ? null : autocomplete?.id',
+    '[attr.aria-controls]': '(autocompleteDisabled || !panelOpen) ? null : autocomplete?.id',
     '[attr.aria-haspopup]': 'autocompleteDisabled ? null : "listbox"',
     '[class.sbb-focused]': 'panelOpen',
     // Note: we use `focusin`, as opposed to `focus`, in order to open the panel
