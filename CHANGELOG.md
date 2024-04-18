@@ -2,6 +2,16 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [16.8.1](https://github.com/sbb-design-systems/sbb-angular/compare/16.8.0...16.8.1) (2024-04-18)
+
+
+### Bug Fixes
+
+* **angular/checkbox:** add aria-checked ([#2069](https://github.com/sbb-design-systems/sbb-angular/issues/2069)) ([bd3688a](https://github.com/sbb-design-systems/sbb-angular/commit/bd3688abc2d11154321195ed3f530324f4d15425))
+* **deps:** update angular to v16.2.12 ([fa4e4a5](https://github.com/sbb-design-systems/sbb-angular/commit/fa4e4a5c1b2dc76cb1899561f114df26d0cb2451))
+* **multiple:** remove obsolete base classes ([#2004](https://github.com/sbb-design-systems/sbb-angular/issues/2004)) ([36ab5fd](https://github.com/sbb-design-systems/sbb-angular/commit/36ab5fd7b9b47f1d34ed4cd0746c2187f89d0146))
+* remove aria-owns to prevent Chrome crash ([#2242](https://github.com/sbb-design-systems/sbb-angular/issues/2242)) ([fab3024](https://github.com/sbb-design-systems/sbb-angular/commit/fab30242047cefe4a308f1b590041ddd407001d9))
+
 ## [16.8.0](https://github.com/sbb-design-systems/sbb-angular/compare/16.7.1...16.8.0) (2023-10-30)
 
 
