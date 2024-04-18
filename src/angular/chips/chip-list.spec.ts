@@ -462,7 +462,6 @@ describe('SbbChipList', () => {
 
       expect(label.getAttribute('for')).toBeTruthy();
       expect(label.getAttribute('for')).toBe(input.getAttribute('id'));
-      expect(label.getAttribute('aria-owns')).toBe(input.getAttribute('id'));
     });
   });
 

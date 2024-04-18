@@ -1,12 +1,9 @@
 <div class="sbb-form-field-wrapper">
   <div class="sbb-form-field-label-wrapper" (click)="_control.onContainerClick($event)">
-    <!-- We add aria-owns as a workaround for an issue in JAWS & NVDA where the label isn't
-       read if it comes before the control in the DOM. -->
     <label
       class="sbb-label sbb-form-field-label"
       [id]="_labelId"
       [attr.for]="_control.id"
-      [attr.aria-owns]="_control.id"
       [class.sbb-form-field-empty]="_control.empty"
       [ngSwitch]="_hasLabel()"
     >

@@ -2202,24 +2202,24 @@ describe('SbbAutocomplete', () => {
         .toBe('false');
     }));
 
-    it('should set aria-owns based on the attached autocomplete', () => {
+    it('should set aria-controls based on the attached autocomplete', () => {
       fixture.componentInstance.trigger.openPanel();
       fixture.detectChanges();
 
       const panel = fixture.debugElement.query(By.css('.sbb-autocomplete-panel')).nativeElement;
 
-      expect(input.getAttribute('aria-owns'))
-        .withContext('Expected aria-owns to match attached autocomplete.')
+      expect(input.getAttribute('aria-controls'))
+        .withContext('Expected aria-controls to match attached autocomplete.')
         .toBe(panel.getAttribute('id'));
     });
 
-    it('should not set aria-owns while the autocomplete is closed', () => {
-      expect(input.getAttribute('aria-owns')).toBeFalsy();
+    it('should not set aria-controls while the autocomplete is closed', () => {
+      expect(input.getAttribute('aria-controls')).toBeFalsy();
 
       fixture.componentInstance.trigger.openPanel();
       fixture.detectChanges();
 
-      expect(input.getAttribute('aria-owns')).toBeTruthy();
+      expect(input.getAttribute('aria-controls')).toBeTruthy();
     });
 
     it('should restore focus to the input when clicking to select a value', fakeAsync(() => {
@@ -2246,7 +2246,7 @@ describe('SbbAutocomplete', () => {
       expect(input.getAttribute('role')).toBeFalsy();
       expect(input.getAttribute('aria-autocomplete')).toBeFalsy();
       expect(input.getAttribute('aria-expanded')).toBeFalsy();
-      expect(input.getAttribute('aria-owns')).toBeFalsy();
+      expect(input.getAttribute('aria-controls')).toBeFalsy();
     });
   });
 

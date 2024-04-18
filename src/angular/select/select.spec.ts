@@ -952,7 +952,7 @@ describe('SbbSelect', () => {
         it('should set the role of the select to combobox', fakeAsync(() => {
           expect(select.getAttribute('role')).toEqual('combobox');
           expect(select.getAttribute('aria-autocomplete')).toBe('none');
-          expect(select.getAttribute('aria-haspopup')).toBe('true');
+          expect(select.getAttribute('aria-haspopup')).toBe('listbox');
         }));
 
         it('should point the aria-controls attribute to the listbox', fakeAsync(() => {
@@ -965,17 +965,6 @@ describe('SbbSelect', () => {
           const ariaControls = select.getAttribute('aria-controls');
           expect(ariaControls).toBeTruthy();
           expect(ariaControls).toBe(document.querySelector('.sbb-panel')!.id);
-        }));
-
-        it('should point the aria-owns attribute to the listbox on the trigger', fakeAsync(() => {
-          expect(select.hasAttribute('aria-owns')).toBe(false);
-          fixture.componentInstance.select.open();
-          fixture.detectChanges();
-          flush();
-
-          const ariaOwns = select.getAttribute('aria-owns');
-          expect(ariaOwns).toBeTruthy();
-          expect(ariaOwns).toBe(document.querySelector('.sbb-panel')!.id);
         }));
 
         it('should set aria-expanded based on the select open state', fakeAsync(() => {
