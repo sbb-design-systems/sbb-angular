@@ -585,7 +585,7 @@ describe('SbbTabHeader', () => {
         label.textContent += extraText;
       });
 
-      mutationCallbacks.forEach((callback) => callback());
+      mutationCallbacks.forEach((callback) => callback([{ type: 'fake' }]));
       fixture.detectChanges();
 
       expect(tabHeaderElement.classList).toContain(enabledClass);
