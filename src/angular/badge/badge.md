@@ -5,6 +5,8 @@ another object.
 ### Badge position
 
 By default, the badge will be placed `above`. Alternatively `after` can be used.
+For `SbbIcon` components, the badge will always be placed in the top right corner of the icon,
+independent of the value of the position attribute.
 
 ### Badge visibility
 

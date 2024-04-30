@@ -1746,6 +1746,11 @@ textarea {
     right: 0;
   }
 
+  :where(.sbb-icon):is(.sbb-badge-above, .sbb-badge-after) & {
+    top: calc(#{sbb.pxToRem(-2)} * var(--sbb-scaling-factor));
+    right: 0;
+  }
+
   .sbb-badge-hidden & {
     display: none;
   }
