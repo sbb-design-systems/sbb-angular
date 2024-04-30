@@ -1,17 +1,19 @@
 import { NgClass } from '@angular/common';
 import {
+  afterNextRender,
   AfterViewChecked,
   ChangeDetectionStrategy,
   ChangeDetectorRef,
   Component,
   ElementRef,
   EventEmitter,
+  inject,
+  Injector,
   Input,
   NgZone,
   Output,
   ViewEncapsulation,
 } from '@angular/core';
-import { take } from 'rxjs/operators';
 
 /** Extra CSS classes that can be associated with a calendar cell. */
 export type SbbCalendarCellCssClasses = string | string[] | Set<string> | { [key: string]: any };
@@ -106,6 +108,8 @@ export class SbbCalendarBody implements AfterViewChecked {
 
   @Output() readonly activeDateChange = new EventEmitter<number>();
 
+  private _injector = inject(Injector);
+
   constructor(
     private _elementRef: ElementRef<HTMLElement>,
     private _ngZone: NgZone,
@@ -177,22 +181,22 @@ export class SbbCalendarBody implements AfterViewChecked {
    * Adding delay also complicates writing tests.
    */
   focusActiveCell() {
-    this._ngZone.runOutsideAngular(() => {
-      this._ngZone.onStable
-        .asObservable()
-        .pipe(take(1))
-        .subscribe(() => {
-          setTimeout(() => {
-            const activeCell: HTMLElement | null = this._elementRef.nativeElement.querySelector(
-              '.sbb-calendar-body-active',
-            );
+    afterNextRender(
+      () => {
+        setTimeout(() => {
+          const activeCell: HTMLElement | null = this._elementRef.nativeElement.querySelector(
+            '.sbb-calendar-body-active',
+          );
 
-            if (activeCell) {
-              activeCell.focus();
-            }
-          });
+          if (activeCell) {
+            activeCell.focus();
+          }
         });
-    });
+      },
+      {
+        injector: this._injector,
+      },
+    );
   }
 
   /** Focuses the active cell after change detection has run and the microtask queue is empty. */
