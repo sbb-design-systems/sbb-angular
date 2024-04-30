@@ -203,6 +203,7 @@
         "**/angular/autocomplete/autocomplete-trigger.ts",
         "**/angular/chips/chip.ts",
         "**/angular/datepicker/**/*.ts",
+        "**/angular/tabs/paginated-tab-header.ts",
         "**/angular/notification-toast/notification-toast-container.ts",
         "**/angular/tag/tag.ts",
         "**/angular/select/select.ts",
