@@ -1,12 +1,14 @@
 import { Direction } from '@angular/cdk/bidi';
 import { END, ENTER, HOME, LEFT_ARROW, RIGHT_ARROW, SPACE } from '@angular/cdk/keycodes';
 import { MutationObserverFactory } from '@angular/cdk/observers';
+import { SharedResizeObserver } from '@angular/cdk/observers/private';
 import { ScrollingModule, ViewportRuler } from '@angular/cdk/scrolling';
 import { Component, ViewChild } from '@angular/core';
 import {
   ComponentFixture,
   discardPeriodicTasks,
   fakeAsync,
+  flushMicrotasks,
   TestBed,
   tick,
   waitForAsync,
@@ -20,6 +22,7 @@ import {
   switchToLean,
 } from '@sbb-esta/angular/core/testing';
 import { SbbIconTestingModule } from '@sbb-esta/angular/icon/testing';
+import { Subject } from 'rxjs';
 
 import { SbbTabHeader } from './tab-header';
 import { SbbTabLabelWrapper } from './tab-label-wrapper';
@@ -27,6 +30,7 @@ import { SbbTabLabelWrapper } from './tab-label-wrapper';
 describe('SbbTabHeader', () => {
   let fixture: ComponentFixture<SimpleTabHeaderApp>;
   let appComponent: SimpleTabHeaderApp;
+  let resizeEvents: Subject<ResizeObserverEntry[]>;
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
@@ -35,6 +39,8 @@ describe('SbbTabHeader', () => {
     });
 
     TestBed.compileComponents();
+    resizeEvents = new Subject();
+    spyOn(TestBed.inject(SharedResizeObserver), 'observe').and.returnValue(resizeEvents);
   }));
 
   describe('focusing', () => {
@@ -541,16 +547,16 @@ describe('SbbTabHeader', () => {
       });
     });
 
-    it('should update arrows when the window is resized', fakeAsync(() => {
+    it('should update arrows when the header is resized', fakeAsync(() => {
       fixture = TestBed.createComponent(SimpleTabHeaderApp);
 
       const header = fixture.componentInstance.tabHeader;
 
       spyOn(header, '_checkPaginationEnabled');
 
-      dispatchFakeEvent(window, 'resize');
-      tick(10);
+      resizeEvents.next([]);
       fixture.detectChanges();
+      flushMicrotasks();
 
       expect(header._checkPaginationEnabled).toHaveBeenCalled();
       discardPeriodicTasks();
@@ -558,15 +564,12 @@ describe('SbbTabHeader', () => {
 
     it('should update the pagination state if the content of the labels changes', () => {
       const mutationCallbacks: Function[] = [];
-      TestBed.overrideProvider(MutationObserverFactory, {
-        useValue: {
-          // Stub out the MutationObserver since the native one is async.
-          create: function (callback: Function) {
-            mutationCallbacks.push(callback);
-            return { observe: () => {}, disconnect: () => {} };
-          },
+      spyOn(TestBed.inject(MutationObserverFactory), 'create').and.callFake(
+        (callback: Function) => {
+          mutationCallbacks.push(callback);
+          return { observe: () => {}, disconnect: () => {} } as any;
         },
-      });
+      );
 
       fixture = TestBed.createComponent(SimpleTabHeaderApp);
       fixture.detectChanges();
