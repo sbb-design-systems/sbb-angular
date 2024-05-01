@@ -2,7 +2,7 @@
   <div
     class="sbb-menu-panel-wrapper"
     [id]="panelId"
-    [ngClass]="_classList"
+    [class]="_classList"
     (keydown)="_handleKeydown($event)"
     (click)="closed.emit('click')"
     [@transformMenu]="_panelAnimationState"
