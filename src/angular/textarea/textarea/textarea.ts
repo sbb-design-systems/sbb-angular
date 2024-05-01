@@ -70,6 +70,12 @@ export class SbbTextarea
     return `${this.id || this._uniqueId}-input`;
   }
 
+  /**
+   * Disable the automatic labeling to avoid issues like #1918.
+   * @docs-private
+   */
+  readonly disableAutomaticLabeling = true;
+
   /** Emits when the state of the option changes and any parents have to be notified. */
   readonly stateChanges = new Subject<void>();
 
