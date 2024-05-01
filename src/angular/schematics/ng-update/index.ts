@@ -4,10 +4,10 @@ import { createMigrationSchematicRule, TargetVersion } from '@angular/cdk/schema
 import { IconMigration } from './migrations/icon-names';
 import { sbbAngularUpgradeData } from './upgrade-data';
 
-/** Entry point for the migration schematics with target of Angular 15 */
-export function updateToV17(): Rule {
+/** Entry point for the migration schematics with target of Angular 18 */
+export function updateToV18(): Rule {
   return createMigrationSchematicRule(
-    TargetVersion.V17,
+    TargetVersion.V18,
     [IconMigration],
     sbbAngularUpgradeData,
     onMigrationComplete,
