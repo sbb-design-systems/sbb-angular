@@ -18,7 +18,6 @@ import {
   ElementRef,
   EventEmitter,
   Input,
-  NgZone,
   Output,
   Provider,
   QueryList,
@@ -39,7 +38,6 @@ import {
   dispatchKeyboardEvent,
   dispatchMouseEvent,
   FakeMediaMatcher,
-  MockNgZone,
   patchElementFocus,
   switchToLean,
 } from '@sbb-esta/angular/core/testing';
@@ -726,6 +724,19 @@ describe('SbbMenu', () => {
     expect(fixture.componentInstance.items.first.focus).toHaveBeenCalledWith('touch');
   }));
 
+  it('should set the proper origin when calling focusFirstItem after the opening sequence has started', () => {
+    const fixture = createComponent(SimpleMenu, [], [FakeIcon]);
+    fixture.detectChanges();
+    spyOn(fixture.componentInstance.items.first, 'focus').and.callThrough();
+
+    fixture.componentInstance.trigger.openMenu();
+    fixture.componentInstance.menu.focusFirstItem('mouse');
+    fixture.componentInstance.menu.focusFirstItem('touch');
+    fixture.detectChanges();
+
+    expect(fixture.componentInstance.items.first.focus).toHaveBeenCalledOnceWith('touch');
+  });
+
   it('should close the menu when using the CloseScrollStrategy', fakeAsync(() => {
     const scrolledSubject = new Subject<void>();
     const fixture = createComponent(
@@ -1235,30 +1246,18 @@ describe('SbbMenu', () => {
       expect(trigger.menuOpen).withContext('Expected menu to be closed').toBe(false);
     }));
 
-    it('should focus the first menu item when opening a lazy menu via keyboard', fakeAsync(() => {
-      let zone: MockNgZone;
-      const fixture = createComponent(SimpleLazyMenu, [
-        {
-          provide: NgZone,
-          useFactory: () => (zone = new MockNgZone()),
-        },
-      ]);
-
-      fixture.detectChanges();
+    it('should focus the first menu item when opening a lazy menu via keyboard', async () => {
+      const fixture = createComponent(SimpleLazyMenu);
+      fixture.autoDetectChanges();
 
       // A click without a mousedown before it is considered a keyboard open.
       fixture.componentInstance.triggerEl.nativeElement.click();
-      fixture.detectChanges();
-      tick(500);
-      zone!.simulateZoneExit();
-
-      // Flush due to the additional tick that is necessary for the FocusMonitor.
-      flush();
+      await fixture.whenStable();
 
       const item = document.querySelector('.sbb-menu-panel-wrapper [sbb-menu-item]')!;
 
       expect(document.activeElement).withContext('Expected first item to be focused').toBe(item);
-    }));
+    });
 
     it('should be able to open the same menu with a different context', fakeAsync(() => {
       const fixture = createComponent(LazyMenuWithContext);

@@ -4,6 +4,8 @@ import { DOWN_ARROW, ESCAPE, hasModifierKey, LEFT_ARROW, UP_ARROW } from '@angul
 import { NgClass, NgTemplateOutlet } from '@angular/common';
 import {
   AfterContentInit,
+  afterNextRender,
+  AfterRenderRef,
   booleanAttribute,
   ChangeDetectionStrategy,
   ChangeDetectorRef,
@@ -12,8 +14,10 @@ import {
   ContentChildren,
   ElementRef,
   EventEmitter,
+  inject,
   Inject,
   InjectionToken,
+  Injector,
   Input,
   NgZone,
   OnDestroy,
@@ -25,7 +29,7 @@ import {
   ViewEncapsulation,
 } from '@angular/core';
 import { merge, Observable, Subject } from 'rxjs';
-import { startWith, switchMap, take } from 'rxjs/operators';
+import { startWith, switchMap } from 'rxjs/operators';
 
 import { sbbMenuAnimations } from './menu-animations';
 import { SbbMenuContent, SBB_MENU_CONTENT } from './menu-content';
@@ -110,6 +114,7 @@ export class SbbMenu implements AfterContentInit, SbbMenuPanel<SbbMenuItem>, OnI
   private _keyManager: FocusKeyManager<SbbMenuItem>;
   private _xPosition: SbbMenuPositionX = this._defaultOptions.xPosition;
   private _yPosition: SbbMenuPositionY = this._defaultOptions.yPosition;
+  private _firstItemFocusRef?: AfterRenderRef;
   private _previousElevation: string;
   private _elevationPrefix: string = 'sbb-elevation-z';
   private _baseElevation: number = 4;
@@ -243,9 +248,15 @@ export class SbbMenu implements AfterContentInit, SbbMenuPanel<SbbMenuItem>, OnI
 
   readonly panelId = `sbb-menu-panel-${menuPanelUid++}`;
 
+  private _injector = inject(Injector);
+
   constructor(
     private _elementRef: ElementRef<HTMLElement>,
-    private _ngZone: NgZone,
+    /**
+     * @deprecated Unused param, will be removed.
+     * @breaking-change 19.0.0
+     */
+    _unusedNgZone: NgZone,
     @Inject(SBB_MENU_DEFAULT_OPTIONS) private _defaultOptions: SbbMenuDefaultOptions,
     private _changeDetectorRef: ChangeDetectorRef,
   ) {}
@@ -295,6 +306,7 @@ export class SbbMenu implements AfterContentInit, SbbMenuPanel<SbbMenuItem>, OnI
     this._keyManager?.destroy();
     this._directDescendantItems.destroy();
     this.closed.complete();
+    this._firstItemFocusRef?.destroy();
   }
 
   /** Stream that emits whenever the hovered menu item changes. */
@@ -348,31 +360,35 @@ export class SbbMenu implements AfterContentInit, SbbMenuPanel<SbbMenuItem>, OnI
    * @param origin Action from which the focus originated. Used to set the correct styling.
    */
   focusFirstItem(origin: FocusOrigin = 'program'): void {
-    // Wait for `onStable` to ensure iOS VoiceOver screen reader focuses the first item (angular/components#24735).
-    this._ngZone.onStable.pipe(take(1)).subscribe(() => {
-      let menuPanel: HTMLElement | null = null;
+    // Wait for `afterNextRender` to ensure iOS VoiceOver screen reader focuses the first item (#24735).
+    this._firstItemFocusRef?.destroy();
+    this._firstItemFocusRef = afterNextRender(
+      () => {
+        let menuPanel: HTMLElement | null = null;
 
-      if (this._directDescendantItems.length) {
-        // Because the `sbb-menu` panel is at the DOM insertion point, not inside the overlay, we don't
-        // have a nice way of getting a hold of the menu panel. We can't use a `ViewChild` either
-        // because the panel is inside an `ng-template`. We work around it by starting from one of
-        // the items and walking up the DOM.
-        menuPanel = this._directDescendantItems.first!._getHostElement().closest('[role="menu"]');
-      }
-
-      // If an item in the menuPanel is already focused, avoid overriding the focus.
-      if (!menuPanel || !menuPanel.contains(document.activeElement)) {
-        const manager = this._keyManager;
-        manager.setFocusOrigin(origin).setFirstItemActive();
-
-        // If there's no active item at this point, it means that all the items are disabled.
-        // Move focus to the menu panel so keyboard events like Escape still work. Also this will
-        // give _some_ feedback to screen readers.
-        if (!manager.activeItem && menuPanel) {
-          menuPanel.focus();
+        if (this._directDescendantItems.length) {
+          // Because the `sbb-menu` panel is at the DOM insertion point, not inside the overlay, we don't
+          // have a nice way of getting a hold of the menu panel. We can't use a `ViewChild` either
+          // because the panel is inside an `ng-template`. We work around it by starting from one of
+          // the items and walking up the DOM.
+          menuPanel = this._directDescendantItems.first!._getHostElement().closest('[role="menu"]');
         }
-      }
-    });
+
+        // If an item in the menuPanel is already focused, avoid overriding the focus.
+        if (!menuPanel || !menuPanel.contains(document.activeElement)) {
+          const manager = this._keyManager;
+          manager.setFocusOrigin(origin).setFirstItemActive();
+
+          // If there's no active item at this point, it means that all the items are disabled.
+          // Move focus to the menu panel so keyboard events like Escape still work. Also this will
+          // give _some_ feedback to screen readers.
+          if (!manager.activeItem && menuPanel) {
+            menuPanel.focus();
+          }
+        }
+      },
+      { injector: this._injector },
+    );
   }
 
   /**
