@@ -31,6 +31,7 @@ import { ComponentPortal } from '@angular/cdk/portal';
 import { ScrollDispatcher } from '@angular/cdk/scrolling';
 import { AsyncPipe, DOCUMENT, NgClass, NgTemplateOutlet } from '@angular/common';
 import {
+  afterNextRender,
   AfterViewInit,
   ANIMATION_MODULE_TYPE,
   ChangeDetectionStrategy,
@@ -40,8 +41,10 @@ import {
   ElementRef,
   EventEmitter,
   HostListener,
+  inject,
   Inject,
   InjectionToken,
+  Injector,
   Input,
   NgZone,
   OnDestroy,
@@ -55,7 +58,7 @@ import {
 import { Breakpoints } from '@sbb-esta/angular/core';
 import { SbbIcon } from '@sbb-esta/angular/icon';
 import { Observable, Subject } from 'rxjs';
-import { filter, take, takeUntil } from 'rxjs/operators';
+import { filter, takeUntil } from 'rxjs/operators';
 
 /** Possible positions for a tooltip. */
 export type TooltipPosition = 'left' | 'right' | 'above' | 'below';
@@ -347,6 +350,8 @@ export class SbbTooltip implements OnDestroy, AfterViewInit {
 
   /** Emits when the component is destroyed. */
   private readonly _destroyed = new Subject<void>();
+
+  private _injector = inject(Injector);
 
   /** Predefined tooltip positions. */
   private readonly _tooltipPositions: Record<TooltipPosition, ConnectedPosition[]> = {
@@ -713,11 +718,16 @@ export class SbbTooltip implements OnDestroy, AfterViewInit {
       this._tooltipInstance.message = this.message;
       this._tooltipInstance._markForCheck();
 
-      this._ngZone.onMicrotaskEmpty.pipe(take(1), takeUntil(this._destroyed)).subscribe(() => {
-        if (this._tooltipInstance) {
-          this._overlayRef!.updatePosition();
-        }
-      });
+      afterNextRender(
+        () => {
+          if (this._tooltipInstance) {
+            this._overlayRef!.updatePosition();
+          }
+        },
+        {
+          injector: this._injector,
+        },
+      );
     }
   }
 
