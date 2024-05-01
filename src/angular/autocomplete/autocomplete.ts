@@ -125,6 +125,9 @@ export class SbbAutocomplete implements AfterContentInit, OnDestroy {
   }
   _isOpen: boolean = false;
 
+  /** Latest trigger that opened the autocomplete. */
+  _latestOpeningTrigger: unknown;
+
   // The @ViewChild query for TemplateRef here needs to be static because some code paths
   // lead to the overlay being created before change detection has finished for this component.
   // Notably, another component may trigger `focus` on the autocomplete-trigger.
