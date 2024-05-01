@@ -15,7 +15,7 @@ export interface HasTabIndex {
 /**
  * Mixin to augment a directive with a `tabIndex` property.
  * @deprecated To be removed.
- * @breaking-change 18.0.0
+ * @breaking-change 19.0.0
  */
 export function mixinTabIndex<T extends AbstractConstructor<CanDisable>>(
   base: T,

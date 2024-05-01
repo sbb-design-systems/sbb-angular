@@ -146,7 +146,7 @@ export abstract class SbbSidebarContainerBase<T extends SbbSidebarBase>
   /**
    * The sidebar child at the start or end position.
    * @deprecated Use `start` or `end` instead.
-   * @breaking-change 18.0.0
+   * @breaking-change 19.0.0
    */
   get sidebar(): T | null {
     return this._start || this._end;

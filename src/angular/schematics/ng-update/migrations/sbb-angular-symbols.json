@@ -428,7 +428,7 @@
   "SecondaryEntryPointsMigration": "schematics",
   "symbolRemoval": "schematics",
   "TYPOGRAPHY_CSS_PATH": "schematics",
-  "updateToV17": "schematics",
+  "updateToV18": "schematics",
   "_patchTypeScriptDefaultLib": "schematics/testing",
   "createFileSystemTestApp": "schematics/testing",
   "createTestApp": "schematics/testing",

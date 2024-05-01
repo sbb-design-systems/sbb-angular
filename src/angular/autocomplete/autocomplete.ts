@@ -228,7 +228,7 @@ export class SbbAutocomplete implements AfterContentInit, OnDestroy {
   /** If set to true, the panel is also displayed if there are no options but hints. */
   @Input({ transform: booleanAttribute }) showHintIfNoOptions: boolean = false;
 
-  /** Unique ID to be used by autocomplete trigger's "aria-owns" property. */
+  /** Unique ID to be used by autocomplete trigger's "aria-controls" property. */
   id: string = `sbb-autocomplete-${nextId++}`;
 
   /**

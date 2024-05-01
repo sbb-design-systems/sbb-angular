@@ -23,13 +23,16 @@ import {
 } from '@angular/cdk/table';
 import { DOCUMENT } from '@angular/common';
 import {
+  afterNextRender,
   Attribute,
   ChangeDetectionStrategy,
   ChangeDetectorRef,
   Component,
   Directive,
   ElementRef,
+  inject,
   Inject,
+  Injector,
   IterableDiffers,
   NgZone,
   OnDestroy,
@@ -121,6 +124,8 @@ export class SbbTable<T> extends CdkTable<T> implements OnInit, OnDestroy {
 
   private _destroyed = new Subject<void>();
 
+  private injector = inject(Injector);
+
   constructor(
     differs: IterableDiffers,
     changeDetectorRef: ChangeDetectorRef,
@@ -138,7 +143,11 @@ export class SbbTable<T> extends CdkTable<T> implements OnInit, OnDestroy {
     @SkipSelf()
     @Inject(STICKY_POSITIONING_LISTENER)
     stickyPositioningListener: StickyPositioningListener,
-    ngZone: NgZone,
+    /**
+     * @deprecated `_unusedNgZone` parameter to be removed.
+     * @breaking-change 19.0.0
+     */
+    @Optional() _unusedNgZone?: NgZone,
   ) {
     super(
       differs,
@@ -152,7 +161,6 @@ export class SbbTable<T> extends CdkTable<T> implements OnInit, OnDestroy {
       coalescedStyleScheduler,
       _viewportRulerSbb,
       stickyPositioningListener,
-      ngZone,
     );
   }
 
@@ -163,16 +171,19 @@ export class SbbTable<T> extends CdkTable<T> implements OnInit, OnDestroy {
     // This workaround calculates sticky styles whenever the viewport has changed
     // using a Promise.resolve() to postpone data calculation to the time the content is already placed in DOM.
     // See also https://github.com/angular/components/issues/15885.
-    this._ngZone!.runOutsideAngular(() => {
-      this._viewportRulerSbb
-        .change(150)
-        .pipe(takeUntil(this._destroyed))
-        .subscribe(() => {
-          Promise.resolve().then(() => {
-            this.updateStickyColumnStyles();
+    afterNextRender(
+      () => {
+        this._viewportRulerSbb
+          .change(150)
+          .pipe(takeUntil(this._destroyed))
+          .subscribe(() => {
+            Promise.resolve().then(() => {
+              this.updateStickyColumnStyles();
+            });
           });
-        });
-    });
+      },
+      { injector: this.injector },
+    );
   }
 
   override ngOnDestroy() {

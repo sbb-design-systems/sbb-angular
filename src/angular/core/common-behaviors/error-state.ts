@@ -20,14 +20,14 @@ type CanUpdateErrorStateCtor = Constructor<CanUpdateErrorState> &
 
 /** @docs-private */
 export interface HasErrorState {
-  _parentFormGroup: FormGroupDirective;
-  _parentForm: NgForm;
+  _parentFormGroup: FormGroupDirective | null;
+  _parentForm: NgForm | null;
   _defaultErrorStateMatcher: SbbErrorStateMatcher;
 
   // These properties are defined as per the `SbbFormFieldControl` interface. Since
   // this mixin is commonly used with custom form-field controls, we respect the
   // properties (also with the public name they need according to `SbbFormFieldControl`).
-  ngControl: NgControl;
+  ngControl: NgControl | null;
   stateChanges: Subject<void>;
 }
 
@@ -73,7 +73,7 @@ export class _ErrorStateTracker {
  * Mixin to augment a directive with updateErrorState method.
  * For component with `errorState` and need to update `errorState`.
  * @deprecated To be removed.
- * @breaking-change 18.0.0
+ * @breaking-change 19.0.0
  */
 export function mixinErrorState<T extends AbstractConstructor<HasErrorState>>(
   base: T,
