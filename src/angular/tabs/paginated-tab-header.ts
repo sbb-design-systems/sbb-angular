@@ -1,22 +1,18 @@
 import { FocusableOption, FocusKeyManager } from '@angular/cdk/a11y';
 import { BooleanInput, coerceBooleanProperty } from '@angular/cdk/coercion';
 import { ENTER, hasModifierKey, SPACE } from '@angular/cdk/keycodes';
-import { SharedResizeObserver } from '@angular/cdk/observers/private';
 import { normalizePassiveListenerOptions, Platform } from '@angular/cdk/platform';
 import { ViewportRuler } from '@angular/cdk/scrolling';
 import {
   AfterContentChecked,
   AfterContentInit,
-  afterNextRender,
   AfterViewInit,
   ANIMATION_MODULE_TYPE,
   ChangeDetectorRef,
   Directive,
   ElementRef,
   EventEmitter,
-  inject,
   Inject,
-  Injector,
   Input,
   NgZone,
   numberAttribute,
@@ -25,8 +21,16 @@ import {
   QueryList,
 } from '@angular/core';
 import { mixinVariant } from '@sbb-esta/angular/core';
-import { debounceTime, fromEvent, merge, Subject, timer } from 'rxjs';
-import { distinctUntilChanged, filter, map, startWith, switchMap, takeUntil } from 'rxjs/operators';
+import { fromEvent, merge, Subject, timer } from 'rxjs';
+import {
+  distinctUntilChanged,
+  filter,
+  map,
+  startWith,
+  switchMap,
+  take,
+  takeUntil,
+} from 'rxjs/operators';
 
 /** Config used to bind passive event listeners */
 const passiveEventListenerOptions = normalizePassiveListenerOptions({
@@ -166,10 +170,6 @@ export abstract class SbbPaginatedTabHeader
   /** Event emitted when a label is focused. */
   readonly indexFocused: EventEmitter<number> = new EventEmitter<number>();
 
-  private _sharedResizeObserver = inject(SharedResizeObserver);
-
-  private _injector = inject(Injector);
-
   constructor(
     protected _elementRef: ElementRef<HTMLElement>,
     protected _changeDetectorRef: ChangeDetectorRef,
@@ -208,19 +208,7 @@ export abstract class SbbPaginatedTabHeader
   }
 
   ngAfterContentInit() {
-    // We need to debounce resize events because the alignment logic is expensive.
-    // If someone animates the width of tabs, we don't want to realign on every animation frame.
-    // Once we haven't seen any more resize events in the last 32ms (~2 animaion frames) we can
-    // re-align.
-    const resize = this._sharedResizeObserver
-      .observe(this._elementRef.nativeElement)
-      .pipe(debounceTime(32), takeUntil(this._destroyed));
-
-    // Note: We do not actually need to watch these events for proper functioning of the tabs,
-    // the resize events above should capture any viewport resize that we care about. However,
-    // removing this is fairly breaking for screenshot tests, so we're leaving it here for now.
-    const viewportResize = this._viewportRuler.change(150).pipe(takeUntil(this._destroyed));
-
+    const resize = this._viewportRuler.change(150);
     const realign = () => this.updatePagination();
     this._keyManager = new FocusKeyManager<SbbPaginatedTabHeaderItem>(this._items)
       .withHorizontalOrientation('ltr')
@@ -229,14 +217,14 @@ export abstract class SbbPaginatedTabHeader
 
     this._keyManager.updateActiveItem(this._selectedIndex);
 
-    // Note: We do not need to realign after the first render for proper functioning of the tabs
-    // the resize events above should fire when we first start observing the element. However,
-    // removing this is fairly breaking for screenshot tests, so we're leaving it here for now.
-    afterNextRender(realign, { injector: this._injector });
+    // Defer the first call in order to allow for slower browsers to lay out the elements.
+    // This helps in cases where the user lands directly on a page with paginated tabs.
+    // Note that we use `onStable` instead of `requestAnimationFrame`, because the latter
+    // can hold up tests that are in a background tab.
+    this._ngZone.onStable.pipe(take(1)).subscribe(realign);
 
-    // On resize, realign the ink bar and update the orientation of
-    // the key manager if the direction has changed.
-    merge(viewportResize, resize, this._items.changes)
+    // On window resize, items change or variant change, realign
+    merge(resize, this._items.changes, this.variant)
       .pipe(takeUntil(this._destroyed))
       .subscribe(() => {
         // We need to defer this to give the browser some time to recalculate
