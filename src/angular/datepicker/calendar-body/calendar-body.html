@@ -47,7 +47,7 @@
         <button
           type="button"
           class="sbb-calendar-body-cell sbb-button-reset-frameless"
-          [ngClass]="item.cssClasses"
+          [class]="item.cssClasses"
           [tabindex]="isActiveCell(rowIndex, colIndex) ? 0 : -1"
           [class.sbb-calendar-body-disabled]="!item.enabled"
           [class.sbb-calendar-body-active]="isActiveCell(rowIndex, colIndex)"
