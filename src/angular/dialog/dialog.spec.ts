@@ -80,6 +80,8 @@ describe('SbbDialog', () => {
           provide: ScrollDispatcher,
           useFactory: () => ({
             scrolled: () => scrolledSubject,
+            register: () => {},
+            deregister: () => {},
           }),
         },
       ],
