@@ -2,6 +2,24 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [17.8.2](https://github.com/sbb-design-systems/sbb-angular/compare/17.8.1...17.8.2) (2024-05-07)
+
+
+### Bug Fixes
+
+* **angular/autocomplete:** remove dependency on NgClass ([#2254](https://github.com/sbb-design-systems/sbb-angular/issues/2254)) ([aedfd5d](https://github.com/sbb-design-systems/sbb-angular/commit/aedfd5d43ab69a07e3c22cf7903d6d2417dd1533))
+* **angular/badge:** fix badge positioning on icon ([#2246](https://github.com/sbb-design-systems/sbb-angular/issues/2246)) ([a237ecc](https://github.com/sbb-design-systems/sbb-angular/commit/a237eccfa352953ca9f8b008d313ac43cb9a9975)), closes [#2225](https://github.com/sbb-design-systems/sbb-angular/issues/2225)
+* **angular/core:** mark fields on HasErrorState as nullable ([#2219](https://github.com/sbb-design-systems/sbb-angular/issues/2219)) ([31474dc](https://github.com/sbb-design-systems/sbb-angular/commit/31474dc09ca03489d1a5b5a7b72dd535234faea8))
+* **angular/datepicker:** remove dependency on NgClass ([#2253](https://github.com/sbb-design-systems/sbb-angular/issues/2253)) ([fdd6d03](https://github.com/sbb-design-systems/sbb-angular/commit/fdd6d03853af23353cc8efb8693201b6bfc7b1b9))
+* **angular/dialog:** mark dialog content as scrollable ([#2257](https://github.com/sbb-design-systems/sbb-angular/issues/2257)) ([85a4c6c](https://github.com/sbb-design-systems/sbb-angular/commit/85a4c6cf616e76d60e963c1e806edf1c19104e62))
+* **angular/file-selector:** allow disabling multiple mode ([#2245](https://github.com/sbb-design-systems/sbb-angular/issues/2245)) ([1d0e701](https://github.com/sbb-design-systems/sbb-angular/commit/1d0e701cca9d9bf7b06b941e9a2323c4e181d9cf)), closes [#2238](https://github.com/sbb-design-systems/sbb-angular/issues/2238)
+* **angular/menu:** remove dependency on NgClass ([#2255](https://github.com/sbb-design-systems/sbb-angular/issues/2255)) ([699d5b9](https://github.com/sbb-design-systems/sbb-angular/commit/699d5b9c6af952effda303a59f65aae42f925bb3))
+* **angular/tabs:** remove dependency on NgClass ([#2251](https://github.com/sbb-design-systems/sbb-angular/issues/2251)) ([48cdd8f](https://github.com/sbb-design-systems/sbb-angular/commit/48cdd8f538b132c9a39ec8a590119b6b8d0c90b9))
+* **angular/tabs:** use ResizeObserver to react to size changes ([#2234](https://github.com/sbb-design-systems/sbb-angular/issues/2234)) ([505e622](https://github.com/sbb-design-systems/sbb-angular/commit/505e6225a703708e835143346059424d4b7e42f3))
+* **deps:** update angular to v17.3.7 ([f407a03](https://github.com/sbb-design-systems/sbb-angular/commit/f407a03219fdc7e2739a32f70d385407b5899807))
+* **deps:** update dependency @angular/cdk to v17.3.7 ([a4b7dc5](https://github.com/sbb-design-systems/sbb-angular/commit/a4b7dc5c3d28b03294e9295aeda82c17591e4266))
+* **multiple:** remove label for attribute on non-native elements ([#2258](https://github.com/sbb-design-systems/sbb-angular/issues/2258)) ([6fae011](https://github.com/sbb-design-systems/sbb-angular/commit/6fae0113cf242d9356b8bd7c9e318e86b6b073ea)), closes [#1918](https://github.com/sbb-design-systems/sbb-angular/issues/1918)
+
 ### [17.8.1](https://github.com/sbb-design-systems/sbb-angular/compare/17.8.0...17.8.1) (2024-04-18)
 
 
