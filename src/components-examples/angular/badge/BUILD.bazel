@@ -15,6 +15,7 @@ ng_module(
     deps = [
         "//src/angular/badge",
         "//src/angular/button",
+        "//src/angular/icon",
         "@npm//@angular/core",
     ],
 )
