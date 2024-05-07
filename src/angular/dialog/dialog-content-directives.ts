@@ -1,6 +1,7 @@
 // Workaround for: https://github.com/bazelbuild/rules_nodejs/issues/1265
 /// <reference types="@angular/localize/init" />
 
+import { CdkScrollable } from '@angular/cdk/scrolling';
 import {
   ChangeDetectionStrategy,
   ChangeDetectorRef,
@@ -201,6 +202,7 @@ export class SbbDialogTitle extends _SbbDialogTitleBase {}
   selector: `[sbb-dialog-content], sbb-dialog-content, [sbbDialogContent]`,
   host: { class: 'sbb-dialog-content sbb-scrollbar' },
   standalone: true,
+  hostDirectives: [CdkScrollable],
 })
 export class SbbDialogContent {}
 
