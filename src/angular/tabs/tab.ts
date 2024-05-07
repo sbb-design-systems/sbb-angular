@@ -72,13 +72,11 @@ export class SbbTab implements OnInit, OnChanges, OnDestroy {
 
   /**
    * Classes to be passed to the tab label inside the sbb-tab-header container.
-   * Supports string and string array values, same as `ngClass`.
    */
   @Input() labelClass: string | string[];
 
   /**
    * Classes to be passed to the tab sbb-tab-body container.
-   * Supports string and string array values, same as `ngClass`.
    */
   @Input() bodyClass: string | string[];
 

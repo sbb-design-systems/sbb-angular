@@ -6,7 +6,6 @@ import {
   NumberInput,
 } from '@angular/cdk/coercion';
 import { CdkPortalOutlet } from '@angular/cdk/portal';
-import { NgClass } from '@angular/common';
 import {
   AfterContentChecked,
   AfterContentInit,
@@ -70,14 +69,7 @@ interface SbbTabGroupBaseHeader {
     '[class.sbb-tab-group-dynamic-height]': 'dynamicHeight',
   },
   standalone: true,
-  imports: [
-    SbbTabHeader,
-    SbbTabLabelWrapper,
-    CdkMonitorFocus,
-    NgClass,
-    CdkPortalOutlet,
-    SbbTabBody,
-  ],
+  imports: [SbbTabHeader, SbbTabLabelWrapper, CdkMonitorFocus, CdkPortalOutlet, SbbTabBody],
 })
 export class SbbTabGroup implements AfterContentInit, AfterContentChecked, OnDestroy {
   /**
