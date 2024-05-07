@@ -1,7 +1,7 @@
 import { AnimationEvent } from '@angular/animations';
 import { FocusKeyManager, FocusOrigin } from '@angular/cdk/a11y';
 import { DOWN_ARROW, ESCAPE, hasModifierKey, LEFT_ARROW, UP_ARROW } from '@angular/cdk/keycodes';
-import { NgClass, NgTemplateOutlet } from '@angular/common';
+import { NgTemplateOutlet } from '@angular/common';
 import {
   AfterContentInit,
   afterNextRender,
@@ -108,7 +108,7 @@ export type SbbMenuCloseReason = void | 'click' | 'keydown' | 'tab';
   animations: [sbbMenuAnimations.transformMenu],
   providers: [{ provide: SBB_MENU_PANEL, useExisting: SbbMenu }],
   standalone: true,
-  imports: [NgClass, NgTemplateOutlet],
+  imports: [NgTemplateOutlet],
 })
 export class SbbMenu implements AfterContentInit, SbbMenuPanel<SbbMenuItem>, OnInit, OnDestroy {
   private _keyManager: FocusKeyManager<SbbMenuItem>;
@@ -125,7 +125,7 @@ export class SbbMenu implements AfterContentInit, SbbMenuPanel<SbbMenuItem>, OnI
   /** Only the direct descendant menu items. */
   _directDescendantItems: QueryList<SbbMenuItem> = new QueryList<SbbMenuItem>();
 
-  /** Config object to be passed into the menu's ngClass */
+  /** Classes to be applied to the menu panel. */
   _classList: { [key: string]: boolean } = {};
 
   /** Current state of the panel animation. */
@@ -211,10 +211,11 @@ export class SbbMenu implements AfterContentInit, SbbMenuPanel<SbbMenuItem>, OnI
   @Input('class')
   set panelClass(classes: string) {
     const previousPanelClass = this._previousPanelClass;
+    const newClassList = { ...this._classList };
 
     if (previousPanelClass && previousPanelClass.length) {
       previousPanelClass.split(' ').forEach((className: string) => {
-        this._classList[className] = false;
+        newClassList[className] = false;
       });
     }
 
@@ -222,11 +223,13 @@ export class SbbMenu implements AfterContentInit, SbbMenuPanel<SbbMenuItem>, OnI
 
     if (classes && classes.length) {
       classes.split(' ').forEach((className: string) => {
-        this._classList[className] = true;
+        newClassList[className] = true;
       });
 
       this._elementRef.nativeElement.className = '';
     }
+
+    this._classList = newClassList;
   }
   private _previousPanelClass: string;
 
@@ -412,12 +415,14 @@ export class SbbMenu implements AfterContentInit, SbbMenuPanel<SbbMenuItem>, OnI
     );
 
     if (!customElevation || customElevation === this._previousElevation) {
+      const newClassList = { ...this._classList };
       if (this._previousElevation) {
-        this._classList[this._previousElevation] = false;
+        newClassList[this._previousElevation] = false;
       }
 
-      this._classList[newElevation] = true;
+      newClassList[newElevation] = true;
       this._previousElevation = newElevation;
+      this._classList = newClassList;
     }
   }
 
@@ -432,11 +437,13 @@ export class SbbMenu implements AfterContentInit, SbbMenuPanel<SbbMenuItem>, OnI
     posX: SbbMenuPositionX = this.xPosition,
     posY: SbbMenuPositionY = this.yPosition,
   ) {
-    const classes = this._classList;
-    classes['sbb-menu-panel-before'] = posX === 'before';
-    classes['sbb-menu-panel-after'] = posX === 'after';
-    classes['sbb-menu-panel-above'] = posY === 'above';
-    classes['sbb-menu-panel-below'] = posY === 'below';
+    this._classList = {
+      ...this._classList,
+      ['sbb-menu-panel-before']: posX === 'before',
+      ['sbb-menu-panel-after']: posX === 'after',
+      ['sbb-menu-panel-above']: posY === 'above',
+      ['sbb-menu-panel-below']: posY === 'below',
+    };
 
     this._changeDetectorRef.markForCheck();
   }
