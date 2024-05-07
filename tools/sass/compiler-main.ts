@@ -1,13 +1,10 @@
 import * as worker from '@bazel/worker';
 import * as fs from 'fs';
 import * as path from 'path';
-import yargs from 'yargs';
+import { compile, OutputStyle } from 'sass';
+import type yargs from 'yargs';
 
 import { createLocalSbbAngularPackageImporter } from './local-sass-importer';
-
-// TODO: Switch to normal import when https://github.com/sass/dart-sass/issues/1714 is fixed.
-// Also re-add the `as XX` type narrowing below.
-const sass = require('sass') as any;
 
 const workerArgs = process.argv.slice(2);
 
@@ -49,7 +46,11 @@ async function main() {
  * as composed by the `sass_binary` rule.
  */
 async function processBuildAction(args: string[]) {
-  const { loadPath, style, sourceMap, embedSources, inputExecpath, outExecpath } = await yargs(args)
+  // TODO: Ugly solution to achieve a dynamic import to force esm usage. Replace with esm when possible.
+  const yargsi = await (Function(`return import('yargs')`)() as Promise<{ default: typeof yargs }>);
+
+  const { loadPath, style, sourceMap, embedSources, inputExecpath, outExecpath } = await yargsi
+    .default(args)
     .showHelpOnFail(false)
     .strict()
     .parserConfiguration({ 'greedy-arrays': false })
@@ -63,8 +64,8 @@ async function processBuildAction(args: string[]) {
     .option('style', { type: 'string' })
     .parseAsync();
 
-  const result = sass.compile(inputExecpath, {
-    style: style, // TODO: Re-add: as sass.OutputStyle,
+  const result = compile(inputExecpath, {
+    style: style as OutputStyle,
     sourceMap,
     sourceMapIncludeSources: embedSources,
     loadPaths: loadPath,
