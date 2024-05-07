@@ -111,7 +111,7 @@ export class SbbDatepicker<D> implements OnDestroy {
   }
   private _disabled?: boolean;
 
-  /** Classes to be passed to the date picker panel. Supports the same syntax as `ngClass`. */
+  /** Classes to be passed to the date picker panel. */
   @Input() panelClass: string | string[];
 
   /** Second datepicker to be used in 2 datepickers use case */

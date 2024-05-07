@@ -1,5 +1,4 @@
 import { CdkTrapFocus } from '@angular/cdk/a11y';
-import { NgClass } from '@angular/common';
 import {
   AfterViewInit,
   ChangeDetectionStrategy,
@@ -29,7 +28,7 @@ import { SbbDatepicker } from '../datepicker/datepicker';
     class: 'sbb-datepicker-content',
   },
   standalone: true,
-  imports: [SbbCalendar, CdkTrapFocus, NgClass],
+  imports: [SbbCalendar, CdkTrapFocus],
 })
 export class SbbDatepickerContent<D> implements AfterViewInit {
   /** Reference to the internal calendar component. */

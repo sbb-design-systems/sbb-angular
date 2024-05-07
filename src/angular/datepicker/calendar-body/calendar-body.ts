@@ -1,4 +1,3 @@
-import { NgClass } from '@angular/common';
 import {
   afterNextRender,
   AfterViewChecked,
@@ -49,7 +48,6 @@ export class SbbCalendarCell {
     role: 'grid',
   },
   standalone: true,
-  imports: [NgClass],
 })
 export class SbbCalendarBody implements AfterViewChecked {
   /**
