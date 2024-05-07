@@ -82,12 +82,18 @@ const testFileList: Partial<File>[] = [
 
 @Component({
   selector: 'sbb-file-test',
-  template: ` <sbb-file-selector (fileChanged)="fileChanged($event)"></sbb-file-selector> `,
+  template: `
+    <sbb-file-selector
+      (fileChanged)="fileChanged($event)"
+      [multiple]="multiple"
+    ></sbb-file-selector>
+  `,
   standalone: true,
   imports: [SbbFileSelectorModule],
 })
 class FileSelectorTestComponent {
   filesList1: File[] = [];
+  multiple = false;
 
   fileChanged(filesList: File[]) {
     this.filesList1 = filesList;
@@ -134,6 +140,18 @@ describe('SbbFileSelector using mock component', () => {
     const filesItems = fileComponent.queryAll(By.css('.sbb-file-selector-list > li'));
 
     expect(filesItems.length).toBe(10);
+  });
+
+  it('should add / remove the `multiple` attribute to the underlying input element', () => {
+    fixture.componentInstance.multiple = true;
+    fixture.detectChanges();
+
+    const fileInput = fixture.debugElement.query(By.css('input[type="file"]'));
+    expect(fileInput.nativeElement.getAttribute('multiple')).toEqual('true');
+
+    fixture.componentInstance.multiple = false;
+    fixture.detectChanges();
+    expect(fileInput.nativeElement.hasAttribute('multiple')).toBe(false);
   });
 
   it('should add files to File List when the multipleMode is set to "persistent"', () => {
