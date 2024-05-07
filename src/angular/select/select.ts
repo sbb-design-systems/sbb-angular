@@ -277,6 +277,12 @@ export class SbbSelect
   readonly stateChanges = new Subject<void>();
 
   /**
+   * Disable the automatic labeling to avoid issues like #1918.
+   * @docs-private
+   */
+  readonly disableAutomaticLabeling = true;
+
+  /**
    * Implemented as part of MatFormFieldControl.
    * @docs-private
    */
