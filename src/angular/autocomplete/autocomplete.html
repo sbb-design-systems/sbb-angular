@@ -5,7 +5,9 @@
     [id]="id"
     [attr.aria-label]="ariaLabel || null"
     [attr.aria-labelledby]="_getPanelAriaLabelledby(formFieldId)"
-    [ngClass]="_classList"
+    [class]="_classList"
+    [class.sbb-autocomplete-visible]="showPanel"
+    [class.sbb-autocomplete-hidden]="!showPanel"
     #panel
   >
     <ng-content></ng-content>

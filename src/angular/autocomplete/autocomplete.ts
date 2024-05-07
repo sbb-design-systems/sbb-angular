@@ -1,7 +1,5 @@
 import { ActiveDescendantKeyManager } from '@angular/cdk/a11y';
-import { coerceStringArray } from '@angular/cdk/coercion';
 import { Platform } from '@angular/cdk/platform';
-import { NgClass } from '@angular/common';
 import {
   AfterContentInit,
   booleanAttribute,
@@ -99,16 +97,9 @@ export function SBB_AUTOCOMPLETE_DEFAULT_OPTIONS_FACTORY(): SbbAutocompleteDefau
     class: 'sbb-autocomplete',
   },
   standalone: true,
-  imports: [NgClass],
 })
 export class SbbAutocomplete implements AfterContentInit, OnDestroy {
   private _activeOptionChanges = Subscription.EMPTY;
-
-  /** Class to apply to the panel when it's visible. */
-  private _visibleClass: string = 'sbb-autocomplete-visible';
-
-  /** Class to apply to the panel when it's hidden. */
-  private _hiddenClass: string = 'sbb-autocomplete-hidden';
 
   /** Manages active item in option list based on key events. */
   _keyManager: ActiveDescendantKeyManager<SbbOption>;
@@ -208,22 +199,10 @@ export class SbbAutocomplete implements AfterContentInit, OnDestroy {
    */
   @Input('class')
   set classList(value: string | string[]) {
-    if (value && value.length) {
-      this._classList = coerceStringArray(value).reduce(
-        (classList, className) => {
-          classList[className] = true;
-          return classList;
-        },
-        {} as { [key: string]: boolean },
-      );
-    } else {
-      this._classList = {};
-    }
-
-    this._setVisibilityClasses(this._classList);
+    this._classList = value;
     this._elementRef.nativeElement.className = '';
   }
-  _classList: { [key: string]: boolean } = {};
+  _classList: string | string[];
 
   /** If set to true, the panel is also displayed if there are no options but hints. */
   @Input({ transform: booleanAttribute }) showHintIfNoOptions: boolean = false;
@@ -294,7 +273,6 @@ export class SbbAutocomplete implements AfterContentInit, OnDestroy {
     this._showPanel.next(
       !!this.options.length || (!!this.hints.length && this.showHintIfNoOptions),
     );
-    this._setVisibilityClasses(this._classList);
     this._changeDetectorRef.markForCheck();
   }
 
@@ -312,11 +290,5 @@ export class SbbAutocomplete implements AfterContentInit, OnDestroy {
 
     const labelExpression = labelId ? labelId + ' ' : '';
     return this.ariaLabelledby ? labelExpression + this.ariaLabelledby : labelId;
-  }
-
-  /** Sets the autocomplete visibility classes on a classlist based on the panel is visible. */
-  private _setVisibilityClasses(classList: { [key: string]: boolean }) {
-    classList[this._visibleClass] = this.showPanel;
-    classList[this._hiddenClass] = !this.showPanel;
   }
 }
