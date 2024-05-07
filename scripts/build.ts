@@ -3,7 +3,7 @@
 import { execSync } from 'child_process';
 import { writeFileSync } from 'fs';
 import { join, relative } from 'path';
-import yargs from 'yargs';
+import type yargs from 'yargs';
 
 const { chmod, cp, mkdir, rm, set } = require('shelljs');
 
@@ -23,29 +23,36 @@ const releaseDir = join(projectDir, 'dist/releases');
 const bazelCmd = process.env.BAZEL_COMMAND || `yarn -s bazel`;
 
 if (module === require.main) {
-  yargs(process.argv.slice(2))
-    .command({
-      command: 'all',
-      describe: 'Build all bazel targets',
-      handler: retry(() => buildAllTargets()),
-    })
-    .command({
-      command: 'packages',
-      describe: 'Build packages in release mode',
-      handler: retry(() => buildReleasePackages(releaseDir)),
-    })
-    .command({
-      command: 'i18n',
-      describe: 'Generate i18n files',
-      handler: () => buildI18n(releaseDir, join(projectDir, 'src/angular/i18n')),
-    })
-    .command({
-      command: 'showcase',
-      describe: 'Build the showcase',
-      handler: () => buildShowcase(releaseDir),
-    })
-    .strict()
-    .parseSync();
+  (async () => {
+    // TODO: Ugly solution to achieve a dynamic import to force esm usage. Replace with esm when possible.
+    const yargsi = await (Function(`return import('yargs')`)() as Promise<{
+      default: typeof yargs;
+    }>);
+    yargsi
+      .default(process.argv.slice(2))
+      .command({
+        command: 'all',
+        describe: 'Build all bazel targets',
+        handler: retry(() => buildAllTargets()),
+      })
+      .command({
+        command: 'packages',
+        describe: 'Build packages in release mode',
+        handler: retry(() => buildReleasePackages(releaseDir)),
+      })
+      .command({
+        command: 'i18n',
+        describe: 'Generate i18n files',
+        handler: () => buildI18n(releaseDir, join(projectDir, 'src/angular/i18n')),
+      })
+      .command({
+        command: 'showcase',
+        describe: 'Build the showcase',
+        handler: () => buildShowcase(releaseDir),
+      })
+      .strict()
+      .parseSync();
+  })();
 
   function retry<T>(action: () => T) {
     // TODO: Figure out why this is even necessary.
