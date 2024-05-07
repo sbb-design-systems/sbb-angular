@@ -10,7 +10,7 @@
     [attr.id]="inputId"
     [attr.accept]="accept"
     [attr.capture]="capture"
-    [attr.multiple]="multiple"
+    [attr.multiple]="multiple || null"
     [disabled]="disabled"
     (change)="fileChange($event)"
     (blur)="_onTouched()"
