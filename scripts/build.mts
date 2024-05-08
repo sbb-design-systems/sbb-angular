@@ -1,5 +1,6 @@
 import { execSync } from 'child_process';
 import { writeFileSync } from 'fs';
+import { readFile } from 'fs/promises';
 import { dirname, join, relative } from 'path';
 import sh from 'shelljs';
 import { fileURLToPath } from 'url';
@@ -147,18 +148,20 @@ function buildShowcase(distPath: string) {
   const targetFolder = join(distPath, pkgName);
   copyPackageOutput(outputPath, targetFolder);
 
-  // TODO: Remove once dockerized
-  // Create package.json
-  const { version } = require('../package.json');
-  writeFileSync(
-    join(targetFolder, 'package.json'),
-    JSON.stringify({
-      name: '@sbb-esta/angular-showcase',
-      version,
-      publishConfig: { access: 'public' },
-    }),
-    'utf8',
-  );
+  (async () => {
+    // TODO: Remove once dockerized
+    const packageJsonPath = join(projectDir, 'package.json');
+    const { version } = JSON.parse(await readFile(packageJsonPath, 'utf-8'));
+    writeFileSync(
+      join(targetFolder, 'package.json'),
+      JSON.stringify({
+        name: '@sbb-esta/angular-showcase',
+        version,
+        publishConfig: { access: 'public' },
+      }),
+      'utf8',
+    );
+  })();
 }
 
 /**
