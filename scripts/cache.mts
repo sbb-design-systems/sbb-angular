@@ -1,8 +1,7 @@
-#!/usr/bin/env node
-
 import { existsSync, readdirSync, statSync, unlinkSync } from 'fs';
 import { homedir } from 'os';
-import { basename, join } from 'path';
+import { basename, join, resolve } from 'path';
+import { fileURLToPath } from 'url';
 
 /** Bazel cache location (See Remote Disk Caching in .bazelrc) */
 const bazelCacheDir = join(homedir(), '.bazel-cache/sbb-angular');
@@ -92,7 +91,7 @@ class LRUCache {
   }
 }
 
-if (module === require.main) {
+if (fileURLToPath(import.meta.url) === resolve(process.argv[1])) {
   const options = process.argv.slice(2);
   const [target, ...args] = options;
   if (!target) {
