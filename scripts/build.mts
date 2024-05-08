@@ -1,20 +1,18 @@
-#!/usr/bin/env node
-
 import { execSync } from 'child_process';
 import { writeFileSync } from 'fs';
-import { join, relative } from 'path';
-import type yargs from 'yargs';
-
-const { chmod, cp, mkdir, rm, set } = require('shelljs');
+import { dirname, join, relative } from 'path';
+import sh from 'shelljs';
+import { fileURLToPath } from 'url';
+import yargs from 'yargs';
 
 // ShellJS should exit if a command fails.
-set('-e');
+sh.set('-e');
 
 /** Name of the Bazel tag that will be used to find release package targets. */
 const releaseTargetTag = 'release-package';
 
 /** Path to the project directory. */
-const projectDir = join(__dirname, '../');
+const projectDir = join(dirname(fileURLToPath(import.meta.url)), '../');
 
 /** path to the release directory. */
 const releaseDir = join(projectDir, 'dist/releases');
@@ -22,37 +20,31 @@ const releaseDir = join(projectDir, 'dist/releases');
 /** Command that runs Bazel. */
 const bazelCmd = process.env.BAZEL_COMMAND || `yarn -s bazel`;
 
-if (module === require.main) {
-  (async () => {
-    // TODO: Ugly solution to achieve a dynamic import to force esm usage. Replace with esm when possible.
-    const yargsi = await (Function(`return import('yargs')`)() as Promise<{
-      default: typeof yargs;
-    }>);
-    yargsi
-      .default(process.argv.slice(2))
-      .command({
-        command: 'all',
-        describe: 'Build all bazel targets',
-        handler: retry(() => buildAllTargets()),
-      })
-      .command({
-        command: 'packages',
-        describe: 'Build packages in release mode',
-        handler: retry(() => buildReleasePackages(releaseDir)),
-      })
-      .command({
-        command: 'i18n',
-        describe: 'Generate i18n files',
-        handler: () => buildI18n(releaseDir, join(projectDir, 'src/angular/i18n')),
-      })
-      .command({
-        command: 'showcase',
-        describe: 'Build the showcase',
-        handler: () => buildShowcase(releaseDir),
-      })
-      .strict()
-      .parseSync();
-  })();
+if (process.argv.length === 3) {
+  yargs(process.argv.slice(2))
+    .default(process.argv.slice(2))
+    .command({
+      command: 'all',
+      describe: 'Build all bazel targets',
+      handler: retry(() => buildAllTargets()),
+    })
+    .command({
+      command: 'packages',
+      describe: 'Build packages in release mode',
+      handler: retry(() => buildReleasePackages(releaseDir)),
+    })
+    .command({
+      command: 'i18n',
+      describe: 'Generate i18n files',
+      handler: () => buildI18n(releaseDir, join(projectDir, 'src/angular/i18n')),
+    })
+    .command({
+      command: 'showcase',
+      describe: 'Build the showcase',
+      handler: () => buildShowcase(releaseDir),
+    })
+    .strict()
+    .parseSync();
 
   function retry<T>(action: () => T) {
     // TODO: Figure out why this is even necessary.
@@ -174,8 +166,8 @@ function buildShowcase(distPath: string) {
  * the empty directory so that we can copy the release packages into it later.
  */
 function cleanDistPath(distPath: string) {
-  rm('-rf', distPath);
-  mkdir('-p', distPath);
+  sh.rm('-rf', distPath);
+  sh.mkdir('-p', distPath);
 }
 
 /**
@@ -183,8 +175,8 @@ function cleanDistPath(distPath: string) {
  */
 function copyPackageOutput(outputPath: string, targetFolder: string) {
   console.log(`> Copying package output to "${targetFolder}" (from "${outputPath}")`);
-  cp('-R', outputPath, targetFolder);
-  chmod('-R', 'u+w', targetFolder);
+  sh.cp('-R', outputPath, targetFolder);
+  sh.chmod('-R', 'u+w', targetFolder);
 }
 
 /**

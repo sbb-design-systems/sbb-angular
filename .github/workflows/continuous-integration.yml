@@ -199,7 +199,7 @@ jobs:
         script: |
           const fs = require('fs');
           let { name, version, devDependencies, scripts } = require('./package.json');
-          const packages = ['@actions/cache', '@types/node', 'ts-node', 'typescript', 'tsx'];
+          const packages = ['@actions/cache', '@types/node', 'ts-node', 'typescript'];
           devDependencies = packages.reduce((deps, dep) => Object.assign(deps, { [dep]: devDependencies[dep] }), {});
           scripts = { 'bazel:cache': scripts['bazel:cache'] };
           fs.writeFileSync('./package.json', JSON.stringify({ name, version, devDependencies, scripts }), 'utf8');
