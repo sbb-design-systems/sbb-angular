@@ -18,7 +18,7 @@
     "bazel": "bazelisk",
     "bazel:buildifier": "find . -type f \\( -name \"*.bzl\" -or -name WORKSPACE -or -name BUILD -or -name BUILD.bazel \\) ! -path \"*/node_modules/*\" ! -path \"*/.git/*\" | xargs buildifier -v",
     "bazel:format-lint": "yarn -s bazel:buildifier --lint=warn --mode=check",
-    "bazel:cache": "node --no-warnings=ExperimentalWarning --loader ts-node/esm/transpile-only  ./scripts/cache.ts",
+    "bazel:cache": "node --no-warnings=ExperimentalWarning --loader ts-node/esm/transpile-only  ./scripts/cache.mts",
     "start": "ibazel run //src/showcase:devserver",
     "start:prod": "ibazel run //src/showcase:prodserver",
     "start:journey-maps-wc": "ibazel run //src/journey-maps/web-component:devserver",
