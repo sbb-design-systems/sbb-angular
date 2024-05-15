@@ -17,6 +17,7 @@ import {
   AfterContentChecked,
   AfterContentInit,
   ANIMATION_MODULE_TYPE,
+  booleanAttribute,
   ChangeDetectionStrategy,
   ChangeDetectorRef,
   Component,
@@ -113,8 +114,10 @@ export class SbbSidebarContent extends SbbSidebarContentBase implements AfterCon
     // must prevent the browser from aligning text based on value
     '[attr.align]': 'null',
     '[class.sbb-sidebar-over]': 'mode === "over"',
+    '[class.sbb-sidebar-mobile]': '_mobile',
     '[class.sbb-sidebar-side]': 'mode === "side"',
     '[class.sbb-sidebar-opened]': 'opened',
+    '[class.sbb-sidebar-collapsible]': 'collapsible',
   },
   changeDetection: ChangeDetectionStrategy.OnPush,
   encapsulation: ViewEncapsulation.None,
@@ -127,8 +130,29 @@ export class SbbSidebar
 {
   _labelCloseSidebar: string = $localize`:Button label to close the sidebar@@sbbSidebarCloseSidebar:Close Sidebar`;
 
+  /** Whether the sidebar is in mobile mode. */
+  _mobile: boolean = false;
+
   /** Whether the sidebar is initialized. Used for disabling the initial animation. */
   private _enableAnimations = false;
+
+  /** Whether the sidebar is collapsible. */
+  @Input({ transform: booleanAttribute })
+  set collapsible(value: boolean) {
+    this._collapsible = value;
+    this.mode = value || this._mobile ? 'over' : 'side';
+
+    if (!this._collapsible && !this.opened) {
+      this.open();
+    }
+  }
+  get collapsible(): boolean {
+    return this._collapsible;
+  }
+  _collapsible: boolean = false;
+
+  /** Optional label to display in the header if sidebar is collapsible. */
+  @Input() collapsibleHeaderLabel?: string | null;
 
   /** Mode of the sidebar; one of 'over', or 'side'. */
   get mode(): SbbSidebarMode {
@@ -500,16 +524,17 @@ export class SbbSidebar
   }
 
   _mobileChanged(mobile: boolean): void {
+    this._mobile = mobile;
     Promise.resolve().then(() => {
       const wasAnimationsEnabled = this._enableAnimations;
 
       // temporary disabled animations when changing mode
       this._enableAnimations = false;
+      this.mode = this.collapsible || mobile ? 'over' : 'side';
+
       if (mobile) {
         this.close();
-        this.mode = 'over';
       } else {
-        this.mode = 'side';
         this.open();
       }
       this._enableAnimations = wasAnimationsEnabled;

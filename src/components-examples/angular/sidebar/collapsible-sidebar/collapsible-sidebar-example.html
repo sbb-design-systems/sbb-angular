@@ -1,0 +1,60 @@
+<div class="sidebar-frame">
+  <sbb-icon-sidebar-container>
+    <sbb-icon-sidebar [position]="position.value">
+      <a sbbIconSidebarItem label="Station" href="">
+        <sbb-icon svgIcon="station-small"></sbb-icon>
+      </a>
+      <a sbbIconSidebarItem label="Lockers" class="sbb-active" (click)="sidebar.toggle()">
+        <sbb-icon svgIcon="locker-small"></sbb-icon>
+      </a>
+      <hr />
+      <a sbbIconSidebarItem label="Money Exchange" href="">
+        <sbb-icon svgIcon="money-exchange-small"></sbb-icon>
+      </a>
+      <a sbbIconSidebarItem label="Waiting Room" href="">
+        <sbb-icon svgIcon="waiting-room-small"></sbb-icon>
+      </a>
+    </sbb-icon-sidebar>
+    <sbb-icon-sidebar-content role="main">
+      <sbb-sidebar-container>
+        <sbb-sidebar
+          #sidebar
+          role="navigation"
+          [position]="position.value"
+          [collapsible]="collapsible.value"
+          [collapsibleHeaderLabel]="collapsibleHeaderLabel.value"
+        >
+          <sbb-expansion-panel expanded>
+            <sbb-expansion-panel-header>Introduction</sbb-expansion-panel-header>
+            <a sbbSidebarLink class="sbb-active">Getting Started</a>
+            <a sbbSidebarLink href="">Typography</a>
+          </sbb-expansion-panel>
+          <sbb-expansion-panel>
+            <sbb-expansion-panel-header>Components</sbb-expansion-panel-header>
+            <a sbbSidebarLink href="">Autocomplete</a>
+            <a sbbSidebarLink href="">Checkbox</a>
+          </sbb-expansion-panel>
+        </sbb-sidebar>
+        <sbb-sidebar-content role="main"> Content </sbb-sidebar-content>
+      </sbb-sidebar-container>
+    </sbb-icon-sidebar-content>
+  </sbb-icon-sidebar-container>
+</div>
+
+<h4>Properties</h4>
+<div class="sbb-checkbox-group-vertical">
+  <sbb-form-field label="Sidebar positions">
+    <sbb-select [formControl]="position" placeholder="Position">
+      <sbb-option value="start">Start</sbb-option>
+      <sbb-option value="end">End</sbb-option>
+    </sbb-select>
+  </sbb-form-field>
+  <sbb-checkbox [formControl]="collapsible" [disabled]="simulateMobile.value"
+    >Make sidebar collapsible</sbb-checkbox
+  >
+  <sbb-checkbox [formControl]="simulateMobile">Simulate Mobile View</sbb-checkbox>
+
+  <sbb-form-field label="Label for collapsible header">
+    <input sbbInput [formControl]="collapsibleHeaderLabel" />
+  </sbb-form-field>
+</div>

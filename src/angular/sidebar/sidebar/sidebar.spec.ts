@@ -507,7 +507,6 @@ describe('SbbSidebar', () => {
     let fixture: ComponentFixture<SidebarWithFocusableElementsTestComponent>;
     let sidebar: SbbSidebar;
     let lastFocusableElement: HTMLElement;
-    let mobileCloseSidebarButton: HTMLElement;
 
     beforeEach(fakeAsync(() => {
       fixture = TestBed.createComponent(SidebarWithFocusableElementsTestComponent);
@@ -516,9 +515,6 @@ describe('SbbSidebar', () => {
       tick();
       sidebar = fixture.debugElement.query(By.directive(SbbSidebar))!.componentInstance;
       lastFocusableElement = fixture.debugElement.query(By.css('.input2'))!.nativeElement;
-      mobileCloseSidebarButton = fixture.debugElement.query(
-        By.css('.sbb-sidebar-mobile-menu-bar-close'),
-      )!.nativeElement;
       lastFocusableElement.focus();
     }));
 
@@ -530,6 +526,9 @@ describe('SbbSidebar', () => {
       fixture.detectChanges();
       tick();
 
+      const mobileCloseSidebarButton = fixture.debugElement.query(
+        By.css('.sbb-sidebar-menu-bar-close'),
+      )!.nativeElement;
       expect(document.activeElement).toBe(mobileCloseSidebarButton);
     }));
 
@@ -565,7 +564,7 @@ describe('SbbSidebar', () => {
       tick();
 
       expect(document.activeElement).toBe(
-        nonFocusableFixture.debugElement.query(By.css('.sbb-sidebar-mobile-menu-bar-close'))!
+        nonFocusableFixture.debugElement.query(By.css('.sbb-sidebar-menu-bar-close'))!
           .nativeElement,
       );
     }));
@@ -737,8 +736,11 @@ describe('SbbSidebar', () => {
       },
     );
 
-    it('should change the icon based on the position', () => {
+    it('should change the icon based on the position', fakeAsync(() => {
       const fixture = TestBed.createComponent(BasicTestComponent);
+      fixture.detectChanges();
+      mediaMatcher.setMatchesQuery(Breakpoints.Mobile, true);
+      tick();
       fixture.detectChanges();
 
       let icon = fixture.debugElement.query(By.directive(SbbIcon));
@@ -748,11 +750,15 @@ describe('SbbSidebar', () => {
       fixture.detectChanges();
       icon = fixture.debugElement.query(By.directive(SbbIcon));
       expect(icon.componentInstance.svgIcon).toBe('controls-small');
-    });
+    }));
 
-    it('should allow overriding the trigger icon', () => {
+    it('should allow overriding the trigger icon', fakeAsync(() => {
       const fixture = TestBed.createComponent(BasicTestComponent);
       fixture.componentInstance.triggerIcon = 'bell-small';
+      fixture.detectChanges();
+
+      mediaMatcher.setMatchesQuery(Breakpoints.Mobile, true);
+      tick();
       fixture.detectChanges();
 
       let icon = fixture.debugElement.query(By.directive(SbbIcon));
@@ -762,11 +768,61 @@ describe('SbbSidebar', () => {
       fixture.detectChanges();
       icon = fixture.debugElement.query(By.directive(SbbIcon));
       expect(icon.componentInstance.svgIcon).toBe('bell-small');
-    });
+    }));
 
     function getSidebarNodesArray(fixture: ComponentFixture<any>): HTMLElement[] {
       return Array.from(fixture.nativeElement.querySelector('.sbb-sidebar-container').childNodes);
     }
+  });
+
+  describe('Collapsible sidebar', () => {
+    it('should be displayed in `over` mode', () => {
+      const fixture = TestBed.createComponent(BasicTestComponent);
+      const sidebar = fixture.debugElement.query(By.directive(SbbSidebar))!.componentInstance;
+      expect(sidebar.mode).toBe('side');
+
+      fixture.componentInstance.collapsible = true;
+      fixture.detectChanges();
+      expect(sidebar.mode).toBe('over');
+    });
+
+    it('should display a close button to collapse the sidebar', () => {
+      const fixture = TestBed.createComponent(BasicTestComponent);
+      const sidebar = fixture.debugElement.query(By.directive(SbbSidebar))!.componentInstance;
+      let closeButton = fixture.debugElement.query(By.css('.sbb-sidebar-menu-bar-close'));
+      expect(closeButton).toBeFalsy();
+
+      fixture.componentInstance.collapsible = true;
+      fixture.detectChanges();
+      closeButton = fixture.debugElement.query(By.css('.sbb-sidebar-menu-bar-close'));
+      expect(closeButton).toBeTruthy();
+
+      closeButton.nativeElement.click();
+      fixture.detectChanges();
+      expect(sidebar.opened).toBe(false);
+    });
+
+    it('should display a label in the header', () => {
+      const fixture = TestBed.createComponent(BasicTestComponent);
+      let collapsibleHeaderLabel = fixture.debugElement.query(
+        By.css('.sbb-sidebar-menu-bar-title'),
+      );
+      expect(collapsibleHeaderLabel).toBeFalsy();
+
+      fixture.componentInstance.collapsible = true;
+      fixture.detectChanges();
+      collapsibleHeaderLabel = fixture.debugElement.query(By.css('.sbb-sidebar-menu-bar-title'));
+      expect(collapsibleHeaderLabel.nativeElement.textContent).toBe('');
+
+      fixture.componentInstance.collapsibleHeaderLabel = 'Test header label';
+      fixture.detectChanges();
+      expect(collapsibleHeaderLabel).toBeTruthy();
+      expect(collapsibleHeaderLabel.nativeElement.textContent).toBe('Test header label');
+
+      fixture.componentInstance.collapsibleHeaderLabel = null;
+      fixture.detectChanges();
+      expect(collapsibleHeaderLabel.nativeElement.textContent).toBe('');
+    });
   });
 });
 
@@ -999,6 +1055,7 @@ describe('SbbSidebar Usage', () => {
   it('should open and close sidebar with hamburger menu button', fakeAsync(() => {
     mediaMatcher.setMatchesQuery(Breakpoints.Mobile, true);
     tick();
+    fixture.detectChanges();
 
     expect(sidebar.componentInstance.opened).toBe(false);
 
@@ -1011,7 +1068,7 @@ describe('SbbSidebar Usage', () => {
     expect(sidebar.componentInstance.opened).toBe(true);
 
     const mobileCloseSidebarButton = fixture.debugElement.query(
-      By.css('.sbb-sidebar-mobile-menu-bar-close'),
+      By.css('.sbb-sidebar-menu-bar-close'),
     )!.nativeElement;
 
     mobileCloseSidebarButton.click();
@@ -1051,6 +1108,8 @@ class SidebarContainerTwoSidebarsTestComponent {
     <sbb-sidebar
       #sidebar="sbbSidebar"
       [position]="position"
+      [collapsible]="collapsible"
+      [collapsibleHeaderLabel]="collapsibleHeaderLabel"
       [triggerSvgIcon]="triggerIcon"
       (opened)="open()"
       (openedStart)="openStart()"
@@ -1084,6 +1143,8 @@ class BasicTestComponent {
   backdropClickedCount = 0;
   position = 'start';
   triggerIcon: string;
+  collapsible = false;
+  collapsibleHeaderLabel: string | null = null;
 
   @ViewChild('sidebar') sidebar: SbbSidebar;
   @ViewChild('sidebarButton') sidebarButton: ElementRef<HTMLButtonElement>;
