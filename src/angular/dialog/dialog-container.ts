@@ -13,6 +13,7 @@ import {
   HostListener,
   Inject,
   NgZone,
+  OnDestroy,
   Optional,
   ViewEncapsulation,
 } from '@angular/core';
@@ -32,13 +33,18 @@ interface DialogAnimationEvent {
  */
 @Component({ template: '' })
 // tslint:disable-next-line: class-name naming-convention
-export abstract class _SbbDialogContainerBase extends CdkDialogContainer<SbbDialogConfig> {
+export abstract class _SbbDialogContainerBase
+  extends CdkDialogContainer<SbbDialogConfig>
+  implements OnDestroy
+{
   /** Emits when an animation state changes. */
   _animationStateChanged: EventEmitter<DialogAnimationEvent> =
     new EventEmitter<DialogAnimationEvent>();
 
   /** State of the animation. */
   _state: 'void' | 'enter' | 'exit' = 'enter';
+
+  private _isDestroyed = false;
 
   constructor(
     elementRef: ElementRef,
@@ -90,11 +96,20 @@ export abstract class _SbbDialogContainerBase extends CdkDialogContainer<SbbDial
    * be called by sub-classes that use different animation implementations.
    */
   protected _openAnimationDone(totalTime: number) {
+    if (this._isDestroyed) {
+      return;
+    }
+
     if (this._config.delayFocusTrap) {
       this._trapFocus();
     }
 
     this._animationStateChanged.next({ state: 'opened', totalTime });
+  }
+
+  override ngOnDestroy() {
+    super.ngOnDestroy();
+    this._isDestroyed = true;
   }
 }
 

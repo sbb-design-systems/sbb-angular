@@ -1133,6 +1133,7 @@ describe('SbbLightbox', () => {
 
       tick(500);
       viewContainerFixture.detectChanges();
+      flush();
       expect(lastFocusOrigin!).withContext('Expected the trigger button to be blurred').toBeNull();
 
       const closeButton = overlayContainerElement.querySelector(
@@ -1173,6 +1174,7 @@ describe('SbbLightbox', () => {
 
       tick(500);
       viewContainerFixture.detectChanges();
+      flush();
       expect(lastFocusOrigin!).withContext('Expected the trigger button to be blurred').toBeNull();
 
       const closeButton = overlayContainerElement.querySelector(
