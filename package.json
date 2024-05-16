@@ -175,7 +175,6 @@
   "resolutions": {
     "@angular/build-tooling/typescript": "5.4.4",
     "@angular/ng-dev/typescript": "5.4.4",
-    "browser-sync-client": "2.26.13",
     "dgeni-packages/typescript": "5.4.4"
   },
   "standard-version": {
