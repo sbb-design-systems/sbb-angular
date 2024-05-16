@@ -19,6 +19,6 @@ jobs:
     - uses: ./.github/actions/yarn-install
 
     - name: "Execute Angular Components Sync"
-      run: yarn ts-node scripts/angular-components-sync.ts
+      run: node --no-warnings=ExperimentalWarning --loader ts-node/esm/transpile-only scripts/angular-components-sync.mts
       env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

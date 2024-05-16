@@ -1,4 +1,5 @@
 import { Octokit } from 'octokit';
+import { fileURLToPath } from 'url';
 
 interface IssueBody {
   emptyList: boolean;
@@ -186,7 +187,7 @@ function escapeRegex(string: string) {
   return string.replace(/[-\/\\^$*+?.()|[\]{}]/g, '\\$&');
 }
 
-if (module === require.main) {
+if (process.argv[1] === fileURLToPath(import.meta.url)) {
   const angularComponentsSync = new AngularComponentsSync(
     new Octokit({
       auth: githubToken,
