@@ -1,6 +1,6 @@
 import { Octokit } from 'octokit';
 
-import { AngularComponentsSync } from './angular-components-sync';
+import { AngularComponentsSync } from '././angular-components-sync.mjs';
 
 const commitList = [
   {
