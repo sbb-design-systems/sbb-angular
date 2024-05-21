@@ -1,7 +1,6 @@
 import { animate, style, transition, trigger } from '@angular/animations';
 import { FocusKeyManager } from '@angular/cdk/a11y';
 import {
-  A,
   BACKSPACE,
   DELETE,
   DOWN_ARROW,
@@ -617,28 +616,15 @@ describe('SbbChipList', () => {
           expectLastItemFocused();
         });
 
-        it(
-          'should not focus the last chip when pressing BACKSPACE after changing input, ' +
-            'until BACKSPACE is released and pressed again',
-          () => {
-            // Change the input
-            dispatchKeyboardEvent(nativeInput, 'keydown', A);
-
-            // It shouldn't focus until backspace is released and pressed again
-            dispatchKeyboardEvent(nativeInput, 'keydown', BACKSPACE);
-            dispatchKeyboardEvent(nativeInput, 'keydown', BACKSPACE);
-            dispatchKeyboardEvent(nativeInput, 'keydown', BACKSPACE);
-            expectNoItemFocused();
-
-            // Still not focused
-            dispatchKeyboardEvent(nativeInput, 'keyup', BACKSPACE);
-            expectNoItemFocused();
-
-            // Only now should it focus the last element
-            dispatchKeyboardEvent(nativeInput, 'keydown', BACKSPACE);
-            expectLastItemFocused();
-          },
-        );
+        it('should not focus the last chip when the BACKSPACE key is being repeated', () => {
+          // Only now should it focus the last element
+          const event = createKeyboardEvent('keydown', BACKSPACE);
+          Object.defineProperty(event, 'repeat', {
+            get: () => true,
+          });
+          dispatchEvent(nativeInput, event);
+          expectNoItemFocused();
+        });
 
         it('should focus last chip after pressing BACKSPACE after creating a chip', () => {
           // Create a chip
