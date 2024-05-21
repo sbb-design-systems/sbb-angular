@@ -164,7 +164,7 @@ describe('SbbDialog', () => {
     // callback should not be called before animation is complete
     expect(spy).not.toHaveBeenCalled();
 
-    flushMicrotasks();
+    flush();
     expect(spy).toHaveBeenCalled();
   }));
 
@@ -406,6 +406,7 @@ describe('SbbDialog', () => {
     dialogRef.keydownEvents().subscribe(spy);
 
     viewContainerFixture.detectChanges();
+    flush();
 
     const backdrop = overlayContainerElement.querySelector('.cdk-overlay-backdrop') as HTMLElement;
     const container = overlayContainerElement.querySelector('sbb-dialog-container') as HTMLElement;
@@ -504,7 +505,6 @@ describe('SbbDialog', () => {
 
     tick(500);
     viewContainerFixture.detectChanges();
-    flushMicrotasks();
 
     dialogRef = dialog.open(PizzaMsg, {
       maxWidth: '100px',
@@ -803,6 +803,7 @@ describe('SbbDialog', () => {
     };
 
     dialog.open(PizzaMsg, { scrollStrategy });
+    flush();
     expect(scrollStrategy.enable).toHaveBeenCalled();
   }));
 
@@ -1029,7 +1030,9 @@ describe('SbbDialog', () => {
       });
 
       viewContainerFixture.detectChanges();
-      flushMicrotasks();
+      flush();
+      viewContainerFixture.detectChanges();
+      flush();
 
       const backdrop = overlayContainerElement.querySelector(
         '.cdk-overlay-backdrop',
@@ -1158,6 +1161,9 @@ describe('SbbDialog', () => {
       });
 
       viewContainerFixture.detectChanges();
+      flush();
+      viewContainerFixture.detectChanges();
+      flush();
       flushMicrotasks();
 
       expect(document.activeElement!.tagName)
@@ -1198,11 +1204,12 @@ describe('SbbDialog', () => {
       document.body.appendChild(button);
       button.focus();
 
-      const dialogRef = dialog.open(PizzaMsg, { viewContainerRef: testViewContainerRef });
+      const dialogRef = TestBed.inject(NgZone).run(() =>
+        dialog.open(PizzaMsg, { viewContainerRef: testViewContainerRef }),
+      );
 
-      flushMicrotasks();
       viewContainerFixture.detectChanges();
-      flushMicrotasks();
+      flush();
 
       expect(document.activeElement!.id).not.toBe(
         'dialog-trigger',
@@ -1234,6 +1241,7 @@ describe('SbbDialog', () => {
       viewContainerFixture.destroy();
       const fixture = TestBed.createComponent(ShadowDomComponent);
       fixture.detectChanges();
+      flush();
       const button = fixture.debugElement.query(By.css('button'))!.nativeElement;
 
       button.focus();
@@ -1343,6 +1351,7 @@ describe('SbbDialog', () => {
 
       tick(500);
       viewContainerFixture.detectChanges();
+      flush();
       expect(lastFocusOrigin!).withContext('Expected the trigger button to be blurred').toBeNull();
 
       const closeButton = overlayContainerElement.querySelector(
@@ -1383,6 +1392,7 @@ describe('SbbDialog', () => {
 
       tick(500);
       viewContainerFixture.detectChanges();
+      flush();
       expect(lastFocusOrigin!).withContext('Expected the trigger button to be blurred').toBeNull();
 
       const closeButton = overlayContainerElement.querySelector(
@@ -1442,7 +1452,9 @@ describe('SbbDialog', () => {
       dialog.open(DialogWithoutFocusableElements);
 
       viewContainerFixture.detectChanges();
-      flushMicrotasks();
+      flush();
+      viewContainerFixture.detectChanges();
+      flush();
 
       expect(document.activeElement!.tagName)
         .withContext('Expected dialog container to be focused.')
@@ -1456,14 +1468,15 @@ describe('SbbDialog', () => {
       document.body.appendChild(button);
       button.focus();
 
-      const dialogRef = dialog.open(PizzaMsg, {
-        viewContainerRef: testViewContainerRef,
-        restoreFocus: false,
-      });
+      const dialogRef = TestBed.inject(NgZone).run(() =>
+        dialog.open(PizzaMsg, {
+          viewContainerRef: testViewContainerRef,
+          restoreFocus: false,
+        }),
+      );
 
-      flushMicrotasks();
       viewContainerFixture.detectChanges();
-      flushMicrotasks();
+      flush();
 
       expect(document.activeElement!.id).not.toBe(
         'dialog-trigger',
@@ -1494,11 +1507,12 @@ describe('SbbDialog', () => {
       body.appendChild(otherButton);
       button.focus();
 
-      const dialogRef = dialog.open(PizzaMsg, { viewContainerRef: testViewContainerRef });
+      const dialogRef = TestBed.inject(NgZone).run(() =>
+        dialog.open(PizzaMsg, { viewContainerRef: testViewContainerRef }),
+      );
 
-      flushMicrotasks();
       viewContainerFixture.detectChanges();
-      flushMicrotasks();
+      flush();
 
       expect(document.activeElement!.id).not.toBe(
         'dialog-trigger',
