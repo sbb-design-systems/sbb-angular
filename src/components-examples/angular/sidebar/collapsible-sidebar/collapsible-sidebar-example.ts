@@ -50,7 +50,7 @@ export class CollapsibleSidebarExample implements AfterViewInit, OnDestroy {
   position = new FormControl<'start' | 'end'>('start', { nonNullable: true });
   collapsible = new FormControl(true);
   simulateMobile = new FormControl(false, { initialValueIsDefault: true });
-  collapsibleHeaderLabel = new FormControl('SBB Angular');
+  collapsibleTitle = new FormControl('SBB Angular');
   private _destroyed = new Subject<void>();
 
   constructor(private _mediaMatcher: FakeMediaMatcher) {}

@@ -804,24 +804,22 @@ describe('SbbSidebar', () => {
 
     it('should display a label in the header', () => {
       const fixture = TestBed.createComponent(BasicTestComponent);
-      let collapsibleHeaderLabel = fixture.debugElement.query(
-        By.css('.sbb-sidebar-menu-bar-title'),
-      );
-      expect(collapsibleHeaderLabel).toBeFalsy();
+      let collapsibleTitle = fixture.debugElement.query(By.css('.sbb-sidebar-menu-bar-title'));
+      expect(collapsibleTitle).toBeFalsy();
 
       fixture.componentInstance.collapsible = true;
       fixture.detectChanges();
-      collapsibleHeaderLabel = fixture.debugElement.query(By.css('.sbb-sidebar-menu-bar-title'));
-      expect(collapsibleHeaderLabel.nativeElement.textContent).toBe('');
+      collapsibleTitle = fixture.debugElement.query(By.css('.sbb-sidebar-menu-bar-title'));
+      expect(collapsibleTitle.nativeElement.textContent).toBe('');
 
-      fixture.componentInstance.collapsibleHeaderLabel = 'Test header label';
+      fixture.componentInstance.collapsibleTitle = 'Test header label';
       fixture.detectChanges();
-      expect(collapsibleHeaderLabel).toBeTruthy();
-      expect(collapsibleHeaderLabel.nativeElement.textContent).toBe('Test header label');
+      expect(collapsibleTitle).toBeTruthy();
+      expect(collapsibleTitle.nativeElement.textContent).toBe('Test header label');
 
-      fixture.componentInstance.collapsibleHeaderLabel = null;
+      fixture.componentInstance.collapsibleTitle = null;
       fixture.detectChanges();
-      expect(collapsibleHeaderLabel.nativeElement.textContent).toBe('');
+      expect(collapsibleTitle.nativeElement.textContent).toBe('');
     });
   });
 });
@@ -1109,7 +1107,7 @@ class SidebarContainerTwoSidebarsTestComponent {
       #sidebar="sbbSidebar"
       [position]="position"
       [collapsible]="collapsible"
-      [collapsibleHeaderLabel]="collapsibleHeaderLabel"
+      [collapsibleTitle]="collapsibleTitle"
       [triggerSvgIcon]="triggerIcon"
       (opened)="open()"
       (openedStart)="openStart()"
@@ -1144,7 +1142,7 @@ class BasicTestComponent {
   position = 'start';
   triggerIcon: string;
   collapsible = false;
-  collapsibleHeaderLabel: string | null = null;
+  collapsibleTitle: string | null = null;
 
   @ViewChild('sidebar') sidebar: SbbSidebar;
   @ViewChild('sidebarButton') sidebarButton: ElementRef<HTMLButtonElement>;

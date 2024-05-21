@@ -22,7 +22,7 @@
           role="navigation"
           [position]="position.value"
           [collapsible]="collapsible.value"
-          [collapsibleHeaderLabel]="collapsibleHeaderLabel.value"
+          [collapsibleTitle]="collapsibleTitle.value"
         >
           <sbb-expansion-panel expanded>
             <sbb-expansion-panel-header>Introduction</sbb-expansion-panel-header>
@@ -55,6 +55,6 @@
   <sbb-checkbox [formControl]="simulateMobile">Simulate Mobile View</sbb-checkbox>
 
   <sbb-form-field label="Label for collapsible header">
-    <input sbbInput [formControl]="collapsibleHeaderLabel" />
+    <input sbbInput [formControl]="collapsibleTitle" />
   </sbb-form-field>
 </div>

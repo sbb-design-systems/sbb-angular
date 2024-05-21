@@ -151,8 +151,8 @@ export class SbbSidebar
   }
   _collapsible: boolean = false;
 
-  /** Optional label to display in the header if sidebar is collapsible. */
-  @Input() collapsibleHeaderLabel?: string | null;
+  /** Optional title to display in the sidebar header next to the close icon if sidebar is collapsible. */
+  @Input() collapsibleTitle?: string | null;
 
   /** Mode of the sidebar; one of 'over', or 'side'. */
   get mode(): SbbSidebarMode {

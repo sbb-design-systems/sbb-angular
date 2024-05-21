@@ -122,6 +122,23 @@ For example if using with a routerLink, write `routerLinkActive="sbb-active"`.
 </sbb-icon-sidebar-container>
 ```
 
+### Expanding and collapsing the sidebar
+
+By default, the `<sbb-sidebar>` is displayed next to the content and cannot be collapsed.
+It can be made collapsible by setting the `collapsible` attribute to `true`. In collapsible mode the sidebar is
+displayed above the content and can be collapsed using the close icon, by clicking in the content are or by
+pressing the escape key.
+
+In collapsible mode, the sidebar can have a title displayed next to the close icon. This label can be set using the
+`collapsibleTitle` attribute.
+
+```html
+<sbb-sidebar-container>
+  <sbb-sidebar collapsible="true">...</sbb-sidebar>
+  <sbb-sidebar-content>...</sbb-sidebar-content>
+</sbb-sidebar-container>
+```
+
 ### Expanding and collapsing an icon sidebar
 
 An `<sbb-icon-sidebar>` can be expanded or collapsed using the `toggleExpanded(expanded: boolean)` method.
