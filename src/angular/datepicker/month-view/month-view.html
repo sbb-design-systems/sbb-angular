@@ -4,7 +4,7 @@
       @if (showWeekNumbers) {
         <th>#</th>
       }
-      @for (day of weekdays; track day) {
+      @for (day of weekdays; track day.index) {
         <th>
           @switch (isWeekdaySelectable) {
             @case (true) {

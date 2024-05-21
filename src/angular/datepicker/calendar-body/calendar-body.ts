@@ -20,11 +20,14 @@ export type SbbCalendarCellCssClasses = string | string[] | Set<string> | { [key
 /** Function that can generate the extra classes that should be added to a calendar cell. */
 export type SbbCalendarCellClassFunction<D> = (date: D) => SbbCalendarCellCssClasses;
 
+let uniqueIdCounter = 0;
+
 /**
  * An internal class that represents the data corresponding to a single calendar cell.
  * @docs-private
  */
 export class SbbCalendarCell {
+  readonly id = uniqueIdCounter++;
   constructor(
     public value: number,
     public displayValue: string,
@@ -107,6 +110,13 @@ export class SbbCalendarBody implements AfterViewChecked {
   @Output() readonly activeDateChange = new EventEmitter<number>();
 
   private _injector = inject(Injector);
+
+  /**
+   * Tracking function for rows based on their identity. Ideally we would use some sort of
+   * key on the row, but that would require a breaking change for the `rows` input. We don't
+   * use the built-in identity tracking, because it logs warnings.
+   */
+  _trackRow = (row: SbbCalendarCell[]) => row;
 
   constructor(
     private _elementRef: ElementRef<HTMLElement>,
