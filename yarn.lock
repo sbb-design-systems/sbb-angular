@@ -6281,10 +6281,10 @@ angular-server-side-configuration@17.0.5:
     glob "^10.0.0"
     tslib "^2.3.0"
 
-angular-t9n@17.0.0:
-  version "17.0.0"
-  resolved "https://registry.yarnpkg.com/angular-t9n/-/angular-t9n-17.0.0.tgz#0141d2b21f9d6b27475597fcb52891598d240c22"
-  integrity sha512-xcAcY1MHH0E8wkRCxScCgCfXP7+GViC1aY1OXJmLAU1125DCJicPXzyJ8dWL1wT3GpOsGU+a+4krWHbI+BRgNQ==
+angular-t9n@18.0.0:
+  version "18.0.0"
+  resolved "https://registry.yarnpkg.com/angular-t9n/-/angular-t9n-18.0.0.tgz#bb71f70597dacad6b0b73dcbd98bdd7cb4364abc"
+  integrity sha512-nVgZ907RpPrC6IWLCGmPIqxN/ErfQRdVjXM7j0mengx4dhSyGcE/N5i2MQOao1VShEyzDNIa/r9nT1kf06smBw==
   dependencies:
     "@nestjs/common" "^10.2.0"
     "@nestjs/core" "^10.2.0"
@@ -6296,7 +6296,7 @@ angular-t9n@17.0.0:
     class-transformer "^0.5.1"
     class-validator "^0.14.0"
     js-levenshtein "^1.1.6"
-    reflect-metadata "^0.1.13"
+    reflect-metadata "^0.2.2"
     rxjs "~7.8.1"
 
 ansi-colors@4.1.3:
@@ -14008,7 +14008,7 @@ reflect-metadata@^0.1.12, reflect-metadata@^0.1.13:
   resolved "https://registry.yarnpkg.com/reflect-metadata/-/reflect-metadata-0.1.14.tgz#24cf721fe60677146bb77eeb0e1f9dece3d65859"
   integrity sha512-ZhYeb6nRaXCfhnndflDK8qI6ZQ/YcWZCISRAWICW9XYqMUwjZM9Z0DveWX/ABN01oxSHwVxKQmxeYZSsm0jh5A==
 
-reflect-metadata@^0.2.0:
+reflect-metadata@^0.2.0, reflect-metadata@^0.2.2:
   version "0.2.2"
   resolved "https://registry.yarnpkg.com/reflect-metadata/-/reflect-metadata-0.2.2.tgz#400c845b6cba87a21f2c65c4aeb158f4fa4d9c5b"
   integrity sha512-urBwgfrvVP/eAyXx4hluJivBKzuEbSQs9rKWCrCkbSxNv8mxPcUZKeuoF3Uy4mJl3Lwprp6yy5/39VWigZ4K6Q==
