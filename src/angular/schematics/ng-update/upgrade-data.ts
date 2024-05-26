@@ -12,6 +12,7 @@ import {
   propertyNames,
   symbolRemoval,
 } from './data';
+import { cssTokens } from './data/css-tokens';
 
 /** Upgrade data that will be used for the SBB Angular ng-update schematic. */
 export const sbbAngularUpgradeData: UpgradeData = {
@@ -19,6 +20,7 @@ export const sbbAngularUpgradeData: UpgradeData = {
   classNames,
   constructorChecks,
   cssSelectors,
+  cssTokens,
   elementSelectors,
   inputNames,
   methodCallChecks,
