@@ -33,7 +33,7 @@ export const TEMPLATE_FILES = [
   'src/index.html',
   'src/main.ts',
   'src/polyfills.ts',
-  'src/styles.scss',
+  'src/styles.css',
   'src/test.ts',
   'src/app/app.module.ts',
   'src/app/sbb.module.ts',
