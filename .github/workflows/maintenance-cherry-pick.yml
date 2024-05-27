@@ -78,7 +78,7 @@ jobs:
 
       - name: Update maintenance issue
         if: needs.cherry_pick.outputs.failed_branches
-        run: yarn ts-node scripts/update-maintenance-issue.ts
+        run: node --no-warnings=ExperimentalWarning --loader ts-node/esm/transpile-only scripts/update-maintenance-issue.mts
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           PR_NUMBER: ${{ github.event.number }}
