@@ -2,6 +2,14 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [18.0.1](https://github.com/sbb-design-systems/sbb-angular/compare/15.0.0...18.0.1) (2024-05-27)
+
+
+### Bug Fixes
+
+* update schematics for v18 ([#2280](https://github.com/sbb-design-systems/sbb-angular/issues/2280)) ([fb8dc0c](https://github.com/sbb-design-systems/sbb-angular/commit/fb8dc0cb9088c72f017b0d1fa68fd06b6363f273))
+
+
 ## [18.0.0](https://github.com/sbb-design-systems/sbb-angular/compare/15.0.0...18.0.0) (2024-05-27)
 
 
