@@ -2,6 +2,19 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [18.0.0](https://github.com/sbb-design-systems/sbb-angular/compare/15.0.0...18.0.0) (2024-05-27)
+
+
+### ⚠ BREAKING CHANGES
+
+* Update to Angular v18, Node >= 18.19.1 and TypeScript 5.4.4.
+
+### Bug Fixes
+
+* **angular/chips:** simplify repeat chip removal prevention ([#2270](https://github.com/sbb-design-systems/sbb-angular/issues/2270)) ([a51aeba](https://github.com/sbb-design-systems/sbb-angular/commit/a51aeba925647bc499660cb0b51e8361ea45e36c))
+* **angular/tooltip:** tooltip should mark for check when visibility changes ([#2268](https://github.com/sbb-design-systems/sbb-angular/issues/2268)) ([1968c0f](https://github.com/sbb-design-systems/sbb-angular/commit/1968c0f984bdafc7b91c53ac1e7bc4558a6eab6f))
+
+
 ### [17.8.2](https://github.com/sbb-design-systems/sbb-angular/compare/17.8.1...17.8.2) (2024-05-07)
 
 
