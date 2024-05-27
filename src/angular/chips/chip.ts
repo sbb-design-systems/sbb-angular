@@ -267,14 +267,11 @@ export class SbbChip implements FocusableOption, OnDestroy {
       return;
     }
 
-    switch (event.keyCode) {
-      case DELETE:
-      case BACKSPACE:
-        // If we are removable, remove the focused chip
-        this.remove();
-        // Always prevent so page navigation does not occur
-        event.preventDefault();
-        break;
+    // Ignore backspace events where the user is holding down the key
+    // so that we don't accidentally remove too many chips.
+    if ((event.keyCode === BACKSPACE && !event.repeat) || event.keyCode === DELETE) {
+      event.preventDefault();
+      this.remove();
     }
   }
 
