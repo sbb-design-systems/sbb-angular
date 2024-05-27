@@ -1,5 +1,5 @@
 <!-- Create the first row separately so we can include a special spacer cell. -->
-@for (row of rows; track row; let rowIndex = $index) {
+@for (row of rows; track _trackRow(row); let rowIndex = $index) {
   <tr role="row">
     @if (weeksInMonth.length) {
       <td role="gridcell" [style.width.%]="100 / (numCols + 1)">
@@ -35,7 +35,7 @@
     cell is interactable, as well as the selection state via `aria-pressed`. See angular/components#23476 for
     background.
     -->
-    @for (item of row; track item; let colIndex = $index) {
+    @for (item of row; track item.id; let colIndex = $index) {
       <td
         role="gridcell"
         class="sbb-calendar-body-cell-container"
