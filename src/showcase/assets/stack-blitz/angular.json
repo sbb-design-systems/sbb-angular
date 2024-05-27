@@ -35,7 +35,7 @@
             ],
             "styles": [
               "node_modules/@sbb-esta/angular/typography.css",
-              "src/styles.scss"
+              "src/styles.css"
             ],
             "stylePreprocessorOptions": {
               "includePaths": ["node_modules/"]
