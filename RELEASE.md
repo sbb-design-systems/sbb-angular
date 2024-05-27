@@ -14,6 +14,8 @@ This document describes how to create a new release of SBB Angular.
 - Check TODOs, @breaking-change annotations and @deprecated annotations.
 - Check angular components commits to be considered for next major release in the [sync issue](https://github.com/sbb-design-systems/sbb-angular/issues/1047).
 - Create new route for previous release (e.g. angular-v13.app.sbb.ch) and deploy corresponding version.
+- Update `src/angular/schematics/migration.json`. There must be a function in index.ts that matches the function referenced via "factory"
+  (e.g. if `"factory": "./ng-update/index#updateToV18"`, there must be a function called `updateToV18` in `index.ts`)
 - Github maintenance workflow
   - Create new maintenance branch (e.g. 14.x).
   - Edit TARGET_RELEASE in `.github/workflows/maintenance-tagging-workflow.yml`.
