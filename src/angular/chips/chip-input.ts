@@ -52,7 +52,6 @@ let nextUniqueId = 0;
   host: {
     class: 'sbb-chip-input sbb-input-element',
     '(keydown)': '_keydown($event)',
-    '(keyup)': '_keyup($event)',
     '(blur)': '_blur()',
     '(focus)': '_focus()',
     '(input)': '_onInput()',
@@ -65,9 +64,6 @@ let nextUniqueId = 0;
   standalone: true,
 })
 export class SbbChipInput implements SbbChipTextControl, OnChanges, OnDestroy, AfterContentInit {
-  /** Used to prevent focus moving to chips while user is holding backspace */
-  private _focusLastChipOnBackspace: boolean;
-
   /** Whether the control is focused. */
   focused: boolean = false;
   _chipList: SbbChipList;
@@ -156,8 +152,6 @@ export class SbbChipInput implements SbbChipTextControl, OnChanges, OnDestroy, A
   }
 
   ngAfterContentInit(): void {
-    this._focusLastChipOnBackspace = this.empty;
-
     // Try to add autocomplete selected value to FormControl.
     // Skip this part, if there are already other observers which might have its own logic.
     if (this.autocompleteTrigger && this.autocompleteTrigger.autocomplete) {
@@ -187,15 +181,13 @@ export class SbbChipInput implements SbbChipTextControl, OnChanges, OnDestroy, A
         this._chipList._allowFocusEscape();
       }
 
-      // To prevent the user from accidentally deleting chips when pressing BACKSPACE continuously,
-      // We focus the last chip on backspace only after the user has released the backspace button,
-      // and the input is empty (see behaviour in _keyup)
-      if (event.keyCode === BACKSPACE && this._focusLastChipOnBackspace) {
-        this._chipList._keyManager.setLastItemActive();
+      if (this.empty && event.keyCode === BACKSPACE) {
+        // Ignore events where the user is holding down backspace
+        // so that we don't accidentally remove too many chips.
+        if (!event.repeat) {
+          this._chipList._keyManager.setLastItemActive();
+        }
         event.preventDefault();
-        return;
-      } else {
-        this._focusLastChipOnBackspace = false;
       }
     }
 
@@ -208,17 +200,6 @@ export class SbbChipInput implements SbbChipTextControl, OnChanges, OnDestroy, A
       Promise.resolve().then(() => this._emitChipEnd(event));
     } else {
       this._emitChipEnd(event);
-    }
-  }
-
-  /**
-   * Pass events to the keyboard manager. Available here for tests.
-   */
-  _keyup(event: KeyboardEvent) {
-    // Allow user to move focus to chips next time he presses backspace
-    if (!this._focusLastChipOnBackspace && event.keyCode === BACKSPACE && this.empty) {
-      this._focusLastChipOnBackspace = true;
-      event.preventDefault();
     }
   }
 
@@ -291,7 +272,6 @@ export class SbbChipInput implements SbbChipTextControl, OnChanges, OnDestroy, A
   clear(): void {
     this.inputElement.value = '';
     this._ngControl?.control?.setValue(null);
-    this._focusLastChipOnBackspace = true;
   }
 
   /** Checks whether a keycode is one of the configured separators. */
