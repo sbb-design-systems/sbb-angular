@@ -1,4 +1,5 @@
 import { Octokit } from 'octokit';
+import { fileURLToPath } from 'url';
 
 const githubToken = process.env['GITHUB_TOKEN'];
 const pullRequestNumber = parseInt(process.env['PR_NUMBER']!, 10);
@@ -74,7 +75,7 @@ class MaintenanceIssueUpdater {
   }
 }
 
-if (module === require.main) {
+if (process.argv[1] === fileURLToPath(import.meta.url)) {
   const maintenanceIssueUpdater = new MaintenanceIssueUpdater(
     new Octokit({
       auth: githubToken,
