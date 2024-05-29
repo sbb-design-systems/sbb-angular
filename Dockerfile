@@ -15,7 +15,7 @@ RUN echo '{"variant":"global","environmentVariables":["JM_API_KEY","LEGACY_VERSI
 RUN chmod a+w /usr/share/nginx/html/index.html
 
 # Install ngssc binary
-ADD https://github.com/kyubisation/angular-server-side-configuration/releases/download/v18.0.0/ngssc_64bit /usr/sbin/ngssc
+ADD https://github.com/kyubisation/angular-server-side-configuration/releases/download/v18.0.1/ngssc_64bit /usr/sbin/ngssc
 RUN chmod +x /usr/sbin/ngssc
 
 # Copy insert key script and assign execute permission

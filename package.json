@@ -118,7 +118,7 @@
     "@types/send": "0.17.4",
     "@types/shelljs": "^0.8.15",
     "@types/yargs": "17.0.13",
-    "angular-server-side-configuration": "18.0.0",
+    "angular-server-side-configuration": "18.0.1",
     "angular-t9n": "18.0.0",
     "browser-sync": "3.0.2",
     "dgeni": "^0.4.14",
