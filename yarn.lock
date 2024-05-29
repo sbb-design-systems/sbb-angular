@@ -6457,10 +6457,10 @@ amdefine@>=0.0.4:
   resolved "https://registry.yarnpkg.com/amdefine/-/amdefine-1.0.1.tgz#4a5282ac164729e93619bcfd3ad151f817ce91f5"
   integrity sha512-S2Hw0TtNkMJhIabBwIojKL9YHO5T0n5eNqWJ7Lrlel/zDbftQpxpapi8tZs3X1HWa+u+QeydGmzzNU0m09+Rcg==
 
-angular-server-side-configuration@18.0.0:
-  version "18.0.0"
-  resolved "https://registry.yarnpkg.com/angular-server-side-configuration/-/angular-server-side-configuration-18.0.0.tgz#2b794ac35eba5945c7161ee9305bb705aec53f3c"
-  integrity sha512-u+7Tb/FxGArwgquQQoirUrqQ1GQNQWlN4rxHY/d+kpyGWtJqh5Lry2/UskhfkryUHND2zE+QxnqghABV6KW3yQ==
+angular-server-side-configuration@18.0.1:
+  version "18.0.1"
+  resolved "https://registry.yarnpkg.com/angular-server-side-configuration/-/angular-server-side-configuration-18.0.1.tgz#e609556c170b6c9fa59c2a48c113dfed1720c63c"
+  integrity sha512-YtzELQnawmQpoCHKZw/wIich5JGXScCkNrGu7b7bL6aWApMIWIP32kE7a3u/GCIGhhvmhLyEzGZJwyOXtWeR+Q==
   dependencies:
     glob "^10.0.0"
     tslib "^2.3.0"
