@@ -12,7 +12,7 @@
         (click)="switchLevel(level)"
         [ngClass]="{
           'map-control-button-selected': level === selectedLevel,
-          'map-control-button': level !== selectedLevel
+          'map-control-button': level !== selectedLevel,
         }"
         [attr.aria-label]="getLevelLabel(level, selectedLevel)"
       >

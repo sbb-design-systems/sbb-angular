@@ -9,7 +9,7 @@
       #toggleOptionContentWrapper
       [@translateHeight]="{
         value: _heightAnimationState,
-        params: { currentHeight: _currentOptionContentWrapperHeight }
+        params: { currentHeight: _currentOptionContentWrapperHeight },
       }"
       (@translateHeight.done)="_onHeightAnimationDone($event)"
     >
