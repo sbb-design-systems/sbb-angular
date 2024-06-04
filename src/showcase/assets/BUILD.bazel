@@ -55,7 +55,7 @@ genrule(
           "$(execpath stack-blitz/src/app/sbb.module.ts)" \
           "@sbb-esta/angular" \
           %s
-    """ % " ".join([ep for ep in ANGULAR_ENTRYPOINTS if ep != "core" and ep != "i18n" and ep != "oauth"]),
+    """ % " ".join([ep for ep in ANGULAR_ENTRYPOINTS if ep != "core" and ep != "i18n"]),
     output_to_bindir = True,
     tools = ["//tools/stack-blitz-module-template:bazel-bin"],
 )
