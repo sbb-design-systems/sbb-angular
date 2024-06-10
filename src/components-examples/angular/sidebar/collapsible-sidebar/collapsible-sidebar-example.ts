@@ -16,7 +16,7 @@ import { startWith, takeUntil } from 'rxjs/operators';
 
 /**
  * @title Collapsible Sidebar
- * @order 1
+ * @order 40
  */
 @Component({
   selector: 'sbb-collapsible-sidebar-example',
