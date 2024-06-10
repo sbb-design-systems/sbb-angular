@@ -416,6 +416,9 @@
 
   // Sidebar
   --sbb-sidebar-mobile-menu-bar-height: calc(2 * var(--sbb-icon-size-default));
+  --sbb-sidebar-collapsible-menu-bar-height: calc(
+    2 * var(--sbb-icon-size-default) + #{sbb.pxToRem(8)} * var(--sbb-scaling-factor)
+  );
   --sbb-icon-sidebar-item-dimension: calc(2 * var(--sbb-icon-size-default));
   --sbb-sidebar-background-color: var(--sbb-color-background);
   --sbb-sidebar-background-color-hover: var(--sbb-menu-item-background-color-hover);

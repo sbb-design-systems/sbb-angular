@@ -1,13 +1,16 @@
 <div class="sbb-sidebar-inner-container sbb-scrollbar sbb-scrollbar-opaque" cdkScrollable>
-  <div class="sbb-sidebar-mobile-menu-bar-close-wrapper">
-    <button
-      type="button"
-      class="sbb-button-reset-frameless sbb-sidebar-mobile-menu-bar-close sbb-icon-scaled"
-      (click)="toggle()"
-      [attr.aria-label]="_labelCloseSidebar"
-    >
-      <sbb-icon svgIcon="cross-small"></sbb-icon>
-    </button>
-  </div>
+  @if (mode === 'over') {
+    <div class="sbb-sidebar-menu-bar-wrapper">
+      <span class="sbb-sidebar-menu-bar-title">{{ collapsibleTitle }}</span>
+      <button
+        type="button"
+        class="sbb-button-reset-frameless sbb-sidebar-menu-bar-close sbb-icon-scaled"
+        (click)="toggle()"
+        [attr.aria-label]="_labelCloseSidebar"
+      >
+        <sbb-icon svgIcon="cross-small"></sbb-icon>
+      </button>
+    </div>
+  }
   <ng-content select="sbb-expansion-panel, fieldset"></ng-content>
 </div>

@@ -1,26 +1,28 @@
-<div class="sbb-sidebar-mobile-menu-bar">
-  @if (_start) {
-    <button
-      type="button"
-      class="sbb-button-reset-frameless sbb-sidebar-mobile-menu-bar-trigger sbb-icon-scaled"
-      (click)="toggleSidebar('start')"
-      [attr.aria-label]="_labelOpenSidebar"
-    >
-      <sbb-icon [svgIcon]="(_start._svgIcon | async)!"></sbb-icon>
-    </button>
-  }
-  <span></span>
-  @if (_end) {
-    <button
-      type="button"
-      class="sbb-button-reset-frameless sbb-sidebar-mobile-menu-bar-trigger sbb-icon-scaled"
-      (click)="toggleSidebar('end')"
-      [attr.aria-label]="_labelOpenSidebar"
-    >
-      <sbb-icon [svgIcon]="(_end._svgIcon | async)!"></sbb-icon>
-    </button>
-  }
-</div>
+@if (_mobile) {
+  <div class="sbb-sidebar-mobile-menu-bar">
+    @if (_start) {
+      <button
+        type="button"
+        class="sbb-button-reset-frameless sbb-sidebar-mobile-menu-bar-trigger sbb-icon-scaled"
+        (click)="toggleSidebar('start')"
+        [attr.aria-label]="_labelOpenSidebar"
+      >
+        <sbb-icon [svgIcon]="(_start._svgIcon | async)!"></sbb-icon>
+      </button>
+    }
+    <span></span>
+    @if (_end) {
+      <button
+        type="button"
+        class="sbb-button-reset-frameless sbb-sidebar-mobile-menu-bar-trigger sbb-icon-scaled"
+        (click)="toggleSidebar('end')"
+        [attr.aria-label]="_labelOpenSidebar"
+      >
+        <sbb-icon [svgIcon]="(_end._svgIcon | async)!"></sbb-icon>
+      </button>
+    }
+  </div>
+}
 
 @if (hasBackdrop) {
   <div
