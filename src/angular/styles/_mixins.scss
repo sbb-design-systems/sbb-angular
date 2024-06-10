@@ -162,3 +162,16 @@
   -webkit-user-select: $value;
   user-select: $value;
 }
+
+@mixin expansionPanelBorderBottom() {
+  content: '';
+  display: block;
+  position: absolute;
+  height: 0;
+  bottom: 0;
+  width: calc(
+    100% - var(--sbb-expansion-panel-padding-horizontal) * 2 + var(--sbb-border-width-thin) * 2
+  );
+  left: calc(var(--sbb-expansion-panel-padding-horizontal) - var(--sbb-border-width-thin));
+  border-bottom: var(--sbb-border-width-thin) solid var(--sbb-expansion-panel-border-color-open);
+}

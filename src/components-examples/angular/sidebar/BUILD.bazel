@@ -23,6 +23,7 @@ ng_module(
         "//src/angular/core/testing",
         "//src/angular/form-field",
         "//src/angular/icon",
+        "//src/angular/input",
         "//src/angular/select",
         "//src/angular/sidebar",
         "@npm//@angular/cdk",
