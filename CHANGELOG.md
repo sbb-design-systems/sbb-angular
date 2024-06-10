@@ -2,6 +2,19 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [18.1.0](https://github.com/sbb-design-systems/sbb-angular/compare/18.0.1...18.1.0) (2024-06-10)
+
+
+### Features
+
+* **angular/sidebar:** make sidebar collapsible ([#2265](https://github.com/sbb-design-systems/sbb-angular/issues/2265)) ([56dd175](https://github.com/sbb-design-systems/sbb-angular/commit/56dd175d4bdeaf5c2658bed15f872d2e6bcd4f3b)), closes [#2263](https://github.com/sbb-design-systems/sbb-angular/issues/2263)
+
+
+### Documentation
+
+* remove Oauth documentation part ([#2286](https://github.com/sbb-design-systems/sbb-angular/issues/2286)) ([b05b268](https://github.com/sbb-design-systems/sbb-angular/commit/b05b268818a62744a10f45d4fa103f812cc5ec17))
+* update links to digital.sbb.ch ([#2284](https://github.com/sbb-design-systems/sbb-angular/issues/2284)) ([29a80ce](https://github.com/sbb-design-systems/sbb-angular/commit/29a80cebb31885a2570fb54733f28d7ff8fd1e57))
+
 ## [18.0.1](https://github.com/sbb-design-systems/sbb-angular/compare/15.0.0...18.0.1) (2024-05-27)
 
 
