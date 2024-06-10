@@ -32,7 +32,6 @@ export const PACKAGES: { [key: string]: ShowcaseMetaPackage } = {
           { label: 'i18n', link: './introduction/i18n' },
           { label: 'Typography', link: './introduction/typography' },
           { label: 'Icon Overview', link: './icon-overview' },
-          { label: 'Oauth', link: './components/oauth' },
         ],
       },
       {
