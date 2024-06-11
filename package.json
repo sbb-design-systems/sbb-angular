@@ -147,7 +147,7 @@
     "npm-run-all2": "6.2.0",
     "octokit": "4.0.2",
     "patch-package": "^8.0.0",
-    "prettier": "3.3.1",
+    "prettier": "3.3.2",
     "protractor": "7.0.0",
     "renovate": "37.384.0",
     "requirejs": "2.3.6",
