@@ -13769,9 +13769,9 @@ potpack@^2.0.0:
   integrity sha512-Q+/tYsFU9r7xoOJ+y/ZTtdVQwTWfzjbiXBDMM/JKUux3+QPP02iUuIoeBQ+Ot6oEDlC+/PGjB/5A3K7KKb7hcw==
 
 preact-render-to-string@^6.2.1:
-  version "6.5.4"
-  resolved "https://registry.yarnpkg.com/preact-render-to-string/-/preact-render-to-string-6.5.4.tgz#4c5891feef160b2b5e5c93bf6f77fe7726e7cae6"
-  integrity sha512-06s0E3cEMLoXQznmtJ/K/xbFs3uwo52Qpgf8lzbe+VbF/XzwJ0LxZGtVLZekhaEeC39+W1MEf05F4lUikzPnxA==
+  version "6.5.5"
+  resolved "https://registry.yarnpkg.com/preact-render-to-string/-/preact-render-to-string-6.5.5.tgz#831dc3b343320d2d38c23d9cea0d7530d262f948"
+  integrity sha512-KiMFTKNTmT/ccE79BURR/r6XRc2I2TCTZ0MpeWqHW2XnllbeghXvwGsdAfF/MzMilUcTfODtSmMxgoRFL9TM5g==
 
 preact@^10.17.1:
   version "10.22.0"
