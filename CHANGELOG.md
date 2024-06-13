@@ -2,6 +2,14 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [18.1.1](https://github.com/sbb-design-systems/sbb-angular/compare/18.1.0...18.1.1) (2024-06-13)
+
+
+### Bug Fixes
+
+* **build**: update angular to v18.0.3 ([#2296](https://github.com/sbb-design-systems/sbb-angular/pull/2296))
+* **deps:** update dependency tslib to v2.6.3 (18.x) ([#2288](https://github.com/sbb-design-systems/sbb-angular/issues/2288)) ([0969282](https://github.com/sbb-design-systems/sbb-angular/commit/0969282bbabf3a59e66aed5ddb55e7962e5ba153))
+
 ## [18.1.0](https://github.com/sbb-design-systems/sbb-angular/compare/18.0.1...18.1.0) (2024-06-10)
 
 
