@@ -1064,7 +1064,8 @@ describe('SbbDialog', () => {
         });
 
         viewContainerFixture.detectChanges();
-        flushMicrotasks();
+        flush();
+        viewContainerFixture.detectChanges();
 
         const backdrop = overlayContainerElement.querySelector(
           '.cdk-overlay-backdrop',
