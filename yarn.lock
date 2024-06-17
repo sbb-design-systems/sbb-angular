@@ -5729,10 +5729,10 @@
   dependencies:
     undici-types "~5.26.4"
 
-"@types/node@18.19.35":
-  version "18.19.35"
-  resolved "https://registry.yarnpkg.com/@types/node/-/node-18.19.35.tgz#d7a5e97455327a08152ed271df0268d9384e44e9"
-  integrity sha512-n+WiqynRake4DDX2tPh4NTxu4dA7BgmsaGKMRc/htuPZBi7w9FkVgSOWU/+92vVEYMz3QOWUr2AwHev9X2XiTg==
+"@types/node@18.19.36":
+  version "18.19.36"
+  resolved "https://registry.yarnpkg.com/@types/node/-/node-18.19.36.tgz#c9861e84727e07ecf79a5ff6d0e14f91bab2b478"
+  integrity sha512-tX1BNmYSWEvViftB26VLNxT6mEr37M7+ldUtq7rlKnv4/2fKYsJIOmqJAjT6h1DNuwQjIKgw3VJ/Dtw3yiTIQw==
   dependencies:
     undici-types "~5.26.4"
 
