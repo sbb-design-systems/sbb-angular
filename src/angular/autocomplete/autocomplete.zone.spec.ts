@@ -12,14 +12,15 @@ import {
 import { TestBed, waitForAsync } from '@angular/core/testing';
 import { FormControl, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
-import { SbbAutocomplete } from '@sbb-esta/angular/autocomplete/autocomplete';
-import { SbbAutocompleteTrigger } from '@sbb-esta/angular/autocomplete/autocomplete-trigger';
-import { SbbAutocompleteModule } from '@sbb-esta/angular/autocomplete/autocomplete.module';
 import { SbbOption, SbbOptionModule } from '@sbb-esta/angular/core';
 import { dispatchFakeEvent } from '@sbb-esta/angular/core/testing';
 import { SbbFormField } from '@sbb-esta/angular/form-field';
 import { SbbInputModule } from '@sbb-esta/angular/input';
 import { Subscription } from 'rxjs';
+
+import { SbbAutocomplete } from './autocomplete';
+import { SbbAutocompleteTrigger } from './autocomplete-trigger';
+import { SbbAutocompleteModule } from './autocomplete.module';
 
 const SIMPLE_AUTOCOMPLETE_TEMPLATE = `
   <sbb-form-field [style.width.px]="width">
