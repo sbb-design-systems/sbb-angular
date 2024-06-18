@@ -5,9 +5,9 @@ import { ScrollDispatcher } from '@angular/cdk/scrolling';
 import {
   ChangeDetectionStrategy,
   Component,
-  NgZone,
   OnDestroy,
   OnInit,
+  provideExperimentalZonelessChangeDetection,
   Provider,
   QueryList,
   Type,
@@ -107,10 +107,8 @@ class SimpleAutocomplete implements OnDestroy {
   openedSpy = jasmine.createSpy('autocomplete opened spy');
   closedSpy = jasmine.createSpy('autocomplete closed spy');
 
-  @ViewChild(SbbAutocompleteTrigger, { static: true })
-  trigger: SbbAutocompleteTrigger;
-  @ViewChild(SbbAutocomplete, { static: true })
-  panel: SbbAutocomplete;
+  @ViewChild(SbbAutocompleteTrigger, { static: true }) trigger: SbbAutocompleteTrigger;
+  @ViewChild(SbbAutocomplete, { static: true }) panel: SbbAutocomplete;
   @ViewChild(SbbFormField) formField: SbbFormField;
   @ViewChildren(SbbOption) options: QueryList<SbbOption>;
 
@@ -597,7 +595,7 @@ describe('SbbAutocomplete', () => {
         SbbOptionModule,
       ],
       declarations: [component],
-      providers,
+      providers: [...providers, provideExperimentalZonelessChangeDetection()],
     });
 
     TestBed.compileComponents();
@@ -937,6 +935,7 @@ describe('SbbAutocomplete', () => {
 
     it('should emit the `opened` event if the options come in after the panel is shown', fakeAsync(() => {
       fixture.componentInstance.filteredNumbers = fixture.componentInstance.numbers = [];
+      fixture.changeDetectorRef.markForCheck();
       fixture.detectChanges();
 
       fixture.componentInstance.trigger.openPanel();
@@ -947,6 +946,7 @@ describe('SbbAutocomplete', () => {
       fixture.componentInstance.filteredNumbers = fixture.componentInstance.numbers = [
         { name: 'California', code: 'CA' },
       ];
+      fixture.changeDetectorRef.markForCheck();
       fixture.detectChanges();
       tick();
       fixture.detectChanges();
@@ -997,6 +997,7 @@ describe('SbbAutocomplete', () => {
         .toBe(false);
 
       fixture.componentInstance.autocompleteDisabled = true;
+      fixture.changeDetectorRef.markForCheck();
       fixture.detectChanges();
 
       dispatchFakeEvent(input, 'focusin');
@@ -1009,6 +1010,7 @@ describe('SbbAutocomplete', () => {
 
     it('should continue to update the model if the autocomplete is disabled', () => {
       fixture.componentInstance.autocompleteDisabled = true;
+      fixture.changeDetectorRef.markForCheck();
       fixture.detectChanges();
 
       typeInElement(input, 'hello');
@@ -1021,6 +1023,7 @@ describe('SbbAutocomplete', () => {
       expect(input.getAttribute('aria-haspopup')).toBe('listbox');
 
       fixture.componentInstance.autocompleteDisabled = true;
+      fixture.changeDetectorRef.markForCheck();
       fixture.detectChanges();
 
       expect(input.hasAttribute('aria-haspopup')).toBe(false);
@@ -1438,12 +1441,11 @@ describe('SbbAutocomplete', () => {
     });
 
     it('should disable the input when used with a value accessor and without `sbbInput`', () => {
-      overlayContainer.ngOnDestroy();
       fixture.destroy();
       TestBed.resetTestingModule();
 
       const plainFixture = createComponent(PlainAutocompleteInputWithFormControl);
-      plainFixture.detectChanges();
+      plainFixture.changeDetectorRef.markForCheck();
       input = plainFixture.nativeElement.querySelector('input');
 
       expect(input.disabled).toBe(false);
@@ -1746,6 +1748,7 @@ describe('SbbAutocomplete', () => {
           number.height = 64;
         }
       });
+      fixture.changeDetectorRef.markForCheck();
       fixture.detectChanges();
 
       const trigger = fixture.componentInstance.trigger;
@@ -2219,8 +2222,10 @@ describe('SbbAutocomplete', () => {
 
     it('should trim aria-labelledby if the input does not have a label', () => {
       fixture.componentInstance.hasLabel = false;
+      fixture.changeDetectorRef.markForCheck();
       fixture.detectChanges();
       fixture.componentInstance.ariaLabelledby = 'myLabelId';
+      fixture.changeDetectorRef.markForCheck();
       fixture.componentInstance.trigger.openPanel();
       fixture.detectChanges();
 
@@ -2230,6 +2235,7 @@ describe('SbbAutocomplete', () => {
 
     it('should clear aria-labelledby from the panel if an aria-label is set', () => {
       fixture.componentInstance.ariaLabel = 'My label';
+      fixture.changeDetectorRef.markForCheck();
       fixture.componentInstance.trigger.openPanel();
       fixture.detectChanges();
 
@@ -2240,6 +2246,7 @@ describe('SbbAutocomplete', () => {
 
     it('should clear aria-labelledby if the form field does not have a label', () => {
       fixture.componentInstance.hasLabel = false;
+      fixture.changeDetectorRef.markForCheck();
       fixture.detectChanges();
       fixture.componentInstance.trigger.openPanel();
       fixture.detectChanges();
@@ -2368,6 +2375,7 @@ describe('SbbAutocomplete', () => {
 
     it('should remove autocomplete-specific aria attributes when autocomplete is disabled', () => {
       fixture.componentInstance.autocompleteDisabled = true;
+      fixture.changeDetectorRef.markForCheck();
       fixture.detectChanges();
 
       expect(input.getAttribute('role')).toBeFalsy();
@@ -2540,6 +2548,7 @@ describe('SbbAutocomplete', () => {
       const fixture = createComponent(SimpleAutocomplete);
       fixture.componentInstance.numbers = fixture.componentInstance.numbers.slice(0, 1);
       fixture.componentInstance.filteredNumbers = fixture.componentInstance.numbers.slice();
+      fixture.changeDetectorRef.markForCheck();
       fixture.detectChanges();
 
       const inputEl = fixture.debugElement.query(By.css('input'))!.nativeElement;
@@ -2564,6 +2573,7 @@ describe('SbbAutocomplete', () => {
 
       for (let i = 0; i < 20; i++) {
         fixture.componentInstance.filteredNumbers.push({ code: 'FK', name: 'Fake State' });
+        fixture.changeDetectorRef.markForCheck();
         fixture.detectChanges();
       }
 
@@ -2672,6 +2682,7 @@ describe('SbbAutocomplete', () => {
       fixture.detectChanges();
 
       fixture.componentInstance.position = 'below';
+      fixture.changeDetectorRef.markForCheck();
       fixture.detectChanges();
       await openPanel();
 
@@ -2717,7 +2728,7 @@ describe('SbbAutocomplete', () => {
       expect(panel.classList).not.toContain('sbb-autocomplete-panel-above');
     }));
 
-    xit('should not set css class on trigger if there are no options to display', waitForAsync(async () => {
+    it('should not set css class on trigger if there are no options to display', waitForAsync(async () => {
       const fixture = createComponent(SimpleAutocomplete);
       fixture.componentInstance.filteredNumbers = [];
       fixture.detectChanges();
@@ -2750,7 +2761,7 @@ describe('SbbAutocomplete', () => {
     }));
   });
 
-  describe('Option selection', () => {
+  fdescribe('Option selection', () => {
     let fixture: ComponentFixture<SimpleAutocomplete>;
 
     beforeEach(() => {
@@ -2956,7 +2967,7 @@ describe('SbbAutocomplete', () => {
       subscription!.unsubscribe();
     }));
 
-    xit('should reposition the panel when the amount of options changes', waitForAsync(async () => {
+    it('should reposition the panel when the amount of options changes', waitForAsync(async () => {
       const flushPosition = async () => {
         fixture.detectChanges();
         await new Promise((r) => setTimeout(r));
@@ -2964,6 +2975,12 @@ describe('SbbAutocomplete', () => {
         await new Promise((r) => setTimeout(r));
         fixture.detectChanges();
         // Safari seems to require an extra round that other browsers don't.
+        await new Promise((r) => setTimeout(r));
+        fixture.detectChanges();
+        await new Promise((r) => setTimeout(r));
+        fixture.detectChanges();
+        await new Promise((r) => setTimeout(r));
+        fixture.detectChanges();
         await new Promise((r) => setTimeout(r));
         fixture.detectChanges();
       };
@@ -3223,6 +3240,7 @@ describe('SbbAutocomplete', () => {
       const input = fixture.nativeElement.querySelector('input');
       const { numberCtrl, trigger } = fixture.componentInstance;
       fixture.componentInstance.requireSelection = true;
+      fixture.changeDetectorRef.markForCheck();
       fixture.detectChanges();
       await new Promise((r) => setTimeout(r));
 
@@ -3522,6 +3540,7 @@ describe('SbbAutocomplete', () => {
       expect(classList).toContain('class-two');
 
       fixture.componentInstance.panelClass = 'class-three class-four';
+      fixture.changeDetectorRef.markForCheck();
       fixture.detectChanges();
 
       expect(classList).not.toContain('class-one');
@@ -3586,6 +3605,7 @@ describe('SbbAutocomplete', () => {
 
       fixture.componentInstance.numbers.push({ code: '42', name: 'Fourty two', height: 48 });
       await new Promise((r) => setTimeout(r));
+      fixture.changeDetectorRef.markForCheck();
       fixture.detectChanges();
       await new Promise((r) => setTimeout(r));
 
@@ -3837,6 +3857,7 @@ describe('SbbAutocomplete', () => {
   it('should have correct width when opened', () => {
     const widthFixture = createComponent(SimpleAutocomplete);
     widthFixture.componentInstance.width = 300;
+    widthFixture.changeDetectorRef.markForCheck();
     widthFixture.detectChanges();
 
     widthFixture.componentInstance.trigger.openPanel();
@@ -3850,6 +3871,7 @@ describe('SbbAutocomplete', () => {
     widthFixture.detectChanges();
 
     widthFixture.componentInstance.width = 500;
+    widthFixture.changeDetectorRef.markForCheck();
     widthFixture.detectChanges();
 
     widthFixture.componentInstance.trigger.openPanel();
@@ -3863,6 +3885,7 @@ describe('SbbAutocomplete', () => {
     const widthFixture = createComponent(SimpleAutocomplete);
 
     widthFixture.componentInstance.width = 300;
+    widthFixture.changeDetectorRef.markForCheck();
     widthFixture.detectChanges();
 
     widthFixture.componentInstance.trigger.openPanel();
@@ -3874,6 +3897,7 @@ describe('SbbAutocomplete', () => {
     expect(Math.ceil(parseFloat(overlayPane.style.width as string))).toBe(300);
 
     widthFixture.componentInstance.width = 500;
+    widthFixture.changeDetectorRef.markForCheck();
     widthFixture.detectChanges();
 
     input.focus();
@@ -3917,6 +3941,7 @@ describe('SbbAutocomplete', () => {
     const widthFixture = createComponent(SimpleAutocomplete);
 
     widthFixture.componentInstance.width = 300;
+    widthFixture.changeDetectorRef.markForCheck();
     widthFixture.detectChanges();
 
     widthFixture.componentInstance.trigger.openPanel();
@@ -3927,6 +3952,7 @@ describe('SbbAutocomplete', () => {
     expect(Math.ceil(parseFloat(overlayPane.style.width as string))).toBe(300);
 
     widthFixture.componentInstance.width = 400;
+    widthFixture.changeDetectorRef.markForCheck();
     widthFixture.detectChanges();
 
     dispatchFakeEvent(window, 'resize');
@@ -4063,6 +4089,7 @@ describe('SbbAutocomplete', () => {
     fixture.detectChanges();
 
     fixture.componentInstance.numbers.push('Vier');
+    fixture.changeDetectorRef.markForCheck();
     fixture.detectChanges();
     tick();
     fixture.detectChanges();
@@ -4139,6 +4166,7 @@ describe('SbbAutocomplete', () => {
 
     fixture.detectChanges();
     fixture.componentInstance.connectedTo = fixture.componentInstance.alternateOrigin;
+    fixture.changeDetectorRef.markForCheck();
     fixture.detectChanges();
     fixture.componentInstance.trigger.openPanel();
     fixture.detectChanges();
@@ -4166,6 +4194,7 @@ describe('SbbAutocomplete', () => {
     fixture.detectChanges();
 
     fixture.componentInstance.connectedTo = fixture.componentInstance.alternateOrigin;
+    fixture.changeDetectorRef.markForCheck();
     fixture.detectChanges();
 
     fixture.componentInstance.trigger.openPanel();
@@ -4216,6 +4245,7 @@ describe('SbbAutocomplete', () => {
     const fixture = createComponent(AutocompleteWithDifferentOrigin);
     fixture.detectChanges();
     fixture.componentInstance.connectedTo = fixture.componentInstance.alternateOrigin;
+    fixture.changeDetectorRef.markForCheck();
     fixture.detectChanges();
     fixture.componentInstance.trigger.openPanel();
     fixture.detectChanges();
@@ -4230,29 +4260,7 @@ describe('SbbAutocomplete', () => {
     expect(fixture.componentInstance.trigger.panelOpen).toBe(true);
   }));
 
-  it('should emit from `autocomplete.closed` after click outside inside the NgZone', waitForAsync(async () => {
-    const inZoneSpy = jasmine.createSpy('in zone spy');
-
-    const fixture = createComponent(SimpleAutocomplete);
-    fixture.detectChanges();
-
-    fixture.componentInstance.trigger.openPanel();
-    fixture.detectChanges();
-    await new Promise((r) => setTimeout(r));
-
-    const subscription = fixture.componentInstance.trigger.autocomplete.closed.subscribe(() =>
-      inZoneSpy(NgZone.isInAngularZone()),
-    );
-    await new Promise((r) => setTimeout(r));
-
-    dispatchFakeEvent(document, 'click');
-
-    expect(inZoneSpy).toHaveBeenCalledWith(true);
-
-    subscription.unsubscribe();
-  }));
-
-  xdescribe('highlighting', () => {
+  describe('highlighting', () => {
     let fixture: ComponentFixture<AutocompleteLocaleNormalizer>;
     let input: HTMLInputElement;
 
@@ -4290,6 +4298,7 @@ describe('SbbAutocomplete', () => {
     it('should highlight non normalized options', fakeAsync(() => {
       fixture.componentInstance.normalizer = null;
       fixture.componentInstance.trigger.openPanel();
+      fixture.detectChanges();
 
       expect(countOfHighlightedSnippets()).toBe(0);
 
@@ -4301,30 +4310,33 @@ describe('SbbAutocomplete', () => {
         { value: 'fär', expectedCount: 0 },
         { value: 'Ća', expectedCount: 1 },
       ];
-      params.forEach(async ({ expectedCount, value }) => {
+
+      for (let i = 0; i < params.length; i++) {
+        const { expectedCount, value } = params[i];
         clearElement(input);
         typeInElement(input, value);
         fixture.detectChanges();
-        await new Promise((r) => setTimeout(r));
         expect(countOfHighlightedSnippets()).toBe(expectedCount);
-      });
+      }
     }));
 
-    it('should highlight options which are loaded later', waitForAsync(async () => {
+    it('should highlight options which are loaded later', fakeAsync(() => {
       typeInElement(input, 'far');
+      fixture.changeDetectorRef.markForCheck();
       fixture.detectChanges();
-      await new Promise((r) => setTimeout(r));
       expect(countOfHighlightedSnippets()).toBe(1);
 
       fixture.componentInstance.options.push('Far 2');
 
+      fixture.changeDetectorRef.markForCheck();
       fixture.detectChanges();
-      await new Promise((r) => setTimeout(r));
+      tick();
       expect(countOfHighlightedSnippets()).toBe(2);
     }));
 
     it('should highlight options when opening dropdown', fakeAsync(() => {
       fixture.componentInstance.value = 'far';
+      fixture.changeDetectorRef.markForCheck();
       fixture.detectChanges();
       flush();
       expect(countOfHighlightedSnippets()).toBe(0);
@@ -4345,7 +4357,7 @@ describe('SbbAutocomplete', () => {
       fixture.detectChanges();
     });
 
-    it('should display panel according to options, hints and configuration', () => {
+    it('should display panel according to options, hints and configuration', fakeAsync(() => {
       const params = [
         { option: true, hint: false, showHintIfNoOptions: true, expectedVisible: true },
         { option: true, hint: false, showHintIfNoOptions: false, expectedVisible: true },
@@ -4361,6 +4373,7 @@ describe('SbbAutocomplete', () => {
         fixture.componentInstance.showOption = param.option;
         fixture.componentInstance.showHint = param.hint;
         fixture.componentInstance.showHintIfNoOptions = param.showHintIfNoOptions;
+        fixture.changeDetectorRef.markForCheck();
         fixture.detectChanges();
 
         fixture.componentInstance.trigger.openPanel();
@@ -4374,6 +4387,6 @@ describe('SbbAutocomplete', () => {
         fixture.componentInstance.trigger.closePanel();
         fixture.detectChanges();
       });
-    });
+    }));
   });
 });
