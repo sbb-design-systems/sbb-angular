@@ -229,9 +229,9 @@
     "@angular/core" "^13.0.0 || ^14.0.0-0"
     reflect-metadata "^0.1.13"
 
-"@angular/build-tooling@https://github.com/angular/dev-infra-private-build-tooling-builds.git#75159d4e1ea85f90e740d03721225f64075805d6":
-  version "0.0.0-95a2f233bdafceff30842a15f3e368574d54adfa"
-  resolved "https://github.com/angular/dev-infra-private-build-tooling-builds.git#75159d4e1ea85f90e740d03721225f64075805d6"
+"@angular/build-tooling@https://github.com/angular/dev-infra-private-build-tooling-builds.git#262dbe37d2da168deee0fa25901da397c92a6e88":
+  version "0.0.0-f9a55a8d166809baa07af8b6bb51438a06ea025c"
+  resolved "https://github.com/angular/dev-infra-private-build-tooling-builds.git#262dbe37d2da168deee0fa25901da397c92a6e88"
   dependencies:
     "@angular/benchpress" "0.3.0"
     "@angular/build" "18.1.0-next.1"
@@ -262,7 +262,7 @@
     marked-mangle "^1.1.4"
     preact "^10.17.1"
     preact-render-to-string "^6.2.1"
-    prettier "3.3.1"
+    prettier "3.3.2"
     protractor "^7.0.0"
     selenium-webdriver "^4.18.1"
     send "^0.18.0"
@@ -439,9 +439,9 @@
     fast-glob "3.3.2"
     yargs "^17.2.1"
 
-"@angular/ng-dev@https://github.com/angular/dev-infra-private-ng-dev-builds.git#4f4dab3f44044a49d3feb8e19b191964eb3991ec":
-  version "0.0.0-95a2f233bdafceff30842a15f3e368574d54adfa"
-  resolved "https://github.com/angular/dev-infra-private-ng-dev-builds.git#4f4dab3f44044a49d3feb8e19b191964eb3991ec"
+"@angular/ng-dev@https://github.com/angular/dev-infra-private-ng-dev-builds.git#c76591b8d2302378e51fc29619c87c1e947fb9b0":
+  version "0.0.0-f9a55a8d166809baa07af8b6bb51438a06ea025c"
+  resolved "https://github.com/angular/dev-infra-private-ng-dev-builds.git#c76591b8d2302378e51fc29619c87c1e947fb9b0"
   dependencies:
     "@octokit/rest" "20.1.1"
     "@types/semver" "^7.3.6"
@@ -13791,11 +13791,6 @@ prettier@3.2.5:
   version "3.2.5"
   resolved "https://registry.yarnpkg.com/prettier/-/prettier-3.2.5.tgz#e52bc3090586e824964a8813b09aba6233b28368"
   integrity sha512-3/GWa9aOC0YeD7LUfvOG2NiDyhOWRvt1k+rcKhOuYnMY24iiCphgneUfJDyFXd6rZCAnuLBv6UeAULtrhT/F4A==
-
-prettier@3.3.1:
-  version "3.3.1"
-  resolved "https://registry.yarnpkg.com/prettier/-/prettier-3.3.1.tgz#e68935518dd90bb7ec4821ba970e68f8de16e1ac"
-  integrity sha512-7CAwy5dRsxs8PHXT3twixW9/OEll8MLE0VRPCJyl7CkS6VHGPSlsVaWTiASPTyGyYRyApxlaWTzwUxVNrhcwDg==
 
 prettier@3.3.2:
   version "3.3.2"
