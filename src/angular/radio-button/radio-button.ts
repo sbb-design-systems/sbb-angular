@@ -221,6 +221,7 @@ export abstract class _SbbRadioGroupBase<TRadio extends _SbbRadioButtonBase>
   _touch() {
     if (this._onTouched) {
       this._onTouched();
+      this._changeDetector.markForCheck();
     }
   }
 
