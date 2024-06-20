@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [18.1.2](https://github.com/sbb-design-systems/sbb-angular/compare/18.1.1...18.1.2) (2024-06-20)
+
+
+### Documentation
+
+* fix stackblitz and update assets ([#2297](https://github.com/sbb-design-systems/sbb-angular/issues/2297)) ([463406d](https://github.com/sbb-design-systems/sbb-angular/commit/463406ddf51345997ad6b8fc3028b9a9f6d6410f))
+
 ### [18.1.1](https://github.com/sbb-design-systems/sbb-angular/compare/18.1.0...18.1.1) (2024-06-13)
 
 
