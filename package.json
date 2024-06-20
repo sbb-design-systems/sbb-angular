@@ -32,7 +32,7 @@
     "format:tslint": "yarn -s tslint --fix",
     "format:bazel": "yarn -s bazel:buildifier --lint=fix --mode=fix",
     "format": "npm-run-all --parallel format:prettier format:bazel format:tslint",
-    "prepare": "husky install",
+    "prepare": "husky",
     "release": "standard-version --tag-prefix=\"\"",
     "t9n:xlf": "ng-t9n t9n-xlf.json",
     "t9n:xlf2": "ng-t9n t9n-xlf2.json",
