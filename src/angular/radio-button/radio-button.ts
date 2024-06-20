@@ -2,6 +2,7 @@ import { FocusMonitor, FocusOrigin } from '@angular/cdk/a11y';
 import { UniqueSelectionDispatcher } from '@angular/cdk/collections';
 import {
   AfterContentInit,
+  afterNextRender,
   AfterViewInit,
   Attribute,
   booleanAttribute,
@@ -15,8 +16,10 @@ import {
   EventEmitter,
   forwardRef,
   HostBinding,
+  inject,
   Inject,
   InjectionToken,
+  Injector,
   Input,
   numberAttribute,
   OnDestroy,
@@ -442,6 +445,8 @@ export class _SbbRadioButtonBase implements OnInit, AfterViewInit, DoCheck, OnDe
   /** The native `<input type=radio>` element */
   @ViewChild('input') _inputElement: ElementRef<HTMLInputElement>;
 
+  private _injector = inject(Injector);
+
   constructor(
     radioGroup: TypeRef<_SbbRadioGroupBase<_SbbRadioButtonBase>>,
     private _elementRef: ElementRef,
@@ -589,6 +594,31 @@ export class _SbbRadioButtonBase implements OnInit, AfterViewInit, DoCheck, OnDe
       if (input) {
         input.setAttribute('tabindex', value + '');
         this._previousTabIndex = value;
+        // Wait for any pending tabindex changes to be applied
+        afterNextRender(
+          () => {
+            queueMicrotask(() => {
+              // The radio group uses a "selection follows focus" pattern for tab management, so if this
+              // radio button is currently focused and another radio button in the group becomes
+              // selected, we should move focus to the newly selected radio button to maintain
+              // consistency between the focused and selected states.
+              if (
+                group &&
+                group.selected &&
+                group.selected !== this &&
+                document.activeElement === input
+              ) {
+                group.selected?._inputElement.nativeElement.focus();
+                // If this radio button still has focus, the selected one must be disabled. In this
+                // case the radio group as a whole should lose focus.
+                if (document.activeElement === input) {
+                  this._inputElement.nativeElement.blur();
+                }
+              }
+            });
+          },
+          { injector: this._injector },
+        );
       }
     }
   }
