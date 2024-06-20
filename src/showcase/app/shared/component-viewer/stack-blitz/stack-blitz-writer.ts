@@ -207,7 +207,7 @@ export class StackBlitzWriter {
         .replace(/sbb-angular-docs-example/g, data.selectorName)
         .replace(/\${title}/g, data.description);
     } else if (fileName === '.stackblitzrc') {
-      fileContent = fileContent.replace(/\${startCommand}/, isTest ? 'turbo test' : 'turbo start');
+      fileContent = fileContent.replace(/\${startCommand}/, isTest ? 'npm test' : 'npm start');
     } else if (fileName === 'src/app/app.module.ts') {
       const joinedComponentNames = data.componentNames.join(', ');
       // Replace the component name in `main.ts`.
