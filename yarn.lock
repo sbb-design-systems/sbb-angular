@@ -70,12 +70,12 @@
     "@angular-devkit/core" "18.0.6"
     rxjs "7.8.1"
 
-"@angular-devkit/architect@0.1801.0-next.3":
-  version "0.1801.0-next.3"
-  resolved "https://registry.yarnpkg.com/@angular-devkit/architect/-/architect-0.1801.0-next.3.tgz#5fdf5b22006e2275702670c357ef40d569a66b32"
-  integrity sha512-G1FZ/GWaoUF2vjbf3KW937mF/sBHv2Qgq9WP3AwbTHlpJPjpOJYFm9bn3kI1J0OmBRqC97gUj4i87nhDkYJoFw==
+"@angular-devkit/architect@0.1801.0-rc.0":
+  version "0.1801.0-rc.0"
+  resolved "https://registry.yarnpkg.com/@angular-devkit/architect/-/architect-0.1801.0-rc.0.tgz#f46a774e6cf45abbb8d3eb496240c3603f899978"
+  integrity sha512-WFQRXD9UmwejSVBvsMjDGZATh2lmFoZOKjbRMmR8uHNyvYmUpQ0l9jVybquLoAYAhfBtZeaeVr8Z1eO+ZQp8xA==
   dependencies:
-    "@angular-devkit/core" "18.1.0-next.3"
+    "@angular-devkit/core" "18.1.0-rc.0"
     rxjs "7.8.1"
 
 "@angular-devkit/build-angular@18.0.6":
@@ -170,14 +170,14 @@
     rxjs "7.8.1"
     source-map "0.7.4"
 
-"@angular-devkit/core@18.1.0-next.3":
-  version "18.1.0-next.3"
-  resolved "https://registry.yarnpkg.com/@angular-devkit/core/-/core-18.1.0-next.3.tgz#eeadb05fe13e231520b3caed3471cb127d1c0173"
-  integrity sha512-5XPEE2P7ZXgY0OxsBoJlYrZ99IAVOC8HzI78YsEXafuUMuS3+IdUnkJtERg7lkxtysAHdPme2TuuWtGkun0vmw==
+"@angular-devkit/core@18.1.0-rc.0":
+  version "18.1.0-rc.0"
+  resolved "https://registry.yarnpkg.com/@angular-devkit/core/-/core-18.1.0-rc.0.tgz#646392a93c836d8292112f7814f2dfb59359ddb7"
+  integrity sha512-tPmYOFZ29ZxSqkksZ09t0a30vC2co5s3SNkNv1Ncf/aWLlMnP4WypX4qHgbibU6MNAPIQhlN+sobtcvryuHxBQ==
   dependencies:
     ajv "8.16.0"
     ajv-formats "3.0.1"
-    jsonc-parser "3.2.1"
+    jsonc-parser "3.3.1"
     picomatch "4.0.2"
     rxjs "7.8.1"
     source-map "0.7.4"
@@ -229,12 +229,12 @@
     "@angular/core" "^13.0.0 || ^14.0.0-0"
     reflect-metadata "^0.1.13"
 
-"@angular/build-tooling@https://github.com/angular/dev-infra-private-build-tooling-builds.git#e3f1a140be7b84e36c5f301f79ea49ea535b1f94":
-  version "0.0.0-e904fd345ef804d423ec3e93b4c36bcfb2454466"
-  resolved "https://github.com/angular/dev-infra-private-build-tooling-builds.git#e3f1a140be7b84e36c5f301f79ea49ea535b1f94"
+"@angular/build-tooling@https://github.com/angular/dev-infra-private-build-tooling-builds.git#0dcecd0253666af442fe5310a42aabb146901cf3":
+  version "0.0.0-9432c0c96972fe953a5affc1f7b812613fae4b8c"
+  resolved "https://github.com/angular/dev-infra-private-build-tooling-builds.git#0dcecd0253666af442fe5310a42aabb146901cf3"
   dependencies:
     "@angular/benchpress" "0.3.0"
-    "@angular/build" "18.1.0-next.3"
+    "@angular/build" "18.1.0-rc.0"
     "@babel/core" "^7.16.0"
     "@babel/helper-annotate-as-pure" "^7.18.6"
     "@babel/plugin-proposal-async-generator-functions" "^7.20.1"
@@ -271,7 +271,7 @@
     "true-case-path" "^2.2.1"
     tslib "^2.5.2"
     tsx "^4.15.7"
-    typescript "5.4.5"
+    typescript "5.5.2"
     uuid "^10.0.0"
     yargs "^17.0.0"
 
@@ -306,13 +306,13 @@
     vite "5.2.11"
     watchpack "2.4.1"
 
-"@angular/build@18.1.0-next.3":
-  version "18.1.0-next.3"
-  resolved "https://registry.yarnpkg.com/@angular/build/-/build-18.1.0-next.3.tgz#a8559e3988f2e225bc71661ff0f2984793bb7da9"
-  integrity sha512-z4fyJeqzM/+S8OiIVu1x8Jdo0B41JfKhpBojpvIctDTlUnEP0EHNAqgCk5rAMtHAW4DHyCSOWIDvIaQ07S4ILA==
+"@angular/build@18.1.0-rc.0":
+  version "18.1.0-rc.0"
+  resolved "https://registry.yarnpkg.com/@angular/build/-/build-18.1.0-rc.0.tgz#3d783e7b17f78317c90d0a8cec03f01d5172ad51"
+  integrity sha512-/UCQac+Q2Q+aLwKbgjIZw0QGOkFCOPNCs9RVPp3pObQ5PuFbS0pJOcvCysxGNeHgoKQWRIFDRej/jQSMcHipRA==
   dependencies:
     "@ampproject/remapping" "2.3.0"
-    "@angular-devkit/architect" "0.1801.0-next.3"
+    "@angular-devkit/architect" "0.1801.0-rc.0"
     "@babel/core" "7.24.7"
     "@babel/helper-annotate-as-pure" "7.24.7"
     "@babel/helper-split-export-declaration" "7.24.7"
@@ -320,7 +320,7 @@
     "@vitejs/plugin-basic-ssl" "1.1.0"
     ansi-colors "4.1.3"
     browserslist "^4.23.0"
-    critters "0.0.22"
+    critters "0.0.24"
     esbuild "0.21.5"
     fast-glob "3.3.2"
     https-proxy-agent "7.0.4"
@@ -330,7 +330,7 @@
     ora "5.4.1"
     parse5-html-rewriting-stream "7.0.0"
     picomatch "4.0.2"
-    piscina "4.6.0"
+    piscina "4.6.1"
     sass "1.77.6"
     semver "7.6.2"
     undici "6.19.2"
@@ -440,9 +440,9 @@
     fast-glob "3.3.2"
     yargs "^17.2.1"
 
-"@angular/ng-dev@https://github.com/angular/dev-infra-private-ng-dev-builds.git#f4b1801b78a1c96ced76d67888dc134798da57fc":
-  version "0.0.0-e904fd345ef804d423ec3e93b4c36bcfb2454466"
-  resolved "https://github.com/angular/dev-infra-private-ng-dev-builds.git#f4b1801b78a1c96ced76d67888dc134798da57fc"
+"@angular/ng-dev@https://github.com/angular/dev-infra-private-ng-dev-builds.git#4f33c7284280cc7bc9a01d31096adb15c1166e49":
+  version "0.0.0-9432c0c96972fe953a5affc1f7b812613fae4b8c"
+  resolved "https://github.com/angular/dev-infra-private-ng-dev-builds.git#4f33c7284280cc7bc9a01d31096adb15c1166e49"
   dependencies:
     "@octokit/rest" "21.0.0"
     "@types/semver" "^7.3.6"
@@ -8015,6 +8015,19 @@ critters@0.0.22:
     postcss "^8.4.23"
     postcss-media-query-parser "^0.2.3"
 
+critters@0.0.24:
+  version "0.0.24"
+  resolved "https://registry.yarnpkg.com/critters/-/critters-0.0.24.tgz#d20b16c28908d2dae4b9cd4851d4d2c93de98a0b"
+  integrity sha512-Oyqew0FGM0wYUSNqR0L6AteO5MpMoUU0rhKRieXeiKs+PmRTxiJMyaunYB2KF6fQ3dzChXKCpbFOEJx3OQ1v/Q==
+  dependencies:
+    chalk "^4.1.0"
+    css-select "^5.1.0"
+    dom-serializer "^2.0.0"
+    domhandler "^5.0.2"
+    htmlparser2 "^8.0.2"
+    postcss "^8.4.23"
+    postcss-media-query-parser "^0.2.3"
+
 cron-parser@4.9.0:
   version "4.9.0"
   resolved "https://registry.yarnpkg.com/cron-parser/-/cron-parser-4.9.0.tgz#0340694af3e46a0894978c6f52a6dbb5c0f11ad5"
@@ -13718,10 +13731,10 @@ piscina@4.5.0:
   optionalDependencies:
     nice-napi "^1.0.2"
 
-piscina@4.6.0:
-  version "4.6.0"
-  resolved "https://registry.yarnpkg.com/piscina/-/piscina-4.6.0.tgz#ac8e0e0bd3b881ac0fff3d51fa91265b53c32072"
-  integrity sha512-VofazM7TCa/2cYhbtZQFyxJJIKe1JYZ5JBTxGMOo770CYupdVpHNvMrX+fuL+mACQ10ISWbzXFBmYjZvzELG5w==
+piscina@4.6.1:
+  version "4.6.1"
+  resolved "https://registry.yarnpkg.com/piscina/-/piscina-4.6.1.tgz#4de673b0ff84bf641b31b07b3348669383b51c9a"
+  integrity sha512-z30AwWGtQE+Apr+2WBZensP2lIvwoaMcOPkQlIEmSGMJNUvaYACylPYrQM6wSdUNJlnDVMSpLv7xTMJqlVshOA==
   optionalDependencies:
     nice-napi "^1.0.2"
 
@@ -16552,7 +16565,7 @@ typescript@5.4.2:
   resolved "https://registry.yarnpkg.com/typescript/-/typescript-5.4.2.tgz#0ae9cebcfae970718474fe0da2c090cad6577372"
   integrity sha512-+2/g0Fds1ERlP6JsakQQDXjZdZMM+rqpamFZJEKh4kwTIn3iDkgKtby0CeNd5ATNZ4Ry1ax15TMx0W2V+miizQ==
 
-typescript@5.4.4, typescript@5.4.5, typescript@~4.5.4, typescript@~4.9.0:
+typescript@5.4.4, typescript@5.5.2, typescript@~4.5.4, typescript@~4.9.0:
   version "5.4.4"
   resolved "https://registry.yarnpkg.com/typescript/-/typescript-5.4.4.tgz#eb2471e7b0a5f1377523700a21669dce30c2d952"
   integrity sha512-dGE2Vv8cpVvw28v8HCPqyb08EzbBURxDpuhJvTrusShUfGnhHBafDsLdS1EhhxyL6BJQE+2cT3dDPAv+MQ6oLw==
