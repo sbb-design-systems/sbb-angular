@@ -13024,10 +13024,10 @@ npm-registry-fetch@^17.0.0:
     npm-package-arg "^11.0.0"
     proc-log "^4.0.0"
 
-npm-run-all2@6.2.0:
-  version "6.2.0"
-  resolved "https://registry.yarnpkg.com/npm-run-all2/-/npm-run-all2-6.2.0.tgz#ac0a893a593e1ab3ef85c5ac3526321d2e3137bd"
-  integrity sha512-wA7yVIkthe6qJBfiJ2g6aweaaRlw72itsFGF6HuwCHKwtwAx/4BY1vVpk6bw6lS8RLMsexoasOkd0aYOmsFG7Q==
+npm-run-all2@6.2.1:
+  version "6.2.1"
+  resolved "https://registry.yarnpkg.com/npm-run-all2/-/npm-run-all2-6.2.1.tgz#6b59513f7bf5bb053876a78b7be82e29bdf8eeaf"
+  integrity sha512-eX4MWsUYOSm1FhPh9LPAWbqq2quny3u8gEEWIY4HHECi10qOyi1dNaJFCyOOv2uP05ZuTPETwS2p1GZk9oLJsw==
   dependencies:
     ansi-styles "^6.2.1"
     cross-spawn "^7.0.3"
