@@ -1,6 +1,7 @@
 import { Overlay, ScrollStrategy } from '@angular/cdk/overlay';
 import { ComponentType } from '@angular/cdk/portal';
 import {
+  inject,
   Inject,
   Injectable,
   InjectionToken,
@@ -26,21 +27,40 @@ export const SBB_LIGHTBOX_DEFAULT_OPTIONS = new InjectionToken<SbbLightboxConfig
 /** Injection token that determines the scroll handling while the dialog is open. */
 export const SBB_LIGHTBOX_SCROLL_STRATEGY = new InjectionToken<() => ScrollStrategy>(
   'sbb-lightbox-scroll-strategy',
+  {
+    providedIn: 'root',
+    factory: () => {
+      const overlay = inject(Overlay);
+      return () => overlay.scrollStrategies.block();
+    },
+  },
 );
 
-/** @docs-private */
+/**
+ * @docs-private
+ * @deprecated No longer used. To be removed.
+ * @breaking-change 19.0.0
+ */
 export function SBB_LIGHTBOX_SCROLL_STRATEGY_FACTORY(overlay: Overlay): () => ScrollStrategy {
   return () => overlay.scrollStrategies.block();
 }
 
-/** @docs-private */
+/**
+ * @docs-private
+ * @deprecated No longer used. To be removed.
+ * @breaking-change 19.0.0
+ */
 export function SBB_LIGHTBOX_SCROLL_STRATEGY_PROVIDER_FACTORY(
   overlay: Overlay,
 ): () => ScrollStrategy {
   return () => overlay.scrollStrategies.block();
 }
 
-/** @docs-private */
+/**
+ * @docs-private
+ * @deprecated No longer used. To be removed.
+ * @breaking-change 19.0.0
+ */
 export const SBB_LIGHTBOX_SCROLL_STRATEGY_PROVIDER = {
   provide: SBB_LIGHTBOX_SCROLL_STRATEGY,
   deps: [Overlay],
@@ -53,7 +73,7 @@ let uniqueId = 0;
 /**
  * Service to open modal lightboxes.
  */
-@Injectable()
+@Injectable({ providedIn: 'root' })
 export class SbbLightbox extends _SbbDialogBase<SbbLightboxContainer, SbbLightboxRef<any>> {
   protected override _idPrefix: string = 'sbb-lightbox-';
 
