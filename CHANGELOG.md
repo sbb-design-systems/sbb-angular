@@ -2,6 +2,18 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [18.1.3](https://github.com/sbb-design-systems/sbb-angular/compare/18.1.2...18.1.3) (2024-07-09)
+
+
+### Bug Fixes
+
+* **angular/dialog:** provide dialog service in root ([#2307](https://github.com/sbb-design-systems/sbb-angular/issues/2307)) ([79cbcff](https://github.com/sbb-design-systems/sbb-angular/commit/79cbcff309e6ee8b51f9d4c714f9439861a4fead))
+* **angular/lightbox:** provide lightbox service in root ([#2308](https://github.com/sbb-design-systems/sbb-angular/issues/2308)) ([a75c392](https://github.com/sbb-design-systems/sbb-angular/commit/a75c39212bc973943f8ff2cee44c207d9246373c))
+* **angular/radio-button:** mark radio-group for check on touch ([#2294](https://github.com/sbb-design-systems/sbb-angular/issues/2294)) ([7fd3e89](https://github.com/sbb-design-systems/sbb-angular/commit/7fd3e89e90b02268d3c8de4fd088f65f0b0fdc0f))
+* **angular/radio:** ensure focus and selected states stay linked ([#2293](https://github.com/sbb-design-systems/sbb-angular/issues/2293)) ([4c5c7a3](https://github.com/sbb-design-systems/sbb-angular/commit/4c5c7a333e9c1d24d71c729db13c8af6ad9b079d))
+* **deps:** update angular to v18.0.5 ([#2302](https://github.com/sbb-design-systems/sbb-angular/issues/2302)) ([a1a3927](https://github.com/sbb-design-systems/sbb-angular/commit/a1a392750b5c60947043a8ced34043bca0e311c9))
+* **deps:** update dependency @stackblitz/sdk to v1.11.0 ([4f69d92](https://github.com/sbb-design-systems/sbb-angular/commit/4f69d926cf8a4478bdf0403022455215efc098c8))
+
 ### [18.1.2](https://github.com/sbb-design-systems/sbb-angular/compare/18.1.1...18.1.2) (2024-06-20)
 
 
