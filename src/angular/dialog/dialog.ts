@@ -3,6 +3,7 @@ import { Overlay, ScrollStrategy } from '@angular/cdk/overlay';
 import { ComponentType } from '@angular/cdk/portal';
 import {
   ComponentRef,
+  inject,
   Inject,
   Injectable,
   InjectionToken,
@@ -31,21 +32,40 @@ export const SBB_DIALOG_DEFAULT_OPTIONS = new InjectionToken<SbbDialogConfig>(
 /** Injection token that determines the scroll handling while the dialog is open. */
 export const SBB_DIALOG_SCROLL_STRATEGY = new InjectionToken<() => ScrollStrategy>(
   'sbb-dialog-scroll-strategy',
+  {
+    providedIn: 'root',
+    factory: () => {
+      const overlay = inject(Overlay);
+      return () => overlay.scrollStrategies.block();
+    },
+  },
 );
 
-/** @docs-private */
+/**
+ * @docs-private
+ * @deprecated No longer used. To be removed.
+ * @breaking-change 19.0.0
+ */
 export function SBB_DIALOG_SCROLL_STRATEGY_FACTORY(overlay: Overlay): () => ScrollStrategy {
   return () => overlay.scrollStrategies.block();
 }
 
-/** @docs-private */
+/**
+ * @docs-private
+ * @deprecated No longer used. To be removed.
+ * @breaking-change 19.0.0
+ */
 export function SBB_DIALOG_SCROLL_STRATEGY_PROVIDER_FACTORY(
   overlay: Overlay,
 ): () => ScrollStrategy {
   return () => overlay.scrollStrategies.block();
 }
 
-/** @docs-private */
+/**
+ * @docs-private
+ * @deprecated No longer used. To be removed.
+ * @breaking-change 19.0.0
+ */
 export const SBB_DIALOG_SCROLL_STRATEGY_PROVIDER = {
   provide: SBB_DIALOG_SCROLL_STRATEGY,
   deps: [Overlay],
@@ -59,7 +79,7 @@ let uniqueId = 0;
  * Base class for dialog services. The base dialog service allows
  * for arbitrary dialog refs and dialog container components.
  */
-@Injectable()
+@Injectable({ providedIn: 'root' })
 // tslint:disable-next-line: class-name naming-convention
 export abstract class _SbbDialogBase<
   C extends _SbbDialogContainerBase,
@@ -220,7 +240,7 @@ export abstract class _SbbDialogBase<
 /**
  * Service to open modal dialogs.
  */
-@Injectable()
+@Injectable({ providedIn: 'root' })
 export class SbbDialog extends _SbbDialogBase<SbbDialogContainer> {
   constructor(
     overlay: Overlay,
