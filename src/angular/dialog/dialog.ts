@@ -50,7 +50,11 @@ export function SBB_DIALOG_SCROLL_STRATEGY_FACTORY(overlay: Overlay): () => Scro
   return () => overlay.scrollStrategies.block();
 }
 
-/** @docs-private */
+/**
+ * @docs-private
+ * @deprecated No longer used. To be removed.
+ * @breaking-change 19.0.0
+ */
 export function SBB_DIALOG_SCROLL_STRATEGY_PROVIDER_FACTORY(
   overlay: Overlay,
 ): () => ScrollStrategy {
