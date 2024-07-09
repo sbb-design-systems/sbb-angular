@@ -14,6 +14,7 @@ import { TemplatePortal } from '@angular/cdk/portal';
 import { ViewportRuler } from '@angular/cdk/scrolling';
 import { DOCUMENT } from '@angular/common';
 import {
+  afterNextRender,
   AfterViewInit,
   booleanAttribute,
   ChangeDetectorRef,
@@ -24,6 +25,7 @@ import {
   inject,
   Inject,
   InjectionToken,
+  Injector,
   Input,
   NgZone,
   OnChanges,
@@ -227,7 +229,11 @@ export class SbbAutocompleteTrigger
       return;
     }
 
-    const onReady = autocomplete.options ? observableOf(null) : this._zone.onStable.pipe(take(1));
+    const renderCallback = new Observable((subscriber) => {
+      afterNextRender(() => subscriber.next(), { injector: this._injector });
+    });
+    const onReady = autocomplete.options ? observableOf(null) : renderCallback;
+
     this._highlightSubscription = onReady
       .pipe(
         switchMap(() =>
@@ -288,6 +294,10 @@ export class SbbAutocompleteTrigger
   @Input({ alias: 'sbbAutocompleteDisabled', transform: booleanAttribute })
   autocompleteDisabled: boolean = false;
 
+  private _initialized = new Subject<void>();
+
+  private _injector = inject(Injector);
+
   constructor(
     private _element: ElementRef<HTMLInputElement>,
     private _overlay: Overlay,
@@ -309,6 +319,9 @@ export class SbbAutocompleteTrigger
   private _aboveClass: string = 'sbb-autocomplete-panel-above';
 
   ngAfterViewInit() {
+    this._initialized.next();
+    this._initialized.complete();
+
     const window = this._getWindow();
 
     if (typeof window !== 'undefined') {
@@ -361,8 +374,8 @@ export class SbbAutocompleteTrigger
 
     if (this.panelOpen) {
       // Only emit if the panel was visible.
-      // The `NgZone.onStable` always emits outside of the Angular zone,
-      // so all the subscriptions from `_subscribeToClosingActions()` are also outside of the Angular zone.
+      // `afterNextRender` always runs outside of the Angular zone, so all the subscriptions from
+      // `_subscribeToClosingActions()` are also outside of the Angular zone.
       // We should manually run in Angular zone to update UI after panel closing.
       this._zone.run(() => {
         this.autocomplete.closed.emit();
@@ -434,10 +447,7 @@ export class SbbAutocompleteTrigger
     }
     // If there are any subscribers before `ngAfterViewInit`, the `autocomplete` will be undefined.
     // Return a stream that we'll replace with the real one once everything is in place.
-    return this._zone.onStable.pipe(
-      take(1),
-      switchMap(() => this.optionSelections),
-    );
+    return this._initialized.pipe(switchMap(() => this.optionSelections));
   }) as Observable<SbbOptionSelectionChange>;
 
   /** The currently active option, coerced to SbbOption type. */
@@ -629,7 +639,14 @@ export class SbbAutocompleteTrigger
    * stream every time the option list changes.
    */
   private _subscribeToClosingActions(): Subscription {
-    const firstStable = this._zone.onStable.pipe(take(1));
+    const initialRender = new Observable((subscriber) => {
+      afterNextRender(
+        () => {
+          subscriber.next();
+        },
+        { injector: this._injector },
+      );
+    });
     const optionChanges = this.autocomplete.options.changes.pipe(
       tap(() => this._positionStrategy.reapplyLastPosition()),
       // Defer emitting to the stream until the next tick, because changing
@@ -637,17 +654,17 @@ export class SbbAutocompleteTrigger
       delay(0),
     );
 
-    // When the zone is stable initially, and when the option list changes...
+    // When the options are initially rendered, and when the option list changes...
     return (
-      merge(firstStable, optionChanges)
+      merge(initialRender, optionChanges)
         .pipe(
           // create a new stream of panelClosingActions, replacing any previous streams
           // that were created, and flatten it so our stream only emits closing events...
-          switchMap(() => {
-            // The `NgZone.onStable` always emits outside of the Angular zone, thus we have to re-enter
-            // the Angular zone. This will lead to change detection being called outside of the Angular
-            // zone and the `autocomplete.opened` will also emit outside of the Angular.
+          switchMap(() =>
             this._zone.run(() => {
+              // `afterNextRender` always runs outside of the Angular zone, thus we have to re-enter
+              // the Angular zone. This will lead to change detection being called outside of the Angular
+              // zone and the `autocomplete.opened` will also emit outside of the Angular.
               const wasOpen = this.panelOpen;
               this._resetActiveItem();
               this._updatePanelState();
@@ -681,10 +698,10 @@ export class SbbAutocompleteTrigger
                   this.autocomplete.closed.emit();
                 }
               }
-            });
 
-            return this.panelClosingActions;
-          }),
+              return this.panelClosingActions;
+            }),
+          ),
           // when the first closing event occurs...
           take(1),
         )
