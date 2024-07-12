@@ -182,6 +182,34 @@ jobs:
         name: showcase-artifact-main
         path: sbb-esta-angular-showcase.tgz
 
+  publish-showcase:
+    if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+    needs: showcase
+    runs-on: ubuntu-latest
+    permissions:
+      packages: write
+    env:
+      IMAGE_REPO: ghcr.io/${{ github.repository }}/showcase-preview
+    steps:
+    - uses: actions/checkout@692973e3d937129bcbf40652eb9f2f61becf3332 # v4
+    - name: "Download showcase artifact"
+      uses: actions/download-artifact@v4
+      with:
+        name: showcase-artifact-main
+        path: sbb-esta-angular-showcase.tgz
+    - name: Unpack and prepare showcase file
+      run: |
+        tar -xvzf sbb-esta-angular-showcase.tgz
+        mkdir -p dist/releases
+        mv package/ dist/releases/showcase/
+    - name: Create and publish container image
+      run: |
+        echo "${{ secrets.GITHUB_TOKEN }}" | docker login ghcr.io -u $ --password-stdin
+        docker build --tag $IMAGE_REPO:rev-main .
+        docker push $IMAGE_REPO:rev-main
+      env:
+        DOCKER_BUILDKIT: 1      
+
   merge-caches:
     if: ${{ success() || failure() }}
     needs: [test, showcase]

@@ -16,24 +16,21 @@ jobs:
   preview-deployment:
     runs-on: ubuntu-latest
     if: >
-      github.event.workflow_run.conclusion == 'success' && (
-        github.event.workflow_run.event == 'pull_request' || (
-          github.event.workflow_run.event == 'push' &&
-          github.event.workflow_run.head_branch == 'main'
-        )
-      )
+      github.event.workflow_run.event == 'pull_request' &&
+      github.event.workflow_run.conclusion == 'success' &&
+      github.event.workflow_run.pull_requests[0] != null
     env:
-      PR_NUMBER: ${{ github.event.workflow_run.pull_requests[0] != null && github.event.workflow_run.pull_requests[0].number || '' }}
+      PR_NUMBER: ${{ github.event.workflow_run.pull_requests[0].number }}
       IMAGE_REPO: ghcr.io/${{ github.repository }}/showcase-preview
-      IMAGE_TAG: rev-${{ github.event.workflow_run.event == 'push' && 'main' || github.event.workflow_run.head_sha }}
-      IMAGE_PR_TAG: preview-pr${{ github.event.workflow_run.pull_requests[0] != null && github.event.workflow_run.pull_requests[0].number || '' }}
+      IMAGE_TAG: rev-${{ ithub.event.workflow_run.head_sha }}
+      IMAGE_PR_TAG: preview-pr${{ github.event.workflow_run.pull_requests[0].number }}
       ALLOWED_EXTENSIONS: css, gitignore, gitkeep, html, ico, jpg, js, json, png, scss, stackblitzrc, svg, ts
     steps:
     - uses: actions/checkout@692973e3d937129bcbf40652eb9f2f61becf3332 # v4
     - run: rm package.json yarn.lock
     - uses: actions/setup-node@v4
       with:
-        node-version: 18
+        node-version-file: '.nvmrc'
     - run: npm i decompress@4.2.1
     - name: Download Artifacts
       id: artifacts
@@ -97,22 +94,16 @@ jobs:
     - name: "Container: Login to GitHub Container Repository"
       run: echo ${{ secrets.GITHUB_TOKEN }} | docker login ghcr.io --username ${{ github.actor }} --password-stdin
     - name: "Container: Build image"
-      run: docker build -t $IMAGE_REPO:$IMAGE_TAG .
+      run: docker build --tag $IMAGE_REPO:$IMAGE_TAG --tag $IMAGE_REPO:$IMAGE_PR_TAG .
       env:
         DOCKER_BUILDKIT: 1
-    - name: "Container: Re-tag image"
-      if: env.PR_NUMBER != ''
-      run: docker tag $IMAGE_REPO:$IMAGE_TAG $IMAGE_REPO:$IMAGE_PR_TAG
-    - name: "Container: Publish image"
-      run: docker push $IMAGE_REPO:$IMAGE_TAG
-    - name: "Container: Publish re-tagged image"
-      if: env.PR_NUMBER != ''
-      run: docker push $IMAGE_REPO:$IMAGE_PR_TAG
+    - name: "Container: Publish images"
+      run: |
+        docker push $IMAGE_REPO:$IMAGE_TAG
+        docker push $IMAGE_REPO:$IMAGE_PR_TAG
 
     - name: "Add 'preview-available' label"
-      if: env.PR_NUMBER != ''
       # This label is used for filtering deployments in ArgoCD
-      uses: actions-ecosystem/action-add-labels@v1
-      with:
-        labels: "preview-available"
-        number: ${{ env.PR_NUMBER }}
+      run: gh issue edit $PR_NUMBER --add-label "preview-available"
+      env:
+        GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
