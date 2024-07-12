@@ -196,12 +196,12 @@ jobs:
       uses: actions/download-artifact@v4
       with:
         name: showcase-artifact-main
-        path: sbb-esta-angular-showcase.tgz
+        path: sbb-esta-angular-showcase
     - name: Unpack and prepare showcase file
       run: |
-        tar -xvzf sbb-esta-angular-showcase.tgz
+        ls -llR sbb-esta-angular-showcase
         mkdir -p dist/releases
-        mv package/ dist/releases/showcase/
+        mv sbb-esta-angular-showcase/package/ dist/releases/showcase/
     - name: Create and publish container image
       run: |
         echo "${{ secrets.GITHUB_TOKEN }}" | docker login ghcr.io -u $ --password-stdin
