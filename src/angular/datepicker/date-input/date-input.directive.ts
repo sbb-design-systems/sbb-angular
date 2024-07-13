@@ -372,7 +372,7 @@ export class SbbDateInput<D> implements ControlValueAccessor, Validator, OnInit,
   private _formatValue(value: D | null) {
     const displayFormat = this._datepicker
       ? this._dateFormats.dateInput
-      : this._dateFormats.dateInputPure ?? this._dateFormats.dateInput;
+      : (this._dateFormats.dateInputPure ?? this._dateFormats.dateInput);
     this._elementRef.nativeElement.value =
       value != null ? this._dateAdapter.format(value, displayFormat) : '';
   }
