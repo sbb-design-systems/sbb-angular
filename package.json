@@ -169,13 +169,13 @@
     "tslint-config-prettier": "1.18.0",
     "tslint-consistent-codestyle": "1.16.0",
     "tslint-plugin-prettier": "2.3.0",
-    "typescript": "5.4.4",
+    "typescript": "5.5.2",
     "yargs": "17.7.2"
   },
   "resolutions": {
-    "@angular/build-tooling/typescript": "5.4.4",
-    "@angular/ng-dev/typescript": "5.4.4",
-    "dgeni-packages/typescript": "5.4.4"
+    "@angular/build-tooling/typescript": "5.5.2",
+    "@angular/ng-dev/typescript": "5.5.2",
+    "dgeni-packages/typescript": "5.5.2"
   },
   "standard-version": {
     "types": [
