@@ -2,7 +2,6 @@ import { Injectable } from '@angular/core';
 import {
   ColorSpecification,
   DataDrivenPropertyValueSpecification,
-  ExpressionFilterSpecification,
   ExpressionInputType,
   ExpressionSpecification,
 } from 'maplibre-gl';
@@ -57,7 +56,7 @@ export class EsriColorService {
     ];
 
     // https://maplibre.org/maplibre-style-spec/expressions/#interpolate
-    const uniqueValueColorMapping: ExpressionFilterSpecification = [
+    return [
       'interpolate',
       ['linear'],
       valueMapping,
@@ -65,8 +64,6 @@ export class EsriColorService {
       fallbackColor!,
       ...interpolationStops,
     ];
-
-    return uniqueValueColorMapping;
   }
 
   convertColorToRgba(color: number[]): string | undefined {

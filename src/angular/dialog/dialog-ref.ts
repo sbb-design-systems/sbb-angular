@@ -242,7 +242,6 @@ export class SbbDialogRef<T, R = any> {
  * More details. See: https://github.com/angular/components/pull/9257#issuecomment-651342226.
  */
 // TODO: Move this back into `SbbDialogRef` when we provide an official mock dialog ref.
-// tslint:disable-next-line: naming-convention
 export function _closeDialogVia<R>(ref: SbbDialogRef<R>, interactionType: FocusOrigin, result?: R) {
   (ref as unknown as { _closeInteractionType: FocusOrigin })._closeInteractionType =
     interactionType;

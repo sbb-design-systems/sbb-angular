@@ -59,7 +59,6 @@ const DEFAULT_INDICATOR_ICONS: { [attr: string]: string } = {
 };
 
 // Boilerplate for applying mixins to SbbButton.
-// tslint:disable-next-line: naming-convention
 const _SbbButtonMixinBase = mixinVariant(
   class {
     constructor(public _elementRef: ElementRef) {}

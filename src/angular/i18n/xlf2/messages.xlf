@@ -12,7 +12,7 @@
     </unit>
     <unit id="sbbBreadcrumbExpand">
       <notes>
-        <note category="location">../../../../../../src/angular/breadcrumb/breadcrumbs.ts:48</note>
+        <note category="location">../../../../../../src/angular/breadcrumb/breadcrumbs.ts:47</note>
         <note category="description">Button with three dots to show all breadcrumb levels</note>
       </notes>
       <segment>
@@ -267,7 +267,7 @@
     </unit>
     <unit id="sbbUsermenuLogin">
       <notes>
-        <note category="location">../../../../../../src/angular/usermenu/usermenu.ts:68</note>
+        <note category="location">../../../../../../src/angular/usermenu/usermenu.ts:66</note>
         <note category="description">Button label for login</note>
       </notes>
       <segment>
@@ -276,7 +276,7 @@
     </unit>
     <unit id="sbbUsermenuOpenPanel">
       <notes>
-        <note category="location">../../../../../../src/angular/usermenu/usermenu.ts:71,73</note>
+        <note category="location">../../../../../../src/angular/usermenu/usermenu.ts:69,71</note>
         <note category="description">Aria label to open user menu</note>
       </notes>
       <segment>

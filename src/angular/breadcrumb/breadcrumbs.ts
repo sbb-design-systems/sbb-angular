@@ -15,7 +15,6 @@ import {
 
 import { SbbBreadcrumb } from './breadcrumb';
 
-// tslint:disable-next-line:naming-convention
 export const _sbbBreadcrumbMenuInheritedTriggerContext: SbbMenuInheritedTriggerContext = {
   type: 'breadcrumb',
   xOffset: -30,
