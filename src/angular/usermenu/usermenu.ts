@@ -28,10 +28,8 @@ import { SbbUsermenuIcon } from './usermenu-icon';
 let counter = 0;
 
 // Boilerplate for applying mixins to SbbNotification.
-// tslint:disable-next-line: naming-convention
 const _SbbUsermenuMixinBase = mixinVariant(class {});
 
-// tslint:disable-next-line:naming-convention
 export const _sbbUsermenuMenuInheritedTriggerContext: SbbMenuInheritedTriggerContext = {
   type: 'usermenu',
   panelWidth: 288,

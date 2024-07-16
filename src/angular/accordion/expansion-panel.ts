@@ -39,7 +39,6 @@ export type SbbExpansionPanelState = 'expanded' | 'collapsed';
 
 // Boilerplate for applying mixins to SbbExpansionPanel.
 /** @docs-private */
-// tslint:disable-next-line: naming-convention
 const _SbbExpansionPanelBase = mixinVariant(CdkAccordionItem);
 
 /** Counter for generating unique element ids. */

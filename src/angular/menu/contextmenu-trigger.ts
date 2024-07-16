@@ -8,7 +8,6 @@ import {
   SBB_MENU_INHERITED_TRIGGER_CONTEXT,
 } from './menu-trigger';
 
-// tslint:disable-next-line:naming-convention
 export const _sbbContextmenuInheritedTriggerContext: SbbMenuInheritedTriggerContext = {
   type: 'contextmenu',
   xPosition: 'before',

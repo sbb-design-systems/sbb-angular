@@ -47,7 +47,6 @@ export class SbbTabBodyPortal extends CdkPortalOutlet implements OnInit, OnDestr
     componentFactoryResolver: ComponentFactoryResolver,
     viewContainerRef: ViewContainerRef,
     @Inject(forwardRef(() => SbbTabBody)) private _host: SbbTabBody,
-    // tslint:disable-next-line:naming-convention
     @Inject(DOCUMENT) _document: any,
   ) {
     super(componentFactoryResolver, viewContainerRef, _document);

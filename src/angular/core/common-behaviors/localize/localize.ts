@@ -144,7 +144,6 @@ export interface TranslateFn {
  * @globalApi
  * @publicApi
  */
-// tslint:disable-next-line:naming-convention
 export const _$localize: LocalizeFn = function (
   messageParts: TemplateStringsArray,
   ...expressions: readonly any[]
