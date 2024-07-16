@@ -14,7 +14,7 @@
         <source>Show entire path</source>
         <context-group purpose="location">
           <context context-type="sourcefile">../../../../../../src/angular/breadcrumb/breadcrumbs.ts</context>
-          <context context-type="linenumber">48</context>
+          <context context-type="linenumber">47</context>
         </context-group>
         <note priority="1" from="description">Button with three dots to show all breadcrumb levels</note>
       </trans-unit>
@@ -250,7 +250,7 @@
         <source>Login</source>
         <context-group purpose="location">
           <context context-type="sourcefile">../../../../../../src/angular/usermenu/usermenu.ts</context>
-          <context context-type="linenumber">68</context>
+          <context context-type="linenumber">66</context>
         </context-group>
         <note priority="1" from="description">Button label for login</note>
       </trans-unit>
@@ -258,7 +258,7 @@
         <source>Logged in as <x id="PH" equiv-text="this.displayName || this.userName"/>. Click or press enter to open user menu.</source>
         <context-group purpose="location">
           <context context-type="sourcefile">../../../../../../src/angular/usermenu/usermenu.ts</context>
-          <context context-type="linenumber">71,73</context>
+          <context context-type="linenumber">69,71</context>
         </context-group>
         <note priority="1" from="description">Aria label to open user menu</note>
       </trans-unit>
