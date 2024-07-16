@@ -115,11 +115,9 @@ export class SbbRecycleRows {}
 })
 export class SbbTable<T> extends CdkTable<T> implements OnInit, OnDestroy {
   /** Overrides the sticky CSS class set by the `CdkTable`. */
-  // tslint:disable-next-line:naming-convention
   protected override stickyCssClass: string = 'sbb-table-sticky';
 
   /** Overrides the need to add position: sticky on every sticky cell element in `CdkTable`. */
-  // tslint:disable-next-line:naming-convention
   protected override needsPositionStickyOnElement: boolean = false;
 
   private _destroyed = new Subject<void>();

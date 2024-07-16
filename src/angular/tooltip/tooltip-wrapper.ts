@@ -22,7 +22,6 @@ import { map, takeUntil } from 'rxjs/operators';
 import { SbbTooltip, SbbTooltipChangeEvent, TooltipPosition } from './tooltip';
 
 // Boilerplate for applying mixins to SbbTooltipWrapper.
-// tslint:disable-next-line: naming-convention
 const _SbbTooltipWrapperMixinBase = mixinVariant(class {});
 
 let nextId = 1;

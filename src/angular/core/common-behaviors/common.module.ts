@@ -109,7 +109,6 @@ export class SbbCommonModule {
 }
 
 /** Checks that the page has a doctype. */
-// tslint:disable-next-line: naming-convention
 function _checkDoctypeIsDefined(doc: Document): void {
   if (!doc.doctype) {
     console.warn(
@@ -120,7 +119,6 @@ function _checkDoctypeIsDefined(doc: Document): void {
 }
 
 /** Checks that the typography has been included. */
-// tslint:disable-next-line: naming-convention
 function _checkTypographyIsPresent(doc: Document): void {
   // We need to assert that the `body` is defined, because these checks run very early
   // and the `body` won't be defined if the consumer put their scripts in the `head`.
@@ -143,7 +141,6 @@ function _checkTypographyIsPresent(doc: Document): void {
 }
 
 /** Checks whether the @sbb-esta/angular version matches the CDK major version. */
-// tslint:disable-next-line: naming-convention
 function _checkCdkVersionMatch(): void {
   if (VERSION.major !== CDK_VERSION.major) {
     console.warn(

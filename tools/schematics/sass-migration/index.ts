@@ -53,7 +53,6 @@ export function sassMigration(): Rule {
           continue;
         }
 
-        // tslint:disable-next-line:naming-convention
         const [_match, _group, sassVariable, sassFunction, sassMixin] =
           trimmedLine.match(/((\$[\w\-\_]+):|@function ([\w\-\_]+)|@mixin ([\w\-\_]+))/) ?? [];
         if (sassVariable || sassFunction) {

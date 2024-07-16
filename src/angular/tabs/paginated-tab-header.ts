@@ -73,7 +73,6 @@ export type SbbPaginatedTabHeaderItem = FocusableOption & { elementRef: ElementR
 export type SbbTabHeaderScrollState = 'hidden' | 'middle' | 'left' | 'right';
 
 // Boilerplate for applying mixins to SbbPaginatedTabHeader.
-// tslint:disable-next-line:naming-convention
 const _SbbPaginatedTabHeaderMixinBase = mixinVariant(class {});
 
 /**

@@ -1,4 +1,3 @@
-// tslint:disable-next-line: naming-convention
 export const Breakpoints = {
   Mobile: '(max-width: 642.99px)',
   Tablet: '(min-width: 643px) and (max-width: 1024.99px)',
