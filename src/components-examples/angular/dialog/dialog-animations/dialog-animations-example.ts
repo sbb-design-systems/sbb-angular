@@ -1,7 +1,6 @@
-import { Component } from '@angular/core';
+import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
 import { SbbButtonModule } from '@sbb-esta/angular/button';
-import { SbbDialog } from '@sbb-esta/angular/dialog';
-import { SbbDialogModule } from '@sbb-esta/angular/dialog';
+import { SbbDialog, SbbDialogModule } from '@sbb-esta/angular/dialog';
 
 /**
  * @title Dialog Animations
@@ -13,9 +12,10 @@ import { SbbDialogModule } from '@sbb-esta/angular/dialog';
   templateUrl: 'dialog-animations-example.html',
   standalone: true,
   imports: [SbbButtonModule],
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class DialogAnimationsExample {
-  constructor(public dialog: SbbDialog) {}
+  readonly dialog = inject(SbbDialog);
 
   openDialog(enterAnimationDuration: string, exitAnimationDuration: string): void {
     this.dialog.open(DialogAnimationsExampleDialog, {
@@ -38,5 +38,6 @@ export class DialogAnimationsExample {
   `,
   standalone: true,
   imports: [SbbDialogModule, SbbButtonModule],
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class DialogAnimationsExampleDialog {}
