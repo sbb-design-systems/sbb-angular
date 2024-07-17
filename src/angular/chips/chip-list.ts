@@ -535,7 +535,6 @@ export class SbbChipList
   _allowFocusEscape() {
     if (this._tabIndex !== -1) {
       this._tabIndex = -1;
-      this._changeDetectorRef.markForCheck();
 
       setTimeout(() => {
         this._tabIndex = this._userTabIndex || 0;
