@@ -70,12 +70,12 @@
     "@angular-devkit/core" "18.1.0"
     rxjs "7.8.1"
 
-"@angular-devkit/architect@0.1801.0-rc.0":
-  version "0.1801.0-rc.0"
-  resolved "https://registry.yarnpkg.com/@angular-devkit/architect/-/architect-0.1801.0-rc.0.tgz#f46a774e6cf45abbb8d3eb496240c3603f899978"
-  integrity sha512-WFQRXD9UmwejSVBvsMjDGZATh2lmFoZOKjbRMmR8uHNyvYmUpQ0l9jVybquLoAYAhfBtZeaeVr8Z1eO+ZQp8xA==
+"@angular-devkit/architect@0.1802.0-next.0":
+  version "0.1802.0-next.0"
+  resolved "https://registry.yarnpkg.com/@angular-devkit/architect/-/architect-0.1802.0-next.0.tgz#f422f53d32dedd3bac4eefb0c8eac7260cec14c5"
+  integrity sha512-OoOtKc87DSCI/kc9O5OBGxoeH9p5hT6Y1RxBrJo2Pr0RpZqNx7a9MZJ0NJSjdb4jE/Z6mpEUs/JcPZkylKQMwQ==
   dependencies:
-    "@angular-devkit/core" "18.1.0-rc.0"
+    "@angular-devkit/core" "18.2.0-next.0"
     rxjs "7.8.1"
 
 "@angular-devkit/build-angular@18.1.0":
@@ -169,10 +169,10 @@
     rxjs "7.8.1"
     source-map "0.7.4"
 
-"@angular-devkit/core@18.1.0-rc.0":
-  version "18.1.0-rc.0"
-  resolved "https://registry.yarnpkg.com/@angular-devkit/core/-/core-18.1.0-rc.0.tgz#646392a93c836d8292112f7814f2dfb59359ddb7"
-  integrity sha512-tPmYOFZ29ZxSqkksZ09t0a30vC2co5s3SNkNv1Ncf/aWLlMnP4WypX4qHgbibU6MNAPIQhlN+sobtcvryuHxBQ==
+"@angular-devkit/core@18.2.0-next.0":
+  version "18.2.0-next.0"
+  resolved "https://registry.yarnpkg.com/@angular-devkit/core/-/core-18.2.0-next.0.tgz#bbfa89ebb0a3d17750c301fbe5a6aa922b610a46"
+  integrity sha512-dKcz6klz+2h5vAizEhoHXMo9uo0oy+/tKIJX9wzMKsOnwIs5gNM2XLx3fApNLRDKPNi8o3k8UbY+KJtcaUeCXg==
   dependencies:
     ajv "8.16.0"
     ajv-formats "3.0.1"
@@ -228,12 +228,12 @@
     "@angular/core" "^13.0.0 || ^14.0.0-0"
     reflect-metadata "^0.1.13"
 
-"@angular/build-tooling@https://github.com/angular/dev-infra-private-build-tooling-builds.git#0facc65ef149dbae556c9825a2d7ecf8c8c0c152":
-  version "0.0.0-fc5ef0f362c3b0373a012b58ae1bde6def471c27"
-  resolved "https://github.com/angular/dev-infra-private-build-tooling-builds.git#0facc65ef149dbae556c9825a2d7ecf8c8c0c152"
+"@angular/build-tooling@https://github.com/angular/dev-infra-private-build-tooling-builds.git#db6250409bd88010f8e6d43f575aab30934c86d7":
+  version "0.0.0-c2d0fc40044e7129a986ccf88965a0cb452db01c"
+  resolved "https://github.com/angular/dev-infra-private-build-tooling-builds.git#db6250409bd88010f8e6d43f575aab30934c86d7"
   dependencies:
     "@angular/benchpress" "0.3.0"
-    "@angular/build" "18.1.0-rc.0"
+    "@angular/build" "18.2.0-next.0"
     "@babel/core" "^7.16.0"
     "@babel/helper-annotate-as-pure" "^7.18.6"
     "@babel/plugin-proposal-async-generator-functions" "^7.20.1"
@@ -307,24 +307,25 @@
     vite "5.3.2"
     watchpack "2.4.1"
 
-"@angular/build@18.1.0-rc.0":
-  version "18.1.0-rc.0"
-  resolved "https://registry.yarnpkg.com/@angular/build/-/build-18.1.0-rc.0.tgz#3d783e7b17f78317c90d0a8cec03f01d5172ad51"
-  integrity sha512-/UCQac+Q2Q+aLwKbgjIZw0QGOkFCOPNCs9RVPp3pObQ5PuFbS0pJOcvCysxGNeHgoKQWRIFDRej/jQSMcHipRA==
+"@angular/build@18.2.0-next.0":
+  version "18.2.0-next.0"
+  resolved "https://registry.yarnpkg.com/@angular/build/-/build-18.2.0-next.0.tgz#a42119835d9016b8a012f7e2e3f4051e01dd5126"
+  integrity sha512-MYmtqgrXjylrsi5Vm1Wmg3wv6rPLREx1oxMiYlTWfd38qikvz8J86s3+v/kLHgPKwIKv2bxVkiBN5/oS/420CQ==
   dependencies:
     "@ampproject/remapping" "2.3.0"
-    "@angular-devkit/architect" "0.1801.0-rc.0"
+    "@angular-devkit/architect" "0.1802.0-next.0"
     "@babel/core" "7.24.7"
     "@babel/helper-annotate-as-pure" "7.24.7"
     "@babel/helper-split-export-declaration" "7.24.7"
-    "@inquirer/confirm" "3.1.10"
+    "@babel/plugin-syntax-import-attributes" "7.24.7"
+    "@inquirer/confirm" "3.1.14"
     "@vitejs/plugin-basic-ssl" "1.1.0"
     ansi-colors "4.1.3"
     browserslist "^4.23.0"
     critters "0.0.24"
-    esbuild "0.21.5"
+    esbuild "0.23.0"
     fast-glob "3.3.2"
-    https-proxy-agent "7.0.4"
+    https-proxy-agent "7.0.5"
     lmdb "3.0.12"
     magic-string "0.30.10"
     mrmime "2.0.0"
@@ -332,10 +333,10 @@
     parse5-html-rewriting-stream "7.0.0"
     picomatch "4.0.2"
     piscina "4.6.1"
-    sass "1.77.6"
+    rollup "4.18.1"
+    sass "1.77.7"
     semver "7.6.2"
-    undici "6.19.2"
-    vite "5.3.1"
+    vite "5.3.3"
     watchpack "2.4.1"
 
 "@angular/cdk@18.1.0":
@@ -441,9 +442,9 @@
     fast-glob "3.3.2"
     yargs "^17.2.1"
 
-"@angular/ng-dev@https://github.com/angular/dev-infra-private-ng-dev-builds.git#9884c913ae31e81ab2c869f0f1123136055d3424":
-  version "0.0.0-fc5ef0f362c3b0373a012b58ae1bde6def471c27"
-  resolved "https://github.com/angular/dev-infra-private-ng-dev-builds.git#9884c913ae31e81ab2c869f0f1123136055d3424"
+"@angular/ng-dev@https://github.com/angular/dev-infra-private-ng-dev-builds.git#78558ea2af28cac705193cb716295622281a207c":
+  version "0.0.0-c2d0fc40044e7129a986ccf88965a0cb452db01c"
+  resolved "https://github.com/angular/dev-infra-private-ng-dev-builds.git#78558ea2af28cac705193cb716295622281a207c"
   dependencies:
     "@octokit/rest" "21.0.0"
     "@types/semver" "^7.3.6"
@@ -3232,14 +3233,6 @@
     ansi-escapes "^4.3.2"
     yoctocolors-cjs "^2.1.2"
 
-"@inquirer/confirm@3.1.10":
-  version "3.1.10"
-  resolved "https://registry.yarnpkg.com/@inquirer/confirm/-/confirm-3.1.10.tgz#8e8b36b1e41d6736d6ac90d1221c9e1ec948eb7a"
-  integrity sha512-/aAHu83Njy6yf44T+ZrRPUkMcUqprrOiIKsyMvf9jOV+vF5BNb2ja1aLP33MK36W8eaf91MTL/mU/e6METuENg==
-  dependencies:
-    "@inquirer/core" "^8.2.3"
-    "@inquirer/type" "^1.3.3"
-
 "@inquirer/confirm@3.1.11":
   version "3.1.11"
   resolved "https://registry.yarnpkg.com/@inquirer/confirm/-/confirm-3.1.11.tgz#7b91d1ec548253780165d6abfce02b0b21cfa5c5"
@@ -3248,7 +3241,7 @@
     "@inquirer/core" "^8.2.4"
     "@inquirer/type" "^1.3.3"
 
-"@inquirer/confirm@^3.1.11":
+"@inquirer/confirm@3.1.14", "@inquirer/confirm@^3.1.11":
   version "3.1.14"
   resolved "https://registry.yarnpkg.com/@inquirer/confirm/-/confirm-3.1.14.tgz#b50a156f2cc0a6f874f2d2ab1739e988fbf950f4"
   integrity sha512-nbLSX37b2dGPtKWL3rPuR/5hOuD30S+pqJ/MuFiUEgN6GiMs8UMxiurKAMDzKt6C95ltjupa8zH6+3csXNHWpA==
@@ -3256,7 +3249,7 @@
     "@inquirer/core" "^9.0.2"
     "@inquirer/type" "^1.4.0"
 
-"@inquirer/core@^8.2.3", "@inquirer/core@^8.2.4":
+"@inquirer/core@^8.2.4":
   version "8.2.4"
   resolved "https://registry.yarnpkg.com/@inquirer/core/-/core-8.2.4.tgz#300de755849d3166d15127e2341cef6aa4bd031d"
   integrity sha512-7vsXSfxtrrbwMTirfaKwPcjqJy7pzeuF/bP62yo1NQrRJ5HjmMlrhZml/Ljm9ODc1RnbhJlTeSnCkjtFddKjwA==
@@ -10432,14 +10425,6 @@ http2-wrapper@^1.0.0-beta.5.2:
     quick-lru "^5.1.1"
     resolve-alpn "^1.0.0"
 
-https-proxy-agent@7.0.4:
-  version "7.0.4"
-  resolved "https://registry.yarnpkg.com/https-proxy-agent/-/https-proxy-agent-7.0.4.tgz#8e97b841a029ad8ddc8731f26595bad868cb4168"
-  integrity sha512-wlwpilI7YdjSkWaQ/7omYBMTliDcmCN8OLihO6I9B86g06lMyAoqgoDpV0XqoaPOKj+0DIdAvnsWfyAAhmimcg==
-  dependencies:
-    agent-base "^7.0.2"
-    debug "4"
-
 https-proxy-agent@7.0.5, https-proxy-agent@^7.0.0, https-proxy-agent@^7.0.1:
   version "7.0.5"
   resolved "https://registry.yarnpkg.com/https-proxy-agent/-/https-proxy-agent-7.0.5.tgz#9e8b5013873299e11fab6fd548405da2d6c602b2"
@@ -14659,7 +14644,7 @@ rollup@4.18.0:
     "@rollup/rollup-win32-x64-msvc" "4.18.0"
     fsevents "~2.3.2"
 
-rollup@^4.13.0:
+rollup@4.18.1, rollup@^4.13.0:
   version "4.18.1"
   resolved "https://registry.yarnpkg.com/rollup/-/rollup-4.18.1.tgz#18a606df5e76ca53b8a69f2d8eab256d69dda851"
   integrity sha512-Elx2UT8lzxxOXMpy5HWQGZqkrQOtrVDDa/bm9l10+U4rQnVzbL/LgZ4NOM1MPIDyHk69W4InuYDF5dzRh4Kw1A==
@@ -14791,7 +14776,7 @@ sass-loader@14.2.1:
   dependencies:
     neo-async "^2.6.2"
 
-sass@*:
+sass@*, sass@1.77.7:
   version "1.77.7"
   resolved "https://registry.yarnpkg.com/sass/-/sass-1.77.7.tgz#ef3520edc8f59da089f25891d8a6bebf93668ee0"
   integrity sha512-9ywH75cO+rLjbrZ6en3Gp8qAMwPGBapFtlsMJoDTkcMU/bSe5a6cjKVUn5Jr4Gzg5GbP3HE8cm+02pLCgcoMow==
@@ -16914,17 +16899,6 @@ vfile@^4.0.0:
     unist-util-stringify-position "^2.0.0"
     vfile-message "^2.0.0"
 
-vite@5.3.1:
-  version "5.3.1"
-  resolved "https://registry.yarnpkg.com/vite/-/vite-5.3.1.tgz#bb2ca6b5fd7483249d3e86b25026e27ba8a663e6"
-  integrity sha512-XBmSKRLXLxiaPYamLv3/hnP/KXDai1NDexN0FpkTaZXTfycHvkRHoenpgl/fvuK/kPbB6xAgoyiryAhQNxYmAQ==
-  dependencies:
-    esbuild "^0.21.3"
-    postcss "^8.4.38"
-    rollup "^4.13.0"
-  optionalDependencies:
-    fsevents "~2.3.3"
-
 vite@5.3.2:
   version "5.3.2"
   resolved "https://registry.yarnpkg.com/vite/-/vite-5.3.2.tgz#2f0a8531c71060467ed3e0a205a203f269b6d9c8"
@@ -16932,6 +16906,17 @@ vite@5.3.2:
   dependencies:
     esbuild "^0.21.3"
     postcss "^8.4.38"
+    rollup "^4.13.0"
+  optionalDependencies:
+    fsevents "~2.3.3"
+
+vite@5.3.3:
+  version "5.3.3"
+  resolved "https://registry.yarnpkg.com/vite/-/vite-5.3.3.tgz#5265b1f0a825b3b6564c2d07524777c83e3c04c2"
+  integrity sha512-NPQdeCU0Dv2z5fu+ULotpuq5yfCS1BzKUIPhNbP3YBfAMGJXbt2nS+sbTFu+qchaqWTD+H3JK++nRwr6XIcp6A==
+  dependencies:
+    esbuild "^0.21.3"
+    postcss "^8.4.39"
     rollup "^4.13.0"
   optionalDependencies:
     fsevents "~2.3.3"
