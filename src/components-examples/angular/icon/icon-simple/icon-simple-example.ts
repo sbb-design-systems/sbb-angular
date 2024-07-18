@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { SbbIconModule } from '@sbb-esta/angular/icon';
 
 /**
@@ -10,5 +10,6 @@ import { SbbIconModule } from '@sbb-esta/angular/icon';
   templateUrl: 'icon-simple-example.html',
   standalone: true,
   imports: [SbbIconModule],
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class IconSimpleExample {}
