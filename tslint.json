@@ -99,14 +99,8 @@
         // Tests may need to verify behavior with zones.
         "**/*.spec.ts",
         // TODO (mhaertwig): The following files to be cleaned up and removed from this list:
-        "**/angular/menu/menu.ts",
-        "**/angular/autocomplete/autocomplete-trigger.ts",
-        "**/angular/datepicker/**/*.ts",
-        "**/angular/tabs/paginated-tab-header.ts",
         "**/angular/notification-toast/notification-toast-container.ts",
-        "**/angular/tag/tag.ts",
-        "**/angular/select/select.ts",
-        "**/angular/tooltip/tooltip.ts"
+        "**/angular/select/select.ts"
       ]
     ]
   }
