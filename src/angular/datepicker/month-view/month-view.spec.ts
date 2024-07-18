@@ -137,6 +137,7 @@ describe('SbbMonthView', () => {
 
     it('does not show selected date if in different month', () => {
       testComponent.selected = new Date(2017, MAR, 10);
+      fixture.changeDetectorRef.markForCheck();
       fixture.detectChanges();
 
       const selectedEl = monthViewNativeElement.querySelector('.sbb-calendar-body-selected');
@@ -192,6 +193,7 @@ describe('SbbMonthView', () => {
           expect(calendarInstance.date).toEqual(new Date(2017, JAN, 4));
 
           calendarInstance.date = new Date(2017, JAN, 1);
+          fixture.changeDetectorRef.markForCheck();
           fixture.detectChanges();
 
           dispatchKeyboardEvent(calendarBodyEl, 'keydown', LEFT_ARROW);
@@ -219,6 +221,7 @@ describe('SbbMonthView', () => {
           expect(calendarInstance.date).toEqual(new Date(2016, DEC, 29));
 
           calendarInstance.date = new Date(2017, JAN, 7);
+          fixture.changeDetectorRef.markForCheck();
           fixture.detectChanges();
 
           dispatchKeyboardEvent(calendarBodyEl, 'keydown', UP_ARROW);
@@ -351,6 +354,7 @@ describe('SbbMonthView', () => {
         new Date(2022, NOV, 15),
         new Date(2022, NOV, 20),
       );
+      fixture.changeDetectorRef.markForCheck();
       fixture.detectChanges();
 
       const cells = monthViewNativeElement.querySelectorAll(rangeSelector);
@@ -421,6 +425,7 @@ describe('SbbMonthView', () => {
 
       fixture.componentInstance.dateClass = (date: Date) =>
         date.getDate() === 1 ? 'another-custom-class' : ''; // highlight the first day
+      fixture.changeDetectorRef.markForCheck();
       fixture.detectChanges();
 
       expect(fixture.nativeElement.querySelectorAll('.custom-date-class').length).toBe(0);

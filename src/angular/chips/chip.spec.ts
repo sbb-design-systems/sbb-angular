@@ -42,6 +42,7 @@ describe('SbbChip', () => {
       expect(chip.getAttribute('tabindex')).toBe('12');
 
       fixture.componentInstance.tabindex = 15;
+      fixture.changeDetectorRef.markForCheck();
       fixture.detectChanges();
 
       expect(chip.getAttribute('tabindex')).toBe('15');
@@ -64,6 +65,7 @@ describe('SbbChip', () => {
       chipNativeElement = chipDebugElement.nativeElement;
 
       chipInstance.role = 'gridcell';
+      fixture.changeDetectorRef.markForCheck();
       fixture.detectChanges();
 
       expect(chipNativeElement.getAttribute('role')).toBe('gridcell');
@@ -110,6 +112,7 @@ describe('SbbChip', () => {
 
         // Force a destroy callback
         testComponent.shouldShow = false;
+        fixture.changeDetectorRef.markForCheck();
         fixture.detectChanges();
 
         expect(testComponent.chipDestroy).toHaveBeenCalledTimes(1);
@@ -133,6 +136,7 @@ describe('SbbChip', () => {
 
       it('should prevent the default click action when the chip is disabled', () => {
         chipInstance.disabled = true;
+        fixture.changeDetectorRef.markForCheck();
         fixture.detectChanges();
 
         const event = dispatchFakeEvent(chipNativeElement, 'click');
@@ -147,6 +151,7 @@ describe('SbbChip', () => {
 
       it('should return the chip value if defined', () => {
         fixture.componentInstance.value = 123;
+        fixture.changeDetectorRef.markForCheck();
         fixture.detectChanges();
 
         expect(chipInstance.value).toBe(123);
@@ -154,6 +159,7 @@ describe('SbbChip', () => {
 
       it('should return the chip value if set to null', () => {
         fixture.componentInstance.value = null;
+        fixture.changeDetectorRef.markForCheck();
         fixture.detectChanges();
 
         expect(chipInstance.value).toBeNull();
@@ -195,6 +201,7 @@ describe('SbbChip', () => {
       describe('when removable is false', () => {
         beforeEach(() => {
           testComponent.removable = false;
+          fixture.changeDetectorRef.markForCheck();
           fixture.detectChanges();
         });
 
@@ -227,6 +234,7 @@ describe('SbbChip', () => {
         expect(chipNativeElement.getAttribute('aria-disabled')).toBe('false');
 
         testComponent.disabled = true;
+        fixture.changeDetectorRef.markForCheck();
         fixture.detectChanges();
 
         expect(chipNativeElement.getAttribute('aria-disabled')).toBe('true');
@@ -236,6 +244,7 @@ describe('SbbChip', () => {
         expect(chipNativeElement.getAttribute('tabindex')).toBe('-1');
 
         testComponent.disabled = true;
+        fixture.changeDetectorRef.markForCheck();
         fixture.detectChanges();
 
         expect(chipNativeElement.getAttribute('tabindex')).toBeFalsy();
