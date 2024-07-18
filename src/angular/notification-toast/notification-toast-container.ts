@@ -21,7 +21,6 @@ import {
 } from '@angular/core';
 import { SbbIcon } from '@sbb-esta/angular/icon';
 import { Observable, Subject } from 'rxjs';
-import { take } from 'rxjs/operators';
 
 import { SBB_NOTIFICATION_TOAST_ANIMATIONS } from './notification-toast-animations';
 import { SbbNotificationToastConfig } from './notification-toast-config';
@@ -161,11 +160,11 @@ export abstract class SbbNotificationToastContainerBase
   }
 
   /**
-   * Waits for the zone to settle before removing the element. Helps prevent
+   * Waits for the microtasks to settle before removing the element. Helps prevent
    * errors where we end up removing an element which is in the middle of an animation.
    */
   private _completeExit() {
-    this._ngZone.onMicrotaskEmpty.pipe(take(1)).subscribe(() => {
+    queueMicrotask(() => {
       this._onExit.next();
       this._onExit.complete();
     });
