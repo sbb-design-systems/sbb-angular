@@ -24,6 +24,7 @@ describe('SbbBadge', () => {
     expect(badgeElement.textContent).toContain('1');
 
     testComponent.badgeContent = '22';
+    fixture.changeDetectorRef.markForCheck();
     fixture.detectChanges();
     expect(badgeElement.textContent).toContain('22');
   });
@@ -33,6 +34,7 @@ describe('SbbBadge', () => {
     expect(badgeElement.textContent).toContain('1');
 
     testComponent.badgeContent = 0;
+    fixture.changeDetectorRef.markForCheck();
     fixture.detectChanges();
     expect(badgeElement.textContent).toContain('0');
   });
@@ -42,10 +44,12 @@ describe('SbbBadge', () => {
     expect(badgeElement.textContent).toContain('1');
 
     testComponent.badgeContent = null;
+    fixture.changeDetectorRef.markForCheck();
     fixture.detectChanges();
     expect(badgeElement.textContent?.trim()).toBe('');
 
     testComponent.badgeContent = undefined;
+    fixture.changeDetectorRef.markForCheck();
     fixture.detectChanges();
     expect(badgeElement.textContent?.trim()).toBe('');
   });
@@ -54,6 +58,7 @@ describe('SbbBadge', () => {
     expect(badgeHostNativeElement.classList.contains('sbb-badge-above')).toBe(true);
 
     testComponent.badgeDirection = 'after';
+    fixture.changeDetectorRef.markForCheck();
     fixture.detectChanges();
 
     expect(badgeHostNativeElement.classList.contains('sbb-badge-after')).toBe(true);
@@ -63,6 +68,7 @@ describe('SbbBadge', () => {
     expect(badgeHostNativeElement.classList.contains('sbb-badge-hidden')).toBe(false);
 
     testComponent.badgeHidden = true;
+    fixture.changeDetectorRef.markForCheck();
     fixture.detectChanges();
 
     expect(badgeHostNativeElement.classList.contains('sbb-badge-hidden')).toBe(true);
@@ -72,6 +78,7 @@ describe('SbbBadge', () => {
     expect(badgeHostNativeElement.hasAttribute('aria-describedby')).toBeFalse();
 
     testComponent.badgeDescription = 'Describing a badge';
+    fixture.changeDetectorRef.markForCheck();
     fixture.detectChanges();
 
     const describedById = badgeHostNativeElement.getAttribute('aria-describedby') || '';
@@ -79,6 +86,7 @@ describe('SbbBadge', () => {
     expect(description).toBe('Describing a badge');
 
     testComponent.badgeDescription = '';
+    fixture.changeDetectorRef.markForCheck();
     fixture.detectChanges();
 
     expect(badgeHostNativeElement.hasAttribute('aria-describedby')).toBeFalse();
@@ -90,21 +98,25 @@ describe('SbbBadge', () => {
     expect(classList.contains('sbb-badge-hidden')).toBe(false);
 
     testComponent.badgeContent = '';
+    fixture.changeDetectorRef.markForCheck();
     fixture.detectChanges();
 
     expect(classList.contains('sbb-badge-hidden')).toBe(true);
 
     testComponent.badgeContent = 'hello';
+    fixture.changeDetectorRef.markForCheck();
     fixture.detectChanges();
 
     expect(classList.contains('sbb-badge-hidden')).toBe(false);
 
     testComponent.badgeContent = ' ';
+    fixture.changeDetectorRef.markForCheck();
     fixture.detectChanges();
 
     expect(classList.contains('sbb-badge-hidden')).toBe(true);
 
     testComponent.badgeContent = 0;
+    fixture.changeDetectorRef.markForCheck();
     fixture.detectChanges();
 
     expect(classList.contains('sbb-badge-hidden')).toBe(false);
@@ -130,6 +142,7 @@ describe('SbbBadge', () => {
     expect(element.classList).not.toContain('sbb-badge-disabled');
 
     testComponent.badgeDisabled = true;
+    fixture.changeDetectorRef.markForCheck();
     fixture.detectChanges();
 
     expect(element.classList).toContain('sbb-badge-disabled');
