@@ -461,6 +461,8 @@ export class SbbSelect
     this._errorStateTracker.errorState = value;
   }
 
+  private _initialized = new Subject<void>();
+
   /** Combined stream of all of the child options' change events. */
   readonly optionSelectionChanges: Observable<SbbOptionSelectionChange> = defer(() => {
     const options = this.options;
@@ -472,11 +474,8 @@ export class SbbSelect
       );
     }
 
-    return this._ngZone.onStable.pipe(
-      take(1),
-      switchMap(() => this.optionSelectionChanges),
-    );
-  }) as Observable<SbbOptionSelectionChange>;
+    return this._initialized.pipe(switchMap(() => this.optionSelectionChanges));
+  });
 
   /** Event emitted when the select panel has been toggled. */
   @Output() readonly openedChange: EventEmitter<boolean> = new EventEmitter<boolean>();
@@ -507,7 +506,11 @@ export class SbbSelect
   constructor(
     private _viewportRuler: ViewportRuler,
     private _changeDetectorRef: ChangeDetectorRef,
-    private _ngZone: NgZone,
+    /**
+     * @deprecated Unused param, will be removed.
+     * @breaking-change 19.0.0
+     */
+    private _unusedNgZone: NgZone,
     defaultErrorStateMatcher: SbbErrorStateMatcher,
     elementRef: ElementRef,
     @Optional() parentForm: NgForm,
@@ -573,6 +576,9 @@ export class SbbSelect
   }
 
   ngAfterContentInit() {
+    this._initialized.next();
+    this._initialized.complete();
+
     this._initKeyManager();
 
     this._selectionModel.changed.pipe(takeUntil(this._destroy)).subscribe((event) => {
@@ -663,7 +669,7 @@ export class SbbSelect
       );
 
       // Set the font size on the panel element once it exists.
-      this._ngZone.onStable.pipe(take(1)).subscribe(() => {
+      this._initialized.subscribe(() => {
         if (
           this._triggerFontSize &&
           this.overlayDir.overlayRef &&
