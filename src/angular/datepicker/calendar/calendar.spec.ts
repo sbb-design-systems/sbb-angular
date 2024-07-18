@@ -1,5 +1,5 @@
 import { ENTER } from '@angular/cdk/keycodes';
-import { Component, NgZone } from '@angular/core';
+import { Component } from '@angular/core';
 import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 import {
@@ -9,7 +9,6 @@ import {
   FEB,
   JAN,
   JUL,
-  MockNgZone,
   NOV,
 } from '@sbb-esta/angular/core/testing';
 import { SbbIconTestingModule } from '@sbb-esta/angular/icon/testing';
@@ -105,13 +104,8 @@ class CalendarWithDateClassComponent {
 }
 
 describe('SbbCalendar', () => {
-  let zone: MockNgZone;
-
   beforeEach(waitForAsync(() => {
-    TestBed.configureTestingModule({
-      imports: [SbbIconTestingModule],
-      providers: [{ provide: NgZone, useFactory: () => (zone = new MockNgZone()) }],
-    }).compileComponents();
+    TestBed.configureTestingModule({ imports: [SbbIconTestingModule] }).compileComponents();
   }));
 
   describe('standard calendar', () => {
@@ -176,17 +170,17 @@ describe('SbbCalendar', () => {
           expect(calendarBodyEl.getAttribute('tabindex')).toBe('-1');
         });
 
-        it('should not move focus to the active cell on init', () => {
+        it('should not move focus to the active cell on init', waitForAsync(async () => {
           const activeCell =
             // tslint:disable-next-line:no-non-null-assertion
             calendarBodyEl.querySelector('.sbb-calendar-body-active')! as HTMLElement;
 
           spyOn(activeCell, 'focus').and.callThrough();
           fixture.detectChanges();
-          zone.simulateZoneExit();
+          await new Promise((resolve) => setTimeout(resolve));
 
           expect(activeCell.focus).not.toHaveBeenCalled();
-        });
+        }));
       });
     });
   });
@@ -271,6 +265,7 @@ describe('SbbCalendar', () => {
       spyOn(calendarInstance.monthView, 'init').and.callThrough();
 
       testComponent.minDate = new Date(2017, NOV, 1);
+      fixture.changeDetectorRef.markForCheck();
       fixture.detectChanges();
 
       expect(calendarInstance.monthView.init).toHaveBeenCalled();
@@ -281,6 +276,7 @@ describe('SbbCalendar', () => {
       spyOn(calendarInstance.monthView, 'init').and.callThrough();
 
       testComponent.minDate = new Date(2016, JAN, 1, 0, 0, 0, 1);
+      fixture.changeDetectorRef.markForCheck();
       fixture.detectChanges();
 
       expect(calendarInstance.monthView.init).not.toHaveBeenCalled();
@@ -291,6 +287,7 @@ describe('SbbCalendar', () => {
       spyOn(calendarInstance.monthView, 'init').and.callThrough();
 
       testComponent.maxDate = new Date(2017, DEC, 1);
+      fixture.changeDetectorRef.markForCheck();
       fixture.detectChanges();
 
       expect(calendarInstance.monthView.init).toHaveBeenCalled();
@@ -397,6 +394,7 @@ describe('SbbCalendar', () => {
 
     it('should convert the dateClass function into an observable', (doneFn) => {
       testComponent.dateClass = () => 'custom-date-cell-string';
+      fixture.changeDetectorRef.markForCheck();
       fixture.detectChanges();
       calendarInstance._dateClassObservable.subscribe((dateClassFn) => {
         expect(dateClassFn(new Date())).toEqual('custom-date-cell-string');

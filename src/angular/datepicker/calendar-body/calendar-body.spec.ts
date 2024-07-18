@@ -135,6 +135,7 @@ describe('SbbCalendarBody', () => {
     it('places label in first row if space is available', () => {
       testComponent.rows[0] = testComponent.rows[0].slice(3);
       testComponent.rows = testComponent.rows.slice();
+      fixture.changeDetectorRef.markForCheck();
       fixture.detectChanges();
       refreshElementLists();
 
@@ -168,6 +169,7 @@ describe('SbbCalendarBody', () => {
     it('should toggle week numbers', () => {
       expect(fixture.nativeElement.querySelectorAll('.sbb-calendar-body-week').length).toBe(0);
       fixture.componentInstance.weeksInMonth = [42, 43];
+      fixture.changeDetectorRef.markForCheck();
       fixture.detectChanges();
       expect(fixture.nativeElement.querySelectorAll('.sbb-calendar-body-week').length).toBe(2);
     });
@@ -175,6 +177,7 @@ describe('SbbCalendarBody', () => {
     it('should emit the clicked week number', () => {
       const spy = spyOn(fixture.componentInstance, 'onWeekSelect');
       fixture.componentInstance.weeksInMonth = [42, 43];
+      fixture.changeDetectorRef.markForCheck();
       fixture.detectChanges();
       fixture.nativeElement.querySelector('.sbb-calendar-body-week').click();
       expect(spy).toHaveBeenCalledWith(42);
@@ -204,6 +207,7 @@ describe('SbbCalendarBody', () => {
       expect(testComponent.selected).toBeFalsy();
 
       testComponent.allowDisabledSelection = true;
+      fixture.changeDetectorRef.markForCheck();
       fixture.detectChanges();
 
       cellEls[0].click();

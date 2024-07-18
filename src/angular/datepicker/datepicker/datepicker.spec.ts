@@ -24,11 +24,11 @@ import { SbbDatepicker } from './datepicker';
 
 describe('SbbDatepicker', () => {
   // Creates a test component fixture.
-  function createComponent(
-    component: Type<any>,
+  function createComponent<T>(
+    component: Type<T>,
     imports: Type<any>[] = [],
     providers: (FactoryProvider | ValueProvider)[] = [],
-  ): ComponentFixture<any> {
+  ): ComponentFixture<T> {
     TestBed.configureTestingModule({
       imports: [NoopAnimationsModule, SbbIconTestingModule, ...imports, component],
       providers,
@@ -70,12 +70,14 @@ describe('SbbDatepicker', () => {
 
       it('should open datepicker if opened input is set to true', fakeAsync(() => {
         testComponent.opened = true;
+        fixture.changeDetectorRef.markForCheck();
         fixture.detectChanges();
         flush();
 
         expect(document.querySelector('.sbb-datepicker-content')).not.toBeNull();
 
         testComponent.opened = false;
+        fixture.changeDetectorRef.markForCheck();
         fixture.detectChanges();
         flush();
 
@@ -85,6 +87,7 @@ describe('SbbDatepicker', () => {
       it('disabled datepicker input should open the calendar if datepicker is enabled', () => {
         testComponent.datepicker.disabled = false;
         testComponent.datepickerInput.disabled = true;
+        fixture.changeDetectorRef.markForCheck();
         fixture.detectChanges();
 
         expect(document.querySelector('.cdk-overlay-pane')).toBeNull();
@@ -245,6 +248,7 @@ describe('SbbDatepicker', () => {
 
       it('should not throw when given wrong data type', () => {
         testComponent.date = '1/1/2017' as any;
+        fixture.changeDetectorRef.markForCheck();
 
         expect(() => fixture.detectChanges()).not.toThrow();
       });
@@ -402,6 +406,7 @@ describe('SbbDatepicker', () => {
         expect(inputEl.classList).toContain('ng-pristine');
 
         testComponent.selected = new Date(2017, JAN, 1);
+        fixture.changeDetectorRef.markForCheck();
         fixture.detectChanges();
         flush();
         fixture.detectChanges();
@@ -793,6 +798,7 @@ describe('SbbDatepicker', () => {
 
         // When activating readonly mode
         testComponent.readonly = true;
+        fixture.changeDetectorRef.markForCheck();
         fixture.detectChanges();
 
         // Then arrows and toggle should be hidden
@@ -805,6 +811,7 @@ describe('SbbDatepicker', () => {
       it(`should show '-' if no date is set`, fakeAsync(() => {
         // When activating readonly mode
         testComponent.readonly = true;
+        fixture.changeDetectorRef.markForCheck();
         fixture.detectChanges();
 
         // Then '-' should be shown as placeholder
@@ -885,6 +892,7 @@ describe('SbbDatepicker', () => {
 
     it('should display toggle', () => {
       testComponent.notoggle = false;
+      fixture.changeDetectorRef.markForCheck();
       fixture.detectChanges();
       const toggle = fixture.debugElement.query(By.css('.sbb-datepicker-toggle-button'));
       expect(toggle).toBeTruthy();
