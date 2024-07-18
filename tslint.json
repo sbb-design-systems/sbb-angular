@@ -106,7 +106,6 @@
         "**/angular/notification-toast/notification-toast-container.ts",
         "**/angular/tag/tag.ts",
         "**/angular/select/select.ts",
-        "**/angular/toggle/toggle.ts",
         "**/angular/tooltip/tooltip.ts"
       ]
     ]

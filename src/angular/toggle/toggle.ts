@@ -2,11 +2,14 @@ import { AnimationEvent } from '@angular/animations';
 import { CdkPortalOutlet } from '@angular/cdk/portal';
 import {
   AfterContentInit,
+  afterNextRender,
   ChangeDetectionStrategy,
   ChangeDetectorRef,
   Component,
   ElementRef,
   forwardRef,
+  inject,
+  Injector,
   NgZone,
   OnDestroy,
   ViewChild,
@@ -15,7 +18,7 @@ import {
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 import { SbbRadioGroup, SBB_RADIO_GROUP } from '@sbb-esta/angular/radio-button';
 import { Subject } from 'rxjs';
-import { startWith, take, takeUntil } from 'rxjs/operators';
+import { startWith, takeUntil } from 'rxjs/operators';
 
 import { sbbToggleAnimations } from './toggle-animations';
 import { SbbToggleOption } from './toggle-option';
@@ -62,6 +65,8 @@ export class SbbToggle
   _heightAnimationState: 'void' | 'initial' | 'fixed' | 'auto' = 'initial';
   _currentOptionContentWrapperHeight: number = 0;
 
+  private _injector = inject(Injector);
+
   constructor(
     private _zone: NgZone,
     changeDetectorRef: ChangeDetectorRef,
@@ -73,12 +78,15 @@ export class SbbToggle
     super.ngAfterContentInit();
     // The specification states that if no previous selection has been defined
     // the first option should be selected.
-    this._zone.onStable.pipe(take(1)).subscribe(() =>
-      this._zone.run(() => {
-        if (this._radios.toArray().every((r) => this.value !== r.value)) {
-          this._radios.first._onInputChange();
-        }
-      }),
+    afterNextRender(
+      () => {
+        this._zone.run(() => {
+          if (this._radios.toArray().every((r) => this.value !== r.value)) {
+            this._radios.first._onInputChange();
+          }
+        });
+      },
+      { injector: this._injector },
     );
 
     this.change.pipe(startWith(null!), takeUntil(this._destroyed)).subscribe(() => {
