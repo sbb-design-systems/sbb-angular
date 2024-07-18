@@ -97,9 +97,7 @@
       true,
       [
         // Tests may need to verify behavior with zones.
-        "**/*.spec.ts",
-        // TODO (mhaertwig): The following files to be cleaned up and removed from this list:
-        "**/angular/select/select.ts"
+        "**/*.spec.ts"
       ]
     ]
   }
