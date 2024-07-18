@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { FormControl, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { SbbAccordionModule } from '@sbb-esta/angular/accordion';
 import { SbbButtonModule } from '@sbb-esta/angular/button';
@@ -20,6 +20,7 @@ import { SbbCheckboxModule } from '@sbb-esta/angular/checkbox';
     ReactiveFormsModule,
     SbbButtonModule,
   ],
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class AccordionBasicExample {
   multi = new FormControl(false);
