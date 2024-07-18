@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { SbbAccordionModule } from '@sbb-esta/angular/accordion';
 import { SbbButtonModule } from '@sbb-esta/angular/button';
 
@@ -12,6 +12,7 @@ import { SbbButtonModule } from '@sbb-esta/angular/button';
   styleUrls: ['accordion-custom-html-example.css'],
   standalone: true,
   imports: [SbbAccordionModule, SbbButtonModule],
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class AccordionCustomHtmlExample {
   logAndPreventOpeningPanel(evt: any) {
