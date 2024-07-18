@@ -100,7 +100,7 @@
         "**/*.spec.ts",
         // TODO (mhaertwig): The following files to be cleaned up and removed from this list:
         "**/angular/notification-toast/notification-toast-container.ts",
-        "**/angular/tag/tag.ts",
+        "**/angular/select/select.ts",
         "**/angular/toggle/toggle.ts",
         "**/angular/select/select.ts"
       ]
