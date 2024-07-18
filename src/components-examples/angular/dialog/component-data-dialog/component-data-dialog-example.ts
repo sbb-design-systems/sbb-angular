@@ -1,7 +1,6 @@
-import { Component } from '@angular/core';
+import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
 import { SbbButtonModule } from '@sbb-esta/angular/button';
-import { SbbDialog } from '@sbb-esta/angular/dialog';
-import { SbbDialogModule } from '@sbb-esta/angular/dialog';
+import { SbbDialog, SbbDialogModule } from '@sbb-esta/angular/dialog';
 
 /**
  * @title Component Data Dialog
@@ -12,9 +11,10 @@ import { SbbDialogModule } from '@sbb-esta/angular/dialog';
   templateUrl: 'component-data-dialog-example.html',
   standalone: true,
   imports: [SbbButtonModule],
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ComponentDataDialogExample {
-  constructor(public dialog: SbbDialog) {}
+  readonly dialog = inject(SbbDialog);
 
   openDialog() {
     const dialogRef = this.dialog.open(ComponentDataDialogComponent, {
@@ -122,5 +122,6 @@ export class ComponentDataDialogExample {
   `,
   standalone: true,
   imports: [SbbDialogModule, SbbButtonModule],
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ComponentDataDialogComponent {}
