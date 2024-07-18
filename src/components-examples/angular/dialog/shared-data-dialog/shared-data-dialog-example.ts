@@ -1,8 +1,12 @@
-import { Component, Inject } from '@angular/core';
+import { ChangeDetectionStrategy, Component, inject, model, signal } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { SbbButtonModule } from '@sbb-esta/angular/button';
-import { SbbDialog, SbbDialogRef, SBB_DIALOG_DATA } from '@sbb-esta/angular/dialog';
-import { SbbDialogModule } from '@sbb-esta/angular/dialog';
+import {
+  SbbDialog,
+  SbbDialogModule,
+  SbbDialogRef,
+  SBB_DIALOG_DATA,
+} from '@sbb-esta/angular/dialog';
 import { SbbFormFieldModule } from '@sbb-esta/angular/form-field';
 import { SbbInputModule } from '@sbb-esta/angular/input';
 
@@ -20,21 +24,23 @@ export interface DialogData {
   templateUrl: 'shared-data-dialog-example.html',
   standalone: true,
   imports: [FormsModule, SbbButtonModule],
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class SharedDataDialogExample {
-  animal: string;
-  name: string;
-
-  constructor(public dialog: SbbDialog) {}
+  readonly dialog = inject(SbbDialog);
+  readonly animal = signal('');
+  readonly name = model('');
 
   openDialog(): void {
     const dialogRef = this.dialog.open(SharedDataDialogComponent, {
-      data: { name: this.name, animal: this.animal },
+      data: { name: this.name(), animal: this.animal() },
     });
 
     dialogRef.afterClosed().subscribe((result) => {
       console.log('Dialog sharing data was closed');
-      this.animal = result;
+      if (result !== undefined) {
+        this.animal.set(result);
+      }
     });
   }
 }
@@ -58,12 +64,11 @@ export class SharedDataDialogExample {
   `,
   standalone: true,
   imports: [SbbDialogModule, SbbFormFieldModule, SbbInputModule, FormsModule, SbbButtonModule],
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class SharedDataDialogComponent {
-  constructor(
-    public dialogRef: SbbDialogRef<SharedDataDialogComponent>,
-    @Inject(SBB_DIALOG_DATA) public data: DialogData,
-  ) {}
+  readonly dialogRef = inject(SbbDialogRef<SharedDataDialogComponent>);
+  readonly data = inject<DialogData>(SBB_DIALOG_DATA);
 
   noThanks(): void {
     this.dialogRef.close();
