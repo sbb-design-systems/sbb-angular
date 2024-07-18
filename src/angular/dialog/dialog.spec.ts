@@ -18,7 +18,6 @@ import {
   Injectable,
   Injector,
   NgModule,
-  NgZone,
   signal,
   TemplateRef,
   ViewChild,
@@ -229,24 +228,6 @@ describe('SbbDialog', () => {
     expect(afterCloseCallback).toHaveBeenCalledWith('Charmander');
     expect(overlayContainerElement.querySelector('sbb-dialog-container')).toBeNull();
   }));
-
-  it('should invoke the afterClosed callback inside the NgZone', fakeAsync(
-    inject([NgZone], (zone: NgZone) => {
-      const dialogRef = dialog.open(PizzaMsg, { viewContainerRef: testViewContainerRef });
-      const afterCloseCallback = jasmine.createSpy('afterClose callback');
-
-      dialogRef.afterClosed().subscribe(() => {
-        afterCloseCallback(NgZone.isInAngularZone());
-      });
-      zone.run(() => {
-        dialogRef.close();
-        viewContainerFixture.detectChanges();
-        flush();
-      });
-
-      expect(afterCloseCallback).toHaveBeenCalledWith(true);
-    }),
-  ));
 
   it('should dispose of dialog if view container is destroyed while animating', fakeAsync(() => {
     const dialogRef = dialog.open(PizzaMsg, { viewContainerRef: testViewContainerRef });
@@ -511,6 +492,7 @@ describe('SbbDialog', () => {
     });
 
     viewContainerFixture.detectChanges();
+    flush();
 
     overlayPane = overlayContainerElement.querySelector('.cdk-overlay-pane') as HTMLElement;
 
@@ -1205,9 +1187,7 @@ describe('SbbDialog', () => {
       document.body.appendChild(button);
       button.focus();
 
-      const dialogRef = TestBed.inject(NgZone).run(() =>
-        dialog.open(PizzaMsg, { viewContainerRef: testViewContainerRef }),
-      );
+      const dialogRef = dialog.open(PizzaMsg, { viewContainerRef: testViewContainerRef });
 
       viewContainerFixture.detectChanges();
       flush();
@@ -1469,12 +1449,10 @@ describe('SbbDialog', () => {
       document.body.appendChild(button);
       button.focus();
 
-      const dialogRef = TestBed.inject(NgZone).run(() =>
-        dialog.open(PizzaMsg, {
-          viewContainerRef: testViewContainerRef,
-          restoreFocus: false,
-        }),
-      );
+      const dialogRef = dialog.open(PizzaMsg, {
+        viewContainerRef: testViewContainerRef,
+        restoreFocus: false,
+      });
 
       viewContainerFixture.detectChanges();
       flush();
@@ -1508,9 +1486,7 @@ describe('SbbDialog', () => {
       body.appendChild(otherButton);
       button.focus();
 
-      const dialogRef = TestBed.inject(NgZone).run(() =>
-        dialog.open(PizzaMsg, { viewContainerRef: testViewContainerRef }),
-      );
+      const dialogRef = dialog.open(PizzaMsg, { viewContainerRef: testViewContainerRef });
 
       viewContainerFixture.detectChanges();
       flush();
@@ -1615,8 +1591,9 @@ describe('SbbDialog', () => {
 
       const hostFixture = TestBed.createComponent(OnPushHost);
       hostFixture.componentInstance.child.open();
-      hostFixture.autoDetectChanges();
+      hostFixture.detectChanges();
       flush();
+      hostFixture.detectChanges();
 
       const overlayContainer = TestBed.inject(OverlayContainer);
       const title = overlayContainer.getContainerElement().querySelector('[sbb-dialog-title]')!;
@@ -1631,6 +1608,7 @@ describe('SbbDialog', () => {
       hostFixture.componentInstance.child.dialogRef?.componentInstance.showTitle.set(false);
       hostFixture.detectChanges();
       flush();
+      hostFixture.detectChanges();
       expect(container.getAttribute('aria-labelledby')).toBe(null);
     }));
 
@@ -1707,6 +1685,7 @@ describe('SbbDialog', () => {
         expect(container.getAttribute('aria-labelledby')).toBe(title.id);
 
         hostInstance.shownTitle = 'second';
+        viewContainerFixture.changeDetectorRef.markForCheck();
         viewContainerFixture.detectChanges();
         flush();
         viewContainerFixture.detectChanges();
@@ -1721,6 +1700,7 @@ describe('SbbDialog', () => {
         const container = overlayContainerElement.querySelector('sbb-dialog-container')!;
 
         hostInstance.shownTitle = 'all';
+        viewContainerFixture.changeDetectorRef.markForCheck();
         viewContainerFixture.detectChanges();
         flush();
         viewContainerFixture.detectChanges();
@@ -1731,6 +1711,7 @@ describe('SbbDialog', () => {
         expect(container.getAttribute('aria-labelledby')).toBe(titles[0].id);
 
         hostInstance.shownTitle = 'second';
+        viewContainerFixture.changeDetectorRef.markForCheck();
         viewContainerFixture.detectChanges();
         flush();
         viewContainerFixture.detectChanges();
