@@ -47,6 +47,7 @@ describe('SbbExpansionPanel', () => {
     expect(headerEl.classList).not.toContain('sbb-expanded');
 
     fixture.componentInstance.expanded = true;
+    fixture.changeDetectorRef.markForCheck();
     fixture.detectChanges();
     flush();
 
@@ -65,6 +66,7 @@ describe('SbbExpansionPanel', () => {
       .toBe('');
 
     fixture.componentInstance.expanded = true;
+    fixture.changeDetectorRef.markForCheck();
     fixture.detectChanges();
 
     expect(content.textContent.trim())
@@ -87,6 +89,7 @@ describe('SbbExpansionPanel', () => {
   it('should not render lazy content from a child panel inside the parent', fakeAsync(() => {
     const fixture = TestBed.createComponent(NestedLazyPanelWithContent);
     fixture.componentInstance.parentExpanded = true;
+    fixture.changeDetectorRef.markForCheck();
     fixture.detectChanges();
 
     const parentContent: HTMLElement = fixture.nativeElement.querySelector(
@@ -106,6 +109,7 @@ describe('SbbExpansionPanel', () => {
     );
 
     fixture.componentInstance.childExpanded = true;
+    fixture.changeDetectorRef.markForCheck();
     fixture.detectChanges();
 
     expect(childContent.textContent!.trim()).toBe(
@@ -117,10 +121,12 @@ describe('SbbExpansionPanel', () => {
   it('emit correct events for change in panel expanded state', () => {
     const fixture = TestBed.createComponent(PanelWithContent);
     fixture.componentInstance.expanded = true;
+    fixture.changeDetectorRef.markForCheck();
     fixture.detectChanges();
     expect(fixture.componentInstance.openCallback).toHaveBeenCalled();
 
     fixture.componentInstance.expanded = false;
+    fixture.changeDetectorRef.markForCheck();
     fixture.detectChanges();
     expect(fixture.componentInstance.closeCallback).toHaveBeenCalled();
   });
@@ -298,6 +304,7 @@ describe('SbbExpansionPanel', () => {
       .toBeTruthy();
 
     fixture.componentInstance.hideToggle = true;
+    fixture.changeDetectorRef.markForCheck();
     fixture.detectChanges();
 
     expect(header.querySelector('.sbb-expansion-panel-header-indicator'))
@@ -338,6 +345,7 @@ describe('SbbExpansionPanel', () => {
     let destroyedOk = false;
     fixture.componentInstance.panel.destroyed.subscribe(() => (destroyedOk = true));
     fixture.componentInstance.expansionShown = false;
+    fixture.changeDetectorRef.markForCheck();
     fixture.detectChanges();
     expect(destroyedOk).toBe(true);
   });
@@ -367,12 +375,14 @@ describe('SbbExpansionPanel', () => {
     fixture.componentInstance.panel.afterCollapse.subscribe(() => afterCollapse++);
 
     fixture.componentInstance.expanded = true;
+    fixture.changeDetectorRef.markForCheck();
     fixture.detectChanges();
     flush();
     expect(afterExpand).toBe(1);
     expect(afterCollapse).toBe(0);
 
     fixture.componentInstance.expanded = false;
+    fixture.changeDetectorRef.markForCheck();
     fixture.detectChanges();
     flush();
     expect(afterExpand).toBe(1);
@@ -403,6 +413,7 @@ describe('SbbExpansionPanel', () => {
       expect(header.getAttribute('aria-disabled')).toBe('false');
 
       fixture.componentInstance.disabled = true;
+      fixture.changeDetectorRef.markForCheck();
       fixture.detectChanges();
 
       expect(header.getAttribute('aria-disabled')).toBe('true');
@@ -412,6 +423,7 @@ describe('SbbExpansionPanel', () => {
       expect(panel.querySelector('.sbb-expansion-panel-header-indicator')).toBeTruthy();
 
       fixture.componentInstance.disabled = true;
+      fixture.changeDetectorRef.markForCheck();
       fixture.detectChanges();
 
       expect(panel.querySelector('.sbb-expansion-panel-header-indicator')).toBeFalsy();
@@ -422,6 +434,7 @@ describe('SbbExpansionPanel', () => {
       expect(header.classList).not.toContain('sbb-expanded');
 
       fixture.componentInstance.disabled = true;
+      fixture.changeDetectorRef.markForCheck();
       fixture.detectChanges();
 
       header.click();
@@ -436,9 +449,11 @@ describe('SbbExpansionPanel', () => {
       expect(header.classList).not.toContain('sbb-expanded');
 
       fixture.componentInstance.disabled = true;
+      fixture.changeDetectorRef.markForCheck();
       fixture.detectChanges();
 
       fixture.componentInstance.expanded = true;
+      fixture.changeDetectorRef.markForCheck();
       fixture.detectChanges();
 
       expect(fixture.componentInstance.panel.expanded).toBe(true);
@@ -452,6 +467,7 @@ describe('SbbExpansionPanel', () => {
       expect(header.classList).not.toContain('sbb-expanded');
 
       fixture.componentInstance.disabled = true;
+      fixture.changeDetectorRef.markForCheck();
       fixture.detectChanges();
 
       panelInstance.open();
@@ -474,6 +490,7 @@ describe('SbbExpansionPanel', () => {
       expect(header.classList).not.toContain('sbb-expanded');
 
       fixture.componentInstance.disabled = true;
+      fixture.changeDetectorRef.markForCheck();
       fixture.detectChanges();
 
       panelInstance.toggle();
@@ -493,6 +510,7 @@ describe('SbbExpansionPanel', () => {
       expect(header.getAttribute('tabindex')).toBe('0');
 
       fixture.componentInstance.disabled = true;
+      fixture.changeDetectorRef.markForCheck();
       fixture.detectChanges();
 
       expect(header.getAttribute('tabindex')).toBe('-1');
