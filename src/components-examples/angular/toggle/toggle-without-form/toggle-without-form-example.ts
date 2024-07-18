@@ -1,5 +1,5 @@
 import { JsonPipe } from '@angular/common';
-import { Component, ViewEncapsulation } from '@angular/core';
+import { ChangeDetectionStrategy, Component, ViewEncapsulation } from '@angular/core';
 import { SbbRadioChange } from '@sbb-esta/angular/radio-button';
 import { SbbToggleModule } from '@sbb-esta/angular/toggle';
 
@@ -13,6 +13,7 @@ import { SbbToggleModule } from '@sbb-esta/angular/toggle';
   encapsulation: ViewEncapsulation.None,
   standalone: true,
   imports: [SbbToggleModule, JsonPipe],
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ToggleWithoutFormExample {
   toggleValues: any = null;

@@ -1,5 +1,5 @@
 import { JsonPipe } from '@angular/common';
-import { Component, ViewEncapsulation } from '@angular/core';
+import { ChangeDetectionStrategy, Component, ViewEncapsulation } from '@angular/core';
 import { FormControl, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { SbbDatepickerModule } from '@sbb-esta/angular/datepicker';
 import { SbbFormFieldModule } from '@sbb-esta/angular/form-field';
@@ -26,6 +26,7 @@ import { SbbToggleModule } from '@sbb-esta/angular/toggle';
     SbbInputModule,
     JsonPipe,
   ],
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ToggleReactiveExample {
   journey = new FormControl('ReturnJourney');
