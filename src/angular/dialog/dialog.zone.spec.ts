@@ -12,10 +12,9 @@ import {
 } from '@angular/core';
 import { ComponentFixture, fakeAsync, flush, inject, TestBed } from '@angular/core/testing';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
-import { SbbDialog } from '@sbb-esta/angular/dialog/dialog';
-import { SbbDialogRef } from '@sbb-esta/angular/dialog/dialog-ref';
-import { SbbDialogModule } from '@sbb-esta/angular/dialog/dialog.module';
 import { Subject } from 'rxjs';
+
+import { SbbDialog, SbbDialogModule, SbbDialogRef } from './index';
 
 describe('SbbDialog Zone.js integration', () => {
   let dialog: SbbDialog;
