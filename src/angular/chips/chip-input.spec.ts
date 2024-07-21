@@ -63,6 +63,7 @@ describe('SbbChipInput', () => {
       expect(inputNativeElement.hasAttribute('placeholder')).toBe(false);
 
       testChipInput.placeholder = 'bound placeholder';
+      fixture.changeDetectorRef.markForCheck();
       fixture.detectChanges();
 
       expect(inputNativeElement.getAttribute('placeholder')).toBe('bound placeholder');
@@ -70,6 +71,7 @@ describe('SbbChipInput', () => {
 
     it('should propagate the dynamic `placeholder` value to the form field', () => {
       fixture.componentInstance.placeholder = 'add a chip';
+      fixture.changeDetectorRef.markForCheck();
       fixture.detectChanges();
 
       const input: HTMLElement = fixture.nativeElement.querySelector('input');
@@ -78,6 +80,7 @@ describe('SbbChipInput', () => {
       expect(input.getAttribute('placeholder')).toContain('add a chip');
 
       fixture.componentInstance.placeholder = "or don't";
+      fixture.changeDetectorRef.markForCheck();
       fixture.detectChanges();
 
       expect(input.getAttribute('placeholder')).toContain("or don't");
@@ -88,6 +91,7 @@ describe('SbbChipInput', () => {
       expect(chipInputDirective.disabled).toBe(false);
 
       fixture.componentInstance.chipListInstance.disabled = true;
+      fixture.changeDetectorRef.markForCheck();
       fixture.detectChanges();
 
       expect(inputNativeElement.getAttribute('disabled')).toBe('true');
@@ -138,6 +142,7 @@ describe('SbbChipInput', () => {
       expect(inputNativeElement.hasAttribute('aria-required')).toBe(false);
 
       fixture.componentInstance.required = true;
+      fixture.changeDetectorRef.markForCheck();
       fixture.detectChanges();
 
       expect(inputNativeElement.getAttribute('aria-required')).toBe('true');
@@ -153,6 +158,7 @@ describe('SbbChipInput', () => {
       spyOn(testChipInput, 'add');
 
       testChipInput.addOnBlur = true;
+      fixture.changeDetectorRef.markForCheck();
       fixture.detectChanges();
 
       chipInputDirective._blur();
