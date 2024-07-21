@@ -45,6 +45,9 @@ ng_test_library(
     deps = [
         ":dialog",
         "//src/angular/core/testing",
+        "//src/angular/dialog/dialog",
+        "//src/angular/dialog/dialog.module",
+        "//src/angular/dialog/dialog-ref",
         "//src/angular/icon/testing",
         "@npm//@angular/cdk",
         "@npm//@angular/common",
