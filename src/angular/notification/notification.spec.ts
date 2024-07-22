@@ -48,6 +48,7 @@ describe('SbbNotification', () => {
 
     it('should have red background when type is ERROR', async () => {
       testComponent.type = 'error';
+      testFixture.changeDetectorRef.markForCheck();
       testFixture.detectChanges();
       const notifications = testFixture.debugElement.queryAll(By.css('.sbb-notification-error'));
       expect(notifications.length).toBeGreaterThan(0);
@@ -58,6 +59,7 @@ describe('SbbNotification', () => {
 
     it('should have grey background when type is SUCCESS', async () => {
       testComponent.type = 'success';
+      testFixture.changeDetectorRef.markForCheck();
       testFixture.detectChanges();
       const notifications = testFixture.debugElement.queryAll(By.css('.sbb-notification-success'));
       expect(notifications.length).toBeGreaterThan(0);
@@ -68,6 +70,7 @@ describe('SbbNotification', () => {
 
     it('should have grey background when type is INFO', async () => {
       testComponent.type = 'info';
+      testFixture.changeDetectorRef.markForCheck();
       testFixture.detectChanges();
       const notifications = testFixture.debugElement.queryAll(By.css('.sbb-notification-info'));
       expect(notifications.length).toBeGreaterThan(0);
@@ -86,6 +89,7 @@ describe('SbbNotification', () => {
         { elementId: '#here', title: 'Here' },
         { elementId: '#there', title: 'There' },
       ];
+      testFixture.changeDetectorRef.markForCheck();
       testFixture.detectChanges();
       const notifications = testFixture.debugElement.queryAll(
         By.css('.sbb-notification-jump-mark'),
@@ -98,6 +102,7 @@ describe('SbbNotification', () => {
     it('should call callback of jump mark', () => {
       const callbackMock = jasmine.createSpy('mock-callback');
       testComponent.jumpMarks = [{ callback: callbackMock, title: 'Here' }];
+      testFixture.changeDetectorRef.markForCheck();
       testFixture.detectChanges();
       const notificationLink = testFixture.debugElement.query(
         By.css('.sbb-notification-jump-mark > a'),
@@ -113,6 +118,7 @@ describe('SbbNotification', () => {
 
       it('should have red background when type is ERROR', async () => {
         testComponent.type = 'error';
+        testFixture.changeDetectorRef.markForCheck();
         testFixture.detectChanges();
         const notifications = testFixture.debugElement.queryAll(By.css('.sbb-notification-error'));
         expect(notifications.length).toBeGreaterThan(0);
@@ -180,6 +186,7 @@ describe('SbbNotification', () => {
           { elementId: '#here', title: 'Here' },
           { elementId: '#there', title: 'There' },
         ];
+        testFixture.changeDetectorRef.markForCheck();
         testFixture.detectChanges();
         const notifications = testFixture.debugElement.queryAll(
           By.css('.sbb-notification-jump-mark'),
