@@ -228,6 +228,7 @@ describe('SbbTooltipWrapper', () => {
     describe('disabled', () => {
       it('should have a disabled attribute and a `sbb-disabled` class', () => {
         component.tooltipDisabled = true;
+        fixture.changeDetectorRef.markForCheck();
         fixture.detectChanges();
         const buttonElement = fixture.debugElement.query(By.css('button'))
           .nativeElement as HTMLElement;

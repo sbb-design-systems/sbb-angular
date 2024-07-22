@@ -570,6 +570,7 @@ describe('SbbTooltip', () => {
     it('should throw when trying to assign an invalid position', () => {
       expect(() => {
         fixture.componentInstance.position = 'everywhere';
+        fixture.changeDetectorRef.markForCheck();
         fixture.detectChanges();
         tooltipDirective.show();
       }).toThrowError('Tooltip position "everywhere" is invalid.');
