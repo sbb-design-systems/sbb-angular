@@ -105,6 +105,7 @@ describe('SbbPaginator', () => {
       const component = fixture.componentInstance;
       const paginator = component.paginator;
       paginator.pageIndex = 1;
+      fixture.changeDetectorRef.markForCheck();
       fixture.detectChanges();
       expect(paginator.pageIndex).toBe(1);
 
@@ -152,6 +153,7 @@ describe('SbbPaginator', () => {
     const component = fixture.componentInstance;
     const paginator = component.paginator;
     component.pageIndex = 10;
+    fixture.changeDetectorRef.markForCheck();
     fixture.detectChanges();
     expect(component.pageEvent).toHaveBeenCalledTimes(1);
     expect(paginator.pageIndex).toBe(9);
@@ -163,6 +165,7 @@ describe('SbbPaginator', () => {
     const paginator = component.paginator;
     component.pageIndex = 9;
     component.length = 90;
+    fixture.changeDetectorRef.markForCheck();
     fixture.detectChanges();
     expect(component.pageEvent).toHaveBeenCalledTimes(2);
     expect(paginator.pageIndex).toBe(8);
@@ -173,6 +176,7 @@ describe('SbbPaginator', () => {
     const component = fixture.componentInstance;
     const paginator = component.paginator;
     component.length = 90;
+    fixture.changeDetectorRef.markForCheck();
     fixture.detectChanges();
     expect(component.pageEvent).not.toHaveBeenCalled();
     expect(paginator.pageIndex).toBe(0);
@@ -184,6 +188,7 @@ describe('SbbPaginator', () => {
     const paginator = component.paginator;
     component.pageIndex = 10;
     component.length = 0;
+    fixture.changeDetectorRef.markForCheck();
     fixture.detectChanges();
     expect(component.pageEvent).toHaveBeenCalledTimes(2);
     expect(paginator.pageIndex).toBe(0);
@@ -212,6 +217,7 @@ describe('SbbPaginator', () => {
     component.pageIndex = 4;
     component.pageSize = 10;
     component.length = 100;
+    fixture.changeDetectorRef.markForCheck();
     fixture.detectChanges();
 
     // The first item of the page should be item with index 40
@@ -273,16 +279,19 @@ describe('SbbPaginator', () => {
 
     component.pageSize = 10;
     component.length = 100;
+    fixture.changeDetectorRef.markForCheck();
     fixture.detectChanges();
     expect(paginator.numberOfPages()).toBe(10);
 
     component.pageSize = 10;
     component.length = 0;
+    fixture.changeDetectorRef.markForCheck();
     fixture.detectChanges();
     expect(paginator.numberOfPages()).toBe(0);
 
     component.pageSize = 10;
     component.length = 10;
+    fixture.changeDetectorRef.markForCheck();
     fixture.detectChanges();
     expect(paginator.numberOfPages()).toBe(1);
   });
@@ -294,6 +303,7 @@ describe('SbbPaginator', () => {
 
     component.pageSize = 11;
 
+    fixture.changeDetectorRef.markForCheck();
     fixture.detectChanges();
     expect(component.pageEvent).toHaveBeenCalledWith(
       jasmine.objectContaining({
@@ -307,11 +317,13 @@ describe('SbbPaginator', () => {
     const fixture = createComponent(SbbPaginatorTestComponent);
     const component = fixture.componentInstance;
     component.pageSize = 11;
+    fixture.changeDetectorRef.markForCheck();
     fixture.detectChanges();
     component.pageEvent.calls.reset();
 
     component.length = 99;
 
+    fixture.changeDetectorRef.markForCheck();
     fixture.detectChanges();
     expect(component.pageEvent).not.toHaveBeenCalled();
   });
@@ -330,6 +342,7 @@ describe('SbbPaginator', () => {
     const fixture = createComponent(SbbPaginatorTestComponent);
 
     fixture.componentInstance.pageIndex = 1;
+    fixture.changeDetectorRef.markForCheck();
     fixture.detectChanges();
 
     expect(getPreviousButton(fixture).hasAttribute('disabled')).toBe(false);
@@ -338,6 +351,7 @@ describe('SbbPaginator', () => {
     expect(getLastButton(fixture).hasAttribute('disabled')).toBe(false);
 
     fixture.componentInstance.disabled = true;
+    fixture.changeDetectorRef.markForCheck();
     fixture.detectChanges();
 
     expect(getPreviousButton(fixture).hasAttribute('disabled')).toBe(true);
@@ -366,6 +380,7 @@ describe('SbbPaginator', () => {
     const paginator = fixture.componentInstance.paginator;
 
     paginator.pageIndex = 1;
+    fixture.changeDetectorRef.markForCheck();
     fixture.detectChanges();
 
     expect(getNextButton(fixture).hasAttribute('disabled')).toBe(false);
@@ -402,18 +417,22 @@ describe('SbbPaginator', () => {
         const fixture = createComponent(SbbPaginatorTestComponent);
         const component = fixture.componentInstance;
         component.pageIndex = 0;
+        fixture.changeDetectorRef.markForCheck();
         fixture.detectChanges();
         let ellipsisItems = fixture.debugElement.queryAll(By.css('.sbb-paginator-item-ellipsis'));
         expect(ellipsisItems.length).toBe(1);
         component.pageIndex = 1;
+        fixture.changeDetectorRef.markForCheck();
         fixture.detectChanges();
         ellipsisItems = fixture.debugElement.queryAll(By.css('.sbb-paginator-item-ellipsis'));
         expect(ellipsisItems.length).toBe(1);
         component.pageIndex = 2;
+        fixture.changeDetectorRef.markForCheck();
         fixture.detectChanges();
         ellipsisItems = fixture.debugElement.queryAll(By.css('.sbb-paginator-item-ellipsis'));
         expect(ellipsisItems.length).toBe(1);
         component.pageIndex = 3;
+        fixture.changeDetectorRef.markForCheck();
         fixture.detectChanges();
         ellipsisItems = fixture.debugElement.queryAll(By.css('.sbb-paginator-item-ellipsis'));
         expect(ellipsisItems.length).toBe(2);
@@ -423,18 +442,22 @@ describe('SbbPaginator', () => {
         const fixture = createComponent(SbbPaginatorTestComponent);
         const component = fixture.componentInstance;
         component.pageIndex = 9;
+        fixture.changeDetectorRef.markForCheck();
         fixture.detectChanges();
         let ellipsisItems = fixture.debugElement.queryAll(By.css('.sbb-paginator-item-ellipsis'));
         expect(ellipsisItems.length).toBe(1);
         component.pageIndex = 8;
+        fixture.changeDetectorRef.markForCheck();
         fixture.detectChanges();
         ellipsisItems = fixture.debugElement.queryAll(By.css('.sbb-paginator-item-ellipsis'));
         expect(ellipsisItems.length).toBe(1);
         component.pageIndex = 7;
+        fixture.changeDetectorRef.markForCheck();
         fixture.detectChanges();
         ellipsisItems = fixture.debugElement.queryAll(By.css('.sbb-paginator-item-ellipsis'));
         expect(ellipsisItems.length).toBe(1);
         component.pageIndex = 6;
+        fixture.changeDetectorRef.markForCheck();
         fixture.detectChanges();
         ellipsisItems = fixture.debugElement.queryAll(By.css('.sbb-paginator-item-ellipsis'));
         expect(ellipsisItems.length).toBe(2);
