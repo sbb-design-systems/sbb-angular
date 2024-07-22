@@ -144,12 +144,14 @@ describe('SbbFileSelector using mock component', () => {
 
   it('should add / remove the `multiple` attribute to the underlying input element', () => {
     fixture.componentInstance.multiple = true;
+    fixture.changeDetectorRef.markForCheck();
     fixture.detectChanges();
 
     const fileInput = fixture.debugElement.query(By.css('input[type="file"]'));
     expect(fileInput.nativeElement.getAttribute('multiple')).toEqual('true');
 
     fixture.componentInstance.multiple = false;
+    fixture.changeDetectorRef.markForCheck();
     fixture.detectChanges();
     expect(fileInput.nativeElement.hasAttribute('multiple')).toBe(false);
   });

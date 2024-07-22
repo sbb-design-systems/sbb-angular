@@ -134,21 +134,29 @@ export abstract class SbbNotificationToastContainerBase
   enter(): void {
     if (!this._destroyed) {
       this._animationState = 'visible';
+      // _animationState lives in host bindings and `detectChanges` does not refresh host bindings
+      // so we have to call `markForCheck` to ensure the host view is refreshed eventually.
+      this._changeDetectorRef.markForCheck();
       this._changeDetectorRef.detectChanges();
     }
   }
 
   /** Begin animation of the notification toast exiting from view. */
   exit(): Observable<void> {
-    // Note: this one transitions to `hidden`, rather than `void`, in order to handle the case
-    // where multiple notification toasts are opened in quick succession (e.g. two consecutive calls to
-    // `SbbNotificationToast.open`).
-    this._animationState = 'hidden';
+    // It's common for notification toasts to be opened by random outside calls like HTTP requests or
+    // errors. Run inside the NgZone to ensure that it functions correctly.
+    this._ngZone.run(() => {
+      // Note: this one transitions to `hidden`, rather than `void`, in order to handle the case
+      // where multiple notification toasts are opened in quick succession (e.g. two consecutive calls to
+      // `SbbNotificationToast.open`).
+      this._animationState = 'hidden';
+      this._changeDetectorRef.markForCheck();
 
-    // Mark this element with an 'exit' attribute to indicate that the notification toast has
-    // been dismissed and will soon be removed from the DOM. This is used by the notification toast
-    // test harness.
-    this._elementRef.nativeElement.setAttribute('sbb-exit', '');
+      // Mark this element with an 'exit' attribute to indicate that the notification toast has
+      // been dismissed and will soon be removed from the DOM. This is used by the notification toast
+      // test harness.
+      this._elementRef.nativeElement.setAttribute('sbb-exit', '');
+    });
 
     return this._onExit;
   }
@@ -160,6 +168,8 @@ export abstract class SbbNotificationToastContainerBase
   }
 
   /**
+   * Removes the element in a microtask. Helps prevent errors where we end up
+   * removing an element which is in the middle of an animation.
    * Waits for the microtasks to settle before removing the element. Helps prevent
    * errors where we end up removing an element which is in the middle of an animation.
    */
