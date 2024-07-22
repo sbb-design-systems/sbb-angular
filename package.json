@@ -150,7 +150,7 @@
     "prettier": "3.3.3",
     "protractor": "7.0.0",
     "renovate": "37.421.3",
-    "requirejs": "2.3.6",
+    "requirejs": "2.3.7",
     "rollup": "2.79.1",
     "rollup-plugin-sourcemaps": "0.6.3",
     "rxjs-tslint-rules": "4.34.8",
