@@ -604,6 +604,7 @@ describe('SbbTable', () => {
 
     // When scrolling to a middle position
     tableWrapper.nativeElement.scrollLeft = 1;
+    fixture.changeDetectorRef.markForCheck();
     tableWrapper.nativeElement.dispatchEvent(new CustomEvent('scroll'));
 
     // Then it should have offset right and left
