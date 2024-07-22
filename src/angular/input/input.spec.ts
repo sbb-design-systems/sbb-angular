@@ -114,6 +114,7 @@ describe('SbbInput without forms', () => {
     expect(el.classList.contains('sbb-form-field-empty')).withContext('should be empty').toBe(true);
 
     inputEl.nativeElement.value = 'hello';
+    fixture.changeDetectorRef.markForCheck();
     // Simulate input event.
     inputEl.triggerEventHandler('input', { target: inputEl.nativeElement });
     fixture.detectChanges();
@@ -132,6 +133,7 @@ describe('SbbInput without forms', () => {
     expect(labelEl.classList).not.toContain('sbb-form-field-empty');
 
     fixture.componentInstance.value = '';
+    fixture.changeDetectorRef.markForCheck();
     fixture.detectChanges();
 
     expect(labelEl.classList).toContain('sbb-form-field-empty');
@@ -165,6 +167,7 @@ describe('SbbInput without forms', () => {
       .toBe('false');
 
     fixture.componentInstance.required = true;
+    fixture.changeDetectorRef.markForCheck();
     fixture.detectChanges();
 
     expect(inputElement.getAttribute('aria-required'))
@@ -203,6 +206,7 @@ describe('SbbInput without forms', () => {
     );
 
     fixture.componentInstance.renderInput = false;
+    fixture.changeDetectorRef.markForCheck();
 
     expect(() => fixture.detectChanges()).toThrowError(
       wrappedErrorMessage(getSbbFormFieldMissingControlError()),
@@ -235,6 +239,7 @@ describe('SbbInput without forms', () => {
     expect(inputEl.disabled).toBe(false);
 
     fixture.componentInstance.disabled = true;
+    fixture.changeDetectorRef.markForCheck();
     fixture.detectChanges();
 
     expect(formFieldEl.classList.contains('sbb-form-field-disabled'))
@@ -256,6 +261,7 @@ describe('SbbInput without forms', () => {
     expect(selectEl.disabled).toBe(false);
 
     fixture.componentInstance.disabled = true;
+    fixture.changeDetectorRef.markForCheck();
     fixture.detectChanges();
 
     expect(formFieldEl.classList.contains('sbb-form-field-disabled'))
@@ -282,6 +288,7 @@ describe('SbbInput without forms', () => {
     expect(inputEl.required).toBe(false);
 
     fixture.componentInstance.required = true;
+    fixture.changeDetectorRef.markForCheck();
     fixture.detectChanges();
 
     expect(inputEl.required).toBe(true);
@@ -296,6 +303,7 @@ describe('SbbInput without forms', () => {
     expect(selectEl.required).toBe(false);
 
     fixture.componentInstance.required = true;
+    fixture.changeDetectorRef.markForCheck();
     fixture.detectChanges();
 
     expect(selectEl.required).toBe(true);
@@ -310,6 +318,7 @@ describe('SbbInput without forms', () => {
     expect(inputEl.type).toBe('text');
 
     fixture.componentInstance.type = 'password';
+    fixture.changeDetectorRef.markForCheck();
     fixture.detectChanges();
 
     expect(inputEl.type).toBe('password');
@@ -335,27 +344,32 @@ describe('SbbInput without forms', () => {
     const fixture = createComponent(SbbInputWithSubscriptAndAriaDescribedBy);
 
     fixture.componentInstance.label = 'label';
+    fixture.changeDetectorRef.markForCheck();
     fixture.detectChanges();
 
     const input = fixture.debugElement.query(By.css('input'))!.nativeElement;
 
     fixture.componentInstance.userDescribedByValue = 'custom-error custom-error-two';
+    fixture.changeDetectorRef.markForCheck();
     fixture.detectChanges();
     expect(input.getAttribute('aria-describedby')).toBe(`custom-error custom-error-two`);
 
     fixture.componentInstance.userDescribedByValue = 'custom-error';
+    fixture.changeDetectorRef.markForCheck();
     fixture.detectChanges();
     expect(input.getAttribute('aria-describedby')).toBe(`custom-error`);
 
     fixture.componentInstance.showError = true;
     fixture.componentInstance.formControl.markAsTouched();
     fixture.componentInstance.formControl.setErrors({ invalid: true });
+    fixture.changeDetectorRef.markForCheck();
     fixture.detectChanges();
     expect(input.getAttribute('aria-describedby')).toMatch(/^custom-error sbb-error-\d+$/);
 
     fixture.componentInstance.label = '';
     fixture.componentInstance.userDescribedByValue = '';
     fixture.componentInstance.showError = false;
+    fixture.changeDetectorRef.markForCheck();
     fixture.detectChanges();
     expect(input.hasAttribute('aria-describedby')).toBe(false);
   }));
@@ -453,10 +467,12 @@ describe('SbbInput without forms', () => {
     expect(input.getAttribute('placeholder')).toBe(null);
 
     fixture.componentInstance.placeholder = '';
+    fixture.changeDetectorRef.markForCheck();
     fixture.detectChanges();
     expect(input.getAttribute('placeholder')).toBe(null);
 
     fixture.componentInstance.placeholder = 'placeholder';
+    fixture.changeDetectorRef.markForCheck();
     fixture.detectChanges();
     expect(input.getAttribute('placeholder')).toBe('placeholder');
   });
@@ -488,6 +504,7 @@ describe('SbbInput without forms', () => {
       expect(label.classList).toContain('sbb-form-field-empty');
 
       fixture.nativeElement.querySelector('input').value = 'abc';
+      fixture.changeDetectorRef.markForCheck();
       fixture.detectChanges();
 
       expect(label.classList).not.toContain('sbb-form-field-empty');
@@ -702,6 +719,7 @@ describe('SbbInput with forms', () => {
         .toBe(0);
 
       component.errorState = true;
+      fixture.changeDetectorRef.markForCheck();
       fixture.detectChanges();
 
       expect(containerEl.querySelectorAll('sbb-error').length)
@@ -824,6 +842,7 @@ describe('SbbInput with forms', () => {
     expect(el.classList).toContain('sbb-form-field-empty');
 
     fixture.componentInstance.formControl.patchValue('value', { emitEvent: false });
+    fixture.changeDetectorRef.markForCheck();
     fixture.detectChanges();
 
     expect(el.classList).not.toContain('sbb-form-field-empty');
@@ -860,12 +879,14 @@ describe('SbbInput with forms', () => {
 
     it('should update the tabIndex of the input', fakeAsync(() => {
       fixture.componentInstance.tabIndex = 3;
+      fixture.changeDetectorRef.markForCheck();
       fixture.detectChanges();
 
       const input = fixture.debugElement.query(By.css('input'))!.nativeElement;
       expect(input.tabIndex).toBe(-1);
 
       fixture.componentInstance.readonly = false;
+      fixture.changeDetectorRef.markForCheck();
       fixture.detectChanges();
       expect(input.tabIndex).toBe(3);
     }));

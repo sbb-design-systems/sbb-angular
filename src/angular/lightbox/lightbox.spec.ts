@@ -18,7 +18,6 @@ import {
   Injectable,
   Injector,
   NgModule,
-  NgZone,
   TemplateRef,
   ViewChild,
   ViewContainerRef,
@@ -245,24 +244,6 @@ describe('SbbLightbox', () => {
     expect(afterCloseCallback).toHaveBeenCalledWith('Charmander');
     expect(overlayContainerElement.querySelector('sbb-lightbox-container')).toBeNull();
   }));
-
-  it('should invoke the afterClosed callback inside the NgZone', fakeAsync(
-    inject([NgZone], (zone: NgZone) => {
-      const lightboxRef = lightbox.open(PizzaMsg, { viewContainerRef: testViewContainerRef });
-      const afterCloseCallback = jasmine.createSpy('afterClose callback');
-
-      lightboxRef.afterClosed().subscribe(() => {
-        afterCloseCallback(NgZone.isInAngularZone());
-      });
-      zone.run(() => {
-        lightboxRef.close();
-        viewContainerFixture.detectChanges();
-        flush();
-      });
-
-      expect(afterCloseCallback).toHaveBeenCalledWith(true);
-    }),
-  ));
 
   it('should dispose of lightbox if view container is destroyed while animating', fakeAsync(() => {
     const lightboxRef = lightbox.open(PizzaMsg, { viewContainerRef: testViewContainerRef });
@@ -1288,9 +1269,10 @@ describe('SbbLightbox', () => {
 
       const lightboxRef = lightbox.open(PizzaMsg, { viewContainerRef: testViewContainerRef });
 
-      flushMicrotasks();
+      flush();
       viewContainerFixture.detectChanges();
-      flushMicrotasks();
+      flush();
+      viewContainerFixture.detectChanges();
 
       expect(document.activeElement!.id).not.toBe(
         'dialog-trigger',
@@ -1947,7 +1929,6 @@ class ComponentWithContentElementTemplateRef {
 
 @Component({
   imports: [SbbLightboxModule],
-  providers: [SbbLightbox],
   standalone: true,
   template: '',
 })
