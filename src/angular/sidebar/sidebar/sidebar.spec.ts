@@ -304,6 +304,7 @@ describe('SbbSidebar', () => {
       sidebar.open();
       fixture.detectChanges();
       flush();
+      fixture.detectChanges();
 
       const backdrop = fixture.nativeElement.querySelector('.sbb-sidebar-backdrop');
       expect(backdrop).toBeTruthy();
@@ -338,6 +339,7 @@ describe('SbbSidebar', () => {
       sidebar.open();
       fixture.detectChanges();
       flush();
+      fixture.detectChanges();
       sidebarButton.focus();
 
       sidebar.close();
@@ -363,6 +365,7 @@ describe('SbbSidebar', () => {
       sidebar.open();
       fixture.detectChanges();
       flush();
+      fixture.detectChanges();
       sidebarButton.focus();
 
       sidebar.close();
@@ -392,6 +395,7 @@ describe('SbbSidebar', () => {
 
       fixture.detectChanges();
       tick();
+      fixture.detectChanges();
       closeButton.focus();
 
       sidebar.close();
@@ -525,6 +529,7 @@ describe('SbbSidebar', () => {
       sidebar.open();
       fixture.detectChanges();
       tick();
+      fixture.detectChanges();
 
       const mobileCloseSidebarButton = fixture.debugElement.query(
         By.css('.sbb-sidebar-menu-bar-close'),
@@ -562,6 +567,7 @@ describe('SbbSidebar', () => {
       sidebarEl.componentInstance.open();
       nonFocusableFixture.detectChanges();
       tick();
+      nonFocusableFixture.detectChanges();
 
       expect(document.activeElement).toBe(
         nonFocusableFixture.debugElement.query(By.css('.sbb-sidebar-menu-bar-close'))!
@@ -608,6 +614,7 @@ describe('SbbSidebar', () => {
     it('should project start sidebar before the content', () => {
       const fixture = TestBed.createComponent(BasicTestComponent);
       fixture.componentInstance.position = 'start';
+      fixture.changeDetectorRef.markForCheck();
       fixture.detectChanges();
 
       const allNodes = getSidebarNodesArray(fixture);
@@ -630,6 +637,7 @@ describe('SbbSidebar', () => {
     it('should project end sidebar after the content', () => {
       const fixture = TestBed.createComponent(BasicTestComponent);
       fixture.componentInstance.position = 'end';
+      fixture.changeDetectorRef.markForCheck();
       fixture.detectChanges();
 
       const allNodes = getSidebarNodesArray(fixture);
@@ -652,6 +660,7 @@ describe('SbbSidebar', () => {
     it('should move the sidebar before/after the content when its position changes after being initialized at `start`', () => {
       const fixture = TestBed.createComponent(BasicTestComponent);
       fixture.componentInstance.position = 'start';
+      fixture.changeDetectorRef.markForCheck();
       fixture.detectChanges();
 
       const sidebar = fixture.nativeElement.querySelector('.sbb-sidebar');
@@ -672,6 +681,7 @@ describe('SbbSidebar', () => {
         .toBeLessThan(startContentIndex);
 
       fixture.componentInstance.position = 'end';
+      fixture.changeDetectorRef.markForCheck();
       fixture.detectChanges();
       allNodes = getSidebarNodesArray(fixture);
 
@@ -680,6 +690,7 @@ describe('SbbSidebar', () => {
         .toBeGreaterThan(allNodes.indexOf(content));
 
       fixture.componentInstance.position = 'start';
+      fixture.changeDetectorRef.markForCheck();
       fixture.detectChanges();
       allNodes = getSidebarNodesArray(fixture);
 
@@ -694,6 +705,7 @@ describe('SbbSidebar', () => {
       () => {
         const fixture = TestBed.createComponent(BasicTestComponent);
         fixture.componentInstance.position = 'end';
+        fixture.changeDetectorRef.markForCheck();
         fixture.detectChanges();
 
         const sidebar = fixture.nativeElement.querySelector('.sbb-sidebar');
@@ -717,6 +729,7 @@ describe('SbbSidebar', () => {
         );
 
         fixture.componentInstance.position = 'start';
+        fixture.changeDetectorRef.markForCheck();
         fixture.detectChanges();
         allNodes = getSidebarNodesArray(fixture);
 
@@ -726,6 +739,7 @@ describe('SbbSidebar', () => {
         );
 
         fixture.componentInstance.position = 'end';
+        fixture.changeDetectorRef.markForCheck();
         fixture.detectChanges();
         allNodes = getSidebarNodesArray(fixture);
 
@@ -747,6 +761,7 @@ describe('SbbSidebar', () => {
       expect(icon.componentInstance.svgIcon).toBe('hamburger-menu-small');
 
       fixture.componentInstance.position = 'end';
+      fixture.changeDetectorRef.markForCheck();
       fixture.detectChanges();
       icon = fixture.debugElement.query(By.directive(SbbIcon));
       expect(icon.componentInstance.svgIcon).toBe('controls-small');
@@ -765,6 +780,7 @@ describe('SbbSidebar', () => {
       expect(icon.componentInstance.svgIcon).toBe('bell-small');
 
       fixture.componentInstance.position = 'end';
+      fixture.changeDetectorRef.markForCheck();
       fixture.detectChanges();
       icon = fixture.debugElement.query(By.directive(SbbIcon));
       expect(icon.componentInstance.svgIcon).toBe('bell-small');
@@ -808,16 +824,19 @@ describe('SbbSidebar', () => {
       expect(collapsibleTitle).toBeFalsy();
 
       fixture.componentInstance.collapsible = true;
+      fixture.changeDetectorRef.markForCheck();
       fixture.detectChanges();
       collapsibleTitle = fixture.debugElement.query(By.css('.sbb-sidebar-menu-bar-title'));
       expect(collapsibleTitle.nativeElement.textContent).toBe('');
 
       fixture.componentInstance.collapsibleTitle = 'Test header label';
+      fixture.changeDetectorRef.markForCheck();
       fixture.detectChanges();
       expect(collapsibleTitle).toBeTruthy();
       expect(collapsibleTitle.nativeElement.textContent).toBe('Test header label');
 
       fixture.componentInstance.collapsibleTitle = null;
+      fixture.changeDetectorRef.markForCheck();
       fixture.detectChanges();
       expect(collapsibleTitle.nativeElement.textContent).toBe('');
     });
@@ -872,6 +891,7 @@ describe('SbbSidebarContainer', () => {
     expect(parseInt(contentElement.style.marginLeft, 10)).toBeFalsy();
 
     fixture.componentInstance.showSidebar = true;
+    fixture.changeDetectorRef.markForCheck();
     fixture.detectChanges();
 
     fixture.componentInstance.sidebar.open();
@@ -897,6 +917,7 @@ describe('SbbSidebarContainer', () => {
     expect(initialMargin).toBeGreaterThan(0);
 
     fixture.componentInstance.renderSidebar = false;
+    fixture.changeDetectorRef.markForCheck();
     fixture.detectChanges();
     tick();
 
@@ -1071,6 +1092,7 @@ describe('SbbSidebar Usage', () => {
 
     mobileCloseSidebarButton.click();
 
+    flush();
     expect(sidebar.componentInstance.opened).toBe(false);
   }));
 });
