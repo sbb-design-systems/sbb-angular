@@ -40,13 +40,15 @@ function verifyPathChildElement(element: Element, attributeValue: string): void 
 
 describe('SbbIcon', () => {
   let fakePath: string;
-  let errorHandler: jasmine.SpyObj<ErrorHandler>;
+  let iconRegistry: SbbIconRegistry;
+  let http: HttpTestingController;
+  let sanitizer: DomSanitizer;
+  let errorHandler: ErrorHandler;
 
   beforeEach(waitForAsync(() => {
     // The $ prefix tells Karma not to try to process the
     // request so that we don't get warnings in our logs.
     fakePath = '/$fake-path';
-    errorHandler = jasmine.createSpyObj('errorHandler', ['handleError']);
 
     TestBed.configureTestingModule({
       imports: [HttpClientTestingModule],
@@ -55,28 +57,16 @@ describe('SbbIcon', () => {
           provide: SBB_ICON_LOCATION,
           useValue: { getPathname: () => fakePath },
         },
-        {
-          provide: ErrorHandler,
-          useValue: errorHandler,
-        },
       ],
     });
 
     TestBed.compileComponents();
+
+    iconRegistry = TestBed.inject(SbbIconRegistry);
+    http = TestBed.inject(HttpTestingController);
+    sanitizer = TestBed.inject(DomSanitizer);
+    errorHandler = TestBed.inject(ErrorHandler);
   }));
-
-  let iconRegistry: SbbIconRegistry;
-  let http: HttpTestingController;
-  let sanitizer: DomSanitizer;
-
-  beforeEach(inject(
-    [SbbIconRegistry, HttpTestingController, DomSanitizer],
-    (mir: SbbIconRegistry, h: HttpTestingController, ds: DomSanitizer) => {
-      iconRegistry = mir;
-      http = h;
-      sanitizer = ds;
-    },
-  ));
 
   it('should include notranslate class by default', () => {
     const fixture = TestBed.createComponent(IconFromSvgName);
@@ -182,6 +172,7 @@ describe('SbbIcon', () => {
       const iconElement = fixture.debugElement.nativeElement.querySelector('sbb-icon');
 
       testComponent.iconName = 'fido';
+      fixture.changeDetectorRef.markForCheck();
       fixture.detectChanges();
       http.expectOne('dog.svg').flush(SBB_FAKE_SVGS.dog);
       svgElement = verifyAndGetSingleSvgChild(iconElement);
@@ -189,6 +180,7 @@ describe('SbbIcon', () => {
 
       // Change the icon, and the SVG element should be replaced.
       testComponent.iconName = 'fluffy';
+      fixture.changeDetectorRef.markForCheck();
       fixture.detectChanges();
       http.expectOne('cat.svg').flush(SBB_FAKE_SVGS.cat);
       svgElement = verifyAndGetSingleSvgChild(iconElement);
@@ -196,6 +188,7 @@ describe('SbbIcon', () => {
 
       // Using an icon from a previously loaded URL should not cause another HTTP request.
       testComponent.iconName = 'fido';
+      fixture.changeDetectorRef.markForCheck();
       fixture.detectChanges();
       http.expectNone('dog.svg');
       svgElement = verifyAndGetSingleSvgChild(iconElement);
@@ -203,6 +196,7 @@ describe('SbbIcon', () => {
 
       // Change icon to one that needs credentials during fetch.
       testComponent.iconName = 'felix';
+      fixture.changeDetectorRef.markForCheck();
       fixture.detectChanges();
       testRequest = http.expectOne('auth-cat.svg');
       expect(testRequest.request.withCredentials).toBeTrue();
@@ -228,6 +222,7 @@ describe('SbbIcon', () => {
       const iconElement = fixture.debugElement.nativeElement.querySelector('sbb-icon');
 
       testComponent.iconName = 'fido';
+      fixture.changeDetectorRef.markForCheck();
       fixture.detectChanges();
       http.expectOne('dog.svg').flush(SBB_FAKE_SVGS.dog);
       svgElement = verifyAndGetSingleSvgChild(iconElement);
@@ -235,6 +230,7 @@ describe('SbbIcon', () => {
 
       // Change the icon, and the SVG element should be replaced.
       testComponent.iconName = 'fluffy';
+      fixture.changeDetectorRef.markForCheck();
       fixture.detectChanges();
       http.expectOne('cat.svg').flush(SBB_FAKE_SVGS.cat);
       svgElement = verifyAndGetSingleSvgChild(iconElement);
@@ -247,6 +243,7 @@ describe('SbbIcon', () => {
       expect(() => {
         const fixture = TestBed.createComponent(IconFromSvgName);
         fixture.componentInstance.iconName = 'fluffy';
+        fixture.changeDetectorRef.markForCheck();
         fixture.detectChanges();
       }).toThrowError(/unsafe value used in a resource URL context/);
     });
@@ -257,48 +254,53 @@ describe('SbbIcon', () => {
       expect(() => {
         const fixture = TestBed.createComponent(IconFromSvgName);
         fixture.componentInstance.iconName = 'farm:pig';
+        fixture.changeDetectorRef.markForCheck();
         fixture.detectChanges();
       }).toThrowError(/unsafe value used in a resource URL context/);
     });
 
     it('should delegate http error logging to the ErrorHandler', () => {
+      const handleErrorSpy = spyOn(errorHandler, 'handleError');
       iconRegistry.addSvgIconSetInNamespace('farm', trustUrl('farm-set-1.svg'));
 
       const fixture = TestBed.createComponent(IconFromSvgName);
       const testComponent = fixture.componentInstance;
 
       testComponent.iconName = 'farm:pig';
+      fixture.changeDetectorRef.markForCheck();
       fixture.detectChanges();
       http.expectOne('farm-set-1.svg').error(new ErrorEvent('Network error'));
       fixture.detectChanges();
 
       // Called twice once for the HTTP request failing and once for the icon
       // then not being able to be found.
-      expect(errorHandler.handleError).toHaveBeenCalledTimes(2);
-      expect(errorHandler.handleError.calls.argsFor(0)[0].message).toEqual(
+      expect(handleErrorSpy).toHaveBeenCalledTimes(2);
+      expect(handleErrorSpy.calls.argsFor(0)[0].message).toEqual(
         'Loading icon set URL: farm-set-1.svg failed: Http failure response ' +
           'for farm-set-1.svg: 0 ',
       );
-      expect(errorHandler.handleError.calls.argsFor(1)[0].message).toEqual(
+      expect(handleErrorSpy.calls.argsFor(1)[0].message).toEqual(
         `Error retrieving icon ${testComponent.iconName}! ` +
           'Unable to find icon with the name "pig"',
       );
     });
 
     it('should delegate an error getting an SVG icon to the ErrorHandler', () => {
+      const handleErrorSpy = spyOn(errorHandler, 'handleError');
       iconRegistry.addSvgIconSetInNamespace('farm', trustUrl('farm-set-1.svg'));
 
       const fixture = TestBed.createComponent(IconFromSvgName);
       const testComponent = fixture.componentInstance;
 
       testComponent.iconName = 'farm:DNE';
+      fixture.changeDetectorRef.markForCheck();
       fixture.detectChanges();
       http.expectOne('farm-set-1.svg').flush(SBB_FAKE_SVGS.farmSet1);
       fixture.detectChanges();
 
       // The HTTP request succeeded but the icon was not found so we logged.
-      expect(errorHandler.handleError).toHaveBeenCalledTimes(1);
-      expect(errorHandler.handleError.calls.argsFor(0)[0].message).toEqual(
+      expect(handleErrorSpy).toHaveBeenCalledTimes(1);
+      expect(handleErrorSpy.calls.argsFor(0)[0].message).toEqual(
         `Error retrieving icon ${testComponent.iconName}! ` +
           'Unable to find icon with the name "DNE"',
       );
@@ -314,6 +316,7 @@ describe('SbbIcon', () => {
       let svgChild: any;
 
       testComponent.iconName = 'farm:pig';
+      fixture.changeDetectorRef.markForCheck();
       fixture.detectChanges();
       http.expectOne('farm-set-1.svg').flush(SBB_FAKE_SVGS.farmSet1);
 
@@ -328,6 +331,7 @@ describe('SbbIcon', () => {
 
       // Change the icon, and the SVG element should be replaced.
       testComponent.iconName = 'farm:cow';
+      fixture.changeDetectorRef.markForCheck();
       fixture.detectChanges();
       svgElement = verifyAndGetSingleSvgChild(sbbIconElement);
       svgChild = svgElement.childNodes[0];
@@ -390,6 +394,7 @@ describe('SbbIcon', () => {
       let svgChild: any;
 
       testComponent.iconName = 'farm:pig';
+      fixture.changeDetectorRef.markForCheck();
       fixture.detectChanges();
       http.expectOne('farm-set-1.svg').flush(SBB_FAKE_SVGS.farmSet1);
       http.expectOne('farm-set-2.svg').flush(SBB_FAKE_SVGS.farmSet2);
@@ -408,6 +413,7 @@ describe('SbbIcon', () => {
       // was registered last should be used (with id attribute of 'moo moo' instead of 'moo'),
       // and no additional HTTP request should be made.
       testComponent.iconName = 'farm:cow';
+      fixture.changeDetectorRef.markForCheck();
       fixture.detectChanges();
       svgElement = verifyAndGetSingleSvgChild(sbbIconElement);
       svgChild = svgElement.childNodes[0];
@@ -497,6 +503,7 @@ describe('SbbIcon', () => {
       let svgElement: any;
 
       testComponent.iconName = 'left-arrow';
+      fixture.changeDetectorRef.markForCheck();
       fixture.detectChanges();
       http.expectOne('arrow-set.svg').flush(SBB_FAKE_SVGS.arrows);
       svgElement = verifyAndGetSingleSvgChild(sbbIconElement);
@@ -506,12 +513,14 @@ describe('SbbIcon', () => {
 
       // Switch to a different icon.
       testComponent.iconName = 'right-arrow';
+      fixture.changeDetectorRef.markForCheck();
       fixture.detectChanges();
       svgElement = verifyAndGetSingleSvgChild(sbbIconElement);
       verifyPathChildElement(svgElement, 'right');
 
       // Switch back to the first icon. The viewBox attribute should not be present.
       testComponent.iconName = 'left-arrow';
+      fixture.changeDetectorRef.markForCheck();
       fixture.detectChanges();
       svgElement = verifyAndGetSingleSvgChild(sbbIconElement);
       verifyPathChildElement(svgElement, 'left');
@@ -528,9 +537,11 @@ describe('SbbIcon', () => {
 
       expect(() => {
         fixture.componentInstance.showIcon = false;
+        fixture.changeDetectorRef.markForCheck();
         fixture.detectChanges();
 
         fixture.componentInstance.showIcon = true;
+        fixture.changeDetectorRef.markForCheck();
         fixture.detectChanges();
       }).not.toThrow();
     });
@@ -560,12 +571,14 @@ describe('SbbIcon', () => {
       const icon = fixture.debugElement.nativeElement.querySelector('sbb-icon');
 
       testComponent.iconName = 'left-arrow';
+      fixture.changeDetectorRef.markForCheck();
       fixture.detectChanges();
       http.expectOne('arrow-set.svg').flush(SBB_FAKE_SVGS.arrows);
 
       expect(icon.querySelector('svg')).toBeTruthy();
 
       testComponent.iconName = undefined;
+      fixture.changeDetectorRef.markForCheck();
       fixture.detectChanges();
 
       expect(icon.querySelector('svg')).toBeFalsy();
@@ -602,10 +615,12 @@ describe('SbbIcon', () => {
 
       // Assign the slow icon first.
       fixture.componentInstance.iconName = 'fido';
+      fixture.changeDetectorRef.markForCheck();
       fixture.detectChanges();
 
       // Assign the quick icon while the slow one is still in-flight.
       fixture.componentInstance.iconName = 'fluffy';
+      fixture.changeDetectorRef.markForCheck();
       fixture.detectChanges();
 
       // Expect for the in-flight request to have been cancelled.
@@ -638,11 +653,13 @@ describe('SbbIcon', () => {
       const iconElement = fixture.debugElement.nativeElement.querySelector('sbb-icon');
 
       testComponent.iconName = 'fido';
+      fixture.changeDetectorRef.markForCheck();
       fixture.detectChanges();
       svgElement = verifyAndGetSingleSvgChild(iconElement);
       verifyPathChildElement(svgElement, 'woof');
 
       testComponent.iconName = 'fluffy';
+      fixture.changeDetectorRef.markForCheck();
       fixture.detectChanges();
       svgElement = verifyAndGetSingleSvgChild(iconElement);
       verifyPathChildElement(svgElement, 'meow');
@@ -669,11 +686,13 @@ describe('SbbIcon', () => {
       const iconElement = fixture.debugElement.nativeElement.querySelector('sbb-icon');
 
       testComponent.iconName = 'fido';
+      fixture.changeDetectorRef.markForCheck();
       fixture.detectChanges();
       svgElement = verifyAndGetSingleSvgChild(iconElement);
       expect(svgElement.getAttribute('viewBox')).toBe('0 0 27 27');
 
       testComponent.iconName = 'fluffy';
+      fixture.changeDetectorRef.markForCheck();
       fixture.detectChanges();
       svgElement = verifyAndGetSingleSvgChild(iconElement);
       expect(svgElement.getAttribute('viewBox')).toBe('0 0 43 43');
@@ -699,6 +718,7 @@ describe('SbbIcon', () => {
       let svgChild: any;
 
       testComponent.iconName = 'farm:pig';
+      fixture.changeDetectorRef.markForCheck();
       fixture.detectChanges();
 
       expect(sbbIconElement.childNodes.length).toBe(1);
@@ -713,6 +733,7 @@ describe('SbbIcon', () => {
 
       // Change the icon, and the SVG element should be replaced.
       testComponent.iconName = 'farm:cow';
+      fixture.changeDetectorRef.markForCheck();
       fixture.detectChanges();
       svgElement = verifyAndGetSingleSvgChild(sbbIconElement);
       svgChild = svgElement.childNodes[0];
@@ -734,6 +755,7 @@ describe('SbbIcon', () => {
       let svgChild: any;
 
       testComponent.iconName = 'farm:pig';
+      fixture.changeDetectorRef.markForCheck();
       fixture.detectChanges();
 
       svgElement = verifyAndGetSingleSvgChild(sbbIconElement);
@@ -751,6 +773,7 @@ describe('SbbIcon', () => {
       // was registered last should be used (with id attribute of 'moo moo' instead of 'moo'),
       // and no additional HTTP request should be made.
       testComponent.iconName = 'farm:cow';
+      fixture.changeDetectorRef.markForCheck();
       fixture.detectChanges();
       svgElement = verifyAndGetSingleSvgChild(sbbIconElement);
       svgChild = svgElement.childNodes[0];
@@ -771,6 +794,7 @@ describe('SbbIcon', () => {
       let svgElement: any;
 
       testComponent.iconName = 'left-arrow';
+      fixture.changeDetectorRef.markForCheck();
       fixture.detectChanges();
       svgElement = verifyAndGetSingleSvgChild(sbbIconElement);
       verifyPathChildElement(svgElement, 'left');
@@ -780,12 +804,14 @@ describe('SbbIcon', () => {
 
       // Switch to a different icon.
       testComponent.iconName = 'right-arrow';
+      fixture.changeDetectorRef.markForCheck();
       fixture.detectChanges();
       svgElement = verifyAndGetSingleSvgChild(sbbIconElement);
       verifyPathChildElement(svgElement, 'right');
 
       // Switch back to the first icon. The viewBox attribute should not be present.
       testComponent.iconName = 'left-arrow';
+      fixture.changeDetectorRef.markForCheck();
       fixture.detectChanges();
       svgElement = verifyAndGetSingleSvgChild(sbbIconElement);
       verifyPathChildElement(svgElement, 'left');
@@ -894,6 +920,7 @@ describe('SbbIcon', () => {
 
       const fixture = TestBed.createComponent(IconFromSvgName);
       fixture.componentInstance.iconName = 'fido';
+      fixture.changeDetectorRef.markForCheck();
       fixture.detectChanges();
       const circle = fixture.nativeElement.querySelector('sbb-icon svg circle');
 
@@ -905,6 +932,7 @@ describe('SbbIcon', () => {
       tick();
 
       fakePath = '/$different-path';
+      fixture.changeDetectorRef.markForCheck();
       fixture.detectChanges();
 
       expect(circle.getAttribute('filter')).toMatch(
@@ -924,6 +952,7 @@ describe('SbbIcon', () => {
 
       const fixture = TestBed.createComponent(IconFromSvgName);
       fixture.componentInstance.iconName = 'fido';
+      fixture.changeDetectorRef.markForCheck();
       fixture.detectChanges();
       const circle = fixture.nativeElement.querySelector('sbb-icon svg circle');
 
@@ -933,6 +962,7 @@ describe('SbbIcon', () => {
       tick();
 
       fakePath = '/$different-path';
+      fixture.changeDetectorRef.markForCheck();
       fixture.detectChanges();
 
       expect(circle.getAttribute('clip-path')).toMatch(/^url\(['"]?\/\$different-path#a['"]?\)$/);
@@ -950,6 +980,7 @@ describe('SbbIcon', () => {
 
       testComponent.fontSet = 'f1';
       testComponent.fontIcon = 'house';
+      fixture.changeDetectorRef.markForCheck();
       fixture.detectChanges();
       expect(sortedClassNames(sbbIconElement)).toEqual([
         'font1',
@@ -960,11 +991,13 @@ describe('SbbIcon', () => {
 
       testComponent.fontSet = 'f2';
       testComponent.fontIcon = 'igloo';
+      fixture.changeDetectorRef.markForCheck();
       fixture.detectChanges();
       expect(sortedClassNames(sbbIconElement)).toEqual(['f2', 'igloo', 'notranslate', 'sbb-icon']);
 
       testComponent.fontSet = 'f3';
       testComponent.fontIcon = 'tent';
+      fixture.changeDetectorRef.markForCheck();
       fixture.detectChanges();
       expect(sortedClassNames(sbbIconElement)).toEqual(['f3', 'notranslate', 'sbb-icon', 'tent']);
     });
@@ -975,6 +1008,7 @@ describe('SbbIcon', () => {
 
       expect(() => {
         fixture.componentInstance.fontSet = 'font set';
+        fixture.changeDetectorRef.markForCheck();
         fixture.detectChanges();
       }).not.toThrow();
 
@@ -982,6 +1016,7 @@ describe('SbbIcon', () => {
 
       expect(() => {
         fixture.componentInstance.fontSet = ' changed';
+        fixture.changeDetectorRef.markForCheck();
         fixture.detectChanges();
       }).not.toThrow();
 
@@ -994,6 +1029,7 @@ describe('SbbIcon', () => {
 
       expect(() => {
         fixture.componentInstance.fontIcon = 'font icon';
+        fixture.changeDetectorRef.markForCheck();
         fixture.detectChanges();
       }).not.toThrow();
 
@@ -1006,6 +1042,7 @@ describe('SbbIcon', () => {
 
       expect(() => {
         fixture.componentInstance.fontIcon = ' changed';
+        fixture.changeDetectorRef.markForCheck();
         fixture.detectChanges();
       }).not.toThrow();
 
@@ -1038,6 +1075,7 @@ describe('SbbIcon', () => {
       const iconElement = fixture.debugElement.nativeElement.querySelector('sbb-icon');
 
       testComponent.iconName = 'fido';
+      fixture.changeDetectorRef.markForCheck();
       fixture.detectChanges();
       http.expectOne('dog.svg').flush(SBB_FAKE_SVGS.dog);
       svgElement = verifyAndGetSingleSvgChild(iconElement);
@@ -1045,6 +1083,7 @@ describe('SbbIcon', () => {
 
       // Change the icon, and the SVG element should be replaced.
       testComponent.iconName = 'fluffy';
+      fixture.changeDetectorRef.markForCheck();
       fixture.detectChanges();
       http.expectOne('cat.svg').flush(SBB_FAKE_SVGS.cat);
       svgElement = verifyAndGetSingleSvgChild(iconElement);
@@ -1052,6 +1091,7 @@ describe('SbbIcon', () => {
 
       // Using an icon from a previously loaded URL should not cause another HTTP request.
       testComponent.iconName = 'fido';
+      fixture.changeDetectorRef.markForCheck();
       fixture.detectChanges();
       http.expectNone('dog.svg');
       svgElement = verifyAndGetSingleSvgChild(iconElement);
@@ -1059,6 +1099,7 @@ describe('SbbIcon', () => {
 
       // Change icon to one that needs credentials during fetch.
       testComponent.iconName = 'felix';
+      fixture.changeDetectorRef.markForCheck();
       fixture.detectChanges();
       testRequest = http.expectOne('auth-cat.svg');
       expect(testRequest.request.withCredentials).toBeTrue();
@@ -1105,6 +1146,7 @@ describe('SbbIcon', () => {
       const iconElement = fixture.debugElement.nativeElement.querySelector('sbb-icon');
 
       testComponent.iconName = 'fido';
+      fixture.changeDetectorRef.markForCheck();
       fixture.detectChanges();
       http.expectOne('dog.svg').flush(SBB_FAKE_SVGS.dog);
       svgElement = verifyAndGetSingleSvgChild(iconElement);
@@ -1112,6 +1154,7 @@ describe('SbbIcon', () => {
 
       // Change the icon, and the SVG element should be replaced.
       testComponent.iconName = 'fluffy';
+      fixture.changeDetectorRef.markForCheck();
       fixture.detectChanges();
       http.expectOne('cat.svg').flush(SBB_FAKE_SVGS.cat);
       svgElement = verifyAndGetSingleSvgChild(iconElement);
@@ -1123,6 +1166,7 @@ describe('SbbIcon', () => {
 
       expect(() => {
         const fixture = TestBed.createComponent(IconFromSvgName);
+        fixture.changeDetectorRef.markForCheck();
         fixture.componentInstance.iconName = 'fluffy';
         fixture.detectChanges();
       }).toThrowError(/unsafe value used in a resource URL context/);
@@ -1139,6 +1183,7 @@ describe('SbbIcon', () => {
     const iconElement = fixture.debugElement.nativeElement.querySelector('sbb-icon');
 
     testComponent.icon.svgIcon = 'fido';
+    fixture.changeDetectorRef.markForCheck();
     fixture.detectChanges();
     svgElement = verifyAndGetSingleSvgChild(iconElement);
     verifyPathChildElement(svgElement, 'woof');
@@ -1217,7 +1262,7 @@ class IconWithCustomFontCss {
 @Component({
   template: ` <sbb-icon [svgIcon]="iconName"></sbb-icon>`,
   standalone: true,
-  imports: [SbbIconModule],
+  imports: [SbbIconModule, HttpClientTestingModule],
 })
 class IconFromSvgName {
   iconName: string | undefined = '';

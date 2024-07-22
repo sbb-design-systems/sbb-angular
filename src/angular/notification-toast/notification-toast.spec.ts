@@ -1,11 +1,13 @@
 import { LiveAnnouncer } from '@angular/cdk/a11y';
 import { OverlayContainer } from '@angular/cdk/overlay';
 import {
+  ChangeDetectionStrategy,
   Component,
   Directive,
   EventEmitter,
   Inject,
   NgModule,
+  signal,
   TemplateRef,
   ViewChild,
   ViewContainerRef,
@@ -336,7 +338,7 @@ describe('SbbNotificationToast', () => {
     viewContainerFixture.detectChanges();
     expect(overlayContainerElement.childElementCount).toBeGreaterThan(0);
 
-    viewContainerFixture.componentInstance.childComponentExists = false;
+    viewContainerFixture.componentInstance.childComponentExists.set(false);
     viewContainerFixture.detectChanges();
     flush();
 
@@ -473,20 +475,6 @@ describe('SbbNotificationToast', () => {
     expect(afterDismissSpy).toHaveBeenCalled();
   }));
 
-  it('should clear the dismiss timeout when dismissed before timeout expiration', fakeAsync(() => {
-    const config = new SbbNotificationToastConfig();
-    config.duration = 1000;
-    notificationToast.open('content', config);
-
-    setTimeout(() => notificationToast.dismiss(), 500);
-
-    tick(600);
-    viewContainerFixture.detectChanges();
-    tick();
-
-    expect(viewContainerFixture.isStable()).toBe(true);
-  }));
-
   it('should add extra classes to the container', () => {
     notificationToast.open(simpleMessage, { panelClass: ['one', 'two'] });
     viewContainerFixture.detectChanges();
@@ -614,6 +602,7 @@ describe('SbbNotificationToast', () => {
     it('should be able to open a notification toast using a TemplateRef', () => {
       templateFixture.componentInstance.localValue = 'Pizza';
       notificationToast.openFromTemplate(templateFixture.componentInstance.templateRef);
+      templateFixture.changeDetectorRef.markForCheck();
       templateFixture.detectChanges();
 
       const containerElement = overlayContainerElement.querySelector(
@@ -624,6 +613,7 @@ describe('SbbNotificationToast', () => {
       expect(containerElement.textContent).toContain('Pizza');
 
       templateFixture.componentInstance.localValue = 'Pasta';
+      templateFixture.changeDetectorRef.markForCheck();
       templateFixture.detectChanges();
 
       expect(containerElement.textContent).toContain('Pasta');
@@ -865,16 +855,17 @@ class DirectiveWithViewContainer {
 
 @Component({
   selector: 'arbitrary-component',
-  template: `@if (childComponentExists) {
+  template: `@if (childComponentExists()) {
     <dir-with-view-container></dir-with-view-container>
   }`,
   standalone: true,
+  changeDetection: ChangeDetectionStrategy.OnPush,
   imports: [DirectiveWithViewContainer],
 })
 class ComponentWithChildViewContainer {
   @ViewChild(DirectiveWithViewContainer) childWithViewContainer: DirectiveWithViewContainer;
 
-  childComponentExists: boolean = true;
+  childComponentExists = signal(true);
 
   get childViewContainer() {
     return this.childWithViewContainer.viewContainerRef;

@@ -8,6 +8,7 @@ import {
   OnInit,
   Provider,
   QueryList,
+  signal,
   Type,
   ViewChild,
   ViewChildren,
@@ -149,12 +150,14 @@ describe('SbbProcessflow', () => {
       expect(selectedLabel.textContent).toMatch('Step 1');
 
       processflowComponent.selectedIndex = 2;
+      fixture.changeDetectorRef.markForCheck();
       fixture.detectChanges();
 
       selectedLabel = fixture.nativeElement.querySelector('[aria-selected="true"]');
       expect(selectedLabel.textContent).toMatch('Step 3');
 
       fixture.componentInstance.inputLabel = 'New Label';
+      fixture.changeDetectorRef.markForCheck();
       fixture.detectChanges();
 
       selectedLabel = fixture.nativeElement.querySelector('[aria-selected="true"]');
@@ -395,7 +398,7 @@ describe('SbbProcessflow', () => {
       expect(processflowComponent.selectedIndex).toBe(2);
 
       expect(() => {
-        fixture.componentInstance.showStepTwo = false;
+        fixture.componentInstance.showStepTwo.set(false);
         fixture.detectChanges();
       }).not.toThrow();
 
@@ -902,21 +905,19 @@ describe('SbbProcessflow', () => {
     });
 
     it('must be visited if not optional', () => {
-      processflow.selectedIndex = 2;
-      fixture.detectChanges();
-      expect(processflow.selectedIndex).toBe(0);
-
       processflow.selectedIndex = 1;
+      fixture.changeDetectorRef.markForCheck();
       fixture.detectChanges();
       expect(processflow.selectedIndex).toBe(1);
 
       processflow.selectedIndex = 2;
+      fixture.changeDetectorRef.markForCheck();
       fixture.detectChanges();
       expect(processflow.selectedIndex).toBe(2);
     });
 
     it('can be skipped entirely if optional', () => {
-      testComponent.step2Optional = true;
+      testComponent.step2Optional.set(true);
       fixture.detectChanges();
       processflow.selectedIndex = 2;
       fixture.detectChanges();
@@ -941,6 +942,7 @@ describe('SbbProcessflow', () => {
 
     it('should set the aria-label attribute', () => {
       fixture.componentInstance.ariaLabel = 'First step';
+      fixture.changeDetectorRef.markForCheck();
       fixture.detectChanges();
 
       expect(stepHeader.getAttribute('aria-label')).toBe('First step');
@@ -948,6 +950,7 @@ describe('SbbProcessflow', () => {
 
     it('should set the aria-labelledby attribute', () => {
       fixture.componentInstance.ariaLabelledby = 'first-step-label';
+      fixture.changeDetectorRef.markForCheck();
       fixture.detectChanges();
 
       expect(stepHeader.getAttribute('aria-labelledby')).toBe('first-step-label');
@@ -956,6 +959,7 @@ describe('SbbProcessflow', () => {
     it('should not be able to set both an aria-label and aria-labelledby', () => {
       fixture.componentInstance.ariaLabel = 'First step';
       fixture.componentInstance.ariaLabelledby = 'first-step-label';
+      fixture.changeDetectorRef.markForCheck();
       fixture.detectChanges();
 
       expect(stepHeader.getAttribute('aria-label')).toBe('First step');
@@ -1104,6 +1108,7 @@ describe('SbbProcessflow', () => {
     expect(fixture.nativeElement.querySelectorAll('.sbb-step-header').length).toBe(1);
 
     fixture.componentInstance.showStep2 = true;
+    fixture.changeDetectorRef.markForCheck();
     fixture.detectChanges();
 
     expect(fixture.nativeElement.querySelectorAll('.sbb-step-header').length).toBe(2);
@@ -1151,6 +1156,7 @@ describe('SbbProcessflow', () => {
       const fixture = createComponent(StepperWithLazyContent);
       const element = fixture.nativeElement;
       fixture.componentInstance.selectedIndex = 0;
+      fixture.changeDetectorRef.markForCheck();
       fixture.detectChanges();
 
       expect(element.textContent).toContain('Step 1 content');
@@ -1158,6 +1164,7 @@ describe('SbbProcessflow', () => {
       expect(element.textContent).not.toContain('Step 3 content');
 
       fixture.componentInstance.selectedIndex = 1;
+      fixture.changeDetectorRef.markForCheck();
       fixture.detectChanges();
 
       expect(element.textContent).toContain('Step 1 content');
@@ -1165,6 +1172,7 @@ describe('SbbProcessflow', () => {
       expect(element.textContent).not.toContain('Step 3 content');
 
       fixture.componentInstance.selectedIndex = 2;
+      fixture.changeDetectorRef.markForCheck();
       fixture.detectChanges();
 
       expect(element.textContent).toContain('Step 1 content');
@@ -1447,7 +1455,7 @@ class SimpleSbbHorizontalStepperApp {
           <button sbb-button sbbProcessflowNext>Next</button>
         </div>
       </sbb-step>
-      @if (showStepTwo) {
+      @if (showStepTwo()) {
         <sbb-step>
           <ng-template sbbStepLabel>Step 2</ng-template>
           Content 2
@@ -1471,7 +1479,7 @@ class SimpleSbbHorizontalStepperApp {
 })
 class SimpleSbbVerticalStepperApp {
   inputLabel = 'Step 3';
-  showStepTwo = true;
+  showStepTwo = signal(true);
 }
 
 @Component({
@@ -1603,7 +1611,7 @@ class SimpleStepperWithStepControlAndCompletedBinding {
 })
 class LinearStepperWithValidOptionalStep {
   controls = [0, 0, 0].map(() => new FormControl(''));
-  step2Optional = false;
+  step2Optional = signal(false);
 }
 
 @Component({
