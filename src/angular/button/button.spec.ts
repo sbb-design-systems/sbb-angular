@@ -255,6 +255,7 @@ describe('SbbButton', () => {
       expect(buttonDebugElement.nativeElement.getAttribute('aria-disabled')).toBe('false');
 
       testComponent.isDisabled = true;
+      fixture.changeDetectorRef.markForCheck();
       fixture.detectChanges();
       expect(buttonDebugElement.nativeElement.getAttribute('aria-disabled')).toBe('true');
     });
@@ -287,6 +288,7 @@ describe('SbbButton', () => {
       const buttonElement = fixture.debugElement.query(By.css('a'))!.nativeElement;
 
       fixture.componentInstance.tabIndex = 3;
+      fixture.changeDetectorRef.markForCheck();
       fixture.detectChanges();
 
       expect(buttonElement.getAttribute('tabindex'))
@@ -294,6 +296,7 @@ describe('SbbButton', () => {
         .toBe('3');
 
       testComponent.isDisabled = true;
+      fixture.changeDetectorRef.markForCheck();
       fixture.detectChanges();
 
       expect(buttonElement.getAttribute('tabindex'))

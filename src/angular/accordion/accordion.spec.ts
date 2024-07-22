@@ -96,6 +96,7 @@ describe('AccordionDirective', () => {
 
     fixture.componentInstance.multi = true;
     fixture.componentInstance.panels.toArray()[1].disabled = true;
+    fixture.changeDetectorRef.markForCheck();
     fixture.detectChanges();
     fixture.componentInstance.accordion.openAll();
     fixture.detectChanges();
@@ -129,6 +130,7 @@ describe('AccordionDirective', () => {
       .toBeTruthy();
 
     fixture.componentInstance.hideToggle = true;
+    fixture.changeDetectorRef.markForCheck();
     fixture.detectChanges();
 
     expect(panel.nativeElement.querySelector('.sbb-expansion-panel-header-indicator'))
@@ -200,6 +202,7 @@ describe('AccordionDirective', () => {
     focusMonitor.focusVia(headerElements[0].nativeElement, 'keyboard');
     headers.forEach((header) => spyOn(header, 'focus'));
     panels[1].disabled = true;
+    fixture.changeDetectorRef.markForCheck();
     fixture.detectChanges();
 
     dispatchKeyboardEvent(headerElements[0].nativeElement, 'keydown', DOWN_ARROW);

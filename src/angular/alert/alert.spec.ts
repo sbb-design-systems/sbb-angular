@@ -38,6 +38,7 @@ describe('SbbAlert', () => {
 
     it('should display the given icon', () => {
       component.icon = 'disruption';
+      fixture.changeDetectorRef.markForCheck();
       fixture.detectChanges();
       const icon = debugElement.query(By.css('.sbb-alert-icon sbb-icon'));
       expect(icon.componentInstance.svgIcon).toEqual('disruption');

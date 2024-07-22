@@ -122,6 +122,7 @@ describe('SbbCheckboxPanel', () => {
       const opt2: SbbCheckboxPanel = component.optionSelections.toArray()[1];
 
       component.checkValue1 = true;
+      fixture.changeDetectorRef.markForCheck();
       fixture.detectChanges();
 
       await fixture.whenStable();

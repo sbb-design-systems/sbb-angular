@@ -12,8 +12,10 @@ import {
   SPACE,
 } from '@angular/cdk/keycodes';
 import {
+  ChangeDetectorRef,
   Component,
   DebugElement,
+  inject,
   Provider,
   QueryList,
   Type,
@@ -147,6 +149,7 @@ describe('SbbChipList', () => {
 
       it('should be able to set a custom role', () => {
         fixture.componentInstance.chipList.role = 'grid';
+        fixture.changeDetectorRef.markForCheck();
         fixture.detectChanges();
 
         expect(chipListNativeElement.getAttribute('role')).toBe('grid');
@@ -183,6 +186,7 @@ describe('SbbChipList', () => {
           .toBe(false);
 
         chipListInstance.disabled = true;
+        fixture.changeDetectorRef.markForCheck();
         fixture.detectChanges();
 
         chipListInstance.focus();
@@ -197,6 +201,7 @@ describe('SbbChipList', () => {
         expect(chipListNativeElement.getAttribute('tabindex')).toBeTruthy();
 
         chipListInstance.disabled = true;
+        fixture.changeDetectorRef.markForCheck();
         fixture.detectChanges();
 
         expect(chipListNativeElement.hasAttribute('tabindex')).toBeFalsy();
@@ -212,6 +217,7 @@ describe('SbbChipList', () => {
 
           // Destroy the middle item
           testComponent.chips.splice(2, 1);
+          fixture.changeDetectorRef.markForCheck();
           fixture.detectChanges();
 
           // It focuses the 4th item (now at index 2)
@@ -228,6 +234,7 @@ describe('SbbChipList', () => {
 
           // Destroy the last item
           testComponent.chips.pop();
+          fixture.changeDetectorRef.markForCheck();
           fixture.detectChanges();
 
           // It focuses the next-to-last item
@@ -242,6 +249,7 @@ describe('SbbChipList', () => {
           midItem.focus();
           (document.activeElement as HTMLElement).blur();
           tick();
+          fixture.detectChanges();
 
           // Destroy the middle item
           testComponent.chips.splice(2, 1);
@@ -787,6 +795,7 @@ describe('SbbChipList', () => {
 
       (testChipsAutocomplete!.selectedFruits!.value! as string[]).push('Pineapple');
 
+      fixture.changeDetectorRef.markForCheck();
       fixture.detectChanges();
       await fixture.whenStable();
 
@@ -880,6 +889,7 @@ describe('SbbChipList', () => {
 
       it('should return a new Set on update', async () => {
         testChipsAutocomplete.selectedFruits = new FormControl(new Set(['Lemon']));
+        fixture.changeDetectorRef.markForCheck();
         fixture.detectChanges();
         const before = testChipsAutocomplete.selectedFruits.value;
 
@@ -900,6 +910,7 @@ describe('SbbChipList', () => {
 
       it('should add value to form control Set', async () => {
         testChipsAutocomplete.selectedFruits = new FormControl(new Set(['Lemon']));
+        fixture.changeDetectorRef.markForCheck();
         fixture.detectChanges();
         expect(testChipsAutocomplete.selectedFruits.dirty).toBeFalse();
 
@@ -918,6 +929,7 @@ describe('SbbChipList', () => {
 
       it('should remove value from form control Set', async () => {
         testChipsAutocomplete.selectedFruits = new FormControl(new Set(['Lemon']));
+        fixture.changeDetectorRef.markForCheck();
         fixture.detectChanges();
         expect(testChipsAutocomplete.selectedFruits.dirty).toBeFalse();
 
@@ -1279,6 +1291,7 @@ class ChipListWithRemove {
 class ChipListInsideDynamicFormGroup {
   @ViewChild(SbbChipList) chipList: SbbChipList;
   form: FormGroup;
+  private readonly _changeDetectorRef = inject(ChangeDetectorRef);
 
   constructor(private _formBuilder: FormBuilder) {
     this.assignGroup(false);
@@ -1288,6 +1301,7 @@ class ChipListInsideDynamicFormGroup {
     this.form = this._formBuilder.group({
       control: { value: [], disabled: isDisabled },
     });
+    this._changeDetectorRef.markForCheck();
   }
 }
 

@@ -57,6 +57,7 @@ describe('SbbCheckbox', () => {
         .toBe(false);
 
       testComponent.isChecked = true;
+      fixture.changeDetectorRef.markForCheck();
       fixture.detectChanges();
 
       expect(checkboxInstance.checked).toBe(true);
@@ -64,6 +65,7 @@ describe('SbbCheckbox', () => {
       expect(inputElement.checked).toBe(true);
 
       testComponent.isChecked = false;
+      fixture.changeDetectorRef.markForCheck();
       fixture.detectChanges();
 
       expect(checkboxInstance.checked).toBe(false);
@@ -77,6 +79,7 @@ describe('SbbCheckbox', () => {
       expect(inputElement.indeterminate).toBe(false);
 
       testComponent.isIndeterminate = true;
+      fixture.changeDetectorRef.markForCheck();
       fixture.detectChanges();
 
       expect(checkboxNativeElement.classList).toContain('sbb-selection-indeterminate');
@@ -84,6 +87,7 @@ describe('SbbCheckbox', () => {
       expect(inputElement.indeterminate).toBe(true);
 
       testComponent.isIndeterminate = false;
+      fixture.changeDetectorRef.markForCheck();
       fixture.detectChanges();
 
       expect(checkboxNativeElement.classList).not.toContain('sbb-selection-indeterminate');
@@ -93,6 +97,7 @@ describe('SbbCheckbox', () => {
 
     it('should set indeterminate to false when input clicked', fakeAsync(() => {
       testComponent.isIndeterminate = true;
+      fixture.changeDetectorRef.markForCheck();
       fixture.detectChanges();
 
       expect(checkboxInstance.indeterminate).toBe(true);
@@ -115,6 +120,7 @@ describe('SbbCheckbox', () => {
       expect(testComponent.isIndeterminate).toBe(false);
 
       testComponent.isIndeterminate = true;
+      fixture.changeDetectorRef.markForCheck();
       fixture.detectChanges();
 
       expect(checkboxInstance.indeterminate).toBe(true);
@@ -140,6 +146,7 @@ describe('SbbCheckbox', () => {
 
     it('should not set indeterminate to false when checked is set programmatically', () => {
       testComponent.isIndeterminate = true;
+      fixture.changeDetectorRef.markForCheck();
       fixture.detectChanges();
 
       expect(checkboxInstance.indeterminate).toBe(true);
@@ -147,6 +154,7 @@ describe('SbbCheckbox', () => {
       expect(testComponent.isIndeterminate).toBe(true);
 
       testComponent.isChecked = true;
+      fixture.changeDetectorRef.markForCheck();
       fixture.detectChanges();
 
       expect(checkboxInstance.checked).toBe(true);
@@ -155,6 +163,7 @@ describe('SbbCheckbox', () => {
       expect(testComponent.isIndeterminate).toBe(true);
 
       testComponent.isChecked = false;
+      fixture.changeDetectorRef.markForCheck();
       fixture.detectChanges();
 
       expect(checkboxInstance.checked).toBe(false);
@@ -189,6 +198,7 @@ describe('SbbCheckbox', () => {
     it('should change from indeterminate to checked on click', fakeAsync(() => {
       testComponent.isChecked = false;
       testComponent.isIndeterminate = true;
+      fixture.changeDetectorRef.markForCheck();
       fixture.detectChanges();
 
       expect(checkboxInstance.checked).toBe(false);
@@ -218,6 +228,7 @@ describe('SbbCheckbox', () => {
       expect(inputElement.disabled).toBe(false);
 
       testComponent.isDisabled = true;
+      fixture.changeDetectorRef.markForCheck();
       fixture.detectChanges();
 
       expect(checkboxInstance.disabled).toBe(true);
@@ -225,6 +236,7 @@ describe('SbbCheckbox', () => {
       expect(inputElement.disabled).toBe(true);
 
       testComponent.isDisabled = false;
+      fixture.changeDetectorRef.markForCheck();
       fixture.detectChanges();
 
       expect(checkboxInstance.disabled).toBe(false);
@@ -235,6 +247,7 @@ describe('SbbCheckbox', () => {
 
     it('should not toggle `checked` state upon interation while disabled', () => {
       testComponent.isDisabled = true;
+      fixture.changeDetectorRef.markForCheck();
       fixture.detectChanges();
 
       checkboxNativeElement.click();
@@ -243,6 +256,7 @@ describe('SbbCheckbox', () => {
 
     it('should overwrite indeterminate state when clicked', fakeAsync(() => {
       testComponent.isIndeterminate = true;
+      fixture.changeDetectorRef.markForCheck();
       fixture.detectChanges();
 
       inputElement.click();
@@ -262,6 +276,7 @@ describe('SbbCheckbox', () => {
 
     it('should generate a unique id for the checkbox input if no id is set', () => {
       testComponent.checkboxId = null;
+      fixture.changeDetectorRef.markForCheck();
       fixture.detectChanges();
 
       expect(checkboxInstance.inputId).toMatch(/sbb-checkbox-\d+/);
@@ -319,6 +334,7 @@ describe('SbbCheckbox', () => {
       expect(checkboxNativeElement.classList).not.toContain('sbb-selection-checked');
 
       testComponent.isChecked = true;
+      fixture.changeDetectorRef.markForCheck();
       fixture.detectChanges();
 
       expect(inputElement.checked).toBe(true);
@@ -334,11 +350,13 @@ describe('SbbCheckbox', () => {
 
     it('should forward the required attribute', () => {
       testComponent.isRequired = true;
+      fixture.changeDetectorRef.markForCheck();
       fixture.detectChanges();
 
       expect(inputElement.required).toBe(true);
 
       testComponent.isRequired = false;
+      fixture.changeDetectorRef.markForCheck();
       fixture.detectChanges();
 
       expect(inputElement.required).toBe(false);
@@ -355,6 +373,7 @@ describe('SbbCheckbox', () => {
 
     it('should forward the value to input element', () => {
       testComponent.checkboxValue = 'basic_checkbox';
+      fixture.changeDetectorRef.markForCheck();
       fixture.detectChanges();
 
       expect(inputElement.value).toBe('basic_checkbox');
@@ -613,12 +632,15 @@ describe('SbbCheckbox', () => {
 
     it('should preserve given tabIndex when the checkbox is disabled then enabled', () => {
       testComponent.isDisabled = true;
+      fixture.changeDetectorRef.markForCheck();
       fixture.detectChanges();
 
       testComponent.customTabIndex = 13;
+      fixture.changeDetectorRef.markForCheck();
       fixture.detectChanges();
 
       testComponent.isDisabled = false;
+      fixture.changeDetectorRef.markForCheck();
       fixture.detectChanges();
 
       expect(inputElement.tabIndex).toBe(13);
