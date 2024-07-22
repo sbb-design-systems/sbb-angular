@@ -863,7 +863,7 @@ describe('SbbMenu', () => {
     expect(triggerEl.getAttribute('aria-expanded')).toBe('false');
   }));
 
-  xit('should throw if assigning a menu that contains the trigger', fakeAsync(() => {
+  it('should throw if assigning a menu that contains the trigger', fakeAsync(() => {
     expect(() => {
       const fixture = createComponent(InvalidRecursiveMenu, [], [FakeIcon]);
       fixture.detectChanges();
