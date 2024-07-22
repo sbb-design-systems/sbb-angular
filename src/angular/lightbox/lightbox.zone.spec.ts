@@ -10,9 +10,8 @@ import {
 } from '@angular/core';
 import { ComponentFixture, fakeAsync, flush, inject, TestBed } from '@angular/core/testing';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
-import { SbbLightbox } from '@sbb-esta/angular/lightbox/lightbox';
-import { SbbLightboxRef } from '@sbb-esta/angular/lightbox/lightbox-ref';
-import { SbbLightboxModule } from '@sbb-esta/angular/lightbox/lightbox.module';
+
+import { SbbLightbox, SbbLightboxModule, SbbLightboxRef } from './index';
 
 describe('SbbLightbox Zone.js integration', () => {
   let lightbox: SbbLightbox;
