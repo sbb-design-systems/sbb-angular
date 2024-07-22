@@ -1,6 +1,6 @@
 import { OverlayContainer } from '@angular/cdk/overlay';
-import { Component } from '@angular/core';
-import { ComponentFixture, inject, TestBed, waitForAsync } from '@angular/core/testing';
+import { ChangeDetectorRef, Component, inject } from '@angular/core';
+import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { RouterTestingModule } from '@angular/router/testing';
@@ -55,11 +55,8 @@ describe('SbbUsermenu with userName and displayName without image', () => {
     fixtureTest = TestBed.createComponent(UsermenuWithDisplayNameAndUserNameTestComponent);
     componentTest = fixtureTest.componentInstance;
     fixtureTest.detectChanges();
+    overlayContainerElement = TestBed.inject(OverlayContainer).getContainerElement();
   });
-
-  beforeEach(inject([OverlayContainer], (oc: OverlayContainer) => {
-    overlayContainerElement = oc.getContainerElement();
-  }));
 
   it('should display initial letters because there is no custom icon/image provided', () => {
     const usermenuComponent = performLoginAndReturnUsermenuComponent(fixtureTest);
@@ -87,6 +84,7 @@ describe('SbbUsermenu with userName and displayName without image', () => {
 
     params.forEach((param) => {
       componentTest.displayName = param.name;
+      fixtureTest.changeDetectorRef.markForCheck();
       fixtureTest.detectChanges();
       const initialLettersReference = usermenuComponent.query(
         By.css('.sbb-usermenu-initial-letters'),
@@ -408,14 +406,18 @@ class UsermenuWithDisplayNameAndUserNameTestComponent {
   userName: string;
   displayName: string;
 
+  private readonly _changeDetectorRef = inject(ChangeDetectorRef);
+
   login() {
     this.userName = 'max_98';
     this.displayName = 'Max Muster';
+    this._changeDetectorRef.markForCheck();
   }
 
   logout() {
     this.userName = '';
     this.displayName = '';
+    this._changeDetectorRef.markForCheck();
   }
 
   closed() {}
