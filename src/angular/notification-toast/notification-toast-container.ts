@@ -170,6 +170,8 @@ export abstract class SbbNotificationToastContainerBase
   /**
    * Removes the element in a microtask. Helps prevent errors where we end up
    * removing an element which is in the middle of an animation.
+   * Waits for the microtasks to settle before removing the element. Helps prevent
+   * errors where we end up removing an element which is in the middle of an animation.
    */
   private _completeExit() {
     queueMicrotask(() => {

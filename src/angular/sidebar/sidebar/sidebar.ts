@@ -28,6 +28,7 @@ import {
   forwardRef,
   HostBinding,
   HostListener,
+  inject,
   Inject,
   Input,
   NgZone,
@@ -263,6 +264,8 @@ export class SbbSidebar
     ),
   );
 
+  private _changeDetectorRef = inject(ChangeDetectorRef);
+
   constructor(
     elementRef: ElementRef<HTMLElement>,
     private _focusTrapFactory: ConfigurableFocusTrapFactory,
@@ -484,6 +487,8 @@ export class SbbSidebar
       }
     }
 
+    // Needed to ensure that the closing sequence fires off correctly.
+    this._changeDetectorRef.markForCheck();
     this._updateFocusTrapState();
 
     return new Promise<SbbSidebarToggleResult>((resolve) => {
