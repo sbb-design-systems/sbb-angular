@@ -450,6 +450,7 @@ describe('SbbTags', () => {
       expectTotalAmount(100, fixture);
       component.formGroup.addControl('onemore', new FormControl(false));
       component.tagItems.push({ id: 'onemore', amount: 3, label: 'one more' });
+      fixture.changeDetectorRef.markForCheck();
       fixture.detectChanges();
 
       expectTotalAmount(100, fixture);
@@ -576,6 +577,7 @@ describe('SBB Tag Link', () => {
 
   it('should have badge with amount and description', () => {
     fixture.componentInstance.description = 'amount';
+    fixture.changeDetectorRef.markForCheck();
     fixture.detectChanges();
 
     const linkTag = fixture.debugElement.query(By.css('.sbb-tag-link'));

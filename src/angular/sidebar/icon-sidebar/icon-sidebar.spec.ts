@@ -136,16 +136,11 @@ describe('SbbIconSidebar', () => {
     });
 
     it('should throw when multiple sidebars are included', fakeAsync(() => {
-      const fixture = TestBed.createComponent(TwoSidebarsTestComponent);
-
       expect(() => {
-        try {
-          fixture.detectChanges();
-          tick(0);
-        } catch {
-          tick(0);
-        }
-      }).toThrow();
+        const fixture = TestBed.createComponent(TwoSidebarsTestComponent);
+        fixture.detectChanges();
+        tick(0);
+      }).toThrowError(/A sidebar was already declared/);
     }));
 
     it('should bind 2-way bind on expanded property', fakeAsync(() => {

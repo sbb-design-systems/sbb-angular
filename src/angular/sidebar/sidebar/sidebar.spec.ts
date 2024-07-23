@@ -462,13 +462,9 @@ describe('SbbSidebar', () => {
       const fixture = TestBed.createComponent(TwoSidebarsTestComponent);
 
       expect(() => {
-        try {
-          fixture.detectChanges();
-          tick(0);
-        } catch {
-          tick(0);
-        }
-      }).toThrow();
+        fixture.detectChanges();
+        tick();
+      }).toThrowError(/A sidebar was already declared/);
     }));
 
     it('should not throw when a two-way binding is toggled quickly while animating', fakeAsync(() => {

@@ -81,14 +81,17 @@ describe('SbbTabGroup', () => {
     it('should set to correct tab on fast change', waitForAsync(() => {
       const component = fixture.componentInstance;
       component.selectedIndex = 0;
+      fixture.changeDetectorRef.markForCheck();
       fixture.detectChanges();
 
       setTimeout(() => {
         component.selectedIndex = 1;
+        fixture.changeDetectorRef.markForCheck();
         fixture.detectChanges();
 
         setTimeout(() => {
           component.selectedIndex = 0;
+          fixture.changeDetectorRef.markForCheck();
           fixture.detectChanges();
           fixture.whenStable().then(() => {
             expect(component.selectedIndex).toBe(0);
