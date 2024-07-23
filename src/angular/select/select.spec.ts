@@ -2701,6 +2701,7 @@ describe('SbbSelect', () => {
         expect(select.textContent!.trim()).toBe('Pizza');
 
         fixture.componentInstance.foods[1].viewValue = 'Calzone';
+        fixture.changeDetectorRef.markForCheck();
         fixture.detectChanges();
 
         // tslint:disable-next-line:no-non-null-assertion
@@ -2714,6 +2715,7 @@ describe('SbbSelect', () => {
         expect(select.textContent!.trim()).toBe('Pizza');
 
         fixture.componentInstance.capitalize = true;
+        fixture.changeDetectorRef.markForCheck();
         fixture.detectChanges();
         fixture.checkNoChanges();
 
@@ -3130,7 +3132,7 @@ describe('SbbSelect', () => {
           .toBe(true);
       }));
 
-      fit(
+      it(
         'should keep the disabled state in sync if the form group is swapped and ' +
           'disabled at the same time',
         fakeAsync(() => {
@@ -3419,6 +3421,7 @@ describe('SbbSelect', () => {
       fixture.detectChanges();
 
       fixture.componentInstance.isDisabled = true;
+      fixture.changeDetectorRef.markForCheck();
       fixture.detectChanges();
       flush();
 
@@ -3439,6 +3442,7 @@ describe('SbbSelect', () => {
         .toBe(false);
 
       fixture.componentInstance.isDisabled = false;
+      fixture.changeDetectorRef.markForCheck();
       fixture.detectChanges();
       flush();
 
@@ -3632,6 +3636,7 @@ describe('SbbSelect', () => {
 
       // The first change detection run will throw the "ngModel is missing a name" error.
       expect(() => fixture.detectChanges()).toThrowError(/the name attribute must be set/g);
+      fixture.changeDetectorRef.markForCheck();
 
       // The second run shouldn't throw selection-model related errors.
       expect(() => fixture.detectChanges()).not.toThrow();
@@ -3912,6 +3917,7 @@ describe('SbbSelect', () => {
       expect(component.select.errorState).toBe(false);
 
       fixture.componentInstance.errorStateMatcher = { isErrorState: matcher };
+      fixture.changeDetectorRef.markForCheck();
       fixture.detectChanges();
       fixture.detectChanges();
 
@@ -4190,6 +4196,7 @@ describe('SbbSelect', () => {
 
       fixture.detectChanges();
       fixture.componentInstance.selectedFood = 'sandwich-2';
+      fixture.changeDetectorRef.markForCheck();
       fixture.detectChanges();
 
       const select = fixture.debugElement.query(By.css('sbb-select'))!.nativeElement;
@@ -4226,6 +4233,7 @@ describe('SbbSelect', () => {
       expect(select.textContent).toContain('Steak');
 
       fixture.componentInstance.selectedFood = null;
+      fixture.changeDetectorRef.markForCheck();
       fixture.detectChanges();
       flush();
 
@@ -4430,6 +4438,7 @@ describe('SbbSelect', () => {
 
       instance.selectedFood = 'sandwich-2';
       instance.foods[0].value = null;
+      fixture.changeDetectorRef.markForCheck();
       fixture.detectChanges();
 
       const subscription = instance.select.selectionChange.subscribe(spy);
