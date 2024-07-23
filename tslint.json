@@ -96,8 +96,8 @@
     "no-zone-dependencies": [
       true,
       [
-        // Tests may need to verify behavior with zones.
-        "**/*.spec.ts"
+        // Allow in tests that specficially test integration with Zone.js.
+        "**/*.zone.spec.ts"
       ]
     ]
   }

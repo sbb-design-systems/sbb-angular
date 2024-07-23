@@ -81,14 +81,17 @@ describe('SbbTabGroup', () => {
     it('should set to correct tab on fast change', waitForAsync(() => {
       const component = fixture.componentInstance;
       component.selectedIndex = 0;
+      fixture.changeDetectorRef.markForCheck();
       fixture.detectChanges();
 
       setTimeout(() => {
         component.selectedIndex = 1;
+        fixture.changeDetectorRef.markForCheck();
         fixture.detectChanges();
 
         setTimeout(() => {
           component.selectedIndex = 0;
+          fixture.changeDetectorRef.markForCheck();
           fixture.detectChanges();
           fixture.whenStable().then(() => {
             expect(component.selectedIndex).toBe(0);
@@ -106,6 +109,7 @@ describe('SbbTabGroup', () => {
       checkSelectedIndex(1, fixture);
 
       tabComponent.selectedIndex = 2;
+      fixture.changeDetectorRef.markForCheck();
 
       checkSelectedIndex(2, fixture);
       tick();
@@ -127,6 +131,7 @@ describe('SbbTabGroup', () => {
 
       // Move to third tab
       component.selectedIndex = 2;
+      fixture.changeDetectorRef.markForCheck();
       fixture.detectChanges();
       expect(tabs[0].position).toBeLessThan(0);
       expect(tabs[1].position).toBeLessThan(0);
@@ -134,6 +139,7 @@ describe('SbbTabGroup', () => {
 
       // Move to the first tab
       component.selectedIndex = 0;
+      fixture.changeDetectorRef.markForCheck();
       fixture.detectChanges();
       expect(tabs[0].position).toBe(0);
       expect(tabs[1].position).toBeGreaterThan(0);
@@ -148,11 +154,13 @@ describe('SbbTabGroup', () => {
 
       // Set the index to be negative, expect first tab selected
       fixture.componentInstance.selectedIndex = -1;
+      fixture.changeDetectorRef.markForCheck();
       fixture.detectChanges();
       expect(component.selectedIndex).toBe(0);
 
       // Set the index beyond the size of the tabs, expect last tab selected
       fixture.componentInstance.selectedIndex = 3;
+      fixture.changeDetectorRef.markForCheck();
       fixture.detectChanges();
       expect(component.selectedIndex).toBe(2);
     });
@@ -162,6 +170,7 @@ describe('SbbTabGroup', () => {
 
       expect(() => {
         component.selectedIndex = NaN;
+        fixture.changeDetectorRef.markForCheck();
         fixture.detectChanges();
       }).not.toThrow();
     });
@@ -177,6 +186,7 @@ describe('SbbTabGroup', () => {
       expect(tabs[2].isActive).toBe(false);
 
       fixture.componentInstance.selectedIndex = 2;
+      fixture.changeDetectorRef.markForCheck();
       fixture.detectChanges();
       tick();
 
@@ -350,12 +360,14 @@ describe('SbbTabGroup', () => {
     it('should not be able to set both an aria-label and aria-labelledby', () => {
       fixture.componentInstance.ariaLabel = 'Fruit';
       fixture.componentInstance.ariaLabelledby = 'fruit-label';
+      fixture.changeDetectorRef.markForCheck();
       fixture.detectChanges();
 
       expect(tab.getAttribute('aria-label')).toBe('Fruit');
       expect(tab.hasAttribute('aria-labelledby')).toBe(false);
 
       fixture.componentInstance.ariaLabel = 'Veggie';
+      fixture.changeDetectorRef.markForCheck();
       fixture.detectChanges();
       expect(tab.getAttribute('aria-label')).toBe('Veggie');
     });
@@ -404,6 +416,7 @@ describe('SbbTabGroup', () => {
       expect(labels[0].nativeElement.getAttribute('aria-disabled')).toBe('true');
 
       fixture.componentInstance.isDisabled = true;
+      fixture.changeDetectorRef.markForCheck();
       fixture.detectChanges();
 
       expect(tabs[2].disabled).toBe(true);
@@ -438,6 +451,7 @@ describe('SbbTabGroup', () => {
       // Add a new tab on the right and select it, expect an origin >= than 0 (animate right)
       fixture.componentInstance.tabs.push({ label: 'New tab', content: 'to right of index' });
       fixture.componentInstance.selectedIndex = 4;
+      fixture.changeDetectorRef.markForCheck();
       fixture.detectChanges();
       tick();
 
@@ -446,6 +460,7 @@ describe('SbbTabGroup', () => {
 
       // Add a new tab in the beginning and select it, expect an origin < than 0 (animate left)
       fixture.componentInstance.selectedIndex = 0;
+      fixture.changeDetectorRef.markForCheck();
       fixture.detectChanges();
       tick();
 
@@ -464,6 +479,7 @@ describe('SbbTabGroup', () => {
 
       const numberOfTabs = component._tabs.length;
       fixture.componentInstance.selectedIndex = numberOfTabs - 1;
+      fixture.changeDetectorRef.markForCheck();
       fixture.detectChanges();
       tick();
 
@@ -482,10 +498,12 @@ describe('SbbTabGroup', () => {
       )!.componentInstance;
 
       fixture.componentInstance.selectedIndex = 1;
+      fixture.changeDetectorRef.markForCheck();
       fixture.detectChanges();
 
       // Add a new tab at the beginning.
       fixture.componentInstance.tabs.unshift({ label: 'New tab', content: 'at the start' });
+      fixture.changeDetectorRef.markForCheck();
       fixture.detectChanges();
 
       expect(component.selectedIndex).toBe(2);
@@ -495,6 +513,7 @@ describe('SbbTabGroup', () => {
     it('should maintain the selected tab if a tab is removed', () => {
       // Select the second tab.
       fixture.componentInstance.selectedIndex = 1;
+      fixture.changeDetectorRef.markForCheck();
       fixture.detectChanges();
 
       const component: SbbTabGroup = fixture.debugElement.query(
@@ -503,6 +522,7 @@ describe('SbbTabGroup', () => {
 
       // Remove the first tab that is right before the selected one.
       fixture.componentInstance.tabs.splice(0, 1);
+      fixture.changeDetectorRef.markForCheck();
       fixture.detectChanges();
 
       // Since the first tab has been removed and the second one was selected before, the selected
@@ -518,6 +538,7 @@ describe('SbbTabGroup', () => {
       )!.componentInstance;
 
       fixture.componentInstance.tabs.push({ label: 'Last tab', content: 'at the end' });
+      fixture.changeDetectorRef.markForCheck();
       fixture.componentInstance.selectedIndex = 3;
 
       fixture.detectChanges();
@@ -530,11 +551,13 @@ describe('SbbTabGroup', () => {
     it('should not fire `selectedTabChange` when the amount of tabs changes', fakeAsync(() => {
       fixture.detectChanges();
       fixture.componentInstance.selectedIndex = 1;
+      fixture.changeDetectorRef.markForCheck();
       fixture.detectChanges();
 
       // Add a new tab at the beginning.
       spyOn(fixture.componentInstance, 'handleSelection');
       fixture.componentInstance.tabs.unshift({ label: 'New tab', content: 'at the start' });
+      fixture.changeDetectorRef.markForCheck();
       fixture.detectChanges();
       tick();
       fixture.detectChanges();
@@ -553,6 +576,7 @@ describe('SbbTabGroup', () => {
         label: 'New',
         content: 'New',
       };
+      fixture.changeDetectorRef.markForCheck();
       fixture.detectChanges();
       tick();
 
@@ -598,6 +622,7 @@ describe('SbbTabGroup', () => {
       expect(getSelectedContent(fixture).textContent).toMatch('Pizza, fries');
 
       tabGroup.selectedIndex = 2;
+      fixture.changeDetectorRef.markForCheck();
       fixture.detectChanges();
       tick();
 
@@ -621,6 +646,7 @@ describe('SbbTabGroup', () => {
       expect(fixture.nativeElement.textContent).not.toContain('Peanuts');
 
       tabGroup.selectedIndex = 3;
+      fixture.changeDetectorRef.markForCheck();
       fixture.detectChanges();
       tick();
 
@@ -636,6 +662,7 @@ describe('SbbTabGroup', () => {
       expect(fixture.nativeElement.textContent).not.toContain('Peanuts');
 
       tabGroup.selectedIndex = 3;
+      fixture.changeDetectorRef.markForCheck();
       fixture.detectChanges();
       tick();
 
@@ -656,6 +683,7 @@ describe('SbbTabGroup', () => {
       ]);
 
       tabGroup.selectedIndex = 2;
+      fixture.changeDetectorRef.markForCheck();
       fixture.detectChanges();
       tick();
 
@@ -667,6 +695,7 @@ describe('SbbTabGroup', () => {
       ]);
 
       tabGroup.selectedIndex = 1;
+      fixture.changeDetectorRef.markForCheck();
       fixture.detectChanges();
       tick();
 
@@ -820,6 +849,7 @@ describe('SbbTabGroup', () => {
 
       fixture.componentInstance.labelClassList = 'custom-label-class';
       fixture.componentInstance.bodyClassList = 'custom-body-class';
+      fixture.changeDetectorRef.markForCheck();
       fixture.detectChanges();
 
       expect(labelElements[0].nativeElement.classList).toContain('custom-label-class');
@@ -827,6 +857,7 @@ describe('SbbTabGroup', () => {
 
       delete fixture.componentInstance.labelClassList;
       delete fixture.componentInstance.bodyClassList;
+      fixture.changeDetectorRef.markForCheck();
       fixture.detectChanges();
 
       expect(labelElements[0].nativeElement.classList).not.toContain('custom-label-class');
@@ -839,6 +870,7 @@ describe('SbbTabGroup', () => {
 
       fixture.componentInstance.labelClassList = ['custom-label-class'];
       fixture.componentInstance.bodyClassList = ['custom-body-class'];
+      fixture.changeDetectorRef.markForCheck();
       fixture.detectChanges();
 
       expect(labelElements[0].nativeElement.classList).toContain('custom-label-class');
@@ -846,6 +878,7 @@ describe('SbbTabGroup', () => {
 
       delete fixture.componentInstance.labelClassList;
       delete fixture.componentInstance.bodyClassList;
+      fixture.changeDetectorRef.markForCheck();
       fixture.detectChanges();
 
       expect(labelElements[0].nativeElement.classList).not.toContain('custom-label-class');

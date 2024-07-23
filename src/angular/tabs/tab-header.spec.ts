@@ -2,7 +2,7 @@ import { Direction } from '@angular/cdk/bidi';
 import { END, ENTER, HOME, LEFT_ARROW, RIGHT_ARROW, SPACE } from '@angular/cdk/keycodes';
 import { MutationObserverFactory } from '@angular/cdk/observers';
 import { ScrollingModule, ViewportRuler } from '@angular/cdk/scrolling';
-import { Component, ViewChild } from '@angular/core';
+import { ChangeDetectorRef, Component, inject, ViewChild } from '@angular/core';
 import {
   ComponentFixture,
   discardPeriodicTasks,
@@ -169,6 +169,7 @@ describe('SbbTabHeader', () => {
     it('should skip disabled items when moving focus using HOME', () => {
       appComponent.tabHeader.focusIndex = 3;
       appComponent.tabs[0].disabled = true;
+      fixture.changeDetectorRef.markForCheck();
       fixture.detectChanges();
       expect(appComponent.tabHeader.focusIndex).toBe(3);
 
@@ -194,6 +195,7 @@ describe('SbbTabHeader', () => {
     it('should skip disabled items when moving focus using END', () => {
       appComponent.tabHeader.focusIndex = 0;
       appComponent.tabs[3].disabled = true;
+      fixture.changeDetectorRef.markForCheck();
       fixture.detectChanges();
       expect(appComponent.tabHeader.focusIndex).toBe(0);
 
@@ -256,6 +258,7 @@ describe('SbbTabHeader', () => {
 
         // Focus on the last tab, expect this to be the maximum scroll distance.
         appComponent.tabHeader.focusIndex = appComponent.tabs.length - 1;
+        fixture.changeDetectorRef.markForCheck();
         fixture.detectChanges();
         expect(appComponent.tabHeader.scrollDistance).toBe(
           appComponent.tabHeader._getMaxScrollDistance(),
@@ -263,6 +266,7 @@ describe('SbbTabHeader', () => {
 
         // Focus on the first tab, expect this to be the maximum scroll distance.
         appComponent.tabHeader.focusIndex = 0;
+        fixture.changeDetectorRef.markForCheck();
         fixture.detectChanges();
         expect(appComponent.tabHeader.scrollDistance).toBe(0);
       });
@@ -646,6 +650,8 @@ class SimpleTabHeaderApp {
 
   @ViewChild(SbbTabHeader, { static: true }) tabHeader: SbbTabHeader;
 
+  private readonly _changeDetectorRef = inject(ChangeDetectorRef);
+
   constructor() {
     this.tabs[this.disabledTabIndex].disabled = true;
   }
@@ -654,5 +660,7 @@ class SimpleTabHeaderApp {
     for (let i = 0; i < amount; i++) {
       this.tabs.push({ label: 'new' });
     }
+
+    this._changeDetectorRef.markForCheck();
   }
 }

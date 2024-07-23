@@ -98,11 +98,13 @@ describe('SbbChipList', () => {
         expect(chips.toArray().every((chip) => chip.disabled)).toBe(false);
 
         chipListInstance.disabled = true;
+        fixture.changeDetectorRef.markForCheck();
         fixture.detectChanges();
 
         expect(chips.toArray().every((chip) => chip.disabled)).toBe(true);
 
         fixture.componentInstance.chips.push(5, 6);
+        fixture.changeDetectorRef.markForCheck();
         fixture.detectChanges();
         tick();
         fixture.detectChanges();
@@ -114,6 +116,7 @@ describe('SbbChipList', () => {
         const chipArray = chips.toArray();
 
         chipArray[2].disabled = true;
+        fixture.changeDetectorRef.markForCheck();
         fixture.detectChanges();
 
         expect(chips.toArray().map((chip) => chip.disabled)).toEqual([
@@ -125,6 +128,7 @@ describe('SbbChipList', () => {
         ]);
 
         chipListInstance.disabled = true;
+        fixture.changeDetectorRef.markForCheck();
         fixture.detectChanges();
 
         expect(chips.toArray().map((chip) => chip.disabled)).toEqual([
@@ -136,6 +140,7 @@ describe('SbbChipList', () => {
         ]);
 
         chipListInstance.disabled = false;
+        fixture.changeDetectorRef.markForCheck();
         fixture.detectChanges();
 
         expect(chips.toArray().map((chip) => chip.disabled)).toEqual([
@@ -807,6 +812,7 @@ describe('SbbChipList', () => {
 
       (testChipsAutocomplete!.selectedFruits!.value! as string[]).push('Pineapple');
 
+      fixture.changeDetectorRef.markForCheck();
       fixture.detectChanges();
       await fixture.whenStable();
 

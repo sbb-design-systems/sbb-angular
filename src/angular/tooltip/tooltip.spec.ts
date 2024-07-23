@@ -8,7 +8,6 @@ import {
   Component,
   DebugElement,
   ElementRef,
-  NgZone,
   ViewChild,
 } from '@angular/core';
 import {
@@ -314,6 +313,7 @@ describe('SbbTooltip', () => {
       expect(tooltipDirective._isTooltipVisible()).toBe(true);
 
       fixture.componentInstance.message = '';
+      fixture.changeDetectorRef.markForCheck();
       fixture.detectChanges();
       tick(0);
       expect(tooltipDirective._isTooltipVisible()).toBe(false);
@@ -340,21 +340,25 @@ describe('SbbTooltip', () => {
       assertTooltipInstance(tooltipDirective, false);
 
       tooltipDirective.message = undefined!;
+      fixture.changeDetectorRef.markForCheck();
       fixture.detectChanges();
       tooltipDirective.show();
       assertTooltipInstance(tooltipDirective, false);
 
       tooltipDirective.message = null!;
+      fixture.changeDetectorRef.markForCheck();
       fixture.detectChanges();
       tooltipDirective.show();
       assertTooltipInstance(tooltipDirective, false);
 
       tooltipDirective.message = '';
+      fixture.changeDetectorRef.markForCheck();
       fixture.detectChanges();
       tooltipDirective.show();
       assertTooltipInstance(tooltipDirective, false);
 
       tooltipDirective.message = '   ';
+      fixture.changeDetectorRef.markForCheck();
       fixture.detectChanges();
       tooltipDirective.show();
       assertTooltipInstance(tooltipDirective, false);
@@ -423,6 +427,7 @@ describe('SbbTooltip', () => {
       const newMessage = 'new tooltip message';
       tooltipDirective.message = newMessage;
 
+      fixture.changeDetectorRef.markForCheck();
       fixture.detectChanges();
       expect(overlayContainerElement.textContent).toContain(newMessage);
     }));
@@ -447,6 +452,7 @@ describe('SbbTooltip', () => {
 
       // Enable the classes via ngClass syntax
       fixture.componentInstance.showTooltipClass = true;
+      fixture.changeDetectorRef.markForCheck();
       fixture.detectChanges();
 
       // Make sure classes are correctly added
@@ -564,6 +570,7 @@ describe('SbbTooltip', () => {
     it('should throw when trying to assign an invalid position', () => {
       expect(() => {
         fixture.componentInstance.position = 'everywhere';
+        fixture.changeDetectorRef.markForCheck();
         fixture.detectChanges();
         tooltipDirective.show();
       }).toThrowError('Tooltip position "everywhere" is invalid.');
@@ -571,6 +578,7 @@ describe('SbbTooltip', () => {
 
     it('should be able to set the tooltip message as a number', fakeAsync(() => {
       fixture.componentInstance.message = 100;
+      fixture.changeDetectorRef.markForCheck();
       fixture.detectChanges();
 
       expect(tooltipDirective.message).toBe('100');
@@ -744,6 +752,7 @@ describe('SbbTooltip', () => {
       buttonElement.style.top = buttonElement.style.left = '200px';
 
       fixture.componentInstance.message = 'hi';
+      fixture.changeDetectorRef.markForCheck();
       fixture.detectChanges();
       setPositionAndShow('below');
 
@@ -957,25 +966,6 @@ describe('SbbTooltip', () => {
       expect(tooltipDirective._isTooltipVisible())
         .withContext('Expected tooltip hidden when scrolled out of view, after throttle limit')
         .toBe(false);
-    }));
-
-    it('should execute the `hide` call, after scrolling away, inside the NgZone', fakeAsync(() => {
-      const inZoneSpy = jasmine.createSpy('in zone spy');
-
-      tooltipDirective.show();
-      fixture.detectChanges();
-      tick(0);
-
-      spyOn(tooltipDirective._tooltipInstance!, 'hide').and.callFake(() => {
-        inZoneSpy(NgZone.isInAngularZone());
-      });
-
-      fixture.componentInstance.scrollDown();
-      tick(100);
-      fixture.detectChanges();
-
-      expect(inZoneSpy).toHaveBeenCalled();
-      expect(inZoneSpy).toHaveBeenCalledWith(true);
     }));
   });
 

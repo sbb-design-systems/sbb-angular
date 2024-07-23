@@ -119,6 +119,7 @@ describe('SbbRadioButtonPanel', () => {
       const [opt1, opt2] = component.optionSelections.toArray();
 
       component.testValue = '1';
+      fixture.changeDetectorRef.markForCheck();
       fixture.detectChanges();
 
       await fixture.whenStable();

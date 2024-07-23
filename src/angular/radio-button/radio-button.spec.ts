@@ -258,6 +258,7 @@ describe('RadioButton', () => {
 
     it('should coerce the disabled binding on the radio group', () => {
       (testComponent as any).isGroupDisabled = '';
+      fixture.changeDetectorRef.markForCheck();
       fixture.detectChanges();
 
       radioLabelElements[0].click();
@@ -269,6 +270,7 @@ describe('RadioButton', () => {
 
     it('should disable click interaction when the group is disabled', () => {
       testComponent.isGroupDisabled = true;
+      fixture.changeDetectorRef.markForCheck();
       fixture.detectChanges();
 
       radioLabelElements[0].click();
@@ -279,6 +281,7 @@ describe('RadioButton', () => {
 
     it('should disable each individual radio when the group is disabled', () => {
       testComponent.isGroupDisabled = true;
+      fixture.changeDetectorRef.markForCheck();
       fixture.detectChanges();
 
       for (const radio of radioInstances) {
@@ -288,6 +291,7 @@ describe('RadioButton', () => {
 
     it('should set required to each radio button when the group is required', () => {
       testComponent.isGroupRequired = true;
+      fixture.changeDetectorRef.markForCheck();
       fixture.detectChanges();
 
       for (const radio of radioInstances) {
@@ -378,6 +382,7 @@ describe('RadioButton', () => {
       expect(groupInstance.value).toBeFalsy();
 
       testComponent.groupValue = 'fire';
+      fixture.changeDetectorRef.markForCheck();
       fixture.detectChanges();
 
       expect(groupInstance.value).toBe('fire');
@@ -386,6 +391,7 @@ describe('RadioButton', () => {
       expect(radioInstances[1].checked).toBe(false);
 
       testComponent.groupValue = 'water';
+      fixture.changeDetectorRef.markForCheck();
       fixture.detectChanges();
 
       expect(groupInstance.value).toBe('water');
@@ -525,6 +531,7 @@ describe('RadioButton', () => {
       expect(groupInstance.value).toBe('fire');
 
       fixture.componentInstance.isFirstShown = false;
+      fixture.changeDetectorRef.markForCheck();
       fixture.detectChanges();
 
       expect(groupInstance.selected).toBe(null);
@@ -583,6 +590,7 @@ describe('RadioButton', () => {
         .toBe(true);
 
       fixture.componentInstance.groupName = 'changed-name';
+      fixture.changeDetectorRef.markForCheck();
       fixture.detectChanges();
 
       expect(groupInstance.name).toBe('changed-name');
@@ -639,6 +647,7 @@ describe('RadioButton', () => {
 
     it('should write to the radio button based on ngModel', fakeAsync(() => {
       testComponent.modelValue = 'chocolate';
+      fixture.changeDetectorRef.markForCheck();
 
       fixture.detectChanges();
       tick();
@@ -818,6 +827,7 @@ describe('RadioButton', () => {
       expect(fruitRadioNativeInputs[0].getAttribute('aria-label')).toBe('Banana');
 
       testComponent.ariaLabel = 'Pineapple';
+      fixture.changeDetectorRef.markForCheck();
       fixture.detectChanges();
 
       expect(fruitRadioNativeInputs[0].getAttribute('aria-label')).toBe('Pineapple');
@@ -835,6 +845,7 @@ describe('RadioButton', () => {
       expect(fruitRadioNativeInputs[0].getAttribute('aria-labelledby')).toBe('xyz');
 
       testComponent.ariaLabelledby = 'uvw';
+      fixture.changeDetectorRef.markForCheck();
       fixture.detectChanges();
 
       expect(fruitRadioNativeInputs[0].getAttribute('aria-labelledby')).toBe('uvw');
@@ -852,6 +863,7 @@ describe('RadioButton', () => {
       expect(fruitRadioNativeInputs[0].getAttribute('aria-describedby')).toBe('abc');
 
       testComponent.ariaDescribedby = 'uvw';
+      fixture.changeDetectorRef.markForCheck();
       fixture.detectChanges();
 
       expect(fruitRadioNativeInputs[0].getAttribute('aria-describedby')).toBe('uvw');
@@ -902,6 +914,7 @@ describe('RadioButton', () => {
         .toBe(0);
 
       fixture.componentInstance.tabIndex = 4;
+      fixture.changeDetectorRef.markForCheck();
       fixture.detectChanges();
 
       expect(radioButtonInput.tabIndex)

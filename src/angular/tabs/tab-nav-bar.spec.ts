@@ -90,6 +90,7 @@ describe('SbbTabNavBar', () => {
         .toBe(true);
 
       fixture.componentInstance.disabled = true;
+      fixture.changeDetectorRef.markForCheck();
       fixture.detectChanges();
 
       expect(tabLinkElements.every((tabLink) => tabLink.getAttribute('aria-disabled') === 'true'))
@@ -107,6 +108,7 @@ describe('SbbTabNavBar', () => {
         .toBe(true);
 
       fixture.componentInstance.disabled = true;
+      fixture.changeDetectorRef.markForCheck();
       fixture.detectChanges();
 
       expect(tabLinkElements.every((tabLink) => tabLink.tabIndex === -1))
@@ -120,6 +122,7 @@ describe('SbbTabNavBar', () => {
       expect(tabLinkElement.classList).not.toContain('sbb-tab-disabled');
 
       fixture.componentInstance.disabled = true;
+      fixture.changeDetectorRef.markForCheck();
       fixture.detectChanges();
 
       expect(tabLinkElement.classList).toContain('sbb-tab-disabled');
@@ -128,6 +131,7 @@ describe('SbbTabNavBar', () => {
     it('should prevent default keyboard actions on disabled links', () => {
       const link = fixture.debugElement.query(By.css('a')).nativeElement;
       fixture.componentInstance.disabled = true;
+      fixture.changeDetectorRef.markForCheck();
       fixture.detectChanges();
 
       const spaceEvent = dispatchKeyboardEvent(link, 'keydown', SPACE);
@@ -174,6 +178,7 @@ describe('SbbTabNavBar', () => {
       .toBe(0);
 
     fixture.componentInstance.tabIndex = 3;
+    fixture.changeDetectorRef.markForCheck();
     fixture.detectChanges();
 
     expect(tabLink.tabIndex).withContext('Expected the tabIndex to be have been set to 3.').toBe(3);
@@ -185,11 +190,13 @@ describe('SbbTabNavBar', () => {
 
     instance.tabs = [];
     instance.activeIndex = 1;
+    fixture.changeDetectorRef.markForCheck();
     fixture.detectChanges();
 
     expect(instance.tabNavBar.selectedIndex).toBe(-1);
 
     instance.tabs = [0, 1, 2];
+    fixture.changeDetectorRef.markForCheck();
     fixture.detectChanges();
 
     expect(instance.tabNavBar.selectedIndex).toBe(1);

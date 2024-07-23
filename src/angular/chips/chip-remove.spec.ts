@@ -60,6 +60,7 @@ describe('Chip Remove', () => {
       const buttonElement = chipNativeElement.querySelector('button')!;
 
       testChip.removable = true;
+      fixture.changeDetectorRef.markForCheck();
       fixture.detectChanges();
 
       spyOn(testChip, 'didRemove');
@@ -75,6 +76,7 @@ describe('Chip Remove', () => {
 
       testChip.disabled = true;
       testChip.removable = true;
+      fixture.changeDetectorRef.markForCheck();
       fixture.detectChanges();
 
       spyOn(testChip, 'didRemove');
@@ -119,6 +121,7 @@ describe('Chip Remove', () => {
 
     it('should hide fallback icon because it is not removable', () => {
       testChip.removable = false;
+      fixture.changeDetectorRef.markForCheck();
       fixture.detectChanges();
       const iconElement = chipNativeElement.querySelector('sbb-icon')!;
 

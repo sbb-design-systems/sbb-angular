@@ -16,6 +16,7 @@ import { AsyncPipe, DOCUMENT } from '@angular/common';
 import {
   AfterContentChecked,
   AfterContentInit,
+  afterNextRender,
   ANIMATION_MODULE_TYPE,
   booleanAttribute,
   ChangeDetectionStrategy,
@@ -30,6 +31,7 @@ import {
   HostListener,
   inject,
   Inject,
+  Injector,
   Input,
   NgZone,
   OnDestroy,
@@ -266,6 +268,8 @@ export class SbbSidebar
 
   private _changeDetectorRef = inject(ChangeDetectorRef);
 
+  private _injector = inject(Injector);
+
   constructor(
     elementRef: ElementRef<HTMLElement>,
     private _focusTrapFactory: ConfigurableFocusTrapFactory,
@@ -278,12 +282,11 @@ export class SbbSidebar
   ) {
     super(_container, elementRef, _doc);
 
-    this.openedChange.subscribe((opened: boolean) => {
+    this.openedChange.pipe(takeUntil(this._destroyed)).subscribe((opened: boolean) => {
       if (opened) {
         if (this._doc) {
           this._elementFocusedBeforeSidebarWasOpened = this._doc.activeElement as HTMLElement;
         }
-
         this._takeFocus();
       } else if (this._isFocusWithinSidebar()) {
         this._restoreFocus(this._openedVia || 'program');
@@ -356,13 +359,17 @@ export class SbbSidebar
       return;
     }
 
-    this._focusTrap.focusInitialElementWhenReady().then((hasMovedFocus) => {
-      // If there were no focusable elements, focus the sidebar itself so the keyboard navigation
-      // still works. We need to check that `focus` is a function due to Universal.
-      if (!hasMovedFocus && typeof this._elementRef.nativeElement.focus === 'function') {
-        this._elementRef.nativeElement.focus();
-      }
-    });
+    const element = this._elementRef.nativeElement;
+
+    afterNextRender(
+      () => {
+        const hasMovedFocus = this._focusTrap!.focusInitialElement();
+        if (!hasMovedFocus && typeof element.focus === 'function') {
+          element.focus();
+        }
+      },
+      { injector: this._injector },
+    );
   }
 
   /**
