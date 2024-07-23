@@ -196,6 +196,7 @@ describe('SbbTooltipWrapper', () => {
       component.tooltip.show();
       tick();
       fixture.detectChanges();
+      flush();
 
       const tooltipPanel = overlayContainer
         .getContainerElement()
