@@ -78,19 +78,23 @@ describe('SbbTimeInput', () => {
     fixture.detectChanges();
 
     fixture.componentInstance.placeholder = 'Other';
+    fixture.changeDetectorRef.markForCheck();
     fixture.detectChanges();
 
     expect(inputElement.getAttribute('placeholder')).toBe('Other');
 
     fixture.componentInstance.placeholder = '';
+    fixture.changeDetectorRef.markForCheck();
     fixture.detectChanges();
     expect(inputElement.getAttribute('placeholder')).toEqual('');
 
     fixture.componentInstance.placeholder = null;
+    fixture.changeDetectorRef.markForCheck();
     fixture.detectChanges();
     expect(inputElement.getAttribute('placeholder')).toEqual('HH:MM');
 
     fixture.componentInstance.placeholder = undefined;
+    fixture.changeDetectorRef.markForCheck();
     fixture.detectChanges();
     expect(inputElement.getAttribute('placeholder')).toEqual('HH:MM');
   });

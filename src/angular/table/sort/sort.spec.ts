@@ -188,6 +188,7 @@ describe('SbbSort', () => {
       it('should be correct when sort has been disabled', () => {
         // Mousing over the first sort should set the view state to hint
         component.disabledColumnSort = true;
+        fixture.changeDetectorRef.markForCheck();
         fixture.detectChanges();
 
         component.dispatchMouseEvent('defaultA', 'mouseenter');
@@ -197,6 +198,7 @@ describe('SbbSort', () => {
       it('should be correct when sorting programmatically', () => {
         component.active = 'defaultB';
         component.direction = 'asc';
+        fixture.changeDetectorRef.markForCheck();
         fixture.detectChanges();
 
         expectedStates.set('defaultB', {
@@ -211,20 +213,24 @@ describe('SbbSort', () => {
       component.disableClear = true;
 
       component.start = 'asc';
+      fixture.changeDetectorRef.markForCheck();
       testSingleColumnSortDirectionSequence(fixture, ['asc', 'desc']);
 
       // Reverse directions
       component.start = 'desc';
+      fixture.changeDetectorRef.markForCheck();
       testSingleColumnSortDirectionSequence(fixture, ['desc', 'asc']);
     });
 
     it('should be able to cycle asc -> desc -> [none]', () => {
       component.start = 'asc';
+      fixture.changeDetectorRef.markForCheck();
       testSingleColumnSortDirectionSequence(fixture, ['asc', 'desc', '']);
     });
 
     it('should be able to cycle desc -> asc -> [none]', () => {
       component.start = 'desc';
+      fixture.changeDetectorRef.markForCheck();
       testSingleColumnSortDirectionSequence(fixture, ['desc', 'asc', '']);
     });
 
@@ -426,6 +432,7 @@ describe('SbbSort', () => {
       expect(descriptionElement?.textContent).toBe('Sort second column');
 
       fixture.componentInstance.secondColumnDescription = 'Sort 2nd column';
+      fixture.changeDetectorRef.markForCheck();
       fixture.detectChanges();
       descriptionId = sortButton.getAttribute('aria-describedby');
       descriptionElement = document.getElementById(descriptionId);
@@ -471,6 +478,7 @@ describe('SbbSort', () => {
       const sbbSortWithArrowPositionComponent = sbbSortWithArrowPositionFixture.componentInstance;
 
       sbbSortWithArrowPositionFixture.detectChanges();
+      sbbSortWithArrowPositionFixture.changeDetectorRef.markForCheck();
 
       const containerA = sbbSortWithArrowPositionFixture.nativeElement.querySelector(
         '#defaultA .sbb-sort-header-container',
@@ -485,6 +493,7 @@ describe('SbbSort', () => {
       sbbSortWithArrowPositionComponent.arrowPosition = 'before';
 
       sbbSortWithArrowPositionFixture.detectChanges();
+      fixture.changeDetectorRef.markForCheck();
 
       expect(containerA.classList.contains('sbb-sort-header-position-before')).toBe(true);
       expect(containerB.classList.contains('sbb-sort-header-position-before')).toBe(true);
@@ -517,10 +526,12 @@ describe('SbbSort', () => {
 
     it('should be able to cycle from asc -> desc from either start point', () => {
       component.start = 'asc';
+      fixture.changeDetectorRef.markForCheck();
       testSingleColumnSortDirectionSequence(fixture, ['asc', 'desc']);
 
       // Reverse directions
       component.start = 'desc';
+      fixture.changeDetectorRef.markForCheck();
       testSingleColumnSortDirectionSequence(fixture, ['desc', 'asc']);
     });
   });

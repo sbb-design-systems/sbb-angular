@@ -186,6 +186,7 @@ describe('SbbTags', () => {
       expectTotalAmount(17, fixture);
 
       component.tagItems.push({ amount: 3, label: 'one more', selected: false });
+      fixture.changeDetectorRef.markForCheck();
       fixture.detectChanges();
 
       expectTotalAmount(20, fixture);
@@ -195,6 +196,7 @@ describe('SbbTags', () => {
       expectTotalAmount(17, fixture);
 
       component.tagItems[0].amount = 6;
+      fixture.changeDetectorRef.markForCheck();
       fixture.detectChanges();
 
       expectTotalAmount(15, fixture);
@@ -204,9 +206,11 @@ describe('SbbTags', () => {
       expectTotalAmount(17, fixture);
 
       component.tagItems.push({ amount: 5, label: 'laterAdded' });
+      fixture.changeDetectorRef.markForCheck();
       fixture.detectChanges();
 
       component.tagItems[component.tagItems.length - 1].amount = 6;
+      fixture.changeDetectorRef.markForCheck();
       fixture.detectChanges();
 
       expectTotalAmount(23, fixture);
@@ -216,6 +220,7 @@ describe('SbbTags', () => {
       expectTotalAmount(17, fixture);
 
       component.tagItems = [];
+      fixture.changeDetectorRef.markForCheck();
       fixture.detectChanges();
 
       expectTotalAmount(0, fixture);
@@ -243,6 +248,7 @@ describe('SbbTags', () => {
 
       component.tagItems[0].selected = true;
 
+      fixture.changeDetectorRef.markForCheck();
       fixture.detectChanges();
       await fixture.whenStable();
 
@@ -411,6 +417,7 @@ describe('SbbTags', () => {
 
     it('should have custom badge description for first tag', () => {
       fixture.componentInstance.description = 'description';
+      fixture.changeDetectorRef.markForCheck();
       fixture.detectChanges();
 
       expect(extractBadgeDescription(fixture.debugElement.queryAll(By.directive(SbbTag))[1])).toBe(
@@ -437,11 +444,13 @@ describe('SbbTags', () => {
 
     it('should take totalAmount of input', () => {
       component.totalAmount = 100;
+      fixture.changeDetectorRef.markForCheck();
       fixture.detectChanges();
 
       expectTotalAmount(100, fixture);
       component.formGroup.addControl('onemore', new FormControl(false));
       component.tagItems.push({ id: 'onemore', amount: 3, label: 'one more' });
+      fixture.changeDetectorRef.markForCheck();
       fixture.detectChanges();
 
       expectTotalAmount(100, fixture);
@@ -568,6 +577,7 @@ describe('SBB Tag Link', () => {
 
   it('should have badge with amount and description', () => {
     fixture.componentInstance.description = 'amount';
+    fixture.changeDetectorRef.markForCheck();
     fixture.detectChanges();
 
     const linkTag = fixture.debugElement.query(By.css('.sbb-tag-link'));

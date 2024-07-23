@@ -68,6 +68,7 @@ describe('SbbIconSidebar', () => {
       expect(fixture.componentInstance.sidebar.expanded).toBe(false);
 
       fixture.componentInstance.sidebar.expanded = true;
+      fixture.changeDetectorRef.markForCheck();
       fixture.detectChanges();
       tick();
       fixture.detectChanges();
@@ -84,6 +85,7 @@ describe('SbbIconSidebar', () => {
       expect(instance.innerSidebar.expanded).toBe(false);
 
       instance.outerSidebar.expanded = true;
+      fixture.changeDetectorRef.markForCheck();
       fixture.detectChanges();
       tick();
       fixture.detectChanges();
@@ -92,6 +94,7 @@ describe('SbbIconSidebar', () => {
       expect(instance.innerSidebar.expanded).toBe(false);
 
       instance.innerSidebar.expanded = true;
+      fixture.changeDetectorRef.markForCheck();
       fixture.detectChanges();
       tick();
       fixture.detectChanges();
@@ -133,16 +136,11 @@ describe('SbbIconSidebar', () => {
     });
 
     it('should throw when multiple sidebars are included', fakeAsync(() => {
-      const fixture = TestBed.createComponent(TwoSidebarsTestComponent);
-
       expect(() => {
-        try {
-          fixture.detectChanges();
-          tick(0);
-        } catch {
-          tick(0);
-        }
-      }).toThrow();
+        const fixture = TestBed.createComponent(TwoSidebarsTestComponent);
+        fixture.detectChanges();
+        tick(0);
+      }).toThrowError(/A sidebar was already declared/);
     }));
 
     it('should bind 2-way bind on expanded property', fakeAsync(() => {
@@ -378,6 +376,7 @@ describe('SbbIconSidebar', () => {
         .toBeGreaterThan(contentTop);
 
       fixture.componentInstance.position = 'end';
+      fixture.changeDetectorRef.markForCheck();
       fixture.detectChanges();
 
       sidebarTop = fixture.nativeElement.querySelector('.sbb-icon-sidebar').offsetTop;

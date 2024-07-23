@@ -170,7 +170,7 @@ export class SbbChip implements FocusableOption, OnDestroy {
     public _elementRef: ElementRef<HTMLElement>,
     private _ngZone: NgZone,
     @Optional()
-    private _changeDetectorRef: ChangeDetectorRef,
+    public _changeDetectorRef: ChangeDetectorRef,
     @Optional() @Host() @Inject(SBB_CHIP_LIST) private _chipList?: TypeRef<SbbChipList>,
     @Optional() @Inject(ANIMATION_MODULE_TYPE) animationMode?: string,
     @Attribute('tabindex') tabIndex?: string,

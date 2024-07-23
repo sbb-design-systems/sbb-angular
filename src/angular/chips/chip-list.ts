@@ -623,6 +623,7 @@ export class SbbChipList
     if (this.chips) {
       this.chips.forEach((chip) => {
         chip._chipListDisabled = this._disabled;
+        chip._changeDetectorRef.markForCheck();
       });
     }
   }

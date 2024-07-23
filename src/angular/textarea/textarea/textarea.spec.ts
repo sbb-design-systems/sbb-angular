@@ -103,6 +103,7 @@ describe('SbbTextarea behaviour', () => {
 
   it('should be readonly attribute', () => {
     component.readonly = true;
+    fixture.changeDetectorRef.markForCheck();
     fixture.detectChanges();
     expect(innerComponent.attributes['ng-reflect-readonly']).toBeTruthy();
     expect(fixture.debugElement.nativeElement.querySelector('[readonly]')).toBeTruthy();
@@ -113,6 +114,7 @@ describe('SbbTextarea behaviour', () => {
 
   it('should be disabled', () => {
     component.disabled = true;
+    fixture.changeDetectorRef.markForCheck();
     fixture.detectChanges();
     expect(innerComponent.attributes['ng-reflect-disabled']).toBeTruthy();
     expect(fixture.debugElement.nativeElement.querySelector('.sbb-disabled')).toBeTruthy();
@@ -124,6 +126,7 @@ describe('SbbTextarea behaviour', () => {
 
   it('should have a min length attribute', () => {
     component.minlength = 20;
+    fixture.changeDetectorRef.markForCheck();
     const textarea = innerComponent.query(
       (e) => e.nativeElement.nodeName.toLowerCase() === 'textarea',
     );
@@ -147,6 +150,7 @@ describe('SbbTextarea behaviour', () => {
     fixture.detectChanges();
     expect(component.model).toEqual('test1');
     component.model = 'test2';
+    fixture.changeDetectorRef.markForCheck();
     fixture.detectChanges();
     await fixture.whenStable();
     expect(textarea.value).toEqual('test2');
@@ -155,6 +159,7 @@ describe('SbbTextarea behaviour', () => {
     fixture.detectChanges();
     expect(component.model).toEqual('test3');
     component.model = 'test4';
+    fixture.changeDetectorRef.markForCheck();
     fixture.detectChanges();
     await fixture.whenStable();
     expect(textarea.value).toEqual('test4');
@@ -219,6 +224,7 @@ describe('SbbTextarea behaviour', () => {
 
     // When
     fixture.componentInstance.model = 'Text \n\n\n';
+    fixture.changeDetectorRef.markForCheck();
     fixture.detectChanges();
     flush();
     fixture.detectChanges();
@@ -229,6 +235,7 @@ describe('SbbTextarea behaviour', () => {
 
     // When
     fixture.componentInstance.model = 'Text \n\n';
+    fixture.changeDetectorRef.markForCheck();
     fixture.detectChanges();
     flush();
     fixture.detectChanges();
@@ -241,6 +248,7 @@ describe('SbbTextarea behaviour', () => {
     const textarea = fixture.debugElement.query(By.css('textarea'))
       .nativeElement as HTMLTextAreaElement;
     fixture.componentInstance.maxlength = 10;
+    fixture.changeDetectorRef.markForCheck();
     fixture.detectChanges();
 
     // When

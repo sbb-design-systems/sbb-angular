@@ -2,8 +2,10 @@ import { Direction, Directionality } from '@angular/cdk/bidi';
 import { TemplatePortal } from '@angular/cdk/portal';
 import { CdkScrollable, ScrollingModule } from '@angular/cdk/scrolling';
 import {
-  AfterContentInit,
+  AfterViewInit,
   Component,
+  inject,
+  signal,
   TemplateRef,
   ViewChild,
   ViewContainerRef,
@@ -38,6 +40,7 @@ describe('SbbTabBody', () => {
     it('should be show position if origin is unchanged', () => {
       fixture = TestBed.createComponent(SimpleTabBodyApp);
       fixture.componentInstance.position = 0;
+      fixture.changeDetectorRef.markForCheck();
       fixture.detectChanges();
 
       expect(fixture.componentInstance.tabBody._position).toBe('show');
@@ -51,6 +54,7 @@ describe('SbbTabBody', () => {
       // binding. This test should ensure that the body does properly such origin value.
       // The `SbbTab` class sets the origin by default to null. See related issue: #12455
       fixture.componentInstance.origin = null;
+      fixture.changeDetectorRef.markForCheck();
       fixture.detectChanges();
 
       expect(fixture.componentInstance.tabBody._position).toBe('show');
@@ -64,6 +68,7 @@ describe('SbbTabBody', () => {
       it('should be show position with negative or zero origin', () => {
         fixture.componentInstance.position = 0;
         fixture.componentInstance.origin = 0;
+        fixture.changeDetectorRef.markForCheck();
         fixture.detectChanges();
 
         expect(fixture.componentInstance.tabBody._position).toBe('show');
@@ -72,6 +77,7 @@ describe('SbbTabBody', () => {
       it('should be show position with positive nonzero origin', () => {
         fixture.componentInstance.position = 0;
         fixture.componentInstance.origin = 1;
+        fixture.changeDetectorRef.markForCheck();
         fixture.detectChanges();
 
         expect(fixture.componentInstance.tabBody._position).toBe('show');
@@ -87,6 +93,7 @@ describe('SbbTabBody', () => {
       it('should be show position with negative or zero origin', () => {
         fixture.componentInstance.position = 0;
         fixture.componentInstance.origin = 0;
+        fixture.changeDetectorRef.markForCheck();
         fixture.detectChanges();
 
         expect(fixture.componentInstance.tabBody._position).toBe('show');
@@ -95,6 +102,7 @@ describe('SbbTabBody', () => {
       it('should be show position with positive nonzero origin', () => {
         fixture.componentInstance.position = 0;
         fixture.componentInstance.origin = 1;
+        fixture.changeDetectorRef.markForCheck();
         fixture.detectChanges();
 
         expect(fixture.componentInstance.tabBody._position).toBe('show');
@@ -113,6 +121,7 @@ describe('SbbTabBody', () => {
 
     it('to be hidden position with negative position', () => {
       fixture.componentInstance.position = -1;
+      fixture.changeDetectorRef.markForCheck();
       fixture.detectChanges();
 
       expect(fixture.componentInstance.tabBody._position).toBe('hidden');
@@ -120,6 +129,7 @@ describe('SbbTabBody', () => {
 
     it('to be show position with zero position', () => {
       fixture.componentInstance.position = 0;
+      fixture.changeDetectorRef.markForCheck();
       fixture.detectChanges();
 
       expect(fixture.componentInstance.tabBody._position).toBe('show');
@@ -127,6 +137,7 @@ describe('SbbTabBody', () => {
 
     it('to be hidden position with positive position', () => {
       fixture.componentInstance.position = 1;
+      fixture.changeDetectorRef.markForCheck();
       fixture.detectChanges();
 
       expect(fixture.componentInstance.tabBody._position).toBe('hidden');
@@ -152,22 +163,22 @@ describe('SbbTabBody', () => {
 @Component({
   template: `
     <ng-template>Tab Body Content</ng-template>
-    <sbb-tab-body [content]="content" [position]="position" [origin]="origin"></sbb-tab-body>
+    <sbb-tab-body [content]="content()" [position]="position" [origin]="origin"></sbb-tab-body>
   `,
   standalone: true,
   imports: [SbbTabBody],
 })
-class SimpleTabBodyApp implements AfterContentInit {
-  content: TemplatePortal;
+class SimpleTabBodyApp implements AfterViewInit {
+  content = signal<TemplatePortal | undefined>(undefined);
   position: number;
   origin: number | null;
 
   @ViewChild(SbbTabBody) tabBody: SbbTabBody;
   @ViewChild(TemplateRef) template: TemplateRef<any>;
 
-  constructor(private _viewContainerRef: ViewContainerRef) {}
+  private readonly _viewContainerRef = inject(ViewContainerRef);
 
-  ngAfterContentInit() {
-    this.content = new TemplatePortal(this.template, this._viewContainerRef);
+  ngAfterViewInit() {
+    this.content.set(new TemplatePortal(this.template, this._viewContainerRef));
   }
 }

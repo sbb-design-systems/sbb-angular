@@ -18,8 +18,10 @@ import { OverlayContainer } from '@angular/cdk/overlay';
 import { ScrollDispatcher } from '@angular/cdk/scrolling';
 import {
   ChangeDetectionStrategy,
+  ChangeDetectorRef,
   Component,
   DebugElement,
+  inject,
   OnInit,
   Provider,
   QueryList,
@@ -30,7 +32,6 @@ import {
   ComponentFixture,
   fakeAsync,
   flush,
-  inject,
   TestBed,
   tick,
   waitForAsync,
@@ -892,6 +893,8 @@ class SelectInsideDynamicFormGroup {
   @ViewChild(SbbSelect) select: SbbSelect;
   form: FormGroup;
 
+  private readonly _changeDetectorRef = inject(ChangeDetectorRef);
+
   constructor(private _formBuilder: FormBuilder) {
     this.assignGroup(false);
   }
@@ -900,6 +903,7 @@ class SelectInsideDynamicFormGroup {
     this.form = this._formBuilder.group({
       control: { value: '', disabled: isDisabled },
     });
+    this._changeDetectorRef.markForCheck();
   }
 }
 
@@ -951,10 +955,8 @@ describe('SbbSelect', () => {
       ],
     }).compileComponents();
 
-    inject([OverlayContainer], (oc: OverlayContainer) => {
-      overlayContainer = oc;
-      overlayContainerElement = oc.getContainerElement();
-    })();
+    overlayContainer = TestBed.inject(OverlayContainer);
+    overlayContainerElement = overlayContainer.getContainerElement();
   }
 
   afterEach(() => {
@@ -1339,17 +1341,16 @@ describe('SbbSelect', () => {
           flush();
         }));
 
-        it('should announce changes via the keyboard on a closed select', fakeAsync(
-          inject([LiveAnnouncer], (liveAnnouncer: LiveAnnouncer) => {
-            spyOn(liveAnnouncer, 'announce');
+        it('should announce changes via the keyboard on a closed select', fakeAsync(() => {
+          const liveAnnouncer = TestBed.inject(LiveAnnouncer);
+          spyOn(liveAnnouncer, 'announce');
 
-            dispatchKeyboardEvent(select, 'keydown', RIGHT_ARROW);
+          dispatchKeyboardEvent(select, 'keydown', RIGHT_ARROW);
 
-            expect(liveAnnouncer.announce).toHaveBeenCalledWith('Steak', jasmine.any(Number));
+          expect(liveAnnouncer.announce).toHaveBeenCalledWith('Steak', jasmine.any(Number));
 
-            flush();
-          }),
-        ));
+          flush();
+        }));
 
         it('should not throw when reaching a reset option using the arrow keys on a closed select', fakeAsync(() => {
           fixture.componentInstance.foods = [
@@ -2700,6 +2701,7 @@ describe('SbbSelect', () => {
         expect(select.textContent!.trim()).toBe('Pizza');
 
         fixture.componentInstance.foods[1].viewValue = 'Calzone';
+        fixture.changeDetectorRef.markForCheck();
         fixture.detectChanges();
 
         // tslint:disable-next-line:no-non-null-assertion
@@ -2713,6 +2715,7 @@ describe('SbbSelect', () => {
         expect(select.textContent!.trim()).toBe('Pizza');
 
         fixture.componentInstance.capitalize = true;
+        fixture.changeDetectorRef.markForCheck();
         fixture.detectChanges();
         fixture.checkNoChanges();
 
@@ -3418,6 +3421,7 @@ describe('SbbSelect', () => {
       fixture.detectChanges();
 
       fixture.componentInstance.isDisabled = true;
+      fixture.changeDetectorRef.markForCheck();
       fixture.detectChanges();
       flush();
 
@@ -3438,6 +3442,7 @@ describe('SbbSelect', () => {
         .toBe(false);
 
       fixture.componentInstance.isDisabled = false;
+      fixture.changeDetectorRef.markForCheck();
       fixture.detectChanges();
       flush();
 
@@ -3466,14 +3471,15 @@ describe('SbbSelect', () => {
       fixture.detectChanges();
 
       fixture.componentInstance.isShowing = true;
+      fixture.changeDetectorRef.markForCheck();
       fixture.detectChanges();
 
       const select = fixture.debugElement.query(By.css('sbb-select'))!.nativeElement;
       select.style.width = '300px';
 
       select.click();
-      fixture.detectChanges();
       flush();
+      fixture.detectChanges();
 
       const value = fixture.debugElement.query(By.css('.sbb-select-value'))!;
       expect(value.nativeElement.textContent)
@@ -3591,6 +3597,7 @@ describe('SbbSelect', () => {
       const select = fixture.debugElement.query(By.css('sbb-select'))!.nativeElement;
       select.style.width = '200px';
       fixture.componentInstance.isVisible = true;
+      fixture.changeDetectorRef.markForCheck();
       fixture.detectChanges();
 
       select.click();
@@ -3629,6 +3636,7 @@ describe('SbbSelect', () => {
 
       // The first change detection run will throw the "ngModel is missing a name" error.
       expect(() => fixture.detectChanges()).toThrowError(/the name attribute must be set/g);
+      fixture.changeDetectorRef.markForCheck();
 
       // The second run shouldn't throw selection-model related errors.
       expect(() => fixture.detectChanges()).not.toThrow();
@@ -3909,6 +3917,8 @@ describe('SbbSelect', () => {
       expect(component.select.errorState).toBe(false);
 
       fixture.componentInstance.errorStateMatcher = { isErrorState: matcher };
+      fixture.changeDetectorRef.markForCheck();
+      fixture.detectChanges();
       fixture.detectChanges();
 
       expect(component.select.errorState).toBe(true);
@@ -4186,6 +4196,7 @@ describe('SbbSelect', () => {
 
       fixture.detectChanges();
       fixture.componentInstance.selectedFood = 'sandwich-2';
+      fixture.changeDetectorRef.markForCheck();
       fixture.detectChanges();
 
       const select = fixture.debugElement.query(By.css('sbb-select'))!.nativeElement;
@@ -4222,6 +4233,7 @@ describe('SbbSelect', () => {
       expect(select.textContent).toContain('Steak');
 
       fixture.componentInstance.selectedFood = null;
+      fixture.changeDetectorRef.markForCheck();
       fixture.detectChanges();
       flush();
 
@@ -4426,6 +4438,7 @@ describe('SbbSelect', () => {
 
       instance.selectedFood = 'sandwich-2';
       instance.foods[0].value = null;
+      fixture.changeDetectorRef.markForCheck();
       fixture.detectChanges();
 
       const subscription = instance.select.selectionChange.subscribe(spy);

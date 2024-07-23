@@ -3,8 +3,10 @@
 
 import {
   ChangeDetectionStrategy,
+  ChangeDetectorRef,
   Component,
   ContentChildren,
+  inject,
   QueryList,
   ViewEncapsulation,
 } from '@angular/core';
@@ -49,6 +51,8 @@ export class SbbBreadcrumbs {
   /** List of all user defined SbbBreadcrumb entries. */
   @ContentChildren(SbbBreadcrumb) levels: QueryList<SbbBreadcrumb>;
 
+  private readonly _changeDetectorRef = inject(ChangeDetectorRef);
+
   /** Whether the sbb-breadcrumbs are expanded or not in mobile view */
   get expanded(): boolean {
     if (this.levels.length > 1) {
@@ -61,5 +65,6 @@ export class SbbBreadcrumbs {
 
   expand() {
     this._expanded = true;
+    this._changeDetectorRef.markForCheck();
   }
 }
