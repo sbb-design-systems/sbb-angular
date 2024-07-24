@@ -2,6 +2,22 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [18.2.0-rc.0](https://github.com/sbb-design-systems/sbb-angular/compare/18.1.3...18.2.0-rc.0) (2024-07-24)
+
+
+### Bug Fixes
+
+* **angular/datepicker:** avoid losing focus when re-rendering the current view ([#2332](https://github.com/sbb-design-systems/sbb-angular/issues/2332)) ([5955560](https://github.com/sbb-design-systems/sbb-angular/commit/5955560c639be214e047abf652b36cacfb2ed9fc))
+* **angular/sidebar:** not closing on escape key press ([#2326](https://github.com/sbb-design-systems/sbb-angular/issues/2326)) ([07c0852](https://github.com/sbb-design-systems/sbb-angular/commit/07c085209fa20904a09cde674970972eee705817))
+
+
+### Documentation
+
+* **angular/accordion:** update accordion examples ([#2317](https://github.com/sbb-design-systems/sbb-angular/issues/2317)) ([8e9dabb](https://github.com/sbb-design-systems/sbb-angular/commit/8e9dabbc28aa3162785c4db97f5bf89e04cbf3a0))
+* **angular/dialog:** update dialog examples ([#2316](https://github.com/sbb-design-systems/sbb-angular/issues/2316)) ([6ab546c](https://github.com/sbb-design-systems/sbb-angular/commit/6ab546c89fe3fdbf5e1bbbcbca75689657dc3f61))
+* **angular/icon:** update icon example ([#2320](https://github.com/sbb-design-systems/sbb-angular/issues/2320)) ([1e85c41](https://github.com/sbb-design-systems/sbb-angular/commit/1e85c412d6be2c6bbab8fadfa95b984513955794))
+* **angular/toggle:** update toggle examples ([#2318](https://github.com/sbb-design-systems/sbb-angular/issues/2318)) ([2b6f74d](https://github.com/sbb-design-systems/sbb-angular/commit/2b6f74de09ad670647e644dab6a3878891507d2e))
+
 ### [18.1.3](https://github.com/sbb-design-systems/sbb-angular/compare/18.1.2...18.1.3) (2024-07-09)
 
 
