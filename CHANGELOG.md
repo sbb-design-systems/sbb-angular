@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [18.2.0](https://github.com/sbb-design-systems/sbb-angular/compare/18.2.0-rc.0...18.2.0) (2024-07-25)
+
+### Features
+
+All components were refactored to support [zoneless change detection](https://angular.dev/guide/experimental/zoneless)
+that was introduced in Angular 18.
+
 ## [18.2.0-rc.0](https://github.com/sbb-design-systems/sbb-angular/compare/18.1.3...18.2.0-rc.0) (2024-07-24)
 
 
