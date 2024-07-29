@@ -132,7 +132,7 @@
     "jasmine": "4.6.0",
     "jasmine-core": "4.6.1",
     "jsonc-parser": "3.3.1",
-    "karma": "6.4.3",
+    "karma": "6.4.4",
     "karma-browserstack-launcher": "1.6.0",
     "karma-chrome-launcher": "3.2.0",
     "karma-coverage": "2.2.1",
