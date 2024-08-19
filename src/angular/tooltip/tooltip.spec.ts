@@ -91,13 +91,14 @@ describe('SbbTooltip', () => {
     let buttonElement: HTMLButtonElement;
     let tooltipDirective: SbbTooltip;
 
-    beforeEach(() => {
+    beforeEach(fakeAsync(() => {
       fixture = TestBed.createComponent(BasicTooltipDemo);
       fixture.detectChanges();
+      tick();
       buttonDebugElement = fixture.debugElement.query(By.css('button'))!;
-      buttonElement = <HTMLButtonElement>buttonDebugElement.nativeElement;
+      buttonElement = buttonDebugElement.nativeElement;
       tooltipDirective = buttonDebugElement.injector.get<SbbTooltip>(SbbTooltip);
-    });
+    }));
 
     it('should show and hide the tooltip', fakeAsync(() => {
       assertTooltipInstance(tooltipDirective, false);
@@ -490,7 +491,7 @@ describe('SbbTooltip', () => {
       expect(overlayContainerElement.textContent).toBe('');
     }));
 
-    it('should have an aria-described element with the tooltip message', fakeAsync(() => {
+    it('should have an aria-describedby element with the tooltip message', fakeAsync(() => {
       const dynamicTooltipsDemoFixture = TestBed.createComponent(DynamicTooltipsDemo);
       const dynamicTooltipsComponent = dynamicTooltipsDemoFixture.componentInstance;
 
@@ -506,18 +507,30 @@ describe('SbbTooltip', () => {
       expect(document.querySelector(`#${secondButtonAria}`)!.textContent).toBe('Tooltip Two');
     }));
 
-    it(
-      'should not add an ARIA description for elements that have the same text as a' +
-        'data-bound aria-label',
-      fakeAsync(() => {
-        const ariaLabelFixture = TestBed.createComponent(DataBoundAriaLabelTooltip);
-        ariaLabelFixture.detectChanges();
-        tick();
+    it('should not add an ARIA description for elements that have the same text as a data-bound aria-label', fakeAsync(() => {
+      const ariaLabelFixture = TestBed.createComponent(DataBoundAriaLabelTooltip);
+      ariaLabelFixture.detectChanges();
+      tick();
 
-        const button = ariaLabelFixture.nativeElement.querySelector('button');
-        expect(button.getAttribute('aria-describedby')).toBeFalsy();
-      }),
-    );
+      const button = ariaLabelFixture.nativeElement.querySelector('button');
+      expect(button.getAttribute('aria-describedby')).toBeFalsy();
+    }));
+
+    it('should toggle aria-describedby depending on whether the tooltip is disabled', fakeAsync(() => {
+      expect(buttonElement.getAttribute('aria-describedby')).toBeTruthy();
+
+      fixture.componentInstance.tooltipDisabled = true;
+      fixture.changeDetectorRef.markForCheck();
+      fixture.detectChanges();
+      tick();
+      expect(buttonElement.hasAttribute('aria-describedby')).toBe(false);
+
+      fixture.componentInstance.tooltipDisabled = false;
+      fixture.changeDetectorRef.markForCheck();
+      fixture.detectChanges();
+      tick();
+      expect(buttonElement.getAttribute('aria-describedby')).toBeTruthy();
+    }));
 
     it('should not try to dispose the tooltip when destroyed and done hiding', fakeAsync(() => {
       tooltipDirective.show();
@@ -1387,6 +1400,7 @@ describe('SbbTooltip', () => {
       [sbbTooltipPosition]="position"
       sbbTooltipPanelClass="custom-panel-one custom-panel-two"
       [sbbTooltipTouchGestures]="touchGestures"
+      [sbbTooltipDisabled]="tooltipDisabled"
     >
       Button
     </button>
@@ -1395,11 +1409,12 @@ describe('SbbTooltip', () => {
   imports: [SbbTooltipModule],
 })
 class BasicTooltipDemo {
-  position: any = 'below';
+  position = 'below';
   message: any = initialTooltipMessage;
-  showButton: boolean = true;
+  showButton = true;
   showTooltipClass = false;
   touchGestures: TooltipTouchGestures = 'auto';
+  tooltipDisabled = false;
   @ViewChild(SbbTooltip) tooltip: SbbTooltip;
   @ViewChild('button') button: ElementRef<HTMLButtonElement>;
 }
