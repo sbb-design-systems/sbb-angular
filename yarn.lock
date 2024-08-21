@@ -70,12 +70,12 @@
     "@angular-devkit/core" "18.2.0"
     rxjs "7.8.1"
 
-"@angular-devkit/architect@0.1802.0-rc.0":
-  version "0.1802.0-rc.0"
-  resolved "https://registry.yarnpkg.com/@angular-devkit/architect/-/architect-0.1802.0-rc.0.tgz#faa7835493de2fa56ef36cb96154512c6f76097f"
-  integrity sha512-0CipetHsPRa7TQ4iH3YyLoMGPyhJOwnO1jKilVsiZwVWnijctVJpKKhrxuLtt1NnxTW2sRx4cXAn7VTHM7lG5w==
+"@angular-devkit/architect@0.1900.0-next.0":
+  version "0.1900.0-next.0"
+  resolved "https://registry.yarnpkg.com/@angular-devkit/architect/-/architect-0.1900.0-next.0.tgz#c7c484ec86fb41fca588aada628b0265b45ad966"
+  integrity sha512-Z2wdZHEGs5mF4DEJhZHKkQV6Ulm+Aqwryi94axQSln19UuuLaKEwUmLbEYx3KNsmG8IoQtgY9I0aiQc0nPB01w==
   dependencies:
-    "@angular-devkit/core" "18.2.0-rc.0"
+    "@angular-devkit/core" "19.0.0-next.0"
     rxjs "7.8.1"
 
 "@angular-devkit/build-angular@18.2.0":
@@ -168,10 +168,10 @@
     rxjs "7.8.1"
     source-map "0.7.4"
 
-"@angular-devkit/core@18.2.0-rc.0":
-  version "18.2.0-rc.0"
-  resolved "https://registry.yarnpkg.com/@angular-devkit/core/-/core-18.2.0-rc.0.tgz#ba58b2b9e8a485beb26d8fcf271263159d08076f"
-  integrity sha512-6aCjFGdp0zOppCHTv/aChDoWsGaQ+REGnESDzCdVQ/mbVqPnq5DvvQrPLzAfvwszl/W2tlaUV1414vMq+c/Aig==
+"@angular-devkit/core@19.0.0-next.0":
+  version "19.0.0-next.0"
+  resolved "https://registry.yarnpkg.com/@angular-devkit/core/-/core-19.0.0-next.0.tgz#4696f792a1e8e7a9432245d9d2dc0661bc5a716c"
+  integrity sha512-yM0f5u/D7/GYj9uAVU9t6yCA2+jpAQMiTJeIxwWYbM82ycZp0Hw7tqqz7xoK+29aO37XWZnYiQB+5V/z/T+jKw==
   dependencies:
     ajv "8.17.1"
     ajv-formats "3.0.1"
@@ -227,12 +227,12 @@
     "@angular/core" "^13.0.0 || ^14.0.0-0"
     reflect-metadata "^0.1.13"
 
-"@angular/build-tooling@https://github.com/angular/dev-infra-private-build-tooling-builds.git#bb1c63a8bd4e774f14ed2a9ee2e800fdaad5e660":
-  version "0.0.0-d8a911acac5674c85fc1769c54d2e0665b0cfd37"
-  resolved "https://github.com/angular/dev-infra-private-build-tooling-builds.git#bb1c63a8bd4e774f14ed2a9ee2e800fdaad5e660"
+"@angular/build-tooling@https://github.com/angular/dev-infra-private-build-tooling-builds.git#726cee2208c7692b49979134debbd12473bcca14":
+  version "0.0.0-6adb6c34daea30ef83382ac3f67ba9e25a58c121"
+  resolved "https://github.com/angular/dev-infra-private-build-tooling-builds.git#726cee2208c7692b49979134debbd12473bcca14"
   dependencies:
     "@angular/benchpress" "0.3.0"
-    "@angular/build" "18.2.0-rc.0"
+    "@angular/build" "19.0.0-next.0"
     "@babel/core" "^7.16.0"
     "@babel/helper-annotate-as-pure" "^7.18.6"
     "@babel/plugin-proposal-async-generator-functions" "^7.20.1"
@@ -298,13 +298,13 @@
     vite "5.4.0"
     watchpack "2.4.1"
 
-"@angular/build@18.2.0-rc.0":
-  version "18.2.0-rc.0"
-  resolved "https://registry.yarnpkg.com/@angular/build/-/build-18.2.0-rc.0.tgz#d3161fb19e557112199a07df315fe320906405c9"
-  integrity sha512-Y0y4TRxJhuDUgvBvC8Ub4PYI7tb3equoVI/qQClBVhpAhRxl/QRlYefutlsbwv7zVjqa1Djc5DOZftjeExIjyg==
+"@angular/build@19.0.0-next.0":
+  version "19.0.0-next.0"
+  resolved "https://registry.yarnpkg.com/@angular/build/-/build-19.0.0-next.0.tgz#c12d42d9b6c5e8c455fe0d9b5ba10d94bdcd3e69"
+  integrity sha512-BKk3Y+PQsvbKF+FZZ0YYXbaamPvz8laky5jZNWmFJr8CvVF7HVzw4Pwv8r8lxPdZbvGUrqAfSEDncAZVfBV/nA==
   dependencies:
     "@ampproject/remapping" "2.3.0"
-    "@angular-devkit/architect" "0.1802.0-rc.0"
+    "@angular-devkit/architect" "0.1900.0-next.0"
     "@babel/core" "7.25.2"
     "@babel/helper-annotate-as-pure" "7.24.7"
     "@babel/helper-split-export-declaration" "7.24.7"
@@ -326,8 +326,8 @@
     rollup "4.20.0"
     sass "1.77.8"
     semver "7.6.3"
-    vite "5.3.5"
-    watchpack "2.4.1"
+    vite "5.4.0"
+    watchpack "2.4.2"
 
 "@angular/cdk@18.2.0":
   version "18.2.0"
@@ -432,11 +432,11 @@
     fast-glob "3.3.2"
     yargs "^17.2.1"
 
-"@angular/ng-dev@https://github.com/angular/dev-infra-private-ng-dev-builds.git#62a695185a0a2c6ab9a73b23d6ad31dc0a1fd197":
-  version "0.0.0-d8a911acac5674c85fc1769c54d2e0665b0cfd37"
-  resolved "https://github.com/angular/dev-infra-private-ng-dev-builds.git#62a695185a0a2c6ab9a73b23d6ad31dc0a1fd197"
+"@angular/ng-dev@https://github.com/angular/dev-infra-private-ng-dev-builds.git#6599c0d6331b573bfa6c929d7dd63f9c0edfb06f":
+  version "0.0.0-6adb6c34daea30ef83382ac3f67ba9e25a58c121"
+  resolved "https://github.com/angular/dev-infra-private-ng-dev-builds.git#6599c0d6331b573bfa6c929d7dd63f9c0edfb06f"
   dependencies:
-    "@octokit/rest" "21.0.1"
+    "@octokit/rest" "21.0.2"
     "@types/semver" "^7.3.6"
     "@types/supports-color" "^8.1.1"
     "@yarnpkg/lockfile" "^1.1.0"
@@ -4051,10 +4051,10 @@
     "@octokit/types" "^13.1.0"
     universal-user-agent "^7.0.2"
 
-"@octokit/rest@21.0.1":
-  version "21.0.1"
-  resolved "https://registry.yarnpkg.com/@octokit/rest/-/rest-21.0.1.tgz#b77d985ded81ac180f4efb26858311c0fcb8462c"
-  integrity sha512-RWA6YU4CqK0h0J6tfYlUFnH3+YgBADlxaHXaKSG+BVr2y4PTfbU2tlKuaQoQZ83qaTbi4CUxLNAmbAqR93A6mQ==
+"@octokit/rest@21.0.2":
+  version "21.0.2"
+  resolved "https://registry.yarnpkg.com/@octokit/rest/-/rest-21.0.2.tgz#9b767dbc1098daea8310fd8b76bf7a97215d5972"
+  integrity sha512-+CiLisCoyWmYicH25y1cDfCrv41kRSvTq6pPWtRroRJzhsCZWZyCqGyI8foJT5LmScADSwRAnr/xo+eewL04wQ==
   dependencies:
     "@octokit/core" "^6.1.2"
     "@octokit/plugin-paginate-rest" "^11.0.0"
@@ -13602,7 +13602,7 @@ postcss-value-parser@^4.1.0, postcss-value-parser@^4.2.0:
   resolved "https://registry.yarnpkg.com/postcss-value-parser/-/postcss-value-parser-4.2.0.tgz#723c09920836ba6d3e5af019f92bc0971c02e514"
   integrity sha512-1NNCs6uurfkVbeXG4S8JFT9t19m45ICnif8zWLd5oPSZ50QnwMfK+H3jv408d4jw/7Bttv5axS5IiHoLaVNHeQ==
 
-postcss@8.4.41, postcss@^8.2.14, postcss@^8.4.23, postcss@^8.4.33, postcss@^8.4.39, postcss@^8.4.40, postcss@^8.4.41:
+postcss@8.4.41, postcss@^8.2.14, postcss@^8.4.23, postcss@^8.4.33, postcss@^8.4.40, postcss@^8.4.41:
   version "8.4.41"
   resolved "https://registry.yarnpkg.com/postcss/-/postcss-8.4.41.tgz#d6104d3ba272d882fe18fc07d15dc2da62fa2681"
   integrity sha512-TesUflQ0WKZqAvg52PWL6kHgLKP6xB6heTOdoYM0Wt2UHyxNa4K25EZZMgKns3BH1RLVbZCREPpLY0rhnNoHVQ==
@@ -16690,17 +16690,6 @@ vfile@^4.0.0:
     unist-util-stringify-position "^2.0.0"
     vfile-message "^2.0.0"
 
-vite@5.3.5:
-  version "5.3.5"
-  resolved "https://registry.yarnpkg.com/vite/-/vite-5.3.5.tgz#b847f846fb2b6cb6f6f4ed50a830186138cb83d8"
-  integrity sha512-MdjglKR6AQXQb9JGiS7Rc2wC6uMjcm7Go/NHNO63EwiJXfuk9PgqiP/n5IDJCziMkfw9n4Ubp7lttNwz+8ZVKA==
-  dependencies:
-    esbuild "^0.21.3"
-    postcss "^8.4.39"
-    rollup "^4.13.0"
-  optionalDependencies:
-    fsevents "~2.3.3"
-
 vite@5.4.0:
   version "5.4.0"
   resolved "https://registry.yarnpkg.com/vite/-/vite-5.4.0.tgz#11dca8a961369ba8b5cae42d068c7ad684d5370f"
@@ -16739,7 +16728,7 @@ watchpack@2.4.1:
     glob-to-regexp "^0.4.1"
     graceful-fs "^4.1.2"
 
-watchpack@^2.4.1:
+watchpack@2.4.2, watchpack@^2.4.1:
   version "2.4.2"
   resolved "https://registry.yarnpkg.com/watchpack/-/watchpack-2.4.2.tgz#2feeaed67412e7c33184e5a79ca738fbd38564da"
   integrity sha512-TnbFSbcOCcDgjZ4piURLCbJ3nJhznVh9kw6F6iokjiFPl8ONxe9A6nMDVXDiNbrSfLILs6vB07F7wLBrwPYzJw==
