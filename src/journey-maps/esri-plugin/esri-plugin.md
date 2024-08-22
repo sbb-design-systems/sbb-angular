@@ -4,7 +4,7 @@ Utilize this component when you need to depict Esri Feature Layers on a MapLibre
 
 ### Compatibility
 
-The `maplibre-gl` version compatible with this version of `journey-maps` is `3.x.y`.
+The `maplibre-gl` version compatible with this version of `journey-maps` is `4.x.y`.
 
 You can even use our [Journey-Maps-Client](https://angular.app.sbb.ch/journey-maps/components/angular/overview) as well.
 

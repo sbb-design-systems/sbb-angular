@@ -39,9 +39,10 @@ export class SbbMapService {
   }
 
   addMissingImage(map: MaplibreMap, name: string, icon: string): void {
-    map.loadImage(icon, (error: any, image: any) =>
-      this._imageLoadedCallback(map, name, error, image),
-    );
+    map
+      .loadImage(icon)
+      .then((image: any) => this._imageLoadedCallback(map, name, image))
+      .catch((reason: any) => console.error(reason));
   }
 
   verifySources(map: MaplibreMap, sourceIds: string[]): void {
@@ -68,12 +69,8 @@ export class SbbMapService {
     });
   }
 
-  private _imageLoadedCallback(map: MaplibreMap, name: string, error: any, image: any): void {
-    if (error) {
-      console.error(error);
-    } else {
-      map.addImage(name, image, { pixelRatio: 2 });
-    }
+  private _imageLoadedCallback(map: MaplibreMap, name: string, image: any): void {
+    map.addImage(name, image, { pixelRatio: 2 });
   }
 
   private _centerMap(

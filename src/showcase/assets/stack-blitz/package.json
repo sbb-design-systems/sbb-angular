@@ -22,7 +22,7 @@
     "@angular/router": "^18.0.0",
     "@sbb-esta/angular": "^${version}",
     "@sbb-esta/journey-maps": "^${version}",
-    "maplibre-gl": "^3.6.2",
+    "maplibre-gl": "^4.5.2",
     "rxjs": "~7.8.1",
     "tslib": "^2.6.2",
     "zone.js": "~0.14.0"
