@@ -49,7 +49,7 @@
       </li>
 
       <div formGroupName="pointsOfInterestOptions">
-        <sbb-form-field label="POI Environment" style="width: 120px">
+        <sbb-form-field label="POI Environment">
           <sbb-select formControlName="environment">
             @for (environment of ['prod', 'int']; track environment) {
             <sbb-option [value]="environment">{{ environment }}</sbb-option>
