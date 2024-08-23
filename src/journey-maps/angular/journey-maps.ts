@@ -49,7 +49,6 @@ import {
   SBB_MAX_ZOOM,
   SBB_MIN_ZOOM,
   SBB_POI_ID_PROPERTY,
-  SBB_POI_LAYER,
   SBB_ROKAS_ROUTE_SOURCE,
 } from './services/constants';
 import { SbbLocaleService } from './services/locale-service';
@@ -60,6 +59,7 @@ import { SbbMapJourneyService } from './services/map/map-journey-service';
 import { SbbMapLeitPoiService } from './services/map/map-leit-poi-service';
 import { SbbMapMarkerService } from './services/map/map-marker-service';
 import { SbbMapOverflowingLabelService } from './services/map/map-overflowing-label-service';
+import { SbbMapPoiService } from './services/map/map-poi-service';
 import { SbbMapRailNetworkLayerService } from './services/map/map-rail-network-layer.service';
 import { SbbMapRoutesService } from './services/map/map-routes.service';
 import { SbbMapService } from './services/map/map-service';
@@ -225,6 +225,7 @@ export class SbbJourneyMaps implements OnInit, AfterViewInit, OnDestroy, OnChang
     private _mapInitService: SbbMapInitService,
     private _mapConfigService: SbbMapConfig,
     private _mapService: SbbMapService,
+    private _mapPoiService: SbbMapPoiService,
     private _mapMarkerService: SbbMapMarkerService,
     private _mapJourneyService: SbbMapJourneyService,
     private _mapTransferService: SbbMapTransferService,
@@ -489,7 +490,7 @@ export class SbbJourneyMaps implements OnInit, AfterViewInit, OnDestroy, OnChang
 
   /**
    * Programmatically select a POI by providing the SBB-ID of the POI.
-   * Only works for POIs that are currently visible in the map's viewport.
+   * Only works for POIs that are currently visible on the map's viewport.
    */
   setSelectedPoi(sbbId: string | undefined) {
     if (sbbId) {
@@ -511,7 +512,7 @@ export class SbbJourneyMaps implements OnInit, AfterViewInit, OnDestroy, OnChang
       const visiblePoiFeatures = this._mapEventUtils.queryVisibleFeaturesByFilter(
         this._map,
         'POI',
-        [SBB_POI_LAYER],
+        this._mapPoiService.getPoiLayerIds(this._map),
         ['==', SBB_POI_ID_PROPERTY, sbbId],
       );
       if (visiblePoiFeatures.length) {
@@ -612,11 +613,11 @@ export class SbbJourneyMaps implements OnInit, AfterViewInit, OnDestroy, OnChang
           );
           currentPoiSource.setUrl(newPoiSourceUrl);
           this._map.once('styledata', () => {
-            this._mapService.updatePoiVisibility(this._map, this.poiOptions);
+            this._mapPoiService.updatePoiVisibility(this._map, this.poiOptions);
           });
         } else {
           // Else load instantly
-          this._mapService.updatePoiVisibility(this._map, this.poiOptions);
+          this._mapPoiService.updatePoiVisibility(this._map, this.poiOptions);
         }
       });
     }
@@ -885,7 +886,7 @@ export class SbbJourneyMaps implements OnInit, AfterViewInit, OnDestroy, OnChang
               this.styleOptions.railNetwork,
             );
           }
-          this._mapService.updatePoiVisibility(this._map, this.poiOptions);
+          this._mapPoiService.updatePoiVisibility(this._map, this.poiOptions);
         });
       });
 
