@@ -6,7 +6,7 @@ import { SbbFormFieldModule } from '@sbb-esta/angular/form-field';
 import { SbbNotificationModule } from '@sbb-esta/angular/notification';
 import { SbbRadioButtonModule } from '@sbb-esta/angular/radio-button';
 import { SbbSelectModule } from '@sbb-esta/angular/select';
-import { SbbJourneyMapsModule } from '@sbb-esta/journey-maps';
+import { SbbJourneyMapsModule, SbbStyleOptions } from '@sbb-esta/journey-maps';
 import { Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
 
@@ -54,14 +54,15 @@ export class JourneyMapsStyleOptionsExample implements OnInit {
   private buildForm() {
     this.form = this.fb.group({
       styleOptions: this.fb.group({
+        url: ['http://127.0.0.1:8080/{styleId}.json'],
         mode: ['bright', this.resetSelectedMarkerIdValidator],
         railNetwork: this.fb.group({
           railNetworkColor: [],
         }),
-        ...STYLE_IDS.v2,
+        ...STYLE_IDS.v3,
       }),
       styleVersion: this.fb.group({
-        versionNumber: ['v2', this.resetSelectedMarkerIdValidator],
+        versionNumber: ['v3', this.resetSelectedMarkerIdValidator],
       }),
     });
   }
@@ -70,7 +71,7 @@ export class JourneyMapsStyleOptionsExample implements OnInit {
     this.form
       .get('styleVersion')
       ?.valueChanges.pipe(takeUntil(this._destroyed))
-      .subscribe(({ versionNumber }: { versionNumber: 'v1' | 'v2' }) => {
+      .subscribe(({ versionNumber }: { versionNumber: 'v1' | 'v2' | 'v3' }) => {
         this.form.get('styleOptions')?.patchValue({
           ...this.form.get('styleOptions')?.value,
           ...STYLE_IDS[versionNumber],

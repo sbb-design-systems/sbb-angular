@@ -10,7 +10,12 @@ import { SbbInputModule } from '@sbb-esta/angular/input';
 import { SbbNotificationModule } from '@sbb-esta/angular/notification';
 import { SbbRadioButtonModule } from '@sbb-esta/angular/radio-button';
 import { SbbSelectModule } from '@sbb-esta/angular/select';
-import { SbbJourneyMaps, SbbJourneyMapsModule, SbbZoomLevels } from '@sbb-esta/journey-maps';
+import {
+  SbbJourneyMaps,
+  SbbJourneyMapsModule,
+  SbbStyleOptions,
+  SbbZoomLevels,
+} from '@sbb-esta/journey-maps';
 import { LngLatLike } from 'maplibre-gl';
 import { BehaviorSubject, Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
@@ -53,6 +58,11 @@ declare global {
 })
 export class JourneyMapsPoisMarkersExample implements OnInit {
   apiKey = window.JM_API_KEY;
+  styleOptions: SbbStyleOptions = {
+    brightId: 'journey_maps_bright_v1',
+    darkId: 'journey_maps_dark_v1',
+    aerialId: 'journey_maps_aerial_v1',
+  };
   selectedMarkerId?: string;
   form: UntypedFormGroup;
   @ViewChild('advancedMap')
@@ -67,6 +77,7 @@ export class JourneyMapsPoisMarkersExample implements OnInit {
   mapBoundingBox?: number[][];
 
   constructor(private fb: FormBuilder) {}
+
   ngOnInit() {
     this.buildForm();
     this.subscribeMapCenterChange();

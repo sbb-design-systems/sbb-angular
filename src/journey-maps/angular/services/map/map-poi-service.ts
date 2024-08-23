@@ -26,7 +26,7 @@ type PoiStyleLayerType = {
 const poiStyleLayerMap: PoiStyleLayerType = {
   PIN: {
     defaultLayer: [SBB_POI_FIRST_LAYER],
-    interactiveLayer: [SBB_POI_FIRST_HOVER_LAYER, SBB_POI_SELECTED_LAYER],
+    interactiveLayer: [SBB_POI_FIRST_HOVER_LAYER],
   },
   SQUARE: {
     defaultLayer: [SBB_POI_SECOND_2D_LAYER, SBB_POI_SECOND_3D_LAYER],

@@ -18,6 +18,7 @@ export const RAIL_COLORS = [
 export const STYLE_IDS = {
   v1: { brightId: 'base_bright_v2_ki', darkId: 'base_dark_v2_ki' },
   v2: { brightId: 'base_bright_v2_ki_v2', darkId: 'base_dark_v2_ki_v2' },
+  v3: { brightId: 'journey_maps_bright_v1', darkId: 'journey_maps_dark_v1' },
 };
 
 export const CH_BOUNDS: LngLatBoundsLike = [

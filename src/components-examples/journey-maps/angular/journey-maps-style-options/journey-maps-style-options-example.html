@@ -25,7 +25,7 @@
           <p class="sbb-label">Rail network color (v2 style only)</p>
           <sbb-select formControlName="railNetworkColor" placeholder="Choose color">
             @for (color of RAIL_COLORS; track color) {
-              <sbb-option [value]="color.value">{{ color.label }}</sbb-option>
+            <sbb-option [value]="color.value">{{ color.label }}</sbb-option>
             }
           </sbb-select>
         </sbb-form-field>
@@ -38,6 +38,7 @@
         <sbb-radio-group class="sbb-checkbox-group-horizontal" formControlName="versionNumber">
           <sbb-radio-button value="v1">v1 (legacy)</sbb-radio-button>
           <sbb-radio-button value="v2">v2</sbb-radio-button>
+          <sbb-radio-button value="v3">v3</sbb-radio-button>
         </sbb-radio-group>
       </div>
     </div>
