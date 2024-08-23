@@ -52,7 +52,7 @@
         <sbb-form-field label="POI Environment">
           <sbb-select formControlName="environment">
             @for (environment of ['prod', 'int']; track environment) {
-            <sbb-option [value]="environment">{{ environment }}</sbb-option>
+              <sbb-option [value]="environment">{{ environment }}</sbb-option>
             }
           </sbb-select>
         </sbb-form-field>
@@ -60,7 +60,7 @@
         <sbb-form-field label="POI Subcategories">
           <sbb-select multiple formControlName="categories">
             @for (category of POI_CATEGORIES; track category) {
-            <sbb-option [value]="category">{{ category }}</sbb-option>
+              <sbb-option [value]="category">{{ category }}</sbb-option>
             }
           </sbb-select>
         </sbb-form-field>
@@ -71,8 +71,9 @@
     <div class="row-2">
       <li>
         <span class="sbb-label">
-          Map markers @if (selectedMarkerId) {
-          <span> (selected: {{ selectedMarkerId }})</span>
+          Map markers
+          @if (selectedMarkerId) {
+            <span> (selected: {{ selectedMarkerId }})</span>
           }
         </span>
         <button
@@ -105,9 +106,9 @@
           <span class="sbb-label">Map interaction configuration</span>
           <div class="sbb-checkbox-group-horizontal">
             @for (type of listenerOptionTypes(); track type) {
-            <ng-container [formGroupName]="type">
-              <sbb-checkbox formControlName="watch">{{ type | titlecase }}</sbb-checkbox>
-            </ng-container>
+              <ng-container [formGroupName]="type">
+                <sbb-checkbox formControlName="watch">{{ type | titlecase }}</sbb-checkbox>
+              </ng-container>
             }
           </div>
         </div>

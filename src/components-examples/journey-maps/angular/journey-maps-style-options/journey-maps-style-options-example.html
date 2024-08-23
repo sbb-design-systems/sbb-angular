@@ -25,7 +25,7 @@
           <p class="sbb-label">Rail network color (v2 style only)</p>
           <sbb-select formControlName="railNetworkColor" placeholder="Choose color">
             @for (color of RAIL_COLORS; track color) {
-            <sbb-option [value]="color.value">{{ color.label }}</sbb-option>
+              <sbb-option [value]="color.value">{{ color.label }}</sbb-option>
             }
           </sbb-select>
         </sbb-form-field>
