@@ -54,7 +54,6 @@ export class JourneyMapsStyleOptionsExample implements OnInit {
   private buildForm() {
     this.form = this.fb.group({
       styleOptions: this.fb.group({
-        url: ['http://127.0.0.1:8080/{styleId}.json'],
         mode: ['bright', this.resetSelectedMarkerIdValidator],
         railNetwork: this.fb.group({
           railNetworkColor: [],
