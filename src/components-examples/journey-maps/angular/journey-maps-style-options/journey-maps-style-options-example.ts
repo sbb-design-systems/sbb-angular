@@ -6,7 +6,7 @@ import { SbbFormFieldModule } from '@sbb-esta/angular/form-field';
 import { SbbNotificationModule } from '@sbb-esta/angular/notification';
 import { SbbRadioButtonModule } from '@sbb-esta/angular/radio-button';
 import { SbbSelectModule } from '@sbb-esta/angular/select';
-import { SbbJourneyMapsModule, SbbStyleOptions } from '@sbb-esta/journey-maps';
+import { SbbJourneyMapsModule } from '@sbb-esta/journey-maps';
 import { Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
 
