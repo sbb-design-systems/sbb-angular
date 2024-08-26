@@ -80,7 +80,6 @@ export interface SbbJourneyMapsRoutingOptions {
   /**
    * GeoJSON as returned by the <code>/journey</code> operation of Journey-Maps.
    * All routes and transfers will be displayed on the map.
-   * Indoor routing is not (yet) supported.
    * Note: journey, transfer and routes cannot be displayed at the same time.
    */
   journey?: FeatureCollection;
@@ -88,7 +87,6 @@ export interface SbbJourneyMapsRoutingOptions {
   /**
    * GeoJSON as returned by the <code>/transfer</code> operation of Journey-Maps.
    * The transfer will be displayed on the map.
-   * Indoor routing is not (yet) supported.
    * Note: journey, transfer and routes cannot be displayed at the same time.
    */
   transfer?: FeatureCollection;
@@ -96,7 +94,6 @@ export interface SbbJourneyMapsRoutingOptions {
   /**
    * An array of GeoJSON objects as returned by the <code>/route</code> and <code>/routes</code> operation of Journey-Maps.
    * All routes will be displayed on the map.
-   * Indoor routing is not (yet) supported.
    * Note: journey, transfer and routes cannot be displayed at the same time.
    */
   routes?: SbbSelectableFeatureCollection[];
@@ -113,6 +110,40 @@ export interface SbbJourneyMapsRoutingOptions {
    * ID must match with ID from given routes.
    * If no meta information for a route given, it will use the default settings.
    * Note: journey, transfer and routes cannot be displayed at the same time.
+   */
+  routesMetaInformations?: SbbRouteMetaInformation[];
+}
+
+/**
+ * **WARNING:** The map doesn't support more than one of these fields to be set at a time.
+ */
+export interface SbbJourneyRoutesOptions {
+  /**
+   * GeoJSON as returned by the <code>/v2/routes/trip</code> operation of Journey-Routes.
+   * All segments of this trip will be displayed on the map.
+   * Note: trip and routes cannot be displayed at the same time.
+   */
+  trip?: FeatureCollection;
+
+  /**
+   * An array of GeoJSON objects as returned by the <code>v2/routes</code> operation of Journey-Routes.
+   * All routes will be displayed on the map.
+   * Note: trip and routes cannot be displayed at the same time.
+   */
+  routes?: SbbSelectableFeatureCollection[];
+
+  /**
+   * Additional information as defined in <code>SbbTripMetaInformation</code>.
+   * selectedLegId must match with a legId from the given trip.
+   * Note: trip and routes cannot be displayed at the same time.
+   */
+  tripMetaInformation?: SbbTripMetaInformation;
+
+  /**
+   * An array of additional information as defined in <code>SbbRouteMetaInformation</code>.
+   * ID must match with ID from given routes.
+   * If no meta information for a route given, it will use the default settings.
+   * Note: trip and routes cannot be displayed at the same time.
    */
   routesMetaInformations?: SbbRouteMetaInformation[];
 }
@@ -218,6 +249,11 @@ export interface SbbRailNetworkOptions {
 
 export interface SbbJourneyMetaInformation {
   /** ID that matches a leg ID in <code>SbbJourneyMapsRoutingOptions.journey</code>. */
+  selectedLegId: string;
+}
+
+export interface SbbTripMetaInformation {
+  /** ID that matches a leg ID in <code>SbbRoutesData.trip</code>. */
   selectedLegId: string;
 }
 

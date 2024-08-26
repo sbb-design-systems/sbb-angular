@@ -31,6 +31,7 @@ import {
   SbbFeaturesSelectEventData,
   SbbInteractionOptions,
   SbbJourneyMapsRoutingOptions,
+  SbbJourneyRoutesOptions,
   SbbListenerOptions,
   SbbMarkerOptions,
   SbbPointsOfInterestOptions,
@@ -93,6 +94,12 @@ export class SbbJourneyMaps implements OnInit, AfterViewInit, OnDestroy, OnChang
    * **WARNING:** The map currently doesn't support more than one of these fields to be set at a time
    */
   @Input() journeyMapsRoutingOption?: SbbJourneyMapsRoutingOptions;
+  /**
+   * Input to display JourneyRoutes GeoJson routing data on the map.
+   *
+   * **WARNING:** The map currently doesn't support more than one of these fields to be set at a time
+   */
+  @Input() journeyRoutesOption?: SbbJourneyRoutesOptions;
   /**
    * Input to display JourneyMaps GeoJson zone data on the map.
    */
