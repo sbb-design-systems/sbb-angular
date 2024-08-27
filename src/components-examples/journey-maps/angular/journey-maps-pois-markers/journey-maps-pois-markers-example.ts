@@ -17,7 +17,7 @@ import {
   SbbZoomLevels,
 } from '@sbb-esta/journey-maps';
 import { LngLatLike } from 'maplibre-gl';
-import { BehaviorSubject, Subject } from 'rxjs';
+import { Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
 
 import { POI_CATEGORIES } from '../shared/config';
