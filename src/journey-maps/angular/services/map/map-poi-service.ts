@@ -22,7 +22,7 @@ import { isV3Style } from './util/style-version-lookup';
 type PoiStyleLayerType = {
   [key in 'PIN' | 'SQUARE' | 'LEGACY']: {
     defaultLayer: string[];
-    interactiveLayer?: string[];
+    interactiveLayer: string[];
   };
 };
 
@@ -48,25 +48,29 @@ export class SbbMapPoiService {
 
   updatePoiVisibility(map: MaplibreMap, poiOptions?: SbbPointsOfInterestOptions): void {
     if (isV3Style(map)) {
-      poiStyleLayerMap.PIN.defaultLayer.forEach((layerId) => {
-        this._updateCategoryFilter(map, layerId, poiOptions, 'replace');
-      });
-      poiStyleLayerMap.SQUARE.defaultLayer.forEach((layerId) => {
+      [...poiStyleLayerMap.PIN.defaultLayer, ...poiStyleLayerMap.PIN.interactiveLayer].forEach(
+        (layerId) => {
+          this._updateCategoryFilter(map, layerId, poiOptions, 'replace');
+        },
+      );
+      [
+        ...poiStyleLayerMap.SQUARE.defaultLayer,
+        ...poiStyleLayerMap.SQUARE.interactiveLayer,
+      ].forEach((layerId) => {
         this._updateCategoryFilter(map, layerId, poiOptions, 'update', true);
       });
-      [
-        ...poiStyleLayerMap.PIN.defaultLayer,
-        ...(poiStyleLayerMap.PIN.interactiveLayer ?? []),
-      ].forEach((layerId) => {
-        this._updateLayerVisibility(map, layerId, !!poiOptions?.categories?.length);
-      });
+      [...poiStyleLayerMap.PIN.defaultLayer, ...poiStyleLayerMap.PIN.interactiveLayer].forEach(
+        (layerId) => {
+          this._updateLayerVisibility(map, layerId, !!poiOptions?.categories?.length);
+        },
+      );
     } else {
       poiStyleLayerMap.LEGACY.defaultLayer.forEach((layerId) => {
         this._updateCategoryFilter(map, layerId, poiOptions, 'replace');
       });
       [
         ...poiStyleLayerMap.LEGACY.defaultLayer,
-        ...(poiStyleLayerMap.LEGACY.interactiveLayer ?? []),
+        ...poiStyleLayerMap.LEGACY.interactiveLayer,
       ].forEach((layerId) => {
         this._updateLayerVisibility(map, layerId, !!poiOptions?.categories?.length);
       });
@@ -124,6 +128,7 @@ export class SbbMapPoiService {
       return newCategoryFilter;
     }
 
+    console.log(JSON.stringify(oldFilter));
     // filter is not an array, or is empty
     if (!Array.isArray(oldFilter) || oldFilter.length < 1) {
       return newCategoryFilter;
