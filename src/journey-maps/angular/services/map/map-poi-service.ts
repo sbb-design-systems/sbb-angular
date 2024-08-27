@@ -119,13 +119,13 @@ export class SbbMapPoiService {
   }
 
   private _calculateCategoryFilter(
-    oldFilter: FilterSpecification | undefined,
+    currentFilterDef: any[] | any | undefined,
     categories: SbbPointsOfInterestCategoryType[] | undefined,
     updateType: 'replace' | 'update',
     exclude: boolean | undefined,
   ): false | any[] {
-    const newCategoryFilter: boolean | any[] = categories
-      ? this._getCategoryFilter(
+    const filterByCategoryExpression: boolean | any[] = categories
+      ? this._getCategoryExpressionDef(
           [
             ['get', this.poiSubCategoryFieldName],
             ['literal', categories],
@@ -134,36 +134,38 @@ export class SbbMapPoiService {
         )
       : false;
 
-    if (updateType === 'replace') {
-      return newCategoryFilter;
-    }
-
-    // filter is not an array, or is empty
-    if (!Array.isArray(oldFilter) || oldFilter.length < 1) {
-      return newCategoryFilter;
+    if (updateType === 'replace' || this._invalidFilterDef(currentFilterDef)) {
+      return filterByCategoryExpression;
     }
 
     let categoryFilterFound = false;
-    const newFilter = oldFilter.map((part: any) => {
-      if (this._hasCategoryFilter(JSON.stringify(part)) && !categoryFilterFound) {
+    const updatedFilterDef = currentFilterDef.map((expression: any | any[]) => {
+      if (!categoryFilterFound && this._containsCategoryFilter(JSON.stringify(expression))) {
         categoryFilterFound = true;
-        return newCategoryFilter;
+        return filterByCategoryExpression;
       }
-      return part;
+      return expression;
     });
 
     if (!categoryFilterFound) {
-      newFilter.push(newCategoryFilter);
+      updatedFilterDef.push(filterByCategoryExpression);
     }
-    return newFilter;
+    return updatedFilterDef;
   }
 
-  private _hasCategoryFilter(filterPart: string): boolean {
-    return filterPart.includes(`"in",["get","${this.poiSubCategoryFieldName}"]`);
+  private _invalidFilterDef(currentFilterDef: FilterSpecification | undefined) {
+    return !Array.isArray(currentFilterDef) || currentFilterDef.length < 1;
+  }
+
+  private _containsCategoryFilter(expressionJsonString: string): boolean {
+    return expressionJsonString.includes(
+      `"in",["get","${this.poiSubCategoryFieldName}"],["literal"`,
+    );
   }
 
   // https://maplibre.org/maplibre-style-spec/expressions/#in
-  private _getCategoryFilter(filter: any | any[], exclude?: boolean): any[] {
-    return exclude ? ['!', ['in', ...filter]] : ['in', ...filter];
+  private _getCategoryExpressionDef(filter: any | any[], exclude?: boolean): any[] {
+    const contains = ['in', ...filter];
+    return exclude ? ['!', contains] : contains;
   }
 }
