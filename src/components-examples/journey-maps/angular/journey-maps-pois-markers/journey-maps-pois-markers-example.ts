@@ -72,7 +72,6 @@ export class JourneyMapsPoisMarkersExample implements OnInit {
   mapCenterChange = new Subject<LngLatLike>();
   mapBoundingBoxChange = new Subject<number[][]>();
   zoomLevels?: SbbZoomLevels;
-  visibleLevels = new BehaviorSubject<number[]>([]);
   mapCenter?: LngLatLike;
   mapBoundingBox?: number[][];
 

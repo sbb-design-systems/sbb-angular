@@ -1,7 +1,10 @@
 import { Injectable } from '@angular/core';
-import { Map as MaplibreMap } from 'maplibre-gl';
+import { FilterSpecification, Map as MaplibreMap } from 'maplibre-gl';
 
-import { SbbPointsOfInterestOptions } from '../../journey-maps.interfaces';
+import {
+  SbbPointsOfInterestCategoryType,
+  SbbPointsOfInterestOptions,
+} from '../../journey-maps.interfaces';
 import {
   SBB_POI_FIRST_HOVER_LAYER,
   SBB_POI_FIRST_LAYER,
@@ -41,28 +44,31 @@ const poiStyleLayerMap: PoiStyleLayerType = {
 /** This class provides methods to handles all points of interest map styles: ki, ki_2 and journey_maps. */
 @Injectable({ providedIn: 'root' })
 export class SbbMapPoiService {
+  private readonly poiSubCategoryFieldName = 'subCategory';
+
   updatePoiVisibility(map: MaplibreMap, poiOptions?: SbbPointsOfInterestOptions): void {
-    if (!isV3Style(map)) {
-      [
-        ...poiStyleLayerMap.LEGACY.defaultLayer,
-        ...(poiStyleLayerMap.LEGACY.interactiveLayer ?? []),
-      ].forEach((layerId) => {
-        this.updatePoiLayerFilter(map, layerId, poiOptions);
-        this.updatePoiLayerVisibility(map, layerId, !!poiOptions?.categories?.length);
+    if (isV3Style(map)) {
+      poiStyleLayerMap.PIN.defaultLayer.forEach((layerId) => {
+        this._updateCategoryFilter(map, layerId, poiOptions, 'replace');
       });
-    } else {
+      poiStyleLayerMap.SQUARE.defaultLayer.forEach((layerId) => {
+        this._updateCategoryFilter(map, layerId, poiOptions, 'update', true);
+      });
       [
         ...poiStyleLayerMap.PIN.defaultLayer,
         ...(poiStyleLayerMap.PIN.interactiveLayer ?? []),
       ].forEach((layerId) => {
-        this.updatePoiLayerFilter(map, layerId, poiOptions);
-        this.updatePoiLayerVisibility(map, layerId, !!poiOptions?.categories?.length);
+        this._updateLayerVisibility(map, layerId, !!poiOptions?.categories?.length);
+      });
+    } else {
+      poiStyleLayerMap.LEGACY.defaultLayer.forEach((layerId) => {
+        this._updateCategoryFilter(map, layerId, poiOptions, 'replace');
       });
       [
-        ...poiStyleLayerMap.SQUARE.defaultLayer,
-        ...(poiStyleLayerMap.SQUARE.interactiveLayer ?? []),
+        ...poiStyleLayerMap.LEGACY.defaultLayer,
+        ...(poiStyleLayerMap.LEGACY.interactiveLayer ?? []),
       ].forEach((layerId) => {
-        this.updatePoiLayerFilter(map, layerId, poiOptions, true);
+        this._updateLayerVisibility(map, layerId, !!poiOptions?.categories?.length);
       });
     }
   }
@@ -73,21 +79,77 @@ export class SbbMapPoiService {
       : poiStyleLayerMap.LEGACY.defaultLayer;
   }
 
-  private updatePoiLayerFilter(
+  private _updateCategoryFilter(
     map: MaplibreMap,
     poiLayerId: string,
-    poiOptions?: SbbPointsOfInterestOptions,
+    poiOptions: SbbPointsOfInterestOptions | undefined,
+    updateType: 'replace' | 'update',
     exclude?: boolean,
   ): void {
-    map.setFilter(
-      poiLayerId,
-      poiOptions?.categories
-        ? [exclude ? '!in' : 'in', 'subCategory', ...poiOptions.categories]
-        : false,
-    );
+    try {
+      const oldFilter = map.getFilter(poiLayerId) ?? undefined;
+      const newFilter = this._calculateCategoryFilter(
+        oldFilter,
+        poiOptions?.categories,
+        updateType,
+        exclude,
+      ) as FilterSpecification;
+      map.setFilter(poiLayerId, newFilter);
+    } catch (e) {
+      console.error('Failed to set new layer filter', poiLayerId, e);
+    }
   }
 
-  private updatePoiLayerVisibility(map: MaplibreMap, poiLayerId: string, isVisible: boolean): void {
+  private _updateLayerVisibility(map: MaplibreMap, poiLayerId: string, isVisible: boolean): void {
     map.setLayoutProperty(poiLayerId, 'visibility', isVisible ? 'visible' : 'none');
+  }
+
+  private _calculateCategoryFilter(
+    oldFilter: FilterSpecification | undefined,
+    categories: SbbPointsOfInterestCategoryType[] | undefined,
+    updateType: 'replace' | 'update',
+    exclude: boolean | undefined,
+  ): false | any[] {
+    const newCategoryFilter: boolean | any[] = categories
+      ? this._getCategoryFilter(
+          [
+            ['get', this.poiSubCategoryFieldName],
+            ['literal', categories],
+          ],
+          exclude,
+        )
+      : false;
+
+    if (updateType === 'replace') {
+      return newCategoryFilter;
+    }
+
+    // filter is not an array, or is empty
+    if (!Array.isArray(oldFilter) || oldFilter.length < 1) {
+      return newCategoryFilter;
+    }
+
+    let categoryFilterFound = false;
+    const newFilter = oldFilter.map((part: any) => {
+      if (this._hasCategoryFilter(JSON.stringify(part)) && !categoryFilterFound) {
+        categoryFilterFound = true;
+        return newCategoryFilter;
+      }
+      return part;
+    });
+
+    if (!categoryFilterFound) {
+      newFilter.push(newCategoryFilter);
+    }
+    return newFilter;
+  }
+
+  private _hasCategoryFilter(filterPart: string): boolean {
+    return filterPart.includes(`"in",["get","${this.poiSubCategoryFieldName}"]`);
+  }
+
+  // https://maplibre.org/maplibre-style-spec/expressions/#in
+  private _getCategoryFilter(filter: any | any[], exclude?: boolean): any[] {
+    return exclude ? ['!', ['in', ...filter]] : ['in', ...filter];
   }
 }
