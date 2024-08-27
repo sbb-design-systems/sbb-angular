@@ -120,10 +120,10 @@ export class JourneyMapsPoisMarkersExample implements OnInit {
       styleOptions: this.fb.group({
         url: ['http://localhost:8080/{styleId}.json'],
         mode: ['bright', this.resetSelectedMarkerIdValidator],
-        ...STYLE_IDS.v3,
+        ...STYLE_IDS.v2,
       }),
       styleVersion: this.fb.group({
-        versionNumber: ['v3', this.resetSelectedMarkerIdValidator],
+        versionNumber: ['v2', this.resetSelectedMarkerIdValidator],
       }),
     });
   }
