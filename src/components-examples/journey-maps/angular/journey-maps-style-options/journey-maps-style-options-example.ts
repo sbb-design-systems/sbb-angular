@@ -58,10 +58,10 @@ export class JourneyMapsStyleOptionsExample implements OnInit {
         railNetwork: this.fb.group({
           railNetworkColor: [],
         }),
-        ...STYLE_IDS.v3,
+        ...STYLE_IDS.v2,
       }),
       styleVersion: this.fb.group({
-        versionNumber: ['v3', this.resetSelectedMarkerIdValidator],
+        versionNumber: ['v2', this.resetSelectedMarkerIdValidator],
       }),
     });
   }
