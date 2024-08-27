@@ -128,7 +128,6 @@ export class SbbMapPoiService {
       return newCategoryFilter;
     }
 
-    console.log(JSON.stringify(oldFilter));
     // filter is not an array, or is empty
     if (!Array.isArray(oldFilter) || oldFilter.length < 1) {
       return newCategoryFilter;
