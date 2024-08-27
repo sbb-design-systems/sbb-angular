@@ -66,6 +66,17 @@
       </div>
     </div>
     <div class="row-2">
+      <div formGroupName="styleVersion">
+        <div>
+          <span class="sbb-label">POI Style</span>
+          <sbb-radio-group class="sbb-checkbox-group-horizontal" formControlName="versionNumber">
+            <sbb-radio-button value="v2">v2</sbb-radio-button>
+            <sbb-radio-button value="v3">v3</sbb-radio-button>
+          </sbb-radio-group>
+        </div>
+      </div>
+    </div>
+    <div class="row-3">
       <li>
         <span class="sbb-label">
           Map markers
@@ -110,18 +121,6 @@
           </div>
         </div>
       </li>
-    </div>
-    <div class="row-3">
-      <div formGroupName="styleVersion">
-        <div>
-          <span class="sbb-label">Style</span>
-          <sbb-radio-group class="sbb-checkbox-group-horizontal" formControlName="versionNumber">
-            <sbb-radio-button value="v1">v1 (legacy)</sbb-radio-button>
-            <sbb-radio-button value="v2">v2</sbb-radio-button>
-            <sbb-radio-button value="v3">v3</sbb-radio-button>
-          </sbb-radio-group>
-        </div>
-      </div>
     </div>
   </form>
 </div>
