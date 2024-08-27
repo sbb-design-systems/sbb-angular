@@ -101,9 +101,9 @@ export class SbbMapPoiService {
     exclude?: boolean,
   ): void {
     try {
-      const oldFilter = map.getFilter(poiLayerId) ?? undefined;
+      const currentFilter = map.getFilter(poiLayerId) ?? undefined;
       const newFilter = this._calculateCategoryFilter(
-        oldFilter,
+        currentFilter,
         poiOptions?.categories,
         updateType,
         exclude,
