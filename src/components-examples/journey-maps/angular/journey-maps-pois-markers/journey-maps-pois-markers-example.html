@@ -5,7 +5,7 @@
 <div class="web-map">
   <sbb-journey-maps
     [apiKey]="apiKey"
-    [styleOptions]="styleOptions"
+    [styleOptions]="form.get('styleOptions')?.value"
     #advancedMap
     language="en"
     [viewportBounds]="form.get('viewportBounds')?.value"
@@ -55,7 +55,6 @@
             }
           </sbb-select>
         </sbb-form-field>
-
         <sbb-form-field label="POI Subcategories">
           <sbb-select multiple formControlName="categories">
             @for (category of POI_CATEGORIES; track category) {
@@ -63,7 +62,6 @@
             }
           </sbb-select>
         </sbb-form-field>
-
         <sbb-checkbox formControlName="includePreview">Preview-POIs</sbb-checkbox>
       </div>
     </div>
@@ -112,6 +110,18 @@
           </div>
         </div>
       </li>
+    </div>
+    <div class="row-3">
+      <div formGroupName="styleVersion">
+        <div>
+          <span class="sbb-label">Style</span>
+          <sbb-radio-group class="sbb-checkbox-group-horizontal" formControlName="versionNumber">
+            <sbb-radio-button value="v1">v1 (legacy)</sbb-radio-button>
+            <sbb-radio-button value="v2">v2</sbb-radio-button>
+            <sbb-radio-button value="v3">v3</sbb-radio-button>
+          </sbb-radio-group>
+        </div>
+      </div>
     </div>
   </form>
 </div>
