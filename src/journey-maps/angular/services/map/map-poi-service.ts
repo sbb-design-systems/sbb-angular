@@ -19,14 +19,14 @@ import {
 
 import { isV3Style } from './util/style-version-lookup';
 
-type PoiStyleLayerType = {
+type PoiLayerType = {
   [key in 'PIN' | 'SQUARE' | 'LEGACY']: {
     defaultLayer: string[];
     interactiveLayer: string[];
   };
 };
 
-const poiStyleLayerMap: PoiStyleLayerType = {
+const poiLayerTypes: PoiLayerType = {
   PIN: {
     defaultLayer: [SBB_POI_FIRST_LAYER],
     interactiveLayer: [SBB_POI_FIRST_HOVER_LAYER],
@@ -48,39 +48,49 @@ export class SbbMapPoiService {
 
   updatePoiVisibility(map: MaplibreMap, poiOptions?: SbbPointsOfInterestOptions): void {
     if (isV3Style(map)) {
-      [...poiStyleLayerMap.PIN.defaultLayer, ...poiStyleLayerMap.PIN.interactiveLayer].forEach(
-        (layerId) => {
-          this._updateCategoryFilter(map, layerId, poiOptions, 'replace');
-        },
-      );
-      [
-        ...poiStyleLayerMap.SQUARE.defaultLayer,
-        ...poiStyleLayerMap.SQUARE.interactiveLayer,
-      ].forEach((layerId) => {
-        this._updateCategoryFilter(map, layerId, poiOptions, 'update', true);
-      });
-      [...poiStyleLayerMap.PIN.defaultLayer, ...poiStyleLayerMap.PIN.interactiveLayer].forEach(
-        (layerId) => {
-          this._updateLayerVisibility(map, layerId, !!poiOptions?.categories?.length);
-        },
-      );
+      this._handleV3StylePoiLayers(map, poiOptions);
     } else {
-      poiStyleLayerMap.LEGACY.defaultLayer.forEach((layerId) => {
-        this._updateCategoryFilter(map, layerId, poiOptions, 'replace');
-      });
-      [
-        ...poiStyleLayerMap.LEGACY.defaultLayer,
-        ...poiStyleLayerMap.LEGACY.interactiveLayer,
-      ].forEach((layerId) => {
-        this._updateLayerVisibility(map, layerId, !!poiOptions?.categories?.length);
-      });
+      this._handleLegacyStylePoiLayers(map, poiOptions);
     }
+  }
+
+  private _handleLegacyStylePoiLayers(
+    map: MaplibreMap,
+    poiOptions?: SbbPointsOfInterestOptions,
+  ): void {
+    poiLayerTypes.LEGACY.defaultLayer.forEach((layerId) => {
+      this._updateCategoryFilter(map, layerId, poiOptions, 'replace');
+    });
+    [...poiLayerTypes.LEGACY.defaultLayer, ...poiLayerTypes.LEGACY.interactiveLayer].forEach(
+      (layerId) => {
+        this._updateLayerVisibility(map, layerId, !!poiOptions?.categories?.length);
+      },
+    );
+  }
+
+  private _handleV3StylePoiLayers(map: MaplibreMap, poiOptions?: SbbPointsOfInterestOptions): void {
+    [...poiLayerTypes.PIN.defaultLayer, ...poiLayerTypes.PIN.interactiveLayer].forEach(
+      (layerId) => {
+        this._updateCategoryFilter(map, layerId, poiOptions, 'replace');
+      },
+    );
+    poiLayerTypes.SQUARE.defaultLayer.forEach((layerId) => {
+      this._updateCategoryFilter(map, layerId, poiOptions, 'update', true);
+    });
+    poiLayerTypes.SQUARE.interactiveLayer.forEach((layerId) => {
+      this._updateCategoryFilter(map, layerId, poiOptions, 'replace', true);
+    });
+    [...poiLayerTypes.PIN.defaultLayer, ...poiLayerTypes.PIN.interactiveLayer].forEach(
+      (layerId) => {
+        this._updateLayerVisibility(map, layerId, !!poiOptions?.categories?.length);
+      },
+    );
   }
 
   getPoiLayerIds(map: MaplibreMap): string[] {
     return isV3Style(map)
-      ? [...poiStyleLayerMap.PIN.defaultLayer, ...poiStyleLayerMap.SQUARE.defaultLayer]
-      : poiStyleLayerMap.LEGACY.defaultLayer;
+      ? [...poiLayerTypes.PIN.defaultLayer, ...poiLayerTypes.SQUARE.defaultLayer]
+      : poiLayerTypes.LEGACY.defaultLayer;
   }
 
   private _updateCategoryFilter(
