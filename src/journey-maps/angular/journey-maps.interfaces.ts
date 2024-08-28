@@ -209,7 +209,7 @@ export interface SbbRouteMetaInformation {
 
 export interface SbbRailNetworkOptions {
   /**
-   * Color of the rail network in the map.
+   * Color of the rail network on the map.
    *
    * Set 'transparent' to hide the rail network, or use other color-format as specified in https://maplibre.org/maplibre-gl-js-docs/style-spec/types/.
    * */
@@ -230,9 +230,9 @@ export type SbbTemplateType = TemplateRef<any> | string;
 
 /** points of interest options */
 export interface SbbPointsOfInterestOptions {
-  /** Configure a list of points of interest categories visible in the map. Set empty, to hide all POIs. */
+  /** Configure a list of points of interest categories visible on the map. Set empty, to hide all POIs. */
   categories: SbbPointsOfInterestCategoryType[];
-  /** Configure the environment from which to get the POIs from ('prod' or 'int. default = 'prod'). */
+  /** Configure the environment from which to get the points of interest from ('prod' or 'int. default = 'prod'). */
   environment?: SbbPointsOfInterestEnvironmentType;
   /** Configure whether to include preview-points-of-interest or not */
   includePreview?: boolean;
