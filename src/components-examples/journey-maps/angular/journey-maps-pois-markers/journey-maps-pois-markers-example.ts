@@ -10,12 +10,17 @@ import { SbbInputModule } from '@sbb-esta/angular/input';
 import { SbbNotificationModule } from '@sbb-esta/angular/notification';
 import { SbbRadioButtonModule } from '@sbb-esta/angular/radio-button';
 import { SbbSelectModule } from '@sbb-esta/angular/select';
-import { SbbJourneyMaps, SbbJourneyMapsModule, SbbZoomLevels } from '@sbb-esta/journey-maps';
+import {
+  SbbJourneyMaps,
+  SbbJourneyMapsModule,
+  SbbStyleOptions,
+  SbbZoomLevels,
+} from '@sbb-esta/journey-maps';
 import { LngLatLike } from 'maplibre-gl';
-import { BehaviorSubject, Subject } from 'rxjs';
+import { Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
 
-import { POI_CATEGORIES } from '../shared/config';
+import { POI_CATEGORIES, STYLE_IDS } from '../shared/config';
 import { markers } from '../shared/markers';
 
 declare global {
@@ -53,6 +58,11 @@ declare global {
 })
 export class JourneyMapsPoisMarkersExample implements OnInit {
   apiKey = window.JM_API_KEY;
+  styleOptions: SbbStyleOptions = {
+    brightId: 'journey_maps_bright_v1',
+    darkId: 'journey_maps_dark_v1',
+    aerialId: 'journey_maps_aerial_v1',
+  };
   selectedMarkerId?: string;
   form: UntypedFormGroup;
   @ViewChild('advancedMap')
@@ -62,15 +72,16 @@ export class JourneyMapsPoisMarkersExample implements OnInit {
   mapCenterChange = new Subject<LngLatLike>();
   mapBoundingBoxChange = new Subject<number[][]>();
   zoomLevels?: SbbZoomLevels;
-  visibleLevels = new BehaviorSubject<number[]>([]);
   mapCenter?: LngLatLike;
   mapBoundingBox?: number[][];
 
   constructor(private fb: FormBuilder) {}
+
   ngOnInit() {
     this.buildForm();
     this.subscribeMapCenterChange();
     this.subscribeBoundingBoxChange();
+    this.subscribeStyleVersion();
     this.form.get('listenerOptions.POI')?.patchValue({ clickTemplate: this.poiTemplate });
   }
 
@@ -106,6 +117,13 @@ export class JourneyMapsPoisMarkersExample implements OnInit {
         popup: [true, this.resetSelectedMarkerIdValidator],
         markers: [markers],
       }),
+      styleOptions: this.fb.group({
+        mode: ['bright', this.resetSelectedMarkerIdValidator],
+        ...STYLE_IDS.v3,
+      }),
+      styleVersion: this.fb.group({
+        versionNumber: ['v3', this.resetSelectedMarkerIdValidator],
+      }),
     });
   }
 
@@ -119,6 +137,18 @@ export class JourneyMapsPoisMarkersExample implements OnInit {
     this.mapCenterChange
       .pipe(takeUntil(this._destroyed))
       .subscribe((mapCenter: LngLatLike) => (this.mapCenter = mapCenter));
+  }
+
+  private subscribeStyleVersion() {
+    this.form
+      .get('styleVersion')
+      ?.valueChanges.pipe(takeUntil(this._destroyed))
+      .subscribe(({ versionNumber }: { versionNumber: 'v2' | 'v3' }) => {
+        this.form.get('styleOptions')?.patchValue({
+          ...this.form.get('styleOptions')?.value,
+          ...STYLE_IDS[versionNumber],
+        });
+      });
   }
 
   private resetSelectedMarkerIdValidator = () => {

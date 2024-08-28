@@ -72,7 +72,7 @@ export class SbbMapLeitPoiService {
   private _switchLevelMapAware(map: MaplibreMap, routeStartLevel?: number) {
     this._registerMapZoomEvent(map);
     if (map.loaded()) {
-      this._switchLevel(map, routeStartLevel); // this triggers the actual visible level switch in the map
+      this._switchLevel(map, routeStartLevel); // this triggers the actual visible level switch on the map
     } else {
       map.once('idle', () => this._switchLevel(map, routeStartLevel));
     }

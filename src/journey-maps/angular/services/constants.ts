@@ -21,6 +21,14 @@ export const SBB_ROKAS_ZONE_SOURCE = 'rokas-zone-source';
 export const SBB_SERVICE_POINT_SOURCE = 'service_points';
 
 export const SBB_POI_LAYER = 'journey-pois';
+export const SBB_POI_HOVER_LAYER = 'journey-pois-hover';
+export const SBB_POI_SELECTED_LAYER = 'journey-pois-selected';
+export const SBB_POI_FIRST_LAYER = 'journey-pois-first';
+export const SBB_POI_FIRST_HOVER_LAYER = 'journey-pois-first-hover';
+export const SBB_POI_SECOND_2D_LAYER = 'journey-pois-second-2d';
+export const SBB_POI_SECOND_2D_HOVER_LAYER = 'journey-pois-second-hover-2d';
+export const SBB_POI_SECOND_3D_LAYER = 'journey-pois-second-lvl';
+export const SBB_POI_SECOND_3D_HOVER_LAYER = 'journey-pois-second-hover-lvl';
 export const SBB_POI_ID_PROPERTY = 'sbbId';
 export const SBB_CLUSTER_LAYER = 'rokas-marker-cluster';
 export const SBB_MARKER_LAYER = 'sbb-marker';
