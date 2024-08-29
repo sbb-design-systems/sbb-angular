@@ -84,7 +84,7 @@
     "@angular/ng-dev": "https://github.com/angular/dev-infra-private-ng-dev-builds.git#47455886213b685893f3e558d14e9da12947f4e0",
     "@babel/core": "7.25.2",
     "@babel/plugin-proposal-async-generator-functions": "^7.20.7",
-    "@babel/traverse": "7.25.4",
+    "@babel/traverse": "7.25.6",
     "@bazel/bazelisk": "1.19.0",
     "@bazel/buildifier": "7.3.1",
     "@bazel/buildozer": "7.3.1",
