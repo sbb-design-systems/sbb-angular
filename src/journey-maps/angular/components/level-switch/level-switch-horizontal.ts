@@ -79,7 +79,7 @@ export class SbbLevelSwitchHorizontal implements OnInit, OnDestroy {
   }
 
   private _openSideButton(): void {
-    this._doShowSideButtons(true);
+    this._setShowSideButtons(true);
     this.startCountdown();
     setTimeout(() => {
       this._focusMatchingButton();
@@ -87,11 +87,11 @@ export class SbbLevelSwitchHorizontal implements OnInit, OnDestroy {
   }
 
   private _closeSideButton(): void {
-    this._doShowSideButtons(false);
+    this._setShowSideButtons(false);
     this.cancelCountdown();
   }
 
-  private _doShowSideButtons(showSideButtons: boolean) {
+  private _setShowSideButtons(showSideButtons: boolean) {
     this.showSideButtons = showSideButtons;
     this._cd.detectChanges();
   }
