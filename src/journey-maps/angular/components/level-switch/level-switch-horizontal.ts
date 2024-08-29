@@ -93,7 +93,7 @@ export class SbbLevelSwitchHorizontal implements OnInit, OnDestroy {
 
   private _setShowSideButtons(showSideButtons: boolean) {
     this.showSideButtons = showSideButtons;
-    this._cd.detectChanges();
+    this._cd.detectChanges(); // needed for web-component
   }
 
   private _focusMatchingButton(): void {
