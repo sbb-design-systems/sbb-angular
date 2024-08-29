@@ -23,6 +23,8 @@
     class="sbb-tab-list"
     [class._sbb-animation-noopable]="_animationMode === 'NoopAnimations'"
     role="tablist"
+    [attr.aria-label]="ariaLabel || null"
+    [attr.aria-labelledby]="ariaLabelledby || null"
     (cdkObserveContent)="_onContentChanges()"
   >
     <div class="sbb-tab-labels" #tabListInner>
