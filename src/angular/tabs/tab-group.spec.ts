@@ -325,6 +325,42 @@ describe('SbbTabGroup', () => {
 
       expect(tabLabels.map((label) => label.getAttribute('tabindex'))).toEqual(['-1', '-1', '0']);
     });
+
+    it('should be able to set the aria-label of the tablist', fakeAsync(() => {
+      fixture.detectChanges();
+      tick();
+
+      const tabList = fixture.nativeElement.querySelector('.sbb-tab-list') as HTMLElement;
+      expect(tabList.hasAttribute('aria-label')).toBe(false);
+
+      fixture.componentInstance.ariaLabel = 'hello';
+      fixture.changeDetectorRef.markForCheck();
+      fixture.detectChanges();
+      expect(tabList.getAttribute('aria-label')).toBe('hello');
+
+      fixture.componentInstance.ariaLabel = '';
+      fixture.changeDetectorRef.markForCheck();
+      fixture.detectChanges();
+      expect(tabList.hasAttribute('aria-label')).toBe(false);
+    }));
+
+    it('should be able to set the aria-labelledby of the tablist', fakeAsync(() => {
+      fixture.detectChanges();
+      tick();
+
+      const tabList = fixture.nativeElement.querySelector('.sbb-tab-list') as HTMLElement;
+      expect(tabList.hasAttribute('aria-labelledby')).toBe(false);
+
+      fixture.componentInstance.ariaLabelledby = 'some-label';
+      fixture.changeDetectorRef.markForCheck();
+      fixture.detectChanges();
+      expect(tabList.getAttribute('aria-labelledby')).toBe('some-label');
+
+      fixture.componentInstance.ariaLabelledby = '';
+      fixture.changeDetectorRef.markForCheck();
+      fixture.detectChanges();
+      expect(tabList.hasAttribute('aria-labelledby')).toBe(false);
+    }));
   });
 
   describe('aria labelling', () => {
@@ -992,6 +1028,8 @@ describe('nested SbbTabGroup with enabled animations', () => {
     <sbb-tab-group
       class="tab-group"
       [(selectedIndex)]="selectedIndex"
+      [aria-label]="ariaLabel"
+      [aria-labelledby]="ariaLabelledby"
       (animationDone)="animationDone()"
       (focusChange)="handleFocus($event)"
       (selectedTabChange)="handleSelection($event)"
@@ -1019,6 +1057,8 @@ class SimpleTabsTestApp {
   selectedIndex: number = 1;
   focusEvent: any;
   selectEvent: any;
+  ariaLabel: string;
+  ariaLabelledby: string;
   handleFocus(event: any) {
     this.focusEvent = event;
   }
