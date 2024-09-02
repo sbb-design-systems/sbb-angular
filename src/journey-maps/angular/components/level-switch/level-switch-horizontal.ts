@@ -50,13 +50,13 @@ export class SbbLevelSwitchHorizontal implements OnInit, OnDestroy {
   private _destroyed = new Subject<void>();
 
   constructor(
-    private _ref: ChangeDetectorRef,
+    private _cd: ChangeDetectorRef,
     private _i18n: SbbLocaleService,
     private _levelSwitchService: SbbLevelSwitcher,
   ) {
     this._levelSwitchService.changeDetectionEmitter
       .pipe(takeUntil(this._destroyed))
-      .subscribe(() => this._ref.detectChanges());
+      .subscribe(() => this._cd.detectChanges());
   }
 
   ngOnInit(): void {
@@ -78,17 +78,22 @@ export class SbbLevelSwitchHorizontal implements OnInit, OnDestroy {
     }
   }
 
-  private _closeSideButton(): void {
-    this.showSideButtons = false;
-    clearTimeout(this._countdownTimer);
-  }
-
   private _openSideButton(): void {
-    this.showSideButtons = true;
+    this._setShowSideButtons(true);
     this.startCountdown();
     setTimeout(() => {
       this._focusMatchingButton();
     }, 250); // make sure side buttons are visible first
+  }
+
+  private _closeSideButton(): void {
+    this._setShowSideButtons(false);
+    this.cancelCountdown();
+  }
+
+  private _setShowSideButtons(showSideButtons: boolean) {
+    this.showSideButtons = showSideButtons;
+    this._cd.detectChanges(); // needed for web-component
   }
 
   private _focusMatchingButton(): void {
@@ -117,7 +122,7 @@ export class SbbLevelSwitchHorizontal implements OnInit, OnDestroy {
     clearTimeout(this._countdownTimer);
     this._countdownTimer = setTimeout(() => {
       this._closeSideButton(); // when the countdown finishes, we always want to close
-      this._ref.detectChanges();
+      this._cd.detectChanges();
     }, this._autoCollapseTimeout);
   }
 
