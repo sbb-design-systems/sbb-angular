@@ -381,6 +381,7 @@ describe('SbbTabGroup', () => {
 
     it('should set the aria-label attribute', () => {
       fixture.componentInstance.ariaLabel = 'Fruit';
+      fixture.changeDetectorRef.markForCheck();
       fixture.detectChanges();
 
       expect(tab.getAttribute('aria-label')).toBe('Fruit');
@@ -388,6 +389,7 @@ describe('SbbTabGroup', () => {
 
     it('should set the aria-labelledby attribute', () => {
       fixture.componentInstance.ariaLabelledby = 'fruit-label';
+      fixture.changeDetectorRef.markForCheck();
       fixture.detectChanges();
 
       expect(tab.getAttribute('aria-labelledby')).toBe('fruit-label');
@@ -501,6 +503,7 @@ describe('SbbTabGroup', () => {
       tick();
 
       fixture.componentInstance.tabs.push({ label: 'New tab', content: 'to left of index' });
+      fixture.changeDetectorRef.markForCheck();
       fixture.detectChanges();
       tick();
 
@@ -521,6 +524,7 @@ describe('SbbTabGroup', () => {
 
       // Remove last tab while last tab is selected, expect next tab over to be selected
       fixture.componentInstance.tabs.pop();
+      fixture.changeDetectorRef.markForCheck();
       fixture.detectChanges();
       tick();
 
@@ -667,6 +671,7 @@ describe('SbbTabGroup', () => {
 
       fixture.componentInstance.otherLabel = 'Chips';
       fixture.componentInstance.otherContent = 'Salt, vinegar';
+      fixture.changeDetectorRef.markForCheck();
       fixture.detectChanges();
 
       expect(getSelectedLabel(fixture).textContent).toMatch('Chips');
@@ -692,6 +697,7 @@ describe('SbbTabGroup', () => {
 
     it('should be able to opt into keeping the inactive tab content in the DOM', fakeAsync(() => {
       fixture.componentInstance.preserveContent = true;
+      fixture.changeDetectorRef.markForCheck();
       fixture.detectChanges();
 
       expect(fixture.nativeElement.textContent).toContain('Pizza, fries');

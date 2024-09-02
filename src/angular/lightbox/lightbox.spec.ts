@@ -175,8 +175,8 @@ describe('SbbLightbox', () => {
 
     // callback should not be called before animation is complete
     expect(spy).not.toHaveBeenCalled();
+    flush();
 
-    flushMicrotasks();
     expect(spy).toHaveBeenCalled();
   }));
 
@@ -403,6 +403,7 @@ describe('SbbLightbox', () => {
     lightboxRef.keydownEvents().subscribe(spy);
 
     viewContainerFixture.detectChanges();
+    flush();
 
     const backdrop = overlayContainerElement.querySelector('.cdk-overlay-backdrop') as HTMLElement;
     const container = overlayContainerElement.querySelector(
@@ -605,6 +606,7 @@ describe('SbbLightbox', () => {
     };
 
     lightbox.open(PizzaMsg, { scrollStrategy });
+    flush();
     expect(scrollStrategy.enable).toHaveBeenCalled();
   }));
 
@@ -623,7 +625,7 @@ describe('SbbLightbox', () => {
     },
   ));
 
-  it('should update height on window resize', fakeAsync(() => {
+  it('should update height on window resize', () => {
     lightbox.open(PizzaMsg, {
       viewContainerRef: testViewContainerRef,
     });
@@ -638,7 +640,7 @@ describe('SbbLightbox', () => {
     viewContainerFixture.detectChanges();
 
     expect(lightboxContainerElement.clientHeight).toBe(400);
-  }));
+  });
 
   describe('passing in data', () => {
     it('should be able to pass in data', () => {
@@ -929,7 +931,7 @@ describe('SbbLightbox', () => {
       });
 
       viewContainerFixture.detectChanges();
-      flushMicrotasks();
+      flush();
 
       expect(document.activeElement!.tagName)
         .withContext('Expected first tabbable element (input) in the lightbox to be focused.')
@@ -943,7 +945,7 @@ describe('SbbLightbox', () => {
       });
 
       viewContainerFixture.detectChanges();
-      flushMicrotasks();
+      flush();
 
       expect(document.activeElement!.tagName).not.toBe('INPUT');
     }));
@@ -955,7 +957,7 @@ describe('SbbLightbox', () => {
       });
 
       viewContainerFixture.detectChanges();
-      flushMicrotasks();
+      flush();
 
       expect(
         overlayContainerElement.querySelectorAll('.cdk-focus-trap-anchor').length,
@@ -1215,7 +1217,7 @@ describe('SbbLightbox', () => {
       lightbox.open(DialogWithoutFocusableElements);
 
       viewContainerFixture.detectChanges();
-      flushMicrotasks();
+      flush();
 
       expect(document.activeElement!.tagName)
         .withContext('Expected lightbox container to be focused.')
@@ -1745,14 +1747,14 @@ describe('SbbDialog with explicit injector provided', () => {
     fixture = TestBed.createComponent(ModuleBoundLightboxParentComponent);
   });
 
-  it('should use the standalone injector and render the lightbox successfully', fakeAsync(() => {
+  it('should use the standalone injector and render the lightbox successfully', () => {
     fixture.componentInstance.openLightbox();
     fixture.detectChanges();
 
     expect(
       overlayContainerElement.querySelector('module-bound-lightbox-child-component')!.innerHTML,
     ).toEqual('<p>Pasta</p>');
-  }));
+  });
 });
 
 describe('SbbLightbox with template only', () => {

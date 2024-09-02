@@ -168,14 +168,14 @@ describe('SbbTable', () => {
     let dataSource: SbbTableDataSource<TestData>;
     let component: ArrayDataSourceSbbTableTestComponent;
 
-    beforeEach(fakeAsync(() => {
+    beforeEach(() => {
       fixture = TestBed.createComponent(ArrayDataSourceSbbTableTestComponent);
       fixture.detectChanges();
 
       tableElement = fixture.nativeElement.querySelector('.sbb-table');
       component = fixture.componentInstance;
       dataSource = fixture.componentInstance.dataSource;
-    }));
+    });
 
     it('should create table and display data source contents', () => {
       expectTableToMatchContent(tableElement, [
@@ -190,6 +190,7 @@ describe('SbbTable', () => {
     it('changing data should update the table contents', () => {
       // Add data
       component.underlyingDataSource.addData();
+      fixture.changeDetectorRef.markForCheck();
       fixture.detectChanges();
       expectTableToMatchContent(tableElement, [
         ['Column A', 'Column B', 'Column C'],
@@ -204,6 +205,7 @@ describe('SbbTable', () => {
       const modifiedData = dataSource.data.slice();
       modifiedData.shift();
       dataSource.data = modifiedData;
+      fixture.changeDetectorRef.markForCheck();
       fixture.detectChanges();
       expectTableToMatchContent(tableElement, [
         ['Column A', 'Column B', 'Column C'],
@@ -243,6 +245,7 @@ describe('SbbTable', () => {
     it('should be able to filter the table contents', fakeAsync(() => {
       // Change filter to a_1, should match one row
       dataSource.filter = 'a_1';
+      flushMicrotasks(); // Resolve promise that updates paginator's length
       fixture.detectChanges();
       expect(dataSource.filteredData.length).toBe(1);
       expect(dataSource.filteredData[0]).toBe(dataSource.data[0]);
@@ -257,6 +260,7 @@ describe('SbbTable', () => {
 
       // Change filter to '  A_2  ', should match one row (ignores case and whitespace)
       dataSource.filter = '  A_2  ';
+      flushMicrotasks();
       fixture.detectChanges();
       expect(dataSource.filteredData.length).toBe(1);
       expect(dataSource.filteredData[0]).toBe(dataSource.data[1]);
@@ -268,6 +272,7 @@ describe('SbbTable', () => {
 
       // Change filter to empty string, should match all rows
       dataSource.filter = '';
+      flushMicrotasks();
       fixture.detectChanges();
       expect(dataSource.filteredData.length).toBe(3);
       expect(dataSource.filteredData[0]).toBe(dataSource.data[0]);
@@ -301,6 +306,7 @@ describe('SbbTable', () => {
         return dataStr.indexOf(filter) !== -1;
       };
       dataSource.filter = 'zebra';
+      flushMicrotasks();
       fixture.detectChanges();
       expectTableToMatchContent(tableElement, [
         ['Column A', 'Column B', 'Column C'],
@@ -310,6 +316,7 @@ describe('SbbTable', () => {
 
       // Change the filter to a falsy value that might come in from the view.
       dataSource.filter = 0 as any;
+      flushMicrotasks();
       fixture.detectChanges();
       expectTableToMatchContent(tableElement, [
         ['Column A', 'Column B', 'Column C'],
@@ -321,6 +328,7 @@ describe('SbbTable', () => {
       // Set the value to the last character of the first
       // column plus the first character of the second column.
       dataSource.filter = '1b';
+      flushMicrotasks();
       fixture.detectChanges();
       expect(dataSource.filteredData.length).toBe(0);
       expectTableToMatchContent(tableElement, [
@@ -534,6 +542,7 @@ describe('SbbTable', () => {
       ]);
 
       dataSource.data = null!;
+      fixture.changeDetectorRef.markForCheck();
       fixture.detectChanges();
       expectTableToMatchContent(tableElement, [
         ['Column A', 'Column B', 'Column C'],
@@ -541,6 +550,7 @@ describe('SbbTable', () => {
       ]);
 
       component.underlyingDataSource.addData();
+      fixture.changeDetectorRef.markForCheck();
       fixture.detectChanges();
       expectTableToMatchContent(tableElement, [
         ['Column A', 'Column B', 'Column C'],
@@ -553,6 +563,7 @@ describe('SbbTable', () => {
       ]);
 
       dataSource.data = {} as any;
+      fixture.changeDetectorRef.markForCheck();
       fixture.detectChanges();
       expectTableToMatchContent(tableElement, [
         ['Column A', 'Column B', 'Column C'],

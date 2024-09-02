@@ -518,7 +518,7 @@ describe('SbbMenu', () => {
     expect(event.defaultPrevented).toBe(false);
   }));
 
-  it('should open a custom menu', fakeAsync(() => {
+  it('should open a custom menu', () => {
     const fixture = createComponent(CustomMenu, [], [CustomMenuPanel]);
     fixture.detectChanges();
     expect(overlayContainerElement.textContent).toBe('');
@@ -529,7 +529,7 @@ describe('SbbMenu', () => {
       expect(overlayContainerElement.textContent).toContain('Custom Menu header');
       expect(overlayContainerElement.textContent).toContain('Custom Content');
     }).not.toThrowError();
-  }));
+  });
 
   it('should transfer any custom classes from the host to the overlay', fakeAsync(() => {
     const fixture = createComponent(SimpleMenu, [], [FakeIcon]);
@@ -563,6 +563,7 @@ describe('SbbMenu', () => {
     const panel = overlayContainerElement.querySelector('.sbb-menu-panel-wrapper')!;
 
     expect(panel.classList).toContain('custom-one');
+    fixture.changeDetectorRef.markForCheck();
     expect(panel.classList).toContain('sbb-elevation-z4');
 
     fixture.componentInstance.panelClass = 'custom-two';
@@ -675,16 +676,16 @@ describe('SbbMenu', () => {
     expect(secondMenuItemDebugEl.nativeElement.classList).toContain('cdk-mouse-focused');
   }));
 
-  it('should not throw an error on destroy', fakeAsync(() => {
+  it('should not throw an error on destroy', () => {
     const fixture = createComponent(SimpleMenu, [], [FakeIcon]);
     expect(fixture.destroy.bind(fixture)).not.toThrow();
-  }));
+  });
 
-  it('should be able to extract the menu item text', fakeAsync(() => {
+  it('should be able to extract the menu item text', () => {
     const fixture = createComponent(SimpleMenu, [], [FakeIcon]);
     fixture.detectChanges();
     expect(fixture.componentInstance.items.first.getLabel()).toBe('Item');
-  }));
+  });
 
   it('should filter out icon nodes when figuring out the label', fakeAsync(() => {
     const fixture = createComponent(SimpleMenu, [], [FakeIcon]);
@@ -1003,39 +1004,34 @@ describe('SbbMenu', () => {
     flush();
   }));
 
-  it(
-    'should respect the DOM order, rather than insertion order, when moving focus using ' +
-      'the arrow keys',
-    fakeAsync(() => {
-      const fixture = createComponent(SimpleMenuWithRepeater);
+  it('should respect the DOM order, rather than insertion order, when moving focus using the arrow keys', fakeAsync(() => {
+    const fixture = createComponent(SimpleMenuWithRepeater);
 
-      fixture.detectChanges();
-      fixture.componentInstance.trigger.openMenu();
-      fixture.detectChanges();
-      tick(500);
+    fixture.detectChanges();
+    fixture.componentInstance.trigger.openMenu();
+    fixture.detectChanges();
+    tick(500);
 
-      const menuPanel = document.querySelector('.sbb-menu-panel-wrapper')!;
-      let items = menuPanel.querySelectorAll('.sbb-menu-panel-wrapper [sbb-menu-item]');
+    const menuPanel = document.querySelector('.sbb-menu-panel-wrapper')!;
+    let items = menuPanel.querySelectorAll('.sbb-menu-panel-wrapper [sbb-menu-item]');
 
-      expect(document.activeElement)
-        .withContext('Expected first item to be focused on open')
-        .toBe(items[0]);
+    expect(document.activeElement)
+      .withContext('Expected first item to be focused on open')
+      .toBe(items[0]);
 
-      // Add a new item after the first one.
-      fixture.componentInstance.items.splice(1, 0, { label: 'Calzone', disabled: false });
-      fixture.detectChanges();
+    // Add a new item after the first one.
+    fixture.componentInstance.items.splice(1, 0, { label: 'Calzone', disabled: false });
+    fixture.changeDetectorRef.markForCheck();
+    fixture.detectChanges();
 
-      items = menuPanel.querySelectorAll('.sbb-menu-panel-wrapper [sbb-menu-item]');
-      dispatchKeyboardEvent(menuPanel, 'keydown', DOWN_ARROW);
-      fixture.detectChanges();
-      tick();
+    items = menuPanel.querySelectorAll('.sbb-menu-panel-wrapper [sbb-menu-item]');
+    dispatchKeyboardEvent(menuPanel, 'keydown', DOWN_ARROW);
+    fixture.detectChanges();
+    tick();
 
-      expect(document.activeElement)
-        .withContext('Expected second item to be focused')
-        .toBe(items[1]);
-      flush();
-    }),
-  );
+    expect(document.activeElement).withContext('Expected second item to be focused').toBe(items[1]);
+    flush();
+  }));
 
   it('should sync the focus order when an item is focused programmatically', fakeAsync(() => {
     const fixture = createComponent(SimpleMenuWithRepeater);
@@ -1320,6 +1316,7 @@ describe('SbbMenu', () => {
       expect(panel.classList).not.toContain('sbb-menu-panel-after');
 
       fixture.componentInstance.xPosition = 'after';
+      fixture.changeDetectorRef.markForCheck();
       fixture.detectChanges();
 
       expect(panel.classList).toContain('sbb-menu-panel-after');
@@ -1337,6 +1334,7 @@ describe('SbbMenu', () => {
       expect(panel.classList).not.toContain('sbb-menu-panel-below');
 
       fixture.componentInstance.yPosition = 'below';
+      fixture.changeDetectorRef.markForCheck();
       fixture.detectChanges();
 
       expect(panel.classList).toContain('sbb-menu-panel-below');
@@ -1871,6 +1869,7 @@ describe('SbbMenu', () => {
         .toBe(2);
 
       items[1].componentInstance.disabled = true;
+      fixture.changeDetectorRef.markForCheck();
       fixture.detectChanges();
 
       // Invoke the handler directly since the fake events are flaky on disabled elements.
@@ -1896,6 +1895,7 @@ describe('SbbMenu', () => {
       const item = fixture.debugElement.query(By.directive(SbbMenuItem))!;
 
       item.componentInstance.disabled = true;
+      fixture.changeDetectorRef.markForCheck();
       fixture.detectChanges();
 
       // Invoke the handler directly since the fake events are flaky on disabled elements.
@@ -2328,6 +2328,7 @@ describe('SbbMenu', () => {
         .toBe(1);
 
       instance.showLazy = true;
+      fixture.changeDetectorRef.markForCheck();
       fixture.detectChanges();
 
       const lazyTrigger = overlay.querySelector('#lazy-trigger')!;

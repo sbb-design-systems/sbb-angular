@@ -7,6 +7,7 @@ import {
   ComponentFixture,
   discardPeriodicTasks,
   fakeAsync,
+  flush,
   TestBed,
   tick,
   waitForAsync,
@@ -470,6 +471,7 @@ describe('SbbTabHeader', () => {
           .toBeGreaterThan(previousDistance);
 
         dispatchFakeEvent(nextButton, endEventName);
+        flush();
       }
 
       /**
@@ -508,6 +510,7 @@ describe('SbbTabHeader', () => {
           .toBeLessThan(currentScroll);
 
         dispatchFakeEvent(nextButton, endEventName);
+        flush();
       }
     });
 
