@@ -949,6 +949,7 @@ export class SbbJourneyMaps implements OnInit, AfterViewInit, OnDestroy, OnChang
     const isLandscapeMode = height < width;
     this.isLevelSwitchHorizontal =
       isLandscapeMode && height < this.isLevelSwitchHorizontalThreshold;
+    this._cd.detectChanges(); // needed for web-component
   }
 
   private _getZooomLevels(): SbbZoomLevels {
