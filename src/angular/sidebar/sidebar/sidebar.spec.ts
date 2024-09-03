@@ -465,6 +465,7 @@ describe('SbbSidebar', () => {
         fixture.detectChanges();
         tick();
       }).toThrowError(/A sidebar was already declared/);
+      flush();
     }));
 
     it('should not throw when a two-way binding is toggled quickly while animating', fakeAsync(() => {
@@ -516,6 +517,7 @@ describe('SbbSidebar', () => {
       sidebar = fixture.debugElement.query(By.directive(SbbSidebar))!.componentInstance;
       lastFocusableElement = fixture.debugElement.query(By.css('.input2'))!.nativeElement;
       lastFocusableElement.focus();
+      flush();
     }));
 
     it('should trap focus when opened in "over" mode', fakeAsync(() => {
@@ -589,6 +591,7 @@ describe('SbbSidebar', () => {
 
       sidebar.open();
       fixture.detectChanges();
+      flush();
 
       expect(anchors.every((anchor) => anchor.getAttribute('tabindex') === '0'))
         .withContext('Expected focus trap anchors to be enabled in over mode.')
@@ -759,6 +762,7 @@ describe('SbbSidebar', () => {
       fixture.componentInstance.position = 'end';
       fixture.changeDetectorRef.markForCheck();
       fixture.detectChanges();
+      flush();
       icon = fixture.debugElement.query(By.directive(SbbIcon));
       expect(icon.componentInstance.svgIcon).toBe('controls-small');
     }));
@@ -766,6 +770,7 @@ describe('SbbSidebar', () => {
     it('should allow overriding the trigger icon', fakeAsync(() => {
       const fixture = TestBed.createComponent(BasicTestComponent);
       fixture.componentInstance.triggerIcon = 'bell-small';
+      fixture.changeDetectorRef.markForCheck();
       fixture.detectChanges();
 
       mediaMatcher.setMatchesQuery(Breakpoints.Mobile, true);
@@ -778,6 +783,7 @@ describe('SbbSidebar', () => {
       fixture.componentInstance.position = 'end';
       fixture.changeDetectorRef.markForCheck();
       fixture.detectChanges();
+      flush();
       icon = fixture.debugElement.query(By.directive(SbbIcon));
       expect(icon.componentInstance.svgIcon).toBe('bell-small');
     }));
@@ -961,6 +967,7 @@ describe('SbbSidebarContainer', () => {
     mediaMatcher.setMatchesQuery(Breakpoints.Mobile, true);
     tick();
     fixture.detectChanges();
+    flush();
 
     const content = fixture.debugElement.nativeElement.querySelector('.sbb-sidebar-content');
     expect(content.style.marginLeft)
@@ -983,7 +990,7 @@ describe('SbbSidebarContainer', () => {
     expect(fixture.nativeElement.querySelector('.sbb-sidebar-backdrop')).toBeTruthy();
   }));
 
-  it('should expose a scrollable when the consumer has not specified sidebar content', fakeAsync(() => {
+  it('should expose a scrollable when the consumer has not specified sidebar content', () => {
     const fixture = TestBed.createComponent(SidebarContainerEmptyTestComponent);
 
     fixture.detectChanges();
@@ -991,9 +998,9 @@ describe('SbbSidebarContainer', () => {
     expect(fixture.componentInstance.sidebarContainer.scrollable instanceof CdkScrollable).toBe(
       true,
     );
-  }));
+  });
 
-  it('should expose a scrollable when the consumer has specified sidebar content', fakeAsync(() => {
+  it('should expose a scrollable when the consumer has specified sidebar content', () => {
     const fixture = TestBed.createComponent(SidebarContainerWithContentTestComponent);
 
     fixture.detectChanges();
@@ -1001,9 +1008,9 @@ describe('SbbSidebarContainer', () => {
     expect(fixture.componentInstance.sidebarContainer.scrollable instanceof CdkScrollable).toBe(
       true,
     );
-  }));
+  });
 
-  it('should clean up the sidebars stream on destroy', fakeAsync(() => {
+  it('should clean up the sidebars stream on destroy', () => {
     const fixture = TestBed.createComponent(SidebarContainerEmptyTestComponent);
     fixture.detectChanges();
 
@@ -1016,7 +1023,7 @@ describe('SbbSidebarContainer', () => {
 
     expect(spy).toHaveBeenCalled();
     subscription.unsubscribe();
-  }));
+  });
 });
 
 describe('SbbSidebar Usage', () => {
