@@ -748,7 +748,7 @@ describe('SbbCheckbox', () => {
     let inputElement: HTMLInputElement;
     let ngModel: NgModel;
 
-    beforeEach(fakeAsync(() => {
+    beforeEach(() => {
       fixture = createComponent(CheckboxWithNgModel);
 
       fixture.componentInstance.isRequired = false;
@@ -759,7 +759,7 @@ describe('SbbCheckbox', () => {
       checkboxInstance = checkboxDebugElement.componentInstance;
       inputElement = <HTMLInputElement>checkboxNativeElement.querySelector('input');
       ngModel = checkboxDebugElement.injector.get<NgModel>(NgModel);
-    }));
+    });
 
     it('should be pristine, untouched, and valid initially', () => {
       expect(ngModel.valid).toBe(true);
@@ -784,7 +784,7 @@ describe('SbbCheckbox', () => {
       // also turn touched.
       dispatchFakeEvent(inputElement, 'blur');
       fixture.detectChanges();
-      flushMicrotasks();
+      flush();
 
       expect(ngModel.pristine).toBe(false);
       expect(ngModel.touched).toBe(true);
@@ -825,23 +825,25 @@ describe('SbbCheckbox', () => {
 
         checkboxInstance.disabled = true;
         fixture.detectChanges();
-        flushMicrotasks();
+        flush();
       }).not.toThrow();
     }));
 
-    it('should toggle checked state on click', () => {
+    it('should toggle checked state on click', fakeAsync(() => {
       expect(checkboxInstance.checked).toBe(false);
 
       inputElement.click();
       fixture.detectChanges();
+      flush();
 
       expect(checkboxInstance.checked).toBe(true);
 
       inputElement.click();
       fixture.detectChanges();
+      flush();
 
       expect(checkboxInstance.checked).toBe(false);
-    });
+    }));
 
     it('should validate with RequiredTrue validator', () => {
       fixture.componentInstance.isRequired = true;

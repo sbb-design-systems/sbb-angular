@@ -1161,7 +1161,7 @@ describe('SbbDialog', () => {
       });
 
       viewContainerFixture.detectChanges();
-      flushMicrotasks();
+      flush();
 
       expect(document.activeElement!.tagName).not.toBe('INPUT');
     }));
@@ -1173,7 +1173,7 @@ describe('SbbDialog', () => {
       });
 
       viewContainerFixture.detectChanges();
-      flushMicrotasks();
+      flush();
 
       expect(
         overlayContainerElement.querySelectorAll('.cdk-focus-trap-anchor').length,
@@ -2086,14 +2086,14 @@ describe('SbbDialog with explicit injector provided', () => {
     fixture = TestBed.createComponent(ModuleBoundDialogParentComponent);
   });
 
-  it('should use the standalone injector and render the dialog successfully', fakeAsync(() => {
+  it('should use the standalone injector and render the dialog successfully', () => {
     fixture.componentInstance.openDialog();
     fixture.detectChanges();
 
     expect(
       overlayContainerElement.querySelector('module-bound-dialog-child-component')!.innerHTML,
     ).toEqual('<p>Pasta</p>');
-  }));
+  });
 });
 
 describe('SbbDialog with template only', () => {

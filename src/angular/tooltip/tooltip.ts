@@ -338,7 +338,7 @@ export class SbbTooltip implements OnDestroy, AfterViewInit {
   private _document: Document;
 
   /** Timer started at the last `touchstart` event. */
-  private _touchstartTimeout: ReturnType<typeof setTimeout>;
+  private _touchstartTimeout: null | ReturnType<typeof setTimeout> = null;
 
   /** Emits when the component is destroyed. */
   private readonly _destroyed = new Subject<void>();
@@ -494,7 +494,10 @@ export class SbbTooltip implements OnDestroy, AfterViewInit {
   ngOnDestroy() {
     const nativeElement = this._elementRef.nativeElement;
 
-    clearTimeout(this._touchstartTimeout);
+    // Optimization: Do not call clearTimeout unless there is an active timer.
+    if (this._touchstartTimeout) {
+      clearTimeout(this._touchstartTimeout);
+    }
 
     if (this._overlayRef) {
       this._overlayRef.dispose();
@@ -794,8 +797,13 @@ export class SbbTooltip implements OnDestroy, AfterViewInit {
           // Note that it's important that we don't `preventDefault` here,
           // because it can prevent click events from firing on the element.
           this._setupPointerExitEventsIfNeeded();
-          clearTimeout(this._touchstartTimeout);
-          this._touchstartTimeout = setTimeout(() => this.show(), LONGPRESS_DELAY);
+          if (this._touchstartTimeout) {
+            clearTimeout(this._touchstartTimeout);
+          }
+          this._touchstartTimeout = setTimeout(() => {
+            this._touchstartTimeout = null;
+            this.show();
+          }, LONGPRESS_DELAY);
         },
       ]);
     }
@@ -826,7 +834,9 @@ export class SbbTooltip implements OnDestroy, AfterViewInit {
     } else if (this.touchGestures !== 'off') {
       this._disableNativeGesturesIfNecessary();
       const touchendListener = () => {
-        clearTimeout(this._touchstartTimeout);
+        if (this._touchstartTimeout) {
+          clearTimeout(this._touchstartTimeout);
+        }
         this.hide(this._defaultOptions.touchendHideDelay);
       };
 

@@ -7,7 +7,6 @@ import {
   Component,
   OnDestroy,
   OnInit,
-  provideExperimentalZonelessChangeDetection,
   Provider,
   QueryList,
   Type,
@@ -595,7 +594,7 @@ describe('SbbAutocomplete', () => {
         SbbOptionModule,
       ],
       declarations: [component],
-      providers: [...providers, provideExperimentalZonelessChangeDetection()],
+      providers,
     });
 
     TestBed.compileComponents();
@@ -1601,6 +1600,7 @@ describe('SbbAutocomplete', () => {
       flush();
 
       fixture.componentInstance.trigger._handleKeydown(enterEvent);
+      flush();
 
       expect(enterEvent.defaultPrevented)
         .withContext('Expected the default action to have been prevented.')
@@ -3582,7 +3582,7 @@ describe('SbbAutocomplete', () => {
       expect(trigger.panelOpen).withContext('Expected panel to be closed.').toBe(false);
     }));
 
-    it('should handle autocomplete being attached to number inputs', fakeAsync(() => {
+    it('should handle autocomplete being attached to number inputs', () => {
       const fixture = createComponent(AutocompleteWithNumberInputAndNgModel);
       fixture.detectChanges();
       const input = fixture.debugElement.query(By.css('input'))!.nativeElement;
@@ -3591,7 +3591,7 @@ describe('SbbAutocomplete', () => {
       fixture.detectChanges();
 
       expect(fixture.componentInstance.selectedValue).toBe(1337);
-    }));
+    });
 
     it('should not scroll to top if a new option is added', waitForAsync(async () => {
       const fixture = createComponent(SimpleAutocomplete);
@@ -4008,32 +4008,25 @@ describe('SbbAutocomplete', () => {
     expect(Math.ceil(parseFloat(overlayPane.style.width as string))).toBe(400);
   });
 
-  it(
-    'should show the panel when the options are initialized later within a component with ' +
-      'OnPush change detection',
-    fakeAsync(() => {
-      const fixture = createComponent(AutocompleteWithOnPushDelay);
+  it('should show the panel when the options are initialized later within a component with OnPush change detection', fakeAsync(() => {
+    const fixture = createComponent(AutocompleteWithOnPushDelay);
+
+    fixture.detectChanges();
+    flush();
+    dispatchFakeEvent(fixture.debugElement.query(By.css('input'))!.nativeElement, 'focusin');
+    tick(1000);
+
+    fixture.detectChanges();
+    tick();
+
+    Promise.resolve().then(() => {
+      const panel = overlayContainerElement.querySelector('.sbb-autocomplete-panel') as HTMLElement;
+      const visibleClass = 'sbb-autocomplete-visible';
 
       fixture.detectChanges();
-      dispatchFakeEvent(fixture.debugElement.query(By.css('input'))!.nativeElement, 'focusin');
-      tick(1000);
-
-      fixture.detectChanges();
-      tick();
-
-      Promise.resolve().then(() => {
-        const panel = overlayContainerElement.querySelector(
-          '.sbb-autocomplete-panel',
-        ) as HTMLElement;
-        const visibleClass = 'sbb-autocomplete-visible';
-
-        fixture.detectChanges();
-        expect(panel.classList)
-          .withContext(`Expected panel to be visible.`)
-          .toContain(visibleClass);
-      });
-    }),
-  );
+      expect(panel.classList).withContext(`Expected panel to be visible.`).toContain(visibleClass);
+    });
+  }));
 
   it('should emit an event when an option is selected', waitForAsync(async () => {
     const fixture = createComponent(AutocompleteWithSelectEvent);

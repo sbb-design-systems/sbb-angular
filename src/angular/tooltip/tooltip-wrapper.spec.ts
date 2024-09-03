@@ -171,6 +171,7 @@ describe('SbbTooltipWrapper', () => {
       // Note that we aren't asserting anything, but `fakeAsync` will
       // throw if we have any timers by the end of the test.
       fixture.destroy();
+      flush();
     }));
 
     it('should emit event on dismissing tooltip', fakeAsync(() => {
@@ -190,6 +191,7 @@ describe('SbbTooltipWrapper', () => {
       // Note that we aren't asserting anything, but `fakeAsync` will
       // throw if we have any timers by the end of the test.
       fixture.destroy();
+      flush();
     }));
 
     it('should forward tooltip classes', fakeAsync(() => {
@@ -245,9 +247,11 @@ describe('SbbTooltipWrapper', () => {
         expect(component.tooltip._tooltip._isTooltipVisible()).toBeTrue();
 
         component.tooltipDisabled = true;
+        fixture.changeDetectorRef.markForCheck();
         fixture.detectChanges();
         buttonElement.click();
         tick(0);
+        fixture.changeDetectorRef.markForCheck();
         fixture.detectChanges();
         flush();
         expect(component.tooltip._tooltip._isTooltipVisible()).toBeFalse();

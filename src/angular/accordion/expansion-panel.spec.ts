@@ -54,7 +54,7 @@ describe('SbbExpansionPanel', () => {
     expect(headerEl.classList).toContain('sbb-expanded');
   }));
 
-  it('should be able to render panel content lazily', fakeAsync(() => {
+  it('should be able to render panel content lazily', () => {
     const fixture = TestBed.createComponent(LazyPanelWithContent);
     const content = fixture.debugElement.query(
       By.css('.sbb-expansion-panel-content'),
@@ -72,9 +72,9 @@ describe('SbbExpansionPanel', () => {
     expect(content.textContent.trim())
       .withContext('Expected content to be rendered.')
       .toContain('Some content');
-  }));
+  });
 
-  it('should render the content for a lazy-loaded panel that is opened on init', fakeAsync(() => {
+  it('should render the content for a lazy-loaded panel that is opened on init', () => {
     const fixture = TestBed.createComponent(LazyPanelOpenOnLoad);
     const content = fixture.debugElement.query(
       By.css('.sbb-expansion-panel-content'),
@@ -84,9 +84,9 @@ describe('SbbExpansionPanel', () => {
     expect(content.textContent.trim())
       .withContext('Expected content to be rendered.')
       .toContain('Some content');
-  }));
+  });
 
-  it('should not render lazy content from a child panel inside the parent', fakeAsync(() => {
+  it('should not render lazy content from a child panel inside the parent', () => {
     const fixture = TestBed.createComponent(NestedLazyPanelWithContent);
     fixture.componentInstance.parentExpanded = true;
     fixture.changeDetectorRef.markForCheck();
@@ -116,7 +116,7 @@ describe('SbbExpansionPanel', () => {
       'Child content',
       'Expected child content element to be rendered.',
     );
-  }));
+  });
 
   it('emit correct events for change in panel expanded state', () => {
     const fixture = TestBed.createComponent(PanelWithContent);
@@ -235,6 +235,7 @@ describe('SbbExpansionPanel', () => {
   it('should not be able to focus content while closed', fakeAsync(() => {
     const fixture = TestBed.createComponent(PanelWithContent);
     fixture.componentInstance.expanded = true;
+    fixture.changeDetectorRef.markForCheck();
     fixture.detectChanges();
     tick(250);
 
@@ -247,6 +248,7 @@ describe('SbbExpansionPanel', () => {
 
     button.blur();
     fixture.componentInstance.expanded = false;
+    fixture.changeDetectorRef.markForCheck();
     fixture.detectChanges();
     tick(250);
 
@@ -257,6 +259,7 @@ describe('SbbExpansionPanel', () => {
   it('should restore focus to header if focused element is inside panel on close', fakeAsync(() => {
     const fixture = TestBed.createComponent(PanelWithContent);
     fixture.componentInstance.expanded = true;
+    fixture.changeDetectorRef.markForCheck();
     fixture.detectChanges();
     tick(250);
 
@@ -269,6 +272,7 @@ describe('SbbExpansionPanel', () => {
       .toBe(button);
 
     fixture.componentInstance.expanded = false;
+    fixture.changeDetectorRef.markForCheck();
     fixture.detectChanges();
     tick(250);
 
@@ -278,6 +282,7 @@ describe('SbbExpansionPanel', () => {
   it('should not change focus origin if origin not specified', fakeAsync(() => {
     const fixture = TestBed.createComponent(PanelWithContent);
     fixture.componentInstance.expanded = true;
+    fixture.changeDetectorRef.markForCheck();
     fixture.detectChanges();
     tick(250);
 
@@ -330,6 +335,7 @@ describe('SbbExpansionPanel', () => {
         .toBe('rotate(90deg)');
 
       fixture.componentInstance.expanded = true;
+      fixture.changeDetectorRef.markForCheck();
       fixture.detectChanges();
       tick(250);
 
@@ -389,13 +395,13 @@ describe('SbbExpansionPanel', () => {
     expect(afterCollapse).toBe(1);
   }));
 
-  it('should be able to set a custom tabindex on the header', fakeAsync(() => {
+  it('should be able to set a custom tabindex on the header', () => {
     const fixture = TestBed.createComponent(PanelWithHeaderTabindex);
     const headerEl = fixture.nativeElement.querySelector('.sbb-expansion-panel-header');
     fixture.detectChanges();
 
     expect(headerEl.getAttribute('tabindex')).toBe('7');
-  }));
+  });
 
   describe('disabled state', () => {
     let fixture: ComponentFixture<PanelWithContent>;
