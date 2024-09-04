@@ -544,9 +544,9 @@ export class SbbSidebar
       this._enableAnimations = false;
       this.mode = this.collapsible || mobile ? 'over' : 'side';
 
-      if (mobile && this.opened) {
+      if (mobile) {
         this.close();
-      } else if (!mobile && !this.opened) {
+      } else {
         this.open();
       }
       this._enableAnimations = wasAnimationsEnabled;
