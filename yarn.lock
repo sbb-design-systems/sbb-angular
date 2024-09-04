@@ -70,12 +70,12 @@
     "@angular-devkit/core" "18.2.2"
     rxjs "7.8.1"
 
-"@angular-devkit/architect@0.1900.0-next.1":
-  version "0.1900.0-next.1"
-  resolved "https://registry.yarnpkg.com/@angular-devkit/architect/-/architect-0.1900.0-next.1.tgz#924b2d87b3215f6b617891d6ee69ddbf9ae98262"
-  integrity sha512-YSZka6wlcoaiMwZZASHqhQ4l6kNfWaJ1ndF2VFrKEDiSH9e4YDtqzFMe3I9uT8vsuplhApNsTnwYK7W2nA8UJg==
+"@angular-devkit/architect@0.1900.0-next.2":
+  version "0.1900.0-next.2"
+  resolved "https://registry.yarnpkg.com/@angular-devkit/architect/-/architect-0.1900.0-next.2.tgz#6bd3ca40c065ed1f13c3df6c2a9d3a85e4ac1d01"
+  integrity sha512-UM87VLUXonXJYOU+0+Uw7qxvVgVYu1rnQKV1GcTAw38wzMBhYTi5yn/+5JDkZ761kTjDIgycdCFud0SAnFOF0w==
   dependencies:
-    "@angular-devkit/core" "19.0.0-next.1"
+    "@angular-devkit/core" "19.0.0-next.2"
     rxjs "7.8.1"
 
 "@angular-devkit/build-angular@18.2.2":
@@ -168,10 +168,10 @@
     rxjs "7.8.1"
     source-map "0.7.4"
 
-"@angular-devkit/core@19.0.0-next.1":
-  version "19.0.0-next.1"
-  resolved "https://registry.yarnpkg.com/@angular-devkit/core/-/core-19.0.0-next.1.tgz#0aa27ae6c4cf7e4ea91f183679197ff1f88ab358"
-  integrity sha512-CatMSlQHg0AESA+aKRyZQBh5wjiaT+H1jbWIoJ3fK+1SuWzqNJkOsFXVJC5nYHGjbdpm6UK05e8Ava5sBjyROg==
+"@angular-devkit/core@19.0.0-next.2":
+  version "19.0.0-next.2"
+  resolved "https://registry.yarnpkg.com/@angular-devkit/core/-/core-19.0.0-next.2.tgz#03147db2f8618ba2a0fe0971cdd900f5fe401d6f"
+  integrity sha512-f5TQxC6EvbtKG7CcY5zzi8njdV1Tpju6daQ2m2Pq0hLUpvHaQ/uhZmOb2KB0oweZAqGc+b4khotAZc9z1LGMkw==
   dependencies:
     ajv "8.17.1"
     ajv-formats "3.0.1"
@@ -226,12 +226,12 @@
     "@angular/core" "^13.0.0 || ^14.0.0-0"
     reflect-metadata "^0.1.13"
 
-"@angular/build-tooling@https://github.com/angular/dev-infra-private-build-tooling-builds.git#ad9330fd55709b2a1088d405bcc09fcdf3b4c2b4":
-  version "0.0.0-5cd9db48bb30fa0a746501a8039ddfa0ac4e2289"
-  resolved "https://github.com/angular/dev-infra-private-build-tooling-builds.git#ad9330fd55709b2a1088d405bcc09fcdf3b4c2b4"
+"@angular/build-tooling@https://github.com/angular/dev-infra-private-build-tooling-builds.git#448e47f273d12e04a53f7c8f3f6c483f7203d381":
+  version "0.0.0-b1788b992db2885b354aea52bde0b2a6fa56efa3"
+  resolved "https://github.com/angular/dev-infra-private-build-tooling-builds.git#448e47f273d12e04a53f7c8f3f6c483f7203d381"
   dependencies:
     "@angular/benchpress" "0.3.0"
-    "@angular/build" "19.0.0-next.1"
+    "@angular/build" "19.0.0-next.2"
     "@babel/core" "^7.16.0"
     "@babel/helper-annotate-as-pure" "^7.18.6"
     "@babel/plugin-proposal-async-generator-functions" "^7.20.1"
@@ -297,13 +297,13 @@
     vite "5.4.0"
     watchpack "2.4.1"
 
-"@angular/build@19.0.0-next.1":
-  version "19.0.0-next.1"
-  resolved "https://registry.yarnpkg.com/@angular/build/-/build-19.0.0-next.1.tgz#02259affa60dd3c6ed1c959e575f2102c0e704a4"
-  integrity sha512-DNkxBb9URZxtnBe+Q5oR+C86JImwupOa4TWyg10arLYox95jM39KTVLfDFfmzhfAkVCyYIQbMA5CB+635Hu4iw==
+"@angular/build@19.0.0-next.2":
+  version "19.0.0-next.2"
+  resolved "https://registry.yarnpkg.com/@angular/build/-/build-19.0.0-next.2.tgz#1556f68cf30bae1800cf945178cd88fbed25d5be"
+  integrity sha512-LXuUeZQkelguAmdf8K50txo7acn7CdVboe2ZMQOwk5qjEPqEq+dtU14eAtwyk1rXfJnd+6fBocYgjAbb1/HKVw==
   dependencies:
     "@ampproject/remapping" "2.3.0"
-    "@angular-devkit/architect" "0.1900.0-next.1"
+    "@angular-devkit/architect" "0.1900.0-next.2"
     "@babel/core" "7.25.2"
     "@babel/helper-annotate-as-pure" "7.24.7"
     "@babel/helper-split-export-declaration" "7.24.7"
@@ -322,7 +322,7 @@
     parse5-html-rewriting-stream "7.0.0"
     picomatch "4.0.2"
     piscina "4.6.1"
-    rollup "4.21.0"
+    rollup "4.21.1"
     sass "1.77.8"
     semver "7.6.3"
     vite "5.4.2"
@@ -431,9 +431,9 @@
     fast-glob "3.3.2"
     yargs "^17.2.1"
 
-"@angular/ng-dev@https://github.com/angular/dev-infra-private-ng-dev-builds.git#47455886213b685893f3e558d14e9da12947f4e0":
-  version "0.0.0-5cd9db48bb30fa0a746501a8039ddfa0ac4e2289"
-  resolved "https://github.com/angular/dev-infra-private-ng-dev-builds.git#47455886213b685893f3e558d14e9da12947f4e0"
+"@angular/ng-dev@https://github.com/angular/dev-infra-private-ng-dev-builds.git#163ad1207237ab76e02bb5decefa99760889d01c":
+  version "0.0.0-b1788b992db2885b354aea52bde0b2a6fa56efa3"
+  resolved "https://github.com/angular/dev-infra-private-ng-dev-builds.git#163ad1207237ab76e02bb5decefa99760889d01c"
   dependencies:
     "@octokit/rest" "21.0.2"
     "@types/semver" "^7.3.6"
@@ -14748,32 +14748,7 @@ rollup@4.20.0:
     "@rollup/rollup-win32-x64-msvc" "4.20.0"
     fsevents "~2.3.2"
 
-rollup@4.21.0, rollup@^4.13.0:
-  version "4.21.0"
-  resolved "https://registry.yarnpkg.com/rollup/-/rollup-4.21.0.tgz#28db5f5c556a5180361d35009979ccc749560b9d"
-  integrity sha512-vo+S/lfA2lMS7rZ2Qoubi6I5hwZwzXeUIctILZLbHI+laNtvhhOIon2S1JksA5UEDQ7l3vberd0fxK44lTYjbQ==
-  dependencies:
-    "@types/estree" "1.0.5"
-  optionalDependencies:
-    "@rollup/rollup-android-arm-eabi" "4.21.0"
-    "@rollup/rollup-android-arm64" "4.21.0"
-    "@rollup/rollup-darwin-arm64" "4.21.0"
-    "@rollup/rollup-darwin-x64" "4.21.0"
-    "@rollup/rollup-linux-arm-gnueabihf" "4.21.0"
-    "@rollup/rollup-linux-arm-musleabihf" "4.21.0"
-    "@rollup/rollup-linux-arm64-gnu" "4.21.0"
-    "@rollup/rollup-linux-arm64-musl" "4.21.0"
-    "@rollup/rollup-linux-powerpc64le-gnu" "4.21.0"
-    "@rollup/rollup-linux-riscv64-gnu" "4.21.0"
-    "@rollup/rollup-linux-s390x-gnu" "4.21.0"
-    "@rollup/rollup-linux-x64-gnu" "4.21.0"
-    "@rollup/rollup-linux-x64-musl" "4.21.0"
-    "@rollup/rollup-win32-arm64-msvc" "4.21.0"
-    "@rollup/rollup-win32-ia32-msvc" "4.21.0"
-    "@rollup/rollup-win32-x64-msvc" "4.21.0"
-    fsevents "~2.3.2"
-
-rollup@^4.20.0:
+rollup@4.21.1, rollup@^4.20.0:
   version "4.21.1"
   resolved "https://registry.yarnpkg.com/rollup/-/rollup-4.21.1.tgz#65b9b9e9de9a64604fab083fb127f3e9eac2935d"
   integrity sha512-ZnYyKvscThhgd3M5+Qt3pmhO4jIRR5RGzaSovB6Q7rGNrK5cUncrtLmcTTJVSdcKXyZjW8X8MB0JMSuH9bcAJg==
@@ -14796,6 +14771,31 @@ rollup@^4.20.0:
     "@rollup/rollup-win32-arm64-msvc" "4.21.1"
     "@rollup/rollup-win32-ia32-msvc" "4.21.1"
     "@rollup/rollup-win32-x64-msvc" "4.21.1"
+    fsevents "~2.3.2"
+
+rollup@^4.13.0:
+  version "4.21.0"
+  resolved "https://registry.yarnpkg.com/rollup/-/rollup-4.21.0.tgz#28db5f5c556a5180361d35009979ccc749560b9d"
+  integrity sha512-vo+S/lfA2lMS7rZ2Qoubi6I5hwZwzXeUIctILZLbHI+laNtvhhOIon2S1JksA5UEDQ7l3vberd0fxK44lTYjbQ==
+  dependencies:
+    "@types/estree" "1.0.5"
+  optionalDependencies:
+    "@rollup/rollup-android-arm-eabi" "4.21.0"
+    "@rollup/rollup-android-arm64" "4.21.0"
+    "@rollup/rollup-darwin-arm64" "4.21.0"
+    "@rollup/rollup-darwin-x64" "4.21.0"
+    "@rollup/rollup-linux-arm-gnueabihf" "4.21.0"
+    "@rollup/rollup-linux-arm-musleabihf" "4.21.0"
+    "@rollup/rollup-linux-arm64-gnu" "4.21.0"
+    "@rollup/rollup-linux-arm64-musl" "4.21.0"
+    "@rollup/rollup-linux-powerpc64le-gnu" "4.21.0"
+    "@rollup/rollup-linux-riscv64-gnu" "4.21.0"
+    "@rollup/rollup-linux-s390x-gnu" "4.21.0"
+    "@rollup/rollup-linux-x64-gnu" "4.21.0"
+    "@rollup/rollup-linux-x64-musl" "4.21.0"
+    "@rollup/rollup-win32-arm64-msvc" "4.21.0"
+    "@rollup/rollup-win32-ia32-msvc" "4.21.0"
+    "@rollup/rollup-win32-x64-msvc" "4.21.0"
     fsevents "~2.3.2"
 
 run-applescript@^7.0.0:
