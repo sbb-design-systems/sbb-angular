@@ -65,7 +65,7 @@
     "@stackblitz/sdk": "1.11.0",
     "maplibre-gl": "3.6.2",
     "rxjs": "7.8.1",
-    "tslib": "2.6.3",
+    "tslib": "2.7.0",
     "zone.js": "0.14.3"
   },
   "devDependencies": {
