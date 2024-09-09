@@ -1,6 +1,6 @@
 import { LiveAnnouncer } from '@angular/cdk/a11y';
 import { HttpClient } from '@angular/common/http';
-import { Component, ViewChild } from '@angular/core';
+import { Component, inject, ViewChild } from '@angular/core';
 import { SbbLoadingIndicatorModule } from '@sbb-esta/angular/loading-indicator';
 import { SbbSort, SbbSortState, SbbTableDataSource } from '@sbb-esta/angular/table';
 import { SbbTableModule } from '@sbb-esta/angular/table';
@@ -35,10 +35,11 @@ export class StickyTableExample {
     this.dataSource.sort = sort;
   }
 
-  constructor(
-    private _liveAnnouncer: LiveAnnouncer,
-    httpClient: HttpClient,
-  ) {
+  private _liveAnnouncer = inject(LiveAnnouncer);
+
+  constructor() {
+    const httpClient = inject(HttpClient);
+
     httpClient
       .get(
         'https://data.sbb.ch/api/records/1.0/search/?dataset=zugzahlen&q=isb%3DSBB&rows=80&facet=isb&facet=strecke_bezeichnung&facet=strecke_art&facet=bp_von_abschnitt&facet=bp_bis_abschnitt&facet=jahr',

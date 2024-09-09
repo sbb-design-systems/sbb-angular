@@ -1,5 +1,5 @@
 import { HttpClient } from '@angular/common/http';
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Component, inject, OnDestroy, OnInit } from '@angular/core';
 import { FormControl, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { SbbAutocompleteModule } from '@sbb-esta/angular/autocomplete';
 import { SbbOptionModule } from '@sbb-esta/angular/core';
@@ -55,9 +55,8 @@ export class SearchHistoricRailwayPicturesExample implements OnInit, OnDestroy {
   ];
   filteredCities = this.cities.slice(0);
 
+  private _http = inject(HttpClient);
   private _destroyed = new Subject<void>();
-
-  constructor(private _http: HttpClient) {}
 
   ngOnInit() {
     this.searchControl.valueChanges

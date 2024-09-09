@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, inject, OnInit } from '@angular/core';
 import { SbbAlertConfig, SbbAlertRef, SbbAlertService } from '@sbb-esta/angular/alert';
 import { SbbAlertModule } from '@sbb-esta/angular/alert';
 import { SbbButtonModule } from '@sbb-esta/angular/button';
@@ -16,9 +16,8 @@ let nextId = 1;
   imports: [SbbAlertModule, SbbButtonModule],
 })
 export class AlertOutletExample implements OnInit {
+  private _alertService = inject(SbbAlertService);
   private _refs: SbbAlertRef[] = [];
-
-  constructor(private _alertService: SbbAlertService) {}
 
   ngOnInit(): void {
     this.add();

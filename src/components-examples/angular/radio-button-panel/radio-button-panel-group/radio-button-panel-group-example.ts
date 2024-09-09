@@ -1,5 +1,5 @@
 import { NgClass } from '@angular/common';
-import { Component, OnDestroy } from '@angular/core';
+import { Component, inject, OnDestroy } from '@angular/core';
 import { FormBuilder, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { SbbOptionModule } from '@sbb-esta/angular/core';
 import { SbbFormFieldModule } from '@sbb-esta/angular/form-field';
@@ -32,6 +32,8 @@ import { startWith, takeUntil } from 'rxjs/operators';
   ],
 })
 export class RadioButtonPanelGroupExample implements OnDestroy {
+  private _formBuilder = inject(FormBuilder);
+
   readonly breakpoints = [
     'tablet',
     'desktop',
@@ -54,7 +56,7 @@ export class RadioButtonPanelGroupExample implements OnDestroy {
   groupClasses: string[] = [];
   private _destroyed = new Subject<void>();
 
-  constructor(private _formBuilder: FormBuilder) {
+  constructor() {
     this.form.valueChanges
       .pipe(startWith(this.form.value), takeUntil(this._destroyed))
       .subscribe((v) => {

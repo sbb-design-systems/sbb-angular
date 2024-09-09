@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { SbbButtonModule } from '@sbb-esta/angular/button';
 import { SbbLightbox } from '@sbb-esta/angular/lightbox';
 import { SbbLightboxModule } from '@sbb-esta/angular/lightbox';
@@ -14,7 +14,7 @@ import { SbbLightboxModule } from '@sbb-esta/angular/lightbox';
   imports: [SbbLightboxModule, SbbButtonModule],
 })
 export class LightboxComponentExample {
-  constructor(public lightbox: SbbLightbox) {}
+  lightbox = inject(SbbLightbox);
 
   openDialog() {
     const lightboxRef = this.lightbox.open(LightboxComponentExampleContent);
