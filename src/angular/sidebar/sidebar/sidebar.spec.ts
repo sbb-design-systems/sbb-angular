@@ -452,6 +452,26 @@ describe('SbbSidebar', () => {
   });
 
   describe('attributes', () => {
+    it('should correctly parse opened="false"', () => {
+      const fixture = TestBed.createComponent(SidebarSetToOpenedFalseTestComponent);
+
+      fixture.detectChanges();
+
+      const sidebar = fixture.debugElement.query(By.directive(SbbSidebar))!.componentInstance;
+
+      expect((sidebar as SbbSidebar).opened).toBe(false);
+    });
+
+    it('should correctly parse opened="true"', () => {
+      const fixture = TestBed.createComponent(SidebarSetToOpenedTrueTestComponent);
+
+      fixture.detectChanges();
+
+      const sidebar = fixture.debugElement.query(By.directive(SbbSidebar))!.componentInstance;
+
+      expect((sidebar as SbbSidebar).opened).toBe(true);
+    });
+
     it('should remove align attr from DOM', () => {
       const fixture = TestBed.createComponent(BasicTestComponent);
       fixture.detectChanges();
@@ -505,6 +525,21 @@ describe('SbbSidebar', () => {
 
       tick(1);
       flush();
+    }));
+
+    it('should bind 2-way bind on opened property', fakeAsync(() => {
+      const fixture = TestBed.createComponent(SidebarOpenBindingTestComponent);
+      fixture.detectChanges();
+
+      const sidebar: SbbSidebar = fixture.debugElement.query(
+        By.directive(SbbSidebar),
+      )!.componentInstance;
+
+      sidebar.open();
+      fixture.detectChanges();
+      tick();
+
+      expect(fixture.componentInstance.isOpen).toBe(true);
     }));
   });
 
@@ -1215,14 +1250,25 @@ class SidebarSetToOpenedTrueTestComponent {
 
 @Component({
   template: ` <sbb-sidebar-container>
-    <sbb-sidebar #sidebar>
+    <sbb-sidebar #sidebar opened="false"> Closed Drawer. </sbb-sidebar>
+  </sbb-sidebar-container>`,
+  standalone: true,
+  imports: [SbbSidebarModule],
+})
+class SidebarSetToOpenedFalseTestComponent {}
+
+@Component({
+  template: ` <sbb-sidebar-container>
+    <sbb-sidebar #sidebar [(opened)]="isOpen">
       <fieldset>Closed Sidebar.</fieldset>
     </sbb-sidebar>
   </sbb-sidebar-container>`,
   standalone: true,
   imports: [SbbSidebarModule],
 })
-class SidebarOpenBindingTestComponent {}
+class SidebarOpenBindingTestComponent {
+  isOpen = false;
+}
 
 @Component({
   template: ` <sbb-sidebar-container>
