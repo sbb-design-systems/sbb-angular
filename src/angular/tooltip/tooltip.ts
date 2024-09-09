@@ -943,9 +943,6 @@ export class SbbTooltip implements OnDestroy, AfterViewInit {
   changeDetection: ChangeDetectionStrategy.OnPush,
   host: {
     class: 'sbb-tooltip-component',
-    // Forces the element to have a layout in IE and Edge. This fixes issues where the element
-    // won't be rendered if the animations are disabled or there is no web animations polyfill.
-    '[style.zoom]': 'isVisible() ? 1 : null',
     '(mouseleave)': '_handleMouseLeave($event)',
     'aria-hidden': 'true',
   },
