@@ -1,6 +1,6 @@
 import { LiveAnnouncer } from '@angular/cdk/a11y';
 import { DatePipe } from '@angular/common';
-import { AfterViewInit, Component, ViewChild } from '@angular/core';
+import { AfterViewInit, Component, inject, ViewChild } from '@angular/core';
 import { SbbSort, SbbSortState, SbbTableDataSource } from '@sbb-esta/angular/table';
 import { SbbTableModule } from '@sbb-esta/angular/table';
 
@@ -18,9 +18,9 @@ export class SortableTableExample implements AfterViewInit {
   displayedColumns: string[] = ['letter', 'number', 'word', 'date'];
   dataSource: SbbTableDataSource<any> = new SbbTableDataSource(TABLE_EXAMPLE_DATA);
 
-  constructor(private _liveAnnouncer: LiveAnnouncer) {}
-
   @ViewChild(SbbSort) sort: SbbSort;
+
+  private _liveAnnouncer = inject(LiveAnnouncer);
 
   ngAfterViewInit(): void {
     this.dataSource.sort = this.sort;

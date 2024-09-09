@@ -1,4 +1,10 @@
-import { ChangeDetectionStrategy, ChangeDetectorRef, Component, OnInit } from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  ChangeDetectorRef,
+  Component,
+  inject,
+  OnInit,
+} from '@angular/core';
 import { SbbButtonModule } from '@sbb-esta/angular/button';
 import { SbbLightbox, SbbLightboxRef } from '@sbb-esta/angular/lightbox';
 import { SbbLightboxModule } from '@sbb-esta/angular/lightbox';
@@ -14,7 +20,7 @@ import { SbbLightboxModule } from '@sbb-esta/angular/lightbox';
   imports: [SbbLightboxModule, SbbButtonModule],
 })
 export class LightboxConfirmationExample {
-  constructor(public lightbox: SbbLightbox) {}
+  lightbox = inject(SbbLightbox);
 
   openDialog() {
     const lightboxRef = this.lightbox.open(LightboxWithConfirmationOnClose, {
@@ -52,10 +58,8 @@ export class LightboxConfirmationExample {
 export class LightboxWithConfirmationOnClose implements OnInit {
   confirmPanel = false;
 
-  constructor(
-    private _lightBoxRef: SbbLightboxRef<LightboxWithConfirmationOnClose>,
-    private _changeDetectorRef: ChangeDetectorRef,
-  ) {}
+  private _changeDetectorRef = inject(ChangeDetectorRef);
+  private _lightBoxRef = inject<SbbLightboxRef<LightboxWithConfirmationOnClose>>(SbbLightboxRef);
 
   ngOnInit() {
     this._lightBoxRef.closeRequest.subscribe(() => {

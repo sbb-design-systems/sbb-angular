@@ -1,5 +1,5 @@
 import { JsonPipe } from '@angular/common';
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { FormBuilder, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { SbbTagModule } from '@sbb-esta/angular/tag';
 
@@ -14,11 +14,11 @@ import { SbbTagModule } from '@sbb-esta/angular/tag';
   imports: [SbbTagModule, FormsModule, ReactiveFormsModule, JsonPipe],
 })
 export class TagReactiveFormsExample {
+  private _formBuilder = inject(FormBuilder);
+
   formGroup = this._formBuilder.group({
     trains: [true],
     cars: [true],
     bicycles: [false],
   });
-
-  constructor(private _formBuilder: FormBuilder) {}
 }
