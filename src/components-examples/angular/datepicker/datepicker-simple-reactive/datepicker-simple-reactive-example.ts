@@ -1,5 +1,5 @@
 import { DatePipe, JsonPipe } from '@angular/common';
-import { Component, OnDestroy } from '@angular/core';
+import { Component, inject, OnDestroy } from '@angular/core';
 import { FormControl, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { SbbCheckboxModule } from '@sbb-esta/angular/checkbox';
 import { SbbDateAdapter } from '@sbb-esta/angular/core';
@@ -42,7 +42,9 @@ export class DatepickerSimpleReactiveExample implements OnDestroy {
 
   private _destroyed = new Subject<void>();
 
-  constructor(dateAdapter: SbbDateAdapter<Date>) {
+  constructor() {
+    const dateAdapter = inject<SbbDateAdapter<Date>>(SbbDateAdapter);
+
     this.minDate.setValue(dateAdapter.addCalendarMonths(dateAdapter.today(), -6));
     this.maxDate.setValue(dateAdapter.addCalendarMonths(dateAdapter.today(), 6));
 

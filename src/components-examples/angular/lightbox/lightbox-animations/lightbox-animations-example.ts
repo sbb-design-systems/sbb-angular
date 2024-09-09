@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { SbbButtonModule } from '@sbb-esta/angular/button';
 import { SbbLightbox } from '@sbb-esta/angular/lightbox';
 import { SbbLightboxModule } from '@sbb-esta/angular/lightbox';
@@ -15,7 +15,7 @@ import { SbbLightboxModule } from '@sbb-esta/angular/lightbox';
   imports: [SbbLightboxModule, SbbButtonModule],
 })
 export class LightboxAnimationsExample {
-  constructor(public lightbox: SbbLightbox) {}
+  lightbox = inject(SbbLightbox);
 
   openLightbox(enterAnimationDuration: string, exitAnimationDuration: string): void {
     this.lightbox.open(LightboxAnimationsExampleContent, {

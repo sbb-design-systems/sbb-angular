@@ -1,4 +1,4 @@
-import { Component, TemplateRef, ViewChild } from '@angular/core';
+import { Component, inject, TemplateRef, ViewChild } from '@angular/core';
 import { SbbButtonModule } from '@sbb-esta/angular/button';
 import { SbbNotificationToast } from '@sbb-esta/angular/notification-toast';
 
@@ -14,8 +14,7 @@ import { SbbNotificationToast } from '@sbb-esta/angular/notification-toast';
 })
 export class NotificationToastTemplateExample {
   @ViewChild('content') content: TemplateRef<any>;
-
-  constructor(private _notification: SbbNotificationToast) {}
+  private _notification = inject(SbbNotificationToast);
 
   showNotification() {
     this._notification.openFromTemplate(this.content);

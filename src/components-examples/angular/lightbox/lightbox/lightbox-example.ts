@@ -1,4 +1,4 @@
-import { Component, Inject } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { SbbButtonModule } from '@sbb-esta/angular/button';
 import { SbbFormFieldModule } from '@sbb-esta/angular/form-field';
@@ -26,10 +26,10 @@ export interface LightboxData {
   imports: [SbbLightboxModule, SbbFormFieldModule, SbbInputModule, FormsModule, SbbButtonModule],
 })
 export class LightboxExample {
+  lightbox = inject(SbbLightbox);
+
   animal: string;
   name: string;
-
-  constructor(public lightbox: SbbLightbox) {}
 
   open(): void {
     const lightboxRef = this.lightbox.open(LightboxExampleContent, {
@@ -50,10 +50,8 @@ export class LightboxExample {
   imports: [SbbLightboxModule, SbbFormFieldModule, SbbInputModule, FormsModule, SbbButtonModule],
 })
 export class LightboxExampleContent {
-  constructor(
-    public lightboxRef: SbbLightboxRef<LightboxExampleContent>,
-    @Inject(SBB_LIGHTBOX_DATA) public data: LightboxData,
-  ) {}
+  lightboxRef = inject<SbbLightboxRef<LightboxExampleContent>>(SbbLightboxRef);
+  data = inject<LightboxData>(SBB_LIGHTBOX_DATA);
 
   noThanks(): void {
     this.lightboxRef.close();

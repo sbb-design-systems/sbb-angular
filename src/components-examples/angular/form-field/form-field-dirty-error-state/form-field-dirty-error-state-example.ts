@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { FormControl, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
 import { SbbShowOnDirtyErrorStateMatcher } from '@sbb-esta/angular/core';
 import { SbbFormFieldModule } from '@sbb-esta/angular/form-field';
@@ -16,7 +16,7 @@ import { SbbInputModule } from '@sbb-esta/angular/input';
   imports: [SbbFormFieldModule, SbbInputModule, FormsModule, ReactiveFormsModule],
 })
 export class FormFieldDirtyErrorStateExample {
-  name: FormControl = new FormControl('', [Validators.required, Validators.minLength(5)]);
+  readonly errorStateMatcher = inject(SbbShowOnDirtyErrorStateMatcher);
 
-  constructor(readonly errorStateMatcher: SbbShowOnDirtyErrorStateMatcher) {}
+  name: FormControl = new FormControl('', [Validators.required, Validators.minLength(5)]);
 }

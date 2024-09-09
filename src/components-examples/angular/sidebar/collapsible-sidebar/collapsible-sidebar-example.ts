@@ -1,5 +1,5 @@
 import { BreakpointObserver, MediaMatcher } from '@angular/cdk/layout';
-import { AfterViewInit, Component, OnDestroy, ViewChild } from '@angular/core';
+import { AfterViewInit, Component, inject, OnDestroy, ViewChild } from '@angular/core';
 import { FormControl, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { SbbExpansionPanel, SbbExpansionPanelHeader } from '@sbb-esta/angular/accordion';
 import { SbbButton } from '@sbb-esta/angular/button';
@@ -52,8 +52,7 @@ export class CollapsibleSidebarExample implements AfterViewInit, OnDestroy {
   simulateMobile = new FormControl(false, { initialValueIsDefault: true });
   collapsibleTitle = new FormControl('SBB Angular');
   private _destroyed = new Subject<void>();
-
-  constructor(private _mediaMatcher: FakeMediaMatcher) {}
+  private _mediaMatcher = inject(FakeMediaMatcher);
 
   ngAfterViewInit(): void {
     this.simulateMobile.valueChanges

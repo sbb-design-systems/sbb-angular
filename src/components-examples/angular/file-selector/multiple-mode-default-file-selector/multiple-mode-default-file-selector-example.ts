@@ -1,5 +1,5 @@
 import { JsonPipe } from '@angular/common';
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Component, inject, OnDestroy, OnInit } from '@angular/core';
 import { FormControl, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { SbbCheckboxChange } from '@sbb-esta/angular/checkbox';
 import { SbbCheckboxModule } from '@sbb-esta/angular/checkbox';
@@ -24,8 +24,9 @@ export class MultipleModeDefaultFileSelectorExample implements OnInit, OnDestroy
   disabled: boolean;
   accept: string;
   private _destroyed = new Subject<void>();
+  private _fileTypeService = inject(SbbFileSelectorTypesService);
 
-  constructor(private _fileTypeService: SbbFileSelectorTypesService) {
+  constructor() {
     this.accept = this._fileTypeService.getAcceptString('image', 'zip');
   }
 
