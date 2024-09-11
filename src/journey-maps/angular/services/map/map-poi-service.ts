@@ -123,7 +123,7 @@ export class SbbMapPoiService {
     categories: SbbPointsOfInterestCategoryType[] | undefined,
     updateType: 'replace' | 'update',
     exclude: boolean | undefined,
-  ): false | any[] {
+  ): boolean | any[] {
     const filterByCategoryExpression: boolean | any[] = categories
       ? this._getCategoryExpressionDef(
           [
@@ -132,7 +132,7 @@ export class SbbMapPoiService {
           ],
           exclude,
         )
-      : false;
+      : true;
 
     if (updateType === 'replace' || this._invalidFilterDef(currentFilterDef)) {
       return filterByCategoryExpression;
