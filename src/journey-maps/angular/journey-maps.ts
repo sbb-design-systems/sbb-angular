@@ -104,7 +104,16 @@ export class SbbJourneyMaps implements OnInit, AfterViewInit, OnDestroy, OnChang
    * <b>NOTE:</b> This does not work - at the moment - when using the Web Component version of the library.
    */
   @Input() markerDetailsTemplate?: SbbTemplateType;
-  /** Which (floor-)level should be shown */
+  /**
+   * The (floor-)level that should be shown on the map.
+   *
+   * This variable must be set after the map has fully initialized.
+   * Ensure that the `mapReady()` event has fired and use the 'idle' event to set the level.
+   *
+   * Example to set `selectedLevel` to -2:
+   *
+   * map.once('idle', () => this.selectedLevel = -2);
+   */
   @Input() selectedLevel: number | undefined;
   @Input() listenerOptions: SbbListenerOptions;
   /**
