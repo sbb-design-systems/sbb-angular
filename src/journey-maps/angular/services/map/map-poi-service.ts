@@ -69,9 +69,11 @@ export class SbbMapPoiService {
   }
 
   private _handleV3StylePoiLayers(map: MaplibreMap, poiOptions?: SbbPointsOfInterestOptions): void {
+    const poiPinLayerVisible = !!poiOptions?.categories?.length;
     [...poiLayerTypes.PIN.defaultLayer, ...poiLayerTypes.PIN.interactiveLayer].forEach(
       (layerId) => {
         this._updateCategoryFilter(map, layerId, poiOptions, 'replace');
+        this._updateLayerVisibility(map, layerId, poiPinLayerVisible);
       },
     );
     poiLayerTypes.SQUARE.defaultLayer.forEach((layerId) => {
@@ -80,11 +82,6 @@ export class SbbMapPoiService {
     poiLayerTypes.SQUARE.interactiveLayer.forEach((layerId) => {
       this._updateCategoryFilter(map, layerId, poiOptions, 'replace', true);
     });
-    [...poiLayerTypes.PIN.defaultLayer, ...poiLayerTypes.PIN.interactiveLayer].forEach(
-      (layerId) => {
-        this._updateLayerVisibility(map, layerId, !!poiOptions?.categories?.length);
-      },
-    );
   }
 
   getPoiLayerIds(map: MaplibreMap): string[] {
@@ -123,7 +120,7 @@ export class SbbMapPoiService {
     categories: SbbPointsOfInterestCategoryType[] | undefined,
     updateType: 'replace' | 'update',
     exclude: boolean | undefined,
-  ): false | any[] {
+  ): boolean | any[] {
     const filterByCategoryExpression: boolean | any[] = categories
       ? this._getCategoryExpressionDef(
           [
@@ -132,7 +129,7 @@ export class SbbMapPoiService {
           ],
           exclude,
         )
-      : false;
+      : true;
 
     if (updateType === 'replace' || this._invalidFilterDef(currentFilterDef)) {
       return filterByCategoryExpression;
