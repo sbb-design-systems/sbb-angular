@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { SbbButtonModule } from '@sbb-esta/angular/button';
 import { SbbFormFieldModule } from '@sbb-esta/angular/form-field';
@@ -25,8 +25,7 @@ export class SimpleNotificationToastExample {
   types = ['success', 'info', 'error', 'warn'];
   positions = ['top', 'bottom'];
   position: SbbNotificationToastVerticalPosition = 'bottom';
-
-  constructor(private _notification: SbbNotificationToast) {}
+  private _notification = inject(SbbNotificationToast);
 
   showNotification() {
     this._notification

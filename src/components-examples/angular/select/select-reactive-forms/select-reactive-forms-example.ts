@@ -1,5 +1,5 @@
 import { JsonPipe } from '@angular/common';
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { FormBuilder, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { SbbCheckboxModule } from '@sbb-esta/angular/checkbox';
 import { SbbOptionModule } from '@sbb-esta/angular/core';
@@ -25,11 +25,11 @@ import { SbbSelectModule } from '@sbb-esta/angular/select';
   ],
 })
 export class SelectReactiveFormsExample {
+  private _formBuilder = inject(FormBuilder);
+
   form = this._formBuilder.group({
     value: '',
     optionDisabled: false,
     readonly: false,
   });
-
-  constructor(private _formBuilder: FormBuilder) {}
 }

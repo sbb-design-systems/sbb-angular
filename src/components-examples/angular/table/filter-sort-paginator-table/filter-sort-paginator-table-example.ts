@@ -1,6 +1,6 @@
 import { LiveAnnouncer } from '@angular/cdk/a11y';
 import { AsyncPipe } from '@angular/common';
-import { AfterViewInit, Component, OnDestroy, ViewChild } from '@angular/core';
+import { AfterViewInit, Component, inject, OnDestroy, ViewChild } from '@angular/core';
 import { FormControl, FormGroup, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { SbbAutocompleteModule } from '@sbb-esta/angular/autocomplete';
 import { SbbOptionModule } from '@sbb-esta/angular/core';
@@ -87,8 +87,7 @@ export class FilterSortPaginatorTableExample implements AfterViewInit, OnDestroy
   descriptions: Observable<string[]>;
 
   private _destroyed = new Subject<void>();
-
-  constructor(private _liveAnnouncer: LiveAnnouncer) {}
+  private _liveAnnouncer = inject(LiveAnnouncer);
 
   ngAfterViewInit() {
     this.dataSource.paginator = this.paginator;

@@ -1,5 +1,5 @@
 import { BreakpointObserver, MediaMatcher } from '@angular/cdk/layout';
-import { AfterViewInit, Component, OnDestroy } from '@angular/core';
+import { AfterViewInit, Component, inject, OnDestroy } from '@angular/core';
 import { FormControl, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { SbbAccordionModule } from '@sbb-esta/angular/accordion';
 import { SbbButtonModule } from '@sbb-esta/angular/button';
@@ -41,9 +41,8 @@ import { startWith, takeUntil } from 'rxjs/operators';
 export class SidebarExample implements AfterViewInit, OnDestroy {
   position = new FormControl<'start' | 'end'>('start', { nonNullable: true });
   simulateMobile = new FormControl(false, { initialValueIsDefault: true });
+  private _mediaMatcher = inject(FakeMediaMatcher);
   private _destroyed = new Subject<void>();
-
-  constructor(private _mediaMatcher: FakeMediaMatcher) {}
 
   ngAfterViewInit(): void {
     this.simulateMobile.valueChanges

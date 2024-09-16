@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { SbbButtonModule } from '@sbb-esta/angular/button';
 import { SbbFormFieldModule } from '@sbb-esta/angular/form-field';
@@ -18,8 +18,7 @@ import { SbbNotificationToast } from '@sbb-esta/angular/notification-toast';
 })
 export class NotificationToastDurationExample {
   duration = 3000;
-
-  constructor(private _notification: SbbNotificationToast) {}
+  private _notification = inject(SbbNotificationToast);
 
   showNotification() {
     this._notification.open('This is a simple test message', {

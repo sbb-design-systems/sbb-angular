@@ -168,6 +168,12 @@ export class SbbTabGroup implements AfterContentInit, AfterContentChecked, OnDes
   }
   private _preserveContent: boolean = false;
 
+  /** Aria label of the inner `tablist` of the group. */
+  @Input('aria-label') ariaLabel: string;
+
+  /** Sets the `aria-labelledby` of the inner `tablist` of the group. */
+  @Input('aria-labelledby') ariaLabelledby: string;
+
   /** Output to enable support for two-way binding on `[(selectedIndex)]` */
   @Output() readonly selectedIndexChange: EventEmitter<number> = new EventEmitter<number>();
 

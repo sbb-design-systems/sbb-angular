@@ -588,6 +588,7 @@ describe('SbbDatepicker', () => {
       beforeEach(fakeAsync(() => {
         fixture = createComponent(DatepickerWithMinAndMaxValidationComponent);
         fixture.detectChanges();
+        flush();
 
         testComponent = fixture.componentInstance;
       }));
@@ -610,6 +611,7 @@ describe('SbbDatepicker', () => {
       beforeEach(fakeAsync(() => {
         fixture = createComponent(DatepickerWithEventsComponent);
         fixture.detectChanges();
+        flush();
         testComponent = fixture.componentInstance;
       }));
 
@@ -623,6 +625,7 @@ describe('SbbDatepicker', () => {
       it('should dispatch an event when a datepicker is closed', fakeAsync(() => {
         testComponent.datepicker.open();
         fixture.detectChanges();
+        tick();
 
         testComponent.datepicker.close();
         flush();

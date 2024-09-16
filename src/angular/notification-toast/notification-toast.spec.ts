@@ -297,6 +297,7 @@ describe('SbbNotificationToast', () => {
 
     notificationToast.open(simpleMessage, { announcementMessage: simpleMessage });
     viewContainerFixture.detectChanges();
+    flush();
 
     expect(overlayContainerElement.childElementCount)
       .withContext('Expected the overlay with the default announcement message to be added')
@@ -313,6 +314,7 @@ describe('SbbNotificationToast', () => {
       politeness: 'assertive',
     });
     viewContainerFixture.detectChanges();
+    flush();
 
     expect(overlayContainerElement.childElementCount)
       .withContext('Expected the overlay with a custom `announcementMessage` to be added')

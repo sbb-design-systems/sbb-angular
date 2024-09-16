@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { FormBuilder, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
 import { SbbButtonModule } from '@sbb-esta/angular/button';
 import { SbbCheckboxModule } from '@sbb-esta/angular/checkbox';
@@ -26,6 +26,8 @@ import { SbbProcessflowModule } from '@sbb-esta/angular/processflow';
   ],
 })
 export class ProcessflowEditableExample {
+  private _formBuilder = inject(FormBuilder);
+
   firstFormGroup = this._formBuilder.group({
     firstCtrl: ['', Validators.required],
   });
@@ -33,6 +35,4 @@ export class ProcessflowEditableExample {
     secondCtrl: ['', Validators.required],
   });
   disableEditable = true;
-
-  constructor(private _formBuilder: FormBuilder) {}
 }

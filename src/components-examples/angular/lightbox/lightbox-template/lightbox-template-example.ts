@@ -1,4 +1,4 @@
-import { Component, TemplateRef, ViewChild } from '@angular/core';
+import { Component, inject, TemplateRef, ViewChild } from '@angular/core';
 import { SbbButtonModule } from '@sbb-esta/angular/button';
 import { SbbLightbox } from '@sbb-esta/angular/lightbox';
 import { SbbLightboxModule } from '@sbb-esta/angular/lightbox';
@@ -15,7 +15,7 @@ import { SbbLightboxModule } from '@sbb-esta/angular/lightbox';
 })
 export class LightboxTemplateExample {
   @ViewChild('sampleLightboxTemplate', { static: true }) sampleLightboxTemplate: TemplateRef<any>;
-  constructor(private _lightbox: SbbLightbox) {}
+  private _lightbox = inject(SbbLightbox);
 
   openDialog() {
     const lightboxRef = this._lightbox.open(this.sampleLightboxTemplate);

@@ -2,6 +2,29 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [18.3.0](https://github.com/sbb-design-systems/sbb-angular/compare/18.2.0...18.3.0) (2024-09-09)
+
+
+### Features
+
+* **angular/sidebar:** allow controlling the opened state of the sidebar ([#2367](https://github.com/sbb-design-systems/sbb-angular/issues/2367)) ([da1d267](https://github.com/sbb-design-systems/sbb-angular/commit/da1d2679a2b5fcb8f8e20ebd983d8e3509510d18)), closes [#2360](https://github.com/sbb-design-systems/sbb-angular/issues/2360)
+* **journey-maps:** new-style compatibility ([#2342](https://github.com/sbb-design-systems/sbb-angular/issues/2342)) ([45272e8](https://github.com/sbb-design-systems/sbb-angular/commit/45272e8040625ecb771376217fc663f2e6c12f3a))
+
+
+### Bug Fixes
+
+* **angular/tabs:** allow for tablist aria-label and aria-labelledby to be set ([#2350](https://github.com/sbb-design-systems/sbb-angular/issues/2350)) ([d4b2d3c](https://github.com/sbb-design-systems/sbb-angular/commit/d4b2d3c650747ac5c0b798cdc390dd3055e5f08c))
+* **angular/tooltip:** remove aria-describedby when disabled ([#2338](https://github.com/sbb-design-systems/sbb-angular/issues/2338)) ([3582932](https://github.com/sbb-design-systems/sbb-angular/commit/3582932311d879fc95379a67994a178b2542a114))
+* **angular/tooltip:** remove old IE workaround ([#2365](https://github.com/sbb-design-systems/sbb-angular/issues/2365)) ([ff30c02](https://github.com/sbb-design-systems/sbb-angular/commit/ff30c02dc6658f33b59d6e3962b2a98ee71c529b))
+* **deps:** update dependency tslib to v2.7.0 (18.x) ([#2344](https://github.com/sbb-design-systems/sbb-angular/issues/2344)) ([3a31850](https://github.com/sbb-design-systems/sbb-angular/commit/3a318502a1620f3643f00aae90cd0b5b12fc0180))
+* **journey-maps:** manual change detection for web component ([#2356](https://github.com/sbb-design-systems/sbb-angular/issues/2356)) ([050f610](https://github.com/sbb-design-systems/sbb-angular/commit/050f610c8c8e039692a3929d86487fa580d0e39f))
+
+
+### Documentation
+
+* **journey-maps:** removed unused props in example ([#2354](https://github.com/sbb-design-systems/sbb-angular/issues/2354)) ([ebe7e79](https://github.com/sbb-design-systems/sbb-angular/commit/ebe7e7912e23197c61a63f304779bcf0c82f6f8c))
+* switch examples to use inject ([#2366](https://github.com/sbb-design-systems/sbb-angular/issues/2366)) ([b11ad6d](https://github.com/sbb-design-systems/sbb-angular/commit/b11ad6d04d881f92146a89d204e1f2094ecf57f0))
+
 ## [18.2.0](https://github.com/sbb-design-systems/sbb-angular/compare/18.2.0-rc.0...18.2.0) (2024-07-25)
 
 ### Features

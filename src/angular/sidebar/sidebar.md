@@ -129,6 +129,10 @@ It can be made collapsible by setting the `collapsible` attribute to `true`. In 
 displayed above the content and can be collapsed using the close icon, by clicking in the content are or by
 pressing the escape key.
 
+Like the normal sidebar, the collapsible sidebar is opened by default. You can close it by setting the `opened`
+property to `false`. If the `opened` state is controlled with the input property, the sidebar will not be toggled
+automatically if the mobile state changes.
+
 In collapsible mode, the sidebar can have a title displayed next to the close icon. This label can be set using the
 `collapsibleTitle` attribute.
 

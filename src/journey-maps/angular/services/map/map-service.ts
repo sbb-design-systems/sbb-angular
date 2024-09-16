@@ -2,9 +2,8 @@ import { Injectable } from '@angular/core';
 import { FeatureCollection, Geometry, Point } from 'geojson';
 import { FlyToOptions, LngLat, LngLatLike, Map as MaplibreMap } from 'maplibre-gl';
 
-import { SbbPointsOfInterestOptions, SbbViewportDimensions } from '../../journey-maps.interfaces';
+import { SbbViewportDimensions } from '../../journey-maps.interfaces';
 import { isSbbMapCenterOptions } from '../../util/typeguard';
-import { SBB_POI_LAYER } from '../constants';
 
 import { toFeatureCollection } from './util/feature-collection-util';
 
@@ -51,21 +50,6 @@ export class SbbMapService {
         throw new Error(`${source} was not found in style definition!`);
       }
     }
-  }
-
-  updatePoiVisibility(map: MaplibreMap, poiOptions?: SbbPointsOfInterestOptions) {
-    const sbbPoisLayerList = [SBB_POI_LAYER, 'journey-pois-hover', 'journey-pois-selected'];
-
-    const hasAnyPois = poiOptions?.categories?.length;
-    if (hasAnyPois) {
-      sbbPoisLayerList.forEach((layerId) => {
-        map.setFilter(layerId, ['in', 'subCategory', ...poiOptions.categories]);
-      });
-    }
-
-    sbbPoisLayerList.forEach((layerId) => {
-      map.setLayoutProperty(layerId, 'visibility', hasAnyPois ? 'visible' : 'none');
-    });
   }
 
   private _imageLoadedCallback(map: MaplibreMap, name: string, error: any, image: any): void {

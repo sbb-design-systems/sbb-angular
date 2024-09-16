@@ -1,9 +1,11 @@
 <sbb-notification type="info" class="api-key-info">
   This example uses a test API key, that might be disabled at any time.
 </sbb-notification>
+
 <div class="web-map">
   <sbb-journey-maps
     [apiKey]="apiKey"
+    [styleOptions]="form.get('styleOptions')?.value"
     #advancedMap
     language="en"
     [viewportBounds]="form.get('viewportBounds')?.value"
@@ -14,7 +16,6 @@
     (mapCenterChange)="mapCenterChange.next($event)"
     (mapBoundsChange)="mapBoundingBoxChange.next($event)"
     (zoomLevelsChange)="zoomLevels = $event"
-    (visibleLevelsChange)="visibleLevels.next($event)"
     [(selectedMarkerId)]="selectedMarkerId"
   ></sbb-journey-maps>
 
@@ -54,7 +55,6 @@
             }
           </sbb-select>
         </sbb-form-field>
-
         <sbb-form-field label="POI Subcategories">
           <sbb-select multiple formControlName="categories">
             @for (category of POI_CATEGORIES; track category) {
@@ -62,11 +62,21 @@
             }
           </sbb-select>
         </sbb-form-field>
-
         <sbb-checkbox formControlName="includePreview">Preview-POIs</sbb-checkbox>
       </div>
     </div>
     <div class="row-2">
+      <div formGroupName="styleVersion">
+        <div>
+          <span class="sbb-label">POI Style</span>
+          <sbb-radio-group class="sbb-checkbox-group-horizontal" formControlName="versionNumber">
+            <sbb-radio-button value="v2">v2</sbb-radio-button>
+            <sbb-radio-button value="v3">v3</sbb-radio-button>
+          </sbb-radio-group>
+        </div>
+      </div>
+    </div>
+    <div class="row-3">
       <li>
         <span class="sbb-label">
           Map markers
