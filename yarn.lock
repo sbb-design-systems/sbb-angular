@@ -7464,6 +7464,13 @@ chardet@^0.7.0:
   optionalDependencies:
     fsevents "~2.3.2"
 
+chokidar@^4.0.0:
+  version "4.0.0"
+  resolved "https://registry.yarnpkg.com/chokidar/-/chokidar-4.0.0.tgz#4d603963e5dd762dc5c7bb1cb5664e53a3002225"
+  integrity sha512-mxIojEAQcuEvT/lyXq+jf/3cO/KoA6z4CeNDGGevTybECPOMFCnQy3OPahluUkbqgPNGw5Bi78UC7Po6Lhy+NA==
+  dependencies:
+    readdirp "^4.0.1"
+
 chownr@^1.1.1:
   version "1.1.4"
   resolved "https://registry.yarnpkg.com/chownr/-/chownr-1.1.4.tgz#6fc9d7b42d32a583596337666e7d08084da2cc6b"
@@ -14276,6 +14283,11 @@ readable-stream@^2.0.1, readable-stream@^2.2.2, readable-stream@~2.3.6:
     string_decoder "~1.1.1"
     util-deprecate "~1.0.1"
 
+readdirp@^4.0.1:
+  version "4.0.1"
+  resolved "https://registry.yarnpkg.com/readdirp/-/readdirp-4.0.1.tgz#b2fe35f8dca63183cd3b86883ecc8f720ea96ae6"
+  integrity sha512-GkMg9uOTpIWWKbSsgwb5fA4EavTR+SG/PMPoAY8hkhHfEEY0/vqljY+XHqtDf2cr2IJtoNRDbrrEpZUiZCkYRw==
+
 readdirp@~3.6.0:
   version "3.6.0"
   resolved "https://registry.yarnpkg.com/readdirp/-/readdirp-3.6.0.tgz#74a370bd857116e245b29cc97340cd431a02a6c7"
@@ -14954,6 +14966,15 @@ sass@1.77.6:
   integrity sha512-ByXE1oLD79GVq9Ht1PeHWCPMPB8XHpBuz1r85oByKHjZY6qV6rWnQovQzXJXuQ/XyE1Oj3iPk3lo28uzaRA2/Q==
   dependencies:
     chokidar ">=3.0.0 <4.0.0"
+    immutable "^4.0.0"
+    source-map-js ">=0.6.2 <2.0.0"
+
+sass@1.79.0:
+  version "1.79.0"
+  resolved "https://registry.yarnpkg.com/sass/-/sass-1.79.0.tgz#4a58442b6c094ac57a0805519bff6133d70590c9"
+  integrity sha512-9Q1xXsm9XT54yYkmQAoH3vCMEIavwWWQGJ3cZ0WJAgecR4edDDTdtiPyEeFDNWO/hLCy3qZKvwjK4ulPR5Yzow==
+  dependencies:
+    chokidar "^4.0.0"
     immutable "^4.0.0"
     source-map-js ">=0.6.2 <2.0.0"
 
