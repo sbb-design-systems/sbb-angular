@@ -989,7 +989,6 @@ describe('SbbSelect', () => {
 
         it('should set the role of the select to combobox', () => {
           expect(select.getAttribute('role')).toEqual('combobox');
-          expect(select.getAttribute('aria-autocomplete')).toBe('none');
           expect(select.getAttribute('aria-haspopup')).toBe('listbox');
         });
 

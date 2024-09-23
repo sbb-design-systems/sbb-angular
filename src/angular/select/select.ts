@@ -153,7 +153,6 @@ const _SbbSelectMixinBase = mixinVariant(
   changeDetection: ChangeDetectionStrategy.OnPush,
   host: {
     role: 'combobox',
-    'aria-autocomplete': 'none',
     'aria-haspopup': 'listbox',
     class: 'sbb-select sbb-input-element',
     '[attr.id]': 'id',
