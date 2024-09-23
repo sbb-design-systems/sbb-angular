@@ -222,9 +222,7 @@ export class SbbAutocomplete implements AfterContentInit, OnDestroy {
    */
   readonly inertGroups: boolean;
 
-  /** Inserted by Angular inject() migration for backwards compatibility */
   constructor(...args: unknown[]);
-
   constructor() {
     const platform = inject(Platform);
 

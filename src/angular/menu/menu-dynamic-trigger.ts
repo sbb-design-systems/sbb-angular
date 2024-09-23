@@ -1,4 +1,4 @@
-import { Directive, TemplateRef, ViewContainerRef } from '@angular/core';
+import { Directive, inject, TemplateRef, ViewContainerRef } from '@angular/core';
 
 @Directive({
   selector: `[sbbMenuDynamicTrigger]`,
@@ -6,10 +6,13 @@ import { Directive, TemplateRef, ViewContainerRef } from '@angular/core';
   standalone: true,
 })
 export class SbbMenuDynamicTrigger {
-  constructor(
-    readonly _templateRef: TemplateRef<any>,
-    viewContainerRef: ViewContainerRef,
-  ) {
+  readonly _templateRef = inject<TemplateRef<any>>(TemplateRef);
+
+  constructor(...args: unknown[]);
+  constructor() {
+    const _templateRef = this._templateRef;
+    const viewContainerRef = inject(ViewContainerRef);
+
     viewContainerRef.createEmbeddedView(_templateRef);
   }
 }

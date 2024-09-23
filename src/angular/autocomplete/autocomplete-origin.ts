@@ -12,8 +12,6 @@ import { Directive, ElementRef, inject } from '@angular/core';
 export class SbbAutocompleteOrigin {
   elementRef: ElementRef<HTMLElement> = inject<ElementRef<HTMLElement>>(ElementRef);
 
-  /** Inserted by Angular inject() migration for backwards compatibility */
   constructor(...args: unknown[]);
-
   constructor() {}
 }

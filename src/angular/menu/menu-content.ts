@@ -5,7 +5,7 @@ import {
   ChangeDetectorRef,
   ComponentFactoryResolver,
   Directive,
-  Inject,
+  inject,
   InjectionToken,
   Injector,
   OnDestroy,
@@ -30,21 +30,22 @@ export const SBB_MENU_CONTENT = new InjectionToken<SbbMenuContent>('SbbMenuConte
   standalone: true,
 })
 export class SbbMenuContent implements OnDestroy {
+  private _template = inject<TemplateRef<any>>(TemplateRef);
+  private _componentFactoryResolver = inject(ComponentFactoryResolver);
+  private _appRef = inject(ApplicationRef);
+  private _injector = inject(Injector);
+  private _viewContainerRef = inject(ViewContainerRef);
+  private _document = inject(DOCUMENT);
+  private _changeDetectorRef = inject(ChangeDetectorRef);
+
   private _portal: TemplatePortal;
   private _outlet: DomPortalOutlet;
 
   /** Emits when the menu content has been attached. */
   readonly _attached: Subject<void> = new Subject<void>();
 
-  constructor(
-    private _template: TemplateRef<any>,
-    private _componentFactoryResolver: ComponentFactoryResolver,
-    private _appRef: ApplicationRef,
-    private _injector: Injector,
-    private _viewContainerRef: ViewContainerRef,
-    @Inject(DOCUMENT) private _document: any,
-    private _changeDetectorRef: ChangeDetectorRef,
-  ) {}
+  constructor(...args: unknown[]);
+  constructor() {}
 
   /**
    * Attaches the content with a particular context.
