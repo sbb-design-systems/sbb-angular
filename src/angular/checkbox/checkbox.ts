@@ -2,7 +2,6 @@ import { FocusableOption, FocusMonitor, FocusOrigin } from '@angular/cdk/a11y';
 import { CdkObserveContent } from '@angular/cdk/observers';
 import {
   AfterViewInit,
-  Attribute,
   booleanAttribute,
   ChangeDetectionStrategy,
   ChangeDetectorRef,
@@ -11,12 +10,12 @@ import {
   ElementRef,
   EventEmitter,
   forwardRef,
-  Inject,
+  HostAttributeToken,
+  inject,
   Input,
   numberAttribute,
   OnChanges,
   OnDestroy,
-  Optional,
   Output,
   SimpleChanges,
   ViewChild,
@@ -71,6 +70,13 @@ export class SbbCheckboxChange {
 export class _SbbCheckboxBase
   implements ControlValueAccessor, AfterViewInit, OnDestroy, OnChanges, Validator, FocusableOption
 {
+  private _elementRef = inject<ElementRef<HTMLElement>>(ElementRef);
+  protected _changeDetectorRef: ChangeDetectorRef = inject(ChangeDetectorRef);
+  private _focusMonitor = inject(FocusMonitor);
+  private _options = inject<SbbCheckboxDefaultOptions>(SBB_CHECKBOX_DEFAULT_OPTIONS, {
+    optional: true,
+  });
+
   /**
    * Attached to the aria-label attribute of the host element. In most cases, aria-labelledby will
    * take precedence so this may be omitted.
@@ -130,17 +136,11 @@ export class _SbbCheckboxBase
   private _controlValueAccessorChangeFn: (value: any) => void = () => {};
   private _validatorChangeFn = () => {};
 
-  constructor(
-    private _elementRef: ElementRef<HTMLElement>,
-    protected _changeDetectorRef: ChangeDetectorRef,
-    private _focusMonitor: FocusMonitor,
-    @Attribute('tabindex') tabIndex: string,
-    @Optional()
-    @Inject(SBB_CHECKBOX_DEFAULT_OPTIONS)
-    private _options?: SbbCheckboxDefaultOptions,
-  ) {
+  constructor(...args: unknown[]);
+  constructor() {
+    const tabIndex = inject(new HostAttributeToken('tabindex'), { optional: true });
     this._options = this._options || defaults;
-    this.tabIndex = parseInt(tabIndex, 10) || 0;
+    this.tabIndex = tabIndex == null ? 0 : parseInt(tabIndex, 10) || 0;
   }
 
   ngOnChanges(changes: SimpleChanges) {
