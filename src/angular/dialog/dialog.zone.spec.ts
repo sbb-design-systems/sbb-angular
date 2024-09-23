@@ -4,17 +4,17 @@ import { SpyLocation } from '@angular/common/testing';
 import {
   Component,
   Directive,
-  inject,
+  Injector,
   NgZone,
   provideZoneChangeDetection,
   ViewChild,
   ViewContainerRef,
 } from '@angular/core';
-import { ComponentFixture, fakeAsync, flush, TestBed } from '@angular/core/testing';
+import { ComponentFixture, fakeAsync, flush, inject, TestBed } from '@angular/core/testing';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { Subject } from 'rxjs';
 
-import { SbbDialog, SbbDialogModule } from './index';
+import { SbbDialog, SbbDialogModule, SbbDialogRef } from './index';
 
 describe('SbbDialog Zone.js integration', () => {
   let dialog: SbbDialog;
@@ -46,7 +46,11 @@ describe('SbbDialog Zone.js integration', () => {
       ],
     });
 
-    dialog = TestBed.inject(SbbDialog);
+    TestBed.compileComponents();
+  }));
+
+  beforeEach(inject([SbbDialog], (d: SbbDialog) => {
+    dialog = d;
   }));
 
   beforeEach(() => {
@@ -56,22 +60,23 @@ describe('SbbDialog Zone.js integration', () => {
     testViewContainerRef = viewContainerFixture.componentInstance.childViewContainer;
   });
 
-  it('should invoke the afterClosed callback inside the NgZone', fakeAsync(() => {
-    const zone = TestBed.inject(NgZone);
-    const dialogRef = dialog.open(PizzaMsg, { viewContainerRef: testViewContainerRef });
-    const afterCloseCallback = jasmine.createSpy('afterClose callback');
+  it('should invoke the afterClosed callback inside the NgZone', fakeAsync(
+    inject([NgZone], (zone: NgZone) => {
+      const dialogRef = dialog.open(PizzaMsg, { viewContainerRef: testViewContainerRef });
+      const afterCloseCallback = jasmine.createSpy('afterClose callback');
 
-    dialogRef.afterClosed().subscribe(() => {
-      afterCloseCallback(NgZone.isInAngularZone());
-    });
-    zone.run(() => {
-      dialogRef.close();
-      viewContainerFixture.detectChanges();
-      flush();
-    });
+      dialogRef.afterClosed().subscribe(() => {
+        afterCloseCallback(NgZone.isInAngularZone());
+      });
+      zone.run(() => {
+        dialogRef.close();
+        viewContainerFixture.detectChanges();
+        flush();
+      });
 
-    expect(afterCloseCallback).toHaveBeenCalledWith(true);
-  }));
+      expect(afterCloseCallback).toHaveBeenCalledWith(true);
+    }),
+  ));
 });
 
 @Directive({
@@ -79,7 +84,7 @@ describe('SbbDialog Zone.js integration', () => {
   standalone: true,
 })
 class DirectiveWithViewContainer {
-  viewContainerRef = inject(ViewContainerRef);
+  constructor(public viewContainerRef: ViewContainerRef) {}
 }
 
 @Component({
@@ -106,5 +111,9 @@ class ComponentWithChildViewContainer {
   standalone: true,
 })
 class PizzaMsg {
-  directionality = inject(Directionality);
+  constructor(
+    public dialogRef: SbbDialogRef<PizzaMsg>,
+    public dialogInjector: Injector,
+    public directionality: Directionality,
+  ) {}
 }

@@ -14,7 +14,7 @@ import {
   createNgModuleRef,
   Directive,
   forwardRef,
-  inject,
+  Inject,
   Injectable,
   Injector,
   NgModule,
@@ -29,6 +29,7 @@ import {
   fakeAsync,
   flush,
   flushMicrotasks,
+  inject,
   TestBed,
   tick,
 } from '@angular/core/testing';
@@ -85,12 +86,19 @@ describe('SbbDialog', () => {
       ],
     });
 
-    dialog = TestBed.inject(SbbDialog);
-    mockLocation = TestBed.inject(Location) as SpyLocation;
-    overlayContainer = TestBed.inject(OverlayContainer);
-    overlayContainerElement = overlayContainer.getContainerElement();
-    focusMonitor = TestBed.inject(FocusMonitor);
+    TestBed.compileComponents();
   }));
+
+  beforeEach(inject(
+    [SbbDialog, Location, OverlayContainer, FocusMonitor],
+    (d: SbbDialog, l: Location, oc: OverlayContainer, fm: FocusMonitor) => {
+      dialog = d;
+      mockLocation = l as SpyLocation;
+      overlayContainer = oc;
+      overlayContainerElement = oc.getContainerElement();
+      focusMonitor = fm;
+    },
+  ));
 
   afterEach(() => {
     overlayContainer.ngOnDestroy();
@@ -232,25 +240,30 @@ describe('SbbDialog', () => {
     expect(overlayContainerElement.querySelector('sbb-dialog-container')).toBeNull();
   }));
 
-  it('should dispatch the beforeClosed and afterClosed events when the overlay is detached externally', fakeAsync(() => {
-    const overlay = TestBed.inject(Overlay);
-    const dialogRef = dialog.open(PizzaMsg, {
-      viewContainerRef: testViewContainerRef,
-      scrollStrategy: overlay.scrollStrategies.close(),
-    });
-    const beforeClosedCallback = jasmine.createSpy('beforeClosed callback');
-    const afterCloseCallback = jasmine.createSpy('afterClosed callback');
+  it(
+    'should dispatch the beforeClosed and afterClosed events when the ' +
+      'overlay is detached externally',
+    fakeAsync(
+      inject([Overlay], (overlay: Overlay) => {
+        const dialogRef = dialog.open(PizzaMsg, {
+          viewContainerRef: testViewContainerRef,
+          scrollStrategy: overlay.scrollStrategies.close(),
+        });
+        const beforeClosedCallback = jasmine.createSpy('beforeClosed callback');
+        const afterCloseCallback = jasmine.createSpy('afterClosed callback');
 
-    dialogRef.beforeClosed().subscribe(beforeClosedCallback);
-    dialogRef.afterClosed().subscribe(afterCloseCallback);
+        dialogRef.beforeClosed().subscribe(beforeClosedCallback);
+        dialogRef.afterClosed().subscribe(afterCloseCallback);
 
-    scrolledSubject.next();
-    viewContainerFixture.detectChanges();
-    flush();
+        scrolledSubject.next();
+        viewContainerFixture.detectChanges();
+        flush();
 
-    expect(beforeClosedCallback).toHaveBeenCalledTimes(1);
-    expect(afterCloseCallback).toHaveBeenCalledTimes(1);
-  }));
+        expect(beforeClosedCallback).toHaveBeenCalledTimes(1);
+        expect(afterCloseCallback).toHaveBeenCalledTimes(1);
+      }),
+    ),
+  );
 
   it('should close a dialog and get back a result before it is closed', fakeAsync(() => {
     const dialogRef = dialog.open(PizzaMsg, { viewContainerRef: testViewContainerRef });
@@ -776,18 +789,20 @@ describe('SbbDialog', () => {
     expect(scrollStrategy.enable).toHaveBeenCalled();
   }));
 
-  it('should be able to pass in an alternate ComponentFactoryResolver', () => {
-    const resolver = TestBed.inject(ComponentFactoryResolver);
-    spyOn(resolver, 'resolveComponentFactory').and.callThrough();
+  it('should be able to pass in an alternate ComponentFactoryResolver', inject(
+    [ComponentFactoryResolver],
+    (resolver: ComponentFactoryResolver) => {
+      spyOn(resolver, 'resolveComponentFactory').and.callThrough();
 
-    dialog.open(PizzaMsg, {
-      viewContainerRef: testViewContainerRef,
-      componentFactoryResolver: resolver,
-    });
-    viewContainerFixture.detectChanges();
+      dialog.open(PizzaMsg, {
+        viewContainerRef: testViewContainerRef,
+        componentFactoryResolver: resolver,
+      });
+      viewContainerFixture.detectChanges();
 
-    expect(resolver.resolveComponentFactory).toHaveBeenCalled();
-  });
+      expect(resolver.resolveComponentFactory).toHaveBeenCalled();
+    },
+  ));
 
   describe('passing in data', () => {
     it('should be able to pass in data', () => {
@@ -1552,10 +1567,12 @@ describe('SbbDialog', () => {
         standalone: true,
       })
       class Child {
-        readonly viewContainerRef = inject(ViewContainerRef);
-        readonly dialog = inject(SbbDialog);
-
         dialogRef?: SbbDialogRef<DialogCmp>;
+
+        constructor(
+          readonly viewContainerRef: ViewContainerRef,
+          readonly dialog: SbbDialog,
+        ) {}
 
         open() {
           this.dialogRef = this.dialog.open(DialogCmp, { viewContainerRef: this.viewContainerRef });
@@ -1831,7 +1848,12 @@ describe('SbbDialog with a parent SbbDialog', () => {
       ],
     });
 
-    parentDialog = TestBed.inject(SbbDialog);
+    TestBed.compileComponents();
+  }));
+
+  beforeEach(inject([SbbDialog], (d: SbbDialog) => {
+    parentDialog = d;
+
     fixture = TestBed.createComponent(ComponentThatProvidesSbbDialog);
     childDialog = fixture.componentInstance.dialog;
     fixture.detectChanges();
@@ -1931,9 +1953,13 @@ describe('SbbDialog with default options', () => {
       providers: [{ provide: SBB_DIALOG_DEFAULT_OPTIONS, useValue: defaultConfig }],
     });
 
-    dialog = TestBed.inject(SbbDialog);
-    overlayContainer = TestBed.inject(OverlayContainer);
-    overlayContainerElement = overlayContainer.getContainerElement();
+    TestBed.compileComponents();
+  }));
+
+  beforeEach(inject([SbbDialog, OverlayContainer], (d: SbbDialog, oc: OverlayContainer) => {
+    dialog = d;
+    overlayContainer = oc;
+    overlayContainerElement = oc.getContainerElement();
   }));
 
   afterEach(() => {
@@ -1999,8 +2025,12 @@ describe('SbbDialog with animations enabled', () => {
       imports: [DialogTestModule, BrowserAnimationsModule],
     });
 
-    dialog = TestBed.inject(SbbDialog);
-    overlayContainer = TestBed.inject(OverlayContainer);
+    TestBed.compileComponents();
+  }));
+
+  beforeEach(inject([SbbDialog, OverlayContainer], (d: SbbDialog, oc: OverlayContainer) => {
+    dialog = d;
+    overlayContainer = oc;
 
     viewContainerFixture = TestBed.createComponent(ComponentWithChildViewContainer);
     viewContainerFixture.detectChanges();
@@ -2045,8 +2075,11 @@ describe('SbbDialog with explicit injector provided', () => {
       imports: [BrowserAnimationsModule, ModuleBoundDialogParentComponent],
     });
 
-    const overlayContainer = TestBed.inject(OverlayContainer);
-    overlayContainerElement = overlayContainer.getContainerElement();
+    TestBed.compileComponents();
+  }));
+
+  beforeEach(inject([OverlayContainer], (oc: OverlayContainer) => {
+    overlayContainerElement = oc.getContainerElement();
   }));
 
   beforeEach(() => {
@@ -2127,7 +2160,7 @@ describe('SbbDialog with close button', () => {
   standalone: true,
 })
 class DirectiveWithViewContainer {
-  viewContainerRef = inject(ViewContainerRef);
+  constructor(public viewContainerRef: ViewContainerRef) {}
 }
 
 @Component({
@@ -2136,7 +2169,7 @@ class DirectiveWithViewContainer {
   standalone: true,
 })
 class ComponentWithOnPushViewContainer {
-  viewContainerRef = inject(ViewContainerRef);
+  constructor(public viewContainerRef: ViewContainerRef) {}
 }
 
 @Component({
@@ -2182,9 +2215,11 @@ class ComponentWithTemplateRef {
   standalone: true,
 })
 class PizzaMsg {
-  dialogRef = inject<SbbDialogRef<PizzaMsg>>(SbbDialogRef);
-  dialogInjector = inject(Injector);
-  directionality = inject(Directionality);
+  constructor(
+    public dialogRef: SbbDialogRef<PizzaMsg>,
+    public dialogInjector: Injector,
+    public directionality: Directionality,
+  ) {}
 }
 
 @Component({
@@ -2265,7 +2300,7 @@ class ComponentWithContentElementTemplateRef {
   providers: [SbbDialog],
 })
 class ComponentThatProvidesSbbDialog {
-  dialog = inject(SbbDialog);
+  constructor(public dialog: SbbDialog) {}
 }
 
 /** Simple component for testing ComponentPortal. */
@@ -2274,7 +2309,7 @@ class ComponentThatProvidesSbbDialog {
   standalone: true,
 })
 class DialogWithInjectedData {
-  data = inject(SBB_DIALOG_DATA);
+  constructor(@Inject(SBB_DIALOG_DATA) public data: any) {}
 }
 
 @Component({
@@ -2331,8 +2366,10 @@ class DialogTestModule {}
   imports: [SbbDialogModule],
 })
 class ModuleBoundDialogParentComponent {
-  private _injector = inject(Injector);
-  private _dialog = inject(SbbDialog);
+  constructor(
+    private _injector: Injector,
+    private _dialog: SbbDialog,
+  ) {}
 
   openDialog(): void {
     const ngModuleRef = createNgModuleRef(
@@ -2362,7 +2399,7 @@ class ModuleBoundDialogComponent {}
   standalone: true,
 })
 class ModuleBoundDialogChildComponent {
-  service = inject(ModuleBoundDialogService);
+  constructor(public service: ModuleBoundDialogService) {}
 }
 
 @NgModule({
