@@ -3,7 +3,6 @@ import { BACKSPACE, DELETE } from '@angular/cdk/keycodes';
 import {
   afterNextRender,
   ANIMATION_MODULE_TYPE,
-  Attribute,
   booleanAttribute,
   ChangeDetectionStrategy,
   ChangeDetectorRef,
@@ -13,16 +12,14 @@ import {
   ElementRef,
   EventEmitter,
   forwardRef,
-  Host,
+  HostAttributeToken,
   inject,
-  Inject,
   InjectionToken,
   Injector,
   Input,
   NgZone,
   numberAttribute,
   OnDestroy,
-  Optional,
   Output,
   ViewEncapsulation,
 } from '@angular/core';
@@ -97,6 +94,11 @@ export class SbbChipTrailingIcon {}
   imports: [SbbIconModule, forwardRef(() => SbbChipRemove)],
 })
 export class SbbChip implements FocusableOption, OnDestroy {
+  _elementRef: ElementRef<HTMLElement> = inject<ElementRef<HTMLElement>>(ElementRef);
+  _changeDetectorRef: ChangeDetectorRef = inject(ChangeDetectorRef, { optional: true })!;
+  private _ngZone = inject(NgZone);
+  private _chipList = inject<TypeRef<SbbChipList>>(SBB_CHIP_LIST, { optional: true, host: true });
+
   /** Whether the chip has focus. */
   _hasFocus: boolean = false;
 
@@ -166,15 +168,11 @@ export class SbbChip implements FocusableOption, OnDestroy {
 
   private _injector = inject(Injector);
 
-  constructor(
-    public _elementRef: ElementRef<HTMLElement>,
-    private _ngZone: NgZone,
-    @Optional()
-    public _changeDetectorRef: ChangeDetectorRef,
-    @Optional() @Host() @Inject(SBB_CHIP_LIST) private _chipList?: TypeRef<SbbChipList>,
-    @Optional() @Inject(ANIMATION_MODULE_TYPE) animationMode?: string,
-    @Attribute('tabindex') tabIndex?: string,
-  ) {
+  constructor(...args: unknown[]);
+  constructor() {
+    const animationMode = inject(ANIMATION_MODULE_TYPE, { optional: true });
+    const tabIndex = inject(new HostAttributeToken('tabindex'), { optional: true });
+
     this._addHostClassName();
 
     this._animationsDisabled = animationMode === 'NoopAnimations';
@@ -307,10 +305,12 @@ export class SbbChip implements FocusableOption, OnDestroy {
   standalone: true,
 })
 export class SbbChipRemove {
-  constructor(
-    protected _parentChip: SbbChip,
-    elementRef: ElementRef<HTMLElement>,
-  ) {
+  protected _parentChip: SbbChip = inject(SbbChip);
+
+  constructor(...args: unknown[]);
+  constructor() {
+    const elementRef = inject<ElementRef<HTMLElement>>(ElementRef);
+
     if (elementRef.nativeElement.nodeName === 'BUTTON') {
       elementRef.nativeElement.setAttribute('type', 'button');
     }
