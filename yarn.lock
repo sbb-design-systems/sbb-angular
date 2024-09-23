@@ -2604,6 +2604,11 @@
   resolved "https://registry.yarnpkg.com/@bazel/runfiles/-/runfiles-5.8.1.tgz#737d5b3dc9739767054820265cfe432a80564c82"
   integrity sha512-NDdfpdQ6rZlylgv++iMn5FkObC/QlBQvipinGLSOguTYpRywmieOyJ29XHvUilspwTFSILWpoE9CqMGkHXug1g==
 
+"@bazel/runfiles@6.3.0":
+  version "6.3.0"
+  resolved "https://registry.yarnpkg.com/@bazel/runfiles/-/runfiles-6.3.0.tgz#4eced0d15cc1377d54d8d094c63631ab0b9f961a"
+  integrity sha512-2Q+KC0ys+BLIBp6zsI8E6htEw1/R1cjA1Yt+3JiqdEB597aGpZKiJJP6FeJSA4LIAWlH/FDVDtgvJ77eeLNyiA==
+
 "@bazel/terser@5.8.1":
   version "5.8.1"
   resolved "https://registry.yarnpkg.com/@bazel/terser/-/terser-5.8.1.tgz#729a0ec6dcc83e99c4f6d3f2bebb0ff254c10c48"
