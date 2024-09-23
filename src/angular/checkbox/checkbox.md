@@ -72,3 +72,9 @@ binding these properties, as demonstrated below.
 ```html
 <sbb-checkbox [aria-label]="isSubscribedToEmailsMessage"> </sbb-checkbox>
 ```
+
+Additionally, `SbbCheckbox` supports the following accessibility properties:
+
+- **`aria-expanded`**: Indicates whether the checkbox controls the visibility of another element. This should be a boolean value (`true` or `false`).
+- **`aria-controls`**: Specifies the ID of the element that the checkbox controls.
+- **`aria-owns`**: Specifies the ID of the element that the checkbox visually owns.
