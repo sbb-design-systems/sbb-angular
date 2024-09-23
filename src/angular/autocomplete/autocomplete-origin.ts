@@ -1,4 +1,4 @@
-import { Directive, ElementRef } from '@angular/core';
+import { Directive, ElementRef, inject } from '@angular/core';
 
 /**
  * Directive applied to an element to make it usable
@@ -10,8 +10,10 @@ import { Directive, ElementRef } from '@angular/core';
   standalone: true,
 })
 export class SbbAutocompleteOrigin {
-  constructor(
-    /** Reference to the element on which the directive is applied. */
-    public elementRef: ElementRef<HTMLElement>,
-  ) {}
+  elementRef: ElementRef<HTMLElement> = inject<ElementRef<HTMLElement>>(ElementRef);
+
+  /** Inserted by Angular inject() migration for backwards compatibility */
+  constructor(...args: unknown[]);
+
+  constructor() {}
 }

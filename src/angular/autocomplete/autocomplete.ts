@@ -9,7 +9,7 @@ import {
   ContentChildren,
   ElementRef,
   EventEmitter,
-  Inject,
+  inject,
   InjectionToken,
   Input,
   OnDestroy,
@@ -99,6 +99,12 @@ export function SBB_AUTOCOMPLETE_DEFAULT_OPTIONS_FACTORY(): SbbAutocompleteDefau
   standalone: true,
 })
 export class SbbAutocomplete implements AfterContentInit, OnDestroy {
+  private _changeDetectorRef = inject(ChangeDetectorRef);
+  private _elementRef = inject<ElementRef<HTMLElement>>(ElementRef);
+  protected defaults: SbbAutocompleteDefaultOptions = inject<SbbAutocompleteDefaultOptions>(
+    SBB_AUTOCOMPLETE_DEFAULT_OPTIONS,
+  );
+
   private _activeOptionChanges = Subscription.EMPTY;
 
   /** Manages active item in option list based on key events. */
@@ -216,20 +222,20 @@ export class SbbAutocomplete implements AfterContentInit, OnDestroy {
    */
   readonly inertGroups: boolean;
 
-  constructor(
-    private _changeDetectorRef: ChangeDetectorRef,
-    private _elementRef: ElementRef<HTMLElement>,
-    @Inject(SBB_AUTOCOMPLETE_DEFAULT_OPTIONS) defaults: SbbAutocompleteDefaultOptions,
-    platform?: Platform,
-  ) {
+  /** Inserted by Angular inject() migration for backwards compatibility */
+  constructor(...args: unknown[]);
+
+  constructor() {
+    const platform = inject(Platform);
+
     // TODO(crisbeto): the problem that the `inertGroups` option resolves is only present on
     // Safari using VoiceOver. We should occasionally check back to see whether the bug
     // wasn't resolved in VoiceOver, and if it has, we can remove this and the `inertGroups`
     // option altogether.
     this.inertGroups = platform?.SAFARI || false;
-    this.autoActiveFirstOption = !!defaults.autoActiveFirstOption;
-    this.autoSelectActiveOption = !!defaults.autoSelectActiveOption;
-    this.requireSelection = !!defaults.requireSelection;
+    this.autoActiveFirstOption = !!this.defaults.autoActiveFirstOption;
+    this.autoSelectActiveOption = !!this.defaults.autoSelectActiveOption;
+    this.requireSelection = !!this.defaults.requireSelection;
   }
 
   ngAfterContentInit() {
