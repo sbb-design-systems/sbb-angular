@@ -5,7 +5,7 @@ import {
   Component,
   Directive,
   EventEmitter,
-  Inject,
+  inject,
   NgModule,
   signal,
   TemplateRef,
@@ -16,7 +16,6 @@ import {
   ComponentFixture,
   fakeAsync,
   flush,
-  inject,
   TestBed,
   tick,
   waitForAsync,
@@ -128,18 +127,13 @@ describe('SbbNotificationToast', () => {
   beforeEach(fakeAsync(() => {
     TestBed.configureTestingModule({
       imports: [NotificationToastTestModule, NoopAnimationsModule, SbbIconTestingModule],
-    }).compileComponents();
-  }));
+    });
 
-  beforeEach(inject(
-    [SbbNotificationToast, LiveAnnouncer, OverlayContainer],
-    (sb: SbbNotificationToast, la: LiveAnnouncer, oc: OverlayContainer) => {
-      notificationToast = sb;
-      liveAnnouncer = la;
-      overlayContainer = oc;
-      overlayContainerElement = oc.getContainerElement();
-    },
-  ));
+    notificationToast = TestBed.inject(SbbNotificationToast);
+    liveAnnouncer = TestBed.inject(LiveAnnouncer);
+    overlayContainer = TestBed.inject(OverlayContainer);
+    overlayContainerElement = overlayContainer.getContainerElement();
+  }));
 
   afterEach(() => {
     overlayContainer.ngOnDestroy();
@@ -500,17 +494,11 @@ describe('SbbNotificationToast', () => {
       })
       .configureTestingModule({
         imports: [SbbNotificationToastModule, NoopAnimationsModule, SbbIconTestingModule],
-      })
-      .compileComponents();
+      });
 
-    inject(
-      [SbbNotificationToast, OverlayContainer],
-      (sb: SbbNotificationToast, oc: OverlayContainer) => {
-        notificationToast = sb;
-        overlayContainer = oc;
-        overlayContainerElement = oc.getContainerElement();
-      },
-    )();
+    notificationToast = TestBed.inject(SbbNotificationToast);
+    overlayContainer = TestBed.inject(OverlayContainer);
+    overlayContainerElement = overlayContainer.getContainerElement();
 
     notificationToast.open(simpleMessage);
     flush();
@@ -648,21 +636,16 @@ describe('SbbNotificationToast with parent SbbNotificationToast', () => {
       imports: [NotificationToastTestModule, NoopAnimationsModule, SbbIconTestingModule],
       declarations: [ComponentThatProvidesSbbNotificationToast],
     }).compileComponents();
+
+    parentNotificationToast = TestBed.inject(SbbNotificationToast);
+    liveAnnouncer = TestBed.inject(LiveAnnouncer);
+    overlayContainer = TestBed.inject(OverlayContainer);
+    overlayContainerElement = overlayContainer.getContainerElement();
+
+    fixture = TestBed.createComponent(ComponentThatProvidesSbbNotificationToast);
+    childNotificationToast = fixture.componentInstance.notificationToast;
+    fixture.detectChanges();
   }));
-
-  beforeEach(inject(
-    [SbbNotificationToast, LiveAnnouncer, OverlayContainer],
-    (sb: SbbNotificationToast, la: LiveAnnouncer, oc: OverlayContainer) => {
-      parentNotificationToast = sb;
-      liveAnnouncer = la;
-      overlayContainer = oc;
-      overlayContainerElement = oc.getContainerElement();
-
-      fixture = TestBed.createComponent(ComponentThatProvidesSbbNotificationToast);
-      childNotificationToast = fixture.componentInstance.notificationToast;
-      fixture.detectChanges();
-    },
-  ));
 
   afterEach(() => {
     overlayContainer.ngOnDestroy();
@@ -731,18 +714,13 @@ describe('SbbNotificationToast Positioning', () => {
   beforeEach(fakeAsync(() => {
     TestBed.configureTestingModule({
       imports: [NotificationToastTestModule, NoopAnimationsModule, SbbIconTestingModule],
-    }).compileComponents();
-  }));
+    });
 
-  beforeEach(inject(
-    [SbbNotificationToast, LiveAnnouncer, OverlayContainer],
-    (sb: SbbNotificationToast, la: LiveAnnouncer, oc: OverlayContainer) => {
-      notificationToast = sb;
-      liveAnnouncer = la;
-      overlayContainer = oc;
-      overlayContainerEl = oc.getContainerElement();
-    },
-  ));
+    notificationToast = TestBed.inject(SbbNotificationToast);
+    liveAnnouncer = TestBed.inject(LiveAnnouncer);
+    overlayContainer = TestBed.inject(OverlayContainer);
+    overlayContainerEl = overlayContainer.getContainerElement();
+  }));
 
   afterEach(() => {
     overlayContainer.ngOnDestroy();
@@ -831,9 +809,8 @@ describe('SbbNotificationToast Positioning', () => {
   standalone: true,
 })
 export class NotificationMockComponent {
+  private _notification = inject(SbbNotificationToast);
   dismissed: EventEmitter<void> = new EventEmitter<void>();
-
-  constructor(private _notification: SbbNotificationToast) {}
 
   showNotification(config: SbbNotificationToastConfig) {
     this._notification
@@ -852,7 +829,7 @@ export class NotificationMockComponent {
   standalone: true,
 })
 class DirectiveWithViewContainer {
-  constructor(public viewContainerRef: ViewContainerRef) {}
+  viewContainerRef = inject(ViewContainerRef);
 }
 
 @Component({
@@ -890,10 +867,9 @@ class ComponentWithTemplateRef {
   standalone: true,
 })
 class BurritosNotification {
-  constructor(
-    public notificationToastRef: SbbNotificationToastRef<BurritosNotification>,
-    @Inject(SBB_NOTIFICATION_TOAST_DATA) public data: any,
-  ) {}
+  notificationToastRef =
+    inject<SbbNotificationToastRef<BurritosNotification>>(SbbNotificationToastRef);
+  data = inject(SBB_NOTIFICATION_TOAST_DATA);
 }
 
 @Component({
@@ -901,7 +877,7 @@ class BurritosNotification {
   providers: [SbbNotificationToast],
 })
 class ComponentThatProvidesSbbNotificationToast {
-  constructor(public notificationToast: SbbNotificationToast) {}
+  notificationToast = inject(SbbNotificationToast);
 }
 
 /**

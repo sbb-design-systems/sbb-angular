@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, Inject, ViewEncapsulation } from '@angular/core';
+import { ChangeDetectionStrategy, Component, inject, ViewEncapsulation } from '@angular/core';
 
 import { SBB_NOTIFICATION_TOAST_DATA } from './notification-toast-config';
 import { SbbNotificationToastRef } from './notification-toast-ref';
@@ -21,15 +21,14 @@ export interface SbbTextOnlyNotificationToast {
   standalone: true,
 })
 export class SbbSimpleNotification implements SbbTextOnlyNotificationToast {
-  /** Data that was injected into the notification toast. */
-  data: { message: string };
+  notificationToastRef: SbbNotificationToastRef<SbbSimpleNotification> =
+    inject<SbbNotificationToastRef<SbbSimpleNotification>>(SbbNotificationToastRef);
 
-  constructor(
-    public notificationToastRef: SbbNotificationToastRef<SbbSimpleNotification>,
-    @Inject(SBB_NOTIFICATION_TOAST_DATA) data: any,
-  ) {
-    this.data = data;
-  }
+  /** Data that was injected into the notification toast. */
+  data: { message: string } = inject(SBB_NOTIFICATION_TOAST_DATA);
+
+  constructor(...args: unknown[]);
+  constructor() {}
 
   /** Dismisses the notification toast. */
   dismiss() {
