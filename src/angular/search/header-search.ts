@@ -19,7 +19,7 @@ import {
   ContentChild,
   ElementRef,
   HostListener,
-  Inject,
+  inject,
   InjectionToken,
   Input,
   ViewEncapsulation,
@@ -84,6 +84,8 @@ let nextId = 1;
   imports: [SbbIcon, CdkConnectedOverlay, AsyncPipe],
 })
 export class SbbHeaderSearch {
+  private _breakpointObserver = inject(BreakpointObserver);
+  private _changeDetectorRef = inject(ChangeDetectorRef);
   _labelSearch: string = $localize`:Button label for the header search@@sbbSearchHeaderButtonLabel:Search`;
 
   /** Identifier of search. */
@@ -131,20 +133,17 @@ export class SbbHeaderSearch {
   _overlayOrigin: CdkOverlayOrigin;
 
   /** Factory function used to create a scroll strategy for this select. */
-  private _scrollStrategyFactory: () => ScrollStrategy;
+  private _scrollStrategyFactory = inject(SBB_SEARCH_SCROLL_STRATEGY);
 
   /** Whether or not the overlay panel is open. */
   private _panelOpen = false;
 
   private _animationSubscription: Subscription | undefined;
 
-  constructor(
-    elementRef: ElementRef<HTMLElement>,
-    private _breakpointObserver: BreakpointObserver,
-    private _changeDetectorRef: ChangeDetectorRef,
-    @Inject(SBB_SEARCH_SCROLL_STRATEGY) scrollStrategyFactory: any,
-  ) {
-    this._scrollStrategyFactory = scrollStrategyFactory;
+  constructor(...args: unknown[]);
+  constructor() {
+    const elementRef = inject<ElementRef<HTMLElement>>(ElementRef);
+
     this._scrollStrategy = this._scrollStrategyFactory();
     this._overlayOrigin = new CdkOverlayOrigin(elementRef);
 
