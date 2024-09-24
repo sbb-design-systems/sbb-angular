@@ -9,13 +9,12 @@ import {
   DoCheck,
   ElementRef,
   EventEmitter,
+  inject,
   Input,
   OnDestroy,
   OnInit,
-  Optional,
   Output,
   QueryList,
-  Self,
   ViewEncapsulation,
 } from '@angular/core';
 import { ControlValueAccessor, FormGroupDirective, NgControl, NgForm } from '@angular/forms';
@@ -76,6 +75,10 @@ export class SbbChipList
     OnInit,
     OnDestroy
 {
+  protected _elementRef: ElementRef<HTMLElement> = inject<ElementRef<HTMLElement>>(ElementRef);
+  private _changeDetectorRef = inject(ChangeDetectorRef);
+  ngControl: NgControl = inject(NgControl, { optional: true, self: true })!;
+
   /**
    * Implemented as part of SbbFormFieldControl.
    * @docs-private
@@ -279,15 +282,13 @@ export class SbbChipList
     this._errorStateTracker.errorState = value;
   }
 
-  constructor(
-    protected _elementRef: ElementRef<HTMLElement>,
-    private _changeDetectorRef: ChangeDetectorRef,
-    @Optional() parentForm: NgForm,
-    @Optional() parentFormGroup: FormGroupDirective,
-    defaultErrorStateMatcher: SbbErrorStateMatcher,
-    /** @docs-private */
-    @Optional() @Self() public ngControl: NgControl,
-  ) {
+  constructor(...args: unknown[]);
+  constructor() {
+    const parentForm = inject(NgForm, { optional: true })!;
+    const parentFormGroup = inject(FormGroupDirective, { optional: true })!;
+    const defaultErrorStateMatcher = inject(SbbErrorStateMatcher);
+    const ngControl = this.ngControl;
+
     if (this.ngControl) {
       this.ngControl.valueAccessor = this;
     }

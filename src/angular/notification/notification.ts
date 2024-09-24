@@ -8,6 +8,7 @@ import {
   ContentChild,
   EventEmitter,
   HostListener,
+  inject,
   Input,
   OnChanges,
   Output,
@@ -69,6 +70,8 @@ let nextId = 0;
   imports: [SbbIcon, AsyncPipe],
 })
 export class SbbNotification extends _SbbNotificationMixinBase implements OnChanges {
+  private _changeDetectorRef = inject(ChangeDetectorRef);
+
   /** Whether this notification is closed. */
   _closed: boolean = false;
 
@@ -119,7 +122,8 @@ export class SbbNotification extends _SbbNotificationMixinBase implements OnChan
   /** Subject for the current indicator icon. */
   private _svgIconSubject = new BehaviorSubject<string | null>(null);
 
-  constructor(private _changeDetectorRef: ChangeDetectorRef) {
+  constructor(...args: unknown[]);
+  constructor() {
     super();
     this._svgIcon = combineLatest([this.variant, this._svgIconSubject]).pipe(
       map(([variant, icon]) => {

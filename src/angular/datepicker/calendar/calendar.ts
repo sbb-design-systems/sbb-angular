@@ -11,12 +11,10 @@ import {
   ChangeDetectorRef,
   Component,
   EventEmitter,
-  forwardRef,
-  Inject,
+  inject,
   Input,
   OnChanges,
   OnDestroy,
-  Optional,
   Output,
   SimpleChange,
   SimpleChanges,
@@ -45,6 +43,8 @@ import { SbbMonthView } from '../month-view/month-view';
   imports: [SbbIconModule],
 })
 export class SbbCalendarHeader<D> {
+  private _dateAdapter = inject<SbbDateAdapter<D>>(SbbDateAdapter, { optional: true })!;
+
   _labelSwitchToPreviousMonth: string = $localize`:Button label to switch to the previous month@@sbbDatepickerSwitchToPreviousMonth:Change to the previous month`;
 
   _labelSwitchToNextMonth: string = $localize`:Button label to switch to the next month@@sbbDatepickerSwitchToNextMonth:Change to the next month`;
@@ -53,16 +53,11 @@ export class SbbCalendarHeader<D> {
 
   _labelSwitchToNextYear: string = $localize`:Button label to switch to the next year@@sbbDatepickerSwitchToNextYear:Change to the next year`;
 
-  public calendar: SbbCalendar<D>;
+  public calendar: SbbCalendar<D> = inject(SbbCalendar);
 
-  constructor(
-    @Optional() private _dateAdapter: SbbDateAdapter<D>,
-    // tslint:disable-next-line:no-use-before-declare
-    @Inject(forwardRef(() => SbbCalendar))
-    calendar: any,
-    changeDetectorRef: ChangeDetectorRef,
-  ) {
-    this.calendar = calendar;
+  constructor(...args: unknown[]);
+  constructor() {
+    const changeDetectorRef = inject(ChangeDetectorRef);
     this.calendar.stateChanges.subscribe(() => changeDetectorRef.markForCheck());
   }
 
@@ -176,6 +171,10 @@ export class SbbCalendarHeader<D> {
   imports: [CdkPortalOutlet, CdkMonitorFocus, SbbMonthView, AsyncPipe],
 })
 export class SbbCalendar<D> implements AfterContentInit, AfterViewChecked, OnDestroy, OnChanges {
+  private _dateAdapter = inject<SbbDateAdapter<D>>(SbbDateAdapter, { optional: true })!;
+  private _dateFormats = inject<SbbDateFormats>(SBB_DATE_FORMATS, { optional: true })!;
+  private _changeDetectorRef = inject(ChangeDetectorRef);
+
   /** An input indicating the type of the header component, if set. */
   @Input() headerComponent: ComponentType<any>;
 
@@ -280,11 +279,8 @@ export class SbbCalendar<D> implements AfterContentInit, AfterViewChecked, OnDes
   /** Emits whenever there is a state change that the header may need to respond to. */
   stateChanges: Subject<void> = new Subject<void>();
 
-  constructor(
-    @Optional() private _dateAdapter: SbbDateAdapter<D>,
-    @Optional() @Inject(SBB_DATE_FORMATS) private _dateFormats: SbbDateFormats,
-    private _changeDetectorRef: ChangeDetectorRef,
-  ) {
+  constructor(...args: unknown[]);
+  constructor() {
     if (!this._dateAdapter) {
       throw createMissingDateImplError('DateAdapter');
     }

@@ -9,6 +9,7 @@ import {
   ElementRef,
   EventEmitter,
   HostListener,
+  inject,
   Input,
   Output,
   ViewEncapsulation,
@@ -47,6 +48,8 @@ let nextId = 0;
   imports: [SbbIconModule],
 })
 export class SbbAlert {
+  private _changeDetector = inject(ChangeDetectorRef);
+
   _labelClose: string = $localize`:Hidden button label to close the alert@@sbbAlertCloseAlert:Close message`;
 
   /** The id of this element. */
@@ -72,10 +75,10 @@ export class SbbAlert {
    */
   @Input() svgIcon: string = 'info';
 
-  constructor(
-    private _changeDetector: ChangeDetectorRef,
-    elementRef: ElementRef<HTMLElement>,
-  ) {
+  constructor(...args: unknown[]);
+  constructor() {
+    const elementRef = inject<ElementRef<HTMLElement>>(ElementRef);
+
     if (elementRef.nativeElement.nodeName.toLowerCase() === 'a') {
       this._isNativeLink = true;
     }

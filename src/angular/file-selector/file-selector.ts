@@ -9,9 +9,8 @@ import {
   ElementRef,
   EventEmitter,
   forwardRef,
-  Inject,
+  inject,
   Input,
-  Optional,
   Output,
   Renderer2,
   ViewChild,
@@ -52,6 +51,10 @@ let nextId = 0;
   imports: [SbbIconModule],
 })
 export class SbbFileSelector implements ControlValueAccessor, SbbFileSelectorOptions {
+  private _fileTypeService = inject(SbbFileSelectorTypesService);
+  private _renderer = inject(Renderer2);
+  private _changeDetector = inject(ChangeDetectorRef);
+
   _labelUploadFile: string = $localize`:Button label to select files for upload@@sbbFileSelectorUploadFile:Upload file`;
 
   _labelRemoveFile: string = $localize`:Hidden button label to remove a file from the selection list@@sbbFileSelectorRemoveFile:Remove file`;
@@ -95,13 +98,10 @@ export class SbbFileSelector implements ControlValueAccessor, SbbFileSelectorOpt
   /** Property that catches the interaction with user. */
   _onTouched: () => void = () => {};
 
-  constructor(
-    elementRef: ElementRef<HTMLElement>,
-    private _fileTypeService: SbbFileSelectorTypesService,
-    private _renderer: Renderer2,
-    private _changeDetector: ChangeDetectorRef,
-    @Optional() @Inject(SBB_FILE_SELECTOR_OPTIONS) options: SbbFileSelectorOptions,
-  ) {
+  constructor(...args: unknown[]);
+  constructor() {
+    const options = inject<SbbFileSelectorOptions>(SBB_FILE_SELECTOR_OPTIONS, { optional: true })!;
+
     if (options) {
       this.accept = options.accept;
       this.capture = options.capture;

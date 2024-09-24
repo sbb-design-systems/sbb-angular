@@ -9,7 +9,6 @@ import {
   inject,
   Injector,
   Input,
-  NgZone,
   Output,
   ViewEncapsulation,
 } from '@angular/core';
@@ -53,6 +52,9 @@ export class SbbCalendarCell {
   standalone: true,
 })
 export class SbbCalendarBody implements AfterViewChecked {
+  private _elementRef = inject<ElementRef<HTMLElement>>(ElementRef);
+  private _changeDetectorRef = inject(ChangeDetectorRef);
+
   /**
    * Used to focus the active cell after change detection has run.
    */
@@ -118,11 +120,8 @@ export class SbbCalendarBody implements AfterViewChecked {
    */
   _trackRow = (row: SbbCalendarCell[]) => row;
 
-  constructor(
-    private _elementRef: ElementRef<HTMLElement>,
-    private _ngZone: NgZone,
-    private _changeDetectorRef: ChangeDetectorRef,
-  ) {}
+  constructor(...args: unknown[]);
+  constructor() {}
 
   ngAfterViewChecked() {
     if (this._focusActiveCellAfterViewChecked) {

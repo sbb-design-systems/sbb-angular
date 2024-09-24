@@ -7,14 +7,12 @@ import {
   DoCheck,
   ElementRef,
   HostListener,
-  Inject,
+  inject,
   Input,
   NgZone,
   numberAttribute,
   OnChanges,
   OnDestroy,
-  Optional,
-  Self,
 } from '@angular/core';
 import { FormGroupDirective, NgControl, NgForm } from '@angular/forms';
 import { SbbErrorStateMatcher, _ErrorStateTracker } from '@sbb-esta/angular/core';
@@ -64,9 +62,14 @@ const SBB_INPUT_INVALID_TYPES = [
 export class SbbInput
   implements SbbFormFieldControl<any>, AfterViewInit, OnChanges, DoCheck, OnDestroy
 {
+  private _elementRef =
+    inject<ElementRef<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>>(ElementRef);
+  private _platform = inject(Platform);
+  private _autofillMonitor = inject(AutofillMonitor);
   private _previousNativeValue: any;
   private _inputValueAccessor: { value: any };
   private _errorStateTracker: _ErrorStateTracker;
+  ngControl: NgControl = inject(NgControl, { optional: true, self: true })!;
 
   /** Whether the component is a native html select. */
   readonly _isNativeSelect: boolean;
@@ -247,21 +250,14 @@ export class SbbInput
     'week',
   ].filter((t) => getSupportedInputTypes().has(t));
 
-  constructor(
-    private _elementRef: ElementRef<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>,
-    private _platform: Platform,
-    /** @docs-private */
-    @Optional() @Self() public ngControl: NgControl,
-    @Optional() parentForm: NgForm,
-    @Optional() parentFormGroup: FormGroupDirective,
-    defaultErrorStateMatcher: SbbErrorStateMatcher,
-    @Optional()
-    @Self()
-    @Inject(SBB_INPUT_VALUE_ACCESSOR)
-    inputValueAccessor: any,
-    private _autofillMonitor: AutofillMonitor,
-    ngZone: NgZone,
-  ) {
+  constructor(...args: unknown[]);
+  constructor() {
+    const parentForm = inject(NgForm, { optional: true })!;
+    const parentFormGroup = inject(FormGroupDirective, { optional: true })!;
+    const defaultErrorStateMatcher = inject(SbbErrorStateMatcher);
+    const inputValueAccessor = inject(SBB_INPUT_VALUE_ACCESSOR, { optional: true, self: true })!;
+    const ngZone = inject(NgZone);
+
     const element = this._elementRef.nativeElement;
     const nodeName = element.nodeName.toLowerCase();
 
@@ -274,14 +270,14 @@ export class SbbInput
     // On some versions of iOS the caret gets stuck in the wrong place when holding down the delete
     // key. In order to get around this we need to "jiggle" the caret loose. Since this bug only
     // exists on iOS, we only bother to install the listener on iOS.
-    if (_platform.IOS) {
+    if (this._platform.IOS) {
       ngZone.runOutsideAngular(() => {
-        _elementRef.nativeElement.addEventListener('keyup', this._iOSKeyupListener);
+        this._elementRef.nativeElement.addEventListener('keyup', this._iOSKeyupListener);
       });
     }
     this._errorStateTracker = new _ErrorStateTracker(
       defaultErrorStateMatcher,
-      ngControl,
+      this.ngControl,
       parentFormGroup,
       parentForm,
       this.stateChanges,
