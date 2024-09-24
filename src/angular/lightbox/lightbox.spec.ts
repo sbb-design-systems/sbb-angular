@@ -9,8 +9,6 @@ import { SpyLocation } from '@angular/common/testing';
 import {
   ChangeDetectionStrategy,
   Component,
-  ComponentFactoryResolver,
-  ComponentRef,
   createNgModuleRef,
   Directive,
   forwardRef,
@@ -131,7 +129,6 @@ describe('SbbLightbox', () => {
 
     expect(overlayContainerElement.textContent).toContain('Pizza');
     expect(lightboxRef.componentInstance instanceof PizzaMsg).toBe(true);
-    expect(lightboxRef.componentRef instanceof ComponentRef).toBe(true);
     expect(lightboxRef.componentInstance.lightboxRef).toBe(lightboxRef);
 
     viewContainerFixture.detectChanges();
@@ -609,21 +606,6 @@ describe('SbbLightbox', () => {
     flush();
     expect(scrollStrategy.enable).toHaveBeenCalled();
   }));
-
-  it('should be able to pass in an alternate ComponentFactoryResolver', inject(
-    [ComponentFactoryResolver],
-    (resolver: ComponentFactoryResolver) => {
-      spyOn(resolver, 'resolveComponentFactory').and.callThrough();
-
-      lightbox.open(PizzaMsg, {
-        viewContainerRef: testViewContainerRef,
-        componentFactoryResolver: resolver,
-      });
-      viewContainerFixture.detectChanges();
-
-      expect(resolver.resolveComponentFactory).toHaveBeenCalled();
-    },
-  ));
 
   it('should update height on window resize', () => {
     lightbox.open(PizzaMsg, {
