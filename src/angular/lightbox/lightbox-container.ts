@@ -5,7 +5,6 @@ import { CdkPortalOutlet } from '@angular/cdk/portal';
 import { DOCUMENT } from '@angular/common';
 import {
   ChangeDetectionStrategy,
-  ChangeDetectorRef,
   Component,
   ElementRef,
   HostListener,
@@ -15,7 +14,7 @@ import {
   Optional,
   ViewEncapsulation,
 } from '@angular/core';
-import { SbbDialogConfig, _SbbDialogContainerBase } from '@sbb-esta/angular/dialog';
+import { SbbDialogConfig, SbbDialogContainer } from '@sbb-esta/angular/dialog';
 import { Subject } from 'rxjs';
 import { startWith, takeUntil } from 'rxjs/operators';
 
@@ -48,10 +47,10 @@ import { sbbLightboxAnimations } from './lightbox-animations';
   standalone: true,
   imports: [CdkPortalOutlet],
 })
-export class SbbLightboxContainer extends _SbbDialogContainerBase implements OnDestroy {
+export class SbbLightboxContainer extends SbbDialogContainer implements OnDestroy {
   /** Callback, invoked whenever an animation on the host completes. */
   @HostListener('@lightboxContainer.done', ['$event'])
-  _onAnimationDone({ toState, totalTime }: AnimationEvent) {
+  override _onAnimationDone({ toState, totalTime }: AnimationEvent) {
     if (toState === 'enter') {
       this._trapFocus();
       this._animationStateChanged.next({ state: 'opened', totalTime });
@@ -62,7 +61,7 @@ export class SbbLightboxContainer extends _SbbDialogContainerBase implements OnD
 
   /** Callback, invoked when an animation on the host starts. */
   @HostListener('@lightboxContainer.start', ['$event'])
-  _onAnimationStart({ toState, totalTime }: AnimationEvent) {
+  override _onAnimationStart({ toState, totalTime }: AnimationEvent) {
     if (toState === 'enter') {
       this._animationStateChanged.next({ state: 'opening', totalTime });
     } else if (toState === 'exit' || toState === 'void') {
@@ -71,12 +70,12 @@ export class SbbLightboxContainer extends _SbbDialogContainerBase implements OnD
   }
 
   /** Starts the dialog exit animation. */
-  _startExitAnimation(): void {
+  override _startExitAnimation(): void {
     this._state = 'exit';
 
     // Mark the container for check so it can react if the
     // view container is using OnPush change detection.
-    this._changeDetectorReference.markForCheck();
+    this._changeDetectorRef.markForCheck();
   }
 
   private _destroyed = new Subject<void>();
@@ -89,8 +88,6 @@ export class SbbLightboxContainer extends _SbbDialogContainerBase implements OnD
     checker: InteractivityChecker,
     ngZone: NgZone,
     overlayRef: OverlayRef,
-    // @breaking-change: 18.0.0 Use base class _changeDetectorRef
-    private _changeDetectorReference: ChangeDetectorRef,
     focusMonitor?: FocusMonitor,
     private _viewportRuler?: ViewportRuler,
   ) {
