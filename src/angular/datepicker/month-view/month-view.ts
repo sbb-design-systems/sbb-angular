@@ -15,10 +15,9 @@ import {
   ChangeDetectorRef,
   Component,
   EventEmitter,
-  Inject,
+  inject,
   Input,
   LOCALE_ID,
-  Optional,
   Output,
   ViewChild,
   ViewEncapsulation,
@@ -47,6 +46,13 @@ const DAYS_PER_WEEK = 7;
   imports: [SbbCalendarBody],
 })
 export class SbbMonthView<D> implements AfterContentInit {
+  _dateAdapter: SbbDateAdapter<D> = inject<SbbDateAdapter<D>>(SbbDateAdapter, {
+    optional: true,
+  })!;
+  readonly locale = inject(LOCALE_ID);
+  private _changeDetectorRef = inject(ChangeDetectorRef);
+  private _dateFormats = inject<SbbDateFormats>(SBB_DATE_FORMATS, { optional: true })!;
+
   /** The date to display in this month view (everything other than the month and year is ignored). */
   @Input()
   get activeDate(): D {
@@ -182,13 +188,10 @@ export class SbbMonthView<D> implements AfterContentInit {
 
   private _datePicker: SbbDatepicker<D>;
 
-  constructor(
-    @Optional() public _dateAdapter: SbbDateAdapter<D>,
-    @Inject(LOCALE_ID) public readonly locale: string,
-    private _changeDetectorRef: ChangeDetectorRef,
-    @Optional() @Inject(SBB_DATE_FORMATS) private _dateFormats: SbbDateFormats,
-    @Optional() @Inject(SBB_DATEPICKER) datepicker: TypeRef<SbbDatepicker<D>>,
-  ) {
+  constructor(...args: unknown[]);
+  constructor() {
+    const datepicker = inject<TypeRef<SbbDatepicker<D>>>(SBB_DATEPICKER, { optional: true })!;
+
     if (!this._dateAdapter) {
       throw createMissingDateImplError('DateAdapter');
     }

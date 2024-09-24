@@ -20,14 +20,11 @@ import {
   ComponentRef,
   EventEmitter,
   inject,
-  Inject,
   InjectionToken,
   Injector,
   Input,
   LOCALE_ID,
-  NgZone,
   OnDestroy,
-  Optional,
   Output,
   ViewContainerRef,
   ViewEncapsulation,
@@ -81,6 +78,13 @@ export const SBB_DATEPICKER_SCROLL_STRATEGY_FACTORY_PROVIDER = {
   imports: [SbbIconModule, SbbDatepickerToggle],
 })
 export class SbbDatepicker<D> implements OnDestroy {
+  private _overlay = inject(Overlay);
+  private _viewContainerRef = inject(ViewContainerRef);
+  private _changeDetectorRef = inject(ChangeDetectorRef);
+  private _scrollStrategy = inject(SBB_DATEPICKER_SCROLL_STRATEGY);
+  private _dateAdapter = inject<SbbDateAdapter<D>>(SbbDateAdapter, { optional: true })!;
+  readonly locale = inject(LOCALE_ID);
+
   /** An input indicating the type of the custom header component for the calendar, if set. */
   @Input() calendarHeaderComponent: ComponentType<any>;
 
@@ -270,23 +274,12 @@ export class SbbDatepicker<D> implements OnDestroy {
 
   private _injector = inject(Injector);
 
-  constructor(
-    private _overlay: Overlay,
-    /**
-     * @deprecated parameter is unused and will be removed
-     * @breaking-change 19.0.0
-     */
-    private _unusedNgZone: NgZone,
-    private _viewContainerRef: ViewContainerRef,
-    private _changeDetectorRef: ChangeDetectorRef,
-    @Inject(SBB_DATEPICKER_SCROLL_STRATEGY) private _scrollStrategy: any,
-    @Optional() private _dateAdapter: SbbDateAdapter<D>,
-    @Inject(LOCALE_ID) public readonly locale: string,
-  ) {
+  constructor(...args: unknown[]);
+  constructor() {
     if (!this._dateAdapter) {
       throw createMissingDateImplError('DateAdapter');
     }
-    this._dateAdapter.setLocale(locale);
+    this._dateAdapter.setLocale(this.locale);
   }
 
   ngOnDestroy() {

@@ -10,11 +10,10 @@ import {
   DoCheck,
   ElementRef,
   HostListener,
+  inject,
   Input,
   numberAttribute,
   OnDestroy,
-  Optional,
-  Self,
   ViewChild,
   ViewEncapsulation,
 } from '@angular/core';
@@ -48,6 +47,10 @@ let nextId = 0;
 export class SbbTextarea
   implements SbbFormFieldControl<string>, ControlValueAccessor, DoCheck, OnDestroy
 {
+  ngControl: NgControl = inject(NgControl, { self: true, optional: true })!;
+  private _changeDetectorRef = inject(ChangeDetectorRef);
+  private _elementRef = inject(ElementRef);
+
   get _labelCharactersRemaining(): string {
     return $localize`:Counter text for textarea@@sbbTextareaCounterText:${this._counter.value} characters remaining`;
   }
@@ -200,14 +203,12 @@ export class SbbTextarea
   /** `View -> model callback called when autocomplete has been touched` */
   _onTouched: () => void = () => {};
 
-  constructor(
-    @Self() @Optional() public ngControl: NgControl,
-    private _changeDetectorRef: ChangeDetectorRef,
-    private _elementRef: ElementRef,
-    defaultErrorStateMatcher: SbbErrorStateMatcher,
-    @Optional() parentForm: NgForm,
-    @Optional() parentFormGroup: FormGroupDirective,
-  ) {
+  constructor(...args: unknown[]);
+  constructor() {
+    const defaultErrorStateMatcher = inject(SbbErrorStateMatcher);
+    const parentForm = inject(NgForm, { optional: true })!;
+    const parentFormGroup = inject(FormGroupDirective, { optional: true })!;
+
     if (this.ngControl) {
       // Note: we provide the value accessor through here, instead of
       // the `providers` to avoid running into a circular import.
@@ -216,7 +217,7 @@ export class SbbTextarea
 
     this._errorStateTracker = new _ErrorStateTracker(
       defaultErrorStateMatcher,
-      ngControl,
+      this.ngControl,
       parentFormGroup,
       parentForm,
       this.stateChanges,

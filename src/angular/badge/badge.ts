@@ -4,12 +4,11 @@ import {
   booleanAttribute,
   Directive,
   ElementRef,
-  Inject,
+  inject,
   Input,
   NgZone,
   OnDestroy,
   OnInit,
-  Optional,
   Renderer2,
 } from '@angular/core';
 
@@ -33,6 +32,12 @@ const BADGE_CONTENT_CLASS = 'sbb-badge-content';
   standalone: true,
 })
 export class SbbBadge implements OnInit, OnDestroy {
+  private _ngZone = inject(NgZone);
+  private _elementRef = inject<ElementRef<HTMLElement>>(ElementRef);
+  private _ariaDescriber = inject(AriaDescriber);
+  private _renderer = inject(Renderer2);
+  private _animationMode = inject(ANIMATION_MODULE_TYPE, { optional: true });
+
   /** Position the badge should reside. */
   @Input('sbbBadgePosition') position: SbbBadgePosition = 'above';
 
@@ -71,15 +76,10 @@ export class SbbBadge implements OnInit, OnDestroy {
   /** Whether the OnInit lifecycle hook has run yet */
   private _isInitialized = false;
 
-  constructor(
-    private _ngZone: NgZone,
-    private _elementRef: ElementRef<HTMLElement>,
-    private _ariaDescriber: AriaDescriber,
-    private _renderer: Renderer2,
-    @Optional() @Inject(ANIMATION_MODULE_TYPE) private _animationMode?: string,
-  ) {
+  constructor(...args: unknown[]);
+  constructor() {
     if (typeof ngDevMode === 'undefined' || ngDevMode) {
-      const nativeElement = _elementRef.nativeElement;
+      const nativeElement = this._elementRef.nativeElement;
       if (nativeElement.nodeType !== nativeElement.ELEMENT_NODE) {
         throw Error('sbbBadge must be attached to an element node.');
       }

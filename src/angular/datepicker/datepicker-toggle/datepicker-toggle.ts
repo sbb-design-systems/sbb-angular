@@ -3,12 +3,12 @@
 
 import {
   AfterContentInit,
-  Attribute,
   booleanAttribute,
   ChangeDetectionStrategy,
   ChangeDetectorRef,
   Component,
-  Inject,
+  HostAttributeToken,
+  inject,
   Input,
   OnChanges,
   OnDestroy,
@@ -35,6 +35,8 @@ import type { SbbDatepicker } from '../datepicker/datepicker';
   imports: [SbbIconModule],
 })
 export class SbbDatepickerToggle<D> implements OnDestroy, OnChanges, AfterContentInit {
+  private _changeDetectorRef = inject(ChangeDetectorRef);
+  _datepicker: SbbDatepicker<D> = inject<SbbDatepicker<D>>(SBB_DATEPICKER);
   _labelShowCalendar: string = $localize`:Open calendar@@sbbDatepickerOpenCalendar:Show calendar`;
 
   private _stateChanges = Subscription.EMPTY;
@@ -52,11 +54,9 @@ export class SbbDatepickerToggle<D> implements OnDestroy, OnChanges, AfterConten
   }
   private _disabled?: boolean;
 
-  constructor(
-    private _changeDetectorRef: ChangeDetectorRef,
-    @Inject(SBB_DATEPICKER) public _datepicker: SbbDatepicker<D>,
-    @Attribute('tabindex') defaultTabIndex: string,
-  ) {
+  constructor(...args: unknown[]);
+  constructor() {
+    const defaultTabIndex = inject(new HostAttributeToken('tabindex'), { optional: true });
     const parsedTabIndex = Number(defaultTabIndex);
     this.tabIndex = parsedTabIndex || parsedTabIndex === 0 ? parsedTabIndex : null;
   }

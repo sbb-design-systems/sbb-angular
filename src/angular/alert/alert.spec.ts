@@ -1,4 +1,4 @@
-import { Component, DebugElement } from '@angular/core';
+import { Component, DebugElement, inject } from '@angular/core';
 import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
@@ -341,7 +341,7 @@ export class AlertExternalLink {
   imports: [RouterTestingModule, SbbIconTestingModule, SbbAlertModule],
 })
 export class AlertOutletSimple {
-  constructor(public alertService: SbbAlertService) {}
+  alertService = inject(SbbAlertService);
 }
 
 @Component({
@@ -373,6 +373,4 @@ export class AlertOutletError {}
   standalone: true,
   imports: [RouterTestingModule, SbbIconTestingModule, SbbAlertModule],
 })
-export class AlertOutletWithoutOutlet {
-  constructor(public alertService: SbbAlertService) {}
-}
+export class AlertOutletWithoutOutlet {}

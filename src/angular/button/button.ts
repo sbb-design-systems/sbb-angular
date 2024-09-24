@@ -10,11 +10,10 @@ import {
   Component,
   ContentChildren,
   ElementRef,
-  Inject,
+  inject,
   Input,
   NgZone,
   OnDestroy,
-  Optional,
   QueryList,
   ViewEncapsulation,
 } from '@angular/core';
@@ -89,6 +88,12 @@ export class SbbButton
   extends _SbbButtonMixinBase
   implements AfterViewInit, AfterContentInit, OnDestroy, FocusableOption
 {
+  private _focusMonitor = inject(FocusMonitor);
+  _animationMode: 'NoopAnimations' | 'BrowserAnimations' = inject(ANIMATION_MODULE_TYPE, {
+    optional: true,
+  })!;
+  private _contentObserver = inject(ContentObserver);
+
   /** Whether this button has an icon indicator. */
   _hasIconIndicator: boolean = this._hasHostAttributes(...INDICATOR_ATTRIBUTES);
   /** Whether the left indicator icon is visible. */
@@ -114,12 +119,9 @@ export class SbbButton
   @ContentChildren(SbbIcon, { read: ElementRef }) _iconRefs: QueryList<ElementRef> =
     new QueryList<ElementRef>();
 
-  constructor(
-    elementRef: ElementRef,
-    private _focusMonitor: FocusMonitor,
-    @Optional() @Inject(ANIMATION_MODULE_TYPE) public _animationMode: string,
-    private _contentObserver: ContentObserver,
-  ) {
+  constructor(...args: unknown[]);
+  constructor() {
+    const elementRef = inject(ElementRef);
     super(elementRef);
 
     // For each of the variant selectors that is present in the button's host
@@ -219,18 +221,10 @@ export class SbbButton
   imports: [SbbIconModule, AsyncPipe],
 })
 export class SbbAnchor extends SbbButton implements AfterViewInit, OnDestroy {
+  private _ngZone = inject(NgZone);
+
   /** Tabindex of the button. */
   @Input() tabIndex: number;
-
-  constructor(
-    focusMonitor: FocusMonitor,
-    elementRef: ElementRef,
-    @Optional() @Inject(ANIMATION_MODULE_TYPE) animationMode: string,
-    private _ngZone: NgZone,
-    contentObserver: ContentObserver,
-  ) {
-    super(elementRef, focusMonitor, animationMode, contentObserver);
-  }
 
   override ngAfterViewInit(): void {
     super.ngAfterViewInit();

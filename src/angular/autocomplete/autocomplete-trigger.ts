@@ -21,16 +21,13 @@ import {
   Directive,
   ElementRef,
   forwardRef,
-  Host,
   inject,
-  Inject,
   InjectionToken,
   Injector,
   Input,
   NgZone,
   OnChanges,
   OnDestroy,
-  Optional,
   SimpleChanges,
   ViewContainerRef,
 } from '@angular/core';
@@ -141,10 +138,26 @@ export function getSbbAutocompleteMissingPanelError(): Error {
 export class SbbAutocompleteTrigger
   implements ControlValueAccessor, AfterViewInit, OnChanges, OnDestroy
 {
+  private _element = inject<ElementRef<HTMLInputElement>>(ElementRef);
+  private _overlay = inject(Overlay);
+  private _viewContainerRef = inject(ViewContainerRef);
+  private _zone = inject(NgZone);
+  private _changeDetectorRef = inject(ChangeDetectorRef);
+  private _formField = inject<TypeRef<SbbFormField> | null>(SBB_FORM_FIELD, {
+    optional: true,
+    host: true,
+  });
+  private _document = inject(DOCUMENT, { optional: true })!;
+  private _viewportRuler = inject(ViewportRuler);
+  private _defaults = inject<SbbAutocompleteDefaultOptions | null>(
+    SBB_AUTOCOMPLETE_DEFAULT_OPTIONS,
+    { optional: true },
+  );
+
   private _overlayRef: OverlayRef | null;
   private _portal: TemplatePortal;
   private _componentDestroyed = false;
-  private _scrollStrategy: () => ScrollStrategy;
+  private _scrollStrategy = inject(SBB_AUTOCOMPLETE_SCROLL_STRATEGY);
   private _keydownSubscription: Subscription | null;
   private _outsideClickSubscription: Subscription | null;
 
@@ -298,22 +311,8 @@ export class SbbAutocompleteTrigger
 
   private _injector = inject(Injector);
 
-  constructor(
-    private _element: ElementRef<HTMLInputElement>,
-    private _overlay: Overlay,
-    private _viewContainerRef: ViewContainerRef,
-    private _zone: NgZone,
-    private _changeDetectorRef: ChangeDetectorRef,
-    @Inject(SBB_AUTOCOMPLETE_SCROLL_STRATEGY) scrollStrategy: any,
-    @Optional() @Inject(SBB_FORM_FIELD) @Host() private _formField: TypeRef<SbbFormField> | null,
-    @Optional() @Inject(DOCUMENT) private _document: any,
-    private _viewportRuler: ViewportRuler,
-    @Optional()
-    @Inject(SBB_AUTOCOMPLETE_DEFAULT_OPTIONS)
-    private _defaults?: SbbAutocompleteDefaultOptions | null,
-  ) {
-    this._scrollStrategy = scrollStrategy;
-  }
+  constructor(...args: unknown[]);
+  constructor() {}
 
   /** Class to apply to the panel when it's above the input. */
   private _aboveClass: string = 'sbb-autocomplete-panel-above';

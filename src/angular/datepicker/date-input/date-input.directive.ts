@@ -6,11 +6,10 @@ import {
   EventEmitter,
   forwardRef,
   HostListener,
-  Inject,
+  inject,
   Input,
   OnDestroy,
   OnInit,
-  Optional,
   Output,
 } from '@angular/core';
 import {
@@ -81,6 +80,14 @@ export const SBB_DATE_VALIDATORS: any = {
   standalone: true,
 })
 export class SbbDateInput<D> implements ControlValueAccessor, Validator, OnInit, OnDestroy {
+  private _elementRef = inject<ElementRef<HTMLInputElement>>(ElementRef);
+  _dateAdapter: SbbDateAdapter<D> = inject<SbbDateAdapter<D>>(SbbDateAdapter, {
+    optional: true,
+  })!;
+  private _dateFormats = inject<SbbDateFormats>(SBB_DATE_FORMATS, { optional: true })!;
+  _datepicker: SbbDatepicker<D> = inject<SbbDatepicker<D>>(SbbDatepicker, { optional: true })!;
+  private _formField = inject<SbbFormField>(SBB_FORM_FIELD, { optional: true });
+
   /** Function that can be used to filter out dates within the datepicker. */
   @Input()
   set dateFilter(value: (date: D | null) => boolean) {
@@ -251,13 +258,8 @@ export class SbbDateInput<D> implements ControlValueAccessor, Validator, OnInit,
     this._filterValidator,
   ]);
 
-  constructor(
-    private _elementRef: ElementRef<HTMLInputElement>,
-    @Optional() public _dateAdapter: SbbDateAdapter<D>,
-    @Optional() @Inject(SBB_DATE_FORMATS) private _dateFormats: SbbDateFormats,
-    @Optional() public _datepicker: SbbDatepicker<D>,
-    @Optional() @Inject(SBB_FORM_FIELD) private _formField?: SbbFormField,
-  ) {
+  constructor(...args: unknown[]);
+  constructor() {
     if (!this._dateAdapter) {
       throw createMissingDateImplError('DateAdapter');
     }

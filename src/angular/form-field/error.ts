@@ -1,4 +1,11 @@
-import { Attribute, Directive, ElementRef, InjectionToken, Input } from '@angular/core';
+import {
+  Directive,
+  ElementRef,
+  HostAttributeToken,
+  inject,
+  InjectionToken,
+  Input,
+} from '@angular/core';
 
 let nextId = 0;
 
@@ -23,10 +30,14 @@ export const SBB_ERROR = new InjectionToken<SbbError>('SbbError');
 export class SbbError {
   @Input() id: string = `sbb-error-${nextId++}`;
 
-  constructor(@Attribute('aria-live') ariaLive: string, elementRef: ElementRef) {
+  constructor(...args: unknown[]);
+  constructor() {
+    const ariaLive = inject(new HostAttributeToken('aria-live'), { optional: true });
+
     // If no aria-live value is set add 'polite' as a default. This is preferred over setting
     // role='alert' so that screen readers do not interrupt the current task to read this aloud.
     if (!ariaLive) {
+      const elementRef = inject(ElementRef);
       elementRef.nativeElement.setAttribute('aria-live', 'polite');
     }
   }

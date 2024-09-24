@@ -2,6 +2,7 @@ import {
   ChangeDetectionStrategy,
   Component,
   Directive,
+  inject as inject_1,
   provideZoneChangeDetection,
   signal,
   ViewChild,
@@ -64,7 +65,7 @@ describe('NotificationToast Zone.js integration', () => {
   standalone: true,
 })
 class DirectiveWithViewContainer {
-  constructor(public viewContainerRef: ViewContainerRef) {}
+  viewContainerRef = inject_1(ViewContainerRef);
 }
 
 @Component({
