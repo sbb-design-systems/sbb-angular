@@ -213,7 +213,7 @@
     <unit id="sbbTagBadgePillAmountOfResults">
       <notes>
         <note category="location">../../../../../../src/angular/tag/tag-link.ts:35</note>
-        <note category="location">../../../../../../src/angular/tag/tag.ts:58</note>
+        <note category="location">../../../../../../src/angular/tag/tag.ts:56</note>
         <note category="description">Aria label for amount of results displayed in badge pill</note>
       </notes>
       <segment>
@@ -240,7 +240,7 @@
     </unit>
     <unit id="sbbTextareaCounterText">
       <notes>
-        <note category="location">../../../../../../src/angular/textarea/textarea/textarea.ts:52</note>
+        <note category="location">../../../../../../src/angular/textarea/textarea/textarea.ts:55</note>
         <note category="description">Counter text for textarea</note>
       </notes>
       <segment>
