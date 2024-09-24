@@ -68,62 +68,63 @@ describe('SbbSidebar', () => {
   describe('methods', () => {
     it('should be able to open', fakeAsync(() => {
       const fixture = TestBed.createComponent(BasicTestComponent);
+      const testComponent: BasicTestComponent = fixture.debugElement.componentInstance;
+      const container = fixture.debugElement.query(By.css('sbb-sidebar-container'))!.nativeElement;
       fixture.detectChanges();
+      tick();
+
+      // sidebar is opened after creation
+      expect(testComponent.openCount).toBe(1);
+      expect(testComponent.openStartCount).toBe(1);
+      expect(container.classList).toContain('sbb-sidebar-container-has-open');
+
       mediaMatcher.setMatchesQuery(Breakpoints.Mobile, true);
       tick();
 
-      const testComponent: BasicTestComponent = fixture.debugElement.componentInstance;
-      const container = fixture.debugElement.query(By.css('sbb-sidebar-container'))!.nativeElement;
+      expect(testComponent.openCount).toBe(1);
+      expect(testComponent.openStartCount).toBe(1);
+      expect(container.classList).not.toContain('sbb-sidebar-container-has-open');
 
       fixture.debugElement.query(By.css('.open'))!.nativeElement.click();
       fixture.detectChanges();
-
-      expect(testComponent.openCount).toBe(0);
-      expect(testComponent.openStartCount).toBe(0);
-      expect(container.classList).not.toContain('sbb-sidebar-container-has-open');
-
       tick();
-      expect(testComponent.openStartCount).toBe(1);
-      fixture.detectChanges();
 
-      expect(testComponent.openCount).toBe(1);
-      expect(testComponent.openStartCount).toBe(1);
+      expect(testComponent.openCount).toBe(2);
+      expect(testComponent.openStartCount).toBe(2);
       expect(container.classList).toContain('sbb-sidebar-container-has-open');
     }));
 
     it('should be able to close', fakeAsync(() => {
       const fixture = TestBed.createComponent(BasicTestComponent);
+      const testComponent: BasicTestComponent = fixture.debugElement.componentInstance;
+      const container = fixture.debugElement.query(By.css('sbb-sidebar-container'))!.nativeElement;
       fixture.detectChanges();
+
       mediaMatcher.setMatchesQuery(Breakpoints.Mobile, true);
       tick();
 
-      const testComponent: BasicTestComponent = fixture.debugElement.componentInstance;
-      const container = fixture.debugElement.query(By.css('sbb-sidebar-container'))!.nativeElement;
+      // closed after switching to mobile mode
+      expect(testComponent.closeCount).toBe(1);
+      expect(testComponent.closeStartCount).toBe(1);
 
       fixture.debugElement.query(By.css('.open'))!.nativeElement.click();
       fixture.detectChanges();
       flush();
-      fixture.detectChanges();
 
       fixture.debugElement.query(By.css('.close'))!.nativeElement.click();
       fixture.detectChanges();
-
-      expect(testComponent.closeCount).toBe(0);
-      expect(testComponent.closeStartCount).toBe(0);
-      expect(container.classList).toContain('sbb-sidebar-container-has-open');
-
       flush();
-      expect(testComponent.closeStartCount).toBe(1);
-      fixture.detectChanges();
 
-      expect(testComponent.closeCount).toBe(1);
-      expect(testComponent.closeStartCount).toBe(1);
+      expect(testComponent.closeCount).toBe(2);
+      expect(testComponent.closeStartCount).toBe(2);
       expect(container.classList).not.toContain('sbb-sidebar-container-has-open');
     }));
 
     it('should resolve the open method promise with the new state of the sidebar', fakeAsync(() => {
       const fixture = TestBed.createComponent(BasicTestComponent);
       fixture.detectChanges();
+      tick();
+
       mediaMatcher.setMatchesQuery(Breakpoints.Mobile, true);
       tick();
 
@@ -167,8 +168,8 @@ describe('SbbSidebar', () => {
       fixture.debugElement.query(By.css('.open'))!.nativeElement.click();
       fixture.detectChanges();
 
-      expect(testComponent.openCount).toBe(0);
-      expect(testComponent.closeCount).toBe(0);
+      expect(testComponent.openCount).toBe(1);
+      expect(testComponent.closeCount).toBe(1);
 
       tick();
       fixture.debugElement.query(By.css('.close'))!.nativeElement.click();
@@ -177,8 +178,8 @@ describe('SbbSidebar', () => {
       flush();
       fixture.detectChanges();
 
-      expect(testComponent.openCount).toBe(1);
-      expect(testComponent.closeCount).toBe(1);
+      expect(testComponent.openCount).toBe(2);
+      expect(testComponent.closeCount).toBe(2);
     }));
 
     it('does not throw when created without a sidebar', fakeAsync(() => {
@@ -223,37 +224,35 @@ describe('SbbSidebar', () => {
 
     it('should close when pressing escape in over mode', fakeAsync(() => {
       const fixture = TestBed.createComponent(BasicTestComponent);
-      fixture.detectChanges();
-      mediaMatcher.setMatchesQuery(Breakpoints.Mobile, true);
-      tick();
-
       const testComponent: BasicTestComponent = fixture.debugElement.componentInstance;
       const sidebar = fixture.debugElement.query(By.directive(SbbSidebar))!;
+      fixture.detectChanges();
+      tick();
+
+      mediaMatcher.setMatchesQuery(Breakpoints.Mobile, true);
+      tick();
 
       sidebar.componentInstance.open();
       fixture.detectChanges();
       tick();
 
-      expect(testComponent.openCount).withContext('Expected one open event.').toBe(1);
-      expect(testComponent.openStartCount).withContext('Expected one open start event.').toBe(1);
-      expect(testComponent.closeCount).withContext('Expected no close events.').toBe(0);
-      expect(testComponent.closeStartCount).withContext('Expected no close start events.').toBe(0);
+      expect(testComponent.closeCount).withContext('Expected one close event.').toBe(1);
+      expect(testComponent.closeStartCount).withContext('Expected one close start event.').toBe(1);
 
       const event = dispatchKeyboardEvent(sidebar.nativeElement, 'keydown', ESCAPE);
       fixture.detectChanges();
       flush();
 
-      expect(testComponent.closeCount).withContext('Expected one close event.').toBe(1);
-      expect(testComponent.closeStartCount).withContext('Expected one close start event.').toBe(1);
+      expect(testComponent.closeCount).withContext('Expected two close events.').toBe(2);
+      expect(testComponent.closeStartCount).withContext('Expected two close start events.').toBe(2);
       expect(event.defaultPrevented).toBe(true);
     }));
 
     it('should not close when pressing escape in side mode', fakeAsync(() => {
       const fixture = TestBed.createComponent(BasicTestComponent);
-      fixture.detectChanges();
-
       const testComponent: BasicTestComponent = fixture.debugElement.componentInstance;
       const sidebar = fixture.debugElement.query(By.directive(SbbSidebar))!;
+      fixture.detectChanges();
 
       dispatchKeyboardEvent(sidebar.nativeElement, 'keydown', ESCAPE);
       fixture.detectChanges();
@@ -265,29 +264,29 @@ describe('SbbSidebar', () => {
 
     it('should not close when pressing escape with a modifier', fakeAsync(() => {
       const fixture = TestBed.createComponent(BasicTestComponent);
+      const testComponent = fixture.debugElement.componentInstance;
+      const sidebar = fixture.debugElement.query(By.directive(SbbSidebar))!;
       fixture.detectChanges();
+
       mediaMatcher.setMatchesQuery(Breakpoints.Mobile, true);
       tick();
-
-      const testComponent: BasicTestComponent = fixture.debugElement.componentInstance;
-      const sidebar = fixture.debugElement.query(By.directive(SbbSidebar))!;
 
       sidebar.componentInstance.open();
       fixture.detectChanges();
       tick();
 
-      expect(testComponent.closeCount).withContext('Expected no close events.').toBe(0);
-      expect(testComponent.closeStartCount).withContext('Expected no close start events.').toBe(0);
+      expect(testComponent.closeCount).withContext('Expected no close events.').toBe(1);
+      expect(testComponent.closeStartCount).withContext('Expected no close start events.').toBe(1);
 
       const event = createKeyboardEvent('keydown', ESCAPE, undefined, { alt: true });
       dispatchEvent(sidebar.nativeElement, event);
       fixture.detectChanges();
       flush();
 
-      expect(testComponent.closeCount).withContext('Expected still no close events.').toBe(0);
+      expect(testComponent.closeCount).withContext('Expected still only one close event.').toBe(1);
       expect(testComponent.closeStartCount)
-        .withContext('Expected still no close start events.')
-        .toBe(0);
+        .withContext('Expected still only one close start events.')
+        .toBe(1);
       expect(event.defaultPrevented).toBe(false);
     }));
 
@@ -380,6 +379,8 @@ describe('SbbSidebar', () => {
     it('should not restore focus on close if focus is outside sidebar', fakeAsync(() => {
       const fixture = TestBed.createComponent(BasicTestComponent);
       fixture.detectChanges();
+      tick();
+
       mediaMatcher.setMatchesQuery(Breakpoints.Mobile, true);
       tick();
 
@@ -410,6 +411,7 @@ describe('SbbSidebar', () => {
     it('should pick up sidebars that are not direct descendants', fakeAsync(() => {
       const fixture = TestBed.createComponent(IndirectDescendantSidebarTestComponent);
       fixture.detectChanges();
+      tick();
 
       expect(fixture.componentInstance.sidebar.opened).toBe(true);
 
@@ -423,6 +425,8 @@ describe('SbbSidebar', () => {
       const fixture = TestBed.createComponent(NestedSidebarContainersTestComponent);
       const instance = fixture.componentInstance;
       fixture.detectChanges();
+      tick();
+
       mediaMatcher.setMatchesQuery(Breakpoints.Mobile, true);
       tick();
 
@@ -448,6 +452,26 @@ describe('SbbSidebar', () => {
   });
 
   describe('attributes', () => {
+    it('should correctly parse opened="false"', () => {
+      const fixture = TestBed.createComponent(SidebarSetToOpenedFalseTestComponent);
+
+      fixture.detectChanges();
+
+      const sidebar = fixture.debugElement.query(By.directive(SbbSidebar))!.componentInstance;
+
+      expect((sidebar as SbbSidebar).opened).toBe(false);
+    });
+
+    it('should correctly parse opened="true"', () => {
+      const fixture = TestBed.createComponent(SidebarSetToOpenedTrueTestComponent);
+
+      fixture.detectChanges();
+
+      const sidebar = fixture.debugElement.query(By.directive(SbbSidebar))!.componentInstance;
+
+      expect((sidebar as SbbSidebar).opened).toBe(true);
+    });
+
     it('should remove align attr from DOM', () => {
       const fixture = TestBed.createComponent(BasicTestComponent);
       fixture.detectChanges();
@@ -465,6 +489,7 @@ describe('SbbSidebar', () => {
         fixture.detectChanges();
         tick();
       }).toThrowError(/A sidebar was already declared/);
+      flush();
     }));
 
     it('should not throw when a two-way binding is toggled quickly while animating', fakeAsync(() => {
@@ -501,6 +526,21 @@ describe('SbbSidebar', () => {
       tick(1);
       flush();
     }));
+
+    it('should bind 2-way bind on opened property', fakeAsync(() => {
+      const fixture = TestBed.createComponent(SidebarOpenBindingTestComponent);
+      fixture.detectChanges();
+
+      const sidebar: SbbSidebar = fixture.debugElement.query(
+        By.directive(SbbSidebar),
+      )!.componentInstance;
+
+      sidebar.open();
+      fixture.detectChanges();
+      tick();
+
+      expect(fixture.componentInstance.isOpen).toBe(true);
+    }));
   });
 
   describe('focus trapping behavior', () => {
@@ -516,6 +556,7 @@ describe('SbbSidebar', () => {
       sidebar = fixture.debugElement.query(By.directive(SbbSidebar))!.componentInstance;
       lastFocusableElement = fixture.debugElement.query(By.css('.input2'))!.nativeElement;
       lastFocusableElement.focus();
+      flush();
     }));
 
     it('should trap focus when opened in "over" mode', fakeAsync(() => {
@@ -589,6 +630,7 @@ describe('SbbSidebar', () => {
 
       sidebar.open();
       fixture.detectChanges();
+      flush();
 
       expect(anchors.every((anchor) => anchor.getAttribute('tabindex') === '0'))
         .withContext('Expected focus trap anchors to be enabled in over mode.')
@@ -759,6 +801,7 @@ describe('SbbSidebar', () => {
       fixture.componentInstance.position = 'end';
       fixture.changeDetectorRef.markForCheck();
       fixture.detectChanges();
+      flush();
       icon = fixture.debugElement.query(By.directive(SbbIcon));
       expect(icon.componentInstance.svgIcon).toBe('controls-small');
     }));
@@ -766,6 +809,7 @@ describe('SbbSidebar', () => {
     it('should allow overriding the trigger icon', fakeAsync(() => {
       const fixture = TestBed.createComponent(BasicTestComponent);
       fixture.componentInstance.triggerIcon = 'bell-small';
+      fixture.changeDetectorRef.markForCheck();
       fixture.detectChanges();
 
       mediaMatcher.setMatchesQuery(Breakpoints.Mobile, true);
@@ -778,6 +822,7 @@ describe('SbbSidebar', () => {
       fixture.componentInstance.position = 'end';
       fixture.changeDetectorRef.markForCheck();
       fixture.detectChanges();
+      flush();
       icon = fixture.debugElement.query(By.directive(SbbIcon));
       expect(icon.componentInstance.svgIcon).toBe('bell-small');
     }));
@@ -961,6 +1006,7 @@ describe('SbbSidebarContainer', () => {
     mediaMatcher.setMatchesQuery(Breakpoints.Mobile, true);
     tick();
     fixture.detectChanges();
+    flush();
 
     const content = fixture.debugElement.nativeElement.querySelector('.sbb-sidebar-content');
     expect(content.style.marginLeft)
@@ -983,7 +1029,7 @@ describe('SbbSidebarContainer', () => {
     expect(fixture.nativeElement.querySelector('.sbb-sidebar-backdrop')).toBeTruthy();
   }));
 
-  it('should expose a scrollable when the consumer has not specified sidebar content', fakeAsync(() => {
+  it('should expose a scrollable when the consumer has not specified sidebar content', () => {
     const fixture = TestBed.createComponent(SidebarContainerEmptyTestComponent);
 
     fixture.detectChanges();
@@ -991,9 +1037,9 @@ describe('SbbSidebarContainer', () => {
     expect(fixture.componentInstance.sidebarContainer.scrollable instanceof CdkScrollable).toBe(
       true,
     );
-  }));
+  });
 
-  it('should expose a scrollable when the consumer has specified sidebar content', fakeAsync(() => {
+  it('should expose a scrollable when the consumer has specified sidebar content', () => {
     const fixture = TestBed.createComponent(SidebarContainerWithContentTestComponent);
 
     fixture.detectChanges();
@@ -1001,9 +1047,9 @@ describe('SbbSidebarContainer', () => {
     expect(fixture.componentInstance.sidebarContainer.scrollable instanceof CdkScrollable).toBe(
       true,
     );
-  }));
+  });
 
-  it('should clean up the sidebars stream on destroy', fakeAsync(() => {
+  it('should clean up the sidebars stream on destroy', () => {
     const fixture = TestBed.createComponent(SidebarContainerEmptyTestComponent);
     fixture.detectChanges();
 
@@ -1016,7 +1062,7 @@ describe('SbbSidebarContainer', () => {
 
     expect(spy).toHaveBeenCalled();
     subscription.unsubscribe();
-  }));
+  });
 });
 
 describe('SbbSidebar Usage', () => {
@@ -1204,14 +1250,25 @@ class SidebarSetToOpenedTrueTestComponent {
 
 @Component({
   template: ` <sbb-sidebar-container>
-    <sbb-sidebar #sidebar>
+    <sbb-sidebar #sidebar opened="false"> Closed Drawer. </sbb-sidebar>
+  </sbb-sidebar-container>`,
+  standalone: true,
+  imports: [SbbSidebarModule],
+})
+class SidebarSetToOpenedFalseTestComponent {}
+
+@Component({
+  template: ` <sbb-sidebar-container>
+    <sbb-sidebar #sidebar [(opened)]="isOpen">
       <fieldset>Closed Sidebar.</fieldset>
     </sbb-sidebar>
   </sbb-sidebar-container>`,
   standalone: true,
   imports: [SbbSidebarModule],
 })
-class SidebarOpenBindingTestComponent {}
+class SidebarOpenBindingTestComponent {
+  isOpen = false;
+}
 
 @Component({
   template: ` <sbb-sidebar-container>

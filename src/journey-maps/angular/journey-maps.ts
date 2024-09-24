@@ -49,7 +49,6 @@ import {
   SBB_MAX_ZOOM,
   SBB_MIN_ZOOM,
   SBB_POI_ID_PROPERTY,
-  SBB_POI_LAYER,
   SBB_ROKAS_ROUTE_SOURCE,
 } from './services/constants';
 import { SbbLocaleService } from './services/locale-service';
@@ -60,6 +59,7 @@ import { SbbMapJourneyService } from './services/map/map-journey-service';
 import { SbbMapLeitPoiService } from './services/map/map-leit-poi-service';
 import { SbbMapMarkerService } from './services/map/map-marker-service';
 import { SbbMapOverflowingLabelService } from './services/map/map-overflowing-label-service';
+import { SbbMapPoiService } from './services/map/map-poi-service';
 import { SbbMapRailNetworkLayerService } from './services/map/map-rail-network-layer.service';
 import { SbbMapRoutesService } from './services/map/map-routes.service';
 import { SbbMapService } from './services/map/map-service';
@@ -83,6 +83,7 @@ import { getInvalidRoutingOptionCombination } from './util/input-validation';
     MarkerOrPoiSelectionStateService,
   ],
   changeDetection: ChangeDetectionStrategy.OnPush,
+  standalone: false,
 })
 export class SbbJourneyMaps implements OnInit, AfterViewInit, OnDestroy, OnChanges {
   /** Your personal API key. Ask <a href="mailto:dlrokas@sbb.ch">dlrokas@sbb.ch</a> if you need one. */
@@ -104,7 +105,16 @@ export class SbbJourneyMaps implements OnInit, AfterViewInit, OnDestroy, OnChang
    * <b>NOTE:</b> This does not work - at the moment - when using the Web Component version of the library.
    */
   @Input() markerDetailsTemplate?: SbbTemplateType;
-  /** Which (floor-)level should be shown */
+  /**
+   * The (floor-)level that should be shown on the map.
+   *
+   * This variable must be set after the map has fully initialized.
+   * Ensure that the `mapReady()` event has fired and use the 'idle' event to set the level.
+   *
+   * Example to set `selectedLevel` to -2:
+   *
+   * map.once('idle', () => this.selectedLevel = -2);
+   */
   @Input() selectedLevel: number | undefined;
   @Input() listenerOptions: SbbListenerOptions;
   /**
@@ -225,6 +235,7 @@ export class SbbJourneyMaps implements OnInit, AfterViewInit, OnDestroy, OnChang
     private _mapInitService: SbbMapInitService,
     private _mapConfigService: SbbMapConfig,
     private _mapService: SbbMapService,
+    private _mapPoiService: SbbMapPoiService,
     private _mapMarkerService: SbbMapMarkerService,
     private _mapJourneyService: SbbMapJourneyService,
     private _mapTransferService: SbbMapTransferService,
@@ -511,7 +522,7 @@ export class SbbJourneyMaps implements OnInit, AfterViewInit, OnDestroy, OnChang
       const visiblePoiFeatures = this._mapEventUtils.queryVisibleFeaturesByFilter(
         this._map,
         'POI',
-        [SBB_POI_LAYER],
+        this._mapPoiService.getPoiLayerIds(this._map),
         ['==', SBB_POI_ID_PROPERTY, sbbId],
       );
       if (visiblePoiFeatures.length) {
@@ -612,11 +623,11 @@ export class SbbJourneyMaps implements OnInit, AfterViewInit, OnDestroy, OnChang
           );
           currentPoiSource.setUrl(newPoiSourceUrl);
           this._map.once('styledata', () => {
-            this._mapService.updatePoiVisibility(this._map, this.poiOptions);
+            this._mapPoiService.updatePoiVisibility(this._map, this.poiOptions);
           });
         } else {
           // Else load instantly
-          this._mapService.updatePoiVisibility(this._map, this.poiOptions);
+          this._mapPoiService.updatePoiVisibility(this._map, this.poiOptions);
         }
       });
     }
@@ -885,7 +896,7 @@ export class SbbJourneyMaps implements OnInit, AfterViewInit, OnDestroy, OnChang
               this.styleOptions.railNetwork,
             );
           }
-          this._mapService.updatePoiVisibility(this._map, this.poiOptions);
+          this._mapPoiService.updatePoiVisibility(this._map, this.poiOptions);
         });
       });
 
@@ -948,6 +959,7 @@ export class SbbJourneyMaps implements OnInit, AfterViewInit, OnDestroy, OnChang
     const isLandscapeMode = height < width;
     this.isLevelSwitchHorizontal =
       isLandscapeMode && height < this.isLevelSwitchHorizontalThreshold;
+    this._cd.detectChanges(); // needed for web-component
   }
 
   private _getZooomLevels(): SbbZoomLevels {

@@ -4,7 +4,7 @@ import {
   TestRequest,
 } from '@angular/common/http/testing';
 import { Component, ErrorHandler, ViewChild } from '@angular/core';
-import { fakeAsync, inject, TestBed, tick, waitForAsync } from '@angular/core/testing';
+import { fakeAsync, flush, inject, TestBed, tick, waitForAsync } from '@angular/core/testing';
 import { DomSanitizer, SafeHtml, SafeResourceUrl } from '@angular/platform-browser';
 import { wrappedErrorMessage } from '@sbb-esta/angular/core/testing';
 
@@ -639,6 +639,7 @@ describe('SbbIcon', () => {
       fixture.destroy();
 
       expect(http.expectOne('dog.svg').cancelled).toBe(true);
+      flush();
     }));
   });
 
@@ -1207,6 +1208,7 @@ describe('SbbIcon without HttpClientModule', () => {
 
   @Component({
     template: `<sbb-icon [svgIcon]="iconName"></sbb-icon>`,
+    standalone: false,
   })
   class IconFromSvgName {
     iconName: string | undefined = '';

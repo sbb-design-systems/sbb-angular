@@ -5,6 +5,7 @@ import { Component, DebugElement, ElementRef, ViewChild } from '@angular/core';
 import {
   ComponentFixture,
   fakeAsync,
+  flush,
   inject,
   TestBed,
   tick,
@@ -172,10 +173,12 @@ describe('SbbIconSidebar', () => {
       // in order to test it correctly.
       setTimeout(() => {
         fixture.componentInstance.isExpanded = !fixture.componentInstance.isExpanded;
+        fixture.changeDetectorRef.markForCheck();
         expect(() => fixture.detectChanges()).not.toThrow();
 
         setTimeout(() => {
           fixture.componentInstance.isExpanded = !fixture.componentInstance.isExpanded;
+          fixture.changeDetectorRef.markForCheck();
           expect(() => fixture.detectChanges()).not.toThrow();
         }, 1);
 
@@ -183,6 +186,7 @@ describe('SbbIconSidebar', () => {
       }, 1);
 
       tick(1);
+      flush();
     }));
   });
 
@@ -413,7 +417,7 @@ describe('SbbIconSidebarContainer', () => {
 
   afterEach(() => mediaMatcher.clear());
 
-  it('should expose a scrollable when the consumer has not specified sidebar content', fakeAsync(() => {
+  it('should expose a scrollable when the consumer has not specified sidebar content', () => {
     const fixture = TestBed.createComponent(SidebarContainerEmptyTestComponent);
 
     fixture.detectChanges();
@@ -421,9 +425,9 @@ describe('SbbIconSidebarContainer', () => {
     expect(fixture.componentInstance.sidebarContainer.scrollable instanceof CdkScrollable).toBe(
       true,
     );
-  }));
+  });
 
-  it('should expose a scrollable when the consumer has specified sidebar content', fakeAsync(() => {
+  it('should expose a scrollable when the consumer has specified sidebar content', () => {
     const fixture = TestBed.createComponent(SidebarContainerWithContentTestComponent);
 
     fixture.detectChanges();
@@ -431,9 +435,9 @@ describe('SbbIconSidebarContainer', () => {
     expect(fixture.componentInstance.sidebarContainer.scrollable instanceof CdkScrollable).toBe(
       true,
     );
-  }));
+  });
 
-  it('should clean up the sidebars stream on destroy', fakeAsync(() => {
+  it('should clean up the sidebars stream on destroy', () => {
     const fixture = TestBed.createComponent(SidebarContainerEmptyTestComponent);
     fixture.detectChanges();
 
@@ -446,7 +450,7 @@ describe('SbbIconSidebarContainer', () => {
 
     expect(spy).toHaveBeenCalled();
     subscription.unsubscribe();
-  }));
+  });
 });
 
 /** Test component that contains an SbbIconSidebarContainer and an empty sbb-icon-sidebar-content. */

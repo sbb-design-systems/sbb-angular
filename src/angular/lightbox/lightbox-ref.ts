@@ -1,6 +1,6 @@
 import { DialogRef } from '@angular/cdk/dialog';
 import { ESCAPE, hasModifierKey } from '@angular/cdk/keycodes';
-import { SbbDialogRef, _SbbDialogContainerBase } from '@sbb-esta/angular/dialog';
+import { SbbDialogContainer, SbbDialogRef } from '@sbb-esta/angular/dialog';
 import { Subject } from 'rxjs';
 import { filter } from 'rxjs/operators';
 
@@ -18,7 +18,7 @@ export class SbbLightboxRef<T, R = any> extends SbbDialogRef<T, R> {
   constructor(
     ref: DialogRef<R, T>,
     config: SbbLightboxConfig,
-    containerInstance: _SbbDialogContainerBase,
+    containerInstance: SbbDialogContainer,
   ) {
     super(ref, config, containerInstance);
 

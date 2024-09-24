@@ -518,7 +518,7 @@ describe('SbbMenu', () => {
     expect(event.defaultPrevented).toBe(false);
   }));
 
-  it('should open a custom menu', fakeAsync(() => {
+  it('should open a custom menu', () => {
     const fixture = createComponent(CustomMenu, [], [CustomMenuPanel]);
     fixture.detectChanges();
     expect(overlayContainerElement.textContent).toBe('');
@@ -529,7 +529,7 @@ describe('SbbMenu', () => {
       expect(overlayContainerElement.textContent).toContain('Custom Menu header');
       expect(overlayContainerElement.textContent).toContain('Custom Content');
     }).not.toThrowError();
-  }));
+  });
 
   it('should transfer any custom classes from the host to the overlay', fakeAsync(() => {
     const fixture = createComponent(SimpleMenu, [], [FakeIcon]);
@@ -563,6 +563,7 @@ describe('SbbMenu', () => {
     const panel = overlayContainerElement.querySelector('.sbb-menu-panel-wrapper')!;
 
     expect(panel.classList).toContain('custom-one');
+    fixture.changeDetectorRef.markForCheck();
     expect(panel.classList).toContain('sbb-elevation-z4');
 
     fixture.componentInstance.panelClass = 'custom-two';
@@ -675,16 +676,16 @@ describe('SbbMenu', () => {
     expect(secondMenuItemDebugEl.nativeElement.classList).toContain('cdk-mouse-focused');
   }));
 
-  it('should not throw an error on destroy', fakeAsync(() => {
+  it('should not throw an error on destroy', () => {
     const fixture = createComponent(SimpleMenu, [], [FakeIcon]);
     expect(fixture.destroy.bind(fixture)).not.toThrow();
-  }));
+  });
 
-  it('should be able to extract the menu item text', fakeAsync(() => {
+  it('should be able to extract the menu item text', () => {
     const fixture = createComponent(SimpleMenu, [], [FakeIcon]);
     fixture.detectChanges();
     expect(fixture.componentInstance.items.first.getLabel()).toBe('Item');
-  }));
+  });
 
   it('should filter out icon nodes when figuring out the label', fakeAsync(() => {
     const fixture = createComponent(SimpleMenu, [], [FakeIcon]);
@@ -1003,39 +1004,34 @@ describe('SbbMenu', () => {
     flush();
   }));
 
-  it(
-    'should respect the DOM order, rather than insertion order, when moving focus using ' +
-      'the arrow keys',
-    fakeAsync(() => {
-      const fixture = createComponent(SimpleMenuWithRepeater);
+  it('should respect the DOM order, rather than insertion order, when moving focus using the arrow keys', fakeAsync(() => {
+    const fixture = createComponent(SimpleMenuWithRepeater);
 
-      fixture.detectChanges();
-      fixture.componentInstance.trigger.openMenu();
-      fixture.detectChanges();
-      tick(500);
+    fixture.detectChanges();
+    fixture.componentInstance.trigger.openMenu();
+    fixture.detectChanges();
+    tick(500);
 
-      const menuPanel = document.querySelector('.sbb-menu-panel-wrapper')!;
-      let items = menuPanel.querySelectorAll('.sbb-menu-panel-wrapper [sbb-menu-item]');
+    const menuPanel = document.querySelector('.sbb-menu-panel-wrapper')!;
+    let items = menuPanel.querySelectorAll('.sbb-menu-panel-wrapper [sbb-menu-item]');
 
-      expect(document.activeElement)
-        .withContext('Expected first item to be focused on open')
-        .toBe(items[0]);
+    expect(document.activeElement)
+      .withContext('Expected first item to be focused on open')
+      .toBe(items[0]);
 
-      // Add a new item after the first one.
-      fixture.componentInstance.items.splice(1, 0, { label: 'Calzone', disabled: false });
-      fixture.detectChanges();
+    // Add a new item after the first one.
+    fixture.componentInstance.items.splice(1, 0, { label: 'Calzone', disabled: false });
+    fixture.changeDetectorRef.markForCheck();
+    fixture.detectChanges();
 
-      items = menuPanel.querySelectorAll('.sbb-menu-panel-wrapper [sbb-menu-item]');
-      dispatchKeyboardEvent(menuPanel, 'keydown', DOWN_ARROW);
-      fixture.detectChanges();
-      tick();
+    items = menuPanel.querySelectorAll('.sbb-menu-panel-wrapper [sbb-menu-item]');
+    dispatchKeyboardEvent(menuPanel, 'keydown', DOWN_ARROW);
+    fixture.detectChanges();
+    tick();
 
-      expect(document.activeElement)
-        .withContext('Expected second item to be focused')
-        .toBe(items[1]);
-      flush();
-    }),
-  );
+    expect(document.activeElement).withContext('Expected second item to be focused').toBe(items[1]);
+    flush();
+  }));
 
   it('should sync the focus order when an item is focused programmatically', fakeAsync(() => {
     const fixture = createComponent(SimpleMenuWithRepeater);
@@ -1320,6 +1316,7 @@ describe('SbbMenu', () => {
       expect(panel.classList).not.toContain('sbb-menu-panel-after');
 
       fixture.componentInstance.xPosition = 'after';
+      fixture.changeDetectorRef.markForCheck();
       fixture.detectChanges();
 
       expect(panel.classList).toContain('sbb-menu-panel-after');
@@ -1337,6 +1334,7 @@ describe('SbbMenu', () => {
       expect(panel.classList).not.toContain('sbb-menu-panel-below');
 
       fixture.componentInstance.yPosition = 'below';
+      fixture.changeDetectorRef.markForCheck();
       fixture.detectChanges();
 
       expect(panel.classList).toContain('sbb-menu-panel-below');
@@ -1871,6 +1869,7 @@ describe('SbbMenu', () => {
         .toBe(2);
 
       items[1].componentInstance.disabled = true;
+      fixture.changeDetectorRef.markForCheck();
       fixture.detectChanges();
 
       // Invoke the handler directly since the fake events are flaky on disabled elements.
@@ -1896,6 +1895,7 @@ describe('SbbMenu', () => {
       const item = fixture.debugElement.query(By.directive(SbbMenuItem))!;
 
       item.componentInstance.disabled = true;
+      fixture.changeDetectorRef.markForCheck();
       fixture.detectChanges();
 
       // Invoke the handler directly since the fake events are flaky on disabled elements.
@@ -2328,6 +2328,7 @@ describe('SbbMenu', () => {
         .toBe(1);
 
       instance.showLazy = true;
+      fixture.changeDetectorRef.markForCheck();
       fixture.detectChanges();
 
       const lazyTrigger = overlay.querySelector('#lazy-trigger')!;
@@ -2840,6 +2841,7 @@ const SIMPLE_MENU_TEMPLATE = `
   `;
 @Component({
   template: SIMPLE_MENU_TEMPLATE,
+  standalone: false,
 })
 class SimpleMenu {
   @ViewChild(SbbMenuTrigger) trigger: SbbMenuTrigger;
@@ -2856,7 +2858,11 @@ class SimpleMenu {
   ariaDescribedby: string;
 }
 
-@Component({ template: SIMPLE_MENU_TEMPLATE, changeDetection: ChangeDetectionStrategy.OnPush })
+@Component({
+  template: SIMPLE_MENU_TEMPLATE,
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  standalone: false,
+})
 class SimpleMenuOnPush extends SimpleMenu {}
 
 @Component({
@@ -2873,6 +2879,7 @@ class SimpleMenuOnPush extends SimpleMenu {}
       <button sbb-menu-item type="button">Positioned Content</button>
     </sbb-menu>
   `,
+  standalone: false,
 })
 class PositionedMenu {
   @ViewChild(SbbMenuTrigger) trigger: SbbMenuTrigger;
@@ -2893,6 +2900,7 @@ interface TestableMenu {
       <button sbb-menu-item type="button">Not overlapped Content</button>
     </sbb-menu>
   `,
+  standalone: false,
 })
 class OverlapMenu implements TestableMenu {
   @Input() overlapTrigger: boolean;
@@ -2909,6 +2917,7 @@ class OverlapMenu implements TestableMenu {
     </ng-template>
   `,
   exportAs: 'sbbCustomMenu',
+  standalone: false,
 })
 class CustomMenuPanel implements SbbMenuPanel {
   xPosition: SbbMenuPositionX = 'after';
@@ -2933,6 +2942,7 @@ class CustomMenuPanel implements SbbMenuPanel {
       <button sbb-menu-item type="button">Custom Content</button>
     </custom-menu>
   `,
+  standalone: false,
 })
 class CustomMenu {
   @ViewChild(SbbMenuTrigger) trigger: SbbMenuTrigger;
@@ -2998,6 +3008,7 @@ class CustomMenu {
       <button sbb-menu-item type="button">Twelve</button>
     </sbb-menu>
   `,
+  standalone: false,
 })
 class NestedMenu {
   @ViewChild('root') rootMenu: SbbMenu;
@@ -3040,6 +3051,7 @@ class NestedMenu {
       <button sbb-menu-item>Two</button>
     </sbb-menu>
   `,
+  standalone: false,
 })
 class NestedMenuCustomElevation {
   @ViewChild('rootTrigger') rootTrigger: SbbMenuTrigger;
@@ -3062,6 +3074,7 @@ class NestedMenuCustomElevation {
       <button sbb-menu-item>Five</button>
     </sbb-menu>
   `,
+  standalone: false,
 })
 class NestedMenuRepeater {
   @ViewChild('rootTriggerEl') rootTriggerEl: ElementRef<HTMLElement>;
@@ -3082,6 +3095,7 @@ class NestedMenuRepeater {
       </sbb-menu>
     </sbb-menu>
   `,
+  standalone: false,
 })
 class SubmenuDeclaredInsideParentMenu {
   @ViewChild('rootTriggerEl') rootTriggerEl: ElementRef;
@@ -3090,6 +3104,7 @@ class SubmenuDeclaredInsideParentMenu {
 @Component({
   selector: 'sbb-fake-icon',
   template: '<ng-content></ng-content>',
+  standalone: false,
 })
 class FakeIcon {}
 
@@ -3104,6 +3119,7 @@ class FakeIcon {}
       </ng-template>
     </sbb-menu>
   `,
+  standalone: false,
 })
 class SimpleLazyMenu {
   @ViewChild(SbbMenuTrigger) trigger: SbbMenuTrigger;
@@ -3135,6 +3151,7 @@ class SimpleLazyMenu {
       </ng-template>
     </sbb-menu>
   `,
+  standalone: false,
 })
 class LazyMenuWithContext {
   @ViewChild('triggerOne') triggerOne: SbbMenuTrigger;
@@ -3152,6 +3169,7 @@ class LazyMenuWithContext {
       <button sbb-menu-item>Two</button>
     </sbb-menu>
   `,
+  standalone: false,
 })
 class DynamicPanelMenu {
   @ViewChild(SbbMenuTrigger) trigger: SbbMenuTrigger;
@@ -3168,6 +3186,7 @@ class DynamicPanelMenu {
       <button sbb-menu-item role="menuitemcheckbox" aria-checked="false">Not checked</button>
     </sbb-menu>
   `,
+  standalone: false,
 })
 class MenuWithCheckboxItems {
   @ViewChild(SbbMenuTrigger) trigger: SbbMenuTrigger;
@@ -3184,6 +3203,7 @@ class MenuWithCheckboxItems {
       }
     </sbb-menu>
   `,
+  standalone: false,
 })
 class SimpleMenuWithRepeater {
   @ViewChild(SbbMenuTrigger) trigger: SbbMenuTrigger;
@@ -3208,6 +3228,7 @@ class SimpleMenuWithRepeater {
       </ng-template>
     </sbb-menu>
   `,
+  standalone: false,
 })
 class SimpleMenuWithRepeaterInLazyContent {
   @ViewChild(SbbMenuTrigger) trigger: SbbMenuTrigger;
@@ -3235,6 +3256,7 @@ class SimpleMenuWithRepeaterInLazyContent {
     </sbb-menu>
   `,
   changeDetection: ChangeDetectionStrategy.OnPush,
+  standalone: false,
 })
 class LazyMenuWithOnPush {
   @ViewChild('triggerEl', { read: ElementRef }) rootTrigger: ElementRef;
@@ -3247,21 +3269,25 @@ class LazyMenuWithOnPush {
       <button [sbbMenuTriggerFor]="menu"></button>
     </sbb-menu>
   `,
+  standalone: false,
 })
 class InvalidRecursiveMenu {}
 
 @Component({
   template: '<sbb-menu aria-label="label"></sbb-menu>',
+  standalone: false,
 })
 class StaticAriaLabelMenu {}
 
 @Component({
   template: '<sbb-menu aria-labelledby="some-element"></sbb-menu>',
+  standalone: false,
 })
 class StaticAriaLabelledByMenu {}
 
 @Component({
   template: '<sbb-menu aria-describedby="some-element"></sbb-menu>',
+  standalone: false,
 })
 class StaticAriaDescribedbyMenu {}
 
@@ -3274,6 +3300,7 @@ class StaticAriaDescribedbyMenu {}
       }
     </sbb-menu>
   `,
+  standalone: false,
 })
 class MenuWithRepeatedItems {
   @ViewChild(SbbMenuTrigger, { static: false }) trigger: SbbMenuTrigger;
@@ -3289,6 +3316,7 @@ class MenuWithRepeatedItems {
     <sbb-menu #animals="sbbMenu">
       <button sbb-menu-item>Invertebrates</button>
     </sbb-menu>`,
+  standalone: false,
 })
 class ContextmenuStaticTrigger {
   @ViewChild(SbbMenuTrigger) trigger: SbbMenuTrigger;
@@ -3302,6 +3330,7 @@ class ContextmenuStaticTrigger {
     <sbb-menu #animals="sbbMenu">
       <button sbb-menu-item>Invertebrates</button>
     </sbb-menu>`,
+  standalone: false,
 })
 class ContextmenuDynamicTrigger {
   @ViewChild(SbbMenuTrigger) trigger: SbbMenuTrigger;
@@ -3315,6 +3344,7 @@ class ContextmenuDynamicTrigger {
     <sbb-menu #animals="sbbMenu">
       <button sbb-menu-item>Invertebrates</button>
     </sbb-menu>`,
+  standalone: false,
 })
 class ContextmenuOnlyTextTrigger {
   @ViewChild(SbbMenuTrigger) trigger: SbbMenuTrigger;
@@ -3328,6 +3358,7 @@ class ContextmenuOnlyTextTrigger {
     <sbb-menu #animals="sbbMenu">
       <button sbb-menu-item>Invertebrates</button>
     </sbb-menu>`,
+  standalone: false,
 })
 class HeadlessTrigger {
   @ViewChild(SbbMenuTrigger) trigger: SbbMenuTrigger;
@@ -3341,6 +3372,7 @@ class HeadlessTrigger {
     <sbb-menu #animals="sbbMenu">
       <button sbb-menu-item>Invertebrates</button>
     </sbb-menu>`,
+  standalone: false,
 })
 class ContextmenuTrigger {
   @ViewChild(SbbMenuTrigger) trigger: SbbMenuTrigger;
@@ -3357,6 +3389,7 @@ class ContextmenuTrigger {
     <sbb-menu #animals="sbbMenu">
       <button sbb-menu-item>Invertebrates</button>
     </sbb-menu>`,
+  standalone: false,
 })
 class ContextmenuCustomIconTrigger {
   @ViewChild(SbbMenuTrigger) trigger: SbbMenuTrigger;

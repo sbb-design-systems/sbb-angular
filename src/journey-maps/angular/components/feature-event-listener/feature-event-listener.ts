@@ -24,7 +24,6 @@ import {
   SbbPointsOfInterestOptions,
   SbbSelectionMode,
 } from '../../journey-maps.interfaces';
-import { SBB_POI_LAYER } from '../../services/constants';
 import { SbbFeaturesClickEvent } from '../../services/map/events/features-click-event';
 import { SbbFeaturesHoverEvent } from '../../services/map/events/features-hover-event';
 import { SbbMapCursorStyleEvent } from '../../services/map/events/map-cursor-style-event';
@@ -32,6 +31,7 @@ import { SbbMapEventUtils } from '../../services/map/events/map-event-utils';
 import { SbbMapSelectionEvent } from '../../services/map/events/map-selection-event';
 import { SbbRouteUtils, SBB_ROUTE_ID_PROPERTY_NAME } from '../../services/map/events/route-utils';
 import { SbbMapMarkerService } from '../../services/map/map-marker-service';
+import { SbbMapPoiService } from '../../services/map/map-poi-service';
 import { SbbMapRoutesService } from '../../services/map/map-routes.service';
 import { SbbMapStationService, SBB_STATION_LAYER } from '../../services/map/map-station-service';
 import { SBB_ZONE_LAYER } from '../../services/map/map-zone-service';
@@ -41,6 +41,7 @@ import { SBB_ZONE_LAYER } from '../../services/map/map-zone-service';
   templateUrl: './feature-event-listener.html',
   providers: [SbbMapSelectionEvent],
   changeDetection: ChangeDetectionStrategy.OnPush,
+  standalone: false,
 })
 export class SbbFeatureEventListener implements OnChanges, OnDestroy {
   @Input() listenerOptions: SbbListenerOptions;
@@ -76,6 +77,7 @@ export class SbbFeatureEventListener implements OnChanges, OnDestroy {
     private _mapStationService: SbbMapStationService,
     private _mapRoutesService: SbbMapRoutesService,
     private _mapMarkerService: SbbMapMarkerService,
+    private _mapPoiService: SbbMapPoiService,
     private _routeUtilsService: SbbRouteUtils,
     private _mapEventUtils: SbbMapEventUtils,
     private _cd: ChangeDetectorRef,
@@ -116,7 +118,7 @@ export class SbbFeatureEventListener implements OnChanges, OnDestroy {
         this._updateWatchOnLayers([SBB_ZONE_LAYER], 'ZONE');
       }
       if (this.listenerOptions.POI?.watch) {
-        this._updateWatchOnLayers([SBB_POI_LAYER], 'POI');
+        this._updateWatchOnLayers(this._mapPoiService.getPoiLayerIds(this.map), 'POI');
       }
 
       this._mapCursorStyleEvent?.complete();

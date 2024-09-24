@@ -7,7 +7,6 @@ import {
   Component,
   OnDestroy,
   OnInit,
-  provideExperimentalZonelessChangeDetection,
   Provider,
   QueryList,
   Type,
@@ -89,6 +88,7 @@ const SIMPLE_AUTOCOMPLETE_TEMPLATE = `
 
 @Component({
   template: SIMPLE_AUTOCOMPLETE_TEMPLATE,
+  standalone: false,
 })
 class SimpleAutocomplete implements OnDestroy {
   numberCtrl = new FormControl<{ name: string; code: string; height?: number } | string | null>(
@@ -144,7 +144,11 @@ class SimpleAutocomplete implements OnDestroy {
   }
 }
 
-@Component({ template: SIMPLE_AUTOCOMPLETE_TEMPLATE, encapsulation: ViewEncapsulation.ShadowDom })
+@Component({
+  template: SIMPLE_AUTOCOMPLETE_TEMPLATE,
+  encapsulation: ViewEncapsulation.ShadowDom,
+  standalone: false,
+})
 class SimpleAutocompleteShadowDom extends SimpleAutocomplete {}
 
 @Component({
@@ -163,6 +167,7 @@ class SimpleAutocompleteShadowDom extends SimpleAutocomplete {}
       }
     </sbb-autocomplete>
   `,
+  standalone: false,
 })
 class NgIfAutocomplete {
   optionCtrl = new FormControl('');
@@ -205,6 +210,7 @@ class NgIfAutocomplete {
       }
     </sbb-autocomplete>
   `,
+  standalone: false,
 })
 class AutocompleteWithoutForms {
   filteredNumbers: any[];
@@ -239,6 +245,7 @@ class AutocompleteWithoutForms {
       }
     </sbb-autocomplete>
   `,
+  standalone: false,
 })
 class AutocompleteWithNgModel {
   filteredNumbers: any[];
@@ -268,6 +275,7 @@ class AutocompleteWithNgModel {
       }
     </sbb-autocomplete>
   `,
+  standalone: false,
 })
 class AutocompleteWithNumbers {
   selectedNumber: number;
@@ -287,6 +295,7 @@ class AutocompleteWithNumbers {
       }
     </sbb-autocomplete>
   `,
+  standalone: false,
 })
 class AutocompleteWithOnPushDelay implements OnInit {
   @ViewChild(SbbAutocompleteTrigger, { static: true })
@@ -312,6 +321,7 @@ class AutocompleteWithOnPushDelay implements OnInit {
       }
     </sbb-autocomplete>
   `,
+  standalone: false,
 })
 class AutocompleteWithNativeInput {
   optionCtrl = new FormControl('');
@@ -335,6 +345,7 @@ class AutocompleteWithNativeInput {
 
 @Component({
   template: `<input placeholder="Choose" [sbbAutocomplete]="auto" [formControl]="control" />`,
+  standalone: false,
 })
 class AutocompleteWithoutPanel {
   @ViewChild(SbbAutocompleteTrigger) trigger: SbbAutocompleteTrigger;
@@ -359,6 +370,7 @@ class AutocompleteWithoutPanel {
       }
     </sbb-autocomplete>
   `,
+  standalone: false,
 })
 class AutocompleteWithGroups {
   @ViewChild(SbbAutocompleteTrigger) trigger: SbbAutocompleteTrigger;
@@ -399,6 +411,7 @@ class AutocompleteWithGroups {
       }
     </sbb-autocomplete>
   `,
+  standalone: false,
 })
 class AutocompleteWithIndirectGroups extends AutocompleteWithGroups {}
 
@@ -416,6 +429,7 @@ class AutocompleteWithIndirectGroups extends AutocompleteWithGroups {}
       }
     </sbb-autocomplete>
   `,
+  standalone: false,
 })
 class AutocompleteWithSelectEvent {
   selectedNumber: string;
@@ -433,6 +447,7 @@ class AutocompleteWithSelectEvent {
     <input [formControl]="formControl" [sbbAutocomplete]="auto" />
     <sbb-autocomplete #auto="sbbAutocomplete"></sbb-autocomplete>
   `,
+  standalone: false,
 })
 class PlainAutocompleteInputWithFormControl {
   formControl = new FormControl('');
@@ -450,6 +465,7 @@ class PlainAutocompleteInputWithFormControl {
       }
     </sbb-autocomplete>
   `,
+  standalone: false,
 })
 class AutocompleteWithNumberInputAndNgModel {
   selectedValue: number;
@@ -484,6 +500,7 @@ class AutocompleteWithNumberInputAndNgModel {
       }
     </sbb-autocomplete>
   `,
+  standalone: false,
 })
 class AutocompleteWithDifferentOrigin {
   @ViewChild(SbbAutocompleteTrigger) trigger: SbbAutocompleteTrigger;
@@ -498,6 +515,7 @@ class AutocompleteWithDifferentOrigin {
     <input autocomplete="changed" [(ngModel)]="value" [sbbAutocomplete]="auto" />
     <sbb-autocomplete #auto="sbbAutocomplete"></sbb-autocomplete>
   `,
+  standalone: false,
 })
 class AutocompleteWithNativeAutocompleteAttribute {
   value: string;
@@ -505,6 +523,7 @@ class AutocompleteWithNativeAutocompleteAttribute {
 
 @Component({
   template: '<input [sbbAutocomplete]="null" sbbAutocompleteDisabled>',
+  standalone: false,
 })
 class InputWithoutAutocompleteAndDisabled {}
 
@@ -520,6 +539,7 @@ class InputWithoutAutocompleteAndDisabled {}
       }
     </sbb-autocomplete>
   `,
+  standalone: false,
 })
 class AutocompleteWithActivatedEvent {
   states = ['California', 'West Virginia', 'Florida'];
@@ -541,6 +561,7 @@ class AutocompleteWithActivatedEvent {
         </sbb-option>
       }
     </sbb-autocomplete>`,
+  standalone: false,
 })
 class AutocompleteLocaleNormalizer {
   @ViewChild(SbbAutocompleteTrigger, { static: true })
@@ -571,6 +592,7 @@ class AutocompleteLocaleNormalizer {
         <sbb-option-hint>hint</sbb-option-hint>
       }
     </sbb-autocomplete>`,
+  standalone: false,
 })
 class AutocompleteHint {
   @ViewChild(SbbAutocompleteTrigger) trigger: SbbAutocompleteTrigger;
@@ -595,7 +617,7 @@ describe('SbbAutocomplete', () => {
         SbbOptionModule,
       ],
       declarations: [component],
-      providers: [...providers, provideExperimentalZonelessChangeDetection()],
+      providers,
     });
 
     TestBed.compileComponents();
@@ -1601,6 +1623,7 @@ describe('SbbAutocomplete', () => {
       flush();
 
       fixture.componentInstance.trigger._handleKeydown(enterEvent);
+      flush();
 
       expect(enterEvent.defaultPrevented)
         .withContext('Expected the default action to have been prevented.')
@@ -3582,7 +3605,7 @@ describe('SbbAutocomplete', () => {
       expect(trigger.panelOpen).withContext('Expected panel to be closed.').toBe(false);
     }));
 
-    it('should handle autocomplete being attached to number inputs', fakeAsync(() => {
+    it('should handle autocomplete being attached to number inputs', () => {
       const fixture = createComponent(AutocompleteWithNumberInputAndNgModel);
       fixture.detectChanges();
       const input = fixture.debugElement.query(By.css('input'))!.nativeElement;
@@ -3591,7 +3614,7 @@ describe('SbbAutocomplete', () => {
       fixture.detectChanges();
 
       expect(fixture.componentInstance.selectedValue).toBe(1337);
-    }));
+    });
 
     it('should not scroll to top if a new option is added', waitForAsync(async () => {
       const fixture = createComponent(SimpleAutocomplete);
@@ -4008,32 +4031,25 @@ describe('SbbAutocomplete', () => {
     expect(Math.ceil(parseFloat(overlayPane.style.width as string))).toBe(400);
   });
 
-  it(
-    'should show the panel when the options are initialized later within a component with ' +
-      'OnPush change detection',
-    fakeAsync(() => {
-      const fixture = createComponent(AutocompleteWithOnPushDelay);
+  it('should show the panel when the options are initialized later within a component with OnPush change detection', fakeAsync(() => {
+    const fixture = createComponent(AutocompleteWithOnPushDelay);
+
+    fixture.detectChanges();
+    flush();
+    dispatchFakeEvent(fixture.debugElement.query(By.css('input'))!.nativeElement, 'focusin');
+    tick(1000);
+
+    fixture.detectChanges();
+    tick();
+
+    Promise.resolve().then(() => {
+      const panel = overlayContainerElement.querySelector('.sbb-autocomplete-panel') as HTMLElement;
+      const visibleClass = 'sbb-autocomplete-visible';
 
       fixture.detectChanges();
-      dispatchFakeEvent(fixture.debugElement.query(By.css('input'))!.nativeElement, 'focusin');
-      tick(1000);
-
-      fixture.detectChanges();
-      tick();
-
-      Promise.resolve().then(() => {
-        const panel = overlayContainerElement.querySelector(
-          '.sbb-autocomplete-panel',
-        ) as HTMLElement;
-        const visibleClass = 'sbb-autocomplete-visible';
-
-        fixture.detectChanges();
-        expect(panel.classList)
-          .withContext(`Expected panel to be visible.`)
-          .toContain(visibleClass);
-      });
-    }),
-  );
+      expect(panel.classList).withContext(`Expected panel to be visible.`).toContain(visibleClass);
+    });
+  }));
 
   it('should emit an event when an option is selected', waitForAsync(async () => {
     const fixture = createComponent(AutocompleteWithSelectEvent);

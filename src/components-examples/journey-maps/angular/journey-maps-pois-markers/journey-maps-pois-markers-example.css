@@ -48,15 +48,22 @@ li[formGroupName='selectedPoi'] .class-of-first-element {
 }
 
 .row-1,
-.row-2 {
+.row-2,
+.row-3 {
   display: flex;
   justify-content: start;
   gap: 3.5rem;
   flex-wrap: wrap;
 }
+
+.row-3 {
+  margin-top: 1em;
+}
+
 .select-poi-button {
   margin-left: 1rem;
 }
+
 .unselect-all-button {
   margin-left: 1rem;
   margin-right: 1rem;

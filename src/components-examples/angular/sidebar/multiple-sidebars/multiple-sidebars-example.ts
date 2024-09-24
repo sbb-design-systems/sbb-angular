@@ -1,12 +1,11 @@
 import { BreakpointObserver, MediaMatcher } from '@angular/cdk/layout';
-import { AfterViewInit, Component, OnDestroy } from '@angular/core';
+import { AfterViewInit, Component, inject, OnDestroy } from '@angular/core';
 import { FormControl, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { SbbAccordionModule } from '@sbb-esta/angular/accordion';
 import { SbbButtonModule } from '@sbb-esta/angular/button';
 import { SbbCheckboxModule } from '@sbb-esta/angular/checkbox';
 import { Breakpoints } from '@sbb-esta/angular/core';
 import { FakeMediaMatcher } from '@sbb-esta/angular/core/testing';
-import { SbbFormField } from '@sbb-esta/angular/form-field';
 import { SbbSidebarModule } from '@sbb-esta/angular/sidebar';
 import { Subject } from 'rxjs';
 import { startWith, takeUntil } from 'rxjs/operators';
@@ -32,14 +31,12 @@ import { startWith, takeUntil } from 'rxjs/operators';
     SbbCheckboxModule,
     FormsModule,
     ReactiveFormsModule,
-    SbbFormField,
   ],
 })
 export class MultipleSidebarsExample implements AfterViewInit, OnDestroy {
   simulateMobile = new FormControl(false, { initialValueIsDefault: true });
   private _destroyed = new Subject<void>();
-
-  constructor(private _mediaMatcher: FakeMediaMatcher) {}
+  private _mediaMatcher = inject(FakeMediaMatcher);
 
   ngAfterViewInit(): void {
     this.simulateMobile.valueChanges

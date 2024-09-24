@@ -5,13 +5,11 @@ import { ComponentPortal, TemplatePortal } from '@angular/cdk/portal';
 import {
   ComponentRef,
   EmbeddedViewRef,
-  Inject,
+  inject,
   Injectable,
   InjectionToken,
   Injector,
   OnDestroy,
-  Optional,
-  SkipSelf,
   TemplateRef,
   Type,
 } from '@angular/core';
@@ -45,6 +43,15 @@ export function SBB_NOTIFICATION_TOAST_DEFAULT_OPTIONS_FACTORY(): SbbNotificatio
 /** Service to dispatch notification toast messages. */
 @Injectable({ providedIn: SbbNotificationToastModule })
 export class SbbNotificationToast implements OnDestroy {
+  private _overlay = inject(Overlay);
+  private _injector = inject(Injector);
+  private _live = inject(LiveAnnouncer);
+  private _breakpointObserver = inject(BreakpointObserver);
+  private _parentNotification = inject(SbbNotificationToast, { optional: true, skipSelf: true })!;
+  private _defaultConfig = inject<SbbNotificationToastConfig>(
+    SBB_NOTIFICATION_TOAST_DEFAULT_OPTIONS,
+  );
+
   /**
    * Reference to the current notification toast in the view *at this level* (in the Angular injector tree).
    * If there is a parent notification toast service, all operations should delegate to that parent
@@ -77,15 +84,10 @@ export class SbbNotificationToast implements OnDestroy {
     }
   }
 
-  constructor(
-    private _overlay: Overlay,
-    private _injector: Injector,
-    private _live: LiveAnnouncer,
-    private _breakpointObserver: BreakpointObserver,
-    @Optional() @SkipSelf() private _parentNotification: SbbNotificationToast,
-    @Inject(SBB_NOTIFICATION_TOAST_DEFAULT_OPTIONS)
-    private _defaultConfig: SbbNotificationToastConfig,
-  ) {}
+  /** Inserted by Angular inject() migration for backwards compatibility */
+  constructor(...args: unknown[]);
+
+  constructor() {}
 
   /**
    * Creates and dispatches a notification toast with a custom component for the content, removing any

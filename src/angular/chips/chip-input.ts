@@ -5,14 +5,11 @@ import {
   Directive,
   ElementRef,
   EventEmitter,
-  Host,
-  Inject,
+  inject,
   Input,
   OnChanges,
   OnDestroy,
-  Optional,
   Output,
-  Self,
 } from '@angular/core';
 import { NgControl } from '@angular/forms';
 import {
@@ -64,6 +61,12 @@ let nextUniqueId = 0;
   standalone: true,
 })
 export class SbbChipInput implements SbbChipTextControl, OnChanges, OnDestroy, AfterContentInit {
+  protected _elementRef: ElementRef<HTMLElement> = inject<ElementRef<HTMLInputElement>>(ElementRef);
+  private _defaultOptions = inject<SbbChipsDefaultOptions>(SBB_CHIPS_DEFAULT_OPTIONS);
+  autocompleteTrigger?: SbbAutocompleteTrigger =
+    inject(SbbAutocompleteTrigger, { self: true, optional: true }) || undefined;
+  private _ngControl = inject(NgControl, { self: true, optional: true });
+
   /** Whether the control is focused. */
   focused: boolean = false;
   _chipList: SbbChipList;
@@ -127,13 +130,9 @@ export class SbbChipInput implements SbbChipTextControl, OnChanges, OnDestroy, A
   /** The native input element to which this directive is attached. */
   readonly inputElement!: HTMLInputElement;
 
-  constructor(
-    protected _elementRef: ElementRef<HTMLInputElement>,
-    @Inject(SBB_CHIPS_DEFAULT_OPTIONS) private _defaultOptions: SbbChipsDefaultOptions,
-    @Self() @Optional() public autocompleteTrigger?: SbbAutocompleteTrigger,
-    @Host() @Optional() @Inject(SBB_CHIP_LIST) chipList?: TypeRef<SbbChipList>,
-    @Self() @Optional() private _ngControl?: NgControl,
-  ) {
+  constructor(...args: unknown[]);
+  constructor() {
+    const chipList = inject<TypeRef<SbbChipList>>(SBB_CHIP_LIST, { host: true, optional: true });
     this.inputElement = this._elementRef.nativeElement as HTMLInputElement;
 
     if (chipList) {

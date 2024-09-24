@@ -8,6 +8,7 @@ import {
   FocusOrigin,
   FocusTrap,
 } from '@angular/cdk/a11y';
+import { BooleanInput, coerceBooleanProperty } from '@angular/cdk/coercion';
 import { ESCAPE, hasModifierKey } from '@angular/cdk/keycodes';
 import { BreakpointObserver } from '@angular/cdk/layout';
 import { Platform } from '@angular/cdk/platform';
@@ -168,12 +169,23 @@ export class SbbSidebar
   }
 
   /**
-   * Whether the sidebar is opened. We overload this because we trigger an event when it
-   * starts or end.
+   * Whether the collapsible sidebar is opened.
    */
+  @Input()
   get opened(): boolean {
     return this._opened;
   }
+  set opened(value: BooleanInput) {
+    this._openedViaInput = true;
+    this.toggle(coerceBooleanProperty(value));
+  }
+  private _opened: boolean = true;
+
+  /**
+   * Whether the `opened` state was set via the @Input.
+   * If true, the sidebar will not be toggled automatically if the mobile state changes.
+   */
+  private _openedViaInput: boolean = false;
 
   /**
    * Name of the svg icon for the trigger on mobile devices.
@@ -208,7 +220,6 @@ export class SbbSidebar
   private _elementFocusedBeforeSidebarWasOpened: HTMLElement | null = null;
 
   private _mode: SbbSidebarMode = 'side';
-  private _opened: boolean = true;
 
   /** How the sidebar was opened (keypress, mouse click etc.) */
   private _openedVia: FocusOrigin | null;
@@ -544,10 +555,10 @@ export class SbbSidebar
       this._enableAnimations = false;
       this.mode = this.collapsible || mobile ? 'over' : 'side';
 
-      if (mobile) {
-        this.close();
+      if (!this._openedViaInput) {
+        this.toggle(!mobile);
       } else {
-        this.open();
+        this._changeDetectorRef.markForCheck();
       }
       this._enableAnimations = wasAnimationsEnabled;
     });

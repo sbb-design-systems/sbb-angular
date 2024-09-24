@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { FormBuilder, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
 import { SbbButtonModule } from '@sbb-esta/angular/button';
 import { SbbCheckboxModule } from '@sbb-esta/angular/checkbox';
@@ -26,6 +26,8 @@ import { SbbProcessflowModule } from '@sbb-esta/angular/processflow';
   ],
 })
 export class ProcessflowOverviewExample {
+  private _formBuilder = inject(FormBuilder);
+
   linear = true;
   firstFormGroup = this._formBuilder.group({
     firstCtrl: ['', Validators.required],
@@ -33,6 +35,4 @@ export class ProcessflowOverviewExample {
   secondFormGroup = this._formBuilder.group({
     secondCtrl: ['', Validators.required],
   });
-
-  constructor(private _formBuilder: FormBuilder) {}
 }

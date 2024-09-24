@@ -784,7 +784,7 @@ describe('SbbInput with forms', () => {
     }));
   });
 
-  it('should update the value when using FormControl.setValue', fakeAsync(() => {
+  it('should update the value when using FormControl.setValue', () => {
     const fixture = createComponent(SbbInputWithFormControl);
     fixture.detectChanges();
 
@@ -797,7 +797,7 @@ describe('SbbInput with forms', () => {
     fixture.componentInstance.formControl.setValue('something');
 
     expect(input.value).toBe('something');
-  }));
+  });
 
   it('should display disabled styles when using FormControl.disable()', fakeAsync(() => {
     const fixture = createComponent(SbbInputWithFormControl);

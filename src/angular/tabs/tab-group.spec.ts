@@ -325,6 +325,42 @@ describe('SbbTabGroup', () => {
 
       expect(tabLabels.map((label) => label.getAttribute('tabindex'))).toEqual(['-1', '-1', '0']);
     });
+
+    it('should be able to set the aria-label of the tablist', fakeAsync(() => {
+      fixture.detectChanges();
+      tick();
+
+      const tabList = fixture.nativeElement.querySelector('.sbb-tab-list') as HTMLElement;
+      expect(tabList.hasAttribute('aria-label')).toBe(false);
+
+      fixture.componentInstance.ariaLabel = 'hello';
+      fixture.changeDetectorRef.markForCheck();
+      fixture.detectChanges();
+      expect(tabList.getAttribute('aria-label')).toBe('hello');
+
+      fixture.componentInstance.ariaLabel = '';
+      fixture.changeDetectorRef.markForCheck();
+      fixture.detectChanges();
+      expect(tabList.hasAttribute('aria-label')).toBe(false);
+    }));
+
+    it('should be able to set the aria-labelledby of the tablist', fakeAsync(() => {
+      fixture.detectChanges();
+      tick();
+
+      const tabList = fixture.nativeElement.querySelector('.sbb-tab-list') as HTMLElement;
+      expect(tabList.hasAttribute('aria-labelledby')).toBe(false);
+
+      fixture.componentInstance.ariaLabelledby = 'some-label';
+      fixture.changeDetectorRef.markForCheck();
+      fixture.detectChanges();
+      expect(tabList.getAttribute('aria-labelledby')).toBe('some-label');
+
+      fixture.componentInstance.ariaLabelledby = '';
+      fixture.changeDetectorRef.markForCheck();
+      fixture.detectChanges();
+      expect(tabList.hasAttribute('aria-labelledby')).toBe(false);
+    }));
   });
 
   describe('aria labelling', () => {
@@ -345,6 +381,7 @@ describe('SbbTabGroup', () => {
 
     it('should set the aria-label attribute', () => {
       fixture.componentInstance.ariaLabel = 'Fruit';
+      fixture.changeDetectorRef.markForCheck();
       fixture.detectChanges();
 
       expect(tab.getAttribute('aria-label')).toBe('Fruit');
@@ -352,6 +389,7 @@ describe('SbbTabGroup', () => {
 
     it('should set the aria-labelledby attribute', () => {
       fixture.componentInstance.ariaLabelledby = 'fruit-label';
+      fixture.changeDetectorRef.markForCheck();
       fixture.detectChanges();
 
       expect(tab.getAttribute('aria-labelledby')).toBe('fruit-label');
@@ -465,6 +503,7 @@ describe('SbbTabGroup', () => {
       tick();
 
       fixture.componentInstance.tabs.push({ label: 'New tab', content: 'to left of index' });
+      fixture.changeDetectorRef.markForCheck();
       fixture.detectChanges();
       tick();
 
@@ -485,6 +524,7 @@ describe('SbbTabGroup', () => {
 
       // Remove last tab while last tab is selected, expect next tab over to be selected
       fixture.componentInstance.tabs.pop();
+      fixture.changeDetectorRef.markForCheck();
       fixture.detectChanges();
       tick();
 
@@ -631,6 +671,7 @@ describe('SbbTabGroup', () => {
 
       fixture.componentInstance.otherLabel = 'Chips';
       fixture.componentInstance.otherContent = 'Salt, vinegar';
+      fixture.changeDetectorRef.markForCheck();
       fixture.detectChanges();
 
       expect(getSelectedLabel(fixture).textContent).toMatch('Chips');
@@ -656,6 +697,7 @@ describe('SbbTabGroup', () => {
 
     it('should be able to opt into keeping the inactive tab content in the DOM', fakeAsync(() => {
       fixture.componentInstance.preserveContent = true;
+      fixture.changeDetectorRef.markForCheck();
       fixture.detectChanges();
 
       expect(fixture.nativeElement.textContent).toContain('Pizza, fries');
@@ -992,6 +1034,8 @@ describe('nested SbbTabGroup with enabled animations', () => {
     <sbb-tab-group
       class="tab-group"
       [(selectedIndex)]="selectedIndex"
+      [aria-label]="ariaLabel"
+      [aria-labelledby]="ariaLabelledby"
       (animationDone)="animationDone()"
       (focusChange)="handleFocus($event)"
       (selectedTabChange)="handleSelection($event)"
@@ -1019,6 +1063,8 @@ class SimpleTabsTestApp {
   selectedIndex: number = 1;
   focusEvent: any;
   selectEvent: any;
+  ariaLabel: string;
+  ariaLabelledby: string;
   handleFocus(event: any) {
     this.focusEvent = event;
   }

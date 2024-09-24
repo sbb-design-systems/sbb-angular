@@ -18,7 +18,7 @@ import { defer, Observable, Subject } from 'rxjs';
 import { startWith } from 'rxjs/operators';
 
 import { SbbDialogConfig } from './dialog-config';
-import { SbbDialogContainer, _SbbDialogContainerBase } from './dialog-container';
+import { SbbDialogContainer } from './dialog-container';
 import { SbbDialogRef } from './dialog-ref';
 
 /** Injection token that can be used to access the data that was passed in to a dialog. */
@@ -82,7 +82,7 @@ let uniqueId = 0;
 @Injectable({ providedIn: 'root' })
 // tslint:disable-next-line: class-name naming-convention
 export abstract class _SbbDialogBase<
-  C extends _SbbDialogContainerBase,
+  C extends SbbDialogContainer,
   F extends SbbDialogRef<any> = SbbDialogRef<any>,
 > implements OnDestroy
 {

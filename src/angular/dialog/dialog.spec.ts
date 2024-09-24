@@ -9,8 +9,6 @@ import { SpyLocation } from '@angular/common/testing';
 import {
   ChangeDetectionStrategy,
   Component,
-  ComponentFactoryResolver,
-  ComponentRef,
   createNgModuleRef,
   Directive,
   forwardRef,
@@ -120,7 +118,6 @@ describe('SbbDialog', () => {
 
     expect(overlayContainerElement.textContent).toContain('Pizza');
     expect(dialogRef.componentInstance instanceof PizzaMsg).toBe(true);
-    expect(dialogRef.componentRef instanceof ComponentRef).toBe(true);
     expect(dialogRef.componentInstance.dialogRef).toBe(dialogRef);
 
     viewContainerFixture.detectChanges();
@@ -789,21 +786,6 @@ describe('SbbDialog', () => {
     expect(scrollStrategy.enable).toHaveBeenCalled();
   }));
 
-  it('should be able to pass in an alternate ComponentFactoryResolver', inject(
-    [ComponentFactoryResolver],
-    (resolver: ComponentFactoryResolver) => {
-      spyOn(resolver, 'resolveComponentFactory').and.callThrough();
-
-      dialog.open(PizzaMsg, {
-        viewContainerRef: testViewContainerRef,
-        componentFactoryResolver: resolver,
-      });
-      viewContainerFixture.detectChanges();
-
-      expect(resolver.resolveComponentFactory).toHaveBeenCalled();
-    },
-  ));
-
   describe('passing in data', () => {
     it('should be able to pass in data', () => {
       const config = {
@@ -1161,7 +1143,7 @@ describe('SbbDialog', () => {
       });
 
       viewContainerFixture.detectChanges();
-      flushMicrotasks();
+      flush();
 
       expect(document.activeElement!.tagName).not.toBe('INPUT');
     }));
@@ -1173,7 +1155,7 @@ describe('SbbDialog', () => {
       });
 
       viewContainerFixture.detectChanges();
-      flushMicrotasks();
+      flush();
 
       expect(
         overlayContainerElement.querySelectorAll('.cdk-focus-trap-anchor').length,
@@ -2086,14 +2068,14 @@ describe('SbbDialog with explicit injector provided', () => {
     fixture = TestBed.createComponent(ModuleBoundDialogParentComponent);
   });
 
-  it('should use the standalone injector and render the dialog successfully', fakeAsync(() => {
+  it('should use the standalone injector and render the dialog successfully', () => {
     fixture.componentInstance.openDialog();
     fixture.detectChanges();
 
     expect(
       overlayContainerElement.querySelector('module-bound-dialog-child-component')!.innerHTML,
     ).toEqual('<p>Pasta</p>');
-  }));
+  });
 });
 
 describe('SbbDialog with template only', () => {
@@ -2298,6 +2280,7 @@ class ComponentWithContentElementTemplateRef {
 @Component({
   template: '',
   providers: [SbbDialog],
+  standalone: false,
 })
 class ComponentThatProvidesSbbDialog {
   constructor(public dialog: SbbDialog) {}

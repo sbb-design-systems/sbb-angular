@@ -13,6 +13,7 @@ import {
   ElementRef,
   EventEmitter,
   Inject,
+  Input,
   NgZone,
   OnDestroy,
   Optional,
@@ -59,6 +60,12 @@ export class SbbTabHeader
   @ViewChild('tabListInner', { static: true }) _tabListInner: ElementRef;
   @ViewChild('nextPaginator') _nextPaginator: ElementRef<HTMLElement>;
   @ViewChild('previousPaginator') _previousPaginator: ElementRef<HTMLElement>;
+
+  /** Aria label of the header. */
+  @Input('aria-label') ariaLabel: string;
+
+  /** Sets the `aria-labelledby` of the header. */
+  @Input('aria-labelledby') ariaLabelledby: string;
 
   @Output() override selectFocusedIndex: EventEmitter<number> = new EventEmitter<number>();
   @Output() override indexFocused: EventEmitter<number> = new EventEmitter<number>();

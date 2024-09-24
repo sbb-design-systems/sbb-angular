@@ -209,7 +209,7 @@ export interface SbbRouteMetaInformation {
 
 export interface SbbRailNetworkOptions {
   /**
-   * Color of the rail network in the map.
+   * Color of the rail network on the map.
    *
    * Set 'transparent' to hide the rail network, or use other color-format as specified in https://maplibre.org/maplibre-gl-js-docs/style-spec/types/.
    * */
@@ -230,9 +230,9 @@ export type SbbTemplateType = TemplateRef<any> | string;
 
 /** points of interest options */
 export interface SbbPointsOfInterestOptions {
-  /** Configure a list of points of interest categories visible in the map. Set empty, to hide all POIs. */
+  /** Configure a list of points of interest categories visible on the map. Set empty, to hide all POIs. */
   categories: SbbPointsOfInterestCategoryType[];
-  /** Configure the environment from which to get the POIs from ('prod' or 'int. default = 'prod'). */
+  /** Configure the environment from which to get the points of interest from ('prod' or 'int. default = 'prod'). */
   environment?: SbbPointsOfInterestEnvironmentType;
   /** Configure whether to include preview-points-of-interest or not */
   includePreview?: boolean;
@@ -240,10 +240,13 @@ export interface SbbPointsOfInterestOptions {
 
 /** points of interest category type */
 export type SbbPointsOfInterestCategoryType =
+  | 'accommodation'
   | 'aquarium'
   | 'atm'
+  | 'attraction'
   | 'bakery'
   | 'bar'
+  | 'barracks'
   | 'beauty'
   | 'beverages'
   | 'bike_parking'
@@ -258,15 +261,21 @@ export type SbbPointsOfInterestCategoryType =
   | 'car_repair'
   | 'car_sharing'
   | 'casino'
+  | 'catering'
   | 'cinema'
   | 'clothes'
   | 'cosmetics'
+  | 'counter_other'
+  | 'counter_sbb'
   | 'dance'
+  | 'dentist'
   | 'department_store'
+  | 'doctor'
   | 'drugstore'
   | 'electronics'
   | 'events_venue'
   | 'fast_food'
+  | 'fitness_centre'
   | 'flowers'
   | 'food'
   | 'fuel'
@@ -283,51 +292,85 @@ export type SbbPointsOfInterestCategoryType =
   | 'hotel'
   | 'household'
   | 'ice_cream'
+  | 'ice_rink'
+  | 'infopoint'
   | 'jewelry'
   | 'kindergarten'
   | 'kiosk'
   | 'language_school'
+  | 'leisure'
+  | 'leisure_other'
   | 'library'
+  | 'locker_sbb'
+  | 'luggage_sbb'
   | 'massage'
+  | 'meeting_point'
   | 'miniature_golf'
+  | 'mobility'
+  | 'money_exchange'
+  | 'money_exchange_sbb'
   | 'motel'
+  | 'motorbike_parking'
   | 'museum'
   | 'music'
+  | 'musical_instruments'
   | 'music_school'
-  | 'musical_instrument'
   | 'nightclub'
   | 'nursing_home'
+  | 'office'
   | 'on_demand'
   | 'optician'
+  | 'other'
   | 'outdoor'
   | 'p2p_car_sharing'
+  | 'parking'
+  | 'parking_deck'
+  | 'parking_place'
   | 'park_rail'
   | 'perfumery'
+  | 'pharmacy'
+  | 'phone'
   | 'photo'
   | 'place_of_worship'
+  | 'police'
   | 'post_office'
+  | 'public'
   | 'public_bath'
+  | 'public_other'
   | 'restaurant'
+  | 'sbb_service_other'
+  | 'sbb_services'
   | 'school'
+  | 'service'
   | 'service_other'
   | 'shoes'
+  | 'shopping'
   | 'shopping_center'
   | 'shopping_other'
   | 'social_facility'
   | 'sport'
   | 'sports_centre'
+  | 'stationary'
   | 'supermarket'
+  | 'swisspass_parking'
+  | 'take_away'
   | 'tattoo'
   | 'taxi'
   | 'theatre'
   | 'theme_park'
   | 'thrift_shop'
+  | 'toilet'
+  | 'toilet_sbb'
+  | 'touristinfo'
   | 'townhall'
   | 'toy_library'
   | 'toys'
   | 'university'
   | 'variety_store'
+  | 'vending_machine_other'
+  | 'vending_machine_sbb'
   | 'video_games'
+  | 'waiting_room'
   | 'watches'
   | 'water_park'
   | 'zoo';

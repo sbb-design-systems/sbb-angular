@@ -7,6 +7,7 @@ import {
   ContentChild,
   ContentChildren,
   ElementRef,
+  inject,
   InjectionToken,
   Input,
   OnDestroy,
@@ -56,6 +57,9 @@ export const SBB_FORM_FIELD = new InjectionToken<SbbFormField>('SBB_FORM_FIELD')
   standalone: true,
 })
 export class SbbFormField implements AfterContentInit, AfterContentChecked, OnDestroy {
+  _elementRef: ElementRef<HTMLElement> = inject<ElementRef<HTMLElement>>(ElementRef);
+  private _changeDetectorRef = inject(ChangeDetectorRef);
+
   /** The label text for the input. */
   @Input() label?: string;
 
@@ -87,10 +91,8 @@ export class SbbFormField implements AfterContentInit, AfterContentChecked, OnDe
   private _stateChanges: Subscription | undefined;
   private _valueChanges: Subscription | undefined;
 
-  constructor(
-    public _elementRef: ElementRef<HTMLElement>,
-    private _changeDetectorRef: ChangeDetectorRef,
-  ) {}
+  constructor(...args: unknown[]);
+  constructor() {}
 
   /**
    * Gets the id of the label element. If no label is present, returns `null`.

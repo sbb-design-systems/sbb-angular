@@ -15,11 +15,9 @@ import {
   ElementRef,
   EventEmitter,
   inject,
-  Inject,
   InjectionToken,
   Injector,
   Input,
-  NgZone,
   OnDestroy,
   OnInit,
   Output,
@@ -111,6 +109,10 @@ export type SbbMenuCloseReason = void | 'click' | 'keydown' | 'tab';
   imports: [NgTemplateOutlet],
 })
 export class SbbMenu implements AfterContentInit, SbbMenuPanel<SbbMenuItem>, OnInit, OnDestroy {
+  private _elementRef = inject<ElementRef<HTMLElement>>(ElementRef);
+  private _defaultOptions = inject<SbbMenuDefaultOptions>(SBB_MENU_DEFAULT_OPTIONS);
+  private _changeDetectorRef = inject(ChangeDetectorRef);
+
   private _keyManager: FocusKeyManager<SbbMenuItem>;
   private _xPosition: SbbMenuPositionX = this._defaultOptions.xPosition;
   private _yPosition: SbbMenuPositionY = this._defaultOptions.yPosition;
@@ -253,16 +255,8 @@ export class SbbMenu implements AfterContentInit, SbbMenuPanel<SbbMenuItem>, OnI
 
   private _injector = inject(Injector);
 
-  constructor(
-    private _elementRef: ElementRef<HTMLElement>,
-    /**
-     * @deprecated Unused param, will be removed.
-     * @breaking-change 19.0.0
-     */
-    _unusedNgZone: NgZone,
-    @Inject(SBB_MENU_DEFAULT_OPTIONS) private _defaultOptions: SbbMenuDefaultOptions,
-    private _changeDetectorRef: ChangeDetectorRef,
-  ) {}
+  constructor(...args: unknown[]);
+  constructor() {}
 
   ngOnInit() {
     this.setPositionClasses();

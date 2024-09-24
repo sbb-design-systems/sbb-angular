@@ -55,6 +55,7 @@ export abstract class SbbSidebarContentBase extends CdkScrollable {
   host: {
     '[class.sbb-sidebar-end]': 'position === "end"',
   },
+  standalone: false,
 })
 export abstract class SbbSidebarBase implements AfterViewInit, OnDestroy {
   abstract _mobileChanged(mobile: boolean): void;

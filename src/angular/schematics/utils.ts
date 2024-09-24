@@ -470,6 +470,6 @@ export function getProjectName(options: Schema, workspace: WorkspaceDefinition) 
   return (
     options.project ||
     (workspace.extensions.defaultProject as string) ||
-    Array.from(workspace.projects.keys())[0]
+    (Array.from(workspace.projects.keys())[0] as string)
   );
 }

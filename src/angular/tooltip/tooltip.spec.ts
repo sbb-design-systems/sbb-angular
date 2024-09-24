@@ -65,8 +65,6 @@ describe('SbbTooltip', () => {
       ],
     });
 
-    TestBed.compileComponents();
-
     inject(
       [OverlayContainer, FocusMonitor, Platform],
       (oc: OverlayContainer, fm: FocusMonitor, pl: Platform) => {
@@ -134,6 +132,7 @@ describe('SbbTooltip', () => {
       // On animation complete, should expect that the tooltip has been detached.
       finishCurrentTooltipAnimation(overlayContainerElement, false);
       assertTooltipInstance(tooltipDirective, false);
+      flush();
     }));
 
     it('should be able to re-open a tooltip if it was closed by detaching the overlay', fakeAsync(() => {
@@ -153,6 +152,7 @@ describe('SbbTooltip', () => {
       tick(0);
       finishCurrentTooltipAnimation(overlayContainerElement, true);
       expect(tooltipDirective._isTooltipVisible()).toBe(true);
+      flush();
     }));
 
     it('should show with delay', fakeAsync(() => {
@@ -171,16 +171,14 @@ describe('SbbTooltip', () => {
     }));
 
     it('should be able to override the default show and hide delays', fakeAsync(() => {
-      TestBed.resetTestingModule()
-        .configureTestingModule({
-          providers: [
-            {
-              provide: SBB_TOOLTIP_DEFAULT_OPTIONS,
-              useValue: { showDelay: 1337, hideDelay: 7331 },
-            },
-          ],
-        })
-        .compileComponents();
+      TestBed.resetTestingModule().configureTestingModule({
+        providers: [
+          {
+            provide: SBB_TOOLTIP_DEFAULT_OPTIONS,
+            useValue: { showDelay: 1337, hideDelay: 7331 },
+          },
+        ],
+      });
 
       fixture = TestBed.createComponent(BasicTooltipDemo);
       fixture.detectChanges();
@@ -203,21 +201,20 @@ describe('SbbTooltip', () => {
       expect(tooltipDirective._isTooltipVisible()).toBe(true);
       tick(7331);
       expect(tooltipDirective._isTooltipVisible()).toBe(false);
+      flush();
     }));
 
     it('should be able to override the default position', fakeAsync(() => {
-      TestBed.resetTestingModule()
-        .configureTestingModule({
-          imports: [SbbTooltipModule, OverlayModule],
-          declarations: [TooltipDemoWithoutPositionBinding],
-          providers: [
-            {
-              provide: SBB_TOOLTIP_DEFAULT_OPTIONS,
-              useValue: { position: 'right' },
-            },
-          ],
-        })
-        .compileComponents();
+      TestBed.resetTestingModule().configureTestingModule({
+        imports: [SbbTooltipModule, OverlayModule],
+        declarations: [TooltipDemoWithoutPositionBinding],
+        providers: [
+          {
+            provide: SBB_TOOLTIP_DEFAULT_OPTIONS,
+            useValue: { position: 'right' },
+          },
+        ],
+      });
 
       const newFixture = TestBed.createComponent(TooltipDemoWithoutPositionBinding);
       newFixture.detectChanges();
@@ -235,18 +232,16 @@ describe('SbbTooltip', () => {
     }));
 
     it('should be able to disable tooltip interactivity', fakeAsync(() => {
-      TestBed.resetTestingModule()
-        .configureTestingModule({
-          imports: [SbbTooltipModule],
-          declarations: [TooltipDemoWithoutPositionBinding],
-          providers: [
-            {
-              provide: SBB_TOOLTIP_DEFAULT_OPTIONS,
-              useValue: { disableTooltipInteractivity: true },
-            },
-          ],
-        })
-        .compileComponents();
+      TestBed.resetTestingModule().configureTestingModule({
+        imports: [SbbTooltipModule],
+        declarations: [TooltipDemoWithoutPositionBinding],
+        providers: [
+          {
+            provide: SBB_TOOLTIP_DEFAULT_OPTIONS,
+            useValue: { disableTooltipInteractivity: true },
+          },
+        ],
+      });
 
       const newFixture = TestBed.createComponent(TooltipDemoWithoutPositionBinding);
       newFixture.detectChanges();
@@ -318,6 +313,7 @@ describe('SbbTooltip', () => {
       fixture.detectChanges();
       tick(0);
       expect(tooltipDirective._isTooltipVisible()).toBe(false);
+      flush();
     }));
 
     it('should not show if hide is called before delay finishes', waitForAsync(() => {
@@ -388,8 +384,8 @@ describe('SbbTooltip', () => {
 
       assertTooltipInstance(tooltipDirective, true);
 
-      tooltipDirective.position = 'above';
       spyOn(tooltipDirective._overlayRef!, 'updatePosition').and.callThrough();
+      tooltipDirective.position = 'above';
       fixture.detectChanges();
       tick();
 
@@ -489,6 +485,7 @@ describe('SbbTooltip', () => {
       fixture.destroy();
       expect(overlayContainerElement.childNodes.length).toBe(0);
       expect(overlayContainerElement.textContent).toBe('');
+      flush();
     }));
 
     it('should have an aria-describedby element with the tooltip message', fakeAsync(() => {
@@ -542,6 +539,7 @@ describe('SbbTooltip', () => {
       tick(tooltipDelay); // Change the tooltip state to hidden and trigger animation start
 
       fixture.componentInstance.showButton = false;
+      fixture.changeDetectorRef.markForCheck();
       fixture.detectChanges();
     }));
 
@@ -646,6 +644,7 @@ describe('SbbTooltip', () => {
       finishCurrentTooltipAnimation(overlayContainerElement, true);
 
       expect(overlayContainerElement.textContent).toContain(initialTooltipMessage);
+      flush();
     }));
 
     it('should hide when pressing escape', fakeAsync(() => {
@@ -666,6 +665,7 @@ describe('SbbTooltip', () => {
 
       expect(tooltipDirective._isTooltipVisible()).toBe(false);
       expect(overlayContainerElement.textContent).toBe('');
+      flush();
     }));
 
     it('should not throw when pressing ESCAPE', fakeAsync(() => {
@@ -757,6 +757,7 @@ describe('SbbTooltip', () => {
       finishCurrentTooltipAnimation(overlayContainerElement, true);
 
       expect(overlayRef.detach).not.toHaveBeenCalled();
+      flush();
     }));
 
     it('should set a class on the overlay panel that reflects the position', fakeAsync(() => {
@@ -806,6 +807,7 @@ describe('SbbTooltip', () => {
       // Note that we aren't asserting anything, but `fakeAsync` will
       // throw if we have any timers by the end of the test.
       fixture.destroy();
+      flush();
     }));
 
     it('should clear the hide timeout on destroy', fakeAsync(() => {
@@ -822,6 +824,7 @@ describe('SbbTooltip', () => {
       // Note that we aren't asserting anything, but `fakeAsync` will
       // throw if we have any timers by the end of the test.
       fixture.destroy();
+      flush();
     }));
 
     it('should hide on mouseleave on the trigger', fakeAsync(() => {
@@ -919,6 +922,7 @@ describe('SbbTooltip', () => {
       // Note that we aren't asserting anything, but `fakeAsync` will
       // throw if we have any timers by the end of the test.
       fixture.destroy();
+      flush();
     }));
 
     it('should emit event on dismissing tooltip', fakeAsync(() => {
@@ -1028,6 +1032,7 @@ describe('SbbTooltip', () => {
       // On animation complete, should expect that the tooltip has been detached.
       finishCurrentTooltipAnimation(overlayContainerElement, false);
       assertTooltipInstance(tooltipDirective, false);
+      flush();
     }));
 
     it('should have rendered the tooltip text on init', fakeAsync(() => {
@@ -1066,6 +1071,7 @@ describe('SbbTooltip', () => {
       finishCurrentTooltipAnimation(overlayContainerElement, true); // Finish the animation.
 
       assertTooltipInstance(fixture.componentInstance.tooltip, true);
+      flush();
     }));
 
     it('should be able to disable opening on touch', fakeAsync(() => {
@@ -1115,6 +1121,7 @@ describe('SbbTooltip', () => {
       finishCurrentTooltipAnimation(overlayContainerElement, false); // Finish the exit animation.
 
       assertTooltipInstance(fixture.componentInstance.tooltip, false);
+      flush();
     }));
 
     it('should close on touchcancel with a delay', fakeAsync(() => {
@@ -1139,6 +1146,7 @@ describe('SbbTooltip', () => {
       finishCurrentTooltipAnimation(overlayContainerElement, false); // Finish the exit animation.
 
       assertTooltipInstance(fixture.componentInstance.tooltip, false);
+      flush();
     }));
 
     it('should disable native touch interactions', () => {
@@ -1276,6 +1284,7 @@ describe('SbbTooltip', () => {
       finishCurrentTooltipAnimation(overlayContainerElement, false);
 
       assertTooltipInstance(fixture.componentInstance.tooltip, false);
+      flush();
     }));
 
     it('should not close if the cursor is over the trigger after a wheel event', fakeAsync(() => {
@@ -1310,6 +1319,7 @@ describe('SbbTooltip', () => {
       finishCurrentTooltipAnimation(overlayContainerElement, false); // Finish the exit animation.
 
       assertTooltipInstance(fixture.componentInstance.tooltip, true);
+      flush();
     }));
   });
 
@@ -1329,6 +1339,7 @@ describe('SbbTooltip', () => {
         'sbb-tooltip-has-close-button',
       );
       expect(document.querySelector('.sbb-tooltip-close-button')).toBeTruthy();
+      flush();
     }));
 
     it('should hide close button on hover trigger', fakeAsync(() => {
@@ -1347,6 +1358,7 @@ describe('SbbTooltip', () => {
         'sbb-tooltip-has-close-button',
       );
       expect(document.querySelector('.sbb-tooltip-close-button')).toBeFalsy();
+      flush();
     }));
   });
 
@@ -1534,6 +1546,7 @@ class TriggerConfigurableTooltip {
 @Component({
   selector: 'app',
   template: `<button #button [sbbTooltip]="message">Button</button>`,
+  standalone: false,
 })
 class TooltipDemoWithoutPositionBinding {
   message: any = initialTooltipMessage;

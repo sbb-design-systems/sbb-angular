@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { SbbButtonModule } from '@sbb-esta/angular/button';
 import { SbbNotificationToast } from '@sbb-esta/angular/notification-toast';
 
@@ -13,7 +13,7 @@ import { SbbNotificationToast } from '@sbb-esta/angular/notification-toast';
   imports: [SbbButtonModule],
 })
 export class NotificationToastComponentExample {
-  constructor(private _notification: SbbNotificationToast) {}
+  private _notification = inject(SbbNotificationToast);
 
   showNotification() {
     this._notification.openFromComponent(ExampleToastComponent);

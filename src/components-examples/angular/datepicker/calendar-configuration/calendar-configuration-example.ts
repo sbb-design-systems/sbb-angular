@@ -1,5 +1,5 @@
 import { AsyncPipe } from '@angular/common';
-import { Component, OnDestroy, ViewEncapsulation } from '@angular/core';
+import { Component, inject, OnDestroy, ViewEncapsulation } from '@angular/core';
 import { FormBuilder, FormControl, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { SbbButtonModule } from '@sbb-esta/angular/button';
 import { SbbCheckboxModule } from '@sbb-esta/angular/checkbox';
@@ -32,6 +32,8 @@ import { filter, map, startWith, takeUntil } from 'rxjs/operators';
   ],
 })
 export class CalendarConfigurationExample implements OnDestroy {
+  private _formBuilder = inject(FormBuilder);
+
   dateRange = new BehaviorSubject<{ start: Date; end: Date } | null>(null);
   dateForm = this._formBuilder.group({
     startDate: new FormControl<Date | null>(null),
@@ -57,7 +59,7 @@ export class CalendarConfigurationExample implements OnDestroy {
 
   protected readonly _destroyed: Subject<void> = new Subject<void>();
 
-  constructor(private _formBuilder: FormBuilder) {
+  constructor() {
     this.dateForm.valueChanges
       .pipe(
         takeUntil(this._destroyed),

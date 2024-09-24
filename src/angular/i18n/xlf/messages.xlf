@@ -6,7 +6,7 @@
         <source>Close message</source>
         <context-group purpose="location">
           <context context-type="sourcefile">../../../../../../src/angular/alert/alert.ts</context>
-          <context context-type="linenumber">50</context>
+          <context context-type="linenumber">53</context>
         </context-group>
         <note priority="1" from="description">Hidden button label to close the alert</note>
       </trans-unit>
@@ -54,7 +54,7 @@
         <source>Show calendar</source>
         <context-group purpose="location">
           <context context-type="sourcefile">../../../../../../src/angular/datepicker/datepicker-toggle/datepicker-toggle.ts</context>
-          <context context-type="linenumber">38</context>
+          <context context-type="linenumber">40</context>
         </context-group>
         <note priority="1" from="description">Open calendar</note>
       </trans-unit>
@@ -62,7 +62,7 @@
         <source>Next day</source>
         <context-group purpose="location">
           <context context-type="sourcefile">../../../../../../src/angular/datepicker/datepicker/datepicker.ts</context>
-          <context context-type="linenumber">232</context>
+          <context context-type="linenumber">236</context>
         </context-group>
         <note priority="1" from="description">Next day button&apos;s aria-label</note>
       </trans-unit>
@@ -70,7 +70,7 @@
         <source>Previous day</source>
         <context-group purpose="location">
           <context context-type="sourcefile">../../../../../../src/angular/datepicker/datepicker/datepicker.ts</context>
-          <context context-type="linenumber">237</context>
+          <context context-type="linenumber">241</context>
         </context-group>
         <note priority="1" from="description">Previous day button&apos;s aria-label</note>
       </trans-unit>
@@ -90,7 +90,7 @@
         <source>Upload file</source>
         <context-group purpose="location">
           <context context-type="sourcefile">../../../../../../src/angular/file-selector/file-selector.ts</context>
-          <context context-type="linenumber">55</context>
+          <context context-type="linenumber">58</context>
         </context-group>
         <note priority="1" from="description">Button label to select files for upload</note>
       </trans-unit>
@@ -98,7 +98,7 @@
         <source>Remove file</source>
         <context-group purpose="location">
           <context context-type="sourcefile">../../../../../../src/angular/file-selector/file-selector.ts</context>
-          <context context-type="linenumber">57</context>
+          <context context-type="linenumber">60</context>
         </context-group>
         <note priority="1" from="description">Hidden button label to remove a file from the selection list</note>
       </trans-unit>
@@ -142,7 +142,7 @@
         <source>Previous Page</source>
         <context-group purpose="location">
           <context context-type="sourcefile">../../../../../../src/angular/pagination/paginator/paginator.ts</context>
-          <context context-type="linenumber">81</context>
+          <context context-type="linenumber">80</context>
         </context-group>
         <note priority="1" from="description">Button label to navigate to the previous page</note>
       </trans-unit>
@@ -150,7 +150,7 @@
         <source>Next Page</source>
         <context-group purpose="location">
           <context context-type="sourcefile">../../../../../../src/angular/pagination/paginator/paginator.ts</context>
-          <context context-type="linenumber">83</context>
+          <context context-type="linenumber">82</context>
         </context-group>
         <note priority="1" from="description">Button label to navigate to the next page</note>
       </trans-unit>
@@ -158,7 +158,7 @@
         <source>Search</source>
         <context-group purpose="location">
           <context context-type="sourcefile">../../../../../../src/angular/search/header-search.ts</context>
-          <context context-type="linenumber">87</context>
+          <context context-type="linenumber">89</context>
         </context-group>
         <note priority="1" from="description">Button label for the header search</note>
       </trans-unit>
@@ -182,7 +182,7 @@
         <source>Close Sidebar</source>
         <context-group purpose="location">
           <context context-type="sourcefile">../../../../../../src/angular/sidebar/sidebar/sidebar.ts</context>
-          <context context-type="linenumber">134</context>
+          <context context-type="linenumber">135</context>
         </context-group>
         <note priority="1" from="description">Button label to close the sidebar</note>
       </trans-unit>
@@ -190,7 +190,7 @@
         <source>Open Sidebar</source>
         <context-group purpose="location">
           <context context-type="sourcefile">../../../../../../src/angular/sidebar/sidebar/sidebar.ts</context>
-          <context context-type="linenumber">581</context>
+          <context context-type="linenumber">592</context>
         </context-group>
         <note priority="1" from="description">Button label to open the sidebar</note>
       </trans-unit>
@@ -202,7 +202,7 @@
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">../../../../../../src/angular/tag/tag.ts</context>
-          <context context-type="linenumber">58</context>
+          <context context-type="linenumber">55</context>
         </context-group>
         <note priority="1" from="description">Aria label for amount of results displayed in badge pill</note>
       </trans-unit>
@@ -226,7 +226,7 @@
         <source><x id="PH" equiv-text="this._counter.value"/> characters remaining</source>
         <context-group purpose="location">
           <context context-type="sourcefile">../../../../../../src/angular/textarea/textarea/textarea.ts</context>
-          <context context-type="linenumber">52</context>
+          <context context-type="linenumber">55</context>
         </context-group>
         <note priority="1" from="description">Counter text for textarea</note>
       </trans-unit>
