@@ -7,7 +7,7 @@ import { merge, Observable, Subject } from 'rxjs';
 import { filter, take } from 'rxjs/operators';
 
 import { SbbDialogConfig, SbbDialogPosition } from './dialog-config';
-import { _SbbDialogContainerBase } from './dialog-container';
+import { SbbDialogContainer } from './dialog-container';
 
 /** Possible states of the lifecycle of a dialog. */
 export enum SbbDialogState {
@@ -60,7 +60,7 @@ export class SbbDialogRef<T, R = any> {
   constructor(
     public ref: DialogRef<R, T>,
     config: SbbDialogConfig,
-    public _containerInstance: _SbbDialogContainerBase,
+    public _containerInstance: SbbDialogContainer,
   ) {
     this.disableClose = config.disableClose;
     this.id = ref.id;

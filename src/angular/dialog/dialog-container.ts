@@ -6,7 +6,6 @@ import { CdkPortalOutlet } from '@angular/cdk/portal';
 import { DOCUMENT } from '@angular/common';
 import {
   ChangeDetectionStrategy,
-  ChangeDetectorRef,
   Component,
   ElementRef,
   EventEmitter,
@@ -24,81 +23,6 @@ import { SbbDialogConfig } from './dialog-config';
 interface DialogAnimationEvent {
   state: 'opened' | 'opening' | 'closing' | 'closed';
   totalTime: number;
-}
-
-/**
- * Base class for the `SbbDialogContainer`. The base class does not implement
- * animations as these are left to implementers of the dialog container.
- */
-@Component({
-  template: '',
-  standalone: false,
-})
-// tslint:disable-next-line: class-name naming-convention
-export abstract class _SbbDialogContainerBase extends CdkDialogContainer<SbbDialogConfig> {
-  /** Emits when an animation state changes. */
-  _animationStateChanged: EventEmitter<DialogAnimationEvent> =
-    new EventEmitter<DialogAnimationEvent>();
-
-  /** State of the animation. */
-  _state: 'void' | 'enter' | 'exit' = 'enter';
-
-  constructor(
-    elementRef: ElementRef,
-    focusTrapFactory: FocusTrapFactory,
-    @Optional() @Inject(DOCUMENT) document: any,
-    dialogConfig: SbbDialogConfig,
-    interactivityChecker: InteractivityChecker,
-    ngZone: NgZone,
-    overlayRef: OverlayRef,
-    focusMonitor?: FocusMonitor,
-  ) {
-    super(
-      elementRef,
-      focusTrapFactory,
-      document,
-      dialogConfig,
-      interactivityChecker,
-      ngZone,
-      overlayRef,
-      focusMonitor,
-    );
-  }
-
-  /** Starts the dialog exit animation. */
-  abstract _startExitAnimation(): void;
-
-  /** Initializes the dialog container with the attached content. */
-  protected override _captureInitialFocus(): void {
-    if (!this._config.delayFocusTrap) {
-      this._trapFocus();
-    }
-  }
-
-  _getAnimationState() {
-    return {
-      value: this._state,
-      params: {
-        // See https://github.com/angular/components/commit/575332c9296c28776376f4b4f7fb39c9743761aa
-        'enterAnimationDuration': // prettier-ignore
-            this._config.enterAnimationDuration || sbbDialogAnimationsDefaultParams.params.enterAnimationDuration,
-        'exitAnimationDuration': // prettier-ignore
-            this._config.exitAnimationDuration || sbbDialogAnimationsDefaultParams.params.exitAnimationDuration,
-      },
-    };
-  }
-
-  /**
-   * Callback for when the open dialog animation has finished. Intended to
-   * be called by sub-classes that use different animation implementations.
-   */
-  protected _openAnimationDone(totalTime: number) {
-    if (this._config.delayFocusTrap) {
-      this._trapFocus();
-    }
-
-    this._animationStateChanged.next({ state: 'opened', totalTime });
-  }
 }
 
 /**
@@ -128,7 +52,14 @@ export abstract class _SbbDialogContainerBase extends CdkDialogContainer<SbbDial
   standalone: true,
   imports: [CdkPortalOutlet],
 })
-export class SbbDialogContainer extends _SbbDialogContainerBase {
+export class SbbDialogContainer extends CdkDialogContainer<SbbDialogConfig> {
+  /** Emits when an animation state changes. */
+  _animationStateChanged: EventEmitter<DialogAnimationEvent> =
+    new EventEmitter<DialogAnimationEvent>();
+
+  /** State of the animation. */
+  _state: 'void' | 'enter' | 'exit' = 'enter';
+
   /** Callback, invoked whenever an animation on the host completes. */
   @HostListener('@dialogContainer.done', ['$event'])
   _onAnimationDone({ toState, totalTime }: AnimationEvent) {
@@ -155,7 +86,7 @@ export class SbbDialogContainer extends _SbbDialogContainerBase {
 
     // Mark the container for check so it can react if the
     // view container is using OnPush change detection.
-    this._changeDetectorReference.markForCheck();
+    this._changeDetectorRef.markForCheck();
   }
 
   constructor(
@@ -166,8 +97,6 @@ export class SbbDialogContainer extends _SbbDialogContainerBase {
     checker: InteractivityChecker,
     ngZone: NgZone,
     overlayRef: OverlayRef,
-    // @breaking-change: 18.0.0 Use base class _changeDetectorRef
-    private _changeDetectorReference: ChangeDetectorRef,
     focusMonitor?: FocusMonitor,
   ) {
     super(
@@ -180,5 +109,37 @@ export class SbbDialogContainer extends _SbbDialogContainerBase {
       overlayRef,
       focusMonitor,
     );
+  }
+
+  /** Initializes the dialog container with the attached content. */
+  protected override _captureInitialFocus(): void {
+    if (!this._config.delayFocusTrap) {
+      this._trapFocus();
+    }
+  }
+
+  _getAnimationState() {
+    return {
+      value: this._state,
+      params: {
+        // See https://github.com/angular/components/commit/575332c9296c28776376f4b4f7fb39c9743761aa
+        'enterAnimationDuration': // prettier-ignore
+          this._config.enterAnimationDuration || sbbDialogAnimationsDefaultParams.params.enterAnimationDuration,
+        'exitAnimationDuration': // prettier-ignore
+          this._config.exitAnimationDuration || sbbDialogAnimationsDefaultParams.params.exitAnimationDuration,
+      },
+    };
+  }
+
+  /**
+   * Callback for when the open dialog animation has finished. Intended to
+   * be called by sub-classes that use different animation implementations.
+   */
+  protected _openAnimationDone(totalTime: number) {
+    if (this._config.delayFocusTrap) {
+      this._trapFocus();
+    }
+
+    this._animationStateChanged.next({ state: 'opened', totalTime });
   }
 }
