@@ -19,6 +19,7 @@ import { SbbMapMarkerService } from '../../services/map/map-marker-service';
   selector: 'sbb-marker-details',
   templateUrl: './marker-details.html',
   changeDetection: ChangeDetectionStrategy.OnPush,
+  standalone: false,
 })
 export class SbbMarkerDetails implements OnChanges {
   @Input() selectedMarker: SbbMarker | undefined;

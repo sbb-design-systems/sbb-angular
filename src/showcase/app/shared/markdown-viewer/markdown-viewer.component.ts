@@ -11,6 +11,7 @@ import { moduleParams } from '../module-params';
   selector: 'sbb-markdown-viewer',
   template: '',
   styleUrls: ['./markdown-viewer.component.css'],
+  standalone: false,
 })
 export class MarkdownViewerComponent implements OnDestroy {
   @HostBinding('innerHTML')

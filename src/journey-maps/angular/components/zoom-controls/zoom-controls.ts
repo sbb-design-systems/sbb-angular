@@ -19,6 +19,7 @@ import { SbbLocaleService } from '../../services/locale-service';
   templateUrl: './zoom-controls.html',
   styleUrls: ['./zoom-controls.css'],
   changeDetection: ChangeDetectionStrategy.OnPush,
+  standalone: false,
 })
 export class SbbZoomControls implements OnInit, OnChanges, OnDestroy {
   @Input() map: MaplibreMap | null;

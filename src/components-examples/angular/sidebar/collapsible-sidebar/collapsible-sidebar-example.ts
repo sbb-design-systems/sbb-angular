@@ -2,13 +2,11 @@ import { BreakpointObserver, MediaMatcher } from '@angular/cdk/layout';
 import { AfterViewInit, Component, inject, OnDestroy, ViewChild } from '@angular/core';
 import { FormControl, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { SbbExpansionPanel, SbbExpansionPanelHeader } from '@sbb-esta/angular/accordion';
-import { SbbButton } from '@sbb-esta/angular/button';
 import { SbbCheckboxModule } from '@sbb-esta/angular/checkbox';
 import { Breakpoints, SbbOptionModule } from '@sbb-esta/angular/core';
 import { FakeMediaMatcher } from '@sbb-esta/angular/core/testing';
 import { SbbFormField } from '@sbb-esta/angular/form-field';
 import { SbbIconModule } from '@sbb-esta/angular/icon';
-import { SbbInput } from '@sbb-esta/angular/input';
 import { SbbSelect } from '@sbb-esta/angular/select';
 import { SbbSidebarContainer, SbbSidebarModule } from '@sbb-esta/angular/sidebar';
 import { Subject } from 'rxjs';
@@ -37,10 +35,8 @@ import { startWith, takeUntil } from 'rxjs/operators';
     SbbOptionModule,
     SbbSelect,
     SbbFormField,
-    SbbButton,
     SbbExpansionPanel,
     SbbExpansionPanelHeader,
-    SbbInput,
   ],
 })
 export class CollapsibleSidebarExample implements AfterViewInit, OnDestroy {

@@ -16,6 +16,7 @@ interface ExampleCode {
   selector: 'sbb-example-viewer',
   templateUrl: './example-viewer.component.html',
   styleUrls: ['./example-viewer.component.css'],
+  standalone: false,
 })
 export class ExampleViewerComponent implements OnInit {
   @Input() exampleData: ExampleData;
@@ -94,6 +95,7 @@ export class ExampleViewerComponent implements OnInit {
 @Component({
   selector: 'sbb-example-outlet',
   template: '',
+  standalone: false,
 })
 export class ExampleOutletComponent implements OnInit {
   @Input() exampleData: ExampleData;

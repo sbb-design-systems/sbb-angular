@@ -271,6 +271,7 @@ describe('SbbChipInput', () => {
       </sbb-chip-list>
     </sbb-form-field>
   `,
+  standalone: false,
 })
 class TestChipInput {
   @ViewChild(SbbChipList) chipListInstance: SbbChipList;

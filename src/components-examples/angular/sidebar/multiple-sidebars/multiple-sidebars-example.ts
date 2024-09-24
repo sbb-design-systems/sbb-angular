@@ -6,7 +6,6 @@ import { SbbButtonModule } from '@sbb-esta/angular/button';
 import { SbbCheckboxModule } from '@sbb-esta/angular/checkbox';
 import { Breakpoints } from '@sbb-esta/angular/core';
 import { FakeMediaMatcher } from '@sbb-esta/angular/core/testing';
-import { SbbFormField } from '@sbb-esta/angular/form-field';
 import { SbbSidebarModule } from '@sbb-esta/angular/sidebar';
 import { Subject } from 'rxjs';
 import { startWith, takeUntil } from 'rxjs/operators';
@@ -32,7 +31,6 @@ import { startWith, takeUntil } from 'rxjs/operators';
     SbbCheckboxModule,
     FormsModule,
     ReactiveFormsModule,
-    SbbFormField,
   ],
 })
 export class MultipleSidebarsExample implements AfterViewInit, OnDestroy {

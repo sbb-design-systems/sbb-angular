@@ -15,6 +15,7 @@ import { SbbLocaleService } from '../../services/locale-service';
   templateUrl: './home-button.html',
   styleUrls: ['./home-button.css'],
   changeDetection: ChangeDetectionStrategy.OnPush,
+  standalone: false,
 })
 export class SbbHomeButton implements OnInit {
   @Input() map: MaplibreMap | null;

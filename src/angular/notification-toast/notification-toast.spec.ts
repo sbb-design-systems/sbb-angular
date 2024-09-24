@@ -899,6 +899,7 @@ class BurritosNotification {
 @Component({
   template: '',
   providers: [SbbNotificationToast],
+  standalone: false,
 })
 class ComponentThatProvidesSbbNotificationToast {
   constructor(public notificationToast: SbbNotificationToast) {}
