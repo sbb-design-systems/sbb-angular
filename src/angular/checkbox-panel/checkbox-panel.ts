@@ -1,6 +1,6 @@
 import { ChangeDetectionStrategy, Component, forwardRef, ViewEncapsulation } from '@angular/core';
 import { NG_VALUE_ACCESSOR } from '@angular/forms';
-import { _SbbCheckboxBase } from '@sbb-esta/angular/checkbox';
+import { SbbCheckbox } from '@sbb-esta/angular/checkbox';
 
 /**
  * Provider Expression that allows sbb-checkbox to register as a ControlValueAccessor.
@@ -31,4 +31,4 @@ export const SBB_CHECKBOX_PANEL_CONTROL_VALUE_ACCESSOR: any = {
   encapsulation: ViewEncapsulation.None,
   standalone: true,
 })
-export class SbbCheckboxPanel extends _SbbCheckboxBase {}
+export class SbbCheckboxPanel extends SbbCheckbox {}
