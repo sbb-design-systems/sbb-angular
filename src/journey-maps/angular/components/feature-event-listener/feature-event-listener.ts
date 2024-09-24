@@ -41,6 +41,7 @@ import { SBB_ZONE_LAYER } from '../../services/map/map-zone-service';
   templateUrl: './feature-event-listener.html',
   providers: [SbbMapSelectionEvent],
   changeDetection: ChangeDetectionStrategy.OnPush,
+  standalone: false,
 })
 export class SbbFeatureEventListener implements OnChanges, OnDestroy {
   @Input() listenerOptions: SbbListenerOptions;

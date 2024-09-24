@@ -16,7 +16,7 @@ import {
 } from '@angular/core';
 import { NG_VALUE_ACCESSOR } from '@angular/forms';
 import { SbbBadge } from '@sbb-esta/angular/badge';
-import { _SbbCheckboxBase } from '@sbb-esta/angular/checkbox';
+import { SbbCheckbox } from '@sbb-esta/angular/checkbox';
 import { SbbIcon } from '@sbb-esta/angular/icon';
 import { Subject } from 'rxjs';
 
@@ -43,9 +43,8 @@ import { Subject } from 'rxjs';
   standalone: true,
   imports: [SbbBadge, SbbIcon],
 })
-export class SbbTag extends _SbbCheckboxBase implements OnDestroy {
+export class SbbTag extends SbbCheckbox implements OnDestroy {
   private _zone = inject(NgZone);
-
   /** Amount displayed in badge */
   @Input({ transform: numberAttribute })
   get amount(): number {

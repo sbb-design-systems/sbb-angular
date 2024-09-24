@@ -15,6 +15,7 @@ import { SbbLocaleService } from '../../services/locale-service';
   templateUrl: './basemap-switch.html',
   styleUrls: ['./basemap-switch.css'],
   changeDetection: ChangeDetectionStrategy.OnPush,
+  standalone: false,
 })
 export class SbbBasemapSwitch implements OnInit {
   @Input() map: MaplibreMap | null;

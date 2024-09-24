@@ -15,6 +15,7 @@ import { ConfigService } from './services/config.service';
 @Component({
   selector: 'sbb-esri-plugin',
   templateUrl: './esri-plugin.html',
+  standalone: false,
 })
 export class EsriPluginComponent implements OnChanges, OnDestroy {
   /**

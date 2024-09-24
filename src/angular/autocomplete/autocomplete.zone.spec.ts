@@ -56,6 +56,7 @@ const SIMPLE_AUTOCOMPLETE_TEMPLATE = `
 
 @Component({
   template: SIMPLE_AUTOCOMPLETE_TEMPLATE,
+  standalone: false,
 })
 class SimpleAutocomplete implements OnDestroy {
   numberCtrl = new FormControl<{ name: string; code: string; height?: number } | string | null>(

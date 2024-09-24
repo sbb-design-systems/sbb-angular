@@ -2,6 +2,25 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [18.4.0](https://github.com/sbb-design-systems/sbb-angular/compare/18.3.0...18.4.0) (2024-09-24)
+
+
+### Features
+
+* **angular/checkbox:** add new aria properties to SbbCheckbox ([#2383](https://github.com/sbb-design-systems/sbb-angular/issues/2383)) ([be22579](https://github.com/sbb-design-systems/sbb-angular/commit/be2257953e3cef5091b68d747aeef4ab91d19a9b))
+
+
+### Bug Fixes
+
+* **angular/select:** remove incompatible aria-autocomplete attribute ([#2384](https://github.com/sbb-design-systems/sbb-angular/issues/2384)) ([8700ea8](https://github.com/sbb-design-systems/sbb-angular/commit/8700ea8469be6fc402b171dfdbc2642c29d91948))
+* **journey-maps:** changed POI V3 style default visibility to visible ([#2371](https://github.com/sbb-design-systems/sbb-angular/issues/2371)) ([f364d60](https://github.com/sbb-design-systems/sbb-angular/commit/f364d6017338c88425f6a338cdb591fca22948e1))
+* **journey-maps:** journey-pois category update ([#2375](https://github.com/sbb-design-systems/sbb-angular/issues/2375)) ([0dd8f89](https://github.com/sbb-design-systems/sbb-angular/commit/0dd8f897e2c4d0ed05190bfa76fcb5e523360958))
+
+
+### Documentation
+
+* **journey-maps:** usage example for map.selectedLevel ([#2370](https://github.com/sbb-design-systems/sbb-angular/issues/2370)) ([c636b54](https://github.com/sbb-design-systems/sbb-angular/commit/c636b543c915f4498ea2c8a54f5e1baf2860bc0b))
+
 ## [18.3.0](https://github.com/sbb-design-systems/sbb-angular/compare/18.2.0...18.3.0) (2024-09-09)
 
 

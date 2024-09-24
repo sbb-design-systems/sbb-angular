@@ -1,4 +1,4 @@
-import { AsyncPipe, DecimalPipe, TitleCasePipe } from '@angular/common';
+import { AsyncPipe } from '@angular/common';
 import { ChangeDetectorRef, Component, OnInit, TemplateRef, ViewChild } from '@angular/core';
 import { ReactiveFormsModule, UntypedFormBuilder, UntypedFormGroup } from '@angular/forms';
 import { SbbButtonModule } from '@sbb-esta/angular/button';
@@ -60,12 +60,10 @@ declare global {
     SbbRadioButtonModule,
     SbbSelectModule,
     SbbFormFieldModule,
-    DecimalPipe,
     SbbButtonModule,
     SbbIconModule,
     SbbInputModule,
     AsyncPipe,
-    TitleCasePipe,
   ],
 })
 export class JourneyMapsRoutesZonesExample implements OnInit {

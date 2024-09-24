@@ -10,6 +10,7 @@ import { CdnIcon, CdnIcons } from '../cdn-icon.service';
   selector: 'sbb-cdn-icon-list',
   templateUrl: './cdn-icon-list.component.html',
   styleUrls: ['./cdn-icon-list.component.css'],
+  standalone: false,
 })
 export class CdnIconListComponent implements AfterViewInit {
   @Input()

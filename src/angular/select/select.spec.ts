@@ -96,6 +96,7 @@ import { SbbSelectModule } from './select.module';
     </sbb-form-field>
     <div [style.height.px]="heightBelow"></div>
   `,
+  standalone: false,
 })
 class BasicSelect {
   foods: any[] = [
@@ -136,6 +137,7 @@ class BasicSelect {
       </sbb-select>
     </sbb-form-field>
   `,
+  standalone: false,
 })
 class NgModelSelect {
   foods: any[] = [
@@ -165,6 +167,7 @@ class NgModelSelect {
       </sbb-select>
     </sbb-form-field>
   `,
+  standalone: false,
 })
 class ManySelects {}
 
@@ -185,6 +188,7 @@ class ManySelects {}
       </div>
     }
   `,
+  standalone: false,
 })
 class NgIfSelect {
   isShowing = false;
@@ -209,6 +213,7 @@ class NgIfSelect {
       </sbb-select>
     </sbb-form-field>
   `,
+  standalone: false,
 })
 class SelectWithChangeEvent {
   foods: string[] = [
@@ -238,6 +243,7 @@ class SelectWithChangeEvent {
       </sbb-select>
     </sbb-form-field>
   `,
+  standalone: false,
 })
 class SelectInitWithoutOptions {
   foods: any[];
@@ -265,6 +271,7 @@ class SelectInitWithoutOptions {
       multi: true,
     },
   ],
+  standalone: false,
 })
 class CustomSelectAccessor implements ControlValueAccessor {
   @ViewChild(SbbSelect) select: SbbSelect;
@@ -284,6 +291,7 @@ class CustomSelectAccessor implements ControlValueAccessor {
       multi: true,
     },
   ],
+  standalone: false,
 })
 class CompWithCustomSelect {
   ctrl = new FormControl('initial value');
@@ -298,6 +306,7 @@ class CompWithCustomSelect {
     </sbb-form-field>
     <sbb-throws-error-on-init></sbb-throws-error-on-init>
   `,
+  standalone: false,
 })
 class SelectWithErrorSibling {
   value: string;
@@ -306,6 +315,7 @@ class SelectWithErrorSibling {
 @Component({
   selector: 'sbb-throws-error-on-init',
   template: '',
+  standalone: false,
 })
 class ThrowsErrorOnInit implements OnInit {
   ngOnInit() {
@@ -327,6 +337,7 @@ class ThrowsErrorOnInit implements OnInit {
       </sbb-select>
     </sbb-form-field>
   `,
+  standalone: false,
 })
 class BasicSelectOnPush {
   foods: any[] = [
@@ -351,6 +362,7 @@ class BasicSelectOnPush {
       </sbb-select>
     </sbb-form-field>
   `,
+  standalone: false,
 })
 class BasicSelectOnPushPreselected {
   @ViewChild(SbbSelect) select: SbbSelect;
@@ -378,6 +390,7 @@ class BasicSelectOnPushPreselected {
       </sbb-select>
     </sbb-form-field>
   `,
+  standalone: false,
 })
 class MultiSelect {
   foods: any[] = [
@@ -400,6 +413,7 @@ class MultiSelect {
 @Component({
   selector: 'sbb-select-with-plain-tabindex',
   template: `<sbb-form-field><sbb-select tabindex="5"></sbb-select></sbb-form-field>`,
+  standalone: false,
 })
 class SelectWithPlainTabindex {}
 
@@ -413,6 +427,7 @@ class SelectWithPlainTabindex {}
       <div></div>
     }
   `,
+  standalone: false,
 })
 class SelectEarlyAccessSibling {}
 
@@ -425,6 +440,7 @@ class SelectEarlyAccessSibling {}
       </sbb-select>
     </sbb-form-field>
   `,
+  standalone: false,
 })
 class BasicSelectInitiallyHidden {
   isVisible = false;
@@ -439,6 +455,7 @@ class BasicSelectInitiallyHidden {
       </sbb-select>
     </sbb-form-field>
   `,
+  standalone: false,
 })
 class BasicSelectNoPlaceholder {}
 
@@ -456,6 +473,7 @@ class BasicSelectNoPlaceholder {}
       </sbb-select>
     </sbb-form-field>
   `,
+  standalone: false,
 })
 class ResetValuesSelect {
   foods: any[] = [
@@ -481,6 +499,7 @@ class ResetValuesSelect {
       </sbb-select>
     </sbb-form-field>
   `,
+  standalone: false,
 })
 class FalsyValueSelect {
   foods: any[] = [
@@ -509,6 +528,7 @@ class FalsyValueSelect {
       </sbb-select>
     </sbb-form-field>
   `,
+  standalone: false,
 })
 class SelectWithGroups {
   control = new FormControl('');
@@ -566,6 +586,7 @@ class SelectWithGroups {
       </sbb-select>
     </sbb-form-field>
   `,
+  standalone: false,
 })
 class SelectWithGroupsAndNgContainer {
   control = new FormControl('');
@@ -585,6 +606,7 @@ class SelectWithGroupsAndNgContainer {
       </sbb-form-field>
     </form>
   `,
+  standalone: false,
 })
 class InvalidSelectInForm {
   value: any;
@@ -606,6 +628,7 @@ class InvalidSelectInForm {
       </sbb-form-field>
     </form>
   `,
+  standalone: false,
 })
 class SelectInsideFormGroup {
   @ViewChild(FormGroupDirective) formGroupDirective: FormGroupDirective;
@@ -632,6 +655,7 @@ class SelectInsideFormGroup {
       </sbb-select>
     </sbb-form-field>
   `,
+  standalone: false,
 })
 class BasicSelectWithoutForms {
   selectedFood: string | null;
@@ -656,6 +680,7 @@ class BasicSelectWithoutForms {
       </sbb-select>
     </sbb-form-field>
   `,
+  standalone: false,
 })
 class BasicSelectWithoutFormsPreselected {
   selectedFood = 'pizza-1';
@@ -679,6 +704,7 @@ class BasicSelectWithoutFormsPreselected {
       </sbb-select>
     </sbb-form-field>
   `,
+  standalone: false,
 })
 class BasicSelectWithoutFormsMultiple {
   selectedFoods: string[];
@@ -706,6 +732,7 @@ class BasicSelectWithoutFormsMultiple {
       </sbb-select>
     </sbb-form-field>
   `,
+  standalone: false,
 })
 class NgModelCompareWithSelect {
   foods: { value: string; viewValue: string }[] = [
@@ -753,6 +780,7 @@ class NgModelCompareWithSelect {
       }
     </sbb-select>
   `,
+  standalone: false,
 })
 class CustomErrorBehaviorSelect {
   @ViewChild(SbbSelect) select: SbbSelect;
@@ -774,6 +802,7 @@ class CustomErrorBehaviorSelect {
       </sbb-select>
     </sbb-form-field>
   `,
+  standalone: false,
 })
 class SingleSelectWithPreselectedArrayValues {
   foods: any[] = [
@@ -798,6 +827,7 @@ class SingleSelectWithPreselectedArrayValues {
       </sbb-select>
     </sbb-form-field>
   `,
+  standalone: false,
 })
 class SelectWithFormFieldLabel {
   placeholder: string;
@@ -814,6 +844,7 @@ class SelectWithFormFieldLabel {
       }
     </sbb-form-field>
   `,
+  standalone: false,
 })
 class SelectWithNgIfAndLabel {
   showSelect = true;
@@ -829,6 +860,7 @@ class SelectWithNgIfAndLabel {
       </sbb-select>
     </sbb-form-field>
   `,
+  standalone: false,
 })
 class MultiSelectWithLotsOfOptions {
   items = new Array(1000).fill(0).map((_, i) => i);
@@ -855,6 +887,7 @@ class MultiSelectWithLotsOfOptions {
       </sbb-select>
     </sbb-form-field>
   `,
+  standalone: false,
 })
 class SelectWithResetOptionAndFormControl {
   @ViewChild(SbbSelect) select: SbbSelect;
@@ -875,6 +908,7 @@ class SelectWithResetOptionAndFormControl {
       }
     </sbb-form-field>
   `,
+  standalone: false,
 })
 class SelectInNgContainer {}
 
@@ -888,6 +922,7 @@ class SelectInNgContainer {}
       </sbb-form-field>
     </form>
   `,
+  standalone: false,
 })
 class SelectInsideDynamicFormGroup {
   @ViewChild(SbbSelect) select: SbbSelect;
@@ -915,6 +950,7 @@ class SelectInsideDynamicFormGroup {
       </sbb-select>
     </sbb-form-field>
   `,
+  standalone: false,
 })
 class SelectReadonly {}
 
@@ -989,7 +1025,6 @@ describe('SbbSelect', () => {
 
         it('should set the role of the select to combobox', () => {
           expect(select.getAttribute('role')).toEqual('combobox');
-          expect(select.getAttribute('aria-autocomplete')).toBe('none');
           expect(select.getAttribute('aria-haspopup')).toBe('listbox');
         });
 
@@ -5121,6 +5156,7 @@ describe('SbbSelect', () => {
     </sbb-form-field>
     <div [style.height.px]="heightBelow"></div>
   `,
+  standalone: false,
 })
 class BasicSelectWithFirstAndLastOptionDisabled {
   foods: any[] = [

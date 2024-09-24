@@ -9,8 +9,6 @@ import { SpyLocation } from '@angular/common/testing';
 import {
   ChangeDetectionStrategy,
   Component,
-  ComponentFactoryResolver,
-  ComponentRef,
   createNgModuleRef,
   Directive,
   forwardRef,
@@ -120,7 +118,6 @@ describe('SbbDialog', () => {
 
     expect(overlayContainerElement.textContent).toContain('Pizza');
     expect(dialogRef.componentInstance instanceof PizzaMsg).toBe(true);
-    expect(dialogRef.componentRef instanceof ComponentRef).toBe(true);
     expect(dialogRef.componentInstance.dialogRef).toBe(dialogRef);
 
     viewContainerFixture.detectChanges();
@@ -788,21 +785,6 @@ describe('SbbDialog', () => {
     flush();
     expect(scrollStrategy.enable).toHaveBeenCalled();
   }));
-
-  it('should be able to pass in an alternate ComponentFactoryResolver', inject(
-    [ComponentFactoryResolver],
-    (resolver: ComponentFactoryResolver) => {
-      spyOn(resolver, 'resolveComponentFactory').and.callThrough();
-
-      dialog.open(PizzaMsg, {
-        viewContainerRef: testViewContainerRef,
-        componentFactoryResolver: resolver,
-      });
-      viewContainerFixture.detectChanges();
-
-      expect(resolver.resolveComponentFactory).toHaveBeenCalled();
-    },
-  ));
 
   describe('passing in data', () => {
     it('should be able to pass in data', () => {
@@ -2298,6 +2280,7 @@ class ComponentWithContentElementTemplateRef {
 @Component({
   template: '',
   providers: [SbbDialog],
+  standalone: false,
 })
 class ComponentThatProvidesSbbDialog {
   constructor(public dialog: SbbDialog) {}
