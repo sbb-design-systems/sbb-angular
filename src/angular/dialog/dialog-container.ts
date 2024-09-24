@@ -30,7 +30,10 @@ interface DialogAnimationEvent {
  * Base class for the `SbbDialogContainer`. The base class does not implement
  * animations as these are left to implementers of the dialog container.
  */
-@Component({ template: '' })
+@Component({
+  template: '',
+  standalone: false,
+})
 // tslint:disable-next-line: class-name naming-convention
 export abstract class _SbbDialogContainerBase extends CdkDialogContainer<SbbDialogConfig> {
   /** Emits when an animation state changes. */

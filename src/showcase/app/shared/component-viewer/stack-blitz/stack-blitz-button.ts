@@ -10,6 +10,7 @@ import { StackBlitzWriter } from './stack-blitz-writer';
   host: {
     '(click)': 'openStackBlitz()',
   },
+  standalone: false,
 })
 export class StackBlitzButton {
   exampleData?: ExampleData;

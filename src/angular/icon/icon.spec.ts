@@ -1208,6 +1208,7 @@ describe('SbbIcon without HttpClientModule', () => {
 
   @Component({
     template: `<sbb-icon [svgIcon]="iconName"></sbb-icon>`,
+    standalone: false,
   })
   class IconFromSvgName {
     iconName: string | undefined = '';

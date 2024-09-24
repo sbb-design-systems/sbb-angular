@@ -2841,6 +2841,7 @@ const SIMPLE_MENU_TEMPLATE = `
   `;
 @Component({
   template: SIMPLE_MENU_TEMPLATE,
+  standalone: false,
 })
 class SimpleMenu {
   @ViewChild(SbbMenuTrigger) trigger: SbbMenuTrigger;
@@ -2857,7 +2858,11 @@ class SimpleMenu {
   ariaDescribedby: string;
 }
 
-@Component({ template: SIMPLE_MENU_TEMPLATE, changeDetection: ChangeDetectionStrategy.OnPush })
+@Component({
+  template: SIMPLE_MENU_TEMPLATE,
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  standalone: false,
+})
 class SimpleMenuOnPush extends SimpleMenu {}
 
 @Component({
@@ -2874,6 +2879,7 @@ class SimpleMenuOnPush extends SimpleMenu {}
       <button sbb-menu-item type="button">Positioned Content</button>
     </sbb-menu>
   `,
+  standalone: false,
 })
 class PositionedMenu {
   @ViewChild(SbbMenuTrigger) trigger: SbbMenuTrigger;
@@ -2894,6 +2900,7 @@ interface TestableMenu {
       <button sbb-menu-item type="button">Not overlapped Content</button>
     </sbb-menu>
   `,
+  standalone: false,
 })
 class OverlapMenu implements TestableMenu {
   @Input() overlapTrigger: boolean;
@@ -2910,6 +2917,7 @@ class OverlapMenu implements TestableMenu {
     </ng-template>
   `,
   exportAs: 'sbbCustomMenu',
+  standalone: false,
 })
 class CustomMenuPanel implements SbbMenuPanel {
   xPosition: SbbMenuPositionX = 'after';
@@ -2934,6 +2942,7 @@ class CustomMenuPanel implements SbbMenuPanel {
       <button sbb-menu-item type="button">Custom Content</button>
     </custom-menu>
   `,
+  standalone: false,
 })
 class CustomMenu {
   @ViewChild(SbbMenuTrigger) trigger: SbbMenuTrigger;
@@ -2999,6 +3008,7 @@ class CustomMenu {
       <button sbb-menu-item type="button">Twelve</button>
     </sbb-menu>
   `,
+  standalone: false,
 })
 class NestedMenu {
   @ViewChild('root') rootMenu: SbbMenu;
@@ -3041,6 +3051,7 @@ class NestedMenu {
       <button sbb-menu-item>Two</button>
     </sbb-menu>
   `,
+  standalone: false,
 })
 class NestedMenuCustomElevation {
   @ViewChild('rootTrigger') rootTrigger: SbbMenuTrigger;
@@ -3063,6 +3074,7 @@ class NestedMenuCustomElevation {
       <button sbb-menu-item>Five</button>
     </sbb-menu>
   `,
+  standalone: false,
 })
 class NestedMenuRepeater {
   @ViewChild('rootTriggerEl') rootTriggerEl: ElementRef<HTMLElement>;
@@ -3083,6 +3095,7 @@ class NestedMenuRepeater {
       </sbb-menu>
     </sbb-menu>
   `,
+  standalone: false,
 })
 class SubmenuDeclaredInsideParentMenu {
   @ViewChild('rootTriggerEl') rootTriggerEl: ElementRef;
@@ -3091,6 +3104,7 @@ class SubmenuDeclaredInsideParentMenu {
 @Component({
   selector: 'sbb-fake-icon',
   template: '<ng-content></ng-content>',
+  standalone: false,
 })
 class FakeIcon {}
 
@@ -3105,6 +3119,7 @@ class FakeIcon {}
       </ng-template>
     </sbb-menu>
   `,
+  standalone: false,
 })
 class SimpleLazyMenu {
   @ViewChild(SbbMenuTrigger) trigger: SbbMenuTrigger;
@@ -3136,6 +3151,7 @@ class SimpleLazyMenu {
       </ng-template>
     </sbb-menu>
   `,
+  standalone: false,
 })
 class LazyMenuWithContext {
   @ViewChild('triggerOne') triggerOne: SbbMenuTrigger;
@@ -3153,6 +3169,7 @@ class LazyMenuWithContext {
       <button sbb-menu-item>Two</button>
     </sbb-menu>
   `,
+  standalone: false,
 })
 class DynamicPanelMenu {
   @ViewChild(SbbMenuTrigger) trigger: SbbMenuTrigger;
@@ -3169,6 +3186,7 @@ class DynamicPanelMenu {
       <button sbb-menu-item role="menuitemcheckbox" aria-checked="false">Not checked</button>
     </sbb-menu>
   `,
+  standalone: false,
 })
 class MenuWithCheckboxItems {
   @ViewChild(SbbMenuTrigger) trigger: SbbMenuTrigger;
@@ -3185,6 +3203,7 @@ class MenuWithCheckboxItems {
       }
     </sbb-menu>
   `,
+  standalone: false,
 })
 class SimpleMenuWithRepeater {
   @ViewChild(SbbMenuTrigger) trigger: SbbMenuTrigger;
@@ -3209,6 +3228,7 @@ class SimpleMenuWithRepeater {
       </ng-template>
     </sbb-menu>
   `,
+  standalone: false,
 })
 class SimpleMenuWithRepeaterInLazyContent {
   @ViewChild(SbbMenuTrigger) trigger: SbbMenuTrigger;
@@ -3236,6 +3256,7 @@ class SimpleMenuWithRepeaterInLazyContent {
     </sbb-menu>
   `,
   changeDetection: ChangeDetectionStrategy.OnPush,
+  standalone: false,
 })
 class LazyMenuWithOnPush {
   @ViewChild('triggerEl', { read: ElementRef }) rootTrigger: ElementRef;
@@ -3248,21 +3269,25 @@ class LazyMenuWithOnPush {
       <button [sbbMenuTriggerFor]="menu"></button>
     </sbb-menu>
   `,
+  standalone: false,
 })
 class InvalidRecursiveMenu {}
 
 @Component({
   template: '<sbb-menu aria-label="label"></sbb-menu>',
+  standalone: false,
 })
 class StaticAriaLabelMenu {}
 
 @Component({
   template: '<sbb-menu aria-labelledby="some-element"></sbb-menu>',
+  standalone: false,
 })
 class StaticAriaLabelledByMenu {}
 
 @Component({
   template: '<sbb-menu aria-describedby="some-element"></sbb-menu>',
+  standalone: false,
 })
 class StaticAriaDescribedbyMenu {}
 
@@ -3275,6 +3300,7 @@ class StaticAriaDescribedbyMenu {}
       }
     </sbb-menu>
   `,
+  standalone: false,
 })
 class MenuWithRepeatedItems {
   @ViewChild(SbbMenuTrigger, { static: false }) trigger: SbbMenuTrigger;
@@ -3290,6 +3316,7 @@ class MenuWithRepeatedItems {
     <sbb-menu #animals="sbbMenu">
       <button sbb-menu-item>Invertebrates</button>
     </sbb-menu>`,
+  standalone: false,
 })
 class ContextmenuStaticTrigger {
   @ViewChild(SbbMenuTrigger) trigger: SbbMenuTrigger;
@@ -3303,6 +3330,7 @@ class ContextmenuStaticTrigger {
     <sbb-menu #animals="sbbMenu">
       <button sbb-menu-item>Invertebrates</button>
     </sbb-menu>`,
+  standalone: false,
 })
 class ContextmenuDynamicTrigger {
   @ViewChild(SbbMenuTrigger) trigger: SbbMenuTrigger;
@@ -3316,6 +3344,7 @@ class ContextmenuDynamicTrigger {
     <sbb-menu #animals="sbbMenu">
       <button sbb-menu-item>Invertebrates</button>
     </sbb-menu>`,
+  standalone: false,
 })
 class ContextmenuOnlyTextTrigger {
   @ViewChild(SbbMenuTrigger) trigger: SbbMenuTrigger;
@@ -3329,6 +3358,7 @@ class ContextmenuOnlyTextTrigger {
     <sbb-menu #animals="sbbMenu">
       <button sbb-menu-item>Invertebrates</button>
     </sbb-menu>`,
+  standalone: false,
 })
 class HeadlessTrigger {
   @ViewChild(SbbMenuTrigger) trigger: SbbMenuTrigger;
@@ -3342,6 +3372,7 @@ class HeadlessTrigger {
     <sbb-menu #animals="sbbMenu">
       <button sbb-menu-item>Invertebrates</button>
     </sbb-menu>`,
+  standalone: false,
 })
 class ContextmenuTrigger {
   @ViewChild(SbbMenuTrigger) trigger: SbbMenuTrigger;
@@ -3358,6 +3389,7 @@ class ContextmenuTrigger {
     <sbb-menu #animals="sbbMenu">
       <button sbb-menu-item>Invertebrates</button>
     </sbb-menu>`,
+  standalone: false,
 })
 class ContextmenuCustomIconTrigger {
   @ViewChild(SbbMenuTrigger) trigger: SbbMenuTrigger;

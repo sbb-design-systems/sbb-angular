@@ -29,6 +29,7 @@ import { SbbLocaleService } from '../../services/locale-service';
       transition(':leave', [animate('500ms', style({ transform: 'translateX(-100%)' }))]),
     ]),
   ],
+  standalone: false,
 })
 export class SbbTeaser implements OnInit, OnChanges {
   @Input() rendered: boolean;
