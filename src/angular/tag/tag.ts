@@ -1,14 +1,10 @@
 // Workaround for: https://github.com/bazelbuild/rules_nodejs/issues/1265
 /// <reference types="@angular/localize/init" />
 
-import { FocusMonitor } from '@angular/cdk/a11y';
 import {
   afterNextRender,
-  Attribute,
   ChangeDetectionStrategy,
-  ChangeDetectorRef,
   Component,
-  ElementRef,
   forwardRef,
   inject,
   Injector,
@@ -48,6 +44,8 @@ import { Subject } from 'rxjs';
   imports: [SbbBadge, SbbIcon],
 })
 export class SbbTag extends _SbbCheckboxBase implements OnDestroy {
+  private _zone = inject(NgZone);
+
   /** Amount displayed in badge */
   @Input({ transform: numberAttribute })
   get amount(): number {
@@ -92,14 +90,9 @@ export class SbbTag extends _SbbCheckboxBase implements OnDestroy {
 
   private _injector = inject(Injector);
 
-  constructor(
-    private _zone: NgZone,
-    changeDetectorRef: ChangeDetectorRef,
-    focusMonitor: FocusMonitor,
-    elementRef: ElementRef<HTMLElement>,
-    @Attribute('tabindex') tabIndex: string,
-  ) {
-    super(elementRef, changeDetectorRef, focusMonitor, tabIndex);
+  constructor(...args: unknown[]);
+  constructor() {
+    super();
 
     afterNextRender(() => this._zone.run(() => this._valueChange.next(this.checked)), {
       injector: this._injector,
