@@ -5,7 +5,6 @@ import { ChangeDetectionStrategy, Component, EventEmitter, Input, Output } from 
   templateUrl: './overlay-paginator.html',
   styleUrls: ['./overlay-paginator.css'],
   changeDetection: ChangeDetectionStrategy.OnPush,
-  standalone: false,
 })
 export class SbbOverlayPaginator {
   @Input() index: number; // Starts with 0

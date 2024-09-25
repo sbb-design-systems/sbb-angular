@@ -88,7 +88,6 @@ const SIMPLE_AUTOCOMPLETE_TEMPLATE = `
 
 @Component({
   template: SIMPLE_AUTOCOMPLETE_TEMPLATE,
-  standalone: false,
 })
 class SimpleAutocomplete implements OnDestroy {
   numberCtrl = new FormControl<{ name: string; code: string; height?: number } | string | null>(
@@ -144,11 +143,7 @@ class SimpleAutocomplete implements OnDestroy {
   }
 }
 
-@Component({
-  template: SIMPLE_AUTOCOMPLETE_TEMPLATE,
-  encapsulation: ViewEncapsulation.ShadowDom,
-  standalone: false,
-})
+@Component({ template: SIMPLE_AUTOCOMPLETE_TEMPLATE, encapsulation: ViewEncapsulation.ShadowDom })
 class SimpleAutocompleteShadowDom extends SimpleAutocomplete {}
 
 @Component({
@@ -167,7 +162,6 @@ class SimpleAutocompleteShadowDom extends SimpleAutocomplete {}
       }
     </sbb-autocomplete>
   `,
-  standalone: false,
 })
 class NgIfAutocomplete {
   optionCtrl = new FormControl('');
@@ -210,7 +204,6 @@ class NgIfAutocomplete {
       }
     </sbb-autocomplete>
   `,
-  standalone: false,
 })
 class AutocompleteWithoutForms {
   filteredNumbers: any[];
@@ -245,7 +238,6 @@ class AutocompleteWithoutForms {
       }
     </sbb-autocomplete>
   `,
-  standalone: false,
 })
 class AutocompleteWithNgModel {
   filteredNumbers: any[];
@@ -275,7 +267,6 @@ class AutocompleteWithNgModel {
       }
     </sbb-autocomplete>
   `,
-  standalone: false,
 })
 class AutocompleteWithNumbers {
   selectedNumber: number;
@@ -295,7 +286,6 @@ class AutocompleteWithNumbers {
       }
     </sbb-autocomplete>
   `,
-  standalone: false,
 })
 class AutocompleteWithOnPushDelay implements OnInit {
   @ViewChild(SbbAutocompleteTrigger, { static: true })
@@ -321,7 +311,6 @@ class AutocompleteWithOnPushDelay implements OnInit {
       }
     </sbb-autocomplete>
   `,
-  standalone: false,
 })
 class AutocompleteWithNativeInput {
   optionCtrl = new FormControl('');
@@ -345,7 +334,6 @@ class AutocompleteWithNativeInput {
 
 @Component({
   template: `<input placeholder="Choose" [sbbAutocomplete]="auto" [formControl]="control" />`,
-  standalone: false,
 })
 class AutocompleteWithoutPanel {
   @ViewChild(SbbAutocompleteTrigger) trigger: SbbAutocompleteTrigger;
@@ -370,7 +358,6 @@ class AutocompleteWithoutPanel {
       }
     </sbb-autocomplete>
   `,
-  standalone: false,
 })
 class AutocompleteWithGroups {
   @ViewChild(SbbAutocompleteTrigger) trigger: SbbAutocompleteTrigger;
@@ -411,7 +398,6 @@ class AutocompleteWithGroups {
       }
     </sbb-autocomplete>
   `,
-  standalone: false,
 })
 class AutocompleteWithIndirectGroups extends AutocompleteWithGroups {}
 
@@ -429,7 +415,6 @@ class AutocompleteWithIndirectGroups extends AutocompleteWithGroups {}
       }
     </sbb-autocomplete>
   `,
-  standalone: false,
 })
 class AutocompleteWithSelectEvent {
   selectedNumber: string;
@@ -447,7 +432,6 @@ class AutocompleteWithSelectEvent {
     <input [formControl]="formControl" [sbbAutocomplete]="auto" />
     <sbb-autocomplete #auto="sbbAutocomplete"></sbb-autocomplete>
   `,
-  standalone: false,
 })
 class PlainAutocompleteInputWithFormControl {
   formControl = new FormControl('');
@@ -465,7 +449,6 @@ class PlainAutocompleteInputWithFormControl {
       }
     </sbb-autocomplete>
   `,
-  standalone: false,
 })
 class AutocompleteWithNumberInputAndNgModel {
   selectedValue: number;
@@ -500,7 +483,6 @@ class AutocompleteWithNumberInputAndNgModel {
       }
     </sbb-autocomplete>
   `,
-  standalone: false,
 })
 class AutocompleteWithDifferentOrigin {
   @ViewChild(SbbAutocompleteTrigger) trigger: SbbAutocompleteTrigger;
@@ -515,7 +497,6 @@ class AutocompleteWithDifferentOrigin {
     <input autocomplete="changed" [(ngModel)]="value" [sbbAutocomplete]="auto" />
     <sbb-autocomplete #auto="sbbAutocomplete"></sbb-autocomplete>
   `,
-  standalone: false,
 })
 class AutocompleteWithNativeAutocompleteAttribute {
   value: string;
@@ -523,7 +504,6 @@ class AutocompleteWithNativeAutocompleteAttribute {
 
 @Component({
   template: '<input [sbbAutocomplete]="null" sbbAutocompleteDisabled>',
-  standalone: false,
 })
 class InputWithoutAutocompleteAndDisabled {}
 
@@ -539,7 +519,6 @@ class InputWithoutAutocompleteAndDisabled {}
       }
     </sbb-autocomplete>
   `,
-  standalone: false,
 })
 class AutocompleteWithActivatedEvent {
   states = ['California', 'West Virginia', 'Florida'];
@@ -561,7 +540,6 @@ class AutocompleteWithActivatedEvent {
         </sbb-option>
       }
     </sbb-autocomplete>`,
-  standalone: false,
 })
 class AutocompleteLocaleNormalizer {
   @ViewChild(SbbAutocompleteTrigger, { static: true })
@@ -592,7 +570,6 @@ class AutocompleteLocaleNormalizer {
         <sbb-option-hint>hint</sbb-option-hint>
       }
     </sbb-autocomplete>`,
-  standalone: false,
 })
 class AutocompleteHint {
   @ViewChild(SbbAutocompleteTrigger) trigger: SbbAutocompleteTrigger;

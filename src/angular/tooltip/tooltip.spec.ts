@@ -1546,7 +1546,6 @@ class TriggerConfigurableTooltip {
 @Component({
   selector: 'app',
   template: `<button #button [sbbTooltip]="message">Button</button>`,
-  standalone: false,
 })
 class TooltipDemoWithoutPositionBinding {
   message: any = initialTooltipMessage;

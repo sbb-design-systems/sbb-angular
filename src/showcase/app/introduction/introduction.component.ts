@@ -6,7 +6,6 @@ import { PACKAGES } from '../shared/meta';
   selector: 'sbb-introduction',
   templateUrl: './introduction.component.html',
   styleUrls: ['./introduction.component.css'],
-  standalone: false,
 })
 export class IntroductionComponent {
   packages = PACKAGES;

@@ -23,7 +23,6 @@ import { SbbLocaleService } from '../../services/locale-service';
   styleUrls: ['./popup.css'],
   changeDetection: ChangeDetectionStrategy.OnPush,
   encapsulation: ViewEncapsulation.None,
-  standalone: false,
 })
 export class SbbPopup implements OnChanges, OnDestroy {
   @Input() rendered: boolean;

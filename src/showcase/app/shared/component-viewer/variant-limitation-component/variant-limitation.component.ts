@@ -6,7 +6,6 @@ import { ShowcaseMetaEntry } from '../../meta';
   selector: 'sbb-variant-limitation',
   templateUrl: './variant-limitation.component.html',
   styleUrls: ['./variant-limitation.component.scss'],
-  standalone: false,
 })
 export class VariantLimitationComponent {
   @Input()

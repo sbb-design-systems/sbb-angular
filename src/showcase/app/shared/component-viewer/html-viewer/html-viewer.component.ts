@@ -11,7 +11,6 @@ import { moduleParams } from '../../module-params';
   selector: 'sbb-html-viewer',
   template: '',
   styleUrls: ['./html-viewer.component.css'],
-  standalone: false,
 })
 export class HtmlViewerComponent implements OnDestroy {
   @HostBinding('innerHTML')

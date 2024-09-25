@@ -14,7 +14,6 @@ import { SbbTemplateType } from '../journey-maps.interfaces';
 
 @Directive({
   selector: '[sbbTemplateOutlet]',
-  standalone: false,
 })
 export class SbbTemplateOutlet implements OnChanges {
   // NG Template

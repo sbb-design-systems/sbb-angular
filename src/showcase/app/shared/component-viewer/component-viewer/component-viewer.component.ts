@@ -10,7 +10,6 @@ import { moduleParams } from '../../module-params';
   selector: 'sbb-component-viewer',
   templateUrl: './component-viewer.component.html',
   styleUrls: ['./component-viewer.component.css'],
-  standalone: false,
 })
 export class ComponentViewerComponent implements OnInit {
   showcaseMetaEntry: Observable<ShowcaseMetaEntry>;

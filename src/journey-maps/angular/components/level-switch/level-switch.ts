@@ -27,7 +27,6 @@ import { SbbLevelSwitcher } from './services/level-switcher';
     ]),
   ],
   changeDetection: ChangeDetectionStrategy.OnPush,
-  standalone: false,
 })
 export class SbbLevelSwitch implements OnDestroy {
   @Input() map: MaplibreMap | null;

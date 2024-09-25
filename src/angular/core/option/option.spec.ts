@@ -14,7 +14,6 @@ import { SbbOptionModule } from './option.module';
 
 @Component({
   template: `<sbb-option [id]="id" [disabled]="disabled"></sbb-option>`,
-  standalone: false,
 })
 class BasicOption {
   disabled: boolean;
@@ -27,7 +26,6 @@ class BasicOption {
       <sbb-option>Option</sbb-option>
     </sbb-optgroup>
   `,
-  standalone: false,
 })
 class InsideGroup {}
 

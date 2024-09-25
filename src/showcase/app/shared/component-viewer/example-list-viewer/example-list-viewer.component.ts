@@ -10,7 +10,6 @@ import { moduleParams } from '../../module-params';
   selector: 'sbb-example-list-viewer',
   templateUrl: './example-list-viewer.component.html',
   styleUrls: ['./example-list-viewer.component.css'],
-  standalone: false,
 })
 export class ExampleListViewerComponent implements OnInit {
   examples: Observable<ExampleData[] | null>;

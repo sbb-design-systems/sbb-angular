@@ -8,7 +8,6 @@ import { ShowcaseMetaPackage } from '../meta';
 @Component({
   selector: 'sbb-package-viewer',
   templateUrl: './package-viewer.component.html',
-  standalone: false,
 })
 export class PackageViewerComponent {
   package: Observable<ShowcaseMetaPackage>;
