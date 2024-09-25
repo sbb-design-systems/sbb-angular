@@ -8,8 +8,8 @@
 
 // Wraps each tab label
 .sbb-tab-label {
-  @include tabs.tab-label;
   position: relative;
+  @include tabs.tab-label;
 }
 
 // Note that we only want to target direct descendant tabs.
@@ -21,7 +21,9 @@
 // The bottom section of the view; contains the tab bodies
 .sbb-tab-body-wrapper {
   @include tabs.tab-body-wrapper;
-  display: flex;
+  & {
+    display: flex;
+  }
 }
 
 // Wraps each tab body

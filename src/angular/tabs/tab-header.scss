@@ -13,6 +13,6 @@
 
 // Wraps each tab label
 .sbb-tab-label {
-  @include tabs.tab-label;
   position: relative;
+  @include tabs.tab-label;
 }
