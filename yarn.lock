@@ -62,14 +62,6 @@
     "@jridgewell/gen-mapping" "^0.3.5"
     "@jridgewell/trace-mapping" "^0.3.24"
 
-"@angular-devkit/architect@0.1900.0-next.6":
-  version "0.1900.0-next.6"
-  resolved "https://registry.yarnpkg.com/@angular-devkit/architect/-/architect-0.1900.0-next.6.tgz#76b40046bc8720698bcb8e605c57bae3ad307de3"
-  integrity sha512-WwK3V0aFEd2ZSDybbdsqGX92F4tCOIOHluWIFdimQPnGqhBSmLf+tTHrt9uZWk9GPQJ1JmJjLeIf+NBhxyhn4g==
-  dependencies:
-    "@angular-devkit/core" "19.0.0-next.6"
-    rxjs "7.8.1"
-
 "@angular-devkit/architect@0.1900.0-next.7":
   version "0.1900.0-next.7"
   resolved "https://registry.yarnpkg.com/@angular-devkit/architect/-/architect-0.1900.0-next.7.tgz#5150cea2e362b77629035e61ca3e2b152fee32fe"
@@ -77,18 +69,6 @@
   dependencies:
     "@angular-devkit/core" "19.0.0-next.7"
     rxjs "7.8.1"
-
-"@angular-devkit/core@19.0.0-next.6":
-  version "19.0.0-next.6"
-  resolved "https://registry.yarnpkg.com/@angular-devkit/core/-/core-19.0.0-next.6.tgz#b70bc3fbff05c1ba5cd545b2eb29c5d3e42ea3de"
-  integrity sha512-ToTcxpHKomWVbLZv49p2R1O61h6Fk9LZt6WE22+OvYF3KSXuBPXzVRCuEei/4aucLY310e8a9Scuo2/P2exk2w==
-  dependencies:
-    ajv "8.17.1"
-    ajv-formats "3.0.1"
-    jsonc-parser "3.3.1"
-    picomatch "4.0.2"
-    rxjs "7.8.1"
-    source-map "0.7.4"
 
 "@angular-devkit/core@19.0.0-next.7":
   version "19.0.0-next.7"
@@ -148,12 +128,12 @@
     "@angular/core" "^13.0.0 || ^14.0.0-0"
     reflect-metadata "^0.1.13"
 
-"@angular/build-tooling@https://github.com/angular/dev-infra-private-build-tooling-builds.git#7d4e81afadbc710ebad746b9bed1cd69de57d1c5":
-  version "0.0.0-708f9d8237a6e0c6e3cd8112b59ddcc777b9fa6d"
-  resolved "https://github.com/angular/dev-infra-private-build-tooling-builds.git#7d4e81afadbc710ebad746b9bed1cd69de57d1c5"
+"@angular/build-tooling@https://github.com/angular/dev-infra-private-build-tooling-builds.git#f46197abd29ffd084e616af9b5a66d45193769e6":
+  version "0.0.0-0bf58aff56fdef5e8644a591b32e57ca512bd5c7"
+  resolved "https://github.com/angular/dev-infra-private-build-tooling-builds.git#f46197abd29ffd084e616af9b5a66d45193769e6"
   dependencies:
     "@angular/benchpress" "0.3.0"
-    "@angular/build" "19.0.0-next.6"
+    "@angular/build" "19.0.0-next.7"
     "@babel/core" "^7.16.0"
     "@babel/helper-annotate-as-pure" "^7.18.6"
     "@babel/plugin-proposal-async-generator-functions" "^7.20.1"
@@ -188,38 +168,7 @@
     uuid "^10.0.0"
     yargs "^17.0.0"
 
-"@angular/build@19.0.0-next.6":
-  version "19.0.0-next.6"
-  resolved "https://registry.yarnpkg.com/@angular/build/-/build-19.0.0-next.6.tgz#a463b8a1ac501c26c164ad026e096b404ce62a7c"
-  integrity sha512-hE6zabh40lxPtYnFjLGgoTeu0MPsBFYkmFKgQ3hhIixpAb6AZJMia9Ocywm30l7gt0dvBdW8JzkqrLoczRpwOg==
-  dependencies:
-    "@ampproject/remapping" "2.3.0"
-    "@angular-devkit/architect" "0.1900.0-next.6"
-    "@babel/core" "7.25.2"
-    "@babel/helper-annotate-as-pure" "7.24.7"
-    "@babel/helper-split-export-declaration" "7.24.7"
-    "@babel/plugin-syntax-import-attributes" "7.25.6"
-    "@inquirer/confirm" "3.2.0"
-    "@vitejs/plugin-basic-ssl" "1.1.0"
-    browserslist "^4.23.0"
-    critters "0.0.24"
-    esbuild "0.23.1"
-    fast-glob "3.3.2"
-    https-proxy-agent "7.0.5"
-    listr2 "8.2.4"
-    lmdb "3.1.0"
-    magic-string "0.30.11"
-    mrmime "2.0.0"
-    parse5-html-rewriting-stream "7.0.0"
-    picomatch "4.0.2"
-    piscina "4.6.1"
-    rollup "4.21.3"
-    sass "1.78.0"
-    semver "7.6.3"
-    vite "5.4.4"
-    watchpack "2.4.2"
-
-"@angular/build@^19.0.0-next.7":
+"@angular/build@19.0.0-next.7", "@angular/build@^19.0.0-next.7":
   version "19.0.0-next.7"
   resolved "https://registry.yarnpkg.com/@angular/build/-/build-19.0.0-next.7.tgz#97d3ad4b6dba103beca3265471f9ea0a04086e92"
   integrity sha512-cE2xUYpBlep+mun4X9U/MfYUSyeUhIJzRCJEawANW/kaXJwkSFz1kWF2AuuzySgAZrBFsequCEPJNUmDUpZjmw==
@@ -353,9 +302,9 @@
     fast-glob "3.3.2"
     yargs "^17.2.1"
 
-"@angular/ng-dev@https://github.com/angular/dev-infra-private-ng-dev-builds.git#cbc57fc701684aafa1d0a2df171b107b67b1b2b2":
-  version "0.0.0-708f9d8237a6e0c6e3cd8112b59ddcc777b9fa6d"
-  resolved "https://github.com/angular/dev-infra-private-ng-dev-builds.git#cbc57fc701684aafa1d0a2df171b107b67b1b2b2"
+"@angular/ng-dev@https://github.com/angular/dev-infra-private-ng-dev-builds.git#39e1a11a2dfafc1284048120362b3a48d7f9a15b":
+  version "0.0.0-0bf58aff56fdef5e8644a591b32e57ca512bd5c7"
+  resolved "https://github.com/angular/dev-infra-private-ng-dev-builds.git#39e1a11a2dfafc1284048120362b3a48d7f9a15b"
   dependencies:
     "@octokit/rest" "21.0.2"
     "@types/semver" "^7.3.6"
@@ -2383,14 +2332,6 @@
     ansi-escapes "^4.3.2"
     yoctocolors-cjs "^2.1.2"
 
-"@inquirer/confirm@3.2.0":
-  version "3.2.0"
-  resolved "https://registry.yarnpkg.com/@inquirer/confirm/-/confirm-3.2.0.tgz#6af1284670ea7c7d95e3f1253684cfbd7228ad6a"
-  integrity sha512-oOIwPs0Dvq5220Z8lGL/6LHRTEr9TgLHmiI99Rj1PJ1p1czTys+olrgBqZk4E2qC0YTzeHprxSQmoHioVdJ7Lw==
-  dependencies:
-    "@inquirer/core" "^9.1.0"
-    "@inquirer/type" "^1.5.3"
-
 "@inquirer/confirm@4.0.1", "@inquirer/confirm@^4.0.1":
   version "4.0.1"
   resolved "https://registry.yarnpkg.com/@inquirer/confirm/-/confirm-4.0.1.tgz#9106d6bffa0b2fdd0e4f60319b6f04f2e06e6e25"
@@ -2399,7 +2340,7 @@
     "@inquirer/core" "^9.2.1"
     "@inquirer/type" "^2.0.0"
 
-"@inquirer/core@^9.1.0", "@inquirer/core@^9.2.1":
+"@inquirer/core@^9.2.1":
   version "9.2.1"
   resolved "https://registry.yarnpkg.com/@inquirer/core/-/core-9.2.1.tgz#677c49dee399c9063f31e0c93f0f37bddc67add1"
   integrity sha512-F2VBt7W/mwqEU4bL0RnHNZmC/OxzNx9cOYxHqnXX3MP6ruYvZUZAW9imgN9+h/uBT/oP8Gh888J2OZSbjSeWcg==
@@ -2511,7 +2452,7 @@
     ansi-escapes "^4.3.2"
     yoctocolors-cjs "^2.1.2"
 
-"@inquirer/type@^1.5.1", "@inquirer/type@^1.5.3":
+"@inquirer/type@^1.5.1":
   version "1.5.5"
   resolved "https://registry.yarnpkg.com/@inquirer/type/-/type-1.5.5.tgz#303ea04ce7ad2e585b921b662b3be36ef7b4f09b"
   integrity sha512-MzICLu4yS7V8AA61sANROZ9vT1H3ooca5dSmI1FjZkzq7o/koMsRfQSzRtFo+F3Ao4Sf1C0bpLKejpKB/+j6MA==
@@ -2609,60 +2550,30 @@
   dependencies:
     "@inquirer/type" "^1.5.1"
 
-"@lmdb/lmdb-darwin-arm64@3.1.0":
-  version "3.1.0"
-  resolved "https://registry.yarnpkg.com/@lmdb/lmdb-darwin-arm64/-/lmdb-darwin-arm64-3.1.0.tgz#d1afe15c1163efd9ae1f2c1fa4a576db03e5d835"
-  integrity sha512-o3PXAbbghuzikvrzLTrWUzfgNG1JKBnkLDIJwx3omkz+2DhFxLFVioiiOGRGJr8OcW9ODx9NDbIJvgqky9pwLg==
-
 "@lmdb/lmdb-darwin-arm64@3.1.2":
   version "3.1.2"
   resolved "https://registry.yarnpkg.com/@lmdb/lmdb-darwin-arm64/-/lmdb-darwin-arm64-3.1.2.tgz#19659e3395d7da5d4c24bfb5f35997aa9b45b63e"
   integrity sha512-zqHBS0EPtJ7/WbcFyHJ7JcghazV4dVJs6ZVu1tjmuqjM4hDLs4LFawhKg3saBbb217gkiMQEFJV4qXCeKziv2Q==
-
-"@lmdb/lmdb-darwin-x64@3.1.0":
-  version "3.1.0"
-  resolved "https://registry.yarnpkg.com/@lmdb/lmdb-darwin-x64/-/lmdb-darwin-x64-3.1.0.tgz#b9e5c0c0b5511391e268609746778d606c0bc8cf"
-  integrity sha512-0Bo23T2Qlxw083vdWmaJLK4fWYjUbaYstuX/piKd78deJFIfZjSD58NtaY8tHXo/bV3yzY+Ym0pQP9zRXmIl1Q==
 
 "@lmdb/lmdb-darwin-x64@3.1.2":
   version "3.1.2"
   resolved "https://registry.yarnpkg.com/@lmdb/lmdb-darwin-x64/-/lmdb-darwin-x64-3.1.2.tgz#27784cc85197f3462901ec847265d0d140b8bd77"
   integrity sha512-4cOFb5c6G/7S7rhNu69gZp+BP0eZnnuqhqZyuX7ax+HKqCKV6PfWBMjyEf0DGRBKXS7QNAtvffoD4cw9J+tnsw==
 
-"@lmdb/lmdb-linux-arm64@3.1.0":
-  version "3.1.0"
-  resolved "https://registry.yarnpkg.com/@lmdb/lmdb-linux-arm64/-/lmdb-linux-arm64-3.1.0.tgz#e76b01f12e316edea37a47aae7a4e83d1db4e30e"
-  integrity sha512-0sz8VaTivoAszdKgbnRM85aIOLFJCUZodwM6VKN3UIKmA/m7RhvB6KpCzF5eg0j+osIVZzw/9FPQffgBHu7XQQ==
-
 "@lmdb/lmdb-linux-arm64@3.1.2":
   version "3.1.2"
   resolved "https://registry.yarnpkg.com/@lmdb/lmdb-linux-arm64/-/lmdb-linux-arm64-3.1.2.tgz#7242453581bcc0f04433a97d7a0346b246684f86"
   integrity sha512-cQ5Efs9YgzQuaKdnVsSFuGPbF8zT+hxUgCfu3z4djFaaajqs/lSXy+z3uGFaYo/JGd6sBIxMbb3eMZHkCYc6Wg==
-
-"@lmdb/lmdb-linux-arm@3.1.0":
-  version "3.1.0"
-  resolved "https://registry.yarnpkg.com/@lmdb/lmdb-linux-arm/-/lmdb-linux-arm-3.1.0.tgz#661f29181f4a276656452df2ba70b96ab18ed7b4"
-  integrity sha512-tIGoAqABBDIIS8uvcmt5+FaN/qPZZQArr/GK59xN19F/xkOGi3AO9LzQhwd0q98gHzHqUCkYsHQHKAF5D85iTg==
 
 "@lmdb/lmdb-linux-arm@3.1.2":
   version "3.1.2"
   resolved "https://registry.yarnpkg.com/@lmdb/lmdb-linux-arm/-/lmdb-linux-arm-3.1.2.tgz#876a17b22c87039f838da6f93a6c4346ba80791e"
   integrity sha512-FxG+5UMxtAildYY0HKuVTWvJV1sZd6jB7H3N4sO+1Xxzy1bgSZOwwR0Z5FGdEtbOEW4VrT48DVWXJY1X2CTNaA==
 
-"@lmdb/lmdb-linux-x64@3.1.0":
-  version "3.1.0"
-  resolved "https://registry.yarnpkg.com/@lmdb/lmdb-linux-x64/-/lmdb-linux-x64-3.1.0.tgz#1591990cd0709700379dd6f802e980284eba6d5d"
-  integrity sha512-3I12ss8iVMMR5Sc+xtLZsZS5ekSSD9+DGI0etykiyDRFZrviGaEWjaIOgou6sClGn2+EvaBDfa7BmP3SkZOS5Q==
-
 "@lmdb/lmdb-linux-x64@3.1.2":
   version "3.1.2"
   resolved "https://registry.yarnpkg.com/@lmdb/lmdb-linux-x64/-/lmdb-linux-x64-3.1.2.tgz#7cdbbf8e14ebefa6c192514241e217580e0c15c2"
   integrity sha512-FwKk+T9qm8kztxmd98rrSVOBVkfw62UMpy0UXqFPWeDS0uQ/ThgEFOB19epSKLjAEy4SNLIKwJVh4J2MgrfNhg==
-
-"@lmdb/lmdb-win32-x64@3.1.0":
-  version "3.1.0"
-  resolved "https://registry.yarnpkg.com/@lmdb/lmdb-win32-x64/-/lmdb-win32-x64-3.1.0.tgz#05c41c0b471d66b81bef7cccfa266ff3be5e2d54"
-  integrity sha512-3aucKqZBv6nJ1uOTGuBim3gyh0RKvWdpj4WhPY8RmVdpjCqrWMqUJgDCxc7JvdN7P1+cstQ6msZ2qL2N40+oPg==
 
 "@lmdb/lmdb-win32-x64@3.1.2":
   version "3.1.2"
@@ -6262,7 +6173,7 @@ chardet@^0.7.0:
   resolved "https://registry.yarnpkg.com/chardet/-/chardet-0.7.0.tgz#90094849f0937f2eedc2425d0d28a9e5f0cbad9e"
   integrity sha512-mT8iDcrh03qDGRRmoA2hmBJnxpllMR+0/0qlzjqZES6NdiWDcZkCNAk4rPFZ9Q85r27unkiNNg8ZOiwZXBHwcA==
 
-"chokidar@>=3.0.0 <4.0.0", chokidar@^3.0.0, chokidar@^3.5.1:
+chokidar@^3.0.0, chokidar@^3.5.1:
   version "3.6.0"
   resolved "https://registry.yarnpkg.com/chokidar/-/chokidar-3.6.0.tgz#197c6cc669ef2a8dc5e7b4d97ee4e092c3eb0d5b"
   integrity sha512-7VT13fmjotKpGipCW9JEQAusEPE+Ei8nl6/g4FBAmIm0GOOLMua9NDDo/DWp0ZAxCr3cPq5ZpBqmPAQgDda2Pw==
@@ -10313,24 +10224,6 @@ listr2@8.2.4, listr2@~8.2.4:
     rfdc "^1.4.1"
     wrap-ansi "^9.0.0"
 
-lmdb@3.1.0:
-  version "3.1.0"
-  resolved "https://registry.yarnpkg.com/lmdb/-/lmdb-3.1.0.tgz#06ef83441951b28d20920989ed41f6a26b52644e"
-  integrity sha512-OckutNx35JVfqfEEpS6gMNh/sn9229sJqscO8bnsR1fZNz5WERgIkKR5lrPBpH8L3pE8BxWZ8tJnL1FieRbJww==
-  dependencies:
-    msgpackr "^1.10.2"
-    node-addon-api "^6.1.0"
-    node-gyp-build-optional-packages "5.2.2"
-    ordered-binary "^1.4.1"
-    weak-lru-cache "^1.2.2"
-  optionalDependencies:
-    "@lmdb/lmdb-darwin-arm64" "3.1.0"
-    "@lmdb/lmdb-darwin-x64" "3.1.0"
-    "@lmdb/lmdb-linux-arm" "3.1.0"
-    "@lmdb/lmdb-linux-arm64" "3.1.0"
-    "@lmdb/lmdb-linux-x64" "3.1.0"
-    "@lmdb/lmdb-win32-x64" "3.1.0"
-
 lmdb@3.1.2:
   version "3.1.2"
   resolved "https://registry.yarnpkg.com/lmdb/-/lmdb-3.1.2.tgz#744c0bda07b931963fc6fbb2385aee588e00150e"
@@ -11179,14 +11072,6 @@ neo-async@^2.6.2:
   resolved "https://registry.yarnpkg.com/neo-async/-/neo-async-2.6.2.tgz#b4aafb93e3aeb2d8174ca53cf163ab7d7308305f"
   integrity sha512-Yd3UES5mWCSqR+qNT93S3UoYUkqAZ9lLg8a7g9rimsWmYGK8cVToA4/sF3RrshdyV3sAGMXVUmpMYOw+dLpOuw==
 
-nice-napi@^1.0.2:
-  version "1.0.2"
-  resolved "https://registry.yarnpkg.com/nice-napi/-/nice-napi-1.0.2.tgz#dc0ab5a1eac20ce548802fc5686eaa6bc654927b"
-  integrity sha512-px/KnJAJZf5RuBGcfD+Sp2pAKq0ytz8j+1NehvgIGFkvtvFrDM3T8E4x/JJODXK9WZow8RRGrbA9QQ3hs+pDhA==
-  dependencies:
-    node-addon-api "^3.0.0"
-    node-gyp-build "^4.2.2"
-
 no-case@^2.2.0:
   version "2.3.2"
   resolved "https://registry.yarnpkg.com/no-case/-/no-case-2.3.2.tgz#60b813396be39b3f1288a4c1ed5d1e7d28b464ac"
@@ -11200,11 +11085,6 @@ node-abi@^3.3.0:
   integrity sha512-7vbj10trelExNjFSBm5kTvZXXa7pZyKWx9RCKIyqe6I9Ev3IzGpQoqBP3a+cOdxY+pWj6VkP28n/2wWysBHD/A==
   dependencies:
     semver "^7.3.5"
-
-node-addon-api@^3.0.0:
-  version "3.2.1"
-  resolved "https://registry.yarnpkg.com/node-addon-api/-/node-addon-api-3.2.1.tgz#81325e0a2117789c0128dab65e7e38f07ceba161"
-  integrity sha512-mmcei9JghVNDYydghQmeDX8KoAm0FAiYyIcUt/N4nhyAipB17pllZQDOJD2fotxABnt4Mdz+dKTO7eftLg4d0A==
 
 node-addon-api@^6.1.0:
   version "6.1.0"
@@ -11224,11 +11104,6 @@ node-gyp-build-optional-packages@5.2.2:
   integrity sha512-s+w+rBWnpTMwSFbaE0UXsRlg7hU4FjekKU4eyAih5T8nJuNZT1nNsskXpxmeqSK9UzkBl6UgRlnKc8hz8IEqOw==
   dependencies:
     detect-libc "^2.0.1"
-
-node-gyp-build@^4.2.2:
-  version "4.8.2"
-  resolved "https://registry.yarnpkg.com/node-gyp-build/-/node-gyp-build-4.8.2.tgz#4f802b71c1ab2ca16af830e6c1ea7dd1ad9496fa"
-  integrity sha512-IRUxE4BVsHWXkV/SFOut4qTlagw2aM8T5/vnTsmrHJvVoKueJHRc/JaFND7QDDc61kLYUJ6qlZM3sqTSyx2dTw==
 
 node-gyp@^10.0.0, node-gyp@^10.1.0:
   version "10.2.0"
@@ -12023,13 +11898,6 @@ pinkie@^2.0.0:
   version "2.0.4"
   resolved "https://registry.yarnpkg.com/pinkie/-/pinkie-2.0.4.tgz#72556b80cfa0d48a974e80e77248e80ed4f7f870"
   integrity sha512-MnUuEycAemtSaeFSjXKW/aroV7akBbY+Sv+RkyqFjgAe73F+MR0TBWKBRDkmfWq/HiFmdavfZ1G7h4SPZXaCSg==
-
-piscina@4.6.1:
-  version "4.6.1"
-  resolved "https://registry.yarnpkg.com/piscina/-/piscina-4.6.1.tgz#4de673b0ff84bf641b31b07b3348669383b51c9a"
-  integrity sha512-z30AwWGtQE+Apr+2WBZensP2lIvwoaMcOPkQlIEmSGMJNUvaYACylPYrQM6wSdUNJlnDVMSpLv7xTMJqlVshOA==
-  optionalDependencies:
-    nice-napi "^1.0.2"
 
 piscina@4.7.0:
   version "4.7.0"
@@ -13036,15 +12904,6 @@ sass@*:
   integrity sha512-YmT1aoF1MwHsZEu/eXhbAJNsPGAhNP4UixW9ckEwWCvPcVdVF0/C104OGDVEqtoctKq0N+wM20O/rj+sSPsWeg==
   dependencies:
     chokidar "^4.0.0"
-    immutable "^4.0.0"
-    source-map-js ">=0.6.2 <2.0.0"
-
-sass@1.78.0:
-  version "1.78.0"
-  resolved "https://registry.yarnpkg.com/sass/-/sass-1.78.0.tgz#cef369b2f9dc21ea1d2cf22c979f52365da60841"
-  integrity sha512-AaIqGSrjo5lA2Yg7RvFZrlXDBCp3nV4XP73GrLGvdRWWwk+8H3l0SDvq/5bA4eF+0RFPLuWUk3E+P1U/YqnpsQ==
-  dependencies:
-    chokidar ">=3.0.0 <4.0.0"
     immutable "^4.0.0"
     source-map-js ">=0.6.2 <2.0.0"
 
@@ -14974,17 +14833,6 @@ vfile@^4.0.0:
     is-buffer "^2.0.0"
     unist-util-stringify-position "^2.0.0"
     vfile-message "^2.0.0"
-
-vite@5.4.4:
-  version "5.4.4"
-  resolved "https://registry.yarnpkg.com/vite/-/vite-5.4.4.tgz#3da90314b617047366459443320ea78f39111008"
-  integrity sha512-RHFCkULitycHVTtelJ6jQLd+KSAAzOgEYorV32R2q++M6COBjKJR6BxqClwp5sf0XaBDjVMuJ9wnNfyAJwjMkA==
-  dependencies:
-    esbuild "^0.21.3"
-    postcss "^8.4.43"
-    rollup "^4.20.0"
-  optionalDependencies:
-    fsevents "~2.3.3"
 
 vite@5.4.6:
   version "5.4.6"
