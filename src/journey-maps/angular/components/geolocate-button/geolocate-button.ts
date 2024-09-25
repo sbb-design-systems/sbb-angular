@@ -15,7 +15,6 @@ import { SbbLocaleService } from '../../services/locale-service';
   templateUrl: './geolocate-button.html',
   styleUrls: ['./geolocate-button.css'],
   changeDetection: ChangeDetectionStrategy.OnPush,
-  standalone: false,
 })
 export class SbbGeolocateButton implements OnInit {
   @Input() map: MaplibreMap | null;

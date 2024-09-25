@@ -875,7 +875,6 @@ class BurritosNotification {
 @Component({
   template: '',
   providers: [SbbNotificationToast],
-  standalone: false,
 })
 class ComponentThatProvidesSbbNotificationToast {
   notificationToast = inject(SbbNotificationToast);

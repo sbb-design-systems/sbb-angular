@@ -33,7 +33,6 @@ import { SbbLevelSwitcher } from './services/level-switcher';
     ]),
   ],
   changeDetection: ChangeDetectionStrategy.OnPush,
-  standalone: false,
 })
 export class SbbLevelSwitchHorizontal implements OnInit, OnDestroy {
   @Input() map: MaplibreMap | null;

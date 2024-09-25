@@ -8,7 +8,6 @@ import { CdnIcons, CdnIconService } from './cdn-icon.service';
   selector: 'sbb-icon-overview',
   templateUrl: './icon-overview.component.html',
   styleUrls: ['./icon-overview.component.css'],
-  standalone: false,
 })
 export class IconOverviewComponent {
   cdnIcons: Observable<CdnIcons>;

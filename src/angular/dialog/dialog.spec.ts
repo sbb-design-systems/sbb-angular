@@ -2280,7 +2280,6 @@ class ComponentWithContentElementTemplateRef {
 @Component({
   template: '',
   providers: [SbbDialog],
-  standalone: false,
 })
 class ComponentThatProvidesSbbDialog {
   constructor(public dialog: SbbDialog) {}

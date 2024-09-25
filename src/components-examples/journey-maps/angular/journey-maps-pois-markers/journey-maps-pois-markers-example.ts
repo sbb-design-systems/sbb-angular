@@ -1,4 +1,4 @@
-import { TitleCasePipe } from '@angular/common';
+import { DecimalPipe, TitleCasePipe } from '@angular/common';
 import { Component, OnInit, TemplateRef, ViewChild } from '@angular/core';
 import { FormBuilder, ReactiveFormsModule, UntypedFormGroup, Validators } from '@angular/forms';
 import { SbbButtonModule } from '@sbb-esta/angular/button';
@@ -44,6 +44,7 @@ declare global {
     SbbRadioButtonModule,
     SbbSelectModule,
     SbbFormFieldModule,
+    DecimalPipe,
     SbbButtonModule,
     SbbIconModule,
     SbbInputModule,

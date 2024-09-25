@@ -15,7 +15,6 @@ import { SbbLeitPoiFeature } from './model/leit-poi-feature';
   styleUrls: ['./leit-poi.css'],
   changeDetection: ChangeDetectionStrategy.OnPush,
   encapsulation: ViewEncapsulation.None,
-  standalone: false,
 })
 export class SbbLeitPoi {
   @Input() feature: SbbLeitPoiFeature = {} as SbbLeitPoiFeature;

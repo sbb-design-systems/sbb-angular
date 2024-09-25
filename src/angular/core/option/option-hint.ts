@@ -12,7 +12,6 @@ let nextId = 0;
     class: 'sbb-option-hint sbb-label',
     '[attr.id]': 'id',
   },
-  standalone: false,
 })
 export class SbbOptionHint {
   /** Unique ID to be used by autocomplete trigger's "aria-controls" property. */

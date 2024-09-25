@@ -77,7 +77,6 @@ export const SBB_RADIO_BUTTON = new InjectionToken<_SbbRadioButtonBase>('SbbRadi
   host: {
     class: 'sbb-radio-group-base',
   },
-  standalone: false,
 })
 // tslint:disable-next-line: naming-convention class-name
 export abstract class _SbbRadioGroupBase<TRadio extends _SbbRadioButtonBase>

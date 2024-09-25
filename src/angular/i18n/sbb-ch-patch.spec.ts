@@ -24,7 +24,6 @@ declare let $localize: any;
     <span>{{ now | date: 'longTime' }}</span>
     <span>{{ now | date: 'fullTime' }}</span>
   `,
-  standalone: false,
 })
 class DateFormat {
   now = new Date(2020, 0, 1, 0, 0, 0);
