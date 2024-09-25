@@ -161,6 +161,11 @@
     color: var(--sbb-color-call-to-action-hover);
 
     &::after {
+      animation: var(--sbb-transition-fast-start) 0s 1 arrowRotate;
+      transform: translateY(-50%) rotate(-180deg);
+      margin-top: calc(#{sbb.pxToRem(-1)} * var(--sbb-scaling-factor));
+      background-image: var(--sbb-url-icon-chevron-small-down-circle-small-red125);
+
       @keyframes arrowRotate {
         0% {
           transform: translateY(-50%) rotate(0);
@@ -169,11 +174,6 @@
           transform: translateY(-50%) rotate(-180deg);
         }
       }
-
-      animation: var(--sbb-transition-fast-start) 0s 1 arrowRotate;
-      transform: translateY(-50%) rotate(-180deg);
-      margin-top: calc(#{sbb.pxToRem(-1)} * var(--sbb-scaling-factor));
-      background-image: var(--sbb-url-icon-chevron-small-down-circle-small-red125);
     }
   }
 
