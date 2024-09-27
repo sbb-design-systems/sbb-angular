@@ -33,7 +33,7 @@ export class SbbMapJourneyService {
       const properties = feature.properties!;
       const type = properties.type;
       const pathType = properties.pathType;
-      const legId = properties.legId ?? 'journey'; // default: all belong together
+      const legId = properties.legId ?? 'trip'; // default: all belong together
       const isSelected = selectedLegId === legId || !selectedLegId; // default state: all selected
 
       properties[SBB_ROUTE_ID_PROPERTY_NAME] = legId;
