@@ -189,7 +189,7 @@ export type SbbSelectableFeatureCollection = FeatureCollection & {
 };
 
 export interface SbbRouteMetaInformation {
-  /** ID that matches a route in <code>SbbJourneyMapsRoutingOptions.routes</code>. */
+  /** ID that matches a route in <code>SbbRoutesOptions.routes</code>. */
   id: string;
   /** Color of the route. See https://maplibre.org/maplibre-gl-js-docs/style-spec/types/ for color-format. */
   routeColor?: string;
@@ -206,13 +206,8 @@ export interface SbbRailNetworkOptions {
   railNetworkColor?: string;
 }
 
-export interface SbbJourneyMetaInformation {
-  /** ID that matches a leg ID in <code>SbbJourneyMapsRoutingOptions.journey</code>. */
-  selectedLegId: string;
-}
-
 export interface SbbTripMetaInformation {
-  /** ID that matches a leg ID in <code>SbbRoutesData.trip</code>. */
+  /** ID that matches a leg ID in <code>SbbJourneyRoutesOptions.trip</code>. */
   selectedLegId: string;
 }
 
