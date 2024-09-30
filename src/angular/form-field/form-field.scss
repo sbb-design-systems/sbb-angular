@@ -82,7 +82,7 @@
 }
 
 // Scale down icons in the label and error to be the same size as the text.
-:is(.sbb-form-field-error-wrapper, .sbb-form-field-label-wrapper) {
+:is(.sbb-form-field-error-wrapper, .sbb-form-field-label-wrapper, .sbb-label) {
   :is(.sbb-icon, .sbb-tooltip-icon),
   .sbb-icon svg {
     vertical-align: bottom;
