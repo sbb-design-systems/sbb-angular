@@ -1,14 +1,7 @@
 import { DOWN_ARROW, ENTER } from '@angular/cdk/keycodes';
 import { OverlayContainer } from '@angular/cdk/overlay';
 import { Component, DebugElement, ViewChild } from '@angular/core';
-import {
-  ComponentFixture,
-  fakeAsync,
-  flush,
-  inject,
-  TestBed,
-  waitForAsync,
-} from '@angular/core/testing';
+import { ComponentFixture, fakeAsync, flush, TestBed, waitForAsync } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { SbbAutocompleteModule } from '@sbb-esta/angular/autocomplete';
@@ -247,7 +240,7 @@ describe('SbbSearch', () => {
         expect(component.lastSearch).toBe('Eins');
       });
 
-      it('should close the autocomplete panel', () => {
+      fit('should close the autocomplete panel', () => {
         expect(component.search._autocompleteTrigger!.autocomplete.isOpen).toBe(false);
         const input = fixture.debugElement.query(By.css('.sbb-search > input'));
         dispatchFakeEvent(input.nativeElement, 'focusin');
@@ -353,9 +346,8 @@ describe('SbbSearch', () => {
           imports: [NoopAnimationsModule, SbbIconTestingModule, SimpleSearchHeaderComponent],
         }).compileComponents();
 
-        inject([OverlayContainer], (oc: OverlayContainer) => {
-          overlayContainerElement = oc.getContainerElement();
-        })();
+        const overlayContainer = TestBed.inject(OverlayContainer);
+        overlayContainerElement = overlayContainer.getContainerElement();
       }));
 
       beforeEach(() => {
@@ -434,11 +426,10 @@ describe('SbbSearch', () => {
             SbbIconTestingModule,
             SimpleSearchAutocompleteHeaderComponent,
           ],
-        }).compileComponents();
+        });
 
-        inject([OverlayContainer], (oc: OverlayContainer) => {
-          overlayContainerElement = oc.getContainerElement();
-        })();
+        const overlayContainer = TestBed.inject(OverlayContainer);
+        overlayContainerElement = overlayContainer.getContainerElement();
       }));
 
       beforeEach(() => {

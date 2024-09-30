@@ -7,10 +7,9 @@ import {
   ChangeDetectorRef,
   Component,
   ElementRef,
-  Inject,
+  inject,
   Input,
   OnDestroy,
-  Optional,
   ViewEncapsulation,
 } from '@angular/core';
 import { SbbIcon } from '@sbb-esta/angular/icon';
@@ -42,6 +41,15 @@ import { SbbMenuPanel, SBB_MENU_PANEL } from './menu-panel';
   imports: [SbbIcon],
 })
 export class SbbMenuItem implements FocusableOption, AfterViewInit, OnDestroy {
+  private _elementRef = inject<ElementRef<HTMLElement>>(ElementRef);
+  private _document = inject(DOCUMENT);
+  private _focusMonitor = inject(FocusMonitor);
+  private _changeDetectorRef = inject(ChangeDetectorRef);
+  _parentMenu?: SbbMenuPanel<SbbMenuItem> | null | undefined = inject<SbbMenuPanel<SbbMenuItem>>(
+    SBB_MENU_PANEL,
+    { optional: true },
+  );
+
   /** Whether the menu item is disabled. */
   @Input({ transform: booleanAttribute }) disabled: boolean = false;
 
@@ -60,13 +68,8 @@ export class SbbMenuItem implements FocusableOption, AfterViewInit, OnDestroy {
   /** Whether the menu item acts as a trigger for a sub-menu. */
   _triggersSubmenu: boolean = false;
 
-  constructor(
-    private _elementRef: ElementRef<HTMLElement>,
-    @Inject(DOCUMENT) private _document: any,
-    private _focusMonitor: FocusMonitor,
-    private _changeDetectorRef: ChangeDetectorRef,
-    @Inject(SBB_MENU_PANEL) @Optional() public _parentMenu?: SbbMenuPanel<SbbMenuItem>,
-  ) {}
+  constructor(...args: unknown[]);
+  constructor() {}
 
   /** Focuses the menu item. */
   focus(origin?: FocusOrigin, options?: FocusOptions): void {

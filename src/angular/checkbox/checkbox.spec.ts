@@ -610,6 +610,93 @@ describe('SbbCheckbox', () => {
     });
   });
 
+  describe('with provided aria-expanded', () => {
+    let checkboxDebugElement: DebugElement;
+    let checkboxNativeElement: HTMLElement;
+    let inputElement: HTMLInputElement;
+
+    it('should use the provided postive aria-expanded', () => {
+      fixture = createComponent(CheckboxWithPositiveAriaExpanded);
+      checkboxDebugElement = fixture.debugElement.query(By.directive(SbbCheckbox))!;
+      checkboxNativeElement = checkboxDebugElement.nativeElement;
+      inputElement = <HTMLInputElement>checkboxNativeElement.querySelector('input');
+
+      fixture.detectChanges();
+      expect(inputElement.getAttribute('aria-expanded')).toBe('true');
+    });
+
+    it('should use the provided negative aria-expanded', () => {
+      fixture = createComponent(CheckboxWithNegativeAriaExpanded);
+      checkboxDebugElement = fixture.debugElement.query(By.directive(SbbCheckbox))!;
+      checkboxNativeElement = checkboxDebugElement.nativeElement;
+      inputElement = <HTMLInputElement>checkboxNativeElement.querySelector('input');
+
+      fixture.detectChanges();
+      expect(inputElement.getAttribute('aria-expanded')).toBe('false');
+    });
+
+    it('should not assign aria-expanded if none is provided', () => {
+      fixture = createComponent(SingleCheckbox);
+      checkboxDebugElement = fixture.debugElement.query(By.directive(SbbCheckbox))!;
+      checkboxNativeElement = checkboxDebugElement.nativeElement;
+      inputElement = <HTMLInputElement>checkboxNativeElement.querySelector('input');
+
+      fixture.detectChanges();
+      expect(inputElement.getAttribute('aria-expanded')).toBe(null);
+    });
+  });
+
+  describe('with provided aria-controls', () => {
+    let checkboxDebugElement: DebugElement;
+    let checkboxNativeElement: HTMLElement;
+    let inputElement: HTMLInputElement;
+
+    it('should use the provided aria-controls', () => {
+      fixture = createComponent(CheckboxWithAriaControls);
+      checkboxDebugElement = fixture.debugElement.query(By.directive(SbbCheckbox))!;
+      checkboxNativeElement = checkboxDebugElement.nativeElement;
+      inputElement = <HTMLInputElement>checkboxNativeElement.querySelector('input');
+
+      fixture.detectChanges();
+      expect(inputElement.getAttribute('aria-controls')).toBe('some-id');
+    });
+
+    it('should not assign aria-controls if none is provided', () => {
+      fixture = createComponent(SingleCheckbox);
+      checkboxDebugElement = fixture.debugElement.query(By.directive(SbbCheckbox))!;
+      checkboxNativeElement = checkboxDebugElement.nativeElement;
+      inputElement = <HTMLInputElement>checkboxNativeElement.querySelector('input');
+
+      fixture.detectChanges();
+      expect(inputElement.getAttribute('aria-controls')).toBe(null);
+    });
+  });
+  describe('with provided aria-owns', () => {
+    let checkboxDebugElement: DebugElement;
+    let checkboxNativeElement: HTMLElement;
+    let inputElement: HTMLInputElement;
+
+    it('should use the provided aria-owns', () => {
+      fixture = createComponent(CheckboxWithAriaOwns);
+      checkboxDebugElement = fixture.debugElement.query(By.directive(SbbCheckbox))!;
+      checkboxNativeElement = checkboxDebugElement.nativeElement;
+      inputElement = <HTMLInputElement>checkboxNativeElement.querySelector('input');
+
+      fixture.detectChanges();
+      expect(inputElement.getAttribute('aria-owns')).toBe('some-id');
+    });
+
+    it('should not assign aria-owns if none is provided', () => {
+      fixture = createComponent(SingleCheckbox);
+      checkboxDebugElement = fixture.debugElement.query(By.directive(SbbCheckbox))!;
+      checkboxNativeElement = checkboxDebugElement.nativeElement;
+      inputElement = <HTMLInputElement>checkboxNativeElement.querySelector('input');
+
+      fixture.detectChanges();
+      expect(inputElement.getAttribute('aria-owns')).toBe(null);
+    });
+  });
+
   describe('with provided tabIndex', () => {
     let checkboxDebugElement: DebugElement;
     let checkboxNativeElement: HTMLElement;
@@ -1031,6 +1118,38 @@ class CheckboxWithAriaLabelledby {}
   standalone: true,
 })
 class CheckboxWithAriaDescribedby {}
+
+/** Simple test component with an aria-expanded set with true. */
+@Component({
+  template: `<sbb-checkbox aria-expanded="true"></sbb-checkbox>`,
+  standalone: true,
+  imports: [SbbCheckbox],
+})
+class CheckboxWithPositiveAriaExpanded {}
+
+/** Simple test component with an aria-expanded set with false. */
+@Component({
+  template: `<sbb-checkbox aria-expanded="false"><sbb-checkbox></sbb-checkbox></sbb-checkbox>`,
+  standalone: true,
+  imports: [SbbCheckbox],
+})
+class CheckboxWithNegativeAriaExpanded {}
+
+/** Simple test component with an aria-controls set. */
+@Component({
+  template: `<sbb-checkbox aria-controls="some-id"></sbb-checkbox>`,
+  standalone: true,
+  imports: [SbbCheckbox],
+})
+class CheckboxWithAriaControls {}
+
+/** Simple test component with an aria-owns set. */
+@Component({
+  template: `<sbb-checkbox aria-owns="some-id"></sbb-checkbox>`,
+  standalone: true,
+  imports: [SbbCheckbox],
+})
+class CheckboxWithAriaOwns {}
 
 /** Simple test component with name attribute */
 @Component({

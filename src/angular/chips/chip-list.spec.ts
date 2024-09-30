@@ -1298,8 +1298,9 @@ class ChipListInsideDynamicFormGroup {
   @ViewChild(SbbChipList) chipList: SbbChipList;
   form: FormGroup;
   private readonly _changeDetectorRef = inject(ChangeDetectorRef);
+  private _formBuilder = inject(FormBuilder);
 
-  constructor(private _formBuilder: FormBuilder) {
+  constructor() {
     this.assignGroup(false);
   }
 

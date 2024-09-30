@@ -9,11 +9,10 @@ import {
   EventEmitter,
   forwardRef,
   HostListener,
-  Inject,
+  inject,
   Input,
   NgZone,
   OnDestroy,
-  Optional,
   Output,
   ViewEncapsulation,
 } from '@angular/core';
@@ -45,6 +44,10 @@ let nextId = 0;
   standalone: true,
 })
 export class SbbCaptcha implements AfterViewInit, OnDestroy, ControlValueAccessor {
+  private _elementRef = inject(ElementRef);
+  private _loader = inject(SbbCaptchaLoaderService);
+  private _zone = inject(NgZone);
+
   /** Identifier of sbb-captcha. */
   @Input() id: string = `sbbcaptcha-${nextId++}`;
 
@@ -96,12 +99,9 @@ export class SbbCaptcha implements AfterViewInit, OnDestroy, ControlValueAccesso
 
   private _onTouched: () => void;
 
-  constructor(
-    private _elementRef: ElementRef,
-    private _loader: SbbCaptchaLoaderService,
-    private _zone: NgZone,
-    @Optional() @Inject(SBB_RECAPTCHA_SETTINGS) settings?: SbbRecaptchaSettings,
-  ) {
+  constructor(...args: unknown[]);
+  constructor() {
+    const settings = inject<SbbRecaptchaSettings>(SBB_RECAPTCHA_SETTINGS, { optional: true });
     if (settings) {
       this.siteKey = settings.siteKey;
       this.theme = settings.theme;

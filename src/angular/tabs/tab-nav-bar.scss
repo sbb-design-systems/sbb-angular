@@ -14,12 +14,13 @@
 
 // Wraps each link in the header
 .sbb-tab-link {
-  @include tabs.tab-label;
   vertical-align: top;
   text-decoration: none; // Removes anchor underline styling
   position: relative;
   overflow: hidden;
   -webkit-tap-highlight-color: transparent;
+
+  @include tabs.tab-label;
 
   [sbb-stretch-tabs] & {
     flex-basis: 0;

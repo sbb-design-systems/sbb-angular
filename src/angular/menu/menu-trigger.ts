@@ -25,15 +25,12 @@ import {
   ElementRef,
   EventEmitter,
   inject,
-  Inject,
   InjectionToken,
   Input,
   NgZone,
   OnDestroy,
   OnInit,
-  Optional,
   Output,
-  Self,
   TemplateRef,
   ViewContainerRef,
 } from '@angular/core';
@@ -132,6 +129,20 @@ export class SbbMenuTrigger
   extends _SbbMenuTriggerMixinBase
   implements OnInit, AfterContentInit, OnDestroy
 {
+  private _overlay = inject(Overlay);
+  private _element = inject<ElementRef<HTMLElement>>(ElementRef);
+  private _viewContainerRef = inject(ViewContainerRef);
+  private _inheritedTriggerContext = inject<SbbMenuInheritedTriggerContext>(
+    SBB_MENU_INHERITED_TRIGGER_CONTEXT,
+    { optional: true },
+  )!;
+  private _menuItemInstance = inject(SbbMenuItem, { optional: true, self: true })!;
+  private _focusMonitor = inject(FocusMonitor);
+  private _sanitizer = inject(DomSanitizer);
+  private _breakpointObserver = inject(BreakpointObserver);
+  private _changeDetectorRef = inject(ChangeDetectorRef);
+  private _ngZone = inject(NgZone);
+
   private _portal: TemplatePortal;
   private _overlayRef: OverlayRef | null = null;
   private _menuOpen: boolean = false;
@@ -139,7 +150,7 @@ export class SbbMenuTrigger
   private _closingActionsSubscription = Subscription.EMPTY;
   private _hoverSubscription = Subscription.EMPTY;
   private _menuCloseSubscription = Subscription.EMPTY;
-  private _scrollStrategy: () => ScrollStrategy;
+  private _scrollStrategy = inject(SBB_MENU_SCROLL_STRATEGY);
 
   /**
    * We're specifically looking for a `SbbMenu` here since the generic `SbbMenuPanel`
@@ -230,26 +241,15 @@ export class SbbMenuTrigger
 
   private _scalingFactor: number = 1;
 
-  constructor(
-    private _overlay: Overlay,
-    private _element: ElementRef<HTMLElement>,
-    private _viewContainerRef: ViewContainerRef,
-    @Inject(SBB_MENU_SCROLL_STRATEGY) scrollStrategy: any,
-    @Inject(SBB_MENU_PANEL) @Optional() parentMenu: SbbMenuPanel,
-    @Inject(SBB_MENU_INHERITED_TRIGGER_CONTEXT)
-    @Optional()
-    private _inheritedTriggerContext: SbbMenuInheritedTriggerContext,
-    // `SbbMenuTrigger` is commonly used in combination with a `SbbMenuItem`.
-    @Optional() @Self() private _menuItemInstance: SbbMenuItem,
-    private _focusMonitor: FocusMonitor,
-    private _sanitizer: DomSanitizer,
-    private _breakpointObserver: BreakpointObserver,
-    private _changeDetectorRef: ChangeDetectorRef,
-    private _ngZone: NgZone,
-  ) {
-    super();
+  constructor(...args: unknown[]);
 
-    this._scrollStrategy = scrollStrategy;
+  constructor() {
+    const parentMenu = inject<SbbMenuPanel>(SBB_MENU_PANEL, { optional: true })!;
+
+    super();
+    const _element = this._element;
+    const _menuItemInstance = this._menuItemInstance;
+
     this._parentSbbMenu = parentMenu instanceof SbbMenu ? parentMenu : undefined;
 
     _element.nativeElement.addEventListener(

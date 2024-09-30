@@ -1,14 +1,5 @@
 import { DOCUMENT } from '@angular/common';
-import {
-  Directive,
-  ElementRef,
-  HostListener,
-  Inject,
-  Input,
-  Optional,
-  Renderer2,
-  Self,
-} from '@angular/core';
+import { Directive, ElementRef, HostListener, inject, Input, Renderer2 } from '@angular/core';
 import { NgControl } from '@angular/forms';
 import { SbbInput } from '@sbb-esta/angular/input';
 
@@ -30,6 +21,11 @@ const PLACEHOLDER_DEFAULT = 'HH:MM';
   standalone: true,
 })
 export class SbbTimeInput {
+  private _elementRef = inject(ElementRef);
+  private _renderer = inject(Renderer2);
+  private _control = inject(NgControl, { self: true, optional: true })!;
+  private _input = inject(SbbInput, { optional: true })!;
+
   /** The placeholder value display in the input field (defaults to HH:MM) */
   @Input()
   get placeholder(): string {
@@ -44,16 +40,10 @@ export class SbbTimeInput {
   }
   private _placeholder: string;
 
-  private _document: Document;
+  private _document = inject(DOCUMENT);
 
-  constructor(
-    private _elementRef: ElementRef,
-    private _renderer: Renderer2,
-    @Self() @Optional() private _control: NgControl,
-    @Inject(DOCUMENT) document: any,
-    @Optional() private _input: SbbInput,
-  ) {
-    this._document = document;
+  constructor(...args: unknown[]);
+  constructor() {
     this.placeholder = PLACEHOLDER_DEFAULT;
   }
 

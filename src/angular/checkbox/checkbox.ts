@@ -2,21 +2,19 @@ import { FocusableOption, FocusMonitor, FocusOrigin } from '@angular/cdk/a11y';
 import { CdkObserveContent } from '@angular/cdk/observers';
 import {
   AfterViewInit,
-  Attribute,
   booleanAttribute,
   ChangeDetectionStrategy,
   ChangeDetectorRef,
   Component,
-  Directive,
   ElementRef,
   EventEmitter,
   forwardRef,
-  Inject,
+  HostAttributeToken,
+  inject,
   Input,
   numberAttribute,
   OnChanges,
   OnDestroy,
-  Optional,
   Output,
   SimpleChanges,
   ViewChild,
@@ -65,12 +63,52 @@ export class SbbCheckboxChange {
   checked: boolean;
 }
 
-/** Base class with all of the `SbbCheckbox` functionality. */
-@Directive()
+/**
+ * An SBB design checkbox component. Supports all the functionality of an HTML5 checkbox,
+ * and exposes a similar API. A SbbCheckbox can be either checked, unchecked, indeterminate, or
+ * disabled. Note that all additional accessibility attributes are taken care of by the component,
+ * so there is no need to provide them yourself. However, if you want to omit a label and still
+ * have the checkbox be accessible, you may supply an [aria-label] input.
+ */
+@Component({
+  selector: 'sbb-checkbox',
+  templateUrl: './checkbox.html',
+  exportAs: 'sbbCheckbox',
+  host: {
+    class: 'sbb-checkbox sbb-selection-item',
+    '[id]': 'id',
+    '[attr.tabindex]': 'null',
+    '[attr.aria-label]': 'null',
+    '[attr.aria-labelledby]': 'null',
+    '[class.sbb-selection-indeterminate]': 'indeterminate',
+    '[class.sbb-selection-checked]': 'checked',
+    '[class.sbb-selection-disabled]': 'disabled',
+  },
+  providers: [
+    SBB_CHECKBOX_CONTROL_VALUE_ACCESSOR,
+    {
+      provide: NG_VALIDATORS,
+      useExisting: SbbCheckbox,
+      multi: true,
+    },
+  ],
+  inputs: ['tabIndex'],
+  encapsulation: ViewEncapsulation.None,
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  standalone: true,
+  imports: [CdkObserveContent],
+})
 // tslint:disable-next-line: naming-convention class-name
-export class _SbbCheckboxBase
+export class SbbCheckbox
   implements ControlValueAccessor, AfterViewInit, OnDestroy, OnChanges, Validator, FocusableOption
 {
+  private _elementRef = inject<ElementRef<HTMLElement>>(ElementRef);
+  protected _changeDetectorRef: ChangeDetectorRef = inject(ChangeDetectorRef);
+  private _focusMonitor = inject(FocusMonitor);
+  private _options = inject<SbbCheckboxDefaultOptions>(SBB_CHECKBOX_DEFAULT_OPTIONS, {
+    optional: true,
+  });
+
   /**
    * Attached to the aria-label attribute of the host element. In most cases, aria-labelledby will
    * take precedence so this may be omitted.
@@ -84,6 +122,19 @@ export class _SbbCheckboxBase
 
   /** The 'aria-describedby' attribute is read after the element's label and field type. */
   @Input('aria-describedby') ariaDescribedby: string;
+
+  /**
+   * Users can specify the `aria-expanded` attribute which will be forwarded to the input element
+   */
+  @Input({ alias: 'aria-expanded', transform: booleanAttribute }) ariaExpanded: boolean;
+
+  /**
+   * Users can specify the `aria-controls` attribute which will be forwarded to the input element
+   */
+  @Input('aria-controls') ariaControls: string;
+
+  /** Users can specify the `aria-owns` attribute which will be forwarded to the input element */
+  @Input('aria-owns') ariaOwns: string;
 
   private _uniqueId: string = `sbb-checkbox-${++nextUniqueId}`;
 
@@ -130,17 +181,11 @@ export class _SbbCheckboxBase
   private _controlValueAccessorChangeFn: (value: any) => void = () => {};
   private _validatorChangeFn = () => {};
 
-  constructor(
-    private _elementRef: ElementRef<HTMLElement>,
-    protected _changeDetectorRef: ChangeDetectorRef,
-    private _focusMonitor: FocusMonitor,
-    @Attribute('tabindex') tabIndex: string,
-    @Optional()
-    @Inject(SBB_CHECKBOX_DEFAULT_OPTIONS)
-    private _options?: SbbCheckboxDefaultOptions,
-  ) {
+  constructor(...args: unknown[]);
+  constructor() {
+    const tabIndex = inject(new HostAttributeToken('tabindex'), { optional: true });
     this._options = this._options || defaults;
-    this.tabIndex = parseInt(tabIndex, 10) || 0;
+    this.tabIndex = tabIndex == null ? 0 : parseInt(tabIndex, 10) || 0;
   }
 
   ngOnChanges(changes: SimpleChanges) {
@@ -352,40 +397,3 @@ export class _SbbCheckboxBase
     }
   }
 }
-
-/**
- * A SBB design checkbox component. Supports all of the functionality of an HTML5 checkbox,
- * and exposes a similar API. A SbbCheckbox can be either checked, unchecked, indeterminate, or
- * disabled. Note that all additional accessibility attributes are taken care of by the component,
- * so there is no need to provide them yourself. However, if you want to omit a label and still
- * have the checkbox be accessible, you may supply an [aria-label] input.
- */
-@Component({
-  selector: 'sbb-checkbox',
-  templateUrl: './checkbox.html',
-  exportAs: 'sbbCheckbox',
-  host: {
-    class: 'sbb-checkbox sbb-selection-item',
-    '[id]': 'id',
-    '[attr.tabindex]': 'null',
-    '[attr.aria-label]': 'null',
-    '[attr.aria-labelledby]': 'null',
-    '[class.sbb-selection-indeterminate]': 'indeterminate',
-    '[class.sbb-selection-checked]': 'checked',
-    '[class.sbb-selection-disabled]': 'disabled',
-  },
-  providers: [
-    SBB_CHECKBOX_CONTROL_VALUE_ACCESSOR,
-    {
-      provide: NG_VALIDATORS,
-      useExisting: SbbCheckbox,
-      multi: true,
-    },
-  ],
-  inputs: ['tabIndex'],
-  encapsulation: ViewEncapsulation.None,
-  changeDetection: ChangeDetectionStrategy.OnPush,
-  standalone: true,
-  imports: [CdkObserveContent],
-})
-export class SbbCheckbox extends _SbbCheckboxBase {}

@@ -182,6 +182,7 @@
   }
 
   .sbb-menu-panel-wrapper & {
+    animation: var(--sbb-transition-default) 0s 1 arrowRotate;
     @keyframes arrowRotate {
       0% {
         transform: rotate(0);
@@ -190,9 +191,9 @@
         transform: rotate(-180deg);
       }
     }
-    animation: var(--sbb-transition-default) 0s 1 arrowRotate;
 
     :where(html.sbb-lean) & {
+      animation: var(--sbb-transition-default) 0s 1 arrowRotateLean;
       @keyframes arrowRotateLean {
         0% {
           transform: rotate(90deg);
@@ -201,11 +202,11 @@
           transform: rotate(-90deg);
         }
       }
-      animation: var(--sbb-transition-default) 0s 1 arrowRotateLean;
     }
   }
 
   .sbb-menu-panel-wrapper.sbb-menu-panel-closing & {
+    animation: var(--sbb-transition-default) 0s 1 arrowRotateBackwards;
     @keyframes arrowRotateBackwards {
       0% {
         transform: rotate(-180deg);
@@ -214,9 +215,9 @@
         transform: rotate(0);
       }
     }
-    animation: var(--sbb-transition-default) 0s 1 arrowRotateBackwards;
 
     :where(html.sbb-lean) & {
+      animation: var(--sbb-transition-default) 0s 1 arrowRotateBackwardsLean;
       @keyframes arrowRotateBackwardsLean {
         0% {
           transform: rotate(-90deg);
@@ -225,7 +226,6 @@
           transform: rotate(90deg);
         }
       }
-      animation: var(--sbb-transition-default) 0s 1 arrowRotateBackwardsLean;
     }
   }
 }

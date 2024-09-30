@@ -7,6 +7,7 @@ import {
   ContentChild,
   ContentChildren,
   ElementRef,
+  inject,
   InjectionToken,
   Input,
   OnDestroy,
@@ -15,7 +16,7 @@ import {
   ViewEncapsulation,
 } from '@angular/core';
 import { AbstractControlDirective } from '@angular/forms';
-import { Subject } from 'rxjs';
+import { Subject, Subscription } from 'rxjs';
 import { startWith, takeUntil } from 'rxjs/operators';
 
 import { SbbError, SBB_ERROR } from './error';
@@ -56,6 +57,9 @@ export const SBB_FORM_FIELD = new InjectionToken<SbbFormField>('SBB_FORM_FIELD')
   standalone: true,
 })
 export class SbbFormField implements AfterContentInit, AfterContentChecked, OnDestroy {
+  _elementRef: ElementRef<HTMLElement> = inject<ElementRef<HTMLElement>>(ElementRef);
+  private _changeDetectorRef = inject(ChangeDetectorRef);
+
   /** The label text for the input. */
   @Input() label?: string;
 
@@ -83,10 +87,12 @@ export class SbbFormField implements AfterContentInit, AfterContentChecked, OnDe
 
   @ContentChildren(SBB_ERROR, { descendants: true }) _errorChildren: QueryList<SbbError>;
 
-  constructor(
-    public _elementRef: ElementRef<HTMLElement>,
-    private _changeDetectorRef: ChangeDetectorRef,
-  ) {}
+  private _previousControl: SbbFormFieldControl<unknown> | null = null;
+  private _stateChanges: Subscription | undefined;
+  private _valueChanges: Subscription | undefined;
+
+  constructor(...args: unknown[]);
+  constructor() {}
 
   /**
    * Gets the id of the label element. If no label is present, returns `null`.
@@ -97,38 +103,20 @@ export class SbbFormField implements AfterContentInit, AfterContentChecked, OnDe
 
   ngAfterContentInit() {
     this._validateControlChild();
-
-    const control = this._control;
-
-    if (control.controlType) {
-      this._elementRef.nativeElement.classList.add(`sbb-form-field-type-${control.controlType}`);
-    }
-
-    // Subscribe to changes in the child control state in order to update the form field UI.
-    control.stateChanges.pipe(startWith(null! as any)).subscribe(() => {
-      this._syncDescribedByIds();
-      this._changeDetectorRef.markForCheck();
-    });
-
-    // Run change detection if the value changes.
-    if (control.ngControl && control.ngControl.valueChanges) {
-      control.ngControl.valueChanges
-        .pipe(takeUntil(this._destroyed))
-        .subscribe(() => this._changeDetectorRef.markForCheck());
-    }
-
-    // Update the aria-described by when the number of errors changes.
-    this._errorChildren.changes.pipe(startWith(null)).subscribe(() => {
-      this._syncDescribedByIds();
-      this._changeDetectorRef.markForCheck();
-    });
   }
 
   ngAfterContentChecked() {
     this._validateControlChild();
+
+    if (this._control !== this._previousControl) {
+      this._initializeControl(this._previousControl);
+      this._previousControl = this._control;
+    }
   }
 
   ngOnDestroy(): void {
+    this._stateChanges?.unsubscribe();
+    this._valueChanges?.unsubscribe();
     this._destroyed.next();
     this._destroyed.complete();
   }
@@ -187,5 +175,41 @@ export class SbbFormField implements AfterContentInit, AfterContentChecked, OnDe
    */
   getConnectedOverlayOrigin(): ElementRef {
     return this._connectionContainerRef || this._elementRef;
+  }
+
+  /** Initializes the registered form field control. */
+  private _initializeControl(previousControl: SbbFormFieldControl<unknown> | null) {
+    const control = this._control;
+    const classPrefix = 'sbb-form-field-type-';
+
+    if (previousControl) {
+      this._elementRef.nativeElement.classList.remove(classPrefix + previousControl.controlType);
+    }
+
+    if (control.controlType) {
+      this._elementRef.nativeElement.classList.add(classPrefix + control.controlType);
+    }
+
+    // Subscribe to changes in the child control state in order to update the form field UI.
+    this._stateChanges?.unsubscribe();
+    this._stateChanges = control.stateChanges.pipe(startWith(null! as any)).subscribe(() => {
+      this._syncDescribedByIds();
+      this._changeDetectorRef.markForCheck();
+    });
+
+    this._valueChanges?.unsubscribe();
+
+    // Run change detection if the value changes.
+    if (control.ngControl && control.ngControl.valueChanges) {
+      this._valueChanges = control.ngControl.valueChanges
+        .pipe(takeUntil(this._destroyed))
+        .subscribe(() => this._changeDetectorRef.markForCheck());
+    }
+
+    // Update the aria-described by when the number of errors changes.
+    this._errorChildren.changes.pipe(startWith(null)).subscribe(() => {
+      this._syncDescribedByIds();
+      this._changeDetectorRef.markForCheck();
+    });
   }
 }

@@ -7,6 +7,7 @@ import {
   ElementRef,
   EventEmitter,
   HostListener,
+  inject,
   Input,
   OnDestroy,
   Output,
@@ -90,7 +91,10 @@ export class SbbSearch implements AfterContentInit, OnDestroy {
 
   private _destroyed = new Subject<void>();
 
-  constructor(private _elementRef: ElementRef<HTMLInputElement>) {}
+  private _elementRef = inject<ElementRef<HTMLInputElement>>(ElementRef);
+
+  constructor(...args: unknown[]);
+  constructor() {}
 
   ngAfterContentInit(): void {
     if (!this._input && (typeof ngDevMode === 'undefined' || ngDevMode)) {

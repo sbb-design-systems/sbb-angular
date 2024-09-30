@@ -2,7 +2,7 @@
 /// <reference types="grecaptcha" preserve="true" />
 
 import { DOCUMENT } from '@angular/common';
-import { Inject, Injectable, InjectionToken, Optional } from '@angular/core';
+import { inject, Injectable, InjectionToken } from '@angular/core';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { filter } from 'rxjs/operators';
 
@@ -15,6 +15,8 @@ export const SBB_RECAPTCHA_NONCE = new InjectionToken<string>('recaptcha-nonce-t
 
 @Injectable()
 export class SbbCaptchaLoaderService {
+  private _windowRef = inject(SbbWindowRef);
+
   /** @nocollapse */
   private static _ready: BehaviorSubject<ReCaptchaV2.ReCaptcha | null> | null = null;
 
@@ -26,13 +28,13 @@ export class SbbCaptchaLoaderService {
 
   private _document: Document;
 
-  constructor(
-    private _windowRef: SbbWindowRef,
-    @Inject(DOCUMENT) document: any,
-    @Optional() @Inject(SBB_RECAPTCHA_LANGUAGE) language?: string,
-    @Optional() @Inject(SBB_RECAPTCHA_BASE_URL) baseUrl?: string,
-    @Optional() @Inject(SBB_RECAPTCHA_NONCE) nonce?: string,
-  ) {
+  constructor(...args: unknown[]);
+  constructor() {
+    const document = inject(DOCUMENT);
+    const language = inject(SBB_RECAPTCHA_LANGUAGE, { optional: true });
+    const baseUrl = inject(SBB_RECAPTCHA_BASE_URL, { optional: true });
+    const nonce = inject(SBB_RECAPTCHA_NONCE, { optional: true });
+
     this._language = language || null;
     this._baseUrl = baseUrl || null;
     this._nonce = nonce || null;

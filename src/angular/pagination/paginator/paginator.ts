@@ -7,13 +7,12 @@ import {
   ChangeDetectorRef,
   Component,
   EventEmitter,
-  Inject,
+  inject,
   InjectionToken,
   Input,
   numberAttribute,
   OnDestroy,
   OnInit,
-  Optional,
   Output,
   ViewEncapsulation,
 } from '@angular/core';
@@ -82,6 +81,7 @@ export class SbbPaginator implements OnInit, OnDestroy {
 
   _labelNextPage: string = $localize`:Button label to navigate to the next page@@sbbPaginationNextPage:Next Page`;
 
+  private _changeDetectorRef = inject(ChangeDetectorRef);
   private _previousPageSize: number;
   private _isInitialized = false;
   private _initializedStream = new ReplaySubject<void>(1);
@@ -130,12 +130,12 @@ export class SbbPaginator implements OnInit, OnDestroy {
   /** Emits when the paginator is initialized. */
   initialized: Observable<void> = this._initializedStream;
 
-  constructor(
-    private _changeDetectorRef: ChangeDetectorRef,
-    @Optional()
-    @Inject(SBB_PAGINATOR_DEFAULT_OPTIONS)
-    defaults?: SbbPaginatorDefaultOptions,
-  ) {
+  constructor(...args: unknown[]);
+  constructor() {
+    const defaults = inject<SbbPaginatorDefaultOptions>(SBB_PAGINATOR_DEFAULT_OPTIONS, {
+      optional: true,
+    });
+
     if (defaults) {
       const { pageSize } = defaults;
 
