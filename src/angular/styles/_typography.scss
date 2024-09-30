@@ -1928,11 +1928,12 @@ textarea {
   }
 
   &:is(:disabled, .sbb-disabled) {
+    color: var(--sbb-ghost-button-label-color-disabled);
+    border-color: var(--sbb-ghost-button-border-color-disabled);
+
     :where(html:not(.sbb-lean)) & {
       display: none;
     }
-    color: var(--sbb-ghost-button-label-color-disabled);
-    border-color: var(--sbb-ghost-button-border-color-disabled);
   }
 }
 
@@ -3128,12 +3129,13 @@ $menuItemPaddingTopBottom: 4;
   }
 
   &:is(:disabled, .sbb-disabled) {
-    :where(html:not(.sbb-lean)) & {
-      display: none;
-    }
     cursor: default;
     color: var(--sbb-ghost-button-label-color-disabled);
     border-color: var(--sbb-ghost-button-border-color-disabled);
+
+    :where(html:not(.sbb-lean)) & {
+      display: none;
+    }
   }
 }
 
