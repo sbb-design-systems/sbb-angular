@@ -25,8 +25,6 @@ describe('SbbTabGroup', () => {
     TestBed.configureTestingModule({
       imports: [NoopAnimationsModule, SbbIconTestingModule],
     });
-
-    TestBed.compileComponents();
   }));
 
   describe('basic behavior', () => {
@@ -968,8 +966,6 @@ describe('SbbTabNavBar with a default config', () => {
       imports: [BrowserAnimationsModule, SbbIconTestingModule],
       providers: [{ provide: SBB_TABS_CONFIG, useValue: { dynamicHeight: true } }],
     });
-
-    TestBed.compileComponents();
   }));
 
   beforeEach(() => {
@@ -987,8 +983,6 @@ describe('nested SbbTabGroup with enabled animations', () => {
     TestBed.configureTestingModule({
       imports: [BrowserAnimationsModule, SbbIconTestingModule],
     });
-
-    TestBed.compileComponents();
   }));
 
   it('should not throw when creating a component with nested tab groups', fakeAsync(() => {

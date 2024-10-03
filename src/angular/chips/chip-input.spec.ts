@@ -33,8 +33,6 @@ describe('SbbChipInput', () => {
       ],
       declarations: [TestChipInput],
     });
-
-    TestBed.compileComponents();
   }));
 
   beforeEach(waitForAsync(() => {

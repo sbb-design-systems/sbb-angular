@@ -94,8 +94,6 @@ describe('SbbLightbox', () => {
         },
       ],
     });
-
-    TestBed.compileComponents();
   }));
 
   beforeEach(inject(
@@ -1493,8 +1491,6 @@ describe('SbbLightbox with a parent SbbLightbox', () => {
         { provide: Location, useClass: SpyLocation },
       ],
     });
-
-    TestBed.compileComponents();
   }));
 
   beforeEach(inject([SbbLightbox], (d: SbbLightbox) => {
@@ -1598,8 +1594,6 @@ describe('SbbLightbox with default options', () => {
       imports: [DialogTestModule],
       providers: [{ provide: SBB_LIGHTBOX_DEFAULT_OPTIONS, useValue: defaultConfig }],
     });
-
-    TestBed.compileComponents();
   }));
 
   beforeEach(inject([SbbLightbox, OverlayContainer], (d: SbbLightbox, oc: OverlayContainer) => {
@@ -1667,8 +1661,6 @@ describe('SbbLightbox with animations enabled', () => {
     TestBed.configureTestingModule({
       imports: [DialogTestModule, BrowserAnimationsModule],
     });
-
-    TestBed.compileComponents();
   }));
 
   beforeEach(inject([SbbLightbox, OverlayContainer], (d: SbbLightbox, oc: OverlayContainer) => {
@@ -1717,8 +1709,6 @@ describe('SbbDialog with explicit injector provided', () => {
     TestBed.configureTestingModule({
       imports: [BrowserAnimationsModule, ModuleBoundLightboxParentComponent],
     });
-
-    TestBed.compileComponents();
   }));
 
   beforeEach(inject([OverlayContainer], (oc: OverlayContainer) => {
@@ -1746,7 +1736,6 @@ describe('SbbLightbox with template only', () => {
     TestBed.configureTestingModule({
       imports: [DialogTestModule, BrowserAnimationsModule],
     });
-    TestBed.compileComponents();
   }));
 
   it('should display close button', fakeAsync(() => {
@@ -1764,7 +1753,6 @@ describe('SbbLightbox with close button', () => {
     TestBed.configureTestingModule({
       imports: [DialogTestModule, BrowserAnimationsModule],
     });
-    TestBed.compileComponents();
   }));
 
   it('should have pre configured aria label', fakeAsync(() => {

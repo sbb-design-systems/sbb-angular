@@ -19,8 +19,6 @@ describe('Chip Remove', () => {
         ChipWithoutRemoveIcon,
       ],
     });
-
-    TestBed.compileComponents();
   }));
 
   describe('basic behavior', () => {

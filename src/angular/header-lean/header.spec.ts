@@ -27,8 +27,6 @@ describe('SbbHeaderLean', () => {
         },
       ],
     });
-
-    TestBed.compileComponents();
   }));
 
   describe('without app chooser', () => {

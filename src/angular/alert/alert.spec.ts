@@ -11,7 +11,7 @@ describe('SbbAlert', () => {
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
       imports: [RouterTestingModule, NoopAnimationsModule, SbbIconTestingModule],
-    }).compileComponents();
+    });
   }));
 
   describe('normal variant', () => {
@@ -108,7 +108,7 @@ describe('SbbAlertOutlet', () => {
     beforeEach(waitForAsync(() => {
       TestBed.configureTestingModule({
         imports: [NoopAnimationsModule],
-      }).compileComponents();
+      });
     }));
 
     beforeEach(() => {
@@ -227,7 +227,7 @@ describe('SbbAlertOutlet', () => {
     beforeEach(waitForAsync(() => {
       TestBed.configureTestingModule({
         imports: [AlertOutletWithInnerAlert, NoopAnimationsModule],
-      }).compileComponents();
+      });
     }));
 
     beforeEach(() => {
@@ -265,7 +265,7 @@ describe('SbbAlertOutlet', () => {
     beforeEach(waitForAsync(() => {
       TestBed.configureTestingModule({
         imports: [NoopAnimationsModule],
-      }).compileComponents();
+      });
     }));
 
     it('should throw', () => {
@@ -280,7 +280,7 @@ describe('SbbAlertOutlet', () => {
     beforeEach(waitForAsync(() => {
       TestBed.configureTestingModule({
         imports: [NoopAnimationsModule],
-      }).compileComponents();
+      });
     }));
 
     beforeEach(() => {

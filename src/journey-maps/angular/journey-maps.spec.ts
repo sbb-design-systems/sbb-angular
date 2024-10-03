@@ -14,8 +14,8 @@ let component: SbbJourneyMaps;
 let fixture: ComponentFixture<SbbJourneyMaps>;
 
 describe('JourneyMapsClientComponent#selectedMarkerId', () => {
-  beforeEach(async () => {
-    await configureTestingModule();
+  beforeEach(() => {
+    configureTestingModule();
   });
 
   beforeEach(() => {
@@ -47,8 +47,8 @@ describe('JourneyMapsClientComponent#selectedMarkerId', () => {
 
 if (window.TouchEvent) {
   describe('JourneyMapsClientComponent#touchEventCollector', () => {
-    beforeEach(async () => {
-      await configureTestingModule();
+    beforeEach(() => {
+      configureTestingModule();
     });
 
     beforeEach(() => {

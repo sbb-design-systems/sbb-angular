@@ -1361,7 +1361,7 @@ function createComponent<T>(
   TestBed.configureTestingModule({
     imports: [SbbIconTestingModule, NoopAnimationsModule, ...imports, component],
     providers: [{ provide: Directionality, useFactory: () => dir }, ...providers],
-  }).compileComponents();
+  });
 
   return TestBed.createComponent<T>(component);
 }

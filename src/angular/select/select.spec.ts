@@ -953,7 +953,7 @@ describe('SbbSelect', () => {
         },
         ...providers,
       ],
-    }).compileComponents();
+    });
 
     overlayContainer = TestBed.inject(OverlayContainer);
     overlayContainerElement = overlayContainer.getContainerElement();

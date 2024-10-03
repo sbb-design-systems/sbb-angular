@@ -563,7 +563,7 @@ describe('SBB Tag Link', () => {
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
       imports: [TagLinkTestFixtureComponent],
-    }).compileComponents();
+    });
   }));
 
   beforeEach(() => {
@@ -592,7 +592,7 @@ describe('SBB Tag with Icon', () => {
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
       imports: [TagWithIconTextTestFixtureComponent],
-    }).compileComponents();
+    });
   }));
 
   beforeEach(() => {

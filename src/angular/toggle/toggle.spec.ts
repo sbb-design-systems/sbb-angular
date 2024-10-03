@@ -257,7 +257,7 @@ describe('SbbToggle', () => {
     beforeEach(waitForAsync(() => {
       TestBed.configureTestingModule({
         imports: [NoopAnimationsModule, SbbIconTestingModule],
-      }).compileComponents();
+      });
     }));
 
     beforeEach(() => {
@@ -344,7 +344,7 @@ describe('SbbToggle', () => {
     beforeEach(waitForAsync(() => {
       TestBed.configureTestingModule({
         imports: [NoopAnimationsModule, SbbIconTestingModule],
-      }).compileComponents();
+      });
     }));
 
     beforeEach(() => {
@@ -370,7 +370,7 @@ describe('SbbToggle', () => {
     beforeEach(waitForAsync(() => {
       TestBed.configureTestingModule({
         imports: [NoopAnimationsModule, SbbIconTestingModule],
-      }).compileComponents();
+      });
     }));
 
     beforeEach(() => {
@@ -417,7 +417,7 @@ describe('SbbToggle', () => {
     beforeEach(waitForAsync(() => {
       TestBed.configureTestingModule({
         imports: [NoopAnimationsModule, SbbIconTestingModule],
-      }).compileComponents();
+      });
     }));
 
     beforeEach(() => {
@@ -463,7 +463,7 @@ describe('SbbToggle', () => {
     beforeEach(waitForAsync(() => {
       TestBed.configureTestingModule({
         imports: [NoopAnimationsModule, SbbIconTestingModule],
-      }).compileComponents();
+      });
     }));
 
     beforeEach(() => {

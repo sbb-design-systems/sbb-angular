@@ -44,8 +44,6 @@ describe('SbbIconSidebar', () => {
       providers: [PROVIDE_FAKE_MEDIA_MATCHER],
     });
 
-    TestBed.compileComponents();
-
     inject([MediaMatcher], (fm: FakeMediaMatcher) => {
       mediaMatcher = fm;
     })();
@@ -407,8 +405,6 @@ describe('SbbIconSidebarContainer', () => {
       imports: [NoopAnimationsModule, SbbIconTestingModule],
       providers: [PROVIDE_FAKE_MEDIA_MATCHER],
     });
-
-    TestBed.compileComponents();
 
     inject([MediaMatcher], (fm: FakeMediaMatcher) => {
       mediaMatcher = fm;

@@ -11,7 +11,7 @@ describe('SbbTableDataSource', () => {
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
       imports: [NoopAnimationsModule, SbbSortApp],
-    }).compileComponents();
+    });
   }));
 
   describe('sort', () => {

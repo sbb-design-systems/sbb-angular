@@ -106,7 +106,7 @@ describe('SbbMonthView', () => {
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
       providers: [provideNativeDateAdapter()],
-    }).compileComponents();
+    });
   }));
 
   describe('standard month view', () => {

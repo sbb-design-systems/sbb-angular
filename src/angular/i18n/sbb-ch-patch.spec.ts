@@ -35,7 +35,7 @@ describe('i18n sbb patch', () => {
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
       declarations: [DateFormat],
-    }).compileComponents();
+    });
   }));
 
   beforeEach(() => {

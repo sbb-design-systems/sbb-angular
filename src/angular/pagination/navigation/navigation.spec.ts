@@ -67,7 +67,7 @@ describe('SbbNavigation', () => {
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
       imports: [SbbIconTestingModule, RouterTestingModule],
-    }).compileComponents();
+    });
   }));
 
   beforeEach(() => {
@@ -88,7 +88,7 @@ describe('SbbNavigation behaviour', () => {
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
       imports: [SbbIconTestingModule, RouterTestingModule, NavigationTestComponent],
-    }).compileComponents();
+    });
   }));
 
   beforeEach(() => {

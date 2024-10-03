@@ -105,7 +105,7 @@ class CalendarWithDateClassComponent {
 
 describe('SbbCalendar', () => {
   beforeEach(waitForAsync(() => {
-    TestBed.configureTestingModule({ imports: [SbbIconTestingModule] }).compileComponents();
+    TestBed.configureTestingModule({ imports: [SbbIconTestingModule] });
   }));
 
   describe('standard calendar', () => {

@@ -60,8 +60,6 @@ describe('SbbIcon', () => {
       ],
     });
 
-    TestBed.compileComponents();
-
     iconRegistry = TestBed.inject(SbbIconRegistry);
     http = TestBed.inject(HttpTestingController);
     sanitizer = TestBed.inject(DomSanitizer);
@@ -1218,8 +1216,6 @@ describe('SbbIcon without HttpClientModule', () => {
       imports: [SbbIconModule],
       declarations: [IconFromSvgName],
     });
-
-    TestBed.compileComponents();
   }));
 
   beforeEach(inject([SbbIconRegistry, DomSanitizer], (mir: SbbIconRegistry, ds: DomSanitizer) => {
