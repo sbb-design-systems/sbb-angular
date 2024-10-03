@@ -34,7 +34,7 @@ describe('SbbOption component', () => {
     TestBed.configureTestingModule({
       imports: [SbbOptionModule],
       declarations: [BasicOption],
-    }).compileComponents();
+    });
   }));
 
   it('should complete the `stateChanges` stream on destroy', () => {
@@ -181,7 +181,7 @@ describe('SbbOption component', () => {
             useValue: { inertGroups: true },
           },
         ],
-      }).compileComponents();
+      });
 
       fixture = TestBed.createComponent(InsideGroup);
       fixture.detectChanges();

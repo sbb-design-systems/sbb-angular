@@ -155,7 +155,7 @@ describe('SbbSearch', () => {
           SbbSearchModule,
           SimpleSearchComponent,
         ],
-      }).compileComponents();
+      });
     }));
 
     beforeEach(() => {
@@ -210,7 +210,7 @@ describe('SbbSearch', () => {
     beforeEach(waitForAsync(() => {
       TestBed.configureTestingModule({
         imports: [NoopAnimationsModule, SbbIconTestingModule],
-      }).compileComponents();
+      });
     }));
 
     beforeEach(() => {
@@ -344,7 +344,7 @@ describe('SbbSearch', () => {
       beforeEach(waitForAsync(() => {
         TestBed.configureTestingModule({
           imports: [NoopAnimationsModule, SbbIconTestingModule, SimpleSearchHeaderComponent],
-        }).compileComponents();
+        });
 
         const overlayContainer = TestBed.inject(OverlayContainer);
         overlayContainerElement = overlayContainer.getContainerElement();

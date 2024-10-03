@@ -32,7 +32,7 @@ describe('SbbSort', () => {
     beforeEach(waitForAsync(() => {
       TestBed.configureTestingModule({
         imports: [NoopAnimationsModule],
-      }).compileComponents();
+      });
     }));
 
     beforeEach(() => {
@@ -515,7 +515,7 @@ describe('SbbSort', () => {
             },
           },
         ],
-      }).compileComponents();
+      });
     }));
 
     beforeEach(() => {
@@ -551,7 +551,7 @@ describe('SbbSort', () => {
             },
           },
         ],
-      }).compileComponents();
+      });
     }));
 
     beforeEach(() => {

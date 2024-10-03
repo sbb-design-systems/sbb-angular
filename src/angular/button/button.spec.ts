@@ -12,8 +12,6 @@ describe('SbbButton', () => {
     TestBed.configureTestingModule({
       imports: [SbbIconTestingModule],
     });
-
-    TestBed.compileComponents();
   }));
 
   // General button tests

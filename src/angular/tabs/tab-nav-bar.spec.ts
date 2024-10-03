@@ -20,8 +20,6 @@ describe('SbbTabNavBar', () => {
         { provide: Directionality, useFactory: () => ({ value: dir, change: dirChange }) },
       ],
     });
-
-    TestBed.compileComponents();
   }));
 
   describe('basic behavior', () => {

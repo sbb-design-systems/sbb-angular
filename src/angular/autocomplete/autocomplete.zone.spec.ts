@@ -126,8 +126,6 @@ describe('SbbAutocomplete Zone.js integration', () => {
       providers: [provideZoneChangeDetection(), ...providers],
     });
 
-    TestBed.compileComponents();
-
     return TestBed.createComponent<T>(component);
   }
 

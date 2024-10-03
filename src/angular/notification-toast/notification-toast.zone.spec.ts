@@ -33,7 +33,7 @@ describe('NotificationToast Zone.js integration', () => {
         DirectiveWithViewContainer,
       ],
       providers: [provideZoneChangeDetection()],
-    }).compileComponents();
+    });
   }));
 
   beforeEach(inject([SbbNotificationToast], (nt: SbbNotificationToast) => {

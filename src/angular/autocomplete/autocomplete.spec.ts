@@ -597,8 +597,6 @@ describe('SbbAutocomplete', () => {
       providers,
     });
 
-    TestBed.compileComponents();
-
     inject([OverlayContainer], (oc: OverlayContainer) => {
       overlayContainer = oc;
       overlayContainerElement = oc.getContainerElement();

@@ -84,7 +84,7 @@ describe('SbbMenu', () => {
       imports: [SbbMenuModule, NoopAnimationsModule, SbbIconModule, SbbIconTestingModule],
       declarations: [component, ...declarations],
       providers,
-    }).compileComponents();
+    });
 
     overlayContainerElement = TestBed.inject(OverlayContainer).getContainerElement();
     focusMonitor = TestBed.inject(FocusMonitor);
@@ -2579,7 +2579,7 @@ describe('SbbMenu default overrides', () => {
           useValue: { overlapTrigger: true, xPosition: 'before', yPosition: 'above' },
         },
       ],
-    }).compileComponents();
+    });
   }));
 
   it('should allow for the default menu options to be overridden', fakeAsync(() => {
@@ -2604,7 +2604,7 @@ describe('SbbMenu contextmenu', () => {
         ContextmenuDynamicTrigger,
         ContextmenuOnlyTextTrigger,
       ],
-    }).compileComponents();
+    });
 
     inject([DomSanitizer], (domSanitizer: DomSanitizer) => {
       securityBypassSpy = spyOn(domSanitizer, 'bypassSecurityTrustHtml').and.callThrough();
@@ -2682,7 +2682,7 @@ describe('SbbMenu headless trigger', () => {
     TestBed.configureTestingModule({
       imports: [SbbMenuModule, NoopAnimationsModule, SbbIconModule, SbbIconTestingModule],
       declarations: [HeadlessTrigger],
-    }).compileComponents();
+    });
   }));
 
   it('should apply sbb-menu-trigger-headless css class', () => {
@@ -2714,7 +2714,7 @@ describe('SbbMenu offset', () => {
         PROVIDE_FAKE_MEDIA_MATCHER,
         { provide: SBB_MENU_INHERITED_TRIGGER_CONTEXT, useValue: sbbMenuInheritedTriggerContext },
       ],
-    }).compileComponents();
+    });
   }));
 
   afterEach(() => {
@@ -2766,7 +2766,7 @@ describe('SbbMenu contextmenu trigger', () => {
     TestBed.configureTestingModule({
       imports: [SbbMenuModule, NoopAnimationsModule, SbbIconModule, SbbIconTestingModule],
       declarations: [ContextmenuTrigger, ContextmenuCustomIconTrigger],
-    }).compileComponents();
+    });
   }));
 
   it('should apply contextmenu classes and use correct icon', () => {

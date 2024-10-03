@@ -74,7 +74,7 @@ describe('SbbRadioButtonPanel', () => {
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
       imports: [SbbIconTestingModule],
-    }).compileComponents();
+    });
   }));
 
   describe('multi selection', () => {

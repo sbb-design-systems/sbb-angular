@@ -1059,7 +1059,7 @@ describe('SbbChipList', () => {
         component,
       ],
       providers: [...providers],
-    }).compileComponents();
+    });
 
     return TestBed.createComponent<T>(component);
   }

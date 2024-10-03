@@ -30,8 +30,6 @@ describe('SbbTabBody', () => {
         { provide: Directionality, useFactory: () => ({ value: dir, change: dirChange }) },
       ],
     });
-
-    TestBed.compileComponents();
   }));
 
   describe('when initialized as center', () => {

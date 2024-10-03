@@ -59,8 +59,6 @@ describe('SbbSidebar', () => {
       imports: [NoopAnimationsModule, SbbIconTestingModule],
       providers: [PROVIDE_FAKE_MEDIA_MATCHER],
     });
-
-    TestBed.compileComponents();
   }));
 
   registerClearMediaMatcher();
@@ -890,8 +888,6 @@ describe('SbbSidebarContainer', () => {
       imports: [NoopAnimationsModule, SbbIconTestingModule],
       providers: [PROVIDE_FAKE_MEDIA_MATCHER],
     });
-
-    TestBed.compileComponents();
   }));
 
   registerClearMediaMatcher();
@@ -1079,8 +1075,6 @@ describe('SbbSidebar Usage', () => {
       ],
       providers: [PROVIDE_FAKE_MEDIA_MATCHER],
     });
-
-    TestBed.compileComponents();
 
     fixture = TestBed.createComponent(SbbSidebarTestComponent);
     sidebar = fixture.debugElement.query(By.directive(SbbSidebar));

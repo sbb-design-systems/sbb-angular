@@ -22,7 +22,7 @@ describe('SbbCalendarHeader', () => {
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
       imports: [SbbIconTestingModule],
-    }).compileComponents();
+    });
   }));
 
   describe('standard calendar', () => {

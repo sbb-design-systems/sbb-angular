@@ -23,7 +23,7 @@ describe('SbbCheckbox', () => {
   function createComponent<T>(componentType: Type<T>) {
     TestBed.configureTestingModule({
       imports: [componentType],
-    }).compileComponents();
+    });
 
     return TestBed.createComponent<T>(componentType);
   }

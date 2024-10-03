@@ -30,8 +30,6 @@ describe('SbbLightbox Zone.js integration', () => {
       ],
       providers: [provideZoneChangeDetection()],
     });
-
-    TestBed.compileComponents();
   }));
 
   beforeEach(inject([SbbLightbox], (d: SbbLightbox) => {

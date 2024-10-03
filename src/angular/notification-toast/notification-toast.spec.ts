@@ -53,7 +53,7 @@ describe('SbbNotificationToast icons', () => {
           },
         },
       ],
-    }).compileComponents();
+    });
   }));
 
   beforeEach(() => {
@@ -635,7 +635,7 @@ describe('SbbNotificationToast with parent SbbNotificationToast', () => {
     TestBed.configureTestingModule({
       imports: [NotificationToastTestModule, NoopAnimationsModule, SbbIconTestingModule],
       declarations: [ComponentThatProvidesSbbNotificationToast],
-    }).compileComponents();
+    });
 
     parentNotificationToast = TestBed.inject(SbbNotificationToast);
     liveAnnouncer = TestBed.inject(LiveAnnouncer);

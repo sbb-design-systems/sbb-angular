@@ -15,7 +15,7 @@ describe('LevelSwitchService', () => {
   let mapMock: any = {};
   let onZoomChangedCallbackFn: any;
 
-  beforeEach(async () => {
+  beforeEach(() => {
     TestBed.configureTestingModule({
       providers: [
         SbbLevelSwitcher,

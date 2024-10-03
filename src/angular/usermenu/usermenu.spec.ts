@@ -48,7 +48,7 @@ describe('SbbUsermenu with userName and displayName without image', () => {
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
       imports: [SbbIconTestingModule, RouterTestingModule, NoopAnimationsModule],
-    }).compileComponents();
+    });
   }));
 
   beforeEach(() => {
@@ -272,7 +272,7 @@ describe('SbbUsermenu with only displayName', () => {
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
       imports: [SbbIconTestingModule, NoopAnimationsModule],
-    }).compileComponents();
+    });
   }));
 
   beforeEach(() => {
@@ -303,7 +303,7 @@ describe('SbbUsermenu with only userName', () => {
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
       imports: [SbbIconTestingModule, NoopAnimationsModule],
-    }).compileComponents();
+    });
   }));
 
   beforeEach(() => {
@@ -334,7 +334,7 @@ describe('SbbUsermenu with custom image', () => {
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
       imports: [SbbIconTestingModule, NoopAnimationsModule],
-    }).compileComponents();
+    });
   }));
 
   beforeEach(() => {
@@ -360,7 +360,7 @@ describe('SbbUsermenu with no connected menu', () => {
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
       imports: [SbbIconTestingModule, NoopAnimationsModule],
-    }).compileComponents();
+    });
   }));
 
   beforeEach(() => {

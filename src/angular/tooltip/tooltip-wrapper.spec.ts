@@ -33,7 +33,7 @@ describe('SbbTooltipWrapper', () => {
     beforeEach(waitForAsync(() => {
       TestBed.configureTestingModule({
         imports: [SbbIconTestingModule, NoopAnimationsModule],
-      }).compileComponents();
+      });
 
       inject([OverlayContainer], (oc: OverlayContainer) => {
         overlayContainer = oc;
@@ -266,7 +266,7 @@ describe('SbbTooltipWrapper', () => {
     beforeEach(waitForAsync(() => {
       TestBed.configureTestingModule({
         imports: [SbbIconTestingModule, NoopAnimationsModule],
-      }).compileComponents();
+      });
     }));
 
     beforeEach(() => {

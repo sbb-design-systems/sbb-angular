@@ -45,8 +45,6 @@ describe('SbbDialog Zone.js integration', () => {
         },
       ],
     });
-
-    TestBed.compileComponents();
   }));
 
   beforeEach(inject([SbbDialog], (d: SbbDialog) => {
