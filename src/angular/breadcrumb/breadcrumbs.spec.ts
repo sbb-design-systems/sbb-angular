@@ -76,7 +76,7 @@ describe('SbbBreadcrumbs', () => {
     beforeEach(waitForAsync(() => {
       TestBed.configureTestingModule({
         imports: [SbbIconTestingModule, NoopAnimationsModule],
-      }).compileComponents();
+      });
     }));
 
     beforeEach(() => {
@@ -96,7 +96,7 @@ describe('SbbBreadcrumbs', () => {
     beforeEach(waitForAsync(() => {
       TestBed.configureTestingModule({
         imports: [BreadcrumbsSimpleTest, SbbIconTestingModule],
-      }).compileComponents();
+      });
     }));
 
     beforeEach(() => {
@@ -157,7 +157,7 @@ describe('SbbBreadcrumbs', () => {
     beforeEach(waitForAsync(() => {
       TestBed.configureTestingModule({
         imports: [SbbIconTestingModule, NoopAnimationsModule],
-      }).compileComponents();
+      });
     }));
 
     beforeEach(() => {

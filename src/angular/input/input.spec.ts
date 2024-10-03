@@ -930,7 +930,7 @@ function createComponent<T>(
   TestBed.configureTestingModule({
     imports: [BrowserAnimationsModule, ...imports, component, ...declarations],
     providers,
-  }).compileComponents();
+  });
 
   return TestBed.createComponent<T>(component);
 }

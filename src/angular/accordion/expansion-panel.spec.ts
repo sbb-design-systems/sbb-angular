@@ -36,7 +36,6 @@ describe('SbbExpansionPanel', () => {
     TestBed.configureTestingModule({
       imports: [NoopAnimationsModule, SbbIconTestingModule],
     });
-    TestBed.compileComponents();
   }));
 
   it('should expand and collapse the panel', fakeAsync(() => {

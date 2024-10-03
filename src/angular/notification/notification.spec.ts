@@ -16,7 +16,7 @@ describe('SbbNotification', () => {
     beforeEach(waitForAsync(() => {
       TestBed.configureTestingModule({
         imports: [NoopAnimationsModule, SbbIconTestingModule],
-      }).compileComponents();
+      });
     }));
 
     beforeEach(() => {
@@ -37,7 +37,7 @@ describe('SbbNotification', () => {
     beforeEach(waitForAsync(() => {
       TestBed.configureTestingModule({
         imports: [NoopAnimationsModule, SbbIconTestingModule, NotificationMockComponent],
-      }).compileComponents();
+      });
     }));
 
     beforeEach(() => {

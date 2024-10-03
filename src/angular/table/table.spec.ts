@@ -32,7 +32,7 @@ describe('SbbTable', () => {
     TestBed.configureTestingModule({
       imports: [NoopAnimationsModule, SbbIconTestingModule],
       providers: [ViewportRuler, { provide: ViewportRuler, useValue: viewportRulerMock }],
-    }).compileComponents();
+    });
   }));
 
   describe('with basic data source', () => {

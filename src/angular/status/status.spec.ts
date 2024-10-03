@@ -44,7 +44,7 @@ describe('SbbStatus', () => {
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
       imports: [SbbIconTestingModule],
-    }).compileComponents();
+    });
   }));
 
   describe('valid', () => {

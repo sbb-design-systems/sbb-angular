@@ -83,8 +83,6 @@ describe('SbbDialog', () => {
         },
       ],
     });
-
-    TestBed.compileComponents();
   }));
 
   beforeEach(inject(
@@ -1829,8 +1827,6 @@ describe('SbbDialog with a parent SbbDialog', () => {
         { provide: Location, useClass: SpyLocation },
       ],
     });
-
-    TestBed.compileComponents();
   }));
 
   beforeEach(inject([SbbDialog], (d: SbbDialog) => {
@@ -1934,8 +1930,6 @@ describe('SbbDialog with default options', () => {
       imports: [DialogTestModule],
       providers: [{ provide: SBB_DIALOG_DEFAULT_OPTIONS, useValue: defaultConfig }],
     });
-
-    TestBed.compileComponents();
   }));
 
   beforeEach(inject([SbbDialog, OverlayContainer], (d: SbbDialog, oc: OverlayContainer) => {
@@ -2006,8 +2000,6 @@ describe('SbbDialog with animations enabled', () => {
     TestBed.configureTestingModule({
       imports: [DialogTestModule, BrowserAnimationsModule],
     });
-
-    TestBed.compileComponents();
   }));
 
   beforeEach(inject([SbbDialog, OverlayContainer], (d: SbbDialog, oc: OverlayContainer) => {
@@ -2056,8 +2048,6 @@ describe('SbbDialog with explicit injector provided', () => {
     TestBed.configureTestingModule({
       imports: [BrowserAnimationsModule, ModuleBoundDialogParentComponent],
     });
-
-    TestBed.compileComponents();
   }));
 
   beforeEach(inject([OverlayContainer], (oc: OverlayContainer) => {
@@ -2085,7 +2075,6 @@ describe('SbbDialog with template only', () => {
     TestBed.configureTestingModule({
       imports: [DialogTestModule, BrowserAnimationsModule],
     });
-    TestBed.compileComponents();
   }));
 
   it('should display close button', fakeAsync(() => {
@@ -2103,7 +2092,6 @@ describe('SbbDialog with close button', () => {
     TestBed.configureTestingModule({
       imports: [DialogTestModule, BrowserAnimationsModule],
     });
-    TestBed.compileComponents();
   }));
 
   it('should have pre configured aria label', fakeAsync(() => {

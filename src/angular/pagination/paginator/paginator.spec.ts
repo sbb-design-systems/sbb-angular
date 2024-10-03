@@ -75,7 +75,7 @@ describe('SbbPaginator', () => {
     TestBed.configureTestingModule({
       imports: [NoopAnimationsModule, SbbIconTestingModule, type],
       providers: [...providers],
-    }).compileComponents();
+    });
 
     const fixture = TestBed.createComponent(type);
     fixture.detectChanges();

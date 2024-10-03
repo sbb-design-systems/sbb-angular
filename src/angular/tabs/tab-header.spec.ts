@@ -34,8 +34,6 @@ describe('SbbTabHeader', () => {
       imports: [ScrollingModule, SbbIconTestingModule],
       providers: [ViewportRuler],
     });
-
-    TestBed.compileComponents();
   }));
 
   describe('focusing', () => {

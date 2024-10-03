@@ -6,10 +6,10 @@ describe('LeitPoiComponent', () => {
   let component: SbbLeitPoi;
   let fixture: ComponentFixture<SbbLeitPoi>;
 
-  beforeEach(async () => {
-    await TestBed.configureTestingModule({
+  beforeEach(() => {
+    TestBed.configureTestingModule({
       declarations: [SbbLeitPoi],
-    }).compileComponents();
+    });
   });
 
   beforeEach(() => {

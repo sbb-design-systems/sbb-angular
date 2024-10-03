@@ -25,7 +25,6 @@ describe('AccordionDirective', () => {
     TestBed.configureTestingModule({
       imports: [BrowserAnimationsModule, SbbIconTestingModule],
     });
-    TestBed.compileComponents();
 
     inject([FocusMonitor], (fm: FocusMonitor) => {
       focusMonitor = fm;

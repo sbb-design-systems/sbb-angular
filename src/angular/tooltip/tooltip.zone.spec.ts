@@ -32,8 +32,6 @@ describe('SbbTooltip Zone.js integration', () => {
         },
       ],
     });
-
-    TestBed.compileComponents();
   }));
 
   beforeEach(() => {
