@@ -194,9 +194,9 @@ export class SbbJourneyMaps implements OnInit, AfterViewInit, OnDestroy, OnChang
   private _featureEventListenerComponent: SbbFeatureEventListener;
   private _defaultStyleOptions: SbbStyleOptions = {
     url: 'https://journey-maps-tiles.geocdn.sbb.ch/styles/{styleId}/style.json?api_key={apiKey}',
-    aerialId: 'aerial_sbb_ki_v2',
-    brightId: 'base_bright_v2_ki_v2',
-    darkId: 'base_dark_v2_ki_v2',
+    aerialId: 'journey_maps_aerial_v1',
+    brightId: 'journey_maps_bright_v1',
+    darkId: 'journey_maps_dark_v1',
     mode: 'bright',
   };
   private _defaultInteractionOptions: SbbInteractionOptions = {
