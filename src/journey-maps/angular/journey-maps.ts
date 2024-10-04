@@ -30,6 +30,7 @@ import {
   SbbFeaturesHoverChangeEventData,
   SbbFeaturesSelectEventData,
   SbbInteractionOptions,
+  SbbJourneyMapsRoutingOptions,
   SbbJourneyRoutesOptions,
   SbbListenerOptions,
   SbbMarkerOptions,
@@ -87,6 +88,13 @@ import { getInvalidRoutingOptionCombination } from './util/input-validation';
 export class SbbJourneyMaps implements OnInit, AfterViewInit, OnDestroy, OnChanges {
   /** Your personal API key. Ask <a href="mailto:dlrokas@sbb.ch">dlrokas@sbb.ch</a> if you need one. */
   @Input() apiKey: string;
+  /**
+   * @deprecated
+   * This method will be removed in future versions. Use {@link journeyRoutesOption} instead.
+   * Input to display JourneyMaps GeoJson routing data on the map.
+   * **WARNING:** The map currently doesn't support more than one of these fields to be set at a time
+   */
+  @Input() journeyMapsRoutingOption?: SbbJourneyMapsRoutingOptions;
   /**
    * Input to display JourneyRoutes GeoJson routing data on the map.
    *
@@ -554,6 +562,49 @@ export class SbbJourneyMaps implements OnInit, AfterViewInit, OnDestroy, OnChang
       this._updateMarkers();
     }
 
+    // @deprecated remove this block with SbbJourneyMapsRoutingOptions.
+    // handle journey, transfer, and routes together, otherwise they can overwrite each other's transfer or route data
+    if (changes.journeyMapsRoutingOption) {
+      const invalidKeyCombination = getInvalidRoutingOptionCombination(
+        this.journeyMapsRoutingOption ?? {},
+      );
+      if (invalidKeyCombination.length) {
+        console.error(
+          `journeyMapsRoutingOption: Use only one of the following: 'transfer', 'journey', 'routes'. Received: ` +
+            invalidKeyCombination.map((key) => `'${key}'`).join(', '),
+        );
+      } else {
+        if (this._haveRoutesMetaInformationsChanged(changes)) {
+          this._updateMarkers();
+        }
+
+        this._executeWhenMapStyleLoaded(() => {
+          // stam: is there other way to achieve this ?
+          const mapSelectionEventService =
+            this._featureEventListenerComponent.mapSelectionEventService;
+
+          // remove previous data from map
+          this._mapJourneyService.updateJourney(this._map, mapSelectionEventService, undefined);
+          this._mapTransferService.updateTransfer(this._map, undefined);
+          this._mapRoutesService.updateRoutes(this._map, mapSelectionEventService, undefined);
+          this._mapLeitPoiService.processData(this._map, undefined);
+          // only add new data if we have some
+          if (
+            changes.journeyMapsRoutingOption.currentValue?.journey ||
+            changes.journeyMapsRoutingOption.currentValue?.journeyMetaInformation
+          ) {
+            this._updateJourney();
+          }
+          if (changes.journeyMapsRoutingOption.currentValue?.transfer) {
+            this._updateTransfer();
+          }
+          if (changes.journeyMapsRoutingOption.currentValue?.routes) {
+            this._updateRoutes();
+          }
+        });
+      }
+    }
+
     // handle journey, transfer, and routes together, otherwise they can overwrite each other's transfer or route data
     if (changes.journeyRoutesOption) {
       const invalidKeyCombination = getInvalidRoutingOptionCombination(
@@ -575,8 +626,7 @@ export class SbbJourneyMaps implements OnInit, AfterViewInit, OnDestroy, OnChang
             this._featureEventListenerComponent.mapSelectionEventService;
 
           // remove previous data from map
-          this._mapJourneyService.updateJourney(this._map, mapSelectionEventService, undefined);
-          this._mapTransferService.updateTransfer(this._map, undefined); // TODO: asi, still needed for v1?
+          this._mapJourneyService.updateTrip(this._map, mapSelectionEventService, undefined);
           this._mapRoutesService.updateRoutes(this._map, mapSelectionEventService, undefined);
           this._mapLeitPoiService.processData(this._map, undefined);
           // only add new data if we have some
@@ -584,7 +634,7 @@ export class SbbJourneyMaps implements OnInit, AfterViewInit, OnDestroy, OnChang
             changes.journeyRoutesOption.currentValue?.trip ||
             changes.journeyRoutesOption.currentValue?.tripMetaInformation
           ) {
-            this._updateTrips();
+            this._updateTrip();
           }
           if (changes.journeyRoutesOption.currentValue?.routes) {
             this._updateRoutes();
@@ -876,8 +926,18 @@ export class SbbJourneyMaps implements OnInit, AfterViewInit, OnDestroy, OnChang
           );
           this._mapLayerFilterService.collectLvlLayers();
           this._levelSwitchService.switchLevel(this._levelSwitchService.selectedLevel);
+
+          // @deprecated remove this block with SbbJourneyMapsRoutingOptions.
+          if (this.journeyMapsRoutingOption?.journey) {
+            this._updateJourney();
+          } else if (this.journeyMapsRoutingOption?.transfer) {
+            this._updateTransfer();
+          } else if (this.journeyMapsRoutingOption?.routes) {
+            this._updateRoutes();
+          }
+
           if (this.journeyRoutesOption?.trip) {
-            this._updateTrips();
+            this._updateTrip();
           } else if (this.journeyRoutesOption?.routes) {
             this._updateRoutes();
           }
@@ -979,14 +1039,20 @@ export class SbbJourneyMaps implements OnInit, AfterViewInit, OnDestroy, OnChang
     const normalMarkers = this.markerOptions.markers ?? [];
     const routeMidpointMarkers =
       this._mapRoutesService.getRouteMarkers(
-        this.journeyRoutesOption?.routes,
-        this.journeyRoutesOption?.routesMetaInformations,
+        this.journeyRoutesOption?.routes ?? this.journeyMapsRoutingOption?.routes,
+        this.journeyRoutesOption?.routesMetaInformations ??
+          this.journeyMapsRoutingOption?.routesMetaInformations,
       ) ?? [];
+
     return [...normalMarkers, ...routeMidpointMarkers];
   }
 
   private _haveRoutesMetaInformationsChanged(changes: SimpleChanges): boolean {
     return (
+      changes.journeyMapsRoutingOption?.currentValue?.routesMetaInformations?.length !==
+        changes.journeyMapsRoutingOption?.previousValue?.routesMetaInformations?.length ||
+      changes.journeyMapsRoutingOption?.currentValue?.routesMetaInformations !==
+        changes.journeyMapsRoutingOption?.previousValue?.routesMetaInformations ||
       changes.journeyRoutesOption?.currentValue?.routesMetaInformations?.length !==
         changes.journeyRoutesOption?.previousValue?.routesMetaInformations?.length ||
       changes.journeyRoutesOption?.currentValue?.routesMetaInformations !==
@@ -994,8 +1060,26 @@ export class SbbJourneyMaps implements OnInit, AfterViewInit, OnDestroy, OnChang
     );
   }
 
-  private _updateTrips() {
+  /**
+   * @deprecated
+   * This function will be removed in future versions. Use {@link _updateTrip} instead.
+   */
+  private _updateJourney() {
     this._mapJourneyService.updateJourney(
+      this._map,
+      this._featureEventListenerComponent.mapSelectionEventService,
+      this.journeyMapsRoutingOption!.journey,
+      this.journeyMapsRoutingOption!.journeyMetaInformation?.selectedLegId,
+    );
+    this._mapLeitPoiService.processData(
+      this._map,
+      this.journeyMapsRoutingOption!.journey,
+      this.journeyMapsRoutingOption!.journeyMetaInformation?.selectedLegId,
+    );
+  }
+
+  private _updateTrip() {
+    this._mapJourneyService.updateTrip(
       this._map,
       this._featureEventListenerComponent.mapSelectionEventService,
       this.journeyRoutesOption!.trip,
@@ -1008,12 +1092,18 @@ export class SbbJourneyMaps implements OnInit, AfterViewInit, OnDestroy, OnChang
     );
   }
 
+  private _updateTransfer() {
+    this._mapTransferService.updateTransfer(this._map, this.journeyMapsRoutingOption!.transfer);
+    this._mapLeitPoiService.processData(this._map, this.journeyMapsRoutingOption!.transfer);
+  }
+
   private _updateRoutes() {
     this._mapRoutesService.updateRoutes(
       this._map,
       this._featureEventListenerComponent.mapSelectionEventService,
-      this.journeyRoutesOption!.routes,
-      this.journeyRoutesOption!.routesMetaInformations,
+      this.journeyRoutesOption?.routes ?? this.journeyMapsRoutingOption?.routes,
+      this.journeyRoutesOption?.routesMetaInformations ??
+        this.journeyMapsRoutingOption?.routesMetaInformations,
     );
   }
 

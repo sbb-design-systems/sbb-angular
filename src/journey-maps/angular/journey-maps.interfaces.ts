@@ -74,7 +74,53 @@ export interface SbbBoundingBoxOptions {
 }
 
 /**
+ * @deprecated
+ * This interface will be removed in future versions. Use {@link SbbJourneyRoutesOptions} instead.
  * **WARNING:** The map doesn't support more than one of these fields to be set at a time.
+ */
+export interface SbbJourneyMapsRoutingOptions {
+  /**
+   * GeoJSON as returned by the <code>/journey</code> operation of Journey-Maps.
+   * All routes and transfers will be displayed on the map.
+   * Indoor routing is not (yet) supported.
+   * Note: journey, transfer and routes cannot be displayed at the same time.
+   */
+  journey?: FeatureCollection;
+
+  /**
+   * GeoJSON as returned by the <code>/transfer</code> operation of Journey-Maps.
+   * The transfer will be displayed on the map.
+   * Indoor routing is not (yet) supported.
+   * Note: journey, transfer and routes cannot be displayed at the same time.
+   */
+  transfer?: FeatureCollection;
+
+  /**
+   * An array of GeoJSON objects as returned by the <code>/route</code> and <code>/routes</code> operation of Journey-Maps.
+   * All routes will be displayed on the map.
+   * Indoor routing is not (yet) supported.
+   * Note: journey, transfer and routes cannot be displayed at the same time.
+   */
+  routes?: SbbSelectableFeatureCollection[];
+
+  /**
+   * Additional information as defined in <code>SbbJourneyMetaInformation</code>.
+   * selectedLegId must match with a legId from the given journey.
+   * Note: journey, transfer and routes cannot be displayed at the same time.
+   */
+  journeyMetaInformation?: SbbJourneyMetaInformation;
+
+  /**
+   * An array of additional information as defined in <code>SbbRouteMetaInformation</code>.
+   * ID must match with ID from given routes.
+   * If no meta information for a route given, it will use the default settings.
+   * Note: journey, transfer and routes cannot be displayed at the same time.
+   */
+  routesMetaInformations?: SbbRouteMetaInformation[];
+}
+
+/**
+ * **WARNING:** The map doesn't support trip and routes to be set at the same time.
  */
 export interface SbbJourneyRoutesOptions {
   /**
@@ -204,6 +250,15 @@ export interface SbbRailNetworkOptions {
    * Set 'transparent' to hide the rail network, or use other color-format as specified in https://maplibre.org/maplibre-gl-js-docs/style-spec/types/.
    * */
   railNetworkColor?: string;
+}
+
+/**
+ * @deprecated
+ * This interface will be removed in the future. Use {@link SbbTripMetaInformation} instead.
+ */
+export interface SbbJourneyMetaInformation {
+  /** ID that matches a leg ID in <code>SbbJourneyMapsRoutingOptions.journey</code>. */
+  selectedLegId: string;
 }
 
 export interface SbbTripMetaInformation {

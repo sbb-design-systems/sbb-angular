@@ -19,21 +19,44 @@ export class SbbMapJourneyService {
     private _mapTransferService: SbbMapTransferService,
   ) {}
 
+  /**
+   * @deprecated
+   * This function will be removed in the future. Use {@link updateTrip} instead.
+   */
   updateJourney(
     map: MaplibreMap,
     mapSelectionEventService: SbbMapSelectionEvent,
     journey: FeatureCollection = SBB_EMPTY_FEATURE_COLLECTION,
     selectedLegId?: string,
   ): void {
+    this._update(map, mapSelectionEventService, journey, selectedLegId, LegIdType.JOURNEY);
+  }
+
+  updateTrip(
+    map: MaplibreMap,
+    mapSelectionEventService: SbbMapSelectionEvent,
+    trip: FeatureCollection = SBB_EMPTY_FEATURE_COLLECTION,
+    selectedLegId?: string,
+  ): void {
+    this._update(map, mapSelectionEventService, trip, selectedLegId, LegIdType.TRIP);
+  }
+
+  private _update(
+    map: MaplibreMap,
+    mapSelectionEventService: SbbMapSelectionEvent,
+    featureCollection: FeatureCollection,
+    selectedLegId: string | undefined,
+    defaultLegId: string,
+  ): void {
     const routeFeatures: Feature[] = [];
     const stopoverFeatures: Feature[] = [];
     const transferFeatures: Feature[] = [];
 
-    for (const feature of journey.features) {
+    for (const feature of featureCollection.features) {
       const properties = feature.properties!;
       const type = properties.type;
       const pathType = properties.pathType;
-      const legId = properties.legId ?? 'trip'; // default: all belong together
+      const legId = properties.legId ?? defaultLegId; // default: all belong together
       const isSelected = selectedLegId === legId || !selectedLegId; // default state: all selected
 
       properties[SBB_ROUTE_ID_PROPERTY_NAME] = legId;
@@ -68,4 +91,9 @@ export class SbbMapJourneyService {
       );
     }
   }
+}
+
+export enum LegIdType {
+  JOURNEY = 'journey',
+  TRIP = 'trip',
 }

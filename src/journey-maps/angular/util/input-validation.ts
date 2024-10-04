@@ -1,7 +1,7 @@
-import { SbbJourneyRoutesOptions } from '../journey-maps.interfaces';
+import { SbbJourneyMapsRoutingOptions, SbbJourneyRoutesOptions } from '../journey-maps.interfaces';
 
 export const getInvalidRoutingOptionCombination = (
-  routingOptions: SbbJourneyRoutesOptions,
+  routingOptions: SbbJourneyMapsRoutingOptions & SbbJourneyRoutesOptions,
 ): string[] => {
   const nonEmptyOptions = Object.entries(routingOptions).filter(([_, value]) => value);
 
@@ -9,10 +9,15 @@ export const getInvalidRoutingOptionCombination = (
 
   const isValid =
     nbOfOptions === 0 ||
-    (nbOfOptions === 1 && (!!routingOptions.trip || !!routingOptions.routes)) ||
+    (nbOfOptions === 1 &&
+      (!!routingOptions.journey ||
+        !!routingOptions.routes ||
+        !!routingOptions.transfer ||
+        !!routingOptions.trip)) ||
     (nbOfOptions === 2 &&
-      ((!!routingOptions.trip && !!routingOptions.tripMetaInformation) ||
-        (!!routingOptions.routes && !!routingOptions.routesMetaInformations)));
+      ((!!routingOptions.journey && !!routingOptions.journeyMetaInformation) ||
+        (!!routingOptions.routes && !!routingOptions.routesMetaInformations) ||
+        (!!routingOptions.trip && !!routingOptions.tripMetaInformation)));
 
   return isValid ? [] : nonEmptyOptions.map(([key, _]) => key);
 };

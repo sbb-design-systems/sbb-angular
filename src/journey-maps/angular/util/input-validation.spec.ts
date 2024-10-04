@@ -8,14 +8,14 @@ describe('getInvalidKeyCombination()', () => {
 
     expect(
       getInvalidRoutingOptionCombination({
-        trip: SBB_EMPTY_FEATURE_COLLECTION,
+        journey: SBB_EMPTY_FEATURE_COLLECTION,
       }),
     ).toEqual([]);
 
     expect(
       getInvalidRoutingOptionCombination({
-        trip: SBB_EMPTY_FEATURE_COLLECTION,
-        tripMetaInformation: { selectedLegId: '' },
+        journey: SBB_EMPTY_FEATURE_COLLECTION,
+        journeyMetaInformation: { selectedLegId: '' },
       }),
     ).toEqual([]);
 
@@ -29,6 +29,55 @@ describe('getInvalidKeyCombination()', () => {
       getInvalidRoutingOptionCombination({
         routes: [SBB_EMPTY_FEATURE_COLLECTION],
         routesMetaInformations: [],
+      }),
+    ).toEqual([]);
+
+    expect(
+      getInvalidRoutingOptionCombination({
+        transfer: SBB_EMPTY_FEATURE_COLLECTION,
+      }),
+    ).toEqual([]);
+
+    expect(
+      getInvalidRoutingOptionCombination({
+        journey: SBB_EMPTY_FEATURE_COLLECTION,
+        journeyMetaInformation: undefined,
+        routes: undefined,
+        routesMetaInformations: undefined,
+        transfer: undefined,
+      }),
+    ).toEqual([]);
+
+    expect(
+      getInvalidRoutingOptionCombination({
+        journey: undefined,
+        journeyMetaInformation: undefined,
+        routes: [],
+        routesMetaInformations: undefined,
+        transfer: undefined,
+      }),
+    ).toEqual([]);
+
+    expect(
+      getInvalidRoutingOptionCombination({
+        journey: undefined,
+        journeyMetaInformation: undefined,
+        routes: undefined,
+        routesMetaInformations: undefined,
+        transfer: SBB_EMPTY_FEATURE_COLLECTION,
+      }),
+    ).toEqual([]);
+
+    expect(
+      getInvalidRoutingOptionCombination({
+        trip: SBB_EMPTY_FEATURE_COLLECTION,
+      }),
+    ).toEqual([]);
+
+    expect(
+      getInvalidRoutingOptionCombination({
+        trip: SBB_EMPTY_FEATURE_COLLECTION,
+        tripMetaInformation: { selectedLegId: '' },
       }),
     ).toEqual([]);
 
@@ -63,6 +112,41 @@ describe('getInvalidKeyCombination()', () => {
   it('returns non-empty array', () => {
     expect(
       getInvalidRoutingOptionCombination({
+        journey: SBB_EMPTY_FEATURE_COLLECTION,
+        routes: [SBB_EMPTY_FEATURE_COLLECTION],
+      }),
+    ).toEqual(['journey', 'routes']);
+
+    expect(
+      getInvalidRoutingOptionCombination({
+        routes: [SBB_EMPTY_FEATURE_COLLECTION],
+        transfer: SBB_EMPTY_FEATURE_COLLECTION,
+      }),
+    ).toEqual(['routes', 'transfer']);
+
+    expect(
+      getInvalidRoutingOptionCombination({
+        journey: SBB_EMPTY_FEATURE_COLLECTION,
+        transfer: SBB_EMPTY_FEATURE_COLLECTION,
+      }),
+    ).toEqual(['journey', 'transfer']);
+
+    expect(
+      getInvalidRoutingOptionCombination({
+        journey: undefined,
+        journeyMetaInformation: { selectedLegId: '' },
+      }),
+    ).toEqual(['journeyMetaInformation']);
+
+    expect(
+      getInvalidRoutingOptionCombination({
+        routes: undefined,
+        routesMetaInformations: [],
+      }),
+    ).toEqual(['routesMetaInformations']);
+
+    expect(
+      getInvalidRoutingOptionCombination({
         trip: SBB_EMPTY_FEATURE_COLLECTION,
         routes: [SBB_EMPTY_FEATURE_COLLECTION],
       }),
@@ -81,12 +165,5 @@ describe('getInvalidKeyCombination()', () => {
         tripMetaInformation: { selectedLegId: '' },
       }),
     ).toEqual(['tripMetaInformation']);
-
-    expect(
-      getInvalidRoutingOptionCombination({
-        routes: undefined,
-        routesMetaInformations: [],
-      }),
-    ).toEqual(['routesMetaInformations']);
   });
 });
