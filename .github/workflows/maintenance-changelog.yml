@@ -20,7 +20,7 @@ jobs:
         with:
           APP_ID: ${{ secrets.MAINTENANCE_APP_ID }}
           APP_PEM: ${{ secrets.MAINTENANCE_APP_PEM }}
-      - uses: actions/checkout@692973e3d937129bcbf40652eb9f2f61becf3332 # v4
+      - uses: actions/checkout@eef61447b9ff4aafe5dcd4e0bbf5d482be7e7871 # v4
         with:
           token: ${{ steps.get_token.outputs.app_token }}
           fetch-depth: 0
@@ -47,7 +47,7 @@ jobs:
     if: always() && needs.cherry_pick.result == 'failure'
     steps:
       - run: echo ${{ needs.cherry_pick.outputs.failed_release_version }}
-      - uses: actions/checkout@692973e3d937129bcbf40652eb9f2f61becf3332 # v4
+      - uses: actions/checkout@eef61447b9ff4aafe5dcd4e0bbf5d482be7e7871 # v4
       - uses: actions/setup-node@v4
         if: needs.cherry_pick.outputs.failed_release_version
         with:
