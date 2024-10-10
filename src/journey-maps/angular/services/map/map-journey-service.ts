@@ -25,15 +25,34 @@ export class SbbMapJourneyService {
     journey: FeatureCollection = SBB_EMPTY_FEATURE_COLLECTION,
     selectedLegId?: string,
   ): void {
+    this._update(map, mapSelectionEventService, journey, selectedLegId, 'journey');
+  }
+
+  updateTrip(
+    map: MaplibreMap,
+    mapSelectionEventService: SbbMapSelectionEvent,
+    trip: FeatureCollection = SBB_EMPTY_FEATURE_COLLECTION,
+    selectedLegId?: string,
+  ): void {
+    this._update(map, mapSelectionEventService, trip, selectedLegId, 'trip');
+  }
+
+  private _update(
+    map: MaplibreMap,
+    mapSelectionEventService: SbbMapSelectionEvent,
+    featureCollection: FeatureCollection,
+    selectedLegId: string | undefined,
+    defaultLegId: 'journey' | 'trip',
+  ): void {
     const routeFeatures: Feature[] = [];
     const stopoverFeatures: Feature[] = [];
     const transferFeatures: Feature[] = [];
 
-    for (const feature of journey.features) {
+    for (const feature of featureCollection.features) {
       const properties = feature.properties!;
       const type = properties.type;
       const pathType = properties.pathType;
-      const legId = properties.legId ?? 'journey'; // default: all belong together
+      const legId = properties.legId ?? defaultLegId; // default: all belong together
       const isSelected = selectedLegId === legId || !selectedLegId; // default state: all selected
 
       properties[SBB_ROUTE_ID_PROPERTY_NAME] = legId;
