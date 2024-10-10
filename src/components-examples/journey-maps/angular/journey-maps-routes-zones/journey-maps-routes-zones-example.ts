@@ -22,15 +22,15 @@ import { LngLatBounds, LngLatBoundsLike, LngLatLike } from 'maplibre-gl';
 import { BehaviorSubject, Subject } from 'rxjs';
 import { filter, map, take, takeUntil } from 'rxjs/operators';
 
-import { beSh } from '../shared/journey/be-sh';
-import { zhShWaldfriedhof } from '../shared/journey/zh-sh_waldfriedhof';
 import { bielLyssRoutes, bielLyssRoutesOptions } from '../shared/routes/biel-lyss';
 import { bnLsRoutes, bnLsRoutesOptions } from '../shared/routes/bn-ls';
 import { bernIndoor } from '../shared/transfer/bern-indoor';
 import { geneveIndoor } from '../shared/transfer/geneve-indoor';
 import { luzern4j } from '../shared/transfer/luzern4-j';
 import { zurichIndoor } from '../shared/transfer/zurich-indoor';
+import { tripBeSh } from '../shared/trip/be-sh';
 import { tripZhBeWyleregg } from '../shared/trip/zh-be_wyleregg';
+import { tripZhShWaldfriedhof } from '../shared/trip/zh-sh_waldfriedhof';
 import { bernBurgdorfZones } from '../shared/zone/bern-burgdorf';
 import { baselBielZones } from '../shared/zone/bs-bl';
 
@@ -42,7 +42,7 @@ declare global {
 
 /**
  * @title Journey Maps - SBB Map Routes & Zones
- * @includeExtraFiles ../shared/config.ts,../shared/markers.ts,../shared/journey/be-sh.ts,../shared/trip/zh-be_wyleregg.ts,../shared/journey/zh-sh_waldfriedhof.ts,../shared/routes/biel-lyss.ts,../shared/routes/bn-ls.ts,../shared/transfer/bern-indoor.ts,../shared/transfer/geneve-indoor.ts,../shared/transfer/luzern4-j.ts,../shared/transfer/zurich-indoor.ts,../shared/zone/bern-burgdorf.ts,../shared/zone/bs-bl.ts
+ * @includeExtraFiles ../shared/config.ts,../shared/markers.ts,../shared/trip/be-sh.ts,../shared/trip/zh-be_wyleregg.ts,../shared/trip/zh-sh_waldfriedhof.ts,../shared/routes/biel-lyss.ts,../shared/routes/bn-ls.ts,../shared/transfer/bern-indoor.ts,../shared/transfer/geneve-indoor.ts,../shared/transfer/luzern4-j.ts,../shared/transfer/zurich-indoor.ts,../shared/zone/bern-burgdorf.ts,../shared/zone/bs-bl.ts
  * @order 6
  *  */
 
@@ -271,11 +271,11 @@ const JOURNEY_MAPS_DEFAULT_ROUTING_OPTIONS: {
   },
   {
     label: 'Zürich - Schaffhausen, Waldfriedhof',
-    value: { trip: zhShWaldfriedhof },
+    value: { trip: tripZhShWaldfriedhof },
   },
   {
     label: 'Bern - Schaffhausen',
-    value: { trip: beSh },
+    value: { trip: tripBeSh },
   },
   {
     label: 'Bern - Lausanne',
