@@ -25,7 +25,7 @@ export class SbbMapJourneyService {
     journey: FeatureCollection = SBB_EMPTY_FEATURE_COLLECTION,
     selectedLegId?: string,
   ): void {
-    this._update(map, mapSelectionEventService, journey, selectedLegId, LegIdType.JOURNEY);
+    this._update(map, mapSelectionEventService, journey, selectedLegId, 'journey');
   }
 
   updateTrip(
@@ -34,7 +34,7 @@ export class SbbMapJourneyService {
     trip: FeatureCollection = SBB_EMPTY_FEATURE_COLLECTION,
     selectedLegId?: string,
   ): void {
-    this._update(map, mapSelectionEventService, trip, selectedLegId, LegIdType.TRIP);
+    this._update(map, mapSelectionEventService, trip, selectedLegId, 'trip');
   }
 
   private _update(
@@ -42,7 +42,7 @@ export class SbbMapJourneyService {
     mapSelectionEventService: SbbMapSelectionEvent,
     featureCollection: FeatureCollection,
     selectedLegId: string | undefined,
-    defaultLegId: string,
+    defaultLegId: 'journey' | 'trip',
   ): void {
     const routeFeatures: Feature[] = [];
     const stopoverFeatures: Feature[] = [];
@@ -87,9 +87,4 @@ export class SbbMapJourneyService {
       );
     }
   }
-}
-
-export enum LegIdType {
-  JOURNEY = 'journey',
-  TRIP = 'trip',
 }
