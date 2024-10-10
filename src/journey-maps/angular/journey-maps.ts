@@ -68,7 +68,10 @@ import { SbbMapTransferService } from './services/map/map-transfer-service';
 import { SbbMapUrlService } from './services/map/map-url-service';
 import { SbbMapZoneService } from './services/map/map-zone-service';
 import { MarkerOrPoiSelectionStateService } from './services/map/marker-or-poi-selection-state.service';
-import { getInvalidRoutingOptionCombination } from './util/input-validation';
+import {
+  getInvalidJourneyMapsRoutingOptionCombination,
+  getInvalidJourneyRoutesOptionCombination,
+} from './util/input-validation';
 
 /**
  * This component uses the Maplibre GL JS api to render a map and display the given data on the map.
@@ -564,7 +567,7 @@ export class SbbJourneyMaps implements OnInit, AfterViewInit, OnDestroy, OnChang
 
     // handle journey, transfer, and routes together, otherwise they can overwrite each other's transfer or route data
     if (changes.journeyMapsRoutingOption) {
-      const invalidKeyCombination = getInvalidRoutingOptionCombination(
+      const invalidKeyCombination = getInvalidJourneyMapsRoutingOptionCombination(
         this.journeyMapsRoutingOption ?? {},
       );
       if (invalidKeyCombination.length) {
@@ -606,7 +609,7 @@ export class SbbJourneyMaps implements OnInit, AfterViewInit, OnDestroy, OnChang
 
     // handle trip and routes together, otherwise they can overwrite each other's trip or route data
     if (changes.journeyRoutesOption) {
-      const invalidKeyCombination = getInvalidRoutingOptionCombination(
+      const invalidKeyCombination = getInvalidJourneyRoutesOptionCombination(
         this.journeyRoutesOption ?? {},
       );
       if (invalidKeyCombination.length) {
