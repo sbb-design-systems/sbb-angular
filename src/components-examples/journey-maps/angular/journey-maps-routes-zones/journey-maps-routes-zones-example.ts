@@ -10,6 +10,7 @@ import { SbbInputModule } from '@sbb-esta/angular/input';
 import { SbbNotificationModule } from '@sbb-esta/angular/notification';
 import { SbbRadioButtonModule } from '@sbb-esta/angular/radio-button';
 import { SbbSelectModule } from '@sbb-esta/angular/select';
+import { tripZhBeWyleregg } from '@sbb-esta/components-examples/journey-maps/angular/shared/trip/zh-be_wyleregg';
 import {
   SbbJourneyMaps,
   SbbJourneyMapsModule,
@@ -264,7 +265,7 @@ const JOURNEY_MAPS_DEFAULT_ROUTING_OPTIONS: {
   { label: '(none)', value: undefined },
   {
     label: 'Zürich - Bern, Wyleregg',
-    value: { trip: zhBeWyleregg },
+    value: { trip: tripZhBeWyleregg },
   },
   {
     label: 'Zürich - Schaffhausen, Waldfriedhof',
