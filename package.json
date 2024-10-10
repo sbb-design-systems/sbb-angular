@@ -82,7 +82,7 @@
     "@angular/language-service": "18.2.7",
     "@angular/localize": "18.2.7",
     "@angular/ng-dev": "https://github.com/angular/dev-infra-private-ng-dev-builds.git#129e73ce2b76b247eb37197291bdda1adbcb1cc5",
-    "@babel/core": "7.25.7",
+    "@babel/core": "7.25.8",
     "@babel/plugin-proposal-async-generator-functions": "^7.20.7",
     "@babel/traverse": "7.25.7",
     "@bazel/bazelisk": "1.22.0",
