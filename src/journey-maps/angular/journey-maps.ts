@@ -562,7 +562,6 @@ export class SbbJourneyMaps implements OnInit, AfterViewInit, OnDestroy, OnChang
       this._updateMarkers();
     }
 
-    // @deprecated remove this block with SbbJourneyMapsRoutingOptions.
     // handle journey, transfer, and routes together, otherwise they can overwrite each other's transfer or route data
     if (changes.journeyMapsRoutingOption) {
       const invalidKeyCombination = getInvalidRoutingOptionCombination(
@@ -605,7 +604,7 @@ export class SbbJourneyMaps implements OnInit, AfterViewInit, OnDestroy, OnChang
       }
     }
 
-    // handle journey, transfer, and routes together, otherwise they can overwrite each other's transfer or route data
+    // handle trip and routes together, otherwise they can overwrite each other's trip or route data
     if (changes.journeyRoutesOption) {
       const invalidKeyCombination = getInvalidRoutingOptionCombination(
         this.journeyRoutesOption ?? {},
@@ -927,7 +926,6 @@ export class SbbJourneyMaps implements OnInit, AfterViewInit, OnDestroy, OnChang
           this._mapLayerFilterService.collectLvlLayers();
           this._levelSwitchService.switchLevel(this._levelSwitchService.selectedLevel);
 
-          // @deprecated remove this block with SbbJourneyMapsRoutingOptions.
           if (this.journeyMapsRoutingOption?.journey) {
             this._updateJourney();
           } else if (this.journeyMapsRoutingOption?.transfer) {
@@ -1060,10 +1058,6 @@ export class SbbJourneyMaps implements OnInit, AfterViewInit, OnDestroy, OnChang
     );
   }
 
-  /**
-   * @deprecated
-   * This function will be removed in future versions. Use {@link _updateTrip} instead.
-   */
   private _updateJourney() {
     this._mapJourneyService.updateJourney(
       this._map,

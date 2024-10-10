@@ -19,10 +19,6 @@ export class SbbMapJourneyService {
     private _mapTransferService: SbbMapTransferService,
   ) {}
 
-  /**
-   * @deprecated
-   * This function will be removed in the future. Use {@link updateTrip} instead.
-   */
   updateJourney(
     map: MaplibreMap,
     mapSelectionEventService: SbbMapSelectionEvent,
