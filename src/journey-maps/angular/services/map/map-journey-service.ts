@@ -25,7 +25,7 @@ export class SbbMapJourneyService {
     journey: FeatureCollection = SBB_EMPTY_FEATURE_COLLECTION,
     selectedLegId?: string,
   ): void {
-    this._update(map, mapSelectionEventService, journey, selectedLegId, 'journey');
+    this._update(map, mapSelectionEventService, journey, selectedLegId);
   }
 
   updateTrip(
@@ -34,7 +34,7 @@ export class SbbMapJourneyService {
     trip: FeatureCollection = SBB_EMPTY_FEATURE_COLLECTION,
     selectedLegId?: string,
   ): void {
-    this._update(map, mapSelectionEventService, trip, selectedLegId, 'trip');
+    this._update(map, mapSelectionEventService, trip, selectedLegId);
   }
 
   private _update(
@@ -42,7 +42,6 @@ export class SbbMapJourneyService {
     mapSelectionEventService: SbbMapSelectionEvent,
     featureCollection: FeatureCollection,
     selectedLegId: string | undefined,
-    defaultLegId: 'journey' | 'trip',
   ): void {
     const routeFeatures: Feature[] = [];
     const stopoverFeatures: Feature[] = [];
@@ -52,7 +51,7 @@ export class SbbMapJourneyService {
       const properties = feature.properties!;
       const type = properties.type;
       const pathType = properties.pathType;
-      const legId = properties.legId ?? defaultLegId; // default: all belong together
+      const legId = properties.legId ?? 'journey'; // default: all belong together
       const isSelected = selectedLegId === legId || !selectedLegId; // default state: all selected
 
       properties[SBB_ROUTE_ID_PROPERTY_NAME] = legId;
