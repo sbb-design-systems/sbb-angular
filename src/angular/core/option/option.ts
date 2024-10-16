@@ -60,6 +60,7 @@ export class SbbOptionSelectionChange<T = any> {
     '[attr.aria-disabled]': 'disabled.toString()',
     '[class.sbb-disabled]': 'disabled',
   },
+  standalone: false,
 })
 export class SbbOption<T = any>
   implements AfterViewChecked, OnDestroy, FocusableOption, Highlightable

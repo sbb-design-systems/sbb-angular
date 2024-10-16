@@ -2,7 +2,6 @@ import { BreakpointObserver, MediaMatcher } from '@angular/cdk/layout';
 import { AfterViewInit, Component, inject, OnDestroy, ViewChild } from '@angular/core';
 import { FormControl, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { SbbExpansionPanel, SbbExpansionPanelHeader } from '@sbb-esta/angular/accordion';
-import { SbbButton } from '@sbb-esta/angular/button';
 import { SbbCheckboxModule } from '@sbb-esta/angular/checkbox';
 import { Breakpoints, SbbOptionModule } from '@sbb-esta/angular/core';
 import { FakeMediaMatcher } from '@sbb-esta/angular/core/testing';
@@ -37,7 +36,6 @@ import { startWith, takeUntil } from 'rxjs/operators';
     SbbOptionModule,
     SbbSelect,
     SbbFormField,
-    SbbButton,
     SbbExpansionPanel,
     SbbExpansionPanelHeader,
     SbbInput,

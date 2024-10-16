@@ -20,6 +20,7 @@ const modeSessionStorageKey = 'sbbAngularMode';
       }
     `,
   ],
+  standalone: false,
 })
 export class ModeNotificationToastComponent {
   constructor(private _router: Router) {}
