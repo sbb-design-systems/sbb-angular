@@ -25,11 +25,29 @@ export class SbbMapJourneyService {
     journey: FeatureCollection = SBB_EMPTY_FEATURE_COLLECTION,
     selectedLegId?: string,
   ): void {
+    this._update(map, mapSelectionEventService, journey, selectedLegId);
+  }
+
+  updateTrip(
+    map: MaplibreMap,
+    mapSelectionEventService: SbbMapSelectionEvent,
+    trip: FeatureCollection = SBB_EMPTY_FEATURE_COLLECTION,
+    selectedLegId?: string,
+  ): void {
+    this._update(map, mapSelectionEventService, trip, selectedLegId);
+  }
+
+  private _update(
+    map: MaplibreMap,
+    mapSelectionEventService: SbbMapSelectionEvent,
+    featureCollection: FeatureCollection,
+    selectedLegId: string | undefined,
+  ): void {
     const routeFeatures: Feature[] = [];
     const stopoverFeatures: Feature[] = [];
     const transferFeatures: Feature[] = [];
 
-    for (const feature of journey.features) {
+    for (const feature of featureCollection.features) {
       const properties = feature.properties!;
       const type = properties.type;
       const pathType = properties.pathType;

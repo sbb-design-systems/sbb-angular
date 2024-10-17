@@ -13,7 +13,7 @@ import { SbbSelectModule } from '@sbb-esta/angular/select';
 import {
   SbbJourneyMaps,
   SbbJourneyMapsModule,
-  SbbJourneyMapsRoutingOptions,
+  SbbJourneyRoutesOptions,
   SbbViewportDimensions,
   SbbZoomLevels,
 } from '@sbb-esta/journey-maps';
@@ -22,15 +22,11 @@ import { LngLatBounds, LngLatBoundsLike, LngLatLike } from 'maplibre-gl';
 import { BehaviorSubject, Subject } from 'rxjs';
 import { filter, map, take, takeUntil } from 'rxjs/operators';
 
-import { beSh } from '../shared/journey/be-sh';
-import { zhBeWyleregg } from '../shared/journey/zh-be_wyleregg';
-import { zhShWaldfriedhof } from '../shared/journey/zh-sh_waldfriedhof';
 import { bielLyssRoutes, bielLyssRoutesOptions } from '../shared/routes/biel-lyss';
 import { bnLsRoutes, bnLsRoutesOptions } from '../shared/routes/bn-ls';
-import { bernIndoor } from '../shared/transfer/bern-indoor';
-import { geneveIndoor } from '../shared/transfer/geneve-indoor';
-import { luzern4j } from '../shared/transfer/luzern4-j';
-import { zurichIndoor } from '../shared/transfer/zurich-indoor';
+import { tripBeSh } from '../shared/trip/be-sh';
+import { tripZhBeWyleregg } from '../shared/trip/zh-be_wyleregg';
+import { tripZhShWaldfriedhof } from '../shared/trip/zh-sh_waldfriedhof';
 import { bernBurgdorfZones } from '../shared/zone/bern-burgdorf';
 import { baselBielZones } from '../shared/zone/bs-bl';
 
@@ -42,7 +38,7 @@ declare global {
 
 /**
  * @title Journey Maps - SBB Map Routes & Zones
- * @includeExtraFiles ../shared/config.ts,../shared/markers.ts,../shared/journey/be-sh.ts,../shared/journey/zh-be_wyleregg.ts,../shared/journey/zh-sh_waldfriedhof.ts,../shared/routes/biel-lyss.ts,../shared/routes/bn-ls.ts,../shared/transfer/bern-indoor.ts,../shared/transfer/geneve-indoor.ts,../shared/transfer/luzern4-j.ts,../shared/transfer/zurich-indoor.ts,../shared/zone/bern-burgdorf.ts,../shared/zone/bs-bl.ts
+ * @includeExtraFiles ../shared/config.ts,../shared/markers.ts,../shared/trip/be-sh.ts,../shared/trip/zh-be_wyleregg.ts,../shared/trip/zh-sh_waldfriedhof.ts,../shared/routes/biel-lyss.ts,../shared/routes/bn-ls.ts,../shared/zone/bern-burgdorf.ts,../shared/zone/bs-bl.ts
  * @order 6
  *  */
 
@@ -83,12 +79,13 @@ export class JourneyMapsRoutesZonesExample implements OnInit {
   mapBoundingBoxChange = new Subject<number[][]>();
   zoomLevels?: SbbZoomLevels;
   viewportDimensions?: SbbViewportDimensions;
-  journeyMapsRoutingOption?: SbbJourneyMapsRoutingOptions;
+  journeyRoutesOption?: SbbJourneyRoutesOptions;
 
   constructor(
     private _cd: ChangeDetectorRef,
     private fb: UntypedFormBuilder,
   ) {}
+
   ngOnInit() {
     this.buildForm();
     this.subscribeZoneGeoJson();
@@ -101,6 +98,7 @@ export class JourneyMapsRoutesZonesExample implements OnInit {
   changeSelectedLevel(level: number | undefined) {
     this.form.patchValue({ level });
   }
+
   bboxToLngLatBounds(bbox: number[]): LngLatBoundsLike {
     return [
       [bbox[0], bbox[1]],
@@ -138,6 +136,7 @@ export class JourneyMapsRoutesZonesExample implements OnInit {
       routingLegId: [],
     });
   }
+
   private subscribeZoneGeoJson() {
     console.log('subscribeZoneGeoJson');
     this.form
@@ -154,21 +153,21 @@ export class JourneyMapsRoutesZonesExample implements OnInit {
     this.form
       .get('routingGeoJson')
       ?.valueChanges.pipe(takeUntil(this.destroyed))
-      .subscribe((routingOption?: SbbJourneyMapsRoutingOptions) => {
+      .subscribe((routingOption?: SbbJourneyRoutesOptions) => {
         this.form.get('routingLegId')?.reset(); // calling this later has unintended side effects on bbox
         const bbox = this.getBbox(routingOption);
         if (bbox) {
           this.setBbox(bbox);
           this.mapCenterChange.pipe(take(1)).subscribe(() => {
             // Wait until map is idle. So that the correct starting level will be displayed.
-            this.journeyMapsRoutingOption = routingOption;
+            this.journeyRoutesOption = routingOption;
             this._cd.detectChanges();
           });
         } else {
-          this.journeyMapsRoutingOption = routingOption;
+          this.journeyRoutesOption = routingOption;
         }
         this.journeyMapsRoutingLegIds = this._distinct(
-          routingOption?.journey?.features.map((f) => f.properties?.legId) ?? [],
+          routingOption?.trip?.features.map((f) => f.properties?.legId) ?? [],
         )
           .filter((x) => x)
           .sort();
@@ -181,18 +180,18 @@ export class JourneyMapsRoutesZonesExample implements OnInit {
       ?.valueChanges.pipe(takeUntil(this.destroyed))
       .subscribe((selectedLegId: string) => {
         // 'journeyMapsRoutingOption' can be null on .reset() of its dropdown form data
-        if (this.journeyMapsRoutingOption?.journey) {
+        if (this.journeyRoutesOption?.trip) {
           const bbox = selectedLegId
-            ? this.getBboxForLegId(selectedLegId, this.journeyMapsRoutingOption.journey)
-            : this.getBbox(this.journeyMapsRoutingOption);
+            ? this.getBboxForLegId(selectedLegId, this.journeyRoutesOption.trip)
+            : this.getBbox(this.journeyRoutesOption);
           if (bbox) {
             this.setBbox(bbox!);
           }
           this.mapCenterChange.pipe(take(1)).subscribe(() => {
             // Wait until map is idle. So that the correct starting level will be displayed.
-            this.journeyMapsRoutingOption = {
-              ...this.journeyMapsRoutingOption,
-              journeyMetaInformation: { selectedLegId },
+            this.journeyRoutesOption = {
+              ...this.journeyRoutesOption,
+              tripMetaInformation: { selectedLegId },
             };
             this._cd.detectChanges();
           });
@@ -226,16 +225,13 @@ export class JourneyMapsRoutesZonesExample implements OnInit {
     return undefined;
   }
 
-  private getBbox(options?: SbbJourneyMapsRoutingOptions) {
+  private getBbox(options?: SbbJourneyRoutesOptions) {
     if (!options) {
       return;
     }
 
-    if (options.journey) {
-      return options.journey.bbox;
-    }
-    if (options.transfer) {
-      return options.transfer.bbox;
+    if (options.trip) {
+      return options.trip.bbox;
     }
 
     if (options.routes) {
@@ -262,20 +258,20 @@ const JOURNEY_MAPS_DEFAULT_ZONE_OPTIONS = [
 ];
 const JOURNEY_MAPS_DEFAULT_ROUTING_OPTIONS: {
   label: string;
-  value: SbbJourneyMapsRoutingOptions | undefined;
+  value: SbbJourneyRoutesOptions | undefined;
 }[] = [
   { label: '(none)', value: undefined },
   {
     label: 'Zürich - Bern, Wyleregg',
-    value: { journey: zhBeWyleregg },
+    value: { trip: tripZhBeWyleregg },
   },
   {
     label: 'Zürich - Schaffhausen, Waldfriedhof',
-    value: { journey: zhShWaldfriedhof },
+    value: { trip: tripZhShWaldfriedhof },
   },
   {
     label: 'Bern - Schaffhausen',
-    value: { journey: beSh },
+    value: { trip: tripBeSh },
   },
   {
     label: 'Bern - Lausanne',
@@ -291,8 +287,4 @@ const JOURNEY_MAPS_DEFAULT_ROUTING_OPTIONS: {
       routesMetaInformations: bielLyssRoutesOptions,
     },
   },
-  { label: 'Transfer Bern', value: { transfer: bernIndoor } },
-  { label: 'Transfer Genf', value: { transfer: geneveIndoor } },
-  { label: 'Transfer Luzern', value: { transfer: luzern4j } },
-  { label: 'Transfer Zürich', value: { transfer: zurichIndoor } },
 ];
