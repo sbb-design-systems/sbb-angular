@@ -74,7 +74,9 @@ export interface SbbBoundingBoxOptions {
 }
 
 /**
- * **WARNING:** The map currently doesn't support more than one of these fields to be set at a time.
+ * @deprecated
+ * This interface will be removed in future versions. Use {@link SbbJourneyRoutesOptions} instead.
+ * **WARNING:** The map doesn't support more than one of these fields to be set at a time.
  */
 export interface SbbJourneyMapsRoutingOptions {
   /**
@@ -113,6 +115,40 @@ export interface SbbJourneyMapsRoutingOptions {
    * ID must match with ID from given routes.
    * If no meta information for a route given, it will use the default settings.
    * Note: journey, transfer and routes cannot be displayed at the same time.
+   */
+  routesMetaInformations?: SbbRouteMetaInformation[];
+}
+
+/**
+ * **WARNING:** The map doesn't support trip and routes to be set at the same time.
+ */
+export interface SbbJourneyRoutesOptions {
+  /**
+   * GeoJSON as returned by the <code>/v2/routes/trip</code> operation of Journey-Routes.
+   * All segments of this trip will be displayed on the map.
+   * Note: trip and routes cannot be displayed at the same time.
+   */
+  trip?: FeatureCollection;
+
+  /**
+   * An array of GeoJSON objects as returned by the <code>v2/routes</code> operation of Journey-Routes.
+   * All routes will be displayed on the map.
+   * Note: trip and routes cannot be displayed at the same time.
+   */
+  routes?: SbbSelectableFeatureCollection[];
+
+  /**
+   * Additional information as defined in <code>SbbTripMetaInformation</code>.
+   * selectedLegId must match with a legId from the given trip.
+   * Note: trip and routes cannot be displayed at the same time.
+   */
+  tripMetaInformation?: SbbTripMetaInformation;
+
+  /**
+   * An array of additional information as defined in <code>SbbRouteMetaInformation</code>.
+   * ID must match with ID from given routes.
+   * If no meta information for a route given, it will use the default settings.
+   * Note: trip and routes cannot be displayed at the same time.
    */
   routesMetaInformations?: SbbRouteMetaInformation[];
 }
@@ -199,7 +235,7 @@ export type SbbSelectableFeatureCollection = FeatureCollection & {
 };
 
 export interface SbbRouteMetaInformation {
-  /** ID that matches a route in <code>SbbJourneyMapsRoutingOptions.routes</code>. */
+  /** ID that matches a route in <code>SbbRoutesOptions.routes</code>. */
   id: string;
   /** Color of the route. See https://maplibre.org/maplibre-gl-js-docs/style-spec/types/ for color-format. */
   routeColor?: string;
@@ -216,8 +252,17 @@ export interface SbbRailNetworkOptions {
   railNetworkColor?: string;
 }
 
+/**
+ * @deprecated
+ * This interface will be removed in the future. Use {@link SbbTripMetaInformation} instead.
+ */
 export interface SbbJourneyMetaInformation {
   /** ID that matches a leg ID in <code>SbbJourneyMapsRoutingOptions.journey</code>. */
+  selectedLegId: string;
+}
+
+export interface SbbTripMetaInformation {
+  /** ID that matches a leg ID in <code>SbbJourneyRoutesOptions.trip</code>. */
   selectedLegId: string;
 }
 
