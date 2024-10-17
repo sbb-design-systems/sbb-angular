@@ -15309,10 +15309,10 @@ sass@1.77.6:
     immutable "^4.0.0"
     source-map-js ">=0.6.2 <2.0.0"
 
-sass@1.80.0:
-  version "1.80.0"
-  resolved "https://registry.yarnpkg.com/sass/-/sass-1.80.0.tgz#58430ab879c46f5e1992a5d114f1dd7163c62826"
-  integrity sha512-9Yzb4qTUJ//eTKZQzxAtNsezOvfQlB+7hAJjj5wFqKZb2c2xboeCYnKh2Gzyp6sdyiNe9FUgn8xgc1ffXHmM6g==
+sass@1.80.1:
+  version "1.80.1"
+  resolved "https://registry.yarnpkg.com/sass/-/sass-1.80.1.tgz#5b26cde787917e845f25585b741c0caa653d0154"
+  integrity sha512-9lBwDZ7j3y/1DKj5Ec249EVGo5CVpwnzIyIj+cqlCjKkApLnzsJ/l9SnV4YnORvW9dQwQN+gQvh/mFZ8CnDs7Q==
   dependencies:
     "@parcel/watcher" "^2.4.1"
     chokidar "^4.0.0"
