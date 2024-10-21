@@ -2611,10 +2611,10 @@
     "@babel/helper-validator-identifier" "^7.25.7"
     to-fast-properties "^2.0.0"
 
-"@bazel/bazelisk@1.22.0":
-  version "1.22.0"
-  resolved "https://registry.yarnpkg.com/@bazel/bazelisk/-/bazelisk-1.22.0.tgz#654448f25258ebb5e4f3d60d75897e1329eee422"
-  integrity sha512-GkMh1PdX1w5lHktztEWub4yzy8pmPK6/EvOsDT7XDALwTGnAxa6bPBT/6qzR992dp7zCJNsOxLJ6Gga/4SSEwA==
+"@bazel/bazelisk@1.22.1":
+  version "1.22.1"
+  resolved "https://registry.yarnpkg.com/@bazel/bazelisk/-/bazelisk-1.22.1.tgz#d21bd42363c8f6e92c21ccd4b3dc923093fd3b6f"
+  integrity sha512-/6alNETOXfchBoZtWewamOU4b0i7ccRlu3HQ8dXvtlUDm0SFHTdNqd1kubXQpKu8mmVUiWjPIM+stC+7SZv5vA==
 
 "@bazel/buildifier@6.3.3":
   version "6.3.3"
