@@ -40,7 +40,7 @@ jobs:
         run: |
           echo "branch=$(echo ${{ matrix.label }} | sed -n 's/target: \([0-9]*.x\).*/\1/p')" >> $GITHUB_OUTPUT
 
-      - uses: actions/checkout@eef61447b9ff4aafe5dcd4e0bbf5d482be7e7871 # v4
+      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4
         if: steps.branch_name.outputs.branch
         with:
           token: ${{ steps.get_token.outputs.app_token }}
@@ -66,7 +66,7 @@ jobs:
       github.event.pull_request.user.login != 'sbb-angular-renovate[bot]'
 
     steps:
-      - uses: actions/checkout@eef61447b9ff4aafe5dcd4e0bbf5d482be7e7871 # v4
+      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4
 
       - uses: actions/setup-node@v4
         if: needs.cherry_pick.outputs.failed_branches
