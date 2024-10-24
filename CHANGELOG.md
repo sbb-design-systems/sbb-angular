@@ -2,6 +2,20 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [18.5.0](https://github.com/sbb-design-systems/sbb-angular/compare/18.4.0...18.5.0) (2024-10-24)
+
+
+### Features
+
+* **journey-maps:** new input field for journey-routes data ([#2346](https://github.com/sbb-design-systems/sbb-angular/issues/2346)) ([4c5c9ec](https://github.com/sbb-design-systems/sbb-angular/commit/4c5c9ecebdb11dd295c3f3bcf997819c8f982a51))
+
+
+### Bug Fixes
+
+* **angular/dialog:** remove usages of deprecated ComponentFactoryResolver ([#2387](https://github.com/sbb-design-systems/sbb-angular/issues/2387)) ([c10072a](https://github.com/sbb-design-systems/sbb-angular/commit/c10072ae8ce68fad61e736eb8c9acb610050f62d))
+* **angular/form-field:** update state if control changes ([#2349](https://github.com/sbb-design-systems/sbb-angular/issues/2349)) ([a269e96](https://github.com/sbb-design-systems/sbb-angular/commit/a269e96319e46a1d6b324a53d9dca03ac057257a))
+* **multiple:** account for mixed declarations in latest Sass version ([#2392](https://github.com/sbb-design-systems/sbb-angular/issues/2392)) ([c4fd5e1](https://github.com/sbb-design-systems/sbb-angular/commit/c4fd5e16f49c6ecb3558015d721597b09792cd8d))
+
 ## [18.4.0](https://github.com/sbb-design-systems/sbb-angular/compare/18.3.0...18.4.0) (2024-09-24)
 
 
