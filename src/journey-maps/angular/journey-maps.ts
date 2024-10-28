@@ -31,6 +31,7 @@ import {
   SbbFeaturesSelectEventData,
   SbbInteractionOptions,
   SbbJourneyMapsRoutingOptions,
+  SbbJourneyRoutesOptions,
   SbbListenerOptions,
   SbbMarkerOptions,
   SbbPointsOfInterestOptions,
@@ -67,7 +68,10 @@ import { SbbMapTransferService } from './services/map/map-transfer-service';
 import { SbbMapUrlService } from './services/map/map-url-service';
 import { SbbMapZoneService } from './services/map/map-zone-service';
 import { MarkerOrPoiSelectionStateService } from './services/map/marker-or-poi-selection-state.service';
-import { getInvalidRoutingOptionCombination } from './util/input-validation';
+import {
+  getInvalidJourneyMapsRoutingOptionCombination,
+  getInvalidJourneyRoutesOptionCombination,
+} from './util/input-validation';
 
 /**
  * This component uses the Maplibre GL JS api to render a map and display the given data on the map.
@@ -89,11 +93,18 @@ export class SbbJourneyMaps implements OnInit, AfterViewInit, OnDestroy, OnChang
   /** Your personal API key. Ask <a href="mailto:dlrokas@sbb.ch">dlrokas@sbb.ch</a> if you need one. */
   @Input() apiKey: string;
   /**
+   * @deprecated
+   * This method will be removed in future versions. Use {@link journeyRoutesOption} instead.
    * Input to display JourneyMaps GeoJson routing data on the map.
-   *
    * **WARNING:** The map currently doesn't support more than one of these fields to be set at a time
    */
   @Input() journeyMapsRoutingOption?: SbbJourneyMapsRoutingOptions;
+  /**
+   * Input to display JourneyRoutes GeoJson routing data on the map.
+   *
+   * **WARNING:** The map currently doesn't support more than one of these fields to be set at a time
+   */
+  @Input() journeyRoutesOption?: SbbJourneyRoutesOptions;
   /**
    * Input to display JourneyMaps GeoJson zone data on the map.
    */
@@ -187,9 +198,9 @@ export class SbbJourneyMaps implements OnInit, AfterViewInit, OnDestroy, OnChang
   private _featureEventListenerComponent: SbbFeatureEventListener;
   private _defaultStyleOptions: SbbStyleOptions = {
     url: 'https://journey-maps-tiles.geocdn.sbb.ch/styles/{styleId}/style.json?api_key={apiKey}',
-    aerialId: 'aerial_sbb_ki_v2',
-    brightId: 'base_bright_v2_ki_v2',
-    darkId: 'base_dark_v2_ki_v2',
+    aerialId: 'journey_maps_aerial_v1',
+    brightId: 'journey_maps_bright_v1',
+    darkId: 'journey_maps_dark_v1',
     mode: 'bright',
   };
   private _defaultInteractionOptions: SbbInteractionOptions = {
@@ -557,7 +568,7 @@ export class SbbJourneyMaps implements OnInit, AfterViewInit, OnDestroy, OnChang
 
     // handle journey, transfer, and routes together, otherwise they can overwrite each other's transfer or route data
     if (changes.journeyMapsRoutingOption) {
-      const invalidKeyCombination = getInvalidRoutingOptionCombination(
+      const invalidKeyCombination = getInvalidJourneyMapsRoutingOptionCombination(
         this.journeyMapsRoutingOption ?? {},
       );
       if (invalidKeyCombination.length) {
@@ -591,6 +602,44 @@ export class SbbJourneyMaps implements OnInit, AfterViewInit, OnDestroy, OnChang
             this._updateTransfer();
           }
           if (changes.journeyMapsRoutingOption.currentValue?.routes) {
+            this._updateRoutes();
+          }
+        });
+      }
+    }
+
+    // handle trip and routes together, otherwise they can overwrite each other's trip or route data
+    if (changes.journeyRoutesOption) {
+      const invalidKeyCombination = getInvalidJourneyRoutesOptionCombination(
+        this.journeyRoutesOption ?? {},
+      );
+      if (invalidKeyCombination.length) {
+        console.error(
+          `journeyRoutesOption: Use only one of the following: 'trip', 'routes'. Received: ` +
+            invalidKeyCombination.map((key) => `'${key}'`).join(', '),
+        );
+      } else {
+        if (this._haveRoutesMetaInformationsChanged(changes)) {
+          this._updateMarkers();
+        }
+
+        this._executeWhenMapStyleLoaded(() => {
+          // stam: is there other way to achieve this ?
+          const mapSelectionEventService =
+            this._featureEventListenerComponent.mapSelectionEventService;
+
+          // remove previous data from map
+          this._mapJourneyService.updateTrip(this._map, mapSelectionEventService, undefined);
+          this._mapRoutesService.updateRoutes(this._map, mapSelectionEventService, undefined);
+          this._mapLeitPoiService.processData(this._map, undefined);
+          // only add new data if we have some
+          if (
+            changes.journeyRoutesOption.currentValue?.trip ||
+            changes.journeyRoutesOption.currentValue?.tripMetaInformation
+          ) {
+            this._updateTrip();
+          }
+          if (changes.journeyRoutesOption.currentValue?.routes) {
             this._updateRoutes();
           }
         });
@@ -880,11 +929,18 @@ export class SbbJourneyMaps implements OnInit, AfterViewInit, OnDestroy, OnChang
           );
           this._mapLayerFilterService.collectLvlLayers();
           this._levelSwitchService.switchLevel(this._levelSwitchService.selectedLevel);
+
           if (this.journeyMapsRoutingOption?.journey) {
             this._updateJourney();
           } else if (this.journeyMapsRoutingOption?.transfer) {
             this._updateTransfer();
           } else if (this.journeyMapsRoutingOption?.routes) {
+            this._updateRoutes();
+          }
+
+          if (this.journeyRoutesOption?.trip) {
+            this._updateTrip();
+          } else if (this.journeyRoutesOption?.routes) {
             this._updateRoutes();
           }
           if (this.journeyMapsZones) {
@@ -985,9 +1041,11 @@ export class SbbJourneyMaps implements OnInit, AfterViewInit, OnDestroy, OnChang
     const normalMarkers = this.markerOptions.markers ?? [];
     const routeMidpointMarkers =
       this._mapRoutesService.getRouteMarkers(
-        this.journeyMapsRoutingOption?.routes,
-        this.journeyMapsRoutingOption?.routesMetaInformations,
+        this.journeyRoutesOption?.routes ?? this.journeyMapsRoutingOption?.routes,
+        this.journeyRoutesOption?.routesMetaInformations ??
+          this.journeyMapsRoutingOption?.routesMetaInformations,
       ) ?? [];
+
     return [...normalMarkers, ...routeMidpointMarkers];
   }
 
@@ -996,7 +1054,11 @@ export class SbbJourneyMaps implements OnInit, AfterViewInit, OnDestroy, OnChang
       changes.journeyMapsRoutingOption?.currentValue?.routesMetaInformations?.length !==
         changes.journeyMapsRoutingOption?.previousValue?.routesMetaInformations?.length ||
       changes.journeyMapsRoutingOption?.currentValue?.routesMetaInformations !==
-        changes.journeyMapsRoutingOption?.previousValue?.routesMetaInformations
+        changes.journeyMapsRoutingOption?.previousValue?.routesMetaInformations ||
+      changes.journeyRoutesOption?.currentValue?.routesMetaInformations?.length !==
+        changes.journeyRoutesOption?.previousValue?.routesMetaInformations?.length ||
+      changes.journeyRoutesOption?.currentValue?.routesMetaInformations !==
+        changes.journeyRoutesOption?.previousValue?.routesMetaInformations
     );
   }
 
@@ -1014,6 +1076,20 @@ export class SbbJourneyMaps implements OnInit, AfterViewInit, OnDestroy, OnChang
     );
   }
 
+  private _updateTrip() {
+    this._mapJourneyService.updateTrip(
+      this._map,
+      this._featureEventListenerComponent.mapSelectionEventService,
+      this.journeyRoutesOption!.trip,
+      this.journeyRoutesOption!.tripMetaInformation?.selectedLegId,
+    );
+    this._mapLeitPoiService.processData(
+      this._map,
+      this.journeyRoutesOption!.trip,
+      this.journeyRoutesOption!.tripMetaInformation?.selectedLegId,
+    );
+  }
+
   private _updateTransfer() {
     this._mapTransferService.updateTransfer(this._map, this.journeyMapsRoutingOption!.transfer);
     this._mapLeitPoiService.processData(this._map, this.journeyMapsRoutingOption!.transfer);
@@ -1023,8 +1099,9 @@ export class SbbJourneyMaps implements OnInit, AfterViewInit, OnDestroy, OnChang
     this._mapRoutesService.updateRoutes(
       this._map,
       this._featureEventListenerComponent.mapSelectionEventService,
-      this.journeyMapsRoutingOption!.routes,
-      this.journeyMapsRoutingOption!.routesMetaInformations,
+      this.journeyRoutesOption?.routes ?? this.journeyMapsRoutingOption?.routes,
+      this.journeyRoutesOption?.routesMetaInformations ??
+        this.journeyMapsRoutingOption?.routesMetaInformations,
     );
   }
 
