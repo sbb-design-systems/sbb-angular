@@ -9,6 +9,7 @@ import { UPDATE_STEPS } from './update-steps';
   selector: 'sbb-how-to-update',
   templateUrl: './how-to-update.component.html',
   styleUrls: ['./how-to-update.component.css'],
+  standalone: false,
 })
 export class HowToUpdateComponent {
   versions: number[] = [

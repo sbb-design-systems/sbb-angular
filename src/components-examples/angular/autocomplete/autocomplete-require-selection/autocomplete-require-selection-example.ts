@@ -1,6 +1,6 @@
-import { AsyncPipe, JsonPipe } from '@angular/common';
+import { JsonPipe } from '@angular/common';
 import { Component, ElementRef, ViewChild } from '@angular/core';
-import { FormControl, FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { FormControl, ReactiveFormsModule } from '@angular/forms';
 import { SbbAutocompleteModule } from '@sbb-esta/angular/autocomplete';
 import { SbbFormFieldModule } from '@sbb-esta/angular/form-field';
 import { SbbInputModule } from '@sbb-esta/angular/input';
@@ -14,12 +14,10 @@ import { SbbInputModule } from '@sbb-esta/angular/input';
   templateUrl: 'autocomplete-require-selection-example.html',
   standalone: true,
   imports: [
-    FormsModule,
     SbbFormFieldModule,
     SbbInputModule,
     SbbAutocompleteModule,
     ReactiveFormsModule,
-    AsyncPipe,
     JsonPipe,
   ],
 })

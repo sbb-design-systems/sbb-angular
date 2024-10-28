@@ -6,7 +6,7 @@ import { sbbAngularUpgradeData } from './upgrade-data';
 /** Entry point for the migration schematics with target of Angular 18 */
 export function updateToV18(): Rule {
   return createMigrationSchematicRule(
-    TargetVersion.V18,
+    TargetVersion.V19,
     [],
     sbbAngularUpgradeData,
     onMigrationComplete,

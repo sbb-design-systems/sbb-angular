@@ -87,6 +87,7 @@ import {
     MarkerOrPoiSelectionStateService,
   ],
   changeDetection: ChangeDetectionStrategy.OnPush,
+  standalone: false,
 })
 export class SbbJourneyMaps implements OnInit, AfterViewInit, OnDestroy, OnChanges {
   /** Your personal API key. Ask <a href="mailto:dlrokas@sbb.ch">dlrokas@sbb.ch</a> if you need one. */
