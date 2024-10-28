@@ -8,8 +8,7 @@ import { SbbOptionHint } from './option-hint';
 import { SbbPseudoCheckbox } from './pseudo-checkbox';
 
 @NgModule({
-  imports: [SbbCommonModule],
-  declarations: [SbbOption, SbbOptionHint, SbbOptgroup, SbbPseudoCheckbox],
+  imports: [SbbCommonModule, SbbOption, SbbOptionHint, SbbOptgroup, SbbPseudoCheckbox],
   exports: [SbbOption, SbbOptionHint, SbbOptgroup, SbbPseudoCheckbox],
 })
 export class SbbOptionModule {}
