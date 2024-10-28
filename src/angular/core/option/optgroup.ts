@@ -56,7 +56,7 @@ export const SBB_OPTGROUP = new InjectionToken<SbbOptgroup>('SbbOptgroup');
     '[class.sbb-disabled]': 'disabled',
   },
   providers: [{ provide: SBB_OPTGROUP, useExisting: SbbOptgroup }],
-  standalone: false,
+  standalone: true,
 })
 export class SbbOptgroup {
   /** Label for the option group. */
