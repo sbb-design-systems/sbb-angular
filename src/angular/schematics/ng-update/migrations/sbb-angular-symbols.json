@@ -413,7 +413,6 @@
   "sbbAngularModuleSpecifiers": "schematics",
   "sbbAngularUpgradeData": "schematics",
   "Schema": "schematics",
-  "SecondaryEntryPointsMigration": "schematics",
   "symbolRemoval": "schematics",
   "TYPOGRAPHY_CSS_PATH": "schematics",
   "updateToV18": "schematics",
