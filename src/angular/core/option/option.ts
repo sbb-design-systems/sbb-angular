@@ -24,6 +24,7 @@ import { TypeRef } from '../common-behaviors/type-ref';
 
 import { SbbOptgroup, SBB_OPTGROUP } from './optgroup';
 import { SbbOptionParentComponent, SBB_OPTION_PARENT_COMPONENT } from './option-parent';
+import { SbbPseudoCheckbox } from './pseudo-checkbox';
 
 /**
  * Option IDs need to be unique across components, so this counter exists outside of
@@ -48,6 +49,7 @@ export class SbbOptionSelectionChange<T = any> {
   templateUrl: 'option.html',
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush,
+  imports: [SbbPseudoCheckbox],
   host: {
     class: 'sbb-option sbb-menu-item sbb-link-reset',
     role: 'option',
@@ -60,6 +62,7 @@ export class SbbOptionSelectionChange<T = any> {
     '[attr.aria-disabled]': 'disabled.toString()',
     '[class.sbb-disabled]': 'disabled',
   },
+  standalone: true,
 })
 export class SbbOption<T = any>
   implements AfterViewChecked, OnDestroy, FocusableOption, Highlightable
