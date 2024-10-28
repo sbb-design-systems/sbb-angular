@@ -57,6 +57,7 @@ ANGULAR_PACKAGES_CONFIG = [
         "overlay",
         "platform",
         "portal",
+        "private",
         "scrolling",
         "stepper",
         "table",
