@@ -3,14 +3,13 @@ import { ENTER, hasModifierKey, SPACE } from '@angular/cdk/keycodes';
 import { AsyncPipe, DOCUMENT } from '@angular/common';
 import {
   AfterViewInit,
-  Attribute,
   ChangeDetectionStrategy,
   ChangeDetectorRef,
   Component,
   ElementRef,
-  Host,
+  HostAttributeToken,
   HostListener,
-  Inject,
+  inject,
   Input,
   numberAttribute,
   OnDestroy,
@@ -49,19 +48,22 @@ import { SbbExpansionPanel } from './expansion-panel';
   imports: [SbbIconModule, AsyncPipe],
 })
 export class SbbExpansionPanelHeader implements AfterViewInit, OnDestroy, FocusableOption {
+  panel: SbbExpansionPanel = inject(SbbExpansionPanel, { host: true });
+  private _element = inject(ElementRef);
+  private _focusMonitor = inject(FocusMonitor);
+  private _changeDetectorRef = inject(ChangeDetectorRef);
+  private _document = inject<TypeRef<Document>>(DOCUMENT);
+
   @Input({ transform: (value: unknown) => (value == null ? 0 : numberAttribute(value)) })
   tabIndex: number = 0;
 
   private _parentChangeSubscription = Subscription.EMPTY;
 
-  constructor(
-    @Host() public panel: SbbExpansionPanel,
-    private _element: ElementRef,
-    private _focusMonitor: FocusMonitor,
-    private _changeDetectorRef: ChangeDetectorRef,
-    @Inject(DOCUMENT) private _document?: TypeRef<Document>,
-    @Attribute('tabindex') tabIndex?: string,
-  ) {
+  constructor(...args: unknown[]);
+  constructor() {
+    const panel = this.panel;
+    const tabIndex = inject(new HostAttributeToken('tabindex'), { optional: true });
+
     const accordionHideToggleChange = panel.accordion
       ? panel.accordion._stateChanges.pipe(filter((changes) => !!changes.hideToggle))
       : EMPTY;
@@ -79,7 +81,7 @@ export class SbbExpansionPanelHeader implements AfterViewInit, OnDestroy, Focusa
     // Avoids focus being lost if the panel contained the focused element and was closed.
     panel.closed
       .pipe(filter(() => panel._containsFocus()))
-      .subscribe(() => _focusMonitor.focusVia(_element, 'program'));
+      .subscribe(() => this._focusMonitor.focusVia(this._element, 'program'));
   }
 
   /**

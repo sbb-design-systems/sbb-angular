@@ -2,19 +2,20 @@ import { Directionality } from '@angular/cdk/bidi';
 import {
   Component,
   Directive,
-  Injector,
+  inject,
   NgZone,
   provideZoneChangeDetection,
   ViewChild,
   ViewContainerRef,
 } from '@angular/core';
-import { ComponentFixture, fakeAsync, flush, inject, TestBed } from '@angular/core/testing';
+import { ComponentFixture, fakeAsync, flush, TestBed } from '@angular/core/testing';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 
-import { SbbLightbox, SbbLightboxModule, SbbLightboxRef } from './index';
+import { SbbLightbox, SbbLightboxModule } from './index';
 
 describe('SbbLightbox Zone.js integration', () => {
   let lightbox: SbbLightbox;
+  let zone: NgZone;
 
   let testViewContainerRef: ViewContainerRef;
   let viewContainerFixture: ComponentFixture<ComponentWithChildViewContainer>;
@@ -30,10 +31,9 @@ describe('SbbLightbox Zone.js integration', () => {
       ],
       providers: [provideZoneChangeDetection()],
     });
-  }));
 
-  beforeEach(inject([SbbLightbox], (d: SbbLightbox) => {
-    lightbox = d;
+    lightbox = TestBed.inject(SbbLightbox);
+    zone = TestBed.inject(NgZone);
   }));
 
   beforeEach(() => {
@@ -43,23 +43,21 @@ describe('SbbLightbox Zone.js integration', () => {
     testViewContainerRef = viewContainerFixture.componentInstance.childViewContainer;
   });
 
-  it('should invoke the afterClosed callback inside the NgZone', fakeAsync(
-    inject([NgZone], (zone: NgZone) => {
-      const lightboxRef = lightbox.open(PizzaMsg, { viewContainerRef: testViewContainerRef });
-      const afterCloseCallback = jasmine.createSpy('afterClose callback');
+  it('should invoke the afterClosed callback inside the NgZone', fakeAsync(() => {
+    const lightboxRef = lightbox.open(PizzaMsg, { viewContainerRef: testViewContainerRef });
+    const afterCloseCallback = jasmine.createSpy('afterClose callback');
 
-      lightboxRef.afterClosed().subscribe(() => {
-        afterCloseCallback(NgZone.isInAngularZone());
-      });
-      zone.run(() => {
-        lightboxRef.close();
-        viewContainerFixture.detectChanges();
-        flush();
-      });
+    lightboxRef.afterClosed().subscribe(() => {
+      afterCloseCallback(NgZone.isInAngularZone());
+    });
+    zone.run(() => {
+      lightboxRef.close();
+      viewContainerFixture.detectChanges();
+      flush();
+    });
 
-      expect(afterCloseCallback).toHaveBeenCalledWith(true);
-    }),
-  ));
+    expect(afterCloseCallback).toHaveBeenCalledWith(true);
+  }));
 });
 
 /** Simple component for testing ComponentPortal. */
@@ -68,18 +66,14 @@ describe('SbbLightbox Zone.js integration', () => {
   standalone: true,
 })
 class PizzaMsg {
-  constructor(
-    public lightboxRef: SbbLightboxRef<PizzaMsg>,
-    public lightboxInjector: Injector,
-    public directionality: Directionality,
-  ) {}
+  directionality = inject(Directionality);
 }
 @Directive({
   selector: 'dir-with-view-container',
   standalone: true,
 })
 class DirectiveWithViewContainer {
-  constructor(public viewContainerRef: ViewContainerRef) {}
+  viewContainerRef = inject(ViewContainerRef);
 }
 
 @Component({

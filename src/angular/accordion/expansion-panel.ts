@@ -1,25 +1,21 @@
 import { AnimationEvent } from '@angular/animations';
 import { CdkAccordionItem } from '@angular/cdk/accordion';
-import { UniqueSelectionDispatcher } from '@angular/cdk/collections';
 import { CdkPortalOutlet, TemplatePortal } from '@angular/cdk/portal';
 import { DOCUMENT } from '@angular/common';
 import {
   AfterContentInit,
   booleanAttribute,
   ChangeDetectionStrategy,
-  ChangeDetectorRef,
   Component,
   ContentChild,
   ElementRef,
   EventEmitter,
-  Inject,
+  inject,
   Input,
   OnChanges,
   OnDestroy,
-  Optional,
   Output,
   SimpleChanges,
-  SkipSelf,
   ViewChild,
   ViewContainerRef,
   ViewEncapsulation,
@@ -80,7 +76,8 @@ export class SbbExpansionPanel
   extends _SbbExpansionPanelBase
   implements AfterContentInit, OnChanges, OnDestroy
 {
-  private _document: Document;
+  private _viewContainerRef = inject(ViewContainerRef);
+  private _document = inject(DOCUMENT);
 
   /** Whether the toggle indicator should be hidden. */
   @Input({ transform: booleanAttribute })
@@ -102,7 +99,10 @@ export class SbbExpansionPanel
   readonly _inputChanges = new Subject<SimpleChanges>();
 
   /** Optionally defined accordion the expansion panel belongs to. */
-  override accordion: SbbAccordion;
+  override accordion = inject<TypeRef<SbbAccordion>>(SBB_ACCORDION, {
+    optional: true,
+    skipSelf: true,
+  })!;
 
   /** Content that will be rendered lazily. */
   @ContentChild(SbbExpansionPanelContent) _lazyContent: SbbExpansionPanelContent;
@@ -119,17 +119,9 @@ export class SbbExpansionPanel
   /** Stream of body animation done events. */
   _bodyAnimationDone: Subject<AnimationEvent> = new Subject<AnimationEvent>();
 
-  constructor(
-    private _viewContainerRef: ViewContainerRef,
-    @Optional() @SkipSelf() @Inject(SBB_ACCORDION) accordion: TypeRef<SbbAccordion>,
-    changeDetectorRef: ChangeDetectorRef,
-    uniqueSelectionDispatcher: UniqueSelectionDispatcher,
-    @Inject(DOCUMENT) document: any,
-  ) {
-    super(accordion, changeDetectorRef, uniqueSelectionDispatcher);
-    this.accordion = accordion;
-    this._document = document;
-
+  constructor(...args: unknown[]);
+  constructor() {
+    super();
     // We need a Subject with distinctUntilChanged, because the `done` event
     // fires twice on some browsers. See https://github.com/angular/angular/issues/24084
     this._bodyAnimationDone

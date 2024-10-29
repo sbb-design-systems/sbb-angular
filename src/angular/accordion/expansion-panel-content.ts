@@ -1,4 +1,4 @@
-import { Directive, Inject, Optional, TemplateRef } from '@angular/core';
+import { Directive, inject, TemplateRef } from '@angular/core';
 
 import { SbbExpansionPanelBase, SBB_EXPANSION_PANEL } from './expansion-panel-base';
 
@@ -11,8 +11,12 @@ import { SbbExpansionPanelBase, SBB_EXPANSION_PANEL } from './expansion-panel-ba
   standalone: true,
 })
 export class SbbExpansionPanelContent {
-  constructor(
-    public _template: TemplateRef<any>,
-    @Inject(SBB_EXPANSION_PANEL) @Optional() public _expansionPanel?: SbbExpansionPanelBase,
-  ) {}
+  _template: TemplateRef<any> = inject<TemplateRef<any>>(TemplateRef);
+  _expansionPanel: SbbExpansionPanelBase | null = inject<SbbExpansionPanelBase>(
+    SBB_EXPANSION_PANEL,
+    { optional: true },
+  );
+
+  constructor(...args: unknown[]);
+  constructor() {}
 }

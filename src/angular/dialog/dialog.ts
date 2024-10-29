@@ -4,13 +4,10 @@ import { ComponentType } from '@angular/cdk/portal';
 import {
   ComponentRef,
   inject,
-  Inject,
   Injectable,
   InjectionToken,
   Injector,
   OnDestroy,
-  Optional,
-  SkipSelf,
   TemplateRef,
   Type,
 } from '@angular/core';
@@ -121,8 +118,8 @@ export abstract class _SbbDialogBase<
   constructor(
     private _overlay: Overlay,
     injector: Injector,
-    private _defaultOptions: SbbDialogConfig | undefined,
-    private _parentDialog: _SbbDialogBase<C, F> | undefined,
+    private _defaultOptions: SbbDialogConfig | null,
+    private _parentDialog: _SbbDialogBase<C, F> | null,
     scrollStrategy: any,
     private _dialogRefConstructor: Type<F>,
     private _dialogContainerType: Type<C>,
@@ -242,13 +239,14 @@ export abstract class _SbbDialogBase<
  */
 @Injectable({ providedIn: 'root' })
 export class SbbDialog extends _SbbDialogBase<SbbDialogContainer> {
-  constructor(
-    overlay: Overlay,
-    injector: Injector,
-    @Optional() @Inject(SBB_DIALOG_DEFAULT_OPTIONS) defaultOptions: SbbDialogConfig,
-    @Inject(SBB_DIALOG_SCROLL_STRATEGY) scrollStrategy: any,
-    @Optional() @SkipSelf() parentDialog: SbbDialog,
-  ) {
+  constructor(...args: unknown[]);
+  constructor() {
+    const overlay = inject(Overlay);
+    const injector = inject(Injector);
+    const defaultOptions = inject<SbbDialogConfig>(SBB_DIALOG_DEFAULT_OPTIONS, { optional: true });
+    const scrollStrategy = inject(SBB_DIALOG_SCROLL_STRATEGY);
+    const parentDialog = inject(SbbDialog, { optional: true, skipSelf: true })!;
+
     super(
       overlay,
       injector,

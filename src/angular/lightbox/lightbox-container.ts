@@ -1,20 +1,15 @@
 import { AnimationEvent } from '@angular/animations';
-import { FocusMonitor, FocusTrapFactory, InteractivityChecker } from '@angular/cdk/a11y';
 import { OverlayRef, ViewportRuler } from '@angular/cdk/overlay';
 import { CdkPortalOutlet } from '@angular/cdk/portal';
-import { DOCUMENT } from '@angular/common';
 import {
   ChangeDetectionStrategy,
   Component,
-  ElementRef,
   HostListener,
-  Inject,
-  NgZone,
+  inject,
   OnDestroy,
-  Optional,
   ViewEncapsulation,
 } from '@angular/core';
-import { SbbDialogConfig, SbbDialogContainer } from '@sbb-esta/angular/dialog';
+import { SbbDialogContainer } from '@sbb-esta/angular/dialog';
 import { Subject } from 'rxjs';
 import { startWith, takeUntil } from 'rxjs/operators';
 
@@ -48,6 +43,8 @@ import { sbbLightboxAnimations } from './lightbox-animations';
   imports: [CdkPortalOutlet],
 })
 export class SbbLightboxContainer extends SbbDialogContainer implements OnDestroy {
+  private _viewportRuler = inject(ViewportRuler);
+
   /** Callback, invoked whenever an animation on the host completes. */
   @HostListener('@lightboxContainer.done', ['$event'])
   override _onAnimationDone({ toState, totalTime }: AnimationEvent) {
@@ -80,27 +77,11 @@ export class SbbLightboxContainer extends SbbDialogContainer implements OnDestro
 
   private _destroyed = new Subject<void>();
 
-  constructor(
-    elementRef: ElementRef,
-    focusTrapFactory: FocusTrapFactory,
-    @Optional() @Inject(DOCUMENT) document: any,
-    dialogConfig: SbbDialogConfig,
-    checker: InteractivityChecker,
-    ngZone: NgZone,
-    overlayRef: OverlayRef,
-    focusMonitor?: FocusMonitor,
-    private _viewportRuler?: ViewportRuler,
-  ) {
-    super(
-      elementRef,
-      focusTrapFactory,
-      document,
-      dialogConfig,
-      checker,
-      ngZone,
-      overlayRef,
-      focusMonitor,
-    );
+  constructor(...args: unknown[]);
+  constructor() {
+    const overlayRef = inject(OverlayRef);
+
+    super();
 
     // Manually calculate the height of the Lightbox. This is necessary because on mobile Chrome and
     // Safari, 100vh includes the address bar and is therefore taller than the actual viewport.
