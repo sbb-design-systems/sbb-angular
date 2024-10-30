@@ -226,9 +226,9 @@
     "@angular/core" "^13.0.0 || ^14.0.0-0"
     reflect-metadata "^0.1.13"
 
-"@angular/build-tooling@https://github.com/angular/dev-infra-private-build-tooling-builds.git#b30ce317c1c6dd183258fff554777e8582d6f505":
-  version "0.0.0-6a7bc4b11c49adc81d7137fe9eff02ac6818b85d"
-  resolved "https://github.com/angular/dev-infra-private-build-tooling-builds.git#b30ce317c1c6dd183258fff554777e8582d6f505"
+"@angular/build-tooling@https://github.com/angular/dev-infra-private-build-tooling-builds.git#545ecf8b2cb9b1400bc945b8656af85b4cfc2fc0":
+  version "0.0.0-7dd9b1b33245457f087b4ca30dc939d0f01754d0"
+  resolved "https://github.com/angular/dev-infra-private-build-tooling-builds.git#545ecf8b2cb9b1400bc945b8656af85b4cfc2fc0"
   dependencies:
     "@angular/benchpress" "0.3.0"
     "@angular/build" "19.0.0-next.10"
@@ -242,7 +242,7 @@
     "@bazel/runfiles" "5.8.1"
     "@bazel/terser" "5.8.1"
     "@bazel/typescript" "5.8.1"
-    "@microsoft/api-extractor" "7.47.10"
+    "@microsoft/api-extractor" "7.47.11"
     "@types/browser-sync" "^2.26.3"
     "@types/minimatch" "^5.1.2"
     "@types/node" "^18.19.21"
@@ -433,9 +433,9 @@
     fast-glob "3.3.2"
     yargs "^17.2.1"
 
-"@angular/ng-dev@https://github.com/angular/dev-infra-private-ng-dev-builds.git#978df41c469f0d853ec8cd7fc9289e67b001b38d":
-  version "0.0.0-6a7bc4b11c49adc81d7137fe9eff02ac6818b85d"
-  resolved "https://github.com/angular/dev-infra-private-ng-dev-builds.git#978df41c469f0d853ec8cd7fc9289e67b001b38d"
+"@angular/ng-dev@https://github.com/angular/dev-infra-private-ng-dev-builds.git#45fc4c7e2021bcd9ad2a5efca79dc3aa775af7bb":
+  version "0.0.0-7dd9b1b33245457f087b4ca30dc939d0f01754d0"
+  resolved "https://github.com/angular/dev-infra-private-ng-dev-builds.git#45fc4c7e2021bcd9ad2a5efca79dc3aa775af7bb"
   dependencies:
     "@octokit/rest" "21.0.2"
     "@types/semver" "^7.3.6"
@@ -3861,10 +3861,10 @@
     "@microsoft/tsdoc-config" "~0.17.0"
     "@rushstack/node-core-library" "5.9.0"
 
-"@microsoft/api-extractor@7.47.10":
-  version "7.47.10"
-  resolved "https://registry.yarnpkg.com/@microsoft/api-extractor/-/api-extractor-7.47.10.tgz#abf3f3daa8495234a6e2e2aac53a6e326a4031ce"
-  integrity sha512-Fx5J3E8sC5EUeqaC85NXql3hXJc7/QO3NEr/jeBgVJwacRaHdkl3pKDhkkJ6yo/GWbRCv6QnyakU0QuKg8bMig==
+"@microsoft/api-extractor@7.47.11":
+  version "7.47.11"
+  resolved "https://registry.yarnpkg.com/@microsoft/api-extractor/-/api-extractor-7.47.11.tgz#00450fb4f4c30f76c18d36110aa4cae1cdc2191c"
+  integrity sha512-lrudfbPub5wzBhymfFtgZKuBvXxoSIAdrvS2UbHjoMT2TjIEddq6Z13pcve7A03BAouw0x8sW8G4txdgfiSwpQ==
   dependencies:
     "@microsoft/api-extractor-model" "7.29.8"
     "@microsoft/tsdoc" "~0.15.0"
@@ -3872,7 +3872,7 @@
     "@rushstack/node-core-library" "5.9.0"
     "@rushstack/rig-package" "0.5.3"
     "@rushstack/terminal" "0.14.2"
-    "@rushstack/ts-command-line" "4.22.8"
+    "@rushstack/ts-command-line" "4.23.0"
     lodash "~4.17.15"
     minimatch "~3.0.3"
     resolve "~1.22.1"
@@ -5239,6 +5239,16 @@
   version "4.22.8"
   resolved "https://registry.yarnpkg.com/@rushstack/ts-command-line/-/ts-command-line-4.22.8.tgz#ee572c2101fbab9ea29081da5784107bd1597391"
   integrity sha512-XbFjOoV7qZHJnSuFUHv0pKaFA4ixyCuki+xMjsMfDwfvQjs5MYG0IK5COal3tRnG7KCDe2l/G+9LrzYE/RJhgg==
+  dependencies:
+    "@rushstack/terminal" "0.14.2"
+    "@types/argparse" "1.0.38"
+    argparse "~1.0.9"
+    string-argv "~0.3.1"
+
+"@rushstack/ts-command-line@4.23.0":
+  version "4.23.0"
+  resolved "https://registry.yarnpkg.com/@rushstack/ts-command-line/-/ts-command-line-4.23.0.tgz#d2517f9da17a2f7b8967cdb417c39edc25b432ba"
+  integrity sha512-jYREBtsxduPV6ptNq8jOKp9+yx0ld1Tb/Tkdnlj8gTjazl1sF3DwX2VbluyYrNd0meWIL0bNeer7WDf5tKFjaQ==
   dependencies:
     "@rushstack/terminal" "0.14.2"
     "@types/argparse" "1.0.38"
