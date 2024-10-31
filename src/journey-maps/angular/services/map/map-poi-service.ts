@@ -89,6 +89,10 @@ export class SbbMapPoiService {
       this._updateCategoryFilter(map, layerId, poiOptions, 'replace', true);
     });
 
+    poiLayerTypes.CIRCLE.defaultLayer.forEach((layerId) => {
+      this._updateCategoryFilter(map, layerId, poiOptions, 'update', true);
+    });
+
     const baseInteractivityEnabled = !!poiOptions?.baseInteractivityEnabled;
     [...poiLayerTypes.SQUARE.defaultLayer, ...poiLayerTypes.SQUARE.interactiveLayer].forEach(
       (layerId) => {
@@ -100,9 +104,13 @@ export class SbbMapPoiService {
     });
   }
 
-  getInteractivePoiLayerIds(map: MaplibreMap): string[] {
+  getPoiLayerIds(map: MaplibreMap): string[] {
     return isV3Style(map)
-      ? [...poiLayerTypes.PIN.defaultLayer, ...poiLayerTypes.SQUARE.defaultLayer]
+      ? [
+          ...poiLayerTypes.PIN.defaultLayer,
+          ...poiLayerTypes.SQUARE.defaultLayer,
+          ...poiLayerTypes.CIRCLE.defaultLayer,
+        ]
       : poiLayerTypes.LEGACY.defaultLayer;
   }
 
