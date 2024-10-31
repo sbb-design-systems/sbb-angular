@@ -15,12 +15,14 @@ import {
   SBB_POI_SECOND_3D_HOVER_LAYER,
   SBB_POI_SECOND_3D_LAYER,
   SBB_POI_SELECTED_LAYER,
+  SBB_POI_THIRD_2D_LAYER,
+  SBB_POI_THIRD_3D_LAYER,
 } from '../constants';
 
 import { isV3Style } from './util/style-version-lookup';
 
 type PoiLayerType = {
-  [key in 'PIN' | 'SQUARE' | 'LEGACY']: {
+  [key in 'PIN' | 'SQUARE' | 'LEGACY' | 'CIRCLE']: {
     defaultLayer: string[];
     interactiveLayer: string[];
   };
@@ -34,6 +36,10 @@ const poiLayerTypes: PoiLayerType = {
   SQUARE: {
     defaultLayer: [SBB_POI_SECOND_2D_LAYER, SBB_POI_SECOND_3D_LAYER],
     interactiveLayer: [SBB_POI_SECOND_2D_HOVER_LAYER, SBB_POI_SECOND_3D_HOVER_LAYER],
+  },
+  CIRCLE: {
+    defaultLayer: [SBB_POI_THIRD_2D_LAYER, SBB_POI_THIRD_3D_LAYER],
+    interactiveLayer: [],
   },
   LEGACY: {
     defaultLayer: [SBB_POI_LAYER],
@@ -82,9 +88,19 @@ export class SbbMapPoiService {
     poiLayerTypes.SQUARE.interactiveLayer.forEach((layerId) => {
       this._updateCategoryFilter(map, layerId, poiOptions, 'replace', true);
     });
+
+    const baseInteractivityEnabled = !!poiOptions?.baseInteractivityEnabled;
+    [...poiLayerTypes.SQUARE.defaultLayer, ...poiLayerTypes.SQUARE.interactiveLayer].forEach(
+      (layerId) => {
+        this._updateLayerVisibility(map, layerId, baseInteractivityEnabled);
+      },
+    );
+    poiLayerTypes.CIRCLE.defaultLayer.forEach((layerId) => {
+      this._updateLayerVisibility(map, layerId, !baseInteractivityEnabled);
+    });
   }
 
-  getPoiLayerIds(map: MaplibreMap): string[] {
+  getInteractivePoiLayerIds(map: MaplibreMap): string[] {
     return isV3Style(map)
       ? [...poiLayerTypes.PIN.defaultLayer, ...poiLayerTypes.SQUARE.defaultLayer]
       : poiLayerTypes.LEGACY.defaultLayer;

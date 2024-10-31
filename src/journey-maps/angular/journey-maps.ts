@@ -12,7 +12,7 @@ import {
   OnInit,
   Output,
   SimpleChanges,
-  ViewChild,
+  ViewChild
 } from '@angular/core';
 import { FeatureCollection, Point } from 'geojson';
 import { LngLatBounds, LngLatLike, Map as MaplibreMap, VectorTileSource } from 'maplibre-gl';
@@ -40,7 +40,7 @@ import {
   SbbUIOptions,
   SbbViewportBounds,
   SbbViewportDimensions,
-  SbbZoomLevels,
+  SbbZoomLevels
 } from './journey-maps.interfaces';
 import { SbbMarker } from './model/marker';
 import { sbbBufferTimeOnValue } from './services/bufferTimeOnValue';
@@ -50,7 +50,7 @@ import {
   SBB_MAX_ZOOM,
   SBB_MIN_ZOOM,
   SBB_POI_ID_PROPERTY,
-  SBB_ROKAS_ROUTE_SOURCE,
+  SBB_ROKAS_ROUTE_SOURCE
 } from './services/constants';
 import { SbbLocaleService } from './services/locale-service';
 import { SbbMapEventUtils } from './services/map/events/map-event-utils';
@@ -70,7 +70,7 @@ import { SbbMapZoneService } from './services/map/map-zone-service';
 import { MarkerOrPoiSelectionStateService } from './services/map/marker-or-poi-selection-state.service';
 import {
   getInvalidJourneyMapsRoutingOptionCombination,
-  getInvalidJourneyRoutesOptionCombination,
+  getInvalidJourneyRoutesOptionCombination
 } from './util/input-validation';
 
 /**
@@ -128,10 +128,7 @@ export class SbbJourneyMaps implements OnInit, AfterViewInit, OnDestroy, OnChang
    */
   @Input() selectedLevel: number | undefined;
   @Input() listenerOptions: SbbListenerOptions;
-  /**
-   * Specify which points of interest categories should be visible in map.
-   */
-  @Input() poiOptions?: SbbPointsOfInterestOptions;
+
   /** Define the currently visible part of the map. */
   @Input() viewportDimensions?: SbbViewportDimensions;
   /** Restrict the visible part and possible zoom levels of the map. */
@@ -223,6 +220,12 @@ export class SbbJourneyMaps implements OnInit, AfterViewInit, OnDestroy, OnChang
   private _defaultMarkerOptions: SbbMarkerOptions = {
     popup: false,
   };
+  private _defaultPointsOfInterestOptions: SbbPointsOfInterestOptions = {
+    categories: [],
+    environment: 'prod',
+    includePreview: false,
+    baseInteractivityEnabled: true,
+  };
   private _zoomLevelDebouncer = new Subject<void>();
   private _mapMovementDebouncer = new Subject<void>();
   private _mapResized = new Subject<void>();
@@ -290,6 +293,23 @@ export class SbbJourneyMaps implements OnInit, AfterViewInit, OnDestroy, OnChang
     this._styleOptions = {
       ...this._defaultStyleOptions,
       ...styleOptions,
+    };
+  }
+
+  private _poiOptions: SbbPointsOfInterestOptions = this._defaultPointsOfInterestOptions;
+
+  /**
+   * Specify which points of interest categories should be visible in map.
+   */
+  @Input()
+  get poiOptions(): SbbPointsOfInterestOptions {
+    return this._poiOptions;
+  }
+
+  set poiOptions(poiOptions: SbbPointsOfInterestOptions) {
+    this._poiOptions = {
+      ...this._defaultPointsOfInterestOptions,
+      ...poiOptions,
     };
   }
 
@@ -533,7 +553,7 @@ export class SbbJourneyMaps implements OnInit, AfterViewInit, OnDestroy, OnChang
       const visiblePoiFeatures = this._mapEventUtils.queryVisibleFeaturesByFilter(
         this._map,
         'POI',
-        this._mapPoiService.getPoiLayerIds(this._map),
+        this._mapPoiService.getInteractivePoiLayerIds(this._map),
         ['==', SBB_POI_ID_PROPERTY, sbbId],
       );
       if (visiblePoiFeatures.length) {
