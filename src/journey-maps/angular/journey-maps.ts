@@ -553,7 +553,7 @@ export class SbbJourneyMaps implements OnInit, AfterViewInit, OnDestroy, OnChang
       const visiblePoiFeatures = this._mapEventUtils.queryVisibleFeaturesByFilter(
         this._map,
         'POI',
-        this._mapPoiService.getPoiLayerIds(this._map),
+        this._mapPoiService.getPoiMapStyleLayerIds(this._map),
         ['==', SBB_POI_ID_PROPERTY, sbbId],
       );
       if (visiblePoiFeatures.length) {
@@ -692,11 +692,19 @@ export class SbbJourneyMaps implements OnInit, AfterViewInit, OnDestroy, OnChang
           );
           currentPoiSource.setUrl(newPoiSourceUrl);
           this._map.once('styledata', () => {
-            this._mapPoiService.updatePoiVisibility(this._map, this.poiOptions);
+            this._mapPoiService.updatePoiVisibility(
+              this._map,
+              this._isLevelFilterEnabled(),
+              this.poiOptions,
+            );
           });
         } else {
           // Else load instantly
-          this._mapPoiService.updatePoiVisibility(this._map, this.poiOptions);
+          this._mapPoiService.updatePoiVisibility(
+            this._map,
+            this._isLevelFilterEnabled(),
+            this.poiOptions,
+          );
         }
       });
     }
@@ -972,7 +980,6 @@ export class SbbJourneyMaps implements OnInit, AfterViewInit, OnDestroy, OnChang
               this.styleOptions.railNetwork,
             );
           }
-          this._mapPoiService.updatePoiVisibility(this._map, this.poiOptions);
         });
       });
 
@@ -1139,11 +1146,15 @@ export class SbbJourneyMaps implements OnInit, AfterViewInit, OnDestroy, OnChang
    */
   private _show2Dor3D() {
     if (this._isStyleLoaded) {
-      const show3D =
-        this._levelSwitchService.selectedLevel !== undefined && this.uiOptions.levelSwitch;
+      const show3D = this._isLevelFilterEnabled();
       this._setVisibility(this._map, '-2d', show3D ? 'none' : 'visible');
       this._setVisibility(this._map, '-lvl', show3D ? 'visible' : 'none');
+      this._mapPoiService.updatePoiVisibility(this._map, show3D, this.poiOptions);
     }
+  }
+
+  private _isLevelFilterEnabled(): boolean {
+    return this._levelSwitchService.selectedLevel !== undefined && !!this.uiOptions.levelSwitch;
   }
 
   private _setVisibility(map: MaplibreMap, layerIdSuffix: string, visibility: 'visible' | 'none') {

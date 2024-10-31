@@ -118,7 +118,7 @@ export class SbbFeatureEventListener implements OnChanges, OnDestroy {
         this._updateWatchOnLayers([SBB_ZONE_LAYER], 'ZONE');
       }
       if (this.listenerOptions.POI?.watch) {
-        this._updateWatchOnLayers(this._mapPoiService.getPoiLayerIds(this.map), 'POI');
+        this._updateWatchOnLayers(this._mapPoiService.getPoiMapStyleLayerIds(this.map), 'POI');
       }
 
       this._mapCursorStyleEvent?.complete();
