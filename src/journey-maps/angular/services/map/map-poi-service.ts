@@ -141,14 +141,12 @@ export class SbbMapPoiService {
     });
   }
 
-  getPoiMapStyleLayerIds(map: MaplibreMap): string[] {
+  getSelectableLayerIds(map: MaplibreMap): string[] {
     return isV3Style(map)
       ? [
           poiLayerTypes.PIN.defaultLayer,
           poiLayerTypes.SQUARE_2D.defaultLayer,
-          poiLayerTypes.CIRCLE_2D.defaultLayer,
           poiLayerTypes.SQUARE_3D.defaultLayer,
-          poiLayerTypes.CIRCLE_3D.defaultLayer,
         ].flat()
       : poiLayerTypes.LEGACY.defaultLayer;
   }

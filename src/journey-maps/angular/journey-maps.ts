@@ -553,7 +553,7 @@ export class SbbJourneyMaps implements OnInit, AfterViewInit, OnDestroy, OnChang
       const visiblePoiFeatures = this._mapEventUtils.queryVisibleFeaturesByFilter(
         this._map,
         'POI',
-        this._mapPoiService.getPoiMapStyleLayerIds(this._map),
+        this._mapPoiService.getSelectableLayerIds(this._map),
         ['==', SBB_POI_ID_PROPERTY, sbbId],
       );
       if (visiblePoiFeatures.length) {
