@@ -82,15 +82,14 @@ export class SbbMapPoiService {
         this._updateLayerVisibility(map, layerId, poiPinLayerVisible);
       },
     );
-    poiLayerTypes.SQUARE.defaultLayer.forEach((layerId) => {
-      this._updateCategoryFilter(map, layerId, poiOptions, 'update', true);
-    });
+
+    [...poiLayerTypes.SQUARE.defaultLayer, ...poiLayerTypes.CIRCLE.defaultLayer].forEach(
+      (layerId) => {
+        this._updateCategoryFilter(map, layerId, poiOptions, 'update', true);
+      },
+    );
     poiLayerTypes.SQUARE.interactiveLayer.forEach((layerId) => {
       this._updateCategoryFilter(map, layerId, poiOptions, 'replace', true);
-    });
-
-    poiLayerTypes.CIRCLE.defaultLayer.forEach((layerId) => {
-      this._updateCategoryFilter(map, layerId, poiOptions, 'update', true);
     });
 
     const baseInteractivityEnabled = !!poiOptions?.baseInteractivityEnabled;
