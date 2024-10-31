@@ -12,7 +12,7 @@ import {
   OnInit,
   Output,
   SimpleChanges,
-  ViewChild
+  ViewChild,
 } from '@angular/core';
 import { FeatureCollection, Point } from 'geojson';
 import { LngLatBounds, LngLatLike, Map as MaplibreMap, VectorTileSource } from 'maplibre-gl';
@@ -40,7 +40,7 @@ import {
   SbbUIOptions,
   SbbViewportBounds,
   SbbViewportDimensions,
-  SbbZoomLevels
+  SbbZoomLevels,
 } from './journey-maps.interfaces';
 import { SbbMarker } from './model/marker';
 import { sbbBufferTimeOnValue } from './services/bufferTimeOnValue';
@@ -50,7 +50,7 @@ import {
   SBB_MAX_ZOOM,
   SBB_MIN_ZOOM,
   SBB_POI_ID_PROPERTY,
-  SBB_ROKAS_ROUTE_SOURCE
+  SBB_ROKAS_ROUTE_SOURCE,
 } from './services/constants';
 import { SbbLocaleService } from './services/locale-service';
 import { SbbMapEventUtils } from './services/map/events/map-event-utils';
@@ -70,7 +70,7 @@ import { SbbMapZoneService } from './services/map/map-zone-service';
 import { MarkerOrPoiSelectionStateService } from './services/map/marker-or-poi-selection-state.service';
 import {
   getInvalidJourneyMapsRoutingOptionCombination,
-  getInvalidJourneyRoutesOptionCombination
+  getInvalidJourneyRoutesOptionCombination,
 } from './util/input-validation';
 
 /**
