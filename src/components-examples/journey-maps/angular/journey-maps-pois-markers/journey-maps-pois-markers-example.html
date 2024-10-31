@@ -63,7 +63,9 @@
           </sbb-select>
         </sbb-form-field>
         <sbb-checkbox formControlName="includePreview">Preview-POIs</sbb-checkbox>
-        <sbb-checkbox formControlName="baseInteractivityEnabled">Base-POIs interactivity</sbb-checkbox>
+        <sbb-checkbox formControlName="baseInteractivityEnabled"
+          >Base-POIs interactivity</sbb-checkbox
+        >
       </div>
     </div>
     <div class="row-2">
@@ -73,6 +75,15 @@
           <sbb-radio-group class="sbb-checkbox-group-horizontal" formControlName="versionNumber">
             <sbb-radio-button value="v2">v2</sbb-radio-button>
             <sbb-radio-button value="v3">v3</sbb-radio-button>
+          </sbb-radio-group>
+        </div>
+      </div>
+      <div formGroupName="styleOptions">
+        <div>
+          <p class="sbb-label">Light / Dark Mode</p>
+          <sbb-radio-group class="sbb-checkbox-group-vertical" formControlName="mode">
+            <sbb-radio-button value="bright">Bright Mode</sbb-radio-button>
+            <sbb-radio-button value="dark">Dark Mode</sbb-radio-button>
           </sbb-radio-group>
         </div>
       </div>
