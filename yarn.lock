@@ -2,12 +2,12 @@
 # yarn lockfile v1
 
 
-"@actions/cache@3.2.4":
-  version "3.2.4"
-  resolved "https://registry.yarnpkg.com/@actions/cache/-/cache-3.2.4.tgz#793aade7375ba436295ff5ae6139be9d06dfab30"
-  integrity sha512-RuHnwfcDagtX+37s0ZWy7clbOfnZ7AlDJQ7k/9rzt2W4Gnwde3fa/qjSjVuz4vLcLIpc7fUob27CMrqiWZytYA==
+"@actions/cache@3.3.0":
+  version "3.3.0"
+  resolved "https://registry.yarnpkg.com/@actions/cache/-/cache-3.3.0.tgz#53748918aef39f5d53395b57039153bb2b6e2bb4"
+  integrity sha512-+eCsMTIZUEm+QA9GqjollOhCdvRrZ1JV8d9Rp34zVNizBkYITO8dhKczP5Xps1dFzc5n59p7vYVtZrGt18bb5Q==
   dependencies:
-    "@actions/core" "^1.10.0"
+    "@actions/core" "^1.11.1"
     "@actions/exec" "^1.0.1"
     "@actions/glob" "^0.1.0"
     "@actions/http-client" "^2.1.1"
@@ -16,9 +16,8 @@
     "@azure/ms-rest-js" "^2.6.0"
     "@azure/storage-blob" "^12.13.0"
     semver "^6.3.1"
-    uuid "^3.3.3"
 
-"@actions/core@^1.10.0", "@actions/core@^1.2.6":
+"@actions/core@^1.11.1", "@actions/core@^1.2.6":
   version "1.11.1"
   resolved "https://registry.yarnpkg.com/@actions/core/-/core-1.11.1.tgz#ae683aac5112438021588030efb53b1adb86f172"
   integrity sha512-hXJCSrkwfA46Vd9Z3q4cpEpHB1rL5NG04+/rbqW9d3+CSvtB1tYe8UTpAlixa1vj0m/ULglfEK2UKxMGxCxv5A==
@@ -17265,7 +17264,7 @@ uuid@^10.0.0:
   resolved "https://registry.yarnpkg.com/uuid/-/uuid-10.0.0.tgz#5a95aa454e6e002725c79055fd42aaba30ca6294"
   integrity sha512-8XkAphELsDnEGrDxUOHB3RGvXz6TeuYSGEZBOjtTtPm2lwhGBjLgOzLHB63IUWfBpNucQjND6d3AOudO+H3RWQ==
 
-uuid@^3.3.2, uuid@^3.3.3:
+uuid@^3.3.2:
   version "3.4.0"
   resolved "https://registry.yarnpkg.com/uuid/-/uuid-3.4.0.tgz#b23e4358afa8a202fe7a100af1f5f883f02007ee"
   integrity sha512-HjSDRw6gZE5JMggctHBcjVak08+KEVhSIiDzFnT9S9aegmp85S/bReBVTb4QTFaRNptJ9kuYaNhnbNEOkbKb/A==
