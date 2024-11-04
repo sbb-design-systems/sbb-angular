@@ -70,5 +70,9 @@
   svg {
     width: 100%;
     height: 100%;
+
+    :where(path:nth-child(2)) {
+      transform-origin: center;
+    }
   }
 }
