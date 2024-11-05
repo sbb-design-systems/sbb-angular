@@ -275,12 +275,20 @@ export type SbbTemplateType = TemplateRef<any> | string;
 
 /** points of interest options */
 export interface SbbPointsOfInterestOptions {
-  /** Configure a list of points of interest categories visible on the map. Set empty, to hide all POIs. */
+  /** Configure a list of points of interest categories visible on the map as a marker. */
   categories: SbbPointsOfInterestCategoryType[];
   /** Configure the environment from which to get the points of interest from ('prod' or 'int. default = 'prod'). */
   environment?: SbbPointsOfInterestEnvironmentType;
   /** Configure whether to include preview-points-of-interest or not */
   includePreview?: boolean;
+  /**
+   * Configure the interactivity for base points of interest (POIs) on the map, allowing mouse and touch interactions, and selections.
+   *
+   * Default value is true.
+   *
+   * To disable interactivity for all POIs in the map (marker and base), unwatch using <code>listenerOptions={'POI':{watch:false}}</code> instead.
+   */
+  baseInteractivityEnabled?: boolean;
 }
 
 /** points of interest category type */

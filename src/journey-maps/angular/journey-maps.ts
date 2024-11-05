@@ -128,10 +128,7 @@ export class SbbJourneyMaps implements OnInit, AfterViewInit, OnDestroy, OnChang
    */
   @Input() selectedLevel: number | undefined;
   @Input() listenerOptions: SbbListenerOptions;
-  /**
-   * Specify which points of interest categories should be visible in map.
-   */
-  @Input() poiOptions?: SbbPointsOfInterestOptions;
+
   /** Define the currently visible part of the map. */
   @Input() viewportDimensions?: SbbViewportDimensions;
   /** Restrict the visible part and possible zoom levels of the map. */
@@ -223,6 +220,12 @@ export class SbbJourneyMaps implements OnInit, AfterViewInit, OnDestroy, OnChang
   private _defaultMarkerOptions: SbbMarkerOptions = {
     popup: false,
   };
+  private _defaultPointsOfInterestOptions: SbbPointsOfInterestOptions = {
+    categories: [],
+    environment: 'prod',
+    includePreview: false,
+    baseInteractivityEnabled: true,
+  };
   private _zoomLevelDebouncer = new Subject<void>();
   private _mapMovementDebouncer = new Subject<void>();
   private _mapResized = new Subject<void>();
@@ -290,6 +293,23 @@ export class SbbJourneyMaps implements OnInit, AfterViewInit, OnDestroy, OnChang
     this._styleOptions = {
       ...this._defaultStyleOptions,
       ...styleOptions,
+    };
+  }
+
+  private _poiOptions: SbbPointsOfInterestOptions = this._defaultPointsOfInterestOptions;
+
+  /**
+   * Specify which points of interest categories should be visible in map.
+   */
+  @Input()
+  get poiOptions(): SbbPointsOfInterestOptions {
+    return this._poiOptions;
+  }
+
+  set poiOptions(poiOptions: SbbPointsOfInterestOptions) {
+    this._poiOptions = {
+      ...this._defaultPointsOfInterestOptions,
+      ...poiOptions,
     };
   }
 
@@ -533,7 +553,7 @@ export class SbbJourneyMaps implements OnInit, AfterViewInit, OnDestroy, OnChang
       const visiblePoiFeatures = this._mapEventUtils.queryVisibleFeaturesByFilter(
         this._map,
         'POI',
-        this._mapPoiService.getPoiLayerIds(this._map),
+        this._mapPoiService.getSelectableLayerIds(this._map),
         ['==', SBB_POI_ID_PROPERTY, sbbId],
       );
       if (visiblePoiFeatures.length) {
@@ -672,11 +692,19 @@ export class SbbJourneyMaps implements OnInit, AfterViewInit, OnDestroy, OnChang
           );
           currentPoiSource.setUrl(newPoiSourceUrl);
           this._map.once('styledata', () => {
-            this._mapPoiService.updatePoiVisibility(this._map, this.poiOptions);
+            this._mapPoiService.updatePoiVisibility(
+              this._map,
+              this._isLevelFilterEnabled(),
+              this.poiOptions,
+            );
           });
         } else {
           // Else load instantly
-          this._mapPoiService.updatePoiVisibility(this._map, this.poiOptions);
+          this._mapPoiService.updatePoiVisibility(
+            this._map,
+            this._isLevelFilterEnabled(),
+            this.poiOptions,
+          );
         }
       });
     }
@@ -952,7 +980,6 @@ export class SbbJourneyMaps implements OnInit, AfterViewInit, OnDestroy, OnChang
               this.styleOptions.railNetwork,
             );
           }
-          this._mapPoiService.updatePoiVisibility(this._map, this.poiOptions);
         });
       });
 
@@ -1119,11 +1146,15 @@ export class SbbJourneyMaps implements OnInit, AfterViewInit, OnDestroy, OnChang
    */
   private _show2Dor3D() {
     if (this._isStyleLoaded) {
-      const show3D =
-        this._levelSwitchService.selectedLevel !== undefined && this.uiOptions.levelSwitch;
+      const show3D = this._isLevelFilterEnabled();
       this._setVisibility(this._map, '-2d', show3D ? 'none' : 'visible');
       this._setVisibility(this._map, '-lvl', show3D ? 'visible' : 'none');
+      this._mapPoiService.updatePoiVisibility(this._map, show3D, this.poiOptions);
     }
+  }
+
+  private _isLevelFilterEnabled(): boolean {
+    return this._levelSwitchService.selectedLevel !== undefined && !!this.uiOptions.levelSwitch;
   }
 
   private _setVisibility(map: MaplibreMap, layerIdSuffix: string, visibility: 'visible' | 'none') {

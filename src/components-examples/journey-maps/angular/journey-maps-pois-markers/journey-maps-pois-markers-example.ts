@@ -88,6 +88,7 @@ export class JourneyMapsPoisMarkersExample implements OnInit {
         categories: [POI_CATEGORIES],
         environment: ['prod'],
         includePreview: [false],
+        baseInteractivityEnabled: [true],
       }),
       listenerOptions: this.fb.group({
         MARKER: this.fb.group({
