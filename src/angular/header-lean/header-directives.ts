@@ -1,5 +1,5 @@
 import { ContentObserver } from '@angular/cdk/observers';
-import { Directive, ElementRef, OnDestroy } from '@angular/core';
+import { Directive, ElementRef, inject, OnDestroy } from '@angular/core';
 import { Subject } from 'rxjs';
 import { map, takeUntil } from 'rxjs/operators';
 
@@ -24,7 +24,11 @@ export class SbbHeaderEnvironment implements OnDestroy {
   private _destroyed = new Subject<void>();
   private _previousClass: string | null = null;
 
-  constructor(contentObserver: ContentObserver, elementRef: ElementRef<HTMLElement>) {
+  constructor(...args: unknown[]);
+  constructor() {
+    const contentObserver = inject(ContentObserver);
+    const elementRef = inject<ElementRef<HTMLElement>>(ElementRef);
+
     contentObserver
       .observe(elementRef)
       .pipe(
