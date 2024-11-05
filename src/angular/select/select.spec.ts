@@ -925,12 +925,14 @@ class SelectInNgContainer {}
   standalone: false,
 })
 class SelectInsideDynamicFormGroup {
+  private _formBuilder = inject(FormBuilder);
+
   @ViewChild(SbbSelect) select: SbbSelect;
   form: FormGroup;
 
   private readonly _changeDetectorRef = inject(ChangeDetectorRef);
 
-  constructor(private _formBuilder: FormBuilder) {
+  constructor() {
     this.assignGroup(false);
   }
 
