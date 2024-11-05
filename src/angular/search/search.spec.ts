@@ -240,7 +240,7 @@ describe('SbbSearch', () => {
         expect(component.lastSearch).toBe('Eins');
       });
 
-      fit('should close the autocomplete panel', () => {
+      it('should close the autocomplete panel', () => {
         expect(component.search._autocompleteTrigger!.autocomplete.isOpen).toBe(false);
         const input = fixture.debugElement.query(By.css('.sbb-search > input'));
         dispatchFakeEvent(input.nativeElement, 'focusin');
