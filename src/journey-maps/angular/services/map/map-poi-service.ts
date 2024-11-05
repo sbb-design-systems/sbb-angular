@@ -15,12 +15,14 @@ import {
   SBB_POI_SECOND_3D_HOVER_LAYER,
   SBB_POI_SECOND_3D_LAYER,
   SBB_POI_SELECTED_LAYER,
+  SBB_POI_THIRD_2D_LAYER,
+  SBB_POI_THIRD_3D_LAYER,
 } from '../constants';
 
 import { isV3Style } from './util/style-version-lookup';
 
 type PoiLayerType = {
-  [key in 'PIN' | 'SQUARE' | 'LEGACY']: {
+  [key in 'PIN' | 'SQUARE_2D' | 'SQUARE_3D' | 'LEGACY' | 'CIRCLE_2D' | 'CIRCLE_3D']: {
     defaultLayer: string[];
     interactiveLayer: string[];
   };
@@ -31,9 +33,21 @@ const poiLayerTypes: PoiLayerType = {
     defaultLayer: [SBB_POI_FIRST_LAYER],
     interactiveLayer: [SBB_POI_FIRST_HOVER_LAYER],
   },
-  SQUARE: {
-    defaultLayer: [SBB_POI_SECOND_2D_LAYER, SBB_POI_SECOND_3D_LAYER],
-    interactiveLayer: [SBB_POI_SECOND_2D_HOVER_LAYER, SBB_POI_SECOND_3D_HOVER_LAYER],
+  SQUARE_2D: {
+    defaultLayer: [SBB_POI_SECOND_2D_LAYER],
+    interactiveLayer: [SBB_POI_SECOND_2D_HOVER_LAYER],
+  },
+  SQUARE_3D: {
+    defaultLayer: [SBB_POI_SECOND_3D_LAYER],
+    interactiveLayer: [SBB_POI_SECOND_3D_HOVER_LAYER],
+  },
+  CIRCLE_2D: {
+    defaultLayer: [SBB_POI_THIRD_2D_LAYER],
+    interactiveLayer: [],
+  },
+  CIRCLE_3D: {
+    defaultLayer: [SBB_POI_THIRD_3D_LAYER],
+    interactiveLayer: [],
   },
   LEGACY: {
     defaultLayer: [SBB_POI_LAYER],
@@ -46,9 +60,13 @@ const poiLayerTypes: PoiLayerType = {
 export class SbbMapPoiService {
   private readonly poiSubCategoryFieldName = 'subCategory';
 
-  updatePoiVisibility(map: MaplibreMap, poiOptions?: SbbPointsOfInterestOptions): void {
+  updatePoiVisibility(
+    map: MaplibreMap,
+    isLevelFilterEnabled: boolean,
+    poiOptions?: SbbPointsOfInterestOptions,
+  ): void {
     if (isV3Style(map)) {
-      this._handleV3StylePoiLayers(map, poiOptions);
+      this._handleV3StylePoiLayers(map, isLevelFilterEnabled, poiOptions);
     } else {
       this._handleLegacyStylePoiLayers(map, poiOptions);
     }
@@ -61,32 +79,75 @@ export class SbbMapPoiService {
     poiLayerTypes.LEGACY.defaultLayer.forEach((layerId) => {
       this._updateCategoryFilter(map, layerId, poiOptions, 'replace');
     });
-    [...poiLayerTypes.LEGACY.defaultLayer, ...poiLayerTypes.LEGACY.interactiveLayer].forEach(
-      (layerId) => {
-        this._updateLayerVisibility(map, layerId, !!poiOptions?.categories?.length);
-      },
-    );
+    [poiLayerTypes.LEGACY.defaultLayer, poiLayerTypes.LEGACY.interactiveLayer]
+      .flat()
+      .forEach((layerId) => {
+        this._setMapLayerVisibility(map, layerId, !!poiOptions?.categories?.length);
+      });
   }
 
-  private _handleV3StylePoiLayers(map: MaplibreMap, poiOptions?: SbbPointsOfInterestOptions): void {
+  private _handleV3StylePoiLayers(
+    map: MaplibreMap,
+    isLevelFilterEnabled: boolean,
+    poiOptions?: SbbPointsOfInterestOptions,
+  ): void {
     const poiPinLayerVisible = !!poiOptions?.categories?.length;
-    [...poiLayerTypes.PIN.defaultLayer, ...poiLayerTypes.PIN.interactiveLayer].forEach(
-      (layerId) => {
+    [poiLayerTypes.PIN.defaultLayer, poiLayerTypes.PIN.interactiveLayer]
+      .flat()
+      .forEach((layerId) => {
         this._updateCategoryFilter(map, layerId, poiOptions, 'replace');
-        this._updateLayerVisibility(map, layerId, poiPinLayerVisible);
-      },
-    );
-    poiLayerTypes.SQUARE.defaultLayer.forEach((layerId) => {
-      this._updateCategoryFilter(map, layerId, poiOptions, 'update', true);
-    });
-    poiLayerTypes.SQUARE.interactiveLayer.forEach((layerId) => {
-      this._updateCategoryFilter(map, layerId, poiOptions, 'replace', true);
+        this._setMapLayerVisibility(map, layerId, poiPinLayerVisible);
+      });
+
+    [
+      poiLayerTypes.SQUARE_2D.defaultLayer,
+      poiLayerTypes.SQUARE_3D.defaultLayer,
+      poiLayerTypes.CIRCLE_2D.defaultLayer,
+      poiLayerTypes.CIRCLE_3D.defaultLayer,
+    ]
+      .flat()
+      .forEach((layerId) => {
+        this._updateCategoryFilter(map, layerId, poiOptions, 'update', true);
+      });
+
+    [poiLayerTypes.SQUARE_2D.interactiveLayer, poiLayerTypes.SQUARE_3D.interactiveLayer]
+      .flat()
+      .forEach((layerId) => {
+        this._updateCategoryFilter(map, layerId, poiOptions, 'replace', true);
+      });
+
+    const baseInteractivityEnabled = !!poiOptions?.baseInteractivityEnabled;
+    this.setPoiLayerVisibilityByLevelFilter(map, isLevelFilterEnabled, baseInteractivityEnabled);
+  }
+
+  private setPoiLayerVisibilityByLevelFilter(
+    map: MaplibreMap,
+    isLevelFilterEnabled: boolean,
+    baseInteractivityEnabled: boolean,
+  ) {
+    (isLevelFilterEnabled
+      ? [poiLayerTypes.SQUARE_3D.defaultLayer, poiLayerTypes.SQUARE_3D.interactiveLayer]
+      : [poiLayerTypes.SQUARE_2D.defaultLayer, poiLayerTypes.SQUARE_2D.interactiveLayer]
+    )
+      .flat()
+      .forEach((layerId) => {
+        this._setMapLayerVisibility(map, layerId, baseInteractivityEnabled);
+      });
+    (isLevelFilterEnabled
+      ? poiLayerTypes.CIRCLE_3D.defaultLayer
+      : poiLayerTypes.CIRCLE_2D.defaultLayer
+    ).forEach((layerId) => {
+      this._setMapLayerVisibility(map, layerId, !baseInteractivityEnabled);
     });
   }
 
-  getPoiLayerIds(map: MaplibreMap): string[] {
+  getSelectableLayerIds(map: MaplibreMap): string[] {
     return isV3Style(map)
-      ? [...poiLayerTypes.PIN.defaultLayer, ...poiLayerTypes.SQUARE.defaultLayer]
+      ? [
+          poiLayerTypes.PIN.defaultLayer,
+          poiLayerTypes.SQUARE_2D.defaultLayer,
+          poiLayerTypes.SQUARE_3D.defaultLayer,
+        ].flat()
       : poiLayerTypes.LEGACY.defaultLayer;
   }
 
@@ -111,7 +172,7 @@ export class SbbMapPoiService {
     }
   }
 
-  private _updateLayerVisibility(map: MaplibreMap, poiLayerId: string, isVisible: boolean): void {
+  private _setMapLayerVisibility(map: MaplibreMap, poiLayerId: string, isVisible: boolean): void {
     map.setLayoutProperty(poiLayerId, 'visibility', isVisible ? 'visible' : 'none');
   }
 
