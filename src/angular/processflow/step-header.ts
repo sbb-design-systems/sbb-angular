@@ -5,7 +5,7 @@ import {
   AfterViewInit,
   ChangeDetectionStrategy,
   Component,
-  ElementRef,
+  inject,
   Input,
   OnDestroy,
   ViewEncapsulation,
@@ -27,6 +27,8 @@ import { SbbStepLabel } from './step-label';
   imports: [NgTemplateOutlet],
 })
 export class SbbStepHeader extends CdkStepHeader implements AfterViewInit, OnDestroy {
+  private _focusMonitor = inject(FocusMonitor);
+
   /** State of the given step. */
   @Input() state: StepState;
 
@@ -47,13 +49,6 @@ export class SbbStepHeader extends CdkStepHeader implements AfterViewInit, OnDes
 
   /** Whether the given step is not editable and completed. */
   @Input() locked: boolean;
-
-  constructor(
-    private _focusMonitor: FocusMonitor,
-    elementRef: ElementRef<HTMLElement>,
-  ) {
-    super(elementRef);
-  }
 
   ngAfterViewInit() {
     this._focusMonitor.monitor(this._elementRef, true);

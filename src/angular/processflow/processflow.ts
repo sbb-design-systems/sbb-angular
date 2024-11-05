@@ -1,30 +1,19 @@
 import { AnimationEvent } from '@angular/animations';
-import { Directionality } from '@angular/cdk/bidi';
 import { CdkPortalOutlet, TemplatePortal } from '@angular/cdk/portal';
-import {
-  CdkStep,
-  CdkStepper,
-  StepContentPositionState,
-  StepperOptions,
-  STEPPER_GLOBAL_OPTIONS,
-} from '@angular/cdk/stepper';
+import { CdkStep, CdkStepper, StepContentPositionState } from '@angular/cdk/stepper';
 import { NgTemplateOutlet } from '@angular/common';
 import {
   AfterContentInit,
   ChangeDetectionStrategy,
-  ChangeDetectorRef,
   Component,
   ContentChild,
   ContentChildren,
   ElementRef,
   EventEmitter,
-  forwardRef,
-  Inject,
+  inject,
   OnDestroy,
-  Optional,
   Output,
   QueryList,
-  SkipSelf,
   ViewChild,
   ViewChildren,
   ViewContainerRef,
@@ -55,6 +44,8 @@ import { SbbStepLabel } from './step-label';
   imports: [CdkPortalOutlet],
 })
 export class SbbStep extends CdkStep implements SbbErrorStateMatcher, AfterContentInit, OnDestroy {
+  private _errorStateMatcher = inject(SbbErrorStateMatcher, { skipSelf: true });
+  private _viewContainerRef = inject(ViewContainerRef);
   private _isSelected = Subscription.EMPTY;
 
   /** Content for step label given by `<ng-template sbbStepLabel>`. */
@@ -65,15 +56,6 @@ export class SbbStep extends CdkStep implements SbbErrorStateMatcher, AfterConte
 
   /** Currently-attached portal containing the lazy content. */
   _portal: TemplatePortal;
-
-  constructor(
-    @Inject(forwardRef(() => SbbProcessflow)) processflow: SbbProcessflow,
-    @SkipSelf() private _errorStateMatcher: SbbErrorStateMatcher,
-    private _viewContainerRef: ViewContainerRef,
-    @Optional() @Inject(STEPPER_GLOBAL_OPTIONS) processflowOptions?: StepperOptions,
-  ) {
-    super(processflow, processflowOptions);
-  }
 
   ngAfterContentInit() {
     this._isSelected = this._stepper.steps.changes
@@ -143,14 +125,6 @@ export class SbbProcessflow extends CdkStepper implements AfterContentInit {
 
   /** Stream of animation `done` events when the body expands/collapses. */
   readonly _animationDone = new Subject<AnimationEvent>();
-
-  constructor(
-    @Optional() dir: Directionality,
-    changeDetectorRef: ChangeDetectorRef,
-    elementRef: ElementRef<HTMLElement>,
-  ) {
-    super(dir, changeDetectorRef, elementRef);
-  }
 
   override ngAfterContentInit() {
     super.ngAfterContentInit();
