@@ -176,7 +176,7 @@
     </unit>
     <unit id="sbbSidebarCollapse">
       <notes>
-        <note category="location">../../../../../../src/angular/sidebar/icon-sidebar/icon-sidebar.ts:87</note>
+        <note category="location">../../../../../../src/angular/sidebar/icon-sidebar/icon-sidebar.ts:79</note>
         <note category="description">Label to &apos;collapse&apos; icon sidebar</note>
       </notes>
       <segment>
@@ -185,7 +185,7 @@
     </unit>
     <unit id="sbbSidebarExpand">
       <notes>
-        <note category="location">../../../../../../src/angular/sidebar/icon-sidebar/icon-sidebar.ts:89</note>
+        <note category="location">../../../../../../src/angular/sidebar/icon-sidebar/icon-sidebar.ts:81</note>
         <note category="description">Label to &apos;expand&apos; icon sidebar</note>
       </notes>
       <segment>
@@ -194,7 +194,7 @@
     </unit>
     <unit id="sbbSidebarCloseSidebar">
       <notes>
-        <note category="location">../../../../../../src/angular/sidebar/sidebar/sidebar.ts:135</note>
+        <note category="location">../../../../../../src/angular/sidebar/sidebar/sidebar.ts:131</note>
         <note category="description">Button label to close the sidebar</note>
       </notes>
       <segment>
@@ -203,7 +203,7 @@
     </unit>
     <unit id="sbbSidebarOpenSidebar">
       <notes>
-        <note category="location">../../../../../../src/angular/sidebar/sidebar/sidebar.ts:592</note>
+        <note category="location">../../../../../../src/angular/sidebar/sidebar/sidebar.ts:583</note>
         <note category="description">Button label to open the sidebar</note>
       </notes>
       <segment>

@@ -1,9 +1,7 @@
 // Workaround for: https://github.com/bazelbuild/rules_nodejs/issues/1265
 /// <reference types="@angular/localize/init" />
 
-import { BreakpointObserver } from '@angular/cdk/layout';
-import { CdkScrollable, ScrollDispatcher } from '@angular/cdk/scrolling';
-import { DOCUMENT } from '@angular/common';
+import { CdkScrollable } from '@angular/cdk/scrolling';
 import {
   AfterContentInit,
   booleanAttribute,
@@ -12,11 +10,9 @@ import {
   Component,
   ContentChild,
   ContentChildren,
-  ElementRef,
   EventEmitter,
-  Inject,
+  inject,
   Input,
-  NgZone,
   Output,
   QueryList,
   ViewChild,
@@ -55,15 +51,7 @@ export function throwSbbDuplicatedIconSidebarError() {
   ],
   standalone: true,
 })
-export class SbbIconSidebarContent extends SbbSidebarContentBase {
-  constructor(
-    elementRef: ElementRef<HTMLElement>,
-    scrollDispatcher: ScrollDispatcher,
-    ngZone: NgZone,
-  ) {
-    super(elementRef, scrollDispatcher, ngZone);
-  }
-}
+export class SbbIconSidebarContent extends SbbSidebarContentBase {}
 
 @Component({
   selector: 'sbb-icon-sidebar',
@@ -84,6 +72,10 @@ export class SbbIconSidebarContent extends SbbSidebarContentBase {
   imports: [CdkScrollable, SbbIcon],
 })
 export class SbbIconSidebar extends SbbSidebarBase {
+  private _changeDetectorRef = inject(ChangeDetectorRef);
+
+  _container: SbbIconSidebarContainer = inject<SbbIconSidebarContainer>(SBB_SIDEBAR_CONTAINER);
+
   _labelCollapse: string = $localize`:Label to 'collapse' icon sidebar@@sbbSidebarCollapse:Collapse`;
 
   _labelExpand: string = $localize`:Label to 'expand' icon sidebar@@sbbSidebarExpand:Expand`;
@@ -103,13 +95,9 @@ export class SbbIconSidebar extends SbbSidebarBase {
     // Note this has to be async in order to avoid some issues with two-bindings (see #8872).
     new EventEmitter<boolean>(/* isAsync */ true);
 
-  constructor(
-    @Inject(SBB_SIDEBAR_CONTAINER) container: SbbIconSidebarContainer,
-    private _changeDetectorRef: ChangeDetectorRef,
-    elementRef: ElementRef<HTMLElement>,
-    @Inject(DOCUMENT) _doc: any,
-  ) {
-    super(container, elementRef, _doc);
+  constructor(...args: unknown[]);
+  constructor() {
+    super();
   }
 
   toggleExpanded(expanded: boolean = !this._expanded) {
@@ -173,12 +161,9 @@ export class SbbIconSidebarContainer
   @ContentChild(SbbIconSidebarContent) override _content: SbbIconSidebarContent;
   @ViewChild(SbbIconSidebarContent) override _userContent: SbbIconSidebarContent;
 
-  constructor(
-    ngZone: NgZone,
-    changeDetectorRef: ChangeDetectorRef,
-    breakpointObserver: BreakpointObserver,
-  ) {
-    super(ngZone, changeDetectorRef, breakpointObserver);
+  constructor(...args: unknown[]);
+  constructor() {
+    super();
   }
 
   override ngAfterContentInit() {

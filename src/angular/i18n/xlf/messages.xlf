@@ -166,7 +166,7 @@
         <source>Collapse</source>
         <context-group purpose="location">
           <context context-type="sourcefile">../../../../../../src/angular/sidebar/icon-sidebar/icon-sidebar.ts</context>
-          <context context-type="linenumber">87</context>
+          <context context-type="linenumber">79</context>
         </context-group>
         <note priority="1" from="description">Label to &apos;collapse&apos; icon sidebar</note>
       </trans-unit>
@@ -174,7 +174,7 @@
         <source>Expand</source>
         <context-group purpose="location">
           <context context-type="sourcefile">../../../../../../src/angular/sidebar/icon-sidebar/icon-sidebar.ts</context>
-          <context context-type="linenumber">89</context>
+          <context context-type="linenumber">81</context>
         </context-group>
         <note priority="1" from="description">Label to &apos;expand&apos; icon sidebar</note>
       </trans-unit>
@@ -182,7 +182,7 @@
         <source>Close Sidebar</source>
         <context-group purpose="location">
           <context context-type="sourcefile">../../../../../../src/angular/sidebar/sidebar/sidebar.ts</context>
-          <context context-type="linenumber">135</context>
+          <context context-type="linenumber">131</context>
         </context-group>
         <note priority="1" from="description">Button label to close the sidebar</note>
       </trans-unit>
@@ -190,7 +190,7 @@
         <source>Open Sidebar</source>
         <context-group purpose="location">
           <context context-type="sourcefile">../../../../../../src/angular/sidebar/sidebar/sidebar.ts</context>
-          <context context-type="linenumber">592</context>
+          <context context-type="linenumber">583</context>
         </context-group>
         <note priority="1" from="description">Button label to open the sidebar</note>
       </trans-unit>
