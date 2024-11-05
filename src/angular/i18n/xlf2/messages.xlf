@@ -84,8 +84,8 @@
     </unit>
     <unit id="sbbDialogCloseDialog">
       <notes>
-        <note category="location">../../../../../../src/angular/dialog/dialog-content-directives.ts:42</note>
-        <note category="location">../../../../../../src/angular/dialog/dialog-content-directives.ts:115</note>
+        <note category="location">../../../../../../src/angular/dialog/dialog-content-directives.ts:48</note>
+        <note category="location">../../../../../../src/angular/dialog/dialog-content-directives.ts:123</note>
         <note category="description">Aria label to close a dialog</note>
       </notes>
       <segment>
@@ -112,7 +112,7 @@
     </unit>
     <unit id="sbbHeaderMenuBack">
       <notes>
-        <note category="location">../../../../../../src/angular/header-lean/header-menu.ts:61</note>
+        <note category="location">../../../../../../src/angular/header-lean/header-menu.ts:63</note>
         <note category="description">Go back to the app chooser navigation</note>
       </notes>
       <segment>
@@ -121,7 +121,7 @@
     </unit>
     <unit id="sbbHeaderOpenMenu">
       <notes>
-        <note category="location">../../../../../../src/angular/header-lean/header.ts:121</note>
+        <note category="location">../../../../../../src/angular/header-lean/header.ts:129</note>
         <note category="description">Button label to open the sidebar of the header</note>
       </notes>
       <segment>
@@ -130,7 +130,7 @@
     </unit>
     <unit id="sbbHeaderCloseMenu">
       <notes>
-        <note category="location">../../../../../../src/angular/header-lean/header.ts:123</note>
+        <note category="location">../../../../../../src/angular/header-lean/header.ts:131</note>
         <note category="description">Button label to close the sidebar of the header</note>
       </notes>
       <segment>
@@ -139,8 +139,8 @@
     </unit>
     <unit id="sbbLightboxCloseLightbox">
       <notes>
-        <note category="location">../../../../../../src/angular/lightbox/lightbox-content-directives.ts:42</note>
-        <note category="location">../../../../../../src/angular/lightbox/lightbox-content-directives.ts:107</note>
+        <note category="location">../../../../../../src/angular/lightbox/lightbox-content-directives.ts:45</note>
+        <note category="location">../../../../../../src/angular/lightbox/lightbox-content-directives.ts:105</note>
         <note category="description">Aria label to close a dialog</note>
       </notes>
       <segment>

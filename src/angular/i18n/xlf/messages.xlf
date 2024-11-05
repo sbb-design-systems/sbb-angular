@@ -78,11 +78,11 @@
         <source>Close dialog</source>
         <context-group purpose="location">
           <context context-type="sourcefile">../../../../../../src/angular/dialog/dialog-content-directives.ts</context>
-          <context context-type="linenumber">42</context>
+          <context context-type="linenumber">48</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">../../../../../../src/angular/dialog/dialog-content-directives.ts</context>
-          <context context-type="linenumber">115</context>
+          <context context-type="linenumber">123</context>
         </context-group>
         <note priority="1" from="description">Aria label to close a dialog</note>
       </trans-unit>
@@ -106,7 +106,7 @@
         <source>Back</source>
         <context-group purpose="location">
           <context context-type="sourcefile">../../../../../../src/angular/header-lean/header-menu.ts</context>
-          <context context-type="linenumber">61</context>
+          <context context-type="linenumber">63</context>
         </context-group>
         <note priority="1" from="description">Go back to the app chooser navigation</note>
       </trans-unit>
@@ -114,7 +114,7 @@
         <source>Open Menu</source>
         <context-group purpose="location">
           <context context-type="sourcefile">../../../../../../src/angular/header-lean/header.ts</context>
-          <context context-type="linenumber">121</context>
+          <context context-type="linenumber">129</context>
         </context-group>
         <note priority="1" from="description">Button label to open the sidebar of the header</note>
       </trans-unit>
@@ -122,7 +122,7 @@
         <source>Close Menu</source>
         <context-group purpose="location">
           <context context-type="sourcefile">../../../../../../src/angular/header-lean/header.ts</context>
-          <context context-type="linenumber">123</context>
+          <context context-type="linenumber">131</context>
         </context-group>
         <note priority="1" from="description">Button label to close the sidebar of the header</note>
       </trans-unit>
@@ -130,11 +130,11 @@
         <source>Close lightbox</source>
         <context-group purpose="location">
           <context context-type="sourcefile">../../../../../../src/angular/lightbox/lightbox-content-directives.ts</context>
-          <context context-type="linenumber">42</context>
+          <context context-type="linenumber">45</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">../../../../../../src/angular/lightbox/lightbox-content-directives.ts</context>
-          <context context-type="linenumber">107</context>
+          <context context-type="linenumber">105</context>
         </context-group>
         <note priority="1" from="description">Aria label to close a dialog</note>
       </trans-unit>
