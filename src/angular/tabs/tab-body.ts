@@ -20,7 +20,7 @@ import {
   ViewEncapsulation,
 } from '@angular/core';
 import { Subject, Subscription } from 'rxjs';
-import { distinctUntilChanged, startWith } from 'rxjs/operators';
+import { startWith } from 'rxjs/operators';
 
 import { sbbTabsAnimations } from './tabs-animations';
 
@@ -150,24 +150,16 @@ export class SbbTabBody implements OnDestroy {
   }
 
   constructor(private _elementRef: ElementRef<HTMLElement>) {
-    // Ensure that we get unique animation events, because the `.done` callback can get
-    // invoked twice in some browsers. See https://github.com/angular/angular/issues/24084.
-    this._translateTabComplete
-      .pipe(
-        distinctUntilChanged((x, y) => {
-          return x.fromState === y.fromState && x.toState === y.toState;
-        }),
-      )
-      .subscribe((event) => {
-        // If the transition to the center is complete, emit an event.
-        if (this._isCenterPosition(event.toState) && this._isCenterPosition(this._position)) {
-          this._onCentered.emit();
-        }
+    this._translateTabComplete.subscribe((event) => {
+      // If the transition to the center is complete, emit an event.
+      if (this._isCenterPosition(event.toState) && this._isCenterPosition(this._position)) {
+        this._onCentered.emit();
+      }
 
-        if (this._isCenterPosition(event.fromState) && !this._isCenterPosition(this._position)) {
-          this._afterLeavingCenter.emit();
-        }
-      });
+      if (this._isCenterPosition(event.fromState) && !this._isCenterPosition(this._position)) {
+        this._afterLeavingCenter.emit();
+      }
+    });
   }
 
   ngOnDestroy() {
