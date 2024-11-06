@@ -1,7 +1,6 @@
 import { OverlayModule } from '@angular/cdk/overlay';
 import { PortalModule } from '@angular/cdk/portal';
 import { CdkScrollableModule } from '@angular/cdk/scrolling';
-import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { SbbCommonModule } from '@sbb-esta/angular/core';
 import { SbbIconModule } from '@sbb-esta/angular/icon';
@@ -15,7 +14,6 @@ import { SbbMenuTrigger, SBB_MENU_SCROLL_STRATEGY_FACTORY_PROVIDER } from './men
 
 @NgModule({
   imports: [
-    CommonModule,
     OverlayModule,
     PortalModule,
     SbbCommonModule,
