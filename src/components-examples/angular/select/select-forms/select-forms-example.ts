@@ -13,7 +13,6 @@ import { SbbSelectModule } from '@sbb-esta/angular/select';
 @Component({
   selector: 'sbb-select-forms-example',
   templateUrl: 'select-forms-example.html',
-  standalone: true,
   imports: [
     SbbFormFieldModule,
     SbbSelectModule,

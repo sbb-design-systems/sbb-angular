@@ -12,7 +12,6 @@ import { SbbInputModule } from '@sbb-esta/angular/input';
 @Component({
   selector: 'sbb-datepicker-standalone-forms-example',
   templateUrl: 'datepicker-standalone-forms-example.html',
-  standalone: true,
   imports: [SbbFormFieldModule, SbbDatepickerModule, SbbInputModule, FormsModule, DatePipe],
 })
 export class DatepickerStandaloneFormsExample {

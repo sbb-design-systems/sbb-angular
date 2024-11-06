@@ -10,7 +10,6 @@ import { SbbLightboxModule } from '@sbb-esta/angular/lightbox';
 @Component({
   selector: 'sbb-lightbox-component-example',
   templateUrl: 'lightbox-component-example.html',
-  standalone: true,
   imports: [SbbLightboxModule, SbbButtonModule],
 })
 export class LightboxComponentExample {
@@ -28,7 +27,6 @@ export class LightboxComponentExample {
 @Component({
   selector: 'sbb-lightbox-component-example-content',
   templateUrl: 'lightbox-component-example-content.html',
-  standalone: true,
   imports: [SbbLightboxModule, SbbButtonModule],
 })
 export class LightboxComponentExampleContent {}

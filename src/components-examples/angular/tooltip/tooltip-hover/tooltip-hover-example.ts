@@ -11,7 +11,6 @@ import { SbbTooltipModule } from '@sbb-esta/angular/tooltip';
 @Component({
   selector: 'sbb-tooltip-hover-example',
   templateUrl: 'tooltip-hover-example.html',
-  standalone: true,
   imports: [SbbTooltipModule, SbbFormFieldModule, SbbInputModule, FormsModule],
 })
 export class TooltipHoverExample {

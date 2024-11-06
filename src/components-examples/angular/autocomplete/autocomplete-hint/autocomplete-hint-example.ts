@@ -15,7 +15,6 @@ import { distinctUntilChanged, takeUntil } from 'rxjs/operators';
 @Component({
   selector: 'sbb-autocomplete-hint-example',
   templateUrl: 'autocomplete-hint-example.html',
-  standalone: true,
   imports: [
     SbbFormFieldModule,
     SbbInputModule,

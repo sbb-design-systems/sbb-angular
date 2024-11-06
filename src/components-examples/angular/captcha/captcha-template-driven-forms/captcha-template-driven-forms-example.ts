@@ -11,7 +11,6 @@ import { SbbCaptchaModule } from '@sbb-esta/angular/captcha';
   selector: 'sbb-captcha-template-driven-forms-example',
   templateUrl: 'captcha-template-driven-forms-example.html',
   styleUrls: ['captcha-template-driven-forms-example.css'],
-  standalone: true,
   imports: [SbbCaptchaModule, FormsModule, JsonPipe],
 })
 export class CaptchaTemplateDrivenFormsExample {

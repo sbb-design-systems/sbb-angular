@@ -20,7 +20,6 @@ declare global {
   selector: 'sbb-esri-plugin-example',
   templateUrl: 'esri-plugin-example.html',
   styleUrls: ['esri-plugin-example.css'],
-  standalone: true,
   imports: [SbbJourneyMapsModule, SbbNotificationModule, SbbEsriPluginModule],
 })
 export class EsriPluginExample {

@@ -17,7 +17,6 @@ interface FocusableRow extends FocusableOption {
 @Component({
   selector: 'sbb-cell-actions-table-example',
   templateUrl: 'cell-actions-table-example.html',
-  standalone: true,
   imports: [SbbTableModule, SbbButtonModule, SbbIconModule],
 })
 export class CellActionsTableExample implements AfterViewInit {

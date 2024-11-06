@@ -10,7 +10,6 @@ import { SbbMenuModule } from '@sbb-esta/angular/menu';
 @Component({
   selector: 'sbb-breadcrumb-menu-example',
   templateUrl: 'breadcrumb-menu-example.html',
-  standalone: true,
   imports: [SbbBreadcrumbModule, RouterLink, RouterLinkActive, SbbMenuModule],
 })
 export class BreadcrumbMenuExample {}

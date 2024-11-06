@@ -12,7 +12,6 @@ import { SbbInputModule } from '@sbb-esta/angular/input';
 @Component({
   selector: 'sbb-form-field-text-input-sbb-label-example',
   templateUrl: 'form-field-text-input-sbb-label-example.html',
-  standalone: true,
   imports: [
     SbbFormFieldModule,
     SbbInputModule,

@@ -9,7 +9,6 @@ import { SbbTooltipModule } from '@sbb-esta/angular/tooltip';
 @Component({
   selector: 'sbb-tooltip-custom-content-example',
   templateUrl: 'tooltip-custom-content-example.html',
-  standalone: true,
   imports: [SbbTooltipModule, SbbButtonModule],
 })
 export class TooltipCustomContentExample {}

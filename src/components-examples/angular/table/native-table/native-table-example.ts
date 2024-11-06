@@ -23,7 +23,6 @@ interface RowEntry {
   selector: 'sbb-native-table-example',
   templateUrl: 'native-table-example.html',
   encapsulation: ViewEncapsulation.None,
-  standalone: true,
   imports: [SbbTableModule, SbbFormFieldModule, SbbInputModule, FormsModule, ReactiveFormsModule],
 })
 export class NativeTableExample implements OnDestroy {

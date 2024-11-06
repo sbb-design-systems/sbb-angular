@@ -12,7 +12,6 @@ import { SbbFormFieldModule } from '@sbb-esta/angular/form-field';
 @Component({
   selector: 'sbb-chips-reactive-forms-example',
   templateUrl: 'chips-reactive-forms-example.html',
-  standalone: true,
   imports: [
     SbbFormFieldModule,
     SbbChipsModule,

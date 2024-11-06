@@ -14,7 +14,6 @@ import { SbbProcessflowModule } from '@sbb-esta/angular/processflow';
   selector: 'sbb-processflow-editable-example',
   templateUrl: 'processflow-editable-example.html',
   styleUrls: ['processflow-editable-example.css'],
-  standalone: true,
   imports: [
     SbbProcessflowModule,
     FormsModule,

@@ -8,7 +8,6 @@ import { SbbNotificationModule } from '@sbb-esta/angular/notification';
 @Component({
   selector: 'sbb-custom-icon-notification-example',
   templateUrl: 'custom-icon-notification-example.html',
-  standalone: true,
   imports: [SbbNotificationModule],
 })
 export class CustomIconNotificationExample {}

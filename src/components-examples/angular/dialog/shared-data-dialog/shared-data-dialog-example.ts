@@ -22,7 +22,6 @@ export interface DialogData {
 @Component({
   selector: 'sbb-shared-data-dialog-example',
   templateUrl: 'shared-data-dialog-example.html',
-  standalone: true,
   imports: [FormsModule, SbbButtonModule],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
@@ -62,7 +61,6 @@ export class SharedDataDialogExample {
       <button sbb-secondary-button (click)="noThanks()">No Thanks</button>
     </div>
   `,
-  standalone: true,
   imports: [SbbDialogModule, SbbFormFieldModule, SbbInputModule, FormsModule, SbbButtonModule],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })

@@ -15,7 +15,6 @@ import { takeUntil } from 'rxjs/operators';
 @Component({
   selector: 'sbb-multiple-mode-default-file-selector-example',
   templateUrl: 'multiple-mode-default-file-selector-example.html',
-  standalone: true,
   imports: [SbbFileSelectorModule, FormsModule, ReactiveFormsModule, SbbCheckboxModule, JsonPipe],
 })
 export class MultipleModeDefaultFileSelectorExample implements OnInit, OnDestroy {

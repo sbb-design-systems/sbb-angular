@@ -8,7 +8,6 @@ import { SbbMenuModule } from '@sbb-esta/angular/menu';
 @Component({
   selector: 'sbb-menu-lazy-rendering-example',
   templateUrl: 'menu-lazy-rendering-example.html',
-  standalone: true,
   imports: [SbbMenuModule],
 })
 export class MenuLazyRenderingExample {}

@@ -11,7 +11,6 @@ import { SbbInputModule } from '@sbb-esta/angular/input';
 @Component({
   selector: 'sbb-form-field-dirty-error-state-example',
   templateUrl: 'form-field-dirty-error-state-example.html',
-  standalone: true,
   providers: [SbbShowOnDirtyErrorStateMatcher],
   imports: [SbbFormFieldModule, SbbInputModule, FormsModule, ReactiveFormsModule],
 })

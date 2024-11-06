@@ -11,7 +11,6 @@ import { SbbSearchModule } from '@sbb-esta/angular/search';
 @Component({
   selector: 'sbb-search-simple-header-mode-example',
   templateUrl: 'search-simple-header-mode-example.html',
-  standalone: true,
   imports: [SbbSearchModule, SbbInputModule, FormsModule, ReactiveFormsModule, JsonPipe],
 })
 export class SearchSimpleHeaderModeExample {

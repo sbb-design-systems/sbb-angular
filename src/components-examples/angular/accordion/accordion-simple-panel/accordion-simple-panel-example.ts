@@ -8,7 +8,6 @@ import { SbbAccordionModule } from '@sbb-esta/angular/accordion';
 @Component({
   selector: 'sbb-accordion-simple-panel-example',
   templateUrl: 'accordion-simple-panel-example.html',
-  standalone: true,
   imports: [SbbAccordionModule],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })

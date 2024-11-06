@@ -10,7 +10,6 @@ import { SbbTooltipModule } from '@sbb-esta/angular/tooltip';
 @Component({
   selector: 'sbb-form-field-textarea-tooltip-example',
   templateUrl: 'form-field-textarea-tooltip-example.html',
-  standalone: true,
   imports: [SbbFormFieldModule, SbbTooltipModule, SbbInputModule],
 })
 export class FormFieldTextareaTooltipExample {}

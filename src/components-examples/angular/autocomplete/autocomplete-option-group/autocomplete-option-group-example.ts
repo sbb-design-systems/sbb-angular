@@ -15,7 +15,6 @@ import { debounceTime, distinctUntilChanged, map, startWith } from 'rxjs/operato
 @Component({
   selector: 'sbb-autocomplete-option-group-example',
   templateUrl: 'autocomplete-option-group-example.html',
-  standalone: true,
   imports: [
     SbbFormFieldModule,
     SbbInputModule,

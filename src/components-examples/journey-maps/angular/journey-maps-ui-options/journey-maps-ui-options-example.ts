@@ -29,7 +29,6 @@ declare global {
   selector: 'sbb-journey-maps-ui-options-example',
   templateUrl: 'journey-maps-ui-options-example.html',
   styleUrls: ['journey-maps-ui-options-example.css'],
-  standalone: true,
   imports: [
     SbbJourneyMapsModule,
     SbbNotificationModule,

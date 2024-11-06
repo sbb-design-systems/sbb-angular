@@ -46,7 +46,6 @@ declare global {
   selector: 'sbb-journey-maps-routes-zones-example',
   templateUrl: 'journey-maps-routes-zones-example.html',
   styleUrls: ['journey-maps-routes-zones-example.css'],
-  standalone: true,
   imports: [
     SbbJourneyMapsModule,
     SbbNotificationModule,

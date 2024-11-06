@@ -11,7 +11,6 @@ import { SbbToggleModule } from '@sbb-esta/angular/toggle';
   selector: 'sbb-toggle-triple-example',
   templateUrl: 'toggle-triple-example.html',
   encapsulation: ViewEncapsulation.None,
-  standalone: true,
   imports: [SbbToggleModule, FormsModule, ReactiveFormsModule, JsonPipe],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })

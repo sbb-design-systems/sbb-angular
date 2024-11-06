@@ -13,7 +13,6 @@ import { SbbSelectModule } from '@sbb-esta/angular/select';
 @Component({
   selector: 'sbb-select-reactive-forms-example',
   templateUrl: 'select-reactive-forms-example.html',
-  standalone: true,
   imports: [
     FormsModule,
     ReactiveFormsModule,

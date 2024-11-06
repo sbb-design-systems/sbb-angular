@@ -11,7 +11,6 @@ import { SbbRadioButtonPanelModule } from '@sbb-esta/angular/radio-button-panel'
 @Component({
   selector: 'sbb-radio-button-panel-simple-example',
   templateUrl: 'radio-button-panel-simple-example.html',
-  standalone: true,
   imports: [
     SbbRadioButtonModule,
     FormsModule,

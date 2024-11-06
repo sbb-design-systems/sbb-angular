@@ -15,7 +15,6 @@ import { SbbToggleModule } from '@sbb-esta/angular/toggle';
   selector: 'sbb-toggle-template-driven-example',
   templateUrl: 'toggle-template-driven-example.html',
   encapsulation: ViewEncapsulation.None,
-  standalone: true,
   imports: [
     SbbToggleModule,
     FormsModule,

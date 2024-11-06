@@ -8,7 +8,6 @@ import { SbbTabsModule } from '@sbb-esta/angular/tabs';
 @Component({
   selector: 'sbb-tab-group-preserve-content-example',
   templateUrl: 'tab-group-preserve-content-example.html',
-  standalone: true,
   imports: [SbbTabsModule],
 })
 export class TabGroupPreserveContentExample {}

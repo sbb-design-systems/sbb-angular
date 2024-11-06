@@ -12,7 +12,6 @@ import { SbbInputModule } from '@sbb-esta/angular/input';
 @Component({
   selector: 'sbb-autocomplete-require-selection-example',
   templateUrl: 'autocomplete-require-selection-example.html',
-  standalone: true,
   imports: [
     SbbFormFieldModule,
     SbbInputModule,

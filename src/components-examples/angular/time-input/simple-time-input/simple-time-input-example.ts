@@ -8,7 +8,6 @@ import { SbbTimeInputModule } from '@sbb-esta/angular/time-input';
 @Component({
   selector: 'sbb-simple-time-input-example',
   templateUrl: 'simple-time-input-example.html',
-  standalone: true,
   imports: [SbbTimeInputModule],
 })
 export class SimpleTimeInputExample {}

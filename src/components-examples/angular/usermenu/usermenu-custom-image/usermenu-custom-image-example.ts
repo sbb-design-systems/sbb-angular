@@ -9,7 +9,6 @@ import { SbbUsermenuModule } from '@sbb-esta/angular/usermenu';
 @Component({
   selector: 'sbb-usermenu-custom-image-example',
   templateUrl: 'usermenu-custom-image-example.html',
-  standalone: true,
   imports: [SbbUsermenuModule, SbbMenuModule],
 })
 export class UsermenuCustomImageExample {

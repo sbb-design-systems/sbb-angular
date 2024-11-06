@@ -10,7 +10,6 @@ import { SbbCheckboxModule } from '@sbb-esta/angular/checkbox';
 @Component({
   selector: 'sbb-button-overview-example',
   templateUrl: 'button-overview-example.html',
-  standalone: true,
   imports: [SbbButtonModule, SbbCheckboxModule, FormsModule],
 })
 export class ButtonOverviewExample {

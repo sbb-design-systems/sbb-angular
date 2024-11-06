@@ -9,7 +9,6 @@ import { SbbCheckboxModule } from '@sbb-esta/angular/checkbox';
 @Component({
   selector: 'sbb-checkbox-indeterminate-state-example',
   templateUrl: 'checkbox-indeterminate-state-example.html',
-  standalone: true,
   imports: [SbbCheckboxModule],
 })
 export class CheckboxIndeterminateStateExample {

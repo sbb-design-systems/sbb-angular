@@ -11,7 +11,6 @@ import { SbbMenuModule } from '@sbb-esta/angular/menu';
 @Component({
   selector: 'sbb-buttons-in-table-example',
   templateUrl: 'buttons-in-table-example.html',
-  standalone: true,
   imports: [SbbMenuModule, SbbIconModule, SbbButtonModule],
 })
 export class ButtonsInTableExample {}

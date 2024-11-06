@@ -9,7 +9,6 @@ import { SbbRadioButtonModule } from '@sbb-esta/angular/radio-button';
 @Component({
   selector: 'sbb-radio-button-group-horizontal-example',
   templateUrl: 'radio-button-group-horizontal-example.html',
-  standalone: true,
   imports: [SbbRadioButtonModule, FormsModule],
 })
 export class RadioButtonGroupHorizontalExample {

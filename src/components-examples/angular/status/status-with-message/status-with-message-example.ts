@@ -8,7 +8,6 @@ import { SbbStatusModule } from '@sbb-esta/angular/status';
 @Component({
   selector: 'sbb-status-with-message-example',
   templateUrl: 'status-with-message-example.html',
-  standalone: true,
   imports: [SbbStatusModule],
 })
 export class StatusWithMessageExample {}

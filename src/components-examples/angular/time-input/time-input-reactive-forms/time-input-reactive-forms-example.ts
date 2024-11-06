@@ -12,7 +12,6 @@ import { SbbTimeInputModule } from '@sbb-esta/angular/time-input';
 @Component({
   selector: 'sbb-time-input-reactive-forms-example',
   templateUrl: 'time-input-reactive-forms-example.html',
-  standalone: true,
   imports: [
     SbbFormFieldModule,
     SbbTimeInputModule,

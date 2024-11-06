@@ -11,7 +11,6 @@ import { SbbLightboxModule } from '@sbb-esta/angular/lightbox';
   selector: 'sbb-lightbox-animations-example',
   styleUrls: ['lightbox-animations-example.css'],
   templateUrl: 'lightbox-animations-example.html',
-  standalone: true,
   imports: [SbbLightboxModule, SbbButtonModule],
 })
 export class LightboxAnimationsExample {
@@ -37,7 +36,6 @@ export class LightboxAnimationsExample {
       <button sbb-secondary-button sbbLightboxClose>No</button>
     </sbb-lightbox-actions>
   `,
-  standalone: true,
   imports: [SbbLightboxModule, SbbButtonModule],
 })
 export class LightboxAnimationsExampleContent {}

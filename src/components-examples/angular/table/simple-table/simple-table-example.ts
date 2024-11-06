@@ -9,7 +9,6 @@ import { SbbTableModule } from '@sbb-esta/angular/table';
 @Component({
   selector: 'sbb-simple-table-example',
   templateUrl: 'simple-table-example.html',
-  standalone: true,
   imports: [SbbTableModule],
 })
 export class SimpleTableExample {

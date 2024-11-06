@@ -14,7 +14,6 @@ import { SbbPaginationModule } from '@sbb-esta/angular/pagination';
   selector: 'sbb-paginator-example',
   templateUrl: 'paginator-example.html',
   styleUrls: ['paginator-example.css'],
-  standalone: true,
   imports: [
     SbbPaginationModule,
     SbbFormFieldModule,

@@ -10,7 +10,6 @@ import { SbbCheckboxModule } from '@sbb-esta/angular/checkbox';
 @Component({
   selector: 'sbb-checkbox-group-horizontal-example',
   templateUrl: 'checkbox-group-horizontal-example.html',
-  standalone: true,
   imports: [SbbCheckboxModule, FormsModule, JsonPipe],
 })
 export class CheckboxGroupHorizontalExample {

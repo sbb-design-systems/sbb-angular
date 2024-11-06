@@ -11,7 +11,6 @@ import { SbbSelectModule } from '@sbb-esta/angular/select';
 @Component({
   selector: 'sbb-form-field-sbb-select-example',
   templateUrl: 'form-field-sbb-select-example.html',
-  standalone: true,
   imports: [SbbFormFieldModule, SbbSelectModule, FormsModule, ReactiveFormsModule, SbbOptionModule],
 })
 export class FormFieldSbbSelectExample {

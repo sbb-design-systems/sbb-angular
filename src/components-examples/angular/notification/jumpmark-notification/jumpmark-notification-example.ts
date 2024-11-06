@@ -9,7 +9,6 @@ import { SbbNotificationModule } from '@sbb-esta/angular/notification';
 @Component({
   selector: 'sbb-jumpmark-notification-example',
   templateUrl: 'jumpmark-notification-example.html',
-  standalone: true,
   imports: [SbbNotificationModule],
 })
 export class JumpmarkNotificationExample {

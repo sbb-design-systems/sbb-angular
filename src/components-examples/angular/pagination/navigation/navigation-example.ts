@@ -14,7 +14,6 @@ import { SbbPaginationModule } from '@sbb-esta/angular/pagination';
   selector: 'sbb-navigation-example',
   templateUrl: 'navigation-example.html',
   styleUrls: ['navigation-example.css'],
-  standalone: true,
   imports: [SbbPaginationModule, SbbFormFieldModule, SbbInputModule, FormsModule, SbbButtonModule],
 })
 export class NavigationExample {

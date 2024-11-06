@@ -8,7 +8,6 @@ import { SbbIconModule } from '@sbb-esta/angular/icon';
 @Component({
   selector: 'sbb-icon-simple-example',
   templateUrl: 'icon-simple-example.html',
-  standalone: true,
   imports: [SbbIconModule],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })

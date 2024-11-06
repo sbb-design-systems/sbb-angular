@@ -10,7 +10,6 @@ import { SbbDialog, SbbDialogModule } from '@sbb-esta/angular/dialog';
   selector: 'sbb-dialog-animations-example',
   styleUrls: ['dialog-animations-example.css'],
   templateUrl: 'dialog-animations-example.html',
-  standalone: true,
   imports: [SbbButtonModule],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
@@ -36,7 +35,6 @@ export class DialogAnimationsExample {
       <button sbb-secondary-button sbbDialogClose>No</button>
     </div>
   `,
-  standalone: true,
   imports: [SbbDialogModule, SbbButtonModule],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })

@@ -14,7 +14,6 @@ import { SbbProcessflowModule } from '@sbb-esta/angular/processflow';
   selector: 'sbb-processflow-overview-example',
   templateUrl: 'processflow-overview-example.html',
   styleUrls: ['processflow-overview-example.css'],
-  standalone: true,
   imports: [
     SbbProcessflowModule,
     FormsModule,

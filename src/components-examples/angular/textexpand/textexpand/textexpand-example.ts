@@ -8,7 +8,6 @@ import { SbbTextexpandModule } from '@sbb-esta/angular/textexpand';
 @Component({
   selector: 'sbb-textexpand-example',
   templateUrl: 'textexpand-example.html',
-  standalone: true,
   imports: [SbbTextexpandModule],
 })
 export class TextexpandExample {}

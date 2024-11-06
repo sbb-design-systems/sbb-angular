@@ -8,7 +8,6 @@ import { SbbButtonModule } from '@sbb-esta/angular/button';
 @Component({
   selector: 'sbb-link-group-example',
   templateUrl: 'link-group-example.html',
-  standalone: true,
   imports: [SbbButtonModule],
 })
 export class LinkGroupExample {}

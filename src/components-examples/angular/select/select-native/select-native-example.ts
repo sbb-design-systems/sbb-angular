@@ -13,7 +13,6 @@ import { SbbTooltipModule } from '@sbb-esta/angular/tooltip';
 @Component({
   selector: 'sbb-select-native-example',
   templateUrl: 'select-native-example.html',
-  standalone: true,
   imports: [
     FormsModule,
     ReactiveFormsModule,
