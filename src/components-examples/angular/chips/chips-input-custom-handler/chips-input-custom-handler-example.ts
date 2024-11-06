@@ -24,7 +24,6 @@ const availableFruits: Fruit[] = [
 @Component({
   selector: 'sbb-chips-input-custom-handler-example',
   templateUrl: 'chips-input-custom-handler-example.html',
-  standalone: true,
   imports: [SbbFormFieldModule, SbbChipsModule, FormsModule, ReactiveFormsModule, JsonPipe],
 })
 export class ChipsInputCustomHandlerExample {

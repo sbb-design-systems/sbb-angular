@@ -14,7 +14,6 @@ export interface Fruit {
   selector: 'sbb-chips-drag-drop-example',
   templateUrl: 'chips-drag-drop-example.html',
   styleUrls: ['chips-drag-drop-example.css'],
-  standalone: true,
   imports: [SbbChipsModule, CdkDropList, CdkDrag],
 })
 export class ChipsDragDropExample {

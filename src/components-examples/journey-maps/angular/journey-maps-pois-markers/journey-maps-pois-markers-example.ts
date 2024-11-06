@@ -34,7 +34,6 @@ declare global {
   selector: 'sbb-journey-maps-pois-markers-example',
   templateUrl: 'journey-maps-pois-markers-example.html',
   styleUrls: ['journey-maps-pois-markers-example.css'],
-  standalone: true,
   imports: [
     SbbJourneyMapsModule,
     SbbNotificationModule,

@@ -22,7 +22,6 @@ export interface LightboxData {
 @Component({
   selector: 'sbb-lightbox-example',
   templateUrl: 'lightbox-example.html',
-  standalone: true,
   imports: [SbbLightboxModule, SbbFormFieldModule, SbbInputModule, FormsModule, SbbButtonModule],
 })
 export class LightboxExample {
@@ -46,7 +45,6 @@ export class LightboxExample {
 @Component({
   selector: 'sbb-lightbox-example-content',
   templateUrl: 'lightbox-example-content.html',
-  standalone: true,
   imports: [SbbLightboxModule, SbbFormFieldModule, SbbInputModule, FormsModule, SbbButtonModule],
 })
 export class LightboxExampleContent {

@@ -9,7 +9,6 @@ import { SbbProcessflowModule } from '@sbb-esta/angular/processflow';
 @Component({
   selector: 'sbb-processflow-lazy-content-example',
   templateUrl: 'processflow-lazy-content-example.html',
-  standalone: true,
   imports: [SbbProcessflowModule, SbbButtonModule],
 })
 export class ProcessflowLazyContentExample {}

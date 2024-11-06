@@ -18,7 +18,6 @@ import { SbbTextareaModule } from '@sbb-esta/angular/textarea';
   selector: 'sbb-textarea-reactive-forms-with-sbb-form-field-example',
   templateUrl: 'textarea-reactive-forms-with-sbb-form-field-example.html',
   styleUrls: ['textarea-reactive-forms-with-sbb-form-field-example.css'],
-  standalone: true,
   imports: [FormsModule, ReactiveFormsModule, SbbFormFieldModule, SbbTextareaModule, JsonPipe],
 })
 export class TextareaReactiveFormsWithSbbFormFieldExample {

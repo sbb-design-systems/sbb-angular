@@ -13,7 +13,6 @@ import { SbbTooltipModule, TooltipPosition } from '@sbb-esta/angular/tooltip';
 @Component({
   selector: 'sbb-tooltip-simple-example',
   templateUrl: 'tooltip-simple-example.html',
-  standalone: true,
   imports: [
     SbbTooltipModule,
     SbbFormFieldModule,

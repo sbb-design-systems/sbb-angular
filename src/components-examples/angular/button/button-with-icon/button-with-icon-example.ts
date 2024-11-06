@@ -10,7 +10,6 @@ import { SbbIconModule } from '@sbb-esta/angular/icon';
   selector: 'sbb-button-with-icon-example',
   templateUrl: 'button-with-icon-example.html',
   styleUrls: ['button-with-icon-example.css'],
-  standalone: true,
   imports: [SbbButtonModule, SbbIconModule],
 })
 export class ButtonWithIconExample {}

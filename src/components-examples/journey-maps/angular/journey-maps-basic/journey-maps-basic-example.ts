@@ -16,7 +16,6 @@ declare global {
   selector: 'sbb-journey-maps-basic-example',
   templateUrl: 'journey-maps-basic-example.html',
   styleUrls: ['journey-maps-basic-example.css'],
-  standalone: true,
   imports: [SbbJourneyMapsModule, SbbNotificationModule],
 })
 export class JourneyMapsBasicExample {

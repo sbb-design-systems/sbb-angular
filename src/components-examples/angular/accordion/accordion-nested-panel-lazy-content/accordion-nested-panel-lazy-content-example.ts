@@ -8,7 +8,6 @@ import { SbbAccordionModule } from '@sbb-esta/angular/accordion';
 @Component({
   selector: 'sbb-accordion-nested-panel-lazy-content-example',
   templateUrl: 'accordion-nested-panel-lazy-content-example.html',
-  standalone: true,
   imports: [SbbAccordionModule],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })

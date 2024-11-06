@@ -12,7 +12,6 @@ import { SbbInputModule } from '@sbb-esta/angular/input';
 @Component({
   selector: 'sbb-datepicker-date-range-example',
   templateUrl: 'datepicker-date-range-example.html',
-  standalone: true,
   imports: [
     SbbFormFieldModule,
     SbbDatepickerModule,

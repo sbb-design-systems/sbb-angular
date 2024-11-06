@@ -11,7 +11,6 @@ import { SbbUsermenuModule } from '@sbb-esta/angular/usermenu';
 @Component({
   selector: 'sbb-usermenu-user-name-example',
   templateUrl: 'usermenu-user-name-example.html',
-  standalone: true,
   imports: [SbbUsermenuModule, SbbMenuModule, RouterLink, RouterLinkActive, SbbIconModule],
 })
 export class UsermenuUserNameExample {

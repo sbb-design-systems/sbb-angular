@@ -10,7 +10,6 @@ import { SbbButtonModule } from '@sbb-esta/angular/button';
   selector: 'sbb-accordion-wizard-example',
   templateUrl: 'accordion-wizard-example.html',
   styleUrls: ['accordion-wizard-example.css'],
-  standalone: true,
   imports: [SbbAccordionModule, SbbButtonModule],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })

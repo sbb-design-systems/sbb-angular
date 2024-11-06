@@ -17,7 +17,6 @@ import {
   selector: 'sbb-simple-notification-toast-example',
   templateUrl: 'simple-notification-toast-example.html',
   styleUrls: ['simple-notification-toast-example.css'],
-  standalone: true,
   imports: [SbbFormFieldModule, SbbInputModule, FormsModule, SbbButtonModule],
 })
 export class SimpleNotificationToastExample {

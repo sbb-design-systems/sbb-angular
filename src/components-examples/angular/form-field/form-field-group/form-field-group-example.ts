@@ -13,7 +13,6 @@ import { SbbInputModule } from '@sbb-esta/angular/input';
 @Component({
   selector: 'sbb-form-field-group-example',
   templateUrl: 'form-field-group-example.html',
-  standalone: true,
   imports: [
     FormsModule,
     ReactiveFormsModule,

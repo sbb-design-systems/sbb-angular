@@ -9,7 +9,6 @@ import { SbbNotificationModule } from '@sbb-esta/angular/notification';
   selector: 'sbb-simple-notification-example',
   templateUrl: 'simple-notification-example.html',
   styleUrls: ['simple-notification-example.css'],
-  standalone: true,
   imports: [SbbNotificationModule],
 })
 export class SimpleNotificationExample {}

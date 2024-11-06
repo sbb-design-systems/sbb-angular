@@ -9,7 +9,6 @@ import { SbbTagModule } from '@sbb-esta/angular/tag';
 @Component({
   selector: 'sbb-tag-link-example',
   templateUrl: 'tag-link-example.html',
-  standalone: true,
   imports: [SbbTagModule, RouterLink],
 })
 export class TagLinkExample {}

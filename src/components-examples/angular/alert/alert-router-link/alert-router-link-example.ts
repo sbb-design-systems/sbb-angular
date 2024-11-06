@@ -9,7 +9,6 @@ import { SbbAlertModule } from '@sbb-esta/angular/alert';
 @Component({
   selector: 'sbb-alert-router-link-example',
   templateUrl: 'alert-router-link-example.html',
-  standalone: true,
   imports: [SbbAlertModule, RouterLink],
 })
 export class AlertRouterLinkExample {}

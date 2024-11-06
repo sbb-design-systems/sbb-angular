@@ -10,7 +10,6 @@ import { SbbTagModule } from '@sbb-esta/angular/tag';
 @Component({
   selector: 'sbb-tag-reactive-forms-example',
   templateUrl: 'tag-reactive-forms-example.html',
-  standalone: true,
   imports: [SbbTagModule, FormsModule, ReactiveFormsModule, JsonPipe],
 })
 export class TagReactiveFormsExample {

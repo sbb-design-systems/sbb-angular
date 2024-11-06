@@ -13,7 +13,6 @@ import { SbbInputModule } from '@sbb-esta/angular/input';
 @Component({
   selector: 'sbb-autocomplete-forms-example',
   templateUrl: 'autocomplete-forms-example.html',
-  standalone: true,
   imports: [
     SbbFormFieldModule,
     SbbInputModule,

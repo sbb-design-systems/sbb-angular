@@ -30,7 +30,6 @@ declare global {
   selector: 'sbb-journey-maps-map-navigation-example',
   templateUrl: 'journey-maps-map-navigation-example.html',
   styleUrls: ['journey-maps-map-navigation-example.css'],
-  standalone: true,
   imports: [
     SbbJourneyMapsModule,
     SbbNotificationModule,

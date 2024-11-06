@@ -42,7 +42,6 @@ const tagItems: Tag[] = [
 @Component({
   selector: 'sbb-tag-advanced-example',
   templateUrl: 'tag-advanced-example.html',
-  standalone: true,
   imports: [
     SbbTagModule,
     SbbButtonModule,

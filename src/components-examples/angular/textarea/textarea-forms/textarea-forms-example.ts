@@ -14,7 +14,6 @@ import { SbbTextareaModule } from '@sbb-esta/angular/textarea';
   selector: 'sbb-textarea-forms-example',
   templateUrl: 'textarea-forms-example.html',
   styleUrls: ['textarea-forms-example.css'],
-  standalone: true,
   imports: [
     SbbTextareaModule,
     FormsModule,

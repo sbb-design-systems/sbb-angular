@@ -26,7 +26,6 @@ interface ImageRecord {
   selector: 'sbb-search-historic-railway-pictures-example',
   templateUrl: 'search-historic-railway-pictures-example.html',
   styleUrls: ['search-historic-railway-pictures-example.css'],
-  standalone: true,
   imports: [
     SbbSearchModule,
     SbbInputModule,

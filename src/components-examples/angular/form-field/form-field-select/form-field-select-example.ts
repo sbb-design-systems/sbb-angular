@@ -10,7 +10,6 @@ import { SbbInputModule } from '@sbb-esta/angular/input';
 @Component({
   selector: 'sbb-form-field-select-example',
   templateUrl: 'form-field-select-example.html',
-  standalone: true,
   imports: [SbbFormFieldModule, SbbInputModule, FormsModule, ReactiveFormsModule],
 })
 export class FormFieldSelectExample {

@@ -9,7 +9,6 @@ import { SbbDialog, SbbDialogModule } from '@sbb-esta/angular/dialog';
 @Component({
   selector: 'sbb-template-dialog-example',
   templateUrl: 'template-dialog-example.html',
-  standalone: true,
   imports: [SbbButtonModule, SbbDialogModule],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })

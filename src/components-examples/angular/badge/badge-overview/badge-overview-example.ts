@@ -9,7 +9,6 @@ import { SbbIcon } from '@sbb-esta/angular/icon';
 @Component({
   selector: 'sbb-badge-overview-example',
   templateUrl: 'badge-overview-example.html',
-  standalone: true,
   imports: [SbbBadgeModule, SbbButtonModule, SbbIcon],
 })
 export class BadgeOverviewExample {

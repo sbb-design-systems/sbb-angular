@@ -9,7 +9,6 @@ import { SbbMenuModule } from '@sbb-esta/angular/menu';
 @Component({
   selector: 'sbb-menu-icons-example',
   templateUrl: 'menu-icons-example.html',
-  standalone: true,
   imports: [SbbMenuModule, SbbIconModule],
 })
 export class MenuIconsExample {}

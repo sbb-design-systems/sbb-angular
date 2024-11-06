@@ -8,7 +8,6 @@ import { SbbMenuModule } from '@sbb-esta/angular/menu';
 @Component({
   selector: 'sbb-menu-grouping-example',
   templateUrl: 'menu-grouping-example.html',
-  standalone: true,
   imports: [SbbMenuModule],
 })
 export class MenuGroupingExample {}

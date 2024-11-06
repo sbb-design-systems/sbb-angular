@@ -13,7 +13,6 @@ import { SbbSearchModule } from '@sbb-esta/angular/search';
 @Component({
   selector: 'sbb-search-header-autocomplete-example',
   templateUrl: 'search-header-autocomplete-example.html',
-  standalone: true,
   imports: [
     SbbSearchModule,
     SbbInputModule,

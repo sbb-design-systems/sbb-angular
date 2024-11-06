@@ -10,7 +10,6 @@ import { SbbTimeInputModule } from '@sbb-esta/angular/time-input';
 @Component({
   selector: 'sbb-form-field-time-input-example',
   templateUrl: 'form-field-time-input-example.html',
-  standalone: true,
   imports: [SbbFormFieldModule, SbbInputModule, SbbTimeInputModule],
 })
 export class FormFieldTimeInputExample {}

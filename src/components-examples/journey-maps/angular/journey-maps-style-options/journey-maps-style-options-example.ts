@@ -27,7 +27,6 @@ declare global {
   selector: 'sbb-journey-maps-style-options-example',
   templateUrl: 'journey-maps-style-options-example.html',
   styleUrls: ['journey-maps-style-options-example.css'],
-  standalone: true,
   imports: [
     SbbJourneyMapsModule,
     SbbNotificationModule,

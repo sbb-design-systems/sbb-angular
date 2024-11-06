@@ -8,7 +8,6 @@ import { SbbAlertModule } from '@sbb-esta/angular/alert';
 @Component({
   selector: 'sbb-alert-simple-example',
   templateUrl: 'alert-simple-example.html',
-  standalone: true,
   imports: [SbbAlertModule],
 })
 export class AlertSimpleExample {}

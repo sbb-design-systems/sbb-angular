@@ -10,7 +10,6 @@ import { SbbTableModule } from '@sbb-esta/angular/table';
   selector: 'sbb-expandable-table-example',
   templateUrl: 'expandable-table-example.html',
   styleUrls: ['expandable-table-example.css'],
-  standalone: true,
   imports: [SbbTableModule, SbbIconModule],
 })
 export class ExpandableTableExample {

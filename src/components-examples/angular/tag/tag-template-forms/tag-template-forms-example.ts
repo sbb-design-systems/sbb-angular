@@ -9,7 +9,6 @@ import { SbbTagModule } from '@sbb-esta/angular/tag';
 @Component({
   selector: 'sbb-tag-template-forms-example',
   templateUrl: 'tag-template-forms-example.html',
-  standalone: true,
   imports: [SbbTagModule, FormsModule],
 })
 export class TagTemplateFormsExample {

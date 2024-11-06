@@ -23,7 +23,6 @@ import { startWith, takeUntil } from 'rxjs/operators';
   selector: 'sbb-checkbox-panel-group-example',
   templateUrl: 'checkbox-panel-group-example.html',
   styleUrls: ['checkbox-panel-group-example.css'],
-  standalone: true,
   imports: [
     FormsModule,
     ReactiveFormsModule,

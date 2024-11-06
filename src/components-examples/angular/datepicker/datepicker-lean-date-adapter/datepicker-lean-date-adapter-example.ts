@@ -14,7 +14,6 @@ import { SbbInputModule } from '@sbb-esta/angular/input';
   selector: 'sbb-datepicker-lean-date-adapter-example',
   templateUrl: 'datepicker-lean-date-adapter-example.html',
   providers: [provideLeanDateAdapter()],
-  standalone: true,
   imports: [SbbFormFieldModule, SbbDatepickerModule, SbbInputModule, FormsModule, DatePipe],
 })
 export class DatepickerLeanDateAdapterExample {

@@ -20,7 +20,6 @@ interface VehicleExampleItem {
 @Component({
   selector: 'sbb-selectable-table-example',
   templateUrl: 'selectable-table-example.html',
-  standalone: true,
   imports: [SbbTableModule, SbbCheckboxModule, JsonPipe],
 })
 export class SelectableTableExample {

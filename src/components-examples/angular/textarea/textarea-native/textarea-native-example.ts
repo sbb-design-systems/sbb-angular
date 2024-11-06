@@ -11,7 +11,6 @@ import { SbbInputModule } from '@sbb-esta/angular/input';
 @Component({
   selector: 'sbb-textarea-native-example',
   templateUrl: 'textarea-native-example.html',
-  standalone: true,
   imports: [SbbFormFieldModule, SbbInputModule, FormsModule, JsonPipe],
 })
 export class TextareaNativeExample {

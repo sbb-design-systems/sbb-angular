@@ -11,7 +11,6 @@ import { SbbUsermenuModule } from '@sbb-esta/angular/usermenu';
 @Component({
   selector: 'sbb-usermenu-custom-icon-example',
   templateUrl: 'usermenu-custom-icon-example.html',
-  standalone: true,
   imports: [SbbUsermenuModule, SbbIconModule, SbbMenuModule, RouterLink, RouterLinkActive],
 })
 export class UsermenuCustomIconExample {

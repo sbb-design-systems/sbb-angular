@@ -9,7 +9,6 @@ import { SbbTableModule } from '@sbb-esta/angular/table';
 @Component({
   selector: 'sbb-grouped-rows-and-columns-table-example',
   templateUrl: 'grouped-rows-and-columns-table-example.html',
-  standalone: true,
   imports: [SbbTableModule],
 })
 export class GroupedRowsAndColumnsTableExample {

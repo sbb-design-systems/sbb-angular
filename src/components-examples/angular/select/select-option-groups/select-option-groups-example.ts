@@ -13,7 +13,6 @@ import { SbbSelectModule } from '@sbb-esta/angular/select';
 @Component({
   selector: 'sbb-select-option-groups-example',
   templateUrl: 'select-option-groups-example.html',
-  standalone: true,
   imports: [
     FormsModule,
     ReactiveFormsModule,

@@ -12,7 +12,6 @@ import { SbbFormFieldModule } from '@sbb-esta/angular/form-field';
 @Component({
   selector: 'sbb-chips-template-driven-forms-example',
   templateUrl: 'chips-template-driven-forms-example.html',
-  standalone: true,
   imports: [SbbFormFieldModule, SbbChipsModule, FormsModule, SbbButtonModule, JsonPipe],
 })
 export class ChipsTemplateDrivenFormsExample {

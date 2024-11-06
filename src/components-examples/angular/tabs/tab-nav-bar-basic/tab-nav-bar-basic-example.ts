@@ -10,7 +10,6 @@ import { SbbTabsModule } from '@sbb-esta/angular/tabs';
   selector: 'sbb-tab-nav-bar-basic-example',
   templateUrl: 'tab-nav-bar-basic-example.html',
   styleUrls: ['tab-nav-bar-basic-example.css'],
-  standalone: true,
   imports: [SbbTabsModule, SbbButtonModule],
 })
 export class TabNavBarBasicExample {

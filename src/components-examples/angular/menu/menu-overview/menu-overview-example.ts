@@ -8,7 +8,6 @@ import { SbbMenuModule } from '@sbb-esta/angular/menu';
 @Component({
   selector: 'sbb-menu-overview-example',
   templateUrl: 'menu-overview-example.html',
-  standalone: true,
   imports: [SbbMenuModule],
 })
 export class MenuOverviewExample {}
