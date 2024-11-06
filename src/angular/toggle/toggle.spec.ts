@@ -1,4 +1,4 @@
-import { AsyncPipe, CommonModule } from '@angular/common';
+import { AsyncPipe } from '@angular/common';
 import { Component, ContentChildren, QueryList } from '@angular/core';
 import { ComponentFixture, fakeAsync, flush, TestBed, waitForAsync } from '@angular/core/testing';
 import { FormControl, FormGroup, FormsModule, ReactiveFormsModule } from '@angular/forms';
@@ -53,12 +53,12 @@ import { SbbToggleModule } from './toggle.module';
   standalone: true,
   imports: [
     SbbToggleModule,
-    CommonModule,
     SbbIconModule,
     SbbDatepickerModule,
     SbbInputModule,
     ReactiveFormsModule,
     SbbIconTestingModule,
+    AsyncPipe,
   ],
 })
 class ToggleReactiveTestComponent {
@@ -178,11 +178,11 @@ class ToggleReactiveDefaultValueTestComponent {
   standalone: true,
   imports: [
     SbbToggleModule,
-    CommonModule,
     SbbIconModule,
     SbbDatepickerModule,
     SbbInputModule,
     FormsModule,
+    AsyncPipe,
   ],
 })
 class ToggleTemplateDrivenTestComponent {
