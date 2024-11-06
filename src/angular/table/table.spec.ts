@@ -28,6 +28,10 @@ describe('SbbTable', () => {
     change: () => viewPortRulerMockChangeTrigger,
   };
 
+  async function waitForLayout(milliseconds = 0): Promise<void> {
+    await new Promise((resolve) => setTimeout(resolve, milliseconds));
+  }
+
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
       imports: [NoopAnimationsModule, SbbIconTestingModule],
@@ -662,11 +666,10 @@ describe('SbbTable', () => {
     expect(parseInt(columnBLeftOffset, 10)).toBeCloseTo(parseInt(columnAComputedStyles.width, 10));
   }));
 
-  it('should update sticky left offset on viewport change', fakeAsync(() => {
+  it('should update sticky left offset on viewport change', waitForAsync(async () => {
     const fixture = TestBed.createComponent(TableWithTwoStickyColumnsTestComponent);
     fixture.detectChanges();
-    fixture.detectChanges(); // Second change detection needed
-    tick();
+    await fixture.whenStable();
 
     const tableElement = fixture.nativeElement.querySelector('.sbb-table');
 
@@ -682,8 +685,10 @@ describe('SbbTable', () => {
     tableElement.style.width = '200px';
     fixture.changeDetectorRef.markForCheck();
     fixture.detectChanges();
+    await waitForLayout(150); // wait for viewportRulerChange
+
     viewPortRulerMockChangeTrigger.next(); // Manually trigger viewportRulerChange
-    tick();
+    await waitForLayout(150); // wait for viewportRulerChange
 
     // Then the left offset should be updated
     columnAComputedStyles = getComputedStyle(
