@@ -15,7 +15,7 @@ import {
   ElementRef,
   EventEmitter,
   HostListener,
-  Inject,
+  inject,
   Input,
   OnDestroy,
   Output,
@@ -58,6 +58,8 @@ let nextId = 0;
   imports: [SbbIconModule, CdkPortal, CdkPortalOutlet, NgClass],
 })
 export class SbbHeaderMenu implements AfterContentInit, OnDestroy {
+  private _elementRef = inject<ElementRef<HTMLElement>>(ElementRef);
+  _header: SbbHeaderLean = inject<TypeRef<SbbHeaderLean>>(SBB_HEADER);
   _backButton: string = $localize`:Go back to the app chooser navigation@@sbbHeaderMenuBack:Back`;
 
   /** Unique ID to be used by menu trigger's "aria-owns" property. */
@@ -136,10 +138,8 @@ export class SbbHeaderMenu implements AfterContentInit, OnDestroy {
   /** Subscription to tab events on the menu panel */
   private _destroyed = new Subject<void>();
 
-  constructor(
-    private _elementRef: ElementRef<HTMLElement>,
-    @Inject(SBB_HEADER) public _header: TypeRef<SbbHeaderLean>,
-  ) {
+  constructor(...args: unknown[]);
+  constructor() {
     this.closed.pipe(takeUntil(this._destroyed)).subscribe(() => {
       if (this._animationState !== 'closed') {
         this._animationState = 'closed';

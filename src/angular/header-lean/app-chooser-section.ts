@@ -2,7 +2,7 @@ import {
   ChangeDetectionStrategy,
   Component,
   HostListener,
-  Inject,
+  inject,
   Input,
   ViewEncapsulation,
 } from '@angular/core';
@@ -23,9 +23,12 @@ import { SBB_HEADER } from './header-token';
   standalone: true,
 })
 export class SbbAppChooserSection {
+  private _header = inject<TypeRef<SbbHeaderLean>>(SBB_HEADER);
+
   @Input() label: string;
 
-  constructor(@Inject(SBB_HEADER) private _header: TypeRef<SbbHeaderLean>) {}
+  constructor(...args: unknown[]);
+  constructor() {}
 
   /** Close the header menu when any a or button child element is clicked. */
   @HostListener('click', ['$event'])

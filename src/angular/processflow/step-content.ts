@@ -1,4 +1,4 @@
-import { Directive, TemplateRef } from '@angular/core';
+import { Directive, inject, TemplateRef } from '@angular/core';
 
 /**
  * Content for a `sbb-step` that will be rendered lazily.
@@ -8,5 +8,8 @@ import { Directive, TemplateRef } from '@angular/core';
   standalone: true,
 })
 export class SbbStepContent {
-  constructor(public _template: TemplateRef<any>) {}
+  _template: TemplateRef<any> = inject<TemplateRef<any>>(TemplateRef);
+
+  constructor(...args: unknown[]);
+  constructor() {}
 }

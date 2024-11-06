@@ -6,7 +6,7 @@ import {
   ElementRef,
   EventEmitter,
   HostListener,
-  Inject,
+  inject,
   Input,
   OnDestroy,
   Output,
@@ -22,13 +22,16 @@ import { TypeRef } from '@sbb-esta/angular/core';
   standalone: true,
 })
 export class SbbHeaderMenuItem implements FocusableOption, OnDestroy {
+  private _elementRef = inject<ElementRef<HTMLElement>>(ElementRef);
+  private _focusMonitor = inject(FocusMonitor);
+
   /** ARIA role for the menu item. */
   @Input() role: 'menuitem' | 'menuitemradio' | 'menuitemcheckbox' = 'menuitem';
 
   /** Whether the menu item is disabled. */
   @Input({ transform: booleanAttribute }) disabled: boolean = false;
 
-  private _document: Document;
+  private _document = inject(DOCUMENT);
 
   /** Whether the menu item is highlighted. */
   _highlighted: boolean = false;
@@ -39,19 +42,14 @@ export class SbbHeaderMenuItem implements FocusableOption, OnDestroy {
   /** Emits whenever a this item is clicked when enabled. */
   @Output() click: EventEmitter<Event> = new EventEmitter<Event>();
 
-  constructor(
-    private _elementRef: ElementRef<HTMLElement>,
-    private _focusMonitor?: FocusMonitor,
-    @Inject(DOCUMENT) document?: any,
-  ) {
-    if (_focusMonitor) {
+  constructor(...args: unknown[]);
+  constructor() {
+    if (this._focusMonitor) {
       // Start monitoring the element so it gets the appropriate focused classes. We want
       // to show the focus style for menu items only when the focus was not caused by a
       // mouse or touch interaction.
-      _focusMonitor.monitor(this._elementRef, false);
+      this._focusMonitor.monitor(this._elementRef, false);
     }
-
-    this._document = document;
   }
 
   /** Focuses the menu item. */

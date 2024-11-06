@@ -5,6 +5,7 @@ import {
   Component,
   DebugElement,
   EventEmitter,
+  inject,
   OnInit,
   Provider,
   QueryList,
@@ -1397,9 +1398,8 @@ function createComponent<T>(
   standalone: true,
 })
 class SbbHorizontalStepperWithErrorsApp implements OnInit {
+  private _formBuilder = inject(FormBuilder);
   formGroup: FormGroup;
-
-  constructor(private _formBuilder: FormBuilder) {}
 
   ngOnInit() {
     this.formGroup = this._formBuilder.group({

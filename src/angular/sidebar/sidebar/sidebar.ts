@@ -10,10 +10,9 @@ import {
 } from '@angular/cdk/a11y';
 import { BooleanInput, coerceBooleanProperty } from '@angular/cdk/coercion';
 import { ESCAPE, hasModifierKey } from '@angular/cdk/keycodes';
-import { BreakpointObserver } from '@angular/cdk/layout';
 import { Platform } from '@angular/cdk/platform';
-import { CdkScrollable, ScrollDispatcher, ViewportRuler } from '@angular/cdk/scrolling';
-import { AsyncPipe, DOCUMENT } from '@angular/common';
+import { CdkScrollable, ViewportRuler } from '@angular/cdk/scrolling';
+import { AsyncPipe } from '@angular/common';
 import {
   AfterContentChecked,
   AfterContentInit,
@@ -27,16 +26,13 @@ import {
   ContentChildren,
   ElementRef,
   EventEmitter,
-  forwardRef,
   HostBinding,
   HostListener,
   inject,
-  Inject,
   Injector,
   Input,
   NgZone,
   OnDestroy,
-  Optional,
   Output,
   QueryList,
   ViewChild,
@@ -90,15 +86,8 @@ export type SbbSidebarMode = 'over' | 'side';
   standalone: true,
 })
 export class SbbSidebarContent extends SbbSidebarContentBase implements AfterContentInit {
-  constructor(
-    private _changeDetectorRef: ChangeDetectorRef,
-    @Inject(forwardRef(() => SbbSidebarContainer)) public _container: SbbSidebarContainer,
-    elementRef: ElementRef<HTMLElement>,
-    scrollDispatcher: ScrollDispatcher,
-    ngZone: NgZone,
-  ) {
-    super(elementRef, scrollDispatcher, ngZone);
-  }
+  _container: SbbSidebarContainer = inject(SbbSidebarContainer);
+  _changeDetectorRef: ChangeDetectorRef = inject(ChangeDetectorRef);
 
   ngAfterContentInit() {
     this._container._contentMarginChanges.subscribe(() => {
@@ -132,6 +121,13 @@ export class SbbSidebar
   extends SbbSidebarBase
   implements AfterContentInit, AfterContentChecked, OnDestroy
 {
+  private _focusTrapFactory = inject(ConfigurableFocusTrapFactory);
+  private _focusMonitor = inject(FocusMonitor);
+  private _platform = inject(Platform);
+  private _ngZone = inject(NgZone);
+  override _container: SbbSidebarContainer = inject<SbbSidebarContainer>(SBB_SIDEBAR_CONTAINER);
+  private _router = inject(Router, { optional: true });
+
   _labelCloseSidebar: string = $localize`:Button label to close the sidebar@@sbbSidebarCloseSidebar:Close Sidebar`;
 
   /** Whether the sidebar is in mobile mode. */
@@ -281,17 +277,9 @@ export class SbbSidebar
 
   private _injector = inject(Injector);
 
-  constructor(
-    elementRef: ElementRef<HTMLElement>,
-    private _focusTrapFactory: ConfigurableFocusTrapFactory,
-    private _focusMonitor: FocusMonitor,
-    private _platform: Platform,
-    private _ngZone: NgZone,
-    @Optional() @Inject(DOCUMENT) _doc: any,
-    @Inject(SBB_SIDEBAR_CONTAINER) public override _container: SbbSidebarContainer,
-    @Optional() private _router: Router,
-  ) {
-    super(_container, elementRef, _doc);
+  constructor(...args: unknown[]);
+  constructor() {
+    super();
 
     this.openedChange.pipe(takeUntil(this._destroyed)).subscribe((opened: boolean) => {
       if (opened) {
@@ -589,6 +577,9 @@ export class SbbSidebarContainer
   extends SbbSidebarContainerBase<SbbSidebar>
   implements AfterContentInit, SbbSidebarMobileCapableContainer, OnDestroy
 {
+  private _element = inject<ElementRef<HTMLElement>>(ElementRef);
+  private _animationMode = inject(ANIMATION_MODULE_TYPE, { optional: true });
+
   _labelOpenSidebar: string = $localize`:Button label to open the sidebar@@sbbSidebarOpenSidebar:Open Sidebar`;
 
   /** The sidebar child at the start/end position. */
@@ -604,15 +595,11 @@ export class SbbSidebarContainer
     return !this.start || this.start.mode !== 'side' || !this.end || this.end.mode !== 'side';
   }
 
-  constructor(
-    private _element: ElementRef<HTMLElement>,
-    ngZone: NgZone,
-    changeDetectorRef: ChangeDetectorRef,
-    viewportRuler: ViewportRuler,
-    breakPointObserver: BreakpointObserver,
-    @Optional() @Inject(ANIMATION_MODULE_TYPE) private _animationMode?: string,
-  ) {
-    super(ngZone, changeDetectorRef, breakPointObserver);
+  constructor(...args: unknown[]);
+  constructor() {
+    const viewportRuler = inject(ViewportRuler);
+
+    super();
 
     // Since the minimum width of the sidebar depends on the viewport width,
     // we need to recompute the margins if the viewport changes.

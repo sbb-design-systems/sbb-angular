@@ -8,9 +8,11 @@ import {
   EventEmitter,
   HostListener,
   inject,
+  Injector,
   Input,
   OnDestroy,
   Output,
+  runInInjectionContext,
   ViewEncapsulation,
 } from '@angular/core';
 import { SbbAutocompleteOrigin, SbbAutocompleteTrigger } from '@sbb-esta/angular/autocomplete';
@@ -93,6 +95,8 @@ export class SbbSearch implements AfterContentInit, OnDestroy {
 
   private _elementRef = inject<ElementRef<HTMLInputElement>>(ElementRef);
 
+  private _injector = inject(Injector);
+
   constructor(...args: unknown[]);
   constructor() {}
 
@@ -101,10 +105,12 @@ export class SbbSearch implements AfterContentInit, OnDestroy {
       throw getSbbInputRequiredError();
     }
     if (this._autocompleteTrigger) {
-      this._autocompleteTrigger.connectedTo = new SbbAutocompleteOrigin(this._elementRef);
-      this._autocompleteTrigger.autocomplete.optionSelected
-        .pipe(takeUntil(this._destroyed))
-        .subscribe(() => this._emitSearch());
+      runInInjectionContext(this._injector, () => {
+        this._autocompleteTrigger!.connectedTo = new SbbAutocompleteOrigin(this._elementRef);
+        this._autocompleteTrigger!.autocomplete.optionSelected.pipe(
+          takeUntil(this._destroyed),
+        ).subscribe(() => this._emitSearch());
+      });
     }
   }
 

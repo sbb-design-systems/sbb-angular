@@ -21,12 +21,11 @@ import {
   ContentChildren,
   ElementRef,
   EventEmitter,
-  Inject,
+  inject,
   Input,
   NgZone,
   OnChanges,
   OnDestroy,
-  Optional,
   Output,
   QueryList,
   SimpleChanges,
@@ -118,6 +117,15 @@ const breakpointMapping = {
   imports: [SbbIconModule, CdkPortalOutlet, CdkPortal, AsyncPipe],
 })
 export class SbbHeaderLean implements OnChanges, AfterViewInit, OnDestroy {
+  private _elementRef = inject<ElementRef<HTMLElement>>(ElementRef);
+  private _focusTrapFactory = inject(ConfigurableFocusTrapFactory);
+  private _focusMonitor = inject(FocusMonitor);
+  private _ngZone = inject(NgZone);
+  private _breakpointObserver = inject(BreakpointObserver);
+  private _changeDetectorRef = inject(ChangeDetectorRef);
+  private _router = inject(Router, { optional: true });
+  private _doc = inject(DOCUMENT, { optional: true });
+
   _labelOpenMenu: string = $localize`:Button label to open the sidebar of the header@@sbbHeaderOpenMenu:Open Menu`;
 
   _labelCloseMenu: string = $localize`:Button label to close the sidebar of the header@@sbbHeaderCloseMenu:Close Menu`;
@@ -229,16 +237,8 @@ export class SbbHeaderLean implements OnChanges, AfterViewInit, OnDestroy {
   private _focusTrap: FocusTrap;
   private _elementFocusedBeforeMenuWasOpened: HTMLElement | null = null;
 
-  constructor(
-    private _elementRef: ElementRef<HTMLElement>,
-    private _focusTrapFactory: ConfigurableFocusTrapFactory,
-    private _focusMonitor: FocusMonitor,
-    private _ngZone: NgZone,
-    private _breakpointObserver: BreakpointObserver,
-    private _changeDetectorRef: ChangeDetectorRef,
-    @Optional() private _router: Router,
-    @Optional() @Inject(DOCUMENT) private _doc: any,
-  ) {
+  constructor(...args: unknown[]);
+  constructor() {
     this.openedChange.subscribe((opened: boolean) => {
       if (opened) {
         if (this._doc) {

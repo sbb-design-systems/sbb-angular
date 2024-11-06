@@ -9,11 +9,11 @@ import {
   Directive,
   ElementRef,
   HostListener,
+  inject,
   Input,
   OnChanges,
   OnDestroy,
   OnInit,
-  Optional,
   SimpleChanges,
 } from '@angular/core';
 import { SbbIconModule } from '@sbb-esta/angular/icon';
@@ -37,6 +37,12 @@ let dialogElementUid = 0;
   standalone: true,
 })
 export class SbbDialogClose implements OnInit, OnChanges {
+  private _elementRef = inject<ElementRef<HTMLElement>>(ElementRef);
+  protected _dialogRef: SbbDialogRef<any> = inject<SbbDialogRef<any>>(SbbDialogRef, {
+    optional: true,
+  })!;
+  protected _dialog: SbbDialog = inject(SbbDialog);
+
   /** Screenreader label for the button. */
   @Input('aria-label')
   ariaLabel: string = $localize`:Aria label to close a dialog@@sbbDialogCloseDialog:Close dialog`;
@@ -56,13 +62,8 @@ export class SbbDialogClose implements OnInit, OnChanges {
    */
   _canCloseInterceptor: () => boolean = () => true;
 
-  constructor(
-    // The dialog title directive is always used in combination with a `SbbDialogRef`.
-    // tslint:disable-next-line: lightweight-tokens
-    @Optional() private _dialogRef: SbbDialogRef<any>,
-    private _elementRef: ElementRef<HTMLElement>,
-    private _dialog: SbbDialog,
-  ) {}
+  constructor(...args: unknown[]);
+  constructor() {}
 
   ngOnInit() {
     if (!this._dialogRef) {
@@ -106,6 +107,13 @@ export class SbbDialogClose implements OnInit, OnChanges {
 @Directive()
 // tslint:disable-next-line: class-name naming-convention
 export class _SbbDialogTitleBase implements OnInit, OnDestroy {
+  protected _dialogRef: SbbDialogRef<any> = inject<SbbDialogRef<any>>(SbbDialogRef, {
+    optional: true,
+  })!;
+  protected _dialog: SbbDialog = inject(SbbDialog);
+  private _elementRef = inject<ElementRef<HTMLElement>>(ElementRef);
+  private _changeDetectorRef = inject(ChangeDetectorRef);
+
   /** Unique id for the dialog title. If none is supplied, it will be auto-generated. */
   @Input() id: string = `sbb-dialog-title-${dialogElementUid++}`;
 
@@ -117,14 +125,8 @@ export class _SbbDialogTitleBase implements OnInit, OnDestroy {
   /** Whether the close button is enabled for the dialog. */
   _closeEnabled: boolean = true;
 
-  constructor(
-    // The dialog title directive is always used in combination with a `SbbDialogRef`.
-    // tslint:disable-next-line: lightweight-tokens
-    @Optional() protected _dialogRef: SbbDialogRef<any>,
-    private _elementRef: ElementRef<HTMLElement>,
-    private _dialog: SbbDialog,
-    private _changeDetectorRef: ChangeDetectorRef,
-  ) {}
+  constructor(...args: unknown[]);
+  constructor() {}
 
   ngOnInit() {
     if (!this._dialogRef) {
