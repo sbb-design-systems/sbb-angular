@@ -615,10 +615,12 @@ export class SbbSidebarContainer
     // indirect descendants if it's left as false.
     descendants: true,
   })
-  override _allSidebars: QueryList<SbbSidebar>;
+  // We need an initializer here to avoid a TS error.
+  override _allSidebars: QueryList<SbbSidebar> = undefined!;
 
-  @ContentChild(SbbSidebarContent) override _content: SbbSidebarContent;
-  @ViewChild(SbbSidebarContent) override _userContent: SbbSidebarContent;
+  // We need an initializer here to avoid a TS error.
+  @ContentChild(SbbSidebarContent) override _content: SbbSidebarContent = undefined!;
+  @ViewChild(SbbSidebarContent) override _userContent: SbbSidebarContent = undefined!;
 
   /** Event emitted when the sidebar backdrop is clicked. */
   @Output() readonly backdropClick: EventEmitter<void> = new EventEmitter<void>();

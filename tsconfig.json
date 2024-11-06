@@ -26,8 +26,7 @@
       "@sbb-esta/angular/*": ["src/angular/*"],
       "@sbb-esta/journey-maps": ["src/journey-maps"],
       "@sbb-esta/journey-maps/*": ["src/journey-maps/*"]
-    },
-    "useDefineForClassFields": false
+    }
   },
   "include": [
     "src/**/*.ts",

@@ -74,7 +74,7 @@
     "@angular-devkit/core": "19.0.0-rc.0",
     "@angular-devkit/schematics": "19.0.0-rc.0",
     "@angular-devkit/schematics-cli": "19.0.0-rc.0",
-    "@angular/bazel": "https://github.com/angular/bazel-builds.git#9e6140d1eef8ddf7113d00738f603e9cc3c310f1",
+    "@angular/bazel": "https://github.com/angular/bazel-builds.git#d9a8ea4f9e62cb475eff89519426a38631b2704d",
     "@angular/build-tooling": "https://github.com/angular/dev-infra-private-build-tooling-builds.git#1af887fd468fae1f8da3ccd31ca40e1291f65b5b",
     "@angular/cli": "19.0.0-rc.0",
     "@angular/compiler": "19.0.0-rc.0",

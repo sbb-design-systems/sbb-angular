@@ -156,10 +156,10 @@ export class SbbIconSidebarContainer
     // indirect descendants if it's left as false.
     descendants: true,
   })
-  override _allSidebars: QueryList<SbbIconSidebar>;
-
-  @ContentChild(SbbIconSidebarContent) override _content: SbbIconSidebarContent;
-  @ViewChild(SbbIconSidebarContent) override _userContent: SbbIconSidebarContent;
+  // We need an initializer here to avoid a TS error.
+  override _allSidebars: QueryList<SbbIconSidebar> = undefined!;
+  @ContentChild(SbbIconSidebarContent) override _content: SbbIconSidebarContent = undefined!;
+  @ViewChild(SbbIconSidebarContent) override _userContent: SbbIconSidebarContent = undefined!;
 
   constructor(...args: unknown[]);
   constructor() {
