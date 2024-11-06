@@ -34,7 +34,7 @@ import { AbstractControl, FormGroupDirective, NgForm } from '@angular/forms';
 import { SbbErrorStateMatcher } from '@sbb-esta/angular/core';
 import { SbbIcon } from '@sbb-esta/angular/icon';
 import { Subject, Subscription } from 'rxjs';
-import { distinctUntilChanged, map, startWith, switchMap, takeUntil } from 'rxjs/operators';
+import { map, startWith, switchMap, takeUntil } from 'rxjs/operators';
 
 import { sbbProcessflowAnimations } from './processflow-animations';
 import { SbbStepContent } from './step-content';
@@ -164,19 +164,11 @@ export class SbbProcessflow extends CdkStepper implements AfterContentInit {
       this._scrollToLabel(selection.selectedIndex);
     });
 
-    this._animationDone
-      .pipe(
-        // This needs a `distinctUntilChanged` in order to avoid emitting the same event twice due
-        // to a bug in animations where the `.done` callback gets invoked twice on some browsers.
-        // See https://github.com/angular/angular/issues/24084
-        distinctUntilChanged((x, y) => x.fromState === y.fromState && x.toState === y.toState),
-        takeUntil(this._destroyed),
-      )
-      .subscribe((event) => {
-        if ((event.toState as StepContentPositionState) === 'current') {
-          this.animationDone.emit();
-        }
-      });
+    this._animationDone.pipe(takeUntil(this._destroyed)).subscribe((event) => {
+      if ((event.toState as StepContentPositionState) === 'current') {
+        this.animationDone.emit();
+      }
+    });
   }
 
   /**
