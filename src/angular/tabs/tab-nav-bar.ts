@@ -30,23 +30,38 @@ import {
 import { SbbIcon } from '@sbb-esta/angular/icon';
 import { startWith, takeUntil } from 'rxjs/operators';
 
-import { SbbPaginatedTabHeader, SbbPaginatedTabHeaderItem } from './paginated-tab-header';
+import { SbbPaginatedTabHeader } from './paginated-tab-header';
 
 // Increasing integer for generating unique ids for tab nav components.
 let nextUniqueId = 0;
 
 /**
- * Base class with all of the `SbbTabNav` functionality.
- * @docs-private
+ * Navigation component matching the styles of the tab group header.
+ * Provides anchored navigation with animated ink bar.
  */
-@Directive()
-// tslint:disable-next-line:class-name naming-convention
-export abstract class _SbbTabNavBase
+@Component({
+  selector: '[sbb-tab-nav-bar]',
+  exportAs: 'sbbTabNavBar, sbbTabNav',
+  templateUrl: 'tab-nav-bar.html',
+  styleUrls: ['tab-nav-bar.css'],
+  host: {
+    '[attr.role]': '_getRole()',
+    class: 'sbb-tab-nav-bar sbb-tab-header',
+    '[class.sbb-tab-header-pagination-controls-enabled]': `_showPaginationControls && this.variantSnapshot === 'lean'`,
+  },
+  encapsulation: ViewEncapsulation.None,
+  // tslint:disable-next-line:validate-decorators
+  changeDetection: ChangeDetectionStrategy.Default,
+  standalone: true,
+  imports: [SbbIcon, CdkObserveContent],
+})
+export class SbbTabNav
   extends SbbPaginatedTabHeader
   implements AfterContentChecked, AfterContentInit, OnDestroy
 {
   /** Query list of all tab links of the tab navigation. */
-  abstract override _items: QueryList<SbbPaginatedTabHeaderItem & { active: boolean; id: string }>;
+  @ContentChildren(forwardRef(() => SbbTabLink), { descendants: true })
+  _items: QueryList<SbbTabLink>;
 
   /**
    * Associated tab panel controlled by the nav bar. If not provided, then the nav bar
@@ -54,6 +69,12 @@ export abstract class _SbbTabNavBase
    * ARIA tabs design pattern.
    */
   @Input() tabPanel?: SbbTabNavPanel;
+
+  @ViewChild('tabListContainer', { static: true }) _tabListContainer: ElementRef;
+  @ViewChild('tabList', { static: true }) _tabList: ElementRef;
+  @ViewChild('tabListInner', { static: true }) _tabListInner: ElementRef;
+  @ViewChild('nextPaginator') _nextPaginator: ElementRef<HTMLElement>;
+  @ViewChild('previousPaginator') _previousPaginator: ElementRef<HTMLElement>;
 
   constructor(
     elementRef: ElementRef,
@@ -110,50 +131,28 @@ export abstract class _SbbTabNavBase
 }
 
 /**
- * Navigation component matching the styles of the tab group header.
- * Provides anchored navigation with animated ink bar.
+ * Link inside of a `sbb-tab-nav-bar`.
  */
-@Component({
-  selector: '[sbb-tab-nav-bar]',
-  exportAs: 'sbbTabNavBar, sbbTabNav',
-  templateUrl: 'tab-nav-bar.html',
-  styleUrls: ['tab-nav-bar.css'],
+@Directive({
+  selector: '[sbb-tab-link], [sbbTabLink]',
+  exportAs: 'sbbTabLink',
   host: {
+    class: 'sbb-tab-link sbb-link-reset',
+    '[attr.aria-controls]': '_getAriaControls()',
+    '[attr.aria-current]': '_getAriaCurrent()',
+    '[attr.aria-disabled]': 'disabled',
+    '[attr.aria-selected]': '_getAriaSelected()',
+    '[attr.id]': 'id',
+    '[attr.tabIndex]': '_getTabIndex()',
     '[attr.role]': '_getRole()',
-    class: 'sbb-tab-nav-bar sbb-tab-header',
-    '[class.sbb-tab-header-pagination-controls-enabled]': `_showPaginationControls && this.variantSnapshot === 'lean'`,
+    '[class.sbb-tab-disabled]': 'disabled',
+    '[class.sbb-tab-label-active]': 'active',
+    '(focus)': '_handleFocus()',
+    '(keydown)': '_handleKeydown($event)',
   },
-  encapsulation: ViewEncapsulation.None,
-  // tslint:disable-next-line:validate-decorators
-  changeDetection: ChangeDetectionStrategy.Default,
   standalone: true,
-  imports: [SbbIcon, CdkObserveContent],
 })
-export class SbbTabNav extends _SbbTabNavBase {
-  @ContentChildren(forwardRef(() => SbbTabLink), { descendants: true })
-  _items: QueryList<SbbTabLink>;
-  @ViewChild('tabListContainer', { static: true }) _tabListContainer: ElementRef;
-  @ViewChild('tabList', { static: true }) _tabList: ElementRef;
-  @ViewChild('tabListInner', { static: true }) _tabListInner: ElementRef;
-  @ViewChild('nextPaginator') _nextPaginator: ElementRef<HTMLElement>;
-  @ViewChild('previousPaginator') _previousPaginator: ElementRef<HTMLElement>;
-
-  constructor(
-    elementRef: ElementRef,
-    ngZone: NgZone,
-    changeDetectorRef: ChangeDetectorRef,
-    viewportRuler: ViewportRuler,
-    platform: Platform,
-    @Optional() @Inject(ANIMATION_MODULE_TYPE) animationMode?: string,
-  ) {
-    super(elementRef, ngZone, changeDetectorRef, viewportRuler, platform, animationMode);
-  }
-}
-
-/** Base class with all of the `SbbTabLink` functionality. */
-@Directive()
-// tslint:disable-next-line:class-name naming-convention
-export class _SbbTabLinkBase implements AfterViewInit, OnDestroy, FocusableOption {
+export class SbbTabLink implements AfterViewInit, OnDestroy, FocusableOption {
   /** Whether the tab link is disabled. */
   @Input({ transform: booleanAttribute }) disabled: boolean = false;
 
@@ -178,7 +177,7 @@ export class _SbbTabLinkBase implements AfterViewInit, OnDestroy, FocusableOptio
   @Input() id: string = `sbb-tab-link-${nextUniqueId++}`;
 
   constructor(
-    private _tabNavBar: _SbbTabNavBase,
+    private _tabNavBar: SbbTabNav,
     /** @docs-private */ public elementRef: ElementRef,
     @Attribute('tabindex') tabIndex: string,
     private _focusMonitor: FocusMonitor,
@@ -254,36 +253,6 @@ export class _SbbTabLinkBase implements AfterViewInit, OnDestroy, FocusableOptio
 /**
  * Link inside of a `sbb-tab-nav-bar`.
  */
-@Directive({
-  selector: '[sbb-tab-link], [sbbTabLink]',
-  exportAs: 'sbbTabLink',
-  host: {
-    class: 'sbb-tab-link sbb-link-reset',
-    '[attr.aria-controls]': '_getAriaControls()',
-    '[attr.aria-current]': '_getAriaCurrent()',
-    '[attr.aria-disabled]': 'disabled',
-    '[attr.aria-selected]': '_getAriaSelected()',
-    '[attr.id]': 'id',
-    '[attr.tabIndex]': '_getTabIndex()',
-    '[attr.role]': '_getRole()',
-    '[class.sbb-tab-disabled]': 'disabled',
-    '[class.sbb-tab-label-active]': 'active',
-    '(focus)': '_handleFocus()',
-    '(keydown)': '_handleKeydown($event)',
-  },
-  standalone: true,
-})
-export class SbbTabLink extends _SbbTabLinkBase {
-  constructor(
-    tabNavBar: SbbTabNav,
-    elementRef: ElementRef,
-    @Attribute('tabindex') tabIndex: string,
-    focusMonitor: FocusMonitor,
-  ) {
-    super(tabNavBar, elementRef, tabIndex, focusMonitor);
-  }
-}
-
 /**
  * Tab panel component associated with SbbTabNav.
  */
