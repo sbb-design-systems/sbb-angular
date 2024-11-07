@@ -40,12 +40,8 @@ export class SbbMapService {
   addMissingImage(map: MaplibreMap, name: string, icon: string): void {
     map
       .loadImage(icon)
-      .then(({ data: image }) => {
-        map.addImage(name, image, { pixelRatio: 2 });
-      })
-      .catch((reason) => {
-        console.error(reason);
-      });
+      .then(({ data: image }) => map.addImage(name, image, { pixelRatio: 2 }))
+      .catch((reason) => console.warn(reason));
   }
 
   verifySources(map: MaplibreMap, sourceIds: string[]): void {
