@@ -1,4 +1,5 @@
 import { AnimationEvent } from '@angular/animations';
+import { _IdGenerator } from '@angular/cdk/a11y';
 import { AsyncPipe } from '@angular/common';
 import {
   booleanAttribute,
@@ -44,8 +45,6 @@ export interface SbbNotificationEvent {
 // tslint:disable-next-line: naming-convention
 const _SbbNotificationMixinBase = mixinVariant(class {});
 
-let nextId = 0;
-
 @Component({
   selector: 'sbb-notification',
   templateUrl: './notification.html',
@@ -79,7 +78,7 @@ export class SbbNotification extends _SbbNotificationMixinBase implements OnChan
   _animationState: 'visible' | 'dismissed' = 'visible';
 
   /** The id of this element. */
-  @Input() id: string = `sbb-notification-${nextId++}`;
+  @Input() id: string = inject(_IdGenerator).getId('sbb-notification-');
 
   /**
    * Type of notification.

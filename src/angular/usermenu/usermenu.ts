@@ -1,12 +1,14 @@
 // Workaround for: https://github.com/bazelbuild/rules_nodejs/issues/1265
 /// <reference types="@angular/localize/init" />
 
+import { _IdGenerator } from '@angular/cdk/a11y';
 import { AsyncPipe, NgTemplateOutlet } from '@angular/common';
 import {
   ChangeDetectionStrategy,
   Component,
   ContentChild,
   EventEmitter,
+  inject,
   Input,
   Output,
   TemplateRef,
@@ -24,8 +26,6 @@ import {
 import { SbbMenuDynamicTrigger } from '@sbb-esta/angular/menu';
 
 import { SbbUsermenuIcon } from './usermenu-icon';
-
-let counter = 0;
 
 // Boilerplate for applying mixins to SbbNotification.
 const _SbbUsermenuMixinBase = mixinVariant(class {});
@@ -72,7 +72,7 @@ export class SbbUsermenu extends _SbbUsermenuMixinBase {
   }
 
   /** Identifier of the usermenu. */
-  id: string = `sbb-usermenu-${counter++}`;
+  id: string = inject(_IdGenerator).getId('sbb-usermenu-');
 
   /**
    * The user name is only displayed if the menu is open.

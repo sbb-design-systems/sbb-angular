@@ -364,7 +364,7 @@ describe('SbbInput without forms', () => {
     fixture.componentInstance.formControl.setErrors({ invalid: true });
     fixture.changeDetectorRef.markForCheck();
     fixture.detectChanges();
-    expect(input.getAttribute('aria-describedby')).toMatch(/^custom-error sbb-error-\d+$/);
+    expect(input.getAttribute('aria-describedby')).toMatch(/^custom-error sbb-error-\w+\d+$/);
 
     fixture.componentInstance.label = '';
     fixture.componentInstance.userDescribedByValue = '';

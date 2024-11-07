@@ -1,3 +1,4 @@
+import { _IdGenerator } from '@angular/cdk/a11y';
 import { Overlay, ScrollStrategy } from '@angular/cdk/overlay';
 import { ComponentType } from '@angular/cdk/portal';
 import { inject, Injectable, InjectionToken, Injector, TemplateRef } from '@angular/core';
@@ -58,9 +59,6 @@ export const SBB_LIGHTBOX_SCROLL_STRATEGY_PROVIDER = {
   useFactory: SBB_LIGHTBOX_SCROLL_STRATEGY_PROVIDER_FACTORY,
 };
 
-// Counter for unique dialog ids.
-let uniqueId = 0;
-
 /**
  * Service to open modal lightboxes.
  */
@@ -114,7 +112,7 @@ export class SbbLightbox extends _SbbDialogBase<SbbLightboxContainer, SbbLightbo
       minHeight: 'auto',
       maxHeight: 'none',
     };
-    dialogConfig.id = dialogConfig.id || `${this._idPrefix}${uniqueId++}`;
+    dialogConfig.id = dialogConfig.id || this._idGenerator.getId(this._idPrefix);
     return super.open(componentOrTemplateRef, dialogConfig) as any;
   }
 

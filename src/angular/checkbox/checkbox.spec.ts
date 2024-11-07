@@ -279,7 +279,7 @@ describe('SbbCheckbox', () => {
       fixture.changeDetectorRef.markForCheck();
       fixture.detectChanges();
 
-      expect(checkboxInstance.inputId).toMatch(/sbb-checkbox-\d+/);
+      expect(checkboxInstance.inputId).toMatch(/sbb-checkbox-\w+\d+/);
       expect(inputElement.id).toBe(checkboxInstance.inputId);
     });
 
@@ -806,8 +806,8 @@ describe('SbbCheckbox', () => {
         .queryAll(By.directive(SbbCheckbox))
         .map((debugElement) => debugElement.nativeElement.querySelector('input').id);
 
-      expect(firstId).toMatch(/sbb-checkbox-\d+-input/);
-      expect(secondId).toMatch(/sbb-checkbox-\d+-input/);
+      expect(firstId).toMatch(/sbb-checkbox-\w+\d+-input/);
+      expect(secondId).toMatch(/sbb-checkbox-\w+\d+-input/);
       expect(firstId).not.toEqual(secondId);
     });
 

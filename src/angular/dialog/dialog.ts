@@ -1,3 +1,4 @@
+import { _IdGenerator } from '@angular/cdk/a11y';
 import { Dialog, DialogConfig } from '@angular/cdk/dialog';
 import { Overlay, ScrollStrategy } from '@angular/cdk/overlay';
 import { ComponentType } from '@angular/cdk/portal';
@@ -69,9 +70,6 @@ export const SBB_DIALOG_SCROLL_STRATEGY_PROVIDER = {
   useFactory: SBB_DIALOG_SCROLL_STRATEGY_PROVIDER_FACTORY,
 };
 
-// Counter for unique dialog ids.
-let uniqueId = 0;
-
 /**
  * Base class for dialog services. The base dialog service allows
  * for arbitrary dialog refs and dialog container components.
@@ -87,6 +85,7 @@ export abstract class _SbbDialogBase<
   private readonly _afterAllClosedAtThisLevel = new Subject<void>();
   private readonly _afterOpenedAtThisLevel = new Subject<F>();
   private _scrollStrategy: () => ScrollStrategy;
+  protected _idGenerator: _IdGenerator = inject(_IdGenerator);
   protected _idPrefix: string = 'sbb-dialog-';
   private _dialog: Dialog;
   /** Keeps track of the currently-open dialogs. */
@@ -141,7 +140,7 @@ export abstract class _SbbDialogBase<
   ): SbbDialogRef<T, R> {
     let dialogRef: F;
     config = { ...(this._defaultOptions || new SbbDialogConfig()), ...config };
-    config.id = config.id || `${this._idPrefix}${uniqueId++}`;
+    config.id = config.id || this._idGenerator.getId(this._idPrefix);
     config.scrollStrategy = config.scrollStrategy || this._scrollStrategy();
     config.backdropClass = config.backdropClass || 'sbb-overlay-background';
 

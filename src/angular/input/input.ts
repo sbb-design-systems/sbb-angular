@@ -1,3 +1,4 @@
+import { _IdGenerator } from '@angular/cdk/a11y';
 import { BooleanInput, coerceBooleanProperty } from '@angular/cdk/coercion';
 import { getSupportedInputTypes, Platform } from '@angular/cdk/platform';
 import { AutofillMonitor } from '@angular/cdk/text-field';
@@ -24,8 +25,6 @@ import { Subject } from 'rxjs';
 
 import { getSbbInputUnsupportedTypeError } from './input-errors';
 import { SBB_INPUT_VALUE_ACCESSOR } from './input-value-accessor';
-
-let nextId = 0;
 
 const SBB_INPUT_INVALID_TYPES = [
   'button',
@@ -132,7 +131,7 @@ export class SbbInput
    * Implemented as part of SbbFormFieldControl.
    * @docs-private
    */
-  @Input() id: string = `sbb-native-input-${nextId++}`;
+  @Input() id: string = inject(_IdGenerator).getId('sbb-native-input-');
 
   /**
    * Implemented as part of SbbFormFieldControl.

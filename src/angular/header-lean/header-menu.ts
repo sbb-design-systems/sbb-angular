@@ -3,7 +3,7 @@
 
 import { AnimationEvent } from '@angular/animations';
 import { animate, state, style, transition, trigger } from '@angular/animations';
-import { FocusKeyManager, FocusOrigin } from '@angular/cdk/a11y';
+import { FocusKeyManager, FocusOrigin, _IdGenerator } from '@angular/cdk/a11y';
 import { DOWN_ARROW, END, ESCAPE, hasModifierKey, HOME, UP_ARROW } from '@angular/cdk/keycodes';
 import { CdkPortal, CdkPortalOutlet } from '@angular/cdk/portal';
 import { NgClass } from '@angular/common';
@@ -31,8 +31,6 @@ import { map, startWith, takeUntil } from 'rxjs/operators';
 import type { SbbHeaderLean } from './header';
 import { SbbHeaderMenuItem } from './header-menu-item';
 import { SBB_HEADER } from './header-token';
-
-let nextId = 0;
 
 @Component({
   selector: 'sbb-header-menu',
@@ -63,7 +61,7 @@ export class SbbHeaderMenu implements AfterContentInit, OnDestroy {
   _backButton: string = $localize`:Go back to the app chooser navigation@@sbbHeaderMenuBack:Back`;
 
   /** Unique ID to be used by menu trigger's "aria-owns" property. */
-  id: string = `sbb-header-menu-${nextId++}`;
+  id: string = inject(_IdGenerator).getId('sbb-header-menu-');
 
   /** Event emitted when the menu is closed. */
   @Output() readonly closed: EventEmitter<void | 'click' | 'keydown' | 'tab'> = new EventEmitter<

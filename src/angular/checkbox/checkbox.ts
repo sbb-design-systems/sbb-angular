@@ -1,4 +1,4 @@
-import { FocusableOption, FocusMonitor, FocusOrigin } from '@angular/cdk/a11y';
+import { FocusableOption, FocusMonitor, FocusOrigin, _IdGenerator } from '@angular/cdk/a11y';
 import { CdkObserveContent } from '@angular/cdk/observers';
 import {
   AfterViewInit,
@@ -34,9 +34,6 @@ import {
   SBB_CHECKBOX_DEFAULT_OPTIONS,
   SBB_CHECKBOX_DEFAULT_OPTIONS_FACTORY,
 } from './checkbox-config';
-
-// Increasing integer for generating unique ids for checkbox components.
-let nextUniqueId = 0;
 
 // Default checkbox configuration.
 const defaults = SBB_CHECKBOX_DEFAULT_OPTIONS_FACTORY();
@@ -136,7 +133,7 @@ export class SbbCheckbox
   /** Users can specify the `aria-owns` attribute which will be forwarded to the input element */
   @Input('aria-owns') ariaOwns: string;
 
-  private _uniqueId: string = `sbb-checkbox-${++nextUniqueId}`;
+  private _uniqueId = inject(_IdGenerator).getId('sbb-checkbox-');
 
   /** A unique id for the checkbox input. If none is supplied, it will be auto-generated. */
   @Input() id: string = this._uniqueId;

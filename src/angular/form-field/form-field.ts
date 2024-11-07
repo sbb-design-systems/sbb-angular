@@ -1,3 +1,4 @@
+import { _IdGenerator } from '@angular/cdk/a11y';
 import {
   AfterContentChecked,
   AfterContentInit,
@@ -23,8 +24,6 @@ import { SbbError, SBB_ERROR } from './error';
 import { SbbFormFieldControl } from './form-field-control';
 import { getSbbFormFieldMissingControlError } from './form-field-errors';
 import { SbbLabel } from './label';
-
-let nextId = 0;
 
 /**
  * Injection token that can be used to inject an instances of `SbbFormField`. It serves
@@ -66,7 +65,7 @@ export class SbbFormField implements AfterContentInit, AfterContentChecked, OnDe
   private _destroyed = new Subject<void>();
 
   // Unique id for the label element.
-  readonly _labelId = `sbb-form-field-label-${nextId++}`;
+  readonly _labelId = inject(_IdGenerator).getId('sbb-form-field-label-');
 
   @ViewChild('connectionContainer', { static: true }) _connectionContainerRef: ElementRef;
 

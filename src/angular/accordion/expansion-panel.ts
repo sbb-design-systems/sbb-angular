@@ -1,4 +1,5 @@
 import { AnimationEvent } from '@angular/animations';
+import { _IdGenerator } from '@angular/cdk/a11y';
 import { CdkAccordionItem } from '@angular/cdk/accordion';
 import { CdkPortalOutlet, TemplatePortal } from '@angular/cdk/portal';
 import { DOCUMENT } from '@angular/common';
@@ -36,9 +37,6 @@ export type SbbExpansionPanelState = 'expanded' | 'collapsed';
 // Boilerplate for applying mixins to SbbExpansionPanel.
 /** @docs-private */
 const _SbbExpansionPanelBase = mixinVariant(CdkAccordionItem);
-
-/** Counter for generating unique element ids. */
-let uniqueId = 0;
 
 /**
  * This component can be used as a single element to show expandable content, or as one of
@@ -114,7 +112,7 @@ export class SbbExpansionPanel
   _portal: TemplatePortal;
 
   /** ID for the associated header element. Used for a11y labelling. */
-  _headerId: string = `sbb-expansion-panel-header-${uniqueId++}`;
+  _headerId: string = inject(_IdGenerator).getId('sbb-expansion-panel-header-');
 
   /** Stream of body animation done events. */
   _bodyAnimationDone: Subject<AnimationEvent> = new Subject<AnimationEvent>();

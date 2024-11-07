@@ -1,3 +1,4 @@
+import { _IdGenerator } from '@angular/cdk/a11y';
 import { BACKSPACE, hasModifierKey, TAB } from '@angular/cdk/keycodes';
 import {
   AfterContentInit,
@@ -35,9 +36,6 @@ export interface SbbChipInputEvent {
    */
   chipInput: SbbChipInput;
 }
-
-// Increasing integer for generating unique ids.
-let nextUniqueId = 0;
 
 /**
  * Directive that adds chip-specific behaviors to an input element inside `<sbb-form-field>`.
@@ -110,7 +108,7 @@ export class SbbChipInput implements SbbChipTextControl, OnChanges, OnDestroy, A
   @Input() placeholder: string = '';
 
   /** Unique id for the input. */
-  @Input() id: string = `sbb-chip-list-input-${nextUniqueId++}`;
+  @Input() id: string = inject(_IdGenerator).getId('sbb-chip-list-input-');
 
   /** Whether the input is disabled. */
   @Input({ transform: booleanAttribute })

@@ -1,4 +1,4 @@
-import { FocusableOption, FocusMonitor } from '@angular/cdk/a11y';
+import { FocusableOption, FocusMonitor, _IdGenerator } from '@angular/cdk/a11y';
 import { ENTER, SPACE } from '@angular/cdk/keycodes';
 import { CdkObserveContent } from '@angular/cdk/observers';
 import { Platform } from '@angular/cdk/platform';
@@ -17,6 +17,7 @@ import {
   Directive,
   ElementRef,
   forwardRef,
+  inject,
   Inject,
   Input,
   NgZone,
@@ -31,9 +32,6 @@ import { SbbIcon } from '@sbb-esta/angular/icon';
 import { startWith, takeUntil } from 'rxjs/operators';
 
 import { SbbPaginatedTabHeader } from './paginated-tab-header';
-
-// Increasing integer for generating unique ids for tab nav components.
-let nextUniqueId = 0;
 
 /**
  * Navigation component matching the styles of the tab group header.
@@ -174,7 +172,7 @@ export class SbbTabLink implements AfterViewInit, OnDestroy, FocusableOption {
   protected _isActive: boolean = false;
 
   /** Unique id for the tab. */
-  @Input() id: string = `sbb-tab-link-${nextUniqueId++}`;
+  @Input() id: string = inject(_IdGenerator).getId('sbb-tab-link-');
 
   constructor(
     private _tabNavBar: SbbTabNav,
@@ -272,7 +270,7 @@ export class SbbTabLink implements AfterViewInit, OnDestroy, FocusableOption {
 })
 export class SbbTabNavPanel {
   /** Unique id for the tab panel. */
-  @Input() id: string = `sbb-tab-nav-panel-${nextUniqueId++}`;
+  @Input() id: string = inject(_IdGenerator).getId('sbb-tab-nav-panel-');
 
   /** Id of the active tab in the nav bar. */
   _activeTabId?: string;

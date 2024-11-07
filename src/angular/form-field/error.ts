@@ -1,3 +1,4 @@
+import { _IdGenerator } from '@angular/cdk/a11y';
 import {
   Directive,
   ElementRef,
@@ -6,8 +7,6 @@ import {
   InjectionToken,
   Input,
 } from '@angular/core';
-
-let nextId = 0;
 
 /**
  * Injection token that can be used to reference instances of `SbbError`. It serves as
@@ -28,7 +27,7 @@ export const SBB_ERROR = new InjectionToken<SbbError>('SbbError');
   standalone: true,
 })
 export class SbbError {
-  @Input() id: string = `sbb-error-${nextId++}`;
+  @Input() id: string = inject(_IdGenerator).getId('sbb-error-');
 
   constructor(...args: unknown[]);
   constructor() {
