@@ -4,7 +4,7 @@ Utilize this component when you need to depict Esri Feature Layers on a MapLibre
 
 ### Compatibility
 
-The `maplibre-gl` version compatible with this version of `journey-maps` is `3.x.y`.
+The `maplibre-gl` version compatible with this version of `journey-maps` is `4.x.y`.
 
 You can even use our [Journey-Maps-Client](https://angular.app.sbb.ch/journey-maps/components/angular/overview) as well.
 
@@ -17,12 +17,14 @@ You should add the following two CSS files to your application:
 
 You can add them for example in the `styles` array of your `angular.json` file:
 
-```json lines
-"styles": [
-  "src/styles.scss",
-  "node_modules/maplibre-gl/dist/maplibre-gl.css"
-  "node_modules/@sbb-esta/angular/typography.css"
-],
+```json
+{
+  "styles": [
+    "src/styles.scss",
+    "node_modules/maplibre-gl/dist/maplibre-gl.css",
+    "node_modules/@sbb-esta/angular/typography.css"
+  ]
+}
 ```
 
 ### Usage

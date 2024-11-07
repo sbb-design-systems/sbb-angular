@@ -20,7 +20,7 @@ npm install --save-dev @types/geojson
 ```
 
 **NOTE** \
-The `maplibre-gl` version compatible with this version of `journey-maps` is `3.x.y`.
+The `maplibre-gl` version compatible with this version of `journey-maps` is `4.x.y`.
 
 ### Reference the CSS
 
@@ -31,12 +31,14 @@ You should add the following two CSS files to your application:
 
 You can add them for example in the `styles` array of your `angular.json` file:
 
-```json lines
-"styles": [
-  "src/styles.scss",
-  "node_modules/maplibre-gl/dist/maplibre-gl.css"
-  "node_modules/@sbb-esta/angular/typography.css"
-],
+```json
+{
+  "styles": [
+    "src/styles.scss",
+    "node_modules/maplibre-gl/dist/maplibre-gl.css",
+    "node_modules/@sbb-esta/angular/typography.css"
+  ]
+}
 ```
 
 ### i18n
