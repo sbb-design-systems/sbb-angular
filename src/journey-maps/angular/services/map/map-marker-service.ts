@@ -48,9 +48,8 @@ export class SbbMapMarkerService {
     this.markerLayers = [SBB_MARKER_LAYER];
     this.markerLayersSelected = [SBB_MARKER_LAYER_SELECTED];
 
-    const markerCategoryMappings = (((map.getStyle().metadata as any) ?? {})[
-      SBB_METADATA_MAPPINGS
-    ] ?? []) as SbbMarkerCategoryMapping[];
+    const markerCategoryMappings = ((map.getStyle().metadata as any)?.[SBB_METADATA_MAPPINGS] ??
+      []) as SbbMarkerCategoryMapping[];
     for (const mapping of markerCategoryMappings) {
       this.sources.push(mapping.source);
       this.markerLayers.push(mapping.layer);
@@ -116,11 +115,9 @@ export class SbbMapMarkerService {
     center: LngLatLike,
     offset: PointLike = [0, 0],
   ): void {
-    this._getPrimaryMarkerSource(map).getClusterExpansionZoom(clusterId, (err, zoom) => {
-      if (zoom) {
-        this._easeTo(map, center, { zoom: zoom + 0.1, offset });
-      }
-    });
+    this._getPrimaryMarkerSource(map)
+      .getClusterExpansionZoom(clusterId)
+      .then((zoom) => zoom && this._easeTo(map, center, { zoom: zoom + 0.1, offset }));
   }
 
   onMarkerClicked(
@@ -154,7 +151,7 @@ export class SbbMapMarkerService {
       filter: ['in', 'id', marker.id],
     });
 
-    if (features && features.length) {
+    if (features?.length) {
       // Marker is already visible on map.
       // Center map to marker.
       this._easeTo(map, marker.position as LngLatLike);
@@ -224,24 +221,26 @@ export class SbbMapMarkerService {
     found: boolean[] = [],
   ): void {
     const clusterId = cluster.properties?.cluster_id;
-    this._getPrimaryMarkerSource(map).getClusterChildren(clusterId, (e1, children) => {
-      // Skip processing if marker has been found
-      if (!found.length) {
-        for (const child of children ?? []) {
-          if (child.id === marker.id) {
-            found.push(true);
-            this._zoomToCluster(
-              map,
-              clusterId,
-              marker.position as LngLatLike,
-              this._getSelectedMarkerOffset(map),
-            );
-          } else if (child.properties?.cluster === true) {
-            this._zoomUntilMarkerVisible(map, child, marker, found);
+    this._getPrimaryMarkerSource(map)
+      .getClusterChildren(clusterId)
+      .then((children) => {
+        // Skip processing if marker has been found
+        if (!found.length) {
+          for (const child of children ?? []) {
+            if (child.id === marker.id) {
+              found.push(true);
+              this._zoomToCluster(
+                map,
+                clusterId,
+                marker.position as LngLatLike,
+                this._getSelectedMarkerOffset(map),
+              );
+            } else if (child.properties?.cluster === true) {
+              this._zoomUntilMarkerVisible(map, child, marker, found);
+            }
           }
         }
-      }
-    });
+      });
   }
 
   unselectFeature(map: MaplibreMap): void {
