@@ -23,8 +23,8 @@ export class SbbMapService {
    * Emulate moving the map with the keyboard's arrow keys
    */
   pan(map: MaplibreMap, dir: SbbDirection): void {
-    const xDir = dir === 'west' ? 1 : dir === 'east' ? -1 : 0;
-    const yDir = dir === 'north' ? 1 : dir === 'south' ? -1 : 0;
+    const directionMap = { west: [1, 0], east: [-1, 0], north: [0, 1], south: [0, -1] };
+    const [xDir, yDir] = directionMap[dir];
 
     // same default values as KeyboardHandler.keydown() in mapbox's keyboard.js
     const panStep = 100; // pixels
@@ -38,9 +38,14 @@ export class SbbMapService {
   }
 
   addMissingImage(map: MaplibreMap, name: string, icon: string): void {
-    map.loadImage(icon, (error: any, image: any) =>
-      this._imageLoadedCallback(map, name, error, image),
-    );
+    map
+      .loadImage(icon)
+      .then(({ data: image }) => {
+        map.addImage(name, image, { pixelRatio: 2 });
+      })
+      .catch((reason) => {
+        console.error(reason);
+      });
   }
 
   verifySources(map: MaplibreMap, sourceIds: string[]): void {
@@ -49,14 +54,6 @@ export class SbbMapService {
       if (!source) {
         throw new Error(`${source} was not found in style definition!`);
       }
-    }
-  }
-
-  private _imageLoadedCallback(map: MaplibreMap, name: string, error: any, image: any): void {
-    if (error) {
-      console.error(error);
-    } else {
-      map.addImage(name, image, { pixelRatio: 2 });
     }
   }
 
