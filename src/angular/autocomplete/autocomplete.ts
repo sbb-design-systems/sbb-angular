@@ -1,4 +1,4 @@
-import { ActiveDescendantKeyManager } from '@angular/cdk/a11y';
+import { ActiveDescendantKeyManager, _IdGenerator } from '@angular/cdk/a11y';
 import { Platform } from '@angular/cdk/platform';
 import {
   AfterContentInit,
@@ -26,12 +26,6 @@ import {
   SBB_OPTION_PARENT_COMPONENT,
 } from '@sbb-esta/angular/core';
 import { BehaviorSubject, Subscription } from 'rxjs';
-
-/**
- * Autocomplete IDs need to be unique across components, so this counter exists outside of
- * the component definition.
- */
-let nextId = 0;
 
 /** Event object that is emitted when an autocomplete option is selected. */
 export class SbbAutocompleteSelectedEvent {
@@ -214,7 +208,7 @@ export class SbbAutocomplete implements AfterContentInit, OnDestroy {
   @Input({ transform: booleanAttribute }) showHintIfNoOptions: boolean = false;
 
   /** Unique ID to be used by autocomplete trigger's "aria-controls" property. */
-  id: string = `sbb-autocomplete-${nextId++}`;
+  id: string = inject(_IdGenerator).getId('sbb-autocomplete-');
 
   /**
    * Tells any descendant `sbb-optgroup` to use the inert a11y pattern.

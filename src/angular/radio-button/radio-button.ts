@@ -1,4 +1,4 @@
-import { FocusMonitor, FocusOrigin } from '@angular/cdk/a11y';
+import { FocusMonitor, FocusOrigin, _IdGenerator } from '@angular/cdk/a11y';
 import { UniqueSelectionDispatcher } from '@angular/cdk/collections';
 import {
   AfterContentInit,
@@ -33,8 +33,6 @@ import {
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 import { TypeRef } from '@sbb-esta/angular/core';
 import { Subscription } from 'rxjs';
-
-let nextUniqueId = 0;
 
 /**
  * Provider Expression that allows sbb-radio-group to register as a ControlValueAccessor. This
@@ -162,7 +160,7 @@ export abstract class _SbbRadioGroupBase<TRadio extends _SbbRadioButtonBase>
   private _value: any = null;
 
   /** The HTML name attribute applied to radio buttons in this group. */
-  private _name = `sbb-radio-group-${nextUniqueId++}`;
+  private _name = inject(_IdGenerator).getId('sbb-radio-group-');
 
   /** The currently selected radio button. Should match value. */
   private _selected: TRadio | null = null;

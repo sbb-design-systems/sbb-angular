@@ -1,10 +1,5 @@
-import { Directive } from '@angular/core';
-
-/**
- * Option-hint IDs need to be unique across components, so this counter exists outside of
- * the component definition.
- */
-let nextId = 0;
+import { _IdGenerator } from '@angular/cdk/a11y';
+import { Directive, inject } from '@angular/core';
 
 @Directive({
   selector: 'sbb-option-hint',
@@ -16,5 +11,5 @@ let nextId = 0;
 })
 export class SbbOptionHint {
   /** Unique ID to be used by autocomplete trigger's "aria-controls" property. */
-  id: string = `sbb-option-hint-${nextId++}`;
+  id: string = inject(_IdGenerator).getId('sbb-option-hint-');
 }

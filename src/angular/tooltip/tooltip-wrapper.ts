@@ -1,9 +1,11 @@
+import { _IdGenerator } from '@angular/cdk/a11y';
 import { AsyncPipe } from '@angular/common';
 import {
   booleanAttribute,
   ChangeDetectionStrategy,
   Component,
   EventEmitter,
+  inject,
   Input,
   numberAttribute,
   OnChanges,
@@ -24,8 +26,6 @@ import { SbbTooltip, SbbTooltipChangeEvent, TooltipPosition } from './tooltip';
 // Boilerplate for applying mixins to SbbTooltipWrapper.
 const _SbbTooltipWrapperMixinBase = mixinVariant(class {});
 
-let nextId = 1;
-
 @Component({
   selector: 'sbb-tooltip',
   templateUrl: './tooltip-wrapper.html',
@@ -44,7 +44,7 @@ export class SbbTooltipWrapper
   implements OnInit, OnChanges, OnDestroy
 {
   /** Identifier of tooltip. */
-  @Input() id: string = `sbb-tooltip-id-${nextId++}`;
+  @Input() id: string = inject(_IdGenerator).getId('sbb-tooltip-id-');
 
   /** The trigger event, on which the tooltip opens. */
   @Input() trigger: 'click' | 'hover' = 'click';

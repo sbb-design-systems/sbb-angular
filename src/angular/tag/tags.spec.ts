@@ -169,7 +169,7 @@ describe('SbbTags', () => {
       const thirdTag: SbbTag = fixture.debugElement.queryAll(By.directive(SbbTag))[2]
         .componentInstance;
 
-      expect(thirdTag.inputId).toMatch(/sbb-checkbox-\d+-input/);
+      expect(thirdTag.inputId).toMatch(/sbb-checkbox-\w+\d+-input/);
     });
 
     it('should set an amount', () => {

@@ -1,4 +1,4 @@
-import { FocusKeyManager } from '@angular/cdk/a11y';
+import { FocusKeyManager, _IdGenerator } from '@angular/cdk/a11y';
 import {
   AfterContentInit,
   booleanAttribute,
@@ -26,9 +26,6 @@ import { startWith, takeUntil } from 'rxjs/operators';
 import type { SbbChip, SbbChipEvent } from './chip';
 import { SbbChipTextControl } from './chip-text-control';
 import { SBB_CHIP, SBB_CHIP_LIST } from './chip-tokens';
-
-// Increasing integer for generating unique ids for chip-list components.
-let nextUniqueId = 0;
 
 /**
  * A design chips component (named ChipList for its similarity to the List component).
@@ -110,7 +107,7 @@ export class SbbChipList
   _chipInput: SbbChipTextControl;
 
   /** Uid of the chip list */
-  _uid: string = `sbb-chip-list-${nextUniqueId++}`;
+  _uid: string = inject(_IdGenerator).getId('sbb-chip-list-');
 
   /** Tab index for the chip list. */
   _tabIndex: number = 0;

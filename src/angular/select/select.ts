@@ -1,4 +1,4 @@
-import { ActiveDescendantKeyManager, LiveAnnouncer } from '@angular/cdk/a11y';
+import { ActiveDescendantKeyManager, LiveAnnouncer, _IdGenerator } from '@angular/cdk/a11y';
 import { SelectionModel } from '@angular/cdk/collections';
 import {
   A,
@@ -84,8 +84,6 @@ import {
   getSbbSelectNonArrayValueError,
   getSbbSelectNonFunctionValueError,
 } from './select-errors';
-
-let nextUniqueId = 0;
 
 /**
  * The following style constants are necessary to save here in order
@@ -255,7 +253,7 @@ export class SbbSelect
   private _compareWith = (o1: any, o2: any) => o1 === o2;
 
   /** Unique id for this input. */
-  private _uid = `sbb-select-${nextUniqueId++}`;
+  private _uid = inject(_IdGenerator).getId('sbb-select-');
 
   /** Current `aria-labelledby` value for the select trigger. */
   private _triggerAriaLabelledBy: string | null = null;
@@ -304,7 +302,7 @@ export class SbbSelect
   _onTouched: () => void = () => {};
 
   /** ID for the DOM node containing the select's value. */
-  _valueId: string = `sbb-select-value-${nextUniqueId++}`;
+  _valueId: string = inject(_IdGenerator).getId('sbb-select-value-');
 
   /** Emits when the panel element is finished transforming in. */
   readonly _panelDoneAnimatingStream: Subject<string> = new Subject<string>();

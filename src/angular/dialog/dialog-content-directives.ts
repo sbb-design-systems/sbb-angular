@@ -1,6 +1,7 @@
 // Workaround for: https://github.com/bazelbuild/rules_nodejs/issues/1265
 /// <reference types="@angular/localize/init" />
 
+import { _IdGenerator } from '@angular/cdk/a11y';
 import { CdkScrollable } from '@angular/cdk/scrolling';
 import {
   ChangeDetectionStrategy,
@@ -20,9 +21,6 @@ import { SbbIconModule } from '@sbb-esta/angular/icon';
 
 import { SbbDialog } from './dialog';
 import { SbbDialogRef, _closeDialogVia } from './dialog-ref';
-
-/** Counter used to generate unique IDs for dialog elements. */
-let dialogElementUid = 0;
 
 /**
  * Button that will close the current dialog.
@@ -115,7 +113,7 @@ export class _SbbDialogTitleBase implements OnInit, OnDestroy {
   private _changeDetectorRef = inject(ChangeDetectorRef);
 
   /** Unique id for the dialog title. If none is supplied, it will be auto-generated. */
-  @Input() id: string = `sbb-dialog-title-${dialogElementUid++}`;
+  @Input() id = inject(_IdGenerator).getId('sbb-dialog-title-');
 
   /** Arial label for the close button. */
   @Input()

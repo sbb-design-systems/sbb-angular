@@ -19,6 +19,7 @@ ng_module(
     deps = [
         "//src:dev_mode_types",
         "//src/angular/core",
+        "@npm//@angular/cdk",
         "@npm//@angular/core",
         "@npm//@angular/localize",
     ],

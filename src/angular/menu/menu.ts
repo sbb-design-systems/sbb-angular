@@ -1,5 +1,5 @@
 import { AnimationEvent } from '@angular/animations';
-import { FocusKeyManager, FocusOrigin } from '@angular/cdk/a11y';
+import { FocusKeyManager, FocusOrigin, _IdGenerator } from '@angular/cdk/a11y';
 import { DOWN_ARROW, ESCAPE, hasModifierKey, LEFT_ARROW, UP_ARROW } from '@angular/cdk/keycodes';
 import { NgTemplateOutlet } from '@angular/common';
 import {
@@ -85,8 +85,6 @@ export interface SbbMenuAnimationStateWithParams {
 }
 
 export type SbbMenuAnimationState = SbbMenuPlainAnimationState | SbbMenuAnimationStateWithParams;
-
-let menuPanelUid = 0;
 
 /** Reason why the menu was closed. */
 export type SbbMenuCloseReason = void | 'click' | 'keydown' | 'tab';
@@ -251,7 +249,7 @@ export class SbbMenu implements AfterContentInit, SbbMenuPanel<SbbMenuItem>, OnI
   @Output()
   readonly closed: EventEmitter<SbbMenuCloseReason> = new EventEmitter<SbbMenuCloseReason>();
 
-  readonly panelId = `sbb-menu-panel-${menuPanelUid++}`;
+  readonly panelId = inject(_IdGenerator).getId('sbb-menu-panel-');
 
   private _injector = inject(Injector);
 

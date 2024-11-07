@@ -1,4 +1,5 @@
 import { AnimationEvent } from '@angular/animations';
+import { _IdGenerator } from '@angular/cdk/a11y';
 import { CdkPortalOutlet } from '@angular/cdk/portal';
 import {
   AfterContentInit,
@@ -22,8 +23,6 @@ import { startWith, takeUntil } from 'rxjs/operators';
 
 import { sbbToggleAnimations } from './toggle-animations';
 import { SbbToggleOption } from './toggle-option';
-
-let nextId = 0;
 
 @Component({
   selector: 'sbb-toggle',
@@ -57,7 +56,7 @@ export class SbbToggle
   implements ControlValueAccessor, AfterContentInit, OnDestroy
 {
   /** The element id for the selected option content. */
-  readonly _contentId = `sbb-toggle-option-content-${nextId++}`;
+  readonly _contentId = inject(_IdGenerator).getId('sbb-toggle-option-content-');
 
   private _destroyed = new Subject<void>();
 

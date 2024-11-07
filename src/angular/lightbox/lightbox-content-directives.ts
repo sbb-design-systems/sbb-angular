@@ -1,6 +1,7 @@
 // Workaround for: https://github.com/bazelbuild/rules_nodejs/issues/1265
 /// <reference types="@angular/localize/init" />
 
+import { _IdGenerator } from '@angular/cdk/a11y';
 import {
   ChangeDetectionStrategy,
   Component,
@@ -17,9 +18,6 @@ import { SbbIcon } from '@sbb-esta/angular/icon';
 
 import { SbbLightbox } from './lightbox';
 import { SbbLightboxRef } from './lightbox-ref';
-
-/** Counter used to generate unique IDs for dialog elements. */
-let dialogElementUid = 0;
 
 /**
  * Button that will close the current lightbox.
@@ -95,7 +93,7 @@ export class SbbLightboxTitle extends _SbbDialogTitleBase implements OnInit {
   protected override _dialog: SbbDialog = inject(SbbLightbox) as unknown as SbbDialog;
 
   /** Unique id for the lightbox title. If none is supplied, it will be auto-generated. */
-  @Input() override id: string = `sbb-lightbox-title-${dialogElementUid++}`;
+  @Input() override id: string = inject(_IdGenerator).getId('sbb-lightbox-title-');
 
   @ViewChild(SbbLightboxClose, { static: true }) _lightBoxClose: SbbLightboxClose;
 
