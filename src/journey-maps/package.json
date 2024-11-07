@@ -14,7 +14,7 @@
     "@angular/common": "0.0.0-NG",
     "@angular/core": "0.0.0-NG",
     "@types/geojson": ">=7946",
-    "maplibre-gl": "^3.6.2"
+    "maplibre-gl": "^4.7.1"
   },
   "ng-update": {
     "packageGroup": [
