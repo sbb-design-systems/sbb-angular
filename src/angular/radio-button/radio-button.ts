@@ -317,7 +317,8 @@ export class SbbRadioGroup<
   TRadio extends _SbbRadioButtonBase = SbbRadioButton,
 > extends _SbbRadioGroupBase<TRadio> {
   @ContentChildren(forwardRef(() => SBB_RADIO_BUTTON), { descendants: true })
-  override _radios: QueryList<TRadio>;
+  // We need an initializer here to avoid a TS error.
+  override _radios: QueryList<TRadio> = undefined!;
 }
 
 let nextId = 0;

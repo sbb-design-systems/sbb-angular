@@ -49,7 +49,8 @@ export class SbbStep extends CdkStep implements SbbErrorStateMatcher, AfterConte
   private _isSelected = Subscription.EMPTY;
 
   /** Content for step label given by `<ng-template sbbStepLabel>`. */
-  @ContentChild(SbbStepLabel) override stepLabel: SbbStepLabel;
+  // We need an initializer here to avoid a TS error.
+  @ContentChild(SbbStepLabel) override stepLabel: SbbStepLabel = undefined!;
 
   /** Content that will be rendered lazily. */
   @ContentChild(SbbStepContent, { static: false }) _lazyContent: SbbStepContent;
@@ -111,11 +112,13 @@ export class SbbStep extends CdkStep implements SbbErrorStateMatcher, AfterConte
 })
 export class SbbProcessflow extends CdkStepper implements AfterContentInit {
   /** The list of step headers of the steps in the processflow. */
-  @ViewChildren(SbbStepHeader) override _stepHeader: QueryList<SbbStepHeader>;
+  // We need an initializer here to avoid a TS error.
+  @ViewChildren(SbbStepHeader) override _stepHeader: QueryList<SbbStepHeader> = undefined!;
   @ViewChild('stepListContainer', { static: true }) _tabListContainer: ElementRef;
 
   /** Full list of steps inside the processflow, including inside nested processflows. */
-  @ContentChildren(SbbStep, { descendants: true }) override _steps: QueryList<SbbStep>;
+  // We need an initializer here to avoid a TS error.
+  @ContentChildren(SbbStep, { descendants: true }) override _steps: QueryList<SbbStep> = undefined!;
 
   /** Steps that belong to the current processflow, excluding ones from nested processflows. */
   override readonly steps: QueryList<SbbStep> = new QueryList<SbbStep>();

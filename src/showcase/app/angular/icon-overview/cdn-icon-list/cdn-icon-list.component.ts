@@ -1,4 +1,4 @@
-import { AfterViewInit, Component, Input, ViewChild } from '@angular/core';
+import { AfterViewInit, Component, inject, Input, ViewChild } from '@angular/core';
 import { FormBuilder } from '@angular/forms';
 import { SbbPaginator } from '@sbb-esta/angular/pagination';
 import { merge, Observable } from 'rxjs';
@@ -26,6 +26,7 @@ export class CdnIconListComponent implements AfterViewInit {
     return this._cdnIcons;
   }
   private _cdnIcons: CdnIcons;
+  private _formBuilder = inject(FormBuilder);
 
   filterForm = this._formBuilder.group({
     fulltext: [''],
@@ -38,8 +39,6 @@ export class CdnIconListComponent implements AfterViewInit {
   pageSize = 50;
 
   @ViewChild(SbbPaginator) private _paginator: SbbPaginator;
-
-  constructor(private _formBuilder: FormBuilder) {}
 
   ngAfterViewInit(): void {
     this.filteredIcons = merge(

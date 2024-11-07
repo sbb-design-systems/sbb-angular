@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { FormBuilder, FormControl } from '@angular/forms';
 import { combineLatest } from 'rxjs';
 import { map, startWith } from 'rxjs/operators';
@@ -12,6 +12,8 @@ import { UPDATE_STEPS } from './update-steps';
   standalone: false,
 })
 export class HowToUpdateComponent {
+  private _formBuilder = inject(FormBuilder);
+
   versions: number[] = [
     ...new Set([...UPDATE_STEPS.map((s) => s.from), ...UPDATE_STEPS.map((s) => s.to)]),
   ].sort();
@@ -29,8 +31,6 @@ export class HowToUpdateComponent {
       startWith(this.versionSelect.controls.to.value),
     ),
   ]).pipe(map(([from, to]) => UPDATE_STEPS.filter((s) => from <= s.from && s.to <= to)));
-
-  constructor(private _formBuilder: FormBuilder) {}
 
   toVersionString(version: number) {
     return `${version / 100}.${version % 100}`;

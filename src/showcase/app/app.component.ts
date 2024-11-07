@@ -1,5 +1,5 @@
 import { BreakpointObserver } from '@angular/cdk/layout';
-import { AfterContentInit, Component, isDevMode, OnDestroy } from '@angular/core';
+import { AfterContentInit, Component, inject, isDevMode, OnDestroy } from '@angular/core';
 import { DomSanitizer } from '@angular/platform-browser';
 import { Breakpoints } from '@sbb-esta/angular/core';
 import { SbbIconRegistry } from '@sbb-esta/angular/icon';
@@ -32,6 +32,9 @@ declare global {
   standalone: false,
 })
 export class AppComponent implements AfterContentInit, OnDestroy {
+  private _breakpointObserver = inject(BreakpointObserver);
+  private _variantSwitch = inject(VariantSwitch);
+
   angularVersion = angularVersion;
   showcaseVersion = libraryVersion;
   expanded: boolean = true;
@@ -42,12 +45,9 @@ export class AppComponent implements AfterContentInit, OnDestroy {
   environmentBannerText = window.ENVIRONMENT_BANNER_TEXT;
   private _destroyed = new Subject<void>();
 
-  constructor(
-    private _breakpointObserver: BreakpointObserver,
-    private _variantSwitch: VariantSwitch,
-    iconRegistry: SbbIconRegistry,
-    sanitizer: DomSanitizer,
-  ) {
+  constructor() {
+    const iconRegistry = inject(SbbIconRegistry);
+    const sanitizer = inject(DomSanitizer);
     iconRegistry.addSvgIconResolver((name, namespace) => {
       if (namespace === 'showcase') {
         return sanitizer.bypassSecurityTrustResourceUrl(`assets/icons/${name}.svg`);
