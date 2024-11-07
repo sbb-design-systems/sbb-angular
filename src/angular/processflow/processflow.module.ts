@@ -1,6 +1,5 @@
 import { PortalModule } from '@angular/cdk/portal';
 import { CdkStepperModule } from '@angular/cdk/stepper';
-import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { SbbCommonModule } from '@sbb-esta/angular/core';
 import { SbbIconModule } from '@sbb-esta/angular/icon';
@@ -13,7 +12,6 @@ import { SbbStepLabel } from './step-label';
 
 @NgModule({
   imports: [
-    CommonModule,
     PortalModule,
     CdkStepperModule,
     SbbCommonModule,

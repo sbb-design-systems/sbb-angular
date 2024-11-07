@@ -1,5 +1,4 @@
 import { PortalModule } from '@angular/cdk/portal';
-import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { SbbAccordionModule } from '@sbb-esta/angular/accordion';
@@ -12,14 +11,7 @@ import { PackageViewerComponent } from './package-viewer/package-viewer.componen
 
 @NgModule({
   declarations: [MarkdownViewerComponent, ModeNotificationToastComponent, PackageViewerComponent],
-  imports: [
-    CommonModule,
-    PortalModule,
-    SbbButtonModule,
-    SbbSidebarModule,
-    SbbAccordionModule,
-    RouterModule,
-  ],
+  imports: [PortalModule, SbbButtonModule, SbbSidebarModule, SbbAccordionModule, RouterModule],
   exports: [MarkdownViewerComponent, PackageViewerComponent],
 })
 export class SharedModule {}

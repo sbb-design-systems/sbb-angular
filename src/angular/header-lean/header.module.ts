@@ -1,7 +1,6 @@
 import { ObserversModule } from '@angular/cdk/observers';
 import { OverlayModule } from '@angular/cdk/overlay';
 import { PortalModule } from '@angular/cdk/portal';
-import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { SbbCommonModule } from '@sbb-esta/angular/core';
 import { SbbIconModule } from '@sbb-esta/angular/icon';
@@ -18,7 +17,6 @@ import {
 
 @NgModule({
   imports: [
-    CommonModule,
     ObserversModule,
     OverlayModule,
     PortalModule,

@@ -1,6 +1,5 @@
 import { OverlayModule } from '@angular/cdk/overlay';
 import { PortalModule } from '@angular/cdk/portal';
-import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { SbbButtonModule } from '@sbb-esta/angular/button';
 import { SbbCommonModule } from '@sbb-esta/angular/core';
@@ -11,7 +10,6 @@ import { SbbSearch } from './search';
 
 @NgModule({
   imports: [
-    CommonModule,
     PortalModule,
     OverlayModule,
     SbbCommonModule,
