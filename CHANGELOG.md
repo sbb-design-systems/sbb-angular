@@ -2,6 +2,24 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [18.6.0](https://github.com/sbb-design-systems/sbb-angular/compare/18.5.0...18.6.0) (2024-11-11)
+
+
+### Features
+
+* **journey-maps:** new option to set the display of POIs as round icons ([#2409](https://github.com/sbb-design-systems/sbb-angular/issues/2409)) ([32ee029](https://github.com/sbb-design-systems/sbb-angular/commit/32ee0299b6bfc52b122c40a0f780f083b65c8bd5))
+* **multiple:** make SBB Angular CSP compatible ([#2423](https://github.com/sbb-design-systems/sbb-angular/issues/2423)) ([f494603](https://github.com/sbb-design-systems/sbb-angular/commit/f494603fa47bbb9266c37b47dd30c8d2f0b2382e))
+
+
+### Bug Fixes
+
+* **angular/processflow:** remove IE animation workaround ([#2418](https://github.com/sbb-design-systems/sbb-angular/issues/2418)) ([6e0ef07](https://github.com/sbb-design-systems/sbb-angular/commit/6e0ef0705e072e7405df309a5449d33e872e7384))
+* **angular/tabs:** remove IE animation workaround ([#2417](https://github.com/sbb-design-systems/sbb-angular/issues/2417)) ([a4595f3](https://github.com/sbb-design-systems/sbb-angular/commit/a4595f3fe34a0f0f404fddefa1d19778bfd16b52))
+* **angular/tooltip:** correct icon styling when placed inside label ([#2393](https://github.com/sbb-design-systems/sbb-angular/issues/2393)) ([7e5d5ae](https://github.com/sbb-design-systems/sbb-angular/commit/7e5d5ae2e634180ac05c2e315eed6612f0b915fc))
+* **deps:** update angular ([12e5aef](https://github.com/sbb-design-systems/sbb-angular/commit/12e5aef1e828b07c30284c054072ba3abb1f10e1))
+* **deps:** update angular to v18.2.10 ([cd7eae8](https://github.com/sbb-design-systems/sbb-angular/commit/cd7eae8085dfc703f3844f7b9c81cd7b5739bc40))
+* **deps:** update dependency @angular/cdk to v18.2.11 ([#2411](https://github.com/sbb-design-systems/sbb-angular/issues/2411)) ([685de10](https://github.com/sbb-design-systems/sbb-angular/commit/685de10bd4c0a21af53919b3f1a39505a6b3f69b))
+
 ## [18.5.0](https://github.com/sbb-design-systems/sbb-angular/compare/18.4.0...18.5.0) (2024-10-24)
 
 
