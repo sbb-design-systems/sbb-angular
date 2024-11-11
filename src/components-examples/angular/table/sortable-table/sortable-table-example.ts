@@ -11,7 +11,6 @@ import { SbbTableModule } from '@sbb-esta/angular/table';
 @Component({
   selector: 'sbb-sortable-table-example',
   templateUrl: 'sortable-table-example.html',
-  standalone: true,
   imports: [SbbTableModule, DatePipe],
 })
 export class SortableTableExample implements AfterViewInit {

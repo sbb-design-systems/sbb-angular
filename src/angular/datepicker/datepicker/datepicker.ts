@@ -1,6 +1,7 @@
 // Workaround for: https://github.com/bazelbuild/rules_nodejs/issues/1265
 /// <reference types="@angular/localize/init" />
 
+import { _IdGenerator } from '@angular/cdk/a11y';
 import { ESCAPE, UP_ARROW } from '@angular/cdk/keycodes';
 import {
   Overlay,
@@ -39,9 +40,6 @@ import { SbbDatepickerContent } from '../datepicker-content/datepicker-content';
 import { createMissingDateImplError } from '../datepicker-errors';
 import { SbbDatepickerToggle } from '../datepicker-toggle/datepicker-toggle';
 import { SBB_DATEPICKER } from '../datepicker-token';
-
-/** Used to generate a unique ID for each datepicker instance. */
-let datepickerUid = 0;
 
 /** Injection token that determines the scroll handling while the calendar is open. */
 export const SBB_DATEPICKER_SCROLL_STRATEGY = new InjectionToken<() => ScrollStrategy>(
@@ -183,7 +181,7 @@ export class SbbDatepicker<D> implements OnDestroy {
   private _opened = false;
 
   /** The id for the datepicker calendar. */
-  id: string = `sbb-datepicker-${datepickerUid++}`;
+  id: string = inject(_IdGenerator).getId('sbb-datepicker-');
 
   /** The currently selected date. */
   get selected(): D | null {

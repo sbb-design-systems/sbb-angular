@@ -27,7 +27,6 @@ export class MyErrorStateMatcher implements SbbErrorStateMatcher {
   selector: 'sbb-input-error-state-matcher-example',
   templateUrl: 'input-error-state-matcher-example.html',
   styleUrls: ['input-error-state-matcher-example.css'],
-  standalone: true,
   imports: [FormsModule, SbbFormFieldModule, SbbInputModule, ReactiveFormsModule],
 })
 export class InputErrorStateMatcherExample {

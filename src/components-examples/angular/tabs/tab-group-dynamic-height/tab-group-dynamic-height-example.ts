@@ -9,7 +9,6 @@ import { SbbTabsModule } from '@sbb-esta/angular/tabs';
   selector: 'sbb-tab-group-dynamic-height-example',
   templateUrl: 'tab-group-dynamic-height-example.html',
   styleUrls: ['tab-group-dynamic-height-example.css'],
-  standalone: true,
   imports: [SbbTabsModule],
 })
 export class TabGroupDynamicHeightExample {}

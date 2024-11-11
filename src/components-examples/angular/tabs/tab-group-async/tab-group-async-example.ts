@@ -15,7 +15,6 @@ export interface ExampleTab {
 @Component({
   selector: 'sbb-tab-group-async-example',
   templateUrl: 'tab-group-async-example.html',
-  standalone: true,
   imports: [SbbTabsModule, AsyncPipe],
 })
 export class TabGroupAsyncExample {

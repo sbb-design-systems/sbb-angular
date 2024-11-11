@@ -11,7 +11,6 @@ import { SbbFileSelectorModule } from '@sbb-esta/angular/file-selector';
 @Component({
   selector: 'sbb-multiple-mode-persistent-file-selector-example',
   templateUrl: 'multiple-mode-persistent-file-selector-example.html',
-  standalone: true,
   imports: [SbbFileSelectorModule, FormsModule, SbbCheckboxModule, JsonPipe],
 })
 export class MultipleModePersistentFileSelectorExample {

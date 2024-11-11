@@ -9,7 +9,6 @@ import { SbbLoadingIndicatorModule } from '@sbb-esta/angular/loading-indicator';
   selector: 'sbb-loading-indicator-simple-example',
   templateUrl: 'loading-indicator-simple-example.html',
   styleUrls: ['loading-indicator-simple-example.css'],
-  standalone: true,
   imports: [SbbLoadingIndicatorModule],
 })
 export class LoadingIndicatorSimpleExample {}

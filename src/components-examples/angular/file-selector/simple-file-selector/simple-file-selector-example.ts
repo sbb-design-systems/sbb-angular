@@ -9,7 +9,6 @@ import { SbbFileSelectorModule } from '@sbb-esta/angular/file-selector';
 @Component({
   selector: 'sbb-simple-file-selector-example',
   templateUrl: 'simple-file-selector-example.html',
-  standalone: true,
   imports: [SbbFileSelectorModule, JsonPipe],
 })
 export class SimpleFileSelectorExample {

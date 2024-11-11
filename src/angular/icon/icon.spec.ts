@@ -854,13 +854,13 @@ describe('SbbIcon', () => {
       // We use a regex to match here, rather than the exact value, because different browsers
       // return different quotes through `getAttribute`, while some even omit the quotes altogether.
       expect(circle.getAttribute('filter')).toMatch(
-        /^url\(['"]?\/\$fake-path#sbb-icon-\d*\s#blur['"]?\)$/,
+        /^url\(['"]?\/\$fake-path#sbb-icon-\w+\d*\s#blur['"]?\)$/,
       );
 
       // ensure the selector matches the filter element
       const selector = circle
         .getAttribute('filter')
-        .match(/^url\(['"]?\/\$fake-path(#sbb-icon-\d*\s#blur)['"]?\)$/)[1];
+        .match(/^url\(['"]?\/\$fake-path(#sbb-icon-\w+\d*\s#blur)['"]?\)$/)[1];
       expect(fixture.nativeElement.querySelector(selector)).toBeTruthy();
 
       tick();
@@ -886,7 +886,7 @@ describe('SbbIcon', () => {
       let circle = fixture.nativeElement.querySelector('sbb-icon svg circle');
 
       expect(circle.getAttribute('filter')).toMatch(
-        /^url\(['"]?\/\$fake-path#sbb-icon-\d*\s#blur['"]?\)$/,
+        /^url\(['"]?\/\$fake-path#sbb-icon-\w+\d*\s#blur['"]?\)$/,
       );
       tick();
       fixture.destroy();
@@ -898,7 +898,7 @@ describe('SbbIcon', () => {
       circle = fixture.nativeElement.querySelector('sbb-icon svg circle');
 
       expect(circle.getAttribute('filter')).toMatch(
-        /^url\(['"]?\/\$another-fake-path#sbb-icon-\d*\s#blur['"]?\)$/,
+        /^url\(['"]?\/\$another-fake-path#sbb-icon-\w+\d*\s#blur['"]?\)$/,
       );
       tick();
     }));
@@ -926,7 +926,7 @@ describe('SbbIcon', () => {
       // We use a regex to match here, rather than the exact value, because different browsers
       // return different quotes through `getAttribute`, while some even omit the quotes altogether.
       expect(circle.getAttribute('filter')).toMatch(
-        /^url\(['"]?\/\$fake-path#sbb-icon-\d*\s#blur['"]?\)$/,
+        /^url\(['"]?\/\$fake-path#sbb-icon-\w+\d*\s#blur['"]?\)$/,
       );
       tick();
 
@@ -935,7 +935,7 @@ describe('SbbIcon', () => {
       fixture.detectChanges();
 
       expect(circle.getAttribute('filter')).toMatch(
-        /^url\(['"]?\/\$different-path#sbb-icon-\d*\s#blur['"]?\)$/,
+        /^url\(['"]?\/\$different-path#sbb-icon-\w+\d*\s#blur['"]?\)$/,
       );
     }));
 

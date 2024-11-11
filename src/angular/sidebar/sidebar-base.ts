@@ -1,5 +1,5 @@
 import { BreakpointObserver } from '@angular/cdk/layout';
-import { CdkScrollable, ScrollDispatcher } from '@angular/cdk/scrolling';
+import { CdkScrollable } from '@angular/cdk/scrolling';
 import { DOCUMENT } from '@angular/common';
 import {
   AfterContentInit,
@@ -8,7 +8,7 @@ import {
   Directive,
   ElementRef,
   EventEmitter,
-  Inject,
+  inject,
   InjectionToken,
   Input,
   NgZone,
@@ -41,13 +41,7 @@ export interface SbbSidebarMobileCapableContainer {
 
 @Directive()
 export abstract class SbbSidebarContentBase extends CdkScrollable {
-  protected constructor(
-    public _elementRef: ElementRef<HTMLElement>,
-    scrollDispatcher: ScrollDispatcher,
-    ngZone: NgZone,
-  ) {
-    super(_elementRef, scrollDispatcher, ngZone);
-  }
+  _elementRef: ElementRef<HTMLElement> = inject<ElementRef<HTMLElement>>(ElementRef);
 }
 
 /** This component corresponds to a sidebar. */
@@ -58,6 +52,10 @@ export abstract class SbbSidebarContentBase extends CdkScrollable {
   standalone: true,
 })
 export abstract class SbbSidebarBase implements AfterViewInit, OnDestroy {
+  abstract _container: SbbSidebarMobileCapableContainer;
+  protected _elementRef: ElementRef<HTMLElement> = inject<ElementRef<HTMLElement>>(ElementRef);
+  protected _doc: Document = inject(DOCUMENT);
+
   abstract _mobileChanged(mobile: boolean): void;
 
   /** Whether the view of the component has been attached. */
@@ -89,11 +87,8 @@ export abstract class SbbSidebarBase implements AfterViewInit, OnDestroy {
   /** Event emitted when the sidebar's position changes. */
   @Output('positionChanged') readonly onPositionChanged = new EventEmitter<void>();
 
-  protected constructor(
-    public _container: SbbSidebarMobileCapableContainer,
-    protected _elementRef: ElementRef<HTMLElement>,
-    @Inject(DOCUMENT) protected _doc: any,
-  ) {}
+  protected constructor(...args: unknown[]);
+  protected constructor() {}
 
   /*
    * Updates the position of the sidebar in the DOM. We need to move the element around ourselves
@@ -142,6 +137,10 @@ export abstract class SbbSidebarBase implements AfterViewInit, OnDestroy {
 export abstract class SbbSidebarContainerBase<T extends SbbSidebarBase>
   implements AfterContentInit, OnDestroy, SbbSidebarMobileCapableContainer
 {
+  protected _ngZone: NgZone = inject(NgZone);
+  protected _changeDetectorRef: ChangeDetectorRef = inject(ChangeDetectorRef);
+  protected _breakpointObserver: BreakpointObserver = inject(BreakpointObserver);
+
   _mobile: boolean;
 
   /**
@@ -168,12 +167,6 @@ export abstract class SbbSidebarContainerBase<T extends SbbSidebarBase>
     return this._userContent || this._content;
   }
 
-  protected constructor(
-    protected _ngZone: NgZone,
-    protected _changeDetectorRef: ChangeDetectorRef,
-    protected _breakpointObserver: BreakpointObserver,
-  ) {}
-
   /** All sidebars, also nested sidebars included **/
   _allSidebars: QueryList<T>;
 
@@ -189,6 +182,9 @@ export abstract class SbbSidebarContainerBase<T extends SbbSidebarBase>
 
   /** Emits when the component is destroyed. */
   protected readonly _destroyed: Subject<void> = new Subject<void>();
+
+  protected constructor(...args: unknown[]);
+  protected constructor() {}
 
   ngAfterContentInit() {
     this._allSidebars.changes

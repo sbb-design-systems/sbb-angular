@@ -507,8 +507,6 @@
   "SbbTableWrapper": "table",
   "SbbTableWrapperScrollOffset": "table",
   "SbbTextColumn": "table",
-  "_SbbTabLinkBase": "tabs",
-  "_SbbTabNavBase": "tabs",
   "SBB_TAB": "tabs",
   "SBB_TAB_CONTENT": "tabs",
   "SBB_TAB_GROUP": "tabs",

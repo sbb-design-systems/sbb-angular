@@ -13,7 +13,6 @@ import { SbbTableModule } from '@sbb-esta/angular/table';
   selector: 'sbb-sticky-table-example',
   styleUrls: ['sticky-table-example.css'],
   templateUrl: 'sticky-table-example.html',
-  standalone: true,
   imports: [SbbTableModule, SbbLoadingIndicatorModule],
 })
 export class StickyTableExample {

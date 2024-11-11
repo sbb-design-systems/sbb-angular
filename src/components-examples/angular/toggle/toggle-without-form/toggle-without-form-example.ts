@@ -11,7 +11,6 @@ import { SbbToggleModule } from '@sbb-esta/angular/toggle';
   selector: 'sbb-toggle-without-form-example',
   templateUrl: 'toggle-without-form-example.html',
   encapsulation: ViewEncapsulation.None,
-  standalone: true,
   imports: [SbbToggleModule, JsonPipe],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })

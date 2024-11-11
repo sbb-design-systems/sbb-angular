@@ -1,12 +1,14 @@
 // Workaround for: https://github.com/bazelbuild/rules_nodejs/issues/1265
 /// <reference types="@angular/localize/init" />
 
+import { _IdGenerator } from '@angular/cdk/a11y';
 import {
   AfterContentInit,
   ChangeDetectionStrategy,
   Component,
   ContentChild,
   EventEmitter,
+  inject,
   Input,
   Output,
   ViewEncapsulation,
@@ -15,8 +17,6 @@ import {
 import { SbbTextexpandCollapsed } from './textexpand-collapsed';
 import { getSbbTextexpandInvalidError } from './textexpand-errors';
 import { SbbTextexpandExpanded } from './textexpand-expanded';
-
-let nextId = 0;
 
 @Component({
   selector: 'sbb-textexpand',
@@ -42,7 +42,7 @@ export class SbbTextexpand implements AfterContentInit {
   isExpanded: boolean = false;
 
   /** Identifier of the textexpand component. */
-  @Input() id: string = `sbb-textexpand-${nextId++}`;
+  @Input() id: string = inject(_IdGenerator).getId('sbb-textexpand-');
 
   /** Event activated at the expansion of the text. */
   @Output() expandEvent: EventEmitter<boolean> = new EventEmitter<boolean>();

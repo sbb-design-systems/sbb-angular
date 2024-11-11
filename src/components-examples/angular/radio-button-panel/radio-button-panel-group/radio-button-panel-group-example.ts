@@ -18,7 +18,6 @@ import { startWith, takeUntil } from 'rxjs/operators';
   selector: 'sbb-radio-button-panel-group-example',
   templateUrl: 'radio-button-panel-group-example.html',
   styleUrls: ['radio-button-panel-group-example.css'],
-  standalone: true,
   imports: [
     FormsModule,
     ReactiveFormsModule,

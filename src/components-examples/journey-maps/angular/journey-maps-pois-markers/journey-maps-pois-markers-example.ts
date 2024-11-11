@@ -34,7 +34,6 @@ declare global {
   selector: 'sbb-journey-maps-pois-markers-example',
   templateUrl: 'journey-maps-pois-markers-example.html',
   styleUrls: ['journey-maps-pois-markers-example.css'],
-  standalone: true,
   imports: [
     SbbJourneyMapsModule,
     SbbNotificationModule,
@@ -88,6 +87,7 @@ export class JourneyMapsPoisMarkersExample implements OnInit {
         categories: [POI_CATEGORIES],
         environment: ['prod'],
         includePreview: [false],
+        baseInteractivityEnabled: [true],
       }),
       listenerOptions: this.fb.group({
         MARKER: this.fb.group({

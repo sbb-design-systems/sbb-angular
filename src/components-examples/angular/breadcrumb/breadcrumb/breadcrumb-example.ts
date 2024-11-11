@@ -9,7 +9,6 @@ import { SbbBreadcrumbModule } from '@sbb-esta/angular/breadcrumb';
 @Component({
   selector: 'sbb-breadcrumb-example',
   templateUrl: 'breadcrumb-example.html',
-  standalone: true,
   imports: [SbbBreadcrumbModule, RouterLink, RouterLinkActive],
 })
 export class BreadcrumbExample {}

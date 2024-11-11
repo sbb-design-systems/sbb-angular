@@ -12,7 +12,6 @@ import { SbbInputModule } from '@sbb-esta/angular/input';
 @Component({
   selector: 'sbb-autocomplete-locale-normalizer-example',
   templateUrl: 'autocomplete-locale-normalizer-example.html',
-  standalone: true,
   imports: [
     SbbFormFieldModule,
     SbbInputModule,

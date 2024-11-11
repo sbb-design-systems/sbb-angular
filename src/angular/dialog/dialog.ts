@@ -1,16 +1,14 @@
+import { _IdGenerator } from '@angular/cdk/a11y';
 import { Dialog, DialogConfig } from '@angular/cdk/dialog';
 import { Overlay, ScrollStrategy } from '@angular/cdk/overlay';
 import { ComponentType } from '@angular/cdk/portal';
 import {
   ComponentRef,
   inject,
-  Inject,
   Injectable,
   InjectionToken,
   Injector,
   OnDestroy,
-  Optional,
-  SkipSelf,
   TemplateRef,
   Type,
 } from '@angular/core';
@@ -72,9 +70,6 @@ export const SBB_DIALOG_SCROLL_STRATEGY_PROVIDER = {
   useFactory: SBB_DIALOG_SCROLL_STRATEGY_PROVIDER_FACTORY,
 };
 
-// Counter for unique dialog ids.
-let uniqueId = 0;
-
 /**
  * Base class for dialog services. The base dialog service allows
  * for arbitrary dialog refs and dialog container components.
@@ -90,6 +85,7 @@ export abstract class _SbbDialogBase<
   private readonly _afterAllClosedAtThisLevel = new Subject<void>();
   private readonly _afterOpenedAtThisLevel = new Subject<F>();
   private _scrollStrategy: () => ScrollStrategy;
+  protected _idGenerator: _IdGenerator = inject(_IdGenerator);
   protected _idPrefix: string = 'sbb-dialog-';
   private _dialog: Dialog;
   /** Keeps track of the currently-open dialogs. */
@@ -121,8 +117,8 @@ export abstract class _SbbDialogBase<
   constructor(
     private _overlay: Overlay,
     injector: Injector,
-    private _defaultOptions: SbbDialogConfig | undefined,
-    private _parentDialog: _SbbDialogBase<C, F> | undefined,
+    private _defaultOptions: SbbDialogConfig | null,
+    private _parentDialog: _SbbDialogBase<C, F> | null,
     scrollStrategy: any,
     private _dialogRefConstructor: Type<F>,
     private _dialogContainerType: Type<C>,
@@ -144,7 +140,7 @@ export abstract class _SbbDialogBase<
   ): SbbDialogRef<T, R> {
     let dialogRef: F;
     config = { ...(this._defaultOptions || new SbbDialogConfig()), ...config };
-    config.id = config.id || `${this._idPrefix}${uniqueId++}`;
+    config.id = config.id || this._idGenerator.getId(this._idPrefix);
     config.scrollStrategy = config.scrollStrategy || this._scrollStrategy();
     config.backdropClass = config.backdropClass || 'sbb-overlay-background';
 
@@ -242,13 +238,14 @@ export abstract class _SbbDialogBase<
  */
 @Injectable({ providedIn: 'root' })
 export class SbbDialog extends _SbbDialogBase<SbbDialogContainer> {
-  constructor(
-    overlay: Overlay,
-    injector: Injector,
-    @Optional() @Inject(SBB_DIALOG_DEFAULT_OPTIONS) defaultOptions: SbbDialogConfig,
-    @Inject(SBB_DIALOG_SCROLL_STRATEGY) scrollStrategy: any,
-    @Optional() @SkipSelf() parentDialog: SbbDialog,
-  ) {
+  constructor(...args: unknown[]);
+  constructor() {
+    const overlay = inject(Overlay);
+    const injector = inject(Injector);
+    const defaultOptions = inject<SbbDialogConfig>(SBB_DIALOG_DEFAULT_OPTIONS, { optional: true });
+    const scrollStrategy = inject(SBB_DIALOG_SCROLL_STRATEGY);
+    const parentDialog = inject(SbbDialog, { optional: true, skipSelf: true })!;
+
     super(
       overlay,
       injector,

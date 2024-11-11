@@ -9,7 +9,6 @@ import { SbbNotificationToast } from '@sbb-esta/angular/notification-toast';
 @Component({
   selector: 'sbb-notification-toast-template-example',
   templateUrl: 'notification-toast-template-example.html',
-  standalone: true,
   imports: [SbbButtonModule],
 })
 export class NotificationToastTemplateExample {

@@ -9,7 +9,6 @@ import { SbbTabsModule } from '@sbb-esta/angular/tabs';
 @Component({
   selector: 'sbb-tab-group-lazy-loaded-example',
   templateUrl: 'tab-group-lazy-loaded-example.html',
-  standalone: true,
   imports: [SbbTabsModule, DatePipe],
 })
 export class TabGroupLazyLoadedExample {

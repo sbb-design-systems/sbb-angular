@@ -15,7 +15,6 @@ import { takeUntil } from 'rxjs/operators';
 @Component({
   selector: 'sbb-autocomplete-reactive-forms-example',
   templateUrl: 'autocomplete-reactive-forms-example.html',
-  standalone: true,
   imports: [
     SbbFormFieldModule,
     SbbInputModule,

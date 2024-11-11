@@ -1,30 +1,19 @@
 import { AnimationEvent } from '@angular/animations';
-import { Directionality } from '@angular/cdk/bidi';
 import { CdkPortalOutlet, TemplatePortal } from '@angular/cdk/portal';
-import {
-  CdkStep,
-  CdkStepper,
-  StepContentPositionState,
-  StepperOptions,
-  STEPPER_GLOBAL_OPTIONS,
-} from '@angular/cdk/stepper';
+import { CdkStep, CdkStepper, StepContentPositionState } from '@angular/cdk/stepper';
 import { NgTemplateOutlet } from '@angular/common';
 import {
   AfterContentInit,
   ChangeDetectionStrategy,
-  ChangeDetectorRef,
   Component,
   ContentChild,
   ContentChildren,
   ElementRef,
   EventEmitter,
-  forwardRef,
-  Inject,
+  inject,
   OnDestroy,
-  Optional,
   Output,
   QueryList,
-  SkipSelf,
   ViewChild,
   ViewChildren,
   ViewContainerRef,
@@ -34,7 +23,7 @@ import { AbstractControl, FormGroupDirective, NgForm } from '@angular/forms';
 import { SbbErrorStateMatcher } from '@sbb-esta/angular/core';
 import { SbbIcon } from '@sbb-esta/angular/icon';
 import { Subject, Subscription } from 'rxjs';
-import { distinctUntilChanged, map, startWith, switchMap, takeUntil } from 'rxjs/operators';
+import { map, startWith, switchMap, takeUntil } from 'rxjs/operators';
 
 import { sbbProcessflowAnimations } from './processflow-animations';
 import { SbbStepContent } from './step-content';
@@ -55,25 +44,19 @@ import { SbbStepLabel } from './step-label';
   imports: [CdkPortalOutlet],
 })
 export class SbbStep extends CdkStep implements SbbErrorStateMatcher, AfterContentInit, OnDestroy {
+  private _errorStateMatcher = inject(SbbErrorStateMatcher, { skipSelf: true });
+  private _viewContainerRef = inject(ViewContainerRef);
   private _isSelected = Subscription.EMPTY;
 
   /** Content for step label given by `<ng-template sbbStepLabel>`. */
-  @ContentChild(SbbStepLabel) override stepLabel: SbbStepLabel;
+  // We need an initializer here to avoid a TS error.
+  @ContentChild(SbbStepLabel) override stepLabel: SbbStepLabel = undefined!;
 
   /** Content that will be rendered lazily. */
   @ContentChild(SbbStepContent, { static: false }) _lazyContent: SbbStepContent;
 
   /** Currently-attached portal containing the lazy content. */
   _portal: TemplatePortal;
-
-  constructor(
-    @Inject(forwardRef(() => SbbProcessflow)) processflow: SbbProcessflow,
-    @SkipSelf() private _errorStateMatcher: SbbErrorStateMatcher,
-    private _viewContainerRef: ViewContainerRef,
-    @Optional() @Inject(STEPPER_GLOBAL_OPTIONS) processflowOptions?: StepperOptions,
-  ) {
-    super(processflow, processflowOptions);
-  }
 
   ngAfterContentInit() {
     this._isSelected = this._stepper.steps.changes
@@ -129,11 +112,13 @@ export class SbbStep extends CdkStep implements SbbErrorStateMatcher, AfterConte
 })
 export class SbbProcessflow extends CdkStepper implements AfterContentInit {
   /** The list of step headers of the steps in the processflow. */
-  @ViewChildren(SbbStepHeader) override _stepHeader: QueryList<SbbStepHeader>;
+  // We need an initializer here to avoid a TS error.
+  @ViewChildren(SbbStepHeader) override _stepHeader: QueryList<SbbStepHeader> = undefined!;
   @ViewChild('stepListContainer', { static: true }) _tabListContainer: ElementRef;
 
   /** Full list of steps inside the processflow, including inside nested processflows. */
-  @ContentChildren(SbbStep, { descendants: true }) override _steps: QueryList<SbbStep>;
+  // We need an initializer here to avoid a TS error.
+  @ContentChildren(SbbStep, { descendants: true }) override _steps: QueryList<SbbStep> = undefined!;
 
   /** Steps that belong to the current processflow, excluding ones from nested processflows. */
   override readonly steps: QueryList<SbbStep> = new QueryList<SbbStep>();
@@ -143,14 +128,6 @@ export class SbbProcessflow extends CdkStepper implements AfterContentInit {
 
   /** Stream of animation `done` events when the body expands/collapses. */
   readonly _animationDone = new Subject<AnimationEvent>();
-
-  constructor(
-    @Optional() dir: Directionality,
-    changeDetectorRef: ChangeDetectorRef,
-    elementRef: ElementRef<HTMLElement>,
-  ) {
-    super(dir, changeDetectorRef, elementRef);
-  }
 
   override ngAfterContentInit() {
     super.ngAfterContentInit();
@@ -164,19 +141,11 @@ export class SbbProcessflow extends CdkStepper implements AfterContentInit {
       this._scrollToLabel(selection.selectedIndex);
     });
 
-    this._animationDone
-      .pipe(
-        // This needs a `distinctUntilChanged` in order to avoid emitting the same event twice due
-        // to a bug in animations where the `.done` callback gets invoked twice on some browsers.
-        // See https://github.com/angular/angular/issues/24084
-        distinctUntilChanged((x, y) => x.fromState === y.fromState && x.toState === y.toState),
-        takeUntil(this._destroyed),
-      )
-      .subscribe((event) => {
-        if ((event.toState as StepContentPositionState) === 'current') {
-          this.animationDone.emit();
-        }
-      });
+    this._animationDone.pipe(takeUntil(this._destroyed)).subscribe((event) => {
+      if ((event.toState as StepContentPositionState) === 'current') {
+        this.animationDone.emit();
+      }
+    });
   }
 
   /**

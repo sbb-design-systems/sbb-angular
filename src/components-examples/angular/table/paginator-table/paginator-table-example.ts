@@ -24,7 +24,6 @@ interface VehicleExampleItem {
 @Component({
   selector: 'sbb-paginator-table-example',
   templateUrl: 'paginator-table-example.html',
-  standalone: true,
   imports: [SbbTableModule, SbbPaginationModule, SbbFormFieldModule, SbbInputModule, FormsModule],
 })
 export class PaginatorTableExample implements OnInit, OnDestroy {

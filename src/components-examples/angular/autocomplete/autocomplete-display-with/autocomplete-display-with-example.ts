@@ -20,7 +20,6 @@ interface ExampleOption {
 @Component({
   selector: 'sbb-autocomplete-display-with-example',
   templateUrl: 'autocomplete-display-with-example.html',
-  standalone: true,
   imports: [
     SbbFormFieldModule,
     SbbInputModule,

@@ -11,7 +11,6 @@ import { SbbInputModule } from '@sbb-esta/angular/input';
   selector: 'sbb-input-overview-example',
   styleUrls: ['input-overview-example.css'],
   templateUrl: 'input-overview-example.html',
-  standalone: true,
   imports: [FormsModule, SbbFormFieldModule, SbbInputModule],
 })
 export class InputOverviewExample {}

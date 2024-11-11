@@ -1,3 +1,4 @@
+import { _IdGenerator } from '@angular/cdk/a11y';
 import { ENTER } from '@angular/cdk/keycodes';
 import {
   AfterContentInit,
@@ -8,9 +9,11 @@ import {
   EventEmitter,
   HostListener,
   inject,
+  Injector,
   Input,
   OnDestroy,
   Output,
+  runInInjectionContext,
   ViewEncapsulation,
 } from '@angular/core';
 import { SbbAutocompleteOrigin, SbbAutocompleteTrigger } from '@sbb-esta/angular/autocomplete';
@@ -21,8 +24,6 @@ import { Subject } from 'rxjs';
 import { take, takeUntil } from 'rxjs/operators';
 
 import { getSbbInputRequiredError } from './search-error';
-
-let nextId = 1;
 
 @Component({
   selector: 'sbb-search',
@@ -52,7 +53,7 @@ export class SbbSearch implements AfterContentInit, OnDestroy {
   @ContentChild(SbbInput, { static: true }) _input!: SbbInput;
 
   /** Identifier of search. */
-  @Input() id: string = `sbb-search-id-${nextId++}`;
+  @Input() id: string = inject(_IdGenerator).getId('sbb-search-id-');
 
   /**
    * The indicator icon, which will be used in the button.
@@ -93,6 +94,8 @@ export class SbbSearch implements AfterContentInit, OnDestroy {
 
   private _elementRef = inject<ElementRef<HTMLInputElement>>(ElementRef);
 
+  private _injector = inject(Injector);
+
   constructor(...args: unknown[]);
   constructor() {}
 
@@ -101,10 +104,12 @@ export class SbbSearch implements AfterContentInit, OnDestroy {
       throw getSbbInputRequiredError();
     }
     if (this._autocompleteTrigger) {
-      this._autocompleteTrigger.connectedTo = new SbbAutocompleteOrigin(this._elementRef);
-      this._autocompleteTrigger.autocomplete.optionSelected
-        .pipe(takeUntil(this._destroyed))
-        .subscribe(() => this._emitSearch());
+      runInInjectionContext(this._injector, () => {
+        this._autocompleteTrigger!.connectedTo = new SbbAutocompleteOrigin(this._elementRef);
+        this._autocompleteTrigger!.autocomplete.optionSelected.pipe(
+          takeUntil(this._destroyed),
+        ).subscribe(() => this._emitSearch());
+      });
     }
   }
 

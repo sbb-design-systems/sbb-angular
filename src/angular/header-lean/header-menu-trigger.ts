@@ -14,11 +14,10 @@ import {
   ElementRef,
   EventEmitter,
   HostListener,
-  Inject,
+  inject,
   InjectionToken,
   Input,
   OnDestroy,
-  Optional,
   Output,
   ViewChild,
   ViewEncapsulation,
@@ -73,6 +72,12 @@ const passiveEventListenerOptions = normalizePassiveListenerOptions({ passive: t
   imports: [SbbIconModule],
 })
 export class SbbHeaderMenuTrigger implements AfterContentInit, OnDestroy {
+  private _overlay = inject(Overlay);
+  private _element = inject<ElementRef<HTMLElement>>(ElementRef);
+  private _focusMonitor = inject(FocusMonitor);
+  private _router = inject(Router, { optional: true });
+  private _header = inject<TypeRef<SbbHeaderLean>>(SBB_HEADER);
+
   // Tracking input type is necessary so it's possible to only auto-focus
   // the first item of the list when the menu is opened via the keyboard
   _openedBy: 'mouse' | 'touch' | null = null;
@@ -123,7 +128,7 @@ export class SbbHeaderMenuTrigger implements AfterContentInit, OnDestroy {
   private _closingActionsSubscription = Subscription.EMPTY;
   private _menuCloseSubscription = Subscription.EMPTY;
   private _destroyed = new Subject<void>();
-  private _scrollStrategy: () => ScrollStrategy;
+  private _scrollStrategy = inject(SBB_HEADER_MENU_SCROLL_STRATEGY);
 
   /**
    * Handles touch start events on the trigger.
@@ -131,20 +136,13 @@ export class SbbHeaderMenuTrigger implements AfterContentInit, OnDestroy {
    */
   private _handleTouchStart = () => (this._openedBy = 'touch');
 
-  constructor(
-    private _overlay: Overlay,
-    private _element: ElementRef<HTMLElement>,
-    private _focusMonitor: FocusMonitor,
-    @Optional() private _router: Router,
-    @Inject(SBB_HEADER_MENU_SCROLL_STRATEGY) scrollStrategy: any,
-    @Inject(SBB_HEADER) private _header: TypeRef<SbbHeaderLean>,
-  ) {
-    _element.nativeElement.addEventListener(
+  constructor(...args: unknown[]);
+  constructor() {
+    this._element.nativeElement.addEventListener(
       'touchstart',
       this._handleTouchStart,
       passiveEventListenerOptions,
     );
-    this._scrollStrategy = scrollStrategy;
   }
 
   ngAfterContentInit() {

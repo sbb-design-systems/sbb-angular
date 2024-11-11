@@ -20,7 +20,6 @@ export interface Fruit {
 @Component({
   selector: 'sbb-chips-input-custom-handler-autocomplete-example',
   templateUrl: 'chips-input-custom-handler-autocomplete-example.html',
-  standalone: true,
   imports: [
     SbbFormFieldModule,
     SbbChipsModule,

@@ -2,6 +2,7 @@
 /// <reference types="@angular/localize/init" />
 
 import { AnimationEvent } from '@angular/animations';
+import { _IdGenerator } from '@angular/cdk/a11y';
 import { BreakpointObserver } from '@angular/cdk/layout';
 import {
   CdkConnectedOverlay,
@@ -63,8 +64,6 @@ const searchOverlayPositions: ConnectedPosition[] = (
 /** For mobile, the overlay should be attached approximately at the center of the trigger. */
 const searchOverlayMobilePosition: ConnectedPosition[] = [searchOverlayPositions[1]];
 
-let nextId = 1;
-
 @Component({
   selector: 'button[sbbHeaderSearch]',
   templateUrl: './header-search.html',
@@ -89,7 +88,7 @@ export class SbbHeaderSearch {
   _labelSearch: string = $localize`:Button label for the header search@@sbbSearchHeaderButtonLabel:Search`;
 
   /** Identifier of search. */
-  @Input() id: string = `sbb-header-search-id-${nextId++}`;
+  @Input() id: string = inject(_IdGenerator).getId('sbb-header-search-id-');
 
   /** The label to be shown next to the indicator icon. */
   @Input() label?: string;

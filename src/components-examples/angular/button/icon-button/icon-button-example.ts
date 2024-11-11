@@ -11,7 +11,6 @@ import { SbbIconModule } from '@sbb-esta/angular/icon';
 @Component({
   selector: 'sbb-icon-button-example',
   templateUrl: 'icon-button-example.html',
-  standalone: true,
   imports: [SbbButtonModule, SbbIconModule, SbbCheckboxModule, FormsModule],
 })
 export class IconButtonExample {

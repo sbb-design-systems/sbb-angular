@@ -13,7 +13,6 @@ import { SbbNotificationToast } from '@sbb-esta/angular/notification-toast';
   selector: 'sbb-notification-toast-duration-example',
   templateUrl: 'notification-toast-duration-example.html',
   styleUrls: ['notification-toast-duration-example.css'],
-  standalone: true,
   imports: [SbbFormFieldModule, SbbInputModule, FormsModule, SbbButtonModule],
 })
 export class NotificationToastDurationExample {

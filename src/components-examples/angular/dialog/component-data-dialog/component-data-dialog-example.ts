@@ -9,7 +9,6 @@ import { SbbDialog, SbbDialogModule } from '@sbb-esta/angular/dialog';
 @Component({
   selector: 'sbb-component-data-dialog-example',
   templateUrl: 'component-data-dialog-example.html',
-  standalone: true,
   imports: [SbbButtonModule],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
@@ -120,7 +119,6 @@ export class ComponentDataDialogExample {
       <button sbb-secondary-button sbbDialogClose>Cancel</button>
     </div>
   `,
-  standalone: true,
   imports: [SbbDialogModule, SbbButtonModule],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })

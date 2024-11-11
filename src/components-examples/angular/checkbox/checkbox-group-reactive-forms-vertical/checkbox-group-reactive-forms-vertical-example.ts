@@ -10,7 +10,6 @@ import { SbbCheckboxModule } from '@sbb-esta/angular/checkbox';
 @Component({
   selector: 'sbb-checkbox-group-reactive-forms-vertical-example',
   templateUrl: 'checkbox-group-reactive-forms-vertical-example.html',
-  standalone: true,
   imports: [FormsModule, ReactiveFormsModule, SbbCheckboxModule, JsonPipe, KeyValuePipe],
 })
 export class CheckboxGroupReactiveFormsVerticalExample {

@@ -1,3 +1,4 @@
+import { _IdGenerator } from '@angular/cdk/a11y';
 import { DOCUMENT } from '@angular/common';
 import {
   AfterViewChecked,
@@ -71,9 +72,6 @@ const funcIriAttributeSelector = funcIriAttributes.map((attr) => `[${attr}]`).jo
 
 /** Regex that can be used to extract the id out of a FuncIRI. */
 const funcIriPattern = /^url\(['"]?#(.*?)['"]?\)$/;
-
-/** The unique id of an icon. **/
-let nextId = 0;
 
 /**
  * Component to display an icon. It can be used in the following ways:
@@ -175,7 +173,7 @@ export class SbbIcon implements OnInit, AfterViewChecked, OnDestroy {
   }
   private _fontIcon: string;
 
-  @Input() id: string = `sbb-icon-${nextId++}`;
+  @Input() id: string = inject(_IdGenerator).getId('sbb-icon-');
 
   private _previousFontSetClass: string[] = [];
   private _previousFontIconClass: string;

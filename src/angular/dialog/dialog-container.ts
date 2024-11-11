@@ -1,18 +1,11 @@
 import { AnimationEvent } from '@angular/animations';
-import { FocusMonitor, FocusTrapFactory, InteractivityChecker } from '@angular/cdk/a11y';
 import { CdkDialogContainer } from '@angular/cdk/dialog';
-import { OverlayRef } from '@angular/cdk/overlay';
 import { CdkPortalOutlet } from '@angular/cdk/portal';
-import { DOCUMENT } from '@angular/common';
 import {
   ChangeDetectionStrategy,
   Component,
-  ElementRef,
   EventEmitter,
   HostListener,
-  Inject,
-  NgZone,
-  Optional,
   ViewEncapsulation,
 } from '@angular/core';
 
@@ -87,28 +80,6 @@ export class SbbDialogContainer extends CdkDialogContainer<SbbDialogConfig> {
     // Mark the container for check so it can react if the
     // view container is using OnPush change detection.
     this._changeDetectorRef.markForCheck();
-  }
-
-  constructor(
-    elementRef: ElementRef,
-    focusTrapFactory: FocusTrapFactory,
-    @Optional() @Inject(DOCUMENT) document: any,
-    dialogConfig: SbbDialogConfig,
-    checker: InteractivityChecker,
-    ngZone: NgZone,
-    overlayRef: OverlayRef,
-    focusMonitor?: FocusMonitor,
-  ) {
-    super(
-      elementRef,
-      focusTrapFactory,
-      document,
-      dialogConfig,
-      checker,
-      ngZone,
-      overlayRef,
-      focusMonitor,
-    );
   }
 
   /** Initializes the dialog container with the attached content. */

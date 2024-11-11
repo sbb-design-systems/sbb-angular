@@ -11,7 +11,6 @@ import { SbbSearchModule } from '@sbb-esta/angular/search';
 @Component({
   selector: 'sbb-search-simple-reactive-forms-example',
   templateUrl: 'search-simple-reactive-forms-example.html',
-  standalone: true,
   imports: [SbbSearchModule, SbbInputModule, FormsModule, ReactiveFormsModule, JsonPipe],
 })
 export class SearchSimpleReactiveFormsExample {

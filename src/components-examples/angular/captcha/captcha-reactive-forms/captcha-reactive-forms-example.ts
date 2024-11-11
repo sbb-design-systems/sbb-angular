@@ -11,7 +11,6 @@ import { SbbCaptchaModule } from '@sbb-esta/angular/captcha';
   selector: 'sbb-captcha-reactive-forms-example',
   templateUrl: 'captcha-reactive-forms-example.html',
   styleUrls: ['captcha-reactive-forms-example.css'],
-  standalone: true,
   imports: [SbbCaptchaModule, FormsModule, ReactiveFormsModule, JsonPipe],
 })
 export class CaptchaReactiveFormsExample {

@@ -16,7 +16,6 @@ import { map, startWith } from 'rxjs/operators';
 @Component({
   selector: 'sbb-chips-autocomplete-example',
   templateUrl: 'chips-autocomplete-example.html',
-  standalone: true,
   imports: [
     SbbFormFieldModule,
     SbbChipsModule,

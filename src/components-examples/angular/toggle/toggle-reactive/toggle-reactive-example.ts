@@ -15,7 +15,6 @@ import { SbbToggleModule } from '@sbb-esta/angular/toggle';
   selector: 'sbb-toggle-reactive-example',
   templateUrl: 'toggle-reactive-example.html',
   encapsulation: ViewEncapsulation.None,
-  standalone: true,
   imports: [
     SbbToggleModule,
     FormsModule,

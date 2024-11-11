@@ -10,7 +10,6 @@ import { SbbCheckboxPanelModule } from '@sbb-esta/angular/checkbox-panel';
 @Component({
   selector: 'sbb-checkbox-panel-content-example',
   templateUrl: 'checkbox-panel-content-example.html',
-  standalone: true,
   imports: [SbbCheckboxPanelModule, SbbCheckboxModule, FormsModule],
 })
 export class CheckboxPanelContentExample {

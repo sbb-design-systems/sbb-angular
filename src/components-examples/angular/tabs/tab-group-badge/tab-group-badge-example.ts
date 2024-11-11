@@ -9,7 +9,6 @@ import { SbbTabsModule } from '@sbb-esta/angular/tabs';
 @Component({
   selector: 'sbb-tab-group-badge-example',
   templateUrl: 'tab-group-badge-example.html',
-  standalone: true,
   imports: [SbbTabsModule, SbbBadgeModule],
 })
 export class TabGroupBadgeExample {}

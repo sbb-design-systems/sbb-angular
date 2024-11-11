@@ -3,7 +3,7 @@
 
 import { AnimationEvent } from '@angular/animations';
 import { animate, state, style, transition, trigger } from '@angular/animations';
-import { FocusKeyManager, FocusOrigin } from '@angular/cdk/a11y';
+import { FocusKeyManager, FocusOrigin, _IdGenerator } from '@angular/cdk/a11y';
 import { DOWN_ARROW, END, ESCAPE, hasModifierKey, HOME, UP_ARROW } from '@angular/cdk/keycodes';
 import { CdkPortal, CdkPortalOutlet } from '@angular/cdk/portal';
 import { NgClass } from '@angular/common';
@@ -15,7 +15,7 @@ import {
   ElementRef,
   EventEmitter,
   HostListener,
-  Inject,
+  inject,
   Input,
   OnDestroy,
   Output,
@@ -31,8 +31,6 @@ import { map, startWith, takeUntil } from 'rxjs/operators';
 import type { SbbHeaderLean } from './header';
 import { SbbHeaderMenuItem } from './header-menu-item';
 import { SBB_HEADER } from './header-token';
-
-let nextId = 0;
 
 @Component({
   selector: 'sbb-header-menu',
@@ -58,10 +56,12 @@ let nextId = 0;
   imports: [SbbIconModule, CdkPortal, CdkPortalOutlet, NgClass],
 })
 export class SbbHeaderMenu implements AfterContentInit, OnDestroy {
+  private _elementRef = inject<ElementRef<HTMLElement>>(ElementRef);
+  _header: SbbHeaderLean = inject<TypeRef<SbbHeaderLean>>(SBB_HEADER);
   _backButton: string = $localize`:Go back to the app chooser navigation@@sbbHeaderMenuBack:Back`;
 
   /** Unique ID to be used by menu trigger's "aria-owns" property. */
-  id: string = `sbb-header-menu-${nextId++}`;
+  id: string = inject(_IdGenerator).getId('sbb-header-menu-');
 
   /** Event emitted when the menu is closed. */
   @Output() readonly closed: EventEmitter<void | 'click' | 'keydown' | 'tab'> = new EventEmitter<
@@ -136,10 +136,8 @@ export class SbbHeaderMenu implements AfterContentInit, OnDestroy {
   /** Subscription to tab events on the menu panel */
   private _destroyed = new Subject<void>();
 
-  constructor(
-    private _elementRef: ElementRef<HTMLElement>,
-    @Inject(SBB_HEADER) public _header: TypeRef<SbbHeaderLean>,
-  ) {
+  constructor(...args: unknown[]);
+  constructor() {
     this.closed.pipe(takeUntil(this._destroyed)).subscribe(() => {
       if (this._animationState !== 'closed') {
         this._animationState = 'closed';

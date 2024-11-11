@@ -12,7 +12,7 @@ import {
   createNgModuleRef,
   Directive,
   forwardRef,
-  Inject,
+  inject,
   Injectable,
   Injector,
   NgModule,
@@ -26,7 +26,6 @@ import {
   fakeAsync,
   flush,
   flushMicrotasks,
-  inject,
   TestBed,
   tick,
 } from '@angular/core/testing';
@@ -94,18 +93,13 @@ describe('SbbLightbox', () => {
         },
       ],
     });
-  }));
 
-  beforeEach(inject(
-    [SbbLightbox, Location, OverlayContainer, FocusMonitor],
-    (d: SbbLightbox, l: Location, oc: OverlayContainer, fm: FocusMonitor) => {
-      lightbox = d;
-      mockLocation = l as SpyLocation;
-      overlayContainer = oc;
-      overlayContainerElement = oc.getContainerElement();
-      focusMonitor = fm;
-    },
-  ));
+    lightbox = TestBed.inject(SbbLightbox);
+    overlayContainer = TestBed.inject(OverlayContainer);
+    overlayContainerElement = overlayContainer.getContainerElement();
+    focusMonitor = TestBed.inject(FocusMonitor);
+    mockLocation = TestBed.inject(Location) as SpyLocation;
+  }));
 
   afterEach(() => {
     overlayContainer.ngOnDestroy();
@@ -251,30 +245,25 @@ describe('SbbLightbox', () => {
     expect(overlayContainerElement.querySelector('sbb-lightbox-container')).toBeNull();
   }));
 
-  it(
-    'should dispatch the beforeClosed and afterClosed events when the ' +
-      'overlay is detached externally',
-    fakeAsync(
-      inject([Overlay], (overlay: Overlay) => {
-        const lightboxRef = lightbox.open(PizzaMsg, {
-          viewContainerRef: testViewContainerRef,
-          scrollStrategy: overlay.scrollStrategies.close(),
-        });
-        const beforeClosedCallback = jasmine.createSpy('beforeClosed callback');
-        const afterCloseCallback = jasmine.createSpy('afterClosed callback');
+  it('should dispatch the beforeClosed and afterClosed events when the overlay is detached externally', fakeAsync(() => {
+    const overlay = TestBed.inject(Overlay);
+    const lightboxRef = lightbox.open(PizzaMsg, {
+      viewContainerRef: testViewContainerRef,
+      scrollStrategy: overlay.scrollStrategies.close(),
+    });
+    const beforeClosedCallback = jasmine.createSpy('beforeClosed callback');
+    const afterCloseCallback = jasmine.createSpy('afterClosed callback');
 
-        lightboxRef.beforeClosed().subscribe(beforeClosedCallback);
-        lightboxRef.afterClosed().subscribe(afterCloseCallback);
+    lightboxRef.beforeClosed().subscribe(beforeClosedCallback);
+    lightboxRef.afterClosed().subscribe(afterCloseCallback);
 
-        scrolledSubject.next();
-        viewContainerFixture.detectChanges();
-        flush();
+    scrolledSubject.next();
+    viewContainerFixture.detectChanges();
+    flush();
 
-        expect(beforeClosedCallback).toHaveBeenCalledTimes(1);
-        expect(afterCloseCallback).toHaveBeenCalledTimes(1);
-      }),
-    ),
-  );
+    expect(beforeClosedCallback).toHaveBeenCalledTimes(1);
+    expect(afterCloseCallback).toHaveBeenCalledTimes(1);
+  }));
 
   it('should close a lightbox and get back a result before it is closed', fakeAsync(() => {
     const lightboxRef = lightbox.open(PizzaMsg, { viewContainerRef: testViewContainerRef });
@@ -1491,11 +1480,8 @@ describe('SbbLightbox with a parent SbbLightbox', () => {
         { provide: Location, useClass: SpyLocation },
       ],
     });
-  }));
 
-  beforeEach(inject([SbbLightbox], (d: SbbLightbox) => {
-    parentDialog = d;
-
+    parentDialog = TestBed.inject(SbbLightbox);
     fixture = TestBed.createComponent(ComponentThatProvidesSbbLightbox);
     childDialog = fixture.componentInstance.lightbox;
     fixture.detectChanges();
@@ -1594,12 +1580,10 @@ describe('SbbLightbox with default options', () => {
       imports: [DialogTestModule],
       providers: [{ provide: SBB_LIGHTBOX_DEFAULT_OPTIONS, useValue: defaultConfig }],
     });
-  }));
 
-  beforeEach(inject([SbbLightbox, OverlayContainer], (d: SbbLightbox, oc: OverlayContainer) => {
-    lightbox = d;
-    overlayContainer = oc;
-    overlayContainerElement = oc.getContainerElement();
+    lightbox = TestBed.inject(SbbLightbox);
+    overlayContainer = TestBed.inject(OverlayContainer);
+    overlayContainerElement = overlayContainer.getContainerElement();
   }));
 
   afterEach(() => {
@@ -1661,11 +1645,9 @@ describe('SbbLightbox with animations enabled', () => {
     TestBed.configureTestingModule({
       imports: [DialogTestModule, BrowserAnimationsModule],
     });
-  }));
 
-  beforeEach(inject([SbbLightbox, OverlayContainer], (d: SbbLightbox, oc: OverlayContainer) => {
-    lightbox = d;
-    overlayContainer = oc;
+    lightbox = TestBed.inject(SbbLightbox);
+    overlayContainer = TestBed.inject(OverlayContainer);
 
     viewContainerFixture = TestBed.createComponent(ComponentWithChildViewContainer);
     viewContainerFixture.detectChanges();
@@ -1709,10 +1691,8 @@ describe('SbbDialog with explicit injector provided', () => {
     TestBed.configureTestingModule({
       imports: [BrowserAnimationsModule, ModuleBoundLightboxParentComponent],
     });
-  }));
 
-  beforeEach(inject([OverlayContainer], (oc: OverlayContainer) => {
-    overlayContainerElement = oc.getContainerElement();
+    overlayContainerElement = TestBed.inject(OverlayContainer).getContainerElement();
   }));
 
   beforeEach(() => {
@@ -1791,7 +1771,7 @@ describe('SbbLightbox with close button', () => {
   standalone: true,
 })
 class DirectiveWithViewContainer {
-  constructor(public viewContainerRef: ViewContainerRef) {}
+  viewContainerRef = inject(ViewContainerRef);
 }
 
 @Component({
@@ -1800,7 +1780,7 @@ class DirectiveWithViewContainer {
   standalone: true,
 })
 class ComponentWithOnPushViewContainer {
-  constructor(public viewContainerRef: ViewContainerRef) {}
+  viewContainerRef = inject(ViewContainerRef);
 }
 
 @Component({
@@ -1846,11 +1826,9 @@ class ComponentWithTemplateRef {
   standalone: true,
 })
 class PizzaMsg {
-  constructor(
-    public lightboxRef: SbbLightboxRef<PizzaMsg>,
-    public lightboxInjector: Injector,
-    public directionality: Directionality,
-  ) {}
+  lightboxRef = inject<SbbLightboxRef<PizzaMsg>>(SbbLightboxRef);
+  lightboxInjector = inject(Injector);
+  directionality = inject(Directionality);
 }
 
 @Component({
@@ -1905,7 +1883,7 @@ class ComponentWithContentElementTemplateRef {
   template: '',
 })
 class ComponentThatProvidesSbbLightbox {
-  constructor(public lightbox: SbbLightbox) {}
+  lightbox = inject(SbbLightbox);
 }
 
 /** Simple component for testing ComponentPortal. */
@@ -1914,7 +1892,7 @@ class ComponentThatProvidesSbbLightbox {
   standalone: true,
 })
 class DialogWithInjectedData {
-  constructor(@Inject(SBB_LIGHTBOX_DATA) public data: any) {}
+  data = inject(SBB_LIGHTBOX_DATA);
 }
 
 @Component({
@@ -1971,10 +1949,8 @@ class DialogTestModule {}
   imports: [SbbLightboxModule],
 })
 class ModuleBoundLightboxParentComponent {
-  constructor(
-    private _injector: Injector,
-    private _lightbox: SbbLightbox,
-  ) {}
+  private _injector = inject(Injector);
+  private _lightbox = inject(SbbLightbox);
 
   openLightbox(): void {
     const ngModuleRef = createNgModuleRef(
@@ -2004,7 +1980,7 @@ class ModuleBoundLightboxComponent {}
   standalone: true,
 })
 class ModuleBoundLightboxChildComponent {
-  constructor(public service: ModuleBoundLightboxService) {}
+  service = inject(ModuleBoundLightboxService);
 }
 
 @NgModule({

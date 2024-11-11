@@ -9,7 +9,6 @@ import { SbbRadioButtonPanelModule } from '@sbb-esta/angular/radio-button-panel'
 @Component({
   selector: 'sbb-radio-button-panel-icon-example',
   templateUrl: 'radio-button-panel-icon-example.html',
-  standalone: true,
   imports: [SbbRadioButtonPanelModule, SbbIconModule],
 })
 export class RadioButtonPanelIconExample {}

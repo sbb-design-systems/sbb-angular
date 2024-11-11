@@ -15,7 +15,6 @@ import { debounceTime, distinctUntilChanged, takeUntil } from 'rxjs/operators';
 @Component({
   selector: 'sbb-search-custom-icon-autocomplete-static-options-example',
   templateUrl: 'search-custom-icon-autocomplete-static-options-example.html',
-  standalone: true,
   imports: [
     SbbSearchModule,
     SbbInputModule,

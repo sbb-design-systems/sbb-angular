@@ -1,7 +1,6 @@
 import { A11yModule } from '@angular/cdk/a11y';
 import { OverlayModule } from '@angular/cdk/overlay';
 import { PortalModule } from '@angular/cdk/portal';
-import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { provideNativeDateAdapter } from '@sbb-esta/angular/core';
 import { SbbCommonModule } from '@sbb-esta/angular/core';
@@ -20,7 +19,6 @@ import { SbbMonthView } from './month-view/month-view';
 
 @NgModule({
   imports: [
-    CommonModule,
     PortalModule,
     A11yModule,
     OverlayModule,

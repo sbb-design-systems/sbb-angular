@@ -14,7 +14,6 @@ import { SbbTabsModule } from '@sbb-esta/angular/tabs';
   selector: 'sbb-tab-group-dynamic-example',
   templateUrl: 'tab-group-dynamic-example.html',
   styleUrls: ['tab-group-dynamic-example.css'],
-  standalone: true,
   imports: [
     SbbTabsModule,
     SbbButtonModule,

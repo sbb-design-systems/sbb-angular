@@ -1,7 +1,9 @@
+import { _IdGenerator } from '@angular/cdk/a11y';
 import {
   booleanAttribute,
   ChangeDetectionStrategy,
   Component,
+  inject,
   Inject,
   InjectionToken,
   Input,
@@ -30,9 +32,6 @@ import { SbbOptionParentComponent, SBB_OPTION_PARENT_COMPONENT } from './option-
 //    won't read out the description at all.
 // 3. `<sbb-option aria-labelledby="optionLabel groupLabel"` - This works on Chrome, but Safari
 //     doesn't read out the text at all. Furthermore, on
-
-// Counter for unique group ids.
-let uniqueOptgroupIdCounter = 0;
 
 /**
  * Injection token that can be used to reference instances of `SbbOptgroup`. It serves as
@@ -66,7 +65,7 @@ export class SbbOptgroup {
   @Input({ transform: booleanAttribute }) disabled: boolean = false;
 
   /** Unique id for the underlying label. */
-  _labelId: string = `sbb-optgroup-label-${uniqueOptgroupIdCounter++}`;
+  _labelId: string = inject(_IdGenerator).getId('sbb-optgroup-label-');
 
   /** Whether the group is in inert a11y mode. */
   _inert: boolean;

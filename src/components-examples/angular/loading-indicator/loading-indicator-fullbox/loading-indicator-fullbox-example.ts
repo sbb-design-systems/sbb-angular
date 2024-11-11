@@ -9,7 +9,6 @@ import { SbbLoadingIndicatorModule } from '@sbb-esta/angular/loading-indicator';
 @Component({
   selector: 'sbb-loading-indicator-fullbox-example',
   templateUrl: 'loading-indicator-fullbox-example.html',
-  standalone: true,
   imports: [SbbLoadingIndicatorModule, SbbButtonModule],
 })
 export class LoadingIndicatorFullboxExample {

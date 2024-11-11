@@ -1,6 +1,7 @@
 // Workaround for: https://github.com/bazelbuild/rules_nodejs/issues/1265
 /// <reference types="grecaptcha" preserve="true" />
 
+import { _IdGenerator } from '@angular/cdk/a11y';
 import {
   AfterViewInit,
   ChangeDetectionStrategy,
@@ -21,8 +22,6 @@ import { Subscription } from 'rxjs';
 
 import { SbbCaptchaLoaderService } from './captcha-loader.service';
 import { SbbRecaptchaSettings, SBB_RECAPTCHA_SETTINGS } from './captcha-settings';
-
-let nextId = 0;
 
 @Component({
   exportAs: 'sbbCaptcha',
@@ -49,7 +48,7 @@ export class SbbCaptcha implements AfterViewInit, OnDestroy, ControlValueAccesso
   private _zone = inject(NgZone);
 
   /** Identifier of sbb-captcha. */
-  @Input() id: string = `sbbcaptcha-${nextId++}`;
+  @Input() id: string = inject(_IdGenerator).getId('sbbcaptcha-');
 
   /**
    * SiteKey of the user.

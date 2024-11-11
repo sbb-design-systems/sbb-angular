@@ -19,7 +19,6 @@ import { filter, map, startWith, takeUntil } from 'rxjs/operators';
   templateUrl: 'calendar-configuration-example.html',
   styleUrls: ['calendar-configuration-example.css'],
   encapsulation: ViewEncapsulation.None,
-  standalone: true,
   imports: [
     SbbDatepickerModule,
     FormsModule,

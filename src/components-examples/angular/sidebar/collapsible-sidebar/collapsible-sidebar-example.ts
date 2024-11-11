@@ -26,7 +26,6 @@ import { startWith, takeUntil } from 'rxjs/operators';
     { provide: MediaMatcher, useExisting: FakeMediaMatcher },
     BreakpointObserver,
   ],
-  standalone: true,
   imports: [
     SbbSidebarModule,
     SbbIconModule,

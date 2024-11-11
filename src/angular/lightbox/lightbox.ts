@@ -1,15 +1,7 @@
+import { _IdGenerator } from '@angular/cdk/a11y';
 import { Overlay, ScrollStrategy } from '@angular/cdk/overlay';
 import { ComponentType } from '@angular/cdk/portal';
-import {
-  inject,
-  Inject,
-  Injectable,
-  InjectionToken,
-  Injector,
-  Optional,
-  SkipSelf,
-  TemplateRef,
-} from '@angular/core';
+import { inject, Injectable, InjectionToken, Injector, TemplateRef } from '@angular/core';
 import { SbbDialogConfig, _SbbDialogBase } from '@sbb-esta/angular/dialog';
 
 import { SbbLightboxConfig } from './lightbox-config';
@@ -67,9 +59,6 @@ export const SBB_LIGHTBOX_SCROLL_STRATEGY_PROVIDER = {
   useFactory: SBB_LIGHTBOX_SCROLL_STRATEGY_PROVIDER_FACTORY,
 };
 
-// Counter for unique dialog ids.
-let uniqueId = 0;
-
 /**
  * Service to open modal lightboxes.
  */
@@ -82,13 +71,16 @@ export class SbbLightbox extends _SbbDialogBase<SbbLightboxContainer, SbbLightbo
     return this.openDialogs;
   }
 
-  constructor(
-    overlay: Overlay,
-    injector: Injector,
-    @Optional() @Inject(SBB_LIGHTBOX_DEFAULT_OPTIONS) defaultOptions: SbbLightboxConfig,
-    @Inject(SBB_LIGHTBOX_SCROLL_STRATEGY) scrollStrategy: any,
-    @Optional() @SkipSelf() parentDialog: SbbLightbox,
-  ) {
+  constructor(...args: unknown[]);
+  constructor() {
+    const overlay = inject(Overlay);
+    const injector = inject(Injector);
+    const defaultOptions = inject<SbbLightboxConfig>(SBB_LIGHTBOX_DEFAULT_OPTIONS, {
+      optional: true,
+    });
+    const scrollStrategy = inject(SBB_LIGHTBOX_SCROLL_STRATEGY);
+    const parentDialog = inject(SbbLightbox, { optional: true, skipSelf: true });
+
     super(
       overlay,
       injector,
@@ -120,7 +112,7 @@ export class SbbLightbox extends _SbbDialogBase<SbbLightboxContainer, SbbLightbo
       minHeight: 'auto',
       maxHeight: 'none',
     };
-    dialogConfig.id = dialogConfig.id || `${this._idPrefix}${uniqueId++}`;
+    dialogConfig.id = dialogConfig.id || this._idGenerator.getId(this._idPrefix);
     return super.open(componentOrTemplateRef, dialogConfig) as any;
   }
 

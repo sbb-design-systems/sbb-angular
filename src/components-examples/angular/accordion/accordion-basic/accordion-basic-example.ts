@@ -12,7 +12,6 @@ import { SbbCheckboxModule } from '@sbb-esta/angular/checkbox';
   selector: 'sbb-accordion-basic-example',
   templateUrl: 'accordion-basic-example.html',
   styleUrls: ['accordion-basic-example.css'],
-  standalone: true,
   imports: [
     SbbAccordionModule,
     SbbCheckboxModule,

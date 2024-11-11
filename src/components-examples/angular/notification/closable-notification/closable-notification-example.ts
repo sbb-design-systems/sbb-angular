@@ -8,7 +8,6 @@ import { SbbNotificationModule } from '@sbb-esta/angular/notification';
 @Component({
   selector: 'sbb-closable-notification-example',
   templateUrl: 'closable-notification-example.html',
-  standalone: true,
   imports: [SbbNotificationModule],
 })
 export class ClosableNotificationExample {

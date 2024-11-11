@@ -255,7 +255,7 @@ export class SbbTooltip implements OnDestroy, AfterViewInit {
   set showDelay(value: NumberInput) {
     this._showDelay = coerceNumberProperty(value);
   }
-  private _showDelay = this._defaultOptions.showDelay;
+  private _showDelay: number;
 
   /** The default delay in ms before hiding the tooltip after hide is called */
   @Input('sbbTooltipHideDelay')
@@ -269,7 +269,7 @@ export class SbbTooltip implements OnDestroy, AfterViewInit {
       this._tooltipInstance._mouseLeaveHideDelay = this._hideDelay;
     }
   }
-  private _hideDelay = this._defaultOptions.hideDelay;
+  private _hideDelay: number;
 
   /**
    * How touch gestures should be handled by the tooltip. On touch devices the tooltip directive
@@ -449,11 +449,16 @@ export class SbbTooltip implements OnDestroy, AfterViewInit {
     this._scrollStrategy = scrollStrategy;
     this._document = document;
 
-    if (_defaultOptions?.position) {
-      this.position = _defaultOptions.position;
-    }
-    if (_defaultOptions?.touchGestures) {
-      this.touchGestures = _defaultOptions.touchGestures;
+    if (_defaultOptions) {
+      this._showDelay = _defaultOptions.showDelay;
+      this._hideDelay = _defaultOptions.hideDelay;
+
+      if (_defaultOptions?.position) {
+        this.position = _defaultOptions.position;
+      }
+      if (_defaultOptions?.touchGestures) {
+        this.touchGestures = _defaultOptions.touchGestures;
+      }
     }
   }
 
@@ -951,9 +956,7 @@ export class SbbTooltip implements OnDestroy, AfterViewInit {
 })
 export class TooltipComponent implements OnDestroy {
   /** Stream that emits whether the user has a handset-sized display.  */
-  _isHandset: Observable<BreakpointState> = this._breakpointObserver.observe(
-    Breakpoints.MobileDevice,
-  );
+  _isHandset: Observable<BreakpointState>;
 
   /** Message to display in the tooltip */
   message: string | TemplateRef<any>;
@@ -1037,6 +1040,7 @@ export class TooltipComponent implements OnDestroy {
   ) {
     this._animationsDisabled = animationMode === 'NoopAnimations';
     this._document = document;
+    this._isHandset = this._breakpointObserver.observe(Breakpoints.MobileDevice);
   }
 
   /**

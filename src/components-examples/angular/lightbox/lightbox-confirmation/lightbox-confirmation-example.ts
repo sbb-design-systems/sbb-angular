@@ -16,7 +16,6 @@ import { SbbLightboxModule } from '@sbb-esta/angular/lightbox';
 @Component({
   selector: 'sbb-lightbox-confirmation-example',
   templateUrl: 'lightbox-confirmation-example.html',
-  standalone: true,
   imports: [SbbLightboxModule, SbbButtonModule],
 })
 export class LightboxConfirmationExample {
@@ -52,7 +51,6 @@ export class LightboxConfirmationExample {
     `,
   ],
   changeDetection: ChangeDetectionStrategy.OnPush,
-  standalone: true,
   imports: [SbbLightboxModule, SbbButtonModule],
 })
 export class LightboxWithConfirmationOnClose implements OnInit {

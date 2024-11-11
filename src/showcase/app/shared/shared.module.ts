@@ -13,12 +13,12 @@ import { PackageViewerComponent } from './package-viewer/package-viewer.componen
 @NgModule({
   declarations: [MarkdownViewerComponent, ModeNotificationToastComponent, PackageViewerComponent],
   imports: [
-    CommonModule,
     PortalModule,
     SbbButtonModule,
     SbbSidebarModule,
     SbbAccordionModule,
     RouterModule,
+    CommonModule,
   ],
   exports: [MarkdownViewerComponent, PackageViewerComponent],
 })

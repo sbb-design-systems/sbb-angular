@@ -9,7 +9,6 @@ import { SbbTagModule } from '@sbb-esta/angular/tag';
 @Component({
   selector: 'sbb-tag-with-icon-example',
   templateUrl: 'tag-with-icon-example.html',
-  standalone: true,
   imports: [SbbTagModule, SbbButtonModule],
 })
 export class TagWithIconExample {}

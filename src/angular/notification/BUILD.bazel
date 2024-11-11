@@ -20,6 +20,7 @@ ng_module(
         "//src/angular/core",
         "//src/angular/icon",
         "@npm//@angular/animations",
+        "@npm//@angular/cdk",
         "@npm//@angular/common",
         "@npm//@angular/core",
         "@npm//rxjs",

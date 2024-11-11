@@ -11,7 +11,6 @@ import { SbbCaptchaModule } from '@sbb-esta/angular/captcha';
   selector: 'sbb-captcha-simple-example',
   templateUrl: 'captcha-simple-example.html',
   styleUrls: ['captcha-simple-example.css'],
-  standalone: true,
   imports: [SbbCaptchaModule, SbbButtonModule, JsonPipe],
 })
 export class CaptchaSimpleExample {

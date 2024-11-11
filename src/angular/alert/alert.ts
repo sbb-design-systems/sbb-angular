@@ -2,6 +2,7 @@
 /// <reference types="@angular/localize/init" />
 
 import { AnimationEvent } from '@angular/animations';
+import { _IdGenerator } from '@angular/cdk/a11y';
 import {
   ChangeDetectionStrategy,
   ChangeDetectorRef,
@@ -25,8 +26,6 @@ export type SbbAlertState = 'visible' | 'dismissed';
 export interface SbbAlertEvent {
   alert: SbbAlert;
 }
-
-let nextId = 0;
 
 @Component({
   selector: 'sbb-alert, a[sbbAlert]',
@@ -53,7 +52,7 @@ export class SbbAlert {
   _labelClose: string = $localize`:Hidden button label to close the alert@@sbbAlertCloseAlert:Close message`;
 
   /** The id of this element. */
-  @Input() id: string = `sbb-alert-${nextId++}`;
+  @Input() id: string = inject(_IdGenerator).getId('sbb-alert-');
 
   /** The animation state of this alert. */
   _animationState: SbbAlertState = 'visible';

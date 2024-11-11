@@ -1,4 +1,4 @@
-import { FocusableOption, FocusOrigin, Highlightable } from '@angular/cdk/a11y';
+import { FocusableOption, FocusOrigin, Highlightable, _IdGenerator } from '@angular/cdk/a11y';
 import { BooleanInput, coerceBooleanProperty } from '@angular/cdk/coercion';
 import { ENTER, hasModifierKey, SPACE } from '@angular/cdk/keycodes';
 import { DOCUMENT } from '@angular/common';
@@ -10,6 +10,7 @@ import {
   ElementRef,
   EventEmitter,
   HostListener,
+  inject,
   Inject,
   Input,
   OnDestroy,
@@ -25,12 +26,6 @@ import { TypeRef } from '../common-behaviors/type-ref';
 import { SbbOptgroup, SBB_OPTGROUP } from './optgroup';
 import { SbbOptionParentComponent, SBB_OPTION_PARENT_COMPONENT } from './option-parent';
 import { SbbPseudoCheckbox } from './pseudo-checkbox';
-
-/**
- * Option IDs need to be unique across components, so this counter exists outside of
- * the component definition.
- */
-let uniqueIdCounter = 0;
 
 /** Event object emitted by SbbOption when selected or deselected. */
 export class SbbOptionSelectionChange<T = any> {
@@ -89,7 +84,7 @@ export class SbbOption<T = any>
   @Input() value: T;
 
   /** The unique ID of the option. */
-  @Input() id: string = `sbb-option-${uniqueIdCounter++}`;
+  @Input() id: string = inject(_IdGenerator).getId('sbb-option-');
 
   /** Whether the option is disabled. */
   @Input()

@@ -11,7 +11,6 @@ import { SbbInputModule } from '@sbb-esta/angular/input';
   selector: 'sbb-input-errors-example',
   templateUrl: 'input-errors-example.html',
   styleUrls: ['input-errors-example.css'],
-  standalone: true,
   imports: [FormsModule, SbbFormFieldModule, SbbInputModule, ReactiveFormsModule],
 })
 export class InputErrorsExample {

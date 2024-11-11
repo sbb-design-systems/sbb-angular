@@ -1,4 +1,4 @@
-import { ActiveDescendantKeyManager, LiveAnnouncer } from '@angular/cdk/a11y';
+import { ActiveDescendantKeyManager, LiveAnnouncer, _IdGenerator } from '@angular/cdk/a11y';
 import { SelectionModel } from '@angular/cdk/collections';
 import {
   A,
@@ -22,7 +22,6 @@ import {
 import { AsyncPipe, NgClass } from '@angular/common';
 import {
   AfterContentInit,
-  Attribute,
   booleanAttribute,
   ChangeDetectionStrategy,
   ChangeDetectorRef,
@@ -31,19 +30,17 @@ import {
   DoCheck,
   ElementRef,
   EventEmitter,
+  HostAttributeToken,
   HostListener,
-  Inject,
+  inject,
   InjectionToken,
   Input,
-  NgZone,
   numberAttribute,
   OnChanges,
   OnDestroy,
   OnInit,
-  Optional,
   Output,
   QueryList,
-  Self,
   SimpleChanges,
   ViewChild,
   ViewEncapsulation,
@@ -87,8 +84,6 @@ import {
   getSbbSelectNonArrayValueError,
   getSbbSelectNonFunctionValueError,
 } from './select-errors';
-
-let nextUniqueId = 0;
 
 /**
  * The following style constants are necessary to save here in order
@@ -193,6 +188,13 @@ export class SbbSelect
     SbbFormFieldControl<any>,
     CanUpdateErrorState
 {
+  private _viewportRuler = inject(ViewportRuler);
+  private _changeDetectorRef = inject(ChangeDetectorRef);
+  private _parentFormField = inject<SbbFormField>(SBB_FORM_FIELD, { optional: true });
+  ngControl: NgControl = inject(NgControl, { self: true, optional: true })!;
+  private _liveAnnouncer = inject(LiveAnnouncer);
+  private _defaultOptions = inject<SbbSelectConfig>(SBB_SELECT_CONFIG, { optional: true });
+
   /** The scroll position of the overlay panel, calculated to center the selected option. */
   private _scrollTop = 0;
 
@@ -242,7 +244,7 @@ export class SbbSelect
   _overlayOrigin: CdkOverlayOrigin;
 
   /** Factory function used to create a scroll strategy for this select. */
-  private _scrollStrategyFactory: () => ScrollStrategy;
+  private _scrollStrategyFactory = inject(SBB_SELECT_SCROLL_STRATEGY);
 
   /** Whether or not the overlay panel is open. */
   private _panelOpen = false;
@@ -251,7 +253,7 @@ export class SbbSelect
   private _compareWith = (o1: any, o2: any) => o1 === o2;
 
   /** Unique id for this input. */
-  private _uid = `sbb-select-${nextUniqueId++}`;
+  private _uid = inject(_IdGenerator).getId('sbb-select-');
 
   /** Current `aria-labelledby` value for the select trigger. */
   private _triggerAriaLabelledBy: string | null = null;
@@ -300,7 +302,7 @@ export class SbbSelect
   _onTouched: () => void = () => {};
 
   /** ID for the DOM node containing the select's value. */
-  _valueId: string = `sbb-select-value-${nextUniqueId++}`;
+  _valueId: string = inject(_IdGenerator).getId('sbb-select-value-');
 
   /** Emits when the panel element is finished transforming in. */
   readonly _panelDoneAnimatingStream: Subject<string> = new Subject<string>();
@@ -502,26 +504,16 @@ export class SbbSelect
    */
   @Output() readonly valueChange: EventEmitter<any> = new EventEmitter<any>();
 
-  constructor(
-    private _viewportRuler: ViewportRuler,
-    private _changeDetectorRef: ChangeDetectorRef,
-    /**
-     * @deprecated Unused param, will be removed.
-     * @breaking-change 19.0.0
-     */
-    private _unusedNgZone: NgZone,
-    defaultErrorStateMatcher: SbbErrorStateMatcher,
-    elementRef: ElementRef,
-    @Optional() parentForm: NgForm,
-    @Optional() parentFormGroup: FormGroupDirective,
-    @Optional() @Inject(SBB_FORM_FIELD) private _parentFormField: SbbFormField,
-    @Self() @Optional() public ngControl: NgControl,
-    @Attribute('tabindex') tabIndex: string,
-    @Inject(SBB_SELECT_SCROLL_STRATEGY) scrollStrategyFactory: any,
-    private _liveAnnouncer: LiveAnnouncer,
-    @Optional() @Inject(SBB_SELECT_CONFIG) private _defaultOptions?: SbbSelectConfig,
-  ) {
+  constructor(...args: unknown[]);
+  constructor() {
+    const defaultErrorStateMatcher = inject(SbbErrorStateMatcher);
+    const elementRef = inject(ElementRef);
+    const parentForm = inject(NgForm, { optional: true });
+    const parentFormGroup = inject(FormGroupDirective, { optional: true });
+    const tabIndex = inject(new HostAttributeToken('tabindex'), { optional: true });
+
     super(elementRef);
+    const _defaultOptions = this._defaultOptions;
 
     if (this.ngControl) {
       // Note: we provide the value accessor through here, instead of
@@ -537,14 +529,14 @@ export class SbbSelect
 
     this._errorStateTracker = new _ErrorStateTracker(
       defaultErrorStateMatcher,
-      ngControl,
+      this.ngControl,
       parentFormGroup,
       parentForm,
       this.stateChanges,
     );
-    this._scrollStrategyFactory = scrollStrategyFactory;
+
     this._scrollStrategy = this._scrollStrategyFactory();
-    this.tabIndex = parseInt(tabIndex, 10) || 0;
+    this.tabIndex = tabIndex == null ? 0 : parseInt(tabIndex, 10) || 0;
 
     // Force setter to be called in case id was not specified.
     this.id = this.id;
@@ -1149,7 +1141,7 @@ export class SbbSelect
       return null;
     }
 
-    const labelId = this._parentFormField?.getLabelId();
+    const labelId = this._parentFormField?.getLabelId() || null;
     const labelExpression = labelId ? labelId + ' ' : '';
     return this.ariaLabelledby ? labelExpression + this.ariaLabelledby : labelId;
   }

@@ -42,7 +42,6 @@ interface VehicleFilter extends SbbTableFilter {
   selector: 'sbb-filter-sort-paginator-table-example',
   styleUrls: ['filter-sort-paginator-table-example.css'],
   templateUrl: 'filter-sort-paginator-table-example.html',
-  standalone: true,
   imports: [
     FormsModule,
     ReactiveFormsModule,

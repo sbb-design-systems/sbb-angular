@@ -1,16 +1,15 @@
 // Workaround for: https://github.com/bazelbuild/rules_nodejs/issues/1265
 /// <reference types="@angular/localize/init" />
 
+import { _IdGenerator } from '@angular/cdk/a11y';
 import {
   ChangeDetectionStrategy,
-  ChangeDetectorRef,
   Component,
   Directive,
-  ElementRef,
+  inject,
   Input,
   OnChanges,
   OnInit,
-  Optional,
   SimpleChanges,
   ViewChild,
 } from '@angular/core';
@@ -19,9 +18,6 @@ import { SbbIcon } from '@sbb-esta/angular/icon';
 
 import { SbbLightbox } from './lightbox';
 import { SbbLightboxRef } from './lightbox-ref';
-
-/** Counter used to generate unique IDs for dialog elements. */
-let dialogElementUid = 0;
 
 /**
  * Button that will close the current lightbox.
@@ -36,6 +32,11 @@ let dialogElementUid = 0;
   standalone: true,
 })
 export class SbbLightboxClose extends SbbDialogClose implements OnInit, OnChanges {
+  protected override _dialogRef: SbbLightboxRef<any> = inject<SbbLightboxRef<any>>(SbbLightboxRef, {
+    optional: true,
+  })!;
+  protected override _dialog: SbbDialog = inject(SbbLightbox) as unknown as SbbDialog;
+
   /** Aria label for the close button. */
   @Input('aria-label')
   override ariaLabel: string =
@@ -51,16 +52,6 @@ export class SbbLightboxClose extends SbbDialogClose implements OnInit, OnChange
   }
 
   @Input('sbbLightboxClose') _sbbLightboxClose: any;
-
-  constructor(
-    // The lightbox title directive is always used in combination with a `SbbLightboxRef`.
-    // tslint:disable-next-line: lightweight-tokens
-    @Optional() lightboxRef: SbbLightboxRef<any>,
-    elementRef: ElementRef<HTMLElement>,
-    lightbox: SbbLightbox,
-  ) {
-    super(lightboxRef, elementRef, lightbox as unknown as SbbDialog);
-  }
 
   override ngOnChanges(changes: SimpleChanges) {
     const proxiedChange = changes['_sbbLightboxClose'] || changes['_sbbLightboxCloseResult'];
@@ -96,8 +87,13 @@ export class SbbLightboxClose extends SbbDialogClose implements OnInit, OnChange
   imports: [SbbLightboxClose, SbbIcon],
 })
 export class SbbLightboxTitle extends _SbbDialogTitleBase implements OnInit {
+  protected override _dialogRef: SbbLightboxRef<any> = inject<SbbLightboxRef<any>>(SbbLightboxRef, {
+    optional: true,
+  })!;
+  protected override _dialog: SbbDialog = inject(SbbLightbox) as unknown as SbbDialog;
+
   /** Unique id for the lightbox title. If none is supplied, it will be auto-generated. */
-  @Input() override id: string = `sbb-lightbox-title-${dialogElementUid++}`;
+  @Input() override id: string = inject(_IdGenerator).getId('sbb-lightbox-title-');
 
   @ViewChild(SbbLightboxClose, { static: true }) _lightBoxClose: SbbLightboxClose;
 
@@ -105,17 +101,6 @@ export class SbbLightboxTitle extends _SbbDialogTitleBase implements OnInit {
   @Input()
   override closeAriaLabel: string =
     $localize`:Aria label to close a dialog@@sbbLightboxCloseLightbox:Close lightbox`;
-
-  constructor(
-    // The lightbox title directive is always used in combination with a `SbbDialogRef`.
-    // tslint:disable-next-line: lightweight-tokens
-    @Optional() lightboxRef: SbbLightboxRef<any>,
-    elementRef: ElementRef<HTMLElement>,
-    lightbox: SbbLightbox,
-    changeDetectorRef: ChangeDetectorRef,
-  ) {
-    super(lightboxRef, elementRef, lightbox as unknown as SbbDialog, changeDetectorRef);
-  }
 
   override ngOnInit(): void {
     super.ngOnInit();

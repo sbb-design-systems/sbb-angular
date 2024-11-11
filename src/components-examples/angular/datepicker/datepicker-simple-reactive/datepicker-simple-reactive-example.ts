@@ -17,7 +17,6 @@ import { takeUntil } from 'rxjs/operators';
 @Component({
   selector: 'sbb-datepicker-simple-reactive-example',
   templateUrl: 'datepicker-simple-reactive-example.html',
-  standalone: true,
   imports: [
     SbbFormFieldModule,
     SbbDatepickerModule,

@@ -20,7 +20,6 @@ interface GroupItem {
 @Component({
   selector: 'sbb-breadcrumb-dynamic-example',
   templateUrl: 'breadcrumb-dynamic-example.html',
-  standalone: true,
   imports: [SbbBreadcrumbModule, RouterLink, SbbMenuModule, RouterLinkActive],
 })
 export class BreadcrumbDynamicExample {

@@ -9,7 +9,6 @@ import { SbbIconModule } from '@sbb-esta/angular/icon';
 @Component({
   selector: 'sbb-checkbox-panel-icon-example',
   templateUrl: 'checkbox-panel-icon-example.html',
-  standalone: true,
   imports: [SbbCheckboxPanelModule, SbbIconModule],
 })
 export class CheckboxPanelIconExample {}
