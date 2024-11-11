@@ -1,3 +1,6 @@
+@use 'sass:map';
+@use 'sass:meta';
+@use 'sass:string';
 @use './variables';
 @use './functions';
 
@@ -51,8 +54,8 @@ $mqShowBreakpoints: (
 );
 
 @function mqGetBreakpointWidth($name) {
-  @if (map-has-key($mqBreakpoints, $name)) {
-    @return map-get($mqBreakpoints, $name);
+  @if (map.has-key($mqBreakpoints, $name)) {
+    @return map.get($mqBreakpoints, $name);
   } @else {
     @warn "Breakpoint #{$name} does not exist";
   }
@@ -88,7 +91,7 @@ $mqShowBreakpoints: (
 
   // From: this breakpoint (inclusive)
   @if $from {
-    @if type-of($from) == number {
+    @if meta.type-of($from) == number {
       $minSize: functions.pxToEm($from, 16);
     } @else {
       $minSize: functions.pxToEm(mqGetBreakpointWidth($from), 16);
@@ -97,7 +100,7 @@ $mqShowBreakpoints: (
 
   // To: that breakpoint (exclusive)
   @if $to {
-    @if type-of($to) == number {
+    @if meta.type-of($to) == number {
       $maxSize: functions.pxToEm($to, 16) - 0.01em;
     } @else {
       $maxSize: functions.pxToEm(mqGetBreakpointWidth($to), 16) - 0.01em;
@@ -115,7 +118,7 @@ $mqShowBreakpoints: (
     $mediaQuery: '#{$mediaQuery} and #{$and}';
   }
 
-  $mediaQuery: unquote(#{$mediaQuery});
+  $mediaQuery: string.unquote(#{$mediaQuery});
 
   @media #{all + $mediaQuery} {
     @content;
