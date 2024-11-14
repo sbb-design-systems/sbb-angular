@@ -1,4 +1,5 @@
 import { PortalModule } from '@angular/cdk/portal';
+import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms';
 import { SbbButtonModule } from '@sbb-esta/angular/button';
@@ -42,6 +43,7 @@ import { IconOverviewComponent } from './icon-overview/icon-overview.component';
     SbbDialogModule,
     SbbCheckboxModule,
     SbbButtonModule,
+    CommonModule,
   ],
 })
 export class AngularModule {}
