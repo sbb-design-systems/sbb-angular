@@ -2,6 +2,14 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [18.6.1](https://github.com/sbb-design-systems/sbb-angular/compare/18.6.0...18.6.1) (2024-11-14)
+
+
+### Bug Fixes
+
+* **showcase**: add missing CommonModule ([#2427](https://github.com/sbb-design-systems/sbb-angular/issues/2427)) ([13f62e8](https://github.com/sbb-design-systems/sbb-angular/commit/13f62e8af763552d4b3a637f954247922d66eae7))
+* **multiple:** remove usages of Sass globals ([#2424](https://github.com/sbb-design-systems/sbb-angular/issues/2424)) ([f85a0ef](https://github.com/sbb-design-systems/sbb-angular/commit/f85a0effe1b9d03e3d6812b460d04e87c3100829))
+
 ## [18.6.0](https://github.com/sbb-design-systems/sbb-angular/compare/18.5.0...18.6.0) (2024-11-11)
 
 
