@@ -16,8 +16,8 @@ import {
   ViewEncapsulation,
 } from '@angular/core';
 import { AbstractControlDirective } from '@angular/forms';
-import { Subject, Subscription } from 'rxjs';
-import { startWith, takeUntil } from 'rxjs/operators';
+import { pairwise, Subject, Subscription } from 'rxjs';
+import { filter, map, startWith, takeUntil } from 'rxjs/operators';
 
 import { SbbError, SBB_ERROR } from './error';
 import { SbbFormFieldControl } from './form-field-control';
@@ -90,6 +90,7 @@ export class SbbFormField implements AfterContentInit, AfterContentChecked, OnDe
   private _previousControl: SbbFormFieldControl<unknown> | null = null;
   private _stateChanges: Subscription | undefined;
   private _valueChanges: Subscription | undefined;
+  private _describedByChanges: Subscription | undefined;
 
   constructor(...args: unknown[]);
   constructor() {}
@@ -117,6 +118,7 @@ export class SbbFormField implements AfterContentInit, AfterContentChecked, OnDe
   ngOnDestroy(): void {
     this._stateChanges?.unsubscribe();
     this._valueChanges?.unsubscribe();
+    this._describedByChanges?.unsubscribe();
     this._destroyed.next();
     this._destroyed.complete();
   }
@@ -193,9 +195,21 @@ export class SbbFormField implements AfterContentInit, AfterContentChecked, OnDe
     // Subscribe to changes in the child control state in order to update the form field UI.
     this._stateChanges?.unsubscribe();
     this._stateChanges = control.stateChanges.pipe(startWith(null! as any)).subscribe(() => {
-      this._syncDescribedByIds();
       this._changeDetectorRef.markForCheck();
     });
+
+    // Updating the `aria-describedby` touches the DOM. Only do it if it actually needs to change.
+    this._describedByChanges?.unsubscribe();
+    this._describedByChanges = control.stateChanges
+      .pipe(
+        startWith([undefined, undefined] as const),
+        map(() => [control.errorState, control.userAriaDescribedBy] as const),
+        pairwise(),
+        filter(([[prevErrorState, prevDescribedBy], [currentErrorState, currentDescribedBy]]) => {
+          return prevErrorState !== currentErrorState || prevDescribedBy !== currentDescribedBy;
+        }),
+      )
+      .subscribe(() => this._syncDescribedByIds());
 
     this._valueChanges?.unsubscribe();
 
