@@ -5,8 +5,8 @@
 # Each individual package uses a placeholder for the version of Angular to ensure they're
 # all in-sync. This map is passed to each ng_package rule to stamp out the appropriate
 # version for the placeholders.
-ANGULAR_PACKAGE_VERSION = "^18.0.0 || ^19.0.0"
-CDK_PACKAGE_VERSION = "^18.0.0"
+ANGULAR_PACKAGE_VERSION = "^19.0.0 || ^20.0.0"
+CDK_PACKAGE_VERSION = "^19.0.0"
 TSLIB_PACKAGE_VERSION = "^2.3.0"
 RXJS_PACKAGE_VERSION = "^6.5.3 || ^7.4.0"
 
