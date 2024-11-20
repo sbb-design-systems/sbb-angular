@@ -339,10 +339,6 @@ export class SbbMenu implements AfterContentInit, SbbMenuPanel<SbbMenuItem>, OnI
         manager.onKeydown(event);
         return;
     }
-
-    // Don't allow the event to propagate if we've already handled it, or it may
-    // end up reaching other overlays that were opened earlier (see angular/components#22694).
-    event.stopPropagation();
   }
 
   /** Whether to display the menu header which mirrors the trigger content. */
