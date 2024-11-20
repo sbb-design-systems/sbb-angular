@@ -2579,10 +2579,10 @@
     "@babel/helper-string-parser" "^7.25.9"
     "@babel/helper-validator-identifier" "^7.25.9"
 
-"@bazel/bazelisk@1.23.0":
-  version "1.23.0"
-  resolved "https://registry.yarnpkg.com/@bazel/bazelisk/-/bazelisk-1.23.0.tgz#d8078f29880c791ffe28f1ab063ad6538fa1d721"
-  integrity sha512-AfCL3Gle/XZxfvLtsMysd6GpdcjXig1EuAH7/P7UqWIUKnXHrq/yCh+cNSmOyekJQQCi0uG9Nqdrig6gGH/nKw==
+"@bazel/bazelisk@1.24.0":
+  version "1.24.0"
+  resolved "https://registry.yarnpkg.com/@bazel/bazelisk/-/bazelisk-1.24.0.tgz#299c079596fd5273c0efcbb1e17a875997b72ee0"
+  integrity sha512-OjWL2CZb7MkHkqi04n2ljG0gxZ2HzPVXJ5/xsMUs3AMsxciC/J7uJdXALfdeA1Hg1PACD7vRLK5l1MStGNP2bw==
 
 "@bazel/buildifier@6.3.3":
   version "6.3.3"
