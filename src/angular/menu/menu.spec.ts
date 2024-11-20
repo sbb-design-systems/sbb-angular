@@ -490,16 +490,13 @@ describe('SbbMenu', () => {
     fixture.componentInstance.trigger.openMenu();
 
     const panel = overlayContainerElement.querySelector('.sbb-menu-panel-wrapper')!;
-    const event = createKeyboardEvent('keydown', ESCAPE);
-    spyOn(event, 'stopPropagation').and.callThrough();
+    const event = dispatchKeyboardEvent(panel, 'keydown', ESCAPE);
 
-    dispatchEvent(panel, event);
     fixture.detectChanges();
     tick(500);
 
     expect(overlayContainerElement.textContent).toBe('');
     expect(event.defaultPrevented).toBe(true);
-    expect(event.stopPropagation).toHaveBeenCalled();
   }));
 
   it('should not close the menu when pressing ESCAPE with a modifier', fakeAsync(() => {

@@ -493,10 +493,11 @@ export class SbbMenuTrigger
       );
       this._overlayRef = this._overlay.create(config);
 
-      // Consume the `keydownEvents` in order to prevent them from going to another overlay.
-      // Ideally we'd also have our keyboard event logic in here, however doing so will
-      // break anybody that may have implemented the `SbbMenuPanel` themselves.
-      this._overlayRef.keydownEvents().subscribe();
+      this._overlayRef.keydownEvents().subscribe((event) => {
+        if (this.menu instanceof SbbMenu) {
+          this.menu._handleKeydown(event);
+        }
+      });
     }
 
     return this._overlayRef;
