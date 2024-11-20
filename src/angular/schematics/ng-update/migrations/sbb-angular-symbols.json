@@ -415,7 +415,7 @@
   "Schema": "schematics",
   "symbolRemoval": "schematics",
   "TYPOGRAPHY_CSS_PATH": "schematics",
-  "updateToV18": "schematics",
+  "updateToV19": "schematics",
   "_patchTypeScriptDefaultLib": "schematics/testing",
   "createFileSystemTestApp": "schematics/testing",
   "createTestApp": "schematics/testing",
