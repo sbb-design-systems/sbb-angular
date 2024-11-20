@@ -1,22 +1,18 @@
 import { AnimationEvent } from '@angular/animations';
 import { CdkPortalOutlet, TemplatePortal } from '@angular/cdk/portal';
 import { CdkScrollable } from '@angular/cdk/scrolling';
-import { DOCUMENT } from '@angular/common';
 import {
   ChangeDetectionStrategy,
   Component,
-  ComponentFactoryResolver,
   Directive,
   ElementRef,
   EventEmitter,
-  forwardRef,
-  Inject,
+  inject,
   Input,
   OnDestroy,
   OnInit,
   Output,
   ViewChild,
-  ViewContainerRef,
   ViewEncapsulation,
 } from '@angular/core';
 import { Subject, Subscription } from 'rxjs';
@@ -38,18 +34,15 @@ export type SbbTabBodyPositionState = 'hidden' | 'show';
   standalone: true,
 })
 export class SbbTabBodyPortal extends CdkPortalOutlet implements OnInit, OnDestroy {
+  private _host = inject(SbbTabBody);
+
   /** Subscription to events for when the tab body begins centering. */
   private _centeringSub = Subscription.EMPTY;
   /** Subscription to events for when the tab body finishes leaving from center position. */
   private _leavingSub = Subscription.EMPTY;
 
-  constructor(
-    componentFactoryResolver: ComponentFactoryResolver,
-    viewContainerRef: ViewContainerRef,
-    @Inject(forwardRef(() => SbbTabBody)) private _host: SbbTabBody,
-    @Inject(DOCUMENT) _document: any,
-  ) {
-    super(componentFactoryResolver, viewContainerRef, _document);
+  constructor() {
+    super();
   }
 
   /** Set initial visibility or set up subscription for changing visibility. */

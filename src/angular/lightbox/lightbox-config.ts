@@ -1,5 +1,5 @@
 import { ScrollStrategy } from '@angular/cdk/overlay';
-import { ComponentFactoryResolver, Injector, ViewContainerRef } from '@angular/core';
+import { Injector, ViewContainerRef } from '@angular/core';
 import { SbbDialogRole } from '@sbb-esta/angular/dialog';
 
 import { sbbLightboxAnimationsDefaultParams } from './lightbox-animations';
@@ -68,8 +68,11 @@ export class SbbLightboxConfig<D = any> {
    */
   closeOnNavigation?: boolean = true;
 
-  /** Alternate `ComponentFactoryResolver` to use when resolving the associated component. */
-  componentFactoryResolver?: ComponentFactoryResolver;
+  /** Alternate `ComponentFactoryResolver` to use when resolving the associated component.
+   * @deprecated No longer used. Will be removed.
+   * @breaking-change 20.0.0
+   */
+  componentFactoryResolver?: unknown;
 
   /** Duration of the enter animation. Has to be a valid CSS value (e.g. 100ms). */
   enterAnimationDuration?: string =
