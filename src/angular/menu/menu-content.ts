@@ -3,7 +3,6 @@ import { DOCUMENT } from '@angular/common';
 import {
   ApplicationRef,
   ChangeDetectorRef,
-  ComponentFactoryResolver,
   Directive,
   inject,
   InjectionToken,
@@ -31,7 +30,6 @@ export const SBB_MENU_CONTENT = new InjectionToken<SbbMenuContent>('SbbMenuConte
 })
 export class SbbMenuContent implements OnDestroy {
   private _template = inject<TemplateRef<any>>(TemplateRef);
-  private _componentFactoryResolver = inject(ComponentFactoryResolver);
   private _appRef = inject(ApplicationRef);
   private _injector = inject(Injector);
   private _viewContainerRef = inject(ViewContainerRef);
@@ -61,7 +59,7 @@ export class SbbMenuContent implements OnDestroy {
     if (!this._outlet) {
       this._outlet = new DomPortalOutlet(
         this._document.createElement('div'),
-        this._componentFactoryResolver,
+        null,
         this._appRef,
         this._injector,
       );
