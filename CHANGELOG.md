@@ -2,6 +2,14 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [19.0.0-rc.0](https://github.com/sbb-design-systems/sbb-angular/compare/18.0.0...19.0.0-rc.0) (2024-11-20)
+
+
+### ⚠ BREAKING CHANGES
+
+* This updates our libraries to Angular 19.
+
+
 ### [18.6.1](https://github.com/sbb-design-systems/sbb-angular/compare/18.6.0...18.6.1) (2024-11-14)
 
 
