@@ -6695,10 +6695,10 @@ angular-server-side-configuration@18.2.0:
     glob "^10.0.0"
     tslib "^2.3.0"
 
-angular-t9n@18.0.0:
-  version "18.0.0"
-  resolved "https://registry.yarnpkg.com/angular-t9n/-/angular-t9n-18.0.0.tgz#bb71f70597dacad6b0b73dcbd98bdd7cb4364abc"
-  integrity sha512-nVgZ907RpPrC6IWLCGmPIqxN/ErfQRdVjXM7j0mengx4dhSyGcE/N5i2MQOao1VShEyzDNIa/r9nT1kf06smBw==
+angular-t9n@19.0.0:
+  version "19.0.0"
+  resolved "https://registry.yarnpkg.com/angular-t9n/-/angular-t9n-19.0.0.tgz#5e6ac379736f04943289a7561b3e9a15803a537d"
+  integrity sha512-ceSr615snDXIpMKcJT1DWLn2/rUJ5aelMn2SMmEvr9dGQnvUQcvduMmpBHMcM8e9U+wiM5ylwNZnLzQMUAgrpw==
   dependencies:
     "@nestjs/common" "^10.2.0"
     "@nestjs/core" "^10.2.0"
