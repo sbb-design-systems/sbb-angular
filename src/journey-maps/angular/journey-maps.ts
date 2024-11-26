@@ -252,8 +252,8 @@ export class SbbJourneyMaps implements OnInit, AfterViewInit, OnDestroy, OnChang
     },
     trackUserLocation: true,
   });
-  private _previousBearing: number | undefined;
-  private _previousPitch: number | undefined;
+  private _previousBearing: number = 0;
+  private _previousPitch: number = 0;
 
   constructor(
     private _mapInitService: SbbMapInitService,
@@ -1196,10 +1196,10 @@ export class SbbJourneyMaps implements OnInit, AfterViewInit, OnDestroy, OnChang
   }
 
   getMapBearing() {
-    return this._map?.getBearing() ?? 0;
+    return this._previousBearing;
   }
 
   showCompassButton(): boolean {
-    return this._map?.getBearing() !== 0;
+    return this.getMapBearing() !== 0;
   }
 }
