@@ -9,6 +9,7 @@
       type="button"
       (click)="onCompassButtonClicked()"
       class="map-control-button"
+      [style.transform]="'rotate(' + bearing + 'deg)'"
       [attr.aria-label]="compassButtonLabel"
     ></button>
   </div>
