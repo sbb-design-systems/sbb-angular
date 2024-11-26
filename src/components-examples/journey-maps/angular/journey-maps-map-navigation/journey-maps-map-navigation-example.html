@@ -3,9 +3,11 @@
 </sbb-notification>
 <div class="web-map">
   <sbb-journey-maps
-    [apiKey]="apiKey"
     #advancedMap
     language="en"
+    [apiKey]="apiKey"
+    [interactionOptions]="interactionOptions"
+    [viewportDimensions]="viewportDimensions"
     (mapCenterChange)="mapCenterChange.next($event)"
     (mapBoundsChange)="mapBoundingBoxChange.next($event)"
     (zoomLevelsChange)="zoomLevels = $event"

@@ -121,8 +121,8 @@ export class SbbMapInitService {
       maxZoom: viewportBounds?.maxZoomLevel ?? SBB_MAX_ZOOM,
       maxBounds: viewportBounds?.maxBounds,
       scrollZoom: interactionOptions.scrollZoom,
-      dragRotate: false,
-      touchPitch: false,
+      dragRotate: interactionOptions.enableRotate,
+      touchPitch: interactionOptions.enablePitch,
       fadeDuration: 10,
       interactive: !interactionOptions.disableInteractions,
       // we have our custom attribution component
@@ -130,8 +130,15 @@ export class SbbMapInitService {
     };
 
     if (isSbbMapCenterOptions(viewportDimensions)) {
-      options.center = viewportDimensions.mapCenter;
-      options.zoom = viewportDimensions.zoomLevel;
+      const { mapCenter, zoomLevel, bearing, pitch } = viewportDimensions;
+      options.center = mapCenter;
+      options.zoom = zoomLevel;
+      if (bearing !== undefined) {
+        options.bearing = bearing;
+      }
+      if (pitch !== undefined) {
+        options.pitch = pitch;
+      }
     } else {
       let bounds, padding;
       if (isSbbBoundingBoxOptions(viewportDimensions)) {

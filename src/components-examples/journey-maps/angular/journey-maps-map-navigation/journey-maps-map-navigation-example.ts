@@ -10,7 +10,13 @@ import { SbbInputModule } from '@sbb-esta/angular/input';
 import { SbbNotificationModule } from '@sbb-esta/angular/notification';
 import { SbbRadioButtonModule } from '@sbb-esta/angular/radio-button';
 import { SbbSelectModule } from '@sbb-esta/angular/select';
-import { SbbJourneyMaps, SbbJourneyMapsModule, SbbZoomLevels } from '@sbb-esta/journey-maps';
+import {
+  SbbInteractionOptions,
+  SbbJourneyMaps,
+  SbbJourneyMapsModule,
+  SbbMapCenterOptions,
+  SbbZoomLevels,
+} from '@sbb-esta/journey-maps';
 import { LngLatLike } from 'maplibre-gl';
 import { Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
@@ -55,6 +61,16 @@ export class JourneyMapsMapNavigationExample implements OnInit {
   zoomLevels?: SbbZoomLevels;
   mapCenterChange = new Subject<LngLatLike>();
   mapBoundingBoxChange = new Subject<number[][]>();
+  interactionOptions: SbbInteractionOptions = {
+    enablePitch: true,
+    enableRotate: true,
+  };
+  viewportDimensions: SbbMapCenterOptions = {
+    mapCenter: [7.44744, 46.94809],
+    zoomLevel: 15,
+    bearing: 180,
+    pitch: 60,
+  };
 
   ngOnInit() {
     this.subscribeMapCenterChange();
