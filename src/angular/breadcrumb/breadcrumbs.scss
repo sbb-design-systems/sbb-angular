@@ -101,10 +101,10 @@
 
 // Every breadcrumb item inclusive menu trigger and copied menu trigger (inside panel)
 :is(
-    .sbb-breadcrumb :is(a, button),
-    .sbb-menu-trigger-breadcrumb.sbb-menu-trigger-root,
-    .sbb-menu-panel-type-breadcrumb .sbb-menu-panel-trigger
-  ) {
+  .sbb-breadcrumb :is(a, button),
+  .sbb-menu-trigger-breadcrumb.sbb-menu-trigger-root,
+  .sbb-menu-panel-type-breadcrumb .sbb-menu-panel-trigger
+) {
   @include sbb.ellipsis;
   font-family: var(--sbb-font-roman);
   font-size: var(--sbb-font-size-small);
