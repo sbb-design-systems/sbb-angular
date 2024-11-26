@@ -893,6 +893,11 @@ export class SbbJourneyMaps implements OnInit, AfterViewInit, OnDestroy, OnChang
   }
 
   /** @docs-private */
+  resetBearingToNorth() {
+    this._mapService.setBearing(this._map, 0);
+  }
+
+  /** @docs-private */
   onHomeButtonClicked() {
     this._mapService.moveMap(this._map, this._homeButtonOptions);
   }

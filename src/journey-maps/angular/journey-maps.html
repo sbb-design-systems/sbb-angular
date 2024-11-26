@@ -44,6 +44,13 @@
           [showSmallButtons]="uiOptions.showSmallButtons"
           (geolocateButtonClicked)="onGeolocateButtonClicked()"
         ></sbb-geolocate-button>
+        <sbb-compass-button
+          *ngIf="interactionOptions.enableRotate"
+          [map]="mapReady | async"
+          [isDarkMode]="isDarkMode"
+          [showSmallButtons]="uiOptions.showSmallButtons"
+          (compassButtonClicked)="resetBearingToNorth()"
+        ></sbb-compass-button>
         <sbb-basemap-switch
           *ngIf="uiOptions.basemapSwitch"
           [map]="mapReady | async"
