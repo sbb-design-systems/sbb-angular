@@ -20,10 +20,12 @@ import { isSbbBoundingBoxOptions, isSbbMapCenterOptions } from '../../util/typeg
 import {
   SBB_BOUNDING_BOX,
   SBB_JOURNEY_POIS_SOURCE,
+  SBB_MARKER_BOUNDS_PADDING,
   SBB_MAX_PITCH,
+  SBB_MAX_ZOOM,
   SBB_MIN_PITCH,
+  SBB_MIN_ZOOM,
 } from '../constants';
-import { SBB_MARKER_BOUNDS_PADDING, SBB_MAX_ZOOM, SBB_MIN_ZOOM } from '../constants';
 
 import { SbbMapUrlService } from './map-url-service';
 
@@ -141,7 +143,7 @@ export class SbbMapInitService {
         options.bearing = bearing % 360;
       }
       if (pitch !== undefined) {
-        options.pitch = Math.max(SBB_MIN_PITCH, Math.min(SBB_MAX_PITCH, pitch));
+        options.pitch = pitch;
       }
     } else {
       let bounds, padding;
