@@ -10,7 +10,6 @@ import {
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 
-import { SbbMultiTouchSupport } from '../../controls/multiTouchSupport';
 import {
   SbbInteractionOptions,
   SbbPointsOfInterestOptions,
@@ -97,11 +96,11 @@ export class SbbMapInitService {
     );
 
     this._translateControlLabels(maplibreMap, language);
-    this._addControls(maplibreMap, interactionOptions.oneFingerPan);
 
-    // https://docs.mapbox.com/mapbox-gl-js/example/toggle-interaction-handlers/
-    maplibreMap.keyboard.disableRotation();
-    maplibreMap.touchZoomRotate.disableRotation();
+    if (!interactionOptions.enableRotate && !interactionOptions.enablePitch) {
+      // I couldn't find a way to disable only rotation or only pitch on the keyboard
+      maplibreMap.keyboard.disableRotation();
+    }
 
     return maplibreMap;
   }
@@ -183,11 +182,5 @@ export class SbbMapInitService {
       (maplibreMap as any)._locale,
       this._controlLabels[language],
     );
-  }
-
-  private _addControls(maplibreMap: MaplibreMap, oneFingerPan?: boolean): void {
-    if (!oneFingerPan) {
-      maplibreMap.addControl(new SbbMultiTouchSupport());
-    }
   }
 }

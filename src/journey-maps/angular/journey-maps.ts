@@ -751,14 +751,12 @@ export class SbbJourneyMaps implements OnInit, AfterViewInit, OnDestroy, OnChang
   }
 
   ngAfterViewInit(): void {
-    const styleUrl = this._getStyleUrl();
-
     this.touchOverlayText = this._i18n.getText('touchOverlay.tip');
     this._mapInitService
       .initializeMap(
         this._mapElementRef.nativeElement,
         this._i18n.language,
-        styleUrl,
+        this._getStyleUrl(),
         this.interactionOptions,
         this.viewportDimensions,
         this.viewportBounds,
