@@ -1194,4 +1194,8 @@ export class SbbJourneyMaps implements OnInit, AfterViewInit, OnDestroy, OnChang
       .layers?.filter((layer) => layer.id.endsWith(layerIdSuffix))
       .forEach((layer) => map.setLayoutProperty(layer.id, 'visibility', visibility));
   }
+
+  showCompassButton(): boolean {
+    return this._map?.getBearing() !== 0;
+  }
 }

@@ -45,7 +45,7 @@
           (geolocateButtonClicked)="onGeolocateButtonClicked()"
         ></sbb-geolocate-button>
         <sbb-compass-button
-          *ngIf="interactionOptions.enableRotate"
+          *ngIf="showCompassButton()"
           [map]="mapReady | async"
           [isDarkMode]="isDarkMode"
           [showSmallButtons]="uiOptions.showSmallButtons"
