@@ -89,3 +89,8 @@ sbb-notification.api-key-info {
   z-index: 1;
   margin: 1rem;
 }
+
+p {
+  padding: 0 10px;
+  line-height: 1em;
+}
