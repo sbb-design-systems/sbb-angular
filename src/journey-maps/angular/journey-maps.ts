@@ -171,6 +171,14 @@ export class SbbJourneyMaps implements OnInit, AfterViewInit, OnDestroy, OnChang
    */
   @Output() mapCenterChange: EventEmitter<LngLatLike> = new EventEmitter<LngLatLike>();
   /**
+   * This event is emitted whenever the bearing of the map has changed. (Whenever the map has been rotated)
+   */
+  @Output() mapBearingChange: EventEmitter<number> = new EventEmitter<number>();
+  /**
+   * This event is emitted whenever the pitch of the map has changed. (Whenever the map has been tilted)
+   */
+  @Output() mapPitchChange: EventEmitter<number> = new EventEmitter<number>();
+  /**
    * This event is emitted whenever the map is ready.
    */
   @Output() mapReady: ReplaySubject<MaplibreMap> = new ReplaySubject<MaplibreMap>(1);
@@ -244,6 +252,8 @@ export class SbbJourneyMaps implements OnInit, AfterViewInit, OnDestroy, OnChang
     },
     trackUserLocation: true,
   });
+  private _previousBearing: number | undefined;
+  private _previousPitch: number | undefined;
 
   constructor(
     private _mapInitService: SbbMapInitService,
@@ -994,6 +1004,18 @@ export class SbbJourneyMaps implements OnInit, AfterViewInit, OnDestroy, OnChang
     this._mapMovementDebouncer.pipe(debounceTime(200), takeUntil(this._destroyed)).subscribe(() => {
       this.mapCenterChange.emit(this._map.getCenter());
       this.mapBoundsChange.emit(this._map.getBounds().toArray());
+
+      const bearing = this._map.getBearing();
+      if (bearing !== this._previousBearing) {
+        this._previousBearing = bearing;
+        this.mapBearingChange.emit(bearing);
+      }
+
+      const pitch = this._map.getPitch();
+      if (pitch !== this._previousPitch) {
+        this._previousPitch = pitch;
+        this.mapPitchChange.emit(pitch);
+      }
     });
 
     this._levelSwitchService.selectedLevel$.pipe(takeUntil(this._destroyed)).subscribe((level) => {

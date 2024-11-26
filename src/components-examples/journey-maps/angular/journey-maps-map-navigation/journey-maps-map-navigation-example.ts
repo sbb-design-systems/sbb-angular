@@ -59,6 +59,8 @@ export class JourneyMapsMapNavigationExample implements OnInit {
   mapCenter?: LngLatLike;
   mapBoundingBox?: number[][];
   zoomLevels?: SbbZoomLevels;
+  mapBearing?: number;
+  mapPitch?: number;
   mapCenterChange = new Subject<LngLatLike>();
   mapBoundingBoxChange = new Subject<number[][]>();
   interactionOptions: SbbInteractionOptions = {

@@ -11,6 +11,8 @@
     (mapCenterChange)="mapCenterChange.next($event)"
     (mapBoundsChange)="mapBoundingBoxChange.next($event)"
     (zoomLevelsChange)="zoomLevels = $event"
+    (mapBearingChange)="mapBearing = $event"
+    (mapPitchChange)="mapPitch = $event"
   ></sbb-journey-maps>
 </div>
 <div class="sbb-navigation">
@@ -25,6 +27,14 @@
 
     <li class="sbb-label">
       Map bounding-box (lng / lat, SW then NE): <b>{{ mapBoundingBoxInfo() }}</b>
+    </li>
+
+    <li class="sbb-label">
+      Map bearing: <b>{{ mapBearing }}°</b>
+    </li>
+
+    <li class="sbb-label">
+      Map pitch: <b>{{ mapPitch }}°</b>
     </li>
 
     <li class="sbb-label">
