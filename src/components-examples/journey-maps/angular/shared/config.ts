@@ -16,7 +16,6 @@ export const RAIL_COLORS = [
 ];
 
 export const STYLE_IDS = {
-  v1: { brightId: 'base_bright_v2_ki', darkId: 'base_dark_v2_ki', aerialId: 'aerial_sbb_ki' },
   v2: {
     brightId: 'base_bright_v2_ki_v2',
     darkId: 'base_dark_v2_ki_v2',
