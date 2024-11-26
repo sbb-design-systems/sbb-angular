@@ -458,9 +458,15 @@ export class SbbJourneyMaps implements OnInit, AfterViewInit, OnDestroy, OnChang
 
   /** @docs-private */
   onTouchStart(event: TouchEvent): void {
-    // https://docs.mapbox.com/mapbox-gl-js/example/toggle-interaction-handlers/
     if (!this.interactionOptions.oneFingerPan) {
-      this._map.dragPan.disable();
+      // enforces two-finger panning: https://docs.mapbox.com/mapbox-gl-js/example/cooperative-gestures/
+      this._map.cooperativeGestures.enable();
+    }
+    if (!this.interactionOptions.enableRotate) {
+      this._map.touchZoomRotate.disableRotation();
+    }
+    if (!this.interactionOptions.enablePitch) {
+      this._map.touchPitch.disable();
     }
     this.touchEventCollector.next(event);
   }

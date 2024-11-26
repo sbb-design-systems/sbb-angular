@@ -62,8 +62,8 @@ export class JourneyMapsMapNavigationExample implements OnInit {
   mapCenterChange = new Subject<LngLatLike>();
   mapBoundingBoxChange = new Subject<number[][]>();
   interactionOptions: SbbInteractionOptions = {
-    enablePitch: true,
     enableRotate: true,
+    enablePitch: false,
   };
   viewportDimensions: SbbMapCenterOptions = {
     mapCenter: [7.44744, 46.94809],

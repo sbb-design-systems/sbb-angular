@@ -17,7 +17,12 @@ import {
   SbbViewportDimensions,
 } from '../../journey-maps.interfaces';
 import { isSbbBoundingBoxOptions, isSbbMapCenterOptions } from '../../util/typeguard';
-import { SBB_BOUNDING_BOX, SBB_JOURNEY_POIS_SOURCE } from '../constants';
+import {
+  SBB_BOUNDING_BOX,
+  SBB_JOURNEY_POIS_SOURCE,
+  SBB_MAX_PITCH,
+  SBB_MIN_PITCH,
+} from '../constants';
 import { SBB_MARKER_BOUNDS_PADDING, SBB_MAX_ZOOM, SBB_MIN_ZOOM } from '../constants';
 
 import { SbbMapUrlService } from './map-url-service';
@@ -120,8 +125,8 @@ export class SbbMapInitService {
       maxZoom: viewportBounds?.maxZoomLevel ?? SBB_MAX_ZOOM,
       maxBounds: viewportBounds?.maxBounds,
       scrollZoom: interactionOptions.scrollZoom,
-      dragRotate: interactionOptions.enableRotate,
-      touchPitch: interactionOptions.enablePitch,
+      minPitch: SBB_MIN_PITCH,
+      maxPitch: SBB_MAX_PITCH,
       fadeDuration: 10,
       interactive: !interactionOptions.disableInteractions,
       // we have our custom attribution component
@@ -133,10 +138,10 @@ export class SbbMapInitService {
       options.center = mapCenter;
       options.zoom = zoomLevel;
       if (bearing !== undefined) {
-        options.bearing = bearing;
+        options.bearing = bearing % 360;
       }
       if (pitch !== undefined) {
-        options.pitch = pitch;
+        options.pitch = Math.max(SBB_MIN_PITCH, Math.min(SBB_MAX_PITCH, pitch));
       }
     } else {
       let bounds, padding;
