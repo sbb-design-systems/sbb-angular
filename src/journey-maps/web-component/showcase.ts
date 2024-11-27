@@ -126,6 +126,18 @@ function createSbbJourneyMapsElement() {
   client.language = 'en';
   client.apiKey = window.JM_API_KEY;
 
+  client.interactionOptions = {
+    ...client.interactionOptions,
+    enablePitch: true,
+    enableRotate: true,
+  };
+  client.viewportDimensions = {
+    mapCenter: [7.44744, 46.94809], // Bern
+    zoomLevel: 15,
+    bearing: 180,
+    pitch: 60,
+  };
+
   addMarkers(client);
   createMarkerDetailsTemplate(client);
   createStationTemplate(client);
