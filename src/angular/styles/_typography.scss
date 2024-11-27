@@ -1293,11 +1293,11 @@ textarea {
 // ----------------------------------------------------------------------------------------------------
 
 :is(
-    ul:where(:not([class*='mod_'])),
-    .sbb-unordered-list,
-    ol:where(:not([class*='mod_'])),
-    .sbb-ordered-list
-  ) {
+  ul:where(:not([class*='mod_'])),
+  .sbb-unordered-list,
+  ol:where(:not([class*='mod_'])),
+  .sbb-ordered-list
+) {
   font-size: var(--sbb-font-size);
   line-height: var(--sbb-line-height);
   margin-top: calc(#{sbb.pxToRem(17)} * var(--sbb-scaling-factor));
@@ -1367,21 +1367,21 @@ textarea {
 // ----------------------------------------------------------------------------------------------------
 
 :is(
-    .sbb-input-element,
-    input:where(
-        [type='email'],
-        [type='password'],
-        [type='search'],
-        [type='text'],
-        [type='number'],
-        [type='tel'],
-        [type='time'],
-        [type='datetime'],
-        [type='datetime-local'],
-        [type='url'],
-        :not([type])
-      )
-  ) {
+  .sbb-input-element,
+  input:where(
+      [type='email'],
+      [type='password'],
+      [type='search'],
+      [type='text'],
+      [type='number'],
+      [type='tel'],
+      [type='time'],
+      [type='datetime'],
+      [type='datetime-local'],
+      [type='url'],
+      :not([type])
+    )
+) {
   outline: none;
   background-color: var(--sbb-form-input-background-color);
   padding: sbb.pxToRem(10) sbb.pxToRem(14) sbb.pxToRem(11);
@@ -1493,9 +1493,9 @@ textarea {
   // We want to provide the error styles both for invalid state
   // in a sbb-form-field and also for Angular Form Validation.
   :is(
-      .sbb-form-field-invalid &:not(:where([aria-expanded='true'], .sbb-expanded)),
-      &.ng-touched.ng-invalid:not(:where([aria-expanded='true'], .sbb-expanded))
-    ) {
+    .sbb-form-field-invalid &:not(:where([aria-expanded='true'], .sbb-expanded)),
+    &.ng-touched.ng-invalid:not(:where([aria-expanded='true'], .sbb-expanded))
+  ) {
     color: var(--sbb-color-error);
     border-color: var(--sbb-color-error);
   }

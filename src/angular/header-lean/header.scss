@@ -156,9 +156,9 @@
 
 // Menu integration
 :is(
-    .sbb-menu-trigger.sbb-menu-trigger-header,
-    .sbb-menu-panel-type-header .sbb-menu-panel-trigger
-  ) {
+  .sbb-menu-trigger.sbb-menu-trigger-header,
+  .sbb-menu-panel-type-header .sbb-menu-panel-trigger
+) {
   position: relative;
   padding-right: calc(#{sbb.pxToRem(24)} * var(--sbb-scaling-factor));
   font-size: var(--sbb-font-size);
