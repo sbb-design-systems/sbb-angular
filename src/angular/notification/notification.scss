@@ -110,9 +110,9 @@
 }
 
 :is(
-    .sbb-notification-content :is(a, a:is(:hover, :active)),
-    .sbb-notification-dismiss-icon-button
-  ) {
+  .sbb-notification-content :is(a, a:is(:hover, :active)),
+  .sbb-notification-dismiss-icon-button
+) {
   color: inherit;
   cursor: pointer;
 }

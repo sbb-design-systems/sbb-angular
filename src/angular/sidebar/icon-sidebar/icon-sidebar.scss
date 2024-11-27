@@ -2,9 +2,9 @@
 @use '../sidebar';
 
 :is(
-    .sbb-icon-sidebar-container.sbb-icon-sidebar-after-header,
-    .sbb-header-lean + .sbb-icon-sidebar-container
-  ) {
+  .sbb-icon-sidebar-container.sbb-icon-sidebar-after-header,
+  .sbb-header-lean + .sbb-icon-sidebar-container
+) {
   top: var(--sbb-header-lean-height);
 }
 

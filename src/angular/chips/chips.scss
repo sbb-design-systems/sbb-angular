@@ -55,7 +55,8 @@
   padding: calc(
       0.5 *
         (
-          var(--sbb-chips-chip-height) - var(--sbb-font-size) - #{sbb.pxToRem(1)} * var(--sbb-scaling-factor)
+          var(--sbb-chips-chip-height) - var(--sbb-font-size) - #{sbb.pxToRem(1)} *
+            var(--sbb-scaling-factor)
         )
     )
     calc(#{sbb.pxToRem(14)} * var(--sbb-scaling-factor));
@@ -75,7 +76,8 @@
 
   &.sbb-chip-with-trailing-icon {
     padding-right: calc(
-      #{sbb.pxToRem(4)} * var(--sbb-scaling-factor) + var(--sbb-icon-size-default) + var(--sbb-chips-chip-padding-horizontal)
+      #{sbb.pxToRem(4)} * var(--sbb-scaling-factor) + var(--sbb-icon-size-default) +
+        var(--sbb-chips-chip-padding-horizontal)
     );
     position: relative;
   }
