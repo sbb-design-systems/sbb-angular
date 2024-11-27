@@ -140,7 +140,7 @@ export class SbbMapInitService {
       options.center = mapCenter;
       options.zoom = zoomLevel;
       if (bearing !== undefined) {
-        options.bearing = bearing % 360;
+        options.bearing = bearing;
       }
       if (pitch !== undefined) {
         options.pitch = pitch;
