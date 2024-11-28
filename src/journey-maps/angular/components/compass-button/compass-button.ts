@@ -21,7 +21,7 @@ export class SbbCompassButton implements OnInit {
   @Input() map: MaplibreMap | null;
   @Input() showSmallButtons: boolean | undefined;
   @Input() isDarkMode: boolean;
-  @Input() bearing: number;
+  @Input() negativeBearing: number;
 
   @Output() compassButtonClicked: EventEmitter<void> = new EventEmitter<void>();
 

@@ -49,7 +49,7 @@
           [map]="mapReady | async"
           [isDarkMode]="isDarkMode"
           [showSmallButtons]="uiOptions.showSmallButtons"
-          [bearing]="-getMapBearing()"
+          [negativeBearing]="-getMapBearing()"
           (compassButtonClicked)="resetBearingToNorth()"
         ></sbb-compass-button>
         <sbb-basemap-switch
