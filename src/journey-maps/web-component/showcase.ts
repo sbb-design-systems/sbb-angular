@@ -168,6 +168,11 @@ function createSbbJourneyMapsElement() {
     container,
     client,
   );
+  addText(
+    `<p><strong>Keyboard</strong>: Click the map, hold Shift, and use arrow keys.<br />
+          <strong>Touchscreen</strong>: Rotate with two fingers, tilt with three.</p>`,
+    container,
+  );
 }
 
 function createJourneyMapsClient(): SbbJourneyMapsElement {
@@ -194,6 +199,12 @@ function createTextDiv(): HTMLDivElement {
   const textDiv = document.createElement('div');
   textDiv.style.marginTop = '10px'; // Optional: add some spacing
   return textDiv;
+}
+
+function addText(html: string, container: HTMLElement) {
+  const textDiv = createTextDiv();
+  appendElementToContainer(container, textDiv);
+  textDiv.innerHTML = html;
 }
 
 function isCustomEvent(event: Event): event is CustomEvent {
