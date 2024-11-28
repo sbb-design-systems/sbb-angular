@@ -1045,7 +1045,7 @@ export class SbbJourneyMaps implements OnInit, AfterViewInit, OnDestroy, OnChang
   }
 
   /**
-   * Normalize bearing to [0, 360)
+   * Normalize bearing to (0, 360)
    * @docs-private
    */
   private _normalizeTo360(bearing: number): number {
