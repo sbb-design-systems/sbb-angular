@@ -1012,8 +1012,9 @@ export class SbbJourneyMaps implements OnInit, AfterViewInit, OnDestroy, OnChang
 
       const bearing = this._map.getBearing();
       if (bearing !== this._previousBearing) {
-        this._previousBearing = this._normalizeBearingTransition(this._previousBearing, bearing);
+        this._previousBearing = this._normalizeBearingForTransition(this._previousBearing, bearing);
         this.mapBearingChange.emit(this._normalizeTo360(bearing));
+        this._cd.detectChanges();
       }
 
       const pitch = this._map.getPitch();
@@ -1036,7 +1037,7 @@ export class SbbJourneyMaps implements OnInit, AfterViewInit, OnDestroy, OnChang
    * Prevent the compass from spinning more than 180° per transition
    * @docs-private
    */
-  private _normalizeBearingTransition(previousBearing: number, newBearing: number): number {
+  private _normalizeBearingForTransition(previousBearing: number, newBearing: number): number {
     const diff = newBearing - previousBearing;
     // Normalize the difference to the range [-180, 180]
     const normalizedDiff = ((diff + 180) % 360) - 180;
