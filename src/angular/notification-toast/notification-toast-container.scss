@@ -10,9 +10,9 @@
   line-height: var(--sbb-line-height);
   padding-top: calc(#{sbb.pxToRem(12)} * var(--sbb-scaling-factor) - var(--sbb-border-width-thin));
   padding-bottom: calc(
-    #{sbb.pxToRem(12)} * var(--sbb-scaling-factor) - var(--sbb-border-width-thin) - var(
-        --sbb-line-height
-      ) + var(--sbb-icon-size-default)
+    #{sbb.pxToRem(12)} *
+      var(--sbb-scaling-factor) - var(--sbb-border-width-thin) - var(--sbb-line-height) +
+      var(--sbb-icon-size-default)
   );
   margin: calc(#{sbb.pxToRem(20)} * var(--sbb-scaling-factor));
 

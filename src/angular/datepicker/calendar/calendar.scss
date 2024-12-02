@@ -232,14 +232,13 @@
 
   // If there is only one label in a row, or start is first or last entry
   :is(
-      .sbb-calendar-body-cell-container.sbb-first-cell:last-child
-        > &.sbb-calendar-body-range-background,
-      .sbb-calendar-body-cell-container:last-child
-        > &:is(.sbb-calendar-body-range-background-offset-start, .sbb-calendar-body-selected-begin),
-      .sbb-calendar-body-cell-container.sbb-first-cell:last-child
-        > &.sbb-calendar-body-selected-end,
-      &.sbb-calendar-body-range-background-offset-start.sbb-calendar-body-selected-end
-    ) {
+    .sbb-calendar-body-cell-container.sbb-first-cell:last-child
+      > &.sbb-calendar-body-range-background,
+    .sbb-calendar-body-cell-container:last-child
+      > &:is(.sbb-calendar-body-range-background-offset-start, .sbb-calendar-body-selected-begin),
+    .sbb-calendar-body-cell-container.sbb-first-cell:last-child > &.sbb-calendar-body-selected-end,
+    &.sbb-calendar-body-range-background-offset-start.sbb-calendar-body-selected-end
+  ) {
     &::before {
       display: none;
     }

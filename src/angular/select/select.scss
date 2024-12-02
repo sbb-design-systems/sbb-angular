@@ -65,10 +65,10 @@
 
 .sbb-select-panel {
   :is(
-      .sbb-menu-group + .sbb-menu-group,
-      .sbb-menu-item + .sbb-menu-group,
-      .sbb-menu-group + .sbb-menu-item
-    ) {
+    .sbb-menu-group + .sbb-menu-group,
+    .sbb-menu-item + .sbb-menu-group,
+    .sbb-menu-group + .sbb-menu-item
+  ) {
     border-top: none;
   }
 

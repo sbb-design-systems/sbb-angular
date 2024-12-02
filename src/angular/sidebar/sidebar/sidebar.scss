@@ -132,10 +132,10 @@
   }
 
   :is(
-      .sbb-expansion-panel-header,
-      .sbb-expansion-panel-header:is(.sbb-expanded, .sbb-expanded:is(:focus, :hover)),
-      .sbb-expansion-panel-body
-    ) {
+    .sbb-expansion-panel-header,
+    .sbb-expansion-panel-header:is(.sbb-expanded, .sbb-expanded:is(:focus, :hover)),
+    .sbb-expansion-panel-body
+  ) {
     background-color: inherit;
   }
 
@@ -179,14 +179,14 @@
 
     + :is(.sbb-expansion-panel, fieldset) {
       margin-top: calc(
-        var(--sbb-divider-medium) - var(--sbb-expansion-panel-header-padding-top) - #{sbb.pxToRem(3)} *
-          var(--sbb-scaling-factor)
+        var(--sbb-divider-medium) - var(--sbb-expansion-panel-header-padding-top) -
+          #{sbb.pxToRem(3)} * var(--sbb-scaling-factor)
       );
 
       :where(html.sbb-lean) & {
         margin-top: calc(
-          var(--sbb-divider-big) - var(--sbb-expansion-panel-header-padding-top) - #{sbb.pxToRem(3)} *
-            var(--sbb-scaling-factor)
+          var(--sbb-divider-big) - var(--sbb-expansion-panel-header-padding-top) -
+            #{sbb.pxToRem(3)} * var(--sbb-scaling-factor)
         );
       }
     }
