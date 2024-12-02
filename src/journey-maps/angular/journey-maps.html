@@ -11,21 +11,21 @@
       <p class="mod_map_container_mobile_overlay_text">{{ touchOverlayText }}</p>
     </div>
     <sbb-feature-event-listener
+      [map]="mapReady | async"
       [listenerOptions]="listenerOptions"
       [poiOptions]="poiOptions"
-      [map]="mapReady | async"
+      [isDarkMode]="isDarkMode"
       (featuresHoverChange)="featuresHoverChange.next($event)"
       (featuresClick)="featuresClick.next($event); handleMarkerOrClusterClick($event.features)"
       (featureSelectionsChange)="selectedFeaturesChange.next($event)"
-      [isDarkMode]="isDarkMode"
     ></sbb-feature-event-listener>
     <sbb-marker-details
+      [map]="mapReady | async"
       [selectedMarker]="selectedMarker"
       [template]="markerDetailsTemplate"
-      [map]="mapReady | async"
       [popup]="markerOptions.popup"
-      (closeClicked)="onMarkerUnselected()"
       [isDarkMode]="isDarkMode"
+      (closeClicked)="onMarkerUnselected()"
     >
     </sbb-marker-details>
 
