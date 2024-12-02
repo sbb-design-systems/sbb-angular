@@ -252,7 +252,7 @@ export class SbbJourneyMaps implements OnInit, AfterViewInit, OnDestroy, OnChang
     },
     trackUserLocation: true,
   });
-  private _previousBearing: number = 0;
+  private _previousBearing: number = 0; // can be < 0 and > 360
   private _previousPitch: number = 0;
 
   constructor(
@@ -1011,7 +1011,7 @@ export class SbbJourneyMaps implements OnInit, AfterViewInit, OnDestroy, OnChang
       this.mapBoundsChange.emit(this._map.getBounds().toArray());
 
       const bearing = this._map.getBearing();
-      if (bearing !== this._previousBearing) {
+      if (this._normalizeTo360(bearing) !== this._normalizeTo360(this._previousBearing)) {
         this._previousBearing = this._normalizeBearingForTransition(this._previousBearing, bearing);
         this._cd.detectChanges(); // needed for the compass button when using Web Component
         this.mapBearingChange.emit(this._normalizeTo360(bearing));
@@ -1220,6 +1220,6 @@ export class SbbJourneyMaps implements OnInit, AfterViewInit, OnDestroy, OnChang
   }
 
   showCompassButton(): boolean {
-    return this.getMapBearing() % 360 !== 0;
+    return this._normalizeTo360(this.getMapBearing()) !== 0;
   }
 }
