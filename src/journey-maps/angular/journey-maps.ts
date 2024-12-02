@@ -1040,7 +1040,7 @@ export class SbbJourneyMaps implements OnInit, AfterViewInit, OnDestroy, OnChang
   private _normalizeBearingForTransition(previousBearing: number, newBearing: number): number {
     const diff = newBearing - previousBearing;
     // Normalize the difference to the range [-180, 180]
-    const normalizedDiff = ((diff + 180) % 360) - 180;
+    const normalizedDiff = this._normalizeTo360(diff + 180) - 180;
     return previousBearing + normalizedDiff;
   }
 
