@@ -205,7 +205,7 @@ export class SbbJourneyMaps implements OnInit, AfterViewInit, OnDestroy, OnChang
   @ViewChild(SbbFeatureEventListener)
   private readonly _featureEventListenerComponent: SbbFeatureEventListener;
   private readonly _defaultStyleOptions: SbbStyleOptions = {
-    url: 'https://style-review-rokas.geops.io/styles/review-sbb-sbb-st-utbuk1.{styleId}/style.json?key=key%3Dtu3yoodayei9ohx3Ohze',
+    url: 'https://journey-maps-tiles.geocdn.sbb.ch/styles/{styleId}/style.json?api_key={apiKey}',
     aerialId: 'journey_maps_aerial_v1',
     brightId: 'journey_maps_bright_v1',
     darkId: 'journey_maps_dark_v1',
