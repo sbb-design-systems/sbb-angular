@@ -1225,6 +1225,6 @@ export class SbbJourneyMaps implements OnInit, AfterViewInit, OnDestroy, OnChang
   }
 
   showCompassButton(): boolean {
-    return this._normalizeTo360(this.getMapBearing()) !== 0;
+    return this._normalizeTo360(this.getMapBearing()) !== 0 || this.getMapPitch() !== 0;
   }
 }
