@@ -6,7 +6,11 @@ import { SbbFormFieldModule } from '@sbb-esta/angular/form-field';
 import { SbbNotificationModule } from '@sbb-esta/angular/notification';
 import { SbbRadioButtonModule } from '@sbb-esta/angular/radio-button';
 import { SbbSelectModule } from '@sbb-esta/angular/select';
-import { SbbJourneyMapsModule } from '@sbb-esta/journey-maps';
+import {
+  SbbInteractionOptions,
+  SbbJourneyMapsModule,
+  SbbMapCenterOptions,
+} from '@sbb-esta/journey-maps';
 import { Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
 
@@ -42,8 +46,16 @@ export class JourneyMapsStyleOptionsExample implements OnInit {
   apiKey = window.JM_API_KEY;
   form: UntypedFormGroup;
   selectedMarkerId?: string;
+  interactionOptions: SbbInteractionOptions = {
+    enableRotate: true,
+    enablePitch: true,
+  };
+  viewportDimensions: SbbMapCenterOptions = {
+    mapCenter: [7.44744, 46.94809],
+    zoomLevel: 15,
+  };
 
-  constructor(private fb: FormBuilder) {}
+  constructor(private readonly fb: FormBuilder) {}
 
   ngOnInit() {
     this.buildForm();
@@ -62,6 +74,7 @@ export class JourneyMapsStyleOptionsExample implements OnInit {
       styleVersion: this.fb.group({
         versionNumber: ['v2', this.resetSelectedMarkerIdValidator],
       }),
+      extrusions: [false],
     });
   }
 
@@ -77,11 +90,11 @@ export class JourneyMapsStyleOptionsExample implements OnInit {
       });
   }
 
-  private resetSelectedMarkerIdValidator = () => {
+  private readonly resetSelectedMarkerIdValidator = () => {
     this.selectedMarkerId = undefined;
     return null;
   };
-  private _destroyed = new Subject<void>();
+  private readonly _destroyed = new Subject<void>();
 
   protected readonly RAIL_COLORS = RAIL_COLORS;
 }

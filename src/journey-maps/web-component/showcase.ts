@@ -180,6 +180,8 @@ function createJourneyMapsClient(): SbbJourneyMapsElement {
   client.language = 'en';
   client.apiKey = window.JM_API_KEY;
 
+  client.enableExtrusions = true;
+
   addInteractionOptions(client);
   addViewportDimensions(client);
   addMarkers(client);

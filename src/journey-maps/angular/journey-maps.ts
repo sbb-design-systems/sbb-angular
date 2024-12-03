@@ -133,6 +133,9 @@ export class SbbJourneyMaps implements OnInit, AfterViewInit, OnDestroy, OnChang
   @Input() viewportDimensions?: SbbViewportDimensions;
   /** Restrict the visible part and possible zoom levels of the map. */
   @Input() viewportBounds?: SbbViewportBounds;
+  /** Enable/disable extrusions to be shown on the map */
+  @Input() enableExtrusions: boolean = false;
+
   /**
    * This event is emitted whenever a marker, with property triggerEvent, is selected or unselected.
    */
@@ -198,22 +201,22 @@ export class SbbJourneyMaps implements OnInit, AfterViewInit, OnDestroy, OnChang
   isLevelSwitchHorizontal: boolean = false;
   isLevelSwitchHorizontalThreshold: number = 580; // 580px
   private _map: MaplibreMap;
-  @ViewChild('map') private _mapElementRef: ElementRef<HTMLElement>;
+  @ViewChild('map') private readonly _mapElementRef: ElementRef<HTMLElement>;
   @ViewChild(SbbFeatureEventListener)
-  private _featureEventListenerComponent: SbbFeatureEventListener;
-  private _defaultStyleOptions: SbbStyleOptions = {
-    url: 'https://journey-maps-tiles.geocdn.sbb.ch/styles/{styleId}/style.json?api_key={apiKey}',
+  private readonly _featureEventListenerComponent: SbbFeatureEventListener;
+  private readonly _defaultStyleOptions: SbbStyleOptions = {
+    url: 'https://style-review-rokas.geops.io/styles/review-sbb-sbb-st-utbuk1.{styleId}/style.json?key=key%3Dtu3yoodayei9ohx3Ohze',
     aerialId: 'journey_maps_aerial_v1',
     brightId: 'journey_maps_bright_v1',
     darkId: 'journey_maps_dark_v1',
     mode: 'bright',
   };
-  private _defaultInteractionOptions: SbbInteractionOptions = {
+  private readonly _defaultInteractionOptions: SbbInteractionOptions = {
     /** Mobile-friendly default: you get a message-overlay if you try to pan with one finger. */
     oneFingerPan: false,
     scrollZoom: true,
   };
-  private _defaultUIOptions: SbbUIOptions = {
+  private readonly _defaultUIOptions: SbbUIOptions = {
     showSmallButtons: false,
     levelSwitch: true,
     zoomControls: true,
@@ -221,32 +224,32 @@ export class SbbJourneyMaps implements OnInit, AfterViewInit, OnDestroy, OnChang
     homeButton: false,
     geoLocation: false,
   };
-  private _defaultHomeButtonOptions: SbbViewportDimensions = {
+  private readonly _defaultHomeButtonOptions: SbbViewportDimensions = {
     boundingBox: SBB_BOUNDING_BOX,
     padding: 0,
   };
-  private _defaultMarkerOptions: SbbMarkerOptions = {
+  private readonly _defaultMarkerOptions: SbbMarkerOptions = {
     popup: false,
   };
-  private _defaultPointsOfInterestOptions: SbbPointsOfInterestOptions = {
+  private readonly _defaultPointsOfInterestOptions: SbbPointsOfInterestOptions = {
     categories: [],
     environment: 'prod',
     includePreview: false,
     baseInteractivityEnabled: true,
   };
-  private _zoomLevelDebouncer = new Subject<void>();
-  private _mapMovementDebouncer = new Subject<void>();
-  private _mapResized = new Subject<void>();
-  private _destroyed = new Subject<void>();
-  private _styleLoaded = new ReplaySubject<void>(1);
-  private _viewportDimensionsChanged = new Subject<void>();
-  private _mapStyleOptionsChanged = new Subject<void>();
+  private readonly _zoomLevelDebouncer = new Subject<void>();
+  private readonly _mapMovementDebouncer = new Subject<void>();
+  private readonly _mapResized = new Subject<void>();
+  private readonly _destroyed = new Subject<void>();
+  private readonly _styleLoaded = new ReplaySubject<void>(1);
+  private readonly _viewportDimensionsChanged = new Subject<void>();
+  private readonly _mapStyleOptionsChanged = new Subject<void>();
   // _map._isStyleLoaded() returns sometimes false when sources are being updated.
   // Therefore, we set this variable to true once the style has been loaded.
   private _isStyleLoaded = false;
   private _isAerialSelected = false;
   private _observer: ResizeObserver;
-  private _sbbGeolocateControl = new SbbGeolocateControl({
+  private readonly _sbbGeolocateControl = new SbbGeolocateControl({
     positionOptions: {
       enableHighAccuracy: true,
     },
@@ -256,26 +259,26 @@ export class SbbJourneyMaps implements OnInit, AfterViewInit, OnDestroy, OnChang
   private _previousPitch: number = 0;
 
   constructor(
-    private _mapInitService: SbbMapInitService,
-    private _mapConfigService: SbbMapConfig,
-    private _mapService: SbbMapService,
-    private _mapPoiService: SbbMapPoiService,
-    private _mapMarkerService: SbbMapMarkerService,
-    private _mapJourneyService: SbbMapJourneyService,
-    private _mapTransferService: SbbMapTransferService,
-    private _mapRoutesService: SbbMapRoutesService,
-    private _mapRailNetworkLayerService: SbbMapRailNetworkLayerService,
-    private _mapZoneService: SbbMapZoneService,
-    private _mapLeitPoiService: SbbMapLeitPoiService,
-    private _mapLayerFilterService: SbbMapLayerFilter,
-    private _mapOverflowingLabelService: SbbMapOverflowingLabelService,
-    private _mapEventUtils: SbbMapEventUtils,
-    private _urlService: SbbMapUrlService,
-    private _levelSwitchService: SbbLevelSwitcher,
-    private _markerOrPoiSelectionStateService: MarkerOrPoiSelectionStateService,
-    private _cd: ChangeDetectorRef,
-    private _i18n: SbbLocaleService,
-    private _host: ElementRef,
+    private readonly _mapInitService: SbbMapInitService,
+    private readonly _mapConfigService: SbbMapConfig,
+    private readonly _mapService: SbbMapService,
+    private readonly _mapPoiService: SbbMapPoiService,
+    private readonly _mapMarkerService: SbbMapMarkerService,
+    private readonly _mapJourneyService: SbbMapJourneyService,
+    private readonly _mapTransferService: SbbMapTransferService,
+    private readonly _mapRoutesService: SbbMapRoutesService,
+    private readonly _mapRailNetworkLayerService: SbbMapRailNetworkLayerService,
+    private readonly _mapZoneService: SbbMapZoneService,
+    private readonly _mapLeitPoiService: SbbMapLeitPoiService,
+    private readonly _mapLayerFilterService: SbbMapLayerFilter,
+    private readonly _mapOverflowingLabelService: SbbMapOverflowingLabelService,
+    private readonly _mapEventUtils: SbbMapEventUtils,
+    private readonly _urlService: SbbMapUrlService,
+    private readonly _levelSwitchService: SbbLevelSwitcher,
+    private readonly _markerOrPoiSelectionStateService: MarkerOrPoiSelectionStateService,
+    private readonly _cd: ChangeDetectorRef,
+    private readonly _i18n: SbbLocaleService,
+    private readonly _host: ElementRef,
   ) {
     // binding of 'this' is needed for elements/webcomponent
     // https://github.com/angular/angular/issues/22114#issuecomment-569311422
@@ -590,6 +593,8 @@ export class SbbJourneyMaps implements OnInit, AfterViewInit, OnDestroy, OnChang
     this._setupSubjects();
     this._executeWhenMapStyleLoaded(() => {
       this._mapOverflowingLabelService.hideOverflowingLabels(this._map, this.interactionOptions);
+      this._show2Dor3D();
+      this._showOrHideExtrusions();
     });
   }
 
@@ -763,6 +768,10 @@ export class SbbJourneyMaps implements OnInit, AfterViewInit, OnDestroy, OnChang
       changes.uiOptions?.currentValue.levelSwitch !== changes.uiOptions?.previousValue?.levelSwitch
     ) {
       this._show2Dor3D();
+    }
+
+    if (changes.enableExtrusions?.currentValue !== changes.enableExtrusions?.previousValue) {
+      this._showOrHideExtrusions();
     }
   }
 
@@ -968,6 +977,7 @@ export class SbbJourneyMaps implements OnInit, AfterViewInit, OnDestroy, OnChang
         this._map.once('styledata', () => {
           this._featureEventListenerComponent.updateListener();
           this._show2Dor3D();
+          this._showOrHideExtrusions();
           this._mapMarkerService.updateMarkers(
             this._map,
             this._getMarkers(),
@@ -1074,7 +1084,6 @@ export class SbbJourneyMaps implements OnInit, AfterViewInit, OnDestroy, OnChang
     // Emit initial values
     this._zoomLevelDebouncer.next();
     this._mapMovementDebouncer.next();
-    this._show2Dor3D();
 
     if (this.styleOptions.railNetwork) {
       this._mapRailNetworkLayerService.updateOptions(this._map, this.styleOptions.railNetwork);
@@ -1199,9 +1208,24 @@ export class SbbJourneyMaps implements OnInit, AfterViewInit, OnDestroy, OnChang
   private _show2Dor3D() {
     if (this._isStyleLoaded) {
       const show3D = this._isLevelFilterEnabled();
-      this._setVisibility(this._map, '-2d', show3D ? 'none' : 'visible');
-      this._setVisibility(this._map, '-lvl', show3D ? 'visible' : 'none');
+      this._setVisibilityByLayerIdSuffix(this._map, '-2d', show3D ? 'none' : 'visible');
+      this._setVisibilityByLayerIdSuffix(this._map, '-lvl', show3D ? 'visible' : 'none');
       this._mapPoiService.updatePoiVisibility(this._map, show3D, this.poiOptions);
+    }
+  }
+
+  private _showOrHideExtrusions() {
+    if (this._isStyleLoaded) {
+      this._map.setLayoutProperty(
+        '3d-buildings',
+        'visibility',
+        this.enableExtrusions ? 'visible' : 'none',
+      );
+      this._map.setLayoutProperty(
+        '3d-buildings-custom',
+        'visibility',
+        this.enableExtrusions ? 'visible' : 'none',
+      );
     }
   }
 
@@ -1209,7 +1233,11 @@ export class SbbJourneyMaps implements OnInit, AfterViewInit, OnDestroy, OnChang
     return this._levelSwitchService.selectedLevel !== undefined && !!this.uiOptions.levelSwitch;
   }
 
-  private _setVisibility(map: MaplibreMap, layerIdSuffix: string, visibility: 'visible' | 'none') {
+  private _setVisibilityByLayerIdSuffix(
+    map: MaplibreMap,
+    layerIdSuffix: string,
+    visibility: 'visible' | 'none',
+  ) {
     map
       .getStyle()
       .layers?.filter((layer) => layer.id.endsWith(layerIdSuffix))

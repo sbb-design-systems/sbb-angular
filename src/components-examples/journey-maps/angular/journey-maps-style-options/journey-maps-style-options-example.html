@@ -3,8 +3,11 @@
 </sbb-notification>
 <div class="web-map">
   <sbb-journey-maps
-    [apiKey]="apiKey"
     language="en"
+    [apiKey]="apiKey"
+    [interactionOptions]="interactionOptions"
+    [viewportDimensions]="viewportDimensions"
+    [enableExtrusions]="form.get('extrusions')?.value"
     [styleOptions]="form.get('styleOptions')?.value"
     [(selectedMarkerId)]="selectedMarkerId"
   ></sbb-journey-maps>
@@ -40,6 +43,11 @@
           <sbb-radio-button value="v3">v3</sbb-radio-button>
         </sbb-radio-group>
       </div>
+    </div>
+
+    <div>
+      <span class="sbb-label">3D buildings</span>
+      <sbb-checkbox formControlName="extrusions">Show</sbb-checkbox>
     </div>
   </form>
 </div>
