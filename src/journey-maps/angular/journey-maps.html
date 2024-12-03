@@ -50,7 +50,8 @@
           [isDarkMode]="isDarkMode"
           [showSmallButtons]="uiOptions.showSmallButtons"
           [negativeBearing]="-getMapBearing()"
-          (compassButtonClicked)="resetBearingToNorth()"
+          [pitch]="getMapPitch()"
+          (compassButtonClicked)="resetBearingAndPitch()"
         ></sbb-compass-button>
         <sbb-basemap-switch
           *ngIf="uiOptions.basemapSwitch"

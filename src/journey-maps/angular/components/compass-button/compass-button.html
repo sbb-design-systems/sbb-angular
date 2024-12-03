@@ -9,7 +9,7 @@
       type="button"
       (click)="onCompassButtonClicked()"
       class="map-control-button"
-      [style.transform]="'rotate(' + negativeBearing + 'deg)'"
+      [style.transform]="'rotate(' + negativeBearing + 'deg)  rotateX(' + pitch / 1.5 + 'deg)'"
       [style.transition]="'transform 0.3s ease-in-out'"
       [attr.aria-label]="compassButtonLabel"
     ></button>

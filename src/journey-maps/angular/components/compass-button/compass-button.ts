@@ -22,6 +22,7 @@ export class SbbCompassButton implements OnInit {
   @Input() showSmallButtons: boolean | undefined;
   @Input() isDarkMode: boolean;
   @Input() negativeBearing: number;
+  @Input() pitch: number;
 
   @Output() compassButtonClicked: EventEmitter<void> = new EventEmitter<void>();
 

@@ -893,8 +893,8 @@ export class SbbJourneyMaps implements OnInit, AfterViewInit, OnDestroy, OnChang
   }
 
   /** @docs-private */
-  resetBearingToNorth() {
-    this._mapService.setBearing(this._map, 0);
+  resetBearingAndPitch() {
+    this._mapService.flyTo(this._map, { bearing: 0, pitch: 0 });
   }
 
   /** @docs-private */
@@ -1020,6 +1020,7 @@ export class SbbJourneyMaps implements OnInit, AfterViewInit, OnDestroy, OnChang
       const pitch = this._map.getPitch();
       if (pitch !== this._previousPitch) {
         this._previousPitch = pitch;
+        this._cd.detectChanges(); // needed for the compass button when using Web Component
         this.mapPitchChange.emit(pitch);
       }
     });
@@ -1217,6 +1218,10 @@ export class SbbJourneyMaps implements OnInit, AfterViewInit, OnDestroy, OnChang
 
   getMapBearing() {
     return this._previousBearing;
+  }
+
+  getMapPitch() {
+    return this._previousPitch;
   }
 
   showCompassButton(): boolean {

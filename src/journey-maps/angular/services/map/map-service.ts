@@ -11,8 +11,8 @@ export const SBB_EMPTY_FEATURE_COLLECTION: FeatureCollection = toFeatureCollecti
 
 @Injectable({ providedIn: 'root' })
 export class SbbMapService {
-  setBearing(map: MaplibreMap, bearing: number) {
-    map.flyTo({ bearing });
+  flyTo(map: MaplibreMap, flyToOptions: FlyToOptions) {
+    map.flyTo(flyToOptions);
   }
 
   moveMap(map: MaplibreMap, viewportDimensions: SbbViewportDimensions): void {
