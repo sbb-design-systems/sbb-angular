@@ -27,3 +27,8 @@ div[formGroupName='styleOptions'] {
   justify-content: flex-start; /* Start the items at the beginning */
   gap: 30px; /* Space between the two div elements */
 }
+
+.instructions {
+  padding: 0;
+  line-height: 1em;
+}

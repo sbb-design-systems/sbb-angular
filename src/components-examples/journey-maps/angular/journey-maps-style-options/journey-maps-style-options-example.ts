@@ -15,6 +15,7 @@ import { Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
 
 import { RAIL_COLORS, STYLE_IDS } from '../shared/config';
+import { extrusionsBern } from '../shared/extrusion/bern';
 
 declare global {
   interface Window {
@@ -51,8 +52,10 @@ export class JourneyMapsStyleOptionsExample implements OnInit {
     enablePitch: true,
   };
   viewportDimensions: SbbMapCenterOptions = {
-    mapCenter: [7.44744, 46.94809],
-    zoomLevel: 15,
+    mapCenter: [7.440099, 46.948558],
+    zoomLevel: 16.68,
+    bearing: 290,
+    pitch: 60,
   };
 
   constructor(private readonly fb: FormBuilder) {}
@@ -74,7 +77,7 @@ export class JourneyMapsStyleOptionsExample implements OnInit {
       styleVersion: this.fb.group({
         versionNumber: ['v2', this.resetSelectedMarkerIdValidator],
       }),
-      extrusions: [false],
+      extrusions: [true],
     });
   }
 
@@ -97,4 +100,5 @@ export class JourneyMapsStyleOptionsExample implements OnInit {
   private readonly _destroyed = new Subject<void>();
 
   protected readonly RAIL_COLORS = RAIL_COLORS;
+  protected readonly extrusionsBern = extrusionsBern;
 }

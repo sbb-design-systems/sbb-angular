@@ -5,9 +5,10 @@
   <sbb-journey-maps
     language="en"
     [apiKey]="apiKey"
-    [interactionOptions]="interactionOptions"
     [viewportDimensions]="viewportDimensions"
+    [interactionOptions]="interactionOptions"
     [enableExtrusions]="form.get('extrusions')?.value"
+    [extrusions]="extrusionsBern"
     [styleOptions]="form.get('styleOptions')?.value"
     [(selectedMarkerId)]="selectedMarkerId"
   ></sbb-journey-maps>
@@ -50,4 +51,9 @@
       <sbb-checkbox formControlName="extrusions">Show</sbb-checkbox>
     </div>
   </form>
+</div>
+<div class="instructions">
+  <span class="sbb-label">Rotate / Tilt</span>
+  <p><strong>Keyboard: </strong>Click the map, hold Shift, and use arrow keys.</p>
+  <p><strong>Touchscreen: </strong>Rotate with two fingers, tilt with three.</p>
 </div>

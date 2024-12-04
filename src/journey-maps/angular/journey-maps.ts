@@ -55,6 +55,7 @@ import {
 import { SbbLocaleService } from './services/locale-service';
 import { SbbMapEventUtils } from './services/map/events/map-event-utils';
 import { SbbMapConfig } from './services/map/map-config';
+import { SbbMapExtrusionService } from './services/map/map-extrusion-service';
 import { SbbMapInitService } from './services/map/map-init-service';
 import { SbbMapJourneyService } from './services/map/map-journey-service';
 import { SbbMapLeitPoiService } from './services/map/map-leit-poi-service';
@@ -135,6 +136,8 @@ export class SbbJourneyMaps implements OnInit, AfterViewInit, OnDestroy, OnChang
   @Input() viewportBounds?: SbbViewportBounds;
   /** Enable/disable extrusions to be shown on the map */
   @Input() enableExtrusions: boolean = false;
+  /** Custom Extrusions GeoJSON */
+  @Input() extrusions?: FeatureCollection;
 
   /**
    * This event is emitted whenever a marker, with property triggerEvent, is selected or unselected.
@@ -276,6 +279,7 @@ export class SbbJourneyMaps implements OnInit, AfterViewInit, OnDestroy, OnChang
     private readonly _urlService: SbbMapUrlService,
     private readonly _levelSwitchService: SbbLevelSwitcher,
     private readonly _markerOrPoiSelectionStateService: MarkerOrPoiSelectionStateService,
+    private readonly _mapExtrusionService: SbbMapExtrusionService,
     private readonly _cd: ChangeDetectorRef,
     private readonly _i18n: SbbLocaleService,
     private readonly _host: ElementRef,
@@ -595,6 +599,7 @@ export class SbbJourneyMaps implements OnInit, AfterViewInit, OnDestroy, OnChang
       this._mapOverflowingLabelService.hideOverflowingLabels(this._map, this.interactionOptions);
       this._show2Dor3D();
       this._showOrHideExtrusions();
+      this._updateExtrusions();
     });
   }
 
@@ -1009,6 +1014,9 @@ export class SbbJourneyMaps implements OnInit, AfterViewInit, OnDestroy, OnChang
               this.styleOptions.railNetwork,
             );
           }
+          if (this.extrusions) {
+            this._updateExtrusions();
+          }
         });
       });
 
@@ -1227,6 +1235,10 @@ export class SbbJourneyMaps implements OnInit, AfterViewInit, OnDestroy, OnChang
         this.enableExtrusions ? 'visible' : 'none',
       );
     }
+  }
+
+  private _updateExtrusions() {
+    this._mapExtrusionService.addExtrusions(this._map, this.extrusions);
   }
 
   private _isLevelFilterEnabled(): boolean {
