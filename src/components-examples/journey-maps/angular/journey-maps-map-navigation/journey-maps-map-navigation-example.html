@@ -6,9 +6,7 @@
     #advancedMap
     language="en"
     [apiKey]="apiKey"
-    [enableExtrusions]="true"
     [interactionOptions]="interactionOptions"
-    [viewportDimensions]="viewportDimensions"
     (mapCenterChange)="mapCenterChange.next($event)"
     (mapBoundsChange)="mapBoundingBoxChange.next($event)"
     (zoomLevelsChange)="zoomLevels = $event"

@@ -66,7 +66,6 @@ export class JourneyMapsMapNavigationExample implements OnInit {
     enableRotate: true,
     enablePitch: true,
   };
-  viewportDimensions: undefined;
 
   ngOnInit() {
     this.subscribeMapCenterChange();
@@ -109,5 +108,5 @@ export class JourneyMapsMapNavigationExample implements OnInit {
     return value.toFixed(6);
   }
 
-  private destroyed = new Subject<void>();
+  private readonly destroyed = new Subject<void>();
 }
