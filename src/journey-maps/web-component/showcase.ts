@@ -4,6 +4,23 @@ import {
   SbbJourneyMaps,
 } from '@sbb-esta/journey-maps/angular';
 
+function addInteractionOptions(client: HTMLElement & SbbJourneyMaps) {
+  client.interactionOptions = {
+    ...client.interactionOptions,
+    enablePitch: true,
+    enableRotate: true,
+  };
+}
+
+function addViewportDimensions(client: HTMLElement & SbbJourneyMaps) {
+  client.viewportDimensions = {
+    mapCenter: [7.44744, 46.94809], // Bern
+    zoomLevel: 15,
+    bearing: 180,
+    pitch: 60,
+  };
+}
+
 function addMarkers(client: SbbJourneyMapsElement) {
   client.markerOptions = {
     popup: false,
@@ -121,18 +138,73 @@ function updatePoiTemplate(poi: SbbFeatureData) {
   `;
 }
 
+function attachListenerToTextDivOutput(
+  eventName: string,
+  textTemplate: (customEvent: CustomEvent<number>) => string,
+  container: HTMLElement,
+  client: HTMLElement & SbbJourneyMaps,
+) {
+  const textDiv = createTextDiv();
+  appendElementToContainer(container, textDiv);
+  client.addEventListener(eventName, (event: Event) => {
+    const customEvent = event as CustomEvent<number>;
+    textDiv.textContent = textTemplate(customEvent);
+  });
+}
+
 function createSbbJourneyMapsElement() {
+  const client = createJourneyMapsClient();
+  const container = document.getElementById('container')!;
+  appendElementToContainer(container, client);
+  attachListenerToTextDivOutput(
+    'mapBearingChange',
+    (customEvent) => `Map bearing: ${customEvent.detail}`,
+    container,
+    client,
+  );
+  attachListenerToTextDivOutput(
+    'mapPitchChange',
+    (customEvent) => `Map pitch: ${customEvent.detail}`,
+    container,
+    client,
+  );
+  addText(
+    `<p><strong>Keyboard</strong>: Click the map, hold Shift, and use arrow keys.<br />
+          <strong>Touchscreen</strong>: Rotate with two fingers, tilt with three.</p>`,
+    container,
+  );
+}
+
+function createJourneyMapsClient(): SbbJourneyMapsElement {
   const client = document.createElement('sbb-journey-maps-wc') as SbbJourneyMapsElement;
   client.language = 'en';
   client.apiKey = window.JM_API_KEY;
 
+  addInteractionOptions(client);
+  addViewportDimensions(client);
   addMarkers(client);
   createMarkerDetailsTemplate(client);
   createStationTemplate(client);
   createPoiTemplate(client);
   addClickListener(client);
 
-  document.getElementById('container')!.appendChild(client);
+  return client;
+}
+
+function appendElementToContainer(container: HTMLElement, element: HTMLElement) {
+  container.appendChild(element);
+}
+
+function createTextDiv(): HTMLDivElement {
+  const textDiv = document.createElement('div');
+  textDiv.style.marginTop = '10px'; // Optional: add some spacing
+  return textDiv;
+}
+
+function addText(html: string, container: HTMLElement) {
+  const textDiv = createTextDiv();
+  appendElementToContainer(container, textDiv);
+  textDiv.innerHTML = html;
 }
 
 function isCustomEvent(event: Event): event is CustomEvent {

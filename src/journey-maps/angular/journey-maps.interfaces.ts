@@ -31,6 +31,10 @@ export interface SbbInteractionOptions {
   scrollZoom?: boolean;
   /** Whether the map cannot be moved. */
   disableInteractions?: boolean;
+  /** Whether the map can be rotated, defaults to false. */
+  enableRotate?: boolean;
+  /** Whether the map can be tilted, defaults to false. */
+  enablePitch?: boolean;
 }
 
 export interface SbbUIOptions {
@@ -64,6 +68,10 @@ export interface SbbMapCenterOptions {
   mapCenter: LngLatLike;
   /** The desired zoom level of the map. */
   zoomLevel: number;
+  /** The desired bearing of the map (between 0 and 360), defaulting to 0. */
+  bearing?: number;
+  /** The desired bearing of the map (between 0 and 60), defaulting to 0. */
+  pitch?: number;
 }
 
 export interface SbbBoundingBoxOptions {

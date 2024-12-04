@@ -171,6 +171,14 @@ export class SbbJourneyMaps implements OnInit, AfterViewInit, OnDestroy, OnChang
    */
   @Output() mapCenterChange: EventEmitter<LngLatLike> = new EventEmitter<LngLatLike>();
   /**
+   * This event is emitted whenever the bearing of the map has changed. (Whenever the map has been rotated)
+   */
+  @Output() mapBearingChange: EventEmitter<number> = new EventEmitter<number>();
+  /**
+   * This event is emitted whenever the pitch of the map has changed. (Whenever the map has been tilted)
+   */
+  @Output() mapPitchChange: EventEmitter<number> = new EventEmitter<number>();
+  /**
    * This event is emitted whenever the map is ready.
    */
   @Output() mapReady: ReplaySubject<MaplibreMap> = new ReplaySubject<MaplibreMap>(1);
@@ -244,6 +252,8 @@ export class SbbJourneyMaps implements OnInit, AfterViewInit, OnDestroy, OnChang
     },
     trackUserLocation: true,
   });
+  private _previousBearing: number = 0; // can be < 0 and > 360
+  private _previousPitch: number = 0;
 
   constructor(
     private _mapInitService: SbbMapInitService,
@@ -458,9 +468,15 @@ export class SbbJourneyMaps implements OnInit, AfterViewInit, OnDestroy, OnChang
 
   /** @docs-private */
   onTouchStart(event: TouchEvent): void {
-    // https://docs.mapbox.com/mapbox-gl-js/example/toggle-interaction-handlers/
     if (!this.interactionOptions.oneFingerPan) {
-      this._map.dragPan.disable();
+      // enforces two-finger panning: https://docs.mapbox.com/mapbox-gl-js/example/cooperative-gestures/
+      this._map.cooperativeGestures.enable();
+    }
+    if (!this.interactionOptions.enableRotate) {
+      this._map.touchZoomRotate.disableRotation();
+    }
+    if (!this.interactionOptions.enablePitch) {
+      this._map.touchPitch.disable();
     }
     this.touchEventCollector.next(event);
   }
@@ -751,14 +767,12 @@ export class SbbJourneyMaps implements OnInit, AfterViewInit, OnDestroy, OnChang
   }
 
   ngAfterViewInit(): void {
-    const styleUrl = this._getStyleUrl();
-
     this.touchOverlayText = this._i18n.getText('touchOverlay.tip');
     this._mapInitService
       .initializeMap(
         this._mapElementRef.nativeElement,
         this._i18n.language,
-        styleUrl,
+        this._getStyleUrl(),
         this.interactionOptions,
         this.viewportDimensions,
         this.viewportBounds,
@@ -879,6 +893,11 @@ export class SbbJourneyMaps implements OnInit, AfterViewInit, OnDestroy, OnChang
   }
 
   /** @docs-private */
+  resetBearingAndPitch() {
+    this._mapService.flyTo(this._map, { bearing: 0, pitch: 0 });
+  }
+
+  /** @docs-private */
   onHomeButtonClicked() {
     this._mapService.moveMap(this._map, this._homeButtonOptions);
   }
@@ -990,6 +1009,20 @@ export class SbbJourneyMaps implements OnInit, AfterViewInit, OnDestroy, OnChang
     this._mapMovementDebouncer.pipe(debounceTime(200), takeUntil(this._destroyed)).subscribe(() => {
       this.mapCenterChange.emit(this._map.getCenter());
       this.mapBoundsChange.emit(this._map.getBounds().toArray());
+
+      const bearing = this._map.getBearing();
+      if (this._normalizeTo360(bearing) !== this._normalizeTo360(this._previousBearing)) {
+        this._previousBearing = this._normalizeBearingForTransition(this._previousBearing, bearing);
+        this._cd.detectChanges(); // needed for the compass button when using Web Component
+        this.mapBearingChange.emit(this._normalizeTo360(bearing));
+      }
+
+      const pitch = this._map.getPitch();
+      if (pitch !== this._previousPitch) {
+        this._previousPitch = pitch;
+        this._cd.detectChanges(); // needed for the compass button when using Web Component
+        this.mapPitchChange.emit(pitch);
+      }
     });
 
     this._levelSwitchService.selectedLevel$.pipe(takeUntil(this._destroyed)).subscribe((level) => {
@@ -999,6 +1032,25 @@ export class SbbJourneyMaps implements OnInit, AfterViewInit, OnDestroy, OnChang
     this._levelSwitchService.visibleLevels$
       .pipe(takeUntil(this._destroyed))
       .subscribe((levels) => this.visibleLevelsChange.emit(levels));
+  }
+
+  /**
+   * Prevent the compass from spinning more than 180° per transition
+   * @docs-private
+   */
+  private _normalizeBearingForTransition(previousBearing: number, newBearing: number): number {
+    const diff = newBearing - previousBearing;
+    // Normalize the difference to the range [-180, 180]
+    const normalizedDiff = this._normalizeTo360(diff + 180) - 180;
+    return previousBearing + normalizedDiff;
+  }
+
+  /**
+   * Normalize bearing to (0, 360)
+   * @docs-private
+   */
+  private _normalizeTo360(bearing: number): number {
+    return ((bearing % 360) + 360) % 360;
   }
 
   private _onStyleLoaded(): void {
@@ -1162,5 +1214,17 @@ export class SbbJourneyMaps implements OnInit, AfterViewInit, OnDestroy, OnChang
       .getStyle()
       .layers?.filter((layer) => layer.id.endsWith(layerIdSuffix))
       .forEach((layer) => map.setLayoutProperty(layer.id, 'visibility', visibility));
+  }
+
+  getMapBearing() {
+    return this._previousBearing;
+  }
+
+  getMapPitch() {
+    return this._previousPitch;
+  }
+
+  showCompassButton(): boolean {
+    return this._normalizeTo360(this.getMapBearing()) !== 0 || this.getMapPitch() !== 0;
   }
 }

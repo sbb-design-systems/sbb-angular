@@ -20,6 +20,7 @@ ng_module(
         ":journey-maps.css",
         ":components/attribution/attribution.css",
         ":components/basemap-switch/basemap-switch.css",
+        ":components/compass-button/compass-button.css",
         ":components/geolocate-button/geolocate-button.css",
         ":components/home-button/home-button.css",
         ":components/leit-poi/leit-poi.css",
@@ -69,6 +70,14 @@ sass_binary(
 sass_binary(
     name = "components_basemap_switch_basemap_switch_scss",
     src = "components/basemap-switch/basemap-switch.scss",
+    deps = [
+        ":angular_scss_lib",
+    ],
+)
+
+sass_binary(
+    name = "components_compass_button_compass_button_scss",
+    src = "components/compass-button/compass-button.scss",
     deps = [
         ":angular_scss_lib",
     ],

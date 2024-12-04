@@ -5,6 +5,10 @@ export const SBB_MARKER_BOUNDS_PADDING = 40;
 
 export const SBB_MIN_ZOOM = 1;
 export const SBB_MAX_ZOOM = 23; /* same as in mobile-clients */
+
+export const SBB_MIN_PITCH = 0;
+export const SBB_MAX_PITCH = 60;
+
 export const SBB_BOUNDING_BOX: LngLatBoundsLike = [
   // CH bounds;
   [5.7349, 45.6755],
