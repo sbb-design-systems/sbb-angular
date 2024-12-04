@@ -18,7 +18,7 @@ export const extrusionsBern: FeatureCollection = {
         hide_3d: false,
         render_color: '#33FF57',
         render_height: 50,
-        render_min_height: 10,
+        render_min_height: 40,
       },
       geometry: {
         type: 'Polygon',
@@ -58,7 +58,7 @@ export const extrusionsBern: FeatureCollection = {
         hide_3d: false,
         render_color: '#3357FF',
         render_height: 20,
-        render_min_height: 10,
+        render_min_height: 15,
       },
       geometry: {
         type: 'Polygon',
@@ -192,7 +192,6 @@ export const extrusionsBern: FeatureCollection = {
         'roof:shape': 'flat',
         hide_3d: false,
         render_height: 100,
-        render_min_height: 20,
       },
       geometry: {
         type: 'Polygon',

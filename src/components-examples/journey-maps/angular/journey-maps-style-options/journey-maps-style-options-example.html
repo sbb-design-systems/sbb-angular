@@ -7,10 +7,9 @@
     [apiKey]="apiKey"
     [viewportDimensions]="viewportDimensions"
     [interactionOptions]="interactionOptions"
+    [extrusions]="customExtrusions"
     [enableExtrusions]="form.get('extrusions')?.value"
-    [extrusions]="extrusionsBern"
     [styleOptions]="form.get('styleOptions')?.value"
-    [(selectedMarkerId)]="selectedMarkerId"
   ></sbb-journey-maps>
 </div>
 <div>
@@ -48,7 +47,10 @@
 
     <div>
       <span class="sbb-label">3D buildings</span>
-      <sbb-checkbox formControlName="extrusions">Show</sbb-checkbox>
+      <sbb-checkbox formControlName="extrusions">Show</sbb-checkbox><br />
+      <sbb-checkbox formControlName="customExtrusions" [disabled]="!form.get('extrusions')?.value"
+        >Custom</sbb-checkbox
+      >
     </div>
   </form>
 </div>

@@ -11,6 +11,7 @@ import {
   SbbJourneyMapsModule,
   SbbMapCenterOptions,
 } from '@sbb-esta/journey-maps';
+import { FeatureCollection } from 'geojson';
 import { Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
 
@@ -46,7 +47,6 @@ declare global {
 export class JourneyMapsStyleOptionsExample implements OnInit {
   apiKey = window.JM_API_KEY;
   form: UntypedFormGroup;
-  selectedMarkerId?: string;
   interactionOptions: SbbInteractionOptions = {
     enableRotate: true,
     enablePitch: true,
@@ -57,27 +57,30 @@ export class JourneyMapsStyleOptionsExample implements OnInit {
     bearing: 290,
     pitch: 60,
   };
+  customExtrusions?: FeatureCollection = extrusionsBern;
 
   constructor(private readonly fb: FormBuilder) {}
 
   ngOnInit() {
     this.buildForm();
     this.subscribeStyleVersion();
+    this.subscribeCustomExtrusion();
   }
 
   private buildForm() {
     this.form = this.fb.group({
       styleOptions: this.fb.group({
-        mode: ['bright', this.resetSelectedMarkerIdValidator],
+        mode: ['bright'],
         railNetwork: this.fb.group({
           railNetworkColor: [],
         }),
         ...STYLE_IDS.v2,
       }),
       styleVersion: this.fb.group({
-        versionNumber: ['v2', this.resetSelectedMarkerIdValidator],
+        versionNumber: ['v2'],
       }),
       extrusions: [true],
+      customExtrusions: [true],
     });
   }
 
@@ -93,12 +96,16 @@ export class JourneyMapsStyleOptionsExample implements OnInit {
       });
   }
 
-  private readonly resetSelectedMarkerIdValidator = () => {
-    this.selectedMarkerId = undefined;
-    return null;
-  };
+  private subscribeCustomExtrusion() {
+    this.form
+      .get('customExtrusions')
+      ?.valueChanges.pipe(takeUntil(this._destroyed))
+      .subscribe((showCustom: boolean) => {
+        this.customExtrusions = showCustom ? extrusionsBern : undefined;
+      });
+  }
+
   private readonly _destroyed = new Subject<void>();
 
   protected readonly RAIL_COLORS = RAIL_COLORS;
-  protected readonly extrusionsBern = extrusionsBern;
 }

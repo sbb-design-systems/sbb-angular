@@ -778,6 +778,10 @@ export class SbbJourneyMaps implements OnInit, AfterViewInit, OnDestroy, OnChang
     if (changes.enableExtrusions?.currentValue !== changes.enableExtrusions?.previousValue) {
       this._showOrHideExtrusions();
     }
+
+    if (changes.extrusions?.currentValue !== changes.extrusions?.previousValue) {
+      this._updateExtrusions();
+    }
   }
 
   ngAfterViewInit(): void {
