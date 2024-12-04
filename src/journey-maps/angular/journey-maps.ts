@@ -24,6 +24,7 @@ import { SbbLevelSwitcher } from './components/level-switch/services/level-switc
 import { SbbMapLayerFilter } from './components/level-switch/services/map-layer-filter';
 import { SbbGeolocateControl } from './controls/sbbGeolocateControl';
 import {
+  BuildingExtrusions,
   SbbDeselectableFeatureDataType,
   SbbFeatureData,
   SbbFeaturesClickEventData,
@@ -137,7 +138,7 @@ export class SbbJourneyMaps implements OnInit, AfterViewInit, OnDestroy, OnChang
   /** Enable/disable extrusions to be shown on the map */
   @Input() enableExtrusions: boolean = false;
   /** Custom Extrusions GeoJSON */
-  @Input() extrusions?: FeatureCollection;
+  @Input() extrusions?: BuildingExtrusions;
 
   /**
    * This event is emitted whenever a marker, with property triggerEvent, is selected or unselected.

@@ -1,5 +1,5 @@
 import { TemplateRef } from '@angular/core';
-import { FeatureCollection } from 'geojson';
+import { Feature, FeatureCollection } from 'geojson';
 import { LngLatBoundsLike, LngLatLike, MapGeoJSONFeature } from 'maplibre-gl';
 
 import { SbbMarker } from './model/marker';
@@ -298,6 +298,20 @@ export interface SbbPointsOfInterestOptions {
    */
   baseInteractivityEnabled?: boolean;
 }
+
+/** Configurable properties for 3d-buildings */
+export interface BuildingExtrusionProperties {
+  /** the maximum height of the building (mandatory) */
+  render_height: number;
+  /** the height of the base of the building (defaults to 0) */
+  render_min_height?: number;
+  /** the color of the building (defaults to #C60018) */
+  render_color?: string;
+}
+
+export type BuildingExtrusions = FeatureCollection & {
+  features: Array<Feature & { properties: BuildingExtrusionProperties }>;
+};
 
 /** points of interest category type */
 export type SbbPointsOfInterestCategoryType =

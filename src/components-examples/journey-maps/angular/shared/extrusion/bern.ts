@@ -1,6 +1,6 @@
-import { FeatureCollection } from 'geojson';
+import { BuildingExtrusions } from '@sbb-esta/journey-maps';
 
-export const extrusionsBern: FeatureCollection = {
+export const extrusionsBern: BuildingExtrusions = {
   type: 'FeatureCollection',
   features: [
     {

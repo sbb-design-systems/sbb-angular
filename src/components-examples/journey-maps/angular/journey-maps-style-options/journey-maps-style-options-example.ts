@@ -7,11 +7,11 @@ import { SbbNotificationModule } from '@sbb-esta/angular/notification';
 import { SbbRadioButtonModule } from '@sbb-esta/angular/radio-button';
 import { SbbSelectModule } from '@sbb-esta/angular/select';
 import {
+  BuildingExtrusions,
   SbbInteractionOptions,
   SbbJourneyMapsModule,
   SbbMapCenterOptions,
 } from '@sbb-esta/journey-maps';
-import { FeatureCollection } from 'geojson';
 import { Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
 
@@ -57,7 +57,7 @@ export class JourneyMapsStyleOptionsExample implements OnInit {
     bearing: 290,
     pitch: 60,
   };
-  customExtrusions?: FeatureCollection = extrusionsBern;
+  customExtrusions?: BuildingExtrusions = extrusionsBern;
 
   constructor(private readonly fb: FormBuilder) {}
 
