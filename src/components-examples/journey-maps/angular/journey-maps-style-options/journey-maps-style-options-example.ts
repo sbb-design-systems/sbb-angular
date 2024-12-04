@@ -53,7 +53,7 @@ export class JourneyMapsStyleOptionsExample implements OnInit {
   };
   viewportDimensions: SbbMapCenterOptions = {
     mapCenter: [7.440099, 46.948558],
-    zoomLevel: 16.68,
+    zoomLevel: 16.7,
     bearing: 290,
     pitch: 60,
   };
