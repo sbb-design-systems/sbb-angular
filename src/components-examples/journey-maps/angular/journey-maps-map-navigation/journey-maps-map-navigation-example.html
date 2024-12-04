@@ -3,12 +3,16 @@
 </sbb-notification>
 <div class="web-map">
   <sbb-journey-maps
-    [apiKey]="apiKey"
     #advancedMap
     language="en"
+    [apiKey]="apiKey"
+    [interactionOptions]="interactionOptions"
+    [viewportDimensions]="viewportDimensions"
     (mapCenterChange)="mapCenterChange.next($event)"
     (mapBoundsChange)="mapBoundingBoxChange.next($event)"
     (zoomLevelsChange)="zoomLevels = $event"
+    (mapBearingChange)="mapBearing = $event"
+    (mapPitchChange)="mapPitch = $event"
   ></sbb-journey-maps>
 </div>
 <div class="sbb-navigation">
@@ -23,6 +27,14 @@
 
     <li class="sbb-label">
       Map bounding-box (lng / lat, SW then NE): <b>{{ mapBoundingBoxInfo() }}</b>
+    </li>
+
+    <li class="sbb-label">
+      Map bearing: <b>{{ mapBearing }}°</b>
+    </li>
+
+    <li class="sbb-label">
+      Map pitch: <b>{{ mapPitch }}°</b>
     </li>
 
     <li class="sbb-label">
@@ -58,6 +70,14 @@
       <button sbb-ghost-button (click)="client.moveWest()">
         <sbb-icon svgIcon="arrow-left-small"></sbb-icon>
       </button>
+    </li>
+  </div>
+
+  <div class="row-3">
+    <li>
+      <span class="sbb-label">Rotate / Tilt</span>
+      <p><strong>Keyboard: </strong>Click the map, hold Shift, and use arrow keys.</p>
+      <p><strong>Touchscreen: </strong>Rotate with two fingers, tilt with three.</p>
     </li>
   </div>
 </div>

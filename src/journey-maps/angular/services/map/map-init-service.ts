@@ -10,7 +10,6 @@ import {
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 
-import { SbbMultiTouchSupport } from '../../controls/multiTouchSupport';
 import {
   SbbInteractionOptions,
   SbbPointsOfInterestOptions,
@@ -18,8 +17,15 @@ import {
   SbbViewportDimensions,
 } from '../../journey-maps.interfaces';
 import { isSbbBoundingBoxOptions, isSbbMapCenterOptions } from '../../util/typeguard';
-import { SBB_BOUNDING_BOX, SBB_JOURNEY_POIS_SOURCE } from '../constants';
-import { SBB_MARKER_BOUNDS_PADDING, SBB_MAX_ZOOM, SBB_MIN_ZOOM } from '../constants';
+import {
+  SBB_BOUNDING_BOX,
+  SBB_JOURNEY_POIS_SOURCE,
+  SBB_MARKER_BOUNDS_PADDING,
+  SBB_MAX_PITCH,
+  SBB_MAX_ZOOM,
+  SBB_MIN_PITCH,
+  SBB_MIN_ZOOM,
+} from '../constants';
 
 import { SbbMapUrlService } from './map-url-service';
 
@@ -97,11 +103,11 @@ export class SbbMapInitService {
     );
 
     this._translateControlLabels(maplibreMap, language);
-    this._addControls(maplibreMap, interactionOptions.oneFingerPan);
 
-    // https://docs.mapbox.com/mapbox-gl-js/example/toggle-interaction-handlers/
-    maplibreMap.keyboard.disableRotation();
-    maplibreMap.touchZoomRotate.disableRotation();
+    if (!interactionOptions.enableRotate && !interactionOptions.enablePitch) {
+      // I couldn't find a way to disable only rotation or only pitch on the keyboard
+      maplibreMap.keyboard.disableRotation();
+    }
 
     return maplibreMap;
   }
@@ -121,8 +127,8 @@ export class SbbMapInitService {
       maxZoom: viewportBounds?.maxZoomLevel ?? SBB_MAX_ZOOM,
       maxBounds: viewportBounds?.maxBounds,
       scrollZoom: interactionOptions.scrollZoom,
-      dragRotate: false,
-      touchPitch: false,
+      minPitch: SBB_MIN_PITCH,
+      maxPitch: SBB_MAX_PITCH,
       fadeDuration: 10,
       interactive: !interactionOptions.disableInteractions,
       // we have our custom attribution component
@@ -130,8 +136,15 @@ export class SbbMapInitService {
     };
 
     if (isSbbMapCenterOptions(viewportDimensions)) {
-      options.center = viewportDimensions.mapCenter;
-      options.zoom = viewportDimensions.zoomLevel;
+      const { mapCenter, zoomLevel, bearing, pitch } = viewportDimensions;
+      options.center = mapCenter;
+      options.zoom = zoomLevel;
+      if (bearing !== undefined) {
+        options.bearing = bearing;
+      }
+      if (pitch !== undefined) {
+        options.pitch = pitch;
+      }
     } else {
       let bounds, padding;
       if (isSbbBoundingBoxOptions(viewportDimensions)) {
@@ -176,11 +189,5 @@ export class SbbMapInitService {
       (maplibreMap as any)._locale,
       this._controlLabels[language],
     );
-  }
-
-  private _addControls(maplibreMap: MaplibreMap, oneFingerPan?: boolean): void {
-    if (!oneFingerPan) {
-      maplibreMap.addControl(new SbbMultiTouchSupport());
-    }
   }
 }

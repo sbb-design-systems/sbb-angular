@@ -3,6 +3,7 @@ import { NgModule } from '@angular/core';
 
 import { SbbAttribution } from './components/attribution/attribution';
 import { SbbBasemapSwitch } from './components/basemap-switch/basemap-switch';
+import { SbbCompassButton } from './components/compass-button/compass-button';
 import { SbbFeatureEventListener } from './components/feature-event-listener/feature-event-listener';
 import { SbbGeolocateButton } from './components/geolocate-button/geolocate-button';
 import { SbbHomeButton } from './components/home-button/home-button';
@@ -31,6 +32,7 @@ import { SbbJourneyMaps } from './journey-maps';
     SbbFeatureEventListener,
     SbbLeitPoi,
     SbbHomeButton,
+    SbbCompassButton,
     SbbGeolocateButton,
     SbbOverlayPaginator,
     SbbTemplateOutlet,

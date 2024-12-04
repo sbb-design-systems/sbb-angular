@@ -164,3 +164,5 @@ const client = document.querySelector('sbb-journey-maps-wc');
 client.moveEast();
 client.selectedMarkerId = 'velo';
 ```
+
+The code for the Web Component test app is in [showcase.ts](./showcase.ts)

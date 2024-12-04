@@ -11,6 +11,10 @@ export const SBB_EMPTY_FEATURE_COLLECTION: FeatureCollection = toFeatureCollecti
 
 @Injectable({ providedIn: 'root' })
 export class SbbMapService {
+  flyTo(map: MaplibreMap, flyToOptions: FlyToOptions) {
+    map.flyTo(flyToOptions);
+  }
+
   moveMap(map: MaplibreMap, viewportDimensions: SbbViewportDimensions): void {
     if (isSbbMapCenterOptions(viewportDimensions)) {
       this._centerMap(map, viewportDimensions.mapCenter, viewportDimensions.zoomLevel);

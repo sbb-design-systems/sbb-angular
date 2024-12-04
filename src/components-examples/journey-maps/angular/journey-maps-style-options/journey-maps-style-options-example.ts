@@ -69,7 +69,7 @@ export class JourneyMapsStyleOptionsExample implements OnInit {
     this.form
       .get('styleVersion')
       ?.valueChanges.pipe(takeUntil(this._destroyed))
-      .subscribe(({ versionNumber }: { versionNumber: 'v1' | 'v2' | 'v3' }) => {
+      .subscribe(({ versionNumber }: { versionNumber: 'v2' | 'v3' }) => {
         this.form.get('styleOptions')?.patchValue({
           ...this.form.get('styleOptions')?.value,
           ...STYLE_IDS[versionNumber],

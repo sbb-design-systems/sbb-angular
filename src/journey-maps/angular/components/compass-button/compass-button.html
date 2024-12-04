@@ -1,0 +1,17 @@
+<div
+  class="map-control-container"
+  [class.small-buttons]="showSmallButtons"
+  [class.dark]="isDarkMode"
+  *ngIf="map"
+>
+  <div class="map-control-button-wrapper">
+    <button
+      type="button"
+      (click)="onCompassButtonClicked()"
+      class="map-control-button"
+      [style.transform]="'rotate(' + negativeBearing + 'deg)  rotateX(' + pitch / 1.5 + 'deg)'"
+      [style.transition]="'transform 0.3s ease-in-out'"
+      [attr.aria-label]="compassButtonLabel"
+    ></button>
+  </div>
+</div>
