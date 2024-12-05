@@ -3,10 +3,13 @@
 </sbb-notification>
 <div class="web-map">
   <sbb-journey-maps
-    [apiKey]="apiKey"
     language="en"
+    [apiKey]="apiKey"
+    [viewportDimensions]="viewportDimensions"
+    [interactionOptions]="interactionOptions"
+    [extrusions]="customExtrusions"
+    [enableExtrusions]="form.get('extrusions')?.value"
     [styleOptions]="form.get('styleOptions')?.value"
-    [(selectedMarkerId)]="selectedMarkerId"
   ></sbb-journey-maps>
 </div>
 <div>
@@ -41,5 +44,18 @@
         </sbb-radio-group>
       </div>
     </div>
+
+    <div>
+      <span class="sbb-label">3D buildings</span>
+      <sbb-checkbox formControlName="extrusions">Show</sbb-checkbox><br />
+      <sbb-checkbox formControlName="customExtrusions" [disabled]="!form.get('extrusions')?.value"
+        >Custom</sbb-checkbox
+      >
+    </div>
   </form>
+</div>
+<div class="instructions">
+  <span class="sbb-label">Rotate / Tilt</span>
+  <p><strong>Keyboard: </strong>Click the map, hold Shift, and use arrow keys.</p>
+  <p><strong>Touchscreen: </strong>Rotate with two fingers, tilt with three.</p>
 </div>

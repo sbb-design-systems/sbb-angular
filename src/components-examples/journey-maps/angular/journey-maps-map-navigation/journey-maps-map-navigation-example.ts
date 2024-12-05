@@ -14,7 +14,6 @@ import {
   SbbInteractionOptions,
   SbbJourneyMaps,
   SbbJourneyMapsModule,
-  SbbMapCenterOptions,
   SbbZoomLevels,
 } from '@sbb-esta/journey-maps';
 import { LngLatLike } from 'maplibre-gl';
@@ -28,7 +27,7 @@ declare global {
 }
 
 /**
- * @title Journey Maps - SBB Map Navigation
+ * @title Journey Maps - SBB Map Viewport Interaction
  * @order 4
  * @includeExtraFiles ../shared/config.ts
  */
@@ -66,12 +65,6 @@ export class JourneyMapsMapNavigationExample implements OnInit {
   interactionOptions: SbbInteractionOptions = {
     enableRotate: true,
     enablePitch: true,
-  };
-  viewportDimensions: SbbMapCenterOptions = {
-    mapCenter: [7.44744, 46.94809],
-    zoomLevel: 15,
-    bearing: 180,
-    pitch: 60,
   };
 
   ngOnInit() {
@@ -115,5 +108,5 @@ export class JourneyMapsMapNavigationExample implements OnInit {
     return value.toFixed(6);
   }
 
-  private destroyed = new Subject<void>();
+  private readonly destroyed = new Subject<void>();
 }

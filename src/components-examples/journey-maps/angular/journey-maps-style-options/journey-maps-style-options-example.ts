@@ -6,11 +6,17 @@ import { SbbFormFieldModule } from '@sbb-esta/angular/form-field';
 import { SbbNotificationModule } from '@sbb-esta/angular/notification';
 import { SbbRadioButtonModule } from '@sbb-esta/angular/radio-button';
 import { SbbSelectModule } from '@sbb-esta/angular/select';
-import { SbbJourneyMapsModule } from '@sbb-esta/journey-maps';
+import {
+  BuildingExtrusions,
+  SbbInteractionOptions,
+  SbbJourneyMapsModule,
+  SbbMapCenterOptions,
+} from '@sbb-esta/journey-maps';
 import { Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
 
 import { RAIL_COLORS, STYLE_IDS } from '../shared/config';
+import { extrusionsBern } from '../shared/extrusion/bern';
 
 declare global {
   interface Window {
@@ -41,27 +47,40 @@ declare global {
 export class JourneyMapsStyleOptionsExample implements OnInit {
   apiKey = window.JM_API_KEY;
   form: UntypedFormGroup;
-  selectedMarkerId?: string;
+  interactionOptions: SbbInteractionOptions = {
+    enableRotate: true,
+    enablePitch: true,
+  };
+  viewportDimensions: SbbMapCenterOptions = {
+    mapCenter: [7.440099, 46.948558],
+    zoomLevel: 16.7,
+    bearing: 290,
+    pitch: 60,
+  };
+  customExtrusions?: BuildingExtrusions = extrusionsBern;
 
-  constructor(private fb: FormBuilder) {}
+  constructor(private readonly fb: FormBuilder) {}
 
   ngOnInit() {
     this.buildForm();
     this.subscribeStyleVersion();
+    this.subscribeCustomExtrusion();
   }
 
   private buildForm() {
     this.form = this.fb.group({
       styleOptions: this.fb.group({
-        mode: ['bright', this.resetSelectedMarkerIdValidator],
+        mode: ['bright'],
         railNetwork: this.fb.group({
           railNetworkColor: [],
         }),
         ...STYLE_IDS.v2,
       }),
       styleVersion: this.fb.group({
-        versionNumber: ['v2', this.resetSelectedMarkerIdValidator],
+        versionNumber: ['v2'],
       }),
+      extrusions: [true],
+      customExtrusions: [true],
     });
   }
 
@@ -77,11 +96,16 @@ export class JourneyMapsStyleOptionsExample implements OnInit {
       });
   }
 
-  private resetSelectedMarkerIdValidator = () => {
-    this.selectedMarkerId = undefined;
-    return null;
-  };
-  private _destroyed = new Subject<void>();
+  private subscribeCustomExtrusion() {
+    this.form
+      .get('customExtrusions')
+      ?.valueChanges.pipe(takeUntil(this._destroyed))
+      .subscribe((showCustom: boolean) => {
+        this.customExtrusions = showCustom ? extrusionsBern : undefined;
+      });
+  }
+
+  private readonly _destroyed = new Subject<void>();
 
   protected readonly RAIL_COLORS = RAIL_COLORS;
 }

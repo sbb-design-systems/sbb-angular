@@ -22,6 +22,7 @@ export const SBB_ROKAS_STATION_HOVER_SOURCE = 'rokas-station-hover-source';
 export const SBB_ROKAS_STOPOVER_SOURCE = 'rokas-stopover-source';
 export const SBB_ROKAS_WALK_SOURCE = 'rokas-walk-source';
 export const SBB_ROKAS_ZONE_SOURCE = 'rokas-zone-source';
+export const SBB_ROKAS_EXTRUSION_SOURCE = 'rokas-extrusion-source';
 export const SBB_SERVICE_POINT_SOURCE = 'service_points';
 
 export const SBB_POI_LAYER = 'journey-pois';

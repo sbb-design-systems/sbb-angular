@@ -14,10 +14,52 @@ function addInteractionOptions(client: HTMLElement & SbbJourneyMaps) {
 
 function addViewportDimensions(client: HTMLElement & SbbJourneyMaps) {
   client.viewportDimensions = {
-    mapCenter: [7.44744, 46.94809], // Bern
-    zoomLevel: 15,
-    bearing: 180,
+    mapCenter: [7.440099, 46.948558], // Bern
+    zoomLevel: 16.7,
+    bearing: 38,
     pitch: 60,
+  };
+}
+
+function addExtrusions(client: HTMLElement & SbbJourneyMaps) {
+  client.enableExtrusions = true;
+  client.extrusions = {
+    type: 'FeatureCollection',
+    features: [
+      {
+        type: 'Feature',
+        properties: {
+          '@id': 'way/380715335',
+          building: 'train_station',
+          'building:levels': '5',
+          'building:material': 'glass',
+          height: '21',
+          'roof:shape': 'flat',
+          hide_3d: false,
+          render_height: 100,
+        },
+        geometry: {
+          type: 'Polygon',
+          coordinates: [
+            [
+              [7.4394738, 46.9490841],
+              [7.4394898, 46.9490401],
+              [7.4396021, 46.9487305],
+              [7.4396198, 46.9486814],
+              [7.4396321, 46.948648],
+              [7.4396835, 46.9485063],
+              [7.4400528, 46.9485689],
+              [7.4404231, 46.9486314],
+              [7.4403775, 46.9487533],
+              [7.440261, 46.9490767],
+              [7.4402135, 46.9492092],
+              [7.4394738, 46.9490841],
+            ],
+          ],
+        },
+        id: 'way/380715335',
+      },
+    ],
   };
 }
 
@@ -181,6 +223,7 @@ function createJourneyMapsClient(): SbbJourneyMapsElement {
   client.apiKey = window.JM_API_KEY;
 
   addInteractionOptions(client);
+  addExtrusions(client);
   addViewportDimensions(client);
   addMarkers(client);
   createMarkerDetailsTemplate(client);
