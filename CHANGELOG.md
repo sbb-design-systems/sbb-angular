@@ -2,6 +2,20 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [19.1.0](https://github.com/sbb-design-systems/sbb-angular/compare/19.0.0...19.1.0) (2024-12-05)
+
+
+### Features
+
+* **journey-maps:** add extrusion layer ([#2448](https://github.com/sbb-design-systems/sbb-angular/issues/2448)) ([6553151](https://github.com/sbb-design-systems/sbb-angular/commit/6553151e0e1646c0a3628fffa83a9911a690f8c5))
+* **journey-maps:** enable map rotation and pitch ([#2444](https://github.com/sbb-design-systems/sbb-angular/issues/2444)) ([a8fa3ee](https://github.com/sbb-design-systems/sbb-angular/commit/a8fa3ee093f75b6e234a17ec1d1b956b6e92c03e))
+
+
+### Bug Fixes
+
+* **deps:** update angular to v19.0.1 ([0c0892a](https://github.com/sbb-design-systems/sbb-angular/commit/0c0892a432c6a2a81f37f24d84df6917d6101594))
+* **deps:** update dependency @angular/cdk to v19.0.1 ([f48fa9a](https://github.com/sbb-design-systems/sbb-angular/commit/f48fa9abf03abf2a81f5adb429a6c1b0a78c6c34))
+
 ## [19.0.0](https://github.com/sbb-design-systems/sbb-angular/compare/19.0.0-rc.0...19.0.0) (2024-11-20)
 
 ### ⚠ BREAKING CHANGES
