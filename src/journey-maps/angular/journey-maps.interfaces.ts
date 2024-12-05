@@ -278,7 +278,7 @@ export type SbbFeatureDataType = 'MARKER' | 'ROUTE' | 'STATION' | 'ZONE' | 'POI'
 
 export type SbbDeselectableFeatureDataType = Extract<SbbFeatureDataType, 'MARKER' | 'POI'>;
 
-/** Angular TemplateRef or an id of an HTML <template>. */
+/** Angular TemplateRef or an id of an HTML template. */
 export type SbbTemplateType = TemplateRef<any> | string;
 
 /** points of interest options */
