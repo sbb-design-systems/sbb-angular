@@ -70,7 +70,7 @@ export interface SbbMapCenterOptions {
   zoomLevel: number;
   /** The desired bearing of the map (between 0 and 360), defaulting to 0. */
   bearing?: number;
-  /** The desired bearing of the map (between 0 and 60), defaulting to 0. */
+  /** The desired pitch of the map (between 0 and 60), defaulting to 0. */
   pitch?: number;
 }
 
