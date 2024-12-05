@@ -26,7 +26,7 @@ declare global {
 
 /**
  * @title Journey Maps - SBB Style Options
- * @includeExtraFiles ../shared/config.ts
+ * @includeExtraFiles ../shared/config.ts,../shared/extrusion/bern.ts
  * @order 3
  *  */
 @Component({
