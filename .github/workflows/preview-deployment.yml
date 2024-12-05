@@ -83,6 +83,7 @@ jobs:
             ...payload,
             ref: context.payload.workflow_run.head_sha,
             auto_merge: false,
+            required_contexts: ['build', 'packages', 'showcase']
           });
           await github.rest.repos.createDeploymentStatus({
             ...payload,
