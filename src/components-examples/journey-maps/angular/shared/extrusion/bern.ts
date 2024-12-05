@@ -1,6 +1,6 @@
-import { BuildingExtrusions } from '@sbb-esta/journey-maps';
+import { SbbBuildingExtrusions } from '@sbb-esta/journey-maps';
 
-export const extrusionsBern: BuildingExtrusions = {
+export const extrusionsBern: SbbBuildingExtrusions = {
   type: 'FeatureCollection',
   features: [
     {

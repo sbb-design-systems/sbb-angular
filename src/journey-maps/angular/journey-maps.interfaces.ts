@@ -309,7 +309,8 @@ export interface BuildingExtrusionProperties {
   render_color?: string;
 }
 
-export type BuildingExtrusions = FeatureCollection & {
+/** Custom 3d-buildings to be shown on the map. Requires 'enableExtrusions' @Input to be set to 'true' */
+export type SbbBuildingExtrusions = FeatureCollection & {
   features: Array<Feature & { properties: BuildingExtrusionProperties }>;
 };
 
