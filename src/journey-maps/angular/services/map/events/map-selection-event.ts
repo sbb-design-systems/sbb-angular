@@ -11,7 +11,7 @@ import {
   SbbSelectionMode,
 } from '../../../journey-maps.interfaces';
 import { SBB_POI_ID_PROPERTY } from '../../constants';
-import { MarkerOrPoiSelectionStateService } from '../marker-or-poi-selection-state.service';
+import { FeatureDataStateService } from '../feature-data-state.service';
 
 import { SbbMapEventUtils } from './map-event-utils';
 import { SbbRouteUtils } from './route-utils';
@@ -36,7 +36,7 @@ export class SbbMapSelectionEvent {
   constructor(
     private _routeUtilsService: SbbRouteUtils,
     private _mapEventUtils: SbbMapEventUtils,
-    private _markerOrPoiSelectionStateService: MarkerOrPoiSelectionStateService,
+    private _featureDataStateService: FeatureDataStateService,
   ) {}
 
   initialize(
@@ -56,12 +56,23 @@ export class SbbMapSelectionEvent {
 
   toggleSelection(features: SbbFeatureData[]): void {
     const lastRouteEventDataCandidate = new Map<SbbFeatureData, boolean>();
+
+    if (features[0].featureDataType !== 'ROUTE') {
+      const selectedRoutes: SbbFeatureData[] = this._featureDataStateService.getSelectedRoutes();
+      selectedRoutes.forEach((route) => {
+        lastRouteEventDataCandidate.set(route, false);
+        this._routeUtilsService.setRelatedRouteFeaturesSelection(this._mapInstance, route, false);
+      });
+    }
+
     for (const feature of features) {
       const selected = !feature.state.selected;
-      this._setFeatureSelection(feature, selected);
+      console.log('toggleSelection: ' + feature.featureDataType + ' und ' + selected); // TODO: remove
+      this._setFeatureSelection(feature, selected); // fixme: asi, this only updates the current feature but not the following unselected features
       if (feature.featureDataType === 'ZONE') {
         this._touchedZoneIds.add(Number(feature.id));
       } else if (feature.featureDataType === 'ROUTE') {
+        this._selectRoute(selected, feature);
         lastRouteEventDataCandidate.set(feature, feature.state.selected);
       } else if (feature.featureDataType === 'POI') {
         this._selectPoi(selected, feature);
@@ -71,15 +82,24 @@ export class SbbMapSelectionEvent {
     if (lastRouteEventDataCandidate.size) {
       this._lastRouteEventData = lastRouteEventDataCandidate;
     }
+    this._featureDataStateService.loggerAndrin(); // TODO: remove
   }
 
   private _selectPoi(selected: boolean, feature: SbbFeatureData) {
+    const poi = { id: feature.properties[SBB_POI_ID_PROPERTY] };
+
     if (selected) {
-      this._markerOrPoiSelectionStateService.selectPoi({
-        id: feature.properties[SBB_POI_ID_PROPERTY],
-      });
+      this._featureDataStateService.addSelectedPoi(poi);
     } else {
-      this._markerOrPoiSelectionStateService.deselectPoi();
+      this._featureDataStateService.removeSelectedPoi(feature);
+    }
+  }
+
+  private _selectRoute(selected: boolean, route: SbbFeatureData) {
+    if (selected) {
+      this._featureDataStateService.addSelectedRoute(route);
+    } else {
+      this._featureDataStateService.removeSelectedRoute(route);
     }
   }
 
@@ -119,7 +139,7 @@ export class SbbMapSelectionEvent {
   }
 
   // this method sets a SbbFeatureData as selected/unselected
-  private _setFeatureSelection(data: SbbFeatureData, selected: boolean) {
+  _setFeatureSelection(data: SbbFeatureData, selected: boolean) {
     if (this._selectionModes.get(data.featureDataType) === 'single') {
       // if this SbbFeatureDataType has selectionMode 'single',
       // remove the 'featureState' for all MapGeoJSONFeature features containing this 'source' and 'sourceLayer'

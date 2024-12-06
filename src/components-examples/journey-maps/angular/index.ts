@@ -8,6 +8,7 @@ import { SbbNotificationModule } from '@sbb-esta/angular/notification';
 import { SbbRadioButtonModule } from '@sbb-esta/angular/radio-button';
 import { SbbSelectModule } from '@sbb-esta/angular/select';
 import { SbbTabsModule } from '@sbb-esta/angular/tabs';
+import { JourneyMapsRoutesPoisExample } from '@sbb-esta/components-examples/journey-maps/angular/journey-maps-routes-pois/journey-maps-routes-pois-example';
 import { SbbJourneyMapsModule } from '@sbb-esta/journey-maps';
 
 import { JourneyMapsBasicExample } from './journey-maps-basic/journey-maps-basic-example';
@@ -24,6 +25,7 @@ export {
   JourneyMapsPoisMarkersExample,
   JourneyMapsRoutesZonesExample,
   JourneyMapsBasicExample,
+  JourneyMapsRoutesPoisExample,
 };
 const EXAMPLES = [
   JourneyMapsUiOptionsExample,
@@ -32,6 +34,7 @@ const EXAMPLES = [
   JourneyMapsPoisMarkersExample,
   JourneyMapsRoutesZonesExample,
   JourneyMapsBasicExample,
+  JourneyMapsRoutesPoisExample,
 ];
 
 @NgModule({
