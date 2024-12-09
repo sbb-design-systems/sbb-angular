@@ -1240,7 +1240,6 @@ export class SbbJourneyMaps implements OnInit, AfterViewInit, OnDestroy, OnChang
 
   private _showOrHideCustomExtrusions() {
     if (this._isStyleLoaded) {
-      this._map.setLayoutProperty('3d-buildings-custom', 'visibility', 'visible'); // TODO cdi ROKAS-2163 delete this line once this layer has been made visible directly in the style
       this._mapExtrusionService.updateCustomExtrusions(this._map, this.customExtrusions);
     }
   }
