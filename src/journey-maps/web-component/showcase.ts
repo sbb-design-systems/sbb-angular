@@ -22,8 +22,8 @@ function addViewportDimensions(client: HTMLElement & SbbJourneyMaps) {
 }
 
 function addExtrusions(client: HTMLElement & SbbJourneyMaps) {
-  client.enableExtrusions = true;
-  client.extrusions = {
+  client.enableDefaultExtrusions = true;
+  client.customExtrusions = {
     type: 'FeatureCollection',
     features: [
       {
