@@ -69,7 +69,7 @@
     "zone.js": "0.15.0"
   },
   "devDependencies": {
-    "@actions/cache": "3.3.0",
+    "@actions/cache": "4.0.0",
     "@angular-devkit/build-angular": "19.0.4",
     "@angular-devkit/core": "19.0.4",
     "@angular-devkit/schematics": "19.0.4",
@@ -118,7 +118,7 @@
     "@types/send": "0.17.4",
     "@types/shelljs": "^0.8.15",
     "@types/yargs": "17.0.13",
-    "angular-server-side-configuration": "18.2.0",
+    "angular-server-side-configuration": "19.0.1",
     "angular-t9n": "19.0.0",
     "browser-sync": "3.0.2",
     "dgeni": "^0.4.14",
@@ -162,7 +162,7 @@
     "stylelint": "16.11.0",
     "stylelint-config-recommended-scss": "14.1.0",
     "stylelint-scss": "6.10.0",
-    "terser": "5.36.0",
+    "terser": "5.37.0",
     "ts-node": "10.9.2",
     "tsconfig-paths": "4.2.0",
     "tslint": "6.1.3",

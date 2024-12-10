@@ -24,7 +24,7 @@ import { SbbLevelSwitcher } from './components/level-switch/services/level-switc
 import { SbbMapLayerFilter } from './components/level-switch/services/map-layer-filter';
 import { SbbGeolocateControl } from './controls/sbbGeolocateControl';
 import {
-  BuildingExtrusions,
+  SbbBuildingExtrusions,
   SbbDeselectableFeatureDataType,
   SbbFeatureData,
   SbbFeaturesClickEventData,
@@ -135,10 +135,10 @@ export class SbbJourneyMaps implements OnInit, AfterViewInit, OnDestroy, OnChang
   @Input() viewportDimensions?: SbbViewportDimensions;
   /** Restrict the visible part and possible zoom levels of the map. */
   @Input() viewportBounds?: SbbViewportBounds;
-  /** Enable/disable default extrusions to be shown on the map */
-  @Input() enableDefaultExtrusions: boolean = false;
-  /** Custom Extrusions GeoJSON to be shown on the map */
-  @Input() customExtrusions?: BuildingExtrusions;
+  /** Enable/disable extrusions to be shown on the map */
+  @Input() enableExtrusions: boolean = false;
+  /** Custom Extrusions GeoJSON */
+  @Input() extrusions?: SbbBuildingExtrusions;
 
   /**
    * This event is emitted whenever a marker, with property triggerEvent, is selected or unselected.
@@ -599,8 +599,8 @@ export class SbbJourneyMaps implements OnInit, AfterViewInit, OnDestroy, OnChang
     this._executeWhenMapStyleLoaded(() => {
       this._mapOverflowingLabelService.hideOverflowingLabels(this._map, this.interactionOptions);
       this._show2Dor3D();
-      this._showOrHideDefaultExtrusions();
-      this._showOrHideCustomExtrusions();
+      this._showOrHideExtrusions();
+      this._updateExtrusions();
     });
   }
 
@@ -776,15 +776,12 @@ export class SbbJourneyMaps implements OnInit, AfterViewInit, OnDestroy, OnChang
       this._show2Dor3D();
     }
 
-    if (
-      changes.enableDefaultExtrusions?.currentValue !==
-      changes.enableDefaultExtrusions?.previousValue
-    ) {
-      this._showOrHideDefaultExtrusions();
+    if (changes.enableExtrusions?.currentValue !== changes.enableExtrusions?.previousValue) {
+      this._showOrHideExtrusions();
     }
 
-    if (changes.customExtrusions?.currentValue !== changes.customExtrusions?.previousValue) {
-      this._showOrHideCustomExtrusions();
+    if (changes.extrusions?.currentValue !== changes.extrusions?.previousValue) {
+      this._updateExtrusions();
     }
   }
 
@@ -990,8 +987,7 @@ export class SbbJourneyMaps implements OnInit, AfterViewInit, OnDestroy, OnChang
         this._map.once('styledata', () => {
           this._featureEventListenerComponent.updateListener();
           this._show2Dor3D();
-          this._showOrHideDefaultExtrusions();
-          this._showOrHideCustomExtrusions();
+          this._showOrHideExtrusions();
           this._mapMarkerService.updateMarkers(
             this._map,
             this._getMarkers(),
@@ -1022,6 +1018,9 @@ export class SbbJourneyMaps implements OnInit, AfterViewInit, OnDestroy, OnChang
               this._map,
               this.styleOptions.railNetwork,
             );
+          }
+          if (this.extrusions) {
+            this._updateExtrusions();
           }
         });
       });
@@ -1228,20 +1227,23 @@ export class SbbJourneyMaps implements OnInit, AfterViewInit, OnDestroy, OnChang
     }
   }
 
-  private _showOrHideDefaultExtrusions() {
+  private _showOrHideExtrusions() {
     if (this._isStyleLoaded) {
       this._map.setLayoutProperty(
         '3d-buildings',
         'visibility',
-        this.enableDefaultExtrusions ? 'visible' : 'none',
+        this.enableExtrusions ? 'visible' : 'none',
+      );
+      this._map.setLayoutProperty(
+        '3d-buildings-custom',
+        'visibility',
+        this.enableExtrusions ? 'visible' : 'none',
       );
     }
   }
 
-  private _showOrHideCustomExtrusions() {
-    if (this._isStyleLoaded) {
-      this._mapExtrusionService.updateCustomExtrusions(this._map, this.customExtrusions);
-    }
+  private _updateExtrusions() {
+    this._mapExtrusionService.addExtrusions(this._map, this.extrusions);
   }
 
   private _isLevelFilterEnabled(): boolean {
