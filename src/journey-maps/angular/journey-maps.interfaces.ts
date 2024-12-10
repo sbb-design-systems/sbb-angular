@@ -278,7 +278,7 @@ export type SbbFeatureDataType = 'MARKER' | 'ROUTE' | 'STATION' | 'ZONE' | 'POI'
 
 export type SbbDeselectableFeatureDataType = Extract<SbbFeatureDataType, 'MARKER' | 'POI'>;
 
-/** Angular TemplateRef or an id of an HTML <template>. */
+/** Angular TemplateRef or an id of an HTML template. */
 export type SbbTemplateType = TemplateRef<any> | string;
 
 /** points of interest options */
@@ -309,7 +309,8 @@ export interface BuildingExtrusionProperties {
   render_color?: string;
 }
 
-export type BuildingExtrusions = FeatureCollection & {
+/** Custom 3d-buildings to be shown on the map. Requires 'enableExtrusions' @Input to be set to 'true' */
+export type SbbBuildingExtrusions = FeatureCollection & {
   features: Array<Feature & { properties: BuildingExtrusionProperties }>;
 };
 

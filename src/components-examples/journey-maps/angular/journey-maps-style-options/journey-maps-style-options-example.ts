@@ -7,7 +7,7 @@ import { SbbNotificationModule } from '@sbb-esta/angular/notification';
 import { SbbRadioButtonModule } from '@sbb-esta/angular/radio-button';
 import { SbbSelectModule } from '@sbb-esta/angular/select';
 import {
-  BuildingExtrusions,
+  SbbBuildingExtrusions,
   SbbInteractionOptions,
   SbbJourneyMapsModule,
   SbbMapCenterOptions,
@@ -26,7 +26,7 @@ declare global {
 
 /**
  * @title Journey Maps - SBB Style Options
- * @includeExtraFiles ../shared/config.ts
+ * @includeExtraFiles ../shared/config.ts,../shared/extrusion/bern.ts
  * @order 3
  *  */
 @Component({
@@ -57,7 +57,7 @@ export class JourneyMapsStyleOptionsExample implements OnInit {
     bearing: 290,
     pitch: 60,
   };
-  customExtrusions?: BuildingExtrusions = extrusionsBern;
+  customExtrusions?: SbbBuildingExtrusions = extrusionsBern;
 
   constructor(private readonly fb: FormBuilder) {}
 
