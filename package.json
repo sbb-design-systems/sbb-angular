@@ -53,7 +53,7 @@
   "schematics": "./tools/schematics/collection.json",
   "dependencies": {
     "@angular/animations": "19.0.3",
-    "@angular/cdk": "19.0.2",
+    "@angular/cdk": "19.0.3",
     "@angular/common": "19.0.3",
     "@angular/core": "19.0.3",
     "@angular/elements": "19.0.3",
