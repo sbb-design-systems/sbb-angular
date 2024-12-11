@@ -323,10 +323,10 @@
   optionalDependencies:
     lmdb "3.2.0"
 
-"@angular/cdk@19.0.2":
-  version "19.0.2"
-  resolved "https://registry.yarnpkg.com/@angular/cdk/-/cdk-19.0.2.tgz#0529cd283879950366236562502ef63d750b8641"
-  integrity sha512-eDjHJJWpgnzC3pR6N0gCdh51Q1ffoh6mql06YSqprj005aNKBjmCMnpU4bPPzdGSkKsjwAZWGUNWg4RS+R+iZQ==
+"@angular/cdk@19.0.3":
+  version "19.0.3"
+  resolved "https://registry.yarnpkg.com/@angular/cdk/-/cdk-19.0.3.tgz#d8b0c419a31783c603965065640f4f9b7192605c"
+  integrity sha512-sPdIKbSgNk4z02FqdTTMUS62aLVA2R/DsnOk3qdH+nEfeS4nNWQEzwrvMf6dDsTeLQ6YJLWXfZfemsGYpOoiWg==
   dependencies:
     tslib "^2.3.0"
   optionalDependencies:
