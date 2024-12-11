@@ -1041,18 +1041,14 @@ export class SbbJourneyMaps implements OnInit, AfterViewInit, OnDestroy, OnChang
       this.mapBoundsChange.emit(this._map.getBounds().toArray());
 
       const bearing = this._map.getBearing();
-      if (this._normalizeTo360(bearing) !== this._normalizeTo360(this._previousBearing)) {
-        this._previousBearing = this._normalizeBearingForTransition(this._previousBearing, bearing);
-        this._cd.detectChanges(); // needed for the compass button when using Web Component
-        this.mapBearingChange.emit(this._normalizeTo360(bearing));
-      }
+      this._previousBearing = this._normalizeBearingForTransition(this._previousBearing, bearing);
+      this.mapBearingChange.emit(this._normalizeTo360(bearing));
+      this._cd.detectChanges(); // needed for the compass button when using Web Component
 
       const pitch = this._map.getPitch();
-      if (pitch !== this._previousPitch) {
-        this._previousPitch = pitch;
-        this._cd.detectChanges(); // needed for the compass button when using Web Component
-        this.mapPitchChange.emit(pitch);
-      }
+      this._previousPitch = pitch;
+      this.mapPitchChange.emit(pitch);
+      this._cd.detectChanges(); // needed for the compass button when using Web Component
     });
 
     this._levelSwitchService.selectedLevel$.pipe(takeUntil(this._destroyed)).subscribe((level) => {
