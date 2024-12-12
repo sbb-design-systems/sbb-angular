@@ -61,11 +61,4 @@ export class FeatureDataStateService {
   deselectRoutes() {
     this._selectedRoutes = [];
   }
-
-  loggerAndrin() {
-    console.log('dir after update:');
-    console.dir(this._selectedPoi, { depth: null });
-    console.dir(this._selectedRoutes, { depth: null });
-    console.dir(this._selectedSbbMarker, { depth: null });
-  }
 }

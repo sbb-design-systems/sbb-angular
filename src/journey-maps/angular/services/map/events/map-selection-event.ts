@@ -67,8 +67,7 @@ export class SbbMapSelectionEvent {
 
     for (const feature of features) {
       const selected = !feature.state.selected;
-      console.log('toggleSelection: ' + feature.featureDataType + ' und ' + selected); // TODO: remove
-      this._setFeatureSelection(feature, selected); // fixme: asi, this only updates the current feature but not the following unselected features
+      this._setFeatureSelection(feature, selected);
       if (feature.featureDataType === 'ZONE') {
         this._touchedZoneIds.add(Number(feature.id));
       } else if (feature.featureDataType === 'ROUTE') {
@@ -82,7 +81,6 @@ export class SbbMapSelectionEvent {
     if (lastRouteEventDataCandidate.size) {
       this._lastRouteEventData = lastRouteEventDataCandidate;
     }
-    this._featureDataStateService.loggerAndrin(); // TODO: remove
   }
 
   private _selectPoi(selected: boolean, feature: SbbFeatureData) {

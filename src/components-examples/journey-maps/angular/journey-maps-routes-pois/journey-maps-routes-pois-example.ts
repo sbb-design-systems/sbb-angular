@@ -86,8 +86,8 @@ export class JourneyMapsRoutesPoisExample implements OnInit {
   mapCenter?: LngLatLike;
   mapBoundingBox?: number[][];
   viewportDimensions?: SbbViewportDimensions | SbbMapCenterOptions = {
-    mapCenter: [7.44779, 46.96151],
-    zoomLevel: 16.7,
+    mapCenter: [7.44613, 46.96156],
+    zoomLevel: 18,
   };
 
   constructor(
