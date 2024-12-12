@@ -90,6 +90,7 @@ export class JourneyMapsRoutesZonesExample implements OnInit {
     this.subscribeRoutingLed();
     this.form.get('listenerOptions.ROUTE')?.patchValue({ hoverTemplate: this.routeTemplate });
     this.form.get('listenerOptions.STATION')?.patchValue({ clickTemplate: this.stationTemplate });
+    this._cd.detectChanges(); // Prevent NG0100: ExpressionChangedAfterItHasBeenCheckedError
   }
 
   changeSelectedLevel(level: number | undefined) {
