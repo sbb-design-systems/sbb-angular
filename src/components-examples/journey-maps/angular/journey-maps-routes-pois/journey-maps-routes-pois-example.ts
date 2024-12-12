@@ -19,7 +19,6 @@ import {
   SbbJourneyMaps,
   SbbJourneyMapsModule,
   SbbJourneyMapsRoutingOptions,
-  SbbMapCenterOptions,
   SbbViewportDimensions,
   SbbZoomLevels,
 } from '@sbb-esta/journey-maps';
@@ -41,7 +40,7 @@ declare global {
 }
 
 /**
- * @title Journey Maps - SBB Map Routes & Pois
+ * @title Journey Maps - SBB Map Routes, POIs & Markers
  * @includeExtraFiles ../shared/config.ts,../shared/markers.ts,../shared/trip/be-sh.ts,../shared/trip/zh-be_wyleregg.ts,../shared/trip/zh-sh_waldfriedhof.ts,../shared/routes/biel-lyss.ts,../shared/routes/bn-ls.ts
  * @order 6
  *  */
@@ -85,10 +84,7 @@ export class JourneyMapsRoutesPoisExample implements OnInit {
   zoomLevels?: SbbZoomLevels;
   mapCenter?: LngLatLike;
   mapBoundingBox?: number[][];
-  viewportDimensions?: SbbViewportDimensions | SbbMapCenterOptions = {
-    mapCenter: [7.44613, 46.96156],
-    zoomLevel: 18,
-  };
+  viewportDimensions?: SbbViewportDimensions;
 
   constructor(
     private fb: FormBuilder,

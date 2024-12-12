@@ -84,20 +84,20 @@ export class SbbMapSelectionEvent {
   }
 
   private _selectPoi(selected: boolean, feature: SbbFeatureData) {
-    const poi = { id: feature.properties[SBB_POI_ID_PROPERTY] };
-
     if (selected) {
-      this._featureDataStateService.addSelectedPoi(poi);
+      this._featureDataStateService.selectPoi({
+        id: feature.properties[SBB_POI_ID_PROPERTY],
+      });
     } else {
-      this._featureDataStateService.removeSelectedPoi(feature);
+      this._featureDataStateService.deselectPoi(feature);
     }
   }
 
   private _selectRoute(selected: boolean, route: SbbFeatureData) {
     if (selected) {
-      this._featureDataStateService.addSelectedRoute(route);
+      this._featureDataStateService.selectRoute(route);
     } else {
-      this._featureDataStateService.removeSelectedRoute(route);
+      this._featureDataStateService.deselectRoute(route);
     }
   }
 

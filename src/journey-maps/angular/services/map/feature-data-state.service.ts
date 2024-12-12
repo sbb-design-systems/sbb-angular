@@ -12,24 +12,42 @@ export class FeatureDataStateService {
   private _selectedPoi: PoiDetails[] = [];
   private _selectedRoutes: SbbFeatureData[] = [];
 
-  addSelectedPoi(poi: PoiDetails) {
-    this.deselectRoutes();
+  selectPoi(poi: PoiDetails) {
+    this.deselectAllRoutes();
     this.deselectSbbMarker();
     this._selectedPoi.push(poi);
   }
 
-  removeSelectedPoi(poi: SbbFeatureData) {
-    this._selectedPoi = this._selectedPoi.filter((p) => p.id !== poi.id);
+  selectSbbMarker(sbbMarker: SbbMarker) {
+    this.deselectAllPois();
+    this.deselectAllRoutes();
+    this._selectedSbbMarker = sbbMarker;
   }
 
-  addSelectedRoute(route: SbbFeatureData) {
-    this.deselectPois();
+  selectRoute(route: SbbFeatureData) {
+    this.deselectAllPois();
     this.deselectSbbMarker();
     this._selectedRoutes.push(route);
   }
 
-  removeSelectedRoute(route: SbbFeatureData) {
+  deselectPoi(poi: SbbFeatureData) {
+    this._selectedPoi = this._selectedPoi.filter((p) => p.id !== poi.id);
+  }
+
+  deselectRoute(route: SbbFeatureData) {
     this._selectedRoutes = this._selectedRoutes.filter((r) => r.id !== route.id);
+  }
+
+  deselectSbbMarker() {
+    this._selectedSbbMarker = undefined;
+  }
+
+  deselectAllPois() {
+    this._selectedPoi = [];
+  }
+
+  deselectAllRoutes() {
+    this._selectedRoutes = [];
   }
 
   getSelectedSbbMarker() {
@@ -42,23 +60,5 @@ export class FeatureDataStateService {
 
   getSelectedPoi(): PoiDetails[] {
     return this._selectedPoi;
-  }
-
-  selectSbbMarker(sbbMarker: SbbMarker) {
-    this.deselectPois();
-    this.deselectRoutes();
-    this._selectedSbbMarker = sbbMarker;
-  }
-
-  deselectSbbMarker() {
-    this._selectedSbbMarker = undefined;
-  }
-
-  deselectPois() {
-    this._selectedPoi = [];
-  }
-
-  deselectRoutes() {
-    this._selectedRoutes = [];
   }
 }
