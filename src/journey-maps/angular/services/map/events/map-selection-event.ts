@@ -137,7 +137,7 @@ export class SbbMapSelectionEvent {
   }
 
   // this method sets a SbbFeatureData as selected/unselected
-  _setFeatureSelection(data: SbbFeatureData, selected: boolean) {
+  private _setFeatureSelection(data: SbbFeatureData, selected: boolean) {
     if (this._selectionModes.get(data.featureDataType) === 'single') {
       // if this SbbFeatureDataType has selectionMode 'single',
       // remove the 'featureState' for all MapGeoJSONFeature features containing this 'source' and 'sourceLayer'
