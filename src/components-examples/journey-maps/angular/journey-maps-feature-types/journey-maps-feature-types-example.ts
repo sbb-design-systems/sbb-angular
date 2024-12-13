@@ -16,11 +16,6 @@ import { SbbNotificationModule } from '@sbb-esta/angular/notification';
 import { SbbRadioButtonModule } from '@sbb-esta/angular/radio-button';
 import { SbbSelectModule } from '@sbb-esta/angular/select';
 import {
-  POI_CATEGORIES,
-  STYLE_IDS,
-} from '@sbb-esta/components-examples/journey-maps/angular/shared/config';
-import { markers } from '@sbb-esta/components-examples/journey-maps/angular/shared/markers';
-import {
   SbbJourneyMaps,
   SbbJourneyMapsModule,
   SbbJourneyRoutesOptions,
@@ -32,6 +27,8 @@ import { LngLatBounds, LngLatBoundsLike, LngLatLike } from 'maplibre-gl';
 import { BehaviorSubject, Subject } from 'rxjs';
 import { filter, map, take, takeUntil } from 'rxjs/operators';
 
+import { POI_CATEGORIES, STYLE_IDS } from '../shared/config';
+import { markers } from '../shared/markers';
 import { bielLyssRoutes, bielLyssRoutesOptions } from '../shared/routes/biel-lyss';
 import { bnLsRoutes, bnLsRoutesOptions } from '../shared/routes/bn-ls';
 import { tripBeSh } from '../shared/trip/be-sh';
