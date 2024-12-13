@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
-import { SbbFeatureData } from '@sbb-esta/journey-maps/angular';
 
+import { SbbFeatureData } from '../../journey-maps.interfaces';
 import { SbbMarker } from '../../model/marker';
 
 import { PoiDetails } from './util/poi-details';

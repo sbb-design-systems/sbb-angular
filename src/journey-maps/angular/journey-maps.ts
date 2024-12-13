@@ -14,7 +14,6 @@ import {
   SimpleChanges,
   ViewChild,
 } from '@angular/core';
-import { FeatureDataStateService } from '@sbb-esta/journey-maps/angular/services/map/feature-data-state.service';
 import { FeatureCollection, Point } from 'geojson';
 import { LngLatBounds, LngLatLike, Map as MaplibreMap, VectorTileSource } from 'maplibre-gl';
 import { ReplaySubject, Subject } from 'rxjs';
@@ -56,6 +55,7 @@ import {
 } from './services/constants';
 import { SbbLocaleService } from './services/locale-service';
 import { SbbMapEventUtils } from './services/map/events/map-event-utils';
+import { FeatureDataStateService } from './services/map/feature-data-state.service';
 import { SbbMapConfig } from './services/map/map-config';
 import { SbbMapExtrusionService } from './services/map/map-extrusion-service';
 import { SbbMapInitService } from './services/map/map-init-service';
