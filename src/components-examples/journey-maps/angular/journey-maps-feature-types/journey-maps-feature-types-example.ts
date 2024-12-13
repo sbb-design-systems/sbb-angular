@@ -1,6 +1,11 @@
 import { AsyncPipe } from '@angular/common';
 import { ChangeDetectorRef, Component, OnInit, TemplateRef, ViewChild } from '@angular/core';
-import { FormBuilder, ReactiveFormsModule, UntypedFormGroup, Validators } from '@angular/forms';
+import {
+  ReactiveFormsModule,
+  UntypedFormBuilder,
+  UntypedFormGroup,
+  Validators,
+} from '@angular/forms';
 import { SbbButtonModule } from '@sbb-esta/angular/button';
 import { SbbCheckboxModule } from '@sbb-esta/angular/checkbox';
 import { SbbOptionModule } from '@sbb-esta/angular/core';
@@ -18,20 +23,22 @@ import { markers } from '@sbb-esta/components-examples/journey-maps/angular/shar
 import {
   SbbJourneyMaps,
   SbbJourneyMapsModule,
-  SbbJourneyMapsRoutingOptions,
+  SbbJourneyRoutesOptions,
   SbbViewportDimensions,
   SbbZoomLevels,
 } from '@sbb-esta/journey-maps';
 import { Feature, FeatureCollection, Polygon, Position } from 'geojson';
 import { LngLatBounds, LngLatBoundsLike, LngLatLike } from 'maplibre-gl';
 import { BehaviorSubject, Subject } from 'rxjs';
-import { take, takeUntil } from 'rxjs/operators';
+import { filter, map, take, takeUntil } from 'rxjs/operators';
 
 import { bielLyssRoutes, bielLyssRoutesOptions } from '../shared/routes/biel-lyss';
 import { bnLsRoutes, bnLsRoutesOptions } from '../shared/routes/bn-ls';
 import { tripBeSh } from '../shared/trip/be-sh';
 import { tripZhBeWyleregg } from '../shared/trip/zh-be_wyleregg';
 import { tripZhShWaldfriedhof } from '../shared/trip/zh-sh_waldfriedhof';
+import { bernBurgdorfZones } from '../shared/zone/bern-burgdorf';
+import { baselBielZones } from '../shared/zone/bs-bl';
 
 declare global {
   interface Window {
@@ -40,15 +47,15 @@ declare global {
 }
 
 /**
- * @title Journey Maps - SBB Map Routes, POIs & Markers
- * @includeExtraFiles ../shared/config.ts,../shared/markers.ts,../shared/trip/be-sh.ts,../shared/trip/zh-be_wyleregg.ts,../shared/trip/zh-sh_waldfriedhof.ts,../shared/routes/biel-lyss.ts,../shared/routes/bn-ls.ts
+ * @title Journey Maps - SBB Map Feature Types
+ * @includeExtraFiles ../shared/config.ts,../shared/markers.ts,../shared/trip/be-sh.ts,../shared/trip/zh-be_wyleregg.ts,../shared/trip/zh-sh_waldfriedhof.ts,../shared/routes/biel-lyss.ts,../shared/routes/bn-ls.ts,../shared/zone/bern-burgdorf.ts,../shared/zone/bs-bl.ts
  * @order 6
  *  */
 
 @Component({
-  selector: 'sbb-journey-maps-routes-pois-example',
-  templateUrl: 'journey-maps-routes-pois-example.html',
-  styleUrls: ['journey-maps-routes-pois-example.css'],
+  selector: 'sbb-journey-maps-feature-types-example',
+  templateUrl: 'journey-maps-feature-types-example.html',
+  styleUrls: ['journey-maps-feature-types-example.css'],
   imports: [
     SbbJourneyMapsModule,
     SbbNotificationModule,
@@ -64,7 +71,7 @@ declare global {
     AsyncPipe,
   ],
 })
-export class JourneyMapsRoutesPoisExample implements OnInit {
+export class JourneyMapsFeatureTypesExample implements OnInit {
   apiKey = window.JM_API_KEY;
   selectedMarkerId?: string;
   form!: UntypedFormGroup;
@@ -74,11 +81,13 @@ export class JourneyMapsRoutesPoisExample implements OnInit {
   stationTemplate!: TemplateRef<any>;
   @ViewChild('routeTemplate', { static: true })
   routeTemplate!: TemplateRef<any>;
-  journeyMapsRoutingLegIds: string[] = [];
-  journeyMapsRoutingOption?: SbbJourneyMapsRoutingOptions;
-  visibleLevels = new BehaviorSubject<number[]>([]);
   @ViewChild('poiTemplate', { static: true })
   poiTemplate!: TemplateRef<any>;
+  @ViewChild('zoneTemplate', { static: true })
+  zoneTemplate!: TemplateRef<any>;
+  journeyMapsRoutingLegIds: string[] = [];
+  journeyRoutesOption?: SbbJourneyRoutesOptions;
+  visibleLevels = new BehaviorSubject<number[]>([]);
   mapCenterChange = new Subject<LngLatLike>();
   mapBoundingBoxChange = new Subject<number[][]>();
   zoomLevels?: SbbZoomLevels;
@@ -87,21 +96,23 @@ export class JourneyMapsRoutesPoisExample implements OnInit {
   viewportDimensions?: SbbViewportDimensions;
 
   constructor(
-    private fb: FormBuilder,
+    private fb: UntypedFormBuilder,
     private _cd: ChangeDetectorRef,
   ) {}
 
   ngOnInit() {
     this.buildForm();
+    this.subscribeZoneGeoJson();
     this.subscribeMapCenterChange();
     this.subscribeBoundingBoxChange();
     this.subscribeStyleVersion();
     this.subscribeRoutingGeoJson();
     this.subscribeRoutingLed();
     this.form.get('listenerOptions.ROUTE')?.patchValue({ hoverTemplate: this.routeTemplate });
-    this.form.get('listenerOptions.STATION')?.patchValue({ hoverTemplate: this.stationTemplate });
+    this.form.get('listenerOptions.STATION')?.patchValue({ clickTemplate: this.stationTemplate });
     this.form.get('listenerOptions.POI')?.patchValue({ clickTemplate: this.poiTemplate });
-    this._cd.detectChanges();
+    this.form.get('listenerOptions.ZONE')?.patchValue({ clickTemplate: this.zoneTemplate });
+    this._cd.detectChanges(); // Prevent NG0100: ExpressionChangedAfterItHasBeenCheckedError
   }
 
   listenerOptionTypes() {
@@ -155,6 +166,8 @@ export class JourneyMapsRoutesPoisExample implements OnInit {
         ZONE: this.fb.group({
           watch: [true],
           selectionMode: ['multi'],
+          popup: [true],
+          clickTemplate: [],
         }),
       }),
       markerOptions: this.fb.group({
@@ -174,31 +187,42 @@ export class JourneyMapsRoutesPoisExample implements OnInit {
         maxZoomLevel: [23],
         maxBounds: [],
       }),
+      zoneGeoJson: [],
       routingGeoJson: [],
       routingLegId: [],
     });
   }
 
+  private subscribeZoneGeoJson() {
+    this.form
+      .get('zoneGeoJson')
+      ?.valueChanges.pipe(
+        takeUntil(this._destroyed),
+        map((val: GeoJSON.FeatureCollection) => val?.bbox),
+        filter((bbox) => !!bbox),
+      )
+      .subscribe((bbox) => this.setBbox(bbox!));
+  }
+
   private subscribeRoutingGeoJson() {
     this.form
       .get('routingGeoJson')
-      ?.valueChanges.pipe(takeUntil(this.destroyed))
-      .subscribe((routingOption?: SbbJourneyMapsRoutingOptions) => {
+      ?.valueChanges.pipe(takeUntil(this._destroyed))
+      .subscribe((routingOption?: SbbJourneyRoutesOptions) => {
         this.form.get('routingLegId')?.reset(); // calling this later has unintended side effects on bbox
         const bbox = this.getBbox(routingOption);
         if (bbox) {
           this.setBbox(bbox);
           this.mapCenterChange.pipe(take(1)).subscribe(() => {
             // Wait until map is idle. So that the correct starting level will be displayed.
-            this.journeyMapsRoutingOption = routingOption;
-            console.log(routingOption);
+            this.journeyRoutesOption = routingOption;
             this._cd.detectChanges();
           });
         } else {
-          this.journeyMapsRoutingOption = routingOption;
+          this.journeyRoutesOption = routingOption;
         }
         this.journeyMapsRoutingLegIds = this._distinct(
-          routingOption?.journey?.features.map((f) => f.properties?.legId) ?? [],
+          routingOption?.trip?.features.map((f) => f.properties?.legId) ?? [],
         )
           .filter((x) => x)
           .sort();
@@ -208,21 +232,21 @@ export class JourneyMapsRoutesPoisExample implements OnInit {
   private subscribeRoutingLed() {
     this.form
       .get('routingLegId')
-      ?.valueChanges.pipe(takeUntil(this.destroyed))
+      ?.valueChanges.pipe(takeUntil(this._destroyed))
       .subscribe((selectedLegId: string) => {
         // 'journeyMapsRoutingOption' can be null on .reset() of its dropdown form data
-        if (this.journeyMapsRoutingOption?.journey) {
+        if (this.journeyRoutesOption?.trip) {
           const bbox = selectedLegId
-            ? this.getBboxForLegId(selectedLegId, this.journeyMapsRoutingOption.journey)
-            : this.getBbox(this.journeyMapsRoutingOption);
+            ? this.getBboxForLegId(selectedLegId, this.journeyRoutesOption.trip)
+            : this.getBbox(this.journeyRoutesOption);
           if (bbox) {
             this.setBbox(bbox!);
           }
           this.mapCenterChange.pipe(take(1)).subscribe(() => {
             // Wait until map is idle. So that the correct starting level will be displayed.
-            this.journeyMapsRoutingOption = {
-              ...this.journeyMapsRoutingOption,
-              journeyMetaInformation: { selectedLegId },
+            this.journeyRoutesOption = {
+              ...this.journeyRoutesOption,
+              tripMetaInformation: { selectedLegId },
             };
             this._cd.detectChanges();
           });
@@ -231,7 +255,6 @@ export class JourneyMapsRoutesPoisExample implements OnInit {
   }
 
   private setBbox(bbox: number[] | LngLatBounds): void {
-    console.log('setBbox', bbox);
     this.viewportDimensions = {
       boundingBox: this.isLngLatBounds(bbox) ? bbox : this.bboxToLngLatBounds(bbox),
     };
@@ -256,16 +279,13 @@ export class JourneyMapsRoutesPoisExample implements OnInit {
     return undefined;
   }
 
-  private getBbox(options?: SbbJourneyMapsRoutingOptions) {
+  private getBbox(options?: SbbJourneyRoutesOptions) {
     if (!options) {
       return;
     }
 
-    if (options.journey) {
-      return options.journey.bbox;
-    }
-    if (options.transfer) {
-      return options.transfer.bbox;
+    if (options.trip) {
+      return options.trip.bbox;
     }
 
     if (options.routes) {
@@ -278,10 +298,6 @@ export class JourneyMapsRoutesPoisExample implements OnInit {
     }
     return;
   }
-
-  private destroyed = new Subject<void>();
-
-  protected readonly JOURNEY_MAPS_DEFAULT_ROUTING_OPTIONS = JOURNEY_MAPS_DEFAULT_ROUTING_OPTIONS;
 
   private subscribeBoundingBoxChange() {
     this.mapBoundingBoxChange
@@ -313,25 +329,33 @@ export class JourneyMapsRoutesPoisExample implements OnInit {
   };
 
   private _destroyed = new Subject<void>();
-  protected readonly POI_CATEGORIES = POI_CATEGORIES;
+
+  protected readonly JOURNEY_MAPS_DEFAULT_ZONE_OPTIONS = JOURNEY_MAPS_DEFAULT_ZONE_OPTIONS;
+  protected readonly JOURNEY_MAPS_DEFAULT_ROUTING_OPTIONS = JOURNEY_MAPS_DEFAULT_ROUTING_OPTIONS;
 }
+
+const JOURNEY_MAPS_DEFAULT_ZONE_OPTIONS = [
+  { label: '(none)', value: undefined },
+  { label: 'Berne / Burgdorf', value: bernBurgdorfZones },
+  { label: 'Basel / Biel', value: baselBielZones },
+];
 
 const JOURNEY_MAPS_DEFAULT_ROUTING_OPTIONS: {
   label: string;
-  value: SbbJourneyMapsRoutingOptions | undefined;
+  value: SbbJourneyRoutesOptions | undefined;
 }[] = [
   { label: '(none)', value: undefined },
   {
     label: 'Zürich - Bern, Wyleregg',
-    value: { journey: tripZhBeWyleregg },
+    value: { trip: tripZhBeWyleregg },
   },
   {
     label: 'Zürich - Schaffhausen, Waldfriedhof',
-    value: { journey: tripZhShWaldfriedhof },
+    value: { trip: tripZhShWaldfriedhof },
   },
   {
     label: 'Bern - Schaffhausen',
-    value: { journey: tripBeSh },
+    value: { trip: tripBeSh },
   },
   {
     label: 'Bern - Lausanne',

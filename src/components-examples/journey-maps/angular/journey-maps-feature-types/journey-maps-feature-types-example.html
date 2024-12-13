@@ -4,7 +4,8 @@
     [styleOptions]="form.get('styleOptions')?.value"
     #advancedMap
     language="en"
-    [journeyMapsRoutingOption]="journeyMapsRoutingOption"
+    [journeyRoutesOption]="journeyRoutesOption"
+    [journeyMapsZones]="form.get('zoneGeoJson')?.value"
     [viewportDimensions]="viewportDimensions"
     [poiOptions]="form.get('pointsOfInterestOptions')?.value"
     [listenerOptions]="form.get('listenerOptions')?.value"
@@ -35,11 +36,21 @@
     <div>{{ poi.properties.name }}</div>
     <div>{{ poi.properties.sbbId }}</div>
   </ng-template>
+  <ng-template #zoneTemplate let-zone>
+    <div>{{ zone.properties.zone }}</div>
+  </ng-template>
 </div>
 
 <div class="poi-controls">
   <form [formGroup]="form">
     <div class="row-2">
+      <sbb-form-field label="Select zones">
+        <sbb-select formControlName="zoneGeoJson" placeholder="(none)">
+          @for (input of JOURNEY_MAPS_DEFAULT_ZONE_OPTIONS; track input) {
+            <sbb-option [value]="input.value">{{ input.label }}</sbb-option>
+          }
+        </sbb-select>
+      </sbb-form-field>
       <sbb-form-field label="Select route">
         <sbb-select formControlName="routingGeoJson" placeholder="(none)">
           @for (input of JOURNEY_MAPS_DEFAULT_ROUTING_OPTIONS; track input) {
