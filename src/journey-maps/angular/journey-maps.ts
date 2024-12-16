@@ -130,10 +130,10 @@ export class SbbJourneyMaps implements OnInit, AfterViewInit, OnDestroy, OnChang
   @Input() viewportDimensions?: SbbViewportDimensions;
   /** Restrict the visible part and possible zoom levels of the map. */
   @Input() viewportBounds?: SbbViewportBounds;
-  /** Enable/disable extrusions to be shown on the map */
-  @Input() enableExtrusions: boolean = false;
-  /** Custom Extrusions GeoJSON */
-  @Input() extrusions?: SbbBuildingExtrusions;
+  /** Enable/disable default extrusions to be shown on the map */
+  @Input() enableDefaultExtrusions: boolean = false;
+  /** Custom Extrusions GeoJSON to be shown on the map */
+  @Input() customExtrusions?: SbbBuildingExtrusions;
 
   /**
    * This event is emitted whenever a marker, with property triggerEvent, is selected or unselected.
@@ -601,8 +601,8 @@ export class SbbJourneyMaps implements OnInit, AfterViewInit, OnDestroy, OnChang
     this._executeWhenMapStyleLoaded(() => {
       this._mapOverflowingLabelService.hideOverflowingLabels(this._map, this.interactionOptions);
       this._show2Dor3D();
-      this._showOrHideExtrusions();
-      this._updateExtrusions();
+      this._showOrHideDefaultExtrusions();
+      this._showOrHideCustomExtrusions();
     });
   }
 
@@ -778,12 +778,15 @@ export class SbbJourneyMaps implements OnInit, AfterViewInit, OnDestroy, OnChang
       this._show2Dor3D();
     }
 
-    if (changes.enableExtrusions?.currentValue !== changes.enableExtrusions?.previousValue) {
-      this._showOrHideExtrusions();
+    if (
+      changes.enableDefaultExtrusions?.currentValue !==
+      changes.enableDefaultExtrusions?.previousValue
+    ) {
+      this._showOrHideDefaultExtrusions();
     }
 
-    if (changes.extrusions?.currentValue !== changes.extrusions?.previousValue) {
-      this._updateExtrusions();
+    if (changes.customExtrusions?.currentValue !== changes.customExtrusions?.previousValue) {
+      this._showOrHideCustomExtrusions();
     }
   }
 
@@ -989,7 +992,8 @@ export class SbbJourneyMaps implements OnInit, AfterViewInit, OnDestroy, OnChang
         this._map.once('styledata', () => {
           this._featureEventListenerComponent.updateListener();
           this._show2Dor3D();
-          this._showOrHideExtrusions();
+          this._showOrHideDefaultExtrusions();
+          this._showOrHideCustomExtrusions();
           this._mapMarkerService.updateMarkers(
             this._map,
             this._getMarkers(),
@@ -1020,9 +1024,6 @@ export class SbbJourneyMaps implements OnInit, AfterViewInit, OnDestroy, OnChang
               this._map,
               this.styleOptions.railNetwork,
             );
-          }
-          if (this.extrusions) {
-            this._updateExtrusions();
           }
         });
       });
@@ -1224,23 +1225,20 @@ export class SbbJourneyMaps implements OnInit, AfterViewInit, OnDestroy, OnChang
     }
   }
 
-  private _showOrHideExtrusions() {
+  private _showOrHideDefaultExtrusions() {
     if (this._isStyleLoaded) {
       this._map.setLayoutProperty(
         '3d-buildings',
         'visibility',
-        this.enableExtrusions ? 'visible' : 'none',
-      );
-      this._map.setLayoutProperty(
-        '3d-buildings-custom',
-        'visibility',
-        this.enableExtrusions ? 'visible' : 'none',
+        this.enableDefaultExtrusions ? 'visible' : 'none',
       );
     }
   }
 
-  private _updateExtrusions() {
-    this._mapExtrusionService.addExtrusions(this._map, this.extrusions);
+  private _showOrHideCustomExtrusions() {
+    if (this._isStyleLoaded) {
+      this._mapExtrusionService.updateCustomExtrusions(this._map, this.customExtrusions);
+    }
   }
 
   private _isLevelFilterEnabled(): boolean {

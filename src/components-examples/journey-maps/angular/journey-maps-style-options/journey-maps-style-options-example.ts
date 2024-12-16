@@ -79,7 +79,7 @@ export class JourneyMapsStyleOptionsExample implements OnInit {
       styleVersion: this.fb.group({
         versionNumber: ['v2'],
       }),
-      extrusions: [true],
+      defaultExtrusions: [true],
       customExtrusions: [true],
     });
   }
