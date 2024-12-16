@@ -2,6 +2,24 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [19.1.1](https://github.com/sbb-design-systems/sbb-angular/compare/19.1.0...19.1.1) (2024-12-16)
+
+
+### Bug Fixes
+
+* **deps:** update dependency @angular/cdk to v19.0.3 ([d146372](https://github.com/sbb-design-systems/sbb-angular/commit/d1463725c932a7dd6e7e07b1c474432b01fee02e))
+* **journey-maps:** allow showing default and custom 3d-buildings ... ([#2453](https://github.com/sbb-design-systems/sbb-angular/issues/2453)) ([89e385e](https://github.com/sbb-design-systems/sbb-angular/commit/89e385e33cbfc05be469b820920ca06c527ee1e7))
+* **journey-maps:** always broadcast rotation and pitch ([#2458](https://github.com/sbb-design-systems/sbb-angular/issues/2458)) ([d756795](https://github.com/sbb-design-systems/sbb-angular/commit/d756795bb4899178b01b1d02b652373911eda477))
+* **journey-maps:** delete unused files ([#2456](https://github.com/sbb-design-systems/sbb-angular/issues/2456)) ([e09d051](https://github.com/sbb-design-systems/sbb-angular/commit/e09d0518faa5b2f358955dfa97aab178cde1524f))
+* **journey-maps:** handle route teaser interaction ([#2459](https://github.com/sbb-design-systems/sbb-angular/issues/2459)) ([4c269df](https://github.com/sbb-design-systems/sbb-angular/commit/4c269df6bbd388e0860ce54340a4018133998804))
+* **journey-maps:** update test-data ([#2462](https://github.com/sbb-design-systems/sbb-angular/issues/2462)) ([b26bf99](https://github.com/sbb-design-systems/sbb-angular/commit/b26bf99af66ab7ee1bfdc65af96070666a9df8d7))
+
+
+### Documentation
+
+* **journey-maps:** add documentation for 'isLevelSwitchHorizontal' ([#2457](https://github.com/sbb-design-systems/sbb-angular/issues/2457)) ([4bb3b42](https://github.com/sbb-design-systems/sbb-angular/commit/4bb3b42bce35622a5ae6a7157711441539ddbe36))
+* **journey-maps:** include extra files ([#2452](https://github.com/sbb-design-systems/sbb-angular/issues/2452)) ([4cc71cb](https://github.com/sbb-design-systems/sbb-angular/commit/4cc71cb7f1f2b4275fdd77863fe8eee2248ec2a0))
+
 ## [19.1.0](https://github.com/sbb-design-systems/sbb-angular/compare/19.0.0...19.1.0) (2024-12-05)
 
 
