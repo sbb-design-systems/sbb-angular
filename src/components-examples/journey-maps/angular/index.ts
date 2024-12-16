@@ -11,9 +11,9 @@ import { SbbTabsModule } from '@sbb-esta/angular/tabs';
 import { SbbJourneyMapsModule } from '@sbb-esta/journey-maps';
 
 import { JourneyMapsBasicExample } from './journey-maps-basic/journey-maps-basic-example';
+import { JourneyMapsFeatureTypesExample } from './journey-maps-feature-types/journey-maps-feature-types-example';
 import { JourneyMapsMapNavigationExample } from './journey-maps-map-navigation/journey-maps-map-navigation-example';
 import { JourneyMapsPoisMarkersExample } from './journey-maps-pois-markers/journey-maps-pois-markers-example';
-import { JourneyMapsRoutesZonesExample } from './journey-maps-routes-zones/journey-maps-routes-zones-example';
 import { JourneyMapsStyleOptionsExample } from './journey-maps-style-options/journey-maps-style-options-example';
 import { JourneyMapsUiOptionsExample } from './journey-maps-ui-options/journey-maps-ui-options-example';
 
@@ -22,16 +22,16 @@ export {
   JourneyMapsStyleOptionsExample,
   JourneyMapsMapNavigationExample,
   JourneyMapsPoisMarkersExample,
-  JourneyMapsRoutesZonesExample,
   JourneyMapsBasicExample,
+  JourneyMapsFeatureTypesExample,
 };
 const EXAMPLES = [
   JourneyMapsUiOptionsExample,
   JourneyMapsStyleOptionsExample,
   JourneyMapsMapNavigationExample,
   JourneyMapsPoisMarkersExample,
-  JourneyMapsRoutesZonesExample,
   JourneyMapsBasicExample,
+  JourneyMapsFeatureTypesExample,
 ];
 
 @NgModule({

@@ -55,6 +55,7 @@ import {
 } from './services/constants';
 import { SbbLocaleService } from './services/locale-service';
 import { SbbMapEventUtils } from './services/map/events/map-event-utils';
+import { FeatureDataStateService } from './services/map/feature-data-state.service';
 import { SbbMapConfig } from './services/map/map-config';
 import { SbbMapExtrusionService } from './services/map/map-extrusion-service';
 import { SbbMapInitService } from './services/map/map-init-service';
@@ -69,7 +70,6 @@ import { SbbMapService } from './services/map/map-service';
 import { SbbMapTransferService } from './services/map/map-transfer-service';
 import { SbbMapUrlService } from './services/map/map-url-service';
 import { SbbMapZoneService } from './services/map/map-zone-service';
-import { MarkerOrPoiSelectionStateService } from './services/map/marker-or-poi-selection-state.service';
 import {
   getInvalidJourneyMapsRoutingOptionCombination,
   getInvalidJourneyRoutesOptionCombination,
@@ -82,12 +82,7 @@ import {
   selector: 'sbb-journey-maps',
   templateUrl: './journey-maps.html',
   styleUrls: ['./journey-maps.css'],
-  providers: [
-    SbbLevelSwitcher,
-    SbbMapLayerFilter,
-    SbbMapLeitPoiService,
-    MarkerOrPoiSelectionStateService,
-  ],
+  providers: [SbbLevelSwitcher, SbbMapLayerFilter, SbbMapLeitPoiService, FeatureDataStateService],
   changeDetection: ChangeDetectionStrategy.OnPush,
   standalone: false,
 })
@@ -284,7 +279,7 @@ export class SbbJourneyMaps implements OnInit, AfterViewInit, OnDestroy, OnChang
     private readonly _mapEventUtils: SbbMapEventUtils,
     private readonly _urlService: SbbMapUrlService,
     private readonly _levelSwitchService: SbbLevelSwitcher,
-    private readonly _markerOrPoiSelectionStateService: MarkerOrPoiSelectionStateService,
+    private readonly _featureDataStateService: FeatureDataStateService,
     private readonly _mapExtrusionService: SbbMapExtrusionService,
     private readonly _cd: ChangeDetectorRef,
     private readonly _i18n: SbbLocaleService,
@@ -439,7 +434,7 @@ export class SbbJourneyMaps implements OnInit, AfterViewInit, OnDestroy, OnChang
   @Input()
   get selectedMarkerId(): string | undefined {
     // without this getter, the setter is never called when passing 'undefined' (via the 'elements' web component)
-    return this._markerOrPoiSelectionStateService.getSelectedSbbMarker()?.id;
+    return this._featureDataStateService.getSelectedSbbMarker()?.id;
   }
 
   set selectedMarkerId(markerId: string | undefined) {
@@ -454,7 +449,7 @@ export class SbbJourneyMaps implements OnInit, AfterViewInit, OnDestroy, OnChang
   /** The currently selected map marker or undefined if none is selected. */
   /** @docs-private */
   get selectedMarker(): SbbMarker | undefined {
-    return this._markerOrPoiSelectionStateService.getSelectedSbbMarker();
+    return this._featureDataStateService.getSelectedSbbMarker();
   }
 
   set selectedMarker(value: SbbMarker | undefined) {
@@ -465,12 +460,12 @@ export class SbbJourneyMaps implements OnInit, AfterViewInit, OnDestroy, OnChang
       Promise.resolve().then(() => this.selectedMarkerIdChange.emit(undefined));
     }
     if (!value) {
-      this._markerOrPoiSelectionStateService.deselectSbbMarker();
+      this._featureDataStateService.deselectSbbMarker();
     } else if (value?.markerUrl) {
       open(value.markerUrl, '_self');
     } else {
       this._unselectPoi();
-      this._markerOrPoiSelectionStateService.selectSbbMarker(value);
+      this._featureDataStateService.selectSbbMarker(value);
     }
   }
 
@@ -573,9 +568,9 @@ export class SbbJourneyMaps implements OnInit, AfterViewInit, OnDestroy, OnChang
   }
 
   private _unselectPoi() {
-    const selectedPoi = this._markerOrPoiSelectionStateService.getSelectedPoi();
+    const selectedPoi = this._featureDataStateService.getSelectedPoi();
     if (selectedPoi) {
-      this._selectOrDeselectPoi(selectedPoi?.id, false);
+      this._selectOrDeselectPoi(selectedPoi[0]?.id, false);
     }
   }
 
