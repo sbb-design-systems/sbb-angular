@@ -1,9 +1,9 @@
 <div class="web-map">
   <sbb-journey-maps
-    [apiKey]="apiKey"
-    [styleOptions]="form.get('styleOptions')?.value"
     #advancedMap
     language="en"
+    [apiKey]="apiKey"
+    [styleOptions]="form.get('styleOptions')?.value"
     [journeyRoutesOption]="journeyRoutesOption"
     [journeyMapsZones]="form.get('zoneGeoJson')?.value"
     [viewportDimensions]="viewportDimensions"
