@@ -17,11 +17,11 @@ var __copyProps = (to, from, except, desc) => {
 var __toCommonJS = (mod) => __copyProps(__defProp({}, "__esModule", { value: true }), mod);
 
 // tools/schematics/selector-groups/index.ts
-var selector_groups_exports = {};
-__export(selector_groups_exports, {
+var index_exports = {};
+__export(index_exports, {
   selectorGroups: () => selectorGroups
 });
-module.exports = __toCommonJS(selector_groups_exports);
+module.exports = __toCommonJS(index_exports);
 function selectorGroups(options) {
   return (tree, _context) => {
     const srcDir = tree.getDir("src");

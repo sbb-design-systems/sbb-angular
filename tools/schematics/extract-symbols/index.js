@@ -27,11 +27,11 @@ var __toESM = (mod, isNodeMode, target) => (target = mod != null ? __create(__ge
 var __toCommonJS = (mod) => __copyProps(__defProp({}, "__esModule", { value: true }), mod);
 
 // tools/schematics/extract-symbols/index.ts
-var extract_symbols_exports = {};
-__export(extract_symbols_exports, {
+var index_exports = {};
+__export(index_exports, {
   extractSymbols: () => extractSymbols
 });
-module.exports = __toCommonJS(extract_symbols_exports);
+module.exports = __toCommonJS(index_exports);
 var import_core = require("@angular-devkit/core");
 var import_typescript = __toESM(require("@schematics/angular/third_party/github.com/Microsoft/TypeScript/lib/typescript"));
 var IGNORED_FOLDERS = ["/src/angular/schematics/ng-update/test-cases/"];
