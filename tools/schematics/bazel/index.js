@@ -27,11 +27,11 @@ var __toESM = (mod, isNodeMode, target) => (target = mod != null ? __create(__ge
 var __toCommonJS = (mod) => __copyProps(__defProp({}, "__esModule", { value: true }), mod);
 
 // tools/schematics/bazel/index.ts
-var bazel_exports = {};
-__export(bazel_exports, {
+var index_exports = {};
+__export(index_exports, {
   bazel: () => bazel
 });
-module.exports = __toCommonJS(bazel_exports);
+module.exports = __toCommonJS(index_exports);
 var import_schematics4 = require("@angular-devkit/schematics");
 var import_tasks = require("@angular-devkit/schematics/tasks");
 

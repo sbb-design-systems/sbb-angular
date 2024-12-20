@@ -17,11 +17,11 @@ var __copyProps = (to, from, except, desc) => {
 var __toCommonJS = (mod) => __copyProps(__defProp({}, "__esModule", { value: true }), mod);
 
 // tools/schematics/sass-migration/index.ts
-var sass_migration_exports = {};
-__export(sass_migration_exports, {
+var index_exports = {};
+__export(index_exports, {
   sassMigration: () => sassMigration
 });
-module.exports = __toCommonJS(sass_migration_exports);
+module.exports = __toCommonJS(index_exports);
 var import_core = require("@angular-devkit/core");
 function sassMigration() {
   return (tree) => {
