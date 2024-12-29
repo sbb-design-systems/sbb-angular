@@ -4278,10 +4278,10 @@
     consola "^2.15.0"
     node-fetch "^2.6.1"
 
-"@octokit/app@^15.0.0":
-  version "15.1.0"
-  resolved "https://registry.yarnpkg.com/@octokit/app/-/app-15.1.0.tgz#b330d8826be088ec8d1d43a59dc27ef57d1232b2"
-  integrity sha512-TkBr7QgOmE6ORxvIAhDbZsqPkF7RSqTY4pLTtUQCvr6dTXqvi2fFo46q3h1lxlk/sGMQjqyZ0kEahkD/NyzOHg==
+"@octokit/app@^15.1.1":
+  version "15.1.1"
+  resolved "https://registry.yarnpkg.com/@octokit/app/-/app-15.1.1.tgz#bbbae2b209928c8ca038122ec85bff67045628c7"
+  integrity sha512-fk8xrCSPTJGpyBdBNI+DcZ224dm0aApv4vi6X7/zTmANXlegKV2Td+dJ+fd7APPaPN7R+xttUsj2Fm+AFDSfMQ==
   dependencies:
     "@octokit/auth-app" "^7.0.0"
     "@octokit/auth-unauthenticated" "^6.0.0"
@@ -4574,6 +4574,13 @@
   version "13.6.1"
   resolved "https://registry.yarnpkg.com/@octokit/types/-/types-13.6.1.tgz#432fc6c0aaae54318e5b2d3e15c22ac97fc9b15f"
   integrity sha512-PHZE9Z+kWXb23Ndik8MKPirBPziOc0D2/3KH1P+6jK5nGWe96kadZuE4jev2/Jq7FvIfTlT2Ltg8Fv2x1v0a5g==
+  dependencies:
+    "@octokit/openapi-types" "^22.2.0"
+
+"@octokit/types@^13.6.2":
+  version "13.6.2"
+  resolved "https://registry.yarnpkg.com/@octokit/types/-/types-13.6.2.tgz#e10fc4d2bdd65d836d1ced223b03ad4cfdb525bd"
+  integrity sha512-WpbZfZUcZU77DrSW4wbsSgTPfKcp286q3ItaIgvSbBpZJlu6mnYXAkjZz6LVZPXkEvLIM8McanyZejKTYUHipA==
   dependencies:
     "@octokit/openapi-types" "^22.2.0"
 
@@ -14182,12 +14189,12 @@ obuf@^1.0.0, obuf@^1.1.2:
   resolved "https://registry.yarnpkg.com/obuf/-/obuf-1.1.2.tgz#09bea3343d41859ebd446292d11c9d4db619084e"
   integrity sha512-PX1wu0AmAdPqOL1mWhqmlOd8kOIZQwGZw6rh7uby9fTc5lhaOWFLX3I6R1hrF9k3zUY40e6igsLGkDXK92LJNg==
 
-octokit@4.0.2:
-  version "4.0.2"
-  resolved "https://registry.yarnpkg.com/octokit/-/octokit-4.0.2.tgz#775d68d363cdaec69d7b73d3dc82ae909d30f59b"
-  integrity sha512-wbqF4uc1YbcldtiBFfkSnquHtECEIpYD78YUXI6ri1Im5OO2NLo6ZVpRdbJpdnpZ05zMrVPssNiEo6JQtea+Qg==
+octokit@4.0.3:
+  version "4.0.3"
+  resolved "https://registry.yarnpkg.com/octokit/-/octokit-4.0.3.tgz#30098459c4b2ad0d96d95f39968ca099c8e096df"
+  integrity sha512-kfqH80Yuuux4fLbZ4SvObjCvVu89U0eCh5+fulh6tr/hJkDYS1inXDGnNJDOp312GANMEhWWMLYmjQR8MvSSMQ==
   dependencies:
-    "@octokit/app" "^15.0.0"
+    "@octokit/app" "^15.1.1"
     "@octokit/core" "^6.0.0"
     "@octokit/oauth-app" "^7.0.0"
     "@octokit/plugin-paginate-graphql" "^5.0.0"
@@ -14196,7 +14203,7 @@ octokit@4.0.2:
     "@octokit/plugin-retry" "^7.0.0"
     "@octokit/plugin-throttling" "^9.0.0"
     "@octokit/request-error" "^6.0.0"
-    "@octokit/types" "^13.0.0"
+    "@octokit/types" "^13.6.2"
 
 on-finished@2.4.1, on-finished@^2.4.1:
   version "2.4.1"
