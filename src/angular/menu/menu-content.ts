@@ -36,8 +36,8 @@ export class SbbMenuContent implements OnDestroy {
   private _document = inject(DOCUMENT);
   private _changeDetectorRef = inject(ChangeDetectorRef);
 
-  private _portal: TemplatePortal;
-  private _outlet: DomPortalOutlet;
+  private _portal: TemplatePortal | undefined;
+  private _outlet: DomPortalOutlet | undefined;
 
   /** Emits when the menu content has been attached. */
   readonly _attached: Subject<void> = new Subject<void>();
@@ -88,14 +88,13 @@ export class SbbMenuContent implements OnDestroy {
    * @docs-private
    */
   detach() {
-    if (this._portal.isAttached) {
+    if (this._portal?.isAttached) {
       this._portal.detach();
     }
   }
 
   ngOnDestroy() {
-    if (this._outlet) {
-      this._outlet.dispose();
-    }
+    this.detach();
+    this._outlet?.dispose();
   }
 }
