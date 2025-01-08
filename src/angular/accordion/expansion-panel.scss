@@ -6,6 +6,7 @@
   margin: 0;
   transition: border-color var(--sbb-transition-fast-start);
   border: var(--sbb-border-width-thin) solid var(--sbb-expansion-panel-border-color-closed);
+  overflow: hidden;
 
   & + & {
     margin-top: calc(var(--sbb-border-width-thin) * 2);
@@ -72,6 +73,20 @@
   margin-top: -0.5em;
   margin-bottom: -0.5em;
 
+  :where(.sbb-expansion-panel.sbb-expansion-panel-animations-enabled) & {
+    transition: transform 225ms cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  :where(html.sbb-lean) & {
+    transform: rotate(90deg);
+  }
+
+  :where(.sbb-expansion-panel.sbb-expanded > .sbb-expansion-panel-header) & {
+    :where(html.sbb-lean) & {
+      transform: rotate(-90deg);
+    }
+  }
+
   :where(html:not(.sbb-lean)) & {
     border: var(--sbb-border-width-thin) solid var(--sbb-color-storm);
     border-radius: 50%;
@@ -105,24 +120,41 @@
   line-height: var(--sbb-expansion-panel-line-height);
 }
 
+.sbb-expansion-panel-content-wrapper {
+  // Note: we can't use `overflow: hidden` here, because it can clip content with
+  // box shadows. Instead we transition t he `visibility` below.
+  // Based on https://css-tricks.com/css-grid-can-do-auto-height-transitions.
+  display: grid;
+  grid-template-rows: 0fr;
+  grid-template-columns: 100%;
+
+  :where(.sbb-expansion-panel.sbb-expansion-panel-animations-enabled) > & {
+    transition: grid-template-rows 225ms cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  :where(.sbb-expansion-panel.sbb-expanded) > & {
+    grid-template-rows: 1fr;
+  }
+}
+
 .sbb-expansion-panel-content {
   display: flex;
   flex-direction: column;
   overflow: visible;
+  min-height: 0;
 
-  // Usually the `visibility: hidden` added by the animation is enough to prevent focus from
-  // entering the collapsed content, but children with their own `visibility` can override it.
-  // In other components we set a `display: none` at the root to stop focus from reaching the
-  // elements, however we can't do that here, because the content can determine the width
-  // of an expansion panel. The most practical fallback is to use `!important` to override
-  // any custom visibility.
-  &[style*='visibility: hidden'] * {
-    visibility: hidden !important;
+  // The visibility here serves two purposes:
+  // 1. Hiding content from assistive technology.
+  // 2. Hiding any content that might be overflowing.
+  visibility: hidden;
+
+  :where(.sbb-expansion-panel-animations-enabled) & {
+    // The duration here is slightly lower so the content
+    // goes away quicker than the collapse transition.
+    transition: visibility 190ms linear;
   }
-
-  &.ng-animating,
-  .sbb-expansion-panel:not(.sbb-expanded) & {
-    overflow: hidden;
+  :where(.sbb-expansion-panel.sbb-expanded > .sbb-expansion-panel-content-wrapper) > & {
+    visibility: visible;
   }
 }
 
