@@ -5,6 +5,7 @@ import { CdkPortalOutlet, TemplatePortal } from '@angular/cdk/portal';
 import { DOCUMENT } from '@angular/common';
 import {
   AfterContentInit,
+  ANIMATION_MODULE_TYPE,
   booleanAttribute,
   ChangeDetectionStrategy,
   Component,
@@ -23,7 +24,7 @@ import {
 } from '@angular/core';
 import { mixinVariant, TypeRef } from '@sbb-esta/angular/core';
 import { Subject } from 'rxjs';
-import { distinctUntilChanged, filter, startWith, take } from 'rxjs/operators';
+import { filter, startWith, take } from 'rxjs/operators';
 
 import type { SbbAccordion } from './accordion';
 import { sbbExpansionAnimations } from './accordion-animations';
@@ -75,7 +76,11 @@ export class SbbExpansionPanel
   implements AfterContentInit, OnChanges, OnDestroy
 {
   private _viewContainerRef = inject(ViewContainerRef);
+  _animationMode: 'NoopAnimations' | 'BrowserAnimations' | null = inject(ANIMATION_MODULE_TYPE, {
+    optional: true,
+  });
   private _document = inject(DOCUMENT);
+  protected _animationsDisabled: boolean;
 
   /** Whether the toggle indicator should be hidden. */
   @Input({ transform: booleanAttribute })
@@ -120,23 +125,7 @@ export class SbbExpansionPanel
   constructor(...args: unknown[]);
   constructor() {
     super();
-    // We need a Subject with distinctUntilChanged, because the `done` event
-    // fires twice on some browsers. See https://github.com/angular/angular/issues/24084
-    this._bodyAnimationDone
-      .pipe(
-        distinctUntilChanged((x, y) => {
-          return x.fromState === y.fromState && x.toState === y.toState;
-        }),
-      )
-      .subscribe((event) => {
-        if (event.fromState !== 'void') {
-          if (event.toState === 'expanded') {
-            this.afterExpand.emit();
-          } else if (event.toState === 'collapsed') {
-            this.afterCollapse.emit();
-          }
-        }
-      });
+    this._animationsDisabled = this._animationMode === 'NoopAnimations';
   }
 
   /** Gets the expanded state string. */
@@ -180,7 +169,6 @@ export class SbbExpansionPanel
 
   override ngOnDestroy() {
     super.ngOnDestroy();
-    this._bodyAnimationDone.complete();
     this._inputChanges.complete();
   }
 
@@ -194,4 +182,34 @@ export class SbbExpansionPanel
 
     return false;
   }
+
+  /** Called when the expansion animation has started. */
+  protected _animationStarted(event: AnimationEvent) {
+    if (!isInitialAnimation(event) && !this._animationsDisabled && this._body) {
+      // Prevent the user from tabbing into the content while it's animating.
+      // TODO(crisbeto): maybe use `inert` to prevent focus from entering while closed as well
+      // instead of `visibility`? Will allow us to clean up some code but needs more testing.
+      this._body?.nativeElement.setAttribute('inert', '');
+    }
+  }
+
+  /** Called when the expansion animation has finished. */
+  protected _animationDone(event: AnimationEvent) {
+    if (!isInitialAnimation(event)) {
+      if (event.toState === 'expanded') {
+        this.afterExpand.emit();
+      } else if (event.toState === 'collapsed') {
+        this.afterCollapse.emit();
+      }
+
+      // Re-enable tabbing once the animation is finished.
+      if (!this._animationsDisabled && this._body) {
+        this._body.nativeElement.removeAttribute('inert');
+      }
+    }
+  }
+}
+/** Checks whether an animation is the initial setup animation. */
+function isInitialAnimation(event: AnimationEvent): boolean {
+  return event.fromState === 'void';
 }
