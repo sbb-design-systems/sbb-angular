@@ -39,7 +39,6 @@ import { SbbCell, SbbCellDef, SbbColumnDef, SbbHeaderCell, SbbHeaderCellDef } fr
   // an ExpressionChangedAfterItHasBeenCheckedError).
   // tslint:disable-next-line:validate-decorators
   changeDetection: ChangeDetectionStrategy.Default,
-  standalone: true,
   imports: [SbbColumnDef, SbbHeaderCellDef, SbbHeaderCell, SbbCellDef, SbbCell],
 })
 export class SbbTextColumn<T> extends CdkTextColumn<T> implements OnInit {

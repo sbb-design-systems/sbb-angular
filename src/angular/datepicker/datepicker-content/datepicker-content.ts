@@ -27,7 +27,6 @@ import { SbbDatepicker } from '../datepicker/datepicker';
   host: {
     class: 'sbb-datepicker-content',
   },
-  standalone: true,
   imports: [SbbCalendar, CdkTrapFocus],
 })
 export class SbbDatepickerContent<D> implements AfterViewInit {

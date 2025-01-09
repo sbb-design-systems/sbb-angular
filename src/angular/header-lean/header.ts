@@ -113,7 +113,6 @@ const breakpointMapping = {
     '[class.sbb-header-lean-opened]': 'opened',
     '[class.sbb-header-lean-app-chooser-available]': '_appChooserSections.length',
   },
-  standalone: true,
   imports: [SbbIconModule, CdkPortalOutlet, CdkPortal, AsyncPipe],
 })
 export class SbbHeaderLean implements OnChanges, AfterViewInit, OnDestroy {

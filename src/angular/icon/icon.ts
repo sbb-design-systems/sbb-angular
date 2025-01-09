@@ -116,7 +116,6 @@ const funcIriPattern = /^url\(['"]?#(.*?)['"]?\)$/;
   },
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush,
-  standalone: true,
 })
 export class SbbIcon implements OnInit, AfterViewChecked, OnDestroy {
   /**

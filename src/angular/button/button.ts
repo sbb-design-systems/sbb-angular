@@ -81,7 +81,6 @@ const _SbbButtonMixinBase = mixinVariant(
   inputs: ['disabled'],
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush,
-  standalone: true,
   imports: [SbbIconModule, AsyncPipe],
 })
 export class SbbButton
@@ -217,7 +216,6 @@ export class SbbButton
   templateUrl: 'button.html',
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush,
-  standalone: true,
   imports: [SbbIconModule, AsyncPipe],
 })
 export class SbbAnchor extends SbbButton implements AfterViewInit, OnDestroy {

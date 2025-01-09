@@ -14,7 +14,6 @@ import { SbbIcon } from '@sbb-esta/angular/icon';
     '[attr.aria-labelledby]': 'null',
     '[attr.aria-describedby]': 'null',
   },
-  standalone: true,
   imports: [NgClass, SbbIcon],
 })
 export class SbbStatus {

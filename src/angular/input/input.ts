@@ -59,7 +59,6 @@ const SBB_INPUT_INVALID_TYPES = [
     '[attr.tabindex]': `empty && readonly ? -1  : tabIndex`,
   },
   providers: [{ provide: SbbFormFieldControl, useExisting: SbbInput }],
-  standalone: true,
 })
 export class SbbInput
   implements SbbFormFieldControl<any>, AfterViewInit, OnChanges, DoCheck, OnDestroy

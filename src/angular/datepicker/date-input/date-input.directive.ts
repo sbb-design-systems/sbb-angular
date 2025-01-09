@@ -77,7 +77,6 @@ export const SBB_DATE_VALIDATORS: any = {
     '[attr.max]': 'max ? _dateAdapter.toIso8601(max) : null',
     '[disabled]': 'this.disabled',
   },
-  standalone: true,
 })
 export class SbbDateInput<D> implements ControlValueAccessor, Validator, OnInit, OnDestroy {
   private _elementRef = inject<ElementRef<HTMLInputElement>>(ElementRef);

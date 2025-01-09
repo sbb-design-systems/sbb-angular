@@ -73,7 +73,6 @@ export const SBB_PAGINATOR_DEFAULT_OPTIONS = new InjectionToken<SbbPaginatorDefa
     role: 'group',
     class: 'sbb-paginator sbb-icon-fit',
   },
-  standalone: true,
   imports: [SbbIcon],
 })
 export class SbbPaginator implements OnInit, OnDestroy {

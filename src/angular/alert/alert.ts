@@ -43,7 +43,6 @@ export interface SbbAlertEvent {
     '[class.sbb-alert-link]': '_isNativeLink',
     '[@showDismiss]': '_animationState',
   },
-  standalone: true,
   imports: [SbbIconModule],
 })
 export class SbbAlert {

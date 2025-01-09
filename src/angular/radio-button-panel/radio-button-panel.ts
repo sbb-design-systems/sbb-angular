@@ -40,7 +40,6 @@ import {
   },
   changeDetection: ChangeDetectionStrategy.OnPush,
   providers: [{ provide: SBB_RADIO_BUTTON, useExisting: SbbRadioButtonPanel }],
-  standalone: true,
 })
 export class SbbRadioButtonPanel extends _SbbRadioButtonBase {
   constructor(

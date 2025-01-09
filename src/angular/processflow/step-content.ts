@@ -5,7 +5,6 @@ import { Directive, inject, TemplateRef } from '@angular/core';
  */
 @Directive({
   selector: 'ng-template[sbbStepContent]',
-  standalone: true,
 })
 export class SbbStepContent {
   _template: TemplateRef<any> = inject<TemplateRef<any>>(TemplateRef);

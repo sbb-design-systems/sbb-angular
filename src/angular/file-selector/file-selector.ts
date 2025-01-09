@@ -47,7 +47,6 @@ let nextId = 0;
       multi: true,
     },
   ],
-  standalone: true,
   imports: [SbbIconModule],
 })
 export class SbbFileSelector implements ControlValueAccessor, SbbFileSelectorOptions {

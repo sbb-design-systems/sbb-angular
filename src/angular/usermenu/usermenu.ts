@@ -59,7 +59,6 @@ export const _sbbUsermenuMenuInheritedTriggerContext: SbbMenuInheritedTriggerCon
       useValue: _sbbUsermenuMenuInheritedTriggerContext,
     },
   ],
-  standalone: true,
   imports: [SbbIcon, SbbMenuTrigger, SbbMenuDynamicTrigger, NgTemplateOutlet, AsyncPipe],
 })
 export class SbbUsermenu extends _SbbUsermenuMixinBase {

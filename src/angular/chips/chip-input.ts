@@ -56,7 +56,6 @@ export interface SbbChipInputEvent {
     '[attr.aria-invalid]': '_chipList && _chipList.ngControl ? _chipList.ngControl.invalid : null',
     '[attr.aria-required]': '_chipList && _chipList.required || null',
   },
-  standalone: true,
 })
 export class SbbChipInput implements SbbChipTextControl, OnChanges, OnDestroy, AfterContentInit {
   protected _elementRef: ElementRef<HTMLElement> = inject<ElementRef<HTMLInputElement>>(ElementRef);

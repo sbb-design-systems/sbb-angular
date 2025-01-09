@@ -7,7 +7,6 @@ import { SbbIconModule } from '@sbb-esta/angular/icon';
   templateUrl: './breadcrumb-root.html',
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush,
-  standalone: true,
   imports: [SbbIconModule],
 })
 export class SbbBreadcrumbRoot {}

@@ -52,7 +52,6 @@ import { SBB_HEADER } from './header-token';
     '[@open]': 'this._animationState',
     '[class.sbb-header-menus-collapsed]': 'this._header._menusCollapsed',
   },
-  standalone: true,
   imports: [SbbIconModule, CdkPortal, CdkPortalOutlet, NgClass],
 })
 export class SbbHeaderMenu implements AfterContentInit, OnDestroy {

@@ -62,7 +62,6 @@ export const SBB_SORT_DEFAULT_OPTIONS = new InjectionToken<SbbSortDefaultOptions
   selector: '[sbbSort]',
   exportAs: 'sbbSort',
   host: { class: 'sbb-sort' },
-  standalone: true,
 })
 export class SbbSort implements OnInit, OnChanges, OnDestroy {
   private _initializedStream = new ReplaySubject<void>(1);

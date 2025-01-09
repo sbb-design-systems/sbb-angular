@@ -42,7 +42,6 @@ export const _sbbBreadcrumbMenuInheritedTriggerContext: SbbMenuInheritedTriggerC
       useValue: _sbbBreadcrumbMenuInheritedTriggerContext,
     },
   ],
-  standalone: true,
   imports: [SbbBreadcrumb],
 })
 export class SbbBreadcrumbs {

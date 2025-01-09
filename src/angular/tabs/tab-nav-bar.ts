@@ -50,7 +50,6 @@ import { SbbPaginatedTabHeader } from './paginated-tab-header';
   encapsulation: ViewEncapsulation.None,
   // tslint:disable-next-line:validate-decorators
   changeDetection: ChangeDetectionStrategy.Default,
-  standalone: true,
   imports: [SbbIcon, CdkObserveContent],
 })
 export class SbbTabNav
@@ -148,7 +147,6 @@ export class SbbTabNav
     '(focus)': '_handleFocus()',
     '(keydown)': '_handleKeydown($event)',
   },
-  standalone: true,
 })
 export class SbbTabLink implements AfterViewInit, OnDestroy, FocusableOption {
   /** Whether the tab link is disabled. */
@@ -266,7 +264,6 @@ export class SbbTabLink implements AfterViewInit, OnDestroy, FocusableOption {
   },
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush,
-  standalone: true,
 })
 export class SbbTabNavPanel {
   /** Unique id for the tab panel. */

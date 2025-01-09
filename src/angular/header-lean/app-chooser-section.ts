@@ -20,7 +20,6 @@ import { SBB_HEADER } from './header-token';
   host: {
     class: 'sbb-app-chooser',
   },
-  standalone: true,
 })
 export class SbbAppChooserSection {
   private _header = inject<TypeRef<SbbHeaderLean>>(SBB_HEADER);

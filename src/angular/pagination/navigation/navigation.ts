@@ -21,7 +21,6 @@ export type SbbNavigationPageChangeEvent = 'next' | 'previous';
   host: {
     role: 'navigation',
   },
-  standalone: true,
   imports: [SbbIcon],
 })
 export class SbbNavigation implements OnChanges {

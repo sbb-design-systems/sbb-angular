@@ -49,7 +49,6 @@ export function throwSbbDuplicatedIconSidebarError() {
       useExisting: SbbIconSidebarContent,
     },
   ],
-  standalone: true,
 })
 export class SbbIconSidebarContent extends SbbSidebarContentBase {}
 
@@ -68,7 +67,6 @@ export class SbbIconSidebarContent extends SbbSidebarContentBase {}
   },
   changeDetection: ChangeDetectionStrategy.OnPush,
   encapsulation: ViewEncapsulation.None,
-  standalone: true,
   imports: [CdkScrollable, SbbIcon],
 })
 export class SbbIconSidebar extends SbbSidebarBase {
@@ -143,7 +141,6 @@ export class SbbIconSidebar extends SbbSidebarBase {
       useExisting: SbbIconSidebarContainer,
     },
   ],
-  standalone: true,
   imports: [SbbIconSidebarContent],
 })
 export class SbbIconSidebarContainer

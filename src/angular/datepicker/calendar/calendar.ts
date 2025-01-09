@@ -39,7 +39,6 @@ import { SbbMonthView } from '../month-view/month-view';
   host: {
     class: 'sbb-calendar-header sbb-icon-scaled',
   },
-  standalone: true,
   imports: [SbbIconModule],
 })
 export class SbbCalendarHeader<D> {
@@ -167,7 +166,6 @@ export class SbbCalendarHeader<D> {
   host: {
     class: 'sbb-calendar',
   },
-  standalone: true,
   imports: [CdkPortalOutlet, CdkMonitorFocus, SbbMonthView, AsyncPipe],
 })
 export class SbbCalendar<D> implements AfterContentInit, AfterViewChecked, OnDestroy, OnChanges {

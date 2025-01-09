@@ -65,7 +65,6 @@ const _SbbNotificationMixinBase = mixinVariant(class {});
     '[attr.aria-hidden]': '_closed ? true : null',
     '[@showDismiss]': '_animationState',
   },
-  standalone: true,
   imports: [SbbIcon, AsyncPipe],
 })
 export class SbbNotification extends _SbbNotificationMixinBase implements OnChanges {

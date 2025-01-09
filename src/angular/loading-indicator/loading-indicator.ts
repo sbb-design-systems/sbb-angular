@@ -21,7 +21,6 @@ export type SbbLoadingIndicatorMode = 'tiny' | 'small' | 'medium' | 'big' | 'ful
     '[class.sbb-loading-indicator-fullbox]': `this.mode === 'fullbox'`,
     '[class.sbb-loading-indicator-inline]': `this.mode === 'inline'`,
   },
-  standalone: true,
 })
 export class SbbLoadingIndicator {
   /** Types of mode for loading indicator. */
