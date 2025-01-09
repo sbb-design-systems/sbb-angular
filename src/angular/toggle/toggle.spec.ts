@@ -50,7 +50,6 @@ import { SbbToggleModule } from './toggle.module';
       </sbb-toggle>
     </form>
   `,
-  standalone: true,
   imports: [
     SbbToggleModule,
     SbbIconModule,
@@ -115,7 +114,6 @@ class ToggleReactiveTestComponent {
       </sbb-toggle>
     </form>
   `,
-  standalone: true,
   imports: [
     SbbToggleModule,
     AsyncPipe,
@@ -175,7 +173,6 @@ class ToggleReactiveDefaultValueTestComponent {
       }
     </sbb-toggle>
   `,
-  standalone: true,
   imports: [
     SbbToggleModule,
     SbbIconModule,
@@ -216,7 +213,6 @@ class ToggleTemplateDrivenTestComponent {
       </sbb-toggle-option>
     </sbb-toggle>
   `,
-  standalone: true,
   imports: [SbbToggleModule],
 })
 class ToggleSimpleCaseTestComponent {
@@ -243,7 +239,6 @@ class ToggleSimpleCaseTestComponent {
       </sbb-toggle-option>
     </sbb-toggle>
   `,
-  standalone: true,
   imports: [SbbToggleModule, ReactiveFormsModule, SbbIconModule],
 })
 class ToggleOnlySecondWithContentTestComponent {

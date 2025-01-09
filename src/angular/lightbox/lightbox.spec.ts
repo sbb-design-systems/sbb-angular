@@ -1768,7 +1768,6 @@ describe('SbbLightbox with close button', () => {
 
 @Directive({
   selector: 'dir-with-view-container',
-  standalone: true,
 })
 class DirectiveWithViewContainer {
   viewContainerRef = inject(ViewContainerRef);
@@ -1777,7 +1776,6 @@ class DirectiveWithViewContainer {
 @Component({
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: 'hello',
-  standalone: true,
 })
 class ComponentWithOnPushViewContainer {
   viewContainerRef = inject(ViewContainerRef);
@@ -1788,7 +1786,6 @@ class ComponentWithOnPushViewContainer {
   template: `@if (showChildView) {
     <dir-with-view-container></dir-with-view-container>
   }`,
-  standalone: true,
   imports: [DirectiveWithViewContainer],
 })
 class ComponentWithChildViewContainer {
@@ -1806,7 +1803,6 @@ class ComponentWithChildViewContainer {
   template: `<ng-template let-data let-lightboxRef="lightboxRef">
     Cheese {{ localValue }} {{ data?.value }}{{ setDialogRef(lightboxRef) }}</ng-template
   >`,
-  standalone: true,
 })
 class ComponentWithTemplateRef {
   localValue: string;
@@ -1823,7 +1819,6 @@ class ComponentWithTemplateRef {
 /** Simple component for testing ComponentPortal. */
 @Component({
   template: '<p>Pizza</p> <input> <button>Close</button>',
-  standalone: true,
 })
 class PizzaMsg {
   lightboxRef = inject<SbbLightboxRef<PizzaMsg>>(SbbLightboxRef);
@@ -1847,7 +1842,6 @@ class PizzaMsg {
       <button class="with-submit" type="submit" sbb-lightbox-close>Should have submit</button>
     </sbb-lightbox-actions>
   `,
-  standalone: true,
   imports: [SbbLightboxModule],
 })
 class ContentElementDialog {}
@@ -1870,7 +1864,6 @@ class ContentElementDialog {}
       </sbb-lightbox-actions>
     </ng-template>
   `,
-  standalone: true,
   imports: [SbbLightboxTitle, SbbLightboxContent, SbbLightboxActions, SbbLightboxClose],
 })
 class ComponentWithContentElementTemplateRef {
@@ -1879,7 +1872,6 @@ class ComponentWithContentElementTemplateRef {
 
 @Component({
   imports: [SbbLightboxModule],
-  standalone: true,
   template: '',
 })
 class ComponentThatProvidesSbbLightbox {
@@ -1889,7 +1881,6 @@ class ComponentThatProvidesSbbLightbox {
 /** Simple component for testing ComponentPortal. */
 @Component({
   template: '',
-  standalone: true,
 })
 class DialogWithInjectedData {
   data = inject(SBB_LIGHTBOX_DATA);
@@ -1897,14 +1888,12 @@ class DialogWithInjectedData {
 
 @Component({
   template: '<p>Pasta</p>',
-  standalone: true,
 })
 class DialogWithoutFocusableElements {}
 
 @Component({
   template: `<button>I'm a button</button>`,
   encapsulation: ViewEncapsulation.ShadowDom,
-  standalone: true,
 })
 class ShadowDomComponent {}
 
@@ -1914,7 +1903,6 @@ class ShadowDomComponent {}
     <sbb-lightbox-content>Lorem ipsum dolor sit amet.</sbb-lightbox-content>
     <sbb-lightbox-actions> Actions </sbb-lightbox-actions>
   `,
-  standalone: true,
   imports: [SbbLightboxTitle, SbbLightboxContent, SbbLightboxActions],
 })
 class ContentCloseAriaLabelDialog {
@@ -1945,7 +1933,6 @@ class DialogTestModule {}
 
 @Component({
   template: '',
-  standalone: true,
   imports: [SbbLightboxModule],
 })
 class ModuleBoundLightboxParentComponent {
@@ -1969,7 +1956,6 @@ class ModuleBoundLightboxService {
 
 @Component({
   template: '<module-bound-lightbox-child-component></module-bound-lightbox-child-component>',
-  standalone: true,
   imports: [forwardRef(() => ModuleBoundLightboxChildComponent)],
 })
 class ModuleBoundLightboxComponent {}
@@ -1977,7 +1963,6 @@ class ModuleBoundLightboxComponent {}
 @Component({
   selector: 'module-bound-lightbox-child-component',
   template: '<p>{{service.name}}</p>',
-  standalone: true,
 })
 class ModuleBoundLightboxChildComponent {
   service = inject(ModuleBoundLightboxService);

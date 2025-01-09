@@ -806,7 +806,6 @@ describe('SbbNotificationToast Positioning', () => {
 @Component({
   selector: 'sbb-notification-mock',
   template: '',
-  standalone: true,
 })
 export class NotificationMockComponent {
   private _notification = inject(SbbNotificationToast);
@@ -826,7 +825,6 @@ export class NotificationMockComponent {
 
 @Directive({
   selector: 'dir-with-view-container',
-  standalone: true,
 })
 class DirectiveWithViewContainer {
   viewContainerRef = inject(ViewContainerRef);
@@ -837,7 +835,6 @@ class DirectiveWithViewContainer {
   template: `@if (childComponentExists()) {
     <dir-with-view-container></dir-with-view-container>
   }`,
-  standalone: true,
   changeDetection: ChangeDetectionStrategy.OnPush,
   imports: [DirectiveWithViewContainer],
 })
@@ -854,7 +851,6 @@ class ComponentWithChildViewContainer {
 @Component({
   selector: 'arbitrary-component-with-template-ref',
   template: ` <ng-template let-data> Fries {{ localValue }} {{ data?.value }} </ng-template> `,
-  standalone: true,
 })
 class ComponentWithTemplateRef {
   @ViewChild(TemplateRef) templateRef: TemplateRef<any>;
@@ -864,7 +860,6 @@ class ComponentWithTemplateRef {
 /** Simple component for testing ComponentPortal. */
 @Component({
   template: '<p>Burritos are on the way.</p>',
-  standalone: true,
 })
 class BurritosNotification {
   notificationToastRef =

@@ -38,7 +38,6 @@ import { SbbMonthView } from './month-view';
     ></sbb-month-view>
   `,
   imports: [SbbCalendarBody, SbbMonthView],
-  standalone: true,
 })
 class StandardMonthViewComponent {
   date = new Date(2017, JAN, 5);
@@ -51,7 +50,6 @@ class StandardMonthViewComponent {
 @Component({
   template: ` <sbb-month-view [activeDate]="activeDate" [dateRange]="dateRange"></sbb-month-view> `,
   imports: [SbbCalendarBody, SbbMonthView],
-  standalone: true,
 })
 class MonthViewWithDateRangeComponent {
   activeDate = new Date(2022, NOV, 1);
@@ -63,7 +61,6 @@ class MonthViewWithDateRangeComponent {
     <sbb-month-view [activeDate]="activeDate" [dateFilter]="dateFilter"></sbb-month-view>
   `,
   imports: [SbbCalendarBody, SbbMonthView],
-  standalone: true,
 })
 class MonthViewWithDateFilterComponent {
   activeDate = new Date(2017, JAN, 1);
@@ -75,7 +72,6 @@ class MonthViewWithDateFilterComponent {
 @Component({
   template: `<sbb-month-view [activeDate]="activeDate" [dateClass]="dateClass"></sbb-month-view>`,
   imports: [SbbCalendarBody, SbbMonthView],
-  standalone: true,
 })
 class MonthViewWithDateClassComponent {
   activeDate = new Date(2017, JAN, 1);
@@ -92,7 +88,6 @@ class MonthViewWithDateClassComponent {
     [dateClass]="dateClass"
   ></sbb-month-view>`,
   imports: [SbbCalendarBody, SbbMonthView],
-  standalone: true,
 })
 class MonthViewComponentWithWeekNumbers {
   @ViewChild(SbbMonthView) monthView: SbbMonthView<Date>;

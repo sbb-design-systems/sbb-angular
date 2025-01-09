@@ -274,7 +274,6 @@ describe('SbbTableDataSource', () => {
 
 @Component({
   template: `<div sbbSort sbbSortDirection="asc"></div>`,
-  standalone: true,
   imports: [SbbTableModule],
 })
 class SbbSortApp {

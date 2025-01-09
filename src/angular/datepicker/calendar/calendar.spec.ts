@@ -27,7 +27,6 @@ import { SbbDatepickerModule } from '../datepicker.module';
     >
     </sbb-calendar>
   `,
-  standalone: true,
   imports: [SbbDatepickerModule],
 })
 class StandardCalendarComponent {
@@ -41,7 +40,6 @@ class StandardCalendarComponent {
   template: `
     <sbb-calendar [startAt]="startAt" [minDate]="minDate" [maxDate]="maxDate"></sbb-calendar>
   `,
-  standalone: true,
   imports: [SbbDatepickerModule],
 })
 class CalendarWithMinMaxComponent {
@@ -55,7 +53,6 @@ class CalendarWithMinMaxComponent {
     <sbb-calendar [startAt]="startDate" [(selected)]="selected" [dateFilter]="dateFilter">
     </sbb-calendar>
   `,
-  standalone: true,
   imports: [SbbDatepickerModule],
 })
 class CalendarWithDateFilterComponent {
@@ -77,7 +74,6 @@ class CalendarWithDateFilterComponent {
     >
     </sbb-calendar>
   `,
-  standalone: true,
   imports: [SbbDatepickerModule],
 })
 class CalendarWithSelectableMinDateComponent {
@@ -96,7 +92,6 @@ class CalendarWithSelectableMinDateComponent {
 
 @Component({
   template: ` <sbb-calendar [dateClass]="dateClass"> </sbb-calendar> `,
-  standalone: true,
   imports: [SbbDatepickerModule],
 })
 class CalendarWithDateClassComponent {

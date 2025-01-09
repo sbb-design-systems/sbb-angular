@@ -1023,7 +1023,6 @@ describe('SbbCheckbox', () => {
       Simple checkbox
     </sbb-checkbox>
   </div>`,
-  standalone: true,
   imports: [SbbCheckboxModule],
 })
 class SingleCheckbox {
@@ -1044,7 +1043,6 @@ class SingleCheckbox {
 @Component({
   template: `<sbb-checkbox [required]="isRequired" [(ngModel)]="isGood">Be good</sbb-checkbox>`,
   imports: [SbbCheckboxModule, FormsModule],
-  standalone: true,
 })
 class CheckboxWithNgModel {
   isGood: boolean = false;
@@ -1055,7 +1053,6 @@ class CheckboxWithNgModel {
   template: `<sbb-checkbox [required]="isRequired" [(ngModel)]="isGood">Be good</sbb-checkbox>`,
   changeDetection: ChangeDetectionStrategy.OnPush,
   imports: [SbbCheckboxModule, FormsModule],
-  standalone: true,
 })
 class CheckboxWithNgModelAndOnPush extends CheckboxWithNgModel {}
 
@@ -1066,7 +1063,6 @@ class CheckboxWithNgModelAndOnPush extends CheckboxWithNgModel {}
     <sbb-checkbox>Option 2</sbb-checkbox>
   `,
   imports: [SbbCheckboxModule],
-  standalone: true,
 })
 class MultipleCheckboxes {}
 
@@ -1074,7 +1070,6 @@ class MultipleCheckboxes {}
 @Component({
   template: ` <sbb-checkbox [tabIndex]="customTabIndex" [disabled]="isDisabled"> </sbb-checkbox>`,
   imports: [SbbCheckboxModule],
-  standalone: true,
 })
 class CheckboxWithTabIndex {
   customTabIndex: number = 7;
@@ -1085,7 +1080,6 @@ class CheckboxWithTabIndex {
 @Component({
   template: ` <sbb-checkbox></sbb-checkbox>`,
   imports: [SbbCheckboxModule],
-  standalone: true,
 })
 class CheckboxUsingViewChild {
   @ViewChild(SbbCheckbox) checkbox: SbbCheckbox;
@@ -1099,7 +1093,6 @@ class CheckboxUsingViewChild {
 @Component({
   template: `<sbb-checkbox aria-label="Super effective"></sbb-checkbox>`,
   imports: [SbbCheckboxModule],
-  standalone: true,
 })
 class CheckboxWithAriaLabel {}
 
@@ -1107,7 +1100,6 @@ class CheckboxWithAriaLabel {}
 @Component({
   template: `<sbb-checkbox aria-labelledby="some-id"></sbb-checkbox>`,
   imports: [SbbCheckboxModule],
-  standalone: true,
 })
 class CheckboxWithAriaLabelledby {}
 
@@ -1115,14 +1107,12 @@ class CheckboxWithAriaLabelledby {}
 @Component({
   template: `<sbb-checkbox aria-describedby="some-id"></sbb-checkbox>`,
   imports: [SbbCheckboxModule],
-  standalone: true,
 })
 class CheckboxWithAriaDescribedby {}
 
 /** Simple test component with an aria-expanded set with true. */
 @Component({
   template: `<sbb-checkbox aria-expanded="true"></sbb-checkbox>`,
-  standalone: true,
   imports: [SbbCheckbox],
 })
 class CheckboxWithPositiveAriaExpanded {}
@@ -1130,7 +1120,6 @@ class CheckboxWithPositiveAriaExpanded {}
 /** Simple test component with an aria-expanded set with false. */
 @Component({
   template: `<sbb-checkbox aria-expanded="false"><sbb-checkbox></sbb-checkbox></sbb-checkbox>`,
-  standalone: true,
   imports: [SbbCheckbox],
 })
 class CheckboxWithNegativeAriaExpanded {}
@@ -1138,7 +1127,6 @@ class CheckboxWithNegativeAriaExpanded {}
 /** Simple test component with an aria-controls set. */
 @Component({
   template: `<sbb-checkbox aria-controls="some-id"></sbb-checkbox>`,
-  standalone: true,
   imports: [SbbCheckbox],
 })
 class CheckboxWithAriaControls {}
@@ -1146,7 +1134,6 @@ class CheckboxWithAriaControls {}
 /** Simple test component with an aria-owns set. */
 @Component({
   template: `<sbb-checkbox aria-owns="some-id"></sbb-checkbox>`,
-  standalone: true,
   imports: [SbbCheckbox],
 })
 class CheckboxWithAriaOwns {}
@@ -1155,7 +1142,6 @@ class CheckboxWithAriaOwns {}
 @Component({
   template: `<sbb-checkbox name="test-name"></sbb-checkbox>`,
   imports: [SbbCheckboxModule],
-  standalone: true,
 })
 class CheckboxWithNameAttribute {}
 
@@ -1163,7 +1149,6 @@ class CheckboxWithNameAttribute {}
 @Component({
   template: `<sbb-checkbox (change)="lastEvent = $event"></sbb-checkbox>`,
   imports: [SbbCheckboxModule],
-  standalone: true,
 })
 class CheckboxWithChangeEvent {
   lastEvent: SbbCheckboxChange;
@@ -1173,7 +1158,6 @@ class CheckboxWithChangeEvent {
 @Component({
   template: `<sbb-checkbox [formControl]="formControl"></sbb-checkbox>`,
   imports: [SbbCheckboxModule, ReactiveFormsModule],
-  standalone: true,
 })
 class CheckboxWithFormControl {
   formControl = new FormControl(false);
@@ -1183,13 +1167,11 @@ class CheckboxWithFormControl {
 @Component({
   template: `<sbb-checkbox tabindex="5"></sbb-checkbox>`,
   imports: [SbbCheckboxModule],
-  standalone: true,
 })
 class CheckboxWithTabindexAttr {}
 
 @Component({
   template: `<sbb-checkbox aria-label="Checkbox" aria-labelledby="something"></sbb-checkbox>`,
   imports: [SbbCheckboxModule],
-  standalone: true,
 })
 class CheckboxWithStaticAriaAttributes {}

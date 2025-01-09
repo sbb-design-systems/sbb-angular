@@ -965,7 +965,6 @@ describe('SbbDatepicker', () => {
     </sbb-datepicker>
   `,
   imports: [FormsModule, SbbDatepickerModule],
-  standalone: true,
 })
 class StandardDatepickerComponent {
   opened = false;
@@ -984,14 +983,12 @@ class StandardDatepickerComponent {
     </sbb-datepicker>
   `,
   imports: [SbbInputModule, SbbDatepickerModule],
-  standalone: true,
 })
 class MultiInputDatepickerComponent {}
 
 @Component({
   template: ` <sbb-datepicker #d></sbb-datepicker> `,
   imports: [SbbDatepickerModule],
-  standalone: true,
 })
 class NoInputDatepickerComponent {
   @ViewChild('d') datepicker: SbbDatepicker<Date>;
@@ -1004,7 +1001,6 @@ class NoInputDatepickerComponent {
     </sbb-datepicker>
   `,
   imports: [SbbDatepickerModule],
-  standalone: true,
 })
 class DatepickerWithStartAtComponent {
   date = new Date(2020, JAN, 1);
@@ -1019,7 +1015,6 @@ class DatepickerWithStartAtComponent {
     </sbb-datepicker>
   `,
   imports: [FormsModule, SbbDatepickerModule],
-  standalone: true,
 })
 class DatepickerWithNgModelComponent {
   selected: Date | null = null;
@@ -1034,7 +1029,6 @@ class DatepickerWithNgModelComponent {
     </sbb-datepicker>
   `,
   imports: [SbbDatepickerModule],
-  standalone: true,
 })
 class DatepickerWithToggleComponent {
   @ViewChild('d') datepicker: SbbDatepicker<Date>;
@@ -1051,7 +1045,6 @@ class DatepickerWithToggleComponent {
     </sbb-form-field>
   `,
   imports: [SbbDatepickerModule, SbbInputModule, SbbFormFieldModule],
-  standalone: true,
 })
 class FormFieldDatepicker {
   @ViewChild('d') datepicker: SbbDatepicker<Date>;
@@ -1066,7 +1059,6 @@ class FormFieldDatepicker {
     </sbb-datepicker>
   `,
   imports: [FormsModule, SbbDatepickerModule],
-  standalone: true,
 })
 class DatepickerWithMinAndMaxValidationComponent {
   @ViewChild('d') datepicker: SbbDatepicker<Date>;
@@ -1082,7 +1074,6 @@ class DatepickerWithMinAndMaxValidationComponent {
     </sbb-datepicker>
   `,
   imports: [FormsModule, SbbDatepickerModule],
-  standalone: true,
 })
 class DatepickerWithEventsComponent {
   selected: Date | null = null;
@@ -1098,7 +1089,6 @@ class DatepickerWithEventsComponent {
     </sbb-datepicker>
   `,
   imports: [SbbDatepickerModule],
-  standalone: true,
 })
 class DatepickerOpeningOnFocusComponent {
   @ViewChild(SbbDatepicker) datepicker: SbbDatepicker<Date>;
@@ -1112,7 +1102,6 @@ class DatepickerOpeningOnFocusComponent {
       <input sbbDateInput sbbInput [formControl]="secondDatepicker" />
     </sbb-datepicker>`,
   imports: [ReactiveFormsModule, SbbInputModule, SbbDatepickerModule],
-  standalone: true,
 })
 class DatepickerConnectedComponent {
   firstDatepicker = new FormControl<Date | null>(null);
@@ -1136,7 +1125,6 @@ class DatepickerConnectedComponent {
     </sbb-datepicker>
   `,
   imports: [SbbDatepickerModule],
-  standalone: true,
 })
 class DatepickerWithArrows {
   date: Date | null = new Date();
@@ -1157,7 +1145,6 @@ class DatepickerWithArrows {
     </sbb-datepicker>
   `,
   imports: [ReactiveFormsModule, SbbInputModule, SbbDatepickerModule],
-  standalone: true,
 })
 class DatepickerReadonlyComponent {
   date = new FormControl<Date | null>(null);
@@ -1172,7 +1159,6 @@ class DatepickerReadonlyComponent {
     </sbb-datepicker>
   `,
   imports: [SbbDatepickerModule],
-  standalone: true,
 })
 class DatepickerWithNoToggleComponent {
   @ViewChild('d') datepicker: SbbDatepicker<Date>;
@@ -1183,7 +1169,6 @@ class DatepickerWithNoToggleComponent {
 @Component({
   template: ` <input sbbDateInput sbbInput [formControl]="date" /> `,
   imports: [ReactiveFormsModule, SbbInputModule, SbbDatepickerModule],
-  standalone: true,
 })
 class StandaloneDateInputComponent {
   date = new FormControl<Date | null>(null);
@@ -1192,7 +1177,6 @@ class StandaloneDateInputComponent {
 @Component({
   template: ` <input sbbDateInput sbbInput [formControl]="date" /> `,
   imports: [ReactiveFormsModule, SbbInputModule, SbbDatepickerModule],
-  standalone: true,
 })
 class StandaloneDateInputWithoutOverflowComponent {
   date = new FormControl<Date | null>(null);

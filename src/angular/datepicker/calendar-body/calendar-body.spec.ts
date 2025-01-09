@@ -22,7 +22,6 @@ import { SbbCalendarBody, SbbCalendarCell } from './calendar-body';
     ></table>
   `,
   imports: [SbbCalendarBody],
-  standalone: true,
 })
 class StandardCalendarBodyComponent {
   label = 'Jan 2017';
@@ -54,7 +53,6 @@ class StandardCalendarBodyComponent {
     ></table>
   `,
   imports: [SbbCalendarBody],
-  standalone: true,
 })
 class CalendarBodyWithDisabledCellsComponent {
   rows = [[1, 2, 3, 4]].map((r) =>

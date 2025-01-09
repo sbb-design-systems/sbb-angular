@@ -22,7 +22,6 @@ import { SbbNavigation, SbbNavigationPageChangeEvent } from './navigation';
     <input type="text" name="newPage" [(ngModel)]="newPage.title" />
     <button id="new-page-button" sbb-button (click)="addPage()">Add new page</button>
   `,
-  standalone: true,
   imports: [SbbPaginationModule, SbbButtonModule, FormsModule],
 })
 export class NavigationTestComponent {

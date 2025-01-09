@@ -1240,7 +1240,6 @@ describe('SbbIcon without HttpClientModule', () => {
 
 @Component({
   template: ` <sbb-icon>{{ iconName }}</sbb-icon>`,
-  standalone: true,
   imports: [SbbIconModule],
 })
 class IconWithLigature {
@@ -1249,7 +1248,6 @@ class IconWithLigature {
 
 @Component({
   template: ` <sbb-icon [fontSet]="fontSet" [fontIcon]="fontIcon"></sbb-icon>`,
-  standalone: true,
   imports: [SbbIconModule],
 })
 class IconWithCustomFontCss {
@@ -1259,7 +1257,6 @@ class IconWithCustomFontCss {
 
 @Component({
   template: ` <sbb-icon [svgIcon]="iconName"></sbb-icon>`,
-  standalone: true,
   imports: [SbbIconModule, HttpClientTestingModule],
 })
 class IconFromSvgName {
@@ -1268,7 +1265,6 @@ class IconFromSvgName {
 
 @Component({
   template: '<sbb-icon aria-hidden="false">face</sbb-icon>',
-  standalone: true,
   imports: [SbbIconModule],
 })
 class IconWithAriaHiddenFalse {}
@@ -1277,7 +1273,6 @@ class IconWithAriaHiddenFalse {}
   template: `@if (showIcon) {
     <sbb-icon [svgIcon]="iconName">{{ iconName }}</sbb-icon>
   }`,
-  standalone: true,
   imports: [SbbIconModule],
 })
 class IconWithBindingAndNgIf {
@@ -1287,7 +1282,6 @@ class IconWithBindingAndNgIf {
 
 @Component({
   template: `<sbb-icon [inline]="inline">{{ iconName }}</sbb-icon>`,
-  standalone: true,
   imports: [SbbIconModule],
 })
 class InlineIcon {
@@ -1299,7 +1293,6 @@ class InlineIcon {
   template: `<sbb-icon [svgIcon]="iconName">
     <div>Hello</div>
   </sbb-icon>`,
-  standalone: true,
   imports: [SbbIconModule],
 })
 class SvgIconWithUserContent {
@@ -1308,7 +1301,6 @@ class SvgIconWithUserContent {
 
 @Component({
   template: '<sbb-icon [svgIcon]="iconName">house</sbb-icon>',
-  standalone: true,
   imports: [SbbIconModule],
 })
 class IconWithLigatureAndSvgBinding {
@@ -1317,7 +1309,6 @@ class IconWithLigatureAndSvgBinding {
 
 @Component({
   template: `<sbb-icon></sbb-icon>`,
-  standalone: true,
   imports: [SbbIconModule],
 })
 class BlankIcon {
