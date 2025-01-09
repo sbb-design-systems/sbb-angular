@@ -9,14 +9,12 @@ import { SbbTimeInputModule } from './time-input.module';
 
 @Component({
   template: `<input sbbTimeInput />`,
-  standalone: true,
   imports: [SbbTimeInputModule],
 })
 class BasicTimeInput {}
 
 @Component({
   template: `<input sbbTimeInput [placeholder]="placeholder" />`,
-  standalone: true,
   imports: [SbbTimeInputModule],
 })
 class PlaceholderTimeInput {
@@ -27,7 +25,6 @@ class PlaceholderTimeInput {
   template: `<sbb-form-field label="Time Input">
     <input [formControl]="formControl" sbbInput sbbTimeInput />
   </sbb-form-field>`,
-  standalone: true,
   imports: [SbbInputModule, ReactiveFormsModule, SbbTimeInputModule],
 })
 class FormControlTimeInput {

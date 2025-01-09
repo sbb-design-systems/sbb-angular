@@ -44,7 +44,6 @@ import { SbbInputModule } from './input.module';
       useExisting: CustomSbbInputAccessor,
     },
   ],
-  standalone: true,
 })
 class CustomSbbInputAccessor {
   get value() {
@@ -940,14 +939,12 @@ function createComponent<T>(
     <input sbbInput id="test-id" placeholder="test" />
   </sbb-form-field>`,
   imports: [SbbFormFieldModule, SbbInputModule],
-  standalone: true,
 })
 class SbbInputWithId {}
 
 @Component({
   template: `<sbb-form-field><input sbbInput [disabled]="disabled" /></sbb-form-field>`,
   imports: [SbbFormFieldModule, SbbInputModule],
-  standalone: true,
 })
 class SbbInputWithDisabled {
   disabled: boolean;
@@ -956,7 +953,6 @@ class SbbInputWithDisabled {
 @Component({
   template: `<sbb-form-field><input sbbInput [required]="required" /></sbb-form-field>`,
   imports: [SbbFormFieldModule, SbbInputModule],
-  standalone: true,
 })
 class SbbInputWithRequired {
   required: boolean;
@@ -965,7 +961,6 @@ class SbbInputWithRequired {
 @Component({
   template: `<sbb-form-field><input sbbInput [type]="type" /></sbb-form-field>`,
   imports: [SbbFormFieldModule, SbbInputModule],
-  standalone: true,
 })
 class SbbInputWithType {
   type: string;
@@ -976,7 +971,6 @@ class SbbInputWithType {
     <input sbbInput placeholder="Hello" [formControl]="formControl" />
   </sbb-form-field>`,
   imports: [SbbFormFieldModule, SbbInputModule, ReactiveFormsModule],
-  standalone: true,
 })
 class SbbInputWithFormControl {
   formControl = new FormControl('');
@@ -990,7 +984,6 @@ class SbbInputWithFormControl {
     }
   </sbb-form-field>`,
   imports: [SbbFormFieldModule, SbbInputModule, ReactiveFormsModule],
-  standalone: true,
 })
 class SbbInputWithSubscriptAndAriaDescribedBy {
   label: string = '';
@@ -1002,7 +995,6 @@ class SbbInputWithSubscriptAndAriaDescribedBy {
 @Component({
   template: `<sbb-form-field><input sbbInput [type]="t" /></sbb-form-field>`,
   imports: [SbbFormFieldModule, SbbInputModule],
-  standalone: true,
 })
 class SbbInputInvalidTypeTestController {
   t = 'file';
@@ -1013,7 +1005,6 @@ class SbbInputInvalidTypeTestController {
     <input sbbInput type="date" placeholder="Placeholder" />
   </sbb-form-field>`,
   imports: [SbbFormFieldModule, SbbInputModule],
-  standalone: true,
 })
 class SbbInputDateTestController {}
 
@@ -1022,7 +1013,6 @@ class SbbInputDateTestController {}
     <input sbbInput type="text" placeholder="Placeholder" />
   </sbb-form-field>`,
   imports: [SbbFormFieldModule, SbbInputModule],
-  standalone: true,
 })
 class SbbInputTextTestController {}
 
@@ -1031,7 +1021,6 @@ class SbbInputTextTestController {}
     <input sbbInput type="password" placeholder="Placeholder" />
   </sbb-form-field>`,
   imports: [SbbFormFieldModule, SbbInputModule],
-  standalone: true,
 })
 class SbbInputPasswordTestController {}
 
@@ -1040,7 +1029,6 @@ class SbbInputPasswordTestController {}
     <input sbbInput type="number" placeholder="Placeholder" />
   </sbb-form-field>`,
   imports: [SbbFormFieldModule, SbbInputModule],
-  standalone: true,
 })
 class SbbInputNumberTestController {}
 
@@ -1049,7 +1037,6 @@ class SbbInputNumberTestController {}
     <input sbbInput type="number" placeholder="Placeholder" [(ngModel)]="value" />
   </sbb-form-field>`,
   imports: [SbbFormFieldModule, SbbInputModule, FormsModule],
-  standalone: true,
 })
 class SbbInputZeroTestController {
   value = 0;
@@ -1060,7 +1047,6 @@ class SbbInputZeroTestController {
     <input sbbInput placeholder="Label" [value]="value" />
   </sbb-form-field>`,
   imports: [SbbFormFieldModule, SbbInputModule],
-  standalone: true,
 })
 class SbbInputWithValueBinding {
   value: string = 'Initial';
@@ -1071,7 +1057,6 @@ class SbbInputWithValueBinding {
     <textarea sbbInput [rows]="rows" [cols]="cols" [wrap]="wrap" placeholder="Snacks"> </textarea>
   </sbb-form-field>`,
   imports: [SbbFormFieldModule, SbbInputModule],
-  standalone: true,
 })
 class SbbInputTextareaWithBindings {
   rows: number = 4;
@@ -1082,7 +1067,6 @@ class SbbInputTextareaWithBindings {
 @Component({
   template: `<sbb-form-field><input /></sbb-form-field>`,
   imports: [SbbFormFieldModule, SbbInputModule],
-  standalone: true,
 })
 class SbbInputMissingSbbInputTestController {}
 
@@ -1098,7 +1082,6 @@ class SbbInputMissingSbbInputTestController {}
     </form>
   `,
   imports: [SbbFormFieldModule, SbbInputModule, FormsModule, ReactiveFormsModule],
-  standalone: true,
 })
 class SbbInputWithFormErrorMessages {
   @ViewChild('form') form: NgForm;
@@ -1116,7 +1099,6 @@ class SbbInputWithFormErrorMessages {
     </form>
   `,
   imports: [SbbFormFieldModule, SbbInputModule, ReactiveFormsModule],
-  standalone: true,
 })
 class SbbInputWithCustomErrorStateMatcher {
   formGroup = new FormGroup({
@@ -1140,7 +1122,6 @@ class SbbInputWithCustomErrorStateMatcher {
     </form>
   `,
   imports: [SbbFormFieldModule, SbbInputModule, ReactiveFormsModule],
-  standalone: true,
 })
 class SbbInputWithFormGroupErrorMessages {
   @ViewChild(FormGroupDirective) formGroupDirective: FormGroupDirective;
@@ -1158,7 +1139,6 @@ class SbbInputWithFormGroupErrorMessages {
     </sbb-form-field>
   `,
   imports: [SbbFormFieldModule, SbbInputModule],
-  standalone: true,
 })
 class SbbInputWithNgIf {
   renderInput = true;
@@ -1172,7 +1152,6 @@ class SbbInputWithNgIf {
     </sbb-form-field>
   `,
   imports: [SbbFormFieldModule, SbbInputModule, ReactiveFormsModule],
-  standalone: true,
 })
 class SbbInputOnPush {
   formControl = new FormControl('');
@@ -1185,7 +1164,6 @@ class SbbInputOnPush {
     </sbb-form-field>
   `,
   imports: [SbbFormFieldModule, SbbInputModule],
-  standalone: true,
 })
 class SbbInputWithoutPlaceholder {}
 
@@ -1201,7 +1179,6 @@ class SbbInputWithoutPlaceholder {}
     </select>
   </sbb-form-field>`,
   imports: [SbbFormFieldModule, SbbInputModule],
-  standalone: true,
 })
 class SbbInputSelect {
   disabled: boolean;
@@ -1213,7 +1190,6 @@ class SbbInputSelect {
     <input sbbInput customInputAccessor placeholder="Placeholder" />
   </sbb-form-field>`,
   imports: [SbbFormFieldModule, SbbInputModule, CustomSbbInputAccessor],
-  standalone: true,
 })
 class SbbInputWithCustomAccessor {}
 
@@ -1222,7 +1198,6 @@ class SbbInputWithCustomAccessor {}
     <select sbbInput></select>
   </sbb-form-field>`,
   imports: [SbbFormFieldModule, SbbInputModule],
-  standalone: true,
 })
 class SbbInputSelectWithoutOptions {}
 
@@ -1240,7 +1215,6 @@ class SbbInputSelectWithoutOptions {}
     </sbb-form-field>
   `,
   imports: [SbbFormFieldModule, SbbInputModule],
-  standalone: true,
 })
 class SbbInputWithDefaultNgIf {}
 
@@ -1256,7 +1230,6 @@ class SbbInputWithDefaultNgIf {}
     </sbb-form-field>
   `,
   imports: [SbbFormFieldModule, SbbInputModule],
-  standalone: true,
 })
 class SbbInputWithAnotherNgIf {
   inputValue = 'test';
@@ -1265,7 +1238,6 @@ class SbbInputWithAnotherNgIf {
 @Component({
   template: `<input sbbInput placeholder="{{ 'placeholder' | json }}" value="test" />`,
   imports: [JsonPipe, SbbInputModule],
-  standalone: true,
 })
 class SbbInputWithPlaceholder {}
 
@@ -1274,7 +1246,6 @@ class SbbInputWithPlaceholder {}
     <input sbbInput [placeholder]="placeholder" value="test" />
   </sbb-form-field>`,
   imports: [SbbFormFieldModule, SbbInputModule],
-  standalone: true,
 })
 class SbbInputWithVariablePlaceholder {
   placeholder: string;
@@ -1285,7 +1256,6 @@ class SbbInputWithVariablePlaceholder {
     <input sbbInput [readonly]="readonly" [formControl]="formControl" [tabIndex]="tabIndex" />
   </sbb-form-field>`,
   imports: [SbbFormFieldModule, SbbInputModule, ReactiveFormsModule],
-  standalone: true,
 })
 class SbbInputReadonly {
   readonly = true;

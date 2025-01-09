@@ -135,7 +135,6 @@ describe('Chip Remove', () => {
       <span sbbChipRemove></span>
     </sbb-chip>
   `,
-  standalone: true,
   imports: [SbbChipsModule, SbbIconModule, SbbIconTestingModule],
 })
 class TestChip {
@@ -147,7 +146,6 @@ class TestChip {
 
 @Component({
   template: ` <sbb-chip [removable]="removable"> </sbb-chip> `,
-  standalone: true,
   imports: [SbbChipsModule, SbbIconModule, SbbIconTestingModule],
 })
 class ChipWithoutRemoveIcon {

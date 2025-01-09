@@ -24,7 +24,6 @@ import {
       Test option selection 2
     </sbb-checkbox-panel>
   `,
-  standalone: true,
   imports: [SbbCheckboxPanelModule, FormsModule],
 })
 class ModelOptionSelectionMultipleTest {
@@ -43,7 +42,6 @@ class ModelOptionSelectionMultipleTest {
       <sbb-checkbox-panel-note>{{ note }}</sbb-checkbox-panel-note>
     </sbb-checkbox-panel>
   `,
-  standalone: true,
   imports: [ReactiveFormsModule, SbbCheckboxPanelModule],
 })
 class CheckboxPanelDirectivesTest {
@@ -63,7 +61,6 @@ class CheckboxPanelDirectivesTest {
       </sbb-checkbox-panel-note>
     </sbb-checkbox-panel>
   `,
-  standalone: true,
   imports: [ReactiveFormsModule, SbbCheckboxPanelModule, SbbIconModule],
 })
 class CheckboxPanelIconTest {

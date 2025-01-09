@@ -1094,7 +1094,6 @@ describe('SbbChipList', () => {
     }
   </sbb-chip-list>`,
   imports: [SbbChipsModule],
-  standalone: true,
 })
 class StandardChipList {
   name: string = 'Test';
@@ -1116,7 +1115,6 @@ class StandardChipList {
     </sbb-form-field>
   `,
   imports: [SbbChipsModule, SbbFormFieldModule, SbbInputModule],
-  standalone: true,
 })
 class FormFieldChipList {
   chips = ['Chip 0', 'Chip 1', 'Chip 2'];
@@ -1152,7 +1150,6 @@ class FormFieldChipList {
     </sbb-form-field>
   `,
   imports: [ReactiveFormsModule, SbbChipsModule, SbbFormFieldModule, SbbInputModule],
-  standalone: true,
 })
 class InputChipList {
   foods: any[] = [
@@ -1214,7 +1211,6 @@ class InputChipList {
     </form>
   `,
   imports: [SbbChipsModule, SbbFormFieldModule, SbbInputModule, ReactiveFormsModule, FormsModule],
-  standalone: true,
 })
 class ChipListWithFormErrorMessages {
   foods: any[] = [
@@ -1242,7 +1238,6 @@ class ChipListWithFormErrorMessages {
     ]),
   ],
   imports: [SbbChipsModule],
-  standalone: true,
 })
 class StandardChipListWithAnimations {
   numbers = [0, 1, 2, 3, 4];
@@ -1270,7 +1265,6 @@ class StandardChipListWithAnimations {
     </sbb-form-field>
   `,
   imports: [SbbChipsModule, SbbFormFieldModule, SbbInputModule],
-  standalone: true,
 })
 class ChipListWithRemove {
   chips = [0, 1, 2, 3, 4];
@@ -1292,7 +1286,6 @@ class ChipListWithRemove {
     </form>
   `,
   imports: [SbbChipsModule, SbbFormFieldModule, ReactiveFormsModule],
-  standalone: true,
 })
 class ChipListInsideDynamicFormGroup {
   @ViewChild(SbbChipList) chipList: SbbChipList;
@@ -1346,7 +1339,6 @@ class ChipListInsideDynamicFormGroup {
     SbbInputModule,
     ReactiveFormsModule,
   ],
-  standalone: true,
 })
 class ChipsAutocomplete {
   fruitInput = new FormControl('');
@@ -1388,7 +1380,6 @@ class ChipsAutocomplete {
     SbbInputModule,
     ReactiveFormsModule,
   ],
-  standalone: true,
 })
 class ChipsAutocompleteCustomHandlers {
   selectedFruits = new FormControl(['Lemon']);

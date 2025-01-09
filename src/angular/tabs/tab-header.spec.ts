@@ -636,7 +636,6 @@ interface Tab {
       }
     `,
   ],
-  standalone: true,
   imports: [SbbTabHeader, SbbTabLabelWrapper],
 })
 class SimpleTabHeaderApp {

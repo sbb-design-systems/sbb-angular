@@ -1395,7 +1395,6 @@ function createComponent<T>(
     </form>
   `,
   imports: [SbbProcessflowModule, SbbButtonModule, SbbInputModule, ReactiveFormsModule],
-  standalone: true,
 })
 class SbbHorizontalStepperWithErrorsApp implements OnInit {
   private _formBuilder = inject(FormBuilder);
@@ -1438,7 +1437,6 @@ class SbbHorizontalStepperWithErrorsApp implements OnInit {
     </sbb-processflow>
   `,
   imports: [SbbProcessflowModule, SbbButtonModule],
-  standalone: true,
 })
 class SimpleSbbHorizontalStepperApp {
   inputLabel = 'Step 3';
@@ -1475,7 +1473,6 @@ class SimpleSbbHorizontalStepperApp {
     </sbb-processflow>
   `,
   imports: [SbbProcessflowModule, SbbButtonModule],
-  standalone: true,
 })
 class SimpleSbbVerticalStepperApp {
   inputLabel = 'Step 3';
@@ -1519,7 +1516,6 @@ class SimpleSbbVerticalStepperApp {
     </sbb-processflow>
   `,
   imports: [SbbProcessflowModule, SbbButtonModule, ReactiveFormsModule],
-  standalone: true,
 })
 class LinearSbbVerticalStepperApp implements OnInit {
   oneGroup: FormGroup;
@@ -1550,7 +1546,6 @@ class LinearSbbVerticalStepperApp implements OnInit {
     </sbb-processflow>
   `,
   imports: [SbbProcessflowModule],
-  standalone: true,
 })
 class SimplePreselectedSbbHorizontalStepperApp {
   index = 0;
@@ -1565,7 +1560,6 @@ class SimplePreselectedSbbHorizontalStepperApp {
     </sbb-processflow>
   `,
   imports: [SbbProcessflowModule],
-  standalone: true,
 })
 class SimpleStepperWithoutStepControl {
   steps = [
@@ -1588,7 +1582,6 @@ class SimpleStepperWithoutStepControl {
     </sbb-processflow>
   `,
   imports: [SbbProcessflowModule, ReactiveFormsModule],
-  standalone: true,
 })
 class SimpleStepperWithStepControlAndCompletedBinding {
   steps = [
@@ -1607,7 +1600,6 @@ class SimpleStepperWithStepControlAndCompletedBinding {
     </sbb-processflow>
   `,
   imports: [SbbProcessflowModule],
-  standalone: true,
 })
 class LinearStepperWithValidOptionalStep {
   controls = [0, 0, 0].map(() => new FormControl(''));
@@ -1621,7 +1613,6 @@ class LinearStepperWithValidOptionalStep {
     </sbb-processflow>
   `,
   imports: [SbbProcessflowModule],
-  standalone: true,
 })
 class StepperWithAriaInputs {
   ariaLabel: string;
@@ -1639,7 +1630,6 @@ class StepperWithAriaInputs {
     </sbb-processflow>
   `,
   imports: [SbbProcessflowModule],
-  standalone: true,
 })
 class StepperWithIndirectDescendantSteps {}
 
@@ -1658,7 +1648,6 @@ class StepperWithIndirectDescendantSteps {}
     </sbb-processflow>
   `,
   imports: [SbbProcessflowModule],
-  standalone: true,
 })
 class StepperWithNgIf {
   showStep2 = false;
@@ -1678,7 +1667,6 @@ class StepperWithNgIf {
     </sbb-processflow>
   `,
   imports: [SbbProcessflowModule],
-  standalone: true,
 })
 class NestedSteppers {
   @ViewChildren(SbbProcessflow) processflows: QueryList<SbbProcessflow>;
@@ -1693,7 +1681,6 @@ class NestedSteppers {
     </sbb-processflow>
   `,
   imports: [SbbProcessflowModule],
-  standalone: true,
 })
 class StepperWithStaticOutOfBoundsIndex {
   @ViewChild(SbbProcessflow) processflow: SbbProcessflow;
@@ -1717,7 +1704,6 @@ class StepperWithStaticOutOfBoundsIndex {
     </sbb-processflow>
   `,
   imports: [SbbProcessflowModule],
-  standalone: true,
 })
 class StepperWithLazyContent {
   selectedIndex = 0;

@@ -25,7 +25,6 @@ import {
     </sbb-paginator>
   `,
   imports: [SbbPaginationModule],
-  standalone: true,
 })
 class SbbPaginatorTestComponent {
   pageIndex = 0;
@@ -44,7 +43,6 @@ class SbbPaginatorTestComponent {
     </sbb-paginator>
   `,
   imports: [SbbPaginationModule],
-  standalone: true,
 })
 class SbbPaginatorInitializedTestComponent {
   pageEvent = jasmine.createSpy('page event');
@@ -55,7 +53,6 @@ class SbbPaginatorInitializedTestComponent {
 @Component({
   template: ` <sbb-paginator></sbb-paginator> `,
   imports: [SbbPaginationModule],
-  standalone: true,
 })
 class SbbPaginatorWithoutInputsTestComponent {
   @ViewChild(SbbPaginator) paginator: SbbPaginator;
@@ -64,7 +61,6 @@ class SbbPaginatorWithoutInputsTestComponent {
 @Component({
   template: ` <sbb-paginator pageIndex="0" pageSize="10" length="100"> </sbb-paginator> `,
   imports: [SbbPaginationModule],
-  standalone: true,
 })
 class SbbPaginatorWithStringValuesTestComponent {
   @ViewChild(SbbPaginator) paginator: SbbPaginator;

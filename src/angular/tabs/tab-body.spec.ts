@@ -163,7 +163,6 @@ describe('SbbTabBody', () => {
     <ng-template>Tab Body Content</ng-template>
     <sbb-tab-body [content]="content()" [position]="position" [origin]="origin"></sbb-tab-body>
   `,
-  standalone: true,
   imports: [SbbTabBody],
 })
 class SimpleTabBodyApp implements AfterViewInit {

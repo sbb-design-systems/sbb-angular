@@ -499,7 +499,6 @@ describe('SbbExpansionPanel', () => {
       <button>I am a button</button>
     </sbb-expansion-panel>
   `,
-  standalone: true,
   imports: [SbbAccordionModule, SbbIconTestingModule],
 })
 class PanelWithContent {
@@ -519,7 +518,6 @@ class PanelWithContent {
       </sbb-expansion-panel>
     }
   `,
-  standalone: true,
   imports: [SbbAccordionModule, SbbIconTestingModule],
 })
 class PanelWithContentInNgIf {
@@ -539,7 +537,6 @@ class PanelWithContentInNgIf {
       </ng-template>
     </sbb-expansion-panel>
   `,
-  standalone: true,
   imports: [SbbAccordionModule, SbbIconTestingModule],
 })
 class LazyPanelWithContent {
@@ -556,7 +553,6 @@ class LazyPanelWithContent {
       </ng-template>
     </sbb-expansion-panel>
   `,
-  standalone: true,
   imports: [SbbAccordionModule, SbbIconTestingModule],
 })
 class LazyPanelOpenOnLoad {}
@@ -567,7 +563,6 @@ class LazyPanelOpenOnLoad {}
       <sbb-expansion-panel-header>Panel Title</sbb-expansion-panel-header>
     </sbb-expansion-panel>
   `,
-  standalone: true,
   imports: [SbbAccordionModule, SbbIconTestingModule],
 })
 class PanelWithTwoWayBinding {
@@ -578,7 +573,6 @@ class PanelWithTwoWayBinding {
   template: `<sbb-expansion-panel>
     <sbb-expansion-panel-header tabindex="7">Panel Title</sbb-expansion-panel-header>
   </sbb-expansion-panel>`,
-  standalone: true,
   imports: [SbbAccordionModule, SbbIconTestingModule],
 })
 class PanelWithHeaderTabindex {}
@@ -592,7 +586,6 @@ class PanelWithHeaderTabindex {}
       </sbb-expansion-panel>
     </sbb-expansion-panel>
   `,
-  standalone: true,
   imports: [SbbAccordionModule, SbbIconTestingModule],
 })
 class NestedLazyPanelWithContent {

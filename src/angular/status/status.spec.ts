@@ -7,26 +7,22 @@ import { SbbStatusModule } from './status.module';
 
 @Component({
   template: '<sbb-status type="valid"></sbb-status>',
-  standalone: true,
   imports: [SbbStatusModule],
 })
 class ValidStatusComponent {}
 @Component({
   template: '<sbb-status type="warning"></sbb-status>',
-  standalone: true,
   imports: [SbbStatusModule],
 })
 class WarningStatusComponent {}
 @Component({
   template: '<sbb-status type="invalid"></sbb-status>',
-  standalone: true,
   imports: [SbbStatusModule],
 })
 class InvalidStatusComponent {}
 
 @Component({
   template: '<sbb-status type="valid" [message]="message"></sbb-status>',
-  standalone: true,
   imports: [SbbStatusModule],
 })
 class StatusWithMessageComponent {
@@ -35,7 +31,6 @@ class StatusWithMessageComponent {
 
 @Component({
   template: '<sbb-status type="valid" aria-label="Test"></sbb-status>',
-  standalone: true,
   imports: [SbbStatusModule],
 })
 class StatusWithAriaLabelComponent {}

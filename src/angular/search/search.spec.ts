@@ -24,7 +24,6 @@ import { SbbSearch, SbbSearchModule } from './index';
       <input sbbInput placeholder="Search" />
     </sbb-search>
   `,
-  standalone: true,
   imports: [SbbInputModule, SbbSearchModule],
 })
 export class SimpleSearchComponent {
@@ -51,7 +50,6 @@ export class SimpleSearchComponent {
       }
     </sbb-autocomplete>
   `,
-  standalone: true,
   imports: [SbbAutocompleteModule, SbbInputModule, SbbSearchModule],
 })
 export class SimpleSearchAutocompleteComponent {
@@ -86,7 +84,6 @@ export class SimpleSearchAutocompleteComponent {
       </sbb-search>
     </button>
   `,
-  standalone: true,
   imports: [SbbInputModule, SbbSearchModule],
 })
 export class SimpleSearchHeaderComponent {
@@ -115,7 +112,6 @@ export class SimpleSearchHeaderComponent {
       }
     </sbb-autocomplete>
   `,
-  standalone: true,
   imports: [SbbInputModule, SbbAutocompleteModule, SbbSearchModule],
 })
 export class SimpleSearchAutocompleteHeaderComponent {

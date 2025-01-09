@@ -270,7 +270,6 @@ describe('SbbChip', () => {
       </div>
     }
   </sbb-chip-list>`,
-  standalone: true,
   imports: [SbbChipsModule, SbbIconModule, SbbIconTestingModule],
 })
 class SingleChip {
@@ -288,21 +287,18 @@ class SingleChip {
 
 @Component({
   template: `<sbb-basic-chip>Hello</sbb-basic-chip>`,
-  standalone: true,
   imports: [SbbChipsModule, SbbIconModule, SbbIconTestingModule],
 })
 class BasicChip {}
 
 @Component({
   template: `<sbb-basic-chip tabindex="3">Hello</sbb-basic-chip>`,
-  standalone: true,
   imports: [SbbChipsModule, SbbIconModule, SbbIconTestingModule],
 })
 class BasicChipWithStaticTabindex {}
 
 @Component({
   template: `<sbb-basic-chip [tabIndex]="tabindex">Hello</sbb-basic-chip>`,
-  standalone: true,
   imports: [SbbChipsModule, SbbIconModule, SbbIconTestingModule],
 })
 class BasicChipWithBoundTabindex {
