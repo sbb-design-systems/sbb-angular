@@ -130,7 +130,6 @@ describe('SbbHeaderLean', () => {
       <a routerLink="/" class="home-link">Home</a>
     </sbb-header-lean>
   `,
-  standalone: true,
   imports: [SbbHeaderLeanModule, SbbIconModule],
 })
 class SimpleHeaderLean {
@@ -152,7 +151,6 @@ class SimpleHeaderLean {
       </sbb-app-chooser-section>
     </sbb-header-lean>
   `,
-  standalone: true,
   imports: [SbbHeaderLeanModule],
 })
 class HeaderLeanWithAppChooser {}

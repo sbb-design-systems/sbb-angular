@@ -346,7 +346,6 @@ describe('SbbTabNavBar', () => {
       }
     </nav>
   `,
-  standalone: true,
   imports: [SbbTabsModule],
 })
 class SimpleTabNavBarTestApp {
@@ -366,7 +365,6 @@ class SimpleTabNavBarTestApp {
       <a sbb-tab-link [tabIndex]="tabIndex">TabIndex Link</a>
     </nav>
   `,
-  standalone: true,
   imports: [SbbTabsModule],
 })
 class TabLinkWithTabIndexBinding {
@@ -379,7 +377,6 @@ class TabLinkWithTabIndexBinding {
       <a sbb-tab-link tabindex="5">Link</a>
     </nav>
   `,
-  standalone: true,
   imports: [SbbTabsModule],
 })
 class TabLinkWithNativeTabindexAttr {}
@@ -395,7 +392,6 @@ class TabLinkWithNativeTabindexAttr {}
     </nav>
     <sbb-tab-nav-panel #tabPanel id="tab-panel">Tab panel</sbb-tab-nav-panel>
   `,
-  standalone: true,
   imports: [SbbTabsModule],
 })
 class TabBarWithPanel {

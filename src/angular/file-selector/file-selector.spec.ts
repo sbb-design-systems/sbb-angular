@@ -88,7 +88,6 @@ const testFileList: Partial<File>[] = [
       [multiple]="multiple"
     ></sbb-file-selector>
   `,
-  standalone: true,
   imports: [SbbFileSelectorModule],
 })
 class FileSelectorTestComponent {
@@ -242,7 +241,6 @@ describe('SbbFileSelector using mock component', () => {
   template: `
     <sbb-file-selector (fileChanged)="onFileChange($event)" [(ngModel)]="files"></sbb-file-selector>
   `,
-  standalone: true,
   imports: [SbbFileSelectorModule, FormsModule],
 })
 class FileSelectorTest2Component {

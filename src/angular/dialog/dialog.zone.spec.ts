@@ -77,7 +77,6 @@ describe('SbbDialog Zone.js integration', () => {
 
 @Directive({
   selector: 'dir-with-view-container',
-  standalone: true,
 })
 class DirectiveWithViewContainer {
   viewContainerRef = inject(ViewContainerRef);
@@ -88,7 +87,6 @@ class DirectiveWithViewContainer {
   template: `@if (showChildView) {
     <dir-with-view-container></dir-with-view-container>
   }`,
-  standalone: true,
   imports: [DirectiveWithViewContainer],
 })
 class ComponentWithChildViewContainer {
@@ -104,7 +102,6 @@ class ComponentWithChildViewContainer {
 /** Simple component for testing ComponentPortal. */
 @Component({
   template: '<p>Pizza</p> <input> <button>Close</button>',
-  standalone: true,
 })
 class PizzaMsg {
   directionality = inject(Directionality);
