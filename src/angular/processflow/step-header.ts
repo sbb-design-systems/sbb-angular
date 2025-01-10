@@ -23,7 +23,6 @@ import { SbbStepLabel } from './step-label';
   },
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush,
-  standalone: true,
   imports: [NgTemplateOutlet],
 })
 export class SbbStepHeader extends CdkStepHeader implements AfterViewInit, OnDestroy {

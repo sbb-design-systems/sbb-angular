@@ -60,7 +60,6 @@ export const SBB_CHIP_TRAILING_ICON = new InjectionToken<SbbChipTrailingIcon>(
   selector: 'sbb-chip-trailing-icon, [sbbChipTrailingIcon]',
   host: { class: 'sbb-chip-trailing-icon' },
   providers: [{ provide: SBB_CHIP_TRAILING_ICON, useExisting: SbbChipTrailingIcon }],
-  standalone: true,
 })
 export class SbbChipTrailingIcon {}
 
@@ -90,7 +89,6 @@ export class SbbChipTrailingIcon {}
     '(blur)': '_blur()',
   },
   providers: [{ provide: SBB_CHIP, useExisting: SbbChip }],
-  standalone: true,
   imports: [SbbIconModule, forwardRef(() => SbbChipRemove)],
 })
 export class SbbChip implements FocusableOption, OnDestroy {
@@ -302,7 +300,6 @@ export class SbbChip implements FocusableOption, OnDestroy {
     '(click)': '_handleClick($event)',
   },
   providers: [{ provide: SBB_CHIP_REMOVE, useExisting: SbbChipRemove }],
-  standalone: true,
 })
 export class SbbChipRemove {
   protected _parentChip: SbbChip = inject(SbbChip);

@@ -29,6 +29,5 @@ export const SBB_CHECKBOX_PANEL_CONTROL_VALUE_ACCESSOR: any = {
   inputs: ['tabIndex'],
   changeDetection: ChangeDetectionStrategy.OnPush,
   encapsulation: ViewEncapsulation.None,
-  standalone: true,
 })
 export class SbbCheckboxPanel extends SbbCheckbox {}

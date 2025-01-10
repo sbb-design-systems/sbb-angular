@@ -29,7 +29,6 @@ import { SbbTag } from './tag';
   host: {
     class: 'sbb-tags',
   },
-  standalone: true,
   imports: [SbbTag, AsyncPipe],
 })
 export class SbbTags implements AfterContentInit, OnDestroy {

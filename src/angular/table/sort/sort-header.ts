@@ -84,7 +84,6 @@ interface SbbSortHeaderColumnDef {
     sbbSortAnimations.allowChildren,
     sbbSortAnimations.indicator,
   ],
-  standalone: true,
 })
 export class SbbSortHeader implements SbbSortable, OnDestroy, OnInit, AfterViewInit {
   private _rerenderSubscription: Subscription;

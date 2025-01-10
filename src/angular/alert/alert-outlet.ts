@@ -34,7 +34,6 @@ import { SbbAlertService } from './alert-service';
     'aria-relevant': 'all',
     tabindex: '-1',
   },
-  standalone: true,
   imports: [SbbAlert, RouterLink],
 })
 export class SbbAlertOutlet implements OnDestroy {

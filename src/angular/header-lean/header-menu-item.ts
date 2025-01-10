@@ -19,7 +19,6 @@ import { TypeRef } from '@sbb-esta/angular/core';
     '[attr.role]': 'this.role',
     class: 'sbb-header-menu-item sbb-menu-item',
   },
-  standalone: true,
 })
 export class SbbHeaderMenuItem implements FocusableOption, OnDestroy {
   private _elementRef = inject<ElementRef<HTMLElement>>(ElementRef);

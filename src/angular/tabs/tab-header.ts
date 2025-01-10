@@ -46,7 +46,6 @@ import { SbbTabLabelWrapper } from './tab-label-wrapper';
     class: 'sbb-tab-header',
     '[class.sbb-tab-header-pagination-controls-enabled]': `_showPaginationControls && this.variantSnapshot === 'lean'`,
   },
-  standalone: true,
   imports: [SbbIcon, CdkObserveContent],
 })
 export class SbbTabHeader

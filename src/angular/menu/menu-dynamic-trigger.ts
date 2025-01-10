@@ -3,7 +3,6 @@ import { Directive, inject, TemplateRef, ViewContainerRef } from '@angular/core'
 @Directive({
   selector: `[sbbMenuDynamicTrigger]`,
   exportAs: 'sbbMenuDynamicTrigger',
-  standalone: true,
 })
 export class SbbMenuDynamicTrigger {
   readonly _templateRef = inject<TemplateRef<any>>(TemplateRef);

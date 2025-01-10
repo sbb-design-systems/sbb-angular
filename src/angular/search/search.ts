@@ -41,7 +41,6 @@ import { getSbbInputRequiredError } from './search-error';
   },
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush,
-  standalone: true,
   imports: [SbbIcon],
 })
 export class SbbSearch implements AfterContentInit, OnDestroy {

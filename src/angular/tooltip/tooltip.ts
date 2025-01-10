@@ -180,7 +180,6 @@ export class SbbTooltipChangeEvent {
     '[class.sbb-tooltip-trigger]': 'trigger === "click"',
     '[attr.aria-expanded]': 'trigger === "click" ? _isTooltipVisible() : null',
   },
-  standalone: true,
 })
 export class SbbTooltip implements OnDestroy, AfterViewInit {
   _overlayRef: OverlayRef | null;
@@ -951,7 +950,6 @@ export class SbbTooltip implements OnDestroy, AfterViewInit {
     '(mouseleave)': '_handleMouseLeave($event)',
     'aria-hidden': 'true',
   },
-  standalone: true,
   imports: [NgClass, NgTemplateOutlet, SbbIcon, AsyncPipe],
 })
 export class TooltipComponent implements OnDestroy {

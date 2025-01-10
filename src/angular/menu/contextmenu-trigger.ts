@@ -29,7 +29,6 @@ export const _sbbContextmenuInheritedTriggerContext: SbbMenuInheritedTriggerCont
       useExisting: SbbContextmenuTrigger,
     },
   ],
-  standalone: true,
   imports: [SbbMenuDynamicTrigger, SbbIcon],
 })
 export class SbbContextmenuTrigger extends SbbMenuTrigger {

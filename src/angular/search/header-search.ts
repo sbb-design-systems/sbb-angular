@@ -79,7 +79,6 @@ const searchOverlayMobilePosition: ConnectedPosition[] = [searchOverlayPositions
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush,
   animations: [sbbSearchAnimations.growShrink],
-  standalone: true,
   imports: [SbbIcon, CdkConnectedOverlay, AsyncPipe],
 })
 export class SbbHeaderSearch {

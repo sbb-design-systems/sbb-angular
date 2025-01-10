@@ -42,7 +42,6 @@ import { SbbExpansionPanel } from './expansion-panel';
     '[class.sbb-expanded]': '_isExpanded()',
     '[class.sbb-disabled]': 'disabled',
   },
-  standalone: true,
   imports: [SbbIconModule, AsyncPipe],
 })
 export class SbbExpansionPanelHeader implements AfterViewInit, OnDestroy, FocusableOption {
