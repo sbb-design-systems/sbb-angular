@@ -9,7 +9,6 @@ import { SbbIcon } from '@sbb-esta/angular/icon';
   host: {
     class: 'sbb-sidebar-link',
   },
-  standalone: true,
   imports: [SbbIcon],
 })
 export class SbbSidebarLink {}

@@ -24,7 +24,6 @@ export type SbbTableWrapperScrollOffset = 'none' | 'both' | 'left' | 'right';
     '[attr.tabindex]': 'focusable ? 0 : null',
     role: 'section',
   },
-  standalone: true,
 })
 export class SbbTableWrapper implements AfterViewInit, OnDestroy {
   private _destroyed = new Subject<void>();

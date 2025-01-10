@@ -75,7 +75,6 @@ export type SbbSidebarMode = 'over' | 'side';
       useExisting: SbbSidebarContent,
     },
   ],
-  standalone: true,
 })
 export class SbbSidebarContent extends SbbSidebarContentBase implements AfterContentInit {
   _container: SbbSidebarContainer = inject(SbbSidebarContainer);
@@ -106,7 +105,6 @@ export class SbbSidebarContent extends SbbSidebarContentBase implements AfterCon
   },
   changeDetection: ChangeDetectionStrategy.OnPush,
   encapsulation: ViewEncapsulation.None,
-  standalone: true,
   imports: [CdkScrollable, SbbIcon],
 })
 export class SbbSidebar
@@ -554,7 +552,6 @@ export class SbbSidebar
       useExisting: SbbSidebarContainer,
     },
   ],
-  standalone: true,
   imports: [SbbIcon, SbbSidebarContent, AsyncPipe],
 })
 export class SbbSidebarContainer

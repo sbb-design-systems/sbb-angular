@@ -179,7 +179,6 @@ const _SbbSelectMixinBase = mixinVariant(
     { provide: SbbFormFieldControl, useExisting: SbbSelect },
     { provide: SBB_OPTION_PARENT_COMPONENT, useExisting: SbbSelect },
   ],
-  standalone: true,
   imports: [SbbIcon, CdkConnectedOverlay, NgClass, AsyncPipe],
 })
 export class SbbSelect

@@ -67,7 +67,6 @@ const _SbbExpansionPanelBase = mixinVariant(CdkAccordionItem);
     class: 'sbb-expansion-panel',
     '[class.sbb-expanded]': 'expanded',
   },
-  standalone: true,
   imports: [CdkPortalOutlet],
 })
 export class SbbExpansionPanel

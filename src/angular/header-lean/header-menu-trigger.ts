@@ -68,7 +68,6 @@ const passiveEventListenerOptions = normalizePassiveListenerOptions({ passive: t
     'aria-haspopup': 'menu',
     '[attr.aria-expanded]': 'this.menuOpen || null',
   },
-  standalone: true,
   imports: [SbbIconModule],
 })
 export class SbbHeaderMenuTrigger implements AfterContentInit, OnDestroy {

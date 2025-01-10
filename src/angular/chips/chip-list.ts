@@ -61,7 +61,6 @@ import { SBB_CHIP, SBB_CHIP_LIST } from './chip-tokens';
   styleUrls: ['./chips.css'],
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush,
-  standalone: true,
 })
 export class SbbChipList
   implements

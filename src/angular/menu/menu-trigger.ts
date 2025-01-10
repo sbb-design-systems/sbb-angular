@@ -126,7 +126,6 @@ const PANELS_TO_TRIGGERS = new WeakMap<SbbMenuPanel, SbbMenuTrigger>();
     '(keydown)': '_handleKeydown($event)',
   },
   exportAs: 'sbbMenuTrigger',
-  standalone: true,
 })
 export class SbbMenuTrigger
   extends _SbbMenuTriggerMixinBase

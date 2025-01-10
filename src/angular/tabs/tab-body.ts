@@ -31,7 +31,6 @@ export type SbbTabBodyPositionState = 'hidden' | 'show';
  */
 @Directive({
   selector: '[sbbTabBodyHost]',
-  standalone: true,
 })
 export class SbbTabBodyPortal extends CdkPortalOutlet implements OnInit, OnDestroy {
   private _host = inject(SbbTabBody);
@@ -87,7 +86,6 @@ export class SbbTabBodyPortal extends CdkPortalOutlet implements OnInit, OnDestr
   host: {
     class: 'sbb-tab-body',
   },
-  standalone: true,
   imports: [CdkScrollable, SbbTabBodyPortal],
 })
 export class SbbTabBody implements OnDestroy {

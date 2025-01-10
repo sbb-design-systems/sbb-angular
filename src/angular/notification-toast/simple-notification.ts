@@ -18,7 +18,6 @@ export interface SbbTextOnlyNotificationToast {
   templateUrl: './simple-notification.html',
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush,
-  standalone: true,
 })
 export class SbbSimpleNotification implements SbbTextOnlyNotificationToast {
   notificationToastRef: SbbNotificationToastRef<SbbSimpleNotification> =

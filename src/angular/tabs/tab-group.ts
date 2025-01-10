@@ -68,7 +68,6 @@ interface SbbTabGroupBaseHeader {
     class: 'sbb-tab-group',
     '[class.sbb-tab-group-dynamic-height]': 'dynamicHeight',
   },
-  standalone: true,
   imports: [SbbTabHeader, SbbTabLabelWrapper, CdkMonitorFocus, CdkPortalOutlet, SbbTabBody],
 })
 export class SbbTabGroup implements AfterContentInit, AfterContentChecked, OnDestroy {

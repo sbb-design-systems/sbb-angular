@@ -29,7 +29,6 @@ const ROW_TEMPLATE = `<ng-container cdkCellOutlet></ng-container>`;
     { name: 'columns', alias: 'sbbHeaderRowDef' },
     { name: 'sticky', alias: 'sbbHeaderRowDefSticky', transform: booleanAttribute },
   ],
-  standalone: true,
 })
 export class SbbHeaderRowDef extends CdkHeaderRowDef {}
 
@@ -44,7 +43,6 @@ export class SbbHeaderRowDef extends CdkHeaderRowDef {}
     { name: 'columns', alias: 'sbbFooterRowDef' },
     { name: 'sticky', alias: 'sbbFooterRowDefSticky', transform: booleanAttribute },
   ],
-  standalone: true,
 })
 export class SbbFooterRowDef extends CdkFooterRowDef {}
 
@@ -60,7 +58,6 @@ export class SbbFooterRowDef extends CdkFooterRowDef {}
     { name: 'columns', alias: 'sbbRowDefColumns' },
     { name: 'when', alias: 'sbbRowDefWhen' },
   ],
-  standalone: true,
 })
 export class SbbRowDef<T> extends CdkRowDef<T> {}
 
@@ -78,7 +75,6 @@ export class SbbRowDef<T> extends CdkRowDef<T> {}
   encapsulation: ViewEncapsulation.None,
   exportAs: 'sbbHeaderRow',
   providers: [{ provide: CdkHeaderRow, useExisting: SbbHeaderRow }],
-  standalone: true,
   imports: [CdkCellOutlet],
 })
 export class SbbHeaderRow extends CdkHeaderRow {}
@@ -97,7 +93,6 @@ export class SbbHeaderRow extends CdkHeaderRow {}
   encapsulation: ViewEncapsulation.None,
   exportAs: 'sbbFooterRow',
   providers: [{ provide: CdkFooterRow, useExisting: SbbFooterRow }],
-  standalone: true,
   imports: [CdkCellOutlet],
 })
 export class SbbFooterRow extends CdkFooterRow {}
@@ -116,7 +111,6 @@ export class SbbFooterRow extends CdkFooterRow {}
   encapsulation: ViewEncapsulation.None,
   exportAs: 'sbbRow',
   providers: [{ provide: CdkRow, useExisting: SbbRow }],
-  standalone: true,
   imports: [CdkCellOutlet],
 })
 export class SbbRow extends CdkRow {}

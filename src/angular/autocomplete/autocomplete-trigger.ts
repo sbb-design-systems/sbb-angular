@@ -133,7 +133,6 @@ export function getSbbAutocompleteMissingPanelError(): Error {
     '(keydown)': '_handleKeydown($event)',
     '(click)': '_handleClick()',
   },
-  standalone: true,
 })
 export class SbbAutocompleteTrigger
   implements ControlValueAccessor, AfterViewInit, OnChanges, OnDestroy

@@ -29,7 +29,6 @@ import { SbbLightboxRef } from './lightbox-ref';
     '[attr.aria-label]': 'ariaLabel || null',
     '[attr.type]': 'type',
   },
-  standalone: true,
 })
 export class SbbLightboxClose extends SbbDialogClose implements OnInit, OnChanges {
   protected override _dialogRef: SbbLightboxRef<any> = inject<SbbLightboxRef<any>>(SbbLightboxRef, {
@@ -83,7 +82,6 @@ export class SbbLightboxClose extends SbbDialogClose implements OnInit, OnChange
     class: 'sbb-lightbox-title',
     '[id]': 'id',
   },
-  standalone: true,
   imports: [SbbLightboxClose, SbbIcon],
 })
 export class SbbLightboxTitle extends _SbbDialogTitleBase implements OnInit {
@@ -120,7 +118,6 @@ export class SbbLightboxTitle extends _SbbDialogTitleBase implements OnInit {
 @Directive({
   selector: `[sbb-lightbox-content], sbb-lightbox-content, [sbbLightboxContent]`,
   host: { class: 'sbb-lightbox-content sbb-scrollbar' },
-  standalone: true,
 })
 export class SbbLightboxContent {}
 
@@ -131,6 +128,5 @@ export class SbbLightboxContent {}
 @Directive({
   selector: `[sbb-lightbox-actions], sbb-lightbox-actions, [sbbLightboxActions]`,
   host: { class: 'sbb-lightbox-actions' },
-  standalone: true,
 })
 export class SbbLightboxActions {}

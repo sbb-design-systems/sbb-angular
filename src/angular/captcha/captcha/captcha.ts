@@ -40,7 +40,6 @@ import { SbbRecaptchaSettings, SBB_RECAPTCHA_SETTINGS } from './captcha-settings
     class: 'sbb-captcha',
     '[attr.id]': 'id',
   },
-  standalone: true,
 })
 export class SbbCaptcha implements AfterViewInit, OnDestroy, ControlValueAccessor {
   private _elementRef = inject(ElementRef);
