@@ -26,7 +26,6 @@ import { SbbTextarea } from './textarea';
       [disabled]="disabled"
     ></sbb-textarea>
   `,
-  standalone: true,
   imports: [SbbTextareaModule, FormsModule],
 })
 class TextareaTestComponent {
@@ -50,7 +49,6 @@ class TextareaTestComponent {
       </sbb-form-field>
     </form>
   `,
-  standalone: true,
   imports: [SbbTextareaModule, ReactiveFormsModule, FormsModule, SbbFormFieldModule],
 })
 class TextareaSbbFieldTestComponent {

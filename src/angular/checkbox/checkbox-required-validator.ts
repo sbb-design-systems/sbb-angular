@@ -23,6 +23,5 @@ export const SBB_CHECKBOX_REQUIRED_VALIDATOR: Provider = {
   selector: `sbb-checkbox[required][formControlName],
              sbb-checkbox[required][formControl], sbb-checkbox[required][ngModel]`,
   providers: [SBB_CHECKBOX_REQUIRED_VALIDATOR],
-  standalone: true,
 })
 export class SbbCheckboxRequiredValidator extends CheckboxRequiredValidator {}

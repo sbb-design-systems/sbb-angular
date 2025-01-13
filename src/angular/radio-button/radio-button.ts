@@ -75,7 +75,6 @@ export const SBB_RADIO_BUTTON = new InjectionToken<_SbbRadioButtonBase>('SbbRadi
   host: {
     class: 'sbb-radio-group-base',
   },
-  standalone: true,
 })
 // tslint:disable-next-line: naming-convention class-name
 export abstract class _SbbRadioGroupBase<TRadio extends _SbbRadioButtonBase>
@@ -311,7 +310,6 @@ export abstract class _SbbRadioGroupBase<TRadio extends _SbbRadioButtonBase>
     class: 'sbb-radio-group',
     role: 'radiogroup',
   },
-  standalone: true,
 })
 export class SbbRadioGroup<
   TRadio extends _SbbRadioButtonBase = SbbRadioButton,
@@ -647,7 +645,6 @@ export class _SbbRadioButtonBase implements OnInit, AfterViewInit, DoCheck, OnDe
   },
   changeDetection: ChangeDetectionStrategy.OnPush,
   providers: [{ provide: SBB_RADIO_BUTTON, useExisting: SbbRadioButton }],
-  standalone: true,
 })
 export class SbbRadioButton extends _SbbRadioButtonBase {
   constructor(

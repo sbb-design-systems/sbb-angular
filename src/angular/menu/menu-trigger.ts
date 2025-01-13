@@ -41,8 +41,8 @@ import {
   SCALING_FACTOR_4K,
   SCALING_FACTOR_5K,
 } from '@sbb-esta/angular/core';
-import { asapScheduler, merge, Observable, of as observableOf, Subscription } from 'rxjs';
-import { delay, filter, take, takeUntil } from 'rxjs/operators';
+import { merge, Observable, of as observableOf, Subscription } from 'rxjs';
+import { filter, takeUntil } from 'rxjs/operators';
 
 import { SbbMenu, SbbMenuAnimationState, SbbMenuCloseReason } from './menu';
 import { SbbMenuDynamicTrigger } from './menu-dynamic-trigger';
@@ -108,6 +108,9 @@ const passiveEventListenerOptions = normalizePassiveListenerOptions({ passive: t
 // Boilerplate for applying mixins to SbbMenu.
 const _SbbMenuTriggerMixinBase = mixinVariant(class {});
 
+/** Mapping between menu panels and the last trigger that opened them. */
+const PANELS_TO_TRIGGERS = new WeakMap<SbbMenuPanel, SbbMenuTrigger>();
+
 /** Directive applied to an element that should trigger a `sbb-menu`. */
 @Directive({
   selector: `[sbbMenuTriggerFor], [sbbMenuHeadlessTriggerFor]`,
@@ -123,7 +126,6 @@ const _SbbMenuTriggerMixinBase = mixinVariant(class {});
     '(keydown)': '_handleKeydown($event)',
   },
   exportAs: 'sbbMenuTrigger',
-  standalone: true,
 })
 export class SbbMenuTrigger
   extends _SbbMenuTriggerMixinBase
@@ -287,9 +289,8 @@ export class SbbMenuTrigger
   }
 
   ngOnDestroy() {
-    if (this._overlayRef) {
-      this._overlayRef.dispose();
-      this._overlayRef = null;
+    if (this.menu && this._ownsMenu(this.menu)) {
+      PANELS_TO_TRIGGERS.delete(this.menu);
     }
 
     this._element.nativeElement.removeEventListener(
@@ -302,6 +303,11 @@ export class SbbMenuTrigger
     this._closingActionsSubscription.unsubscribe();
     this._hoverSubscription.unsubscribe();
     this._breakpointSubscription.unsubscribe();
+
+    if (this._overlayRef) {
+      this._overlayRef.dispose();
+      this._overlayRef = null;
+    }
   }
 
   /** Whether the menu is open. */
@@ -384,7 +390,6 @@ export class SbbMenuTrigger
       return;
     }
 
-    const menu = this.menu;
     this._closingActionsSubscription.unsubscribe();
     this._overlayRef.detach();
 
@@ -397,30 +402,10 @@ export class SbbMenuTrigger
     }
 
     this._openedBy = undefined;
+    this._setIsMenuOpen(false);
 
-    if (menu instanceof SbbMenu) {
-      menu._resetAnimation();
-
-      if (menu.lazyContent) {
-        // Wait for the exit animation to finish before detaching the content.
-        menu._animationDone
-          .pipe(
-            filter((event) => event.toState === 'void'),
-            take(1),
-            // Interrupt if the content got re-attached.
-            takeUntil(menu.lazyContent._attached),
-          )
-          .subscribe({
-            next: () => menu.lazyContent!.detach(),
-            // No matter whether the content got re-attached, reset the menu.
-            complete: () => this._setIsMenuOpen(false),
-          });
-      } else {
-        this._setIsMenuOpen(false);
-      }
-    } else {
-      this._setIsMenuOpen(false);
-      menu?.lazyContent?.detach();
+    if (this.menu && this._ownsMenu(this.menu)) {
+      PANELS_TO_TRIGGERS.delete(this.menu);
     }
   }
 
@@ -429,6 +414,15 @@ export class SbbMenuTrigger
    * the menu was opened via the keyboard.
    */
   private _initMenu(menu: SbbMenuPanel): void {
+    const previousTrigger = PANELS_TO_TRIGGERS.get(menu);
+
+    // If the same menu is currently attached to another trigger,
+    // we need to close it so it doesn't end up in a broken state.
+    if (previousTrigger && previousTrigger !== this) {
+      previousTrigger.closeMenu();
+    }
+
+    PANELS_TO_TRIGGERS.set(menu, this);
     menu.parentMenu = this.triggersSubmenu() ? this._parentSbbMenu : undefined;
     const triggerContext: SbbMenuTriggerContext =
       this._type === 'headless' || this.triggersSubmenu()
@@ -633,10 +627,9 @@ export class SbbMenuTrigger
     const detachments = this._overlayRef!.detachments();
     const parentClose = this._parentSbbMenu ? this._parentSbbMenu.closed : observableOf();
     const hover = this._parentSbbMenu
-      ? this._parentSbbMenu._hovered().pipe(
-          filter((active) => active !== this._menuItemInstance),
-          filter(() => this._menuOpen),
-        )
+      ? this._parentSbbMenu
+          ._hovered()
+          .pipe(filter((active) => this._menuOpen && active !== this._menuItemInstance))
       : observableOf();
 
     return merge(backdrop, parentClose as Observable<SbbMenuCloseReason>, hover, detachments);
@@ -687,35 +680,14 @@ export class SbbMenuTrigger
   /** Handles the cases where the user hovers over the trigger. */
   private _handleHover() {
     // Subscribe to changes in the hovered item in order to toggle the panel.
-    if (!this.triggersSubmenu() || !this._parentSbbMenu) {
-      return;
-    }
-
-    this._hoverSubscription = this._parentSbbMenu
-      ._hovered()
-      // Since we might have multiple competing triggers for the same menu (e.g. a sub-menu
-      // with different data and triggers), we have to delay it by a tick to ensure that
-      // it won't be closed immediately after it is opened.
-      .pipe(
-        filter((active) => active === this._menuItemInstance && !active.disabled),
-        delay(0, asapScheduler),
-      )
-      .subscribe(() => {
-        this._openedBy = 'mouse';
-
-        // If the same menu is used between multiple triggers, it might still be animating
-        // while the new trigger tries to re-open it. Wait for the animation to finish
-        // before doing so. Also interrupt if the user moves to another item.
-        if (this.menu instanceof SbbMenu && this.menu._isAnimating) {
-          // We need the `delay(0)` here in order to avoid
-          // 'changed after checked' errors in some cases. See #12194.
-          this.menu._animationDone
-            .pipe(take(1), delay(0, asapScheduler), takeUntil(this._parentSbbMenu!._hovered()))
-            .subscribe(() => this.openMenu());
-        } else {
+    if (this.triggersSubmenu() && this._parentSbbMenu) {
+      this._hoverSubscription = this._parentSbbMenu._hovered().subscribe((active) => {
+        if (active === this._menuItemInstance && !active.disabled) {
+          this._openedBy = 'mouse';
           this.openMenu();
         }
       });
+    }
   }
 
   /** Gets the portal that should be attached to the overlay. */
@@ -728,5 +700,14 @@ export class SbbMenuTrigger
     }
 
     return this._portal;
+  }
+
+  /**
+   * Determines whether the trigger owns a specific menu panel, at the current point in time.
+   * This allows us to distinguish the case where the same panel is passed into multiple triggers
+   * and multiple are open at a time.
+   */
+  private _ownsMenu(menu: SbbMenuPanel): boolean {
+    return PANELS_TO_TRIGGERS.get(menu) === this;
   }
 }

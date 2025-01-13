@@ -399,7 +399,6 @@ describe('SbbUsermenu with no connected menu', () => {
       <button sbb-menu-item type="button" (click)="logout()">Logout</button>
     </sbb-menu>
   `,
-  standalone: true,
   imports: [SbbUsermenuModule, RouterTestingModule, SbbMenuModule],
 })
 class UsermenuWithDisplayNameAndUserNameTestComponent {
@@ -435,7 +434,6 @@ class UsermenuWithDisplayNameAndUserNameTestComponent {
       <button sbb-menu-item type="button">Logout</button>
     </sbb-menu>
   `,
-  standalone: true,
   imports: [SbbUsermenuModule, SbbMenuModule],
 })
 class UsermenuWithOnlyDisplayNameTestComponent {
@@ -456,7 +454,6 @@ class UsermenuWithOnlyDisplayNameTestComponent {
       <button sbb-menu-item type="button">Logout</button>
     </sbb-menu>
   `,
-  standalone: true,
   imports: [SbbUsermenuModule, SbbMenuModule],
 })
 class UsermenuWithOnlyUsernameTestComponent {
@@ -489,7 +486,6 @@ class UsermenuWithOnlyUsernameTestComponent {
       <button sbb-menu-item type="button">Logout</button>
     </sbb-menu>
   `,
-  standalone: true,
   imports: [SbbUsermenuModule, SbbIconModule, SbbMenuModule],
 })
 class UsermenuWithCustomImageTestComponent {
@@ -504,7 +500,6 @@ class UsermenuWithCustomImageTestComponent {
 
 @Component({
   template: ` <sbb-usermenu [displayName]="displayName" (loginRequest)="login()"></sbb-usermenu> `,
-  standalone: true,
   imports: [SbbUsermenuModule],
 })
 class UsermenuNoMenuTestComponent {

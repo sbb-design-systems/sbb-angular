@@ -10,7 +10,6 @@ import { booleanAttribute, Directive, ElementRef, Input } from '@angular/core';
     '[class.sbb-tab-disabled]': 'disabled',
     '[attr.aria-disabled]': '!!disabled',
   },
-  standalone: true,
 })
 export class SbbTabLabelWrapper {
   /** Whether the tab is disabled. */

@@ -5,6 +5,7 @@ import { CdkPortalOutlet, TemplatePortal } from '@angular/cdk/portal';
 import { DOCUMENT } from '@angular/common';
 import {
   AfterContentInit,
+  ANIMATION_MODULE_TYPE,
   booleanAttribute,
   ChangeDetectionStrategy,
   Component,
@@ -13,6 +14,7 @@ import {
   EventEmitter,
   inject,
   Input,
+  NgZone,
   OnChanges,
   OnDestroy,
   Output,
@@ -23,10 +25,9 @@ import {
 } from '@angular/core';
 import { mixinVariant, TypeRef } from '@sbb-esta/angular/core';
 import { Subject } from 'rxjs';
-import { distinctUntilChanged, filter, startWith, take } from 'rxjs/operators';
+import { filter, startWith, take } from 'rxjs/operators';
 
 import type { SbbAccordion } from './accordion';
-import { sbbExpansionAnimations } from './accordion-animations';
 import { SBB_ACCORDION } from './accordion-token';
 import { SBB_EXPANSION_PANEL } from './expansion-panel-base';
 import { SbbExpansionPanelContent } from './expansion-panel-content';
@@ -53,7 +54,6 @@ const _SbbExpansionPanelBase = mixinVariant(CdkAccordionItem);
     { name: 'expanded', transform: booleanAttribute },
     { name: 'disabled', transform: booleanAttribute },
   ],
-  animations: [sbbExpansionAnimations.bodyExpansion],
   // Provide SbbAccordion as undefined to prevent nested expansion panels from registering
   // to the same accordion.
   providers: [
@@ -67,7 +67,6 @@ const _SbbExpansionPanelBase = mixinVariant(CdkAccordionItem);
     class: 'sbb-expansion-panel',
     '[class.sbb-expanded]': 'expanded',
   },
-  standalone: true,
   imports: [CdkPortalOutlet],
 })
 export class SbbExpansionPanel
@@ -75,7 +74,15 @@ export class SbbExpansionPanel
   implements AfterContentInit, OnChanges, OnDestroy
 {
   private _viewContainerRef = inject(ViewContainerRef);
+  _animationMode: 'NoopAnimations' | 'BrowserAnimations' | null = inject(ANIMATION_MODULE_TYPE, {
+    optional: true,
+  });
+  private readonly _animationsDisabled =
+    inject(ANIMATION_MODULE_TYPE, { optional: true }) === 'NoopAnimations';
+
   private _document = inject(DOCUMENT);
+  private _ngZone = inject(NgZone);
+  private _elementRef = inject<ElementRef<HTMLElement>>(ElementRef);
 
   /** Whether the toggle indicator should be hidden. */
   @Input({ transform: booleanAttribute })
@@ -108,6 +115,10 @@ export class SbbExpansionPanel
   /** Element containing the panel's user-provided content. */
   @ViewChild('body') _body: ElementRef<HTMLElement>;
 
+  /** Element wrapping the panel body. */
+  @ViewChild('bodyWrapper')
+  protected _bodyWrapper: ElementRef<HTMLElement> | undefined;
+
   /** Portal holding the user's content. */
   _portal: TemplatePortal;
 
@@ -120,23 +131,6 @@ export class SbbExpansionPanel
   constructor(...args: unknown[]);
   constructor() {
     super();
-    // We need a Subject with distinctUntilChanged, because the `done` event
-    // fires twice on some browsers. See https://github.com/angular/angular/issues/24084
-    this._bodyAnimationDone
-      .pipe(
-        distinctUntilChanged((x, y) => {
-          return x.fromState === y.fromState && x.toState === y.toState;
-        }),
-      )
-      .subscribe((event) => {
-        if (event.fromState !== 'void') {
-          if (event.toState === 'expanded') {
-            this.afterExpand.emit();
-          } else if (event.toState === 'collapsed') {
-            this.afterCollapse.emit();
-          }
-        }
-      });
   }
 
   /** Gets the expanded state string. */
@@ -172,6 +166,8 @@ export class SbbExpansionPanel
           this._portal = new TemplatePortal(this._lazyContent._template, this._viewContainerRef);
         });
     }
+
+    this._setupAnimationEvents();
   }
 
   ngOnChanges(changes: SimpleChanges) {
@@ -180,8 +176,39 @@ export class SbbExpansionPanel
 
   override ngOnDestroy() {
     super.ngOnDestroy();
-    this._bodyAnimationDone.complete();
+    this._bodyWrapper?.nativeElement.removeEventListener(
+      'transitionend',
+      this._transitionEndListener,
+    );
     this._inputChanges.complete();
+  }
+
+  private _transitionEndListener = ({ target, propertyName }: TransitionEvent) => {
+    if (target === this._bodyWrapper?.nativeElement && propertyName === 'grid-template-rows') {
+      this._ngZone.run(() => {
+        if (this.expanded) {
+          this.afterExpand.emit();
+        } else {
+          this.afterCollapse.emit();
+        }
+      });
+    }
+  };
+  protected _setupAnimationEvents() {
+    // This method is defined separately, because we need to
+    // disable this logic in some internal components.
+    this._ngZone.runOutsideAngular(() => {
+      if (this._animationsDisabled) {
+        this.opened.subscribe(() => this._ngZone.run(() => this.afterExpand.emit()));
+        this.closed.subscribe(() => this._ngZone.run(() => this.afterCollapse.emit()));
+      } else {
+        setTimeout(() => {
+          const element = this._elementRef.nativeElement;
+          element.addEventListener('transitionend', this._transitionEndListener);
+          element.classList.add('sbb-expansion-panel-animations-enabled');
+        }, 200);
+      }
+    });
   }
 
   /** Checks whether the expansion panel's content contains the currently-focused element. */
@@ -194,4 +221,34 @@ export class SbbExpansionPanel
 
     return false;
   }
+
+  /** Called when the expansion animation has started. */
+  protected _animationStarted(event: AnimationEvent) {
+    if (!isInitialAnimation(event) && !this._animationsDisabled && this._body) {
+      // Prevent the user from tabbing into the content while it's animating.
+      // TODO(crisbeto): maybe use `inert` to prevent focus from entering while closed as well
+      // instead of `visibility`? Will allow us to clean up some code but needs more testing.
+      this._body?.nativeElement.setAttribute('inert', '');
+    }
+  }
+
+  /** Called when the expansion animation has finished. */
+  protected _animationDone(event: AnimationEvent) {
+    if (!isInitialAnimation(event)) {
+      if (event.toState === 'expanded') {
+        this.afterExpand.emit();
+      } else if (event.toState === 'collapsed') {
+        this.afterCollapse.emit();
+      }
+
+      // Re-enable tabbing once the animation is finished.
+      if (!this._animationsDisabled && this._body) {
+        this._body.nativeElement.removeAttribute('inert');
+      }
+    }
+  }
+}
+/** Checks whether an animation is the initial setup animation. */
+function isInitialAnimation(event: AnimationEvent): boolean {
+  return event.fromState === 'void';
 }

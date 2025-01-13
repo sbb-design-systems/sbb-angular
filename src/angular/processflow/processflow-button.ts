@@ -9,7 +9,6 @@ import { Directive } from '@angular/core';
     '[type]': 'type',
   },
   inputs: ['type'],
-  standalone: true,
 })
 export class SbbProcessflowNext extends CdkStepperNext {}
 
@@ -21,6 +20,5 @@ export class SbbProcessflowNext extends CdkStepperNext {}
     '[type]': 'type',
   },
   inputs: ['type'],
-  standalone: true,
 })
 export class SbbProcessflowPrevious extends CdkStepperPrevious {}

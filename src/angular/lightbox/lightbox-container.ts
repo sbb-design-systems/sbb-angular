@@ -39,7 +39,6 @@ import { sbbLightboxAnimations } from './lightbox-animations';
     '[attr.aria-describedby]': '_config.ariaDescribedBy || null',
     '[@lightboxContainer]': `_getAnimationState()`,
   },
-  standalone: true,
   imports: [CdkPortalOutlet],
 })
 export class SbbLightboxContainer extends SbbDialogContainer implements OnDestroy {

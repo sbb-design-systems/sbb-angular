@@ -454,7 +454,6 @@ describe('SbbIconSidebarContainer', () => {
   template: ` <sbb-icon-sidebar-container>
     <sbb-icon-sidebar></sbb-icon-sidebar>
   </sbb-icon-sidebar-container>`,
-  standalone: true,
   imports: [SbbSidebarModule, SbbIconModule],
 })
 class SidebarContainerEmptyTestComponent {
@@ -468,7 +467,6 @@ class SidebarContainerEmptyTestComponent {
       <button #sidebarButton>Content</button>
     </sbb-icon-sidebar>
   </sbb-icon-sidebar-container>`,
-  standalone: true,
   imports: [SbbSidebarModule],
 })
 class BasicTestComponent {
@@ -483,7 +481,6 @@ class BasicTestComponent {
   template: ` <sbb-icon-sidebar-container>
     <sbb-icon-sidebar #sidebar expanded="false"> collapsed Sidebar. </sbb-icon-sidebar>
   </sbb-icon-sidebar-container>`,
-  standalone: true,
   imports: [SbbSidebarModule],
 })
 class SidebarSetToExpandedFalseTestComponent {}
@@ -494,7 +491,6 @@ class SidebarSetToExpandedFalseTestComponent {}
       Collapsed Sidebar.
     </sbb-icon-sidebar>
   </sbb-icon-sidebar-container>`,
-  standalone: true,
   imports: [SbbSidebarModule],
 })
 class SidebarSetToExpandedTrueTestComponent {
@@ -505,7 +501,6 @@ class SidebarSetToExpandedTrueTestComponent {
   template: ` <sbb-icon-sidebar-container>
     <sbb-icon-sidebar #sidebar [(expanded)]="isExpanded"> Collapsed Sidebar. </sbb-icon-sidebar>
   </sbb-icon-sidebar-container>`,
-  standalone: true,
   imports: [SbbSidebarModule],
 })
 class SidebarExpandedBindingTestComponent {
@@ -517,7 +512,6 @@ class SidebarExpandedBindingTestComponent {
     <sbb-icon-sidebar #sidebar1></sbb-icon-sidebar>
     <sbb-icon-sidebar #sidebar2></sbb-icon-sidebar>
   </sbb-icon-sidebar-container>`,
-  standalone: true,
   imports: [SbbSidebarModule],
 })
 class TwoSidebarsTestComponent {}
@@ -529,7 +523,6 @@ class TwoSidebarsTestComponent {}
       <sbb-icon-sidebar-content>Content</sbb-icon-sidebar-content>
     </sbb-icon-sidebar-container>
   `,
-  standalone: true,
   imports: [SbbSidebarModule],
 })
 class SidebarContainerWithContentTestComponent {
@@ -544,7 +537,6 @@ class SidebarContainerWithContentTestComponent {
       <sbb-icon-sidebar #sidebar>Sidebar</sbb-icon-sidebar>
     }
   </sbb-icon-sidebar-container>`,
-  standalone: true,
   imports: [SbbSidebarModule],
 })
 class IndirectDescendantSidebarTestComponent {
@@ -563,7 +555,6 @@ class IndirectDescendantSidebarTestComponent {
       </sbb-icon-sidebar-content>
     </sbb-icon-sidebar-container>
   `,
-  standalone: true,
   imports: [SbbSidebarModule],
 })
 class NestedSidebarContainersTestComponent {
@@ -597,7 +588,6 @@ class NestedSidebarContainersTestComponent {
       <sbb-icon-sidebar-content> Content </sbb-icon-sidebar-content>
     </sbb-icon-sidebar-container>
   `,
-  standalone: true,
   imports: [SbbSidebarModule, SbbIconModule, RouterTestingModule],
 })
 class IconSidebarWithLinksTestComponent {

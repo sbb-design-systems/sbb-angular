@@ -294,7 +294,6 @@ describe('AccordionDirective', () => {
       }
     </sbb-accordion>
   `,
-  standalone: true,
   imports: [SbbAccordionModule],
 })
 class SetOfItems {
@@ -322,7 +321,6 @@ class SetOfItems {
       Content 1
     </sbb-expansion-panel>
   </sbb-accordion>`,
-  standalone: true,
   imports: [SbbAccordionModule],
 })
 class NestedAccordions {
@@ -343,7 +341,6 @@ class NestedAccordions {
       </sbb-expansion-panel>
     </sbb-accordion>
   `,
-  standalone: true,
   imports: [SbbAccordionModule],
 })
 class NestedPanel {
@@ -360,7 +357,6 @@ class NestedPanel {
       </sbb-expansion-panel>
     </sbb-accordion>
   `,
-  standalone: true,
   imports: [SbbAccordionModule],
 })
 class AccordionWithHideToggle {

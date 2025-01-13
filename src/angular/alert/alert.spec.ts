@@ -299,7 +299,6 @@ describe('SbbAlertOutlet', () => {
 @Component({
   selector: 'sbb-alert-simple',
   template: `<sbb-alert [svgIcon]="icon" (dismissed)="dismissed()">TEST</sbb-alert>`,
-  standalone: true,
   imports: [RouterTestingModule, SbbIconTestingModule, SbbAlertModule],
 })
 export class AlertSimple {
@@ -317,7 +316,6 @@ export class AlertSimple {
     (dismissed)="dismissed()"
     >router link</a
   >`,
-  standalone: true,
   imports: [RouterTestingModule, SbbIconTestingModule, SbbAlertModule],
 })
 export class AlertRouterLink {
@@ -327,7 +325,6 @@ export class AlertRouterLink {
 @Component({
   selector: 'sbb-alert-external-link',
   template: `<a sbbAlert href="https://sbb.ch" (dismissed)="dismissed()">router link</a>`,
-  standalone: true,
   imports: [RouterTestingModule, SbbIconTestingModule, SbbAlertModule],
 })
 export class AlertExternalLink {
@@ -337,7 +334,6 @@ export class AlertExternalLink {
 @Component({
   selector: 'sbb-alert-outlet-simple',
   template: `<sbb-alert-outlet></sbb-alert-outlet>`,
-  standalone: true,
   imports: [RouterTestingModule, SbbIconTestingModule, SbbAlertModule],
 })
 export class AlertOutletSimple {
@@ -351,7 +347,6 @@ export class AlertOutletSimple {
       <sbb-alert>This is an initial alert inside an outlet.</sbb-alert>
     </sbb-alert-outlet>
   `,
-  standalone: true,
   imports: [RouterTestingModule, SbbIconTestingModule, SbbAlertModule],
 })
 export class AlertOutletWithInnerAlert {}
@@ -362,7 +357,6 @@ export class AlertOutletWithInnerAlert {}
     <sbb-alert-outlet></sbb-alert-outlet>
     <sbb-alert-outlet></sbb-alert-outlet>
   `,
-  standalone: true,
   imports: [RouterTestingModule, SbbIconTestingModule, SbbAlertModule],
 })
 export class AlertOutletError {}
@@ -370,7 +364,6 @@ export class AlertOutletError {}
 @Component({
   selector: 'sbb-alert-outlet-without-outlet',
   template: ``,
-  standalone: true,
   imports: [RouterTestingModule, SbbIconTestingModule, SbbAlertModule],
 })
 export class AlertOutletWithoutOutlet {}

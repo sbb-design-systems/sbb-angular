@@ -103,7 +103,6 @@ export type SbbMenuCloseReason = void | 'click' | 'keydown' | 'tab';
   },
   animations: [sbbMenuAnimations.transformMenu],
   providers: [{ provide: SBB_MENU_PANEL, useExisting: SbbMenu }],
-  standalone: true,
   imports: [NgTemplateOutlet],
 })
 export class SbbMenu implements AfterContentInit, SbbMenuPanel<SbbMenuItem>, OnInit, OnDestroy {

@@ -22,7 +22,6 @@ import { SbbRadioButtonModule } from './radio-button.module';
       <sbb-radio-button value="leaf"> Bulbasaur </sbb-radio-button>
     </sbb-radio-group>
   `,
-  standalone: true,
   imports: [FormsModule, ReactiveFormsModule, SbbRadioButtonModule],
 })
 class RadiosInsideRadioGroup {
@@ -56,7 +55,6 @@ class RadiosInsideRadioGroup {
     <sbb-radio-button name="fruit" value="raspberry">Raspberry</sbb-radio-button>
     <sbb-radio-button id="nameless" value="no-name">No name</sbb-radio-button>
   `,
-  standalone: true,
   imports: [FormsModule, ReactiveFormsModule, SbbRadioButtonModule],
 })
 class StandaloneRadioButtons {
@@ -73,7 +71,6 @@ class StandaloneRadioButtons {
       <sbb-radio-button value="leaf" checked>Bulbasaur</sbb-radio-button>
     </sbb-radio-group>
   `,
-  standalone: true,
   imports: [FormsModule, ReactiveFormsModule, SbbRadioButtonModule],
 })
 class RadiosInsidePreCheckedRadioGroup {}
@@ -88,7 +85,6 @@ class RadiosInsidePreCheckedRadioGroup {}
       }
     </sbb-radio-group>
   `,
-  standalone: true,
   imports: [FormsModule, ReactiveFormsModule, SbbRadioButtonModule],
 })
 class RadioGroupWithNgModel {
@@ -104,7 +100,6 @@ class RadioGroupWithNgModel {
 
 @Component({
   template: ` <sbb-radio-button>One</sbb-radio-button> `,
-  standalone: true,
   imports: [SbbRadioButtonModule],
 })
 class DisableableSbbRadioButton {
@@ -122,7 +117,6 @@ class DisableableSbbRadioButton {
       <sbb-radio-button value="2">Two</sbb-radio-button>
     </sbb-radio-group>
   `,
-  standalone: true,
   imports: [ReactiveFormsModule, SbbRadioButtonModule],
 })
 class RadioGroupWithFormControl {
@@ -132,7 +126,6 @@ class RadioGroupWithFormControl {
 
 @Component({
   template: ` <sbb-radio-button [tabIndex]="tabIndex"></sbb-radio-button> `,
-  standalone: true,
   imports: [SbbRadioButtonModule],
 })
 class FocusableSbbRadioButton {
@@ -142,7 +135,6 @@ class FocusableSbbRadioButton {
 @Component({
   selector: 'transcluding-wrapper',
   template: ` <div><ng-content></ng-content></div> `,
-  standalone: true,
 })
 class TranscludingWrapper {}
 
@@ -156,7 +148,6 @@ class TranscludingWrapper {}
       }
     </sbb-radio-group>
   `,
-  standalone: true,
   imports: [FormsModule, SbbRadioButtonModule, TranscludingWrapper],
 })
 class InterleavedRadioGroup {
@@ -170,7 +161,6 @@ class InterleavedRadioGroup {
 
 @Component({
   template: ` <sbb-radio-button tabindex="5"></sbb-radio-button> `,
-  standalone: true,
   imports: [SbbRadioButtonModule],
 })
 class RadioButtonWithPredefinedTabindex {}
@@ -183,7 +173,6 @@ class RadioButtonWithPredefinedTabindex {}
       aria-labelledby="something-else"
     ></sbb-radio-button>
   `,
-  standalone: true,
   imports: [SbbRadioButtonModule],
 })
 class RadioButtonWithPredefinedAriaAttributes {}
@@ -204,7 +193,6 @@ class RadioButtonWithPredefinedAriaAttributes {}
       }
     </sbb-radio-group>
   `,
-  standalone: true,
   imports: [ReactiveFormsModule, SbbRadioButtonModule],
 })
 class PreselectedRadioWithStaticValueAndNgIf {

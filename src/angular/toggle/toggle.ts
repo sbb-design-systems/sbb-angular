@@ -48,7 +48,6 @@ import { SbbToggleOption } from './toggle-option';
     '[class.sbb-toggle-option-has-content]': '!!selected?._details',
   },
   animations: [sbbToggleAnimations.translateHeight],
-  standalone: true,
   imports: [CdkPortalOutlet],
 })
 export class SbbToggle

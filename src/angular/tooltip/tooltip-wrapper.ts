@@ -36,7 +36,6 @@ const _SbbTooltipWrapperMixinBase = mixinVariant(class {});
     '[attr.id]': 'this.id',
     '[attr.aria-expanded]': '_tooltip._isTooltipVisible()',
   },
-  standalone: true,
   imports: [SbbTooltip, SbbIcon, AsyncPipe],
 })
 export class SbbTooltipWrapper

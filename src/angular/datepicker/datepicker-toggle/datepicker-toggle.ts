@@ -31,7 +31,6 @@ import type { SbbDatepicker } from '../datepicker/datepicker';
     '[class.sbb-datepicker-toggle-active]': 'this._datepicker && this._datepicker.opened',
     '[attr.tabindex]': 'null',
   },
-  standalone: true,
   imports: [SbbIconModule],
 })
 export class SbbDatepickerToggle<D> implements OnDestroy, OnChanges, AfterContentInit {

@@ -1,0 +1,19 @@
+<h4>Select allowing selection of nullable options</h4>
+<sbb-form-field>
+  <sbb-label>Number</sbb-label>
+  <sbb-select [(ngModel)]="value" canSelectNullableOptions>
+    @for (option of options; track option) {
+      <sbb-option [value]="option.value">{{ option.label }}</sbb-option>
+    }
+  </sbb-select>
+</sbb-form-field>
+
+<h4>Select with default configuration</h4>
+<sbb-form-field>
+  <sbb-label>Number</sbb-label>
+  <sbb-select [(ngModel)]="value">
+    @for (option of options; track option) {
+      <sbb-option [value]="option.value">{{ option.label }}</sbb-option>
+    }
+  </sbb-select>
+</sbb-form-field>

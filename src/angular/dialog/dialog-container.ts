@@ -42,7 +42,6 @@ interface DialogAnimationEvent {
     '[attr.aria-describedby]': '_config.ariaDescribedBy || null',
     '[@dialogContainer]': `_getAnimationState()`,
   },
-  standalone: true,
   imports: [CdkPortalOutlet],
 })
 export class SbbDialogContainer extends CdkDialogContainer<SbbDialogConfig> {

@@ -14,7 +14,6 @@ import {
   createKeyboardEvent,
   dispatchEvent,
   dispatchKeyboardEvent,
-  switchToLean,
 } from '@sbb-esta/angular/core/testing';
 import { SbbIconTestingModule } from '@sbb-esta/angular/icon/testing';
 
@@ -231,29 +230,20 @@ describe('SbbExpansionPanel', () => {
     });
   });
 
-  it('should not be able to focus content while closed', fakeAsync(() => {
+  it('should not be able to focus content while closed', () => {
     const fixture = TestBed.createComponent(PanelWithContent);
     fixture.componentInstance.expanded = true;
     fixture.changeDetectorRef.markForCheck();
     fixture.detectChanges();
-    tick(250);
+    const wrapper = fixture.nativeElement.querySelector('.sbb-expansion-panel-content-wrapper');
+    expect(wrapper.hasAttribute('inert')).toBe(false);
 
-    const button = fixture.debugElement.query(By.css('button'))!.nativeElement;
-
-    button.focus();
-    expect(document.activeElement)
-      .withContext('Expected button to start off focusable.')
-      .toBe(button);
-
-    button.blur();
     fixture.componentInstance.expanded = false;
     fixture.changeDetectorRef.markForCheck();
     fixture.detectChanges();
-    tick(250);
 
-    button.focus();
-    expect(document.activeElement).not.toBe(button, 'Expected button to no longer be focusable.');
-  }));
+    expect(wrapper.hasAttribute('inert')).toBe(true);
+  });
 
   it('should restore focus to header if focused element is inside panel on close', fakeAsync(() => {
     const fixture = TestBed.createComponent(PanelWithContent);
@@ -314,34 +304,6 @@ describe('SbbExpansionPanel', () => {
     expect(header.querySelector('.sbb-expansion-panel-header-indicator'))
       .withContext('Expected indicator to be hidden.')
       .toBeFalsy();
-  });
-
-  describe('lean', () => {
-    switchToLean();
-
-    it('should update the indicator rotation when the expanded state is toggled programmatically', fakeAsync(() => {
-      const fixture = TestBed.createComponent(PanelWithContent);
-
-      fixture.detectChanges();
-      tick(250);
-
-      const arrow = fixture.debugElement.query(
-        By.css('.sbb-expansion-panel-header-indicator > sbb-icon'),
-      )!.nativeElement;
-
-      expect(arrow.style.transform)
-        .withContext('Expected 90 degree rotation.')
-        .toBe('rotate(90deg)');
-
-      fixture.componentInstance.expanded = true;
-      fixture.changeDetectorRef.markForCheck();
-      fixture.detectChanges();
-      tick(250);
-
-      expect(arrow.style.transform)
-        .withContext('Expected -90 degree rotation.')
-        .toBe('rotate(-90deg)');
-    }));
   });
 
   it('should make sure accordion item runs ngOnDestroy when expansion panel is destroyed', () => {
@@ -537,7 +499,6 @@ describe('SbbExpansionPanel', () => {
       <button>I am a button</button>
     </sbb-expansion-panel>
   `,
-  standalone: true,
   imports: [SbbAccordionModule, SbbIconTestingModule],
 })
 class PanelWithContent {
@@ -557,7 +518,6 @@ class PanelWithContent {
       </sbb-expansion-panel>
     }
   `,
-  standalone: true,
   imports: [SbbAccordionModule, SbbIconTestingModule],
 })
 class PanelWithContentInNgIf {
@@ -577,7 +537,6 @@ class PanelWithContentInNgIf {
       </ng-template>
     </sbb-expansion-panel>
   `,
-  standalone: true,
   imports: [SbbAccordionModule, SbbIconTestingModule],
 })
 class LazyPanelWithContent {
@@ -594,7 +553,6 @@ class LazyPanelWithContent {
       </ng-template>
     </sbb-expansion-panel>
   `,
-  standalone: true,
   imports: [SbbAccordionModule, SbbIconTestingModule],
 })
 class LazyPanelOpenOnLoad {}
@@ -605,7 +563,6 @@ class LazyPanelOpenOnLoad {}
       <sbb-expansion-panel-header>Panel Title</sbb-expansion-panel-header>
     </sbb-expansion-panel>
   `,
-  standalone: true,
   imports: [SbbAccordionModule, SbbIconTestingModule],
 })
 class PanelWithTwoWayBinding {
@@ -616,7 +573,6 @@ class PanelWithTwoWayBinding {
   template: `<sbb-expansion-panel>
     <sbb-expansion-panel-header tabindex="7">Panel Title</sbb-expansion-panel-header>
   </sbb-expansion-panel>`,
-  standalone: true,
   imports: [SbbAccordionModule, SbbIconTestingModule],
 })
 class PanelWithHeaderTabindex {}
@@ -630,7 +586,6 @@ class PanelWithHeaderTabindex {}
       </sbb-expansion-panel>
     </sbb-expansion-panel>
   `,
-  standalone: true,
   imports: [SbbAccordionModule, SbbIconTestingModule],
 })
 class NestedLazyPanelWithContent {

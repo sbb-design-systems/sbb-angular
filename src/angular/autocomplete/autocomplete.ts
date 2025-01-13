@@ -90,7 +90,6 @@ export function SBB_AUTOCOMPLETE_DEFAULT_OPTIONS_FACTORY(): SbbAutocompleteDefau
   host: {
     class: 'sbb-autocomplete',
   },
-  standalone: true,
 })
 export class SbbAutocomplete implements AfterContentInit, OnDestroy {
   private _changeDetectorRef = inject(ChangeDetectorRef);

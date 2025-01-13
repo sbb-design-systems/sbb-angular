@@ -608,7 +608,6 @@ class ButtonTestBase {
       Go
     </button>
   `,
-  standalone: true,
   imports: [SbbButtonModule],
 })
 class ButtonTest extends ButtonTestBase {}
@@ -627,7 +626,6 @@ class ButtonTest extends ButtonTestBase {}
       Go
     </button>
   `,
-  standalone: true,
   imports: [SbbButtonModule],
 })
 class ButtonWithCustomSvgIconTest extends ButtonTestBase {
@@ -639,7 +637,6 @@ class ButtonWithCustomSvgIconTest extends ButtonTestBase {
   template: `
     <button sbb-alt-button type="button" (click)="increment()" [disabled]="isDisabled">Go</button>
   `,
-  standalone: true,
   imports: [SbbButtonModule],
 })
 class ButtonAltTest extends ButtonTestBase {}
@@ -651,7 +648,6 @@ class ButtonAltTest extends ButtonTestBase {}
       Go
     </button>
   `,
-  standalone: true,
   imports: [SbbButtonModule],
 })
 class ButtonSecondaryTest extends ButtonTestBase {}
@@ -661,7 +657,6 @@ class ButtonSecondaryTest extends ButtonTestBase {}
   template: `
     <button sbb-ghost-button type="button" (click)="increment()" [disabled]="isDisabled">Go</button>
   `,
-  standalone: true,
   imports: [SbbButtonModule],
 })
 class ButtonGhostTest extends ButtonTestBase {}
@@ -673,7 +668,6 @@ class ButtonGhostTest extends ButtonTestBase {}
       <sbb-icon svgIcon="example"></sbb-icon>
     </button>
   `,
-  standalone: true,
   imports: [SbbButtonModule, SbbIconModule],
 })
 class ButtonIconTest extends ButtonTestBase {}
@@ -713,7 +707,6 @@ class ButtonIconTest extends ButtonTestBase {}
       <button sbb-ghost-button type="button">Test</button>
     </p>
   `,
-  standalone: true,
   imports: [SbbButtonModule, SbbIconModule],
 })
 class ButtonIconTestMultiple extends ButtonTestBase {}
@@ -725,7 +718,6 @@ class ButtonIconTestMultiple extends ButtonTestBase {}
       Go
     </button>
   `,
-  standalone: true,
   imports: [SbbButtonModule],
 })
 class ButtonFramelessTest extends ButtonTestBase {}
@@ -736,7 +728,6 @@ class ButtonFramelessTest extends ButtonTestBase {}
     <button sbb-link type="button" (click)="increment()" [disabled]="isDisabled">Go</button>
     <a href="http://www.google.com" sbb-link [disabled]="isDisabled"> Link </a>
   `,
-  standalone: true,
   imports: [SbbButtonModule],
 })
 class LinkTest extends ButtonTestBase {}

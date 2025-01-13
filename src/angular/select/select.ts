@@ -110,6 +110,12 @@ export interface SbbSelectConfig {
 
   /** Class or list of classes to be applied to the menu's overlay panel. */
   overlayPanelClass?: string | string[];
+
+  /**
+   * Whether nullable options can be selected by default.
+   * See `MatSelect.canSelectNullableOptions` for more information.
+   */
+  canSelectNullableOptions?: boolean;
 }
 
 /** Injection token that can be used to provide the default options the select module. */
@@ -173,7 +179,6 @@ const _SbbSelectMixinBase = mixinVariant(
     { provide: SbbFormFieldControl, useExisting: SbbSelect },
     { provide: SBB_OPTION_PARENT_COMPONENT, useExisting: SbbSelect },
   ],
-  standalone: true,
   imports: [SbbIcon, CdkConnectedOverlay, NgClass, AsyncPipe],
 })
 export class SbbSelect
@@ -194,6 +199,7 @@ export class SbbSelect
   ngControl: NgControl = inject(NgControl, { self: true, optional: true })!;
   private _liveAnnouncer = inject(LiveAnnouncer);
   private _defaultOptions = inject<SbbSelectConfig>(SBB_SELECT_CONFIG, { optional: true });
+  private _initialized = new Subject<void>();
 
   /** The scroll position of the overlay panel, calculated to center the selected option. */
   private _scrollTop = 0;
@@ -462,7 +468,14 @@ export class SbbSelect
     this._errorStateTracker.errorState = value;
   }
 
-  private _initialized = new Subject<void>();
+  /**
+   * By default selecting an option with a `null` or `undefined` value will reset the select's
+   * value. Enable this option if the reset behavior doesn't match your requirements and instead
+   * the nullable options should become selected. The value of this input can be controlled app-wide
+   * using the `MAT_SELECT_CONFIG` injection token.
+   */
+  @Input({ transform: booleanAttribute })
+  canSelectNullableOptions: boolean = this._defaultOptions?.canSelectNullableOptions ?? false;
 
   /** Combined stream of all of the child options' change events. */
   readonly optionSelectionChanges: Observable<SbbOptionSelectionChange> = defer(() => {
@@ -947,7 +960,10 @@ export class SbbSelect
 
       try {
         // Treat null as a special reset value.
-        return option.value != null && this._compareWith(option.value, value);
+        return (
+          (option.value != null || this.canSelectNullableOptions) &&
+          this._compareWith(option.value, value)
+        );
       } catch (error) {
         if (typeof ngDevMode === 'undefined' || ngDevMode) {
           // Notify developers of errors in their comparator.
@@ -1042,7 +1058,7 @@ export class SbbSelect
   private _onSelect(option: SbbOption, isUserInput: boolean): void {
     const wasSelected = this._selectionModel.isSelected(option);
 
-    if (option.value == null && !this._multiple) {
+    if (!this.canSelectNullableOptions && option.value == null && !this._multiple) {
       option.deselect();
       this._selectionModel.clear();
 
