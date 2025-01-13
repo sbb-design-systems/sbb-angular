@@ -2,6 +2,16 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [19.1.2](https://github.com/sbb-design-systems/sbb-angular/compare/19.1.1...19.1.2) (2025-01-13)
+
+
+### Bug Fixes
+
+* **angular/accordion:** prevent focus from entering the panel while it's animating ([#2468](https://github.com/sbb-design-systems/sbb-angular/issues/2468)) ([a2aa907](https://github.com/sbb-design-systems/sbb-angular/commit/a2aa9075c6a35e66cd3055a14bffaf8899f1d0c2))
+* **angular/accordion:** switch away from animations module ([#2469](https://github.com/sbb-design-systems/sbb-angular/issues/2469)) ([5a0137c](https://github.com/sbb-design-systems/sbb-angular/commit/5a0137c8784d688508626e03bd33bf42c5ddd42f))
+* **angular/menu:** decouple menu lifecycle from animations ([#2467](https://github.com/sbb-design-systems/sbb-angular/issues/2467)) ([e87e2c7](https://github.com/sbb-design-systems/sbb-angular/commit/e87e2c7159e9c19e64ef32b8a26cf08507d64c78))
+* **angular/select:** add opt-in input that allows selection of nullable options ([#2466](https://github.com/sbb-design-systems/sbb-angular/issues/2466)) ([8658f9e](https://github.com/sbb-design-systems/sbb-angular/commit/8658f9e83fa7ad34b7b993f58bad2f18be757dfd))
+
 ### [19.1.1](https://github.com/sbb-design-systems/sbb-angular/compare/19.1.0...19.1.1) (2024-12-16)
 
 
