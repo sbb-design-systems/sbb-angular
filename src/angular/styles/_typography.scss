@@ -1508,8 +1508,6 @@ textarea {
 input:where([type='number'], [type='time'], [type='datetime'], [type='datetime-local']) {
   -moz-appearance: textfield;
 
-  &::-webkit-inner-spin-button,
-  &::-webkit-outer-spin-button,
   &::-webkit-clear-button {
     appearance: none;
     margin: 0;
