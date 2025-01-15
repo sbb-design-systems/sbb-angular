@@ -107,7 +107,7 @@ jobs:
   test:
     if: ${{ success() || failure() }}
     needs: build
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-22.04
     steps:
     - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4
     - name: "Bazel: Copy .bazelrc to user home"
@@ -207,7 +207,7 @@ jobs:
         docker build --tag $IMAGE_REPO:rev-main .
         docker push $IMAGE_REPO:rev-main
       env:
-        DOCKER_BUILDKIT: 1      
+        DOCKER_BUILDKIT: 1
 
   merge-caches:
     if: ${{ success() || failure() }}
