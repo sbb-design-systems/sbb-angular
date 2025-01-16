@@ -71,24 +71,23 @@ describe('SbbSidebar', () => {
       fixture.detectChanges();
       tick();
 
-      // sidebar is opened after creation
-      expect(testComponent.openCount).toBe(1);
-      expect(testComponent.openStartCount).toBe(1);
-      expect(container.classList).toContain('sbb-sidebar-container-has-open');
+      expect(testComponent.openCount).toBe(0);
+      expect(testComponent.openStartCount).toBe(0);
+      expect(container.classList).not.toContain('sbb-sidebar-container-has-open');
 
       mediaMatcher.setMatchesQuery(Breakpoints.Mobile, true);
       tick();
 
-      expect(testComponent.openCount).toBe(1);
-      expect(testComponent.openStartCount).toBe(1);
+      expect(testComponent.openCount).toBe(0);
+      expect(testComponent.openStartCount).toBe(0);
       expect(container.classList).not.toContain('sbb-sidebar-container-has-open');
 
       fixture.debugElement.query(By.css('.open'))!.nativeElement.click();
       fixture.detectChanges();
       tick();
 
-      expect(testComponent.openCount).toBe(2);
-      expect(testComponent.openStartCount).toBe(2);
+      expect(testComponent.openCount).toBe(1);
+      expect(testComponent.openStartCount).toBe(1);
       expect(container.classList).toContain('sbb-sidebar-container-has-open');
     }));
 
@@ -159,15 +158,13 @@ describe('SbbSidebar', () => {
     it('should be able to close while the open animation is running', fakeAsync(() => {
       const fixture = TestBed.createComponent(BasicTestComponent);
       fixture.detectChanges();
-      mediaMatcher.setMatchesQuery(Breakpoints.Mobile, true);
-      tick();
 
       const testComponent: BasicTestComponent = fixture.debugElement.componentInstance;
       fixture.debugElement.query(By.css('.open'))!.nativeElement.click();
       fixture.detectChanges();
 
-      expect(testComponent.openCount).toBe(1);
-      expect(testComponent.closeCount).toBe(1);
+      expect(testComponent.openCount).toBe(0);
+      expect(testComponent.closeCount).toBe(0);
 
       tick();
       fixture.debugElement.query(By.css('.close'))!.nativeElement.click();
@@ -176,8 +173,8 @@ describe('SbbSidebar', () => {
       flush();
       fixture.detectChanges();
 
-      expect(testComponent.openCount).toBe(2);
-      expect(testComponent.closeCount).toBe(2);
+      expect(testComponent.openCount).toBe(0);
+      expect(testComponent.closeCount).toBe(1);
     }));
 
     it('does not throw when created without a sidebar', fakeAsync(() => {
