@@ -29,12 +29,12 @@ const commitsInIssueRegex = new RegExp(
 );
 const lastSynchronizationTitle = `Last synchronization:`;
 const lastSynchronizationInIssueRegex = new RegExp(
-  escapeRegex(lastSynchronizationTitle) + '\r\n' + '`(.*)`\r\n',
+  escapeRegex(lastSynchronizationTitle) + '\n' + '`(.*)`\n',
   's',
 );
 const lastCheckedShaTitle = `Last checked sha:`;
 const lastCheckedShaInIssueRegex = new RegExp(
-  escapeRegex(lastCheckedShaTitle) + '\r\n' + '`(.*)`',
+  escapeRegex(lastCheckedShaTitle) + '\n' + '`(.*)`',
   's',
 );
 const emptyListInIssueMessage = 'No unchecked commits';
@@ -128,7 +128,7 @@ export class AngularComponentsSync {
         : issueBody
             .match(commitsInIssueRegex)![1]
             .trim()
-            .split('\r\n')
+            .split('\n')
             .map((line) => ({
               checked: line.startsWith('- [x]'),
               sha: line.match(/angular\/components\/commit\/(.*)\)/)![1],
@@ -142,14 +142,14 @@ export class AngularComponentsSync {
     issueBody: IssueBody,
     newReferenceSha: string,
   ) {
-    const commitsInIssueBlock = `${commitsInIssueStart}\r\n${
+    const commitsInIssueBlock = `${commitsInIssueStart}\n${
       commitsInRange.length
         ? this._createIssueCommits(commitsInRange, issueBody)
         : emptyListInIssueMessage
-    }\r\n\r\n${commitsInIssueEnd}`;
+    }\n\n${commitsInIssueEnd}`;
 
-    const lastShaBlock = `${lastCheckedShaTitle}\r\n\`${newReferenceSha}\``;
-    const lastSynchronizationBlock = `${lastSynchronizationTitle}\r\n\`${this._now.toISOString()}\`\r\n`;
+    const lastShaBlock = `${lastCheckedShaTitle}\n\`${newReferenceSha}\``;
+    const lastSynchronizationBlock = `${lastSynchronizationTitle}\n\`${this._now.toISOString()}\`\n`;
 
     return issueBody.body
       .replace(commitsInIssueRegex, commitsInIssueBlock)
@@ -169,7 +169,7 @@ export class AngularComponentsSync {
           commit.sha,
         ),
       )
-      .join('\r\n');
+      .join('\n');
   }
 
   private _createIssueCommitLine(checked: boolean, subject: string, sha: string) {
