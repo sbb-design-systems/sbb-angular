@@ -5449,15 +5449,6 @@
     argparse "~1.0.9"
     string-argv "~0.3.1"
 
-"@schematics/angular@19.0.6":
-  version "19.0.6"
-  resolved "https://registry.yarnpkg.com/@schematics/angular/-/angular-19.0.6.tgz#9803d56c727aaf6db628a4ffd39096bef6d2b554"
-  integrity sha512-HicclmbW/+mlljU7a4PzbyIWG+7tognoL5LsgMFJQUDzJXHNjRt1riL0vk57o8Pcprnz9FheeWZXO1KRhXkQuw==
-  dependencies:
-    "@angular-devkit/core" "19.0.6"
-    "@angular-devkit/schematics" "19.0.6"
-    jsonc-parser "3.3.1"
-
 "@schematics/angular@19.1.2":
   version "19.1.2"
   resolved "https://registry.yarnpkg.com/@schematics/angular/-/angular-19.1.2.tgz#ca04c95786aa0d67c098f90eb6cb6e2137e93dc0"
