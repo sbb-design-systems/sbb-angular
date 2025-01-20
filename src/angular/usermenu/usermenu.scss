@@ -127,7 +127,7 @@
   text-align: left;
   @include sbb.ellipsis();
 
-  .sbb-menu-panel-type-usermenu.ng-animating & {
+  .sbb-menu-panel-type-usermenu.sbb-menu-panel-animating & {
     text-overflow: clip; // Prevents showing ellipsis during animation
   }
 }
@@ -230,6 +230,31 @@
   }
 }
 
+@keyframes _sbb-usermenu-enter {
+  from {
+    width: var(--sbb-menu-trigger-width);
+    max-height: var(--sbb-menu-trigger-height);
+    opacity: 0;
+  }
+  to {
+    width: 288px;
+    max-height: 100%;
+    opacity: 1;
+  }
+}
+@keyframes _sbb-usermenu-exit {
+  from {
+    width: 288px;
+    max-height: 100%;
+    opacity: 1;
+  }
+  to {
+    width: var(--sbb-menu-trigger-width);
+    max-height: var(--sbb-menu-trigger-height);
+    opacity: 0;
+  }
+}
+
 .sbb-menu-panel-wrapper.sbb-menu-panel-type-usermenu {
   max-width: 100%;
   position: absolute;
@@ -239,11 +264,17 @@
   min-width: calc(var(--sbb-menu-trigger-width) + var(--sbb-usermenu-trigger-padding));
   min-height: var(--sbb-menu-trigger-height);
 
+  animation: _sbb-usermenu-enter 300ms cubic-bezier(0.785, 0.135, 0.15, 0.86);
+
+  &.sbb-menu-panel-exit-animation {
+    animation: _sbb-usermenu-exit 300ms cubic-bezier(0.785, 0.135, 0.15, 0.86);
+  }
+
   .sbb-menu-item {
     min-width: calc(var(--sbb-usermenu-panel-width) - var(--sbb-border-width) * 2);
   }
 
-  &.ng-animating {
+  &.sbb-menu-panel-animating {
     .sbb-panel {
       overflow: hidden; // Disable scroll bars during animation
     }
