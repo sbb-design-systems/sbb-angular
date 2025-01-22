@@ -113,7 +113,7 @@
     "@types/jasminewd2": "2.0.13",
     "@types/mapbox__point-geometry": "0.1.4",
     "@types/marked": "^2.0.2",
-    "@types/node": "18.19.71",
+    "@types/node": "18.19.72",
     "@types/sass": "1.45.0",
     "@types/send": "0.17.4",
     "@types/shelljs": "^0.8.15",
