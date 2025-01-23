@@ -6263,10 +6263,10 @@
   dependencies:
     undici-types "~6.19.2"
 
-"@types/node@18.19.72":
-  version "18.19.72"
-  resolved "https://registry.yarnpkg.com/@types/node/-/node-18.19.72.tgz#37d5cfb4061aa7ff386cf212d9da8ef7c182b5cd"
-  integrity sha512-AZAJfFv5UDB7y5J4fs49/waT0VaM6X0pvTMRL3JQClHPCh2bpkFLNhKpewvOVFPEUNqBdykzvhcMCxyiqB2oew==
+"@types/node@18.19.73":
+  version "18.19.73"
+  resolved "https://registry.yarnpkg.com/@types/node/-/node-18.19.73.tgz#70de39cf25004c18fe781e49ea730967a21fbb95"
+  integrity sha512-O451pmK1nYLktpIxucFTJ6EMjiYR5uoa+JkKwA1pempbXdel/Jin5tvhOzVCS5a7/jUmKZmPVBHpl+LLqfYwew==
   dependencies:
     undici-types "~5.26.4"
 
