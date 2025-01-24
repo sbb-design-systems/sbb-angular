@@ -7,6 +7,7 @@ on:
 env:
   BAZEL_COMMAND: bazelisk
   BAZEL_CACHE_VERSION: v3
+  IMAGE_REPO: ghcr.io/${{ github.repository }}/showcase
 
 permissions:
   packages: write
@@ -62,8 +63,6 @@ jobs:
   showcase:
     runs-on: ubuntu-latest
     steps:
-    - name: 'Container: Login to GitHub Container Repository'
-      run: echo ${{ secrets.GITHUB_TOKEN }} | docker login ghcr.io --username ${{ github.actor }} --password-stdin
     - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4
     - name: "Bazel: Copy .bazelrc to user home"
       run: cp ./.github/.bazelrc ~/
@@ -83,18 +82,19 @@ jobs:
       env:
         JM_API_KEY: ${{ secrets.JM_API_KEY }}
 
-    - name: "Docker: Parse release version"
-      id: docker_release_version
-      run: echo ::set-output name=docker_release_version::${GITHUB_REF/refs\/tags\//}
-    - name: "Docker: Build image"
+    - uses: ./.github/actions/setup-mint
+    - name: Create and publish container image
       run: |
-        docker build \
-        -t ghcr.io/sbb-design-systems/sbb-angular/showcase:${{ steps.docker_release_version.outputs.docker_release_version }} \
-        -t ghcr.io/sbb-design-systems/sbb-angular/showcase:latest \
-        .
+        VERSION=${GITHUB_REF/refs\/tags\//}
+        echo "${{ secrets.GITHUB_TOKEN }}" | docker login ghcr.io -u $ --password-stdin
+        docker build --tag $IMAGE_REPO:$VERSION-fat .
+        mint slim \
+          --target $IMAGE_REPO:$VERSION-fat \
+          --tag $IMAGE_REPO:$VERSION \
+          --preserve-path /usr/share/nginx/html
+        docker push $IMAGE_REPO:$VERSION
+        docker tag $IMAGE_REPO:$VERSION $IMAGE_REPO:latest
+        docker push $IMAGE_REPO:latest
+        docker image list
       env:
         DOCKER_BUILDKIT: 1
-    - name: "Docker: Publish image"
-      run: docker push ghcr.io/sbb-design-systems/sbb-angular/showcase:${{ steps.docker_release_version.outputs.docker_release_version }}
-    - name: "Docker: Publish image as latest"
-      run: docker push ghcr.io/sbb-design-systems/sbb-angular/showcase:latest

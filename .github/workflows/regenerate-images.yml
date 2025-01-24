@@ -14,16 +14,16 @@ jobs:
     runs-on: ubuntu-latest
     env:
       START_VERSION: 11
-      IMAGE_URL: ghcr.io/sbb-design-systems/sbb-angular/showcase
+      IMAGE_REPO: ghcr.io/${{ github.repository }}/showcase
     steps:
       - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4
         with:
           fetch-depth: 0
           fetch-tags: true
-      - name: 'Container: Login to GitHub Container Repository'
-        run: echo ${{ secrets.GITHUB_TOKEN }} | docker login ghcr.io --username ${{ github.actor }} --password-stdin
+      - uses: ./.github/actions/setup-mint
       - name: Regenerate latest container images to keep them up to date
         run: |
+          echo "${{ secrets.GITHUB_TOKEN }}" | docker login ghcr.io -u $ --password-stdin
           majorVersion=$START_VERSION
           echo "Starting image regeneration with version $majorVersion"
 
@@ -31,18 +31,22 @@ jobs:
             version=$(git tag --sort=v:refname -l "$majorVersion.*.*" | tail -1)
             [[ "$version" != "" ]] || break
           
-            image="$IMAGE_URL:$version"
+            image="$IMAGE_REPO:$version"
             echo ""
             echo "Regenerating $image"
             echo ""
           
             (( $majorVersion < 13 )) && target=initless || target=init  
             docker build \
-              --tag tmp \
+              --tag tmp-fat \
               --build-arg BASE="$image" \
               --file .github/Dockerfile.regenerate \
               --target $target \
               .
+            mint slim \
+              --target tmp-fat \
+              --tag tmp \
+              --preserve-path /usr/share/nginx/html
             docker tag tmp "$image"
             docker push "$image"
           

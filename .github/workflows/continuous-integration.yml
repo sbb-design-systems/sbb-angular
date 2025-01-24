@@ -201,11 +201,17 @@ jobs:
         tar -xvzf sbb-esta-angular-showcase.tgz
         mkdir -p dist/releases
         mv package/ dist/releases/showcase/
+    - uses: ./.github/actions/setup-mint
     - name: Create and publish container image
       run: |
         echo "${{ secrets.GITHUB_TOKEN }}" | docker login ghcr.io -u $ --password-stdin
-        docker build --tag $IMAGE_REPO:rev-main .
+        docker build --tag $IMAGE_REPO:rev-main-fat .
+        mint slim \
+          --target $IMAGE_REPO:rev-main-fat \
+          --tag $IMAGE_REPO:rev-main \
+          --preserve-path /usr/share/nginx/html
         docker push $IMAGE_REPO:rev-main
+        docker image list
       env:
         DOCKER_BUILDKIT: 1
 
