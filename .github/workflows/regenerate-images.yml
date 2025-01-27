@@ -43,10 +43,15 @@ jobs:
               --file .github/Dockerfile.regenerate \
               --target $target \
               .
-            mint slim \
-              --target tmp-fat \
-              --tag tmp \
-              --preserve-path /usr/share/nginx/html
+            # Try/Catch
+            {
+              mint slim \
+                --target tmp-fat \
+                --tag tmp \
+                --preserve-path /usr/share/nginx/html
+            } || {
+              docker tag tmp-fat tmp
+            }            
             docker tag tmp "$image"
             docker push "$image"
           
