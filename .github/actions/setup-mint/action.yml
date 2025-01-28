@@ -6,16 +6,14 @@ runs:
   steps:
     - name: Setup mint
       run: |
-        mkdir -p /tmp/mint
-        cd /tmp/mint
+        mkdir -p "$HOME/.local/bin"
+        cd "$HOME/.local/bin"
 
         # Get the current released tag_name
         VER=$(curl -sL https://api.github.com/repos/mintoolkit/mint/releases \
           | grep tag_name | head -n1 | cut -d'"' -f4)
         curl -L -o mint.tar.gz "https://github.com/mintoolkit/mint/releases/download/${VER}/dist_linux.tar.gz"
         tar -xvf mint.tar.gz --strip-components 1
-
-        echo "/tmp/mint" >> $GITHUB_PATH
 
         echo "Installed mint:${VER}"
       shell: bash

@@ -9,57 +9,37 @@ on:
 permissions:
   packages: write
 
+env:
+  IMAGE_REPO: ghcr.io/${{ github.repository }}/showcase
+
+
 jobs:
-  preview-image:
+  tag-resolver:
     runs-on: ubuntu-latest
     env:
       START_VERSION: 11
-      IMAGE_REPO: ghcr.io/${{ github.repository }}/showcase
     steps:
       - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4
         with:
           fetch-depth: 0
           fetch-tags: true
-      - uses: ./.github/actions/setup-mint
-      - name: Regenerate latest container images to keep them up to date
+      - name: Find latest tags from major versions
         run: |
-          echo "${{ secrets.GITHUB_TOKEN }}" | docker login ghcr.io -u $ --password-stdin
-          majorVersion=$START_VERSION
-          echo "Starting image regeneration with version $majorVersion"
-
-          while : ; do
-            version=$(git tag --sort=v:refname -l "$majorVersion.*.*" | tail -1)
-            [[ "$version" != "" ]] || break
-          
-            image="$IMAGE_REPO:$version"
-            echo ""
-            echo "Regenerating $image"
-            echo ""
-          
-            (( $majorVersion < 13 )) && target=initless || target=init  
-            docker build \
-              --tag tmp-fat \
-              --build-arg BASE="$image" \
-              --file .github/Dockerfile.regenerate \
-              --target $target \
-              .
-            # Try/Catch
-            {
-              mint slim \
-                --target tmp-fat \
-                --tag tmp \
-                --preserve-path /usr/share/nginx/html
-            } || {
-              docker tag tmp-fat tmp
-            }            
-            docker tag tmp "$image"
-            docker push "$image"
-          
-            echo ""
-            echo "Finished regenerating $image"
-            echo ""
-          
-            majorVersion=$((majorVersion+1))
-          done
+          ./scripts/regenerate-image.sh >> "$GITHUB_OUTPUT"
         env:
           DOCKER_BUILDKIT: 1
+
+  regenerate-image:
+    runs-on: ubuntu-latest
+    needs: tag-resolver
+    strategy:
+      matrix:
+        version: ${{ fromJSON(needs.tag-resolver.outputs.versions) }}
+    steps:
+      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4
+      - uses: ./.github/actions/setup-mint
+      - run: |
+          echo "${{ secrets.GITHUB_TOKEN }}" | docker login ghcr.io -u $ --password-stdin
+          ./scripts/regenerate-image.sh
+        env:
+          VERSION: ${{ matrix.version }}
