@@ -16,4 +16,4 @@ while : ; do
 done
 
 printf -v joined '"%s",' "${versions[@]}"
-echo "versions=[${joined::-1}]"
+echo "versions=[${joined::-1}]" >> "$GITHUB_OUTPUT"
