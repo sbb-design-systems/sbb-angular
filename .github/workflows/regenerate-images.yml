@@ -25,7 +25,8 @@ jobs:
           fetch-tags: true
       - name: Find latest tags from major versions
         run: |
-          ./scripts/find-major-versions.sh >> "$GITHUB_OUTPUT"
+          ./scripts/find-major-versions.sh
+          cat "$GITHUB_OUTPUT"
         env:
           DOCKER_BUILDKIT: 1
 
