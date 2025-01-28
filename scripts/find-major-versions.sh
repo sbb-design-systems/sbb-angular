@@ -15,5 +15,5 @@ while : ; do
   majorVersion=$((majorVersion+1))
 done
 
-printf -v joined '"%s",' "${versions[@]}"
-echo "versions=[${joined::-1}]" >> "$GITHUB_OUTPUT"
+printf -v joined '"%s", ' "${versions[@]}"
+echo "versions=[${joined::-2}]"

@@ -18,17 +18,17 @@ jobs:
     runs-on: ubuntu-latest
     env:
       START_VERSION: 11
+    outputs:
+      versions: ${{ steps.versions.outputs.versions }}
     steps:
       - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4
         with:
           fetch-depth: 0
           fetch-tags: true
       - name: Find latest tags from major versions
+        id: versions
         run: |
-          ./scripts/find-major-versions.sh
-          cat "$GITHUB_OUTPUT"
-        env:
-          DOCKER_BUILDKIT: 1
+          ./scripts/find-major-versions.sh >> "$GITHUB_OUTPUT"
 
   regenerate-image:
     runs-on: ubuntu-latest
@@ -43,4 +43,5 @@ jobs:
           echo "${{ secrets.GITHUB_TOKEN }}" | docker login ghcr.io -u $ --password-stdin
           ./scripts/regenerate-image.sh
         env:
+          DOCKER_BUILDKIT: 1
           VERSION: ${{ matrix.version }}
