@@ -220,9 +220,9 @@
     "@angular/core" "^13.0.0 || ^14.0.0-0"
     reflect-metadata "^0.1.13"
 
-"@angular/build-tooling@https://github.com/angular/dev-infra-private-build-tooling-builds.git#1298ed34f97ed13cce3177ffd25ac3292385b196":
-  version "0.0.0-e8d26efbaea89c31f1580c61c968c8119f5247a6"
-  resolved "https://github.com/angular/dev-infra-private-build-tooling-builds.git#1298ed34f97ed13cce3177ffd25ac3292385b196"
+"@angular/build-tooling@https://github.com/angular/dev-infra-private-build-tooling-builds.git#ce04ec6cf7604014191821a637e60964a1a3bb4a":
+  version "0.0.0-2670abf637fa155971cdd1f7e570a7f234922a65"
+  resolved "https://github.com/angular/dev-infra-private-build-tooling-builds.git#ce04ec6cf7604014191821a637e60964a1a3bb4a"
   dependencies:
     "@angular/benchpress" "0.3.0"
     "@angular/build" "19.1.0-rc.0"
@@ -426,9 +426,9 @@
     fast-glob "3.3.3"
     yargs "^17.2.1"
 
-"@angular/ng-dev@https://github.com/angular/dev-infra-private-ng-dev-builds.git#744e5a754635c8e8e008f957aba8f9dd8011cc8f":
-  version "0.0.0-e8d26efbaea89c31f1580c61c968c8119f5247a6"
-  resolved "https://github.com/angular/dev-infra-private-ng-dev-builds.git#744e5a754635c8e8e008f957aba8f9dd8011cc8f"
+"@angular/ng-dev@https://github.com/angular/dev-infra-private-ng-dev-builds.git#2a80accff0f6515819a6c6e77eeca9d6936cd7b9":
+  version "0.0.0-2670abf637fa155971cdd1f7e570a7f234922a65"
+  resolved "https://github.com/angular/dev-infra-private-ng-dev-builds.git#2a80accff0f6515819a6c6e77eeca9d6936cd7b9"
   dependencies:
     "@google-cloud/spanner" "7.17.1"
     "@octokit/rest" "21.1.0"
@@ -440,6 +440,7 @@
     supports-color "10.0.0"
     typed-graphqlify "^3.1.1"
     typescript "~4.9.0"
+    which "^5.0.0"
     yaml "2.7.0"
 
 "@angular/platform-browser-dynamic@19.1.3":
