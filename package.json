@@ -161,7 +161,7 @@
     "standard-version": "9.5.0",
     "stylelint": "16.14.1",
     "stylelint-config-recommended-scss": "14.1.0",
-    "stylelint-scss": "6.10.1",
+    "stylelint-scss": "6.11.0",
     "terser": "5.37.0",
     "ts-node": "10.9.2",
     "tsconfig-paths": "4.2.0",
