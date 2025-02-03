@@ -37,7 +37,9 @@
       class="sbb-panel sbb-panel-padded sbb-menu-panel sbb-menu-content sbb-scrollbar"
       [class.sbb-menu-panel-root]="!parentMenu"
     >
-      <ng-content></ng-content>
+      <div class="sbb-menu-panel-content">
+        <ng-content></ng-content>
+      </div>
     </div>
   </div>
 </ng-template>

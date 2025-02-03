@@ -242,16 +242,33 @@
     opacity: 1;
   }
 }
+
 @keyframes _sbb-usermenu-exit {
   from {
     width: 288px;
-    max-height: 100%;
     opacity: 1;
   }
   to {
     width: var(--sbb-menu-trigger-width);
-    max-height: var(--sbb-menu-trigger-height);
     opacity: 0;
+  }
+}
+
+@keyframes _sbb-usermenu-panel-enter {
+  from {
+    grid-template-rows: 0fr;
+  }
+  to {
+    grid-template-rows: 1fr;
+  }
+}
+
+@keyframes _sbb-usermenu-panel-exit {
+  from {
+    grid-template-rows: 1fr;
+  }
+  to {
+    grid-template-rows: 0fr;
   }
 }
 
@@ -268,10 +285,24 @@
 
   &.sbb-menu-panel-exit-animation {
     animation: _sbb-usermenu-exit 300ms cubic-bezier(0.785, 0.135, 0.15, 0.86);
+
+    .sbb-menu-panel {
+      animation: _sbb-usermenu-panel-exit 300ms cubic-bezier(0.785, 0.135, 0.15, 0.86);
+    }
   }
 
   .sbb-menu-item {
     min-width: calc(var(--sbb-usermenu-panel-width) - var(--sbb-border-width) * 2);
+  }
+
+  .sbb-menu-panel {
+    display: grid;
+    grid-template-columns: 100%;
+    animation: _sbb-usermenu-panel-enter 300ms cubic-bezier(0.785, 0.135, 0.15, 0.86);
+  }
+
+  .sbb-menu-panel-content {
+    min-height: 0;
   }
 
   &.sbb-menu-panel-animating {
