@@ -6,7 +6,7 @@ import {
   OverlayRef,
   ScrollStrategy,
 } from '@angular/cdk/overlay';
-import { normalizePassiveListenerOptions } from '@angular/cdk/platform';
+import { _bindEventWithOptions } from '@angular/cdk/platform';
 import {
   AfterContentInit,
   ChangeDetectionStrategy,
@@ -19,6 +19,7 @@ import {
   Input,
   OnDestroy,
   Output,
+  Renderer2,
   ViewChild,
   ViewEncapsulation,
 } from '@angular/core';
@@ -50,7 +51,7 @@ export const SBB_HEADER_MENU_SCROLL_STRATEGY_FACTORY_PROVIDER = {
 };
 
 /** Options for binding a passive event listener. */
-const passiveEventListenerOptions = normalizePassiveListenerOptions({ passive: true });
+const passiveEventListenerOptions = { passive: true };
 
 @Component({
   selector: 'button[sbbHeaderMenu]',
@@ -76,6 +77,7 @@ export class SbbHeaderMenuTrigger implements AfterContentInit, OnDestroy {
   private _focusMonitor = inject(FocusMonitor);
   private _router = inject(Router, { optional: true });
   private _header = inject<TypeRef<SbbHeaderLean>>(SBB_HEADER);
+  private _cleanupTouchstart: () => void;
 
   // Tracking input type is necessary so it's possible to only auto-focus
   // the first item of the list when the menu is opened via the keyboard
@@ -137,9 +139,15 @@ export class SbbHeaderMenuTrigger implements AfterContentInit, OnDestroy {
 
   constructor(...args: unknown[]);
   constructor() {
-    this._element.nativeElement.addEventListener(
+    const renderer = inject(Renderer2);
+
+    this._cleanupTouchstart = _bindEventWithOptions(
+      renderer,
+      this._element.nativeElement,
       'touchstart',
-      this._handleTouchStart,
+      () => {
+        this._openedBy = 'touch';
+      },
       passiveEventListenerOptions,
     );
   }
@@ -154,12 +162,7 @@ export class SbbHeaderMenuTrigger implements AfterContentInit, OnDestroy {
       this._overlayRef = null;
     }
 
-    this._element.nativeElement.removeEventListener(
-      'touchstart',
-      this._handleTouchStart,
-      passiveEventListenerOptions,
-    );
-
+    this._cleanupTouchstart();
     this._menuCloseSubscription.unsubscribe();
     this._closingActionsSubscription.unsubscribe();
     this._destroyed.next();

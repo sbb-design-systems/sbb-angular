@@ -16,6 +16,7 @@ import {
   numberAttribute,
   OnChanges,
   OnDestroy,
+  Renderer2,
   WritableSignal,
 } from '@angular/core';
 import { FormGroupDirective, NgControl, NgForm } from '@angular/forms';
@@ -66,11 +67,15 @@ export class SbbInput
   private _elementRef =
     inject<ElementRef<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>>(ElementRef);
   private _platform = inject(Platform);
+  private _renderer = inject(Renderer2);
+
   private _autofillMonitor = inject(AutofillMonitor);
   private _previousNativeValue: any;
   private _inputValueAccessor: { value: any };
   private _signalBasedValueAccessor?: { value: WritableSignal<any> };
   private _errorStateTracker: _ErrorStateTracker;
+  private _cleanupIosKeyup: (() => void) | undefined;
+
   ngControl: NgControl = inject(NgControl, { optional: true, self: true })!;
 
   /** Whether the component is a native html select. */
@@ -288,7 +293,7 @@ export class SbbInput
     // exists on iOS, we only bother to install the listener on iOS.
     if (this._platform.IOS) {
       ngZone.runOutsideAngular(() => {
-        this._elementRef.nativeElement.addEventListener('keyup', this._iOSKeyupListener);
+        this._cleanupIosKeyup = this._renderer.listen(element, 'keyup', this._iOSKeyupListener);
       });
     }
     this._errorStateTracker = new _ErrorStateTracker(
@@ -323,10 +328,6 @@ export class SbbInput
         this.stateChanges.next();
       });
     }
-
-    if (this._platform.IOS) {
-      this._elementRef.nativeElement.removeEventListener('keyup', this._iOSKeyupListener);
-    }
   }
 
   ngOnChanges() {
@@ -339,6 +340,8 @@ export class SbbInput
     if (this._platform.isBrowser) {
       this._autofillMonitor.stopMonitoring(this._elementRef.nativeElement);
     }
+
+    this._cleanupIosKeyup?.();
   }
 
   ngDoCheck() {
