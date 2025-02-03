@@ -71,24 +71,23 @@ describe('SbbSidebar', () => {
       fixture.detectChanges();
       tick();
 
-      // sidebar is opened after creation
-      expect(testComponent.openCount).toBe(1);
-      expect(testComponent.openStartCount).toBe(1);
-      expect(container.classList).toContain('sbb-sidebar-container-has-open');
+      expect(testComponent.openCount).toBe(0);
+      expect(testComponent.openStartCount).toBe(0);
+      expect(container.classList).not.toContain('sbb-sidebar-container-has-open');
 
       mediaMatcher.setMatchesQuery(Breakpoints.Mobile, true);
       tick();
 
-      expect(testComponent.openCount).toBe(1);
-      expect(testComponent.openStartCount).toBe(1);
+      expect(testComponent.openCount).toBe(0);
+      expect(testComponent.openStartCount).toBe(0);
       expect(container.classList).not.toContain('sbb-sidebar-container-has-open');
 
       fixture.debugElement.query(By.css('.open'))!.nativeElement.click();
       fixture.detectChanges();
       tick();
 
-      expect(testComponent.openCount).toBe(2);
-      expect(testComponent.openStartCount).toBe(2);
+      expect(testComponent.openCount).toBe(1);
+      expect(testComponent.openStartCount).toBe(1);
       expect(container.classList).toContain('sbb-sidebar-container-has-open');
     }));
 
@@ -159,15 +158,13 @@ describe('SbbSidebar', () => {
     it('should be able to close while the open animation is running', fakeAsync(() => {
       const fixture = TestBed.createComponent(BasicTestComponent);
       fixture.detectChanges();
-      mediaMatcher.setMatchesQuery(Breakpoints.Mobile, true);
-      tick();
 
       const testComponent: BasicTestComponent = fixture.debugElement.componentInstance;
       fixture.debugElement.query(By.css('.open'))!.nativeElement.click();
       fixture.detectChanges();
 
-      expect(testComponent.openCount).toBe(1);
-      expect(testComponent.closeCount).toBe(1);
+      expect(testComponent.openCount).toBe(0);
+      expect(testComponent.closeCount).toBe(0);
 
       tick();
       fixture.debugElement.query(By.css('.close'))!.nativeElement.click();
@@ -176,8 +173,8 @@ describe('SbbSidebar', () => {
       flush();
       fixture.detectChanges();
 
-      expect(testComponent.openCount).toBe(2);
-      expect(testComponent.closeCount).toBe(2);
+      expect(testComponent.openCount).toBe(0);
+      expect(testComponent.closeCount).toBe(1);
     }));
 
     it('does not throw when created without a sidebar', fakeAsync(() => {
@@ -1138,7 +1135,6 @@ describe('SbbSidebar Usage', () => {
   template: ` <sbb-sidebar-container>
     <sbb-sidebar></sbb-sidebar>
   </sbb-sidebar-container>`,
-  standalone: true,
   imports: [SbbSidebarModule],
 })
 class SidebarContainerEmptyTestComponent {
@@ -1151,7 +1147,6 @@ class SidebarContainerEmptyTestComponent {
     <sbb-sidebar position="start"></sbb-sidebar>
     <sbb-sidebar position="end"></sbb-sidebar>
   </sbb-sidebar-container>`,
-  standalone: true,
   imports: [SbbSidebarModule],
 })
 class SidebarContainerTwoSidebarsTestComponent {
@@ -1188,7 +1183,6 @@ class SidebarContainerTwoSidebarsTestComponent {
       <circle cx="50" cy="50" r="50" />
     </svg>
   </sbb-sidebar-container>`,
-  standalone: true,
   imports: [SbbSidebarModule],
 })
 class BasicTestComponent {
@@ -1235,7 +1229,6 @@ class BasicTestComponent {
       <fieldset>Closed Sidebar.</fieldset>
     </sbb-sidebar>
   </sbb-sidebar-container>`,
-  standalone: true,
   imports: [SbbSidebarModule],
 })
 class SidebarSetToOpenedTrueTestComponent {
@@ -1246,7 +1239,6 @@ class SidebarSetToOpenedTrueTestComponent {
   template: ` <sbb-sidebar-container>
     <sbb-sidebar #sidebar opened="false"> Closed Drawer. </sbb-sidebar>
   </sbb-sidebar-container>`,
-  standalone: true,
   imports: [SbbSidebarModule],
 })
 class SidebarSetToOpenedFalseTestComponent {}
@@ -1257,7 +1249,6 @@ class SidebarSetToOpenedFalseTestComponent {}
       <fieldset>Closed Sidebar.</fieldset>
     </sbb-sidebar>
   </sbb-sidebar-container>`,
-  standalone: true,
   imports: [SbbSidebarModule],
 })
 class SidebarOpenBindingTestComponent {
@@ -1269,7 +1260,6 @@ class SidebarOpenBindingTestComponent {
     <sbb-sidebar #sidebar1></sbb-sidebar>
     <sbb-sidebar #sidebar2></sbb-sidebar>
   </sbb-sidebar-container>`,
-  standalone: true,
   imports: [SbbSidebarModule],
 })
 class TwoSidebarsTestComponent {}
@@ -1285,7 +1275,6 @@ class TwoSidebarsTestComponent {}
     </sbb-sidebar>
     <input type="text" class="input2" />
   </sbb-sidebar-container>`,
-  standalone: true,
   imports: [SbbSidebarModule],
 })
 class SidebarWithFocusableElementsTestComponent {}
@@ -1296,7 +1285,6 @@ class SidebarWithFocusableElementsTestComponent {}
       <fieldset><button disabled>Not focusable</button></fieldset>
     </sbb-sidebar>
   </sbb-sidebar-container>`,
-  standalone: true,
   imports: [SbbSidebarModule],
 })
 class SidebarWithoutFocusableElementsTestComponent {}
@@ -1309,7 +1297,6 @@ class SidebarWithoutFocusableElementsTestComponent {}
       }
     </sbb-sidebar-container>
   `,
-  standalone: true,
   imports: [SbbSidebarModule],
 })
 class SidebarDelayedTestComponent {
@@ -1323,7 +1310,6 @@ class SidebarDelayedTestComponent {
       <sbb-sidebar style="width:100px"></sbb-sidebar>
     }
   </sbb-sidebar-container>`,
-  standalone: true,
   imports: [SbbSidebarModule],
 })
 class SidebarContainerStateChangesTestAppTestComponent {
@@ -1340,7 +1326,6 @@ class SidebarContainerStateChangesTestAppTestComponent {
       <fieldset>Sidebar</fieldset>
     </sbb-sidebar>
   </sbb-sidebar-container>`,
-  standalone: true,
   imports: [SbbSidebarModule],
 })
 class ZeroWithSidebarTestComponent {
@@ -1355,7 +1340,6 @@ class ZeroWithSidebarTestComponent {
       <sbb-sidebar-content>Content</sbb-sidebar-content>
     </sbb-sidebar-container>
   `,
-  standalone: true,
   imports: [SbbSidebarModule],
 })
 class SidebarContainerWithContentTestComponent {
@@ -1370,7 +1354,6 @@ class SidebarContainerWithContentTestComponent {
       <sbb-sidebar #sidebar><fieldset>Sidebar</fieldset></sbb-sidebar>
     }
   </sbb-sidebar-container>`,
-  standalone: true,
   imports: [SbbSidebarModule],
 })
 class IndirectDescendantSidebarTestComponent {
@@ -1389,7 +1372,6 @@ class IndirectDescendantSidebarTestComponent {
       </sbb-sidebar-content>
     </sbb-sidebar-container>
   `,
-  standalone: true,
   imports: [SbbSidebarModule],
 })
 class NestedSidebarContainersTestComponent {
@@ -1417,7 +1399,6 @@ class NestedSidebarContainersTestComponent {
       <router-outlet></router-outlet>
     </sbb-sidebar-content>
   </sbb-sidebar-container>`,
-  standalone: true,
   imports: [
     SbbSidebarModule,
     SbbButtonModule,
@@ -1431,6 +1412,5 @@ class SbbSidebarTestComponent {}
 
 @Component({
   template: '',
-  standalone: true,
 })
 class SimpleRouteComponent {}

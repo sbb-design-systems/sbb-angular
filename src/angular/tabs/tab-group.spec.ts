@@ -1048,7 +1048,6 @@ describe('nested SbbTabGroup with enabled animations', () => {
       </sbb-tab>
     </sbb-tab-group>
   `,
-  standalone: true,
   imports: [SbbTabsModule],
 })
 class SimpleTabsTestApp {
@@ -1084,7 +1083,6 @@ class SimpleTabsTestApp {
       }
     </sbb-tab-group>
   `,
-  standalone: true,
   imports: [SbbTabsModule],
 })
 class SimpleDynamicTabsTestApp {
@@ -1114,7 +1112,6 @@ class SimpleDynamicTabsTestApp {
       }
     </sbb-tab-group>
   `,
-  standalone: true,
   imports: [SbbTabsModule],
 })
 class BindedTabsTestApp {
@@ -1150,7 +1147,6 @@ class BindedTabsTestApp {
       </sbb-tab>
     </sbb-tab-group>
   `,
-  standalone: true,
   imports: [SbbTabsModule],
 })
 class DisabledTabsTestApp {
@@ -1169,7 +1165,6 @@ class DisabledTabsTestApp {
       }
     </sbb-tab-group>
   `,
-  standalone: true,
   imports: [SbbTabsModule, AsyncPipe],
 })
 class AsyncTabsTestApp implements OnInit {
@@ -1197,7 +1192,6 @@ class AsyncTabsTestApp implements OnInit {
       <sbb-tab label="Legumes"> <p #legumes>Peanuts</p> </sbb-tab>
     </sbb-tab-group>
   `,
-  standalone: true,
   imports: [SbbTabsModule],
 })
 class TabGroupWithSimpleApi {
@@ -1220,7 +1214,6 @@ class TabGroupWithSimpleApi {
       </sbb-tab>
     </sbb-tab-group>
   `,
-  standalone: true,
   imports: [SbbTabsModule],
 })
 class NestedTabs {
@@ -1238,7 +1231,6 @@ class NestedTabs {
       </sbb-tab>
     </sbb-tab-group>
   `,
-  standalone: true,
   imports: [SbbTabsModule],
 })
 class TemplateTabs {}
@@ -1249,7 +1241,6 @@ class TemplateTabs {}
       <sbb-tab [aria-label]="ariaLabel" [aria-labelledby]="ariaLabelledby"></sbb-tab>
     </sbb-tab-group>
   `,
-  standalone: true,
   imports: [SbbTabsModule],
 })
 class TabGroupWithAriaInputs {
@@ -1268,7 +1259,6 @@ class TabGroupWithAriaInputs {
       <div>pizza is active</div>
     }
   `,
-  standalone: true,
   imports: [SbbTabsModule],
 })
 class TabGroupWithIsActiveBinding {}
@@ -1280,7 +1270,6 @@ class TabGroupWithIsActiveBinding {}
       <sbb-tab label="Two">Tab two content</sbb-tab>
     </sbb-tab-group>
   `,
-  standalone: true,
   imports: [SbbTabsModule],
 })
 class TabsWithCustomAnimationDuration {
@@ -1296,7 +1285,6 @@ class TabsWithCustomAnimationDuration {
       }
     </sbb-tab-group>
   `,
-  standalone: true,
   imports: [SbbTabsModule],
 })
 class TabGroupWithIndirectDescendantTabs {
@@ -1317,7 +1305,6 @@ class TabGroupWithIndirectDescendantTabs {
       </ng-container>
     </sbb-tab-group>
   `,
-  standalone: true,
   imports: [SbbTabsModule],
 })
 class TabGroupWithSpaceAbove {
@@ -1341,7 +1328,6 @@ class TabGroupWithSpaceAbove {
       <sbb-tab label="Parent 3">Parent 3</sbb-tab>
     </sbb-tab-group>
   `,
-  standalone: true,
   imports: [SbbTabsModule],
 })
 class NestedTabGroupWithLabel {}
@@ -1357,7 +1343,6 @@ class NestedTabGroupWithLabel {}
       </sbb-tab>
     </sbb-tab-group>
   `,
-  standalone: true,
   imports: [SbbTabsModule],
 })
 class TabsWithClassesTestApp {

@@ -2,6 +2,24 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [19.1.3](https://github.com/sbb-design-systems/sbb-angular/compare/19.1.2...19.1.3) (2025-01-20)
+
+
+### Bug Fixes
+
+* **angular/input:** show spin buttons for number input ([#2473](https://github.com/sbb-design-systems/sbb-angular/issues/2473)) ([ebbbaa3](https://github.com/sbb-design-systems/sbb-angular/commit/ebbbaa3c503cc52f5c7cedc7a59c68325f0b6abe)), closes [#2380](https://github.com/sbb-design-systems/sbb-angular/issues/2380)
+* **angular/sidebar:** switch away from animations module ([#2475](https://github.com/sbb-design-systems/sbb-angular/issues/2475)) ([c1af9c9](https://github.com/sbb-design-systems/sbb-angular/commit/c1af9c9f635d03774b2627470fddba1365469203))
+
+### [19.1.2](https://github.com/sbb-design-systems/sbb-angular/compare/19.1.1...19.1.2) (2025-01-13)
+
+
+### Bug Fixes
+
+* **angular/accordion:** prevent focus from entering the panel while it's animating ([#2468](https://github.com/sbb-design-systems/sbb-angular/issues/2468)) ([a2aa907](https://github.com/sbb-design-systems/sbb-angular/commit/a2aa9075c6a35e66cd3055a14bffaf8899f1d0c2))
+* **angular/accordion:** switch away from animations module ([#2469](https://github.com/sbb-design-systems/sbb-angular/issues/2469)) ([5a0137c](https://github.com/sbb-design-systems/sbb-angular/commit/5a0137c8784d688508626e03bd33bf42c5ddd42f))
+* **angular/menu:** decouple menu lifecycle from animations ([#2467](https://github.com/sbb-design-systems/sbb-angular/issues/2467)) ([e87e2c7](https://github.com/sbb-design-systems/sbb-angular/commit/e87e2c7159e9c19e64ef32b8a26cf08507d64c78))
+* **angular/select:** add opt-in input that allows selection of nullable options ([#2466](https://github.com/sbb-design-systems/sbb-angular/issues/2466)) ([8658f9e](https://github.com/sbb-design-systems/sbb-angular/commit/8658f9e83fa7ad34b7b993f58bad2f18be757dfd))
+
 ### [19.1.1](https://github.com/sbb-design-systems/sbb-angular/compare/19.1.0...19.1.1) (2024-12-16)
 
 

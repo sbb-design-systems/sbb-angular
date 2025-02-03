@@ -41,7 +41,6 @@ let nextId = 0;
     '[class.sbb-focused]': 'focused',
     '[class.sbb-readonly]': 'readonly',
   },
-  standalone: true,
   imports: [CdkTextareaAutosize],
 })
 export class SbbTextarea

@@ -12,7 +12,6 @@ import { SbbTextexpandModule } from './textexpand.module';
     <sbb-textexpand-collapsed>I am a</sbb-textexpand-collapsed>
     <sbb-textexpand-expanded>I am a long text</sbb-textexpand-expanded>
   </sbb-textexpand> `,
-  standalone: true,
   imports: [SbbTextexpandModule],
 })
 class BasicTextexpand {
@@ -26,7 +25,6 @@ class BasicTextexpand {
   template: `<sbb-textexpand>
     <sbb-textexpand-collapsed>Lorem ipsum dolor</sbb-textexpand-collapsed></sbb-textexpand
   >`,
-  standalone: true,
   imports: [SbbTextexpandModule],
 })
 class InvalidTextexpand {}

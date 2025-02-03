@@ -37,7 +37,6 @@ import { SbbMenuPanel, SBB_MENU_PANEL } from './menu-panel';
   changeDetection: ChangeDetectionStrategy.OnPush,
   encapsulation: ViewEncapsulation.None,
   templateUrl: 'menu-item.html',
-  standalone: true,
   imports: [SbbIcon],
 })
 export class SbbMenuItem implements FocusableOption, AfterViewInit, OnDestroy {

@@ -6,7 +6,7 @@
         <source>Close message</source>
         <context-group purpose="location">
           <context context-type="sourcefile">../../../../../../src/angular/alert/alert.ts</context>
-          <context context-type="linenumber">52</context>
+          <context context-type="linenumber">51</context>
         </context-group>
         <note priority="1" from="description">Hidden button label to close the alert</note>
       </trans-unit>
@@ -14,7 +14,7 @@
         <source>Show entire path</source>
         <context-group purpose="location">
           <context context-type="sourcefile">../../../../../../src/angular/breadcrumb/breadcrumbs.ts</context>
-          <context context-type="linenumber">49</context>
+          <context context-type="linenumber">48</context>
         </context-group>
         <note priority="1" from="description">Button with three dots to show all breadcrumb levels</note>
       </trans-unit>
@@ -22,7 +22,7 @@
         <source>Change to the previous month</source>
         <context-group purpose="location">
           <context context-type="sourcefile">../../../../../../src/angular/datepicker/calendar/calendar.ts</context>
-          <context context-type="linenumber">48</context>
+          <context context-type="linenumber">47</context>
         </context-group>
         <note priority="1" from="description">Button label to switch to the previous month</note>
       </trans-unit>
@@ -30,7 +30,7 @@
         <source>Change to the next month</source>
         <context-group purpose="location">
           <context context-type="sourcefile">../../../../../../src/angular/datepicker/calendar/calendar.ts</context>
-          <context context-type="linenumber">50</context>
+          <context context-type="linenumber">49</context>
         </context-group>
         <note priority="1" from="description">Button label to switch to the next month</note>
       </trans-unit>
@@ -38,7 +38,7 @@
         <source>Change to the previous year</source>
         <context-group purpose="location">
           <context context-type="sourcefile">../../../../../../src/angular/datepicker/calendar/calendar.ts</context>
-          <context context-type="linenumber">52</context>
+          <context context-type="linenumber">51</context>
         </context-group>
         <note priority="1" from="description">Button label to switch to the previous year</note>
       </trans-unit>
@@ -46,7 +46,7 @@
         <source>Change to the next year</source>
         <context-group purpose="location">
           <context context-type="sourcefile">../../../../../../src/angular/datepicker/calendar/calendar.ts</context>
-          <context context-type="linenumber">54</context>
+          <context context-type="linenumber">53</context>
         </context-group>
         <note priority="1" from="description">Button label to switch to the next year</note>
       </trans-unit>
@@ -54,7 +54,7 @@
         <source>Show calendar</source>
         <context-group purpose="location">
           <context context-type="sourcefile">../../../../../../src/angular/datepicker/datepicker-toggle/datepicker-toggle.ts</context>
-          <context context-type="linenumber">40</context>
+          <context context-type="linenumber">39</context>
         </context-group>
         <note priority="1" from="description">Open calendar</note>
       </trans-unit>
@@ -62,7 +62,7 @@
         <source>Next day</source>
         <context-group purpose="location">
           <context context-type="sourcefile">../../../../../../src/angular/datepicker/datepicker/datepicker.ts</context>
-          <context context-type="linenumber">234</context>
+          <context context-type="linenumber">233</context>
         </context-group>
         <note priority="1" from="description">Next day button&apos;s aria-label</note>
       </trans-unit>
@@ -70,7 +70,7 @@
         <source>Previous day</source>
         <context-group purpose="location">
           <context context-type="sourcefile">../../../../../../src/angular/datepicker/datepicker/datepicker.ts</context>
-          <context context-type="linenumber">239</context>
+          <context context-type="linenumber">238</context>
         </context-group>
         <note priority="1" from="description">Previous day button&apos;s aria-label</note>
       </trans-unit>
@@ -78,11 +78,11 @@
         <source>Close dialog</source>
         <context-group purpose="location">
           <context context-type="sourcefile">../../../../../../src/angular/dialog/dialog-content-directives.ts</context>
-          <context context-type="linenumber">46</context>
+          <context context-type="linenumber">45</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">../../../../../../src/angular/dialog/dialog-content-directives.ts</context>
-          <context context-type="linenumber">121</context>
+          <context context-type="linenumber">120</context>
         </context-group>
         <note priority="1" from="description">Aria label to close a dialog</note>
       </trans-unit>
@@ -90,7 +90,7 @@
         <source>Upload file</source>
         <context-group purpose="location">
           <context context-type="sourcefile">../../../../../../src/angular/file-selector/file-selector.ts</context>
-          <context context-type="linenumber">58</context>
+          <context context-type="linenumber">57</context>
         </context-group>
         <note priority="1" from="description">Button label to select files for upload</note>
       </trans-unit>
@@ -98,7 +98,7 @@
         <source>Remove file</source>
         <context-group purpose="location">
           <context context-type="sourcefile">../../../../../../src/angular/file-selector/file-selector.ts</context>
-          <context context-type="linenumber">60</context>
+          <context context-type="linenumber">59</context>
         </context-group>
         <note priority="1" from="description">Hidden button label to remove a file from the selection list</note>
       </trans-unit>
@@ -106,7 +106,7 @@
         <source>Back</source>
         <context-group purpose="location">
           <context context-type="sourcefile">../../../../../../src/angular/header-lean/header-menu.ts</context>
-          <context context-type="linenumber">61</context>
+          <context context-type="linenumber">60</context>
         </context-group>
         <note priority="1" from="description">Go back to the app chooser navigation</note>
       </trans-unit>
@@ -114,7 +114,7 @@
         <source>Open Menu</source>
         <context-group purpose="location">
           <context context-type="sourcefile">../../../../../../src/angular/header-lean/header.ts</context>
-          <context context-type="linenumber">129</context>
+          <context context-type="linenumber">128</context>
         </context-group>
         <note priority="1" from="description">Button label to open the sidebar of the header</note>
       </trans-unit>
@@ -122,7 +122,7 @@
         <source>Close Menu</source>
         <context-group purpose="location">
           <context context-type="sourcefile">../../../../../../src/angular/header-lean/header.ts</context>
-          <context context-type="linenumber">131</context>
+          <context context-type="linenumber">130</context>
         </context-group>
         <note priority="1" from="description">Button label to close the sidebar of the header</note>
       </trans-unit>
@@ -130,11 +130,11 @@
         <source>Close lightbox</source>
         <context-group purpose="location">
           <context context-type="sourcefile">../../../../../../src/angular/lightbox/lightbox-content-directives.ts</context>
-          <context context-type="linenumber">43</context>
+          <context context-type="linenumber">42</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">../../../../../../src/angular/lightbox/lightbox-content-directives.ts</context>
-          <context context-type="linenumber">103</context>
+          <context context-type="linenumber">101</context>
         </context-group>
         <note priority="1" from="description">Aria label to close a dialog</note>
       </trans-unit>
@@ -142,7 +142,7 @@
         <source>Previous Page</source>
         <context-group purpose="location">
           <context context-type="sourcefile">../../../../../../src/angular/pagination/paginator/paginator.ts</context>
-          <context context-type="linenumber">80</context>
+          <context context-type="linenumber">79</context>
         </context-group>
         <note priority="1" from="description">Button label to navigate to the previous page</note>
       </trans-unit>
@@ -150,7 +150,7 @@
         <source>Next Page</source>
         <context-group purpose="location">
           <context context-type="sourcefile">../../../../../../src/angular/pagination/paginator/paginator.ts</context>
-          <context context-type="linenumber">82</context>
+          <context context-type="linenumber">81</context>
         </context-group>
         <note priority="1" from="description">Button label to navigate to the next page</note>
       </trans-unit>
@@ -158,7 +158,7 @@
         <source>Search</source>
         <context-group purpose="location">
           <context context-type="sourcefile">../../../../../../src/angular/search/header-search.ts</context>
-          <context context-type="linenumber">88</context>
+          <context context-type="linenumber">87</context>
         </context-group>
         <note priority="1" from="description">Button label for the header search</note>
       </trans-unit>
@@ -166,7 +166,7 @@
         <source>Collapse</source>
         <context-group purpose="location">
           <context context-type="sourcefile">../../../../../../src/angular/sidebar/icon-sidebar/icon-sidebar.ts</context>
-          <context context-type="linenumber">79</context>
+          <context context-type="linenumber">77</context>
         </context-group>
         <note priority="1" from="description">Label to &apos;collapse&apos; icon sidebar</note>
       </trans-unit>
@@ -174,7 +174,7 @@
         <source>Expand</source>
         <context-group purpose="location">
           <context context-type="sourcefile">../../../../../../src/angular/sidebar/icon-sidebar/icon-sidebar.ts</context>
-          <context context-type="linenumber">81</context>
+          <context context-type="linenumber">79</context>
         </context-group>
         <note priority="1" from="description">Label to &apos;expand&apos; icon sidebar</note>
       </trans-unit>
@@ -182,7 +182,7 @@
         <source>Close Sidebar</source>
         <context-group purpose="location">
           <context context-type="sourcefile">../../../../../../src/angular/sidebar/sidebar/sidebar.ts</context>
-          <context context-type="linenumber">123</context>
+          <context context-type="linenumber">113</context>
         </context-group>
         <note priority="1" from="description">Button label to close the sidebar</note>
       </trans-unit>
@@ -190,7 +190,7 @@
         <source>Open Sidebar</source>
         <context-group purpose="location">
           <context context-type="sourcefile">../../../../../../src/angular/sidebar/sidebar/sidebar.ts</context>
-          <context context-type="linenumber">567</context>
+          <context context-type="linenumber">554</context>
         </context-group>
         <note priority="1" from="description">Button label to open the sidebar</note>
       </trans-unit>
@@ -198,11 +198,11 @@
         <source><x id="PH" equiv-text="this.amount"/> results available</source>
         <context-group purpose="location">
           <context context-type="sourcefile">../../../../../../src/angular/tag/tag-link.ts</context>
-          <context context-type="linenumber">35</context>
+          <context context-type="linenumber">34</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">../../../../../../src/angular/tag/tag.ts</context>
-          <context context-type="linenumber">55</context>
+          <context context-type="linenumber">54</context>
         </context-group>
         <note priority="1" from="description">Aria label for amount of results displayed in badge pill</note>
       </trans-unit>
@@ -210,7 +210,7 @@
         <source>All</source>
         <context-group purpose="location">
           <context context-type="sourcefile">../../../../../../src/angular/tag/tags.ts</context>
-          <context context-type="linenumber">36</context>
+          <context context-type="linenumber">35</context>
         </context-group>
         <note priority="1" from="description">Label for the &apos;All&apos; tag</note>
       </trans-unit>
@@ -218,7 +218,7 @@
         <source>A total of <x id="PH" equiv-text="this.totalAmount"/> results available</source>
         <context-group purpose="location">
           <context context-type="sourcefile">../../../../../../src/angular/tag/tags.ts</context>
-          <context context-type="linenumber">39</context>
+          <context context-type="linenumber">38</context>
         </context-group>
         <note priority="1" from="description">Badge description (total amount) for the &apos;All&apos; tag</note>
       </trans-unit>
@@ -226,7 +226,7 @@
         <source><x id="PH" equiv-text="this._counter.value"/> characters remaining</source>
         <context-group purpose="location">
           <context context-type="sourcefile">../../../../../../src/angular/textarea/textarea/textarea.ts</context>
-          <context context-type="linenumber">55</context>
+          <context context-type="linenumber">54</context>
         </context-group>
         <note priority="1" from="description">Counter text for textarea</note>
       </trans-unit>
@@ -234,7 +234,7 @@
         <source>Show less</source>
         <context-group purpose="location">
           <context context-type="sourcefile">../../../../../../src/angular/textexpand/textexpand.ts</context>
-          <context context-type="linenumber">37</context>
+          <context context-type="linenumber">36</context>
         </context-group>
         <note priority="1" from="description">Button label for showing less</note>
       </trans-unit>
@@ -242,7 +242,7 @@
         <source>Show more</source>
         <context-group purpose="location">
           <context context-type="sourcefile">../../../../../../src/angular/textexpand/textexpand.ts</context>
-          <context context-type="linenumber">39</context>
+          <context context-type="linenumber">38</context>
         </context-group>
         <note priority="1" from="description">Button label for showing more</note>
       </trans-unit>
@@ -250,7 +250,7 @@
         <source>Login</source>
         <context-group purpose="location">
           <context context-type="sourcefile">../../../../../../src/angular/usermenu/usermenu.ts</context>
-          <context context-type="linenumber">66</context>
+          <context context-type="linenumber">65</context>
         </context-group>
         <note priority="1" from="description">Button label for login</note>
       </trans-unit>
@@ -258,7 +258,7 @@
         <source>Logged in as <x id="PH" equiv-text="this.displayName || this.userName"/>. Click or press enter to open user menu.</source>
         <context-group purpose="location">
           <context context-type="sourcefile">../../../../../../src/angular/usermenu/usermenu.ts</context>
-          <context context-type="linenumber">69,71</context>
+          <context context-type="linenumber">68,70</context>
         </context-group>
         <note priority="1" from="description">Aria label to open user menu</note>
       </trans-unit>

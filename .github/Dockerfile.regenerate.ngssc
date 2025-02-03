@@ -1,0 +1,11 @@
+# For versions 13+
+FROM nginxinc/nginx-unprivileged:stable
+
+COPY default.conf /etc/nginx/conf.d/default.conf
+COPY html /usr/share/nginx/html
+USER root
+COPY ngssc /usr/sbin/ngssc
+RUN chmod +x /usr/sbin/ngssc
+COPY ngssc.sh /docker-entrypoint.d/ngssc.sh
+RUN chmod +x /docker-entrypoint.d/ngssc.sh
+USER $UID

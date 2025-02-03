@@ -107,7 +107,6 @@ const EXIT_ANIMATION = '_sbb-menu-exit';
     '[attr.aria-describedby]': 'null',
   },
   providers: [{ provide: SBB_MENU_PANEL, useExisting: SbbMenu }],
-  standalone: true,
   imports: [NgTemplateOutlet],
 })
 export class SbbMenu implements AfterContentInit, SbbMenuPanel<SbbMenuItem>, OnInit, OnDestroy {

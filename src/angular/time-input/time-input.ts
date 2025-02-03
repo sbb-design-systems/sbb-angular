@@ -18,7 +18,6 @@ const PLACEHOLDER_DEFAULT = 'HH:MM';
     inputmode: 'numeric',
     '[attr.placeholder]': 'placeholder',
   },
-  standalone: true,
 })
 export class SbbTimeInput {
   private _elementRef = inject(ElementRef);

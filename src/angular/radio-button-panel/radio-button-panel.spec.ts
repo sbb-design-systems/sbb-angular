@@ -21,7 +21,6 @@ import {
       <sbb-radio-button-panel value="2"> Test option selection 2 </sbb-radio-button-panel>
     </sbb-radio-group>
   `,
-  standalone: true,
   imports: [FormsModule, SbbRadioButtonPanelModule],
 })
 class ModelOptionSelectionTest {
@@ -41,7 +40,6 @@ class ModelOptionSelectionTest {
       </sbb-radio-button-panel>
     </sbb-radio-group>
   `,
-  standalone: true,
   imports: [ReactiveFormsModule, SbbRadioButtonPanelModule],
 })
 class RadioButtonPanelDirectiveTest {
@@ -63,7 +61,6 @@ class RadioButtonPanelDirectiveTest {
       </sbb-radio-button-panel>
     </sbb-radio-group>
   `,
-  standalone: true,
   imports: [ReactiveFormsModule, SbbRadioButtonPanelModule, SbbIconModule],
 })
 class RadioButtonPanelIconTest {

@@ -32,7 +32,6 @@ import { SbbDialogRef, _closeDialogVia } from './dialog-ref';
     '[attr.aria-label]': 'ariaLabel || null',
     '[attr.type]': 'type',
   },
-  standalone: true,
 })
 export class SbbDialogClose implements OnInit, OnChanges {
   private _elementRef = inject<ElementRef<HTMLElement>>(ElementRef);
@@ -190,7 +189,6 @@ export class _SbbDialogTitleBase implements OnInit, OnDestroy {
     class: 'sbb-dialog-title',
     '[id]': 'id',
   },
-  standalone: true,
   imports: [SbbDialogClose, SbbIconModule],
 })
 export class SbbDialogTitle extends _SbbDialogTitleBase {}
@@ -201,7 +199,6 @@ export class SbbDialogTitle extends _SbbDialogTitleBase {}
 @Directive({
   selector: `[sbb-dialog-content], sbb-dialog-content, [sbbDialogContent]`,
   host: { class: 'sbb-dialog-content sbb-scrollbar' },
-  standalone: true,
   hostDirectives: [CdkScrollable],
 })
 export class SbbDialogContent {}
@@ -218,7 +215,6 @@ export class SbbDialogContent {}
     '[class.sbb-dialog-actions-align-center]': 'align === "center"',
     '[class.sbb-dialog-actions-align-end]': 'align === "end"',
   },
-  standalone: true,
 })
 export class SbbDialogActions {
   /**

@@ -49,7 +49,6 @@ export class SbbCalendarCell {
     '[attr.aria-readonly]': 'true',
     role: 'grid',
   },
-  standalone: true,
 })
 export class SbbCalendarBody implements AfterViewChecked {
   private _elementRef = inject<ElementRef<HTMLElement>>(ElementRef);

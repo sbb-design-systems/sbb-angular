@@ -29,7 +29,6 @@ import { SbbBreadcrumbs } from './breadcrumbs';
       </sbb-breadcrumb>
     </sbb-breadcrumbs>
   `,
-  standalone: true,
   imports: [SbbBreadcrumbModule, RouterTestingModule, SbbMenuModule],
 })
 export class BreadcrumbsSimpleTest {}
@@ -63,7 +62,6 @@ export class BreadcrumbsSimpleTest {}
       </sbb-breadcrumb>
     </sbb-breadcrumbs>
   `,
-  standalone: true,
   imports: [SbbBreadcrumbModule, SbbMenuModule],
 })
 export class BreadcrumbsMenuTest {}

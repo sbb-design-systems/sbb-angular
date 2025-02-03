@@ -1520,7 +1520,6 @@ describe('SbbDialog', () => {
 
     it('should set the aria-labelledby attribute to the id of the title under OnPush host', fakeAsync(() => {
       @Component({
-        standalone: true,
         imports: [SbbDialogTitle],
         template: `@if (showTitle()) {
           <h1 sbb-dialog-title>This is the first title</h1>
@@ -1533,7 +1532,6 @@ describe('SbbDialog', () => {
       @Component({
         template: '',
         selector: 'child',
-        standalone: true,
       })
       class Child {
         readonly viewContainerRef = inject(ViewContainerRef);
@@ -1546,7 +1544,6 @@ describe('SbbDialog', () => {
       }
 
       @Component({
-        standalone: true,
         imports: [Child],
         template: `<child></child>`,
         changeDetection: ChangeDetectionStrategy.OnPush,
@@ -2103,7 +2100,6 @@ describe('SbbDialog with close button', () => {
 
 @Directive({
   selector: 'dir-with-view-container',
-  standalone: true,
 })
 class DirectiveWithViewContainer {
   viewContainerRef = inject(ViewContainerRef);
@@ -2112,7 +2108,6 @@ class DirectiveWithViewContainer {
 @Component({
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: 'hello',
-  standalone: true,
 })
 class ComponentWithOnPushViewContainer {
   viewContainerRef = inject(ViewContainerRef);
@@ -2123,7 +2118,6 @@ class ComponentWithOnPushViewContainer {
   template: `@if (showChildView) {
     <dir-with-view-container></dir-with-view-container>
   }`,
-  standalone: true,
   imports: [DirectiveWithViewContainer],
 })
 class ComponentWithChildViewContainer {
@@ -2141,7 +2135,6 @@ class ComponentWithChildViewContainer {
   template: `<ng-template let-data let-dialogRef="dialogRef">
     Cheese {{ localValue }} {{ data?.value }}{{ setDialogRef(dialogRef) }}</ng-template
   >`,
-  standalone: true,
 })
 class ComponentWithTemplateRef {
   localValue: string;
@@ -2158,7 +2151,6 @@ class ComponentWithTemplateRef {
 /** Simple component for testing ComponentPortal. */
 @Component({
   template: '<p>Pizza</p> <input> <button>Close</button>',
-  standalone: true,
 })
 class PizzaMsg {
   dialogRef = inject<SbbDialogRef<PizzaMsg>>(SbbDialogRef);
@@ -2190,7 +2182,6 @@ class PizzaMsg {
       <button class="with-submit" type="submit" sbb-dialog-close>Should have submit</button>
     </sbb-dialog-actions>
   `,
-  standalone: true,
   imports: [SbbDialogModule],
 })
 class ContentElementDialog {
@@ -2227,7 +2218,6 @@ class ContentElementDialog {
       </sbb-dialog-actions>
     </ng-template>
   `,
-  standalone: true,
   imports: [SbbDialogModule],
 })
 class ComponentWithContentElementTemplateRef {
@@ -2251,7 +2241,6 @@ class ComponentThatProvidesSbbDialog {
 /** Simple component for testing ComponentPortal. */
 @Component({
   template: '',
-  standalone: true,
 })
 class DialogWithInjectedData {
   data = inject(SBB_DIALOG_DATA);
@@ -2259,14 +2248,12 @@ class DialogWithInjectedData {
 
 @Component({
   template: '<p>Pasta</p>',
-  standalone: true,
 })
 class DialogWithoutFocusableElements {}
 
 @Component({
   template: `<button>I'm a button</button>`,
   encapsulation: ViewEncapsulation.ShadowDom,
-  standalone: true,
 })
 class ShadowDomComponent {}
 
@@ -2276,7 +2263,6 @@ class ShadowDomComponent {}
     <sbb-dialog-content>Lorem ipsum dolor sit amet.</sbb-dialog-content>
     <sbb-dialog-actions> Actions </sbb-dialog-actions>
   `,
-  standalone: true,
   imports: [SbbDialogTitle, SbbDialogContent, SbbDialogActions],
 })
 class ContentCloseAriaLabelDialog {
@@ -2307,7 +2293,6 @@ class DialogTestModule {}
 
 @Component({
   template: '',
-  standalone: true,
   imports: [SbbDialogModule],
 })
 class ModuleBoundDialogParentComponent {
@@ -2331,7 +2316,6 @@ class ModuleBoundDialogService {
 
 @Component({
   template: '<module-bound-dialog-child-component></module-bound-dialog-child-component>',
-  standalone: true,
   imports: [forwardRef(() => ModuleBoundDialogChildComponent)],
 })
 class ModuleBoundDialogComponent {}
@@ -2339,7 +2323,6 @@ class ModuleBoundDialogComponent {}
 @Component({
   selector: 'module-bound-dialog-child-component',
   template: '<p>{{service.name}}</p>',
-  standalone: true,
 })
 class ModuleBoundDialogChildComponent {
   service = inject(ModuleBoundDialogService);

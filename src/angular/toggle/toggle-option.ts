@@ -54,7 +54,6 @@ import {
     // the focus to the native element.
     '(focus)': '_inputElement.nativeElement.focus()',
   },
-  standalone: true,
   imports: [SbbIcon, CdkPortal],
 })
 export class SbbToggleOption extends _SbbRadioButtonBase {

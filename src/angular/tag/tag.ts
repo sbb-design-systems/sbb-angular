@@ -40,7 +40,6 @@ import { Subject } from 'rxjs';
     '[class.sbb-tag-disabled]': 'disabled',
     '[class.sbb-tag-active]': 'active',
   },
-  standalone: true,
   imports: [SbbBadge, SbbIcon],
 })
 export class SbbTag extends SbbCheckbox implements OnDestroy {

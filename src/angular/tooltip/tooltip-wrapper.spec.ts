@@ -309,7 +309,6 @@ describe('SbbTooltipWrapper', () => {
       <button sbb-secondary-button (click)="t1.hide()">Close tooltip</button>
     </sbb-tooltip>
   `,
-  standalone: true,
   imports: [SbbTooltipModule, SbbButtonModule],
 })
 class TooltipTestComponent {
@@ -329,7 +328,6 @@ class TooltipTestComponent {
       <a href="#" sbb-link>I am a link</a>
     </sbb-tooltip>
   `,
-  standalone: true,
   imports: [SbbTooltipModule],
 })
 class DoubleTooltipTestComponent {

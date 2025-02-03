@@ -36,7 +36,6 @@ interface Tag {
       }
     </sbb-tags>
   `,
-  standalone: true,
   imports: [FormsModule, SbbBadgeModule, SbbTagModule],
 })
 class TagsTestFixtureComponent {
@@ -74,7 +73,6 @@ class TagsTestFixtureComponent {
       </sbb-tags>
     </ng-container>
   `,
-  standalone: true,
   imports: [ReactiveFormsModule, SbbBadgeModule, SbbTagModule],
 })
 class TagsTestFixtureReactiveComponent {
@@ -102,7 +100,6 @@ class TagsTestFixtureReactiveComponent {
 
 @Component({
   template: ` <a sbb-tag-link href="#" amount="5" [sbbBadgeDescription]="description">Trains</a> `,
-  standalone: true,
   imports: [SbbBadgeModule, SbbTagModule],
 })
 class TagLinkTestFixtureComponent {
@@ -117,7 +114,6 @@ class TagLinkTestFixtureComponent {
 
     <a sbb-tag-link href="#" amount="5" svgIcon="train-small" class="trains-tag-link">Trains</a>
   `,
-  standalone: true,
   imports: [SbbBadgeModule, SbbTagModule, SbbIconTestingModule],
 })
 class TagWithIconTextTestFixtureComponent {}

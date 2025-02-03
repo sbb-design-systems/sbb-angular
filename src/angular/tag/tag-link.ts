@@ -21,7 +21,6 @@ import { SbbIcon } from '@sbb-esta/angular/icon';
   host: {
     class: 'sbb-tag-base sbb-link-reset sbb-tag-link',
   },
-  standalone: true,
   imports: [SbbBadge, SbbIcon],
 })
 export class SbbTagLink {

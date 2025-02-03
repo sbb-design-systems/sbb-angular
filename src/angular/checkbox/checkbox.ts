@@ -92,7 +92,6 @@ export class SbbCheckboxChange {
   inputs: ['tabIndex'],
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush,
-  standalone: true,
   imports: [CdkObserveContent],
 })
 // tslint:disable-next-line: naming-convention class-name

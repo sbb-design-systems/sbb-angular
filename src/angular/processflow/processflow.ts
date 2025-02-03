@@ -40,7 +40,6 @@ import { SbbStepLabel } from './step-label';
   encapsulation: ViewEncapsulation.None,
   exportAs: 'sbbStep',
   changeDetection: ChangeDetectionStrategy.OnPush,
-  standalone: true,
   imports: [CdkPortalOutlet],
 })
 export class SbbStep extends CdkStep implements SbbErrorStateMatcher, AfterContentInit, OnDestroy {
@@ -107,7 +106,6 @@ export class SbbStep extends CdkStep implements SbbErrorStateMatcher, AfterConte
   providers: [{ provide: CdkStepper, useExisting: SbbProcessflow }],
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush,
-  standalone: true,
   imports: [SbbStepHeader, SbbIcon, NgTemplateOutlet],
 })
 export class SbbProcessflow extends CdkStepper implements AfterContentInit {

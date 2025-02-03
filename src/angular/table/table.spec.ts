@@ -794,7 +794,6 @@ class FakeDataSource extends DataSource<TestData> {
       <sbb-footer-row *sbbFooterRowDef="columnsToRender"></sbb-footer-row>
     </sbb-table>
   `,
-  standalone: true,
   imports: [SbbTableModule],
 })
 class SbbTableTestComponent {
@@ -827,7 +826,6 @@ class SbbTableTestComponent {
       <tr sbb-row *sbbRowDef="let row; columns: columnsToRender"></tr>
     </table>
   `,
-  standalone: true,
   imports: [SbbTableModule],
 })
 class NativeHtmlTableTestComponent {
@@ -879,7 +877,6 @@ class NativeHtmlTableTestComponent {
       <tr sbb-row *sbbRowDef="let row; columns: columnsToRender"></tr>
     </table>
   `,
-  standalone: true,
   imports: [SbbTableModule],
 })
 class NestedHtmlTableTestComponent {
@@ -899,7 +896,6 @@ class NestedHtmlTableTestComponent {
       <tr sbb-row *sbbRowDef="let row; columns: columnsToRender"></tr>
     </table>
   `,
-  standalone: true,
   imports: [SbbTableModule],
 })
 class StickyTableTestComponent {
@@ -928,7 +924,6 @@ class StickyTableTestComponent {
       <sbb-footer-row *sbbFooterRowDef="['column_a']"></sbb-footer-row>
     </sbb-table>
   `,
-  standalone: true,
   imports: [SbbTableModule],
 })
 class SbbTableWithWhenRowTestComponent {
@@ -967,7 +962,6 @@ class SbbTableWithWhenRowTestComponent {
 
     <sbb-paginator [pageSize]="5"></sbb-paginator>
   `,
-  standalone: true,
   imports: [SbbTableModule, SbbPaginationModule],
 })
 class ArrayDataSourceSbbTableTestComponent implements AfterViewInit {
@@ -1021,7 +1015,6 @@ class ArrayDataSourceSbbTableTestComponent implements AfterViewInit {
       <sbb-row *sbbRowDef="let row; columns: columnsToRender"></sbb-row>
     </sbb-table>
   `,
-  standalone: true,
   imports: [SbbTableModule],
 })
 class SbbTableWithSortTestComponent implements OnInit {
@@ -1074,7 +1067,6 @@ class SbbTableWithSortTestComponent implements OnInit {
 
     <sbb-paginator [pageSize]="5"></sbb-paginator>
   `,
-  standalone: true,
   imports: [SbbTableModule, SbbPaginationModule],
 })
 class SbbTableWithPaginatorTestComponent implements OnInit {
@@ -1117,7 +1109,6 @@ class SbbTableWithPaginatorTestComponent implements OnInit {
       </ng-container>
     </sbb-table>
   `,
-  standalone: true,
   imports: [SbbTableModule],
 })
 class TableWithNgContainerRowTestComponent {
@@ -1139,7 +1130,6 @@ class TableWithNgContainerRowTestComponent {
       <tr sbb-row *sbbRowDef="let row; columns: columnsToRender"></tr>
     </table>
   `,
-  standalone: true,
   imports: [SbbTableModule],
 })
 class TableWithColumnGroupingTestComponent {
@@ -1157,7 +1147,6 @@ class TableWithColumnGroupingTestComponent {
       </table>
     </sbb-table-wrapper>
   `,
-  standalone: true,
   imports: [SbbTableModule],
 })
 class TableWithWrapper {
@@ -1185,7 +1174,6 @@ class TableWithWrapper {
       </table>
     </sbb-table-wrapper>
   `,
-  standalone: true,
   imports: [SbbTableModule],
 })
 class TableWithWrapperAndStickyColumnsTestComponent {
@@ -1214,7 +1202,6 @@ class TableWithWrapperAndStickyColumnsTestComponent {
       <tr sbb-row *sbbRowDef="let row; columns: columnsToRender"></tr>
     </table>
   `,
-  standalone: true,
   imports: [SbbTableModule],
 })
 class TableWithTwoStickyColumnsTestComponent {

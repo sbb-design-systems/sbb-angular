@@ -62,7 +62,6 @@ describe('NotificationToast Zone.js integration', () => {
 
 @Directive({
   selector: 'dir-with-view-container',
-  standalone: true,
 })
 class DirectiveWithViewContainer {
   viewContainerRef = inject_1(ViewContainerRef);
@@ -73,7 +72,6 @@ class DirectiveWithViewContainer {
   template: `@if (childComponentExists()) {
     <dir-with-view-container></dir-with-view-container>
   }`,
-  standalone: true,
   changeDetection: ChangeDetectionStrategy.OnPush,
   imports: [DirectiveWithViewContainer],
 })

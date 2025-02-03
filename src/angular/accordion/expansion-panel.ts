@@ -14,6 +14,7 @@ import {
   EventEmitter,
   inject,
   Input,
+  NgZone,
   OnChanges,
   OnDestroy,
   Output,
@@ -27,7 +28,6 @@ import { Subject } from 'rxjs';
 import { filter, startWith, take } from 'rxjs/operators';
 
 import type { SbbAccordion } from './accordion';
-import { sbbExpansionAnimations } from './accordion-animations';
 import { SBB_ACCORDION } from './accordion-token';
 import { SBB_EXPANSION_PANEL } from './expansion-panel-base';
 import { SbbExpansionPanelContent } from './expansion-panel-content';
@@ -54,7 +54,6 @@ const _SbbExpansionPanelBase = mixinVariant(CdkAccordionItem);
     { name: 'expanded', transform: booleanAttribute },
     { name: 'disabled', transform: booleanAttribute },
   ],
-  animations: [sbbExpansionAnimations.bodyExpansion],
   // Provide SbbAccordion as undefined to prevent nested expansion panels from registering
   // to the same accordion.
   providers: [
@@ -68,7 +67,6 @@ const _SbbExpansionPanelBase = mixinVariant(CdkAccordionItem);
     class: 'sbb-expansion-panel',
     '[class.sbb-expanded]': 'expanded',
   },
-  standalone: true,
   imports: [CdkPortalOutlet],
 })
 export class SbbExpansionPanel
@@ -79,8 +77,12 @@ export class SbbExpansionPanel
   _animationMode: 'NoopAnimations' | 'BrowserAnimations' | null = inject(ANIMATION_MODULE_TYPE, {
     optional: true,
   });
+  private readonly _animationsDisabled =
+    inject(ANIMATION_MODULE_TYPE, { optional: true }) === 'NoopAnimations';
+
   private _document = inject(DOCUMENT);
-  protected _animationsDisabled: boolean;
+  private _ngZone = inject(NgZone);
+  private _elementRef = inject<ElementRef<HTMLElement>>(ElementRef);
 
   /** Whether the toggle indicator should be hidden. */
   @Input({ transform: booleanAttribute })
@@ -113,6 +115,10 @@ export class SbbExpansionPanel
   /** Element containing the panel's user-provided content. */
   @ViewChild('body') _body: ElementRef<HTMLElement>;
 
+  /** Element wrapping the panel body. */
+  @ViewChild('bodyWrapper')
+  protected _bodyWrapper: ElementRef<HTMLElement> | undefined;
+
   /** Portal holding the user's content. */
   _portal: TemplatePortal;
 
@@ -125,7 +131,6 @@ export class SbbExpansionPanel
   constructor(...args: unknown[]);
   constructor() {
     super();
-    this._animationsDisabled = this._animationMode === 'NoopAnimations';
   }
 
   /** Gets the expanded state string. */
@@ -161,6 +166,8 @@ export class SbbExpansionPanel
           this._portal = new TemplatePortal(this._lazyContent._template, this._viewContainerRef);
         });
     }
+
+    this._setupAnimationEvents();
   }
 
   ngOnChanges(changes: SimpleChanges) {
@@ -169,7 +176,39 @@ export class SbbExpansionPanel
 
   override ngOnDestroy() {
     super.ngOnDestroy();
+    this._bodyWrapper?.nativeElement.removeEventListener(
+      'transitionend',
+      this._transitionEndListener,
+    );
     this._inputChanges.complete();
+  }
+
+  private _transitionEndListener = ({ target, propertyName }: TransitionEvent) => {
+    if (target === this._bodyWrapper?.nativeElement && propertyName === 'grid-template-rows') {
+      this._ngZone.run(() => {
+        if (this.expanded) {
+          this.afterExpand.emit();
+        } else {
+          this.afterCollapse.emit();
+        }
+      });
+    }
+  };
+  protected _setupAnimationEvents() {
+    // This method is defined separately, because we need to
+    // disable this logic in some internal components.
+    this._ngZone.runOutsideAngular(() => {
+      if (this._animationsDisabled) {
+        this.opened.subscribe(() => this._ngZone.run(() => this.afterExpand.emit()));
+        this.closed.subscribe(() => this._ngZone.run(() => this.afterCollapse.emit()));
+      } else {
+        setTimeout(() => {
+          const element = this._elementRef.nativeElement;
+          element.addEventListener('transitionend', this._transitionEndListener);
+          element.classList.add('sbb-expansion-panel-animations-enabled');
+        }, 200);
+      }
+    });
   }
 
   /** Checks whether the expansion panel's content contains the currently-focused element. */

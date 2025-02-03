@@ -7,7 +7,6 @@ import { Directive, ElementRef, inject } from '@angular/core';
 @Directive({
   selector: '[sbbAutocompleteOrigin]',
   exportAs: 'sbbAutocompleteOrigin',
-  standalone: true,
 })
 export class SbbAutocompleteOrigin {
   elementRef: ElementRef<HTMLElement> = inject<ElementRef<HTMLElement>>(ElementRef);

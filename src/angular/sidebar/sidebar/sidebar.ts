@@ -1,7 +1,6 @@
 // Workaround for: https://github.com/bazelbuild/rules_nodejs/issues/1265
 /// <reference types="@angular/localize/init" />
 
-import { AnimationEvent } from '@angular/animations';
 import {
   ConfigurableFocusTrapFactory,
   FocusMonitor,
@@ -14,7 +13,6 @@ import { Platform } from '@angular/cdk/platform';
 import { CdkScrollable, ViewportRuler } from '@angular/cdk/scrolling';
 import { AsyncPipe } from '@angular/common';
 import {
-  AfterContentChecked,
   AfterContentInit,
   afterNextRender,
   ANIMATION_MODULE_TYPE,
@@ -26,8 +24,6 @@ import {
   ContentChildren,
   ElementRef,
   EventEmitter,
-  HostBinding,
-  HostListener,
   inject,
   Injector,
   Input,
@@ -35,6 +31,7 @@ import {
   OnDestroy,
   Output,
   QueryList,
+  Renderer2,
   ViewChild,
   ViewEncapsulation,
 } from '@angular/core';
@@ -50,8 +47,6 @@ import {
   SbbSidebarMobileCapableContainer,
   SBB_SIDEBAR_CONTAINER,
 } from '../sidebar-base';
-
-import { sbbSidebarAnimations } from './sidebar-animations';
 
 /** Result of the toggle promise that indicates the state of the sidebar. */
 export type SbbSidebarToggleResult = 'open' | 'close';
@@ -75,7 +70,6 @@ export type SbbSidebarMode = 'over' | 'side';
       useExisting: SbbSidebarContent,
     },
   ],
-  standalone: true,
 })
 export class SbbSidebarContent extends SbbSidebarContentBase implements AfterContentInit {
   _container: SbbSidebarContainer = inject(SbbSidebarContainer);
@@ -92,7 +86,6 @@ export class SbbSidebarContent extends SbbSidebarContentBase implements AfterCon
   selector: 'sbb-sidebar',
   exportAs: 'sbbSidebar',
   templateUrl: './sidebar.html',
-  animations: [sbbSidebarAnimations.transformSidebar],
   host: {
     class: 'sbb-sidebar',
     tabIndex: '-1',
@@ -103,20 +96,17 @@ export class SbbSidebarContent extends SbbSidebarContentBase implements AfterCon
     '[class.sbb-sidebar-side]': 'mode === "side"',
     '[class.sbb-sidebar-opened]': 'opened',
     '[class.sbb-sidebar-collapsible]': 'collapsible',
+    '[style.visibility]': '(!_container && !opened) ? "hidden" : null',
   },
   changeDetection: ChangeDetectionStrategy.OnPush,
   encapsulation: ViewEncapsulation.None,
-  standalone: true,
   imports: [CdkScrollable, SbbIcon],
 })
-export class SbbSidebar
-  extends SbbSidebarBase
-  implements AfterContentInit, AfterContentChecked, OnDestroy
-{
+export class SbbSidebar extends SbbSidebarBase implements AfterContentInit, OnDestroy {
   private _focusTrapFactory = inject(ConfigurableFocusTrapFactory);
   private _focusMonitor = inject(FocusMonitor);
-  private _platform = inject(Platform);
   private _ngZone = inject(NgZone);
+  private _renderer = inject(Renderer2);
   override _container: SbbSidebarContainer = inject<SbbSidebarContainer>(SBB_SIDEBAR_CONTAINER);
   private _router = inject(Router, { optional: true });
 
@@ -124,9 +114,6 @@ export class SbbSidebar
 
   /** Whether the sidebar is in mobile mode. */
   _mobile: boolean = false;
-
-  /** Whether the sidebar is initialized. Used for disabling the initial animation. */
-  private _enableAnimations = false;
 
   /** Whether the sidebar is collapsible. */
   @Input({ transform: booleanAttribute })
@@ -175,6 +162,12 @@ export class SbbSidebar
    */
   private _openedViaInput: boolean = false;
 
+  /** Emits whenever the sidebar has started animating. */
+  readonly _animationStarted = new Subject<TransitionEvent | void>();
+
+  /** Emits whenever the sidebar is done animating. */
+  readonly _animationEnd = new Subject<TransitionEvent | void>();
+
   /**
    * Name of the svg icon for the trigger on mobile devices.
    */
@@ -188,42 +181,26 @@ export class SbbSidebar
 
   /** Event emitted when the sidebar has started opening. */
   @Output()
-  get openedStart(): Observable<void> {
-    return this._animationStarted.pipe(
-      filter((e) => e.fromState !== e.toState && e.toState.indexOf('open') === 0),
-      map(() => {}),
-    );
-  }
+  readonly openedStart: Observable<void> = this._animationStarted.pipe(
+    filter(() => this.opened),
+    mapTo(undefined),
+  );
 
   /** Event emitted when the sidebar has started closing. */
   @Output()
-  get closedStart(): Observable<void> {
-    return this._animationStarted.pipe(
-      filter((e) => e.fromState !== e.toState && e.toState === 'void'),
-      map(() => {}),
-    );
-  }
+  readonly closedStart: Observable<void> = this._animationStarted.pipe(
+    filter(() => !this.opened),
+    mapTo(undefined),
+  );
 
   private _focusTrap: FocusTrap;
   private _elementFocusedBeforeSidebarWasOpened: HTMLElement | null = null;
+  private _eventCleanups: (() => void)[];
 
   private _mode: SbbSidebarMode = 'side';
 
   /** How the sidebar was opened (keypress, mouse click etc.) */
   private _openedVia: FocusOrigin | null;
-
-  /** Emits whenever the sidebar has started animating. */
-  readonly _animationStarted: Subject<AnimationEvent> = new Subject<AnimationEvent>();
-
-  /** Emits whenever the sidebar is done animating. */
-  readonly _animationEnd: Subject<AnimationEvent> = new Subject<AnimationEvent>();
-
-  /** Current state of the sidebar animation. */
-  // @HostBinding is used in the class as it is expected to be extended.  Since @Component decorator
-  // metadata is not inherited by child classes, instead the host binding data is defined in a way
-  // that can be inherited.
-  @HostBinding('@transform')
-  _animationState: 'open-instant' | 'open' | 'void' = 'void';
 
   /** Event emitted when the sidebar open state is changed. */
   @Output() readonly openedChange: EventEmitter<boolean> =
@@ -292,8 +269,9 @@ export class SbbSidebar
      * Additionally listen to router navigation start events to close the sidebar.
      */
     this._ngZone.runOutsideAngular(() => {
+      const element = this._elementRef.nativeElement;
       merge(
-        (fromEvent(this._elementRef.nativeElement, 'keydown') as Observable<KeyboardEvent>).pipe(
+        (fromEvent(element, 'keydown') as Observable<KeyboardEvent>).pipe(
           filter((event) => {
             return event.keyCode === ESCAPE && !hasModifierKey(event);
           }),
@@ -319,17 +297,16 @@ export class SbbSidebar
             event.preventDefault();
           }),
         );
+
+      this._eventCleanups = [
+        this._renderer.listen(element, 'transitionrun', this._handleTransitionEvent),
+        this._renderer.listen(element, 'transitionend', this._handleTransitionEvent),
+        this._renderer.listen(element, 'transitioncancel', this._handleTransitionEvent),
+      ];
     });
 
-    this._animationEnd.subscribe((event: AnimationEvent) => {
-      const { fromState, toState } = event;
-
-      if (
-        (toState.indexOf('open') === 0 && fromState === 'void') ||
-        (toState === 'void' && fromState.indexOf('open') === 0)
-      ) {
-        this.openedChange.emit(this._opened);
-      }
+    this._animationEnd.subscribe(() => {
+      this.openedChange.emit(this._opened);
     });
   }
 
@@ -384,17 +361,8 @@ export class SbbSidebar
     this._updateFocusTrapState();
   }
 
-  ngAfterContentChecked() {
-    // Enable the animations after the lifecycle hooks have run, in order to avoid animating
-    // sidebars that are open by default. When we're on the server, we shouldn't enable the
-    // animations, because we don't want the sidebar to animate the first time the user sees
-    // the page.
-    if (this._platform.isBrowser) {
-      this._enableAnimations = true;
-    }
-  }
-
   override ngOnDestroy() {
+    this._eventCleanups.forEach((cleanup) => cleanup());
     super.ngOnDestroy();
     if (this._focusTrap) {
       this._focusTrap.destroy();
@@ -466,15 +434,28 @@ export class SbbSidebar
     restoreFocus: boolean,
     focusOrigin: Exclude<FocusOrigin, null>,
   ): Promise<SbbSidebarToggleResult> {
+    if (isOpen === this._opened) {
+      return Promise.resolve(isOpen ? 'open' : 'close');
+    }
+
     this._opened = isOpen;
 
-    if (isOpen) {
-      this._animationState = this._enableAnimations ? 'open' : 'open-instant';
+    if (this._container?._transitionsEnabled) {
+      // Note: it's importatnt to set this as early as possible,
+      // otherwise the animation can look glitchy in some cases.
+      this._setIsAnimating(true);
     } else {
-      this._animationState = 'void';
-      if (restoreFocus) {
-        this._restoreFocus(focusOrigin);
-      }
+      // Simulate the animation events if animations are disabled.
+      setTimeout(() => {
+        this._animationStarted.next();
+        this._animationEnd.next();
+      });
+    }
+
+    this._elementRef.nativeElement.classList.toggle('sbb-sidebar-opened', isOpen);
+
+    if (!isOpen && restoreFocus) {
+      this._restoreFocus(focusOrigin);
     }
 
     // Needed to ensure that the closing sequence fires off correctly.
@@ -486,8 +467,13 @@ export class SbbSidebar
     });
   }
 
+  /** Toggles whether the drawer is currently animating. */
+  private _setIsAnimating(isAnimating: boolean) {
+    this._elementRef.nativeElement.classList.toggle('sbb-sidebar-animating', isAnimating);
+  }
+
   _getWidth(): number {
-    return this._elementRef.nativeElement ? this._elementRef.nativeElement.offsetWidth || 0 : 0;
+    return this._elementRef.nativeElement.offsetWidth || 0;
   }
 
   /** Updates the enabled state of the focus trap. */
@@ -498,33 +484,13 @@ export class SbbSidebar
     }
   }
 
-  // We have to use a `HostListener` here in order to support both Ivy and ViewEngine.
-  // In Ivy the `host` bindings will be merged when this class is extended, whereas in
-  // ViewEngine they're overwritten.
-  // TODO(crisbeto): we move this back into `host` once Ivy is turned on by default.
-  // tslint:disable-next-line:no-host-decorator-in-concrete
-  @HostListener('@transform.start', ['$event'])
-  _animationStartListener(event: AnimationEvent) {
-    this._animationStarted.next(event);
-  }
-
-  // We have to use a `HostListener` here in order to support both Ivy and ViewEngine.
-  // In Ivy the `host` bindings will be merged when this class is extended, whereas in
-  // ViewEngine they're overwritten.
-  // TODO(crisbeto): we move this back into `host` once Ivy is turned on by default.
-  // tslint:disable-next-line:no-host-decorator-in-concrete
-  @HostListener('@transform.done', ['$event'])
-  _animationDoneListener(event: AnimationEvent) {
-    this._animationEnd.next(event);
-  }
-
   _mobileChanged(mobile: boolean): void {
     this._mobile = mobile;
     Promise.resolve().then(() => {
-      const wasAnimationsEnabled = this._enableAnimations;
+      const wereTransitionsEnabled = this._container._transitionsEnabled;
 
       // temporary disabled animations when changing mode
-      this._enableAnimations = false;
+      this._container._transitionsEnabled = false;
       this.mode = this.collapsible || mobile ? 'over' : 'side';
 
       if (!this._openedViaInput) {
@@ -532,9 +498,30 @@ export class SbbSidebar
       } else {
         this._changeDetectorRef.markForCheck();
       }
-      this._enableAnimations = wasAnimationsEnabled;
+      this._container._transitionsEnabled = wereTransitionsEnabled;
     });
   }
+
+  /** Event handler for animation events. */
+  private _handleTransitionEvent = (event: TransitionEvent) => {
+    const element = this._elementRef.nativeElement;
+
+    if (event.target === element) {
+      this._ngZone.run(() => {
+        if (event.type === 'transitionrun') {
+          this._animationStarted.next(event);
+        } else {
+          // Don't toggle the animating state on `transitioncancel` since another animation should
+          // start afterwards. This prevents the drawer from blinking if an animation is interrupted.
+          if (event.type === 'transitionend') {
+            this._setIsAnimating(false);
+          }
+
+          this._animationEnd.next(event);
+        }
+      });
+    }
+  };
 }
 
 @Component({
@@ -554,7 +541,6 @@ export class SbbSidebar
       useExisting: SbbSidebarContainer,
     },
   ],
-  standalone: true,
   imports: [SbbIcon, SbbSidebarContent, AsyncPipe],
 })
 export class SbbSidebarContainer
@@ -564,6 +550,7 @@ export class SbbSidebarContainer
   private _element = inject<ElementRef<HTMLElement>>(ElementRef);
   private _animationMode = inject(ANIMATION_MODULE_TYPE, { optional: true });
 
+  _transitionsEnabled: boolean = false;
   _labelOpenSidebar: string = $localize`:Button label to open the sidebar@@sbbSidebarOpenSidebar:Open Sidebar`;
 
   /** The sidebar child at the start/end position. */
@@ -581,6 +568,7 @@ export class SbbSidebarContainer
 
   constructor(...args: unknown[]);
   constructor() {
+    const platform = inject(Platform);
     const viewportRuler = inject(ViewportRuler);
 
     super();
@@ -591,6 +579,17 @@ export class SbbSidebarContainer
       .change()
       .pipe(takeUntil(this._destroyed))
       .subscribe(() => this.updateContentMargins());
+
+    if (this._animationMode !== 'NoopAnimations' && platform.isBrowser) {
+      this._ngZone.runOutsideAngular(() => {
+        // Enable the animations after a delay in order to skip
+        // the initial transition if a sidebar is open by default.
+        setTimeout(() => {
+          this._element.nativeElement.classList.add('sbb-sidebar-transition');
+          this._transitionsEnabled = true;
+        }, 300);
+      });
+    }
   }
 
   /** All sidebars in the container. Includes sidebars from inside nested containers. */
@@ -696,21 +695,10 @@ export class SbbSidebarContainer
    * is properly hidden.
    */
   private _watchSidebarToggle(sidebar: SbbSidebar): void {
-    sidebar._animationStarted
-      .pipe(
-        filter((event: AnimationEvent) => event.fromState !== event.toState),
-        takeUntil(this._sidebars.changes),
-      )
-      .subscribe((event: AnimationEvent) => {
-        // Set the transition class on the container so that the animations occur. This should not
-        // be set initially because animations should only be triggered via a change in state.
-        if (event.toState !== 'open-instant' && this._animationMode !== 'NoopAnimations') {
-          this._element.nativeElement.classList.add('sbb-sidebar-transition');
-        }
-
-        this.updateContentMargins();
-        this._changeDetectorRef.markForCheck();
-      });
+    sidebar._animationStarted.pipe(takeUntil(this._sidebars.changes)).subscribe(() => {
+      this.updateContentMargins();
+      this._changeDetectorRef.markForCheck();
+    });
 
     sidebar.openedChange
       .pipe(takeUntil(this._sidebars.changes))

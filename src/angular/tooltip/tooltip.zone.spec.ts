@@ -71,7 +71,6 @@ describe('SbbTooltip Zone.js integration', () => {
       <button style="margin-bottom: 600px" [sbbTooltip]="message">Button</button>
     }
   </div>`,
-  standalone: true,
   imports: [SbbTooltipModule],
 })
 class ScrollableTooltipDemo {

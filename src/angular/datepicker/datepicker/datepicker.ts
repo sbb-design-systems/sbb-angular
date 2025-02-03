@@ -72,7 +72,6 @@ export const SBB_DATEPICKER_SCROLL_STRATEGY_FACTORY_PROVIDER = {
     '[class.sbb-datepicker-toggle-enabled]': 'toggleVisible',
     '[class.sbb-datepicker-disabled]': 'disabled',
   },
-  standalone: true,
   imports: [SbbIconModule, SbbDatepickerToggle],
 })
 export class SbbDatepicker<D> implements OnDestroy {

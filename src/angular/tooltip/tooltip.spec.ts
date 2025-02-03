@@ -1417,7 +1417,6 @@ describe('SbbTooltip', () => {
       Button
     </button>
   }`,
-  standalone: true,
   imports: [SbbTooltipModule],
 })
 class BasicTooltipDemo {
@@ -1442,7 +1441,6 @@ class BasicTooltipDemo {
       <button style="margin-bottom: 600px" [sbbTooltip]="message">Button</button>
     }
   </div>`,
-  standalone: true,
   imports: [SbbTooltipModule],
 })
 class ScrollableTooltipDemo {
@@ -1466,7 +1464,6 @@ class ScrollableTooltipDemo {
   selector: 'app',
   template: ` <button [sbbTooltip]="message">Button</button>`,
   changeDetection: ChangeDetectionStrategy.OnPush,
-  standalone: true,
   imports: [SbbTooltipModule],
 })
 class OnPushTooltipDemo {
@@ -1479,7 +1476,6 @@ class OnPushTooltipDemo {
   template: ` @for (tooltip of tooltips; track tooltip) {
     <button [sbbTooltip]="tooltip">Button {{ tooltip }}</button>
   }`,
-  standalone: true,
   imports: [SbbTooltipModule],
 })
 class DynamicTooltipsDemo {
@@ -1488,7 +1484,6 @@ class DynamicTooltipsDemo {
 
 @Component({
   template: `<button [sbbTooltip]="message" [attr.aria-label]="message">Click me</button>`,
-  standalone: true,
   imports: [SbbTooltipModule],
 })
 class DataBoundAriaLabelTooltip {
@@ -1505,7 +1500,6 @@ class DataBoundAriaLabelTooltip {
       [sbbTooltipTouchGestures]="touchGestures"
     ></textarea>
   `,
-  standalone: true,
   imports: [SbbTooltipModule],
 })
 class TooltipOnTextFields {
@@ -1523,7 +1517,6 @@ class TooltipOnTextFields {
       [sbbTooltipTouchGestures]="touchGestures"
     ></button>
   `,
-  standalone: true,
   imports: [SbbTooltipModule],
 })
 class TooltipOnDraggableElement {
@@ -1535,7 +1528,6 @@ class TooltipOnDraggableElement {
   template: `
     <button [sbbTooltip]="'content'" [sbbTooltipTrigger]="trigger">Show tooltip</button>
   `,
-  standalone: true,
   imports: [SbbTooltipModule],
 })
 class TriggerConfigurableTooltip {
@@ -1566,7 +1558,6 @@ class TooltipDemoWithoutPositionBinding {
       </button>
     </div>
   `,
-  standalone: true,
   imports: [SbbTooltipModule],
 })
 class TooltipTriggerBubble {

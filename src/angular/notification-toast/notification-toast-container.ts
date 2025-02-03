@@ -230,7 +230,6 @@ export abstract class SbbNotificationToastContainerBase
     '[@state]': '_animationState',
     '(@state.done)': 'onAnimationEnd($event)',
   },
-  standalone: true,
   imports: [SbbIcon, CdkPortalOutlet],
 })
 export class SbbNotificationToastContainer extends SbbNotificationToastContainerBase {

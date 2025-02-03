@@ -20,7 +20,6 @@ import { SbbIconModule } from '@sbb-esta/angular/icon';
 import { EMPTY, merge, Subscription } from 'rxjs';
 import { filter } from 'rxjs/operators';
 
-import { sbbExpansionAnimations } from './accordion-animations';
 import { SbbExpansionPanel } from './expansion-panel';
 
 /**
@@ -32,7 +31,6 @@ import { SbbExpansionPanel } from './expansion-panel';
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush,
   inputs: ['tabIndex'],
-  animations: [sbbExpansionAnimations.indicatorRotate],
   host: {
     class: 'sbb-expansion-panel-header sbb-expansion-panel-horizontal-padding',
     role: 'button',
@@ -44,7 +42,6 @@ import { SbbExpansionPanel } from './expansion-panel';
     '[class.sbb-expanded]': '_isExpanded()',
     '[class.sbb-disabled]': 'disabled',
   },
-  standalone: true,
   imports: [SbbIconModule, AsyncPipe],
 })
 export class SbbExpansionPanelHeader implements AfterViewInit, OnDestroy, FocusableOption {
