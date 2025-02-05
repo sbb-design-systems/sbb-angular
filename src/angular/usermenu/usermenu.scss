@@ -237,7 +237,7 @@
     opacity: 0;
   }
   to {
-    width: 288px;
+    width: var(--sbb-usermenu-panel-width);
     max-height: 100%;
     opacity: 1;
   }
@@ -245,7 +245,7 @@
 
 @keyframes _sbb-usermenu-exit {
   from {
-    width: 288px;
+    width: var(--sbb-usermenu-panel-width);
     opacity: 1;
   }
   to {
