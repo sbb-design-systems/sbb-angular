@@ -15,7 +15,7 @@ import {
   ScrollStrategy,
   VerticalConnectionPos,
 } from '@angular/cdk/overlay';
-import { normalizePassiveListenerOptions } from '@angular/cdk/platform';
+import { _bindEventWithOptions } from '@angular/cdk/platform';
 import { TemplatePortal } from '@angular/cdk/portal';
 import {
   AfterContentInit,
@@ -31,6 +31,7 @@ import {
   OnDestroy,
   OnInit,
   Output,
+  Renderer2,
   TemplateRef,
   ViewContainerRef,
 } from '@angular/core';
@@ -103,7 +104,7 @@ export const SBB_MENU_SCROLL_STRATEGY_FACTORY_PROVIDER = {
 const SUBMENU_PANEL_LEFT_OVERLAP = 3;
 
 /** Options for binding a passive event listener. */
-const passiveEventListenerOptions = normalizePassiveListenerOptions({ passive: true });
+const passiveEventListenerOptions = { passive: true };
 
 // Boilerplate for applying mixins to SbbMenu.
 const _SbbMenuTriggerMixinBase = mixinVariant(class {});
@@ -144,6 +145,7 @@ export class SbbMenuTrigger
   private _breakpointObserver = inject(BreakpointObserver);
   private _changeDetectorRef = inject(ChangeDetectorRef);
   private _ngZone = inject(NgZone);
+  private _cleanupTouchstart: () => void;
 
   private _portal: TemplatePortal;
   private _overlayRef: OverlayRef | null = null;
@@ -160,16 +162,6 @@ export class SbbMenuTrigger
    * interface lacks some functionality around nested menus and animations.
    */
   _parentSbbMenu: SbbMenu | undefined;
-
-  /**
-   * Handles touch start events on the trigger.
-   * Needs to be an arrow function so we can easily use addEventListener and removeEventListener.
-   */
-  private _handleTouchStart = (event: TouchEvent) => {
-    if (!isFakeTouchstartFromScreenReader(event)) {
-      this._openedBy = 'touch';
-    }
-  };
 
   // Tracking input type is necessary so it's possible to only auto-focus
   // the first item of the list when the menu is opened via the keyboard
@@ -248,6 +240,7 @@ export class SbbMenuTrigger
 
   constructor() {
     const parentMenu = inject<SbbMenuPanel>(SBB_MENU_PANEL, { optional: true })!;
+    const renderer = inject(Renderer2);
 
     super();
     const _element = this._element;
@@ -255,9 +248,15 @@ export class SbbMenuTrigger
 
     this._parentSbbMenu = parentMenu instanceof SbbMenu ? parentMenu : undefined;
 
-    _element.nativeElement.addEventListener(
+    this._cleanupTouchstart = _bindEventWithOptions(
+      renderer,
+      this._element.nativeElement,
       'touchstart',
-      this._handleTouchStart,
+      (event: TouchEvent) => {
+        if (!isFakeTouchstartFromScreenReader(event)) {
+          this._openedBy = 'touch';
+        }
+      },
       passiveEventListenerOptions,
     );
 
@@ -294,17 +293,12 @@ export class SbbMenuTrigger
       PANELS_TO_TRIGGERS.delete(this.menu);
     }
 
-    this._element.nativeElement.removeEventListener(
-      'touchstart',
-      this._handleTouchStart,
-      passiveEventListenerOptions,
-    );
-
-    this._pendingRemoval?.unsubscribe();
+    this._cleanupTouchstart();
     this._menuCloseSubscription.unsubscribe();
     this._closingActionsSubscription.unsubscribe();
     this._hoverSubscription.unsubscribe();
     this._breakpointSubscription.unsubscribe();
+    this._pendingRemoval?.unsubscribe();
 
     if (this._overlayRef) {
       this._overlayRef.dispose();
