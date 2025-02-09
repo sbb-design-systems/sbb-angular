@@ -4,13 +4,16 @@
     [id]="panelId"
     [class]="_classList"
     (click)="closed.emit('click')"
-    [@transformMenu]="_panelAnimationState"
-    (@transformMenu.start)="_onAnimationStart($event)"
-    (@transformMenu.done)="_onAnimationDone($event)"
+    [class.sbb-menu-panel-animations-disabled]="_animationsDisabled"
+    [class.sbb-menu-panel-exit-animation]="_panelAnimationState === 'void'"
+    [class.sbb-menu-panel-animating]="_isAnimating"
     [style.--sbb-menu-trigger-width.px]="triggerContext ? triggerContext.width : 0"
     [style.--sbb-menu-trigger-height.px]="triggerContext ? triggerContext.height : 0"
     tabindex="-1"
     role="menu"
+    (animationstart)="_onAnimationStart($event.animationName)"
+    (animationend)="_onAnimationDone($event.animationName)"
+    (animationcancel)="_onAnimationDone($event.animationName)"
     [attr.aria-label]="ariaLabel || null"
     [attr.aria-labelledby]="ariaLabelledby || null"
     [attr.aria-describedby]="ariaDescribedby || null"
@@ -34,7 +37,9 @@
       class="sbb-panel sbb-panel-padded sbb-menu-panel sbb-menu-content sbb-scrollbar"
       [class.sbb-menu-panel-root]="!parentMenu"
     >
-      <ng-content></ng-content>
+      <div class="sbb-menu-panel-content">
+        <ng-content></ng-content>
+      </div>
     </div>
   </div>
 </ng-template>

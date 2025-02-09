@@ -5,6 +5,23 @@ sbb-menu {
   display: none;
 }
 
+@keyframes _sbb-menu-enter {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+@keyframes _sbb-menu-exit {
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
+  }
+}
+
 .sbb-menu-panel-wrapper {
   display: flex;
   flex-direction: column;
@@ -12,10 +29,18 @@ sbb-menu {
   min-width: calc(#{sbb.pxToRem(150)} * var(--sbb-scaling-factor));
   max-width: calc(#{sbb.pxToRem(400)} * var(--sbb-scaling-factor));
   outline: 0;
+  animation: _sbb-menu-enter 120ms cubic-bezier(0, 0, 0.2, 1);
 
   // Give the menu a minimum height so that the user can't
   // collapse it to zero when they scroll away.
   min-height: sbb.pxToRem(72);
+
+  &.sbb-menu-panel-exit-animation {
+    animation: _sbb-menu-exit 100ms 25ms linear forwards;
+  }
+  &.sbb-menu-panel-animations-disabled {
+    animation: none;
+  }
 
   // Prevent users from interacting with the panel while it's animating. Note that
   // people won't be able to click through it, because the overlay pane will catch the click.
@@ -24,7 +49,7 @@ sbb-menu {
   //  * Users accidentally tapping on content inside the sub-menu on touch devices, if the
   //    sub-menu overlaps the trigger. The issue is due to touch devices emulating the
   //    `mouseenter` event by dispatching it on tap.
-  &.ng-animating {
+  &.sbb-menu-panel-animating {
     pointer-events: none;
   }
 }
