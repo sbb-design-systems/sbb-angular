@@ -220,9 +220,9 @@
     "@angular/core" "^13.0.0 || ^14.0.0-0"
     reflect-metadata "^0.1.13"
 
-"@angular/build-tooling@https://github.com/angular/dev-infra-private-build-tooling-builds.git#059a88dd931b8f8d2ed6f523695f86096ecc8ca0":
-  version "0.0.0-c733ca57b2e7aa390554b4be97a945b3ecc011f6"
-  resolved "https://github.com/angular/dev-infra-private-build-tooling-builds.git#059a88dd931b8f8d2ed6f523695f86096ecc8ca0"
+"@angular/build-tooling@https://github.com/angular/dev-infra-private-build-tooling-builds.git#7472d138d002c7c6569265f5221486ccce598fac":
+  version "0.0.0-8a438a3bdc519880d78b5ac92b62bfe688deb058"
+  resolved "https://github.com/angular/dev-infra-private-build-tooling-builds.git#7472d138d002c7c6569265f5221486ccce598fac"
   dependencies:
     "@angular/benchpress" "0.3.0"
     "@angular/build" "19.2.0-next.1"
@@ -245,7 +245,7 @@
     "@types/ws" "8.5.14"
     "@types/yargs" "^17.0.0"
     browser-sync "^3.0.0"
-    prettier "3.4.2"
+    prettier "3.5.0"
     protractor "^7.0.0"
     selenium-webdriver "^4.18.1"
     send "^1.0.0"
@@ -427,14 +427,14 @@
     fast-glob "3.3.3"
     yargs "^17.2.1"
 
-"@angular/ng-dev@https://github.com/angular/dev-infra-private-ng-dev-builds.git#09c3850c093dcc6ee7c19589e0a113293f209339":
-  version "0.0.0-c733ca57b2e7aa390554b4be97a945b3ecc011f6"
-  resolved "https://github.com/angular/dev-infra-private-ng-dev-builds.git#09c3850c093dcc6ee7c19589e0a113293f209339"
+"@angular/ng-dev@https://github.com/angular/dev-infra-private-ng-dev-builds.git#34a9ec9feae4901c687b1e9179d1035129663fab":
+  version "0.0.0-8a438a3bdc519880d78b5ac92b62bfe688deb058"
+  resolved "https://github.com/angular/dev-infra-private-ng-dev-builds.git#34a9ec9feae4901c687b1e9179d1035129663fab"
   dependencies:
-    "@google-cloud/spanner" "7.18.0"
+    "@google-cloud/spanner" "7.18.1"
     "@octokit/rest" "21.1.0"
     "@types/semver" "^7.3.6"
-    "@types/supports-color" "^8.1.1"
+    "@types/supports-color" "^10.0.0"
     "@yarnpkg/lockfile" "^1.1.0"
     chalk "^5.0.1"
     semver "^7.5.4"
@@ -3432,10 +3432,10 @@
   resolved "https://registry.yarnpkg.com/@google-cloud/promisify/-/promisify-4.0.0.tgz#a906e533ebdd0f754dca2509933334ce58b8c8b1"
   integrity sha512-Orxzlfb9c67A15cq2JQEyVc7wEsmFBmHjZWZYQMUyJ1qivXyMwdyNOs9odi79hze+2zqdTtu1E19IM/FtqZ10g==
 
-"@google-cloud/spanner@7.18.0":
-  version "7.18.0"
-  resolved "https://registry.yarnpkg.com/@google-cloud/spanner/-/spanner-7.18.0.tgz#5e516017179dc2699d7a32df5c6c7d93dff1849b"
-  integrity sha512-jW1SCkc14rcQCe/EyXQylp8HmQeLeP6VpVDlGnzFlGZFifJwwI7NTuS6Tfyd2oSNqtKLFRBMKfEa3/tsvXQNcg==
+"@google-cloud/spanner@7.18.1":
+  version "7.18.1"
+  resolved "https://registry.yarnpkg.com/@google-cloud/spanner/-/spanner-7.18.1.tgz#4589327e14de18ee5d27e01774c9f501171bb0cd"
+  integrity sha512-7CwpTX5njfoUAVQL/otowTm3gjWPn+ceUKKH+KGWr/DuAeDsrc4sZH1LY+t2mt/vvMULS/PlWkAkv6Hk/Oi8cw==
   dependencies:
     "@google-cloud/common" "^5.0.0"
     "@google-cloud/precise-date" "^4.0.0"
@@ -6819,10 +6819,12 @@
   dependencies:
     "@types/geojson" "*"
 
-"@types/supports-color@^8.1.1":
-  version "8.1.3"
-  resolved "https://registry.yarnpkg.com/@types/supports-color/-/supports-color-8.1.3.tgz#b769cdce1d1bb1a3fa794e35b62c62acdf93c139"
-  integrity sha512-Hy6UMpxhE3j1tLpl27exp1XqHD7n8chAiNPzWfz16LPZoMMoSc4dzLl6w9qijkEb/r5O1ozdu1CWGA2L83ZeZg==
+"@types/supports-color@^10.0.0":
+  version "10.0.0"
+  resolved "https://registry.yarnpkg.com/@types/supports-color/-/supports-color-10.0.0.tgz#dc1f3aa42646db9663f446184082d4da8ee28672"
+  integrity sha512-Kpp/hhA8/pcxqBBKmOCIgvwCOJAI5y6TWTHhhqnB6KmuYlKtixKgN/Z7VzhShdgONe2jYREnTQbsrb3E0nt/OQ==
+  dependencies:
+    supports-color "*"
 
 "@types/tmp@^0.2.1":
   version "0.2.6"
@@ -15130,11 +15132,6 @@ prettier@3.3.3:
   resolved "https://registry.yarnpkg.com/prettier/-/prettier-3.3.3.tgz#30c54fe0be0d8d12e6ae61dbb10109ea00d53105"
   integrity sha512-i2tDNA0O5IrMO757lfrdQZCc2jPNDVntV0m/+4whiDfWaTKfMNgR7Qz0NAeGz/nRqF4m5/6CLzbP4/liHt12Ew==
 
-prettier@3.4.2:
-  version "3.4.2"
-  resolved "https://registry.yarnpkg.com/prettier/-/prettier-3.4.2.tgz#a5ce1fb522a588bf2b78ca44c6e6fe5aa5a2b13f"
-  integrity sha512-e9MewbtFo+Fevyuxn/4rrcDAaq0IYxPGLvObpQjiZBMAzB9IGmzlnG9RZy3FFas+eBMu2vA0CszMeduow5dIuQ==
-
 prettier@3.5.0:
   version "3.5.0"
   resolved "https://registry.yarnpkg.com/prettier/-/prettier-3.5.0.tgz#50325a28887c6dfdf2ca3f8eaba02b66a8429ca7"
@@ -17363,7 +17360,7 @@ supercluster@^8.0.1:
   dependencies:
     kdbush "^4.0.2"
 
-supports-color@10.0.0:
+supports-color@*, supports-color@10.0.0:
   version "10.0.0"
   resolved "https://registry.yarnpkg.com/supports-color/-/supports-color-10.0.0.tgz#32000d5e49f1ae70b2645d47701004644a1d7b90"
   integrity sha512-HRVVSbCCMbj7/kdWF9Q+bbckjBHLtHMEoJWlkmYzzdwhYMkjkOwubLM6t7NbWKjgKamGDrWL1++KrjUO1t9oAQ==
