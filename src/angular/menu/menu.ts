@@ -1,4 +1,3 @@
-import { AnimationEvent } from '@angular/animations';
 import { FocusKeyManager, FocusOrigin, _IdGenerator } from '@angular/cdk/a11y';
 import { DOWN_ARROW, ESCAPE, hasModifierKey, LEFT_ARROW, UP_ARROW } from '@angular/cdk/keycodes';
 import { NgTemplateOutlet } from '@angular/common';
@@ -6,6 +5,7 @@ import {
   AfterContentInit,
   afterNextRender,
   AfterRenderRef,
+  ANIMATION_MODULE_TYPE,
   booleanAttribute,
   ChangeDetectionStrategy,
   ChangeDetectorRef,
@@ -29,7 +29,6 @@ import {
 import { merge, Observable, Subject } from 'rxjs';
 import { startWith, switchMap } from 'rxjs/operators';
 
-import { sbbMenuAnimations } from './menu-animations';
 import { SbbMenuContent, SBB_MENU_CONTENT } from './menu-content';
 import { throwSbbMenuInvalidPositionX, throwSbbMenuInvalidPositionY } from './menu-errors';
 import { SbbMenuItem } from './menu-item';
@@ -89,6 +88,12 @@ export type SbbMenuAnimationState = SbbMenuPlainAnimationState | SbbMenuAnimatio
 /** Reason why the menu was closed. */
 export type SbbMenuCloseReason = void | 'click' | 'keydown' | 'tab';
 
+/** Name of the enter animation `@keyframes`. */
+const ENTER_ANIMATION = '_sbb-menu-enter';
+
+/** Name of the exit animation `@keyframes`. */
+const EXIT_ANIMATION = '_sbb-menu-exit';
+
 @Component({
   selector: 'sbb-menu',
   templateUrl: 'menu.html',
@@ -101,7 +106,6 @@ export type SbbMenuCloseReason = void | 'click' | 'keydown' | 'tab';
     '[attr.aria-labelledby]': 'null',
     '[attr.aria-describedby]': 'null',
   },
-  animations: [sbbMenuAnimations.transformMenu],
   providers: [{ provide: SBB_MENU_PANEL, useExisting: SbbMenu }],
   imports: [NgTemplateOutlet],
 })
@@ -109,11 +113,13 @@ export class SbbMenu implements AfterContentInit, SbbMenuPanel<SbbMenuItem>, OnI
   private _elementRef = inject<ElementRef<HTMLElement>>(ElementRef);
   private _defaultOptions = inject<SbbMenuDefaultOptions>(SBB_MENU_DEFAULT_OPTIONS);
   private _changeDetectorRef = inject(ChangeDetectorRef);
+  private _injector = inject(Injector);
 
   private _keyManager: FocusKeyManager<SbbMenuItem>;
   private _xPosition: SbbMenuPositionX = this._defaultOptions.xPosition;
   private _yPosition: SbbMenuPositionY = this._defaultOptions.yPosition;
   private _firstItemFocusRef?: AfterRenderRef;
+  private _exitFallbackTimeout: ReturnType<typeof setTimeout> | undefined;
   private _previousElevation: string;
   private _elevationPrefix: string = 'sbb-elevation-z';
   private _baseElevation: number = 4;
@@ -131,10 +137,10 @@ export class SbbMenu implements AfterContentInit, SbbMenuPanel<SbbMenuItem>, OnI
   _panelAnimationState: SbbMenuAnimationState = 'void';
 
   /** Emits whenever an animation on the menu completes. */
-  readonly _animationDone: Subject<AnimationEvent> = new Subject<AnimationEvent>();
+  readonly _animationDone = new Subject<'void' | 'enter'>();
 
   /** Whether the menu is animating. */
-  _isAnimating: boolean;
+  _isAnimating: boolean = false;
 
   /** Parent menu of the current menu panel. */
   parentMenu: SbbMenuPanel | undefined;
@@ -250,7 +256,9 @@ export class SbbMenu implements AfterContentInit, SbbMenuPanel<SbbMenuItem>, OnI
 
   readonly panelId = inject(_IdGenerator).getId('sbb-menu-panel-');
 
-  private _injector = inject(Injector);
+  /** Whether animations are currently disabled. */
+  protected _animationsDisabled: boolean =
+    inject(ANIMATION_MODULE_TYPE, { optional: true }) === 'NoopAnimations';
 
   constructor(...args: unknown[]);
   constructor() {}
@@ -301,6 +309,7 @@ export class SbbMenu implements AfterContentInit, SbbMenuPanel<SbbMenuItem>, OnI
     this._directDescendantItems.destroy();
     this.closed.complete();
     this._firstItemFocusRef?.destroy();
+    clearTimeout(this._exitFallbackTimeout);
   }
 
   /** Stream that emits whenever the hovered menu item changes. */
@@ -354,15 +363,7 @@ export class SbbMenu implements AfterContentInit, SbbMenuPanel<SbbMenuItem>, OnI
     this._firstItemFocusRef?.destroy();
     this._firstItemFocusRef = afterNextRender(
       () => {
-        let menuPanel: HTMLElement | null = null;
-
-        if (this._directDescendantItems.length) {
-          // Because the `sbb-menu` panel is at the DOM insertion point, not inside the overlay, we don't
-          // have a nice way of getting a hold of the menu panel. We can't use a `ViewChild` either
-          // because the panel is inside an `ng-template`. We work around it by starting from one of
-          // the items and walking up the DOM.
-          menuPanel = this._directDescendantItems.first!._getHostElement().closest('[role="menu"]');
-        }
+        const menuPanel = this._resolvePanel();
 
         // If an item in the menuPanel is already focused, avoid overriding the focus.
         if (!menuPanel || !menuPanel.contains(document.activeElement)) {
@@ -435,56 +436,71 @@ export class SbbMenu implements AfterContentInit, SbbMenuPanel<SbbMenuItem>, OnI
     this._changeDetectorRef.markForCheck();
   }
 
-  /** Starts the enter animation. */
-  _startAnimation() {
-    // @breaking-change 8.0.0 Combine with _resetAnimation.
-    this._panelAnimationState =
-      this.triggerContext.animationStartStateResolver?.(this.triggerContext) ?? 'enter';
-  }
-
-  /** Resets the panel animation to its initial state. */
-  _resetAnimation() {
-    // @breaking-change 8.0.0 Combine with _startAnimation.
-    this._panelAnimationState = 'void';
-  }
-
   /** Callback that is invoked when the panel animation completes. */
-  _onAnimationDone(event: AnimationEvent) {
-    this._animationDone.next(event);
-    this._isAnimating = false;
-  }
+  protected _onAnimationDone(state: string) {
+    const isExit = state === EXIT_ANIMATION;
 
-  _onAnimationStart(event: AnimationEvent) {
-    this._isAnimating = true;
-
-    // Scroll the content element to the top as soon as the animation starts. This is necessary,
-    // because we move focus to the first item while it's still being animated, which can throw
-    // the browser off when it determines the scroll position. Alternatively we can move focus
-    // when the animation is done, however moving focus asynchronously will interrupt screen
-    // readers which are in the process of reading out the menu already. We take the `element`
-    // from the `event` since we can't use a `ViewChild` to access the pane.
-    const animationStartState =
-      this._extractPlainAnimationState(
-        this.triggerContext.animationStartStateResolver?.(this.triggerContext),
-      ) ?? 'enter';
-    if (event.toState === animationStartState && this._keyManager.activeItemIndex === 0) {
-      event.element.scrollTop = 0;
-    }
-
-    if (event.toState === 'void') {
-      event.element.classList.add('sbb-menu-panel-closing');
-    } else {
-      event.element.classList.remove('sbb-menu-panel-closing');
+    if (isExit || state === ENTER_ANIMATION) {
+      if (isExit) {
+        clearTimeout(this._exitFallbackTimeout);
+        this._exitFallbackTimeout = undefined;
+      }
+      this._animationDone.next(isExit ? 'void' : 'enter');
+      this._isAnimating = false;
     }
   }
 
-  private _extractPlainAnimationState(
-    state?: SbbMenuAnimationState,
-  ): SbbMenuPlainAnimationState | null {
-    if (!state) {
-      return null;
+  protected _onAnimationStart(state: string) {
+    if (state === ENTER_ANIMATION || state === EXIT_ANIMATION) {
+      this._isAnimating = true;
     }
-    return typeof state === 'string' ? state : state.value;
+  }
+
+  _setIsOpen(isOpen: boolean) {
+    this._panelAnimationState = isOpen ? 'enter' : 'void';
+
+    if (isOpen) {
+      if (this._keyManager.activeItemIndex === 0) {
+        // Scroll the content element to the top as soon as the animation starts. This is necessary,
+        // because we move focus to the first item while it's still being animated, which can throw
+        // the browser off when it determines the scroll position. Alternatively we can move focus
+        // when the animation is done, however moving focus asynchronously will interrupt screen
+        // readers which are in the process of reading out the menu already. We take the `element`
+        // from the `event` since we can't use a `ViewChild` to access the pane.
+        const menuPanel = this._resolvePanel();
+
+        if (menuPanel) {
+          menuPanel.scrollTop = 0;
+        }
+      }
+    } else if (!this._animationsDisabled) {
+      // Some apps do `* { animation: none !important; }` in tests which will prevent the
+      // `animationend` event from firing. Since the exit animation is loading-bearing for
+      // removing the content from the DOM, add a fallback timer.
+      this._exitFallbackTimeout = setTimeout(() => this._onAnimationDone(EXIT_ANIMATION), 200);
+    }
+
+    // Animation events won't fire when animations are disabled so we simulate them.
+    if (this._animationsDisabled) {
+      setTimeout(() => {
+        this._onAnimationDone(isOpen ? ENTER_ANIMATION : EXIT_ANIMATION);
+      });
+    }
+    this._changeDetectorRef.markForCheck();
+  }
+
+  /** Gets the menu panel DOM node. */
+  private _resolvePanel(): HTMLElement | null {
+    let menuPanel: HTMLElement | null = null;
+
+    if (this._directDescendantItems.length) {
+      // Because the `mat-menuPanel` is at the DOM insertion point, not inside the overlay, we don't
+      // have a nice way of getting a hold of the menuPanel panel. We can't use a `ViewChild` either
+      // because the panel is inside an `ng-template`. We work around it by starting from one of
+      // the items and walking up the DOM.
+      menuPanel = this._directDescendantItems.first!._getHostElement().closest('[role="menu"]');
+    }
+    return menuPanel;
   }
 
   /**
