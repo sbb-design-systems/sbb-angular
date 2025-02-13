@@ -23,8 +23,8 @@ import {
   ScrollStrategy,
 } from '@angular/cdk/overlay';
 import {
-  normalizePassiveListenerOptions,
   Platform,
+  _bindEventWithOptions,
   _getFocusedElementPierceShadowDom,
 } from '@angular/cdk/platform';
 import { ComponentPortal } from '@angular/cdk/portal';
@@ -50,6 +50,7 @@ import {
   OnDestroy,
   Optional,
   Output,
+  Renderer2,
   TemplateRef,
   ViewChild,
   ViewContainerRef,
@@ -78,7 +79,7 @@ export const SCROLL_THROTTLE_MS = 20;
 const PANEL_CLASS = 'tooltip-panel';
 
 /** Options used to bind passive event listeners. */
-const passiveListenerOptions = normalizePassiveListenerOptions({ passive: true });
+const passiveListenerOptions = { passive: true };
 
 /**
  * Time between the user putting the pointer on a tooltip
@@ -197,6 +198,8 @@ export class SbbTooltip implements OnDestroy, AfterViewInit {
   private _currentPosition: TooltipPosition;
   private readonly _cssClassPrefix: string = 'sbb';
   private _ariaDescriptionPending: boolean;
+  private _injector = inject(Injector);
+  private _renderer = inject(Renderer2);
 
   /** Allows the user to define the position of the tooltip relative to the parent element */
   @Input('sbbTooltipPosition')
@@ -329,12 +332,11 @@ export class SbbTooltip implements OnDestroy, AfterViewInit {
   @Input('sbbTooltipPanelClass')
   tooltipPanelClass: string | string[] | Set<string> | { [key: string]: any } = '';
 
-  /** Manually-bound passive event listeners. */
-  private readonly _passiveListeners: (readonly [string, EventListenerOrEventListenerObject])[] =
-    [];
-
   /** Reference to the current document. */
   private _document: Document;
+
+  /** Cleanup functions for manually-bound events. */
+  private readonly _eventCleanups: (() => void)[] = [];
 
   /** Timer started at the last `touchstart` event. */
   private _touchstartTimeout: null | ReturnType<typeof setTimeout> = null;
@@ -342,7 +344,8 @@ export class SbbTooltip implements OnDestroy, AfterViewInit {
   /** Emits when the component is destroyed. */
   private readonly _destroyed = new Subject<void>();
 
-  private _injector = inject(Injector);
+  /** Whether ngOnDestroyed has been called. */
+  private _isDestroyed = false;
 
   /** Predefined tooltip positions. */
   private readonly _tooltipPositions: Record<TooltipPosition, ConnectedPosition[]> = {
@@ -508,14 +511,13 @@ export class SbbTooltip implements OnDestroy, AfterViewInit {
       this._tooltipInstance = null;
     }
 
-    // Clean up the event listeners set in the constructor
-    this._passiveListeners.forEach(([event, listener]) => {
-      nativeElement.removeEventListener(event, listener, passiveListenerOptions);
-    });
-    this._passiveListeners.length = 0;
+    this._eventCleanups.forEach((cleanup) => cleanup());
+    this._eventCleanups.length = 0;
 
     this._destroyed.next();
     this._destroyed.complete();
+
+    this._isDestroyed = true;
 
     if (typeof this._message === 'string') {
       this._ariaDescriber.removeDescription(nativeElement, this._message, 'tooltip');
@@ -770,49 +772,62 @@ export class SbbTooltip implements OnDestroy, AfterViewInit {
   /** Binds the pointer events to the tooltip trigger. */
   private _setupPointerEnterEventsIfNeeded() {
     // Optimization: Defer hooking up events if there's no message or the tooltip is disabled.
-    if (
-      this._disabled ||
-      !this.message ||
-      !this._viewInitialized ||
-      this._passiveListeners.length
-    ) {
+    if (this._disabled || !this.message || !this._viewInitialized || this._eventCleanups.length) {
       return;
     }
 
+    const element = this._elementRef.nativeElement;
+
     if (this.trigger === 'click') {
-      this._passiveListeners.push(['click', () => this.show(0)]);
+      this._eventCleanups.push(
+        _bindEventWithOptions(
+          this._renderer,
+          element,
+          'click',
+          () => this.show(0),
+          passiveListenerOptions,
+        ),
+      );
     }
     // The mouse events shouldn't be bound on mobile devices, because they can prevent the
     // first tap from firing its click event or can cause the tooltip to open for clicks.
     else if (this._platformSupportsMouseEvents()) {
-      this._passiveListeners.push([
-        'mouseenter',
-        () => {
-          this._setupPointerExitEventsIfNeeded();
-          this.show();
-        },
-      ]);
+      this._eventCleanups.push(
+        _bindEventWithOptions(
+          this._renderer,
+          element,
+          'mouseenter',
+          () => {
+            this._setupPointerExitEventsIfNeeded();
+            this.show();
+          },
+          passiveListenerOptions,
+        ),
+      );
     } else if (this.touchGestures !== 'off') {
       this._disableNativeGesturesIfNecessary();
 
-      this._passiveListeners.push([
-        'touchstart',
-        () => {
-          // Note that it's important that we don't `preventDefault` here,
-          // because it can prevent click events from firing on the element.
-          this._setupPointerExitEventsIfNeeded();
-          if (this._touchstartTimeout) {
-            clearTimeout(this._touchstartTimeout);
-          }
-          this._touchstartTimeout = setTimeout(() => {
-            this._touchstartTimeout = null;
-            this.show();
-          }, LONGPRESS_DELAY);
-        },
-      ]);
+      this._eventCleanups.push(
+        _bindEventWithOptions(
+          this._renderer,
+          element,
+          'touchstart',
+          () => {
+            // Note that it's important that we don't `preventDefault` here,
+            // because it can prevent click events from firing on the element.
+            this._setupPointerExitEventsIfNeeded();
+            if (this._touchstartTimeout) {
+              clearTimeout(this._touchstartTimeout);
+            }
+            this._touchstartTimeout = setTimeout(() => {
+              this._touchstartTimeout = null;
+              this.show();
+            }, LONGPRESS_DELAY);
+          },
+          passiveListenerOptions,
+        ),
+      );
     }
-
-    this._addListeners(this._passiveListeners);
   }
 
   private _setupPointerExitEventsIfNeeded() {
@@ -821,19 +836,29 @@ export class SbbTooltip implements OnDestroy, AfterViewInit {
     }
     this._pointerExitEventsInitialized = true;
 
-    const exitListeners: (readonly [string, EventListenerOrEventListenerObject])[] = [];
+    const element = this._elementRef.nativeElement;
+
     if (this._platformSupportsMouseEvents()) {
-      exitListeners.push(
-        [
+      this._eventCleanups.push(
+        _bindEventWithOptions(
+          this._renderer,
+          element,
           'mouseleave',
           (event) => {
-            const newTarget = (event as MouseEvent).relatedTarget as Node | null;
+            const newTarget = event.relatedTarget as Node | null;
             if (!newTarget || !this._overlayRef?.overlayElement.contains(newTarget)) {
               this.hide();
             }
           },
-        ],
-        ['wheel', (event) => this._wheelListener(event as WheelEvent)],
+          passiveListenerOptions,
+        ),
+        _bindEventWithOptions(
+          this._renderer,
+          element,
+          'wheel',
+          (event) => this._wheelListener(event),
+          passiveListenerOptions,
+        ),
       );
     } else if (this.touchGestures !== 'off') {
       this._disableNativeGesturesIfNecessary();
@@ -844,17 +869,23 @@ export class SbbTooltip implements OnDestroy, AfterViewInit {
         this.hide(this._defaultOptions.touchendHideDelay);
       };
 
-      exitListeners.push(['touchend', touchendListener], ['touchcancel', touchendListener]);
+      this._eventCleanups.push(
+        _bindEventWithOptions(
+          this._renderer,
+          element,
+          'touchend',
+          touchendListener,
+          passiveListenerOptions,
+        ),
+        _bindEventWithOptions(
+          this._renderer,
+          element,
+          'touchcancel',
+          touchendListener,
+          passiveListenerOptions,
+        ),
+      );
     }
-
-    this._addListeners(exitListeners);
-    this._passiveListeners.push(...exitListeners);
-  }
-
-  private _addListeners(listeners: (readonly [string, EventListenerOrEventListenerObject])[]) {
-    listeners.forEach(([event, listener]) => {
-      this._elementRef.nativeElement.addEventListener(event, listener, passiveListenerOptions);
-    });
   }
 
   private _platformSupportsMouseEvents() {
@@ -915,23 +946,28 @@ export class SbbTooltip implements OnDestroy, AfterViewInit {
     this._ariaDescriptionPending = true;
     this._ariaDescriber.removeDescription(this._elementRef.nativeElement, oldMessage, 'tooltip');
 
-    this._ngZone.runOutsideAngular(() => {
-      // The `AriaDescriber` has some functionality that avoids adding a description if it's the
-      // same as the `aria-label` of an element, however we can't know whether the tooltip trigger
-      // has a data-bound `aria-label` or when it'll be set for the first time. We can avoid the
-      // issue by deferring the description by a tick so Angular has time to set the `aria-label`.
-      Promise.resolve().then(() => {
-        this._ariaDescriptionPending = false;
+    // The `AriaDescriber` has some functionality that avoids adding a description if it's the
+    // same as the `aria-label` of an element, however we can't know whether the tooltip trigger
+    // has a data-bound `aria-label` or when it'll be set for the first time. We can avoid the
+    // issue by deferring the description by a tick so Angular has time to set the `aria-label`.
+    if (!this._isDestroyed) {
+      afterNextRender(
+        {
+          write: () => {
+            this._ariaDescriptionPending = false;
 
-        if (this.message && !this.disabled) {
-          this._ariaDescriber.describe(
-            this._elementRef.nativeElement,
-            this.message as string,
-            'tooltip',
-          );
-        }
-      });
-    });
+            if (this.message && !this.disabled) {
+              this._ariaDescriber.describe(
+                this._elementRef.nativeElement,
+                this.message as string,
+                'tooltip',
+              );
+            }
+          },
+        },
+        { injector: this._injector },
+      );
+    }
   }
 }
 

@@ -9,48 +9,39 @@ on:
 permissions:
   packages: write
 
+env:
+  IMAGE_REPO: ghcr.io/${{ github.repository }}/showcase
+
+
 jobs:
-  preview-image:
+  tag-resolver:
     runs-on: ubuntu-latest
     env:
       START_VERSION: 11
-      IMAGE_URL: ghcr.io/sbb-design-systems/sbb-angular/showcase
+    outputs:
+      versions: ${{ steps.versions.outputs.versions }}
     steps:
       - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4
         with:
           fetch-depth: 0
           fetch-tags: true
-      - name: 'Container: Login to GitHub Container Repository'
-        run: echo ${{ secrets.GITHUB_TOKEN }} | docker login ghcr.io --username ${{ github.actor }} --password-stdin
-      - name: Regenerate latest container images to keep them up to date
+      - name: Find latest tags from major versions
+        id: versions
         run: |
-          majorVersion=$START_VERSION
-          echo "Starting image regeneration with version $majorVersion"
+          ./scripts/find-major-versions.sh >> "$GITHUB_OUTPUT"
 
-          while : ; do
-            version=$(git tag --sort=v:refname -l "$majorVersion.*.*" | tail -1)
-            [[ "$version" != "" ]] || break
-          
-            image="$IMAGE_URL:$version"
-            echo ""
-            echo "Regenerating $image"
-            echo ""
-          
-            (( $majorVersion < 13 )) && target=initless || target=init  
-            docker build \
-              --tag tmp \
-              --build-arg BASE="$image" \
-              --file .github/Dockerfile.regenerate \
-              --target $target \
-              .
-            docker tag tmp "$image"
-            docker push "$image"
-          
-            echo ""
-            echo "Finished regenerating $image"
-            echo ""
-          
-            majorVersion=$((majorVersion+1))
-          done
+  regenerate-image:
+    runs-on: ubuntu-latest
+    needs: tag-resolver
+    strategy:
+      matrix:
+        version: ${{ fromJSON(needs.tag-resolver.outputs.versions) }}
+    steps:
+      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4
+      - uses: ./.github/actions/setup-mint
+      - run: |
+          echo "${{ secrets.GITHUB_TOKEN }}" | docker login ghcr.io -u $ --password-stdin
+          ./scripts/regenerate-image.sh
         env:
           DOCKER_BUILDKIT: 1
+          VERSION: ${{ matrix.version }}

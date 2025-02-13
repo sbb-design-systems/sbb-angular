@@ -2,6 +2,23 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [19.1.4](https://github.com/sbb-design-systems/sbb-angular/compare/19.1.3...19.1.4) (2025-02-12)
+
+
+### Bug Fixes
+
+* **angular/menu:** remove dependency on animations module ([#2472](https://github.com/sbb-design-systems/sbb-angular/issues/2472)) ([b9b5ff8](https://github.com/sbb-design-systems/sbb-angular/commit/b9b5ff884b75f613c41a11e202cc6fc5a143cb5f))
+* **deps:** update angular to v19.1.5 ([f88084c](https://github.com/sbb-design-systems/sbb-angular/commit/f88084c9313eb628cfa798d0ee8d3abe251f174e))
+* **deps:** update dependency @angular/cdk to v19.1.2 ([eda9014](https://github.com/sbb-design-systems/sbb-angular/commit/eda90147859642ede8443dc67afd6fa121ec1c18))
+
+### [19.1.3](https://github.com/sbb-design-systems/sbb-angular/compare/19.1.2...19.1.3) (2025-01-20)
+
+
+### Bug Fixes
+
+* **angular/input:** show spin buttons for number input ([#2473](https://github.com/sbb-design-systems/sbb-angular/issues/2473)) ([ebbbaa3](https://github.com/sbb-design-systems/sbb-angular/commit/ebbbaa3c503cc52f5c7cedc7a59c68325f0b6abe)), closes [#2380](https://github.com/sbb-design-systems/sbb-angular/issues/2380)
+* **angular/sidebar:** switch away from animations module ([#2475](https://github.com/sbb-design-systems/sbb-angular/issues/2475)) ([c1af9c9](https://github.com/sbb-design-systems/sbb-angular/commit/c1af9c9f635d03774b2627470fddba1365469203))
+
 ### [19.1.2](https://github.com/sbb-design-systems/sbb-angular/compare/19.1.1...19.1.2) (2025-01-13)
 
 

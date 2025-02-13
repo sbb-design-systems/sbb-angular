@@ -6,7 +6,8 @@ $numberOfItems: 5;
 $time: 0.23s;
 
 // (size, width, height, gutterWidth, perspective)
-$sizes: (tiny, 0.53333em, 0.33333em, 0.2em, 6em), (small, 1em, 0.6em, 0.2em, 8em),
+$sizes:
+  (tiny, 0.53333em, 0.33333em, 0.2em, 6em), (small, 1em, 0.6em, 0.2em, 8em),
   (medium, 2em, 1.2em, 0.3em, 12em), (big, 3em, 1.8em, 0.46666em, 16.66666em),
   (fullbox, 2em, 1.2em, 0.33333em, 11.33333em), (inline, 0.53333em, 0.33333em, 0.2em, 6em);
 

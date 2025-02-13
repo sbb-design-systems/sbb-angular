@@ -92,16 +92,21 @@ jobs:
             environment_url: `https://${context.repo.repo}-${environment}.app.sbb.ch`,
           });
 
-    - name: "Container: Login to GitHub Container Repository"
-      run: echo ${{ secrets.GITHUB_TOKEN }} | docker login ghcr.io --username ${{ github.actor }} --password-stdin
-    - name: "Container: Build image"
-      run: docker build --tag $IMAGE_REPO:$IMAGE_TAG --tag $IMAGE_REPO:$IMAGE_PR_TAG .
+    - uses: ./.github/actions/setup-mint
+    - name: Create and publish container image
+      run: |
+        echo "${{ secrets.GITHUB_TOKEN }}" | docker login ghcr.io -u $ --password-stdin
+        docker build --tag $IMAGE_REPO:$IMAGE_TAG-fat .
+        mint slim \
+          --target $IMAGE_REPO:$IMAGE_TAG-fat \
+          --tag $IMAGE_REPO:$IMAGE_TAG \
+          --preserve-path /usr/share/nginx/html
+        docker push $IMAGE_REPO:$IMAGE_TAG
+        docker tag $IMAGE_REPO:$IMAGE_TAG $IMAGE_REPO:$IMAGE_PR_TAG
+        docker push $IMAGE_REPO:$IMAGE_PR_TAG
+        docker image list
       env:
         DOCKER_BUILDKIT: 1
-    - name: "Container: Publish images"
-      run: |
-        docker push $IMAGE_REPO:$IMAGE_TAG
-        docker push $IMAGE_REPO:$IMAGE_PR_TAG
 
     - name: "Add 'preview-available' label"
       # This label is used for filtering deployments in ArgoCD
