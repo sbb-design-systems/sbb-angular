@@ -42,13 +42,11 @@ import {
   EventEmitter,
   HostListener,
   inject,
-  Inject,
   InjectionToken,
   Injector,
   Input,
   NgZone,
   OnDestroy,
-  Optional,
   Output,
   Renderer2,
   TemplateRef,
@@ -183,6 +181,18 @@ export class SbbTooltipChangeEvent {
   },
 })
 export class SbbTooltip implements OnDestroy, AfterViewInit {
+  private _overlay = inject(Overlay);
+  private _elementRef = inject<ElementRef<HTMLElement>>(ElementRef);
+  private _scrollDispatcher = inject(ScrollDispatcher);
+  private _viewContainerRef = inject(ViewContainerRef);
+  private _ngZone = inject(NgZone);
+  private _platform = inject(Platform);
+  private _ariaDescriber = inject(AriaDescriber);
+  private _focusMonitor = inject(FocusMonitor);
+  private _defaultOptions = inject<SbbTooltipDefaultOptions>(SBB_TOOLTIP_DEFAULT_OPTIONS, {
+    optional: true,
+  })!;
+
   _overlayRef: OverlayRef | null;
   _tooltipInstance: TooltipComponent | null;
 
@@ -190,7 +200,7 @@ export class SbbTooltip implements OnDestroy, AfterViewInit {
   private _position: TooltipPosition = 'below';
   private _disabled: boolean = false;
   private _tooltipClass: string | string[] | Set<string> | { [key: string]: any };
-  private _scrollStrategy: () => ScrollStrategy;
+  private _scrollStrategy = inject(SBB_TOOLTIP_SCROLL_STRATEGY);
   private _viewInitialized = false;
   private _pointerExitEventsInitialized = false;
   private readonly _tooltipComponent = TooltipComponent;
@@ -333,7 +343,7 @@ export class SbbTooltip implements OnDestroy, AfterViewInit {
   tooltipPanelClass: string | string[] | Set<string> | { [key: string]: any } = '';
 
   /** Reference to the current document. */
-  private _document: Document;
+  private _document = inject(DOCUMENT);
 
   /** Cleanup functions for manually-bound events. */
   private readonly _eventCleanups: (() => void)[] = [];
@@ -433,23 +443,9 @@ export class SbbTooltip implements OnDestroy, AfterViewInit {
   @Output() readonly dismissed: EventEmitter<SbbTooltipChangeEvent> =
     new EventEmitter<SbbTooltipChangeEvent>();
 
-  constructor(
-    private _overlay: Overlay,
-    private _elementRef: ElementRef<HTMLElement>,
-    private _scrollDispatcher: ScrollDispatcher,
-    private _viewContainerRef: ViewContainerRef,
-    private _ngZone: NgZone,
-    private _platform: Platform,
-    private _ariaDescriber: AriaDescriber,
-    private _focusMonitor: FocusMonitor,
-    @Inject(SBB_TOOLTIP_SCROLL_STRATEGY) scrollStrategy: any,
-    @Optional()
-    @Inject(SBB_TOOLTIP_DEFAULT_OPTIONS)
-    private _defaultOptions: SbbTooltipDefaultOptions,
-    @Inject(DOCUMENT) document: any,
-  ) {
-    this._scrollStrategy = scrollStrategy;
-    this._document = document;
+  constructor(...args: unknown[]);
+  constructor() {
+    const _defaultOptions = this._defaultOptions;
 
     if (_defaultOptions) {
       this._showDelay = _defaultOptions.showDelay;
@@ -989,6 +985,12 @@ export class SbbTooltip implements OnDestroy, AfterViewInit {
   imports: [NgClass, NgTemplateOutlet, SbbIcon, AsyncPipe],
 })
 export class TooltipComponent implements OnDestroy {
+  _elementRef: ElementRef<HTMLElement> = inject<ElementRef<HTMLElement>>(ElementRef);
+  protected _focusTrapFactory: ConfigurableFocusTrapFactory = inject(ConfigurableFocusTrapFactory);
+  private _changeDetectorRef = inject(ChangeDetectorRef);
+  private _focusMonitor = inject(FocusMonitor);
+  private _breakpointObserver = inject(BreakpointObserver);
+
   /** Stream that emits whether the user has a handset-sized display.  */
   _isHandset: Observable<BreakpointState>;
 
@@ -1031,7 +1033,7 @@ export class TooltipComponent implements OnDestroy {
 
   _config?: Pick<SbbTooltipDefaultOptions, 'autoFocus' | 'restoreFocus'> = {};
 
-  protected _document: Document;
+  protected _document: Document = inject(DOCUMENT);
 
   /** Whether animations are currently disabled. */
   private _animationsDisabled: boolean;
@@ -1063,17 +1065,11 @@ export class TooltipComponent implements OnDestroy {
   /** Name of the hide animation and the class that toggles it. */
   private readonly _hideAnimation: string = 'sbb-tooltip-container-hide';
 
-  constructor(
-    public _elementRef: ElementRef<HTMLElement>,
-    protected _focusTrapFactory: ConfigurableFocusTrapFactory,
-    private _changeDetectorRef: ChangeDetectorRef,
-    private _focusMonitor: FocusMonitor,
-    private _breakpointObserver: BreakpointObserver,
-    @Optional() @Inject(DOCUMENT) document: any,
-    @Optional() @Inject(ANIMATION_MODULE_TYPE) animationMode?: string,
-  ) {
+  constructor(...args: unknown[]);
+
+  constructor() {
+    const animationMode = inject(ANIMATION_MODULE_TYPE, { optional: true });
     this._animationsDisabled = animationMode === 'NoopAnimations';
-    this._document = document;
     this._isHandset = this._breakpointObserver.observe(Breakpoints.MobileDevice);
   }
 
