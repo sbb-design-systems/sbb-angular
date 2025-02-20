@@ -46,12 +46,12 @@ export const SBB_RADIO_GROUP_CONTROL_VALUE_ACCESSOR: any = {
 };
 
 /** Change event object emitted by SbbRadio and SbbRadioGroup. */
-export class SbbRadioChange {
+export class SbbRadioChange<T = any> {
   constructor(
     /** The SbbRadioButton that emits the change event. */
     public source: _SbbRadioButtonBase,
     /** The value of the SbbRadioButton. */
-    public value: any,
+    public value: T,
   ) {}
 }
 
