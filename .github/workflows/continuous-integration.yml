@@ -209,7 +209,8 @@ jobs:
         mint slim \
           --target $IMAGE_REPO:rev-main-fat \
           --tag $IMAGE_REPO:rev-main \
-          --preserve-path /usr/share/nginx/html
+          --preserve-path /usr/share/nginx/html \
+          --include-new false
         docker push $IMAGE_REPO:rev-main
         docker image list
       env:
