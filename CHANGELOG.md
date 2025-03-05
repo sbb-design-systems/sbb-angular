@@ -2,6 +2,14 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [19.1.5](https://github.com/sbb-design-systems/sbb-angular/compare/19.1.4...19.1.5) (2025-03-05)
+
+
+### Bug Fixes
+
+* **build**: require at least cdk version 19.1.0, fix StackBlitz
+* **angular/radio:** optional typing of `SbbRadioChange` ([#2492](https://github.com/sbb-design-systems/sbb-angular/issues/2492)) ([85fd050](https://github.com/sbb-design-systems/sbb-angular/commit/85fd05019dd925e208e28dd3f21a8a0953d9dbce))
+
 ### [19.1.4](https://github.com/sbb-design-systems/sbb-angular/compare/19.1.3...19.1.4) (2025-02-12)
 
 
