@@ -856,7 +856,7 @@ describe('SbbProcessflow', () => {
       fixture.detectChanges();
       expect(processflow.steps.map((step) => step.interacted)).toEqual([true, true, false]);
 
-      processflow.next();
+      processflow.previous();
       fixture.detectChanges();
       expect(processflow.steps.map((step) => step.interacted)).toEqual([true, true, true]);
     });
@@ -885,11 +885,35 @@ describe('SbbProcessflow', () => {
       fixture.detectChanges();
       expect(interactedSteps).toEqual([0, 1]);
 
-      processflow.next();
+      processflow.previous();
       fixture.detectChanges();
       expect(interactedSteps).toEqual([0, 1, 2]);
       subscription.unsubscribe();
     });
+  });
+
+  it('should not emit interacted event if selectedIndex does not change', () => {
+    const fixture = createComponent(SimpleSbbHorizontalStepperApp);
+    fixture.detectChanges();
+
+    const processflow: SbbProcessflow = fixture.debugElement.query(
+      By.directive(SbbProcessflow),
+    ).componentInstance;
+    const interactedSteps: number[] = [];
+    const subscription = merge(...processflow.steps.map((step) => step.interactedStream)).subscribe(
+      (step) => interactedSteps.push(processflow.steps.toArray().indexOf(step as SbbStep)),
+    );
+
+    expect(interactedSteps).toEqual([]);
+
+    processflow.next();
+    fixture.detectChanges();
+    expect(interactedSteps).toEqual([0]);
+
+    processflow.selectedIndex = 1;
+    fixture.detectChanges();
+    expect(interactedSteps).toEqual([0]);
+    subscription.unsubscribe();
   });
 
   describe('linear processflow with valid step', () => {
