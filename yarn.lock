@@ -16866,10 +16866,10 @@ shell-quote@^1.7.3, shell-quote@^1.8.1:
   resolved "https://registry.yarnpkg.com/shell-quote/-/shell-quote-1.8.1.tgz#6dbf4db75515ad5bac63b4f1894c3a154c766680"
   integrity sha512-6j1W9l1iAs/4xYBI1SYOVZyFcCis9b4KCLQ8fgAGG07QvzaRLVVRQvAy85yNmmZSjYjg4MWh4gNvlPujU/5LpA==
 
-shelljs@0.9.1:
-  version "0.9.1"
-  resolved "https://registry.yarnpkg.com/shelljs/-/shelljs-0.9.1.tgz#aab9426a54c27c093d5eca428b5fa559944460d6"
-  integrity sha512-ngPynK9u9OmsL2DttaTOhEPahyAjVbjIwCK3R+2V9YDq0/equpq7hVz3XrnfIjAk1thN5ET5mEIzAmocmV6i+Q==
+shelljs@0.9.2:
+  version "0.9.2"
+  resolved "https://registry.yarnpkg.com/shelljs/-/shelljs-0.9.2.tgz#a8ac724434520cd7ae24d52071e37a18ac2bb183"
+  integrity sha512-S3I64fEiKgTZzKCC46zT/Ib9meqofLrQVbpSswtjFfAVDW+AZ54WTnAM/3/yENoxz/V1Cy6u3kiiEbQ4DNphvw==
   dependencies:
     execa "^1.0.0"
     fast-glob "^3.3.2"
