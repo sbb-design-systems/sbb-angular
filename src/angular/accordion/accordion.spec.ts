@@ -3,7 +3,6 @@ import { DOWN_ARROW, END, HOME, UP_ARROW } from '@angular/cdk/keycodes';
 import { Component, QueryList, ViewChild, ViewChildren } from '@angular/core';
 import { inject, TestBed, waitForAsync } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {
   createKeyboardEvent,
   dispatchEvent,
@@ -23,7 +22,7 @@ describe('AccordionDirective', () => {
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-      imports: [BrowserAnimationsModule, SbbIconTestingModule],
+      imports: [SbbIconTestingModule],
     });
 
     inject([FocusMonitor], (fm: FocusMonitor) => {
