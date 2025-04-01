@@ -29,6 +29,7 @@ import { filter, map, take, takeUntil } from 'rxjs/operators';
 
 import { POI_CATEGORIES, STYLE_IDS } from '../shared/config';
 import { markers } from '../shared/markers';
+import { bnMonbijouBundesplatz } from '../shared/routes/bern-foot';
 import { bielLyssRoutes, bielLyssRoutesOptions } from '../shared/routes/biel-lyss';
 import { bnLsRoutes, bnLsRoutesOptions } from '../shared/routes/bn-ls';
 import { tripBeSh } from '../shared/trip/be-sh';
@@ -366,6 +367,12 @@ const JOURNEY_MAPS_DEFAULT_ROUTING_OPTIONS: {
     value: {
       routes: bielLyssRoutes,
       routesMetaInformations: bielLyssRoutesOptions,
+    },
+  },
+  {
+    label: 'Bern (foot) Monbijou - Bundesplatz',
+    value: {
+      routes: bnMonbijouBundesplatz,
     },
   },
 ];
