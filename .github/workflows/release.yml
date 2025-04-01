@@ -91,7 +91,8 @@ jobs:
         mint slim \
           --target $IMAGE_REPO:$VERSION-fat \
           --tag $IMAGE_REPO:$VERSION \
-          --preserve-path /usr/share/nginx/html
+          --preserve-path /usr/share/nginx/html \
+          --include-new false
         docker push $IMAGE_REPO:$VERSION
         docker tag $IMAGE_REPO:$VERSION $IMAGE_REPO:latest
         docker push $IMAGE_REPO:latest

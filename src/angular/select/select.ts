@@ -129,12 +129,12 @@ export const SBB_SELECT_SCROLL_STRATEGY_PROVIDER = {
 };
 
 /** Change event object that is emitted when the select value has changed. */
-export class SbbSelectChange {
+export class SbbSelectChange<T = any> {
   constructor(
     /** Reference to the select that emitted the change event. */
     public source: SbbSelect,
     /** Current value of the select that emitted the event. */
-    public value: any,
+    public value: T,
   ) {}
 }
 

@@ -37,7 +37,8 @@ docker build \
 mint slim \
   --target tmp-fat \
   --tag tmp \
-  --preserve-path /usr/share/nginx/html
+  --preserve-path /usr/share/nginx/html \
+  --include-new false
 
 docker tag tmp "$image"
 docker push "$image"

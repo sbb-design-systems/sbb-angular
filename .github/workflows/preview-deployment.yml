@@ -100,7 +100,8 @@ jobs:
         mint slim \
           --target $IMAGE_REPO:$IMAGE_TAG-fat \
           --tag $IMAGE_REPO:$IMAGE_TAG \
-          --preserve-path /usr/share/nginx/html
+          --preserve-path /usr/share/nginx/html \
+          --include-new false
         docker push $IMAGE_REPO:$IMAGE_TAG
         docker tag $IMAGE_REPO:$IMAGE_TAG $IMAGE_REPO:$IMAGE_PR_TAG
         docker push $IMAGE_REPO:$IMAGE_PR_TAG
