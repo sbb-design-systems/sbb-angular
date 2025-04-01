@@ -344,33 +344,33 @@ const JOURNEY_MAPS_DEFAULT_ROUTING_OPTIONS: {
 }[] = [
   { label: '(none)', value: undefined },
   {
-    label: 'Zürich - Bern, Wyleregg',
+    label: 'trip: Zürich - Bern, Wyleregg',
     value: { trip: tripZhBeWyleregg },
   },
   {
-    label: 'Zürich - Schaffhausen, Waldfriedhof',
+    label: 'trip: Zürich - Schaffhausen, Waldfriedhof',
     value: { trip: tripZhShWaldfriedhof },
   },
   {
-    label: 'Bern - Schaffhausen',
+    label: 'trip: Bern - Schaffhausen',
     value: { trip: tripBeSh },
   },
   {
-    label: 'Bern - Lausanne',
+    label: 'routes: Bern - Lausanne',
     value: {
       routes: bnLsRoutes,
       routesMetaInformations: bnLsRoutesOptions,
     },
   },
   {
-    label: 'Biel - Lyss',
+    label: 'route: Biel - Lyss',
     value: {
       routes: bielLyssRoutes,
       routesMetaInformations: bielLyssRoutesOptions,
     },
   },
   {
-    label: 'Bern (foot) Monbijou - Bundesplatz',
+    label: 'route (walk): Monbijou - Bundesplatz',
     value: {
       routes: bnMonbijouBundesplatz,
     },
