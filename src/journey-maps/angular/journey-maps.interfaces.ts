@@ -245,7 +245,7 @@ export type SbbSelectableFeatureCollection = FeatureCollection & {
 export interface SbbRouteMetaInformation {
   /** ID that matches a route in <code>SbbRoutesOptions.routes</code>. */
   id: string;
-  /** Color of the route. See https://maplibre.org/maplibre-gl-js-docs/style-spec/types/ for color-format. */
+  /** Color of the route. See https://maplibre.org/maplibre-style-spec/types/ for color-format. */
   routeColor?: string;
   /** Midpoint-Marker configuration. Position must be given in midpoint-feature from Journey-Maps response. */
   midpointMarkerConfiguration?: Omit<SbbMarker, 'id' | 'position'>;
