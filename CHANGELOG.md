@@ -2,6 +2,18 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [19.1.6](https://github.com/sbb-design-systems/sbb-angular/compare/19.1.5...19.1.6) (2025-04-07)
+
+
+### Bug Fixes
+
+* **angular/accordion:** remove dependency on animations module ([#2509](https://github.com/sbb-design-systems/sbb-angular/issues/2509)) ([d0e934d](https://github.com/sbb-design-systems/sbb-angular/commit/d0e934d7f5c16bd6b63e3ff00231cbe4f4918295))
+
+
+### Documentation
+
+* **journey-maps:** add footway example for journey routes ([#2511](https://github.com/sbb-design-systems/sbb-angular/issues/2511)) ([db92d9d](https://github.com/sbb-design-systems/sbb-angular/commit/db92d9dc19d70cc7c5e27b625731b0508afb41a3))
+
 ### [19.1.5](https://github.com/sbb-design-systems/sbb-angular/compare/19.1.4...19.1.5) (2025-03-05)
 
 
