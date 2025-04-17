@@ -1,7 +1,7 @@
 name: Question
 description: Ask a question to our developers and user experience architects
 title: "[Question]: "
-labels: ['type: question']
+type: 'Question'
 assignees:
   - octocat
 body:
@@ -14,7 +14,7 @@ body:
           required: true
         - label: I agree to follow the [Code of Conduct](https://github.com/sbb-design-systems/sbb-angular/blob/main/CODE_OF_CONDUCT.md) that this project adheres to.
           required: true
-        - label: I have searched the [issue tracker](https://github.com/orgs/sbb-design-systems/projects/1) for an issue that matches the one I want to file, without success. 
+        - label: I have searched the [issue tracker](https://github.com/orgs/sbb-design-systems/projects/1) for an issue that matches the one I want to file, without success.
           required: true
   - type: markdown
     attributes:
@@ -27,7 +27,7 @@ body:
     attributes:
       label: Your Question
     validations:
-      required: true 
+      required: true
   - type: textarea
     id: relevant-information
     attributes:
@@ -44,4 +44,3 @@ body:
 
 
 
-      
