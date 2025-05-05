@@ -60,19 +60,22 @@ build --flag_alias=partial_compilation=@npm//@angular/bazel/src:partial_compilat
 ##################################
 build --define=angular_ivy_enabled=True
 
-#######################
-# Remote Disk Caching #
-#######################
+##################
+# Remote Caching #
+##################
 build --disk_cache=~/.bazel-cache/sbb-angular
 build --remote_accept_cached=true
 build --remote_upload_local_results=false
 
-######################################
-# Remote Disk Caching writes support #
-# Turn on these settings with        #
-#  --config=remote-disk-caching      #
-######################################
-build:remote-disk-caching --remote_upload_local_results=true
+build:github-cache --disk_cache=
+build:github-cache --remote_cache=http://localhost:31385
+
+#################################
+# Remote Caching writes support #
+# Turn on these settings with   #
+#  --config=trusted-build       #
+#################################
+build:trusted-build --remote_upload_local_results=true
 
 ################################
 # --config=debug               #

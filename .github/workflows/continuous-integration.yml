@@ -13,7 +13,8 @@ env:
   BAZEL_CACHE_COMBINED_MAX_SIZE: 600MB
   BAZEL_CACHE_VERSION: v3
 
-permissions: read-all
+permissions:
+  packages: write
 
 jobs:
   lint:
@@ -31,6 +32,15 @@ jobs:
 
   build:
     runs-on: ubuntu-latest
+    services:
+      cache:
+        image: ghcr.io/kyubisation/bazel-cache-oci-registry:latest
+        env:
+          repository: ghcr.io/${{ github.repository }}/bazel-cache
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+        ports:
+          - 31385:31385
     steps:
     - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4
     - name: "Bazel: Copy .bazelrc to user home"
@@ -41,23 +51,21 @@ jobs:
     - name: "Yarn: Install"
       uses: ./.github/actions/yarn-install
 
-    - name: "Bazel: Restore remote cache"
-      if: ${{ success() || failure() }}
-      uses: ./.github/actions/download-workflow-bazel-cache
-      with:
-        key: combined
     - name: "Bazel: Build"
       run: yarn -s build all
       timeout-minutes: 45
-    - name: "Bazel: Clean bazel disk cache"
-      if: ${{ success() || failure() }}
-      run: yarn -s bazel:cache clean --individualMaxSize=${{ env.BAZEL_CACHE_INTERMEDIATE_FILE_MAX_SIZE }}
-    - name: "Bazel: Upload cache"
-      if: ${{ success() || failure() }}
-      uses: ./.github/actions/upload-intermediate-bazel-cache
 
   packages:
     runs-on: ubuntu-latest
+    services:
+      cache:
+        image: ghcr.io/kyubisation/bazel-cache-oci-registry:latest
+        env:
+          repository: ghcr.io/${{ github.repository }}/bazel-cache
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+        ports:
+          - 31385:31385
     steps:
     - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4
     - name: "Bazel: Copy .bazelrc to user home"
@@ -68,24 +76,21 @@ jobs:
     - name: "Yarn: Install"
       uses: ./.github/actions/yarn-install
 
-    - name: "Bazel: Restore remote cache"
-      if: ${{ success() || failure() }}
-      uses: actions/cache@v4
-      with:
-        path: ~/.bazel-cache/sbb-angular
-        key: bazel-packages-${{ env.BAZEL_CACHE_VERSION }}-${{ github.sha }}-${{ github.run_attempt }}
-        restore-keys: |
-          bazel-packages-${{ env.BAZEL_CACHE_VERSION }}-${{ github.sha }}-
-          bazel-packages-${{ env.BAZEL_CACHE_VERSION }}-
     - name: "Bazel: Build packages"
       run: yarn -s build packages
-    - name: "Bazel: Clean bazel disk cache"
-      if: ${{ success() || failure() }}
-      run: yarn -s bazel:cache clean --maxSize=${{ env.BAZEL_CACHE_PACKAGES_MAX_SIZE }}
 
   integrity:
     runs-on: ubuntu-latest
     needs: packages
+    services:
+      cache:
+        image: ghcr.io/kyubisation/bazel-cache-oci-registry:latest
+        env:
+          repository: ghcr.io/${{ github.repository }}/bazel-cache
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+        ports:
+          - 31385:31385
     steps:
       - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4
       - uses: actions/setup-node@v4
@@ -93,11 +98,6 @@ jobs:
           node-version-file: '.nvmrc'
       - name: "Yarn: Install"
         uses: ./.github/actions/yarn-install
-      - name: "Bazel: Restore remote cache"
-        if: ${{ success() || failure() }}
-        uses: ./.github/actions/download-workflow-bazel-cache
-        with:
-          key: packages
 
       - name: "Integrity: Verify workspace integrity"
         run: yarn integrity
@@ -105,9 +105,18 @@ jobs:
         run: git diff --exit-code
 
   test:
+    runs-on: ubuntu-22.04
     if: ${{ success() || failure() }}
     needs: build
-    runs-on: ubuntu-22.04
+    services:
+      cache:
+        image: ghcr.io/kyubisation/bazel-cache-oci-registry:latest
+        env:
+          repository: ghcr.io/${{ github.repository }}/bazel-cache
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+        ports:
+          - 31385:31385
     steps:
     - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4
     - name: "Bazel: Copy .bazelrc to user home"
@@ -118,24 +127,22 @@ jobs:
     - name: "Yarn: Install"
       uses: ./.github/actions/yarn-install
 
-    - name: "Bazel: Download cache"
-      if: ${{ success() || failure() }}
-      uses: ./.github/actions/download-intermediate-bazel-cache
     - name: "Bazel: Run local tests"
       run: bazelisk test src/... --build_tag_filters=-e2e --test_tag_filters=-e2e --build_tests_only
-    - name: "Bazel: Clean bazel disk cache"
-      if: ${{ success() || failure() }}
-      run: yarn -s bazel:cache clean --individualMaxSize=${{ env.BAZEL_CACHE_INTERMEDIATE_FILE_MAX_SIZE }}
-    - name: "Bazel: Upload cache"
-      if: ${{ success() || failure() }}
-      uses: ./.github/actions/upload-intermediate-bazel-cache
-      with:
-        key: bazel-cache-test
 
   showcase:
+    runs-on: ubuntu-latest
     if: ${{ success() || failure() }}
     needs: build
-    runs-on: ubuntu-latest
+    services:
+      cache:
+        image: ghcr.io/kyubisation/bazel-cache-oci-registry:latest
+        env:
+          repository: ghcr.io/${{ github.repository }}/bazel-cache
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+        ports:
+          - 31385:31385
     steps:
     - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4
     - name: "Bazel: Copy .bazelrc to user home"
@@ -146,22 +153,11 @@ jobs:
     - name: "Yarn: Install"
       uses: ./.github/actions/yarn-install
 
-    - name: "Bazel: Download cache"
-      if: ${{ success() || failure() }}
-      uses: ./.github/actions/download-intermediate-bazel-cache
     - name: "Bazel: Build showcase"
       if: ${{ success() || failure() }}
       run: yarn -s build showcase
       env:
         JM_API_KEY: ${{ secrets.JM_API_KEY }}
-    - name: "Bazel: Clean bazel disk cache"
-      if: ${{ success() || failure() }}
-      run: yarn -s bazel:cache clean --individualMaxSize=${{ env.BAZEL_CACHE_INTERMEDIATE_FILE_MAX_SIZE }}
-    - name: "Bazel: Upload cache"
-      if: ${{ success() || failure() }}
-      uses: ./.github/actions/upload-intermediate-bazel-cache
-      with:
-        key: bazel-cache-showcase
 
     - name: "Deploy: Insert JM_API_KEY"
       run: sed -i "s|</head>|<script>window.JM_API_KEY='$JM_API_KEY'</script></head>|" dist/releases/showcase/index.html
@@ -183,13 +179,20 @@ jobs:
         path: sbb-esta-angular-showcase.tgz
 
   publish-showcase:
+    runs-on: ubuntu-latest
     if: github.event_name == 'push' && github.ref == 'refs/heads/main'
     needs: showcase
-    runs-on: ubuntu-latest
-    permissions:
-      packages: write
     env:
       IMAGE_REPO: ghcr.io/${{ github.repository }}/showcase-preview
+    services:
+      cache:
+        image: ghcr.io/kyubisation/bazel-cache-oci-registry:latest
+        env:
+          repository: ghcr.io/${{ github.repository }}/bazel-cache
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+        ports:
+          - 31385:31385
     steps:
     - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4
     - name: "Download showcase artifact"
@@ -215,50 +218,3 @@ jobs:
         docker image list
       env:
         DOCKER_BUILDKIT: 1
-
-  merge-caches:
-    if: ${{ success() || failure() }}
-    needs: [test, showcase]
-    runs-on: ubuntu-latest
-    steps:
-    - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4
-    - uses: actions/setup-node@v4
-      with:
-        node-version-file: '.nvmrc'
-
-    - uses: actions/github-script@v7
-      with:
-        # Since we don't want to install the full package dependencies, we remove all dependencies that we don't need.
-        # We do this in order to reduce the time needed for this job.
-        script: |
-          const fs = require('fs');
-          let { name, version, devDependencies, scripts } = require('./package.json');
-          const packages = ['@actions/cache', '@types/node', 'ts-node', 'typescript'];
-          devDependencies = packages.reduce((deps, dep) => Object.assign(deps, { [dep]: devDependencies[dep] }), {});
-          scripts = { 'bazel:cache': scripts['bazel:cache'] };
-          fs.writeFileSync('./package.json', JSON.stringify({ name, version, devDependencies, scripts }), 'utf8');
-
-    - name: "Yarn: Install reduced dependencies"
-      run: yarn install --non-interactive
-
-    - name: "Bazel: Create cache directory"
-      run: mkdir -p ~/.bazel-cache/
-    - name: "Bazel: Download test cache"
-      if: ${{ success() || failure() }}
-      uses: ./.github/actions/download-intermediate-bazel-cache
-      with:
-        key: bazel-cache-test
-    - name: "Bazel: Download showcase cache"
-      if: ${{ success() || failure() }}
-      uses: ./.github/actions/download-intermediate-bazel-cache
-      with:
-        key: bazel-cache-showcase
-    - name: "Bazel: Clean bazel disk cache"
-      if: ${{ success() || failure() }}
-      run: yarn -s bazel:cache clean --maxSize=${{ env.BAZEL_CACHE_COMBINED_MAX_SIZE }} --individualMaxSize=${{ env.BAZEL_CACHE_FILE_MAX_SIZE }}
-
-    - name: "Bazel: Upload remote cache"
-      if: ${{ success() || failure() }}
-      uses: ./.github/actions/upload-workflow-bazel-cache
-      with:
-        key: combined

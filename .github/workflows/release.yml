@@ -15,6 +15,15 @@ permissions:
 jobs:
   packages:
     runs-on: ubuntu-latest
+    services:
+      cache:
+        image: ghcr.io/kyubisation/bazel-cache-oci-registry:latest
+        env:
+          repository: ghcr.io/${{ github.repository }}/bazel-cache
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+        ports:
+          - 31385:31385
     steps:
     - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4
     - name: "Bazel: Copy .bazelrc to user home"
@@ -27,11 +36,6 @@ jobs:
     - name: "Yarn: Install"
       uses: ./.github/actions/yarn-install
 
-    - name: "Bazel: Restore remote cache"
-      if: ${{ success() || failure() }}
-      uses: ./.github/actions/download-workflow-bazel-cache
-      with:
-        key: packages
     - name: "Bazel: Build packages"
       run: yarn -s build packages
 
@@ -62,6 +66,15 @@ jobs:
 
   showcase:
     runs-on: ubuntu-latest
+    services:
+      cache:
+        image: ghcr.io/kyubisation/bazel-cache-oci-registry:latest
+        env:
+          repository: ghcr.io/${{ github.repository }}/bazel-cache
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+        ports:
+          - 31385:31385
     steps:
     - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4
     - name: "Bazel: Copy .bazelrc to user home"
@@ -72,11 +85,6 @@ jobs:
     - name: "Yarn: Install"
       uses: ./.github/actions/yarn-install
 
-    - name: "Bazel: Restore remote cache"
-      if: ${{ success() || failure() }}
-      uses: ./.github/actions/download-workflow-bazel-cache
-      with:
-        key: combined
     - name: "Bazel: Build showcase"
       run: yarn -s build showcase
       env:
