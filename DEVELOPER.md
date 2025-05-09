@@ -37,7 +37,8 @@ following the steps above. This will add `bazel` and `bazelisk` to the global pa
 
 ### Generate Bazel files
 
-In order to automatically generate BUILD.bazel files, we implemented a schematic. You can run it with `yarn generate:bazel`.
+In order to automatically generate BUILD.bazel files, we implemented a schematic.
+You can run it with `yarn generate:bazel`.
 
 ## Running tests
 
