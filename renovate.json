@@ -16,6 +16,7 @@
   "ignoreDeps": [
     "@angular/bazel",
     "@types/marked",
+    "@types/minimatch",
     "@types/yargs",
     "rollup",
     "@rollup/plugin-commonjs",
@@ -26,6 +27,7 @@
     "dgeni-packages",
     "highlight.js",
     "marked",
+    "minimatch",
     "typescript",
     "yarn",
     "zone.js"

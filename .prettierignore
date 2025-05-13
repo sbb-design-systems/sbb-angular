@@ -15,3 +15,4 @@ CONTRIBUTING.md
 WORKSPACE
 src/showcase/assets/stack-blitz/*
 bazel-out
+pnpm-lock.yaml

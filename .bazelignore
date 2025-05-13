@@ -1,2 +1,8 @@
 dist
 node_modules
+
+src/angular-experimental/node_modules
+src/angular/node_modules
+src/components-examples/node_modules
+src/journey-maps/node_modules
+src/showcase/node_modules

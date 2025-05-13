@@ -49,10 +49,8 @@ PKG_EXTERNALS = [
     "@sbb-esta/journey-maps",
 
     # Third-party libraries.
-    "protractor",
     "rxjs",
     "rxjs/operators",
-    "keycloak-js",
     "maplibre-gl",
 ]
 

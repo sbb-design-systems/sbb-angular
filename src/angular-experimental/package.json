@@ -15,10 +15,12 @@
     "@angular/common": "0.0.0-NG",
     "@angular/core": "0.0.0-NG",
     "@angular/forms": "0.0.0-NG",
-    "@angular/router": "0.0.0-NG"
+    "@angular/router": "0.0.0-NG",
+    "@angular/platform-browser": "0.0.0-NG",
+    "rxjs": "^6.5.3 || ^7.4.0"
   },
   "dependencies": {
-    "@types/grecaptcha": "^2.0.36"
+    "tslib": "^2.3.0"
   },
   "schematics": "./schematics/collection.json",
   "ng-update": {

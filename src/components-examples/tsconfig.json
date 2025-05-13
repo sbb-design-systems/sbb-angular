@@ -8,8 +8,7 @@
       "@sbb-esta/angular": ["../angular"],
       "@sbb-esta/angular/*": ["../angular/*"],
       "@sbb-esta/journey-maps": ["../journey-maps"],
-      "@sbb-esta/journey-maps/*": ["../journey-maps/*"],
-      "@sbb-esta/components-examples/*": ["./*"]
+      "@sbb-esta/journey-maps/*": ["../journey-maps/*"]
     }
   },
   "include": ["./**/*.ts"]

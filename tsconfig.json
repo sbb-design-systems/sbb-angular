@@ -1,5 +1,6 @@
+// TypeScript config file that matches all source files in the project. This file is read by
+// IDEs and TSLint. For IDEs it ensures that `experimentalDecorator` warnings are not showing up.
 {
-  "compileOnSave": false,
   "compilerOptions": {
     "outDir": "./dist/packages/all",
     "experimentalDecorators": true,
@@ -7,10 +8,12 @@
     "moduleResolution": "node",
     "esModuleInterop": true,
     "noUnusedParameters": false,
-    "useUnknownInCatchVariables": true,
     "noFallthroughCasesInSwitch": true,
     "noUnusedLocals": false,
     "strictNullChecks": true,
+    "noPropertyAccessFromIndexSignature": true,
+    "useUnknownInCatchVariables": true,
+    "noImplicitOverride": true,
     "noImplicitReturns": true,
     "strictFunctionTypes": true,
     "noImplicitAny": true,
@@ -22,10 +25,17 @@
     "types": ["@angular/localize/init", "grecaptcha", "jasmine"],
     "baseUrl": ".",
     "paths": {
-      "@sbb-esta/angular": ["src/angular"],
-      "@sbb-esta/angular/*": ["src/angular/*"],
-      "@sbb-esta/journey-maps": ["src/journey-maps"],
-      "@sbb-esta/journey-maps/*": ["src/journey-maps/*"]
+      "@sbb-esta/angular": ["./src/angular"],
+      "@sbb-esta/angular/*": ["./src/angular/*"],
+      "@sbb-esta/journey-maps": ["./src/journey-maps"],
+      "@sbb-esta/journey-maps/*": ["./src/journey-maps/*"]
+    }
+  },
+  "angularCompilerOptions": {
+    "strictTemplates": true,
+    "typeCheckHostBindings": true,
+    "extendedDiagnostics": {
+      "defaultCategory": "error"
     }
   },
   "include": [
@@ -41,11 +51,5 @@
     "src/angular/schematics/**/files/**/*",
     "src/angular/schematics/ng-update/test-cases/**/*_input.ts",
     "src/angular/schematics/ng-update/test-cases/**/*_expected_output.ts"
-  ],
-  "angularCompilerOptions": {
-    "extendedDiagnostics": {
-      "defaultCategory": "error"
-    },
-    "strictMetadataEmit": true
-  }
+  ]
 }

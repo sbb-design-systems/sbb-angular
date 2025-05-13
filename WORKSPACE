@@ -9,7 +9,6 @@
 # imports also make sense when referencing the published package.
 workspace(
     name = "sbb_angular",
-    managed_directories = {"@npm": ["node_modules"]},
 )
 
 load("@bazel_tools//tools/build_defs/repo:http.bzl", "http_archive")
@@ -17,23 +16,11 @@ load("@bazel_tools//tools/build_defs/repo:http.bzl", "http_archive")
 # Add NodeJS rules
 http_archive(
     name = "build_bazel_rules_nodejs",
-    sha256 = "94070eff79305be05b7699207fbac5d2608054dd53e6109f7d00d923919ff45a",
-    urls = ["https://github.com/bazelbuild/rules_nodejs/releases/download/5.8.2/rules_nodejs-5.8.2.tar.gz"],
+    sha256 = "709cc0dcb51cf9028dd57c268066e5bc8f03a119ded410a13b5c3925d6e43c48",
+    urls = ["https://github.com/bazelbuild/rules_nodejs/releases/download/5.8.4/rules_nodejs-5.8.4.tar.gz"],
 )
 
-# Add sass rules
-http_archive(
-    name = "io_bazel_rules_sass",
-    sha256 = "4b6153ae6c454c5bd44f3e47e5430f8a634d4affb983a237d21ca6199e13991c",
-    strip_prefix = "rules_sass-1.50.1",
-    urls = [
-        "https://github.com/bazelbuild/rules_sass/archive/1.50.1.zip",
-    ],
-)
-
-# Add skylib which contains common Bazel utilities. Note that `rules_nodejs` would also
-# bring in the skylib repository but with an older version that does not support shorthands
-# for declaring Bazel build setting flags.
+# Add skylib which contains common Bazel utilities.
 http_archive(
     name = "bazel_skylib",
     sha256 = "a9c5d3a22461ed7063aa7b088f9c96fa0aaaa8b6984b601f84d705adc47d8a58",
@@ -45,10 +32,10 @@ http_archive(
 
 http_archive(
     name = "rules_pkg",
-    sha256 = "a89e203d3cf264e564fcb96b6e06dd70bc0557356eb48400ce4b5d97c2c3720d",
+    sha256 = "d94fd5b08dbdc227d66421cb9513f6c3b94bb3938fad276445a2d562f7df8f35",
+    strip_prefix = "rules_pkg-61018b85819d57feb56886316e76e8ed8a4ce378",
     urls = [
-        "https://mirror.bazel.build/github.com/bazelbuild/rules_pkg/releases/download/0.5.1/rules_pkg-0.5.1.tar.gz",
-        "https://github.com/bazelbuild/rules_pkg/releases/download/0.5.1/rules_pkg-0.5.1.tar.gz",
+        "https://github.com/bazelbuild/rules_pkg/archive/61018b85819d57feb56886316e76e8ed8a4ce378.tar.gz",
     ],
 )
 
@@ -64,74 +51,190 @@ load("@build_bazel_rules_nodejs//:repositories.bzl", "build_bazel_rules_nodejs_d
 
 build_bazel_rules_nodejs_dependencies()
 
-load("@rules_nodejs//nodejs:repositories.bzl", "nodejs_register_toolchains")
-
-nodejs_register_toolchains(
-    name = "nodejs",
-    node_repositories = {
-        "22.0.0-darwin_arm64": ("node-v22.0.0-darwin-arm64.tar.gz", "node-v22.0.0-darwin-arm64", "ea96d349cfaa67aa87ceeaa3e5b52c9167f7ac302fd8d1ff162d0785e9dc0785"),
-        "22.0.0-darwin_amd64": ("node-v22.0.0-darwin-x64.tar.gz", "node-v22.0.0-darwin-x64", "422a3887ff5418f0a4552d89cf99346ab8ab51bb5d384660baa88b8444d2c111"),
-        "22.0.0-linux_arm64": ("node-v22.0.0-linux-arm64.tar.xz", "node-v22.0.0-linux-arm64", "83711d29cbe46375bdffab5419f3d831892e24294169272f6c39edc364556241"),
-        "22.0.0-linux_ppc64le": ("node-v22.0.0-linux-ppc64le.tar.xz", "node-v22.0.0-linux-ppc64le", "2b3fb8707a79243bfb3131312b86716ddc3855bce21bb168095b6b916798e5e9"),
-        "22.0.0-linux_s390x": ("node-v22.0.0-linux-s390x.tar.xz", "node-v22.0.0-linux-s390x", "89a8efeeb9f94ce9ea251b8109e079c14919f4c0dc2cbc9f545ec47ef0886737"),
-        "22.0.0-linux_amd64": ("node-v22.0.0-linux-x64.tar.xz", "node-v22.0.0-linux-x64", "9122e50f2642afd5f6078cafd1f52ede60fc464284384f05c18a04d13d07ae5a"),
-        "22.0.0-windows_amd64": ("node-v22.0.0-win-x64.zip", "node-v22.0.0-win-x64", "32d639b47d4c0a651ff8f8d7d41a454168a3d4045be37985f9a810cf8cef6174"),
-    },
-    node_version = "22.0.0",
+http_archive(
+    name = "aspect_rules_js",
+    sha256 = "3388abe9b9728ef68ea8d8301f932b11b2c9a271d74741ddd5f3b34d1db843ac",
+    strip_prefix = "rules_js-2.1.1",
+    url = "https://github.com/aspect-build/rules_js/releases/download/v2.1.1/rules_js-v2.1.1.tar.gz",
 )
 
-load("@build_bazel_rules_nodejs//:index.bzl", "yarn_install")
+load("@aspect_rules_js//js:repositories.bzl", "rules_js_dependencies")
 
-yarn_install(
+rules_js_dependencies()
+
+NODE_VERSION = "22.11.0"
+
+NODE_REPOSITORIES = {
+    "22.11.0-darwin_arm64": ("node-v22.11.0-darwin-arm64.tar.gz", "node-v22.11.0-darwin-arm64", "2e89afe6f4e3aa6c7e21c560d8a0453d84807e97850bbb819b998531a22bdfde"),
+    "22.11.0-darwin_amd64": ("node-v22.11.0-darwin-x64.tar.gz", "node-v22.11.0-darwin-x64", "668d30b9512137b5f5baeef6c1bb4c46efff9a761ba990a034fb6b28b9da2465"),
+    "22.11.0-linux_arm64": ("node-v22.11.0-linux-arm64.tar.xz", "node-v22.11.0-linux-arm64", "6031d04b98f59ff0f7cb98566f65b115ecd893d3b7870821171708cdbaf7ae6e"),
+    "22.11.0-linux_ppc64le": ("node-v22.11.0-linux-ppc64le.tar.xz", "node-v22.11.0-linux-ppc64le", "d1d49d7d611b104b6d616e18ac439479d8296aa20e3741432de0e85f4735a81e"),
+    "22.11.0-linux_s390x": ("node-v22.11.0-linux-s390x.tar.xz", "node-v22.11.0-linux-s390x", "f474ed77d6b13d66d07589aee1c2b9175be4c1b165483e608ac1674643064a99"),
+    "22.11.0-linux_amd64": ("node-v22.11.0-linux-x64.tar.xz", "node-v22.11.0-linux-x64", "83bf07dd343002a26211cf1fcd46a9d9534219aad42ee02847816940bf610a72"),
+    "22.11.0-windows_amd64": ("node-v22.11.0-win-x64.zip", "node-v22.11.0-win-x64", "905373a059aecaf7f48c1ce10ffbd5334457ca00f678747f19db5ea7d256c236"),
+}
+
+load("@aspect_rules_js//js:toolchains.bzl", "rules_js_register_toolchains")
+
+rules_js_register_toolchains(
+    node_repositories = NODE_REPOSITORIES,
+    node_version = NODE_VERSION,
+)
+
+load("@aspect_rules_js//npm:repositories.bzl", "npm_translate_lock")
+
+npm_translate_lock(
     name = "npm",
-    # We add the postinstall patches file here so that Yarn will rerun whenever
-    # the file is modified.
+    custom_postinstalls = {
+        "@angular/animations": "node ../../@nginfra/angular-linking/index.mjs",
+        "@angular/common": "node ../../@nginfra/angular-linking/index.mjs",
+        "@angular/forms": "node ../../@nginfra/angular-linking/index.mjs",
+        "@angular/localize": "node ../../@nginfra/angular-linking/index.mjs",
+        "@angular/platform-browser": "node ../../@nginfra/angular-linking/index.mjs",
+        "@angular/platform-server": "node ../../@nginfra/angular-linking/index.mjs",
+        "@angular/router": "node ../../@nginfra/angular-linking/index.mjs",
+    },
     data = [
-        "//:.yarn/releases/yarn-1.22.22.cjs",
-        "//:.yarnrc",
-        "//:tools/postinstall/apply-patches.js",
-        "//:tools/postinstall/patches/@angular+bazel+16.0.0-next.6.patch",
+        "//:package.json",
+        "//:pnpm-workspace.yaml",
+        "//src/angular:package.json",
+        "//src/angular-experimental:package.json",
+        "//src/components-examples:package.json",
+        "//src/journey-maps:package.json",
+        "//src/showcase:package.json",
     ],
-    # Currently disabled due to:
-    #  1. Missing Windows support currently.
-    #  2. Incompatibilites with the `ts_library` rule.
-    exports_directories_only = False,
-    package_json = "//:package.json",
-    quiet = False,
-    # We prefer to symlink the `node_modules` to only maintain a single install.
-    # See https://github.com/angular/dev-infra/pull/446#issuecomment-1059820287 for details.
-    symlink_node_modules = True,
-    yarn = "//:.yarn/releases/yarn-1.22.22.cjs",
-    yarn_lock = "//:yarn.lock",
+    npmrc = "//:.npmrc",
+    package_visibility = {
+        "@angular/angular": [
+            "//integration:__subpackages__",
+            "//docs:__subpackages__",
+        ],
+        "@angular/angular-experimental": [
+            "//integration:__subpackages__",
+            "//docs:__subpackages__",
+        ],
+        "@angular/journey-maps": [
+            "//integration:__subpackages__",
+            "//docs:__subpackages__",
+        ],
+    },
+    pnpm_lock = "//:pnpm-lock.yaml",
+    pnpm_version = "9.14.1",
+    verify_node_modules_ignored = "//:.bazelignore",
 )
 
-load("@npm//@bazel/protractor:package.bzl", "npm_bazel_protractor_dependencies")
+load("@npm//:repositories.bzl", "npm_repositories")
 
-npm_bazel_protractor_dependencies()
+npm_repositories()
 
-# Setup web testing. We need to setup a browser because the web testing rules for TypeScript need
-# a reference to a registered browser (ideally that's a hermetic version of a browser)
-load("@io_bazel_rules_webtesting//web:repositories.bzl", "web_test_repositories")
-
-web_test_repositories()
-
-# Setup the Sass rule repositories.
-load("@io_bazel_rules_sass//:defs.bzl", "sass_repositories")
-
-sass_repositories(
-    yarn_script = "//:.yarn/releases/yarn-1.22.22.cjs",
+http_archive(
+    name = "aspect_rules_ts",
+    sha256 = "9acd128abe77397505148eaa6895faed57839560dbf2177dd6285e51235e2724",
+    strip_prefix = "rules_ts-3.3.1",
+    url = "https://github.com/aspect-build/rules_ts/releases/download/v3.3.1/rules_ts-v3.3.1.tar.gz",
 )
 
-# Setup repositories for browsers provided by the shared dev-infra package.
-load(
-    "@npm//@angular/build-tooling/bazel/browsers:browser_repositories.bzl",
-    _dev_infra_browser_repositories = "browser_repositories",
+load("@aspect_rules_ts//ts:repositories.bzl", "rules_ts_dependencies")
+
+rules_ts_dependencies(
+    # Obtained by: curl --silent https://registry.npmjs.org/typescript/5.8.2 | jq -r '.dist.integrity'
+    ts_integrity = "sha512-aJn6wq13/afZp/jT9QZmwEjDqqvSGp1VT5GVg+f/t6/oVyrgXM6BY1h9BRh/O5p3PlUPAe+WuiEZOmb/49RqoQ==",
+    ts_version_from = "//:package.json",
 )
 
-_dev_infra_browser_repositories()
-
-load("@build_bazel_rules_nodejs//toolchains/esbuild:esbuild_repositories.bzl", "esbuild_repositories")
-
-esbuild_repositories(
-    npm_repository = "npm",
+http_archive(
+    name = "aspect_rules_rollup",
+    sha256 = "c4062681968f5dcd3ce01e09e4ba73670c064744a7046211763e17c98ab8396e",
+    strip_prefix = "rules_rollup-2.0.0",
+    url = "https://github.com/aspect-build/rules_rollup/releases/download/v2.0.0/rules_rollup-v2.0.0.tar.gz",
 )
+
+http_archive(
+    name = "aspect_rules_jasmine",
+    sha256 = "0d2f9c977842685895020cac721d8cc4f1b37aae15af46128cf619741dc61529",
+    strip_prefix = "rules_jasmine-2.0.0",
+    url = "https://github.com/aspect-build/rules_jasmine/releases/download/v2.0.0/rules_jasmine-v2.0.0.tar.gz",
+)
+
+load("@aspect_rules_jasmine//jasmine:dependencies.bzl", "rules_jasmine_dependencies")
+
+rules_jasmine_dependencies()
+
+load("@bazel_tools//tools/build_defs/repo:git.bzl", "git_repository")
+
+git_repository(
+    name = "devinfra",
+    commit = "35131fc980ce5451fb89d8c033efc827ad39ca68",
+    remote = "https://github.com/angular/dev-infra.git",
+)
+
+load("@devinfra//bazel:setup_dependencies_1.bzl", "setup_dependencies_1")
+
+setup_dependencies_1()
+
+load("@devinfra//bazel:setup_dependencies_2.bzl", "setup_dependencies_2")
+
+setup_dependencies_2()
+
+git_repository(
+    name = "rules_angular",
+    commit = "84a8039330a4accc86f0b53c4ef5ff745c3e1bbe",
+    remote = "https://github.com/devversion/rules_angular.git",
+)
+
+load("@rules_angular//setup:step_1.bzl", "rules_angular_step1")
+
+rules_angular_step1()
+
+load("@rules_angular//setup:step_2.bzl", "rules_angular_step2")
+
+rules_angular_step2()
+
+load("@rules_angular//setup:step_3.bzl", "rules_angular_step3")
+
+rules_angular_step3(
+    angular_compiler_cli = "//:node_modules/@angular/compiler-cli",
+    typescript = "//:node_modules/typescript",
+)
+
+http_archive(
+    name = "aspect_rules_esbuild",
+    sha256 = "550e33ddeb86a564b22b2c5d3f84748c6639b1b2b71fae66bf362c33392cbed8",
+    strip_prefix = "rules_esbuild-0.21.0",
+    url = "https://github.com/aspect-build/rules_esbuild/releases/download/v0.21.0/rules_esbuild-v0.21.0.tar.gz",
+)
+
+load("@aspect_rules_esbuild//esbuild:dependencies.bzl", "rules_esbuild_dependencies")
+
+rules_esbuild_dependencies()
+
+load("@aspect_rules_esbuild//esbuild:repositories.bzl", "LATEST_ESBUILD_VERSION", "esbuild_register_toolchains")
+
+esbuild_register_toolchains(
+    name = "esbuild",
+    esbuild_version = LATEST_ESBUILD_VERSION,
+)
+
+git_repository(
+    name = "rules_browsers",
+    commit = "671017c30c0a595d7d639f59c6985255e4b90e0a",
+    remote = "https://github.com/devversion/rules_browsers.git",
+)
+
+load("@rules_browsers//setup:step_1.bzl", "rules_browsers_setup_1")
+
+rules_browsers_setup_1()
+
+load("@rules_browsers//setup:step_2.bzl", "rules_browsers_setup_2")
+
+rules_browsers_setup_2()
+
+git_repository(
+    name = "rules_sass",
+    commit = "3cd198e291caf21ba8f7105d53963dd3df62ef6d",
+    remote = "https://github.com/devversion/rules_sass.git",
+)
+
+load("@rules_sass//src/toolchain:repositories.bzl", "setup_rules_sass")
+
+setup_rules_sass()
