@@ -8,8 +8,8 @@ load(
 load(
     "//tools:defaults.bzl",
     "markdown_to_html",
-    "ng_module",
     "ng_package",
+    "ng_project",
     "sass_binary",
     "sass_library",
 )
@@ -17,7 +17,7 @@ load(
 package(default_visibility = ["//visibility:public"])
 
 # Root "@sbb-esta/angular" entry-point.
-ng_module(
+ng_project(
     name = "angular",
     srcs = glob(
         ["*.ts"],

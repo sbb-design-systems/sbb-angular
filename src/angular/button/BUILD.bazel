@@ -1,14 +1,14 @@
 load(
     "//tools:defaults.bzl",
     "markdown_to_html",
-    "ng_module",
+    "ng_project",
     "ng_test_library",
     "ng_web_test_suite",
 )
 
 package(default_visibility = ["//visibility:public"])
 
-ng_module(
+ng_project(
     name = "button",
     srcs = glob(
         ["**/*.ts"],
@@ -16,12 +16,12 @@ ng_module(
     ),
     assets = glob(["**/*.html"]),
     deps = [
+        "//:node_modules/@angular/cdk",
+        "//:node_modules/@angular/common",
+        "//:node_modules/@angular/core",
+        "//:node_modules/rxjs",
         "//src/angular/core",
         "//src/angular/icon",
-        "@npm//@angular/cdk",
-        "@npm//@angular/common",
-        "@npm//@angular/core",
-        "@npm//rxjs",
     ],
 )
 
@@ -33,10 +33,10 @@ ng_test_library(
     ),
     deps = [
         ":button",
+        "//:node_modules/@angular/platform-browser",
         "//src/angular/core/testing",
         "//src/angular/icon",
         "//src/angular/icon/testing",
-        "@npm//@angular/platform-browser",
     ],
 )
 

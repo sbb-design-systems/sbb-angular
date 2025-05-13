@@ -9,7 +9,7 @@
 load(
     "//tools:defaults.bzl",
     "markdown_to_html",
-    "ng_module",
+    "ng_project",
     "ng_package",<% if (hasTests) { %>
     "ng_test_library",
     "ng_web_test_suite",<% } %><% if (hasTypography || hasFullFont || stylesheets.length) { %>
@@ -20,7 +20,7 @@ load(
 package(default_visibility = ["//visibility:public"])
 
 # Root "@sbb-esta/<%= name %>" entry-point.
-ng_module(
+ng_project(
     name = "<%= name %>",
     srcs = glob(<% if (hasSrcFiles) { %>
         [

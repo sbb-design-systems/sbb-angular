@@ -1,7 +1,7 @@
 load(
     "//tools:defaults.bzl",<% if (hasMarkdown) { %>
     "markdown_to_html",<% } %>
-    "ng_module",<% if (hasTests) { %>
+    "ng_project",<% if (hasTests) { %>
     "ng_test_library",
     "ng_web_test_suite",<% } %><% if (stylesheets.length) { %>
     "sass_binary",<% } %><% if (hasSassLibrary) { %>
@@ -10,7 +10,7 @@ load(
 
 package(default_visibility = ["//visibility:public"])
 
-ng_module(
+ng_project(
     name = "<%= name %>",
     srcs =<% if (genFiles.length) { %> [<% for (let file of genFiles) { %>":<%= file %>", <% } %>] +<% } %> glob(
         ["**/*.ts"],

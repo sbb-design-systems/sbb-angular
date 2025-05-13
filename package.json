@@ -55,6 +55,7 @@
     "@angular-devkit/core": "catalog:",
     "@angular-devkit/schematics": "catalog:",
     "@angular/animations": "catalog:",
+    "@angular/cdk": "catalog:",
     "@angular/common": "catalog:",
     "@angular/compiler": "catalog:",
     "@angular/core": "catalog:",

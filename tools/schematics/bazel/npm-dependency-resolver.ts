@@ -28,7 +28,7 @@ export class NpmDependencyResolver {
   }
 
   toBazelNodeDependency(importPath: string) {
-    return `@npm//${this._toPackageName(importPath)}`;
+    return `//:node_modules/${this._toPackageName(importPath)}`;
   }
 
   private _typesToPackageName(name: string) {

@@ -1,11 +1,11 @@
 load(
     "//tools:defaults.bzl",
-    "ng_module",
+    "ng_project",
 )
 
 package(default_visibility = ["//visibility:public"])
 
-ng_module(
+ng_project(
     name = "sidebar",
     srcs = glob(
         ["**/*.ts"],
@@ -16,6 +16,10 @@ ng_module(
         "**/*.css",
     ]),
     deps = [
+        "//:node_modules/@angular/cdk",
+        "//:node_modules/@angular/core",
+        "//:node_modules/@angular/forms",
+        "//:node_modules/rxjs",
         "//src/angular/accordion",
         "//src/angular/button",
         "//src/angular/checkbox",
@@ -26,10 +30,6 @@ ng_module(
         "//src/angular/input",
         "//src/angular/select",
         "//src/angular/sidebar",
-        "@npm//@angular/cdk",
-        "@npm//@angular/core",
-        "@npm//@angular/forms",
-        "@npm//rxjs",
     ],
 )
 

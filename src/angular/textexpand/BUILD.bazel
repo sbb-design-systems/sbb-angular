@@ -1,7 +1,7 @@
 load(
     "//tools:defaults.bzl",
     "markdown_to_html",
-    "ng_module",
+    "ng_project",
     "ng_test_library",
     "ng_web_test_suite",
     "sass_binary",
@@ -9,7 +9,7 @@ load(
 
 package(default_visibility = ["//visibility:public"])
 
-ng_module(
+ng_project(
     name = "textexpand",
     srcs = glob(
         ["**/*.ts"],
@@ -17,11 +17,11 @@ ng_module(
     ),
     assets = [":textexpand.css"] + glob(["**/*.html"]),
     deps = [
+        "//:node_modules/@angular/cdk",
+        "//:node_modules/@angular/core",
+        "//:node_modules/@angular/localize",
         "//src:dev_mode_types",
         "//src/angular/core",
-        "@npm//@angular/cdk",
-        "@npm//@angular/core",
-        "@npm//@angular/localize",
     ],
 )
 
@@ -41,8 +41,8 @@ ng_test_library(
     ),
     deps = [
         ":textexpand",
+        "//:node_modules/@angular/platform-browser",
         "//src/angular/core/testing",
-        "@npm//@angular/platform-browser",
     ],
 )
 

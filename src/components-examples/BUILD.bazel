@@ -1,21 +1,13 @@
 load("//tools:defaults.bzl", "ng_project")
 load("//tools/highlight-files:index.bzl", "highlight_files")
 load(":config.bzl", "ALL_EXAMPLES")
-load("@npm//:defs.bzl", "npm_link_all_packages")
 
 package(default_visibility = ["//visibility:public"])
 
-npm_link_all_packages()
-
 ng_project(
     name = "components-examples",
-    srcs = glob(
-        ["*.ts"],
-        exclude = ["example-module.d.ts"],
-    ) + [":example-module.ts"],
-    deps = [
-        "//:node_modules/@angular/core",
-    ] + ALL_EXAMPLES,
+    srcs = glob(["*.ts"]) + [":example-module.ts"],
+    deps = ALL_EXAMPLES,
 )
 
 filegroup(
@@ -39,8 +31,6 @@ genrule(
       # Create source file manifest
       echo "$(execpaths //src/components-examples:example-source-files)" \
           > $(execpath _example_module.MF)
-
-      export JS_BINARY__NO_CD_BINDIR="1"
 
       # Run the bazel entry-point for generating the example module.
       ./$(execpath //tools/example-module:bazel-bin) \

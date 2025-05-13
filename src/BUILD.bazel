@@ -1,23 +1,13 @@
-load("@npm//@bazel/concatjs:index.bzl", "ts_config")
+load("@aspect_rules_ts//ts:defs.bzl", "ts_config")
+load("@aspect_bazel_lib//lib:copy_to_bin.bzl", "copy_to_bin")
 load("//src/angular:config.bzl", "ANGULAR_ENTRYPOINTS", "ANGULAR_TESTING_ENTRYPOINTS")
 load("//src/angular-experimental:config.bzl", "EXPERIMENTAL_ENTRYPOINTS", "EXPERIMENTAL_TESTING_ENTRYPOINTS")
 load("//src/journey-maps:config.bzl", "JOURNEY_MAPS_ENTRYPOINTS", "JOURNEY_MAPS_TESTING_ENTRYPOINTS")
-load("//tools:defaults.bzl", "ts_library")
 load("//tools/dgeni:index.bzl", "dgeni_api_docs")
+load("//tools:defaults.bzl", "ts_project")
+load("@aspect_rules_js//js:defs.bzl", "js_library")
 
 package(default_visibility = ["//visibility:public"])
-
-exports_files([
-    "bazel-tsconfig-build.json",
-    "bazel-tsconfig-test.json",
-    "README.md",
-])
-
-ts_config(
-    name = "tsconfig-test",
-    src = "bazel-tsconfig-test.json",
-    deps = ["bazel-tsconfig-build.json"],
-)
 
 angular_api_entry_points = ANGULAR_ENTRYPOINTS + ANGULAR_TESTING_ENTRYPOINTS
 
@@ -30,18 +20,34 @@ api_source_files = ["//src/angular/%s:source-files" % name for name in angular_a
                    ["//src/angular-experimental/%s:source-files" % name for name in angular_experimental_api_entry_points] + \
                    ["//src/journey-maps/%s:source-files" % name for name in journey_maps_api_entry_points]
 
+exports_files([
+    "bazel-tsconfig-build.json",
+    "bazel-tsconfig-test.json",
+    "README.md",
+])
+
+copy_to_bin(
+    name = "package_json",
+    srcs = ["package.json"],
+)
+
+js_library(
+    name = "esbuild-linked-config",
+    srcs = ["esbuild-linked.config.mjs"],
+)
+
 dgeni_api_docs(
     name = "api-docs",
     srcs = api_source_files + [
         # Add all Angular packages to the sources because some Material exports use
         # Angular exports and these should not cause any warnings when Dgeni uses the
         # type checker to parse our TypeScript sources.
-        "@npm//@angular/cdk",
-        "@npm//@angular/core",
-        "@npm//@angular/common",
-        "@npm//@angular/forms",
-        "@npm//@angular/animations",
-        "@npm//@angular/platform-browser",
+        "//:node_modules/@angular/cdk",
+        "//:node_modules/@angular/core",
+        "//:node_modules/@angular/common",
+        "//:node_modules/@angular/forms",
+        "//:node_modules/@angular/animations",
+        "//:node_modules/@angular/platform-browser",
     ],
     entry_points = {
         "angular": angular_api_entry_points,
@@ -51,7 +57,24 @@ dgeni_api_docs(
     tags = ["docs-package"],
 )
 
-ts_library(
+ts_project(
     name = "dev_mode_types",
     srcs = ["dev-mode-types.d.ts"],
+)
+
+ts_config(
+    name = "build-tsconfig",
+    src = "bazel-tsconfig-build.json",
+    deps = [
+        "//:node_modules/tslib",
+    ],
+)
+
+ts_config(
+    name = "test-tsconfig",
+    src = "bazel-tsconfig-test.json",
+    deps = [
+        ":build-tsconfig",
+        "//:node_modules/@types/jasmine",
+    ],
 )

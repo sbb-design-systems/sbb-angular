@@ -1,11 +1,11 @@
 load(
     "//tools:defaults.bzl",
-    "ng_module",
+    "ng_project",
 )
 
 package(default_visibility = ["//visibility:public"])
 
-ng_module(
+ng_project(
     name = "textarea",
     srcs = glob(
         ["**/*.ts"],
@@ -16,13 +16,13 @@ ng_module(
         "**/*.css",
     ]),
     deps = [
+        "//:node_modules/@angular/common",
+        "//:node_modules/@angular/core",
+        "//:node_modules/@angular/forms",
         "//src/angular/checkbox",
         "//src/angular/form-field",
         "//src/angular/input",
         "//src/angular/textarea",
-        "@npm//@angular/common",
-        "@npm//@angular/core",
-        "@npm//@angular/forms",
     ],
 )
 

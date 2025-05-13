@@ -8,14 +8,14 @@ load(
 load(
     "//tools:defaults.bzl",
     "markdown_to_html",
-    "ng_module",
     "ng_package",
+    "ng_project",
 )
 
 package(default_visibility = ["//visibility:public"])
 
 # Root "@sbb-esta/journey-maps" entry-point.
-ng_module(
+ng_project(
     name = "journey-maps",
     srcs = glob(
         ["*.ts"],

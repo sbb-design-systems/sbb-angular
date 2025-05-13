@@ -1,12 +1,12 @@
 load(
     "//tools:defaults.bzl",
     "markdown_to_html",
-    "ng_module",
+    "ng_project",
 )
 
 package(default_visibility = ["//visibility:public"])
 
-ng_module(
+ng_project(
     name = "esri-plugin",
     srcs = glob(
         ["**/*.ts"],
@@ -14,10 +14,10 @@ ng_module(
     ),
     assets = glob(["**/*.html"]),
     deps = [
-        "@npm//@angular/common",
-        "@npm//@angular/core",
-        "@npm//maplibre-gl",
-        "@npm//rxjs",
+        "//:node_modules/@angular/common",
+        "//:node_modules/@angular/core",
+        "//:node_modules/maplibre-gl",
+        "//:node_modules/rxjs",
     ],
 )
 

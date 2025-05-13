@@ -1,7 +1,7 @@
 load(
     "//tools:defaults.bzl",
     "markdown_to_html",
-    "ng_module",
+    "ng_project",
     "ng_test_library",
     "ng_web_test_suite",
     "sass_binary",
@@ -9,7 +9,7 @@ load(
 
 package(default_visibility = ["//visibility:public"])
 
-ng_module(
+ng_project(
     name = "pagination",
     srcs = glob(
         ["**/*.ts"],
@@ -20,12 +20,12 @@ ng_module(
         ":paginator/paginator.css",
     ] + glob(["**/*.html"]),
     deps = [
+        "//:node_modules/@angular/core",
+        "//:node_modules/@angular/localize",
+        "//:node_modules/@angular/router",
+        "//:node_modules/rxjs",
         "//src/angular/core",
         "//src/angular/icon",
-        "@npm//@angular/core",
-        "@npm//@angular/localize",
-        "@npm//@angular/router",
-        "@npm//rxjs",
     ],
 )
 
@@ -53,12 +53,12 @@ ng_test_library(
     ),
     deps = [
         ":pagination",
+        "//:node_modules/@angular/forms",
+        "//:node_modules/@angular/platform-browser",
+        "//:node_modules/@angular/router",
         "//src/angular/button",
         "//src/angular/core/testing",
         "//src/angular/icon/testing",
-        "@npm//@angular/forms",
-        "@npm//@angular/platform-browser",
-        "@npm//@angular/router",
     ],
 )
 

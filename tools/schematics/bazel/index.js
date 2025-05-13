@@ -153,7 +153,7 @@ var NgModule = class _NgModule {
     this.hasTests = !!this._fileRegistry.specFiles.length;
     const testDependencies = this._context.typeScriptDependencyResolver.resolveDependencies(
       this._fileRegistry.specFiles,
-      ["@npm//@angular/core"]
+      ["//:node_modules/@angular/core"]
     );
     this.testDependencies = testDependencies.dependencies;
     this.hasSassLibrary = !!this._fileRegistry.scssLibaryFiles.length;
@@ -205,7 +205,9 @@ var NgModule = class _NgModule {
     return new _NgModule(dir, this._tree, this._context);
   }
   _findFiles(dir, skipModuleCheck = true) {
-    if (["schematics", "styles", "web-component"].some((d) => (0, import_core3.basename)(dir.path) === d)) {
+    if (["schematics", "styles", "web-component", "node_modules"].some(
+      (d) => (0, import_core3.basename)(dir.path) === d
+    )) {
       return;
     } else if (!skipModuleCheck && this._context.moduleDetector.isModuleDirectory(dir)) {
       this._modules.push(this._createSubModule(dir));
@@ -296,7 +298,7 @@ var NpmDependencyResolver = class {
     }
   }
   toBazelNodeDependency(importPath) {
-    return `@npm//${this._toPackageName(importPath)}`;
+    return `//:node_modules/${this._toPackageName(importPath)}`;
   }
   _typesToPackageName(name) {
     return name.replace(/^@types\//, "").replace(/^(.+)__(.+)$/, (_m, m1, m2) => `@${m1}/${m2}`);
@@ -553,7 +555,7 @@ function bazel(options) {
           const npmDependencyResolver = new NpmDependencyResolver(
             tree.read("package.json").toString()
           );
-          const dependencyByOccurence = (/* @__PURE__ */ new Map()).set("ngDevMode", "//src:dev_mode_types").set("typeof global", "@npm//@types/node");
+          const dependencyByOccurence = (/* @__PURE__ */ new Map()).set("ngDevMode", "//src:dev_mode_types").set("typeof global", "//:node_modules/@types/node");
           const tsConfig = {
             organization,
             srcRoot,

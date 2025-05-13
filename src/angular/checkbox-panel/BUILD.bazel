@@ -1,14 +1,14 @@
 load(
     "//tools:defaults.bzl",
     "markdown_to_html",
-    "ng_module",
+    "ng_project",
     "ng_test_library",
     "ng_web_test_suite",
 )
 
 package(default_visibility = ["//visibility:public"])
 
-ng_module(
+ng_project(
     name = "checkbox-panel",
     srcs = glob(
         ["**/*.ts"],
@@ -16,10 +16,10 @@ ng_module(
     ),
     assets = glob(["**/*.html"]),
     deps = [
+        "//:node_modules/@angular/core",
+        "//:node_modules/@angular/forms",
         "//src/angular/checkbox",
         "//src/angular/core",
-        "@npm//@angular/core",
-        "@npm//@angular/forms",
     ],
 )
 
@@ -31,11 +31,11 @@ ng_test_library(
     ),
     deps = [
         ":checkbox-panel",
+        "//:node_modules/@angular/forms",
+        "//:node_modules/@angular/platform-browser",
         "//src/angular/core/testing",
         "//src/angular/icon",
         "//src/angular/icon/testing",
-        "@npm//@angular/forms",
-        "@npm//@angular/platform-browser",
     ],
 )
 

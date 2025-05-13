@@ -1,12 +1,12 @@
 load(
     "//tools:defaults.bzl",
-    "ng_module",
+    "ng_project",
     "sass_binary",
 )
 
 package(default_visibility = ["//visibility:public"])
 
-ng_module(
+ng_project(
     name = "app",
     srcs = [":versions.ts"] + glob(
         ["**/*.ts"],
@@ -19,6 +19,13 @@ ng_module(
     ] + glob(["**/*.html"]),
     tsconfig = "//src/showcase:tsconfig.json",
     deps = [
+        "//:node_modules/@angular/cdk",
+        "//:node_modules/@angular/common",
+        "//:node_modules/@angular/core",
+        "//:node_modules/@angular/forms",
+        "//:node_modules/@angular/platform-browser",
+        "//:node_modules/@angular/router",
+        "//:node_modules/rxjs",
         "//src/angular/checkbox",
         "//src/angular/core",
         "//src/angular/header-lean",
@@ -33,13 +40,6 @@ ng_module(
         "//src/showcase/app/angular-experimental",
         "//src/showcase/app/journey-maps",
         "//src/showcase/app/shared",
-        "@npm//@angular/cdk",
-        "@npm//@angular/common",
-        "@npm//@angular/core",
-        "@npm//@angular/forms",
-        "@npm//@angular/platform-browser",
-        "@npm//@angular/router",
-        "@npm//rxjs",
     ],
 )
 

@@ -38,7 +38,7 @@ export function bazel(options: { filter?: string }): Rule {
             );
             const dependencyByOccurence = new Map<string, string>()
               .set('ngDevMode', '//src:dev_mode_types')
-              .set('typeof global', '@npm//@types/node');
+              .set('typeof global', '//:node_modules/@types/node');
             const tsConfig = {
               organization,
               srcRoot,

@@ -1,11 +1,11 @@
 load(
     "//tools:defaults.bzl",
-    "ng_module",
+    "ng_project",
 )
 
 package(default_visibility = ["//visibility:public"])
 
-ng_module(
+ng_project(
     name = "angular-experimental",
     srcs = glob(
         ["**/*.ts"],
@@ -13,12 +13,12 @@ ng_module(
     ),
     tsconfig = "//src/showcase:tsconfig.json",
     deps = [
+        "//:node_modules/@angular/cdk",
+        "//:node_modules/@angular/common",
+        "//:node_modules/@angular/core",
+        "//:node_modules/@angular/router",
         "//src/showcase/app/shared",
         "//src/showcase/app/shared/component-viewer",
-        "@npm//@angular/cdk",
-        "@npm//@angular/common",
-        "@npm//@angular/core",
-        "@npm//@angular/router",
     ],
 )
 
