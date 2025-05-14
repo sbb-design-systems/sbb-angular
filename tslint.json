@@ -1,5 +1,5 @@
 {
-  "extends": ["tslint-plugin-prettier", "tslint-config-prettier", "rxjs-tslint-rules"],
+  "extends": ["tslint-config-prettier", "rxjs-tslint-rules"],
   "rulesDirectory": ["./tools/tslint-rules/", "node_modules/tslint-consistent-codestyle/rules"],
   "linterOptions": {
     "exclude": [
@@ -8,7 +8,7 @@
       "src/angular/schematics/**/files/**/*",
       "src/angular/schematics/ng-update/test-cases/**/*_input.ts",
       "src/angular/schematics/ng-update/test-cases/**/*_expected_output.ts",
-      "src/showcase/assets/stack-blitz/**/*.ts"
+      "docs/src/assets/stack-blitz/**/*.ts"
     ]
   },
   "rules": {

@@ -12,7 +12,7 @@
     "enabled": true
   },
   "allowPostUpgradeCommandTemplating": true,
-  "allowedPostUpgradeCommands": ["^yarn"],
+  "allowedPostUpgradeCommands": ["^pnpm"],
   "ignoreDeps": [
     "@angular/bazel",
     "@types/marked",
@@ -29,7 +29,6 @@
     "marked",
     "minimatch",
     "typescript",
-    "yarn",
     "zone.js"
   ],
   "skipInstalls": false,
@@ -76,9 +75,9 @@
       "matchPackageNames": ["@angular/cli", "@angular/cdk", "angular-server-side-configuration"],
       "postUpgradeTasks": {
         "commands": [
-          "yarn install --ignore-scripts --frozen-lockfile --non-interactive",
-          "yarn ng update {{{depName}}} --from={{{currentVersion}}} --to={{{newVersion}}} --migrate-only --allow-dirty --force",
-          "yarn format"
+          "pnpm install --ignore-scripts --frozen-lockfile --non-interactive",
+          "pnpm ng update {{{depName}}} --from={{{currentVersion}}} --to={{{newVersion}}} --migrate-only --allow-dirty --force",
+          "pnpm format"
         ],
         "fileFilters": ["**/**"]
       }
@@ -87,8 +86,8 @@
       "matchPackageNames": ["prettier"],
       "postUpgradeTasks": {
         "commands": [
-          "yarn install --ignore-scripts --frozen-lockfile --non-interactive",
-          "yarn format:prettier"
+          "pnpm install --ignore-scripts --frozen-lockfile --non-interactive",
+          "pnpm format:prettier"
         ],
         "fileFilters": ["**/**"]
       }
@@ -97,9 +96,9 @@
       "matchPackageNames": ["esbuild"],
       "postUpgradeTasks": {
         "commands": [
-          "yarn install --ignore-scripts --frozen-lockfile --non-interactive",
-          "yarn build:schematics",
-          "yarn format"
+          "pnpm install --ignore-scripts --frozen-lockfile --non-interactive",
+          "pnpm build:schematics",
+          "pnpm format"
         ],
         "fileFilters": ["**/**"]
       }

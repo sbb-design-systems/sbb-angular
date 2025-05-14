@@ -51,8 +51,11 @@ jobs:
       - uses: actions/setup-node@v4
         if: needs.cherry_pick.outputs.failed_release_version
         with:
+          cache: 'pnpm'
           node-version-file: '.nvmrc'
-      - uses: ./.github/actions/yarn-install
+      - uses: pnpm/action-setup@v4
+        if: needs.cherry_pick.outputs.failed_release_version
+      - run: pnpm install
         if: needs.cherry_pick.outputs.failed_release_version
       - name: Update maintenance issue
         if: needs.cherry_pick.outputs.failed_release_version

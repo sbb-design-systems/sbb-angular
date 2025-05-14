@@ -1,14 +1,14 @@
 load(
     "//tools:defaults.bzl",
-    "app_bundle",
-    "esbuild",
-    "html_insert_assets",
     "http_server",
     "markdown_to_html",
-    "ng_module",
-    "pkg_npm",
+    "ng_project",
+    "npm_package",
     "sass_binary",
 )
+load("@aspect_rules_esbuild//esbuild:defs.bzl", "esbuild")
+load("@npm//@angular/build-tooling/bazel/app-bundling:index.bzl", "app_bundle")
+load("@npm//html-insert-assets:index.bzl", "html_insert_assets")
 
 package(default_visibility = ["//visibility:public"])
 
@@ -55,7 +55,7 @@ http_server(
     ],
 )
 
-pkg_npm(
+npm_package(
     name = "npm_package",
     srcs = ["package.json"],
     deps = [
@@ -70,9 +70,9 @@ app_bundle(
     entry_point = "main.prod.ts",
     deps = [
         ":web-component",
-        "@npm//@angular/common",
-        "@npm//@angular/core",
-        "@npm//@angular/elements",
+        "//:node_modules/@angular/common",
+        "//:node_modules/@angular/core",
+        "//:node_modules/@angular/elements",
     ],
 )
 
@@ -82,13 +82,13 @@ app_bundle(
     target = "es2015",
     deps = [
         ":web-component",
-        "@npm//@angular/common",
-        "@npm//@angular/core",
-        "@npm//@angular/elements",
+        "//:node_modules/@angular/common",
+        "//:node_modules/@angular/core",
+        "//:node_modules/@angular/elements",
     ],
 )
 
-ng_module(
+ng_project(
     name = "web-component",
     srcs = glob(
         ["**/*.ts"],
@@ -102,12 +102,12 @@ ng_module(
         exclude = ["showcase.template.html"],
     ),
     deps = [
+        "//:node_modules/@angular/common",
+        "//:node_modules/@angular/core",
+        "//:node_modules/@angular/elements",
+        "//:node_modules/@angular/platform-browser",
+        "//:node_modules/zone.js",
         "//src/journey-maps/angular",
-        "@npm//@angular/common",
-        "@npm//@angular/core",
-        "@npm//@angular/elements",
-        "@npm//@angular/platform-browser",
-        "@npm//zone.js",
     ],
 )
 

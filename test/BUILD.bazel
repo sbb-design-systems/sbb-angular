@@ -13,8 +13,8 @@ ts_library(
     # This file *must* end with "spec" in order for "karma_web_test_suite" to load it.
     srcs = ["angular-test-init-spec.ts"],
     deps = [
-        "@npm//@angular/core",
-        "@npm//@angular/platform-browser-dynamic",
-        "@npm//@types/jasmine",
+        "//:node_modules/@angular/core",
+        "//:node_modules/@angular/platform-browser-dynamic",
+        "//:node_modules/@types/jasmine",
     ],
 )

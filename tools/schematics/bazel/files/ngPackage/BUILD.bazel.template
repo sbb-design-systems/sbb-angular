@@ -1,4 +1,4 @@
-<% if (customTsConfig) { %>load("@npm//@bazel/concatjs:index.bzl", "ts_config")
+<% if (customTsConfig) { %>load("//:node_modules/@bazel/concatjs:index.bzl", "ts_config")
 <% } %>load(
     "//src/<%= name %>:config.bzl",
     "<%= constant(shortName) %>_ENTRYPOINTS",
@@ -16,8 +16,11 @@ load(
     "sass_binary",<% } %><% if (hasSassLibrary) { %>
     "sass_library",<% } %>
 )
+load("@npm//:defs.bzl", "npm_link_all_packages")
 
 package(default_visibility = ["//visibility:public"])
+
+npm_link_all_packages()
 
 # Root "@sbb-esta/<%= name %>" entry-point.
 ng_project(
@@ -106,6 +109,7 @@ filegroup(
 # Creates the @sbb-esta/<%= name %> package published to npm.
 ng_package(
     name = "npm_package",
+    package_name = "@sbb-esta/<%= name %>",
     srcs = [
         "package.json",<% if (hasSassLibrary) { %>
         ":scss_lib",<% } %><% if (hasTypography) { %>

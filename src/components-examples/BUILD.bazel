@@ -1,13 +1,22 @@
-load("//tools:defaults.bzl", "ng_project")
+load("//tools:defaults.bzl", "ng_package", "ng_project")
 load("//tools/highlight-files:index.bzl", "highlight_files")
+load("//tools/package-docs-content:index.bzl", "package_docs_content")
 load(":config.bzl", "ALL_EXAMPLES")
+load("@npm//:defs.bzl", "npm_link_all_packages")
 
 package(default_visibility = ["//visibility:public"])
 
+npm_link_all_packages()
+
 ng_project(
     name = "components-examples",
-    srcs = glob(["*.ts"]) + [":example-module.ts"],
-    deps = ALL_EXAMPLES,
+    srcs = glob(
+        ["*.ts"],
+        exclude = ["example-module.d.ts"],
+    ) + [":example-module.ts"],
+    deps = [
+        "//:node_modules/@angular/core",
+    ] + ALL_EXAMPLES,
 )
 
 filegroup(
@@ -18,6 +27,51 @@ filegroup(
 highlight_files(
     name = "examples-highlighted",
     srcs = [":example-source-files"],
+)
+
+package_docs_content(
+    name = "docs-content",
+    srcs = {
+        # Package the overviews into the docs content
+        "//src/journey-maps:overviews": "overviews/journey-maps",
+        "//src/angular-experimental:overviews": "overviews/angular-experimental",
+        "//src/angular:overviews": "overviews/angular",
+
+        # In order to be able to run examples in StackBlitz, we also want to package the
+        # plain source files into the docs-content.
+        ":example-source-files": "examples-source",
+
+        # For the live-examples in our docs, we want to package the highlighted files
+        # into the docs content. These will be used to show the source code for examples.
+        # Note: `examples-highlighted` is a tree artifact that we want to store as is
+        # in the docs-content. Hence there is no target section name.
+        ":examples-highlighted": "",
+
+        # Package the API docs into the docs-content
+        "//src:api-docs": "api-docs",
+    },
+)
+
+ng_package(
+    name = "npm_package",
+    package_name = "@angular/components-examples",
+    srcs = ["package.json"],
+    # this is a workaround to store a tree artifact in the ng_package.
+    # ng_package does not properly handle tree artifacts currently so we escalate to nested_packages
+    nested_packages = [":docs-content"],
+    package_deps = [
+        ":node_modules/@angular/cdk",
+        ":node_modules/@angular/cdk-experimental",
+        ":node_modules/@angular/material",
+        ":node_modules/@angular/material-experimental",
+        ":node_modules/@angular/material-moment-adapter",
+    ],
+    replace_prefixes = {
+        "docs-content/": "/",
+    },
+    tags = ["docs-package"],
+    visibility = ["//:__pkg__"],
+    deps = [":components-examples"] + ALL_EXAMPLES,
 )
 
 genrule(

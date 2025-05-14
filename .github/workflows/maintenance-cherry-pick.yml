@@ -67,13 +67,14 @@ jobs:
 
     steps:
       - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4
-
       - uses: actions/setup-node@v4
         if: needs.cherry_pick.outputs.failed_branches
         with:
+          cache: 'pnpm'
           node-version-file: '.nvmrc'
-
-      - uses: ./.github/actions/yarn-install
+      - uses: pnpm/action-setup@v4
+        if: needs.cherry_pick.outputs.failed_branches
+      - run: pnpm install
         if: needs.cherry_pick.outputs.failed_branches
 
       - name: Update maintenance issue

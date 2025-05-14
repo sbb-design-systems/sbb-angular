@@ -30,14 +30,14 @@ jobs:
       run: cp ./.github/.bazelrc ~/
     - uses: actions/setup-node@v4
       with:
+        cache: 'pnpm'
         node-version-file: '.nvmrc'
         registry-url: 'https://registry.npmjs.org'
-        scope: sbb-esta
-    - name: "Yarn: Install"
-      uses: ./.github/actions/yarn-install
+    - uses: pnpm/action-setup@v4
+    - run: pnpm install
 
     - name: "Bazel: Build packages"
-      run: yarn -s build packages
+      run: pnpm -s build packages
 
     - uses: actions/upload-artifact@v4
       with:
@@ -56,11 +56,11 @@ jobs:
       env:
         REF: ${{ github.ref }}
     - name: "Publish: @sbb-esta/angular"
-      run: yarn publish dist/releases/angular --tag ${{ steps.npm_tag.outputs.npm_tag }}  || true
+      run: pnpm publish dist/releases/angular --tag ${{ steps.npm_tag.outputs.npm_tag }}  || true
       env:
         NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
     - name: "Publish: @sbb-esta/journey-maps"
-      run: yarn publish dist/releases/journey-maps --tag ${{ steps.npm_tag.outputs.npm_tag }} || true
+      run: pnpm publish dist/releases/journey-maps --tag ${{ steps.npm_tag.outputs.npm_tag }} || true
       env:
         NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
 
@@ -81,12 +81,13 @@ jobs:
       run: cp ./.github/.bazelrc ~/
     - uses: actions/setup-node@v4
       with:
+        cache: 'pnpm'
         node-version-file: '.nvmrc'
-    - name: "Yarn: Install"
-      uses: ./.github/actions/yarn-install
+    - uses: pnpm/action-setup@v4
+    - run: pnpm install
 
     - name: "Bazel: Build showcase"
-      run: yarn -s build showcase
+      run: pnpm -s build showcase
       env:
         JM_API_KEY: ${{ secrets.JM_API_KEY }}
 

@@ -1,13 +1,13 @@
-load("@build_bazel_rules_nodejs//:index.bzl", "nodejs_binary")
 load("//src/angular:config.bzl", "ANGULAR_ENTRYPOINTS", "ANGULAR_TESTING_ENTRYPOINTS")
 load("//src/angular-experimental:config.bzl", "EXPERIMENTAL_ENTRYPOINTS")
 load("//src/journey-maps:config.bzl", "JOURNEY_MAPS_ENTRYPOINTS")
-load("@npm//:defs.bzl", "npm_link_all_packages")
+load("//:node_modules/:defs.bzl", "npm_link_all_packages")
 
 package(default_visibility = ["//visibility:public"])
 
 exports_files([
     "package.json",
+    "pnpm-workspace.yaml",
     "LICENSE",
 ])
 

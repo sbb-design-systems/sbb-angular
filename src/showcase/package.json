@@ -1,7 +1,0 @@
-{
-  "devDependencies": {
-    "@sbb-esta/angular": "workspace:*",
-    "@sbb-esta/angular-experimental": "workspace:*",
-    "@sbb-esta/journey-maps": "workspace:*"
-  }
-}

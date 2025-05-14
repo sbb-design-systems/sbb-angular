@@ -11,7 +11,7 @@ set('-e');
 const projectDir = join(__dirname, '../');
 
 /** Command that runs Bazel. */
-const bazelCmd = process.env.BAZEL_COMMAND || `yarn -s bazel`;
+const bazelCmd = process.env.BAZEL_COMMAND || `pnpm -s bazel`;
 
 if (module === require.main) {
   runMigration(join(projectDir, 'node_modules/@sbb-esta'));
@@ -34,7 +34,7 @@ function runMigration(distPath) {
   cp('-R', outputPath, targetFolder);
   chmod('-R', 'u+w', targetFolder);
 
-  exec(`yarn ng update @sbb-esta/angular --migrateOnly --allow-dirty --from=10 --to=11`);
+  exec(`pnpm ng update @sbb-esta/angular --migrateOnly --allow-dirty --from=10 --to=11`);
 }
 
 /**

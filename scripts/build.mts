@@ -18,7 +18,7 @@ const projectDir = join(dirname(fileURLToPath(import.meta.url)), '../');
 const releaseDir = join(projectDir, 'dist/releases');
 
 /** Command that runs Bazel. */
-const bazelCmd = process.env.BAZEL_COMMAND || `yarn -s bazel`;
+const bazelCmd = process.env.BAZEL_COMMAND || `pnpm -s bazel`;
 
 if (process.argv.length === 3) {
   yargs(process.argv.slice(2))
@@ -77,8 +77,8 @@ function buildReleasePackages(distPath: string) {
 
   /** Command that queries Bazel for all release package targets. */
   const queryPackagesCmd =
-    `${bazelCmd} query --output=label "attr('tags', '\\[.*${releaseTargetTag}.*\\]', //src/...) ` +
-    `intersect kind('.*_package', //src/...)"`;
+    `${bazelCmd} query --output=label "filter(':npm_package$', ` +
+    `attr('tags', '\\[.*${releaseTargetTag}.*\\]', //src/...))"`;
 
   // List of targets to build. e.g. "src/angular:npm_package"
   const targets = exec(queryPackagesCmd, true).split(/\r?\n/);
@@ -105,16 +105,29 @@ function buildReleasePackages(distPath: string) {
  * e.g. //src/angular:npm_package -> angular
  */
 function getPackageNamesOfTargets(targets: string[]) {
-  return targets.map((targetName) => {
-    const matches = targetName.match(/\/\/src\/(.*):npm_package/);
-    if (matches === null) {
-      throw Error(
+  const seen = new Set<string>();
+
+  for (const targetName of targets) {
+    const match = targetName.match(/\/\/src\/(.*):npm_package/)?.[1];
+
+    if (!match) {
+      throw new Error(
         `Found Bazel target with "${releaseTargetTag}" tag, but could not ` +
           `determine release output name: ${targetName}`,
       );
     }
-    return matches[1];
-  });
+
+    if (seen.has(match)) {
+      throw new Error(
+        `Detected duplicate package "${match}". The duplication can cause issues when publishing ` +
+          `to npm and needs to be resolved.`,
+      );
+    }
+
+    seen.add(match);
+  }
+
+  return Array.from(seen);
 }
 
 function buildI18n(distPath: string, i18nDistPath: string) {

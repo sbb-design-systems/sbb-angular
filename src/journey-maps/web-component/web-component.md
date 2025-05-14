@@ -138,6 +138,7 @@ client.addEventListener('featuresClick', (event) => {
       `;
       break;
     case 'POI':
+      d;
       document.getElementById('myTemplate').innerHTML = `
         <div>
           <div>${feature.properties?.name}</div>
@@ -155,7 +156,7 @@ Because internally we are using an [MutationObserver](https://developer.mozilla.
 
 ### Run a showcase app using the Web Component on your local machine
 
-If you check out this project from GitHub, You can get a simple example of the Web Component up and running on your local machine by running `JM_API_KEY=<YOUR-API-KEY> yarn start:journey-maps-wc`.
+If you check out this project from GitHub, You can get a simple example of the Web Component up and running on your local machine by running `JM_API_KEY=<YOUR-API-KEY> pnpm start:journey-maps-wc`.
 
 You can interact with the map through the browser console using the same JavaScript syntax as above, e.g.:
 

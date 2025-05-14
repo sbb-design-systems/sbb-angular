@@ -1,10 +1,10 @@
 packages:
   - .
+  - docs
   - src/angular
   - src/angular-experimental
   - src/components-examples
   - src/journey-maps
-  - src/showcase
 
 catalog:
   '@angular-devkit/build-angular': 20.0.0-rc.0

@@ -87,6 +87,7 @@ npm_translate_lock(
     name = "npm",
     custom_postinstalls = {
         "@angular/animations": "node ../../@nginfra/angular-linking/index.mjs",
+        "@angular/cdk": "node ../../@nginfra/angular-linking/index.mjs",
         "@angular/common": "node ../../@nginfra/angular-linking/index.mjs",
         "@angular/forms": "node ../../@nginfra/angular-linking/index.mjs",
         "@angular/localize": "node ../../@nginfra/angular-linking/index.mjs",

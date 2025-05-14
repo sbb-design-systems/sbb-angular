@@ -43,7 +43,8 @@
     "schematics/**/*.ts",
     "test/**/*.ts",
     "tools/**/*.ts",
-    "scripts/**/*.ts"
+    "scripts/**/*.ts",
+    "docs/**/*.ts"
   ],
   "exclude": [
     "node_modules/",

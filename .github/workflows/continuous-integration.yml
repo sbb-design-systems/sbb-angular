@@ -23,12 +23,13 @@ jobs:
     - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4
     - uses: actions/setup-node@v4
       with:
+        cache: 'pnpm'
         node-version-file: '.nvmrc'
-    - name: "Yarn: Install"
-      uses: ./.github/actions/yarn-install
+    - uses: pnpm/action-setup@v4
+    - run: pnpm install
 
     - name: "Lint: Run tslint and bazel linter"
-      run: yarn lint
+      run: pnpm lint
 
   build:
     runs-on: ubuntu-latest
@@ -47,12 +48,13 @@ jobs:
       run: cp ./.github/.bazelrc ~/
     - uses: actions/setup-node@v4
       with:
+        cache: 'pnpm'
         node-version-file: '.nvmrc'
-    - name: "Yarn: Install"
-      uses: ./.github/actions/yarn-install
+    - uses: pnpm/action-setup@v4
+    - run: pnpm install
 
     - name: "Bazel: Build"
-      run: yarn -s build all
+      run: pnpm -s build all
       timeout-minutes: 45
 
   packages:
@@ -72,12 +74,13 @@ jobs:
       run: cp ./.github/.bazelrc ~/
     - uses: actions/setup-node@v4
       with:
+        cache: 'pnpm'
         node-version-file: '.nvmrc'
-    - name: "Yarn: Install"
-      uses: ./.github/actions/yarn-install
+    - uses: pnpm/action-setup@v4
+    - run: pnpm install
 
     - name: "Bazel: Build packages"
-      run: yarn -s build packages
+      run: pnpm -s build packages
 
   integrity:
     runs-on: ubuntu-latest
@@ -95,13 +98,14 @@ jobs:
       - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4
       - uses: actions/setup-node@v4
         with:
+          cache: 'pnpm'
           node-version-file: '.nvmrc'
-      - name: "Yarn: Install"
-        uses: ./.github/actions/yarn-install
+      - uses: pnpm/action-setup@v4
+      - run: pnpm install
 
       - name: "Integrity: Verify workspace integrity"
-        run: yarn integrity
-      - name: "Integrity: Assert no changes (run `yarn integrity` if this fails)"
+        run: pnpm integrity
+      - name: "Integrity: Assert no changes (run `pnpm integrity` if this fails)"
         run: git diff --exit-code
 
   test:
@@ -123,9 +127,10 @@ jobs:
       run: cp ./.github/.bazelrc ~/
     - uses: actions/setup-node@v4
       with:
+        cache: 'pnpm'
         node-version-file: '.nvmrc'
-    - name: "Yarn: Install"
-      uses: ./.github/actions/yarn-install
+    - uses: pnpm/action-setup@v4
+    - run: pnpm install
 
     - name: "Bazel: Run local tests"
       run: bazelisk test src/... --build_tag_filters=-e2e --test_tag_filters=-e2e --build_tests_only
@@ -149,13 +154,14 @@ jobs:
       run: cp ./.github/.bazelrc ~/
     - uses: actions/setup-node@v4
       with:
+        cache: 'pnpm'
         node-version-file: '.nvmrc'
-    - name: "Yarn: Install"
-      uses: ./.github/actions/yarn-install
+    - uses: pnpm/action-setup@v4
+    - run: pnpm install
 
     - name: "Bazel: Build showcase"
       if: ${{ success() || failure() }}
-      run: yarn -s build showcase
+      run: pnpm -s build showcase
       env:
         JM_API_KEY: ${{ secrets.JM_API_KEY }}
 

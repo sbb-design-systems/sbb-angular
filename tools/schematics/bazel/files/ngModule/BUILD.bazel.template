@@ -2,10 +2,10 @@ load(
     "//tools:defaults.bzl",<% if (hasMarkdown) { %>
     "markdown_to_html",<% } %>
     "ng_project",<% if (hasTests) { %>
-    "ng_test_library",
     "ng_web_test_suite",<% } %><% if (stylesheets.length) { %>
     "sass_binary",<% } %><% if (hasSassLibrary) { %>
-    "sass_library",<% } %>
+    "sass_library",<% } %><% if (hasTests) { %>
+    "ts_project",<% } %>
 )
 
 package(default_visibility = ["//visibility:public"])
@@ -45,8 +45,9 @@ sass_binary(
     ],<% } %>
 )<% } %><% if (hasTests) { %>
 
-ng_test_library(
+ts_project(
     name = "unit_test_sources",
+    testonly = True,
     srcs = glob(
         ["**/*.spec.ts"],
         exclude = ["**/*.e2e.spec.ts"],

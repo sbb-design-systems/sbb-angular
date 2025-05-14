@@ -8,6 +8,7 @@ js_binary(
     data = [
         ":sources",
         "//:package.json",
+        "//:pnpm-workspace.yaml",
     ],
     entry_point = ":bazel-bin.ts",
 )

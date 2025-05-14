@@ -2,7 +2,7 @@ Below are a few example implementations using the Web Component. Please let us k
 
 ## On your local machine
 
-If you check out this project from GitHub, You can get a simple example of the Web Component up and running on your local machine by running `JM_API_KEY=<YOUR-API-KEY> yarn start:journey-maps-wc`.
+If you check out this project from GitHub, You can get a simple example of the Web Component up and running on your local machine by running `JM_API_KEY=<YOUR-API-KEY> pnpm start:journey-maps-wc`.
 
 ## On Stackblitz
 

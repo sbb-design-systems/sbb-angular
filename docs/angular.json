@@ -1,0 +1,152 @@
+{
+  "$schema": "./node_modules/@angular/cli/lib/config/schema.json",
+  "version": 1,
+  "newProjectRoot": "projects",
+  "projects": {
+    "angular-app-sbb-ch": {
+      "root": "",
+      "sourceRoot": "./src",
+      "projectType": "application",
+      "schematics": {
+        "@schematics/angular:component": {
+          "style": "scss"
+        }
+      },
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-angular:application",
+          "options": {
+            "localize": ["en-CH"],
+            "sourceMap": true,
+            "preserveSymlinks": true,
+            "allowedCommonJsDependencies": ["path-normalize"],
+            "outputPath": "dist/angular-app-sbb-ch",
+            "index": "src/index.html",
+            "browser": "src/main.ts",
+            "tsConfig": "tsconfig.app.json",
+            "polyfills": ["zone.js", "@angular/localize/init"],
+            "assets": [
+              {
+                "glob": "**/*",
+                "input": "src/assets",
+                "output": "/assets"
+              },
+              {
+                "glob": "**/*",
+                "input": "./node_modules/@angular/components-examples/docs-content",
+                "output": "/docs-content"
+              },
+              {
+                "glob": "favicon.ico",
+                "input": "src",
+                "output": "/"
+              }
+            ],
+            "styles": ["src/styles.scss"],
+            "stylePreprocessorOptions": {
+              "includePaths": ["node_modules", "src", "src/styles"]
+            },
+            "scripts": [],
+            "extractLicenses": false,
+            "optimization": false,
+            "namedChunks": true
+          },
+          "configurations": {
+            "production": {
+              "budgets": [
+                {
+                  "type": "anyComponentStyle",
+                  "maximumWarning": "6kb"
+                }
+              ],
+              "optimization": true,
+              "outputHashing": "all",
+              "sourceMap": false,
+              "namedChunks": false,
+              "extractLicenses": true,
+              "fileReplacements": [
+                {
+                  "replace": "src/environments/environment.ts",
+                  "with": "src/environments/environment.prod.ts"
+                }
+              ]
+            }
+          }
+        },
+        "serve": {
+          "builder": "@angular-devkit/build-angular:dev-server",
+          "options": {
+            "headers": {
+              "--NOTE--": "Keep in sync with `firebase.json`",
+              "Content-Security-Policy": "upgrade-insecure-requests; default-src 'self'; font-src 'self' https://fonts.gstatic.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; img-src 'self' data: *; frame-src https://www.youtube.com; media-src 'self'; script-src 'self' 'unsafe-inline' 'unsafe-eval' https://*.google-analytics.com https://www.googletagmanager.com; child-src 'self' blob:; connect-src 'self' https://material.angular.io https://*.angular.dev https://*.google-analytics.com https://stats.g.doubleclick.net https://api.github.com https://www.googletagmanager.com;"
+            },
+            "buildTarget": "angular-app-sbb-ch:build"
+          },
+          "configurations": {
+            "production": {
+              "buildTarget": "angular-app-sbb-ch:build:production"
+            }
+          }
+        },
+        "extract-i18n": {
+          "builder": "@angular-devkit/build-angular:extract-i18n",
+          "options": {
+            "buildTarget": "angular-app-sbb-ch:build"
+          }
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "main": "src/test.ts",
+            "karmaConfig": "karma.conf.js",
+            "tsConfig": "tsconfig.spec.json",
+            "scripts": [],
+            "styles": [
+              {
+                "input": "src/styles.scss"
+              },
+              {
+                "input": "src/highlightjs/material-light.scss"
+              },
+              {
+                "inject": false,
+                "input": "src/styles/custom-themes/magenta-violet.scss",
+                "bundleName": "magenta-violet"
+              },
+              {
+                "inject": false,
+                "input": "src/styles/custom-themes/rose-red.scss",
+                "bundleName": "rose-red"
+              },
+              {
+                "inject": false,
+                "input": "src/styles/custom-themes/azure-blue.scss",
+                "bundleName": "azure-blue"
+              },
+              {
+                "inject": false,
+                "input": "src/styles/custom-themes/cyan-orange.scss",
+                "bundleName": "cyan-orange"
+              }
+            ],
+            "stylePreprocessorOptions": {
+              "includePaths": ["node_modules", "src", "src/styles"]
+            },
+            "assets": [
+              {
+                "glob": "**/*",
+                "input": "src/assets",
+                "output": "/assets"
+              },
+              {
+                "glob": "favicon.ico",
+                "input": "src",
+                "output": "/"
+              }
+            ]
+          }
+        }
+      }
+    }
+  }
+}

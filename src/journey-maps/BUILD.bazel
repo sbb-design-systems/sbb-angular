@@ -11,8 +11,11 @@ load(
     "ng_package",
     "ng_project",
 )
+load("@npm//:defs.bzl", "npm_link_all_packages")
 
 package(default_visibility = ["//visibility:public"])
+
+npm_link_all_packages()
 
 # Root "@sbb-esta/journey-maps" entry-point.
 ng_project(
@@ -37,6 +40,7 @@ filegroup(
 # Creates the @sbb-esta/journey-maps package published to npm.
 ng_package(
     name = "npm_package",
+    package_name = "@sbb-esta/journey-maps",
     srcs = [
         "package.json",
     ],
