@@ -57,7 +57,7 @@ function inlineExampleModuleTemplate(parsedData: AnalyzedExamples): string {
     `  switch (id) {`,
     ...exampleMetadata.map(
       (data) =>
-        `  case '${data.id}':\nreturn import('@angular/components-examples/${data.importPath}');`,
+        `  case '${data.id}':\nreturn import('@sbb-esta/components-examples/${data.importPath}');`,
     ),
     `    default:\nreturn undefined;`,
     `  }`,

@@ -1,7 +1,8 @@
+load("//:pkg-externals.bzl", "PKG_EXTERNALS")
 load("//src/angular:config.bzl", "ANGULAR_ENTRYPOINTS", "ANGULAR_TESTING_ENTRYPOINTS")
 load("//src/angular-experimental:config.bzl", "EXPERIMENTAL_ENTRYPOINTS")
 load("//src/journey-maps:config.bzl", "JOURNEY_MAPS_ENTRYPOINTS")
-load("//:node_modules/:defs.bzl", "npm_link_all_packages")
+load("@npm//:defs.bzl", "npm_link_all_packages")
 
 package(default_visibility = ["//visibility:public"])
 

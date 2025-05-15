@@ -9,7 +9,7 @@ import { shareReplay, take } from 'rxjs/operators';
 import { libraryVersion } from './versions';
 
 /**
- * Path that refers to the docs-content from the "@angular/components-examples" package.
+ * Path that refers to the docs-content from the "@sbb-esta/components-examples" package.
  */
 const DOCS_CONTENT_PATH = 'assets/docs-content/examples-source';
 

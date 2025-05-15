@@ -33,7 +33,7 @@ ng_app(
     name = "app",
     project_name = "angular-app-sbb-ch",
     deps = [
-        "//docs:node_modules/@angular/components-examples",
+        "//docs:node_modules/@sbb-esta/components-examples",
         "//docs:node_modules/@stackblitz/sdk",
         "//docs:node_modules/path-normalize",
     ],

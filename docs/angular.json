@@ -33,7 +33,7 @@
               },
               {
                 "glob": "**/*",
-                "input": "./node_modules/@angular/components-examples/docs-content",
+                "input": "./node_modules/@sbb-esta/components-examples/docs-content",
                 "output": "/docs-content"
               },
               {

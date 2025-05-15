@@ -26,6 +26,9 @@
     "@types/geojson": ">=7946",
     "maplibre-gl": "^4.7.1"
   },
+  "devDependencies": {
+    "@angular/elements": "catalog:"
+  },
   "ng-update": {
     "packageGroup": [
       "@sbb-esta/angular",

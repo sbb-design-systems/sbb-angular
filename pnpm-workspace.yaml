@@ -18,6 +18,7 @@ catalog:
   '@angular/compiler-cli': 20.0.0-rc.0
   '@angular/compiler': 20.0.0-rc.0
   '@angular/core': 20.0.0-rc.0
+  '@angular/elements': 20.0.0-rc.0
   '@angular/ssr': 20.0.0-rc.0
   '@angular/forms': 20.0.0-rc.0
   '@angular/localize': 20.0.0-rc.0

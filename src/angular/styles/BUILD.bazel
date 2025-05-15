@@ -7,7 +7,5 @@ package(default_visibility = ["//visibility:public"])
 
 sass_library(
     name = "scss_lib",
-    srcs = [
-        "//:node_modules/:node_modules/@angular/cdk/_index.scss",
-    ] + glob(["_*.scss"]),
+    srcs = glob(["_*.scss"]),
 )

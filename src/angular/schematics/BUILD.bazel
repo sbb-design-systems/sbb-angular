@@ -70,8 +70,7 @@ npm_package(
     ],
     package = "@sbb-esta/angular/schematics",
     visibility = [
-        "//src/cdk:__pkg__",
-        "//src/material/schematics:__pkg__",
+        "//src/angular:__pkg__",
     ],
 )
 
@@ -103,7 +102,6 @@ ts_project(
 
 jasmine_test(
     name = "unit_tests",
-    srcs = [":unit_test_sources"],
     data = [
         ":schematics_assets",
         ":unit_test_sources",

@@ -13,7 +13,7 @@ def _package_docs_content(ctx):
     # repeat `docs-content` is that the ng_package rule does not properly handle tree
     # artifacts in data. Instead, we create a tree artifact that can be put into nested_packages.
     # Nested packages do not preserve the tree artifact name (i.e. the directory name),
-    # so all contents of the docs-content would be put directly into the @angular/components-examples package.
+    # so all contents of the docs-content would be put directly into the @sbb-esta/components-examples package.
     # To avoid that, we create another folder like docs-content in the tree artifact that
     # is preserved as content of the tree artifact.
     output_dir = ctx.actions.declare_directory("%s/%s" % (ctx.attr.name, ctx.attr.name))

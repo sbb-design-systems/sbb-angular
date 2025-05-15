@@ -8,8 +8,8 @@ ts_project(
     srcs = glob(["**/*.ts"]),
     # Needed to ensure these files are picked up as CommonJS, as otherwise
     # the higher-level `package.json` from `src/package.json` is `type: module`.
-    data = ["//src/cdk/schematics:package_json"],
-    extends = "//src/cdk/schematics:tsconfig",
+    data = ["//src/angular/schematics:package_json"],
+    extends = "//src/angular/schematics:tsconfig",
     tsconfig = "tsconfig.json",
     deps = [
         "//:node_modules/@angular-devkit/core",
