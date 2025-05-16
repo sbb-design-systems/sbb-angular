@@ -233,8 +233,8 @@ export class EntryPointGrouper implements Processor {
   /** Finds the matching entry-point of the given file path. */
   private _findMatchingEntryPoint(relativeFilePath: string): string | null {
     let foundEntryPoint: string | null = null;
-    if (relativeFilePath.startsWith('../external/npm/node_modules/@angular')) {
-      return path.dirname(relativeFilePath.slice(29));
+    if (relativeFilePath.includes('node_modules/@angular/')) {
+      return path.dirname(relativeFilePath.substring(relativeFilePath.indexOf('@angular/')));
     }
 
     for (const entryPoint of this.entryPoints) {
