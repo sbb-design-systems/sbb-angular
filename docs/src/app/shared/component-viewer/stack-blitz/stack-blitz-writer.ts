@@ -9,7 +9,7 @@ import { shareReplay, take } from 'rxjs/operators';
 /**
  * Path that refers to the docs-content from the "@sbb-esta/components-examples" package.
  */
-const DOCS_CONTENT_PATH = 'assets/docs-content/examples-source';
+const DOCS_CONTENT_PATH = 'docs-content/examples-source';
 
 const TEMPLATE_PATH = 'assets/stack-blitz/';
 

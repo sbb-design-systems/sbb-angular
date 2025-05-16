@@ -18,7 +18,6 @@ import {
 import { HtmlViewerComponent } from './html-viewer/html-viewer.component';
 import { StackBlitzButton } from './stack-blitz/stack-blitz-button';
 import { StackBlitzWriter } from './stack-blitz/stack-blitz-writer';
-import { VariantLimitationComponent } from './variant-limitation-component/variant-limitation.component';
 
 @NgModule({
   declarations: [
@@ -26,7 +25,6 @@ import { VariantLimitationComponent } from './variant-limitation-component/varia
     ExampleViewerComponent,
     ExampleOutletComponent,
     ComponentViewerComponent,
-    VariantLimitationComponent,
     HtmlViewerComponent,
     StackBlitzButton,
   ],

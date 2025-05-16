@@ -18,22 +18,22 @@ export class LoaderBuilder {
   }
 
   fromDocumentation() {
-    this._url = `assets/docs-content/overviews/${this._packageName}/${this._id}.html`;
+    this._url = `docs-content/overviews/${this._packageName}/${this._id}.md.html`;
     return this;
   }
 
   fromModuleDocumentation() {
-    this._url = `assets/docs-content/overviews/${this._packageName}/${this._id}/${this._id}.html`;
+    this._url = `docs-content/overviews/${this._packageName}/${this._id}/${this._id}.md.html`;
     return this;
   }
 
   fromApiDocumentation() {
-    this._url = `assets/docs-content/api-docs/${this._packageName}-${this._id}.html`;
+    this._url = `docs-content/api-docs/${this._packageName}-${this._id}.html`;
     return this;
   }
 
   fromExamples(exampleName: string, exampleHtmlFile: string) {
-    this._url = `assets/docs-content/examples-highlighted/${this._packageName}/${this._id}/${exampleName}/${exampleHtmlFile}`;
+    this._url = `docs-content/examples-highlighted/${this._packageName}/${this._id}/${exampleName}/${exampleHtmlFile}`;
     return this;
   }
 
