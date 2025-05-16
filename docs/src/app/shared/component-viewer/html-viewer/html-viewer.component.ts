@@ -15,7 +15,7 @@ import { moduleParams } from '../../module-params';
 })
 export class HtmlViewerComponent implements OnDestroy {
   @HostBinding('innerHTML')
-  content: SafeHtml;
+  content!: SafeHtml;
 
   private readonly _destroyed = new Subject<void>();
 
@@ -27,7 +27,7 @@ export class HtmlViewerComponent implements OnDestroy {
     moduleParams(this._route)
       .pipe(
         switchMap((params) =>
-          params.loaderBuilderInterceptor(this._htmlLoader.withParams(params)).load(),
+          params.loaderBuilderInterceptor!(this._htmlLoader.withParams(params)).load(),
         ),
         map((content) => {
           // Replace all relative fragment URLs with absolute fragment URLs. e.g. "#my-section" becomes

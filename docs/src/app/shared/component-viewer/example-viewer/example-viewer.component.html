@@ -25,10 +25,6 @@
   </button>
 </div>
 
-<sbb-notification *ngIf="exampleData.devOnly" type="info" class="devmode-notification">
-  This example is only shown in dev mode.
-</sbb-notification>
-
 <sbb-tab-group [hidden]="!showSource" class="sbb-example-viewer-tabs">
   <sbb-tab *ngFor="let content of exampleCodes | async" [label]="content.label">
     <pre><code [innerHtml]="content.code"></code></pre>

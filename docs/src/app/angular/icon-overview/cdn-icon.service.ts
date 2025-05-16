@@ -26,6 +26,8 @@ export interface CdnIcons {
   icons: CdnIcon[];
 }
 
+const pictoDefault: Partial<CdnIcon> = { namespace: 'picto' };
+
 @Injectable({
   providedIn: 'root',
 })
@@ -45,7 +47,7 @@ export class CdnIconService {
       .get<CdnPictogramsResponse>('https://icons.app.sbb.ch/picto/index.json')
       .pipe(
         map((res) => ({
-          icons: res.picto.map((icon) => ({ namespace: 'picto', ...icon })),
+          icons: res.picto.map((icon) => ({ ...pictoDefault, ...icon })),
           version: res.version,
         })),
       );

@@ -1,4 +1,4 @@
-import { Component, Injector, Input, OnInit, ViewContainerRef } from '@angular/core';
+import { Component, Input, OnInit, ViewContainerRef } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { ExampleData, loadExample } from '@sbb-esta/components-examples';
 import { combineLatest, Observable } from 'rxjs';
@@ -19,8 +19,8 @@ interface ExampleCode {
   standalone: false,
 })
 export class ExampleViewerComponent implements OnInit {
-  @Input() exampleData: ExampleData;
-  exampleCodes: Observable<ExampleCode[]>;
+  @Input() exampleData!: ExampleData;
+  exampleCodes!: Observable<ExampleCode[]>;
   showSource: boolean = false;
   private _defaultExtensionsOrder = ['html', 'ts', 'css'];
 
@@ -83,7 +83,7 @@ export class ExampleViewerComponent implements OnInit {
     const showExtensionOnly =
       this._removeFileExtension(this.exampleData.indexFilename) ===
       this._removeFileExtension(filePath);
-    return showExtensionOnly ? filePath.split('.').pop().toUpperCase() : filePath;
+    return showExtensionOnly ? filePath.split('.').pop()!.toUpperCase() : filePath;
   }
 
   // Remove the extension from a given file
@@ -98,15 +98,12 @@ export class ExampleViewerComponent implements OnInit {
   standalone: false,
 })
 export class ExampleOutletComponent implements OnInit {
-  @Input() exampleData: ExampleData;
+  @Input() exampleData!: ExampleData;
 
-  constructor(
-    private _viewContainerRef: ViewContainerRef,
-    private _injector: Injector,
-  ) {}
+  constructor(private _viewContainerRef: ViewContainerRef) {}
 
   async ngOnInit() {
-    const example = await loadExample(this.exampleData.id, this._injector);
+    const example = await loadExample(this.exampleData.id);
     this._viewContainerRef.createComponent(example.component, { injector: example.injector });
   }
 }

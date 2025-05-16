@@ -2,13 +2,6 @@
   Package version management. These are used for replacement in built bundles.
 """
 
-# Each individual package uses a placeholder for the version of Angular to ensure they're
-# all in-sync. This map is passed to each ng_package rule to stamp out the appropriate
-# version for the placeholders.
-CDK_PACKAGE_VERSION = "^19.1.0"
-TSLIB_PACKAGE_VERSION = "^2.3.0"
-RXJS_PACKAGE_VERSION = "^6.5.3 || ^7.4.0"
-
 # Packages which are versioned together on npm
 SBB_ANGULAR_SCOPED_PACKAGES = ["@sbb-esta/%s" % p for p in [
     "angular",
@@ -27,11 +20,7 @@ PKG_GROUP_REPLACEMENTS = {
 # the peer dependencies and versions, primarily in `package.json`s.
 NPM_PACKAGE_SUBSTITUTIONS = dict(PKG_GROUP_REPLACEMENTS, **{
     # Version of `@angular/cdk`
-    "0.0.0-CDK": CDK_PACKAGE_VERSION,
-    # Version of `tslib`
-    "0.0.0-TSLIB": TSLIB_PACKAGE_VERSION,
-    # Version of `rxjs`
-    "0.0.0-RXJS": RXJS_PACKAGE_VERSION,
+    "0.0.0-CDK": "{{STABLE_FRAMEWORK_PEER_DEP_RANGE}}",
     # Peer dependency version on the Angular framework.
     "0.0.0-NG": "{{STABLE_FRAMEWORK_PEER_DEP_RANGE}}",
     # Version of the local package being built, generated via the `--workspace_status_command` flag.

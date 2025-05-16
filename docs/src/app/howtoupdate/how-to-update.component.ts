@@ -20,8 +20,8 @@ export class HowToUpdateComponent {
   ].sort();
 
   versionSelect = this._formBuilder.group({
-    from: new FormControl(this.versions.slice(-2)[0]),
-    to: new FormControl(this.versions.slice(-1)[0]),
+    from: new FormControl(this.versions.slice(-2)[0], { nonNullable: true }),
+    to: new FormControl(this.versions.slice(-1)[0], { nonNullable: true }),
   });
 
   steps = combineLatest([
@@ -31,7 +31,7 @@ export class HowToUpdateComponent {
     this.versionSelect.controls.to.valueChanges.pipe(
       startWith(this.versionSelect.controls.to.value),
     ),
-  ]).pipe(map(([from, to]) => UPDATE_STEPS.filter((s) => from <= s.from && s.to <= to)));
+  ]).pipe(map(([from, to]) => UPDATE_STEPS.filter((s) => from! <= s.from && s.to <= to!)));
 
   toVersionString(version: number) {
     return `${version / 100}.${version % 100}`;

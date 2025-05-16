@@ -25,6 +25,12 @@ export class ExampleData {
   /** Names of the components being used in this example. */
   componentNames: string[];
 
+  static find(library: string, id: string): ExampleData[] {
+    return Object.keys(EXAMPLE_COMPONENTS as { [id: string]: {} })
+      .filter((exampleId) => EXAMPLE_COMPONENTS[exampleId].importPath === `${library}/${id}`)
+      .map((exampleId) => new ExampleData(exampleId));
+  }
+
   constructor(example: string) {
     if (!example || !EXAMPLE_COMPONENTS.hasOwnProperty(example)) {
       return;

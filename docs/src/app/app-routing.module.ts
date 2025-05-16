@@ -34,10 +34,10 @@ const routes: Routes = [
           '--sbb-color-red',
         );
         document
-          .querySelector('meta[name="theme-color"]')
+          .querySelector('meta[name="theme-color"]')!
           .setAttribute('content', variantPrimaryColor);
         document
-          .querySelector('meta[name="msapplication-TileColor"]')
+          .querySelector('meta[name="msapplication-TileColor"]')!
           .setAttribute('content', variantPrimaryColor);
 
         return true;

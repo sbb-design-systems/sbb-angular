@@ -35,6 +35,8 @@
     "@sbb-esta/components-examples": "workspace:*",
     "@sbb-esta/journey-maps": "workspace:*",
     "@stackblitz/sdk": "^1.5.2",
+    "highlight.js": "^11.8.0",
+    "maplibre-gl": "4.7.1",
     "path-normalize": "^6.0.13",
     "rxjs": "catalog:",
     "tslib": "^2.3.0",

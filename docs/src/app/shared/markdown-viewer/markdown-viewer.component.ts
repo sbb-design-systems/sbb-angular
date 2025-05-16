@@ -15,7 +15,7 @@ import { moduleParams } from '../module-params';
 })
 export class MarkdownViewerComponent implements OnDestroy {
   @HostBinding('innerHTML')
-  content: SafeHtml;
+  content!: SafeHtml;
 
   private readonly _destroyed = new Subject<void>();
 

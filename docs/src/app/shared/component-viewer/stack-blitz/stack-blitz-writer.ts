@@ -1,12 +1,10 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable, NgZone } from '@angular/core';
+import { VERSION } from '@sbb-esta/angular/core';
 import { ExampleData, EXAMPLE_COMPONENTS } from '@sbb-esta/components-examples';
 import stackblitz from '@stackblitz/sdk';
 import { Observable } from 'rxjs';
 import { shareReplay, take } from 'rxjs/operators';
-
-// @ts-ignore versions.ts is generated automatically by bazel
-import { libraryVersion } from './versions';
 
 /**
  * Path that refers to the docs-content from the "@sbb-esta/components-examples" package.
@@ -50,6 +48,12 @@ const PROJECT_TEMPLATE = 'node';
  */
 interface FileDictionary {
   [path: string]: string;
+}
+
+declare global {
+  interface Window {
+    JM_API_KEY: string;
+  }
 }
 
 /**
@@ -196,7 +200,7 @@ export class StackBlitzWriter {
     // seems to be able to partially re-use the lock file to speed up the module tree computation,
     // so providing a lock file is still reasonable while modifying the `package.json`.
     if (fileName === 'src/index.html' || fileName === 'package.json') {
-      fileContent = fileContent.replace(/\${version}/g, libraryVersion);
+      fileContent = fileContent.replace(/\${version}/g, VERSION.full);
     }
 
     if (fileName === 'src/index.html') {

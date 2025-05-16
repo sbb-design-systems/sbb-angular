@@ -20,6 +20,7 @@ type SbbVariantLightDark = SbbVariant | 'light' | 'dark';
 export class VariantSwitch implements CanActivate, OnDestroy {
   sbbVariant: FormControl<SbbVariantLightDark> = new FormControl(
     (localStorage.getItem(variantLocalstorageKey) as SbbVariantLightDark) || 'standard',
+    { nonNullable: true },
   );
   private _destroyed = new Subject<void>();
 

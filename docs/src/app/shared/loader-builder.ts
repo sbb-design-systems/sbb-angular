@@ -5,7 +5,7 @@ import { catchError } from 'rxjs/operators';
 import { ModuleParams } from './module-params';
 
 export class LoaderBuilder {
-  private _url: string;
+  private _url?: string;
   private readonly _packageName: string;
   private readonly _id: string;
 
@@ -38,6 +38,6 @@ export class LoaderBuilder {
   }
 
   load(): Observable<string> {
-    return this._http.get(this._url, { responseType: 'text' }).pipe(catchError(() => of('')));
+    return this._http.get(this._url!, { responseType: 'text' }).pipe(catchError(() => of('')));
   }
 }

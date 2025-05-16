@@ -29,19 +29,9 @@ if (process.argv.length === 3) {
       handler: retry(() => buildAllTargets()),
     })
     .command({
-      command: 'packages',
-      describe: 'Build packages in release mode',
-      handler: retry(() => buildReleasePackages(releaseDir)),
-    })
-    .command({
       command: 'i18n',
       describe: 'Generate i18n files',
       handler: () => buildI18n(releaseDir, join(projectDir, 'src/angular/i18n')),
-    })
-    .command({
-      command: 'showcase',
-      describe: 'Build the showcase',
-      handler: () => buildShowcase(releaseDir),
     })
     .strict()
     .parseSync();
@@ -140,38 +130,6 @@ function buildI18n(distPath: string, i18nDistPath: string) {
     );
     console.log(`Updated ${relative(projectDir, outPath)}`);
   }
-}
-
-/**
- * Builds the showcase with ivy and copies the package output into the given directory.
- */
-function buildShowcase(distPath: string) {
-  console.log('######################################');
-  console.log('  Building showcase...');
-  console.log('######################################');
-
-  const pkgName = 'showcase';
-
-  exec(`${bazelCmd} build src/${pkgName}:prodapp`);
-
-  cleanDistPath(distPath);
-  const bazelBinPath = exec(`${bazelCmd} info bazel-bin`, true);
-  const outputPath = join(bazelBinPath, 'src', pkgName, 'prodapp');
-  const targetFolder = join(distPath, pkgName);
-  copyPackageOutput(outputPath, targetFolder);
-
-  // TODO: Remove once dockerized
-  const packageJsonPath = join(projectDir, 'package.json');
-  const { version } = JSON.parse(readFileSync(packageJsonPath, 'utf-8'));
-  writeFileSync(
-    join(targetFolder, 'package.json'),
-    JSON.stringify({
-      name: '@sbb-esta/angular-showcase',
-      version,
-      publishConfig: { access: 'public' },
-    }),
-    'utf8',
-  );
 }
 
 /**

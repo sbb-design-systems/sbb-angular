@@ -18,3 +18,5 @@ interface LiveExample {
 }
 
 export const EXAMPLE_COMPONENTS: { [id: string]: LiveExample };
+
+export async function loadExample(id: string): Promise<any>;

@@ -203,6 +203,9 @@ importers:
       '@types/node':
         specifier: 18.19.87
         version: 18.19.87
+      '@types/semver':
+        specifier: ^7.3.9
+        version: 7.7.0
       '@types/send':
         specifier: 0.17.4
         version: 0.17.4
@@ -434,6 +437,12 @@ importers:
       '@stackblitz/sdk':
         specifier: ^1.5.2
         version: 1.11.0
+      highlight.js:
+        specifier: ^11.8.0
+        version: 11.11.1
+      maplibre-gl:
+        specifier: 4.7.1
+        version: 4.7.1
       path-normalize:
         specifier: ^6.0.13
         version: 6.0.13
@@ -526,7 +535,7 @@ importers:
         specifier: ^2.0.36
         version: 2.0.36
       tslib:
-        specifier: 2.7.0
+        specifier: ^2.3.0
         version: 2.7.0
     devDependencies:
       '@sbb-esta/angular':

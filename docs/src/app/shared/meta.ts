@@ -145,4 +145,6 @@ export function findPackageEntry(packageName: string, componentId: string): Show
       return foundEntry;
     }
   }
+
+  return null!;
 }

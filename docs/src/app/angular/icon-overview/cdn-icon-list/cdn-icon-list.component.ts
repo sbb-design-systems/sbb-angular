@@ -26,7 +26,7 @@ export class CdnIconListComponent implements AfterViewInit {
   get cdnIcons(): CdnIcons {
     return this._cdnIcons;
   }
-  private _cdnIcons: CdnIcons;
+  private _cdnIcons!: CdnIcons;
   private _formBuilder = inject(FormBuilder);
 
   filterForm = this._formBuilder.group({
@@ -34,12 +34,12 @@ export class CdnIconListComponent implements AfterViewInit {
     namespaces: [[]] as string[][],
     fitIcons: [true],
   });
-  filteredIcons: Observable<CdnIcon[]>;
+  filteredIcons!: Observable<CdnIcon[]>;
   namespaces = ['icon', 'picto', 'kom', 'fpl'];
   deprecatedNamespaces = ['kom', 'fpl'];
   pageSize = 50;
 
-  @ViewChild(SbbPaginator) private _paginator: SbbPaginator;
+  @ViewChild(SbbPaginator) private _paginator!: SbbPaginator;
 
   ngAfterViewInit(): void {
     this.filteredIcons = merge(
@@ -48,8 +48,8 @@ export class CdnIconListComponent implements AfterViewInit {
       this._paginator.page,
     ).pipe(
       map(() => {
-        const fulltext = this.filterForm.get('fulltext').value.toUpperCase();
-        const namespaces: string[] = this.filterForm.get('namespaces').value;
+        const fulltext = this.filterForm.get('fulltext')!.value!.toUpperCase();
+        const namespaces: string[] = this.filterForm.get('namespaces')!.value!;
 
         const filteredIcons = this._cdnIcons.icons.filter(
           (i) =>

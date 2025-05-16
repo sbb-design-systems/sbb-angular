@@ -11,7 +11,7 @@ import { CdnIconDialogComponent } from '../cdn-icon-dialog/cdn-icon-dialog.compo
   standalone: false,
 })
 export class CdnIconComponent {
-  @Input() cdnIcon: CdnIcon;
+  @Input() cdnIcon!: CdnIcon;
 
   get cdnIconPath() {
     return this.cdnIcon.namespace

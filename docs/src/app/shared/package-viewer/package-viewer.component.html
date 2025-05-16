@@ -1,6 +1,6 @@
 <sbb-sidebar-container>
   <sbb-sidebar role="navigation">
-    <sbb-expansion-panel expanded *ngFor="let section of (package | async).sections">
+    <sbb-expansion-panel expanded *ngFor="let section of (package | async)?.sections ?? []">
       <sbb-expansion-panel-header>{{ section.name }}</sbb-expansion-panel-header>
       <a
         sbbSidebarLink

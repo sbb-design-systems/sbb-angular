@@ -10,10 +10,10 @@ import { ShowcaseMetaEntry } from '../../meta';
 })
 export class VariantLimitationComponent {
   @Input()
-  showcaseMetaEntry: ShowcaseMetaEntry;
+  showcaseMetaEntry!: ShowcaseMetaEntry;
 
   get variantOnly(): 'standard' | 'lean' {
-    return this.showcaseMetaEntry?.variantOnly;
+    return this.showcaseMetaEntry?.variantOnly ?? 'standard';
   }
 
   get oppositeVariant(): 'standard' | 'lean' {

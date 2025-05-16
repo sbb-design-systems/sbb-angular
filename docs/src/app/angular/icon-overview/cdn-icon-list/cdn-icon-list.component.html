@@ -15,7 +15,7 @@
     <sbb-checkbox formControlName="fitIcons">Fit icon size to parent element</sbb-checkbox>
   </div>
 </form>
-<div [class.sbb-icon-fit]="filterForm.get('fitIcons').value">
+<div [class.sbb-icon-fit]="filterForm.get('fitIcons')!.value">
   <sbb-cdn-icon *ngFor="let cdnIcon of filteredIcons | async" [cdnIcon]="cdnIcon"></sbb-cdn-icon>
 </div>
 <sbb-paginator
