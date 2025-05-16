@@ -106,6 +106,7 @@
     "angular-server-side-configuration": "19.0.1",
     "angular-t9n": "19.1.1",
     "browser-sync": "3.0.2",
+    "chalk": "^4.1.0",
     "dgeni": "^0.4.14",
     "dgeni-packages": "^0.29.3",
     "esbuild": "0.25.3",
@@ -189,6 +190,11 @@
         },
         "peerDependencies": {
           "@angular/common": "*"
+        }
+      },
+      "@angular/cdk": {
+        "dependencies": {
+          "@nginfra/angular-linking": "1.0.9"
         }
       },
       "@angular/common": {
