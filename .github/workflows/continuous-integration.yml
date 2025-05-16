@@ -21,11 +21,11 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4
+      - uses: pnpm/action-setup@v4
       - uses: actions/setup-node@v4
         with:
           cache: 'pnpm'
           node-version-file: '.nvmrc'
-      - uses: pnpm/action-setup@v4
       - run: pnpm install
 
       - name: "Lint: Run tslint and bazel linter"
@@ -44,11 +44,11 @@ jobs:
           - 31385:31385
     steps:
       - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4
+      - uses: pnpm/action-setup@v4
       - uses: actions/setup-node@v4
         with:
           cache: 'pnpm'
           node-version-file: '.nvmrc'
-      - uses: pnpm/action-setup@v4
       - run: pnpm install
 
       - name: "Integrity: Verify workspace integrity"
@@ -71,11 +71,11 @@ jobs:
       - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4
       - name: "Bazel: Copy .bazelrc to user home"
         run: cp ./.github/.bazelrc ~/
+      - uses: pnpm/action-setup@v4
       - uses: actions/setup-node@v4
         with:
           cache: 'pnpm'
           node-version-file: '.nvmrc'
-      - uses: pnpm/action-setup@v4
       - run: pnpm install
       - name: Run tests
         run: bazel build --build_tag_filters=-docs-package,-release-package -- src/...
@@ -96,11 +96,11 @@ jobs:
       - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4
       - name: "Bazel: Copy .bazelrc to user home"
         run: cp ./.github/.bazelrc ~/
+      - uses: pnpm/action-setup@v4
       - uses: actions/setup-node@v4
         with:
           cache: 'pnpm'
           node-version-file: '.nvmrc'
-      - uses: pnpm/action-setup@v4
       - run: pnpm install
 
       - name: "Bazel: Run local tests"
@@ -123,11 +123,11 @@ jobs:
       - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4
       - name: "Bazel: Copy .bazelrc to user home"
         run: cp ./.github/.bazelrc ~/
+      - uses: pnpm/action-setup@v4
       - uses: actions/setup-node@v4
         with:
           cache: 'pnpm'
           node-version-file: '.nvmrc'
-      - uses: pnpm/action-setup@v4
       - run: pnpm install
 
       - name: "Bazel: Build docs"
