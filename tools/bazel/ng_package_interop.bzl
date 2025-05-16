@@ -1,3 +1,7 @@
+"""
+  No docs.
+"""
+
 load("@aspect_rules_js//npm:providers.bzl", "NpmPackageInfo")
 load("@aspect_rules_js//js:libs.bzl", "js_lib_helpers")
 

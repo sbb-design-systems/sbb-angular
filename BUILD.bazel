@@ -25,12 +25,12 @@ genrule(
     cmd = "echo '%s' > $@" % PKG_EXTERNALS,
 )
 
-entryPoints = ["angular/%s" % e for e in ANGULAR_ENTRYPOINTS + ANGULAR_TESTING_ENTRYPOINTS] + \
-              ["angular-experimental/%s" % e for e in EXPERIMENTAL_ENTRYPOINTS] + \
-              ["journey-maps/%s" % e for e in JOURNEY_MAPS_ENTRYPOINTS]
+entry_points = ["angular/%s" % e for e in ANGULAR_ENTRYPOINTS + ANGULAR_TESTING_ENTRYPOINTS] + \
+               ["angular-experimental/%s" % e for e in EXPERIMENTAL_ENTRYPOINTS] + \
+               ["journey-maps/%s" % e for e in JOURNEY_MAPS_ENTRYPOINTS]
 
 genrule(
     name = "entry_points_manifest",
     outs = ["entry_points_manifest.json"],
-    cmd = "echo '%s' > $@" % entryPoints,
+    cmd = "echo '%s' > $@" % entry_points,
 )

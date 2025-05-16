@@ -1,4 +1,6 @@
-# Re-export of Bazel rules with repository-wide defaults
+"""
+  Re-export of Bazel rules with repository-wide defaults.
+"""
 
 load("@rules_pkg//:pkg.bzl", "pkg_tar")
 load("@rules_sass//src:index.bzl", _sass_binary = "sass_binary", _sass_library = "sass_library")
@@ -16,7 +18,6 @@ load("@rules_angular//src/ng_project:index.bzl", _ng_project = "ng_project")
 load("@rules_angular//src/ts_project:index.bzl", _ts_project = "ts_project")
 load("@devinfra//bazel/ts_project:index.bzl", "strict_deps_test")
 load("@aspect_rules_jasmine//jasmine:defs.bzl", _jasmine_test = "jasmine_test")
-load("@rules_browsers//src/protractor_test:index.bzl", "protractor_test")
 
 # Re-exports to simplify build file load statements
 markdown_to_html = _markdown_to_html
@@ -39,6 +40,7 @@ def sass_binary(sourcemap = False, include_paths = [], **kwargs):
 def sass_library(**kwargs):
     _sass_library(**kwargs)
 
+# buildifier: disable=function-docstring
 def ng_package(
         name,
         package_name,
@@ -125,6 +127,7 @@ def npm_package(name, srcs = [], **kwargs):
         **kwargs
     )
 
+# buildifier: disable=function-docstring
 def ts_project(
         name,
         deps = [],
@@ -160,6 +163,7 @@ def ts_project(
     # if False and not testonly:
     #    _make_tsec_test(kwargs["name"])
 
+# buildifier: disable=function-docstring
 def ng_project(
         name,
         deps = [],

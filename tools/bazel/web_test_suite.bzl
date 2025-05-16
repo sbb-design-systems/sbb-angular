@@ -1,3 +1,7 @@
+"""
+  No docs.
+"""
+
 load("@rules_browsers//src/wtr:index.bzl", "wtr_test")
 load("@devinfra//bazel/spec-bundling:index_rjs.bzl", "spec_bundle")
 
@@ -22,6 +26,7 @@ def _web_test(name, tags = [], deps = [], bootstrap = [], **kwargs):
         **kwargs
     )
 
+# buildifier: disable=function-docstring
 def ng_web_test_suite(deps = [], static_css = [], **kwargs):
     # Always include a prebuilt theme in the test suite because otherwise tests, which depend on CSS
     # that is needed for measuring, will unexpectedly fail. Also always adding a prebuilt theme
