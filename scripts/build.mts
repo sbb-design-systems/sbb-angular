@@ -33,6 +33,11 @@ if (process.argv.length === 3) {
       describe: 'Generate i18n files',
       handler: () => buildI18n(releaseDir, join(projectDir, 'src/angular/i18n')),
     })
+    .command({
+      command: 'docs',
+      describe: 'Build docs',
+      handler: () => buildDocs(join(projectDir, 'dist/docs')),
+    })
     .strict()
     .parseSync();
 
@@ -130,6 +135,24 @@ function buildI18n(distPath: string, i18nDistPath: string) {
     );
     console.log(`Updated ${relative(projectDir, outPath)}`);
   }
+}
+
+/**
+ * Builds docs with ivy and copies the package output into the given directory.
+ */
+function buildDocs(targetFolder: string) {
+  console.log('######################################');
+  console.log('  Building docs...');
+  console.log('######################################');
+
+  const pkgName = 'showcase';
+
+  exec(`${bazelCmd} build //docs:build.production`);
+
+  cleanDistPath(targetFolder);
+  const bazelBinPath = exec(`${bazelCmd} info bazel-bin`, true);
+  const outputPath = join(bazelBinPath, 'docs/dist/browser/');
+  copyPackageOutput(outputPath, targetFolder);
 }
 
 /**

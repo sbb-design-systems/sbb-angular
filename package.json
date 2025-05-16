@@ -16,6 +16,7 @@
     "build:schematics": "node tools/schematics/esbuild.js",
     "build:i18n": "node --no-warnings=ExperimentalWarning --loader ts-node/esm/transpile-only ./scripts/build.mts i18n",
     "build:cdk-styles": "node --no-warnings=ExperimentalWarning --loader ts-node/esm/transpile-only ./scripts/copy-cdk-sass.mts",
+    "build:docs": "bazel build docs",
     "generate:bazel": "ng g .:bazel",
     "generate:symbols": "ng g .:extractSymbols",
     "generate:icon-list": "node --no-warnings=ExperimentalWarning --loader ts-node/esm/transpile-only ./scripts/update-icon-names.mts",

@@ -20,71 +20,19 @@ jobs:
   lint:
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4
-    - uses: actions/setup-node@v4
-      with:
-        cache: 'pnpm'
-        node-version-file: '.nvmrc'
-    - uses: pnpm/action-setup@v4
-    - run: pnpm install
+      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4
+      - uses: actions/setup-node@v4
+        with:
+          cache: 'pnpm'
+          node-version-file: '.nvmrc'
+      - uses: pnpm/action-setup@v4
+      - run: pnpm install
 
-    - name: "Lint: Run tslint and bazel linter"
-      run: pnpm lint
-
-  build:
-    runs-on: ubuntu-latest
-    services:
-      cache:
-        image: ghcr.io/kyubisation/bazel-cache-oci-registry:latest
-        env:
-          repository: ghcr.io/${{ github.repository }}/bazel-cache
-          username: ${{ github.actor }}
-          password: ${{ secrets.GITHUB_TOKEN }}
-        ports:
-          - 31385:31385
-    steps:
-    - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4
-    - name: "Bazel: Copy .bazelrc to user home"
-      run: cp ./.github/.bazelrc ~/
-    - uses: actions/setup-node@v4
-      with:
-        cache: 'pnpm'
-        node-version-file: '.nvmrc'
-    - uses: pnpm/action-setup@v4
-    - run: pnpm install
-
-    - name: "Bazel: Build"
-      run: pnpm -s build all
-      timeout-minutes: 45
-
-  packages:
-    runs-on: ubuntu-latest
-    services:
-      cache:
-        image: ghcr.io/kyubisation/bazel-cache-oci-registry:latest
-        env:
-          repository: ghcr.io/${{ github.repository }}/bazel-cache
-          username: ${{ github.actor }}
-          password: ${{ secrets.GITHUB_TOKEN }}
-        ports:
-          - 31385:31385
-    steps:
-    - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4
-    - name: "Bazel: Copy .bazelrc to user home"
-      run: cp ./.github/.bazelrc ~/
-    - uses: actions/setup-node@v4
-      with:
-        cache: 'pnpm'
-        node-version-file: '.nvmrc'
-    - uses: pnpm/action-setup@v4
-    - run: pnpm install
-
-    - name: "Bazel: Build packages"
-      run: pnpm -s build packages
+      - name: "Lint: Run tslint and bazel linter"
+        run: pnpm lint
 
   integrity:
     runs-on: ubuntu-latest
-    needs: packages
     services:
       cache:
         image: ghcr.io/kyubisation/bazel-cache-oci-registry:latest
@@ -108,10 +56,33 @@ jobs:
       - name: "Integrity: Assert no changes (run `pnpm integrity` if this fails)"
         run: git diff --exit-code
 
+  build:
+    runs-on: ubuntu-latest
+    services:
+      cache:
+        image: ghcr.io/kyubisation/bazel-cache-oci-registry:latest
+        env:
+          repository: ghcr.io/${{ github.repository }}/bazel-cache
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+        ports:
+          - 31385:31385
+    steps:
+      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4
+      - name: "Bazel: Copy .bazelrc to user home"
+        run: cp ./.github/.bazelrc ~/
+      - uses: actions/setup-node@v4
+        with:
+          cache: 'pnpm'
+          node-version-file: '.nvmrc'
+      - uses: pnpm/action-setup@v4
+      - run: pnpm install
+      - name: Run tests
+        run: bazel build --build_tag_filters=-docs-package,-release-package -- src/...
+
   test:
     runs-on: ubuntu-22.04
     if: ${{ success() || failure() }}
-    needs: build
     services:
       cache:
         image: ghcr.io/kyubisation/bazel-cache-oci-registry:latest
@@ -122,20 +93,20 @@ jobs:
         ports:
           - 31385:31385
     steps:
-    - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4
-    - name: "Bazel: Copy .bazelrc to user home"
-      run: cp ./.github/.bazelrc ~/
-    - uses: actions/setup-node@v4
-      with:
-        cache: 'pnpm'
-        node-version-file: '.nvmrc'
-    - uses: pnpm/action-setup@v4
-    - run: pnpm install
+      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4
+      - name: "Bazel: Copy .bazelrc to user home"
+        run: cp ./.github/.bazelrc ~/
+      - uses: actions/setup-node@v4
+        with:
+          cache: 'pnpm'
+          node-version-file: '.nvmrc'
+      - uses: pnpm/action-setup@v4
+      - run: pnpm install
 
-    - name: "Bazel: Run local tests"
-      run: bazelisk test src/... --build_tag_filters=-e2e --test_tag_filters=-e2e --build_tests_only
+      - name: "Bazel: Run local tests"
+        run: bazelisk test src/... --build_tag_filters=-e2e --test_tag_filters=-e2e --build_tests_only
 
-  showcase:
+  docs:
     runs-on: ubuntu-latest
     if: ${{ success() || failure() }}
     needs: build
@@ -149,45 +120,31 @@ jobs:
         ports:
           - 31385:31385
     steps:
-    - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4
-    - name: "Bazel: Copy .bazelrc to user home"
-      run: cp ./.github/.bazelrc ~/
-    - uses: actions/setup-node@v4
-      with:
-        cache: 'pnpm'
-        node-version-file: '.nvmrc'
-    - uses: pnpm/action-setup@v4
-    - run: pnpm install
+      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4
+      - name: "Bazel: Copy .bazelrc to user home"
+        run: cp ./.github/.bazelrc ~/
+      - uses: actions/setup-node@v4
+        with:
+          cache: 'pnpm'
+          node-version-file: '.nvmrc'
+      - uses: pnpm/action-setup@v4
+      - run: pnpm install
 
-    - name: "Bazel: Build showcase"
-      if: ${{ success() || failure() }}
-      run: pnpm -s build showcase
-      env:
-        JM_API_KEY: ${{ secrets.JM_API_KEY }}
+      - name: "Bazel: Build docs"
+        if: ${{ success() || failure() }}
+        run: pnpm -s build:docs
 
-    - name: "Deploy: Insert JM_API_KEY"
-      run: sed -i "s|</head>|<script>window.JM_API_KEY='$JM_API_KEY'</script></head>|" dist/releases/showcase/index.html
-      env:
-        JM_API_KEY: ${{ secrets.JM_API_KEY }}
-    - name: "Deploy: Pack showcase"
-      run: mv $(npm pack ./dist/releases/showcase | tail -n 1) sbb-esta-angular-showcase.tgz
-    - name: "Artifact: Upload showcase merge artifact for pull request"
-      if: github.event_name == 'pull_request'
-      uses: actions/upload-artifact@v4
-      with:
-        name: showcase-artifact-${{ github.event.number }}
-        path: sbb-esta-angular-showcase.tgz
-    - name: "Artifact: Upload showcase merge artifact for main branch"
-      if: github.ref == 'refs/heads/main'
-      uses: actions/upload-artifact@v4
-      with:
-        name: showcase-artifact-main
-        path: sbb-esta-angular-showcase.tgz
+      - name: "Artifact: Upload docs"
+        if: github.event_name == 'pull_request' || github.ref == 'refs/heads/main'
+        uses: actions/upload-artifact@v4
+        with:
+          name: docs-artifact
+          path: dist/docs/
 
-  publish-showcase:
+  publish-docs:
     runs-on: ubuntu-latest
     if: github.event_name == 'push' && github.ref == 'refs/heads/main'
-    needs: showcase
+    needs: docs
     env:
       IMAGE_REPO: ghcr.io/${{ github.repository }}/showcase-preview
     services:
@@ -200,27 +157,23 @@ jobs:
         ports:
           - 31385:31385
     steps:
-    - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4
-    - name: "Download showcase artifact"
-      uses: actions/download-artifact@v4
-      with:
-        name: showcase-artifact-main
-    - name: Unpack and prepare showcase file
-      run: |
-        tar -xvzf sbb-esta-angular-showcase.tgz
-        mkdir -p dist/releases
-        mv package/ dist/releases/showcase/
-    - uses: ./.github/actions/setup-mint
-    - name: Create and publish container image
-      run: |
-        echo "${{ secrets.GITHUB_TOKEN }}" | docker login ghcr.io -u $ --password-stdin
-        docker build --tag $IMAGE_REPO:rev-main-fat .
-        mint slim \
-          --target $IMAGE_REPO:rev-main-fat \
-          --tag $IMAGE_REPO:rev-main \
-          --preserve-path /usr/share/nginx/html \
-          --include-new false
-        docker push $IMAGE_REPO:rev-main
-        docker image list
-      env:
-        DOCKER_BUILDKIT: 1
+      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4
+      - name: "Download docs artifact"
+        uses: actions/download-artifact@v4
+        with:
+          name: docs-artifact
+          path: dist/docs/
+      - uses: ./.github/actions/setup-mint
+      - name: Create and publish container image
+        run: |
+          echo "${{ secrets.GITHUB_TOKEN }}" | docker login ghcr.io -u $ --password-stdin
+          docker build --tag $IMAGE_REPO:rev-main-fat .
+          mint slim \
+            --target $IMAGE_REPO:rev-main-fat \
+            --tag $IMAGE_REPO:rev-main \
+            --preserve-path /usr/share/nginx/html \
+            --include-new false
+          docker push $IMAGE_REPO:rev-main
+          docker image list
+        env:
+          DOCKER_BUILDKIT: 1

@@ -6,8 +6,7 @@
     "angular-app-sbb-ch": {
       "i18n": {
         "sourceLocale": {
-          "code": "en-CH",
-          "subPath": "en"
+          "code": "en-CH"
         }
       },
       "root": "",
@@ -22,7 +21,6 @@
         "build": {
           "builder": "@angular-devkit/build-angular:application",
           "options": {
-            "localize": ["en-CH"],
             "sourceMap": true,
             "preserveSymlinks": true,
             "allowedCommonJsDependencies": ["path-normalize", "maplibre-gl"],
