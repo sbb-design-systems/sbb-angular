@@ -68,11 +68,6 @@ var LibraryBazelModuleDetector = class extends BazelModuleDetectorBase {
     return dir.subfiles.includes((0, import_core2.fragment)("BUILD.bazel"));
   }
 };
-var AppBazelModuleDetector = class extends BazelModuleDetectorBase {
-  isModuleDirectory(dir) {
-    return dir.subfiles.some((f) => f.endsWith(".module.ts"));
-  }
-};
 
 // tools/schematics/bazel/ng-package.ts
 var import_core4 = require("@angular-devkit/core");
@@ -362,52 +357,8 @@ var FlexibleSassDependencyResolver = class {
   }
 };
 
-// tools/schematics/bazel/showcase-package.ts
-var import_core6 = require("@angular-devkit/core");
-
-// tools/schematics/bazel/showcase-module.ts
-var ShowcaseModule = class _ShowcaseModule extends NgModule {
-  constructor() {
-    super(...arguments);
-    this._templateUrl = "./files/showcaseModule";
-    this.customTsConfig = "//src/showcase:tsconfig.json";
-  }
-  _createSubModule(dir) {
-    return new _ShowcaseModule(dir, this._tree, this._context);
-  }
-};
-
-// tools/schematics/bazel/showcase-package.ts
-var ShowcasePackage = class {
-  constructor(_dir, _tree, context) {
-    this._dir = _dir;
-    this._tree = _tree;
-    this._appDir = this._dir.dir((0, import_core6.fragment)("app"));
-    this._appModule = new ShowcaseModule(this._appDir, this._tree, context);
-  }
-  render() {
-    const exampleModules = this._appDir.subdirs.map((d) => {
-      const dir = this._appDir.dir(d);
-      const examplesDirName = (0, import_core6.fragment)(`${(0, import_core6.basename)(dir.path)}-examples`);
-      if (!dir.subdirs.includes(examplesDirName)) {
-        return [];
-      }
-      const examplesDir = dir.dir(examplesDirName);
-      return examplesDir.subdirs.map((e) => `    "/${examplesDir.dir(e).path}",`);
-    }).reduce((current, next) => current.concat(next), []).sort().join("\n");
-    const buildFile = this._dir.file((0, import_core6.fragment)("BUILD.bazel"));
-    this._tree.overwrite(
-      buildFile.path,
-      buildFile.content.toString().replace(/ALL_EXAMPLES = \[[^\]]+\]/m, `ALL_EXAMPLES = [
-${exampleModules}
-]`)
-    );
-    return this._appModule.render();
-  }
-};
-
 // tools/schematics/bazel/typescript-dependency-resolver.ts
-var import_core7 = require("@angular-devkit/core");
+var import_core6 = require("@angular-devkit/core");
 var import_schematics3 = require("@angular-devkit/schematics");
 var schematicsTs = __toESM(require("@schematics/angular/third_party/github.com/Microsoft/TypeScript/lib/typescript"));
 var import_ast_utils = require("@schematics/angular/utility/ast-utils");
@@ -434,7 +385,7 @@ var TypeScriptDependencyResolverBase = class {
   }
   _findStaticDependencies(details) {
     const sourceFile = schematicsTs.createSourceFile(
-      (0, import_core7.basename)(details.file.path),
+      (0, import_core6.basename)(details.file.path),
       details.file.content.toString(),
       schematicsTs.ScriptTarget.ESNext,
       true
@@ -484,7 +435,7 @@ var TypeScriptDependencyResolverBase = class {
       };
     } else if (importPath.startsWith(".")) {
       const moduleBaseDir = this._config.moduleDetector.findModuleBaseDirectory(file.path);
-      const importFilePath = (0, import_core7.join)((0, import_core7.dirname)(file.path), importPath.replace(/(\.ts)?$/, ".ts"));
+      const importFilePath = (0, import_core6.join)((0, import_core6.dirname)(file.path), importPath.replace(/(\.ts)?$/, ".ts"));
       const importFileModuleBaseDir = this._config.moduleDetector.findModuleBaseDirectory(importFilePath);
       return this._resolveRelativeImport({
         file,
@@ -517,22 +468,7 @@ var StrictModuleTypeScriptDependencyResolver = class extends TypeScriptDependenc
         `Import ${importPath} in ${file.path} escapes Bazel module boundary!`
       );
     } else if (files.every((f) => f.path !== importFilePath)) {
-      return { files: [(0, import_core7.relative)(moduleBaseDir.path, importFilePath)] };
-    }
-    return {};
-  }
-};
-var RelativeModuleTypeScriptDependencyResolver = class extends TypeScriptDependencyResolverBase {
-  _resolveRelativeImport({
-    importFileModuleBaseDir,
-    importFilePath,
-    moduleBaseDir,
-    files
-  }) {
-    if (importFileModuleBaseDir.path !== moduleBaseDir.path) {
-      return { dependencies: [`/${importFileModuleBaseDir.path}`] };
-    } else if (files.every((f) => f.path !== importFilePath)) {
-      return { files: [(0, import_core7.relative)(moduleBaseDir.path, importFilePath)] };
+      return { files: [(0, import_core6.relative)(moduleBaseDir.path, importFilePath)] };
     }
     return {};
   }
@@ -547,11 +483,10 @@ function bazel(options) {
     } else {
       return (0, import_schematics4.chain)(
         srcDir.subdirs.filter((d) => !options.filter || d === options.filter).map((d) => srcDir.dir(d)).map((packageDir) => {
-          const isShowcase = packageDir.path.endsWith("showcase");
           const isComponentsExamples = packageDir.path.endsWith("components-examples");
           const organization = "@sbb-esta";
           const srcRoot = "src";
-          const moduleDetector = isShowcase ? new AppBazelModuleDetector(tree) : new LibraryBazelModuleDetector(tree);
+          const moduleDetector = new LibraryBazelModuleDetector(tree);
           const npmDependencyResolver = new NpmDependencyResolver(
             tree.read("package.json").toString()
           );
@@ -564,7 +499,9 @@ function bazel(options) {
             npmDependencyResolver,
             dependencyByOccurence
           };
-          const typeScriptDependencyResolver = isShowcase ? new RelativeModuleTypeScriptDependencyResolver(tsConfig) : new StrictModuleTypeScriptDependencyResolver(tsConfig);
+          const typeScriptDependencyResolver = new StrictModuleTypeScriptDependencyResolver(
+            tsConfig
+          );
           const styleReplaceMap = (/* @__PURE__ */ new Map()).set("@sbb-esta/angular", "//src/angular:scss_lib").set("external/npm/node_modules/@angular/cdk", "//src/angular:scss_lib");
           const sassDependencyResolver = new FlexibleSassDependencyResolver(
             moduleDetector,
@@ -573,17 +510,7 @@ function bazel(options) {
             styleReplaceMap
           );
           const bazelGenruleResolver = new BazelGenruleResolver();
-          if (isShowcase) {
-            return new ShowcasePackage(packageDir, tree, {
-              ...context,
-              organization,
-              srcRoot,
-              moduleDetector,
-              typeScriptDependencyResolver,
-              sassDependencyResolver,
-              bazelGenruleResolver
-            });
-          } else if (isComponentsExamples) {
+          if (isComponentsExamples) {
             return new NgPackageExamples(packageDir, tree, {
               ...context,
               organization,
