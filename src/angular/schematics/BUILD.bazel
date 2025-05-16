@@ -1,97 +1,109 @@
-load("@build_bazel_rules_nodejs//:index.bzl", "copy_to_bin", "pkg_npm")
-load("//tools:defaults.bzl", "jasmine_node_test", "ts_library")
+load("@aspect_bazel_lib//lib:copy_to_bin.bzl", "copy_to_bin")
+load("//tools:defaults.bzl", "jasmine_test", "npm_package", "ts_project")
+load("@aspect_rules_ts//ts:defs.bzl", rules_js_tsconfig = "ts_config")
 
-package(default_visibility = ["//visibility:public"])
+package(default_visibility = [":__subpackages__"])
 
 copy_to_bin(
     name = "schematics_assets",
-    srcs = glob([
-        "ng-generate/*/files/**/*",
-        "**/*.json",
-    ]),
+    srcs = glob(
+        [
+            "ng-generate/*/files/**/*",
+            "**/*.json",
+        ],
+        exclude = [
+            "tsconfig.json",
+            "tsconfig-test.json",
+            "package.json",
+        ],
+    ),
 )
 
-ts_library(
+copy_to_bin(
+    name = "package_json",
+    srcs = ["package.json"],
+)
+
+rules_js_tsconfig(
+    name = "tsconfig",
+    src = "tsconfig.json",
+)
+
+rules_js_tsconfig(
+    name = "tsconfig-test",
+    src = "tsconfig-test.json",
+    deps = [
+        "tsconfig.json",
+        "//:node_modules/@types/jasmine",
+    ],
+)
+
+ts_project(
     name = "schematics",
     srcs = glob(
         ["**/*.ts"],
         exclude = [
             "**/*.spec.ts",
-            "ng-generate/*/files/**/*.ts",
+            "**/files/**/*",
             "ng-update/test-cases/**/*.ts",
             "testing/**/*.ts",
         ],
     ),
-    # Schematics do not need to run in browsers and can use `commonjs`
-    # as format instead the default `umd` format.
-    devmode_module = "commonjs",
-    prodmode_module = "commonjs",
-    tsconfig = ":tsconfig.json",
+    tsconfig = "tsconfig.json",
     deps = [
-        "@npm//@angular/cdk",
-        "@npm//@angular-devkit/core",
-        "@npm//@angular-devkit/schematics",
-        "@npm//@schematics/angular",
-        # TODO(devversion): Only include jasmine for test sources (See: tsconfig types).
-        "@npm//@types/jasmine",
-        "@npm//@types/node",
-        "@npm//typescript",
+        "//:node_modules/@angular-devkit/core",
+        "//:node_modules/@angular-devkit/schematics",
+        "//:node_modules/@angular/cdk",
+        "//:node_modules/@schematics/angular",
+        "//:node_modules/@types/node",
+        "//:node_modules/typescript",
     ],
 )
 
 # This package is intended to be combined into the main @sbb-esta/angular package as a dep.
-pkg_npm(
+npm_package(
     name = "npm_package",
-    srcs = ["package.json"],
-    validate = False,
-    deps = [
+    srcs = [
+        "package.json",
         ":schematics",
         ":schematics_assets",
+    ],
+    package = "@sbb-esta/angular/schematics",
+    visibility = [
+        "//src/angular:__pkg__",
     ],
 )
 
 ### Testing rules
-ts_library(
+ts_project(
     name = "unit_test_sources",
     testonly = True,
     srcs = glob(
         ["**/*.spec.ts"],
         exclude = [
             "**/*.e2e.spec.ts",
-            # Schematics template files should be declared here, if available
+            "**/files/**/*.spec.ts",
         ],
     ),
-    # Schematics can not yet run in ESM module. For now we continue to use CommonJS.
-    # TODO(ESM): remove this once the Angular CLI supports ESM schematics.
-    devmode_module = "commonjs",
-    prodmode_module = "commonjs",
-    tsconfig = ":tsconfig.json",
+    extends = "tsconfig.json",
+    tsconfig = "tsconfig-test.json",
     deps = [
         ":schematics",
+        "//:node_modules/@angular-devkit/schematics",
+        "//:node_modules/@angular/cdk",
+        "//:node_modules/@bazel/runfiles",
+        "//:node_modules/@schematics/angular",
+        "//:node_modules/@types/jasmine",
+        "//:node_modules/@types/node",
+        "//:node_modules/typescript",
         "//src/angular/schematics/testing",
-        "@npm//@angular-devkit/core",
-        "@npm//@angular-devkit/schematics",
-        "@npm//@angular/cdk",
-        "@npm//@schematics/angular",
-        "@npm//@types/jasmine",
-        "@npm//@types/node",
     ],
 )
 
-jasmine_node_test(
+jasmine_test(
     name = "unit_tests",
-    srcs = [":unit_test_sources"],
     data = [
         ":schematics_assets",
-        ":schematics_test_cases",
+        ":unit_test_sources",
     ],
-)
-
-filegroup(
-    name = "schematics_test_cases",
-    testonly = True,
-    srcs = glob([
-        "ng-update/test-cases/**/*_input.ts",
-        "ng-update/test-cases/**/*_expected_output.ts",
-    ]),
 )

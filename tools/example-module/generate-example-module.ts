@@ -18,10 +18,6 @@ interface ExampleMetadata {
   title: string;
   /** Number to define order of examples. */
   order: number;
-  /** Valid only for a specific variant. **/
-  variant: string;
-  /** Whether the example is only for dev purposes */
-  devOnly: boolean;
   /** Additional components for this example. */
   additionalComponents: string[];
   /** Files for this example. */
@@ -51,26 +47,28 @@ function inlineExampleModuleTemplate(parsedData: AnalyzedExamples): string {
       additionalComponents: data.additionalComponents,
       primaryFile: path.basename(data.sourcePath),
       importPath: data.importPath,
-      variant: data.variant || '',
-      devOnly: !!data.devOnly,
     };
 
     return result;
   }, {} as any);
 
-  const exampleComponentsLoader = exampleMetadata
-    .map(
-      (data) => `
-  .set('${data.importPath}', () => import('./${data.importPath}'))`,
-    )
-    .filter((v, i, a) => a.indexOf(v) === i)
-    .join('')
-    .replace(/$/, ';');
+  const loadText = [
+    `export async function loadExample(id: string): Promise<any> {`,
+    `  switch (id) {`,
+    ...exampleMetadata.map(
+      (data) =>
+        `  case '${data.id}':\nreturn import('@sbb-esta/components-examples/${data.importPath}');`,
+    ),
+    `    default:\nreturn undefined;`,
+    `  }`,
+    '}',
+  ].join('\n');
 
-  return fs
-    .readFileSync(require.resolve('./example-module.template'), 'utf8')
-    .replace(/\${exampleComponents}/g, JSON.stringify(exampleComponents, null, 2))
-    .replace(/\${exampleComponentsLoader}/g, exampleComponentsLoader);
+  return (
+    fs
+      .readFileSync(require.resolve('./example-module.template'), 'utf8')
+      .replace(/\${exampleComponents}/g, JSON.stringify(exampleComponents, null, 2)) + loadText
+  );
 }
 
 /** Converts a given camel-cased string to a dash-cased string. */
@@ -111,8 +109,6 @@ function analyzeExamples(sourceFiles: string[], baseDir: string): AnalyzedExampl
         componentName: primaryComponent.componentName,
         title: primaryComponent.title.trim(),
         order: primaryComponent.order,
-        variant: primaryComponent.variant,
-        devOnly: primaryComponent.devOnly,
         additionalComponents: [],
         files: [],
         importPath,

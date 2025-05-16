@@ -1,0 +1,16 @@
+{
+  "include": ["./**/*.ts"],
+  "compilerOptions": {
+    "target": "es2020",
+    "module": "Node16",
+    "strict": true,
+    "sourceMap": true,
+    "declaration": true,
+    "esModuleInterop": true,
+    "lib": ["es2020"],
+    "skipLibCheck": true,
+    "downlevelIteration": true,
+    "types": ["node"]
+  },
+  "exclude": ["**/*.spec.ts", "adev-api-extraction/**"]
+}

@@ -42,8 +42,8 @@ export class SbbAttribution implements OnChanges, OnDestroy {
   ) {}
 
   ngOnChanges(changes: SimpleChanges): void {
-    const prev = changes.map?.previousValue;
-    const curr = changes.map?.currentValue;
+    const prev = changes['map']?.previousValue;
+    const curr = changes['map']?.currentValue;
 
     for (const [types, listener] of this._listeners) {
       for (const type of types) {

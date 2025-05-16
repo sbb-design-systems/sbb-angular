@@ -1,11 +1,11 @@
 load(
     "//tools:defaults.bzl",
-    "ng_module",
+    "ng_project",
 )
 
 package(default_visibility = ["//visibility:public"])
 
-ng_module(
+ng_project(
     name = "angular",
     srcs = glob(
         ["**/*.ts"],
@@ -16,6 +16,12 @@ ng_module(
         "**/*.css",
     ]),
     deps = [
+        "//:node_modules/@angular/common",
+        "//:node_modules/@angular/core",
+        "//:node_modules/@angular/forms",
+        "//:node_modules/@types/geojson",
+        "//:node_modules/maplibre-gl",
+        "//:node_modules/rxjs",
         "//src/angular/button",
         "//src/angular/checkbox",
         "//src/angular/core",
@@ -27,12 +33,6 @@ ng_module(
         "//src/angular/select",
         "//src/angular/tabs",
         "//src/journey-maps",
-        "@npm//@angular/common",
-        "@npm//@angular/core",
-        "@npm//@angular/forms",
-        "@npm//@types/geojson",
-        "@npm//maplibre-gl",
-        "@npm//rxjs",
     ],
 )
 

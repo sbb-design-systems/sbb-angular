@@ -1,4 +1,3 @@
-@use 'external/npm/node_modules/@angular/cdk' as cdk;
 @use '@sbb-esta/angular' as sbb;
 
 .sbb-overlay-background {
@@ -25,7 +24,7 @@
   min-height: inherit;
   max-height: inherit;
 
-  @include cdk.high-contrast(active, off) {
+  @include sbb.high-contrast(active, off) {
     outline: solid sbb.pxToRem(1);
   }
 }

@@ -8,16 +8,19 @@ load(
 load(
     "//tools:defaults.bzl",
     "markdown_to_html",
-    "ng_module",
     "ng_package",
+    "ng_project",
     "sass_binary",
     "sass_library",
 )
+load("@npm//:defs.bzl", "npm_link_all_packages")
 
 package(default_visibility = ["//visibility:public"])
 
+npm_link_all_packages()
+
 # Root "@sbb-esta/angular" entry-point.
-ng_module(
+ng_project(
     name = "angular",
     srcs = glob(
         ["*.ts"],
@@ -35,6 +38,7 @@ sass_binary(
 sass_binary(
     name = "fullfont",
     src = "fullfont.scss",
+    deps = ["//src/angular/styles:scss_lib"],
 )
 
 sass_library(
@@ -56,6 +60,7 @@ filegroup(
 # Creates the @sbb-esta/angular package published to npm.
 ng_package(
     name = "npm_package",
+    package_name = "@sbb-esta/angular",
     srcs = [
         "package.json",
         ":fullfont",

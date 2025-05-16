@@ -3,9 +3,9 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "angular-showcase": {
-      "root": "src",
-      "sourceRoot": "src/showcase",
+    "docs": {
+      "root": "docs",
+      "sourceRoot": "docs",
       "projectType": "application",
       "prefix": "sbb",
       "schematics": {
@@ -18,12 +18,12 @@
           "builder": "no-builder",
           "options": {
             "outputPath": "dist/defunct",
-            "index": "src/showcase/index.html",
-            "main": "src/showcase/main.ts",
-            "polyfills": "src/showcase/polyfills.ts",
+            "index": "docs/src/index.html",
+            "main": "docs/src/main.ts",
+            "polyfills": "docs/src/polyfills.ts",
             "tsConfig": "tsconfig.json",
             "aot": true,
-            "styles": ["src/showcase/styles.css"]
+            "styles": ["docs/src/styles.css"]
           }
         },
         "extract-i18n": {
@@ -36,7 +36,7 @@
     }
   },
   "cli": {
-    "packageManager": "yarn",
+    "packageManager": "pnpm",
     "analytics": false
   }
 }

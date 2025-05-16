@@ -1,19 +1,19 @@
 load(
     "//tools:defaults.bzl",
     "markdown_to_html",
-    "ng_module",
+    "ng_project",
 )
 
 package(default_visibility = ["//visibility:public"])
 
-ng_module(
+ng_project(
     name = "example",
     srcs = glob(
         ["**/*.ts"],
         exclude = ["**/*.spec.ts"],
     ),
     deps = [
-        "@npm//@angular/core",
+        "//:node_modules/@angular/core",
     ],
 )
 

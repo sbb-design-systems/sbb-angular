@@ -9,12 +9,14 @@
 <div class="docs-api-constant-deprecated-marker" {$ macros.deprecationTitle(constant) $}>
   Deprecated
 </div>
-{%- endif -%} {%- if constant.description -%}
-<p class="docs-api-constant-description">{$ constant.description | marked | safe $}</p>
+{%- endif -%}
+
+{%- if constant.description -%}
+  <p class="docs-api-constant-description">{$ constant.description | marked | safe $}</p>
 {%- endif -%}
 
 <div class="docs-markdown">
-  <pre class="docs-markdown-pre">
+<pre class="docs-markdown-pre">
 <code class="docs-markdown-code">
 {%- highlight "typescript" -%}
   const {$ constant.name | safe $}: {$ constant.type | safe $};

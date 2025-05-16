@@ -3,7 +3,7 @@ name: Cache Cleanup
 on:
   workflow_dispatch: {}
   schedule:
-    - cron: '0 * * * *'
+    - cron: '*/10 * * * *'
 
 permissions:
   packages: write
@@ -13,6 +13,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/delete-package-versions@v5
+        continue-on-error: true
         with:
           package-name: 'sbb-angular/bazel-cache'
           package-type: 'container'

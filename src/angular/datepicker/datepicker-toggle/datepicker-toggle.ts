@@ -61,7 +61,7 @@ export class SbbDatepickerToggle<D> implements OnDestroy, OnChanges, AfterConten
   }
 
   ngOnChanges(changes: SimpleChanges) {
-    if (changes.datepicker) {
+    if (changes['datepicker']) {
       this._watchStateChanges();
     }
   }

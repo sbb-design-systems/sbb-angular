@@ -38,7 +38,7 @@ export default function (options: Schema): Rule {
     const workspace = await getWorkspace(host);
     const project = getProjectFromWorkspace(workspace, options.project);
 
-    if (project.extensions.projectType === ProjectType.Application) {
+    if (project.extensions['projectType'] === ProjectType.Application) {
       return chain([
         options.animations === 'excluded'
           ? noop()
@@ -102,10 +102,10 @@ function addTypographyToStylesNodeOfAngularJson(
     }
 
     const targetOptions = getProjectTargetOptions(project, targetName);
-    const styles = targetOptions.styles as (string | { input: string })[] | undefined;
+    const styles = targetOptions['styles'] as (string | { input: string })[] | undefined;
 
     if (!styles) {
-      targetOptions.styles = [TYPOGRAPHY_CSS_PATH];
+      targetOptions['styles'] = [TYPOGRAPHY_CSS_PATH];
       return;
     }
 
@@ -136,7 +136,7 @@ function addLeanTestPolyfillToAngularJson(
     }
 
     const targetOptions = getProjectTargetOptions(project, targetName);
-    const polyfills = targetOptions.polyfills as string | string[] | undefined;
+    const polyfills = targetOptions['polyfills'] as string | string[] | undefined;
 
     if (polyfills && typeof polyfills !== 'string' && !Array.isArray(polyfills)) {
       logger.error(
@@ -148,12 +148,12 @@ function addLeanTestPolyfillToAngularJson(
 
     if (shouldBeLeanVariant) {
       if (!polyfills) {
-        targetOptions.polyfills = [LEAN_TEST_POLYFILL_PATH];
+        targetOptions['polyfills'] = [LEAN_TEST_POLYFILL_PATH];
         return;
       }
 
-      if (typeof polyfills === 'string' && targetOptions.polyfills !== LEAN_TEST_POLYFILL_PATH) {
-        targetOptions.polyfills = [polyfills, LEAN_TEST_POLYFILL_PATH];
+      if (typeof polyfills === 'string' && targetOptions['polyfills'] !== LEAN_TEST_POLYFILL_PATH) {
+        targetOptions['polyfills'] = [polyfills, LEAN_TEST_POLYFILL_PATH];
       } else if (Array.isArray(polyfills) && !polyfills.includes(LEAN_TEST_POLYFILL_PATH)) {
         polyfills.push(LEAN_TEST_POLYFILL_PATH);
       }
@@ -163,9 +163,9 @@ function addLeanTestPolyfillToAngularJson(
       }
 
       if (typeof polyfills === 'string' && polyfills === LEAN_TEST_POLYFILL_PATH) {
-        delete targetOptions.polyfills;
+        delete targetOptions['polyfills'];
       } else if (Array.isArray(polyfills)) {
-        targetOptions.polyfills = polyfills.filter(
+        targetOptions['polyfills'] = polyfills.filter(
           (polyfill) => polyfill !== LEAN_TEST_POLYFILL_PATH,
         );
       }
@@ -240,7 +240,7 @@ function handleIndexHtml(
 
   const targetOptions = getProjectTargetOptions(project, 'build');
 
-  if (!targetOptions?.index) {
+  if (!targetOptions?.['index']) {
     if (shouldBeLeanVariant) {
       context.logger.error(
         `Could not find index.html to configure design variant. If you like to use the lean design variant, please add 'sbb-lean' class to the <html> tag.`,
@@ -253,7 +253,7 @@ function handleIndexHtml(
     return;
   }
 
-  const indexHtml = tree.read(targetOptions.index as string)?.toString('utf-8');
+  const indexHtml = tree.read(targetOptions['index'] as string)?.toString('utf-8');
 
   if (!indexHtml) {
     if (shouldBeLeanVariant) {
@@ -291,7 +291,7 @@ function handleIndexHtml(
       : htmlTag.replace(' sbb-lean', '').replace('sbb-lean ', '');
 
     tree.overwrite(
-      targetOptions.index as string,
+      targetOptions['index'] as string,
       indexHtml.replace(htmlTag, htmlTagWithoutLeanClass),
     );
   } else if (!hasSbbLeanClass && shouldBeLeanVariant) {
@@ -299,7 +299,7 @@ function handleIndexHtml(
     const newIndexHtml = classTag
       ? indexHtml.replace(classTag, classTag.replace(/(?<=^.{7})/, 'sbb-lean '))
       : indexHtml.replace('<html', '<html class="sbb-lean"');
-    tree.overwrite(targetOptions.index as string, newIndexHtml);
+    tree.overwrite(targetOptions['index'] as string, newIndexHtml);
   }
 
   context.logger.info(

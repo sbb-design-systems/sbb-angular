@@ -1,25 +1,25 @@
 load(
     "//tools:defaults.bzl",
     "markdown_to_html",
-    "ng_module",
+    "ng_project",
 )
 
 package(default_visibility = ["//visibility:public"])
 
-ng_module(
+ng_project(
     name = "captcha",
     srcs = glob(
         ["**/*.ts"],
         exclude = ["**/*.spec.ts"],
     ),
     deps = [
+        "//:node_modules/@angular/cdk",
+        "//:node_modules/@angular/common",
+        "//:node_modules/@angular/core",
+        "//:node_modules/@angular/forms",
+        "//:node_modules/@types/grecaptcha",
+        "//:node_modules/rxjs",
         "//src/angular/core",
-        "@npm//@angular/cdk",
-        "@npm//@angular/common",
-        "@npm//@angular/core",
-        "@npm//@angular/forms",
-        "@npm//@types/grecaptcha",
-        "@npm//rxjs",
     ],
 )
 

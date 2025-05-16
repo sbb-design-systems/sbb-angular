@@ -24,6 +24,10 @@ def _dgeni_api_docs(ctx):
     # This will be used as a base path to resolve TypeScript source files within Dgeni.
     args.add(ctx.label.package)
 
+    # Pass execroot-relative path to the bazel-bin. Used for constructing a path to
+    # the `node_modules`
+    args.add(ctx.bin_dir.path)
+
     # Pass the path to the output directory. This will be used to instruct Dgeni where the docs
     # output should be written to. (e.g. bazel-out/bin/src/docs-content)
     args.add(output_dir_path)
@@ -49,6 +53,10 @@ def _dgeni_api_docs(ctx):
         # Note that we want to add the dgeni template files as well. This makes sure that the
         # templates are available in the sandbox execution and can be read by Dgeni.
         inputs = input_files + ctx.files._dgeni_templates,
+        env = {
+            # Not needed as we operate with source files outside bazel-bin.
+            "JS_BINARY__NO_CD_BINDIR": "1",
+        },
         executable = ctx.executable._dgeni_bin,
         outputs = expected_outputs,
         arguments = [args],

@@ -1,0 +1,15 @@
+<nav sbb-tab-nav-bar aria-label="Documentation Sections" [tabPanel]="tabPanel">
+  <a
+    *ngFor="let section of sections"
+    sbb-tab-link
+    [routerLink]="['.', section.toLowerCase()]"
+    routerLinkActive
+    #rla="routerLinkActive"
+    [active]="rla.isActive"
+    >{{ section }}</a
+  >
+</nav>
+
+<sbb-tab-nav-panel #tabPanel>
+  <router-outlet></router-outlet>
+</sbb-tab-nav-panel>

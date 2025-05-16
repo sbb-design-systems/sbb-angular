@@ -336,7 +336,10 @@ export class SbbCalendar<D> implements AfterContentInit, AfterViewChecked, OnDes
       }
     }
 
-    if (changes.dateClass && changes.dateClass.previousValue !== changes.dateClass.currentValue) {
+    if (
+      changes['dateClass'] &&
+      changes['dateClass'].previousValue !== changes['dateClass'].currentValue
+    ) {
       this._dateClassObservable = isObservable(this.dateClass)
         ? this.dateClass
         : of(this.dateClass);

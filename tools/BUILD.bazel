@@ -1,25 +1,24 @@
+load("@aspect_rules_ts//ts:defs.bzl", rules_js_tsconfig = "ts_config")
+
 package(default_visibility = ["//visibility:public"])
 
-# Bazel config setting that matches if the partial compilation flag
-# for `@angular/bazel` is set to `True`.
-config_setting(
-    name = "partial_compilation_enabled",
-    flag_values = {
-        "@npm//@angular/bazel/src:partial_compilation": "True",
-    },
+rules_js_tsconfig(
+    name = "tsconfig",
+    src = "tsconfig.json",
+    deps = ["//:node_modules/@types/node"],
+)
+
+rules_js_tsconfig(
+    name = "tsconfig-test",
+    src = "tsconfig-test.json",
+    deps = [
+        ":tsconfig",
+        "//:node_modules/@types/jasmine",
+    ],
 )
 
 # Detect if the build is running with stamping enabled.
 config_setting(
     name = "stamp",
     values = {"stamp": "true"},
-)
-
-# This file generates the `angular_ivy_enabled.js` file, which exports a truthy value
-# whether Ivy should be enabled based on the `--defined=angular_ivy_enabled` value
-# so runtime can detect which mode it is running in.
-genrule(
-    name = "angular_ivy_enabled",
-    outs = ["angular_ivy_enabled.js"],
-    cmd = "echo exports.ivyEnabled = \"'True' === '$(angular_ivy_enabled)'\"\\; > $@",
 )

@@ -1,5 +1,6 @@
 import { EventEmitter, Injectable } from '@angular/core';
-import { forkJoin, map, mergeMap, Observable, Subject, takeUntil } from 'rxjs';
+import { forkJoin, Observable, Subject } from 'rxjs';
+import { map, mergeMap, takeUntil } from 'rxjs/operators';
 
 import {
   MaplibreMap,

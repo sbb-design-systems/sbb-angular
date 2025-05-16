@@ -49,9 +49,9 @@ export class SbbMapJourneyService {
 
     for (const feature of featureCollection.features) {
       const properties = feature.properties!;
-      const type = properties.type;
-      const pathType = properties.pathType;
-      const legId = properties.legId ?? 'journey'; // default: all belong together
+      const type = properties['type'];
+      const pathType = properties['pathType'];
+      const legId = properties['legId'] ?? 'journey'; // default: all belong together
       const isSelected = selectedLegId === legId || !selectedLegId; // default state: all selected
 
       properties[SBB_ROUTE_ID_PROPERTY_NAME] = legId;

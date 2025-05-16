@@ -1,11 +1,11 @@
 load(
     "//tools:defaults.bzl",
-    "ng_module",
+    "ng_project",
 )
 
 package(default_visibility = ["//visibility:public"])
 
-ng_module(
+ng_project(
     name = "tabs",
     srcs = glob(
         ["**/*.ts"],
@@ -16,6 +16,10 @@ ng_module(
         "**/*.css",
     ]),
     deps = [
+        "//:node_modules/@angular/common",
+        "//:node_modules/@angular/core",
+        "//:node_modules/@angular/forms",
+        "//:node_modules/rxjs",
         "//src/angular/badge",
         "//src/angular/button",
         "//src/angular/checkbox",
@@ -23,10 +27,6 @@ ng_module(
         "//src/angular/icon",
         "//src/angular/input",
         "//src/angular/tabs",
-        "@npm//@angular/common",
-        "@npm//@angular/core",
-        "@npm//@angular/forms",
-        "@npm//rxjs",
     ],
 )
 

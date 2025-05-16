@@ -11,9 +11,6 @@ import { highlightCodeBlock } from '../highlight-files/highlight-code-block';
 
 import { DocsMarkdownRenderer } from './docs-marked-renderer';
 
-// Regular expression that matches the markdown extension of a given path.
-const markdownExtension = /.md$/;
-
 // Custom markdown renderer for transforming markdown files for the docs.
 const markdownRenderer = new DocsMarkdownRenderer();
 
@@ -32,7 +29,7 @@ if (require.main === module) {
     // We use ```angular code blocks to enable correct syntax formatting with prettier. Since markedjs/marked does
     // not support custom code block languages, we replace all ```angular code blocks with ```html code blocks.
     inputFileString = inputFileString.replace(/```angular/g, '```html');
-    const outputPath = join(bazelBinPath, inputPath.replace(markdownExtension, '.html'));
+    const outputPath = join(bazelBinPath, `${inputPath}.html`);
     const htmlOutput = markdownRenderer.finalizeOutput(marked(inputFileString), inputPath);
     writeFileSync(outputPath, htmlOutput);
   });

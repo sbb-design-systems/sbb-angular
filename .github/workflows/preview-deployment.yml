@@ -26,91 +26,59 @@ jobs:
       IMAGE_PR_TAG: preview-pr${{ github.event.workflow_run.pull_requests[0].number }}
       ALLOWED_EXTENSIONS: css, gitignore, gitkeep, html, ico, jpg, js, json, png, scss, stackblitzrc, svg, ts
     steps:
-    - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4
-    - run: rm package.json yarn.lock
-    - uses: actions/setup-node@v4
-      with:
-        node-version-file: '.nvmrc'
-    - run: npm i decompress@4.2.1
-    - name: Download Artifacts
-      id: artifacts
-      uses: actions/github-script@v7
-      with:
-        script: |
-          const decompress = require('decompress');
-          const fs = require('fs');
-          const path = require('path');
+      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4
+      - uses: actions/setup-node@v4
+        with:
+          cache: 'pnpm'
+          node-version-file: '.nvmrc'
+        
+      - uses: actions/download-artifact@v4
+        with:
+          name: docs-artifact
+          path: dist/docs/
+          run-id: ${{ github.event.workflow_run.id }}
+          github-token: ${{ secrets.GH_ACTIONS_ARTIFACT_DOWNLOAD }}
+      - run: ls -llR ./dist/docs
+      - run: node scripts/clean-docs-files.mjs
 
-          const artifactsResult = await github.request(context.payload.workflow_run.artifacts_url);
-          const artifact = artifactsResult.data.artifacts.find((a) =>
-            a.name.startsWith('showcase-artifact-')
-          );
-          if (artifact) {
-            core.info(`Found artifact ${artifact.name}`);
-            try {
-              const outputPath = './dist/releases/showcase';
-              const allowedExtensions = process.env.ALLOWED_EXTENSIONS.split(/[, ]+/g).map(e => `.${e}`);
-              const archive = await github.request(artifact.archive_download_url);
-              core.info(`Downloaded ${artifact.name}`);
-              const zipResult = await decompress(Buffer.from(archive.data), '.');
-              core.info(`Decompressed ${artifact.name}:\n${zipResult.map(r => `- ${r.path}`).join('\n')}`);
-              fs.mkdirSync(outputPath, { recursive: true });
-              const tgzResult = await decompress(zipResult[0].path, outputPath, {
-                // Only allow files that are reasonable
-                filter: (file) => allowedExtensions.includes(path.extname(file.path)),
-                map: (file) => {
-                  file.path = file.path.replace(/^package\//, '');
-                  return file;
-                },
-              });
-              core.info(`Decompressed ${zipResult[0].path}:\n${tgzResult.map(r => `- ${r.path}`).join('\n')}`);
-            } catch (e) {
-              core.error(`Failed to download and unzip ${artifact.name}`);
-              core.error(e);
-            }
-          } else {
-            core.error(`No artifact found`);
-          }
-    - run: ls -llR ./dist/releases
+      - name: Create GitHub Deployment
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const environment = process.env.PR_NUMBER ? process.env.IMAGE_PR_TAG : 'preview-main';
+            const payload = { owner: context.repo.owner, repo: context.repo.repo, environment };
+            const { data: deployment } = await github.rest.repos.createDeployment({
+              ...payload,
+              ref: context.payload.workflow_run.head_sha,
+              auto_merge: false,
+              required_contexts: ['build', 'packages', 'showcase']
+            });
+            await github.rest.repos.createDeploymentStatus({
+              ...payload,
+              deployment_id: deployment.id,
+              state: 'in_progress',
+              environment_url: `https://${context.repo.repo}-${environment}.app.sbb.ch`,
+            });
 
-    - name: Create GitHub Deployment
-      uses: actions/github-script@v7
-      with:
-        script: |
-          const environment = process.env.PR_NUMBER ? process.env.IMAGE_PR_TAG : 'preview-main';
-          const payload = { owner: context.repo.owner, repo: context.repo.repo, environment };
-          const { data: deployment } = await github.rest.repos.createDeployment({
-            ...payload,
-            ref: context.payload.workflow_run.head_sha,
-            auto_merge: false,
-            required_contexts: ['build', 'packages', 'showcase']
-          });
-          await github.rest.repos.createDeploymentStatus({
-            ...payload,
-            deployment_id: deployment.id,
-            state: 'in_progress',
-            environment_url: `https://${context.repo.repo}-${environment}.app.sbb.ch`,
-          });
+      - uses: ./.github/actions/setup-mint
+      - name: Create and publish container image
+        run: |
+          echo "${{ secrets.GITHUB_TOKEN }}" | docker login ghcr.io -u $ --password-stdin
+          docker build --tag $IMAGE_REPO:$IMAGE_TAG-fat .
+          mint slim \
+            --target $IMAGE_REPO:$IMAGE_TAG-fat \
+            --tag $IMAGE_REPO:$IMAGE_TAG \
+            --preserve-path /usr/share/nginx/html \
+            --include-new false
+          docker push $IMAGE_REPO:$IMAGE_TAG
+          docker tag $IMAGE_REPO:$IMAGE_TAG $IMAGE_REPO:$IMAGE_PR_TAG
+          docker push $IMAGE_REPO:$IMAGE_PR_TAG
+          docker image list
+        env:
+          DOCKER_BUILDKIT: 1
 
-    - uses: ./.github/actions/setup-mint
-    - name: Create and publish container image
-      run: |
-        echo "${{ secrets.GITHUB_TOKEN }}" | docker login ghcr.io -u $ --password-stdin
-        docker build --tag $IMAGE_REPO:$IMAGE_TAG-fat .
-        mint slim \
-          --target $IMAGE_REPO:$IMAGE_TAG-fat \
-          --tag $IMAGE_REPO:$IMAGE_TAG \
-          --preserve-path /usr/share/nginx/html \
-          --include-new false
-        docker push $IMAGE_REPO:$IMAGE_TAG
-        docker tag $IMAGE_REPO:$IMAGE_TAG $IMAGE_REPO:$IMAGE_PR_TAG
-        docker push $IMAGE_REPO:$IMAGE_PR_TAG
-        docker image list
-      env:
-        DOCKER_BUILDKIT: 1
-
-    - name: "Add 'preview-available' label"
-      # This label is used for filtering deployments in ArgoCD
-      run: gh issue edit $PR_NUMBER --add-label "preview-available"
-      env:
-        GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      - name: "Add 'preview-available' label"
+        # This label is used for filtering deployments in ArgoCD
+        run: gh issue edit $PR_NUMBER --add-label "preview-available"
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}

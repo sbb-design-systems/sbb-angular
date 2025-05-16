@@ -48,7 +48,7 @@ export class EsriPluginComponent implements OnChanges, OnDestroy {
   constructor(private _configService: ConfigService) {}
 
   ngOnChanges(changes: SimpleChanges): void {
-    if (changes.map?.currentValue && !changes.map?.previousValue) {
+    if (changes['map']?.currentValue && !changes['map']?.previousValue) {
       if (!this.featureLayers.length) {
         console.error('There must be at least one feature-layer');
         return;

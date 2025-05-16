@@ -20,7 +20,7 @@ With sbb-label:
 <sbb-form-field>
   <sbb-label>Name</sbb-label>
   <input type="text" sbbInput formControlName="name" placeholder="Name" />
-  @if (form.get('name').errors?.required) {
+  @if (form.get('name').errors?.['required']) {
     <sbb-error>This field is required.</sbb-error>
   }
 </sbb-form-field>
@@ -31,7 +31,7 @@ With label attribute:
 ```angular
 <sbb-form-field label="Name">
   <input type="text" sbbInput formControlName="name" placeholder="Name" />
-  @if (form.get('name').errors?.required) {
+  @if (form.get('name').errors?.['required']) {
     <sbb-error>This field is required.</sbb-error>
   }
 </sbb-form-field>
@@ -87,11 +87,13 @@ able to detect and automatically assign `<sbb-error>` instances inside of itself
     formControlName="name"
     placeholder="Name"
     [aria-describedby]="
-      form.get('name').touched && form.get('name').errors?.required ? 'name-required-error' : null
+      form.get('name').touched && form.get('name').errors?.['required']
+        ? 'name-required-error'
+        : null
     "
   />
 </sbb-form-field>
-@if (form.get('name').touched && form.get('name').errors?.required) {
+@if (form.get('name').touched && form.get('name').errors?.['required']) {
   <sbb-error id="name-required-error">This field is required.</sbb-error>
 }
 ```
@@ -154,11 +156,11 @@ providers: [...SbbShowOnDirtyErrorStateMatcher];
     placeholder="Name"
     [errorStateMatcher]="errorStateMatcher"
   />
-  @if (form.get('name').errors?.required) {
+  @if (form.get('name').errors?.['required']) {
     <sbb-error>This field is required.</sbb-error>
   }
-  @if (form.get('name').errors?.minlength) {
-    <sbb-error>Min length is {{ name.errors?.minlength?.requiredLength }}!</sbb-error>
+  @if (form.get('name').errors?.['minlength']) {
+    <sbb-error>Min length is {{ name.errors?.['minlength']?.['requiredLength'] }}!</sbb-error>
   }
 </sbb-form-field>
 ```

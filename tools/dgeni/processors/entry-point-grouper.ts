@@ -47,6 +47,9 @@ export class EntryPointDoc {
   /** List of categorized class docs that are defining a directive. */
   directives: CategorizedClassDoc[] = [];
 
+  /** List of categorized class docs that are defining a component. */
+  components: CategorizedClassDoc[] = [];
+
   /** List of categorized class docs that are defining a service. */
   services: CategorizedClassDoc[] = [];
 
@@ -126,7 +129,9 @@ export class EntryPointGrouper implements Processor {
       entryPoint.packageDisplayName = packageDisplayName;
 
       // Put this doc into the appropriate list in the entry-point doc.
-      if (doc.isDirective) {
+      if (doc.isComponent) {
+        entryPoint.components.push(doc);
+      } else if (doc.isDirective) {
         entryPoint.directives.push(doc);
       } else if (doc.isService) {
         entryPoint.services.push(doc);
@@ -228,8 +233,8 @@ export class EntryPointGrouper implements Processor {
   /** Finds the matching entry-point of the given file path. */
   private _findMatchingEntryPoint(relativeFilePath: string): string | null {
     let foundEntryPoint: string | null = null;
-    if (relativeFilePath.startsWith('../external/npm/node_modules/@angular')) {
-      return path.dirname(relativeFilePath.slice(29));
+    if (relativeFilePath.includes('node_modules/@angular/')) {
+      return path.dirname(relativeFilePath.substring(relativeFilePath.indexOf('@angular/')));
     }
 
     for (const entryPoint of this.entryPoints) {

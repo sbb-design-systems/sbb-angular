@@ -1,8 +1,8 @@
 import { SchematicsException, Tree } from '@angular-devkit/schematics';
 import { SchematicTestRunner } from '@angular-devkit/schematics/testing';
-import { createTestApp, getFileContent } from '@sbb-esta/angular/schematics/testing';
 
 import { COLLECTION_PATH } from '../paths';
+import { createTestApp, getFileContent } from '../testing';
 
 import { addPackageToPackageJson } from './package-config';
 import { LEAN_TEST_POLYFILL_PATH, TYPOGRAPHY_CSS_PATH } from './setup-project';
@@ -70,13 +70,15 @@ describe('ngAdd', () => {
   });
 
   it('should add @angular/cdk, @angular/animations and @angular/forms to "package.json" file', async () => {
-    expect(readJsonFile(appTree, '/package.json').dependencies['@angular/cdk']).toBeUndefined();
+    expect(readJsonFile(appTree, '/package.json')['dependencies']['@angular/cdk']).toBeUndefined();
 
     const tree = await runner.runSchematic('ng-add', baseOptions, appTree);
 
-    expect(readJsonFile(tree, '/package.json').dependencies['@angular/cdk']).toBe(`0.0.0-CDK`);
-    expect(readJsonFile(tree, '/package.json').dependencies['@angular/animations']).toBeDefined();
-    expect(readJsonFile(tree, '/package.json').dependencies['@angular/forms']).toBeDefined();
+    expect(readJsonFile(tree, '/package.json')['dependencies']['@angular/cdk']).toBe(`0.0.0-CDK`);
+    expect(
+      readJsonFile(tree, '/package.json')['dependencies']['@angular/animations'],
+    ).toBeDefined();
+    expect(readJsonFile(tree, '/package.json')['dependencies']['@angular/forms']).toBeDefined();
 
     // expect that there is a "node-package" install task. The task is
     // needed to update the lock file.
@@ -89,11 +91,11 @@ describe('ngAdd', () => {
   it('should do nothing if @angular/cdk is in "package.json" file already', async () => {
     addPackageToPackageJson(appTree, '@angular/cdk', '14.0.0');
 
-    expect(readJsonFile(appTree, '/package.json').dependencies['@angular/cdk']).toBe('14.0.0');
+    expect(readJsonFile(appTree, '/package.json')['dependencies']['@angular/cdk']).toBe('14.0.0');
 
     const tree = await runner.runSchematic('ng-add', baseOptions, appTree);
 
-    expect(readJsonFile(tree, '/package.json').dependencies['@angular/cdk']).toBe('14.0.0');
+    expect(readJsonFile(tree, '/package.json')['dependencies']['@angular/cdk']).toBe('14.0.0');
 
     // expect that there is a "node-package" install task. The task is
     // needed to update the lock file.
@@ -114,11 +116,11 @@ describe('ngAdd', () => {
     const tree = await runner.runSchematic('ng-add-setup-project', baseOptions, appTree);
 
     expect(
-      readJsonFile(tree, '/angular.json').projects['sbb-angular'].architect.build.options.styles,
+      readJsonFile(tree, '/angular.json')['projects']['sbb-angular'].architect.build.options.styles,
     ).toEqual([TYPOGRAPHY_CSS_PATH, 'projects/sbb-angular/src/styles.css']);
 
     expect(
-      readJsonFile(tree, '/angular.json').projects['sbb-angular'].architect.test.options.styles,
+      readJsonFile(tree, '/angular.json')['projects']['sbb-angular'].architect.test.options.styles,
     ).toEqual([TYPOGRAPHY_CSS_PATH, 'projects/sbb-angular/src/styles.css']);
 
     const fileContent = getFileContent(tree, '/projects/sbb-angular/src/app/app.module.ts');
@@ -134,19 +136,20 @@ describe('ngAdd', () => {
     await runner.runSchematic('ng-add-setup-project', baseOptions, appTree);
 
     expect(
-      readJsonFile(appTree, '/angular.json').projects['sbb-angular'].architect.build.options.styles,
+      readJsonFile(appTree, '/angular.json')['projects']['sbb-angular'].architect.build.options
+        .styles,
     ).toEqual([TYPOGRAPHY_CSS_PATH, 'projects/sbb-angular/src/styles.css']);
   });
 
   it('should add styles node in angular.json if no styles node exists', async () => {
     const angularJson = readJsonFile(appTree, '/angular.json');
-    delete angularJson.projects['sbb-angular'].architect.build.options.styles;
+    delete angularJson['projects']['sbb-angular'].architect.build.options.styles;
     appTree.overwrite('/angular.json', JSON.stringify(angularJson, null, 2));
 
     const tree = await runner.runSchematic('ng-add-setup-project', baseOptions, appTree);
 
     expect(
-      readJsonFile(tree, '/angular.json').projects['sbb-angular'].architect.build.options.styles,
+      readJsonFile(tree, '/angular.json')['projects']['sbb-angular'].architect.build.options.styles,
     ).toEqual([TYPOGRAPHY_CSS_PATH]);
   });
 
@@ -289,7 +292,7 @@ describe('ngAdd', () => {
       const tree = await runner.runSchematic('ng-add-setup-project', leanOptions, appTree);
 
       expect(
-        readJsonFile(tree, '/angular.json').projects['sbb-angular'].architect.test.options
+        readJsonFile(tree, '/angular.json')['projects']['sbb-angular'].architect.test.options
           .polyfills,
       ).toEqual(['zone.js', 'zone.js/testing', LEAN_TEST_POLYFILL_PATH]);
     });
@@ -299,27 +302,27 @@ describe('ngAdd', () => {
       await runner.runSchematic('ng-add-setup-project', leanOptions, appTree);
 
       expect(
-        readJsonFile(appTree, '/angular.json').projects['sbb-angular'].architect.test.options
+        readJsonFile(appTree, '/angular.json')['projects']['sbb-angular'].architect.test.options
           .polyfills,
       ).toEqual(['zone.js', 'zone.js/testing', LEAN_TEST_POLYFILL_PATH]);
     });
 
     it('should be added to polyfills string in angular.json', async () => {
       const angularJson = readJsonFile(appTree, '/angular.json');
-      angularJson.projects['sbb-angular'].architect.test.options.polyfills = 'dummy-polyfill.js';
+      angularJson['projects']['sbb-angular'].architect.test.options.polyfills = 'dummy-polyfill.js';
       appTree.overwrite('/angular.json', JSON.stringify(angularJson, null, 2));
 
       const tree = await runner.runSchematic('ng-add-setup-project', leanOptions, appTree);
 
       expect(
-        readJsonFile(tree, '/angular.json').projects['sbb-angular'].architect.test.options
+        readJsonFile(tree, '/angular.json')['projects']['sbb-angular'].architect.test.options
           .polyfills,
       ).toEqual(['dummy-polyfill.js', LEAN_TEST_POLYFILL_PATH]);
     });
 
     it('should throw an error if polyfill cannot be added', async () => {
       const angularJson = readJsonFile(appTree, '/angular.json');
-      angularJson.projects['sbb-angular'].architect.test.options.polyfills = {
+      angularJson['projects']['sbb-angular'].architect.test.options.polyfills = {
         that: 'is not valid',
       };
       appTree.overwrite('/angular.json', JSON.stringify(angularJson, null, 2));
@@ -335,7 +338,7 @@ describe('ngAdd', () => {
       const tree = await runner.runSchematic('ng-add-setup-project', baseOptions, appTree);
 
       expect(
-        readJsonFile(tree, '/angular.json').projects['sbb-angular'].architect.test.options
+        readJsonFile(tree, '/angular.json')['projects']['sbb-angular'].architect.test.options
           .polyfills,
       ).toEqual(['zone.js', 'zone.js/testing']);
     });
@@ -343,28 +346,28 @@ describe('ngAdd', () => {
     it('should be removed from polyfills array in standard variant', async () => {
       let tree = await runner.runSchematic('ng-add-setup-project', leanOptions, appTree);
       expect(
-        readJsonFile(appTree, '/angular.json').projects['sbb-angular'].architect.test.options
+        readJsonFile(appTree, '/angular.json')['projects']['sbb-angular'].architect.test.options
           .polyfills,
       ).toContain(LEAN_TEST_POLYFILL_PATH);
 
       tree = await runner.runSchematic('ng-add-setup-project', baseOptions, appTree);
 
       expect(
-        readJsonFile(tree, '/angular.json').projects['sbb-angular'].architect.test.options
+        readJsonFile(tree, '/angular.json')['projects']['sbb-angular'].architect.test.options
           .polyfills,
       ).not.toContain(LEAN_TEST_POLYFILL_PATH);
     });
 
     it('should be removed from polyfills string in standard variant', async () => {
       const angularJson = readJsonFile(appTree, '/angular.json');
-      angularJson.projects['sbb-angular'].architect.test.options.polyfills =
+      angularJson['projects']['sbb-angular'].architect.test.options.polyfills =
         LEAN_TEST_POLYFILL_PATH;
       appTree.overwrite('/angular.json', JSON.stringify(angularJson, null, 2));
 
       await runner.runSchematic('ng-add-setup-project', baseOptions, appTree);
 
       expect(
-        readJsonFile(appTree, '/angular.json').projects['sbb-angular'].architect.test.options
+        readJsonFile(appTree, '/angular.json')['projects']['sbb-angular'].architect.test.options
           .polyfills,
       ).toBeUndefined();
     });

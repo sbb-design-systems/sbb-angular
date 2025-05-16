@@ -104,7 +104,7 @@ export class SbbMapMarkerService {
   onClusterClicked(map: MaplibreMap, cluster: SbbFeatureData): void {
     this._zoomToCluster(
       map,
-      cluster.properties?.cluster_id,
+      cluster.properties?.['cluster_id'],
       this._mapService.convertToLngLatLike(cluster.geometry),
     );
   }
@@ -125,7 +125,7 @@ export class SbbMapMarkerService {
     feature: SbbFeatureData,
     oldSelectedFeatureId: string | undefined,
   ): string | undefined {
-    const selectedFeatureId = feature.properties?.id;
+    const selectedFeatureId = feature.properties?.['id'];
 
     if (!selectedFeatureId || selectedFeatureId === oldSelectedFeatureId) {
       this.unselectFeature(map);
@@ -220,7 +220,7 @@ export class SbbMapMarkerService {
     marker: SbbMarker,
     found: boolean[] = [],
   ): void {
-    const clusterId = cluster.properties?.cluster_id;
+    const clusterId = cluster.properties?.['cluster_id'];
     this._getPrimaryMarkerSource(map)
       .getClusterChildren(clusterId)
       .then((children) => {
@@ -235,7 +235,7 @@ export class SbbMapMarkerService {
                 marker.position as LngLatLike,
                 this._getSelectedMarkerOffset(map),
               );
-            } else if (child.properties?.cluster === true) {
+            } else if (child.properties?.['cluster'] === true) {
               this._zoomUntilMarkerVisible(map, child, marker, found);
             }
           }
@@ -264,13 +264,15 @@ export class SbbMapMarkerService {
     const images = new Map<string, string>();
 
     (markers ?? [])
-      .filter((marker) => marker.originalCategory ?? marker.category === SbbMarkerCategory.CUSTOM)
+      .filter(
+        (marker) => marker['originalCategory'] ?? marker.category === SbbMarkerCategory.CUSTOM,
+      )
       .forEach((marker) => {
         // The image will later be loaded by the category name.
         // Therefore, we have to overwrite the category.
         // We also need to use the same naming convention that we use in the map style.
         // see https://gitlab.geops.de/sbb/sbb-styles/-/blob/dev/partials/_ki.json#L28
-        marker.originalCategory = marker.category;
+        marker['originalCategory'] = marker.category;
         const imageName = this._buildImageName(marker);
         marker.category = imageName;
         if (isDarkMode) {

@@ -549,7 +549,7 @@ export class SbbAutocompleteTrigger
     }
   }
 
-  _handleInput(event: KeyboardEvent): void {
+  _handleInput(event: Event): void {
     const target = event.target as HTMLInputElement;
     let value: number | string | null = target.value;
 

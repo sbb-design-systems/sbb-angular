@@ -1,11 +1,11 @@
 load(
     "//tools:defaults.bzl",
-    "ng_module",
+    "ng_project",
 )
 
 package(default_visibility = ["//visibility:public"])
 
-ng_module(
+ng_project(
     name = "lightbox",
     srcs = glob(
         ["**/*.ts"],
@@ -16,12 +16,12 @@ ng_module(
         "**/*.css",
     ]),
     deps = [
+        "//:node_modules/@angular/core",
+        "//:node_modules/@angular/forms",
         "//src/angular/button",
         "//src/angular/form-field",
         "//src/angular/input",
         "//src/angular/lightbox",
-        "@npm//@angular/core",
-        "@npm//@angular/forms",
     ],
 )
 

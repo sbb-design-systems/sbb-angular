@@ -1,33 +1,25 @@
-load("@build_bazel_rules_nodejs//:index.bzl", "nodejs_binary")
-load("//tools:defaults.bzl", "ts_library")
+load("@aspect_rules_js//js:defs.bzl", "js_binary")
+load("//tools:defaults.bzl", "ts_project")
 
 package(default_visibility = ["//visibility:public"])
 
-nodejs_binary(
+js_binary(
     name = "dgeni",
     data = [
         ":sources",
-        "@npm//dgeni",
-        "@npm//dgeni-packages",
     ],
-    entry_point = ":bazel-bin.ts",
-    # TODO(josephperrott): update dependency usages to no longer need bazel patch module resolver
-    # See: https://github.com/bazelbuild/rules_nodejs/wiki#--bazel_patch_module_resolver-now-defaults-to-false-2324
-    templated_args = ["--bazel_patch_module_resolver"],
+    entry_point = ":bazel-bin.js",
 )
 
-ts_library(
+ts_project(
     name = "sources",
     srcs = glob(["**/*.ts"]),
-    # TODO(ESM): remove this once the Bazel NodeJS rules can handle ESM with `nodejs_binary`.
-    devmode_module = "commonjs",
-    tsconfig = ":tsconfig.json",
+    tsconfig = "//tools:tsconfig",
     deps = [
+        "//:node_modules/dgeni",
+        "//:node_modules/dgeni-packages",
+        "//:node_modules/highlight.js",
+        "//:node_modules/typescript",
         "//tools/highlight-files:sources",
-        "@npm//@types/node",
-        "@npm//dgeni",
-        "@npm//dgeni-packages",
-        "@npm//highlight.js",
-        "@npm//typescript",
     ],
 )

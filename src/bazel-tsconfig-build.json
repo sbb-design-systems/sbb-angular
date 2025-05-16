@@ -7,9 +7,11 @@
     "declaration": true,
     "stripInternal": false,
     "experimentalDecorators": true,
+    "emitDecoratorMetadata": true,
     "noUnusedParameters": false,
     "noUnusedLocals": false,
     "strictNullChecks": true,
+    "noPropertyAccessFromIndexSignature": true,
     "noImplicitReturns": true,
     "strictFunctionTypes": true,
     "noImplicitOverride": true,
@@ -24,15 +26,27 @@
     // Bazel either uses "umd" or "esnext". We replicate this here for IDE support.
     // https://github.com/bazelbuild/rules_typescript/blob/master/internal/common/tsconfig.bzl#L199
     "module": "esnext",
-    "moduleResolution": "node",
+    "moduleResolution": "bundler",
     "sourceMap": true,
     "inlineSources": true,
     "target": "es2022",
     "lib": ["es2020", "dom"],
+    "types": ["grecaptcha"],
     "skipLibCheck": true,
-    "types": ["grecaptcha", "tslib"]
+    "paths": {
+      "@sbb-esta/angular": ["./angular"],
+      "@sbb-esta/angular/*": ["./angular/*"],
+      "@sbb-esta/angular-experimental": ["./angular-experimental"],
+      "@sbb-esta/angular-experimental/*": ["./angular-experimental/*"],
+      "@sbb-esta/components-examples": ["./components-examples"],
+      "@sbb-esta/components-examples/*": ["./components-examples/*"],
+      "@sbb-esta/journey-maps": ["./journey-maps"],
+      "@sbb-esta/journey-maps/*": ["./journey-maps/*"]
+    }
   },
   "angularCompilerOptions": {
+    "strictTemplates": true,
+    "typeCheckHostBindings": true,
     "extendedDiagnostics": {
       "defaultCategory": "error"
     }

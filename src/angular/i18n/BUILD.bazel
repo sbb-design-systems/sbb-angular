@@ -1,33 +1,35 @@
 load(
     "//tools:defaults.bzl",
-    "ng_module",
-    "ng_test_library",
+    "ng_project",
     "ng_web_test_suite",
+    "ts_project",
 )
 
 package(default_visibility = ["//visibility:public"])
 
-ng_module(
+ng_project(
     name = "i18n",
     srcs = glob(
         ["**/*.ts"],
         exclude = ["**/*.spec.ts"],
     ),
     deps = [
-        "@npm//@types/node",
+        "//:node_modules/@types/node",
     ],
 )
 
-ng_test_library(
+ts_project(
     name = "unit_test_sources",
+    testonly = True,
     srcs = glob(
         ["**/*.spec.ts"],
         exclude = ["**/*.e2e.spec.ts"],
     ),
     deps = [
         ":i18n",
-        "@npm//@angular/common",
-        "@npm//@angular/platform-browser",
+        "//:node_modules/@angular/common",
+        "//:node_modules/@angular/core",
+        "//:node_modules/@angular/platform-browser",
     ],
 )
 

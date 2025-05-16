@@ -1,11 +1,11 @@
 load(
     "//tools:defaults.bzl",
-    "ng_module",
+    "ng_project",
 )
 
 package(default_visibility = ["//visibility:public"])
 
-ng_module(
+ng_project(
     name = "notification",
     srcs = glob(
         ["**/*.ts"],
@@ -16,8 +16,8 @@ ng_module(
         "**/*.css",
     ]),
     deps = [
+        "//:node_modules/@angular/core",
         "//src/angular/notification",
-        "@npm//@angular/core",
     ],
 )
 

@@ -8,12 +8,13 @@
       placeholder="Name"
       spellcheck="false"
     />
-    @if (formGroup.get('name')!.errors?.required) {
+    @if (formGroup.get('name')!.errors?.['required']) {
       <sbb-error>Name is required!</sbb-error>
     }
-    @if (formGroup.get('name')!.errors?.minlength) {
+    @if (formGroup.get('name')!.errors?.['minlength']) {
       <sbb-error
-        >Min length is {{ formGroup.get('name')!.errors?.minlength?.requiredLength }}!</sbb-error
+        >Min length is
+        {{ formGroup.get('name')!.errors?.['minlength']?.['requiredLength'] }}!</sbb-error
       >
     }
   </sbb-form-field>
@@ -21,7 +22,7 @@
     <sbb-datepicker arrows>
       <input sbbInput sbbDateInput formControlName="date" />
     </sbb-datepicker>
-    @if (formGroup.get('date')!.touched && formGroup.get('date')!.errors?.required) {
+    @if (formGroup.get('date')!.touched && formGroup.get('date')!.errors?.['required']) {
       <sbb-error> Date is required! </sbb-error>
     }
   </sbb-form-field>

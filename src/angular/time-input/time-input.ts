@@ -47,8 +47,9 @@ export class SbbTimeInput {
   }
 
   /** Method that sets the input value in 'hours:mins' format on blur event */
-  @HostListener('blur', ['$event.target.value'])
-  _onBlur(value: any) {
+  @HostListener('blur', ['$event'])
+  _onBlur(event: Event) {
+    const value = (event.target as HTMLInputElement).value;
     const regGroups = this._validateInput(value);
     if (!regGroups || regGroups.length <= 2) {
       return;

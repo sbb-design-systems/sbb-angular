@@ -7,9 +7,10 @@
     "paths": {
       "@sbb-esta/angular": ["../angular"],
       "@sbb-esta/angular/*": ["../angular/*"],
+      "@sbb-esta/angular-experimental": ["../angular-experimental"],
+      "@sbb-esta/angular-experimental/*": ["../angular-experimental/*"],
       "@sbb-esta/journey-maps": ["../journey-maps"],
-      "@sbb-esta/journey-maps/*": ["../journey-maps/*"],
-      "@sbb-esta/components-examples/*": ["./*"]
+      "@sbb-esta/journey-maps/*": ["../journey-maps/*"]
     }
   },
   "include": ["./**/*.ts"]

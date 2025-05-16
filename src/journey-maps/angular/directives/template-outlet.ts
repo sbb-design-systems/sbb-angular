@@ -32,7 +32,7 @@ export class SbbTemplateOutlet implements OnChanges {
   ) {}
 
   ngOnChanges(changes: SimpleChanges) {
-    if (changes.sbbTemplateOutlet) {
+    if (changes['sbbTemplateOutlet']) {
       this._removeOldTemplate();
 
       if (typeof this.sbbTemplateOutlet === 'string') {
@@ -40,7 +40,7 @@ export class SbbTemplateOutlet implements OnChanges {
       } else if (this.sbbTemplateOutlet) {
         this._setupNgTemplate(this.sbbTemplateOutlet);
       }
-    } else if (this._viewRef && changes.sbbTemplateOutletContext?.currentValue) {
+    } else if (this._viewRef && changes['sbbTemplateOutletContext']?.currentValue) {
       this._viewRef.context = this.sbbTemplateOutletContext;
     }
   }

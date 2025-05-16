@@ -9,6 +9,8 @@ export {};
  *  - https://github.com/angular/angular/blob/main/packages/common/locales/global/it-CH.js
  */
 
+declare var global: unknown;
+
 // tslint:disable:no-var-keyword prefer-const
 (function (context: any) {
   const locales = context?.ng?.common?.locales;

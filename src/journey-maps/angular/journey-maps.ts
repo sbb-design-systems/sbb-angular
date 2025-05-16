@@ -610,13 +610,14 @@ export class SbbJourneyMaps implements OnInit, AfterViewInit, OnDestroy, OnChang
     this._mapConfigService.updateConfigs(this.markerOptions.popup);
 
     if (
-      changes.markerOptions?.currentValue.markers !== changes.markerOptions?.previousValue?.markers
+      changes['markerOptions']?.currentValue.markers !==
+      changes['markerOptions']?.previousValue?.markers
     ) {
       this._updateMarkers();
     }
 
     // handle journey, transfer, and routes together, otherwise they can overwrite each other's transfer or route data
-    if (changes.journeyMapsRoutingOption) {
+    if (changes['journeyMapsRoutingOption']) {
       const invalidKeyCombination = getInvalidJourneyMapsRoutingOptionCombination(
         this.journeyMapsRoutingOption ?? {},
       );
@@ -642,15 +643,15 @@ export class SbbJourneyMaps implements OnInit, AfterViewInit, OnDestroy, OnChang
           this._mapLeitPoiService.processData(this._map, undefined);
           // only add new data if we have some
           if (
-            changes.journeyMapsRoutingOption.currentValue?.journey ||
-            changes.journeyMapsRoutingOption.currentValue?.journeyMetaInformation
+            changes['journeyMapsRoutingOption'].currentValue?.journey ||
+            changes['journeyMapsRoutingOption'].currentValue?.journeyMetaInformation
           ) {
             this._updateJourney();
           }
-          if (changes.journeyMapsRoutingOption.currentValue?.transfer) {
+          if (changes['journeyMapsRoutingOption'].currentValue?.transfer) {
             this._updateTransfer();
           }
-          if (changes.journeyMapsRoutingOption.currentValue?.routes) {
+          if (changes['journeyMapsRoutingOption'].currentValue?.routes) {
             this._updateRoutes();
           }
         });
@@ -658,7 +659,7 @@ export class SbbJourneyMaps implements OnInit, AfterViewInit, OnDestroy, OnChang
     }
 
     // handle trip and routes together, otherwise they can overwrite each other's trip or route data
-    if (changes.journeyRoutesOption) {
+    if (changes['journeyRoutesOption']) {
       const invalidKeyCombination = getInvalidJourneyRoutesOptionCombination(
         this.journeyRoutesOption ?? {},
       );
@@ -683,34 +684,34 @@ export class SbbJourneyMaps implements OnInit, AfterViewInit, OnDestroy, OnChang
           this._mapLeitPoiService.processData(this._map, undefined);
           // only add new data if we have some
           if (
-            changes.journeyRoutesOption.currentValue?.trip ||
-            changes.journeyRoutesOption.currentValue?.tripMetaInformation
+            changes['journeyRoutesOption'].currentValue?.trip ||
+            changes['journeyRoutesOption'].currentValue?.tripMetaInformation
           ) {
             this._updateTrip();
           }
-          if (changes.journeyRoutesOption.currentValue?.routes) {
+          if (changes['journeyRoutesOption'].currentValue?.routes) {
             this._updateRoutes();
           }
         });
       }
     }
 
-    if (changes.journeyMapsZones?.currentValue || changes.journeyMapsZones?.previousValue) {
+    if (changes['journeyMapsZones']?.currentValue || changes['journeyMapsZones']?.previousValue) {
       this._executeWhenMapStyleLoaded(() => {
         this._updateZones();
       });
     }
 
-    if (changes.poiOptions) {
+    if (changes['poiOptions']) {
       this._executeWhenMapStyleLoaded(() => {
         const poiEnvironmentChanged =
-          changes.poiOptions.previousValue?.environment !==
-          changes.poiOptions.currentValue?.environment;
+          changes['poiOptions'].previousValue?.environment !==
+          changes['poiOptions'].currentValue?.environment;
         const poiPreviewChanged =
-          changes.poiOptions.previousValue?.includePreview !==
-          changes.poiOptions.currentValue?.includePreview;
+          changes['poiOptions'].previousValue?.includePreview !==
+          changes['poiOptions'].currentValue?.includePreview;
         const poiStyleOptionsChanged =
-          !changes.poiOptions.firstChange && (poiEnvironmentChanged || poiPreviewChanged);
+          !changes['poiOptions'].firstChange && (poiEnvironmentChanged || poiPreviewChanged);
 
         if (poiStyleOptionsChanged) {
           // Update POI-Source-URL
@@ -742,7 +743,7 @@ export class SbbJourneyMaps implements OnInit, AfterViewInit, OnDestroy, OnChang
       return;
     }
 
-    if (changes.viewportDimensions && !changes.viewportDimensions.isFirstChange()) {
+    if (changes['viewportDimensions'] && !changes['viewportDimensions'].isFirstChange()) {
       // We update the viewport any time angular's change detection gets triggered for
       // changes.viewportDimensions, whether angular detects a difference between
       // changes.viewportDimensions?.currentValue and changes.viewportDimensions?.previousValue or not.
@@ -751,7 +752,7 @@ export class SbbJourneyMaps implements OnInit, AfterViewInit, OnDestroy, OnChang
       this._viewportDimensionsChanged.next();
     }
 
-    if (changes.viewportBounds) {
+    if (changes['viewportBounds']) {
       this._executeWhenMapStyleLoaded(() => {
         this._map
           .setMinZoom(this.viewportBounds?.minZoomLevel ?? SBB_MIN_ZOOM)
@@ -762,30 +763,31 @@ export class SbbJourneyMaps implements OnInit, AfterViewInit, OnDestroy, OnChang
     }
 
     if (
-      JSON.stringify(changes.styleOptions?.currentValue) !==
-      JSON.stringify(changes.styleOptions?.previousValue)
+      JSON.stringify(changes['styleOptions']?.currentValue) !==
+      JSON.stringify(changes['styleOptions']?.previousValue)
     ) {
       this._mapStyleOptionsChanged.next();
     }
 
-    if (changes.selectedLevel?.currentValue !== undefined) {
+    if (changes['selectedLevel']?.currentValue !== undefined) {
       this._levelSwitchService.switchLevel(this.selectedLevel);
     }
 
     if (
-      changes.uiOptions?.currentValue.levelSwitch !== changes.uiOptions?.previousValue?.levelSwitch
+      changes['uiOptions']?.currentValue.levelSwitch !==
+      changes['uiOptions']?.previousValue?.levelSwitch
     ) {
       this._show2Dor3D();
     }
 
     if (
-      changes.enableDefaultExtrusions?.currentValue !==
-      changes.enableDefaultExtrusions?.previousValue
+      changes['enableDefaultExtrusions']?.currentValue !==
+      changes['enableDefaultExtrusions']?.previousValue
     ) {
       this._showOrHideDefaultExtrusions();
     }
 
-    if (changes.customExtrusions?.currentValue !== changes.customExtrusions?.previousValue) {
+    if (changes['customExtrusions']?.currentValue !== changes['customExtrusions']?.previousValue) {
       this._showOrHideCustomExtrusions();
     }
   }
@@ -896,12 +898,12 @@ export class SbbJourneyMaps implements OnInit, AfterViewInit, OnDestroy, OnChang
     // The topmost rendered feature should be at position 0.
     // But it doesn't work for featureEventDataList within the same layer.
     while (target.layer.id === featureEventDataList[++i]?.layer.id) {
-      if (target.properties?.order < featureEventDataList[i].properties?.order) {
+      if (target.properties?.['order'] < featureEventDataList[i].properties?.['order']) {
         target = featureEventDataList[i];
       }
     }
 
-    if (target.properties?.cluster) {
+    if (target.properties?.['cluster']) {
       this._mapMarkerService.onClusterClicked(this._map, target);
     } else {
       const selectedMarkerId = this._mapMarkerService.onMarkerClicked(
@@ -1150,14 +1152,14 @@ export class SbbJourneyMaps implements OnInit, AfterViewInit, OnDestroy, OnChang
 
   private _haveRoutesMetaInformationsChanged(changes: SimpleChanges): boolean {
     return (
-      changes.journeyMapsRoutingOption?.currentValue?.routesMetaInformations?.length !==
-        changes.journeyMapsRoutingOption?.previousValue?.routesMetaInformations?.length ||
-      changes.journeyMapsRoutingOption?.currentValue?.routesMetaInformations !==
-        changes.journeyMapsRoutingOption?.previousValue?.routesMetaInformations ||
-      changes.journeyRoutesOption?.currentValue?.routesMetaInformations?.length !==
-        changes.journeyRoutesOption?.previousValue?.routesMetaInformations?.length ||
-      changes.journeyRoutesOption?.currentValue?.routesMetaInformations !==
-        changes.journeyRoutesOption?.previousValue?.routesMetaInformations
+      changes['journeyMapsRoutingOption']?.currentValue?.routesMetaInformations?.length !==
+        changes['journeyMapsRoutingOption']?.previousValue?.routesMetaInformations?.length ||
+      changes['journeyMapsRoutingOption']?.currentValue?.routesMetaInformations !==
+        changes['journeyMapsRoutingOption']?.previousValue?.routesMetaInformations ||
+      changes['journeyRoutesOption']?.currentValue?.routesMetaInformations?.length !==
+        changes['journeyRoutesOption']?.previousValue?.routesMetaInformations?.length ||
+      changes['journeyRoutesOption']?.currentValue?.routesMetaInformations !==
+        changes['journeyRoutesOption']?.previousValue?.routesMetaInformations
     );
   }
 

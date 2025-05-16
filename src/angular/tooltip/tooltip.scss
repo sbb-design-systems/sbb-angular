@@ -1,4 +1,3 @@
-@use 'external/npm/node_modules/@angular/cdk' as cdk;
 @use '@sbb-esta/angular' as sbb;
 
 .sbb-tooltip-component {
@@ -143,7 +142,7 @@
   border-radius: var(--sbb-border-radius);
   z-index: 2;
 
-  @include cdk.high-contrast(active, off) {
+  @include sbb.high-contrast(active, off) {
     outline: solid 1px;
   }
 

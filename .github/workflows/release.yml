@@ -28,16 +28,16 @@ jobs:
     - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4
     - name: "Bazel: Copy .bazelrc to user home"
       run: cp ./.github/.bazelrc ~/
+    - uses: pnpm/action-setup@v4
     - uses: actions/setup-node@v4
       with:
+        cache: 'pnpm'
         node-version-file: '.nvmrc'
         registry-url: 'https://registry.npmjs.org'
-        scope: sbb-esta
-    - name: "Yarn: Install"
-      uses: ./.github/actions/yarn-install
+    - run: pnpm install
 
     - name: "Bazel: Build packages"
-      run: yarn -s build packages
+      run: pnpm -s build packages
 
     - uses: actions/upload-artifact@v4
       with:
@@ -56,11 +56,11 @@ jobs:
       env:
         REF: ${{ github.ref }}
     - name: "Publish: @sbb-esta/angular"
-      run: yarn publish dist/releases/angular --tag ${{ steps.npm_tag.outputs.npm_tag }}  || true
+      run: pnpm publish dist/releases/angular --tag ${{ steps.npm_tag.outputs.npm_tag }}  || true
       env:
         NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
     - name: "Publish: @sbb-esta/journey-maps"
-      run: yarn publish dist/releases/journey-maps --tag ${{ steps.npm_tag.outputs.npm_tag }} || true
+      run: pnpm publish dist/releases/journey-maps --tag ${{ steps.npm_tag.outputs.npm_tag }} || true
       env:
         NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
 
@@ -79,14 +79,15 @@ jobs:
     - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4
     - name: "Bazel: Copy .bazelrc to user home"
       run: cp ./.github/.bazelrc ~/
+    - uses: pnpm/action-setup@v4
     - uses: actions/setup-node@v4
       with:
+        cache: 'pnpm'
         node-version-file: '.nvmrc'
-    - name: "Yarn: Install"
-      uses: ./.github/actions/yarn-install
+    - run: pnpm install
 
     - name: "Bazel: Build showcase"
-      run: yarn -s build showcase
+      run: pnpm -s build showcase
       env:
         JM_API_KEY: ${{ secrets.JM_API_KEY }}
 

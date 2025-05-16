@@ -1,11 +1,11 @@
 load(
     "//tools:defaults.bzl",
-    "ng_module",
+    "ng_project",
 )
 
 package(default_visibility = ["//visibility:public"])
 
-ng_module(
+ng_project(
     name = "accordion",
     srcs = glob(
         ["**/*.ts"],
@@ -16,11 +16,11 @@ ng_module(
         "**/*.css",
     ]),
     deps = [
+        "//:node_modules/@angular/core",
+        "//:node_modules/@angular/forms",
         "//src/angular/accordion",
         "//src/angular/button",
         "//src/angular/checkbox",
-        "@npm//@angular/core",
-        "@npm//@angular/forms",
     ],
 )
 

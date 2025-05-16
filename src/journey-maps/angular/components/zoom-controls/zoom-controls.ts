@@ -53,7 +53,7 @@ export class SbbZoomControls implements OnInit, OnChanges, OnDestroy {
   }
 
   ngOnChanges(changes: SimpleChanges): void {
-    if (changes.map?.currentValue) {
+    if (changes['map']?.currentValue) {
       this.map?.on('zoomend', () => {
         this._zoomChanged.next();
         // call outside component-zone, trigger detect changes manually
@@ -61,7 +61,7 @@ export class SbbZoomControls implements OnInit, OnChanges, OnDestroy {
         this._cd.detectChanges();
       });
 
-      if (!changes.map.previousValue) {
+      if (!changes['map'].previousValue) {
         // only do this the first time map is set
         this._setIsMinMaxZoom();
       }

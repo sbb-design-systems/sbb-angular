@@ -65,7 +65,7 @@ export class SbbPopup implements OnChanges, OnDestroy {
   ) {}
 
   ngOnChanges(changes: SimpleChanges): void {
-    if (changes.templateContext?.currentValue) {
+    if (changes['templateContext']?.currentValue) {
       this.templateContextIndex = 0;
       this.templateContextSize = Array.isArray(this.templateContext)
         ? this.templateContext.length

@@ -1,14 +1,11 @@
-import { ErrorHandler, NgModule, provideExperimentalZonelessChangeDetection } from '@angular/core';
+import { ErrorHandler, NgModule, provideZonelessChangeDetection } from '@angular/core';
 import { TestBed } from '@angular/core/testing';
 import '@angular/localize/init';
-import {
-  BrowserDynamicTestingModule,
-  platformBrowserDynamicTesting,
-} from '@angular/platform-browser-dynamic/testing';
+import { BrowserTestingModule, platformBrowserTesting } from '@angular/platform-browser/testing';
 
 @NgModule({
   providers: [
-    provideExperimentalZonelessChangeDetection(),
+    provideZonelessChangeDetection(),
     {
       provide: ErrorHandler,
       useValue: {
@@ -25,14 +22,10 @@ export class TestModule {}
  * Common setup / initialization for all unit tests in sbb-angular.
  */
 
-TestBed.initTestEnvironment(
-  [BrowserDynamicTestingModule, TestModule],
-  platformBrowserDynamicTesting(),
-  {
-    errorOnUnknownElements: true,
-    errorOnUnknownProperties: true,
-  },
-);
+TestBed.initTestEnvironment([BrowserTestingModule, TestModule], platformBrowserTesting(), {
+  errorOnUnknownElements: true,
+  errorOnUnknownProperties: true,
+});
 
 (window as any).module = {};
 (window as any).isNode = false;

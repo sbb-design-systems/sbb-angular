@@ -1,11 +1,11 @@
 load(
     "//tools:defaults.bzl",
-    "ng_module",
+    "ng_project",
 )
 
 package(default_visibility = ["//visibility:public"])
 
-ng_module(
+ng_project(
     name = "file-selector",
     srcs = glob(
         ["**/*.ts"],
@@ -13,12 +13,12 @@ ng_module(
     ),
     assets = glob(["**/*.html"]),
     deps = [
+        "//:node_modules/@angular/common",
+        "//:node_modules/@angular/core",
+        "//:node_modules/@angular/forms",
+        "//:node_modules/rxjs",
         "//src/angular/checkbox",
         "//src/angular/file-selector",
-        "@npm//@angular/common",
-        "@npm//@angular/core",
-        "@npm//@angular/forms",
-        "@npm//rxjs",
     ],
 )
 
