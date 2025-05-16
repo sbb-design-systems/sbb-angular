@@ -70,7 +70,7 @@ catalogs:
 overrides:
   typescript: 5.8.2
 
-packageExtensionsChecksum: f0e296dde7b086a53d76f809f69eba61
+packageExtensionsChecksum: 776fe81137e8a08e18d7912233173f91
 
 importers:
 
@@ -87,7 +87,7 @@ importers:
         version: 20.0.0-rc.0(@angular/common@20.0.0-rc.0(@angular/compiler-cli@20.0.0-rc.0(@angular/compiler@20.0.0-rc.0)(typescript@5.8.2))(@angular/core@20.0.0-rc.0(@angular/compiler@20.0.0-rc.0)(rxjs@6.6.7)(zone.js@0.15.0))(rxjs@6.6.7))(@angular/compiler-cli@20.0.0-rc.0(@angular/compiler@20.0.0-rc.0)(typescript@5.8.2))(@angular/core@20.0.0-rc.0(@angular/compiler@20.0.0-rc.0)(rxjs@6.6.7)(zone.js@0.15.0))
       '@angular/cdk':
         specifier: 'catalog:'
-        version: 20.0.0-rc.0(@angular/common@20.0.0-rc.0(@angular/compiler-cli@20.0.0-rc.0(@angular/compiler@20.0.0-rc.0)(typescript@5.8.2))(@angular/core@20.0.0-rc.0(@angular/compiler@20.0.0-rc.0)(rxjs@6.6.7)(zone.js@0.15.0))(rxjs@6.6.7))(@angular/core@20.0.0-rc.0(@angular/compiler@20.0.0-rc.0)(rxjs@6.6.7)(zone.js@0.15.0))(rxjs@6.6.7)
+        version: 20.0.0-rc.0(@angular/common@20.0.0-rc.0(@angular/compiler-cli@20.0.0-rc.0(@angular/compiler@20.0.0-rc.0)(typescript@5.8.2))(@angular/core@20.0.0-rc.0(@angular/compiler@20.0.0-rc.0)(rxjs@6.6.7)(zone.js@0.15.0))(rxjs@6.6.7))(@angular/compiler-cli@20.0.0-rc.0(@angular/compiler@20.0.0-rc.0)(typescript@5.8.2))(@angular/core@20.0.0-rc.0(@angular/compiler@20.0.0-rc.0)(rxjs@6.6.7)(zone.js@0.15.0))(rxjs@6.6.7)
       '@angular/common':
         specifier: 'catalog:'
         version: 20.0.0-rc.0(@angular/compiler-cli@20.0.0-rc.0(@angular/compiler@20.0.0-rc.0)(typescript@5.8.2))(@angular/core@20.0.0-rc.0(@angular/compiler@20.0.0-rc.0)(rxjs@6.6.7)(zone.js@0.15.0))(rxjs@6.6.7)
@@ -397,7 +397,7 @@ importers:
         version: 20.0.0-rc.0(@angular/common@20.0.0-rc.0(@angular/compiler-cli@20.0.0-rc.0(@angular/compiler@20.0.0-rc.0)(typescript@5.8.2))(@angular/core@20.0.0-rc.0(@angular/compiler@20.0.0-rc.0)(rxjs@6.6.7)(zone.js@0.15.0))(rxjs@6.6.7))(@angular/compiler-cli@20.0.0-rc.0(@angular/compiler@20.0.0-rc.0)(typescript@5.8.2))(@angular/core@20.0.0-rc.0(@angular/compiler@20.0.0-rc.0)(rxjs@6.6.7)(zone.js@0.15.0))
       '@angular/cdk':
         specifier: 'catalog:'
-        version: 20.0.0-rc.0(@angular/common@20.0.0-rc.0(@angular/compiler-cli@20.0.0-rc.0(@angular/compiler@20.0.0-rc.0)(typescript@5.8.2))(@angular/core@20.0.0-rc.0(@angular/compiler@20.0.0-rc.0)(rxjs@6.6.7)(zone.js@0.15.0))(rxjs@6.6.7))(@angular/core@20.0.0-rc.0(@angular/compiler@20.0.0-rc.0)(rxjs@6.6.7)(zone.js@0.15.0))(rxjs@6.6.7)
+        version: 20.0.0-rc.0(@angular/common@20.0.0-rc.0(@angular/compiler-cli@20.0.0-rc.0(@angular/compiler@20.0.0-rc.0)(typescript@5.8.2))(@angular/core@20.0.0-rc.0(@angular/compiler@20.0.0-rc.0)(rxjs@6.6.7)(zone.js@0.15.0))(rxjs@6.6.7))(@angular/compiler-cli@20.0.0-rc.0(@angular/compiler@20.0.0-rc.0)(typescript@5.8.2))(@angular/core@20.0.0-rc.0(@angular/compiler@20.0.0-rc.0)(rxjs@6.6.7)(zone.js@0.15.0))(rxjs@6.6.7)
       '@angular/common':
         specifier: 'catalog:'
         version: 20.0.0-rc.0(@angular/compiler-cli@20.0.0-rc.0(@angular/compiler@20.0.0-rc.0)(typescript@5.8.2))(@angular/core@20.0.0-rc.0(@angular/compiler@20.0.0-rc.0)(rxjs@6.6.7)(zone.js@0.15.0))(rxjs@6.6.7)
@@ -10054,13 +10054,17 @@ snapshots:
       - tsx
       - yaml
 
-  '@angular/cdk@20.0.0-rc.0(@angular/common@20.0.0-rc.0(@angular/compiler-cli@20.0.0-rc.0(@angular/compiler@20.0.0-rc.0)(typescript@5.8.2))(@angular/core@20.0.0-rc.0(@angular/compiler@20.0.0-rc.0)(rxjs@6.6.7)(zone.js@0.15.0))(rxjs@6.6.7))(@angular/core@20.0.0-rc.0(@angular/compiler@20.0.0-rc.0)(rxjs@6.6.7)(zone.js@0.15.0))(rxjs@6.6.7)':
+  '@angular/cdk@20.0.0-rc.0(@angular/common@20.0.0-rc.0(@angular/compiler-cli@20.0.0-rc.0(@angular/compiler@20.0.0-rc.0)(typescript@5.8.2))(@angular/core@20.0.0-rc.0(@angular/compiler@20.0.0-rc.0)(rxjs@6.6.7)(zone.js@0.15.0))(rxjs@6.6.7))(@angular/compiler-cli@20.0.0-rc.0(@angular/compiler@20.0.0-rc.0)(typescript@5.8.2))(@angular/core@20.0.0-rc.0(@angular/compiler@20.0.0-rc.0)(rxjs@6.6.7)(zone.js@0.15.0))(rxjs@6.6.7)':
     dependencies:
       '@angular/common': 20.0.0-rc.0(@angular/compiler-cli@20.0.0-rc.0(@angular/compiler@20.0.0-rc.0)(typescript@5.8.2))(@angular/core@20.0.0-rc.0(@angular/compiler@20.0.0-rc.0)(rxjs@6.6.7)(zone.js@0.15.0))(rxjs@6.6.7)
       '@angular/core': 20.0.0-rc.0(@angular/compiler@20.0.0-rc.0)(rxjs@6.6.7)(zone.js@0.15.0)
+      '@nginfra/angular-linking': 1.0.9(@angular/compiler-cli@20.0.0-rc.0(@angular/compiler@20.0.0-rc.0)(typescript@5.8.2))
       parse5: 7.3.0
       rxjs: 6.6.7
       tslib: 2.7.0
+    transitivePeerDependencies:
+      - '@angular/compiler-cli'
+      - supports-color
 
   '@angular/cli@20.0.0-rc.0(@types/node@22.15.17)(chokidar@4.0.3)':
     dependencies:
