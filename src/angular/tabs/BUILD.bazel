@@ -57,6 +57,7 @@ sass_binary(
     src = "tab-header.scss",
     deps = [
         ":tabs_scss_lib",
+        "//src/angular:scss_lib",
     ],
 )
 

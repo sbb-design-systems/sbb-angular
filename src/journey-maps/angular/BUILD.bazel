@@ -72,6 +72,7 @@ sass_binary(
     src = "components/basemap-switch/basemap-switch.scss",
     deps = [
         ":angular_scss_lib",
+        "//src/angular:scss_lib",
     ],
 )
 
@@ -80,6 +81,7 @@ sass_binary(
     src = "components/compass-button/compass-button.scss",
     deps = [
         ":angular_scss_lib",
+        "//src/angular:scss_lib",
     ],
 )
 
@@ -88,6 +90,7 @@ sass_binary(
     src = "components/geolocate-button/geolocate-button.scss",
     deps = [
         ":angular_scss_lib",
+        "//src/angular:scss_lib",
     ],
 )
 
@@ -96,6 +99,7 @@ sass_binary(
     src = "components/home-button/home-button.scss",
     deps = [
         ":angular_scss_lib",
+        "//src/angular:scss_lib",
     ],
 )
 

@@ -39,7 +39,7 @@ js_library(
 dgeni_api_docs(
     name = "api-docs",
     srcs = api_source_files + [
-        # Add all Angular packages to the sources because some Material exports use
+        # Add all Angular packages to the sources because some sbb-angular exports use
         # Angular exports and these should not cause any warnings when Dgeni uses the
         # type checker to parse our TypeScript sources.
         "//:node_modules/@angular/cdk",

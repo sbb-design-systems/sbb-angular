@@ -22,11 +22,7 @@ import {
   OverlayRef,
   ScrollStrategy,
 } from '@angular/cdk/overlay';
-import {
-  Platform,
-  _bindEventWithOptions,
-  _getFocusedElementPierceShadowDom,
-} from '@angular/cdk/platform';
+import { Platform, _getFocusedElementPierceShadowDom } from '@angular/cdk/platform';
 import { ComponentPortal } from '@angular/cdk/portal';
 import { ScrollDispatcher } from '@angular/cdk/scrolling';
 import { AsyncPipe, DOCUMENT, NgClass, NgTemplateOutlet } from '@angular/common';
@@ -58,6 +54,16 @@ import { Breakpoints } from '@sbb-esta/angular/core';
 import { SbbIcon } from '@sbb-esta/angular/icon';
 import { Observable, Subject } from 'rxjs';
 import { filter, takeUntil } from 'rxjs/operators';
+
+function _bindEventWithOptions(
+  renderer: Renderer2,
+  target: EventTarget,
+  eventName: string,
+  callback: (event: any) => boolean | void,
+  options: AddEventListenerOptions,
+): () => void {
+  return renderer.listen(target, eventName, callback, options);
+}
 
 /** Possible positions for a tooltip. */
 export type TooltipPosition = 'left' | 'right' | 'above' | 'below';

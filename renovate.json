@@ -108,7 +108,7 @@
       "extends": ["schedule:monthly"]
     },
     {
-      "matchPackageNames": ["@angular/build-tooling", "angular/dev-infra", "@angular/ng-dev"],
+      "matchPackageNames": ["@angular/dev-infra", "@angular/ng-dev"],
       "groupName": "angular shared dev-infra code",
       "schedule": ["before 5am on wednesday"]
     }

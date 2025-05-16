@@ -17,6 +17,8 @@ declare global {
   var WorkerGlobalScope: { prototype: WorkerGlobalScope; new (): WorkerGlobalScope };
 }
 
+declare var global: unknown;
+
 const __globalThis = typeof globalThis !== 'undefined' && globalThis;
 const __window = typeof window !== 'undefined' && window;
 const __self =

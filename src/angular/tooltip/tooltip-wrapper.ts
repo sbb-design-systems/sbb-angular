@@ -107,7 +107,10 @@ export class SbbTooltipWrapper
   }
 
   ngOnChanges(changes: SimpleChanges): void {
-    if (changes.svgIcon && changes.svgIcon.currentValue !== changes.svgIcon.previousValue) {
+    if (
+      changes['svgIcon'] &&
+      changes['svgIcon'].currentValue !== changes['svgIcon'].previousValue
+    ) {
       this._svgIconSubject.next(this.svgIcon);
     }
   }

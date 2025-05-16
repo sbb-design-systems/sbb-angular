@@ -27,7 +27,7 @@ import { CategorizedClassDoc } from './dgeni-definitions';
  * export class MyComponent {}
  * ```
  */
-export function getDirectiveMetadata(classDoc: CategorizedClassDoc): Map<string, any> | null {
+export function getMetadata(classDoc: CategorizedClassDoc): Map<string, any> | null {
   const declaration = classDoc.symbol.valueDeclaration;
   const decorators =
     declaration && isClassDeclaration(declaration) ? getDecorators(declaration) : null;

@@ -4,7 +4,7 @@
       <sbb-option [value]="value">Variant {{ value }}</sbb-option>
     }
   </sbb-select>
-  @if (select.touched && select.errors?.required) {
+  @if (select.touched && select.errors?.['required']) {
     <sbb-error> Variant is required! </sbb-error>
   }
 </sbb-form-field>

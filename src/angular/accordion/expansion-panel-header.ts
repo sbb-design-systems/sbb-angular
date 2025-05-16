@@ -62,7 +62,7 @@ export class SbbExpansionPanelHeader implements AfterViewInit, OnDestroy, Focusa
     const tabIndex = inject(new HostAttributeToken('tabindex'), { optional: true });
 
     const accordionHideToggleChange = panel.accordion
-      ? panel.accordion._stateChanges.pipe(filter((changes) => !!changes.hideToggle))
+      ? panel.accordion._stateChanges.pipe(filter((changes) => !!changes['hideToggle']))
       : EMPTY;
     this.tabIndex = parseInt(tabIndex || '', 10) || 0;
 
@@ -72,7 +72,9 @@ export class SbbExpansionPanelHeader implements AfterViewInit, OnDestroy, Focusa
       panel.opened,
       panel.closed,
       accordionHideToggleChange,
-      panel._inputChanges.pipe(filter((changes) => !!(changes.hideToggle || changes.disabled))),
+      panel._inputChanges.pipe(
+        filter((changes) => !!(changes['hideToggle'] || changes['disabled'])),
+      ),
     ).subscribe(() => this._changeDetectorRef.markForCheck());
 
     // Avoids focus being lost if the panel contained the focused element and was closed.

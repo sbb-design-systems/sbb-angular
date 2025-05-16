@@ -17,8 +17,8 @@ import {
   ViewEncapsulation,
 } from '@angular/core';
 import { AbstractControlDirective } from '@angular/forms';
-import { pairwise, Subject, Subscription } from 'rxjs';
-import { filter, map, startWith, takeUntil } from 'rxjs/operators';
+import { Subject, Subscription } from 'rxjs';
+import { filter, map, pairwise, startWith, takeUntil } from 'rxjs/operators';
 
 import { SbbError, SBB_ERROR } from './error';
 import { SbbFormFieldControl } from './form-field-control';

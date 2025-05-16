@@ -9,12 +9,14 @@
 <div class="docs-api-type-alias-deprecated-marker" {$ macros.deprecationTitle(alias) $}>
   Deprecated
 </div>
-{%- endif -%} {%- if alias.description -%}
-<p class="docs-api-type-alias-description">{$ alias.description | marked | safe $}</p>
+{%- endif -%}
+
+{%- if alias.description -%}
+  <p class="docs-api-type-alias-description">{$ alias.description | marked | safe $}</p>
 {%- endif -%}
 
 <div class="docs-markdown">
-  <pre class="docs-markdown-pre">
+<pre class="docs-markdown-pre">
 <code class="docs-markdown-code">
 {%- highlight "typescript" -%}
   type {$ alias.name | safe $} = {$ alias.typeDefinition | safe $};

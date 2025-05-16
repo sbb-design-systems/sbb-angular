@@ -6,7 +6,6 @@ import {
   OverlayRef,
   ScrollStrategy,
 } from '@angular/cdk/overlay';
-import { _bindEventWithOptions } from '@angular/cdk/platform';
 import {
   AfterContentInit,
   ChangeDetectionStrategy,
@@ -32,6 +31,16 @@ import { filter } from 'rxjs/operators';
 import { SbbHeaderLean } from './header';
 import type { SbbHeaderMenu } from './header-menu';
 import { SBB_HEADER } from './header-token';
+
+function _bindEventWithOptions(
+  renderer: Renderer2,
+  target: EventTarget,
+  eventName: string,
+  callback: (event: any) => boolean | void,
+  options: AddEventListenerOptions,
+): () => void {
+  return renderer.listen(target, eventName, callback, options);
+}
 
 /** Injection token that determines the scroll handling while the menu is open. */
 export const SBB_HEADER_MENU_SCROLL_STRATEGY = new InjectionToken<() => ScrollStrategy>(

@@ -220,7 +220,7 @@ export class JourneyMapsFeatureTypesExample implements OnInit {
           this.journeyRoutesOption = routingOption;
         }
         this.journeyMapsRoutingLegIds = this._distinct(
-          routingOption?.trip?.features.map((f) => f.properties?.legId) ?? [],
+          routingOption?.trip?.features.map((f) => f.properties?.['legId']) ?? [],
         )
           .filter((x) => x)
           .sort();
@@ -268,7 +268,7 @@ export class JourneyMapsFeatureTypesExample implements OnInit {
 
   private getBboxForLegId(selectedLegId: string, journey: FeatureCollection): number[] | undefined {
     const legBbox: Feature | undefined = journey.features.find(
-      (f) => f.properties?.type === 'bbox' && f.properties?.legId === selectedLegId,
+      (f) => f.properties?.['type'] === 'bbox' && f.properties?.['legId'] === selectedLegId,
     );
     if (legBbox) {
       const p: Position[] = (legBbox.geometry as Polygon).coordinates[0];

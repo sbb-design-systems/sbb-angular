@@ -4,6 +4,7 @@ dist
 src/*/schematics/*/*/files
 src/*/schematics/*/test-cases/**/*_input.ts
 src/*/schematics/*/test-cases/**/*_expected_output.ts
+tools/dgeni/templates/*.html
 tools/schematics/*/index.js
 tools/schematics/*/files
 coverage

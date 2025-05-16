@@ -1,6 +1,6 @@
 <sbb-form-field label="Name" [ngClass]="inputSize ? 'sbb-form-field-' + inputSize : ''">
   <input type="text" sbbInput [formControl]="name" placeholder="Name" [readonly]="readonly.value" />
-  @if (name.errors?.required) {
+  @if (name.errors?.['required']) {
     <sbb-error>Name is required!</sbb-error>
   }
 </sbb-form-field>

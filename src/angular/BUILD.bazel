@@ -32,15 +32,13 @@ ng_project(
 sass_binary(
     name = "typography",
     src = "typography.scss",
-    include_paths = [
-        "//:node_modules",
-    ],
     deps = ["//src/angular/styles:scss_lib"],
 )
 
 sass_binary(
     name = "fullfont",
     src = "fullfont.scss",
+    deps = ["//src/angular/styles:scss_lib"],
 )
 
 sass_library(

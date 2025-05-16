@@ -336,8 +336,9 @@ export class SbbDateInput<D> implements ControlValueAccessor, Validator, OnInit,
     }
   }
 
-  @HostListener('input', ['$event.target.value'])
-  _onInput(value: string) {
+  @HostListener('input', ['$event'])
+  _onInput(event: Event) {
+    const value = (event.target as HTMLInputElement).value;
     let date = this._dateAdapter.parse(value);
     this._lastValueValid = !date || this._dateAdapter.isValid(date);
     date = this._getValidDateOrNull(date);

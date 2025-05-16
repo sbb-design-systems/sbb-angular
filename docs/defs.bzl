@@ -19,9 +19,9 @@ COMMON_CONFIG = [
 
 # Project dependencies common across libs/tests
 DEPS = [
-    "//docs:node_modules/@angular/angular",
-    "//docs:node_modules/@angular/angular-experimental",
-    "//docs:node_modules/@angular/journey-maps",
+    "//docs:node_modules/@sbb-esta/angular",
+    "//docs:node_modules/@sbb-esta/angular-experimental",
+    "//docs:node_modules/@sbb-esta/journey-maps",
 ]
 
 # Common dependencies of Angular CLI applications

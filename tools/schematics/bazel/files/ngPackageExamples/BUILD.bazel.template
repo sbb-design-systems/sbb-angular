@@ -60,11 +60,9 @@ ng_package(
     # ng_package does not properly handle tree artifacts currently so we escalate to nested_packages
     nested_packages = [":docs-content"],
     package_deps = [
-        ":node_modules/@angular/cdk",
-        ":node_modules/@angular/cdk-experimental",
-        ":node_modules/@angular/material",
-        ":node_modules/@angular/material-experimental",
-        ":node_modules/@angular/material-moment-adapter",
+        ":node_modules/@sbb-esta/angular",
+        ":node_modules/@sbb-esta/angular-experimental",
+        ":node_modules/@sbb-esta/journey-maps",
     ],
     replace_prefixes = {
         "docs-content/": "/",
@@ -85,6 +83,8 @@ genrule(
       # Create source file manifest
       echo "$(execpaths //src/components-examples:example-source-files)" \
           > $(execpath _example_module.MF)
+
+      export JS_BINARY__NO_CD_BINDIR="1"
 
       # Run the bazel entry-point for generating the example module.
       ./$(execpath //tools/example-module:bazel-bin) \
