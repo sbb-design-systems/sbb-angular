@@ -1,15 +1,15 @@
 load(
     "//tools:defaults.bzl",
     "markdown_to_html",
-    "ng_module",
-    "ng_test_library",
+    "ng_project",
     "ng_web_test_suite",
     "sass_binary",
+    "ts_project",
 )
 
 package(default_visibility = ["//visibility:public"])
 
-ng_module(
+ng_project(
     name = "processflow",
     srcs = glob(
         ["**/*.ts"],
@@ -20,14 +20,14 @@ ng_module(
         ":step-header.css",
     ] + glob(["**/*.html"]),
     deps = [
+        "//:node_modules/@angular/animations",
+        "//:node_modules/@angular/cdk",
+        "//:node_modules/@angular/common",
+        "//:node_modules/@angular/core",
+        "//:node_modules/@angular/forms",
+        "//:node_modules/rxjs",
         "//src/angular/core",
         "//src/angular/icon",
-        "@npm//@angular/animations",
-        "@npm//@angular/cdk",
-        "@npm//@angular/common",
-        "@npm//@angular/core",
-        "@npm//@angular/forms",
-        "@npm//rxjs",
     ],
 )
 
@@ -47,22 +47,24 @@ sass_binary(
     ],
 )
 
-ng_test_library(
+ts_project(
     name = "unit_test_sources",
+    testonly = True,
     srcs = glob(
         ["**/*.spec.ts"],
         exclude = ["**/*.e2e.spec.ts"],
     ),
     deps = [
         ":processflow",
+        "//:node_modules/@angular/cdk",
+        "//:node_modules/@angular/core",
+        "//:node_modules/@angular/forms",
+        "//:node_modules/@angular/platform-browser",
+        "//:node_modules/rxjs",
         "//src/angular/button",
         "//src/angular/core/testing",
         "//src/angular/icon/testing",
         "//src/angular/input",
-        "@npm//@angular/cdk",
-        "@npm//@angular/forms",
-        "@npm//@angular/platform-browser",
-        "@npm//rxjs",
     ],
 )
 

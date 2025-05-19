@@ -1,11 +1,11 @@
 load(
     "//tools:defaults.bzl",
-    "ng_module",
+    "ng_project",
 )
 
 package(default_visibility = ["//visibility:public"])
 
-ng_module(
+ng_project(
     name = "breadcrumb",
     srcs = glob(
         ["**/*.ts"],
@@ -13,10 +13,10 @@ ng_module(
     ),
     assets = glob(["**/*.html"]),
     deps = [
+        "//:node_modules/@angular/core",
+        "//:node_modules/@angular/router",
         "//src/angular/breadcrumb",
         "//src/angular/menu",
-        "@npm//@angular/core",
-        "@npm//@angular/router",
     ],
 )
 

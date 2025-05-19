@@ -1,15 +1,15 @@
 load(
     "//tools:defaults.bzl",
     "markdown_to_html",
-    "ng_module",
-    "ng_test_library",
+    "ng_project",
     "ng_web_test_suite",
     "sass_binary",
+    "ts_project",
 )
 
 package(default_visibility = ["//visibility:public"])
 
-ng_module(
+ng_project(
     name = "lightbox",
     srcs = glob(
         ["**/*.ts"],
@@ -17,14 +17,14 @@ ng_module(
     ),
     assets = [":lightbox.css"] + glob(["**/*.html"]),
     deps = [
+        "//:node_modules/@angular/animations",
+        "//:node_modules/@angular/cdk",
+        "//:node_modules/@angular/core",
+        "//:node_modules/@angular/localize",
+        "//:node_modules/rxjs",
         "//src/angular/core",
         "//src/angular/dialog",
         "//src/angular/icon",
-        "@npm//@angular/animations",
-        "@npm//@angular/cdk",
-        "@npm//@angular/core",
-        "@npm//@angular/localize",
-        "@npm//rxjs",
     ],
 )
 
@@ -36,21 +36,23 @@ sass_binary(
     ],
 )
 
-ng_test_library(
+ts_project(
     name = "unit_test_sources",
+    testonly = True,
     srcs = glob(
         ["**/*.spec.ts"],
         exclude = ["**/*.e2e.spec.ts"],
     ),
     deps = [
         ":lightbox",
+        "//:node_modules/@angular/cdk",
+        "//:node_modules/@angular/common",
+        "//:node_modules/@angular/core",
+        "//:node_modules/@angular/platform-browser",
+        "//:node_modules/rxjs",
         "//src/angular/core/testing",
         "//src/angular/dialog",
         "//src/angular/icon/testing",
-        "@npm//@angular/cdk",
-        "@npm//@angular/common",
-        "@npm//@angular/platform-browser",
-        "@npm//rxjs",
     ],
 )
 

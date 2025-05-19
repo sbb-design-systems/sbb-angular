@@ -44,7 +44,7 @@ export class SbbMapRouteService {
         .forEach((f) => {
           f.source = SBB_ROKAS_ROUTE_SOURCE;
           // unless ONE leg is manually selected, ALL legs should show as selected
-          const selected = selectedLegId ? f.properties.legId === selectedLegId : true;
+          const selected = selectedLegId ? f.properties['legId'] === selectedLegId : true;
           map.setFeatureState(f, {
             'not-selected': !selected,
           });
@@ -65,8 +65,11 @@ export class SbbMapRouteService {
   }
 
   private _groupByLegId(features: Array<Feature>): Map<string, Feature[]> {
-    const featuresWithLegIds = features.filter((f) => f.properties?.legId);
-    const groupedByLegId = groupBy(featuresWithLegIds, (curr: Feature) => curr.properties!.legId);
+    const featuresWithLegIds = features.filter((f) => f.properties?.['legId']);
+    const groupedByLegId = groupBy(
+      featuresWithLegIds,
+      (curr: Feature) => curr.properties!['legId'],
+    );
     return new Map(Object.entries(groupedByLegId));
   }
 }

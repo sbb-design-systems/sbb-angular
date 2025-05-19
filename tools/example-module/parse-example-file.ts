@@ -5,7 +5,6 @@ interface ParsedMetadata {
   componentName: string;
   title: string;
   order: number;
-  devOnly: boolean;
   variant: string;
   selector: string;
   templateUrl: string;
@@ -44,12 +43,6 @@ export function parseExampleFile(fileName: string, content: string): ParsedMetad
               if (tagName === 'order') {
                 meta.order = parseInt(tagValue, 10);
               }
-              if (tagName === 'variant') {
-                meta.variant = tagValue;
-              }
-              if (tagName === 'devOnly') {
-                meta.devOnly = true;
-              }
               if (tagName === 'includeExtraFiles') {
                 meta.includeExtraFiles = tagValue.split(',');
               }
@@ -85,6 +78,8 @@ export function parseExampleFile(fileName: string, content: string): ParsedMetad
               meta[propName] = prop.initializer.elements.map(
                 (literal) => (literal as ts.StringLiteralLike).text,
               );
+            } else if (propName === 'styleUrl' && ts.isStringLiteralLike(prop.initializer)) {
+              meta.styleUrls = [prop.initializer.text];
             } else if (
               ts.isStringLiteralLike(prop.initializer) ||
               ts.isIdentifier(prop.initializer)

@@ -267,9 +267,9 @@ export class SbbTextarea
    * forward focus if user clicks anywhere on sbb-textarea
    * @docs-private
    */
-  @HostListener('click', ['$event.target'])
-  _focusTextarea(target: ElementRef) {
-    if (target === this._elementRef.nativeElement) {
+  @HostListener('click', ['$event'])
+  _focusTextarea(target: Event) {
+    if (target.target === this._elementRef.nativeElement) {
       this.focus();
     }
   }

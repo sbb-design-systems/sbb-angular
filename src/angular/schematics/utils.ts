@@ -469,7 +469,7 @@ export class MigrationElementProperty {
 export function getProjectName(options: Schema, workspace: WorkspaceDefinition) {
   return (
     options.project ||
-    (workspace.extensions.defaultProject as string) ||
+    (workspace.extensions['defaultProject'] as string) ||
     Array.from(workspace.projects.keys())[0]
   );
 }

@@ -1,11 +1,11 @@
 load(
     "//tools:defaults.bzl",
-    "ng_module",
+    "ng_project",
 )
 
 package(default_visibility = ["//visibility:public"])
 
-ng_module(
+ng_project(
     name = "toggle",
     srcs = glob(
         ["**/*.ts"],
@@ -13,15 +13,15 @@ ng_module(
     ),
     assets = glob(["**/*.html"]),
     deps = [
+        "//:node_modules/@angular/common",
+        "//:node_modules/@angular/core",
+        "//:node_modules/@angular/forms",
         "//src/angular/datepicker",
         "//src/angular/form-field",
         "//src/angular/icon",
         "//src/angular/input",
         "//src/angular/radio-button",
         "//src/angular/toggle",
-        "@npm//@angular/common",
-        "@npm//@angular/core",
-        "@npm//@angular/forms",
     ],
 )
 

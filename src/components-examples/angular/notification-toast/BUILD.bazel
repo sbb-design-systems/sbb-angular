@@ -1,11 +1,11 @@
 load(
     "//tools:defaults.bzl",
-    "ng_module",
+    "ng_project",
 )
 
 package(default_visibility = ["//visibility:public"])
 
-ng_module(
+ng_project(
     name = "notification-toast",
     srcs = glob(
         ["**/*.ts"],
@@ -16,12 +16,12 @@ ng_module(
         "**/*.css",
     ]),
     deps = [
+        "//:node_modules/@angular/core",
+        "//:node_modules/@angular/forms",
         "//src/angular/button",
         "//src/angular/form-field",
         "//src/angular/input",
         "//src/angular/notification-toast",
-        "@npm//@angular/core",
-        "@npm//@angular/forms",
     ],
 )
 

@@ -1,0 +1,47 @@
+load("@rules_angular//src/architect:ng_config.bzl", "ng_config")
+load("@aspect_bazel_lib//lib:copy_to_bin.bzl", "copy_to_bin")
+load("@npm//:defs.bzl", "npm_link_all_packages")
+load("//docs:defs.bzl", "ng_app")
+
+package(default_visibility = ["//visibility:public"])
+
+# Link npm packages
+npm_link_all_packages(name = "node_modules")
+
+# Root config files used throughout build/test/lint etc
+copy_to_bin(
+    name = "ng-base-config",
+    srcs = [
+        "package.json",
+    ],
+)
+
+# Test config files
+copy_to_bin(
+    name = "ng-base-test-config",
+    srcs = [
+        "karma-custom-launchers.js",
+    ],
+)
+
+ng_config(
+    name = "config",
+)
+
+# The main application
+ng_app(
+    name = "app",
+    project_name = "angular-app-sbb-ch",
+    deps = [
+        "//docs:node_modules/@sbb-esta/components-examples",
+        "//docs:node_modules/@stackblitz/sdk",
+        "//docs:node_modules/highlight.js",
+        "//docs:node_modules/maplibre-gl",
+        "//docs:node_modules/path-normalize",
+    ],
+)
+
+alias(
+    name = "serve",
+    actual = ":build.serve",
+)

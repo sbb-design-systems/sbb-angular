@@ -1,3 +1,7 @@
+# Required by `rules_ts`.
+common --@aspect_rules_ts//ts:skipLibCheck=always
+common --@aspect_rules_ts//ts:default_to_tsc_transpiler
+
 ###############################
 # Filesystem interactions     #
 ###############################
@@ -7,7 +11,7 @@
 # https://github.com/bazelbuild/rules_typescript/issues/12 which affects the common case of
 # having `tsconfig.json` in the WORKSPACE directory. Instead, you should run
 # `bazel info output_base` to find out where the outputs went.
-build --symlink_prefix=/
+build --symlink_prefix=dist/
 
 # Performance: avoid stat'ing input files
 build --watchfs
@@ -18,8 +22,16 @@ run --nolegacy_external_runfiles
 test --nolegacy_external_runfiles
 
 # This flag is needed to so that the bazel cache is not invalidated
-# when running bazel via `yarn bazel`.
+# when running bazel via `pnpm bazel`.
 build --incompatible_strict_action_env
+
+# Do not build runfile forests by default. If an execution strategy relies on runfile
+# forests, the forest is created on-demand. See: https://github.com/bazelbuild/bazel/issues/6627
+# and https://github.com/bazelbuild/bazel/commit/03246077f948f2790a83520e7dccc2625650e6df
+build --nobuild_runfile_links
+
+# Prevents the npm package extract from occuring or caching on RBE which overwhelms our quota
+build --modify_execution_info=NpmPackageExtract=+no-remote
 
 ############################
 # --strategy=BundlingTypes #
@@ -40,15 +52,19 @@ query --output=label_kind
 # By default, failing tests don't print any output, it goes to the log file
 test --test_output=errors
 
-#################################
-# Release configuration.        #
-# Run with "--config=release"   #
-#################################
+####################################
+# Stamping configurations.         #
+# Run with "--config=release" or   #
+# "--config=snapshot-build".       #
+####################################
 
 # Configures script to do version stamping.
 # See https://docs.bazel.build/versions/master/user-manual.html#flag--workspace_status_command
-build:release --workspace_status_command="node ./tools/bazel-stamp-vars.js"
+build:release --workspace_status_command="pnpm -s ng-dev:stamp --mode=release"
 build:release --stamp
+
+build:snapshot-build --workspace_status_command="pnpm -s ng-dev:stamp --mode=snapshot"
+build:snapshot-build --stamp
 
 ####################################
 # Bazel custom flags               #
@@ -63,7 +79,6 @@ build --define=angular_ivy_enabled=True
 ##################
 # Remote Caching #
 ##################
-build --disk_cache=~/.bazel-cache/sbb-angular
 build --remote_accept_cached=true
 build --remote_upload_local_results=false
 
@@ -83,14 +98,6 @@ build:trusted-build --remote_upload_local_results=true
 
 # Enable debugging tests with --config=debug
 test:debug --test_arg=--node_options=--inspect-brk --test_output=streamed --test_strategy=exclusive --test_timeout=9999 --nocache_test_results
-
-################################
-# Coverage                     #
-################################
-
-# When running `bazel coverage` --instrument_test_targets needs to be set in order to
-# collect coverage information from test targets
-coverage --instrument_test_targets
 
 ################################
 # Local Environment Setup      #

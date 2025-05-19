@@ -1,14 +1,14 @@
 load(
     "//tools:defaults.bzl",
     "markdown_to_html",
-    "ng_module",
-    "ng_test_library",
+    "ng_project",
     "ng_web_test_suite",
+    "ts_project",
 )
 
 package(default_visibility = ["//visibility:public"])
 
-ng_module(
+ng_project(
     name = "radio-button",
     srcs = glob(
         ["**/*.ts"],
@@ -16,25 +16,27 @@ ng_module(
     ),
     assets = glob(["**/*.html"]),
     deps = [
+        "//:node_modules/@angular/cdk",
+        "//:node_modules/@angular/core",
+        "//:node_modules/@angular/forms",
+        "//:node_modules/rxjs",
         "//src/angular/core",
-        "@npm//@angular/cdk",
-        "@npm//@angular/core",
-        "@npm//@angular/forms",
-        "@npm//rxjs",
     ],
 )
 
-ng_test_library(
+ts_project(
     name = "unit_test_sources",
+    testonly = True,
     srcs = glob(
         ["**/*.spec.ts"],
         exclude = ["**/*.e2e.spec.ts"],
     ),
     deps = [
         ":radio-button",
+        "//:node_modules/@angular/core",
+        "//:node_modules/@angular/forms",
+        "//:node_modules/@angular/platform-browser",
         "//src/angular/core/testing",
-        "@npm//@angular/forms",
-        "@npm//@angular/platform-browser",
     ],
 )
 

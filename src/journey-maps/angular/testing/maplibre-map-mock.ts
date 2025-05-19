@@ -1,5 +1,5 @@
-import Point from '@mapbox/point-geometry';
-import { Map as MapLibreMap, MapGeoJSONFeature, PointLike } from 'maplibre-gl';
+import type PointType from '@mapbox/point-geometry';
+import { Map as MapLibreMap, MapGeoJSONFeature, Point, PointLike } from 'maplibre-gl';
 
 interface EventInfo {
   _layerId: string;
@@ -7,7 +7,7 @@ interface EventInfo {
 }
 
 export class SbbMaplibreMapMock {
-  static readonly EVENT_POINT: Point = new Point(150, 100);
+  static readonly EVENT_POINT: PointType = new Point(150, 100);
 
   private readonly _callbackFnCache = new Map<String, EventInfo[] | any[]>();
   private readonly _canvasStyle = { style: { cursor: '' } };

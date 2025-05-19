@@ -1,11 +1,11 @@
 load(
     "//tools:defaults.bzl",
-    "ng_module",
+    "ng_project",
 )
 
 package(default_visibility = ["//visibility:public"])
 
-ng_module(
+ng_project(
     name = "form-field",
     srcs = glob(
         ["**/*.ts"],
@@ -13,6 +13,9 @@ ng_module(
     ),
     assets = glob(["**/*.html"]),
     deps = [
+        "//:node_modules/@angular/common",
+        "//:node_modules/@angular/core",
+        "//:node_modules/@angular/forms",
         "//src/angular/button",
         "//src/angular/checkbox",
         "//src/angular/core",
@@ -22,9 +25,6 @@ ng_module(
         "//src/angular/select",
         "//src/angular/time-input",
         "//src/angular/tooltip",
-        "@npm//@angular/common",
-        "@npm//@angular/core",
-        "@npm//@angular/forms",
     ],
 )
 

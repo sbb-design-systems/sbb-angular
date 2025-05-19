@@ -48,11 +48,14 @@ jobs:
     steps:
       - run: echo ${{ needs.cherry_pick.outputs.failed_release_version }}
       - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4
+      - uses: pnpm/action-setup@v4
+        if: needs.cherry_pick.outputs.failed_release_version
       - uses: actions/setup-node@v4
         if: needs.cherry_pick.outputs.failed_release_version
         with:
+          cache: 'pnpm'
           node-version-file: '.nvmrc'
-      - uses: ./.github/actions/yarn-install
+      - run: pnpm install
         if: needs.cherry_pick.outputs.failed_release_version
       - name: Update maintenance issue
         if: needs.cherry_pick.outputs.failed_release_version

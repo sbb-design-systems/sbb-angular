@@ -21,12 +21,6 @@ export interface LiveExample {
   additionalComponents: string[];
   /** Path from which to import the xample. */
   importPath: string;
-  /** Valid only for a specific variant. */
-  variant: string;
-  /** Whether the example is only for dev purposes */
-  devOnly: boolean;
 }
-
-export const EXAMPLE_COMPONENTS_LOADER = new Map<string, () => Promise<any>>()${exampleComponentsLoader}
 
 export const EXAMPLE_COMPONENTS: {[id: string]: LiveExample} = ${exampleComponents};

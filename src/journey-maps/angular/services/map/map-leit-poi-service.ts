@@ -44,23 +44,24 @@ export class SbbMapLeitPoiService {
     this._leitPoiFeatures = featureCollection.features
       .filter(
         (f) =>
-          !!f.properties?.step && f.properties?.pathType === SbbMapLeitPoiService._leitPoiPathType,
+          !!f.properties?.['step'] &&
+          f.properties?.['pathType'] === SbbMapLeitPoiService._leitPoiPathType,
       )
       .map((f) => this._convertToLeitPoiFeature(f))
       .filter((lp) => !!lp) as SbbLeitPoiFeature[];
 
-    const isJourney = featureCollection.features.some((f) => f.properties?.legId !== undefined);
+    const isJourney = featureCollection.features.some((f) => f.properties?.['legId'] !== undefined);
     const routeStartLevelFeature = featureCollection.features.find(
       (f) =>
-        !!f.properties?.step &&
-        f.properties?.stationLevels &&
-        f.properties?.routeStartLevel !== undefined &&
+        !!f.properties?.['step'] &&
+        f.properties?.['stationLevels'] &&
+        f.properties?.['routeStartLevel'] !== undefined &&
         // a /journey feature with `routeStartLevel` should always have a defined `legId` -> checking for `legId !== undefined` is not necessary
-        (!isJourney || f.properties?.legId === selectedLegId),
+        (!isJourney || f.properties?.['legId'] === selectedLegId),
     );
     if (routeStartLevelFeature) {
       const routeStartLevel = routeStartLevelFeature
-        ? Number(routeStartLevelFeature.properties!.routeStartLevel)
+        ? Number(routeStartLevelFeature.properties!['routeStartLevel'])
         : SbbMapLeitPoiService._defaultLevel;
 
       this._switchLevelMapAware(map, routeStartLevel);
@@ -139,12 +140,12 @@ export class SbbMapLeitPoiService {
     try {
       if (feature.properties) {
         return {
-          travelType: feature.properties.travelType.toLowerCase(),
-          travelDirection: feature.properties.direction.toLowerCase(),
-          placement: feature.properties.placement.toLowerCase(),
-          sourceLevel: Number(feature.properties.sourceFloor),
+          travelType: feature.properties['travelType'].toLowerCase(),
+          travelDirection: feature.properties['direction'].toLowerCase(),
+          placement: feature.properties['placement'].toLowerCase(),
+          sourceLevel: Number(feature.properties['sourceFloor']),
           location: (feature.geometry as any).coordinates,
-          destinationLevel: Number(feature.properties.destinationFloor),
+          destinationLevel: Number(feature.properties['destinationFloor']),
         } as any;
       }
     } catch (e) {

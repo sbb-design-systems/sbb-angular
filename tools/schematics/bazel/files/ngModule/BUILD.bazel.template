@@ -1,16 +1,16 @@
 load(
     "//tools:defaults.bzl",<% if (hasMarkdown) { %>
     "markdown_to_html",<% } %>
-    "ng_module",<% if (hasTests) { %>
-    "ng_test_library",
+    "ng_project",<% if (hasTests) { %>
     "ng_web_test_suite",<% } %><% if (stylesheets.length) { %>
     "sass_binary",<% } %><% if (hasSassLibrary) { %>
-    "sass_library",<% } %>
+    "sass_library",<% } %><% if (hasTests) { %>
+    "ts_project",<% } %>
 )
 
 package(default_visibility = ["//visibility:public"])
 
-ng_module(
+ng_project(
     name = "<%= name %>",
     srcs =<% if (genFiles.length) { %> [<% for (let file of genFiles) { %>":<%= file %>", <% } %>] +<% } %> glob(
         ["**/*.ts"],
@@ -34,7 +34,7 @@ ng_module(
 sass_library(
     name = "<%= name %>_scss_lib",
     srcs = glob(["**/_*.scss"]),
-    deps = ["//src/angular/styles:scss_lib"],
+    deps = ["//src/angular:scss_lib"],
 )<% } %><% for (let stylesheet of sassBinaries) { %>
 
 sass_binary(
@@ -45,8 +45,9 @@ sass_binary(
     ],<% } %>
 )<% } %><% if (hasTests) { %>
 
-ng_test_library(
+ts_project(
     name = "unit_test_sources",
+    testonly = True,
     srcs = glob(
         ["**/*.spec.ts"],
         exclude = ["**/*.e2e.spec.ts"],

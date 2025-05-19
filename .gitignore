@@ -7,7 +7,7 @@
 /out-tsc
 
 # dependencies
-/node_modules
+node_modules
 
 # IDEs and editors
 /.idea
@@ -49,3 +49,4 @@ Thumbs.db
 .js.map
 .d.ts
 .bazel-out_tmp
+.ng-dev.log

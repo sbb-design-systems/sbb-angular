@@ -1,11 +1,11 @@
 load(
     "//tools:defaults.bzl",
-    "ng_module",
+    "ng_project",
 )
 
 package(default_visibility = ["//visibility:public"])
 
-ng_module(
+ng_project(
     name = "loading-indicator",
     srcs = glob(
         ["**/*.ts"],
@@ -16,9 +16,9 @@ ng_module(
         "**/*.css",
     ]),
     deps = [
+        "//:node_modules/@angular/core",
         "//src/angular/button",
         "//src/angular/loading-indicator",
-        "@npm//@angular/core",
     ],
 )
 

@@ -4,6 +4,7 @@ dist
 src/*/schematics/*/*/files
 src/*/schematics/*/test-cases/**/*_input.ts
 src/*/schematics/*/test-cases/**/*_expected_output.ts
+tools/dgeni/templates/*.html
 tools/schematics/*/index.js
 tools/schematics/*/files
 coverage
@@ -13,5 +14,6 @@ CONTRIBUTING.md
 *.bazel
 *.bzl
 WORKSPACE
-src/showcase/assets/stack-blitz/*
+docs/src/assets/stack-blitz/*
 bazel-out
+pnpm-lock.yaml

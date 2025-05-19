@@ -1,15 +1,15 @@
 load(
     "//tools:defaults.bzl",
     "markdown_to_html",
-    "ng_module",
-    "ng_test_library",
+    "ng_project",
     "ng_web_test_suite",
     "sass_binary",
+    "ts_project",
 )
 
 package(default_visibility = ["//visibility:public"])
 
-ng_module(
+ng_project(
     name = "loading-indicator",
     srcs = glob(
         ["**/*.ts"],
@@ -17,8 +17,8 @@ ng_module(
     ),
     assets = [":loading-indicator.css"] + glob(["**/*.html"]),
     deps = [
+        "//:node_modules/@angular/core",
         "//src/angular/core",
-        "@npm//@angular/core",
     ],
 )
 
@@ -30,14 +30,16 @@ sass_binary(
     ],
 )
 
-ng_test_library(
+ts_project(
     name = "unit_test_sources",
+    testonly = True,
     srcs = glob(
         ["**/*.spec.ts"],
         exclude = ["**/*.e2e.spec.ts"],
     ),
     deps = [
         ":loading-indicator",
+        "//:node_modules/@angular/core",
     ],
 )
 

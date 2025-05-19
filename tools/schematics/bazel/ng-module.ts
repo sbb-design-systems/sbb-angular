@@ -57,7 +57,6 @@ export class NgModule {
     this.hasTests = !!this._fileRegistry.specFiles.length;
     const testDependencies = this._context.typeScriptDependencyResolver.resolveDependencies(
       this._fileRegistry.specFiles,
-      ['@npm//@angular/core'],
     );
     this.testDependencies = testDependencies.dependencies;
     this.hasSassLibrary = !!this._fileRegistry.scssLibaryFiles.length;
@@ -116,7 +115,11 @@ export class NgModule {
   }
 
   private _findFiles(dir: DirEntry, skipModuleCheck = true) {
-    if (['schematics', 'styles', 'web-component'].some((d) => basename(dir.path) === d)) {
+    if (
+      ['schematics', 'styles', 'web-component', 'node_modules'].some(
+        (d) => basename(dir.path) === d,
+      )
+    ) {
       return;
     } else if (!skipModuleCheck && this._context.moduleDetector.isModuleDirectory(dir)) {
       this._modules.push(this._createSubModule(dir));

@@ -15,7 +15,6 @@ import {
   ScrollStrategy,
   VerticalConnectionPos,
 } from '@angular/cdk/overlay';
-import { _bindEventWithOptions } from '@angular/cdk/platform';
 import { TemplatePortal } from '@angular/cdk/portal';
 import {
   AfterContentInit,
@@ -51,6 +50,16 @@ import { throwSbbMenuRecursiveError } from './menu-errors';
 import { SbbMenuItem } from './menu-item';
 import { SbbMenuPanel, SBB_MENU_PANEL } from './menu-panel';
 import { SbbMenuPositionX, SbbMenuPositionY } from './menu-positions';
+
+function _bindEventWithOptions(
+  renderer: Renderer2,
+  target: EventTarget,
+  eventName: string,
+  callback: (event: any) => boolean | void,
+  options: AddEventListenerOptions,
+): () => void {
+  return renderer.listen(target, eventName, callback, options);
+}
 
 export type SbbMenuTriggerType = 'default' | 'headless' | 'breadcrumb' | 'usermenu' | 'contextmenu';
 
@@ -119,7 +128,7 @@ const PANELS_TO_TRIGGERS = new WeakMap<SbbMenuPanel, SbbMenuTrigger>();
     class: 'sbb-menu-trigger sbb-icon-fit',
     '[attr.aria-haspopup]': 'menu ? "menu" : null',
     '[attr.aria-expanded]': 'menuOpen',
-    '[attr.aria-controls]': 'menuOpen ? menu.panelId : null',
+    '[attr.aria-controls]': 'menuOpen ? menu?.panelId : null',
     '[class.sbb-menu-trigger-root]': '!_parentSbbMenu',
     '[class.sbb-menu-trigger-menu-open]': 'menuOpen',
     '(click)': '_handleClick($event)',

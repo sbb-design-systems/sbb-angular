@@ -7,8 +7,8 @@ describe('DocsMarkdownRenderer', () => {
   });
 
   it('generates regular headings for h1 and h2', () => {
-    expect(renderer.heading('a', 1, 'ignored')).toEqual('<h1>a</h1>');
-    expect(renderer.heading('b', 2, 'ignored')).toEqual('<h2>b</h2>');
+    expect(renderer.heading('a', 1, 'ignored')).toBe('<h1>a</h1>');
+    expect(renderer.heading('b', 2, 'ignored')).toContain('<h2 ');
   });
 
   it('creates header link for h3 and h4 headings', () => {

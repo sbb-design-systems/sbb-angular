@@ -324,8 +324,8 @@ export class SbbHeaderLean implements OnChanges, AfterViewInit, OnDestroy {
 
   ngOnChanges(changes: SimpleChanges): void {
     if (
-      changes.collapseBreakpoint &&
-      changes.collapseBreakpoint.previousValue !== changes.collapseBreakpoint.currentValue
+      changes['collapseBreakpoint'] &&
+      changes['collapseBreakpoint'].previousValue !== changes['collapseBreakpoint'].currentValue
     ) {
       this._collapseBreakpoint.next(this.collapseBreakpoint);
     }

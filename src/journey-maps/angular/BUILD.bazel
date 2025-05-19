@@ -1,16 +1,16 @@
 load(
     "//tools:defaults.bzl",
     "markdown_to_html",
-    "ng_module",
-    "ng_test_library",
+    "ng_project",
     "ng_web_test_suite",
     "sass_binary",
     "sass_library",
+    "ts_project",
 )
 
 package(default_visibility = ["//visibility:public"])
 
-ng_module(
+ng_project(
     name = "angular",
     srcs = glob(
         ["**/*.ts"],
@@ -32,21 +32,21 @@ ng_module(
         ":components/zoom-controls/zoom-controls.css",
     ] + glob(["**/*.html"]),
     deps = [
-        "@npm//@angular/animations",
-        "@npm//@angular/common",
-        "@npm//@angular/core",
-        "@npm//@angular/platform-browser",
-        "@npm//@types/geojson",
-        "@npm//@types/mapbox__point-geometry",
-        "@npm//maplibre-gl",
-        "@npm//rxjs",
+        "//:node_modules/@angular/animations",
+        "//:node_modules/@angular/common",
+        "//:node_modules/@angular/core",
+        "//:node_modules/@angular/platform-browser",
+        "//:node_modules/@types/geojson",
+        "//:node_modules/@types/mapbox__point-geometry",
+        "//:node_modules/maplibre-gl",
+        "//:node_modules/rxjs",
     ],
 )
 
 sass_library(
     name = "angular_scss_lib",
     srcs = glob(["**/_*.scss"]),
-    deps = ["//src/angular/styles:scss_lib"],
+    deps = ["//src/angular:scss_lib"],
 )
 
 sass_binary(
@@ -162,18 +162,20 @@ sass_binary(
     ],
 )
 
-ng_test_library(
+ts_project(
     name = "unit_test_sources",
+    testonly = True,
     srcs = glob(
         ["**/*.spec.ts"],
         exclude = ["**/*.e2e.spec.ts"],
     ),
     deps = [
         ":angular",
-        "@npm//@angular/common",
-        "@npm//@angular/platform-browser",
-        "@npm//maplibre-gl",
-        "@npm//rxjs",
+        "//:node_modules/@angular/common",
+        "//:node_modules/@angular/core",
+        "//:node_modules/@angular/platform-browser",
+        "//:node_modules/maplibre-gl",
+        "//:node_modules/rxjs",
     ],
 )
 

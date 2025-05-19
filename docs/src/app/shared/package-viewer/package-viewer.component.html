@@ -1,0 +1,17 @@
+<sbb-sidebar-container>
+  <sbb-sidebar role="navigation">
+    <sbb-expansion-panel expanded *ngFor="let section of (package | async)?.sections ?? []">
+      <sbb-expansion-panel-header>{{ section.name }}</sbb-expansion-panel-header>
+      <a
+        sbbSidebarLink
+        *ngFor="let entry of section.entries"
+        [routerLink]="entry.link"
+        routerLinkActive="sbb-active"
+        >{{ entry.label }}</a
+      >
+    </sbb-expansion-panel>
+  </sbb-sidebar>
+  <sbb-sidebar-content role="main">
+    <router-outlet></router-outlet>
+  </sbb-sidebar-content>
+</sbb-sidebar-container>

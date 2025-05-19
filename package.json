@@ -1,45 +1,45 @@
 {
   "name": "sbb-angular",
-  "version": "18.0.0",
+  "version": "20.0.0-next.0",
   "private": true,
+  "packageManager": "pnpm@9.15.6",
   "engines": {
-    "node": "^18.19.1 || >=20.11.1",
-    "yarn": "^1.22.17",
-    "npm": "Please use Yarn instead of NPM to install dependencies. See: https://yarnpkg.com/lang/en/docs/install/"
+    "npm": "Please use pnpm instead of NPM to install dependencies",
+    "yarn": "Please use pnpm instead of Yarn to install dependencies",
+    "pnpm": "^9.15.6"
   },
   "scripts": {
-    "postinstall": "patch-package --patch-dir tools/postinstall/patches && node tools/postinstall/apply-patches.js",
+    "ng-dev": "node --no-warnings=ExperimentalWarning --loader ts-node/esm/transpile-only node_modules/@angular/ng-dev/bundles/cli.mjs",
+    "ng-dev:stamp": "pnpm -s ng-dev release build-env-stamp --additional-stamping-script=tools/bazel-additional-stamp.mjs",
     "build": "node --no-warnings=ExperimentalWarning --loader ts-node/esm/transpile-only ./scripts/build.mts",
     "build:schematics": "node tools/schematics/esbuild.js",
     "build:i18n": "node --no-warnings=ExperimentalWarning --loader ts-node/esm/transpile-only ./scripts/build.mts i18n",
+    "build:cdk-styles": "node --no-warnings=ExperimentalWarning --loader ts-node/esm/transpile-only ./scripts/copy-cdk-sass.mts",
     "generate:bazel": "ng g .:bazel",
     "generate:symbols": "ng g .:extractSymbols",
     "generate:icon-list": "node --no-warnings=ExperimentalWarning --loader ts-node/esm/transpile-only ./scripts/update-icon-names.mts",
     "bazel": "bazelisk",
     "bazel:buildifier": "find . -type f \\( -name \"*.bzl\" -or -name WORKSPACE -or -name BUILD -or -name BUILD.bazel \\) ! -path \"*/node_modules/*\" ! -path \"*/.git/*\" | xargs buildifier -v",
-    "bazel:format-lint": "yarn -s bazel:buildifier --lint=warn --mode=check",
-    "bazel:cache": "node --no-warnings=ExperimentalWarning --loader ts-node/esm/transpile-only  ./scripts/cache.mts",
-    "start": "ibazel run //src/showcase:devserver",
-    "start:prod": "ibazel run //src/showcase:prodserver",
+    "bazel:format-lint": "pnpm -s bazel:buildifier --lint=warn --mode=check",
+    "start": "ibazel run //docs:serve",
     "start:journey-maps-wc": "ibazel run //src/journey-maps/web-component:devserver",
     "test": "node ./scripts/run-component-tests.js",
-    "test-local": "yarn -s test --local",
-    "test-firefox": "yarn -s test --firefox",
+    "test-local": "pnpm -s test --local",
+    "test-firefox": "pnpm -s test --firefox",
     "tslint": "tslint -c tslint.json --project ./tsconfig.json",
-    "lint": "yarn -s tslint && yarn -s bazel:format-lint",
-    "format:prettier": "prettier --write \"**/*.{js,ts,css,scss,json,md}\" && yarn -s format:prettier:html",
+    "lint": "pnpm -s tslint && pnpm -s bazel:format-lint",
+    "format:prettier": "prettier --write \"**/*.{js,ts,css,scss,json,md}\" && pnpm -s format:prettier:html",
     "format:prettier:html": "prettier --write \"./src/**/*.html\" --parser angular",
-    "format:tslint": "yarn -s tslint --fix",
-    "format:bazel": "yarn -s bazel:buildifier --lint=fix --mode=fix",
+    "format:tslint": "pnpm -s tslint --fix",
+    "format:bazel": "pnpm -s bazel:buildifier --lint=fix --mode=fix",
     "format": "npm-run-all --parallel format:prettier format:bazel format:tslint",
     "prepare": "husky",
     "release": "standard-version --tag-prefix=\"\"",
     "t9n:xlf": "ng-t9n t9n-xlf.json",
     "t9n:xlf2": "ng-t9n t9n-xlf2.json",
     "_shortcuts": "Below are shortcuts for common commands",
-    "baz": "yarn -s generate:bazel",
-    "sym": "yarn -s generate:symbols",
-    "integrity": "npm-run-all --sequential baz build:schematics sym format build:i18n"
+    "baz": "pnpm -s generate:bazel",
+    "integrity": "npm-run-all --sequential build:schematics baz format build:i18n"
   },
   "repository": {
     "type": "git",
@@ -52,75 +52,59 @@
   "homepage": "https://angular.app.sbb.ch",
   "schematics": "./tools/schematics/collection.json",
   "dependencies": {
-    "@angular/animations": "19.2.2",
-    "@angular/cdk": "19.2.3",
-    "@angular/common": "19.2.2",
-    "@angular/core": "19.2.2",
-    "@angular/elements": "19.2.2",
-    "@angular/forms": "19.2.2",
-    "@angular/platform-browser": "19.2.2",
-    "@angular/platform-browser-dynamic": "19.2.2",
-    "@angular/platform-server": "19.2.2",
-    "@angular/router": "19.2.2",
+    "@angular-devkit/core": "catalog:",
+    "@angular-devkit/schematics": "catalog:",
+    "@angular/animations": "catalog:",
+    "@angular/cdk": "catalog:",
+    "@angular/common": "catalog:",
+    "@angular/compiler": "catalog:",
+    "@angular/core": "catalog:",
+    "@angular/forms": "catalog:",
+    "@angular/platform-browser": "catalog:",
     "@stackblitz/sdk": "1.11.0",
     "maplibre-gl": "4.7.1",
-    "rxjs": "7.8.1",
+    "rxjs": "catalog:",
     "tslib": "2.7.0",
-    "zone.js": "0.15.0"
+    "zone.js": "~0.15.0"
   },
   "devDependencies": {
     "@actions/cache": "4.0.3",
-    "@angular-devkit/build-angular": "19.2.3",
-    "@angular-devkit/core": "19.2.3",
-    "@angular-devkit/schematics": "19.2.3",
-    "@angular-devkit/schematics-cli": "19.2.3",
-    "@angular/bazel": "https://github.com/angular/bazel-builds.git#d9a8ea4f9e62cb475eff89519426a38631b2704d",
-    "@angular/build-tooling": "https://github.com/angular/dev-infra-private-build-tooling-builds.git#7472d138d002c7c6569265f5221486ccce598fac",
-    "@angular/cli": "19.2.3",
-    "@angular/compiler": "19.2.2",
-    "@angular/compiler-cli": "19.2.2",
-    "@angular/language-service": "19.2.2",
-    "@angular/localize": "19.2.2",
-    "@angular/ng-dev": "https://github.com/angular/dev-infra-private-ng-dev-builds.git#34a9ec9feae4901c687b1e9179d1035129663fab",
+    "@angular/cli": "catalog:",
+    "@angular/compiler-cli": "catalog:",
+    "@angular/localize": "catalog:",
+    "@angular/ng-dev": "https://github.com/angular/dev-infra-private-ng-dev-builds.git#ff125f14e67489d7ca3839fd17ecfee59c5a7dcb",
+    "@angular/platform-server": "catalog:",
+    "@angular/router": "catalog:",
     "@babel/core": "7.27.1",
-    "@babel/plugin-proposal-async-generator-functions": "^7.20.7",
-    "@babel/traverse": "7.27.1",
-    "@bazel/bazelisk": "1.26.0",
-    "@bazel/buildifier": "8.2.0",
-    "@bazel/buildozer": "8.2.0",
-    "@bazel/concatjs": "5.8.1",
-    "@bazel/esbuild": "5.8.1",
-    "@bazel/ibazel": "0.25.0",
-    "@bazel/jasmine": "5.8.1",
-    "@bazel/protractor": "5.8.1",
-    "@bazel/rollup": "5.8.1",
-    "@bazel/runfiles": "6.3.1",
-    "@bazel/worker": "5.8.1",
+    "@bazel/bazelisk": "1.12.1",
+    "@bazel/buildifier": "6.1.2",
+    "@bazel/ibazel": "^0.25.0",
+    "@bazel/runfiles": "5.8.1",
     "@commitlint/cli": "19.8.0",
     "@commitlint/config-conventional": "19.8.0",
     "@rollup/plugin-commonjs": "23.0.4",
     "@rollup/plugin-node-resolve": "13.3.0",
-    "@rollup/plugin-typescript": "12.1.2",
-    "@schematics/angular": "19.2.3",
+    "@schematics/angular": "catalog:",
     "@types/browser-sync": "2.29.0",
     "@types/events": "3.0.3",
     "@types/fs-extra": "11.0.4",
     "@types/geojson": "7946.0.14",
     "@types/glob": "8.1.0",
     "@types/grecaptcha": "2.0.36",
-    "@types/highlight.js": "10.1.0",
     "@types/jasmine": "5.1.7",
     "@types/jasminewd2": "2.0.13",
     "@types/mapbox__point-geometry": "0.1.4",
     "@types/marked": "^2.0.2",
+    "@types/minimatch": "^5.1.2",
     "@types/node": "18.19.87",
-    "@types/sass": "1.45.0",
+    "@types/semver": "^7.3.9",
     "@types/send": "0.17.4",
     "@types/shelljs": "^0.8.15",
     "@types/yargs": "17.0.13",
     "angular-server-side-configuration": "19.0.1",
     "angular-t9n": "19.1.1",
     "browser-sync": "3.0.2",
+    "chalk": "^4.1.0",
     "dgeni": "^0.4.14",
     "dgeni-packages": "^0.29.3",
     "esbuild": "0.25.3",
@@ -131,6 +115,7 @@
     "husky": "9.1.7",
     "jasmine": "4.6.0",
     "jasmine-core": "4.6.1",
+    "jasmine-reporters": "^2.5.2",
     "jsonc-parser": "3.3.1",
     "karma": "6.4.4",
     "karma-browserstack-launcher": "1.6.0",
@@ -143,21 +128,25 @@
     "karma-requirejs": "1.1.0",
     "karma-sourcemap-loader": "0.4.0",
     "lint-staged": "15.5.1",
+    "magic-string": "0.30.17",
     "marked": "^2.0.3",
+    "minimatch": "^3.0.4",
     "npm-run-all2": "7.0.2",
     "octokit": "4.1.3",
     "patch-package": "^8.0.0",
     "prettier": "3.5.3",
-    "protractor": "7.0.0",
+    "reflect-metadata": "^0.1.13",
     "renovate": "37.440.7",
     "requirejs": "2.3.7",
     "rollup": "2.79.1",
-    "rollup-plugin-sourcemaps": "0.6.3",
+    "rollup-plugin-dts": "6.2.1",
+    "rollup-plugin-sourcemaps2": "0.5.0",
     "rxjs-tslint-rules": "4.34.8",
     "sass": "1.87.0",
     "semver": "7.7.1",
     "send": "1.2.0",
     "shelljs": "0.9.2",
+    "source-map-support": "^0.5.21",
     "standard-version": "9.5.0",
     "stylelint": "16.19.1",
     "stylelint-config-recommended-scss": "14.1.0",
@@ -168,14 +157,75 @@
     "tslint": "6.1.3",
     "tslint-config-prettier": "1.18.0",
     "tslint-consistent-codestyle": "1.16.0",
-    "tslint-plugin-prettier": "2.3.0",
     "typescript": "5.8.2",
     "yargs": "17.7.2"
   },
-  "resolutions": {
-    "@angular/build-tooling/typescript": "5.8.2",
-    "@angular/ng-dev/typescript": "5.8.2",
-    "dgeni-packages/typescript": "5.8.2"
+  "pnpm": {
+    "overrides": {
+      "typescript": "5.8.2"
+    },
+    "onlyBuiltDependencies": [],
+    "packageExtensions": {
+      "dgeni-packages": {
+        "dependencies": {
+          "clonedeep": "*"
+        }
+      },
+      "grpc-gcp": {
+        "dependencies": {
+          "protobufjs": "7.4.0"
+        }
+      },
+      "@angular-eslint/eslint-plugin-template@19.3.0": {
+        "peerDependencies": {
+          "@typescript-eslint/parser": "*",
+          "@angular-eslint/template-parser": "*"
+        }
+      },
+      "@angular/animations": {
+        "dependencies": {
+          "@nginfra/angular-linking": "1.0.9"
+        },
+        "peerDependencies": {
+          "@angular/common": "*"
+        }
+      },
+      "@angular/cdk": {
+        "dependencies": {
+          "@nginfra/angular-linking": "1.0.9"
+        }
+      },
+      "@angular/common": {
+        "dependencies": {
+          "@nginfra/angular-linking": "1.0.9"
+        }
+      },
+      "@angular/forms": {
+        "dependencies": {
+          "@nginfra/angular-linking": "1.0.9"
+        }
+      },
+      "@angular/platform-browser": {
+        "dependencies": {
+          "@nginfra/angular-linking": "1.0.9"
+        }
+      },
+      "@angular/router": {
+        "dependencies": {
+          "@nginfra/angular-linking": "1.0.9"
+        }
+      },
+      "@angular/localize": {
+        "dependencies": {
+          "@nginfra/angular-linking": "1.0.9"
+        }
+      },
+      "@angular/platform-server": {
+        "dependencies": {
+          "@nginfra/angular-linking": "1.0.9"
+        }
+      }
+    }
   },
   "standard-version": {
     "types": [

@@ -197,7 +197,8 @@ export class SbbFeatureEventListener implements OnChanges, OnDestroy {
   }
 
   private _getIsSelectedPredicate(isCurrentlySelected: boolean) {
-    return (f: SbbFeatureData) => (isCurrentlySelected ? f.state.selected : !f.state.selected);
+    return (f: SbbFeatureData) =>
+      isCurrentlySelected ? f.state['selected'] : !f.state['selected'];
   }
 
   private _featureClicked(clickEventData: SbbFeaturesClickEventData) {

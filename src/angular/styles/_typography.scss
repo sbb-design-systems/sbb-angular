@@ -1,6 +1,6 @@
-@use 'external/npm/node_modules/@angular/cdk' as cdk;
 @use 'sass:math';
-@use '@sbb-esta/angular' as sbb;
+@use './index' as sbb;
+@use './cdk/index' as cdk;
 
 // ----------------------------------------------------------------------------------------------------
 // Custom Webfonts

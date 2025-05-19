@@ -1,15 +1,15 @@
 load(
     "//tools:defaults.bzl",
     "markdown_to_html",
-    "ng_module",
-    "ng_test_library",
+    "ng_project",
     "ng_web_test_suite",
     "sass_binary",
+    "ts_project",
 )
 
 package(default_visibility = ["//visibility:public"])
 
-ng_module(
+ng_project(
     name = "tag",
     srcs = glob(
         ["**/*.ts"],
@@ -17,15 +17,15 @@ ng_module(
     ),
     assets = [":tag.css"] + glob(["**/*.html"]),
     deps = [
+        "//:node_modules/@angular/common",
+        "//:node_modules/@angular/core",
+        "//:node_modules/@angular/forms",
+        "//:node_modules/@angular/localize",
+        "//:node_modules/rxjs",
         "//src/angular/badge",
         "//src/angular/checkbox",
         "//src/angular/core",
         "//src/angular/icon",
-        "@npm//@angular/common",
-        "@npm//@angular/core",
-        "@npm//@angular/forms",
-        "@npm//@angular/localize",
-        "@npm//rxjs",
     ],
 )
 
@@ -37,19 +37,21 @@ sass_binary(
     ],
 )
 
-ng_test_library(
+ts_project(
     name = "unit_test_sources",
+    testonly = True,
     srcs = glob(
         ["**/*.spec.ts"],
         exclude = ["**/*.e2e.spec.ts"],
     ),
     deps = [
         ":tag",
+        "//:node_modules/@angular/core",
+        "//:node_modules/@angular/forms",
+        "//:node_modules/@angular/platform-browser",
         "//src/angular/badge",
         "//src/angular/checkbox",
         "//src/angular/icon/testing",
-        "@npm//@angular/forms",
-        "@npm//@angular/platform-browser",
     ],
 )
 

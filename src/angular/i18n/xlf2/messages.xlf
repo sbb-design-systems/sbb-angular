@@ -3,7 +3,7 @@
   <file id="ngi18n" original="ng.template">
     <unit id="sbbAlertCloseAlert">
       <notes>
-        <note category="location">../../../../../../src/angular/alert/alert.ts:51</note>
+        <note category="location">../../../../../k8-fastbuild-ST-46c76129e412/bin/src/angular/alert/alert.ts:51</note>
         <note category="description">Hidden button label to close the alert</note>
       </notes>
       <segment>
@@ -12,7 +12,7 @@
     </unit>
     <unit id="sbbBreadcrumbExpand">
       <notes>
-        <note category="location">../../../../../../src/angular/breadcrumb/breadcrumbs.ts:48</note>
+        <note category="location">../../../../../k8-fastbuild-ST-46c76129e412/bin/src/angular/breadcrumb/breadcrumbs.ts:48</note>
         <note category="description">Button with three dots to show all breadcrumb levels</note>
       </notes>
       <segment>
@@ -21,7 +21,7 @@
     </unit>
     <unit id="sbbDatepickerSwitchToPreviousMonth">
       <notes>
-        <note category="location">../../../../../../src/angular/datepicker/calendar/calendar.ts:47</note>
+        <note category="location">../../../../../k8-fastbuild-ST-46c76129e412/bin/src/angular/datepicker/calendar/calendar.ts:47</note>
         <note category="description">Button label to switch to the previous month</note>
       </notes>
       <segment>
@@ -30,7 +30,7 @@
     </unit>
     <unit id="sbbDatepickerSwitchToNextMonth">
       <notes>
-        <note category="location">../../../../../../src/angular/datepicker/calendar/calendar.ts:49</note>
+        <note category="location">../../../../../k8-fastbuild-ST-46c76129e412/bin/src/angular/datepicker/calendar/calendar.ts:49</note>
         <note category="description">Button label to switch to the next month</note>
       </notes>
       <segment>
@@ -39,7 +39,7 @@
     </unit>
     <unit id="sbbDatepickerSwitchToPreviousYear">
       <notes>
-        <note category="location">../../../../../../src/angular/datepicker/calendar/calendar.ts:51</note>
+        <note category="location">../../../../../k8-fastbuild-ST-46c76129e412/bin/src/angular/datepicker/calendar/calendar.ts:51</note>
         <note category="description">Button label to switch to the previous year</note>
       </notes>
       <segment>
@@ -48,7 +48,7 @@
     </unit>
     <unit id="sbbDatepickerSwitchToNextYear">
       <notes>
-        <note category="location">../../../../../../src/angular/datepicker/calendar/calendar.ts:53</note>
+        <note category="location">../../../../../k8-fastbuild-ST-46c76129e412/bin/src/angular/datepicker/calendar/calendar.ts:53</note>
         <note category="description">Button label to switch to the next year</note>
       </notes>
       <segment>
@@ -57,7 +57,7 @@
     </unit>
     <unit id="sbbDatepickerOpenCalendar">
       <notes>
-        <note category="location">../../../../../../src/angular/datepicker/datepicker-toggle/datepicker-toggle.ts:39</note>
+        <note category="location">../../../../../k8-fastbuild-ST-46c76129e412/bin/src/angular/datepicker/datepicker-toggle/datepicker-toggle.ts:39</note>
         <note category="description">Open calendar</note>
       </notes>
       <segment>
@@ -66,7 +66,7 @@
     </unit>
     <unit id="sbbDatePickerNextDayAriaLabel">
       <notes>
-        <note category="location">../../../../../../src/angular/datepicker/datepicker/datepicker.ts:233</note>
+        <note category="location">../../../../../k8-fastbuild-ST-46c76129e412/bin/src/angular/datepicker/datepicker/datepicker.ts:233</note>
         <note category="description">Next day button&apos;s aria-label</note>
       </notes>
       <segment>
@@ -75,7 +75,7 @@
     </unit>
     <unit id="sbbDatePickerPrevDayAriaLabel">
       <notes>
-        <note category="location">../../../../../../src/angular/datepicker/datepicker/datepicker.ts:238</note>
+        <note category="location">../../../../../k8-fastbuild-ST-46c76129e412/bin/src/angular/datepicker/datepicker/datepicker.ts:238</note>
         <note category="description">Previous day button&apos;s aria-label</note>
       </notes>
       <segment>
@@ -84,8 +84,8 @@
     </unit>
     <unit id="sbbDialogCloseDialog">
       <notes>
-        <note category="location">../../../../../../src/angular/dialog/dialog-content-directives.ts:45</note>
-        <note category="location">../../../../../../src/angular/dialog/dialog-content-directives.ts:120</note>
+        <note category="location">../../../../../k8-fastbuild-ST-46c76129e412/bin/src/angular/dialog/dialog-content-directives.ts:45</note>
+        <note category="location">../../../../../k8-fastbuild-ST-46c76129e412/bin/src/angular/dialog/dialog-content-directives.ts:120</note>
         <note category="description">Aria label to close a dialog</note>
       </notes>
       <segment>
@@ -94,7 +94,7 @@
     </unit>
     <unit id="sbbFileSelectorUploadFile">
       <notes>
-        <note category="location">../../../../../../src/angular/file-selector/file-selector.ts:57</note>
+        <note category="location">../../../../../k8-fastbuild-ST-46c76129e412/bin/src/angular/file-selector/file-selector.ts:57</note>
         <note category="description">Button label to select files for upload</note>
       </notes>
       <segment>
@@ -103,7 +103,7 @@
     </unit>
     <unit id="sbbFileSelectorRemoveFile">
       <notes>
-        <note category="location">../../../../../../src/angular/file-selector/file-selector.ts:59</note>
+        <note category="location">../../../../../k8-fastbuild-ST-46c76129e412/bin/src/angular/file-selector/file-selector.ts:59</note>
         <note category="description">Hidden button label to remove a file from the selection list</note>
       </notes>
       <segment>
@@ -112,7 +112,7 @@
     </unit>
     <unit id="sbbHeaderMenuBack">
       <notes>
-        <note category="location">../../../../../../src/angular/header-lean/header-menu.ts:60</note>
+        <note category="location">../../../../../k8-fastbuild-ST-46c76129e412/bin/src/angular/header-lean/header-menu.ts:60</note>
         <note category="description">Go back to the app chooser navigation</note>
       </notes>
       <segment>
@@ -121,7 +121,7 @@
     </unit>
     <unit id="sbbHeaderOpenMenu">
       <notes>
-        <note category="location">../../../../../../src/angular/header-lean/header.ts:128</note>
+        <note category="location">../../../../../k8-fastbuild-ST-46c76129e412/bin/src/angular/header-lean/header.ts:128</note>
         <note category="description">Button label to open the sidebar of the header</note>
       </notes>
       <segment>
@@ -130,7 +130,7 @@
     </unit>
     <unit id="sbbHeaderCloseMenu">
       <notes>
-        <note category="location">../../../../../../src/angular/header-lean/header.ts:130</note>
+        <note category="location">../../../../../k8-fastbuild-ST-46c76129e412/bin/src/angular/header-lean/header.ts:130</note>
         <note category="description">Button label to close the sidebar of the header</note>
       </notes>
       <segment>
@@ -139,8 +139,8 @@
     </unit>
     <unit id="sbbLightboxCloseLightbox">
       <notes>
-        <note category="location">../../../../../../src/angular/lightbox/lightbox-content-directives.ts:42</note>
-        <note category="location">../../../../../../src/angular/lightbox/lightbox-content-directives.ts:101</note>
+        <note category="location">../../../../../k8-fastbuild-ST-46c76129e412/bin/src/angular/lightbox/lightbox-content-directives.ts:42</note>
+        <note category="location">../../../../../k8-fastbuild-ST-46c76129e412/bin/src/angular/lightbox/lightbox-content-directives.ts:101</note>
         <note category="description">Aria label to close a dialog</note>
       </notes>
       <segment>
@@ -149,7 +149,7 @@
     </unit>
     <unit id="sbbPaginationPreviousPage">
       <notes>
-        <note category="location">../../../../../../src/angular/pagination/paginator/paginator.ts:79</note>
+        <note category="location">../../../../../k8-fastbuild-ST-46c76129e412/bin/src/angular/pagination/paginator/paginator.ts:79</note>
         <note category="description">Button label to navigate to the previous page</note>
       </notes>
       <segment>
@@ -158,7 +158,7 @@
     </unit>
     <unit id="sbbPaginationNextPage">
       <notes>
-        <note category="location">../../../../../../src/angular/pagination/paginator/paginator.ts:81</note>
+        <note category="location">../../../../../k8-fastbuild-ST-46c76129e412/bin/src/angular/pagination/paginator/paginator.ts:81</note>
         <note category="description">Button label to navigate to the next page</note>
       </notes>
       <segment>
@@ -167,7 +167,7 @@
     </unit>
     <unit id="sbbSearchHeaderButtonLabel">
       <notes>
-        <note category="location">../../../../../../src/angular/search/header-search.ts:87</note>
+        <note category="location">../../../../../k8-fastbuild-ST-46c76129e412/bin/src/angular/search/header-search.ts:87</note>
         <note category="description">Button label for the header search</note>
       </notes>
       <segment>
@@ -176,7 +176,7 @@
     </unit>
     <unit id="sbbSidebarCollapse">
       <notes>
-        <note category="location">../../../../../../src/angular/sidebar/icon-sidebar/icon-sidebar.ts:77</note>
+        <note category="location">../../../../../k8-fastbuild-ST-46c76129e412/bin/src/angular/sidebar/icon-sidebar/icon-sidebar.ts:77</note>
         <note category="description">Label to &apos;collapse&apos; icon sidebar</note>
       </notes>
       <segment>
@@ -185,7 +185,7 @@
     </unit>
     <unit id="sbbSidebarExpand">
       <notes>
-        <note category="location">../../../../../../src/angular/sidebar/icon-sidebar/icon-sidebar.ts:79</note>
+        <note category="location">../../../../../k8-fastbuild-ST-46c76129e412/bin/src/angular/sidebar/icon-sidebar/icon-sidebar.ts:79</note>
         <note category="description">Label to &apos;expand&apos; icon sidebar</note>
       </notes>
       <segment>
@@ -194,7 +194,7 @@
     </unit>
     <unit id="sbbSidebarCloseSidebar">
       <notes>
-        <note category="location">../../../../../../src/angular/sidebar/sidebar/sidebar.ts:113</note>
+        <note category="location">../../../../../k8-fastbuild-ST-46c76129e412/bin/src/angular/sidebar/sidebar/sidebar.ts:113</note>
         <note category="description">Button label to close the sidebar</note>
       </notes>
       <segment>
@@ -203,7 +203,7 @@
     </unit>
     <unit id="sbbSidebarOpenSidebar">
       <notes>
-        <note category="location">../../../../../../src/angular/sidebar/sidebar/sidebar.ts:554</note>
+        <note category="location">../../../../../k8-fastbuild-ST-46c76129e412/bin/src/angular/sidebar/sidebar/sidebar.ts:554</note>
         <note category="description">Button label to open the sidebar</note>
       </notes>
       <segment>
@@ -212,8 +212,8 @@
     </unit>
     <unit id="sbbTagBadgePillAmountOfResults">
       <notes>
-        <note category="location">../../../../../../src/angular/tag/tag-link.ts:34</note>
-        <note category="location">../../../../../../src/angular/tag/tag.ts:54</note>
+        <note category="location">../../../../../k8-fastbuild-ST-46c76129e412/bin/src/angular/tag/tag-link.ts:34</note>
+        <note category="location">../../../../../k8-fastbuild-ST-46c76129e412/bin/src/angular/tag/tag.ts:54</note>
         <note category="description">Aria label for amount of results displayed in badge pill</note>
       </notes>
       <segment>
@@ -222,7 +222,7 @@
     </unit>
     <unit id="sbbTagsAll">
       <notes>
-        <note category="location">../../../../../../src/angular/tag/tags.ts:35</note>
+        <note category="location">../../../../../k8-fastbuild-ST-46c76129e412/bin/src/angular/tag/tags.ts:35</note>
         <note category="description">Label for the &apos;All&apos; tag</note>
       </notes>
       <segment>
@@ -231,7 +231,7 @@
     </unit>
     <unit id="sbbTagsAllBadgeDescription">
       <notes>
-        <note category="location">../../../../../../src/angular/tag/tags.ts:38</note>
+        <note category="location">../../../../../k8-fastbuild-ST-46c76129e412/bin/src/angular/tag/tags.ts:38</note>
         <note category="description">Badge description (total amount) for the &apos;All&apos; tag</note>
       </notes>
       <segment>
@@ -240,7 +240,7 @@
     </unit>
     <unit id="sbbTextareaCounterText">
       <notes>
-        <note category="location">../../../../../../src/angular/textarea/textarea/textarea.ts:54</note>
+        <note category="location">../../../../../k8-fastbuild-ST-46c76129e412/bin/src/angular/textarea/textarea/textarea.ts:54</note>
         <note category="description">Counter text for textarea</note>
       </notes>
       <segment>
@@ -249,7 +249,7 @@
     </unit>
     <unit id="sbbTextexpandShowLess">
       <notes>
-        <note category="location">../../../../../../src/angular/textexpand/textexpand.ts:36</note>
+        <note category="location">../../../../../k8-fastbuild-ST-46c76129e412/bin/src/angular/textexpand/textexpand.ts:36</note>
         <note category="description">Button label for showing less</note>
       </notes>
       <segment>
@@ -258,7 +258,7 @@
     </unit>
     <unit id="sbbTextexpandShowMore">
       <notes>
-        <note category="location">../../../../../../src/angular/textexpand/textexpand.ts:38</note>
+        <note category="location">../../../../../k8-fastbuild-ST-46c76129e412/bin/src/angular/textexpand/textexpand.ts:38</note>
         <note category="description">Button label for showing more</note>
       </notes>
       <segment>
@@ -267,7 +267,7 @@
     </unit>
     <unit id="sbbUsermenuLogin">
       <notes>
-        <note category="location">../../../../../../src/angular/usermenu/usermenu.ts:65</note>
+        <note category="location">../../../../../k8-fastbuild-ST-46c76129e412/bin/src/angular/usermenu/usermenu.ts:65</note>
         <note category="description">Button label for login</note>
       </notes>
       <segment>
@@ -276,7 +276,7 @@
     </unit>
     <unit id="sbbUsermenuOpenPanel">
       <notes>
-        <note category="location">../../../../../../src/angular/usermenu/usermenu.ts:68,70</note>
+        <note category="location">../../../../../k8-fastbuild-ST-46c76129e412/bin/src/angular/usermenu/usermenu.ts:68,70</note>
         <note category="description">Aria label to open user menu</note>
       </notes>
       <segment>

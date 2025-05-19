@@ -1,6 +1,6 @@
 # Developer guide: getting your environment set up
 
-1. Make sure you have both `node` and `yarn` installed.
+1. Make sure you have both `node` and `pnpm` installed.
    We recommend using `nvm` to manage your node versions.
 2. sbb-angular uses Bazel which requires certain Bash and UNIX tools.
    - On Windows we recommend using WSL2. Please make sure firefox and google-chrome-stable is installed inside WSL.
@@ -16,18 +16,18 @@
      Afterwards add `C:\msys64\usr\bin` to the `PATH` environment variable.
    - On macOS: Create .bazelrc file in your home directory and add `test --experimental_inprocess_symlink_creation` and `build --experimental_inprocess_symlink_creation` on a second line.
      This avoids errors with Chromium as it currently contains spaces in the filename.
-3. From the root of the project, run `yarn` to install the dependencies.
+3. From the root of the project, run `pnpm` to install the dependencies.
 
-To build sbb-angular in release mode, run `yarn build packages`. The output can be found under `dist/releases`.
+To build sbb-angular in release mode, run `pnpm build packages`. The output can be found under `dist/releases`.
 
-To bring up a local server, run `yarn start`. This will automatically watch for changes
+To bring up a local server, run `pnpm start`. This will automatically watch for changes
 and rebuild. The browser should refresh automatically when changes are made.
 
 ## Bazel
 
 [Bazel](https://www.bazel.build/) is a build system. It allows incremental builds by caching build artifacts.
 
-To install bazel globally, we recommend installing it with `yarn global add @bazel/bazelisk`, after
+To install bazel globally, we recommend installing it with `pnpm global add @bazel/bazelisk`, after
 following the steps above. This will add `bazel` and `bazelisk` to the global path.
 (`bazelisk` will check the version in `.bazelversion` and use the appropriate bazel version.)
 
@@ -38,22 +38,22 @@ following the steps above. This will add `bazel` and `bazelisk` to the global pa
 ### Generate Bazel files
 
 In order to automatically generate BUILD.bazel files, we implemented a schematic.
-You can run it with `yarn generate:bazel`.
+You can run it with `pnpm generate:bazel`.
 
 ## Running tests
 
-To run unit tests, run `yarn test <target>`. The `target` can be either a short name (e.g. `yarn test button`) or an explicit path `yarn test src/angular/menu`.
+To run unit tests, run `pnpm test <target>`. The `target` can be either a short name (e.g. `pnpm test button`) or an explicit path `pnpm test src/angular/menu`.
 You can also directly use bazel: `bazel test src/...` (to test everything) or `bazel test src/angular/...`
 (e.g. to test the angular package) or `bazel test src/angular/button:unit_tests` (e.g. to test the button module).
 
-To run lint, run `yarn lint`.
+To run lint, run `pnpm lint`.
 
-## Starting showcase
+## Starting docs
 
-To start the showcase, run:
+To start the docs application, run:
 
 ```
-yarn start
+pnpm start
 ```
 
 This will run the devserver in watch mode. It might ask you to allow opening an outgoing port, which would allow you to open the page on another machine in the same network.
@@ -61,5 +61,5 @@ This will run the devserver in watch mode. It might ask you to allow opening an 
 To be able to display the map inside the `journey-maps` examples, you need to provide the API key as well:
 
 ```
-JM_API_KEY=<YOUR-API-KEY> yarn start
+JM_API_KEY=<YOUR-API-KEY> pnpm start
 ```

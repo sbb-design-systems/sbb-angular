@@ -66,13 +66,13 @@ export class SbbMapSelectionEvent {
     }
 
     for (const feature of features) {
-      const selected = !feature.state.selected;
+      const selected = !feature.state['selected'];
       this._setFeatureSelection(feature, selected);
       if (feature.featureDataType === 'ZONE') {
         this._touchedZoneIds.add(Number(feature.id));
       } else if (feature.featureDataType === 'ROUTE') {
         this._selectRoute(selected, feature);
-        lastRouteEventDataCandidate.set(feature, feature.state.selected);
+        lastRouteEventDataCandidate.set(feature, feature.state['selected']);
       } else if (feature.featureDataType === 'POI') {
         this._selectPoi(selected, feature);
       }
@@ -131,7 +131,7 @@ export class SbbMapSelectionEvent {
       features: this._mapEventUtils.queryFeaturesByProperty(
         this._mapInstance,
         this._layersTypes,
-        (feature) => feature.state.selected,
+        (feature) => feature.state['selected'],
       ),
     };
   }

@@ -1,19 +1,36 @@
-load("@build_bazel_rules_nodejs//:index.bzl", "nodejs_binary")
+load("//:pkg-externals.bzl", "PKG_EXTERNALS")
+load("//src/angular:config.bzl", "ANGULAR_ENTRYPOINTS", "ANGULAR_TESTING_ENTRYPOINTS")
+load("//src/angular-experimental:config.bzl", "EXPERIMENTAL_ENTRYPOINTS")
+load("//src/journey-maps:config.bzl", "JOURNEY_MAPS_ENTRYPOINTS")
+load("@npm//:defs.bzl", "npm_link_all_packages")
 
 package(default_visibility = ["//visibility:public"])
 
-# This export allows targets in other packages to reference files that live
-# in this package.
 exports_files([
     "package.json",
-    "tsconfig.json",
+    "pnpm-workspace.yaml",
     "LICENSE",
-    "scss-bundle.config.json",
 ])
 
-nodejs_binary(
-    name = "yarn_vendored",
-    data = [".yarn/releases/yarn-1.22.22.cjs"],
-    entry_point = ".yarn/releases/yarn-1.22.22.cjs",
-    visibility = ["//integration:__subpackages__"],
+npm_link_all_packages(
+    name = "node_modules",
+)
+
+# Target which writes the list of package externals into a JSON file so that the
+# Starlark-configured externals (for the NPM package bundling) can be passed to
+# the `check-package-externals` Yarn script, which validates our module imports.
+genrule(
+    name = "package_externals",
+    outs = ["package_externals.json"],
+    cmd = "echo '%s' > $@" % PKG_EXTERNALS,
+)
+
+entry_points = ["angular/%s" % e for e in ANGULAR_ENTRYPOINTS + ANGULAR_TESTING_ENTRYPOINTS] + \
+               ["angular-experimental/%s" % e for e in EXPERIMENTAL_ENTRYPOINTS] + \
+               ["journey-maps/%s" % e for e in JOURNEY_MAPS_ENTRYPOINTS]
+
+genrule(
+    name = "entry_points_manifest",
+    outs = ["entry_points_manifest.json"],
+    cmd = "echo '%s' > $@" % entry_points,
 )
