@@ -37,8 +37,7 @@
     "t9n:xlf2": "ng-t9n t9n-xlf2.json",
     "_shortcuts": "Below are shortcuts for common commands",
     "baz": "pnpm -s generate:bazel",
-    "sym": "pnpm -s generate:symbols",
-    "integrity": "npm-run-all --sequential baz build:schematics sym format build:i18n"
+    "integrity": "npm-run-all --sequential build:schematics baz format build:i18n"
   },
   "repository": {
     "type": "git",

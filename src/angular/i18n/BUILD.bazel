@@ -28,7 +28,6 @@ ts_project(
     deps = [
         ":i18n",
         "//:node_modules/@angular/common",
-        "//:node_modules/@angular/core",
         "//:node_modules/@angular/platform-browser",
     ],
 )

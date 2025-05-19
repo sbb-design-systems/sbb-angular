@@ -46,7 +46,7 @@ ng_project(
 sass_library(
     name = "angular_scss_lib",
     srcs = glob(["**/_*.scss"]),
-    deps = ["//src/angular/styles:scss_lib"],
+    deps = ["//src/angular:scss_lib"],
 )
 
 sass_binary(
@@ -72,7 +72,6 @@ sass_binary(
     src = "components/basemap-switch/basemap-switch.scss",
     deps = [
         ":angular_scss_lib",
-        "//src/angular:scss_lib",
     ],
 )
 
@@ -81,7 +80,6 @@ sass_binary(
     src = "components/compass-button/compass-button.scss",
     deps = [
         ":angular_scss_lib",
-        "//src/angular:scss_lib",
     ],
 )
 
@@ -90,7 +88,6 @@ sass_binary(
     src = "components/geolocate-button/geolocate-button.scss",
     deps = [
         ":angular_scss_lib",
-        "//src/angular:scss_lib",
     ],
 )
 
@@ -99,7 +96,6 @@ sass_binary(
     src = "components/home-button/home-button.scss",
     deps = [
         ":angular_scss_lib",
-        "//src/angular:scss_lib",
     ],
 )
 

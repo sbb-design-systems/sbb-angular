@@ -37,7 +37,7 @@ ng_project(
 sass_library(
     name = "sidebar_scss_lib",
     srcs = glob(["**/_*.scss"]),
-    deps = ["//src/angular/styles:scss_lib"],
+    deps = ["//src/angular:scss_lib"],
 )
 
 sass_binary(
