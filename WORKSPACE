@@ -87,6 +87,7 @@ npm_translate_lock(
     name = "npm",
     custom_postinstalls = {
         "@angular/animations": "node ../../@nginfra/angular-linking/index.mjs",
+        "@angular/cdk": "node ../../@nginfra/angular-linking/index.mjs",
         "@angular/common": "node ../../@nginfra/angular-linking/index.mjs",
         "@angular/forms": "node ../../@nginfra/angular-linking/index.mjs",
         "@angular/localize": "node ../../@nginfra/angular-linking/index.mjs",
@@ -164,7 +165,7 @@ load("@bazel_tools//tools/build_defs/repo:git.bzl", "git_repository")
 
 git_repository(
     name = "devinfra",
-    commit = "057595fcd4031441d5a9b1d31bf0ced68073832f",
+    commit = "90560ac34ffbb40189d98d8e54110e9c43575761",
     remote = "https://github.com/angular/dev-infra.git",
 )
 

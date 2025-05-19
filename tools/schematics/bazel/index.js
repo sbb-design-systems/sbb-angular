@@ -237,9 +237,6 @@ var NgPackage = class extends NgModule {
       this.stylesheets = this.stylesheets.filter((s) => !s.includes("fullfont.css"));
     }
     this.markdownModules = ngModules.filter((m) => m.hasMarkdown).map((m) => this._resolvePath(m));
-    if (this.name === "journey-maps") {
-      this.markdownModules.push("web-component");
-    }
   }
   _resolvePath(m) {
     return (0, import_core4.relative)(this.path, m.path);

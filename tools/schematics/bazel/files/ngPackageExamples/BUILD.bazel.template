@@ -33,9 +33,12 @@ package_docs_content(
     name = "docs-content",
     srcs = {
         # Package the overviews into the docs content
-        "//src/journey-maps:overviews": "overviews/journey-maps",
-        "//src/angular-experimental:overviews": "overviews/angular-experimental",
         "//src/angular:overviews": "overviews/angular",
+        "//src/angular-experimental:overviews": "overviews/angular-experimental",
+        "//src/journey-maps:overviews": "overviews/journey-maps",
+
+        # Package the API docs into the docs-content
+        "//src:api-docs": "api-docs",
 
         # In order to be able to run examples in StackBlitz, we also want to package the
         # plain source files into the docs-content.
@@ -46,9 +49,6 @@ package_docs_content(
         # Note: `examples-highlighted` is a tree artifact that we want to store as is
         # in the docs-content. Hence there is no target section name.
         ":examples-highlighted": "",
-
-        # Package the API docs into the docs-content
-        "//src:api-docs": "api-docs",
     },
 )
 
