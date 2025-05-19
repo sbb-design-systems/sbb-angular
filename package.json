@@ -67,6 +67,7 @@
   },
   "devDependencies": {
     "@actions/cache": "4.0.3",
+    "@angular/cli": "catalog:",
     "@angular/compiler-cli": "catalog:",
     "@angular/localize": "catalog:",
     "@angular/ng-dev": "https://github.com/angular/dev-infra-private-ng-dev-builds.git#ff125f14e67489d7ca3839fd17ecfee59c5a7dcb",

@@ -38,6 +38,7 @@ sass_binary(
 sass_binary(
     name = "fullfont",
     src = "fullfont.scss",
+    deps = ["//src/angular/styles:scss_lib"],
 )
 
 sass_library(
