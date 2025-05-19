@@ -45,6 +45,7 @@ ts_project(
     ),
     deps = [
         ":alert",
+        "//:node_modules/@angular/core",
         "//:node_modules/@angular/platform-browser",
         "//:node_modules/@angular/router",
         "//src/angular/icon/testing",

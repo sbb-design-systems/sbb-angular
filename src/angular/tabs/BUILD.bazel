@@ -80,6 +80,7 @@ ts_project(
         ":tabs",
         "//:node_modules/@angular/cdk",
         "//:node_modules/@angular/common",
+        "//:node_modules/@angular/core",
         "//:node_modules/@angular/platform-browser",
         "//:node_modules/rxjs",
         "//src/angular/core/testing",

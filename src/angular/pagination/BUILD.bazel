@@ -54,6 +54,7 @@ ts_project(
     ),
     deps = [
         ":pagination",
+        "//:node_modules/@angular/core",
         "//:node_modules/@angular/forms",
         "//:node_modules/@angular/platform-browser",
         "//:node_modules/@angular/router",

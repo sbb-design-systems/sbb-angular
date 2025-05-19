@@ -46,6 +46,7 @@ ts_project(
     deps = [
         ":toggle",
         "//:node_modules/@angular/common",
+        "//:node_modules/@angular/core",
         "//:node_modules/@angular/forms",
         "//:node_modules/@angular/platform-browser",
         "//:node_modules/rxjs",

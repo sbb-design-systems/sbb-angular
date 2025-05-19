@@ -45,6 +45,7 @@ ts_project(
     deps = [
         ":icon",
         "//:node_modules/@angular/common",
+        "//:node_modules/@angular/core",
         "//:node_modules/@angular/platform-browser",
         "//src/angular/core/testing",
     ],

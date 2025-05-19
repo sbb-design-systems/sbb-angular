@@ -68,6 +68,7 @@ ts_project(
     deps = [
         ":datepicker",
         "//:node_modules/@angular/cdk",
+        "//:node_modules/@angular/core",
         "//:node_modules/@angular/forms",
         "//:node_modules/@angular/platform-browser",
         "//src/angular/core",

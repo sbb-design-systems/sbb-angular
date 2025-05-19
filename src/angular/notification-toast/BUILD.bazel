@@ -45,6 +45,7 @@ ts_project(
     deps = [
         ":notification-toast",
         "//:node_modules/@angular/cdk",
+        "//:node_modules/@angular/core",
         "//:node_modules/@angular/platform-browser",
         "//src/angular/icon/testing",
     ],

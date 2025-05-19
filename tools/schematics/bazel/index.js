@@ -147,8 +147,7 @@ var NgModule = class _NgModule {
     this.genRules = this._context.bazelGenruleResolver.resolveGenrule(this._dir);
     this.hasTests = !!this._fileRegistry.specFiles.length;
     const testDependencies = this._context.typeScriptDependencyResolver.resolveDependencies(
-      this._fileRegistry.specFiles,
-      ["//:node_modules/@angular/core"]
+      this._fileRegistry.specFiles
     );
     this.testDependencies = testDependencies.dependencies;
     this.hasSassLibrary = !!this._fileRegistry.scssLibaryFiles.length;

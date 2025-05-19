@@ -39,6 +39,7 @@ ts_project(
     ),
     deps = [
         ":loading-indicator",
+        "//:node_modules/@angular/core",
     ],
 )
 

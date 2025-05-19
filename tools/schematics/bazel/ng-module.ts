@@ -57,7 +57,6 @@ export class NgModule {
     this.hasTests = !!this._fileRegistry.specFiles.length;
     const testDependencies = this._context.typeScriptDependencyResolver.resolveDependencies(
       this._fileRegistry.specFiles,
-      ['//:node_modules/@angular/core'],
     );
     this.testDependencies = testDependencies.dependencies;
     this.hasSassLibrary = !!this._fileRegistry.scssLibaryFiles.length;
