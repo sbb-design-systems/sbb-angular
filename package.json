@@ -1,6 +1,6 @@
 {
   "name": "sbb-angular",
-  "version": "18.0.0",
+  "version": "20.0.0-next.0",
   "private": true,
   "packageManager": "pnpm@9.15.6",
   "engines": {
@@ -9,6 +9,8 @@
     "pnpm": "^9.15.6"
   },
   "scripts": {
+    "ng-dev": "node --no-warnings=ExperimentalWarning --loader ts-node/esm/transpile-only node_modules/@angular/ng-dev/bundles/cli.mjs",
+    "ng-dev:stamp": "pnpm -s ng-dev release build-env-stamp --additional-stamping-script=tools/bazel-additional-stamp.mjs",
     "build": "node --no-warnings=ExperimentalWarning --loader ts-node/esm/transpile-only ./scripts/build.mts",
     "build:schematics": "node tools/schematics/esbuild.js",
     "build:i18n": "node --no-warnings=ExperimentalWarning --loader ts-node/esm/transpile-only ./scripts/build.mts i18n",

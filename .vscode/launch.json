@@ -5,6 +5,19 @@
     "version": "0.2.0",
     "configurations": [
         {
+            "name": "ng-dev stamp",
+            "request": "launch",
+            "runtimeArgs": [
+                "-s",
+                "ng-dev:stamp",
+                "--mode=release"
+            ],
+            "runtimeExecutable": "pnpm",
+            "skipFiles": [
+            ],
+            "type": "node"
+        },
+        {
             "type": "node",
             "request": "launch",
             "name": "generate-from-svg-registry",
