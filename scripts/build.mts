@@ -138,6 +138,17 @@ function buildI18n(distPath: string, i18nDistPath: string) {
     exec(
       `"node_modules/.bin/localize-extract" -l en-CH -s "${relativeDistPath}/**/fesm2022/*.mjs" -f ${format} -o "${outPath}"`,
     );
+
+    const content = readFileSync(outPath, 'utf8');
+    writeFileSync(
+      outPath,
+      content.replace(
+        /context-type="sourcefile">(\.\.\/)+[^\/]+\/bin\/src\/angular\//,
+        'context-type="sourcefile">../../',
+      ),
+      'utf8',
+    );
+
     console.log(`Updated ${relative(projectDir, outPath)}`);
   }
 }
