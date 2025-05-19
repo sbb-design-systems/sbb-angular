@@ -29,6 +29,11 @@ if (process.argv.length === 3) {
       handler: retry(() => buildAllTargets()),
     })
     .command({
+      command: 'packages',
+      describe: 'Build release packages',
+      handler: () => buildReleasePackages(releaseDir),
+    })
+    .command({
       command: 'i18n',
       describe: 'Generate i18n files',
       handler: () => buildI18n(releaseDir, join(projectDir, 'src/angular/i18n')),
@@ -144,8 +149,6 @@ function buildDocs(targetFolder: string) {
   console.log('######################################');
   console.log('  Building docs...');
   console.log('######################################');
-
-  const pkgName = 'showcase';
 
   exec(`${bazelCmd} build //docs:build.production`);
 
