@@ -34,7 +34,7 @@ ng_project(
 sass_library(
     name = "<%= name %>_scss_lib",
     srcs = glob(["**/_*.scss"]),
-    deps = ["//src/angular/styles:scss_lib"],
+    deps = ["//src/angular:scss_lib"],
 )<% } %><% for (let stylesheet of sassBinaries) { %>
 
 sass_binary(

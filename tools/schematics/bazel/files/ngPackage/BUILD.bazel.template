@@ -57,7 +57,7 @@ ts_config(
 sass_binary(
     name = "typography",
     src = "typography.scss",
-    deps = ["//src/angular/styles:scss_lib"],
+    deps = ["//src/angular:scss_lib"],
 )<% } %><% if (hasFullFont) { %>
 
 sass_binary(
@@ -68,7 +68,7 @@ sass_binary(
 sass_library(
     name = "scss_lib",
     srcs = glob(["**/_*.scss"]),
-    deps = ["//src/angular/styles:scss_lib"],
+    deps = ["//src/angular:scss_lib"],
 )<% } %><% for (let stylesheet of sassBinaries) { %>
 
 sass_binary(
@@ -117,8 +117,7 @@ ng_package(
         ":fullfont",<% } %><% if (name === 'angular') { %>
         "//src/angular/i18n:xlf",<% } %>
     ],<% if (hasSchematics) { %>
-    nested_packages = ["//src/<%= name %>/schematics:npm_package"],<% } %><% if (name === 'journey-maps') { %>
-    nested_packages = ["//src/<%= name %>/web-component:npm_package"],<% } %><% if (hasReadme) { %>
+    nested_packages = ["//src/<%= name %>/schematics:npm_package"],<% } %><% if (hasReadme) { %>
     readme_md = "README.md",<% } %>
     tags = ["release-package"],
     deps = <%= constant(shortName) %>_TARGETS + <%= constant(shortName) %>_TESTING_TARGETS,
