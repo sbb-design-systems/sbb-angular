@@ -12,7 +12,7 @@ import {
   ElementRef,
   inject,
   InjectionToken,
-  Input,
+  input,
   OnDestroy,
   QueryList,
   Signal,
@@ -62,7 +62,7 @@ export class SbbFormField implements AfterContentInit, AfterContentChecked, OnDe
   private _changeDetectorRef = inject(ChangeDetectorRef);
 
   /** The label text for the input. */
-  @Input() label?: string;
+  label: Signal<string | undefined> = input<string>();
 
   private _destroyed = new Subject<void>();
 
@@ -98,7 +98,7 @@ export class SbbFormField implements AfterContentInit, AfterContentChecked, OnDe
    * Gets the id of the label element. If no label is present, returns `null`.
    */
   getLabelId: Signal<string | null> = computed(() =>
-    this._hasLabel() || this.label ? this._labelId : null,
+    this._hasLabel() || this.label() ? this._labelId : null,
   );
 
   ngAfterContentInit() {
