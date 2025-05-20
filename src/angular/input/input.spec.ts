@@ -684,6 +684,7 @@ describe('SbbInput with forms', () => {
         .toBe('true');
 
       inputEl.value = 'not valid';
+      fixture.changeDetectorRef.markForCheck();
       fixture.detectChanges();
 
       expect(testComponent.formControl.invalid)
