@@ -1,9 +1,4 @@
-<div
-  [attr.id]="_valueId"
-  class="sbb-select-value"
-  aria-hidden="true"
-  [class.sbb-select-value-empty]="empty"
->
+<div [attr.id]="_valueId" class="sbb-select-value" [class.sbb-select-value-empty]="empty">
   @switch (empty) {
     @case (true) {
       <span class="sbb-select-placeholder">{{ !readonly ? placeholder || '\u00A0' : '-' }}</span>

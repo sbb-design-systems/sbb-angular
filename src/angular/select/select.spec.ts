@@ -1072,29 +1072,16 @@ describe('SbbSelect', () => {
           fixture.detectChanges();
 
           const labelId = fixture.nativeElement.querySelector('.sbb-form-field-label').id;
-          const valueId = fixture.nativeElement.querySelector('.sbb-select-value').id;
 
-          expect(select.getAttribute('aria-labelledby')).toBe(`${labelId} ${valueId} myLabelId`);
+          expect(select.getAttribute('aria-labelledby')).toBe(`${labelId} myLabelId`);
         });
 
-        it('should set aria-labelledby to the value and label IDs', () => {
+        it('should set aria-labelledby to the label ID', () => {
           fixture.detectChanges();
 
           const labelId = fixture.nativeElement.querySelector('.sbb-form-field-label').id;
-          const valueId = fixture.nativeElement.querySelector('.sbb-select-value').id;
-          expect(select.getAttribute('aria-labelledby')).toBe(`${labelId} ${valueId}`);
+          expect(select.getAttribute('aria-labelledby')).toBe(labelId);
         });
-
-        it('should trim the trigger aria-labelledby when there is no label', fakeAsync(() => {
-          // Reset the `placeholder` which also controls the label of the form field.
-          fixture.componentInstance.select.placeholder = '';
-          fixture.componentInstance.label = undefined;
-          fixture.detectChanges();
-
-          // Note that we assert that there are no spaces around the value.
-          const valueId = fixture.nativeElement.querySelector('.sbb-select-value').id;
-          expect(select.getAttribute('aria-labelledby')).toBe(`${valueId}`);
-        }));
 
         it('should set the tabindex of the select to 0 by default', () => {
           expect(select.getAttribute('tabindex')).toEqual('0');
@@ -1168,17 +1155,6 @@ describe('SbbSelect', () => {
           fixture.componentInstance.control.enable();
           fixture.detectChanges();
           expect(select.getAttribute('tabindex')).toEqual('0');
-        });
-
-        it('should set `aria-labelledby` to the value ID if there is no form field', () => {
-          fixture.destroy();
-
-          const labelFixture = TestBed.createComponent(SelectWithChangeEvent);
-          labelFixture.detectChanges();
-          select = labelFixture.debugElement.query(By.css('sbb-select'))!.nativeElement;
-          const valueId = labelFixture.nativeElement.querySelector('.sbb-select-value').id;
-
-          expect(select.getAttribute('aria-labelledby')?.trim()).toBe(valueId);
         });
 
         it('should support user binding to `aria-describedby`', () => {
@@ -2009,6 +1985,7 @@ describe('SbbSelect', () => {
           fixture.componentInstance.label = undefined;
           fixture.componentInstance.ariaLabelledby = 'myLabelId';
           fixture.componentInstance.select.open();
+          fixture.changeDetectorRef.detectChanges();
           fixture.detectChanges();
           flush();
 
