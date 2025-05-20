@@ -1,11 +1,7 @@
 import { FocusMonitor, FocusOrigin } from '@angular/cdk/a11y';
 import { Directionality } from '@angular/cdk/bidi';
 import { A, ESCAPE } from '@angular/cdk/keycodes';
-import {
-  createCloseScrollStrategy,
-  OverlayContainer,
-  ScrollStrategy,
-} from '@angular/cdk/overlay';
+import { createCloseScrollStrategy, OverlayContainer, ScrollStrategy } from '@angular/cdk/overlay';
 import { _supportsShadowDom } from '@angular/cdk/platform';
 import { ScrollDispatcher, ViewportRuler } from '@angular/cdk/scrolling';
 import { Location } from '@angular/common';
