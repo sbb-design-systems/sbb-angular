@@ -1,5 +1,4 @@
-import { _IdGenerator } from '@angular/cdk/a11y';
-import { Overlay, ScrollStrategy } from '@angular/cdk/overlay';
+import { createBlockScrollStrategy, Overlay, ScrollStrategy } from '@angular/cdk/overlay';
 import { ComponentType } from '@angular/cdk/portal';
 import { inject, Injectable, InjectionToken, Injector, TemplateRef } from '@angular/core';
 import { SbbDialogConfig, _SbbDialogBase } from '@sbb-esta/angular/dialog';
@@ -22,8 +21,8 @@ export const SBB_LIGHTBOX_SCROLL_STRATEGY = new InjectionToken<() => ScrollStrat
   {
     providedIn: 'root',
     factory: () => {
-      const overlay = inject(Overlay);
-      return () => overlay.scrollStrategies.block();
+      const injector = inject(Injector);
+      return () => createBlockScrollStrategy(injector);
     },
   },
 );

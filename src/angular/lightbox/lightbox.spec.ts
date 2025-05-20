@@ -1,7 +1,11 @@
 import { FocusMonitor, FocusOrigin } from '@angular/cdk/a11y';
 import { Directionality } from '@angular/cdk/bidi';
 import { A, ESCAPE } from '@angular/cdk/keycodes';
-import { Overlay, OverlayContainer, ScrollStrategy } from '@angular/cdk/overlay';
+import {
+  createCloseScrollStrategy,
+  OverlayContainer,
+  ScrollStrategy,
+} from '@angular/cdk/overlay';
 import { _supportsShadowDom } from '@angular/cdk/platform';
 import { ScrollDispatcher, ViewportRuler } from '@angular/cdk/scrolling';
 import { Location } from '@angular/common';
@@ -76,6 +80,10 @@ describe('SbbLightbox', () => {
     change: () => viewPortRulerMockChangeTrigger,
     getViewportSize: () => ({
       height: 500,
+    }),
+    getViewportScrollPosition: () => ({
+      top: 0,
+      left: 0,
     }),
   };
 
@@ -246,10 +254,9 @@ describe('SbbLightbox', () => {
   }));
 
   it('should dispatch the beforeClosed and afterClosed events when the overlay is detached externally', fakeAsync(() => {
-    const overlay = TestBed.inject(Overlay);
     const lightboxRef = lightbox.open(PizzaMsg, {
       viewContainerRef: testViewContainerRef,
-      scrollStrategy: overlay.scrollStrategies.close(),
+      scrollStrategy: createCloseScrollStrategy(TestBed.inject(Injector)),
     });
     const beforeClosedCallback = jasmine.createSpy('beforeClosed callback');
     const afterCloseCallback = jasmine.createSpy('afterClosed callback');
