@@ -1,6 +1,12 @@
 import { LiveAnnouncer } from '@angular/cdk/a11y';
 import { BreakpointObserver } from '@angular/cdk/layout';
-import { ComponentType, Overlay, OverlayConfig, OverlayRef } from '@angular/cdk/overlay';
+import {
+  ComponentType,
+  createOverlayRef,
+  Overlay,
+  OverlayConfig,
+  OverlayRef,
+} from '@angular/cdk/overlay';
 import { ComponentPortal, TemplatePortal } from '@angular/cdk/portal';
 import {
   ComponentRef,
@@ -290,7 +296,7 @@ export class SbbNotificationToast implements OnDestroy {
     }
 
     overlayConfig.positionStrategy = positionStrategy;
-    return this._overlay.create(overlayConfig);
+    return createOverlayRef(this._injector, overlayConfig);
   }
 
   /**

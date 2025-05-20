@@ -13,6 +13,7 @@ import {
   inject,
   InjectionToken,
   input,
+  InputSignal,
   OnDestroy,
   QueryList,
   Signal,
@@ -62,7 +63,7 @@ export class SbbFormField implements AfterContentInit, AfterContentChecked, OnDe
   private _changeDetectorRef = inject(ChangeDetectorRef);
 
   /** The label text for the input. */
-  label: Signal<string | undefined> = input<string>();
+  label: InputSignal<string | undefined> = input<string>();
 
   private _destroyed = new Subject<void>();
 
