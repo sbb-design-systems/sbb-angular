@@ -2,6 +2,7 @@ import { coerceStringArray } from '@angular/cdk/coercion';
 import { DOWN_ARROW, ENTER, ESCAPE, hasModifierKey, TAB, UP_ARROW } from '@angular/cdk/keycodes';
 import {
   ConnectedPosition,
+  createRepositionScrollStrategy,
   FlexibleConnectedPositionStrategy,
   Overlay,
   OverlayConfig,
@@ -76,8 +77,8 @@ export const SBB_AUTOCOMPLETE_SCROLL_STRATEGY = new InjectionToken<() => ScrollS
   {
     providedIn: 'root',
     factory: () => {
-      const overlay = inject(Overlay);
-      return () => overlay.scrollStrategies.reposition();
+      const injector = inject(Injector);
+      return () => createRepositionScrollStrategy(injector);
     },
   },
 );
