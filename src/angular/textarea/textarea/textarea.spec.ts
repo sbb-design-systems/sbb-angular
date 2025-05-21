@@ -1,4 +1,4 @@
-import { Component, DebugElement } from '@angular/core';
+import { Component, DebugElement, provideNgReflectAttributes } from '@angular/core';
 import { ComponentFixture, fakeAsync, flush, TestBed } from '@angular/core/testing';
 import { FormControl, FormGroup, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { By } from '@angular/platform-browser';
@@ -78,6 +78,9 @@ describe('SbbTextarea behaviour', () => {
   let innerComponent: DebugElement;
 
   beforeEach(() => {
+    TestBed.configureTestingModule({
+      providers: [provideNgReflectAttributes()],
+    });
     fixture = TestBed.createComponent(TextareaTestComponent);
     component = fixture.componentInstance;
     innerComponent = fixture.debugElement.query(By.directive(SbbTextarea));

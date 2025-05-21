@@ -8,7 +8,7 @@
     >
       @switch (_hasLabel()) {
         @case (false) {
-          <span>{{ label }}</span>
+          <span>{{ label() }}</span>
         }
         @case (true) {
           <ng-content select="sbb-label"></ng-content>

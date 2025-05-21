@@ -23,6 +23,7 @@ import {
   DebugElement,
   inject,
   OnInit,
+  provideCheckNoChangesConfig,
   Provider,
   QueryList,
   ViewChild,
@@ -988,6 +989,7 @@ describe('SbbSelect', () => {
       ],
       declarations: declarations,
       providers: [
+        provideCheckNoChangesConfig({ exhaustive: false }),
         {
           provide: ScrollDispatcher,
           useFactory: () => ({

@@ -1,7 +1,13 @@
 import { A11yModule } from '@angular/cdk/a11y';
 import { MediaMatcher } from '@angular/cdk/layout';
 import { CdkScrollable } from '@angular/cdk/scrolling';
-import { Component, DebugElement, ElementRef, ViewChild } from '@angular/core';
+import {
+  Component,
+  DebugElement,
+  ElementRef,
+  provideCheckNoChangesConfig,
+  ViewChild,
+} from '@angular/core';
 import {
   ComponentFixture,
   fakeAsync,
@@ -41,7 +47,7 @@ describe('SbbIconSidebar', () => {
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
       imports: [A11yModule, NoopAnimationsModule, SbbIconTestingModule],
-      providers: [PROVIDE_FAKE_MEDIA_MATCHER],
+      providers: [PROVIDE_FAKE_MEDIA_MATCHER, provideCheckNoChangesConfig({ exhaustive: false })],
     });
 
     inject([MediaMatcher], (fm: FakeMediaMatcher) => {
@@ -161,6 +167,7 @@ describe('SbbIconSidebar', () => {
       TestBed.resetTestingModule()
         .configureTestingModule({
           imports: [BrowserAnimationsModule, SbbIconTestingModule],
+          providers: [provideCheckNoChangesConfig({ exhaustive: false })],
         })
         .compileComponents();
 
