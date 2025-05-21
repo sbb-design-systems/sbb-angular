@@ -96,7 +96,6 @@ ts_project(
         "//:node_modules/@types/jasmine",
         "//:node_modules/@types/node",
         "//:node_modules/typescript",
-        "//src/angular/schematics/testing",
     ],
 )
 
