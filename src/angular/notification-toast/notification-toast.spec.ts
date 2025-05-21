@@ -8,6 +8,7 @@ import {
   inject,
   NgModule,
   provideCheckNoChangesConfig,
+  provideNgReflectAttributes,
   signal,
   TemplateRef,
   ViewChild,
@@ -44,6 +45,7 @@ describe('SbbNotificationToast icons', () => {
     TestBed.configureTestingModule({
       imports: [NotificationToastTestModule, NoopAnimationsModule, SbbIconTestingModule],
       providers: [
+        provideNgReflectAttributes(),
         provideCheckNoChangesConfig({ exhaustive: false }),
         SbbNotificationToast,
         { provide: SBB_NOTIFICATION_TOAST_DATA, useValue: SbbNotificationToastConfig },
@@ -73,7 +75,7 @@ describe('SbbNotificationToast icons', () => {
       .toBe(1);
     const icons = overlayContainerElement.querySelectorAll('sbb-icon');
     expect(icons.length).toBe(2);
-    expect(icons[0].getAttribute('data-sbb-icon-name')).toMatch(/^sign-exclamation-point-sma/);
+    expect(icons[0].getAttribute('ng-reflect-svg-icon')).toMatch(/^sign-exclamation-point-sma/);
   });
 
   it('should have tick icon when type is SUCCESS', () => {
