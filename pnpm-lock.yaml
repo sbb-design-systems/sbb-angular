@@ -70,7 +70,7 @@ catalogs:
 overrides:
   typescript: 5.8.2
 
-packageExtensionsChecksum: 776fe81137e8a08e18d7912233173f91
+packageExtensionsChecksum: 83858b92d9b5004dad3dd92c6c8aafed
 
 importers:
 
