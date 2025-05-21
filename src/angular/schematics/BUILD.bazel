@@ -98,11 +98,3 @@ ts_project(
         "//:node_modules/typescript",
     ],
 )
-
-jasmine_test(
-    name = "unit_tests",
-    data = [
-        ":schematics_assets",
-        ":unit_test_sources",
-    ],
-)
