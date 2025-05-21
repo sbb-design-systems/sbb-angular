@@ -6,6 +6,11 @@
  * found in the LICENSE file at https://angular.dev/license
  */
 
+// tslint:disable:ordered-imports
+import 'zone.js';
+import 'zone.js/testing';
+import 'reflect-metadata';
+
 import {
   NgModule,
   provideCheckNoChangesConfig,
@@ -14,9 +19,6 @@ import {
 import { TestBed } from '@angular/core/testing';
 import '@angular/localize/init';
 import { BrowserTestingModule, platformBrowserTesting } from '@angular/platform-browser/testing';
-import 'reflect-metadata';
-import 'zone.js';
-import 'zone.js/testing';
 
 @NgModule({
   providers: [provideZonelessChangeDetection(), provideCheckNoChangesConfig({ exhaustive: true })],
