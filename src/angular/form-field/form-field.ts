@@ -5,14 +5,18 @@ import {
   ChangeDetectionStrategy,
   ChangeDetectorRef,
   Component,
+  computed,
+  contentChild,
   ContentChild,
   ContentChildren,
   ElementRef,
   inject,
   InjectionToken,
-  Input,
+  input,
+  InputSignal,
   OnDestroy,
   QueryList,
+  Signal,
   ViewChild,
   ViewEncapsulation,
 } from '@angular/core';
@@ -59,7 +63,7 @@ export class SbbFormField implements AfterContentInit, AfterContentChecked, OnDe
   private _changeDetectorRef = inject(ChangeDetectorRef);
 
   /** The label text for the input. */
-  @Input() label?: string;
+  label: InputSignal<string | undefined> = input<string>();
 
   private _destroyed = new Subject<void>();
 
@@ -80,10 +84,8 @@ export class SbbFormField implements AfterContentInit, AfterContentChecked, OnDe
   }
   private _explicitFormFieldControl: SbbFormFieldControl<any>;
 
-  @ContentChild(SbbLabel) _labelChildNonStatic: SbbLabel;
-  @ContentChild(SbbLabel, { static: true }) _labelChildStatic: SbbLabel;
-
   @ContentChildren(SBB_ERROR, { descendants: true }) _errorChildren: QueryList<SbbError>;
+  private readonly _labelChild = contentChild(SbbLabel);
 
   private _previousControl: SbbFormFieldControl<unknown> | null = null;
   private _stateChanges: Subscription | undefined;
@@ -96,9 +98,9 @@ export class SbbFormField implements AfterContentInit, AfterContentChecked, OnDe
   /**
    * Gets the id of the label element. If no label is present, returns `null`.
    */
-  getLabelId(): string | null {
-    return this._hasLabel() || this.label ? this._labelId : null;
-  }
+  getLabelId: Signal<string | null> = computed(() =>
+    this._hasLabel() || this.label() ? this._labelId : null,
+  );
 
   ngAfterContentInit() {
     this._validateControlChild();
@@ -130,9 +132,7 @@ export class SbbFormField implements AfterContentInit, AfterContentChecked, OnDe
     return control && control[prop];
   }
 
-  _hasLabel() {
-    return !!(this._labelChildNonStatic || this._labelChildStatic);
-  }
+  _hasLabel: Signal<boolean> = computed(() => !!this._labelChild());
 
   _hasErrors() {
     return !!(this._errorChildren && this._errorChildren.length && this._control.errorState);

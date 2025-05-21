@@ -1,6 +1,11 @@
 import { _IdGenerator } from '@angular/cdk/a11y';
 import { Dialog, DialogConfig } from '@angular/cdk/dialog';
-import { Overlay, ScrollStrategy } from '@angular/cdk/overlay';
+import {
+  createBlockScrollStrategy,
+  createGlobalPositionStrategy,
+  Overlay,
+  ScrollStrategy,
+} from '@angular/cdk/overlay';
 import { ComponentType } from '@angular/cdk/portal';
 import {
   ComponentRef,
@@ -33,8 +38,8 @@ export const SBB_DIALOG_SCROLL_STRATEGY = new InjectionToken<() => ScrollStrateg
   {
     providedIn: 'root',
     factory: () => {
-      const overlay = inject(Overlay);
-      return () => overlay.scrollStrategies.block();
+      const injector = inject(Injector);
+      return () => createBlockScrollStrategy(injector);
     },
   },
 );
@@ -88,6 +93,7 @@ export abstract class _SbbDialogBase<
   protected _idGenerator: _IdGenerator = inject(_IdGenerator);
   protected _idPrefix: string = 'sbb-dialog-';
   private _dialog: Dialog;
+  private _injector = inject(Injector);
   /** Keeps track of the currently-open dialogs. */
   get openDialogs(): F[] {
     return this._parentDialog ? this._parentDialog.openDialogs : this._openDialogsAtThisLevel;
@@ -146,7 +152,9 @@ export abstract class _SbbDialogBase<
 
     const cdkRef = this._dialog.open<R, D, T>(componentOrTemplateRef, {
       ...config,
-      positionStrategy: this._overlay.position().global().centerHorizontally().centerVertically(),
+      positionStrategy: createGlobalPositionStrategy(this._injector)
+        .centerHorizontally()
+        .centerVertically(),
       // Disable closing since we need to sync it up to the animation ourselves.
       disableClose: true,
       // Disable closing on destroy, because this service cleans up its open dialogs as well.

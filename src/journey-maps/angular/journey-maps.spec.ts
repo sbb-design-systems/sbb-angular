@@ -1,4 +1,5 @@
 import { HttpClientModule } from '@angular/common/http';
+import { provideCheckNoChangesConfig } from '@angular/core';
 import { ComponentFixture, fakeAsync, TestBed, tick } from '@angular/core/testing';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { Map as MaplibreMap } from 'maplibre-gl';
@@ -116,6 +117,7 @@ const configureTestingModule = () =>
     declarations: [SbbJourneyMaps],
     providers: [
       Window,
+      provideCheckNoChangesConfig({ exhaustive: false }),
       {
         provide: SbbMapMarkerService,
         useValue: {

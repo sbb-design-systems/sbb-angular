@@ -8,8 +8,12 @@ import {
   Component,
   DebugElement,
   ElementRef,
+  EventEmitter,
+  signal,
   ViewChild,
+  WritableSignal,
 } from '@angular/core';
+import { toObservable } from '@angular/core/rxjs-interop';
 import {
   ComponentFixture,
   fakeAsync,
@@ -31,7 +35,7 @@ import {
   patchElementFocus,
 } from '@sbb-esta/angular/core/testing';
 import { SbbIconTestingModule } from '@sbb-esta/angular/icon/testing';
-import { Subject } from 'rxjs';
+import { skip } from 'rxjs/operators';
 
 import {
   SbbTooltip,
@@ -45,22 +49,37 @@ import {
 
 const initialTooltipMessage = 'initial tooltip message';
 
+// tslint:disable-next-line:no-undecorated-class-with-angular-features lifecycle-hook-interface
+class FakeDirectionality implements Directionality {
+  readonly change: EventEmitter<Direction>;
+
+  get value(): Direction {
+    return this.valueSignal();
+  }
+
+  constructor(readonly valueSignal: WritableSignal<Direction>) {
+    this.change = toObservable(valueSignal).pipe(skip(1)) as EventEmitter<Direction>;
+  }
+
+  ngOnDestroy() {}
+}
+
 describe('SbbTooltip', () => {
   let overlayContainer: OverlayContainer;
   let overlayContainerElement: HTMLElement;
-  let dir: { value: Direction; change: Subject<Direction> };
+  let dir: WritableSignal<Direction>;
   let platform: Platform;
   let focusMonitor: FocusMonitor;
 
   beforeEach(waitForAsync(() => {
+    dir = signal('ltr');
     TestBed.configureTestingModule({
       imports: [SbbIconTestingModule],
       providers: [
         {
           provide: Directionality,
-          useFactory: () => {
-            return (dir = { value: 'ltr', change: new Subject() });
-          },
+          useFactory: () => new FakeDirectionality(dir),
+          deps: [],
         },
       ],
     });
@@ -562,7 +581,8 @@ describe('SbbTooltip', () => {
     }));
 
     it('should pass the layout direction to the tooltip', fakeAsync(() => {
-      dir.value = 'rtl';
+      dir.set('rtl');
+      fixture.detectChanges();
 
       tooltipDirective.show();
       tick(0);

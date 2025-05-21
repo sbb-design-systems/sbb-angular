@@ -3,7 +3,7 @@ import { Injectable, NgZone } from '@angular/core';
 import { VERSION } from '@sbb-esta/angular/core';
 import { ExampleData, EXAMPLE_COMPONENTS } from '@sbb-esta/components-examples';
 import stackblitz from '@stackblitz/sdk';
-import { Observable } from 'rxjs';
+import { firstValueFrom, Observable } from 'rxjs';
 import { shareReplay, take } from 'rxjs/operators';
 
 /**
@@ -178,8 +178,8 @@ export class StackBlitzWriter {
       this._fileCache.set(fileUrl, stream);
     }
 
-    // The `take(1)` is necessary, because the Promise from `toPromise` resolves on complete.
-    return stream.pipe(take(1)).toPromise();
+    // The `take(1)` is necessary, because the Promise from `firstValueFrom` resolves on the first emitted value
+    return firstValueFrom(stream.pipe(take(1)));
   }
 
   /**

@@ -7,6 +7,7 @@ import {
   EventEmitter,
   inject,
   OnInit,
+  provideCheckNoChangesConfig,
   Provider,
   QueryList,
   signal,
@@ -1385,7 +1386,11 @@ function createComponent<T>(
 ): ComponentFixture<T> {
   TestBed.configureTestingModule({
     imports: [SbbIconTestingModule, NoopAnimationsModule, ...imports, component],
-    providers: [{ provide: Directionality, useFactory: () => dir }, ...providers],
+    providers: [
+      { provide: Directionality, useFactory: () => dir },
+      provideCheckNoChangesConfig({ exhaustive: false }),
+      ...providers,
+    ],
   });
 
   return TestBed.createComponent<T>(component);
