@@ -6,7 +6,7 @@ import { SbbCommonModule } from '@sbb-esta/angular/core';
 import { SbbDialogModule } from '@sbb-esta/angular/dialog';
 import { SbbIconModule } from '@sbb-esta/angular/icon';
 
-import { SbbLightbox, SBB_LIGHTBOX_SCROLL_STRATEGY_PROVIDER } from './lightbox';
+import { SbbLightbox } from './lightbox';
 import { SbbLightboxContainer } from './lightbox-container';
 import {
   SbbLightboxActions,
@@ -37,6 +37,6 @@ import {
     SbbLightboxContent,
     SbbLightboxActions,
   ],
-  providers: [SbbLightbox, SBB_LIGHTBOX_SCROLL_STRATEGY_PROVIDER],
+  providers: [SbbLightbox],
 })
 export class SbbLightboxModule {}

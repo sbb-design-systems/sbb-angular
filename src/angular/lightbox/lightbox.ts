@@ -28,37 +28,6 @@ export const SBB_LIGHTBOX_SCROLL_STRATEGY = new InjectionToken<() => ScrollStrat
 );
 
 /**
- * @docs-private
- * @deprecated No longer used. To be removed.
- * @breaking-change 19.0.0
- */
-export function SBB_LIGHTBOX_SCROLL_STRATEGY_FACTORY(overlay: Overlay): () => ScrollStrategy {
-  return () => overlay.scrollStrategies.block();
-}
-
-/**
- * @docs-private
- * @deprecated No longer used. To be removed.
- * @breaking-change 19.0.0
- */
-export function SBB_LIGHTBOX_SCROLL_STRATEGY_PROVIDER_FACTORY(
-  overlay: Overlay,
-): () => ScrollStrategy {
-  return () => overlay.scrollStrategies.block();
-}
-
-/**
- * @docs-private
- * @deprecated No longer used. To be removed.
- * @breaking-change 19.0.0
- */
-export const SBB_LIGHTBOX_SCROLL_STRATEGY_PROVIDER = {
-  provide: SBB_LIGHTBOX_SCROLL_STRATEGY,
-  deps: [Overlay],
-  useFactory: SBB_LIGHTBOX_SCROLL_STRATEGY_PROVIDER_FACTORY,
-};
-
-/**
  * Service to open modal lightboxes.
  */
 @Injectable({ providedIn: 'root' })
