@@ -17,7 +17,6 @@ import {
   OnChanges,
   OnDestroy,
   Output,
-  Renderer2,
   SimpleChanges,
   ViewChild,
   ViewContainerRef,
@@ -80,8 +79,6 @@ export class SbbExpansionPanel
   private _document = inject(DOCUMENT);
   private _ngZone = inject(NgZone);
   private _elementRef = inject<ElementRef<HTMLElement>>(ElementRef);
-  private _renderer = inject(Renderer2);
-  private _cleanupTransitionEnd: (() => void) | undefined;
 
   /** Whether the toggle indicator should be hidden. */
   @Input({ transform: booleanAttribute })
@@ -174,7 +171,10 @@ export class SbbExpansionPanel
 
   override ngOnDestroy() {
     super.ngOnDestroy();
-    this._cleanupTransitionEnd?.();
+    this._bodyWrapper?.nativeElement.removeEventListener(
+      'transitionend',
+      this._transitionEndListener,
+    );
     this._inputChanges.complete();
   }
 
@@ -200,11 +200,7 @@ export class SbbExpansionPanel
       } else {
         setTimeout(() => {
           const element = this._elementRef.nativeElement;
-          this._cleanupTransitionEnd = this._renderer.listen(
-            element,
-            'transitionend',
-            this._transitionEndListener,
-          );
+          element.addEventListener('transitionend', this._transitionEndListener);
           element.classList.add('sbb-expansion-panel-animations-enabled');
         }, 200);
       }

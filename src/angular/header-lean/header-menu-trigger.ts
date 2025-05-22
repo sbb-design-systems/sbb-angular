@@ -6,6 +6,7 @@ import {
   OverlayRef,
   ScrollStrategy,
 } from '@angular/cdk/overlay';
+import { normalizePassiveListenerOptions } from '@angular/cdk/platform';
 import {
   AfterContentInit,
   ChangeDetectionStrategy,
@@ -18,7 +19,6 @@ import {
   Input,
   OnDestroy,
   Output,
-  Renderer2,
   ViewChild,
   ViewEncapsulation,
 } from '@angular/core';
@@ -31,16 +31,6 @@ import { filter } from 'rxjs/operators';
 import { SbbHeaderLean } from './header';
 import type { SbbHeaderMenu } from './header-menu';
 import { SBB_HEADER } from './header-token';
-
-function _bindEventWithOptions(
-  renderer: Renderer2,
-  target: EventTarget,
-  eventName: string,
-  callback: (event: any) => boolean | void,
-  options: AddEventListenerOptions,
-): () => void {
-  return renderer.listen(target, eventName, callback, options);
-}
 
 /** Injection token that determines the scroll handling while the menu is open. */
 export const SBB_HEADER_MENU_SCROLL_STRATEGY = new InjectionToken<() => ScrollStrategy>(
@@ -60,7 +50,7 @@ export const SBB_HEADER_MENU_SCROLL_STRATEGY_FACTORY_PROVIDER = {
 };
 
 /** Options for binding a passive event listener. */
-const passiveEventListenerOptions = { passive: true };
+const passiveEventListenerOptions = normalizePassiveListenerOptions({ passive: true });
 
 @Component({
   selector: 'button[sbbHeaderMenu]',
@@ -86,7 +76,6 @@ export class SbbHeaderMenuTrigger implements AfterContentInit, OnDestroy {
   private _focusMonitor = inject(FocusMonitor);
   private _router = inject(Router, { optional: true });
   private _header = inject<TypeRef<SbbHeaderLean>>(SBB_HEADER);
-  private _cleanupTouchstart: () => void;
 
   // Tracking input type is necessary so it's possible to only auto-focus
   // the first item of the list when the menu is opened via the keyboard
@@ -148,15 +137,9 @@ export class SbbHeaderMenuTrigger implements AfterContentInit, OnDestroy {
 
   constructor(...args: unknown[]);
   constructor() {
-    const renderer = inject(Renderer2);
-
-    this._cleanupTouchstart = _bindEventWithOptions(
-      renderer,
-      this._element.nativeElement,
+    this._element.nativeElement.addEventListener(
       'touchstart',
-      () => {
-        this._openedBy = 'touch';
-      },
+      this._handleTouchStart,
       passiveEventListenerOptions,
     );
   }
@@ -171,7 +154,12 @@ export class SbbHeaderMenuTrigger implements AfterContentInit, OnDestroy {
       this._overlayRef = null;
     }
 
-    this._cleanupTouchstart();
+    this._element.nativeElement.removeEventListener(
+      'touchstart',
+      this._handleTouchStart,
+      passiveEventListenerOptions,
+    );
+
     this._menuCloseSubscription.unsubscribe();
     this._closingActionsSubscription.unsubscribe();
     this._destroyed.next();
