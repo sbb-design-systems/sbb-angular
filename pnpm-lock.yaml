@@ -153,8 +153,8 @@ importers:
         specifier: ^0.25.0
         version: 0.25.0
       '@bazel/runfiles':
-        specifier: 5.8.1
-        version: 5.8.1
+        specifier: 6.3.1
+        version: 6.3.1
       '@commitlint/cli':
         specifier: 19.8.0
         version: 19.8.0(@types/node@18.19.87)(typescript@5.8.2)
@@ -1612,8 +1612,8 @@ packages:
     resolution: {integrity: sha512-dtosfsuZCSaqlUe5EyxNdaN7Gow0Y+ZJixdlciytcSieUcB/1lXPFTx6OihxhjgtTHkeFovlQ/QbvArRPnk+nQ==}
     hasBin: true
 
-  '@bazel/runfiles@5.8.1':
-    resolution: {integrity: sha512-NDdfpdQ6rZlylgv++iMn5FkObC/QlBQvipinGLSOguTYpRywmieOyJ29XHvUilspwTFSILWpoE9CqMGkHXug1g==}
+  '@bazel/runfiles@6.3.1':
+    resolution: {integrity: sha512-1uLNT5NZsUVIGS4syuHwTzZ8HycMPyr6POA3FCE4GbMtc4rhoJk8aZKtNIRthJYfL+iioppi+rTfH3olMPr9nA==}
 
   '@breejs/later@4.2.0':
     resolution: {integrity: sha512-EVMD0SgJtOuFeg0lAVbCwa+qeTKILb87jqvLyUtQswGD9+ce2nB52Y5zbTF1Hc0MDFfbydcMcxb47jSdhikVHA==}
@@ -11865,7 +11865,7 @@ snapshots:
 
   '@bazel/ibazel@0.25.0': {}
 
-  '@bazel/runfiles@5.8.1': {}
+  '@bazel/runfiles@6.3.1': {}
 
   '@breejs/later@4.2.0': {}
 
