@@ -45,37 +45,6 @@ export const SBB_DIALOG_SCROLL_STRATEGY = new InjectionToken<() => ScrollStrateg
 );
 
 /**
- * @docs-private
- * @deprecated No longer used. To be removed.
- * @breaking-change 19.0.0
- */
-export function SBB_DIALOG_SCROLL_STRATEGY_FACTORY(overlay: Overlay): () => ScrollStrategy {
-  return () => overlay.scrollStrategies.block();
-}
-
-/**
- * @docs-private
- * @deprecated No longer used. To be removed.
- * @breaking-change 19.0.0
- */
-export function SBB_DIALOG_SCROLL_STRATEGY_PROVIDER_FACTORY(
-  overlay: Overlay,
-): () => ScrollStrategy {
-  return () => overlay.scrollStrategies.block();
-}
-
-/**
- * @docs-private
- * @deprecated No longer used. To be removed.
- * @breaking-change 19.0.0
- */
-export const SBB_DIALOG_SCROLL_STRATEGY_PROVIDER = {
-  provide: SBB_DIALOG_SCROLL_STRATEGY,
-  deps: [Overlay],
-  useFactory: SBB_DIALOG_SCROLL_STRATEGY_PROVIDER_FACTORY,
-};
-
-/**
  * Base class for dialog services. The base dialog service allows
  * for arbitrary dialog refs and dialog container components.
  */

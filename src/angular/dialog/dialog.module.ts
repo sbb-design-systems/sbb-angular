@@ -5,7 +5,7 @@ import { NgModule } from '@angular/core';
 import { SbbCommonModule } from '@sbb-esta/angular/core';
 import { SbbIconModule } from '@sbb-esta/angular/icon';
 
-import { SbbDialog, SBB_DIALOG_SCROLL_STRATEGY_PROVIDER } from './dialog';
+import { SbbDialog } from './dialog';
 import { SbbDialogContainer } from './dialog-container';
 import {
   SbbDialogActions,
@@ -28,6 +28,6 @@ import {
     SbbDialogContent,
   ],
   exports: [SbbDialogContainer, SbbDialogClose, SbbDialogTitle, SbbDialogContent, SbbDialogActions],
-  providers: [SbbDialog, SBB_DIALOG_SCROLL_STRATEGY_PROVIDER],
+  providers: [SbbDialog],
 })
 export class SbbDialogModule {}
