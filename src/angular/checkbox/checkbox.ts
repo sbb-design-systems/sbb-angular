@@ -38,20 +38,6 @@ import {
 // Default checkbox configuration.
 const defaults = SBB_CHECKBOX_DEFAULT_OPTIONS_FACTORY();
 
-/**
- * Provider Expression that allows sbb-checkbox to register as a ControlValueAccessor.
- * This allows it to support [(ngModel)].
- * @docs-private
- * @deprecated Will stop being exported.
- * @breaking-change 19.0.0
- *
- */
-export const SBB_CHECKBOX_CONTROL_VALUE_ACCESSOR: any = {
-  provide: NG_VALUE_ACCESSOR,
-  useExisting: forwardRef(() => SbbCheckbox),
-  multi: true,
-};
-
 /** Change event object emitted by SbbCheckbox. */
 export class SbbCheckboxChange {
   /** The source SbbCheckbox of the event. */
@@ -82,7 +68,11 @@ export class SbbCheckboxChange {
     '[class.sbb-selection-disabled]': 'disabled',
   },
   providers: [
-    SBB_CHECKBOX_CONTROL_VALUE_ACCESSOR,
+    {
+      provide: NG_VALUE_ACCESSOR,
+      useExisting: forwardRef(() => SbbCheckbox),
+      multi: true,
+    },
     {
       provide: NG_VALIDATORS,
       useExisting: SbbCheckbox,
