@@ -54,7 +54,6 @@ import {
   Validators,
 } from '@angular/forms';
 import {
-  CanUpdateErrorState,
   getOptionScrollPosition,
   mixinVariant,
   SbbErrorStateMatcher,
@@ -190,8 +189,7 @@ export class SbbSelect
     OnInit,
     DoCheck,
     ControlValueAccessor,
-    SbbFormFieldControl<any>,
-    CanUpdateErrorState
+    SbbFormFieldControl<any>
 {
   private _viewportRuler = inject(ViewportRuler);
   private _changeDetectorRef = inject(ChangeDetectorRef);
