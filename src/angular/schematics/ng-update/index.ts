@@ -4,7 +4,7 @@ import { createMigrationSchematicRule, TargetVersion } from '@angular/cdk/schema
 import { sbbAngularUpgradeData } from './upgrade-data';
 
 /** Entry point for the migration schematics with target of Angular 18 */
-export function updateToV19(): Rule {
+export function updateToV20(): Rule {
   return createMigrationSchematicRule(
     TargetVersion.V20,
     [],
