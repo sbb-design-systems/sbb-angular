@@ -15,7 +15,6 @@ import {
   NgZone,
   OnDestroy,
   QueryList,
-  Renderer2,
   ViewEncapsulation,
 } from '@angular/core';
 import { mixinVariant } from '@sbb-esta/angular/core';
@@ -221,8 +220,6 @@ export class SbbButton
 })
 export class SbbAnchor extends SbbButton implements AfterViewInit, OnDestroy {
   private _ngZone = inject(NgZone);
-  private _renderer = inject(Renderer2);
-  private _cleanupClick: () => void;
 
   /** Tabindex of the button. */
   @Input() tabIndex: number;
@@ -231,17 +228,13 @@ export class SbbAnchor extends SbbButton implements AfterViewInit, OnDestroy {
     super.ngAfterViewInit();
 
     this._ngZone.runOutsideAngular(() => {
-      this._cleanupClick = this._renderer.listen(
-        this._elementRef.nativeElement,
-        'click',
-        this._haltDisabledEvents,
-      );
+      this._elementRef.nativeElement.addEventListener('click', this._haltDisabledEvents);
     });
   }
 
   override ngOnDestroy(): void {
     super.ngOnDestroy();
-    this._cleanupClick?.();
+    this._elementRef.nativeElement.removeEventListener('click', this._haltDisabledEvents);
   }
 
   _haltDisabledEvents = (event: Event): void => {
