@@ -701,7 +701,7 @@ export class SbbSelect
   private _trackedModal: Element | null = null;
 
   /**
-   * If the autocomplete trigger is inside of an `aria-modal` element, connect
+   * If the select trigger is inside of an `aria-modal` element, connect
    * that modal to the options panel with `aria-owns`.
    *
    * For some browser + screen reader combinations, when navigation is inside
@@ -731,7 +731,7 @@ export class SbbSelect
     );
 
     if (!modal) {
-      // Most commonly, the autocomplete trigger is not inside a modal.
+      // Most commonly, the select trigger is not inside a modal.
       return;
     }
 
@@ -748,7 +748,7 @@ export class SbbSelect
   /** Clears the reference to the listbox overlay element from the modal it was added to. */
   private _clearFromModal() {
     if (!this._trackedModal) {
-      // Most commonly, the autocomplete trigger is not used inside a modal.
+      // Most commonly, the select trigger is not used inside a modal.
       return;
     }
 
