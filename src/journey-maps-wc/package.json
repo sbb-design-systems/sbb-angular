@@ -1,0 +1,57 @@
+{
+  "name": "@sbb-esta/journey-maps-wc",
+  "version": "0.0.0-PLACEHOLDER",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/sbb-design-systems/sbb-angular.git"
+  },
+  "license": "Apache-2.0",
+  "bugs": {
+    "url": "https://github.com/sbb-design-systems/sbb-angular/issues"
+  },
+  "homepage": "https://angular.app.sbb.ch",
+  "exports": {
+    ".": {
+      "default": "./main.js"
+    },
+    "./styles.css": {
+      "default": "./styles.css"
+    }
+  },
+  "devDependencies": {
+    "@angular-devkit/build-angular": "catalog:",
+    "@angular/animations": "catalog:",
+    "@angular/cli": "catalog:",
+    "@angular/common": "catalog:",
+    "@angular/core": "catalog:",
+    "@angular/compiler": "catalog:",
+    "@angular/compiler-cli": "catalog:",
+    "@angular/elements": "catalog:",
+    "@angular/platform-browser": "catalog:",
+    "@sbb-esta/angular": "workspace:*",
+    "@sbb-esta/journey-maps": "workspace:*",
+    "@types/jasmine": "5.1.7",
+    "@types/node": "^22.14.1",
+    "@types/shelljs": "0.8.15",
+    "jasmine-core": "5.6.0",
+    "jasmine-spec-reporter": "7.0.0",
+    "karma": "~6.4.4",
+    "karma-chrome-launcher": "^3.1.1",
+    "karma-coverage": "~2.2.0",
+    "karma-firefox-launcher": "^2.1.0",
+    "karma-jasmine": "^4.0.1",
+    "karma-jasmine-html-reporter": "^1.5.4",
+    "maplibre-gl": "4.7.1",
+    "npm-run-all": "^4.1.5",
+    "rxjs": "catalog:",
+    "sass": "1.86.3",
+    "ts-node": "10.9.2",
+    "tslib": "^2.3.0",
+    "typescript": "~5.8.2",
+    "zone.js": "~0.15.0"
+  },
+  "sideEffects": true,
+  "publishConfig": {
+    "access": "public"
+  }
+}

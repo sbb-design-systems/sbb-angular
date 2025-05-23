@@ -10,24 +10,11 @@
     "url": "https://github.com/sbb-design-systems/sbb-angular/issues"
   },
   "homepage": "https://angular.app.sbb.ch",
-  "exports": {
-    "./web-component": {
-      "types": "./index.d.ts",
-      "es2015": "./web-component/bundle-es2015.min.js",
-      "default": "./web-component/bundle.min.js"
-    },
-    "./web-component/styles.css": {
-      "default": "./web-component/styles.css"
-    }
-  },
   "peerDependencies": {
     "@angular/common": "0.0.0-NG",
     "@angular/core": "0.0.0-NG",
     "@types/geojson": ">=7946",
     "maplibre-gl": "^4.7.1"
-  },
-  "devDependencies": {
-    "@angular/elements": "catalog:"
   },
   "ng-update": {
     "packageGroup": [

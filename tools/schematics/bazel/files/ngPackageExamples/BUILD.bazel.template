@@ -36,6 +36,7 @@ package_docs_content(
         "//src/angular:overviews": "overviews/angular",
         "//src/angular-experimental:overviews": "overviews/angular-experimental",
         "//src/journey-maps:overviews": "overviews/journey-maps",
+        "//src/journey-maps-wc:overviews": "overviews/journey-maps-wc",
 
         # Package the API docs into the docs-content
         "//src:api-docs": "api-docs",
@@ -63,6 +64,7 @@ ng_package(
         ":node_modules/@sbb-esta/angular",
         ":node_modules/@sbb-esta/angular-experimental",
         ":node_modules/@sbb-esta/journey-maps",
+        ":node_modules/@sbb-esta/journey-maps-wc",
     ],
     replace_prefixes = {
         "docs-content/": "/",
