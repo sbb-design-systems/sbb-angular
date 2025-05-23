@@ -114,7 +114,7 @@ export const PACKAGES: { [key: string]: ShowcaseMetaPackage } = {
     name: '@sbb-esta/journey-maps',
     svgIcon: 'switzerland-route-small',
     image: 'assets/journey-maps.jpg',
-    description: '',
+    description: 'Map components based on Angular and the MapLibre framework.',
     sections: [
       {
         name: 'Introduction',
@@ -130,9 +130,20 @@ export const PACKAGES: { [key: string]: ShowcaseMetaPackage } = {
         name: 'Components',
         entries: [
           { label: 'JourneyMaps', link: './components/angular' },
-          { label: 'JourneyMaps Web Component', link: './components/web-component' },
           { label: 'JourneyMaps Esri Plugin', link: './components/esri-plugin' },
         ],
+      },
+    ],
+  },
+  'journey-maps-wc': {
+    name: '@sbb-esta/journey-maps-wc',
+    svgIcon: 'switzerland-route-small',
+    image: 'assets/journey-maps.jpg',
+    description: 'The @sbb-esta/journey-maps bundle as a web component.',
+    sections: [
+      {
+        name: 'Documentation',
+        entries: [{ label: 'Getting started', link: './documentation/getting-started' }],
       },
     ],
   },

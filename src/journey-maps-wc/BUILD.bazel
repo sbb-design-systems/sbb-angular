@@ -1,0 +1,83 @@
+load("@rules_angular//src/architect:ng_config.bzl", "ng_config")
+load("@aspect_bazel_lib//lib:copy_to_bin.bzl", "copy_to_bin")
+load("@npm//:defs.bzl", "npm_link_all_packages")
+load("//src/journey-maps-wc:defs.bzl", "ng_app")
+load("//tools:defaults.bzl", "markdown_to_html", "npm_package")
+
+package(default_visibility = ["//visibility:public"])
+
+# Link npm packages
+npm_link_all_packages(name = "node_modules")
+
+# Root config files used throughout build/test/lint etc
+copy_to_bin(
+    name = "ng-base-config",
+    srcs = [
+        "package.json",
+    ],
+)
+
+# Test config files
+copy_to_bin(
+    name = "ng-base-test-config",
+    srcs = [
+        "karma-custom-launchers.js",
+    ],
+)
+
+ng_config(
+    name = "config",
+)
+
+# The main application
+ng_app(
+    name = "app",
+    project_name = "journey-maps-wc",
+    deps = [
+    ],
+)
+
+alias(
+    name = "serve",
+    actual = ":build.serve",
+)
+
+markdown_to_html(
+    name = "overview",
+    srcs = glob(["*.md"]),
+)
+
+filegroup(
+    name = "overviews",
+    srcs = [":overview"],
+)
+
+genrule(
+    name = "bundle",
+    srcs = [":app"],
+    outs = [
+        "main.js",
+        "styles.css",
+    ],
+    cmd = """
+        cp "$(execpath :app)/browser/styles.css" "$(execpath styles.css)"
+        cat "$(execpath :app)/browser/polyfills.js" "$(execpath :app)/browser/main.js" > "$(execpath main.js)"
+    """,
+    output_to_bindir = True,
+)
+
+alias(
+    name = "pkg",
+    actual = ":npm_package",
+)
+
+npm_package(
+    name = "npm_package",
+    srcs = [
+        "package.json",
+        ":main.js",
+        ":styles.css",
+    ],
+    package = "@sbb-esta/journey-maps-wc",
+    tags = ["release-package"],
+)

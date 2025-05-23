@@ -34,6 +34,7 @@
     "@sbb-esta/angular-experimental": "workspace:*",
     "@sbb-esta/components-examples": "workspace:*",
     "@sbb-esta/journey-maps": "workspace:*",
+    "@sbb-esta/journey-maps-wc": "workspace:*",
     "@stackblitz/sdk": "^1.5.2",
     "highlight.js": "^11.8.0",
     "maplibre-gl": "4.7.1",

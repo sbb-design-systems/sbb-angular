@@ -1,0 +1,67 @@
+@use 'maplibre-gl/dist/maplibre-gl.css';
+@use '@sbb-esta/angular' as esta;
+
+@font-face {
+  font-family: 'SBBWeb Bold';
+  src:
+    url('https://cdn.app.sbb.ch/fonts/v1_6_subset/SBBWeb-Bold.woff2') format('woff2'),
+    url('https://cdn.app.sbb.ch/fonts/v1_6_subset/SBBWeb-Bold.woff') format('woff');
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'SBBWeb Light';
+  src:
+    url('https://cdn.app.sbb.ch/fonts/v1_6_subset/SBBWeb-Light.woff2') format('woff2'),
+    url('https://cdn.app.sbb.ch/fonts/v1_6_subset/SBBWeb-Light.woff') format('woff');
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'SBBWeb Roman';
+  src:
+    url('https://cdn.app.sbb.ch/fonts/v1_6_subset/SBBWeb-Roman.woff2') format('woff2'),
+    url('https://cdn.app.sbb.ch/fonts/v1_6_subset/SBBWeb-Roman.woff') format('woff');
+  font-display: fallback;
+}
+
+@font-face {
+  font-family: 'SBBWeb Thin';
+  src:
+    url('https://cdn.app.sbb.ch/fonts/v1_6_subset/SBBWeb-Thin.woff2') format('woff2'),
+    url('https://cdn.app.sbb.ch/fonts/v1_6_subset/SBBWeb-Thin.woff') format('woff');
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'SBBWeb Ultralight';
+  src:
+    url('https://cdn.app.sbb.ch/fonts/v1_6_subset/SBBWeb-UltraLight.woff2') format('woff2'),
+    url('https://cdn.app.sbb.ch/fonts/v1_6_subset/SBBWeb-UltraLight.woff') format('woff');
+  font-display: swap;
+}
+
+sbb-journey-maps-wc {
+  // Copied from ESTA typography.scss
+
+  color: esta.$sbbColorBlack;
+  font-family: 'SBBWeb Roman', 'Helvetica Neue', Helvetica, Arial, sans-serif !important;
+  font-size: 93.75%;
+  line-height: 1.7;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+
+  *,
+  *::before,
+  *::after {
+    box-sizing: border-box;
+  }
+
+  button {
+    margin: 0;
+    font-family: inherit;
+    font-size: inherit;
+    line-height: inherit;
+    color: inherit;
+  }
+}

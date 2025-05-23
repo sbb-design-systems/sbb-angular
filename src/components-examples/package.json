@@ -22,7 +22,8 @@
   "devDependencies": {
     "@sbb-esta/angular": "workspace:*",
     "@sbb-esta/angular-experimental": "workspace:*",
-    "@sbb-esta/journey-maps": "workspace:*"
+    "@sbb-esta/journey-maps": "workspace:*",
+    "@sbb-esta/journey-maps-wc": "workspace:*"
   },
   "dependencies": {
     "@types/grecaptcha": "^2.0.36",
