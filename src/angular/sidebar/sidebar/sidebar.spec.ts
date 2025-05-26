@@ -2,13 +2,7 @@ import { Direction } from '@angular/cdk/bidi';
 import { ESCAPE } from '@angular/cdk/keycodes';
 import { MediaMatcher } from '@angular/cdk/layout';
 import { CdkScrollable } from '@angular/cdk/scrolling';
-import {
-  Component,
-  DebugElement,
-  ElementRef,
-  provideCheckNoChangesConfig,
-  ViewChild,
-} from '@angular/core';
+import { Component, DebugElement, ElementRef, ViewChild } from '@angular/core';
 import {
   ComponentFixture,
   discardPeriodicTasks,
@@ -63,7 +57,7 @@ describe('SbbSidebar', () => {
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
       imports: [NoopAnimationsModule, SbbIconTestingModule],
-      providers: [PROVIDE_FAKE_MEDIA_MATCHER, provideCheckNoChangesConfig({ exhaustive: false })],
+      providers: [PROVIDE_FAKE_MEDIA_MATCHER],
     });
   }));
 
@@ -497,10 +491,7 @@ describe('SbbSidebar', () => {
       TestBed.resetTestingModule()
         .configureTestingModule({
           imports: [BrowserAnimationsModule, SbbIconTestingModule],
-          providers: [
-            PROVIDE_FAKE_MEDIA_MATCHER,
-            provideCheckNoChangesConfig({ exhaustive: false }),
-          ],
+          providers: [PROVIDE_FAKE_MEDIA_MATCHER],
         })
         .compileComponents();
 
@@ -892,7 +883,7 @@ describe('SbbSidebarContainer', () => {
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
       imports: [NoopAnimationsModule, SbbIconTestingModule],
-      providers: [PROVIDE_FAKE_MEDIA_MATCHER, provideCheckNoChangesConfig({ exhaustive: false })],
+      providers: [PROVIDE_FAKE_MEDIA_MATCHER],
     });
   }));
 
@@ -1079,7 +1070,7 @@ describe('SbbSidebar Usage', () => {
         ]),
         SbbIconTestingModule,
       ],
-      providers: [PROVIDE_FAKE_MEDIA_MATCHER, provideCheckNoChangesConfig({ exhaustive: false })],
+      providers: [PROVIDE_FAKE_MEDIA_MATCHER],
     });
 
     fixture = TestBed.createComponent(SbbSidebarTestComponent);
