@@ -70,7 +70,7 @@ catalogs:
 overrides:
   typescript: 5.8.2
 
-packageExtensionsChecksum: 776fe81137e8a08e18d7912233173f91
+packageExtensionsChecksum: 6071aebff184f4d18f43b26e24bcdcdc
 
 importers:
 
@@ -17065,7 +17065,9 @@ snapshots:
 
   hyperdyperid@1.2.0: {}
 
-  iced-error@0.0.13: {}
+  iced-error@0.0.13:
+    dependencies:
+      iced-runtime: 1.0.4
 
   iced-lock@1.1.0:
     dependencies:
