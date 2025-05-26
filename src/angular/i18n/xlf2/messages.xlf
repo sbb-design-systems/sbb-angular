@@ -176,7 +176,7 @@
     </unit>
     <unit id="sbbSidebarCollapse">
       <notes>
-        <note category="location">../../sidebar/icon-sidebar/icon-sidebar.ts:77</note>
+        <note category="location">../../sidebar/icon-sidebar/icon-sidebar.ts:78</note>
         <note category="description">Label to &apos;collapse&apos; icon sidebar</note>
       </notes>
       <segment>
@@ -185,7 +185,7 @@
     </unit>
     <unit id="sbbSidebarExpand">
       <notes>
-        <note category="location">../../sidebar/icon-sidebar/icon-sidebar.ts:79</note>
+        <note category="location">../../sidebar/icon-sidebar/icon-sidebar.ts:80</note>
         <note category="description">Label to &apos;expand&apos; icon sidebar</note>
       </notes>
       <segment>
