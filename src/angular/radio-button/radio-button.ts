@@ -404,6 +404,9 @@ export class _SbbRadioButtonBase implements OnInit, AfterViewInit, DoCheck, OnDe
     return this._required || (this.radioGroup && this.radioGroup.required);
   }
   set required(value: boolean) {
+    if (value !== this._required) {
+      this._changeDetector.markForCheck();
+    }
     this._required = value;
   }
 
