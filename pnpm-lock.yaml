@@ -192,8 +192,8 @@ importers:
         specifier: 2.0.36
         version: 2.0.36
       '@types/jasmine':
-        specifier: 5.1.7
-        version: 5.1.7
+        specifier: 5.1.8
+        version: 5.1.8
       '@types/jasminewd2':
         specifier: 2.0.13
         version: 2.0.13
@@ -3812,6 +3812,9 @@ packages:
   '@types/jasmine@5.1.7':
     resolution: {integrity: sha512-DVOfk9FaClQfNFpSfaML15jjB5cjffDMvjtph525sroR5BEAW2uKnTOYUTqTFuZFjNvH0T5XMIydvIctnUKufw==}
 
+  '@types/jasmine@5.1.8':
+    resolution: {integrity: sha512-u7/CnvRdh6AaaIzYjCgUuVbREFgulhX05Qtf6ZtW+aOcjCKKVvKgpkPYJBFTZSHtFBYimzU4zP0V2vrEsq9Wcg==}
+
   '@types/jasminewd2@2.0.13':
     resolution: {integrity: sha512-aJ3wj8tXMpBrzQ5ghIaqMisD8C3FIrcO6sDKHqFbuqAsI7yOxj0fA7MrRCPLZHIVUjERIwsMmGn/vB0UQ9u0Hg==}
 
@@ -7374,6 +7377,7 @@ packages:
   multer@1.4.4-lts.1:
     resolution: {integrity: sha512-WeSGziVj6+Z2/MwQo3GvqzgR+9Uc+qt8SwHKh3gvNPiISKfsMfG4SvCOFYlxxgkXt7yIV2i1yczehm0EOKIxIg==}
     engines: {node: '>= 6.0.0'}
+    deprecated: Multer 1.x is impacted by a number of vulnerabilities, which have been patched in 2.x. You should upgrade to the latest 2.x version.
 
   multicast-dns@7.2.5:
     resolution: {integrity: sha512-2eznPJP8z2BFLX50tf0LuODrpINqP1RVIm/CObbTcBRITQgmC/TjcREF1NeTBzIcR5XO/ukWo+YHOjBbFwIupg==}
@@ -14199,9 +14203,11 @@ snapshots:
 
   '@types/jasmine@5.1.7': {}
 
+  '@types/jasmine@5.1.8': {}
+
   '@types/jasminewd2@2.0.13':
     dependencies:
-      '@types/jasmine': 5.1.7
+      '@types/jasmine': 5.1.8
 
   '@types/json-schema@7.0.15': {}
 
