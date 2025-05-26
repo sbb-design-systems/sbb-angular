@@ -22,7 +22,7 @@
     "bazel:buildifier": "find . -type f \\( -name \"*.bzl\" -or -name WORKSPACE -or -name BUILD -or -name BUILD.bazel \\) ! -path \"*/node_modules/*\" ! -path \"*/.git/*\" | xargs buildifier -v",
     "bazel:format-lint": "pnpm -s bazel:buildifier --lint=warn --mode=check",
     "start": "ibazel run //docs:serve",
-    "start:journey-maps-wc": "ibazel run //src/journey-maps/web-component:devserver",
+    "start:journey-maps-wc": "ibazel run //src/journey-maps-wc:serve",
     "test": "node ./scripts/run-component-tests.js",
     "test-local": "pnpm -s test --local",
     "test-firefox": "pnpm -s test --firefox",
@@ -59,6 +59,7 @@
     "@angular/common": "catalog:",
     "@angular/compiler": "catalog:",
     "@angular/core": "catalog:",
+    "@angular/elements": "catalog:",
     "@angular/forms": "catalog:",
     "@angular/platform-browser": "catalog:",
     "@stackblitz/sdk": "1.11.0",
@@ -79,7 +80,7 @@
     "@bazel/bazelisk": "1.12.1",
     "@bazel/buildifier": "6.1.2",
     "@bazel/ibazel": "^0.25.0",
-    "@bazel/runfiles": "5.8.1",
+    "@bazel/runfiles": "6.3.1",
     "@commitlint/cli": "19.8.0",
     "@commitlint/config-conventional": "19.8.0",
     "@rollup/plugin-commonjs": "23.0.4",
@@ -136,7 +137,7 @@
     "patch-package": "^8.0.0",
     "prettier": "3.5.3",
     "reflect-metadata": "^0.1.13",
-    "renovate": "37.440.7",
+    "renovate": "40.23.0",
     "requirejs": "2.3.7",
     "rollup": "2.79.1",
     "rollup-plugin-dts": "6.2.1",
@@ -174,6 +175,11 @@
       "grpc-gcp": {
         "dependencies": {
           "protobufjs": "7.4.0"
+        }
+      },
+      "iced-error": {
+        "dependencies": {
+          "iced-runtime": "^1.0.4"
         }
       },
       "@angular-eslint/eslint-plugin-template@19.3.0": {

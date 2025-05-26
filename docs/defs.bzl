@@ -26,6 +26,7 @@ DEPS = [
     "//docs:node_modules/@sbb-esta/angular",
     "//docs:node_modules/@sbb-esta/angular-experimental",
     "//docs:node_modules/@sbb-esta/journey-maps",
+    "//docs:node_modules/@sbb-esta/journey-maps-wc",
 ]
 
 # Common dependencies of Angular CLI applications

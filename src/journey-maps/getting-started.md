@@ -3,7 +3,9 @@
 This package contains a map component based on Angular and the [MapLibre](https://maplibre.org/maplibre-gl-js-docs/api/)
 framework.
 
-This package is published as an [Angular Library](/journey-maps/components/angular/overview) and as a Web Component (based on Angular Elements) which can be used in a non-Angular context.
+This package is published as an [Angular Library](/journey-maps/components/angular/overview).
+
+The web component bundle is published as another package [@sbb-esta/journey-maps-wc](/journey-maps-wc/documentation/getting-started).
 
 ## Example Code
 

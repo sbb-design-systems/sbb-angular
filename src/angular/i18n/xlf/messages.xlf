@@ -13,7 +13,7 @@
       <trans-unit id="sbbBreadcrumbExpand" datatype="html">
         <source>Show entire path</source>
         <context-group purpose="location">
-          <context context-type="sourcefile">../../../../../darwin_arm64-fastbuild-ST-46c76129e412/bin/src/angular/breadcrumb/breadcrumbs.ts</context>
+          <context context-type="sourcefile">../../breadcrumb/breadcrumbs.ts</context>
           <context context-type="linenumber">48</context>
         </context-group>
         <note priority="1" from="description">Button with three dots to show all breadcrumb levels</note>
@@ -21,7 +21,7 @@
       <trans-unit id="sbbDatepickerSwitchToPreviousMonth" datatype="html">
         <source>Change to the previous month</source>
         <context-group purpose="location">
-          <context context-type="sourcefile">../../../../../darwin_arm64-fastbuild-ST-46c76129e412/bin/src/angular/datepicker/calendar/calendar.ts</context>
+          <context context-type="sourcefile">../../datepicker/calendar/calendar.ts</context>
           <context context-type="linenumber">47</context>
         </context-group>
         <note priority="1" from="description">Button label to switch to the previous month</note>
@@ -29,7 +29,7 @@
       <trans-unit id="sbbDatepickerSwitchToNextMonth" datatype="html">
         <source>Change to the next month</source>
         <context-group purpose="location">
-          <context context-type="sourcefile">../../../../../darwin_arm64-fastbuild-ST-46c76129e412/bin/src/angular/datepicker/calendar/calendar.ts</context>
+          <context context-type="sourcefile">../../datepicker/calendar/calendar.ts</context>
           <context context-type="linenumber">49</context>
         </context-group>
         <note priority="1" from="description">Button label to switch to the next month</note>
@@ -37,7 +37,7 @@
       <trans-unit id="sbbDatepickerSwitchToPreviousYear" datatype="html">
         <source>Change to the previous year</source>
         <context-group purpose="location">
-          <context context-type="sourcefile">../../../../../darwin_arm64-fastbuild-ST-46c76129e412/bin/src/angular/datepicker/calendar/calendar.ts</context>
+          <context context-type="sourcefile">../../datepicker/calendar/calendar.ts</context>
           <context context-type="linenumber">51</context>
         </context-group>
         <note priority="1" from="description">Button label to switch to the previous year</note>
@@ -45,7 +45,7 @@
       <trans-unit id="sbbDatepickerSwitchToNextYear" datatype="html">
         <source>Change to the next year</source>
         <context-group purpose="location">
-          <context context-type="sourcefile">../../../../../darwin_arm64-fastbuild-ST-46c76129e412/bin/src/angular/datepicker/calendar/calendar.ts</context>
+          <context context-type="sourcefile">../../datepicker/calendar/calendar.ts</context>
           <context context-type="linenumber">53</context>
         </context-group>
         <note priority="1" from="description">Button label to switch to the next year</note>
@@ -53,7 +53,7 @@
       <trans-unit id="sbbDatepickerOpenCalendar" datatype="html">
         <source>Show calendar</source>
         <context-group purpose="location">
-          <context context-type="sourcefile">../../../../../darwin_arm64-fastbuild-ST-46c76129e412/bin/src/angular/datepicker/datepicker-toggle/datepicker-toggle.ts</context>
+          <context context-type="sourcefile">../../datepicker/datepicker-toggle/datepicker-toggle.ts</context>
           <context context-type="linenumber">39</context>
         </context-group>
         <note priority="1" from="description">Open calendar</note>
@@ -61,7 +61,7 @@
       <trans-unit id="sbbDatePickerNextDayAriaLabel" datatype="html">
         <source>Next day</source>
         <context-group purpose="location">
-          <context context-type="sourcefile">../../../../../darwin_arm64-fastbuild-ST-46c76129e412/bin/src/angular/datepicker/datepicker/datepicker.ts</context>
+          <context context-type="sourcefile">../../datepicker/datepicker/datepicker.ts</context>
           <context context-type="linenumber">233</context>
         </context-group>
         <note priority="1" from="description">Next day button&apos;s aria-label</note>
@@ -69,7 +69,7 @@
       <trans-unit id="sbbDatePickerPrevDayAriaLabel" datatype="html">
         <source>Previous day</source>
         <context-group purpose="location">
-          <context context-type="sourcefile">../../../../../darwin_arm64-fastbuild-ST-46c76129e412/bin/src/angular/datepicker/datepicker/datepicker.ts</context>
+          <context context-type="sourcefile">../../datepicker/datepicker/datepicker.ts</context>
           <context context-type="linenumber">238</context>
         </context-group>
         <note priority="1" from="description">Previous day button&apos;s aria-label</note>
@@ -77,11 +77,11 @@
       <trans-unit id="sbbDialogCloseDialog" datatype="html">
         <source>Close dialog</source>
         <context-group purpose="location">
-          <context context-type="sourcefile">../../../../../darwin_arm64-fastbuild-ST-46c76129e412/bin/src/angular/dialog/dialog-content-directives.ts</context>
+          <context context-type="sourcefile">../../dialog/dialog-content-directives.ts</context>
           <context context-type="linenumber">45</context>
         </context-group>
         <context-group purpose="location">
-          <context context-type="sourcefile">../../../../../darwin_arm64-fastbuild-ST-46c76129e412/bin/src/angular/dialog/dialog-content-directives.ts</context>
+          <context context-type="sourcefile">../../dialog/dialog-content-directives.ts</context>
           <context context-type="linenumber">120</context>
         </context-group>
         <note priority="1" from="description">Aria label to close a dialog</note>
@@ -89,7 +89,7 @@
       <trans-unit id="sbbFileSelectorUploadFile" datatype="html">
         <source>Upload file</source>
         <context-group purpose="location">
-          <context context-type="sourcefile">../../../../../darwin_arm64-fastbuild-ST-46c76129e412/bin/src/angular/file-selector/file-selector.ts</context>
+          <context context-type="sourcefile">../../file-selector/file-selector.ts</context>
           <context context-type="linenumber">57</context>
         </context-group>
         <note priority="1" from="description">Button label to select files for upload</note>
@@ -97,7 +97,7 @@
       <trans-unit id="sbbFileSelectorRemoveFile" datatype="html">
         <source>Remove file</source>
         <context-group purpose="location">
-          <context context-type="sourcefile">../../../../../darwin_arm64-fastbuild-ST-46c76129e412/bin/src/angular/file-selector/file-selector.ts</context>
+          <context context-type="sourcefile">../../file-selector/file-selector.ts</context>
           <context context-type="linenumber">59</context>
         </context-group>
         <note priority="1" from="description">Hidden button label to remove a file from the selection list</note>
@@ -105,7 +105,7 @@
       <trans-unit id="sbbHeaderMenuBack" datatype="html">
         <source>Back</source>
         <context-group purpose="location">
-          <context context-type="sourcefile">../../../../../darwin_arm64-fastbuild-ST-46c76129e412/bin/src/angular/header-lean/header-menu.ts</context>
+          <context context-type="sourcefile">../../header-lean/header-menu.ts</context>
           <context context-type="linenumber">60</context>
         </context-group>
         <note priority="1" from="description">Go back to the app chooser navigation</note>
@@ -113,7 +113,7 @@
       <trans-unit id="sbbHeaderOpenMenu" datatype="html">
         <source>Open Menu</source>
         <context-group purpose="location">
-          <context context-type="sourcefile">../../../../../darwin_arm64-fastbuild-ST-46c76129e412/bin/src/angular/header-lean/header.ts</context>
+          <context context-type="sourcefile">../../header-lean/header.ts</context>
           <context context-type="linenumber">128</context>
         </context-group>
         <note priority="1" from="description">Button label to open the sidebar of the header</note>
@@ -121,7 +121,7 @@
       <trans-unit id="sbbHeaderCloseMenu" datatype="html">
         <source>Close Menu</source>
         <context-group purpose="location">
-          <context context-type="sourcefile">../../../../../darwin_arm64-fastbuild-ST-46c76129e412/bin/src/angular/header-lean/header.ts</context>
+          <context context-type="sourcefile">../../header-lean/header.ts</context>
           <context context-type="linenumber">130</context>
         </context-group>
         <note priority="1" from="description">Button label to close the sidebar of the header</note>
@@ -129,11 +129,11 @@
       <trans-unit id="sbbLightboxCloseLightbox" datatype="html">
         <source>Close lightbox</source>
         <context-group purpose="location">
-          <context context-type="sourcefile">../../../../../darwin_arm64-fastbuild-ST-46c76129e412/bin/src/angular/lightbox/lightbox-content-directives.ts</context>
+          <context context-type="sourcefile">../../lightbox/lightbox-content-directives.ts</context>
           <context context-type="linenumber">42</context>
         </context-group>
         <context-group purpose="location">
-          <context context-type="sourcefile">../../../../../darwin_arm64-fastbuild-ST-46c76129e412/bin/src/angular/lightbox/lightbox-content-directives.ts</context>
+          <context context-type="sourcefile">../../lightbox/lightbox-content-directives.ts</context>
           <context context-type="linenumber">101</context>
         </context-group>
         <note priority="1" from="description">Aria label to close a dialog</note>
@@ -141,7 +141,7 @@
       <trans-unit id="sbbPaginationPreviousPage" datatype="html">
         <source>Previous Page</source>
         <context-group purpose="location">
-          <context context-type="sourcefile">../../../../../darwin_arm64-fastbuild-ST-46c76129e412/bin/src/angular/pagination/paginator/paginator.ts</context>
+          <context context-type="sourcefile">../../pagination/paginator/paginator.ts</context>
           <context context-type="linenumber">79</context>
         </context-group>
         <note priority="1" from="description">Button label to navigate to the previous page</note>
@@ -149,7 +149,7 @@
       <trans-unit id="sbbPaginationNextPage" datatype="html">
         <source>Next Page</source>
         <context-group purpose="location">
-          <context context-type="sourcefile">../../../../../darwin_arm64-fastbuild-ST-46c76129e412/bin/src/angular/pagination/paginator/paginator.ts</context>
+          <context context-type="sourcefile">../../pagination/paginator/paginator.ts</context>
           <context context-type="linenumber">81</context>
         </context-group>
         <note priority="1" from="description">Button label to navigate to the next page</note>
@@ -157,7 +157,7 @@
       <trans-unit id="sbbSearchHeaderButtonLabel" datatype="html">
         <source>Search</source>
         <context-group purpose="location">
-          <context context-type="sourcefile">../../../../../darwin_arm64-fastbuild-ST-46c76129e412/bin/src/angular/search/header-search.ts</context>
+          <context context-type="sourcefile">../../search/header-search.ts</context>
           <context context-type="linenumber">87</context>
         </context-group>
         <note priority="1" from="description">Button label for the header search</note>
@@ -165,7 +165,7 @@
       <trans-unit id="sbbSidebarCollapse" datatype="html">
         <source>Collapse</source>
         <context-group purpose="location">
-          <context context-type="sourcefile">../../../../../darwin_arm64-fastbuild-ST-46c76129e412/bin/src/angular/sidebar/icon-sidebar/icon-sidebar.ts</context>
+          <context context-type="sourcefile">../../sidebar/icon-sidebar/icon-sidebar.ts</context>
           <context context-type="linenumber">77</context>
         </context-group>
         <note priority="1" from="description">Label to &apos;collapse&apos; icon sidebar</note>
@@ -173,7 +173,7 @@
       <trans-unit id="sbbSidebarExpand" datatype="html">
         <source>Expand</source>
         <context-group purpose="location">
-          <context context-type="sourcefile">../../../../../darwin_arm64-fastbuild-ST-46c76129e412/bin/src/angular/sidebar/icon-sidebar/icon-sidebar.ts</context>
+          <context context-type="sourcefile">../../sidebar/icon-sidebar/icon-sidebar.ts</context>
           <context context-type="linenumber">79</context>
         </context-group>
         <note priority="1" from="description">Label to &apos;expand&apos; icon sidebar</note>
@@ -181,27 +181,27 @@
       <trans-unit id="sbbSidebarCloseSidebar" datatype="html">
         <source>Close Sidebar</source>
         <context-group purpose="location">
-          <context context-type="sourcefile">../../../../../darwin_arm64-fastbuild-ST-46c76129e412/bin/src/angular/sidebar/sidebar/sidebar.ts</context>
-          <context context-type="linenumber">116</context>
+          <context context-type="sourcefile">../../sidebar/sidebar/sidebar.ts</context>
+          <context context-type="linenumber">113</context>
         </context-group>
         <note priority="1" from="description">Button label to close the sidebar</note>
       </trans-unit>
       <trans-unit id="sbbSidebarOpenSidebar" datatype="html">
         <source>Open Sidebar</source>
         <context-group purpose="location">
-          <context context-type="sourcefile">../../../../../darwin_arm64-fastbuild-ST-46c76129e412/bin/src/angular/sidebar/sidebar/sidebar.ts</context>
-          <context context-type="linenumber">557</context>
+          <context context-type="sourcefile">../../sidebar/sidebar/sidebar.ts</context>
+          <context context-type="linenumber">554</context>
         </context-group>
         <note priority="1" from="description">Button label to open the sidebar</note>
       </trans-unit>
       <trans-unit id="sbbTagBadgePillAmountOfResults" datatype="html">
         <source><x id="PH" equiv-text="this.amount"/> results available</source>
         <context-group purpose="location">
-          <context context-type="sourcefile">../../../../../darwin_arm64-fastbuild-ST-46c76129e412/bin/src/angular/tag/tag-link.ts</context>
+          <context context-type="sourcefile">../../tag/tag-link.ts</context>
           <context context-type="linenumber">34</context>
         </context-group>
         <context-group purpose="location">
-          <context context-type="sourcefile">../../../../../darwin_arm64-fastbuild-ST-46c76129e412/bin/src/angular/tag/tag.ts</context>
+          <context context-type="sourcefile">../../tag/tag.ts</context>
           <context context-type="linenumber">54</context>
         </context-group>
         <note priority="1" from="description">Aria label for amount of results displayed in badge pill</note>
@@ -209,7 +209,7 @@
       <trans-unit id="sbbTagsAll" datatype="html">
         <source>All</source>
         <context-group purpose="location">
-          <context context-type="sourcefile">../../../../../darwin_arm64-fastbuild-ST-46c76129e412/bin/src/angular/tag/tags.ts</context>
+          <context context-type="sourcefile">../../tag/tags.ts</context>
           <context context-type="linenumber">35</context>
         </context-group>
         <note priority="1" from="description">Label for the &apos;All&apos; tag</note>
@@ -217,7 +217,7 @@
       <trans-unit id="sbbTagsAllBadgeDescription" datatype="html">
         <source>A total of <x id="PH" equiv-text="this.totalAmount"/> results available</source>
         <context-group purpose="location">
-          <context context-type="sourcefile">../../../../../darwin_arm64-fastbuild-ST-46c76129e412/bin/src/angular/tag/tags.ts</context>
+          <context context-type="sourcefile">../../tag/tags.ts</context>
           <context context-type="linenumber">38</context>
         </context-group>
         <note priority="1" from="description">Badge description (total amount) for the &apos;All&apos; tag</note>
@@ -225,7 +225,7 @@
       <trans-unit id="sbbTextareaCounterText" datatype="html">
         <source><x id="PH" equiv-text="this._counter.value"/> characters remaining</source>
         <context-group purpose="location">
-          <context context-type="sourcefile">../../../../../darwin_arm64-fastbuild-ST-46c76129e412/bin/src/angular/textarea/textarea/textarea.ts</context>
+          <context context-type="sourcefile">../../textarea/textarea/textarea.ts</context>
           <context context-type="linenumber">54</context>
         </context-group>
         <note priority="1" from="description">Counter text for textarea</note>
@@ -233,7 +233,7 @@
       <trans-unit id="sbbTextexpandShowLess" datatype="html">
         <source>Show less</source>
         <context-group purpose="location">
-          <context context-type="sourcefile">../../../../../darwin_arm64-fastbuild-ST-46c76129e412/bin/src/angular/textexpand/textexpand.ts</context>
+          <context context-type="sourcefile">../../textexpand/textexpand.ts</context>
           <context context-type="linenumber">36</context>
         </context-group>
         <note priority="1" from="description">Button label for showing less</note>
@@ -241,7 +241,7 @@
       <trans-unit id="sbbTextexpandShowMore" datatype="html">
         <source>Show more</source>
         <context-group purpose="location">
-          <context context-type="sourcefile">../../../../../darwin_arm64-fastbuild-ST-46c76129e412/bin/src/angular/textexpand/textexpand.ts</context>
+          <context context-type="sourcefile">../../textexpand/textexpand.ts</context>
           <context context-type="linenumber">38</context>
         </context-group>
         <note priority="1" from="description">Button label for showing more</note>
@@ -249,7 +249,7 @@
       <trans-unit id="sbbUsermenuLogin" datatype="html">
         <source>Login</source>
         <context-group purpose="location">
-          <context context-type="sourcefile">../../../../../darwin_arm64-fastbuild-ST-46c76129e412/bin/src/angular/usermenu/usermenu.ts</context>
+          <context context-type="sourcefile">../../usermenu/usermenu.ts</context>
           <context context-type="linenumber">65</context>
         </context-group>
         <note priority="1" from="description">Button label for login</note>
@@ -257,7 +257,7 @@
       <trans-unit id="sbbUsermenuOpenPanel" datatype="html">
         <source>Logged in as <x id="PH" equiv-text="this.displayName || this.userName"/>. Click or press enter to open user menu.</source>
         <context-group purpose="location">
-          <context context-type="sourcefile">../../../../../darwin_arm64-fastbuild-ST-46c76129e412/bin/src/angular/usermenu/usermenu.ts</context>
+          <context context-type="sourcefile">../../usermenu/usermenu.ts</context>
           <context context-type="linenumber">68,70</context>
         </context-group>
         <note priority="1" from="description">Aria label to open user menu</note>

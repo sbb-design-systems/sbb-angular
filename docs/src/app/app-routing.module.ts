@@ -68,6 +68,11 @@ const routes: Routes = [
         loadChildren: () =>
           import('./journey-maps/journey-maps.module').then((m) => m.JourneyMapsModule),
       },
+      {
+        path: 'journey-maps-wc',
+        loadChildren: () =>
+          import('./journey-maps-wc/journey-maps-wc.module').then((m) => m.JourneyMapsWcModule),
+      },
     ],
   },
   {

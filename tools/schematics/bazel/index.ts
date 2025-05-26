@@ -19,6 +19,7 @@ export function bazel(options: { filter?: string }): Rule {
     } else {
       return chain(
         srcDir.subdirs
+          .filter((d) => d !== 'journey-maps-wc')
           .filter((d) => !options.filter || d === options.filter)
           .map((d) => srcDir.dir(d))
           .map((packageDir) => {

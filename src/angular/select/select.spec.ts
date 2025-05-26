@@ -14,16 +14,16 @@ import {
   TAB,
   UP_ARROW,
 } from '@angular/cdk/keycodes';
-import { OverlayContainer } from '@angular/cdk/overlay';
+import { OverlayContainer, OverlayModule } from '@angular/cdk/overlay';
 import { ScrollDispatcher } from '@angular/cdk/scrolling';
 import {
   ChangeDetectionStrategy,
   ChangeDetectorRef,
   Component,
   DebugElement,
+  ElementRef,
   inject,
   OnInit,
-  provideCheckNoChangesConfig,
   Provider,
   QueryList,
   ViewChild,
@@ -989,7 +989,6 @@ describe('SbbSelect', () => {
       ],
       declarations: declarations,
       providers: [
-        provideCheckNoChangesConfig({ exhaustive: false }),
         {
           provide: ScrollDispatcher,
           useFactory: () => ({
@@ -2158,6 +2157,27 @@ describe('SbbSelect', () => {
                 'value has changed.',
             )
             .toEqual([options[7]]);
+        }));
+      });
+
+      describe('for select inside a modal', () => {
+        let fixture: ComponentFixture<SelectInsideAModal>;
+
+        beforeEach(fakeAsync(() => {
+          fixture = TestBed.createComponent(SelectInsideAModal);
+          fixture.detectChanges();
+        }));
+
+        it('should add the id of the select panel to the aria-owns of the modal', fakeAsync(() => {
+          fixture.componentInstance.select.open();
+          fixture.detectChanges();
+
+          const panelId = `${fixture.componentInstance.select.id}-panel`;
+          const modalElement = fixture.componentInstance.modal.nativeElement;
+
+          expect(modalElement.getAttribute('aria-owns')?.split(' '))
+            .withContext('expecting modal to own the select panel')
+            .toContain(panelId);
         }));
       });
 
@@ -5255,4 +5275,38 @@ class BasicSelectWithFirstAndLastOptionDisabled {
 
   @ViewChild(SbbSelect, { static: true }) select: SbbSelect;
   @ViewChildren(SbbOption) options: QueryList<SbbOption>;
+}
+
+@Component({
+  template: `
+    <button cdkOverlayOrigin #trigger="cdkOverlayOrigin">open dialog</button>
+    <ng-template
+      cdkConnectedOverlay
+      [cdkConnectedOverlayOpen]="true"
+      [cdkConnectedOverlayOrigin]="trigger"
+    >
+      <div role="dialog" [attr.aria-modal]="'true'" #modal>
+        <sbb-form-field>
+          <sbb-label>Select a food</sbb-label>
+          <sbb-select placeholder="Food" ngModel>
+            @for (food of foods; track food) {
+              <sbb-option [value]="food.value">{{ food.viewValue }}</sbb-option>
+            }
+          </sbb-select>
+        </sbb-form-field>
+      </div>
+    </ng-template>
+  `,
+  imports: [SbbSelect, SbbOption, SbbFormFieldModule, FormsModule, OverlayModule],
+})
+class SelectInsideAModal {
+  foods = [
+    { value: 'steak-0', viewValue: 'Steak' },
+    { value: 'pizza-1', viewValue: 'Pizza' },
+    { value: 'tacos-2', viewValue: 'Tacos' },
+  ];
+
+  @ViewChild(SbbSelect) select: SbbSelect;
+  @ViewChildren(SbbOption) options: QueryList<SbbOption>;
+  @ViewChild('modal') modal: ElementRef;
 }

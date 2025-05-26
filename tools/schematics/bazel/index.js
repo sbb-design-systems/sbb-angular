@@ -478,7 +478,7 @@ function bazel(options) {
       srcDir.subdirs.forEach((d) => context.addTask(new import_tasks.RunSchematicTask("bazel", { filter: d })));
     } else {
       return (0, import_schematics4.chain)(
-        srcDir.subdirs.filter((d) => !options.filter || d === options.filter).map((d) => srcDir.dir(d)).map((packageDir) => {
+        srcDir.subdirs.filter((d) => d !== "journey-maps-wc").filter((d) => !options.filter || d === options.filter).map((d) => srcDir.dir(d)).map((packageDir) => {
           const isComponentsExamples = packageDir.path.endsWith("components-examples");
           const organization = "@sbb-esta";
           const srcRoot = "src";
