@@ -33,8 +33,6 @@ export const TEMPLATE_FILES = [
   'src/polyfills.ts',
   'src/styles.css',
   'src/test.ts',
-  'src/app/app.module.ts',
-  'src/app/sbb.module.ts',
   'src/environments/environment.prod.ts',
   'src/environments/environment.ts',
 ];
@@ -212,14 +210,13 @@ export class StackBlitzWriter {
         .replace(/\${title}/g, data.description);
     } else if (fileName === '.stackblitzrc') {
       fileContent = fileContent.replace(/\${startCommand}/, isTest ? 'npm test' : 'npm start');
-    } else if (fileName === 'src/app/app.module.ts') {
-      const joinedComponentNames = data.componentNames.join(', ');
+    } else if (fileName === 'src/main.ts') {
       // Replace the component name in `main.ts`.
       // Replace `import {SbbAngularDocsExample} from 'sbb-angular-docs-example'`
       // will be replaced as `import {ButtonDemo} from './button-demo'`
       fileContent = fileContent.replace(
         /{ SbbAngularDocsExample }/g,
-        `{ ${joinedComponentNames} }`,
+        `{ ${data.componentNames[0]} }`,
       );
 
       // Replace `bootstrap: [SbbAngularDocsExample]`
@@ -232,7 +229,7 @@ export class StackBlitzWriter {
 
       // Replace all other occurances of `SbbAngularDocsExample`
       // will be replaced as `ButtonDemo`
-      fileContent = fileContent.replace('SbbAngularDocsExample', joinedComponentNames);
+      fileContent = fileContent.replace('SbbAngularDocsExample', data.componentNames[0]);
 
       const dotIndex = data.indexFilename.lastIndexOf('.');
       const importFileName = data.indexFilename.slice(0, dotIndex === -1 ? undefined : dotIndex);
