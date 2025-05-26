@@ -1,9 +1,9 @@
 import { FocusableOption, FocusOrigin, Highlightable, _IdGenerator } from '@angular/cdk/a11y';
-import { BooleanInput, coerceBooleanProperty } from '@angular/cdk/coercion';
 import { ENTER, hasModifierKey, SPACE } from '@angular/cdk/keycodes';
 import { DOCUMENT } from '@angular/common';
 import {
   AfterViewChecked,
+  booleanAttribute,
   ChangeDetectionStrategy,
   ChangeDetectorRef,
   Component,
@@ -17,6 +17,7 @@ import {
   Optional,
   Output,
   QueryList,
+  signal,
   ViewEncapsulation,
 } from '@angular/core';
 import { Subject } from 'rxjs';
@@ -63,7 +64,6 @@ export class SbbOption<T = any>
 {
   private _selected = false;
   private _active = false;
-  private _disabled = false;
   private _mostRecentViewValue = '';
   private _originalInnerHtml?: string;
   private _highlightValue?: string;
@@ -86,14 +86,14 @@ export class SbbOption<T = any>
   @Input() id: string = inject(_IdGenerator).getId('sbb-option-');
 
   /** Whether the option is disabled. */
-  @Input()
+  @Input({ transform: booleanAttribute })
   get disabled(): boolean {
-    return (this.group && this.group.disabled) || this._disabled;
+    return (this.group && this.group.disabled) || this._disabled();
   }
-  set disabled(value: BooleanInput) {
-    this._disabled = coerceBooleanProperty(value);
-    this._changeDetectorRef.markForCheck();
+  set disabled(value: boolean) {
+    this._disabled.set(value);
   }
+  private _disabled = signal(false);
 
   /** Event emitted when the option is selected or deselected. */
   // tslint:disable-next-line:no-output-on-prefix
