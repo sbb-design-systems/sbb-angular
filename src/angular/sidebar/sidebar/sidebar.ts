@@ -32,6 +32,7 @@ import {
   Output,
   QueryList,
   Renderer2,
+  signal,
   ViewChild,
   ViewEncapsulation,
 } from '@angular/core';
@@ -151,19 +152,19 @@ export class SbbSidebar extends SbbSidebarBase implements AfterContentInit, OnDe
    */
   @Input()
   get opened(): boolean {
-    return this._opened;
+    return this._opened();
   }
   set opened(value: BooleanInput) {
     this._openedViaInput = true;
     this.toggle(coerceBooleanProperty(value));
   }
-  private _opened: boolean = true;
+  private _opened = signal(true);
 
   /**
    * Whether the `opened` state was set via the @Input.
    * If true, the sidebar will not be toggled automatically if the mobile state changes.
    */
-  private _openedViaInput: boolean = false;
+  private _openedViaInput = false;
 
   /** Emits whenever the sidebar has started animating. */
   readonly _animationStarted = new Subject<TransitionEvent | void>();
@@ -309,7 +310,7 @@ export class SbbSidebar extends SbbSidebarBase implements AfterContentInit, OnDe
     });
 
     this._animationEnd.subscribe(() => {
-      this.openedChange.emit(this._opened);
+      this.openedChange.emit(this.opened);
     });
   }
 
@@ -437,11 +438,11 @@ export class SbbSidebar extends SbbSidebarBase implements AfterContentInit, OnDe
     restoreFocus: boolean,
     focusOrigin: Exclude<FocusOrigin, null>,
   ): Promise<SbbSidebarToggleResult> {
-    if (isOpen === this._opened) {
+    if (isOpen === this.opened) {
       return Promise.resolve(isOpen ? 'open' : 'close');
     }
 
-    this._opened = isOpen;
+    this._opened.set(isOpen);
 
     if (this._container?._transitionsEnabled) {
       // Note: it's importatnt to set this as early as possible,

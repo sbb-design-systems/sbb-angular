@@ -15,6 +15,7 @@ import {
   Input,
   Output,
   QueryList,
+  signal,
   ViewChild,
   ViewEncapsulation,
 } from '@angular/core';
@@ -81,12 +82,12 @@ export class SbbIconSidebar extends SbbSidebarBase {
   /** Whether the sidebar is expanded. */
   @Input({ transform: booleanAttribute })
   get expanded(): boolean {
-    return this._expanded;
+    return this._expanded();
   }
   set expanded(value: boolean) {
     this.toggleExpanded(value);
   }
-  private _expanded = false;
+  private _expanded = signal(false);
 
   /** Event emitted when the icon sidebar expanded state is changed. */
   @Output() readonly expandedChange: EventEmitter<boolean> =
@@ -98,8 +99,8 @@ export class SbbIconSidebar extends SbbSidebarBase {
     super();
   }
 
-  toggleExpanded(expanded: boolean = !this._expanded) {
-    this._expanded = expanded;
+  toggleExpanded(expanded: boolean = !this._expanded()) {
+    this._expanded.set(expanded);
     this.expandedChange.emit(this.expanded);
   }
 
