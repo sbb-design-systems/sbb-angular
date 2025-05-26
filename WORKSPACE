@@ -98,19 +98,25 @@ npm_translate_lock(
         "//src/angular-experimental:package.json",
         "//src/components-examples:package.json",
         "//src/journey-maps:package.json",
-        "//src/showcase:package.json",
+        "//src/journey-maps-wc:package.json",
     ],
     npmrc = "//:.npmrc",
     package_visibility = {
         "@sbb-esta/angular": [
             "//integration:__subpackages__",
             "//docs:__subpackages__",
+            "//src/journey-maps-wc:__subpackages__",
         ],
         "@sbb-esta/angular-experimental": [
             "//integration:__subpackages__",
             "//docs:__subpackages__",
         ],
         "@sbb-esta/journey-maps": [
+            "//integration:__subpackages__",
+            "//docs:__subpackages__",
+            "//src/journey-maps-wc:__subpackages__",
+        ],
+        "@sbb-esta/journey-maps-wc": [
             "//integration:__subpackages__",
             "//docs:__subpackages__",
         ],

@@ -5,6 +5,7 @@ packages:
   - src/angular-experimental
   - src/components-examples
   - src/journey-maps
+  - src/journey-maps-wc
 
 catalog:
   '@angular-devkit/build-angular': 20.0.0-rc.0
