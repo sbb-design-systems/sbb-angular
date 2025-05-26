@@ -140,14 +140,11 @@ function buildI18n(distPath: string, i18nDistPath: string) {
     );
 
     const content = readFileSync(outPath, 'utf8');
-    writeFileSync(
-      outPath,
-      content.replace(
-        /context-type="sourcefile">(\.\.\/)+[^\/]+\/bin\/src\/angular\//,
-        'context-type="sourcefile">../../',
-      ),
-      'utf8',
+    const newContent = content.replace(
+      /(context-type="sourcefile"|category="location")>(\.\.\/)+[^\/]+\/bin\/src\/angular\//g,
+      (_, m) => `${m}>../../`,
     );
+    writeFileSync(outPath, newContent, 'utf8');
 
     console.log(`Updated ${relative(projectDir, outPath)}`);
   }
