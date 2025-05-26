@@ -1,4 +1,11 @@
 <label [attr.for]="inputId" class="sbb-selection-item-label">
+  <!--
+  Note that we set `aria-invalid="false"` on the input, because otherwise some screen readers
+  will read out "required, invalid data" for each radio button that hasn't been checked.
+  An alternate approach is to use `aria-required` instead of `required`, however we have an
+  internal check which enforces that elements marked as `aria-required` also have the `required`
+  attribute which ends up re-introducing the issue for us.
+  -->
   <input
     #input
     type="radio"
@@ -10,6 +17,7 @@
     [attr.name]="name"
     [attr.value]="value"
     [required]="required"
+    aria-invalid="false"
     [attr.aria-label]="ariaLabel"
     [attr.aria-labelledby]="ariaLabelledby"
     [attr.aria-describedby]="ariaDescribedby"
