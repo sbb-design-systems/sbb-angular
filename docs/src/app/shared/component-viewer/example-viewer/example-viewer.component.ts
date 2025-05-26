@@ -104,7 +104,7 @@ export class ExampleOutletComponent implements OnInit {
 
   async ngOnInit() {
     const example = await loadExample(this.exampleData.id);
-    this._viewContainerRef.createComponent(example.component[this.exampleData.componentNames[0]], {
+    this._viewContainerRef.createComponent(example[this.exampleData.componentNames[0]], {
       injector: example.injector,
     });
   }
