@@ -194,7 +194,7 @@
     </unit>
     <unit id="sbbSidebarCloseSidebar">
       <notes>
-        <note category="location">../../sidebar/sidebar/sidebar.ts:113</note>
+        <note category="location">../../sidebar/sidebar/sidebar.ts:114</note>
         <note category="description">Button label to close the sidebar</note>
       </notes>
       <segment>
@@ -203,7 +203,7 @@
     </unit>
     <unit id="sbbSidebarOpenSidebar">
       <notes>
-        <note category="location">../../sidebar/sidebar/sidebar.ts:554</note>
+        <note category="location">../../sidebar/sidebar/sidebar.ts:555</note>
         <note category="description">Button label to open the sidebar</note>
       </notes>
       <segment>
