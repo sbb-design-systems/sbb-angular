@@ -1,4 +1,4 @@
-import { Component, DebugElement, provideCheckNoChangesConfig, ViewChild } from '@angular/core';
+import { Component, DebugElement, ViewChild } from '@angular/core';
 import { ComponentFixture, fakeAsync, TestBed, tick, waitForAsync } from '@angular/core/testing';
 import { FormControl, FormsModule, NgModel, ReactiveFormsModule } from '@angular/forms';
 import { By } from '@angular/platform-browser';
@@ -734,9 +734,6 @@ describe('RadioButton', () => {
     let testComponent: StandaloneRadioButtons;
 
     beforeEach(() => {
-      TestBed.configureTestingModule({
-        providers: [provideCheckNoChangesConfig({ exhaustive: false })],
-      });
       fixture = TestBed.createComponent(StandaloneRadioButtons);
       fixture.detectChanges();
 
