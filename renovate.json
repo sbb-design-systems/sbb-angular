@@ -75,7 +75,7 @@
       "matchPackageNames": ["@angular/cli", "@angular/cdk", "angular-server-side-configuration"],
       "postUpgradeTasks": {
         "commands": [
-          "pnpm install --ignore-scripts --frozen-lockfile --non-interactive",
+          "pnpm install --ignore-scripts --frozen-lockfile",
           "pnpm ng update {{{depName}}} --from={{{currentVersion}}} --to={{{newVersion}}} --migrate-only --allow-dirty --force",
           "pnpm format"
         ],
@@ -85,10 +85,7 @@
     {
       "matchPackageNames": ["prettier"],
       "postUpgradeTasks": {
-        "commands": [
-          "pnpm install --ignore-scripts --frozen-lockfile --non-interactive",
-          "pnpm format:prettier"
-        ],
+        "commands": ["pnpm install --ignore-scripts --frozen-lockfile", "pnpm format:prettier"],
         "fileFilters": ["**/**"]
       }
     },
@@ -96,7 +93,7 @@
       "matchPackageNames": ["esbuild"],
       "postUpgradeTasks": {
         "commands": [
-          "pnpm install --ignore-scripts --frozen-lockfile --non-interactive",
+          "pnpm install --ignore-scripts --frozen-lockfile",
           "pnpm build:schematics",
           "pnpm format"
         ],
