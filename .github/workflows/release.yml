@@ -56,15 +56,15 @@ jobs:
       env:
         REF: ${{ github.ref }}
     - name: "Publish: @sbb-esta/angular"
-      run: pnpm publish dist/releases/angular --tag ${{ steps.npm_tag.outputs.npm_tag }}  || true
+      run: pnpm publish dist/releases/angular --tag ${{ steps.npm_tag.outputs.npm_tag }} --no-git-checks || true
       env:
         NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
     - name: "Publish: @sbb-esta/journey-maps"
-      run: pnpm publish dist/releases/journey-maps --tag ${{ steps.npm_tag.outputs.npm_tag }} || true
+      run: pnpm publish dist/releases/journey-maps --tag ${{ steps.npm_tag.outputs.npm_tag }} --no-git-checks || true
       env:
         NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
     - name: "Publish: @sbb-esta/journey-maps"
-      run: pnpm publish dist/releases/journey-maps-wc --tag ${{ steps.npm_tag.outputs.npm_tag }} || true
+      run: pnpm publish dist/releases/journey-maps-wc --tag ${{ steps.npm_tag.outputs.npm_tag }} --no-git-checks || true
       env:
         NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
 
