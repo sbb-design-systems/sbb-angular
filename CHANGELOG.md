@@ -2,8 +2,7 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
-## [20.0.0-next.1](https://github.com/sbb-design-systems/sbb-angular/compare/18.0.0...20.0.0-next.1) (2025-05-27)
-
+## [20.0.0-next.2](https://github.com/sbb-design-systems/sbb-angular/compare/20.0.0-next.1...20.0.0-next.2) (2025-05-27)
 
 ### ⚠ BREAKING CHANGES
 
