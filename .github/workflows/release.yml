@@ -90,8 +90,8 @@ jobs:
         node-version-file: '.nvmrc'
     - run: pnpm install
 
-    - name: "Bazel: Build showcase"
-      run: pnpm -s build showcase
+    - name: "Bazel: Build docs"
+      run: pnpm -s build docs
       env:
         JM_API_KEY: ${{ secrets.JM_API_KEY }}
 
