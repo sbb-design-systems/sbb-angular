@@ -98,6 +98,9 @@ export class SbbSidebarContent extends SbbSidebarContentBase implements AfterCon
     '[class.sbb-sidebar-opened]': 'opened',
     '[class.sbb-sidebar-collapsible]': 'collapsible',
     '[style.visibility]': '(!_container && !opened) ? "hidden" : null',
+    // The sidebar container should not be focused on when used in side mode.
+    // Updates tabIndex to default to null if in side mode.
+    '[attr.tabIndex]': '(mode !== "side") ? "-1" : null',
   },
   changeDetection: ChangeDetectionStrategy.OnPush,
   encapsulation: ViewEncapsulation.None,
