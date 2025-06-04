@@ -6,7 +6,7 @@ on:
     branches: [main] # target branch
 
 env:
-  TARGET_RELEASE: 19.x
+  TARGET_RELEASE: 20.x
 
 permissions:
   pull-requests: write
