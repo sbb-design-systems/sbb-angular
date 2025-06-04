@@ -7,7 +7,6 @@ import {
   EventEmitter,
   inject,
   OnInit,
-  provideCheckNoChangesConfig,
   Provider,
   QueryList,
   signal,
@@ -67,18 +66,12 @@ describe('SbbProcessflow', () => {
     });
 
     it('should default to the first step', () => {
-      const processflowComponent: SbbProcessflow = fixture.debugElement.query(
-        By.css('sbb-processflow'),
-      )!.componentInstance;
-
+      const processflowComponent = fixture.componentInstance.processflow;
       expect(processflowComponent.selectedIndex).toBe(0);
     });
 
     it('should throw when a negative `selectedIndex` is assigned', () => {
-      const processflowComponent: SbbProcessflow = fixture.debugElement.query(
-        By.css('sbb-processflow'),
-      )!.componentInstance;
-
+      const processflowComponent = fixture.componentInstance.processflow;
       expect(() => {
         processflowComponent.selectedIndex = -10;
         fixture.detectChanges();
@@ -145,20 +138,17 @@ describe('SbbProcessflow', () => {
     });
 
     it('should display the correct label', () => {
-      const processflowComponent = fixture.debugElement.query(
-        By.directive(SbbProcessflow),
-      )!.componentInstance;
       let selectedLabel = fixture.nativeElement.querySelector('[aria-selected="true"]');
       expect(selectedLabel.textContent).toMatch('Step 1');
 
-      processflowComponent.selectedIndex = 2;
+      fixture.componentInstance.processflow.selectedIndex = 2;
       fixture.changeDetectorRef.markForCheck();
       fixture.detectChanges();
 
       selectedLabel = fixture.nativeElement.querySelector('[aria-selected="true"]');
       expect(selectedLabel.textContent).toMatch('Step 3');
 
-      fixture.componentInstance.inputLabel = 'New Label';
+      fixture.componentInstance.inputLabel.set('New Label');
       fixture.changeDetectorRef.markForCheck();
       fixture.detectChanges();
 
@@ -324,31 +314,27 @@ describe('SbbProcessflow', () => {
     });
 
     it('should set create icon if step is editable and completed', () => {
-      const processflowComponent = fixture.debugElement.query(
-        By.directive(SbbProcessflow),
-      )!.componentInstance;
+      const processflowComponent = fixture.componentInstance.processflow;
       const nextButtonNativeEl = fixture.debugElement.queryAll(By.directive(SbbProcessflowNext))[0]
         .nativeElement;
-      expect(processflowComponent._getIndicatorType(0)).toBe('number');
+      expect(processflowComponent.steps.first.indicatorType()).toBe('number');
       processflowComponent.steps.toArray()[0].editable = true;
       nextButtonNativeEl.click();
       fixture.detectChanges();
 
-      expect(processflowComponent._getIndicatorType(0)).toBe('edit');
+      expect(processflowComponent.steps.first.indicatorType()).toBe('edit');
     });
 
     it('should set done icon if step is not editable and is completed', () => {
-      const processflowComponent = fixture.debugElement.query(
-        By.directive(SbbProcessflow),
-      )!.componentInstance;
+      const processflowComponent = fixture.componentInstance.processflow;
       const nextButtonNativeEl = fixture.debugElement.queryAll(By.directive(SbbProcessflowNext))[0]
         .nativeElement;
-      expect(processflowComponent._getIndicatorType(0)).toBe('number');
+      expect(processflowComponent.steps.first.indicatorType()).toBe('number');
       processflowComponent.steps.toArray()[0].editable = false;
       nextButtonNativeEl.click();
       fixture.detectChanges();
 
-      expect(processflowComponent._getIndicatorType(0)).toBe('done');
+      expect(processflowComponent.steps.first.indicatorType()).toBe('done');
     });
 
     it('should emit an event when the enter animation is done', fakeAsync(() => {
@@ -1022,7 +1008,7 @@ describe('SbbProcessflow', () => {
       nextButtonNativeEl.click();
       fixture.detectChanges();
 
-      expect(processflow._getIndicatorType(0)).toBe(STEP_STATE.ERROR);
+      expect(processflow.steps.first.indicatorType()).toBe(STEP_STATE.ERROR);
     });
 
     it('should respect a custom falsy hasError value', () => {
@@ -1034,12 +1020,12 @@ describe('SbbProcessflow', () => {
       nextButtonNativeEl.click();
       fixture.detectChanges();
 
-      expect(processflow._getIndicatorType(0)).toBe(STEP_STATE.ERROR);
+      expect(processflow.steps.first.indicatorType()).toBe(STEP_STATE.ERROR);
 
       processflow.steps.first.hasError = false;
       fixture.detectChanges();
 
-      expect(processflow._getIndicatorType(0)).not.toBe(STEP_STATE.ERROR);
+      expect(processflow.steps.first.indicatorType()).not.toBe(STEP_STATE.ERROR);
     });
 
     it('should show error state if explicitly enabled, even when disabled globally', () => {
@@ -1052,7 +1038,7 @@ describe('SbbProcessflow', () => {
       nextButtonNativeEl.click();
       fixture.detectChanges();
 
-      expect(processflow._getIndicatorType(0)).toBe(STEP_STATE.ERROR);
+      expect(processflow.steps.first.indicatorType()).toBe(STEP_STATE.ERROR);
     });
   });
 
@@ -1084,7 +1070,7 @@ describe('SbbProcessflow', () => {
       nextButtonNativeEl.click();
       fixture.detectChanges();
 
-      expect(processflow._getIndicatorType(0)).toBe(STEP_STATE.DONE);
+      expect(processflow.steps.first.indicatorType()).toBe(STEP_STATE.DONE);
     });
 
     it('should show edit state when step is editable and its the current step', () => {
@@ -1092,7 +1078,7 @@ describe('SbbProcessflow', () => {
       processflow.steps.toArray()[1].editable = true;
       fixture.detectChanges();
 
-      expect(processflow._getIndicatorType(1)).toBe(STEP_STATE.EDIT);
+      expect(processflow.steps.get(1)!.indicatorType()).toBe(STEP_STATE.EDIT);
     });
   });
 
@@ -1386,11 +1372,7 @@ function createComponent<T>(
 ): ComponentFixture<T> {
   TestBed.configureTestingModule({
     imports: [SbbIconTestingModule, NoopAnimationsModule, ...imports, component],
-    providers: [
-      { provide: Directionality, useFactory: () => dir },
-      provideCheckNoChangesConfig({ exhaustive: false }),
-      ...providers,
-    ],
+    providers: [{ provide: Directionality, useFactory: () => dir }, ...providers],
   });
 
   return TestBed.createComponent<T>(component);
@@ -1492,7 +1474,7 @@ class SimpleSbbHorizontalStepperApp {
           </div>
         </sbb-step>
       }
-      <sbb-step [label]="inputLabel">
+      <sbb-step [label]="inputLabel()">
         Content 3
         <div>
           <button sbb-button sbbProcessflowPrevious>Back</button>
@@ -1504,7 +1486,8 @@ class SimpleSbbHorizontalStepperApp {
   imports: [SbbProcessflowModule, SbbButtonModule],
 })
 class SimpleSbbVerticalStepperApp {
-  inputLabel = 'Step 3';
+  @ViewChild(SbbProcessflow) processflow: SbbProcessflow;
+  inputLabel = signal('Step 3');
   showStepTwo = signal(true);
 }
 
