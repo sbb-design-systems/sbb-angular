@@ -1,12 +1,6 @@
 import { FocusMonitor } from '@angular/cdk/a11y';
 import { DOWN_ARROW, END, HOME, UP_ARROW } from '@angular/cdk/keycodes';
-import {
-  Component,
-  provideCheckNoChangesConfig,
-  QueryList,
-  ViewChild,
-  ViewChildren,
-} from '@angular/core';
+import { Component, QueryList, ViewChild, ViewChildren } from '@angular/core';
 import { inject, TestBed, waitForAsync } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 import {
@@ -28,7 +22,6 @@ describe('AccordionDirective', () => {
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-      providers: [provideCheckNoChangesConfig({ exhaustive: false })],
       imports: [SbbIconTestingModule],
     });
 
