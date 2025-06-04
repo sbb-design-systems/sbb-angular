@@ -158,7 +158,7 @@ function buildDocs(targetFolder: string) {
   console.log('  Building docs...');
   console.log('######################################');
 
-  exec(`${bazelCmd} build //docs:build.production`);
+  exec(`${bazelCmd} build --config=release //docs:build.production`);
 
   cleanDistPath(targetFolder);
   const bazelBinPath = exec(`${bazelCmd} info bazel-bin`, true);
