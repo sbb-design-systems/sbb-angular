@@ -13,8 +13,10 @@ import {
   Injector,
   NgZone,
   OnDestroy,
+  signal,
   ViewChild,
   ViewEncapsulation,
+  WritableSignal,
 } from '@angular/core';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 import { SbbRadioGroup, SBB_RADIO_GROUP } from '@sbb-esta/angular/radio-button';
@@ -45,7 +47,7 @@ import { SbbToggleOption } from './toggle-option';
     '[class.sbb-toggle-middle-option-selected]': '!_radios.first.checked && !_radios.last.checked',
     '[class.sbb-toggle-last-option-selected]': '_radios.last.checked',
     '[class.sbb-toggle-triple]': '_radios.length === 3',
-    '[class.sbb-toggle-option-has-content]': '!!selected?._details',
+    '[class.sbb-toggle-option-has-content]': '!!selected?._details()',
   },
   animations: [sbbToggleAnimations.translateHeight],
   imports: [CdkPortalOutlet],
@@ -61,7 +63,7 @@ export class SbbToggle
 
   @ViewChild('toggleOptionContentWrapper') _toggleOptionContentWrapper: ElementRef;
   _heightAnimationState: 'void' | 'initial' | 'fixed' | 'auto' = 'initial';
-  _currentOptionContentWrapperHeight: number = 0;
+  _currentOptionContentWrapperHeight: WritableSignal<number> = signal(0);
 
   private _injector = inject(Injector);
 
@@ -90,8 +92,9 @@ export class SbbToggle
     this.change.pipe(startWith(null!), takeUntil(this._destroyed)).subscribe(() => {
       // Animate toggle height by using current height as start height of transition
       if (this._toggleOptionContentWrapper) {
-        this._currentOptionContentWrapperHeight =
-          this._toggleOptionContentWrapper.nativeElement.offsetHeight;
+        this._currentOptionContentWrapperHeight.set(
+          this._toggleOptionContentWrapper.nativeElement.offsetHeight,
+        );
         this._heightAnimationState = 'auto';
       }
       Promise.resolve().then(() => {
