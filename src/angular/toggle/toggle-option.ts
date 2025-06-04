@@ -6,11 +6,13 @@ import {
   ChangeDetectionStrategy,
   ChangeDetectorRef,
   Component,
+  contentChild,
   ContentChild,
   ElementRef,
   Inject,
   Input,
-  ViewChild,
+  Signal,
+  viewChild,
   ViewEncapsulation,
 } from '@angular/core';
 import { SbbIcon } from '@sbb-esta/angular/icon';
@@ -94,13 +96,8 @@ export class SbbToggleOption extends _SbbRadioButtonBase {
   @Input() svgIcon: string;
 
   /** The toggle content projection label. */
-  @ContentChild(SbbToggleDetails) _detailsNonStatic: SbbToggleDetails;
-  @ContentChild(SbbToggleDetails, { static: true }) _detailsStatic: SbbToggleDetails;
-  get _details() {
-    return this._detailsNonStatic || this._detailsStatic;
-  }
-
-  @ViewChild(CdkPortal) _content: CdkPortal;
+  _details: Signal<SbbToggleDetails | undefined> = contentChild(SbbToggleDetails);
+  _content: Signal<CdkPortal | undefined> = viewChild(CdkPortal);
 
   constructor(
     @Inject(SBB_RADIO_GROUP) readonly toggle: SbbToggle,
