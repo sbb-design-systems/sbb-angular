@@ -76,7 +76,7 @@
     "@angular/ng-dev": "https://github.com/angular/dev-infra-private-ng-dev-builds.git#ff125f14e67489d7ca3839fd17ecfee59c5a7dcb",
     "@angular/platform-server": "catalog:",
     "@angular/router": "catalog:",
-    "@babel/core": "7.27.1",
+    "@babel/core": "7.27.4",
     "@bazel/bazelisk": "1.12.1",
     "@bazel/buildifier": "6.1.2",
     "@bazel/ibazel": "^0.25.0",
