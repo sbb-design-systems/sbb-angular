@@ -13,7 +13,7 @@
     [attr.aria-label]="ariaLabel"
     [attr.aria-labelledby]="ariaLabelledby"
     [attr.aria-describedby]="ariaDescribedby"
-    [attr.aria-controls]="checked && _details ? toggle._contentId : null"
+    [attr.aria-controls]="checked && _details() ? toggle._contentId : null"
     (change)="_onInputChange($event)"
     (click)="_onInputClick($event)"
   />
