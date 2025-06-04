@@ -1,5 +1,5 @@
 import { AsyncPipe } from '@angular/common';
-import { Component, ContentChildren, provideCheckNoChangesConfig, QueryList } from '@angular/core';
+import { Component, ContentChildren, QueryList } from '@angular/core';
 import { ComponentFixture, fakeAsync, flush, TestBed, waitForAsync } from '@angular/core/testing';
 import { FormControl, FormGroup, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { By } from '@angular/platform-browser';
@@ -251,7 +251,6 @@ describe('SbbToggle', () => {
 
     beforeEach(waitForAsync(() => {
       TestBed.configureTestingModule({
-        providers: [provideCheckNoChangesConfig({ exhaustive: false })],
         imports: [NoopAnimationsModule, SbbIconTestingModule],
       });
     }));
@@ -412,7 +411,6 @@ describe('SbbToggle', () => {
 
     beforeEach(waitForAsync(() => {
       TestBed.configureTestingModule({
-        providers: [provideCheckNoChangesConfig({ exhaustive: false })],
         imports: [NoopAnimationsModule, SbbIconTestingModule],
       });
     }));
@@ -459,7 +457,6 @@ describe('SbbToggle', () => {
 
     beforeEach(waitForAsync(() => {
       TestBed.configureTestingModule({
-        providers: [provideCheckNoChangesConfig({ exhaustive: false })],
         imports: [NoopAnimationsModule, SbbIconTestingModule],
       });
     }));
