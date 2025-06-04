@@ -7,7 +7,6 @@ import {
   EventEmitter,
   inject,
   NgModule,
-  provideCheckNoChangesConfig,
   provideNgReflectAttributes,
   signal,
   TemplateRef,
@@ -46,7 +45,6 @@ describe('SbbNotificationToast icons', () => {
       imports: [NotificationToastTestModule, NoopAnimationsModule, SbbIconTestingModule],
       providers: [
         provideNgReflectAttributes(),
-        provideCheckNoChangesConfig({ exhaustive: false }),
         SbbNotificationToast,
         { provide: SBB_NOTIFICATION_TOAST_DATA, useValue: SbbNotificationToastConfig },
         {
