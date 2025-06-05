@@ -2,6 +2,20 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [20.0.0-next.3](https://github.com/sbb-design-systems/sbb-angular/compare/20.0.0-next.2...20.0.0-next.3) (2025-06-05)
+
+
+### Bug Fixes
+
+* **angular/processflow:** resolve changed after checked errors ([#2556](https://github.com/sbb-design-systems/sbb-angular/issues/2556)) ([a807112](https://github.com/sbb-design-systems/sbb-angular/commit/a807112e3c5c686f6cc1892dbe1f7c56c4c29522))
+* **angular/sidebar:** removes -1 tabindex from sidenav in "over" mode ([#2531](https://github.com/sbb-design-systems/sbb-angular/issues/2531)) ([fe56110](https://github.com/sbb-design-systems/sbb-angular/commit/fe56110d5a187982dee56989c784904af6717b44))
+* **angular/toggle:** resolve changed after checked errors ([#2557](https://github.com/sbb-design-systems/sbb-angular/issues/2557)) ([8759c3c](https://github.com/sbb-design-systems/sbb-angular/commit/8759c3cc70fc84ec2dc7f5ad3c5ddddec21c7939))
+
+
+### Documentation
+
+* add update steps for version 20 ([#2561](https://github.com/sbb-design-systems/sbb-angular/issues/2561)) ([3edf4ab](https://github.com/sbb-design-systems/sbb-angular/commit/3edf4ab08ad4101ae787c004e3be0edd3bc78c9b))
+
 ## [20.0.0-next.2](https://github.com/sbb-design-systems/sbb-angular/compare/20.0.0-next.1...20.0.0-next.2) (2025-05-27)
 
 ### ⚠ BREAKING CHANGES
