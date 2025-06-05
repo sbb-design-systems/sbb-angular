@@ -180,7 +180,7 @@ function cleanDistPath(distPath: string) {
  */
 function copyPackageOutput(outputPath: string, targetFolder: string) {
   console.log(`> Copying package output to "${targetFolder}" (from "${outputPath}")`);
-  sh.cp('-R', outputPath, targetFolder);
+  sh.cp('-LR', outputPath, targetFolder);
   sh.chmod('-R', 'u+w', targetFolder);
 }
 
