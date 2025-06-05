@@ -1,5 +1,6 @@
 export * from './breakpoints/breakpoints';
 export * from './common-behaviors/common.module';
+export * from './common-behaviors/constructor';
 export * from './common-behaviors/error-state';
 export * from './common-behaviors/type-ref';
 export * from './common-behaviors/variant';
