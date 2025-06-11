@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [20.0.0-next.4](https://github.com/sbb-design-systems/sbb-angular/compare/20.0.0-next.3...20.0.0-next.4) (2025-06-11)
+
+
+### Features
+
+* **journey-maps:** add new poi subcategory 'sharing_zone' ([#2567](https://github.com/sbb-design-systems/sbb-angular/issues/2567)) ([13cf2e3](https://github.com/sbb-design-systems/sbb-angular/commit/13cf2e369d3941cddbed4e4401d3d4902ef7d8f4))
+
 ## [20.0.0-next.3](https://github.com/sbb-design-systems/sbb-angular/compare/20.0.0-next.2...20.0.0-next.3) (2025-06-05)
 
 
