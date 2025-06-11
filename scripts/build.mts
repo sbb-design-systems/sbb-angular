@@ -97,6 +97,11 @@ function buildReleasePackages(distPath: string) {
     const outputPath = getOutputPath(pkgName);
     const targetFolder = join(distPath, pkgName);
     copyPackageOutput(outputPath, targetFolder);
+
+    const packageJsonPath = join(targetFolder, 'package.json');
+    const packageJson = JSON.parse(readFileSync(packageJsonPath, 'utf8'));
+    delete packageJson.devDependencies;
+    writeFileSync(packageJsonPath, JSON.stringify(packageJson, null, 2), 'utf8');
   });
 }
 
