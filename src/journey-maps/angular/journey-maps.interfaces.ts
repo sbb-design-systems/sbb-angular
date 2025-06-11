@@ -419,6 +419,7 @@ export type SbbPointsOfInterestCategoryType =
   | 'school'
   | 'service'
   | 'service_other'
+  | 'sharing_zone'
   | 'shoes'
   | 'shopping'
   | 'shopping_center'
