@@ -1,3 +1,4 @@
+load("@aspect_rules_esbuild//esbuild:defs.bzl", "esbuild")
 load("@rules_angular//src/architect:ng_config.bzl", "ng_config")
 load("@aspect_bazel_lib//lib:copy_to_bin.bzl", "copy_to_bin")
 load("@npm//:defs.bzl", "npm_link_all_packages")
@@ -56,14 +57,34 @@ genrule(
     name = "bundle",
     srcs = [":app"],
     outs = [
+        "index.js",
         "main.js",
+        "polyfills.js",
         "styles.css",
     ],
     cmd = """
         cp "$(execpath :app)/browser/styles.css" "$(execpath styles.css)"
-        cat "$(execpath :app)/browser/polyfills.js" "$(execpath :app)/browser/main.js" > "$(execpath main.js)"
+        cp "$(execpath :app)/browser/polyfills.js" "$(execpath polyfills.js)"
+        cp "$(execpath :app)/browser/main.js" "$(execpath main.js)"
+        printf "import './polyfills.js';\nimport './main.js';" > "$(execpath index.js)"
     """,
     output_to_bindir = True,
+)
+
+esbuild(
+    name = "bundles",
+    srcs = [
+        ":bundle",
+        "//src:build-tsconfig",
+    ],
+    bundle = True,
+    config = "//src:esbuild-linked-config",
+    entry_point = ":index.js",
+    format = "iife",
+    output = "bundle.js",
+    platform = "browser",
+    splitting = False,
+    target = "es2022",
 )
 
 alias(
@@ -75,7 +96,7 @@ npm_package(
     name = "npm_package",
     srcs = [
         "package.json",
-        ":main.js",
+        ":bundle.js",
         ":styles.css",
     ],
     package = "@sbb-esta/journey-maps-wc",
