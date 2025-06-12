@@ -1,3 +1,5 @@
+# Introduction
+
 In addition to the Angular library we publish our `JourneyMaps` component also as a custom element based on the Web Components standard.
 
 It's generated from the Angular Library using [Angular Elements](https://angular.io/guide/elements).
@@ -5,30 +7,28 @@ It's generated from the Angular Library using [Angular Elements](https://angular
 **NOTE** \
 This custom element is intended for Non-Angular clients. If you are in an Angular environment we strongly recommend you to use the Angular version of the component.
 
-### Import required files
+## Import required files
 
 The custom element is published in the same package as the Angular component. It can be installed like this:
 
 ```sh
-npm install --save @sbb-esta/journey-maps
+npm install --save @sbb-esta/journey-maps-wc
 ```
 
-Afterwards you have to include the following two files in your application:
+Afterwards, you have to include the following two imports in your application:
 
-- `@sbb-esta/journey-maps/web-component/bundle.min.js` (ES2020) \
-  or \
-  `@sbb-esta/journey-maps/web-component/bundle-es2015.min.js` (ES2015)
-- `@sbb-esta/journey-maps/web-component/styles.css`
+- `@sbb-esta/journey-maps-wc`
+- `@sbb-esta/journey-maps-wc/styles.css`
 
 **NOTE** \
 This library does NOT need any peer dependencies. MapLibre and Angular are included in the bundle.
 Because of a technical limitation it uses the same `package.json` as the Angular library. Therefore you might get a warning about missing peer dependencies.
 
-### Create an instance of the custom component
+## Create an instance of the custom component
 
 To avoid problems with the angular component we named this component `sbb-journey-maps-wc` (instead of `sbb-journey-maps`).
 
-#### With HTML
+### With HTML
 
 After importing the required files you can create an instance like this:
 
@@ -40,7 +40,7 @@ Angular `@Input` properties are available as (dash-separated, lowercase) attribu
 
 You can get your API key on the [SBB API Platform](https://developer.sbb.ch/apis/journey-maps-tiles).
 
-#### With JS
+### With JS
 
 If you want to register for output events or pass object-type input parameters, you can create the component in JavaScript.
 
@@ -78,7 +78,7 @@ document.addEventListener('DOMContentLoaded', () =>
 
 For a full list of all inputs and outputs, please check our [Angular API](/journey-maps/components/angular/api).
 
-### Define templates for click or hover events
+## Define templates for click or hover events
 
 The usage of templates (e.g. what to display in the popup when a marker is clicked) is a little bit different than with Angular.
 
@@ -118,7 +118,7 @@ client.listenerOptions = {
 
 Now you can click on a marker, station or poi and your template will be displayed in the defined overlay. (teaser or popup)
 
-Normally you want the content of your template to differ depending on what has been selected.
+Normally, you want the content of your template to differ depending on what has been selected.
 This can be achieved if you register to one of our output events (e.g. `featuresClick`) and update your template when an event occurs.
 
 ```js
@@ -167,8 +167,22 @@ client.selectedMarkerId = 'velo';
 
 The code for the Web Component test app is in [showcase.ts](./showcase.ts)
 
-### API
+# API
 
 For the full API, please see our [Angular API](/journey-maps/components/angular/api).
 
 For details on how to use this API via the Web Component, please refer to the [Overview](/journey-maps/components/web-component/overview) or the [Examples](/journey-maps/components/web-component/examples) page.
+
+# Examples
+
+Below are a few example implementations using the Web Component. Please let us know if you have additional use-cases you would like to see covered here.
+
+## On your local machine
+
+If you check out this project from GitHub, You can get a simple example of the Web Component up and running on your local machine by running `JM_API_KEY=<YOUR-API-KEY> yarn start:journey-maps-wc`.
+
+## On Stackblitz
+
+We have provided a React example application showcasing some of the features of the `sbb-journey-maps-wc` web-component.
+
+=> <a href="https://stackblitz.com/edit/sbb-journey-maps-web-component-showcase-ufvxbxw6" target="_blank">Web-Component Stackblitz Example using React</a>
