@@ -2,6 +2,67 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [20.0.0](https://github.com/sbb-design-systems/sbb-angular/compare/20.0.0-next.4...20.0.0) (2025-06-12)
+
+### ⚠ BREAKING CHANGES
+
+* **multiple:**
+  * `SbbDialogConfig.componentFactoryResolver` has been removed.
+  * `SbbLightboxConfig.componentFactoryResolver` has been removed.
+* **angular/core:**
+  * `mixinErrorState` has been removed.
+  * `mixinDisabled` and `CanDisable` have been removed. Use input transforms instead.
+  * `mixinInitialized` and `HasInitialized` have been removed. Use a `Subject` that emits in `ngOnInit` instead.
+  * `mixinTabIndex` and `HasTabIndex` have been removed. Use input transforms instead.
+* **angular/lightbox:**
+  * `SBB_LIGHTBOX_SCROLL_STRATEGY_FACTORY` has been removed.
+  * `SBB_LIGHTBOX_SCROLL_STRATEGY_PROVIDER_FACTORY` has been removed.
+  * `SBB_LIGHTBOX_SCROLL_STRATEGY_PROVIDER` has been removed.
+* **angular/dialog:**
+  * `SBB_DIALOG_SCROLL_STRATEGY_FACTORY` has been removed.
+  * `SBB_DIALOG_SCROLL_STRATEGY_PROVIDER_FACTORY` has been removed.
+  * `SBB_DIALOG_SCROLL_STRATEGY_PROVIDER` has been removed.
+* **angular/checkbox:**
+  * `SBB_CHECKBOX_REQUIRED_VALIDATOR` has been removed.
+  * `SBB_CHECKBOX_CONTROL_VALUE_ACCESSOR` has been removed.
+  * `SbbCheckboxRequiredValidator` has been removed.
+* **journey-maps:**
+  * The `journey-maps` web component has been extracted to its own package `@sbb-esta/journey-maps-wc`.
+
+### Features
+
+* **journey-maps:** extract journey-maps web component to its own package ([#2536](https://github.com/sbb-design-systems/sbb-angular/issues/2536)) ([2d4220e](https://github.com/sbb-design-systems/sbb-angular/commit/2d4220e39f57235d9af861d24ac9cce872a43f50))
+* **journey-maps:** add new poi subcategory 'sharing_zone' ([#2567](https://github.com/sbb-design-systems/sbb-angular/issues/2567)) ([13cf2e3](https://github.com/sbb-design-systems/sbb-angular/commit/13cf2e369d3941cddbed4e4401d3d4902ef7d8f4))
+
+
+### Bug Fixes
+
+* **angular/checkbox:** breaking changes for v20 ([#2525](https://github.com/sbb-design-systems/sbb-angular/issues/2525)) ([b63f87f](https://github.com/sbb-design-systems/sbb-angular/commit/b63f87fc6017b6bf5b225d3a6f0f459ec7aeef6c))
+* **angular/core:** delete deprecated APIs ([#2527](https://github.com/sbb-design-systems/sbb-angular/issues/2527)) ([cc38ee0](https://github.com/sbb-design-systems/sbb-angular/commit/cc38ee0108dd363f97dccc143e40dfd24510fa2a))
+* **angular/dialog:** breaking changes for v20 ([#2524](https://github.com/sbb-design-systems/sbb-angular/issues/2524)) ([90205d5](https://github.com/sbb-design-systems/sbb-angular/commit/90205d516e3d92c4a85c0b3a0079d0ad24320ddf))
+* **angular/form-field:** avoid touching the DOM on each state change ([#2431](https://github.com/sbb-design-systems/sbb-angular/issues/2431)) ([15082d8](https://github.com/sbb-design-systems/sbb-angular/commit/15082d8a900a1bdbe8eceaef4f399d19ae4f68fe))
+* **angular/icon-sidebar:** resolve change after checked errors ([#2548](https://github.com/sbb-design-systems/sbb-angular/issues/2548)) ([a3faa37](https://github.com/sbb-design-systems/sbb-angular/commit/a3faa377d86c39d739e07d1c28386438a4114553))
+* **angular/lightbox:** breaking changes for v20 ([#2526](https://github.com/sbb-design-systems/sbb-angular/issues/2526)) ([b9d2810](https://github.com/sbb-design-systems/sbb-angular/commit/b9d28106da79d9ca490174ce77f418137b924512))
+* **angular/menu:** handle keyboard events through dispatcher ([#2432](https://github.com/sbb-design-systems/sbb-angular/issues/2432)) ([89ff473](https://github.com/sbb-design-systems/sbb-angular/commit/89ff473e61049b940d134ecc5fb8f4e14532e1a8))
+* **angular/processflow:** resolve changed after checked errors ([#2556](https://github.com/sbb-design-systems/sbb-angular/issues/2556)) ([a807112](https://github.com/sbb-design-systems/sbb-angular/commit/a807112e3c5c686f6cc1892dbe1f7c56c4c29522))
+* **angular/radio:** assistive technology announcing button as invalid ([#2543](https://github.com/sbb-design-systems/sbb-angular/issues/2543)) ([e47f355](https://github.com/sbb-design-systems/sbb-angular/commit/e47f355370a740f4a5649f87330ba69048df854a))
+* **angular/radio:** updating required value should mark for check ([#2544](https://github.com/sbb-design-systems/sbb-angular/issues/2544)) ([fb535d5](https://github.com/sbb-design-systems/sbb-angular/commit/fb535d52ae3feef608cbb3f717c5fa2ea5e20de8))
+* **angular/select:** remove value from aria-labelledby ([#2521](https://github.com/sbb-design-systems/sbb-angular/issues/2521)) ([a395b67](https://github.com/sbb-design-systems/sbb-angular/commit/a395b677855623e61934085bdce5f39fba303ebc))
+* **angular/select:** resolve change after checked errors ([#2545](https://github.com/sbb-design-systems/sbb-angular/issues/2545)) ([eca4483](https://github.com/sbb-design-systems/sbb-angular/commit/eca4483885a693acff2e77ad130717df6422fc0f))
+* **angular/sidebar:** resolve change after checked errors ([#2547](https://github.com/sbb-design-systems/sbb-angular/issues/2547)) ([df1b277](https://github.com/sbb-design-systems/sbb-angular/commit/df1b27727da0d7ab981c43ac285a5aa3fff1df40))
+* **angular/sidebar:** removes -1 tabindex from sidenav in "over" mode ([#2531](https://github.com/sbb-design-systems/sbb-angular/issues/2531)) ([fe56110](https://github.com/sbb-design-systems/sbb-angular/commit/fe56110d5a187982dee56989c784904af6717b44))
+* **angular/toggle:** resolve changed after checked errors ([#2557](https://github.com/sbb-design-systems/sbb-angular/issues/2557)) ([8759c3c](https://github.com/sbb-design-systems/sbb-angular/commit/8759c3cc70fc84ec2dc7f5ad3c5ddddec21c7939))
+* **angular:** remove final references to ComponentFactoryResolver ([#2433](https://github.com/sbb-design-systems/sbb-angular/issues/2433)) ([5f9ed21](https://github.com/sbb-design-systems/sbb-angular/commit/5f9ed21a467f15efbe35cbd22ebac40038438699))
+* **multiple:** fix VoiceOver confused by Select/Autocomplete's ARIA semantics ([#2528](https://github.com/sbb-design-systems/sbb-angular/issues/2528)) ([3ea6388](https://github.com/sbb-design-systems/sbb-angular/commit/3ea638814ddc2008144724663948dddc8f44bae9))
+* **multiple:** remove remaining references to ComponentFactoryResolver ([#2530](https://github.com/sbb-design-systems/sbb-angular/issues/2530)) ([a6b9318](https://github.com/sbb-design-systems/sbb-angular/commit/a6b931872698a53c87ea75dc76efffbe37435a19))
+
+
+### Documentation
+
+* migrate stackblitz to standalone ([#2541](https://github.com/sbb-design-systems/sbb-angular/issues/2541)) ([239cae4](https://github.com/sbb-design-systems/sbb-angular/commit/239cae4611f6174b1c71a8b4c0214cef980c8548))
+* update documentation for journey maps web component ([#2568](https://github.com/sbb-design-systems/sbb-angular/issues/2568)) ([fddfcbb](https://github.com/sbb-design-systems/sbb-angular/commit/fddfcbb04b52894f0f3aa46238bc911a52605484))
+
+
 ## [20.0.0-next.4](https://github.com/sbb-design-systems/sbb-angular/compare/20.0.0-next.3...20.0.0-next.4) (2025-06-11)
 
 
