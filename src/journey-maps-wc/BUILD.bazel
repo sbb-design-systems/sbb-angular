@@ -87,6 +87,18 @@ esbuild(
     target = "es2022",
 )
 
+genrule(
+    name = "types",
+    srcs = ["//src/journey-maps:npm_package"],
+    outs = [
+        "bundle.d.ts",
+    ],
+    cmd = """
+        cp "$(execpath //src/journey-maps:npm_package)/angular/index.d.ts" "$(execpath bundle.d.ts)"
+    """,
+    output_to_bindir = True,
+)
+
 alias(
     name = "pkg",
     actual = ":npm_package",
@@ -95,7 +107,9 @@ alias(
 npm_package(
     name = "npm_package",
     srcs = [
+        "index.d.ts",
         "package.json",
+        ":bundle.d.ts",
         ":bundle.js",
         ":styles.css",
     ],
