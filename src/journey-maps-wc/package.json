@@ -12,6 +12,7 @@
   "homepage": "https://angular.app.sbb.ch",
   "exports": {
     ".": {
+      "types": "./index.d.ts",
       "default": "./bundle.js"
     },
     "./styles.css": {
