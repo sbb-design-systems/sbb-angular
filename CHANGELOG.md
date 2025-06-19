@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [20.0.1](https://github.com/sbb-design-systems/sbb-angular/compare/20.0.0...20.0.1) (2025-06-19)
+
+
+### Bug Fixes
+
+* add types for journey maps web component ([#2570](https://github.com/sbb-design-systems/sbb-angular/issues/2570)) ([3b7c47a](https://github.com/sbb-design-systems/sbb-angular/commit/3b7c47a5997c15bdbf332e242127f33981f48cfa)), closes [#2569](https://github.com/sbb-design-systems/sbb-angular/issues/2569)
+
 ## [20.0.0](https://github.com/sbb-design-systems/sbb-angular/compare/20.0.0-next.4...20.0.0) (2025-06-12)
 
 ### ⚠ BREAKING CHANGES
