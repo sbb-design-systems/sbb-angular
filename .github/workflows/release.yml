@@ -10,6 +10,7 @@ env:
   IMAGE_REPO: ghcr.io/${{ github.repository }}/showcase
 
 permissions:
+  id-token: write  # Required for OIDC
   packages: write
 
 jobs:
@@ -44,6 +45,8 @@ jobs:
         name: packages
         path: dist/releases
 
+    - name: Update npm
+      run: npm install --global npm@latest
     - name: "Publish: Determine npm tag"
       id: npm_tag
       run: |
@@ -56,17 +59,17 @@ jobs:
       env:
         REF: ${{ github.ref }}
     - name: "Publish: @sbb-esta/angular"
-      run: pnpm publish dist/releases/angular --tag ${{ steps.npm_tag.outputs.npm_tag }} --no-git-checks || true
-      env:
-        NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+      run: |
+        cd dist/releases/angular
+        npm publish --tag ${{ steps.npm_tag.outputs.npm_tag }} || true
     - name: "Publish: @sbb-esta/journey-maps"
-      run: pnpm publish dist/releases/journey-maps --tag ${{ steps.npm_tag.outputs.npm_tag }} --no-git-checks || true
-      env:
-        NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
-    - name: "Publish: @sbb-esta/journey-maps"
-      run: pnpm publish dist/releases/journey-maps-wc --tag ${{ steps.npm_tag.outputs.npm_tag }} --no-git-checks || true
-      env:
-        NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+      run: |
+        cd dist/releases/journey-maps
+        npm publish --tag ${{ steps.npm_tag.outputs.npm_tag }} || true
+    - name: "Publish: @sbb-esta/journey-maps-wc"
+      run: |
+        cd dist/releases/journey-maps-wc
+        npm publish --tag ${{ steps.npm_tag.outputs.npm_tag }} || true
 
   showcase:
     runs-on: ubuntu-latest
