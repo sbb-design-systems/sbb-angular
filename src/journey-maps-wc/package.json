@@ -43,7 +43,7 @@
     "karma-jasmine": "^4.0.1",
     "karma-jasmine-html-reporter": "^2.0.0",
     "maplibre-gl": "4.7.1",
-    "npm-run-all": "^4.1.5",
+    "npm-run-all2": "^5.0.0",
     "rxjs": "catalog:",
     "sass": "1.86.3",
     "ts-node": "10.9.2",
