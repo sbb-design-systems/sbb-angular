@@ -5,7 +5,7 @@
   "gitAuthor": "sbb-angular-renovate<100206640+sbb-angular-renovate[bot]@users.noreply.github.com>",
   "repositories": ["sbb-design-systems/sbb-angular"],
   "baseBranches": ["main", "20.x"],
-  "ignorePaths": ["docs/src/assets/stack-blitz/**"],
+  "ignorePaths": ["docs/src/assets/stack-blitz/**", "WORKSPACE"],
   "timezone": "Europe/Zurich",
   "lockFileMaintenance": {
     "schedule": ["before 7am on thursday"],
