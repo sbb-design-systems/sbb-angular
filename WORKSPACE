@@ -23,10 +23,10 @@ http_archive(
 # Add skylib which contains common Bazel utilities.
 http_archive(
     name = "bazel_skylib",
-    sha256 = "a9c5d3a22461ed7063aa7b088f9c96fa0aaaa8b6984b601f84d705adc47d8a58",
-    strip_prefix = "bazel-skylib-8334f938c1574ef6f1f7a38a03550a31df65274e",
+    sha256 = "bed16a10c419c59825b8453404bbb311258caaf154e6fe91a78ad9470fe57893",
+    strip_prefix = "bazel-skylib-471f368fc95a7323078f69d569a164ee5bc07f8b",
     urls = [
-        "https://github.com/bazelbuild/bazel-skylib/archive/8334f938c1574ef6f1f7a38a03550a31df65274e.tar.gz",
+        "https://github.com/bazelbuild/bazel-skylib/archive/471f368fc95a7323078f69d569a164ee5bc07f8b.tar.gz",
     ],
 )
 
