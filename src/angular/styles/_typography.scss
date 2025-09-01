@@ -1369,18 +1369,18 @@ textarea {
 :is(
   .sbb-input-element,
   input:where(
-      [type='email'],
-      [type='password'],
-      [type='search'],
-      [type='text'],
-      [type='number'],
-      [type='tel'],
-      [type='time'],
-      [type='datetime'],
-      [type='datetime-local'],
-      [type='url'],
-      :not([type])
-    )
+    [type='email'],
+    [type='password'],
+    [type='search'],
+    [type='text'],
+    [type='number'],
+    [type='tel'],
+    [type='time'],
+    [type='datetime'],
+    [type='datetime-local'],
+    [type='url'],
+    :not([type])
+  )
 ) {
   outline: none;
   background-color: var(--sbb-form-input-background-color);
@@ -1437,13 +1437,13 @@ textarea {
   }
 
   &:where(
-      [type='date'],
-      [type='datetime'],
-      [type='datetime-local'],
-      [type='month'],
-      [type='week'],
-      [type='time']
-    ) {
+    [type='date'],
+    [type='datetime'],
+    [type='datetime-local'],
+    [type='month'],
+    [type='week'],
+    [type='time']
+  ) {
     // Due to the native input masking these inputs can be slightly taller than
     // the plain text inputs. We normalize it by resetting the line height.
     line-height: 1;
@@ -3021,9 +3021,9 @@ $menuItemPaddingTopBottom: 4;
   }
 
   &:is(
-      :not(:disabled):not([disabled]):not(.sbb-disabled):is(:hover, .cdk-keyboard-focused),
-      .sbb-focused
-    ) {
+    :not(:disabled):not([disabled]):not(.sbb-disabled):is(:hover, .cdk-keyboard-focused),
+    .sbb-focused
+  ) {
     :is(&, & strong) {
       color: var(--sbb-color-red);
 
