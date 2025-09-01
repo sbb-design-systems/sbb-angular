@@ -50,7 +50,7 @@
     "@bazel/bazelisk": "^1.12.1",
     "@types/jasmine": "5.1.9",
     "@types/node": "^22.14.1",
-    "@types/shelljs": "0.8.15",
+    "@types/shelljs": "0.8.17",
     "jasmine-core": "5.10.0",
     "jasmine-spec-reporter": "7.0.0",
     "karma": "~6.4.4",
