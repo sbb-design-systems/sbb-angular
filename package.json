@@ -99,7 +99,7 @@
     "@types/minimatch": "^5.1.2",
     "@types/node": "18.19.123",
     "@types/semver": "^7.3.9",
-    "@types/send": "0.17.4",
+    "@types/send": "0.17.5",
     "@types/shelljs": "^0.8.15",
     "@types/yargs": "17.0.13",
     "angular-server-side-configuration": "19.0.1",
