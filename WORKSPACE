@@ -32,10 +32,10 @@ http_archive(
 
 http_archive(
     name = "rules_pkg",
-    sha256 = "d94fd5b08dbdc227d66421cb9513f6c3b94bb3938fad276445a2d562f7df8f35",
-    strip_prefix = "rules_pkg-61018b85819d57feb56886316e76e8ed8a4ce378",
+    sha256 = "a3eba00a4bae8ae3468e6c2b1e7554c366a2c7b335d9171f783ed4fc5645c87d",
+    strip_prefix = "rules_pkg-8c7c2cf7f1742a1fb199d0164b800d2939fa9fef",
     urls = [
-        "https://github.com/bazelbuild/rules_pkg/archive/61018b85819d57feb56886316e76e8ed8a4ce378.tar.gz",
+        "https://github.com/bazelbuild/rules_pkg/archive/8c7c2cf7f1742a1fb199d0164b800d2939fa9fef.tar.gz",
     ],
 )
 
