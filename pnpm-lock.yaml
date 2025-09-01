@@ -324,8 +324,8 @@ importers:
         specifier: 3.6.2
         version: 3.6.2
       reflect-metadata:
-        specifier: ^0.1.13
-        version: 0.1.14
+        specifier: ^0.2.0
+        version: 0.2.2
       renovate:
         specifier: 41.91.3
         version: 41.91.3(encoding@0.1.13)
