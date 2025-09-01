@@ -22,12 +22,12 @@
     }
   },
   "peerDependencies": {
-    "@angular/cdk": "0.0.0-CDK",
-    "@angular/common": "0.0.0-NG",
-    "@angular/core": "0.0.0-NG",
-    "@angular/forms": "0.0.0-NG",
-    "@angular/router": "0.0.0-NG",
-    "@angular/platform-browser": "0.0.0-NG",
+    "@angular/cdk": "20.2.1",
+    "@angular/common": "20.2.3",
+    "@angular/core": "20.2.3",
+    "@angular/forms": "20.2.3",
+    "@angular/router": "20.2.3",
+    "@angular/platform-browser": "20.2.3",
     "rxjs": "^6.5.3 || ^7.4.0"
   },
   "dependencies": {
