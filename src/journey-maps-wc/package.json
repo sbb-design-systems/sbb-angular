@@ -45,7 +45,7 @@
     "maplibre-gl": "4.7.1",
     "npm-run-all2": "^5.0.0",
     "rxjs": "catalog:",
-    "sass": "1.86.3",
+    "sass": "1.91.0",
     "ts-node": "10.9.2",
     "tslib": "^2.3.0",
     "typescript": "~5.8.2",

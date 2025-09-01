@@ -345,8 +345,8 @@ importers:
         specifier: 4.34.8
         version: 4.34.8(tslint@6.1.3(typescript@5.8.3))(typescript@5.8.3)
       sass:
-        specifier: 1.87.0
-        version: 1.87.0
+        specifier: 1.91.0
+        version: 1.91.0
       semver:
         specifier: 7.7.2
         version: 7.7.2
@@ -467,7 +467,7 @@ importers:
     devDependencies:
       '@angular-devkit/build-angular':
         specifier: 'catalog:'
-        version: 20.0.0(nbs2kwbyiemw4hz62h7dnbza6u)
+        version: 20.0.0(xdywfyjns3zgiqdqzoye3wlwzu)
       '@angular/cli':
         specifier: 'catalog:'
         version: 20.0.0(@types/node@22.18.0)(chokidar@4.0.3)
@@ -514,8 +514,8 @@ importers:
         specifier: ^5.0.0
         version: 5.0.2
       sass:
-        specifier: 1.86.3
-        version: 1.86.3
+        specifier: 1.91.0
+        version: 1.91.0
       ts-node:
         specifier: 10.9.2
         version: 10.9.2(@types/node@22.18.0)(typescript@5.8.3)
@@ -566,7 +566,7 @@ importers:
     devDependencies:
       '@angular-devkit/build-angular':
         specifier: 'catalog:'
-        version: 20.0.0(nbs2kwbyiemw4hz62h7dnbza6u)
+        version: 20.0.0(xdywfyjns3zgiqdqzoye3wlwzu)
       '@angular/animations':
         specifier: 'catalog:'
         version: 20.0.0(@angular/common@20.0.0(@angular/compiler-cli@20.0.0(@angular/compiler@20.0.0)(typescript@5.8.3))(@angular/core@20.0.0(@angular/compiler@20.0.0)(rxjs@7.8.1)(zone.js@0.15.0))(rxjs@7.8.1))(@angular/compiler-cli@20.0.0(@angular/compiler@20.0.0)(typescript@5.8.3))(@angular/core@20.0.0(@angular/compiler@20.0.0)(rxjs@7.8.1)(zone.js@0.15.0))
@@ -640,8 +640,8 @@ importers:
         specifier: 'catalog:'
         version: 7.8.1
       sass:
-        specifier: 1.86.3
-        version: 1.86.3
+        specifier: 1.91.0
+        version: 1.91.0
       ts-node:
         specifier: 10.9.2
         version: 10.9.2(@types/node@22.18.0)(typescript@5.8.3)
@@ -9105,18 +9105,13 @@ packages:
       webpack:
         optional: true
 
-  sass@1.86.3:
-    resolution: {integrity: sha512-iGtg8kus4GrsGLRDLRBRHY9dNVA78ZaS7xr01cWnS7PEMQyFtTqBiyCrfpTYTZXRWM94akzckYjh8oADfFNTzw==}
-    engines: {node: '>=14.0.0'}
-    hasBin: true
-
-  sass@1.87.0:
-    resolution: {integrity: sha512-d0NoFH4v6SjEK7BoX810Jsrhj7IQSYHAHLi/iSpgqKc7LaIDshFRlSg5LOymf9FqQhxEHs2W5ZQXlvy0KD45Uw==}
-    engines: {node: '>=14.0.0'}
-    hasBin: true
-
   sass@1.88.0:
     resolution: {integrity: sha512-sF6TWQqjFvr4JILXzG4ucGOLELkESHL+I5QJhh7CNaE+Yge0SI+ehCatsXhJ7ymU1hAFcIS3/PBpjdIbXoyVbg==}
+    engines: {node: '>=14.0.0'}
+    hasBin: true
+
+  sass@1.91.0:
+    resolution: {integrity: sha512-aFOZHGf+ur+bp1bCHZ+u8otKGh77ZtmFyXDo4tlYvT7PWql41Kwd8wdkPqhhT+h2879IVblcHFglIMofsFd1EA==}
     engines: {node: '>=14.0.0'}
     hasBin: true
 
@@ -10511,7 +10506,7 @@ snapshots:
     transitivePeerDependencies:
       - chokidar
 
-  '@angular-devkit/build-angular@20.0.0(nbs2kwbyiemw4hz62h7dnbza6u)':
+  '@angular-devkit/build-angular@20.0.0(xdywfyjns3zgiqdqzoye3wlwzu)':
     dependencies:
       '@ampproject/remapping': 2.3.0
       '@angular-devkit/architect': 0.2000.0(chokidar@4.0.3)
@@ -10530,7 +10525,7 @@ snapshots:
       '@babel/runtime': 7.27.1
       '@discoveryjs/json-ext': 0.6.3
       '@ngtools/webpack': 20.0.0(@angular/compiler-cli@20.0.0(@angular/compiler@20.0.0)(typescript@5.8.3))(typescript@5.8.3)(webpack@5.99.8(esbuild@0.25.5))
-      '@vitejs/plugin-basic-ssl': 2.0.0(vite@6.3.5(@types/node@22.18.0)(jiti@2.4.2)(less@4.3.0)(sass@1.86.3)(terser@5.39.1)(yaml@2.8.1))
+      '@vitejs/plugin-basic-ssl': 2.0.0(vite@6.3.5(@types/node@22.18.0)(jiti@2.4.2)(less@4.3.0)(sass@1.91.0)(terser@5.39.1)(yaml@2.8.1))
       ansi-colors: 4.1.3
       autoprefixer: 10.4.21(postcss@8.5.3)
       babel-loader: 10.0.0(@babel/core@7.27.1)(webpack@5.99.8(esbuild@0.25.5))
@@ -10653,7 +10648,7 @@ snapshots:
       '@babel/helper-annotate-as-pure': 7.27.1
       '@babel/helper-split-export-declaration': 7.24.7
       '@inquirer/confirm': 5.1.10(@types/node@22.18.0)
-      '@vitejs/plugin-basic-ssl': 2.0.0(vite@6.3.5(@types/node@22.18.0)(jiti@2.4.2)(less@4.3.0)(sass@1.86.3)(terser@5.39.1)(yaml@2.8.1))
+      '@vitejs/plugin-basic-ssl': 2.0.0(vite@6.3.5(@types/node@22.18.0)(jiti@2.4.2)(less@4.3.0)(sass@1.91.0)(terser@5.39.1)(yaml@2.8.1))
       beasties: 0.3.4
       browserslist: 4.24.5
       esbuild: 0.25.5
@@ -15698,9 +15693,9 @@ snapshots:
     transitivePeerDependencies:
       - supports-color
 
-  '@vitejs/plugin-basic-ssl@2.0.0(vite@6.3.5(@types/node@22.18.0)(jiti@2.4.2)(less@4.3.0)(sass@1.86.3)(terser@5.39.1)(yaml@2.8.1))':
+  '@vitejs/plugin-basic-ssl@2.0.0(vite@6.3.5(@types/node@22.18.0)(jiti@2.4.2)(less@4.3.0)(sass@1.91.0)(terser@5.39.1)(yaml@2.8.1))':
     dependencies:
-      vite: 6.3.5(@types/node@22.18.0)(jiti@2.4.2)(less@4.3.0)(sass@1.86.3)(terser@5.39.1)(yaml@2.8.1)
+      vite: 6.3.5(@types/node@22.18.0)(jiti@2.4.2)(less@4.3.0)(sass@1.91.0)(terser@5.39.1)(yaml@2.8.1)
 
   '@webassemblyjs/ast@1.14.1':
     dependencies:
@@ -21206,23 +21201,15 @@ snapshots:
       sass: 1.88.0
       webpack: 5.99.8(esbuild@0.25.5)
 
-  sass@1.86.3:
-    dependencies:
-      chokidar: 4.0.3
-      immutable: 5.1.2
-      source-map-js: 1.2.1
-    optionalDependencies:
-      '@parcel/watcher': 2.5.1
-
-  sass@1.87.0:
-    dependencies:
-      chokidar: 4.0.3
-      immutable: 5.1.2
-      source-map-js: 1.2.1
-    optionalDependencies:
-      '@parcel/watcher': 2.5.1
-
   sass@1.88.0:
+    dependencies:
+      chokidar: 4.0.3
+      immutable: 5.1.2
+      source-map-js: 1.2.1
+    optionalDependencies:
+      '@parcel/watcher': 2.5.1
+
+  sass@1.91.0:
     dependencies:
       chokidar: 4.0.3
       immutable: 5.1.2
@@ -22389,23 +22376,6 @@ snapshots:
       '@types/unist': 3.0.3
       vfile-message: 4.0.2
 
-  vite@6.3.5(@types/node@22.18.0)(jiti@2.4.2)(less@4.3.0)(sass@1.86.3)(terser@5.39.1)(yaml@2.8.1):
-    dependencies:
-      esbuild: 0.25.9
-      fdir: 6.4.4(picomatch@4.0.2)
-      picomatch: 4.0.2
-      postcss: 8.5.3
-      rollup: 4.40.2
-      tinyglobby: 0.2.13
-    optionalDependencies:
-      '@types/node': 22.18.0
-      fsevents: 2.3.3
-      jiti: 2.4.2
-      less: 4.3.0
-      sass: 1.86.3
-      terser: 5.39.1
-      yaml: 2.8.1
-
   vite@6.3.5(@types/node@22.18.0)(jiti@2.4.2)(less@4.3.0)(sass@1.88.0)(terser@5.39.1)(yaml@2.8.1):
     dependencies:
       esbuild: 0.25.9
@@ -22420,6 +22390,23 @@ snapshots:
       jiti: 2.4.2
       less: 4.3.0
       sass: 1.88.0
+      terser: 5.39.1
+      yaml: 2.8.1
+
+  vite@6.3.5(@types/node@22.18.0)(jiti@2.4.2)(less@4.3.0)(sass@1.91.0)(terser@5.39.1)(yaml@2.8.1):
+    dependencies:
+      esbuild: 0.25.9
+      fdir: 6.4.4(picomatch@4.0.2)
+      picomatch: 4.0.2
+      postcss: 8.5.3
+      rollup: 4.40.2
+      tinyglobby: 0.2.13
+    optionalDependencies:
+      '@types/node': 22.18.0
+      fsevents: 2.3.3
+      jiti: 2.4.2
+      less: 4.3.0
+      sass: 1.91.0
       terser: 5.39.1
       yaml: 2.8.1
 
