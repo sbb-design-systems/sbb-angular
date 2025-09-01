@@ -69,7 +69,7 @@
     "zone.js": "~0.15.0"
   },
   "devDependencies": {
-    "@actions/cache": "4.0.3",
+    "@actions/cache": "4.0.5",
     "@angular/cli": "catalog:",
     "@angular/compiler-cli": "catalog:",
     "@angular/localize": "catalog:",
