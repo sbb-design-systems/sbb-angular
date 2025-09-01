@@ -1,12 +1,11 @@
 {
   "$schema": "https://docs.renovatebot.com/renovate-schema.json",
-  "enabled": false,
   "extends": ["config:base"],
   "username": "sbb-angular-renovate[bot]",
   "gitAuthor": "sbb-angular-renovate<52953647+sbb-angular-renovate[bot]@users.noreply.github.com>",
   "repositories": ["sbb-design-systems/sbb-angular"],
-  "baseBranches": ["main", "19.x"],
-  "includePaths": ["package.json", ".github/**"],
+  "baseBranches": ["main", "20.x"],
+  "ignorePaths": ["docs/src/assets/stack-blitz/**"],
   "schedule": ["after 10pm every weekday", "before 5am every weekday", "every weekend"],
   "lockFileMaintenance": {
     "schedule": ["before 7am on thursday"],
