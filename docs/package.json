@@ -59,7 +59,7 @@
     "karma-firefox-launcher": "^2.1.0",
     "karma-jasmine": "^4.0.1",
     "karma-jasmine-html-reporter": "^2.0.0",
-    "npm-run-all": "^4.1.5",
+    "npm-run-all2": "^5.0.0",
     "sass": "1.86.3",
     "ts-node": "10.9.2",
     "typescript": "~5.8.2"
