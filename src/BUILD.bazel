@@ -1,11 +1,11 @@
-load("@aspect_rules_ts//ts:defs.bzl", "ts_config")
 load("@aspect_bazel_lib//lib:copy_to_bin.bzl", "copy_to_bin")
+load("@aspect_rules_js//js:defs.bzl", "js_library")
+load("@aspect_rules_ts//ts:defs.bzl", "ts_config")
 load("//src/angular:config.bzl", "ANGULAR_ENTRYPOINTS", "ANGULAR_TESTING_ENTRYPOINTS")
 load("//src/angular-experimental:config.bzl", "EXPERIMENTAL_ENTRYPOINTS", "EXPERIMENTAL_TESTING_ENTRYPOINTS")
 load("//src/journey-maps:config.bzl", "JOURNEY_MAPS_ENTRYPOINTS", "JOURNEY_MAPS_TESTING_ENTRYPOINTS")
-load("//tools/dgeni:index.bzl", "dgeni_api_docs")
 load("//tools:defaults.bzl", "ts_project")
-load("@aspect_rules_js//js:defs.bzl", "js_library")
+load("//tools/dgeni:index.bzl", "dgeni_api_docs")
 
 package(default_visibility = ["//visibility:public"])
 

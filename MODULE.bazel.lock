@@ -385,7 +385,7 @@
     "@@aspect_rules_ts~//ts:extensions.bzl%ext": {
       "general": {
         "bzlTransitiveDigest": "rh164oSd0ETkckfG0JkoxKUq5kOaO/6OmcLEzI0FdbE=",
-        "usagesDigest": "h8wiF8LK0VPcMQIYSDdADUlE0B4WYCwD6hbkS+QZj/c=",
+        "usagesDigest": "Sz9Bt4IU6oJPfWwcpEB3Uz+IShADwq16bU/Mk+/8uzE=",
         "recordedFileInputs": {
           "@@//package.json": "e7981e872fea4ad9869ceb8229e19604bcf389410381245110245dc8d987bcf2",
           "@@devinfra~//bazel/package.json": "960bcecf963a211f96a3967c7cfb5d3e1cea08d94b27056a3e8dbf2fad1e2dd3",
