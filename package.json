@@ -102,7 +102,7 @@
     "@types/send": "0.17.5",
     "@types/shelljs": "^0.8.15",
     "@types/yargs": "17.0.13",
-    "angular-server-side-configuration": "19.0.1",
+    "angular-server-side-configuration": "20.0.0",
     "angular-t9n": "19.1.1",
     "browser-sync": "3.0.2",
     "chalk": "^5.4.1",
