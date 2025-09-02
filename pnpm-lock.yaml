@@ -147,14 +147,14 @@ importers:
         specifier: 7.28.3
         version: 7.28.3
       '@bazel/bazelisk':
-        specifier: 1.12.1
-        version: 1.12.1
+        specifier: 1.26.0
+        version: 1.26.0
       '@bazel/buildifier':
-        specifier: 6.1.2
-        version: 6.1.2
+        specifier: 6.4.0
+        version: 6.4.0
       '@bazel/ibazel':
-        specifier: ^0.25.0
-        version: 0.25.0
+        specifier: ^0.26.0
+        version: 0.26.10
       '@bazel/runfiles':
         specifier: 6.3.1
         version: 6.3.1
@@ -1730,12 +1730,16 @@ packages:
     resolution: {integrity: sha512-TGCwVeIiVeQUP6yLpxAg8yluFOC+tBQnWw5l8lqwMxKhRtOA+WaH1CJKAXeCBAaS2MxohhkXq44zj/7AM+t2jg==}
     hasBin: true
 
-  '@bazel/buildifier@6.1.2':
-    resolution: {integrity: sha512-psKePmRkP6acwyePOhXP67R/wdwN7BGJxHqp1j5myaO24feMsaXyyiO+oW49x8YAwOpKVSCujVzkTwX2auAc0A==}
+  '@bazel/bazelisk@1.26.0':
+    resolution: {integrity: sha512-bTNcHdGyEQ9r7SczEYUa0gkEQhJo1ld2BjXI8fWBvsUeoHi03QpUs2HZgDbjjrpQFQqG2ZbO7ihZvH8MjhUTHw==}
     hasBin: true
 
-  '@bazel/ibazel@0.25.0':
-    resolution: {integrity: sha512-dtosfsuZCSaqlUe5EyxNdaN7Gow0Y+ZJixdlciytcSieUcB/1lXPFTx6OihxhjgtTHkeFovlQ/QbvArRPnk+nQ==}
+  '@bazel/buildifier@6.4.0':
+    resolution: {integrity: sha512-upvdCVlXYOatvank2Ch5lfNe9Msgny1Fozdz4fIm8diVju4Kd2JmA9DVS/Tg8UlFX/ItAL1PdSyefWK8Ashwdg==}
+    hasBin: true
+
+  '@bazel/ibazel@0.26.10':
+    resolution: {integrity: sha512-+Is7qK/NKz70t1HlrJqLZmDeys6Tg1KaUPF3JB3Xjlm64xA4rX2FeojcYjvdlaZko717lXY29DGsX/B4HSnaqw==}
     hasBin: true
 
   '@bazel/runfiles@6.3.1':
@@ -12585,9 +12589,11 @@ snapshots:
 
   '@bazel/bazelisk@1.12.1': {}
 
-  '@bazel/buildifier@6.1.2': {}
+  '@bazel/bazelisk@1.26.0': {}
 
-  '@bazel/ibazel@0.25.0': {}
+  '@bazel/buildifier@6.4.0': {}
+
+  '@bazel/ibazel@0.26.10': {}
 
   '@bazel/runfiles@6.3.1': {}
 
