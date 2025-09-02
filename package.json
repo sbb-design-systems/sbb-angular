@@ -78,7 +78,7 @@
     "@angular/router": "catalog:",
     "@babel/core": "7.28.3",
     "@bazel/bazelisk": "1.12.1",
-    "@bazel/buildifier": "6.1.2",
+    "@bazel/buildifier": "8.2.1",
     "@bazel/ibazel": "^0.25.0",
     "@bazel/runfiles": "6.3.1",
     "@commitlint/cli": "19.8.1",
