@@ -17,7 +17,7 @@
     "@angular/forms": "0.0.0-NG",
     "@angular/router": "0.0.0-NG",
     "@sbb-esta/angular": "0.0.0-PLACEHOLDER",
-    "@sbb-esta/journey-maps": "0.0.0-PLACEHOLDER"
+    "@sbb-esta/journey-maps": "20.0.1"
   },
   "devDependencies": {
     "@sbb-esta/angular": "workspace:*",
