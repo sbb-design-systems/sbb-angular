@@ -90,7 +90,7 @@
     "@types/events": "3.0.3",
     "@types/fs-extra": "11.0.4",
     "@types/geojson": "7946.0.14",
-    "@types/glob": "8.1.0",
+    "@types/glob": "9.0.0",
     "@types/grecaptcha": "2.0.36",
     "@types/jasmine": "5.1.9",
     "@types/jasminewd2": "2.0.13",
