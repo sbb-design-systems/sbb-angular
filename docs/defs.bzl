@@ -2,9 +2,9 @@
   No docs.
 """
 
+load("@aspect_bazel_lib//lib:copy_to_bin.bzl", "copy_to_bin")
 load("@rules_angular//src/architect:ng_application.bzl", "ng_application")
 load("@rules_angular//src/architect:ng_test.bzl", "ng_test")
-load("@aspect_bazel_lib//lib:copy_to_bin.bzl", "copy_to_bin")
 
 # NOTE:
 #  *_DEPS are runtime dependencies
@@ -35,8 +35,8 @@ APPLICATION_CONFIG = COMMON_CONFIG + [
 ]
 
 TEST_DEPS = [
-    "@rules_browsers//src/browsers/chromium",
-    "@rules_browsers//src/browsers/firefox",
+    "@rules_browsers//browsers/chromium",
+    "@rules_browsers//browsers/firefox",
     "//docs:node_modules/karma-firefox-launcher",
 ]
 
@@ -163,8 +163,8 @@ def _architect_test(project_name, command, configuration = None, args = [], srcs
         srcs = srcs,
         env = env,
         toolchains = [
-            "@rules_browsers//src/browsers/chromium:toolchain_alias",
-            "@rules_browsers//src/browsers/firefox:toolchain_alias",
+            "@rules_browsers//browsers/chromium:toolchain_alias",
+            "@rules_browsers//browsers/firefox:toolchain_alias",
         ],
         **kwargs
     )

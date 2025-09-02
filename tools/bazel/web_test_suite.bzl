@@ -2,8 +2,8 @@
   No docs.
 """
 
-load("@rules_browsers//src/wtr:index.bzl", "wtr_test")
-load("@devinfra//bazel/spec-bundling:index_rjs.bzl", "spec_bundle")
+load("@devinfra//bazel/spec-bundling:index.bzl", "spec_bundle")
+load("@rules_browsers//wtr:index.bzl", "wtr_test")
 
 def _web_test(name, tags = [], deps = [], bootstrap = [], **kwargs):
     spec_bundle(

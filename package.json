@@ -73,13 +73,13 @@
     "@angular/cli": "catalog:",
     "@angular/compiler-cli": "catalog:",
     "@angular/localize": "catalog:",
-    "@angular/ng-dev": "https://github.com/angular/dev-infra-private-ng-dev-builds.git#b991414e4f3ed15d99f4331b5353499434878374",
+    "@angular/ng-dev": "https://github.com/angular/dev-infra-private-ng-dev-builds.git#e5cf193487333c2dbb5eaaa0941a6b23b34af262",
     "@angular/platform-server": "catalog:",
     "@angular/router": "catalog:",
     "@babel/core": "7.28.3",
-    "@bazel/bazelisk": "1.12.1",
-    "@bazel/buildifier": "6.1.2",
-    "@bazel/ibazel": "^0.25.0",
+    "@bazel/bazelisk": "1.26.0",
+    "@bazel/buildifier": "8.2.1",
+    "@bazel/ibazel": "^0.26.0",
     "@bazel/runfiles": "6.3.1",
     "@commitlint/cli": "19.8.1",
     "@commitlint/config-conventional": "19.8.1",
@@ -157,12 +157,12 @@
     "tslint": "6.1.3",
     "tslint-config-prettier": "1.18.0",
     "tslint-consistent-codestyle": "1.16.0",
-    "typescript": "5.8.3",
+    "typescript": "5.9.2",
     "yargs": "17.7.2"
   },
   "pnpm": {
     "overrides": {
-      "typescript": "5.8.3"
+      "typescript": "5.9.2"
     },
     "onlyBuiltDependencies": [],
     "packageExtensions": {
