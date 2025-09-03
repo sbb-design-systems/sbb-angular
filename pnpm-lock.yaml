@@ -217,7 +217,7 @@ importers:
         version: 0.17.5
       '@types/shelljs':
         specifier: ^0.8.15
-        version: 0.8.15
+        version: 0.8.17
       '@types/yargs':
         specifier: 17.0.13
         version: 17.0.13
@@ -485,7 +485,7 @@ importers:
         version: 22.18.0
       '@types/shelljs':
         specifier: 0.8.15
-        version: 0.8.15
+        version: 0.8.17
       jasmine-core:
         specifier: 5.6.0
         version: 5.6.0
@@ -605,7 +605,7 @@ importers:
         version: 22.18.0
       '@types/shelljs':
         specifier: 0.8.15
-        version: 0.8.15
+        version: 0.8.17
       jasmine-core:
         specifier: 5.6.0
         version: 5.6.0
@@ -4105,9 +4105,6 @@ packages:
   '@types/git-raw-commits@5.0.0':
     resolution: {integrity: sha512-MQIzbZxgEnKpN1kCcw9JlQIu3Wdw5c4CCCP2cUli+DYgFjzsjtGLOeUe8oqPjjrKJudOoFnNuIZb/4sYHXEWZg==}
 
-  '@types/glob@7.2.0':
-    resolution: {integrity: sha512-ZUxbzKl0IfJILTS6t7ip5fQQM/J3TJYubDm3nMbgubNNYS62eXeUpoLUC8/7fJNiFYHTrGPQn7hspDUzIHX3UA==}
-
   '@types/glob@9.0.0':
     resolution: {integrity: sha512-00UxlRaIUvYm4R4W9WYkN8/J+kV8fmOQ7okeH6YFtGWFMt3odD45tpG5yA5wnL7HE6lLgjaTW5n14ju2hl2NNA==}
     deprecated: This is a stub types definition. glob provides its own type definitions, so you do not need this installed.
@@ -4234,8 +4231,8 @@ packages:
   '@types/serve-static@1.15.8':
     resolution: {integrity: sha512-roei0UY3LhpOJvjbIP6ZZFngyLKl5dskOtDhxY5THRSpO+ZI+nzJ+m5yUMzGrp89YRa7lvknKkMYjqQFGwA7Sg==}
 
-  '@types/shelljs@0.8.15':
-    resolution: {integrity: sha512-vzmnCHl6hViPu9GNLQJ+DZFd6BQI2DBTUeOvYHqkWQLMfKAAQYMb/xAmZkTogZI/vqXHCWkqDRymDI5p0QTi5Q==}
+  '@types/shelljs@0.8.17':
+    resolution: {integrity: sha512-IDksKYmQA2W9MkQjiyptbMmcQx+8+Ol6b7h6dPU5S05JyiQDSb/nZKnrMrZqGwgV6VkVdl6/SPCKPDlMRvqECg==}
 
   '@types/sockjs@0.3.36':
     resolution: {integrity: sha512-MK9V6NzAS1+Ud7JV9lJLFqW85VbC9dq3LmwZCuBe4wBDgKC0Kj/jd8Xl+nSviU+Qc3+m7umHHyHg//2KSa0a0Q==}
@@ -13429,7 +13426,7 @@ snapshots:
   '@grpc/grpc-js@1.9.15':
     dependencies:
       '@grpc/proto-loader': 0.7.15
-      '@types/node': 22.18.0
+      '@types/node': 24.3.0
 
   '@grpc/proto-loader@0.7.15':
     dependencies:
@@ -15490,13 +15487,13 @@ snapshots:
 
   '@types/bunyan@1.8.11':
     dependencies:
-      '@types/node': 22.18.0
+      '@types/node': 18.19.123
 
   '@types/cacheable-request@6.0.3':
     dependencies:
       '@types/http-cache-semantics': 4.0.4
       '@types/keyv': 3.1.4
-      '@types/node': 22.18.0
+      '@types/node': 18.19.123
       '@types/responselike': 1.0.3
 
   '@types/cli-progress@3.11.6':
@@ -15526,7 +15523,7 @@ snapshots:
 
   '@types/duplexify@3.6.4':
     dependencies:
-      '@types/node': 22.18.0
+      '@types/node': 24.3.0
 
   '@types/ejs@3.1.5': {}
 
@@ -15579,11 +15576,6 @@ snapshots:
     dependencies:
       '@types/node': 22.18.0
 
-  '@types/glob@7.2.0':
-    dependencies:
-      '@types/minimatch': 5.1.2
-      '@types/node': 22.18.0
-
   '@types/glob@9.0.0':
     dependencies:
       glob: 11.0.3
@@ -15614,7 +15606,7 @@ snapshots:
 
   '@types/keyv@3.1.4':
     dependencies:
-      '@types/node': 22.18.0
+      '@types/node': 18.19.123
 
   '@types/mapbox__point-geometry@0.1.4': {}
 
@@ -15677,7 +15669,7 @@ snapshots:
   '@types/pumpify@1.4.4':
     dependencies:
       '@types/duplexify': 3.6.4
-      '@types/node': 22.18.0
+      '@types/node': 24.3.0
 
   '@types/qs@6.14.0': {}
 
@@ -15689,7 +15681,7 @@ snapshots:
 
   '@types/responselike@1.0.3':
     dependencies:
-      '@types/node': 22.18.0
+      '@types/node': 18.19.123
 
   '@types/retry@0.12.2': {}
 
@@ -15712,10 +15704,10 @@ snapshots:
       '@types/node': 22.18.0
       '@types/send': 0.17.5
 
-  '@types/shelljs@0.8.15':
+  '@types/shelljs@0.8.17':
     dependencies:
-      '@types/glob': 7.2.0
       '@types/node': 22.18.0
+      glob: 11.0.3
 
   '@types/sockjs@0.3.36':
     dependencies:
@@ -15747,7 +15739,7 @@ snapshots:
 
   '@types/vfile@3.0.2':
     dependencies:
-      '@types/node': 22.18.0
+      '@types/node': 18.19.123
       '@types/unist': 2.0.11
       '@types/vfile-message': 2.0.0
 
@@ -15771,7 +15763,7 @@ snapshots:
 
   '@types/yauzl@2.10.3':
     dependencies:
-      '@types/node': 22.18.0
+      '@types/node': 18.19.123
     optional: true
 
   '@typespec/ts-http-runtime@0.3.0':
@@ -20972,7 +20964,7 @@ snapshots:
       '@protobufjs/path': 1.1.2
       '@protobufjs/pool': 1.1.0
       '@protobufjs/utf8': 1.1.0
-      '@types/node': 22.18.0
+      '@types/node': 24.3.0
       long: 5.3.2
 
   protobufjs@7.5.4:
