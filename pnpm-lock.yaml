@@ -19,8 +19,8 @@ catalogs:
       specifier: 20.2.3
       version: 20.2.3
     '@angular/cdk':
-      specifier: 20.2.1
-      version: 20.2.1
+      specifier: 20.2.2
+      version: 20.2.2
     '@angular/cli':
       specifier: 20.2.1
       version: 20.2.1
@@ -87,7 +87,7 @@ importers:
         version: 20.2.3(@angular/common@20.2.3(@angular/compiler-cli@20.2.3(@angular/compiler@20.2.3)(typescript@5.9.2))(@angular/core@20.2.3(@angular/compiler@20.2.3)(rxjs@7.8.1)(zone.js@0.15.0))(rxjs@7.8.1))(@angular/compiler-cli@20.2.3(@angular/compiler@20.2.3)(typescript@5.9.2))(@angular/core@20.2.3(@angular/compiler@20.2.3)(rxjs@7.8.1)(zone.js@0.15.0))
       '@angular/cdk':
         specifier: 'catalog:'
-        version: 20.2.1(@angular/common@20.2.3(@angular/compiler-cli@20.2.3(@angular/compiler@20.2.3)(typescript@5.9.2))(@angular/core@20.2.3(@angular/compiler@20.2.3)(rxjs@7.8.1)(zone.js@0.15.0))(rxjs@7.8.1))(@angular/compiler-cli@20.2.3(@angular/compiler@20.2.3)(typescript@5.9.2))(@angular/core@20.2.3(@angular/compiler@20.2.3)(rxjs@7.8.1)(zone.js@0.15.0))(rxjs@7.8.1)
+        version: 20.2.2(@angular/common@20.2.3(@angular/compiler-cli@20.2.3(@angular/compiler@20.2.3)(typescript@5.9.2))(@angular/core@20.2.3(@angular/compiler@20.2.3)(rxjs@7.8.1)(zone.js@0.15.0))(rxjs@7.8.1))(@angular/compiler-cli@20.2.3(@angular/compiler@20.2.3)(typescript@5.9.2))(@angular/core@20.2.3(@angular/compiler@20.2.3)(rxjs@7.8.1)(zone.js@0.15.0))(rxjs@7.8.1)
       '@angular/common':
         specifier: 'catalog:'
         version: 20.2.3(@angular/compiler-cli@20.2.3(@angular/compiler@20.2.3)(typescript@5.9.2))(@angular/core@20.2.3(@angular/compiler@20.2.3)(rxjs@7.8.1)(zone.js@0.15.0))(rxjs@7.8.1)
@@ -400,7 +400,7 @@ importers:
         version: 20.2.3(@angular/common@20.2.3(@angular/compiler-cli@20.2.3(@angular/compiler@20.2.3)(typescript@5.9.2))(@angular/core@20.2.3(@angular/compiler@20.2.3)(rxjs@7.8.1)(zone.js@0.15.0))(rxjs@7.8.1))(@angular/compiler-cli@20.2.3(@angular/compiler@20.2.3)(typescript@5.9.2))(@angular/core@20.2.3(@angular/compiler@20.2.3)(rxjs@7.8.1)(zone.js@0.15.0))
       '@angular/cdk':
         specifier: 'catalog:'
-        version: 20.2.1(@angular/common@20.2.3(@angular/compiler-cli@20.2.3(@angular/compiler@20.2.3)(typescript@5.9.2))(@angular/core@20.2.3(@angular/compiler@20.2.3)(rxjs@7.8.1)(zone.js@0.15.0))(rxjs@7.8.1))(@angular/compiler-cli@20.2.3(@angular/compiler@20.2.3)(typescript@5.9.2))(@angular/core@20.2.3(@angular/compiler@20.2.3)(rxjs@7.8.1)(zone.js@0.15.0))(rxjs@7.8.1)
+        version: 20.2.2(@angular/common@20.2.3(@angular/compiler-cli@20.2.3(@angular/compiler@20.2.3)(typescript@5.9.2))(@angular/core@20.2.3(@angular/compiler@20.2.3)(rxjs@7.8.1)(zone.js@0.15.0))(rxjs@7.8.1))(@angular/compiler-cli@20.2.3(@angular/compiler@20.2.3)(typescript@5.9.2))(@angular/core@20.2.3(@angular/compiler@20.2.3)(rxjs@7.8.1)(zone.js@0.15.0))(rxjs@7.8.1)
       '@angular/common':
         specifier: 'catalog:'
         version: 20.2.3(@angular/compiler-cli@20.2.3(@angular/compiler@20.2.3)(typescript@5.9.2))(@angular/core@20.2.3(@angular/compiler@20.2.3)(rxjs@7.8.1)(zone.js@0.15.0))(rxjs@7.8.1)
@@ -862,8 +862,8 @@ packages:
       vitest:
         optional: true
 
-  '@angular/cdk@20.2.1':
-    resolution: {integrity: sha512-yEPh5hr9LZW4ey/HxtaGdSBDIkNzziLo0Dr1RP8JcxhOQ2Bzv2PZ+g8jC6aPGD7NPV8FtDf0FhTEzQr+m+gBXQ==}
+  '@angular/cdk@20.2.2':
+    resolution: {integrity: sha512-jLvIMmFI8zoi6vAu1Aszua59GmhqBOtsVfkwLUGg5Hi86DI/inJr9BznNX2EKDtaulYMGZCmDgsltXQXeqP5Lg==}
     peerDependencies:
       '@angular/common': ^20.0.0 || ^21.0.0
       '@angular/core': ^20.0.0 || ^21.0.0
@@ -10704,7 +10704,7 @@ snapshots:
       - tsx
       - yaml
 
-  '@angular/cdk@20.2.1(@angular/common@20.2.3(@angular/compiler-cli@20.2.3(@angular/compiler@20.2.3)(typescript@5.9.2))(@angular/core@20.2.3(@angular/compiler@20.2.3)(rxjs@7.8.1)(zone.js@0.15.0))(rxjs@7.8.1))(@angular/compiler-cli@20.2.3(@angular/compiler@20.2.3)(typescript@5.9.2))(@angular/core@20.2.3(@angular/compiler@20.2.3)(rxjs@7.8.1)(zone.js@0.15.0))(rxjs@7.8.1)':
+  '@angular/cdk@20.2.2(@angular/common@20.2.3(@angular/compiler-cli@20.2.3(@angular/compiler@20.2.3)(typescript@5.9.2))(@angular/core@20.2.3(@angular/compiler@20.2.3)(rxjs@7.8.1)(zone.js@0.15.0))(rxjs@7.8.1))(@angular/compiler-cli@20.2.3(@angular/compiler@20.2.3)(typescript@5.9.2))(@angular/core@20.2.3(@angular/compiler@20.2.3)(rxjs@7.8.1)(zone.js@0.15.0))(rxjs@7.8.1)':
     dependencies:
       '@angular/common': 20.2.3(@angular/compiler-cli@20.2.3(@angular/compiler@20.2.3)(typescript@5.9.2))(@angular/core@20.2.3(@angular/compiler@20.2.3)(rxjs@7.8.1)(zone.js@0.15.0))(rxjs@7.8.1)
       '@angular/core': 20.2.3(@angular/compiler@20.2.3)(rxjs@7.8.1)(zone.js@0.15.0)
