@@ -390,8 +390,8 @@ importers:
         specifier: 5.9.2
         version: 5.9.2
       yargs:
-        specifier: 17.7.2
-        version: 17.7.2
+        specifier: 18.0.0
+        version: 18.0.0
 
   docs:
     dependencies:
