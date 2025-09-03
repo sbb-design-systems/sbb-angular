@@ -158,7 +158,7 @@
     "tslint-config-prettier": "1.18.0",
     "tslint-consistent-codestyle": "1.16.0",
     "typescript": "5.9.2",
-    "yargs": "17.7.2"
+    "yargs": "18.0.0"
   },
   "pnpm": {
     "overrides": {
