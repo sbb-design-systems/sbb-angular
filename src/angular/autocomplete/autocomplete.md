@@ -172,6 +172,20 @@ add the attribute `showHintIfNoOptions` to the `<sbb-autocomplete>`.
 </sbb-autocomplete>
 ```
 
+### Updating the position on scroll
+
+The autocomplete only reacts to scrolling events on the `body` / `html` elements by default. Reacting to scroll events
+on other elements would be bad for performance.
+
+If your content is inside a different scrollable container, add the `cdkScrollable` directive from
+`@angular/cdk/scrolling` to the element to make the autocomplete react to scroll events on that element.
+
+```html
+<div cdkScrollable>
+  <sbb-autocomplete> ... </sbb-autocomplete>
+</div>
+```
+
 ### Accessibility
 
 `SbbAutocomplete` implements the ARIA combobox interaction pattern. The text input trigger specifies
