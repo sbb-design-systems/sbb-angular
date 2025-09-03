@@ -1,3 +1,4 @@
+load("@devinfra//bazel/validation:defs.bzl", "validate_ts_version_matching")
 load("@npm//:defs.bzl", "npm_link_all_packages")
 load("//:pkg-externals.bzl", "PKG_EXTERNALS")
 load("//src/angular:config.bzl", "ANGULAR_ENTRYPOINTS", "ANGULAR_TESTING_ENTRYPOINTS")
@@ -33,4 +34,9 @@ genrule(
     name = "entry_points_manifest",
     outs = ["entry_points_manifest.json"],
     cmd = "echo '%s' > $@" % entry_points,
+)
+
+validate_ts_version_matching(
+    module_lock_file = "MODULE.bazel.lock",
+    package_json = "package.json",
 )
