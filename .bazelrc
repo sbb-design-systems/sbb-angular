@@ -1,3 +1,6 @@
+# Frozen lockfile
+common --lockfile_mode=error
+
 # Required by `rules_ts`.
 common --@aspect_rules_ts//ts:skipLibCheck=always
 common --@aspect_rules_ts//ts:default_to_tsc_transpiler
@@ -33,14 +36,6 @@ build --nobuild_runfile_links
 # Prevents the npm package extract from occuring or caching on RBE which overwhelms our quota
 build --modify_execution_info=NpmPackageExtract=+no-remote
 
-############################
-# --strategy=BundlingTypes #
-############################
-# Use BundlingTypes strategy to avoid the `Worker process did not return a WorkResponse` error
-# being caused when Microsoft API extractor prints to stdout and conflicts with the Bazel worker 
-# IPC also using stdout. See https://github.com/angular/angular/issues/46965
-build --strategy=BundlingTypes=remote,sandboxed,local
-
 ###############################
 # Output control              #
 ###############################
@@ -65,11 +60,6 @@ build:release --stamp
 
 build:snapshot-build --workspace_status_command="pnpm -s ng-dev:stamp --mode=snapshot"
 build:snapshot-build --stamp
-
-####################################
-# Bazel custom flags               #
-####################################
-build --flag_alias=partial_compilation=@npm//@angular/bazel/src:partial_compilation
 
 ##################################
 # Always enable Ivy compilation  #

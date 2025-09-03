@@ -2,22 +2,22 @@
   Re-export of Bazel rules with repository-wide defaults.
 """
 
-load("@rules_pkg//:pkg.bzl", "pkg_tar")
-load("@rules_sass//src:index.bzl", _sass_binary = "sass_binary", _sass_library = "sass_library")
-load("@rules_angular//src/ng_package:index.bzl", _ng_package = "ng_package")
-load("//:packages.bzl", "NO_STAMP_NPM_PACKAGE_SUBSTITUTIONS", "NPM_PACKAGE_SUBSTITUTIONS")
-load("//:pkg-externals.bzl", "PKG_EXTERNALS")
-load("//tools/markdown-to-html:index.bzl", _markdown_to_html = "markdown_to_html")
-load("//tools/bazel:ng_package_interop.bzl", "ng_package_interop")
-load("@devinfra//bazel/http-server:index.bzl", _http_server = "http_server")
-load("@devinfra//bazel/spec-bundling:index_rjs.bzl", _spec_bundle = "spec_bundle")
-load("//tools/bazel:web_test_suite.bzl", _ng_web_test_suite = "ng_web_test_suite")
+load("@aspect_rules_jasmine//jasmine:defs.bzl", _jasmine_test = "jasmine_test")
 load("@aspect_rules_js//npm:defs.bzl", _npm_package = "npm_package")
+load("@devinfra//bazel/http-server:index.bzl", _http_server = "http_server")
+load("@devinfra//bazel/spec-bundling:index.bzl", _spec_bundle = "spec_bundle")
+load("@devinfra//bazel/ts_project:index.bzl", "strict_deps_test")
+load("@rules_angular//src/ng_package:index.bzl", _ng_package = "ng_package")
 load("@rules_angular//src/ng_package/text_replace:index.bzl", _text_replace = "text_replace")
 load("@rules_angular//src/ng_project:index.bzl", _ng_project = "ng_project")
 load("@rules_angular//src/ts_project:index.bzl", _ts_project = "ts_project")
-load("@devinfra//bazel/ts_project:index.bzl", "strict_deps_test")
-load("@aspect_rules_jasmine//jasmine:defs.bzl", _jasmine_test = "jasmine_test")
+load("@rules_pkg//:pkg.bzl", "pkg_tar")
+load("@rules_sass//src:index.bzl", _sass_binary = "sass_binary", _sass_library = "sass_library")
+load("//:packages.bzl", "NO_STAMP_NPM_PACKAGE_SUBSTITUTIONS", "NPM_PACKAGE_SUBSTITUTIONS")
+load("//:pkg-externals.bzl", "PKG_EXTERNALS")
+load("//tools/bazel:ng_package_interop.bzl", "ng_package_interop")
+load("//tools/bazel:web_test_suite.bzl", _ng_web_test_suite = "ng_web_test_suite")
+load("//tools/markdown-to-html:index.bzl", _markdown_to_html = "markdown_to_html")
 
 # Re-exports to simplify build file load statements
 markdown_to_html = _markdown_to_html

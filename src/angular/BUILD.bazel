@@ -1,3 +1,4 @@
+load("@npm//:defs.bzl", "npm_link_all_packages")
 load(
     "//src/angular:config.bzl",
     "ANGULAR_ENTRYPOINTS",
@@ -13,7 +14,6 @@ load(
     "sass_binary",
     "sass_library",
 )
-load("@npm//:defs.bzl", "npm_link_all_packages")
 
 package(default_visibility = ["//visibility:public"])
 

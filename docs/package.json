@@ -62,6 +62,6 @@
     "npm-run-all": "^4.1.5",
     "sass": "1.86.3",
     "ts-node": "10.9.2",
-    "typescript": "~5.8.2"
+    "typescript": "~5.9.2"
   }
 }
