@@ -43,7 +43,7 @@ jobs:
       - run: node scripts/clean-docs-files.mjs
 
       - name: Create GitHub Deployment
-        uses: actions/github-script@v7
+        uses: actions/github-script@v8
         with:
           script: |
             const environment = process.env.PR_NUMBER ? process.env.IMAGE_PR_TAG : 'preview-main';
