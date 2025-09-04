@@ -176,7 +176,7 @@ export class _SbbDialogTitleBase implements OnInit, OnDestroy {
     <ng-content></ng-content>
     @if (_closeEnabled) {
       <button
-        sbb-dialog-close
+        [sbb-dialog-close]="undefined"
         class="sbb-dialog-title-close-button sbb-button-reset-frameless"
         [aria-label]="closeAriaLabel"
       >
