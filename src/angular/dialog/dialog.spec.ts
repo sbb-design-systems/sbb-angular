@@ -218,6 +218,25 @@ describe('SbbDialog', () => {
     expect(overlayContainerElement.querySelector('sbb-dialog-container')).toBeNull();
   }));
 
+  it('should close the dialog with undefined result when closed via header button', fakeAsync(() => {
+    const dialogRef = dialog.open(ContentElementDialog, { viewContainerRef: testViewContainerRef });
+    const afterCloseCallback = jasmine.createSpy('afterClose callback');
+
+    dialogRef.afterClosed().subscribe(afterCloseCallback);
+
+    viewContainerFixture.detectChanges();
+    const closeButton = overlayContainerElement.querySelector(
+      '.sbb-dialog-title-close-button',
+    ) as HTMLElement;
+    closeButton.click();
+
+    viewContainerFixture.detectChanges();
+    flush();
+
+    expect(afterCloseCallback).toHaveBeenCalledWith(undefined);
+    expect(overlayContainerElement.querySelector('sbb-dialog-container')).toBeFalsy();
+  }));
+
   it('should dispose of dialog if view container is destroyed while animating', fakeAsync(() => {
     const dialogRef = dialog.open(PizzaMsg, { viewContainerRef: testViewContainerRef });
 
@@ -1600,7 +1619,9 @@ describe('SbbDialog', () => {
       }));
 
       it('should set the "type" attribute of the close button if not set manually', () => {
-        const button = overlayContainerElement.querySelector('button[sbb-dialog-close]')!;
+        const button = overlayContainerElement.querySelector(
+          'button.sbb-dialog-title-close-button',
+        )!;
 
         expect(button.getAttribute('type')).toBe('button');
       });
