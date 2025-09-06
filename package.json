@@ -143,7 +143,7 @@
     "rollup-plugin-dts": "6.2.3",
     "rollup-plugin-sourcemaps2": "0.5.4",
     "rxjs-tslint-rules": "4.34.8",
-    "sass": "1.92.0",
+    "sass": "1.92.1",
     "semver": "7.7.2",
     "shelljs": "0.10.0",
     "source-map-support": "^0.5.21",
