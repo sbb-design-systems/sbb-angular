@@ -2,6 +2,18 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [20.0.2](https://github.com/sbb-design-systems/sbb-angular/compare/20.0.1...20.0.2) (2025-09-08)
+
+
+### Bug Fixes
+
+* **angular/dialog:** return `undefined` when closing dialog via header button ([#2629](https://github.com/sbb-design-systems/sbb-angular/issues/2629)) ([d031e79](https://github.com/sbb-design-systems/sbb-angular/commit/d031e79713adde22f807874aabc440aad038fbd8)), closes [#2496](https://github.com/sbb-design-systems/sbb-angular/issues/2496)
+
+
+### Documentation
+
+* **angular/autocomplete:** add guidance for scroll event handling ([#2612](https://github.com/sbb-design-systems/sbb-angular/issues/2612)) ([dd6e7e7](https://github.com/sbb-design-systems/sbb-angular/commit/dd6e7e75509185db76f47fd7fb72dbd2adc1df4a)), closes [#2574](https://github.com/sbb-design-systems/sbb-angular/issues/2574)
+
 ### [20.0.1](https://github.com/sbb-design-systems/sbb-angular/compare/20.0.0...20.0.1) (2025-06-19)
 
 
