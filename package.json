@@ -80,7 +80,7 @@
     "@bazel/bazelisk": "1.26.0",
     "@bazel/buildifier": "8.2.1",
     "@bazel/ibazel": "^0.26.0",
-    "@bazel/runfiles": "6.3.1",
+    "@bazel/runfiles": "6.5.0",
     "@commitlint/cli": "19.8.1",
     "@commitlint/config-conventional": "19.8.1",
     "@rollup/plugin-commonjs": "23.0.4",
