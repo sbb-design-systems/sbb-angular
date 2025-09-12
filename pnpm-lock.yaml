@@ -156,8 +156,8 @@ importers:
         specifier: ^0.26.0
         version: 0.26.10
       '@bazel/runfiles':
-        specifier: 6.3.1
-        version: 6.3.1
+        specifier: 6.5.0
+        version: 6.5.0
       '@commitlint/cli':
         specifier: 19.8.1
         version: 19.8.1(@types/node@18.19.124)(typescript@5.9.2)
@@ -1777,8 +1777,8 @@ packages:
     resolution: {integrity: sha512-+Is7qK/NKz70t1HlrJqLZmDeys6Tg1KaUPF3JB3Xjlm64xA4rX2FeojcYjvdlaZko717lXY29DGsX/B4HSnaqw==}
     hasBin: true
 
-  '@bazel/runfiles@6.3.1':
-    resolution: {integrity: sha512-1uLNT5NZsUVIGS4syuHwTzZ8HycMPyr6POA3FCE4GbMtc4rhoJk8aZKtNIRthJYfL+iioppi+rTfH3olMPr9nA==}
+  '@bazel/runfiles@6.5.0':
+    resolution: {integrity: sha512-RzahvqTkfpY2jsDxo8YItPX+/iZ6hbiikw1YhE0bA9EKBR5Og8Pa6FHn9PO9M0zaXRVsr0GFQLKbB/0rzy9SzA==}
 
   '@borewit/text-codec@0.1.1':
     resolution: {integrity: sha512-5L/uBxmjaCIX5h8Z+uu+kA9BQLkc/Wl06UGR5ajNRxu+/XjonB5i8JpgFMrPj3LXTCPA0pv8yxUvbUi+QthGGA==}
@@ -12852,7 +12852,7 @@ snapshots:
 
   '@bazel/ibazel@0.26.10': {}
 
-  '@bazel/runfiles@6.3.1': {}
+  '@bazel/runfiles@6.5.0': {}
 
   '@borewit/text-codec@0.1.1': {}
 
