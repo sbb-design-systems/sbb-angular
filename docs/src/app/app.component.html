@@ -43,10 +43,10 @@
       [style.text-decoration]="packageEntry.value['isDeprecated'] ? 'line-through' : ''"
       routerLinkActive="sbb-active"
     >
-      <sbb-icon [svgIcon]="packageEntry.value['svgIcon']"></sbb-icon>
+      <sbb-icon [svgIcon]="packageEntry.value['svgIcon']" />
     </a>
   </sbb-icon-sidebar>
   <sbb-icon-sidebar-content role="main">
-    <router-outlet></router-outlet>
+    <router-outlet />
   </sbb-icon-sidebar-content>
 </sbb-icon-sidebar-container>

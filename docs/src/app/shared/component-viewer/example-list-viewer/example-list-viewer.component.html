@@ -1,7 +1,4 @@
 <ng-container *ngIf="examples | async as _examples; else noData">
-  <sbb-example-viewer
-    *ngFor="let exampleData of _examples"
-    [exampleData]="exampleData"
-  ></sbb-example-viewer>
+  <sbb-example-viewer *ngFor="let exampleData of _examples" [exampleData]="exampleData" />
 </ng-container>
 <ng-template #noData> No Examples found </ng-template>
