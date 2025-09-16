@@ -643,7 +643,9 @@ export class SbbAutocompleteTrigger
     const initialRender = new Observable((subscriber) => {
       afterNextRender(
         () => {
-          subscriber.next();
+          if (!this._componentDestroyed) {
+            subscriber.next();
+          }
         },
         { injector: this._injector },
       );
