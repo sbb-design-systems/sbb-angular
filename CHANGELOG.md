@@ -2,6 +2,19 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [20.0.3](https://github.com/sbb-design-systems/sbb-angular/compare/20.0.2...20.0.3) (2025-09-16)
+
+
+### Bug Fixes
+
+* **angular/autocomplete:** don't throw NG0911 when destroyed during rendering ([#2636](https://github.com/sbb-design-systems/sbb-angular/issues/2636)) ([5e9b5b1](https://github.com/sbb-design-systems/sbb-angular/commit/5e9b5b13f554c16cfe4ee8b8f18c7eba557823ee)), closes [#2515](https://github.com/sbb-design-systems/sbb-angular/issues/2515)
+* **angular/menu:** do not auto-focus when hover opens menu ([#2566](https://github.com/sbb-design-systems/sbb-angular/issues/2566)) ([ee176b8](https://github.com/sbb-design-systems/sbb-angular/commit/ee176b8c923069e79ce38f856760fab20af9756f))
+
+
+### Documentation
+
+* migrate selectors to self-closing tags to align with Angular style ([#2637](https://github.com/sbb-design-systems/sbb-angular/issues/2637)) ([d1b56bb](https://github.com/sbb-design-systems/sbb-angular/commit/d1b56bb96fdd228b87ab0cfd4c13abf27e5afc2e))
+
 ### [20.0.2](https://github.com/sbb-design-systems/sbb-angular/compare/20.0.1...20.0.2) (2025-09-08)
 
 
