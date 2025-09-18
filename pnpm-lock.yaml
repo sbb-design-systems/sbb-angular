@@ -135,8 +135,8 @@ importers:
         specifier: 'catalog:'
         version: 20.3.0(@angular/compiler-cli@20.3.0(@angular/compiler@20.3.0)(typescript@5.9.2))(@angular/compiler@20.3.0)
       '@angular/ng-dev':
-        specifier: https://github.com/angular/dev-infra-private-ng-dev-builds.git#ea19f57120053b984364eda6211f337b2756b190
-        version: https://codeload.github.com/angular/dev-infra-private-ng-dev-builds/tar.gz/ea19f57120053b984364eda6211f337b2756b190(@modelcontextprotocol/sdk@1.17.3)
+        specifier: https://github.com/angular/dev-infra-private-ng-dev-builds.git#be7d9b428e58e0856057e060002f00e66f2a2465
+        version: https://codeload.github.com/angular/dev-infra-private-ng-dev-builds/tar.gz/be7d9b428e58e0856057e060002f00e66f2a2465(@modelcontextprotocol/sdk@1.17.3)
       '@angular/platform-server':
         specifier: 'catalog:'
         version: 20.3.0(a2c721c685ef16cab07dc07e7e263fcb)
@@ -933,9 +933,9 @@ packages:
       '@angular/compiler': 20.3.0
       '@angular/compiler-cli': 20.3.0
 
-  '@angular/ng-dev@https://codeload.github.com/angular/dev-infra-private-ng-dev-builds/tar.gz/ea19f57120053b984364eda6211f337b2756b190':
-    resolution: {tarball: https://codeload.github.com/angular/dev-infra-private-ng-dev-builds/tar.gz/ea19f57120053b984364eda6211f337b2756b190}
-    version: 0.0.0-ea29aaa1017454533a029dd555ad9f93d381d100
+  '@angular/ng-dev@https://codeload.github.com/angular/dev-infra-private-ng-dev-builds/tar.gz/be7d9b428e58e0856057e060002f00e66f2a2465':
+    resolution: {tarball: https://codeload.github.com/angular/dev-infra-private-ng-dev-builds/tar.gz/be7d9b428e58e0856057e060002f00e66f2a2465}
+    version: 0.0.0-3e48ebb847264515e27f286286b3e450882f7182
     hasBin: true
 
   '@angular/platform-browser-dynamic@20.3.0':
@@ -4364,10 +4364,6 @@ packages:
   '@types/minimatch@5.1.2':
     resolution: {integrity: sha512-K0VQKziLUWkVKiRVrx4a40iPaxTUefQmjtkQofBkYRcoaaL/8rhwDWww9qWbrgicNOgnpIsMxyNIUM4+n6dUIA==}
 
-  '@types/minimatch@6.0.0':
-    resolution: {integrity: sha512-zmPitbQ8+6zNutpwgcQuLcsEpn/Cj54Kbn7L5pX0Os5kdWplB7xPgEh/g+SWOB/qmows2gpuCaPyduq8ZZRnxA==}
-    deprecated: This is a stub types definition. minimatch provides its own type definitions, so you do not need this installed.
-
   '@types/minimist@1.2.5':
     resolution: {integrity: sha512-hov8bUuiLiyFPGyFPE1lwWhmzYbirOXQNNo40+y3zow8aFVTeyn3VWL0VFFfdNddA8S4Vf0Tc062rzyNr7Paag==}
 
@@ -4443,10 +4439,6 @@ packages:
 
   '@types/supercluster@7.1.3':
     resolution: {integrity: sha512-Z0pOY34GDFl3Q6hUFYf3HkTwKEE02e7QgtJppBt+beEAxnyOpJua+voGFvxINBHa06GwLFFym7gRPY2SiKIfIA==}
-
-  '@types/supports-color@10.0.0':
-    resolution: {integrity: sha512-Kpp/hhA8/pcxqBBKmOCIgvwCOJAI5y6TWTHhhqnB6KmuYlKtixKgN/Z7VzhShdgONe2jYREnTQbsrb3E0nt/OQ==}
-    deprecated: This is a stub types definition. supports-color provides its own type definitions, so you do not need this installed.
 
   '@types/treeify@1.0.3':
     resolution: {integrity: sha512-hx0o7zWEUU4R2Amn+pjCBQQt23Khy/Dk56gQU5xi5jtPL1h83ACJCeFaB2M/+WO1AntvWrSoVnnCAfI1AQH4Cg==}
@@ -11019,7 +11011,7 @@ snapshots:
     transitivePeerDependencies:
       - supports-color
 
-  '@angular/ng-dev@https://codeload.github.com/angular/dev-infra-private-ng-dev-builds/tar.gz/ea19f57120053b984364eda6211f337b2756b190(@modelcontextprotocol/sdk@1.17.3)':
+  '@angular/ng-dev@https://codeload.github.com/angular/dev-infra-private-ng-dev-builds/tar.gz/be7d9b428e58e0856057e060002f00e66f2a2465(@modelcontextprotocol/sdk@1.17.3)':
     dependencies:
       '@actions/core': 1.11.1
       '@google-cloud/spanner': 8.0.0(supports-color@10.2.2)
@@ -11043,10 +11035,8 @@ snapshots:
       '@types/folder-hash': 4.0.4
       '@types/git-raw-commits': 5.0.0
       '@types/jasmine': 5.1.9
-      '@types/minimatch': 6.0.0
       '@types/node': 24.5.0
       '@types/semver': 7.7.1
-      '@types/supports-color': 10.0.0
       '@types/which': 3.0.4
       '@types/yargs': 17.0.33
       '@types/yarnpkg__lockfile': 1.1.9
@@ -14620,7 +14610,7 @@ snapshots:
   '@opentelemetry/core@2.0.1(@opentelemetry/api@1.9.0)':
     dependencies:
       '@opentelemetry/api': 1.9.0
-      '@opentelemetry/semantic-conventions': 1.36.0
+      '@opentelemetry/semantic-conventions': 1.37.0
 
   '@opentelemetry/core@2.1.0(@opentelemetry/api@1.9.0)':
     dependencies:
@@ -15808,10 +15798,6 @@ snapshots:
 
   '@types/minimatch@5.1.2': {}
 
-  '@types/minimatch@6.0.0':
-    dependencies:
-      minimatch: 3.1.2
-
   '@types/minimist@1.2.5': {}
 
   '@types/moo@0.5.5': {}
@@ -15894,10 +15880,6 @@ snapshots:
   '@types/supercluster@7.1.3':
     dependencies:
       '@types/geojson': 7946.0.14
-
-  '@types/supports-color@10.0.0':
-    dependencies:
-      supports-color: 10.2.2
 
   '@types/treeify@1.0.3': {}
 
