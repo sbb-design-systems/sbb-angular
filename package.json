@@ -73,7 +73,7 @@
     "@angular/cli": "catalog:",
     "@angular/compiler-cli": "catalog:",
     "@angular/localize": "catalog:",
-    "@angular/ng-dev": "https://github.com/angular/dev-infra-private-ng-dev-builds.git#5d4094430673899dc8faf71a18caf5470016a076",
+    "@angular/ng-dev": "https://github.com/angular/dev-infra-private-ng-dev-builds.git#cdda55f60279e71559aebb7dd9954701a80679f3",
     "@angular/platform-server": "catalog:",
     "@angular/router": "catalog:",
     "@babel/core": "7.28.4",
