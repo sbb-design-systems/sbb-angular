@@ -400,6 +400,7 @@ export type SbbPointsOfInterestCategoryType =
   | 'outdoor'
   | 'p2p_car_sharing'
   | 'parking'
+  | 'park'
   | 'parking_deck'
   | 'parking_place'
   | 'park_rail'
