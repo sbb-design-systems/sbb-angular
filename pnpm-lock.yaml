@@ -123,8 +123,8 @@ importers:
         version: 0.15.1
     devDependencies:
       '@actions/cache':
-        specifier: 4.0.5
-        version: 4.0.5(encoding@0.1.13)
+        specifier: 4.1.0
+        version: 4.1.0(encoding@0.1.13)
       '@angular/cli':
         specifier: 'catalog:'
         version: 20.3.2(@types/node@18.19.127)
@@ -657,8 +657,8 @@ importers:
 
 packages:
 
-  '@actions/cache@4.0.5':
-    resolution: {integrity: sha512-RjLz1/vvntOfp3FpkY3wB0MjVRbLq7bfQEuQG9UUTKwdtcYmFrKVmuD+9B6ADbzbkSfHM+dM4sMjdr3R4XIkFg==}
+  '@actions/cache@4.1.0':
+    resolution: {integrity: sha512-z3Opg+P4Y7baq+g1dODXgdtsvPLSewr3ZKpp3U0HQR1A/vWCoJFS52XSezjdngo4SIOdR5oHtyK3a3Arar+X9A==}
 
   '@actions/core@1.11.1':
     resolution: {integrity: sha512-hXJCSrkwfA46Vd9Z3q4cpEpHB1rL5NG04+/rbqW9d3+CSvtB1tYe8UTpAlixa1vj0m/ULglfEK2UKxMGxCxv5A==}
@@ -10559,7 +10559,7 @@ packages:
 
 snapshots:
 
-  '@actions/cache@4.0.5(encoding@0.1.13)':
+  '@actions/cache@4.1.0(encoding@0.1.13)':
     dependencies:
       '@actions/core': 1.11.1
       '@actions/exec': 1.1.1
