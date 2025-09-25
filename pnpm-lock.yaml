@@ -135,8 +135,8 @@ importers:
         specifier: 'catalog:'
         version: 20.3.1(@angular/compiler-cli@20.3.1(@angular/compiler@20.3.1)(typescript@5.9.2))(@angular/compiler@20.3.1)
       '@angular/ng-dev':
-        specifier: https://github.com/angular/dev-infra-private-ng-dev-builds.git#388e486d3909cd065e26c368d4e465dfae76a156
-        version: https://codeload.github.com/angular/dev-infra-private-ng-dev-builds/tar.gz/388e486d3909cd065e26c368d4e465dfae76a156(@modelcontextprotocol/sdk@1.17.3)
+        specifier: https://github.com/angular/dev-infra-private-ng-dev-builds.git#8d333e8e2c48ff99a1a3ca633c1d6a456c082c55
+        version: https://codeload.github.com/angular/dev-infra-private-ng-dev-builds/tar.gz/8d333e8e2c48ff99a1a3ca633c1d6a456c082c55(@modelcontextprotocol/sdk@1.17.3)
       '@angular/platform-server':
         specifier: 'catalog:'
         version: 20.3.1(9144caddf7a9ed4c47d8c4ea0ddab03d)
@@ -933,9 +933,9 @@ packages:
       '@angular/compiler': 20.3.1
       '@angular/compiler-cli': 20.3.1
 
-  '@angular/ng-dev@https://codeload.github.com/angular/dev-infra-private-ng-dev-builds/tar.gz/388e486d3909cd065e26c368d4e465dfae76a156':
-    resolution: {tarball: https://codeload.github.com/angular/dev-infra-private-ng-dev-builds/tar.gz/388e486d3909cd065e26c368d4e465dfae76a156}
-    version: 0.0.0-08d451f9b4e900928b65cd31234693ef9a994492
+  '@angular/ng-dev@https://codeload.github.com/angular/dev-infra-private-ng-dev-builds/tar.gz/8d333e8e2c48ff99a1a3ca633c1d6a456c082c55':
+    resolution: {tarball: https://codeload.github.com/angular/dev-infra-private-ng-dev-builds/tar.gz/8d333e8e2c48ff99a1a3ca633c1d6a456c082c55}
+    version: 0.0.0-715d1659cb1128762a84a8c41d7bd6fb6071ddd7
     hasBin: true
 
   '@angular/platform-browser-dynamic@20.3.1':
@@ -11015,7 +11015,7 @@ snapshots:
     transitivePeerDependencies:
       - supports-color
 
-  '@angular/ng-dev@https://codeload.github.com/angular/dev-infra-private-ng-dev-builds/tar.gz/388e486d3909cd065e26c368d4e465dfae76a156(@modelcontextprotocol/sdk@1.17.3)':
+  '@angular/ng-dev@https://codeload.github.com/angular/dev-infra-private-ng-dev-builds/tar.gz/8d333e8e2c48ff99a1a3ca633c1d6a456c082c55(@modelcontextprotocol/sdk@1.17.3)':
     dependencies:
       '@actions/core': 1.11.1
       '@google-cloud/spanner': 8.0.0(supports-color@10.2.2)
@@ -14614,7 +14614,7 @@ snapshots:
   '@opentelemetry/core@2.0.1(@opentelemetry/api@1.9.0)':
     dependencies:
       '@opentelemetry/api': 1.9.0
-      '@opentelemetry/semantic-conventions': 1.36.0
+      '@opentelemetry/semantic-conventions': 1.37.0
 
   '@opentelemetry/core@2.1.0(@opentelemetry/api@1.9.0)':
     dependencies:
