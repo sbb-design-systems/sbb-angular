@@ -97,7 +97,7 @@
     "@types/mapbox__point-geometry": "0.1.4",
     "@types/marked": "^2.0.2",
     "@types/minimatch": "^5.1.2",
-    "@types/node": "18.19.128",
+    "@types/node": "18.19.129",
     "@types/semver": "^7.3.9",
     "@types/send": "0.17.5",
     "@types/shelljs": "^0.8.15",
