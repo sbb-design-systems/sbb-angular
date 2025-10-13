@@ -153,8 +153,8 @@ importers:
         specifier: 8.2.1
         version: 8.2.1
       '@bazel/ibazel':
-        specifier: ^0.26.0
-        version: 0.26.10
+        specifier: ^0.27.0
+        version: 0.27.0
       '@bazel/runfiles':
         specifier: 6.5.0
         version: 6.5.0
@@ -1773,8 +1773,8 @@ packages:
     resolution: {integrity: sha512-eZ/Aq+2r4PcJa6LbPCT6ffgIJfTU/gYilqIzoX2OLM4nNkbQC6tTMPZNn7aHHjhGPxbNLv41zm4Xqt1olCLgXw==}
     hasBin: true
 
-  '@bazel/ibazel@0.26.10':
-    resolution: {integrity: sha512-+Is7qK/NKz70t1HlrJqLZmDeys6Tg1KaUPF3JB3Xjlm64xA4rX2FeojcYjvdlaZko717lXY29DGsX/B4HSnaqw==}
+  '@bazel/ibazel@0.27.0':
+    resolution: {integrity: sha512-nIQPXoBMKMTD9DzQqBZMuYPRrxiu8Iouw7lAc+gR0WIJOG/NX7qyemPECDEAbVP3mAJKmzyCIQbhYFFx4DjOOg==}
     hasBin: true
 
   '@bazel/runfiles@6.5.0':
@@ -12881,7 +12881,7 @@ snapshots:
 
   '@bazel/buildifier@8.2.1': {}
 
-  '@bazel/ibazel@0.26.10': {}
+  '@bazel/ibazel@0.27.0': {}
 
   '@bazel/runfiles@6.5.0': {}
 
