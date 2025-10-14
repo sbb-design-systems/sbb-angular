@@ -135,8 +135,8 @@ importers:
         specifier: 'catalog:'
         version: 20.3.4(@angular/compiler-cli@20.3.4(@angular/compiler@20.3.4)(typescript@5.9.2))(@angular/compiler@20.3.4)
       '@angular/ng-dev':
-        specifier: https://github.com/angular/dev-infra-private-ng-dev-builds.git#c38af36ddffcc85dd8180e595b9ef052f1a5c66d
-        version: https://codeload.github.com/angular/dev-infra-private-ng-dev-builds/tar.gz/c38af36ddffcc85dd8180e595b9ef052f1a5c66d(@modelcontextprotocol/sdk@1.17.3)
+        specifier: https://github.com/angular/dev-infra-private-ng-dev-builds.git#88fadb5235577583689a2b0979b9b724b383b963
+        version: https://codeload.github.com/angular/dev-infra-private-ng-dev-builds/tar.gz/88fadb5235577583689a2b0979b9b724b383b963(@modelcontextprotocol/sdk@1.17.3)
       '@angular/platform-server':
         specifier: 'catalog:'
         version: 20.3.4(bb5005225bda5a8be4dfbced89482e5b)
@@ -933,9 +933,9 @@ packages:
       '@angular/compiler': 20.3.4
       '@angular/compiler-cli': 20.3.4
 
-  '@angular/ng-dev@https://codeload.github.com/angular/dev-infra-private-ng-dev-builds/tar.gz/c38af36ddffcc85dd8180e595b9ef052f1a5c66d':
-    resolution: {tarball: https://codeload.github.com/angular/dev-infra-private-ng-dev-builds/tar.gz/c38af36ddffcc85dd8180e595b9ef052f1a5c66d}
-    version: 0.0.0-380d026b78f9326d72673a05aad0b2b13441dca9
+  '@angular/ng-dev@https://codeload.github.com/angular/dev-infra-private-ng-dev-builds/tar.gz/88fadb5235577583689a2b0979b9b724b383b963':
+    resolution: {tarball: https://codeload.github.com/angular/dev-infra-private-ng-dev-builds/tar.gz/88fadb5235577583689a2b0979b9b724b383b963}
+    version: 0.0.0-06bada8d42711ac8db590552fa8103777baa7ccf
     hasBin: true
 
   '@angular/platform-browser-dynamic@20.3.4':
@@ -11087,7 +11087,7 @@ snapshots:
     transitivePeerDependencies:
       - supports-color
 
-  '@angular/ng-dev@https://codeload.github.com/angular/dev-infra-private-ng-dev-builds/tar.gz/c38af36ddffcc85dd8180e595b9ef052f1a5c66d(@modelcontextprotocol/sdk@1.17.3)':
+  '@angular/ng-dev@https://codeload.github.com/angular/dev-infra-private-ng-dev-builds/tar.gz/88fadb5235577583689a2b0979b9b724b383b963(@modelcontextprotocol/sdk@1.17.3)':
     dependencies:
       '@actions/core': 1.11.1
       '@google-cloud/spanner': 8.0.0(supports-color@10.2.2)
