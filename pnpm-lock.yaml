@@ -192,8 +192,8 @@ importers:
         specifier: 2.0.36
         version: 2.0.36
       '@types/jasmine':
-        specifier: 5.1.9
-        version: 5.1.9
+        specifier: 5.1.10
+        version: 5.1.10
       '@types/jasminewd2':
         specifier: 2.0.13
         version: 2.0.13
@@ -4225,6 +4225,9 @@ packages:
 
   '@types/http-proxy@1.17.16':
     resolution: {integrity: sha512-sdWoUajOB1cd0A8cRRQ1cfyWNbmFKLAqBB89Y8x5iYyG/mkJHc0YUH8pdWBy2omi9qtCpiIgGjuwO0dQST2l5w==}
+
+  '@types/jasmine@5.1.10':
+    resolution: {integrity: sha512-ctILpOSFD58PTyGwr400GadefIHPqdWQ8VlZI9D65USOWR/aIw8dkDAw17KPCu/Wn+e+r9BWpPtmuB5T/pP8ng==}
 
   '@types/jasmine@5.1.9':
     resolution: {integrity: sha512-8t4HtkW4wxiPVedMpeZ63n3vlWxEIquo/zc1Tm8ElU+SqVV7+D3Na2PWaJUp179AzTragMWVwkMv7mvty0NfyQ==}
@@ -15527,11 +15530,13 @@ snapshots:
     dependencies:
       '@types/node': 22.18.8
 
+  '@types/jasmine@5.1.10': {}
+
   '@types/jasmine@5.1.9': {}
 
   '@types/jasminewd2@2.0.13':
     dependencies:
-      '@types/jasmine': 5.1.9
+      '@types/jasmine': 5.1.10
 
   '@types/json-schema@7.0.15': {}
 
