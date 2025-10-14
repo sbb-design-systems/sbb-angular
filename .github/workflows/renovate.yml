@@ -20,7 +20,7 @@ jobs:
           APP_ID: ${{ secrets.RENOVATE_APP_ID }}
       - uses: actions/checkout@08c6903cd8c0fde910a37f88322edcfb5dd907a8 # v5
       - uses: pnpm/action-setup@v4
-      - uses: actions/setup-node@v5
+      - uses: actions/setup-node@v6
         with:
           cache: 'pnpm'
           node-version-file: '.nvmrc'
