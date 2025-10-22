@@ -135,8 +135,8 @@ importers:
         specifier: 'catalog:'
         version: 20.3.6(@angular/compiler-cli@20.3.6(@angular/compiler@20.3.6)(typescript@5.9.2))(@angular/compiler@20.3.6)
       '@angular/ng-dev':
-        specifier: https://github.com/angular/dev-infra-private-ng-dev-builds.git#6e0f021e72c4d9e18732ef655177682ff88357bd
-        version: https://codeload.github.com/angular/dev-infra-private-ng-dev-builds/tar.gz/6e0f021e72c4d9e18732ef655177682ff88357bd(@modelcontextprotocol/sdk@1.17.3)
+        specifier: https://github.com/angular/dev-infra-private-ng-dev-builds.git#b7b31bc86af715aed506382f2394613b741c840b
+        version: https://codeload.github.com/angular/dev-infra-private-ng-dev-builds/tar.gz/b7b31bc86af715aed506382f2394613b741c840b(@modelcontextprotocol/sdk@1.17.3)
       '@angular/platform-server':
         specifier: 'catalog:'
         version: 20.3.6(009bdd7e82eae7c2d1b4bc36fe2cb9b3)
@@ -933,9 +933,9 @@ packages:
       '@angular/compiler': 20.3.6
       '@angular/compiler-cli': 20.3.6
 
-  '@angular/ng-dev@https://codeload.github.com/angular/dev-infra-private-ng-dev-builds/tar.gz/6e0f021e72c4d9e18732ef655177682ff88357bd':
-    resolution: {tarball: https://codeload.github.com/angular/dev-infra-private-ng-dev-builds/tar.gz/6e0f021e72c4d9e18732ef655177682ff88357bd}
-    version: 0.0.0-b02901c21fa1d40a4272881a9bf75068d1ca4ad9
+  '@angular/ng-dev@https://codeload.github.com/angular/dev-infra-private-ng-dev-builds/tar.gz/b7b31bc86af715aed506382f2394613b741c840b':
+    resolution: {tarball: https://codeload.github.com/angular/dev-infra-private-ng-dev-builds/tar.gz/b7b31bc86af715aed506382f2394613b741c840b}
+    version: 0.0.0-52a1e1b2a2068f8d040417fcfe4fc0b08483e957
     hasBin: true
 
   '@angular/platform-browser-dynamic@20.3.6':
@@ -3505,8 +3505,8 @@ packages:
     resolution: {integrity: sha512-tNe7a6U4rCpxLMBaR0SIYTdjxGdL0Vwb3G1zY8++sPtHSvy7qd54u8CIB0Z+Y6t5tc9pNYMYCMwhE/wdSY7ltg==}
     engines: {node: '>=18.12'}
 
-  '@pnpm/dependency-path@1001.1.2':
-    resolution: {integrity: sha512-fih99/lY+HRRak0U0KMKAO7+nacilWMcvFTH6YDKzjCBTOhxDr6Eeap2mF7uf4ED4dnKsQVNUGmFpvaSXSuFCQ==}
+  '@pnpm/dependency-path@1001.1.3':
+    resolution: {integrity: sha512-ScPXDrlpNNrvV+l4Z1Mh7HjejkltQWfSa3PIaB+WJ3h+PoC1w5blbgfq6ENdHdkRU7L14ie/3MqUGMIx2gZldA==}
     engines: {node: '>=18.12'}
 
   '@pnpm/error@1000.0.5':
@@ -3541,8 +3541,8 @@ packages:
     resolution: {integrity: sha512-iG0qrFcObze3uK+HligvzaTocZKukqqIj1dC3NOH58NeMACUW1NUitSKBgeWuNIE4LJT3SPxnyLEBARMMcqVKA==}
     engines: {node: '>=14.6'}
 
-  '@pnpm/types@1000.8.0':
-    resolution: {integrity: sha512-yx86CGHHquWAI0GgKIuV/RnYewcf5fVFZemC45C/K2cX0uV8GB8TUP541ZrokWola2fZx5sn1vL7xzbceRZfoQ==}
+  '@pnpm/types@1000.9.0':
+    resolution: {integrity: sha512-UvDTCxnbyqkTg2X0dBOuZ4IdFJ8g4UFu0Ybv/5/cZAxCWVhNl1hC/Xc9hR4tZrlBL0NRFePLRhO/iw9LmA1lbw==}
     engines: {node: '>=18.12'}
 
   '@pnpm/types@8.9.0':
@@ -10895,7 +10895,7 @@ snapshots:
     transitivePeerDependencies:
       - supports-color
 
-  '@angular/ng-dev@https://codeload.github.com/angular/dev-infra-private-ng-dev-builds/tar.gz/6e0f021e72c4d9e18732ef655177682ff88357bd(@modelcontextprotocol/sdk@1.17.3)':
+  '@angular/ng-dev@https://codeload.github.com/angular/dev-infra-private-ng-dev-builds/tar.gz/b7b31bc86af715aed506382f2394613b741c840b(@modelcontextprotocol/sdk@1.17.3)':
     dependencies:
       '@actions/core': 1.11.1
       '@google-cloud/spanner': 8.0.0(supports-color@10.2.2)
@@ -10912,7 +10912,7 @@ snapshots:
       '@octokit/request-error': 7.0.1
       '@octokit/rest': 22.0.0
       '@octokit/types': 15.0.1
-      '@pnpm/dependency-path': 1001.1.2
+      '@pnpm/dependency-path': 1001.1.3
       '@types/cli-progress': 3.11.6
       '@types/ejs': 3.1.5
       '@types/events': 3.0.3
@@ -14283,8 +14283,8 @@ snapshots:
       '@octokit/auth-unauthenticated': 7.0.2
       '@octokit/core': 7.0.5
       '@octokit/oauth-app': 8.0.2
-      '@octokit/plugin-paginate-rest': 13.2.0(@octokit/core@7.0.5)
-      '@octokit/types': 15.0.0
+      '@octokit/plugin-paginate-rest': 13.2.1(@octokit/core@7.0.5)
+      '@octokit/types': 15.0.1
       '@octokit/webhooks': 14.1.3
 
   '@octokit/auth-app@8.1.1':
@@ -14326,7 +14326,7 @@ snapshots:
   '@octokit/auth-unauthenticated@7.0.2':
     dependencies:
       '@octokit/request-error': 7.0.1
-      '@octokit/types': 15.0.0
+      '@octokit/types': 15.0.1
 
   '@octokit/core@7.0.5':
     dependencies:
@@ -14372,7 +14372,7 @@ snapshots:
       '@octokit/oauth-authorization-url': 8.0.0
       '@octokit/request': 10.0.5
       '@octokit/request-error': 7.0.1
-      '@octokit/types': 15.0.0
+      '@octokit/types': 15.0.1
 
   '@octokit/openapi-types@26.0.0': {}
 
@@ -14385,7 +14385,7 @@ snapshots:
   '@octokit/plugin-paginate-rest@13.2.0(@octokit/core@7.0.5)':
     dependencies:
       '@octokit/core': 7.0.5
-      '@octokit/types': 15.0.0
+      '@octokit/types': 15.0.1
 
   '@octokit/plugin-paginate-rest@13.2.1(@octokit/core@7.0.5)':
     dependencies:
@@ -14399,7 +14399,7 @@ snapshots:
   '@octokit/plugin-rest-endpoint-methods@16.1.0(@octokit/core@7.0.5)':
     dependencies:
       '@octokit/core': 7.0.5
-      '@octokit/types': 15.0.0
+      '@octokit/types': 15.0.1
 
   '@octokit/plugin-rest-endpoint-methods@16.1.1(@octokit/core@7.0.5)':
     dependencies:
@@ -14410,13 +14410,13 @@ snapshots:
     dependencies:
       '@octokit/core': 7.0.5
       '@octokit/request-error': 7.0.1
-      '@octokit/types': 15.0.0
+      '@octokit/types': 15.0.1
       bottleneck: 2.19.5
 
   '@octokit/plugin-throttling@11.0.2(@octokit/core@7.0.5)':
     dependencies:
       '@octokit/core': 7.0.5
-      '@octokit/types': 15.0.0
+      '@octokit/types': 15.0.1
       bottleneck: 2.19.5
 
   '@octokit/request-error@7.0.1':
@@ -14689,10 +14689,10 @@ snapshots:
 
   '@pnpm/crypto.polyfill@1000.1.0': {}
 
-  '@pnpm/dependency-path@1001.1.2':
+  '@pnpm/dependency-path@1001.1.3':
     dependencies:
       '@pnpm/crypto.hash': 1000.2.1
-      '@pnpm/types': 1000.8.0
+      '@pnpm/types': 1000.9.0
       semver: 7.7.3
 
   '@pnpm/error@1000.0.5':
@@ -14742,7 +14742,7 @@ snapshots:
     dependencies:
       strip-comments-strings: 1.2.0
 
-  '@pnpm/types@1000.8.0': {}
+  '@pnpm/types@1000.9.0': {}
 
   '@pnpm/types@8.9.0': {}
 
