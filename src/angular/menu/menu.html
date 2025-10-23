@@ -6,7 +6,7 @@
     (click)="closed.emit('click')"
     [class.sbb-menu-panel-animations-disabled]="_animationsDisabled"
     [class.sbb-menu-panel-exit-animation]="_panelAnimationState === 'void'"
-    [class.sbb-menu-panel-animating]="_isAnimating"
+    [class.sbb-menu-panel-animating]="_isAnimating()"
     [style.--sbb-menu-trigger-width.px]="triggerContext ? triggerContext.width : 0"
     [style.--sbb-menu-trigger-height.px]="triggerContext ? triggerContext.height : 0"
     tabindex="-1"
