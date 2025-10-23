@@ -22,9 +22,11 @@ import {
   OnInit,
   Output,
   QueryList,
+  signal,
   TemplateRef,
   ViewChild,
   ViewEncapsulation,
+  WritableSignal,
 } from '@angular/core';
 import { merge, Observable, Subject } from 'rxjs';
 import { startWith, switchMap } from 'rxjs/operators';
@@ -140,7 +142,7 @@ export class SbbMenu implements AfterContentInit, SbbMenuPanel<SbbMenuItem>, OnI
   readonly _animationDone = new Subject<'void' | 'enter'>();
 
   /** Whether the menu is animating. */
-  _isAnimating: boolean = false;
+  _isAnimating: WritableSignal<boolean> = signal(false);
 
   /** Parent menu of the current menu panel. */
   parentMenu: SbbMenuPanel | undefined;
@@ -446,13 +448,13 @@ export class SbbMenu implements AfterContentInit, SbbMenuPanel<SbbMenuItem>, OnI
         this._exitFallbackTimeout = undefined;
       }
       this._animationDone.next(isExit ? 'void' : 'enter');
-      this._isAnimating = false;
+      this._isAnimating.set(false);
     }
   }
 
   protected _onAnimationStart(state: string) {
     if (state === ENTER_ANIMATION || state === EXIT_ANIMATION) {
-      this._isAnimating = true;
+      this._isAnimating.set(true);
     }
   }
 
