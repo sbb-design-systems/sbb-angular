@@ -135,8 +135,8 @@ importers:
         specifier: 'catalog:'
         version: 20.3.7(@angular/compiler-cli@20.3.7(@angular/compiler@20.3.7)(typescript@5.9.2))(@angular/compiler@20.3.7)
       '@angular/ng-dev':
-        specifier: https://github.com/angular/dev-infra-private-ng-dev-builds.git#a3426d37e6f9781b00650a767eb5b3967cdb94f7
-        version: https://codeload.github.com/angular/dev-infra-private-ng-dev-builds/tar.gz/a3426d37e6f9781b00650a767eb5b3967cdb94f7(@modelcontextprotocol/sdk@1.17.3)
+        specifier: https://github.com/angular/dev-infra-private-ng-dev-builds.git#1ce6a50acfd26b910e8ac8aebb4a82ad9d49e91f
+        version: https://codeload.github.com/angular/dev-infra-private-ng-dev-builds/tar.gz/1ce6a50acfd26b910e8ac8aebb4a82ad9d49e91f
       '@angular/platform-server':
         specifier: 'catalog:'
         version: 20.3.7(dc543514ebae5c9389a164aa23af2f9d)
@@ -933,9 +933,9 @@ packages:
       '@angular/compiler': 20.3.7
       '@angular/compiler-cli': 20.3.7
 
-  '@angular/ng-dev@https://codeload.github.com/angular/dev-infra-private-ng-dev-builds/tar.gz/a3426d37e6f9781b00650a767eb5b3967cdb94f7':
-    resolution: {tarball: https://codeload.github.com/angular/dev-infra-private-ng-dev-builds/tar.gz/a3426d37e6f9781b00650a767eb5b3967cdb94f7}
-    version: 0.0.0-43d4ea5534ce399657a64c94a9dc1ea883324804
+  '@angular/ng-dev@https://codeload.github.com/angular/dev-infra-private-ng-dev-builds/tar.gz/1ce6a50acfd26b910e8ac8aebb4a82ad9d49e91f':
+    resolution: {tarball: https://codeload.github.com/angular/dev-infra-private-ng-dev-builds/tar.gz/1ce6a50acfd26b910e8ac8aebb4a82ad9d49e91f}
+    version: 0.0.0-1c0054e5aa41bc60c4daf38df29e74c11b793cb6
     hasBin: true
 
   '@angular/platform-browser-dynamic@20.3.7':
@@ -2484,11 +2484,11 @@ packages:
     resolution: {integrity: sha512-IJn+8A3QZJfe7FUtWqHVNo3xJs7KFpurCWGWCiCz3oEh+BkRymKZ1QxfAbU2yGMDzTytLGQ2IV6T2r3cuo75/w==}
     engines: {node: '>=18'}
 
-  '@google/genai@1.25.0':
-    resolution: {integrity: sha512-IBNyel/umavam98SQUfvQSvh/Rp6Ql2fysQLqPyWZr5K8d768X9AO+JZU4o+3qvFDUBA0dVYUSkxyYonVcICvA==}
+  '@google/genai@1.26.0':
+    resolution: {integrity: sha512-cy5y9RgN4jBK8zr+ePgZd0To1HDpzpjIgSM6aRCZnvYR+JupGtgc1SkkOCCi1MNZho7/MuKKdnQTLhhP8OQNvg==}
     engines: {node: '>=20.0.0'}
     peerDependencies:
-      '@modelcontextprotocol/sdk': ^1.11.4
+      '@modelcontextprotocol/sdk': ^1.20.1
     peerDependenciesMeta:
       '@modelcontextprotocol/sdk':
         optional: true
@@ -6506,10 +6506,6 @@ packages:
     resolution: {integrity: sha512-VlvZ+QDWng3aPh++0BSQlSJyjn4qgLLTmqylAR3as0dr6YwPkZpHcZAngAFr68TDVCUSQVRTkV73K/D3m7vEIg==}
     engines: {node: '>=18'}
 
-  google-auth-library@9.15.1:
-    resolution: {integrity: sha512-Jb6Z0+nvECVz+2lzSMt9u98UsoakXxA2HGHMCxh+so3n90XgYWkq5dur19JAJV7ONiJY22yBTyJB1TSkvPq9Ng==}
-    engines: {node: '>=14'}
-
   google-gax@5.0.4:
     resolution: {integrity: sha512-HmQ6zIYBs2EikTk+kjeHmtHprNTEpsnVaKONw9cwZZwUNCkUb+D5RYrJpCxyjdvIDvJp3wLbVReolJLRZRms1g==}
     engines: {node: '>=18'}
@@ -6552,10 +6548,6 @@ packages:
   grpc-gcp@1.0.1:
     resolution: {integrity: sha512-06r73IoGaAIpzT+DRPnw7V5BXvZ5mjy1OcKqSPX+ZHOgbLxT+lJfz8IN83z/sbA3t55ZX88MfDaaCjDGdveVIA==}
     engines: {node: '>=12'}
-
-  gtoken@7.1.0:
-    resolution: {integrity: sha512-pCcEwRi+TKpMlxAQObHDQ56KawURgyAf6jtIY046fJ5tIv3zDe/LEIubckAO8fj6JnAxLdmWkUfNyulQ2iKdEw==}
-    engines: {node: '>=14.0.0'}
 
   gtoken@8.0.0:
     resolution: {integrity: sha512-+CqsMbHPiSTdtSO14O51eMNlrp9N79gmeqmXeouJOhfucAedHw9noVe/n5uJk3tbKE6a+6ZCQg3RPhVhHByAIw==}
@@ -11117,11 +11109,11 @@ snapshots:
     transitivePeerDependencies:
       - supports-color
 
-  '@angular/ng-dev@https://codeload.github.com/angular/dev-infra-private-ng-dev-builds/tar.gz/a3426d37e6f9781b00650a767eb5b3967cdb94f7(@modelcontextprotocol/sdk@1.17.3)':
+  '@angular/ng-dev@https://codeload.github.com/angular/dev-infra-private-ng-dev-builds/tar.gz/1ce6a50acfd26b910e8ac8aebb4a82ad9d49e91f':
     dependencies:
       '@actions/core': 1.11.1
       '@google-cloud/spanner': 8.0.0(supports-color@10.2.2)
-      '@google/genai': 1.25.0(@modelcontextprotocol/sdk@1.17.3)(bufferutil@4.0.9)(encoding@0.1.13)(supports-color@10.2.2)(utf-8-validate@6.0.5)
+      '@google/genai': 1.26.0(bufferutil@4.0.9)(supports-color@10.2.2)(utf-8-validate@6.0.5)
       '@inquirer/prompts': 7.9.0(@types/node@24.9.1)
       '@inquirer/type': 3.0.9(@types/node@24.9.1)
       '@octokit/auth-app': 8.1.1
@@ -13634,15 +13626,12 @@ snapshots:
     transitivePeerDependencies:
       - supports-color
 
-  '@google/genai@1.25.0(@modelcontextprotocol/sdk@1.17.3)(bufferutil@4.0.9)(encoding@0.1.13)(supports-color@10.2.2)(utf-8-validate@6.0.5)':
+  '@google/genai@1.26.0(bufferutil@4.0.9)(supports-color@10.2.2)(utf-8-validate@6.0.5)':
     dependencies:
-      google-auth-library: 9.15.1(encoding@0.1.13)(supports-color@10.2.2)
+      google-auth-library: 10.4.1(supports-color@10.2.2)
       ws: 8.18.3(bufferutil@4.0.9)(utf-8-validate@6.0.5)
-    optionalDependencies:
-      '@modelcontextprotocol/sdk': 1.17.3
     transitivePeerDependencies:
       - bufferutil
-      - encoding
       - supports-color
       - utf-8-validate
 
@@ -14772,7 +14761,7 @@ snapshots:
       '@opentelemetry/core': 2.2.0(@opentelemetry/api@1.9.0)
       '@opentelemetry/resources': 2.1.0(@opentelemetry/api@1.9.0)
       '@opentelemetry/semantic-conventions': 1.37.0
-      gcp-metadata: 6.1.1(encoding@0.1.13)(supports-color@10.2.2)
+      gcp-metadata: 6.1.1(encoding@0.1.13)
     transitivePeerDependencies:
       - encoding
       - supports-color
@@ -18316,7 +18305,7 @@ snapshots:
 
   functions-have-names@1.2.3: {}
 
-  gaxios@6.7.1(encoding@0.1.13)(supports-color@10.2.2):
+  gaxios@6.7.1(encoding@0.1.13):
     dependencies:
       extend: 3.0.2
       https-proxy-agent: 7.0.6(supports-color@10.2.2)
@@ -18335,9 +18324,9 @@ snapshots:
     transitivePeerDependencies:
       - supports-color
 
-  gcp-metadata@6.1.1(encoding@0.1.13)(supports-color@10.2.2):
+  gcp-metadata@6.1.1(encoding@0.1.13):
     dependencies:
-      gaxios: 6.7.1(encoding@0.1.13)(supports-color@10.2.2)
+      gaxios: 6.7.1(encoding@0.1.13)
       google-logging-utils: 0.0.2
       json-bigint: 1.0.0
     transitivePeerDependencies:
@@ -18607,18 +18596,6 @@ snapshots:
     transitivePeerDependencies:
       - supports-color
 
-  google-auth-library@9.15.1(encoding@0.1.13)(supports-color@10.2.2):
-    dependencies:
-      base64-js: 1.5.1
-      ecdsa-sig-formatter: 1.0.11
-      gaxios: 6.7.1(encoding@0.1.13)(supports-color@10.2.2)
-      gcp-metadata: 6.1.1(encoding@0.1.13)(supports-color@10.2.2)
-      gtoken: 7.1.0(encoding@0.1.13)(supports-color@10.2.2)
-      jws: 4.0.0
-    transitivePeerDependencies:
-      - encoding
-      - supports-color
-
   google-gax@5.0.4(supports-color@10.2.2):
     dependencies:
       '@grpc/grpc-js': 1.14.0
@@ -18671,14 +18648,6 @@ snapshots:
     dependencies:
       '@grpc/grpc-js': 1.14.0
       protobufjs: 7.4.0
-
-  gtoken@7.1.0(encoding@0.1.13)(supports-color@10.2.2):
-    dependencies:
-      gaxios: 6.7.1(encoding@0.1.13)(supports-color@10.2.2)
-      jws: 4.0.0
-    transitivePeerDependencies:
-      - encoding
-      - supports-color
 
   gtoken@8.0.0(supports-color@10.2.2):
     dependencies:
