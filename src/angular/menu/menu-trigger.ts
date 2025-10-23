@@ -704,7 +704,12 @@ export class SbbMenuTrigger
     // Subscribe to changes in the hovered item in order to toggle the panel.
     if (this.triggersSubmenu() && this._parentSbbMenu) {
       this._hoverSubscription = this._parentSbbMenu._hovered().subscribe((active) => {
-        if (active === this._menuItemInstance && !active.disabled) {
+        if (
+          active === this._menuItemInstance &&
+          !active.disabled &&
+          // Ignore hover events if the parent menu is in the process of being closed (see #31956).
+          this._parentSbbMenu?._panelAnimationState !== 'void'
+        ) {
           this._openedBy = 'mouse';
 
           // Open the menu, but do NOT auto-focus on first item when just hovering.
