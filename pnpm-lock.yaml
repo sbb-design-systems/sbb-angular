@@ -174,8 +174,8 @@ importers:
         specifier: 'catalog:'
         version: 20.3.7(chokidar@4.0.3)
       '@types/browser-sync':
-        specifier: 2.29.0
-        version: 2.29.0
+        specifier: 2.29.1
+        version: 2.29.1
       '@types/events':
         specifier: 3.0.3
         version: 3.0.3
@@ -4167,8 +4167,8 @@ packages:
   '@types/bonjour@3.5.13':
     resolution: {integrity: sha512-z9fJ5Im06zvUL548KvYNecEVlA7cVDkGUi6kZusb04mpyEFKCIZJvloCcmpmLaIahDpOQGHaHmG6imtPMmPXGQ==}
 
-  '@types/browser-sync@2.29.0':
-    resolution: {integrity: sha512-d2V8FDX/LbDCSm343N2VChzDxvll0h76I8oSigYpdLgPDmcdcR6fywTggKBkUiDM3qAbHOq7NZvepj/HJM5e2g==}
+  '@types/browser-sync@2.29.1':
+    resolution: {integrity: sha512-jAMsEkLpNURfpS4XIN9BX7SY+uCoTkPjLIovwssV/3e/FPwg9hYusbCXmGNfC3T6W/6d3iP3clxy9cvevjFKtQ==}
 
   '@types/bunyan@1.8.11':
     resolution: {integrity: sha512-758fRH7umIMk5qt5ELmRMff4mLDlN+xyYzC+dkPTdKwbSkJFvz6xwyScrytPU0QIBbRRwbiE8/BIg8bpajerNQ==}
@@ -15496,7 +15496,7 @@ snapshots:
     dependencies:
       '@types/node': 22.18.12
 
-  '@types/browser-sync@2.29.0':
+  '@types/browser-sync@2.29.1':
     dependencies:
       '@types/micromatch': 2.3.35
       '@types/node': 22.18.12
