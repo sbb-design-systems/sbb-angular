@@ -135,8 +135,8 @@ importers:
         specifier: 'catalog:'
         version: 20.3.7(@angular/compiler-cli@20.3.7(@angular/compiler@20.3.7)(typescript@5.9.2))(@angular/compiler@20.3.7)
       '@angular/ng-dev':
-        specifier: https://github.com/angular/dev-infra-private-ng-dev-builds.git#616fedd5ae1655bb227f61c67fc9945ec75d3350
-        version: https://codeload.github.com/angular/dev-infra-private-ng-dev-builds/tar.gz/616fedd5ae1655bb227f61c67fc9945ec75d3350
+        specifier: https://github.com/angular/dev-infra-private-ng-dev-builds.git#2ec1779ad0f5695613ab357835d4f5b449ff4437
+        version: https://codeload.github.com/angular/dev-infra-private-ng-dev-builds/tar.gz/2ec1779ad0f5695613ab357835d4f5b449ff4437
       '@angular/platform-server':
         specifier: 'catalog:'
         version: 20.3.7(dc543514ebae5c9389a164aa23af2f9d)
@@ -933,9 +933,9 @@ packages:
       '@angular/compiler': 20.3.7
       '@angular/compiler-cli': 20.3.7
 
-  '@angular/ng-dev@https://codeload.github.com/angular/dev-infra-private-ng-dev-builds/tar.gz/616fedd5ae1655bb227f61c67fc9945ec75d3350':
-    resolution: {tarball: https://codeload.github.com/angular/dev-infra-private-ng-dev-builds/tar.gz/616fedd5ae1655bb227f61c67fc9945ec75d3350}
-    version: 0.0.0-db74b80bd7f233f465f6ac89b2093e01ea7ffbf0
+  '@angular/ng-dev@https://codeload.github.com/angular/dev-infra-private-ng-dev-builds/tar.gz/2ec1779ad0f5695613ab357835d4f5b449ff4437':
+    resolution: {tarball: https://codeload.github.com/angular/dev-infra-private-ng-dev-builds/tar.gz/2ec1779ad0f5695613ab357835d4f5b449ff4437}
+    version: 0.0.0-e12608620a98aa269f910e4d139e7c7b87f5c0c6
     hasBin: true
 
   '@angular/platform-browser-dynamic@20.3.7':
@@ -2505,8 +2505,8 @@ packages:
     resolution: {integrity: sha512-IJn+8A3QZJfe7FUtWqHVNo3xJs7KFpurCWGWCiCz3oEh+BkRymKZ1QxfAbU2yGMDzTytLGQ2IV6T2r3cuo75/w==}
     engines: {node: '>=18'}
 
-  '@google/genai@1.26.0':
-    resolution: {integrity: sha512-cy5y9RgN4jBK8zr+ePgZd0To1HDpzpjIgSM6aRCZnvYR+JupGtgc1SkkOCCi1MNZho7/MuKKdnQTLhhP8OQNvg==}
+  '@google/genai@1.27.0':
+    resolution: {integrity: sha512-sveeQqwyzO/U5kOjo3EflF1rf7v0ZGprrjPGmeT6V5u22IUTcA4wBFxW+q1n7hOX0M1iWR3944MImoNPOM+zsA==}
     engines: {node: '>=20.0.0'}
     peerDependencies:
       '@modelcontextprotocol/sdk': ^1.20.1
@@ -4236,8 +4236,8 @@ packages:
   '@types/geojson@7946.0.14':
     resolution: {integrity: sha512-WCfD5Ht3ZesJUsONdhvm84dmzWOiOzOAqOncN0++w0lBw1o8OuDNJF2McvvCef/yBqb/HYRahp1BYtODFQ8bRg==}
 
-  '@types/git-raw-commits@5.0.0':
-    resolution: {integrity: sha512-MQIzbZxgEnKpN1kCcw9JlQIu3Wdw5c4CCCP2cUli+DYgFjzsjtGLOeUe8oqPjjrKJudOoFnNuIZb/4sYHXEWZg==}
+  '@types/git-raw-commits@5.0.1':
+    resolution: {integrity: sha512-sd4kgxJbuZF0RDy6cX7KlKSGiwqB1mqn8nriUbxt5e1F+MO/N4hJlhaYn0Omw4g2biClFpT5Mre07x7OkGt8tg==}
 
   '@types/glob@9.0.0':
     resolution: {integrity: sha512-00UxlRaIUvYm4R4W9WYkN8/J+kV8fmOQ7okeH6YFtGWFMt3odD45tpG5yA5wnL7HE6lLgjaTW5n14ju2hl2NNA==}
@@ -4407,8 +4407,8 @@ packages:
   '@types/yargs@17.0.13':
     resolution: {integrity: sha512-9sWaruZk2JGxIQU+IhI1fhPYRcQ0UuTNuKuCW9bR5fp7qi2Llf7WDzNa17Cy7TKnh3cdxDOiyTu6gaLS0eDatg==}
 
-  '@types/yargs@17.0.33':
-    resolution: {integrity: sha512-WpxBCKWPLr4xSsHgz511rFJAM+wS28w2zEO1QDNY5zM/S8ok70NNfztH0xwhqKyaK0OHCbN98LDAZuy1ctxDkA==}
+  '@types/yargs@17.0.34':
+    resolution: {integrity: sha512-KExbHVa92aJpw9WDQvzBaGVE2/Pz+pLZQloT2hjL8IqsZnV62rlPOYvNnLmf/L2dyllfVUOVBj64M0z/46eR2A==}
 
   '@types/yarnpkg__lockfile@1.1.9':
     resolution: {integrity: sha512-GD4Fk15UoP5NLCNor51YdfL9MSdldKCqOC9EssrRw3HVfar9wUZ5y8Lfnp+qVD6hIinLr8ygklDYnmlnlQo12Q==}
@@ -10908,11 +10908,11 @@ snapshots:
     transitivePeerDependencies:
       - supports-color
 
-  '@angular/ng-dev@https://codeload.github.com/angular/dev-infra-private-ng-dev-builds/tar.gz/616fedd5ae1655bb227f61c67fc9945ec75d3350':
+  '@angular/ng-dev@https://codeload.github.com/angular/dev-infra-private-ng-dev-builds/tar.gz/2ec1779ad0f5695613ab357835d4f5b449ff4437':
     dependencies:
       '@actions/core': 1.11.1
       '@google-cloud/spanner': 8.0.0(supports-color@10.2.2)
-      '@google/genai': 1.26.0(bufferutil@4.0.9)(supports-color@10.2.2)(utf-8-validate@6.0.5)
+      '@google/genai': 1.27.0(bufferutil@4.0.9)(supports-color@10.2.2)(utf-8-validate@6.0.5)
       '@inquirer/prompts': 7.9.0(@types/node@24.9.1)
       '@inquirer/type': 3.0.9(@types/node@24.9.1)
       '@octokit/auth-app': 8.1.1
@@ -10930,12 +10930,12 @@ snapshots:
       '@types/ejs': 3.1.5
       '@types/events': 3.0.3
       '@types/folder-hash': 4.0.4
-      '@types/git-raw-commits': 5.0.0
+      '@types/git-raw-commits': 5.0.1
       '@types/jasmine': 5.1.12
       '@types/node': 24.9.1
       '@types/semver': 7.7.1
       '@types/which': 3.0.4
-      '@types/yargs': 17.0.33
+      '@types/yargs': 17.0.34
       '@types/yarnpkg__lockfile': 1.1.9
       '@yarnpkg/lockfile': 1.1.0
       bufferutil: 4.0.9
@@ -13456,7 +13456,7 @@ snapshots:
     transitivePeerDependencies:
       - supports-color
 
-  '@google/genai@1.26.0(bufferutil@4.0.9)(supports-color@10.2.2)(utf-8-validate@6.0.5)':
+  '@google/genai@1.27.0(bufferutil@4.0.9)(supports-color@10.2.2)(utf-8-validate@6.0.5)':
     dependencies:
       google-auth-library: 10.4.1(supports-color@10.2.2)
       ws: 8.18.3(bufferutil@4.0.9)(utf-8-validate@6.0.5)
@@ -15590,7 +15590,7 @@ snapshots:
 
   '@types/geojson@7946.0.14': {}
 
-  '@types/git-raw-commits@5.0.0':
+  '@types/git-raw-commits@5.0.1':
     dependencies:
       '@types/node': 22.18.12
 
@@ -15767,7 +15767,7 @@ snapshots:
     dependencies:
       '@types/yargs-parser': 21.0.3
 
-  '@types/yargs@17.0.33':
+  '@types/yargs@17.0.34':
     dependencies:
       '@types/yargs-parser': 21.0.3
 
