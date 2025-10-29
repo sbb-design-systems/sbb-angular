@@ -33,7 +33,7 @@ jobs:
           cache: 'pnpm'
           node-version-file: '.nvmrc'
         
-      - uses: actions/download-artifact@v5
+      - uses: actions/download-artifact@v6
         with:
           name: docs-artifact
           path: dist/docs/
