@@ -135,8 +135,8 @@ importers:
         specifier: 'catalog:'
         version: 20.3.10(@angular/compiler-cli@20.3.10(@angular/compiler@20.3.10)(typescript@5.9.2))(@angular/compiler@20.3.10)
       '@angular/ng-dev':
-        specifier: https://github.com/angular/dev-infra-private-ng-dev-builds.git#5f2d8a0191b76d9e3310f3796cbb4f0d7d60894c
-        version: https://codeload.github.com/angular/dev-infra-private-ng-dev-builds/tar.gz/5f2d8a0191b76d9e3310f3796cbb4f0d7d60894c
+        specifier: https://github.com/angular/dev-infra-private-ng-dev-builds.git#bef47ad353f7928aa2b88146d90ac0f6c342f7dc
+        version: https://codeload.github.com/angular/dev-infra-private-ng-dev-builds/tar.gz/bef47ad353f7928aa2b88146d90ac0f6c342f7dc
       '@angular/platform-server':
         specifier: 'catalog:'
         version: 20.3.10(4422a7fea2c307a072ec6195488431f1)
@@ -933,9 +933,9 @@ packages:
       '@angular/compiler': 20.3.10
       '@angular/compiler-cli': 20.3.10
 
-  '@angular/ng-dev@https://codeload.github.com/angular/dev-infra-private-ng-dev-builds/tar.gz/5f2d8a0191b76d9e3310f3796cbb4f0d7d60894c':
-    resolution: {tarball: https://codeload.github.com/angular/dev-infra-private-ng-dev-builds/tar.gz/5f2d8a0191b76d9e3310f3796cbb4f0d7d60894c}
-    version: 0.0.0-6382072f56e22288160b4eb7789c8a1f9eaa3ced
+  '@angular/ng-dev@https://codeload.github.com/angular/dev-infra-private-ng-dev-builds/tar.gz/bef47ad353f7928aa2b88146d90ac0f6c342f7dc':
+    resolution: {tarball: https://codeload.github.com/angular/dev-infra-private-ng-dev-builds/tar.gz/bef47ad353f7928aa2b88146d90ac0f6c342f7dc}
+    version: 0.0.0-4a9ebbb7c82d49b93dd4347659c42c633f14ad92
     hasBin: true
 
   '@angular/platform-browser-dynamic@20.3.10':
@@ -3625,6 +3625,7 @@ packages:
   '@renovatebot/kbpgp@4.0.4':
     resolution: {integrity: sha512-jHC+jEbW/IMgppTfltGvheNv2WDPlYR/Jm+vcfRsCAO0JEfMAyh/aPYQ6ttRiB5GJlstxZiJpxGcMSS/7uDb1A==}
     engines: {node: ^20.9.0 || ^22.11.0 || >=24.10.0, pnpm: ^10.0.0}
+    deprecated: Package no longer supported. Contact Support at https://www.npmjs.com/support for more info.
 
   '@renovatebot/osv-offline-db@1.7.9':
     resolution: {integrity: sha512-4mHlGm6MvWcCmf7y34Uu6CgfLcAcdABEaplhbAJc1ZluvOsHh3ymQ4AN1MaBxK7iOFmSusnla7ch7/zEfo63aA==}
@@ -11114,7 +11115,7 @@ snapshots:
     transitivePeerDependencies:
       - supports-color
 
-  '@angular/ng-dev@https://codeload.github.com/angular/dev-infra-private-ng-dev-builds/tar.gz/5f2d8a0191b76d9e3310f3796cbb4f0d7d60894c':
+  '@angular/ng-dev@https://codeload.github.com/angular/dev-infra-private-ng-dev-builds/tar.gz/bef47ad353f7928aa2b88146d90ac0f6c342f7dc':
     dependencies:
       '@actions/core': 1.11.1
       '@google-cloud/spanner': 8.0.0(supports-color@10.2.2)
