@@ -5,7 +5,7 @@
     "outDir": "./dist/packages/all",
     "experimentalDecorators": true,
     "module": "esnext",
-    "moduleResolution": "node",
+    "moduleResolution": "bundler",
     "esModuleInterop": true,
     "noUnusedParameters": false,
     "noFallthroughCasesInSwitch": true,
@@ -36,6 +36,9 @@
   "angularCompilerOptions": {
     "strictTemplates": true,
     "typeCheckHostBindings": true,
+    "strictInputTypes": true,
+    "strictOutputEventTypes": true,
+    "strictDomEventTypes": true,
     "extendedDiagnostics": {
       "defaultCategory": "error"
     }
