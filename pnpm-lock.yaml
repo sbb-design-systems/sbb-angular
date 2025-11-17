@@ -135,8 +135,8 @@ importers:
         specifier: 'catalog:'
         version: 20.3.11(@angular/compiler-cli@20.3.11(@angular/compiler@20.3.11)(typescript@5.9.2))(@angular/compiler@20.3.11)
       '@angular/ng-dev':
-        specifier: https://github.com/angular/dev-infra-private-ng-dev-builds.git#b1fe943cca3ab648a18dbb0df7711af7c3079159
-        version: https://codeload.github.com/angular/dev-infra-private-ng-dev-builds/tar.gz/b1fe943cca3ab648a18dbb0df7711af7c3079159
+        specifier: https://github.com/angular/dev-infra-private-ng-dev-builds.git#0cbd16a09fb18b1c4c50bf433c82862b9777b9b9
+        version: https://codeload.github.com/angular/dev-infra-private-ng-dev-builds/tar.gz/0cbd16a09fb18b1c4c50bf433c82862b9777b9b9
       '@angular/platform-server':
         specifier: 'catalog:'
         version: 20.3.11(ca50d90cb9aec94ad363c8742fcde3ff)
@@ -933,9 +933,9 @@ packages:
       '@angular/compiler': 20.3.11
       '@angular/compiler-cli': 20.3.11
 
-  '@angular/ng-dev@https://codeload.github.com/angular/dev-infra-private-ng-dev-builds/tar.gz/b1fe943cca3ab648a18dbb0df7711af7c3079159':
-    resolution: {tarball: https://codeload.github.com/angular/dev-infra-private-ng-dev-builds/tar.gz/b1fe943cca3ab648a18dbb0df7711af7c3079159}
-    version: 0.0.0-59529b10d01f74a47b7200a9fe92033d3f5c36e4
+  '@angular/ng-dev@https://codeload.github.com/angular/dev-infra-private-ng-dev-builds/tar.gz/0cbd16a09fb18b1c4c50bf433c82862b9777b9b9':
+    resolution: {tarball: https://codeload.github.com/angular/dev-infra-private-ng-dev-builds/tar.gz/0cbd16a09fb18b1c4c50bf433c82862b9777b9b9}
+    version: 0.0.0-8cd78c4ec3f64c816805c043ac32d45551741e7c
     hasBin: true
 
   '@angular/platform-browser-dynamic@20.3.11':
@@ -11067,7 +11067,7 @@ snapshots:
     transitivePeerDependencies:
       - supports-color
 
-  '@angular/ng-dev@https://codeload.github.com/angular/dev-infra-private-ng-dev-builds/tar.gz/b1fe943cca3ab648a18dbb0df7711af7c3079159':
+  '@angular/ng-dev@https://codeload.github.com/angular/dev-infra-private-ng-dev-builds/tar.gz/0cbd16a09fb18b1c4c50bf433c82862b9777b9b9':
     dependencies:
       '@actions/core': 1.11.1
       '@google-cloud/spanner': 8.0.0(supports-color@10.2.2)
