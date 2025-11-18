@@ -38,7 +38,6 @@ ng_app(
         "//docs:node_modules/highlight.js",
         "//docs:node_modules/maplibre-gl",
         "//docs:node_modules/path-normalize",
-        "//docs:node_modules/zone.js",
     ],
 )
 

@@ -3,7 +3,7 @@
     "declaration": true,
     "lib": ["es2017"],
     "module": "commonjs",
-    "moduleResolution": "node",
+    "moduleResolution": "bundler",
     "rootDir": ".",
     "strictNullChecks": true,
     "noPropertyAccessFromIndexSignature": true,

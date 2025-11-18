@@ -1,7 +1,8 @@
 import { DOWN_ARROW, ENTER, ESCAPE, SPACE, TAB, UP_ARROW } from '@angular/cdk/keycodes';
-import { createCloseScrollStrategy, OverlayContainer } from '@angular/cdk/overlay';
+import { createCloseScrollStrategy, OverlayContainer, OverlayModule } from '@angular/cdk/overlay';
 import { _supportsShadowDom } from '@angular/cdk/platform';
 import { ScrollDispatcher } from '@angular/cdk/scrolling';
+import { AsyncPipe } from '@angular/common';
 import {
   ChangeDetectionStrategy,
   Component,
@@ -27,7 +28,7 @@ import {
 } from '@angular/core/testing';
 import { FormControl, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { By } from '@angular/platform-browser';
-import { NoopAnimationsModule } from '@angular/platform-browser/animations';
+import { provideNoopAnimations } from '@angular/platform-browser/animations';
 import { SbbOption, SbbOptionModule, SbbOptionSelectionChange } from '@sbb-esta/angular/core';
 import {
   clearElement,
@@ -38,7 +39,7 @@ import {
   dispatchMouseEvent,
   typeInElement,
 } from '@sbb-esta/angular/core/testing';
-import { SbbFormField } from '@sbb-esta/angular/form-field';
+import { SbbFormField, SbbFormFieldModule } from '@sbb-esta/angular/form-field';
 import { SbbInputModule } from '@sbb-esta/angular/input';
 import { Observable, Subject, Subscription } from 'rxjs';
 import { map, startWith } from 'rxjs/operators';
@@ -90,7 +91,13 @@ const SIMPLE_AUTOCOMPLETE_TEMPLATE = `
 
 @Component({
   template: SIMPLE_AUTOCOMPLETE_TEMPLATE,
-  standalone: false,
+  imports: [
+    SbbAutocompleteModule,
+    SbbInputModule,
+    SbbFormFieldModule,
+    SbbOptionModule,
+    ReactiveFormsModule,
+  ],
 })
 class SimpleAutocomplete implements OnDestroy {
   numberCtrl = new FormControl<{ name: string; code: string; height?: number } | string | null>(
@@ -98,7 +105,7 @@ class SimpleAutocomplete implements OnDestroy {
   );
   filteredNumbers: any[];
   valueSub: Subscription;
-  position = 'auto';
+  position: 'auto' | 'above' | 'below' = 'auto';
   width: number;
   autocompleteDisabled = false;
   hasLabel = true;
@@ -149,7 +156,13 @@ class SimpleAutocomplete implements OnDestroy {
 @Component({
   template: SIMPLE_AUTOCOMPLETE_TEMPLATE,
   encapsulation: ViewEncapsulation.ShadowDom,
-  standalone: false,
+  imports: [
+    SbbAutocompleteModule,
+    SbbInputModule,
+    SbbFormFieldModule,
+    SbbOptionModule,
+    ReactiveFormsModule,
+  ],
 })
 class SimpleAutocompleteShadowDom extends SimpleAutocomplete {}
 
@@ -169,7 +182,14 @@ class SimpleAutocompleteShadowDom extends SimpleAutocomplete {}
       }
     </sbb-autocomplete>
   `,
-  standalone: false,
+  imports: [
+    SbbAutocompleteModule,
+    SbbFormFieldModule,
+    SbbInputModule,
+    SbbOptionModule,
+    ReactiveFormsModule,
+    AsyncPipe,
+  ],
 })
 class NgIfAutocomplete {
   optionCtrl = new FormControl('');
@@ -200,7 +220,7 @@ class NgIfAutocomplete {
         sbbInput
         placeholder="Number"
         [sbbAutocomplete]="auto"
-        (input)="onInput($event.target?.value)"
+        (input)="onInput($event.target.value)"
       />
     </sbb-form-field>
 
@@ -212,7 +232,7 @@ class NgIfAutocomplete {
       }
     </sbb-autocomplete>
   `,
-  standalone: false,
+  imports: [SbbAutocompleteModule, SbbFormFieldModule, SbbInputModule, SbbOptionModule],
 })
 class AutocompleteWithoutForms {
   filteredNumbers: any[];
@@ -247,7 +267,13 @@ class AutocompleteWithoutForms {
       }
     </sbb-autocomplete>
   `,
-  standalone: false,
+  imports: [
+    SbbAutocompleteModule,
+    SbbFormFieldModule,
+    SbbInputModule,
+    SbbOptionModule,
+    FormsModule,
+  ],
 })
 class AutocompleteWithNgModel {
   filteredNumbers: any[];
@@ -277,7 +303,13 @@ class AutocompleteWithNgModel {
       }
     </sbb-autocomplete>
   `,
-  standalone: false,
+  imports: [
+    SbbAutocompleteModule,
+    SbbFormFieldModule,
+    SbbInputModule,
+    SbbOptionModule,
+    FormsModule,
+  ],
 })
 class AutocompleteWithNumbers {
   selectedNumber: number;
@@ -297,7 +329,7 @@ class AutocompleteWithNumbers {
       }
     </sbb-autocomplete>
   `,
-  standalone: false,
+  imports: [SbbAutocompleteModule, SbbFormFieldModule, SbbInputModule, SbbOptionModule],
 })
 class AutocompleteWithOnPushDelay implements OnInit {
   @ViewChild(SbbAutocompleteTrigger, { static: true })
@@ -323,7 +355,7 @@ class AutocompleteWithOnPushDelay implements OnInit {
       }
     </sbb-autocomplete>
   `,
-  standalone: false,
+  imports: [SbbAutocompleteModule, SbbOptionModule, ReactiveFormsModule, AsyncPipe],
 })
 class AutocompleteWithNativeInput {
   optionCtrl = new FormControl('');
@@ -346,8 +378,8 @@ class AutocompleteWithNativeInput {
 }
 
 @Component({
-  template: `<input placeholder="Choose" [sbbAutocomplete]="auto" [formControl]="control" />`,
-  standalone: false,
+  template: `<input placeholder="Choose" [sbbAutocomplete]="null!" [formControl]="control" />`,
+  imports: [SbbAutocompleteModule, ReactiveFormsModule],
 })
 class AutocompleteWithoutPanel {
   @ViewChild(SbbAutocompleteTrigger) trigger: SbbAutocompleteTrigger;
@@ -362,7 +394,7 @@ class AutocompleteWithoutPanel {
 
     <sbb-autocomplete #auto="sbbAutocomplete">
       @for (group of stateGroups; track group) {
-        <sbb-optgroup [label]="group.label">
+        <sbb-optgroup [label]="group.title">
           @for (state of group.states; track state) {
             <sbb-option [value]="state" style="height: 48px">
               <span>{{ state }}</span>
@@ -372,7 +404,13 @@ class AutocompleteWithoutPanel {
       }
     </sbb-autocomplete>
   `,
-  standalone: false,
+  imports: [
+    SbbAutocompleteModule,
+    SbbFormFieldModule,
+    SbbInputModule,
+    SbbOptionModule,
+    FormsModule,
+  ],
 })
 class AutocompleteWithGroups {
   @ViewChild(SbbAutocompleteTrigger) trigger: SbbAutocompleteTrigger;
@@ -402,7 +440,7 @@ class AutocompleteWithGroups {
     <sbb-autocomplete #auto="sbbAutocomplete">
       @if (true) {
         @for (group of stateGroups; track group) {
-          <sbb-optgroup [label]="group.label">
+          <sbb-optgroup [label]="group.title">
             @for (state of group.states; track state) {
               <sbb-option [value]="state">
                 <span>{{ state }}</span>
@@ -413,7 +451,13 @@ class AutocompleteWithGroups {
       }
     </sbb-autocomplete>
   `,
-  standalone: false,
+  imports: [
+    SbbAutocompleteModule,
+    SbbFormFieldModule,
+    SbbInputModule,
+    SbbOptionModule,
+    FormsModule,
+  ],
 })
 class AutocompleteWithIndirectGroups extends AutocompleteWithGroups {}
 
@@ -431,7 +475,13 @@ class AutocompleteWithIndirectGroups extends AutocompleteWithGroups {}
       }
     </sbb-autocomplete>
   `,
-  standalone: false,
+  imports: [
+    SbbAutocompleteModule,
+    SbbFormFieldModule,
+    SbbInputModule,
+    SbbOptionModule,
+    FormsModule,
+  ],
 })
 class AutocompleteWithSelectEvent {
   selectedNumber: string;
@@ -449,7 +499,7 @@ class AutocompleteWithSelectEvent {
     <input [formControl]="formControl" [sbbAutocomplete]="auto" />
     <sbb-autocomplete #auto="sbbAutocomplete"></sbb-autocomplete>
   `,
-  standalone: false,
+  imports: [SbbAutocompleteModule, ReactiveFormsModule],
 })
 class PlainAutocompleteInputWithFormControl {
   formControl = new FormControl('');
@@ -467,7 +517,13 @@ class PlainAutocompleteInputWithFormControl {
       }
     </sbb-autocomplete>
   `,
-  standalone: false,
+  imports: [
+    SbbFormFieldModule,
+    SbbInputModule,
+    SbbAutocompleteModule,
+    SbbOptionModule,
+    FormsModule,
+  ],
 })
 class AutocompleteWithNumberInputAndNgModel {
   selectedValue: number;
@@ -481,7 +537,7 @@ class AutocompleteWithNumberInputAndNgModel {
         <input
           sbbInput
           [sbbAutocomplete]="auto"
-          [sbbAutocompleteConnectedTo]="connectedTo"
+          [sbbAutocompleteConnectedTo]="connectedTo!"
           [(ngModel)]="selectedValue"
         />
       </sbb-form-field>
@@ -502,7 +558,13 @@ class AutocompleteWithNumberInputAndNgModel {
       }
     </sbb-autocomplete>
   `,
-  standalone: false,
+  imports: [
+    SbbFormFieldModule,
+    SbbInputModule,
+    SbbAutocompleteModule,
+    SbbOptionModule,
+    FormsModule,
+  ],
 })
 class AutocompleteWithDifferentOrigin {
   @ViewChild(SbbAutocompleteTrigger) trigger: SbbAutocompleteTrigger;
@@ -517,15 +579,15 @@ class AutocompleteWithDifferentOrigin {
     <input autocomplete="changed" [(ngModel)]="value" [sbbAutocomplete]="auto" />
     <sbb-autocomplete #auto="sbbAutocomplete"></sbb-autocomplete>
   `,
-  standalone: false,
+  imports: [SbbAutocompleteModule, FormsModule],
 })
 class AutocompleteWithNativeAutocompleteAttribute {
   value: string;
 }
 
 @Component({
-  template: '<input [sbbAutocomplete]="null" sbbAutocompleteDisabled>',
-  standalone: false,
+  template: '<input [sbbAutocomplete]="null!" sbbAutocompleteDisabled>',
+  imports: [SbbAutocompleteModule],
 })
 class InputWithoutAutocompleteAndDisabled {}
 
@@ -541,7 +603,7 @@ class InputWithoutAutocompleteAndDisabled {}
       }
     </sbb-autocomplete>
   `,
-  standalone: false,
+  imports: [SbbFormFieldModule, SbbInputModule, SbbAutocompleteModule, SbbOptionModule],
 })
 class AutocompleteWithActivatedEvent {
   states = ['California', 'West Virginia', 'Florida'];
@@ -573,7 +635,14 @@ class AutocompleteWithActivatedEvent {
       </div>
     </ng-template>
   `,
-  standalone: false,
+  imports: [
+    SbbFormFieldModule,
+    SbbInputModule,
+    SbbAutocompleteModule,
+    SbbOptionModule,
+    ReactiveFormsModule,
+    OverlayModule,
+  ],
 })
 class AutocompleteInsideAModal {
   foods = [
@@ -601,7 +670,13 @@ class AutocompleteInsideAModal {
         </sbb-option>
       }
     </sbb-autocomplete>`,
-  standalone: false,
+  imports: [
+    SbbFormFieldModule,
+    SbbInputModule,
+    SbbAutocompleteModule,
+    SbbOptionModule,
+    FormsModule,
+  ],
 })
 class AutocompleteLocaleNormalizer {
   @ViewChild(SbbAutocompleteTrigger, { static: true })
@@ -632,7 +707,7 @@ class AutocompleteLocaleNormalizer {
         <sbb-option-hint>hint</sbb-option-hint>
       }
     </sbb-autocomplete>`,
-  standalone: false,
+  imports: [SbbAutocompleteModule, SbbOptionModule],
 })
 class AutocompleteHint {
   @ViewChild(SbbAutocompleteTrigger) trigger: SbbAutocompleteTrigger;
@@ -648,16 +723,7 @@ describe('SbbAutocomplete', () => {
   // Creates a test component fixture.
   function createComponent<T>(component: Type<T>, providers: Provider[] = []) {
     TestBed.configureTestingModule({
-      imports: [
-        SbbAutocompleteModule,
-        SbbInputModule,
-        FormsModule,
-        ReactiveFormsModule,
-        NoopAnimationsModule,
-        SbbOptionModule,
-      ],
-      declarations: [component],
-      providers,
+      providers: [...providers, provideNoopAnimations()],
     });
 
     inject([OverlayContainer], (oc: OverlayContainer) => {
@@ -668,12 +734,12 @@ describe('SbbAutocomplete', () => {
     return TestBed.createComponent<T>(component);
   }
 
-  afterEach(inject([OverlayContainer], (currentOverlayContainer: OverlayContainer) => {
-    // Since we're resetting the testing module in some of the tests,
-    // we can potentially have multiple overlay containers.
-    currentOverlayContainer.ngOnDestroy();
-    overlayContainer.ngOnDestroy();
-  }));
+  // afterEach(inject([OverlayContainer], (currentOverlayContainer: OverlayContainer) => {
+  //   // Since we're resetting the testing module in some of the tests,
+  //   // we can potentially have multiple overlay containers.
+  //   currentOverlayContainer.ngOnDestroy();
+  //   overlayContainer.ngOnDestroy();
+  // }));
 
   describe('panel toggling', () => {
     let fixture: ComponentFixture<SimpleAutocomplete>;
