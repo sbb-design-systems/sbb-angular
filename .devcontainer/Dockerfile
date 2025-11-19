@@ -4,15 +4,15 @@ LABEL authors="mario"
 # install patch
 RUN apt-get update && apt-get install -y \
     patch \
-    curl \
-    git \
-    vim \
+    # curl \
+    # git \
+    # vim \
   && rm -rf /var/lib/apt/lists/*
 
 # Node.js 22 + pnpm (via corepack)
-RUN curl -fsSL https://deb.nodesource.com/setup_22.x | bash - \
-  && apt-get install -y nodejs \
-  && corepack enable \
-  && corepack prepare pnpm@latest --activate
-
+#RUN curl -fsSL https://deb.nodesource.com/setup_22.x | bash - \
+#  && apt-get install -y nodejs \
+#  && corepack enable \
+#  && corepack prepare pnpm@latest --activate
+#
 ENTRYPOINT ["top", "-b"]

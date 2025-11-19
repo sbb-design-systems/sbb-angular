@@ -4,19 +4,19 @@
   "name": "Ubuntu",
   // Or use a Dockerfile or Docker Compose file. More info: https://containers.dev/guide/dockerfile
   "build": {
-    "dockerfile": "./Dockerfile",
-    "context": "..",
-    "options": ["--platform=linux/amd64"]
+    "dockerfile": "./Dockerfile"
+    //    "context": "..",
+    //    "options": ["--platform=linux/amd64"]
   },
-  "runArgs": [
-    "--platform=linux/amd64"
-  ],
+  //  "runArgs": [
+  //    "--platform=linux/amd64"
+  //  ],
 
   // Features to add to the dev container. More info: https://containers.dev/features.
-  //  "features": {
-  //    "ghcr.io/devcontainers-extra/features/pnpm": {},
-  //    "ghcr.io/kreemer/features/chrometesting": {}
-  //  },
+  "features": {
+    "ghcr.io/devcontainers-extra/features/pnpm": {},
+    "ghcr.io/kreemer/features/chrometesting": {}
+  },
 
   // Use 'forwardPorts' to make a list of ports inside the container available locally.
   // "forwardPorts": [],
