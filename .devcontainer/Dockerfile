@@ -30,5 +30,3 @@ RUN curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.40.1/install.sh | b
   && nvm alias default $NODE_VERSION \
   && corepack enable \
   && ln -sf "$NVM_DIR/versions/node/$(nvm version)/bin/"* /usr/local/bin/
-
-ENTRYPOINT ["top", "-b"]
