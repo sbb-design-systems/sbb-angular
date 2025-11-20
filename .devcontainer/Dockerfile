@@ -3,6 +3,7 @@ LABEL authors="mario"
 
 # install patch
 RUN apt-get update && apt-get install -y \
+    chromium-browser \
     patch \
     curl \
     git \
