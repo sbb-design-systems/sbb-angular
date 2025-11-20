@@ -3,7 +3,9 @@ LABEL authors="mario"
 
 # install patch
 RUN apt-get update && apt-get install -y \
-    chromium-browser \
+    chromium \
+    libnspr4 \
+    libglib2.0-0 \
     patch \
     curl \
     git \
