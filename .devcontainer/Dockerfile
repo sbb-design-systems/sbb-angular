@@ -7,6 +7,7 @@ RUN apt-get update && apt-get install -y \
     curl \
     git \
     vim \
+    build-essential \
   && rm -rf /var/lib/apt/lists/*
 
 # Node.js 22 + pnpm (via corepack)

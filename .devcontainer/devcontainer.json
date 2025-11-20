@@ -8,9 +8,7 @@
     "context": "..",
     "options": ["--platform=linux/amd64"]
   },
-  "runArgs": [
-    "--platform=linux/amd64"
-  ],
+  "runArgs": ["--platform=linux/amd64"],
 
   // Features to add to the dev container. More info: https://containers.dev/features.
   //  "features": {
@@ -19,7 +17,7 @@
   //  },
 
   // Use 'forwardPorts' to make a list of ports inside the container available locally.
-  // "forwardPorts": [],
+  "forwardPorts": [4200],
 
   // Use 'postCreateCommand' to run commands after the container is created.
   // "postCreateCommand": "uname -a",
