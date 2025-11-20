@@ -3,14 +3,18 @@ LABEL authors="mario"
 
 # install patch
 RUN apt-get update && apt-get install -y \
-    chromium \
-    libnspr4 \
-    libglib2.0-0 \
+    wget \
+    gnupg \
+    ca-certificates \
     patch \
     curl \
     git \
     vim \
     build-essential \
+  && wget -q -O - https://dl-ssl.google.com/linux/linux_signing_key.pub | gpg --dearmor -o /usr/share/keyrings/google-chrome-keyring.gpg \
+  && echo "deb [arch=amd64 signed-by=/usr/share/keyrings/google-chrome-keyring.gpg] http://dl.google.com/linux/chrome/deb/ stable main" > /etc/apt/sources.list.d/google-chrome.list \
+  && apt-get update \
+  && apt-get install -y google-chrome-stable --no-install-recommends \
   && rm -rf /var/lib/apt/lists/*
 
 # Node.js 22 + pnpm (via corepack)
