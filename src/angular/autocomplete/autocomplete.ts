@@ -65,14 +65,13 @@ export const SBB_AUTOCOMPLETE_DEFAULT_OPTIONS = new InjectionToken<SbbAutocomple
   'sbb-autocomplete-default-options',
   {
     providedIn: 'root',
-    factory: SBB_AUTOCOMPLETE_DEFAULT_OPTIONS_FACTORY,
+    factory: () => ({
+      autoActiveFirstOption: false,
+      autoSelectActiveOption: false,
+      requireSelection: false,
+    }),
   },
 );
-
-/** @docs-private */
-export function SBB_AUTOCOMPLETE_DEFAULT_OPTIONS_FACTORY(): SbbAutocompleteDefaultOptions {
-  return { autoActiveFirstOption: false, autoSelectActiveOption: false, requireSelection: false };
-}
 
 @Component({
   selector: 'sbb-autocomplete',

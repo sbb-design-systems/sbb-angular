@@ -5,10 +5,7 @@ import { SbbCommonModule, SbbOptionModule } from '@sbb-esta/angular/core';
 
 import { SbbAutocomplete } from './autocomplete';
 import { SbbAutocompleteOrigin } from './autocomplete-origin';
-import {
-  SbbAutocompleteTrigger,
-  SBB_AUTOCOMPLETE_SCROLL_STRATEGY_FACTORY_PROVIDER,
-} from './autocomplete-trigger';
+import { SbbAutocompleteTrigger } from './autocomplete-trigger';
 
 @NgModule({
   imports: [
@@ -27,6 +24,5 @@ import {
     SbbAutocompleteOrigin,
     SbbAutocompleteTrigger,
   ],
-  providers: [SBB_AUTOCOMPLETE_SCROLL_STRATEGY_FACTORY_PROVIDER],
 })
 export class SbbAutocompleteModule {}

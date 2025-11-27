@@ -84,17 +84,6 @@ export const SBB_AUTOCOMPLETE_SCROLL_STRATEGY = new InjectionToken<() => ScrollS
   },
 );
 
-/** @docs-private */
-export function SBB_AUTOCOMPLETE_SCROLL_STRATEGY_FACTORY(overlay: Overlay): () => ScrollStrategy {
-  return () => overlay.scrollStrategies.reposition();
-}
-
-export const SBB_AUTOCOMPLETE_SCROLL_STRATEGY_FACTORY_PROVIDER = {
-  provide: SBB_AUTOCOMPLETE_SCROLL_STRATEGY,
-  deps: [Overlay],
-  useFactory: SBB_AUTOCOMPLETE_SCROLL_STRATEGY_FACTORY,
-};
-
 /**
  * Creates an error to be thrown when attempting to use an autocomplete trigger without a panel.
  * @docs-private
