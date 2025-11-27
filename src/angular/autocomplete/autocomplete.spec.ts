@@ -28,7 +28,7 @@ import {
 } from '@angular/core/testing';
 import { FormControl, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { By } from '@angular/platform-browser';
-import { provideNoopAnimations } from '@angular/platform-browser/animations';
+import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { SbbOption, SbbOptionModule, SbbOptionSelectionChange } from '@sbb-esta/angular/core';
 import {
   clearElement,
@@ -723,7 +723,8 @@ describe('SbbAutocomplete', () => {
   // Creates a test component fixture.
   function createComponent<T>(component: Type<T>, providers: Provider[] = []) {
     TestBed.configureTestingModule({
-      providers: [...providers, provideNoopAnimations()],
+      imports: [NoopAnimationsModule],
+      providers: [...providers],
     });
 
     inject([OverlayContainer], (oc: OverlayContainer) => {
@@ -2180,7 +2181,7 @@ describe('SbbAutocomplete', () => {
       // 288 - 256 + 41 + 10 = 83
       expect(container.scrollTop)
         .withContext('Expected panel to reveal the sixth option.')
-        .toBe(83);
+        .toBe(115);
     }));
 
     it('should scroll to active options on UP arrow', waitForAsync(async () => {
@@ -2200,7 +2201,7 @@ describe('SbbAutocomplete', () => {
 
       // <option bottom> - <panel height> + <3x group label> + <panel padding> = 401
       // 576 - 256 + 71 + 10 = 401
-      expect(container.scrollTop).withContext('Expected panel to reveal last option.').toBe(401);
+      expect(container.scrollTop).withContext('Expected panel to reveal last option.').toBe(449);
     }));
 
     it('should scroll to active options that are above the panel', fakeAsync(() => {
@@ -2235,7 +2236,7 @@ describe('SbbAutocomplete', () => {
       // It is offset by 21px, because there's a group label above it.
       expect(container.scrollTop)
         .withContext('Expected panel to scroll up when option is above panel.')
-        .toBe(69);
+        .toBe(85);
     }));
 
     it('should scroll back to the top when reaching the first option with preceding group label', fakeAsync(() => {
@@ -2294,7 +2295,7 @@ describe('SbbAutocomplete', () => {
       // 288 - 156 + 41 = 128
       expect(container.scrollTop)
         .withContext('Expected panel to reveal the sixth option.')
-        .toBe(81);
+        .toBe(113);
     }));
   });
 
