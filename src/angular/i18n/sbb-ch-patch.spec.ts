@@ -1,6 +1,7 @@
+import { DatePipe } from '@angular/common';
 import '@angular/common/locales/global/en-CH';
 import { Component } from '@angular/core';
-import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
+import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 
 import './sbb-ch-patch';
@@ -24,7 +25,7 @@ declare let $localize: any;
     <span>{{ now | date: 'longTime' }}</span>
     <span>{{ now | date: 'fullTime' }}</span>
   `,
-  standalone: false,
+  imports: [DatePipe],
 })
 class DateFormat {
   now = new Date(2020, 0, 1, 0, 0, 0);
@@ -32,12 +33,6 @@ class DateFormat {
 
 describe('i18n sbb patch', () => {
   let fixture: ComponentFixture<DateFormat>;
-
-  beforeEach(waitForAsync(() => {
-    TestBed.configureTestingModule({
-      declarations: [DateFormat],
-    });
-  }));
 
   beforeEach(() => {
     $localize.locale = 'en-CH';

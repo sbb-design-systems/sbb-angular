@@ -1335,7 +1335,7 @@ class NestedTabGroupWithLabel {}
 @Component({
   template: `
     <sbb-tab-group class="tab-group">
-      <sbb-tab label="Tab One" [labelClass]="labelClassList" [bodyClass]="bodyClassList">
+      <sbb-tab label="Tab One" [labelClass]="labelClassList!" [bodyClass]="bodyClassList!">
         Tab one content
       </sbb-tab>
       <sbb-tab label="Tab Two" labelClass="hardcoded-label-class" bodyClass="hardcoded-body-class">

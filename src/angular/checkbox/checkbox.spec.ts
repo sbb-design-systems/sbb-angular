@@ -275,7 +275,7 @@ describe('SbbCheckbox', () => {
     });
 
     it('should generate a unique id for the checkbox input if no id is set', () => {
-      testComponent.checkboxId = null;
+      testComponent.checkboxId = null!;
       fixture.changeDetectorRef.markForCheck();
       fixture.detectChanges();
 
@@ -1032,7 +1032,7 @@ class SingleCheckbox {
   isDisabled: boolean = false;
   parentElementClicked: boolean = false;
   parentElementKeyedUp: boolean = false;
-  checkboxId: string | null = 'simple-check';
+  checkboxId = 'simple-check';
   checkboxValue: string = 'single_checkbox';
 
   onCheckboxClick: (event?: Event) => void = () => {};

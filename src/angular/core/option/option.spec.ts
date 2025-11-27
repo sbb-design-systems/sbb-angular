@@ -14,7 +14,7 @@ import { SbbOptionModule } from './option.module';
 
 @Component({
   template: `<sbb-option [id]="id" [disabled]="disabled"></sbb-option>`,
-  standalone: false,
+  imports: [SbbOptionModule],
 })
 class BasicOption {
   disabled: boolean;
@@ -27,16 +27,13 @@ class BasicOption {
       <sbb-option>Option</sbb-option>
     </sbb-optgroup>
   `,
-  standalone: false,
+  imports: [SbbOptionModule],
 })
 class InsideGroup {}
 
 describe('SbbOption component', () => {
   beforeEach(waitForAsync(() => {
-    TestBed.configureTestingModule({
-      imports: [SbbOptionModule],
-      declarations: [BasicOption],
-    });
+    TestBed.configureTestingModule({});
   }));
 
   it('should complete the `stateChanges` stream on destroy', () => {
@@ -175,8 +172,6 @@ describe('SbbOption component', () => {
     beforeEach(waitForAsync(() => {
       TestBed.resetTestingModule();
       TestBed.configureTestingModule({
-        imports: [SbbOptionModule],
-        declarations: [InsideGroup],
         providers: [
           {
             provide: SBB_OPTION_PARENT_COMPONENT,

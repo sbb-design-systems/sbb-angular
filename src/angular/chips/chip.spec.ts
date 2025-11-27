@@ -280,7 +280,7 @@ class SingleChip {
   shouldShow: boolean = true;
   value: any;
 
-  chipFocus: (event?: SbbChipEvent) => void = () => {};
+  chipFocus: (event: FocusEvent) => void = () => {};
   chipDestroy: (event?: SbbChipEvent) => void = () => {};
   chipRemove: (event?: SbbChipEvent) => void = () => {};
 }

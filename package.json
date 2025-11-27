@@ -23,7 +23,7 @@
     "bazel:format-lint": "pnpm -s bazel:buildifier --lint=warn --mode=check",
     "start": "ibazel run //docs:serve",
     "start:journey-maps-wc": "ibazel run //src/journey-maps-wc:serve",
-    "test": "node ./scripts/run-component-tests.js",
+    "test": "node --no-warnings=ExperimentalWarning --loader ts-node/esm/transpile-only ./scripts/run-component-tests.mts",
     "test-local": "pnpm -s test --local",
     "test-firefox": "pnpm -s test --firefox",
     "tslint": "tslint -c tslint.json --project ./tsconfig.json",

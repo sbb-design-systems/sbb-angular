@@ -1,13 +1,10 @@
 import { COMMA, ENTER, TAB } from '@angular/cdk/keycodes';
-import { PlatformModule } from '@angular/cdk/platform';
 import { Component, DebugElement, ViewChild } from '@angular/core';
 import { ComponentFixture, fakeAsync, TestBed, tick, waitForAsync } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { dispatchKeyboardEvent } from '@sbb-esta/angular/core/testing';
 import { SbbFormFieldModule } from '@sbb-esta/angular/form-field';
-import { SbbIconModule } from '@sbb-esta/angular/icon';
-import { SbbIconTestingModule } from '@sbb-esta/angular/icon/testing';
 
 import { SbbChipsDefaultOptions, SBB_CHIPS_DEFAULT_OPTIONS } from './chip-default-options';
 import { SbbChipInput, SbbChipInputEvent } from './chip-input';
@@ -23,15 +20,7 @@ describe('SbbChipInput', () => {
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-      imports: [
-        PlatformModule,
-        SbbChipsModule,
-        SbbFormFieldModule,
-        NoopAnimationsModule,
-        SbbIconModule,
-        SbbIconTestingModule,
-      ],
-      declarations: [TestChipInput],
+      imports: [NoopAnimationsModule],
     });
   }));
 
@@ -210,15 +199,7 @@ describe('SbbChipInput', () => {
 
       TestBed.resetTestingModule()
         .configureTestingModule({
-          imports: [
-            SbbChipsModule,
-            SbbFormFieldModule,
-            PlatformModule,
-            NoopAnimationsModule,
-            SbbIconModule,
-            SbbIconTestingModule,
-          ],
-          declarations: [TestChipInput],
+          imports: [NoopAnimationsModule],
           providers: [
             {
               provide: SBB_CHIPS_DEFAULT_OPTIONS,
@@ -269,7 +250,7 @@ describe('SbbChipInput', () => {
       </sbb-chip-list>
     </sbb-form-field>
   `,
-  standalone: false,
+  imports: [SbbFormFieldModule, SbbChipsModule],
 })
 class TestChipInput {
   @ViewChild(SbbChipList) chipListInstance: SbbChipList;

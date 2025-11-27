@@ -23,7 +23,7 @@ import {
   NOV,
 } from '@sbb-esta/angular/core/testing';
 
-import { SbbCalendarBody, SbbCalendarCellClassFunction } from '../calendar-body/calendar-body';
+import { SbbCalendarCellClassFunction } from '../calendar-body/calendar-body';
 import { SbbDateRange } from '../date-range';
 
 import { SbbMonthView } from './month-view';
@@ -37,7 +37,7 @@ import { SbbMonthView } from './month-view';
       (selectedWeekdayChange)="selectWeekday($event)"
     ></sbb-month-view>
   `,
-  imports: [SbbCalendarBody, SbbMonthView],
+  imports: [SbbMonthView],
 })
 class StandardMonthViewComponent {
   date = new Date(2017, JAN, 5);
@@ -49,7 +49,7 @@ class StandardMonthViewComponent {
 
 @Component({
   template: ` <sbb-month-view [activeDate]="activeDate" [dateRange]="dateRange"></sbb-month-view> `,
-  imports: [SbbCalendarBody, SbbMonthView],
+  imports: [SbbMonthView],
 })
 class MonthViewWithDateRangeComponent {
   activeDate = new Date(2022, NOV, 1);
@@ -60,7 +60,7 @@ class MonthViewWithDateRangeComponent {
   template: `
     <sbb-month-view [activeDate]="activeDate" [dateFilter]="dateFilter"></sbb-month-view>
   `,
-  imports: [SbbCalendarBody, SbbMonthView],
+  imports: [SbbMonthView],
 })
 class MonthViewWithDateFilterComponent {
   activeDate = new Date(2017, JAN, 1);
@@ -71,23 +71,23 @@ class MonthViewWithDateFilterComponent {
 
 @Component({
   template: `<sbb-month-view [activeDate]="activeDate" [dateClass]="dateClass"></sbb-month-view>`,
-  imports: [SbbCalendarBody, SbbMonthView],
+  imports: [SbbMonthView],
 })
 class MonthViewWithDateClassComponent {
   activeDate = new Date(2017, JAN, 1);
-  dateClass(date: Date) {
-    return date.getDate() % 2 === 0 ? 'even' : undefined;
-  }
+  dateClass: SbbCalendarCellClassFunction<Date> = (date: Date) => {
+    return date.getDate() % 2 === 0 ? 'even' : [];
+  };
 }
 
 @Component({
   template: `<sbb-month-view
     [isWeekdaySelectable]="isWeekdaySelectable"
     [activeDate]="date"
-    showWeekNumbers="true"
+    [showWeekNumbers]="true"
     [dateClass]="dateClass"
   ></sbb-month-view>`,
-  imports: [SbbCalendarBody, SbbMonthView],
+  imports: [SbbMonthView],
 })
 class MonthViewComponentWithWeekNumbers {
   @ViewChild(SbbMonthView) monthView: SbbMonthView<Date>;

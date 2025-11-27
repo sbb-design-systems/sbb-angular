@@ -1382,7 +1382,7 @@ function createComponent<T>(
   template: `
     <form [formGroup]="formGroup">
       <sbb-processflow>
-        <sbb-step [stepControl]="formGroup.get('firstNameCtrl')">
+        <sbb-step [stepControl]="formGroup.get('firstNameCtrl')!">
           <ng-template sbbStepLabel>Step 1</ng-template>
           <sbb-form-field>
             <sbb-label>First name</sbb-label>
