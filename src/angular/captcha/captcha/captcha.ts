@@ -110,9 +110,9 @@ export class SbbCaptcha implements AfterViewInit, OnDestroy, ControlValueAccesso
   }
 
   @HostListener('resolved', ['$event'])
-  _onResolve($event: Event) {
+  _onResolve($event: string) {
     if (this._onChange) {
-      this._onChange(typeof $event === 'string' ? $event : '');
+      this._onChange($event);
     }
     if (this._onTouched) {
       this._onTouched();

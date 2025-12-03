@@ -47,6 +47,7 @@ ng_project(
     deps = [
         ":select",
         "//:node_modules/@angular/cdk",
+        "//:node_modules/@angular/common",
         "//:node_modules/@angular/core",
         "//:node_modules/@angular/forms",
         "//:node_modules/@angular/platform-browser",
@@ -54,7 +55,6 @@ ng_project(
         "//src/angular/core",
         "//src/angular/core/testing",
         "//src/angular/form-field",
-        "//src/angular/icon/testing",
     ],
 )
 
