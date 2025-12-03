@@ -110,8 +110,8 @@ importers:
         specifier: 1.11.0
         version: 1.11.0
       maplibre-gl:
-        specifier: 4.7.1
-        version: 4.7.1
+        specifier: 5.14.0
+        version: 5.14.0
       rxjs:
         specifier: 'catalog:'
         version: 7.8.1
@@ -2991,6 +2991,9 @@ packages:
   '@mapbox/point-geometry@0.1.0':
     resolution: {integrity: sha512-6j56HdLTwWGO0fJPlrZtdU/B13q8Uwmo18Ck2GnGgN9PCFyKTZ3UbXeEdRFh18i9XQ92eH2VdtpJHpBD3aripQ==}
 
+  '@mapbox/point-geometry@1.1.0':
+    resolution: {integrity: sha512-YGcBz1cg4ATXDCM/71L9xveh4dynfGmcLDqufR+nQQy3fKwsAZsWd/x4621/6uJaeB9mwOHE6hPeDgXz9uViUQ==}
+
   '@mapbox/tiny-sdf@2.0.7':
     resolution: {integrity: sha512-25gQLQMcpivjOSA40g3gO6qgiFPDpWRoMfd+G/GoppPIeP6JDaMMkMrEJnMZhKyyS6iKwVt5YKu02vCUyJM3Ug==}
 
@@ -3000,6 +3003,9 @@ packages:
   '@mapbox/vector-tile@1.3.1':
     resolution: {integrity: sha512-MCEddb8u44/xfQ3oD+Srl/tNcQoqTw3goGk2oLsrFxOTc3dUp+kAnby3PvAeeBYSMSjSPD1nd1AJA6W49WnoUw==}
 
+  '@mapbox/vector-tile@2.0.4':
+    resolution: {integrity: sha512-AkOLcbgGTdXScosBWwmmD7cDlvOjkg/DetGva26pIRiZPdeJYjYKarIlb4uxVzi6bwHO6EWH82eZ5Nuv4T5DUg==}
+
   '@mapbox/whoots-js@3.1.0':
     resolution: {integrity: sha512-Es6WcD0nO5l+2BOQS4uLfNPYQaNDfbot3X1XUoloz+x0mPDS3eeORZJl06HXjwBG1fOGwCRnzK88LMdxKRrd6Q==}
     engines: {node: '>=6.0.0'}
@@ -3007,6 +3013,16 @@ packages:
   '@maplibre/maplibre-gl-style-spec@20.4.0':
     resolution: {integrity: sha512-AzBy3095fTFPjDjmWpR2w6HVRAZJ6hQZUCwk5Plz6EyfnfuQW1odeW5i2Ai47Y6TBA2hQnC+azscjBSALpaWgw==}
     hasBin: true
+
+  '@maplibre/maplibre-gl-style-spec@24.3.1':
+    resolution: {integrity: sha512-TUM5JD40H2mgtVXl5IwWz03BuQabw8oZQLJTmPpJA0YTYF+B+oZppy5lNMO6bMvHzB+/5mxqW9VLG3wFdeqtOw==}
+    hasBin: true
+
+  '@maplibre/mlt@1.1.2':
+    resolution: {integrity: sha512-SQKdJ909VGROkA6ovJgtHNs9YXV4YXUPS+VaZ50I2Mt951SLlUm2Cv34x5Xwc1HiFlsd3h2Yrs5cn7xzqBmENw==}
+
+  '@maplibre/vt-pbf@4.1.0':
+    resolution: {integrity: sha512-9LjFAoWtxdGRns8RK9vG3Fcw/fb3eHMxvAn2jffwn3jnVO1k49VOv6+FEza70rK7WzF8GnBiKa0K39RyfevKUw==}
 
   '@modelcontextprotocol/sdk@1.17.3':
     resolution: {integrity: sha512-JPwUKWSsbzx+DLFznf/QZ32Qa+ptfbUlHhRLrBQBAFu9iI1iYvizM4p+zhhRDceSsPutXp4z+R/HPVphlIiclg==}
@@ -4013,6 +4029,7 @@ packages:
   '@smithy/core@3.18.3':
     resolution: {integrity: sha512-qqpNskkbHOSfrbFbjhYj5o8VMXO26fvN1K/+HbCzUNlTuxgNcPRouUDNm+7D6CkN244WG7aK533Ne18UtJEgAA==}
     engines: {node: '>=18.0.0'}
+    deprecated: Please upgrade your lockfile to use the latest 3.x version of @smithy/core for various fixes, see https://github.com/smithy-lang/smithy-typescript/blob/main/packages/core/CHANGELOG.md
 
   '@smithy/credential-provider-imds@4.2.5':
     resolution: {integrity: sha512-BZwotjoZWn9+36nimwm/OLIcVe+KYRwzMjfhd4QT7QxPm9WY0HiOV8t/Wlh+HVUif0SBVV7ksq8//hPaBC/okQ==}
@@ -7864,6 +7881,10 @@ packages:
     resolution: {integrity: sha512-lgL7XpIwsgICiL82ITplfS7IGwrB1OJIw/pCvprDp2dhmSSEBgmPzYRvwYYYvJGJD7fxUv1Tvpih4nZ6VrLuaA==}
     engines: {node: '>=16.14.0', npm: '>=8.1.0'}
 
+  maplibre-gl@5.14.0:
+    resolution: {integrity: sha512-O2ok6N/bQ9NA9nJ22r/PRQQYkUe9JwfDMjBPkQ+8OwsVH4TpA5skIAM2wc0k+rni5lVbAVONVyBvgi1rF2vEPA==}
+    engines: {node: '>=16.14.0', npm: '>=8.1.0'}
+
   markdown-it@14.1.0:
     resolution: {integrity: sha512-a54IwgWPaeBCAAsv13YgmALOF1elABB08FxO9i+r4VFk5Vl4pKokRPeX8u5TCgSsPi6ec1otfLjdOpVcgbpshg==}
     hasBin: true
@@ -8784,6 +8805,10 @@ packages:
 
   pbf@3.3.0:
     resolution: {integrity: sha512-XDF38WCH3z5OV/OVa8GKUNtLAyneuzbCisx7QUCF8Q6Nutx0WnJrQe5O+kOtBlLfRNUws98Y58Lblp+NJG5T4Q==}
+    hasBin: true
+
+  pbf@4.0.1:
+    resolution: {integrity: sha512-SuLdBvS42z33m8ejRbInMapQe8n0D3vN/Xd5fmWM3tufNgRQFBpaW2YVJxQZV4iPNqb0vEFvssMEo5w9c6BTIA==}
     hasBin: true
 
   pend@1.2.0:
@@ -14453,6 +14478,8 @@ snapshots:
 
   '@mapbox/point-geometry@0.1.0': {}
 
+  '@mapbox/point-geometry@1.1.0': {}
+
   '@mapbox/tiny-sdf@2.0.7': {}
 
   '@mapbox/unitbezier@0.0.1': {}
@@ -14460,6 +14487,12 @@ snapshots:
   '@mapbox/vector-tile@1.3.1':
     dependencies:
       '@mapbox/point-geometry': 0.1.0
+
+  '@mapbox/vector-tile@2.0.4':
+    dependencies:
+      '@mapbox/point-geometry': 1.1.0
+      '@types/geojson': 7946.0.16
+      pbf: 4.0.1
 
   '@mapbox/whoots-js@3.1.0': {}
 
@@ -14472,6 +14505,30 @@ snapshots:
       quickselect: 2.0.0
       rw: 1.3.3
       tinyqueue: 3.0.0
+
+  '@maplibre/maplibre-gl-style-spec@24.3.1':
+    dependencies:
+      '@mapbox/jsonlint-lines-primitives': 2.0.2
+      '@mapbox/unitbezier': 0.0.1
+      json-stringify-pretty-compact: 4.0.0
+      minimist: 1.2.8
+      quickselect: 3.0.0
+      rw: 1.3.3
+      tinyqueue: 3.0.0
+
+  '@maplibre/mlt@1.1.2':
+    dependencies:
+      '@mapbox/point-geometry': 1.1.0
+
+  '@maplibre/vt-pbf@4.1.0':
+    dependencies:
+      '@mapbox/point-geometry': 1.1.0
+      '@mapbox/vector-tile': 2.0.4
+      '@types/geojson-vt': 3.2.5
+      '@types/supercluster': 7.1.3
+      geojson-vt: 4.0.2
+      pbf: 4.0.1
+      supercluster: 8.0.1
 
   '@modelcontextprotocol/sdk@1.17.3':
     dependencies:
@@ -20170,6 +20227,32 @@ snapshots:
       tinyqueue: 3.0.0
       vt-pbf: 3.1.3
 
+  maplibre-gl@5.14.0:
+    dependencies:
+      '@mapbox/geojson-rewind': 0.5.2
+      '@mapbox/jsonlint-lines-primitives': 2.0.2
+      '@mapbox/point-geometry': 1.1.0
+      '@mapbox/tiny-sdf': 2.0.7
+      '@mapbox/unitbezier': 0.0.1
+      '@mapbox/vector-tile': 2.0.4
+      '@mapbox/whoots-js': 3.1.0
+      '@maplibre/maplibre-gl-style-spec': 24.3.1
+      '@maplibre/mlt': 1.1.2
+      '@maplibre/vt-pbf': 4.1.0
+      '@types/geojson': 7946.0.16
+      '@types/geojson-vt': 3.2.5
+      '@types/supercluster': 7.1.3
+      earcut: 3.0.2
+      geojson-vt: 4.0.2
+      gl-matrix: 3.4.4
+      kdbush: 4.0.2
+      murmurhash-js: 1.0.0
+      pbf: 4.0.1
+      potpack: 2.1.0
+      quickselect: 3.0.0
+      supercluster: 8.0.1
+      tinyqueue: 3.0.0
+
   markdown-it@14.1.0:
     dependencies:
       argparse: 2.0.1
@@ -21299,6 +21382,10 @@ snapshots:
   pbf@3.3.0:
     dependencies:
       ieee754: 1.2.1
+      resolve-protobuf-schema: 2.1.0
+
+  pbf@4.0.1:
+    dependencies:
       resolve-protobuf-schema: 2.1.0
 
   pend@1.2.0: {}
