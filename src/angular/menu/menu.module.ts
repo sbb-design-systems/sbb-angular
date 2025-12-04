@@ -10,7 +10,7 @@ import { SbbMenu } from './menu';
 import { SbbMenuContent } from './menu-content';
 import { SbbMenuDynamicTrigger } from './menu-dynamic-trigger';
 import { SbbMenuItem } from './menu-item';
-import { SbbMenuTrigger, SBB_MENU_SCROLL_STRATEGY_FACTORY_PROVIDER } from './menu-trigger';
+import { SbbMenuTrigger } from './menu-trigger';
 
 @NgModule({
   imports: [
@@ -34,6 +34,5 @@ import { SbbMenuTrigger, SBB_MENU_SCROLL_STRATEGY_FACTORY_PROVIDER } from './men
     SbbMenuDynamicTrigger,
     SbbMenuContent,
   ],
-  providers: [SBB_MENU_SCROLL_STRATEGY_FACTORY_PROVIDER],
 })
 export class SbbMenuModule {}
