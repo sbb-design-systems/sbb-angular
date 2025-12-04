@@ -87,18 +87,6 @@ export const SBB_MENU_SCROLL_STRATEGY = new InjectionToken<() => ScrollStrategy>
   },
 );
 
-/** @docs-private */
-export function SBB_MENU_SCROLL_STRATEGY_FACTORY(overlay: Overlay): () => ScrollStrategy {
-  return () => overlay.scrollStrategies.reposition();
-}
-
-/** @docs-private */
-export const SBB_MENU_SCROLL_STRATEGY_FACTORY_PROVIDER = {
-  provide: SBB_MENU_SCROLL_STRATEGY,
-  deps: [Overlay],
-  useFactory: SBB_MENU_SCROLL_STRATEGY_FACTORY,
-};
-
 /** Default left overlapping of the submenu panel. */
 const SUBMENU_PANEL_LEFT_OVERLAP = 3;
 
