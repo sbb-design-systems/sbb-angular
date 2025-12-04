@@ -18,7 +18,7 @@ class BasicTimeInput {}
   imports: [SbbTimeInputModule],
 })
 class PlaceholderTimeInput {
-  placeholder?: string | null = 'Time';
+  placeholder = 'Time';
 }
 
 @Component({
@@ -85,12 +85,12 @@ describe('SbbTimeInput', () => {
     fixture.detectChanges();
     expect(inputElement.getAttribute('placeholder')).toEqual('');
 
-    fixture.componentInstance.placeholder = null;
+    fixture.componentInstance.placeholder = null!;
     fixture.changeDetectorRef.markForCheck();
     fixture.detectChanges();
     expect(inputElement.getAttribute('placeholder')).toEqual('HH:MM');
 
-    fixture.componentInstance.placeholder = undefined;
+    fixture.componentInstance.placeholder = undefined!;
     fixture.changeDetectorRef.markForCheck();
     fixture.detectChanges();
     expect(inputElement.getAttribute('placeholder')).toEqual('HH:MM');

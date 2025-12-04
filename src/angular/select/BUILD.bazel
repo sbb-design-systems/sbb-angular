@@ -4,7 +4,6 @@ load(
     "ng_project",
     "ng_web_test_suite",
     "sass_binary",
-    "ts_project",
 )
 
 package(default_visibility = ["//visibility:public"])
@@ -38,7 +37,7 @@ sass_binary(
     ],
 )
 
-ts_project(
+ng_project(
     name = "unit_test_sources",
     testonly = True,
     srcs = glob(
@@ -48,6 +47,7 @@ ts_project(
     deps = [
         ":select",
         "//:node_modules/@angular/cdk",
+        "//:node_modules/@angular/common",
         "//:node_modules/@angular/core",
         "//:node_modules/@angular/forms",
         "//:node_modules/@angular/platform-browser",
@@ -55,7 +55,6 @@ ts_project(
         "//src/angular/core",
         "//src/angular/core/testing",
         "//src/angular/form-field",
-        "//src/angular/icon/testing",
     ],
 )
 

@@ -797,7 +797,7 @@ class FakeDataSource extends DataSource<TestData> {
   imports: [SbbTableModule],
 })
 class SbbTableTestComponent {
-  dataSource: FakeDataSource | null = new FakeDataSource();
+  dataSource = new FakeDataSource();
   columnsToRender = ['column_a', 'column_b', 'column_c'];
   isFourthRow = (i: number, _rowData: TestData) => i === 3;
 
@@ -829,7 +829,7 @@ class SbbTableTestComponent {
   imports: [SbbTableModule],
 })
 class NativeHtmlTableTestComponent {
-  dataSource: FakeDataSource | null = new FakeDataSource();
+  dataSource = new FakeDataSource();
   columnsToRender = ['column_a', 'column_b', 'column_c'];
 
   @ViewChild(SbbTable) table: SbbTable<TestData>;
@@ -880,7 +880,7 @@ class NativeHtmlTableTestComponent {
   imports: [SbbTableModule],
 })
 class NestedHtmlTableTestComponent {
-  dataSource: FakeDataSource | null = new FakeDataSource();
+  dataSource = new FakeDataSource();
   columnsToRender = ['column_a', 'column_b', 'column_c'];
 }
 
@@ -928,7 +928,7 @@ class StickyTableTestComponent {
 })
 class SbbTableWithWhenRowTestComponent {
   multiTemplateDataRows: boolean = false;
-  dataSource: FakeDataSource | null = new FakeDataSource();
+  dataSource = new FakeDataSource();
   isFourthRow = (i: number, _rowData: TestData) => i === 3;
 
   @ViewChild(SbbTable) table: SbbTable<TestData>;
@@ -1112,7 +1112,7 @@ class SbbTableWithPaginatorTestComponent implements OnInit {
   imports: [SbbTableModule],
 })
 class TableWithNgContainerRowTestComponent {
-  dataSource: FakeDataSource | null = new FakeDataSource();
+  dataSource = new FakeDataSource();
   columnsToRender = ['column_a'];
 }
 
@@ -1133,7 +1133,7 @@ class TableWithNgContainerRowTestComponent {
   imports: [SbbTableModule],
 })
 class TableWithColumnGroupingTestComponent {
-  dataSource: FakeDataSource | null = new FakeDataSource();
+  dataSource = new FakeDataSource();
   columnsToRender = ['column_a', 'column_b'];
 }
 
@@ -1177,7 +1177,7 @@ class TableWithWrapper {
   imports: [SbbTableModule],
 })
 class TableWithWrapperAndStickyColumnsTestComponent {
-  dataSource: FakeDataSource | null = new FakeDataSource();
+  dataSource = new FakeDataSource();
   columnsToRender = ['column_a', 'column_b', 'column_c'];
   wrapperWidth: number = 200;
 }
@@ -1205,7 +1205,7 @@ class TableWithWrapperAndStickyColumnsTestComponent {
   imports: [SbbTableModule],
 })
 class TableWithTwoStickyColumnsTestComponent {
-  dataSource: FakeDataSource | null = new FakeDataSource();
+  dataSource = new FakeDataSource();
   columnsToRender = ['column_a', 'column_b', 'column_c'];
 }
 

@@ -18,21 +18,11 @@ import { SbbCalendar } from '../calendar/calendar';
 import { SbbDatepickerModule } from '../datepicker.module';
 
 @Component({
-  template: `
-    <sbb-calendar
-      [startAt]="startDate"
-      [(selected)]="selected"
-      (yearSelected)="selectedYear = $event"
-      (monthSelected)="selectedMonth = $event"
-    >
-    </sbb-calendar>
-  `,
+  template: ` <sbb-calendar [startAt]="startDate" [(selected)]="selected"> </sbb-calendar> `,
   imports: [SbbDatepickerModule],
 })
 class StandardCalendarComponent {
   selected: Date;
-  selectedYear: Date;
-  selectedMonth: Date;
   startDate = new Date(2017, JAN, 31);
 }
 

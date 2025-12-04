@@ -1149,7 +1149,7 @@ class DatepickerWithArrows {
 class DatepickerReadonlyComponent {
   date = new FormControl<Date | null>(null);
   readonly: boolean = false;
-  placeholder?: string = undefined;
+  placeholder = '';
 }
 
 @Component({

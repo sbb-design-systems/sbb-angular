@@ -28,9 +28,9 @@ interface Tag {
         <sbb-tag
           [(ngModel)]="tag.selected"
           (change)="change($event)"
-          [id]="tag.id"
+          [id]="tag.id!"
           [amount]="tag.amount"
-          [sbbBadgeDescription]="description"
+          [sbbBadgeDescription]="description!"
           >{{ tag.label }}</sbb-tag
         >
       }
@@ -47,6 +47,7 @@ class TagsTestFixtureComponent {
       selected: false,
     },
     {
+      id: '',
       label: 'Restaurants / Take Away',
       amount: 9,
       selected: false,
@@ -63,9 +64,9 @@ class TagsTestFixtureComponent {
       <sbb-tags [totalAmount]="totalAmount">
         @for (tag of tagItems; track tag) {
           <sbb-tag
-            [formControlName]="tag.id"
+            [formControlName]="tag.id!"
             (change)="change($event)"
-            [id]="tag.id"
+            [id]="tag.id!"
             [amount]="tag.amount"
             >{{ tag.label }}</sbb-tag
           >
@@ -103,7 +104,7 @@ class TagsTestFixtureReactiveComponent {
   imports: [SbbBadgeModule, SbbTagModule],
 })
 class TagLinkTestFixtureComponent {
-  description?: string;
+  description: string;
 }
 
 @Component({

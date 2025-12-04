@@ -14,7 +14,12 @@ import { map } from 'rxjs/operators';
 
 import { SbbTableModule } from '../table.module';
 
-import { SbbSort, SbbSortState, SBB_SORT_DEFAULT_OPTIONS } from './sort';
+import {
+  SbbSort,
+  SbbSortHeaderArrowPosition,
+  SbbSortState,
+  SBB_SORT_DEFAULT_OPTIONS,
+} from './sort';
 import { SbbSortDirection } from './sort-direction';
 import {
   getSortDuplicateSortableIdError,
@@ -796,7 +801,7 @@ class SbbSortableMissingIdApp {}
 
 @Component({
   template: `
-    <div sbbSort sbbSortDirection="ascending">
+    <div sbbSort [sbbSortDirection]="$any('ascending')">
       <div sbb-sort-header="a">A</div>
     </div>
   `,
@@ -852,7 +857,7 @@ class SbbSortWithoutExplicitInputs {
   imports: [SbbTableModule],
 })
 class SbbSortWithArrowPosition {
-  arrowPosition?: 'before' | 'after';
+  arrowPosition: SbbSortHeaderArrowPosition;
   @ViewChild(SbbSort) sbbSort: SbbSort;
   @ViewChild('defaultA') defaultA: SbbSortHeader;
   @ViewChild('defaultB') defaultB: SbbSortHeader;

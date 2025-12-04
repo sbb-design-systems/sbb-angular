@@ -161,7 +161,7 @@ describe('SbbTabBody', () => {
 @Component({
   template: `
     <ng-template>Tab Body Content</ng-template>
-    <sbb-tab-body [content]="content()" [position]="position" [origin]="origin"></sbb-tab-body>
+    <sbb-tab-body [content]="content()!" [position]="position" [origin]="origin"></sbb-tab-body>
   `,
   imports: [SbbTabBody],
 })

@@ -1,6 +1,6 @@
 {
   "name": "sbb-angular",
-  "version": "20.0.0-next.2",
+  "version": "20.0.0",
   "private": true,
   "packageManager": "pnpm@10.22.0",
   "engines": {
@@ -21,9 +21,10 @@
     "bazel": "bazelisk",
     "bazel:buildifier": "find . -type f \\( -name \"*.bzl\" -or -name WORKSPACE -or -name BUILD -or -name BUILD.bazel \\) ! -path \"*/node_modules/*\" ! -path \"*/.git/*\" | xargs buildifier -v",
     "bazel:format-lint": "pnpm -s bazel:buildifier --lint=warn --mode=check",
+    "bazel:cache": "node ./scripts/cache.mts",
     "start": "ibazel run //docs:serve",
     "start:journey-maps-wc": "ibazel run //src/journey-maps-wc:serve",
-    "test": "node ./scripts/run-component-tests.js",
+    "test": "node --no-warnings=ExperimentalWarning --loader ts-node/esm/transpile-only ./scripts/run-component-tests.mts",
     "test-local": "pnpm -s test --local",
     "test-firefox": "pnpm -s test --firefox",
     "tslint": "tslint -c tslint.json --project ./tsconfig.json",
@@ -69,7 +70,6 @@
     "zone.js": "~0.15.0"
   },
   "devDependencies": {
-    "@actions/cache": "4.1.0",
     "@angular/cli": "catalog:",
     "@angular/compiler-cli": "catalog:",
     "@angular/localize": "catalog:",
@@ -139,7 +139,7 @@
     "reflect-metadata": "^0.2.0",
     "renovate": "41.168.1",
     "requirejs": "2.3.7",
-    "rollup": "2.79.1",
+    "rollup": "^4.52.3",
     "rollup-plugin-dts": "6.2.3",
     "rollup-plugin-sourcemaps2": "0.5.4",
     "rxjs-tslint-rules": "4.34.8",

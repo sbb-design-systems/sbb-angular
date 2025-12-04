@@ -43,7 +43,7 @@ class TextareaTestComponent {
     <form [formGroup]="form">
       <sbb-form-field label="Textarea">
         <sbb-textarea formControlName="textarea" [maxlength]="200" [minlength]="20"></sbb-textarea>
-        @if (form.get('textarea').errors?.['minlength']) {
+        @if (form.get('textarea')?.errors?.['minlength']) {
           <sbb-error>A length of 20 chars is required!</sbb-error>
         }
       </sbb-form-field>

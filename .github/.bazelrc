@@ -8,4 +8,4 @@ common --announce_rc
 
 # We enable writing to cache for all builds, since GitHub caches are separated
 # by branch and repository, so it should be secure.
-build --config=github-cache --config=trusted-build
+build --config=remote-disk-caching

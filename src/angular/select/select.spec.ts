@@ -16,6 +16,7 @@ import {
 } from '@angular/cdk/keycodes';
 import { OverlayContainer, OverlayModule } from '@angular/cdk/overlay';
 import { ScrollDispatcher } from '@angular/cdk/scrolling';
+import { provideHttpClientTesting } from '@angular/common/http/testing';
 import {
   ChangeDetectionStrategy,
   ChangeDetectorRef,
@@ -24,19 +25,11 @@ import {
   ElementRef,
   inject,
   OnInit,
-  Provider,
   QueryList,
   ViewChild,
   ViewChildren,
 } from '@angular/core';
-import {
-  ComponentFixture,
-  fakeAsync,
-  flush,
-  TestBed,
-  tick,
-  waitForAsync,
-} from '@angular/core/testing';
+import { ComponentFixture, fakeAsync, flush, TestBed, tick } from '@angular/core/testing';
 import {
   ControlValueAccessor,
   FormBuilder,
@@ -50,7 +43,12 @@ import {
 } from '@angular/forms';
 import { By } from '@angular/platform-browser';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
-import { SbbErrorStateMatcher, SbbOption, SbbOptionSelectionChange } from '@sbb-esta/angular/core';
+import {
+  SbbErrorStateMatcher,
+  SbbOption,
+  SbbOptionModule,
+  SbbOptionSelectionChange,
+} from '@sbb-esta/angular/core';
 import {
   createKeyboardEvent,
   dispatchEvent,
@@ -59,8 +57,7 @@ import {
   dispatchMouseEvent,
   wrappedErrorMessage,
 } from '@sbb-esta/angular/core/testing';
-import { SbbFormFieldModule } from '@sbb-esta/angular/form-field';
-import { SbbIconTestingModule } from '@sbb-esta/angular/icon/testing';
+import { SbbError, SbbFormFieldModule } from '@sbb-esta/angular/form-field';
 import { Subject, Subscription } from 'rxjs';
 import { map } from 'rxjs/operators';
 
@@ -97,7 +94,7 @@ import { SbbSelectModule } from './select.module';
     </sbb-form-field>
     <div [style.height.px]="heightBelow"></div>
   `,
-  standalone: false,
+  imports: [SbbSelectModule, SbbFormFieldModule, ReactiveFormsModule],
 })
 class BasicSelect {
   foods: any[] = [
@@ -138,7 +135,7 @@ class BasicSelect {
       </sbb-select>
     </sbb-form-field>
   `,
-  standalone: false,
+  imports: [SbbSelectModule, SbbFormFieldModule, FormsModule],
 })
 class NgModelSelect {
   foods: any[] = [
@@ -168,7 +165,7 @@ class NgModelSelect {
       </sbb-select>
     </sbb-form-field>
   `,
-  standalone: false,
+  imports: [SbbSelectModule, SbbFormFieldModule],
 })
 class ManySelects {}
 
@@ -189,7 +186,7 @@ class ManySelects {}
       </div>
     }
   `,
-  standalone: false,
+  imports: [SbbSelectModule, SbbFormFieldModule, ReactiveFormsModule],
 })
 class NgIfSelect {
   isShowing = false;
@@ -214,7 +211,7 @@ class NgIfSelect {
       </sbb-select>
     </sbb-form-field>
   `,
-  standalone: false,
+  imports: [SbbSelectModule, SbbFormFieldModule],
 })
 class SelectWithChangeEvent {
   foods: string[] = [
@@ -244,7 +241,7 @@ class SelectWithChangeEvent {
       </sbb-select>
     </sbb-form-field>
   `,
-  standalone: false,
+  imports: [SbbSelectModule, SbbFormFieldModule, ReactiveFormsModule],
 })
 class SelectInitWithoutOptions {
   foods: any[];
@@ -272,7 +269,7 @@ class SelectInitWithoutOptions {
       multi: true,
     },
   ],
-  standalone: false,
+  imports: [SbbSelectModule, SbbFormFieldModule],
 })
 class CustomSelectAccessor implements ControlValueAccessor {
   @ViewChild(SbbSelect) select: SbbSelect;
@@ -292,11 +289,22 @@ class CustomSelectAccessor implements ControlValueAccessor {
       multi: true,
     },
   ],
-  standalone: false,
+  imports: [SbbSelectModule, SbbFormFieldModule, ReactiveFormsModule, CustomSelectAccessor],
 })
 class CompWithCustomSelect {
   ctrl = new FormControl('initial value');
   @ViewChild(CustomSelectAccessor, { static: true }) customAccessor: CustomSelectAccessor;
+}
+
+@Component({
+  selector: 'sbb-throws-error-on-init',
+  template: '',
+  imports: [SbbSelectModule],
+})
+class ThrowsErrorOnInit implements OnInit {
+  ngOnInit() {
+    throw Error('Oh no!');
+  }
 }
 
 @Component({
@@ -307,21 +315,10 @@ class CompWithCustomSelect {
     </sbb-form-field>
     <sbb-throws-error-on-init></sbb-throws-error-on-init>
   `,
-  standalone: false,
+  imports: [SbbSelectModule, SbbFormFieldModule, FormsModule, ThrowsErrorOnInit],
 })
 class SelectWithErrorSibling {
   value: string;
-}
-
-@Component({
-  selector: 'sbb-throws-error-on-init',
-  template: '',
-  standalone: false,
-})
-class ThrowsErrorOnInit implements OnInit {
-  ngOnInit() {
-    throw Error('Oh no!');
-  }
 }
 
 @Component({
@@ -338,7 +335,7 @@ class ThrowsErrorOnInit implements OnInit {
       </sbb-select>
     </sbb-form-field>
   `,
-  standalone: false,
+  imports: [SbbSelectModule, SbbFormFieldModule, ReactiveFormsModule],
 })
 class BasicSelectOnPush {
   foods: any[] = [
@@ -363,7 +360,7 @@ class BasicSelectOnPush {
       </sbb-select>
     </sbb-form-field>
   `,
-  standalone: false,
+  imports: [SbbSelectModule, SbbFormFieldModule, ReactiveFormsModule],
 })
 class BasicSelectOnPushPreselected {
   @ViewChild(SbbSelect) select: SbbSelect;
@@ -391,7 +388,7 @@ class BasicSelectOnPushPreselected {
       </sbb-select>
     </sbb-form-field>
   `,
-  standalone: false,
+  imports: [SbbSelectModule, SbbFormFieldModule, ReactiveFormsModule],
 })
 class MultiSelect {
   foods: any[] = [
@@ -414,7 +411,7 @@ class MultiSelect {
 @Component({
   selector: 'sbb-select-with-plain-tabindex',
   template: `<sbb-form-field><sbb-select tabindex="5"></sbb-select></sbb-form-field>`,
-  standalone: false,
+  imports: [SbbSelectModule, SbbFormFieldModule],
 })
 class SelectWithPlainTabindex {}
 
@@ -428,7 +425,7 @@ class SelectWithPlainTabindex {}
       <div></div>
     }
   `,
-  standalone: false,
+  imports: [SbbSelectModule, SbbFormFieldModule],
 })
 class SelectEarlyAccessSibling {}
 
@@ -441,7 +438,7 @@ class SelectEarlyAccessSibling {}
       </sbb-select>
     </sbb-form-field>
   `,
-  standalone: false,
+  imports: [SbbSelectModule, SbbFormFieldModule],
 })
 class BasicSelectInitiallyHidden {
   isVisible = false;
@@ -456,7 +453,7 @@ class BasicSelectInitiallyHidden {
       </sbb-select>
     </sbb-form-field>
   `,
-  standalone: false,
+  imports: [SbbSelectModule, SbbFormFieldModule],
 })
 class BasicSelectNoPlaceholder {}
 
@@ -478,7 +475,7 @@ class BasicSelectNoPlaceholder {}
       </sbb-select>
     </sbb-form-field>
   `,
-  standalone: false,
+  imports: [SbbSelectModule, SbbFormFieldModule, ReactiveFormsModule],
 })
 class ResetValuesSelect {
   foods: any[] = [
@@ -505,7 +502,7 @@ class ResetValuesSelect {
       </sbb-select>
     </sbb-form-field>
   `,
-  standalone: false,
+  imports: [SbbSelectModule, SbbFormFieldModule, ReactiveFormsModule],
 })
 class FalsyValueSelect {
   foods: any[] = [
@@ -522,7 +519,7 @@ class FalsyValueSelect {
     <sbb-form-field>
       <sbb-select placeholder="Pokemon" [formControl]="control">
         @for (group of pokemonTypes; track group) {
-          <sbb-optgroup [label]="group.name" [disabled]="group.disabled">
+          <sbb-optgroup [label]="group.name" [disabled]="group.disabled!">
             @for (pokemon of group.pokemon; track pokemon) {
               <sbb-option [value]="pokemon.value">
                 {{ pokemon.viewValue }}
@@ -534,7 +531,7 @@ class FalsyValueSelect {
       </sbb-select>
     </sbb-form-field>
   `,
-  standalone: false,
+  imports: [SbbSelectModule, SbbFormFieldModule, ReactiveFormsModule],
 })
 class SelectWithGroups {
   control = new FormControl('');
@@ -592,7 +589,7 @@ class SelectWithGroups {
       </sbb-select>
     </sbb-form-field>
   `,
-  standalone: false,
+  imports: [SbbSelectModule, SbbFormFieldModule, ReactiveFormsModule],
 })
 class SelectWithGroupsAndNgContainer {
   control = new FormControl('');
@@ -612,7 +609,7 @@ class SelectWithGroupsAndNgContainer {
       </sbb-form-field>
     </form>
   `,
-  standalone: false,
+  imports: [SbbSelectModule, SbbFormFieldModule, FormsModule],
 })
 class InvalidSelectInForm {
   value: any;
@@ -634,7 +631,7 @@ class InvalidSelectInForm {
       </sbb-form-field>
     </form>
   `,
-  standalone: false,
+  imports: [SbbSelectModule, SbbFormFieldModule, SbbError, ReactiveFormsModule],
 })
 class SelectInsideFormGroup {
   @ViewChild(FormGroupDirective) formGroupDirective: FormGroupDirective;
@@ -661,7 +658,7 @@ class SelectInsideFormGroup {
       </sbb-select>
     </sbb-form-field>
   `,
-  standalone: false,
+  imports: [SbbSelectModule, SbbFormFieldModule],
 })
 class BasicSelectWithoutForms {
   selectedFood: string | null;
@@ -686,7 +683,7 @@ class BasicSelectWithoutForms {
       </sbb-select>
     </sbb-form-field>
   `,
-  standalone: false,
+  imports: [SbbSelectModule, SbbFormFieldModule],
 })
 class BasicSelectWithoutFormsPreselected {
   selectedFood = 'pizza-1';
@@ -710,7 +707,7 @@ class BasicSelectWithoutFormsPreselected {
       </sbb-select>
     </sbb-form-field>
   `,
-  standalone: false,
+  imports: [SbbSelectModule, SbbFormFieldModule],
 })
 class BasicSelectWithoutFormsMultiple {
   selectedFoods: string[];
@@ -730,7 +727,7 @@ class BasicSelectWithoutFormsMultiple {
       <sbb-select
         [ngModel]="selectedFood"
         (ngModelChange)="setFoodByCopy($event)"
-        [compareWith]="comparator"
+        [compareWith]="comparator!"
       >
         @for (food of foods; track food) {
           <sbb-option [value]="food">{{ food.viewValue }}</sbb-option>
@@ -738,7 +735,7 @@ class BasicSelectWithoutFormsMultiple {
       </sbb-select>
     </sbb-form-field>
   `,
-  standalone: false,
+  imports: [SbbSelectModule, SbbFormFieldModule, FormsModule],
 })
 class NgModelCompareWithSelect {
   foods: { value: string; viewValue: string }[] = [
@@ -786,7 +783,7 @@ class NgModelCompareWithSelect {
       }
     </sbb-select>
   `,
-  standalone: false,
+  imports: [SbbSelectModule, ReactiveFormsModule],
 })
 class CustomErrorBehaviorSelect {
   @ViewChild(SbbSelect) select: SbbSelect;
@@ -808,7 +805,7 @@ class CustomErrorBehaviorSelect {
       </sbb-select>
     </sbb-form-field>
   `,
-  standalone: false,
+  imports: [SbbSelectModule, SbbFormFieldModule, FormsModule],
 })
 class SingleSelectWithPreselectedArrayValues {
   foods: any[] = [
@@ -826,22 +823,6 @@ class SingleSelectWithPreselectedArrayValues {
 @Component({
   template: `
     <sbb-form-field>
-      <sbb-label>Select a thing</sbb-label>
-
-      <sbb-select [placeholder]="placeholder">
-        <sbb-option value="thing">A thing</sbb-option>
-      </sbb-select>
-    </sbb-form-field>
-  `,
-  standalone: false,
-})
-class SelectWithFormFieldLabel {
-  placeholder: string;
-}
-
-@Component({
-  template: `
-    <sbb-form-field>
       <sbb-label>Select something</sbb-label>
       @if (showSelect) {
         <sbb-select>
@@ -850,7 +831,7 @@ class SelectWithFormFieldLabel {
       }
     </sbb-form-field>
   `,
-  standalone: false,
+  imports: [SbbSelectModule, SbbFormFieldModule],
 })
 class SelectWithNgIfAndLabel {
   showSelect = true;
@@ -866,7 +847,7 @@ class SelectWithNgIfAndLabel {
       </sbb-select>
     </sbb-form-field>
   `,
-  standalone: false,
+  imports: [SbbSelectModule, SbbFormFieldModule, FormsModule],
 })
 class MultiSelectWithLotsOfOptions {
   items = new Array(1000).fill(0).map((_, i) => i);
@@ -893,7 +874,7 @@ class MultiSelectWithLotsOfOptions {
       </sbb-select>
     </sbb-form-field>
   `,
-  standalone: false,
+  imports: [SbbSelectModule, SbbFormFieldModule, ReactiveFormsModule],
 })
 class SelectWithResetOptionAndFormControl {
   @ViewChild(SbbSelect) select: SbbSelect;
@@ -914,7 +895,7 @@ class SelectWithResetOptionAndFormControl {
       }
     </sbb-form-field>
   `,
-  standalone: false,
+  imports: [SbbSelectModule, SbbFormFieldModule],
 })
 class SelectInNgContainer {}
 
@@ -928,7 +909,7 @@ class SelectInNgContainer {}
       </sbb-form-field>
     </form>
   `,
-  standalone: false,
+  imports: [SbbSelectModule, SbbFormFieldModule, ReactiveFormsModule],
 })
 class SelectInsideDynamicFormGroup {
   private _formBuilder = inject(FormBuilder);
@@ -958,7 +939,7 @@ class SelectInsideDynamicFormGroup {
       </sbb-select>
     </sbb-form-field>
   `,
-  standalone: false,
+  imports: [SbbSelectModule, SbbFormFieldModule],
 })
 class SelectReadonly {}
 
@@ -970,24 +951,9 @@ describe('SbbSelect', () => {
   let overlayContainerElement: HTMLElement;
   const scrolledSubject = new Subject<void>();
 
-  /**
-   * Configures the test module for SbbSelect with the given declarations. This is broken out so
-   * that we're only compiling the necessary test components for each test in order to speed up
-   * overall test time.
-   * @param declarations Components to declare for this block
-   * @param providers Additional providers for this block
-   */
-  function configureSbbSelectTestingModule(declarations: any[], providers: Provider[] = []) {
+  beforeEach(() => {
     TestBed.configureTestingModule({
-      imports: [
-        SbbSelectModule,
-        SbbIconTestingModule,
-        SbbFormFieldModule,
-        ReactiveFormsModule,
-        FormsModule,
-        NoopAnimationsModule,
-      ],
-      declarations: declarations,
+      imports: [NoopAnimationsModule],
       providers: [
         {
           provide: ScrollDispatcher,
@@ -995,31 +961,19 @@ describe('SbbSelect', () => {
             scrolled: () => scrolledSubject,
           }),
         },
-        ...providers,
+        provideHttpClientTesting(),
       ],
     });
 
     overlayContainer = TestBed.inject(OverlayContainer);
     overlayContainerElement = overlayContainer.getContainerElement();
-  }
+  });
 
   afterEach(() => {
     overlayContainer.ngOnDestroy();
   });
 
   describe('core', () => {
-    beforeEach(waitForAsync(() => {
-      configureSbbSelectTestingModule([
-        BasicSelect,
-        MultiSelect,
-        SelectWithGroups,
-        SelectWithGroupsAndNgContainer,
-        SelectWithFormFieldLabel,
-        SelectWithChangeEvent,
-        SelectInsideDynamicFormGroup,
-      ]);
-    }));
-
     describe('accessibility', () => {
       describe('for select', () => {
         let fixture: ComponentFixture<BasicSelect>;
@@ -2163,10 +2117,10 @@ describe('SbbSelect', () => {
       describe('for select inside a modal', () => {
         let fixture: ComponentFixture<SelectInsideAModal>;
 
-        beforeEach(fakeAsync(() => {
+        beforeEach(() => {
           fixture = TestBed.createComponent(SelectInsideAModal);
           fixture.detectChanges();
-        }));
+        });
 
         it('should add the id of the select panel to the aria-owns of the modal', fakeAsync(() => {
           fixture.componentInstance.select.open();
@@ -3384,8 +3338,6 @@ describe('SbbSelect', () => {
   });
 
   describe('when initialized without options', () => {
-    beforeEach(waitForAsync(() => configureSbbSelectTestingModule([SelectInitWithoutOptions])));
-
     it('should select the proper option when option list is initialized later', fakeAsync(() => {
       const fixture = TestBed.createComponent(SelectInitWithoutOptions);
       const instance = fixture.componentInstance;
@@ -3407,8 +3359,6 @@ describe('SbbSelect', () => {
   });
 
   describe('with a selectionChange event handler', () => {
-    beforeEach(waitForAsync(() => configureSbbSelectTestingModule([SelectWithChangeEvent])));
-
     let fixture: ComponentFixture<SelectWithChangeEvent>;
     let select: HTMLElement;
 
@@ -3449,8 +3399,6 @@ describe('SbbSelect', () => {
   });
 
   describe('with ngModel', () => {
-    beforeEach(waitForAsync(() => configureSbbSelectTestingModule([NgModelSelect])));
-
     it('should disable itself when control is disabled using the property', fakeAsync(() => {
       const fixture = TestBed.createComponent(NgModelSelect);
       fixture.detectChanges();
@@ -3501,8 +3449,6 @@ describe('SbbSelect', () => {
   });
 
   describe('with ngIf', () => {
-    beforeEach(waitForAsync(() => configureSbbSelectTestingModule([NgIfSelect])));
-
     it('should handle nesting in an ngIf', fakeAsync(() => {
       const fixture = TestBed.createComponent(NgIfSelect);
       fixture.detectChanges();
@@ -3534,8 +3480,6 @@ describe('SbbSelect', () => {
   });
 
   describe('with multiple sbb-select elements in one view', () => {
-    beforeEach(waitForAsync(() => configureSbbSelectTestingModule([ManySelects])));
-
     let fixture: ComponentFixture<ManySelects>;
     let selects: DebugElement[];
     let options: NodeListOf<HTMLElement>;
@@ -3581,9 +3525,6 @@ describe('SbbSelect', () => {
   });
 
   describe('with a sibling component that throws an error', () => {
-    beforeEach(waitForAsync(() =>
-      configureSbbSelectTestingModule([SelectWithErrorSibling, ThrowsErrorOnInit])));
-
     it('should not crash the browser when a sibling throws an error on init', () => {
       // Note that this test can be considered successful if the error being thrown didn't
       // end up crashing the testing setup altogether.
@@ -3594,8 +3535,6 @@ describe('SbbSelect', () => {
   });
 
   describe('with tabindex', () => {
-    beforeEach(waitForAsync(() => configureSbbSelectTestingModule([SelectWithPlainTabindex])));
-
     it('should be able to set the tabindex via the native attribute', () => {
       const fixture = TestBed.createComponent(SelectWithPlainTabindex);
       fixture.detectChanges();
@@ -3606,8 +3545,6 @@ describe('SbbSelect', () => {
   });
 
   describe('change events', () => {
-    beforeEach(waitForAsync(() => configureSbbSelectTestingModule([SelectWithPlainTabindex])));
-
     it('should complete the stateChanges stream on destroy', () => {
       const fixture = TestBed.createComponent(SelectWithPlainTabindex);
       fixture.detectChanges();
@@ -3625,8 +3562,6 @@ describe('SbbSelect', () => {
   });
 
   describe('when initially hidden', () => {
-    beforeEach(waitForAsync(() => configureSbbSelectTestingModule([BasicSelectInitiallyHidden])));
-
     it('should set the width of the overlay if the element was hidden initially', fakeAsync(() => {
       const fixture = TestBed.createComponent(BasicSelectInitiallyHidden);
       fixture.detectChanges();
@@ -3647,8 +3582,6 @@ describe('SbbSelect', () => {
   });
 
   describe('with no placeholder', () => {
-    beforeEach(waitForAsync(() => configureSbbSelectTestingModule([BasicSelectNoPlaceholder])));
-
     it('should set the width of the overlay if there is no placeholder', fakeAsync(() => {
       const fixture = TestBed.createComponent(BasicSelectNoPlaceholder);
 
@@ -3666,8 +3599,6 @@ describe('SbbSelect', () => {
   });
 
   describe('when invalid inside a form', () => {
-    beforeEach(waitForAsync(() => configureSbbSelectTestingModule([InvalidSelectInForm])));
-
     it('should not throw SelectionModel errors in addition to ngModel errors', () => {
       const fixture = TestBed.createComponent(InvalidSelectInForm);
 
@@ -3681,8 +3612,6 @@ describe('SbbSelect', () => {
   });
 
   describe('with ngModel using compareWith', () => {
-    beforeEach(waitForAsync(() => configureSbbSelectTestingModule([NgModelCompareWithSelect])));
-
     let fixture: ComponentFixture<NgModelCompareWithSelect>;
     let instance: NgModelCompareWithSelect;
 
@@ -3750,8 +3679,6 @@ describe('SbbSelect', () => {
   });
 
   describe(`when the select's value is accessed on initialization`, () => {
-    beforeEach(waitForAsync(() => configureSbbSelectTestingModule([SelectEarlyAccessSibling])));
-
     it('should not throw when trying to access the selected value on init', () => {
       expect(() => {
         TestBed.createComponent(SelectEarlyAccessSibling).detectChanges();
@@ -3780,8 +3707,6 @@ describe('SbbSelect', () => {
   });
 
   describe('with ngIf and sbb-label', () => {
-    beforeEach(waitForAsync(() => configureSbbSelectTestingModule([SelectWithNgIfAndLabel])));
-
     it('should not throw when using ngIf on a select with an associated label', () => {
       expect(() => {
         const fixture = TestBed.createComponent(SelectWithNgIfAndLabel);
@@ -3791,8 +3716,6 @@ describe('SbbSelect', () => {
   });
 
   describe('inside of a form group', () => {
-    beforeEach(waitForAsync(() => configureSbbSelectTestingModule([SelectInsideFormGroup])));
-
     let fixture: ComponentFixture<SelectInsideFormGroup>;
     let testComponent: SelectInsideFormGroup;
     let select: HTMLElement;
@@ -3906,15 +3829,7 @@ describe('SbbSelect', () => {
       fixture.destroy();
 
       TestBed.resetTestingModule().configureTestingModule({
-        imports: [
-          SbbSelectModule,
-          ReactiveFormsModule,
-          FormsModule,
-          NoopAnimationsModule,
-          SbbFormFieldModule,
-          SbbIconTestingModule,
-        ],
-        declarations: [SelectInsideFormGroup],
+        imports: [NoopAnimationsModule],
         providers: [{ provide: SbbErrorStateMatcher, useValue: errorStateMatcher }],
       });
 
@@ -3945,8 +3860,6 @@ describe('SbbSelect', () => {
   });
 
   describe('with custom error behavior', () => {
-    beforeEach(waitForAsync(() => configureSbbSelectTestingModule([CustomErrorBehaviorSelect])));
-
     it('should be able to override the error matching behavior via an @Input', () => {
       const fixture = TestBed.createComponent(CustomErrorBehaviorSelect);
       const component = fixture.componentInstance;
@@ -3968,9 +3881,6 @@ describe('SbbSelect', () => {
   });
 
   describe('with preselected array values', () => {
-    beforeEach(waitForAsync(() =>
-      configureSbbSelectTestingModule([SingleSelectWithPreselectedArrayValues])));
-
     it('should be able to preselect an array value in single-selection mode', fakeAsync(() => {
       const fixture = TestBed.createComponent(SingleSelectWithPreselectedArrayValues);
       fixture.detectChanges();
@@ -3985,9 +3895,6 @@ describe('SbbSelect', () => {
   });
 
   describe('with custom value accessor', () => {
-    beforeEach(waitForAsync(() =>
-      configureSbbSelectTestingModule([CompWithCustomSelect, CustomSelectAccessor])));
-
     it('should support use inside a custom value accessor', () => {
       const fixture = TestBed.createComponent(CompWithCustomSelect);
       spyOn(fixture.componentInstance.customAccessor, 'writeValue');
@@ -4001,8 +3908,6 @@ describe('SbbSelect', () => {
   });
 
   describe('with a falsy value', () => {
-    beforeEach(waitForAsync(() => configureSbbSelectTestingModule([FalsyValueSelect])));
-
     it('should be able to programmatically select a falsy option', fakeAsync(() => {
       const fixture = TestBed.createComponent(FalsyValueSelect);
 
@@ -4022,9 +3927,6 @@ describe('SbbSelect', () => {
   });
 
   describe('with OnPush', () => {
-    beforeEach(waitForAsync(() =>
-      configureSbbSelectTestingModule([BasicSelectOnPush, BasicSelectOnPushPreselected])));
-
     it('should set the trigger text based on the value when initialized', fakeAsync(() => {
       const fixture = TestBed.createComponent(BasicSelectOnPushPreselected);
 
@@ -4067,8 +3969,6 @@ describe('SbbSelect', () => {
   });
 
   describe('when resetting the value by setting null or undefined', () => {
-    beforeEach(waitForAsync(() => configureSbbSelectTestingModule([ResetValuesSelect])));
-
     let fixture: ComponentFixture<ResetValuesSelect>;
     let select: HTMLElement;
     let options: NodeListOf<HTMLElement>;
@@ -4152,8 +4052,6 @@ describe('SbbSelect', () => {
   });
 
   describe('allowing selection of nullable options', () => {
-    beforeEach(waitForAsync(() => configureSbbSelectTestingModule([ResetValuesSelect])));
-
     let fixture: ComponentFixture<ResetValuesSelect>;
     let trigger: HTMLElement;
     let options: NodeListOf<HTMLElement>;
@@ -4241,7 +4139,6 @@ describe('SbbSelect', () => {
     let options: HTMLElement[];
 
     beforeEach(() => {
-      configureSbbSelectTestingModule([SelectWithResetOptionAndFormControl]);
       fixture = TestBed.createComponent(SelectWithResetOptionAndFormControl);
       fixture.detectChanges();
       fixture.debugElement.query(By.css('.sbb-select'))!.nativeElement.click();
@@ -4275,13 +4172,6 @@ describe('SbbSelect', () => {
   });
 
   describe('without Angular forms', () => {
-    beforeEach(waitForAsync(() =>
-      configureSbbSelectTestingModule([
-        BasicSelectWithoutForms,
-        BasicSelectWithoutFormsPreselected,
-        BasicSelectWithoutFormsMultiple,
-      ])));
-
     it('should set the value when options are clicked', fakeAsync(() => {
       const fixture = TestBed.createComponent(BasicSelectWithoutForms);
 
@@ -4618,9 +4508,6 @@ describe('SbbSelect', () => {
   });
 
   describe('with multiple selection', () => {
-    beforeEach(waitForAsync(() =>
-      configureSbbSelectTestingModule([MultiSelect, MultiSelectWithLotsOfOptions])));
-
     let fixture: ComponentFixture<MultiSelect>;
     let testInstance: MultiSelect;
     let select: HTMLElement;
@@ -5055,9 +4942,9 @@ describe('SbbSelect', () => {
   });
 
   it('should be able to provide default values through an injection token', fakeAsync(() => {
-    configureSbbSelectTestingModule(
-      [NgModelSelect],
-      [
+    TestBed.resetTestingModule().configureTestingModule({
+      imports: [NoopAnimationsModule],
+      providers: [
         {
           provide: SBB_SELECT_CONFIG,
           useValue: {
@@ -5065,8 +4952,9 @@ describe('SbbSelect', () => {
             overlayPanelClass: 'test-panel-class',
           } as SbbSelectConfig,
         },
+        provideHttpClientTesting(),
       ],
-    );
+    });
     const fixture = TestBed.createComponent(NgModelSelect);
     fixture.detectChanges();
     const select = fixture.componentInstance.select;
@@ -5079,7 +4967,6 @@ describe('SbbSelect', () => {
   }));
 
   it('should not not throw if the select is inside an ng-container with ngIf', () => {
-    configureSbbSelectTestingModule([SelectInNgContainer]);
     const fixture = TestBed.createComponent(SelectInNgContainer);
     expect(() => fixture.detectChanges()).not.toThrow();
   });
@@ -5087,9 +4974,6 @@ describe('SbbSelect', () => {
   describe('page up/down with disabled options', () => {
     let fixture: ComponentFixture<BasicSelectWithFirstAndLastOptionDisabled>;
     let host: HTMLElement;
-
-    beforeEach(waitForAsync(() =>
-      configureSbbSelectTestingModule([BasicSelectWithFirstAndLastOptionDisabled])));
 
     beforeEach(fakeAsync(() => {
       fixture = TestBed.createComponent(BasicSelectWithFirstAndLastOptionDisabled);
@@ -5135,8 +5019,6 @@ describe('SbbSelect', () => {
   });
 
   describe('sbb-form-field integration', () => {
-    beforeEach(waitForAsync(() => configureSbbSelectTestingModule([BasicSelect])));
-
     let fixture: ComponentFixture<BasicSelect>;
     let selectComponent: SbbSelect;
 
@@ -5162,8 +5044,6 @@ describe('SbbSelect', () => {
   });
 
   describe('readonly', () => {
-    beforeEach(waitForAsync(() => configureSbbSelectTestingModule([SelectReadonly])));
-
     let fixture: ComponentFixture<SelectReadonly>;
     let select: HTMLElement;
     let selectComponent: SbbSelect;
@@ -5241,13 +5121,10 @@ describe('SbbSelect', () => {
           </sbb-option>
         }
       </sbb-select>
-      @if (hint) {
-        <sbb-hint>{{ hint }}</sbb-hint>
-      }
     </sbb-form-field>
     <div [style.height.px]="heightBelow"></div>
   `,
-  standalone: false,
+  imports: [SbbSelectModule, SbbFormFieldModule, ReactiveFormsModule, SbbOptionModule],
 })
 class BasicSelectWithFirstAndLastOptionDisabled {
   foods: any[] = [
@@ -5297,7 +5174,7 @@ class BasicSelectWithFirstAndLastOptionDisabled {
       </div>
     </ng-template>
   `,
-  imports: [SbbSelect, SbbOption, SbbFormFieldModule, FormsModule, OverlayModule],
+  imports: [SbbSelectModule, SbbOption, SbbFormFieldModule, FormsModule, OverlayModule],
 })
 class SelectInsideAModal {
   foods = [

@@ -4,42 +4,42 @@ module(
     name = "components",
 )
 
-bazel_dep(name = "yq.bzl", version = "0.2.0")
-bazel_dep(name = "rules_nodejs", version = "6.5.0")
-bazel_dep(name = "aspect_rules_js", version = "2.6.0")
+bazel_dep(name = "yq.bzl", version = "0.3.2")
+bazel_dep(name = "rules_nodejs", version = "6.6.2")
+bazel_dep(name = "aspect_rules_js", version = "2.8.2")
 bazel_dep(name = "rules_pkg", version = "1.1.0")
-bazel_dep(name = "tar.bzl", version = "0.5.5")
+bazel_dep(name = "tar.bzl", version = "0.7.0")
 bazel_dep(name = "aspect_bazel_lib", version = "2.21.2")
-bazel_dep(name = "aspect_rules_esbuild", version = "0.22.1")
+bazel_dep(name = "aspect_rules_esbuild", version = "0.24.0")
 bazel_dep(name = "aspect_rules_jasmine", version = "2.0.0")
 bazel_dep(name = "platforms", version = "1.0.0")
-bazel_dep(name = "aspect_rules_ts", version = "3.7.0")
-bazel_dep(name = "bazel_skylib", version = "1.8.1")
+bazel_dep(name = "aspect_rules_ts", version = "3.7.1")
+bazel_dep(name = "bazel_skylib", version = "1.8.2")
 bazel_dep(name = "rules_browsers")
 git_override(
     module_name = "rules_browsers",
-    commit = "6749ba4c0dc5e04536369fa91fdb2d827b6705ff",
+    commit = "f066f614451374721fac787fb1f0dbbd818d50d4",
     remote = "https://github.com/devversion/rules_browsers.git",
 )
 
 bazel_dep(name = "rules_sass")
 git_override(
     module_name = "rules_sass",
-    commit = "4a54e0e4e75fc6456ff874e53fb4a78bdfeb44b9",
+    commit = "1184a80751a21af8348f308abc5b38a41f26850e",
     remote = "https://github.com/devversion/rules_sass.git",
 )
 
 bazel_dep(name = "rules_angular")
 git_override(
     module_name = "rules_angular",
-    commit = "a957283cdef0ade1fc6d1d7404f14577cebd3642",
+    commit = "9b751f826628cab386d1e8ae9c1fa766dbc6a495",
     remote = "https://github.com/devversion/rules_angular.git",
 )
 
 bazel_dep(name = "devinfra")
 git_override(
     module_name = "devinfra",
-    commit = "7e2eefa1375195fa7616f78a76f538a188852067",
+    commit = "95e3a0ede6dfa1aedd34b03918ad72b18f87e5ae",
     remote = "https://github.com/angular/dev-infra.git",
 )
 
@@ -88,20 +88,24 @@ npm.npm_translate_lock(
         "@sbb-esta/angular": [
             "//integration:__subpackages__",
             "//docs:__subpackages__",
+            "//src/components-examples:__subpackages__",
             "//src/journey-maps-wc:__subpackages__",
         ],
         "@sbb-esta/angular-experimental": [
             "//integration:__subpackages__",
             "//docs:__subpackages__",
+            "//src/components-examples:__subpackages__",
         ],
         "@sbb-esta/journey-maps": [
             "//integration:__subpackages__",
             "//docs:__subpackages__",
+            "//src/components-examples:__subpackages__",
             "//src/journey-maps-wc:__subpackages__",
         ],
         "@sbb-esta/journey-maps-wc": [
             "//integration:__subpackages__",
             "//docs:__subpackages__",
+            "//src/components-examples:__subpackages__",
         ],
     },
     pnpm_lock = "//:pnpm-lock.yaml",

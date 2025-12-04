@@ -474,7 +474,7 @@ class BasicTestComponent {
   @ViewChild('sidebarButton') sidebarButton: ElementRef<HTMLButtonElement>;
   @ViewChild('expandedButton') expandedButton: ElementRef<HTMLButtonElement>;
   @ViewChild('collapseButton') collapseButton: ElementRef<HTMLButtonElement>;
-  position = 'start';
+  position: 'start' | 'end' = 'start';
 }
 
 @Component({

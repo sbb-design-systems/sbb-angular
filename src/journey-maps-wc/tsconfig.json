@@ -9,8 +9,8 @@
     "declaration": false,
     "downlevelIteration": true,
     "experimentalDecorators": true,
-    "module": "es2020",
-    "moduleResolution": "node",
+    "module": "es2022",
+    "moduleResolution": "bundler",
     "importHelpers": true,
     "target": "ES2022",
     "typeRoots": ["node_modules/@types"],
@@ -31,6 +31,10 @@
     "fullTemplateTypeCheck": true,
     "strictInjectionParameters": true,
     "strictInputAccessModifiers": true,
-    "strictTemplates": true
+    "strictTemplates": true,
+    "strictInputTypes": true,
+    "strictOutputEventTypes": true,
+    "strictDomEventTypes": true,
+    "typeCheckHostBindings": true
   }
 }

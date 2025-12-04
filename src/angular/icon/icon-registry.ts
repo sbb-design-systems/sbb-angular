@@ -29,6 +29,7 @@ export function getSbbIconNameNotFoundError(iconName: string): Error {
  * @docs-private
  */
 export function getSbbIconNoHttpProviderError(): Error {
+  // TODO(mhaertwig): Update message, http client is now provided in root.
   return Error(
     'Could not find HttpClient provider for use with Sbb Angular icons. ' +
       'Please include the HttpClientModule from @angular/common/http in your ' +

@@ -7,8 +7,10 @@ import {
   ChangeDetectionStrategy,
   Component,
   DebugElement,
+  Directive,
   ElementRef,
   EventEmitter,
+  OnDestroy,
   signal,
   ViewChild,
   WritableSignal,
@@ -49,8 +51,8 @@ import {
 
 const initialTooltipMessage = 'initial tooltip message';
 
-// tslint:disable-next-line:no-undecorated-class-with-angular-features lifecycle-hook-interface
-class FakeDirectionality implements Directionality {
+@Directive()
+class FakeDirectionality implements Directionality, OnDestroy {
   readonly change: EventEmitter<Direction>;
 
   get value(): Direction {
@@ -225,8 +227,6 @@ describe('SbbTooltip', () => {
 
     it('should be able to override the default position', fakeAsync(() => {
       TestBed.resetTestingModule().configureTestingModule({
-        imports: [SbbTooltipModule, OverlayModule],
-        declarations: [TooltipDemoWithoutPositionBinding],
         providers: [
           {
             provide: SBB_TOOLTIP_DEFAULT_OPTIONS,
@@ -252,8 +252,6 @@ describe('SbbTooltip', () => {
 
     it('should be able to disable tooltip interactivity', fakeAsync(() => {
       TestBed.resetTestingModule().configureTestingModule({
-        imports: [SbbTooltipModule],
-        declarations: [TooltipDemoWithoutPositionBinding],
         providers: [
           {
             provide: SBB_TOOLTIP_DEFAULT_OPTIONS,
@@ -600,7 +598,7 @@ describe('SbbTooltip', () => {
 
     it('should throw when trying to assign an invalid position', () => {
       expect(() => {
-        fixture.componentInstance.position = 'everywhere';
+        fixture.componentInstance.position = 'everywhere' as any;
         fixture.changeDetectorRef.markForCheck();
         fixture.detectChanges();
         tooltipDirective.show();
@@ -1440,7 +1438,7 @@ describe('SbbTooltip', () => {
   imports: [SbbTooltipModule],
 })
 class BasicTooltipDemo {
-  position = 'below';
+  position: TooltipPosition = 'below';
   message: any = initialTooltipMessage;
   showButton = true;
   showTooltipClass = false;
@@ -1558,7 +1556,7 @@ class TriggerConfigurableTooltip {
 @Component({
   selector: 'app',
   template: `<button #button [sbbTooltip]="message">Button</button>`,
-  standalone: false,
+  imports: [SbbTooltipModule, OverlayModule],
 })
 class TooltipDemoWithoutPositionBinding {
   message: any = initialTooltipMessage;

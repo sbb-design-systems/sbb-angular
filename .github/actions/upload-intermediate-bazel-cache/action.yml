@@ -1,0 +1,20 @@
+name: "Upload intermediate bazel cache"
+description: "Compresses and uploads the bazel cache as an artefact"
+inputs:
+  key:
+    description: 'Base name of the artefact'
+    required: true
+    default: 'bazel-cache'
+runs:
+  using: "composite"
+  steps:
+    - name: "Bazel: Compress artifacts"
+      run: |
+        cd ~/.bazel-cache
+        tar -I zstd -cf ${{ inputs.key }}.tar.zst sbb-angular
+      shell: bash
+    - name: "Bazel: Upload cache artifact"
+      uses: actions/upload-artifact@v4
+      with:
+        name: ${{ inputs.key }}-artifact
+        path: ~/.bazel-cache/${{ inputs.key }}.tar.zst

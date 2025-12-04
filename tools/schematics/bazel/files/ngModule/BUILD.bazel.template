@@ -4,8 +4,7 @@ load(
     "ng_project",<% if (hasTests) { %>
     "ng_web_test_suite",<% } %><% if (stylesheets.length) { %>
     "sass_binary",<% } %><% if (hasSassLibrary) { %>
-    "sass_library",<% } %><% if (hasTests) { %>
-    "ts_project",<% } %>
+    "sass_library",<% } %>
 )
 
 package(default_visibility = ["//visibility:public"])
@@ -45,7 +44,7 @@ sass_binary(
     ],<% } %>
 )<% } %><% if (hasTests) { %>
 
-ts_project(
+ng_project(
     name = "unit_test_sources",
     testonly = True,
     srcs = glob(

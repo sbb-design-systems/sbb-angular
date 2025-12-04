@@ -80,11 +80,10 @@ describe('SbbMenu', () => {
   function createComponent<T>(
     component: Type<T>,
     providers: Provider[] = [],
-    declarations: any[] = [],
+    imports: any[] = [],
   ): ComponentFixture<T> {
     TestBed.configureTestingModule({
-      imports: [SbbMenuModule, NoopAnimationsModule, SbbIconModule, SbbIconTestingModule],
-      declarations: [component, ...declarations],
+      imports: [...imports, SbbIconTestingModule],
       providers,
     });
 
@@ -288,15 +287,18 @@ describe('SbbMenu', () => {
     fixture.detectChanges();
     tick(500);
 
-    const items = overlayContainerElement.querySelectorAll('.sbb-menu-panel .sbb-menu-item');
+    const items = overlayContainerElement.querySelectorAll<HTMLElement>(
+      '.sbb-menu-panel .sbb-menu-item',
+    );
 
-    expect(document.activeElement).toBe(items[0]);
+    spyOn(fixture.componentInstance.itemInstances.first, '_hasFocus').and.callFake(() => true);
+    const spy = spyOn(items[1], 'focus');
 
     fixture.componentInstance.items.shift();
     fixture.detectChanges();
     tick(500);
 
-    expect(document.activeElement).toBe(items[1]);
+    expect(spy).toHaveBeenCalled();
   }));
 
   it('should be able to set a custom class on the backdrop', fakeAsync(() => {
@@ -1206,27 +1208,16 @@ describe('SbbMenu', () => {
     }));
 
     it('should detach the lazy content when the menu is closed', fakeAsync(() => {
-      let destroyCount = 0;
-
-      // Note: for some reason doing `spyOn(item, 'ngOnDestroy')` doesn't work, even though a
-      // `console.log` shows that the `ngOnDestroy` gets called. We work around it with a custom
-      // directive that increments a counter.
-      @Directive({ selector: '[sbb-menu-item]', standalone: false })
-      class DestroyChecker implements OnDestroy {
-        ngOnDestroy(): void {
-          destroyCount++;
-        }
-      }
-
-      const fixture = createComponent(SimpleLazyMenu, undefined, [DestroyChecker]);
+      const fixture = TestBed.createComponent(SimpleLazyMenu);
       fixture.detectChanges();
       fixture.componentInstance.trigger.openMenu();
       fixture.detectChanges();
       tick(500);
       fixture.detectChanges();
 
+      const checkers = fixture.componentInstance.destroyCheckers.toArray();
       expect(fixture.componentInstance.items.length).toBe(2);
-      expect(destroyCount).toBe(0);
+      expect(checkers.map((d) => d.destroyed)).toEqual([false, false]);
 
       fixture.componentInstance.trigger.closeMenu();
       fixture.detectChanges();
@@ -1236,7 +1227,9 @@ describe('SbbMenu', () => {
       expect(fixture.componentInstance.items.length)
         .withContext('Expected items to be removed from query list')
         .toBe(0);
-      expect(destroyCount).withContext('Expected ngOnDestroy to have been called').toBe(2);
+      expect(checkers.map((d) => d.destroyed))
+        .withContext('Expected ngOnDestroy to have been called')
+        .toEqual([true, true]);
     }));
 
     it('should focus the first menu item when opening a lazy menu via keyboard', async () => {
@@ -2558,8 +2551,7 @@ describe('SbbMenu', () => {
 describe('SbbMenu default overrides', () => {
   beforeEach(fakeAsync(() => {
     TestBed.configureTestingModule({
-      imports: [SbbMenuModule, NoopAnimationsModule, SbbIconModule, SbbIconTestingModule],
-      declarations: [SimpleMenu, FakeIcon],
+      imports: [NoopAnimationsModule, SbbIconTestingModule],
       providers: [
         {
           provide: SBB_MENU_DEFAULT_OPTIONS,
@@ -2586,11 +2578,6 @@ describe('SbbMenu contextmenu', () => {
   beforeEach(fakeAsync(() => {
     TestBed.configureTestingModule({
       imports: [SbbMenuModule, NoopAnimationsModule, SbbIconModule, SbbIconTestingModule],
-      declarations: [
-        ContextmenuStaticTrigger,
-        ContextmenuDynamicTrigger,
-        ContextmenuOnlyTextTrigger,
-      ],
     });
 
     inject([DomSanitizer], (domSanitizer: DomSanitizer) => {
@@ -2667,8 +2654,7 @@ describe('SbbMenu contextmenu', () => {
 describe('SbbMenu headless trigger', () => {
   beforeEach(fakeAsync(() => {
     TestBed.configureTestingModule({
-      imports: [SbbMenuModule, NoopAnimationsModule, SbbIconModule, SbbIconTestingModule],
-      declarations: [HeadlessTrigger],
+      imports: [HeadlessTrigger, NoopAnimationsModule, SbbIconTestingModule],
     });
   }));
 
@@ -2695,8 +2681,7 @@ describe('SbbMenu offset', () => {
 
   beforeEach(fakeAsync(() => {
     TestBed.configureTestingModule({
-      imports: [SbbMenuModule, NoopAnimationsModule, SbbIconModule, SbbIconTestingModule],
-      declarations: [ContextmenuOnlyTextTrigger],
+      imports: [NoopAnimationsModule, SbbIconTestingModule],
       providers: [
         PROVIDE_FAKE_MEDIA_MATCHER,
         { provide: SBB_MENU_INHERITED_TRIGGER_CONTEXT, useValue: sbbMenuInheritedTriggerContext },
@@ -2751,8 +2736,7 @@ describe('SbbMenu offset', () => {
 describe('SbbMenu contextmenu trigger', () => {
   beforeEach(fakeAsync(() => {
     TestBed.configureTestingModule({
-      imports: [SbbMenuModule, NoopAnimationsModule, SbbIconModule, SbbIconTestingModule],
-      declarations: [ContextmenuTrigger, ContextmenuCustomIconTrigger],
+      imports: [NoopAnimationsModule, SbbIconTestingModule],
     });
   }));
 
@@ -2828,7 +2812,7 @@ const SIMPLE_MENU_TEMPLATE = `
   `;
 @Component({
   template: SIMPLE_MENU_TEMPLATE,
-  standalone: false,
+  imports: [SbbMenuModule, SbbIconModule],
 })
 class SimpleMenu {
   @ViewChild(SbbMenuTrigger) trigger: SbbMenuTrigger;
@@ -2848,7 +2832,7 @@ class SimpleMenu {
 @Component({
   template: SIMPLE_MENU_TEMPLATE,
   changeDetection: ChangeDetectionStrategy.OnPush,
-  standalone: false,
+  imports: [SbbMenuModule, SbbIconModule],
 })
 class SimpleMenuOnPush extends SimpleMenu {}
 
@@ -2866,7 +2850,7 @@ class SimpleMenuOnPush extends SimpleMenu {}
       <button sbb-menu-item type="button">Positioned Content</button>
     </sbb-menu>
   `,
-  standalone: false,
+  imports: [SbbMenuModule],
 })
 class PositionedMenu {
   @ViewChild(SbbMenuTrigger) trigger: SbbMenuTrigger;
@@ -2887,7 +2871,7 @@ interface TestableMenu {
       <button sbb-menu-item type="button">Not overlapped Content</button>
     </sbb-menu>
   `,
-  standalone: false,
+  imports: [SbbMenuModule],
 })
 class OverlapMenu implements TestableMenu {
   @Input() overlapTrigger: boolean;
@@ -2904,7 +2888,6 @@ class OverlapMenu implements TestableMenu {
     </ng-template>
   `,
   exportAs: 'sbbCustomMenu',
-  standalone: false,
 })
 class CustomMenuPanel implements SbbMenuPanel {
   xPosition: SbbMenuPositionX = 'after';
@@ -2929,7 +2912,7 @@ class CustomMenuPanel implements SbbMenuPanel {
       <button sbb-menu-item type="button">Custom Content</button>
     </custom-menu>
   `,
-  standalone: false,
+  imports: [SbbMenuModule, CustomMenuPanel],
 })
 class CustomMenu {
   @ViewChild(SbbMenuTrigger) trigger: SbbMenuTrigger;
@@ -2995,7 +2978,7 @@ class CustomMenu {
       <button sbb-menu-item type="button">Twelve</button>
     </sbb-menu>
   `,
-  standalone: false,
+  imports: [SbbMenuModule],
 })
 class NestedMenu {
   @ViewChild('root') rootMenu: SbbMenu;
@@ -3038,7 +3021,7 @@ class NestedMenu {
       <button sbb-menu-item>Two</button>
     </sbb-menu>
   `,
-  standalone: false,
+  imports: [SbbMenuModule],
 })
 class NestedMenuCustomElevation {
   @ViewChild('rootTrigger') rootTrigger: SbbMenuTrigger;
@@ -3061,7 +3044,7 @@ class NestedMenuCustomElevation {
       <button sbb-menu-item>Five</button>
     </sbb-menu>
   `,
-  standalone: false,
+  imports: [SbbMenuModule],
 })
 class NestedMenuRepeater {
   @ViewChild('rootTriggerEl') rootTriggerEl: ElementRef<HTMLElement>;
@@ -3082,7 +3065,7 @@ class NestedMenuRepeater {
       </sbb-menu>
     </sbb-menu>
   `,
-  standalone: false,
+  imports: [SbbMenuModule],
 })
 class SubmenuDeclaredInsideParentMenu {
   @ViewChild('rootTriggerEl') rootTriggerEl: ElementRef;
@@ -3091,9 +3074,20 @@ class SubmenuDeclaredInsideParentMenu {
 @Component({
   selector: 'sbb-fake-icon',
   template: '<ng-content></ng-content>',
-  standalone: false,
 })
 class FakeIcon {}
+
+// Note: for some reason doing `spyOn(item, 'ngOnDestroy')` doesn't work, even though a
+// `console.log` shows that the `ngOnDestroy` gets called. We work around it with a custom
+// directive that flips a flag.
+@Directive({ selector: '[sbb-menu-item]' })
+class DestroyChecker implements OnDestroy {
+  destroyed = false;
+
+  ngOnDestroy(): void {
+    this.destroyed = true;
+  }
+}
 
 @Component({
   template: `
@@ -3106,12 +3100,13 @@ class FakeIcon {}
       </ng-template>
     </sbb-menu>
   `,
-  standalone: false,
+  imports: [SbbMenuModule, DestroyChecker],
 })
 class SimpleLazyMenu {
   @ViewChild(SbbMenuTrigger) trigger: SbbMenuTrigger;
   @ViewChild('triggerEl') triggerEl: ElementRef<HTMLElement>;
   @ViewChildren(SbbMenuItem) items: QueryList<SbbMenuItem>;
+  @ViewChildren(DestroyChecker) destroyCheckers: QueryList<DestroyChecker>;
 }
 
 @Component({
@@ -3138,7 +3133,7 @@ class SimpleLazyMenu {
       </ng-template>
     </sbb-menu>
   `,
-  standalone: false,
+  imports: [SbbMenuModule],
 })
 class LazyMenuWithContext {
   @ViewChild('triggerOne') triggerOne: SbbMenuTrigger;
@@ -3156,7 +3151,7 @@ class LazyMenuWithContext {
       <button sbb-menu-item>Two</button>
     </sbb-menu>
   `,
-  standalone: false,
+  imports: [SbbMenuModule],
 })
 class DynamicPanelMenu {
   @ViewChild(SbbMenuTrigger) trigger: SbbMenuTrigger;
@@ -3173,7 +3168,7 @@ class DynamicPanelMenu {
       <button sbb-menu-item role="menuitemcheckbox" aria-checked="false">Not checked</button>
     </sbb-menu>
   `,
-  standalone: false,
+  imports: [SbbMenuModule],
 })
 class MenuWithCheckboxItems {
   @ViewChild(SbbMenuTrigger) trigger: SbbMenuTrigger;
@@ -3190,7 +3185,7 @@ class MenuWithCheckboxItems {
       }
     </sbb-menu>
   `,
-  standalone: false,
+  imports: [SbbMenuModule],
 })
 class SimpleMenuWithRepeater {
   @ViewChild(SbbMenuTrigger) trigger: SbbMenuTrigger;
@@ -3215,7 +3210,7 @@ class SimpleMenuWithRepeater {
       </ng-template>
     </sbb-menu>
   `,
-  standalone: false,
+  imports: [SbbMenuModule],
 })
 class SimpleMenuWithRepeaterInLazyContent {
   @ViewChild(SbbMenuTrigger) trigger: SbbMenuTrigger;
@@ -3243,7 +3238,7 @@ class SimpleMenuWithRepeaterInLazyContent {
     </sbb-menu>
   `,
   changeDetection: ChangeDetectionStrategy.OnPush,
-  standalone: false,
+  imports: [SbbMenuModule],
 })
 class LazyMenuWithOnPush {
   @ViewChild('triggerEl', { read: ElementRef }) rootTrigger: ElementRef;
@@ -3256,25 +3251,25 @@ class LazyMenuWithOnPush {
       <button [sbbMenuTriggerFor]="menu"></button>
     </sbb-menu>
   `,
-  standalone: false,
+  imports: [SbbMenuModule],
 })
 class InvalidRecursiveMenu {}
 
 @Component({
   template: '<sbb-menu aria-label="label"></sbb-menu>',
-  standalone: false,
+  imports: [SbbMenuModule],
 })
 class StaticAriaLabelMenu {}
 
 @Component({
   template: '<sbb-menu aria-labelledby="some-element"></sbb-menu>',
-  standalone: false,
+  imports: [SbbMenuModule],
 })
 class StaticAriaLabelledByMenu {}
 
 @Component({
   template: '<sbb-menu aria-describedby="some-element"></sbb-menu>',
-  standalone: false,
+  imports: [SbbMenuModule],
 })
 class StaticAriaDescribedbyMenu {}
 
@@ -3287,12 +3282,13 @@ class StaticAriaDescribedbyMenu {}
       }
     </sbb-menu>
   `,
-  standalone: false,
+  imports: [SbbMenuModule, SbbIconTestingModule],
 })
 class MenuWithRepeatedItems {
   @ViewChild(SbbMenuTrigger, { static: false }) trigger: SbbMenuTrigger;
   @ViewChild('triggerEl', { static: false }) triggerEl: ElementRef<HTMLElement>;
   @ViewChild(SbbMenu, { static: false }) menu: SbbMenu;
+  @ViewChildren(SbbMenuItem) itemInstances: QueryList<SbbMenuItem>;
   items = ['One', 'Two', 'Three'];
 }
 
@@ -3303,7 +3299,7 @@ class MenuWithRepeatedItems {
     <sbb-menu #animals="sbbMenu">
       <button sbb-menu-item>Invertebrates</button>
     </sbb-menu>`,
-  standalone: false,
+  imports: [SbbMenuModule, SbbIconModule, SbbIconTestingModule],
 })
 class ContextmenuStaticTrigger {
   @ViewChild(SbbMenuTrigger) trigger: SbbMenuTrigger;
@@ -3317,7 +3313,7 @@ class ContextmenuStaticTrigger {
     <sbb-menu #animals="sbbMenu">
       <button sbb-menu-item>Invertebrates</button>
     </sbb-menu>`,
-  standalone: false,
+  imports: [SbbMenuModule, SbbIconModule, SbbIconTestingModule],
 })
 class ContextmenuDynamicTrigger {
   @ViewChild(SbbMenuTrigger) trigger: SbbMenuTrigger;
@@ -3331,7 +3327,7 @@ class ContextmenuDynamicTrigger {
     <sbb-menu #animals="sbbMenu">
       <button sbb-menu-item>Invertebrates</button>
     </sbb-menu>`,
-  standalone: false,
+  imports: [SbbMenuModule],
 })
 class ContextmenuOnlyTextTrigger {
   @ViewChild(SbbMenuTrigger) trigger: SbbMenuTrigger;
@@ -3345,7 +3341,7 @@ class ContextmenuOnlyTextTrigger {
     <sbb-menu #animals="sbbMenu">
       <button sbb-menu-item>Invertebrates</button>
     </sbb-menu>`,
-  standalone: false,
+  imports: [SbbMenuModule, SbbIconModule, SbbIconTestingModule],
 })
 class HeadlessTrigger {
   @ViewChild(SbbMenuTrigger) trigger: SbbMenuTrigger;
@@ -3359,7 +3355,7 @@ class HeadlessTrigger {
     <sbb-menu #animals="sbbMenu">
       <button sbb-menu-item>Invertebrates</button>
     </sbb-menu>`,
-  standalone: false,
+  imports: [SbbMenuModule],
 })
 class ContextmenuTrigger {
   @ViewChild(SbbMenuTrigger) trigger: SbbMenuTrigger;
@@ -3376,7 +3372,7 @@ class ContextmenuTrigger {
     <sbb-menu #animals="sbbMenu">
       <button sbb-menu-item>Invertebrates</button>
     </sbb-menu>`,
-  standalone: false,
+  imports: [SbbMenuModule],
 })
 class ContextmenuCustomIconTrigger {
   @ViewChild(SbbMenuTrigger) trigger: SbbMenuTrigger;

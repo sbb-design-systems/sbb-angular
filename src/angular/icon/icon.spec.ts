@@ -133,7 +133,7 @@ describe('SbbIcon', () => {
 
       const testComponent = fixture.componentInstance;
       const sbbIconElement = fixture.debugElement.nativeElement.querySelector('sbb-icon');
-      testComponent.iconName = undefined;
+      testComponent.iconName = undefined!;
       fixture.detectChanges();
 
       expect(sbbIconElement.textContent.trim()).toBe('house');
@@ -575,7 +575,7 @@ describe('SbbIcon', () => {
 
       expect(icon.querySelector('svg')).toBeTruthy();
 
-      testComponent.iconName = undefined;
+      testComponent.iconName = undefined!;
       fixture.changeDetectorRef.markForCheck();
       fixture.detectChanges();
 
@@ -1206,25 +1206,19 @@ describe('SbbIcon without HttpClientModule', () => {
 
   @Component({
     template: `<sbb-icon [svgIcon]="iconName"></sbb-icon>`,
-    standalone: false,
+    imports: [SbbIconModule],
   })
   class IconFromSvgName {
-    iconName: string | undefined = '';
+    iconName = '';
   }
-
-  beforeEach(waitForAsync(() => {
-    TestBed.configureTestingModule({
-      imports: [SbbIconModule],
-      declarations: [IconFromSvgName],
-    });
-  }));
 
   beforeEach(inject([SbbIconRegistry, DomSanitizer], (mir: SbbIconRegistry, ds: DomSanitizer) => {
     iconRegistry = mir;
     sanitizer = ds;
   }));
 
-  it('should throw an error when trying to load a remote icon', () => {
+  // TODO(mhaertwig): This test may be removed because since Angular 21 the HttpClient is provided by default
+  xit('should throw an error when trying to load a remote icon', () => {
     const expectedError = wrappedErrorMessage(getSbbIconNoHttpProviderError());
 
     expect(() => {
@@ -1233,6 +1227,7 @@ describe('SbbIcon without HttpClientModule', () => {
       const fixture = TestBed.createComponent(IconFromSvgName);
 
       fixture.componentInstance.iconName = 'fido';
+      fixture.changeDetectorRef.markForCheck();
       fixture.detectChanges();
     }).toThrowError(expectedError);
   });
@@ -1260,7 +1255,7 @@ class IconWithCustomFontCss {
   imports: [SbbIconModule, HttpClientTestingModule],
 })
 class IconFromSvgName {
-  iconName: string | undefined = '';
+  iconName = '';
 }
 
 @Component({
@@ -1296,7 +1291,7 @@ class InlineIcon {
   imports: [SbbIconModule],
 })
 class SvgIconWithUserContent {
-  iconName: string | undefined = '';
+  iconName = '';
 }
 
 @Component({
@@ -1304,7 +1299,7 @@ class SvgIconWithUserContent {
   imports: [SbbIconModule],
 })
 class IconWithLigatureAndSvgBinding {
-  iconName: string | undefined;
+  iconName: string;
 }
 
 @Component({
