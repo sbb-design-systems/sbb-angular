@@ -16,15 +16,6 @@ permissions:
 jobs:
   packages:
     runs-on: ubuntu-latest
-    services:
-      cache:
-        image: ghcr.io/kyubisation/bazel-cache-oci-registry:latest
-        env:
-          repository: ghcr.io/${{ github.repository }}/bazel-cache
-          username: ${{ github.actor }}
-          password: ${{ secrets.GITHUB_TOKEN }}
-        ports:
-          - 31385:31385
     steps:
     - uses: actions/checkout@08c6903cd8c0fde910a37f88322edcfb5dd907a8 # v5
     - name: "Bazel: Copy .bazelrc to user home"
@@ -36,6 +27,14 @@ jobs:
         node-version-file: '.nvmrc'
         registry-url: 'https://registry.npmjs.org'
     - run: pnpm install
+    - name: "Bazel: Restore remote cache"
+      uses: actions/cache/restore@v4
+      with:
+        path: ~/.bazel-cache/sbb-angular
+        key: bazel-${{ env.BAZEL_CACHE_VERSION }}-${{ github.sha }}-${{ github.run_attempt }}
+        restore-keys: |
+          bazel-${{ env.BAZEL_CACHE_VERSION }}-${{ github.sha }}-
+          bazel-${{ env.BAZEL_CACHE_VERSION }}-
 
     - name: "Bazel: Build packages"
       run: pnpm -s build packages
@@ -73,15 +72,6 @@ jobs:
 
   showcase:
     runs-on: ubuntu-latest
-    services:
-      cache:
-        image: ghcr.io/kyubisation/bazel-cache-oci-registry:latest
-        env:
-          repository: ghcr.io/${{ github.repository }}/bazel-cache
-          username: ${{ github.actor }}
-          password: ${{ secrets.GITHUB_TOKEN }}
-        ports:
-          - 31385:31385
     steps:
     - uses: actions/checkout@08c6903cd8c0fde910a37f88322edcfb5dd907a8 # v5
     - name: "Bazel: Copy .bazelrc to user home"
@@ -92,6 +82,14 @@ jobs:
         cache: 'pnpm'
         node-version-file: '.nvmrc'
     - run: pnpm install
+    - name: "Bazel: Restore remote cache"
+      uses: actions/cache/restore@v4
+      with:
+        path: ~/.bazel-cache/sbb-angular
+        key: bazel-${{ env.BAZEL_CACHE_VERSION }}-${{ github.sha }}-${{ github.run_attempt }}
+        restore-keys: |
+          bazel-${{ env.BAZEL_CACHE_VERSION }}-${{ github.sha }}-
+          bazel-${{ env.BAZEL_CACHE_VERSION }}-
 
     - name: "Bazel: Build docs"
       run: pnpm -s build docs
