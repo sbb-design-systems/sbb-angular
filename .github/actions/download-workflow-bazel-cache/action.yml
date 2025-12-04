@@ -1,0 +1,27 @@
+name: "Download workflow bazel cache"
+description: "Downloads the bazel cache from GitHub cache"
+inputs:
+  key:
+    description: 'Unique cache key'
+    required: true
+runs:
+  using: "composite"
+  steps:
+    - uses: actions/github-script@v7
+      with:
+        # Restores the bazel cache via GitHub Actions cache.
+        # Due to the nature of bazel, we cannot create a atomic cache entry, but have to update/create
+        # the cache entry each time this workflow/action is run.
+        # In order to restore the most recent cache entry, we use a key combination that cannot exist
+        # and use the restore keys to resolve the correct cache.
+        #
+        # See: https://docs.github.com/en/actions/guides/caching-dependencies-to-speed-up-workflows#example-using-the-cache-action.
+        script: |
+          const cache = require('@actions/cache');
+          const paths = ['~/.bazel-cache/sbb-angular'];
+          const key = 'bazel-${{ inputs.key }}-${{ env.BAZEL_CACHE_VERSION }}-${{ github.sha }}-${{ github.run_attempt }}';
+          const restoreKeys = [
+              'bazel-${{ inputs.key }}-${{ env.BAZEL_CACHE_VERSION }}-${{ github.sha }}-',
+              'bazel-${{ inputs.key }}-${{ env.BAZEL_CACHE_VERSION }}-'
+          ];
+          await cache.restoreCache(paths, key, restoreKeys)
