@@ -8,24 +8,24 @@ packages:
   - src/journey-maps-wc
 
 catalog:
-  '@angular-devkit/build-angular': 20.3.10
-  '@angular-devkit/core': 20.3.10
-  '@angular-devkit/schematics': 20.3.10
-  '@angular/animations': 20.3.11
-  '@angular/build': 20.3.10
-  '@angular/cdk': 20.2.12
-  '@angular/cli': 20.3.10
+  '@angular-devkit/build-angular': 20.3.13
+  '@angular-devkit/core': 20.3.13
+  '@angular-devkit/schematics': 20.3.13
+  '@angular/animations': 20.3.15
+  '@angular/build': 20.3.13
+  '@angular/cdk': 20.2.14
+  '@angular/cli': 20.3.13
   '@angular/common': 20.3.11
-  '@angular/compiler-cli': 20.3.11
+  '@angular/compiler-cli': 20.3.15
   '@angular/compiler': 20.3.15
-  '@angular/core': 20.3.11
-  '@angular/elements': 20.3.11
-  '@angular/ssr': 20.3.10
-  '@angular/forms': 20.3.11
-  '@angular/localize': 20.3.11
-  '@angular/platform-browser': 20.3.11
-  '@angular/platform-browser-dynamic': 20.3.11
-  '@angular/platform-server': 20.3.11
-  '@angular/router': 20.3.11
-  '@schematics/angular': 20.3.10
+  '@angular/core': 20.3.15
+  '@angular/elements': 20.3.15
+  '@angular/ssr': 20.3.13
+  '@angular/forms': 20.3.15
+  '@angular/localize': 20.3.15
+  '@angular/platform-browser': 20.3.15
+  '@angular/platform-browser-dynamic': 20.3.15
+  '@angular/platform-server': 20.3.15
+  '@angular/router': 20.3.15
+  '@schematics/angular': 20.3.13
   'rxjs': 7.8.1
