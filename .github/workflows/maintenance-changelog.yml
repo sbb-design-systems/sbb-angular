@@ -50,7 +50,7 @@ jobs:
       - uses: actions/checkout@93cb6efe18208431cddfb8368fd83d5badbf9bfd # v5
       - uses: pnpm/action-setup@v4
         if: needs.cherry_pick.outputs.failed_release_version
-      - uses: actions/setup-node@v5
+      - uses: actions/setup-node@v6
         if: needs.cherry_pick.outputs.failed_release_version
         with:
           cache: 'pnpm'
