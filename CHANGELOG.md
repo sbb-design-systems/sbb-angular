@@ -2,6 +2,36 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [21.0.0-next.0](https://github.com/sbb-design-systems/sbb-angular/compare/20.0.0-next.2...21.0.0-next.0) (2025-12-10)
+
+
+### ⚠ BREAKING CHANGES
+
+* **angular/sidebar:** * `sbbSidebarAnimations` symbol has been removed.
+* **angular/accordion:** * `sbbExpansionAnimations` symbol has been removed.
+* **angular/menu:** * `sbbMenuAnimations` symbol has been removed.
+* **angular/menu:** SBB_MENU_SCROLL_STRATEGY_FACTORY has been removed.
+SBB_MENU_SCROLL_STRATEGY_FACTORY_PROVIDER has been removed.
+* **angular/autocomplete:** * `SBB_AUTOCOMPLETE_DEFAULT_OPTIONS_FACTORY` has been removed.
+* `SBB_AUTOCOMPLETE_SCROLL_STRATEGY_FACTORY` has been removed.
+* `SBB_AUTOCOMPLETE_SCROLL_STRATEGY_FACTORY_PROVIDER` has been removed.`
+
+
+### Bug Fixes
+
+* **angular/accordion:** remove deprecated animation definitions ([#2704](https://github.com/sbb-design-systems/sbb-angular/issues/2704)) ([52841ed](https://github.com/sbb-design-systems/sbb-angular/commit/52841ed81c332d6a11bd541e4a68b14750d9c947))
+* **angular/autocomplete:** remove unused factory functions ([#2695](https://github.com/sbb-design-systems/sbb-angular/issues/2695)) ([5cffb51](https://github.com/sbb-design-systems/sbb-angular/commit/5cffb51c41daf0538a765c1a7be944ce0fde3136))
+* **angular/chips:** provide default options in root ([#2697](https://github.com/sbb-design-systems/sbb-angular/issues/2697)) ([cbb3230](https://github.com/sbb-design-systems/sbb-angular/commit/cbb323090ea58615c945f4bdef7bdc4eeaa2a12b))
+* **angular/menu:** remove deprecated animation definitions ([#2703](https://github.com/sbb-design-systems/sbb-angular/issues/2703)) ([ae327b6](https://github.com/sbb-design-systems/sbb-angular/commit/ae327b6c9674859062e472e49c3041d87ae8c12d))
+* **angular/menu:** remove unused factory functions ([#2696](https://github.com/sbb-design-systems/sbb-angular/issues/2696)) ([a8b61ff](https://github.com/sbb-design-systems/sbb-angular/commit/a8b61ff0e83e9718c5bdafd3060ed9f078a6d872))
+* **angular/sidebar:** remove deprecated animation definitions ([#2705](https://github.com/sbb-design-systems/sbb-angular/issues/2705)) ([c7b7b7d](https://github.com/sbb-design-systems/sbb-angular/commit/c7b7b7d3018efbb3b6ebb4726a86ba83e168d7e4))
+
+
+### Documentation
+
+* add update steps for 21 release ([#2706](https://github.com/sbb-design-systems/sbb-angular/issues/2706)) ([af6daf8](https://github.com/sbb-design-systems/sbb-angular/commit/af6daf8c906f66b6665e7f970dbee81f6b83b23e))
+* update stackblitz assets ([#2701](https://github.com/sbb-design-systems/sbb-angular/issues/2701)) ([36ff3ad](https://github.com/sbb-design-systems/sbb-angular/commit/36ff3adf3c1c8190fe29e586c1d32941a1605424))
+
 ### [20.0.3](https://github.com/sbb-design-systems/sbb-angular/compare/20.0.2...20.0.3) (2025-09-16)
 
 
