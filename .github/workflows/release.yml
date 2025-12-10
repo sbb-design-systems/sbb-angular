@@ -21,7 +21,7 @@ jobs:
     - name: "Bazel: Copy .bazelrc to user home"
       run: cp ./.github/.bazelrc ~/
     - uses: pnpm/action-setup@v4
-    - uses: actions/setup-node@v5
+    - uses: actions/setup-node@v6
       with:
         cache: 'pnpm'
         node-version-file: '.nvmrc'
@@ -77,7 +77,7 @@ jobs:
     - name: "Bazel: Copy .bazelrc to user home"
       run: cp ./.github/.bazelrc ~/
     - uses: pnpm/action-setup@v4
-    - uses: actions/setup-node@v5
+    - uses: actions/setup-node@v6
       with:
         cache: 'pnpm'
         node-version-file: '.nvmrc'
