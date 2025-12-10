@@ -3,10 +3,10 @@ import { Component, DebugElement, ViewChild } from '@angular/core';
 import { ComponentFixture, fakeAsync, TestBed, tick, waitForAsync } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
-import { SbbChip } from '@sbb-esta/angular/chips/chip';
 import { dispatchKeyboardEvent } from '@sbb-esta/angular/core/testing';
 import { SbbFormFieldModule } from '@sbb-esta/angular/form-field';
 
+import { SbbChip } from './chip';
 import { SbbChipsDefaultOptions, SBB_CHIPS_DEFAULT_OPTIONS } from './chip-default-options';
 import { SbbChipInput, SbbChipInputEvent } from './chip-input';
 import { SbbChipList } from './chip-list';

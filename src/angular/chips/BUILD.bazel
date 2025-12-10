@@ -50,7 +50,6 @@ ng_project(
         "//:node_modules/@angular/forms",
         "//:node_modules/@angular/platform-browser",
         "//src/angular/autocomplete",
-        "//src/angular/chips/chip",
         "//src/angular/core",
         "//src/angular/core/testing",
         "//src/angular/form-field",
