@@ -138,7 +138,7 @@
     "prettier": "3.6.2",
     "reflect-metadata": "^0.2.0",
     "renovate": "41.168.1",
-    "requirejs": "2.3.7",
+    "requirejs": "2.3.8",
     "rollup": "^4.52.3",
     "rollup-plugin-dts": "6.2.3",
     "rollup-plugin-sourcemaps2": "0.5.4",
