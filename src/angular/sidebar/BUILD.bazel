@@ -20,7 +20,6 @@ ng_project(
         ":sidebar/sidebar.css",
     ] + glob(["**/*.html"]),
     deps = [
-        "//:node_modules/@angular/animations",
         "//:node_modules/@angular/cdk",
         "//:node_modules/@angular/common",
         "//:node_modules/@angular/core",
