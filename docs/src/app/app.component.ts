@@ -35,7 +35,7 @@ export class AppComponent implements AfterContentInit, OnDestroy {
   private _variantSwitch = inject(VariantSwitch);
 
   angularVersion = VERSION.full.match(/(\d+)/)![1];
-  showcaseVersion = VERSION.full.match(/(\d+\.\d+\.\d+(?:[^\+]*))/)![1];
+  docsVersion = VERSION.full.match(/(\d+\.\d+\.\d+(?:[^\+]*))/)![1];
   expanded: boolean = true;
   sbbVariant = this._variantSwitch.sbbVariant;
   packages = isDevMode() ? PACKAGES : DEV_PACKAGES;
@@ -48,7 +48,7 @@ export class AppComponent implements AfterContentInit, OnDestroy {
     const iconRegistry = inject(SbbIconRegistry);
     const sanitizer = inject(DomSanitizer);
     iconRegistry.addSvgIconResolver((name, namespace) => {
-      if (namespace === 'showcase') {
+      if (namespace === 'docs') {
         return sanitizer.bypassSecurityTrustResourceUrl(`assets/icons/${name}.svg`);
       }
       return null;

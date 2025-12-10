@@ -7,7 +7,7 @@ on:
 env:
   BAZEL_COMMAND: bazelisk
   BAZEL_CACHE_VERSION: v3
-  IMAGE_REPO: ghcr.io/${{ github.repository }}/showcase
+  IMAGE_REPO: ghcr.io/${{ github.repository }}/docs
 
 permissions:
   id-token: write  # Required for OIDC
@@ -70,7 +70,7 @@ jobs:
         cd dist/releases/journey-maps-wc
         npm publish --tag ${{ steps.npm_tag.outputs.npm_tag }} || true
 
-  showcase:
+  docs:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@93cb6efe18208431cddfb8368fd83d5badbf9bfd # v5

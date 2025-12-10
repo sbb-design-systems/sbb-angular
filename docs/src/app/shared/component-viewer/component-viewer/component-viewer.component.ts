@@ -3,7 +3,7 @@ import { ActivatedRoute } from '@angular/router';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 
-import { findPackageEntry, ShowcaseMetaEntry } from '../../meta';
+import { DocsMetaEntry, findPackageEntry } from '../../meta';
 import { moduleParams } from '../../module-params';
 
 @Component({
@@ -13,13 +13,13 @@ import { moduleParams } from '../../module-params';
   standalone: false,
 })
 export class ComponentViewerComponent implements OnInit {
-  showcaseMetaEntry!: Observable<ShowcaseMetaEntry>;
+  docsMetaEntry!: Observable<DocsMetaEntry>;
   sections: string[] = ['Overview', 'API', 'Examples'];
 
   constructor(private _route: ActivatedRoute) {}
 
   ngOnInit() {
-    this.showcaseMetaEntry = moduleParams(this._route).pipe(
+    this.docsMetaEntry = moduleParams(this._route).pipe(
       map((params) => findPackageEntry(params.packageName, params.id)),
     );
   }

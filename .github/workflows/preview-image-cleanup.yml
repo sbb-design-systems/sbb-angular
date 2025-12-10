@@ -13,7 +13,7 @@ jobs:
     runs-on: ubuntu-latest
     env:
       CLOSED_PR_RETENTION_DAYS: 14
-      PACKAGE_NAME: showcase-preview
+      PACKAGE_NAME: docs-preview
       PR_TAG_PREFIX: preview-pr
     steps:
       - uses: actions/github-script@v8
@@ -60,6 +60,6 @@ jobs:
             }
       - uses: actions/delete-package-versions@v5
         with:
-          package-name: 'sbb-angular/showcase-preview'
+          package-name: 'sbb-angular/docs-preview'
           package-type: 'container'
           delete-only-untagged-versions: 'true'

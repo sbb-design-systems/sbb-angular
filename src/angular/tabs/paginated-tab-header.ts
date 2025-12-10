@@ -270,7 +270,7 @@ export abstract class SbbPaginatedTabHeader
         .subscribe((state) => this._applyScrollShadows(state));
     });
 
-    // Reset transform and scrolling when switching design variant in showcase
+    // Reset transform and scrolling when switching design variant in docs
     this._ngZone.runOutsideAngular(() => {
       this.variant.pipe(takeUntil(this._destroyed)).subscribe((variant) => {
         if (variant === 'lean') {

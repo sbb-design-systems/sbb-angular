@@ -1,24 +1,24 @@
-export interface ShowcaseMetaPackage {
+export interface DocsMetaPackage {
   name: string;
   svgIcon: string;
   image: string;
   description: string;
-  sections: ShowcaseMetaSection[];
+  sections: DocsMetaSection[];
   isDeprecated?: boolean;
 }
 
-export interface ShowcaseMetaSection {
+export interface DocsMetaSection {
   name: string;
-  entries: ShowcaseMetaEntry[];
+  entries: DocsMetaEntry[];
 }
 
-export interface ShowcaseMetaEntry {
+export interface DocsMetaEntry {
   label: string;
   link: string;
   variantOnly?: 'standard' | 'lean';
 }
 
-export const PACKAGES: { [key: string]: ShowcaseMetaPackage } = {
+export const PACKAGES: { [key: string]: DocsMetaPackage } = {
   angular: {
     name: '@sbb-esta/angular',
     svgIcon: 'browser-small',
@@ -149,7 +149,7 @@ export const PACKAGES: { [key: string]: ShowcaseMetaPackage } = {
   },
 };
 
-export function findPackageEntry(packageName: string, componentId: string): ShowcaseMetaEntry {
+export function findPackageEntry(packageName: string, componentId: string): DocsMetaEntry {
   for (const section of PACKAGES[packageName].sections) {
     const foundEntry = section.entries.find((entry) => entry.link.endsWith(componentId));
     if (foundEntry) {

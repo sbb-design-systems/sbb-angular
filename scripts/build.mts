@@ -60,10 +60,10 @@ if (process.argv.length === 3) {
 }
 
 /**
- * Builds all available targets, except the release packages and the prod showcase.
+ * Builds all available targets, except the release packages and the prod docs.
  */
 function buildAllTargets() {
-  exec(`${bazelCmd} build src/... --build_tag_filters=-release-package,-prod-showcase`);
+  exec(`${bazelCmd} build src/... --build_tag_filters=-release-package,-prod-docs`);
 }
 
 /**

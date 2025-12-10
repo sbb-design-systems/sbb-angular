@@ -19,7 +19,6 @@ class Walker extends Lint.RuleWalker {
     if (
       fileName.includes('/src/') &&
       !fileName.includes('/components-examples/') &&
-      !fileName.includes('/showcase/') &&
       !fileName.includes('/migrations/') &&
       !fileName.endsWith('spec.ts')
     ) {

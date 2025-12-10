@@ -10,14 +10,14 @@ permissions:
   packages: write
 
 env:
-  IMAGE_REPO: ghcr.io/${{ github.repository }}/showcase
+  IMAGE_REPO: ghcr.io/${{ github.repository }}/docs
 
 
 jobs:
   tag-resolver:
     runs-on: ubuntu-latest
     env:
-      START_VERSION: 11
+      START_VERSION: 13
     outputs:
       versions: ${{ steps.versions.outputs.versions }}
     steps:
