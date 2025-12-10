@@ -148,7 +148,7 @@
     "shelljs": "0.10.0",
     "source-map-support": "^0.5.21",
     "standard-version": "9.5.0",
-    "stylelint": "16.25.0",
+    "stylelint": "16.26.1",
     "stylelint-config-recommended-scss": "16.0.2",
     "stylelint-scss": "6.12.1",
     "terser": "5.44.1",
