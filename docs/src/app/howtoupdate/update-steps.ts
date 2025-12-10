@@ -140,4 +140,19 @@ export const UPDATE_STEPS: UpdateStep[] = [
         <pre>ng update @sbb-esta/angular@20</pre>`,
     ],
   },
+  {
+    from: 2000,
+    to: 2100,
+    actions: [
+      `Update your Angular dependencies to version 21.x.x with "--force" flag (due to unmet peer dependencies).<br/>
+        See <a href='https://update.angular.io'>update.angular.io</a> for a step-by-step guide for updating Angular.<br/>
+        <pre>npx @angular/cli@21 update @angular/core@21 @angular/cli@21 --force</pre>`,
+
+      `Update Angular CDK in a separate step to avoid dependency version resolving problems.<br/>
+        <pre>npx @angular/cli@21 update @angular/cdk@21 --force</pre>`,
+
+      `Finally, update SBB Angular.
+        <pre>ng update @sbb-esta/angular@21</pre>`,
+    ],
+  },
 ];
