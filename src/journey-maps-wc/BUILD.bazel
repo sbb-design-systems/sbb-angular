@@ -35,6 +35,7 @@ ng_app(
     name = "app",
     project_name = "journey-maps-wc",
     deps = [
+        "//:node_modules/zone.js",
     ],
 )
 
@@ -89,12 +90,12 @@ esbuild(
 
 genrule(
     name = "types",
-    srcs = ["//src/journey-maps:npm_package"],
+    srcs = ["//src/journey-maps:index.d.ts"],
     outs = [
         "bundle.d.ts",
     ],
     cmd = """
-        cp "$(execpath //src/journey-maps:npm_package)/angular/index.d.ts" "$(execpath bundle.d.ts)"
+        cp "$(location //src/journey-maps:index.d.ts)" "$(execpath bundle.d.ts)"
     """,
     output_to_bindir = True,
 )

@@ -1615,11 +1615,11 @@ Due to a hiccup with 15.2.0 we skip directly to 15.3.0.
   - `minZoomLevel`, `maxZoomLevel` and `maxBounds` have been moved from `viewportOptions` to `viewportBounds` input parameter
   - replace `SbbViewportOptions` with `SbbViewportDimensions` and rename input parameter from `viewportOptions` to `viewportDimensions`.
 * Previously our sass code could be used via `@import '@sbb-esta/angular/styles.scss';`. This is no longer possible as we refactored our sass code to switch from `@import` to `@use` (see https://sass-lang.com/documentation/at-rules/use). We also adapted the recommended way to export sass code from a package
-via an `_index.scss` file in the root of the package. You should now be able to use the following code to import our sass code: `@use '@sbb-esta/angular' as sbb;`
+  via an `_index.scss` file in the root of the package. You should now be able to use the following code to import our sass code: `@use '@sbb-esta/angular' as sbb;`
 * **angular/menu:** Order of constructor parameters of `SbbMenuItem` has been changed and made required.
 * **angular/core:** Previously the `mixinErrorState` mixin function defined
-a class member for `stateChanges`. This is no longer the case, and consumers
-need to provide the `stateChanges` class member themselves.
+  a class member for `stateChanges`. This is no longer the case, and consumers
+  need to provide the `stateChanges` class member themselves.
 * Update to Angular 14
 
 ### Features
@@ -2280,8 +2280,8 @@ need to provide the `stateChanges` class member themselves.
 ### ⚠ BREAKING CHANGES
 
 * **maps:** esri-loader is replaced with @arcgis/core as a
-peer dependency for @sbb-esta/angular-maps and usage has been
-updated accordingly.
+  peer dependency for @sbb-esta/angular-maps and usage has been
+  updated accordingly.
 
 ### Bug Fixes
 
@@ -2320,8 +2320,8 @@ updated accordingly.
 ### ⚠ BREAKING CHANGES
 
 * **core:** We have removed the SBB_ICON_REGISTRY_PROVIDER provider
-and the icon-cdn-provider schematics in favor of icon resolvers. See the icon documentation
-for detail. This will be fixed in a migration via `ng update`.
+  and the icon-cdn-provider schematics in favor of icon resolvers. See the icon documentation
+  for detail. This will be fixed in a migration via `ng update`.
 * Update to Angular 12 and removed deprecated symbols/properties/methods
 
 ### Features
@@ -2483,8 +2483,8 @@ for detail. This will be fixed in a migration via `ng update`.
 ### ⚠ BREAKING CHANGES
 
 * **business:** css classes of business link were renamed.
-`.sbb-link-normal` was renamed to `.sbb-link-business-normal`.
-`.sbb-link-stretch` was renamed to `.sbb-link-business-stretch`.
+  `.sbb-link-normal` was renamed to `.sbb-link-business-normal`.
+  `.sbb-link-stretch` was renamed to `.sbb-link-business-stretch`.
 
 ### Bug Fixes
 
@@ -2508,35 +2508,35 @@ for detail. This will be fixed in a migration via `ng update`.
 
 * Upgrade to Angular v11
 * We are removing internal properties and prefixing them
-with _, if removing is not possible. These were never intended to be used by
-consumers, however if you depended on these for some reason, reach out to us.
+  with _, if removing is not possible. These were never intended to be used by
+  consumers, however if you depended on these for some reason, reach out to us.
 * The usermenu module has been refactored. The `<sbb-usermenu>` now
-considers both `displayName` and `userName` to set logged in state (you have to set at minimum
-one of both).
-The `userName` is not shown anymore in collapsed state of menu (according to digital.sbb.ch). Use
-`displayName` to show a name in collapsed state.
-The usermenu doesn't depend on `<sbb-dropdown>` anymore, just use `<a sbb-usermenu-item>`,
-`<button type="button" sbb-usermenu-item>` and `<hr />` tags.
-Providing a custom icon or image now needs to set the structural `*sbbIcon` directive instead of
-using only `sbbIcon`.
+  considers both `displayName` and `userName` to set logged in state (you have to set at minimum
+  one of both).
+  The `userName` is not shown anymore in collapsed state of menu (according to digital.sbb.ch). Use
+  `displayName` to show a name in collapsed state.
+  The usermenu doesn't depend on `<sbb-dropdown>` anymore, just use `<a sbb-usermenu-item>`,
+  `<button type="button" sbb-usermenu-item>` and `<hr />` tags.
+  Providing a custom icon or image now needs to set the structural `*sbbIcon` directive instead of
+  using only `sbbIcon`.
 * The field module has been majorly refactored. The `sbb-field`
-has been renamed to `sbb-form-field` and now requires a compatible form control
-(`<input sbbInput ...>`, `<select sbbInput ...>`, `<textarea sbbInput>`, `<sbb-select>`).
-The `sbb-form-field` [mode] input has been deprecated and replaced with appropriate
-css classes (`.sbb-form-field-short`, `.sbb-form-field-medium` and `.sbb-form-field-long`).
-The `sbb-form-error` has been renamed to `sbb-error`.
-The `sbb-label` [for] input has been deprecated, as it is no longer in use, as that
-functionality is handled internally inside `sbb-form-field`.
-The `sbb-form-field` now has a default width, which is consistent for all supported
-form controls.
+  has been renamed to `sbb-form-field` and now requires a compatible form control
+  (`<input sbbInput ...>`, `<select sbbInput ...>`, `<textarea sbbInput>`, `<sbb-select>`).
+  The `sbb-form-field` [mode] input has been deprecated and replaced with appropriate
+  css classes (`.sbb-form-field-short`, `.sbb-form-field-medium` and `.sbb-form-field-long`).
+  The `sbb-form-error` has been renamed to `sbb-error`.
+  The `sbb-label` [for] input has been deprecated, as it is no longer in use, as that
+  functionality is handled internally inside `sbb-form-field`.
+  The `sbb-form-field` now has a default width, which is consistent for all supported
+  form controls.
 * The tooltip changes the css display property of the tooltip trigger
-from block to inline-block.
-If you still like to use the block variant, use the following css definition:
-`.sbb-tooltip-trigger { display: block; }`.
+  from block to inline-block.
+  If you still like to use the block variant, use the following css definition:
+  `.sbb-tooltip-trigger { display: block; }`.
 * The link component removes the margin around the public variant of sbbLink.
-If you want to retain the margin, it is `margin: 1em 0 2em;`.
+  If you want to retain the margin, it is `margin: 1em 0 2em;`.
 * We are removing the social link, since the icon CDN does not
-contain the social icons and the social link had no usage.
+  contain the social icons and the social link had no usage.
 * In order to fulfill new requirements of the `sbb-toggle`, the component internal DOM structure and css class usage has been changed. Please check your code if you have overwritten certain css styles.
 
 ### Features
@@ -3362,11 +3362,11 @@ contain the social icons and the social link had no usage.
 
 * **i18n:** i18n ids have changed.
 * **pagination:** Removes link variants of pagination and navigation
-components. The link variants caused focus issues, which can not easily
-be resolved. If you need the link variants, you can open a feature request
-and we will have another look at it.
-Several properties of sbb-pagination have been renamed or refactored.
-Check the documentation for the new specification.
+  components. The link variants caused focus issues, which can not easily
+  be resolved. If you need the link variants, you can open a feature request
+  and we will have another look at it.
+  Several properties of sbb-pagination have been renamed or refactored.
+  Check the documentation for the new specification.
 
 
 

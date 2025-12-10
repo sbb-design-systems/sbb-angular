@@ -33,15 +33,6 @@ jobs:
 
   integrity:
     runs-on: ubuntu-latest
-    services:
-      cache:
-        image: ghcr.io/kyubisation/bazel-cache-oci-registry:latest
-        env:
-          repository: ghcr.io/${{ github.repository }}/bazel-cache
-          username: ${{ github.actor }}
-          password: ${{ secrets.GITHUB_TOKEN }}
-        ports:
-          - 31385:31385
     steps:
       - uses: actions/checkout@93cb6efe18208431cddfb8368fd83d5badbf9bfd # v5
       - uses: pnpm/action-setup@v4
@@ -50,7 +41,14 @@ jobs:
           cache: 'pnpm'
           node-version-file: '.nvmrc'
       - run: pnpm install
-
+      - name: "Bazel: Restore remote cache"
+        uses: actions/cache/restore@v4
+        with:
+          path: ~/.bazel-cache/sbb-angular
+          key: bazel-${{ env.BAZEL_CACHE_VERSION }}-${{ github.sha }}-${{ github.run_attempt }}
+          restore-keys: |
+            bazel-${{ env.BAZEL_CACHE_VERSION }}-${{ github.sha }}-
+            bazel-${{ env.BAZEL_CACHE_VERSION }}-
       - name: "Integrity: Verify workspace integrity"
         run: pnpm integrity
       - name: "Integrity: Assert no changes (run `pnpm integrity` if this fails)"
@@ -58,15 +56,6 @@ jobs:
 
   build:
     runs-on: ubuntu-latest
-    services:
-      cache:
-        image: ghcr.io/kyubisation/bazel-cache-oci-registry:latest
-        env:
-          repository: ghcr.io/${{ github.repository }}/bazel-cache
-          username: ${{ github.actor }}
-          password: ${{ secrets.GITHUB_TOKEN }}
-        ports:
-          - 31385:31385
     steps:
       - uses: actions/checkout@93cb6efe18208431cddfb8368fd83d5badbf9bfd # v5
       - name: "Bazel: Copy .bazelrc to user home"
@@ -77,20 +66,26 @@ jobs:
           cache: 'pnpm'
           node-version-file: '.nvmrc'
       - run: pnpm install
+      - name: "Bazel: Restore remote cache"
+        uses: actions/cache/restore@v4
+        with:
+          path: ~/.bazel-cache/sbb-angular
+          key: bazel-${{ env.BAZEL_CACHE_VERSION }}-${{ github.sha }}-${{ github.run_attempt }}
+          restore-keys: |
+            bazel-${{ env.BAZEL_CACHE_VERSION }}-${{ github.sha }}-
+            bazel-${{ env.BAZEL_CACHE_VERSION }}-
       - run: bazel build --build_tag_filters=-docs-package,-release-package -- src/...
+      - name: "Bazel: Clean bazel disk cache"
+        if: ${{ success() || failure() }}
+        run: pnpm -s bazel:cache clean --individualMaxSize=${{ env.BAZEL_CACHE_INTERMEDIATE_FILE_MAX_SIZE }}
+      - name: "Bazel: Upload cache"
+        if: ${{ success() || failure() }}
+        uses: ./.github/actions/upload-intermediate-bazel-cache
 
   test:
     runs-on: ubuntu-24.04
     if: ${{ success() || failure() }}
-    services:
-      cache:
-        image: ghcr.io/kyubisation/bazel-cache-oci-registry:latest
-        env:
-          repository: ghcr.io/${{ github.repository }}/bazel-cache
-          username: ${{ github.actor }}
-          password: ${{ secrets.GITHUB_TOKEN }}
-        ports:
-          - 31385:31385
+    needs: build
     steps:
       - uses: actions/checkout@93cb6efe18208431cddfb8368fd83d5badbf9bfd # v5
       - name: "Bazel: Copy .bazelrc to user home"
@@ -101,21 +96,23 @@ jobs:
           cache: 'pnpm'
           node-version-file: '.nvmrc'
       - run: pnpm install
+      - name: "Bazel: Download cache"
+        if: ${{ success() || failure() }}
+        uses: ./.github/actions/download-intermediate-bazel-cache
       - run: bazelisk test src/... --build_tag_filters=-e2e --test_tag_filters=-e2e --build_tests_only
+      - name: "Bazel: Clean bazel disk cache"
+        if: ${{ success() || failure() }}
+        run: pnpm -s bazel:cache clean --individualMaxSize=${{ env.BAZEL_CACHE_INTERMEDIATE_FILE_MAX_SIZE }}
+      - name: "Bazel: Upload cache"
+        if: ${{ success() || failure() }}
+        uses: ./.github/actions/upload-intermediate-bazel-cache
+        with:
+          key: bazel-cache-test
 
   docs:
     runs-on: ubuntu-latest
     if: ${{ success() || failure() }}
     needs: build
-    services:
-      cache:
-        image: ghcr.io/kyubisation/bazel-cache-oci-registry:latest
-        env:
-          repository: ghcr.io/${{ github.repository }}/bazel-cache
-          username: ${{ github.actor }}
-          password: ${{ secrets.GITHUB_TOKEN }}
-        ports:
-          - 31385:31385
     steps:
       - uses: actions/checkout@93cb6efe18208431cddfb8368fd83d5badbf9bfd # v5
       - name: "Bazel: Copy .bazelrc to user home"
@@ -126,11 +123,20 @@ jobs:
           cache: 'pnpm'
           node-version-file: '.nvmrc'
       - run: pnpm install
-
+      - name: "Bazel: Download cache"
+        if: ${{ success() || failure() }}
+        uses: ./.github/actions/download-intermediate-bazel-cache
       - name: "Bazel: Build docs"
         if: ${{ success() || failure() }}
         run: pnpm -s build docs
-
+      - name: "Bazel: Clean bazel disk cache"
+        if: ${{ success() || failure() }}
+        run: pnpm -s bazel:cache clean --individualMaxSize=${{ env.BAZEL_CACHE_INTERMEDIATE_FILE_MAX_SIZE }}
+      - name: "Bazel: Upload cache"
+        if: ${{ success() || failure() }}
+        uses: ./.github/actions/upload-intermediate-bazel-cache
+        with:
+          key: bazel-cache-showcase
       - name: "Artifact: Upload docs"
         if: github.event_name == 'pull_request' || github.ref == 'refs/heads/main'
         uses: actions/upload-artifact@v4
@@ -144,15 +150,7 @@ jobs:
     needs: docs
     env:
       IMAGE_REPO: ghcr.io/${{ github.repository }}/showcase-preview
-    services:
-      cache:
-        image: ghcr.io/kyubisation/bazel-cache-oci-registry:latest
-        env:
-          repository: ghcr.io/${{ github.repository }}/bazel-cache
-          username: ${{ github.actor }}
-          password: ${{ secrets.GITHUB_TOKEN }}
-        ports:
-          - 31385:31385
+
     steps:
       - uses: actions/checkout@93cb6efe18208431cddfb8368fd83d5badbf9bfd # v5
       - name: "Download docs artifact"
@@ -174,3 +172,38 @@ jobs:
           docker image list
         env:
           DOCKER_BUILDKIT: 1
+
+
+  merge-caches:
+    if: ${{ success() || failure() }}
+    needs: [test, docs]
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@08c6903cd8c0fde910a37f88322edcfb5dd907a8 # v4
+      - uses: pnpm/action-setup@v4
+      - uses: actions/setup-node@v5
+        with:
+          node-version-file: '.nvmrc'
+
+      - name: "Bazel: Create cache directory"
+        run: mkdir -p ~/.bazel-cache/
+      - name: "Bazel: Download test cache"
+        if: ${{ success() || failure() }}
+        uses: ./.github/actions/download-intermediate-bazel-cache
+        with:
+          key: bazel-cache-test
+      - name: "Bazel: Download showcase cache"
+        if: ${{ success() || failure() }}
+        uses: ./.github/actions/download-intermediate-bazel-cache
+        with:
+          key: bazel-cache-showcase
+      - name: "Bazel: Clean bazel disk cache"
+        if: ${{ success() || failure() }}
+        run: pnpm -s bazel:cache clean --maxSize=${{ env.BAZEL_CACHE_COMBINED_MAX_SIZE }} --individualMaxSize=${{ env.BAZEL_CACHE_FILE_MAX_SIZE }}
+
+      - name: "Bazel: Upload remote cache"
+        if: ${{ success() || failure() }}
+        uses: actions/cache/save@v4
+        with:
+          path: ~/.bazel-cache/sbb-angular
+          key: bazel-${{ env.BAZEL_CACHE_VERSION }}-${{ github.sha }}-${{ github.run_attempt }}

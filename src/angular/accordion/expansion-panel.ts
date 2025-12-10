@@ -53,6 +53,7 @@ const _SbbExpansionPanelBase = mixinVariant(CdkAccordionItem);
     { name: 'expanded', transform: booleanAttribute },
     { name: 'disabled', transform: booleanAttribute },
   ],
+  outputs: ['expandedChange'],
   // Provide SbbAccordion as undefined to prevent nested expansion panels from registering
   // to the same accordion.
   providers: [

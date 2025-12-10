@@ -1191,7 +1191,7 @@ class BasicTestComponent {
   closeCount = 0;
   closeStartCount = 0;
   backdropClickedCount = 0;
-  position = 'start';
+  position: 'start' | 'end' = 'start';
   triggerIcon: string;
   collapsible = false;
   collapsibleTitle: string | null = null;

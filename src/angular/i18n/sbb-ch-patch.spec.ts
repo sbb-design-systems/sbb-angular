@@ -1,6 +1,7 @@
+import { DatePipe } from '@angular/common';
 import '@angular/common/locales/global/en-CH';
 import { Component } from '@angular/core';
-import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
+import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 
 import './sbb-ch-patch';
@@ -24,7 +25,7 @@ declare let $localize: any;
     <span>{{ now | date: 'longTime' }}</span>
     <span>{{ now | date: 'fullTime' }}</span>
   `,
-  standalone: false,
+  imports: [DatePipe],
 })
 class DateFormat {
   now = new Date(2020, 0, 1, 0, 0, 0);
@@ -32,12 +33,6 @@ class DateFormat {
 
 describe('i18n sbb patch', () => {
   let fixture: ComponentFixture<DateFormat>;
-
-  beforeEach(waitForAsync(() => {
-    TestBed.configureTestingModule({
-      declarations: [DateFormat],
-    });
-  }));
 
   beforeEach(() => {
     $localize.locale = 'en-CH';
@@ -65,8 +60,8 @@ describe('i18n sbb patch', () => {
     expect(defaultValue).toEqual('01.01.2020');
     expect(short).toEqual('01.01.20 00:00');
     expect(medium).toEqual('01.01.2020 00:00:00');
-    expect(long).toEqual('1. January 2020 at 00:00:00 GMT+0');
-    expect(full).toEqual('Wednesday, 1. January 2020 at 00:00:00 GMT+00:00');
+    expect(long).toEqual('1. January 2020 00:00:00 GMT+0');
+    expect(full).toEqual('Wednesday, 1. January 2020 00:00:00 GMT+00:00');
     expect(shortDate).toEqual('01.01.20');
     expect(mediumDate).toEqual('01.01.2020');
     expect(longDate).toEqual('1. January 2020');

@@ -12,9 +12,9 @@ import {
 import { TestBed, waitForAsync } from '@angular/core/testing';
 import { FormControl, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
-import { SbbOption, SbbOptionModule } from '@sbb-esta/angular/core';
+import { SbbOption } from '@sbb-esta/angular/core';
 import { dispatchFakeEvent } from '@sbb-esta/angular/core/testing';
-import { SbbFormField } from '@sbb-esta/angular/form-field';
+import { SbbFormField, SbbFormFieldModule } from '@sbb-esta/angular/form-field';
 import { SbbInputModule } from '@sbb-esta/angular/input';
 import { Subscription } from 'rxjs';
 
@@ -22,41 +22,46 @@ import { SbbAutocomplete } from './autocomplete';
 import { SbbAutocompleteTrigger } from './autocomplete-trigger';
 import { SbbAutocompleteModule } from './autocomplete.module';
 
-const SIMPLE_AUTOCOMPLETE_TEMPLATE = `
-  <sbb-form-field [style.width.px]="width">
-    @if (hasLabel) {
-      <sbb-label>State</sbb-label>
-    }
-   <input
-      sbbInput
-      placeholder="Number"
-      [sbbAutocomplete]="auto"
-      [sbbAutocompletePosition]="position"
-      [sbbAutocompleteDisabled]="autocompleteDisabled"
-      [formControl]="numberCtrl"
-    />
-  </sbb-form-field>
-  <sbb-autocomplete
-    [class]="panelClass"
-    #auto="sbbAutocomplete"
-    [displayWith]="displayFn"
-    [requireSelection]="requireSelection"
-    [aria-label]="ariaLabel"
-    [aria-labelledby]="ariaLabelledby"
-    (opened)="openedSpy()"
-    (closed)="closedSpy()"
-  >
-    @for (num of filteredNumbers; track num) {
-      <sbb-option [value]="num" [style.height.px]="num.height" [disabled]="num.disabled">
-        <span>{{ num.code }}: {{ num.name }}</span>
-      </sbb-option>
-     }
-  </sbb-autocomplete>
-`;
-
 @Component({
-  template: SIMPLE_AUTOCOMPLETE_TEMPLATE,
-  standalone: false,
+  template: `
+    <sbb-form-field [style.width.px]="width">
+      @if (hasLabel) {
+        <sbb-label>State</sbb-label>
+      }
+      <input
+        sbbInput
+        placeholder="Number"
+        [sbbAutocomplete]="auto"
+        [sbbAutocompletePosition]="position"
+        [sbbAutocompleteDisabled]="autocompleteDisabled"
+        [formControl]="numberCtrl"
+      />
+    </sbb-form-field>
+    <sbb-autocomplete
+      [class]="panelClass"
+      #auto="sbbAutocomplete"
+      [displayWith]="displayFn"
+      [requireSelection]="requireSelection"
+      [aria-label]="ariaLabel"
+      [aria-labelledby]="ariaLabelledby"
+      (opened)="openedSpy()"
+      (closed)="closedSpy()"
+    >
+      @for (num of filteredNumbers; track num) {
+        <sbb-option [value]="num" [style.height.px]="num.height" [disabled]="num.disabled">
+          <span>{{ num.code }}: {{ num.name }}</span>
+        </sbb-option>
+      }
+    </sbb-autocomplete>
+  `,
+  imports: [
+    SbbAutocompleteModule,
+    SbbFormFieldModule,
+    SbbInputModule,
+    FormsModule,
+    ReactiveFormsModule,
+  ],
+  standalone: true,
 })
 class SimpleAutocomplete implements OnDestroy {
   numberCtrl = new FormControl<{ name: string; code: string; height?: number } | string | null>(
@@ -64,7 +69,7 @@ class SimpleAutocomplete implements OnDestroy {
   );
   filteredNumbers: any[];
   valueSub: Subscription;
-  position = 'auto';
+  position: 'auto' | 'above' | 'below' = 'auto';
   width: number;
   autocompleteDisabled = false;
   hasLabel = true;
@@ -115,15 +120,7 @@ class SimpleAutocomplete implements OnDestroy {
 describe('SbbAutocomplete Zone.js integration', () => {
   function createComponent<T>(component: Type<T>, providers: Provider[] = []) {
     TestBed.configureTestingModule({
-      imports: [
-        SbbAutocompleteModule,
-        SbbInputModule,
-        FormsModule,
-        ReactiveFormsModule,
-        NoopAnimationsModule,
-        SbbOptionModule,
-      ],
-      declarations: [component],
+      imports: [NoopAnimationsModule],
       providers: [provideZoneChangeDetection(), ...providers],
     });
 
