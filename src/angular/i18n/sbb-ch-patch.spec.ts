@@ -60,7 +60,7 @@ describe('i18n sbb patch', () => {
     expect(defaultValue).toEqual('01.01.2020');
     expect(short).toEqual('01.01.20 00:00');
     expect(medium).toEqual('01.01.2020 00:00:00');
-    expect(long).toEqual('1. January 2020 at 00:00:00 GMT+0');
+    expect(long).toEqual('1. January 2020 00:00:00 GMT+0');
     expect(full).toEqual('Wednesday, 1. January 2020 at 00:00:00 GMT+00:00');
     expect(shortDate).toEqual('01.01.20');
     expect(mediumDate).toEqual('01.01.2020');

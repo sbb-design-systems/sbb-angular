@@ -3,13 +3,13 @@ import { Component, DebugElement, ViewChild } from '@angular/core';
 import { ComponentFixture, fakeAsync, TestBed, tick, waitForAsync } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
+import { SbbChip } from '@sbb-esta/angular/chips/chip';
 import { dispatchKeyboardEvent } from '@sbb-esta/angular/core/testing';
 import { SbbFormFieldModule } from '@sbb-esta/angular/form-field';
 
 import { SbbChipsDefaultOptions, SBB_CHIPS_DEFAULT_OPTIONS } from './chip-default-options';
 import { SbbChipInput, SbbChipInputEvent } from './chip-input';
 import { SbbChipList } from './chip-list';
-import { SbbChipsModule } from './chips.module';
 
 describe('SbbChipInput', () => {
   let fixture: ComponentFixture<any>;
@@ -250,7 +250,7 @@ describe('SbbChipInput', () => {
       </sbb-chip-list>
     </sbb-form-field>
   `,
-  imports: [SbbFormFieldModule, SbbChipsModule],
+  imports: [SbbFormFieldModule, SbbChip, SbbChipInput, SbbChipList],
 })
 class TestChipInput {
   @ViewChild(SbbChipList) chipListInstance: SbbChipList;
