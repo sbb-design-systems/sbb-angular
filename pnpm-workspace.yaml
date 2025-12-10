@@ -20,7 +20,7 @@ catalog:
   '@angular/compiler': 21.0.3
   '@angular/core': 21.0.3
   '@angular/elements': 21.0.3
-  '@angular/ssr': 20.3.13
+  '@angular/ssr': 21.0.3
   '@angular/forms': 21.0.3
   '@angular/localize': 21.0.3
   '@angular/platform-browser': 21.0.3
