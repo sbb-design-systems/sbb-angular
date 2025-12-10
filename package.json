@@ -103,7 +103,7 @@
     "@types/shelljs": "^0.8.15",
     "@types/yargs": "17.0.13",
     "angular-server-side-configuration": "20.0.0",
-    "angular-t9n": "20.0.2",
+    "angular-t9n": "21.0.1",
     "browser-sync": "3.0.2",
     "chalk": "^5.4.1",
     "dgeni": "^0.4.14",
