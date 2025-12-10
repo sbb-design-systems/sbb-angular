@@ -5,5 +5,4 @@ export * from './accordion-token';
 export { SbbExpansionPanelState, SbbExpansionPanel } from './expansion-panel';
 export * from './expansion-panel-header';
 export * from './expansion-panel-content';
-export * from './accordion-animations';
 export * from './expansion-panel-base';
