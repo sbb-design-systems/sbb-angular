@@ -53,8 +53,7 @@ export const SBB_DIALOG_SCROLL_STRATEGY = new InjectionToken<() => ScrollStrateg
 export abstract class _SbbDialogBase<
   C extends SbbDialogContainer,
   F extends SbbDialogRef<any> = SbbDialogRef<any>,
-> implements OnDestroy
-{
+> implements OnDestroy {
   private readonly _openDialogsAtThisLevel: F[] = [];
   private readonly _afterAllClosedAtThisLevel = new Subject<void>();
   private readonly _afterOpenedAtThisLevel = new Subject<F>();
