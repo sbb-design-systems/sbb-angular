@@ -1,6 +1,6 @@
 version: '3.5'
 services:
-  showcase:
+  docs:
     build: .
     ports:
       - "8080:8080"

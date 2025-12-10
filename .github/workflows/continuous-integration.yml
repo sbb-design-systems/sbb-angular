@@ -136,7 +136,7 @@ jobs:
         if: ${{ success() || failure() }}
         uses: ./.github/actions/upload-intermediate-bazel-cache
         with:
-          key: bazel-cache-showcase
+          key: bazel-cache-docs
       - name: "Artifact: Upload docs"
         if: github.event_name == 'pull_request' || github.ref == 'refs/heads/main'
         uses: actions/upload-artifact@v4
@@ -149,7 +149,7 @@ jobs:
     if: github.event_name == 'push' && github.ref == 'refs/heads/main'
     needs: docs
     env:
-      IMAGE_REPO: ghcr.io/${{ github.repository }}/showcase-preview
+      IMAGE_REPO: ghcr.io/${{ github.repository }}/docs-preview
 
     steps:
       - uses: actions/checkout@93cb6efe18208431cddfb8368fd83d5badbf9bfd # v5
@@ -192,11 +192,11 @@ jobs:
         uses: ./.github/actions/download-intermediate-bazel-cache
         with:
           key: bazel-cache-test
-      - name: "Bazel: Download showcase cache"
+      - name: "Bazel: Download docs cache"
         if: ${{ success() || failure() }}
         uses: ./.github/actions/download-intermediate-bazel-cache
         with:
-          key: bazel-cache-showcase
+          key: bazel-cache-docs
       - name: "Bazel: Clean bazel disk cache"
         if: ${{ success() || failure() }}
         run: pnpm -s bazel:cache clean --maxSize=${{ env.BAZEL_CACHE_COMBINED_MAX_SIZE }} --individualMaxSize=${{ env.BAZEL_CACHE_FILE_MAX_SIZE }}

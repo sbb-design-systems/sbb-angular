@@ -8,7 +8,7 @@ icon sidebar components.
 
 It is recommended that in addition to the `<sbb-header-lean>`, the two sidebars are only used once on each view,
 so that a maximum of three navigation hierarchy levels occur.
-For example: `<sbb-header-lean>` > `<sbb-icon-sidebar>` > `<sbb-sidebar>` (as it is in showcase).
+For example: `<sbb-header-lean>` > `<sbb-icon-sidebar>` > `<sbb-sidebar>` (as it is in this documentation app).
 All sidebar components can be technically nested in any form, or they can be used individually.
 
 #### Positioning

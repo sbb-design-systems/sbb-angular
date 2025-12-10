@@ -21,7 +21,7 @@ jobs:
       github.event.workflow_run.pull_requests[0] != null
     env:
       PR_NUMBER: ${{ github.event.workflow_run.pull_requests[0].number }}
-      IMAGE_REPO: ghcr.io/${{ github.repository }}/showcase-preview
+      IMAGE_REPO: ghcr.io/${{ github.repository }}/docs-preview
       IMAGE_TAG: rev-${{ github.event.workflow_run.head_sha }}
       IMAGE_PR_TAG: preview-pr${{ github.event.workflow_run.pull_requests[0].number }}
       ALLOWED_EXTENSIONS: css, gitignore, gitkeep, html, ico, jpg, js, json, png, scss, stackblitzrc, svg, ts
@@ -52,7 +52,7 @@ jobs:
               ...payload,
               ref: context.payload.workflow_run.head_sha,
               auto_merge: false,
-              required_contexts: ['build', 'packages', 'showcase']
+              required_contexts: ['build', 'packages', 'docs']
             });
             await github.rest.repos.createDeploymentStatus({
               ...payload,

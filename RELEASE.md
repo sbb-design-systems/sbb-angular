@@ -46,15 +46,15 @@ Open the [SBB Angular Github page](https://github.com/sbb-design-systems/sbb-ang
 Click on "Draft a new release". Select the corresponding tag from the list. Add the title, e.g. `Release x.z.y` and use the
 corresponding section from `CHANGELOG.md` as the release description.
 
-Next, update the showcase before publishing this page.
+Next, update the docs before publishing this page.
 
-### Update the showcase (SBB internal)
+### Update the docs (SBB internal)
 
-Checkout the `esta-apps-argocd` repository and enter the new version number
-In the ArgoCD, enter the new version number under `maggie/clew-esta-prod/sbb-angular/values.yaml`.
-If this was a major release, also update the `legacyVersions` in our ArgoCD repository.
+Checkout the `esta-apps-argocd` repository and enter the new version number.
+For ArgoCD, update `clusters/maggie/applications/values.yaml`.
+If this was a major release, also update the `LEGACY_VERSIONS` in our ArgoCD repository.
 
-After having committed the changes, sync the app using the ArgoCD GUI. Check if the showcase was
+After having committed the changes, sync the app using the ArgoCD GUI. Check if the docs was
 successfully published to https://angular.app.sbb.ch.
 
 ## Publishing the release

@@ -3,7 +3,7 @@ import { ActivatedRoute } from '@angular/router';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 
-import { ShowcaseMetaPackage } from '../meta';
+import { DocsMetaPackage } from '../meta';
 
 @Component({
   selector: 'sbb-package-viewer',
@@ -11,7 +11,7 @@ import { ShowcaseMetaPackage } from '../meta';
   standalone: false,
 })
 export class PackageViewerComponent {
-  package: Observable<ShowcaseMetaPackage>;
+  package: Observable<DocsMetaPackage>;
 
   constructor(activatedRoute: ActivatedRoute) {
     this.package = activatedRoute.data.pipe(map((data) => data.packageData));

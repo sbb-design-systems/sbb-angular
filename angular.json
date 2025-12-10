@@ -29,7 +29,7 @@
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "buildTarget": "angular-showcase:build"
+            "buildTarget": "docs:build"
           }
         }
       }
