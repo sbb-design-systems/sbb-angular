@@ -2,19 +2,21 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
-## [21.0.0-next.0](https://github.com/sbb-design-systems/sbb-angular/compare/20.0.0-next.2...21.0.0-next.0) (2025-12-10)
+## [21.0.0](https://github.com/sbb-design-systems/sbb-angular/compare/21.0.0-next.0...21.0.0) (2025-12-11)
 
 
 ### ⚠ BREAKING CHANGES
 
-* **angular/sidebar:** * `sbbSidebarAnimations` symbol has been removed.
-* **angular/accordion:** * `sbbExpansionAnimations` symbol has been removed.
-* **angular/menu:** * `sbbMenuAnimations` symbol has been removed.
-* **angular/menu:** SBB_MENU_SCROLL_STRATEGY_FACTORY has been removed.
-SBB_MENU_SCROLL_STRATEGY_FACTORY_PROVIDER has been removed.
-* **angular/autocomplete:** * `SBB_AUTOCOMPLETE_DEFAULT_OPTIONS_FACTORY` has been removed.
-* `SBB_AUTOCOMPLETE_SCROLL_STRATEGY_FACTORY` has been removed.
-* `SBB_AUTOCOMPLETE_SCROLL_STRATEGY_FACTORY_PROVIDER` has been removed.`
+* **angular/sidebar:** `sbbSidebarAnimations` symbol has been removed.
+* **angular/accordion:** `sbbExpansionAnimations` symbol has been removed.
+* **angular/menu:** `sbbMenuAnimations` symbol has been removed.
+* **angular/menu:**
+  * `SBB_MENU_SCROLL_STRATEGY_FACTORY` has been removed.
+  * `SBB_MENU_SCROLL_STRATEGY_FACTORY_PROVIDER` has been removed.
+* **angular/autocomplete:**
+  * `SBB_AUTOCOMPLETE_DEFAULT_OPTIONS_FACTORY` has been removed.
+  * `SBB_AUTOCOMPLETE_SCROLL_STRATEGY_FACTORY` has been removed.
+  * `SBB_AUTOCOMPLETE_SCROLL_STRATEGY_FACTORY_PROVIDER` has been removed.
 
 
 ### Bug Fixes
