@@ -16,8 +16,8 @@ export const SBB_STATION_LAYER = 'rokas-station-hover';
 const MAP_ENDPOINT_LAYERS_V1 = ['rokas-walk-from', 'rokas-walk-to'];
 const MAP_ENDPOINT_LAYERS_V2 = ['rokas-route-transfer-ending', 'rokas-route-stopover-circle'];
 const MAP_SOURCE_LAYER_OSM_POINTS = 'osm_points';
-const FEATURE_SBB_ID_FIELD_NAME = 'sbb_id';
-const FEATURE_DIDOK_CODE_FIELD_NAME = 'didokCode';
+const FEATURE_SBB_ID_FIELD_NAME = 'sbb_id'; // old name in journey-maps response (v1)
+const FEATURE_DIDOK_CODE_FIELD_NAME = 'didokCode'; // new name in journey-routes response (v2)
 
 @Injectable({ providedIn: 'root' })
 export class SbbMapStationService {
