@@ -219,8 +219,8 @@ importers:
         specifier: 17.0.13
         version: 17.0.13
       angular-server-side-configuration:
-        specifier: 20.0.0
-        version: 20.0.0(@angular/core@21.0.3(@angular/compiler@21.0.3)(rxjs@7.8.1)(zone.js@0.15.1))
+        specifier: 21.0.2
+        version: 21.0.2(@angular/core@21.0.3(@angular/compiler@21.0.3)(rxjs@7.8.1)(zone.js@0.15.1))
       angular-t9n:
         specifier: 21.0.1
         version: 21.0.1(bufferutil@4.0.9)(express@5.1.0)(utf-8-validate@6.0.5)
@@ -4788,10 +4788,10 @@ packages:
     resolution: {integrity: sha512-S2Hw0TtNkMJhIabBwIojKL9YHO5T0n5eNqWJ7Lrlel/zDbftQpxpapi8tZs3X1HWa+u+QeydGmzzNU0m09+Rcg==}
     engines: {node: '>=0.4.2'}
 
-  angular-server-side-configuration@20.0.0:
-    resolution: {integrity: sha512-FXuKXRsbW8GWgew8ls6p2lUgbt+6a86H1ND6j3lIiisgAc8254mzNFbqAPSx0vE0oHs81gQiAyUG7ApliYqQnw==}
+  angular-server-side-configuration@21.0.2:
+    resolution: {integrity: sha512-GgVr1MZBVejbPcaEdkpopH6546lgb2C1YdoTSjFG8fq5Qv0J2PBiAzIQ7FQeXgkBrYPZkhXtAzMABWIyQCb2Jg==}
     peerDependencies:
-      '@angular/core': ^20.0.0
+      '@angular/core': ^21.0.0
 
   angular-t9n@21.0.1:
     resolution: {integrity: sha512-vJ/sxU/qAlpKZqO3OpPNOm3f/jly4EAHFHnioAuqYI9R9ca06jtf4Ra9T8VtfR+57Dw73mg2ggpYciCpNMjkXA==}
@@ -16151,7 +16151,7 @@ snapshots:
   amdefine@1.0.1:
     optional: true
 
-  angular-server-side-configuration@20.0.0(@angular/core@21.0.3(@angular/compiler@21.0.3)(rxjs@7.8.1)(zone.js@0.15.1)):
+  angular-server-side-configuration@21.0.2(@angular/core@21.0.3(@angular/compiler@21.0.3)(rxjs@7.8.1)(zone.js@0.15.1)):
     dependencies:
       '@angular/core': 21.0.3(@angular/compiler@21.0.3)(rxjs@7.8.1)(zone.js@0.15.1)
       glob: 10.4.5
