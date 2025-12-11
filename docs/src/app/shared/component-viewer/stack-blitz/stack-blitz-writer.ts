@@ -19,7 +19,6 @@ const TEMPLATE_PATH = 'assets/stack-blitz/';
  */
 export const TEMPLATE_FILES = [
   '.gitignore',
-  '.stackblitzrc',
   'angular.json',
   'karma.conf.js',
   'package.json',
@@ -96,6 +95,7 @@ export class StackBlitzWriter {
           title: `Sbb Angular Library - ${data.description}`,
           description: `${data.description}\n\nAuto-generated from: https://angular.app.sbb.ch`,
           openFile: exampleMainFile,
+          startScript: isTest ? 'test' : 'start',
         });
       };
     });
@@ -107,11 +107,13 @@ export class StackBlitzWriter {
     description,
     openFile,
     files,
+    startScript,
   }: {
     title: string;
     description: string;
     openFile: string;
     files: FileDictionary;
+    startScript: string;
   }): void {
     stackblitz.openProject(
       {
@@ -121,7 +123,7 @@ export class StackBlitzWriter {
         template: PROJECT_TEMPLATE,
         tags: PROJECT_TAGS,
       },
-      { openFile },
+      { openFile, startScript },
     );
   }
 
@@ -208,8 +210,6 @@ export class StackBlitzWriter {
       fileContent = fileContent
         .replace(/sbb-angular-docs-example/g, data.selectorName)
         .replace(/\${title}/g, data.description);
-    } else if (fileName === '.stackblitzrc') {
-      fileContent = fileContent.replace(/\${startCommand}/, isTest ? 'npm test' : 'npm start');
     } else if (fileName === 'src/main.ts') {
       // Replace the component name in `main.ts`.
       // Replace `import {SbbAngularDocsExample} from 'sbb-angular-docs-example'`
