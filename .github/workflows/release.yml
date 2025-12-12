@@ -28,7 +28,7 @@ jobs:
         registry-url: 'https://registry.npmjs.org'
     - run: pnpm install
     - name: "Bazel: Restore remote cache"
-      uses: actions/cache/restore@v4
+      uses: actions/cache/restore@v5
       with:
         path: ~/.bazel-cache/sbb-angular
         key: bazel-${{ env.BAZEL_CACHE_VERSION }}-${{ github.sha }}-${{ github.run_attempt }}
@@ -83,7 +83,7 @@ jobs:
         node-version-file: '.nvmrc'
     - run: pnpm install
     - name: "Bazel: Restore remote cache"
-      uses: actions/cache/restore@v4
+      uses: actions/cache/restore@v5
       with:
         path: ~/.bazel-cache/sbb-angular
         key: bazel-${{ env.BAZEL_CACHE_VERSION }}-${{ github.sha }}-${{ github.run_attempt }}
