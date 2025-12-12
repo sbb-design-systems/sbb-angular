@@ -213,8 +213,8 @@ importers:
         specifier: 1.2.1
         version: 1.2.1
       '@types/shelljs':
-        specifier: ^0.8.15
-        version: 0.8.17
+        specifier: ^0.10.0
+        version: 0.10.0
       '@types/yargs':
         specifier: 17.0.13
         version: 17.0.13
@@ -4542,6 +4542,9 @@ packages:
 
   '@types/serve-static@2.2.0':
     resolution: {integrity: sha512-8mam4H1NHLtu7nmtalF7eyBH14QyOASmcxHhSfEoRyr0nP/YdoesEtU+uSRvMe96TW/HPTtkoKqQLl53N7UXMQ==}
+
+  '@types/shelljs@0.10.0':
+    resolution: {integrity: sha512-OEfyhE5Ox+FeoHbhrEDwm0kXxntO6nsyMRCFvNsIBHPZu5rV1w2OjPcLclaC/IZ1TlzZPgbeMfwAZEi5N238yQ==}
 
   '@types/shelljs@0.8.17':
     resolution: {integrity: sha512-IDksKYmQA2W9MkQjiyptbMmcQx+8+Ol6b7h6dPU5S05JyiQDSb/nZKnrMrZqGwgV6VkVdl6/SPCKPDlMRvqECg==}
@@ -15841,6 +15844,11 @@ snapshots:
     dependencies:
       '@types/http-errors': 2.0.5
       '@types/node': 22.19.0
+
+  '@types/shelljs@0.10.0':
+    dependencies:
+      '@types/node': 22.19.0
+      fast-glob: 3.3.3
 
   '@types/shelljs@0.8.17':
     dependencies:
