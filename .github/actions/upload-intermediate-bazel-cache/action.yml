@@ -14,7 +14,7 @@ runs:
         tar -I zstd -cf ${{ inputs.key }}.tar.zst sbb-angular
       shell: bash
     - name: "Bazel: Upload cache artifact"
-      uses: actions/upload-artifact@v5
+      uses: actions/upload-artifact@v6
       with:
         name: ${{ inputs.key }}-artifact
         path: ~/.bazel-cache/${{ inputs.key }}.tar.zst
