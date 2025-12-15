@@ -139,7 +139,7 @@ jobs:
           key: bazel-cache-docs
       - name: "Artifact: Upload docs"
         if: github.event_name == 'pull_request' || github.ref == 'refs/heads/main'
-        uses: actions/upload-artifact@v5
+        uses: actions/upload-artifact@v6
         with:
           name: docs-artifact
           path: dist/docs/
@@ -154,7 +154,7 @@ jobs:
     steps:
       - uses: actions/checkout@8e8c483db84b4bee98b60c0593521ed34d9990e8 # v6
       - name: "Download docs artifact"
-        uses: actions/download-artifact@v6
+        uses: actions/download-artifact@v7
         with:
           name: docs-artifact
           path: dist/docs/
