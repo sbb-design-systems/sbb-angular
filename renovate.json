@@ -4,7 +4,7 @@
   "username": "sbb-angular-renovate[bot]",
   "gitAuthor": "sbb-angular-renovate<100206640+sbb-angular-renovate[bot]@users.noreply.github.com>",
   "repositories": ["sbb-design-systems/sbb-angular"],
-  "baseBranches": ["main", "20.x"],
+  "baseBranches": ["main", "21.x"],
   "includePaths": ["package.json", ".github/**", "pnpm-lock.yaml", "pnpm-workspace.yaml"],
   "timezone": "Europe/Zurich",
   "lockFileMaintenance": {
