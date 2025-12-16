@@ -1,9 +1,15 @@
 // tslint:disable:require-property-typedef
 import { BreakpointObserver } from '@angular/cdk/layout';
+import { KeyValuePipe } from '@angular/common';
 import { AfterContentInit, Component, inject, isDevMode, OnDestroy } from '@angular/core';
+import { ReactiveFormsModule } from '@angular/forms';
 import { DomSanitizer } from '@angular/platform-browser';
+import { RouterLink, RouterLinkActive, RouterOutlet } from '@angular/router';
 import { Breakpoints, VERSION } from '@sbb-esta/angular/core';
-import { SbbIconRegistry } from '@sbb-esta/angular/icon';
+import { SbbHeaderLeanModule } from '@sbb-esta/angular/header-lean';
+import { SbbIconModule, SbbIconRegistry } from '@sbb-esta/angular/icon';
+import { SbbSelectModule } from '@sbb-esta/angular/select';
+import { SbbSidebarModule } from '@sbb-esta/angular/sidebar';
 import { Subject } from 'rxjs';
 import { distinctUntilChanged, map, takeUntil } from 'rxjs/operators';
 
@@ -28,7 +34,18 @@ declare global {
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss'],
   animations: [ROUTER_ANIMATION],
-  standalone: false,
+  imports: [
+    RouterOutlet,
+    SbbSidebarModule,
+    SbbHeaderLeanModule,
+    SbbSelectModule,
+    ReactiveFormsModule,
+    RouterLink,
+    SbbIconModule,
+    KeyValuePipe,
+    RouterLinkActive,
+  ],
+  standalone: true,
 })
 export class AppComponent implements AfterContentInit, OnDestroy {
   private _breakpointObserver = inject(BreakpointObserver);

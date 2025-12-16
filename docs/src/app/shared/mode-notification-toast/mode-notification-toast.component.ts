@@ -1,5 +1,6 @@
 import { Component, ViewEncapsulation } from '@angular/core';
 import { Router } from '@angular/router';
+import { SbbButton } from '@sbb-esta/angular/button';
 
 const modeSessionStorageKey = 'sbbAngularMode';
 
@@ -20,7 +21,7 @@ const modeSessionStorageKey = 'sbbAngularMode';
       }
     `,
   ],
-  standalone: false,
+  imports: [SbbButton],
 })
 export class ModeNotificationToastComponent {
   constructor(private _router: Router) {}

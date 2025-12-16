@@ -1,5 +1,7 @@
 import { Component, Input } from '@angular/core';
 import { SbbDialog } from '@sbb-esta/angular/dialog';
+import { SbbIcon } from '@sbb-esta/angular/icon';
+import { SbbTooltip } from '@sbb-esta/angular/tooltip';
 
 import { CdnIcon } from '../../cdn-icon.service';
 import { CdnIconDialogComponent } from '../cdn-icon-dialog/cdn-icon-dialog.component';
@@ -8,7 +10,7 @@ import { CdnIconDialogComponent } from '../cdn-icon-dialog/cdn-icon-dialog.compo
   selector: 'sbb-cdn-icon',
   templateUrl: './cdn-icon.component.html',
   styleUrls: ['./cdn-icon.component.scss'],
-  standalone: false,
+  imports: [SbbIcon, SbbTooltip],
 })
 export class CdnIconComponent {
   @Input() cdnIcon!: CdnIcon;

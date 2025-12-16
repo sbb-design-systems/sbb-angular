@@ -1,5 +1,7 @@
 // tslint:disable:require-property-typedef
+import { KeyValuePipe } from '@angular/common';
 import { Component } from '@angular/core';
+import { RouterLink } from '@angular/router';
 
 import { PACKAGES } from '../shared/meta';
 
@@ -7,7 +9,7 @@ import { PACKAGES } from '../shared/meta';
   selector: 'sbb-introduction',
   templateUrl: './introduction.component.html',
   styleUrls: ['./introduction.component.scss'],
-  standalone: false,
+  imports: [RouterLink, KeyValuePipe],
 })
 export class IntroductionComponent {
   packages = PACKAGES;
