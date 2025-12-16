@@ -20,6 +20,7 @@ import {
   CdkConnectedOverlay,
   CdkOverlayOrigin,
   ConnectedPosition,
+  createRepositionScrollStrategy,
   Overlay,
   RepositionScrollStrategy,
   ScrollStrategy,
@@ -40,6 +41,7 @@ import {
   HostListener,
   inject,
   InjectionToken,
+  Injector,
   Input,
   numberAttribute,
   OnChanges,
@@ -99,9 +101,20 @@ import {
 /** Injection token that determines the scroll handling while a select is open. */
 export const SBB_SELECT_SCROLL_STRATEGY = new InjectionToken<() => ScrollStrategy>(
   'sbb-select-scroll-strategy',
+  {
+    providedIn: 'root',
+    factory: () => {
+      const injector = inject(Injector);
+      return () => createRepositionScrollStrategy(injector);
+    },
+  },
 );
 
-/** @docs-private */
+/**
+ * @docs-private
+ * @deprecated Will be removed in 22.0.0.
+ * @breaking-change 22.0.0
+ */
 export function SBB_SELECT_SCROLL_STRATEGY_PROVIDER_FACTORY(
   overlay: Overlay,
 ): () => RepositionScrollStrategy {
@@ -126,7 +139,11 @@ export interface SbbSelectConfig {
 /** Injection token that can be used to provide the default options the select module. */
 export const SBB_SELECT_CONFIG = new InjectionToken<SbbSelectConfig>('SBB_SELECT_CONFIG');
 
-/** @docs-private */
+/**
+ * @docs-private
+ * @deprecated Will be removed in 22.0.0.
+ * @breaking-change 22.0.0
+ */
 export const SBB_SELECT_SCROLL_STRATEGY_PROVIDER = {
   provide: SBB_SELECT_SCROLL_STRATEGY,
   deps: [Overlay],
