@@ -1,6 +1,6 @@
 import { ScrollingModule } from '@angular/cdk/scrolling';
 import { HttpClientModule } from '@angular/common/http';
-import { NgModule, provideZoneChangeDetection } from '@angular/core'; // TODO(mhaertwig): Make docs zoneless.
+import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -41,7 +41,6 @@ import { IntroductionComponent } from './introduction/introduction.component';
     FormsModule,
   ],
   providers: [
-    provideZoneChangeDetection(),
     {
       provide: SBB_SANITY_CHECKS,
       useValue: { doctype: true, typography: true, version: false } as GranularSanityChecks,
