@@ -52,20 +52,22 @@
 
 <nav>
   <ul class="sbb-clean-list">
-    <li *ngFor="let packageEntry of packages | keyvalue">
-      <a [routerLink]="['/', packageEntry.key]">
-        <div class="hero">
-          <img [attr.alt]="packageEntry.value.name" [attr.src]="packageEntry.value.image" />
-        </div>
-        <span
-          class="title"
-          [title]="packageEntry.value.isDeprecated ? 'deprecated' : ''"
-          [style.text-decoration]="packageEntry.value.isDeprecated ? 'line-through' : ''"
-        >
-          {{ packageEntry.value.name }}
-        </span>
-        <span class="text">{{ packageEntry.value.description }}</span>
-      </a>
-    </li>
+    @for (packageEntry of packages | keyvalue; track packageEntry.key) {
+      <li>
+        <a [routerLink]="['/', packageEntry.key]">
+          <div class="hero">
+            <img [attr.alt]="packageEntry.value.name" [attr.src]="packageEntry.value.image" />
+          </div>
+          <span
+            class="title"
+            [title]="packageEntry.value.isDeprecated ? 'deprecated' : ''"
+            [style.text-decoration]="packageEntry.value.isDeprecated ? 'line-through' : ''"
+          >
+            {{ packageEntry.value.name }}
+          </span>
+          <span class="text">{{ packageEntry.value.description }}</span>
+        </a>
+      </li>
+    }
   </ul>
 </nav>

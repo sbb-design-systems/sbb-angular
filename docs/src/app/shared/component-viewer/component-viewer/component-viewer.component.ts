@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, RouterLink, RouterLinkActive, RouterOutlet } from '@angular/router';
+import { SbbTabLink, SbbTabNav, SbbTabNavPanel } from '@sbb-esta/angular/tabs';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 
@@ -10,7 +11,7 @@ import { moduleParams } from '../../module-params';
   selector: 'sbb-component-viewer',
   templateUrl: './component-viewer.component.html',
   styleUrls: ['./component-viewer.component.scss'],
-  standalone: false,
+  imports: [SbbTabNav, SbbTabLink, RouterLinkActive, RouterLink, SbbTabNavPanel, RouterOutlet],
 })
 export class ComponentViewerComponent implements OnInit {
   docsMetaEntry!: Observable<DocsMetaEntry>;

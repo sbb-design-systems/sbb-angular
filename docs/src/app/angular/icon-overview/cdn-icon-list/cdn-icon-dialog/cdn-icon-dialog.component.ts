@@ -1,5 +1,13 @@
 import { Component, Inject } from '@angular/core';
-import { SBB_DIALOG_DATA } from '@sbb-esta/angular/dialog';
+import { SbbButton } from '@sbb-esta/angular/button';
+import {
+  SbbDialogActions,
+  SbbDialogClose,
+  SbbDialogContent,
+  SbbDialogTitle,
+  SBB_DIALOG_DATA,
+} from '@sbb-esta/angular/dialog';
+import { SbbIcon } from '@sbb-esta/angular/icon';
 
 import { CdnIcon } from '../../cdn-icon.service';
 
@@ -7,7 +15,7 @@ import { CdnIcon } from '../../cdn-icon.service';
   selector: 'sbb-cdn-icon-dialog',
   templateUrl: './cdn-icon-dialog.component.html',
   styleUrls: ['./cdn-icon-dialog.component.scss'],
-  standalone: false,
+  imports: [SbbDialogTitle, SbbDialogContent, SbbIcon, SbbDialogActions, SbbButton, SbbDialogClose],
 })
 export class CdnIconDialogComponent {
   constructor(@Inject(SBB_DIALOG_DATA) public data: { cdnIcon: CdnIcon }) {}

@@ -14,7 +14,6 @@ import { moduleParams } from '../module-params';
   host: {
     '[innerHTML]': 'content()',
   },
-  standalone: false,
 })
 export class MarkdownViewerComponent {
   private _htmlLoader = inject(HtmlLoader);

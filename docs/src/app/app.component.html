@@ -3,17 +3,20 @@
   [subtitle]="'Version ' + docsVersion"
   collapseBreakpoint="mobile"
 >
-  <sbb-header-environment *ngIf="environmentBannerText">{{
-    environmentBannerText
-  }}</sbb-header-environment>
-  <sbb-app-chooser-section label="Previous Versions" *ngIf="previousMajorVersions.length">
-    <a
-      target="_blank"
-      *ngFor="let version of previousMajorVersions"
-      href="https://angular-v{{ version }}.app.sbb.ch/"
-      >Version {{ version }}</a
-    >
-  </sbb-app-chooser-section>
+  @if (environmentBannerText) {
+    <sbb-header-environment>{{ environmentBannerText }}</sbb-header-environment>
+  }
+
+  @if (previousMajorVersions.length) {
+    <sbb-app-chooser-section label="Previous Versions">
+      <a
+        target="_blank"
+        *ngFor="let version of previousMajorVersions"
+        href="https://angular-v{{ version }}.app.sbb.ch/"
+        >Version {{ version }}</a
+      >
+    </sbb-app-chooser-section>
+  }
   <sbb-app-chooser-section label="Links">
     <a target="_blank" href="https://github.com/sbb-design-systems/sbb-angular">GitHub</a>
     <a target="_blank" href="https://angular.io/">Angular {{ angularVersion }}</a>
@@ -34,17 +37,18 @@
 
 <sbb-icon-sidebar-container>
   <sbb-icon-sidebar [expanded]="expanded">
-    <a
-      sbbIconSidebarItem
-      *ngFor="let packageEntry of packages | keyvalue"
-      [label]="packageEntry.value['name']"
-      [title]="packageEntry.value['isDeprecated'] ? 'deprecated' : packageEntry.value['name']"
-      [routerLink]="packageEntry.key"
-      [style.text-decoration]="packageEntry.value['isDeprecated'] ? 'line-through' : ''"
-      routerLinkActive="sbb-active"
-    >
-      <sbb-icon [svgIcon]="packageEntry.value['svgIcon']" />
-    </a>
+    @for (packageEntry of packages | keyvalue; track packageEntry.key) {
+      <a
+        sbbIconSidebarItem
+        [label]="packageEntry.value['name']"
+        [title]="packageEntry.value['isDeprecated'] ? 'deprecated' : packageEntry.value['name']"
+        [routerLink]="packageEntry.key"
+        [style.text-decoration]="packageEntry.value['isDeprecated'] ? 'line-through' : ''"
+        routerLinkActive="sbb-active"
+      >
+        <sbb-icon [svgIcon]="packageEntry.value['svgIcon']" />
+      </a>
+    }
   </sbb-icon-sidebar>
   <sbb-icon-sidebar-content role="main">
     <router-outlet />

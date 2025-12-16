@@ -1,6 +1,11 @@
 // tslint:disable:require-property-typedef
+import { AsyncPipe } from '@angular/common';
 import { Component, inject } from '@angular/core';
-import { FormBuilder, FormControl } from '@angular/forms';
+import { FormBuilder, FormControl, FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { SbbOption } from '@sbb-esta/angular/core';
+import { SbbFormField } from '@sbb-esta/angular/form-field';
+import { SbbNotification } from '@sbb-esta/angular/notification';
+import { SbbSelect } from '@sbb-esta/angular/select';
 import { combineLatest } from 'rxjs';
 import { map, startWith } from 'rxjs/operators';
 
@@ -10,7 +15,15 @@ import { UPDATE_STEPS } from './update-steps';
   selector: 'sbb-how-to-update',
   templateUrl: './how-to-update.component.html',
   styleUrls: ['./how-to-update.component.scss'],
-  standalone: false,
+  imports: [
+    FormsModule,
+    ReactiveFormsModule,
+    SbbFormField,
+    SbbSelect,
+    SbbOption,
+    SbbNotification,
+    AsyncPipe,
+  ],
 })
 export class HowToUpdateComponent {
   private _formBuilder = inject(FormBuilder);

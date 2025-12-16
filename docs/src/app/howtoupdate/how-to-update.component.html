@@ -3,42 +3,45 @@
 <form class="sbb-form-group" [formGroup]="versionSelect">
   <sbb-form-field label="From">
     <sbb-select formControlName="from">
-      <sbb-option *ngFor="let v of versions" [value]="v">{{ toVersionString(v) }}</sbb-option>
+      @for (v of versions; track v) {
+        <sbb-option [value]="v">{{ toVersionString(v) }}</sbb-option>
+      }
     </sbb-select>
   </sbb-form-field>
 
   <sbb-form-field label="To">
     <sbb-select formControlName="to">
-      <sbb-option *ngFor="let v of versions" [value]="v">{{ toVersionString(v) }}</sbb-option>
+      @for (v of versions; track v) {
+        <sbb-option [value]="v">{{ toVersionString(v) }}</sbb-option>
+      }
     </sbb-select>
   </sbb-form-field>
 </form>
 
-<sbb-notification
-  type="warn"
-  *ngIf="versionSelect.controls.to.value - versionSelect.controls.from.value > 150"
->
-  We do not support migrating across multiple major versions at once. Please migrate each major
-  version individually.
-</sbb-notification>
+@if (versionSelect.controls.to.value - versionSelect.controls.from.value > 150) {
+  <sbb-notification type="warn">
+    We do not support migrating across multiple major versions at once. Please migrate each major
+    version individually.
+  </sbb-notification>
+}
 
-<sbb-notification
-  type="error"
-  *ngIf="versionSelect.controls.to.value < versionSelect.controls.from.value"
->
-  We do not support downgrading versions of SBB Angular.
-</sbb-notification>
+@if (versionSelect.controls.to.value < versionSelect.controls.from.value) {
+  <sbb-notification type="error">
+    We do not support downgrading versions of SBB Angular.
+  </sbb-notification>
+}
 
-<sbb-notification
-  type="success"
-  *ngIf="versionSelect.controls.to.value === versionSelect.controls.from.value"
->
-  There's nothing to do.
-</sbb-notification>
+@if (versionSelect.controls.to.value === versionSelect.controls.from.value) {
+  <sbb-notification type="success"> There's nothing to do. </sbb-notification>
+}
 
-<div *ngFor="let step of steps | async">
-  <h2>Update from Version {{ toVersionString(step.from) }} to {{ toVersionString(step.to) }}</h2>
-  <ol>
-    <li *ngFor="let action of step.actions" [innerHTML]="action"></li>
-  </ol>
-</div>
+@for (step of steps | async; track step) {
+  <div>
+    <h2>Update from Version {{ toVersionString(step.from) }} to {{ toVersionString(step.to) }}</h2>
+    <ol>
+      @for (action of step.actions; track action) {
+        <li [innerHTML]="action"></li>
+      }
+    </ol>
+  </div>
+}

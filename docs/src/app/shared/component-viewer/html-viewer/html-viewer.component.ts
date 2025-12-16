@@ -14,7 +14,6 @@ import { moduleParams } from '../../module-params';
   host: {
     '[innerHTML]': 'content()',
   },
-  standalone: false,
 })
 export class HtmlViewerComponent {
   private _route = inject(ActivatedRoute);

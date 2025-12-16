@@ -11,24 +11,27 @@
     <sbb-icon svgIcon="docs:code" />
   </button>
 
-  <button
-    *ngIf="stackBlitzEnabled() | async"
-    sbb-secondary-button
-    sbb-stack-blitz-button
-    type="button"
-    [example]="exampleData.id"
-    class="example-viewer-header-button"
-    aria-label="Edit example in StackBlitz"
-    sbbTooltip="Edit example in StackBlitz"
-  >
-    <sbb-icon svgIcon="link-external-small" />
-  </button>
+  @if (stackBlitzEnabled() | async) {
+    <button
+      sbb-secondary-button
+      sbb-stack-blitz-button
+      type="button"
+      [example]="exampleData.id"
+      class="example-viewer-header-button"
+      aria-label="Edit example in StackBlitz"
+      sbbTooltip="Edit example in StackBlitz"
+    >
+      <sbb-icon svgIcon="link-external-small" />
+    </button>
+  }
 </div>
 
 <sbb-tab-group [hidden]="!showSource" class="sbb-example-viewer-tabs">
-  <sbb-tab *ngFor="let content of exampleCodes | async" [label]="content.label">
-    <pre><code [innerHtml]="content.code"></code></pre>
-  </sbb-tab>
+  @for (content of exampleCodes | async; track content) {
+    <sbb-tab [label]="content.label">
+      <pre><code [innerHtml]="content.code"></code></pre>
+    </sbb-tab>
+  }
 </sbb-tab-group>
 
 <sbb-example-outlet [exampleData]="exampleData" />

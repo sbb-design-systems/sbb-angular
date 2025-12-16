@@ -5,9 +5,11 @@
 
   <sbb-form-field label="Namespaces" class="sbb-form-field-long">
     <sbb-select placeholder="Namespaces" formControlName="namespaces" multiple>
-      <sbb-option *ngFor="let namespace of namespaces" [value]="namespace">
-        {{ namespace + (deprecatedNamespaces.includes(namespace) ? ' (deprecated)' : '') }}
-      </sbb-option>
+      @for (namespace of namespaces; track namespace) {
+        <sbb-option [value]="namespace">
+          {{ namespace + (deprecatedNamespaces.includes(namespace) ? ' (deprecated)' : '') }}
+        </sbb-option>
+      }
     </sbb-select>
   </sbb-form-field>
 
@@ -16,7 +18,9 @@
   </div>
 </form>
 <div [class.sbb-icon-fit]="filterForm.get('fitIcons')!.value">
-  <sbb-cdn-icon *ngFor="let cdnIcon of filteredIcons | async" [cdnIcon]="cdnIcon" />
+  @for (cdnIcon of filteredIcons | async; track cdnIcon.name) {
+    <sbb-cdn-icon [cdnIcon]="cdnIcon" />
+  }
 </div>
 <sbb-paginator [pageSize]="pageSize" aria-label="Select icon page" class="icon-paginator" />
 <p>

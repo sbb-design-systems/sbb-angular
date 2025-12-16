@@ -1,5 +1,4 @@
-import { NgModule } from '@angular/core';
-import { RouterModule, Routes } from '@angular/router';
+import { Routes } from '@angular/router';
 
 import { componentViewerSubnavigation } from '../shared/component-viewer/component-viewer/component-viewer-subnavigation';
 import { ComponentViewerComponent } from '../shared/component-viewer/component-viewer/component-viewer.component';
@@ -7,11 +6,13 @@ import { MarkdownViewerComponent } from '../shared/markdown-viewer/markdown-view
 import { PACKAGES } from '../shared/meta';
 import { PackageViewerComponent } from '../shared/package-viewer/package-viewer.component';
 
-const routes: Routes = [
+import { IconOverviewComponent } from './icon-overview/icon-overview.component';
+
+export const ANGULAR_ROUTES: Routes = [
   {
     path: '',
     component: PackageViewerComponent,
-    data: { packageData: PACKAGES['angular-experimental'] },
+    data: { packageData: PACKAGES.angular },
     children: [
       {
         path: '',
@@ -19,22 +20,25 @@ const routes: Routes = [
         pathMatch: 'full',
       },
       {
+        path: 'icon-overview',
+        component: IconOverviewComponent,
+      },
+      {
         path: 'introduction/:id',
         component: MarkdownViewerComponent,
-        data: { packageName: 'angular-experimental' },
+        data: { packageName: 'angular' },
+      },
+      {
+        path: 'guides/:id',
+        component: MarkdownViewerComponent,
+        data: { packageName: 'angular' },
       },
       {
         path: 'components/:id',
         component: ComponentViewerComponent,
-        data: { packageName: 'angular-experimental' },
+        data: { packageName: 'angular' },
         children: componentViewerSubnavigation,
       },
     ],
   },
 ];
-
-@NgModule({
-  imports: [RouterModule.forChild(routes)],
-  exports: [RouterModule],
-})
-export class AngularExperimentalRoutingModule {}

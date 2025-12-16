@@ -1,4 +1,5 @@
-<sbb-cdn-icon-list *ngIf="cdnIcons | async as _cdnIcons; else loading" [cdnIcons]="_cdnIcons" />
-<ng-template #loading>
+@if (cdnIcons()) {
+  <sbb-cdn-icon-list [cdnIcons]="cdnIcons()!" />
+} @else {
   <sbb-loading-indicator mode="medium" aria-label="Loading icons" />
-</ng-template>
+}

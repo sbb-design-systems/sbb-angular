@@ -1,11 +1,17 @@
-import { Component, Input, OnInit, ViewContainerRef } from '@angular/core';
+import { AsyncPipe } from '@angular/common';
+import { Component, forwardRef, Input, OnInit, ViewContainerRef } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import { SbbButton } from '@sbb-esta/angular/button';
+import { SbbIcon } from '@sbb-esta/angular/icon';
+import { SbbTab, SbbTabGroup } from '@sbb-esta/angular/tabs';
+import { SbbTooltip } from '@sbb-esta/angular/tooltip';
 import { ExampleData, loadExample } from '@sbb-esta/components-examples';
 import { combineLatest, Observable } from 'rxjs';
 import { map, switchMap } from 'rxjs/operators';
 
 import { HtmlLoader } from '../../html-loader.service';
 import { moduleParams } from '../../module-params';
+import { StackBlitzButton } from '../stack-blitz/stack-blitz-button';
 
 interface ExampleCode {
   label: string;
@@ -16,7 +22,16 @@ interface ExampleCode {
   selector: 'sbb-example-viewer',
   templateUrl: './example-viewer.component.html',
   styleUrls: ['./example-viewer.component.scss'],
-  standalone: false,
+  imports: [
+    SbbButton,
+    SbbTooltip,
+    SbbIcon,
+    StackBlitzButton,
+    SbbTabGroup,
+    SbbTab,
+    forwardRef(() => ExampleOutletComponent),
+    AsyncPipe,
+  ],
 })
 export class ExampleViewerComponent implements OnInit {
   @Input() exampleData!: ExampleData;
@@ -95,7 +110,6 @@ export class ExampleViewerComponent implements OnInit {
 @Component({
   selector: 'sbb-example-outlet',
   template: '',
-  standalone: false,
 })
 export class ExampleOutletComponent implements OnInit {
   @Input() exampleData!: ExampleData;
