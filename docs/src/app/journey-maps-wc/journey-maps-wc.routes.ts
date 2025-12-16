@@ -1,11 +1,10 @@
-import { NgModule } from '@angular/core';
-import { RouterModule, Routes } from '@angular/router';
+import { Routes } from '@angular/router';
 
 import { MarkdownViewerComponent } from '../shared/markdown-viewer/markdown-viewer.component';
 import { PACKAGES } from '../shared/meta';
 import { PackageViewerComponent } from '../shared/package-viewer/package-viewer.component';
 
-const routes: Routes = [
+export const JOURNEY_MAPS_WC_ROUTES: Routes = [
   {
     path: '',
     component: PackageViewerComponent,
@@ -24,9 +23,3 @@ const routes: Routes = [
     ],
   },
 ];
-
-@NgModule({
-  imports: [RouterModule.forChild(routes)],
-  exports: [RouterModule],
-})
-export class JourneyMapsWcRoutingModule {}

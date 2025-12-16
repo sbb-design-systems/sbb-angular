@@ -1,17 +1,36 @@
 // tslint:disable:require-property-typedef
+import { AsyncPipe } from '@angular/common';
 import { AfterViewInit, Component, inject, Input, ViewChild } from '@angular/core';
-import { FormBuilder } from '@angular/forms';
+import { FormBuilder, FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { SbbCheckbox } from '@sbb-esta/angular/checkbox';
+import { SbbOption } from '@sbb-esta/angular/core';
+import { SbbFormField } from '@sbb-esta/angular/form-field';
+import { SbbInput } from '@sbb-esta/angular/input';
 import { SbbPaginator } from '@sbb-esta/angular/pagination';
+import { SbbSelectModule } from '@sbb-esta/angular/select';
 import { merge, Observable } from 'rxjs';
 import { debounceTime, map, startWith } from 'rxjs/operators';
 
 import { CdnIcon, CdnIcons } from '../cdn-icon.service';
 
+import { CdnIconComponent } from './cdn-icon/cdn-icon.component';
+
 @Component({
   selector: 'sbb-cdn-icon-list',
   templateUrl: './cdn-icon-list.component.html',
   styleUrls: ['./cdn-icon-list.component.scss'],
-  standalone: false,
+  imports: [
+    FormsModule,
+    ReactiveFormsModule,
+    SbbFormField,
+    SbbInput,
+    SbbSelectModule,
+    SbbOption,
+    SbbCheckbox,
+    CdnIconComponent,
+    SbbPaginator,
+    AsyncPipe,
+  ],
 })
 export class CdnIconListComponent implements AfterViewInit {
   @Input()
@@ -37,7 +56,7 @@ export class CdnIconListComponent implements AfterViewInit {
   filteredIcons!: Observable<CdnIcon[]>;
   namespaces = ['icon', 'picto', 'kom', 'fpl'];
   deprecatedNamespaces = ['kom', 'fpl'];
-  pageSize = 50;
+  pageSize: number = 50;
 
   @ViewChild(SbbPaginator) private _paginator!: SbbPaginator;
 

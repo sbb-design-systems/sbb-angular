@@ -1,5 +1,5 @@
-import { inject, NgModule } from '@angular/core';
-import { RouterModule, Routes } from '@angular/router';
+import { inject } from '@angular/core';
+import { Routes } from '@angular/router';
 import { SbbNotificationToast } from '@sbb-esta/angular/notification-toast';
 
 import { HowToUpdateComponent } from './howtoupdate/how-to-update.component';
@@ -10,7 +10,7 @@ import { VariantSwitch } from './variant-switch';
 const modeSessionStorageKey = 'sbbAngularMode';
 const offBrandColorMode = 'sbb-off-brand-colors';
 
-const routes: Routes = [
+export const APP_ROUTES: Routes = [
   {
     path: '',
     canActivate: [VariantSwitch],
@@ -54,24 +54,24 @@ const routes: Routes = [
       },
       {
         path: 'angular',
-        loadChildren: () => import('./angular/angular.module').then((m) => m.AngularModule),
+        loadChildren: () => import('./angular/angular.routes').then((m) => m.ANGULAR_ROUTES),
       },
       {
         path: 'angular-experimental',
         loadChildren: () =>
-          import('./angular-experimental/angular-experimental.module').then(
-            (m) => m.AngularExperimentalModule,
+          import('./angular-experimental/angular-experimental.routes').then(
+            (m) => m.ANGULAR_EXPERIMENTAL_ROUTES,
           ),
       },
       {
         path: 'journey-maps',
         loadChildren: () =>
-          import('./journey-maps/journey-maps.module').then((m) => m.JourneyMapsModule),
+          import('./journey-maps/journey-maps.routes').then((m) => m.JOURNEY_MAPS_ROUTES),
       },
       {
         path: 'journey-maps-wc',
         loadChildren: () =>
-          import('./journey-maps-wc/journey-maps-wc.module').then((m) => m.JourneyMapsWcModule),
+          import('./journey-maps-wc/journey-maps-wc.routes').then((m) => m.JOURNEY_MAPS_WC_ROUTES),
       },
     ],
   },
@@ -80,9 +80,3 @@ const routes: Routes = [
     redirectTo: '',
   },
 ];
-
-@NgModule({
-  imports: [RouterModule.forRoot(routes)],
-  exports: [RouterModule],
-})
-export class AppRoutingModule {}
