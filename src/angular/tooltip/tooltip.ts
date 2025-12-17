@@ -17,6 +17,7 @@ import { BreakpointObserver, BreakpointState } from '@angular/cdk/layout';
 import {
   ConnectedPosition,
   ConnectionPositionPair,
+  createRepositionScrollStrategy,
   FlexibleConnectedPositionStrategy,
   Overlay,
   OverlayRef,
@@ -95,14 +96,29 @@ export function getSbbTooltipInvalidPositionError(position: string) {
 /** Injection token that determines the scroll handling while a tooltip is visible. */
 export const SBB_TOOLTIP_SCROLL_STRATEGY = new InjectionToken<() => ScrollStrategy>(
   'sbb-tooltip-scroll-strategy',
+  {
+    providedIn: 'root',
+    factory: () => {
+      const injector = inject(Injector);
+      return () => createRepositionScrollStrategy(injector, { scrollThrottle: SCROLL_THROTTLE_MS });
+    },
+  },
 );
 
-/** @docs-private */
+/**
+ * @docs-private
+ * @deprecated Will be removed in 22.0.0.
+ * @breaking-change 22.0.0
+ */
 export function SBB_TOOLTIP_SCROLL_STRATEGY_FACTORY(overlay: Overlay): () => ScrollStrategy {
   return () => overlay.scrollStrategies.reposition({ scrollThrottle: SCROLL_THROTTLE_MS });
 }
 
-/** @docs-private */
+/**
+ * @docs-private
+ * @deprecated Will be removed in 22.0.0.
+ * @breaking-change 22.0.0
+ */
 export const SBB_TOOLTIP_SCROLL_STRATEGY_FACTORY_PROVIDER = {
   provide: SBB_TOOLTIP_SCROLL_STRATEGY,
   deps: [Overlay],
