@@ -42,7 +42,7 @@ jobs:
           node-version-file: '.nvmrc'
       - run: pnpm install
       - name: "Bazel: Restore remote cache"
-        uses: actions/cache/restore@v4
+        uses: actions/cache/restore@v5
         with:
           path: ~/.bazel-cache/sbb-angular
           key: bazel-${{ env.BAZEL_CACHE_VERSION }}-${{ github.sha }}-${{ github.run_attempt }}
@@ -67,7 +67,7 @@ jobs:
           node-version-file: '.nvmrc'
       - run: pnpm install
       - name: "Bazel: Restore remote cache"
-        uses: actions/cache/restore@v4
+        uses: actions/cache/restore@v5
         with:
           path: ~/.bazel-cache/sbb-angular
           key: bazel-${{ env.BAZEL_CACHE_VERSION }}-${{ github.sha }}-${{ github.run_attempt }}
@@ -203,7 +203,7 @@ jobs:
 
       - name: "Bazel: Upload remote cache"
         if: ${{ success() || failure() }}
-        uses: actions/cache/save@v4
+        uses: actions/cache/save@v5
         with:
           path: ~/.bazel-cache/sbb-angular
           key: bazel-${{ env.BAZEL_CACHE_VERSION }}-${{ github.sha }}-${{ github.run_attempt }}
