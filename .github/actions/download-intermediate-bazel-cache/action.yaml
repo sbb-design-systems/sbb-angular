@@ -9,7 +9,7 @@ runs:
   using: "composite"
   steps:
     - name: "Bazel: Download cache artifacts"
-      uses: actions/download-artifact@v6
+      uses: actions/download-artifact@v7
       with:
         name: ${{ inputs.key }}-artifact
         path: ~/.bazel-cache/
