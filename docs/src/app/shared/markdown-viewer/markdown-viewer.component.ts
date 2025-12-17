@@ -1,5 +1,5 @@
 import { Component, inject, Signal } from '@angular/core';
-import { takeUntilDestroyed, toSignal } from '@angular/core/rxjs-interop';
+import { toSignal } from '@angular/core/rxjs-interop';
 import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
 import { ActivatedRoute } from '@angular/router';
 import { map, switchMap } from 'rxjs/operators';
@@ -24,7 +24,6 @@ export class MarkdownViewerComponent {
     moduleParams(this._route).pipe(
       switchMap((params) => this._htmlLoader.withParams(params).fromDocumentation().load()),
       map((content) => this._domSanitizer.bypassSecurityTrustHtml(content)),
-      takeUntilDestroyed(),
     ),
   );
 }
