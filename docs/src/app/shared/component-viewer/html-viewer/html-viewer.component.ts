@@ -1,5 +1,5 @@
 import { Component, inject, SecurityContext, Signal } from '@angular/core';
-import { takeUntilDestroyed, toSignal } from '@angular/core/rxjs-interop';
+import { toSignal } from '@angular/core/rxjs-interop';
 import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
 import { ActivatedRoute } from '@angular/router';
 import { map, switchMap } from 'rxjs/operators';
@@ -35,7 +35,6 @@ export class HtmlViewerComponent {
         });
       }),
       map((content) => this._domSanitizer.bypassSecurityTrustHtml(content)),
-      takeUntilDestroyed(),
     ),
   )!;
 }
