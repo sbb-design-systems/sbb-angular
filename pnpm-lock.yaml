@@ -240,8 +240,8 @@ importers:
         specifier: 0.27.2
         version: 0.27.2
       fs-extra:
-        specifier: 11.3.2
-        version: 11.3.2
+        specifier: 11.3.3
+        version: 11.3.3
       highlight.js:
         specifier: ^11.8.0
         version: 11.11.1
@@ -6423,6 +6423,10 @@ packages:
 
   fs-extra@11.3.2:
     resolution: {integrity: sha512-Xr9F6z6up6Ws+NjzMCZc6WXg2YFRlrLP9NQDO3VQrWrfiojdhS56TzueT88ze0uBdCTwEIhQ3ptnmKeWGFAe0A==}
+    engines: {node: '>=14.14'}
+
+  fs-extra@11.3.3:
+    resolution: {integrity: sha512-VWSRii4t0AFm6ixFFmLLx1t7wS1gh+ckoa84aOeapGum0h+EZd1EhEumSB+ZdDLnEPuucsVB9oB7cxJHap6Afg==}
     engines: {node: '>=14.14'}
 
   fs-extra@3.0.1:
@@ -14988,7 +14992,7 @@ snapshots:
 
   '@renovatebot/detect-tools@1.2.4':
     dependencies:
-      fs-extra: 11.3.2
+      fs-extra: 11.3.3
       toml-eslint-parser: 0.10.0
       upath: 2.0.1
       zod: 3.25.76
@@ -15016,7 +15020,7 @@ snapshots:
     dependencies:
       '@renovatebot/osv-offline-db': 1.7.9
       adm-zip: 0.5.16
-      fs-extra: 11.3.2
+      fs-extra: 11.3.3
       got: 11.8.6
       luxon: 3.7.2
 
@@ -18199,6 +18203,12 @@ snapshots:
       universalify: 2.0.1
 
   fs-extra@11.3.2:
+    dependencies:
+      graceful-fs: 4.2.11
+      jsonfile: 6.2.0
+      universalify: 2.0.1
+
+  fs-extra@11.3.3:
     dependencies:
       graceful-fs: 4.2.11
       jsonfile: 6.2.0
