@@ -342,8 +342,8 @@ importers:
         specifier: 4.34.8
         version: 4.34.8(tslint@6.1.3(typescript@5.9.2))(typescript@5.9.2)
       sass:
-        specifier: 1.97.0
-        version: 1.97.0
+        specifier: 1.97.1
+        version: 1.97.1
       semver:
         specifier: 7.7.3
         version: 7.7.3
@@ -9295,8 +9295,8 @@ packages:
     engines: {node: '>=14.0.0'}
     hasBin: true
 
-  sass@1.97.0:
-    resolution: {integrity: sha512-KR0igP1z4avUJetEuIeOdDlwaUDvkH8wSx7FdSjyYBS3dpyX3TzHfAMO0G1Q4/3cdjcmi3r7idh+KCmKqS+KeQ==}
+  sass@1.97.1:
+    resolution: {integrity: sha512-uf6HoO8fy6ClsrShvMgaKUn14f2EHQLQRtpsZZLeU/Mv0Q1K5P0+x2uvH6Cub39TVVbWNSrraUhDAoFph6vh0A==}
     engines: {node: '>=14.0.0'}
     hasBin: true
 
@@ -21707,7 +21707,7 @@ snapshots:
     optionalDependencies:
       '@parcel/watcher': 2.5.1
 
-  sass@1.97.0:
+  sass@1.97.1:
     dependencies:
       chokidar: 4.0.3
       immutable: 5.1.4
