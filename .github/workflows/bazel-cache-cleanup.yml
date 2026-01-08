@@ -1,0 +1,25 @@
+name: Bazel Cache Cleanup
+
+on:
+  workflow_dispatch: {}
+  schedule:
+    - cron: '*/5 * * * *'
+
+permissions:
+  packages: write
+
+jobs:
+  clean:
+    runs-on: ubuntu-latest
+    continue-on-error: true
+    steps:
+      - uses: actions/delete-package-versions@v5
+        with:
+          package-name: 'sbb-angular/bazel-cache'
+          package-type: 'container'
+          num-old-versions-to-delete: 100
+      - uses: actions/delete-package-versions@v5
+        with:
+          package-name: 'sbb-angular/bazel-cache'
+          package-type: 'container'
+          num-old-versions-to-delete: 100
