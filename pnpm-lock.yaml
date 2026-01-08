@@ -19,8 +19,8 @@ catalogs:
       specifier: 21.0.8
       version: 21.0.8
     '@angular/cdk':
-      specifier: 21.0.5
-      version: 21.0.5
+      specifier: 21.0.6
+      version: 21.0.6
     '@angular/cli':
       specifier: 21.0.5
       version: 21.0.5
@@ -87,7 +87,7 @@ importers:
         version: 21.0.8(@angular/common@21.0.8(@angular/compiler-cli@21.0.8(@angular/compiler@21.0.8)(typescript@5.9.2))(@angular/core@21.0.8(@angular/compiler@21.0.8)(rxjs@7.8.1)(zone.js@0.15.1))(rxjs@7.8.1))(@angular/compiler-cli@21.0.8(@angular/compiler@21.0.8)(typescript@5.9.2))(@angular/core@21.0.8(@angular/compiler@21.0.8)(rxjs@7.8.1)(zone.js@0.15.1))
       '@angular/cdk':
         specifier: 'catalog:'
-        version: 21.0.5(@angular/common@21.0.8(@angular/compiler-cli@21.0.8(@angular/compiler@21.0.8)(typescript@5.9.2))(@angular/core@21.0.8(@angular/compiler@21.0.8)(rxjs@7.8.1)(zone.js@0.15.1))(rxjs@7.8.1))(@angular/compiler-cli@21.0.8(@angular/compiler@21.0.8)(typescript@5.9.2))(@angular/core@21.0.8(@angular/compiler@21.0.8)(rxjs@7.8.1)(zone.js@0.15.1))(rxjs@7.8.1)
+        version: 21.0.6(@angular/common@21.0.8(@angular/compiler-cli@21.0.8(@angular/compiler@21.0.8)(typescript@5.9.2))(@angular/core@21.0.8(@angular/compiler@21.0.8)(rxjs@7.8.1)(zone.js@0.15.1))(rxjs@7.8.1))(@angular/compiler-cli@21.0.8(@angular/compiler@21.0.8)(typescript@5.9.2))(@angular/core@21.0.8(@angular/compiler@21.0.8)(rxjs@7.8.1)(zone.js@0.15.1))(rxjs@7.8.1)
       '@angular/common':
         specifier: 'catalog:'
         version: 21.0.8(@angular/compiler-cli@21.0.8(@angular/compiler@21.0.8)(typescript@5.9.2))(@angular/core@21.0.8(@angular/compiler@21.0.8)(rxjs@7.8.1)(zone.js@0.15.1))(rxjs@7.8.1)
@@ -397,7 +397,7 @@ importers:
         version: 21.0.8(@angular/common@21.0.8(@angular/compiler-cli@21.0.8(@angular/compiler@21.0.8)(typescript@5.9.2))(@angular/core@21.0.8(@angular/compiler@21.0.8)(rxjs@7.8.1)(zone.js@0.15.1))(rxjs@7.8.1))(@angular/compiler-cli@21.0.8(@angular/compiler@21.0.8)(typescript@5.9.2))(@angular/core@21.0.8(@angular/compiler@21.0.8)(rxjs@7.8.1)(zone.js@0.15.1))
       '@angular/cdk':
         specifier: 'catalog:'
-        version: 21.0.5(@angular/common@21.0.8(@angular/compiler-cli@21.0.8(@angular/compiler@21.0.8)(typescript@5.9.2))(@angular/core@21.0.8(@angular/compiler@21.0.8)(rxjs@7.8.1)(zone.js@0.15.1))(rxjs@7.8.1))(@angular/compiler-cli@21.0.8(@angular/compiler@21.0.8)(typescript@5.9.2))(@angular/core@21.0.8(@angular/compiler@21.0.8)(rxjs@7.8.1)(zone.js@0.15.1))(rxjs@7.8.1)
+        version: 21.0.6(@angular/common@21.0.8(@angular/compiler-cli@21.0.8(@angular/compiler@21.0.8)(typescript@5.9.2))(@angular/core@21.0.8(@angular/compiler@21.0.8)(rxjs@7.8.1)(zone.js@0.15.1))(rxjs@7.8.1))(@angular/compiler-cli@21.0.8(@angular/compiler@21.0.8)(typescript@5.9.2))(@angular/core@21.0.8(@angular/compiler@21.0.8)(rxjs@7.8.1)(zone.js@0.15.1))(rxjs@7.8.1)
       '@angular/common':
         specifier: 'catalog:'
         version: 21.0.8(@angular/compiler-cli@21.0.8(@angular/compiler@21.0.8)(typescript@5.9.2))(@angular/core@21.0.8(@angular/compiler@21.0.8)(rxjs@7.8.1)(zone.js@0.15.1))(rxjs@7.8.1)
@@ -853,8 +853,8 @@ packages:
       vitest:
         optional: true
 
-  '@angular/cdk@21.0.5':
-    resolution: {integrity: sha512-yO/IRYEZ5wJkpwg3GT3b6RST4pqNFTAhuyPdEdLcE81cs283K3aKOsCYh2xUR3bR4WxBh2kBPSJ31AFZyJXbSA==}
+  '@angular/cdk@21.0.6':
+    resolution: {integrity: sha512-5Gw8mXtKXvcvDMWEciPLRYB6Ja5vsikLAidZsdCEIF6Bc51GmoqT5Tk/Ke+ciCd5Hq9Aco/IcHxT1RC3470lZg==}
     peerDependencies:
       '@angular/common': ^21.0.0 || ^22.0.0
       '@angular/core': ^21.0.0 || ^22.0.0
@@ -10973,14 +10973,14 @@ snapshots:
       - tsx
       - yaml
 
-  '@angular/cdk@21.0.5(@angular/common@21.0.8(@angular/compiler-cli@21.0.8(@angular/compiler@21.0.8)(typescript@5.9.2))(@angular/core@21.0.8(@angular/compiler@21.0.8)(rxjs@7.8.1)(zone.js@0.15.1))(rxjs@7.8.1))(@angular/compiler-cli@21.0.8(@angular/compiler@21.0.8)(typescript@5.9.2))(@angular/core@21.0.8(@angular/compiler@21.0.8)(rxjs@7.8.1)(zone.js@0.15.1))(rxjs@7.8.1)':
+  '@angular/cdk@21.0.6(@angular/common@21.0.8(@angular/compiler-cli@21.0.8(@angular/compiler@21.0.8)(typescript@5.9.2))(@angular/core@21.0.8(@angular/compiler@21.0.8)(rxjs@7.8.1)(zone.js@0.15.1))(rxjs@7.8.1))(@angular/compiler-cli@21.0.8(@angular/compiler@21.0.8)(typescript@5.9.2))(@angular/core@21.0.8(@angular/compiler@21.0.8)(rxjs@7.8.1)(zone.js@0.15.1))(rxjs@7.8.1)':
     dependencies:
       '@angular/common': 21.0.8(@angular/compiler-cli@21.0.8(@angular/compiler@21.0.8)(typescript@5.9.2))(@angular/core@21.0.8(@angular/compiler@21.0.8)(rxjs@7.8.1)(zone.js@0.15.1))(rxjs@7.8.1)
       '@angular/core': 21.0.8(@angular/compiler@21.0.8)(rxjs@7.8.1)(zone.js@0.15.1)
       '@nginfra/angular-linking': 1.0.9(@angular/compiler-cli@21.0.8(@angular/compiler@21.0.8)(typescript@5.9.2))
       parse5: 8.0.0
       rxjs: 7.8.1
-      tslib: 2.7.0
+      tslib: 2.8.1
     transitivePeerDependencies:
       - '@angular/compiler-cli'
       - supports-color
