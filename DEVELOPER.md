@@ -47,6 +47,8 @@ To build sbb-angular in release mode, run `pnpm build packages`. The output can 
 
 To bring up a local server, run `pnpm start`. This will automatically watch for changes and rebuild. The browser should refresh automatically when changes are made.
 
+If the project won't start because of a `permission denied` error, try running `bazel clean --expunge` and then `pnpm start` again.
+
 ## Bazel
 
 [Bazel](https://www.bazel.build/) is a build system. It allows incremental builds by caching build artifacts.
