@@ -3,7 +3,7 @@ name: Bazel Cache Cleanup
 on:
   workflow_dispatch: {}
   schedule:
-    - cron: '*/5 * * * *'
+    - cron: '0 * * * *'
 
 permissions:
   packages: write
@@ -13,13 +13,56 @@ jobs:
     runs-on: ubuntu-latest
     continue-on-error: true
     steps:
-      - uses: actions/delete-package-versions@v5
+      - uses: actions/github-script@v8
         with:
-          package-name: 'sbb-angular/bazel-cache'
-          package-type: 'container'
-          num-old-versions-to-delete: 100
-      - uses: actions/delete-package-versions@v5
-        with:
-          package-name: 'sbb-angular/bazel-cache'
-          package-type: 'container'
-          num-old-versions-to-delete: 100
+          script: |
+            const package_type = "container";
+            const package_name = "sbb-angular/bazel-cache";
+            const org = "sbb-design-systems";
+            const chunkSize = 25;
+
+            for (let i = 0; i < 10; i++) {
+              const response = await octokit.rest.packages.getAllPackageVersionsForPackageOwnedByOrg({
+                package_type,
+                package_name,
+                org,
+                per_page: 100
+              });
+              
+              console.log(
+                `${new Date().toLocaleTimeString("de-CH")} Remaining requests: ${
+                  response.headers["x-ratelimit-remaining"]
+                } (Until ${new Date(
+                  parseInt(response.headers["x-ratelimit-reset"] ?? "0") * 1000
+                ).toLocaleString()})`
+              );
+              for (let i = 0; i < 100 / chunkSize; i++) {
+                const chunk = response.data.slice(i * chunkSize, i * chunkSize + chunkSize);
+                await Promise.all(
+                  chunk.map(async (version) => {
+                    console.log(
+                      `${new Date().toLocaleTimeString("de-CH")} Deleting version ${
+                        version.metadata?.container?.tags?.[0] ?? version.name
+                      }...`
+                    );
+                    try {
+                      await octokit.rest.packages.deletePackageVersionForOrg({
+                        package_type,
+                        package_name,
+                        org,
+                        package_version_id: version.id,
+                      });
+                    } catch (error) {
+                      console.error(
+                        `${new Date().toLocaleTimeString(
+                          "de-CH"
+                        )}Failed to delete version ${
+                          version.metadata?.container?.tags?.[0] ?? version.name
+                        }:`,
+                        error
+                      );
+                    }
+                  })
+                );
+              }
+            }
