@@ -28,7 +28,15 @@ jobs:
                 org,
                 per_page: 100
               });
-              
+
+                          
+              if (
+                response.status !== 200 ||
+                !response.data.length ||
+                parseInt(response.headers["x-ratelimit-remaining"] ?? "0") < 1000
+              ) {
+                break;
+              }
               console.log(
                 `${new Date().toLocaleTimeString("de-CH")} Remaining requests: ${
                   response.headers["x-ratelimit-remaining"]
