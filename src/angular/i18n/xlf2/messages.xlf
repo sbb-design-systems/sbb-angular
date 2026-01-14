@@ -112,7 +112,7 @@
     </unit>
     <unit id="sbbHeaderMenuBack">
       <notes>
-        <note category="location">../../header-lean/header-menu.ts:60</note>
+        <note category="location">../../header-lean/header-menu.ts:62</note>
         <note category="description">Go back to the app chooser navigation</note>
       </notes>
       <segment>
