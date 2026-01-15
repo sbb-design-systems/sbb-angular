@@ -135,7 +135,7 @@
     "npm-run-all2": "8.0.4",
     "octokit": "5.0.5",
     "patch-package": "^8.0.0",
-    "prettier": "3.7.4",
+    "prettier": "3.8.0",
     "reflect-metadata": "^0.2.0",
     "renovate": "42.68.5",
     "requirejs": "2.3.8",
