@@ -90,12 +90,12 @@ esbuild(
 
 genrule(
     name = "types",
-    srcs = ["//src/journey-maps:index.d.ts"],
+    srcs = ["//src/journey-maps:npm_package"],
     outs = [
         "bundle.d.ts",
     ],
     cmd = """
-        cp "$(location //src/journey-maps:index.d.ts)" "$(execpath bundle.d.ts)"
+        cp "$(locations //src/journey-maps:npm_package)/types/angular.d.ts" "$(execpath bundle.d.ts)"
     """,
     output_to_bindir = True,
 )
