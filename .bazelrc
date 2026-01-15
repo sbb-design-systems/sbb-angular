@@ -25,6 +25,9 @@ test --nolegacy_external_runfiles
 # when running bazel via `pnpm bazel`.
 build --incompatible_strict_action_env
 
+# Allow empty glob patterns (required for Bazel 8.x compatibility)
+common --incompatible_disallow_empty_glob=false
+
 # Do not build runfile forests by default. If an execution strategy relies on runfile
 # forests, the forest is created on-demand. See: https://github.com/bazelbuild/bazel/issues/6627
 # and https://github.com/bazelbuild/bazel/commit/03246077f948f2790a83520e7dccc2625650e6df

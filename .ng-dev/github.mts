@@ -8,5 +8,5 @@ export const github: GithubConfig = {
   owner: 'sbb-design-systems',
   name: 'sbb-angular',
   mainBranchName: 'main',
-  useNgDevAuthService: false,
+  mergeMode: 'team-only',
 };
