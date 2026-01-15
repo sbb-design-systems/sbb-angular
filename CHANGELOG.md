@@ -2,6 +2,23 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [21.0.1](https://github.com/sbb-design-systems/sbb-angular/compare/21.0.0...21.0.1) (2026-01-15)
+
+
+### Bug Fixes
+
+* **angular/header-menu:** close header menu on backdrop click ([#2747](https://github.com/sbb-design-systems/sbb-angular/issues/2747)) ([145db6e](https://github.com/sbb-design-systems/sbb-angular/commit/145db6e195715c4cba659cf9df6407eccd87eb81)), closes [#2743](https://github.com/sbb-design-systems/sbb-angular/issues/2743)
+* **angular/select:** provide scroll strategy in root ([#2731](https://github.com/sbb-design-systems/sbb-angular/issues/2731)) ([881e33b](https://github.com/sbb-design-systems/sbb-angular/commit/881e33b63dc73b817f8f550ff5b84ec70399051b))
+* **angular/table:** remove repeater strategy token ([#2750](https://github.com/sbb-design-systems/sbb-angular/issues/2750)) ([608022d](https://github.com/sbb-design-systems/sbb-angular/commit/608022d3d27bb798b21c43206ccda7e62c4e10b0))
+* **angular/tooltip:** provide scroll strategy in root ([#2732](https://github.com/sbb-design-systems/sbb-angular/issues/2732)) ([fb70fe5](https://github.com/sbb-design-systems/sbb-angular/commit/fb70fe59e2e6bd505ac8c4b86700d53f61c55b78))
+* **deps:** update dependency tslib to v2.8.1 ([8f268d8](https://github.com/sbb-design-systems/sbb-angular/commit/8f268d8be31d2332865efcd03eaf00083e1c9570))
+* **journey-maps-wc:** use correct type file ([#2751](https://github.com/sbb-design-systems/sbb-angular/issues/2751)) ([18f4f6d](https://github.com/sbb-design-systems/sbb-angular/commit/18f4f6d12f4576bc09d489d6178001b98dfffef4)), closes [#2735](https://github.com/sbb-design-systems/sbb-angular/issues/2735)
+
+
+### Documentation
+
+* **journey-maps:** include 'stopUse' field in example data ([#2741](https://github.com/sbb-design-systems/sbb-angular/issues/2741)) ([f186fed](https://github.com/sbb-design-systems/sbb-angular/commit/f186feda542223f718be1bfb33025439d003a077))
+
 ## [21.0.0](https://github.com/sbb-design-systems/sbb-angular/compare/21.0.0-next.0...21.0.0) (2025-12-11)
 
 

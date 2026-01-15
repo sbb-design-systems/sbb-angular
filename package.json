@@ -1,6 +1,6 @@
 {
   "name": "sbb-angular",
-  "version": "21.0.0",
+  "version": "21.0.1",
   "private": true,
   "packageManager": "pnpm@10.28.0",
   "engines": {
