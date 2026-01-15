@@ -106,7 +106,7 @@
         <source>Back</source>
         <context-group purpose="location">
           <context context-type="sourcefile">../../header-lean/header-menu.ts</context>
-          <context context-type="linenumber">60</context>
+          <context context-type="linenumber">62</context>
         </context-group>
         <note priority="1" from="description">Go back to the app chooser navigation</note>
       </trans-unit>
