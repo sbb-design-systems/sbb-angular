@@ -10,6 +10,7 @@ import { NgClass } from '@angular/common';
 import {
   AfterContentInit,
   ChangeDetectionStrategy,
+  ChangeDetectorRef,
   Component,
   ContentChildren,
   ElementRef,
@@ -56,6 +57,7 @@ import { SBB_HEADER } from './header-token';
 })
 export class SbbHeaderMenu implements AfterContentInit, OnDestroy {
   private _elementRef = inject<ElementRef<HTMLElement>>(ElementRef);
+  private _changeDetectorRef = inject(ChangeDetectorRef);
   _header: SbbHeaderLean = inject<TypeRef<SbbHeaderLean>>(SBB_HEADER);
   _backButton: string = $localize`:Go back to the app chooser navigation@@sbbHeaderMenuBack:Back`;
 
@@ -89,6 +91,7 @@ export class SbbHeaderMenu implements AfterContentInit, OnDestroy {
       } else {
         this._animationState = 'open-menu';
       }
+      this._changeDetectorRef.markForCheck();
     }
   }
   private _open = false;
