@@ -6,6 +6,7 @@ This document describes how to create a new release of SBB Angular.
 
 ### Major release preparation
 
+- See the TODO in file `bazel-additional-stamp.mjs`
 - Update Angular packages to align with new angular major version.
 - Update ng-update schematics.
 - Update stackblitz assets.
