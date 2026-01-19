@@ -144,8 +144,8 @@ importers:
         specifier: 7.28.6
         version: 7.28.6
       '@bazel/bazelisk':
-        specifier: 1.28.0
-        version: 1.28.0
+        specifier: 1.28.1
+        version: 1.28.1
       '@bazel/buildifier':
         specifier: 8.2.1
         version: 8.2.1
@@ -1715,8 +1715,8 @@ packages:
     resolution: {integrity: sha512-bTNcHdGyEQ9r7SczEYUa0gkEQhJo1ld2BjXI8fWBvsUeoHi03QpUs2HZgDbjjrpQFQqG2ZbO7ihZvH8MjhUTHw==}
     hasBin: true
 
-  '@bazel/bazelisk@1.28.0':
-    resolution: {integrity: sha512-TuS0DzLV6Hu6zwuQsrZUeqfrs3vKF3hLGJfgTWy6fXTqoYv72SxgmJ6seep1/yzTHKcGMglO4S+KuIXGlmnGyw==}
+  '@bazel/bazelisk@1.28.1':
+    resolution: {integrity: sha512-K21x83NXOtd0yb2qzjMES3UV4xEWZ1q1vnXFhADA1u7IoiMVQkJAVQRK3oZ5txpnrGafY15HS+YYr2nmsEP4Tg==}
     hasBin: true
 
   '@bazel/buildifier@8.2.1':
@@ -12501,7 +12501,7 @@ snapshots:
 
   '@bazel/bazelisk@1.26.0': {}
 
-  '@bazel/bazelisk@1.28.0': {}
+  '@bazel/bazelisk@1.28.1': {}
 
   '@bazel/buildifier@8.2.1': {}
 
