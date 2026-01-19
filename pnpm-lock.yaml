@@ -144,8 +144,8 @@ importers:
         specifier: 7.28.6
         version: 7.28.6
       '@bazel/bazelisk':
-        specifier: 1.26.0
-        version: 1.26.0
+        specifier: 1.28.0
+        version: 1.28.0
       '@bazel/buildifier':
         specifier: 8.2.1
         version: 8.2.1
@@ -1713,6 +1713,10 @@ packages:
 
   '@bazel/bazelisk@1.26.0':
     resolution: {integrity: sha512-bTNcHdGyEQ9r7SczEYUa0gkEQhJo1ld2BjXI8fWBvsUeoHi03QpUs2HZgDbjjrpQFQqG2ZbO7ihZvH8MjhUTHw==}
+    hasBin: true
+
+  '@bazel/bazelisk@1.28.0':
+    resolution: {integrity: sha512-TuS0DzLV6Hu6zwuQsrZUeqfrs3vKF3hLGJfgTWy6fXTqoYv72SxgmJ6seep1/yzTHKcGMglO4S+KuIXGlmnGyw==}
     hasBin: true
 
   '@bazel/buildifier@8.2.1':
@@ -9561,10 +9565,12 @@ packages:
   tar@6.2.1:
     resolution: {integrity: sha512-DZ4yORTwrbTj/7MZYq2w+/ZFdI6OZ/f9SFHR+71gIVUZhOQPHzVCLpvRnPgyaMpfWxxk/4ONva3GQSyNIKRv6A==}
     engines: {node: '>=10'}
+    deprecated: Old versions of tar are not supported, and contain widely publicized security vulnerabilities, which have been fixed in the current version. Please update. Support for old versions may be purchased (at exhorbitant rates) by contacting i@izs.me
 
   tar@7.5.2:
     resolution: {integrity: sha512-7NyxrTE4Anh8km8iEy7o0QYPs+0JKBTj5ZaqHg6B39erLg0qYXN3BijtShwbsNSvQ+LN75+KV+C4QR/f6Gwnpg==}
     engines: {node: '>=18'}
+    deprecated: Old versions of tar are not supported, and contain widely publicized security vulnerabilities, which have been fixed in the current version. Please update. Support for old versions may be purchased (at exhorbitant rates) by contacting i@izs.me
 
   teeny-request@10.1.0:
     resolution: {integrity: sha512-3ZnLvgWF29jikg1sAQ1g0o+lr5JX6sVgYvfUJazn7ZjJroDBUTWp44/+cFVX0bULjv4vci+rBD+oGVAkWqhUbw==}
@@ -12494,6 +12500,8 @@ snapshots:
   '@baszalmstra/rattler@0.2.1': {}
 
   '@bazel/bazelisk@1.26.0': {}
+
+  '@bazel/bazelisk@1.28.0': {}
 
   '@bazel/buildifier@8.2.1': {}
 
