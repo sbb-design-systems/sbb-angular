@@ -366,8 +366,8 @@ importers:
         specifier: 6.14.0
         version: 6.14.0(stylelint@16.26.1(typescript@5.9.2))
       terser:
-        specifier: 5.45.0
-        version: 5.45.0
+        specifier: 5.46.0
+        version: 5.46.0
       ts-node:
         specifier: 10.9.2
         version: 10.9.2(@types/node@18.19.130)(typescript@5.9.2)
@@ -9601,8 +9601,8 @@ packages:
     engines: {node: '>=10'}
     hasBin: true
 
-  terser@5.45.0:
-    resolution: {integrity: sha512-hQ9c+JZEnMug8eqzuU48sCeq95f00lLDAaJ5gWhRkFXsfy3+SUkZXiF/Z66ZO6EomSmgqXnkhVrWXKaQ8K41Ug==}
+  terser@5.46.0:
+    resolution: {integrity: sha512-jTwoImyr/QbOWFFso3YoU3ik0jBBDJ6JTOQiy/J2YxVJdZCc+5u7skhNwiOR3FQIygFqVUPHl7qbbxtjW2K3Qg==}
     engines: {node: '>=10'}
     hasBin: true
 
@@ -21799,7 +21799,7 @@ snapshots:
       jest-worker: 27.5.1
       schema-utils: 4.3.3
       serialize-javascript: 6.0.2
-      terser: 5.45.0
+      terser: 5.46.0
       webpack: 5.104.1(esbuild@0.27.2)
     optionalDependencies:
       esbuild: 0.27.2
@@ -21811,7 +21811,7 @@ snapshots:
       commander: 2.20.3
       source-map-support: 0.5.21
 
-  terser@5.45.0:
+  terser@5.46.0:
     dependencies:
       '@jridgewell/source-map': 0.3.11
       acorn: 8.15.0
