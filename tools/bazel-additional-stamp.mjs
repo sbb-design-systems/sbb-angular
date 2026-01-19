@@ -50,5 +50,7 @@ function computeFrameworkPeerDependency(version) {
     );
   }
 
-  return `^${version.major}.0.0 || ^${version.major + 1}.0.0`;
+  // TODO(mhaertwig): undo this change when releasing `@sbb-esta/angular` 22
+  // return `^${version.major}.0.0 || ^${version.major + 1}.0.0`;
+  return `^${version.major}.1.0 || ^${version.major + 1}.0.0`;
 }
