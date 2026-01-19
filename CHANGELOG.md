@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [21.0.2](https://github.com/sbb-design-systems/sbb-angular/compare/21.0.1...21.0.2) (2026-01-19)
+
+
+### Bug Fixes
+
+* require at least angular 21.1.0 as peerDependency ([#2758](https://github.com/sbb-design-systems/sbb-angular/issues/2758)) ([f032665](https://github.com/sbb-design-systems/sbb-angular/commit/f03266585e8f25b7550ffc8d9c5fadb327726991)), closes [#2750](https://github.com/sbb-design-systems/sbb-angular/issues/2750)
+
 ### [21.0.1](https://github.com/sbb-design-systems/sbb-angular/compare/21.0.0...21.0.1) (2026-01-15)
 
 
