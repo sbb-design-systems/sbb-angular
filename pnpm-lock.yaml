@@ -219,8 +219,8 @@ importers:
         specifier: 17.0.13
         version: 17.0.13
       angular-server-side-configuration:
-        specifier: 21.0.2
-        version: 21.0.2(@angular/core@21.1.5(@angular/compiler@21.1.5)(rxjs@7.8.1)(zone.js@0.15.1))
+        specifier: 21.0.3
+        version: 21.0.3(@angular/core@21.1.5(@angular/compiler@21.1.5)(rxjs@7.8.1)(zone.js@0.15.1))
       angular-t9n:
         specifier: 21.0.1
         version: 21.0.1(bufferutil@4.1.0)(express@5.2.1)(utf-8-validate@6.0.6)
@@ -4644,8 +4644,8 @@ packages:
     resolution: {integrity: sha512-S2Hw0TtNkMJhIabBwIojKL9YHO5T0n5eNqWJ7Lrlel/zDbftQpxpapi8tZs3X1HWa+u+QeydGmzzNU0m09+Rcg==}
     engines: {node: '>=0.4.2'}
 
-  angular-server-side-configuration@21.0.2:
-    resolution: {integrity: sha512-GgVr1MZBVejbPcaEdkpopH6546lgb2C1YdoTSjFG8fq5Qv0J2PBiAzIQ7FQeXgkBrYPZkhXtAzMABWIyQCb2Jg==}
+  angular-server-side-configuration@21.0.3:
+    resolution: {integrity: sha512-KR5vZotk2AMPHYoz49UFqXT/4CJE4qcLvYLXT1SfwJXT31VNjwy+2b8OI2uf+6LPA0dXcAHj6NmDziHesDzsdg==}
     peerDependencies:
       '@angular/core': ^21.0.0
 
@@ -15900,7 +15900,7 @@ snapshots:
   amdefine@1.0.1:
     optional: true
 
-  angular-server-side-configuration@21.0.2(@angular/core@21.1.5(@angular/compiler@21.1.5)(rxjs@7.8.1)(zone.js@0.15.1)):
+  angular-server-side-configuration@21.0.3(@angular/core@21.1.5(@angular/compiler@21.1.5)(rxjs@7.8.1)(zone.js@0.15.1)):
     dependencies:
       '@angular/core': 21.1.5(@angular/compiler@21.1.5)(rxjs@7.8.1)(zone.js@0.15.1)
       glob: 10.5.0
