@@ -139,7 +139,7 @@
     "reflect-metadata": "^0.2.0",
     "renovate": "42.96.3",
     "requirejs": "2.3.8",
-    "rollup": "^4.52.3",
+    "rollup": "^4.59.0",
     "rollup-plugin-dts": "6.3.0",
     "rollup-plugin-sourcemaps2": "0.5.6",
     "rxjs-tslint-rules": "4.34.8",
