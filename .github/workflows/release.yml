@@ -39,7 +39,7 @@ jobs:
     - name: "Bazel: Build packages"
       run: pnpm -s build packages
 
-    - uses: actions/upload-artifact@v6
+    - uses: actions/upload-artifact@v7
       with:
         name: packages
         path: dist/releases
