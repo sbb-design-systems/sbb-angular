@@ -8,6 +8,7 @@ import {
   ChangeDetectorRef,
   Component,
   ElementRef,
+  inject,
   Inject,
   Input,
   OnDestroy,
@@ -46,11 +47,6 @@ export type SbbArrowViewState = SbbSortDirection | 'hint' | 'active';
 export interface SbbArrowViewStateTransition {
   fromState?: SbbArrowViewState;
   toState?: SbbArrowViewState;
-}
-
-/** Column definition associated with a `SbbSortHeader`. */
-interface SbbSortHeaderColumnDef {
-  name: string;
 }
 
 /**
@@ -93,6 +89,9 @@ export class SbbSortHeader implements SbbSortable, OnDestroy, OnInit, AfterViewI
    * in order to apply a description with AriaDescriber.
    */
   private _sortButton: HTMLElement;
+
+  protected _sort: SbbSort = inject(SbbSort, { optional: true })!;
+  private _columnDef = inject(CdkColumnDef, { optional: true });
 
   /**
    * Flag set to true when the indicator should be displayed while the sort is not active. Used to
@@ -149,9 +148,6 @@ export class SbbSortHeader implements SbbSortable, OnDestroy, OnInit, AfterViewI
 
   constructor(
     private _changeDetectorRef: ChangeDetectorRef,
-    // `SbbSort` is not optionally injected, but just asserted manually w/ better error.
-    @Optional() public _sort: SbbSort,
-    @Inject('SBB_SORT_HEADER_COLUMN_DEF') @Optional() private _columnDef: SbbSortHeaderColumnDef,
     // Also Inject MAT_SORT_HEADER_COLUMN_DEF to provide full cdkTable support
     @Inject('MAT_SORT_HEADER_COLUMN_DEF') @Optional() private _columnDefCdk: CdkColumnDef,
     private _focusMonitor: FocusMonitor,
@@ -165,7 +161,7 @@ export class SbbSortHeader implements SbbSortable, OnDestroy, OnInit, AfterViewI
     // `angular/table` and `cdk/table` and we can't have the CDK depending on SBB Angular,
     // and we want to avoid having the sort header depending on the CDK table because
     // of this single reference.
-    if (!_sort && (typeof ngDevMode === 'undefined' || ngDevMode)) {
+    if (!this._sort && (typeof ngDevMode === 'undefined' || ngDevMode)) {
       throw getSortHeaderNotContainedWithinSortError();
     }
 
