@@ -297,8 +297,8 @@ importers:
         specifier: 0.4.0
         version: 0.4.0
       lint-staged:
-        specifier: 16.3.2
-        version: 16.3.2
+        specifier: 16.3.3
+        version: 16.3.3
       magic-string:
         specifier: 0.30.21
         version: 0.30.21
@@ -7469,8 +7469,8 @@ packages:
   linkify-it@5.0.0:
     resolution: {integrity: sha512-5aHCbzQRADcdP+ATqnDuhhJ/MRIqDkZX5pyjFHRRysS8vZ5AbqGEoFIb6pYHPZ+L/OC2Lc+xT8uHVVR5CAK/wQ==}
 
-  lint-staged@16.3.2:
-    resolution: {integrity: sha512-xKqhC2AeXLwiAHXguxBjuChoTTWFC6Pees0SHPwOpwlvI3BH7ZADFPddAdN3pgo3aiKgPUx/bxE78JfUnxQnlg==}
+  lint-staged@16.3.3:
+    resolution: {integrity: sha512-RLq2koZ5fGWrx7tcqx2tSTMQj4lRkfNJaebO/li/uunhCJbtZqwTuwPHpgIimAHHi/2nZIiGrkCHDCOeR1onxA==}
     engines: {node: '>=20.17'}
     hasBin: true
 
@@ -17325,7 +17325,7 @@ snapshots:
   editorconfig@3.0.1:
     dependencies:
       '@one-ini/wasm': 0.2.0
-      commander: 14.0.2
+      commander: 14.0.3
       minimatch: 10.0.1
       semver: 7.7.4
 
@@ -19168,7 +19168,7 @@ snapshots:
     dependencies:
       uc.micro: 2.1.0
 
-  lint-staged@16.3.2:
+  lint-staged@16.3.3:
     dependencies:
       commander: 14.0.3
       listr2: 9.0.5
