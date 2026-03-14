@@ -297,8 +297,8 @@ importers:
         specifier: 0.4.0
         version: 0.4.0
       lint-staged:
-        specifier: 16.3.4
-        version: 16.3.4
+        specifier: 16.4.0
+        version: 16.4.0
       magic-string:
         specifier: 0.30.21
         version: 0.30.21
@@ -7675,8 +7675,8 @@ packages:
   linkify-it@5.0.0:
     resolution: {integrity: sha512-5aHCbzQRADcdP+ATqnDuhhJ/MRIqDkZX5pyjFHRRysS8vZ5AbqGEoFIb6pYHPZ+L/OC2Lc+xT8uHVVR5CAK/wQ==}
 
-  lint-staged@16.3.4:
-    resolution: {integrity: sha512-U5bxYjQA+yeKm4+8bVlkixlDlXdqlrJJU1Rx/h2h1B/FSlt7zW2rkPcnpRHFkSyjkNX8gLXfgfYaDwWkDXbvsQ==}
+  lint-staged@16.4.0:
+    resolution: {integrity: sha512-lBWt8hujh/Cjysw5GYVmZpFHXDCgZzhrOm8vbcUdobADZNOK/bRshr2kM3DfgrrtR1DQhfupW9gnIXOfiFi+bw==}
     engines: {node: '>=20.17'}
     hasBin: true
 
@@ -12905,7 +12905,7 @@ snapshots:
       '@commitlint/types': 20.4.3
       git-raw-commits: 4.0.0
       minimist: 1.2.8
-      tinyexec: 1.0.2
+      tinyexec: 1.0.4
 
   '@commitlint/resolve-extends@20.4.3':
     dependencies:
@@ -19510,11 +19510,11 @@ snapshots:
     dependencies:
       uc.micro: 2.1.0
 
-  lint-staged@16.3.4:
+  lint-staged@16.4.0:
     dependencies:
       commander: 14.0.3
       listr2: 9.0.5
-      micromatch: 4.0.8
+      picomatch: 4.0.3
       string-argv: 0.3.2
       tinyexec: 1.0.4
       yaml: 2.8.2
