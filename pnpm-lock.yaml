@@ -156,11 +156,11 @@ importers:
         specifier: 6.5.0
         version: 6.5.0
       '@commitlint/cli':
-        specifier: 20.4.3
-        version: 20.4.3(@types/node@18.19.130)(conventional-commits-filter@5.0.0)(conventional-commits-parser@6.3.0)(typescript@5.9.2)
+        specifier: 20.5.0
+        version: 20.5.0(@types/node@18.19.130)(conventional-commits-filter@5.0.0)(conventional-commits-parser@6.3.0)(typescript@5.9.2)
       '@commitlint/config-conventional':
-        specifier: 20.4.3
-        version: 20.4.3
+        specifier: 20.5.0
+        version: 20.5.0
       '@rollup/plugin-commonjs':
         specifier: 23.0.4
         version: 23.0.4(rollup@4.59.0)
@@ -1739,13 +1739,13 @@ packages:
     resolution: {integrity: sha512-ooWCrlZP11i8GImSjTHYHLkvFDP48nS4+204nGb1RiX/WXYHmJA2III9/e2DWVabCESdW7hBAEzHRqUn9OUVvQ==}
     engines: {node: '>=0.1.90'}
 
-  '@commitlint/cli@20.4.3':
-    resolution: {integrity: sha512-Z37EMoDT7+Upg500vlr/vZrgRsb6Xc5JAA3Tv7BYbobnN/ZpqUeZnSLggBg2+1O+NptRDtyujr2DD1CPV2qwhA==}
+  '@commitlint/cli@20.5.0':
+    resolution: {integrity: sha512-yNkyN/tuKTJS3wdVfsZ2tXDM4G4Gi7z+jW54Cki8N8tZqwKBltbIvUUrSbT4hz1bhW/h0CdR+5sCSpXD+wMKaQ==}
     engines: {node: '>=v18'}
     hasBin: true
 
-  '@commitlint/config-conventional@20.4.3':
-    resolution: {integrity: sha512-9RtLySbYQAs8yEqWEqhSZo9nYhbm57jx7qHXtgRmv/nmeQIjjMcwf6Dl+y5UZcGWgWx435TAYBURONaJIuCjWg==}
+  '@commitlint/config-conventional@20.5.0':
+    resolution: {integrity: sha512-t3Ni88rFw1XMa4nZHgOKJ8fIAT9M2j5TnKyTqJzsxea7FUetlNdYFus9dz+MhIRZmc16P0PPyEfh6X2d/qw8SA==}
     engines: {node: '>=v18'}
 
   '@commitlint/config-validator@20.5.0':
@@ -12830,7 +12830,7 @@ snapshots:
 
   '@colors/colors@1.5.0': {}
 
-  '@commitlint/cli@20.4.3(@types/node@18.19.130)(conventional-commits-filter@5.0.0)(conventional-commits-parser@6.3.0)(typescript@5.9.2)':
+  '@commitlint/cli@20.5.0(@types/node@18.19.130)(conventional-commits-filter@5.0.0)(conventional-commits-parser@6.3.0)(typescript@5.9.2)':
     dependencies:
       '@commitlint/format': 20.5.0
       '@commitlint/lint': 20.5.0
@@ -12845,7 +12845,7 @@ snapshots:
       - conventional-commits-parser
       - typescript
 
-  '@commitlint/config-conventional@20.4.3':
+  '@commitlint/config-conventional@20.5.0':
     dependencies:
       '@commitlint/types': 20.5.0
       conventional-changelog-conventionalcommits: 9.3.0
