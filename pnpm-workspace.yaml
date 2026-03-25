@@ -13,7 +13,7 @@ catalog:
   '@angular-devkit/schematics': 21.2.3
   '@angular/animations': 21.2.5
   '@angular/build': 21.2.3
-  '@angular/cdk': 21.2.3
+  '@angular/cdk': 21.2.4
   '@angular/cli': 21.2.3
   '@angular/common': 21.2.5
   '@angular/compiler-cli': 21.2.5
