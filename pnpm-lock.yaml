@@ -360,8 +360,8 @@ importers:
         specifier: 17.6.0
         version: 17.6.0(typescript@5.9.2)
       stylelint-config-recommended-scss:
-        specifier: 17.0.0
-        version: 17.0.0(postcss@8.5.8)(stylelint@17.6.0(typescript@5.9.2))
+        specifier: 17.0.1
+        version: 17.0.1(postcss@8.5.8)(stylelint@17.6.0(typescript@5.9.2))
       stylelint-scss:
         specifier: 7.0.0
         version: 7.0.0(stylelint@17.6.0(typescript@5.9.2))
@@ -9986,8 +9986,8 @@ packages:
   stubs@3.0.0:
     resolution: {integrity: sha512-PdHt7hHUJKxvTCgbKX9C1V/ftOcjJQgz8BZwNfV5c4B6dcGqlpelTbJ999jBGZ2jYiPAwcX5dP6oBwVlBlUbxw==}
 
-  stylelint-config-recommended-scss@17.0.0:
-    resolution: {integrity: sha512-VkVD9r7jfUT/dq3mA3/I1WXXk2U71rO5wvU2yIil9PW5o1g3UM7Xc82vHmuVJHV7Y8ok5K137fmW5u3HbhtTOA==}
+  stylelint-config-recommended-scss@17.0.1:
+    resolution: {integrity: sha512-x5DVehzJudcwF0od3sGpgkln2PLLranFE7twwbp7dqDINCyZvwzFkMc6TLhNOvazRiVBJYATQLouJY0xPGB8WA==}
     engines: {node: '>=20'}
     peerDependencies:
       postcss: ^8.3.3
@@ -22595,7 +22595,7 @@ snapshots:
 
   stubs@3.0.0: {}
 
-  stylelint-config-recommended-scss@17.0.0(postcss@8.5.8)(stylelint@17.6.0(typescript@5.9.2)):
+  stylelint-config-recommended-scss@17.0.1(postcss@8.5.8)(stylelint@17.6.0(typescript@5.9.2)):
     dependencies:
       postcss-scss: 4.0.9(postcss@8.5.8)
       stylelint: 17.6.0(typescript@5.9.2)
