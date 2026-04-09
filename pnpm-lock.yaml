@@ -19,8 +19,8 @@ catalogs:
       specifier: 21.2.8
       version: 21.2.8
     '@angular/cdk':
-      specifier: 21.2.5
-      version: 21.2.5
+      specifier: 21.2.6
+      version: 21.2.6
     '@angular/cli':
       specifier: 21.2.7
       version: 21.2.7
@@ -87,7 +87,7 @@ importers:
         version: 21.2.8(@angular/common@21.2.8(@angular/compiler-cli@21.2.8(@angular/compiler@21.2.8)(typescript@5.9.2))(@angular/core@21.2.8(@angular/compiler@21.2.8)(rxjs@7.8.1)(zone.js@0.15.1))(rxjs@7.8.1))(@angular/compiler-cli@21.2.8(@angular/compiler@21.2.8)(typescript@5.9.2))(@angular/core@21.2.8(@angular/compiler@21.2.8)(rxjs@7.8.1)(zone.js@0.15.1))
       '@angular/cdk':
         specifier: 'catalog:'
-        version: 21.2.5(65ed17ca3d61c21ee7712d9b52a74eb5)
+        version: 21.2.6(65ed17ca3d61c21ee7712d9b52a74eb5)
       '@angular/common':
         specifier: 'catalog:'
         version: 21.2.8(@angular/compiler-cli@21.2.8(@angular/compiler@21.2.8)(typescript@5.9.2))(@angular/core@21.2.8(@angular/compiler@21.2.8)(rxjs@7.8.1)(zone.js@0.15.1))(rxjs@7.8.1)
@@ -397,7 +397,7 @@ importers:
         version: 21.2.8(@angular/common@21.2.8(@angular/compiler-cli@21.2.8(@angular/compiler@21.2.8)(typescript@5.9.2))(@angular/core@21.2.8(@angular/compiler@21.2.8)(rxjs@7.8.1)(zone.js@0.15.1))(rxjs@7.8.1))(@angular/compiler-cli@21.2.8(@angular/compiler@21.2.8)(typescript@5.9.2))(@angular/core@21.2.8(@angular/compiler@21.2.8)(rxjs@7.8.1)(zone.js@0.15.1))
       '@angular/cdk':
         specifier: 'catalog:'
-        version: 21.2.5(65ed17ca3d61c21ee7712d9b52a74eb5)
+        version: 21.2.6(65ed17ca3d61c21ee7712d9b52a74eb5)
       '@angular/common':
         specifier: 'catalog:'
         version: 21.2.8(@angular/compiler-cli@21.2.8(@angular/compiler@21.2.8)(typescript@5.9.2))(@angular/core@21.2.8(@angular/compiler@21.2.8)(rxjs@7.8.1)(zone.js@0.15.1))(rxjs@7.8.1)
@@ -854,8 +854,8 @@ packages:
       vitest:
         optional: true
 
-  '@angular/cdk@21.2.5':
-    resolution: {integrity: sha512-F1sVqMAGYoiJNYYaR2cerqTo7IqpxQ3ZtMDxR3rtB0rSSd5UPOIQoqpsfSd6uH8FVnuzKaBII8Mg6YrjClFsng==}
+  '@angular/cdk@21.2.6':
+    resolution: {integrity: sha512-1PBzFf+um/VZ1dFF6cT72Zsq+9C/ZWF9m5dP0uHJgo4psX3yMBoZlZu5YomBiAQ/ePSkqCuryv1vrelK+yd3Mw==}
     peerDependencies:
       '@angular/common': ^21.0.0 || ^22.0.0
       '@angular/core': ^21.0.0 || ^22.0.0
@@ -11225,7 +11225,7 @@ snapshots:
       - tsx
       - yaml
 
-  '@angular/cdk@21.2.5(65ed17ca3d61c21ee7712d9b52a74eb5)':
+  '@angular/cdk@21.2.6(65ed17ca3d61c21ee7712d9b52a74eb5)':
     dependencies:
       '@angular/common': 21.2.8(@angular/compiler-cli@21.2.8(@angular/compiler@21.2.8)(typescript@5.9.2))(@angular/core@21.2.8(@angular/compiler@21.2.8)(rxjs@7.8.1)(zone.js@0.15.1))(rxjs@7.8.1)
       '@angular/core': 21.2.8(@angular/compiler@21.2.8)(rxjs@7.8.1)(zone.js@0.15.1)
@@ -23240,7 +23240,7 @@ snapshots:
       picomatch: 4.0.4
       postcss: 8.5.6
       rollup: 4.60.1
-      tinyglobby: 0.2.15
+      tinyglobby: 0.2.16
     optionalDependencies:
       '@types/node': 22.19.17
       fsevents: 2.3.3
