@@ -19,7 +19,7 @@ jobs:
           APP_PEM: ${{ secrets.RENOVATE_APP_PEM }}
           APP_ID: ${{ secrets.RENOVATE_APP_ID }}
       - uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6
-      - uses: pnpm/action-setup@v4
+      - uses: pnpm/action-setup@v6
       - uses: actions/setup-node@v6
         with:
           cache: 'pnpm'
