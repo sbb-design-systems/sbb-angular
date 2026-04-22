@@ -27,7 +27,7 @@ jobs:
       ALLOWED_EXTENSIONS: css, gitignore, gitkeep, html, ico, jpg, js, json, png, scss, stackblitzrc, svg, ts
     steps:
       - uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6
-      - uses: pnpm/action-setup@v4
+      - uses: pnpm/action-setup@v6
       - uses: actions/setup-node@v6
         with:
           cache: 'pnpm'
