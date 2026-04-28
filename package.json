@@ -137,7 +137,7 @@
     "patch-package": "^8.0.0",
     "prettier": "3.8.2",
     "reflect-metadata": "^0.2.0",
-    "renovate": "42.99.0",
+    "renovate": "43.150.0",
     "requirejs": "2.3.8",
     "rollup": "^4.52.3",
     "rollup-plugin-dts": "6.4.1",
