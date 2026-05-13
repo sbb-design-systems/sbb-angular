@@ -14,6 +14,8 @@ describe('LeanDateAdapter', () => {
       { input: '1.1.1', expectedYear: 2001, expectedMonth: 1, expectedDay: 1 },
       { input: '121220', expectedYear: 2020, expectedMonth: 12, expectedDay: 12 },
       { input: '12122020', expectedYear: 2020, expectedMonth: 12, expectedDay: 12 },
+      { input: 'So, 12.01.2025', expectedYear: 2025, expectedMonth: 1, expectedDay: 12 },
+      { input: 'So., 12.01.2025', expectedYear: 2025, expectedMonth: 1, expectedDay: 12 },
       { input: 'Sa, 01012020', expectedYear: 2020, expectedMonth: 1, expectedDay: 1 },
       { input: 'Sa,01012020', expectedYear: 2020, expectedMonth: 1, expectedDay: 1 },
       { input: '01012020', expectedYear: 2020, expectedMonth: 1, expectedDay: 1 },

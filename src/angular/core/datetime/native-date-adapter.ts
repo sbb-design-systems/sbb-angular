@@ -224,7 +224,7 @@ export class SbbNativeDateAdapter extends SbbDateAdapter<Date> {
   }
 
   protected _splitStringDate(value: string): [number, number, number] | null {
-    const match = /^(\w+,[ ]?)?(\d+)\.(\d+)\.(\d+)$/.exec(value);
+    const match = /^(\w+\.?,[ ]?)?(\d+)\.(\d+)\.(\d+)$/.exec(value);
     if (!match) {
       return null;
     }
