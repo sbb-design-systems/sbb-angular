@@ -9,7 +9,7 @@ import { SpyLocation } from '@angular/common/testing';
 import {
   ChangeDetectionStrategy,
   Component,
-  createNgModuleRef,
+  createNgModule,
   Directive,
   forwardRef,
   inject,
@@ -1567,7 +1567,7 @@ describe('SbbDialog', () => {
         changeDetection: ChangeDetectionStrategy.OnPush,
       })
       class OnPushHost {
-        @ViewChild(Child, { static: true }) child: Child;
+        @ViewChild(Child, { static: true }) child!: Child;
       }
 
       const hostFixture = TestBed.createComponent(OnPushHost);
@@ -2143,7 +2143,7 @@ class ComponentWithOnPushViewContainer {
 class ComponentWithChildViewContainer {
   showChildView = true;
 
-  @ViewChild(DirectiveWithViewContainer) childWithViewContainer: DirectiveWithViewContainer;
+  @ViewChild(DirectiveWithViewContainer) childWithViewContainer!: DirectiveWithViewContainer;
 
   get childViewContainer() {
     return this.childWithViewContainer.viewContainerRef;
@@ -2157,10 +2157,10 @@ class ComponentWithChildViewContainer {
   >`,
 })
 class ComponentWithTemplateRef {
-  localValue: string;
-  dialogRef: SbbDialogRef<any>;
+  localValue!: string;
+  dialogRef!: SbbDialogRef<any>;
 
-  @ViewChild(TemplateRef) templateRef: TemplateRef<any>;
+  @ViewChild(TemplateRef) templateRef!: TemplateRef<any>;
 
   setDialogRef(dialogRef: SbbDialogRef<any>): string {
     this.dialogRef = dialogRef;
@@ -2241,7 +2241,7 @@ class ContentElementDialog {
   imports: [SbbDialogModule],
 })
 class ComponentWithContentElementTemplateRef {
-  @ViewChild(TemplateRef) templateRef: TemplateRef<any>;
+  @ViewChild(TemplateRef) templateRef!: TemplateRef<any>;
   shownTitle: 'first' | 'second' | 'third' | 'all' = 'first';
 
   shouldShowTitle(name: string) {
@@ -2320,7 +2320,7 @@ class ModuleBoundDialogParentComponent {
   private _dialog = inject(SbbDialog);
 
   openDialog(): void {
-    const ngModuleRef = createNgModuleRef(
+    const ngModuleRef = createNgModule(
       ModuleBoundDialogModule,
       /* parentInjector */ this._injector,
     );
