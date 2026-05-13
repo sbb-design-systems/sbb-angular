@@ -1,9 +1,9 @@
 import {
   ApplicationRef,
-  ComponentFactory,
-  ComponentFactoryResolver,
   ComponentRef,
+  createComponent,
   EmbeddedViewRef,
+  inject,
   Injectable,
   Injector,
 } from '@angular/core';
@@ -18,23 +18,18 @@ import { SbbMapLeitPoi } from '../../model/map-leit-poi';
   providedIn: 'root',
 })
 export class SbbMapLeitPoiCreator {
+  private readonly _appRef = inject(ApplicationRef);
+  private readonly _injector = inject(Injector);
   private static readonly _popupOptions = { closeOnClick: false, closeButton: false };
   private static readonly _popupClassName = 'leit-poi-popup';
   private static readonly _xOffset = 57; // 1/2 Leit-POI width
   private static readonly _yOffset = 37; // Leit-POI height
 
-  private _componentFactory: ComponentFactory<SbbLeitPoi>;
-
-  constructor(
-    private _componentFactoryResolver: ComponentFactoryResolver,
-    private _appRef: ApplicationRef,
-    private _injector: Injector,
-  ) {
-    this._componentFactory = this._componentFactoryResolver.resolveComponentFactory(SbbLeitPoi);
-  }
-
   createMapLeitPoi(map: MaplibreMap, feature: SbbLeitPoiFeature): SbbMapLeitPoi {
-    const componentRef = this._componentFactory.create(this._injector);
+    const componentRef = createComponent(SbbLeitPoi, {
+      environmentInjector: this._appRef.injector,
+      elementInjector: this._injector,
+    });
     this._appRef.attachView(componentRef.hostView);
     const component = componentRef.instance;
     component.feature = feature;

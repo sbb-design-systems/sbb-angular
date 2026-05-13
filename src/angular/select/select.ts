@@ -575,7 +575,7 @@ export class SbbSelect
     // Force setter to be called in case id was not specified.
     this.id = this.id;
 
-    this._overlayOrigin = new CdkOverlayOrigin(elementRef);
+    this._overlayOrigin = new CdkOverlayOrigin();
   }
 
   ngOnInit() {
