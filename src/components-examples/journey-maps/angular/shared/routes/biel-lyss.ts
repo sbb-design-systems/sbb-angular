@@ -265,7 +265,7 @@ export const bielLyssRoutes: SbbSelectableFeatureCollection[] = [
           transportType: 'rail',
           type: 'endpoint',
           endpointType: 'to',
-          sbb_id: 8504300,
+          didokCode: 8504300,
         },
         geometry: {
           type: 'Point',
