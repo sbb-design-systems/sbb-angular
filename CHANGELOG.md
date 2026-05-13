@@ -2,6 +2,14 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [21.0.3](https://github.com/sbb-design-systems/sbb-angular/compare/21.0.2...21.0.3) (2026-05-13)
+
+
+### Bug Fixes
+
+* **angular/datepicker:** allow weekday abbreviations with a period ([#2798](https://github.com/sbb-design-systems/sbb-angular/issues/2798)) ([444d426](https://github.com/sbb-design-systems/sbb-angular/commit/444d426c9d7763dc347f3833c4456752574623aa))
+* **angular/table:** remove string-based DI tokens ([#2770](https://github.com/sbb-design-systems/sbb-angular/issues/2770)) ([ec1c177](https://github.com/sbb-design-systems/sbb-angular/commit/ec1c177451e5035df003ccaba25f222e7f6172fb))
+
 ### [21.0.2](https://github.com/sbb-design-systems/sbb-angular/compare/21.0.1...21.0.2) (2026-01-19)
 
 
