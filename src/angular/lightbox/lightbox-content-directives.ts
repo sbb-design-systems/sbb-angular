@@ -93,7 +93,7 @@ export class SbbLightboxTitle extends _SbbDialogTitleBase implements OnInit {
   /** Unique id for the lightbox title. If none is supplied, it will be auto-generated. */
   @Input() override id: string = inject(_IdGenerator).getId('sbb-lightbox-title-');
 
-  @ViewChild(SbbLightboxClose, { static: true }) _lightBoxClose: SbbLightboxClose;
+  @ViewChild(SbbLightboxClose, { static: true }) _lightBoxClose!: SbbLightboxClose;
 
   /** Arial label for the close button. */
   @Input()

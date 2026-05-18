@@ -84,7 +84,7 @@ class DirectiveWithViewContainer {
 class ComponentWithChildViewContainer {
   showChildView = true;
 
-  @ViewChild(DirectiveWithViewContainer) childWithViewContainer: DirectiveWithViewContainer;
+  @ViewChild(DirectiveWithViewContainer) childWithViewContainer!: DirectiveWithViewContainer;
 
   get childViewContainer() {
     return this.childWithViewContainer.viewContainerRef;
