@@ -492,23 +492,19 @@ describe('SbbInput without forms', () => {
     expect(formField.classList).not.toContain('sbb-form-field-type-sbb-native-select');
   });
 
-  it(
-    'should use the native input value when determining whether ' +
-      'the element is empty with a custom accessor',
-    fakeAsync(() => {
-      const fixture = createComponent(SbbInputWithCustomAccessor, [], [], [CustomSbbInputAccessor]);
-      fixture.detectChanges();
-      const label = fixture.debugElement.query(By.css('label'))!.nativeElement;
+  it('should use the native input value when determining whether the element is empty with a custom accessor', fakeAsync(() => {
+    const fixture = createComponent(SbbInputWithCustomAccessor, [], [], [CustomSbbInputAccessor]);
+    fixture.detectChanges();
+    const label = fixture.debugElement.query(By.css('label'))!.nativeElement;
 
-      expect(label.classList).toContain('sbb-form-field-empty');
+    expect(label.classList).toContain('sbb-form-field-empty');
 
-      fixture.nativeElement.querySelector('input').value = 'abc';
-      fixture.changeDetectorRef.markForCheck();
-      fixture.detectChanges();
+    fixture.nativeElement.querySelector('input').value = 'abc';
+    fixture.changeDetectorRef.markForCheck();
+    fixture.detectChanges();
 
-      expect(label.classList).not.toContain('sbb-form-field-empty');
-    }),
-  );
+    expect(label.classList).not.toContain('sbb-form-field-empty');
+  }));
 
   it('should not throw when there is a default ngIf on the label element', fakeAsync(() => {
     expect(() => {
@@ -946,25 +942,28 @@ class SbbInputWithId {}
 @Component({
   template: `<sbb-form-field><input sbbInput [disabled]="disabled" /></sbb-form-field>`,
   imports: [SbbFormFieldModule, SbbInputModule],
+  changeDetection: ChangeDetectionStrategy.Eager,
 })
 class SbbInputWithDisabled {
-  disabled: boolean;
+  disabled: boolean = false;
 }
 
 @Component({
   template: `<sbb-form-field><input sbbInput [required]="required" /></sbb-form-field>`,
   imports: [SbbFormFieldModule, SbbInputModule],
+  changeDetection: ChangeDetectionStrategy.Eager,
 })
 class SbbInputWithRequired {
-  required: boolean;
+  required: boolean = false;
 }
 
 @Component({
   template: `<sbb-form-field><input sbbInput [type]="type" /></sbb-form-field>`,
   imports: [SbbFormFieldModule, SbbInputModule],
+  changeDetection: ChangeDetectionStrategy.Eager,
 })
 class SbbInputWithType {
-  type: string;
+  type!: string;
 }
 
 @Component({
@@ -972,6 +971,7 @@ class SbbInputWithType {
     <input sbbInput placeholder="Hello" [formControl]="formControl" />
   </sbb-form-field>`,
   imports: [SbbFormFieldModule, SbbInputModule, ReactiveFormsModule],
+  changeDetection: ChangeDetectionStrategy.Eager,
 })
 class SbbInputWithFormControl {
   formControl = new FormControl('');
@@ -985,6 +985,7 @@ class SbbInputWithFormControl {
     }
   </sbb-form-field>`,
   imports: [SbbFormFieldModule, SbbInputModule, ReactiveFormsModule],
+  changeDetection: ChangeDetectionStrategy.Eager,
 })
 class SbbInputWithSubscriptAndAriaDescribedBy {
   label: string = '';
@@ -1014,6 +1015,7 @@ class SbbInputDateTestController {}
     <input sbbInput type="text" placeholder="Placeholder" />
   </sbb-form-field>`,
   imports: [SbbFormFieldModule, SbbInputModule],
+  changeDetection: ChangeDetectionStrategy.Eager,
 })
 class SbbInputTextTestController {}
 
@@ -1048,6 +1050,7 @@ class SbbInputZeroTestController {
     <input sbbInput placeholder="Label" [value]="value" />
   </sbb-form-field>`,
   imports: [SbbFormFieldModule, SbbInputModule],
+  changeDetection: ChangeDetectionStrategy.Eager,
 })
 class SbbInputWithValueBinding {
   value: string = 'Initial';
@@ -1083,9 +1086,10 @@ class SbbInputMissingSbbInputTestController {}
     </form>
   `,
   imports: [SbbFormFieldModule, SbbInputModule, FormsModule, ReactiveFormsModule],
+  changeDetection: ChangeDetectionStrategy.Eager,
 })
 class SbbInputWithFormErrorMessages {
-  @ViewChild('form') form: NgForm;
+  @ViewChild('form') form!: NgForm;
   formControl = new FormControl('', [Validators.required, Validators.pattern(/valid value/)]);
   renderError = true;
 }
@@ -1100,6 +1104,7 @@ class SbbInputWithFormErrorMessages {
     </form>
   `,
   imports: [SbbFormFieldModule, SbbInputModule, ReactiveFormsModule],
+  changeDetection: ChangeDetectionStrategy.Eager,
 })
 class SbbInputWithCustomErrorStateMatcher {
   formGroup = new FormGroup({
@@ -1125,7 +1130,7 @@ class SbbInputWithCustomErrorStateMatcher {
   imports: [SbbFormFieldModule, SbbInputModule, ReactiveFormsModule],
 })
 class SbbInputWithFormGroupErrorMessages {
-  @ViewChild(FormGroupDirective) formGroupDirective: FormGroupDirective;
+  @ViewChild(FormGroupDirective) formGroupDirective!: FormGroupDirective;
   formGroup = new FormGroup({
     name: new FormControl('', [Validators.required, Validators.pattern(/valid value/)]),
   });
@@ -1140,6 +1145,7 @@ class SbbInputWithFormGroupErrorMessages {
     </sbb-form-field>
   `,
   imports: [SbbFormFieldModule, SbbInputModule],
+  changeDetection: ChangeDetectionStrategy.Eager,
 })
 class SbbInputWithNgIf {
   renderInput = true;
@@ -1180,10 +1186,11 @@ class SbbInputWithoutPlaceholder {}
     </select>
   </sbb-form-field>`,
   imports: [SbbFormFieldModule, SbbInputModule],
+  changeDetection: ChangeDetectionStrategy.Eager,
 })
 class SbbInputSelect {
-  disabled: boolean;
-  required: boolean;
+  disabled: boolean = false;
+  required: boolean = false;
 }
 
 @Component({
@@ -1191,6 +1198,7 @@ class SbbInputSelect {
     <input sbbInput customInputAccessor placeholder="Placeholder" />
   </sbb-form-field>`,
   imports: [SbbFormFieldModule, SbbInputModule, CustomSbbInputAccessor],
+  changeDetection: ChangeDetectionStrategy.Eager,
 })
 class SbbInputWithCustomAccessor {}
 
@@ -1199,6 +1207,7 @@ class SbbInputWithCustomAccessor {}
     <select sbbInput></select>
   </sbb-form-field>`,
   imports: [SbbFormFieldModule, SbbInputModule],
+  changeDetection: ChangeDetectionStrategy.Eager,
 })
 class SbbInputSelectWithoutOptions {}
 
@@ -1231,6 +1240,7 @@ class SbbInputWithDefaultNgIf {}
     </sbb-form-field>
   `,
   imports: [SbbFormFieldModule, SbbInputModule],
+  changeDetection: ChangeDetectionStrategy.Eager,
 })
 class SbbInputWithAnotherNgIf {
   inputValue = 'test';
@@ -1247,9 +1257,10 @@ class SbbInputWithPlaceholder {}
     <input sbbInput [placeholder]="placeholder" value="test" />
   </sbb-form-field>`,
   imports: [SbbFormFieldModule, SbbInputModule],
+  changeDetection: ChangeDetectionStrategy.Eager,
 })
 class SbbInputWithVariablePlaceholder {
-  placeholder: string;
+  placeholder!: string;
 }
 
 @Component({
@@ -1257,9 +1268,10 @@ class SbbInputWithVariablePlaceholder {
     <input sbbInput [readonly]="readonly" [formControl]="formControl" [tabIndex]="tabIndex" />
   </sbb-form-field>`,
   imports: [SbbFormFieldModule, SbbInputModule, ReactiveFormsModule],
+  changeDetection: ChangeDetectionStrategy.Eager,
 })
 class SbbInputReadonly {
   readonly = true;
   formControl = new FormControl('');
-  tabIndex: number;
+  tabIndex!: number;
 }

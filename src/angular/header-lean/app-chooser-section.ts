@@ -24,7 +24,7 @@ import { SBB_HEADER } from './header-token';
 export class SbbAppChooserSection {
   private _header = inject<TypeRef<SbbHeaderLean>>(SBB_HEADER);
 
-  @Input() label: string;
+  @Input() label!: string;
 
   constructor(...args: unknown[]);
   constructor() {}

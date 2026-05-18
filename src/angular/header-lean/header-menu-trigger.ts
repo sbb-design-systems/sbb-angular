@@ -100,7 +100,7 @@ export class SbbHeaderMenuTrigger implements AfterContentInit, OnDestroy {
       });
     }
   }
-  private _menu: SbbHeaderMenu;
+  private _menu!: SbbHeaderMenu;
 
   /**
    * Whether focus should be restored when the menu is closed.
@@ -115,7 +115,7 @@ export class SbbHeaderMenuTrigger implements AfterContentInit, OnDestroy {
   /** Event emitted when the associated menu is closed. */
   @Output() readonly menuClosed: EventEmitter<void> = new EventEmitter<void>();
 
-  @ViewChild('panelTarget', { static: true }) _panelTarget: ElementRef<HTMLElement>;
+  @ViewChild('panelTarget', { static: true }) _panelTarget!: ElementRef<HTMLElement>;
 
   /** Whether the menu is open. */
   get menuOpen(): boolean {
