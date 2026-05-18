@@ -96,7 +96,7 @@ export class SbbDateInput<D> implements ControlValueAccessor, Validator, OnInit,
   get dateFilter() {
     return this._dateFilter;
   }
-  private _dateFilter: (date: D | null) => boolean;
+  private _dateFilter!: (date: D | null) => boolean;
 
   /** The value of the input. */
   @Input()
@@ -115,7 +115,7 @@ export class SbbDateInput<D> implements ControlValueAccessor, Validator, OnInit,
       this.valueChange.emit(value);
     }
   }
-  private _value: D | null;
+  private _value: D | null = null;
 
   /** The minimum valid date. */
   @Input()
@@ -134,7 +134,7 @@ export class SbbDateInput<D> implements ControlValueAccessor, Validator, OnInit,
     this._min = this._getValidDateOrNull(this._dateAdapter.deserialize(value));
     this._validatorOnChange();
   }
-  private _min: D | null;
+  private _min: D | null = null;
 
   /** The maximum valid date. */
   @Input()
@@ -145,7 +145,7 @@ export class SbbDateInput<D> implements ControlValueAccessor, Validator, OnInit,
     this._max = this._getValidDateOrNull(this._dateAdapter.deserialize(value));
     this._validatorOnChange();
   }
-  private _max: D | null;
+  private _max: D | null = null;
 
   /** Whether the datepicker-input is disabled. */
   @Input({ transform: booleanAttribute })

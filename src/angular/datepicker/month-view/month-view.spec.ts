@@ -9,7 +9,7 @@ import {
   RIGHT_ARROW,
   UP_ARROW,
 } from '@angular/cdk/keycodes';
-import { Component, ViewChild } from '@angular/core';
+import { ChangeDetectionStrategy, Component, ViewChild } from '@angular/core';
 import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 import { provideNativeDateAdapter } from '@sbb-esta/angular/core';
@@ -38,6 +38,7 @@ import { SbbMonthView } from './month-view';
     ></sbb-month-view>
   `,
   imports: [SbbMonthView],
+  changeDetection: ChangeDetectionStrategy.Eager,
 })
 class StandardMonthViewComponent {
   date = new Date(2017, JAN, 5);
@@ -50,6 +51,7 @@ class StandardMonthViewComponent {
 @Component({
   template: ` <sbb-month-view [activeDate]="activeDate" [dateRange]="dateRange"></sbb-month-view> `,
   imports: [SbbMonthView],
+  changeDetection: ChangeDetectionStrategy.Eager,
 })
 class MonthViewWithDateRangeComponent {
   activeDate = new Date(2022, NOV, 1);
@@ -88,9 +90,10 @@ class MonthViewWithDateClassComponent {
     [dateClass]="dateClass"
   ></sbb-month-view>`,
   imports: [SbbMonthView],
+  changeDetection: ChangeDetectionStrategy.Eager,
 })
 class MonthViewComponentWithWeekNumbers {
-  @ViewChild(SbbMonthView) monthView: SbbMonthView<Date>;
+  @ViewChild(SbbMonthView) monthView!: SbbMonthView<Date>;
   date = new Date(2023, JAN, 1);
   isWeekdaySelectable = true;
   dateClass: SbbCalendarCellClassFunction<Date> = (date: Date) =>

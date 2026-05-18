@@ -83,7 +83,7 @@ export class SbbDatepicker<D> implements OnDestroy {
   readonly locale = inject(LOCALE_ID);
 
   /** An input indicating the type of the custom header component for the calendar, if set. */
-  @Input() calendarHeaderComponent: ComponentType<any>;
+  @Input() calendarHeaderComponent!: ComponentType<any>;
 
   /** The date to open the calendar to initially. */
   @Input()
@@ -95,7 +95,7 @@ export class SbbDatepicker<D> implements OnDestroy {
   set startAt(value: D | null) {
     this._startAt = this._getValidDateOrNull(this._dateAdapter.deserialize(value));
   }
-  private _startAt: D | null;
+  private _startAt: D | null = null;
 
   /** Whether the datepicker pop-up should be disabled. */
   @Input({ transform: booleanAttribute })
@@ -113,7 +113,7 @@ export class SbbDatepicker<D> implements OnDestroy {
   private _disabled?: boolean;
 
   /** Classes to be passed to the date picker panel. */
-  @Input() panelClass: string | string[];
+  @Input() panelClass!: string | string[];
 
   /** Second datepicker to be used in 2 datepickers use case */
   @Input()
@@ -129,16 +129,16 @@ export class SbbDatepicker<D> implements OnDestroy {
   get connected(): SbbDatepicker<D> | null {
     return this._connected;
   }
-  private _connected: SbbDatepicker<D> | null;
+  private _connected: SbbDatepicker<D> | null = null;
 
-  main: SbbDatepicker<D> | null;
+  main: SbbDatepicker<D> | null = null;
 
   /**
    * Whether arrows are enabled, which allow navigation to the next/previous day.
    * They also support min and max date limits.
    * Defaults to false.
    */
-  @Input({ transform: booleanAttribute }) arrows: boolean;
+  @Input({ transform: booleanAttribute }) arrows: boolean = false;
 
   /** Whether arrows should be shown. */
   get arrowsVisible() {
@@ -238,13 +238,13 @@ export class SbbDatepicker<D> implements OnDestroy {
     $localize`:Previous day button's aria-label@@sbbDatePickerPrevDayAriaLabel:Previous day`;
 
   /** A reference to the overlay when the calendar is opened as a popup. */
-  popupRef: OverlayRef;
+  popupRef!: OverlayRef;
 
   /** A portal containing the calendar for this datepicker. */
-  private _calendarPortal: ComponentPortal<SbbDatepickerContent<D>>;
+  private _calendarPortal!: ComponentPortal<SbbDatepickerContent<D>>;
 
   /** Reference to the component instantiated in popup mode. */
-  private _popupComponentRef: ComponentRef<SbbDatepickerContent<D>> | null;
+  private _popupComponentRef: ComponentRef<SbbDatepickerContent<D>> | null = null;
 
   /** The element that was focused before the datepicker was opened. */
   private _focusedElementBeforeOpen: HTMLElement | null = null;
@@ -261,7 +261,7 @@ export class SbbDatepicker<D> implements OnDestroy {
   private _mainDatepickerSubscription? = Subscription.EMPTY;
 
   /** The input element this datepicker is associated with. */
-  datepickerInput: SbbDateInput<D>;
+  datepickerInput!: SbbDateInput<D>;
 
   /** Emits when the datepicker is disabled. */
   readonly disabledChange = new Subject<boolean>();

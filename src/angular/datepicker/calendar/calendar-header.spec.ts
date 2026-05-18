@@ -13,7 +13,7 @@ import { SbbCalendar } from './calendar';
   imports: [SbbDatepickerModule],
 })
 class StandardCalendarComponent {
-  selected: Date;
+  selected!: Date;
   startDate = new Date(2017, JAN, 31);
 }
 

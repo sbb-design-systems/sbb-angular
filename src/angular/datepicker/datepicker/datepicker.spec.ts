@@ -1,6 +1,13 @@
 import { DOWN_ARROW, ENTER, ESCAPE, UP_ARROW } from '@angular/cdk/keycodes';
 import { OverlayContainer } from '@angular/cdk/overlay';
-import { Component, FactoryProvider, Type, ValueProvider, ViewChild } from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  Component,
+  FactoryProvider,
+  Type,
+  ValueProvider,
+  ViewChild,
+} from '@angular/core';
 import { ComponentFixture, fakeAsync, flush, inject, TestBed, tick } from '@angular/core/testing';
 import { FormControl, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { By } from '@angular/platform-browser';
@@ -965,14 +972,15 @@ describe('SbbDatepicker', () => {
     </sbb-datepicker>
   `,
   imports: [FormsModule, SbbDatepickerModule],
+  changeDetection: ChangeDetectionStrategy.Eager,
 })
 class StandardDatepickerComponent {
   opened = false;
   touch = false;
   disabled = false;
   date: Date | null = new Date(2020, JAN, 1);
-  @ViewChild('d') datepicker: SbbDatepicker<Date>;
-  @ViewChild(SbbDateInput) datepickerInput: SbbDateInput<Date>;
+  @ViewChild('d') datepicker!: SbbDatepicker<Date>;
+  @ViewChild(SbbDateInput) datepickerInput!: SbbDateInput<Date>;
 }
 
 @Component({
@@ -991,7 +999,7 @@ class MultiInputDatepickerComponent {}
   imports: [SbbDatepickerModule],
 })
 class NoInputDatepickerComponent {
-  @ViewChild('d') datepicker: SbbDatepicker<Date>;
+  @ViewChild('d') datepicker!: SbbDatepicker<Date>;
 }
 
 @Component({
@@ -1005,7 +1013,7 @@ class NoInputDatepickerComponent {
 class DatepickerWithStartAtComponent {
   date = new Date(2020, JAN, 1);
   startDate = new Date(2010, JAN, 1);
-  @ViewChild('d') datepicker: SbbDatepicker<Date>;
+  @ViewChild('d') datepicker!: SbbDatepicker<Date>;
 }
 
 @Component({
@@ -1015,11 +1023,12 @@ class DatepickerWithStartAtComponent {
     </sbb-datepicker>
   `,
   imports: [FormsModule, SbbDatepickerModule],
+  changeDetection: ChangeDetectionStrategy.Eager,
 })
 class DatepickerWithNgModelComponent {
   selected: Date | null = null;
-  @ViewChild('d') datepicker: SbbDatepicker<Date>;
-  @ViewChild(SbbDateInput) datepickerInput: SbbDateInput<Date>;
+  @ViewChild('d') datepicker!: SbbDatepicker<Date>;
+  @ViewChild(SbbDateInput) datepickerInput!: SbbDateInput<Date>;
 }
 
 @Component({
@@ -1031,8 +1040,8 @@ class DatepickerWithNgModelComponent {
   imports: [SbbDatepickerModule],
 })
 class DatepickerWithToggleComponent {
-  @ViewChild('d') datepicker: SbbDatepicker<Date>;
-  @ViewChild(SbbDateInput) input: SbbDateInput<Date>;
+  @ViewChild('d') datepicker!: SbbDatepicker<Date>;
+  @ViewChild(SbbDateInput) input!: SbbDateInput<Date>;
 }
 
 @Component({
@@ -1047,9 +1056,9 @@ class DatepickerWithToggleComponent {
   imports: [SbbDatepickerModule, SbbInputModule, SbbFormFieldModule],
 })
 class FormFieldDatepicker {
-  @ViewChild('d') datepicker: SbbDatepicker<Date>;
-  @ViewChild(SbbDateInput) datepickerInput: SbbDateInput<Date>;
-  @ViewChild(SbbFormField) formField: SbbFormField;
+  @ViewChild('d') datepicker!: SbbDatepicker<Date>;
+  @ViewChild(SbbDateInput) datepickerInput!: SbbDateInput<Date>;
+  @ViewChild(SbbFormField) formField!: SbbFormField;
 }
 
 @Component({
@@ -1061,8 +1070,8 @@ class FormFieldDatepicker {
   imports: [FormsModule, SbbDatepickerModule],
 })
 class DatepickerWithMinAndMaxValidationComponent {
-  @ViewChild('d') datepicker: SbbDatepicker<Date>;
-  date: Date | null;
+  @ViewChild('d') datepicker!: SbbDatepicker<Date>;
+  date: Date | null = null;
   minDate = new Date(2010, JAN, 1);
   maxDate = new Date(2020, JAN, 1);
 }
@@ -1079,7 +1088,7 @@ class DatepickerWithEventsComponent {
   selected: Date | null = null;
   openedSpy = jasmine.createSpy('opened spy');
   closedSpy = jasmine.createSpy('closed spy');
-  @ViewChild('d') datepicker: SbbDatepicker<Date>;
+  @ViewChild('d') datepicker!: SbbDatepicker<Date>;
 }
 
 @Component({
@@ -1091,7 +1100,7 @@ class DatepickerWithEventsComponent {
   imports: [SbbDatepickerModule],
 })
 class DatepickerOpeningOnFocusComponent {
-  @ViewChild(SbbDatepicker) datepicker: SbbDatepicker<Date>;
+  @ViewChild(SbbDatepicker) datepicker!: SbbDatepicker<Date>;
 }
 
 @Component({
@@ -1128,8 +1137,8 @@ class DatepickerConnectedComponent {
 })
 class DatepickerWithArrows {
   date: Date | null = new Date();
-  @ViewChild('d') datepicker: SbbDatepicker<Date>;
-  @ViewChild(SbbDateInput) datepickerInput: SbbDateInput<Date>;
+  @ViewChild('d') datepicker!: SbbDatepicker<Date>;
+  @ViewChild(SbbDateInput) datepickerInput!: SbbDateInput<Date>;
 }
 
 @Component({
@@ -1145,6 +1154,7 @@ class DatepickerWithArrows {
     </sbb-datepicker>
   `,
   imports: [ReactiveFormsModule, SbbInputModule, SbbDatepickerModule],
+  changeDetection: ChangeDetectionStrategy.Eager,
 })
 class DatepickerReadonlyComponent {
   date = new FormControl<Date | null>(null);
@@ -1159,10 +1169,11 @@ class DatepickerReadonlyComponent {
     </sbb-datepicker>
   `,
   imports: [SbbDatepickerModule],
+  changeDetection: ChangeDetectionStrategy.Eager,
 })
 class DatepickerWithNoToggleComponent {
-  @ViewChild('d') datepicker: SbbDatepicker<Date>;
-  @ViewChild(SbbDateInput) input: SbbDateInput<Date>;
+  @ViewChild('d') datepicker!: SbbDatepicker<Date>;
+  @ViewChild(SbbDateInput) input!: SbbDateInput<Date>;
   notoggle: boolean = true;
 }
 

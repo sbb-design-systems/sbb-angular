@@ -1,5 +1,5 @@
 import { ENTER } from '@angular/cdk/keycodes';
-import { Component } from '@angular/core';
+import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 import {
@@ -20,9 +20,10 @@ import { SbbDatepickerModule } from '../datepicker.module';
 @Component({
   template: ` <sbb-calendar [startAt]="startDate" [(selected)]="selected"> </sbb-calendar> `,
   imports: [SbbDatepickerModule],
+  changeDetection: ChangeDetectionStrategy.Eager,
 })
 class StandardCalendarComponent {
-  selected: Date;
+  selected!: Date;
   startDate = new Date(2017, JAN, 31);
 }
 
@@ -31,9 +32,10 @@ class StandardCalendarComponent {
     <sbb-calendar [startAt]="startAt" [minDate]="minDate" [maxDate]="maxDate"></sbb-calendar>
   `,
   imports: [SbbDatepickerModule],
+  changeDetection: ChangeDetectionStrategy.Eager,
 })
 class CalendarWithMinMaxComponent {
-  startAt: Date;
+  startAt!: Date;
   minDate = new Date(2016, JAN, 1);
   maxDate = new Date(2018, JAN, 1);
 }
@@ -46,7 +48,7 @@ class CalendarWithMinMaxComponent {
   imports: [SbbDatepickerModule],
 })
 class CalendarWithDateFilterComponent {
-  selected: Date;
+  selected!: Date;
   startDate = new Date(2017, JAN, 1);
 
   dateFilter(date: Date) {
@@ -68,8 +70,8 @@ class CalendarWithDateFilterComponent {
 })
 class CalendarWithSelectableMinDateComponent {
   startAt = new Date(2018, JUL, 0);
-  selected: Date;
-  minDate: Date;
+  selected!: Date;
+  minDate!: Date;
 
   constructor() {
     this.select(new Date(2018, JUL, 10));
@@ -83,9 +85,10 @@ class CalendarWithSelectableMinDateComponent {
 @Component({
   template: ` <sbb-calendar [dateClass]="dateClass"> </sbb-calendar> `,
   imports: [SbbDatepickerModule],
+  changeDetection: ChangeDetectionStrategy.Eager,
 })
 class CalendarWithDateClassComponent {
-  dateClass: SbbCalendarCellClassFunction<Date>;
+  dateClass!: SbbCalendarCellClassFunction<Date>;
 }
 
 describe('SbbCalendar', () => {

@@ -174,10 +174,10 @@ export class SbbCalendar<D> implements AfterContentInit, AfterViewChecked, OnDes
   private _changeDetectorRef = inject(ChangeDetectorRef);
 
   /** An input indicating the type of the header component, if set. */
-  @Input() headerComponent: ComponentType<any>;
+  @Input() headerComponent!: ComponentType<any>;
 
   /** A portal containing the header component type for this calendar. */
-  calendarHeaderPortal: Portal<any>;
+  calendarHeaderPortal!: Portal<any>;
 
   /**
    * Used for scheduling that focus should be moved to the active cell on the next tick.
@@ -194,7 +194,7 @@ export class SbbCalendar<D> implements AfterContentInit, AfterViewChecked, OnDes
   set startAt(value: D | null) {
     this._startAt = this._getValidDateOrNull(this._dateAdapter.deserialize(value));
   }
-  private _startAt: D | null;
+  private _startAt: D | null = null;
 
   /** The currently selected date. */
   @Input()
@@ -204,7 +204,7 @@ export class SbbCalendar<D> implements AfterContentInit, AfterViewChecked, OnDes
   set selected(value: D | null) {
     this._selected = this._getValidDateOrNull(this._dateAdapter.deserialize(value));
   }
-  private _selected: D | null;
+  private _selected: D | null = null;
 
   /** The minimum selectable date. */
   @Input()
@@ -214,7 +214,7 @@ export class SbbCalendar<D> implements AfterContentInit, AfterViewChecked, OnDes
   set minDate(value: D | null) {
     this._minDate = this._getValidDateOrNull(this._dateAdapter.deserialize(value));
   }
-  private _minDate: D | null;
+  private _minDate: D | null = null;
 
   /** The maximum selectable date. */
   @Input()
@@ -224,7 +224,7 @@ export class SbbCalendar<D> implements AfterContentInit, AfterViewChecked, OnDes
   set maxDate(value: D | null) {
     this._maxDate = this._getValidDateOrNull(this._dateAdapter.deserialize(value));
   }
-  private _maxDate: D | null;
+  private _maxDate: D | null = null;
 
   /** Whether to display the week number. */
   @Input() showWeekNumbers: boolean = false;
@@ -233,13 +233,15 @@ export class SbbCalendar<D> implements AfterContentInit, AfterViewChecked, OnDes
   @Input() dateRange: SbbDateRange<D> | null = null;
 
   /** A function used to filter which dates are selectable. */
-  @Input() dateFilter: (date: D) => boolean;
+  @Input() dateFilter?: (date: D) => boolean;
 
   /** Function or observable of function that can be used to add custom CSS classes to dates. */
-  @Input() dateClass: SbbCalendarCellClassFunction<D> | Observable<SbbCalendarCellClassFunction<D>>;
+  @Input() dateClass!:
+    | SbbCalendarCellClassFunction<D>
+    | Observable<SbbCalendarCellClassFunction<D>>;
 
   /** Observable of `dateClass` function. */
-  _dateClassObservable: Observable<SbbCalendarCellClassFunction<D>>;
+  _dateClassObservable!: Observable<SbbCalendarCellClassFunction<D>>;
 
   /** Emits when the currently selected date changes. */
   @Output() readonly selectedChange: EventEmitter<D> = new EventEmitter<D>();
@@ -259,7 +261,7 @@ export class SbbCalendar<D> implements AfterContentInit, AfterViewChecked, OnDes
   @Output() readonly userSelection: EventEmitter<void> = new EventEmitter<void>();
 
   /** Reference to the current month view component. */
-  @ViewChild(SbbMonthView, { static: true }) monthView: SbbMonthView<D>;
+  @ViewChild(SbbMonthView, { static: true }) monthView!: SbbMonthView<D>;
 
   /**
    * The current active date. This determines which time period is shown and which date is
@@ -272,7 +274,7 @@ export class SbbCalendar<D> implements AfterContentInit, AfterViewChecked, OnDes
     this._clampedActiveDate = this._dateAdapter.clampDate(value, this.minDate, this.maxDate);
     this.stateChanges.next();
   }
-  private _clampedActiveDate: D;
+  private _clampedActiveDate!: D;
 
   /** Emits whenever there is a state change that the header may need to respond to. */
   stateChanges: Subject<void> = new Subject<void>();
