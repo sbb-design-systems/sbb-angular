@@ -1,5 +1,5 @@
 import { BACKSPACE, DELETE } from '@angular/cdk/keycodes';
-import { Component, DebugElement, ViewChild } from '@angular/core';
+import { ChangeDetectionStrategy, Component, DebugElement, ViewChild } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 import { createKeyboardEvent, dispatchFakeEvent } from '@sbb-esta/angular/core/testing';
@@ -271,9 +271,10 @@ describe('SbbChip', () => {
     }
   </sbb-chip-list>`,
   imports: [SbbChipsModule, SbbIconModule, SbbIconTestingModule],
+  changeDetection: ChangeDetectionStrategy.Eager,
 })
 class SingleChip {
-  @ViewChild(SbbChipList) chipList: SbbChipList;
+  @ViewChild(SbbChipList) chipList!: SbbChipList;
   disabled: boolean = false;
   name: string = 'Test';
   removable: boolean = true;
@@ -288,18 +289,21 @@ class SingleChip {
 @Component({
   template: `<sbb-basic-chip>Hello</sbb-basic-chip>`,
   imports: [SbbChipsModule, SbbIconModule, SbbIconTestingModule],
+  changeDetection: ChangeDetectionStrategy.Eager,
 })
 class BasicChip {}
 
 @Component({
   template: `<sbb-basic-chip tabindex="3">Hello</sbb-basic-chip>`,
   imports: [SbbChipsModule, SbbIconModule, SbbIconTestingModule],
+  changeDetection: ChangeDetectionStrategy.Eager,
 })
 class BasicChipWithStaticTabindex {}
 
 @Component({
   template: `<sbb-basic-chip [tabIndex]="tabindex">Hello</sbb-basic-chip>`,
   imports: [SbbChipsModule, SbbIconModule, SbbIconTestingModule],
+  changeDetection: ChangeDetectionStrategy.Eager,
 })
 class BasicChipWithBoundTabindex {
   tabindex = 12;

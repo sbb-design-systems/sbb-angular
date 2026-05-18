@@ -107,10 +107,10 @@ export class SbbChip implements FocusableOption, OnDestroy {
   _chipListDisabled: boolean = false;
 
   /** The chip's trailing icon. */
-  @ContentChild(SBB_CHIP_TRAILING_ICON) trailingIcon: SbbChipTrailingIcon;
+  @ContentChild(SBB_CHIP_TRAILING_ICON) trailingIcon!: SbbChipTrailingIcon;
 
   /** The chip's remove toggler. */
-  @ContentChild(SBB_CHIP_REMOVE) removeIcon: SbbChipRemove;
+  @ContentChild(SBB_CHIP_REMOVE) removeIcon!: SbbChipRemove;
 
   /** ARIA role that should be applied to the chip. */
   @Input() role: string = 'option';

@@ -12,6 +12,7 @@ import {
   SPACE,
 } from '@angular/cdk/keycodes';
 import {
+  ChangeDetectionStrategy,
   ChangeDetectorRef,
   Component,
   DebugElement,
@@ -1094,12 +1095,13 @@ describe('SbbChipList', () => {
     }
   </sbb-chip-list>`,
   imports: [SbbChipsModule],
+  changeDetection: ChangeDetectionStrategy.Eager,
 })
 class StandardChipList {
   name: string = 'Test';
   tabIndex: number = 0;
   chips = [0, 1, 2, 3, 4];
-  @ViewChild(SbbChipList) chipList: SbbChipList;
+  @ViewChild(SbbChipList) chipList!: SbbChipList;
 }
 
 @Component({
@@ -1115,6 +1117,7 @@ class StandardChipList {
     </sbb-form-field>
   `,
   imports: [SbbChipsModule, SbbFormFieldModule, SbbInputModule],
+  changeDetection: ChangeDetectionStrategy.Eager,
 })
 class FormFieldChipList {
   chips = ['Chip 0', 'Chip 1', 'Chip 2'];
@@ -1150,6 +1153,7 @@ class FormFieldChipList {
     </sbb-form-field>
   `,
   imports: [ReactiveFormsModule, SbbChipsModule, SbbFormFieldModule, SbbInputModule],
+  changeDetection: ChangeDetectionStrategy.Eager,
 })
 class InputChipList {
   foods: any[] = [
@@ -1166,7 +1170,7 @@ class InputChipList {
 
   separatorKeyCodes = [ENTER, SPACE];
   addOnBlur: boolean = true;
-  isRequired: boolean;
+  isRequired: boolean = false;
 
   add(event: SbbChipInputEvent): void {
     const value = (event.value || '').trim();
@@ -1191,8 +1195,8 @@ class InputChipList {
     }
   }
 
-  @ViewChild(SbbChipList) chipList: SbbChipList;
-  @ViewChildren(SbbChip) chips: QueryList<SbbChip>;
+  @ViewChild(SbbChipList) chipList!: SbbChipList;
+  @ViewChildren(SbbChip) chips!: QueryList<SbbChip>;
 }
 
 @Component({
@@ -1211,6 +1215,7 @@ class InputChipList {
     </form>
   `,
   imports: [SbbChipsModule, SbbFormFieldModule, SbbInputModule, ReactiveFormsModule, FormsModule],
+  changeDetection: ChangeDetectionStrategy.Eager,
 })
 class ChipListWithFormErrorMessages {
   foods: any[] = [
@@ -1218,9 +1223,9 @@ class ChipListWithFormErrorMessages {
     { value: 1, viewValue: 'Pizza' },
     { value: 2, viewValue: 'Pasta' },
   ];
-  @ViewChildren(SbbChip) chips: QueryList<SbbChip>;
+  @ViewChildren(SbbChip) chips!: QueryList<SbbChip>;
 
-  @ViewChild('form') form: NgForm;
+  @ViewChild('form') form!: NgForm;
   formControl = new FormControl('', Validators.required);
 }
 
@@ -1238,6 +1243,7 @@ class ChipListWithFormErrorMessages {
     ]),
   ],
   imports: [SbbChipsModule],
+  changeDetection: ChangeDetectionStrategy.Eager,
 })
 class StandardChipListWithAnimations {
   numbers = [0, 1, 2, 3, 4];
@@ -1265,6 +1271,7 @@ class StandardChipListWithAnimations {
     </sbb-form-field>
   `,
   imports: [SbbChipsModule, SbbFormFieldModule, SbbInputModule],
+  changeDetection: ChangeDetectionStrategy.Eager,
 })
 class ChipListWithRemove {
   chips = [0, 1, 2, 3, 4];
@@ -1286,10 +1293,11 @@ class ChipListWithRemove {
     </form>
   `,
   imports: [SbbChipsModule, SbbFormFieldModule, ReactiveFormsModule],
+  changeDetection: ChangeDetectionStrategy.Eager,
 })
 class ChipListInsideDynamicFormGroup {
-  @ViewChild(SbbChipList) chipList: SbbChipList;
-  form: FormGroup;
+  @ViewChild(SbbChipList) chipList!: SbbChipList;
+  form!: FormGroup;
   private readonly _changeDetectorRef = inject(ChangeDetectorRef);
   private _formBuilder = inject(FormBuilder);
 
@@ -1339,12 +1347,13 @@ class ChipListInsideDynamicFormGroup {
     SbbInputModule,
     ReactiveFormsModule,
   ],
+  changeDetection: ChangeDetectionStrategy.Eager,
 })
 class ChipsAutocomplete {
   fruitInput = new FormControl('');
   selectedFruits = new FormControl<string[] | Set<string> | null>(['Lemon']);
   allFruits = ['Apple', 'Lemon', 'Lime', 'Orange', 'Strawberry'];
-  @ViewChild('trigger') trigger: SbbAutocompleteTrigger;
+  @ViewChild('trigger') trigger!: SbbAutocompleteTrigger;
 }
 
 @Component({
@@ -1380,6 +1389,7 @@ class ChipsAutocomplete {
     SbbInputModule,
     ReactiveFormsModule,
   ],
+  changeDetection: ChangeDetectionStrategy.Eager,
 })
 class ChipsAutocompleteCustomHandlers {
   selectedFruits = new FormControl(['Lemon']);

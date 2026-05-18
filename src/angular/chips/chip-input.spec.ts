@@ -1,5 +1,5 @@
 import { COMMA, ENTER, TAB } from '@angular/cdk/keycodes';
-import { Component, DebugElement, ViewChild } from '@angular/core';
+import { ChangeDetectionStrategy, Component, DebugElement, ViewChild } from '@angular/core';
 import { ComponentFixture, fakeAsync, TestBed, tick, waitForAsync } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
@@ -251,9 +251,10 @@ describe('SbbChipInput', () => {
     </sbb-form-field>
   `,
   imports: [SbbFormFieldModule, SbbChip, SbbChipInput, SbbChipList],
+  changeDetection: ChangeDetectionStrategy.Eager,
 })
 class TestChipInput {
-  @ViewChild(SbbChipList) chipListInstance: SbbChipList;
+  @ViewChild(SbbChipList) chipListInstance!: SbbChipList;
   addOnBlur = false;
   required = false;
   placeholder = '';
