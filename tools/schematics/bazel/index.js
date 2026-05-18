@@ -356,8 +356,8 @@ var FlexibleSassDependencyResolver = class {
 // tools/schematics/bazel/typescript-dependency-resolver.ts
 var import_core6 = require("@angular-devkit/core");
 var import_schematics3 = require("@angular-devkit/schematics");
-var schematicsTs = __toESM(require("@schematics/angular/third_party/github.com/Microsoft/TypeScript/lib/typescript"));
 var import_ast_utils = require("@schematics/angular/utility/ast-utils");
+var schematicsTs = __toESM(require("typescript"));
 var TypeScriptDependencyResolverBase = class {
   constructor(_config) {
     this._config = _config;

@@ -59,6 +59,7 @@
     "@angular/cdk": "catalog:",
     "@angular/common": "catalog:",
     "@angular/compiler": "catalog:",
+    "@angular/compiler-cli": "catalog:",
     "@angular/core": "catalog:",
     "@angular/elements": "catalog:",
     "@angular/forms": "catalog:",
@@ -67,11 +68,11 @@
     "maplibre-gl": "4.7.1",
     "rxjs": "catalog:",
     "tslib": "2.7.0",
-    "zone.js": "~0.15.0"
+    "typescript": "6.0.2",
+    "zone.js": "~0.16.0"
   },
   "devDependencies": {
     "@angular/cli": "catalog:",
-    "@angular/compiler-cli": "catalog:",
     "@angular/localize": "catalog:",
     "@angular/ng-dev": "https://github.com/angular/dev-infra-private-ng-dev-builds.git#501dbe6e99b17bf41f24217e81729adf984e50dc",
     "@angular/platform-server": "catalog:",
@@ -157,7 +158,6 @@
     "tslint": "6.1.3",
     "tslint-config-prettier": "1.18.0",
     "tslint-consistent-codestyle": "1.16.0",
-    "typescript": "6.0.2",
     "yargs": "18.0.0"
   },
   "pnpm": {

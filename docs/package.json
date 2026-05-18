@@ -58,7 +58,6 @@
     "karma-coverage": "~2.2.0",
     "karma-firefox-launcher": "^2.1.0",
     "karma-jasmine": "^4.0.1",
-    "karma-jasmine-html-reporter": "^2.0.0",
     "npm-run-all2": "^5.0.0",
     "sass": "1.91.0",
     "ts-node": "10.9.2",
