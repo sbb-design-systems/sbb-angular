@@ -80,7 +80,7 @@ export class SbbOption<T = any>
   }
 
   /** The form value of the option. */
-  @Input() value: T;
+  @Input() value!: T;
 
   /** The unique ID of the option. */
   @Input() id: string = inject(_IdGenerator).getId('sbb-option-');

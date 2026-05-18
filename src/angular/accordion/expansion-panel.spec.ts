@@ -1,5 +1,5 @@
 import { ENTER, SPACE } from '@angular/cdk/keycodes';
-import { Component, ViewChild } from '@angular/core';
+import { ChangeDetectionStrategy, Component, ViewChild } from '@angular/core';
 import {
   ComponentFixture,
   fakeAsync,
@@ -500,6 +500,7 @@ describe('SbbExpansionPanel', () => {
     </sbb-expansion-panel>
   `,
   imports: [SbbAccordionModule, SbbIconTestingModule],
+  changeDetection: ChangeDetectionStrategy.Eager,
 })
 class PanelWithContent {
   expanded = false;
@@ -507,7 +508,7 @@ class PanelWithContent {
   disabled = false;
   openCallback = jasmine.createSpy('openCallback');
   closeCallback = jasmine.createSpy('closeCallback');
-  @ViewChild(SbbExpansionPanel) panel: SbbExpansionPanel;
+  @ViewChild(SbbExpansionPanel) panel!: SbbExpansionPanel;
 }
 
 @Component({
@@ -519,11 +520,12 @@ class PanelWithContent {
     }
   `,
   imports: [SbbAccordionModule, SbbIconTestingModule],
+  changeDetection: ChangeDetectionStrategy.Eager,
 })
 class PanelWithContentInNgIf {
   expansionShown = true;
   @ViewChild(SbbExpansionPanel)
-  panel: SbbExpansionPanel;
+  panel!: SbbExpansionPanel;
 }
 
 @Component({
@@ -538,6 +540,7 @@ class PanelWithContentInNgIf {
     </sbb-expansion-panel>
   `,
   imports: [SbbAccordionModule, SbbIconTestingModule],
+  changeDetection: ChangeDetectionStrategy.Eager,
 })
 class LazyPanelWithContent {
   expanded = false;
@@ -554,6 +557,7 @@ class LazyPanelWithContent {
     </sbb-expansion-panel>
   `,
   imports: [SbbAccordionModule, SbbIconTestingModule],
+  changeDetection: ChangeDetectionStrategy.Eager,
 })
 class LazyPanelOpenOnLoad {}
 
@@ -564,6 +568,7 @@ class LazyPanelOpenOnLoad {}
     </sbb-expansion-panel>
   `,
   imports: [SbbAccordionModule, SbbIconTestingModule],
+  changeDetection: ChangeDetectionStrategy.Eager,
 })
 class PanelWithTwoWayBinding {
   expanded = false;
@@ -574,6 +579,7 @@ class PanelWithTwoWayBinding {
     <sbb-expansion-panel-header tabindex="7">Panel Title</sbb-expansion-panel-header>
   </sbb-expansion-panel>`,
   imports: [SbbAccordionModule, SbbIconTestingModule],
+  changeDetection: ChangeDetectionStrategy.Eager,
 })
 class PanelWithHeaderTabindex {}
 
@@ -587,6 +593,7 @@ class PanelWithHeaderTabindex {}
     </sbb-expansion-panel>
   `,
   imports: [SbbAccordionModule, SbbIconTestingModule],
+  changeDetection: ChangeDetectionStrategy.Eager,
 })
 class NestedLazyPanelWithContent {
   parentExpanded = false;

@@ -13,7 +13,7 @@ export class _ErrorStateTracker {
   errorState: boolean = false;
 
   /** User-defined matcher for the error state. */
-  matcher: SbbErrorStateMatcher;
+  matcher!: SbbErrorStateMatcher;
 
   constructor(
     private _defaultMatcher: SbbErrorStateMatcher | null,

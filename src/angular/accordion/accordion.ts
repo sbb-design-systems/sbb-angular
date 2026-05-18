@@ -28,14 +28,14 @@ import { SbbExpansionPanelHeader } from './expansion-panel-header';
   },
 })
 export class SbbAccordion extends CdkAccordion implements AfterContentInit, OnDestroy {
-  private _keyManager: FocusKeyManager<SbbExpansionPanelHeader>;
+  private _keyManager!: FocusKeyManager<SbbExpansionPanelHeader>;
 
   /** Headers belonging to this accordion. */
   private _ownHeaders = new QueryList<SbbExpansionPanelHeader>();
 
   /** All headers inside the accordion. Includes headers inside nested accordions. */
   @ContentChildren(SbbExpansionPanelHeader, { descendants: true })
-  _headers: QueryList<SbbExpansionPanelHeader>;
+  _headers!: QueryList<SbbExpansionPanelHeader>;
 
   /** Whether the expansion indicator should be hidden. */
   @Input({ transform: booleanAttribute })

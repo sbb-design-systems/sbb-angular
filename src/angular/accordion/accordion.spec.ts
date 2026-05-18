@@ -1,6 +1,12 @@
 import { FocusMonitor } from '@angular/cdk/a11y';
 import { DOWN_ARROW, END, HOME, UP_ARROW } from '@angular/cdk/keycodes';
-import { Component, QueryList, ViewChild, ViewChildren } from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  Component,
+  QueryList,
+  ViewChild,
+  ViewChildren,
+} from '@angular/core';
 import { inject, TestBed, waitForAsync } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 import {
@@ -296,9 +302,9 @@ describe('AccordionDirective', () => {
   imports: [SbbAccordionModule],
 })
 class SetOfItems {
-  @ViewChild(SbbAccordion) accordion: SbbAccordion;
-  @ViewChildren(SbbExpansionPanel) panels: QueryList<SbbExpansionPanel>;
-  @ViewChildren(SbbExpansionPanelHeader) headers: QueryList<SbbExpansionPanelHeader>;
+  @ViewChild(SbbAccordion) accordion!: SbbAccordion;
+  @ViewChildren(SbbExpansionPanel) panels!: QueryList<SbbExpansionPanel>;
+  @ViewChildren(SbbExpansionPanelHeader) headers!: QueryList<SbbExpansionPanelHeader>;
 
   multi: boolean = false;
 }
@@ -323,9 +329,9 @@ class SetOfItems {
   imports: [SbbAccordionModule],
 })
 class NestedAccordions {
-  @ViewChildren(SbbExpansionPanelHeader) headers: QueryList<SbbExpansionPanelHeader>;
-  @ViewChild('secondOuterHeader') secondOuterHeader: SbbExpansionPanelHeader;
-  @ViewChild('firstInnerHeader') firstInnerHeader: SbbExpansionPanelHeader;
+  @ViewChildren(SbbExpansionPanelHeader) headers!: QueryList<SbbExpansionPanelHeader>;
+  @ViewChild('secondOuterHeader') secondOuterHeader!: SbbExpansionPanelHeader;
+  @ViewChild('firstInnerHeader') firstInnerHeader!: SbbExpansionPanelHeader;
 }
 
 @Component({
@@ -343,8 +349,8 @@ class NestedAccordions {
   imports: [SbbAccordionModule],
 })
 class NestedPanel {
-  @ViewChild('outerPanel') outerPanel: SbbExpansionPanel;
-  @ViewChild('innerPanel') innerPanel: SbbExpansionPanel;
+  @ViewChild('outerPanel') outerPanel!: SbbExpansionPanel;
+  @ViewChild('innerPanel') innerPanel!: SbbExpansionPanel;
 }
 
 @Component({
@@ -357,6 +363,7 @@ class NestedPanel {
     </sbb-accordion>
   `,
   imports: [SbbAccordionModule],
+  changeDetection: ChangeDetectionStrategy.Eager,
 })
 class AccordionWithHideToggle {
   hideToggle = false;

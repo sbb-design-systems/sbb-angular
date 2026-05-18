@@ -58,7 +58,7 @@ export const SBB_OPTGROUP = new InjectionToken<SbbOptgroup>('SbbOptgroup');
 })
 export class SbbOptgroup {
   /** Label for the option group. */
-  @Input() label: string;
+  @Input() label!: string;
 
   /** Whether the group is disabled. */
   @Input({ transform: booleanAttribute }) disabled: boolean = false;
