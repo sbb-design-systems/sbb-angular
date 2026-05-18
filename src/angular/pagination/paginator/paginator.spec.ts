@@ -1,4 +1,4 @@
-import { Component, Provider, Type, ViewChild } from '@angular/core';
+import { ChangeDetectionStrategy, Component, Provider, Type, ViewChild } from '@angular/core';
 import { ComponentFixture, fakeAsync, TestBed, tick } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
@@ -25,15 +25,16 @@ import {
     </sbb-paginator>
   `,
   imports: [SbbPaginationModule],
+  changeDetection: ChangeDetectionStrategy.Eager,
 })
 class SbbPaginatorTestComponent {
   pageIndex = 0;
   pageSize = 10;
   length = 100;
-  disabled: boolean;
+  disabled: boolean = false;
   pageEvent = jasmine.createSpy('page event');
 
-  @ViewChild(SbbPaginator) paginator: SbbPaginator;
+  @ViewChild(SbbPaginator) paginator!: SbbPaginator;
 }
 
 @Component({
@@ -47,7 +48,7 @@ class SbbPaginatorTestComponent {
 class SbbPaginatorInitializedTestComponent {
   pageEvent = jasmine.createSpy('page event');
 
-  @ViewChild(SbbPaginator) paginator: SbbPaginator;
+  @ViewChild(SbbPaginator) paginator!: SbbPaginator;
 }
 
 @Component({
@@ -55,7 +56,7 @@ class SbbPaginatorInitializedTestComponent {
   imports: [SbbPaginationModule],
 })
 class SbbPaginatorWithoutInputsTestComponent {
-  @ViewChild(SbbPaginator) paginator: SbbPaginator;
+  @ViewChild(SbbPaginator) paginator!: SbbPaginator;
 }
 
 @Component({
@@ -63,7 +64,7 @@ class SbbPaginatorWithoutInputsTestComponent {
   imports: [SbbPaginationModule],
 })
 class SbbPaginatorWithStringValuesTestComponent {
-  @ViewChild(SbbPaginator) paginator: SbbPaginator;
+  @ViewChild(SbbPaginator) paginator!: SbbPaginator;
 }
 
 describe('SbbPaginator', () => {

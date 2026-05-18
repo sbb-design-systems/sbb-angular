@@ -25,7 +25,7 @@ import { SbbNavigation, SbbNavigationPageChangeEvent } from './navigation';
   imports: [SbbPaginationModule, SbbButtonModule, FormsModule],
 })
 export class NavigationTestComponent {
-  @ViewChild('navigation', { static: true }) navigation: SbbNavigation;
+  @ViewChild('navigation', { static: true }) navigation!: SbbNavigation;
 
   newPage = { title: 'paginationTest' };
 
