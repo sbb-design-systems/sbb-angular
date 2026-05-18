@@ -10,7 +10,7 @@ const MAX_TIMEOUT = Math.pow(2, 31) - 1;
 /** Reference to a notification toast dispatched from the notification toast service. */
 export class SbbNotificationToastRef<T> {
   /** The instance of the component making up the content of the notification toast. */
-  instance: T;
+  instance!: T;
 
   /**
    * The instance of the component making up the content of the notification toast.

@@ -37,7 +37,7 @@ export abstract class SbbNotificationToastContainerBase
   private _destroyed = false;
 
   /** The portal outlet inside of this container into which the notification toast content will be loaded. */
-  @ViewChild(CdkPortalOutlet, { static: true }) _portalOutlet: CdkPortalOutlet;
+  @ViewChild(CdkPortalOutlet, { static: true }) _portalOutlet!: CdkPortalOutlet;
 
   /** Subject for notifying that the notification toast has exited from view. */
   readonly _onExit: Subject<void> = new Subject<void>();
