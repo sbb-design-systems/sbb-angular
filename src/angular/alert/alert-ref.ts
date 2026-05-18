@@ -43,7 +43,7 @@ export class SbbAlertRefConnector implements SbbAlertConfig {
  */
 export class SbbAlertRef {
   /** The instance of the component making up the content of the alert. */
-  instance: EmbeddedViewRef<any>;
+  instance!: EmbeddedViewRef<any>;
 
   // noinspection JSUnusedGlobalSymbols
   constructor(

@@ -1,4 +1,4 @@
-import { Component, DebugElement, inject } from '@angular/core';
+import { ChangeDetectionStrategy, Component, DebugElement, inject } from '@angular/core';
 import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
@@ -300,9 +300,10 @@ describe('SbbAlertOutlet', () => {
   selector: 'sbb-alert-simple',
   template: `<sbb-alert [svgIcon]="icon" (dismissed)="dismissed()">TEST</sbb-alert>`,
   imports: [RouterTestingModule, SbbIconTestingModule, SbbAlertModule],
+  changeDetection: ChangeDetectionStrategy.Eager,
 })
 export class AlertSimple {
-  icon: string;
+  icon!: string;
   dismissed() {}
 }
 
