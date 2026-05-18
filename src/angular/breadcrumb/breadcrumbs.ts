@@ -48,7 +48,7 @@ export class SbbBreadcrumbs {
   _labelExpand: string = $localize`:Button with three dots to show all breadcrumb levels@@sbbBreadcrumbExpand:Show entire path`;
 
   /** List of all user defined SbbBreadcrumb entries. */
-  @ContentChildren(SbbBreadcrumb) levels: QueryList<SbbBreadcrumb>;
+  @ContentChildren(SbbBreadcrumb) levels!: QueryList<SbbBreadcrumb>;
 
   private readonly _changeDetectorRef = inject(ChangeDetectorRef);
 

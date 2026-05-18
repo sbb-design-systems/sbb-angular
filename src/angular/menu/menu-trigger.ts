@@ -133,7 +133,7 @@ export class SbbMenuTrigger
   private _changeDetectorRef = inject(ChangeDetectorRef);
   private _ngZone = inject(NgZone);
 
-  private _portal: TemplatePortal;
+  private _portal!: TemplatePortal;
   private _overlayRef: OverlayRef | null = null;
   private _menuOpen: boolean = false;
   private _breakpointSubscription = Subscription.EMPTY;
@@ -184,7 +184,7 @@ export class SbbMenuTrigger
       menu.overlapTrigger = true;
     }
   }
-  private _menu: SbbMenuPanel | null;
+  private _menu: SbbMenuPanel | null = null;
 
   /** Inits the menu for the different trigger types. Method is intentionally placed after corresponding inputs. */
   private _setMenu(menu: SbbMenuPanel | null) {
@@ -228,7 +228,7 @@ export class SbbMenuTrigger
   @Output() readonly menuClosed: EventEmitter<void> = new EventEmitter<void>();
 
   @ContentChild(SbbMenuDynamicTrigger, { read: TemplateRef })
-  _triggerContent: TemplateRef<any>;
+  _triggerContent!: TemplateRef<any>;
 
   private _scalingFactor: number = 1;
 

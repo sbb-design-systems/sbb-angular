@@ -117,17 +117,17 @@ export class SbbMenu implements AfterContentInit, SbbMenuPanel<SbbMenuItem>, OnI
   private _changeDetectorRef = inject(ChangeDetectorRef);
   private _injector = inject(Injector);
 
-  private _keyManager: FocusKeyManager<SbbMenuItem>;
+  private _keyManager!: FocusKeyManager<SbbMenuItem>;
   private _xPosition: SbbMenuPositionX = this._defaultOptions.xPosition;
   private _yPosition: SbbMenuPositionY = this._defaultOptions.yPosition;
   private _firstItemFocusRef?: AfterRenderRef;
   private _exitFallbackTimeout: ReturnType<typeof setTimeout> | undefined;
-  private _previousElevation: string;
+  private _previousElevation!: string;
   private _elevationPrefix: string = 'sbb-elevation-z';
   private _baseElevation: number = 4;
 
   /** All items inside the menu. Includes items nested inside another menu. */
-  @ContentChildren(SbbMenuItem, { descendants: true }) _allItems: QueryList<SbbMenuItem>;
+  @ContentChildren(SbbMenuItem, { descendants: true }) _allItems!: QueryList<SbbMenuItem>;
 
   /** Only the direct descendant menu items. */
   _directDescendantItems: QueryList<SbbMenuItem> = new QueryList<SbbMenuItem>();
@@ -154,13 +154,13 @@ export class SbbMenu implements AfterContentInit, SbbMenuPanel<SbbMenuItem>, OnI
   @Input() backdropClass: string = this._defaultOptions.backdropClass;
 
   /** aria-label for the menu panel. */
-  @Input('aria-label') ariaLabel: string;
+  @Input('aria-label') ariaLabel!: string;
 
   /** aria-labelledby for the menu panel. */
-  @Input('aria-labelledby') ariaLabelledby: string;
+  @Input('aria-labelledby') ariaLabelledby!: string;
 
   /** aria-describedby for the menu panel. */
-  @Input('aria-describedby') ariaDescribedby: string;
+  @Input('aria-describedby') ariaDescribedby!: string;
 
   /** Position of the menu in the X axis. */
   @Input()
@@ -193,13 +193,13 @@ export class SbbMenu implements AfterContentInit, SbbMenuPanel<SbbMenuItem>, OnI
   }
 
   /** @docs-private */
-  @ViewChild(TemplateRef) templateRef: TemplateRef<any>;
+  @ViewChild(TemplateRef) templateRef!: TemplateRef<any>;
 
   /**
    * Menu content that will be rendered lazily.
    * @docs-private
    */
-  @ContentChild(SBB_MENU_CONTENT) lazyContent: SbbMenuContent;
+  @ContentChild(SBB_MENU_CONTENT) lazyContent!: SbbMenuContent;
 
   /** Whether the menu should overlap its trigger. */
   @Input({ transform: booleanAttribute })
@@ -238,7 +238,7 @@ export class SbbMenu implements AfterContentInit, SbbMenuPanel<SbbMenuItem>, OnI
 
     this._classList = newClassList;
   }
-  private _previousPanelClass: string;
+  private _previousPanelClass!: string;
 
   get triggerContext() {
     return this._triggerContext;
@@ -250,7 +250,7 @@ export class SbbMenu implements AfterContentInit, SbbMenuPanel<SbbMenuItem>, OnI
     this._classList[`sbb-menu-panel-type-${value.type}`] = true;
     this._triggerContext = value;
   }
-  private _triggerContext: SbbMenuTriggerContext;
+  private _triggerContext!: SbbMenuTriggerContext;
 
   /** Event emitted when the menu is closed. */
   @Output()
