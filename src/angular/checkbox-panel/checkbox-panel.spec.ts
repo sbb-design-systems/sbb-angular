@@ -1,4 +1,4 @@
-import { Component, QueryList, ViewChildren } from '@angular/core';
+import { ChangeDetectionStrategy, Component, QueryList, ViewChildren } from '@angular/core';
 import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 import { FormControl, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { By } from '@angular/platform-browser';
@@ -25,11 +25,12 @@ import {
     </sbb-checkbox-panel>
   `,
   imports: [SbbCheckboxPanelModule, FormsModule],
+  changeDetection: ChangeDetectionStrategy.Eager,
 })
 class ModelOptionSelectionMultipleTest {
   checkValue1 = false;
   checkValue2 = false;
-  @ViewChildren(SbbCheckboxPanel) optionSelections: QueryList<SbbCheckboxPanel>;
+  @ViewChildren(SbbCheckboxPanel) optionSelections!: QueryList<SbbCheckboxPanel>;
 }
 
 @Component({
