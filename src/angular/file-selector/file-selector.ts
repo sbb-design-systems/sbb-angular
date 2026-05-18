@@ -86,10 +86,10 @@ export class SbbFileSelector implements ControlValueAccessor, SbbFileSelectorOpt
   /** Event emitted to a change on file selector component (for example the uploading of files). */
   @Output() fileChanged: EventEmitter<File[]> = new EventEmitter<File[]>();
   /** @docs-private */
-  @ViewChild('fileInput', { static: true }) fileInput: ElementRef<HTMLInputElement>;
+  @ViewChild('fileInput', { static: true }) fileInput!: ElementRef<HTMLInputElement>;
 
   /** List of files uploaded. */
-  filesList: File[];
+  filesList!: File[];
 
   /** Property that listens changes on file selector. */
   _onChange: (_: any) => void = (_) => {};

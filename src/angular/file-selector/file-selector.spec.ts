@@ -1,4 +1,4 @@
-import { ChangeDetectorRef, Component } from '@angular/core';
+import { ChangeDetectionStrategy, ChangeDetectorRef, Component } from '@angular/core';
 import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 import { FormsModule } from '@angular/forms';
 import { By } from '@angular/platform-browser';
@@ -89,6 +89,7 @@ const testFileList: Partial<File>[] = [
     ></sbb-file-selector>
   `,
   imports: [SbbFileSelectorModule],
+  changeDetection: ChangeDetectionStrategy.Eager,
 })
 class FileSelectorTestComponent {
   filesList1: File[] = [];
