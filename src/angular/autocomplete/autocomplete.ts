@@ -100,7 +100,7 @@ export class SbbAutocomplete implements AfterContentInit, OnDestroy {
   private _activeOptionChanges = Subscription.EMPTY;
 
   /** Manages active item in option list based on key events. */
-  _keyManager: ActiveDescendantKeyManager<SbbOption>;
+  _keyManager!: ActiveDescendantKeyManager<SbbOption>;
 
   /** Whether the autocomplete panel should be visible, depending on option length. */
   get showPanel(): boolean {
@@ -119,26 +119,26 @@ export class SbbAutocomplete implements AfterContentInit, OnDestroy {
   // Notably, another component may trigger `focus` on the autocomplete-trigger.
 
   /** @docs-private */
-  @ViewChild(TemplateRef, { static: true }) template: TemplateRef<any>;
+  @ViewChild(TemplateRef, { static: true }) template!: TemplateRef<any>;
 
   /** Element for the panel containing the autocomplete options. */
-  @ViewChild('panel') panel: ElementRef;
+  @ViewChild('panel') panel!: ElementRef;
 
   /** All of the defined select options. */
-  @ContentChildren(SbbOption, { descendants: true }) options: QueryList<SbbOption>;
+  @ContentChildren(SbbOption, { descendants: true }) options!: QueryList<SbbOption>;
 
   /** All of the defined groups of options. */
-  @ContentChildren(SbbOptgroup, { descendants: true }) optionGroups: QueryList<SbbOptgroup>;
+  @ContentChildren(SbbOptgroup, { descendants: true }) optionGroups!: QueryList<SbbOptgroup>;
 
   /** All of the defined option hints. */
   @ContentChildren(SbbOptionHint, { descendants: true })
-  hints: QueryList<SbbOptionHint>;
+  hints!: QueryList<SbbOptionHint>;
 
   /** Aria label of the autocomplete. If not specified, the placeholder will be used as label. */
-  @Input('aria-label') ariaLabel: string;
+  @Input('aria-label') ariaLabel!: string;
 
   /** Input that can be used to specify the `aria-labelledby` attribute. */
-  @Input('aria-labelledby') ariaLabelledby: string;
+  @Input('aria-labelledby') ariaLabelledby!: string;
 
   /** Function that maps an option's control value to its display value in the trigger. */
   @Input() displayWith: ((value: any) => string) | null = null;
@@ -173,7 +173,7 @@ export class SbbAutocomplete implements AfterContentInit, OnDestroy {
    * Specify the width of the autocomplete panel.  Can be any CSS sizing value, otherwise it will
    * match the width of its host.
    */
-  @Input() panelWidth: string | number;
+  @Input() panelWidth!: string | number;
 
   /** Event that is emitted whenever an option from the list is selected. */
   @Output()
@@ -200,7 +200,7 @@ export class SbbAutocomplete implements AfterContentInit, OnDestroy {
     this._classList = value;
     this._elementRef.nativeElement.className = '';
   }
-  _classList: string | string[];
+  _classList!: string | string[];
 
   /** If set to true, the panel is also displayed if there are no options but hints. */
   @Input({ transform: booleanAttribute }) showHintIfNoOptions: boolean = false;

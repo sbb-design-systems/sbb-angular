@@ -98,6 +98,7 @@ const SIMPLE_AUTOCOMPLETE_TEMPLATE = `
     SbbOptionModule,
     ReactiveFormsModule,
   ],
+  changeDetection: ChangeDetectionStrategy.Eager,
 })
 class SimpleAutocomplete implements OnDestroy {
   numberCtrl = new FormControl<{ name: string; code: string; height?: number } | string | null>(
@@ -106,20 +107,20 @@ class SimpleAutocomplete implements OnDestroy {
   filteredNumbers: any[];
   valueSub: Subscription;
   position: 'auto' | 'above' | 'below' = 'auto';
-  width: number;
+  width!: number;
   autocompleteDisabled = false;
   hasLabel = true;
   requireSelection = false;
-  ariaLabel: string;
-  ariaLabelledby: string;
+  ariaLabel!: string;
+  ariaLabelledby!: string;
   panelClass = 'class-one class-two';
   openedSpy = jasmine.createSpy('autocomplete opened spy');
   closedSpy = jasmine.createSpy('autocomplete closed spy');
 
-  @ViewChild(SbbAutocompleteTrigger, { static: true }) trigger: SbbAutocompleteTrigger;
-  @ViewChild(SbbAutocomplete, { static: true }) panel: SbbAutocomplete;
-  @ViewChild(SbbFormField) formField: SbbFormField;
-  @ViewChildren(SbbOption) options: QueryList<SbbOption>;
+  @ViewChild(SbbAutocompleteTrigger, { static: true }) trigger!: SbbAutocompleteTrigger;
+  @ViewChild(SbbAutocomplete, { static: true }) panel!: SbbAutocomplete;
+  @ViewChild(SbbFormField) formField!: SbbFormField;
+  @ViewChildren(SbbOption) options!: QueryList<SbbOption>;
 
   numbers: { code: string; name: string; height?: number; disabled?: boolean }[] = [
     { code: '1', name: 'Eins', height: 48 },
@@ -163,6 +164,7 @@ class SimpleAutocomplete implements OnDestroy {
     SbbOptionModule,
     ReactiveFormsModule,
   ],
+  changeDetection: ChangeDetectionStrategy.Eager,
 })
 class SimpleAutocompleteShadowDom extends SimpleAutocomplete {}
 
@@ -198,8 +200,8 @@ class NgIfAutocomplete {
   options = ['One', 'Two', 'Three'];
 
   @ViewChild(SbbAutocompleteTrigger)
-  trigger: SbbAutocompleteTrigger;
-  @ViewChildren(SbbOption) sbbOptions: QueryList<SbbOption>;
+  trigger!: SbbAutocompleteTrigger;
+  @ViewChildren(SbbOption) sbbOptions!: QueryList<SbbOption>;
 
   constructor() {
     this.filteredOptions = this.optionCtrl.valueChanges.pipe(
@@ -277,7 +279,7 @@ class AutocompleteWithoutForms {
 })
 class AutocompleteWithNgModel {
   filteredNumbers: any[];
-  selectedNumber: string;
+  selectedNumber!: string;
   numbers = ['Eins', 'Zwei', 'Drei'];
 
   constructor() {
@@ -312,7 +314,7 @@ class AutocompleteWithNgModel {
   ],
 })
 class AutocompleteWithNumbers {
-  selectedNumber: number;
+  selectedNumber!: number;
   numbers = [0, 1, 2];
 }
 
@@ -333,8 +335,8 @@ class AutocompleteWithNumbers {
 })
 class AutocompleteWithOnPushDelay implements OnInit {
   @ViewChild(SbbAutocompleteTrigger, { static: true })
-  trigger: SbbAutocompleteTrigger;
-  options: string[];
+  trigger!: SbbAutocompleteTrigger;
+  options!: string[];
 
   ngOnInit() {
     setTimeout(() => {
@@ -362,8 +364,8 @@ class AutocompleteWithNativeInput {
   filteredOptions: Observable<any>;
   options = ['En', 'To', 'Tre', 'Fire', 'Fem'];
 
-  @ViewChild(SbbAutocompleteTrigger) trigger: SbbAutocompleteTrigger;
-  @ViewChildren(SbbOption) sbbOptions: QueryList<SbbOption>;
+  @ViewChild(SbbAutocompleteTrigger) trigger!: SbbAutocompleteTrigger;
+  @ViewChildren(SbbOption) sbbOptions!: QueryList<SbbOption>;
 
   constructor() {
     this.filteredOptions = this.optionCtrl.valueChanges.pipe(
@@ -382,7 +384,7 @@ class AutocompleteWithNativeInput {
   imports: [SbbAutocompleteModule, ReactiveFormsModule],
 })
 class AutocompleteWithoutPanel {
-  @ViewChild(SbbAutocompleteTrigger) trigger: SbbAutocompleteTrigger;
+  @ViewChild(SbbAutocompleteTrigger) trigger!: SbbAutocompleteTrigger;
   control = new FormControl('');
 }
 
@@ -413,8 +415,8 @@ class AutocompleteWithoutPanel {
   ],
 })
 class AutocompleteWithGroups {
-  @ViewChild(SbbAutocompleteTrigger) trigger: SbbAutocompleteTrigger;
-  selectedState: string;
+  @ViewChild(SbbAutocompleteTrigger) trigger!: SbbAutocompleteTrigger;
+  selectedState!: string;
   stateGroups = [
     {
       title: 'One',
@@ -482,16 +484,17 @@ class AutocompleteWithIndirectGroups extends AutocompleteWithGroups {}
     SbbOptionModule,
     FormsModule,
   ],
+  changeDetection: ChangeDetectionStrategy.Eager,
 })
 class AutocompleteWithSelectEvent {
-  selectedNumber: string;
+  selectedNumber!: string;
   numbers = ['Eins', 'Zwei', 'Drei'];
   optionSelected = jasmine.createSpy('optionSelected callback');
 
   @ViewChild(SbbAutocompleteTrigger)
-  trigger: SbbAutocompleteTrigger;
+  trigger!: SbbAutocompleteTrigger;
   @ViewChild(SbbAutocomplete)
-  autocomplete: SbbAutocomplete;
+  autocomplete!: SbbAutocomplete;
 }
 
 @Component({
@@ -500,6 +503,7 @@ class AutocompleteWithSelectEvent {
     <sbb-autocomplete #auto="sbbAutocomplete"></sbb-autocomplete>
   `,
   imports: [SbbAutocompleteModule, ReactiveFormsModule],
+  changeDetection: ChangeDetectionStrategy.Eager,
 })
 class PlainAutocompleteInputWithFormControl {
   formControl = new FormControl('');
@@ -524,9 +528,10 @@ class PlainAutocompleteInputWithFormControl {
     SbbOptionModule,
     FormsModule,
   ],
+  changeDetection: ChangeDetectionStrategy.Eager,
 })
 class AutocompleteWithNumberInputAndNgModel {
-  selectedValue: number;
+  selectedValue!: number;
   values = [1, 2, 3];
 }
 
@@ -565,11 +570,12 @@ class AutocompleteWithNumberInputAndNgModel {
     SbbOptionModule,
     FormsModule,
   ],
+  changeDetection: ChangeDetectionStrategy.Eager,
 })
 class AutocompleteWithDifferentOrigin {
-  @ViewChild(SbbAutocompleteTrigger) trigger: SbbAutocompleteTrigger;
-  @ViewChild(SbbAutocompleteOrigin) alternateOrigin: SbbAutocompleteOrigin;
-  selectedValue: string;
+  @ViewChild(SbbAutocompleteTrigger) trigger!: SbbAutocompleteTrigger;
+  @ViewChild(SbbAutocompleteOrigin) alternateOrigin!: SbbAutocompleteOrigin;
+  selectedValue!: string;
   values = ['one', 'two', 'three'];
   connectedTo?: SbbAutocompleteOrigin;
 }
@@ -580,9 +586,10 @@ class AutocompleteWithDifferentOrigin {
     <sbb-autocomplete #auto="sbbAutocomplete"></sbb-autocomplete>
   `,
   imports: [SbbAutocompleteModule, FormsModule],
+  changeDetection: ChangeDetectionStrategy.Eager,
 })
 class AutocompleteWithNativeAutocompleteAttribute {
-  value: string;
+  value!: string;
 }
 
 @Component({
@@ -604,14 +611,15 @@ class InputWithoutAutocompleteAndDisabled {}
     </sbb-autocomplete>
   `,
   imports: [SbbFormFieldModule, SbbInputModule, SbbAutocompleteModule, SbbOptionModule],
+  changeDetection: ChangeDetectionStrategy.Eager,
 })
 class AutocompleteWithActivatedEvent {
   states = ['California', 'West Virginia', 'Florida'];
   optionActivated = jasmine.createSpy('optionActivated callback');
 
-  @ViewChild(SbbAutocompleteTrigger) trigger: SbbAutocompleteTrigger;
-  @ViewChild(SbbAutocomplete) autocomplete: SbbAutocomplete;
-  @ViewChildren(SbbOption) options: QueryList<SbbOption>;
+  @ViewChild(SbbAutocompleteTrigger) trigger!: SbbAutocompleteTrigger;
+  @ViewChild(SbbAutocomplete) autocomplete!: SbbAutocomplete;
+  @ViewChildren(SbbOption) options!: QueryList<SbbOption>;
 }
 
 @Component({
@@ -643,6 +651,7 @@ class AutocompleteWithActivatedEvent {
     ReactiveFormsModule,
     OverlayModule,
   ],
+  changeDetection: ChangeDetectionStrategy.Eager,
 })
 class AutocompleteInsideAModal {
   foods = [
@@ -653,10 +662,10 @@ class AutocompleteInsideAModal {
 
   formControl = new FormControl();
 
-  @ViewChild(SbbAutocomplete) autocomplete: SbbAutocomplete;
-  @ViewChild(SbbAutocompleteTrigger) trigger: SbbAutocompleteTrigger;
-  @ViewChildren(SbbOption) options: QueryList<SbbOption>;
-  @ViewChild('modal') modal: ElementRef;
+  @ViewChild(SbbAutocomplete) autocomplete!: SbbAutocomplete;
+  @ViewChild(SbbAutocompleteTrigger) trigger!: SbbAutocompleteTrigger;
+  @ViewChildren(SbbOption) options!: QueryList<SbbOption>;
+  @ViewChild('modal') modal!: ElementRef;
 }
 
 @Component({
@@ -677,12 +686,13 @@ class AutocompleteInsideAModal {
     SbbOptionModule,
     FormsModule,
   ],
+  changeDetection: ChangeDetectionStrategy.Eager,
 })
 class AutocompleteLocaleNormalizer {
   @ViewChild(SbbAutocompleteTrigger, { static: true })
-  trigger: SbbAutocompleteTrigger;
+  trigger!: SbbAutocompleteTrigger;
 
-  value: string;
+  value!: string;
 
   options = ['Faröer', 'Français', 'Hur mår du?', 'Dobry wieczór!', 'Ćao'];
 
@@ -708,12 +718,13 @@ class AutocompleteLocaleNormalizer {
       }
     </sbb-autocomplete>`,
   imports: [SbbAutocompleteModule, SbbOptionModule],
+  changeDetection: ChangeDetectionStrategy.Eager,
 })
 class AutocompleteHint {
-  @ViewChild(SbbAutocompleteTrigger) trigger: SbbAutocompleteTrigger;
-  showOption: boolean;
-  showHint: boolean;
-  showHintIfNoOptions: boolean;
+  @ViewChild(SbbAutocompleteTrigger) trigger!: SbbAutocompleteTrigger;
+  showOption: boolean = false;
+  showHint: boolean = false;
+  showHintIfNoOptions: boolean = false;
 }
 
 describe('SbbAutocomplete', () => {
@@ -1682,14 +1693,6 @@ describe('SbbAutocomplete', () => {
         .toBe(true);
       expect(optionEls[0].classList).toContain('sbb-focused');
     });
-
-    it('should set the active item properly after filtering', fakeAsync(() => {
-      const componentInstance = fixture.componentInstance;
-
-      componentInstance.trigger._handleKeydown(downArrowEvent);
-      tick();
-      fixture.detectChanges();
-    }));
 
     it('should set the active item properly after filtering', () => {
       const componentInstance = fixture.componentInstance;
