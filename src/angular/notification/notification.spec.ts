@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { ComponentFixture, fakeAsync, flush, TestBed, waitForAsync } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
@@ -225,11 +225,12 @@ describe('SbbNotification', () => {
   template:
     '<sbb-notification [type]="type" [jumpMarks]="jumpMarks" (dismissed)="dismissed($event)" [readonly]="readonly">{{message}}</sbb-notification>',
   imports: [SbbNotificationModule, SbbIconModule],
+  changeDetection: ChangeDetectionStrategy.Eager,
 })
 export class NotificationMockComponent {
   message = 'Search';
   type: SbbNotificationType = 'success';
-  title: string;
+  title!: string;
   readonly = true;
   jumpMarks: any[] = [];
 

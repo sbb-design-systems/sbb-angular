@@ -103,7 +103,7 @@ export class SbbNotification extends _SbbNotificationMixinBase implements OnChan
    * The icon to be used for the notification.
    * Must be a valid svgIcon input for sbb-icon.
    */
-  @Input() svgIcon: string | null;
+  @Input() svgIcon: string | null = null;
 
   /** List of in page links displayed on the bottom of the notification */
   @Input() jumpMarks?: SbbJumpMark[];
