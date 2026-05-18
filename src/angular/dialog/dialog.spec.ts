@@ -2139,6 +2139,7 @@ class ComponentWithOnPushViewContainer {
     <dir-with-view-container></dir-with-view-container>
   }`,
   imports: [DirectiveWithViewContainer],
+  changeDetection: ChangeDetectionStrategy.Eager,
 })
 class ComponentWithChildViewContainer {
   showChildView = true;
@@ -2203,6 +2204,7 @@ class PizzaMsg {
     </sbb-dialog-actions>
   `,
   imports: [SbbDialogModule],
+  changeDetection: ChangeDetectionStrategy.Eager,
 })
 class ContentElementDialog {
   shownTitle: 'first' | 'second' | 'third' | 'all' = 'first';
