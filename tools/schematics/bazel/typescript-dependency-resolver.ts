@@ -1,7 +1,7 @@
 import { basename, dirname, join, Path, relative } from '@angular-devkit/core';
 import { DirEntry, FileEntry, SchematicsException, Tree } from '@angular-devkit/schematics';
-import * as schematicsTs from '@schematics/angular/third_party/github.com/Microsoft/TypeScript/lib/typescript';
 import { findNodes } from '@schematics/angular/utility/ast-utils';
+import * as schematicsTs from 'typescript';
 
 import { BazelModuleDetector } from './bazel-module-detector';
 import { NpmDependencyResolver } from './npm-dependency-resolver';
@@ -87,10 +87,7 @@ export abstract class TypeScriptDependencyResolverBase implements TypeScriptDepe
     return [
       ...findNodes(sourceFile, schematicsTs.SyntaxKind.ImportDeclaration, undefined, true),
       ...findNodes(sourceFile, schematicsTs.SyntaxKind.ExportDeclaration, undefined, true),
-    ].map(
-      (n: schematicsTs.ImportDeclaration | schematicsTs.ExportDeclaration) =>
-        n.moduleSpecifier?.getText().replace(/['"]/g, '') ?? '',
-    );
+    ].map((n) => n.moduleSpecifier?.getText().replace(/['"]/g, '') ?? '');
   }
 
   private _findDynamicImports(sourceFile: schematicsTs.SourceFile) {

@@ -109,17 +109,17 @@ export class SbbExpansionPanel
   })!;
 
   /** Content that will be rendered lazily. */
-  @ContentChild(SbbExpansionPanelContent) _lazyContent: SbbExpansionPanelContent;
+  @ContentChild(SbbExpansionPanelContent) _lazyContent!: SbbExpansionPanelContent;
 
   /** Element containing the panel's user-provided content. */
-  @ViewChild('body') _body: ElementRef<HTMLElement>;
+  @ViewChild('body') _body!: ElementRef<HTMLElement>;
 
   /** Element wrapping the panel body. */
   @ViewChild('bodyWrapper')
   protected _bodyWrapper: ElementRef<HTMLElement> | undefined;
 
   /** Portal holding the user's content. */
-  _portal: TemplatePortal;
+  _portal!: TemplatePortal;
 
   /** ID for the associated header element. Used for a11y labelling. */
   _headerId: string = inject(_IdGenerator).getId('sbb-expansion-panel-header-');

@@ -3,7 +3,7 @@ import { FilterSpecification, Map as MaplibreMap } from 'maplibre-gl';
 
 @Injectable()
 export class SbbMapLayerFilter {
-  private _map: MaplibreMap;
+  private _map!: MaplibreMap;
   private _knownLayerTypes = ['fill', 'fill-extrusion', 'line', 'symbol'];
   private _knownLvlLayerIds: string[] = [];
 

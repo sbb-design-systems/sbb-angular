@@ -27,8 +27,8 @@ export interface LightboxData {
 export class LightboxExample {
   lightbox = inject(SbbLightbox);
 
-  animal: string;
-  name: string;
+  animal!: string;
+  name!: string;
 
   open(): void {
     const lightboxRef = this.lightbox.open(LightboxExampleContent, {

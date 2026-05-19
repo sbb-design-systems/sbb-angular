@@ -1,5 +1,5 @@
 import { OverlayContainer } from '@angular/cdk/overlay';
-import { ChangeDetectorRef, Component, inject } from '@angular/core';
+import { ChangeDetectionStrategy, ChangeDetectorRef, Component, inject } from '@angular/core';
 import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
@@ -400,10 +400,11 @@ describe('SbbUsermenu with no connected menu', () => {
     </sbb-menu>
   `,
   imports: [SbbUsermenuModule, RouterTestingModule, SbbMenuModule],
+  changeDetection: ChangeDetectionStrategy.Eager,
 })
 class UsermenuWithDisplayNameAndUserNameTestComponent {
-  userName: string;
-  displayName: string;
+  userName!: string;
+  displayName!: string;
 
   private readonly _changeDetectorRef = inject(ChangeDetectorRef);
 
@@ -435,9 +436,10 @@ class UsermenuWithDisplayNameAndUserNameTestComponent {
     </sbb-menu>
   `,
   imports: [SbbUsermenuModule, SbbMenuModule],
+  changeDetection: ChangeDetectionStrategy.Eager,
 })
 class UsermenuWithOnlyDisplayNameTestComponent {
-  displayName: string;
+  displayName!: string;
 
   login() {
     this.displayName = 'Max Muster';
@@ -455,9 +457,10 @@ class UsermenuWithOnlyDisplayNameTestComponent {
     </sbb-menu>
   `,
   imports: [SbbUsermenuModule, SbbMenuModule],
+  changeDetection: ChangeDetectionStrategy.Eager,
 })
 class UsermenuWithOnlyUsernameTestComponent {
-  userName: string;
+  userName!: string;
 
   login() {
     this.userName = 'walter_14';
@@ -487,10 +490,11 @@ class UsermenuWithOnlyUsernameTestComponent {
     </sbb-menu>
   `,
   imports: [SbbUsermenuModule, SbbIconModule, SbbMenuModule],
+  changeDetection: ChangeDetectionStrategy.Eager,
 })
 class UsermenuWithCustomImageTestComponent {
-  userName: string;
-  displayName: string;
+  userName!: string;
+  displayName!: string;
 
   login() {
     this.userName = 'john_64';
@@ -501,9 +505,10 @@ class UsermenuWithCustomImageTestComponent {
 @Component({
   template: ` <sbb-usermenu [displayName]="displayName" (loginRequest)="login()"></sbb-usermenu> `,
   imports: [SbbUsermenuModule],
+  changeDetection: ChangeDetectionStrategy.Eager,
 })
 class UsermenuNoMenuTestComponent {
-  displayName: string;
+  displayName!: string;
 
   login() {
     this.displayName = 'John Scott';

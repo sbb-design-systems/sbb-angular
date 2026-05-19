@@ -68,7 +68,7 @@ export class SbbInput
   private _platform = inject(Platform);
   private _autofillMonitor = inject(AutofillMonitor);
   private _previousNativeValue: any;
-  private _inputValueAccessor: { value: any };
+  private _inputValueAccessor!: { value: any };
   private _signalBasedValueAccessor?: { value: WritableSignal<any> };
   private _errorStateTracker: _ErrorStateTracker;
   ngControl: NgControl = inject(NgControl, { optional: true, self: true })!;
@@ -136,13 +136,13 @@ export class SbbInput
    * Implemented as part of SbbFormFieldControl.
    * @docs-private
    */
-  @Input() placeholder: string;
+  @Input() placeholder!: string;
 
   /**
    * Name of the input.
    * @docs-private
    */
-  @Input() name: string;
+  @Input() name!: string;
 
   /**
    * Implemented as part of SbbFormFieldControl.
@@ -188,7 +188,7 @@ export class SbbInput
    * Implemented as part of SbbFormFieldControl.
    * @docs-private
    */
-  @Input('aria-describedby') userAriaDescribedBy: string;
+  @Input('aria-describedby') userAriaDescribedBy!: string;
 
   /**
    * Implemented as part of SbbFormFieldControl.
@@ -226,7 +226,7 @@ export class SbbInput
   @Input({
     transform: (value: unknown) => (value == null ? undefined : numberAttribute(value)),
   })
-  tabIndex: number;
+  tabIndex!: number;
 
   /** Whether the input is in an error state. */
   get errorState() {

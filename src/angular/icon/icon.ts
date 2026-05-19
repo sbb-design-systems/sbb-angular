@@ -140,7 +140,7 @@ export class SbbIcon implements OnInit, AfterViewChecked, OnDestroy {
       this._svgIcon = value;
     }
   }
-  private _svgIcon: string;
+  private _svgIcon!: string;
 
   /** Font set that the icon is a part of. */
   @Input()
@@ -155,7 +155,7 @@ export class SbbIcon implements OnInit, AfterViewChecked, OnDestroy {
       this._updateFontIconClasses();
     }
   }
-  private _fontSet: string;
+  private _fontSet!: string;
 
   /** Name of an icon within a font set. */
   @Input()
@@ -170,15 +170,15 @@ export class SbbIcon implements OnInit, AfterViewChecked, OnDestroy {
       this._updateFontIconClasses();
     }
   }
-  private _fontIcon: string;
+  private _fontIcon!: string;
 
   @Input() id: string = inject(_IdGenerator).getId('sbb-icon-');
 
   private _previousFontSetClass: string[] = [];
-  private _previousFontIconClass: string;
+  private _previousFontIconClass!: string;
 
-  _svgName: string | null;
-  _svgNamespace: string | null;
+  _svgName: string | null = null;
+  _svgNamespace: string | null = null;
 
   /** Keeps track of the current page path. */
   private _previousPath?: string;

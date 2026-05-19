@@ -1,12 +1,5 @@
 import { CdkPortal } from '@angular/cdk/portal';
-import {
-  Directive,
-  Inject,
-  InjectionToken,
-  Optional,
-  TemplateRef,
-  ViewContainerRef,
-} from '@angular/core';
+import { Directive, inject, InjectionToken } from '@angular/core';
 
 /**
  * Injection token that can be used to reference instances of `SbbTabLabel`. It serves as
@@ -27,11 +20,5 @@ export const SBB_TAB = new InjectionToken<any>('SBB_TAB');
   providers: [{ provide: SBB_TAB_LABEL, useExisting: SbbTabLabel }],
 })
 export class SbbTabLabel extends CdkPortal {
-  constructor(
-    templateRef: TemplateRef<any>,
-    viewContainerRef: ViewContainerRef,
-    @Inject(SBB_TAB) @Optional() public _closestTab: any,
-  ) {
-    super(templateRef, viewContainerRef);
-  }
+  _closestTab: any = inject(SBB_TAB, { optional: true });
 }

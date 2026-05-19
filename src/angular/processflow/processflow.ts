@@ -52,10 +52,10 @@ export class SbbStep extends CdkStep implements SbbErrorStateMatcher, AfterConte
   @ContentChild(SbbStepLabel) override stepLabel: SbbStepLabel = undefined!;
 
   /** Content that will be rendered lazily. */
-  @ContentChild(SbbStepContent, { static: false }) _lazyContent: SbbStepContent;
+  @ContentChild(SbbStepContent, { static: false }) _lazyContent!: SbbStepContent;
 
   /** Currently-attached portal containing the lazy content. */
-  _portal: TemplatePortal;
+  _portal!: TemplatePortal;
 
   ngAfterContentInit() {
     this._isSelected = this._stepper.steps.changes
@@ -112,7 +112,7 @@ export class SbbProcessflow extends CdkStepper implements AfterContentInit {
   /** The list of step headers of the steps in the processflow. */
   // We need an initializer here to avoid a TS error.
   @ViewChildren(SbbStepHeader) override _stepHeader: QueryList<SbbStepHeader> = undefined!;
-  @ViewChild('stepListContainer', { static: true }) _tabListContainer: ElementRef;
+  @ViewChild('stepListContainer', { static: true }) _tabListContainer!: ElementRef;
 
   /** Full list of steps inside the processflow, including inside nested processflows. */
   // We need an initializer here to avoid a TS error.

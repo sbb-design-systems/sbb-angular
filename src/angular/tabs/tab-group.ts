@@ -40,9 +40,9 @@ let nextId = 0;
 /** A simple change event emitted on focus or selection changes. */
 export class SbbTabChangeEvent {
   /** Index of the currently-selected tab. */
-  index: number;
+  index!: number;
   /** Reference to the currently-selected tab. */
-  tab: SbbTab;
+  tab!: SbbTab;
 }
 
 interface SbbTabGroupBaseHeader {
@@ -75,9 +75,9 @@ export class SbbTabGroup implements AfterContentInit, AfterContentChecked, OnDes
    * All tabs inside the tab group. This includes tabs that belong to groups that are nested
    * inside the current one. We filter out only the tabs that belong to this group in `_tabs`.
    */
-  @ContentChildren(SbbTab, { descendants: true }) _allTabs: QueryList<SbbTab>;
-  @ViewChild('tabBodyWrapper') _tabBodyWrapper: ElementRef;
-  @ViewChild('tabHeader') _tabHeader: SbbTabGroupBaseHeader;
+  @ContentChildren(SbbTab, { descendants: true }) _allTabs!: QueryList<SbbTab>;
+  @ViewChild('tabBodyWrapper') _tabBodyWrapper!: ElementRef;
+  @ViewChild('tabHeader') _tabHeader!: SbbTabGroupBaseHeader;
 
   /** All of the tabs that belong to the group. */
   _tabs: QueryList<SbbTab> = new QueryList<SbbTab>();
@@ -134,10 +134,10 @@ export class SbbTabGroup implements AfterContentInit, AfterContentChecked, OnDes
       this._animationDurationHide = '0ms';
     }
   }
-  private _animationDuration: string;
+  private _animationDuration!: string;
 
   /** Calculated hide duration which is one third of animationDuration. */
-  _animationDurationHide: string;
+  _animationDurationHide!: string;
 
   /**
    * Whether pagination should be disabled. This can be used to avoid unnecessary
@@ -168,10 +168,10 @@ export class SbbTabGroup implements AfterContentInit, AfterContentChecked, OnDes
   private _preserveContent: boolean = false;
 
   /** Aria label of the inner `tablist` of the group. */
-  @Input('aria-label') ariaLabel: string;
+  @Input('aria-label') ariaLabel!: string;
 
   /** Sets the `aria-labelledby` of the inner `tablist` of the group. */
-  @Input('aria-labelledby') ariaLabelledby: string;
+  @Input('aria-labelledby') ariaLabelledby!: string;
 
   /** Output to enable support for two-way binding on `[(selectedIndex)]` */
   @Output() readonly selectedIndexChange: EventEmitter<number> = new EventEmitter<number>();

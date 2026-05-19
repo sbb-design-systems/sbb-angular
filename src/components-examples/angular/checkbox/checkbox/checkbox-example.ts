@@ -12,7 +12,7 @@ import { SbbCheckboxModule } from '@sbb-esta/angular/checkbox';
   imports: [SbbCheckboxModule, FormsModule],
 })
 export class CheckboxExample {
-  disabled: boolean;
+  disabled: boolean = false;
   changeCounter = 0;
 
   incrementChangeCounter() {

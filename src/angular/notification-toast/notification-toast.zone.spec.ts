@@ -76,7 +76,7 @@ class DirectiveWithViewContainer {
   imports: [DirectiveWithViewContainer],
 })
 class ComponentWithChildViewContainer {
-  @ViewChild(DirectiveWithViewContainer) childWithViewContainer: DirectiveWithViewContainer;
+  @ViewChild(DirectiveWithViewContainer) childWithViewContainer!: DirectiveWithViewContainer;
 
   childComponentExists = signal(true);
 

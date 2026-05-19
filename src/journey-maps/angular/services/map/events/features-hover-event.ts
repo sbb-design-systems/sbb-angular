@@ -30,7 +30,7 @@ interface SbbMouseHoverState {
 }
 
 export class SbbFeaturesHoverEvent extends ReplaySubject<SbbFeaturesHoverChangeEventData> {
-  private _subscription: Subscription;
+  private _subscription!: Subscription;
 
   constructor(
     private _mapInstance: MaplibreMap,

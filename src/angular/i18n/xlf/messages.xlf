@@ -158,7 +158,7 @@
         <source>Search</source>
         <context-group purpose="location">
           <context context-type="sourcefile">../../search/header-search.ts</context>
-          <context context-type="linenumber">87</context>
+          <context context-type="linenumber">86</context>
         </context-group>
         <note priority="1" from="description">Button label for the header search</note>
       </trans-unit>

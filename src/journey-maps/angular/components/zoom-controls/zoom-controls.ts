@@ -22,17 +22,17 @@ import { SbbLocaleService } from '../../services/locale-service';
   standalone: false,
 })
 export class SbbZoomControls implements OnInit, OnChanges, OnDestroy {
-  @Input() map: MaplibreMap | null;
+  @Input() map: MaplibreMap | null = null;
   @Input() showSmallButtons: boolean | undefined;
-  @Input() isDarkMode: boolean;
+  @Input() isDarkMode: boolean = false;
 
   private _zoomChanged = new Subject<void>();
   private _destroyed = new Subject<void>();
-  isMinZoom: boolean;
-  isMaxZoom: boolean;
+  isMinZoom: boolean = false;
+  isMaxZoom: boolean = false;
 
-  zoomInLabel: string;
-  zoomOutLabel: string;
+  zoomInLabel!: string;
+  zoomOutLabel!: string;
 
   constructor(
     private _cd: ChangeDetectorRef,

@@ -71,6 +71,7 @@ import { SbbSelectModule } from './select.module';
 
 @Component({
   selector: 'sbb-basic-select',
+  changeDetection: ChangeDetectionStrategy.Eager,
   template: `
     <div [style.height.px]="heightAbove"></div>
     <sbb-form-field [label]="label">
@@ -108,24 +109,25 @@ class BasicSelect {
     { value: 'sushi-7', viewValue: 'Sushi' },
   ];
   control = new FormControl<string | null>(null);
-  isRequired: boolean;
+  isRequired: boolean = false;
   heightAbove = 0;
   heightBelow = 0;
-  tabIndexOverride: number;
-  ariaDescribedBy: string;
-  ariaLabel: string;
-  ariaLabelledby: string;
+  tabIndexOverride!: number;
+  ariaDescribedBy!: string;
+  ariaLabel!: string;
+  ariaLabelledby!: string;
   panelClass = ['custom-one', 'custom-two'];
-  typeaheadDebounceInterval: number;
+  typeaheadDebounceInterval!: number;
   label? = 'Label';
   capitalize = false;
 
-  @ViewChild(SbbSelect, { static: true }) select: SbbSelect;
-  @ViewChildren(SbbOption) options: QueryList<SbbOption>;
+  @ViewChild(SbbSelect, { static: true }) select!: SbbSelect;
+  @ViewChildren(SbbOption) options!: QueryList<SbbOption>;
 }
 
 @Component({
   selector: 'sbb-ng-model-select',
+  changeDetection: ChangeDetectionStrategy.Eager,
   template: `
     <sbb-form-field>
       <sbb-select placeholder="Food" ngModel [disabled]="isDisabled">
@@ -143,14 +145,15 @@ class NgModelSelect {
     { value: 'pizza-1', viewValue: 'Pizza' },
     { value: 'tacos-2', viewValue: 'Tacos' },
   ];
-  isDisabled: boolean;
+  isDisabled: boolean = false;
 
-  @ViewChild(SbbSelect) select: SbbSelect;
-  @ViewChildren(SbbOption) options: QueryList<SbbOption>;
+  @ViewChild(SbbSelect) select!: SbbSelect;
+  @ViewChildren(SbbOption) options!: QueryList<SbbOption>;
 }
 
 @Component({
   selector: 'sbb-many-selects',
+  changeDetection: ChangeDetectionStrategy.Eager,
   template: `
     <sbb-form-field>
       <sbb-select placeholder="First">
@@ -171,6 +174,7 @@ class ManySelects {}
 
 @Component({
   selector: 'sbb-ng-if-select',
+  changeDetection: ChangeDetectionStrategy.Eager,
   template: `
     @if (isShowing) {
       <div>
@@ -197,11 +201,12 @@ class NgIfSelect {
   ];
   control = new FormControl('pizza-1');
 
-  @ViewChild(SbbSelect) select: SbbSelect;
+  @ViewChild(SbbSelect) select!: SbbSelect;
 }
 
 @Component({
   selector: 'sbb-select-with-change-event',
+  changeDetection: ChangeDetectionStrategy.Eager,
   template: `
     <sbb-form-field>
       <sbb-select (selectionChange)="changeListener($event)">
@@ -230,6 +235,7 @@ class SelectWithChangeEvent {
 
 @Component({
   selector: 'sbb-select-init-without-options',
+  changeDetection: ChangeDetectionStrategy.Eager,
   template: `
     <sbb-form-field>
       <sbb-select placeholder="Food I want to eat right now" [formControl]="control">
@@ -244,11 +250,11 @@ class SelectWithChangeEvent {
   imports: [SbbSelectModule, SbbFormFieldModule, ReactiveFormsModule],
 })
 class SelectInitWithoutOptions {
-  foods: any[];
+  foods!: any[];
   control = new FormControl('pizza-1');
 
-  @ViewChild(SbbSelect) select: SbbSelect;
-  @ViewChildren(SbbOption) options: QueryList<SbbOption>;
+  @ViewChild(SbbSelect) select!: SbbSelect;
+  @ViewChildren(SbbOption) options!: QueryList<SbbOption>;
 
   addOptions() {
     this.foods = [
@@ -261,6 +267,7 @@ class SelectInitWithoutOptions {
 
 @Component({
   selector: 'sbb-custom-select-accessor',
+  changeDetection: ChangeDetectionStrategy.Eager,
   template: `<sbb-form-field><sbb-select></sbb-select></sbb-form-field>`,
   providers: [
     {
@@ -272,7 +279,7 @@ class SelectInitWithoutOptions {
   imports: [SbbSelectModule, SbbFormFieldModule],
 })
 class CustomSelectAccessor implements ControlValueAccessor {
-  @ViewChild(SbbSelect) select: SbbSelect;
+  @ViewChild(SbbSelect) select!: SbbSelect;
 
   writeValue: (value?: any) => void = () => {};
   registerOnChange: (changeFn?: (value: any) => void) => void = () => {};
@@ -281,6 +288,7 @@ class CustomSelectAccessor implements ControlValueAccessor {
 
 @Component({
   selector: 'sbb-comp-with-custom-select',
+  changeDetection: ChangeDetectionStrategy.Eager,
   template: `<sbb-custom-select-accessor [formControl]="ctrl"></sbb-custom-select-accessor>`,
   providers: [
     {
@@ -293,11 +301,12 @@ class CustomSelectAccessor implements ControlValueAccessor {
 })
 class CompWithCustomSelect {
   ctrl = new FormControl('initial value');
-  @ViewChild(CustomSelectAccessor, { static: true }) customAccessor: CustomSelectAccessor;
+  @ViewChild(CustomSelectAccessor, { static: true }) customAccessor!: CustomSelectAccessor;
 }
 
 @Component({
   selector: 'sbb-throws-error-on-init',
+  changeDetection: ChangeDetectionStrategy.Eager,
   template: '',
   imports: [SbbSelectModule],
 })
@@ -309,6 +318,7 @@ class ThrowsErrorOnInit implements OnInit {
 
 @Component({
   selector: 'sbb-select-infinite-loop',
+  changeDetection: ChangeDetectionStrategy.Eager,
   template: `
     <sbb-form-field>
       <sbb-select [(ngModel)]="value"></sbb-select>
@@ -318,7 +328,7 @@ class ThrowsErrorOnInit implements OnInit {
   imports: [SbbSelectModule, SbbFormFieldModule, FormsModule, ThrowsErrorOnInit],
 })
 class SelectWithErrorSibling {
-  value: string;
+  value!: string;
 }
 
 @Component({
@@ -363,7 +373,7 @@ class BasicSelectOnPush {
   imports: [SbbSelectModule, SbbFormFieldModule, ReactiveFormsModule],
 })
 class BasicSelectOnPushPreselected {
-  @ViewChild(SbbSelect) select: SbbSelect;
+  @ViewChild(SbbSelect) select!: SbbSelect;
   foods: any[] = [
     { value: 'steak-0', viewValue: 'Steak' },
     { value: 'pizza-1', viewValue: 'Pizza' },
@@ -389,6 +399,7 @@ class BasicSelectOnPushPreselected {
     </sbb-form-field>
   `,
   imports: [SbbSelectModule, SbbFormFieldModule, ReactiveFormsModule],
+  changeDetection: ChangeDetectionStrategy.Eager,
 })
 class MultiSelect {
   foods: any[] = [
@@ -403,9 +414,9 @@ class MultiSelect {
   ];
   control = new FormControl<string[] | null>(null);
 
-  @ViewChild(SbbSelect) select: SbbSelect;
-  @ViewChildren(SbbOption) options: QueryList<SbbOption>;
-  sortComparator: (a: SbbOption, b: SbbOption, options: SbbOption[]) => number;
+  @ViewChild(SbbSelect) select!: SbbSelect;
+  @ViewChildren(SbbOption) options!: QueryList<SbbOption>;
+  sortComparator!: (a: SbbOption, b: SbbOption, options: SbbOption[]) => number;
 }
 
 @Component({
@@ -431,6 +442,7 @@ class SelectEarlyAccessSibling {}
 
 @Component({
   selector: 'sbb-basic-select-initially-hidden',
+  changeDetection: ChangeDetectionStrategy.Eager,
   template: `
     <sbb-form-field>
       <sbb-select [style.display]="isVisible ? 'block' : 'none'">
@@ -446,6 +458,7 @@ class BasicSelectInitiallyHidden {
 
 @Component({
   selector: 'sbb-basic-select-no-placeholder',
+  changeDetection: ChangeDetectionStrategy.Eager,
   template: `
     <sbb-form-field>
       <sbb-select>
@@ -459,6 +472,7 @@ class BasicSelectNoPlaceholder {}
 
 @Component({
   selector: 'sbb-reset-values-select',
+  changeDetection: ChangeDetectionStrategy.Eager,
   template: `
     <sbb-form-field>
       <sbb-select
@@ -489,10 +503,11 @@ class ResetValuesSelect {
   control = new FormControl('' as string | boolean | null | undefined);
   canSelectNullableOptions = false;
 
-  @ViewChild(SbbSelect) select: SbbSelect;
+  @ViewChild(SbbSelect) select!: SbbSelect;
 }
 
 @Component({
+  changeDetection: ChangeDetectionStrategy.Eager,
   template: `
     <sbb-form-field>
       <sbb-select [formControl]="control">
@@ -510,11 +525,12 @@ class FalsyValueSelect {
     { value: 1, viewValue: 'Pizza' },
   ];
   control = new FormControl<number | null>(null);
-  @ViewChildren(SbbOption) options: QueryList<SbbOption>;
+  @ViewChildren(SbbOption) options!: QueryList<SbbOption>;
 }
 
 @Component({
   selector: 'sbb-select-with-groups',
+  changeDetection: ChangeDetectionStrategy.Eager,
   template: `
     <sbb-form-field>
       <sbb-select placeholder="Pokemon" [formControl]="control">
@@ -570,8 +586,8 @@ class SelectWithGroups {
     },
   ];
 
-  @ViewChild(SbbSelect) select: SbbSelect;
-  @ViewChildren(SbbOption) options: QueryList<SbbOption>;
+  @ViewChild(SbbSelect) select!: SbbSelect;
+  @ViewChildren(SbbOption) options!: QueryList<SbbOption>;
 }
 
 @Component({
@@ -602,6 +618,7 @@ class SelectWithGroupsAndNgContainer {
 }
 
 @Component({
+  changeDetection: ChangeDetectionStrategy.Eager,
   template: `
     <form>
       <sbb-form-field>
@@ -616,6 +633,7 @@ class InvalidSelectInForm {
 }
 
 @Component({
+  changeDetection: ChangeDetectionStrategy.Eager,
   template: `
     <form [formGroup]="formGroup">
       <sbb-form-field>
@@ -634,8 +652,8 @@ class InvalidSelectInForm {
   imports: [SbbSelectModule, SbbFormFieldModule, SbbError, ReactiveFormsModule],
 })
 class SelectInsideFormGroup {
-  @ViewChild(FormGroupDirective) formGroupDirective: FormGroupDirective;
-  @ViewChild(SbbSelect) select: SbbSelect;
+  @ViewChild(FormGroupDirective) formGroupDirective!: FormGroupDirective;
+  @ViewChild(SbbSelect) select!: SbbSelect;
   options = [
     { value: 'steak-0', viewValue: 'Steak' },
     { value: 'pizza-1', viewValue: 'Pizza' },
@@ -647,6 +665,7 @@ class SelectInsideFormGroup {
 }
 
 @Component({
+  changeDetection: ChangeDetectionStrategy.Eager,
   template: `
     <sbb-form-field>
       <sbb-select placeholder="Food" [(value)]="selectedFood">
@@ -661,17 +680,18 @@ class SelectInsideFormGroup {
   imports: [SbbSelectModule, SbbFormFieldModule],
 })
 class BasicSelectWithoutForms {
-  selectedFood: string | null;
+  selectedFood: string | null = null;
   foods: any[] = [
     { value: 'steak-0', viewValue: 'Steak' },
     { value: 'pizza-1', viewValue: 'Pizza' },
     { value: 'sandwich-2', viewValue: 'Sandwich' },
   ];
 
-  @ViewChild(SbbSelect) select: SbbSelect;
+  @ViewChild(SbbSelect) select!: SbbSelect;
 }
 
 @Component({
+  changeDetection: ChangeDetectionStrategy.Eager,
   template: `
     <sbb-form-field>
       <sbb-select placeholder="Food" [(value)]="selectedFood">
@@ -692,10 +712,11 @@ class BasicSelectWithoutFormsPreselected {
     { value: 'pizza-1', viewValue: 'Pizza' },
   ];
 
-  @ViewChild(SbbSelect) select: SbbSelect;
+  @ViewChild(SbbSelect) select!: SbbSelect;
 }
 
 @Component({
+  changeDetection: ChangeDetectionStrategy.Eager,
   template: `
     <sbb-form-field>
       <sbb-select placeholder="Food" [(value)]="selectedFoods" multiple>
@@ -710,14 +731,14 @@ class BasicSelectWithoutFormsPreselected {
   imports: [SbbSelectModule, SbbFormFieldModule],
 })
 class BasicSelectWithoutFormsMultiple {
-  selectedFoods: string[];
+  selectedFoods!: string[];
   foods: any[] = [
     { value: 'steak-0', viewValue: 'Steak' },
     { value: 'pizza-1', viewValue: 'Pizza' },
     { value: 'sandwich-2', viewValue: 'Sandwich' },
   ];
 
-  @ViewChild(SbbSelect) select: SbbSelect;
+  @ViewChild(SbbSelect) select!: SbbSelect;
 }
 
 @Component({
@@ -736,6 +757,7 @@ class BasicSelectWithoutFormsMultiple {
     </sbb-form-field>
   `,
   imports: [SbbSelectModule, SbbFormFieldModule, FormsModule],
+  changeDetection: ChangeDetectionStrategy.Eager,
 })
 class NgModelCompareWithSelect {
   foods: { value: string; viewValue: string }[] = [
@@ -749,8 +771,8 @@ class NgModelCompareWithSelect {
   };
   comparator: ((f1: any, f2: any) => boolean) | null = this.compareByValue;
 
-  @ViewChild(SbbSelect) select: SbbSelect;
-  @ViewChildren(SbbOption) options: QueryList<SbbOption>;
+  @ViewChild(SbbSelect) select!: SbbSelect;
+  @ViewChildren(SbbOption) options!: QueryList<SbbOption>;
 
   useCompareByReference() {
     this.comparator = this.compareByReference;
@@ -774,6 +796,7 @@ class NgModelCompareWithSelect {
 }
 
 @Component({
+  changeDetection: ChangeDetectionStrategy.Eager,
   template: `
     <sbb-select placeholder="Food" [formControl]="control" [errorStateMatcher]="errorStateMatcher">
       @for (food of foods; track food) {
@@ -786,16 +809,17 @@ class NgModelCompareWithSelect {
   imports: [SbbSelectModule, ReactiveFormsModule],
 })
 class CustomErrorBehaviorSelect {
-  @ViewChild(SbbSelect) select: SbbSelect;
+  @ViewChild(SbbSelect) select!: SbbSelect;
   control = new FormControl('');
   foods: any[] = [
     { value: 'steak-0', viewValue: 'Steak' },
     { value: 'pizza-1', viewValue: 'Pizza' },
   ];
-  errorStateMatcher: SbbErrorStateMatcher;
+  errorStateMatcher!: SbbErrorStateMatcher;
 }
 
 @Component({
+  changeDetection: ChangeDetectionStrategy.Eager,
   template: `
     <sbb-form-field>
       <sbb-select placeholder="Food" [(ngModel)]="selectedFoods">
@@ -816,11 +840,12 @@ class SingleSelectWithPreselectedArrayValues {
 
   selectedFoods = this.foods[1].value;
 
-  @ViewChild(SbbSelect) select: SbbSelect;
-  @ViewChildren(SbbOption) options: QueryList<SbbOption>;
+  @ViewChild(SbbSelect) select!: SbbSelect;
+  @ViewChildren(SbbOption) options!: QueryList<SbbOption>;
 }
 
 @Component({
+  changeDetection: ChangeDetectionStrategy.Eager,
   template: `
     <sbb-form-field>
       <sbb-label>Select something</sbb-label>
@@ -838,6 +863,7 @@ class SelectWithNgIfAndLabel {
 }
 
 @Component({
+  changeDetection: ChangeDetectionStrategy.Eager,
   template: `
     <sbb-form-field>
       <sbb-select multiple [ngModel]="value">
@@ -877,8 +903,8 @@ class MultiSelectWithLotsOfOptions {
   imports: [SbbSelectModule, SbbFormFieldModule, ReactiveFormsModule],
 })
 class SelectWithResetOptionAndFormControl {
-  @ViewChild(SbbSelect) select: SbbSelect;
-  @ViewChildren(SbbOption) options: QueryList<SbbOption>;
+  @ViewChild(SbbSelect) select!: SbbSelect;
+  @ViewChildren(SbbOption) options!: QueryList<SbbOption>;
   control = new FormControl('');
 }
 
@@ -914,8 +940,8 @@ class SelectInNgContainer {}
 class SelectInsideDynamicFormGroup {
   private _formBuilder = inject(FormBuilder);
 
-  @ViewChild(SbbSelect) select: SbbSelect;
-  form: FormGroup;
+  @ViewChild(SbbSelect) select!: SbbSelect;
+  form!: FormGroup;
 
   private readonly _changeDetectorRef = inject(ChangeDetectorRef);
 
@@ -5138,20 +5164,20 @@ class BasicSelectWithFirstAndLastOptionDisabled {
     { value: 'sushi-7', viewValue: 'Sushi', disabled: true },
   ];
   control = new FormControl<string | null>(null);
-  isRequired: boolean;
+  isRequired: boolean = false;
   heightAbove = 0;
   heightBelow = 0;
   hasLabel = true;
-  hint: string;
-  tabIndexOverride: number;
-  ariaDescribedBy: string;
-  ariaLabel: string;
-  ariaLabelledby: string;
+  hint!: string;
+  tabIndexOverride!: number;
+  ariaDescribedBy!: string;
+  ariaLabel!: string;
+  ariaLabelledby!: string;
   panelClass = ['custom-one', 'custom-two'];
-  typeaheadDebounceInterval: number;
+  typeaheadDebounceInterval!: number;
 
-  @ViewChild(SbbSelect, { static: true }) select: SbbSelect;
-  @ViewChildren(SbbOption) options: QueryList<SbbOption>;
+  @ViewChild(SbbSelect, { static: true }) select!: SbbSelect;
+  @ViewChildren(SbbOption) options!: QueryList<SbbOption>;
 }
 
 @Component({
@@ -5183,7 +5209,7 @@ class SelectInsideAModal {
     { value: 'tacos-2', viewValue: 'Tacos' },
   ];
 
-  @ViewChild(SbbSelect) select: SbbSelect;
-  @ViewChildren(SbbOption) options: QueryList<SbbOption>;
-  @ViewChild('modal') modal: ElementRef;
+  @ViewChild(SbbSelect) select!: SbbSelect;
+  @ViewChildren(SbbOption) options!: QueryList<SbbOption>;
+  @ViewChild('modal') modal!: ElementRef;
 }

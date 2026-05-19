@@ -18,13 +18,13 @@ import { SbbLocaleService } from '../../services/locale-service';
   standalone: false,
 })
 export class SbbBasemapSwitch implements OnInit {
-  @Input() map: MaplibreMap | null;
+  @Input() map: MaplibreMap | null = null;
   @Input() showSmallButtons: boolean | undefined;
-  @Input() isDarkMode: boolean;
+  @Input() isDarkMode: boolean = false;
 
   @Output() toggleBasemap: EventEmitter<void> = new EventEmitter<void>();
 
-  basemapSwitchLabel: string;
+  basemapSwitchLabel!: string;
 
   constructor(private _i18n: SbbLocaleService) {}
 

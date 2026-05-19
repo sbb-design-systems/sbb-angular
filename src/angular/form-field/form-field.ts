@@ -70,10 +70,10 @@ export class SbbFormField implements AfterContentInit, AfterContentChecked, OnDe
   // Unique id for the label element.
   readonly _labelId = inject(_IdGenerator).getId('sbb-form-field-label-');
 
-  @ViewChild('connectionContainer', { static: true }) _connectionContainerRef: ElementRef;
+  @ViewChild('connectionContainer', { static: true }) _connectionContainerRef!: ElementRef;
 
-  @ContentChild(SbbFormFieldControl) _controlNonStatic: SbbFormFieldControl<any>;
-  @ContentChild(SbbFormFieldControl, { static: true }) _controlStatic: SbbFormFieldControl<any>;
+  @ContentChild(SbbFormFieldControl) _controlNonStatic!: SbbFormFieldControl<any>;
+  @ContentChild(SbbFormFieldControl, { static: true }) _controlStatic!: SbbFormFieldControl<any>;
   get _control() {
     // TODO(crisbeto): we need this workaround in order to support both Ivy and ViewEngine.
     //  We should clean this up once Ivy is the default renderer.
@@ -82,9 +82,9 @@ export class SbbFormField implements AfterContentInit, AfterContentChecked, OnDe
   set _control(value) {
     this._explicitFormFieldControl = value;
   }
-  private _explicitFormFieldControl: SbbFormFieldControl<any>;
+  private _explicitFormFieldControl!: SbbFormFieldControl<any>;
 
-  @ContentChildren(SBB_ERROR, { descendants: true }) _errorChildren: QueryList<SbbError>;
+  @ContentChildren(SBB_ERROR, { descendants: true }) _errorChildren!: QueryList<SbbError>;
   private readonly _labelChild = contentChild(SbbLabel);
 
   private _previousControl: SbbFormFieldControl<unknown> | null = null;

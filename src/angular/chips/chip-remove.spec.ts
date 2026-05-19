@@ -1,4 +1,4 @@
-import { Component, DebugElement } from '@angular/core';
+import { ChangeDetectionStrategy, Component, DebugElement } from '@angular/core';
 import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 import { dispatchMouseEvent } from '@sbb-esta/angular/core/testing';
@@ -136,9 +136,10 @@ describe('Chip Remove', () => {
     </sbb-chip>
   `,
   imports: [SbbChipsModule, SbbIconModule, SbbIconTestingModule],
+  changeDetection: ChangeDetectionStrategy.Eager,
 })
 class TestChip {
-  removable: boolean;
+  removable: boolean = false;
   disabled = false;
 
   didRemove() {}
@@ -147,6 +148,7 @@ class TestChip {
 @Component({
   template: ` <sbb-chip [removable]="removable"> </sbb-chip> `,
   imports: [SbbChipsModule, SbbIconModule, SbbIconTestingModule],
+  changeDetection: ChangeDetectionStrategy.Eager,
 })
 class ChipWithoutRemoveIcon {
   removable = true;

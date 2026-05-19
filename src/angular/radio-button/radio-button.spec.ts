@@ -1,4 +1,4 @@
-import { Component, DebugElement, ViewChild } from '@angular/core';
+import { ChangeDetectionStrategy, Component, DebugElement, ViewChild } from '@angular/core';
 import { ComponentFixture, fakeAsync, TestBed, tick, waitForAsync } from '@angular/core/testing';
 import { FormControl, FormsModule, NgModel, ReactiveFormsModule } from '@angular/forms';
 import { By } from '@angular/platform-browser';
@@ -23,6 +23,7 @@ import { SbbRadioButtonModule } from './radio-button.module';
     </sbb-radio-group>
   `,
   imports: [FormsModule, ReactiveFormsModule, SbbRadioButtonModule],
+  changeDetection: ChangeDetectionStrategy.Eager,
 })
 class RadiosInsideRadioGroup {
   isFirstDisabled = false;
@@ -56,6 +57,7 @@ class RadiosInsideRadioGroup {
     <sbb-radio-button id="nameless" value="no-name">No name</sbb-radio-button>
   `,
   imports: [FormsModule, ReactiveFormsModule, SbbRadioButtonModule],
+  changeDetection: ChangeDetectionStrategy.Eager,
 })
 class StandaloneRadioButtons {
   ariaLabel = 'Banana';
@@ -86,24 +88,26 @@ class RadiosInsidePreCheckedRadioGroup {}
     </sbb-radio-group>
   `,
   imports: [FormsModule, ReactiveFormsModule, SbbRadioButtonModule],
+  changeDetection: ChangeDetectionStrategy.Eager,
 })
 class RadioGroupWithNgModel {
-  modelValue: string;
+  modelValue!: string;
   groupName = 'radio-group';
   options = [
     { label: 'Vanilla', value: 'vanilla' },
     { label: 'Chocolate', value: 'chocolate' },
     { label: 'Strawberry', value: 'strawberry' },
   ];
-  lastEvent: SbbRadioChange;
+  lastEvent!: SbbRadioChange;
 }
 
 @Component({
   template: ` <sbb-radio-button>One</sbb-radio-button> `,
   imports: [SbbRadioButtonModule],
+  changeDetection: ChangeDetectionStrategy.Eager,
 })
 class DisableableSbbRadioButton {
-  @ViewChild(SbbRadioButton) radioButton: SbbRadioButton;
+  @ViewChild(SbbRadioButton) radioButton!: SbbRadioButton;
 
   set disabled(value: boolean) {
     this.radioButton.disabled = value;
@@ -120,21 +124,23 @@ class DisableableSbbRadioButton {
   imports: [ReactiveFormsModule, SbbRadioButtonModule],
 })
 class RadioGroupWithFormControl {
-  @ViewChild(SbbRadioGroup) group: SbbRadioGroup;
+  @ViewChild(SbbRadioGroup) group!: SbbRadioGroup;
   formControl = new FormControl('');
 }
 
 @Component({
   template: ` <sbb-radio-button [tabIndex]="tabIndex"></sbb-radio-button> `,
   imports: [SbbRadioButtonModule],
+  changeDetection: ChangeDetectionStrategy.Eager,
 })
 class FocusableSbbRadioButton {
-  tabIndex: number;
+  tabIndex!: number;
 }
 
 @Component({
   selector: 'transcluding-wrapper',
   template: ` <div><ng-content></ng-content></div> `,
+  changeDetection: ChangeDetectionStrategy.Eager,
 })
 class TranscludingWrapper {}
 
@@ -149,6 +155,7 @@ class TranscludingWrapper {}
     </sbb-radio-group>
   `,
   imports: [FormsModule, SbbRadioButtonModule, TranscludingWrapper],
+  changeDetection: ChangeDetectionStrategy.Eager,
 })
 class InterleavedRadioGroup {
   modelValue = 'strawberry';
@@ -194,11 +201,12 @@ class RadioButtonWithPredefinedAriaAttributes {}
     </sbb-radio-group>
   `,
   imports: [ReactiveFormsModule, SbbRadioButtonModule],
+  changeDetection: ChangeDetectionStrategy.Eager,
 })
 class PreselectedRadioWithStaticValueAndNgIf {
-  @ViewChild('preselectedGroup', { read: SbbRadioGroup }) preselectedGroup: SbbRadioGroup;
+  @ViewChild('preselectedGroup', { read: SbbRadioGroup }) preselectedGroup!: SbbRadioGroup;
   @ViewChild('preselectedRadio', { read: SbbRadioButton })
-  preselectedRadio: SbbRadioButton;
+  preselectedRadio!: SbbRadioButton;
 
   controls = {
     predecessor: new FormControl('predecessor'),

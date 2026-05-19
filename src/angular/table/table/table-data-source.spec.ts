@@ -277,5 +277,5 @@ describe('SbbTableDataSource', () => {
   imports: [SbbTableModule],
 })
 class SbbSortApp {
-  @ViewChild(SbbSort) sort: SbbSort;
+  @ViewChild(SbbSort) sort!: SbbSort;
 }

@@ -197,14 +197,14 @@ export class SbbSidebar extends SbbSidebarBase implements AfterContentInit, OnDe
     mapTo(undefined),
   );
 
-  private _focusTrap: FocusTrap;
+  private _focusTrap!: FocusTrap;
   private _elementFocusedBeforeSidebarWasOpened: HTMLElement | null = null;
-  private _eventCleanups: (() => void)[];
+  private _eventCleanups!: (() => void)[];
 
   private _mode: SbbSidebarMode = 'side';
 
   /** How the sidebar was opened (keypress, mouse click etc.) */
-  private _openedVia: FocusOrigin | null;
+  private _openedVia: FocusOrigin | null = null;
 
   /** Event emitted when the sidebar open state is changed. */
   @Output() readonly openedChange: EventEmitter<boolean> =

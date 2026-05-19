@@ -70,12 +70,12 @@ export class SbbHeaderMenu implements AfterContentInit, OnDestroy {
   >();
 
   /** Reference to the menu items. */
-  @ContentChildren(SbbHeaderMenuItem) _items: QueryList<SbbHeaderMenuItem>;
+  @ContentChildren(SbbHeaderMenuItem) _items!: QueryList<SbbHeaderMenuItem>;
 
   /** @docs-private */
-  @ViewChild(CdkPortal) _panelPortal: CdkPortal;
+  @ViewChild(CdkPortal) _panelPortal!: CdkPortal;
   /** @docs-private */
-  @ViewChild(CdkPortalOutlet, { static: true }) _panelPortalOutlet: CdkPortalOutlet;
+  @ViewChild(CdkPortalOutlet, { static: true }) _panelPortalOutlet!: CdkPortalOutlet;
 
   /** Whether the menu panel is open. */
   get open(): boolean {
@@ -122,12 +122,12 @@ export class SbbHeaderMenu implements AfterContentInit, OnDestroy {
       this._elementRef.nativeElement.className = '';
     }
   }
-  private _previousPanelClass: string;
+  private _previousPanelClass!: string;
 
   /** Whether the autocomplete panel should be visible, depending on option length. */
   showPanel: boolean = false;
   /** Manages active item in item list based on key events. */
-  _keyManager: FocusKeyManager<SbbHeaderMenuItem>;
+  _keyManager!: FocusKeyManager<SbbHeaderMenuItem>;
   /** Class list for the panel. */
   _classList: { [key: string]: boolean } = {};
   /** @docs-private */

@@ -9,7 +9,6 @@
 // tslint:disable:ordered-imports
 import 'zone.js';
 import 'zone.js/testing';
-import 'reflect-metadata';
 
 import {
   NgModule,

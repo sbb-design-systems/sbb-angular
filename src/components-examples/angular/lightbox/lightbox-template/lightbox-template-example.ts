@@ -13,7 +13,7 @@ import { SbbLightboxModule } from '@sbb-esta/angular/lightbox';
   imports: [SbbButtonModule, SbbLightboxModule],
 })
 export class LightboxTemplateExample {
-  @ViewChild('sampleLightboxTemplate', { static: true }) sampleLightboxTemplate: TemplateRef<any>;
+  @ViewChild('sampleLightboxTemplate', { static: true }) sampleLightboxTemplate!: TemplateRef<any>;
   private _lightbox = inject(SbbLightbox);
 
   openDialog() {

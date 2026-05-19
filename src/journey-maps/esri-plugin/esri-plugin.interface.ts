@@ -53,17 +53,17 @@ export interface SbbEsriViewInformations {
 
 /** @docs-private */
 export class SbbEsriConfig {
-  minScale: number;
-  maxScale: number;
-  maxRecordCount: number;
+  minScale!: number;
+  maxScale!: number;
+  maxRecordCount!: number;
   displayField?: string;
-  drawingInfo: { renderer: SbbEsriAnyFeatureLayerRendererInfo };
-  transparency: number;
+  drawingInfo!: { renderer: SbbEsriAnyFeatureLayerRendererInfo };
+  transparency!: number;
 }
 
 /** @docs-private */
 export class SbbEsriError {
-  error: { code: number; message: string };
+  error!: { code: number; message: string };
 }
 
 /** @docs-private */

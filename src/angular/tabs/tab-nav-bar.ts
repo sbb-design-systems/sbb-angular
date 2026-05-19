@@ -58,7 +58,7 @@ export class SbbTabNav
 {
   /** Query list of all tab links of the tab navigation. */
   @ContentChildren(forwardRef(() => SbbTabLink), { descendants: true })
-  _items: QueryList<SbbTabLink>;
+  _items!: QueryList<SbbTabLink>;
 
   /**
    * Associated tab panel controlled by the nav bar. If not provided, then the nav bar
@@ -67,11 +67,11 @@ export class SbbTabNav
    */
   @Input() tabPanel?: SbbTabNavPanel;
 
-  @ViewChild('tabListContainer', { static: true }) _tabListContainer: ElementRef;
-  @ViewChild('tabList', { static: true }) _tabList: ElementRef;
-  @ViewChild('tabListInner', { static: true }) _tabListInner: ElementRef;
-  @ViewChild('nextPaginator') _nextPaginator: ElementRef<HTMLElement>;
-  @ViewChild('previousPaginator') _previousPaginator: ElementRef<HTMLElement>;
+  @ViewChild('tabListContainer', { static: true }) _tabListContainer!: ElementRef;
+  @ViewChild('tabList', { static: true }) _tabList!: ElementRef;
+  @ViewChild('tabListInner', { static: true }) _tabListInner!: ElementRef;
+  @ViewChild('nextPaginator') _nextPaginator!: ElementRef<HTMLElement>;
+  @ViewChild('previousPaginator') _previousPaginator!: ElementRef<HTMLElement>;
 
   constructor(
     elementRef: ElementRef,

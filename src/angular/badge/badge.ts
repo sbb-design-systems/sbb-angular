@@ -58,13 +58,13 @@ export class SbbBadge implements OnInit, OnDestroy {
   set description(newDescription: string) {
     this._updateHostAriaDescription(newDescription);
   }
-  private _description: string;
+  private _description!: string;
 
   /** Whether the badge is hidden. */
-  @Input({ alias: 'sbbBadgeHidden', transform: booleanAttribute }) hidden: boolean;
+  @Input({ alias: 'sbbBadgeHidden', transform: booleanAttribute }) hidden: boolean = false;
 
   /** Whether the badge is disabled. */
-  @Input({ alias: 'sbbBadgeDisabled', transform: booleanAttribute }) disabled: boolean;
+  @Input({ alias: 'sbbBadgeDisabled', transform: booleanAttribute }) disabled: boolean = false;
 
   /** Unique id for the badge */
   _id: number = nextId++;

@@ -1,4 +1,4 @@
-import { ApplicationRef, Component, Directive } from '@angular/core';
+import { ApplicationRef, ChangeDetectionStrategy, Component, Directive } from '@angular/core';
 import { TestBed, waitForAsync } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 import { createMouseEvent, dispatchEvent, switchToLean } from '@sbb-esta/angular/core/testing';
@@ -581,7 +581,7 @@ describe('SbbButton', () => {
 class ButtonTestBase {
   clickCount: number = 0;
   isDisabled: boolean = false;
-  tabIndex: number;
+  tabIndex!: number;
 
   increment() {
     this.clickCount++;
@@ -609,6 +609,7 @@ class ButtonTestBase {
     </button>
   `,
   imports: [SbbButtonModule],
+  changeDetection: ChangeDetectionStrategy.Eager,
 })
 class ButtonTest extends ButtonTestBase {}
 
@@ -627,6 +628,7 @@ class ButtonTest extends ButtonTestBase {}
     </button>
   `,
   imports: [SbbButtonModule],
+  changeDetection: ChangeDetectionStrategy.Eager,
 })
 class ButtonWithCustomSvgIconTest extends ButtonTestBase {
   svgIcon = 'example';
@@ -638,6 +640,7 @@ class ButtonWithCustomSvgIconTest extends ButtonTestBase {
     <button sbb-alt-button type="button" (click)="increment()" [disabled]="isDisabled">Go</button>
   `,
   imports: [SbbButtonModule],
+  changeDetection: ChangeDetectionStrategy.Eager,
 })
 class ButtonAltTest extends ButtonTestBase {}
 
@@ -649,6 +652,7 @@ class ButtonAltTest extends ButtonTestBase {}
     </button>
   `,
   imports: [SbbButtonModule],
+  changeDetection: ChangeDetectionStrategy.Eager,
 })
 class ButtonSecondaryTest extends ButtonTestBase {}
 
@@ -658,6 +662,7 @@ class ButtonSecondaryTest extends ButtonTestBase {}
     <button sbb-ghost-button type="button" (click)="increment()" [disabled]="isDisabled">Go</button>
   `,
   imports: [SbbButtonModule],
+  changeDetection: ChangeDetectionStrategy.Eager,
 })
 class ButtonGhostTest extends ButtonTestBase {}
 
@@ -669,6 +674,7 @@ class ButtonGhostTest extends ButtonTestBase {}
     </button>
   `,
   imports: [SbbButtonModule, SbbIconModule],
+  changeDetection: ChangeDetectionStrategy.Eager,
 })
 class ButtonIconTest extends ButtonTestBase {}
 

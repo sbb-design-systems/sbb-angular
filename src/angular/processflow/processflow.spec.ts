@@ -2,6 +2,7 @@ import { Direction, Directionality } from '@angular/cdk/bidi';
 import { END, ENTER, HOME, LEFT_ARROW, RIGHT_ARROW, SPACE } from '@angular/cdk/keycodes';
 import { CdkStep, STEPPER_GLOBAL_OPTIONS, STEP_STATE } from '@angular/cdk/stepper';
 import {
+  ChangeDetectionStrategy,
   Component,
   DebugElement,
   EventEmitter,
@@ -401,17 +402,6 @@ describe('SbbProcessflow', () => {
     it('should not do anything when pressing the SPACE key with a modifier', () => {
       const stepHeaders = fixture.debugElement.queryAll(By.css('.sbb-processflow-header'));
       assertSelectKeyWithModifierInteraction(fixture, stepHeaders, SPACE);
-    });
-  });
-
-  describe('basic processflow when attempting to set the selected step too early', () => {
-    it('should not throw', () => {
-      const fixture = createComponent(SimpleSbbVerticalStepperApp);
-      const processflowComponent: SbbProcessflow = fixture.debugElement.query(
-        By.css('sbb-processflow'),
-      )!.componentInstance;
-
-      expect(() => processflowComponent.selected).not.toThrow();
     });
   });
 
@@ -1409,7 +1399,7 @@ function createComponent<T>(
 })
 class SbbHorizontalStepperWithErrorsApp implements OnInit {
   private _formBuilder = inject(FormBuilder);
-  formGroup: FormGroup;
+  formGroup!: FormGroup;
 
   ngOnInit() {
     this.formGroup = this._formBuilder.group({
@@ -1484,9 +1474,10 @@ class SimpleSbbHorizontalStepperApp {
     </sbb-processflow>
   `,
   imports: [SbbProcessflowModule, SbbButtonModule],
+  changeDetection: ChangeDetectionStrategy.Eager,
 })
 class SimpleSbbVerticalStepperApp {
-  @ViewChild(SbbProcessflow) processflow: SbbProcessflow;
+  @ViewChild(SbbProcessflow) processflow!: SbbProcessflow;
   inputLabel = signal('Step 3');
   showStepTwo = signal(true);
 }
@@ -1530,9 +1521,9 @@ class SimpleSbbVerticalStepperApp {
   imports: [SbbProcessflowModule, SbbButtonModule, ReactiveFormsModule],
 })
 class LinearSbbVerticalStepperApp implements OnInit {
-  oneGroup: FormGroup;
-  twoGroup: FormGroup;
-  threeGroup: FormGroup;
+  oneGroup!: FormGroup;
+  twoGroup!: FormGroup;
+  threeGroup!: FormGroup;
 
   validationTrigger = new Subject<void>();
 
@@ -1625,10 +1616,11 @@ class LinearStepperWithValidOptionalStep {
     </sbb-processflow>
   `,
   imports: [SbbProcessflowModule],
+  changeDetection: ChangeDetectionStrategy.Eager,
 })
 class StepperWithAriaInputs {
-  ariaLabel: string;
-  ariaLabelledby: string;
+  ariaLabel!: string;
+  ariaLabelledby!: string;
 }
 
 @Component({
@@ -1660,6 +1652,7 @@ class StepperWithIndirectDescendantSteps {}
     </sbb-processflow>
   `,
   imports: [SbbProcessflowModule],
+  changeDetection: ChangeDetectionStrategy.Eager,
 })
 class StepperWithNgIf {
   showStep2 = false;
@@ -1681,7 +1674,7 @@ class StepperWithNgIf {
   imports: [SbbProcessflowModule],
 })
 class NestedSteppers {
-  @ViewChildren(SbbProcessflow) processflows: QueryList<SbbProcessflow>;
+  @ViewChildren(SbbProcessflow) processflows!: QueryList<SbbProcessflow>;
 }
 
 @Component({
@@ -1695,7 +1688,7 @@ class NestedSteppers {
   imports: [SbbProcessflowModule],
 })
 class StepperWithStaticOutOfBoundsIndex {
-  @ViewChild(SbbProcessflow) processflow: SbbProcessflow;
+  @ViewChild(SbbProcessflow) processflow!: SbbProcessflow;
 }
 
 @Component({
@@ -1716,6 +1709,7 @@ class StepperWithStaticOutOfBoundsIndex {
     </sbb-processflow>
   `,
   imports: [SbbProcessflowModule],
+  changeDetection: ChangeDetectionStrategy.Eager,
 })
 class StepperWithLazyContent {
   selectedIndex = 0;

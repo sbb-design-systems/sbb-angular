@@ -65,13 +65,13 @@ export class SbbSearch implements AfterContentInit, OnDestroy {
   @Input() type: string = 'button';
 
   /** aria-label for the search button. */
-  @Input('aria-label') ariaLabel: string;
+  @Input('aria-label') ariaLabel!: string;
 
   /** aria-labelledby for the search button. */
-  @Input('aria-labelledby') ariaLabelledby: string;
+  @Input('aria-labelledby') ariaLabelledby!: string;
 
   /** aria-describedby for the search button. */
-  @Input('aria-describedby') ariaDescribedby: string;
+  @Input('aria-describedby') ariaDescribedby!: string;
 
   /**
    * Event emitted when either the ENTER key is pressed on the input field,

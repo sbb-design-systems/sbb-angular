@@ -1,4 +1,4 @@
-import { Component, DebugElement } from '@angular/core';
+import { ChangeDetectionStrategy, Component, DebugElement } from '@angular/core';
 import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 import { FormControl, FormGroup, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { By } from '@angular/platform-browser';
@@ -37,6 +37,7 @@ interface Tag {
     </sbb-tags>
   `,
   imports: [FormsModule, SbbBadgeModule, SbbTagModule],
+  changeDetection: ChangeDetectionStrategy.Eager,
 })
 class TagsTestFixtureComponent {
   tagItems: Tag[] = [
@@ -75,6 +76,7 @@ class TagsTestFixtureComponent {
     </ng-container>
   `,
   imports: [ReactiveFormsModule, SbbBadgeModule, SbbTagModule],
+  changeDetection: ChangeDetectionStrategy.Eager,
 })
 class TagsTestFixtureReactiveComponent {
   formGroup = new FormGroup({
@@ -94,7 +96,7 @@ class TagsTestFixtureReactiveComponent {
       amount: 9,
     },
   ];
-  totalAmount: number;
+  totalAmount!: number;
 
   change(evt: SbbTagChange) {}
 }
@@ -102,9 +104,10 @@ class TagsTestFixtureReactiveComponent {
 @Component({
   template: ` <a sbb-tag-link href="#" amount="5" [sbbBadgeDescription]="description">Trains</a> `,
   imports: [SbbBadgeModule, SbbTagModule],
+  changeDetection: ChangeDetectionStrategy.Eager,
 })
 class TagLinkTestFixtureComponent {
-  description: string;
+  description!: string;
 }
 
 @Component({

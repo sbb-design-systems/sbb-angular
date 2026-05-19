@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 
@@ -22,6 +22,7 @@ import { SbbCalendarBody, SbbCalendarCell } from './calendar-body';
     ></table>
   `,
   imports: [SbbCalendarBody],
+  changeDetection: ChangeDetectionStrategy.Eager,
 })
 class StandardCalendarBodyComponent {
   label = 'Jan 2017';
@@ -53,6 +54,7 @@ class StandardCalendarBodyComponent {
     ></table>
   `,
   imports: [SbbCalendarBody],
+  changeDetection: ChangeDetectionStrategy.Eager,
 })
 class CalendarBodyWithDisabledCellsComponent {
   rows = [[1, 2, 3, 4]].map((r) =>
@@ -63,7 +65,7 @@ class CalendarBodyWithDisabledCellsComponent {
     }),
   );
   allowDisabledSelection = false;
-  selected: number;
+  selected!: number;
 }
 
 function createCell(value: number) {

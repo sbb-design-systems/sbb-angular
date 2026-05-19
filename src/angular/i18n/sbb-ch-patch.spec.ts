@@ -1,6 +1,6 @@
 import { DatePipe } from '@angular/common';
 import '@angular/common/locales/global/en-CH';
-import { Component } from '@angular/core';
+import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 
@@ -26,6 +26,7 @@ declare let $localize: any;
     <span>{{ now | date: 'fullTime' }}</span>
   `,
   imports: [DatePipe],
+  changeDetection: ChangeDetectionStrategy.Eager,
 })
 class DateFormat {
   now = new Date(2020, 0, 1, 0, 0, 0);

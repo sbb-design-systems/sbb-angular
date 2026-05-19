@@ -53,7 +53,7 @@ const tagItems: Tag[] = [
   ],
 })
 export class TagAdvancedExample implements OnDestroy {
-  tags: Tag[];
+  tags!: Tag[];
 
   amountFirstItem = new FormControl<number>(0, { initialValueIsDefault: true });
   private _destroyed = new Subject<void>();

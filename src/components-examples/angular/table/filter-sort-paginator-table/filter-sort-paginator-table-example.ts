@@ -56,9 +56,9 @@ interface VehicleFilter extends SbbTableFilter {
   ],
 })
 export class FilterSortPaginatorTableExample implements AfterViewInit, OnDestroy {
-  @ViewChild(SbbPaginator) paginator: SbbPaginator;
-  @ViewChild(SbbSort) sort: SbbSort;
-  @ViewChild(SbbTable) table: SbbTable<VehicleExampleItem>;
+  @ViewChild(SbbPaginator) paginator!: SbbPaginator;
+  @ViewChild(SbbSort) sort!: SbbSort;
+  @ViewChild(SbbTable) table!: SbbTable<VehicleExampleItem>;
 
   columns = [
     { title: 'position' },
@@ -83,7 +83,7 @@ export class FilterSortPaginatorTableExample implements AfterViewInit, OnDestroy
     description: new FormControl(''),
   });
 
-  descriptions: Observable<string[]>;
+  descriptions!: Observable<string[]>;
 
   private _destroyed = new Subject<void>();
   private _liveAnnouncer = inject(LiveAnnouncer);

@@ -18,13 +18,13 @@ import { SbbLocaleService } from '../../services/locale-service';
   standalone: false,
 })
 export class SbbHomeButton implements OnInit {
-  @Input() map: MaplibreMap | null;
+  @Input() map: MaplibreMap | null = null;
   @Input() showSmallButtons: boolean | undefined;
-  @Input() isDarkMode: boolean;
+  @Input() isDarkMode: boolean = false;
 
   @Output() homeButtonClicked: EventEmitter<void> = new EventEmitter<void>();
 
-  homeButtonLabel: string;
+  homeButtonLabel!: string;
 
   constructor(private _i18n: SbbLocaleService) {}
 

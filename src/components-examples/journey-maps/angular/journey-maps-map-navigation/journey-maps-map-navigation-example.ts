@@ -52,9 +52,9 @@ declare global {
 })
 export class JourneyMapsMapNavigationExample implements OnInit {
   apiKey = window.JM_API_KEY;
-  form: UntypedFormGroup;
+  form!: UntypedFormGroup;
   @ViewChild('advancedMap')
-  client: SbbJourneyMaps;
+  client!: SbbJourneyMaps;
   mapCenter?: LngLatLike;
   mapBoundingBox?: number[][];
   zoomLevels?: SbbZoomLevels;

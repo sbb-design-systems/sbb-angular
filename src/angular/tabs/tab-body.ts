@@ -90,13 +90,13 @@ export class SbbTabBodyPortal extends CdkPortalOutlet implements OnInit, OnDestr
 })
 export class SbbTabBody implements OnDestroy {
   /** Current position of the tab-body in the tab-group. Zero means that the tab is visible. */
-  private _positionIndex: number;
+  private _positionIndex!: number;
 
   /** Subscription to the directionality change observable. */
   private _dirChangeSubscription = Subscription.EMPTY;
 
   /** Tab body position state. Used by the animation trigger for the current state. */
-  _position: SbbTabBodyPositionState;
+  _position!: SbbTabBodyPositionState;
 
   /** Emits when an animation on the tab is complete. */
   readonly _translateTabComplete = new Subject<AnimationEvent>();
@@ -114,13 +114,13 @@ export class SbbTabBody implements OnDestroy {
   @Output() readonly _onCentered: EventEmitter<void> = new EventEmitter<void>(true);
 
   /** The portal host inside of this container into which the tab body content will be loaded. */
-  @ViewChild(CdkPortalOutlet) _portalHost: CdkPortalOutlet;
+  @ViewChild(CdkPortalOutlet) _portalHost!: CdkPortalOutlet;
 
   /** The tab body content to display. */
-  @Input('content') _content: TemplatePortal;
+  @Input('content') _content!: TemplatePortal;
 
   /** Position that will be used when the tab is immediately becoming visible after creation. */
-  @Input() origin: number | null;
+  @Input() origin: number | null = null;
 
   // Note that the default value will always be overwritten by `SbbTabBody`, but we need one
   // anyway to prevent the animations module from throwing an error if the body is used on its own.

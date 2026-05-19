@@ -73,7 +73,7 @@ export class _SbbTableDataSource<
    * For example, a 'selectAll()' function would likely want to select the set of filtered data
    * shown to the user rather than all the data.
    */
-  filteredData: T[];
+  filteredData!: T[];
 
   /** Array of data that should be rendered by the table, where each object represents one row. */
   get data(): T[] {
@@ -116,7 +116,7 @@ export class _SbbTableDataSource<
     this._sort = sort;
     this._updateChangeSubscription();
   }
-  private _sort: SbbSort | null;
+  private _sort: SbbSort | null = null;
 
   /**
    * Instance of the SbbPaginator component used by the table to control what page of the data is
@@ -135,7 +135,7 @@ export class _SbbTableDataSource<
     this._paginator = paginator;
     this._updateChangeSubscription();
   }
-  private _paginator: P | null;
+  private _paginator: P | null = null;
 
   /**
    * Data accessor function that is used for accessing data properties for sorting through

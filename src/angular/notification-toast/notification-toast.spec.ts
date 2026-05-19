@@ -841,7 +841,7 @@ class DirectiveWithViewContainer {
   imports: [DirectiveWithViewContainer],
 })
 class ComponentWithChildViewContainer {
-  @ViewChild(DirectiveWithViewContainer) childWithViewContainer: DirectiveWithViewContainer;
+  @ViewChild(DirectiveWithViewContainer) childWithViewContainer!: DirectiveWithViewContainer;
 
   childComponentExists = signal(true);
 
@@ -853,10 +853,11 @@ class ComponentWithChildViewContainer {
 @Component({
   selector: 'arbitrary-component-with-template-ref',
   template: ` <ng-template let-data> Fries {{ localValue }} {{ data?.value }} </ng-template> `,
+  changeDetection: ChangeDetectionStrategy.Eager,
 })
 class ComponentWithTemplateRef {
-  @ViewChild(TemplateRef) templateRef: TemplateRef<any>;
-  localValue: string;
+  @ViewChild(TemplateRef) templateRef!: TemplateRef<any>;
+  localValue!: string;
 }
 
 /** Simple component for testing ComponentPortal. */

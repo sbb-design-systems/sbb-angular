@@ -16,5 +16,5 @@ import { SbbCaptchaModule } from '@sbb-esta/angular/captcha';
 export class CaptchaTemplateDrivenFormsExample {
   testSiteKey: string = '6LeIxAcTAAAAAJcZVRqyHh71UMIEGNQ_MXjiZKhI';
 
-  captcha: string;
+  captcha!: string;
 }

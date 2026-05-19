@@ -209,22 +209,22 @@ export class SbbHeaderLean implements OnChanges, AfterViewInit, OnDestroy {
   }
 
   /** @docs-private */
-  @ViewChild('menu', { static: true }) _menuElement: ElementRef<HTMLElement>;
+  @ViewChild('menu', { static: true }) _menuElement!: ElementRef<HTMLElement>;
 
   /**
    * The provided app chooser sections.
    * @docs-private
    */
-  @ContentChildren(SbbAppChooserSection) _appChooserSections: QueryList<SbbAppChooserSection>;
+  @ContentChildren(SbbAppChooserSection) _appChooserSections!: QueryList<SbbAppChooserSection>;
 
   /**
    * Menu triggers used within the header.
    * @docs-private
    */
-  @ContentChildren(SbbHeaderMenuTrigger) _menuTriggers: QueryList<SbbHeaderMenuTrigger>;
+  @ContentChildren(SbbHeaderMenuTrigger) _menuTriggers!: QueryList<SbbHeaderMenuTrigger>;
 
   /** How the sidenav was opened (keypress, mouse click etc.) */
-  private _openedVia: FocusOrigin | null;
+  private _openedVia!: FocusOrigin | null;
 
   /** Emits when the component is destroyed. */
   private readonly _destroyed = new Subject<void>();
@@ -233,7 +233,7 @@ export class SbbHeaderLean implements OnChanges, AfterViewInit, OnDestroy {
     this.collapseBreakpoint,
   );
 
-  private _focusTrap: FocusTrap;
+  private _focusTrap!: FocusTrap;
   private _elementFocusedBeforeMenuWasOpened: HTMLElement | null = null;
 
   constructor(...args: unknown[]);

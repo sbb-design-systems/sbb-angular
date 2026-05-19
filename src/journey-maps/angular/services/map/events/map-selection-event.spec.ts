@@ -4,7 +4,7 @@ import { SbbMaplibreMapMock } from '../../../testing/maplibre-map-mock';
 
 import { SbbMapCursorStyleEvent } from './map-cursor-style-event';
 
-describe('MapCursorStyleEvent', () => {
+describe('MapSelectionEvent', () => {
   let mapCursorStyleEvent: SbbMapCursorStyleEvent;
   let mapMock: SbbMaplibreMapMock;
 

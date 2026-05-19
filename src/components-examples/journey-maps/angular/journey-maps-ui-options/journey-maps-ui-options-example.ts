@@ -46,7 +46,7 @@ declare global {
 })
 export class JourneyMapsUiOptionsExample implements OnInit {
   apiKey = window.JM_API_KEY;
-  form: UntypedFormGroup;
+  form!: UntypedFormGroup;
 
   constructor(private fb: FormBuilder) {}
 

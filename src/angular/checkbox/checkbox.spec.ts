@@ -1024,6 +1024,7 @@ describe('SbbCheckbox', () => {
     </sbb-checkbox>
   </div>`,
   imports: [SbbCheckboxModule],
+  changeDetection: ChangeDetectionStrategy.Eager,
 })
 class SingleCheckbox {
   isChecked: boolean = false;
@@ -1070,6 +1071,7 @@ class MultipleCheckboxes {}
 @Component({
   template: ` <sbb-checkbox [tabIndex]="customTabIndex" [disabled]="isDisabled"> </sbb-checkbox>`,
   imports: [SbbCheckboxModule],
+  changeDetection: ChangeDetectionStrategy.Eager,
 })
 class CheckboxWithTabIndex {
   customTabIndex: number = 7;
@@ -1082,7 +1084,7 @@ class CheckboxWithTabIndex {
   imports: [SbbCheckboxModule],
 })
 class CheckboxUsingViewChild {
-  @ViewChild(SbbCheckbox) checkbox: SbbCheckbox;
+  @ViewChild(SbbCheckbox) checkbox!: SbbCheckbox;
 
   set isDisabled(value: boolean) {
     this.checkbox.disabled = value;
@@ -1151,7 +1153,7 @@ class CheckboxWithNameAttribute {}
   imports: [SbbCheckboxModule],
 })
 class CheckboxWithChangeEvent {
-  lastEvent: SbbCheckboxChange;
+  lastEvent!: SbbCheckboxChange;
 }
 
 /** Test component with reactive forms */

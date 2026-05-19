@@ -25,7 +25,7 @@ declare global {
 export class EsriPluginExample {
   apiKey = window.JM_API_KEY;
 
-  map: MaplibreMap;
+  map!: MaplibreMap;
 
   esriLayerDefinition: SbbEsriFeatureLayer[] = [
     {

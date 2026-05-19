@@ -37,7 +37,7 @@ export class SbbTimeInput {
       this._input.placeholder = this._placeholder;
     }
   }
-  private _placeholder: string;
+  private _placeholder!: string;
 
   private _document = inject(DOCUMENT);
 

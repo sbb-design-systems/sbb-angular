@@ -2,7 +2,7 @@
   No docs.
 """
 
-load("@aspect_bazel_lib//lib:copy_to_bin.bzl", "copy_to_bin")
+load("@bazel_lib//lib:copy_to_bin.bzl", "copy_to_bin")
 load("@rules_angular//src/architect:ng_application.bzl", "ng_application")
 load("@rules_angular//src/architect:ng_test.bzl", "ng_test")
 
@@ -46,7 +46,6 @@ TEST_DEPS = [
     "//docs:node_modules/karma-coverage",
     "//docs:node_modules/karma-firefox-launcher",
     "//docs:node_modules/karma-jasmine",
-    "//docs:node_modules/karma-jasmine-html-reporter",
 ]
 
 # Common dependencies of Angular CLI test suites

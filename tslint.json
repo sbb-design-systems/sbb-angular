@@ -58,7 +58,6 @@
       }
     ],
     "prefer-const": true,
-    "prettier": true,
     "radix": true,
     "triple-equals": [true, "allow-null-check"],
     "typedef-whitespace": [

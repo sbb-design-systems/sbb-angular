@@ -16,7 +16,7 @@ import { SbbFileSelectorModule } from '@sbb-esta/angular/file-selector';
 export class MultipleModePersistentFileSelectorExample {
   filesList: File[] = [];
 
-  disabled: boolean;
+  disabled: boolean = false;
 
   beautifyFileList(filesList: File[]) {
     if (!filesList) {

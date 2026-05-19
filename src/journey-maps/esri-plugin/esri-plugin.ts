@@ -22,7 +22,7 @@ export class EsriPluginComponent implements OnChanges, OnDestroy {
    * The map (maplibre-gl) instance to be used.
    */
   @Input()
-  map: MaplibreMap;
+  map!: MaplibreMap;
 
   /**
    * The definition of the feature-layers.
@@ -43,7 +43,7 @@ export class EsriPluginComponent implements OnChanges, OnDestroy {
 
   private _destroyed: Subject<void> = new Subject();
 
-  private _latestStyleUrl: string;
+  private _latestStyleUrl!: string;
 
   constructor(private _configService: ConfigService) {}
 

@@ -33,7 +33,7 @@ export class SbbTagLink {
     this._amount = value;
     this._badgeDescriptionFallback = $localize`:Aria label for amount of results displayed in badge pill@@sbbTagBadgePillAmountOfResults:${this.amount} results available`;
   }
-  private _amount: number;
+  private _amount!: number;
 
   /**
    * The indicator icon, which will be shown before the text.
@@ -41,10 +41,10 @@ export class SbbTagLink {
    *
    * e.g. svgIcon="circle-information-small"
    */
-  @Input() svgIcon: string;
+  @Input() svgIcon!: string;
 
   /** Description of the badge (amount) */
   @Input('sbbBadgeDescription')
-  badgeDescription: string;
-  _badgeDescriptionFallback: string;
+  badgeDescription!: string;
+  _badgeDescriptionFallback!: string;
 }

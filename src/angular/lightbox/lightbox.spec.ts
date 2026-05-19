@@ -9,7 +9,7 @@ import { SpyLocation } from '@angular/common/testing';
 import {
   ChangeDetectionStrategy,
   Component,
-  createNgModuleRef,
+  createNgModule,
   Directive,
   forwardRef,
   inject,
@@ -1794,7 +1794,7 @@ class ComponentWithOnPushViewContainer {
 class ComponentWithChildViewContainer {
   showChildView = true;
 
-  @ViewChild(DirectiveWithViewContainer) childWithViewContainer: DirectiveWithViewContainer;
+  @ViewChild(DirectiveWithViewContainer) childWithViewContainer!: DirectiveWithViewContainer;
 
   get childViewContainer() {
     return this.childWithViewContainer.viewContainerRef;
@@ -1808,10 +1808,10 @@ class ComponentWithChildViewContainer {
   >`,
 })
 class ComponentWithTemplateRef {
-  localValue: string;
-  lightboxRef: SbbLightboxRef<any>;
+  localValue!: string;
+  lightboxRef!: SbbLightboxRef<any>;
 
-  @ViewChild(TemplateRef) templateRef: TemplateRef<any>;
+  @ViewChild(TemplateRef) templateRef!: TemplateRef<any>;
 
   setDialogRef(lightboxRef: SbbLightboxRef<any>): string {
     this.lightboxRef = lightboxRef;
@@ -1870,7 +1870,7 @@ class ContentElementDialog {}
   imports: [SbbLightboxTitle, SbbLightboxContent, SbbLightboxActions, SbbLightboxClose],
 })
 class ComponentWithContentElementTemplateRef {
-  @ViewChild(TemplateRef) templateRef: TemplateRef<any>;
+  @ViewChild(TemplateRef) templateRef!: TemplateRef<any>;
 }
 
 @Component({
@@ -1943,7 +1943,7 @@ class ModuleBoundLightboxParentComponent {
   private _lightbox = inject(SbbLightbox);
 
   openLightbox(): void {
-    const ngModuleRef = createNgModuleRef(
+    const ngModuleRef = createNgModule(
       ModuleBoundLightboxModule,
       /* parentInjector */ this._injector,
     );

@@ -66,7 +66,7 @@ export class SbbChipInput implements SbbChipTextControl, OnChanges, OnDestroy, A
 
   /** Whether the control is focused. */
   focused: boolean = false;
-  _chipList: SbbChipList;
+  _chipList!: SbbChipList;
 
   private _destroyed = new Subject<void>();
 

@@ -13,7 +13,7 @@ import { SbbDialog, SbbDialogModule } from '@sbb-esta/angular/dialog';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class TemplateDialogExample {
-  @ViewChild('sampleDialogTemplate', { static: true }) sampleDialogTemplate: TemplateRef<any>;
+  @ViewChild('sampleDialogTemplate', { static: true }) sampleDialogTemplate!: TemplateRef<any>;
   readonly dialog = inject(SbbDialog);
 
   openDialog() {

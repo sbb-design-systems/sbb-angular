@@ -8,7 +8,7 @@ import {
   CdkHeaderCell,
   CdkHeaderCellDef,
 } from '@angular/cdk/table';
-import { Directive, ElementRef, Input } from '@angular/core';
+import { Directive, inject, Input } from '@angular/core';
 
 /**
  * Cell definition for the sbb-table.
@@ -93,12 +93,7 @@ export class SbbColumnDef extends CdkColumnDef {
   },
 })
 export class SbbHeaderCell extends CdkHeaderCell {
-  constructor(
-    public readonly _columnDef: SbbColumnDef,
-    elementRef: ElementRef,
-  ) {
-    super(_columnDef, elementRef);
-  }
+  _columnDef: SbbColumnDef = inject(SbbColumnDef);
 }
 
 /** Footer cell template container that adds the right classes and role. */
@@ -111,12 +106,7 @@ export class SbbHeaderCell extends CdkHeaderCell {
   },
 })
 export class SbbFooterCell extends CdkFooterCell {
-  constructor(
-    public readonly _columnDef: SbbColumnDef,
-    elementRef: ElementRef,
-  ) {
-    super(_columnDef, elementRef);
-  }
+  _columnDef: SbbColumnDef = inject(SbbColumnDef);
 }
 
 /** Cell template container that adds the right classes and role. */
@@ -129,10 +119,5 @@ export class SbbFooterCell extends CdkFooterCell {
   },
 })
 export class SbbCell extends CdkCell {
-  constructor(
-    public readonly _columnDef: SbbColumnDef,
-    elementRef: ElementRef,
-  ) {
-    super(_columnDef, elementRef);
-  }
+  _columnDef: SbbColumnDef = inject(SbbColumnDef);
 }

@@ -167,7 +167,7 @@
     </unit>
     <unit id="sbbSearchHeaderButtonLabel">
       <notes>
-        <note category="location">../../search/header-search.ts:87</note>
+        <note category="location">../../search/header-search.ts:86</note>
         <note category="description">Button label for the header search</note>
       </notes>
       <segment>

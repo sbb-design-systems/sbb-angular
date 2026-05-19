@@ -22,7 +22,7 @@ import { SbbInputModule } from '@sbb-esta/angular/input';
   ],
 })
 export class AutocompleteLocaleNormalizerExample {
-  value: string;
+  value!: string;
 
   filteredOptions = options.slice(0);
 

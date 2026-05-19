@@ -12,7 +12,7 @@ import { SbbNotificationToast } from '@sbb-esta/angular/notification-toast';
   imports: [SbbButtonModule],
 })
 export class NotificationToastTemplateExample {
-  @ViewChild('content') content: TemplateRef<any>;
+  @ViewChild('content') content!: TemplateRef<any>;
   private _notification = inject(SbbNotificationToast);
 
   showNotification() {

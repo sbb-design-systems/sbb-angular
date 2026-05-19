@@ -139,7 +139,7 @@ export class SbbTextarea
     this._updateDigitsCounter(this.value);
     this.stateChanges.next();
   }
-  private _maxlength: number;
+  private _maxlength!: number;
 
   /** Class property that sets the minlength of the textarea content. */
   @Input({ transform: numberAttribute })
@@ -150,7 +150,7 @@ export class SbbTextarea
     this._minlength = value;
     this.stateChanges.next();
   }
-  private _minlength: number;
+  private _minlength!: number;
 
   /** Class property that sets required the textarea. */
   @Input({ transform: booleanAttribute })
@@ -186,16 +186,16 @@ export class SbbTextarea
   }
 
   /** Determines the aria-describedby to be set on the host. */
-  _ariaDescribedby: string;
+  _ariaDescribedby!: string;
   /** Class property that represents an observer on the number of digits in a textarea. */
   _counter: BehaviorSubject<number> = new BehaviorSubject<number>(this.maxlength);
 
   /** Placeholder value for the textarea. */
   @Input() placeholder: string = '';
   /** @docs-private */
-  @ViewChild('textarea', { static: true }) _textarea: ElementRef<HTMLTextAreaElement>;
+  @ViewChild('textarea', { static: true }) _textarea!: ElementRef<HTMLTextAreaElement>;
   /** Class property that automatically resize a textarea to fit its content. */
-  @ViewChild(CdkTextareaAutosize, { static: true }) autosize: CdkTextareaAutosize;
+  @ViewChild(CdkTextareaAutosize, { static: true }) autosize!: CdkTextareaAutosize;
 
   /** `View -> model callback called when value changes` */
   _onChange: (value: any) => void = () => {};

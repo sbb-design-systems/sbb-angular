@@ -23,7 +23,7 @@ import { SbbSelectModule } from '@sbb-esta/angular/select';
   ],
 })
 export class SelectFormsExample {
-  value: string;
+  value!: string;
   disabled: boolean = false;
   optionDisabled: boolean = false;
 }

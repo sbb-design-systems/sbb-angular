@@ -21,13 +21,13 @@ export enum SbbDialogState {
  */
 export class SbbDialogRef<T, R = any> {
   /** The instance of component opened into the dialog. */
-  componentInstance: T;
+  componentInstance!: T;
 
   /**
    * `ComponentRef` of the component opened into the dialog. Will be
    * null when the dialog is opened using a `TemplateRef`.
    */
-  readonly componentRef: ComponentRef<T> | null;
+  readonly componentRef: ComponentRef<T> | null = null;
 
   /** Whether the user is allowed to close the dialog. */
   disableClose: boolean | undefined;

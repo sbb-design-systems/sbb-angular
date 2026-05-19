@@ -47,10 +47,10 @@ export class SbbTextexpand implements AfterContentInit {
   @Output() expandEvent: EventEmitter<boolean> = new EventEmitter<boolean>();
 
   /** Refers to the textexpand-collapsed component instance. */
-  @ContentChild(SbbTextexpandCollapsed) collapsedComponent: SbbTextexpandCollapsed;
+  @ContentChild(SbbTextexpandCollapsed) collapsedComponent!: SbbTextexpandCollapsed;
 
   /** Refers to the textexpand-expanded component instance. */
-  @ContentChild(SbbTextexpandExpanded) expandedComponent: SbbTextexpandExpanded;
+  @ContentChild(SbbTextexpandExpanded) expandedComponent!: SbbTextexpandExpanded;
 
   toggleExpanded() {
     this.isExpanded = !this.isExpanded;

@@ -92,18 +92,18 @@ export class SbbChipList
   private readonly _destroyed = new Subject<void>();
 
   /** Subscription to focus changes in the chips. */
-  private _chipFocusSubscription: Subscription | null;
+  private _chipFocusSubscription: Subscription | null = null;
 
   /** Subscription to blur changes in the chips. */
-  private _chipBlurSubscription: Subscription | null;
+  private _chipBlurSubscription: Subscription | null = null;
 
   /** Subscription to remove changes in chips. */
-  private _chipRemoveSubscription: Subscription | null;
+  private _chipRemoveSubscription: Subscription | null = null;
 
   private _errorStateTracker: _ErrorStateTracker;
 
   /** The chip input to add more chips */
-  _chipInput: SbbChipTextControl;
+  _chipInput!: SbbChipTextControl;
 
   /** Uid of the chip list */
   _uid: string = inject(_IdGenerator).getId('sbb-chip-list-');
@@ -118,7 +118,7 @@ export class SbbChipList
   _userTabIndex: number | null = null;
 
   /** The FocusKeyManager which handles focus. */
-  _keyManager: FocusKeyManager<SbbChip>;
+  _keyManager!: FocusKeyManager<SbbChip>;
 
   /** Function when touched */
   _onTouched: () => void = () => {};
@@ -144,7 +144,7 @@ export class SbbChipList
    * Implemented as part of SbbFormFieldControl.
    * @docs-private
    */
-  @Input('aria-describedby') userAriaDescribedBy: string;
+  @Input('aria-describedby') userAriaDescribedBy!: string;
 
   /** An object used to control when error messages are shown. */
   @Input()
@@ -195,7 +195,7 @@ export class SbbChipList
     this._placeholder = value;
     this.stateChanges.next();
   }
-  protected _placeholder: string;
+  protected _placeholder!: string;
 
   /** Whether any chips or the sbbChipInput inside of this chip-list has focus. */
   get focused(): boolean {
@@ -261,7 +261,7 @@ export class SbbChipList
     // indirect descendants if it's left as false.
     descendants: true,
   })
-  chips: QueryList<SbbChip>;
+  chips!: QueryList<SbbChip>;
 
   /**
    * Emits whenever the component state changes and should cause the parent

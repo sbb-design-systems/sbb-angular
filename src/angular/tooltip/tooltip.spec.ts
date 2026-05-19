@@ -1436,6 +1436,7 @@ describe('SbbTooltip', () => {
     </button>
   }`,
   imports: [SbbTooltipModule],
+  changeDetection: ChangeDetectionStrategy.Eager,
 })
 class BasicTooltipDemo {
   position: TooltipPosition = 'below';
@@ -1444,8 +1445,8 @@ class BasicTooltipDemo {
   showTooltipClass = false;
   touchGestures: TooltipTouchGestures = 'auto';
   tooltipDisabled = false;
-  @ViewChild(SbbTooltip) tooltip: SbbTooltip;
-  @ViewChild('button') button: ElementRef<HTMLButtonElement>;
+  @ViewChild(SbbTooltip) tooltip!: SbbTooltip;
+  @ViewChild('button') button!: ElementRef<HTMLButtonElement>;
 }
 
 @Component({
@@ -1460,12 +1461,13 @@ class BasicTooltipDemo {
     }
   </div>`,
   imports: [SbbTooltipModule],
+  changeDetection: ChangeDetectionStrategy.Eager,
 })
 class ScrollableTooltipDemo {
   message: string = initialTooltipMessage;
   showButton: boolean = true;
 
-  @ViewChild(CdkScrollable) scrollingContainer: CdkScrollable;
+  @ViewChild(CdkScrollable) scrollingContainer!: CdkScrollable;
 
   scrollDown() {
     const scrollingContainerEl = this.scrollingContainer.getElementRef().nativeElement;
@@ -1495,6 +1497,7 @@ class OnPushTooltipDemo {
     <button [sbbTooltip]="tooltip">Button {{ tooltip }}</button>
   }`,
   imports: [SbbTooltipModule],
+  changeDetection: ChangeDetectionStrategy.Eager,
 })
 class DynamicTooltipsDemo {
   tooltips: string[] = [];
@@ -1503,6 +1506,7 @@ class DynamicTooltipsDemo {
 @Component({
   template: `<button [sbbTooltip]="message" [attr.aria-label]="message">Click me</button>`,
   imports: [SbbTooltipModule],
+  changeDetection: ChangeDetectionStrategy.Eager,
 })
 class DataBoundAriaLabelTooltip {
   message = 'Hello there';
@@ -1519,10 +1523,11 @@ class DataBoundAriaLabelTooltip {
     ></textarea>
   `,
   imports: [SbbTooltipModule],
+  changeDetection: ChangeDetectionStrategy.Eager,
 })
 class TooltipOnTextFields {
-  @ViewChild('input') input: ElementRef<HTMLInputElement>;
-  @ViewChild('textarea') textarea: ElementRef<HTMLTextAreaElement>;
+  @ViewChild('input') input!: ElementRef<HTMLInputElement>;
+  @ViewChild('textarea') textarea!: ElementRef<HTMLTextAreaElement>;
   touchGestures: TooltipTouchGestures = 'auto';
 }
 
@@ -1536,9 +1541,10 @@ class TooltipOnTextFields {
     ></button>
   `,
   imports: [SbbTooltipModule],
+  changeDetection: ChangeDetectionStrategy.Eager,
 })
 class TooltipOnDraggableElement {
-  @ViewChild('button') button: ElementRef;
+  @ViewChild('button') button!: ElementRef;
   touchGestures: TooltipTouchGestures = 'auto';
 }
 
@@ -1547,9 +1553,10 @@ class TooltipOnDraggableElement {
     <button [sbbTooltip]="'content'" [sbbTooltipTrigger]="trigger">Show tooltip</button>
   `,
   imports: [SbbTooltipModule],
+  changeDetection: ChangeDetectionStrategy.Eager,
 })
 class TriggerConfigurableTooltip {
-  @ViewChild(SbbTooltip) tooltip: SbbTooltip;
+  @ViewChild(SbbTooltip) tooltip!: SbbTooltip;
   trigger: 'click' | 'hover' = 'click';
 }
 
@@ -1557,11 +1564,12 @@ class TriggerConfigurableTooltip {
   selector: 'app',
   template: `<button #button [sbbTooltip]="message">Button</button>`,
   imports: [SbbTooltipModule, OverlayModule],
+  changeDetection: ChangeDetectionStrategy.Eager,
 })
 class TooltipDemoWithoutPositionBinding {
   message: any = initialTooltipMessage;
-  @ViewChild(SbbTooltip) tooltip: SbbTooltip;
-  @ViewChild('button') button: ElementRef<HTMLButtonElement>;
+  @ViewChild(SbbTooltip) tooltip!: SbbTooltip;
+  @ViewChild('button') button!: ElementRef<HTMLButtonElement>;
 }
 
 @Component({
@@ -1577,11 +1585,12 @@ class TooltipDemoWithoutPositionBinding {
     </div>
   `,
   imports: [SbbTooltipModule],
+  changeDetection: ChangeDetectionStrategy.Eager,
 })
 class TooltipTriggerBubble {
   disabled = false;
   trigger: 'click' | 'hover' = 'click';
-  @ViewChild(SbbTooltip) tooltip: SbbTooltip;
+  @ViewChild(SbbTooltip) tooltip!: SbbTooltip;
 
   outerDivClick() {}
 }

@@ -31,16 +31,16 @@ import { SbbDatepicker } from '../datepicker/datepicker';
 })
 export class SbbDatepickerContent<D> implements AfterViewInit {
   /** Reference to the internal calendar component. */
-  @ViewChild(SbbCalendar, { static: true }) calendar: SbbCalendar<D>;
+  @ViewChild(SbbCalendar, { static: true }) calendar!: SbbCalendar<D>;
 
   /** Reference to the datepicker that created the overlay. */
-  datepicker: SbbDatepicker<D>;
+  datepicker!: SbbDatepicker<D>;
 
   /** Whether the datepicker is above or below the input. */
-  isAbove: boolean;
+  isAbove: boolean = false;
 
   /** Id of the label for the `role="dialog"` element. */
-  _dialogLabelId: string | null;
+  _dialogLabelId: string | null = null;
 
   ngAfterViewInit() {
     this.calendar.focusActiveCell();

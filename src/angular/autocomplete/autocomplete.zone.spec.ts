@@ -70,20 +70,20 @@ class SimpleAutocomplete implements OnDestroy {
   filteredNumbers: any[];
   valueSub: Subscription;
   position: 'auto' | 'above' | 'below' = 'auto';
-  width: number;
+  width!: number;
   autocompleteDisabled = false;
   hasLabel = true;
   requireSelection = false;
-  ariaLabel: string;
-  ariaLabelledby: string;
+  ariaLabel!: string;
+  ariaLabelledby!: string;
   panelClass = 'class-one class-two';
   openedSpy = jasmine.createSpy('autocomplete opened spy');
   closedSpy = jasmine.createSpy('autocomplete closed spy');
 
-  @ViewChild(SbbAutocompleteTrigger, { static: true }) trigger: SbbAutocompleteTrigger;
-  @ViewChild(SbbAutocomplete, { static: true }) panel: SbbAutocomplete;
-  @ViewChild(SbbFormField) formField: SbbFormField;
-  @ViewChildren(SbbOption) options: QueryList<SbbOption>;
+  @ViewChild(SbbAutocompleteTrigger, { static: true }) trigger!: SbbAutocompleteTrigger;
+  @ViewChild(SbbAutocomplete, { static: true }) panel!: SbbAutocomplete;
+  @ViewChild(SbbFormField) formField!: SbbFormField;
+  @ViewChildren(SbbOption) options!: QueryList<SbbOption>;
 
   numbers: { code: string; name: string; height?: number; disabled?: boolean }[] = [
     { code: '1', name: 'Eins', height: 48 },

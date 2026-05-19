@@ -96,13 +96,13 @@ export class SbbButton
   /** Whether this button has an icon indicator. */
   _hasIconIndicator: boolean = this._hasHostAttributes(...INDICATOR_ATTRIBUTES);
   /** Whether the left indicator icon is visible. */
-  _leftIconVisible: Observable<boolean>;
+  _leftIconVisible!: Observable<boolean>;
   /** Whether the right indicator icon is visible. */
-  _rightIconVisible: Observable<boolean>;
+  _rightIconVisible!: Observable<boolean>;
   /** Whether the button has the `sbb-icon-button` class */
   _hasIconButtonClass: boolean = false;
   /** Whether the button is an icon button. */
-  _isIconButton: Observable<boolean>;
+  _isIconButton!: Observable<boolean>;
   /**
    * The indicator icon, which will be shown around the button content
    * in the standard variant or behind the sbb-link in lean variant.
@@ -110,7 +110,7 @@ export class SbbButton
    *
    * e.g. svgIcon="plus-small"
    */
-  @Input() svgIcon: string;
+  @Input() svgIcon!: string;
 
   /** Whether the button is disabled. */
   @Input({ transform: booleanAttribute }) disabled: boolean = false;
@@ -222,7 +222,7 @@ export class SbbAnchor extends SbbButton implements AfterViewInit, OnDestroy {
   private _ngZone = inject(NgZone);
 
   /** Tabindex of the button. */
-  @Input() tabIndex: number;
+  @Input() tabIndex!: number;
 
   override ngAfterViewInit(): void {
     super.ngAfterViewInit();

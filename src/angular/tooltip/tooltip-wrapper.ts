@@ -49,10 +49,10 @@ export class SbbTooltipWrapper
   @Input() trigger: 'click' | 'hover' = 'click';
 
   /** Customizations for show delay */
-  @Input({ transform: numberAttribute }) hoverShowDelay: number;
+  @Input({ transform: numberAttribute }) hoverShowDelay!: number;
 
   /** Customizations for hide delay */
-  @Input({ transform: numberAttribute }) hoverHideDelay: number;
+  @Input({ transform: numberAttribute }) hoverHideDelay!: number;
 
   @Input() position: TooltipPosition = 'below';
 
@@ -64,7 +64,7 @@ export class SbbTooltipWrapper
    *
    * e.g. svgIcon="circle-question-mark-small"
    */
-  @Input() svgIcon: string;
+  @Input() svgIcon!: string;
 
   /** Whether the tooltip is disabled. */
   @Input({ transform: booleanAttribute }) disabled: boolean = false;
@@ -84,10 +84,10 @@ export class SbbTooltipWrapper
   );
 
   /** Classes to be passed to the tooltip. Supports the same syntax as `ngClass`. */
-  @Input() sbbTooltipClass: string | string[] | Set<string> | { [key: string]: any };
+  @Input() sbbTooltipClass!: string | string[] | Set<string> | { [key: string]: any };
 
   /** Classes to be passed to the tooltip panel. Supports the same syntax as `ngClass`. */
-  @Input() sbbTooltipPanelClass: string | string[] | Set<string> | { [key: string]: any };
+  @Input() sbbTooltipPanelClass!: string | string[] | Set<string> | { [key: string]: any };
 
   @ViewChild(SbbTooltip, { static: true }) _tooltip!: SbbTooltip;
 

@@ -46,7 +46,7 @@ declare global {
 })
 export class JourneyMapsStyleOptionsExample implements OnInit {
   apiKey = window.JM_API_KEY;
-  form: UntypedFormGroup;
+  form!: UntypedFormGroup;
   interactionOptions: SbbInteractionOptions = {
     enableRotate: true,
     enablePitch: true,

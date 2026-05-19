@@ -73,7 +73,7 @@ export class SbbSort implements OnInit, OnChanges, OnDestroy {
   readonly _stateChanges = new Subject<void>();
 
   /** The id of the most recently sorted SbbSortable. */
-  @Input('sbbSortActive') active: string;
+  @Input('sbbSortActive') active!: string;
 
   /** Whether the sort is disabled. */
   @Input({ alias: 'sbbSortDisabled', transform: booleanAttribute }) disabled: boolean = false;
@@ -107,7 +107,7 @@ export class SbbSort implements OnInit, OnChanges, OnDestroy {
    * May be overriden by the SbbSortable's disable clear input.
    */
   @Input({ alias: 'sbbSortDisableClear', transform: booleanAttribute })
-  disableClear: boolean;
+  disableClear!: boolean;
 
   /** Event emitted when the user changes either the active sort or sort direction. */
   @Output('sbbSortChange') readonly sortChange: EventEmitter<SbbSortState> =

@@ -20,7 +20,7 @@ import { takeUntil } from 'rxjs/operators';
 export class MultipleModeDefaultFileSelectorExample implements OnInit, OnDestroy {
   filesList: File[] = [];
   fileControl = new FormControl<File[] | null>(null);
-  disabled: boolean;
+  disabled: boolean = false;
   accept: string;
   private _destroyed = new Subject<void>();
   private _fileTypeService = inject(SbbFileSelectorTypesService);

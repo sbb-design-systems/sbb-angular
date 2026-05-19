@@ -41,7 +41,7 @@ import { startWith, takeUntil } from 'rxjs/operators';
   ],
 })
 export class CollapsibleSidebarExample implements AfterViewInit, OnDestroy {
-  @ViewChild(SbbSidebarContainer) sidebarContainer: SbbSidebarContainer;
+  @ViewChild(SbbSidebarContainer) sidebarContainer!: SbbSidebarContainer;
 
   mode = new FormControl<'over' | 'side'>('over', { nonNullable: true });
   position = new FormControl<'start' | 'end'>('start', { nonNullable: true });

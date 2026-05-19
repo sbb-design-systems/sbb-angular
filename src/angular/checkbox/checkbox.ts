@@ -41,9 +41,9 @@ const defaults = SBB_CHECKBOX_DEFAULT_OPTIONS_FACTORY();
 /** Change event object emitted by SbbCheckbox. */
 export class SbbCheckboxChange {
   /** The source SbbCheckbox of the event. */
-  source: SbbCheckbox;
+  source!: SbbCheckbox;
   /** The new `checked` value of the checkbox. */
-  checked: boolean;
+  checked: boolean = false;
 }
 
 /**
@@ -107,20 +107,20 @@ export class SbbCheckbox
   @Input('aria-labelledby') ariaLabelledby: string | null = null;
 
   /** The 'aria-describedby' attribute is read after the element's label and field type. */
-  @Input('aria-describedby') ariaDescribedby: string;
+  @Input('aria-describedby') ariaDescribedby!: string;
 
   /**
    * Users can specify the `aria-expanded` attribute which will be forwarded to the input element
    */
-  @Input({ alias: 'aria-expanded', transform: booleanAttribute }) ariaExpanded: boolean;
+  @Input({ alias: 'aria-expanded', transform: booleanAttribute }) ariaExpanded!: boolean;
 
   /**
    * Users can specify the `aria-controls` attribute which will be forwarded to the input element
    */
-  @Input('aria-controls') ariaControls: string;
+  @Input('aria-controls') ariaControls!: string;
 
   /** Users can specify the `aria-owns` attribute which will be forwarded to the input element */
-  @Input('aria-owns') ariaOwns: string;
+  @Input('aria-owns') ariaOwns!: string;
 
   private _uniqueId = inject(_IdGenerator).getId('sbb-checkbox-');
 
@@ -133,7 +133,7 @@ export class SbbCheckbox
   }
 
   /** Whether the checkbox is required. */
-  @Input({ transform: booleanAttribute }) required: boolean;
+  @Input({ transform: booleanAttribute }) required!: boolean;
 
   /** Whether the label should appear after or before the checkbox. Defaults to 'after' */
   @Input() labelPosition: 'before' | 'after' = 'after';
@@ -153,10 +153,10 @@ export class SbbCheckbox
   @Output() readonly indeterminateChange: EventEmitter<boolean> = new EventEmitter<boolean>();
 
   /** The value attribute of the native input element */
-  @Input() value: string;
+  @Input() value!: string;
 
   /** The native `<input type="checkbox">` element */
-  @ViewChild('input') _inputElement: ElementRef<HTMLInputElement>;
+  @ViewChild('input') _inputElement!: ElementRef<HTMLInputElement>;
 
   /**
    * Called when the checkbox is blurred. Needed to properly implement ControlValueAccessor.

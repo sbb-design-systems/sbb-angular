@@ -53,18 +53,18 @@ export class SbbTabHeader
   implements AfterContentChecked, AfterContentInit, AfterViewInit, OnDestroy
 {
   @ContentChildren(SbbTabLabelWrapper, { descendants: false })
-  _items: QueryList<SbbTabLabelWrapper>;
-  @ViewChild('tabListContainer', { static: true }) _tabListContainer: ElementRef;
-  @ViewChild('tabList', { static: true }) _tabList: ElementRef;
-  @ViewChild('tabListInner', { static: true }) _tabListInner: ElementRef;
-  @ViewChild('nextPaginator') _nextPaginator: ElementRef<HTMLElement>;
-  @ViewChild('previousPaginator') _previousPaginator: ElementRef<HTMLElement>;
+  _items!: QueryList<SbbTabLabelWrapper>;
+  @ViewChild('tabListContainer', { static: true }) _tabListContainer!: ElementRef;
+  @ViewChild('tabList', { static: true }) _tabList!: ElementRef;
+  @ViewChild('tabListInner', { static: true }) _tabListInner!: ElementRef;
+  @ViewChild('nextPaginator') _nextPaginator!: ElementRef<HTMLElement>;
+  @ViewChild('previousPaginator') _previousPaginator!: ElementRef<HTMLElement>;
 
   /** Aria label of the header. */
-  @Input('aria-label') ariaLabel: string;
+  @Input('aria-label') ariaLabel!: string;
 
   /** Sets the `aria-labelledby` of the header. */
-  @Input('aria-labelledby') ariaLabelledby: string;
+  @Input('aria-labelledby') ariaLabelledby!: string;
 
   @Output() override selectFocusedIndex: EventEmitter<number> = new EventEmitter<number>();
   @Output() override indexFocused: EventEmitter<number> = new EventEmitter<number>();

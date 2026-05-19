@@ -18,9 +18,9 @@ import { SbbIcon } from '@sbb-esta/angular/icon';
 })
 export class SbbStatus {
   /** The optional icon type, which can be valid, warning or invalid. */
-  @Input() type: 'valid' | 'warning' | 'invalid';
+  @Input() type!: 'valid' | 'warning' | 'invalid';
   /** Set the status message shown on the right side. */
-  @Input() message: string;
+  @Input() message!: string;
   /** Used to set the 'aria-label' attribute on the underlying icon element. */
   @Input('aria-label') ariaLabel: string = '';
   /** The 'aria-labelledby' attribute takes precedence as the element's text alternative. */

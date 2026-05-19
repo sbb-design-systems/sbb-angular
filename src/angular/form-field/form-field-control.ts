@@ -4,26 +4,26 @@ import { Observable } from 'rxjs';
 /** An interface which allows a control to work inside of a `SbbField`. */
 export abstract class SbbFormFieldControl<TValue> {
   /** The value of the control. */
-  value: TValue | null;
+  value: TValue | null = null;
   /**
    * Stream that emits whenever the state of the control changes such that the parent `SbbField`
    * needs to run change detection.
    */
-  readonly stateChanges: Observable<void>;
+  readonly stateChanges!: Observable<void>;
   /** The id of the form field. */
-  readonly id: string;
+  readonly id!: string;
   /** The attached NgControl or AbstractControlDirective, if any exists. */
   readonly ngControl: NgControl | AbstractControlDirective | undefined;
   /** Whether the control is focused. */
-  readonly focused: boolean;
+  readonly focused: boolean = false;
   /** Whether the control is empty. */
-  readonly empty: boolean;
+  readonly empty: boolean = false;
   /** Whether the control is required. */
-  readonly required: boolean;
+  readonly required: boolean = false;
   /** Whether the control is disabled. */
-  readonly disabled: boolean;
+  readonly disabled: boolean = false;
   /** Whether the control is in an error state. */
-  readonly errorState: boolean;
+  readonly errorState: boolean = false;
   /**
    * An optional name for the control type that can be used to distinguish `sbb-form-field` elements
    * based on their control type. The form field will add a class,

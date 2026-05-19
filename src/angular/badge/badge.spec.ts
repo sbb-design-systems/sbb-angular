@@ -1,4 +1,4 @@
-import { Component, DebugElement, ViewChild, ViewEncapsulation } from '@angular/core';
+import { Component, DebugElement, signal, ViewChild, ViewEncapsulation } from '@angular/core';
 import { ComponentFixture, fakeAsync, TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 
@@ -23,8 +23,7 @@ describe('SbbBadge', () => {
     const badgeElement = badgeHostNativeElement.querySelector('.sbb-badge-content')!;
     expect(badgeElement.textContent).toContain('1');
 
-    testComponent.badgeContent = '22';
-    fixture.changeDetectorRef.markForCheck();
+    testComponent.badgeContent.set('22');
     fixture.detectChanges();
     expect(badgeElement.textContent).toContain('22');
   });
@@ -33,8 +32,7 @@ describe('SbbBadge', () => {
     const badgeElement = badgeHostNativeElement.querySelector('.sbb-badge-content')!;
     expect(badgeElement.textContent).toContain('1');
 
-    testComponent.badgeContent = 0;
-    fixture.changeDetectorRef.markForCheck();
+    testComponent.badgeContent.set(0);
     fixture.detectChanges();
     expect(badgeElement.textContent).toContain('0');
   });
@@ -43,13 +41,11 @@ describe('SbbBadge', () => {
     const badgeElement = badgeHostNativeElement.querySelector('.sbb-badge-content')!;
     expect(badgeElement.textContent).toContain('1');
 
-    testComponent.badgeContent = null;
-    fixture.changeDetectorRef.markForCheck();
+    testComponent.badgeContent.set(null);
     fixture.detectChanges();
     expect(badgeElement.textContent?.trim()).toBe('');
 
-    testComponent.badgeContent = undefined;
-    fixture.changeDetectorRef.markForCheck();
+    testComponent.badgeContent.set(undefined);
     fixture.detectChanges();
     expect(badgeElement.textContent?.trim()).toBe('');
   });
@@ -57,8 +53,7 @@ describe('SbbBadge', () => {
   it('should update the badge position on direction change', () => {
     expect(badgeHostNativeElement.classList.contains('sbb-badge-above')).toBe(true);
 
-    testComponent.badgeDirection = 'after';
-    fixture.changeDetectorRef.markForCheck();
+    testComponent.badgeDirection.set('after');
     fixture.detectChanges();
 
     expect(badgeHostNativeElement.classList.contains('sbb-badge-after')).toBe(true);
@@ -67,8 +62,7 @@ describe('SbbBadge', () => {
   it('should change visibility to hidden', () => {
     expect(badgeHostNativeElement.classList.contains('sbb-badge-hidden')).toBe(false);
 
-    testComponent.badgeHidden = true;
-    fixture.changeDetectorRef.markForCheck();
+    testComponent.badgeHidden.set(true);
     fixture.detectChanges();
 
     expect(badgeHostNativeElement.classList.contains('sbb-badge-hidden')).toBe(true);
@@ -77,16 +71,14 @@ describe('SbbBadge', () => {
   it('should toggle `aria-describedby` depending on whether the badge has a description', () => {
     expect(badgeHostNativeElement.hasAttribute('aria-describedby')).toBeFalse();
 
-    testComponent.badgeDescription = 'Describing a badge';
-    fixture.changeDetectorRef.markForCheck();
+    testComponent.badgeDescription.set('Describing a badge');
     fixture.detectChanges();
 
     const describedById = badgeHostNativeElement.getAttribute('aria-describedby') || '';
     const description = document.getElementById(describedById)?.textContent;
     expect(description).toBe('Describing a badge');
 
-    testComponent.badgeDescription = '';
-    fixture.changeDetectorRef.markForCheck();
+    testComponent.badgeDescription.set('');
     fixture.detectChanges();
 
     expect(badgeHostNativeElement.hasAttribute('aria-describedby')).toBeFalse();
@@ -97,26 +89,22 @@ describe('SbbBadge', () => {
 
     expect(classList.contains('sbb-badge-hidden')).toBe(false);
 
-    testComponent.badgeContent = '';
-    fixture.changeDetectorRef.markForCheck();
+    testComponent.badgeContent.set('');
     fixture.detectChanges();
 
     expect(classList.contains('sbb-badge-hidden')).toBe(true);
 
-    testComponent.badgeContent = 'hello';
-    fixture.changeDetectorRef.markForCheck();
+    testComponent.badgeContent.set('hello');
     fixture.detectChanges();
 
     expect(classList.contains('sbb-badge-hidden')).toBe(false);
 
-    testComponent.badgeContent = ' ';
-    fixture.changeDetectorRef.markForCheck();
+    testComponent.badgeContent.set(' ');
     fixture.detectChanges();
 
     expect(classList.contains('sbb-badge-hidden')).toBe(true);
 
-    testComponent.badgeContent = 0;
-    fixture.changeDetectorRef.markForCheck();
+    testComponent.badgeContent.set(0);
     fixture.detectChanges();
 
     expect(classList.contains('sbb-badge-hidden')).toBe(false);
@@ -141,8 +129,7 @@ describe('SbbBadge', () => {
 
     expect(element.classList).not.toContain('sbb-badge-disabled');
 
-    testComponent.badgeDisabled = true;
-    fixture.changeDetectorRef.markForCheck();
+    testComponent.badgeDisabled.set(true);
     fixture.detectChanges();
 
     expect(element.classList).toContain('sbb-badge-disabled');
@@ -181,11 +168,11 @@ describe('SbbBadge', () => {
   styles: ['span { color: hotpink; }'],
   template: `
     <span
-      [sbbBadge]="badgeContent"
-      [sbbBadgePosition]="badgeDirection"
-      [sbbBadgeHidden]="badgeHidden"
-      [sbbBadgeDescription]="badgeDescription"
-      [sbbBadgeDisabled]="badgeDisabled"
+      [sbbBadge]="badgeContent()"
+      [sbbBadgePosition]="badgeDirection()"
+      [sbbBadgeHidden]="badgeHidden()"
+      [sbbBadgeDescription]="badgeDescription() || ''"
+      [sbbBadgeDisabled]="badgeDisabled()"
     >
       home
     </span>
@@ -193,12 +180,12 @@ describe('SbbBadge', () => {
   imports: [SbbBadgeModule],
 })
 class BadgeTestApp {
-  @ViewChild(SbbBadge) badgeInstance: SbbBadge;
-  badgeContent: string | number | undefined | null = '1';
-  badgeDirection: SbbBadgePosition = 'above';
-  badgeHidden = false;
-  badgeDescription: string;
-  badgeDisabled = false;
+  @ViewChild(SbbBadge) badgeInstance!: SbbBadge;
+  badgeContent = signal<string | number | undefined | null>('1');
+  badgeDirection = signal<SbbBadgePosition>('above');
+  badgeHidden = signal(false);
+  badgeDescription = signal<string | undefined>(undefined);
+  badgeDisabled = signal(false);
 }
 
 @Component({

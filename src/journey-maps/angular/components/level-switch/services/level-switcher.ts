@@ -17,8 +17,8 @@ import { SbbQueryMapFeatures } from './query-map-features';
  */
 @Injectable()
 export class SbbLevelSwitcher {
-  private _map: MaplibreMap;
-  private _lastZoom: number; // needed to detect when we cross zoom threshold to show or hide the level switcher component
+  private _map!: MaplibreMap;
+  private _lastZoom!: number; // needed to detect when we cross zoom threshold to show or hide the level switcher component
 
   private readonly _destroyed = new Subject<void>();
   private readonly _defaultLevel = undefined;

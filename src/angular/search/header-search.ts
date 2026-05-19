@@ -18,7 +18,6 @@ import {
   ChangeDetectorRef,
   Component,
   ContentChild,
-  ElementRef,
   HostListener,
   inject,
   InjectionToken,
@@ -96,7 +95,7 @@ export class SbbHeaderSearch {
   @Input() type: string = 'button';
 
   /** The contained search instance. */
-  @ContentChild(SbbSearch, { static: true }) _search: SbbSearch;
+  @ContentChild(SbbSearch, { static: true }) _search!: SbbSearch;
 
   /** The indicator icon from the contained sbb-search component. */
   get svgIcon(): string {
@@ -140,10 +139,8 @@ export class SbbHeaderSearch {
 
   constructor(...args: unknown[]);
   constructor() {
-    const elementRef = inject<ElementRef<HTMLElement>>(ElementRef);
-
     this._scrollStrategy = this._scrollStrategyFactory();
-    this._overlayOrigin = new CdkOverlayOrigin(elementRef);
+    this._overlayOrigin = new CdkOverlayOrigin();
 
     this._positions = this._breakpointObserver
       .observe(Breakpoints.Mobile)

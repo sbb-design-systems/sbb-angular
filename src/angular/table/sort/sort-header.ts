@@ -82,13 +82,13 @@ export interface SbbArrowViewStateTransition {
   ],
 })
 export class SbbSortHeader implements SbbSortable, OnDestroy, OnInit, AfterViewInit {
-  private _rerenderSubscription: Subscription;
+  private _rerenderSubscription!: Subscription;
 
   /**
    * The element with role="button" inside this component's view. We need this
    * in order to apply a description with AriaDescriber.
    */
-  private _sortButton: HTMLElement;
+  private _sortButton!: HTMLElement;
 
   protected _sort: SbbSort = inject(SbbSort, { optional: true })!;
   private _columnDef = inject(CdkColumnDef, { optional: true });
@@ -116,7 +116,7 @@ export class SbbSortHeader implements SbbSortable, OnDestroy, OnInit, AfterViewI
    * ID of this sort header. If used within the context of a CdkColumnDef, this will default to
    * the column's name.
    */
-  @Input('sbb-sort-header') id: string;
+  @Input('sbb-sort-header') id!: string;
 
   /** Sets the position of the arrow that displays when sorted. */
   @Input() arrowPosition: SbbSortHeaderArrowPosition = 'after';
@@ -124,7 +124,7 @@ export class SbbSortHeader implements SbbSortable, OnDestroy, OnInit, AfterViewI
   @Input({ transform: booleanAttribute }) disabled: boolean = false;
 
   /** Overrides the sort start value of the containing SbbSort for this SbbSortable. */
-  @Input() start: SbbSortDirection;
+  @Input() start!: SbbSortDirection;
 
   /**
    * Description applied to SbbSortHeader's button element with aria-describedby. This text should
@@ -144,7 +144,7 @@ export class SbbSortHeader implements SbbSortable, OnDestroy, OnInit, AfterViewI
 
   /** Overrides the disable clear value of the containing MatSort for this MatSortable. */
   @Input({ transform: booleanAttribute })
-  disableClear: boolean;
+  disableClear!: boolean;
 
   constructor(
     private _changeDetectorRef: ChangeDetectorRef,

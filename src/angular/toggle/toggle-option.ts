@@ -65,8 +65,8 @@ export class SbbToggleOption extends _SbbRadioButtonBase {
   @Input() subtitle?: string;
 
   /** The toggle content projection label. */
-  @ContentChild(SbbToggleLabel) _labelNonStatic: SbbToggleLabel;
-  @ContentChild(SbbToggleLabel, { static: true }) _labelStatic: SbbToggleLabel;
+  @ContentChild(SbbToggleLabel) _labelNonStatic!: SbbToggleLabel;
+  @ContentChild(SbbToggleLabel, { static: true }) _labelStatic!: SbbToggleLabel;
   get _label() {
     // TODO: we need this workaround in order to support both Ivy and ViewEngine.
     // We should clean this up once Ivy is the default renderer.
@@ -74,15 +74,15 @@ export class SbbToggleOption extends _SbbRadioButtonBase {
   }
 
   /** The toggle content projection label. */
-  @ContentChild(SbbToggleSubtitle) _subtitleNonStatic: SbbToggleSubtitle;
-  @ContentChild(SbbToggleSubtitle, { static: true }) _subtitleStatic: SbbToggleSubtitle;
+  @ContentChild(SbbToggleSubtitle) _subtitleNonStatic!: SbbToggleSubtitle;
+  @ContentChild(SbbToggleSubtitle, { static: true }) _subtitleStatic!: SbbToggleSubtitle;
   get _subtitle() {
     return this._subtitleNonStatic || this._subtitleStatic;
   }
 
   /** The toggle content projection label. */
-  @ContentChild(SbbToggleIcon) _iconNonStatic: SbbToggleIcon;
-  @ContentChild(SbbToggleIcon, { static: true }) _iconStatic: SbbToggleIcon;
+  @ContentChild(SbbToggleIcon) _iconNonStatic!: SbbToggleIcon;
+  @ContentChild(SbbToggleIcon, { static: true }) _iconStatic!: SbbToggleIcon;
   get _icon() {
     return this._iconNonStatic || this._iconStatic;
   }
@@ -93,7 +93,7 @@ export class SbbToggleOption extends _SbbRadioButtonBase {
    *
    * e.g. svgIcon="plus-small"
    */
-  @Input() svgIcon: string;
+  @Input() svgIcon!: string;
 
   /** The toggle content projection label. */
   _details: Signal<SbbToggleDetails | undefined> = contentChild(SbbToggleDetails);

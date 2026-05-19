@@ -46,38 +46,38 @@ export class SbbTab implements OnInit, OnChanges, OnDestroy {
   set templateLabel(value: SbbTabLabel) {
     this._setTemplateLabelInput(value);
   }
-  protected _templateLabel: SbbTabLabel;
+  protected _templateLabel!: SbbTabLabel;
 
   /**
    * Template provided in the tab content that will be used if present, used to enable lazy-loading
    */
   @ContentChild(SBB_TAB_CONTENT, { read: TemplateRef, static: true })
-  _explicitContent: TemplateRef<any>;
+  _explicitContent!: TemplateRef<any>;
 
   /** Template inside the SbbTab view that contains an `<ng-content>`. */
-  @ViewChild(TemplateRef, { static: true }) _implicitContent: TemplateRef<any>;
+  @ViewChild(TemplateRef, { static: true }) _implicitContent!: TemplateRef<any>;
 
   /** Plain text label for the tab, used when there is no template label. */
   @Input('label') textLabel: string = '';
 
   /** Aria label for the tab. */
-  @Input('aria-label') ariaLabel: string;
+  @Input('aria-label') ariaLabel!: string;
 
   /**
    * Reference to the element that the tab is labelled by.
    * Will be cleared if `aria-label` is set at the same time.
    */
-  @Input('aria-labelledby') ariaLabelledby: string;
+  @Input('aria-labelledby') ariaLabelledby!: string;
 
   /**
    * Classes to be passed to the tab label inside the sbb-tab-header container.
    */
-  @Input() labelClass: string | string[];
+  @Input() labelClass!: string | string[];
 
   /**
    * Classes to be passed to the tab sbb-tab-body container.
    */
-  @Input() bodyClass: string | string[];
+  @Input() bodyClass!: string | string[];
 
   /** Whether the tab is disabled */
   @Input({ transform: booleanAttribute }) disabled: boolean = false;

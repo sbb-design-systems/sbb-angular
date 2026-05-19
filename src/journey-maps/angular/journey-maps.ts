@@ -88,7 +88,7 @@ import {
 })
 export class SbbJourneyMaps implements OnInit, AfterViewInit, OnDestroy, OnChanges {
   /** Your personal API key. Ask <a href="mailto:dlrokas@sbb.ch">dlrokas@sbb.ch</a> if you need one. */
-  @Input() apiKey: string;
+  @Input() apiKey!: string;
   /**
    * @deprecated
    * This method will be removed in future versions. Use {@link journeyRoutesOption} instead.
@@ -124,7 +124,7 @@ export class SbbJourneyMaps implements OnInit, AfterViewInit, OnDestroy, OnChang
    * map.once('idle', () => this.selectedLevel = -2);
    */
   @Input() selectedLevel: number | undefined;
-  @Input() listenerOptions: SbbListenerOptions;
+  @Input() listenerOptions!: SbbListenerOptions;
 
   /** Define the currently visible part of the map. */
   @Input() viewportDimensions?: SbbViewportDimensions;
@@ -193,7 +193,7 @@ export class SbbJourneyMaps implements OnInit, AfterViewInit, OnDestroy, OnChang
   /** @docs-private */
   touchEventCollector: Subject<TouchEvent> = new Subject<TouchEvent>();
   /** @docs-private */
-  touchOverlayText: string;
+  touchOverlayText!: string;
   /** @docs-private */
   touchOverlayStyleClass: string = '';
 
@@ -204,10 +204,10 @@ export class SbbJourneyMaps implements OnInit, AfterViewInit, OnDestroy, OnChang
   isLevelSwitchHorizontal: boolean = false;
   /** @docs-private */
   levelSwitchHorizontalThreshold: number = 580; // 580px
-  private _map: MaplibreMap;
-  @ViewChild('map') private readonly _mapElementRef: ElementRef<HTMLElement>;
+  private _map!: MaplibreMap;
+  @ViewChild('map') private readonly _mapElementRef!: ElementRef<HTMLElement>;
   @ViewChild(SbbFeatureEventListener)
-  private readonly _featureEventListenerComponent: SbbFeatureEventListener;
+  private readonly _featureEventListenerComponent!: SbbFeatureEventListener;
   private readonly _defaultStyleOptions: SbbStyleOptions = {
     url: 'https://journey-maps-tiles.geocdn.sbb.ch/styles/{styleId}/style.json?api_key={apiKey}',
     aerialId: 'journey_maps_aerial_v1',
@@ -252,7 +252,7 @@ export class SbbJourneyMaps implements OnInit, AfterViewInit, OnDestroy, OnChang
   // Therefore, we set this variable to true once the style has been loaded.
   private _isStyleLoaded = false;
   private _isAerialSelected = false;
-  private _observer: ResizeObserver;
+  private _observer!: ResizeObserver;
   private readonly _sbbGeolocateControl = new SbbGeolocateControl({
     positionOptions: {
       enableHighAccuracy: true,

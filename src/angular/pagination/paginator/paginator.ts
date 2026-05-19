@@ -81,7 +81,7 @@ export class SbbPaginator implements OnInit, OnDestroy {
   _labelNextPage: string = $localize`:Button label to navigate to the next page@@sbbPaginationNextPage:Next Page`;
 
   private _changeDetectorRef = inject(ChangeDetectorRef);
-  private _previousPageSize: number;
+  private _previousPageSize!: number;
   private _isInitialized = false;
   private _initializedStream = new ReplaySubject<void>(1);
 

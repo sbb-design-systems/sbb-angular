@@ -77,7 +77,7 @@ export class SbbMonthView<D> implements AfterContentInit {
     this._selected = this._getValidDateOrNull(this._dateAdapter.deserialize(value));
     this.selectedDate = this._getDateInCurrentMonth(this._selected);
   }
-  private _selected: D | null;
+  private _selected: D | null = null;
 
   /** The minimum selectable date. */
   @Input()
@@ -87,7 +87,7 @@ export class SbbMonthView<D> implements AfterContentInit {
   set minDate(value: D | null) {
     this._minDate = this._getValidDateOrNull(this._dateAdapter.deserialize(value));
   }
-  private _minDate: D | null;
+  private _minDate: D | null = null;
 
   /** The maximum selectable date. */
   @Input()
@@ -97,10 +97,10 @@ export class SbbMonthView<D> implements AfterContentInit {
   set maxDate(value: D | null) {
     this._maxDate = this._getValidDateOrNull(this._dateAdapter.deserialize(value));
   }
-  private _maxDate: D | null;
+  private _maxDate: D | null = null;
 
   /** A function used to filter which dates are selectable. */
-  @Input() dateFilter: (date: D) => boolean;
+  @Input() dateFilter?: (date: D) => boolean;
 
   /** Function that can be used to add custDom CSS classes to dates. */
   @Input()
@@ -111,7 +111,7 @@ export class SbbMonthView<D> implements AfterContentInit {
     this._dateClass = dateClass;
     this._updateDateClasses();
   }
-  _dateClass: SbbCalendarCellClassFunction<D> | null;
+  _dateClass: SbbCalendarCellClassFunction<D> | null = null;
 
   /** Whether to display the week number. */
   @Input() showWeekNumbers: boolean = false;
@@ -143,33 +143,33 @@ export class SbbMonthView<D> implements AfterContentInit {
   @Output() readonly activeDateChange: EventEmitter<D> = new EventEmitter<D>();
 
   /** The body of calendar table */
-  @ViewChild(SbbCalendarBody, { static: true }) sbbCalendarBody: SbbCalendarBody;
+  @ViewChild(SbbCalendarBody, { static: true }) sbbCalendarBody!: SbbCalendarBody;
 
   /** The label for this month (e.g. "January 2017"). */
-  monthLabel: string;
+  monthLabel!: string;
 
   /** Grid of calendar cells representing the dates of the month. */
-  weeks: SbbCalendarCell[][];
+  weeks!: SbbCalendarCell[][];
 
   /** Week of year for each row. */
   weeksInMonth: number[] = [];
 
   /** The number of blank cells in the first row before the 1st of the month. */
-  firstWeekOffset: number;
+  firstWeekOffset!: number;
 
   /**
    * The date of the month that the currently selected Date falls on.
    * Null if the currently selected Date is in another month.
    */
-  selectedDate: number | null;
+  selectedDate: number | null = null;
 
   /**
    * The weekday that is currently selected.
    */
-  selectedWeekday: number | null;
+  selectedWeekday: number | null = null;
 
   /** The date of the month that today falls on. Null if today is in another month. */
-  todayDate: number | null;
+  todayDate: number | null = null;
 
   /** The names of the weekdays. */
   weekdays: { long: string; narrow: string; index: number }[];

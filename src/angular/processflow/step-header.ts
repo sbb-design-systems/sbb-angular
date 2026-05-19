@@ -29,25 +29,25 @@ export class SbbStepHeader extends CdkStepHeader implements AfterViewInit, OnDes
   private _focusMonitor = inject(FocusMonitor);
 
   /** State of the given step. */
-  @Input() state: StepState;
+  @Input() state!: StepState;
 
   /** Label of the given step. */
-  @Input() label: SbbStepLabel | string;
+  @Input() label!: SbbStepLabel | string;
 
   /** Index of the given step. */
-  @Input() index: number;
+  @Input() index!: number;
 
   /** Whether the given step is selected. */
-  @Input() selected: boolean;
+  @Input() selected: boolean = false;
 
   /** Whether the given step label is active. */
-  @Input() active: boolean;
+  @Input() active: boolean = false;
 
   /** Whether the given step is optional. */
-  @Input() optional: boolean;
+  @Input() optional: boolean = false;
 
   /** Whether the given step is not editable and completed. */
-  @Input() locked: boolean;
+  @Input() locked: boolean = false;
 
   ngAfterViewInit() {
     this._focusMonitor.monitor(this._elementRef, true);

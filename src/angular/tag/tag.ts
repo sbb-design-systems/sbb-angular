@@ -55,12 +55,12 @@ export class SbbTag extends SbbCheckbox implements OnDestroy {
 
     this._amountChange.next(this._amount);
   }
-  private _amount: number;
+  private _amount!: number;
 
   /** Description of the badge (amount) */
   @Input('sbbBadgeDescription')
-  badgeDescription: string;
-  _badgeDescriptionFallback: string;
+  badgeDescription!: string;
+  _badgeDescriptionFallback!: string;
 
   /**
    * The indicator icon, which will be shown before the text.
@@ -68,7 +68,7 @@ export class SbbTag extends SbbCheckbox implements OnDestroy {
    *
    * e.g. svgIcon="circle-information-small"
    */
-  @Input() svgIcon: string;
+  @Input() svgIcon!: string;
 
   /** Emits the current amount when the amount changes */
   readonly _amountChange = new Subject<number>();

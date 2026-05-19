@@ -29,7 +29,7 @@ import { debounceTime, distinctUntilChanged, map, startWith } from 'rxjs/operato
 export class AutocompleteOptionGroupExample implements OnInit {
   myControlStatic = new FormControl('one');
 
-  options: Observable<string[]>;
+  options!: Observable<string[]>;
 
   staticOptions: string[] = ['static option one', 'static option two'];
 
