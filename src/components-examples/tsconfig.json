@@ -3,7 +3,6 @@
   "extends": "../../tsconfig.json",
   "compilerOptions": {
     "rootDir": "..",
-    "baseUrl": ".",
     "paths": {
       "@sbb-esta/angular": ["../angular"],
       "@sbb-esta/angular/*": ["../angular/*"],
