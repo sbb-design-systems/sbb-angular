@@ -17,7 +17,7 @@ export class SortableTableExample implements AfterViewInit {
   displayedColumns: string[] = ['letter', 'number', 'word', 'date'];
   dataSource: SbbTableDataSource<any> = new SbbTableDataSource(TABLE_EXAMPLE_DATA);
 
-  @ViewChild(SbbSort) sort: SbbSort;
+  @ViewChild(SbbSort) sort!: SbbSort;
 
   private _liveAnnouncer = inject(LiveAnnouncer);
 

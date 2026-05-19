@@ -18,15 +18,15 @@ import { SbbLocaleService } from '../../services/locale-service';
   standalone: false,
 })
 export class SbbCompassButton implements OnInit {
-  @Input() map: MaplibreMap | null;
+  @Input() map: MaplibreMap | null = null;
   @Input() showSmallButtons: boolean | undefined;
-  @Input() isDarkMode: boolean;
-  @Input() negativeBearing: number;
-  @Input() pitch: number;
+  @Input() isDarkMode: boolean = false;
+  @Input() negativeBearing!: number;
+  @Input() pitch!: number;
 
   @Output() compassButtonClicked: EventEmitter<void> = new EventEmitter<void>();
 
-  compassButtonLabel: string;
+  compassButtonLabel!: string;
 
   constructor(private _i18n: SbbLocaleService) {}
 

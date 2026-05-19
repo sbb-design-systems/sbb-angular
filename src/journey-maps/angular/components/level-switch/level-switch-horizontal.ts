@@ -36,17 +36,17 @@ import { SbbLevelSwitcher } from './services/level-switcher';
   standalone: false,
 })
 export class SbbLevelSwitchHorizontal implements OnInit, OnDestroy {
-  @Input() map: MaplibreMap | null;
+  @Input() map: MaplibreMap | null = null;
   @Input() showSmallButtons: boolean | undefined;
-  @Input() isDarkMode: boolean;
+  @Input() isDarkMode: boolean = false;
 
-  @ViewChild('mainButton') mainButton: ElementRef<HTMLButtonElement>;
-  @ViewChildren('sideButton') sideButtons: QueryList<ElementRef<HTMLButtonElement>>;
+  @ViewChild('mainButton') mainButton!: ElementRef<HTMLButtonElement>;
+  @ViewChildren('sideButton') sideButtons!: QueryList<ElementRef<HTMLButtonElement>>;
 
   showSideButtons: boolean = false;
-  levelSwitchLabel: string;
+  levelSwitchLabel!: string;
 
-  private _countdownTimer: ReturnType<typeof setTimeout>;
+  private _countdownTimer!: ReturnType<typeof setTimeout>;
   private _autoCollapseTimeout = 5000; // 5000 ms
   private _destroyed = new Subject<void>();
 

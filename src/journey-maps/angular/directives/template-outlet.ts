@@ -21,7 +21,7 @@ export class SbbTemplateOutlet implements OnChanges {
   private _viewRef?: EmbeddedViewRef<any>;
   // HTML Template
   private _htmlContent?: HTMLElement;
-  private _htmlTemplateObserver: MutationObserver;
+  private _htmlTemplateObserver!: MutationObserver;
 
   @Input() public sbbTemplateOutlet?: SbbTemplateType;
   @Input() public sbbTemplateOutletContext?: Object;

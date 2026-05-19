@@ -25,13 +25,13 @@ export class SbbMarkerDetails implements OnChanges {
   @Input() selectedMarker: SbbMarker | undefined;
   @Input() template?: SbbTemplateType;
   @Input() popup: boolean | undefined;
-  @Input() map: MaplibreMap | null;
-  @Input() isDarkMode: boolean;
+  @Input() map: MaplibreMap | null = null;
+  @Input() isDarkMode: boolean = false;
 
   @Output() closeClicked: EventEmitter<void> = new EventEmitter<void>();
 
   shouldRender: boolean = false;
-  popupOffset: Offset;
+  popupOffset!: Offset;
 
   private readonly _defaultPopupOffset = {
     right: [-15, -15],

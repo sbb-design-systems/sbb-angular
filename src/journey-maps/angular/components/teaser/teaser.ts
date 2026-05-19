@@ -32,16 +32,16 @@ import { SbbLocaleService } from '../../services/locale-service';
   standalone: false,
 })
 export class SbbTeaser implements OnInit, OnChanges {
-  @Input() rendered: boolean;
+  @Input() rendered: boolean = false;
   @Input() templateContext: any;
-  @Input() template: SbbTemplateType;
+  @Input() template!: SbbTemplateType;
   @Input() withPaginator: boolean = false;
-  @Input() isDarkMode: boolean;
+  @Input() isDarkMode: boolean = false;
 
   @Output() closeClicked: EventEmitter<void> = new EventEmitter<void>();
   @Output() mouseEvent: EventEmitter<'enter' | 'leave'> = new EventEmitter<'enter' | 'leave'>();
 
-  closeLabel: string;
+  closeLabel!: string;
 
   templateContextIndex: number = 0;
   templateContextSize: number = 1;

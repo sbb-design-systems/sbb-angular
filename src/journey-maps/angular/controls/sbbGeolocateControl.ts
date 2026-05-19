@@ -61,12 +61,12 @@ let noTimeout = false;
 export class SbbGeolocateControl extends Evented implements IControl {
   _map?: MaplibreMap;
   options: GeolocateOptions;
-  _container: HTMLElement;
-  _dotElement: HTMLElement;
-  _circleElement: HTMLElement;
+  _container!: HTMLElement;
+  _dotElement!: HTMLElement;
+  _circleElement!: HTMLElement;
   _geolocationWatchID?: number;
   _timeoutId?: ReturnType<typeof setTimeout>;
-  _watchState:
+  _watchState!:
     | 'OFF'
     | 'ACTIVE_LOCK'
     | 'WAITING_ACTIVE'
@@ -74,10 +74,10 @@ export class SbbGeolocateControl extends Evented implements IControl {
     | 'BACKGROUND'
     | 'BACKGROUND_ERROR';
   _lastKnownPosition: any;
-  _userLocationDotMarker: Marker;
-  _accuracyCircleMarker: Marker;
-  _accuracy: number;
-  _setup: boolean; // set to true once the control has been setup
+  _userLocationDotMarker!: Marker;
+  _accuracyCircleMarker!: Marker;
+  _accuracy!: number;
+  _setup: boolean = false; // set to true once the control has been setup
 
   constructor(options?: GeolocateOptions) {
     super();

@@ -10,7 +10,7 @@ const SBB_REPEAT_EVENTS = 1;
 const SBB_MAP_CLICK_EVENT_DEBOUNCE_TIME = 200;
 
 export class SbbFeaturesClickEvent extends ReplaySubject<SbbFeaturesClickEventData> {
-  private _subscription: Subscription;
+  private _subscription!: Subscription;
 
   constructor(
     private _mapInstance: MaplibreMap,

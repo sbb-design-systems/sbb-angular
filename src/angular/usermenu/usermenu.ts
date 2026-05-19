@@ -86,7 +86,7 @@ export class SbbUsermenu extends _SbbUsermenuMixinBase {
   @Input() displayName?: string;
 
   /** Reference to the menu. */
-  @Input() menu: SbbMenu;
+  @Input() menu!: SbbMenu;
 
   /** Event emitted on log in of a user. */
   @Output() loginRequest: EventEmitter<void> = new EventEmitter<void>();
@@ -97,7 +97,7 @@ export class SbbUsermenu extends _SbbUsermenuMixinBase {
   /** Event emitted when the associated menu is closed. */
   @Output() readonly menuClosed: EventEmitter<void> = new EventEmitter<void>();
 
-  @ViewChild(SbbMenuTrigger) private _menuTrigger: SbbMenuTrigger;
+  @ViewChild(SbbMenuTrigger) private _menuTrigger!: SbbMenuTrigger;
 
   /** Reference to user provided icon */
   @ContentChild(SbbUsermenuIcon, { read: TemplateRef })

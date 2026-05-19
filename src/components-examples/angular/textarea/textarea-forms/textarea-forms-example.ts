@@ -25,9 +25,9 @@ import { SbbTextareaModule } from '@sbb-esta/angular/textarea';
 })
 export class TextareaFormsExample {
   textarea = 'SBB';
-  minlength: number;
-  maxlength: number;
-  required: boolean;
-  disabled: boolean;
-  readonly: boolean;
+  minlength!: number;
+  maxlength!: number;
+  required: boolean = false;
+  disabled: boolean = false;
+  readonly: boolean = false;
 }

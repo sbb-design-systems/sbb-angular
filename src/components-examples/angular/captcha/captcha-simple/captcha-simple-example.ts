@@ -14,7 +14,7 @@ import { SbbCaptchaModule } from '@sbb-esta/angular/captcha';
   imports: [SbbCaptchaModule, SbbButtonModule, JsonPipe],
 })
 export class CaptchaSimpleExample {
-  basicCaptchaResponse: string;
+  basicCaptchaResponse!: string;
 
   testSiteKey: string = '6LeIxAcTAAAAAJcZVRqyHh71UMIEGNQ_MXjiZKhI';
 

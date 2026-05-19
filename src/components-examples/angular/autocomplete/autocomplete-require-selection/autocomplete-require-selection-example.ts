@@ -21,7 +21,7 @@ import { SbbInputModule } from '@sbb-esta/angular/input';
   ],
 })
 export class AutocompleteRequireSelectionExample {
-  @ViewChild('input') input: ElementRef<HTMLInputElement>;
+  @ViewChild('input') input!: ElementRef<HTMLInputElement>;
   myControl = new FormControl('');
   options: string[] = [
     'Zürich',

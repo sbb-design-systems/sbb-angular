@@ -21,11 +21,11 @@ import { Map as MaplibreMap, MapDataEvent } from 'maplibre-gl';
   standalone: false,
 })
 export class SbbAttribution implements OnChanges, OnDestroy {
-  @Input() map: MaplibreMap | null;
-  @Input() isDarkMode: boolean;
+  @Input() map: MaplibreMap | null = null;
+  @Input() isDarkMode: boolean = false;
 
-  open: boolean;
-  compact: boolean;
+  open: boolean = false;
+  compact: boolean = false;
   attributions: string[] = [];
 
   private _listeners = new Map<string[], (event?: MapDataEvent) => void>([

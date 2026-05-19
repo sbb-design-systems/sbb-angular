@@ -39,8 +39,8 @@ export class CalendarConfigurationExample implements OnDestroy {
     endDate: new FormControl<Date | null>(null),
     selectedWeekDay: new FormControl(0),
   });
-  selectedDate: Date | null;
-  selectedWeekday: number | null;
+  selectedDate: Date | null = null;
+  selectedWeekday: number | null = null;
   showWeekNumbers = true;
   dateClass: Observable<SbbCalendarCellClassFunction<Date>> =
     this.dateForm.controls.selectedWeekDay.valueChanges.pipe(

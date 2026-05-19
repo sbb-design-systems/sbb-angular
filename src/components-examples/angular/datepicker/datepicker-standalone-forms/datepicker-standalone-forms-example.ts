@@ -15,5 +15,5 @@ import { SbbInputModule } from '@sbb-esta/angular/input';
   imports: [SbbFormFieldModule, SbbDatepickerModule, SbbInputModule, FormsModule, DatePipe],
 })
 export class DatepickerStandaloneFormsExample {
-  date: Date;
+  date!: Date;
 }

@@ -209,21 +209,21 @@ export class SbbTooltip implements OnDestroy, AfterViewInit {
     optional: true,
   })!;
 
-  _overlayRef: OverlayRef | null;
-  _tooltipInstance: TooltipComponent | null;
+  _overlayRef: OverlayRef | null = null;
+  _tooltipInstance: TooltipComponent | null = null;
 
-  private _portal: ComponentPortal<TooltipComponent>;
+  private _portal!: ComponentPortal<TooltipComponent>;
   private _position: TooltipPosition = 'below';
   private _disabled: boolean = false;
-  private _tooltipClass: string | string[] | Set<string> | { [key: string]: any };
+  private _tooltipClass!: string | string[] | Set<string> | { [key: string]: any };
   private _scrollStrategy = inject(SBB_TOOLTIP_SCROLL_STRATEGY);
   private _viewInitialized = false;
   private _pointerExitEventsInitialized = false;
   private readonly _tooltipComponent = TooltipComponent;
   private _viewportMargin = 8;
-  private _currentPosition: TooltipPosition;
+  private _currentPosition!: TooltipPosition;
   private readonly _cssClassPrefix: string = 'sbb';
-  private _ariaDescriptionPending: boolean;
+  private _ariaDescriptionPending: boolean = false;
 
   /** Allows the user to define the position of the tooltip relative to the parent element */
   @Input('sbbTooltipPosition')
@@ -281,7 +281,7 @@ export class SbbTooltip implements OnDestroy, AfterViewInit {
   set showDelay(value: NumberInput) {
     this._showDelay = coerceNumberProperty(value);
   }
-  private _showDelay: number;
+  private _showDelay!: number;
 
   /** The default delay in ms before hiding the tooltip after hide is called */
   @Input('sbbTooltipHideDelay')
@@ -295,7 +295,7 @@ export class SbbTooltip implements OnDestroy, AfterViewInit {
       this._tooltipInstance._mouseLeaveHideDelay = this._hideDelay;
     }
   }
-  private _hideDelay: number;
+  private _hideDelay!: number;
 
   /**
    * How touch gestures should be handled by the tooltip. On touch devices the tooltip directive
@@ -984,10 +984,10 @@ export class TooltipComponent implements OnDestroy {
   _isHandset: Observable<BreakpointState>;
 
   /** Message to display in the tooltip */
-  message: string | TemplateRef<any>;
+  message!: string | TemplateRef<any>;
 
   /** Classes to be added to the tooltip. Supports the same syntax as `ngClass`. */
-  tooltipClass: string | string[] | Set<string> | { [key: string]: any };
+  tooltipClass!: string | string[] | Set<string> | { [key: string]: any };
 
   /** The timeout ID of any current timer set to show the tooltip */
   _showTimeoutId: any;
@@ -996,10 +996,10 @@ export class TooltipComponent implements OnDestroy {
   _hideTimeoutId: any;
 
   /** Element that caused the tooltip to open. */
-  _triggerElement: HTMLElement;
+  _triggerElement!: HTMLElement;
 
   /** Amount of milliseconds to delay the closing sequence. */
-  _mouseLeaveHideDelay: number;
+  _mouseLeaveHideDelay!: number;
 
   /** Reference to the internal tooltip element. */
   @ViewChild('tooltip', {
@@ -1007,7 +1007,7 @@ export class TooltipComponent implements OnDestroy {
     // the DOM which can happen before `ngAfterViewInit`.
     static: true,
   })
-  _tooltip: ElementRef<HTMLElement>;
+  _tooltip!: ElementRef<HTMLElement>;
 
   get _templateRef(): TemplateRef<any> | null {
     return this.message instanceof TemplateRef ? this.message : null;
@@ -1031,7 +1031,7 @@ export class TooltipComponent implements OnDestroy {
   private _closeOnInteraction = false;
 
   /** The class that traps and manages focus within the tooltip. */
-  private _focusTrap: FocusTrap;
+  private _focusTrap!: FocusTrap;
 
   /** Element that was focused before the tooltip was opened. Save this to restore upon close. */
   private _elementFocusedBeforeDialogWasOpened: HTMLElement | null = null;

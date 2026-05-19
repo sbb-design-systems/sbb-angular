@@ -23,7 +23,7 @@ export class CellActionsTableExample implements AfterViewInit {
   displayedColumns: string[] = ['vehicle', 'manufacturer', 'price'];
   dataSource: SbbTableDataSource<any> = new SbbTableDataSource(EXAMPLE_DATA);
 
-  @ViewChildren(SbbRow, { read: ElementRef }) _sbbRows: QueryList<ElementRef<HTMLElement>>;
+  @ViewChildren(SbbRow, { read: ElementRef }) _sbbRows!: QueryList<ElementRef<HTMLElement>>;
   private _focusableRows = new QueryList<FocusableRow>();
 
   _focusKeyManager?: FocusKeyManager<FocusableRow>;

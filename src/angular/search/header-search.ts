@@ -95,7 +95,7 @@ export class SbbHeaderSearch {
   @Input() type: string = 'button';
 
   /** The contained search instance. */
-  @ContentChild(SbbSearch, { static: true }) _search: SbbSearch;
+  @ContentChild(SbbSearch, { static: true }) _search!: SbbSearch;
 
   /** The indicator icon from the contained sbb-search component. */
   get svgIcon(): string {

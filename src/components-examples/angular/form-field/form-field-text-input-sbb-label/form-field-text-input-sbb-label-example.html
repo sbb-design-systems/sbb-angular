@@ -12,7 +12,7 @@
     <sbb-error>Name is required!</sbb-error>
   }
   @if (name.errors?.['minlength']) {
-    <sbb-error>Min length is {{ name.errors?.['minlength']?.['requiredLength'] }}!</sbb-error>
+    <sbb-error>Min length is {{ name.errors['minlength']['requiredLength'] }}!</sbb-error>
   }
 </sbb-form-field>
 <p>Name must be at least 3 characters long</p>

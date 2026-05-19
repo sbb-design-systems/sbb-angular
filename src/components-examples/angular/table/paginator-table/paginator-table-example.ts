@@ -27,7 +27,7 @@ interface VehicleExampleItem {
   imports: [SbbTableModule, SbbPaginationModule, SbbFormFieldModule, SbbInputModule, FormsModule],
 })
 export class PaginatorTableExample implements OnInit, OnDestroy {
-  @ViewChild('paginator', { static: true }) paginator: SbbPaginator;
+  @ViewChild('paginator', { static: true }) paginator!: SbbPaginator;
   dataSource: SbbTableDataSource<VehicleExampleItem> = new SbbTableDataSource(VEHICLE_EXAMPLE_DATA);
   displayedColumns: string[] = ['position', 'name', 'power', 'description'];
   pageSize: number = 5;

@@ -10,7 +10,7 @@ import { needsFloorChange, updateWalkFloor } from './util/walk-floor-updater';
 
 @Injectable({ providedIn: 'root' })
 export class SbbMapTransferService {
-  private _data: FeatureCollection;
+  private _data!: FeatureCollection;
 
   // calling this method only makes sense for clients using the v1 style.
   updateTransfer(

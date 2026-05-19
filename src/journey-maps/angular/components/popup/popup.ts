@@ -26,12 +26,12 @@ import { SbbLocaleService } from '../../services/locale-service';
   standalone: false,
 })
 export class SbbPopup implements OnChanges, OnDestroy {
-  @Input() rendered: boolean;
-  @Input() map: MaplibreMap | null;
-  @Input() template: SbbTemplateType;
+  @Input() rendered: boolean = false;
+  @Input() map: MaplibreMap | null = null;
+  @Input() template!: SbbTemplateType;
   @Input() templateContext: any;
-  @Input() position: LngLatLike;
-  @Input() offset: Offset;
+  @Input() position!: LngLatLike;
+  @Input() offset!: Offset;
   @Input() additionalClassName?: string;
   @Input() withPaginator: boolean = false;
   @Output() closeClicked: EventEmitter<void> = new EventEmitter<void>();
@@ -45,7 +45,7 @@ export class SbbPopup implements OnChanges, OnDestroy {
   templateContextIndex: number = 0;
   templateContextSize: number = 1;
   private _popup: Popup | undefined;
-  private _popupContent: ElementRef<HTMLElement>;
+  private _popupContent!: ElementRef<HTMLElement>;
 
   private _mouseEnter = () => this.mouseEvent.next('enter');
   private _mouseLeave = () => this.mouseEvent.next('leave');

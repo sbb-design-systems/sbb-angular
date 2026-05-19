@@ -58,10 +58,10 @@ export abstract class SbbSidebarBase implements AfterViewInit, OnDestroy {
   abstract _mobileChanged(mobile: boolean): void;
 
   /** Whether the view of the component has been attached. */
-  private _isAttached: boolean;
+  private _isAttached: boolean = false;
 
   /** Anchor node used to restore the sidebar to its initial position. */
-  private _anchor: Comment | null;
+  private _anchor: Comment | null = null;
 
   /** The side that the sidebar is attached to. */
   @Input()
@@ -140,7 +140,7 @@ export abstract class SbbSidebarContainerBase<T extends SbbSidebarBase>
   protected _changeDetectorRef: ChangeDetectorRef = inject(ChangeDetectorRef);
   protected _breakpointObserver: BreakpointObserver = inject(BreakpointObserver);
 
-  _mobile: boolean;
+  _mobile: boolean = false;
 
   /**
    * The sidebar child at the start or end position.
@@ -167,17 +167,17 @@ export abstract class SbbSidebarContainerBase<T extends SbbSidebarBase>
   }
 
   /** All sidebars, also nested sidebars included **/
-  _allSidebars: QueryList<T>;
+  _allSidebars!: QueryList<T>;
 
   /** Sidebars that belong to this container. */
   _sidebars: QueryList<T> = new QueryList<T>();
 
-  _content: SbbSidebarContentBase;
-  _userContent: SbbSidebarContentBase;
+  _content!: SbbSidebarContentBase;
+  _userContent!: SbbSidebarContentBase;
 
   /** The sidebar at the start/end position. */
-  protected _start: T | null;
-  protected _end: T | null;
+  protected _start: T | null = null;
+  protected _end: T | null = null;
 
   /** Emits when the component is destroyed. */
   protected readonly _destroyed: Subject<void> = new Subject<void>();

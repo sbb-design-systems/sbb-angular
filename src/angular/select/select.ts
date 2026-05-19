@@ -226,7 +226,7 @@ export class SbbSelect
   private _scrollTop = 0;
 
   /** The last measured value for the trigger's client bounding rect. */
-  private _triggerRect: DOMRect;
+  private _triggerRect!: DOMRect;
 
   /** The cached font-size of the trigger element. */
   _triggerFontSize: number = 0;
@@ -242,10 +242,10 @@ export class SbbSelect
   _offsetY: number = 0;
 
   /** All of the defined select options. */
-  @ContentChildren(SbbOption, { descendants: true }) options: QueryList<SbbOption>;
+  @ContentChildren(SbbOption, { descendants: true }) options!: QueryList<SbbOption>;
 
   /** All of the defined groups of options. */
-  @ContentChildren(SbbOptgroup, { descendants: true }) optionGroups: QueryList<SbbOptgroup>;
+  @ContentChildren(SbbOptgroup, { descendants: true }) optionGroups!: QueryList<SbbOptgroup>;
 
   /**
    * This position config ensures that the top "start" corner of the overlay
@@ -314,13 +314,13 @@ export class SbbSelect
    * Implemented as part of MatFormFieldControl.
    * @docs-private
    */
-  @Input('aria-describedby') userAriaDescribedBy: string;
+  @Input('aria-describedby') userAriaDescribedBy!: string;
 
   /** Deals with the selection logic. */
-  _selectionModel: SelectionModel<SbbOption>;
+  _selectionModel!: SelectionModel<SbbOption>;
 
   /** Manages keyboard events for options in the panel. */
-  _keyManager: ActiveDescendantKeyManager<SbbOption>;
+  _keyManager!: ActiveDescendantKeyManager<SbbOption>;
 
   /** `View -> model callback called when value changes` */
   _onChange: (value: any) => void = () => {};
@@ -350,13 +350,13 @@ export class SbbSelect
   controlType: string = 'sbb-select';
 
   /** Panel containing the select options. */
-  @ViewChild('panel') panel: ElementRef<HTMLElement>;
+  @ViewChild('panel') panel!: ElementRef<HTMLElement>;
 
   /** Overlay pane containing the options. */
-  @ViewChild(CdkConnectedOverlay) overlayDir: CdkConnectedOverlay;
+  @ViewChild(CdkConnectedOverlay) overlayDir!: CdkConnectedOverlay;
 
   /** Classes to be passed to the select panel. Supports the same syntax as `ngClass`. */
-  @Input() panelClass: string | string[] | Set<string> | { [key: string]: any };
+  @Input() panelClass!: string | string[] | Set<string> | { [key: string]: any };
 
   /** Whether the select is disabled. */
   @Input({ transform: booleanAttribute })
@@ -374,7 +374,7 @@ export class SbbSelect
     this._placeholder = value;
     this.stateChanges.next();
   }
-  private _placeholder: string;
+  private _placeholder!: string;
 
   /** Whether the component is required. */
   @Input({ transform: booleanAttribute })
@@ -449,7 +449,7 @@ export class SbbSelect
   @Input('aria-label') ariaLabel: string = '';
 
   /** Input that can be used to specify the `aria-labelledby` attribute. */
-  @Input('aria-labelledby') ariaLabelledby: string;
+  @Input('aria-labelledby') ariaLabelledby!: string;
 
   /** Object used to control when error messages are shown. */
   @Input()
@@ -462,13 +462,13 @@ export class SbbSelect
 
   /** Time to wait in milliseconds after the last keystroke before moving focus to an item. */
   @Input({ transform: numberAttribute })
-  typeaheadDebounceInterval: number;
+  typeaheadDebounceInterval!: number;
 
   /**
    * Function used to sort the values in a select in multiple mode.
    * Follows the same logic as `Array.prototype.sort`.
    */
-  @Input() sortComparator: (a: SbbOption, b: SbbOption, options: SbbOption[]) => number;
+  @Input() sortComparator!: (a: SbbOption, b: SbbOption, options: SbbOption[]) => number;
 
   /** Unique id of the element. */
   @Input()
@@ -479,7 +479,7 @@ export class SbbSelect
     this._id = value || this._uid;
     this.stateChanges.next();
   }
-  private _id: string;
+  private _id!: string;
 
   /** Whether the select is in an error state. */
   get errorState() {

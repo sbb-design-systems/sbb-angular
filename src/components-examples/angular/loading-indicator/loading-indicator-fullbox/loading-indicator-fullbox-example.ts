@@ -12,7 +12,7 @@ import { SbbLoadingIndicatorModule } from '@sbb-esta/angular/loading-indicator';
   imports: [SbbLoadingIndicatorModule, SbbButtonModule],
 })
 export class LoadingIndicatorFullboxExample {
-  showSpinner: boolean;
+  showSpinner: boolean = false;
 
   activateSpinner() {
     this.showSpinner = true;

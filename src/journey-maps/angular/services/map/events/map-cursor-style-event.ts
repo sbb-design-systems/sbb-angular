@@ -7,8 +7,8 @@ const SBB_CURSOR_STYLE_DELAY = 25;
 
 export class SbbMapCursorStyleEvent {
   private _subject = new Subject<Point>();
-  private _subscription: Subscription;
-  private _mouseEventListener: (event: MapMouseEvent) => void;
+  private _subscription!: Subscription;
+  private _mouseEventListener!: (event: MapMouseEvent) => void;
 
   constructor(
     private _mapInstance: MaplibreMap,

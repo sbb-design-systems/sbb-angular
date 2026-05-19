@@ -32,9 +32,9 @@ export class SbbMapMarkerService {
     string,
     SbbMarkerCategoryMapping
   >();
-  sources: string[];
-  markerLayers: string[];
-  markerLayersSelected: string[];
+  sources!: string[];
+  markerLayers!: string[];
+  markerLayersSelected!: string[];
 
   constructor(
     private _markerConverter: SbbMarkerConverter,

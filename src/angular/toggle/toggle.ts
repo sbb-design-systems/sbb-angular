@@ -61,7 +61,7 @@ export class SbbToggle
 
   private _destroyed = new Subject<void>();
 
-  @ViewChild('toggleOptionContentWrapper') _toggleOptionContentWrapper: ElementRef;
+  @ViewChild('toggleOptionContentWrapper') _toggleOptionContentWrapper!: ElementRef;
   _heightAnimationState: 'void' | 'initial' | 'fixed' | 'auto' = 'initial';
   _currentOptionContentWrapperHeight: WritableSignal<number> = signal(0);
 

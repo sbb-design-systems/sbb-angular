@@ -23,7 +23,7 @@ import { SbbInputModule } from '@sbb-esta/angular/input';
   ],
 })
 export class AutocompleteFormsExample {
-  value: string;
+  value!: string;
 
   filteredOptions = options.slice(0);
 

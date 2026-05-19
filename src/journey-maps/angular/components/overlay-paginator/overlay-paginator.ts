@@ -8,8 +8,8 @@ import { ChangeDetectionStrategy, Component, EventEmitter, Input, Output } from 
   standalone: false,
 })
 export class SbbOverlayPaginator {
-  @Input() index: number; // Starts with 0
-  @Input() size: number;
+  @Input() index!: number; // Starts with 0
+  @Input() size!: number;
   @Output() indexClicked: EventEmitter<number> = new EventEmitter<number>();
 
   hasPrevious(): boolean {

@@ -52,11 +52,11 @@ declare global {
 export class JourneyMapsPoisMarkersExample implements OnInit {
   apiKey = window.JM_API_KEY;
   selectedMarkerId?: string;
-  form: UntypedFormGroup;
+  form!: UntypedFormGroup;
   @ViewChild('advancedMap')
-  client: SbbJourneyMaps;
+  client!: SbbJourneyMaps;
   @ViewChild('poiTemplate', { static: true })
-  poiTemplate: TemplateRef<any>;
+  poiTemplate!: TemplateRef<any>;
   mapCenterChange = new Subject<LngLatLike>();
   mapBoundingBoxChange = new Subject<number[][]>();
   zoomLevels?: SbbZoomLevels;

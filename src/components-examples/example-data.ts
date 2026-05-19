@@ -8,22 +8,22 @@ import { EXAMPLE_COMPONENTS } from './example-module';
  */
 export class ExampleData {
   /** Id TODO: Remove? */
-  id: string;
+  id!: string;
 
   /** Description of the example. */
-  description: string;
+  description!: string;
 
   /** List of files that are part of this example. */
-  exampleFiles: string[];
+  exampleFiles!: string[];
 
   /** Selector name of the example component. */
-  selectorName: string;
+  selectorName!: string;
 
   /** Name of the file that contains the example component. */
-  indexFilename: string;
+  indexFilename!: string;
 
   /** Names of the components being used in this example. */
-  componentNames: string[];
+  componentNames!: string[];
 
   static find(library: string, id: string): ExampleData[] {
     return Object.keys(EXAMPLE_COMPONENTS as { [id: string]: {} })

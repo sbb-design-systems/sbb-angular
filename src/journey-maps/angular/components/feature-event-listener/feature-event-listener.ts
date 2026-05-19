@@ -44,10 +44,10 @@ import { SBB_ZONE_LAYER } from '../../services/map/map-zone-service';
   standalone: false,
 })
 export class SbbFeatureEventListener implements OnChanges, OnDestroy {
-  @Input() listenerOptions: SbbListenerOptions;
-  @Input() map: MapLibreMap | null;
+  @Input() listenerOptions!: SbbListenerOptions;
+  @Input() map: MapLibreMap | null = null;
   @Input() poiOptions?: SbbPointsOfInterestOptions;
-  @Input() isDarkMode: boolean;
+  @Input() isDarkMode: boolean = false;
 
   @Output() featureSelectionsChange: EventEmitter<SbbFeaturesSelectEventData> =
     new EventEmitter<SbbFeaturesSelectEventData>();
@@ -58,20 +58,20 @@ export class SbbFeatureEventListener implements OnChanges, OnDestroy {
     new EventEmitter<SbbFeaturesHoverChangeEventData>();
 
   overlayVisible: boolean = false;
-  overlayEventType: 'click' | 'hover';
+  overlayEventType!: 'click' | 'hover';
   overlayFeatures: SbbFeatureData[] = [];
-  overlayPosition: LngLatLike;
+  overlayPosition!: LngLatLike;
   overlayTemplate: any;
-  overlayIsPopup: boolean;
+  overlayIsPopup: boolean = false;
   overlayHasMouseFocus: boolean = false;
-  overlayTimeoutId: number;
+  overlayTimeoutId!: number;
 
   private _destroyed = new Subject<void>();
   private _watchOnLayers = new Map<string, SbbFeatureDataType>();
-  private _mapCursorStyleEvent: SbbMapCursorStyleEvent;
-  private _featuresHoverEvent: SbbFeaturesHoverEvent;
-  private _featuresClickEvent: SbbFeaturesClickEvent;
-  private _stationListener: () => void;
+  private _mapCursorStyleEvent?: SbbMapCursorStyleEvent;
+  private _featuresHoverEvent?: SbbFeaturesHoverEvent;
+  private _featuresClickEvent?: SbbFeaturesClickEvent;
+  private _stationListener!: () => void;
 
   constructor(
     private _mapStationService: SbbMapStationService,

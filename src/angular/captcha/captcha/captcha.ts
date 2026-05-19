@@ -77,7 +77,7 @@ export class SbbCaptcha implements AfterViewInit, OnDestroy, ControlValueAccesso
    * The tabindex of the widget and challenge.
    * It is optional.
    */
-  @Input() tabIndex: number;
+  @Input() tabIndex?: number;
 
   /**
    * The badge of the widget.
@@ -88,14 +88,14 @@ export class SbbCaptcha implements AfterViewInit, OnDestroy, ControlValueAccesso
   /** Event generated on captcha checkbox. */
   @Output() resolved: EventEmitter<string> = new EventEmitter<string>();
 
-  private _subscription: Subscription;
-  private _widget: number;
-  private _grecaptcha: ReCaptchaV2.ReCaptcha;
-  private _executeRequested: boolean;
+  private _subscription!: Subscription;
+  private _widget!: number;
+  private _grecaptcha!: ReCaptchaV2.ReCaptcha;
+  private _executeRequested: boolean = false;
 
-  private _onChange: (value: string) => void;
+  private _onChange!: (value: string) => void;
 
-  private _onTouched: () => void;
+  private _onTouched?: () => void;
 
   constructor(...args: unknown[]);
   constructor() {

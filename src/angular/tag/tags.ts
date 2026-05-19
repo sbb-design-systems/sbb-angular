@@ -56,11 +56,11 @@ export class SbbTags implements AfterContentInit, OnDestroy {
 
   /** Refers to the tags contained. */
   @ContentChildren(forwardRef(() => SbbTag))
-  tags: QueryList<SbbTag>;
+  tags!: QueryList<SbbTag>;
 
   /** Refers to the tag always displayed in the filter. */
   @ViewChild('allTag')
-  allTag: SbbTag;
+  allTag!: SbbTag;
 
   private _destroyed = new Subject<void>();
 

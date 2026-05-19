@@ -12,5 +12,5 @@ import { ChangeDetectionStrategy, Component, Input, ViewEncapsulation } from '@a
 export class SbbIconSidebarItem {
   /** Label of the icon */
   @Input()
-  label: string;
+  label!: string;
 }

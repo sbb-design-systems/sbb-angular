@@ -111,16 +111,16 @@ export abstract class SbbPaginatedTabHeader
    * The number of tab labels that are displayed on the header. When this changes, the header
    * should re-evaluate the scroll position.
    */
-  private _tabLabelCount: number;
+  private _tabLabelCount!: number;
 
   /** Whether the scroll distance has changed and should be applied after the view is checked. */
-  private _scrollDistanceChanged: boolean;
+  private _scrollDistanceChanged: boolean = false;
 
   /** Used to manage focus between the tabs. */
-  private _keyManager: FocusKeyManager<SbbPaginatedTabHeaderItem>;
+  private _keyManager!: FocusKeyManager<SbbPaginatedTabHeaderItem>;
 
   /** Cached text content of the header. */
-  private _currentTextContent: string;
+  private _currentTextContent!: string;
 
   /** Stream that will stop the automated scrolling. */
   private _stopScrolling = new Subject<void>();

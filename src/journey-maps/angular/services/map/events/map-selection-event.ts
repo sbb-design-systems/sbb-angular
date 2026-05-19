@@ -25,12 +25,12 @@ export const SBB_SELECTED_PROPERTY_NAME = 'isSelected';
  */
 @Injectable()
 export class SbbMapSelectionEvent {
-  private _lastRouteEventData: Map<Feature, boolean>;
-  private _subscription: Subscription;
+  private _lastRouteEventData!: Map<Feature, boolean>;
+  private _subscription!: Subscription;
 
-  private _mapInstance: MaplibreMap;
-  private _layersTypes: Map<string, SbbFeatureDataType>;
-  private _selectionModes: Map<SbbFeatureDataType, SbbSelectionMode>;
+  private _mapInstance!: MaplibreMap;
+  private _layersTypes!: Map<string, SbbFeatureDataType>;
+  private _selectionModes!: Map<SbbFeatureDataType, SbbSelectionMode>;
   private _touchedZoneIds: Set<number> = new Set();
 
   constructor(

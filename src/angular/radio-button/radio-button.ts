@@ -153,7 +153,7 @@ export abstract class _SbbRadioGroupBase<TRadio extends _SbbRadioButtonBase>
 
   /** Child radio buttons. */
   @ContentChildren(forwardRef(() => SBB_RADIO_BUTTON), { descendants: true })
-  _radios: QueryList<TRadio>;
+  _radios!: QueryList<TRadio>;
 
   /** Selected value for the radio group. */
   private _value: any = null;
@@ -174,7 +174,7 @@ export abstract class _SbbRadioGroupBase<TRadio extends _SbbRadioButtonBase>
   private _required = false;
 
   /** Subscription to changes in amount of radio buttons. */
-  private _buttonChanges: Subscription;
+  private _buttonChanges!: Subscription;
 
   /** `View -> model callback called when value changes` */
   _controlValueAccessorChangeFn: (value: any) => void = () => {};
@@ -330,16 +330,16 @@ export class _SbbRadioButtonBase implements OnInit, AfterViewInit, DoCheck, OnDe
   @Input() @HostBinding('attr.id') id: string = this._uniqueId;
 
   /** Analog to HTML 'name' attribute used to group radios for unique selection. */
-  @Input() name: string;
+  @Input() name!: string;
 
   /** Used to set the 'aria-label' attribute on the underlying input element. */
-  @Input('aria-label') ariaLabel: string;
+  @Input('aria-label') ariaLabel!: string;
 
   /** The 'aria-labelledby' attribute takes precedence as the element's text alternative. */
-  @Input('aria-labelledby') ariaLabelledby: string;
+  @Input('aria-labelledby') ariaLabelledby!: string;
 
   /** The 'aria-describedby' attribute is read after the element's label and field type. */
-  @Input('aria-describedby') ariaDescribedby: string;
+  @Input('aria-describedby') ariaDescribedby!: string;
 
   /** Tabindex of the radio button. */
   @Input({ transform: (value: unknown) => (value == null ? 0 : numberAttribute(value)) })
@@ -429,10 +429,10 @@ export class _SbbRadioButtonBase implements OnInit, AfterViewInit, DoCheck, OnDe
   private _checked: boolean = false;
 
   /** Whether this radio is disabled. */
-  private _disabled: boolean;
+  private _disabled: boolean = false;
 
   /** Whether this radio is required. */
-  private _required: boolean;
+  private _required: boolean = false;
 
   /** Value assigned to this radio. */
   private _value: any = null;
@@ -444,7 +444,7 @@ export class _SbbRadioButtonBase implements OnInit, AfterViewInit, DoCheck, OnDe
   private _previousTabIndex: number | undefined;
 
   /** The native `<input type=radio>` element */
-  @ViewChild('input') _inputElement: ElementRef<HTMLInputElement>;
+  @ViewChild('input') _inputElement!: ElementRef<HTMLInputElement>;
 
   private _injector = inject(Injector);
 

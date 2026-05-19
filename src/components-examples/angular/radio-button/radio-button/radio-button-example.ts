@@ -15,8 +15,8 @@ import { SbbRadioButtonModule } from '@sbb-esta/angular/radio-button';
   imports: [SbbRadioButtonModule, SbbCheckboxModule, FormsModule, JsonPipe],
 })
 export class RadioButtonExample {
-  disabled: boolean;
-  value: string;
+  disabled: boolean = false;
+  value!: string;
 
   change(radioChange: SbbRadioChange) {
     this.value = radioChange.value;
