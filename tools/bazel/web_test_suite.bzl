@@ -26,6 +26,7 @@ def _web_test(name, tags = [], deps = [], bootstrap = [], **kwargs):
         **kwargs
     )
 
+# buildifier: disable=function-docstring
 def ng_web_test_suite(deps = [], static_css = [], **kwargs):
     # Always include a prebuilt theme in the test suite because otherwise tests, which depend on CSS
     # that is needed for measuring, will unexpectedly fail. Also always adding a prebuilt theme
