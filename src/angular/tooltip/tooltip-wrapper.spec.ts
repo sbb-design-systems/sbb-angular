@@ -312,7 +312,7 @@ describe('SbbTooltipWrapper', () => {
   imports: [SbbTooltipModule, SbbButtonModule],
 })
 class TooltipTestComponent {
-  @ViewChild('t1', { static: true }) tooltip: SbbTooltipWrapper;
+  @ViewChild('t1', { static: true }) tooltip!: SbbTooltipWrapper;
   tooltipDisabled = false;
 }
 
@@ -331,6 +331,6 @@ class TooltipTestComponent {
   imports: [SbbTooltipModule],
 })
 class DoubleTooltipTestComponent {
-  @ViewChild('t1', { static: true }) t1: SbbTooltipWrapper;
-  @ViewChild('t2', { static: true }) t2: SbbTooltipWrapper;
+  @ViewChild('t1', { static: true }) t1!: SbbTooltipWrapper;
+  @ViewChild('t2', { static: true }) t2!: SbbTooltipWrapper;
 }

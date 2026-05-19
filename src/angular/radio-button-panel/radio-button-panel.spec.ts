@@ -1,4 +1,4 @@
-import { Component, QueryList, ViewChildren } from '@angular/core';
+import { ChangeDetectionStrategy, Component, QueryList, ViewChildren } from '@angular/core';
 import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 import { FormControl, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { By } from '@angular/platform-browser';
@@ -22,10 +22,11 @@ import {
     </sbb-radio-group>
   `,
   imports: [FormsModule, SbbRadioButtonPanelModule],
+  changeDetection: ChangeDetectionStrategy.Eager,
 })
 class ModelOptionSelectionTest {
   testValue = '2';
-  @ViewChildren(SbbRadioButtonPanel) optionSelections: QueryList<SbbRadioButtonPanel>;
+  @ViewChildren(SbbRadioButtonPanel) optionSelections!: QueryList<SbbRadioButtonPanel>;
 }
 
 @Component({

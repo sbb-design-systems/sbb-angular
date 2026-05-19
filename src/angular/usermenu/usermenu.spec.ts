@@ -402,8 +402,8 @@ describe('SbbUsermenu with no connected menu', () => {
   imports: [SbbUsermenuModule, RouterTestingModule, SbbMenuModule],
 })
 class UsermenuWithDisplayNameAndUserNameTestComponent {
-  userName: string;
-  displayName: string;
+  userName!: string;
+  displayName!: string;
 
   private readonly _changeDetectorRef = inject(ChangeDetectorRef);
 
@@ -437,7 +437,7 @@ class UsermenuWithDisplayNameAndUserNameTestComponent {
   imports: [SbbUsermenuModule, SbbMenuModule],
 })
 class UsermenuWithOnlyDisplayNameTestComponent {
-  displayName: string;
+  displayName!: string;
 
   login() {
     this.displayName = 'Max Muster';
@@ -457,7 +457,7 @@ class UsermenuWithOnlyDisplayNameTestComponent {
   imports: [SbbUsermenuModule, SbbMenuModule],
 })
 class UsermenuWithOnlyUsernameTestComponent {
-  userName: string;
+  userName!: string;
 
   login() {
     this.userName = 'walter_14';
@@ -489,8 +489,8 @@ class UsermenuWithOnlyUsernameTestComponent {
   imports: [SbbUsermenuModule, SbbIconModule, SbbMenuModule],
 })
 class UsermenuWithCustomImageTestComponent {
-  userName: string;
-  displayName: string;
+  userName!: string;
+  displayName!: string;
 
   login() {
     this.userName = 'john_64';
@@ -503,7 +503,7 @@ class UsermenuWithCustomImageTestComponent {
   imports: [SbbUsermenuModule],
 })
 class UsermenuNoMenuTestComponent {
-  displayName: string;
+  displayName!: string;
 
   login() {
     this.displayName = 'John Scott';

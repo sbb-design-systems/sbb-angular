@@ -88,14 +88,14 @@ class RadiosInsidePreCheckedRadioGroup {}
   imports: [FormsModule, ReactiveFormsModule, SbbRadioButtonModule],
 })
 class RadioGroupWithNgModel {
-  modelValue: string;
+  modelValue!: string;
   groupName = 'radio-group';
   options = [
     { label: 'Vanilla', value: 'vanilla' },
     { label: 'Chocolate', value: 'chocolate' },
     { label: 'Strawberry', value: 'strawberry' },
   ];
-  lastEvent: SbbRadioChange;
+  lastEvent!: SbbRadioChange;
 }
 
 @Component({
@@ -103,7 +103,7 @@ class RadioGroupWithNgModel {
   imports: [SbbRadioButtonModule],
 })
 class DisableableSbbRadioButton {
-  @ViewChild(SbbRadioButton) radioButton: SbbRadioButton;
+  @ViewChild(SbbRadioButton) radioButton!: SbbRadioButton;
 
   set disabled(value: boolean) {
     this.radioButton.disabled = value;
@@ -120,7 +120,7 @@ class DisableableSbbRadioButton {
   imports: [ReactiveFormsModule, SbbRadioButtonModule],
 })
 class RadioGroupWithFormControl {
-  @ViewChild(SbbRadioGroup) group: SbbRadioGroup;
+  @ViewChild(SbbRadioGroup) group!: SbbRadioGroup;
   formControl = new FormControl('');
 }
 
@@ -129,7 +129,7 @@ class RadioGroupWithFormControl {
   imports: [SbbRadioButtonModule],
 })
 class FocusableSbbRadioButton {
-  tabIndex: number;
+  tabIndex!: number;
 }
 
 @Component({
@@ -196,9 +196,9 @@ class RadioButtonWithPredefinedAriaAttributes {}
   imports: [ReactiveFormsModule, SbbRadioButtonModule],
 })
 class PreselectedRadioWithStaticValueAndNgIf {
-  @ViewChild('preselectedGroup', { read: SbbRadioGroup }) preselectedGroup: SbbRadioGroup;
+  @ViewChild('preselectedGroup', { read: SbbRadioGroup }) preselectedGroup!: SbbRadioGroup;
   @ViewChild('preselectedRadio', { read: SbbRadioButton })
-  preselectedRadio: SbbRadioButton;
+  preselectedRadio!: SbbRadioButton;
 
   controls = {
     predecessor: new FormControl('predecessor'),

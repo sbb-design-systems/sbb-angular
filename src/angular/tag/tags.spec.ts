@@ -94,7 +94,7 @@ class TagsTestFixtureReactiveComponent {
       amount: 9,
     },
   ];
-  totalAmount: number;
+  totalAmount!: number;
 
   change(evt: SbbTagChange) {}
 }
@@ -104,7 +104,7 @@ class TagsTestFixtureReactiveComponent {
   imports: [SbbBadgeModule, SbbTagModule],
 })
 class TagLinkTestFixtureComponent {
-  description: string;
+  description!: string;
 }
 
 @Component({

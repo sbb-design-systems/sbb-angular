@@ -1444,8 +1444,8 @@ class BasicTooltipDemo {
   showTooltipClass = false;
   touchGestures: TooltipTouchGestures = 'auto';
   tooltipDisabled = false;
-  @ViewChild(SbbTooltip) tooltip: SbbTooltip;
-  @ViewChild('button') button: ElementRef<HTMLButtonElement>;
+  @ViewChild(SbbTooltip) tooltip!: SbbTooltip;
+  @ViewChild('button') button!: ElementRef<HTMLButtonElement>;
 }
 
 @Component({
@@ -1465,7 +1465,7 @@ class ScrollableTooltipDemo {
   message: string = initialTooltipMessage;
   showButton: boolean = true;
 
-  @ViewChild(CdkScrollable) scrollingContainer: CdkScrollable;
+  @ViewChild(CdkScrollable) scrollingContainer!: CdkScrollable;
 
   scrollDown() {
     const scrollingContainerEl = this.scrollingContainer.getElementRef().nativeElement;
@@ -1521,8 +1521,8 @@ class DataBoundAriaLabelTooltip {
   imports: [SbbTooltipModule],
 })
 class TooltipOnTextFields {
-  @ViewChild('input') input: ElementRef<HTMLInputElement>;
-  @ViewChild('textarea') textarea: ElementRef<HTMLTextAreaElement>;
+  @ViewChild('input') input!: ElementRef<HTMLInputElement>;
+  @ViewChild('textarea') textarea!: ElementRef<HTMLTextAreaElement>;
   touchGestures: TooltipTouchGestures = 'auto';
 }
 
@@ -1538,7 +1538,7 @@ class TooltipOnTextFields {
   imports: [SbbTooltipModule],
 })
 class TooltipOnDraggableElement {
-  @ViewChild('button') button: ElementRef;
+  @ViewChild('button') button!: ElementRef;
   touchGestures: TooltipTouchGestures = 'auto';
 }
 
@@ -1549,7 +1549,7 @@ class TooltipOnDraggableElement {
   imports: [SbbTooltipModule],
 })
 class TriggerConfigurableTooltip {
-  @ViewChild(SbbTooltip) tooltip: SbbTooltip;
+  @ViewChild(SbbTooltip) tooltip!: SbbTooltip;
   trigger: 'click' | 'hover' = 'click';
 }
 
@@ -1560,8 +1560,8 @@ class TriggerConfigurableTooltip {
 })
 class TooltipDemoWithoutPositionBinding {
   message: any = initialTooltipMessage;
-  @ViewChild(SbbTooltip) tooltip: SbbTooltip;
-  @ViewChild('button') button: ElementRef<HTMLButtonElement>;
+  @ViewChild(SbbTooltip) tooltip!: SbbTooltip;
+  @ViewChild('button') button!: ElementRef<HTMLButtonElement>;
 }
 
 @Component({
@@ -1581,7 +1581,7 @@ class TooltipDemoWithoutPositionBinding {
 class TooltipTriggerBubble {
   disabled = false;
   trigger: 'click' | 'hover' = 'click';
-  @ViewChild(SbbTooltip) tooltip: SbbTooltip;
+  @ViewChild(SbbTooltip) tooltip!: SbbTooltip;
 
   outerDivClick() {}
 }

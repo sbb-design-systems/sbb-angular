@@ -2,7 +2,13 @@ import { Direction } from '@angular/cdk/bidi';
 import { END, ENTER, HOME, LEFT_ARROW, RIGHT_ARROW, SPACE } from '@angular/cdk/keycodes';
 import { MutationObserverFactory } from '@angular/cdk/observers';
 import { ScrollingModule, ViewportRuler } from '@angular/cdk/scrolling';
-import { ChangeDetectorRef, Component, inject, ViewChild } from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  ChangeDetectorRef,
+  Component,
+  inject,
+  ViewChild,
+} from '@angular/core';
 import {
   ComponentFixture,
   discardPeriodicTasks,
@@ -637,11 +643,12 @@ interface Tab {
     `,
   ],
   imports: [SbbTabHeader, SbbTabLabelWrapper],
+  changeDetection: ChangeDetectionStrategy.Eager,
 })
 class SimpleTabHeaderApp {
   selectedIndex: number = 0;
-  focusedIndex: number;
-  disablePagination: boolean;
+  focusedIndex!: number;
+  disablePagination: boolean = false;
   disabledTabIndex = 1;
   tabs: Tab[] = [
     { label: 'tab one' },
@@ -651,7 +658,7 @@ class SimpleTabHeaderApp {
   ];
   dir: Direction = 'ltr';
 
-  @ViewChild(SbbTabHeader, { static: true }) tabHeader: SbbTabHeader;
+  @ViewChild(SbbTabHeader, { static: true }) tabHeader!: SbbTabHeader;
 
   private readonly _changeDetectorRef = inject(ChangeDetectorRef);
 

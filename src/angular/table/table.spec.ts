@@ -801,7 +801,7 @@ class SbbTableTestComponent {
   columnsToRender = ['column_a', 'column_b', 'column_c'];
   isFourthRow = (i: number, _rowData: TestData) => i === 3;
 
-  @ViewChild(SbbTable) table: SbbTable<TestData>;
+  @ViewChild(SbbTable) table!: SbbTable<TestData>;
 }
 
 @Component({
@@ -832,7 +832,7 @@ class NativeHtmlTableTestComponent {
   dataSource = new FakeDataSource();
   columnsToRender = ['column_a', 'column_b', 'column_c'];
 
-  @ViewChild(SbbTable) table: SbbTable<TestData>;
+  @ViewChild(SbbTable) table!: SbbTable<TestData>;
 }
 
 @Component({
@@ -902,7 +902,7 @@ class StickyTableTestComponent {
   dataSource = new FakeDataSource();
   columnsToRender = ['column_a'];
 
-  @ViewChild(SbbTable) table: SbbTable<TestData>;
+  @ViewChild(SbbTable) table!: SbbTable<TestData>;
 }
 
 @Component({
@@ -931,7 +931,7 @@ class SbbTableWithWhenRowTestComponent {
   dataSource = new FakeDataSource();
   isFourthRow = (i: number, _rowData: TestData) => i === 3;
 
-  @ViewChild(SbbTable) table: SbbTable<TestData>;
+  @ViewChild(SbbTable) table!: SbbTable<TestData>;
 }
 
 @Component({
@@ -969,10 +969,10 @@ class ArrayDataSourceSbbTableTestComponent implements AfterViewInit {
   dataSource = new SbbTableDataSource<TestData>();
   columnsToRender = ['column_a', 'column_b', 'column_c'];
 
-  @ViewChild(SbbTable) table: SbbTable<TestData>;
-  @ViewChild(SbbPaginator) paginator: SbbPaginator;
-  @ViewChild(SbbSort) sort: SbbSort;
-  @ViewChild(SbbSortHeader) sortHeader: SbbSortHeader;
+  @ViewChild(SbbTable) table!: SbbTable<TestData>;
+  @ViewChild(SbbPaginator) paginator!: SbbPaginator;
+  @ViewChild(SbbSort) sort!: SbbSort;
+  @ViewChild(SbbSortHeader) sortHeader!: SbbSortHeader;
 
   constructor() {
     this.underlyingDataSource.data = [];
@@ -1022,8 +1022,8 @@ class SbbTableWithSortTestComponent implements OnInit {
   dataSource = new SbbTableDataSource<TestData>();
   columnsToRender = ['column_a', 'column_b', 'column_c'];
 
-  @ViewChild(SbbTable) table: SbbTable<TestData>;
-  @ViewChild(SbbSort) sort: SbbSort;
+  @ViewChild(SbbTable) table!: SbbTable<TestData>;
+  @ViewChild(SbbSort) sort!: SbbSort;
 
   constructor() {
     this.underlyingDataSource.data = [];
@@ -1074,8 +1074,8 @@ class SbbTableWithPaginatorTestComponent implements OnInit {
   dataSource = new SbbTableDataSource<TestData>();
   columnsToRender = ['column_a', 'column_b', 'column_c'];
 
-  @ViewChild(SbbTable) table: SbbTable<TestData>;
-  @ViewChild(SbbPaginator) paginator: SbbPaginator;
+  @ViewChild(SbbTable) table!: SbbTable<TestData>;
+  @ViewChild(SbbPaginator) paginator!: SbbPaginator;
 
   constructor() {
     this.underlyingDataSource.data = [];

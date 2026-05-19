@@ -654,21 +654,21 @@ type SimpleSbbSortAppColumnIds = 'defaultA' | 'defaultB' | 'overrideStart' | 'ov
   imports: [SbbTableModule],
 })
 class SimpleSbbSortApp {
-  latestSortEvent: SbbSortState;
+  latestSortEvent!: SbbSortState;
 
-  active: string;
+  active!: string;
   start: SbbSortDirection = 'asc';
   direction: SbbSortDirection = '';
-  disableClear: boolean;
+  disableClear = false;
   disabledColumnSort = false;
   disableAllSort = false;
   secondColumnDescription = 'Sort second column';
 
-  @ViewChild(SbbSort) sbbSort: SbbSort;
-  @ViewChild('defaultA') defaultA: SbbSortHeader;
-  @ViewChild('defaultB') defaultB: SbbSortHeader;
-  @ViewChild('overrideStart') overrideStart: SbbSortHeader;
-  @ViewChild('overrideDisableClear') overrideDisableClear: SbbSortHeader;
+  @ViewChild(SbbSort) sbbSort!: SbbSort;
+  @ViewChild('defaultA') defaultA!: SbbSortHeader;
+  @ViewChild('defaultB') defaultB!: SbbSortHeader;
+  @ViewChild('overrideStart') overrideStart!: SbbSortHeader;
+  @ViewChild('overrideDisableClear') overrideDisableClear!: SbbSortHeader;
 
   constructor(public elementRef: ElementRef<HTMLElement>) {}
 
@@ -735,7 +735,7 @@ class FakeDataSource extends DataSource<any> {
   imports: [SbbTableModule, CdkTableModule],
 })
 class CdkTableSbbSortApp {
-  @ViewChild(SbbSort) sbbSort: SbbSort;
+  @ViewChild(SbbSort) sbbSort!: SbbSort;
 
   dataSource = new FakeDataSource();
   columnsToRender = ['column_a', 'column_b', 'column_c'];
@@ -766,7 +766,7 @@ class CdkTableSbbSortApp {
   imports: [SbbTableModule],
 })
 class SbbTableSbbSortApp {
-  @ViewChild(SbbSort) sbbSort: SbbSort;
+  @ViewChild(SbbSort) sbbSort!: SbbSort;
 
   dataSource = new FakeDataSource();
   columnsToRender = ['column_a', 'column_b', 'column_c'];
@@ -823,13 +823,13 @@ class SbbSortableInvalidDirection {}
   imports: [SbbTableModule],
 })
 class SbbSortWithoutExplicitInputs {
-  latestSortEvent: SbbSortState;
+  latestSortEvent!: SbbSortState;
 
-  active: string;
+  active!: string;
   start: SbbSortDirection = 'asc';
 
-  @ViewChild(SbbSort) sbbSort: SbbSort;
-  @ViewChild('defaultA') defaultA: SbbSortHeader;
+  @ViewChild(SbbSort) sbbSort!: SbbSort;
+  @ViewChild('defaultA') defaultA!: SbbSortHeader;
 
   constructor(public elementRef: ElementRef<HTMLElement>) {}
 
@@ -857,10 +857,10 @@ class SbbSortWithoutExplicitInputs {
   imports: [SbbTableModule],
 })
 class SbbSortWithArrowPosition {
-  arrowPosition: SbbSortHeaderArrowPosition;
-  @ViewChild(SbbSort) sbbSort: SbbSort;
-  @ViewChild('defaultA') defaultA: SbbSortHeader;
-  @ViewChild('defaultB') defaultB: SbbSortHeader;
+  arrowPosition!: SbbSortHeaderArrowPosition;
+  @ViewChild(SbbSort) sbbSort!: SbbSort;
+  @ViewChild('defaultA') defaultA!: SbbSortHeader;
+  @ViewChild('defaultB') defaultB!: SbbSortHeader;
 }
 
 @Component({
@@ -873,7 +873,7 @@ class SbbSortWithArrowPosition {
   imports: [SbbTableModule],
 })
 class SbbSortWithoutInputs {
-  @ViewChild(SbbSort) sbbSort: SbbSort;
-  @ViewChild('defaultA') defaultA: SbbSortHeader;
-  @ViewChild('defaultB') defaultB: SbbSortHeader;
+  @ViewChild(SbbSort) sbbSort!: SbbSort;
+  @ViewChild('defaultA') defaultA!: SbbSortHeader;
+  @ViewChild('defaultB') defaultB!: SbbSortHeader;
 }

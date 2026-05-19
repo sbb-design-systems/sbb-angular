@@ -1,6 +1,14 @@
 import { LEFT_ARROW, RIGHT_ARROW } from '@angular/cdk/keycodes';
 import { AsyncPipe } from '@angular/common';
-import { Component, DebugElement, OnInit, QueryList, ViewChild, ViewChildren } from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  Component,
+  DebugElement,
+  OnInit,
+  QueryList,
+  ViewChild,
+  ViewChildren,
+} from '@angular/core';
 import {
   ComponentFixture,
   fakeAsync,
@@ -1051,13 +1059,13 @@ describe('nested SbbTabGroup with enabled animations', () => {
   imports: [SbbTabsModule],
 })
 class SimpleTabsTestApp {
-  @ViewChild(SbbTabGroup) tabGroup: SbbTabGroup;
-  @ViewChildren(SbbTab) tabs: QueryList<SbbTab>;
+  @ViewChild(SbbTabGroup) tabGroup!: SbbTabGroup;
+  @ViewChildren(SbbTab) tabs!: QueryList<SbbTab>;
   selectedIndex: number = 1;
   focusEvent: any;
   selectEvent: any;
-  ariaLabel: string;
-  ariaLabelledby: string;
+  ariaLabel!: string;
+  ariaLabelledby!: string;
   handleFocus(event: any) {
     this.focusEvent = event;
   }
@@ -1148,9 +1156,10 @@ class BindedTabsTestApp {
     </sbb-tab-group>
   `,
   imports: [SbbTabsModule],
+  changeDetection: ChangeDetectionStrategy.Eager,
 })
 class DisabledTabsTestApp {
-  @ViewChildren(SbbTab) tabs: QueryList<SbbTab>;
+  @ViewChildren(SbbTab) tabs!: QueryList<SbbTab>;
   isDisabled = false;
 }
 
@@ -1166,6 +1175,7 @@ class DisabledTabsTestApp {
     </sbb-tab-group>
   `,
   imports: [SbbTabsModule, AsyncPipe],
+  changeDetection: ChangeDetectionStrategy.Eager,
 })
 class AsyncTabsTestApp implements OnInit {
   private _tabs = [
@@ -1173,7 +1183,7 @@ class AsyncTabsTestApp implements OnInit {
     { label: 'two', content: 'two' },
   ];
 
-  tabs: Observable<any>;
+  tabs!: Observable<any>;
 
   ngOnInit() {
     // Use ngOnInit because there is some issue with scheduling the async task in the constructor.
@@ -1193,6 +1203,7 @@ class AsyncTabsTestApp implements OnInit {
     </sbb-tab-group>
   `,
   imports: [SbbTabsModule],
+  changeDetection: ChangeDetectionStrategy.Eager,
 })
 class TabGroupWithSimpleApi {
   preserveContent = false;
@@ -1215,9 +1226,10 @@ class TabGroupWithSimpleApi {
     </sbb-tab-group>
   `,
   imports: [SbbTabsModule],
+  changeDetection: ChangeDetectionStrategy.Eager,
 })
 class NestedTabs {
-  @ViewChildren(SbbTabGroup) groups: QueryList<SbbTabGroup>;
+  @ViewChildren(SbbTabGroup) groups!: QueryList<SbbTabGroup>;
 }
 
 @Component({
@@ -1244,8 +1256,8 @@ class TemplateTabs {}
   imports: [SbbTabsModule],
 })
 class TabGroupWithAriaInputs {
-  ariaLabel: string;
-  ariaLabelledby: string;
+  ariaLabel!: string;
+  ariaLabelledby!: string;
 }
 
 @Component({
@@ -1273,7 +1285,7 @@ class TabGroupWithIsActiveBinding {}
   imports: [SbbTabsModule],
 })
 class TabsWithCustomAnimationDuration {
-  @ViewChild(SbbTabGroup) sbbTabGroup: SbbTabGroup;
+  @ViewChild(SbbTabGroup) sbbTabGroup!: SbbTabGroup;
 }
 
 @Component({
@@ -1288,7 +1300,7 @@ class TabsWithCustomAnimationDuration {
   imports: [SbbTabsModule],
 })
 class TabGroupWithIndirectDescendantTabs {
-  @ViewChild(SbbTabGroup) tabGroup: SbbTabGroup;
+  @ViewChild(SbbTabGroup) tabGroup!: SbbTabGroup;
 }
 
 @Component({
@@ -1308,7 +1320,7 @@ class TabGroupWithIndirectDescendantTabs {
   imports: [SbbTabsModule],
 })
 class TabGroupWithSpaceAbove {
-  @ViewChild(SbbTabGroup) tabGroup: SbbTabGroup;
+  @ViewChild(SbbTabGroup) tabGroup!: SbbTabGroup;
 }
 
 @Component({

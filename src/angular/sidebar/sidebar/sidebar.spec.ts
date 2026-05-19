@@ -1138,7 +1138,7 @@ describe('SbbSidebar Usage', () => {
   imports: [SbbSidebarModule],
 })
 class SidebarContainerEmptyTestComponent {
-  @ViewChild(SbbSidebarContainer) sidebarContainer: SbbSidebarContainer;
+  @ViewChild(SbbSidebarContainer) sidebarContainer!: SbbSidebarContainer;
 }
 
 /** Test component that contains an SbbSidebarContainer and 2 SbbSidebar. */
@@ -1150,7 +1150,7 @@ class SidebarContainerEmptyTestComponent {
   imports: [SbbSidebarModule],
 })
 class SidebarContainerTwoSidebarsTestComponent {
-  @ViewChild(SbbSidebarContainer) sidebarContainer: SbbSidebarContainer;
+  @ViewChild(SbbSidebarContainer) sidebarContainer!: SbbSidebarContainer;
 }
 
 /** Test component that contains an SbbSidebarContainer and one SbbSidebar. */
@@ -1192,15 +1192,15 @@ class BasicTestComponent {
   closeStartCount = 0;
   backdropClickedCount = 0;
   position: 'start' | 'end' = 'start';
-  triggerIcon: string;
+  triggerIcon!: string;
   collapsible = false;
   collapsibleTitle: string | null = null;
 
-  @ViewChild('sidebar') sidebar: SbbSidebar;
-  @ViewChild('sidebarButton') sidebarButton: ElementRef<HTMLButtonElement>;
-  @ViewChild('openButton') openButton: ElementRef<HTMLButtonElement>;
-  @ViewChild('svg') svg: ElementRef<SVGElement>;
-  @ViewChild('closeButton') closeButton: ElementRef<HTMLButtonElement>;
+  @ViewChild('sidebar') sidebar!: SbbSidebar;
+  @ViewChild('sidebarButton') sidebarButton!: ElementRef<HTMLButtonElement>;
+  @ViewChild('openButton') openButton!: ElementRef<HTMLButtonElement>;
+  @ViewChild('svg') svg!: ElementRef<SVGElement>;
+  @ViewChild('closeButton') closeButton!: ElementRef<HTMLButtonElement>;
 
   open() {
     this.openCount++;
@@ -1300,7 +1300,7 @@ class SidebarWithoutFocusableElementsTestComponent {}
   imports: [SbbSidebarModule],
 })
 class SidebarDelayedTestComponent {
-  @ViewChild(SbbSidebar) sidebar: SbbSidebar;
+  @ViewChild(SbbSidebar) sidebar!: SbbSidebar;
   showSidebar = false;
 }
 
@@ -1313,8 +1313,8 @@ class SidebarDelayedTestComponent {
   imports: [SbbSidebarModule],
 })
 class SidebarContainerStateChangesTestAppTestComponent {
-  @ViewChild(SbbSidebar) sidebar: SbbSidebar;
-  @ViewChild(SbbSidebarContainer) sidebarContainer: SbbSidebarContainer;
+  @ViewChild(SbbSidebar) sidebar!: SbbSidebar;
+  @ViewChild(SbbSidebarContainer) sidebarContainer!: SbbSidebarContainer;
 
   direction: Direction = 'ltr';
   renderSidebar = true;
@@ -1329,8 +1329,8 @@ class SidebarContainerStateChangesTestAppTestComponent {
   imports: [SbbSidebarModule],
 })
 class ZeroWithSidebarTestComponent {
-  @ViewChild(SbbSidebar) sidebar: SbbSidebar;
-  @ViewChild(SbbSidebarContainer) sidebarContainer: SbbSidebarContainer;
+  @ViewChild(SbbSidebar) sidebar!: SbbSidebar;
+  @ViewChild(SbbSidebarContainer) sidebarContainer!: SbbSidebarContainer;
 }
 
 @Component({
@@ -1343,7 +1343,7 @@ class ZeroWithSidebarTestComponent {
   imports: [SbbSidebarModule],
 })
 class SidebarContainerWithContentTestComponent {
-  @ViewChild(SbbSidebarContainer) sidebarContainer: SbbSidebarContainer;
+  @ViewChild(SbbSidebarContainer) sidebarContainer!: SbbSidebarContainer;
 }
 
 @Component({
@@ -1357,8 +1357,8 @@ class SidebarContainerWithContentTestComponent {
   imports: [SbbSidebarModule],
 })
 class IndirectDescendantSidebarTestComponent {
-  @ViewChild('container') container: SbbSidebarContainer;
-  @ViewChild('sidebar') sidebar: SbbSidebar;
+  @ViewChild('container') container!: SbbSidebarContainer;
+  @ViewChild('sidebar') sidebar!: SbbSidebar;
 }
 
 @Component({
@@ -1375,10 +1375,10 @@ class IndirectDescendantSidebarTestComponent {
   imports: [SbbSidebarModule],
 })
 class NestedSidebarContainersTestComponent {
-  @ViewChild('outerContainer') outerContainer: SbbSidebarContainer;
-  @ViewChild('outerSidebar') outerSidebar: SbbSidebar;
-  @ViewChild('innerContainer') innerContainer: SbbSidebarContainer;
-  @ViewChild('innerSidebar') innerSidebar: SbbSidebar;
+  @ViewChild('outerContainer') outerContainer!: SbbSidebarContainer;
+  @ViewChild('outerSidebar') outerSidebar!: SbbSidebar;
+  @ViewChild('innerContainer') innerContainer!: SbbSidebarContainer;
+  @ViewChild('innerSidebar') innerSidebar!: SbbSidebar;
 }
 
 @Component({

@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { TestBed } from '@angular/core/testing';
 import { FormControl, ReactiveFormsModule } from '@angular/forms';
 import { By } from '@angular/platform-browser';
@@ -16,6 +16,7 @@ class BasicTimeInput {}
 @Component({
   template: `<input sbbTimeInput [placeholder]="placeholder" />`,
   imports: [SbbTimeInputModule],
+  changeDetection: ChangeDetectionStrategy.Eager,
 })
 class PlaceholderTimeInput {
   placeholder = 'Time';

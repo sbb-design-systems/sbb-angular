@@ -1,4 +1,9 @@
-import { Component, DebugElement, provideNgReflectAttributes } from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  Component,
+  DebugElement,
+  provideNgReflectAttributes,
+} from '@angular/core';
 import { ComponentFixture, fakeAsync, flush, TestBed } from '@angular/core/testing';
 import { FormControl, FormGroup, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { By } from '@angular/platform-browser';
@@ -27,14 +32,15 @@ import { SbbTextarea } from './textarea';
     ></sbb-textarea>
   `,
   imports: [SbbTextareaModule, FormsModule],
+  changeDetection: ChangeDetectionStrategy.Eager,
 })
 class TextareaTestComponent {
-  required: boolean;
-  readonly: boolean;
-  disabled: boolean;
-  minlength: number;
-  maxlength: number;
-  model: string;
+  required: boolean = false;
+  readonly: boolean = false;
+  disabled: boolean = false;
+  minlength!: number;
+  maxlength!: number;
+  model!: string;
 }
 
 @Component({

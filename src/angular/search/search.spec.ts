@@ -28,8 +28,8 @@ import { SbbSearch, SbbSearchModule } from './index';
 })
 export class SimpleSearchComponent {
   searchResults: string[] = [];
-  @ViewChild(SbbSearch, { static: true }) search: SbbSearch;
-  @ViewChild(SbbInput, { static: true }) input: SbbInput;
+  @ViewChild(SbbSearch, { static: true }) search!: SbbSearch;
+  @ViewChild(SbbInput, { static: true }) input!: SbbInput;
 
   handleSearch(event: string) {
     this.searchResults.push(event);
@@ -54,7 +54,7 @@ export class SimpleSearchComponent {
 })
 export class SimpleSearchAutocompleteComponent {
   lastSearch = '';
-  @ViewChild(SbbSearch, { static: true }) search: SbbSearch;
+  @ViewChild(SbbSearch, { static: true }) search!: SbbSearch;
 
   options: string[] = [
     'Eins',
@@ -89,7 +89,7 @@ export class SimpleSearchAutocompleteComponent {
 export class SimpleSearchHeaderComponent {
   label = 'Suche';
   searchCounter = 0;
-  @ViewChild(SbbHeaderSearch, { static: true }) searchComponent: SbbHeaderSearch;
+  @ViewChild(SbbHeaderSearch, { static: true }) searchComponent!: SbbHeaderSearch;
 
   handleSearch() {
     this.searchCounter++;
@@ -116,7 +116,7 @@ export class SimpleSearchHeaderComponent {
 })
 export class SimpleSearchAutocompleteHeaderComponent {
   lastSearch = '';
-  @ViewChild(SbbHeaderSearch, { static: true }) searchComponent: SbbHeaderSearch;
+  @ViewChild(SbbHeaderSearch, { static: true }) searchComponent!: SbbHeaderSearch;
 
   options: string[] = [
     'Eins',

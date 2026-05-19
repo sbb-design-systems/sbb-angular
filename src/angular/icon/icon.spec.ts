@@ -1281,7 +1281,7 @@ class IconWithBindingAndNgIf {
 })
 class InlineIcon {
   inline = false;
-  iconName: string;
+  iconName!: string;
 }
 
 @Component({
@@ -1299,7 +1299,7 @@ class SvgIconWithUserContent {
   imports: [SbbIconModule],
 })
 class IconWithLigatureAndSvgBinding {
-  iconName: string;
+  iconName!: string;
 }
 
 @Component({
@@ -1307,5 +1307,5 @@ class IconWithLigatureAndSvgBinding {
   imports: [SbbIconModule],
 })
 class BlankIcon {
-  @ViewChild(SbbIcon) icon: SbbIcon;
+  @ViewChild(SbbIcon) icon!: SbbIcon;
 }

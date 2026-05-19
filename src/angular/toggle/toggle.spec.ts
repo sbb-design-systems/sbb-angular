@@ -216,7 +216,7 @@ class ToggleTemplateDrivenTestComponent {
   imports: [SbbToggleModule],
 })
 class ToggleSimpleCaseTestComponent {
-  @ContentChildren('options') options: QueryList<SbbToggleOption>;
+  @ContentChildren('options') options!: QueryList<SbbToggleOption>;
 
   change(_evt: SbbRadioChange) {}
 }

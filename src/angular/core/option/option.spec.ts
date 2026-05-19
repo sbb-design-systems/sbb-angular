@@ -17,8 +17,8 @@ import { SbbOptionModule } from './option.module';
   imports: [SbbOptionModule],
 })
 class BasicOption {
-  disabled: boolean;
-  id: string;
+  disabled!: boolean;
+  id!: string;
 }
 
 @Component({

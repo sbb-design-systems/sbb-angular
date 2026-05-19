@@ -18,7 +18,7 @@ class BasicTextexpand {
   expandEvent = jasmine.createSpy('expandEvent');
 
   @ViewChild(SbbTextexpand)
-  textexpand: SbbTextexpand;
+  textexpand!: SbbTextexpand;
 }
 
 @Component({

@@ -457,7 +457,7 @@ describe('SbbIconSidebarContainer', () => {
   imports: [SbbSidebarModule, SbbIconModule],
 })
 class SidebarContainerEmptyTestComponent {
-  @ViewChild(SbbIconSidebarContainer) sidebarContainer: SbbIconSidebarContainer;
+  @ViewChild(SbbIconSidebarContainer) sidebarContainer!: SbbIconSidebarContainer;
 }
 
 /** Test component that contains an SbbIconSidebarContainer and a SbbIconSidebar. */
@@ -470,10 +470,10 @@ class SidebarContainerEmptyTestComponent {
   imports: [SbbSidebarModule],
 })
 class BasicTestComponent {
-  @ViewChild('sidebar') sidebar: SbbIconSidebar;
-  @ViewChild('sidebarButton') sidebarButton: ElementRef<HTMLButtonElement>;
-  @ViewChild('expandedButton') expandedButton: ElementRef<HTMLButtonElement>;
-  @ViewChild('collapseButton') collapseButton: ElementRef<HTMLButtonElement>;
+  @ViewChild('sidebar') sidebar!: SbbIconSidebar;
+  @ViewChild('sidebarButton') sidebarButton!: ElementRef<HTMLButtonElement>;
+  @ViewChild('expandedButton') expandedButton!: ElementRef<HTMLButtonElement>;
+  @ViewChild('collapseButton') collapseButton!: ElementRef<HTMLButtonElement>;
   position: 'start' | 'end' = 'start';
 }
 
@@ -526,7 +526,7 @@ class TwoSidebarsTestComponent {}
   imports: [SbbSidebarModule],
 })
 class SidebarContainerWithContentTestComponent {
-  @ViewChild(SbbIconSidebarContainer) sidebarContainer: SbbIconSidebarContainer;
+  @ViewChild(SbbIconSidebarContainer) sidebarContainer!: SbbIconSidebarContainer;
 }
 
 @Component({
@@ -540,8 +540,8 @@ class SidebarContainerWithContentTestComponent {
   imports: [SbbSidebarModule],
 })
 class IndirectDescendantSidebarTestComponent {
-  @ViewChild('container') container: SbbIconSidebarContainer;
-  @ViewChild('sidebar') sidebar: SbbIconSidebar;
+  @ViewChild('container') container!: SbbIconSidebarContainer;
+  @ViewChild('sidebar') sidebar!: SbbIconSidebar;
 }
 
 @Component({
@@ -558,10 +558,10 @@ class IndirectDescendantSidebarTestComponent {
   imports: [SbbSidebarModule],
 })
 class NestedSidebarContainersTestComponent {
-  @ViewChild('outerContainer') outerContainer: SbbIconSidebarContainer;
-  @ViewChild('outerSidebar') outerSidebar: SbbIconSidebar;
-  @ViewChild('innerContainer') innerContainer: SbbIconSidebarContainer;
-  @ViewChild('innerSidebar') innerSidebar: SbbIconSidebar;
+  @ViewChild('outerContainer') outerContainer!: SbbIconSidebarContainer;
+  @ViewChild('outerSidebar') outerSidebar!: SbbIconSidebar;
+  @ViewChild('innerContainer') innerContainer!: SbbIconSidebarContainer;
+  @ViewChild('innerSidebar') innerSidebar!: SbbIconSidebar;
 }
 
 @Component({

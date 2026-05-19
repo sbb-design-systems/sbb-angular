@@ -1,6 +1,12 @@
 import { Direction, Directionality } from '@angular/cdk/bidi';
 import { ENTER, SPACE } from '@angular/cdk/keycodes';
-import { Component, QueryList, ViewChild, ViewChildren } from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  Component,
+  QueryList,
+  ViewChild,
+  ViewChildren,
+} from '@angular/core';
 import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 import { dispatchFakeEvent, dispatchKeyboardEvent } from '@sbb-esta/angular/core/testing';
@@ -347,10 +353,11 @@ describe('SbbTabNavBar', () => {
     </nav>
   `,
   imports: [SbbTabsModule],
+  changeDetection: ChangeDetectionStrategy.Eager,
 })
 class SimpleTabNavBarTestApp {
-  @ViewChild(SbbTabNav) tabNavBar: SbbTabNav;
-  @ViewChildren(SbbTabLink) tabLinks: QueryList<SbbTabLink>;
+  @ViewChild(SbbTabNav) tabNavBar!: SbbTabNav;
+  @ViewChildren(SbbTabLink) tabLinks!: QueryList<SbbTabLink>;
 
   label = '';
   disabled = false;

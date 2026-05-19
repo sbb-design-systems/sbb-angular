@@ -2815,18 +2815,18 @@ const SIMPLE_MENU_TEMPLATE = `
   imports: [SbbMenuModule, SbbIconModule],
 })
 class SimpleMenu {
-  @ViewChild(SbbMenuTrigger) trigger: SbbMenuTrigger;
-  @ViewChild('triggerEl') triggerEl: ElementRef<HTMLElement>;
-  @ViewChild(SbbMenu) menu: SbbMenu;
-  @ViewChildren(SbbMenuItem) items: QueryList<SbbMenuItem>;
+  @ViewChild(SbbMenuTrigger) trigger!: SbbMenuTrigger;
+  @ViewChild('triggerEl') triggerEl!: ElementRef<HTMLElement>;
+  @ViewChild(SbbMenu) menu!: SbbMenu;
+  @ViewChildren(SbbMenuItem) items!: QueryList<SbbMenuItem>;
   extraItems: string[] = [];
   closeCallback = jasmine.createSpy('menu closed callback');
-  backdropClass: string;
-  panelClass: string;
+  backdropClass!: string;
+  panelClass!: string;
   restoreFocus = true;
-  ariaLabel: string;
-  ariaLabelledby: string;
-  ariaDescribedby: string;
+  ariaLabel!: string;
+  ariaLabelledby!: string;
+  ariaDescribedby!: string;
 }
 
 @Component({
@@ -2853,8 +2853,8 @@ class SimpleMenuOnPush extends SimpleMenu {}
   imports: [SbbMenuModule],
 })
 class PositionedMenu {
-  @ViewChild(SbbMenuTrigger) trigger: SbbMenuTrigger;
-  @ViewChild('triggerEl') triggerEl: ElementRef<HTMLElement>;
+  @ViewChild(SbbMenuTrigger) trigger!: SbbMenuTrigger;
+  @ViewChild('triggerEl') triggerEl!: ElementRef<HTMLElement>;
   xPosition: SbbMenuPositionX = 'before';
   yPosition: SbbMenuPositionY = 'above';
   marginleft: number = 300;
@@ -2874,9 +2874,9 @@ interface TestableMenu {
   imports: [SbbMenuModule],
 })
 class OverlapMenu implements TestableMenu {
-  @Input() overlapTrigger: boolean;
-  @ViewChild(SbbMenuTrigger) trigger: SbbMenuTrigger;
-  @ViewChild('triggerEl') triggerEl: ElementRef<HTMLElement>;
+  @Input() overlapTrigger: boolean = false;
+  @ViewChild(SbbMenuTrigger) trigger!: SbbMenuTrigger;
+  @ViewChild('triggerEl') triggerEl!: ElementRef<HTMLElement>;
 }
 
 @Component({
@@ -2893,16 +2893,16 @@ class CustomMenuPanel implements SbbMenuPanel {
   xPosition: SbbMenuPositionX = 'after';
   yPosition: SbbMenuPositionY = 'below';
   overlapTrigger = true;
-  parentMenu: SbbMenuPanel;
+  parentMenu!: SbbMenuPanel;
 
-  @ViewChild(TemplateRef) templateRef: TemplateRef<any>;
+  @ViewChild(TemplateRef) templateRef!: TemplateRef<any>;
   @Output() readonly closed = new EventEmitter<void | 'click' | 'keydown' | 'tab'>();
   focusFirstItem = () => {};
   resetActiveItem = () => {};
   setPositionClasses = () => {};
 
-  width: number;
-  triggerContext: SbbMenuTriggerContext;
+  width!: number;
+  triggerContext!: SbbMenuTriggerContext;
 }
 
 @Component({
@@ -2915,7 +2915,7 @@ class CustomMenuPanel implements SbbMenuPanel {
   imports: [SbbMenuModule, CustomMenuPanel],
 })
 class CustomMenu {
-  @ViewChild(SbbMenuTrigger) trigger: SbbMenuTrigger;
+  @ViewChild(SbbMenuTrigger) trigger!: SbbMenuTrigger;
 }
 
 @Component({
@@ -2981,22 +2981,22 @@ class CustomMenu {
   imports: [SbbMenuModule],
 })
 class NestedMenu {
-  @ViewChild('root') rootMenu: SbbMenu;
-  @ViewChild('rootTrigger') rootTrigger: SbbMenuTrigger;
-  @ViewChild('rootTriggerEl') rootTriggerEl: ElementRef<HTMLElement>;
-  @ViewChild('alternateTrigger') alternateTrigger: SbbMenuTrigger;
+  @ViewChild('root') rootMenu!: SbbMenu;
+  @ViewChild('rootTrigger') rootTrigger!: SbbMenuTrigger;
+  @ViewChild('rootTriggerEl') rootTriggerEl!: ElementRef<HTMLElement>;
+  @ViewChild('alternateTrigger') alternateTrigger!: SbbMenuTrigger;
   readonly rootCloseCallback = jasmine.createSpy('root menu closed callback');
 
-  @ViewChild('levelOne') levelOneMenu: SbbMenu;
-  @ViewChild('levelOneTrigger') levelOneTrigger: SbbMenuTrigger;
+  @ViewChild('levelOne') levelOneMenu!: SbbMenu;
+  @ViewChild('levelOneTrigger') levelOneTrigger!: SbbMenuTrigger;
   readonly levelOneCloseCallback = jasmine.createSpy('level one menu closed callback');
 
-  @ViewChild('levelTwo') levelTwoMenu: SbbMenu;
-  @ViewChild('levelTwoTrigger') levelTwoTrigger: SbbMenuTrigger;
+  @ViewChild('levelTwo') levelTwoMenu!: SbbMenu;
+  @ViewChild('levelTwoTrigger') levelTwoTrigger!: SbbMenuTrigger;
   readonly levelTwoCloseCallback = jasmine.createSpy('level one menu closed callback');
 
-  @ViewChild('lazy') lazyMenu: SbbMenu;
-  @ViewChild('lazyTrigger') lazyTrigger: SbbMenuTrigger;
+  @ViewChild('lazy') lazyMenu!: SbbMenu;
+  @ViewChild('lazyTrigger') lazyTrigger!: SbbMenuTrigger;
   showLazy = false;
 }
 
@@ -3024,8 +3024,8 @@ class NestedMenu {
   imports: [SbbMenuModule],
 })
 class NestedMenuCustomElevation {
-  @ViewChild('rootTrigger') rootTrigger: SbbMenuTrigger;
-  @ViewChild('levelOneTrigger') levelOneTrigger: SbbMenuTrigger;
+  @ViewChild('rootTrigger') rootTrigger!: SbbMenuTrigger;
+  @ViewChild('levelOneTrigger') levelOneTrigger!: SbbMenuTrigger;
 }
 
 @Component({
@@ -3047,8 +3047,8 @@ class NestedMenuCustomElevation {
   imports: [SbbMenuModule],
 })
 class NestedMenuRepeater {
-  @ViewChild('rootTriggerEl') rootTriggerEl: ElementRef<HTMLElement>;
-  @ViewChild('levelOneTrigger') levelOneTrigger: SbbMenuTrigger;
+  @ViewChild('rootTriggerEl') rootTriggerEl!: ElementRef<HTMLElement>;
+  @ViewChild('levelOneTrigger') levelOneTrigger!: SbbMenuTrigger;
 
   items = ['one', 'two', 'three'];
 }
@@ -3068,7 +3068,7 @@ class NestedMenuRepeater {
   imports: [SbbMenuModule],
 })
 class SubmenuDeclaredInsideParentMenu {
-  @ViewChild('rootTriggerEl') rootTriggerEl: ElementRef;
+  @ViewChild('rootTriggerEl') rootTriggerEl!: ElementRef;
 }
 
 @Component({
@@ -3103,10 +3103,10 @@ class DestroyChecker implements OnDestroy {
   imports: [SbbMenuModule, DestroyChecker],
 })
 class SimpleLazyMenu {
-  @ViewChild(SbbMenuTrigger) trigger: SbbMenuTrigger;
-  @ViewChild('triggerEl') triggerEl: ElementRef<HTMLElement>;
-  @ViewChildren(SbbMenuItem) items: QueryList<SbbMenuItem>;
-  @ViewChildren(DestroyChecker) destroyCheckers: QueryList<DestroyChecker>;
+  @ViewChild(SbbMenuTrigger) trigger!: SbbMenuTrigger;
+  @ViewChild('triggerEl') triggerEl!: ElementRef<HTMLElement>;
+  @ViewChildren(SbbMenuItem) items!: QueryList<SbbMenuItem>;
+  @ViewChildren(DestroyChecker) destroyCheckers!: QueryList<DestroyChecker>;
 }
 
 @Component({
@@ -3136,8 +3136,8 @@ class SimpleLazyMenu {
   imports: [SbbMenuModule],
 })
 class LazyMenuWithContext {
-  @ViewChild('triggerOne') triggerOne: SbbMenuTrigger;
-  @ViewChild('triggerTwo') triggerTwo: SbbMenuTrigger;
+  @ViewChild('triggerOne') triggerOne!: SbbMenuTrigger;
+  @ViewChild('triggerTwo') triggerTwo!: SbbMenuTrigger;
 }
 
 @Component({
@@ -3154,9 +3154,9 @@ class LazyMenuWithContext {
   imports: [SbbMenuModule],
 })
 class DynamicPanelMenu {
-  @ViewChild(SbbMenuTrigger) trigger: SbbMenuTrigger;
-  @ViewChild('one') firstMenu: SbbMenu;
-  @ViewChild('two') secondMenu: SbbMenu;
+  @ViewChild(SbbMenuTrigger) trigger!: SbbMenuTrigger;
+  @ViewChild('one') firstMenu!: SbbMenu;
+  @ViewChild('two') secondMenu!: SbbMenu;
 }
 
 @Component({
@@ -3171,7 +3171,7 @@ class DynamicPanelMenu {
   imports: [SbbMenuModule],
 })
 class MenuWithCheckboxItems {
-  @ViewChild(SbbMenuTrigger) trigger: SbbMenuTrigger;
+  @ViewChild(SbbMenuTrigger) trigger!: SbbMenuTrigger;
 }
 
 @Component({
@@ -3188,9 +3188,9 @@ class MenuWithCheckboxItems {
   imports: [SbbMenuModule],
 })
 class SimpleMenuWithRepeater {
-  @ViewChild(SbbMenuTrigger) trigger: SbbMenuTrigger;
-  @ViewChild(SbbMenu) menu: SbbMenu;
-  @ViewChildren(SbbMenuItem) itemInstances: QueryList<SbbMenuItem>;
+  @ViewChild(SbbMenuTrigger) trigger!: SbbMenuTrigger;
+  @ViewChild(SbbMenu) menu!: SbbMenu;
+  @ViewChildren(SbbMenuItem) itemInstances!: QueryList<SbbMenuItem>;
   items = [
     { label: 'Pizza', disabled: false },
     { label: 'Pasta', disabled: false },
@@ -3213,8 +3213,8 @@ class SimpleMenuWithRepeater {
   imports: [SbbMenuModule],
 })
 class SimpleMenuWithRepeaterInLazyContent {
-  @ViewChild(SbbMenuTrigger) trigger: SbbMenuTrigger;
-  @ViewChild(SbbMenu) menu: SbbMenu;
+  @ViewChild(SbbMenuTrigger) trigger!: SbbMenuTrigger;
+  @ViewChild(SbbMenu) menu!: SbbMenu;
   items = [
     { label: 'Pizza', disabled: false },
     { label: 'Pasta', disabled: false },
@@ -3241,8 +3241,8 @@ class SimpleMenuWithRepeaterInLazyContent {
   imports: [SbbMenuModule],
 })
 class LazyMenuWithOnPush {
-  @ViewChild('triggerEl', { read: ElementRef }) rootTrigger: ElementRef;
-  @ViewChild('menuItem', { read: ElementRef }) menuItemWithSubmenu: ElementRef;
+  @ViewChild('triggerEl', { read: ElementRef }) rootTrigger!: ElementRef;
+  @ViewChild('menuItem', { read: ElementRef }) menuItemWithSubmenu!: ElementRef;
 }
 
 @Component({
@@ -3285,10 +3285,10 @@ class StaticAriaDescribedbyMenu {}
   imports: [SbbMenuModule, SbbIconTestingModule],
 })
 class MenuWithRepeatedItems {
-  @ViewChild(SbbMenuTrigger, { static: false }) trigger: SbbMenuTrigger;
-  @ViewChild('triggerEl', { static: false }) triggerEl: ElementRef<HTMLElement>;
-  @ViewChild(SbbMenu, { static: false }) menu: SbbMenu;
-  @ViewChildren(SbbMenuItem) itemInstances: QueryList<SbbMenuItem>;
+  @ViewChild(SbbMenuTrigger, { static: false }) trigger!: SbbMenuTrigger;
+  @ViewChild('triggerEl', { static: false }) triggerEl!: ElementRef<HTMLElement>;
+  @ViewChild(SbbMenu, { static: false }) menu!: SbbMenu;
+  @ViewChildren(SbbMenuItem) itemInstances!: QueryList<SbbMenuItem>;
   items = ['One', 'Two', 'Three'];
 }
 
@@ -3302,8 +3302,8 @@ class MenuWithRepeatedItems {
   imports: [SbbMenuModule, SbbIconModule, SbbIconTestingModule],
 })
 class ContextmenuStaticTrigger {
-  @ViewChild(SbbMenuTrigger) trigger: SbbMenuTrigger;
-  @ViewChild(SbbMenu) menu: SbbMenu;
+  @ViewChild(SbbMenuTrigger) trigger!: SbbMenuTrigger;
+  @ViewChild(SbbMenu) menu!: SbbMenu;
 }
 
 @Component({
@@ -3316,8 +3316,8 @@ class ContextmenuStaticTrigger {
   imports: [SbbMenuModule, SbbIconModule, SbbIconTestingModule],
 })
 class ContextmenuDynamicTrigger {
-  @ViewChild(SbbMenuTrigger) trigger: SbbMenuTrigger;
-  @ViewChild(SbbMenu) menu: SbbMenu;
+  @ViewChild(SbbMenuTrigger) trigger!: SbbMenuTrigger;
+  @ViewChild(SbbMenu) menu!: SbbMenu;
 }
 
 @Component({
@@ -3330,8 +3330,8 @@ class ContextmenuDynamicTrigger {
   imports: [SbbMenuModule],
 })
 class ContextmenuOnlyTextTrigger {
-  @ViewChild(SbbMenuTrigger) trigger: SbbMenuTrigger;
-  @ViewChild(SbbMenu) menu: SbbMenu;
+  @ViewChild(SbbMenuTrigger) trigger!: SbbMenuTrigger;
+  @ViewChild(SbbMenu) menu!: SbbMenu;
 }
 
 @Component({
@@ -3344,8 +3344,8 @@ class ContextmenuOnlyTextTrigger {
   imports: [SbbMenuModule, SbbIconModule, SbbIconTestingModule],
 })
 class HeadlessTrigger {
-  @ViewChild(SbbMenuTrigger) trigger: SbbMenuTrigger;
-  @ViewChild(SbbMenu) menu: SbbMenu;
+  @ViewChild(SbbMenuTrigger) trigger!: SbbMenuTrigger;
+  @ViewChild(SbbMenu) menu!: SbbMenu;
 }
 
 @Component({
@@ -3358,7 +3358,7 @@ class HeadlessTrigger {
   imports: [SbbMenuModule],
 })
 class ContextmenuTrigger {
-  @ViewChild(SbbMenuTrigger) trigger: SbbMenuTrigger;
+  @ViewChild(SbbMenuTrigger) trigger!: SbbMenuTrigger;
 }
 
 @Component({
@@ -3375,6 +3375,6 @@ class ContextmenuTrigger {
   imports: [SbbMenuModule],
 })
 class ContextmenuCustomIconTrigger {
-  @ViewChild(SbbMenuTrigger) trigger: SbbMenuTrigger;
+  @ViewChild(SbbMenuTrigger) trigger!: SbbMenuTrigger;
   svgIcon = 'other-icon';
 }
