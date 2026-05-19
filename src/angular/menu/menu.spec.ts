@@ -2812,6 +2812,7 @@ const SIMPLE_MENU_TEMPLATE = `
   `;
 @Component({
   template: SIMPLE_MENU_TEMPLATE,
+  changeDetection: ChangeDetectionStrategy.Eager,
   imports: [SbbMenuModule, SbbIconModule],
 })
 class SimpleMenu {
@@ -2831,12 +2832,13 @@ class SimpleMenu {
 
 @Component({
   template: SIMPLE_MENU_TEMPLATE,
-  changeDetection: ChangeDetectionStrategy.OnPush,
+  changeDetection: ChangeDetectionStrategy.Eager,
   imports: [SbbMenuModule, SbbIconModule],
 })
 class SimpleMenuOnPush extends SimpleMenu {}
 
 @Component({
+  changeDetection: ChangeDetectionStrategy.Eager,
   template: `
     <button
       [sbbMenuTriggerFor]="menu"
@@ -2865,6 +2867,7 @@ interface TestableMenu {
   triggerEl: ElementRef<HTMLElement>;
 }
 @Component({
+  changeDetection: ChangeDetectionStrategy.Eager,
   template: `
     <button [sbbMenuHeadlessTriggerFor]="menu" #triggerEl type="button">Toggle menu</button>
     <sbb-menu [overlapTrigger]="overlapTrigger" #menu="sbbMenu">
@@ -2906,6 +2909,7 @@ class CustomMenuPanel implements SbbMenuPanel {
 }
 
 @Component({
+  changeDetection: ChangeDetectionStrategy.Eager,
   template: `
     <button [sbbMenuTriggerFor]="menu" type="button">Toggle menu</button>
     <custom-menu #menu="sbbCustomMenu">
@@ -2919,6 +2923,7 @@ class CustomMenu {
 }
 
 @Component({
+  changeDetection: ChangeDetectionStrategy.Eager,
   template: `
     <button [sbbMenuTriggerFor]="root" #rootTrigger="sbbMenuTrigger" #rootTriggerEl type="button">
       Toggle menu
@@ -3001,6 +3006,7 @@ class NestedMenu {
 }
 
 @Component({
+  changeDetection: ChangeDetectionStrategy.Eager,
   template: `
     <button [sbbMenuTriggerFor]="root" #rootTrigger="sbbMenuTrigger" type="button">
       Toggle menu
@@ -3029,6 +3035,7 @@ class NestedMenuCustomElevation {
 }
 
 @Component({
+  changeDetection: ChangeDetectionStrategy.Eager,
   template: `
     <button [sbbMenuTriggerFor]="root" #rootTriggerEl>Toggle menu</button>
     <sbb-menu #root="sbbMenu">
@@ -3054,6 +3061,7 @@ class NestedMenuRepeater {
 }
 
 @Component({
+  changeDetection: ChangeDetectionStrategy.Eager,
   template: `
     <button [sbbMenuTriggerFor]="root" #rootTriggerEl>Toggle menu</button>
 
@@ -3090,6 +3098,7 @@ class DestroyChecker implements OnDestroy {
 }
 
 @Component({
+  changeDetection: ChangeDetectionStrategy.Eager,
   template: `
     <button [sbbMenuTriggerFor]="menu" #triggerEl>Toggle menu</button>
 
@@ -3110,6 +3119,7 @@ class SimpleLazyMenu {
 }
 
 @Component({
+  changeDetection: ChangeDetectionStrategy.Eager,
   template: `
     <button
       [sbbMenuTriggerFor]="menu"
@@ -3141,6 +3151,7 @@ class LazyMenuWithContext {
 }
 
 @Component({
+  changeDetection: ChangeDetectionStrategy.Eager,
   template: `
     <button [sbbMenuTriggerFor]="one">Toggle menu</button>
     <sbb-menu #one="sbbMenu">
@@ -3160,6 +3171,7 @@ class DynamicPanelMenu {
 }
 
 @Component({
+  changeDetection: ChangeDetectionStrategy.Eager,
   template: `
     <button [sbbMenuTriggerFor]="menu">Toggle menu</button>
 
@@ -3186,6 +3198,7 @@ class MenuWithCheckboxItems {
     </sbb-menu>
   `,
   imports: [SbbMenuModule],
+  changeDetection: ChangeDetectionStrategy.Eager,
 })
 class SimpleMenuWithRepeater {
   @ViewChild(SbbMenuTrigger) trigger!: SbbMenuTrigger;
@@ -3211,6 +3224,7 @@ class SimpleMenuWithRepeater {
     </sbb-menu>
   `,
   imports: [SbbMenuModule],
+  changeDetection: ChangeDetectionStrategy.Eager,
 })
 class SimpleMenuWithRepeaterInLazyContent {
   @ViewChild(SbbMenuTrigger) trigger!: SbbMenuTrigger;
@@ -3283,6 +3297,7 @@ class StaticAriaDescribedbyMenu {}
     </sbb-menu>
   `,
   imports: [SbbMenuModule, SbbIconTestingModule],
+  changeDetection: ChangeDetectionStrategy.Eager,
 })
 class MenuWithRepeatedItems {
   @ViewChild(SbbMenuTrigger, { static: false }) trigger!: SbbMenuTrigger;

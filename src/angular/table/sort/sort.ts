@@ -107,7 +107,7 @@ export class SbbSort implements OnInit, OnChanges, OnDestroy {
    * May be overriden by the SbbSortable's disable clear input.
    */
   @Input({ alias: 'sbbSortDisableClear', transform: booleanAttribute })
-  disableClear: boolean = false;
+  disableClear!: boolean;
 
   /** Event emitted when the user changes either the active sort or sort direction. */
   @Output('sbbSortChange') readonly sortChange: EventEmitter<SbbSortState> =

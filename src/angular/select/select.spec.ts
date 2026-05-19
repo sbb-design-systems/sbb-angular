@@ -71,6 +71,7 @@ import { SbbSelectModule } from './select.module';
 
 @Component({
   selector: 'sbb-basic-select',
+  changeDetection: ChangeDetectionStrategy.Eager,
   template: `
     <div [style.height.px]="heightAbove"></div>
     <sbb-form-field [label]="label">
@@ -126,6 +127,7 @@ class BasicSelect {
 
 @Component({
   selector: 'sbb-ng-model-select',
+  changeDetection: ChangeDetectionStrategy.Eager,
   template: `
     <sbb-form-field>
       <sbb-select placeholder="Food" ngModel [disabled]="isDisabled">
@@ -151,6 +153,7 @@ class NgModelSelect {
 
 @Component({
   selector: 'sbb-many-selects',
+  changeDetection: ChangeDetectionStrategy.Eager,
   template: `
     <sbb-form-field>
       <sbb-select placeholder="First">
@@ -171,6 +174,7 @@ class ManySelects {}
 
 @Component({
   selector: 'sbb-ng-if-select',
+  changeDetection: ChangeDetectionStrategy.Eager,
   template: `
     @if (isShowing) {
       <div>
@@ -202,6 +206,7 @@ class NgIfSelect {
 
 @Component({
   selector: 'sbb-select-with-change-event',
+  changeDetection: ChangeDetectionStrategy.Eager,
   template: `
     <sbb-form-field>
       <sbb-select (selectionChange)="changeListener($event)">
@@ -230,6 +235,7 @@ class SelectWithChangeEvent {
 
 @Component({
   selector: 'sbb-select-init-without-options',
+  changeDetection: ChangeDetectionStrategy.Eager,
   template: `
     <sbb-form-field>
       <sbb-select placeholder="Food I want to eat right now" [formControl]="control">
@@ -261,6 +267,7 @@ class SelectInitWithoutOptions {
 
 @Component({
   selector: 'sbb-custom-select-accessor',
+  changeDetection: ChangeDetectionStrategy.Eager,
   template: `<sbb-form-field><sbb-select></sbb-select></sbb-form-field>`,
   providers: [
     {
@@ -281,6 +288,7 @@ class CustomSelectAccessor implements ControlValueAccessor {
 
 @Component({
   selector: 'sbb-comp-with-custom-select',
+  changeDetection: ChangeDetectionStrategy.Eager,
   template: `<sbb-custom-select-accessor [formControl]="ctrl"></sbb-custom-select-accessor>`,
   providers: [
     {
@@ -298,6 +306,7 @@ class CompWithCustomSelect {
 
 @Component({
   selector: 'sbb-throws-error-on-init',
+  changeDetection: ChangeDetectionStrategy.Eager,
   template: '',
   imports: [SbbSelectModule],
 })
@@ -309,6 +318,7 @@ class ThrowsErrorOnInit implements OnInit {
 
 @Component({
   selector: 'sbb-select-infinite-loop',
+  changeDetection: ChangeDetectionStrategy.Eager,
   template: `
     <sbb-form-field>
       <sbb-select [(ngModel)]="value"></sbb-select>
@@ -389,6 +399,7 @@ class BasicSelectOnPushPreselected {
     </sbb-form-field>
   `,
   imports: [SbbSelectModule, SbbFormFieldModule, ReactiveFormsModule],
+  changeDetection: ChangeDetectionStrategy.Eager,
 })
 class MultiSelect {
   foods: any[] = [
@@ -431,6 +442,7 @@ class SelectEarlyAccessSibling {}
 
 @Component({
   selector: 'sbb-basic-select-initially-hidden',
+  changeDetection: ChangeDetectionStrategy.Eager,
   template: `
     <sbb-form-field>
       <sbb-select [style.display]="isVisible ? 'block' : 'none'">
@@ -446,6 +458,7 @@ class BasicSelectInitiallyHidden {
 
 @Component({
   selector: 'sbb-basic-select-no-placeholder',
+  changeDetection: ChangeDetectionStrategy.Eager,
   template: `
     <sbb-form-field>
       <sbb-select>
@@ -459,6 +472,7 @@ class BasicSelectNoPlaceholder {}
 
 @Component({
   selector: 'sbb-reset-values-select',
+  changeDetection: ChangeDetectionStrategy.Eager,
   template: `
     <sbb-form-field>
       <sbb-select
@@ -493,6 +507,7 @@ class ResetValuesSelect {
 }
 
 @Component({
+  changeDetection: ChangeDetectionStrategy.Eager,
   template: `
     <sbb-form-field>
       <sbb-select [formControl]="control">
@@ -515,6 +530,7 @@ class FalsyValueSelect {
 
 @Component({
   selector: 'sbb-select-with-groups',
+  changeDetection: ChangeDetectionStrategy.Eager,
   template: `
     <sbb-form-field>
       <sbb-select placeholder="Pokemon" [formControl]="control">
@@ -602,6 +618,7 @@ class SelectWithGroupsAndNgContainer {
 }
 
 @Component({
+  changeDetection: ChangeDetectionStrategy.Eager,
   template: `
     <form>
       <sbb-form-field>
@@ -616,6 +633,7 @@ class InvalidSelectInForm {
 }
 
 @Component({
+  changeDetection: ChangeDetectionStrategy.Eager,
   template: `
     <form [formGroup]="formGroup">
       <sbb-form-field>
@@ -647,6 +665,7 @@ class SelectInsideFormGroup {
 }
 
 @Component({
+  changeDetection: ChangeDetectionStrategy.Eager,
   template: `
     <sbb-form-field>
       <sbb-select placeholder="Food" [(value)]="selectedFood">
@@ -672,6 +691,7 @@ class BasicSelectWithoutForms {
 }
 
 @Component({
+  changeDetection: ChangeDetectionStrategy.Eager,
   template: `
     <sbb-form-field>
       <sbb-select placeholder="Food" [(value)]="selectedFood">
@@ -696,6 +716,7 @@ class BasicSelectWithoutFormsPreselected {
 }
 
 @Component({
+  changeDetection: ChangeDetectionStrategy.Eager,
   template: `
     <sbb-form-field>
       <sbb-select placeholder="Food" [(value)]="selectedFoods" multiple>
@@ -736,6 +757,7 @@ class BasicSelectWithoutFormsMultiple {
     </sbb-form-field>
   `,
   imports: [SbbSelectModule, SbbFormFieldModule, FormsModule],
+  changeDetection: ChangeDetectionStrategy.Eager,
 })
 class NgModelCompareWithSelect {
   foods: { value: string; viewValue: string }[] = [
@@ -774,6 +796,7 @@ class NgModelCompareWithSelect {
 }
 
 @Component({
+  changeDetection: ChangeDetectionStrategy.Eager,
   template: `
     <sbb-select placeholder="Food" [formControl]="control" [errorStateMatcher]="errorStateMatcher">
       @for (food of foods; track food) {
@@ -796,6 +819,7 @@ class CustomErrorBehaviorSelect {
 }
 
 @Component({
+  changeDetection: ChangeDetectionStrategy.Eager,
   template: `
     <sbb-form-field>
       <sbb-select placeholder="Food" [(ngModel)]="selectedFoods">
@@ -821,6 +845,7 @@ class SingleSelectWithPreselectedArrayValues {
 }
 
 @Component({
+  changeDetection: ChangeDetectionStrategy.Eager,
   template: `
     <sbb-form-field>
       <sbb-label>Select something</sbb-label>
@@ -838,6 +863,7 @@ class SelectWithNgIfAndLabel {
 }
 
 @Component({
+  changeDetection: ChangeDetectionStrategy.Eager,
   template: `
     <sbb-form-field>
       <sbb-select multiple [ngModel]="value">

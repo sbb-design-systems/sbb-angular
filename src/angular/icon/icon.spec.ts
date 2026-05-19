@@ -3,7 +3,7 @@ import {
   HttpTestingController,
   TestRequest,
 } from '@angular/common/http/testing';
-import { Component, ErrorHandler, ViewChild } from '@angular/core';
+import { ChangeDetectionStrategy, Component, ErrorHandler, ViewChild } from '@angular/core';
 import { fakeAsync, flush, inject, TestBed, tick, waitForAsync } from '@angular/core/testing';
 import { DomSanitizer, SafeHtml, SafeResourceUrl } from '@angular/platform-browser';
 import { wrappedErrorMessage } from '@sbb-esta/angular/core/testing';
@@ -1236,6 +1236,7 @@ describe('SbbIcon without HttpClientModule', () => {
 @Component({
   template: ` <sbb-icon>{{ iconName }}</sbb-icon>`,
   imports: [SbbIconModule],
+  changeDetection: ChangeDetectionStrategy.Eager,
 })
 class IconWithLigature {
   iconName = '';
@@ -1244,6 +1245,7 @@ class IconWithLigature {
 @Component({
   template: ` <sbb-icon [fontSet]="fontSet" [fontIcon]="fontIcon"></sbb-icon>`,
   imports: [SbbIconModule],
+  changeDetection: ChangeDetectionStrategy.Eager,
 })
 class IconWithCustomFontCss {
   fontSet = '';
@@ -1253,6 +1255,7 @@ class IconWithCustomFontCss {
 @Component({
   template: ` <sbb-icon [svgIcon]="iconName"></sbb-icon>`,
   imports: [SbbIconModule, HttpClientTestingModule],
+  changeDetection: ChangeDetectionStrategy.Eager,
 })
 class IconFromSvgName {
   iconName = '';
@@ -1269,6 +1272,7 @@ class IconWithAriaHiddenFalse {}
     <sbb-icon [svgIcon]="iconName">{{ iconName }}</sbb-icon>
   }`,
   imports: [SbbIconModule],
+  changeDetection: ChangeDetectionStrategy.Eager,
 })
 class IconWithBindingAndNgIf {
   iconName = 'fluffy';
@@ -1278,6 +1282,7 @@ class IconWithBindingAndNgIf {
 @Component({
   template: `<sbb-icon [inline]="inline">{{ iconName }}</sbb-icon>`,
   imports: [SbbIconModule],
+  changeDetection: ChangeDetectionStrategy.Eager,
 })
 class InlineIcon {
   inline = false;
@@ -1289,6 +1294,7 @@ class InlineIcon {
     <div>Hello</div>
   </sbb-icon>`,
   imports: [SbbIconModule],
+  changeDetection: ChangeDetectionStrategy.Eager,
 })
 class SvgIconWithUserContent {
   iconName = '';
@@ -1297,6 +1303,7 @@ class SvgIconWithUserContent {
 @Component({
   template: '<sbb-icon [svgIcon]="iconName">house</sbb-icon>',
   imports: [SbbIconModule],
+  changeDetection: ChangeDetectionStrategy.Eager,
 })
 class IconWithLigatureAndSvgBinding {
   iconName!: string;
@@ -1305,6 +1312,7 @@ class IconWithLigatureAndSvgBinding {
 @Component({
   template: `<sbb-icon></sbb-icon>`,
   imports: [SbbIconModule],
+  changeDetection: ChangeDetectionStrategy.Eager,
 })
 class BlankIcon {
   @ViewChild(SbbIcon) icon!: SbbIcon;

@@ -144,7 +144,7 @@ export class SbbSortHeader implements SbbSortable, OnDestroy, OnInit, AfterViewI
 
   /** Overrides the disable clear value of the containing MatSort for this MatSortable. */
   @Input({ transform: booleanAttribute })
-  disableClear: boolean = false;
+  disableClear!: boolean;
 
   constructor(
     private _changeDetectorRef: ChangeDetectorRef,

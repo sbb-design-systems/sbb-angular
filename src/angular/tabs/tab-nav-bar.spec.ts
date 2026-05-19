@@ -373,6 +373,7 @@ class SimpleTabNavBarTestApp {
     </nav>
   `,
   imports: [SbbTabsModule],
+  changeDetection: ChangeDetectionStrategy.Eager,
 })
 class TabLinkWithTabIndexBinding {
   tabIndex = 0;
@@ -400,6 +401,7 @@ class TabLinkWithNativeTabindexAttr {}
     <sbb-tab-nav-panel #tabPanel id="tab-panel">Tab panel</sbb-tab-nav-panel>
   `,
   imports: [SbbTabsModule],
+  changeDetection: ChangeDetectionStrategy.Eager,
 })
 class TabBarWithPanel {
   tabs = [0, 1, 2];

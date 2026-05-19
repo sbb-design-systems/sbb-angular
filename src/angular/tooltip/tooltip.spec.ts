@@ -1436,6 +1436,7 @@ describe('SbbTooltip', () => {
     </button>
   }`,
   imports: [SbbTooltipModule],
+  changeDetection: ChangeDetectionStrategy.Eager,
 })
 class BasicTooltipDemo {
   position: TooltipPosition = 'below';
@@ -1460,6 +1461,7 @@ class BasicTooltipDemo {
     }
   </div>`,
   imports: [SbbTooltipModule],
+  changeDetection: ChangeDetectionStrategy.Eager,
 })
 class ScrollableTooltipDemo {
   message: string = initialTooltipMessage;
@@ -1495,6 +1497,7 @@ class OnPushTooltipDemo {
     <button [sbbTooltip]="tooltip">Button {{ tooltip }}</button>
   }`,
   imports: [SbbTooltipModule],
+  changeDetection: ChangeDetectionStrategy.Eager,
 })
 class DynamicTooltipsDemo {
   tooltips: string[] = [];
@@ -1503,6 +1506,7 @@ class DynamicTooltipsDemo {
 @Component({
   template: `<button [sbbTooltip]="message" [attr.aria-label]="message">Click me</button>`,
   imports: [SbbTooltipModule],
+  changeDetection: ChangeDetectionStrategy.Eager,
 })
 class DataBoundAriaLabelTooltip {
   message = 'Hello there';
@@ -1519,6 +1523,7 @@ class DataBoundAriaLabelTooltip {
     ></textarea>
   `,
   imports: [SbbTooltipModule],
+  changeDetection: ChangeDetectionStrategy.Eager,
 })
 class TooltipOnTextFields {
   @ViewChild('input') input!: ElementRef<HTMLInputElement>;
@@ -1536,6 +1541,7 @@ class TooltipOnTextFields {
     ></button>
   `,
   imports: [SbbTooltipModule],
+  changeDetection: ChangeDetectionStrategy.Eager,
 })
 class TooltipOnDraggableElement {
   @ViewChild('button') button!: ElementRef;
@@ -1547,6 +1553,7 @@ class TooltipOnDraggableElement {
     <button [sbbTooltip]="'content'" [sbbTooltipTrigger]="trigger">Show tooltip</button>
   `,
   imports: [SbbTooltipModule],
+  changeDetection: ChangeDetectionStrategy.Eager,
 })
 class TriggerConfigurableTooltip {
   @ViewChild(SbbTooltip) tooltip!: SbbTooltip;
@@ -1557,6 +1564,7 @@ class TriggerConfigurableTooltip {
   selector: 'app',
   template: `<button #button [sbbTooltip]="message">Button</button>`,
   imports: [SbbTooltipModule, OverlayModule],
+  changeDetection: ChangeDetectionStrategy.Eager,
 })
 class TooltipDemoWithoutPositionBinding {
   message: any = initialTooltipMessage;
@@ -1577,6 +1585,7 @@ class TooltipDemoWithoutPositionBinding {
     </div>
   `,
   imports: [SbbTooltipModule],
+  changeDetection: ChangeDetectionStrategy.Eager,
 })
 class TooltipTriggerBubble {
   disabled = false;

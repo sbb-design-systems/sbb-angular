@@ -1,6 +1,6 @@
 import { ESCAPE } from '@angular/cdk/keycodes';
 import { OverlayContainer } from '@angular/cdk/overlay';
-import { Component, ViewChild } from '@angular/core';
+import { ChangeDetectionStrategy, Component, ViewChild } from '@angular/core';
 import {
   ComponentFixture,
   fakeAsync,
@@ -310,6 +310,7 @@ describe('SbbTooltipWrapper', () => {
     </sbb-tooltip>
   `,
   imports: [SbbTooltipModule, SbbButtonModule],
+  changeDetection: ChangeDetectionStrategy.Eager,
 })
 class TooltipTestComponent {
   @ViewChild('t1', { static: true }) tooltip!: SbbTooltipWrapper;

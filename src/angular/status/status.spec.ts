@@ -106,7 +106,7 @@ describe('SbbStatus', () => {
     });
   });
 
-  describe('valid', () => {
+  describe('invalid', () => {
     let fixture: ComponentFixture<InvalidStatusComponent>;
 
     beforeEach(() => {

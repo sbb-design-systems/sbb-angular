@@ -1,6 +1,12 @@
 import { DataSource } from '@angular/cdk/collections';
 import { ViewportRuler } from '@angular/cdk/scrolling';
-import { AfterViewInit, Component, OnInit, ViewChild } from '@angular/core';
+import {
+  AfterViewInit,
+  ChangeDetectionStrategy,
+  Component,
+  OnInit,
+  ViewChild,
+} from '@angular/core';
 import {
   ComponentFixture,
   fakeAsync,
@@ -1175,6 +1181,7 @@ class TableWithWrapper {
     </sbb-table-wrapper>
   `,
   imports: [SbbTableModule],
+  changeDetection: ChangeDetectionStrategy.Eager,
 })
 class TableWithWrapperAndStickyColumnsTestComponent {
   dataSource = new FakeDataSource();

@@ -1,11 +1,16 @@
 import { A11yModule } from '@angular/cdk/a11y';
 import { MediaMatcher } from '@angular/cdk/layout';
 import { CdkScrollable } from '@angular/cdk/scrolling';
-import { Component, DebugElement, ElementRef, ViewChild } from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  Component,
+  DebugElement,
+  ElementRef,
+  ViewChild,
+} from '@angular/core';
 import {
   ComponentFixture,
   fakeAsync,
-  flush,
   inject,
   TestBed,
   tick,
@@ -25,6 +30,10 @@ import { SbbIconTestingModule } from '@sbb-esta/angular/icon/testing';
 import { SbbSidebarModule } from '../sidebar.module';
 
 import { SbbIconSidebar, SbbIconSidebarContainer } from './icon-sidebar';
+
+function wait(milliseconds: number) {
+  return new Promise((resolve) => setTimeout(resolve, milliseconds));
+}
 
 const PROVIDE_FAKE_MEDIA_MATCHER = {
   provide: MediaMatcher,
@@ -157,7 +166,7 @@ describe('SbbIconSidebar', () => {
       expect(fixture.componentInstance.isExpanded).toBe(false);
     }));
 
-    it('should not throw when a two-way binding is toggled quickly while animating', fakeAsync(() => {
+    it('should not throw when a two-way binding is toggled quickly while animating', async () => {
       TestBed.resetTestingModule()
         .configureTestingModule({
           imports: [BrowserAnimationsModule, SbbIconTestingModule],
@@ -167,25 +176,16 @@ describe('SbbIconSidebar', () => {
       const fixture = TestBed.createComponent(SidebarExpandedBindingTestComponent);
       fixture.detectChanges();
 
-      // Note that we need actual timeouts and the `BrowserAnimationsModule`
-      // in order to test it correctly.
-      setTimeout(() => {
-        fixture.componentInstance.isExpanded = !fixture.componentInstance.isExpanded;
-        fixture.changeDetectorRef.markForCheck();
-        expect(() => fixture.detectChanges()).not.toThrow();
+      await wait(1);
+      fixture.componentInstance.isExpanded = !fixture.componentInstance.isExpanded;
+      fixture.changeDetectorRef.markForCheck();
+      expect(() => fixture.detectChanges()).not.toThrow();
 
-        setTimeout(() => {
-          fixture.componentInstance.isExpanded = !fixture.componentInstance.isExpanded;
-          fixture.changeDetectorRef.markForCheck();
-          expect(() => fixture.detectChanges()).not.toThrow();
-        }, 1);
-
-        tick(1);
-      }, 1);
-
-      tick(1);
-      flush();
-    }));
+      await wait(1);
+      fixture.componentInstance.isExpanded = !fixture.componentInstance.isExpanded;
+      fixture.changeDetectorRef.markForCheck();
+      expect(() => fixture.detectChanges()).not.toThrow();
+    });
   });
 
   describe('link usage', () => {
@@ -468,6 +468,7 @@ class SidebarContainerEmptyTestComponent {
     </sbb-icon-sidebar>
   </sbb-icon-sidebar-container>`,
   imports: [SbbSidebarModule],
+  changeDetection: ChangeDetectionStrategy.Eager,
 })
 class BasicTestComponent {
   @ViewChild('sidebar') sidebar!: SbbIconSidebar;
@@ -502,6 +503,7 @@ class SidebarSetToExpandedTrueTestComponent {
     <sbb-icon-sidebar #sidebar [(expanded)]="isExpanded"> Collapsed Sidebar. </sbb-icon-sidebar>
   </sbb-icon-sidebar-container>`,
   imports: [SbbSidebarModule],
+  changeDetection: ChangeDetectionStrategy.Eager,
 })
 class SidebarExpandedBindingTestComponent {
   isExpanded = false;

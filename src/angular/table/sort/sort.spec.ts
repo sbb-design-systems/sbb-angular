@@ -1,6 +1,6 @@
 import { CollectionViewer, DataSource } from '@angular/cdk/collections';
 import { CdkTableModule } from '@angular/cdk/table';
-import { Component, ElementRef, ViewChild } from '@angular/core';
+import { ChangeDetectionStrategy, Component, ElementRef, ViewChild } from '@angular/core';
 import { ComponentFixture, fakeAsync, TestBed, tick, waitForAsync } from '@angular/core/testing';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import {
@@ -652,6 +652,7 @@ type SimpleSbbSortAppColumnIds = 'defaultA' | 'defaultB' | 'overrideStart' | 'ov
     </div>
   `,
   imports: [SbbTableModule],
+  changeDetection: ChangeDetectionStrategy.Eager,
 })
 class SimpleSbbSortApp {
   latestSortEvent!: SbbSortState;
@@ -733,6 +734,7 @@ class FakeDataSource extends DataSource<any> {
     </cdk-table>
   `,
   imports: [SbbTableModule, CdkTableModule],
+  changeDetection: ChangeDetectionStrategy.Eager,
 })
 class CdkTableSbbSortApp {
   @ViewChild(SbbSort) sbbSort!: SbbSort;
@@ -764,6 +766,7 @@ class CdkTableSbbSortApp {
     </sbb-table>
   `,
   imports: [SbbTableModule],
+  changeDetection: ChangeDetectionStrategy.Eager,
 })
 class SbbTableSbbSortApp {
   @ViewChild(SbbSort) sbbSort!: SbbSort;
@@ -775,6 +778,7 @@ class SbbTableSbbSortApp {
 @Component({
   template: `<div sbb-sort-header="a">A</div>`,
   imports: [SbbTableModule],
+  changeDetection: ChangeDetectionStrategy.Eager,
 })
 class SbbSortHeaderMissingSbbSortApp {}
 
@@ -786,6 +790,7 @@ class SbbSortHeaderMissingSbbSortApp {}
     </div>
   `,
   imports: [SbbTableModule],
+  changeDetection: ChangeDetectionStrategy.Eager,
 })
 class SbbSortDuplicateSbbSortableIdsApp {}
 
@@ -796,6 +801,7 @@ class SbbSortDuplicateSbbSortableIdsApp {}
     </div>
   `,
   imports: [SbbTableModule],
+  changeDetection: ChangeDetectionStrategy.Eager,
 })
 class SbbSortableMissingIdApp {}
 
@@ -806,6 +812,7 @@ class SbbSortableMissingIdApp {}
     </div>
   `,
   imports: [SbbTableModule],
+  changeDetection: ChangeDetectionStrategy.Eager,
 })
 class SbbSortableInvalidDirection {}
 
@@ -821,6 +828,7 @@ class SbbSortableInvalidDirection {}
     </div>
   `,
   imports: [SbbTableModule],
+  changeDetection: ChangeDetectionStrategy.Eager,
 })
 class SbbSortWithoutExplicitInputs {
   latestSortEvent!: SbbSortState;
@@ -855,6 +863,7 @@ class SbbSortWithoutExplicitInputs {
     </div>
   `,
   imports: [SbbTableModule],
+  changeDetection: ChangeDetectionStrategy.Eager,
 })
 class SbbSortWithArrowPosition {
   arrowPosition!: SbbSortHeaderArrowPosition;
@@ -871,6 +880,7 @@ class SbbSortWithArrowPosition {
     </div>
   `,
   imports: [SbbTableModule],
+  changeDetection: ChangeDetectionStrategy.Eager,
 })
 class SbbSortWithoutInputs {
   @ViewChild(SbbSort) sbbSort!: SbbSort;

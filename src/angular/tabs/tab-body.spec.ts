@@ -3,6 +3,7 @@ import { TemplatePortal } from '@angular/cdk/portal';
 import { CdkScrollable, ScrollingModule } from '@angular/cdk/scrolling';
 import {
   AfterViewInit,
+  ChangeDetectionStrategy,
   Component,
   inject,
   signal,
@@ -164,6 +165,7 @@ describe('SbbTabBody', () => {
     <sbb-tab-body [content]="content()!" [position]="position" [origin]="origin"></sbb-tab-body>
   `,
   imports: [SbbTabBody],
+  changeDetection: ChangeDetectionStrategy.Eager,
 })
 class SimpleTabBodyApp implements AfterViewInit {
   content = signal<TemplatePortal | undefined>(undefined);

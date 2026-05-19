@@ -2,7 +2,13 @@ import { Direction } from '@angular/cdk/bidi';
 import { ESCAPE } from '@angular/cdk/keycodes';
 import { MediaMatcher } from '@angular/cdk/layout';
 import { CdkScrollable } from '@angular/cdk/scrolling';
-import { Component, DebugElement, ElementRef, ViewChild } from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  Component,
+  DebugElement,
+  ElementRef,
+  ViewChild,
+} from '@angular/core';
 import {
   ComponentFixture,
   discardPeriodicTasks,
@@ -37,6 +43,10 @@ import { SbbSidebarModule } from '../sidebar.module';
 import { SbbSidebar, SbbSidebarContainer } from './sidebar';
 
 let mediaMatcher: FakeMediaMatcher;
+
+function wait(milliseconds: number) {
+  return new Promise((resolve) => setTimeout(resolve, milliseconds));
+}
 
 const PROVIDE_FAKE_MEDIA_MATCHER = {
   provide: MediaMatcher,
@@ -487,40 +497,28 @@ describe('SbbSidebar', () => {
       flush();
     }));
 
-    it('should not throw when a two-way binding is toggled quickly while animating', fakeAsync(() => {
-      TestBed.resetTestingModule()
-        .configureTestingModule({
-          imports: [BrowserAnimationsModule, SbbIconTestingModule],
-          providers: [PROVIDE_FAKE_MEDIA_MATCHER],
-        })
-        .compileComponents();
+    it('should not throw when a two-way binding is toggled quickly while animating', async () => {
+      TestBed.resetTestingModule().configureTestingModule({
+        imports: [SbbSidebarModule, SbbIconTestingModule],
+        providers: [PROVIDE_FAKE_MEDIA_MATCHER],
+      });
 
       const fixture = TestBed.createComponent(SidebarOpenBindingTestComponent);
       fixture.detectChanges();
+
       inject([MediaMatcher], (m: FakeMediaMatcher) => (mediaMatcher = m))();
       mediaMatcher.setMatchesQuery(Breakpoints.Mobile, true);
-      tick();
 
-      // Note that we need actual timeouts and the `BrowserAnimationsModule`
-      // in order to test it correctly.
-      setTimeout(() => {
-        const sidebar: SbbSidebar = fixture.debugElement.query(
-          By.directive(SbbSidebar),
-        ).componentInstance;
-        sidebar.toggle();
-        expect(() => fixture.detectChanges()).not.toThrow();
+      await wait(1);
+      fixture.componentInstance.isOpen = !fixture.componentInstance.isOpen;
+      fixture.changeDetectorRef.markForCheck();
+      expect(() => fixture.detectChanges()).not.toThrow();
 
-        setTimeout(() => {
-          sidebar.toggle();
-          expect(() => fixture.detectChanges()).not.toThrow();
-        }, 1);
-
-        tick(1);
-      }, 1);
-
-      tick(1);
-      flush();
-    }));
+      await wait(1);
+      fixture.componentInstance.isOpen = !fixture.componentInstance.isOpen;
+      fixture.changeDetectorRef.markForCheck();
+      expect(() => fixture.detectChanges()).not.toThrow();
+    });
 
     it('should bind 2-way bind on opened property', fakeAsync(() => {
       const fixture = TestBed.createComponent(SidebarOpenBindingTestComponent);
@@ -1184,6 +1182,7 @@ class SidebarContainerTwoSidebarsTestComponent {
     </svg>
   </sbb-sidebar-container>`,
   imports: [SbbSidebarModule],
+  changeDetection: ChangeDetectionStrategy.Eager,
 })
 class BasicTestComponent {
   openCount = 0;
@@ -1250,6 +1249,7 @@ class SidebarSetToOpenedFalseTestComponent {}
     </sbb-sidebar>
   </sbb-sidebar-container>`,
   imports: [SbbSidebarModule],
+  changeDetection: ChangeDetectionStrategy.Eager,
 })
 class SidebarOpenBindingTestComponent {
   isOpen = false;
@@ -1298,6 +1298,7 @@ class SidebarWithoutFocusableElementsTestComponent {}
     </sbb-sidebar-container>
   `,
   imports: [SbbSidebarModule],
+  changeDetection: ChangeDetectionStrategy.Eager,
 })
 class SidebarDelayedTestComponent {
   @ViewChild(SbbSidebar) sidebar!: SbbSidebar;
@@ -1311,6 +1312,7 @@ class SidebarDelayedTestComponent {
     }
   </sbb-sidebar-container>`,
   imports: [SbbSidebarModule],
+  changeDetection: ChangeDetectionStrategy.Eager,
 })
 class SidebarContainerStateChangesTestAppTestComponent {
   @ViewChild(SbbSidebar) sidebar!: SbbSidebar;

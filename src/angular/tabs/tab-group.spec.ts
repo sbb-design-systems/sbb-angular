@@ -1057,6 +1057,7 @@ describe('nested SbbTabGroup with enabled animations', () => {
     </sbb-tab-group>
   `,
   imports: [SbbTabsModule],
+  changeDetection: ChangeDetectionStrategy.Eager,
 })
 class SimpleTabsTestApp {
   @ViewChild(SbbTabGroup) tabGroup!: SbbTabGroup;
@@ -1092,6 +1093,7 @@ class SimpleTabsTestApp {
     </sbb-tab-group>
   `,
   imports: [SbbTabsModule],
+  changeDetection: ChangeDetectionStrategy.Eager,
 })
 class SimpleDynamicTabsTestApp {
   tabs = [
@@ -1121,6 +1123,7 @@ class SimpleDynamicTabsTestApp {
     </sbb-tab-group>
   `,
   imports: [SbbTabsModule],
+  changeDetection: ChangeDetectionStrategy.Eager,
 })
 class BindedTabsTestApp {
   tabs = [
@@ -1254,6 +1257,7 @@ class TemplateTabs {}
     </sbb-tab-group>
   `,
   imports: [SbbTabsModule],
+  changeDetection: ChangeDetectionStrategy.Eager,
 })
 class TabGroupWithAriaInputs {
   ariaLabel!: string;
@@ -1283,6 +1287,7 @@ class TabGroupWithIsActiveBinding {}
     </sbb-tab-group>
   `,
   imports: [SbbTabsModule],
+  changeDetection: ChangeDetectionStrategy.Eager,
 })
 class TabsWithCustomAnimationDuration {
   @ViewChild(SbbTabGroup) sbbTabGroup!: SbbTabGroup;
@@ -1298,6 +1303,7 @@ class TabsWithCustomAnimationDuration {
     </sbb-tab-group>
   `,
   imports: [SbbTabsModule],
+  changeDetection: ChangeDetectionStrategy.Eager,
 })
 class TabGroupWithIndirectDescendantTabs {
   @ViewChild(SbbTabGroup) tabGroup!: SbbTabGroup;
@@ -1318,6 +1324,7 @@ class TabGroupWithIndirectDescendantTabs {
     </sbb-tab-group>
   `,
   imports: [SbbTabsModule],
+  changeDetection: ChangeDetectionStrategy.Eager,
 })
 class TabGroupWithSpaceAbove {
   @ViewChild(SbbTabGroup) tabGroup!: SbbTabGroup;
@@ -1341,6 +1348,7 @@ class TabGroupWithSpaceAbove {
     </sbb-tab-group>
   `,
   imports: [SbbTabsModule],
+  changeDetection: ChangeDetectionStrategy.Eager,
 })
 class NestedTabGroupWithLabel {}
 
@@ -1356,6 +1364,7 @@ class NestedTabGroupWithLabel {}
     </sbb-tab-group>
   `,
   imports: [SbbTabsModule],
+  changeDetection: ChangeDetectionStrategy.Eager,
 })
 class TabsWithClassesTestApp {
   labelClassList?: string | string[];
