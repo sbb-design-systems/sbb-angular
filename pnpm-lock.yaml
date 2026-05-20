@@ -916,7 +916,7 @@ packages:
       '@angular/compiler-cli': 22.0.0-rc.0
 
   '@angular/ng-dev@https://codeload.github.com/angular/dev-infra-private-ng-dev-builds/tar.gz/98b21a0cb6ef6d068a99a9346e89812e3ec9d2b1':
-    resolution: {tarball: https://codeload.github.com/angular/dev-infra-private-ng-dev-builds/tar.gz/98b21a0cb6ef6d068a99a9346e89812e3ec9d2b1}
+    resolution: {gitHosted: true, tarball: https://codeload.github.com/angular/dev-infra-private-ng-dev-builds/tar.gz/98b21a0cb6ef6d068a99a9346e89812e3ec9d2b1}
     version: 0.0.0-49e2dadc4b17b0ff10a76329065c9b7e1fff3e91
     hasBin: true
 
