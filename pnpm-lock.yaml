@@ -135,8 +135,8 @@ importers:
         specifier: 'catalog:'
         version: 22.0.0-rc.0(@angular/compiler-cli@22.0.0-rc.0(@angular/compiler@22.0.0-rc.0)(typescript@6.0.2))(@angular/compiler@22.0.0-rc.0)
       '@angular/ng-dev':
-        specifier: https://github.com/angular/dev-infra-private-ng-dev-builds.git#849693f516dcd7811143830933a71dbd501aceb2
-        version: https://codeload.github.com/angular/dev-infra-private-ng-dev-builds/tar.gz/849693f516dcd7811143830933a71dbd501aceb2(@modelcontextprotocol/sdk@1.29.0)
+        specifier: https://github.com/angular/dev-infra-private-ng-dev-builds.git#a450a2420ca888116e6d4207b38819cd27b06179
+        version: https://codeload.github.com/angular/dev-infra-private-ng-dev-builds/tar.gz/a450a2420ca888116e6d4207b38819cd27b06179(@modelcontextprotocol/sdk@1.29.0)
       '@angular/platform-server':
         specifier: 'catalog:'
         version: 22.0.0-rc.0(bb694e36f0fd73051d10081ef152a69c)
@@ -915,9 +915,9 @@ packages:
       '@angular/compiler': 22.0.0-rc.0
       '@angular/compiler-cli': 22.0.0-rc.0
 
-  '@angular/ng-dev@https://codeload.github.com/angular/dev-infra-private-ng-dev-builds/tar.gz/849693f516dcd7811143830933a71dbd501aceb2':
-    resolution: {gitHosted: true, tarball: https://codeload.github.com/angular/dev-infra-private-ng-dev-builds/tar.gz/849693f516dcd7811143830933a71dbd501aceb2}
-    version: 0.0.0-adae685a338508cb2d4f688e84c4efd3204c7b69
+  '@angular/ng-dev@https://codeload.github.com/angular/dev-infra-private-ng-dev-builds/tar.gz/a450a2420ca888116e6d4207b38819cd27b06179':
+    resolution: {gitHosted: true, integrity: sha512-yKQqLu4g+2WiIoXV4M7F0x94929zZESjhTj0kTrincYgJ6GrAzfzdeayD5D2ZVg6xUg6ubPEMDDVUwEMeB93Mw==, tarball: https://codeload.github.com/angular/dev-infra-private-ng-dev-builds/tar.gz/a450a2420ca888116e6d4207b38819cd27b06179}
+    version: 0.0.0-9ee8a680dd018d61d21588bb04cf40d49a9f5deb
     hasBin: true
 
   '@angular/platform-browser-dynamic@22.0.0-rc.0':
@@ -2490,8 +2490,8 @@ packages:
     resolution: {integrity: sha512-IJn+8A3QZJfe7FUtWqHVNo3xJs7KFpurCWGWCiCz3oEh+BkRymKZ1QxfAbU2yGMDzTytLGQ2IV6T2r3cuo75/w==}
     engines: {node: '>=18'}
 
-  '@google/genai@1.52.0':
-    resolution: {integrity: sha512-gwSvbpiN/17O9TbsqSsE/OzZcpv5Fo4RQjdngGgogtuB9RsyJ8ZHhX5KjHj1bp5N9snN2eK8LDGXSaWW2hof8Q==}
+  '@google/genai@2.6.0':
+    resolution: {integrity: sha512-HjoW3mPuEn7pnuKABJl9VbDoWDSF4nbwYKYvYYor7YjPeDxrrBxHzu2d1Prcd+BAuC4w+85UP6y7ZdcrQAoO7g==}
     engines: {node: '>=20.0.0'}
     peerDependencies:
       '@modelcontextprotocol/sdk': ^1.25.2
@@ -11111,12 +11111,12 @@ snapshots:
     transitivePeerDependencies:
       - supports-color
 
-  '@angular/ng-dev@https://codeload.github.com/angular/dev-infra-private-ng-dev-builds/tar.gz/849693f516dcd7811143830933a71dbd501aceb2(@modelcontextprotocol/sdk@1.29.0)':
+  '@angular/ng-dev@https://codeload.github.com/angular/dev-infra-private-ng-dev-builds/tar.gz/a450a2420ca888116e6d4207b38819cd27b06179(@modelcontextprotocol/sdk@1.29.0)':
     dependencies:
       '@actions/core': 3.0.1
       '@conventional-changelog/git-client': 2.7.0(conventional-commits-filter@5.0.0)(conventional-commits-parser@6.4.0)
       '@google-cloud/spanner': 8.0.0(supports-color@10.2.2)
-      '@google/genai': 1.52.0(@modelcontextprotocol/sdk@1.29.0)(bufferutil@4.1.0)(supports-color@10.2.2)(utf-8-validate@6.0.6)
+      '@google/genai': 2.6.0(@modelcontextprotocol/sdk@1.29.0)(bufferutil@4.1.0)(supports-color@10.2.2)(utf-8-validate@6.0.6)
       '@inquirer/prompts': 8.4.3(@types/node@24.12.4)
       '@inquirer/type': 4.0.5(@types/node@24.12.4)
       '@octokit/auth-app': 8.2.0
@@ -13470,7 +13470,7 @@ snapshots:
     transitivePeerDependencies:
       - supports-color
 
-  '@google/genai@1.52.0(@modelcontextprotocol/sdk@1.29.0)(bufferutil@4.1.0)(supports-color@10.2.2)(utf-8-validate@6.0.6)':
+  '@google/genai@2.6.0(@modelcontextprotocol/sdk@1.29.0)(bufferutil@4.1.0)(supports-color@10.2.2)(utf-8-validate@6.0.6)':
     dependencies:
       google-auth-library: 10.6.2(supports-color@10.2.2)
       p-retry: 4.6.2
