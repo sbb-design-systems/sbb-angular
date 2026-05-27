@@ -135,8 +135,8 @@ importers:
         specifier: 'catalog:'
         version: 22.0.0-rc.0(@angular/compiler-cli@22.0.0-rc.0(@angular/compiler@22.0.0-rc.0)(typescript@6.0.2))(@angular/compiler@22.0.0-rc.0)
       '@angular/ng-dev':
-        specifier: https://github.com/angular/dev-infra-private-ng-dev-builds.git#98b21a0cb6ef6d068a99a9346e89812e3ec9d2b1
-        version: https://codeload.github.com/angular/dev-infra-private-ng-dev-builds/tar.gz/98b21a0cb6ef6d068a99a9346e89812e3ec9d2b1(@modelcontextprotocol/sdk@1.29.0)
+        specifier: https://github.com/angular/dev-infra-private-ng-dev-builds.git#849693f516dcd7811143830933a71dbd501aceb2
+        version: https://codeload.github.com/angular/dev-infra-private-ng-dev-builds/tar.gz/849693f516dcd7811143830933a71dbd501aceb2(@modelcontextprotocol/sdk@1.29.0)
       '@angular/platform-server':
         specifier: 'catalog:'
         version: 22.0.0-rc.0(bb694e36f0fd73051d10081ef152a69c)
@@ -464,7 +464,7 @@ importers:
     devDependencies:
       '@angular-devkit/build-angular':
         specifier: 'catalog:'
-        version: 22.0.0-rc.0(37736ad9bf5cb4eb5668184741b849c0)
+        version: 22.0.0-rc.0(bc05ed0da14a7aa6b7afc345b68c4246)
       '@angular/cli':
         specifier: 'catalog:'
         version: 22.0.0-rc.0(@types/node@22.19.17)(chokidar@5.0.0)
@@ -560,7 +560,7 @@ importers:
     devDependencies:
       '@angular-devkit/build-angular':
         specifier: 'catalog:'
-        version: 22.0.0-rc.0(37736ad9bf5cb4eb5668184741b849c0)
+        version: 22.0.0-rc.0(bc05ed0da14a7aa6b7afc345b68c4246)
       '@angular/animations':
         specifier: 'catalog:'
         version: 21.2.13(@angular/common@22.0.0-rc.0(@angular/compiler-cli@22.0.0-rc.0(@angular/compiler@22.0.0-rc.0)(typescript@6.0.2))(@angular/core@22.0.0-rc.0(@angular/compiler@22.0.0-rc.0)(rxjs@7.8.1)(zone.js@0.15.1))(rxjs@7.8.1))(@angular/compiler-cli@22.0.0-rc.0(@angular/compiler@22.0.0-rc.0)(typescript@6.0.2))(@angular/core@22.0.0-rc.0(@angular/compiler@22.0.0-rc.0)(rxjs@7.8.1)(zone.js@0.15.1))
@@ -915,9 +915,9 @@ packages:
       '@angular/compiler': 22.0.0-rc.0
       '@angular/compiler-cli': 22.0.0-rc.0
 
-  '@angular/ng-dev@https://codeload.github.com/angular/dev-infra-private-ng-dev-builds/tar.gz/98b21a0cb6ef6d068a99a9346e89812e3ec9d2b1':
-    resolution: {gitHosted: true, tarball: https://codeload.github.com/angular/dev-infra-private-ng-dev-builds/tar.gz/98b21a0cb6ef6d068a99a9346e89812e3ec9d2b1}
-    version: 0.0.0-49e2dadc4b17b0ff10a76329065c9b7e1fff3e91
+  '@angular/ng-dev@https://codeload.github.com/angular/dev-infra-private-ng-dev-builds/tar.gz/849693f516dcd7811143830933a71dbd501aceb2':
+    resolution: {gitHosted: true, integrity: sha512-11p4x/olm/A+GcSiMG4TC8oJZ9r6CAinlRtilrXZNwGmDGDEdq0zcpYxCSwZhcFHcBxq4eWpClWZLcMZBeb1dw==, tarball: https://codeload.github.com/angular/dev-infra-private-ng-dev-builds/tar.gz/849693f516dcd7811143830933a71dbd501aceb2}
+    version: 0.0.0-adae685a338508cb2d4f688e84c4efd3204c7b69
     hasBin: true
 
   '@angular/platform-browser-dynamic@22.0.0-rc.0':
@@ -9935,8 +9935,8 @@ packages:
     peerDependencies:
       typescript: 6.0.2
 
-  tsx@4.22.1:
-    resolution: {integrity: sha512-TvncJykhxAzFCk0VQZKBTClall4Pm7qXDSodb6uxi8QFa8X8mT6ABjxxsQ2opDRYxG7AzcRWXaFtruz5HJKuWg==}
+  tsx@4.22.3:
+    resolution: {integrity: sha512-mdoNxBC/cSQObGGVQ5Bpn5i+yv7j68gk3Nfm3wFjcJg3Z0Mix9jzAFfP12prmm5eVGmDKtp0yyArrs0Q+8gZHg==}
     engines: {node: '>=18.0.0'}
     hasBin: true
 
@@ -10664,13 +10664,13 @@ snapshots:
     transitivePeerDependencies:
       - chokidar
 
-  '@angular-devkit/build-angular@22.0.0-rc.0(37736ad9bf5cb4eb5668184741b849c0)':
+  '@angular-devkit/build-angular@22.0.0-rc.0(bc05ed0da14a7aa6b7afc345b68c4246)':
     dependencies:
       '@ampproject/remapping': 2.3.0
       '@angular-devkit/architect': 0.2200.0-rc.0(chokidar@5.0.0)
       '@angular-devkit/build-webpack': 0.2200.0-rc.0(chokidar@5.0.0)(webpack-dev-server@5.2.3(bufferutil@4.1.0)(tslib@2.8.1)(utf-8-validate@6.0.6)(webpack@5.106.2(esbuild@0.28.0)))(webpack@5.106.2(esbuild@0.28.0))
       '@angular-devkit/core': 22.0.0-rc.0(chokidar@5.0.0)
-      '@angular/build': 22.0.0-rc.0(0c28ddc0998cd030cad2524f5f0d0b5a)
+      '@angular/build': 22.0.0-rc.0(d997a9baad2a9d8aeb222f7a1e6723e2)
       '@angular/compiler-cli': 22.0.0-rc.0(@angular/compiler@22.0.0-rc.0)(typescript@6.0.2)
       '@babel/core': 7.29.0
       '@babel/generator': 7.29.1
@@ -10803,7 +10803,7 @@ snapshots:
       - '@angular/compiler-cli'
       - supports-color
 
-  '@angular/build@22.0.0-rc.0(0c28ddc0998cd030cad2524f5f0d0b5a)':
+  '@angular/build@22.0.0-rc.0(d997a9baad2a9d8aeb222f7a1e6723e2)':
     dependencies:
       '@ampproject/remapping': 2.3.0
       '@angular-devkit/architect': 0.2200.0-rc.0(chokidar@5.0.0)
@@ -10813,7 +10813,7 @@ snapshots:
       '@babel/helper-annotate-as-pure': 7.27.3
       '@babel/helper-split-export-declaration': 7.24.7
       '@inquirer/confirm': 6.0.12(@types/node@22.19.17)
-      '@vitejs/plugin-basic-ssl': 2.3.0(vite@7.3.2(@types/node@22.19.17)(jiti@2.6.1)(less@4.6.4)(sass@1.99.0)(terser@5.46.2)(tsx@4.22.1)(yaml@2.9.0))
+      '@vitejs/plugin-basic-ssl': 2.3.0(vite@7.3.2(@types/node@22.19.17)(jiti@2.6.1)(less@4.6.4)(sass@1.99.0)(terser@5.46.2)(tsx@4.22.3)(yaml@2.9.0))
       beasties: 0.4.2
       browserslist: 4.28.2
       esbuild: 0.28.0
@@ -10832,7 +10832,7 @@ snapshots:
       tinyglobby: 0.2.16
       tslib: 2.8.1
       typescript: 6.0.2
-      vite: 7.3.2(@types/node@22.19.17)(jiti@2.6.1)(less@4.6.4)(sass@1.99.0)(terser@5.46.2)(tsx@4.22.1)(yaml@2.9.0)
+      vite: 7.3.2(@types/node@22.19.17)(jiti@2.6.1)(less@4.6.4)(sass@1.99.0)(terser@5.46.2)(tsx@4.22.3)(yaml@2.9.0)
       watchpack: 2.5.1
     optionalDependencies:
       '@angular/core': 22.0.0-rc.0(@angular/compiler@22.0.0-rc.0)(rxjs@7.8.1)(zone.js@0.15.1)
@@ -11044,7 +11044,7 @@ snapshots:
     transitivePeerDependencies:
       - supports-color
 
-  '@angular/ng-dev@https://codeload.github.com/angular/dev-infra-private-ng-dev-builds/tar.gz/98b21a0cb6ef6d068a99a9346e89812e3ec9d2b1(@modelcontextprotocol/sdk@1.29.0)':
+  '@angular/ng-dev@https://codeload.github.com/angular/dev-infra-private-ng-dev-builds/tar.gz/849693f516dcd7811143830933a71dbd501aceb2(@modelcontextprotocol/sdk@1.29.0)':
     dependencies:
       '@actions/core': 3.0.1
       '@conventional-changelog/git-client': 2.7.0(conventional-commits-filter@5.0.0)(conventional-commits-parser@6.4.0)
@@ -11092,7 +11092,7 @@ snapshots:
       nock: 14.0.15
       semver: 7.8.0
       supports-color: 10.2.2
-      tsx: 4.22.1
+      tsx: 4.22.3
       typed-graphqlify: 3.1.6
       typescript: 6.0.2
       utf-8-validate: 6.0.6
@@ -15886,9 +15886,9 @@ snapshots:
       '@types/node': 22.19.19
     optional: true
 
-  '@vitejs/plugin-basic-ssl@2.3.0(vite@7.3.2(@types/node@22.19.17)(jiti@2.6.1)(less@4.6.4)(sass@1.99.0)(terser@5.46.2)(tsx@4.22.1)(yaml@2.9.0))':
+  '@vitejs/plugin-basic-ssl@2.3.0(vite@7.3.2(@types/node@22.19.17)(jiti@2.6.1)(less@4.6.4)(sass@1.99.0)(terser@5.46.2)(tsx@4.22.3)(yaml@2.9.0))':
     dependencies:
-      vite: 7.3.2(@types/node@22.19.17)(jiti@2.6.1)(less@4.6.4)(sass@1.99.0)(terser@5.46.2)(tsx@4.22.1)(yaml@2.9.0)
+      vite: 7.3.2(@types/node@22.19.17)(jiti@2.6.1)(less@4.6.4)(sass@1.99.0)(terser@5.46.2)(tsx@4.22.3)(yaml@2.9.0)
 
   '@webassemblyjs/ast@1.14.1':
     dependencies:
@@ -22309,7 +22309,7 @@ snapshots:
       tslib: 1.14.1
       typescript: 6.0.2
 
-  tsx@4.22.1:
+  tsx@4.22.3:
     dependencies:
       esbuild: 0.28.0
     optionalDependencies:
@@ -22543,7 +22543,7 @@ snapshots:
       '@types/unist': 3.0.3
       vfile-message: 4.0.3
 
-  vite@7.3.2(@types/node@22.19.17)(jiti@2.6.1)(less@4.6.4)(sass@1.99.0)(terser@5.46.2)(tsx@4.22.1)(yaml@2.9.0):
+  vite@7.3.2(@types/node@22.19.17)(jiti@2.6.1)(less@4.6.4)(sass@1.99.0)(terser@5.46.2)(tsx@4.22.3)(yaml@2.9.0):
     dependencies:
       esbuild: 0.27.7
       fdir: 6.5.0(picomatch@4.0.4)
@@ -22558,7 +22558,7 @@ snapshots:
       less: 4.6.4
       sass: 1.99.0
       terser: 5.46.2
-      tsx: 4.22.1
+      tsx: 4.22.3
       yaml: 2.9.0
 
   void-elements@2.0.1: {}
