@@ -2,6 +2,34 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [22.0.0-rc.0](https://github.com/sbb-design-systems/sbb-angular/compare/21.0.0...22.0.0-rc.0) (2026-06-08)
+
+
+### ⚠ BREAKING CHANGES
+
+* This updates our libraries to Angular 22 and fixes related errors.
+
+### Features
+
+* **journey-maps:** include 'stopUse' field in example data ([#2741](https://github.com/sbb-design-systems/sbb-angular/issues/2741)) ([ba7d7ed](https://github.com/sbb-design-systems/sbb-angular/commit/ba7d7eda8389a029c45f18227235f90dcd0fa2fb))
+
+
+### Bug Fixes
+
+* **angular/datepicker:** allow weekday abbreviations with a period ([#2798](https://github.com/sbb-design-systems/sbb-angular/issues/2798)) ([2cb5427](https://github.com/sbb-design-systems/sbb-angular/commit/2cb5427296e46d3390d229a260d5e1b881ceeb28))
+* **angular/header-menu:** close header menu on backdrop click ([#2747](https://github.com/sbb-design-systems/sbb-angular/issues/2747)) ([4df4538](https://github.com/sbb-design-systems/sbb-angular/commit/4df45385fd019a8d352b69a65c3ef2d6d5075272)), closes [#2743](https://github.com/sbb-design-systems/sbb-angular/issues/2743)
+* **angular/select:** provide scroll strategy in root ([#2731](https://github.com/sbb-design-systems/sbb-angular/issues/2731)) ([a5d8676](https://github.com/sbb-design-systems/sbb-angular/commit/a5d8676d21f440f1492cf18bc4762689411558e1))
+* **angular/table:** remove repeater strategy token ([#2750](https://github.com/sbb-design-systems/sbb-angular/issues/2750)) ([7d6ea67](https://github.com/sbb-design-systems/sbb-angular/commit/7d6ea67bb1b32a8a3297556082c3beba251cc30b))
+* **angular/table:** remove string-based DI tokens ([#2770](https://github.com/sbb-design-systems/sbb-angular/issues/2770)) ([1dc825d](https://github.com/sbb-design-systems/sbb-angular/commit/1dc825d965a18cb2d312bd3254637f2d0b9c3a4c))
+* **angular/tooltip:** provide scroll strategy in root ([#2732](https://github.com/sbb-design-systems/sbb-angular/issues/2732)) ([f79aa71](https://github.com/sbb-design-systems/sbb-angular/commit/f79aa7125c1d74551a6f72408e634dd75599b52a))
+* **journey-maps-wc:** use correct type file ([#2751](https://github.com/sbb-design-systems/sbb-angular/issues/2751)) ([4ae569f](https://github.com/sbb-design-systems/sbb-angular/commit/4ae569fa05e5e9de658c4aa53495e7e8a389743f)), closes [#2735](https://github.com/sbb-design-systems/sbb-angular/issues/2735)
+* require at least angular 21.1.0 as peerDependency ([#2758](https://github.com/sbb-design-systems/sbb-angular/issues/2758)) ([3ead548](https://github.com/sbb-design-systems/sbb-angular/commit/3ead54873d0e438b3a9d336e16bee6e9c4f0ea1f)), closes [#2750](https://github.com/sbb-design-systems/sbb-angular/issues/2750)
+
+
+### build
+
+* update to Angular 22 pre release version ([#2800](https://github.com/sbb-design-systems/sbb-angular/issues/2800)) ([0ee3906](https://github.com/sbb-design-systems/sbb-angular/commit/0ee3906dd7bf4b4e217787e34c7eeee09ced786b))
+
 ### [21.0.3](https://github.com/sbb-design-systems/sbb-angular/compare/21.0.2...21.0.3) (2026-05-13)
 
 
