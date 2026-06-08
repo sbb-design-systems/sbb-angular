@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [22.0.0-rc.0](https://github.com/sbb-design-systems/sbb-angular/compare/21.0.0...22.0.0-rc.0) (2026-06-08)
+
+
+### ⚠ BREAKING CHANGES
+
+* This updates our libraries to Angular 22 and fixes related errors.
+
 ### [21.0.3](https://github.com/sbb-design-systems/sbb-angular/compare/21.0.2...21.0.3) (2026-05-13)
 
 
