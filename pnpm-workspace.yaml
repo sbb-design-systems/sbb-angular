@@ -8,24 +8,24 @@ packages:
   - src/journey-maps-wc
 
 catalog:
-  '@angular-devkit/build-angular': 22.0.0-rc.0
-  '@angular-devkit/core': 22.0.0-rc.0
-  '@angular-devkit/schematics': 22.0.0-rc.0
-  '@angular/animations': 21.2.13
-  '@angular/build': 22.0.0-rc.0
-  '@angular/cdk': 22.0.0-rc.0
-  '@angular/cli': 22.0.0-rc.0
-  '@angular/common': 22.0.0-rc.0
-  '@angular/compiler-cli': 22.0.0-rc.0
-  '@angular/compiler': 22.0.0-rc.0
-  '@angular/core': 22.0.0-rc.0
-  '@angular/elements': 22.0.0-rc.0
-  '@angular/ssr': 22.0.0-rc.0
-  '@angular/forms': 22.0.0-rc.0
-  '@angular/localize': 22.0.0-rc.0
-  '@angular/platform-browser': 22.0.0-rc.0
-  '@angular/platform-browser-dynamic': 22.0.0-rc.0
-  '@angular/platform-server': 22.0.0-rc.0
-  '@angular/router': 22.0.0-rc.0
-  '@schematics/angular': 22.0.0-rc.0
+  '@angular-devkit/build-angular': 22.0.0
+  '@angular-devkit/core': 22.0.0
+  '@angular-devkit/schematics': 22.0.0
+  '@angular/animations': 21.2.16
+  '@angular/build': 22.0.0
+  '@angular/cdk': 22.0.0
+  '@angular/cli': 22.0.0
+  '@angular/common': 22.0.0
+  '@angular/compiler-cli': 22.0.0
+  '@angular/compiler': 22.0.0
+  '@angular/core': 22.0.0
+  '@angular/elements': 22.0.0
+  '@angular/ssr': 22.0.0
+  '@angular/forms': 22.0.0
+  '@angular/localize': 22.0.0
+  '@angular/platform-browser': 22.0.0
+  '@angular/platform-browser-dynamic': 22.0.0
+  '@angular/platform-server': 22.0.0
+  '@angular/router': 22.0.0
+  '@schematics/angular': 22.0.0
   'rxjs': 7.8.1
