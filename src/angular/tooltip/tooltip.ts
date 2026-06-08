@@ -105,26 +105,6 @@ export const SBB_TOOLTIP_SCROLL_STRATEGY = new InjectionToken<() => ScrollStrate
   },
 );
 
-/**
- * @docs-private
- * @deprecated Will be removed in 22.0.0.
- * @breaking-change 22.0.0
- */
-export function SBB_TOOLTIP_SCROLL_STRATEGY_FACTORY(overlay: Overlay): () => ScrollStrategy {
-  return () => overlay.scrollStrategies.reposition({ scrollThrottle: SCROLL_THROTTLE_MS });
-}
-
-/**
- * @docs-private
- * @deprecated Will be removed in 22.0.0.
- * @breaking-change 22.0.0
- */
-export const SBB_TOOLTIP_SCROLL_STRATEGY_FACTORY_PROVIDER = {
-  provide: SBB_TOOLTIP_SCROLL_STRATEGY,
-  deps: [Overlay],
-  useFactory: SBB_TOOLTIP_SCROLL_STRATEGY_FACTORY,
-};
-
 /** Default `sbbTooltip` options that can be overridden. */
 export interface SbbTooltipDefaultOptions {
   /** Default delay when the tooltip is shown. */
