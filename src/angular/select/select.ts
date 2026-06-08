@@ -21,8 +21,6 @@ import {
   CdkOverlayOrigin,
   ConnectedPosition,
   createRepositionScrollStrategy,
-  Overlay,
-  RepositionScrollStrategy,
   ScrollStrategy,
   ViewportRuler,
 } from '@angular/cdk/overlay';
@@ -110,17 +108,6 @@ export const SBB_SELECT_SCROLL_STRATEGY = new InjectionToken<() => ScrollStrateg
   },
 );
 
-/**
- * @docs-private
- * @deprecated Will be removed in 22.0.0.
- * @breaking-change 22.0.0
- */
-export function SBB_SELECT_SCROLL_STRATEGY_PROVIDER_FACTORY(
-  overlay: Overlay,
-): () => RepositionScrollStrategy {
-  return () => overlay.scrollStrategies.reposition();
-}
-
 /** Object that can be used to configure the default options for the select module. */
 export interface SbbSelectConfig {
   /** Time to wait in milliseconds after the last keystroke before moving focus to an item. */
@@ -138,17 +125,6 @@ export interface SbbSelectConfig {
 
 /** Injection token that can be used to provide the default options the select module. */
 export const SBB_SELECT_CONFIG = new InjectionToken<SbbSelectConfig>('SBB_SELECT_CONFIG');
-
-/**
- * @docs-private
- * @deprecated Will be removed in 22.0.0.
- * @breaking-change 22.0.0
- */
-export const SBB_SELECT_SCROLL_STRATEGY_PROVIDER = {
-  provide: SBB_SELECT_SCROLL_STRATEGY,
-  deps: [Overlay],
-  useFactory: SBB_SELECT_SCROLL_STRATEGY_PROVIDER_FACTORY,
-};
 
 /** Change event object that is emitted when the select value has changed. */
 export class SbbSelectChange<T = any> {
