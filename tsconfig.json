@@ -49,6 +49,7 @@
     "schematics/**/*.ts",
     "test/**/*.ts",
     "tools/**/*.ts",
+    "tools/**/*.mts",
     "scripts/**/*.ts",
     "docs/**/*.ts"
   ],
