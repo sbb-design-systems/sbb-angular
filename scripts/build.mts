@@ -168,7 +168,15 @@ function buildDocs(targetFolder: string) {
   cleanDistPath(targetFolder);
   const bazelBinPath = exec(`${bazelCmd} info bazel-bin`, true);
   const outputPath = join(bazelBinPath, 'docs/dist/browser/');
+
+  // TODO: After updating to angular 22, the `docs-content` folder is empty after building the docs.
+  //  This workaround copies the affected directory manually.
+  const docsOutputPath = join(
+    bazelBinPath,
+    'docs/node_modules/@sbb-esta/components-examples/docs-content',
+  );
   copyPackageOutput(outputPath, targetFolder);
+  copyPackageOutput(docsOutputPath, join(targetFolder, 'browser'));
 }
 
 /**
