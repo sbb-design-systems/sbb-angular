@@ -6,11 +6,7 @@ import { NgModule } from '@angular/core';
 import { SbbCommonModule } from '@sbb-esta/angular/core';
 import { SbbIconModule } from '@sbb-esta/angular/icon';
 
-import {
-  SbbTooltip,
-  SBB_TOOLTIP_SCROLL_STRATEGY_FACTORY_PROVIDER,
-  TooltipComponent,
-} from './tooltip';
+import { SbbTooltip, TooltipComponent } from './tooltip';
 import { SbbTooltipWrapper } from './tooltip-wrapper';
 
 @NgModule({
@@ -25,6 +21,5 @@ import { SbbTooltipWrapper } from './tooltip-wrapper';
     SbbTooltipWrapper,
   ],
   exports: [SbbTooltip, TooltipComponent, SbbTooltipWrapper, CdkScrollableModule],
-  providers: [SBB_TOOLTIP_SCROLL_STRATEGY_FACTORY_PROVIDER],
 })
 export class SbbTooltipModule {}
