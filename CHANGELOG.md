@@ -2,6 +2,21 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [22.0.0-rc.1](https://github.com/sbb-design-systems/sbb-angular/compare/21.0.0...22.0.0-rc.1) (2026-06-10)
+
+
+### ⚠ BREAKING CHANGES
+
+* **angular/tooltip:** * `SBB_TOOLTIP_SCROLL_STRATEGY_FACTORY_PROVIDER` has been removed.
+* `SBB_TOOLTIP_SCROLL_STRATEGY_FACTORY` has been removed.
+* **angular/select:** * `SBB_SELECT_SCROLL_STRATEGY_PROVIDER` has been removed.
+* `SBB_SELECT_SCROLL_STRATEGY_PROVIDER_FACTORY` has been removed.
+* This updates our libraries to Angular 22 and fixes related errors.
+
+### Documentation
+
+* prepare 22.0.0 release and add steps to update guide ([#2811](https://github.com/sbb-design-systems/sbb-angular/issues/2811)) ([33e4f51](https://github.com/sbb-design-systems/sbb-angular/commit/33e4f513d15b3cea1e0002f3a3636c494be27190))
+
 ## [22.0.0-rc.0](https://github.com/sbb-design-systems/sbb-angular/compare/21.0.0...22.0.0-rc.0) (2026-06-08)
 
 
