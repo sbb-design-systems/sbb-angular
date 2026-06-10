@@ -16,7 +16,7 @@ export default async function (mode) {
   const scriptDir = path.dirname(url.fileURLToPath(import.meta.url));
   const projectDir = path.join(scriptDir, '../');
   const packageJsonRaw = await fs.promises.readFile(path.join(projectDir, 'package.json'));
-  const { version: versionRaw } = JSON.parse(packageJsonRaw);
+  const {version: versionRaw} = JSON.parse(packageJsonRaw);
   const version = semver.parse(versionRaw);
 
   console.info(`STABLE_FRAMEWORK_PEER_DEP_RANGE ${computeFrameworkPeerDependency(version)}`);
@@ -50,5 +50,7 @@ function computeFrameworkPeerDependency(version) {
     );
   }
 
-  return `^${version.major}.0.0 || ^${version.major + 1}.0.0`;
+  // TODO(mhaertwig): undo this change when releasing `@sbb-esta/angular` 22
+  // return `^${version.major}.0.0 || ^${version.major + 1}.0.0`;
+  return `^${version.major}.1.0 || ^${version.major + 1}.0.0`;
 }
