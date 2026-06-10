@@ -1,6 +1,6 @@
-import { blockC } from './region-matchers/block-c';
-import { html } from './region-matchers/html';
-import { inlineC } from './region-matchers/inline-c';
+import { blockC } from './region-matchers/block-c.mjs';
+import { html } from './region-matchers/html.mjs';
+import { inlineC } from './region-matchers/inline-c.mjs';
 
 export interface Region {
   lines: string[];
