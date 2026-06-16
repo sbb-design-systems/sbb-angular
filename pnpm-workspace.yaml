@@ -28,4 +28,4 @@ catalog:
   '@angular/platform-server': 21.2.15
   '@angular/router': 21.2.15
   '@schematics/angular': 21.2.13
-  'rxjs': 7.8.1
+  'rxjs': 7.8.2
