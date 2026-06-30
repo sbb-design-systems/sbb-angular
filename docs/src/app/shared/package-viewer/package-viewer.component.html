@@ -1,6 +1,5 @@
 <sbb-sidebar-container>
   <sbb-sidebar role="navigation">
-    foo
     @for (section of package()?.sections ?? []; track section.name) {
       <sbb-expansion-panel expanded>
         <sbb-expansion-panel-header>{{ section.name }}</sbb-expansion-panel-header>
