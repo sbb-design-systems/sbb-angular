@@ -11,7 +11,7 @@ catalog:
   '@angular-devkit/build-angular': 22.0.0
   '@angular-devkit/core': 22.0.0
   '@angular-devkit/schematics': 22.0.0
-  '@angular/animations': 21.2.16
+  '@angular/animations': 22.0.5
   '@angular/build': 22.0.0
   '@angular/cdk': 22.0.0
   '@angular/cli': 22.0.0
