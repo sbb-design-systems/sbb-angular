@@ -8,12 +8,13 @@
   }
 
   @if (previousMajorVersions.length) {
-    @for (version of previousMajorVersions; track version) {
-      <a target="_blank" href="https://angular-v{{ version }}.app.sbb.ch/">
-        Version {{ version }}
-      </a>
-    }
-    <sbb-app-chooser-section label="Previous Versions"> </sbb-app-chooser-section>
+    <sbb-app-chooser-section label="Previous Versions">
+      @for (version of previousMajorVersions; track version) {
+        <a target="_blank" href="https://angular-v{{ version }}.app.sbb.ch/">
+          Version {{ version }}
+        </a>
+      }
+    </sbb-app-chooser-section>
   }
   <sbb-app-chooser-section label="Links">
     <a target="_blank" href="https://github.com/sbb-design-systems/sbb-angular">GitHub</a>
