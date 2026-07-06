@@ -135,8 +135,8 @@ importers:
         specifier: 'catalog:'
         version: 22.0.5(@angular/compiler-cli@22.0.5(@angular/compiler@22.0.5)(typescript@6.0.2))(@angular/compiler@22.0.5)
       '@angular/ng-dev':
-        specifier: https://github.com/angular/dev-infra-private-ng-dev-builds.git#7b4897289f0d1f94cb511ddda789129c828b579c
-        version: https://codeload.github.com/angular/dev-infra-private-ng-dev-builds/tar.gz/7b4897289f0d1f94cb511ddda789129c828b579c(@modelcontextprotocol/sdk@1.29.0)
+        specifier: https://github.com/angular/dev-infra-private-ng-dev-builds.git#ed3fd826d3188cd2c13a2d9a40fddbb39352e589
+        version: https://codeload.github.com/angular/dev-infra-private-ng-dev-builds/tar.gz/ed3fd826d3188cd2c13a2d9a40fddbb39352e589(@modelcontextprotocol/sdk@1.29.0)
       '@angular/platform-server':
         specifier: 'catalog:'
         version: 22.0.5(3690daffb3ff4d6ef20a463204eafa4c)
@@ -160,7 +160,7 @@ importers:
         version: 6.5.0
       '@commitlint/cli':
         specifier: 21.0.2
-        version: 21.0.2(@types/node@22.19.20)(conventional-commits-filter@5.0.0)(conventional-commits-parser@6.4.0)(typescript@6.0.2)
+        version: 21.0.2(@types/node@22.19.20)(conventional-commits-parser@6.4.0)(typescript@6.0.2)
       '@commitlint/config-conventional':
         specifier: 21.0.2
         version: 21.0.2
@@ -464,7 +464,7 @@ importers:
     devDependencies:
       '@angular-devkit/build-angular':
         specifier: 'catalog:'
-        version: 22.0.5(af9cbf388aa26b38167bdb21f6580dbd)
+        version: 22.0.5(0c3abb5d44c2e0e5d2780ad4f2d9dd02)
       '@angular/cli':
         specifier: 'catalog:'
         version: 22.0.5(@types/node@22.19.17)(chokidar@5.0.0)
@@ -560,7 +560,7 @@ importers:
     devDependencies:
       '@angular-devkit/build-angular':
         specifier: 'catalog:'
-        version: 22.0.5(af9cbf388aa26b38167bdb21f6580dbd)
+        version: 22.0.5(0c3abb5d44c2e0e5d2780ad4f2d9dd02)
       '@angular/animations':
         specifier: 'catalog:'
         version: 22.0.5(@angular/common@22.0.5(@angular/compiler-cli@22.0.5(@angular/compiler@22.0.5)(typescript@6.0.2))(@angular/core@22.0.5(@angular/compiler@22.0.5)(rxjs@7.8.1)(zone.js@0.15.1))(rxjs@7.8.1))(@angular/compiler-cli@22.0.5(@angular/compiler@22.0.5)(typescript@6.0.2))(@angular/core@22.0.5(@angular/compiler@22.0.5)(rxjs@7.8.1)(zone.js@0.15.1))
@@ -916,9 +916,9 @@ packages:
       '@angular/compiler': 22.0.5
       '@angular/compiler-cli': 22.0.5
 
-  '@angular/ng-dev@https://codeload.github.com/angular/dev-infra-private-ng-dev-builds/tar.gz/7b4897289f0d1f94cb511ddda789129c828b579c':
-    resolution: {gitHosted: true, integrity: sha512-GqojUDMKdGEsQH4uHa5gVRhTXYb6kq5Q+1nhNc3clUryp0mkqC5KvIyNS1KWTml/jLfLgHcdHsGEPZS9RWPjeg==, tarball: https://codeload.github.com/angular/dev-infra-private-ng-dev-builds/tar.gz/7b4897289f0d1f94cb511ddda789129c828b579c}
-    version: 0.0.0-1b83fcd99cec9ff01e539f293c643ee962adc217
+  '@angular/ng-dev@https://codeload.github.com/angular/dev-infra-private-ng-dev-builds/tar.gz/ed3fd826d3188cd2c13a2d9a40fddbb39352e589':
+    resolution: {gitHosted: true, integrity: sha512-dMIS/0ugkuIUc0Luu9Vg/LbDOhfpDPKV2M6LgO0rdNDZm+H0GqygIGZ2pkSRoytAPxojqaGoT8Q659K9ca3jqg==, tarball: https://codeload.github.com/angular/dev-infra-private-ng-dev-builds/tar.gz/ed3fd826d3188cd2c13a2d9a40fddbb39352e589}
+    version: 0.0.0-8ff5422196e57089fc92e0c3a4128b916f02af87
     hasBin: true
 
   '@angular/platform-browser-dynamic@22.0.5':
@@ -1834,6 +1834,18 @@ packages:
     peerDependencies:
       conventional-commits-filter: ^5.0.0
       conventional-commits-parser: ^6.4.0
+    peerDependenciesMeta:
+      conventional-commits-filter:
+        optional: true
+      conventional-commits-parser:
+        optional: true
+
+  '@conventional-changelog/git-client@3.0.2':
+    resolution: {integrity: sha512-84xuyOzE3VGsQqSX6SBQfWOjXCFui4QD6pSMu2FhzE9pZ6HQ2SrW3pMSOWLrz/QQCfR75xexX88VBKsIuFBqWA==}
+    engines: {node: '>=22'}
+    peerDependencies:
+      conventional-commits-filter: ^6.0.1
+      conventional-commits-parser: ^7.0.1
     peerDependenciesMeta:
       conventional-commits-filter:
         optional: true
@@ -4106,9 +4118,17 @@ packages:
     resolution: {integrity: sha512-/4R8QKnd/8agJynkNdJmNw2MBxuFTRcNFnE5Sg/G+jkSsV8/UBgULMzhizWWW42p8L5H7flImV2ATi79Ove2Tw==}
     engines: {node: '>=18'}
 
+  '@simple-libs/child-process-utils@2.0.0':
+    resolution: {integrity: sha512-dvNoRKLijXnD0XoJAz94pbNuB5GQgDr55UhpSPhffDkTT0Cmcqh9jSCOtwfT2d4H6MI9E7c4SgtMuJXZ6F3c6A==}
+    engines: {node: '>=22'}
+
   '@simple-libs/stream-utils@1.2.0':
     resolution: {integrity: sha512-KxXvfapcixpz6rVEB6HPjOUZT22yN6v0vI0urQSk1L8MlEWPDFCZkhw2xmkyoTGYeFw7tWTZd7e3lVzRZRN/EA==}
     engines: {node: '>=18'}
+
+  '@simple-libs/stream-utils@2.0.0':
+    resolution: {integrity: sha512-fCTuZK4QBa+39Oz9l4OGfJfz+GpwCp3AqO7Zch3to99xHPgstVsRFpeQ8LNd2o1Gv8raL2mCFwiaHh7bFSp5DQ==}
+    engines: {node: '>=22'}
 
   '@sindresorhus/is@4.6.0':
     resolution: {integrity: sha512-t09vSN3MdfsyCHoFcTRCH/iUtG7OJ0CsjzB8cjAmKc/va/kIgeDI/TxsigdncE/4be734m0cvIYwNaV4i2XqAw==}
@@ -5594,9 +5614,9 @@ packages:
     resolution: {integrity: sha512-ASS9SamOP4TbCClsRHxIHXRfcGCnIoQqkvAzCSbZzTFLfcTqJVugB0agRgsEELsqaeWgsXv513eS116wnlSSPA==}
     engines: {node: '>=10'}
 
-  conventional-commits-filter@5.0.0:
-    resolution: {integrity: sha512-tQMagCOC59EVgNZcC5zl7XqO30Wki9i9J3acbUvkaosCT6JX3EeFwJD7Qqp4MCikRnzS18WXV3BLIQ66ytu6+Q==}
-    engines: {node: '>=18'}
+  conventional-commits-filter@6.0.1:
+    resolution: {integrity: sha512-cs+LadpH7Kpw0M3k8wurk+sOVVDAENA0iK4OBOrkL94j5lEVYRJ4j3zd2bhY9qgzyrPqthdcYT3axzRN7AliMg==}
+    engines: {node: '>=22'}
 
   conventional-commits-parser@3.2.4:
     resolution: {integrity: sha512-nK7sAtfi+QXbxHCYfhpZsfRtaitZLIA6889kFIouLvz6repszQDgxBu7wf2WbU+Dco7sAnNCJYERCwt54WPC2Q==}
@@ -5606,6 +5626,11 @@ packages:
   conventional-commits-parser@6.4.0:
     resolution: {integrity: sha512-tvRg7FIBNlyPzjdG8wWRlPHQJJHI7DylhtRGeU9Lq+JuoPh5BKpPRX83ZdLrvXuOSu5Eo/e7SzOQhU4Hd2Miuw==}
     engines: {node: '>=18'}
+    hasBin: true
+
+  conventional-commits-parser@7.0.1:
+    resolution: {integrity: sha512-6VtskFpPsNkGVk/TY2RnV/MEdKfvCPBtQZN9x8jh9+k5RWBQ+tiaWn5UFCzTr0Dd88iKx7xghxbjBRp5uIzp3g==}
+    engines: {node: '>=22'}
     hasBin: true
 
   conventional-recommended-bump@6.1.0:
@@ -8208,8 +8233,8 @@ packages:
   no-case@2.3.2:
     resolution: {integrity: sha512-rmTZ9kz+f3rCvK2TD1Ue/oZlns7OGoIWP4fc3llxxRXlOkHKoWPPWJOfFYpITabSow43QJbRIoHQXtt10VldyQ==}
 
-  nock@14.0.15:
-    resolution: {integrity: sha512-S0a47C9pLvcYx/Ugf0H30BVBEcUgMMBDk9VJIDlJ8XGrfH2QDUD4Tgdp45qDIiHttokBG+IbsOtsvIjGR/j3bg==}
+  nock@14.0.16:
+    resolution: {integrity: sha512-8r4KEc6nT1D/fdLD/R1BO1CPaVEL8o40u/guFRJlXabN7vr3RmMqyjsY5Krt0nMwhsOAwXQ/mtN5vy5Jh3aErg==}
     engines: {node: '>=18.20.0 <20 || >=20.12.1'}
 
   node-abi@3.89.0:
@@ -9981,8 +10006,8 @@ packages:
     peerDependencies:
       typescript: 6.0.2
 
-  tsx@4.22.4:
-    resolution: {integrity: sha512-X8EX+XV4QR5xCsrgxaED954zTDfY8KqlDtskKEL0cHhyS/P8b4IFOvGDQpsC9Q1XnLq915wEfwwY/zzskCtmhg==}
+  tsx@4.23.0:
+    resolution: {integrity: sha512-eUdUIaCr963q2h5u3+QwvYp0+eqPvn+egeqZUm0hwERCqqx1E3kK5ehbGCvqSE5MQAULr67ww0cA3jKc3YkM1w==}
     engines: {node: '>=18.0.0'}
     hasBin: true
 
@@ -10710,13 +10735,13 @@ snapshots:
     transitivePeerDependencies:
       - chokidar
 
-  '@angular-devkit/build-angular@22.0.5(af9cbf388aa26b38167bdb21f6580dbd)':
+  '@angular-devkit/build-angular@22.0.5(0c3abb5d44c2e0e5d2780ad4f2d9dd02)':
     dependencies:
       '@ampproject/remapping': 2.3.0
       '@angular-devkit/architect': 0.2200.5(chokidar@5.0.0)
       '@angular-devkit/build-webpack': 0.2200.5(chokidar@5.0.0)(webpack-dev-server@5.2.3(bufferutil@4.1.0)(tslib@2.8.1)(utf-8-validate@6.0.6)(webpack@5.106.2(esbuild@0.28.1)))(webpack@5.106.2(esbuild@0.28.1))
       '@angular-devkit/core': 22.0.5(chokidar@5.0.0)
-      '@angular/build': 22.0.5(297d95a5ceca3a3da8c0d6bf7597a7bf)
+      '@angular/build': 22.0.5(10fb1cef7eb950c8948650918f3f3346)
       '@angular/compiler-cli': 22.0.5(@angular/compiler@22.0.5)(typescript@6.0.2)
       '@babel/core': 7.29.0
       '@babel/generator': 7.29.1
@@ -10849,7 +10874,7 @@ snapshots:
       - '@angular/compiler-cli'
       - supports-color
 
-  '@angular/build@22.0.5(297d95a5ceca3a3da8c0d6bf7597a7bf)':
+  '@angular/build@22.0.5(10fb1cef7eb950c8948650918f3f3346)':
     dependencies:
       '@ampproject/remapping': 2.3.0
       '@angular-devkit/architect': 0.2200.5(chokidar@5.0.0)
@@ -10859,7 +10884,7 @@ snapshots:
       '@babel/helper-annotate-as-pure': 7.27.3
       '@babel/helper-split-export-declaration': 7.24.7
       '@inquirer/confirm': 6.0.12(@types/node@22.19.17)
-      '@vitejs/plugin-basic-ssl': 2.3.0(vite@7.3.5(@types/node@22.19.17)(jiti@2.6.1)(less@4.6.4)(sass@1.99.0)(terser@5.46.2)(tsx@4.22.4)(yaml@2.9.0))
+      '@vitejs/plugin-basic-ssl': 2.3.0(vite@7.3.5(@types/node@22.19.17)(jiti@2.6.1)(less@4.6.4)(sass@1.99.0)(terser@5.46.2)(tsx@4.23.0)(yaml@2.9.0))
       beasties: 0.4.2
       browserslist: 4.28.2
       esbuild: 0.28.1
@@ -10878,7 +10903,7 @@ snapshots:
       tinyglobby: 0.2.16
       tslib: 2.8.1
       typescript: 6.0.2
-      vite: 7.3.5(@types/node@22.19.17)(jiti@2.6.1)(less@4.6.4)(sass@1.99.0)(terser@5.46.2)(tsx@4.22.4)(yaml@2.9.0)
+      vite: 7.3.5(@types/node@22.19.17)(jiti@2.6.1)(less@4.6.4)(sass@1.99.0)(terser@5.46.2)(tsx@4.23.0)(yaml@2.9.0)
       watchpack: 2.5.1
     optionalDependencies:
       '@angular/core': 22.0.5(@angular/compiler@22.0.5)(rxjs@7.8.1)(zone.js@0.15.1)
@@ -11090,10 +11115,10 @@ snapshots:
     transitivePeerDependencies:
       - supports-color
 
-  '@angular/ng-dev@https://codeload.github.com/angular/dev-infra-private-ng-dev-builds/tar.gz/7b4897289f0d1f94cb511ddda789129c828b579c(@modelcontextprotocol/sdk@1.29.0)':
+  '@angular/ng-dev@https://codeload.github.com/angular/dev-infra-private-ng-dev-builds/tar.gz/ed3fd826d3188cd2c13a2d9a40fddbb39352e589(@modelcontextprotocol/sdk@1.29.0)':
     dependencies:
       '@actions/core': 3.0.1
-      '@conventional-changelog/git-client': 2.7.0(conventional-commits-filter@5.0.0)(conventional-commits-parser@6.4.0)
+      '@conventional-changelog/git-client': 3.0.2(conventional-commits-filter@6.0.1)(conventional-commits-parser@7.0.1)
       '@google-cloud/spanner': 8.0.0(supports-color@10.2.2)
       '@google/genai': 2.10.0(@modelcontextprotocol/sdk@1.29.0)(bufferutil@4.1.0)(supports-color@10.2.2)(utf-8-validate@6.0.6)
       '@inquirer/prompts': 8.5.2(@types/node@24.13.2)
@@ -11122,8 +11147,8 @@ snapshots:
       '@yarnpkg/lockfile': 1.1.0
       bufferutil: 4.1.0
       cli-progress: 3.12.0
-      conventional-commits-filter: 5.0.0
-      conventional-commits-parser: 6.4.0
+      conventional-commits-filter: 6.0.1
+      conventional-commits-parser: 7.0.1
       ejs: 6.0.1
       encoding: 0.1.13
       fast-glob: 3.3.3
@@ -11135,10 +11160,10 @@ snapshots:
       jsonc-parser: 3.3.1
       minimatch: 10.2.5
       multimatch: 8.0.0
-      nock: 14.0.15
+      nock: 14.0.16
       semver: 7.8.5
       supports-color: 10.2.2
-      tsx: 4.22.4
+      tsx: 4.23.0
       typed-graphqlify: 3.1.6
       typescript: 6.0.2
       utf-8-validate: 6.0.6
@@ -12712,12 +12737,12 @@ snapshots:
 
   '@colors/colors@1.5.0': {}
 
-  '@commitlint/cli@21.0.2(@types/node@22.19.20)(conventional-commits-filter@5.0.0)(conventional-commits-parser@6.4.0)(typescript@6.0.2)':
+  '@commitlint/cli@21.0.2(@types/node@22.19.20)(conventional-commits-parser@6.4.0)(typescript@6.0.2)':
     dependencies:
       '@commitlint/format': 21.0.1
       '@commitlint/lint': 21.0.2
       '@commitlint/load': 21.0.2(@types/node@22.19.20)(typescript@6.0.2)
-      '@commitlint/read': 21.0.2(conventional-commits-filter@5.0.0)(conventional-commits-parser@6.4.0)
+      '@commitlint/read': 21.0.2(conventional-commits-parser@6.4.0)
       '@commitlint/types': 21.0.1
       tinyexec: 1.1.2
       yargs: 18.0.0
@@ -12784,11 +12809,11 @@ snapshots:
       conventional-changelog-angular: 8.3.1
       conventional-commits-parser: 6.4.0
 
-  '@commitlint/read@21.0.2(conventional-commits-filter@5.0.0)(conventional-commits-parser@6.4.0)':
+  '@commitlint/read@21.0.2(conventional-commits-parser@6.4.0)':
     dependencies:
       '@commitlint/top-level': 21.0.2
       '@commitlint/types': 21.0.1
-      git-raw-commits: 5.0.1(conventional-commits-filter@5.0.0)(conventional-commits-parser@6.4.0)
+      git-raw-commits: 5.0.1(conventional-commits-parser@6.4.0)
       tinyexec: 1.1.2
     transitivePeerDependencies:
       - conventional-commits-filter
@@ -12820,14 +12845,22 @@ snapshots:
       conventional-commits-parser: 6.4.0
       picocolors: 1.1.1
 
-  '@conventional-changelog/git-client@2.7.0(conventional-commits-filter@5.0.0)(conventional-commits-parser@6.4.0)':
+  '@conventional-changelog/git-client@2.7.0(conventional-commits-parser@6.4.0)':
     dependencies:
       '@simple-libs/child-process-utils': 1.0.2
       '@simple-libs/stream-utils': 1.2.0
       semver: 7.8.3
     optionalDependencies:
-      conventional-commits-filter: 5.0.0
       conventional-commits-parser: 6.4.0
+
+  '@conventional-changelog/git-client@3.0.2(conventional-commits-filter@6.0.1)(conventional-commits-parser@7.0.1)':
+    dependencies:
+      '@simple-libs/child-process-utils': 2.0.0
+      '@simple-libs/stream-utils': 2.0.0
+      semver: 7.8.3
+    optionalDependencies:
+      conventional-commits-filter: 6.0.1
+      conventional-commits-parser: 7.0.1
 
   '@cspotcode/source-map-support@0.8.1':
     dependencies:
@@ -15252,7 +15285,13 @@ snapshots:
     dependencies:
       '@simple-libs/stream-utils': 1.2.0
 
+  '@simple-libs/child-process-utils@2.0.0':
+    dependencies:
+      '@simple-libs/stream-utils': 2.0.0
+
   '@simple-libs/stream-utils@1.2.0': {}
+
+  '@simple-libs/stream-utils@2.0.0': {}
 
   '@sindresorhus/is@4.6.0': {}
 
@@ -15999,9 +16038,9 @@ snapshots:
       '@types/node': 22.19.20
     optional: true
 
-  '@vitejs/plugin-basic-ssl@2.3.0(vite@7.3.5(@types/node@22.19.17)(jiti@2.6.1)(less@4.6.4)(sass@1.99.0)(terser@5.46.2)(tsx@4.22.4)(yaml@2.9.0))':
+  '@vitejs/plugin-basic-ssl@2.3.0(vite@7.3.5(@types/node@22.19.17)(jiti@2.6.1)(less@4.6.4)(sass@1.99.0)(terser@5.46.2)(tsx@4.23.0)(yaml@2.9.0))':
     dependencies:
-      vite: 7.3.5(@types/node@22.19.17)(jiti@2.6.1)(less@4.6.4)(sass@1.99.0)(terser@5.46.2)(tsx@4.22.4)(yaml@2.9.0)
+      vite: 7.3.5(@types/node@22.19.17)(jiti@2.6.1)(less@4.6.4)(sass@1.99.0)(terser@5.46.2)(tsx@4.23.0)(yaml@2.9.0)
 
   '@webassemblyjs/ast@1.14.1':
     dependencies:
@@ -17103,7 +17142,7 @@ snapshots:
       lodash.ismatch: 4.4.0
       modify-values: 1.0.1
 
-  conventional-commits-filter@5.0.0: {}
+  conventional-commits-filter@6.0.1: {}
 
   conventional-commits-parser@3.2.4:
     dependencies:
@@ -17118,6 +17157,11 @@ snapshots:
     dependencies:
       '@simple-libs/stream-utils': 1.2.0
       meow: 13.2.0
+
+  conventional-commits-parser@7.0.1:
+    dependencies:
+      '@simple-libs/stream-utils': 2.0.0
+      meow: 14.1.0
 
   conventional-recommended-bump@6.1.0:
     dependencies:
@@ -18245,9 +18289,9 @@ snapshots:
       split2: 3.2.2
       through2: 4.0.2
 
-  git-raw-commits@5.0.1(conventional-commits-filter@5.0.0)(conventional-commits-parser@6.4.0):
+  git-raw-commits@5.0.1(conventional-commits-parser@6.4.0):
     dependencies:
-      '@conventional-changelog/git-client': 2.7.0(conventional-commits-filter@5.0.0)(conventional-commits-parser@6.4.0)
+      '@conventional-changelog/git-client': 2.7.0(conventional-commits-parser@6.4.0)
       meow: 13.2.0
     transitivePeerDependencies:
       - conventional-commits-filter
@@ -20151,7 +20195,7 @@ snapshots:
     dependencies:
       lower-case: 1.1.4
 
-  nock@14.0.15:
+  nock@14.0.16:
     dependencies:
       '@mswjs/interceptors': 0.41.3
       json-stringify-safe: 5.0.1
@@ -22423,7 +22467,7 @@ snapshots:
       tslib: 1.14.1
       typescript: 6.0.2
 
-  tsx@4.22.4:
+  tsx@4.23.0:
     dependencies:
       esbuild: 0.28.1
     optionalDependencies:
@@ -22657,7 +22701,7 @@ snapshots:
       '@types/unist': 3.0.3
       vfile-message: 4.0.3
 
-  vite@7.3.5(@types/node@22.19.17)(jiti@2.6.1)(less@4.6.4)(sass@1.99.0)(terser@5.46.2)(tsx@4.22.4)(yaml@2.9.0):
+  vite@7.3.5(@types/node@22.19.17)(jiti@2.6.1)(less@4.6.4)(sass@1.99.0)(terser@5.46.2)(tsx@4.23.0)(yaml@2.9.0):
     dependencies:
       esbuild: 0.27.7
       fdir: 6.5.0(picomatch@4.0.4)
@@ -22672,7 +22716,7 @@ snapshots:
       less: 4.6.4
       sass: 1.99.0
       terser: 5.46.2
-      tsx: 4.22.4
+      tsx: 4.23.0
       yaml: 2.9.0
 
   void-elements@2.0.1: {}
