@@ -141,7 +141,7 @@
     "requirejs": "2.3.8",
     "rollup": "^4.59.0",
     "rollup-plugin-dts": "6.4.1",
-    "rollup-plugin-sourcemaps2": "0.5.7",
+    "rollup-plugin-sourcemaps2": "0.5.8",
     "rxjs-tslint-rules": "4.34.8",
     "sass": "1.100.0",
     "semver": "7.8.3",
