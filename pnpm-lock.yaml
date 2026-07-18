@@ -135,8 +135,8 @@ importers:
         specifier: 'catalog:'
         version: 22.0.5(@angular/compiler-cli@22.0.5(@angular/compiler@22.0.5)(typescript@6.0.2))(@angular/compiler@22.0.5)
       '@angular/ng-dev':
-        specifier: https://github.com/angular/dev-infra-private-ng-dev-builds.git#ed3fd826d3188cd2c13a2d9a40fddbb39352e589
-        version: https://codeload.github.com/angular/dev-infra-private-ng-dev-builds/tar.gz/ed3fd826d3188cd2c13a2d9a40fddbb39352e589(@modelcontextprotocol/sdk@1.29.0)
+        specifier: https://github.com/angular/dev-infra-private-ng-dev-builds.git#488fd3e0a6e5ad872c9c9ca1a6c43d3686146d44
+        version: https://codeload.github.com/angular/dev-infra-private-ng-dev-builds/tar.gz/488fd3e0a6e5ad872c9c9ca1a6c43d3686146d44(@modelcontextprotocol/sdk@1.29.0)
       '@angular/platform-server':
         specifier: 'catalog:'
         version: 22.0.5(3690daffb3ff4d6ef20a463204eafa4c)
@@ -916,9 +916,9 @@ packages:
       '@angular/compiler': 22.0.5
       '@angular/compiler-cli': 22.0.5
 
-  '@angular/ng-dev@https://codeload.github.com/angular/dev-infra-private-ng-dev-builds/tar.gz/ed3fd826d3188cd2c13a2d9a40fddbb39352e589':
-    resolution: {gitHosted: true, integrity: sha512-dMIS/0ugkuIUc0Luu9Vg/LbDOhfpDPKV2M6LgO0rdNDZm+H0GqygIGZ2pkSRoytAPxojqaGoT8Q659K9ca3jqg==, tarball: https://codeload.github.com/angular/dev-infra-private-ng-dev-builds/tar.gz/ed3fd826d3188cd2c13a2d9a40fddbb39352e589}
-    version: 0.0.0-8ff5422196e57089fc92e0c3a4128b916f02af87
+  '@angular/ng-dev@https://codeload.github.com/angular/dev-infra-private-ng-dev-builds/tar.gz/488fd3e0a6e5ad872c9c9ca1a6c43d3686146d44':
+    resolution: {gitHosted: true, integrity: sha512-8fakT/whwCTDosxEoYXCm8t0OqKbGxpRHjY/1EXYTdJE+qEa7yAFgnRv7zVnpxBeyAMSigjB0v2NKoGPSkBjOA==, tarball: https://codeload.github.com/angular/dev-infra-private-ng-dev-builds/tar.gz/488fd3e0a6e5ad872c9c9ca1a6c43d3686146d44}
+    version: 0.0.0-ab850ab679f5ee8f019adca5283795ddf1581201
     hasBin: true
 
   '@angular/platform-browser-dynamic@22.0.5':
@@ -11119,7 +11119,7 @@ snapshots:
     transitivePeerDependencies:
       - supports-color
 
-  '@angular/ng-dev@https://codeload.github.com/angular/dev-infra-private-ng-dev-builds/tar.gz/ed3fd826d3188cd2c13a2d9a40fddbb39352e589(@modelcontextprotocol/sdk@1.29.0)':
+  '@angular/ng-dev@https://codeload.github.com/angular/dev-infra-private-ng-dev-builds/tar.gz/488fd3e0a6e5ad872c9c9ca1a6c43d3686146d44(@modelcontextprotocol/sdk@1.29.0)':
     dependencies:
       '@actions/core': 3.0.1
       '@conventional-changelog/git-client': 3.0.2(conventional-commits-filter@6.0.1)(conventional-commits-parser@7.0.1)
