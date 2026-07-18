@@ -309,8 +309,8 @@ importers:
         specifier: ^3.1.4
         version: 3.1.5
       npm-run-all2:
-        specifier: 9.0.1
-        version: 9.0.1
+        specifier: 9.0.2
+        version: 9.0.2
       octokit:
         specifier: 5.0.5
         version: 5.0.5
@@ -917,7 +917,7 @@ packages:
       '@angular/compiler-cli': 22.0.5
 
   '@angular/ng-dev@https://codeload.github.com/angular/dev-infra-private-ng-dev-builds/tar.gz/488fd3e0a6e5ad872c9c9ca1a6c43d3686146d44':
-    resolution: {gitHosted: true, integrity: sha512-8fakT/whwCTDosxEoYXCm8t0OqKbGxpRHjY/1EXYTdJE+qEa7yAFgnRv7zVnpxBeyAMSigjB0v2NKoGPSkBjOA==, tarball: https://codeload.github.com/angular/dev-infra-private-ng-dev-builds/tar.gz/488fd3e0a6e5ad872c9c9ca1a6c43d3686146d44}
+    resolution: {gitHosted: true, tarball: https://codeload.github.com/angular/dev-infra-private-ng-dev-builds/tar.gz/488fd3e0a6e5ad872c9c9ca1a6c43d3686146d44}
     version: 0.0.0-ab850ab679f5ee8f019adca5283795ddf1581201
     hasBin: true
 
@@ -8340,8 +8340,8 @@ packages:
     engines: {node: '>= 10'}
     hasBin: true
 
-  npm-run-all2@9.0.1:
-    resolution: {integrity: sha512-ZtK8WXZBUA9x0XD6nxYdFLe86FxpkCTq2LiQxzX0LeXQY/vyAigQZXjjj/xfTwgV4Yqe/vYNIq2W09lrHKTcuQ==}
+  npm-run-all2@9.0.2:
+    resolution: {integrity: sha512-+dd4SO2jAlLE06OzmJKzIe6QvvjXezcbmobnh8usR0a8BzQCABTdqTXqVPji0ICOhSQpIIrkGd7IzNl5iDaRSA==}
     engines: {node: ^22.22.2 || ^24.15.0 || >=26.0.0, npm: '>= 10'}
     hasBin: true
 
@@ -8704,9 +8704,9 @@ packages:
     engines: {node: '>=0.10'}
     hasBin: true
 
-  pidtree@0.6.0:
-    resolution: {integrity: sha512-eG2dWTVw5bzqGRztnHExczNxt5VGsE6OwTeCG3fdUf9KBsZzO3R5OIIIzWR+iZA0NtZ+RDVdaoE2dK1cn6jH4g==}
-    engines: {node: '>=0.10'}
+  pidtree@1.0.0:
+    resolution: {integrity: sha512-avfAvjB9Dd0wdj3rjJX//yS+G79OO0KrS5pJHFJENjYGX6N4SMgEDBBI/yFy0lloOYSaC6XQxzpOAMPfSYFV/Q==}
+    engines: {node: '>=18'}
     hasBin: true
 
   pify@2.3.0:
@@ -9403,6 +9403,10 @@ packages:
   shebang-regex@3.0.0:
     resolution: {integrity: sha512-7++dFhtcx3353uBaq8DDR4NuxBetBzC7ZQOhmTQInHEd6bSrXdiEyzCvG07Z44UYdLShWUyXt5M/yhz8ekcb1A==}
     engines: {node: '>=8'}
+
+  shell-quote@1.10.0:
+    resolution: {integrity: sha512-w1aiOKwKuRgtwAReIIj89puqg+I7GvX4IbLrvmhXbzQsj1+Zwi4VO3+fa6ZF91TWSjIxoEkKnMeHcLEODK5ZXA==}
+    engines: {node: '>= 0.4'}
 
   shell-quote@1.8.3:
     resolution: {integrity: sha512-ObmnIF4hXNg1BqhnHmgbDETF8dLPCggZWBjkQfhZpbszZnYur5DUljTcCHii5LC3J5E0yeO/1LIMyH+UvHQgyw==}
@@ -14777,7 +14781,7 @@ snapshots:
       detect-libc: 2.1.2
       is-glob: 4.0.3
       node-addon-api: 7.1.1
-      picomatch: 4.0.4
+      picomatch: 4.0.5
     optionalDependencies:
       '@parcel/watcher-android-arm64': 2.5.6
       '@parcel/watcher-darwin-arm64': 2.5.6
@@ -15082,7 +15086,7 @@ snapshots:
     dependencies:
       '@types/estree': 1.0.8
       estree-walker: 2.0.2
-      picomatch: 4.0.4
+      picomatch: 4.0.5
     optionalDependencies:
       rollup: 4.60.1
 
@@ -17983,9 +17987,9 @@ snapshots:
     dependencies:
       pend: 1.2.0
 
-  fdir@6.5.0(picomatch@4.0.4):
+  fdir@6.5.0(picomatch@4.0.5):
     optionalDependencies:
-      picomatch: 4.0.4
+      picomatch: 4.0.5
 
   fetch-blob@3.2.0:
     dependencies:
@@ -20334,15 +20338,15 @@ snapshots:
       read-pkg: 5.2.0
       shell-quote: 1.8.3
 
-  npm-run-all2@9.0.1:
+  npm-run-all2@9.0.2:
     dependencies:
       ansi-styles: 6.2.3
       cross-spawn: 7.0.6
       memorystream: 0.3.1
-      picomatch: 4.0.4
-      pidtree: 0.6.0
+      picomatch: 4.0.5
+      pidtree: 1.0.0
       read-package-json-fast: 6.0.0
-      shell-quote: 1.8.3
+      shell-quote: 1.10.0
       which: 7.0.0
 
   npm-run-path@4.0.1:
@@ -20715,7 +20719,7 @@ snapshots:
 
   pidtree@0.5.0: {}
 
-  pidtree@0.6.0: {}
+  pidtree@1.0.0: {}
 
   pify@2.3.0: {}
 
@@ -21730,6 +21734,8 @@ snapshots:
 
   shebang-regex@3.0.0: {}
 
+  shell-quote@1.10.0: {}
+
   shell-quote@1.8.3: {}
 
   shelljs@0.10.0:
@@ -22321,13 +22327,13 @@ snapshots:
 
   tinyglobby@0.2.12:
     dependencies:
-      fdir: 6.5.0(picomatch@4.0.4)
-      picomatch: 4.0.4
+      fdir: 6.5.0(picomatch@4.0.5)
+      picomatch: 4.0.5
 
   tinyglobby@0.2.16:
     dependencies:
-      fdir: 6.5.0(picomatch@4.0.4)
-      picomatch: 4.0.4
+      fdir: 6.5.0(picomatch@4.0.5)
+      picomatch: 4.0.5
 
   tinylogic@2.0.0: {}
 
@@ -22709,8 +22715,8 @@ snapshots:
   vite@7.3.5(@types/node@22.19.17)(jiti@2.6.1)(less@4.6.4)(sass@1.99.0)(terser@5.46.2)(tsx@4.23.0)(yaml@2.9.0):
     dependencies:
       esbuild: 0.27.7
-      fdir: 6.5.0(picomatch@4.0.4)
-      picomatch: 4.0.4
+      fdir: 6.5.0(picomatch@4.0.5)
+      picomatch: 4.0.5
       postcss: 8.5.15
       rollup: 4.60.2
       tinyglobby: 0.2.16
