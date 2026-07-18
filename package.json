@@ -64,7 +64,7 @@
     "@angular/elements": "catalog:",
     "@angular/forms": "catalog:",
     "@angular/platform-browser": "catalog:",
-    "@stackblitz/sdk": "1.11.0",
+    "@stackblitz/sdk": "1.11.1",
     "maplibre-gl": "4.7.1",
     "rxjs": "catalog:",
     "tslib": "2.7.0",
