@@ -25,23 +25,13 @@
 
       <div formGroupName="railNetwork">
         <sbb-form-field>
-          <p class="sbb-label">Rail network color (v2 style only)</p>
+          <p class="sbb-label">Rail network color</p>
           <sbb-select formControlName="railNetworkColor" placeholder="Choose color">
             @for (color of RAIL_COLORS; track color) {
               <sbb-option [value]="color.value">{{ color.label }}</sbb-option>
             }
           </sbb-select>
         </sbb-form-field>
-      </div>
-    </div>
-
-    <div formGroupName="styleVersion">
-      <div>
-        <span class="sbb-label">Style</span>
-        <sbb-radio-group class="sbb-checkbox-group-horizontal" formControlName="versionNumber">
-          <sbb-radio-button value="v2">v2</sbb-radio-button>
-          <sbb-radio-button value="v3">v3</sbb-radio-button>
-        </sbb-radio-group>
       </div>
     </div>
 

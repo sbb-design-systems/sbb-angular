@@ -15,19 +15,6 @@ export const RAIL_COLORS = [
   },
 ];
 
-export const STYLE_IDS = {
-  v2: {
-    brightId: 'base_bright_v2_ki_v2',
-    darkId: 'base_dark_v2_ki_v2',
-    aerialId: 'aerial_sbb_ki_v2',
-  },
-  v3: {
-    brightId: 'journey_maps_bright_v1',
-    darkId: 'journey_maps_dark_v1',
-    aerialId: 'journey_maps_aerial_v1',
-  },
-};
-
 export const CH_BOUNDS: LngLatBoundsLike = [
   [5.7349, 45.6755],
   [10.6677, 47.9163],
