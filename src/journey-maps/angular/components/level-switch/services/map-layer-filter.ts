@@ -100,12 +100,18 @@ export class SbbMapLayerFilter {
     this._knownLvlLayerIds = [];
 
     this._map.getStyle().layers?.forEach((layer) => {
+      if (!this._knownLayerTypes.includes(layer.type)) {
+        return;
+      }
+
+      const metadata = layer.metadata as Record<string, unknown> | undefined;
+      const isLevelLayer = metadata?.['general.floor'] === 'level' || layer.id.endsWith('-lvl');
+
       if (
-        this._knownLayerTypes.includes(layer.type) &&
-        (layer.id.endsWith('-lvl') ||
-          layer.id.startsWith('rokas_indoor') ||
-          layer.id.startsWith('geojson_walk') ||
-          layer.id.startsWith('rokas-walk'))
+        isLevelLayer ||
+        layer.id.startsWith('rokas_indoor') ||
+        layer.id.startsWith('geojson_walk') ||
+        layer.id.startsWith('rokas-walk')
       ) {
         this._knownLvlLayerIds.push(layer.id);
       }

@@ -1221,8 +1221,8 @@ export class SbbJourneyMaps implements OnInit, AfterViewInit, OnDestroy, OnChang
   private _show2Dor3D() {
     if (this._isStyleLoaded) {
       const show3D = this._isLevelFilterEnabled();
-      this._setVisibilityByLayerIdSuffix(this._map, '-2d', show3D ? 'none' : 'visible');
-      this._setVisibilityByLayerIdSuffix(this._map, '-lvl', show3D ? 'visible' : 'none');
+      this._setVisibilityByFloorMetadata(this._map, '2D', show3D ? 'none' : 'visible');
+      this._setVisibilityByFloorMetadata(this._map, 'level', show3D ? 'visible' : 'none');
       this._setLayerVisibilityIfExists(this._map, 'level_greyout', show3D ? 'visible' : 'none');
       this._mapPoiService.updatePoiVisibility(this._map, show3D, this.poiOptions);
     }
@@ -1248,14 +1248,23 @@ export class SbbJourneyMaps implements OnInit, AfterViewInit, OnDestroy, OnChang
     return this._levelSwitchService.selectedLevel !== undefined && !!this.uiOptions.levelSwitch;
   }
 
-  private _setVisibilityByLayerIdSuffix(
+  private _setVisibilityByFloorMetadata(
     map: MaplibreMap,
-    layerIdSuffix: string,
+    floorValue: string,
     visibility: 'visible' | 'none',
   ) {
+    const suffix = floorValue === '2D' ? '-2d' : '-lvl';
     map
       .getStyle()
-      .layers?.filter((layer) => layer.id.endsWith(layerIdSuffix))
+      .layers?.filter((layer) => {
+        const metadata = layer.metadata as Record<string, unknown> | undefined;
+        // Shortbread style
+        if (metadata?.['general.floor']) {
+          return metadata['general.floor'] === floorValue;
+        }
+        // OMT style fallback
+        return layer.id.endsWith(suffix);
+      })
       .forEach((layer) => map.setLayoutProperty(layer.id, 'visibility', visibility));
   }
 
