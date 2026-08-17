@@ -13,9 +13,12 @@ export class SbbMapLayerFilter {
   }
 
   /*
-  ["all",["==",["case",["has","level"],["get","level"],0],0],["==",["geometry-type"],"Polygon"]]
-  ["==", "floor", 0]
-  ["!=", "floor", 0] (It's a compound predicate because of NOT)
+  Old style filters:
+    ["all",["==",["case",["has","level"],["get","level"],0],0],["==",["geometry-type"],"Polygon"]]
+    ["==", "floor", 0]
+    ["!=", "floor", 0] (It's a compound predicate because of NOT)
+  Shortbread style filters:
+    ["all",["==",["get","level"],0],...]
    */
   setLevelFilter(level: number): void {
     this._knownLvlLayerIds.forEach((layerId) => {
@@ -55,6 +58,9 @@ export class SbbMapLayerFilter {
           if (this._isCaseLvlFilter(innerPartString)) {
             levelFound = true;
             newInnerPart.push(innerPart);
+          } else if (this._isGetLevelFilter(innerPartString)) {
+            levelFound = true;
+            newInnerPart.push(innerPart);
           } else if (this._isFloorFilter(innerPartString)) {
             levelFound = true;
             // when filter: ['==', ['get','floor'], 0]
@@ -80,6 +86,10 @@ export class SbbMapLayerFilter {
 
   private _isCaseLvlFilter(innerPartString: string): boolean {
     return innerPartString.startsWith('["case",["has","level"],["get","level"]');
+  }
+
+  private _isGetLevelFilter(innerPartString: string): boolean {
+    return innerPartString === '["get","level"]';
   }
 
   private _isFloorFilter(innerPartString: string): boolean {

@@ -210,9 +210,9 @@ export class SbbJourneyMaps implements OnInit, AfterViewInit, OnDestroy, OnChang
   private readonly _featureEventListenerComponent!: SbbFeatureEventListener;
   private readonly _defaultStyleOptions: SbbStyleOptions = {
     url: 'https://journey-maps-tiles.geocdn.sbb.ch/styles/{styleId}/style.json?api_key={apiKey}',
-    aerialId: 'journey_maps_aerial_v1',
-    brightId: 'journey_maps_bright_v1',
-    darkId: 'journey_maps_dark_v1',
+    aerialId: 'sbbmaps_aerial',
+    brightId: 'sbbmaps_bright',
+    darkId: 'sbbmaps_dark',
     mode: 'bright',
   };
   private readonly _defaultInteractionOptions: SbbInteractionOptions = {
@@ -1223,6 +1223,7 @@ export class SbbJourneyMaps implements OnInit, AfterViewInit, OnDestroy, OnChang
       const show3D = this._isLevelFilterEnabled();
       this._setVisibilityByLayerIdSuffix(this._map, '-2d', show3D ? 'none' : 'visible');
       this._setVisibilityByLayerIdSuffix(this._map, '-lvl', show3D ? 'visible' : 'none');
+      this._setLayerVisibilityIfExists(this._map, 'level_greyout', show3D ? 'visible' : 'none');
       this._mapPoiService.updatePoiVisibility(this._map, show3D, this.poiOptions);
     }
   }
@@ -1256,6 +1257,16 @@ export class SbbJourneyMaps implements OnInit, AfterViewInit, OnDestroy, OnChang
       .getStyle()
       .layers?.filter((layer) => layer.id.endsWith(layerIdSuffix))
       .forEach((layer) => map.setLayoutProperty(layer.id, 'visibility', visibility));
+  }
+
+  private _setLayerVisibilityIfExists(
+    map: MaplibreMap,
+    layerId: string,
+    visibility: 'visible' | 'none',
+  ) {
+    if (map.getLayer(layerId)) {
+      map.setLayoutProperty(layerId, 'visibility', visibility);
+    }
   }
 
   getMapBearing() {

@@ -71,6 +71,22 @@ describe('MapLayerFilterService', () => {
     ]);
   });
 
+  it('should set new level - shortbread get-level filter', () => {
+    const oldFilter = [
+      'all',
+      ['==', ['get', 'level'], 0],
+      ['match', ['get', 'kind'], ['corridor', 'area'], true, false],
+    ];
+    configureMapMock(oldFilter);
+    const level = -1;
+    service.setLevelFilter(level);
+    expect(calculatedFilter).toEqual([
+      'all',
+      ['==', ['get', 'level'], -1],
+      ['match', ['get', 'kind'], ['corridor', 'area'], true, false],
+    ]);
+  });
+
   it('should set rokas_background_mask layer to visible when level < 0', () => {
     configureMapMock([]);
     const level = -4;
