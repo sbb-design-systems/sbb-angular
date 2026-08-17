@@ -9,3 +9,7 @@ export const isV1Style = (map: MaplibreMap): boolean => {
 export const isV3Style = (map: MaplibreMap): boolean => {
   return !!map.getStyle().layers.find((ly) => ly.id === SBB_POI_FIRST_LAYER);
 };
+
+export const isShortbreadStyle = (map: MaplibreMap): boolean => {
+  return !!map.getStyle().sources['basemap'];
+};
