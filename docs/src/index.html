@@ -101,8 +101,9 @@
     <script>
       // For local development: set the JM API key via the URL hash, e.g. http://localhost:4200/journey-maps/components/angular/examples#<API_KEY> and then refresh the page
       // In production this value is injected by ngssc at container startup.
-      if (!window['JM_API_KEY'] && window.location.hash) {
-        window['JM_API_KEY'] = window.location.hash.substring(1);
+      const _hashKey = window.location.hash.substring(1);
+      if (!window['JM_API_KEY'] && _hashKey) {
+        window['JM_API_KEY'] = _hashKey;
       }
     </script>
   </head>
