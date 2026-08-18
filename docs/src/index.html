@@ -98,6 +98,13 @@
     />
     <meta name="theme-color" content="#eb0000" />
     <meta name="format-detection" content="telephone=no" />
+    <script>
+      // For local development: set the JM API key via the URL hash, e.g. http://localhost:4200/journey-maps/components/angular/examples#<API_KEY> and then refresh the page
+      // In production this value is injected by ngssc at container startup.
+      if (!window['JM_API_KEY'] && window.location.hash) {
+        window['JM_API_KEY'] = window.location.hash.substring(1);
+      }
+    </script>
   </head>
   <body>
     <sbb-root></sbb-root>
