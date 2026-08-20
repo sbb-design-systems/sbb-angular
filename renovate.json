@@ -1,18 +1,17 @@
 {
   "$schema": "https://docs.renovatebot.com/renovate-schema.json",
-  "extends": ["config:base"],
+  "extends": ["config:recommended"],
   "username": "sbb-angular-renovate[bot]",
   "gitAuthor": "sbb-angular-renovate<100206640+sbb-angular-renovate[bot]@users.noreply.github.com>",
   "repositories": ["sbb-design-systems/sbb-angular"],
-  "baseBranches": ["main", "22.x"],
+  "baseBranchPatterns": ["main", "22.x"],
   "includePaths": ["package.json", ".github/**", "pnpm-lock.yaml", "pnpm-workspace.yaml"],
   "timezone": "Europe/Zurich",
   "lockFileMaintenance": {
     "schedule": ["before 7am on thursday"],
     "enabled": true
   },
-  "allowPostUpgradeCommandTemplating": true,
-  "allowedPostUpgradeCommands": ["^pnpm"],
+  "allowedCommands": ["^pnpm"],
   "ignoreDeps": [
     "@angular/bazel",
     "@types/marked",
@@ -45,31 +44,36 @@
     },
     {
       "matchPackageNames": ["node"],
-      "allowedVersions": "<=18"
+      "allowedVersions": "<=22"
     },
     {
       "groupName": "angular",
-      "matchPackagePrefixes": ["@angular/", "@angular-devkit/", "@schematics/angular", "typescript"]
+      "matchPackageNames": [
+        "@angular/{/,}**",
+        "@angular-devkit/{/,}**",
+        "@schematics/angular{/,}**",
+        "typescript{/,}**"
+      ]
     },
     {
       "groupName": "bazel",
-      "matchPackagePrefixes": ["@bazel/"]
+      "matchPackageNames": ["@bazel/{/,}**"]
     },
     {
       "groupName": "commitlint",
-      "matchPackagePrefixes": ["@commitlint/", "standard-version"]
+      "matchPackageNames": ["@commitlint/{/,}**", "standard-version{/,}**"]
     },
     {
       "groupName": "rollup",
-      "matchPackagePrefixes": ["@rollup/", "rollup"]
+      "matchPackageNames": ["@rollup/{/,}**", "rollup{/,}**"]
     },
     {
       "groupName": "karma",
-      "matchPackagePrefixes": ["karma"]
+      "matchPackageNames": ["karma{/,}**"]
     },
     {
       "groupName": "jasmine",
-      "matchPackagePrefixes": ["jasmine", "@types/jasmine"]
+      "matchPackageNames": ["jasmine{/,}**", "@types/jasmine{/,}**"]
     },
     {
       "matchPackageNames": ["@angular/cli", "@angular/cdk", "angular-server-side-configuration"],
