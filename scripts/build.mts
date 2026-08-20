@@ -1,5 +1,5 @@
 import { execSync } from 'child_process';
-import { readFileSync, writeFileSync } from 'fs';
+import { existsSync, readFileSync, writeFileSync } from 'fs';
 import { dirname, join, relative } from 'path';
 import sh from 'shelljs';
 import { fileURLToPath } from 'url';
@@ -176,7 +176,11 @@ function buildDocs(targetFolder: string) {
     'docs/node_modules/@sbb-esta/components-examples/docs-content',
   );
   copyPackageOutput(outputPath, targetFolder);
-  copyPackageOutput(docsOutputPath, join(targetFolder, 'browser'));
+  if (existsSync(docsOutputPath)) {
+    copyPackageOutput(docsOutputPath, join(targetFolder, 'browser'));
+  } else {
+    console.log(`> Skipping docs-content copy (path not found: "${docsOutputPath}")`);
+  }
 }
 
 /**
