@@ -84,8 +84,8 @@ pnpm start
 
 This will run the devserver in watch mode. It might ask you to allow opening an outgoing port, which would allow you to open the page on another machine in the same network.
 
-To be able to display the map inside the `journey-maps` examples, you need to provide the API key as well:
+To be able to display the map inside the `journey-maps` examples, you need to provide the API key via the URL hash after the app has started, then refresh the page:
 
 ```
-JM_API_KEY=<YOUR-API-KEY> pnpm start
+http://localhost:4200/journey-maps/components/angular/examples#<YOUR-API-KEY>
 ```
