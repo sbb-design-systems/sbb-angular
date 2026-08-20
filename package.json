@@ -64,7 +64,7 @@
     "@angular/elements": "catalog:",
     "@angular/forms": "catalog:",
     "@angular/platform-browser": "catalog:",
-    "@stackblitz/sdk": "1.11.0",
+    "@stackblitz/sdk": "1.11.1",
     "maplibre-gl": "4.7.1",
     "rxjs": "catalog:",
     "tslib": "2.7.0",
@@ -74,7 +74,7 @@
   "devDependencies": {
     "@angular/cli": "catalog:",
     "@angular/localize": "catalog:",
-    "@angular/ng-dev": "https://github.com/angular/dev-infra-private-ng-dev-builds.git#c71d9b6af7560faa3d002534d416a8045111adae",
+    "@angular/ng-dev": "https://github.com/angular/dev-infra-private-ng-dev-builds.git#5dfeb640bd2c02a4f5f342a889d108f6e3343012",
     "@angular/platform-server": "catalog:",
     "@angular/router": "catalog:",
     "@babel/core": "8.0.1",
