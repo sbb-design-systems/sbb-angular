@@ -210,9 +210,9 @@ export class SbbJourneyMaps implements OnInit, AfterViewInit, OnDestroy, OnChang
   private readonly _featureEventListenerComponent!: SbbFeatureEventListener;
   private readonly _defaultStyleOptions: SbbStyleOptions = {
     url: 'https://journey-maps-tiles.geocdn.sbb.ch/styles/{styleId}/style.json?api_key={apiKey}',
-    aerialId: 'journey_maps_aerial_v1',
-    brightId: 'journey_maps_bright_v1',
-    darkId: 'journey_maps_dark_v1',
+    aerialId: 'sbbmaps_aerial',
+    brightId: 'sbbmaps_bright',
+    darkId: 'sbbmaps_dark',
     mode: 'bright',
   };
   private readonly _defaultInteractionOptions: SbbInteractionOptions = {
@@ -1221,8 +1221,9 @@ export class SbbJourneyMaps implements OnInit, AfterViewInit, OnDestroy, OnChang
   private _show2Dor3D() {
     if (this._isStyleLoaded) {
       const show3D = this._isLevelFilterEnabled();
-      this._setVisibilityByLayerIdSuffix(this._map, '-2d', show3D ? 'none' : 'visible');
-      this._setVisibilityByLayerIdSuffix(this._map, '-lvl', show3D ? 'visible' : 'none');
+      this._setVisibilityByFloorMetadata(this._map, '2D', show3D ? 'none' : 'visible');
+      this._setVisibilityByFloorMetadata(this._map, 'level', show3D ? 'visible' : 'none');
+      this._setLayerVisibilityIfExists(this._map, 'level_greyout', show3D ? 'visible' : 'none');
       this._mapPoiService.updatePoiVisibility(this._map, show3D, this.poiOptions);
     }
   }
@@ -1247,15 +1248,34 @@ export class SbbJourneyMaps implements OnInit, AfterViewInit, OnDestroy, OnChang
     return this._levelSwitchService.selectedLevel !== undefined && !!this.uiOptions.levelSwitch;
   }
 
-  private _setVisibilityByLayerIdSuffix(
+  private _setVisibilityByFloorMetadata(
     map: MaplibreMap,
-    layerIdSuffix: string,
+    floorValue: string,
     visibility: 'visible' | 'none',
   ) {
+    const suffix = floorValue === '2D' ? '-2d' : '-lvl';
     map
       .getStyle()
-      .layers?.filter((layer) => layer.id.endsWith(layerIdSuffix))
+      .layers?.filter((layer) => {
+        const metadata = layer.metadata as Record<string, unknown> | undefined;
+        // Shortbread style
+        if (metadata?.['general.floor']) {
+          return metadata['general.floor'] === floorValue;
+        }
+        // OMT style fallback
+        return layer.id.endsWith(suffix);
+      })
       .forEach((layer) => map.setLayoutProperty(layer.id, 'visibility', visibility));
+  }
+
+  private _setLayerVisibilityIfExists(
+    map: MaplibreMap,
+    layerId: string,
+    visibility: 'visible' | 'none',
+  ) {
+    if (map.getLayer(layerId)) {
+      map.setLayoutProperty(layerId, 'visibility', visibility);
+    }
   }
 
   getMapBearing() {

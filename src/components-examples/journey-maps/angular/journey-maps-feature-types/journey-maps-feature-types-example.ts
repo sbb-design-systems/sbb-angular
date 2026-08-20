@@ -27,7 +27,7 @@ import { LngLatBounds, LngLatBoundsLike, LngLatLike } from 'maplibre-gl';
 import { BehaviorSubject, Subject } from 'rxjs';
 import { filter, map, take, takeUntil } from 'rxjs/operators';
 
-import { POI_CATEGORIES, STYLE_IDS } from '../shared/config';
+import { POI_CATEGORIES } from '../shared/config';
 import { markers } from '../shared/markers';
 import { bnMonbijouBundesplatz } from '../shared/routes/bern-foot';
 import { bielLyssRoutes, bielLyssRoutesOptions } from '../shared/routes/biel-lyss';
@@ -103,7 +103,6 @@ export class JourneyMapsFeatureTypesExample implements OnInit {
     this.subscribeZoneGeoJson();
     this.subscribeMapCenterChange();
     this.subscribeBoundingBoxChange();
-    this.subscribeStyleVersion();
     this.subscribeRoutingGeoJson();
     this.subscribeRoutingLed();
     this.form.get('listenerOptions.ROUTE')?.patchValue({ hoverTemplate: this.routeTemplate });
@@ -175,10 +174,6 @@ export class JourneyMapsFeatureTypesExample implements OnInit {
       }),
       styleOptions: this.fb.group({
         mode: ['bright', this.resetSelectedMarkerIdValidator],
-        ...STYLE_IDS.v3,
-      }),
-      styleVersion: this.fb.group({
-        versionNumber: ['v3', this.resetSelectedMarkerIdValidator],
       }),
       viewportBounds: this.fb.group({
         minZoomLevel: [1],
@@ -307,18 +302,6 @@ export class JourneyMapsFeatureTypesExample implements OnInit {
     this.mapCenterChange
       .pipe(takeUntil(this._destroyed))
       .subscribe((mapCenter: LngLatLike) => (this.mapCenter = mapCenter));
-  }
-
-  private subscribeStyleVersion() {
-    this.form
-      .get('styleVersion')
-      ?.valueChanges.pipe(takeUntil(this._destroyed))
-      .subscribe(({ versionNumber }: { versionNumber: 'v2' | 'v3' }) => {
-        this.form.get('styleOptions')?.patchValue({
-          ...this.form.get('styleOptions')?.value,
-          ...STYLE_IDS[versionNumber],
-        });
-      });
   }
 
   private resetSelectedMarkerIdValidator = () => {

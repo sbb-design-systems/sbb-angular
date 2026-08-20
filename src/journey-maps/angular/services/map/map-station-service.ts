@@ -10,13 +10,25 @@ import {
 import { SBB_ROKAS_STATION_HOVER_SOURCE } from '../constants';
 
 import { toFeatureCollection } from './util/feature-collection-util';
-import { isV1Style } from './util/style-version-lookup';
+import { isShortbreadStyle, isV1Style } from './util/style-version-lookup';
 
 export const SBB_STATION_LAYER = 'rokas-station-hover';
 const MAP_ENDPOINT_LAYERS_V1 = ['rokas-walk-from', 'rokas-walk-to'];
 const MAP_ENDPOINT_LAYERS_V2 = ['rokas-route-transfer-ending', 'rokas-route-stopover-circle'];
-const MAP_SOURCE_LAYER_OSM_POINTS = 'osm_points';
 const FEATURE_SBB_ID_FIELD_NAME = 'sbb_id';
+
+const STATION_SOURCE_CONFIG = {
+  // OMT style
+  omt: {
+    source: 'base',
+    sourceLayers: ['osm_points'],
+  },
+  // Shortbread style
+  shortbread: {
+    source: 'basemap',
+    sourceLayers: ['generalized_points', 'public_transport'],
+  },
+};
 
 @Injectable({ providedIn: 'root' })
 export class SbbMapStationService {
@@ -70,18 +82,21 @@ export class SbbMapStationService {
       return [];
     }
 
+    const config = this._getSourceConfig(map);
     return endpoints
       .map(
         (p) =>
-          map
-            .querySourceFeatures('base', {
-              sourceLayer: MAP_SOURCE_LAYER_OSM_POINTS,
-              filter: [
-                'in',
-                FEATURE_SBB_ID_FIELD_NAME,
-                String(p.properties[FEATURE_SBB_ID_FIELD_NAME]),
-              ],
-            })
+          config.sourceLayers
+            .flatMap((sourceLayer) =>
+              map.querySourceFeatures(config.source, {
+                sourceLayer,
+                filter: [
+                  'in',
+                  FEATURE_SBB_ID_FIELD_NAME,
+                  String(p.properties[FEATURE_SBB_ID_FIELD_NAME]),
+                ],
+              }),
+            )
             .map((sourceFeature) => ({
               ...this._mapToFeature(sourceFeature),
               geometry: p.geometry, // get endpoint location not the tile source
@@ -92,19 +107,38 @@ export class SbbMapStationService {
   }
 
   private _extractStationLayers(map: MaplibreMap): string[] | undefined {
+    const config = this._getSourceConfig(map);
     return map
       .getStyle()
       .layers?.filter((layer: LayerSpecification) => {
         const sourceLayer = 'source-layer' in layer ? layer['source-layer'] : undefined;
         const id = layer.id;
 
-        return (
-          sourceLayer &&
-          ((sourceLayer === MAP_SOURCE_LAYER_OSM_POINTS && id !== MAP_SOURCE_LAYER_OSM_POINTS) ||
-            (sourceLayer === 'poi' && id.startsWith('station_ship')))
-        );
+        if (!sourceLayer) {
+          return false;
+        }
+
+        if (config.sourceLayers.includes(sourceLayer)) {
+          // Shortbread style
+          if (sourceLayer === 'public_transport') {
+            return id.startsWith('station') || id.startsWith('railstation');
+          }
+          // OMT & shortbread style
+          return id !== sourceLayer;
+        }
+
+        // Older style
+        if (sourceLayer === 'poi' && id.startsWith('station_ship')) {
+          return true;
+        }
+        // Shortbread style
+        return sourceLayer === 'aerialway_ski_stations' && id.startsWith('station');
       })
       .map((layer: LayerSpecification) => layer.id);
+  }
+
+  private _getSourceConfig(map: MaplibreMap): { source: string; sourceLayers: string[] } {
+    return isShortbreadStyle(map) ? STATION_SOURCE_CONFIG.shortbread : STATION_SOURCE_CONFIG.omt;
   }
 
   private _mapToFeature(f: MapGeoJSONFeature) {
