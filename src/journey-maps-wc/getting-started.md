@@ -155,7 +155,7 @@ Because internally we are using an [MutationObserver](https://developer.mozilla.
 
 ### Run the documentation app using the Web Component on your local machine
 
-If you check out this project from GitHub, You can get a simple example of the Web Component up and running on your local machine by running `JM_API_KEY=<YOUR-API-KEY> yarn start:journey-maps-wc`.
+If you check out this project from GitHub, you can get a simple example of the Web Component up and running on your local machine by running `pnpm start:journey-maps-wc`. Then add your API key via the URL hash (e.g. `http://localhost:4200/#<API_KEY>`) and refresh the page.
 
 You can interact with the map through the browser console using the same JavaScript syntax as above, e.g.:
 
@@ -177,7 +177,7 @@ Below are a few example implementations using the Web Component. Please let us k
 
 ## On your local machine
 
-If you check out this project from GitHub, You can get a simple example of the Web Component up and running on your local machine by running `JM_API_KEY=<YOUR-API-KEY> yarn start:journey-maps-wc`.
+If you check out this project from GitHub, you can get a simple example of the Web Component up and running on your local machine by running `pnpm start:journey-maps-wc`. Then add your API key via the URL hash (e.g. `http://localhost:4200/#<API_KEY>`) and refresh the page.
 
 ## On Stackblitz
 
