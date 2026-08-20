@@ -319,8 +319,8 @@ importers:
         specifier: ^8.0.0
         version: 8.0.1
       prettier:
-        specifier: 3.8.4
-        version: 3.8.4
+        specifier: 3.9.6
+        version: 3.9.6
       reflect-metadata:
         specifier: ^0.2.0
         version: 0.2.2
@@ -8758,8 +8758,8 @@ packages:
     engines: {node: '>=14'}
     hasBin: true
 
-  prettier@3.8.4:
-    resolution: {integrity: sha512-N2MylSdi48+5N/6S5j+maeHbUSIzzZ5uOcX5Hm4QpV8Dkb1HFjfAKTKX6yNPJQD9AhcT3ifHNB66tWTTJDi11Q==}
+  prettier@3.9.6:
+    resolution: {integrity: sha512-OpN0zzVdiaiAhxpuuj5efpIS4sY9j7bY6uR5mnj5yPzGkdkjNKSJeUThPb60Jw29QuAZgA4o+/iB49kFiaBX6g==}
     engines: {node: '>=14'}
     hasBin: true
 
@@ -20258,7 +20258,7 @@ snapshots:
 
   prettier@3.8.1: {}
 
-  prettier@3.8.4: {}
+  prettier@3.9.6: {}
 
   proc-log@6.1.0:
     optional: true
