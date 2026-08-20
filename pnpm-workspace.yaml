@@ -8,24 +8,107 @@ packages:
   - src/journey-maps-wc
 
 catalog:
-  '@angular-devkit/build-angular': 22.1.5
-  '@angular-devkit/core': 22.1.5
-  '@angular-devkit/schematics': 22.1.5
+  '@angular-devkit/build-angular': 22.1.4
+  '@angular-devkit/core': 22.1.4
+  '@angular-devkit/schematics': 22.1.4
   '@angular/animations': 22.1.3
-  '@angular/build': 22.1.5
+  '@angular/build': 22.1.4
   '@angular/cdk': 22.1.3
-  '@angular/cli': 22.1.5
+  '@angular/cli': 22.1.4
   '@angular/common': 22.1.3
   '@angular/compiler-cli': 22.1.3
   '@angular/compiler': 22.1.3
   '@angular/core': 22.1.3
   '@angular/elements': 22.1.3
-  '@angular/ssr': 22.1.5
+  '@angular/ssr': 22.1.4
   '@angular/forms': 22.1.3
   '@angular/localize': 22.1.3
   '@angular/platform-browser': 22.1.3
   '@angular/platform-browser-dynamic': 22.1.3
   '@angular/platform-server': 22.1.3
   '@angular/router': 22.1.3
-  '@schematics/angular': 22.1.5
+  '@schematics/angular': 22.1.4
   'rxjs': 7.8.1
+
+overrides:
+  typescript: 6.0.2
+  '@nginfra/angular-linking>@babel/core': 8.0.1
+
+packageExtensions:
+  dgeni-packages:
+    dependencies:
+      clonedeep: '*'
+  grpc-gcp:
+    dependencies:
+      protobufjs: 7.4.0
+  iced-error:
+    dependencies:
+      iced-runtime: '^1.0.4'
+  '@angular-eslint/eslint-plugin-template@19.3.0':
+    peerDependencies:
+      '@typescript-eslint/parser': '*'
+      '@angular-eslint/template-parser': '*'
+  '@angular/animations':
+    dependencies:
+      '@nginfra/angular-linking': 1.0.11
+    peerDependencies:
+      '@angular/common': '*'
+  '@angular/cdk':
+    dependencies:
+      '@nginfra/angular-linking': 1.0.11
+  '@angular/common':
+    dependencies:
+      '@nginfra/angular-linking': 1.0.11
+  '@angular/forms':
+    dependencies:
+      '@nginfra/angular-linking': 1.0.11
+  '@angular/platform-browser':
+    dependencies:
+      '@nginfra/angular-linking': 1.0.11
+  '@angular/router':
+    dependencies:
+      '@nginfra/angular-linking': 1.0.11
+  '@angular/localize':
+    dependencies:
+      '@nginfra/angular-linking': 1.0.11
+  '@angular/platform-server':
+    dependencies:
+      '@nginfra/angular-linking': 1.0.11
+
+engineStrict: false
+hoist: false
+autoInstallPeers: false
+
+# Avoid prompting for confirmation when pnpm determines node_modules needs to be purged and recreated.
+confirmModulesPurge: false
+
+allowBuilds:
+  '@firebase/util': false
+  '@google/genai': false
+  '@nestjs/core': false
+  '@parcel/watcher': false
+  better-sqlite3: false
+  bufferutil: false
+  core-js-pure: false
+  dtrace-provider: false
+  esbuild: false
+  lmdb: false
+  msgpackr-extract: false
+  protobufjs: false
+  re2: false
+  utf-8-validate: false
+
+minimumReleaseAgeExclude:
+  - '@angular/animations@22.1.3'
+  - '@angular/cdk@22.1.3'
+  - '@angular/common@22.1.3'
+  - '@angular/compiler-cli@22.1.3'
+  - '@angular/compiler@22.1.3'
+  - '@angular/core@22.1.3'
+  - '@angular/elements@22.1.3'
+  - '@angular/forms@22.1.3'
+  - '@angular/localize@22.1.3'
+  - '@angular/platform-browser-dynamic@22.1.3'
+  - '@angular/platform-browser@22.1.3'
+  - '@angular/platform-server@22.1.3'
+  - '@angular/router@22.1.3'

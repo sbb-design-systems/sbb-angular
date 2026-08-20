@@ -2,11 +2,11 @@
   "name": "sbb-angular",
   "version": "22.0.0",
   "private": true,
-  "packageManager": "pnpm@10.34.5",
+  "packageManager": "pnpm@11.21.0",
   "engines": {
     "npm": "Please use pnpm instead of NPM to install dependencies",
     "yarn": "Please use pnpm instead of Yarn to install dependencies",
-    "pnpm": "^10.0.0"
+    "pnpm": ">=11.0.0"
   },
   "scripts": {
     "ng-dev": "node --no-warnings=ExperimentalWarning --loader ts-node/esm/transpile-only node_modules/@angular/ng-dev/bundles/cli.mjs",
@@ -77,7 +77,7 @@
     "@angular/ng-dev": "https://github.com/angular/dev-infra-private-ng-dev-builds.git#c71d9b6af7560faa3d002534d416a8045111adae",
     "@angular/platform-server": "catalog:",
     "@angular/router": "catalog:",
-    "@babel/core": "7.29.7",
+    "@babel/core": "8.0.1",
     "@bazel/bazelisk": "1.28.1",
     "@bazel/buildifier": "8.2.1",
     "@bazel/ibazel": "^0.28.0",
@@ -159,78 +159,6 @@
     "tslint-config-prettier": "1.18.0",
     "tslint-consistent-codestyle": "1.16.0",
     "yargs": "18.0.0"
-  },
-  "pnpm": {
-    "overrides": {
-      "typescript": "6.0.2"
-    },
-    "onlyBuiltDependencies": [],
-    "packageExtensions": {
-      "dgeni-packages": {
-        "dependencies": {
-          "clonedeep": "*"
-        }
-      },
-      "grpc-gcp": {
-        "dependencies": {
-          "protobufjs": "7.4.0"
-        }
-      },
-      "iced-error": {
-        "dependencies": {
-          "iced-runtime": "^1.0.4"
-        }
-      },
-      "@angular-eslint/eslint-plugin-template@19.3.0": {
-        "peerDependencies": {
-          "@typescript-eslint/parser": "*",
-          "@angular-eslint/template-parser": "*"
-        }
-      },
-      "@angular/animations": {
-        "dependencies": {
-          "@nginfra/angular-linking": "1.0.9"
-        },
-        "peerDependencies": {
-          "@angular/common": "*"
-        }
-      },
-      "@angular/cdk": {
-        "dependencies": {
-          "@nginfra/angular-linking": "1.0.9"
-        }
-      },
-      "@angular/common": {
-        "dependencies": {
-          "@nginfra/angular-linking": "1.0.9"
-        }
-      },
-      "@angular/forms": {
-        "dependencies": {
-          "@nginfra/angular-linking": "1.0.9"
-        }
-      },
-      "@angular/platform-browser": {
-        "dependencies": {
-          "@nginfra/angular-linking": "1.0.9"
-        }
-      },
-      "@angular/router": {
-        "dependencies": {
-          "@nginfra/angular-linking": "1.0.9"
-        }
-      },
-      "@angular/localize": {
-        "dependencies": {
-          "@nginfra/angular-linking": "1.0.9"
-        }
-      },
-      "@angular/platform-server": {
-        "dependencies": {
-          "@nginfra/angular-linking": "1.0.9"
-        }
-      }
-    }
   },
   "standard-version": {
     "types": [
