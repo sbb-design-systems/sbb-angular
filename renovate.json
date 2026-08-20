@@ -7,6 +7,9 @@
   "baseBranchPatterns": ["main", "22.x"],
   "includePaths": ["package.json", ".github/**", "pnpm-lock.yaml", "pnpm-workspace.yaml"],
   "timezone": "Europe/Zurich",
+  "prConcurrentLimit": 0,
+  "prHourlyLimit": 0,
+  "branchConcurrentLimit": 0,
   "lockFileMaintenance": {
     "schedule": ["before 7am on thursday"],
     "enabled": true
