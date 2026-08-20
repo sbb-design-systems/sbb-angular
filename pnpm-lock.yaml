@@ -136,8 +136,8 @@ importers:
         specifier: 'catalog:'
         version: 22.1.3(@angular/compiler-cli@22.1.3(@angular/compiler@22.1.3)(typescript@6.0.2))(@angular/compiler@22.1.3)
       '@angular/ng-dev':
-        specifier: https://github.com/angular/dev-infra-private-ng-dev-builds.git#5dfeb640bd2c02a4f5f342a889d108f6e3343012
-        version: https://codeload.github.com/angular/dev-infra-private-ng-dev-builds/tar.gz/5dfeb640bd2c02a4f5f342a889d108f6e3343012(@modelcontextprotocol/sdk@1.30.0(supports-color@11.0.0))
+        specifier: https://github.com/angular/dev-infra-private-ng-dev-builds.git#bcad06e14cb29b52b0856020af5e2ab868075602
+        version: https://codeload.github.com/angular/dev-infra-private-ng-dev-builds/tar.gz/bcad06e14cb29b52b0856020af5e2ab868075602(@modelcontextprotocol/sdk@1.30.0(supports-color@11.0.0))
       '@angular/platform-server':
         specifier: 'catalog:'
         version: 22.1.3(98eefb238e3986e4d3f7e8d923bc6148)
@@ -864,9 +864,9 @@ packages:
       '@angular/compiler': 22.1.3
       '@angular/compiler-cli': 22.1.3
 
-  '@angular/ng-dev@https://codeload.github.com/angular/dev-infra-private-ng-dev-builds/tar.gz/5dfeb640bd2c02a4f5f342a889d108f6e3343012':
-    resolution: {gitHosted: true, tarball: https://codeload.github.com/angular/dev-infra-private-ng-dev-builds/tar.gz/5dfeb640bd2c02a4f5f342a889d108f6e3343012}
-    version: 0.0.0-99e828878959e1cc0f9b9b60b43685e599495a0b
+  '@angular/ng-dev@https://codeload.github.com/angular/dev-infra-private-ng-dev-builds/tar.gz/bcad06e14cb29b52b0856020af5e2ab868075602':
+    resolution: {gitHosted: true, integrity: sha512-fs92JkAu6Y2CXh1HEUDSTzgdVp12emRA/jEfoJG1d9V1t60tBZTsbnYyi3Zd8XkDy1Tu0l9Ne8xcHjQqwdhy8Q==, tarball: https://codeload.github.com/angular/dev-infra-private-ng-dev-builds/tar.gz/bcad06e14cb29b52b0856020af5e2ab868075602}
+    version: 0.0.0-6d918a6dd670e28afd4ba54d00b805d4aba43dca
     hasBin: true
 
   '@angular/platform-browser-dynamic@22.1.3':
@@ -10893,7 +10893,7 @@ snapshots:
       tinyglobby: 0.2.17
       yargs: 18.0.0
 
-  '@angular/ng-dev@https://codeload.github.com/angular/dev-infra-private-ng-dev-builds/tar.gz/5dfeb640bd2c02a4f5f342a889d108f6e3343012(@modelcontextprotocol/sdk@1.30.0(supports-color@11.0.0))':
+  '@angular/ng-dev@https://codeload.github.com/angular/dev-infra-private-ng-dev-builds/tar.gz/bcad06e14cb29b52b0856020af5e2ab868075602(@modelcontextprotocol/sdk@1.30.0(supports-color@11.0.0))':
     dependencies:
       '@actions/core': 3.0.1
       '@conventional-changelog/git-client': 3.1.2(conventional-commits-filter@6.0.1)(conventional-commits-parser@7.1.2)
@@ -14020,7 +14020,7 @@ snapshots:
   '@opentelemetry/core@2.7.0(@opentelemetry/api@1.9.1)':
     dependencies:
       '@opentelemetry/api': 1.9.1
-      '@opentelemetry/semantic-conventions': 1.40.0
+      '@opentelemetry/semantic-conventions': 1.43.0
 
   '@opentelemetry/exporter-trace-otlp-http@0.215.0(@opentelemetry/api@1.9.1)':
     dependencies:
@@ -14127,7 +14127,7 @@ snapshots:
       '@opentelemetry/api-logs': 0.215.0
       '@opentelemetry/core': 2.7.0(@opentelemetry/api@1.9.1)
       '@opentelemetry/resources': 2.7.0(@opentelemetry/api@1.9.1)
-      '@opentelemetry/semantic-conventions': 1.40.0
+      '@opentelemetry/semantic-conventions': 1.43.0
 
   '@opentelemetry/sdk-metrics@2.7.0(@opentelemetry/api@1.9.1)':
     dependencies:
