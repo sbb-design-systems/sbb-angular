@@ -131,7 +131,7 @@ importers:
     devDependencies:
       '@angular/cli':
         specifier: 'catalog:'
-        version: 22.1.5(@types/node@22.19.20)(supports-color@11.0.0)
+        version: 22.1.5(@types/node@22.19.20)(chokidar@5.0.0)(supports-color@11.0.0)
       '@angular/localize':
         specifier: 'catalog:'
         version: 22.1.3(@angular/compiler-cli@22.1.3(@angular/compiler@22.1.3)(typescript@6.0.2))(@angular/compiler@22.1.3)
@@ -310,8 +310,8 @@ importers:
         specifier: ^3.1.4
         version: 3.1.5
       npm-run-all2:
-        specifier: 9.0.1
-        version: 9.0.1
+        specifier: 9.0.3
+        version: 9.0.3
       octokit:
         specifier: 5.0.5
         version: 5.0.5
@@ -4842,6 +4842,10 @@ packages:
     resolution: {integrity: sha512-4Dj6M28JB+oAH8kFkTLUo+a2jwOFkuqb3yucU0CANcRRUbxS0cP0nZYCGjcc3BNXwRIsUVmDGgzawme7zvJHvg==}
     engines: {node: '>=12'}
 
+  ansi-styles@7.0.0:
+    resolution: {integrity: sha512-kKvt3m4uwzqL0wlkPd09CmljPJGOZZ4D0fP65sqFSvPkMRKhNi+74MgIJ5QxE6SxqB4t4KyUFGg8+n5zjo6hew==}
+    engines: {node: '>=22'}
+
   anymatch@3.1.3:
     resolution: {integrity: sha512-KMReFUr0B4t+D+OBkjR3KYqvocp2XaSzO55UcB6mgQMd3KbcE+mWTyvVV7D/zsdEbNnV6acZUutkiHQXvTr1Rw==}
     engines: {node: '>= 8'}
@@ -8329,8 +8333,8 @@ packages:
     engines: {node: '>= 10'}
     hasBin: true
 
-  npm-run-all2@9.0.1:
-    resolution: {integrity: sha512-ZtK8WXZBUA9x0XD6nxYdFLe86FxpkCTq2LiQxzX0LeXQY/vyAigQZXjjj/xfTwgV4Yqe/vYNIq2W09lrHKTcuQ==}
+  npm-run-all2@9.0.3:
+    resolution: {integrity: sha512-BQAEdU1PtYc48qYRdghW2BVTQT3VqWCoFQmO87NlM1h1PYwMCKQpUWaNyB20V26caNzFsXQDfyOdznLlHCih6g==}
     engines: {node: ^22.22.2 || ^24.15.0 || >=26.0.0, npm: '>= 10'}
     hasBin: true
 
@@ -8689,9 +8693,9 @@ packages:
     engines: {node: '>=0.10'}
     hasBin: true
 
-  pidtree@0.6.0:
-    resolution: {integrity: sha512-eG2dWTVw5bzqGRztnHExczNxt5VGsE6OwTeCG3fdUf9KBsZzO3R5OIIIzWR+iZA0NtZ+RDVdaoE2dK1cn6jH4g==}
-    engines: {node: '>=0.10'}
+  pidtree@1.0.0:
+    resolution: {integrity: sha512-avfAvjB9Dd0wdj3rjJX//yS+G79OO0KrS5pJHFJENjYGX6N4SMgEDBBI/yFy0lloOYSaC6XQxzpOAMPfSYFV/Q==}
+    engines: {node: '>=18'}
     hasBin: true
 
   pify@2.3.0:
@@ -9403,10 +9407,6 @@ packages:
 
   shell-quote@1.10.0:
     resolution: {integrity: sha512-w1aiOKwKuRgtwAReIIj89puqg+I7GvX4IbLrvmhXbzQsj1+Zwi4VO3+fa6ZF91TWSjIxoEkKnMeHcLEODK5ZXA==}
-    engines: {node: '>= 0.4'}
-
-  shell-quote@1.8.3:
-    resolution: {integrity: sha512-ObmnIF4hXNg1BqhnHmgbDETF8dLPCggZWBjkQfhZpbszZnYur5DUljTcCHii5LC3J5E0yeO/1LIMyH+UvHQgyw==}
     engines: {node: '>= 0.4'}
 
   shelljs@0.10.0:
@@ -10850,7 +10850,7 @@ snapshots:
     transitivePeerDependencies:
       - '@angular/compiler-cli'
 
-  '@angular/cli@22.1.5(@types/node@22.19.20)(supports-color@11.0.0)':
+  '@angular/cli@22.1.5(@types/node@22.19.20)(chokidar@5.0.0)(supports-color@11.0.0)':
     dependencies:
       '@angular-devkit/architect': 0.2201.5(chokidar@5.0.0)
       '@angular-devkit/core': 22.1.5(chokidar@5.0.0)
@@ -15904,6 +15904,8 @@ snapshots:
 
   ansi-styles@6.2.3: {}
 
+  ansi-styles@7.0.0: {}
+
   anymatch@3.1.3:
     dependencies:
       normalize-path: 3.0.0
@@ -20033,15 +20035,15 @@ snapshots:
       read-pkg: 5.2.0
       shell-quote: 1.10.0
 
-  npm-run-all2@9.0.1:
+  npm-run-all2@9.0.3:
     dependencies:
-      ansi-styles: 6.2.3
+      ansi-styles: 7.0.0
       cross-spawn: 7.0.6
       memorystream: 0.3.1
-      picomatch: 4.0.4
-      pidtree: 0.6.0
+      picomatch: 4.0.5
+      pidtree: 1.0.0
       read-package-json-fast: 6.0.0
-      shell-quote: 1.8.3
+      shell-quote: 1.10.0
       which: 7.0.0
 
   npm-run-path@4.0.1:
@@ -20415,7 +20417,7 @@ snapshots:
 
   pidtree@0.5.0: {}
 
-  pidtree@0.6.0: {}
+  pidtree@1.0.0: {}
 
   pify@2.3.0: {}
 
@@ -21471,8 +21473,6 @@ snapshots:
   shebang-regex@3.0.0: {}
 
   shell-quote@1.10.0: {}
-
-  shell-quote@1.8.3: {}
 
   shelljs@0.10.0:
     dependencies:
