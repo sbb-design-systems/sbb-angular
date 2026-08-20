@@ -361,14 +361,14 @@ importers:
         specifier: 9.5.0
         version: 9.5.0
       stylelint:
-        specifier: 17.13.0
-        version: 17.13.0(supports-color@11.0.0)(typescript@6.0.2)
+        specifier: 17.14.1
+        version: 17.14.1(supports-color@11.0.0)(typescript@6.0.2)
       stylelint-config-recommended-scss:
         specifier: 17.0.1
-        version: 17.0.1(postcss@8.5.26)(stylelint@17.13.0(supports-color@11.0.0)(typescript@6.0.2))
+        version: 17.0.1(postcss@8.5.26)(stylelint@17.14.1(supports-color@11.0.0)(typescript@6.0.2))
       stylelint-scss:
         specifier: 7.2.0
-        version: 7.2.0(stylelint@17.13.0(supports-color@11.0.0)(typescript@6.0.2))
+        version: 7.2.0(stylelint@17.14.1(supports-color@11.0.0)(typescript@6.0.2))
       terser:
         specifier: 5.48.0
         version: 5.48.0
@@ -9658,8 +9658,8 @@ packages:
     peerDependencies:
       stylelint: ^16.8.2 || ^17.0.0
 
-  stylelint@17.13.0:
-    resolution: {integrity: sha512-G1WYzMerp7ihOaIe9VJCHLt12MoAD2QLf1AFerYP37+BCRBUK5UCpq8e/mN+zCIaJPKQcaxhE4WlPmqdiOx/gw==}
+  stylelint@17.14.1:
+    resolution: {integrity: sha512-xVQwyiuxALUBNB2fBe0tmNemg9KqLtdj3T64mioFDar79B2cU8LIyz+3KL6LdiHs9NkeNfwxpKSaIVOY8f112g==}
     engines: {node: '>=20.19.0'}
     hasBin: true
 
@@ -15743,9 +15743,9 @@ snapshots:
       domhandler: 5.0.3
       htmlparser2: 10.1.0
       picocolors: 1.1.1
-      postcss: 8.5.25
+      postcss: 8.5.26
       postcss-media-query-parser: 0.2.3
-      postcss-safe-parser: 7.0.1(postcss@8.5.25)
+      postcss-safe-parser: 7.0.1(postcss@8.5.26)
 
   before-after-hook@4.0.0: {}
 
@@ -16503,12 +16503,12 @@ snapshots:
 
   css-loader@7.1.4(webpack@5.109.2(esbuild@0.28.2)(lightningcss@1.33.0)(postcss@8.5.25)(uglify-js@3.19.3)):
     dependencies:
-      icss-utils: 5.1.0(postcss@8.5.25)
-      postcss: 8.5.25
-      postcss-modules-extract-imports: 3.1.0(postcss@8.5.25)
-      postcss-modules-local-by-default: 4.2.0(postcss@8.5.25)
-      postcss-modules-scope: 3.2.1(postcss@8.5.25)
-      postcss-modules-values: 4.0.0(postcss@8.5.25)
+      icss-utils: 5.1.0(postcss@8.5.26)
+      postcss: 8.5.26
+      postcss-modules-extract-imports: 3.1.0(postcss@8.5.26)
+      postcss-modules-local-by-default: 4.2.0(postcss@8.5.26)
+      postcss-modules-scope: 3.2.1(postcss@8.5.26)
+      postcss-modules-values: 4.0.0(postcss@8.5.26)
       postcss-value-parser: 4.2.0
       semver: 7.8.5
     optionalDependencies:
@@ -18061,9 +18061,9 @@ snapshots:
     dependencies:
       safer-buffer: 2.1.2
 
-  icss-utils@5.1.0(postcss@8.5.25):
+  icss-utils@5.1.0(postcss@8.5.26):
     dependencies:
-      postcss: 8.5.25
+      postcss: 8.5.26
 
   idb@7.1.1: {}
 
@@ -20013,32 +20013,28 @@ snapshots:
 
   postcss-media-query-parser@0.2.3: {}
 
-  postcss-modules-extract-imports@3.1.0(postcss@8.5.25):
+  postcss-modules-extract-imports@3.1.0(postcss@8.5.26):
     dependencies:
-      postcss: 8.5.25
+      postcss: 8.5.26
 
-  postcss-modules-local-by-default@4.2.0(postcss@8.5.25):
+  postcss-modules-local-by-default@4.2.0(postcss@8.5.26):
     dependencies:
-      icss-utils: 5.1.0(postcss@8.5.25)
-      postcss: 8.5.25
+      icss-utils: 5.1.0(postcss@8.5.26)
+      postcss: 8.5.26
       postcss-selector-parser: 7.1.5
       postcss-value-parser: 4.2.0
 
-  postcss-modules-scope@3.2.1(postcss@8.5.25):
+  postcss-modules-scope@3.2.1(postcss@8.5.26):
     dependencies:
-      postcss: 8.5.25
+      postcss: 8.5.26
       postcss-selector-parser: 7.1.5
 
-  postcss-modules-values@4.0.0(postcss@8.5.25):
+  postcss-modules-values@4.0.0(postcss@8.5.26):
     dependencies:
-      icss-utils: 5.1.0(postcss@8.5.25)
-      postcss: 8.5.25
+      icss-utils: 5.1.0(postcss@8.5.26)
+      postcss: 8.5.26
 
   postcss-resolve-nested-selector@0.1.6: {}
-
-  postcss-safe-parser@7.0.1(postcss@8.5.25):
-    dependencies:
-      postcss: 8.5.25
 
   postcss-safe-parser@7.0.1(postcss@8.5.26):
     dependencies:
@@ -20554,7 +20550,7 @@ snapshots:
       adjust-sourcemap-loader: 4.0.0
       convert-source-map: 1.9.0
       loader-utils: 2.0.4
-      postcss: 8.5.25
+      postcss: 8.5.26
       source-map: 0.6.1
 
   resolve@1.1.7: {}
@@ -21348,20 +21344,20 @@ snapshots:
 
   stubs@3.0.0: {}
 
-  stylelint-config-recommended-scss@17.0.1(postcss@8.5.26)(stylelint@17.13.0(supports-color@11.0.0)(typescript@6.0.2)):
+  stylelint-config-recommended-scss@17.0.1(postcss@8.5.26)(stylelint@17.14.1(supports-color@11.0.0)(typescript@6.0.2)):
     dependencies:
       postcss-scss: 4.0.9(postcss@8.5.26)
-      stylelint: 17.13.0(supports-color@11.0.0)(typescript@6.0.2)
-      stylelint-config-recommended: 18.0.0(stylelint@17.13.0(supports-color@11.0.0)(typescript@6.0.2))
-      stylelint-scss: 7.2.0(stylelint@17.13.0(supports-color@11.0.0)(typescript@6.0.2))
+      stylelint: 17.14.1(supports-color@11.0.0)(typescript@6.0.2)
+      stylelint-config-recommended: 18.0.0(stylelint@17.14.1(supports-color@11.0.0)(typescript@6.0.2))
+      stylelint-scss: 7.2.0(stylelint@17.14.1(supports-color@11.0.0)(typescript@6.0.2))
     optionalDependencies:
       postcss: 8.5.26
 
-  stylelint-config-recommended@18.0.0(stylelint@17.13.0(supports-color@11.0.0)(typescript@6.0.2)):
+  stylelint-config-recommended@18.0.0(stylelint@17.14.1(supports-color@11.0.0)(typescript@6.0.2)):
     dependencies:
-      stylelint: 17.13.0(supports-color@11.0.0)(typescript@6.0.2)
+      stylelint: 17.14.1(supports-color@11.0.0)(typescript@6.0.2)
 
-  stylelint-scss@7.2.0(stylelint@17.13.0(supports-color@11.0.0)(typescript@6.0.2)):
+  stylelint-scss@7.2.0(stylelint@17.14.1(supports-color@11.0.0)(typescript@6.0.2)):
     dependencies:
       '@csstools/css-calc': 3.3.0(@csstools/css-parser-algorithms@4.0.0(@csstools/css-tokenizer@4.0.0))(@csstools/css-tokenizer@4.0.0)
       '@csstools/css-parser-algorithms': 4.0.0(@csstools/css-tokenizer@4.0.0)
@@ -21374,9 +21370,9 @@ snapshots:
       postcss-resolve-nested-selector: 0.1.6
       postcss-selector-parser: 7.1.5
       postcss-value-parser: 4.2.0
-      stylelint: 17.13.0(supports-color@11.0.0)(typescript@6.0.2)
+      stylelint: 17.14.1(supports-color@11.0.0)(typescript@6.0.2)
 
-  stylelint@17.13.0(supports-color@11.0.0)(typescript@6.0.2):
+  stylelint@17.14.1(supports-color@11.0.0)(typescript@6.0.2):
     dependencies:
       '@csstools/css-calc': 3.3.0(@csstools/css-parser-algorithms@4.0.0(@csstools/css-tokenizer@4.0.0))(@csstools/css-tokenizer@4.0.0)
       '@csstools/css-parser-algorithms': 4.0.0(@csstools/css-tokenizer@4.0.0)
@@ -21901,7 +21897,7 @@ snapshots:
     dependencies:
       lightningcss: 1.33.0
       picomatch: 4.0.5
-      postcss: 8.5.25
+      postcss: 8.5.26
       rolldown: 1.1.5
       tinyglobby: 0.2.17
     optionalDependencies:
