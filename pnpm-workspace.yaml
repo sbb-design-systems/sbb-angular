@@ -112,3 +112,4 @@ minimumReleaseAgeExclude:
   - '@angular/platform-browser@22.1.3'
   - '@angular/platform-server@22.1.3'
   - '@angular/router@22.1.3'
+  - sass@1.103.0
