@@ -14,7 +14,7 @@
       (@translateHeight.done)="_onHeightAnimationDone($event)"
     >
       <ng-template
-        [cdkPortalOutlet]="selected?._details() ? selected?._content() : null"
+        [cdkPortalOutlet]="selected!._details() ? selected!._content() : null"
       ></ng-template>
     </div>
   }
