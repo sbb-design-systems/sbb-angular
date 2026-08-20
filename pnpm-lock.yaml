@@ -346,8 +346,8 @@ importers:
         specifier: 1.100.0
         version: 1.100.0
       semver:
-        specifier: 7.8.3
-        version: 7.8.3
+        specifier: 7.8.5
+        version: 7.8.5
       shelljs:
         specifier: 0.10.0
         version: 0.10.0
@@ -9327,11 +9327,6 @@ packages:
     engines: {node: '>=10'}
     hasBin: true
 
-  semver@7.8.3:
-    resolution: {integrity: sha512-wnilbGyMxzbY7dNOl7jpKbLSjcfeweJWU5j4+u5qW+6/wuGD9KzIGOyZnQVSBM9E7DtWaaH3CyHkppYrKYoxwg==}
-    engines: {node: '>=10'}
-    hasBin: true
-
   semver@7.8.5:
     resolution: {integrity: sha512-Y7/KDsb8LjooZpwaqGyulO6DQlksgCncchHGk+sZIY4SBvUocMBEFH5Ur1fI4dV+Jvl0w6cjvucaIi40puRioA==}
     engines: {node: '>=10'}
@@ -10920,7 +10915,7 @@ snapshots:
       chokidar: 5.0.0
       convert-source-map: 1.9.0
       reflect-metadata: 0.2.2
-      semver: 7.8.3
+      semver: 7.8.5
       tslib: 2.7.0
       yargs: 18.0.0
     optionalDependencies:
@@ -11855,7 +11850,7 @@ snapshots:
       '@babel/helper-validator-option': 8.0.0
       browserslist: 4.28.8
       lru-cache: 11.5.2
-      semver: 7.8.3
+      semver: 7.8.5
 
   '@babel/helper-create-class-features-plugin@8.0.1(@babel/core@8.0.1)':
     dependencies:
@@ -11866,14 +11861,14 @@ snapshots:
       '@babel/helper-replace-supers': 8.0.1(@babel/core@8.0.1)
       '@babel/helper-skip-transparent-expression-wrappers': 8.0.0
       '@babel/traverse': 8.0.4
-      semver: 7.8.3
+      semver: 7.8.5
 
   '@babel/helper-create-regexp-features-plugin@8.0.1(@babel/core@8.0.1)':
     dependencies:
       '@babel/core': 8.0.1
       '@babel/helper-annotate-as-pure': 8.0.0
       regexpu-core: 6.4.0
-      semver: 7.8.3
+      semver: 7.8.5
 
   '@babel/helper-define-polyfill-provider@1.0.0(@babel/core@8.0.1)':
     dependencies:
@@ -12382,7 +12377,7 @@ snapshots:
       '@babel/preset-modules': 0.2.0(@babel/core@8.0.1)
       babel-plugin-polyfill-corejs3: 1.0.0(@babel/core@8.0.1)
       core-js-compat: 3.50.0
-      semver: 7.8.3
+      semver: 7.8.5
 
   '@babel/preset-modules@0.2.0(@babel/core@8.0.1)':
     dependencies:
@@ -12515,7 +12510,7 @@ snapshots:
   '@commitlint/is-ignored@21.0.2':
     dependencies:
       '@commitlint/types': 21.0.1
-      semver: 7.8.3
+      semver: 7.8.5
 
   '@commitlint/lint@21.0.2':
     dependencies:
@@ -12587,7 +12582,7 @@ snapshots:
     dependencies:
       '@simple-libs/child-process-utils': 1.0.2
       '@simple-libs/stream-utils': 1.2.0
-      semver: 7.8.3
+      semver: 7.8.5
     optionalDependencies:
       conventional-commits-parser: 6.4.0
 
@@ -12595,7 +12590,7 @@ snapshots:
     dependencies:
       '@simple-libs/child-process-utils': 2.0.0
       '@simple-libs/stream-utils': 2.0.0
-      semver: 7.8.3
+      semver: 7.8.5
     optionalDependencies:
       conventional-commits-filter: 6.0.1
       conventional-commits-parser: 7.1.2
@@ -14033,7 +14028,7 @@ snapshots:
 
   '@npmcli/fs@5.0.0':
     dependencies:
-      semver: 7.8.3
+      semver: 7.8.5
 
   '@octokit/app@16.1.4':
     dependencies:
@@ -14648,7 +14643,7 @@ snapshots:
     dependencies:
       '@pnpm/crypto.hash': 1000.2.2
       '@pnpm/types': 1001.3.0
-      semver: 7.8.3
+      semver: 7.8.5
 
   '@pnpm/error@1000.1.0':
     dependencies:
@@ -15723,7 +15718,7 @@ snapshots:
       hpagent: 1.2.0
       micromatch: 4.0.8
       p-limit: 2.3.0
-      semver: 7.8.3
+      semver: 7.8.5
       strip-ansi: 6.0.1
       tar: 7.5.22
       tinylogic: 2.0.0
@@ -16231,7 +16226,7 @@ snapshots:
 
   builtins@5.1.0:
     dependencies:
-      semver: 7.8.3
+      semver: 7.8.5
 
   bundle-name@4.1.0:
     dependencies:
@@ -16815,7 +16810,7 @@ snapshots:
       postcss-modules-scope: 3.2.1(postcss@8.5.26)
       postcss-modules-values: 4.0.0(postcss@8.5.26)
       postcss-value-parser: 4.2.0
-      semver: 7.8.3
+      semver: 7.8.5
     optionalDependencies:
       webpack: 5.109.2(esbuild@0.28.2)(lightningcss@1.33.0)(postcss@8.5.25)(uglify-js@3.19.3)
 
@@ -17129,7 +17124,7 @@ snapshots:
       '@one-ini/wasm': 0.2.1
       commander: 14.0.3
       minimatch: 10.2.5
-      semver: 7.8.3
+      semver: 7.8.5
 
   ee-first@1.1.1: {}
 
@@ -17997,7 +17992,7 @@ snapshots:
       es6-error: 4.1.1
       matcher: 3.0.0
       roarr: 2.15.4
-      semver: 7.8.3
+      semver: 7.8.5
       serialize-error: 7.0.1
 
   global-directory@5.0.0:
@@ -18659,7 +18654,7 @@ snapshots:
       '@babel/parser': 7.29.8
       '@istanbuljs/schema': 0.1.6
       istanbul-lib-coverage: 3.2.2
-      semver: 7.8.3
+      semver: 7.8.5
     transitivePeerDependencies:
       - supports-color
 
@@ -19308,7 +19303,7 @@ snapshots:
 
   make-dir@4.0.0:
     dependencies:
-      semver: 7.8.3
+      semver: 7.8.5
 
   make-dir@5.1.0:
     optional: true
@@ -19942,7 +19937,7 @@ snapshots:
 
   node-abi@3.94.0:
     dependencies:
-      semver: 7.8.3
+      semver: 7.8.5
     optional: true
 
   node-addon-api@6.1.0:
@@ -19973,7 +19968,7 @@ snapshots:
       graceful-fs: 4.2.11
       nopt: 9.0.0
       proc-log: 6.1.0
-      semver: 7.8.3
+      semver: 7.8.5
       tar: 7.5.22
       tinyglobby: 0.2.17
       undici: 6.28.0
@@ -20007,7 +20002,7 @@ snapshots:
     dependencies:
       hosted-git-info: 4.1.0
       is-core-module: 2.16.2
-      semver: 7.8.3
+      semver: 7.8.5
       validate-npm-package-license: 3.0.4
 
   normalize-path@3.0.0: {}
@@ -20022,7 +20017,7 @@ snapshots:
     dependencies:
       hosted-git-info: 10.1.1
       proc-log: 7.0.0
-      semver: 7.8.3
+      semver: 7.8.5
       validate-npm-package-name: 8.0.0
 
   npm-run-all2@5.0.2:
@@ -20359,7 +20354,7 @@ snapshots:
       klaw-sync: 6.0.0
       minimist: 1.2.8
       open: 7.4.2
-      semver: 7.8.3
+      semver: 7.8.5
       slash: 2.0.0
       tmp: 0.2.7
       yaml: 2.9.0
@@ -20448,7 +20443,7 @@ snapshots:
       cosmiconfig: 9.0.2(typescript@6.0.2)
       jiti: 2.7.0
       postcss: 8.5.25
-      semver: 7.8.3
+      semver: 7.8.5
     optionalDependencies:
       webpack: 5.109.2(esbuild@0.28.2)(lightningcss@1.33.0)(postcss@8.5.25)(uglify-js@3.19.3)
     transitivePeerDependencies:
@@ -21293,8 +21288,6 @@ snapshots:
 
   semver@7.7.4: {}
 
-  semver@7.8.3: {}
-
   semver@7.8.5: {}
 
   send@0.16.2(supports-color@10.2.2):
@@ -21754,7 +21747,7 @@ snapshots:
       figures: 3.2.0
       find-up: 5.0.0
       git-semver-tags: 4.1.1
-      semver: 7.8.3
+      semver: 7.8.5
       stringify-package: 1.0.1
       yargs: 16.2.2
 
