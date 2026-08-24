@@ -52,7 +52,7 @@ jobs:
               ...payload,
               ref: context.payload.workflow_run.head_sha,
               auto_merge: false,
-              required_contexts: ['build', 'packages', 'docs']
+              required_contexts: ['build', 'docs']
             });
             await github.rest.repos.createDeploymentStatus({
               ...payload,
