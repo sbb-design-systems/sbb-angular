@@ -105,7 +105,7 @@
     "angular-server-side-configuration": "22.0.2",
     "angular-t9n": "22.0.0",
     "browser-sync": "3.0.2",
-    "chalk": "^5.4.1",
+    "chalk": "^6.0.0",
     "dgeni": "^0.4.14",
     "dgeni-packages": "^0.29.3",
     "esbuild": "0.28.2",
