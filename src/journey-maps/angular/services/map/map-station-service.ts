@@ -16,7 +16,8 @@ export const SBB_STATION_LAYER = 'rokas-station-hover';
 const MAP_ENDPOINT_LAYERS_V1 = ['rokas-walk-from', 'rokas-walk-to'];
 const MAP_ENDPOINT_LAYERS_V2 = ['rokas-route-transfer-ending', 'rokas-route-stopover-circle'];
 const MAP_SOURCE_LAYER_OSM_POINTS = 'osm_points';
-const FEATURE_SBB_ID_FIELD_NAME = 'sbb_id';
+const FEATURE_SBB_ID_FIELD_NAME = 'sbb_id'; // old name in journey-maps response (v1)
+const FEATURE_DIDOK_CODE_FIELD_NAME = 'didokCode'; // new name in journey-routes response (v2)
 
 @Injectable({ providedIn: 'root' })
 export class SbbMapStationService {
@@ -62,7 +63,9 @@ export class SbbMapStationService {
         layers: isV1Style(map) ? MAP_ENDPOINT_LAYERS_V1 : MAP_ENDPOINT_LAYERS_V2,
       })
       .filter((f) => {
-        return FEATURE_SBB_ID_FIELD_NAME in f.properties;
+        return (
+          FEATURE_SBB_ID_FIELD_NAME in f.properties || FEATURE_DIDOK_CODE_FIELD_NAME in f.properties
+        );
       })
       .map(this._mapToFeature);
 
@@ -71,23 +74,26 @@ export class SbbMapStationService {
     }
 
     return endpoints
-      .map(
-        (p) =>
-          map
-            .querySourceFeatures('base', {
-              sourceLayer: MAP_SOURCE_LAYER_OSM_POINTS,
-              filter: [
-                'in',
-                FEATURE_SBB_ID_FIELD_NAME,
-                String(p.properties[FEATURE_SBB_ID_FIELD_NAME]),
-              ],
-            })
-            .map((sourceFeature) => ({
-              ...this._mapToFeature(sourceFeature),
-              geometry: p.geometry, // get endpoint location not the tile source
-            }))
-            .pop(), // There might be multiple stations in the tile source
-      )
+      .map((p) => {
+        // Get the ID value from either sbb_id or didokCode field
+        const idValue =
+          p.properties[FEATURE_SBB_ID_FIELD_NAME] || p.properties[FEATURE_DIDOK_CODE_FIELD_NAME];
+
+        return map
+          .querySourceFeatures('base', {
+            sourceLayer: MAP_SOURCE_LAYER_OSM_POINTS,
+            filter: [
+              'any',
+              ['in', FEATURE_SBB_ID_FIELD_NAME, String(idValue)],
+              ['in', FEATURE_DIDOK_CODE_FIELD_NAME, String(idValue)],
+            ],
+          })
+          .map((sourceFeature) => ({
+            ...this._mapToFeature(sourceFeature),
+            geometry: p.geometry, // get endpoint location not the tile source
+          }))
+          .pop(); // There might be multiple stations in the tile source
+      })
       .filter((s) => s!!) as Feature[];
   }
 

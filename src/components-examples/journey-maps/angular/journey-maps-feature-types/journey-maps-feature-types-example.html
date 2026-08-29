@@ -27,7 +27,9 @@
   </ng-template>
   <ng-template #stationTemplate let-station>
     <div class="station-title">{{ station.properties.name }}</div>
-    <div class="station-subtitle">{{ station.properties.sbb_id }}</div>
+    <div class="station-subtitle">
+      {{ station.properties.sbb_id || station.properties.didokCode }}
+    </div>
   </ng-template>
   <ng-template #routeTemplate let-route>
     <div class="route-title">{{ route.properties.routeId }}</div>
