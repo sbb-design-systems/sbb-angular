@@ -36,7 +36,10 @@ export class SbbMapRailNetworkLayerService {
       return true;
     }
     const metadata = layer.metadata as Record<string, unknown> | undefined;
-    return metadata?.['general.class'] === RAIL_NETWORK_LAYER_CONST.metadataClass;
+    return (
+      metadata?.['general.class'] === RAIL_NETWORK_LAYER_CONST.metadataClass &&
+      metadata?.['general.mot'] === 'rail'
+    );
   }
 
   private _updateLayerOptions(
