@@ -1223,7 +1223,12 @@ export class SbbJourneyMaps implements OnInit, AfterViewInit, OnDestroy, OnChang
       const show3D = this._isLevelFilterEnabled();
       this._setVisibilityByFloorMetadata(this._map, '2D', show3D ? 'none' : 'visible');
       this._setVisibilityByFloorMetadata(this._map, 'level', show3D ? 'visible' : 'none');
-      this._setLayerVisibilityIfExists(this._map, 'level_greyout', show3D ? 'visible' : 'none');
+      const showGreyout = show3D && this._levelSwitchService.selectedLevel !== 0;
+      this._setLayerVisibilityIfExists(
+        this._map,
+        'level_greyout',
+        showGreyout ? 'visible' : 'none',
+      );
       this._mapPoiService.updatePoiVisibility(this._map, show3D, this.poiOptions);
     }
   }
