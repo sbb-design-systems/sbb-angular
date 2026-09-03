@@ -15,7 +15,7 @@ import {
 import { Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
 
-import { RAIL_COLORS, STYLE_IDS } from '../shared/config';
+import { RAIL_COLORS } from '../shared/config';
 import { extrusionsBern } from '../shared/extrusion/bern';
 
 declare global {
@@ -63,7 +63,6 @@ export class JourneyMapsStyleOptionsExample implements OnInit {
 
   ngOnInit() {
     this.buildForm();
-    this.subscribeStyleVersion();
     this.subscribeCustomExtrusion();
   }
 
@@ -74,26 +73,10 @@ export class JourneyMapsStyleOptionsExample implements OnInit {
         railNetwork: this.fb.group({
           railNetworkColor: [],
         }),
-        ...STYLE_IDS.v2,
-      }),
-      styleVersion: this.fb.group({
-        versionNumber: ['v2'],
       }),
       defaultExtrusions: [true],
       customExtrusions: [true],
     });
-  }
-
-  private subscribeStyleVersion() {
-    this.form
-      .get('styleVersion')
-      ?.valueChanges.pipe(takeUntil(this._destroyed))
-      .subscribe(({ versionNumber }: { versionNumber: 'v2' | 'v3' }) => {
-        this.form.get('styleOptions')?.patchValue({
-          ...this.form.get('styleOptions')?.value,
-          ...STYLE_IDS[versionNumber],
-        });
-      });
   }
 
   private subscribeCustomExtrusion() {
