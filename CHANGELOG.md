@@ -2,6 +2,23 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [22.1.0](https://github.com/sbb-design-systems/sbb-angular/compare/22.0.2...22.1.0) (2026-09-03)
+
+
+### Features
+
+* **journey-maps:** add support for shortbread styles ([#2845](https://github.com/sbb-design-systems/sbb-angular/issues/2845)) ([26ac2c6](https://github.com/sbb-design-systems/sbb-angular/commit/26ac2c6d3f1f9be31d9599fadb7355e615d15f58))
+
+
+### Bug Fixes
+
+* **journey-maps:** remove unnecessary categories ([392c001](https://github.com/sbb-design-systems/sbb-angular/commit/392c001f2c8be0956c78d816ef07d3f1b561a96b))
+
+
+### Documentation
+
+* **journey-maps:** explain how to set the tileserver api-key ([#2846](https://github.com/sbb-design-systems/sbb-angular/issues/2846)) ([13b6741](https://github.com/sbb-design-systems/sbb-angular/commit/13b67418fdab527ed0e2925e3c02f0911db24e0b))
+
 ### [22.0.2](https://github.com/sbb-design-systems/sbb-angular/compare/22.0.1...22.0.2) (2026-07-02)
 
 
