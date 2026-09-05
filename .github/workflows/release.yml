@@ -20,7 +20,7 @@ jobs:
     - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7
     - name: "Bazel: Copy .bazelrc to user home"
       run: cp ./.github/.bazelrc ~/
-    - uses: pnpm/action-setup@v4
+    - uses: pnpm/action-setup@v6
     - uses: actions/setup-node@v7
       with:
         cache: 'pnpm'
@@ -76,7 +76,7 @@ jobs:
     - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7
     - name: "Bazel: Copy .bazelrc to user home"
       run: cp ./.github/.bazelrc ~/
-    - uses: pnpm/action-setup@v4
+    - uses: pnpm/action-setup@v6
     - uses: actions/setup-node@v7
       with:
         cache: 'pnpm'
