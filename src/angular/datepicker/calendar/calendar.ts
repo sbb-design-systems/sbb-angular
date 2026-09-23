@@ -237,8 +237,7 @@ export class SbbCalendar<D> implements AfterContentInit, AfterViewChecked, OnDes
 
   /** Function or observable of function that can be used to add custom CSS classes to dates. */
   @Input() dateClass!:
-    | SbbCalendarCellClassFunction<D>
-    | Observable<SbbCalendarCellClassFunction<D>>;
+    SbbCalendarCellClassFunction<D> | Observable<SbbCalendarCellClassFunction<D>>;
 
   /** Observable of `dateClass` function. */
   _dateClassObservable!: Observable<SbbCalendarCellClassFunction<D>>;
