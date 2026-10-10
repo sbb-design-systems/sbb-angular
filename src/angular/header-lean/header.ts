@@ -55,13 +55,7 @@ import { SBB_HEADER } from './header-token';
 export type SbbHeaderMenuToggleResult = 'open' | 'close';
 
 export type SbbHeaderCollapseBreakpoint =
-  | 'mobile'
-  | 'tablet'
-  | 'desktop'
-  | 'desktopLarge'
-  | 'desktop2k'
-  | 'desktop4k'
-  | 'desktop5k';
+  'mobile' | 'tablet' | 'desktop' | 'desktopLarge' | 'desktop2k' | 'desktop4k' | 'desktop5k';
 
 const breakpointMapping = {
   mobile: [Breakpoints.Mobile],
