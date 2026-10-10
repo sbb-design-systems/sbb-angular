@@ -67,12 +67,7 @@ export class SbbGeolocateControl extends Evented implements IControl {
   _geolocationWatchID?: number;
   _timeoutId?: ReturnType<typeof setTimeout>;
   _watchState!:
-    | 'OFF'
-    | 'ACTIVE_LOCK'
-    | 'WAITING_ACTIVE'
-    | 'ACTIVE_ERROR'
-    | 'BACKGROUND'
-    | 'BACKGROUND_ERROR';
+    'OFF' | 'ACTIVE_LOCK' | 'WAITING_ACTIVE' | 'ACTIVE_ERROR' | 'BACKGROUND' | 'BACKGROUND_ERROR';
   _lastKnownPosition: any;
   _userLocationDotMarker!: Marker;
   _accuracyCircleMarker!: Marker;
