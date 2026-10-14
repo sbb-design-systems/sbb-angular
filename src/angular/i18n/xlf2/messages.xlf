@@ -121,7 +121,7 @@
     </unit>
     <unit id="sbbHeaderOpenMenu">
       <notes>
-        <note category="location">../../header-lean/header.ts:128</note>
+        <note category="location">../../header-lean/header.ts:122</note>
         <note category="description">Button label to open the sidebar of the header</note>
       </notes>
       <segment>
@@ -130,7 +130,7 @@
     </unit>
     <unit id="sbbHeaderCloseMenu">
       <notes>
-        <note category="location">../../header-lean/header.ts:130</note>
+        <note category="location">../../header-lean/header.ts:124</note>
         <note category="description">Button label to close the sidebar of the header</note>
       </notes>
       <segment>

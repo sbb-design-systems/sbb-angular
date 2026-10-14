@@ -1046,8 +1046,7 @@ describe('SbbChipList', () => {
     component: Type<T>,
     providers: Provider[] = [],
     animationsModule:
-      | Type<NoopAnimationsModule>
-      | Type<BrowserAnimationsModule> = NoopAnimationsModule,
+      Type<NoopAnimationsModule> | Type<BrowserAnimationsModule> = NoopAnimationsModule,
   ): ComponentFixture<T> {
     TestBed.configureTestingModule({
       imports: [

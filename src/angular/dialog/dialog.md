@@ -41,9 +41,7 @@ in which they are contained. When closing, an optional result value can be provi
 value is forwarded as the result of the `afterClosed` Observable.
 
 ```ts
-@Component({
-  /* ... */
-})
+@Component({/* ... */})
 export class YourDialog {
   constructor(public dialogRef: SbbDialogRef<YourDialog>) {}
 
