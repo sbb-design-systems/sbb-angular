@@ -114,7 +114,7 @@
         <source>Open Menu</source>
         <context-group purpose="location">
           <context context-type="sourcefile">../../header-lean/header.ts</context>
-          <context context-type="linenumber">128</context>
+          <context context-type="linenumber">122</context>
         </context-group>
         <note priority="1" from="description">Button label to open the sidebar of the header</note>
       </trans-unit>
@@ -122,7 +122,7 @@
         <source>Close Menu</source>
         <context-group purpose="location">
           <context context-type="sourcefile">../../header-lean/header.ts</context>
-          <context context-type="linenumber">130</context>
+          <context context-type="linenumber">124</context>
         </context-group>
         <note priority="1" from="description">Button label to close the sidebar of the header</note>
       </trans-unit>
