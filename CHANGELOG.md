@@ -2,6 +2,10 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [22.1.1](https://github.com/sbb-design-systems/sbb-angular/compare/22.1.0...22.1.1) (2026-10-14)
+
+* add security headers to nginx configuration ([#2873](https://github.com/sbb-design-systems/sbb-angular/issues/2873))
+
 ## [22.1.0](https://github.com/sbb-design-systems/sbb-angular/compare/22.0.2...22.1.0) (2026-09-03)
 
 
