@@ -388,8 +388,8 @@ importers:
         specifier: 1.16.0
         version: 1.16.0(tslint@6.1.3(typescript@6.0.2))(typescript@6.0.2)
       yargs:
-        specifier: 18.1.0
-        version: 18.1.0
+        specifier: 18.2.0
+        version: 18.2.0
 
   docs:
     dependencies:
@@ -11239,7 +11239,7 @@ snapshots:
       reflect-metadata: 0.2.2
       semver: 7.8.5
       tslib: 2.7.0
-      yargs: 18.1.0
+      yargs: 18.2.0
     optionalDependencies:
       typescript: 6.0.2
 
@@ -11308,7 +11308,7 @@ snapshots:
       '@babel/core': 8.0.1
       '@nginfra/angular-linking': 1.0.11(@angular/compiler-cli@22.1.3(@angular/compiler@22.1.3)(typescript@6.0.2))
       tinyglobby: 0.2.17
-      yargs: 18.1.0
+      yargs: 18.2.0
 
   '@angular/ng-dev@https://codeload.github.com/angular/dev-infra-private-ng-dev-builds/tar.gz/940c0beef0de4cb128e90962d47ff80e352a1cd8(@modelcontextprotocol/sdk@1.30.0(supports-color@11.0.0))':
     dependencies:
@@ -12871,7 +12871,7 @@ snapshots:
       '@commitlint/read': 21.2.3(conventional-commits-filter@6.0.1)(conventional-commits-parser@7.1.2)
       '@commitlint/types': 21.2.3
       tinyexec: 1.3.0
-      yargs: 18.1.0
+      yargs: 18.2.0
     transitivePeerDependencies:
       - '@types/node'
       - conventional-commits-filter
