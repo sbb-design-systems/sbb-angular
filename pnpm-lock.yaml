@@ -131,7 +131,7 @@ importers:
     devDependencies:
       '@angular/cli':
         specifier: 'catalog:'
-        version: 22.2.3(@types/node@22.20.5)
+        version: 22.2.3(@types/node@22.20.5)(chokidar@5.0.0)
       '@angular/localize':
         specifier: 'catalog:'
         version: 22.2.3(@angular/compiler-cli@22.2.3(@angular/compiler@22.2.3)(typescript@6.0.2))(@angular/compiler@22.2.3)
@@ -301,8 +301,8 @@ importers:
         specifier: 17.6.0
         version: 17.6.0
       magic-string:
-        specifier: 0.30.21
-        version: 0.30.21
+        specifier: 1.4.3
+        version: 1.4.3
       marked:
         specifier: ^18.0.0
         version: 18.0.10
@@ -7744,6 +7744,9 @@ packages:
   magic-string@1.4.1:
     resolution: {integrity: sha512-8lyCu36ErXR0J9uaGKlKQoiLZKmtI63YGLE8G2o9jyRPdr4X47LusSOwgOJOzcVtp81fTAAjxR7BwKz682Jhow==}
 
+  magic-string@1.4.3:
+    resolution: {integrity: sha512-z12OxmaPGE0F4xlpGdjuAUckipLpQlTAuAmyGhNoD7ODpYUzvDfvtxUbjM/jwznyP178oju/KDdyi220wNJ0RQ==}
+
   make-dir@4.0.0:
     resolution: {integrity: sha512-hXdUTZYIVOt1Ex//jAQi+wTZZpUpwBj/0QsOzqegb3rGMMeJiSEu5xLHnYfBrRV4RH2+OCSOO95Is/7x1WJ4bw==}
     engines: {node: '>=10'}
@@ -11011,7 +11014,7 @@ snapshots:
       - '@types/node'
       - chokidar
 
-  '@angular/cli@22.2.3(@types/node@22.20.5)':
+  '@angular/cli@22.2.3(@types/node@22.20.5)(chokidar@5.0.0)':
     dependencies:
       '@angular-devkit/architect': 0.2202.3(chokidar@5.0.0)
       '@angular-devkit/core': 22.2.3(chokidar@5.0.0)
@@ -19374,6 +19377,10 @@ snapshots:
       '@jridgewell/sourcemap-codec': 1.5.5
 
   magic-string@1.4.1:
+    dependencies:
+      '@jridgewell/sourcemap-codec': 1.6.0
+
+  magic-string@1.4.3:
     dependencies:
       '@jridgewell/sourcemap-codec': 1.6.0
 
