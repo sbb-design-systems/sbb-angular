@@ -32,7 +32,7 @@ catalog:
 
 overrides:
   typescript: 6.0.2
-  '@nginfra/angular-linking>@babel/core': 8.0.1
+  '@nginfra/angular-linking>@babel/core': 8.0.7
 
 packageExtensions:
   dgeni-packages:
