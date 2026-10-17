@@ -337,8 +337,8 @@ importers:
         specifier: 6.5.1
         version: 6.5.1(rollup@4.62.4)(typescript@6.0.2)
       rollup-plugin-sourcemaps2:
-        specifier: 0.5.8
-        version: 0.5.8(@types/node@22.20.5)(rollup@4.62.4)
+        specifier: 0.5.9
+        version: 0.5.9(@types/node@22.20.5)(rollup@4.62.4)
       rxjs-tslint-rules:
         specifier: 4.34.8
         version: 4.34.8(supports-color@11.0.0)(tslint@6.1.3(typescript@6.0.2))(typescript@6.0.2)
@@ -9344,8 +9344,8 @@ packages:
       '@typescript/typescript6':
         optional: true
 
-  rollup-plugin-sourcemaps2@0.5.8:
-    resolution: {integrity: sha512-c5BfiVbKAmaz+RoEhFF44Tg/X2QoLxEB8F7wS/eNWDJF/NKxi0SF7srN3Dg0RUnIcYLyCOwscket5Mr3BImMbg==}
+  rollup-plugin-sourcemaps2@0.5.9:
+    resolution: {integrity: sha512-0Dxlq9lg/JeAjK4Bula9XfZcFgZ4a6HXUTLXCTau6J7Ce0GYEMwE/oUMvGaccixk0JfKFsIXtCxS0RQrRJs4sQ==}
     engines: {node: '>=22.13.0'}
     peerDependencies:
       '@types/node': '>=18.0.0'
@@ -21356,7 +21356,7 @@ snapshots:
     optionalDependencies:
       '@babel/code-frame': 8.0.0
 
-  rollup-plugin-sourcemaps2@0.5.8(@types/node@22.20.5)(rollup@4.62.4):
+  rollup-plugin-sourcemaps2@0.5.9(@types/node@22.20.5)(rollup@4.62.4):
     dependencies:
       '@rollup/pluginutils': 5.4.0(rollup@4.62.4)
       rollup: 4.62.4
