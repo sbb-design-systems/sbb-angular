@@ -152,7 +152,7 @@
     "stylelint": "17.16.0",
     "stylelint-config-recommended-scss": "17.0.1",
     "stylelint-scss": "7.3.0",
-    "terser": "5.50.0",
+    "terser": "5.51.2",
     "ts-node": "10.9.2",
     "tsconfig-paths": "4.2.0",
     "tslint": "6.1.3",
