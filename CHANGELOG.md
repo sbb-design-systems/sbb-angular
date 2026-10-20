@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [22.2.0](https://github.com/sbb-design-systems/sbb-angular/compare/22.1.1...22.2.0) (2026-10-20)
+
+
+### Features
+
+* update font URLs to version 1.9 ([#2880](https://github.com/sbb-design-systems/sbb-angular/issues/2880)) ([f8cd3fc](https://github.com/sbb-design-systems/sbb-angular/commit/f8cd3fc2bc58e19931a274c7896b94a73d9668b4))
+
 ### [22.1.1](https://github.com/sbb-design-systems/sbb-angular/compare/22.1.0...22.1.1) (2026-10-14)
 
 * add security headers to nginx configuration ([#2873](https://github.com/sbb-design-systems/sbb-angular/issues/2873))
