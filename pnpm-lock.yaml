@@ -64,8 +64,8 @@ catalogs:
       specifier: 22.2.3
       version: 22.2.3
     rxjs:
-      specifier: 7.8.1
-      version: 7.8.1
+      specifier: 7.8.2
+      version: 7.8.2
 
 overrides:
   typescript: 6.0.2
@@ -85,13 +85,13 @@ importers:
         version: 22.2.3(chokidar@5.0.0)
       '@angular/animations':
         specifier: 'catalog:'
-        version: 22.2.3(@angular/common@22.2.3(@angular/compiler-cli@22.2.3(@angular/compiler@22.2.3)(typescript@6.0.2))(@angular/core@22.2.3(@angular/compiler@22.2.3)(rxjs@7.8.1)(zone.js@0.16.2))(rxjs@7.8.1))(@angular/compiler-cli@22.2.3(@angular/compiler@22.2.3)(typescript@6.0.2))(@angular/core@22.2.3(@angular/compiler@22.2.3)(rxjs@7.8.1)(zone.js@0.16.2))
+        version: 22.2.3(@angular/common@22.2.3(@angular/compiler-cli@22.2.3(@angular/compiler@22.2.3)(typescript@6.0.2))(@angular/core@22.2.3(@angular/compiler@22.2.3)(rxjs@7.8.2)(zone.js@0.16.2))(rxjs@7.8.2))(@angular/compiler-cli@22.2.3(@angular/compiler@22.2.3)(typescript@6.0.2))(@angular/core@22.2.3(@angular/compiler@22.2.3)(rxjs@7.8.2)(zone.js@0.16.2))
       '@angular/cdk':
         specifier: 'catalog:'
-        version: 22.2.3(2295441c74a2f62a02653974b12cbd53)
+        version: 22.2.3(850604425c8038516f6b849a363d7066)
       '@angular/common':
         specifier: 'catalog:'
-        version: 22.2.3(@angular/compiler-cli@22.2.3(@angular/compiler@22.2.3)(typescript@6.0.2))(@angular/core@22.2.3(@angular/compiler@22.2.3)(rxjs@7.8.1)(zone.js@0.16.2))(rxjs@7.8.1)
+        version: 22.2.3(@angular/compiler-cli@22.2.3(@angular/compiler@22.2.3)(typescript@6.0.2))(@angular/core@22.2.3(@angular/compiler@22.2.3)(rxjs@7.8.2)(zone.js@0.16.2))(rxjs@7.8.2)
       '@angular/compiler':
         specifier: 'catalog:'
         version: 22.2.3
@@ -100,16 +100,16 @@ importers:
         version: 22.2.3(@angular/compiler@22.2.3)(typescript@6.0.2)
       '@angular/core':
         specifier: 'catalog:'
-        version: 22.2.3(@angular/compiler@22.2.3)(rxjs@7.8.1)(zone.js@0.16.2)
+        version: 22.2.3(@angular/compiler@22.2.3)(rxjs@7.8.2)(zone.js@0.16.2)
       '@angular/elements':
         specifier: 'catalog:'
-        version: 22.2.3(@angular/core@22.2.3(@angular/compiler@22.2.3)(rxjs@7.8.1)(zone.js@0.16.2))(rxjs@7.8.1)
+        version: 22.2.3(@angular/core@22.2.3(@angular/compiler@22.2.3)(rxjs@7.8.2)(zone.js@0.16.2))(rxjs@7.8.2)
       '@angular/forms':
         specifier: 'catalog:'
-        version: 22.2.3(72c58aabaa8b7e8bc15941cd6288dd55)
+        version: 22.2.3(1a32cbd26e1f8b21c1f8a8fa3b2ff4f7)
       '@angular/platform-browser':
         specifier: 'catalog:'
-        version: 22.2.3(@angular/animations@22.2.3(@angular/common@22.2.3(@angular/compiler-cli@22.2.3(@angular/compiler@22.2.3)(typescript@6.0.2))(@angular/core@22.2.3(@angular/compiler@22.2.3)(rxjs@7.8.1)(zone.js@0.16.2))(rxjs@7.8.1))(@angular/compiler-cli@22.2.3(@angular/compiler@22.2.3)(typescript@6.0.2))(@angular/core@22.2.3(@angular/compiler@22.2.3)(rxjs@7.8.1)(zone.js@0.16.2)))(@angular/common@22.2.3(@angular/compiler-cli@22.2.3(@angular/compiler@22.2.3)(typescript@6.0.2))(@angular/core@22.2.3(@angular/compiler@22.2.3)(rxjs@7.8.1)(zone.js@0.16.2))(rxjs@7.8.1))(@angular/compiler-cli@22.2.3(@angular/compiler@22.2.3)(typescript@6.0.2))(@angular/core@22.2.3(@angular/compiler@22.2.3)(rxjs@7.8.1)(zone.js@0.16.2))
+        version: 22.2.3(@angular/animations@22.2.3(@angular/common@22.2.3(@angular/compiler-cli@22.2.3(@angular/compiler@22.2.3)(typescript@6.0.2))(@angular/core@22.2.3(@angular/compiler@22.2.3)(rxjs@7.8.2)(zone.js@0.16.2))(rxjs@7.8.2))(@angular/compiler-cli@22.2.3(@angular/compiler@22.2.3)(typescript@6.0.2))(@angular/core@22.2.3(@angular/compiler@22.2.3)(rxjs@7.8.2)(zone.js@0.16.2)))(@angular/common@22.2.3(@angular/compiler-cli@22.2.3(@angular/compiler@22.2.3)(typescript@6.0.2))(@angular/core@22.2.3(@angular/compiler@22.2.3)(rxjs@7.8.2)(zone.js@0.16.2))(rxjs@7.8.2))(@angular/compiler-cli@22.2.3(@angular/compiler@22.2.3)(typescript@6.0.2))(@angular/core@22.2.3(@angular/compiler@22.2.3)(rxjs@7.8.2)(zone.js@0.16.2))
       '@stackblitz/sdk':
         specifier: 1.11.1
         version: 1.11.1
@@ -118,7 +118,7 @@ importers:
         version: 4.7.1
       rxjs:
         specifier: 'catalog:'
-        version: 7.8.1
+        version: 7.8.2
       tslib:
         specifier: 2.8.1
         version: 2.8.1
@@ -140,10 +140,10 @@ importers:
         version: https://codeload.github.com/angular/dev-infra-private-ng-dev-builds/tar.gz/940c0beef0de4cb128e90962d47ff80e352a1cd8
       '@angular/platform-server':
         specifier: 'catalog:'
-        version: 22.2.3(fb616aeebcc0b45ad29aec6e7a4fd2f8)
+        version: 22.2.3(326c4fc8050f9d7ba1c9e1bb5102037d)
       '@angular/router':
         specifier: 'catalog:'
-        version: 22.2.3(72c58aabaa8b7e8bc15941cd6288dd55)
+        version: 22.2.3(1a32cbd26e1f8b21c1f8a8fa3b2ff4f7)
       '@babel/core':
         specifier: 8.0.7
         version: 8.0.7
@@ -221,7 +221,7 @@ importers:
         version: 17.0.13
       angular-server-side-configuration:
         specifier: 22.0.2
-        version: 22.0.2(@angular/core@22.2.3(@angular/compiler@22.2.3)(rxjs@7.8.1)(zone.js@0.16.2))
+        version: 22.0.2(@angular/core@22.2.3(@angular/compiler@22.2.3)(rxjs@7.8.2)(zone.js@0.16.2))
       angular-t9n:
         specifier: 22.0.0
         version: 22.0.0(bufferutil@4.1.0)(express@5.2.1(supports-color@11.0.0))(supports-color@11.0.0)(utf-8-validate@6.0.6)
@@ -395,37 +395,37 @@ importers:
     dependencies:
       '@angular/animations':
         specifier: 'catalog:'
-        version: 22.2.3(@angular/common@22.2.3(@angular/compiler-cli@22.2.3(@angular/compiler@22.2.3)(typescript@6.0.2))(@angular/core@22.2.3(@angular/compiler@22.2.3)(rxjs@7.8.1)(zone.js@0.15.1))(rxjs@7.8.1))(@angular/compiler-cli@22.2.3(@angular/compiler@22.2.3)(typescript@6.0.2))(@angular/core@22.2.3(@angular/compiler@22.2.3)(rxjs@7.8.1)(zone.js@0.15.1))
+        version: 22.2.3(@angular/common@22.2.3(@angular/compiler-cli@22.2.3(@angular/compiler@22.2.3)(typescript@6.0.2))(@angular/core@22.2.3(@angular/compiler@22.2.3)(rxjs@7.8.2)(zone.js@0.15.1))(rxjs@7.8.2))(@angular/compiler-cli@22.2.3(@angular/compiler@22.2.3)(typescript@6.0.2))(@angular/core@22.2.3(@angular/compiler@22.2.3)(rxjs@7.8.2)(zone.js@0.15.1))
       '@angular/cdk':
         specifier: 'catalog:'
-        version: 22.2.3(d723fac0f61277d9457bf81a4366524d)
+        version: 22.2.3(195d6f7a339fe578ff2ccb2dc4db6d10)
       '@angular/common':
         specifier: 'catalog:'
-        version: 22.2.3(@angular/compiler-cli@22.2.3(@angular/compiler@22.2.3)(typescript@6.0.2))(@angular/core@22.2.3(@angular/compiler@22.2.3)(rxjs@7.8.1)(zone.js@0.15.1))(rxjs@7.8.1)
+        version: 22.2.3(@angular/compiler-cli@22.2.3(@angular/compiler@22.2.3)(typescript@6.0.2))(@angular/core@22.2.3(@angular/compiler@22.2.3)(rxjs@7.8.2)(zone.js@0.15.1))(rxjs@7.8.2)
       '@angular/compiler':
         specifier: 'catalog:'
         version: 22.2.3
       '@angular/core':
         specifier: 'catalog:'
-        version: 22.2.3(@angular/compiler@22.2.3)(rxjs@7.8.1)(zone.js@0.15.1)
+        version: 22.2.3(@angular/compiler@22.2.3)(rxjs@7.8.2)(zone.js@0.15.1)
       '@angular/forms':
         specifier: 'catalog:'
-        version: 22.2.3(f939d374d4960147216d45649acd7a8f)
+        version: 22.2.3(d82f35ee403aa10d5107805f78a5bfdd)
       '@angular/localize':
         specifier: 'catalog:'
         version: 22.2.3(@angular/compiler-cli@22.2.3(@angular/compiler@22.2.3)(typescript@6.0.2))(@angular/compiler@22.2.3)
       '@angular/platform-browser':
         specifier: 'catalog:'
-        version: 22.2.3(@angular/animations@22.2.3(@angular/common@22.2.3(@angular/compiler-cli@22.2.3(@angular/compiler@22.2.3)(typescript@6.0.2))(@angular/core@22.2.3(@angular/compiler@22.2.3)(rxjs@7.8.1)(zone.js@0.15.1))(rxjs@7.8.1))(@angular/compiler-cli@22.2.3(@angular/compiler@22.2.3)(typescript@6.0.2))(@angular/core@22.2.3(@angular/compiler@22.2.3)(rxjs@7.8.1)(zone.js@0.15.1)))(@angular/common@22.2.3(@angular/compiler-cli@22.2.3(@angular/compiler@22.2.3)(typescript@6.0.2))(@angular/core@22.2.3(@angular/compiler@22.2.3)(rxjs@7.8.1)(zone.js@0.15.1))(rxjs@7.8.1))(@angular/compiler-cli@22.2.3(@angular/compiler@22.2.3)(typescript@6.0.2))(@angular/core@22.2.3(@angular/compiler@22.2.3)(rxjs@7.8.1)(zone.js@0.15.1))
+        version: 22.2.3(@angular/animations@22.2.3(@angular/common@22.2.3(@angular/compiler-cli@22.2.3(@angular/compiler@22.2.3)(typescript@6.0.2))(@angular/core@22.2.3(@angular/compiler@22.2.3)(rxjs@7.8.2)(zone.js@0.15.1))(rxjs@7.8.2))(@angular/compiler-cli@22.2.3(@angular/compiler@22.2.3)(typescript@6.0.2))(@angular/core@22.2.3(@angular/compiler@22.2.3)(rxjs@7.8.2)(zone.js@0.15.1)))(@angular/common@22.2.3(@angular/compiler-cli@22.2.3(@angular/compiler@22.2.3)(typescript@6.0.2))(@angular/core@22.2.3(@angular/compiler@22.2.3)(rxjs@7.8.2)(zone.js@0.15.1))(rxjs@7.8.2))(@angular/compiler-cli@22.2.3(@angular/compiler@22.2.3)(typescript@6.0.2))(@angular/core@22.2.3(@angular/compiler@22.2.3)(rxjs@7.8.2)(zone.js@0.15.1))
       '@angular/platform-browser-dynamic':
         specifier: 'catalog:'
-        version: 22.2.3(59b10f074b888ddbc3ed8d2868a1029b)
+        version: 22.2.3(d131738ca409eae17335df562532b7a8)
       '@angular/router':
         specifier: 'catalog:'
-        version: 22.2.3(f939d374d4960147216d45649acd7a8f)
+        version: 22.2.3(d82f35ee403aa10d5107805f78a5bfdd)
       '@angular/ssr':
         specifier: 'catalog:'
-        version: 22.2.3(@angular/common@22.2.3(@angular/compiler-cli@22.2.3(@angular/compiler@22.2.3)(typescript@6.0.2))(@angular/core@22.2.3(@angular/compiler@22.2.3)(rxjs@7.8.1)(zone.js@0.15.1))(rxjs@7.8.1))(@angular/core@22.2.3(@angular/compiler@22.2.3)(rxjs@7.8.1)(zone.js@0.15.1))(@angular/platform-server@22.2.3(259458177252219946a165d7b52e41be))(@angular/router@22.2.3(f939d374d4960147216d45649acd7a8f))
+        version: 22.2.3(@angular/common@22.2.3(@angular/compiler-cli@22.2.3(@angular/compiler@22.2.3)(typescript@6.0.2))(@angular/core@22.2.3(@angular/compiler@22.2.3)(rxjs@7.8.2)(zone.js@0.15.1))(rxjs@7.8.2))(@angular/core@22.2.3(@angular/compiler@22.2.3)(rxjs@7.8.2)(zone.js@0.15.1))(@angular/platform-server@22.2.3(328855243b419e4b1145b4dca2aced27))(@angular/router@22.2.3(d82f35ee403aa10d5107805f78a5bfdd))
       '@sbb-esta/angular':
         specifier: workspace:*
         version: link:../src/angular
@@ -455,7 +455,7 @@ importers:
         version: 6.0.13
       rxjs:
         specifier: 'catalog:'
-        version: 7.8.1
+        version: 7.8.2
       tslib:
         specifier: ^2.3.0
         version: 2.7.0
@@ -465,7 +465,7 @@ importers:
     devDependencies:
       '@angular-devkit/build-angular':
         specifier: 'catalog:'
-        version: 22.2.3(7d2ddfbcc147edc7d94365c5b96564ca)
+        version: 22.2.3(ff9e6a04177324b25204a685255847ee)
       '@angular/cli':
         specifier: 'catalog:'
         version: 22.2.3(@types/node@22.20.1)(chokidar@5.0.0)
@@ -561,16 +561,16 @@ importers:
     devDependencies:
       '@angular-devkit/build-angular':
         specifier: 'catalog:'
-        version: 22.2.3(7d2ddfbcc147edc7d94365c5b96564ca)
+        version: 22.2.3(ff9e6a04177324b25204a685255847ee)
       '@angular/animations':
         specifier: 'catalog:'
-        version: 22.2.3(@angular/common@22.2.3(@angular/compiler-cli@22.2.3(@angular/compiler@22.2.3)(typescript@6.0.2))(@angular/core@22.2.3(@angular/compiler@22.2.3)(rxjs@7.8.1)(zone.js@0.15.1))(rxjs@7.8.1))(@angular/compiler-cli@22.2.3(@angular/compiler@22.2.3)(typescript@6.0.2))(@angular/core@22.2.3(@angular/compiler@22.2.3)(rxjs@7.8.1)(zone.js@0.15.1))
+        version: 22.2.3(@angular/common@22.2.3(@angular/compiler-cli@22.2.3(@angular/compiler@22.2.3)(typescript@6.0.2))(@angular/core@22.2.3(@angular/compiler@22.2.3)(rxjs@7.8.2)(zone.js@0.15.1))(rxjs@7.8.2))(@angular/compiler-cli@22.2.3(@angular/compiler@22.2.3)(typescript@6.0.2))(@angular/core@22.2.3(@angular/compiler@22.2.3)(rxjs@7.8.2)(zone.js@0.15.1))
       '@angular/cli':
         specifier: 'catalog:'
         version: 22.2.3(@types/node@22.20.1)(chokidar@5.0.0)
       '@angular/common':
         specifier: 'catalog:'
-        version: 22.2.3(@angular/compiler-cli@22.2.3(@angular/compiler@22.2.3)(typescript@6.0.2))(@angular/core@22.2.3(@angular/compiler@22.2.3)(rxjs@7.8.1)(zone.js@0.15.1))(rxjs@7.8.1)
+        version: 22.2.3(@angular/compiler-cli@22.2.3(@angular/compiler@22.2.3)(typescript@6.0.2))(@angular/core@22.2.3(@angular/compiler@22.2.3)(rxjs@7.8.2)(zone.js@0.15.1))(rxjs@7.8.2)
       '@angular/compiler':
         specifier: 'catalog:'
         version: 22.2.3
@@ -579,13 +579,13 @@ importers:
         version: 22.2.3(@angular/compiler@22.2.3)(typescript@6.0.2)
       '@angular/core':
         specifier: 'catalog:'
-        version: 22.2.3(@angular/compiler@22.2.3)(rxjs@7.8.1)(zone.js@0.15.1)
+        version: 22.2.3(@angular/compiler@22.2.3)(rxjs@7.8.2)(zone.js@0.15.1)
       '@angular/elements':
         specifier: 'catalog:'
-        version: 22.2.3(@angular/core@22.2.3(@angular/compiler@22.2.3)(rxjs@7.8.1)(zone.js@0.15.1))(rxjs@7.8.1)
+        version: 22.2.3(@angular/core@22.2.3(@angular/compiler@22.2.3)(rxjs@7.8.2)(zone.js@0.15.1))(rxjs@7.8.2)
       '@angular/platform-browser':
         specifier: 'catalog:'
-        version: 22.2.3(@angular/animations@22.2.3(@angular/common@22.2.3(@angular/compiler-cli@22.2.3(@angular/compiler@22.2.3)(typescript@6.0.2))(@angular/core@22.2.3(@angular/compiler@22.2.3)(rxjs@7.8.1)(zone.js@0.15.1))(rxjs@7.8.1))(@angular/compiler-cli@22.2.3(@angular/compiler@22.2.3)(typescript@6.0.2))(@angular/core@22.2.3(@angular/compiler@22.2.3)(rxjs@7.8.1)(zone.js@0.15.1)))(@angular/common@22.2.3(@angular/compiler-cli@22.2.3(@angular/compiler@22.2.3)(typescript@6.0.2))(@angular/core@22.2.3(@angular/compiler@22.2.3)(rxjs@7.8.1)(zone.js@0.15.1))(rxjs@7.8.1))(@angular/compiler-cli@22.2.3(@angular/compiler@22.2.3)(typescript@6.0.2))(@angular/core@22.2.3(@angular/compiler@22.2.3)(rxjs@7.8.1)(zone.js@0.15.1))
+        version: 22.2.3(@angular/animations@22.2.3(@angular/common@22.2.3(@angular/compiler-cli@22.2.3(@angular/compiler@22.2.3)(typescript@6.0.2))(@angular/core@22.2.3(@angular/compiler@22.2.3)(rxjs@7.8.2)(zone.js@0.15.1))(rxjs@7.8.2))(@angular/compiler-cli@22.2.3(@angular/compiler@22.2.3)(typescript@6.0.2))(@angular/core@22.2.3(@angular/compiler@22.2.3)(rxjs@7.8.2)(zone.js@0.15.1)))(@angular/common@22.2.3(@angular/compiler-cli@22.2.3(@angular/compiler@22.2.3)(typescript@6.0.2))(@angular/core@22.2.3(@angular/compiler@22.2.3)(rxjs@7.8.2)(zone.js@0.15.1))(rxjs@7.8.2))(@angular/compiler-cli@22.2.3(@angular/compiler@22.2.3)(typescript@6.0.2))(@angular/core@22.2.3(@angular/compiler@22.2.3)(rxjs@7.8.2)(zone.js@0.15.1))
       '@sbb-esta/angular':
         specifier: workspace:*
         version: link:../angular
@@ -633,7 +633,7 @@ importers:
         version: 5.0.2
       rxjs:
         specifier: 'catalog:'
-        version: 7.8.1
+        version: 7.8.2
       sass:
         specifier: 1.91.0
         version: 1.91.0
@@ -9202,9 +9202,6 @@ packages:
       tslint: ^5.0.0 || ^6.0.0
       typescript: 6.0.2
 
-  rxjs@7.8.1:
-    resolution: {integrity: sha512-AA3TVj+0A2iuIoQkWEK/tqFjBq2j+6PO6Y0zJcvzLAFhEFIO3HL0vls9hWLncZbAAbK0mar7oZ4V079I/qPMxg==}
-
   rxjs@7.8.2:
     resolution: {integrity: sha512-dhKf903U/PQZY6boNNtAGdWbG85WAbjT/1xYoZIC7FAY0yWapOBQVsVrDl58W86//e1VpMNBtRV4MaXfdMySFA==}
 
@@ -10711,13 +10708,13 @@ snapshots:
     transitivePeerDependencies:
       - chokidar
 
-  '@angular-devkit/build-angular@22.2.3(7d2ddfbcc147edc7d94365c5b96564ca)':
+  '@angular-devkit/build-angular@22.2.3(ff9e6a04177324b25204a685255847ee)':
     dependencies:
       '@ampproject/remapping': 2.3.0
       '@angular-devkit/architect': 0.2202.3(chokidar@5.0.0)
       '@angular-devkit/build-webpack': 0.2202.3(chokidar@5.0.0)(webpack-dev-server@6.0.0(bufferutil@4.1.0)(supports-color@11.0.0)(utf-8-validate@6.0.6)(webpack@5.111.0(esbuild@0.28.2)(lightningcss@1.33.0)(postcss@8.5.28)(uglify-js@3.19.3)))(webpack@5.111.0(esbuild@0.28.2)(lightningcss@1.33.0)(postcss@8.5.28)(uglify-js@3.19.3))
       '@angular-devkit/core': 22.2.3(chokidar@5.0.0)
-      '@angular/build': 22.2.3(1d2423a684576fefd801b717184464ff)
+      '@angular/build': 22.2.3(26116fd89e4d3ea75d5a9041042e6161)
       '@angular/compiler-cli': 22.2.3(@angular/compiler@22.2.3)(typescript@6.0.2)
       '@babel/core': 8.0.5
       '@babel/generator': 8.0.5
@@ -10769,11 +10766,11 @@ snapshots:
       webpack-merge: 6.0.1
       webpack-subresource-integrity: 5.1.0(webpack@5.111.0(esbuild@0.28.2)(lightningcss@1.33.0)(postcss@8.5.28)(uglify-js@3.19.3))
     optionalDependencies:
-      '@angular/core': 22.2.3(@angular/compiler@22.2.3)(rxjs@7.8.1)(zone.js@0.15.1)
+      '@angular/core': 22.2.3(@angular/compiler@22.2.3)(rxjs@7.8.2)(zone.js@0.15.1)
       '@angular/localize': 22.2.3(@angular/compiler-cli@22.2.3(@angular/compiler@22.2.3)(typescript@6.0.2))(@angular/compiler@22.2.3)
-      '@angular/platform-browser': 22.2.3(@angular/animations@22.2.3(@angular/common@22.2.3(@angular/compiler-cli@22.2.3(@angular/compiler@22.2.3)(typescript@6.0.2))(@angular/core@22.2.3(@angular/compiler@22.2.3)(rxjs@7.8.1)(zone.js@0.15.1))(rxjs@7.8.1))(@angular/compiler-cli@22.2.3(@angular/compiler@22.2.3)(typescript@6.0.2))(@angular/core@22.2.3(@angular/compiler@22.2.3)(rxjs@7.8.1)(zone.js@0.15.1)))(@angular/common@22.2.3(@angular/compiler-cli@22.2.3(@angular/compiler@22.2.3)(typescript@6.0.2))(@angular/core@22.2.3(@angular/compiler@22.2.3)(rxjs@7.8.1)(zone.js@0.15.1))(rxjs@7.8.1))(@angular/compiler-cli@22.2.3(@angular/compiler@22.2.3)(typescript@6.0.2))(@angular/core@22.2.3(@angular/compiler@22.2.3)(rxjs@7.8.1)(zone.js@0.15.1))
-      '@angular/platform-server': 22.2.3(259458177252219946a165d7b52e41be)
-      '@angular/ssr': 22.2.3(@angular/common@22.2.3(@angular/compiler-cli@22.2.3(@angular/compiler@22.2.3)(typescript@6.0.2))(@angular/core@22.2.3(@angular/compiler@22.2.3)(rxjs@7.8.1)(zone.js@0.15.1))(rxjs@7.8.1))(@angular/core@22.2.3(@angular/compiler@22.2.3)(rxjs@7.8.1)(zone.js@0.15.1))(@angular/platform-server@22.2.3(259458177252219946a165d7b52e41be))(@angular/router@22.2.3(f939d374d4960147216d45649acd7a8f))
+      '@angular/platform-browser': 22.2.3(@angular/animations@22.2.3(@angular/common@22.2.3(@angular/compiler-cli@22.2.3(@angular/compiler@22.2.3)(typescript@6.0.2))(@angular/core@22.2.3(@angular/compiler@22.2.3)(rxjs@7.8.2)(zone.js@0.15.1))(rxjs@7.8.2))(@angular/compiler-cli@22.2.3(@angular/compiler@22.2.3)(typescript@6.0.2))(@angular/core@22.2.3(@angular/compiler@22.2.3)(rxjs@7.8.2)(zone.js@0.15.1)))(@angular/common@22.2.3(@angular/compiler-cli@22.2.3(@angular/compiler@22.2.3)(typescript@6.0.2))(@angular/core@22.2.3(@angular/compiler@22.2.3)(rxjs@7.8.2)(zone.js@0.15.1))(rxjs@7.8.2))(@angular/compiler-cli@22.2.3(@angular/compiler@22.2.3)(typescript@6.0.2))(@angular/core@22.2.3(@angular/compiler@22.2.3)(rxjs@7.8.2)(zone.js@0.15.1))
+      '@angular/platform-server': 22.2.3(328855243b419e4b1145b4dca2aced27)
+      '@angular/ssr': 22.2.3(@angular/common@22.2.3(@angular/compiler-cli@22.2.3(@angular/compiler@22.2.3)(typescript@6.0.2))(@angular/core@22.2.3(@angular/compiler@22.2.3)(rxjs@7.8.2)(zone.js@0.15.1))(rxjs@7.8.2))(@angular/core@22.2.3(@angular/compiler@22.2.3)(rxjs@7.8.2)(zone.js@0.15.1))(@angular/platform-server@22.2.3(328855243b419e4b1145b4dca2aced27))(@angular/router@22.2.3(d82f35ee403aa10d5107805f78a5bfdd))
       browser-sync: 3.0.2(bufferutil@4.1.0)(debug@4.4.3(supports-color@11.0.0))(supports-color@11.0.0)(utf-8-validate@6.0.6)
       esbuild: 0.28.2
       karma: 6.4.4(bufferutil@4.1.0)(debug@4.4.3(supports-color@11.0.0))(supports-color@11.0.0)(utf-8-validate@6.0.6)
@@ -10843,25 +10840,25 @@ snapshots:
     transitivePeerDependencies:
       - chokidar
 
-  '@angular/animations@22.2.3(@angular/common@22.2.3(@angular/compiler-cli@22.2.3(@angular/compiler@22.2.3)(typescript@6.0.2))(@angular/core@22.2.3(@angular/compiler@22.2.3)(rxjs@7.8.1)(zone.js@0.15.1))(rxjs@7.8.1))(@angular/compiler-cli@22.2.3(@angular/compiler@22.2.3)(typescript@6.0.2))(@angular/core@22.2.3(@angular/compiler@22.2.3)(rxjs@7.8.1)(zone.js@0.15.1))':
+  '@angular/animations@22.2.3(@angular/common@22.2.3(@angular/compiler-cli@22.2.3(@angular/compiler@22.2.3)(typescript@6.0.2))(@angular/core@22.2.3(@angular/compiler@22.2.3)(rxjs@7.8.2)(zone.js@0.15.1))(rxjs@7.8.2))(@angular/compiler-cli@22.2.3(@angular/compiler@22.2.3)(typescript@6.0.2))(@angular/core@22.2.3(@angular/compiler@22.2.3)(rxjs@7.8.2)(zone.js@0.15.1))':
     dependencies:
-      '@angular/common': 22.2.3(@angular/compiler-cli@22.2.3(@angular/compiler@22.2.3)(typescript@6.0.2))(@angular/core@22.2.3(@angular/compiler@22.2.3)(rxjs@7.8.1)(zone.js@0.15.1))(rxjs@7.8.1)
-      '@angular/core': 22.2.3(@angular/compiler@22.2.3)(rxjs@7.8.1)(zone.js@0.15.1)
+      '@angular/common': 22.2.3(@angular/compiler-cli@22.2.3(@angular/compiler@22.2.3)(typescript@6.0.2))(@angular/core@22.2.3(@angular/compiler@22.2.3)(rxjs@7.8.2)(zone.js@0.15.1))(rxjs@7.8.2)
+      '@angular/core': 22.2.3(@angular/compiler@22.2.3)(rxjs@7.8.2)(zone.js@0.15.1)
       '@nginfra/angular-linking': 1.0.11(@angular/compiler-cli@22.2.3(@angular/compiler@22.2.3)(typescript@6.0.2))
       tslib: 2.8.1
     transitivePeerDependencies:
       - '@angular/compiler-cli'
 
-  '@angular/animations@22.2.3(@angular/common@22.2.3(@angular/compiler-cli@22.2.3(@angular/compiler@22.2.3)(typescript@6.0.2))(@angular/core@22.2.3(@angular/compiler@22.2.3)(rxjs@7.8.1)(zone.js@0.16.2))(rxjs@7.8.1))(@angular/compiler-cli@22.2.3(@angular/compiler@22.2.3)(typescript@6.0.2))(@angular/core@22.2.3(@angular/compiler@22.2.3)(rxjs@7.8.1)(zone.js@0.16.2))':
+  '@angular/animations@22.2.3(@angular/common@22.2.3(@angular/compiler-cli@22.2.3(@angular/compiler@22.2.3)(typescript@6.0.2))(@angular/core@22.2.3(@angular/compiler@22.2.3)(rxjs@7.8.2)(zone.js@0.16.2))(rxjs@7.8.2))(@angular/compiler-cli@22.2.3(@angular/compiler@22.2.3)(typescript@6.0.2))(@angular/core@22.2.3(@angular/compiler@22.2.3)(rxjs@7.8.2)(zone.js@0.16.2))':
     dependencies:
-      '@angular/common': 22.2.3(@angular/compiler-cli@22.2.3(@angular/compiler@22.2.3)(typescript@6.0.2))(@angular/core@22.2.3(@angular/compiler@22.2.3)(rxjs@7.8.1)(zone.js@0.16.2))(rxjs@7.8.1)
-      '@angular/core': 22.2.3(@angular/compiler@22.2.3)(rxjs@7.8.1)(zone.js@0.16.2)
+      '@angular/common': 22.2.3(@angular/compiler-cli@22.2.3(@angular/compiler@22.2.3)(typescript@6.0.2))(@angular/core@22.2.3(@angular/compiler@22.2.3)(rxjs@7.8.2)(zone.js@0.16.2))(rxjs@7.8.2)
+      '@angular/core': 22.2.3(@angular/compiler@22.2.3)(rxjs@7.8.2)(zone.js@0.16.2)
       '@nginfra/angular-linking': 1.0.11(@angular/compiler-cli@22.2.3(@angular/compiler@22.2.3)(typescript@6.0.2))
       tslib: 2.8.1
     transitivePeerDependencies:
       - '@angular/compiler-cli'
 
-  '@angular/build@22.2.3(1d2423a684576fefd801b717184464ff)':
+  '@angular/build@22.2.3(26116fd89e4d3ea75d5a9041042e6161)':
     dependencies:
       '@ampproject/remapping': 2.3.0
       '@angular-devkit/architect': 0.2202.3(chokidar@5.0.0)
@@ -10895,11 +10892,11 @@ snapshots:
       vite: 8.3.0(@types/node@22.20.1)(esbuild@0.28.2)(jiti@2.7.0)(less@4.9.1(supports-color@11.0.0))(sass-embedded@1.104.1)(sass@1.104.1)(terser@5.51.2)(tsx@4.23.15)(yaml@2.9.1)
       xxhash-wasm: 1.1.0
     optionalDependencies:
-      '@angular/core': 22.2.3(@angular/compiler@22.2.3)(rxjs@7.8.1)(zone.js@0.15.1)
+      '@angular/core': 22.2.3(@angular/compiler@22.2.3)(rxjs@7.8.2)(zone.js@0.15.1)
       '@angular/localize': 22.2.3(@angular/compiler-cli@22.2.3(@angular/compiler@22.2.3)(typescript@6.0.2))(@angular/compiler@22.2.3)
-      '@angular/platform-browser': 22.2.3(@angular/animations@22.2.3(@angular/common@22.2.3(@angular/compiler-cli@22.2.3(@angular/compiler@22.2.3)(typescript@6.0.2))(@angular/core@22.2.3(@angular/compiler@22.2.3)(rxjs@7.8.1)(zone.js@0.15.1))(rxjs@7.8.1))(@angular/compiler-cli@22.2.3(@angular/compiler@22.2.3)(typescript@6.0.2))(@angular/core@22.2.3(@angular/compiler@22.2.3)(rxjs@7.8.1)(zone.js@0.15.1)))(@angular/common@22.2.3(@angular/compiler-cli@22.2.3(@angular/compiler@22.2.3)(typescript@6.0.2))(@angular/core@22.2.3(@angular/compiler@22.2.3)(rxjs@7.8.1)(zone.js@0.15.1))(rxjs@7.8.1))(@angular/compiler-cli@22.2.3(@angular/compiler@22.2.3)(typescript@6.0.2))(@angular/core@22.2.3(@angular/compiler@22.2.3)(rxjs@7.8.1)(zone.js@0.15.1))
-      '@angular/platform-server': 22.2.3(259458177252219946a165d7b52e41be)
-      '@angular/ssr': 22.2.3(@angular/common@22.2.3(@angular/compiler-cli@22.2.3(@angular/compiler@22.2.3)(typescript@6.0.2))(@angular/core@22.2.3(@angular/compiler@22.2.3)(rxjs@7.8.1)(zone.js@0.15.1))(rxjs@7.8.1))(@angular/core@22.2.3(@angular/compiler@22.2.3)(rxjs@7.8.1)(zone.js@0.15.1))(@angular/platform-server@22.2.3(259458177252219946a165d7b52e41be))(@angular/router@22.2.3(f939d374d4960147216d45649acd7a8f))
+      '@angular/platform-browser': 22.2.3(@angular/animations@22.2.3(@angular/common@22.2.3(@angular/compiler-cli@22.2.3(@angular/compiler@22.2.3)(typescript@6.0.2))(@angular/core@22.2.3(@angular/compiler@22.2.3)(rxjs@7.8.2)(zone.js@0.15.1))(rxjs@7.8.2))(@angular/compiler-cli@22.2.3(@angular/compiler@22.2.3)(typescript@6.0.2))(@angular/core@22.2.3(@angular/compiler@22.2.3)(rxjs@7.8.2)(zone.js@0.15.1)))(@angular/common@22.2.3(@angular/compiler-cli@22.2.3(@angular/compiler@22.2.3)(typescript@6.0.2))(@angular/core@22.2.3(@angular/compiler@22.2.3)(rxjs@7.8.2)(zone.js@0.15.1))(rxjs@7.8.2))(@angular/compiler-cli@22.2.3(@angular/compiler@22.2.3)(typescript@6.0.2))(@angular/core@22.2.3(@angular/compiler@22.2.3)(rxjs@7.8.2)(zone.js@0.15.1))
+      '@angular/platform-server': 22.2.3(328855243b419e4b1145b4dca2aced27)
+      '@angular/ssr': 22.2.3(@angular/common@22.2.3(@angular/compiler-cli@22.2.3(@angular/compiler@22.2.3)(typescript@6.0.2))(@angular/core@22.2.3(@angular/compiler@22.2.3)(rxjs@7.8.2)(zone.js@0.15.1))(rxjs@7.8.2))(@angular/core@22.2.3(@angular/compiler@22.2.3)(rxjs@7.8.2)(zone.js@0.15.1))(@angular/platform-server@22.2.3(328855243b419e4b1145b4dca2aced27))(@angular/router@22.2.3(d82f35ee403aa10d5107805f78a5bfdd))
       istanbul-lib-instrument: 6.0.3(supports-color@11.0.0)
       karma: 6.4.4(bufferutil@4.1.0)(debug@4.4.3(supports-color@11.0.0))(supports-color@11.0.0)(utf-8-validate@6.0.6)
       less: 4.9.1(supports-color@11.0.0)
@@ -10918,28 +10915,28 @@ snapshots:
       - tsx
       - yaml
 
-  '@angular/cdk@22.2.3(2295441c74a2f62a02653974b12cbd53)':
+  '@angular/cdk@22.2.3(195d6f7a339fe578ff2ccb2dc4db6d10)':
     dependencies:
-      '@angular/common': 22.2.3(@angular/compiler-cli@22.2.3(@angular/compiler@22.2.3)(typescript@6.0.2))(@angular/core@22.2.3(@angular/compiler@22.2.3)(rxjs@7.8.1)(zone.js@0.16.2))(rxjs@7.8.1)
-      '@angular/core': 22.2.3(@angular/compiler@22.2.3)(rxjs@7.8.1)(zone.js@0.16.2)
-      '@angular/forms': 22.2.3(72c58aabaa8b7e8bc15941cd6288dd55)
-      '@angular/platform-browser': 22.2.3(@angular/animations@22.2.3(@angular/common@22.2.3(@angular/compiler-cli@22.2.3(@angular/compiler@22.2.3)(typescript@6.0.2))(@angular/core@22.2.3(@angular/compiler@22.2.3)(rxjs@7.8.1)(zone.js@0.16.2))(rxjs@7.8.1))(@angular/compiler-cli@22.2.3(@angular/compiler@22.2.3)(typescript@6.0.2))(@angular/core@22.2.3(@angular/compiler@22.2.3)(rxjs@7.8.1)(zone.js@0.16.2)))(@angular/common@22.2.3(@angular/compiler-cli@22.2.3(@angular/compiler@22.2.3)(typescript@6.0.2))(@angular/core@22.2.3(@angular/compiler@22.2.3)(rxjs@7.8.1)(zone.js@0.16.2))(rxjs@7.8.1))(@angular/compiler-cli@22.2.3(@angular/compiler@22.2.3)(typescript@6.0.2))(@angular/core@22.2.3(@angular/compiler@22.2.3)(rxjs@7.8.1)(zone.js@0.16.2))
+      '@angular/common': 22.2.3(@angular/compiler-cli@22.2.3(@angular/compiler@22.2.3)(typescript@6.0.2))(@angular/core@22.2.3(@angular/compiler@22.2.3)(rxjs@7.8.2)(zone.js@0.15.1))(rxjs@7.8.2)
+      '@angular/core': 22.2.3(@angular/compiler@22.2.3)(rxjs@7.8.2)(zone.js@0.15.1)
+      '@angular/forms': 22.2.3(d82f35ee403aa10d5107805f78a5bfdd)
+      '@angular/platform-browser': 22.2.3(@angular/animations@22.2.3(@angular/common@22.2.3(@angular/compiler-cli@22.2.3(@angular/compiler@22.2.3)(typescript@6.0.2))(@angular/core@22.2.3(@angular/compiler@22.2.3)(rxjs@7.8.2)(zone.js@0.15.1))(rxjs@7.8.2))(@angular/compiler-cli@22.2.3(@angular/compiler@22.2.3)(typescript@6.0.2))(@angular/core@22.2.3(@angular/compiler@22.2.3)(rxjs@7.8.2)(zone.js@0.15.1)))(@angular/common@22.2.3(@angular/compiler-cli@22.2.3(@angular/compiler@22.2.3)(typescript@6.0.2))(@angular/core@22.2.3(@angular/compiler@22.2.3)(rxjs@7.8.2)(zone.js@0.15.1))(rxjs@7.8.2))(@angular/compiler-cli@22.2.3(@angular/compiler@22.2.3)(typescript@6.0.2))(@angular/core@22.2.3(@angular/compiler@22.2.3)(rxjs@7.8.2)(zone.js@0.15.1))
       '@nginfra/angular-linking': 1.0.11(@angular/compiler-cli@22.2.3(@angular/compiler@22.2.3)(typescript@6.0.2))
       parse5: 8.0.1
-      rxjs: 7.8.1
+      rxjs: 7.8.2
       tslib: 2.8.1
     transitivePeerDependencies:
       - '@angular/compiler-cli'
 
-  '@angular/cdk@22.2.3(d723fac0f61277d9457bf81a4366524d)':
+  '@angular/cdk@22.2.3(850604425c8038516f6b849a363d7066)':
     dependencies:
-      '@angular/common': 22.2.3(@angular/compiler-cli@22.2.3(@angular/compiler@22.2.3)(typescript@6.0.2))(@angular/core@22.2.3(@angular/compiler@22.2.3)(rxjs@7.8.1)(zone.js@0.15.1))(rxjs@7.8.1)
-      '@angular/core': 22.2.3(@angular/compiler@22.2.3)(rxjs@7.8.1)(zone.js@0.15.1)
-      '@angular/forms': 22.2.3(f939d374d4960147216d45649acd7a8f)
-      '@angular/platform-browser': 22.2.3(@angular/animations@22.2.3(@angular/common@22.2.3(@angular/compiler-cli@22.2.3(@angular/compiler@22.2.3)(typescript@6.0.2))(@angular/core@22.2.3(@angular/compiler@22.2.3)(rxjs@7.8.1)(zone.js@0.15.1))(rxjs@7.8.1))(@angular/compiler-cli@22.2.3(@angular/compiler@22.2.3)(typescript@6.0.2))(@angular/core@22.2.3(@angular/compiler@22.2.3)(rxjs@7.8.1)(zone.js@0.15.1)))(@angular/common@22.2.3(@angular/compiler-cli@22.2.3(@angular/compiler@22.2.3)(typescript@6.0.2))(@angular/core@22.2.3(@angular/compiler@22.2.3)(rxjs@7.8.1)(zone.js@0.15.1))(rxjs@7.8.1))(@angular/compiler-cli@22.2.3(@angular/compiler@22.2.3)(typescript@6.0.2))(@angular/core@22.2.3(@angular/compiler@22.2.3)(rxjs@7.8.1)(zone.js@0.15.1))
+      '@angular/common': 22.2.3(@angular/compiler-cli@22.2.3(@angular/compiler@22.2.3)(typescript@6.0.2))(@angular/core@22.2.3(@angular/compiler@22.2.3)(rxjs@7.8.2)(zone.js@0.16.2))(rxjs@7.8.2)
+      '@angular/core': 22.2.3(@angular/compiler@22.2.3)(rxjs@7.8.2)(zone.js@0.16.2)
+      '@angular/forms': 22.2.3(1a32cbd26e1f8b21c1f8a8fa3b2ff4f7)
+      '@angular/platform-browser': 22.2.3(@angular/animations@22.2.3(@angular/common@22.2.3(@angular/compiler-cli@22.2.3(@angular/compiler@22.2.3)(typescript@6.0.2))(@angular/core@22.2.3(@angular/compiler@22.2.3)(rxjs@7.8.2)(zone.js@0.16.2))(rxjs@7.8.2))(@angular/compiler-cli@22.2.3(@angular/compiler@22.2.3)(typescript@6.0.2))(@angular/core@22.2.3(@angular/compiler@22.2.3)(rxjs@7.8.2)(zone.js@0.16.2)))(@angular/common@22.2.3(@angular/compiler-cli@22.2.3(@angular/compiler@22.2.3)(typescript@6.0.2))(@angular/core@22.2.3(@angular/compiler@22.2.3)(rxjs@7.8.2)(zone.js@0.16.2))(rxjs@7.8.2))(@angular/compiler-cli@22.2.3(@angular/compiler@22.2.3)(typescript@6.0.2))(@angular/core@22.2.3(@angular/compiler@22.2.3)(rxjs@7.8.2)(zone.js@0.16.2))
       '@nginfra/angular-linking': 1.0.11(@angular/compiler-cli@22.2.3(@angular/compiler@22.2.3)(typescript@6.0.2))
       parse5: 8.0.1
-      rxjs: 7.8.1
+      rxjs: 7.8.2
       tslib: 2.8.1
     transitivePeerDependencies:
       - '@angular/compiler-cli'
@@ -10984,20 +10981,20 @@ snapshots:
       - '@types/node'
       - chokidar
 
-  '@angular/common@22.2.3(@angular/compiler-cli@22.2.3(@angular/compiler@22.2.3)(typescript@6.0.2))(@angular/core@22.2.3(@angular/compiler@22.2.3)(rxjs@7.8.1)(zone.js@0.15.1))(rxjs@7.8.1)':
+  '@angular/common@22.2.3(@angular/compiler-cli@22.2.3(@angular/compiler@22.2.3)(typescript@6.0.2))(@angular/core@22.2.3(@angular/compiler@22.2.3)(rxjs@7.8.2)(zone.js@0.15.1))(rxjs@7.8.2)':
     dependencies:
-      '@angular/core': 22.2.3(@angular/compiler@22.2.3)(rxjs@7.8.1)(zone.js@0.15.1)
+      '@angular/core': 22.2.3(@angular/compiler@22.2.3)(rxjs@7.8.2)(zone.js@0.15.1)
       '@nginfra/angular-linking': 1.0.11(@angular/compiler-cli@22.2.3(@angular/compiler@22.2.3)(typescript@6.0.2))
-      rxjs: 7.8.1
+      rxjs: 7.8.2
       tslib: 2.8.1
     transitivePeerDependencies:
       - '@angular/compiler-cli'
 
-  '@angular/common@22.2.3(@angular/compiler-cli@22.2.3(@angular/compiler@22.2.3)(typescript@6.0.2))(@angular/core@22.2.3(@angular/compiler@22.2.3)(rxjs@7.8.1)(zone.js@0.16.2))(rxjs@7.8.1)':
+  '@angular/common@22.2.3(@angular/compiler-cli@22.2.3(@angular/compiler@22.2.3)(typescript@6.0.2))(@angular/core@22.2.3(@angular/compiler@22.2.3)(rxjs@7.8.2)(zone.js@0.16.2))(rxjs@7.8.2)':
     dependencies:
-      '@angular/core': 22.2.3(@angular/compiler@22.2.3)(rxjs@7.8.1)(zone.js@0.16.2)
+      '@angular/core': 22.2.3(@angular/compiler@22.2.3)(rxjs@7.8.2)(zone.js@0.16.2)
       '@nginfra/angular-linking': 1.0.11(@angular/compiler-cli@22.2.3(@angular/compiler@22.2.3)(typescript@6.0.2))
-      rxjs: 7.8.1
+      rxjs: 7.8.2
       tslib: 2.8.1
     transitivePeerDependencies:
       - '@angular/compiler-cli'
@@ -11020,55 +11017,55 @@ snapshots:
     dependencies:
       tslib: 2.8.1
 
-  '@angular/core@22.2.3(@angular/compiler@22.2.3)(rxjs@7.8.1)(zone.js@0.15.1)':
+  '@angular/core@22.2.3(@angular/compiler@22.2.3)(rxjs@7.8.2)(zone.js@0.15.1)':
     dependencies:
-      rxjs: 7.8.1
+      rxjs: 7.8.2
       tslib: 2.8.1
     optionalDependencies:
       '@angular/compiler': 22.2.3
       zone.js: 0.15.1
 
-  '@angular/core@22.2.3(@angular/compiler@22.2.3)(rxjs@7.8.1)(zone.js@0.16.2)':
+  '@angular/core@22.2.3(@angular/compiler@22.2.3)(rxjs@7.8.2)(zone.js@0.16.2)':
     dependencies:
-      rxjs: 7.8.1
+      rxjs: 7.8.2
       tslib: 2.8.1
     optionalDependencies:
       '@angular/compiler': 22.2.3
       zone.js: 0.16.2
 
-  '@angular/elements@22.2.3(@angular/core@22.2.3(@angular/compiler@22.2.3)(rxjs@7.8.1)(zone.js@0.15.1))(rxjs@7.8.1)':
+  '@angular/elements@22.2.3(@angular/core@22.2.3(@angular/compiler@22.2.3)(rxjs@7.8.2)(zone.js@0.15.1))(rxjs@7.8.2)':
     dependencies:
-      '@angular/core': 22.2.3(@angular/compiler@22.2.3)(rxjs@7.8.1)(zone.js@0.15.1)
-      rxjs: 7.8.1
+      '@angular/core': 22.2.3(@angular/compiler@22.2.3)(rxjs@7.8.2)(zone.js@0.15.1)
+      rxjs: 7.8.2
       tslib: 2.8.1
 
-  '@angular/elements@22.2.3(@angular/core@22.2.3(@angular/compiler@22.2.3)(rxjs@7.8.1)(zone.js@0.16.2))(rxjs@7.8.1)':
+  '@angular/elements@22.2.3(@angular/core@22.2.3(@angular/compiler@22.2.3)(rxjs@7.8.2)(zone.js@0.16.2))(rxjs@7.8.2)':
     dependencies:
-      '@angular/core': 22.2.3(@angular/compiler@22.2.3)(rxjs@7.8.1)(zone.js@0.16.2)
-      rxjs: 7.8.1
+      '@angular/core': 22.2.3(@angular/compiler@22.2.3)(rxjs@7.8.2)(zone.js@0.16.2)
+      rxjs: 7.8.2
       tslib: 2.8.1
 
-  '@angular/forms@22.2.3(72c58aabaa8b7e8bc15941cd6288dd55)':
+  '@angular/forms@22.2.3(1a32cbd26e1f8b21c1f8a8fa3b2ff4f7)':
     dependencies:
-      '@angular/common': 22.2.3(@angular/compiler-cli@22.2.3(@angular/compiler@22.2.3)(typescript@6.0.2))(@angular/core@22.2.3(@angular/compiler@22.2.3)(rxjs@7.8.1)(zone.js@0.16.2))(rxjs@7.8.1)
-      '@angular/core': 22.2.3(@angular/compiler@22.2.3)(rxjs@7.8.1)(zone.js@0.16.2)
-      '@angular/platform-browser': 22.2.3(@angular/animations@22.2.3(@angular/common@22.2.3(@angular/compiler-cli@22.2.3(@angular/compiler@22.2.3)(typescript@6.0.2))(@angular/core@22.2.3(@angular/compiler@22.2.3)(rxjs@7.8.1)(zone.js@0.16.2))(rxjs@7.8.1))(@angular/compiler-cli@22.2.3(@angular/compiler@22.2.3)(typescript@6.0.2))(@angular/core@22.2.3(@angular/compiler@22.2.3)(rxjs@7.8.1)(zone.js@0.16.2)))(@angular/common@22.2.3(@angular/compiler-cli@22.2.3(@angular/compiler@22.2.3)(typescript@6.0.2))(@angular/core@22.2.3(@angular/compiler@22.2.3)(rxjs@7.8.1)(zone.js@0.16.2))(rxjs@7.8.1))(@angular/compiler-cli@22.2.3(@angular/compiler@22.2.3)(typescript@6.0.2))(@angular/core@22.2.3(@angular/compiler@22.2.3)(rxjs@7.8.1)(zone.js@0.16.2))
+      '@angular/common': 22.2.3(@angular/compiler-cli@22.2.3(@angular/compiler@22.2.3)(typescript@6.0.2))(@angular/core@22.2.3(@angular/compiler@22.2.3)(rxjs@7.8.2)(zone.js@0.16.2))(rxjs@7.8.2)
+      '@angular/core': 22.2.3(@angular/compiler@22.2.3)(rxjs@7.8.2)(zone.js@0.16.2)
+      '@angular/platform-browser': 22.2.3(@angular/animations@22.2.3(@angular/common@22.2.3(@angular/compiler-cli@22.2.3(@angular/compiler@22.2.3)(typescript@6.0.2))(@angular/core@22.2.3(@angular/compiler@22.2.3)(rxjs@7.8.2)(zone.js@0.16.2))(rxjs@7.8.2))(@angular/compiler-cli@22.2.3(@angular/compiler@22.2.3)(typescript@6.0.2))(@angular/core@22.2.3(@angular/compiler@22.2.3)(rxjs@7.8.2)(zone.js@0.16.2)))(@angular/common@22.2.3(@angular/compiler-cli@22.2.3(@angular/compiler@22.2.3)(typescript@6.0.2))(@angular/core@22.2.3(@angular/compiler@22.2.3)(rxjs@7.8.2)(zone.js@0.16.2))(rxjs@7.8.2))(@angular/compiler-cli@22.2.3(@angular/compiler@22.2.3)(typescript@6.0.2))(@angular/core@22.2.3(@angular/compiler@22.2.3)(rxjs@7.8.2)(zone.js@0.16.2))
       '@nginfra/angular-linking': 1.0.11(@angular/compiler-cli@22.2.3(@angular/compiler@22.2.3)(typescript@6.0.2))
       '@standard-schema/spec': 1.1.0
-      rxjs: 7.8.1
+      rxjs: 7.8.2
       tslib: 2.8.1
       zod: 4.4.3
     transitivePeerDependencies:
       - '@angular/compiler-cli'
 
-  '@angular/forms@22.2.3(f939d374d4960147216d45649acd7a8f)':
+  '@angular/forms@22.2.3(d82f35ee403aa10d5107805f78a5bfdd)':
     dependencies:
-      '@angular/common': 22.2.3(@angular/compiler-cli@22.2.3(@angular/compiler@22.2.3)(typescript@6.0.2))(@angular/core@22.2.3(@angular/compiler@22.2.3)(rxjs@7.8.1)(zone.js@0.15.1))(rxjs@7.8.1)
-      '@angular/core': 22.2.3(@angular/compiler@22.2.3)(rxjs@7.8.1)(zone.js@0.15.1)
-      '@angular/platform-browser': 22.2.3(@angular/animations@22.2.3(@angular/common@22.2.3(@angular/compiler-cli@22.2.3(@angular/compiler@22.2.3)(typescript@6.0.2))(@angular/core@22.2.3(@angular/compiler@22.2.3)(rxjs@7.8.1)(zone.js@0.15.1))(rxjs@7.8.1))(@angular/compiler-cli@22.2.3(@angular/compiler@22.2.3)(typescript@6.0.2))(@angular/core@22.2.3(@angular/compiler@22.2.3)(rxjs@7.8.1)(zone.js@0.15.1)))(@angular/common@22.2.3(@angular/compiler-cli@22.2.3(@angular/compiler@22.2.3)(typescript@6.0.2))(@angular/core@22.2.3(@angular/compiler@22.2.3)(rxjs@7.8.1)(zone.js@0.15.1))(rxjs@7.8.1))(@angular/compiler-cli@22.2.3(@angular/compiler@22.2.3)(typescript@6.0.2))(@angular/core@22.2.3(@angular/compiler@22.2.3)(rxjs@7.8.1)(zone.js@0.15.1))
+      '@angular/common': 22.2.3(@angular/compiler-cli@22.2.3(@angular/compiler@22.2.3)(typescript@6.0.2))(@angular/core@22.2.3(@angular/compiler@22.2.3)(rxjs@7.8.2)(zone.js@0.15.1))(rxjs@7.8.2)
+      '@angular/core': 22.2.3(@angular/compiler@22.2.3)(rxjs@7.8.2)(zone.js@0.15.1)
+      '@angular/platform-browser': 22.2.3(@angular/animations@22.2.3(@angular/common@22.2.3(@angular/compiler-cli@22.2.3(@angular/compiler@22.2.3)(typescript@6.0.2))(@angular/core@22.2.3(@angular/compiler@22.2.3)(rxjs@7.8.2)(zone.js@0.15.1))(rxjs@7.8.2))(@angular/compiler-cli@22.2.3(@angular/compiler@22.2.3)(typescript@6.0.2))(@angular/core@22.2.3(@angular/compiler@22.2.3)(rxjs@7.8.2)(zone.js@0.15.1)))(@angular/common@22.2.3(@angular/compiler-cli@22.2.3(@angular/compiler@22.2.3)(typescript@6.0.2))(@angular/core@22.2.3(@angular/compiler@22.2.3)(rxjs@7.8.2)(zone.js@0.15.1))(rxjs@7.8.2))(@angular/compiler-cli@22.2.3(@angular/compiler@22.2.3)(typescript@6.0.2))(@angular/core@22.2.3(@angular/compiler@22.2.3)(rxjs@7.8.2)(zone.js@0.15.1))
       '@nginfra/angular-linking': 1.0.11(@angular/compiler-cli@22.2.3(@angular/compiler@22.2.3)(typescript@6.0.2))
       '@standard-schema/spec': 1.1.0
-      rxjs: 7.8.1
+      rxjs: 7.8.2
       tslib: 2.8.1
       zod: 4.4.3
     transitivePeerDependencies:
@@ -11140,94 +11137,94 @@ snapshots:
       - '@modelcontextprotocol/sdk'
       - '@react-native-async-storage/async-storage'
 
-  '@angular/platform-browser-dynamic@22.2.3(59b10f074b888ddbc3ed8d2868a1029b)':
+  '@angular/platform-browser-dynamic@22.2.3(d131738ca409eae17335df562532b7a8)':
     dependencies:
-      '@angular/common': 22.2.3(@angular/compiler-cli@22.2.3(@angular/compiler@22.2.3)(typescript@6.0.2))(@angular/core@22.2.3(@angular/compiler@22.2.3)(rxjs@7.8.1)(zone.js@0.15.1))(rxjs@7.8.1)
+      '@angular/common': 22.2.3(@angular/compiler-cli@22.2.3(@angular/compiler@22.2.3)(typescript@6.0.2))(@angular/core@22.2.3(@angular/compiler@22.2.3)(rxjs@7.8.2)(zone.js@0.15.1))(rxjs@7.8.2)
       '@angular/compiler': 22.2.3
-      '@angular/core': 22.2.3(@angular/compiler@22.2.3)(rxjs@7.8.1)(zone.js@0.15.1)
-      '@angular/platform-browser': 22.2.3(@angular/animations@22.2.3(@angular/common@22.2.3(@angular/compiler-cli@22.2.3(@angular/compiler@22.2.3)(typescript@6.0.2))(@angular/core@22.2.3(@angular/compiler@22.2.3)(rxjs@7.8.1)(zone.js@0.15.1))(rxjs@7.8.1))(@angular/compiler-cli@22.2.3(@angular/compiler@22.2.3)(typescript@6.0.2))(@angular/core@22.2.3(@angular/compiler@22.2.3)(rxjs@7.8.1)(zone.js@0.15.1)))(@angular/common@22.2.3(@angular/compiler-cli@22.2.3(@angular/compiler@22.2.3)(typescript@6.0.2))(@angular/core@22.2.3(@angular/compiler@22.2.3)(rxjs@7.8.1)(zone.js@0.15.1))(rxjs@7.8.1))(@angular/compiler-cli@22.2.3(@angular/compiler@22.2.3)(typescript@6.0.2))(@angular/core@22.2.3(@angular/compiler@22.2.3)(rxjs@7.8.1)(zone.js@0.15.1))
+      '@angular/core': 22.2.3(@angular/compiler@22.2.3)(rxjs@7.8.2)(zone.js@0.15.1)
+      '@angular/platform-browser': 22.2.3(@angular/animations@22.2.3(@angular/common@22.2.3(@angular/compiler-cli@22.2.3(@angular/compiler@22.2.3)(typescript@6.0.2))(@angular/core@22.2.3(@angular/compiler@22.2.3)(rxjs@7.8.2)(zone.js@0.15.1))(rxjs@7.8.2))(@angular/compiler-cli@22.2.3(@angular/compiler@22.2.3)(typescript@6.0.2))(@angular/core@22.2.3(@angular/compiler@22.2.3)(rxjs@7.8.2)(zone.js@0.15.1)))(@angular/common@22.2.3(@angular/compiler-cli@22.2.3(@angular/compiler@22.2.3)(typescript@6.0.2))(@angular/core@22.2.3(@angular/compiler@22.2.3)(rxjs@7.8.2)(zone.js@0.15.1))(rxjs@7.8.2))(@angular/compiler-cli@22.2.3(@angular/compiler@22.2.3)(typescript@6.0.2))(@angular/core@22.2.3(@angular/compiler@22.2.3)(rxjs@7.8.2)(zone.js@0.15.1))
       tslib: 2.8.1
 
-  '@angular/platform-browser@22.2.3(@angular/animations@22.2.3(@angular/common@22.2.3(@angular/compiler-cli@22.2.3(@angular/compiler@22.2.3)(typescript@6.0.2))(@angular/core@22.2.3(@angular/compiler@22.2.3)(rxjs@7.8.1)(zone.js@0.15.1))(rxjs@7.8.1))(@angular/compiler-cli@22.2.3(@angular/compiler@22.2.3)(typescript@6.0.2))(@angular/core@22.2.3(@angular/compiler@22.2.3)(rxjs@7.8.1)(zone.js@0.15.1)))(@angular/common@22.2.3(@angular/compiler-cli@22.2.3(@angular/compiler@22.2.3)(typescript@6.0.2))(@angular/core@22.2.3(@angular/compiler@22.2.3)(rxjs@7.8.1)(zone.js@0.15.1))(rxjs@7.8.1))(@angular/compiler-cli@22.2.3(@angular/compiler@22.2.3)(typescript@6.0.2))(@angular/core@22.2.3(@angular/compiler@22.2.3)(rxjs@7.8.1)(zone.js@0.15.1))':
+  '@angular/platform-browser@22.2.3(@angular/animations@22.2.3(@angular/common@22.2.3(@angular/compiler-cli@22.2.3(@angular/compiler@22.2.3)(typescript@6.0.2))(@angular/core@22.2.3(@angular/compiler@22.2.3)(rxjs@7.8.2)(zone.js@0.15.1))(rxjs@7.8.2))(@angular/compiler-cli@22.2.3(@angular/compiler@22.2.3)(typescript@6.0.2))(@angular/core@22.2.3(@angular/compiler@22.2.3)(rxjs@7.8.2)(zone.js@0.15.1)))(@angular/common@22.2.3(@angular/compiler-cli@22.2.3(@angular/compiler@22.2.3)(typescript@6.0.2))(@angular/core@22.2.3(@angular/compiler@22.2.3)(rxjs@7.8.2)(zone.js@0.15.1))(rxjs@7.8.2))(@angular/compiler-cli@22.2.3(@angular/compiler@22.2.3)(typescript@6.0.2))(@angular/core@22.2.3(@angular/compiler@22.2.3)(rxjs@7.8.2)(zone.js@0.15.1))':
     dependencies:
-      '@angular/common': 22.2.3(@angular/compiler-cli@22.2.3(@angular/compiler@22.2.3)(typescript@6.0.2))(@angular/core@22.2.3(@angular/compiler@22.2.3)(rxjs@7.8.1)(zone.js@0.15.1))(rxjs@7.8.1)
-      '@angular/core': 22.2.3(@angular/compiler@22.2.3)(rxjs@7.8.1)(zone.js@0.15.1)
+      '@angular/common': 22.2.3(@angular/compiler-cli@22.2.3(@angular/compiler@22.2.3)(typescript@6.0.2))(@angular/core@22.2.3(@angular/compiler@22.2.3)(rxjs@7.8.2)(zone.js@0.15.1))(rxjs@7.8.2)
+      '@angular/core': 22.2.3(@angular/compiler@22.2.3)(rxjs@7.8.2)(zone.js@0.15.1)
       '@nginfra/angular-linking': 1.0.11(@angular/compiler-cli@22.2.3(@angular/compiler@22.2.3)(typescript@6.0.2))
       tslib: 2.8.1
     optionalDependencies:
-      '@angular/animations': 22.2.3(@angular/common@22.2.3(@angular/compiler-cli@22.2.3(@angular/compiler@22.2.3)(typescript@6.0.2))(@angular/core@22.2.3(@angular/compiler@22.2.3)(rxjs@7.8.1)(zone.js@0.15.1))(rxjs@7.8.1))(@angular/compiler-cli@22.2.3(@angular/compiler@22.2.3)(typescript@6.0.2))(@angular/core@22.2.3(@angular/compiler@22.2.3)(rxjs@7.8.1)(zone.js@0.15.1))
+      '@angular/animations': 22.2.3(@angular/common@22.2.3(@angular/compiler-cli@22.2.3(@angular/compiler@22.2.3)(typescript@6.0.2))(@angular/core@22.2.3(@angular/compiler@22.2.3)(rxjs@7.8.2)(zone.js@0.15.1))(rxjs@7.8.2))(@angular/compiler-cli@22.2.3(@angular/compiler@22.2.3)(typescript@6.0.2))(@angular/core@22.2.3(@angular/compiler@22.2.3)(rxjs@7.8.2)(zone.js@0.15.1))
     transitivePeerDependencies:
       - '@angular/compiler-cli'
 
-  '@angular/platform-browser@22.2.3(@angular/animations@22.2.3(@angular/common@22.2.3(@angular/compiler-cli@22.2.3(@angular/compiler@22.2.3)(typescript@6.0.2))(@angular/core@22.2.3(@angular/compiler@22.2.3)(rxjs@7.8.1)(zone.js@0.16.2))(rxjs@7.8.1))(@angular/compiler-cli@22.2.3(@angular/compiler@22.2.3)(typescript@6.0.2))(@angular/core@22.2.3(@angular/compiler@22.2.3)(rxjs@7.8.1)(zone.js@0.16.2)))(@angular/common@22.2.3(@angular/compiler-cli@22.2.3(@angular/compiler@22.2.3)(typescript@6.0.2))(@angular/core@22.2.3(@angular/compiler@22.2.3)(rxjs@7.8.1)(zone.js@0.16.2))(rxjs@7.8.1))(@angular/compiler-cli@22.2.3(@angular/compiler@22.2.3)(typescript@6.0.2))(@angular/core@22.2.3(@angular/compiler@22.2.3)(rxjs@7.8.1)(zone.js@0.16.2))':
+  '@angular/platform-browser@22.2.3(@angular/animations@22.2.3(@angular/common@22.2.3(@angular/compiler-cli@22.2.3(@angular/compiler@22.2.3)(typescript@6.0.2))(@angular/core@22.2.3(@angular/compiler@22.2.3)(rxjs@7.8.2)(zone.js@0.16.2))(rxjs@7.8.2))(@angular/compiler-cli@22.2.3(@angular/compiler@22.2.3)(typescript@6.0.2))(@angular/core@22.2.3(@angular/compiler@22.2.3)(rxjs@7.8.2)(zone.js@0.16.2)))(@angular/common@22.2.3(@angular/compiler-cli@22.2.3(@angular/compiler@22.2.3)(typescript@6.0.2))(@angular/core@22.2.3(@angular/compiler@22.2.3)(rxjs@7.8.2)(zone.js@0.16.2))(rxjs@7.8.2))(@angular/compiler-cli@22.2.3(@angular/compiler@22.2.3)(typescript@6.0.2))(@angular/core@22.2.3(@angular/compiler@22.2.3)(rxjs@7.8.2)(zone.js@0.16.2))':
     dependencies:
-      '@angular/common': 22.2.3(@angular/compiler-cli@22.2.3(@angular/compiler@22.2.3)(typescript@6.0.2))(@angular/core@22.2.3(@angular/compiler@22.2.3)(rxjs@7.8.1)(zone.js@0.16.2))(rxjs@7.8.1)
-      '@angular/core': 22.2.3(@angular/compiler@22.2.3)(rxjs@7.8.1)(zone.js@0.16.2)
+      '@angular/common': 22.2.3(@angular/compiler-cli@22.2.3(@angular/compiler@22.2.3)(typescript@6.0.2))(@angular/core@22.2.3(@angular/compiler@22.2.3)(rxjs@7.8.2)(zone.js@0.16.2))(rxjs@7.8.2)
+      '@angular/core': 22.2.3(@angular/compiler@22.2.3)(rxjs@7.8.2)(zone.js@0.16.2)
       '@nginfra/angular-linking': 1.0.11(@angular/compiler-cli@22.2.3(@angular/compiler@22.2.3)(typescript@6.0.2))
       tslib: 2.8.1
     optionalDependencies:
-      '@angular/animations': 22.2.3(@angular/common@22.2.3(@angular/compiler-cli@22.2.3(@angular/compiler@22.2.3)(typescript@6.0.2))(@angular/core@22.2.3(@angular/compiler@22.2.3)(rxjs@7.8.1)(zone.js@0.16.2))(rxjs@7.8.1))(@angular/compiler-cli@22.2.3(@angular/compiler@22.2.3)(typescript@6.0.2))(@angular/core@22.2.3(@angular/compiler@22.2.3)(rxjs@7.8.1)(zone.js@0.16.2))
+      '@angular/animations': 22.2.3(@angular/common@22.2.3(@angular/compiler-cli@22.2.3(@angular/compiler@22.2.3)(typescript@6.0.2))(@angular/core@22.2.3(@angular/compiler@22.2.3)(rxjs@7.8.2)(zone.js@0.16.2))(rxjs@7.8.2))(@angular/compiler-cli@22.2.3(@angular/compiler@22.2.3)(typescript@6.0.2))(@angular/core@22.2.3(@angular/compiler@22.2.3)(rxjs@7.8.2)(zone.js@0.16.2))
     transitivePeerDependencies:
       - '@angular/compiler-cli'
 
-  '@angular/platform-server@22.2.3(259458177252219946a165d7b52e41be)':
+  '@angular/platform-server@22.2.3(326c4fc8050f9d7ba1c9e1bb5102037d)':
     dependencies:
-      '@angular/common': 22.2.3(@angular/compiler-cli@22.2.3(@angular/compiler@22.2.3)(typescript@6.0.2))(@angular/core@22.2.3(@angular/compiler@22.2.3)(rxjs@7.8.1)(zone.js@0.15.1))(rxjs@7.8.1)
+      '@angular/common': 22.2.3(@angular/compiler-cli@22.2.3(@angular/compiler@22.2.3)(typescript@6.0.2))(@angular/core@22.2.3(@angular/compiler@22.2.3)(rxjs@7.8.2)(zone.js@0.16.2))(rxjs@7.8.2)
       '@angular/compiler': 22.2.3
-      '@angular/core': 22.2.3(@angular/compiler@22.2.3)(rxjs@7.8.1)(zone.js@0.15.1)
-      '@angular/platform-browser': 22.2.3(@angular/animations@22.2.3(@angular/common@22.2.3(@angular/compiler-cli@22.2.3(@angular/compiler@22.2.3)(typescript@6.0.2))(@angular/core@22.2.3(@angular/compiler@22.2.3)(rxjs@7.8.1)(zone.js@0.15.1))(rxjs@7.8.1))(@angular/compiler-cli@22.2.3(@angular/compiler@22.2.3)(typescript@6.0.2))(@angular/core@22.2.3(@angular/compiler@22.2.3)(rxjs@7.8.1)(zone.js@0.15.1)))(@angular/common@22.2.3(@angular/compiler-cli@22.2.3(@angular/compiler@22.2.3)(typescript@6.0.2))(@angular/core@22.2.3(@angular/compiler@22.2.3)(rxjs@7.8.1)(zone.js@0.15.1))(rxjs@7.8.1))(@angular/compiler-cli@22.2.3(@angular/compiler@22.2.3)(typescript@6.0.2))(@angular/core@22.2.3(@angular/compiler@22.2.3)(rxjs@7.8.1)(zone.js@0.15.1))
+      '@angular/core': 22.2.3(@angular/compiler@22.2.3)(rxjs@7.8.2)(zone.js@0.16.2)
+      '@angular/platform-browser': 22.2.3(@angular/animations@22.2.3(@angular/common@22.2.3(@angular/compiler-cli@22.2.3(@angular/compiler@22.2.3)(typescript@6.0.2))(@angular/core@22.2.3(@angular/compiler@22.2.3)(rxjs@7.8.2)(zone.js@0.16.2))(rxjs@7.8.2))(@angular/compiler-cli@22.2.3(@angular/compiler@22.2.3)(typescript@6.0.2))(@angular/core@22.2.3(@angular/compiler@22.2.3)(rxjs@7.8.2)(zone.js@0.16.2)))(@angular/common@22.2.3(@angular/compiler-cli@22.2.3(@angular/compiler@22.2.3)(typescript@6.0.2))(@angular/core@22.2.3(@angular/compiler@22.2.3)(rxjs@7.8.2)(zone.js@0.16.2))(rxjs@7.8.2))(@angular/compiler-cli@22.2.3(@angular/compiler@22.2.3)(typescript@6.0.2))(@angular/core@22.2.3(@angular/compiler@22.2.3)(rxjs@7.8.2)(zone.js@0.16.2))
       '@nginfra/angular-linking': 1.0.11(@angular/compiler-cli@22.2.3(@angular/compiler@22.2.3)(typescript@6.0.2))
-      rxjs: 7.8.1
+      rxjs: 7.8.2
+      tslib: 2.8.1
+      xhr2: 0.2.1
+    transitivePeerDependencies:
+      - '@angular/compiler-cli'
+
+  '@angular/platform-server@22.2.3(328855243b419e4b1145b4dca2aced27)':
+    dependencies:
+      '@angular/common': 22.2.3(@angular/compiler-cli@22.2.3(@angular/compiler@22.2.3)(typescript@6.0.2))(@angular/core@22.2.3(@angular/compiler@22.2.3)(rxjs@7.8.2)(zone.js@0.15.1))(rxjs@7.8.2)
+      '@angular/compiler': 22.2.3
+      '@angular/core': 22.2.3(@angular/compiler@22.2.3)(rxjs@7.8.2)(zone.js@0.15.1)
+      '@angular/platform-browser': 22.2.3(@angular/animations@22.2.3(@angular/common@22.2.3(@angular/compiler-cli@22.2.3(@angular/compiler@22.2.3)(typescript@6.0.2))(@angular/core@22.2.3(@angular/compiler@22.2.3)(rxjs@7.8.2)(zone.js@0.15.1))(rxjs@7.8.2))(@angular/compiler-cli@22.2.3(@angular/compiler@22.2.3)(typescript@6.0.2))(@angular/core@22.2.3(@angular/compiler@22.2.3)(rxjs@7.8.2)(zone.js@0.15.1)))(@angular/common@22.2.3(@angular/compiler-cli@22.2.3(@angular/compiler@22.2.3)(typescript@6.0.2))(@angular/core@22.2.3(@angular/compiler@22.2.3)(rxjs@7.8.2)(zone.js@0.15.1))(rxjs@7.8.2))(@angular/compiler-cli@22.2.3(@angular/compiler@22.2.3)(typescript@6.0.2))(@angular/core@22.2.3(@angular/compiler@22.2.3)(rxjs@7.8.2)(zone.js@0.15.1))
+      '@nginfra/angular-linking': 1.0.11(@angular/compiler-cli@22.2.3(@angular/compiler@22.2.3)(typescript@6.0.2))
+      rxjs: 7.8.2
       tslib: 2.8.1
       xhr2: 0.2.1
     transitivePeerDependencies:
       - '@angular/compiler-cli'
     optional: true
 
-  '@angular/platform-server@22.2.3(fb616aeebcc0b45ad29aec6e7a4fd2f8)':
+  '@angular/router@22.2.3(1a32cbd26e1f8b21c1f8a8fa3b2ff4f7)':
     dependencies:
-      '@angular/common': 22.2.3(@angular/compiler-cli@22.2.3(@angular/compiler@22.2.3)(typescript@6.0.2))(@angular/core@22.2.3(@angular/compiler@22.2.3)(rxjs@7.8.1)(zone.js@0.16.2))(rxjs@7.8.1)
-      '@angular/compiler': 22.2.3
-      '@angular/core': 22.2.3(@angular/compiler@22.2.3)(rxjs@7.8.1)(zone.js@0.16.2)
-      '@angular/platform-browser': 22.2.3(@angular/animations@22.2.3(@angular/common@22.2.3(@angular/compiler-cli@22.2.3(@angular/compiler@22.2.3)(typescript@6.0.2))(@angular/core@22.2.3(@angular/compiler@22.2.3)(rxjs@7.8.1)(zone.js@0.16.2))(rxjs@7.8.1))(@angular/compiler-cli@22.2.3(@angular/compiler@22.2.3)(typescript@6.0.2))(@angular/core@22.2.3(@angular/compiler@22.2.3)(rxjs@7.8.1)(zone.js@0.16.2)))(@angular/common@22.2.3(@angular/compiler-cli@22.2.3(@angular/compiler@22.2.3)(typescript@6.0.2))(@angular/core@22.2.3(@angular/compiler@22.2.3)(rxjs@7.8.1)(zone.js@0.16.2))(rxjs@7.8.1))(@angular/compiler-cli@22.2.3(@angular/compiler@22.2.3)(typescript@6.0.2))(@angular/core@22.2.3(@angular/compiler@22.2.3)(rxjs@7.8.1)(zone.js@0.16.2))
+      '@angular/common': 22.2.3(@angular/compiler-cli@22.2.3(@angular/compiler@22.2.3)(typescript@6.0.2))(@angular/core@22.2.3(@angular/compiler@22.2.3)(rxjs@7.8.2)(zone.js@0.16.2))(rxjs@7.8.2)
+      '@angular/core': 22.2.3(@angular/compiler@22.2.3)(rxjs@7.8.2)(zone.js@0.16.2)
+      '@angular/platform-browser': 22.2.3(@angular/animations@22.2.3(@angular/common@22.2.3(@angular/compiler-cli@22.2.3(@angular/compiler@22.2.3)(typescript@6.0.2))(@angular/core@22.2.3(@angular/compiler@22.2.3)(rxjs@7.8.2)(zone.js@0.16.2))(rxjs@7.8.2))(@angular/compiler-cli@22.2.3(@angular/compiler@22.2.3)(typescript@6.0.2))(@angular/core@22.2.3(@angular/compiler@22.2.3)(rxjs@7.8.2)(zone.js@0.16.2)))(@angular/common@22.2.3(@angular/compiler-cli@22.2.3(@angular/compiler@22.2.3)(typescript@6.0.2))(@angular/core@22.2.3(@angular/compiler@22.2.3)(rxjs@7.8.2)(zone.js@0.16.2))(rxjs@7.8.2))(@angular/compiler-cli@22.2.3(@angular/compiler@22.2.3)(typescript@6.0.2))(@angular/core@22.2.3(@angular/compiler@22.2.3)(rxjs@7.8.2)(zone.js@0.16.2))
       '@nginfra/angular-linking': 1.0.11(@angular/compiler-cli@22.2.3(@angular/compiler@22.2.3)(typescript@6.0.2))
-      rxjs: 7.8.1
-      tslib: 2.8.1
-      xhr2: 0.2.1
-    transitivePeerDependencies:
-      - '@angular/compiler-cli'
-
-  '@angular/router@22.2.3(72c58aabaa8b7e8bc15941cd6288dd55)':
-    dependencies:
-      '@angular/common': 22.2.3(@angular/compiler-cli@22.2.3(@angular/compiler@22.2.3)(typescript@6.0.2))(@angular/core@22.2.3(@angular/compiler@22.2.3)(rxjs@7.8.1)(zone.js@0.16.2))(rxjs@7.8.1)
-      '@angular/core': 22.2.3(@angular/compiler@22.2.3)(rxjs@7.8.1)(zone.js@0.16.2)
-      '@angular/platform-browser': 22.2.3(@angular/animations@22.2.3(@angular/common@22.2.3(@angular/compiler-cli@22.2.3(@angular/compiler@22.2.3)(typescript@6.0.2))(@angular/core@22.2.3(@angular/compiler@22.2.3)(rxjs@7.8.1)(zone.js@0.16.2))(rxjs@7.8.1))(@angular/compiler-cli@22.2.3(@angular/compiler@22.2.3)(typescript@6.0.2))(@angular/core@22.2.3(@angular/compiler@22.2.3)(rxjs@7.8.1)(zone.js@0.16.2)))(@angular/common@22.2.3(@angular/compiler-cli@22.2.3(@angular/compiler@22.2.3)(typescript@6.0.2))(@angular/core@22.2.3(@angular/compiler@22.2.3)(rxjs@7.8.1)(zone.js@0.16.2))(rxjs@7.8.1))(@angular/compiler-cli@22.2.3(@angular/compiler@22.2.3)(typescript@6.0.2))(@angular/core@22.2.3(@angular/compiler@22.2.3)(rxjs@7.8.1)(zone.js@0.16.2))
-      '@nginfra/angular-linking': 1.0.11(@angular/compiler-cli@22.2.3(@angular/compiler@22.2.3)(typescript@6.0.2))
-      rxjs: 7.8.1
+      rxjs: 7.8.2
       tslib: 2.8.1
     transitivePeerDependencies:
       - '@angular/compiler-cli'
 
-  '@angular/router@22.2.3(f939d374d4960147216d45649acd7a8f)':
+  '@angular/router@22.2.3(d82f35ee403aa10d5107805f78a5bfdd)':
     dependencies:
-      '@angular/common': 22.2.3(@angular/compiler-cli@22.2.3(@angular/compiler@22.2.3)(typescript@6.0.2))(@angular/core@22.2.3(@angular/compiler@22.2.3)(rxjs@7.8.1)(zone.js@0.15.1))(rxjs@7.8.1)
-      '@angular/core': 22.2.3(@angular/compiler@22.2.3)(rxjs@7.8.1)(zone.js@0.15.1)
-      '@angular/platform-browser': 22.2.3(@angular/animations@22.2.3(@angular/common@22.2.3(@angular/compiler-cli@22.2.3(@angular/compiler@22.2.3)(typescript@6.0.2))(@angular/core@22.2.3(@angular/compiler@22.2.3)(rxjs@7.8.1)(zone.js@0.15.1))(rxjs@7.8.1))(@angular/compiler-cli@22.2.3(@angular/compiler@22.2.3)(typescript@6.0.2))(@angular/core@22.2.3(@angular/compiler@22.2.3)(rxjs@7.8.1)(zone.js@0.15.1)))(@angular/common@22.2.3(@angular/compiler-cli@22.2.3(@angular/compiler@22.2.3)(typescript@6.0.2))(@angular/core@22.2.3(@angular/compiler@22.2.3)(rxjs@7.8.1)(zone.js@0.15.1))(rxjs@7.8.1))(@angular/compiler-cli@22.2.3(@angular/compiler@22.2.3)(typescript@6.0.2))(@angular/core@22.2.3(@angular/compiler@22.2.3)(rxjs@7.8.1)(zone.js@0.15.1))
+      '@angular/common': 22.2.3(@angular/compiler-cli@22.2.3(@angular/compiler@22.2.3)(typescript@6.0.2))(@angular/core@22.2.3(@angular/compiler@22.2.3)(rxjs@7.8.2)(zone.js@0.15.1))(rxjs@7.8.2)
+      '@angular/core': 22.2.3(@angular/compiler@22.2.3)(rxjs@7.8.2)(zone.js@0.15.1)
+      '@angular/platform-browser': 22.2.3(@angular/animations@22.2.3(@angular/common@22.2.3(@angular/compiler-cli@22.2.3(@angular/compiler@22.2.3)(typescript@6.0.2))(@angular/core@22.2.3(@angular/compiler@22.2.3)(rxjs@7.8.2)(zone.js@0.15.1))(rxjs@7.8.2))(@angular/compiler-cli@22.2.3(@angular/compiler@22.2.3)(typescript@6.0.2))(@angular/core@22.2.3(@angular/compiler@22.2.3)(rxjs@7.8.2)(zone.js@0.15.1)))(@angular/common@22.2.3(@angular/compiler-cli@22.2.3(@angular/compiler@22.2.3)(typescript@6.0.2))(@angular/core@22.2.3(@angular/compiler@22.2.3)(rxjs@7.8.2)(zone.js@0.15.1))(rxjs@7.8.2))(@angular/compiler-cli@22.2.3(@angular/compiler@22.2.3)(typescript@6.0.2))(@angular/core@22.2.3(@angular/compiler@22.2.3)(rxjs@7.8.2)(zone.js@0.15.1))
       '@nginfra/angular-linking': 1.0.11(@angular/compiler-cli@22.2.3(@angular/compiler@22.2.3)(typescript@6.0.2))
-      rxjs: 7.8.1
+      rxjs: 7.8.2
       tslib: 2.8.1
     transitivePeerDependencies:
       - '@angular/compiler-cli'
 
-  '@angular/ssr@22.2.3(@angular/common@22.2.3(@angular/compiler-cli@22.2.3(@angular/compiler@22.2.3)(typescript@6.0.2))(@angular/core@22.2.3(@angular/compiler@22.2.3)(rxjs@7.8.1)(zone.js@0.15.1))(rxjs@7.8.1))(@angular/core@22.2.3(@angular/compiler@22.2.3)(rxjs@7.8.1)(zone.js@0.15.1))(@angular/platform-server@22.2.3(259458177252219946a165d7b52e41be))(@angular/router@22.2.3(f939d374d4960147216d45649acd7a8f))':
+  '@angular/ssr@22.2.3(@angular/common@22.2.3(@angular/compiler-cli@22.2.3(@angular/compiler@22.2.3)(typescript@6.0.2))(@angular/core@22.2.3(@angular/compiler@22.2.3)(rxjs@7.8.2)(zone.js@0.15.1))(rxjs@7.8.2))(@angular/core@22.2.3(@angular/compiler@22.2.3)(rxjs@7.8.2)(zone.js@0.15.1))(@angular/platform-server@22.2.3(328855243b419e4b1145b4dca2aced27))(@angular/router@22.2.3(d82f35ee403aa10d5107805f78a5bfdd))':
     dependencies:
-      '@angular/common': 22.2.3(@angular/compiler-cli@22.2.3(@angular/compiler@22.2.3)(typescript@6.0.2))(@angular/core@22.2.3(@angular/compiler@22.2.3)(rxjs@7.8.1)(zone.js@0.15.1))(rxjs@7.8.1)
-      '@angular/core': 22.2.3(@angular/compiler@22.2.3)(rxjs@7.8.1)(zone.js@0.15.1)
-      '@angular/router': 22.2.3(f939d374d4960147216d45649acd7a8f)
+      '@angular/common': 22.2.3(@angular/compiler-cli@22.2.3(@angular/compiler@22.2.3)(typescript@6.0.2))(@angular/core@22.2.3(@angular/compiler@22.2.3)(rxjs@7.8.2)(zone.js@0.15.1))(rxjs@7.8.2)
+      '@angular/core': 22.2.3(@angular/compiler@22.2.3)(rxjs@7.8.2)(zone.js@0.15.1)
+      '@angular/router': 22.2.3(d82f35ee403aa10d5107805f78a5bfdd)
       beasties: 0.5.4
       tslib: 2.8.1
     optionalDependencies:
-      '@angular/platform-server': 22.2.3(259458177252219946a165d7b52e41be)
+      '@angular/platform-server': 22.2.3(328855243b419e4b1145b4dca2aced27)
 
   '@arcanis/slice-ansi@1.1.1':
     dependencies:
@@ -16004,9 +16001,9 @@ snapshots:
   amdefine@1.0.1:
     optional: true
 
-  angular-server-side-configuration@22.0.2(@angular/core@22.2.3(@angular/compiler@22.2.3)(rxjs@7.8.1)(zone.js@0.16.2)):
+  angular-server-side-configuration@22.0.2(@angular/core@22.2.3(@angular/compiler@22.2.3)(rxjs@7.8.2)(zone.js@0.16.2)):
     dependencies:
-      '@angular/core': 22.2.3(@angular/compiler@22.2.3)(rxjs@7.8.1)(zone.js@0.16.2)
+      '@angular/core': 22.2.3(@angular/compiler@22.2.3)(rxjs@7.8.2)(zone.js@0.16.2)
       glob: 10.5.0
       tslib: 2.8.1
 
@@ -21182,10 +21179,6 @@ snapshots:
       typescript: 6.0.2
     transitivePeerDependencies:
       - supports-color
-
-  rxjs@7.8.1:
-    dependencies:
-      tslib: 2.8.1
 
   rxjs@7.8.2:
     dependencies:
