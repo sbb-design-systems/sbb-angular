@@ -107,6 +107,9 @@ export class SbbDatepicker<D> implements OnDestroy {
   set disabled(value: boolean) {
     if (value !== this._disabled) {
       this._disabled = value;
+      if (value) {
+        this.close();
+      }
       this.disabledChange.next(value);
     }
   }
@@ -334,7 +337,12 @@ export class SbbDatepicker<D> implements OnDestroy {
     this._inputChangeSubscription = merge(
       this.datepickerInput.disabledChange,
       this.datepickerInput.readonlyChange,
-    ).subscribe(() => this._changeDetectorRef.markForCheck());
+    ).subscribe(() => {
+      if (this.disabled) {
+        this.close();
+      }
+      this._changeDetectorRef.markForCheck();
+    });
 
     // If the main datepicker date changes, we need to do a `markForCheck` to update the arrow keys.
     this._mainDatepickerSubscription = this.main?.datepickerInput.valueChange.subscribe(() =>
