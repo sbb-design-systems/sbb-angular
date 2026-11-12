@@ -49,6 +49,21 @@ describe('SbbDatepicker', () => {
   }));
 
   describe('with NativeDateModule', () => {
+    it('should close an open calendar when it inherits the disabled input state', fakeAsync(() => {
+      const inheritedFixture = createComponent(DatepickerWithNgModelComponent);
+      inheritedFixture.detectChanges();
+      const { datepicker, datepickerInput } = inheritedFixture.componentInstance;
+      datepicker.open();
+      inheritedFixture.detectChanges();
+      expect(document.querySelector('.sbb-datepicker-content')).not.toBeNull();
+
+      datepickerInput.disabled = true;
+      inheritedFixture.detectChanges();
+      flush();
+
+      expect(document.querySelector('.sbb-datepicker-content')).toBeNull();
+    }));
+
     describe('standard datepicker', () => {
       let fixture: ComponentFixture<StandardDatepickerComponent>;
       let testComponent: StandardDatepickerComponent;
@@ -85,6 +100,18 @@ describe('SbbDatepicker', () => {
 
         testComponent.opened = false;
         fixture.changeDetectorRef.markForCheck();
+        fixture.detectChanges();
+        flush();
+
+        expect(document.querySelector('.sbb-datepicker-content')).toBeNull();
+      }));
+
+      it('should close an open calendar when the datepicker is disabled', fakeAsync(() => {
+        testComponent.datepicker.open();
+        fixture.detectChanges();
+        expect(document.querySelector('.sbb-datepicker-content')).not.toBeNull();
+
+        testComponent.datepicker.disabled = true;
         fixture.detectChanges();
         flush();
 
