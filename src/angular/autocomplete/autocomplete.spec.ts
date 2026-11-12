@@ -1146,6 +1146,20 @@ describe('SbbAutocomplete', () => {
         .toBe(false);
     });
 
+    it('should close an open panel when the autocomplete is disabled', () => {
+      const { trigger } = fixture.componentInstance;
+      dispatchFakeEvent(input, 'focusin');
+      fixture.detectChanges();
+      expect(trigger.panelOpen).toBe(true);
+
+      fixture.componentInstance.autocompleteDisabled = true;
+      fixture.changeDetectorRef.markForCheck();
+      fixture.detectChanges();
+
+      expect(trigger.panelOpen).toBe(false);
+      expect(overlayContainerElement.querySelector('sbb-option')).toBeNull();
+    });
+
     it('should continue to update the model if the autocomplete is disabled', () => {
       fixture.componentInstance.autocompleteDisabled = true;
       fixture.changeDetectorRef.markForCheck();
@@ -1515,6 +1529,19 @@ describe('SbbAutocomplete', () => {
       expect(formFieldElement.classList.contains('sbb-form-field-disabled'))
         .withContext(`Expected input underline to display disabled styles.`)
         .toBe(true);
+    });
+
+    it('should close an open panel when its form control is disabled', () => {
+      const { numberCtrl, trigger } = fixture.componentInstance;
+      dispatchFakeEvent(input, 'focusin');
+      fixture.detectChanges();
+      expect(trigger.panelOpen).toBe(true);
+
+      numberCtrl.disable();
+      fixture.detectChanges();
+
+      expect(trigger.panelOpen).toBe(false);
+      expect(overlayContainerElement.querySelector('sbb-option')).toBeNull();
     });
 
     it('should mark the autocomplete control as dirty as user types', () => {
