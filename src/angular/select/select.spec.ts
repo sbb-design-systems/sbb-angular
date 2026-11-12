@@ -2226,6 +2226,23 @@ describe('SbbSelect', () => {
         expect(overlayContainerElement.textContent).toContain('Tacos');
       }));
 
+      it('should make an open panel inert while the control is disabled', fakeAsync(() => {
+        select.click();
+        fixture.detectChanges();
+        flush();
+
+        const panel = overlayContainerElement.querySelector<HTMLElement>('[role="listbox"]')!;
+        expect(panel.inert).toBeFalse();
+
+        fixture.componentInstance.control.disable();
+        fixture.detectChanges();
+        expect(panel.inert).toBeTrue();
+
+        fixture.componentInstance.control.enable();
+        fixture.detectChanges();
+        expect(panel.inert).toBeFalse();
+      }));
+
       it('should close the panel when an item is clicked', fakeAsync(() => {
         select.click();
         fixture.detectChanges();

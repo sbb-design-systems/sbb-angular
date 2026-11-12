@@ -108,7 +108,8 @@ of `<sbb-optgroup>`.
 When working with Reactive Forms, the select component can be disabled/enabled via form controls.
 This can be accomplished by creating a `FormControl` with the disabled property
 `FormControl({ value: '', disabled: true })` or using `FormControl.enable()`,
-`FormControl.disable()`.
+`FormControl.disable()`. If the select panel is open when the control becomes disabled,
+it cannot receive focus or accept a selection.
 
 It is possible to disable the entire select, individual options or option groups in the select by
 using the disabled property on the `<select>`, `<sbb-select>`, `<option>`, `<sbb-option>`
