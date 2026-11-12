@@ -319,6 +319,10 @@ export class SbbAutocompleteTrigger
   }
 
   ngOnChanges(changes: SimpleChanges) {
+    if (changes['autocompleteDisabled'] && this.autocompleteDisabled) {
+      this.closePanel();
+    }
+
     if (changes['position'] && this._positionStrategy) {
       this._setStrategyPositions(this._positionStrategy);
 
@@ -498,6 +502,9 @@ export class SbbAutocompleteTrigger
   // Implemented as part of ControlValueAccessor.
   setDisabledState(isDisabled: boolean) {
     this._element.nativeElement.disabled = isDisabled;
+    if (isDisabled) {
+      this.closePanel();
+    }
   }
 
   _handleKeydown(event: KeyboardEvent): void {
